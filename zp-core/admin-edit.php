@@ -160,295 +160,194 @@ if (isset($_GET['action'])) {
 
 		/** Publish album  *********************************************************** */
 		/*		 * *************************************************************************** */
-		case "publish":
-			XSRFdefender('albumedit');
-			$album = newAlbum($folder);
-			$album->setShow($_GET['value']);
-			$album->save();
-			$return = sanitize_path($r = $_GET['return']);
-			if (!empty($return)) {
-				$return = '&album=' . $return;
-				if (strpos($r, '*') === 0) {
-					$return .= '&tab=subalbuminfo';
-				}
-			}
-			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $return);
-			exitZP();
-			break;
+    case "publish":
+      XSRFdefender('albumedit');
+      $album = newAlbum($folder);
+      $album->setShow($_GET['value']);
+      $album->save();
+      $return = sanitize_path($r = $_GET['return']);
+      if (!empty($return)) {
+        $return = '&album=' . $return;
+        if (strpos($r, '*') === 0) {
+          $return .= '&tab=subalbuminfo';
+        }
+      }
+      header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $return);
+      exitZP();
+      break;
 
-		/** Reset hitcounters ********************************************************** */
+    /** Reset hitcounters ********************************************************** */
 		/*		 * ***************************************************************************** */
-		case "reset_hitcounters":
-			XSRFdefender('hitcounter');
-			$id = sanitize_numeric($_REQUEST['albumid']);
-			$where = ' WHERE `id`=' . $id;
-			$imgwhere = ' WHERE `albumid`=' . $id;
-			$return = sanitize_path($r = $_GET['return']);
-			if (!empty($return)) {
-				$return = '&album=' . $return;
-				if (strpos($r, '*') === 0) {
-					$return .= '&tab=subalbuminfo';
-				}
-			}
-			query("UPDATE " . prefix('albums') . " SET `hitcounter`= 0" . $where);
-			query("UPDATE " . prefix('images') . " SET `hitcounter`= 0" . $imgwhere);
-			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $return . '&counters_reset');
-			exitZP();
-			break;
+    case "reset_hitcounters":
+      XSRFdefender('hitcounter');
+      $id = sanitize_numeric($_REQUEST['albumid']);
+      $where = ' WHERE `id`=' . $id;
+      $imgwhere = ' WHERE `albumid`=' . $id;
+      $return = sanitize_path($r = $_GET['return']);
+      if (!empty($return)) {
+        $return = '&album=' . $return;
+        if (strpos($r, '*') === 0) {
+          $return .= '&tab=subalbuminfo';
+        }
+      }
+      query("UPDATE " . prefix('albums') . " SET `hitcounter`= 0" . $where);
+      query("UPDATE " . prefix('images') . " SET `hitcounter`= 0" . $imgwhere);
+      header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $return . '&counters_reset');
+      exitZP();
+      break;
 
 //** DELETEIMAGE **************************************************************/
-		/*		 * *************************************************************************** */
-		case 'deleteimage':
-			XSRFdefender('delete');
-			$albumname = sanitize_path($_REQUEST['album']);
-			$imagename = sanitize_path($_REQUEST['image']);
-			$album = newAlbum($albumname);
-			$image = newImage($album, $imagename);
-			if ($image->remove()) {
-				$nd = 1;
-			} else {
-				$nd = 2;
-			}
-			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit&album=' . pathurlencode($albumname) . '&ndeleted=' . $nd);
-			exitZP();
-			break;
+    /*     * *************************************************************************** */
+    case 'deleteimage':
+      XSRFdefender('delete');
+      $albumname = sanitize_path($_REQUEST['album']);
+      $imagename = sanitize_path($_REQUEST['image']);
+      $album = newAlbum($albumname);
+      $image = newImage($album, $imagename);
+      if ($image->remove()) {
+        $nd = 1;
+      } else {
+        $nd = 2;
+      }
+      header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit&album=' . pathurlencode($albumname) . '&ndeleted=' . $nd);
+      exitZP();
+      break;
 
-		/** REFRESH IMAGE METADATA */
-		case 'refresh':
-			XSRFdefender('imagemetadata');
-			$albumname = sanitize_path($_REQUEST['album']);
-			$imagename = sanitize_path($_REQUEST['image']);
-			$image = newImage(NULL, array('folder' => $albumname, 'filename' => $imagename));
-			$image->updateMetaData();
-			$image->save();
-			if (isset($_GET['album'])) {
-				$return = pathurlencode(sanitize_path($_GET['album']));
-			} else {
-				$return = pathurlencode(sanitize_path(urldecode($_POST['album'])));
-			}
+    /** REFRESH IMAGE METADATA */
+    case 'refresh':
+      XSRFdefender('imagemetadata');
+      $albumname = sanitize_path($_REQUEST['album']);
+      $imagename = sanitize_path($_REQUEST['image']);
+      $image = newImage(NULL, array('folder' => $albumname, 'filename' => $imagename));
+      $image->updateMetaData();
+      $image->save();
+      if (isset($_GET['album'])) {
+        $return = pathurlencode(sanitize_path($_GET['album']));
+      } else {
+        $return = pathurlencode(sanitize_path(urldecode($_POST['album'])));
+      }
 
-			$return = '?page=edit&tab=imageinfo&album=' . $return . '&metadata_refresh';
-			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php' . $return);
-			exitZP();
-			break;
+      $return = '?page=edit&tab=imageinfo&album=' . $return . '&metadata_refresh';
+      header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php' . $return);
+      exitZP();
+      break;
 
-		/** SAVE ********************************************************************* */
-		/*		 * *************************************************************************** */
-		case "save":
-			unset($folder);
-			$returntab = '';
-			XSRFdefender('albumedit');
+    /** SAVE ********************************************************************* */
+    /*     * *************************************************************************** */
+    case "save":
+      unset($folder);
+      $returntab = '';
+      XSRFdefender('albumedit');
 
-			/** SAVE A SINGLE ALBUM ****************************************************** */
-			if (isset($_POST['album'])) {
-				$folder = sanitize_path($_POST['album']);
-				$album = newAlbum($folder);
-				$notify = '';
-				$returnalbum = NULL;
-				if (isset($_POST['savealbuminfo'])) {
-					$notify = processAlbumEdit(0, $album, $returnalbum);
-					$returntab = '&tagsort=' . $tagsort . '&tab=albuminfo';
-				}
+      /** SAVE A SINGLE ALBUM OR IMAGE ****************************************************** */
+      if (isset($_POST['album'])) {
+        $folder = sanitize_path($_POST['album']);
+        $album = newAlbum($folder);
+        $notify = '';
+        $returnalbum = NULL;
+        
+        if (isset($_GET['singleimage'])) {
+          $filename = sanitize($_POST["0-filename"]);
+          // The file might no longer exist
+          $image = newImage($album, $filename);
+          if ($image->exists) {
+            $notify = processImageEdit($image, 0);
+            $qs_albumsuffix = ''; 
+            $returnalbum = html_encode(pathurlencode($album->name));
+            $returntab = '&tab=imageinfo&singleimage='.html_encode($image->filename);
+          } // if image exists
+        } else {
+          if (isset($_POST['savealbuminfo'])) {
+            $notify = processAlbumEdit(0, $album, $returnalbum);
+            $returntab = '&tagsort=' . $tagsort . '&tab=albuminfo';
+          }
+          if (isset($_POST['totalimages'])) {
+            if (isset($_POST['checkForPostTruncation'])) {
+              $returntab = '&tagsort=' . $tagsort . '&tab=imageinfo';
+              if (isset($_POST['ids'])) { //	process bulk actions, not individual image actions.
+                $action = processImageBulkActions($album);
+                if (!empty($action))
+                  $notify = '&bulkmessage=' . $action;
+              } else {
+                $oldsort = sanitize($_POST['oldalbumimagesort'], 3);
+                if (getOption('albumimagedirection'))
+                  $oldsort = $oldsort . '_desc';
+                $newsort = sanitize($_POST['albumimagesort'], 3);
+                if ($oldsort == $newsort) {
+                  for ($i = 0; $i < $_POST['totalimages']; $i++) {
+                    $filename = sanitize($_POST["$i-filename"]);
+                   // The file might no longer exist
+                    $image = newImage($album, $filename);
+                    if ($image->exists) {
+                      processImageEdit($image, $i);
+                    } // if image exists
+                  }
+                } else {
+                  if (strpos($newsort, '_desc')) {
+                    setOption('albumimagesort', substr($newsort, 0, -5));
+                    setOption('albumimagedirection', 'DESC');
+                  } else {
+                    setOption('albumimagesort', $newsort);
+                    setOption('albumimagedirection', '');
+                  }
+                  $notify = '&';
+                }
+              }
+            } else {
+              $notify = '&post_error';
+            }
+          }
+          if (!is_null($returnalbum)) {
+            $folder = $returnalbum;
+          }
+          $qs_albumsuffix = '';
+        }
+        /** SAVE MULTIPLE ALBUMS ***************************************************** */
+      } else if ($_POST['totalalbums']) {
+        $notify = '';
+        for ($i = 1; $i <= sanitize_numeric($_POST['totalalbums']); $i++) {
+          if ($i > 0) {
+            $prefix = $i . "-";
+          } else {
+            $prefix = '';
+          }
+          $f = sanitize_path(trim(sanitize($_POST[$prefix . 'folder'])));
+          $album = newAlbum($f);
+          $returnalbum = '';
+          $rslt = processAlbumEdit($i, $album, $returnalbum);
+          if (!empty($rslt)) {
+            $notify = $rslt;
+          }
+        }
+        $qs_albumsuffix = '&massedit';
+        if (isset($_GET['album'])) {
+          $qs_albumsuffix = '&album=' . sanitize($_GET['album']) . $qs_albumsuffix;
+        }
+      }
+      // Redirect to the same album we saved.
+      if (isset($folder) && !empty($folder)) {
+        $qs_albumsuffix .= '&album=' . pathurlencode($folder);
+      }
+      if (isset($_POST['subpage'])) {
+        $pg = '&subpage=' . sanitize($_POST['subpage']);
+      } else {
+        $pg = '';
+      }
+      $msg = zp_apply_filter('edit_error', '');
+      if ($msg) {
+        $notify .= '&edit_error=' . $msg;
+      }
+      if ($notify == '&') {
+        $notify = '';
+      } else {
+        if (empty($notify))
+          $notify = '&saved';
+      }
+      header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $qs_albumsuffix . $notify . $pg . $returntab);
+      exitZP();
+      break;
 
-				if (isset($_POST['totalimages'])) {
-					if (isset($_POST['checkForPostTruncation'])) {
-						$returntab = '&tagsort=' . $tagsort . '&tab=imageinfo';
-						if (isset($_POST['ids'])) { //	process bulk actions, not individual image actions.
-							$action = processImageBulkActions($album);
-							if (!empty($action))
-								$notify = '&bulkmessage=' . $action;
-						} else {
-							$oldsort = sanitize($_POST['oldalbumimagesort'], 3);
-							if (getOption('albumimagedirection'))
-								$oldsort = $oldsort . '_desc';
-							$newsort = sanitize($_POST['albumimagesort'], 3);
-							if ($oldsort == $newsort) {
-								for ($i = 0; $i < $_POST['totalimages']; $i++) {
-									$filename = sanitize($_POST["$i-filename"]);
-// The file might no longer exist
-									$image = newImage($album, $filename);
-									if ($image->exists) {
-										if (isset($_POST[$i . '-MoveCopyRename'])) {
-											$movecopyrename_action = sanitize($_POST[$i . '-MoveCopyRename'], 3);
-										} else {
-											$movecopyrename_action = '';
-										}
-										if ($movecopyrename_action == 'delete') {
-											$image->remove();
-										} else {
-											if ($thumbnail = sanitize($_POST['album_thumb-' . $i])) { //selected as an album thumb
-												$talbum = newAlbum($thumbnail);
-												if ($image->imagefolder == $thumbnail) {
-													$talbum->setThumb($image->filename);
-												} else {
-													$talbum->setThumb('/' . $image->imagefolder . '/' . $image->filename);
-												}
-												$talbum->save();
-											}
-											if (isset($_POST[$i . '-reset_rating'])) {
-												$image->set('total_value', 0);
-												$image->set('total_votes', 0);
-												$image->set('used_ips', 0);
-											}
-											$image->setPublishDate(sanitize($_POST['publishdate-' . $i]));
-											$image->setExpireDate(sanitize($_POST['expirationdate-' . $i]));
-											$image->setTitle(process_language_string_save("$i-title", 2));
-											$image->setDesc(process_language_string_save("$i-desc", EDITOR_SANITIZE_LEVEL));
-											$image->setLocation(process_language_string_save("$i-location", 3));
-											$image->setCity(process_language_string_save("$i-city", 3));
-											$image->setState(process_language_string_save("$i-state", 3));
-											$image->setCountry(process_language_string_save("$i-country", 3));
-											$image->setCredit(process_language_string_save("$i-credit", 1));
-											$image->setCopyright(process_language_string_save("$i-copyright", 1));
-											if (isset($_POST[$i . '-oldrotation']) && isset($_POST[$i . '-rotation'])) {
-												$oldrotation = (int) $_POST[$i . '-oldrotation'];
-												$rotation = (int) $_POST[$i . '-rotation'];
-												if ($rotation != $oldrotation) {
-													$image->set('EXIFOrientation', $rotation);
-													$image->updateDimensions();
-													$album = $image->getAlbum();
-													Gallery::clearCache(SERVERCACHE . '/' . $album->name);
-												}
-											}
-											$tagsprefix = 'tags_' . $i . '-';
-											$tags = array();
-											$l = strlen($tagsprefix);
-											foreach ($_POST as $key => $value) {
-												$key = postIndexDecode($key);
-												if (substr($key, 0, $l) == $tagsprefix) {
-													if ($value) {
-														$tags[] = sanitize(substr($key, $l));
-													}
-												}
-											}
-											$tags = array_unique($tags);
-											$image->setTags($tags);
-
-											$image->setDateTime(sanitize($_POST["$i-date"]));
-											$image->setShow(isset($_POST["$i-Visible"]));
-											$image->setCommentsAllowed(isset($_POST["$i-allowcomments"]));
-											if (isset($_POST["reset_hitcounter$i"])) {
-												$image->set('hitcounter', 0);
-											}
-											$wmt = sanitize($_POST["$i-image_watermark"], 3);
-											$image->setWatermark($wmt);
-											$wmuse = 0;
-											if (isset($_POST['wm_image-' . $i]))
-												$wmuse = $wmuse | WATERMARK_IMAGE;
-											if (isset($_POST['wm_thumb-' . $i]))
-												$wmuse = $wmuse | WATERMARK_THUMB;
-											if (isset($_POST['wm_full-' . $i]))
-												$wmuse = $wmuse | WATERMARK_FULL;
-											$image->setWMUse($wmuse);
-											if (zp_loggedin(CODEBLOCK_RIGHTS)) {
-												$image->setCodeblock(processCodeblockSave($i));
-											}
-											if (isset($_POST[$i . '-owner']))
-												$image->setOwner(sanitize($_POST[$i . '-owner']));
-											$image->set('filesize', filesize($image->localpath));
-
-											$custom = process_language_string_save("$i-custom_data", 1);
-											$image->setCustomData(zp_apply_filter('save_image_custom_data', $custom, $i));
-											zp_apply_filter('save_image_utilities_data', $image, $i);
-											$image->save();
-
-// Process move/copy/rename
-											if ($movecopyrename_action == 'move') {
-												$dest = sanitize_path($_POST[$i . '-albumselect']);
-												if ($dest && $dest != $folder) {
-													if ($e = $image->move($dest)) {
-														$notify = "&mcrerr=" . $e;
-													}
-												} else {
-// Cannot move image to same album.
-													$notify = "&mcrerr=2";
-												}
-											} else if ($movecopyrename_action == 'copy') {
-												$dest = sanitize_path($_POST[$i . '-albumselect']);
-												if ($dest && $dest != $folder) {
-													if ($e = $image->copy($dest)) {
-														$notify = "&mcrerr=" . $e;
-													}
-												} else {
-// Cannot copy image to existing album.
-// Or, copy with rename?
-													$notify = "&mcrerr=2";
-												}
-											} else if ($movecopyrename_action == 'rename') {
-												$renameto = sanitize_path($_POST[$i . '-renameto']);
-												if ($e = $image->rename($renameto)) {
-													$notify = "&mcrerr=" . $e;
-												}
-											}
-										}
-									}
-								}
-							} else {
-								if (strpos($newsort, '_desc')) {
-									setOption('albumimagesort', substr($newsort, 0, -5));
-									setOption('albumimagedirection', 'DESC');
-								} else {
-									setOption('albumimagesort', $newsort);
-									setOption('albumimagedirection', '');
-								}
-								$notify = '&';
-							}
-						}
-					} else {
-						$notify = '&post_error';
-					}
-				}
-				if (!is_null($returnalbum)) {
-					$folder = $returnalbum;
-				}
-				$qs_albumsuffix = '';
-
-				/** SAVE MULTIPLE ALBUMS ***************************************************** */
-			} else if ($_POST['totalalbums']) {
-				$notify = '';
-				for ($i = 1; $i <= sanitize_numeric($_POST['totalalbums']); $i++) {
-					if ($i > 0) {
-						$prefix = $i . "-";
-					} else {
-						$prefix = '';
-					}
-					$f = sanitize_path(trim(sanitize($_POST[$prefix . 'folder'])));
-					$album = newAlbum($f);
-					$returnalbum = '';
-					$rslt = processAlbumEdit($i, $album, $returnalbum);
-					if (!empty($rslt)) {
-						$notify = $rslt;
-					}
-				}
-				$qs_albumsuffix = '&massedit';
-				if (isset($_GET['album'])) {
-					$qs_albumsuffix = '&album=' . sanitize($_GET['album']) . $qs_albumsuffix;
-				}
-			}
-// Redirect to the same album we saved.
-			if (isset($folder) && !empty($folder)) {
-				$qs_albumsuffix .= '&album=' . pathurlencode($folder);
-			}
-			if (isset($_POST['subpage'])) {
-				$pg = '&subpage=' . sanitize($_POST['subpage']);
-			} else {
-				$pg = '';
-			}
-			$msg = zp_apply_filter('edit_error', '');
-			if ($msg) {
-				$notify .= '&edit_error=' . $msg;
-			}
-			if ($notify == '&') {
-				$notify = '';
-			} else {
-				if (empty($notify))
-					$notify = '&saved';
-			}
-			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $qs_albumsuffix . $notify . $pg . $returntab);
-			exitZP();
-			break;
-
-		/** DELETION ***************************************************************** */
+    /** DELETION ***************************************************************** */
 		/*		 * ************************************************************************** */
 		case "deletealbum":
 			XSRFdefender('delete');
@@ -908,6 +807,7 @@ echo "\n</head>";
 				} else if ($subtab == 'imageinfo') {
 					$singleimage = NULL;
 					if (isset($_GET['singleimage'])) {
+    
 						$simage = sanitize($_GET['singleimage']); 
 						if (array_search($simage, $images) !== false) {
 							$allimagecount = 1;
@@ -943,15 +843,19 @@ echo "\n</head>";
 							}
 						}
 						if ($allimagecount) {
-							?>
-							<form class="dirty-check" name="albumedit2"	id="form_imageedit" action="?page=edit&amp;action=save<?php echo "&amp;album=" . html_encode(pathurlencode($album->name)); ?>"	method="post" autocomplete="off">
-								<?php XSRFToken('albumedit'); ?>
+        if($singleimage) { ?>
+          <form class="dirty-check" name="albumedit2"	id="form_imageedit" action="?page=edit&amp;action=save<?php echo "&amp;album=" . html_encode(pathurlencode($album->name)); ?>&amp;singleimage=<?php html_encode($singleimage); ?>&amp;subpage=1"	method="post" autocomplete="off">
+        <?php } else {  ?>
+          <form class="dirty-check" name="albumedit2"	id="form_imageedit" action="?page=edit&amp;action=save<?php echo "&amp;album=" . html_encode(pathurlencode($album->name)); ?>"	method="post" autocomplete="off">
+        <?php } ?>
+        <?php XSRFToken('albumedit'); ?>
 								<input type="hidden" name="album"	value="<?php echo $album->name; ?>" />
 								<input type="hidden" name="totalimages" value="<?php echo $totalimages; ?>" />
 								<input type="hidden" name="subpage" value="<?php echo html_encode($pagenum); ?>" />
 								<input type="hidden" name="tagsort" value="<?php echo html_encode($tagsort); ?>" />
 								<input type="hidden" name="oldalbumimagesort" value="<?php echo html_encode($oldalbumimagesort); ?>" />
-
+        <input type="hidden" name="albumimagesort" value="" />  
+      
 								<?php $totalpages = ceil(($allimagecount / $imagesTab_imageCount)); ?>
 								<table class="bordered">
 									<?php
@@ -1568,7 +1472,7 @@ echo "\n</head>";
 										</td>
 									</tr>
 									<?php
-									if ($allimagecount != $totalimages) { // need pagination links
+									if ($allimagecount != $totalimages && !$singleimage) { // need pagination links
 										?>
 										<tr>
 											<td colspan="4" class="bordered" id="imagenavb"><?php adminPageNav($pagenum, $totalpages, 'admin-edit.php', '?page=edit&amp;album=' . html_encode(pathurlencode($album->name)), '&amp;tab=imageinfo'); ?>

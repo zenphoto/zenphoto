@@ -2402,8 +2402,131 @@ function printAdminHeader($tab, $subtab = NULL) {
 		}
 		return $notify;
 	}
+ 
+ /**
+  * Process the image edit form posted
+  * @param obj $image Image object
+  * @param type $index Index of the image if within the images list or 0 if single image edit
+  */
+ function processImageEdit($image, $index) {
+  $notify = '';
+  if (isset($_POST[$index . '-MoveCopyRename'])) {
+    $movecopyrename_action = sanitize($_POST[$index . '-MoveCopyRename'], 3);
+  } else {
+    $movecopyrename_action = '';
+  }
+  if ($movecopyrename_action == 'delete') {
+    $image->remove();
+  } else {
+    if ($thumbnail = sanitize($_POST['album_thumb-' . $index])) { //selected as an album thumb
+      $talbum = newAlbum($thumbnail);
+      if ($image->imagefolder == $thumbnail) {
+        $talbum->setThumb($image->filename);
+      } else {
+        $talbum->setThumb('/' . $image->imagefolder . '/' . $image->filename);
+      }
+      $talbum->save();
+    }
+    if (isset($_POST[$index . '-reset_rating'])) {
+      $image->set('total_value', 0);
+      $image->set('total_votes', 0);
+      $image->set('used_ips', 0);
+    }
+    $image->setPublishDate(sanitize($_POST['publishdate-' . $index]));
+    $image->setExpireDate(sanitize($_POST['expirationdate-' . $index]));
+    $image->setTitle(process_language_string_save("$index-title", 2));
+    $image->setDesc(process_language_string_save("$index-desc", EDITOR_SANITIZE_LEVEL));
+    $image->setLocation(process_language_string_save("$index-location", 3));
+    $image->setCity(process_language_string_save("$index-city", 3));
+    $image->setState(process_language_string_save("$index-state", 3));
+    $image->setCountry(process_language_string_save("$index-country", 3));
+    $image->setCredit(process_language_string_save("$index-credit", 1));
+    $image->setCopyright(process_language_string_save("$index-copyright", 1));
+    if (isset($_POST[$index . '-oldrotation']) && isset($_POST[$index . '-rotation'])) {
+      $oldrotation = (int) $_POST[$index . '-oldrotation'];
+      $rotation = (int) $_POST[$index . '-rotation'];
+      if ($rotation != $oldrotation) {
+        $image->set('EXIFOrientation', $rotation);
+        $image->updateDimensions();
+        $album = $image->getAlbum();
+        Gallery::clearCache(SERVERCACHE . '/' . $album->name);
+      }
+    }
+    $tagsprefix = 'tags_' . $index . '-';
+    $tags = array();
+    $l = strlen($tagsprefix);
+    foreach ($_POST as $key => $value) {
+      $key = postIndexDecode($key);
+      if (substr($key, 0, $l) == $tagsprefix) {
+        if ($value) {
+          $tags[] = sanitize(substr($key, $l));
+        }
+      }
+    }
+    $tags = array_unique($tags);
+    $image->setTags($tags);
 
-	function adminPageNav($pagenum, $totalpages, $adminpage, $parms, $tab = '') {
+    $image->setDateTime(sanitize($_POST["$index-date"]));
+    $image->setShow(isset($_POST["$index-Visible"]));
+    $image->setCommentsAllowed(isset($_POST["$index-allowcomments"]));
+    if (isset($_POST["reset_hitcounter$index"])) {
+      $image->set('hitcounter', 0);
+    }
+    $wmt = sanitize($_POST["$index-image_watermark"], 3);
+    $image->setWatermark($wmt);
+    $wmuse = 0;
+    if (isset($_POST['wm_image-' . $index]))
+      $wmuse = $wmuse | WATERMARK_IMAGE;
+    if (isset($_POST['wm_thumb-' . $index]))
+      $wmuse = $wmuse | WATERMARK_THUMB;
+    if (isset($_POST['wm_full-' . $index]))
+      $wmuse = $wmuse | WATERMARK_FULL;
+    $image->setWMUse($wmuse);
+    if (zp_loggedin(CODEBLOCK_RIGHTS)) {
+      $image->setCodeblock(processCodeblockSave($index));
+    }
+    if (isset($_POST[$index . '-owner']))
+      $image->setOwner(sanitize($_POST[$index . '-owner']));
+    $image->set('filesize', filesize($image->localpath));
+
+    $custom = process_language_string_save("$index-custom_data", 1);
+    $image->setCustomData(zp_apply_filter('save_image_custom_data', $custom, $index));
+    zp_apply_filter('save_image_utilities_data', $image, $index);
+    $image->save();
+
+    // Process move/copy/rename
+    if ($movecopyrename_action == 'move') {
+      $dest = sanitize_path($_POST[$index . '-albumselect']);
+      if ($dest && $dest != $folder) {
+        if ($e = $image->move($dest)) {
+          $notify = "&mcrerr=" . $e;
+        }
+      } else {
+        // Cannot move image to same album.
+        $notify = "&mcrerr=2";
+      }
+    } else if ($movecopyrename_action == 'copy') {
+      $dest = sanitize_path($_POST[$index . '-albumselect']);
+      if ($dest && $dest != $folder) {
+        if ($e = $image->copy($dest)) {
+          $notify = "&mcrerr=" . $e;
+        }
+      } else {
+        // Cannot copy image to existing album.
+        // Or, copy with rename?
+        $notify = "&mcrerr=2";
+      }
+    } else if ($movecopyrename_action == 'rename') {
+      $renameto = sanitize_path($_POST[$index . '-renameto']);
+      if ($e = $image->rename($renameto)) {
+        $notify = "&mcrerr=" . $e;
+      }
+    }
+  }
+  return $notify;
+}
+
+function adminPageNav($pagenum, $totalpages, $adminpage, $parms, $tab = '') {
 		if (empty($parms)) {
 			$url = '?';
 		} else {
