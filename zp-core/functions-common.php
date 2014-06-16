@@ -548,4 +548,17 @@ function getSerializedArray($string) {
 	}
 }
 
+if (!function_exists('hex2bin')) {
+
+	function hex2bin($h) {
+		if (!is_string($h))
+			return null;
+		$r = '';
+		for ($a = 0; $a < strlen($h); $a+=2) {
+			$r.=chr(hexdec($h{$a} . $h{($a + 1)}));
+		}
+		return $r;
+	}
+
+}
 ?>

@@ -16,7 +16,7 @@ if (isset($_GET['action'])) {
 	XSRFdefender('deprecated');
 	$zplist = array();
 	foreach ($_zp_gallery->getThemes() as $theme => $data) {
-		if (zenPhotoTheme($theme)) {
+		if (protectedTheme($theme)) {
 			$zplist[] = $theme;
 		}
 	}

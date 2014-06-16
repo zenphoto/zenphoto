@@ -6,10 +6,12 @@
  *
  * @package admin
  */
+define('OFFSET_PATH', 2);
 require_once(dirname(__FILE__) . '/admin-globals.php');
 require_once(dirname(__FILE__) . '/reconfigure.php');
 
 list($diff, $needs) = checkSignature(isset($_GET['xsrfToken']) && $_GET['xsrfToken'] == getXSRFToken('setup'));
+
 if (empty($needs)) {
 	header('Location: setup/index.php');
 } else {
@@ -32,7 +34,7 @@ if (empty($needs)) {
 							if (zpFunctions::hasPrimaryScripts()) {
 								chdir(dirname(__FILE__) . '/setup/');
 								$found = safe_glob('*.xxx');
-								if ($found && zp_loggedin(ADMIN_RIGHTS)) {
+								if ($found && (zp_loggedin(ADMIN_RIGHTS) || $_zp_conf_vars['db_software'] == 'NULL')) {
 									echo '<a href="' . WEBPATH . '/' . ZENFOLDER . '/setup.php?xsrfToken=' . getXSRFToken('setup') . '">' . gettext('Click to restore the setup scripts and run setup.') . '</a>';
 								} else {
 									printf(gettext('You must restore the setup files from the %1$s [%2$s] release.'), ZENPHOTO_VERSION, ZENPHOTO_RELEASE);

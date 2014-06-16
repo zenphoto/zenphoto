@@ -310,9 +310,6 @@ setOptionDefault('site_email_name', 'ZenPhoto20');
 	natcasesort($themes);
 	echo gettext('Theme setup:') . '<br />';
 	foreach ($themes as $theme) {
-		if (!zenPhotoTheme($theme)) {
-			enableExtension('deprecated_functions', 900 | CLASS_PLUGIN);
-		}
 		?>
 		<span>
 			<img src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/setup/setup_themeOptions.php?theme=' . urlencode($theme); ?>" title="<?php echo $theme; ?>" alt="<?php echo $theme; ?>" height="16px" width="16px" />

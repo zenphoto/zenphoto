@@ -3,7 +3,7 @@
  * install routine for zenphoto
  *
  * @author Stephen Billard (sbillard)
- * 
+ *
  * @package setup
  */
 // force UTF-8 Ø
@@ -281,7 +281,7 @@ if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
 		if ($selected_database) {
 			require_once(dirname(dirname(__FILE__)) . '/functions-db-' . $selected_database . '.php');
 		} else {
-			require_once(dirname(dirname(__FILE__)) . '/functions-db_NULL.php');
+			require_once(dirname(dirname(__FILE__)) . '/functions-db-NULL.php');
 		}
 	} else {
 		// There is a problem with the configuration file

@@ -6,7 +6,7 @@
  * Headers not sent yet!
  *
  * @author Stephen Billard (sbillard)
- * 
+ *
  * @package functions
  *
  */
@@ -59,9 +59,14 @@ if ($const_webpath == '/' || $const_webpath == '.') {
 	$const_webpath = '';
 }
 
-if (defined('SERVERPATH')) {
-	$const_serverpath = SERVERPATH;
+if (!defined('SERVERPATH')) {
+	define('SERVERPATH', $const_serverpath);
 }
+if (!defined('WEBPATH')) {
+	define('WEBPATH', $const_webpath);
+}
+unset($const_webpath);
+unset($const_serverpath);
 
 
 // Contexts (Bitwise and combinable)
@@ -109,27 +114,31 @@ if (TEST_RELEASE) {
 set_error_handler("zpErrorHandler");
 set_exception_handler("zpErrorHandler");
 $_configMutex = new Mutex('cF');
-if (OFFSET_PATH != 2 && !file_exists($const_serverpath . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
+if (OFFSET_PATH != 2 && !file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
 	require_once(dirname(__FILE__) . '/reconfigure.php');
 	reconfigureAction(1);
 }
+
+if (!defined('CHMOD_VALUE')) {
+	define('CHMOD_VALUE', fileperms(dirname(__FILE__)) & 0666);
+}
+define('FOLDER_MOD', CHMOD_VALUE | 0311);
+define('FILE_MOD', CHMOD_VALUE & 0666);
+
+$_zp_conf_vars = array('db_software' => 'NULL', 'mysql_prefix' => '_');
 // Including the config file more than once is OK, and avoids $conf missing.
-eval('?>' . file_get_contents($const_serverpath . '/' . DATA_FOLDER . '/' . CONFIGFILE));
+if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
+	@eval('?>' . file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE));
+	define('DATA_MOD', fileperms(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE) & 0777);
+} else {
+	define('DATA_MOD', 0777);
+}
 if (!isset($_zp_conf_vars['special_pages'])) {
 	$_zp_conf_vars['special_pages'] = array();
 }
 
 define('DATABASE_PREFIX', $_zp_conf_vars['mysql_prefix']);
 
-if (!defined('WEBPATH')) {
-	define('WEBPATH', $const_webpath);
-}
-unset($const_webpath);
-
-if (!defined('SERVERPATH')) {
-	define('SERVERPATH', $const_serverpath);
-}
-unset($const_serverpath);
 $_zp_mutex = new Mutex();
 
 if (OFFSET_PATH != 2 && empty($_zp_conf_vars['mysql_database'])) {
@@ -146,12 +155,6 @@ if (!defined('FILESYSTEM_CHARSET')) {
 		define('FILESYSTEM_CHARSET', 'ISO-8859-1');
 	}
 }
-if (!defined('CHMOD_VALUE')) {
-	define('CHMOD_VALUE', fileperms(dirname(__FILE__)) & 0666);
-}
-define('FOLDER_MOD', CHMOD_VALUE | 0311);
-define('FILE_MOD', CHMOD_VALUE & 0666);
-define('DATA_MOD', fileperms(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE) & 0777);
 
 $_session_path = session_save_path();
 if (!file_exists($_session_path) || !is_writable($_session_path)) {
@@ -165,7 +168,7 @@ if (!isset($_zp_conf_vars['server_protocol'])) {
 	$_zp_conf_vars['server_protocol'] = 'http';
 }
 
-if (!defined('DATABASE_SOFTWARE') && extension_loaded(strtolower(@$_zp_conf_vars['db_software']))) {
+if (!defined('DATABASE_SOFTWARE') && (extension_loaded(strtolower($_zp_conf_vars['db_software'])) || $_zp_conf_vars['db_software'] == 'NULL')) {
 	require_once(dirname(__FILE__) . '/functions-db-' . $_zp_conf_vars['db_software'] . '.php');
 	$data = db_connect(array_intersect_key($_zp_conf_vars, array('db_software' => '', 'mysql_user' => '', 'mysql_pass' => '', 'mysql_host' => '', 'mysql_database' => '', 'mysql_prefix' => '', 'UTF-8' => '')), false);
 } else {

@@ -3,7 +3,7 @@
  * handles reconfiguration when the install signature has changed
  *
  * @author Stephen Billard (sbillard)
- * 
+ *
  * @package core
  */
 
@@ -79,8 +79,7 @@ function reconfigureAction($mandatory) {
  * Checks details of configuration change
  */
 function checkSignature($auto) {
-	global $_configMutex;
-	global $_zp_DB_connection, $_reconfigureMutex;
+	global $_configMutex, $_zp_DB_connection, $_reconfigureMutex;
 	if (function_exists('query_full_array') && $_zp_DB_connection) {
 		$old = @unserialize(getOption('zenphoto_install'));
 		$new = installSignature();
@@ -110,7 +109,7 @@ function checkSignature($auto) {
 	if (file_exists(dirname(__FILE__) . '/setup/')) {
 		chdir(dirname(__FILE__) . '/setup/');
 		$found = safe_glob('*.xxx');
-		if (!empty($found) && $auto && zp_loggedin(ADMIN_RIGHTS)) {
+		if (!empty($found) && $auto && (defined('ADMIN_RIGHTS') && zp_loggedin(ADMIN_RIGHTS) || !$_zp_DB_connection)) {
 			foreach ($found as $script) {
 				chmod($script, 0777);
 				if (@rename($script, stripSuffix($script))) {
@@ -220,7 +219,7 @@ function reconfigurePage($diff, $needs, $mandatory) {
 			} else {
 				$where = 'gallery';
 			}
-			$l1 = '<a href="' . WEBPATH . '/' . ZENFOLDER . '/setup.php?autorun=' . $where . '&amp;xsrfToken=' . getXSRFToken('setup') . '">';
+			$l1 = '<a href="' . WEBPATH . '/' . ZENFOLDER . '/setup.php?autorun=' . $where . '&amp;xsrfToken=' . @getXSRFToken('setup') . '">';
 			$l2 = '</a>';
 			if (array_key_exists('ZENPHOTO', $diff) || array_key_exists('FOLDER', $diff)) {
 				printf(gettext('The change detected is critical. You <strong>must</strong> run %1$ssetup%2$s for your site to function.'), $l1, $l2);
