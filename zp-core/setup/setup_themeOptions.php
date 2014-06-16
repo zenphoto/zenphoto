@@ -4,7 +4,7 @@
  * Used for setting theme/plugin default options
  *
  * @author Stephen Billard (sbillard)
- * 
+ *
  * @package setup
  *
  */
@@ -17,7 +17,13 @@ $iMutex->lock();
 
 $theme = sanitize($_REQUEST['theme']);
 setupLog(sprintf(gettext('Theme:%s setup started'), $theme), true);
+if (!protectedTheme($theme)) {
+	setupLog(sprintf(gettext('Theme:%s triggered the deprecated functions plugin'), $theme), true);
+	enableExtension('deprecated_functions', 900 | CLASS_PLUGIN);
+}
+
 $requirePath = getPlugin('themeoptions.php', $theme);
+
 if (!empty($requirePath)) {
 	require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cacheManager.php');
 	require_once(SERVERPATH . '/' . THEMEFOLDER . '/' . $theme . '/themeoptions.php');
