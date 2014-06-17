@@ -520,7 +520,20 @@ function getMainSiteURL() {
  * @return string
  */
 function getGalleryIndexURL() {
-	return zp_apply_filter('getLink', rewrite_path('/', '/'), 'index.php', NULL);
+	global $_zp_gallery_page, $_zp_current_album;
+	$page = 0;
+	if ($_zp_gallery_page != 'index.php') {
+		if (in_context(ZP_ALBUM)) {
+			$album = getUrAlbum($_zp_current_album);
+			$page = $album->getGalleryPage();
+		}
+	}
+	if ($page > 1) {
+		$link = rewrite_path('/' . _PAGE_ . '/' . $page, "/index.php?" . "page=" . $page);
+	} else {
+		$link = WEBPATH . "/";
+	}
+	return zp_apply_filter('getLink', $link, 'index.php', NULL);
 }
 
 /**
@@ -3835,34 +3848,34 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 		<!-- search form -->
 		<form method="post" action="<?php echo $searchurl; ?>" id="search_form">
 			<script type="text/javascript">
-			// <!-- <![CDATA[
-			var within = <?php echo (int) $within; ?>;
-			function search_(way) {
-				within = way;
-				if (way) {
-					$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
+		// <!-- <![CDATA[
+		var within = <?php echo (int) $within; ?>;
+		function search_(way) {
+			within = way;
+			if (way) {
+				$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
 
-				} else {
-					lastsearch = '';
-					$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
-				}
-				$('#search_input').val('');
+			} else {
+				lastsearch = '';
+				$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
 			}
-			$('#search_form').submit(function() {
-				if (within) {
-					var newsearch = $.trim($('#search_input').val());
-					if (newsearch.substring(newsearch.length - 1) == ',') {
-						newsearch = newsearch.substr(0, newsearch.length - 1);
-					}
-					if (newsearch.length > 0) {
-						$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
-					} else {
-						$('#search_input').val('<?php echo $searchwords; ?>');
-					}
+			$('#search_input').val('');
+		}
+		$('#search_form').submit(function() {
+			if (within) {
+				var newsearch = $.trim($('#search_input').val());
+				if (newsearch.substring(newsearch.length - 1) == ',') {
+					newsearch = newsearch.substr(0, newsearch.length - 1);
 				}
-				return true;
-			});
-			// ]]> -->
+				if (newsearch.length > 0) {
+					$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
+				} else {
+					$('#search_input').val('<?php echo $searchwords; ?>');
+				}
+			}
+			return true;
+		});
+		// ]]> -->
 			</script>
 			<?php echo $prevtext; ?>
 			<div>
