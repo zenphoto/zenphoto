@@ -530,11 +530,18 @@ function getMainSiteURL() {
  * @return string
  */
 function getGalleryIndexURL() {
-	global $_zp_current_album, $_zp_gallery_page, $_zp_gallery;
-	if (func_num_args() !== 0) {
-		internal_deprecations::getGalleryIndexURL();
-	}
-	return zp_apply_filter('getLink', rewrite_path('/', '/'), 'index.php', NULL);
+  global $_zp_current_album, $_zp_gallery_page, $_zp_gallery;
+  if (func_num_args() !== 0) {
+    internal_deprecations::getGalleryIndexURL();
+  }
+  $link = WEBPATH . "/";
+  if (in_context(ZP_ALBUM) && $_zp_gallery_page != 'index.php') {
+    $album = getUrAlbum($_zp_current_album);
+    if (($page = $album->getGalleryPage()) > 1) {
+      $link = rewrite_path('/' . _PAGE_ . '/' . $page, "/index.php?" . "page=" . $page);
+    }
+  }
+  return zp_apply_filter('getLink', $link, 'index.php', NULL);
 }
 
 /**
