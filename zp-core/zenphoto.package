@@ -1057,6 +1057,7 @@ zp-core/images/pencil.png
 zp-core/images/pictures.png
 zp-core/images/pictures_dn.png
 zp-core/images/place_holder_icon.png
+zp-core/images/placeholder.png
 zp-core/images/redo.png
 zp-core/images/refresh.png
 zp-core/images/reset.png
@@ -2247,4 +2248,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-2249
+2250
