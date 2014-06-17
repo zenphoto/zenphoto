@@ -521,17 +521,12 @@ function getMainSiteURL() {
  */
 function getGalleryIndexURL() {
 	global $_zp_gallery_page, $_zp_current_album;
-	$page = 0;
-	if ($_zp_gallery_page != 'index.php') {
-		if (in_context(ZP_ALBUM)) {
-			$album = getUrAlbum($_zp_current_album);
-			$page = $album->getGalleryPage();
+	$link = WEBPATH . "/";
+	if (in_context(ZP_ALBUM) && $_zp_gallery_page != 'index.php') {
+		$album = getUrAlbum($_zp_current_album);
+		if (($page = $album->getGalleryPage()) > 1) {
+			$link = rewrite_path('/' . _PAGE_ . '/' . $page, "/index.php?" . "page=" . $page);
 		}
-	}
-	if ($page > 1) {
-		$link = rewrite_path('/' . _PAGE_ . '/' . $page, "/index.php?" . "page=" . $page);
-	} else {
-		$link = WEBPATH . "/";
 	}
 	return zp_apply_filter('getLink', $link, 'index.php', NULL);
 }
