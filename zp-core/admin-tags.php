@@ -220,7 +220,7 @@ printAdminHeader('tags');
 										?>
 										<li>
 											<label>
-												<img src="<?php echo $flags[$languages[$item]]; ?>" height="12" width="12" />
+												<img src="<?php echo $flags[$languages[$item]]; ?>" height="10" width="16" />
 												<?php echo $item; ?>
 												<br />
 												<input id="<?php echo $listitem; ?>" name="<?php echo $listitem; ?>" type="text" size='33' />

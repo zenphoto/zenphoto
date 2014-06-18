@@ -1234,7 +1234,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						<li id="<?php echo $tag; ?>_element">
 							<label class="displayinline">
 								<input id="<?php echo $listitem; ?>"<?php echo $class; ?> name="<?php echo $listitem; ?>" type="checkbox" checked="checked"	value="1" />
-								<img src="<?php echo $flags[$languages[$item]]; ?>" height="12" width="12" />
+								<img src="<?php echo $flags[$languages[$item]]; ?>" height="10" width="16" />
 								<?php
 								if ($showCounts) {
 									echo html_encode($item) . ' [' . $counts[$item] . ']';
@@ -1256,7 +1256,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					<li id="<?php echo $tag; ?>_element">
 						<label class="displayinline">
 							<input id="<?php echo $listitem; ?>"<?php echo $class; ?> name="<?php echo $listitem; ?>" type="checkbox" value="1" />
-							<img src="<?php echo $flags[$languages[$item]]; ?>" height="12" width="12" />
+							<img src="<?php echo $flags[$languages[$item]]; ?>" height="10" width="16" />
 							<?php
 							if ($showCounts) {
 								echo html_encode($item) . ' [' . $counts[$item] . ']';
