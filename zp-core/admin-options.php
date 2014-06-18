@@ -195,6 +195,7 @@ if (isset($_GET['action'])) {
 			setOption('search_no_pages', (int) isset($_POST['search_no_pages']));
 			setOption('search_no_news', (int) isset($_POST['search_no_news']));
 			setOption('search_within', (int) ($_POST['search_within'] && true));
+			setOption('languageTagSearch', sanitize_numeric($_POST['languageTagSearch']));
 			$sorttype = strtolower(sanitize($_POST['sortby'], 3));
 			if ($sorttype == 'custom') {
 				$sorttype = unquote(strtolower(sanitize($_POST['customimagesort'], 3)));
@@ -1555,6 +1556,18 @@ Zenphoto_Authority::printPasswordFormJS();
 										?>
 									</p>
 									<p>
+										<?php echo gettext('Language specific tags'); ?>
+										<label>
+											<input type="radio" name="languageTagSearch"  value="" <?php if (getOption('languageTagSearch') == 1) echo ' checked="checked"'; ?> /><?php echo gettext('off'); ?>
+										</label>
+										<label>
+											<input type="radio" name="languageTagSearch"  value="1" <?php if (getOption('languageTagSearch') == 1) echo ' checked="checked"'; ?> /><?php echo gettext('generic'); ?>
+										</label>
+										<label>
+											<input type="radio" name="languageTagSearch"  value="2" <?php if (getOption('languageTagSearch') == 2) echo ' checked="checked"'; ?> /><?php echo gettext('specific'); ?>
+										</label>
+									</p>
+									<p>
 										<?php
 										echo gettext('Treat spaces as');
 										generateRadiobuttonsFromArray(getOption('search_space_is'), array(gettext('<em>space</em>') => '', gettext('<em>OR</em>') => 'OR', gettext('<em>AND</em>') => 'AND'), 'search_space_is', false, false);
@@ -1612,6 +1625,7 @@ Zenphoto_Authority::printPasswordFormJS();
 										<li><?php echo gettext('<code>partial word</code>: match the target with the start of words in the field'); ?></li>
 									</ul>
 									</p>
+									<p><?php echo gettext('If <code>Language specific tags</code> is set serches will ignore tags assigned to languages other than the viewer’s locale. Selecting <code>specific</code> requires an exact match to of the tag locale to the viewer locale. Otherwise generic matching is used, e.g. if the user is in the local <em>en_UK</en> he will view tags marked <en>en_US</en>.'); ?></p>
 									<p><?php echo gettext('Setting <code>Treat spaces as</code> to <em>OR</em> will cause search to trigger on any of the words in a string separated by spaces. Setting it to <em>AND</em> will cause the search to trigger only when all strings are present. Leaving the option unchecked will treat the whole string as a search target.') ?></p>
 									<p><?php echo gettext('<code>Default search</code> sets how searches from search page results behave. The search will either be from <em>within</em> the results of the previous search or will be a fresh <em>new</em> search.') ?></p>
 									<p><?php echo gettext('Setting <code>Do not return <em>{item}</em> matches</code> will cause search to ignore <em>{items}</em> when looking for matches.') ?></p>

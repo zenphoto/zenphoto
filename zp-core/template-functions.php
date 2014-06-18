@@ -3332,18 +3332,20 @@ function printRandomImages($number = 5, $class = null, $option = 'all', $rootAlb
 function getTags() {
 	if (in_context(ZP_IMAGE)) {
 		global $_zp_current_image;
-		return $_zp_current_image->getTags();
+		$tags = $_zp_current_image->getTags();
 	} else if (in_context(ZP_ALBUM)) {
 		global $_zp_current_album;
-		return $_zp_current_album->getTags();
+		$tags = $_zp_current_album->getTags();
 	} else if (in_context(ZP_ZENPAGE_PAGE)) {
 		global $_zp_current_zenpage_page;
-		return $_zp_current_zenpage_page->getTags();
+		$tags = $_zp_current_zenpage_page->getTags();
 	} else if (in_context(ZP_ZENPAGE_NEWS_ARTICLE)) {
 		global $_zp_current_zenpage_news;
-		return $_zp_current_zenpage_news->getTags();
+		$tags = $_zp_current_zenpage_news->getTags();
+	} else {
+		$tags = array();
 	}
-	return array();
+	return $tags;
 }
 
 /**
@@ -3617,13 +3619,21 @@ function printAllDates($class = 'archive', $yearid = 'year', $monthid = 'month',
  * @return string
  */
 function getCustomPageURL($page, $q = '') {
-	global $_zp_current_album, $_zp_conf_vars;
+	global $_zp_current_album, $_zp_conf_vars, $_zp_gallery_page;
 	if (array_key_exists($page, $_zp_conf_vars['special_pages'])) {
 		$result_r = preg_replace('~^_PAGE_/~', _PAGE_ . '/', $_zp_conf_vars['special_pages'][$page]['rewrite']);
 	} else {
 		$result_r = '/' . _PAGE_ . '/' . $page;
 	}
 	$result = "index.php?p=$page";
+
+	if (in_context(ZP_ALBUM) && $_zp_gallery_page != $page . '.php') {
+		$album = getUrAlbum($_zp_current_album);
+		if (($pageno = $album->getGalleryPage()) > 1) {
+			$result_r .= '/' . $pageno . '/';
+			$result .= '&page=' . $pageno;
+		}
+	}
 
 	if (!empty($q)) {
 		$result_r .= "?$q";

@@ -90,7 +90,7 @@ class ZenpageNews extends ZenpageItems {
 		if ($id) {
 			$newobj = new ZenpageNews($newID);
 			$newobj->setTitle($newtitle);
-			$newobj->setTags($this->getTags());
+			$newobj->setTags($this->getTags(false));
 			$newobj->setShow(0);
 			$newobj->setDateTime(date('Y-m-d H:i:s'));
 			$newobj->save();

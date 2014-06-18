@@ -675,7 +675,7 @@ class AlbumBase extends MediaObject {
 			$newID = parent::copy($uniqueset);
 			if ($newID) {
 //	replicate the tags
-				storeTags(readTags($this->getID(), 'albums'), $newID, 'albums');
+				storeTags(readTags($this->getID(), 'albums', ''), $newID, 'albums');
 //	copy the sidecar files
 				$filestocopy = safe_glob($filemask);
 				foreach ($filestocopy as $file) {

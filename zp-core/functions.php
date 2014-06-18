@@ -1093,14 +1093,33 @@ function setupTheme($album = NULL) {
 /**
  * Returns an array of unique tag names
  *
+ * @param $language string exclude language tags other than this string
  * @return array
  */
-function getAllTagsUnique() {
-	global $_zp_unique_tags;
+function getAllTagsUnique($language = NULL) {
+	global $_zp_unique_tags, $_zp_current_locale;
 	if (!is_null($_zp_unique_tags))
 		return $_zp_unique_tags; // cache them.
+	if (is_null($language)) {
+		switch (getOption('languageTagSearch')) {
+			case 1:
+				$language = substr($_zp_current_locale, 0, 2);
+				break;
+			case 2:
+				$language = $_zp_current_locale;
+				break;
+			default:
+				$langage = '';
+				break;
+		}
+	}
+
 	$_zp_unique_tags = array();
-	$sql = "SELECT DISTINCT `name` FROM " . prefix('tags') . ' ORDER BY `name`';
+	$sql = "SELECT DISTINCT `name`,`language` FROM " . prefix('tags');
+	if ($language) {
+		$sql .= ' WHERE (`language`="" OR `language` LIKE ' . db_quote(db_LIKE_escape($language) . '/%') . ')';
+	}
+	$sql .= ' ORDER BY `name`';
 	$unique_tags = query($sql);
 	if ($unique_tags) {
 		while ($tagrow = db_fetch_assoc($unique_tags)) {
@@ -1114,18 +1133,23 @@ function getAllTagsUnique() {
 /**
  * Returns an array indexed by 'tag' with the element value the count of the tag
  *
+ * @param $language string exclude language tags other than this string
  * @return array
  */
-function getAllTagsCount() {
-	global $_zp_count_tags;
+function getAllTagsCount($language = NULL) {
+	global $_zp_count_tags, $_zp_current_locale;
 	if (!is_null($_zp_count_tags))
 		return $_zp_count_tags;
 	$_zp_count_tags = array();
-	$sql = "SELECT DISTINCT tags.name, tags.id, (SELECT COUNT(*) FROM " . prefix('obj_to_tag') . " as object WHERE object.tagid = tags.id) AS count FROM " . prefix('tags') . " as tags ORDER BY `name`";
+	if (is_null($language)) {
+		$language = $_zp_current_locale;
+	}
+	$sql = "SELECT DISTINCT tags.name, tags.id,tags.language, (SELECT COUNT(*) FROM " . prefix('obj_to_tag') . " as object WHERE object.tagid = tags.id) AS count FROM " . prefix('tags') . " as tags ORDER BY `name`";
 	$tagresult = query($sql);
 	if ($tagresult) {
 		while ($tag = db_fetch_assoc($tagresult)) {
-			$_zp_count_tags[$tag['name']] = $tag['count'];
+			if (empty($tag['language']) || $language && substr($tag['language'], 0, strlen($language)) == $language)
+				$_zp_count_tags[$tag['name']] = $tag['count'];
 		}
 		db_free_result($tagresult);
 	}
@@ -1186,12 +1210,32 @@ function storeTags($tags, $id, $tbl) {
  * @param string $tbl 'albums' or 'images', etc.
  * @return unknown
  */
-function readTags($id, $tbl) {
+function readTags($id, $tbl, $language) {
+	global $_zp_current_locale;
+	if (is_null($language)) {
+		switch (getOption('languageTagSearch')) {
+			case 1:
+				$language = substr($_zp_current_locale, 0, 2);
+				break;
+			case 2:
+				$language = $_zp_current_locale;
+				break;
+			default:
+				$langage = '';
+				break;
+		}
+	}
+
 	$tags = array();
-	$result = query("SELECT `tagid` FROM " . prefix('obj_to_tag') . " WHERE `type`='" . $tbl . "' AND `objectid`='" . $id . "'");
+	$sql = 'SELECT `tagid` FROM ' . prefix('obj_to_tag') . ' WHERE `type`="' . $tbl . '" AND `objectid` = "' . $id . '"';
+	$result = query($sql);
 	if ($result) {
 		while ($row = db_fetch_assoc($result)) {
-			$dbtag = query_single_row("SELECT `name` FROM" . prefix('tags') . " WHERE `id`='" . $row['tagid'] . "'");
+			$sql = 'SELECT `name` FROM' . prefix('tags') . ' WHERE `id`="' . $row['tagid'] . '"';
+			if ($language) {
+				$sql .= ' AND (`language`="" OR `language`=' . db_quote(db_LIKE_escape($language) . '/%') . ')';
+			}
+			$dbtag = query_single_row($sql);
 			if ($dbtag) {
 				$tags[mb_strtolower($dbtag['name'])] = $dbtag['name'];
 			}

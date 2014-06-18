@@ -890,7 +890,7 @@ class Image extends MediaObject {
 		}
 		if ($result) {
 			if ($newID = parent::copy(array('filename' => $filename, 'albumid' => $newalbum->getID()))) {
-				storeTags(readTags($this->getID(), 'images'), $newID, 'images');
+				storeTags(readTags($this->getID(), 'images', ''), $newID, 'images');
 				query('UPDATE ' . prefix('images') . ' SET `mtime`=' . filemtime($newpath) . ' WHERE `filename`="' . $filename . '" AND `albumid`=' . $newalbum->getID());
 				return 0;
 			}

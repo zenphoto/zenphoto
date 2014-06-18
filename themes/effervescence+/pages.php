@@ -7,9 +7,9 @@ if (class_exists('Zenpage')) {
 	<!DOCTYPE html>
 	<html>
 		<head>
-			
+
 			<?php zp_apply_filter('theme_head'); ?>
-			
+
 			<?php if (class_exists('RSS')) printRSSHeaderLink("Pages", "Zenpage news", ""); ?>
 		</head>
 
@@ -33,14 +33,13 @@ if (class_exists('Zenpage')) {
 							<?php
 							if (getOption('custom_index_page') === 'gallery') {
 								?>
-								<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Main Index'); ?>"><?php echo gettext('Home'); ?></a> |
+								<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Main Index'); ?>"><?php printGalleryTitle(); ?></a>
 								<?php
 							} else {
 								?>
-								<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Albums Index'); ?>"><?php printGalleryTitle(); ?></a> |
+								<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Albums Index'); ?>"><?php printGalleryTitle(); ?></a>
 								<?php
 							}
-							printGalleryTitle();
 							?></a></span>
 						<?php printZenpageItemsBreadcrumb(" | ", ""); ?><?php printPageTitle(" | "); ?>
 					</div>

@@ -1688,337 +1688,340 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 						//v1.2
 						if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'captcha'])) {
 							$db_schema[] = "CREATE TABLE IF NOT EXISTS $tbl_captcha (
-		`id` int(11) UNSIGNED NOT NULL auto_increment,
-		`ptime` int(32) UNSIGNED NOT NULL,
-		`hash` varchar(255) NOT NULL,
-		PRIMARY KEY (`id`)
-		)	$collation;";
+														`id` int(11) UNSIGNED NOT NULL auto_increment,
+														`ptime` int(32) UNSIGNED NOT NULL,
+														`hash` varchar(255) NOT NULL,
+														PRIMARY KEY (`id`)
+														)	$collation;";
 						}
 						//v1.1.7
 						if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'options'])) {
 							$db_schema[] = "CREATE TABLE IF NOT EXISTS $tbl_options (
-		`id` int(11) UNSIGNED NOT NULL auto_increment,
-		`ownerid` int(11) UNSIGNED NOT NULL DEFAULT 0,
-		`name` varchar(191) NOT NULL,
-		`value` text,
-		`theme` varchar (127) NOT NULL,
-		`creator` varchar (255) DEFAULT NULL,
-		PRIMARY KEY (`id`),
-		UNIQUE (`name`, `ownerid`, `theme`)
-		)	$collation;";
+														`id` int(11) UNSIGNED NOT NULL auto_increment,
+														`ownerid` int(11) UNSIGNED NOT NULL DEFAULT 0,
+														`name` varchar(191) NOT NULL,
+														`value` text,
+														`theme` varchar (127) NOT NULL,
+														`creator` varchar (255) DEFAULT NULL,
+														PRIMARY KEY (`id`),
+														UNIQUE (`name`, `ownerid`, `theme`)
+														)	$collation;";
 						}
 						if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'tags'])) {
 							$db_schema[] = "CREATE TABLE IF NOT EXISTS $tbl_tags (
-		`id` int(11) UNSIGNED NOT NULL auto_increment,
-		`name` varchar(255) NOT NULL,
-		PRIMARY KEY (`id`),
-		UNIQUE (`name`)
-		)	$collation;";
+															`id` int(11) UNSIGNED NOT NULL auto_increment,
+															`name` varchar(255) NOT NULL,
+															'language' varchar(5) DEFAULT '',
+															PRIMARY KEY (`id`),
+															UNIQUE (`name`)
+															)	$collation;";
 						}
 						if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'obj_to_tag'])) {
 							$db_schema[] = "CREATE TABLE IF NOT EXISTS $tbl_obj_to_tag (
-		`id` int(11) UNSIGNED NOT NULL auto_increment,
-		`tagid` int(11) UNSIGNED NOT NULL,
-		`type` tinytext,
-		`objectid` int(11) UNSIGNED NOT NULL,
-		PRIMARY KEY (`id`)
+														`id` int(11) UNSIGNED NOT NULL auto_increment,
+														`tagid` int(11) UNSIGNED NOT NULL,
+														`type` tinytext,
+														`objectid` int(11) UNSIGNED NOT NULL,
+														PRIMARY KEY (`id`)
 		)	$collation;";
 						}
 
 						// v. 1.1.5
 						if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'administrators'])) {
 							$db_schema[] = "CREATE TABLE IF NOT EXISTS $tbl_administrators (
-		`id` int(11) UNSIGNED NOT NULL auto_increment,
-		`user` varchar(64) NOT NULL,
-		`pass` varchar(64) NOT NULL,
-		`passhash` int (1),
-		`passupdate` datetime,
-		`name` text,
-		`email` text,
-		`rights` int,
-		`custom_data` text,
-		`valid` int(1) NOT NULL DEFAULT 1,
-		`group` varchar(64) DEFAULT NULL,
-		`date` datetime,
-		`loggedin` datetime,
-		`lastloggedin` datetime,
-		`quota` int(11) DEFAULT NULL,
-		`language` varchar(5) DEFAULT NULL,
-		`prime_album` varchar(255) DEFAULT NULL,
-		`other_credentials` TEXT,
-		`challenge_phrase` TEXT,
-		PRIMARY KEY (`id`),
-		UNIQUE (`user`,`valid`)
-		)	$collation;";
+														`id` int(11) UNSIGNED NOT NULL auto_increment,
+														`user` varchar(64) NOT NULL,
+														`pass` varchar(64) NOT NULL,
+														`passhash` int (1),
+														`passupdate` datetime,
+														`name` text,
+														`email` text,
+														`rights` int,
+														`custom_data` text,
+														`valid` int(1) NOT NULL DEFAULT 1,
+														`group` varchar(64) DEFAULT NULL,
+														`date` datetime,
+														`loggedin` datetime,
+														`lastloggedin` datetime,
+														`quota` int(11) DEFAULT NULL,
+														`language` varchar(5) DEFAULT NULL,
+														`prime_album` varchar(255) DEFAULT NULL,
+														`other_credentials` TEXT,
+														`challenge_phrase` TEXT,
+														PRIMARY KEY (`id`),
+														UNIQUE (`user`,`valid`)
+														)	$collation;";
 						}
 						if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'admin_to_object'])) {
 							$db_schema[] = "CREATE TABLE IF NOT EXISTS $tbl_admin_to_object (
-		`id` int(11) UNSIGNED NOT NULL auto_increment,
-		`adminid` int(11) UNSIGNED NOT NULL,
-		`objectid` int(11) UNSIGNED NOT NULL,
-		`type` varchar(32) DEFAULT 'album',
-		`edit` int(11) DEFAULT 32767,
-		PRIMARY KEY (`id`)
-		)	$collation;";
+														`id` int(11) UNSIGNED NOT NULL auto_increment,
+														`adminid` int(11) UNSIGNED NOT NULL,
+														`objectid` int(11) UNSIGNED NOT NULL,
+														`type` varchar(32) DEFAULT 'album',
+														`edit` int(11) DEFAULT 32767,
+														PRIMARY KEY (`id`)
+														)	$collation;";
 						}
 
 
 						// base implementation
 						if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'albums'])) {
 							$db_schema[] = "CREATE TABLE IF NOT EXISTS $tbl_albums (
-		`id` int(11) UNSIGNED NOT NULL auto_increment,
-		`parentid` int(11) unsigned default NULL,
-		`folder` varchar(255) NOT NULL default '',
-		`title` text,
-		`desc` text,
-		`date` datetime default NULL,
-		`updateddate` datetime default NULL,
-		`location` text,
-		`show` int(1) unsigned NOT NULL default '1',
-		`closecomments` int(1) unsigned NOT NULL default '0',
-		`commentson` int(1) UNSIGNED NOT NULL default '1',
-		`thumb` varchar(255) default NULL,
-		`mtime` int(32) default NULL,
-		`sort_type` varchar(20) default NULL,
-		`subalbum_sort_type` varchar(20) default NULL,
-		`sort_order` int(11) unsigned default NULL,
-		`image_sortdirection` int(1) UNSIGNED default '0',
-		`album_sortdirection` int(1) UNSIGNED default '0',
-		`hitcounter` int(11) unsigned default 0,
-		`password` varchar(255) NOT NULL DEFAULT '',
-		`password_hint` text,
-		`publishdate` datetime default NULL,
-		`expiredate` datetime default NULL,
-		`total_value` int(11) DEFAULT 0,
-		`total_votes` int(11) DEFAULT 0,
-		`used_ips` longtext,
-		`custom_data` text,
-		`dynamic` int(1) DEFAULT 0,
-		`search_params` text,
-		`album_theme` varchar(127),
-		`user` varchar(64),
-		`rating` float,
-		`rating_status` int(1) DEFAULT 3,
-		`watermark` varchar(255),
-		`watermark_thumb` varchar(255),
-		`owner` varchar(64) DEFAULT NULL,
-		`codeblock` text,
-		PRIMARY KEY (`id`),
-		UNIQUE `folder` (`folder`)
-		)	$collation;";
+														`id` int(11) UNSIGNED NOT NULL auto_increment,
+														`parentid` int(11) unsigned default NULL,
+														`folder` varchar(255) NOT NULL default '',
+														`title` text,
+														`desc` text,
+														`date` datetime default NULL,
+														`updateddate` datetime default NULL,
+														`location` text,
+														`show` int(1) unsigned NOT NULL default '1',
+														`closecomments` int(1) unsigned NOT NULL default '0',
+														`commentson` int(1) UNSIGNED NOT NULL default '1',
+														`thumb` varchar(255) default NULL,
+														`mtime` int(32) default NULL,
+														`sort_type` varchar(20) default NULL,
+														`subalbum_sort_type` varchar(20) default NULL,
+														`sort_order` int(11) unsigned default NULL,
+														`image_sortdirection` int(1) UNSIGNED default '0',
+														`album_sortdirection` int(1) UNSIGNED default '0',
+														`hitcounter` int(11) unsigned default 0,
+														`password` varchar(255) NOT NULL DEFAULT '',
+														`password_hint` text,
+														`publishdate` datetime default NULL,
+														`expiredate` datetime default NULL,
+														`total_value` int(11) DEFAULT 0,
+														`total_votes` int(11) DEFAULT 0,
+														`used_ips` longtext,
+														`custom_data` text,
+														`dynamic` int(1) DEFAULT 0,
+														`search_params` text,
+														`album_theme` varchar(127),
+														`user` varchar(64),
+														`rating` float,
+														`rating_status` int(1) DEFAULT 3,
+														`watermark` varchar(255),
+														`watermark_thumb` varchar(255),
+														`owner` varchar(64) DEFAULT NULL,
+														`codeblock` text,
+														PRIMARY KEY (`id`),
+														UNIQUE `folder` (`folder`)
+														)	$collation;";
 						}
 
 						if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'comments'])) {
 							$db_schema[] = "CREATE TABLE IF NOT EXISTS $tbl_comments (
-		`id` int(11) UNSIGNED NOT NULL auto_increment,
-		`ownerid` int(11) unsigned NOT NULL default '0',
-		`name` varchar(255) NOT NULL default '',
-		`email` varchar(255) NOT NULL default '',
-		`website` varchar(255) default NULL,
-		`date` datetime default NULL,
-		`comment` text,
-		`inmoderation` int(1) unsigned NOT NULL default '0',
-		`type` varchar(52) DEFAULT 'images',
-		`IP` text,
-		`private` int(1) DEFAULT 0,
-		`anon` int(1) DEFAULT 0,
-		`custom_data` text,
-		PRIMARY KEY (`id`),
-		KEY `ownerid` (`ownerid`)
-		)	$collation;";
+														`id` int(11) UNSIGNED NOT NULL auto_increment,
+														`ownerid` int(11) unsigned NOT NULL default '0',
+														`name` varchar(255) NOT NULL default '',
+														`email` varchar(255) NOT NULL default '',
+														`website` varchar(255) default NULL,
+														`date` datetime default NULL,
+														`comment` text,
+														`inmoderation` int(1) unsigned NOT NULL default '0',
+														`type` varchar(52) DEFAULT 'images',
+														`IP` text,
+														`private` int(1) DEFAULT 0,
+														`anon` int(1) DEFAULT 0,
+														`custom_data` text,
+														PRIMARY KEY (`id`),
+														KEY `ownerid` (`ownerid`)
+														)	$collation;";
 						}
 
 						if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'images'])) {
 							$db_schema[] = "CREATE TABLE IF NOT EXISTS $tbl_images (
-		`id` int(11) UNSIGNED NOT NULL auto_increment,
-				`albumid` int(11) unsigned NOT NULL default '0',
-		`filename` varchar(255) NOT NULL default '',
-		`title` text,
-		`desc` text,
-		`location` text,
-		`city` tinytext,
-		`state` tinytext,
-		`country` tinytext,
-		`credit` text,
-		`copyright` text,
-		`commentson` int(1) UNSIGNED NOT NULL default '1',
-		`show` int(1) NOT NULL default '1',
-		`date` datetime default NULL,
-		`sort_order` int(11) unsigned default NULL,
-		`height` int(10) unsigned default NULL,
-		`width` int(10) unsigned default NULL,
-		`thumbX` int(10) unsigned default NULL,
-		`thumbY` int(10) unsigned default NULL,
-		`thumbW` int(10) unsigned default NULL,
-		`thumbH` int(10) unsigned default NULL,
-		`mtime` int(32) default NULL,
-		`publishdate` datetime default NULL,
-		`expiredate` datetime default NULL,
-		`hitcounter` int(11) unsigned default 0,
-		`total_value` int(11) unsigned default '0',
-		`total_votes` int(11) unsigned default '0',
-		`used_ips` longtext,
-		`custom_data` text,
-		`rating` float,
-		`rating_status` int(1) DEFAULT 3,
-		`hasMetadata` int(1) DEFAULT 0,
-		`watermark` varchar(255) DEFAULT NULL,
-		`watermark_use` int(1) DEFAULT 7,
-		`owner` varchar(64) DEFAULT NULL,
-		`filesize` int(11),
-		`codeblock` text,
-		`user` varchar(64) DEFAULT NULL,
-		`password` varchar(64) DEFAULT NULL,
-		`password_hint` text,
-		PRIMARY KEY (`id`),
-		KEY (`albumid`),
-		UNIQUE `filename` (`filename`,`albumid`)
-		)	$collation;";
+														`id` int(11) UNSIGNED NOT NULL auto_increment,
+																`albumid` int(11) unsigned NOT NULL default '0',
+														`filename` varchar(255) NOT NULL default '',
+														`title` text,
+														`desc` text,
+														`location` text,
+														`city` tinytext,
+														`state` tinytext,
+														`country` tinytext,
+														`credit` text,
+														`copyright` text,
+														`commentson` int(1) UNSIGNED NOT NULL default '1',
+														`show` int(1) NOT NULL default '1',
+														`date` datetime default NULL,
+														`sort_order` int(11) unsigned default NULL,
+														`height` int(10) unsigned default NULL,
+														`width` int(10) unsigned default NULL,
+														`thumbX` int(10) unsigned default NULL,
+														`thumbY` int(10) unsigned default NULL,
+														`thumbW` int(10) unsigned default NULL,
+														`thumbH` int(10) unsigned default NULL,
+														`mtime` int(32) default NULL,
+														`publishdate` datetime default NULL,
+														`expiredate` datetime default NULL,
+														`hitcounter` int(11) unsigned default 0,
+														`total_value` int(11) unsigned default '0',
+														`total_votes` int(11) unsigned default '0',
+														`used_ips` longtext,
+														`custom_data` text,
+														`rating` float,
+														`rating_status` int(1) DEFAULT 3,
+														`hasMetadata` int(1) DEFAULT 0,
+														`watermark` varchar(255) DEFAULT NULL,
+														`watermark_use` int(1) DEFAULT 7,
+														`owner` varchar(64) DEFAULT NULL,
+														`filesize` int(11),
+														`codeblock` text,
+														`user` varchar(64) DEFAULT NULL,
+														`password` varchar(64) DEFAULT NULL,
+														`password_hint` text,
+														PRIMARY KEY (`id`),
+														KEY (`albumid`),
+														UNIQUE `filename` (`filename`,`albumid`)
+														)	$collation;";
 						}
 
 						//v1.2.4
 						if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'news'])) {
 							$db_schema[] = "CREATE TABLE IF NOT EXISTS " . prefix('news') . " (
-		`id` int(11) UNSIGNED NOT NULL auto_increment,
-		`title` text,
-		`content` longtext,
-		`extracontent` text,
-		`show` int(1) unsigned NOT NULL default '1',
-		`date` datetime,
-		`titlelink` varchar(255) NOT NULL,
-		`commentson` int(1) UNSIGNED NOT NULL,
-		`codeblock` text,
-		`author` varchar(64) NOT NULL,
-		`lastchange` datetime default NULL,
-		`lastchangeauthor` varchar(64) NOT NULL,
-		`hitcounter` int(11) unsigned default 0,
-		`permalink` int(1) unsigned NOT NULL default 0,
-		`locked` int(1) unsigned NOT NULL default 0,
-		`expiredate` datetime default NULL,
-		`total_value` int(11) unsigned default '0',
-		`total_votes` int(11) unsigned default '0',
-		`used_ips` longtext,
-		`rating` float,
-		`rating_status` int(1) DEFAULT 3,
-		`sticky` int(1) DEFAULT 0,
-		`custom_data` text,
-		`truncation` int(1) unsigned default 0,
-		PRIMARY KEY (`id`),
-		UNIQUE (`titlelink`)
-		) $collation;";
+														`id` int(11) UNSIGNED NOT NULL auto_increment,
+														`title` text,
+														`content` longtext,
+														`extracontent` text,
+														`show` int(1) unsigned NOT NULL default '1',
+														`date` datetime,
+														`titlelink` varchar(255) NOT NULL,
+														`commentson` int(1) UNSIGNED NOT NULL,
+														`codeblock` text,
+														`author` varchar(64) NOT NULL,
+														`lastchange` datetime default NULL,
+														`lastchangeauthor` varchar(64) NOT NULL,
+														`hitcounter` int(11) unsigned default 0,
+														`permalink` int(1) unsigned NOT NULL default 0,
+														`locked` int(1) unsigned NOT NULL default 0,
+														`expiredate` datetime default NULL,
+														`total_value` int(11) unsigned default '0',
+														`total_votes` int(11) unsigned default '0',
+														`used_ips` longtext,
+														`rating` float,
+														`rating_status` int(1) DEFAULT 3,
+														`sticky` int(1) DEFAULT 0,
+														`custom_data` text,
+														`truncation` int(1) unsigned default 0,
+														PRIMARY KEY (`id`),
+														UNIQUE (`titlelink`)
+														) $collation;";
 						}
 
 						if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'news_categories'])) {
 							$db_schema[] = "CREATE TABLE IF NOT EXISTS " . prefix('news_categories') . " (
-		`id` int(11) UNSIGNED NOT NULL auto_increment,
-		`title` text,
-		`titlelink` varchar(255) NOT NULL,
-		`permalink` int(1) UNSIGNED NOT NULL default 0,
-		`hitcounter` int(11) unsigned default 0,
-		`user` varchar(64) DEFAULT NULL,
-		`password` varchar(64) DEFAULT NULL,
-		`password_hint` text,
-		`parentid` int(11) DEFAULT NULL,
-		`sort_order` varchar(48) DEFAULT NULL,
-		`desc` text,
-		`custom_data` text,
-		`show` int(1) unsigned NOT NULL default '1',
-		PRIMARY KEY (`id`),
-		UNIQUE (`titlelink`)
-		) $collation;";
+														`id` int(11) UNSIGNED NOT NULL auto_increment,
+														`title` text,
+														`titlelink` varchar(255) NOT NULL,
+														`permalink` int(1) UNSIGNED NOT NULL default 0,
+														`hitcounter` int(11) unsigned default 0,
+														`user` varchar(64) DEFAULT NULL,
+														`password` varchar(64) DEFAULT NULL,
+														`password_hint` text,
+														`parentid` int(11) DEFAULT NULL,
+														`sort_order` varchar(48) DEFAULT NULL,
+														`desc` text,
+														`custom_data` text,
+														`show` int(1) unsigned NOT NULL default '1',
+														PRIMARY KEY (`id`),
+														UNIQUE (`titlelink`)
+														) $collation;";
 						}
 
 						if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'news2cat'])) {
 							$db_schema[] = "CREATE TABLE IF NOT EXISTS " . prefix('news2cat') . " (
-		`id` int(11) UNSIGNED NOT NULL auto_increment,
-		`cat_id` int(11) unsigned NOT NULL,
-		`news_id` int(11) unsigned NOT NULL,
-		PRIMARY KEY (`id`)
-		) $collation;";
+														`id` int(11) UNSIGNED NOT NULL auto_increment,
+														`cat_id` int(11) unsigned NOT NULL,
+														`news_id` int(11) unsigned NOT NULL,
+														PRIMARY KEY (`id`)
+														) $collation;";
 						}
 
 						if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'pages'])) {
 							$db_schema[] = "CREATE TABLE IF NOT EXISTS " . prefix('pages') . " (
-		`id` int(11) UNSIGNED NOT NULL auto_increment,
-		`parentid` int(11) unsigned default NULL,
-		`title` text,
-		`content` longtext,
-		`extracontent` text,
-		`sort_order`varchar(48) NOT NULL default '',
-		`show` int(1) unsigned NOT NULL default '1',
-		`titlelink` varchar(255) NOT NULL,
-		`commentson` int(1) unsigned NOT NULL,
-		`codeblock` text,
-		`author` varchar(64) NOT NULL,
-		`date` datetime default NULL,
-		`lastchange` datetime default NULL,
-		`lastchangeauthor` varchar(64) NOT NULL,
-		`hitcounter` int(11) unsigned default 0,
-		`permalink` int(1) unsigned NOT NULL default 0,
-		`locked` int(1) unsigned NOT NULL default 0,
-		`expiredate` datetime default NULL,
-		`total_value` int(11) unsigned default '0',
-		`total_votes` int(11) unsigned default '0',
-		`used_ips` longtext,
-		`rating` float,
-		`rating_status` int(1) DEFAULT 3,
-		`user` varchar(64) DEFAULT NULL,
-		`password` varchar(64) DEFAULT NULL,
-		`password_hint` text,
-		`custom_data` text,
-		`truncation` int(1) unsigned default 0,
-		PRIMARY KEY (`id`),
-		UNIQUE (`titlelink`)
-		) $collation;";
+														`id` int(11) UNSIGNED NOT NULL auto_increment,
+														`parentid` int(11) unsigned default NULL,
+														`title` text,
+														`content` longtext,
+														`extracontent` text,
+														`sort_order`varchar(48) NOT NULL default '',
+														`show` int(1) unsigned NOT NULL default '1',
+														`titlelink` varchar(255) NOT NULL,
+														`commentson` int(1) unsigned NOT NULL,
+														`codeblock` text,
+														`author` varchar(64) NOT NULL,
+														`date` datetime default NULL,
+														`lastchange` datetime default NULL,
+														`lastchangeauthor` varchar(64) NOT NULL,
+														`hitcounter` int(11) unsigned default 0,
+														`permalink` int(1) unsigned NOT NULL default 0,
+														`locked` int(1) unsigned NOT NULL default 0,
+														`expiredate` datetime default NULL,
+														`total_value` int(11) unsigned default '0',
+														`total_votes` int(11) unsigned default '0',
+														`used_ips` longtext,
+														`rating` float,
+														`rating_status` int(1) DEFAULT 3,
+														`user` varchar(64) DEFAULT NULL,
+														`password` varchar(64) DEFAULT NULL,
+														`password_hint` text,
+														`custom_data` text,
+														`truncation` int(1) unsigned default 0,
+														PRIMARY KEY (`id`),
+														UNIQUE (`titlelink`)
+														) $collation;";
 						}
 
 						if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'menu'])) {
 							$db_schema[] = "CREATE TABLE IF NOT EXISTS " . prefix('menu') . " (
-		`id` int(11) UNSIGNED NOT NULL auto_increment,
-		`parentid` int(11) unsigned default NULL,
-		`title` text,
-		`link` varchar(255) NOT NULL,
-		`include_li` int(1) unsigned default 1,
-		`type` varchar(16) NOT NULL,
-		`sort_order`varchar(48) NOT NULL default '',
-		`show` int(1) unsigned NOT NULL default '1',
-		`menuset` varchar(32) NOT NULL,
-		`span_class` varchar(32) default NULL,
-		`span_id` varchar(32) default NULL,
-		PRIMARY KEY (`id`)
-		) $collation;";
+														`id` int(11) UNSIGNED NOT NULL auto_increment,
+														`parentid` int(11) unsigned default NULL,
+														`title` text,
+														`link` varchar(255) NOT NULL,
+														`include_li` int(1) unsigned default 1,
+														`type` varchar(16) NOT NULL,
+														`sort_order`varchar(48) NOT NULL default '',
+														`show` int(1) unsigned NOT NULL default '1',
+														`menuset` varchar(32) NOT NULL,
+														`span_class` varchar(32) default NULL,
+														`span_id` varchar(32) default NULL,
+														PRIMARY KEY (`id`)
+														) $collation;";
 						}
 						// v 1.3.2
 						if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'plugin_storage'])) {
 							$db_schema[] = "CREATE TABLE IF NOT EXISTS " . prefix('plugin_storage') . " (
-		`id` int(11) UNSIGNED NOT NULL auto_increment,
-		`type` varchar(32) NOT NULL,
-		`aux` varchar(255),
-		`data` longtext,
-		PRIMARY KEY (`id`),
-		KEY `type` (`type`),
-		KEY `aux` (`aux`)
-		) $collation;";
+														`id` int(11) UNSIGNED NOT NULL auto_increment,
+														`type` varchar(32) NOT NULL,
+														`aux` varchar(255),
+														`data` longtext,
+														PRIMARY KEY (`id`),
+														KEY `type` (`type`),
+														KEY `aux` (`aux`)
+														) $collation;";
 						}
 						// v 1.4.2
 						if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'search_cache'])) {
 							$db_schema[] = "CREATE TABLE IF NOT EXISTS " . prefix('search_cache') . " (
-		`id` int(11) UNSIGNED NOT NULL auto_increment,
-		`criteria` TEXT,
-		`date` datetime default NULL,
-		`data` longtext,
-		KEY (`criteria`(255)),
-		PRIMARY KEY (`id`)
-		) $collation;";
+														`id` int(11) UNSIGNED NOT NULL auto_increment,
+														`criteria` TEXT,
+														`date` datetime default NULL,
+														`data` longtext,
+														KEY (`criteria`(255)),
+														PRIMARY KEY (`id`)
+														) $collation;";
 						}
 
 
-						/*						 * **************************************************************************************
-						 * *****                             UPGRADE SECTION                                ******
-						 * *****                                                                            ******
-						 * *****                          Add all new fields below                          ******
-						 * *****                                                                            ******
-						 * ************************************************************************************** */
+						/*
+						 * *************************************************************************************
+						 * *****                             UPGRADE SECTION                              ******
+						 * *****                                                                          ******
+						 * *****                          Add all new fields below                        ******
+						 * *****                                                                          ******
+						 * **************************************************************************************
+						 */
 
 						//v1.3.2
 						$sql_statements[] = "RENAME TABLE " . prefix('zenpage_news') . " TO $tbl_news," .
@@ -2317,6 +2320,10 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 						$sql_statements[] = "ALTER TABLE $tbl_images DROP INDEX `filename`";
 						$sql_statements[] = "ALTER TABLE $tbl_images ADD UNIQUE `filename` (`filename`, `albumid`)";
 
+						//ZenPhoto20
+						//v1.0.0
+						$sql_statements[] = "ALTER TABLE $tbl_tags ADD COLUMN `language` varchar(5) default '';";
+
 						// do this last incase there are any field changes of like names!
 						foreach ($_zp_exifvars as $key => $exifvar) {
 							if ($s = $exifvar[4]) {
@@ -2330,14 +2337,14 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 							}
 						}
 
-
 						/**
 						 * ************************************************************************************
 						 * *****                            END of UPGRADE SECTION
 						 * *****
 						 * *****                           Add all new fields above
 						 * *****
-						 * ************************************************************************************* */
+						 * *************************************************************************************
+						 */
 						$createTables = true;
 						if (isset($_GET['create']) || isset($_GET['update']) || isset($_GET['protect_files']) && db_connect($_zp_conf_vars)) {
 							if (!isset($_GET['protect_files'])) {
@@ -2409,7 +2416,8 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 
 								if ($debug == 'base64') {
 									// update zenpage codeblocks--remove the base64 encoding
-									$sql = 'SELECT `id`, `codeblock` FROM ' . prefix('news') . ' WHERE `codeblock` NOT REGEXP "^a:[0-9]+:{"';
+									$sql = 'SELECT `id`, `codeblock` FROM ' . prefix('news') . ' WHERE `codeblock` NOT REGEXP "^a:[0-9]+: {
+							"';
 									$result = query_full_array($sql, false);
 									if (is_array($result)) {
 										foreach ($result as $row) {
@@ -2418,7 +2426,8 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 											query($sql);
 										}
 									}
-									$sql = 'SELECT `id`, `codeblock` FROM ' . prefix('pages') . ' WHERE `codeblock` NOT REGEXP "^a:[0-9]+:{"';
+									$sql = 'SELECT `id`, `codeblock` FROM ' . prefix('pages') . ' WHERE `codeblock` NOT REGEXP "^a:[0-9]+: {
+								"';
 									$result = query_full_array($sql, false);
 									if (is_array($result)) {
 										foreach ($result as $row) {
@@ -2454,19 +2463,20 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 									$link = sprintf(gettext('You can now <a href="%1$s">administer your gallery.</a>'), WEBPATH . '/' . ZENFOLDER . '/admin.php');
 								}
 								?>
-								<p id="golink" class="delayshow" style="display:none;"><?php echo $link; ?></p>
-								<?php
-								switch ($autorun) {
-									case false:
-										break;
-									case 'gallery':
-									case 'admin':
-										$autorun = WEBPATH . '/' . ZENFOLDER . '/admin.php';
-										break;
-									default:
-										break;
-								}
-								?>
+								<p id="golink" class="delayshow" style="display:none;
+									 "><?php echo $link; ?></p>
+									 <?php
+									 switch ($autorun) {
+										 case false:
+											 break;
+										 case 'gallery':
+										 case 'admin':
+											 $autorun = WEBPATH . '/' . ZENFOLDER . '/admin.php';
+											 break;
+										 default:
+											 break;
+									 }
+									 ?>
 								<script type="text/javascript">
 									window.onload = function() {
 										$('.delayshow').show();
@@ -2541,7 +2551,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 								</div>
 								<?php
 								if ($nc > 0) {
-									$task = "create=" . implode(',', $create);
+									$task = "create = " . implode(',', $create);
 								}
 								if ($nu > 0) {
 									if (empty($task)) {
@@ -2563,7 +2573,8 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 								<div class="warning" id="dbrestructure">
 									<p><?php echo gettext('<strong>Warning!</strong> This upgrade makes structural changes to the database which are not easily reversed. Be sure you have a database backup before proceeding.'); ?></p>
 									<form>
-										<input type="hidden" name="xsrfToken" value="<?php echo $xsrftoken ?>" />
+										<input type="hidden" name="xsrfToken" value="<?php echo $xsrftoken
+								?>" />
 										<p><?php printf(gettext('%s I acknowledge that proceeding will restructure my database.'), '<input type="checkbox" id="agree" value="0" onclick="javascript:$(\'#setup\').show();$(\'#agree\').attr(\'checked\',\'checked\')" />')
 								?></p>
 									</form>

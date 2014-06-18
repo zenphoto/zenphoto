@@ -4,7 +4,7 @@
  * search class
  *
  * @author Stephen Billard (sbillard)
- * 
+ *
  * @package classes
  */
 // force UTF-8 Ø
@@ -26,6 +26,7 @@ class SearchEngine {
 	var $pages = NULL;
 	var $pattern;
 	var $tagPattern;
+	var $language;
 	private $exact = false;
 	protected $dynalbumname = NULL;
 	protected $album = NULL;
@@ -56,7 +57,12 @@ class SearchEngine {
 	 * @return SearchEngine
 	 */
 	function __construct($dynamic_album = false) {
-		global $_zp_exifvars, $_zp_gallery;
+		global $_zp_exifvars, $_zp_gallery, $_zp_current_locale;
+		if (getOption('languageTagSearch') == 1) {
+			$this->language = substr($_zp_current_locale, 0, 2);
+		} else {
+			$this->language = $_zp_current_locale;
+		}
 		switch ((int) getOption('exact_tag_match')) {
 			case 0:
 				// partial
@@ -1057,7 +1063,11 @@ class SearchEngine {
 				case 'tags':
 					unset($fields[$key]);
 					query('SET @serachfield="tags"');
-					$tagsql = 'SELECT @serachfield AS field, t.`name`, o.`objectid` FROM ' . prefix('tags') . ' AS t, ' . prefix('obj_to_tag') . ' AS o WHERE t.`id`=o.`tagid` AND o.`type`="' . $tbl . '" AND (';
+					$tagsql = 'SELECT @serachfield AS field, t.`name`,t.language, o.`objectid` FROM ' . prefix('tags') . ' AS t, ' . prefix('obj_to_tag') . ' AS o WHERE t.`id`=o.`tagid` ';
+					if (getOption('languageTagSearch')) {
+						$tagsql .= 'AND (t.language LIKE ' . db_quote(db_LIKE_escape($this->language) . '/%') . ' OR t.language="")';
+					}
+					$tagsql .= 'AND o.`type`="' . $tbl . '" AND (';
 					foreach ($searchstring as $singlesearchstring) {
 						switch ($singlesearchstring) {
 							case '&':

@@ -1073,9 +1073,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 				$display = $item;
 			}
 			?>
-			<li id="<?php echo strtolower($listitem); ?>_element">
+			<li id="<?php echo $listitem; ?>_element">
 				<label class="displayinline">
-					<input id="<?php echo strtolower($listitem); ?>"<?php echo $class; ?> name="<?php echo $listitem; ?>" type="checkbox"
+					<input id="<?php echo $listitem; ?>"<?php echo $class; ?> name="<?php echo $listitem; ?>" type="checkbox"
 					<?php
 					if (isset($cv[$item])) {
 						echo ' checked="checked"';
@@ -1131,33 +1131,58 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 * @param object $that Object for which to get the tags
 	 * @param string $postit prefix to prepend for posting
 	 * @param bool $showCounts set to true to get tag count displayed
+	 * @param string $tagsort set true to sort alphabetically
+	 * @param bool $addnew set true enables adding tags
+	 * @param bool $resizeable set true to allow the box to be resized
+	 * @param string $class class of the selections
 	 */
-	function tagSelector($that, $postit, $showCounts = false, $mostused = false, $addnew = true, $resizeable = false, $class = 'checkTagsAuto') {
-		global $_zp_admin_ordered_taglist, $_zp_admin_LC_taglist;
+	function tagSelector($that, $postit, $showCounts = false, $tagsort = 'alpha', $addnew = true, $resizeable = false, $class = 'checkTagsAuto') {
+		global $_zp_admin_ordered_taglist, $_zp_admin_LC_taglist, $_zp_all_languages;
 		if (is_null($_zp_admin_ordered_taglist)) {
-			if ($mostused || $showCounts) {
-				$counts = getAllTagsCount();
-				if ($mostused)
-					arsort($counts, SORT_NUMERIC);
-				$them = array();
-				foreach ($counts as $tag => $count) {
-					$them[mb_strtolower($tag)] = $tag;
-				}
-			} else {
-				$them = getAllTagsUnique();
+			switch ($tagsort) {
+				case 'language':
+					$order = '`language` DESC,`name`';
+					break;
+				case 'recent':
+					$order = '`id` DESC';
+					break;
+				default:
+					$order = '`name`';
+					break;
 			}
-			$_zp_admin_ordered_taglist = $them;
-			$_zp_admin_LC_taglist = array();
-			foreach ($them as $tag) {
+			$languages = $counts = array();
+			$sql = "SELECT DISTINCT tags.name, tags.language, tags.id, (SELECT COUNT(*) FROM " . prefix('obj_to_tag') . " as object WHERE object.tagid = tags.id) AS count FROM " . prefix('tags') . " as tags ORDER BY $order";
+			$tagresult = query($sql);
+			if ($tagresult) {
+				while ($tag = db_fetch_assoc($tagresult)) {
+					$counts[$tag['name']] = $tag['count'];
+					$languages[$tag['name']] = $tag['language'];
+				}
+				db_free_result($tagresult);
+			}
+			if ($tagsort == 'mostused') {
+				arsort($counts, SORT_NUMERIC);
+			}
+
+			$_zp_admin_LC_taglist = $them = array();
+			foreach ($counts as $tag => $count) {
+				$them[mb_strtolower($tag)] = $tag;
 				$_zp_admin_LC_taglist[$tag] = $tag;
 			}
+			$flags = array('' => WEBPATH . '/' . ZENFOLDER . '/images/placeholder.png');
+			foreach ($_zp_all_languages as $dirname) {
+				$flags[$dirname] = getLanguageFlag($dirname);
+			}
+
+			$_zp_admin_ordered_taglist = array($them, $counts, $languages, $flags);
 		} else {
-			$them = $_zp_admin_ordered_taglist;
+			list($them, $counts, $languages, $flags) = $_zp_admin_ordered_taglist;
 		}
+
 		if (is_null($that)) {
 			$tags = array();
 		} else {
-			$tags = $that->getTags();
+			$tags = $that->getTags(false);
 		}
 
 		if (count($tags) > 0) {
@@ -1202,21 +1227,47 @@ function printAdminHeader($tab, $subtab = NULL) {
 		<div id="resizable_<?php echo $postit; ?>" class="tag_div">
 			<ul id="list_<?php echo $postit; ?>" class="<?php echo $tagclass; ?>">
 				<?php
-				if ($showCounts) {
-					$displaylist = array();
-					foreach ($them as $tagLC => $tag) {
-						$displaylist[$tag . ' [' . $counts[$tag] . ']'] = $tag;
-					}
-				} else {
-					$displaylist = $them;
-				}
 				if (count($tags) > 0) {
-					generateUnorderedListFromArray($tags, $tags, $postit, false, !$mostused, $showCounts, $class);
+					foreach ($tags as $tag => $item) {
+						$listitem = $postit . postIndexEncode($item);
+						?>
+						<li id="<?php echo $tag; ?>_element">
+							<label class="displayinline">
+								<input id="<?php echo $listitem; ?>"<?php echo $class; ?> name="<?php echo $listitem; ?>" type="checkbox" checked="checked"	value="1" />
+								<img src="<?php echo $flags[$languages[$item]]; ?>" height="10" width="16" />
+								<?php
+								if ($showCounts) {
+									echo html_encode($item) . ' [' . $counts[$item] . ']';
+								} else {
+									echo html_encode($item);
+								}
+								?>
+							</label>
+						</li>
+						<?php
+					}
 					?>
 					<li><hr /></li>
 					<?php
 				}
-				generateUnorderedListFromArray(array(), $displaylist, $postit, false, !$mostused, $showCounts, $class);
+				foreach ($them as $tagLC => $item) {
+					$listitem = $postit . postIndexEncode($item);
+					?>
+					<li id="<?php echo $tag; ?>_element">
+						<label class="displayinline">
+							<input id="<?php echo $listitem; ?>"<?php echo $class; ?> name="<?php echo $listitem; ?>" type="checkbox" value="1" />
+							<img src="<?php echo $flags[$languages[$item]]; ?>" height="10" width="16" />
+							<?php
+							if ($showCounts) {
+								echo html_encode($item) . ' [' . $counts[$item] . ']';
+							} else {
+								echo html_encode($item);
+							}
+							?>
+						</label>
+					</li>
+					<?php
+				}
 				?>
 			</ul>
 		</div>
@@ -1378,7 +1429,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 									<label><input type="checkbox" name="disclose_password<?php echo $suffix; ?>"
 																id="disclose_password<?php echo $suffix; ?>"
 																onclick="passwordClear('<?php echo $suffix; ?>');
-																				togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?></label>
+																		togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?></label>
 								</td>
 								<td>
 									<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
@@ -1911,7 +1962,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 } else {
 											 ?>
 											 onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');
-															 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
+													 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
 											 <?php
 										 }
 										 ?> />
@@ -2734,7 +2785,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	function getTagOrder() {
 		if (isset($_REQUEST['tagsort'])) {
 			$tagsort = sanitize($_REQUEST['tagsort']);
-			setOption('tagsort', (int) ($tagsort && true));
+			setOption('tagsort', $tagsort);
 		} else {
 			$tagsort = getOption('tagsort');
 		}
@@ -3810,7 +3861,7 @@ function printBulkActions($checkarray, $checkAll = false) {
 	?>
 	<span style="float:right">
 		<select class="ignoredirty" name="checkallaction" id="checkallaction" size="1" onchange="checkFor(this);" >
-		<?php generateListFromArray(array('noaction'), $checkarray, false, true); ?>
+			<?php generateListFromArray(array('noaction'), $checkarray, false, true); ?>
 		</select>
 		<?php
 		if ($checkAll) {
@@ -3830,7 +3881,7 @@ function printBulkActions($checkarray, $checkAll = false) {
 		<div id="mass_tags" style="display:none;">
 			<div id="mass_tags_data">
 				<?php
-				tagSelector(NULL, 'mass_tags_', false, false, true, false, 'checkTagsAuto ignoredirty');
+				tagSelector(NULL, 'mass_tags_', false, getTagOrder(), true, false, 'checkTagsAuto ignoredirty');
 				?>
 			</div>
 		</div>
@@ -3967,7 +4018,7 @@ function processAlbumBulkActions() {
 						$albumobj->set('hitcounter', 0);
 						break;
 					case 'addtags':
-						$mytags = array_unique(array_merge($tags, $albumobj->getTags()));
+						$mytags = array_unique(array_merge($tags, $albumobj->getTags(false)));
 						$albumobj->setTags($mytags);
 						break;
 					case 'cleartags':
@@ -3977,7 +4028,7 @@ function processAlbumBulkActions() {
 						$images = $albumobj->getImages();
 						foreach ($images as $imagename) {
 							$imageobj = newImage($albumobj, $imagename);
-							$mytags = array_unique(array_merge($tags, $imageobj->getTags()));
+							$mytags = array_unique(array_merge($tags, $imageobj->getTags(false)));
 							$imageobj->setTags($mytags);
 							$imageobj->save();
 						}
@@ -4052,7 +4103,7 @@ function processImageBulkActions($album) {
 						$imageobj->set('hitcounter', 0);
 						break;
 					case 'addtags':
-						$mytags = array_unique(array_merge($tags, $imageobj->getTags()));
+						$mytags = array_unique(array_merge($tags, $imageobj->getTags(false)));
 						$imageobj->setTags($mytags);
 						break;
 					case 'cleartags':
@@ -4429,7 +4480,7 @@ function printPageSelector($subpage, $rangeset, $script, $queryParams) {
 		}
 		?>
 		<select name="subpage" class="ignoredirty" id="subpage<?php echo $instances; ?>" onchange="launchScript('<?php echo WEBPATH . '/' . ZENFOLDER . '/' . $script; ?>',
-										[<?php echo $jump; ?>'subpage=' + $('#subpage<?php echo $instances; ?>').val()]);" >
+								[<?php echo $jump; ?>'subpage=' + $('#subpage<?php echo $instances; ?>').val()]);" >
 							<?php
 							foreach ($rangeset as $page => $range) {
 								?>
@@ -4791,21 +4842,21 @@ function consolidatedEditMessages($subtab) {
 	if (!empty($errorbox)) {
 		?>
 		<div class="errorbox fade-message">
-		<?php echo implode('<br />', $errorbox); ?>
+			<?php echo implode('<br />', $errorbox); ?>
 		</div>
 		<?php
 	}
 	if (!empty($notebox)) {
 		?>
 		<div class="notebox fade-message">
-		<?php echo implode('<br />', $notebox); ?>
+			<?php echo implode('<br />', $notebox); ?>
 		</div>
 		<?php
 	}
 	if (!empty($messagebox)) {
 		?>
 		<div class="messagebox fade-message">
-		<?php echo implode('<br />', $messagebox); ?>
+			<?php echo implode('<br />', $messagebox); ?>
 		</div>
 		<?php
 	}
