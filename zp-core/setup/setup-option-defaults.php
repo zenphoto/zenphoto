@@ -486,6 +486,8 @@ setOptionDefault('GD_FreeType_Path', SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/g
 setOptionDefault('theme_head_listparents', 0);
 setOptionDefault('theme_head_separator', ' | ');
 
+setOptionDefault('tagsort', 'alpha');
+
 $vers = explode('-', ZENPHOTO_VERSION);
 $vers = explode('.', $vers[0]);
 while (count($vers) < 3) {

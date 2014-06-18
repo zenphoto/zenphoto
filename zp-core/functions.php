@@ -1114,18 +1114,23 @@ function getAllTagsUnique() {
 /**
  * Returns an array indexed by 'tag' with the element value the count of the tag
  *
+ * @param $language string exclude language tags other than this string
  * @return array
  */
-function getAllTagsCount() {
-	global $_zp_count_tags;
+function getAllTagsCount($language = NULL) {
+	global $_zp_count_tags, $_zp_current_locale;
 	if (!is_null($_zp_count_tags))
 		return $_zp_count_tags;
 	$_zp_count_tags = array();
-	$sql = "SELECT DISTINCT tags.name, tags.id, (SELECT COUNT(*) FROM " . prefix('obj_to_tag') . " as object WHERE object.tagid = tags.id) AS count FROM " . prefix('tags') . " as tags ORDER BY `name`";
+	if (is_null($language)) {
+		$language = $_zp_current_locale;
+	}
+	$sql = "SELECT DISTINCT tags.name, tags.id,tags.language, (SELECT COUNT(*) FROM " . prefix('obj_to_tag') . " as object WHERE object.tagid = tags.id) AS count FROM " . prefix('tags') . " as tags ORDER BY `name`";
 	$tagresult = query($sql);
 	if ($tagresult) {
 		while ($tag = db_fetch_assoc($tagresult)) {
-			$_zp_count_tags[$tag['name']] = $tag['count'];
+			if (empty($tag['language']) || $language && substr($tag['language'], 0, strlen($language)) == $language)
+				$_zp_count_tags[$tag['name']] = $tag['count'];
 		}
 		db_free_result($tagresult);
 	}
