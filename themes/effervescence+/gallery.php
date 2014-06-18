@@ -6,14 +6,14 @@ if (!defined('WEBPATH'))
 <!DOCTYPE html>
 <html>
 	<head>
-		
+
 		<?php
 		zp_apply_filter('theme_head');
 		if (getOption('effervescence_daily_album_image_effect') && getOption('custom_index_page') != 'gallery') {
 			setOption('image_custom_images', getOption('effervescence_daily_album_image_effect'), false);
 		}
 		?>
-		
+
 		<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery', 'Gallery RSS'); ?>
 	</head>
 
@@ -43,10 +43,9 @@ if (!defined('WEBPATH'))
 						<?php
 						if (getOption('custom_index_page') === 'gallery') {
 							?>
-							<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Main Index'); ?>"><?php echo gettext('Home'); ?></a> |
+							<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Main Index'); ?>"><?php printGalleryTitle(); ?></a>
 							<?php
 						}
-						printGalleryTitle();
 						?>
 					</span>
 				</div>

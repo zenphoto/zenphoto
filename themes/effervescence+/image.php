@@ -6,9 +6,9 @@ if (!defined('WEBPATH'))
 <!DOCTYPE html>
 <html>
 	<head>
-		
+
 		<?php zp_apply_filter('theme_head'); ?>
-		
+
 		<?php if (zp_has_filter('theme_head', 'colorbox::css')) { ?>
 			<script type="text/javascript">
 				// <!-- <![CDATA[
@@ -88,22 +88,21 @@ if (!defined('WEBPATH'))
 								<?php
 								if (getOption('custom_index_page') === 'gallery') {
 									?>
-									<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Main Index'); ?>"><?php echo gettext('Home'); ?></a> |
-									<a href="<?php echo html_encode(getCustomPageURL('gallery')); ?>" title="<?php echo gettext('Albums Index'); ?>"><?php printGalleryTitle(); ?></a> |
+									<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Main Index'); ?>"><?php printGalleryTitle(); ?></a> |
+									<a href="<?php echo html_encode(getCustomPageURL('gallery')); ?>" title="<?php echo gettext('Albums Index'); ?>"><?php echo gettext('Gallery'); ?></a> |
 									<?php
 								} else {
 									?>
-									<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Albums Index'); ?>"><?php printGalleryTitle(); ?></a> |
+									<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Albums Index'); ?>"><?php printGalleryTitle(); ?></a>
 									<?php
 								}
-								printGalleryTitle();
 								?></a> |
 								<?php
 								printParentBreadcrumb();
 								printAlbumBreadcrumb("", " | ");
 								?>
 							</span>
-<?php printImageTitle(); ?>
+							<?php printImageTitle(); ?>
 						</div>
 					</div>
 				</div>
@@ -160,7 +159,7 @@ if (!defined('WEBPATH'))
 				if (function_exists('printGoogleMap')) {
 					?>
 					<div id="map_link">
-	<?php printGoogleMap(); ?>
+						<?php printGoogleMap(); ?>
 					</div>
 					<br class="clearall" />
 					<?php
