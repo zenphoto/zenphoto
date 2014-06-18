@@ -526,7 +526,6 @@ function getMainSiteURL() {
 
 /**
  * Returns the URL of the main gallery index.php page
- *
  * @return string
  */
 function getGalleryIndexURL() {
