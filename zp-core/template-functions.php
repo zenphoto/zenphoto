@@ -3332,18 +3332,20 @@ function printRandomImages($number = 5, $class = null, $option = 'all', $rootAlb
 function getTags() {
 	if (in_context(ZP_IMAGE)) {
 		global $_zp_current_image;
-		return $_zp_current_image->getTags();
+		$tags = $_zp_current_image->getTags();
 	} else if (in_context(ZP_ALBUM)) {
 		global $_zp_current_album;
-		return $_zp_current_album->getTags();
+		$tags = $_zp_current_album->getTags();
 	} else if (in_context(ZP_ZENPAGE_PAGE)) {
 		global $_zp_current_zenpage_page;
-		return $_zp_current_zenpage_page->getTags();
+		$tags = $_zp_current_zenpage_page->getTags();
 	} else if (in_context(ZP_ZENPAGE_NEWS_ARTICLE)) {
 		global $_zp_current_zenpage_news;
-		return $_zp_current_zenpage_news->getTags();
+		$tags = $_zp_current_zenpage_news->getTags();
+	} else {
+		$tags = array();
 	}
-	return array();
+	return $tags;
 }
 
 /**

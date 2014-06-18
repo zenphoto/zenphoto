@@ -143,7 +143,6 @@ printAdminHeader('tags');
 				<option value="recent" <?php if ($tagsort == 'recent') echo ' selected="selected"'; ?>><?php echo gettext('Most recent'); ?></option>
 			</select>
 			<div class="buttons floatright">
-
 				<button type="reset" onclick="$('#tag_action_form').trigger('reset');
 						$('#form_tagrename').trigger('reset');
 						$('#form_newtags').trigger('reset');">
@@ -198,13 +197,11 @@ printAdminHeader('tags');
 								}
 								?>
 							</select>
-							<br class="clearall" />
-							<br />
-							<br />
-
+							<div class="clearall"></div>
 						</form>
+
 						<div class="tagtext">
-							<p><?php echo gettext('Place a checkmark in the box for each tag you wish to delete then press the <em>Delete checked tags</em> button. The brackets contain the number of times the tag appears.'); ?></p>
+							<p><?php echo gettext('Place a checkmark in the box for each tag you wish to delete or to assign a language then press the appropriate button. The brackets contain the number of times the tag appears.'); ?></p>
 						</div>
 					</td>
 
@@ -236,7 +233,7 @@ printAdminHeader('tags');
 									<img src="images/pass.png" alt="" /><?php echo gettext("Rename tags"); ?>
 								</button>
 							</p>
-							<br class="clearall" />
+							<div class="clearall"></div>
 							<br />
 							<br />
 						</form>
@@ -277,7 +274,7 @@ printAdminHeader('tags');
 								}
 								?>
 							</select>
-							<br class="clearall" />
+							<div class="clearall"></div>
 							<br />
 							<br />
 

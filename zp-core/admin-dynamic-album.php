@@ -57,7 +57,7 @@ if (isset($_POST['savealbum'])) {
 			foreach ($subalbums as $analbum) {
 				$albumobj = newAlbum($analbum);
 				if ($unpublished || $albumobj->getShow()) {
-					$tags = array_unique(array_merge($albumobj->getTags(), array($words)));
+					$tags = array_unique(array_merge($albumobj->getTags(''), array($words)));
 					$albumobj->setTags($tags);
 					$albumobj->save();
 				}
@@ -68,7 +68,7 @@ if (isset($_POST['savealbum'])) {
 			foreach ($images as $animage) {
 				$image = newImage(newAlbum($animage['folder']), $animage['filename']);
 				if ($unpublished || $image->getShow()) {
-					$tags = array_unique(array_merge($image->getTags(), array($words)));
+					$tags = array_unique(array_merge($image->getTags(''), array($words)));
 					$image->setTags($tags);
 					$image->save();
 				}

@@ -506,10 +506,11 @@ class ThemeObject extends PersistentObject {
 	/**
 	 * Returns the tag data
 	 *
+	 * @param string $language
 	 * @return string
 	 */
-	function getTags() {
-		return readTags($this->getID(), $this->table);
+	function getTags($language = NULL) {
+		return readTags($this->getID(), $this->table, $language);
 	}
 
 	/**
@@ -532,7 +533,7 @@ class ThemeObject extends PersistentObject {
 	 * @return bool
 	 */
 	function hasTag($checktag) {
-		$tags = $this->getTags();
+		$tags = $this->getTags('');
 		return in_array($checktag, $tags);
 	}
 

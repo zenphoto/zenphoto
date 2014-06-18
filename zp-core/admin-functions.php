@@ -1182,7 +1182,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 		if (is_null($that)) {
 			$tags = array();
 		} else {
-			$tags = $that->getTags();
+			$tags = $that->getTags('');
 		}
 
 		if (count($tags) > 0) {
@@ -4018,7 +4018,7 @@ function processAlbumBulkActions() {
 						$albumobj->set('hitcounter', 0);
 						break;
 					case 'addtags':
-						$mytags = array_unique(array_merge($tags, $albumobj->getTags()));
+						$mytags = array_unique(array_merge($tags, $albumobj->getTags('')));
 						$albumobj->setTags($mytags);
 						break;
 					case 'cleartags':
@@ -4028,7 +4028,7 @@ function processAlbumBulkActions() {
 						$images = $albumobj->getImages();
 						foreach ($images as $imagename) {
 							$imageobj = newImage($albumobj, $imagename);
-							$mytags = array_unique(array_merge($tags, $imageobj->getTags()));
+							$mytags = array_unique(array_merge($tags, $imageobj->getTags('')));
 							$imageobj->setTags($mytags);
 							$imageobj->save();
 						}
@@ -4103,7 +4103,7 @@ function processImageBulkActions($album) {
 						$imageobj->set('hitcounter', 0);
 						break;
 					case 'addtags':
-						$mytags = array_unique(array_merge($tags, $imageobj->getTags()));
+						$mytags = array_unique(array_merge($tags, $imageobj->getTags('')));
 						$imageobj->setTags($mytags);
 						break;
 					case 'cleartags':

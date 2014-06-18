@@ -58,7 +58,7 @@ class SearchEngine {
 	 */
 	function __construct($dynamic_album = false) {
 		global $_zp_exifvars, $_zp_gallery, $_zp_current_locale;
-		if (getOption('') == 1) {
+		if (getOption('languageTagSearch') == 1) {
 			$this->language = substr($_zp_current_locale, 0, 2);
 		} else {
 			$this->language = $_zp_current_locale;
