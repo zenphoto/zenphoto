@@ -140,7 +140,7 @@ printAdminHeader('tags');
 				<option value="alpha" <?php if ($tagsort == 'alpha') echo ' selected="selected"'; ?>><?php echo gettext('Alphabetic'); ?></option>
 				<option value="mostused" <?php if ($tagsort == 'mostused') echo ' selected="selected"'; ?>><?php echo gettext('Most used'); ?></option>
 				<option value="language" <?php if ($tagsort == 'language') echo ' selected="selected"'; ?>><?php echo gettext('Language'); ?></option>
-
+				<option value="recent" <?php if ($tagsort == 'recent') echo ' selected="selected"'; ?>><?php echo gettext('Most recent'); ?></option>
 			</select>
 			<div class="buttons floatright">
 
@@ -162,7 +162,7 @@ printAdminHeader('tags');
 							</label>
 						</h2>
 						<form class="dirtylistening" onReset="setClean('tag_action_form');" name="tag_action_form" id="tag_action_form" action="?action=true&amp;tagsort=<?php echo html_encode($tagsort); ?>" method="post" >
-								<?php XSRFToken('tag_action'); ?>
+							<?php XSRFToken('tag_action'); ?>
 							<input type="hidden" name="tag_action" id="tag_action" value="delete" />
 							<div class="box-tags-unpadded">
 								<?php
@@ -176,7 +176,7 @@ printAdminHeader('tags');
 												onclick="$('#tag_action').val('delete');
 														this.form.submit();">
 									<img src="images/fail.png" alt="" />
-<?php echo gettext("Delete checked tags"); ?>
+									<?php echo gettext("Delete checked tags"); ?>
 								</button>
 							</p>
 							<br />
@@ -185,7 +185,7 @@ printAdminHeader('tags');
 												onclick="$('#tag_action').val('assign');
 														this.form.submit();">
 									<img src="images/redo.png" alt="" />
-<?php echo gettext('assign'); ?>
+									<?php echo gettext('assign'); ?>
 								</button>
 							</p>
 							<select name="language" id="language" class="ignoredirty">
@@ -211,7 +211,7 @@ printAdminHeader('tags');
 					<td valign='top'>
 						<h2 class="h2_bordered_edit"><?php echo gettext("Rename tags"); ?></h2>
 						<form class="dirtylistening" onReset="setClean('form_tagrename');" name="tag_rename" id="form_tagrename" action="?rename=true&amp;tagsort=<?php echo html_encode($tagsort); ?>" method="post" >
-									<?php XSRFToken('tag_rename'); ?>
+							<?php XSRFToken('tag_rename'); ?>
 							<div class="box-tags-unpadded">
 								<ul class="tagrenamelist">
 									<?php
@@ -221,7 +221,7 @@ printAdminHeader('tags');
 										<li>
 											<label>
 												<img src="<?php echo $flags[$languages[$item]]; ?>" height="12" width="12" />
-	<?php echo $item; ?>
+												<?php echo $item; ?>
 												<br />
 												<input id="<?php echo $listitem; ?>" name="<?php echo $listitem; ?>" type="text" size='33' />
 											</label>
@@ -248,7 +248,7 @@ printAdminHeader('tags');
 					<td valign='top'>
 						<h2 class="h2_bordered_edit"><?php echo gettext("New tags"); ?></h2>
 						<form class="dirtylistening" onReset="setClean('form_newtags');"  name="new_tags" id="form_newtags" action="?newtags=true&amp;tagsort=<?php echo html_encode($tagsort); ?>" method="post">
-									<?php XSRFToken('new_tags'); ?>
+							<?php XSRFToken('new_tags'); ?>
 							<div class="box-tags-unpadded">
 								<ul class="tagnewlist">
 									<?php

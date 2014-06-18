@@ -1139,10 +1139,16 @@ function printAdminHeader($tab, $subtab = NULL) {
 	function tagSelector($that, $postit, $showCounts = false, $tagsort = 'alpha', $addnew = true, $resizeable = false, $class = 'checkTagsAuto') {
 		global $_zp_admin_ordered_taglist, $_zp_admin_LC_taglist, $_zp_all_languages;
 		if (is_null($_zp_admin_ordered_taglist)) {
-			if ($tagsort == 'language') {
-				$order = '`language` DESC,`name`';
-			} else {
-				$order = '`name`';
+			switch ($tagsort) {
+				case 'language':
+					$order = '`language` DESC,`name`';
+					break;
+				case 'recent':
+					$order = '`id` DESC';
+					break;
+				default:
+					$order = '`name`';
+					break;
 			}
 			$languages = $counts = array();
 			$sql = "SELECT DISTINCT tags.name, tags.language, tags.id, (SELECT COUNT(*) FROM " . prefix('obj_to_tag') . " as object WHERE object.tagid = tags.id) AS count FROM " . prefix('tags') . " as tags ORDER BY $order";
