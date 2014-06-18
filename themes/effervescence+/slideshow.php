@@ -7,9 +7,9 @@ if (function_exists('printSlideShow')) {
 	<!DOCTYPE html>
 	<html>
 		<head>
-
+			
 			<?php zp_apply_filter('theme_head'); ?>
-
+			
 		</head>
 		<body>
 			<?php zp_apply_filter('theme_body_open'); ?>
@@ -31,14 +31,15 @@ if (function_exists('printSlideShow')) {
 									<?php
 									if (getOption('custom_index_page') === 'gallery') {
 										?>
-										<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Main Index'); ?>"><?php printGalleryTitle(); ?></a> |
-										<a href="<?php echo html_encode(getCustomPageURL('gallery')); ?>" title="<?php echo gettext('Albums Index'); ?>"><?php echo gettext('Gallery'); ?></a> |
+										<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Main Index'); ?>"><?php echo gettext('Home'); ?></a> |
+										<a href="<?php echo html_encode(getCustomPageURL('gallery')); ?>" title="<?php echo gettext('Albums Index'); ?>"><?php printGalleryTitle(); ?></a> |
 										<?php
 									} else {
 										?>
-										<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Albums Index'); ?>"><?php printGalleryTitle(); ?></a>
+										<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Albums Index'); ?>"><?php printGalleryTitle(); ?></a> |
 										<?php
 									}
+									printGalleryTitle();
 									?></a> |
 									<?php
 									if (is_null($_zp_current_album)) {

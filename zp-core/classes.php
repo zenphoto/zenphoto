@@ -533,7 +533,7 @@ class ThemeObject extends PersistentObject {
 	 * @return bool
 	 */
 	function hasTag($checktag) {
-		$tags = $this->getTags(false);
+		$tags = $this->getTags('');
 		return in_array($checktag, $tags);
 	}
 

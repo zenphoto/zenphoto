@@ -6,14 +6,14 @@ if (!defined('WEBPATH'))
 <!DOCTYPE html>
 <html>
 	<head>
-
+		
 		<?php
 		zp_apply_filter('theme_head');
 		if (getOption('effervescence_daily_album_image_effect')) {
 			setOption('image_custom_images', getOption('effervescence_daily_album_image_effect'), false);
 		}
 		?>
-
+		
 	</head>
 
 	<body onload="blurAnchors()">
@@ -40,7 +40,7 @@ if (!defined('WEBPATH'))
 					<span><?php
 						if ($_zp_gallery->getWebsiteURL())
 							printHomeLink('', ' | ');
-						printGalleryTitle();
+						echo gettext('Home');
 						?></span>
 				</div>
 			</div> <!-- wrapnav -->

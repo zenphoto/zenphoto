@@ -3619,21 +3619,13 @@ function printAllDates($class = 'archive', $yearid = 'year', $monthid = 'month',
  * @return string
  */
 function getCustomPageURL($page, $q = '') {
-	global $_zp_current_album, $_zp_conf_vars, $_zp_gallery_page;
+	global $_zp_current_album, $_zp_conf_vars;
 	if (array_key_exists($page, $_zp_conf_vars['special_pages'])) {
 		$result_r = preg_replace('~^_PAGE_/~', _PAGE_ . '/', $_zp_conf_vars['special_pages'][$page]['rewrite']);
 	} else {
 		$result_r = '/' . _PAGE_ . '/' . $page;
 	}
 	$result = "index.php?p=$page";
-
-	if (in_context(ZP_ALBUM) && $_zp_gallery_page != $page . '.php') {
-		$album = getUrAlbum($_zp_current_album);
-		if (($pageno = $album->getGalleryPage()) > 1) {
-			$result_r .= '/' . $pageno . '/';
-			$result .= '&page=' . $pageno;
-		}
-	}
 
 	if (!empty($q)) {
 		$result_r .= "?$q";

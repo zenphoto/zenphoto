@@ -53,7 +53,7 @@ if (function_exists('printCustomMenu') && ($menu = getOption('effervescence_menu
 				<h3><?php echo gettext("Albums"); ?></h3>
 				<ul id="album_menu">
 					<li>
-						<a href="<?php echo html_encode(getCustomPageURL('gallery')); ?>" title="<?php echo gettext('Album index'); ?>"><?php echo gettext('Gallery'); ?></a>
+						<a href="<?php echo html_encode(getCustomPageURL('gallery')); ?>" title="<?php echo gettext('Album index'); ?>"><?php echo gettext('Album index'); ?></a>
 					</li>
 				</ul>
 			</div>
