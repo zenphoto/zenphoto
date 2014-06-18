@@ -1075,7 +1075,7 @@ class xmpMetadata {
 					}
 					break;
 				case 'dc:subject':
-					$tags = $object->getTags('');
+					$tags = $object->getTags(false);
 					if (!empty($tags)) {
 						fwrite($f, "   <$elementXML>\n");
 						fwrite($f, "    <rdf:Bag>\n");

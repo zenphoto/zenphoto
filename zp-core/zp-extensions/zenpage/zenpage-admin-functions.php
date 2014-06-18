@@ -1657,7 +1657,7 @@ function printPublishIconLink($object, $type, $linkback = '') {
 								$obj->remove();
 								break;
 							case 'addtags':
-								$mytags = array_unique(array_merge($tags, $obj->getTags('')));
+								$mytags = array_unique(array_merge($tags, $obj->getTags(false)));
 								$obj->setTags($mytags);
 								break;
 							case 'cleartags':
@@ -1667,7 +1667,7 @@ function printPublishIconLink($object, $type, $linkback = '') {
 								$allarticles = $obj->getArticles('', 'all', true);
 								foreach ($allarticles as $article) {
 									$newsobj = new ZenpageNews($article['titlelink']);
-									$mytags = array_unique(array_merge($tags, $newsobj->getTags('')));
+									$mytags = array_unique(array_merge($tags, $newsobj->getTags(false)));
 									$newsobj->setTags($mytags);
 									$newsobj->save();
 								}
