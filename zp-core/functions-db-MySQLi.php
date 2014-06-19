@@ -61,18 +61,20 @@ function db_connect($config, $errorstop = true) {
  */
 function query($sql, $errorstop = true) {
 	global $_zp_DB_connection, $_zp_DB_details;
-	if (EXPLAIN_SELECTS && strpos($sql, 'SELECT') !== false) {
-		$result = $_zp_DB_connection->query('EXPLAIN ' . $sql);
-		if ($result) {
-			$explaination = array();
-			while ($row = $result->fetch_assoc()) {
-				$explaination[] = $row;
+	if ($_zp_DB_connection) {
+		if (EXPLAIN_SELECTS && strpos($sql, 'SELECT') !== false) {
+			$result = $_zp_DB_connection->query('EXPLAIN ' . $sql);
+			if ($result) {
+				$explaination = array();
+				while ($row = $result->fetch_assoc()) {
+					$explaination[] = $row;
+				}
 			}
+			debugLogVar("EXPLAIN $sql", $explaination);
 		}
-		debugLogVar("EXPLAIN $sql", $explaination);
-	}
-	if ($result = @$_zp_DB_connection->query($sql)) {
-		return $result;
+		if ($result = @$_zp_DB_connection->query($sql)) {
+			return $result;
+		}
 	}
 	if ($errorstop) {
 		$sql = str_replace('`' . $_zp_DB_details['mysql_prefix'], '`[' . gettext('prefix') . ']', $sql);
@@ -139,7 +141,11 @@ function query_full_array($sql, $errorstop = true, $key = NULL) {
  */
 function db_quote($string) {
 	global $_zp_DB_connection;
-	return "'" . $_zp_DB_connection->real_escape_string($string) . "'";
+	if ($_zp_DB_connection) {
+		return "'" . $_zp_DB_connection->real_escape_string($string) . "'";
+	} else {
+		return "" . addslashes($string) . "";
+	}
 }
 
 /*

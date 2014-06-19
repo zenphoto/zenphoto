@@ -4,7 +4,7 @@
  * database core functions for PDO implementations
  *
  * @author Stephen Billard (sbillard)
- * 
+ *
  * @package core
  */
 // force UTF-8 Ø
@@ -19,10 +19,12 @@
 function query($sql, $errorstop = true) {
 	global $_zp_DB_connection, $_zp_DB_last_result, $_zp_DB_details;
 	$_zp_DB_last_result = false;
-	try {
-		$_zp_DB_last_result = $_zp_DB_connection->query($sql);
-	} catch (PDOException $e) {
-		$_zp_DB_last_result = false;
+	if ($_zp_DB_connection) {
+		try {
+			$_zp_DB_last_result = $_zp_DB_connection->query($sql);
+		} catch (PDOException $e) {
+			$_zp_DB_last_result = false;
+		}
 	}
 	if (!$_zp_DB_last_result && $errorstop) {
 		$sql = str_replace('`' . $_zp_DB_details['mysql_prefix'], '`[' . gettext('prefix') . ']', $sql);
@@ -87,7 +89,11 @@ function query_full_array($sql, $errorstop = true, $key = NULL) {
  */
 function db_quote($string) {
 	global $_zp_DB_connection;
-	return $_zp_DB_connection->quote($string);
+	if ($_zp_DB_connection) {
+		return $_zp_DB_connection->quote($string);
+	} else {
+		return "" . addslashes($string) . "";
+	}
 }
 
 /*

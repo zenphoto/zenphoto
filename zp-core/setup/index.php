@@ -327,7 +327,6 @@ if ($selected_database) {
 			$upgrade = gettext("install");
 		}
 		$environ = true;
-		require_once(dirname(dirname(__FILE__)) . '/admin-functions.php');
 	} else {
 		if ($_zp_DB_connection) { // there was a connection to the database handler but not to the database.
 			if (!empty($_zp_conf_vars['mysql_database'])) {
@@ -335,7 +334,6 @@ if ($selected_database) {
 					$result = db_create();
 					if ($result && ($connection = db_connect($_zp_conf_vars, false))) {
 						$environ = true;
-						require_once(dirname(dirname(__FILE__)) . '/admin-functions.php');
 					} else {
 						if ($result) {
 							$DBcreated = true;
@@ -353,18 +351,13 @@ if ($selected_database) {
 	}
 }
 
+require_once(dirname(dirname(__FILE__)) . '/admin-functions.php');
+
 if (defined('CHMOD_VALUE')) {
 	$chmod = CHMOD_VALUE & 0666;
 }
 
-if (function_exists('setOption')) {
-	setOptionDefault('zp_plugin_security-logger', 9 | CLASS_PLUGIN);
-} else { // setup a primitive environment
-	$environ = false;
-	require_once(dirname(__FILE__) . '/setup-primitive.php');
-	require_once(dirname(dirname(__FILE__)) . '/functions-filter.php');
-	require_once(dirname(dirname(__FILE__)) . '/functions-i18n.php');
-}
+setOptionDefault('zp_plugin_security-logger', 9 | CLASS_PLUGIN);
 
 if ($newconfig || isset($_GET['copyhtaccess'])) {
 	if ($newconfig && !file_exists($serverpath . '/.htaccess') || setupUserAuthorized()) {
