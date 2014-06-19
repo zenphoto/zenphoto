@@ -61,8 +61,10 @@ function db_connect($config, $errorstop = true) {
  */
 function query($sql, $errorstop = true) {
 	global $_zp_DB_connection, $_zp_DB_details;
-	if ($result = @mysql_query($sql, $_zp_DB_connection)) {
-		return $result;
+	if ($_zp_DB_connection) {
+		if ($result = @mysql_query($sql, $_zp_DB_connection)) {
+			return $result;
+		}
 	}
 	if ($errorstop) {
 		$sql = str_replace('`' . $_zp_DB_details['mysql_prefix'], '`[' . gettext('prefix') . ']', $sql);
@@ -127,7 +129,11 @@ function query_full_array($sql, $errorstop = true, $key = NULL) {
  */
 function db_quote($string) {
 	global $_zp_DB_connection;
-	return "'" . mysql_real_escape_string($string, $_zp_DB_connection) . "'";
+	if ($_zp_DB_connection) {
+		return "'" . mysql_real_escape_string($string, $_zp_DB_connection) . "'";
+	} else {
+		return "" . addslashes($string) . "";
+	}
 }
 
 /*
