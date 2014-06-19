@@ -399,6 +399,10 @@ if ($setup_checked) {
 		}
 		if ($mine == $me) {
 			$clone = '';
+			$index = $me . '/index.php';
+			chmod($me, 0777);
+			unlink($index);
+			copy(dirname(dirname(__FILE__)) . '/root_index.php', $index);
 		} else {
 			$clone = ' ' . gettext('clone');
 		}
