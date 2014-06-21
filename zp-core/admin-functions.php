@@ -1190,6 +1190,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 		}
 		if ($resizeable) {
 			$tagclass = 'resizeable_tagchecklist';
+			if (is_bool($resizeable)) {
+				$tagclass .= ' resizeable_tagchecklist_fixed_width';
+			}
 			?>
 			<script>
 				$(function() {
@@ -1207,7 +1210,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 									$('#list_<?php echo $postit; ?>').height($('#resizable_<?php echo $postit; ?>').height());
 									}
 				});
-				});</script>
+			</script>
 			<?php
 		} else {
 			$tagclass = 'tagchecklist';
@@ -2032,8 +2035,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					<h2 class="h2_bordered_edit"><?php echo gettext("Tags"); ?></h2>
 					<div class="box-edit-unpadded">
 						<?php
-						$tagsort = getTagOrder();
-						tagSelector($album, 'tags_' . $prefix, false, $tagsort, true, true);
+						tagSelector($album, 'tags_' . $prefix, false, getTagOrder(), true, true);
 						?>
 					</div>
 				</td>
@@ -2629,6 +2631,13 @@ function printAdminHeader($tab, $subtab = NULL) {
 			}
 		}
 		$activelang = generateLanguageList();
+		$allLang = array_flip(generateLanguageList('all'));
+
+		foreach ($strings as $lang => $v) {
+			if (!array_key_exists($lang, $activelang)) {
+				$activelang[$allLang[$lang]] = $lang;
+			}
+		}
 
 		if (getOption('multi_lingual') && !empty($activelang)) {
 			if ($textbox) {
@@ -2646,7 +2655,10 @@ function printAdminHeader($tab, $subtab = NULL) {
 			}
 
 			// put the language list in perferred order
-			$preferred = array($_zp_current_locale);
+			$preferred = array();
+			if ($_zp_current_locale) {
+				$preferred[] = $_zp_current_locale;
+			}
 			foreach (parseHttpAcceptLanguage() as $lang) {
 				$preferred[] = str_replace('-', '_', $lang['fullcode']);
 			}
@@ -2669,6 +2681,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					}
 				}
 			}
+
 			foreach ($activelang as $key => $active) {
 				$emptylang[$active] = $key;
 			}
@@ -2754,7 +2767,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 * @return string
 	 */
 	function process_language_string_save($name, $sanitize_level = 3) {
-		$languages = generateLanguageList();
+		$languages = generateLanguageList('all');
 		$l = strlen($name) + 1;
 		$strings = array();
 		foreach ($_POST as $key => $value) {
