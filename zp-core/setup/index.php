@@ -399,6 +399,14 @@ if ($setup_checked) {
 		}
 		if ($mine == $me) {
 			$clone = '';
+			$index = $me . '/index.php';
+			@chmod($me, 0777);
+			$rootupdate = @copy(dirname(dirname(__FILE__)) . '/root_index.php', $index);
+			if (!$rootupdate) {
+				$f1 = @file_get_contents($index);
+				$f2 = file_get_contents(dirname(dirname(__FILE__)) . '/root_index.php');
+				$rootupdate = $f1 == $f2; // it is ok, the contents is correct
+			}
 		} else {
 			$clone = ' ' . gettext('clone');
 		}
@@ -1269,14 +1277,20 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 								$msg2 = gettext('Perhaps there was a problem with the upload. You should check the following files: ') . '<br /><code>' . substr($filelist, 0, -6) . '</code>';
 								$mark = -1;
 							} else {
-								if (defined('TEST_RELEASE') && TEST_RELEASE) {
-									$mark = -1;
-									$msg1 = gettext("ZenPhoto20 core files [This is a <em>debug</em> build]");
+								if (isset($rootupdate) && !$rootupdate) {
+									$mark = 0;
+									$msg1 = gettext("ZenPhoto20 core files [Could not update the root <em>index.php</em> file.]");
+									$msg2 = sprintf(gettext('Perhaps there is a permissions issue. You should manually copy the %s <em>root_index.php</em> file to the installation root and rename it <em>index.php</em>.'), ZENFOLDER);
 								} else {
-									$msg1 = '';
-									$mark = 1;
+									if (defined('TEST_RELEASE') && TEST_RELEASE) {
+										$mark = -1;
+										$msg1 = gettext("ZenPhoto20 core files [This is a <em>debug</em> build]");
+									} else {
+										$msg1 = '';
+										$mark = 1;
+									}
+									$msg2 = '';
 								}
-								$msg2 = '';
 							}
 							checkMark($mark, gettext("ZenPhoto20 core files"), $msg1, $msg2, false);
 							if (setupUserAuthorized() && $connection) {
@@ -1484,11 +1498,10 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 								if (file_exists($serverpath . '/robots.txt')) {
 									checkmark(-2, gettext('<em>robots.txt</em> file'), gettext('<em>robots.txt</em> file [Not created]'), gettext('Setup did not create a <em>robots.txt</em> file because one already exists.'));
 								} else {
-									$text = explode('****delete all lines above and including this one *******', $robots);
 									$d = dirname(dirname(dirname($_SERVER['SCRIPT_NAME'])));
 									if ($d == '/')
 										$d = '';
-									$robots = str_replace('/zenphoto', $d, trim($text[1]));
+									$robots = str_replace('/zenphoto', $d, trim($robots));
 									$rslt = file_put_contents($serverpath . '/robots.txt', $robots);
 									if ($rslt === false) {
 										$rslt = -1;

@@ -1,4 +1,3 @@
-index.php
 themes
 themes/basic
 themes/basic/404.php
@@ -980,6 +979,7 @@ zp-core/pickSource.php
 zp-core/pluginDoc.php
 zp-core/reconfigure.php
 zp-core/rewrite.php
+zp-core/root_index.php
 zp-core/setup.php
 zp-core/template-filters.php
 zp-core/template-functions.php
