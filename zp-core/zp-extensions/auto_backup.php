@@ -89,7 +89,7 @@ class auto_backup {
 		asort($list);
 		$list = array_flip($list);
 		$keep = getOption('backups_to_keep');
-		while (count($list) >= $keep) {
+		while (!empty($list) && count($list) >= $keep) {
 			$file = array_shift($list);
 			@chmod(SERVERPATH . "/" . BACKUPFOLDER . '/' . $file, 0777);
 			unlink(SERVERPATH . "/" . BACKUPFOLDER . '/' . $file);
