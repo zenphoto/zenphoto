@@ -16,7 +16,7 @@
  * @package plugins
  * @subpackage theme
  */
-$plugin_is_filter = 5 | CLASS_PLUGIN;
+$plugin_is_filter = defaultExtension(5 | CLASS_PLUGIN);
 $plugin_description = gettext("Provides a unified comment handling facility.");
 $plugin_author = "Stephen Billard (sbillard)";
 

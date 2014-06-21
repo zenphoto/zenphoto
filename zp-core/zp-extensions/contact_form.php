@@ -15,7 +15,7 @@
  * @package plugins
  * @subpackage theme
  */
-$plugin_is_filter = 5 | FEATURE_PLUGIN;
+$plugin_is_filter = defaultExtension(5 | FEATURE_PLUGIN);
 $plugin_description = gettext("Prints an e-mail contact so that visitors may e-mail the site administrator.");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 

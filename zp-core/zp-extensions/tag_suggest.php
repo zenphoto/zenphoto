@@ -9,7 +9,7 @@
  * @package plugins
  * @subpackage theme
  */
-$plugin_is_filter = 9 | THEME_PLUGIN;
+$plugin_is_filter = defaultExtension(9 | THEME_PLUGIN);
 $plugin_description = gettext("Enables jQuery tag suggestions on the search field.");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 

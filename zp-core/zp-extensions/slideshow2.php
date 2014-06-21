@@ -32,7 +32,7 @@
  * @package plugins
  * @subpackage media
  */
-$plugin_is_filter = 9 | THEME_PLUGIN | ADMIN_PLUGIN;
+$plugin_is_filter = defaultExtension(9 | THEME_PLUGIN | ADMIN_PLUGIN);
 $plugin_description = gettext("Slideshow plugin based on the Cycle2 jQuery plugin.");
 $plugin_author = "Malte Müller (acrylian)";
 $plugin_disable = (extensionEnabled('slideshow')) ? sprintf(gettext('Only one slideshow plugin may be enabled. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'), 'slideshow') : '';
@@ -189,134 +189,134 @@ class cycle {
 	}
 
 	static function getShow($heading, $speedctl, $albumobj, $imageobj, $width, $height, $crop, $shuffle, $linkslides, $controls, $returnpath, $imagenumber) {
-    global $_zp_gallery, $_zp_gallery_page;
-    setOption('cycle-slideshow_' . $_zp_gallery->getCurrentTheme() . '_' . stripSuffix($_zp_gallery_page), 1);
-    if (!$albumobj->isMyItem(LIST_RIGHTS) && !checkAlbumPassword($albumobj)) {
-      return '<div class="errorbox" id="message"><h2>' . gettext('This album is password protected!') . '</h2></div>';
-    }
-    // setting the image size
-    if (empty($width) || empty($height)) {
-      $width = getOption('cycle-slideshow_width');
-      $height = getOption('cycle-slideshow_height');
-    }
-    if ($crop) {
-      $cropw = $width;
-      $croph = $height;
-    } else {
-      $cropw = NULL;
-      $croph = NULL;
-    }
-    //echo $imagenumber;
-    $slides = $albumobj->getImages(0);
-    $numslides = $albumobj->getNumImages();
-    if ($shuffle) { // means random order, not the effect!
-      shuffle($slides);
-    }
-    //echo "<pre>";
-    // print_r($slides);
-    //echo "</pre>";
-    //cycle2 in progressive loading mode cannot start with specific slides as it does not "know" them.
-    //The start slide needs to be set manually so I remove and append those before the desired start slide at the end
-    if ($imagenumber != 0) { // if start slide not the first
-      $count = -1; //cycle2 starts with 0
-      $extractslides = array();
-      foreach ($slides as $slide) {
-        $count++;
-        if ($count < $imagenumber) {
-          $extractslides[] = $slide;
-          unset($slides[$count]);
-        }
-      }
-      $slides = array_merge($slides, $extractslides);
-    }
-    //echo "<pre>";
-    // print_r($slides);
-    //echo "</pre>";
-    //$albumid = $albumobj->getID();
-    if (getOption('cycle-slideshow_swipe')) {
-      $option_swipe = 'true';
-    } else {
-      $option_swipe = 'false';
-    }
-    if (getOption('cycle-slideshow_pausehover')) {
-      $option_pausehover = 'true';
-    } else {
-      $option_pausehover = 'false';
-    }
-    $option_fx = getOption('cycle-slideshow_effect');
-    $option_tilevertical = '';
-    if ($option_fx == 'tileSlide' || $option_fx == 'tileBlind') {
-      $option_tileextra = getOption('cycle-slideshow_tileeffect');
-      switch ($option_tileextra) {
-        case 'tileVert':
-          $option_tilevertical = 'data-cycle-tile-vertical=true';
-          break;
-        case 'tileHorz':
-          $option_tilevertical = 'data-cycle-tile-vertical=false';
-          break;
-        default:
-          $option_tilevertical = '';
-          break;
-      }
-    }
-    if ($numslides == 0) {
-      return '<div class="errorbox" id="message"><h2>' . gettext('No images for the slideshow!') . '</h2></div>';
-    }
-    $slideshow = '<section class="slideshow"><!-- extra class with album id so we can address slides! -->' . "\n";
-    if ($controls) {
-      $slideshow .= '<ul class="slideshow_controls">' . "\n";
-      $slideshow .= '<li><a href="#" data-cycle-cmd="prev" class="cycle-slideshow-prev icon-backward" title="' . gettext('prev') . '"></a></li>' . "\n";
-      $slideshow .= '<li><a href="' . $returnpath . '" class="cycle-slideshow-stop icon-stop" title="' . gettext('stop') . '"></a></li>' . "\n";
-      $slideshow .= '<li><a href="#" data-cycle-cmd="pause" class="cycle-slideshow-pause icon-pause" title="' . gettext('pause') . '"></a></li>' . "\n";
-      $slideshow .= '<li><a href="#" data-cycle-cmd="resume" class="cycle-slideshow-resume icon-play" title="' . gettext('play') . '"></a></li>' . "\n";
-      $slideshow .= '<li><a href="#" data-cycle-cmd="next" class="cycle-slideshow-next icon-forward" title="' . gettext('next') . '"></a></li>' . "\n";
-      $slideshow .= '</ul>' . "\n";
-    }
-    //class cylce-slideshow is mandatory!
-    $slideshow .= '<div class="cycle-slideshow"' . "\n";
-    $slideshow .= 'data-cycle-pause-on-hover=' . $option_pausehover . "\n";
-    $slideshow .= 'data-cycle-fx="' . $option_fx . '"' . "\n";
-    $slideshow .= $option_tilevertical . "\n";
-    $slideshow .= 'data-cycle-speed=' . getOption('cycle-slideshow_speed') . "\n";
-    $slideshow .= 'data-cycle-timeout=' . getOption('cycle-slideshow_timeout') . "\n";
-    $slideshow .= 'data-cycle-slides=".slide"' . "\n";
-    $slideshow .= 'data-cycle-auto-height=true' . "\n";
-    $slideshow .= 'data-cycle-center-horz=true' . "\n";
-    $slideshow .= 'data-cycle-center-vert=true' . "\n";
-    $slideshow .= 'data-cycle-swipe=' . $option_swipe . "\n";
-    $slideshow .= 'data-cycle-loader=true' . "\n";
-    $slideshow .= 'data-cycle-progressive=".slides"' . "\n";
-    $slideshow .= '>';
-    // first slide manually for progressive slide loading
-    $firstslide = array_shift($slides);
-    /*
-     * This obj stuff could be done within printslides but we
-     * might need to exclude types although cycle2 should display all
-     * In that case we need the filename before printSlide as
-     * otherwise the slides count is disturbed as it is done on all
-     */
-    $slideobj = cycle::getSlideObj($firstslide, $albumobj);
-    //$ext = slideshow::is_valid($slideobj->filename, $validtypes);
-    //if ($ext) {
-    $slideshow .= cycle::getSlide($albumobj, $slideobj, $width, $height, $cropw, $croph, $linkslides, false);
-    //}
-    $slideshow .= '<script class="slides" type="text/cycle" data-cycle-split="---">' . "\n";
-    $count = '';
-    foreach ($slides as $slide) {
-      $count++;
-      $slideobj = cycle::getSlideObj($slide, $albumobj);
-      $slideshow .= cycle::getSlide($albumobj, $slideobj, $width, $height, $cropw, $croph, $linkslides, false);
-      if ($count != $numslides) {
-        $slideshow .= "---\n"; // delimiter for the progressive slide loading
-      }
-    }
-    $slideshow .='</script>' . "\n";
-    $slideshow .='</div>' . "\n";
-    $slideshow .='</section>' . "\n";
-    return $slideshow;
-  }
+		global $_zp_gallery, $_zp_gallery_page;
+		setOption('cycle-slideshow_' . $_zp_gallery->getCurrentTheme() . '_' . stripSuffix($_zp_gallery_page), 1);
+		if (!$albumobj->isMyItem(LIST_RIGHTS) && !checkAlbumPassword($albumobj)) {
+			return '<div class="errorbox" id="message"><h2>' . gettext('This album is password protected!') . '</h2></div>';
+		}
+		// setting the image size
+		if (empty($width) || empty($height)) {
+			$width = getOption('cycle-slideshow_width');
+			$height = getOption('cycle-slideshow_height');
+		}
+		if ($crop) {
+			$cropw = $width;
+			$croph = $height;
+		} else {
+			$cropw = NULL;
+			$croph = NULL;
+		}
+		//echo $imagenumber;
+		$slides = $albumobj->getImages(0);
+		$numslides = $albumobj->getNumImages();
+		if ($shuffle) { // means random order, not the effect!
+			shuffle($slides);
+		}
+		//echo "<pre>";
+		// print_r($slides);
+		//echo "</pre>";
+		//cycle2 in progressive loading mode cannot start with specific slides as it does not "know" them.
+		//The start slide needs to be set manually so I remove and append those before the desired start slide at the end
+		if ($imagenumber != 0) { // if start slide not the first
+			$count = -1; //cycle2 starts with 0
+			$extractslides = array();
+			foreach ($slides as $slide) {
+				$count++;
+				if ($count < $imagenumber) {
+					$extractslides[] = $slide;
+					unset($slides[$count]);
+				}
+			}
+			$slides = array_merge($slides, $extractslides);
+		}
+		//echo "<pre>";
+		// print_r($slides);
+		//echo "</pre>";
+		//$albumid = $albumobj->getID();
+		if (getOption('cycle-slideshow_swipe')) {
+			$option_swipe = 'true';
+		} else {
+			$option_swipe = 'false';
+		}
+		if (getOption('cycle-slideshow_pausehover')) {
+			$option_pausehover = 'true';
+		} else {
+			$option_pausehover = 'false';
+		}
+		$option_fx = getOption('cycle-slideshow_effect');
+		$option_tilevertical = '';
+		if ($option_fx == 'tileSlide' || $option_fx == 'tileBlind') {
+			$option_tileextra = getOption('cycle-slideshow_tileeffect');
+			switch ($option_tileextra) {
+				case 'tileVert':
+					$option_tilevertical = 'data-cycle-tile-vertical=true';
+					break;
+				case 'tileHorz':
+					$option_tilevertical = 'data-cycle-tile-vertical=false';
+					break;
+				default:
+					$option_tilevertical = '';
+					break;
+			}
+		}
+		if ($numslides == 0) {
+			return '<div class="errorbox" id="message"><h2>' . gettext('No images for the slideshow!') . '</h2></div>';
+		}
+		$slideshow = '<section class="slideshow"><!-- extra class with album id so we can address slides! -->' . "\n";
+		if ($controls) {
+			$slideshow .= '<ul class="slideshow_controls">' . "\n";
+			$slideshow .= '<li><a href="#" data-cycle-cmd="prev" class="cycle-slideshow-prev icon-backward" title="' . gettext('prev') . '"></a></li>' . "\n";
+			$slideshow .= '<li><a href="' . $returnpath . '" class="cycle-slideshow-stop icon-stop" title="' . gettext('stop') . '"></a></li>' . "\n";
+			$slideshow .= '<li><a href="#" data-cycle-cmd="pause" class="cycle-slideshow-pause icon-pause" title="' . gettext('pause') . '"></a></li>' . "\n";
+			$slideshow .= '<li><a href="#" data-cycle-cmd="resume" class="cycle-slideshow-resume icon-play" title="' . gettext('play') . '"></a></li>' . "\n";
+			$slideshow .= '<li><a href="#" data-cycle-cmd="next" class="cycle-slideshow-next icon-forward" title="' . gettext('next') . '"></a></li>' . "\n";
+			$slideshow .= '</ul>' . "\n";
+		}
+		//class cylce-slideshow is mandatory!
+		$slideshow .= '<div class="cycle-slideshow"' . "\n";
+		$slideshow .= 'data-cycle-pause-on-hover=' . $option_pausehover . "\n";
+		$slideshow .= 'data-cycle-fx="' . $option_fx . '"' . "\n";
+		$slideshow .= $option_tilevertical . "\n";
+		$slideshow .= 'data-cycle-speed=' . getOption('cycle-slideshow_speed') . "\n";
+		$slideshow .= 'data-cycle-timeout=' . getOption('cycle-slideshow_timeout') . "\n";
+		$slideshow .= 'data-cycle-slides=".slide"' . "\n";
+		$slideshow .= 'data-cycle-auto-height=true' . "\n";
+		$slideshow .= 'data-cycle-center-horz=true' . "\n";
+		$slideshow .= 'data-cycle-center-vert=true' . "\n";
+		$slideshow .= 'data-cycle-swipe=' . $option_swipe . "\n";
+		$slideshow .= 'data-cycle-loader=true' . "\n";
+		$slideshow .= 'data-cycle-progressive=".slides"' . "\n";
+		$slideshow .= '>';
+		// first slide manually for progressive slide loading
+		$firstslide = array_shift($slides);
+		/*
+		 * This obj stuff could be done within printslides but we
+		 * might need to exclude types although cycle2 should display all
+		 * In that case we need the filename before printSlide as
+		 * otherwise the slides count is disturbed as it is done on all
+		 */
+		$slideobj = cycle::getSlideObj($firstslide, $albumobj);
+		//$ext = slideshow::is_valid($slideobj->filename, $validtypes);
+		//if ($ext) {
+		$slideshow .= cycle::getSlide($albumobj, $slideobj, $width, $height, $cropw, $croph, $linkslides, false);
+		//}
+		$slideshow .= '<script class="slides" type="text/cycle" data-cycle-split="---">' . "\n";
+		$count = '';
+		foreach ($slides as $slide) {
+			$count++;
+			$slideobj = cycle::getSlideObj($slide, $albumobj);
+			$slideshow .= cycle::getSlide($albumobj, $slideobj, $width, $height, $cropw, $croph, $linkslides, false);
+			if ($count != $numslides) {
+				$slideshow .= "---\n"; // delimiter for the progressive slide loading
+			}
+		}
+		$slideshow .='</script>' . "\n";
+		$slideshow .='</div>' . "\n";
+		$slideshow .='</section>' . "\n";
+		return $slideshow;
+	}
 
-  /**
+	/**
 	 * Helper function to print the individual slides
 	 *
 	 * @param obj $albumobj Album object
@@ -330,71 +330,71 @@ class cycle {
 	 * @param bool $crop True or false to crop the image
 	 * @param bool $carousel if the slideshow is a carousel so we can enable full image linking (only images allowed!)
 	 */
- static function getSlide($albumobj, $imgobj, $width, $height, $cropw, $croph, $linkslides, $crop = false, $carousel = false) {
-    global $_zp_current_image;
-    if ($crop) {
-      $imageurl = $imgobj->getCustomImage(NULL, $width, $height, $cropw, $croph, NULL, NULL, true, NULL);
-    } else {
-      $maxwidth = $width;
-      $maxheight = $height;
-      getMaxSpaceContainer($maxwidth, $maxheight, $imgobj);
-      $imageurl = $imgobj->getCustomImage(NULL, $maxwidth, $maxheight, NULL, NULL, NULL, NULL, NULL, NULL);
-    }
-    $slidecontent = '<div class="slide">' . "\n";
-    // no space in carousels for titles!
-    if (!$carousel) {
-      $slidecontent .= '<h4>' . html_encode($albumobj->getTitle()) . ': ' . html_Encode($imgobj->getTitle()) . '</h4>' . "\n";
-    }
-    if ($carousel) {
-      // on the carousel this means fullimage as they are always linked anyway
-      if ($linkslides) {
-        $url = pathurlencode($imgobj->getFullImageURL());
-      } else {
-        $url = pathurlencode($imgobj->getLink());
-      }
-      $slidecontent .= '<a href="' . $url . '">' . "\n";
-    } else if (!$carousel && $linkslides) {
-      $slidecontent .= '<a href="' . pathurlencode($imgobj->getLink()) . '">' . "\n";
-    }
-    $active = '';
-    if ($carousel && !is_null($_zp_current_image)) {
-      if ($_zp_current_image->filename == $imgobj->filename) {
-        $active = ' class="activeslide"';
-      } else {
-        $active = '';
-      }
-    }
-    $slidecontent .='<img src="' . pathurlencode($imageurl) . '" alt=""' . $active . '>' . "\n";
-    if ($linkslides || $carousel) {
-      $slidecontent .= '</a>' . "\n";
-    }
-    // no space in carousels for this!
-    if (getOption("cycle-slideshow_showdesc") && !$carousel) {
-      $slidecontent .= '<div class="slide_desc">' . html_encodeTagged($imgobj->getDesc()) . '</div>' . "\n";
-    }
-    $slidecontent .= '</div>' . "\n";
-    return $slidecontent;
-  }
+	static function getSlide($albumobj, $imgobj, $width, $height, $cropw, $croph, $linkslides, $crop = false, $carousel = false) {
+		global $_zp_current_image;
+		if ($crop) {
+			$imageurl = $imgobj->getCustomImage(NULL, $width, $height, $cropw, $croph, NULL, NULL, true, NULL);
+		} else {
+			$maxwidth = $width;
+			$maxheight = $height;
+			getMaxSpaceContainer($maxwidth, $maxheight, $imgobj);
+			$imageurl = $imgobj->getCustomImage(NULL, $maxwidth, $maxheight, NULL, NULL, NULL, NULL, NULL, NULL);
+		}
+		$slidecontent = '<div class="slide">' . "\n";
+		// no space in carousels for titles!
+		if (!$carousel) {
+			$slidecontent .= '<h4>' . html_encode($albumobj->getTitle()) . ': ' . html_Encode($imgobj->getTitle()) . '</h4>' . "\n";
+		}
+		if ($carousel) {
+			// on the carousel this means fullimage as they are always linked anyway
+			if ($linkslides) {
+				$url = pathurlencode($imgobj->getFullImageURL());
+			} else {
+				$url = pathurlencode($imgobj->getLink());
+			}
+			$slidecontent .= '<a href="' . $url . '">' . "\n";
+		} else if (!$carousel && $linkslides) {
+			$slidecontent .= '<a href="' . pathurlencode($imgobj->getLink()) . '">' . "\n";
+		}
+		$active = '';
+		if ($carousel && !is_null($_zp_current_image)) {
+			if ($_zp_current_image->filename == $imgobj->filename) {
+				$active = ' class="activeslide"';
+			} else {
+				$active = '';
+			}
+		}
+		$slidecontent .='<img src="' . pathurlencode($imageurl) . '" alt=""' . $active . '>' . "\n";
+		if ($linkslides || $carousel) {
+			$slidecontent .= '</a>' . "\n";
+		}
+		// no space in carousels for this!
+		if (getOption("cycle-slideshow_showdesc") && !$carousel) {
+			$slidecontent .= '<div class="slide_desc">' . html_encodeTagged($imgobj->getDesc()) . '</div>' . "\n";
+		}
+		$slidecontent .= '</div>' . "\n";
+		return $slidecontent;
+	}
 
-  /**
-   * Helper function to print the individual slides
-   *
-   * @param obj $albumobj Album object
-   * @param obj $imgobj Current slide obj
-   * @param int $width Slide image width
-   * @param int $height Slide image height
-   * @param int $cropw Slide image crop width
-   * @param int $croph Slide image crop height
-   * @param bool $linkslides True or false if the slides should be linked to their image page.
-   *                          Note: In carousel mode this means full image links as here slides are always linked to the image page.
-   * @param bool $crop True or false to crop the image
-   * @param bool $carousel if the slideshow is a carousel so we can enable full image linking (only images allowed!)
-   */
-  static function printSlide($albumobj, $imgobj, $width, $height, $cropw, $croph, $linkslides, $crop = false, $carousel = false) {
-    echo getSlide($albumobj, $imgobj, $width, $height, $cropw, $croph, $linkslides, $crop, $carousel);
-  }
+	/**
+	 * Helper function to print the individual slides
+	 *
+	 * @param obj $albumobj Album object
+	 * @param obj $imgobj Current slide obj
+	 * @param int $width Slide image width
+	 * @param int $height Slide image height
+	 * @param int $cropw Slide image crop width
+	 * @param int $croph Slide image crop height
+	 * @param bool $linkslides True or false if the slides should be linked to their image page.
+	 *                          Note: In carousel mode this means full image links as here slides are always linked to the image page.
+	 * @param bool $crop True or false to crop the image
+	 * @param bool $carousel if the slideshow is a carousel so we can enable full image linking (only images allowed!)
+	 */
+	static function printSlide($albumobj, $imgobj, $width, $height, $cropw, $croph, $linkslides, $crop = false, $carousel = false) {
+		echo getSlide($albumobj, $imgobj, $width, $height, $cropw, $croph, $linkslides, $crop, $carousel);
+	}
 
-  /**
+	/**
 	 * We might need this to exclude file types or not…
 	 *
 	 * @param type $slide

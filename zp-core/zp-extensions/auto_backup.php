@@ -18,7 +18,7 @@
  * @package plugins
  * @subpackage admin
  */
-$plugin_is_filter = 2 | ADMIN_PLUGIN | THEME_PLUGIN;
+$plugin_is_filter = defaultExtension(2 | ADMIN_PLUGIN | THEME_PLUGIN);
 $plugin_description = gettext("Periodically backup the database.");
 $plugin_author = "Stephen Billard (sbillard)";
 
