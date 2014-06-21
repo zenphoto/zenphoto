@@ -161,8 +161,9 @@ if (isset($_GET['action'])) {
 			}
 			foreach ($_POST as $item => $value) {
 				if (strpos($item, 'gallery-page_') === 0) {
-					$item = sanitize(substr(postIndexDecode($item), 13));
-					$_zp_gallery->setUnprotectedPage($item, (int) isset($_POST['gallery_page_unprotected_' . $item]));
+					$encoded = substr($item, 13);
+					$item = sanitize(postIndexDecode($encoded));
+					$_zp_gallery->setUnprotectedPage($item, (int) isset($_POST['gallery_page_unprotected_' . $encoded]));
 				}
 			}
 			$_zp_gallery->setSecurity(sanitize($_POST['gallery_security'], 3));
@@ -1203,7 +1204,7 @@ Zenphoto_Authority::printPasswordFormJS();
 										$current = array();
 										foreach ($list as $page) {
 											?>
-											<input type="hidden" name="gallery-page_<?php echo $page; ?>" value="0" />
+											<input type="hidden" name="gallery-page_<?php echo postIndexEncode($page); ?>" value="0" />
 											<?php
 											if ($_zp_gallery->isUnprotectedPage($page)) {
 												$current[] = $page;

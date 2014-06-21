@@ -555,7 +555,7 @@ if (!function_exists('hex2bin')) {
 			return null;
 		$r = '';
 		for ($a = 0; $a < strlen($h); $a+=2) {
-			$r.=chr(hexdec($h{$a} . $h{($a + 1)}));
+			$r .= chr(hexdec($h{$a} . $h{($a + 1)}));
 		}
 		return $r;
 	}
