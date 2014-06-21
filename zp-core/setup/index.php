@@ -1717,7 +1717,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 							$db_schema[] = "CREATE TABLE IF NOT EXISTS $tbl_tags (
 															`id` int(11) UNSIGNED NOT NULL auto_increment,
 															`name` varchar(255) NOT NULL,
-															'language' varchar(5) DEFAULT '',
+															`language` varchar(5) NOT NULL default '',
 															PRIMARY KEY (`id`),
 															UNIQUE (`name`)
 															)	$collation;";
@@ -2328,7 +2328,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 
 						//ZenPhoto20
 						//v1.0.0
-						$sql_statements[] = "ALTER TABLE $tbl_tags ADD COLUMN `language` varchar(5) default '';";
+						$sql_statements[] = "ALTER TABLE $tbl_tags ADD COLUMN `language` varchar(5) NOT NULL default '';";
 
 						// do this last incase there are any field changes of like names!
 						foreach ($_zp_exifvars as $key => $exifvar) {
@@ -2557,7 +2557,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 								</div>
 								<?php
 								if ($nc > 0) {
-									$task = "create = " . implode(',', $create);
+									$task = "create=" . implode(',', $create);
 								}
 								if ($nu > 0) {
 									if (empty($task)) {
