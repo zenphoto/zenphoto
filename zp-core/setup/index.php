@@ -1498,11 +1498,10 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 								if (file_exists($serverpath . '/robots.txt')) {
 									checkmark(-2, gettext('<em>robots.txt</em> file'), gettext('<em>robots.txt</em> file [Not created]'), gettext('Setup did not create a <em>robots.txt</em> file because one already exists.'));
 								} else {
-									$text = explode('****delete all lines above and including this one *******', $robots);
 									$d = dirname(dirname(dirname($_SERVER['SCRIPT_NAME'])));
 									if ($d == '/')
 										$d = '';
-									$robots = str_replace('/zenphoto', $d, trim($text[1]));
+									$robots = str_replace('/zenphoto', $d, trim($robots));
 									$rslt = file_put_contents($serverpath . '/robots.txt', $robots);
 									if ($rslt === false) {
 										$rslt = -1;
