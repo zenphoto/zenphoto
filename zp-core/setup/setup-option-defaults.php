@@ -495,6 +495,7 @@ setOptionDefault('theme_head_listparents', 0);
 setOptionDefault('theme_head_separator', ' | ');
 
 setOptionDefault('tagsort', 'alpha');
+setOptionDefault('languageTagSearch', 1);
 
 $vers = explode('-', ZENPHOTO_VERSION);
 $vers = explode('.', $vers[0]);
