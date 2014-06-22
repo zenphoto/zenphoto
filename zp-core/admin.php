@@ -350,11 +350,12 @@ if (!zp_loggedin()) {
 											//-->
 										</script>
 										<?php
-										$notes = '<a href="' . WEBPATH . '/docs/release%20notes.htm" class="doc" title="' . gettext('release notes') . '">' . ZENPHOTO_RELEASE . '</a>';
+										$notes = ' <a href="' . WEBPATH . '/docs/release%20notes.htm" class="doc" title="' . gettext('release notes') . '">' . gettext('notes') . '</a>';
 									} else {
-										$notes = ZENPHOTO_RELEASE;
+										$notes = '';
 									}
-									printf(gettext('ZenPhoto20 version <strong>%1$s [%2$s] (%3$s)</strong>'), ZENPHOTO_VERSION, $notes, $official) . $source;
+									printf(gettext('ZenPhoto20 version <strong>%1$s [%2$s] (%3$s)</strong>'), ZENPHOTO_VERSION, ZENPHOTO_RELEASE, $official);
+									echo $notes . $source;
 									?>
 								</li>
 								<li>
