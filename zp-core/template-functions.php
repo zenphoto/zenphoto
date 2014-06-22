@@ -260,7 +260,7 @@ function adminToolbox() {
 									}
 									?>
 									<li>
-										<a href="<?php echo $zf; ?>/admin-edit.php?page=edit&amp;album=<?php echo pathurlencode($albumname); ?>&amp;image=<?php echo urlencode($imagename); ?>&amp;tab=imageinfo#IT"
+										<a href="<?php echo $zf; ?>/admin-edit.php?page=edit&amp;album=<?php echo pathurlencode($albumname); ?>&amp;singleimage=<?php echo urlencode($imagename); ?>&amp;tab=imageinfo#IT"
 											 title="<?php echo gettext('Edit image'); ?>"><?php echo gettext('Edit image'); ?></a>
 									</li>
 									<?php
