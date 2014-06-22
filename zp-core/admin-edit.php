@@ -1461,7 +1461,7 @@ echo "\n</head>";
 															<td valign="top"><?php echo gettext("Tags:"); ?></td>
 															<td>
 																<div class="box-edit-unpadded">
-																	<?php tagSelector($image, 'tags_' . $currentimage . '-', true, $tagsort, true, 1); ?>
+																	<?php tagSelector($image, 'tags_' . $currentimage . '-', false, $tagsort, true, 1); ?>
 																</div>
 															</td>
 														</tr>
@@ -1518,6 +1518,22 @@ echo "\n</head>";
 														<tr>
 															<td valign="top"><?php echo gettext("Copyright:"); ?></td>
 															<td><?php print_language_string_list($image->getCopyright('all'), $currentimage . '-copyright', false, NULL, '', '100%'); ?>
+															</td>
+														</tr>
+														<?php
+													} else {
+														?>
+														<tr>
+															<td valign="top"><?php echo gettext("Tags:"); ?></td>
+															<td>
+																<?php
+																$imagetags = $image->getTags();
+																if (count($imagetags) != 0) {
+																	echo implode(', ', $imagetags);
+																} else {
+																	echo gettext('No tags assigned');
+																}
+																?>
 															</td>
 														</tr>
 														<?php
