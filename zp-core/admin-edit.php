@@ -1328,6 +1328,7 @@ echo "\n</head>";
 															</span>
 														</td>
 													</tr>
+             <?php if (!$singleimage) { ?>
              	<tr>
 														<td valign="top"><?php echo gettext("Tags:"); ?></td>
 														<td>
@@ -1342,6 +1343,7 @@ echo "\n</head>";
 														</td>
 													</tr>
             	<?php
+             }
 													if ($singleimage) { ?>
 													<tr>
 														<td valign="top"><?php echo gettext("Tags:"); ?></td>
