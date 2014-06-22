@@ -1328,6 +1328,19 @@ echo "\n</head>";
 															</span>
 														</td>
 													</tr>
+             	<tr>
+														<td valign="top"><?php echo gettext("Tags:"); ?></td>
+														<td>
+                <?php 
+                  $imagetags = $image->getTags(); 
+                  if(count($imagetags) != 0) { 
+                    echo implode(', ',$imagetags); 
+                  } else { 
+                    echo gettext('No tags assigned');
+                  }
+                ?>
+														</td>
+													</tr>
             	<?php
 													if ($singleimage) { ?>
 													<tr>
