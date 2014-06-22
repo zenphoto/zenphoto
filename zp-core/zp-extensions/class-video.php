@@ -16,11 +16,13 @@
 
 $plugin_is_filter = defaultExtension(990 | CLASS_PLUGIN);
 $plugin_description = gettext('The <em>audio-video</em> handler.');
-$plugin_notice = gettext('This plugin must always be enabled to use multimedia content. Note that you should also enable a multimedia player. See the info of the player you use to see how it is configured.');
+$plugin_notice = gettext('This plugin handles <code>3gp</code> and <code>mov</code> multi-media files. <strong>Note:</strong> you should also enable a multimedia player plugin to handle other media files.');
 $plugin_author = "Stephen Billard (sbillard)";
 
-Gallery::addImageHandler('3gp', 'Video');
-Gallery::addImageHandler('mov', 'Video');
+if (extensionEnabled('class-video')) {
+	Gallery::addImageHandler('3gp', 'Video');
+	Gallery::addImageHandler('mov', 'Video');
+}
 $option_interface = 'VideoObject_Options';
 
 define('GETID3_INCLUDEPATH', SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/class-video/getid3/');
