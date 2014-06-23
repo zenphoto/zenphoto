@@ -625,13 +625,14 @@ function printAdminHeader($tab, $subtab = NULL) {
 				$type = $row['type'];
 				$desc = $row['desc'];
 				$key = @$row['key'];
+				$postkey = postIndexEncode($key);
 				$optionID = $whom . '_' . $key;
 				if (isset($row['multilingual'])) {
 					$multilingual = $row['multilingual'];
 				} else {
 					$multilingual = $type == OPTION_TYPE_TEXTAREA;
 				}
-				if (isset($row['texteditor']) && $row['texteditor']) {
+				if ($type == OPTION_TYPE_RICHTEXT || isset($row['texteditor']) && $row['texteditor']) {
 					$editor = 'texteditor';
 				} else {
 					$editor = '';
@@ -706,15 +707,15 @@ function printAdminHeader($tab, $subtab = NULL) {
 							}
 							?>
 							<td width="350">
-								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . $clear . 'text-' . $key; ?>" value="1" />
+								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . $clear . 'text-' . $postkey; ?>" value="1" />
 								<?php
 								if ($multilingual) {
-									print_language_string_list($v, $key, $type, NULL, $editor);
+									print_language_string_list($v, $postkey, $type, NULL, $editor);
 								} else {
 									if ($type == OPTION_TYPE_TEXTAREA || $type == OPTION_TYPE_RICHTEXT) {
 										$v = get_language_string($v); // just in case....
 										?>
-										<textarea id="<?php echo $key; ?>"<?php if ($type == OPTION_TYPE_RICHTEXT) echo ' class="texteditor"'; ?> name="<?php echo $key; ?>" cols="<?php echo TEXTAREA_COLUMNS; ?>"	style="width: 320px" rows="6"<?php echo $disabled; ?>><?php echo html_encode($v); ?></textarea>
+										<textarea id="<?php echo $key; ?>"<?php if ($type == OPTION_TYPE_RICHTEXT) echo ' class="texteditor"'; ?> name="<?php echo $postkey; ?>" cols="<?php echo TEXTAREA_COLUMNS; ?>"	style="width: 320px" rows="6"<?php echo $disabled; ?>><?php echo html_encode($v); ?></textarea>
 										<?php
 									} else {
 										if ($type == OPTION_TYPE_NUMBER) {
@@ -723,7 +724,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 											$wide = '338px';
 										}
 										?>
-										<input type="<?php echo $inputtype; ?>" id="<?php echo $key; ?>" name="<?php echo $key; ?>" style="width: <?php echo $wide; ?>" value="<?php echo html_encode($v); ?>"<?php echo $disabled; ?> />
+										<input type="<?php echo $inputtype; ?>" id="<?php echo $key; ?>" name="<?php echo $postkey; ?>" style="width: <?php echo $wide; ?>" value="<?php echo html_encode($v); ?>"<?php echo $disabled; ?> />
 										<?php
 									}
 								}
@@ -734,15 +735,15 @@ function printAdminHeader($tab, $subtab = NULL) {
 						case OPTION_TYPE_CHECKBOX:
 							?>
 							<td width="350">
-								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'chkbox-' . $key; ?>" value="1" />
-								<input type="checkbox" id="<?php echo $key; ?>" name="<?php echo $key; ?>" value="1" <?php checked('1', $v); ?><?php echo $disabled; ?> />
+								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'chkbox-' . $postkey; ?>" value="1" />
+								<input type="checkbox" id="<?php echo $key; ?>" name="<?php echo $postkey; ?>" value="1" <?php checked('1', $v); ?><?php echo $disabled; ?> />
 							</td>
 							<?php
 							break;
 						case OPTION_TYPE_CUSTOM:
 							?>
 							<td width="350">
-								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'custom-' . $key; ?>" value="0" />
+								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'custom-' . $postkey; ?>" value="0" />
 								<?php $optionHandler->handleOption($key, $v); ?>
 							</td>
 							<?php
@@ -751,24 +752,28 @@ function printAdminHeader($tab, $subtab = NULL) {
 							$behind = (isset($row['behind']) && $row['behind']);
 							?>
 							<td width="350">
-								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'radio-' . $key; ?>" value="1"<?php echo $disabled; ?> />
-								<?php generateRadiobuttonsFromArray($v, $row['buttons'], $key, $behind, 'checkboxlabel', $disabled); ?>
+								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'radio-' . $postkey; ?>" value="1"<?php echo $disabled; ?> />
+								<?php generateRadiobuttonsFromArray($v, $row['buttons'], $postkey, $behind, 'checkboxlabel', $disabled); ?>
 							</td>
 							<?php
 							break;
 						case OPTION_TYPE_SELECTOR:
 							?>
 							<td width="350">
-								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'selector-' . $key ?>" value="1" />
-								<select id="<?php echo $key; ?>" name="<?php echo $key; ?>"<?php echo $disabled; ?> >
+								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'selector-' . $postkey ?>" value="1" />
+								<select id="<?php echo $key; ?>" name="<?php echo $postkey; ?>"<?php echo $disabled; ?> >
 									<?php
 									if (array_key_exists('null_selection', $row)) {
 										?>
 										<option value=""<?php if (empty($v)) echo ' selected="selected"'; ?> style="background-color:LightGray;"><?php echo $row['null_selection']; ?></option>
 										<?php
 									}
+									$list = array();
+									foreach ($row['selections'] as $rowkey => $rowvalue) {
+										$list[$rowkey] = postIndexEncode($rowvalue);
+									}
+									generateListFromArray(array($v), $list, false, true);
 									?>
-									<?php generateListFromArray(array($v), $row['selections'], false, true); ?>
 								</select>
 							</td>
 							<?php
@@ -792,11 +797,10 @@ function printAdminHeader($tab, $subtab = NULL) {
 									}
 									$display = str_replace(' ', '&nbsp;', $display);
 									?>
-									<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'chkbox-' . $checkbox; ?>" value="1" />
-
+									<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'chkbox-' . postIndexEncode($checkbox); ?>" value="1" />
 									<label class="checkboxlabel">
 										<?php if ($behind) echo($display); ?>
-										<input type="checkbox" id="<?php echo $checkbox; ?>" name="<?php echo $checkbox; ?>" value="1"<?php checked('1', $v); ?><?php echo $disabled; ?> />
+										<input type="checkbox" id="<?php echo $checkbox; ?>" name="<?php echo postIndexEncode($checkbox); ?>" value="1"<?php checked('1', $v); ?><?php echo $disabled; ?> />
 										<?php if (!$behind) echo($display); ?>
 									</label>
 									<?php
@@ -813,7 +817,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 								$cvarray = array();
 								foreach ($row['checkboxes'] as $display => $checkbox) {
 									?>
-									<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'chkbox-' . $checkbox; ?>" value="1" />
+									<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'chkbox-' . postIndexEncode($checkbox); ?>" value="1" />
 									<?php
 									if ($theme) {
 										$v = getThemeOption($checkbox, $album, $theme);
@@ -856,7 +860,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 								$v = '#000000';
 							?>
 							<td width="350" style="margin:0; padding:0">
-								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'text-' . $key; ?>" value="1" />
+								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'text-' . $postkey; ?>" value="1" />
 								<script type="text/javascript">
 									// <!-- <![CDATA[
 									$(document).ready(function() {
@@ -866,7 +870,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 								</script>
 								<table style="margin:0; padding:0" >
 									<tr>
-										<td><input type="text" id="<?php echo $key; ?>" name="<?php echo $key; ?>"	value="<?php echo $v; ?>" style="height:100px; width:100px; float:right;" /></td>
+										<td><input type="text" id="<?php echo $key; ?>" name="<?php echo $postkey; ?>"	value="<?php echo $v; ?>" style="height:100px; width:100px; float:right;" /></td>
 										<td><div id="<?php echo $key; ?>_colorpicker"></div></td>
 									</tr>
 								</table>
@@ -878,27 +882,27 @@ function printAdminHeader($tab, $subtab = NULL) {
 							$max = $row['max'];
 							?>
 							<td width="350" style="margin:0; padding:0">
-								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'slider-' . $key; ?>" value="1" />
-								<span id="slider_display-<?php echo $key; ?>"><?php echo $v; ?></span>
-								<input type="hidden" size="3" id="<?php echo $key; ?>" name="<?php echo $key; ?>" value="<?php echo $v; ?>" />
+								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'slider-' . $postkey; ?>" value="1" />
+								<span id="slider_display-<?php echo $postkey; ?>"><?php echo (int) $v; ?></span>
+								<input type="hidden" id="<?php echo $postkey; ?>" name="<?php echo $postkey; ?>" value="<?php echo $v; ?>" />
 								<script type="text/javascript">
 									// <!-- <![CDATA[
 									$(function() {
-										$("#slider-<?php echo $key; ?>").slider({
-											startValue: <?php echo $v; ?>,
-											value: <?php echo $v; ?>,
-											min: <?php echo $min; ?>,
-											max: <?php echo $max; ?>,
+										$("#slider-<?php echo $postkey; ?>").slider({
+											startValue: <?php echo (int) $v; ?>,
+											value: <?php echo (int) $v; ?>,
+											min: <?php echo (int) $min; ?>,
+											max: <?php echo (int) $max; ?>,
 											slide: function(event, ui) {
-												$("#<?php echo $key; ?>").val(ui.value);
-												$("#slider_display-<?php echo $key; ?>").html(ui.value);
+												$("#<?php echo $postkey; ?>").val(ui.value);
+												$("#slider_display-<?php echo $postkey; ?>").html(ui.value);
 											}
 										});
-										$("#<?php echo $key; ?>").val($("#slider-<?php echo $key; ?>").slider("value"));
+										$("#<?php echo $postkey; ?>").val($("#slider-<?php echo $postkey; ?>").slider("value"));
 									});
 									// ]]> -->
 								</script>
-								<div id="slider-<?php echo $key; ?>"></div>
+								<div id="slider-<?php echo $postkey; ?>"></div>
 
 							</td>
 							<?php
@@ -920,12 +924,12 @@ function printAdminHeader($tab, $subtab = NULL) {
 		$customHandlers = array();
 		foreach ($_POST as $posted => $value) {
 			if (preg_match('/^' . CUSTOM_OPTION_PREFIX . '/', $posted)) { // custom option!
-				$key = substr($posted, strpos($posted, '-') + 1);
-				$postkey = postIndexEncode($key);
-				if (!isset($_POST[$postkey])) {
-					$postkey = $key;
+				$key = $postkey = substr($posted, strpos($posted, '-') + 1);
+				$l = strlen($postkey);
+				if (!($l % 2) && preg_match('/[0-9a-f]{' . strlen($postkey) . '}/i', $postkey)) {
+					$key = postIndexDecode($postkey);
 				}
-				$switch = substr($posted, strlen(CUSTOM_OPTION_PREFIX), -strlen($key) - 1);
+				$switch = substr(explode('-', $posted)[0], strlen(CUSTOM_OPTION_PREFIX));
 				switch ($switch) {
 					case 'text':
 						$value = process_language_string_save($postkey, 1);
@@ -952,6 +956,8 @@ function printAdminHeader($tab, $subtab = NULL) {
 					default:
 						if (isset($_POST[$postkey])) {
 							$value = sanitize($_POST[$postkey], 1);
+						} else if (isset($_POST[$key])) {
+							$value = sanitize($_POST[$key], 1);
 						} else {
 							$value = '';
 						}
@@ -976,6 +982,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			$whom = new $custom['whom']();
 			$returntab = $whom->handleOptionSave($themename, $themealbum) . $returntab;
 		}
+
 		return $returntab;
 	}
 
