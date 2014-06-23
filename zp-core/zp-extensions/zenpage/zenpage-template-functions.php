@@ -597,7 +597,7 @@ function getNewsCategories() {
 		$categories = $_zp_current_zenpage_news->getCategories();
 		return $categories;
 	}
-	return false;
+	return array();
 }
 
 /**
