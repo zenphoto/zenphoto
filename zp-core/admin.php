@@ -336,8 +336,26 @@ if (!zp_loggedin()) {
 								?>
 								<li>
 									<?php
-									printf(gettext('ZenPhoto20 version <strong>%1$s [%2$s] (%3$s)</strong>'), ZENPHOTO_VERSION, '<a title="' . ZENPHOTO_FULL_RELEASE . '">' . ZENPHOTO_RELEASE . '</a>', $official);
-									echo $source;
+									if (file_exists(SERVERPATH . '/docs/release notes.htm')) {
+										?>
+										<script type="text/javascript">
+											<!--
+											$(document).ready(function() {
+												$(".doc").colorbox({
+													close: '<?php echo gettext("close"); ?>',
+													maxHeight: "98%",
+													innerWidth: '560px'
+												});
+											});
+											//-->
+										</script>
+										<?php
+										$notes = ' <a href="' . WEBPATH . '/docs/release%20notes.htm" class="doc" title="' . gettext('release notes') . '">' . gettext('notes') . '</a>';
+									} else {
+										$notes = '';
+									}
+									printf(gettext('ZenPhoto20 version <strong>%1$s [%2$s] (%3$s)</strong>'), ZENPHOTO_VERSION, ZENPHOTO_RELEASE, $official);
+									echo $notes . $source;
 									?>
 								</li>
 								<li>

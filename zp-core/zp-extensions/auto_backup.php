@@ -18,7 +18,7 @@
  * @package plugins
  * @subpackage admin
  */
-$plugin_is_filter = 2 | ADMIN_PLUGIN | THEME_PLUGIN;
+$plugin_is_filter = defaultExtension(2 | ADMIN_PLUGIN | THEME_PLUGIN);
 $plugin_description = gettext("Periodically backup the database.");
 $plugin_author = "Stephen Billard (sbillard)";
 
@@ -89,7 +89,7 @@ class auto_backup {
 		asort($list);
 		$list = array_flip($list);
 		$keep = getOption('backups_to_keep');
-		while (count($list) >= $keep) {
+		while (!empty($list) && count($list) >= $keep) {
 			$file = array_shift($list);
 			@chmod(SERVERPATH . "/" . BACKUPFOLDER . '/' . $file, 0777);
 			unlink(SERVERPATH . "/" . BACKUPFOLDER . '/' . $file);

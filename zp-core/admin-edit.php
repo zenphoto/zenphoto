@@ -1051,32 +1051,29 @@ echo "\n</head>";
 										?>
 
 										<tr <?php echo ($currentimage % 2 == 0) ? "class=\"alt\"" : ""; ?>>
-											<?php
-											if ($target_image == $filename) {
-												$placemark = 'id="IT" ';
-												$target_image_nr = $currentimage;
-											} else {
-												$placemark = '';
-											}
-											?>
 											<td colspan="4">
 												<input type="hidden" name="<?php echo $currentimage; ?>-filename"	value="<?php echo $image->filename; ?>" />
 												<table style="border:none" class="formlayout" id="image-<?php echo $currentimage; ?>">
 													<tr>
 														<td valign="top" rowspan="17" style="border-bottom:none;">
 															<div style="width: 135px;">
-																<a <?php echo $placemark; ?>
+
 																<?php
-																if (isImagePhoto($image) || !is_null($image->objectsThumb)) {
+																if ($close = (isImagePhoto($image) || !is_null($image->objectsThumb))) {
 																	?>
-																		href="admin-thumbcrop.php?a=<?php echo html_encode(pathurlencode($album->name)); ?>&amp;i=<?php echo urlencode($image->filename); ?>&amp;subpage=<?php echo $pagenum; ?>&amp;tagsort=<?php echo html_encode($tagsort); ?>"
-																		title="<?php html_encode(printf(gettext('crop %s'), $image->filename)); ?>"
+																	<a href="admin-thumbcrop.php?a=<?php echo html_encode(pathurlencode($album->name)); ?>&amp;i=<?php echo urlencode($image->filename); ?>&amp;subpage=<?php echo $pagenum; ?>&amp;tagsort=<?php echo html_encode($tagsort); ?>" title="<?php html_encode(printf(gettext('crop %s'), $image->filename)); ?>">
 																		<?php
 																	}
 																	?>
-																	>
-																	<img id="thumb_img-<?php echo $currentimage; ?>" src="<?php echo html_encode(pathurlencode(getAdminThumb($image, 'large'))); ?>" alt="<?php echo html_encode($image->filename); ?>"																	/>
-																</a>
+
+																	<img id="thumb_img-<?php echo $currentimage; ?>" src="<?php echo html_encode(pathurlencode(getAdminThumb($image, 'large'))); ?>" alt="<?php echo html_encode($image->filename); ?>" />
+																	<?php
+																	if ($close) {
+																		?>
+																	</a>
+																	<?php
+																}
+																?>
 															</div>
 															<?php
 															if (isImagePhoto($image)) {
@@ -1461,7 +1458,7 @@ echo "\n</head>";
 															<td valign="top"><?php echo gettext("Tags:"); ?></td>
 															<td>
 																<div class="box-edit-unpadded">
-																	<?php tagSelector($image, 'tags_' . $currentimage . '-', true, $tagsort, true, 1); ?>
+																	<?php tagSelector($image, 'tags_' . $currentimage . '-', false, $tagsort, true, 1); ?>
 																</div>
 															</td>
 														</tr>
@@ -1518,6 +1515,22 @@ echo "\n</head>";
 														<tr>
 															<td valign="top"><?php echo gettext("Copyright:"); ?></td>
 															<td><?php print_language_string_list($image->getCopyright('all'), $currentimage . '-copyright', false, NULL, '', '100%'); ?>
+															</td>
+														</tr>
+														<?php
+													} else {
+														?>
+														<tr>
+															<td valign="top"><?php echo gettext("Tags:"); ?></td>
+															<td>
+																<?php
+																$imagetags = $image->getTags();
+																if (count($imagetags) != 0) {
+																	echo implode(', ', $imagetags);
+																} else {
+																	echo gettext('No tags assigned');
+																}
+																?>
 															</td>
 														</tr>
 														<?php

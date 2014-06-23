@@ -23,6 +23,8 @@ if (isset($_POST['purge'])) {
 			if (preg_match('~^' . THEMEFOLDER . '/~', $owner)) {
 				$sql = 'DELETE FROM ' . prefix('options') . ' WHERE `creator` LIKE ' . db_quote('%' . basename($owner) . '/themeoptions.php');
 				$result = query($sql);
+			} else {
+				purgeOption('zp_plugin_' . stripSuffix(basename($owner)));
 			}
 		}
 	}

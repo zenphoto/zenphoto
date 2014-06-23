@@ -19,7 +19,7 @@ $theme = sanitize($_REQUEST['theme']);
 setupLog(sprintf(gettext('Theme:%s setup started'), $theme), true);
 if (!protectedTheme($theme)) {
 	setupLog(sprintf(gettext('Theme:%s triggered the deprecated functions plugin'), $theme), true);
-	enableExtension('deprecated_functions', 900 | CLASS_PLUGIN);
+	enableExtension('deprecated-functions', 900 | CLASS_PLUGIN);
 }
 
 $requirePath = getPlugin('themeoptions.php', $theme);
