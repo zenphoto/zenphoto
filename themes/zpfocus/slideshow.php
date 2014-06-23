@@ -15,7 +15,6 @@ if (!defined('WEBPATH'))
 	<html>
 		<head>
 			<?php zp_apply_filter('theme_head'); ?>
-			<meta charset="<?php echo LOCAL_CHARSET; ?>" />
 			<meta name="viewport" content="width=device-width" />
 			<title><?php echo gettext('Slideshow') . ' | ' . getBareGalleryTitle(); ?></title>
 		</head>

@@ -445,14 +445,19 @@ function getUserLocale() {
 			}
 			if ($_zp_current_locale) {
 				zp_setCookie('dynamic_locale', $_zp_current_locale);
+			} else {
+				zp_clearCookie('dynamic_locale');
 			}
 			if (DEBUG_LOCALE)
 				debugLog("dynamic_locale from URL: " . sanitize($_REQUEST['locale']) . "=>$_zp_current_locale");
 		} else {
 			$matches = explode('.', @$_SERVER['HTTP_HOST']);
-			if ($_zp_current_locale = validateLocale($matches[0], 'HTTP_HOST')) {
+			$_zp_current_locale = validateLocale($matches[0], 'HTTP_HOST');
+			if ($_zp_current_locale) {
 				zp_clearCookie('dynamic_locale');
 			}
+			if (DEBUG_LOCALE)
+				debugLog("dynamic_locale from HTTP_HOST: " . sanitize($matches[0]) . "=>$_zp_current_locale");
 		}
 
 		if (!$_zp_current_locale && is_object($_zp_current_admin_obj)) {
@@ -486,11 +491,13 @@ function getUserLocale() {
 		if (empty($_zp_current_locale)) {
 			// return "default" language, English if allowed, otherwise whatever is the "first" allowed language
 			$languageSupport = generateLanguageList();
-			if (in_array('en_US', $languageSupport)) {
+			if (empty($languageSupport) || in_array('en_US', $languageSupport)) {
 				$_zp_current_locale = 'en_US';
 			} else {
 				$_zp_current_locale = array_shift($languageSupport);
 			}
+			if (DEBUG_LOCALE)
+				debugLog("locale from language list: " . $_zp_current_locale);
 		} else {
 			setOption('locale', $_zp_current_locale, false);
 		}
