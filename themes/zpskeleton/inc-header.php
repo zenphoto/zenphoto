@@ -6,7 +6,6 @@ $zpskel_social = function_exists('printAddThis');
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="<?php echo LOCAL_CHARSET; ?>" />
 		<?php zp_apply_filter('theme_head'); ?>
 		<?php
 		// Set some things depending on what page we are on...
