@@ -476,15 +476,15 @@ function deleteArticle($titlelink) {
  * @param obj $obj object of the news article
  */
 function printArticleCategories($obj) {
-	$cat = $obj->getCategories();
-	$number = 0;
-	foreach ($cat as $cats) {
-		$number++;
-		if ($number != 1) {
-			echo ", ";
-		}
-		echo get_language_string($cats['titlelink']);
-	}
+  $cat = $obj->getCategories();
+  $number = 0;
+  foreach ($cat as $cats) {
+    $number++;
+    if ($number != 1) {
+      echo ", ";
+    }
+    echo get_language_string($cats['title']);
+  }
 }
 
 /**
