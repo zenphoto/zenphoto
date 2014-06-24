@@ -24,6 +24,7 @@ class debug {
 		$tabs['debug']['subtabs'][gettext("phpinfo")] = PLUGIN_FOLDER . '/debug/admin_tab.php?page=debug&tab=phpinfo';
 		$tabs['debug']['subtabs'][gettext("HTTP accept")] = PLUGIN_FOLDER . '/debug/admin_tab.php?page=debug&tab=http';
 		$tabs['debug']['subtabs'][gettext("Locales")] = PLUGIN_FOLDER . '/debug/admin_tab.php?page=debug&tab=locale';
+		$tabs['debug']['subtabs'][gettext("Cookies")] = PLUGIN_FOLDER . '/debug/admin_tab.php?page=debug&tab=cookie';
 		return $tabs;
 	}
 

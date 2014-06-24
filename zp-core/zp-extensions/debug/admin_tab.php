@@ -26,7 +26,6 @@ echo "\n</head>";
 						?>
 						<div class="tabbox">
 							<h1><?php echo gettext('Your PHP configuration information.'); ?></h1>
-							<?php zp_apply_filter('admin_note', 'debug', 'phpinfo'); ?>
 							<br />
 							<br />
 							<?php phpinfo(); ?>
@@ -126,7 +125,7 @@ echo "\n</head>";
 												array('Swedish', 'Swedish', array('sve', 'swedish')),
 												array('Turkish', 'Turkish', array('trk', 'turkish'))
 								);
-								echo '<table>' . "\n";
+								echo '<table class="bordered">' . "\n";
 								echo '<tr>' . "\n";
 								echo '  <th>' . gettext('Languange') . '</th>' . "\n";
 								echo '  <th>' . gettext('Sub-Languange') . '</th>' . "\n";
@@ -162,6 +161,20 @@ echo "\n</head>";
 								}
 							}
 							?>
+						</div>
+						<?php
+						break;
+					case 'cookie':
+						?>
+						<div class="tabbox">
+							<h1><?php echo gettext('Zenphoto browser cookies found.'); ?></h1>
+							<table class="compact">
+								<?php
+								foreach ($_COOKIE as $cookie => $cookiev) {
+									echo '<tr><td>' . $cookie . '</td><td> ' . html_encode(zp_cookieEncode($cookiev)) . '</td?</tr>';
+								}
+								?>
+							</table>
 						</div>
 						<?php
 						break;
