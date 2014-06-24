@@ -379,7 +379,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 				}
 			}
 		}
-
 		if (empty($current)) {
 			if (isset($zenphoto_tabs[$_zp_admin_tab]['default'])) {
 				$current = $zenphoto_tabs[$_zp_admin_tab]['default'];
