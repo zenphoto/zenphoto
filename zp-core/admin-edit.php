@@ -807,7 +807,7 @@ echo "\n</head>";
 				} else if ($subtab == 'imageinfo') {
 					$singleimage = NULL;
 					if (isset($_GET['singleimage'])) {
-    
+     
 						$simage = sanitize($_GET['singleimage']); 
 						if (array_search($simage, $images) !== false) {
 							$allimagecount = 1;
@@ -841,7 +841,7 @@ echo "\n</head>";
 								<br style='clear:both'/>
 								<?php
 							}
-						}
+						} 
 						if ($allimagecount) {
         if($singleimage) { ?>
           <form class="dirty-check" name="albumedit2"	id="form_imageedit" action="?page=edit&amp;action=save<?php echo "&amp;album=" . html_encode(pathurlencode($album->name)); ?>&amp;singleimage=<?php html_encode($singleimage); ?>&amp;subpage=1"	method="post" autocomplete="off">
@@ -863,10 +863,7 @@ echo "\n</head>";
 										?>
 										<tr>
 											<td><?php echo gettext("Click on the image to change the thumbnail cropping."); ?>	</td>
-											<td>
-												<a href="javascript:toggleExtraInfo('','image',true);"><?php echo addslashes(gettext('expand all fields')); ?></a>
-												| <a href="javascript:toggleExtraInfo('','image',false);"><?php echo addslashes(gettext('collapse all fields')); ?></a>
-											</td>
+											
 											<td align="right">
 												<?php
 												$sort = $sortby;
