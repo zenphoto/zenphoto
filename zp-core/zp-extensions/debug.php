@@ -28,13 +28,4 @@ class debug {
 	}
 
 }
-
-function list_system_locales() {
-	ob_start();
-	system('locale -a');
-	$str = ob_get_contents();
-	ob_end_clean();
-
-	return explode("\n", $str);
-}
 ?>
