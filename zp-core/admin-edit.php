@@ -981,10 +981,7 @@ echo "\n</head>";
 										?>
 										<tr>
 											<td><?php echo gettext("Click on the image to change the thumbnail cropping."); ?>	</td>
-											<td>
-												<a href="javascript:toggleExtraInfo('','image',true);"><?php echo addslashes(gettext('expand all fields')); ?></a>
-												| <a href="javascript:toggleExtraInfo('','image',false);"><?php echo addslashes(gettext('collapse all fields')); ?></a>
-											</td>
+
 											<td align="right">
 												<?php
 												$sort = $sortby;
