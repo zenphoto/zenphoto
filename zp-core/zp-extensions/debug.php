@@ -19,6 +19,7 @@ class debug {
 		if (!isset($tabs['debug'])) {
 			$tabs['debug'] = array('text'		 => gettext("debug"),
 							'link'		 => WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/debug/admin_tab.php',
+							'rights'	 => DEBUG_RIGHTS,
 							'default'	 => 'phpinfo');
 		}
 		$tabs['debug']['subtabs'][gettext("phpinfo")] = PLUGIN_FOLDER . '/debug/admin_tab.php?page=debug&tab=phpinfo';
@@ -29,4 +30,5 @@ class debug {
 	}
 
 }
+
 ?>

@@ -6,6 +6,16 @@
  * @subpackage admin
  */
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
+admin_securityChecks(DEBUG_RIGHTS, $return = currentRelativeURL());
+
+if (isset($_POST['delete_cookie'])) {
+	foreach ($_POST['delete_cookie']as $cookie => $v) {
+		zp_clearCookie(postIndexDecode($cookie));
+	}
+	header('location: ?page=debug&tab=cookie');
+	exitZP();
+}
+
 $subtab = getSubtabs();
 printAdminHeader('debug', $subtab);
 
@@ -168,13 +178,32 @@ echo "\n</head>";
 						?>
 						<div class="tabbox">
 							<h1><?php echo gettext('Zenphoto browser cookies found.'); ?></h1>
-							<table class="compact">
-								<?php
-								foreach ($_COOKIE as $cookie => $cookiev) {
-									echo '<tr><td>' . $cookie . '</td><td> ' . html_encode(zp_cookieEncode($cookiev)) . '</td?</tr>';
-								}
-								?>
-							</table>
+							<form name="cookie_form" class="dirtychyeck" method="post" action="?page=debug&amp;tab=cookie">
+								<table class="compact">
+									<?php
+									foreach ($_COOKIE as $cookie => $cookiev) {
+										?>
+										<tr>
+											<td><input type="checkbox" name="delete_cookie[<?php echo postIndexEncode($cookie); ?>]" value="1"></td>
+											<td><?php echo $cookie; ?> </td>
+											<td><?php echo html_encode(zp_cookieEncode($cookiev)); ?></td>
+										</tr>
+										<?php
+									}
+									?>
+								</table>
+								<p class="buttons">
+									<button type="submit">
+										<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" />
+										<strong><?php echo gettext("Delete"); ?></strong>
+									</button>
+									<button type="reset">
+										<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/fail.png" alt="" />
+										<strong><?php echo gettext("Reset"); ?></strong>
+									</button>
+								</p>
+							</form>
+							<br class="clearall">
 						</div>
 						<?php
 						break;
