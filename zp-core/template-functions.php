@@ -2287,9 +2287,10 @@ function printImageCustomData() {
  */
 function printImageData($field, $label = '') {
 	global $_zp_current_image;
-	$text = $_zp_current_image->get($field);
-	if (!empty($text))
+	$text = getImageData($field);
+	if (!empty($text)) {
 		echo html_encodeTagged($label . $text);
+	}
 }
 
 /**
