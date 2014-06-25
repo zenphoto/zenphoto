@@ -7,6 +7,7 @@
  */
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions.php');
+admin_securityChecks(ADMIN_RIGHTS, $return = currentRelativeURL());
 printAdminHeader('development', gettext('rewriteTokens'));
 
 echo "\n</head>";

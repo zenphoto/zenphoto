@@ -6,6 +6,8 @@
  * @subpackage admin
  */
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
+admin_securityChecks(DEBUG_RIGHTS, $return = currentRelativeURL());
+
 $subtab = getSubtabs();
 printAdminHeader('debug', $subtab);
 

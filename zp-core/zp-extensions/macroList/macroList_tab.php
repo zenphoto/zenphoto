@@ -6,6 +6,8 @@
  * @subpackage admin
  */
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
+admin_securityChecks(NULL, $return = currentRelativeURL());
+
 printAdminHeader('development', gettext('macros'));
 
 echo "\n</head>";
