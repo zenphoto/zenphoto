@@ -435,26 +435,26 @@ function debugLogVar($message) {
  * @param string $name the name of the cookie
  */
 function zp_getCookie($name) {
-	if (isset($_COOKIE[$name])) {
-		$cookiev = $_COOKIE[$name];
-	} else {
-		$cookiev = '';
-	}
-	if (DEBUG_LOGIN) {
-		if (isset($_SESSION[$name])) {
-			$sessionv = $_SESSION[$name];
-		} else {
-			$sessionv = '';
-		}
-		debugLog("zp_getCookie($name)::" . 'album_session=' . GALLERY_SESSION . "; SESSION[" . session_id() . "]=" . $sessionv . ", COOKIE=" . $cookiev);
-	}
-	if (!empty($cookiev) && (defined('GALLERY_SESSION') && !GALLERY_SESSION)) {
-		return zp_cookieEncode($cookiev);
-	}
-	if (isset($_SESSION[$name])) {
-		return $_SESSION[$name];
-	}
-	return NULL;
+  if (isset($_COOKIE[$name])) {
+    $cookiev = sanitize($_COOKIE[$name]);
+  } else {
+    $cookiev = '';
+  }
+  if (DEBUG_LOGIN) {
+    if (isset($_SESSION[$name])) {
+      $sessionv = sanitize($_SESSION[$name]);
+    } else {
+      $sessionv = '';
+    }
+    debugLog(zp_getCookie($name) . '=::' . 'album_session=' . GALLERY_SESSION . "; SESSION[" . session_id() . "]=" . sanitize($sessionv) . ", COOKIE=" . sanitize($cookiev));
+  }
+  if (!empty($cookiev) && (defined('GALLERY_SESSION') && !GALLERY_SESSION)) {
+    return zp_cookieEncode($cookiev);
+  }
+  if (isset($_SESSION[$name])) {
+    return sanitize($_SESSION[$name]);
+  }
+  return NULL;
 }
 
 /**
@@ -480,34 +480,34 @@ function zp_cookieEncode($value) {
  * @param bool $secure true if secure cookie
  */
 function zp_setCookie($name, $value, $time = NULL, $path = NULL, $secure = false) {
-	if (empty($value)) {
-		$cookiev = '';
-	} else {
-		$cookiev = zp_cookieEncode($value);
-	}
-	if (is_null($time)) {
-		$time = COOKIE_PESISTENCE;
-	}
-	if (is_null($path)) {
-		$path = WEBPATH;
-	}
-	if (substr($path, -1, 1) != '/')
-		$path .= '/';
-	if (DEBUG_LOGIN) {
-		debugLog("zp_setCookie($name, $value, $time, $path)::album_session=" . GALLERY_SESSION . "; SESSION=" . session_id());
-	}
-	if (($time < 0) || !GALLERY_SESSION) {
-		setcookie($name, $cookiev, time() + $time, $path, "", $secure);
-	}
-	if ($time < 0) {
-		if (isset($_SESSION))
-			unset($_SESSION[$name]);
-		if (isset($_COOKIE))
-			unset($_COOKIE[$name]);
-	} else {
-		$_SESSION[$name] = $value;
-		$_COOKIE[$name] = $cookiev;
-	}
+  if (empty($value)) {
+    $cookiev = '';
+  } else {
+    $cookiev = zp_cookieEncode(sanitize($value));
+  }
+  if (is_null($time)) {
+    $time = COOKIE_PESISTENCE;
+  }
+  if (is_null($path)) {
+    $path = WEBPATH;
+  }
+  if (substr($path, -1, 1) != '/')
+    $path .= '/';
+  if (DEBUG_LOGIN) {
+    debugLog("zp_setCookie($name, $value, $time, $path)::album_session=" . GALLERY_SESSION . "; SESSION=" . session_id());
+  }
+  if (($time < 0) || !GALLERY_SESSION) {
+    setcookie($name, $cookiev, time() + $time, $path, "", $secure);
+  }
+  if ($time < 0) {
+    if (isset($_SESSION))
+      unset($_SESSION[$name]);
+    if (isset($_COOKIE))
+      unset($_COOKIE[$name]);
+  } else {
+    $_SESSION[$name] = sanitize($value);
+    $_COOKIE[$name] = sanitize($cookiev);
+  }
 }
 
 /**
