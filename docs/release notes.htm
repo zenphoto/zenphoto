@@ -87,6 +87,8 @@
 <h2>New release packaging</h2>
 <p>Each "tagged" release includes a zip file containing a self-extracting installation script. This file is about one third the size of the individual source files (of which there are about 2000.) So uploading a new release is considerably faster.</p>
 <p>Running the script extracts the release source scripts and then starts&nbsp;the setup process. This workflow is&nbsp;less prone to such things as mis-matched versions of the individual files or overwriting album files.</p>
+<h2>Suffix-less image links</h2>
+<p>If you use <em>mod_rewrite</em> with a <em>mod_rewrite suffix</em> and your image names are unique in their prefix you can select the option <em>Unique images</em>&nbsp;on the general options tab so that your image page links will not include the image suffix. For instance if your <em>mod_rewrite suffix</em> is <code>.htm</code> then&nbsp;the link to the image <code>myalbum/myimage.jpg</code>&nbsp;will have the link <code>myalbum/myimage.htm.</code></p>
 <h2>tinyMCE:zen plugin</h2>
 <p>This plugin replaces tinyZenpage as the preferred means for inserting ZenPhoto20 objects into tinyMCE editor windows.</p>
 <p>On the back end each object has a "pick" icon (<img src="https://cloud.githubusercontent.com/assets/2474007/3194486/59db3546-ecff-11e3-8c27-e5c44fd92f2b.png" alt="add" />) that you use to select the object. The overview lists also have a pick icon for each object, so it is not necessary to browse all the way to the object's tab.</p>

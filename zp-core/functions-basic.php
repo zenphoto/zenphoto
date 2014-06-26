@@ -290,6 +290,7 @@ define('IMAGE_CACHE_SUFFIX', getOption('image_cache_suffix'));
 define('DATE_FORMAT', getOption('date_format'));
 
 define('IM_SUFFIX', getOption('mod_rewrite_image_suffix'));
+define('UNIQUE_IMAGE', getOption('unique_image_prefix'));
 define('UTF8_IMAGE_URI', getOption('UTF8_image_URI'));
 define('MEMBERS_ONLY_COMMENTS', getOption('comment_form_members_only'));
 
@@ -520,6 +521,17 @@ function rewrite_get_album_image($albumvar, $imagevar) {
 					$rimage = basename($matches[1]);
 					$ralbum = trim(dirname($matches[1]), '/');
 					$path = internalToFilesystem(getAlbumFolder(SERVERPATH) . $ralbum);
+
+					if (!getSuffix($rimage)) { //	an image without suffix, go look for it
+						$candidates = safe_glob($path . '/' . $rimage . '.*');
+						foreach ($candidates as $try) { // we will use the first "image" we find
+							if (Gallery::validImage($try) || Gallery::validImageAlt($try)) {
+								$rimage = basename($try);
+								if (Gallery::validImageAlt($try)) //	look no further incase there is a thumb image
+									break;
+							}
+						}
+					}
 				}
 			} else { //	have to figure it out
 				if (Gallery::validImage($ralbum) || Gallery::validImageAlt($ralbum)) { //	it is an image request
