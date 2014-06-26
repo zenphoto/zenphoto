@@ -61,10 +61,10 @@ class customFieldExtender extends fieldExtender {
 
 	static $fields = array(
 					array('table' => 'albums', 'name' => 'Finish_Disc', 'desc' => 'Finish Disc', 'type' => 'varchar', 'size' => 50),
-					array('table' => 'albums', 'name' => 'Finish_Lip', 'desc' => 'Finish Lip', 'type' => 'varchar', 'size' => 50),
-					array('table' => 'albums', 'name' => 'Option', 'desc' => 'Option', 'type' => 'varchar', 'size' => 50),
-					array('table' => 'albums', 'name' => 'Front_Size', 'desc' => 'Front Size', 'type' => 'varchar', 'size' => 50),
-					array('table' => 'albums', 'name' => 'Rear_Size', 'desc' => 'Rear Size', 'type' => 'varchar', 'size' => 50)
+					array('table' => 'news', 'name' => 'Finish_Lip', 'desc' => 'Finish Lip', 'type' => 'varchar', 'size' => 50),
+					array('table' => 'images', 'name' => 'Option', 'desc' => 'Option', 'type' => 'varchar', 'size' => 50),
+					array('table' => 'news_categories', 'name' => 'Rear_Size', 'desc' => 'Front Size', 'type' => 'varchar', 'size' => 50),
+					array('table' => 'pages', 'name' => 'Rear_Size', 'desc' => 'Rear Size', 'type' => 'varchar', 'size' => 50)
 	);
 
 	function __construct() {
@@ -107,6 +107,64 @@ class customFieldExtender extends fieldExtender {
 		parent::_adminNotice($tab, $subtab, 'customFieldExtender');
 	}
 
+}
+
+function getCustomField($field, $object = NULL, &$detail = NULL) {
+	global $_zp_current_admin_obj, $_zp_current_album, $_zp_current_image
+	, $_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_current_category;
+
+	$objects = $tables = array();
+	if (is_null($object)) {
+		if (in_context(ZP_IMAGE)) {
+			$object = $_zp_current_image;
+			$objects[$tables[] = 'albums'] = $_zp_current_album;
+		} else if (in_context(ZP_ALBUM)) {
+			$object = $_zp_current_album;
+		} else if (in_context(ZP_ZENPAGE_NEWS_ARTICLE)) {
+			$object = $_zp_current_zenpage_news;
+			if ($_zp_current_category)
+				$objects[$tables[] = 'news_categories'] = $_zp_current_category;
+		} else if (in_context(ZP_ZENPAGE_PAGE)) {
+			$object = $_zp_current_zenpage_page;
+		} else if (in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
+			$object = $_zp_current_category;
+		} else {
+			zp_error(gettext('There is no defined context, you must pass a comment object.'));
+		}
+	}
+	$tables[] = $object->table;
+	$objects[$object->table] = $object;
+	$field = strtolower($field);
+
+	var_dump($field);
+	var_dump($tables);
+
+	foreach (customFieldExtender::$fields as $try) {
+		if ($field == strtolower($try['name']) && in_array($try['table'], $tables)) {
+			$detail = $try;
+			$object = $objects[$try['table']];
+			break;
+		}
+	}
+	if (isset($detail)) {
+
+		var_dump($detail);
+
+		return get_language_string($object->get($detail['name']));
+	} else {
+		zp_error(gettext('Field not defined.'));
+	}
+}
+
+function printCustomField($field, $label = NULL, $object = NULL) {
+	$detail = NULL;
+	$text = getCustomField($field, $object, $detail);
+	if (is_null($label)) {
+		$label = $detail['desc'] . ': ';
+	}
+	if (!empty($text)) {
+		echo html_encodeTagged($label . $text);
+	}
 }
 
 if (OFFSET_PATH == 2) { // setup call: add the fields into the database
