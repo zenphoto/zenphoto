@@ -110,8 +110,7 @@ if ($_zp_page < 0) {
 
 //$_zp_script_timer['theme scripts'] = microtime();
 if ($zp_request && $_zp_script && file_exists($_zp_script = SERVERPATH . "/" . internalToFilesystem($_zp_script))) {
-	if (checkAccess($hint, $show)) { // ok to view
-	} else {
+	if (!checkAccess($hint, $show)) { // not ok to view
 		//	don't cache the logon page or you can never see the real one
 		$_zp_HTML_cache->abortHTMLCache();
 		$_zp_gallery_page = 'password.php';
