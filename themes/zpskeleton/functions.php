@@ -86,6 +86,8 @@ if (is_null($zenpage_homepage))
 // override width setting for maps
 setOption('gmap_width', '100%', false);
 
+$_zp_page_check = 'my_checkPageValidity';
+
 // include useragent detector, set variable for mobile users...
 require_once('inc-browser.php');
 $browser = new Browser();
@@ -262,5 +264,27 @@ function printZDToggleClass($option, $c, $number_to_show) {
 	if ($c > $number_to_show) {
 		echo ' class="' . $option . '_extrashow" style="display:none;"';
 	}
+}
+
+function my_checkPageValidity($request, $gallery_page, $page) {
+	switch ($gallery_page) {
+		case 'gallery.php':
+			$gallery_page = 'index.php'; //	same as an album gallery index
+			break;
+		case 'index.php':
+			if (!extensionEnabled('zenpage') || getOption('custom_index_page') == 'gallery') { // only one index page if zenpage plugin is enabled or custom index page is set
+				break;
+			}
+		default:
+			if ($page != 1) {
+				return false;
+			}
+		case 'news.php':
+		case 'album.php':
+		case 'favorites.php';
+		case 'search.php':
+			break;
+	}
+	return checkPageValidity($request, $gallery_page, $page);
 }
 ?>
