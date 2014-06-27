@@ -1,3 +1,5 @@
+##ZenPhot020 (tm)
+
 # Releases
 
 The current "official" release (and all previous ones) may be found at [Releases] (https://github.com/ZenPhoto20/ZenPhoto20/releases)
