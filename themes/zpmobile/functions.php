@@ -86,7 +86,7 @@ function jqm_printFooterNav() {
 		@call_user_func('printLanguageSelector', "langselector");
 		?>
 		<ul id="footerlist">
-			<li><?php printZenphotoLink(); ?> and <a href="http://jquerymobile.com">jQueryMobile</a></li>
+			<li><?php printPackageLink(); ?> and <a href="http://jquerymobile.com">jQueryMobile</a></li>
 			<li><?php echo gettext('zpMobile theme by'); ?> <a href="http://www.maltem.de">Malte Müller</a></li>
 		</ul>
 		<?php
@@ -127,7 +127,7 @@ function jqm_printNewsCategories($separator = '', $class = '') {
 		$count = 0;
 		foreach ($categories as $cat) {
 			$count++;
-			$catobj = new ZenpageCategory($cat['titlelink']);
+			$catobj = new Category($cat['titlelink']);
 			if ($count >= $catcount) {
 				$separator = "";
 			}

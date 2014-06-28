@@ -19,7 +19,7 @@ if (!defined('MENU_TRUNCATE_STRING'))
 if (!defined('MENU_TRUNCATE_INDICATOR'))
 	define('MENU_TRUNCATE_INDICATOR', getOption('menu_truncate_indicator'));
 
-class Zenpage {
+class CMS {
 
 	var $categoryStructure = array();
 	// article defaults (mirrors category vars)
@@ -50,7 +50,7 @@ class Zenpage {
 						' AND `expiredate`<="' . date('Y-m-d H:i:s') . '"' .
 						' AND `expiredate`!="0000-00-00 00:00:00"' .
 						' AND `expiredate` IS NOT NULL';
-		foreach (array('news' => 'ZenpageNews', 'pages' => 'ZenpagePage') as $table => $class) {
+		foreach (array('news' => 'News', 'pages' => 'Page') as $table => $class) {
 			$result = query_full_array('SELECT * FROM ' . prefix($table) . $sql);
 			if ($result) {
 				foreach ($result as $item) {
@@ -161,7 +161,7 @@ class Zenpage {
 				if ($all || $row['show']) {
 					$all_pages[] = $row;
 				} else if ($_zp_loggedin) {
-					$page = new ZenpagePage($row['titlelink']);
+					$page = new Page($row['titlelink']);
 					if ($page->isMyItem(LIST_RIGHTS)) {
 						$all_pages[] = $row;
 						if ($number && count($result) >= $number) {
@@ -240,7 +240,7 @@ class Zenpage {
 				if ($subcats) {
 					$cat = " (cat.cat_id = '" . $catid . "'";
 					foreach ($subcats as $subcat) {
-						$subcatobj = new ZenpageCategory($subcat);
+						$subcatobj = new Category($subcat);
 						$cat .= "OR cat.cat_id = '" . $subcatobj->getID() . "' ";
 					}
 					$cat .= ") AND cat.news_id = news.id ";
@@ -352,7 +352,7 @@ class Zenpage {
 			$result = array();
 			if ($resource) {
 				while ($item = db_fetch_assoc($resource)) {
-					$article = new ZenpageNews($item['titlelink']);
+					$article = new News($item['titlelink']);
 					if ($getUnpublished || $article->isMyItem(ZENPAGE_NEWS_RIGHTS) || $currentcategory && ($article->inNewsCategory($currentcategory)) || $article->categoryIsVisible()) {
 						$result[] = $item;
 					}
@@ -397,7 +397,7 @@ class Zenpage {
 		$articles = $this->getArticles(0, NULL, true, $sortorder, $sortdirection, $sticky);
 		if ($index >= 0 && $index < count($articles)) {
 			$article = $articles[$index];
-			$obj = new ZenpageNews($articles[$index]['titlelink']);
+			$obj = new News($articles[$index]['titlelink']);
 			return $obj;
 		}
 		return false;
@@ -434,7 +434,7 @@ class Zenpage {
 		if (empty($_zp_current_category)) {
 			if (isset($_GET['category'])) {
 				$cat = sanitize($_GET['category']);
-				$catobj = new ZenpageCategory($cat);
+				$catobj = new Category($cat);
 			} else {
 				return count($this->getArticles(0));
 			}
@@ -496,7 +496,7 @@ class Zenpage {
 			$result = array();
 			while ($item = db_fetch_assoc($resource)) {
 				if ($item['type'] == 'news') {
-					$article = new ZenpageNews($item['titlelink']);
+					$article = new News($item['titlelink']);
 					if (!$article->categoryIsVisible()) {
 						continue;
 					}
@@ -564,7 +564,7 @@ class Zenpage {
 		}
 		if ($visible) {
 			foreach ($structure as $key => $cat) {
-				$catobj = new ZenpageCategory($cat['titlelink']);
+				$catobj = new Category($cat['titlelink']);
 				if ($catobj->getShow() || $catobj->isMyItem(LIST_RIGHTS)) {
 					$structure[$key]['show'] = 1;
 				} else {
@@ -641,7 +641,7 @@ class Zenpage {
  * Base class from which all Zenpage classes derive
  *
  */
-class ZenpageRoot extends ThemeObject {
+class CMSRoot extends ThemeObject {
 
 	protected $sortorder;
 	protected $sortdirection;
@@ -690,7 +690,7 @@ class ZenpageRoot extends ThemeObject {
  * Base class from which Zenpage news articles and pages derive
  *
  */
-class ZenpageItems extends ZenpageRoot {
+class CMSItems extends CMSRoot {
 
 	/**
 	 * Class instantiator

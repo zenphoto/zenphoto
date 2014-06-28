@@ -229,11 +229,11 @@ function getItemTitleAndURL($item) {
 			}
 			$array = array("title" => $title, "url" => $url, "name" => $item['link'], 'protected' => $protected, 'theme' => $themename);
 			break;
-		case "zenpagepage":
+		case "Page":
 			$sql = 'SELECT * FROM ' . prefix('pages') . ' WHERE `titlelink`="' . $item['link'] . '"';
 			$result = query_single_row($sql);
 			if (is_array($result)) {
-				$obj = new ZenpagePage($item['link']);
+				$obj = new Page($item['link']);
 				$url = $obj->getLink(0);
 				$protected = $obj->isProtected();
 				$title = $obj->getTitle();
@@ -244,15 +244,15 @@ function getItemTitleAndURL($item) {
 			}
 			$array = array("title" => $title, "url" => $url, "name" => $item['link'], 'protected' => $protected, 'theme' => $themename);
 			break;
-		case "zenpagenewsindex":
+		case "newsindex":
 			$url = getNewsIndexURL();
 			$array = array("title" => get_language_string($item['title']), "url" => $url, "name" => $url, 'protected' => false);
 			break;
-		case "zenpagecategory":
+		case "category":
 			$sql = "SELECT title FROM " . prefix('news_categories') . " WHERE titlelink = '" . $item['link'] . "'";
 			$obj = query_single_row($sql, false);
 			if ($obj) {
-				$obj = new ZenpageCategory($item['link']);
+				$obj = new Category($item['link']);
 				$title = $obj->getTitle();
 				$protected = $obj->isProtected();
 				$url = $obj->getLink(0);
@@ -365,7 +365,7 @@ function inventMenuItem($menuset, $visibility) {
 				}
 			} else {
 				foreach ($_menu_manager_items[$menuset][$visibility] as $key => $item) {
-					if ($item['type'] == 'zenpagenewsindex') {
+					if ($item['type'] == 'newsindex') {
 						$insertpoint = $item['sort_order'];
 						$currentkey = $insertpoint . '-9999';
 						break;
@@ -388,7 +388,7 @@ function inventMenuItem($menuset, $visibility) {
 					if ($item['type'] == 'custompage' && $item['link'] == 'search') {
 						$insertpoint = $item['sort_order'];
 						$currentkey = $insertpoint . '-9999';
-						$item = array('id'				 => 9999, 'sort_order' => $currentkey, 'parentid'	 => $item['id'], 'type'			 => 'zenpagepage',
+						$item = array('id'				 => 9999, 'sort_order' => $currentkey, 'parentid'	 => $item['id'], 'type'			 => 'Page',
 										'include_li' => true, 'title'			 => $_zp_current_zenpage_page->getTitle(),
 										'show'			 => 1, 'link'			 => '', 'menuset'		 => $menuset);
 						break;
@@ -824,7 +824,7 @@ function createMenuIfNotExists($menuitems, $menuset = 'default') {
 					if (extensionEnabled('zenpage')) {
 						$orders[$nesting] ++;
 						query("INSERT INTO " . prefix('menu') . " (title`,`link`,`type`,`show`,`menuset`,`sort_order`) " .
-										"VALUES ('" . gettext('News index') . "', '" . getNewsIndexURL() . "','zenpagenewsindex','1'," . db_quote($menuset) . ',' . db_quote(sprintf('%03u', $base + 1)), true);
+										"VALUES ('" . gettext('News index') . "', '" . getNewsIndexURL() . "','newsindex','1'," . db_quote($menuset) . ',' . db_quote(sprintf('%03u', $base + 1)), true);
 						$orders[$nesting] = addPagesToDatabase($menuset, $orders) + 1;
 						$orders[$nesting] = addCategoriesToDatabase($menuset, $orders);
 					}
@@ -835,12 +835,12 @@ function createMenuIfNotExists($menuitems, $menuset = 'default') {
 					$orders[$nesting] = addAlbumsToDatabase($menuset, $orders);
 					$type = false;
 					break;
-				case 'all_zenpagepages':
+				case 'all_Pages':
 					$orders[$nesting] ++;
 					$orders[$nesting] = addPagesToDatabase($menuset, $orders);
 					$type = false;
 					break;
-				case 'all_zenpagecategorys':
+				case 'all_categorys':
 					$orders[$nesting] ++;
 					$orders[$nesting] = addCategoriesToDatabase($menuset, $orders);
 					$type = false;
@@ -859,21 +859,21 @@ function createMenuIfNotExists($menuitems, $menuset = 'default') {
 						debugLog(sprintf(gettext('createMenuIfNotExists item %s has an empty title.'), $key));
 					}
 					break;
-				case 'zenpagepage':
+				case 'Page':
 					$result['title'] = NULL;
 					if (empty($result['link'])) {
 						$success = -1;
 						debugLog(sprintf(gettext('createMenuIfNotExists item %s has an empty link.'), $key));
 					}
 					break;
-				case 'zenpagenewsindex':
+				case 'newsindex':
 					$result['link'] = NULL;
 					if (empty($result['title'])) {
 						$success = -1;
 						debugLog(sprintf(gettext('createMenuIfNotExists item %s has an empty title.'), $key));
 					}
 					break;
-				case 'zenpagecategory':
+				case 'category':
 					$result['title'] = NULL;
 					if (empty($result['link'])) {
 						$success = -1;
@@ -1060,13 +1060,13 @@ function printCustomMenu($menuset = 'default', $option = 'list', $css_id = '', $
 						$itemcounter .= ')</small></span>';
 
 						break;
-					case'zenpagecategory':
+					case'category':
 						if ((zp_loggedin(ZENPAGE_NEWS_RIGHTS | ALL_NEWS_RIGHTS))) {
 							$published = "all";
 						} else {
 							$published = "published";
 						}
-						$catobj = new ZenpageCategory($item['link']);
+						$catobj = new Category($item['link']);
 						$catcount = count($catobj->getArticles(0, $published));
 						$itemcounter = "<small> (" . $catcount . ")</small>";
 						break;

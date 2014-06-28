@@ -57,7 +57,7 @@ function printFooter() {
 		<span class="bold">Gray Highlights</span> by The Whole Life To Learn
 	</div>
 	<div class="zen-logo">
-		<?php printZenphotoLink(); ?>
+		<?php printPackageLink(); ?>
 	</div>
 	<?php
 }

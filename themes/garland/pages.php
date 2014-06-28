@@ -1,7 +1,7 @@
 <?php
 if (!defined('WEBPATH'))
 	die();
-if (class_exists('Zenpage')) {
+if (class_exists('CMS')) {
 	?>
 	<!DOCTYPE html>
 	<html>

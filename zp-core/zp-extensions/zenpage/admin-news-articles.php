@@ -8,7 +8,7 @@
  */
 define("OFFSET_PATH", 4);
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
-require_once("zenpage-admin-functions.php");
+require_once("admin-functions.php");
 
 admin_securityChecks(ZENPAGE_NEWS_RIGHTS, currentRelativeURL());
 
@@ -35,23 +35,23 @@ if (isset($_GET['delete'])) {
 // publish or un-publish page by click
 if (isset($_GET['publish'])) {
 	XSRFdefender('update');
-	$obj = new ZenpageNews(sanitize($_GET['titlelink']));
+	$obj = new News(sanitize($_GET['titlelink']));
 	zenpagePublish($obj, sanitize_numeric($_GET['publish']));
 }
 if (isset($_GET['skipscheduling'])) {
 	XSRFdefender('update');
-	$obj = new ZenpageNews(sanitize($_GET['titlelink']));
+	$obj = new News(sanitize($_GET['titlelink']));
 	skipScheduledPublishing($obj);
 }
 if (isset($_GET['commentson'])) {
 	XSRFdefender('update');
-	$obj = new ZenpageNews(sanitize($_GET['titlelink']));
+	$obj = new News(sanitize($_GET['titlelink']));
 	$obj->setCommentsAllowed(sanitize_numeric($_GET['commentson']));
 	$obj->save();
 }
 if (isset($_GET['hitcounter'])) {
 	XSRFdefender('hitcounter');
-	$obj = new ZenpageNews(sanitize($_GET['titlelink']));
+	$obj = new News(sanitize($_GET['titlelink']));
 	$obj->set('hitcounter', 0);
 	$obj->save();
 	$reports[] = '<p class="messagebox fade-message">' . gettext("Hitcounter reset") . '</p>';
@@ -131,20 +131,20 @@ datepickerJS();
 						$direction = $sortdirection && $sortdirection == 'desc';
 					}
 					if (isset($_GET['category'])) {
-						$catobj = new ZenpageCategory(sanitize($_GET['category']));
+						$catobj = new Category(sanitize($_GET['category']));
 					} else {
 						$catobj = NULL;
 					}
 					$resultU = $_zp_zenpage->getArticles(0, 'unpublished', false, $sortorder, $direction, false, $catobj);
 					$result = $_zp_zenpage->getArticles(0, $published, false, $sortorder, $direction, false, $catobj);
 					foreach ($result as $key => $article) {
-						$article = new ZenpageNews($article['titlelink']);
+						$article = new News($article['titlelink']);
 						if (!$article->isMyItem(ZENPAGE_NEWS_RIGHTS)) {
 							unset($result[$key]);
 						}
 					}
 					foreach ($resultU as $key => $article) {
-						$article = new ZenpageNews($article['titlelink']);
+						$article = new News($article['titlelink']);
 						if (!$article->isMyItem(ZENPAGE_NEWS_RIGHTS)) {
 							unset($resultU[$key]);
 						}
@@ -171,7 +171,7 @@ datepickerJS();
 						if ($total <= $subpage) {
 							$subpage = 0;
 						}
-						$offset = Zenpage::getOffset($articles_page);
+						$offset = CMS::getOffset($articles_page);
 						$list = array();
 						foreach ($result as $article) {
 							$list[] = $article[$sortorder];
@@ -253,7 +253,7 @@ datepickerJS();
             </tr>
 						<?php
 						foreach ($result as $article) {
-							$article = new ZenpageNews($article['titlelink']);
+							$article = new News($article['titlelink']);
 							?>
 							<tr class="newstr">
 								<td>

@@ -1,6 +1,6 @@
 <!-- Begin filter descriptions -->
 	<h5><span id="Admin"></span>Admin filters</h5>
-	<!-- classhead Admin --><p>These filters allow for the extension of the Zenphoto administrator interface.</p><!--e-->
+	<!-- classhead Admin --><p>These filters allow for the extension of the administrator interface.</p><!--e-->
 			<h6 class="filter"><span id="Admin_Comment"></span>Comment</h6>
 			<!-- subclasshead Admin.Comment --><p></p><!--e-->
 			<ul class="filterdetail">
@@ -144,7 +144,7 @@
 			<ul class="filterdetail">
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>admin_XSRF_access</strong></span>(<em>bool, action</em>)</p>
-					<!-- description(Admin.Miscellaneous)-admin_XSRF_access --><p>Invoked when Zenphoto detects an attempt at Cross Site Reference Forgery.</p><!--e-->
+					<!-- description(Admin.Miscellaneous)-admin_XSRF_access --><p>Invoked when an attempt at Cross Site Reference Forgery is detected.</p><!--e-->
 					<p class="handlers">For example see <em>plugin</em>/security-logger.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
@@ -153,7 +153,7 @@
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>admin_allow_access</strong></span>(<em>bool, returnurl</em>)</p>
-					<!-- description(Admin.Miscellaneous)-admin_allow_access --><p>Allows mitigation of the normal Zenphoto back-end security checks.</p><!--e-->
+					<!-- description(Admin.Miscellaneous)-admin_allow_access --><p>Allows mitigation of the normal back-end security checks.</p><!--e-->
 					<p class="handlers">For example see <em>plugin</em>/ipBlocker.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
@@ -175,7 +175,7 @@
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">admin-functions.php</li>
-						<li class="call_list"><em>plugin</em>/tinymce4/plugins/tinyzenpage/tinyzenpage.php</li>
+						<li class="call_list"><em>plugin</em>/tinymce/plugins/tinyzenpage/tinyzenpage.php</li>
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
@@ -220,7 +220,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>admin_tabs</strong></span>(<em>zenphoto_tabs</em>)</p>
 					<!-- description(Admin.Miscellaneous)-admin_tabs --><p>Allows plugins to add <em>Tabs</em> to the administrative pages.</p><!--e-->
-					<p class="handlers">For example see <em>plugin</em>/rewriteRules.php</p>
+					<p class="handlers">For example see <em>plugin</em>/debug.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">admin-globals.php</li>
@@ -268,6 +268,15 @@
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">functions.php</li>
+					</ul><!-- calls -->
+				</li><!-- filterdetail -->
+				<li class="filterdetail">
+					<p class="filterdef"><span class="inlinecode"><strong>theme_editor</strong></span>(<em>string, theme</em>)</p>
+					<!-- description(Admin.Miscellaneous)-theme_editor --><p></p><!--e-->
+					<p class="handlers">For example see <em>plugin</em>/elFinder.php</p>
+					<p class="calls">Invoked from:</p>
+					<ul><!-- calls -->
+						<li class="call_list">admin-themes.php</li>
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 			</ul><!-- filterdetail -->
@@ -528,7 +537,7 @@
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>sendmail</strong></span>(<em>string, email_list, subject, message, from_mail, from_name, cc_addresses, replyTo</em>)</p>
-					<!-- description(Miscellaneous.Miscellaneous)-sendmail --><p>Invoked when Zenphoto attempts to send an e-mail. The plugin is presumed to handle the mailing.</p><!--e-->
+					<!-- description(Miscellaneous.Miscellaneous)-sendmail --><p>Invoked when attempting to send an e-mail. The plugin is presumed to handle the mailing.</p><!--e-->
 					<p class="handlers">For example see <em>plugin</em>/zenphoto_sendmail.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
@@ -546,7 +555,7 @@
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>setupTheme</strong></span>(<em>theme</em>)</p>
-					<!-- description(Miscellaneous.Miscellaneous)-setupTheme --><p>Allows a plugin to override the <em>theme</em> that Zenphoto will use to display WEB pages.</p><!--e-->
+					<!-- description(Miscellaneous.Miscellaneous)-setupTheme --><p>Allows a plugin to override the <em>theme</em> that will be used to display WEB pages.</p><!--e-->
 					<p class="handlers">For example see <em>plugin</em>/mobileTheme.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
@@ -556,12 +565,12 @@
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>texteditor_config</strong></span>(<em>string</em>)</p>
 					<!-- description(Miscellaneous.Miscellaneous)-texteditor_config --><p>Provides configuration information to the Text Editor plugin (normally TinyMCE).</p><!--e-->
-					<p class="handlers">For example see <em>plugin</em>/tinymce4.php</p>
+					<p class="handlers">For example see <em>plugin</em>/tinymce.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">admin-edit.php</li>
 						<li class="call_list">admin-options.php</li>
-						<li class="call_list">admin-plugins.php</li>
+						<li class="call_list"><em>plugin</em>/comment_form/admin-comments.php</li>
 						<li>...</li>
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
@@ -602,7 +611,7 @@
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>zenphoto_information</strong></span>(<em>_zp_script, _zp_loaded_plugins, _index_theme</em>)</p>
-					<!-- description(Miscellaneous.Miscellaneous)-zenphoto_information --><p>This filter is used to display the Zenphoto information HTML comment at the end of each page load</p><!--e-->
+					<!-- description(Miscellaneous.Miscellaneous)-zenphoto_information --><p>This filter is used to display the installation information HTML comment at the end of each page load</p><!--e-->
 					<p class="handlers">For example see template-filters.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
@@ -613,11 +622,11 @@
 	<h5><span id="Object"></span>Object filters</h5>
 	<!-- classhead Object --><p>These filters provide modifications to the behavior of object methods.</p><!--e-->
 			<h6 class="filter"><span id="Object_Media"></span>Media</h6>
-			<!-- subclasshead Object.Media --><p>These filtera apply to Zenphoto "media" objects</p><!--e-->
+			<!-- subclasshead Object.Media --><p>These filtera apply to "media" objects</p><!--e-->
 			<ul class="filterdetail">
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>album_filter</strong></span>(<em>files</em>)</p>
-					<!-- description(Object.Media)-album_filter --><p>Allows plugins to remove some folders from the list of album folders that Zenphoto discovers.</p><!--e-->
+					<!-- description(Object.Media)-album_filter --><p>Allows plugins to remove some folders from the list of album folders that are discovered.</p><!--e-->
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">class-album.php</li>
@@ -645,8 +654,8 @@
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>getLink</strong></span>(<em>string, plain</em>)</p>
-					<!-- description(Object.Media)-getLink --><p>Called each time Zenphoto generates a URL.</p><!--e-->
-					<p class="handlers">For example see <em>theme</em>/grey_simplicity/functions.php</p>
+					<!-- description(Object.Media)-getLink --><p>Called each time a URL is generated.</p><!--e-->
+					<p class="handlers">For example see <em>theme</em>/zpbase/functions.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">class-album.php</li>
@@ -815,7 +824,7 @@
 				</li><!-- filterdetail -->
 			</ul><!-- filterdetail -->
 	<h5><span id="Template"></span>Template filters</h5>
-	<!-- classhead Template --><p>These filters modify behavior of the functions that support Zenphoto themes.</p><!--e-->
+	<!-- classhead Template --><p>These filters modify behavior of the functions that support themes.</p><!--e-->
 			<ul class="filterdetail">
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>admin_toolbox_&#039; . $gal</strong></span>(<em>redirect, zf</em>)</p>
@@ -962,8 +971,16 @@
 				</li><!-- filterdetail -->
 			</ul><!-- filterdetail -->
 	<h5><span id="Theme"></span>Theme filters</h5>
-	<!-- classhead Theme --><p>These filters should be called from all themes. They provide a way for the Zenphoto core and for plugins to add HTML content to the theme.</p><!--e-->
+	<!-- classhead Theme --><p>These filters should be called from all themes. They provide a way for the core and for plugins to add HTML content to the theme.</p><!--e-->
 			<ul class="filterdetail">
+				<li class="filterdetail">
+					<p class="filterdef"><span class="inlinecode"><strong>register_user_form</strong></span>(<em>string</em>)</p>
+					<!-- description(Theme.Script)-register_user_form --><p>Allows plugins to add to the <em>register user</em> form.</p><!--e-->
+					<p class="calls">Invoked from:</p>
+					<ul><!-- calls -->
+						<li class="call_list"><em>theme</em>/zpskeleton/register_user/register_user_form.php</li>
+					</ul><!-- calls -->
+				</li><!-- filterdetail -->
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>theme_body_close</strong></span>(<em></em>)</p>
 					<!-- description(Theme.Script)-theme_body_close --><p>Invoked by all themes just before the &lt;/body&gt; HTML tag.</p><!--e-->
@@ -1079,7 +1096,7 @@
 				</li><!-- filterdetail -->
 			</ul><!-- filterdetail -->
 	<h5><span id="User_management"></span>User_management filters</h5>
-	<!-- classhead User_management --><p>These filters allow the extension of the Zenphoto user object and authentication.</p><!--e-->
+	<!-- classhead User_management --><p>These filters allow the extension of the user object and authentication.</p><!--e-->
 			<ul class="filterdetail">
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>admin_alterrights</strong></span>(<em>local_alterrights, userobj</em>)</p>
@@ -1092,7 +1109,7 @@
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>admin_login_attempt</strong></span>(<em>_zp_loggedin, post_user, post_pass</em>)</p>
-					<!-- description(User_management.Miscellaneous)-admin_login_attempt --><p>Reports Zenphoto logon attempts.</p><!--e-->
+					<!-- description(User_management.Miscellaneous)-admin_login_attempt --><p>Reports logon attempts.</p><!--e-->
 					<p class="handlers">For example see <em>plugin</em>/user-expiry.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
@@ -1101,7 +1118,7 @@
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>alt_login_handler</strong></span>(<em>string</em>)</p>
-					<!-- description(User_management.Miscellaneous)-alt_login_handler --><p>Allows filters to provide links to alternate logon handlers. This list is presented as a selection list on the logon form as alternates to the Zenphoto provided process.</p><!--e-->
+					<!-- description(User_management.Miscellaneous)-alt_login_handler --><p>Allows filters to provide links to alternate logon handlers. This list is presented as a selection list on the logon form as alternates to the provided process.</p><!--e-->
 					<p class="handlers">For example see <em>plugin</em>/federated_logon.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
@@ -1119,7 +1136,7 @@
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>can_set_user_password</strong></span>(<em>bool, pass, userobj</em>)</p>
-					<!-- description(User_management.Miscellaneous)-can_set_user_password --><p>Called from the "apply" processing of an Zenphoto user. Return "false" to prevent the password from being saved.</p><!--e-->
+					<!-- description(User_management.Miscellaneous)-can_set_user_password --><p>Called from the "apply" processing of a user. Return "false" to prevent the password from being saved.</p><!--e-->
 					<p class="handlers">For example see <em>plugin</em>/user-expiry.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
@@ -1138,7 +1155,7 @@
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>federated_login_attempt</strong></span>(<em>bool, user</em>)</p>
-					<!-- description(User_management.Miscellaneous)-federated_login_attempt --><p>Invoked when a user logs on via the Federated_Logon plugin. (As opposed to logging on through the Zenphoto authentication mechanism)</p><!--e-->
+					<!-- description(User_management.Miscellaneous)-federated_login_attempt --><p>Invoked when a user logs on via the Federated_Logon plugin. (As opposed to logging on through the normal authentication mechanism)</p><!--e-->
 					<p class="handlers">For example see <em>plugin</em>/user-expiry.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
@@ -1200,7 +1217,7 @@
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>save_admin_custom_data</strong></span>(<em>updated, userobj, i, alter</em>)</p>
-					<!-- description(User_management.Miscellaneous)-save_admin_custom_data --><p>Allows a plugin to manage custom data for Zenphoto users. This invocation is for when the user object is saved.</p><!--e-->
+					<!-- description(User_management.Miscellaneous)-save_admin_custom_data --><p>Allows a plugin to manage custom data for users. This invocation is for when the user object is saved.</p><!--e-->
 					<p class="handlers">For example see <em>plugin</em>/common/fieldExtender.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
@@ -1235,10 +1252,7 @@
 					<p class="handlers">For example see <em>plugin</em>/elFinder.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
-						<li class="call_list"><em>plugin</em>/tinymce4/config/zenpage-basic.js.php</li>
-						<li class="call_list"><em>plugin</em>/tinymce4/config/zenpage-full.js.php</li>
-						<li class="call_list"><em>plugin</em>/tinymce4/config/zenpage-light.js.php</li>
-						<li>...</li>
+						<li class="call_list"><em>plugin</em>/tinymce/config/config.js.php</li>
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 			</ul><!-- filterdetail -->

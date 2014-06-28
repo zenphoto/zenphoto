@@ -21,7 +21,7 @@ function zpRewriteURL($query) {
 			case 'news':
 				$redirectURL = _NEWS_;
 				if (isset($query['category'])) {
-					$obj = new ZenpageCategory($query['category'], false);
+					$obj = new Category($query['category'], false);
 					if (!$obj->loaded)
 						return '';
 					$redirectURL = $obj->getLink();
@@ -31,7 +31,7 @@ function zpRewriteURL($query) {
 					unset($query['date']);
 				}
 				if (isset($query['title'])) {
-					$obj = new ZenpageNews($query['title'], false);
+					$obj = new News($query['title'], false);
 					if (!$obj->loaded)
 						return '';
 					$redirectURL = $obj->getLink();
@@ -41,7 +41,7 @@ function zpRewriteURL($query) {
 			case 'pages':
 				$redirectURL = _PAGES_;
 				if (isset($query['title'])) {
-					$obj = new ZenpagePage($query['title'], false);
+					$obj = new Page($query['title'], false);
 					if (!$obj->loaded)
 						return '';
 					$redirectURL = $obj->getLink();
@@ -214,7 +214,7 @@ function zp_load_image($folder, $filename) {
  */
 function load_zenpage_pages($titlelink) {
 	global $_zp_current_zenpage_page;
-	$_zp_current_zenpage_page = new ZenpagePage($titlelink);
+	$_zp_current_zenpage_page = new Page($titlelink);
 	if ($_zp_current_zenpage_page->loaded) {
 		add_context(ZP_ZENPAGE_PAGE | ZP_ZENPAGE_SINGLE);
 	} else {
@@ -241,7 +241,7 @@ function load_zenpage_news($request) {
 	}
 	if (isset($request['category'])) {
 		$titlelink = sanitize(rtrim($request['category'], '/'));
-		$_zp_current_category = new ZenpageCategory($titlelink);
+		$_zp_current_category = new Category($titlelink);
 		if ($_zp_current_category->loaded) {
 			add_context(ZP_ZENPAGE_NEWS_CATEGORY);
 		} else {
@@ -256,7 +256,7 @@ function load_zenpage_news($request) {
 		$result = query_single_row($sql);
 		if (is_array($result)) {
 			add_context(ZP_ZENPAGE_NEWS_ARTICLE | ZP_ZENPAGE_SINGLE);
-			$_zp_current_zenpage_news = new ZenpageNews($titlelink);
+			$_zp_current_zenpage_news = new News($titlelink);
 		} else {
 			$_GET['p'] = 'NEWS:' . $titlelink;
 		}

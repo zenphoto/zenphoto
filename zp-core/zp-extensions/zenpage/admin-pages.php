@@ -8,7 +8,7 @@
  */
 define("OFFSET_PATH", 4);
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
-require_once("zenpage-admin-functions.php");
+require_once("admin-functions.php");
 
 admin_securityChecks(ZENPAGE_PAGES_RIGHTS, currentRelativeURL());
 
@@ -43,23 +43,23 @@ if (isset($_GET['delete'])) {
 // publish or un-publish page by click
 if (isset($_GET['publish'])) {
 	XSRFdefender('update');
-	$obj = new ZenpagePage(sanitize($_GET['titlelink']));
+	$obj = new Page(sanitize($_GET['titlelink']));
 	zenpagePublish($obj, sanitize_numeric($_GET['publish']));
 }
 if (isset($_GET['skipscheduling'])) {
 	XSRFdefender('update');
-	$obj = new ZenpagePage($result['titlelink']);
+	$obj = new Page($result['titlelink']);
 	skipScheduledPublishing($obj);
 }
 if (isset($_GET['commentson'])) {
 	XSRFdefender('update');
-	$obj = new ZenpagePage(sanitize($_GET['titlelink']));
+	$obj = new Page(sanitize($_GET['titlelink']));
 	$obj->setCommentsAllowed(sanitize_numeric($_GET['commentson']));
 	$obj->save();
 }
 if (isset($_GET['hitcounter'])) {
 	XSRFdefender('hitcounter');
-	$obj = new ZenpagePage(sanitize($_GET['titlelink']));
+	$obj = new Page(sanitize($_GET['titlelink']));
 	$obj->set('hitcounter', 0);
 	$obj->save();
 	$reports[] = '<p class="messagebox fade-message">' . gettext("Hitcounter reset") . '</p>';

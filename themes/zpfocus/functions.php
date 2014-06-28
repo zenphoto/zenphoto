@@ -182,13 +182,13 @@ function printLatestNewsCustom($number = 5, $category = '', $showdate = true, $s
 		$count++;
 		$category = "";
 		$categories = "";
-		$obj = new ZenpageNews($item['titlelink']);
+		$obj = new News($item['titlelink']);
 		$title = htmlspecialchars($obj->getTitle());
 		$link = getNewsURL($item['titlelink']);
 		$count2 = 0;
 		$category = $obj->getCategories();
 		foreach ($category as $cat) {
-			$catobj = new ZenpageCategory($cat['titlelink']);
+			$catobj = new Category($cat['titlelink']);
 			$count2++;
 			if ($count2 != 1) {
 				$categories = $categories . "; ";

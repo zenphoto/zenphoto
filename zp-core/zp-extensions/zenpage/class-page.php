@@ -7,7 +7,7 @@
  * @package plugins
  * @subpackage zenpage
  */
-class ZenpagePage extends ZenpageItems {
+class Page extends CMSItems {
 
 	var $manage_rights = MANAGE_ALL_PAGES_RIGHTS;
 	var $manage_some_rights = ZENPAGE_PAGES_RIGHTS;
@@ -114,7 +114,7 @@ class ZenpagePage extends ZenpageItems {
 			$id = parent::copy(array('titlelink' => $newID));
 		}
 		if ($id) {
-			$newobj = new ZenpagePage($newID);
+			$newobj = new Page($newID);
 			$newobj->setTitle($newtitle);
 			$newobj->setSortOrder(NULL);
 			$newobj->setTags($this->getTags(false));
@@ -142,7 +142,7 @@ class ZenpagePage extends ZenpageItems {
 				if (is_array($result)) {
 					foreach ($result as $row) {
 						if (strlen($row['sort_order']) == $mychild) {
-							$subpage = new ZenpagePage($row['titlelink']);
+							$subpage = new Page($row['titlelink']);
 							$success = $success && $subpage->remove();
 						}
 					}
@@ -171,7 +171,7 @@ class ZenpagePage extends ZenpageItems {
 			$currentparentid = $parentid;
 		}
 		foreach ($allitems as $item) {
-			$obj = new ZenpagePage($item['titlelink']);
+			$obj = new Page($item['titlelink']);
 			$itemtitlelink = $obj->getTitlelink();
 			$itemid = $obj->getID();
 			$itemparentid = $obj->getParentID();
@@ -223,7 +223,7 @@ class ZenpagePage extends ZenpageItems {
 			} else {
 				$sql = 'SELECT `titlelink` FROM ' . prefix('pages') . ' WHERE `id`=' . $parentID;
 				$result = query_single_row($sql);
-				$pageobj = new ZenpagePage($result['titlelink']);
+				$pageobj = new Page($result['titlelink']);
 				$hash = $pageobj->getPassword();
 			}
 		}

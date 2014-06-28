@@ -36,24 +36,24 @@ $plugin_is_filter = defaultExtension(9 | CLASS_PLUGIN);
 $plugin_description = gettext("A CMS plugin that adds the capability to run an entire gallery focused website with zenphoto.");
 $plugin_notice = gettext("<strong>Note:</strong> This feature must be integrated into your theme. It is not supported by either the <em>default</em> or the <em>stopdesign</em> theme.");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
-$option_interface = 'zenpagecms';
+$option_interface = 'cmsFilters';
 
 if (OFFSET_PATH == 2) {
-	setOptionDefault('zenpageNewsLink', array_key_exists('news', $_zp_conf_vars['special_pages']) ? $_zp_conf_vars['special_pages']['news']['rewrite'] : 'news');
-	setOptionDefault('zenpageCategoryLink', array_key_exists('category', $_zp_conf_vars['special_pages']) ? $_zp_conf_vars['special_pages']['category']['rewrite'] : 'category');
-	setOptionDefault('zenpageNewsArchiveLink', array_key_exists('news_archive', $_zp_conf_vars['special_pages']) ? $_zp_conf_vars['special_pages']['news_archive']['rewrite'] : '_NEWS_/archive');
-	setOptionDefault('zenpagePagesLink', array_key_exists('pages', $_zp_conf_vars['special_pages']) ? $_zp_conf_vars['special_pages']['pages']['rewrite'] : 'pages');
+	setOptionDefault('NewsLink', array_key_exists('news', $_zp_conf_vars['special_pages']) ? $_zp_conf_vars['special_pages']['news']['rewrite'] : 'news');
+	setOptionDefault('categoryLink', array_key_exists('category', $_zp_conf_vars['special_pages']) ? $_zp_conf_vars['special_pages']['category']['rewrite'] : 'category');
+	setOptionDefault('NewsArchiveLink', array_key_exists('news_archive', $_zp_conf_vars['special_pages']) ? $_zp_conf_vars['special_pages']['news_archive']['rewrite'] : '_NEWS_/archive');
+	setOptionDefault('PagesLink', array_key_exists('pages', $_zp_conf_vars['special_pages']) ? $_zp_conf_vars['special_pages']['pages']['rewrite'] : 'pages');
 }
 
 //Zenpage rewrite definitions
-$_zp_conf_vars['special_pages']['news'] = array('define'	 => '_NEWS_', 'rewrite'	 => getOption('zenpageNewsLink'),
-				'option'	 => 'zenpageNewsLink', 'default'	 => 'news');
-$_zp_conf_vars['special_pages']['category'] = array('define'	 => '_CATEGORY_', 'rewrite'	 => getOption('zenpageCategoryLink'),
-				'option'	 => 'zenpageCategoryLink', 'default'	 => '_NEWS_/category');
-$_zp_conf_vars['special_pages']['news_archive'] = array('define'	 => '_NEWS_ARCHIVE_', 'rewrite'	 => getOption('zenpageNewsArchiveLink'),
-				'option'	 => 'zenpageNewsArchiveLink', 'default'	 => '_NEWS_/archive');
-$_zp_conf_vars['special_pages']['pages'] = array('define'	 => '_PAGES_', 'rewrite'	 => getOption('zenpagePagesLink'),
-				'option'	 => 'zenpagePagesLink', 'default'	 => 'pages');
+$_zp_conf_vars['special_pages']['news'] = array('define'	 => '_NEWS_', 'rewrite'	 => getOption('NewsLink'),
+				'option'	 => 'NewsLink', 'default'	 => 'news');
+$_zp_conf_vars['special_pages']['category'] = array('define'	 => '_CATEGORY_', 'rewrite'	 => getOption('categoryLink'),
+				'option'	 => 'categoryLink', 'default'	 => '_NEWS_/category');
+$_zp_conf_vars['special_pages']['news_archive'] = array('define'	 => '_NEWS_ARCHIVE_', 'rewrite'	 => getOption('NewsArchiveLink'),
+				'option'	 => 'NewsArchiveLink', 'default'	 => '_NEWS_/archive');
+$_zp_conf_vars['special_pages']['pages'] = array('define'	 => '_PAGES_', 'rewrite'	 => getOption('PagesLink'),
+				'option'	 => 'PagesLink', 'default'	 => 'pages');
 
 $_zp_conf_vars['special_pages'][] = array('definition' => '%NEWS%', 'rewrite' => '_NEWS_');
 $_zp_conf_vars['special_pages'][] = array('definition' => '%CATEGORY%', 'rewrite' => '_CATEGORY_');
@@ -80,25 +80,25 @@ $_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%N
 				'rule'		 => '%REWRITE% index.php?p=news [L,QSA]');
 
 
-zp_register_filter('checkForGuest', 'zenpagecms::checkForGuest');
-zp_register_filter('isMyItemToView', 'zenpagecms::isMyItemToView');
-zp_register_filter('admin_toolbox_global', 'zenpagecms::admin_toolbox_global');
-zp_register_filter('admin_toolbox_news', 'zenpagecms::admin_toolbox_news');
-zp_register_filter('admin_toolbox_pages', 'zenpagecms::admin_toolbox_pages');
-zp_register_filter('themeSwitcher_head', 'zenpagecms::switcher_head');
-zp_register_filter('themeSwitcher_Controllink', 'zenpagecms::switcher_controllink', 0);
-zp_register_filter('load_theme_script', 'zenpagecms::switcher_setup', 99);
+zp_register_filter('checkForGuest', 'cmsFilters::checkForGuest');
+zp_register_filter('isMyItemToView', 'cmsFilters::isMyItemToView');
+zp_register_filter('admin_toolbox_global', 'cmsFilters::admin_toolbox_global');
+zp_register_filter('admin_toolbox_news', 'cmsFilters::admin_toolbox_news');
+zp_register_filter('admin_toolbox_pages', 'cmsFilters::admin_toolbox_pages');
+zp_register_filter('themeSwitcher_head', 'cmsFilters::switcher_head');
+zp_register_filter('themeSwitcher_Controllink', 'cmsFilters::switcher_controllink', 0);
+zp_register_filter('load_theme_script', 'cmsFilters::switcher_setup', 99);
 
-require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/zenpage-class.php');
-require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/zenpage-class-news.php');
-require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/zenpage-class-page.php');
-require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/zenpage-class-category.php');
+require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/classes.php');
+require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/class-news.php');
+require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/class-page.php');
+require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/class-category.php');
 
-$_zp_zenpage = new Zenpage();
+$_zp_zenpage = new CMS();
 
-class zenpagecms {
+class cmsFilters {
 
-	function zenpagecms() {
+	function __construct() {
 		if (OFFSET_PATH == 2) {
 
 			setOptionDefault('zenpage_articles_per_page', '10');
@@ -198,7 +198,7 @@ class zenpagecms {
 			}
 		}
 		if (extensionEnabled('zenpage')) {
-			require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/zenpage-template-functions.php');
+			require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/template-functions.php');
 		} else {
 			$_zp_zenpage = NULL;
 		}

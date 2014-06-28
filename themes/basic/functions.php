@@ -47,7 +47,7 @@ function printZenPhoto20() {
 			$logo = 'sterile';
 			break;
 	}
-	printZenphotoLink($logo);
+	printPackageLink($logo);
 }
 
 function switcher_head($ignore) {

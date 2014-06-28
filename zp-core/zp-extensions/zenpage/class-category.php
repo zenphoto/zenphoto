@@ -7,7 +7,7 @@
  * @package plugins
  * @subpackage zenpage
  */
-class ZenpageCategory extends ZenpageRoot {
+class Category extends CMSRoot {
 
 	var $manage_rights = MANAGE_ALL_NEWS_RIGHTS;
 	var $manage_some_rights = ZENPAGE_NEWS_RIGHTS;
@@ -193,7 +193,7 @@ class ZenpageCategory extends ZenpageRoot {
 			if (is_array($result)) {
 				foreach ($result as $row) {
 					if (strlen($row['sort_order']) == $mychild) {
-						$subcat = new ZenpageCategory($row['titlelink']);
+						$subcat = new Category($row['titlelink']);
 						$success = $success && $subcat->remove();
 					}
 				}
@@ -214,7 +214,7 @@ class ZenpageCategory extends ZenpageRoot {
 		$subcategories = array();
 		$sortorder = $this->getSortOrder();
 		foreach ($_zp_zenpage->getAllCategories($visible, $sorttype, $sortdirection) as $cat) {
-			$catobj = new ZenpageCategory($cat['titlelink']);
+			$catobj = new Category($cat['titlelink']);
 			if ($catobj->getParentID() == $this->getID() && $catobj->getSortOrder() != $sortorder) { // exclude the category itself!
 				array_push($subcategories, $catobj->getTitlelink());
 			}
@@ -266,7 +266,7 @@ class ZenpageCategory extends ZenpageRoot {
 			$currentparentid = $parentid;
 		}
 		foreach ($allitems as $item) {
-			$obj = new ZenpageCategory($item['titlelink']);
+			$obj = new Category($item['titlelink']);
 			$itemtitlelink = $obj->getTitlelink();
 			$itemid = $obj->getID();
 			$itemparentid = $obj->getParentID();
@@ -296,7 +296,7 @@ class ZenpageCategory extends ZenpageRoot {
 			} else {
 				$sql = 'SELECT `titlelink` FROM ' . prefix('news_categories') . ' WHERE `id`=' . $parentID;
 				$result = query_single_row($sql);
-				$obj = new ZenpageCategory($result['titlelink']);
+				$obj = new Category($result['titlelink']);
 				$hash = $obj->getPassword();
 			}
 		}

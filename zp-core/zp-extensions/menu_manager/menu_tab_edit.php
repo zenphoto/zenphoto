@@ -2,7 +2,7 @@
 define('OFFSET_PATH', 4);
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 if (extensionEnabled('zenpage')) {
-	require_once(dirname(dirname(dirname(__FILE__))) . '/' . PLUGIN_FOLDER . '/zenpage/zenpage-admin-functions.php');
+	require_once(dirname(dirname(dirname(__FILE__))) . '/' . PLUGIN_FOLDER . '/zenpage/admin-functions.php');
 }
 require_once(dirname(__FILE__) . '/menu_manager-admin-functions.php');
 
@@ -87,12 +87,12 @@ $menuset = checkChosenMenuset();
 								$('#link').val($(this).val());
 							});
 							break;
-						case 'all_zenpagepages':
+						case 'all_pages':
 							$('#albumselector,#pageselector,#categoryselector,#custompageselector,#titleinput,#titlelabel,#link_row,#visible_row,#span_row').hide();
 							$('#selector').html('<?php echo js_encode(gettext("All Zenpage pages")); ?>');
 							$('#description').html('<?php echo js_encode(gettext("This adds menu items for all Zenpage pages.")); ?>');
 							break;
-						case 'zenpagepage':
+						case 'page':
 							$('#albumselector,#categoryselector,#custompageselector,#link_row,#titleinput').hide();
 							$('#selector').html('<?php echo js_encode(gettext("Zenpage page")); ?>');
 							$('#description').html('<?php echo js_encode(gettext("Creates a link to a Zenpage Page.")); ?>');
@@ -103,7 +103,7 @@ $menuset = checkChosenMenuset();
 								$('#link').val($(this).val());
 							});
 							break;
-						case 'zenpagenewsindex':
+						case 'newsindex':
 							$('#albumselector,#pageselector,#categoryselector,#custompageselector,#link_row').hide();
 							$('#selector').html('<?php echo js_encode(gettext("Zenpage news index")); ?>');
 							$('#description').html('<?php echo js_encode(gettext("Creates a link to the Zenpage News Index.")); ?>');
@@ -111,12 +111,12 @@ $menuset = checkChosenMenuset();
 							$('#titleinput').show();
 							$('#link').val('<?php echo getNewsIndexURL(); ?>');
 							break;
-						case 'all_zenpagecategorys':
+						case 'all_categorys':
 							$('#albumselector,#pageselector,#categoryselector,#custompageselector,#titleinput,#titlelabel,#link_row,#visible_row,#span_row').hide();
 							$('#selector').html('<?php echo js_encode(gettext("All Zenpage categories")); ?>');
 							$('#description').html('<?php echo js_encode(gettext("This adds menu items for all Zenpage categories.")); ?>');
 							break;
-						case 'zenpagecategory':
+						case 'category':
 							$('#albumselector,#pageselector,#custompageselector,#custompageselector,#titleinput,#link_row').hide();
 							$('#selector').html('<?php echo js_encode(gettext("Zenpage news category")); ?>');
 							$('#description').html('<?php echo js_encode(gettext("Creates a link to a Zenpage News article category.")); ?>');
@@ -247,11 +247,11 @@ if (is_array($result)) {
 						<?php
 						if (extensionEnabled('zenpage')) {
 							?>
-							<option value="all_zenpagepages"><?php echo gettext("All Zenpage pages"); ?></option>
-							<option value="zenpagepage"><?php echo gettext("Zenpage page"); ?></option>
-							<option value="zenpagenewsindex"><?php echo gettext("Zenpage news index"); ?></option>
-							<option value="all_zenpagecategorys"><?php echo gettext("All Zenpage news categories"); ?></option>
-							<option value="zenpagecategory"><?php echo gettext("Zenpage news category"); ?></option>
+							<option value="all_pages"><?php echo gettext("All pages"); ?></option>
+							<option value="page"><?php echo gettext("Page"); ?></option>
+							<option value="newsindex"><?php echo gettext("News index"); ?></option>
+							<option value="all_categorys"><?php echo gettext("All news categories"); ?></option>
+							<option value="category"><?php echo gettext("News category"); ?></option>
 							<?php
 						}
 						?>
@@ -302,9 +302,9 @@ if (is_array($result)) {
 								<span id="titleinput"><?php print_language_string_list($result['title'], "title", false, NULL, '', 100); ?></span>
 								<?php
 								printAlbumsSelector($result['link']);
-								if (class_exists('Zenpage')) {
-									printZenpagePagesSelector($result['link']);
-									printZenpageNewsCategorySelector($result['link']);
+								if (class_exists('CMS')) {
+									printPagesSelector($result['link']);
+									printNewsCategorySelector($result['link']);
 								}
 								?>
 							</td>

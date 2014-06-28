@@ -136,7 +136,7 @@ function getLatestNews($number = 2, $category = '', $sticky = true, $sortdirecti
 	if (empty($category)) {
 		$latest = $_zp_zenpage->getArticles($number, NULL, true, NULL, $sortdir, $sticky, NULL);
 	} else {
-		$catobj = new ZenpageCategory($category);
+		$catobj = new Category($category);
 		$latest = $catobj->getArticles($number, NULL, true, NULL, $sortdir, $sticky);
 	}
 	return $latest;
@@ -168,13 +168,13 @@ function printLatestNews($number = 5, $category = '', $showdate = true, $showcon
 		$category = "";
 		$categories = "";
 
-		$obj = new ZenpageNews($item['titlelink']);
+		$obj = new News($item['titlelink']);
 		$title = html_encode($obj->getTitle());
 		$link = html_encode(getNewsURL($item['titlelink']));
 		$count2 = 0;
 		$category = $obj->getCategories();
 		foreach ($category as $cat) {
-			$catobj = new ZenpageCategory($cat['titlelink']);
+			$catobj = new Category($cat['titlelink']);
 			$count2++;
 			if ($count2 != 1) {
 				$categories = $categories . ", ";
@@ -256,7 +256,7 @@ function next_news() {
 		$news = array_shift($_zp_zenpage_articles);
 		if (is_array($news)) {
 			add_context(ZP_ZENPAGE_NEWS_ARTICLE);
-			$_zp_current_zenpage_news = new ZenpageNews($news['titlelink']);
+			$_zp_current_zenpage_news = new News($news['titlelink']);
 			return true;
 		}
 	}
@@ -331,7 +331,7 @@ function getNewsURL($titlelink = NULL) {
 	if (empty($titlelink)) {
 		$obj = $_zp_current_zenpage_news;
 	} else {
-		$obj = new ZenpageNews($titlelink);
+		$obj = new News($titlelink);
 	}
 	if (!is_null($obj))
 		return $obj->getLink();
@@ -621,7 +621,7 @@ function printNewsCategories($separator = '', $before = '', $class = '') {
 		}
 		foreach ($categories as $cat) {
 			$count++;
-			$catobj = new ZenpageCategory($cat['titlelink']);
+			$catobj = new Category($cat['titlelink']);
 			if ($count >= $catcount) {
 				$separator = "";
 			}
@@ -801,7 +801,7 @@ function getNewsCategoryURL($cat = NULL) {
 	if (empty($cat)) {
 		$obj = $_zp_current_category->getTitlelink();
 	} else {
-		$obj = new ZenpageCategory($cat);
+		$obj = new Category($cat);
 	}
 	return $obj->getLink(1);
 }
@@ -815,7 +815,7 @@ function getNewsCategoryURL($cat = NULL) {
  * @return string
  */
 function printNewsCategoryURL($before = '', $catlink = '') {
-	$catobj = new ZenpageCategory($catlink);
+	$catobj = new Category($catlink);
 	echo "<a href=\"" . html_encode($catobj->getLink()) . "\" title=\"" . html_encode($catobj->getTitle()) . "\">";
 	if ($before) {
 		echo '<span class="beforetext">' . html_encode($before) . '</span>';
@@ -1177,7 +1177,7 @@ function getZenpageStatistic($number = 10, $option = "all", $mode = "popular", $
 		$statsarticles = array();
 		foreach ($articles as $article) {
 			$counter++;
-			$obj = new ZenpageNews($article['titlelink']);
+			$obj = new News($article['titlelink']);
 			$statsarticles[$counter] = array(
 							"id"					 => $obj->getID(),
 							"title"				 => $obj->getTitle(),
@@ -1218,7 +1218,7 @@ function getZenpageStatistic($number = 10, $option = "all", $mode = "popular", $
 		$statspages = array();
 		foreach ($pages as $page) {
 			$counter++;
-			$pageobj = new ZenpagePage($page['titlelink']);
+			$pageobj = new Page($page['titlelink']);
 			$statspages[$counter] = array(
 							"id"					 => $pageobj->getID(),
 							"title"				 => $pageobj->getTitle(),
@@ -1509,7 +1509,7 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 		switch ($mode) {
 			case 'pages':
 				$catcount = 1; //	so page items all show.
-				$pageobj = new ZenpagePage($item['titlelink']);
+				$pageobj = new Page($item['titlelink']);
 				$itemtitle = $pageobj->getTitle();
 				$itemsortorder = $pageobj->getSortOrder();
 				$itemid = $pageobj->getID();
@@ -1520,7 +1520,7 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 				break;
 			case 'categories':
 			case 'allcategories':
-				$catobj = new ZenpageCategory($item['titlelink']);
+				$catobj = new Category($item['titlelink']);
 				$itemtitle = $catobj->getTitle();
 				$itemsortorder = $catobj->getSortOrder();
 				$itemid = $catobj->getID();
@@ -1655,12 +1655,12 @@ function printZenpageItemsBreadcrumb($before = NULL, $after = NULL) {
 	}
 	foreach ($parentitems as $item) {
 		if (is_Pages()) {
-			$pageobj = new ZenpagePage($item);
+			$pageobj = new Page($item);
 			$parentitemurl = html_encode($pageobj->getLink());
 			$parentitemtitle = $pageobj->getTitle();
 		}
 		if (is_NewsCategory()) {
-			$catobj = new ZenpageCategory($item);
+			$catobj = new Category($item);
 			$parentitemurl = $catobj->getLink();
 			$parentitemtitle = $catobj->getTitle();
 		}
@@ -1733,7 +1733,7 @@ function next_page() {
 		$_zp_current_page_restore = $_zp_current_zenpage_page;
 	}
 	while (!empty($_zp_next_pagelist)) {
-		$page = new ZenpagePage(array_shift($_zp_next_pagelist));
+		$page = new Page(array_shift($_zp_next_pagelist));
 		if ((zp_loggedin() && $page->isMyItem(LIST_RIGHTS)) || $page->checkForGuest()) {
 			$_zp_current_zenpage_page = $page;
 			return true;
@@ -1903,7 +1903,7 @@ function getPageContent($titlelink = NULL, $published = true) {
 	}
 	// print content of a page directly on a normal zenphoto theme page or any other page for example
 	if (!empty($titlelink)) {
-		$page = new ZenpagePage($titlelink);
+		$page = new Page($titlelink);
 		if ($page->getShow() OR ( !$page->getShow() AND ! $published)) {
 			return $page->getContent();
 		}
@@ -1938,7 +1938,7 @@ function getPageExtraContent($titlelink = '', $published = true) {
 	}
 	// print content of a page directly on a normal zenphoto theme page for example
 	if (!empty($titlelink)) {
-		$page = new ZenpagePage($titlelink);
+		$page = new Page($titlelink);
 		if ($page->getShow() OR ( !$page->getShow() AND ! $published)) {
 			return $page->getExtracontent();
 		}
@@ -2027,7 +2027,7 @@ function getPageURL($titlelink = '') {
 	if (empty($titlelink)) {
 		$obj = $_zp_current_zenpage_page;
 	} else {
-		$obj = new ZenpagePage($titlelink);
+		$obj = new Page($titlelink);
 	}
 	return $obj->getLink();
 }
@@ -2075,7 +2075,7 @@ function printSubPagesExcerpts($excerptlength = NULL, $readmore = NULL, $shorten
 		$excerptlength = ZP_SHORTEN_LENGTH;
 	}
 	foreach ($pages as $page) {
-		$pageobj = new ZenpagePage($page['titlelink']);
+		$pageobj = new Page($page['titlelink']);
 		if ($pageobj->getParentID() == $_zp_current_zenpage_page->getID()) {
 			$subcount++;
 			$pagetitle = html_encode($pageobj->getTitle());
@@ -2157,7 +2157,7 @@ function getLatestZenpageComments($number, $type = "all", $itemID = "") {
 			$newsshow = 'news.show=1 AND';
 			$newscheck = query_full_array("SELECT * FROM " . prefix('news') . " ORDER BY date");
 			foreach ($newscheck as $articlecheck) {
-				$obj = new ZenpageNews($articlecheck['titlelink']);
+				$obj = new News($articlecheck['titlelink']);
 				if ($obj->inProtectedCategory()) {
 					if ($checkauth && $obj->isMyItem(LIST_RIGHTS)) {
 						$newsshow = '';
@@ -2177,7 +2177,7 @@ function getLatestZenpageComments($number, $type = "all", $itemID = "") {
 			$pagesshow = 'pages.show=1 AND';
 			$pagescheck = query_full_array("SELECT * FROM " . prefix('pages') . " ORDER BY date");
 			foreach ($pagescheck as $pagecheck) {
-				$obj = new ZenpagePage($pagecheck['titlelink']);
+				$obj = new Page($pagecheck['titlelink']);
 				if ($obj->isProtected()) {
 					if ($checkauth && $obj->isMyItem(LIST_RIGHTS)) {
 						$pagesshow = '';
@@ -2287,5 +2287,5 @@ function zenpageAlbumImage($albumname, $imagename = NULL, $size = NULL, $linkalb
 	}
 }
 
-Zenpage::expiry();
+CMS::expiry();
 ?>

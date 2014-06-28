@@ -133,7 +133,7 @@ function getAllTagsFromZenpage($mode = 'news') {
 			$type = 'news';
 			$items = $_zp_zenpage->getArticles(false, $published);
 			foreach ($items as $item) {
-				$obj = new ZenpageNews($item['titlelink']);
+				$obj = new News($item['titlelink']);
 				if ($obj->checkAccess()) {
 					$ids[] = $obj->getID();
 				}
@@ -144,7 +144,7 @@ function getAllTagsFromZenpage($mode = 'news') {
 			$type = 'pages';
 			$items = $_zp_zenpage->getPages($published);
 			foreach ($items as $item) {
-				$obj = new ZenpagePage($item['titlelink']);
+				$obj = new Page($item['titlelink']);
 				if ($obj->checkAccess()) {
 					$ids[] = $obj->getID();
 				}

@@ -56,14 +56,14 @@ if(isset($_GET['image']) && isset($_GET['album'])) {
 	echo "<div style='text-align: left; width 450px; font-size:0.8em'>";
 	if(isset($_GET['news'])) {
 		$item = sanitize($_GET['news']);
-		$obj = new ZenpageNews($item);
+		$obj = new News($item);
 		$cats = $obj->getCategories();
 		$categories = gettext('Categories: ');
 		$count = '';
 		if($cats) {
 			foreach($cats as $cat) {
 				$count++;
-				$catobj = new ZenpageCategory($cat['titlelink']);
+				$catobj = new Category($cat['titlelink']);
 				if($count != 1) {
 					$categories .= ', ';
 				}
@@ -72,7 +72,7 @@ if(isset($_GET['image']) && isset($_GET['album'])) {
 		}
 	} elseif(isset($_GET['pages'])) {
 		$item = sanitize($_GET['pages']);
-		$obj = new ZenpagePage($item);
+		$obj = new Page($item);
 		$categories = '';
 	}
 	echo '<h3>'.$obj->getTitle().'</h3>';

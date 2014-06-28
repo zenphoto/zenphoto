@@ -234,7 +234,7 @@ echo "\n</head>";
 											 data: '<?php echo pickSource($image); ?>',
 											 url: '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/pickSource.php'
 											 });"
-											 title="<?php echo gettext('pick'); ?>">
+											 title="<?php echo gettext('pick source'); ?>">
 											<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="">
 										</a>
 									</p>

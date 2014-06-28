@@ -705,7 +705,7 @@ function getSitemapGoogleImageVideoExtras($albumobj, $imageobj, $locale) {
  *
  * @return string
  */
-function getSitemapZenpagePages() {
+function getSitemapPages() {
 	global $_zp_zenpage, $sitemap_number;
 	//not splitted into several sitemaps yet
 	if ($sitemap_number == 1) {
@@ -718,7 +718,7 @@ function getSitemapZenpagePages() {
 			$data .= sitemap_echonl('<?xml version="1.0" encoding="UTF-8"?>');
 			$data .= sitemap_echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
 			foreach ($pages as $page) {
-				$pageobj = new ZenpagePage($page['titlelink']);
+				$pageobj = new Page($page['titlelink']);
 				$date = substr($pageobj->getDatetime(), 0, 10);
 				$lastchange = '';
 				if (!is_null($pageobj->getLastchange()))
@@ -757,7 +757,7 @@ function getSitemapZenpagePages() {
  *
  * @return string
  */
-function getSitemapZenpageNewsIndex() {
+function getSitemapNewsIndex() {
 	global $_zp_zenpage, $sitemap_number;
 	//not splitted into several sitemaps yet
 	if ($sitemap_number == 1) {
@@ -826,7 +826,7 @@ function getSitemapZenpageNewsIndex() {
  * @param  string $changefreq One of the supported changefrequence values regarding sitemap.org. Default is empty or wrong is "daily".
  * @return string
  */
-function getSitemapZenpageNewsArticles() {
+function getSitemapNewsArticles() {
 	global $_zp_zenpage, $sitemap_number;
 	//not splitted into several sitemaps yet
 	if ($sitemap_number == 1) {
@@ -838,7 +838,7 @@ function getSitemapZenpageNewsArticles() {
 			$data .= sitemap_echonl('<?xml version="1.0" encoding="UTF-8"?>');
 			$data .= sitemap_echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
 			foreach ($articles as $article) {
-				$articleobj = new ZenpageNews($article['titlelink']);
+				$articleobj = new News($article['titlelink']);
 				$date = substr($articleobj->getDatetime(), 0, 10);
 				$lastchange = '';
 				if (!is_null($articleobj->getLastchange()))
@@ -877,7 +877,7 @@ function getSitemapZenpageNewsArticles() {
  *
  * @return string
  */
-function getSitemapZenpageNewsCategories() {
+function getSitemapNewsCategories() {
 	global $_zp_zenpage, $sitemap_number;
 	//TODO not splitted into several sitemaps yet
 	if ($sitemap_number == 1) {
@@ -889,7 +889,7 @@ function getSitemapZenpageNewsCategories() {
 			$data .= sitemap_echonl('<?xml version="1.0" encoding="UTF-8"?>');
 			$data .= sitemap_echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
 			foreach ($newscats as $newscat) {
-				$catobj = new ZenpageCategory($newscat['titlelink']);
+				$catobj = new Category($newscat['titlelink']);
 				if (!$catobj->isProtected()) {
 					switch (SITEMAP_LOCALE_TYPE) {
 						case 1:

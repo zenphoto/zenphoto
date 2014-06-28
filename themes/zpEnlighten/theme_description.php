@@ -1,6 +1,6 @@
 <?php
 
-// Zenphoto theme definition file
+// theme definition file
 $theme_description['name'] = 'zpEnlighten';
 $theme_description['author'] = '<a href="http://gilles.dodinet.fr">Gilles Dodinet</a>';
 $theme_description['version'] = '1.0';

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Generat tab for debuging aids
+ * Generate tab for debuging aids
  *
  * @package plugins
  * @subpackage development

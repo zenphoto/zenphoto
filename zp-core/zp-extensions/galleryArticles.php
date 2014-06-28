@@ -189,7 +189,7 @@ class galleryArticles {
 				$class = 'galleryarticles-newimage';
 				break;
 		}
-		$article = new ZenpageNews(seoFriendly('galleryAticles-' . $title));
+		$article = new News(seoFriendly('galleryAticles-' . $title));
 		$article->setTitle($text);
 
 		$article->setContent('<p><a class="' . $class . '" href="' . $obj->getLink() . '"><img src="' . $img->getCustomImage(getOption('galleryArticles_size'), NULL, NULL, NULL, NULL, NULL, NULL, -1) . '"></a></p><p>' . $obj->getDesc() . '</p>');

@@ -77,11 +77,11 @@ class userAddressFields extends fieldExtender {
 	}
 
 	static function zenpageItemSave($custom, $object) {
-		return parent::_zenpageItemSave($custom, $object, self::fields());
+		return parent::_cmsItemSave($custom, $object, self::fields());
 	}
 
 	static function zenpageItemEdit($html, $object) {
-		return parent::_zenpageItemEdit($html, $object, self::fields());
+		return parent::_cmsItemEdit($html, $object, self::fields());
 	}
 
 	static function register() {

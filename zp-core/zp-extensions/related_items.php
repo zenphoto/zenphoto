@@ -121,7 +121,7 @@ function createRelatedItemsResultArray($result, $type) {
 				}
 				break;
 			case 'news':
-				if (get_class($current) != 'ZenpageNews' || $current->getTitlelink() != $item['titlelink']) {
+				if (get_class($current) != 'News' || $current->getTitlelink() != $item['titlelink']) {
 
 					if (!isset($item['weight']))
 						$item['weight'] = 13; //	there are circumstances where weights are not generated.
@@ -130,7 +130,7 @@ function createRelatedItemsResultArray($result, $type) {
 				}
 				break;
 			case 'pages':
-				if (get_class($current) != 'ZenpagePage' || $current->getTitlelink() != $item) {
+				if (get_class($current) != 'Page' || $current->getTitlelink() != $item) {
 					array_push($results, array('name' => $item, 'album' => '', 'type' => $type, 'weight' => '13')); // doesn't have weight so we just add one for sorting later
 				}
 				break;
@@ -182,13 +182,13 @@ function printRelatedItems($number = 5, $type = 'news', $specific = NULL, $excer
 							$category = gettext('Image');
 							break;
 						case 'news':
-							$obj = new ZenpageNews($item['name']);
+							$obj = new News($item['name']);
 							$url = $obj->getLink();
 							$text = $obj->getContent();
 							$category = gettext('News');
 							break;
 						case 'pages':
-							$obj = new ZenpagePage($item['name']);
+							$obj = new Page($item['name']);
 							$url = $obj->getLink();
 							$text = $obj->getContent();
 							$category = gettext('Page');

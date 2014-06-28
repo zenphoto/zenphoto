@@ -1746,7 +1746,7 @@ function printStandardMeta() {
 							break;
 						$sql = 'SELECT `titlelink` FROM ' . prefix('pages') . ' WHERE `id`=' . $parentID;
 						$result = query_single_row($sql);
-						$pageobj = new ZenpagePage($result['titlelink']);
+						$pageobj = new Page($result['titlelink']);
 						$authType = "zp_page_auth_" . $pageobj->getID();
 						$check_auth = $pageobj->getPassword();
 						$check_user = $pageobj->getUser();
@@ -2193,11 +2193,11 @@ function printStandardMeta() {
 				case 'albums':
 					return newAlbum($result['folder'], false, true);
 				case 'news':
-					return new ZenpageNews($result['titlelink']);
+					return new News($result['titlelink']);
 				case 'pages':
-					return new ZenpagePage($result['titlelink']);
+					return new Page($result['titlelink']);
 				case 'news_categories':
-					return new ZenpageCategory($result['titlelink']);
+					return new Category($result['titlelink']);
 			}
 		}
 		return NULL;

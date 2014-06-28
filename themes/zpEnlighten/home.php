@@ -1,4 +1,5 @@
-<?php if (!defined('WEBPATH'))
+<?php
+if (!defined('WEBPATH'))
 	die();
 ?>
 <!DOCTYPE html>
@@ -30,26 +31,28 @@
 					$u = 0;
 					foreach ($latestImages as $i) : $u++;
 						?>
-						<div class="album" <?php if ($u % 2 == 0) {
-							echo 'style="margin-left: 8px;"';
-						} ?> >
-	            <div class="thumb">
+						<div class="album" <?php
+								 if ($u % 2 == 0) {
+									 echo 'style="margin-left: 8px;"';
+								 }
+								 ?> >
+							<div class="thumb">
 								<?php
 								$thumb = $i->getCustomImage(NULL, 255, 75, 255, 75, NULL, NULL, false, false);
 								$link = $i->getLink();
 								$date = strftime("%d %B %Y", strtotime($i->get('date')));
 								echo "<a href='$link'><img src='$thumb' width='255' height='75'/></a>";
 								?>
-	            </div>
-	            <div class="albumdesc">
+							</div>
+							<div class="albumdesc">
 	<?php
 	$_zp_current_album = $i->getAlbum();
 	?>
 								<h3><span style="color: #999;">Album:</span> <a href="<?php echo htmlspecialchars(getAlbumURL()); ?>" title="<?php echo gettext('View album:'); ?> <?php echo $_zp_current_album->getTitle(); ?>"><?php echo $_zp_current_album->getTitle(); ?></a></h3>
 								<h3 class="date"><?= $date; ?></h3>
-	            </div>
+							</div>
 						</div>
-<?php endforeach ?>
+					<?php endforeach ?>
 <?php
 $_zp_current_album = NULL;
 ?>
@@ -60,7 +63,7 @@ $_zp_current_album = NULL;
 				$ln = getLatestNews(3);
 
 				foreach ($ln as $n) :
-					$_zp_current_zenpage_news = new ZenpageNews($n['titlelink']);
+					$_zp_current_zenpage_news = new News($n['titlelink']);
 					?>
 
 
@@ -74,7 +77,7 @@ $_zp_current_album = NULL;
 								}
 								?>
 							</div>
-					<?php printNewsContent(); ?>
+	<?php printNewsContent(); ?>
 					<?php printCodeblock(1); ?>
 							<br style="clear:both; " />
 						</div>

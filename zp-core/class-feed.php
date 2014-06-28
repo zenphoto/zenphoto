@@ -223,7 +223,7 @@ class feed {
 
 				if (isset($this->options['category'])) {
 					$this->catlink = $this->options['category'];
-					$catobj = new ZenpageCategory($this->catlink);
+					$catobj = new Category($this->catlink);
 					$this->cattitle = $catobj->getTitle();
 					$this->newsoption = 'category';
 				} else {
@@ -398,7 +398,7 @@ class feed {
 	 * @return array
 	 */
 	protected function getitemPages($item, $len) {
-		$obj = new ZenpagePage($item['titlelink']);
+		$obj = new Page($item['titlelink']);
 		$feeditem['title'] = $feeditem['title'] = get_language_string($obj->getTitle('all'), $this->locale);
 		$feeditem['link'] = $obj->getLink();
 		$desc = $obj->getContent($this->locale);

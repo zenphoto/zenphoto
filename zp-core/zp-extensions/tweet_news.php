@@ -358,7 +358,7 @@ class tweet {
 			if ($result) {
 				foreach ($result as $article) {
 					query('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `id`=' . $article['id']);
-					$news = new ZenpageNews($article['titlelink']);
+					$news = new News($article['titlelink']);
 					self::tweetObject($news);
 				}
 			}
@@ -366,7 +366,7 @@ class tweet {
 			if ($result) {
 				foreach ($result as $page) {
 					query('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `id`=' . $page['id']);
-					$page = new ZenpageNews($page['titlelink']);
+					$page = new News($page['titlelink']);
 					self::tweetObject($page);
 				}
 			}

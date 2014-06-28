@@ -161,9 +161,9 @@ function checkParentLayouts($obj, $type) {
 				$parents = array_reverse($parents); //reverse so we can check the direct parent first.
 				foreach ($parents as $parent) {
 					if ($type === 'multiple_layouts_pages') {
-						$parentobj = new ZenpagePage($parent);
+						$parentobj = new Page($parent);
 					} else {
-						$parentobj = new ZenpageCategory($parent);
+						$parentobj = new Category($parent);
 					}
 					$parentlayouts = query_single_row('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `aux`=' . $parentobj->getID() . ' AND `type` = "' . $type . '"');
 					if ($parentlayouts && $parentlayouts['data']) {
@@ -281,7 +281,7 @@ function getLayoutSelector($obj, $type, $text, $prefix = '', $secondary = false)
 			$categories = $obj->getCategories();
 			if ($categories) {
 				foreach ($categories as $cat) {
-					$cat = new ZenpageCategory($cat['titlelink']);
+					$cat = new Category($cat['titlelink']);
 					$getlayout = getSelectedLayout($cat, 'multiple_layouts_news_categories');
 					if ($getlayout && $getlayout['data']) { //	in at least one news category with an alternate page
 						$defaulttext = gettext('inherited');

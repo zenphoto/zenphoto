@@ -296,7 +296,7 @@ function printNewsArticlesList($number) {
 		echo "<h3>Zenpage: <em>" . gettext('Articles') . "</em> <small>" . gettext("(Click on article title to include a link)") . "</small></h3>";
 		if (isset($_GET['category'])) {
 			$cat = sanitize($_GET['category']);
-			$catobj = new ZenpageCategory($cat);
+			$catobj = new Category($cat);
 			$items = $catobj->getArticles("", "all");
 			$newscount = count($catobj->getArticles(0, 'all'));
 		} else {
@@ -317,7 +317,7 @@ function printNewsArticlesList($number) {
 		$count = '';
 		$number = $startnews[$currentpage];
 		//category selector here later
-		printTinyZenpageCategorySelector($currentpage);
+		printTinyCategorySelector($currentpage);
 		if ($newscount != 0) {
 			printTinyPageNav($pagestotal, $currentpage, 'news');
 			echo "<ul class='zenpagearticles'>";
@@ -325,7 +325,7 @@ function printNewsArticlesList($number) {
 				if ($nr == $newscount) {
 					break;
 				}
-				$newsobj = new ZenpageNews($items[$nr]['titlelink']);
+				$newsobj = new News($items[$nr]['titlelink']);
 				$count++;
 				echo "<li>";
 				if ($_GET['zenpage'] == "articles") {
@@ -336,7 +336,7 @@ function printNewsArticlesList($number) {
 					$count = '';
 					foreach ($cats as $cat) {
 						$count++;
-						$catobj = new ZenpageCategory($cat['titlelink']);
+						$catobj = new Category($cat['titlelink']);
 						if ($count == 1) {
 							echo ' ';
 						} else {
@@ -496,16 +496,16 @@ function printAllNestedList() {
 		foreach ($items as $key => $item) {
 			switch ($mode) {
 				case 'pages':
-					$obj = new ZenpagePage($item['titlelink']);
+					$obj = new Page($item['titlelink']);
 					$itemcontent = truncate_string(getBare($obj->getContent()), 300);
-					$zenpagepage = _PAGES_ . '/' . $item['titlelink'];
+					$Page = _PAGES_ . '/' . $item['titlelink'];
 					$unpublished = unpublishedZenpageItemCheck($obj);
 					$counter = '';
 					break;
 				case 'categories':
-					$obj = new ZenpageCategory($item['titlelink']);
+					$obj = new Category($item['titlelink']);
 					$itemcontent = $obj->getTitle();
-					$zenpagepage = _CATEGORY_ . $item['titlelink'];
+					$Page = _CATEGORY_ . $item['titlelink'];
 					$unpublished = unpublishedZenpageItemCheck($obj);
 					$counter = ' (' . count($obj->getArticles()) . ') ';
 					break;
@@ -542,7 +542,7 @@ function printAllNestedList() {
 				$open[$indent] --;
 			}
 			echo "<li id='" . $itemid . "' class='itemborder'>";
-			echo "<a href=\"javascript:ZenpageDialog.insert('','" . $zenpagepage . "','','','" . $itemtitlelink . "','" . js_encode($itemtitle) . "','','','" . $mode . "','','','','');\" title='" . html_encode($itemcontent) . "'>" . html_encode($itemtitle) . $unpublished . $counter . "</a> <small><em>" . $obj->getDatetime() . "</em></small>";
+			echo "<a href=\"javascript:ZenpageDialog.insert('','" . $Page . "','','','" . $itemtitlelink . "','" . js_encode($itemtitle) . "','','','" . $mode . "','','','','');\" title='" . html_encode($itemcontent) . "'>" . html_encode($itemtitle) . $unpublished . $counter . "</a> <small><em>" . $obj->getDatetime() . "</em></small>";
 			if ($mode == 'pages') {
 				echo " <a href='zoom.php?pages=" . urlencode($itemtitlelink) . "' title='Zoom' class='colorbox' style='outline: none;'><img src='img/magnify.png' alt='' style='border: 0' /></a>";
 			}
@@ -573,25 +573,25 @@ function unpublishedZenpageItemCheck($page) {
 	$unpublishednote = '';
 	$protected = '';
 	switch ($class) {
-		case 'ZenpageNews':
-		case 'ZenpagePage':
+		case 'News':
+		case 'Page':
 			if ($page->getShow() === "0") {
 				$unpublishednote = "<span style='color: red; font-weight: bold'>*</span>";
 			}
 			switch ($class) {
-				case 'ZenpageNews':
+				case 'News':
 					if ($page->inProtectedCategory()) {
 						$protected = "<span style='color: red; font-weight: bold'>+</span>";
 					}
 					break;
-				case 'ZenpagePage':
+				case 'Page':
 					if ($page->isProtected()) {
 						$protected = "<span style='color: red; font-weight: bold'>+</span>";
 					}
 					break;
 			}
 			break;
-		case 'ZenpageCategory':
+		case 'Category':
 			if ($page->isProtected()) {
 				$protected = "<span style='color: red; font-weight: bold'>+</span>";
 			}
@@ -623,7 +623,7 @@ function setTinyZenpageLocale() {
  * Prints the dropdown menu for the category selector for the news articles list
  *
  */
-function printTinyZenpageCategorySelector($currentpage = '') {
+function printTinyCategorySelector($currentpage = '') {
 	global $_zp_zenpage;
 	$result = $_zp_zenpage->getAllCategories(false);
 	if (isset($_GET['category'])) {
@@ -640,7 +640,7 @@ function printTinyZenpageCategorySelector($currentpage = '') {
 			echo "<option $selected value='tinyzenpage.php?zenpage=articles&amp;page=" . $currentpage . "'>" . gettext("All categories") . "</option>\n";
 
 			foreach ($result as $cat) {
-				$catobj = new ZenpageCategory($cat['titlelink']);
+				$catobj = new Category($cat['titlelink']);
 				// check if there are articles in this category. If not don't list the category.
 				$count = count($catobj->getArticles(0, 'all'));
 				$count = " (" . $count . ")";

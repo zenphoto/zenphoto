@@ -8,7 +8,7 @@
  */
 define("OFFSET_PATH", 4);
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
-require_once("zenpage-admin-functions.php");
+require_once("admin-functions.php");
 require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/tag_suggest.php');
 
 if (is_AdminEditPage('page')) {
@@ -23,7 +23,7 @@ $reports = array();
 if (is_AdminEditPage('page')) {
 	$tab = 'pages';
 	if (isset($_GET['titlelink'])) {
-		$result = new ZenpagePage(urldecode(sanitize($_GET['titlelink'])));
+		$result = new Page(urldecode(sanitize($_GET['titlelink'])));
 	} else if (isset($_GET['update'])) {
 		XSRFdefender('update');
 		$result = updatePage($reports);
@@ -36,7 +36,7 @@ if (is_AdminEditPage('page')) {
 					}
 					$as = seoFriendly($as);
 					$result->copy($as);
-					$result = new ZenpagePage($as);
+					$result = new Page($as);
 					$_GET['titlelink'] = $as;
 					break;
 				case 'delete':
@@ -45,7 +45,7 @@ if (is_AdminEditPage('page')) {
 			}
 		}
 	} else {
-		$result = new ZenpagePage('');
+		$result = new Page('');
 		$result->setPermalink(1);
 		$result->setDateTime(date('Y-m-d H:i:s'));
 	}
@@ -65,7 +65,7 @@ if (is_AdminEditPage('page')) {
 if (is_AdminEditPage('newsarticle')) {
 	$tab = 'news';
 	if (isset($_GET['titlelink'])) {
-		$result = new ZenpageNews(urldecode(sanitize($_GET['titlelink'])));
+		$result = new News(urldecode(sanitize($_GET['titlelink'])));
 	} else if (isset($_GET['update'])) {
 		XSRFdefender('update');
 		$result = updateArticle($reports);
@@ -78,7 +78,7 @@ if (is_AdminEditPage('newsarticle')) {
 					}
 					$as = seoFriendly($as);
 					$result->copy($as);
-					$result = new ZenpageNews($as);
+					$result = new News($as);
 					$_GET['titlelink'] = $as;
 					break;
 				case 'delete':
@@ -87,7 +87,7 @@ if (is_AdminEditPage('newsarticle')) {
 			}
 		}
 	} else {
-		$result = new ZenpageNews('');
+		$result = new News('');
 		$result->setPermalink(1);
 		$result->setDateTime(date('Y-m-d H:i:s'));
 	}
@@ -111,12 +111,12 @@ if (is_AdminEditPage('newscategory')) {
 		updateCategory($reports, true);
 	}
 	if (isset($_GET['titlelink'])) {
-		$result = new ZenpageCategory(urldecode(sanitize($_GET['titlelink'])));
+		$result = new Category(urldecode(sanitize($_GET['titlelink'])));
 	} else if (isset($_GET['update'])) {
 		XSRFdefender('update');
 		$result = updateCategory($reports);
 	} else {
-		$result = new ZenpageCategory('');
+		$result = new Category('');
 		$result->setShow(1);
 	}
 }
@@ -303,7 +303,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 								XSRFToken('save');
 							} else {
 								?>
-								<form class="dirtylistening" onReset="setClean('form_zenpageitemedit');" method="post" name="update" id="form_zenpageitemedit" action="admin-edit.php?<?php echo $admintype; ?>&amp;update<?php echo $page; ?>">
+								<form class="dirtylistening" onReset="setClean('form_cmsItemEdit');" method="post" name="update" id="form_cmsItemEdit" action="admin-edit.php?<?php echo $admintype; ?>&amp;update<?php echo $page; ?>">
 									<?php
 									XSRFToken('update');
 								}
@@ -470,7 +470,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 														</p>
 														<?php
 													}
-													if (get_class($result) == 'ZenpagePage' || get_class($result) == 'ZenpageCategory') {
+													if (get_class($result) == 'Page' || get_class($result) == 'Category') {
 														$hint = $result->getPasswordHint('all');
 														$user = $result->getUser();
 														$x = $result->getPassword();
