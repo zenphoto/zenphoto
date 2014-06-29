@@ -291,7 +291,7 @@ function getImageType($imageobj) {
  * @return string
  */
 function printNewsArticlesList($number) {
-	global $_zp_zenpage, $_zp_current_zenpage_news, $host;
+	global $_zp_CMS, $_zp_current_zenpage_news, $host;
 	if (isset($_GET['zenpage']) && $_GET['zenpage'] == "articles") {
 		echo "<h3>Zenpage: <em>" . gettext('Articles') . "</em> <small>" . gettext("(Click on article title to include a link)") . "</small></h3>";
 		if (isset($_GET['category'])) {
@@ -300,8 +300,8 @@ function printNewsArticlesList($number) {
 			$items = $catobj->getArticles("", "all");
 			$newscount = count($catobj->getArticles(0, 'all'));
 		} else {
-			$items = $_zp_zenpage->getArticles("", "all");
-			$newscount = count($_zp_zenpage->getArticles(0, 'all'));
+			$items = $_zp_CMS->getArticles("", "all");
+			$newscount = count($_zp_CMS->getArticles(0, 'all'));
 		}
 		$news_per_page = $number;
 		if (isset($_GET['page'])) {
@@ -459,13 +459,13 @@ function printTinyPageNav($pagestotal = "", $currentpage = "", $mode = 'images')
  * @return string
  */
 function printZenpageItems() {
-	global $_zp_zenpage;
-	$pages = $_zp_zenpage->getPages(false);
+	global $_zp_CMS;
+	$pages = $_zp_CMS->getPages(false);
 	$pagenumber = count($pages);
-	$categories = $_zp_zenpage->getAllCategories(false);
+	$categories = $_zp_CMS->getAllCategories(false);
 	$catcount = count($categories);
 	echo "<option value='pages'>" . gettext("pages") . " (" . $pagenumber . ")</option>";
-	echo "<option value='articles'>" . gettext("articles") . " (" . count($_zp_zenpage->getArticles(0, 'all')) . ")</option>";
+	echo "<option value='articles'>" . gettext("articles") . " (" . count($_zp_CMS->getArticles(0, 'all')) . ")</option>";
 	echo "<option value='categories'>" . gettext("categories") . " (" . $catcount . ")</option>";
 }
 
@@ -475,16 +475,16 @@ function printZenpageItems() {
  * @return string
  */
 function printAllNestedList() {
-	global $_zp_zenpage, $host;
+	global $_zp_CMS, $host;
 	if (isset($_GET['zenpage']) && ($_GET['zenpage'] == "pages" || $_GET['zenpage'] == "categories")) {
 		$mode = sanitize($_GET['zenpage']);
 		switch ($mode) {
 			case 'pages':
-				$items = $_zp_zenpage->getPages(false);
+				$items = $_zp_CMS->getPages(false);
 				$listtitle = gettext('Pages');
 				break;
 			case 'categories':
-				$items = $_zp_zenpage->getAllCategories(false);
+				$items = $_zp_CMS->getAllCategories(false);
 				$listtitle = gettext('Categories');
 				break;
 		}
@@ -624,8 +624,8 @@ function setTinyZenpageLocale() {
  *
  */
 function printTinyCategorySelector($currentpage = '') {
-	global $_zp_zenpage;
-	$result = $_zp_zenpage->getAllCategories(false);
+	global $_zp_CMS;
+	$result = $_zp_CMS->getAllCategories(false);
 	if (isset($_GET['category'])) {
 		$selected = '';
 		$category = sanitize($_GET['category']);

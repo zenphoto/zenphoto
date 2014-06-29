@@ -65,7 +65,7 @@ if (class_exists('favorites')) {
 				</div>
 			</div>
 			<div id="credit">
-				<?php printZenPhoto20(); ?>
+				<?php printSoftwareLink(); ?>
 				<?php @call_user_func('printUserLogin_out', " | "); ?>
 			</div>
 			<?php

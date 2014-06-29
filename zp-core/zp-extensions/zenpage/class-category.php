@@ -210,10 +210,10 @@ class Category extends CMSRoot {
 	 * @return array
 	 */
 	function getSubCategories($visible = true, $sorttype = NULL, $sortdirection = NULL) {
-		global $_zp_zenpage;
+		global $_zp_CMS;
 		$subcategories = array();
 		$sortorder = $this->getSortOrder();
-		foreach ($_zp_zenpage->getAllCategories($visible, $sorttype, $sortdirection) as $cat) {
+		foreach ($_zp_CMS->getAllCategories($visible, $sorttype, $sortdirection) as $cat) {
 			$catobj = new Category($cat['titlelink']);
 			if ($catobj->getParentID() == $this->getID() && $catobj->getSortOrder() != $sortorder) { // exclude the category itself!
 				array_push($subcategories, $catobj->getTitlelink());
@@ -255,8 +255,8 @@ class Category extends CMSRoot {
 	 * @return array
 	 */
 	function getParents(&$parentid = '', $initparents = true) {
-		global $parentcats, $_zp_zenpage;
-		$allitems = $_zp_zenpage->getAllCategories(false);
+		global $parentcats, $_zp_CMS;
+		$allitems = $_zp_CMS->getAllCategories(false);
 		if ($initparents) {
 			$parentcats = array();
 		}
@@ -370,8 +370,8 @@ class Category extends CMSRoot {
 	 * @return array
 	 */
 	function getArticles($articles_per_page = 0, $published = NULL, $ignorepagination = false, $sortorder = NULL, $sortdirection = NULL, $sticky = NULL) {
-		global $_zp_zenpage;
-		return $_zp_zenpage->getArticles($articles_per_page, $published, $ignorepagination, $sortorder, $sortdirection, $sticky, $this);
+		global $_zp_CMS;
+		return $_zp_CMS->getArticles($articles_per_page, $published, $ignorepagination, $sortorder, $sortdirection, $sticky, $this);
 	}
 
 	/**
@@ -394,9 +394,9 @@ class Category extends CMSRoot {
 	 * @return int
 	 */
 	function getIndex($sortorder, $sortdirection, $sticky) {
-		global $_zp_zenpage, $_zp_current_zenpage_news;
+		global $_zp_CMS, $_zp_current_zenpage_news;
 		if ($this->index == NULL) {
-			$articles = $_zp_zenpage->getArticles(0, NULL, true, $sortorder, $sortdirection, $sticky);
+			$articles = $_zp_CMS->getArticles(0, NULL, true, $sortorder, $sortdirection, $sticky);
 			for ($i = 0; $i < count($articles); $i++) {
 				$article = $articles[$i];
 				if ($this->getTitlelink() == $article['titlelink']) {
@@ -414,7 +414,7 @@ class Category extends CMSRoot {
 	 * @return object
 	 */
 	function getPrevArticle($sortorder = 'date', $sortdirection = 'desc', $sticky = true) {
-		global $_zp_zenpage, $_zp_current_zenpage_news;
+		global $_zp_CMS, $_zp_current_zenpage_news;
 		$index = $this->getIndex($sortorder, $sortdirection, $sticky);
 		$article = $this->getArticle($index - 1);
 		return $article;
@@ -426,7 +426,7 @@ class Category extends CMSRoot {
 	 * @return object
 	 */
 	function getNextArticle($sortorder = 'date', $sortdirection = 'desc', $sticky = true) {
-		global $_zp_zenpage, $_zp_current_zenpage_news;
+		global $_zp_CMS, $_zp_current_zenpage_news;
 		$index = $this->getIndex($sortorder, $sortdirection, $sticky);
 		$article = $this->getArticle($index + 1);
 		return $article;
@@ -440,7 +440,7 @@ class Category extends CMSRoot {
 	 * @return string
 	 */
 	function getLink($page = NULL) {
-		global $_zp_zenpage;
+		global $_zp_CMS;
 		if ($page > 1) {
 			$pager = $page . '/';
 			$page = '&p=' . $page;

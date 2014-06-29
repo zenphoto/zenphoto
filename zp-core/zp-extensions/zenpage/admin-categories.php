@@ -35,7 +35,7 @@ if (isset($_GET['delete'])) {
 }
 if (isset($_GET['hitcounter'])) {
 	XSRFdefender('hitcounter');
-	$x = $_zp_zenpage->getCategory(sanitize_numeric($_GET['id']));
+	$x = $_zp_CMS->getCategory(sanitize_numeric($_GET['id']));
 	$obj = new Category($x['titlelink']);
 	$obj->set('hitcounter', 0);
 	$obj->save();
@@ -51,7 +51,7 @@ if (isset($_GET['save'])) {
 	updateCategory($reports, true);
 }
 if (isset($_GET['id'])) {
-	$x = $_zp_zenpage->getCategory(sanitize_numeric($_GET['id']));
+	$x = $_zp_CMS->getCategory(sanitize_numeric($_GET['id']));
 	$result = new Category($x['titlelink']);
 } else if (isset($_GET['update'])) {
 	XSRFdefender('update_categories');

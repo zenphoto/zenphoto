@@ -135,8 +135,8 @@ datepickerJS();
 					} else {
 						$catobj = NULL;
 					}
-					$resultU = $_zp_zenpage->getArticles(0, 'unpublished', false, $sortorder, $direction, false, $catobj);
-					$result = $_zp_zenpage->getArticles(0, $published, false, $sortorder, $direction, false, $catobj);
+					$resultU = $_zp_CMS->getArticles(0, 'unpublished', false, $sortorder, $direction, false, $catobj);
+					$result = $_zp_CMS->getArticles(0, $published, false, $sortorder, $direction, false, $catobj);
 					foreach ($result as $key => $article) {
 						$article = new News($article['titlelink']);
 						if (!$article->isMyItem(ZENPAGE_NEWS_RIGHTS)) {

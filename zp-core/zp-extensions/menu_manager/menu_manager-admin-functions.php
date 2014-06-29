@@ -793,11 +793,11 @@ function printAlbumsSelector($current) {
  * @return string
  */
 function printPagesSelector($current) {
-	global $_zp_gallery, $_zp_zenpage;
+	global $_zp_gallery, $_zp_CMS;
 	?>
 	<select id="pageselector" name="pageselect">
 		<?php
-		$pages = $_zp_zenpage->getPages(false);
+		$pages = $_zp_CMS->getPages(false);
 		foreach ($pages as $key => $page) {
 			if ($page['titlelink'] == $current) {
 				$selected = ' selected= "selected
@@ -830,11 +830,11 @@ function printPagesSelector($current) {
  * @return string
  */
 function printNewsCategorySelector($current) {
-	global $_zp_gallery, $_zp_zenpage;
+	global $_zp_gallery, $_zp_CMS;
 	?>
 	<select id="categoryselector" name="categoryselect">
 		<?php
-		$cats = $_zp_zenpage->getAllCategories(false);
+		$cats = $_zp_CMS->getAllCategories(false);
 		foreach ($cats as $cat) {
 			if ($cat['titlelink'] == $current) {
 				$selected = ' selected="selected"';

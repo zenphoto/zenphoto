@@ -403,7 +403,7 @@ class htmlmetatags {
 	 * @param array $array the array of the tags or categories to list
 	 */
 	private static function getMetaKeywords() {
-		global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_current_category, $_zp_gallery_page, $_zp_zenpage;
+		global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_current_category, $_zp_gallery_page, $_zp_CMS;
 		$words = '';
 		if (is_object($_zp_current_album) OR is_object($_zp_current_image)) {
 			$tags = getTags();
@@ -422,7 +422,7 @@ class htmlmetatags {
 				$tags = getTags();
 				$words = htmlmetatags::getMetaAlbumAndImageTags($tags, "gallery");
 			} else if (is_News()) {
-				$tags = $_zp_zenpage->getAllCategories();
+				$tags = $_zp_CMS->getAllCategories();
 				$words .= htmlmetatags::getMetaAlbumAndImageTags($tags, "zenpage");
 			} else if (is_NewsCategory()) {
 				$words .= $_zp_current_category->getTitle();

@@ -667,7 +667,7 @@ function getAllAccessibleAlbums($obj, &$albumlist, $scan) {
  * @return int
  */
 function getTotalPages($_oneImagePage = false) {
-	global $_zp_gallery, $_zp_current_album, $_firstPageImages, $_zp_zenpage, $_zp_current_category;
+	global $_zp_gallery, $_zp_current_album, $_firstPageImages, $_zp_CMS, $_zp_current_category;
 	if (in_context(ZP_ALBUM | ZP_SEARCH)) {
 		$albums_per_page = max(1, getOption('albums_per_page'));
 		$pageCount = (int) ceil(getNumAlbums() / $albums_per_page);
@@ -689,13 +689,13 @@ function getTotalPages($_oneImagePage = false) {
 			return NULL;
 		}
 		return NULL;
-	} else if (isset($_zp_zenpage)) {
+	} else if (isset($_zp_CMS)) {
 		if (in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
 			$cat = $_zp_current_category;
 		} else {
 			$cat = NULL;
 		}
-		return (int) ceil(count($_zp_zenpage->getArticles(0, NULL, true, NULL, NULL, NULL, $cat)) / ZP_ARTICLES_PER_PAGE);
+		return (int) ceil(count($_zp_CMS->getArticles(0, NULL, true, NULL, NULL, NULL, $cat)) / ZP_ARTICLES_PER_PAGE);
 	}
 }
 
@@ -4365,7 +4365,7 @@ function printCodeblock($number = 1, $what = NULL) {
  * @return boolean will be true if all is well, false if a 404 error should occur
  */
 function checkPageValidity($request, $gallery_page, $page) {
-	global $_zp_gallery, $_firstPageImages, $_oneImagePage, $_zp_zenpage, $_zp_current_category;
+	global $_zp_gallery, $_firstPageImages, $_oneImagePage, $_zp_CMS, $_zp_current_category;
 	$count = NULL;
 	switch ($gallery_page) {
 		case 'album.php':
@@ -4393,7 +4393,7 @@ function checkPageValidity($request, $gallery_page, $page) {
 			if (in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
 				$count = count($_zp_current_category->getArticles());
 			} else {
-				$count = count($_zp_zenpage->getArticles());
+				$count = count($_zp_CMS->getArticles());
 			}
 			$count = (int) ceil($count / ZP_ARTICLES_PER_PAGE);
 			break;

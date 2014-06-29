@@ -160,8 +160,8 @@ class Page extends CMSItems {
 	 * @return array
 	 */
 	function getParents(&$parentid = '', $initparents = true) {
-		global $parentpages, $_zp_zenpage;
-		$allitems = $_zp_zenpage->getPages();
+		global $parentpages, $_zp_CMS;
+		$allitems = $_zp_CMS->getPages();
 		if ($initparents) {
 			$parentpages = array();
 		}
@@ -193,10 +193,10 @@ class Page extends CMSItems {
 	 * @return array
 	 */
 	function getPages($published = NULL, $toplevel = false, $number = NULL, $sorttype = NULL, $sortdirection = NULL) {
-		global $_zp_zenpage;
+		global $_zp_CMS;
 		$subpages = array();
 		$sortorder = $this->getSortOrder();
-		$pages = $_zp_zenpage->getPages($published, false, $number, $sorttype, $sortdirection, $this);
+		$pages = $_zp_CMS->getPages($published, false, $number, $sorttype, $sortdirection, $this);
 		foreach ($pages as $page) {
 			if ($page['parentid'] == $this->getID() && $page['sort_order'] != $sortorder) { // exclude the page itself!
 				array_push($subpages, $page);

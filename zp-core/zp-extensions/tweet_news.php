@@ -70,7 +70,7 @@ class tweet {
 	 * supported options
 	 */
 	function getOptionsSupported() {
-		global $_zp_zenpage;
+		global $_zp_CMS;
 		$options = array(gettext('Consumer key')				 => array('key'		 => 'tweet_news_consumer', 'type'	 => OPTION_TYPE_TEXTBOX,
 										'order'	 => 2,
 										'desc'	 => gettext('This <code>tweet_news</code> app for this site needs a <em>consumer key</em>, a <em>consumer key secret</em>, an <em>access token</em>, and an <em>access token secret</em>.') . '<p class="notebox">' . gettext('Get these from <a href="http://dev.twitter.com/">Twitter developers</a>') . '</p>'),
@@ -112,9 +112,9 @@ class tweet {
 							'selections' => generateLanguageList(),
 							'desc'			 => gettext('Select the language for the Tweet message.'));
 		}
-		if (getOption('tweet_news_news') && is_object($_zp_zenpage)) {
+		if (getOption('tweet_news_news') && is_object($_zp_CMS)) {
 			$catlist = getSerializedArray(getOption('tweet_news_categories'));
-			$news_categories = $_zp_zenpage->getAllCategories(false);
+			$news_categories = $_zp_CMS->getAllCategories(false);
 			$catlist = array(gettext('*not categorized*') => 'tweet_news_categories_none');
 			foreach ($news_categories as $category) {
 				$option = 'tweet_news_categories_' . $category['titlelink'];

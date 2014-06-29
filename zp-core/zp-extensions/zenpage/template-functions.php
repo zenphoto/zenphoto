@@ -131,10 +131,10 @@ function getAuthor($fullname = false) {
  * @return array
  */
 function getLatestNews($number = 2, $category = '', $sticky = true, $sortdirection = 'desc') {
-	global $_zp_zenpage, $_zp_current_zenpage_news;
+	global $_zp_CMS, $_zp_current_zenpage_news;
 	$sortdir = $sortdirection && strtolower($sortdirection) != 'asc';
 	if (empty($category)) {
-		$latest = $_zp_zenpage->getArticles($number, NULL, true, NULL, $sortdir, $sticky, NULL);
+		$latest = $_zp_CMS->getArticles($number, NULL, true, NULL, $sortdir, $sticky, NULL);
 	} else {
 		$catobj = new Category($category);
 		$latest = $catobj->getArticles($number, NULL, true, NULL, $sortdir, $sticky);
@@ -216,13 +216,13 @@ function printLatestNews($number = 5, $category = '', $showdate = true, $showcon
  * @return int
  */
 function getNumNews($total = false) {
-	global $_zp_zenpage, $_zp_current_zenpage_news, $_zp_current_zenpage_news_restore, $_zp_zenpage_articles, $_zp_gallery, $_zp_current_search;
+	global $_zp_CMS, $_zp_current_zenpage_news, $_zp_current_zenpage_news_restore, $_zp_CMS_articles, $_zp_gallery, $_zp_current_search;
 	if ($total) {
-		return count($_zp_zenpage->getArticles(0));
+		return count($_zp_CMS->getArticles(0));
 	} else if (in_context(ZP_SEARCH)) {
 		return count($_zp_current_search->getArticles());
 	} else {
-		return count($_zp_zenpage->getArticles(0));
+		return count($_zp_CMS->getArticles(0));
 	}
 }
 
@@ -234,26 +234,26 @@ function getNumNews($total = false) {
  * @return bool
  */
 function next_news() {
-	global $_zp_zenpage, $_zp_current_zenpage_news, $_zp_current_zenpage_news_restore, $_zp_zenpage_articles, $_zp_current_category, $_zp_gallery, $_zp_current_search;
+	global $_zp_CMS, $_zp_current_zenpage_news, $_zp_current_zenpage_news_restore, $_zp_CMS_articles, $_zp_current_category, $_zp_gallery, $_zp_current_search;
 
-	if (is_null($_zp_zenpage_articles)) {
+	if (is_null($_zp_CMS_articles)) {
 		if (in_context(ZP_SEARCH)) {
 			//note: we do not know how to paginate the search page, so for now we will return all news articles
-			$_zp_zenpage_articles = $_zp_current_search->getArticles(ZP_ARTICLES_PER_PAGE, NULL, true, NULL, NULL);
+			$_zp_CMS_articles = $_zp_current_search->getArticles(ZP_ARTICLES_PER_PAGE, NULL, true, NULL, NULL);
 		} else {
 			if (in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
-				$_zp_zenpage_articles = $_zp_current_category->getArticles(ZP_ARTICLES_PER_PAGE, NULL, false, NULL, NULL);
+				$_zp_CMS_articles = $_zp_current_category->getArticles(ZP_ARTICLES_PER_PAGE, NULL, false, NULL, NULL);
 			} else {
-				$_zp_zenpage_articles = $_zp_zenpage->getArticles(ZP_ARTICLES_PER_PAGE, NULL, false, NULL, NULL);
+				$_zp_CMS_articles = $_zp_CMS->getArticles(ZP_ARTICLES_PER_PAGE, NULL, false, NULL, NULL);
 			}
-			if (empty($_zp_zenpage_articles)) {
+			if (empty($_zp_CMS_articles)) {
 				return NULL;
 			}
 		}
 		$_zp_current_zenpage_news_restore = $_zp_current_zenpage_news;
 	}
-	if (!empty($_zp_zenpage_articles)) {
-		$news = array_shift($_zp_zenpage_articles);
+	if (!empty($_zp_CMS_articles)) {
+		$news = array_shift($_zp_CMS_articles);
 		if (is_array($news)) {
 			add_context(ZP_ZENPAGE_NEWS_ARTICLE);
 			$_zp_current_zenpage_news = new News($news['titlelink']);
@@ -261,7 +261,7 @@ function next_news() {
 		}
 	}
 
-	$_zp_zenpage_articles = NULL;
+	$_zp_CMS_articles = NULL;
 	$_zp_current_zenpage_news = $_zp_current_zenpage_news_restore;
 	rem_context(ZP_ZENPAGE_NEWS_ARTICLE);
 	return false;
@@ -666,7 +666,7 @@ function printNewsDate() {
  * @param string $order 'desc' (default) or 'asc' for descending or ascending
  */
 function printNewsArchive($class = 'archive', $yearclass = 'year', $monthclass = 'month', $activeclass = "archive-active", $yearsonly = false, $order = 'desc') {
-	global $_zp_zenpage;
+	global $_zp_CMS;
 	if (!empty($class)) {
 		$class = "class=\"$class\"";
 	}
@@ -679,7 +679,7 @@ function printNewsArchive($class = 'archive', $yearclass = 'year', $monthclass =
 	if (!empty($activeclass)) {
 		$activeclass = "class=\"$activeclass\"";
 	}
-	$datecount = $_zp_zenpage->getAllArticleDates($yearsonly, $order);
+	$datecount = $_zp_CMS->getAllArticleDates($yearsonly, $order);
 	$lastyear = "";
 	$nr = "";
 	echo "\n<ul $class>\n";
@@ -797,7 +797,7 @@ function printAllNewsCategories($newsindex = 'All news', $counter = TRUE, $css_i
  * @return string
  */
 function getNewsCategoryURL($cat = NULL) {
-	global $_zp_zenpage, $_zp_current_category;
+	global $_zp_CMS, $_zp_current_category;
 	if (empty($cat)) {
 		$obj = $_zp_current_category->getTitlelink();
 	} else {
@@ -911,7 +911,7 @@ function getPrevNewsPageURL() {
  * @return string
  */
 function printPrevNewsPageLink($prev = '« prev', $class = 'disabledlink') {
-	global $_zp_zenpage, $_zp_page;
+	global $_zp_CMS, $_zp_page;
 	if ($link = getPrevNewsPageURL()) {
 		echo "<a href='" . html_encode($link) . "' title='" . gettext("Prev page") . " " . ($_zp_page - 1) . "' >" . html_encode($prev) . "</a>\n";
 	} else {
@@ -925,8 +925,8 @@ function printPrevNewsPageLink($prev = '« prev', $class = 'disabledlink') {
  * @return string
  */
 function getNextNewsPageURL() {
-	global $_zp_zenpage, $_zp_page;
-	$total_pages = ceil($_zp_zenpage->getTotalArticles() / ZP_ARTICLES_PER_PAGE);
+	global $_zp_CMS, $_zp_page;
+	$total_pages = ceil($_zp_CMS->getTotalArticles() / ZP_ARTICLES_PER_PAGE);
 	if ($_zp_page < $total_pages) {
 		return getNewsPathNav($_zp_page + 1);
 	} else {
@@ -975,8 +975,8 @@ function printNewsPageList($class = 'pagelist') {
  * @return string
  */
 function printNewsPageListWithNav($next, $prev, $nextprev = true, $class = 'pagelist', $firstlast = true, $navlen = 9) {
-	global $_zp_zenpage, $_zp_page;
-	$total = ceil($_zp_zenpage->getTotalArticles() / ZP_ARTICLES_PER_PAGE);
+	global $_zp_CMS, $_zp_page;
+	$total = ceil($_zp_CMS->getTotalArticles() / ZP_ARTICLES_PER_PAGE);
 	if ($total > 1) {
 		if ($navlen == 0)
 			$navlen = $total;
@@ -1043,8 +1043,8 @@ function printNewsPageListWithNav($next, $prev, $nextprev = true, $class = 'page
 }
 
 function getTotalNewsPages() {
-	global $_zp_zenpage;
-	return ceil($_zp_zenpage->getTotalArticles() / ZP_ARTICLES_PER_PAGE);
+	global $_zp_CMS;
+	return ceil($_zp_CMS->getTotalArticles() / ZP_ARTICLES_PER_PAGE);
 }
 
 /* * ********************************************************************* */
@@ -1064,7 +1064,7 @@ function getTotalNewsPages() {
  * @return mixed
  */
 function getNextPrevNews($option = '', $sortorder = 'date', $sortdirection = 'desc') {
-	global $_zp_zenpage, $_zp_current_zenpage_news;
+	global $_zp_CMS, $_zp_current_zenpage_news;
 
 	$sortdir = $sortdirection && strtolower($sortdirection) != 'asc';
 	if (!empty($option)) {
@@ -1166,13 +1166,13 @@ function printPrevNewsLink($prev = "« ", $sortorder = 'date', $sortdirection = 
  * @return array
  */
 function getZenpageStatistic($number = 10, $option = "all", $mode = "popular", $sortdirection = 'desc') {
-	global $_zp_zenpage, $_zp_current_zenpage_news, $_zp_current_zenpage_pages;
+	global $_zp_CMS, $_zp_current_zenpage_news, $_zp_current_zenpage_pages;
 	$sortdir = $sortdirection && strtolower($sortdirection) != 'asc';
 	$statsarticles = array();
 	$statscats = array();
 	$statspages = array();
 	if ($option == "all" || $option == "news") {
-		$articles = $_zp_zenpage->getArticles($number, NULL, true, $mode, $sortdir, false);
+		$articles = $_zp_CMS->getArticles($number, NULL, true, $mode, $sortdir, false);
 		$counter = "";
 		$statsarticles = array();
 		foreach ($articles as $article) {
@@ -1193,7 +1193,7 @@ function getZenpageStatistic($number = 10, $option = "all", $mode = "popular", $
 		$stats = $statsarticles;
 	}
 	if (($option == "all" || $option == "categories") && $mode != "mostrated" && $mode != "toprated") {
-		$categories = $_zp_zenpage->getAllCategories(true, $mode, $sortdir);
+		$categories = $_zp_CMS->getAllCategories(true, $mode, $sortdir);
 		$counter = "";
 		$statscats = array();
 		foreach ($categories as $cat) {
@@ -1213,7 +1213,7 @@ function getZenpageStatistic($number = 10, $option = "all", $mode = "popular", $
 		$stats = $statscats;
 	}
 	if ($option == "all" || $option == "pages") {
-		$pages = $_zp_zenpage->getPages(NULL, false, $number, $mode, $sortdir);
+		$pages = $_zp_CMS->getPages(NULL, false, $number, $mode, $sortdir);
 		$counter = "";
 		$statspages = array();
 		foreach ($pages as $page) {
@@ -1403,7 +1403,7 @@ function printTopRatedItems($number = 10, $option = "all", $showstats = true, $s
  * @return string
  */
 function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_id = NULL, $css_class_topactive = NULL, $css_class = NULL, $css_class_active = NULL, $indexname = NULL, $showsubs = 0, $startlist = true, $limit = NULL) {
-	global $_zp_zenpage, $_zp_gallery_page, $_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_current_category;
+	global $_zp_CMS, $_zp_gallery_page, $_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_current_category;
 	if (is_null($limit)) {
 		$limit = MENU_TRUNCATE_STRING;
 	}
@@ -1423,7 +1423,7 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 		$showsubs = 9999999999;
 	switch ($mode) {
 		case 'pages':
-			$items = $_zp_zenpage->getPages();
+			$items = $_zp_CMS->getPages();
 			$currentitem_id = getPageID();
 			if (is_object($_zp_current_zenpage_page)) {
 				$currentitem_parentid = $_zp_current_zenpage_page->getParentID();
@@ -1434,7 +1434,7 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 			break;
 		case 'categories':
 		case 'allcategories':
-			$items = $_zp_zenpage->getAllCategories();
+			$items = $_zp_CMS->getAllCategories();
 			if (is_object($_zp_current_category) && $mode == 'categories') {
 				$currentitem_sortorder = $_zp_current_category->getSortOrder();
 				$currentitem_id = $_zp_current_category->getID();
@@ -1486,7 +1486,7 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 					} else {
 						save_context();
 						rem_context(ZP_ZENPAGE_NEWS_DATE);
-						$totalcount = count($_zp_zenpage->getArticles(0));
+						$totalcount = count($_zp_CMS->getArticles(0));
 						restore_context();
 					}
 					echo ' <span style="white-space:nowrap;"><small>(' . sprintf(ngettext('%u article', '%u articles', $totalcount), $totalcount) . ')</small></span>';
@@ -1677,7 +1677,7 @@ function printZenpageItemsBreadcrumb($before = NULL, $after = NULL) {
 /* * ********************************************* */
 /* Pages functions
   /*********************************************** */
-$_zp_zenpage_pagelist = NULL;
+$_zp_CMS_pagelist = NULL;
 
 /**
  * Returns a count of the pages
@@ -1691,12 +1691,12 @@ $_zp_zenpage_pagelist = NULL;
  * @return int
  */
 function getNumPages($total = false) {
-	global $_zp_zenpage, $_zp_zenpage_pagelist, $_zp_current_search, $_zp_current_zenpage_page;
+	global $_zp_CMS, $_zp_CMS_pagelist, $_zp_current_search, $_zp_current_zenpage_page;
 	$addquery = '';
 	if (!$total) {
 		if (in_context(ZP_SEARCH)) {
-			$_zp_zenpage_pagelist = $_zp_current_search->getPages();
-			return count($_zp_zenpage_pagelist);
+			$_zp_CMS_pagelist = $_zp_current_search->getPages();
+			return count($_zp_CMS_pagelist);
 		} else if (in_context(ZP_ZENPAGE_PAGE)) {
 			if (!zp_loggedin(ADMIN_RIGHTS | ZENPAGE_PAGES_RIGHTS)) {
 				$addquery = ' AND `show` = 1';
@@ -1712,11 +1712,11 @@ function getNumPages($total = false) {
 
 /**
  * Returns pages from the current page object/search/or parent pages based on context
- * Updates $_zp_zenpage_curent_page and returns true if there is another page to be delivered
+ * Updates $_zp_CMS_curent_page and returns true if there is another page to be delivered
  * @return boolean
  */
 function next_page() {
-	global $_zp_zenpage, $_zp_next_pagelist, $_zp_current_search, $_zp_current_zenpage_page, $_zp_current_page_restore;
+	global $_zp_CMS, $_zp_next_pagelist, $_zp_current_search, $_zp_current_zenpage_page, $_zp_current_page_restore;
 
 	if (is_null($_zp_next_pagelist)) {
 		if (in_context(ZP_SEARCH)) {
@@ -1726,7 +1726,7 @@ function next_page() {
 				$_zp_next_pagelist = $_zp_current_zenpage_page->getPages(NULL, false, NULL, NULL, NULL);
 			}
 		} else {
-			$_zp_next_pagelist = $_zp_zenpage->getPages(NULL, true, NULL, NULL, NULL);
+			$_zp_next_pagelist = $_zp_CMS->getPages(NULL, true, NULL, NULL, NULL);
 		}
 		save_context();
 		add_context(ZP_ZENPAGE_PAGE);
@@ -2023,7 +2023,7 @@ function getPageSortorder() {
  * @return string
  */
 function getPageURL($titlelink = '') {
-	global $_zp_zenpage, $_zp_current_zenpage_page;
+	global $_zp_CMS, $_zp_current_zenpage_page;
 	if (empty($titlelink)) {
 		$obj = $_zp_current_zenpage_page;
 	} else {

@@ -125,7 +125,6 @@ class cacheManager {
 	 * supported options
 	 */
 	function getOptionsSupported() {
-		global $_zp_zenpage;
 		$options = array(gettext('Image caching sizes') => array('key'		 => 'cropImage_list', 'type'	 => OPTION_TYPE_CUSTOM,
 										'order'	 => 1,
 										'desc'	 => '<p>' .

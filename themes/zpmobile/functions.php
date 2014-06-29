@@ -53,7 +53,7 @@ function getPagesLink() {
  * Prints the image/subalbum count for the album loop
  */
 function jqm_printMainHeaderNav() {
-	global $_zp_gallery_page, $_zp_zenpage, $_zp_current_album, $_zp_themeroot;
+	global $_zp_gallery_page, $_zp_current_album, $_zp_themeroot;
 	?>
 	<div data-role="header" data-position="inline" data-theme="b">
 		<h1><?php printGalleryTitle(); ?></h1>

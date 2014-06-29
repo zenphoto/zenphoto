@@ -165,11 +165,11 @@ class News extends CMSItems {
 	function categoryIsVisible() {
 		if (zp_loggedin(ALL_NEWS_RIGHTS))
 			return true;
-		global $_zp_zenpage;
+		global $_zp_CMS;
 		$categories = $this->getCategories(false);
 		if (count($categories) > 0) {
 			foreach ($categories as $cat) {
-				if ($_zp_zenpage->visibleCategory($cat)) {
+				if ($_zp_CMS->visibleCategory($cat)) {
 					return true;
 				}
 			}
@@ -305,9 +305,9 @@ class News extends CMSItems {
 	 * @return int
 	 */
 	function getIndex($sortorder, $sortdirection, $sticky) {
-		global $_zp_zenpage, $_zp_current_zenpage_news;
+		global $_zp_CMS, $_zp_current_zenpage_news;
 		if ($this->index == NULL) {
-			$articles = $_zp_zenpage->getArticles(0, NULL, true, $sortorder, $sortdirection, $sticky);
+			$articles = $_zp_CMS->getArticles(0, NULL, true, $sortorder, $sortdirection, $sticky);
 			for ($i = 0; $i < count($articles); $i++) {
 				$article = $articles[$i];
 				if ($this->getTitlelink() == $article['titlelink']) {
@@ -328,9 +328,9 @@ class News extends CMSItems {
 	 * @return object
 	 */
 	function getPrevArticle($sortorder = 'date', $sortdirection = false, $sticky = true) {
-		global $_zp_zenpage, $_zp_current_zenpage_news;
+		global $_zp_CMS, $_zp_current_zenpage_news;
 		$index = $this->getIndex($sortorder, $sortdirection, $sticky);
-		$article = $_zp_zenpage->getArticle($index - 1);
+		$article = $_zp_CMS->getArticle($index - 1);
 		return $article;
 	}
 
@@ -343,9 +343,9 @@ class News extends CMSItems {
 	 * @return object
 	 */
 	function getNextArticle($sortorder = 'date', $sortdirection = false, $sticky = true) {
-		global $_zp_zenpage, $_zp_current_zenpage_news;
+		global $_zp_CMS, $_zp_current_zenpage_news;
 		$index = $this->getIndex($sortorder, $sortdirection, $sticky);
-		$article = $_zp_zenpage->getArticle($index + 1);
+		$article = $_zp_CMS->getArticle($index + 1);
 		return $article;
 	}
 

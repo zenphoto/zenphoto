@@ -94,7 +94,7 @@ require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/clas
 require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/class-page.php');
 require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/class-category.php');
 
-$_zp_zenpage = new CMS();
+$_zp_CMS = new CMS();
 
 class cmsFilters {
 
@@ -188,7 +188,7 @@ class cmsFilters {
 	}
 
 	static function switcher_setup($ignore) {
-		global $_zp_zenpage;
+		global $_zp_CMS;
 		if (class_exists('themeSwitcher') && themeSwitcher::active()) {
 			if (isset($_GET['cmsSwitch'])) {
 				setOption('themeSwitcher_zenpage_switch', $cmsSwitch = (int) ($_GET['cmsSwitch'] == 'true'));
@@ -200,7 +200,7 @@ class cmsFilters {
 		if (extensionEnabled('zenpage')) {
 			require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/template-functions.php');
 		} else {
-			$_zp_zenpage = NULL;
+			$_zp_CMS = NULL;
 		}
 		return $ignore;
 	}

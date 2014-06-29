@@ -51,10 +51,10 @@ class galleryArticles {
 	 * supported options
 	 */
 	function getOptionsSupported() {
-		global $_zp_zenpage;
-		if ($_zp_zenpage) {
+		global $_zp_CMS;
+		if ($_zp_CMS) {
 			$categories = array();
-			$list = $_zp_zenpage->getAllCategories();
+			$list = $_zp_CMS->getAllCategories();
 			foreach ($list as $cat) {
 				$categories[get_language_string($cat['title'])] = $cat['titlelink'];
 			}
@@ -173,7 +173,7 @@ class galleryArticles {
 	 * @param object $obj
 	 */
 	private static function publishArticle($obj, $override = NULL) {
-		global $_zp_zenpage;
+		global $_zp_CMS;
 		switch ($type = $obj->table) {
 			case 'albums':
 				$text = sprintf(get_language_string(getOption('galleryArticles_album_text')), $obj->getTitle());
@@ -205,7 +205,7 @@ class galleryArticles {
 		} else {
 			$cat = getOption('galleryArticles_category');
 			if (getOption('galleryArticles_albumCategory')) {
-				$catlist = $_zp_zenpage->getAllCategories();
+				$catlist = $_zp_CMS->getAllCategories();
 				foreach ($catlist as $category) {
 					if ($category['titlelink'] == $folder) {
 						$cat = $category['titlelink'];

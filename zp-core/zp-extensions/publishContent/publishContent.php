@@ -473,7 +473,7 @@ echo '</head>';
 				<?php
 				if (class_exists('CMS')) {
 					$visible = $report == 'categories';
-					$items = $_zp_zenpage->getAllCategories(false);
+					$items = $_zp_CMS->getAllCategories(false);
 					$output = '';
 					$c = 0;
 					foreach ($items as $key => $item) {
@@ -532,7 +532,7 @@ echo '</head>';
 					<br class="clearall" />
 					<?php
 					$visible = $report == 'news';
-					$items = $_zp_zenpage->getArticles(0, false);
+					$items = $_zp_CMS->getArticles(0, false);
 					$output = '';
 					$c = 0;
 					foreach ($items as $key => $item) {
@@ -588,7 +588,7 @@ echo '</head>';
 					</fieldset>
 					<?php
 					$visible = $report == 'pages';
-					$items = $_zp_zenpage->getPages(false);
+					$items = $_zp_CMS->getPages(false);
 					$output = '';
 					$c = 0;
 					foreach ($items as $key => $item) {

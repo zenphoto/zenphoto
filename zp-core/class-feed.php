@@ -314,7 +314,7 @@ class feed {
 	 * @return array
 	 */
 	public function getitems() {
-		global $_zp_zenpage;
+		global $_zp_CMS;
 		switch ($this->feedtype) {
 			case 'gallery':
 				if ($this->mode == "albums") {
@@ -347,7 +347,7 @@ class feed {
 				if ($this->sortorder) {
 					$items = getZenpageStatistic($this->itemnumber, 'pages', $this->sortorder, $this->sortdirection);
 				} else {
-					$items = $_zp_zenpage->getPages(NULL, false, $this->itemnumber);
+					$items = $_zp_CMS->getPages(NULL, false, $this->itemnumber);
 				}
 				break;
 			case 'comments':
