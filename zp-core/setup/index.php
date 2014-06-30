@@ -1357,7 +1357,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 								$htu = strtoupper($ht);
 							} else {
 								$ht = $htu = false;
-								$copyaccess = $apatche;
+								$copyaccess = $Apache;
 							}
 							$vr = "";
 							$ch = 1;
