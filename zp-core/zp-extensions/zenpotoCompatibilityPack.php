@@ -77,6 +77,10 @@ function zenphotoCompatibility($param = NULL) {
 	return $param;
 }
 
+function printZenphotoLink() {
+	printPackageLink();
+}
+
 zp_register_filter('load_theme_script', 'zenphotoCompatibility');
 zp_register_filter('next_object_loop', 'zenphotoCompatibility');
 ?>
