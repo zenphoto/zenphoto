@@ -233,7 +233,7 @@ function getItemTitleAndURL($item) {
 			$sql = 'SELECT * FROM ' . prefix('pages') . ' WHERE `titlelink`="' . $item['link'] . '"';
 			$result = query_single_row($sql);
 			if (is_array($result)) {
-				$obj = new Page($item['link']);
+				$obj = newPage($item['link']);
 				$url = $obj->getLink(0);
 				$protected = $obj->isProtected();
 				$title = $obj->getTitle();
@@ -252,7 +252,7 @@ function getItemTitleAndURL($item) {
 			$sql = "SELECT title FROM " . prefix('news_categories') . " WHERE titlelink = '" . $item['link'] . "'";
 			$obj = query_single_row($sql, false);
 			if ($obj) {
-				$obj = new Category($item['link']);
+				$obj = newCategory($item['link']);
 				$title = $obj->getTitle();
 				$protected = $obj->isProtected();
 				$url = $obj->getLink(0);
@@ -319,7 +319,7 @@ function getMenuVisibility() {
  */
 function inventMenuItem($menuset, $visibility) {
 	global $_zp_gallery_page, $_zp_current_album, $_zp_current_image, $_zp_current_search, $_menu_manager_items,
-	$_zp_current_zenpage_news, $_zp_current_zenpage_page;
+	$_zp_current_article, $_zp_current_page;
 	$currentkey = $insertpoint = NULL;
 	$newitems = array();
 	switch ($_zp_gallery_page) {
@@ -375,7 +375,7 @@ function inventMenuItem($menuset, $visibility) {
 			if (!empty($currentkey)) {
 				if (is_NewsArticle()) {
 					$item = array('id'				 => 9999, 'sort_order' => $currentkey, 'parentid'	 => $item['id'], 'type'			 => 'zenpagenews',
-									'include_li' => true, 'title'			 => $_zp_current_zenpage_news->getTitle(),
+									'include_li' => true, 'title'			 => $_zp_current_article->getTitle(),
 									'show'			 => 1, 'link'			 => '', 'menuset'		 => $menuset);
 				} else {
 					$currentkey = false; // not a news page, must be the index?
@@ -389,7 +389,7 @@ function inventMenuItem($menuset, $visibility) {
 						$insertpoint = $item['sort_order'];
 						$currentkey = $insertpoint . '-9999';
 						$item = array('id'				 => 9999, 'sort_order' => $currentkey, 'parentid'	 => $item['id'], 'type'			 => 'Page',
-										'include_li' => true, 'title'			 => $_zp_current_zenpage_page->getTitle(),
+										'include_li' => true, 'title'			 => $_zp_current_page->getTitle(),
 										'show'			 => 1, 'link'			 => '', 'menuset'		 => $menuset);
 						break;
 					}
@@ -1065,7 +1065,7 @@ function printCustomMenu($menuset = 'default', $option = 'list', $css_id = '', $
 						} else {
 							$published = "published";
 						}
-						$catobj = new Category($item['link']);
+						$catobj = newCategory($item['link']);
 						$catcount = count($catobj->getArticles(0, $published));
 						$itemcounter = "<small> (" . $catcount . ")</small>";
 						break;

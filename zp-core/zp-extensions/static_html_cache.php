@@ -69,8 +69,8 @@ class static_html_cache {
 	 *
 	 */
 	function checkIfAllowedPage() {
-		global $_zp_gallery_page, $_zp_current_image, $_zp_current_album, $_zp_current_zenpage_page,
-		$_zp_current_zenpage_news, $_zp_current_admin_obj, $_zp_current_category, $_zp_authority;
+		global $_zp_gallery_page, $_zp_current_image, $_zp_current_album, $_zp_current_page,
+		$_zp_current_article, $_zp_current_admin_obj, $_zp_current_category, $_zp_authority;
 		if (zp_loggedin(ADMIN_RIGHTS)) { // don't cache for admin
 			return false;
 		}
@@ -84,12 +84,12 @@ class static_html_cache {
 				$title = $_zp_current_album->name;
 				break;
 			case 'pages.php':
-				$obj = $_zp_current_zenpage_page;
-				$title = $_zp_current_zenpage_page->getTitlelink();
+				$obj = $_zp_current_page;
+				$title = $_zp_current_page->getTitlelink();
 				break;
 			case 'news.php':
 				if (in_context(ZP_ZENPAGE_NEWS_ARTICLE)) {
-					$obj = $_zp_current_zenpage_news;
+					$obj = $_zp_current_article;
 					$title = $obj->getTitlelink();
 				} else {
 					if (in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
@@ -223,7 +223,7 @@ class static_html_cache {
 	 */
 	function createCacheFilepath($accessType) {
 		global $_zp_current_image, $_zp_current_album, $_zp_gallery_page, $_zp_authority,
-		$_zp_current_zenpage_news, $_zp_current_category, $_zp_current_zenpage_page, $_zp_gallery, $_zp_page;
+		$_zp_current_article, $_zp_current_category, $_zp_current_page, $_zp_gallery, $_zp_page;
 		// just make sure these are really empty
 		$cachefilepath = $_zp_gallery->getCurrentTheme() . '_' . str_replace('zp_', '', $accessType) . '_';
 		$album = "";
@@ -255,12 +255,12 @@ class static_html_cache {
 				break;
 			case 'pages.php':
 				$cachesubfolder = "pages";
-				$cachefilepath .= 'page-' . $_zp_current_zenpage_page->getTitlelink();
+				$cachefilepath .= 'page-' . $_zp_current_page->getTitlelink();
 				break;
 			case 'news.php':
 				$cachesubfolder = "pages";
-				if (is_object($_zp_current_zenpage_news)) {
-					$title = "-" . $_zp_current_zenpage_news->getTitlelink();
+				if (is_object($_zp_current_article)) {
+					$title = "-" . $_zp_current_article->getTitlelink();
 				}
 				if (is_object($_zp_current_category)) {
 					$category = "_cat-" . $_zp_current_category->getTitlelink();

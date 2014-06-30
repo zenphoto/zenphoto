@@ -161,7 +161,7 @@ class CMS {
 				if ($all || $row['show']) {
 					$all_pages[] = $row;
 				} else if ($_zp_loggedin) {
-					$page = new Page($row['titlelink']);
+					$page = newPage($row['titlelink']);
 					if ($page->isMyItem(LIST_RIGHTS)) {
 						$all_pages[] = $row;
 						if ($number && count($result) >= $number) {
@@ -240,7 +240,7 @@ class CMS {
 				if ($subcats) {
 					$cat = " (cat.cat_id = '" . $catid . "'";
 					foreach ($subcats as $subcat) {
-						$subcatobj = new Category($subcat);
+						$subcatobj = newCategory($subcat);
 						$cat .= "OR cat.cat_id = '" . $subcatobj->getID() . "' ";
 					}
 					$cat .= ") AND cat.news_id = news.id ";
@@ -352,7 +352,7 @@ class CMS {
 			$result = array();
 			if ($resource) {
 				while ($item = db_fetch_assoc($resource)) {
-					$article = new News($item['titlelink']);
+					$article = newArticle($item['titlelink']);
 					if ($getUnpublished || $article->isMyItem(ZENPAGE_NEWS_RIGHTS) || $currentcategory && ($article->inNewsCategory($currentcategory)) || $article->categoryIsVisible()) {
 						$result[] = $item;
 					}
@@ -397,7 +397,7 @@ class CMS {
 		$articles = $this->getArticles(0, NULL, true, $sortorder, $sortdirection, $sticky);
 		if ($index >= 0 && $index < count($articles)) {
 			$article = $articles[$index];
-			$obj = new News($articles[$index]['titlelink']);
+			$obj = newArticle($articles[$index]['titlelink']);
 			return $obj;
 		}
 		return false;
@@ -434,7 +434,7 @@ class CMS {
 		if (empty($_zp_current_category)) {
 			if (isset($_GET['category'])) {
 				$cat = sanitize($_GET['category']);
-				$catobj = new Category($cat);
+				$catobj = newCategory($cat);
 			} else {
 				return count($this->getArticles(0));
 			}
@@ -496,7 +496,7 @@ class CMS {
 			$result = array();
 			while ($item = db_fetch_assoc($resource)) {
 				if ($item['type'] == 'news') {
-					$article = new News($item['titlelink']);
+					$article = newArticle($item['titlelink']);
 					if (!$article->categoryIsVisible()) {
 						continue;
 					}
@@ -564,7 +564,7 @@ class CMS {
 		}
 		if ($visible) {
 			foreach ($structure as $key => $cat) {
-				$catobj = new Category($cat['titlelink']);
+				$catobj = newCategory($cat['titlelink']);
 				if ($catobj->getShow() || $catobj->isMyItem(LIST_RIGHTS)) {
 					$structure[$key]['show'] = 1;
 				} else {

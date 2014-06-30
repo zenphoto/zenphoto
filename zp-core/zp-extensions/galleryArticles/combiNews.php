@@ -190,7 +190,7 @@ class Combi extends Zenpage {
 				$latest = $this->getArticles($articles_per_page, NULL, true, 'date', $sortdirection);
 				$counter = '';
 				foreach ($latest as $news) {
-					$article = new News($news['titlelink']);
+					$article = new Article($news['titlelink']);
 					if ($article->checkAccess()) {
 						$counter++;
 						$latestnews[$counter] = array(
@@ -240,7 +240,7 @@ enableExtension('galleryArticles', $plugin_is_filter);
 
 $obj = new Combi();
 $combi = $obj->getOldCombiNews();
-$cat = new Category('combiNews', true);
+$cat = newCategory('combiNews', true);
 $cat->setTitle(gettext('combiNews'));
 $cat->setDesc(gettext('Auto category for ported combi-news articles.'));
 $cat->save();

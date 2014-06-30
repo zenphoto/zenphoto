@@ -36,13 +36,13 @@ if (isset($_GET['delete'])) {
 if (isset($_GET['hitcounter'])) {
 	XSRFdefender('hitcounter');
 	$x = $_zp_CMS->getCategory(sanitize_numeric($_GET['id']));
-	$obj = new Category($x['titlelink']);
+	$obj = newCategory($x['titlelink']);
 	$obj->set('hitcounter', 0);
 	$obj->save();
 }
 if (isset($_GET['publish'])) {
 	XSRFdefender('update');
-	$obj = new Category(sanitize($_GET['titlelink']));
+	$obj = newCategory(sanitize($_GET['titlelink']));
 	$obj->setShow(sanitize_numeric($_GET['publish']));
 	$obj->save();
 }
@@ -52,12 +52,12 @@ if (isset($_GET['save'])) {
 }
 if (isset($_GET['id'])) {
 	$x = $_zp_CMS->getCategory(sanitize_numeric($_GET['id']));
-	$result = new Category($x['titlelink']);
+	$result = newCategory($x['titlelink']);
 } else if (isset($_GET['update'])) {
 	XSRFdefender('update_categories');
 	$result = updateCategory($reports);
 } else {
-	$result = new Category('');
+	$result = newCategory('');
 }
 
 printAdminHeader('news', 'categories');

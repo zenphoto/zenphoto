@@ -341,7 +341,7 @@ function annotateImage() {
 }
 
 function printFooter($admin = true) {
-	global $_zp_themeroot, $_zp_gallery, $_zp_gallery_page, $_zp_current_zenpage_news, $_zp_current_zenpage_page;
+	global $_zp_themeroot, $_zp_gallery, $_zp_gallery_page;
 	$h = NULL;
 	?>
 	<!-- Footer -->

@@ -62,7 +62,7 @@ if (isset($_POST['set_defaults'])) {
 		case 'categories':
 			$report = 'categories';
 			foreach ($_POST as $key => $titlelink) {
-				$obj = new Category($titlelink);
+				$obj = newCategory($titlelink);
 				$obj->setShow(1);
 				$obj->save();
 			}
@@ -70,14 +70,14 @@ if (isset($_POST['set_defaults'])) {
 		case 'news':
 			$report = 'news';
 			foreach ($_POST as $key => $titlelink) {
-				$obj = new News($titlelink);
+				$obj = newArticle($titlelink);
 				$obj->setShow(1);
 				$obj->save();
 			}
 			break;
 		case 'pages':
 			foreach ($_POST as $key => $titlelink) {
-				$obj = new Page($titlelink);
+				$obj = newPage($titlelink);
 				$obj->setShow(1);
 				$obj->save();
 			}
@@ -477,7 +477,7 @@ echo '</head>';
 					$output = '';
 					$c = 0;
 					foreach ($items as $key => $item) {
-						$itemobj = new Category($item['titlelink']);
+						$itemobj = newCategory($item['titlelink']);
 						if (!$itemobj->getShow()) {
 							$c++;
 							$output .= '<li><label><input type="checkbox" name="' . $item['titlelink'] . '" value="' . $item['titlelink'] . '" class="catcheck" />' . $itemobj->getTitle() . '</label><a href="' . html_encode($itemobj->getLink()) . '" title="' . html_encode($itemobj->getTitle()) . '"> (' . gettext('View') . ')</a></li>';
@@ -536,7 +536,7 @@ echo '</head>';
 					$output = '';
 					$c = 0;
 					foreach ($items as $key => $item) {
-						$itemobj = new News($item['titlelink']);
+						$itemobj = newArticle($item['titlelink']);
 						if (!$itemobj->getShow()) {
 							$c++;
 							$output .= '<li><label><input type="checkbox" name="' . $item['titlelink'] . '" value="' . $item['titlelink'] . '" class="artcheck" />' . $itemobj->getTitle() . '</label><a href="' . html_encode($itemobj->getLink()) . '" title="' . html_encode($itemobj->getTitle()) . '"> (' . gettext('View') . ')</a></li>';
@@ -592,7 +592,7 @@ echo '</head>';
 					$output = '';
 					$c = 0;
 					foreach ($items as $key => $item) {
-						$itemobj = new Page($item['titlelink']);
+						$itemobj = newPage($item['titlelink']);
 						if (!$itemobj->getShow()) {
 							$c++;
 							$output .= '<li><label><input type="checkbox" name="' . $item['titlelink'] . '" value="' . $item['titlelink'] . '" class="pagecheck" />' . $itemobj->getTitle() . '</label><a href="' . html_encode($itemobj->getLink()) . '" title="' . html_encode($itemobj->getTitle()) . '"> (' . gettext('View') . ')</a></li>';

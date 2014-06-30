@@ -161,9 +161,9 @@ function checkParentLayouts($obj, $type) {
 				$parents = array_reverse($parents); //reverse so we can check the direct parent first.
 				foreach ($parents as $parent) {
 					if ($type === 'multiple_layouts_pages') {
-						$parentobj = new Page($parent);
+						$parentobj = newPage($parent);
 					} else {
-						$parentobj = new Category($parent);
+						$parentobj = newCategory($parent);
 					}
 					$parentlayouts = query_single_row('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `aux`=' . $parentobj->getID() . ' AND `type` = "' . $type . '"');
 					if ($parentlayouts && $parentlayouts['data']) {
@@ -281,7 +281,7 @@ function getLayoutSelector($obj, $type, $text, $prefix = '', $secondary = false)
 			$categories = $obj->getCategories();
 			if ($categories) {
 				foreach ($categories as $cat) {
-					$cat = new Category($cat['titlelink']);
+					$cat = newCategory($cat['titlelink']);
 					$getlayout = getSelectedLayout($cat, 'multiple_layouts_news_categories');
 					if ($getlayout && $getlayout['data']) { //	in at least one news category with an alternate page
 						$defaulttext = gettext('inherited');
@@ -354,7 +354,7 @@ function getLayoutSelector($obj, $type, $text, $prefix = '', $secondary = false)
  * @return string
  */
 function getLayout($path) {
-	global $_zp_gallery, $_zp_gallery_page, $_zp_current_image, $_zp_current_album, $_zp_current_zenpage_page, $_zp_current_zenpage_news, $_zp_current_category, $_zp_current_search;
+	global $_zp_gallery, $_zp_gallery_page, $_zp_current_image, $_zp_current_album, $_zp_current_page, $_zp_current_article, $_zp_current_category, $_zp_current_search;
 	if ($path) {
 		$themepath = THEMEFOLDER . '/' . $_zp_gallery->getCurrentTheme() . '/';
 		$getlayout = false;
@@ -382,14 +382,14 @@ function getLayout($path) {
 				break;
 			case 'pages.php':
 				if (getOption('multiple_layouts_pages')) {
-					$getlayout = getSelectedLayout($_zp_current_zenpage_page, 'multiple_layouts_pages');
+					$getlayout = getSelectedLayout($_zp_current_page, 'multiple_layouts_pages');
 				}
 				break;
 			case 'news.php':
 				if (getOption('multiple_layouts_news_categories') && in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
 					$getlayout = getSelectedLayout($_zp_current_category, 'multiple_layouts_news_categories');
 				} elseif (getOption('multiple_layouts_news') && in_context(ZP_ZENPAGE_SINGLE)) {
-					$getlayout = getSelectedLayout($_zp_current_zenpage_news, 'multiple_layouts_news');
+					$getlayout = getSelectedLayout($_zp_current_article, 'multiple_layouts_news');
 				}
 				break;
 		}

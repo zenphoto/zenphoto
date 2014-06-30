@@ -718,7 +718,7 @@ function getSitemapPages() {
 			$data .= sitemap_echonl('<?xml version="1.0" encoding="UTF-8"?>');
 			$data .= sitemap_echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
 			foreach ($pages as $page) {
-				$pageobj = new Page($page['titlelink']);
+				$pageobj = newPage($page['titlelink']);
 				$date = substr($pageobj->getDatetime(), 0, 10);
 				$lastchange = '';
 				if (!is_null($pageobj->getLastchange()))
@@ -838,7 +838,7 @@ function getSitemapNewsArticles() {
 			$data .= sitemap_echonl('<?xml version="1.0" encoding="UTF-8"?>');
 			$data .= sitemap_echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
 			foreach ($articles as $article) {
-				$articleobj = new News($article['titlelink']);
+				$articleobj = newArticle($article['titlelink']);
 				$date = substr($articleobj->getDatetime(), 0, 10);
 				$lastchange = '';
 				if (!is_null($articleobj->getLastchange()))
@@ -889,7 +889,7 @@ function getSitemapNewsCategories() {
 			$data .= sitemap_echonl('<?xml version="1.0" encoding="UTF-8"?>');
 			$data .= sitemap_echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
 			foreach ($newscats as $newscat) {
-				$catobj = new Category($newscat['titlelink']);
+				$catobj = newCategory($newscat['titlelink']);
 				if (!$catobj->isProtected()) {
 					switch (SITEMAP_LOCALE_TYPE) {
 						case 1:

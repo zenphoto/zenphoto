@@ -63,7 +63,7 @@ $_zp_current_album = NULL;
 				$ln = getLatestNews(3);
 
 				foreach ($ln as $n) :
-					$_zp_current_zenpage_news = new News($n['titlelink']);
+					$_zp_current_news = new News($n['titlelink']);
 					?>
 
 

@@ -6,7 +6,6 @@
  * @package plugins
  * @subpackage zenpage
  */
-global $_zp_CMS, $_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_current_category;
 CMS::expiry();
 
 /**
@@ -115,7 +114,7 @@ function updatePage(&$reports, $newpage = false) {
 		}
 	}
 	// update page
-	$page = new Page($titlelink, true);
+	$page = newPage($titlelink, true);
 
 	$notice = processCredentials($page);
 	$page->setTitle($title);
@@ -183,7 +182,7 @@ function deletePage($titlelink) {
 	if (is_object($titlelink)) {
 		$obj = $titlelink;
 	} else {
-		$obj = new Page($titlelink);
+		$obj = newPage($titlelink);
 	}
 	$result = $obj->remove();
 	if ($result) {
@@ -395,7 +394,7 @@ function updateArticle(&$reports, $newarticle = false) {
 		}
 	}
 	// update article
-	$article = new News($titlelink, true);
+	$article = newArticle($titlelink, true);
 	$article->setTitle($title);
 	$article->setContent($content);
 	$article->setExtracontent($extracontent);
@@ -464,7 +463,7 @@ function deleteArticle($titlelink) {
 	if (is_object($titlelink)) {
 		$obj = $titlelink;
 	} else {
-		$obj = new News($titlelink);
+		$obj = newArticle($titlelink);
 	}
 	$result = $obj->remove();
 	if ($result) {
@@ -524,7 +523,7 @@ function printCategorySelection($id = '', $option = '') {
 	echo "<ul class='zenpagechecklist'>\n";
 	$all_cats = $_zp_CMS->getAllCategories(false);
 	foreach ($all_cats as $cats) {
-		$catobj = new Category($cats['titlelink']);
+		$catobj = newCategory($cats['titlelink']);
 		if ($option != "all") {
 			$cat2news = query_single_row("SELECT cat_id FROM " . prefix('news2cat') . " WHERE news_id = " . $id . " AND cat_id = " . $catobj->getID());
 			if ($cat2news['cat_id'] != "") {
@@ -770,7 +769,7 @@ function printCategoryDropdown() {
 			echo "<option $selected value='admin-news-articles.php" . getNewsAdminOptionPath($option) . "'>" . gettext("All categories") . "</option>\n";
 
 			foreach ($result as $cat) {
-				$catobj = new Category($cat['titlelink']);
+				$catobj = newCategory($cat['titlelink']);
 				// check if there are articles in this category. If not don't list the category.
 				$count = count($catobj->getArticles(0, 'all'));
 				$count = " (" . $count . ")";
@@ -902,7 +901,7 @@ function updateCategory(&$reports, $newcategory = false) {
 	}
 	//update category
 	$show = getcheckboxState('show');
-	$cat = new Category($titlelink, true);
+	$cat = newCategory($titlelink, true);
 	$notice = processCredentials($cat);
 	$cat->setPermalink(getcheckboxState('permalink'));
 	$cat->set('title', $title);
@@ -957,7 +956,7 @@ function updateCategory(&$reports, $newcategory = false) {
  *
  */
 function deleteCategory($titlelink) {
-	$obj = new Category($titlelink);
+	$obj = newCategory($titlelink);
 	$result = $obj->remove();
 	if ($result) {
 		return "<p class='messagebox fade-message'>" . gettext("Category successfully deleted!") . "</p>";
@@ -1137,11 +1136,11 @@ function printNestedItemsList($listtype = 'cats-sortablelist', $articleid = '', 
 		switch ($listtype) {
 			case 'cats-checkboxlist':
 			case 'cats-sortablelist':
-				$itemobj = new Category($item['titlelink']);
+				$itemobj = newCategory($item['titlelink']);
 				$ismypage = $itemobj->isMyItem(ZENPAGE_NEWS_RIGHTS);
 				break;
 			case 'pages-sortablelist':
-				$itemobj = new Page($item['titlelink']);
+				$itemobj = newPage($item['titlelink']);
 				$ismypage = $itemobj->isMyItem(ZENPAGE_PAGES_RIGHTS);
 				break;
 		}
@@ -1342,13 +1341,13 @@ function getNewsPagesStatistic($option) {
 		foreach ($items as $item) {
 			switch ($option) {
 				case "news":
-					$itemobj = new News($item['titlelink']);
+					$itemobj = newArticle($item['titlelink']);
 					break;
 				case "pages":
-					$itemobj = new Page($item['titlelink']);
+					$itemobj = newPage($item['titlelink']);
 					break;
 				case "categories":
-					$itemobj = new Category($item['titlelink']);
+					$itemobj = newCategory($item['titlelink']);
 					break;
 			}
 			$show = $itemobj->getShow();
@@ -1666,7 +1665,7 @@ function printPublishIconLink($object, $type, $linkback = '') {
 							case 'alltags':
 								$allarticles = $obj->getArticles('', 'all', true);
 								foreach ($allarticles as $article) {
-									$newsobj = new News($article['titlelink']);
+									$newsobj = newArticle($article['titlelink']);
 									$mytags = array_unique(array_merge($tags, $newsobj->getTags(false)));
 									$newsobj->setTags($mytags);
 									$newsobj->save();
@@ -1675,7 +1674,7 @@ function printPublishIconLink($object, $type, $linkback = '') {
 							case 'clearalltags':
 								$allarticles = $obj->getArticles('', 'all', true);
 								foreach ($allarticles as $article) {
-									$newsobj = new News($article['titlelink']);
+									$newsobj = newArticle($article['titlelink']);
 									$newsobj->setTags(array());
 									$newsobj->save();
 								}

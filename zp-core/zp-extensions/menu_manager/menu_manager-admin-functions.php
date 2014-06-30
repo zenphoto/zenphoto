@@ -806,7 +806,7 @@ function printPagesSelector($current) {
 			} else {
 				$selected = '';
 			}
-			$pageobj = new Page($page['titlelink']);
+			$pageobj = newPage($page['titlelink']);
 			$level = substr_count($pageobj->getSortOrder(), "-");
 			$arrow = "";
 			for ($count = 1; $count <= $level; $count++) {
@@ -841,7 +841,7 @@ function printNewsCategorySelector($current) {
 			} else {
 				$selected = '';
 			}
-			$catobj = new Category($cat['titlelink']);
+			$catobj = newCategory($cat['titlelink']);
 			//This is much easier than hacking the nested list function to work with this
 			$getparents = $catobj->getParents();
 			$levelmark = '';

@@ -212,9 +212,9 @@ class cmsFilters {
 	 * @param string $auth
 	 */
 	static function checkForGuest($auth) {
-		global $_zp_current_zenpage_page, $_zp_current_category;
-		if (!is_null($_zp_current_zenpage_page)) { // zenpage page
-			$authType = $_zp_current_zenpage_page->checkforGuest();
+		global $_zp_current_page, $_zp_current_category;
+		if (!is_null($_zp_current_page)) { // zenpage page
+			$authType = $_zp_current_page->checkforGuest();
 			return $authType;
 		} else if (!is_null($_zp_current_category)) {
 			$authType = $_zp_current_category->checkforGuest();
@@ -229,16 +229,16 @@ class cmsFilters {
 	 * @param bool $fail
 	 */
 	static function isMyItemToView($fail) {
-		global $_zp_gallery_page, $_zp_current_zenpage_page, $_zp_current_zenpage_news, $_zp_current_category;
+		global $_zp_gallery_page, $_zp_current_page, $_zp_current_article, $_zp_current_category;
 		switch ($_zp_gallery_page) {
 			case 'pages.php':
-				if ($_zp_current_zenpage_page->isMyItem(LIST_RIGHTS)) {
+				if ($_zp_current_page->isMyItem(LIST_RIGHTS)) {
 					return true;
 				}
 				break;
 			case 'news.php':
 				if (in_context(ZP_ZENPAGE_NEWS_ARTICLE)) {
-					if ($_zp_current_zenpage_news->isMyItem(LIST_RIGHTS)) {
+					if ($_zp_current_article->isMyItem(LIST_RIGHTS)) {
 						return true;
 					}
 				} else { //	must be category or main news page?
@@ -290,14 +290,14 @@ class cmsFilters {
 	}
 
 	static function admin_toolbox_news($redirect, $zf) {
-		global $_zp_current_category, $_zp_current_zenpage_news;
+		global $_zp_current_category, $_zp_current_article;
 		if (is_NewsArticle()) {
 			if (zp_loggedin(ZENPAGE_NEWS_RIGHTS)) {
 
 
 
 // page is a NewsArticle--provide zenpage edit, delete, and Add links
-				echo "<li><a href=\"" . $zf . '/' . PLUGIN_FOLDER . "/zenpage/admin-edit.php?newsarticle&amp;edit&amp;titlelink=" . html_encode($_zp_current_zenpage_news->getTitleLink()) . "\">" . gettext("Edit Article") . "</a></li>";
+				echo "<li><a href=\"" . $zf . '/' . PLUGIN_FOLDER . "/zenpage/admin-edit.php?newsarticle&amp;edit&amp;titlelink=" . html_encode($_zp_current_article->getTitleLink()) . "\">" . gettext("Edit Article") . "</a></li>";
 				if (GALLERY_SESSION) {
 // XSRF defense requires sessions
 					?>
@@ -309,7 +309,7 @@ class cmsFilters {
 				}
 				echo "<li><a href=\"" . $zf . '/' . PLUGIN_FOLDER . "/zenpage/admin-edit.php?newsarticle&amp;add\">" . gettext("Add Article") . "</a></li>";
 			}
-			$redirect .= '&amp;title=' . urlencode($_zp_current_zenpage_news->getTitlelink());
+			$redirect .= '&amp;title=' . urlencode($_zp_current_article->getTitlelink());
 		} else {
 
 			if (!empty($_zp_current_category)) {

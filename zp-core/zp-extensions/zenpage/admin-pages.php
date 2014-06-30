@@ -43,23 +43,23 @@ if (isset($_GET['delete'])) {
 // publish or un-publish page by click
 if (isset($_GET['publish'])) {
 	XSRFdefender('update');
-	$obj = new Page(sanitize($_GET['titlelink']));
+	$obj = newPage(sanitize($_GET['titlelink']));
 	zenpagePublish($obj, sanitize_numeric($_GET['publish']));
 }
 if (isset($_GET['skipscheduling'])) {
 	XSRFdefender('update');
-	$obj = new Page($result['titlelink']);
+	$obj = newPage($result['titlelink']);
 	skipScheduledPublishing($obj);
 }
 if (isset($_GET['commentson'])) {
 	XSRFdefender('update');
-	$obj = new Page(sanitize($_GET['titlelink']));
+	$obj = newPage(sanitize($_GET['titlelink']));
 	$obj->setCommentsAllowed(sanitize_numeric($_GET['commentson']));
 	$obj->save();
 }
 if (isset($_GET['hitcounter'])) {
 	XSRFdefender('hitcounter');
-	$obj = new Page(sanitize($_GET['titlelink']));
+	$obj = newPage(sanitize($_GET['titlelink']));
 	$obj->set('hitcounter', 0);
 	$obj->save();
 	$reports[] = '<p class="messagebox fade-message">' . gettext("Hitcounter reset") . '</p>';

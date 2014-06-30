@@ -122,7 +122,7 @@ class customFieldExtender extends fieldExtender {
 
 function getCustomField($field, $object = NULL, &$detail = NULL) {
 	global $_zp_current_admin_obj, $_zp_current_album, $_zp_current_image
-	, $_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_current_category;
+	, $_zp_current_article, $_zp_current_page, $_zp_current_category;
 
 	$objects = $tables = array();
 	if (is_null($object)) {
@@ -132,11 +132,11 @@ function getCustomField($field, $object = NULL, &$detail = NULL) {
 		} else if (in_context(ZP_ALBUM)) {
 			$object = $_zp_current_album;
 		} else if (in_context(ZP_ZENPAGE_NEWS_ARTICLE)) {
-			$object = $_zp_current_zenpage_news;
+			$object = $_zp_current_article;
 			if ($_zp_current_category)
 				$objects[$tables[] = 'news_categories'] = $_zp_current_category;
 		} else if (in_context(ZP_ZENPAGE_PAGE)) {
-			$object = $_zp_current_zenpage_page;
+			$object = $_zp_current_page;
 		} else if (in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
 			$object = $_zp_current_category;
 		} else {

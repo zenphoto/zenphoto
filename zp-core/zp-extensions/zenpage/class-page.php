@@ -1,5 +1,9 @@
 <?php
 
+function newPage($titlelink, $allowCreate = NULL) {
+	return new Page($titlelink, $allowCreate);
+}
+
 /**
  * zenpage page class
  *
@@ -114,7 +118,7 @@ class Page extends CMSItems {
 			$id = parent::copy(array('titlelink' => $newID));
 		}
 		if ($id) {
-			$newobj = new Page($newID);
+			$newobj = newPage($newID);
 			$newobj->setTitle($newtitle);
 			$newobj->setSortOrder(NULL);
 			$newobj->setTags($this->getTags(false));
@@ -142,7 +146,7 @@ class Page extends CMSItems {
 				if (is_array($result)) {
 					foreach ($result as $row) {
 						if (strlen($row['sort_order']) == $mychild) {
-							$subpage = new Page($row['titlelink']);
+							$subpage = newPage($row['titlelink']);
 							$success = $success && $subpage->remove();
 						}
 					}
@@ -171,7 +175,7 @@ class Page extends CMSItems {
 			$currentparentid = $parentid;
 		}
 		foreach ($allitems as $item) {
-			$obj = new Page($item['titlelink']);
+			$obj = newPage($item['titlelink']);
 			$itemtitlelink = $obj->getTitlelink();
 			$itemid = $obj->getID();
 			$itemparentid = $obj->getParentID();
@@ -223,7 +227,7 @@ class Page extends CMSItems {
 			} else {
 				$sql = 'SELECT `titlelink` FROM ' . prefix('pages') . ' WHERE `id`=' . $parentID;
 				$result = query_single_row($sql);
-				$pageobj = new Page($result['titlelink']);
+				$pageobj = newPage($result['titlelink']);
 				$hash = $pageobj->getPassword();
 			}
 		}

@@ -130,7 +130,7 @@ function zp_load_gallery() {
 	global $_zp_current_album, $_zp_current_album_restore, $_zp_albums,
 	$_zp_current_image, $_zp_current_image_restore, $_zp_images, $_zp_current_comment,
 	$_zp_comments, $_zp_current_context, $_zp_current_search, $_zp_current_zenpage_new,
-	$_zp_current_zenpage_page, $_zp_current_category, $_zp_post_date, $_zp_pre_authorization;
+	$_zp_current_page, $_zp_current_category, $_zp_post_date, $_zp_pre_authorization;
 	$_zp_current_album = NULL;
 	$_zp_current_album_restore = NULL;
 	$_zp_albums = NULL;
@@ -141,8 +141,8 @@ function zp_load_gallery() {
 	$_zp_comments = NULL;
 	$_zp_current_context = 0;
 	$_zp_current_search = NULL;
-	$_zp_current_zenpage_news = NULL;
-	$_zp_current_zenpage_page = NULL;
+	$_zp_current_news = NULL;
+	$_zp_current_page = NULL;
 	$_zp_current_category = NULL;
 	$_zp_post_date = NULL;
 	$_zp_pre_authorization = array();
@@ -206,27 +206,27 @@ function zp_load_image($folder, $filename) {
 
 /**
  * Loads a zenpage pages page
- * Sets up $_zp_current_zenpage_page and returns it as the function result.
+ * Sets up $_zp_current_page and returns it as the function result.
  * @param $titlelink the titlelink of a zenpage page to setup a page object directly. Used for custom
  * page scripts based on a zenpage page.
  *
  * @return object
  */
 function load_zenpage_pages($titlelink) {
-	global $_zp_current_zenpage_page;
-	$_zp_current_zenpage_page = new Page($titlelink);
-	if ($_zp_current_zenpage_page->loaded) {
+	global $_zp_current_page;
+	$_zp_current_page = new Page($titlelink);
+	if ($_zp_current_page->loaded) {
 		add_context(ZP_ZENPAGE_PAGE | ZP_ZENPAGE_SINGLE);
 	} else {
 		$_GET['p'] = 'PAGES:' . $titlelink;
 		return NULL;
 	}
-	return $_zp_current_zenpage_page;
+	return $_zp_current_page;
 }
 
 /**
  * Loads a zenpage news article
- * Sets up $_zp_current_zenpage_news and returns it as the function result.
+ * Sets up $_zp_current_news and returns it as the function result.
  *
  * @param array $request an array with one member: the key is "date", "category", or "title" and specifies
  * what you want loaded. The value is the date or title of the article wanted
@@ -234,7 +234,7 @@ function load_zenpage_pages($titlelink) {
  * @return object
  */
 function load_zenpage_news($request) {
-	global $_zp_current_zenpage_news, $_zp_current_category, $_zp_post_date;
+	global $_zp_current_news, $_zp_current_category, $_zp_post_date;
 	if (isset($request['date'])) {
 		add_context(ZP_ZENPAGE_NEWS_DATE);
 		$_zp_post_date = sanitize($request['date']);
@@ -256,11 +256,11 @@ function load_zenpage_news($request) {
 		$result = query_single_row($sql);
 		if (is_array($result)) {
 			add_context(ZP_ZENPAGE_NEWS_ARTICLE | ZP_ZENPAGE_SINGLE);
-			$_zp_current_zenpage_news = new News($titlelink);
+			$_zp_current_news = new News($titlelink);
 		} else {
 			$_GET['p'] = 'NEWS:' . $titlelink;
 		}
-		return $_zp_current_zenpage_news;
+		return $_zp_current_news;
 	}
 	return true;
 }

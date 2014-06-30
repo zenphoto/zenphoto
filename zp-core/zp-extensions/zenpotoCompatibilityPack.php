@@ -1,14 +1,43 @@
 <?php
 
 /*
- * provide functions and such that are used by legacy zenphoto
+ * provide functions, methods, and such that are used by legacy zenphoto
+ *
+ * This plugin should be enabled if you are using themes or plugins developed
+ * for zenphoto 1.4.6 or later.
+ *
+ * Should you wish to udate the theme/plugin the following changes should be made
+ *
+ * Use functions instead of object instantiations:
+ * <ul>
+ * <li>newArticle() instead of new ZenpageNews()</li>
+ * <li>newPage() instead of new ZenpagePage()</li>
+ * <li>newCategory() instead of new ZenpageCategory()</li>
+ * </ul>
+ *
+ * Use the following global "current" objects:
+ * <ul>
+ * <li>$_zp_current_article</li>
+ * <li>$_zp_current_page</li>
+ * </ul>
+ *
+ * To check if the zenpage CMS plugin is enabled use <code>extensionEnabled('zenpage')</code>
+ * or <code>class_exists('CMS')</code>
+ *
+ * The actual CMS objects are"
+ * <ul>
+ * <li>CMS</li>
+ * <li>Page</li>
+ * <li>Article</li>
+ * <li>Category</li>
+ * </ul>
  *
  * @package plugins
  * @subpackage admin
  */
 
 $plugin_is_filter = defaultExtension(1 | CLASS_PLUGIN);
-$plugin_description = gettext("Zenphoto compatibility .");
+$plugin_description = gettext("Zenphoto compatibility.");
 $plugin_author = "Stephen Billard (sbillard)";
 
 if (OFFSET_PATH != 2) {
@@ -22,7 +51,7 @@ if (OFFSET_PATH != 2) {
 
 		}
 
-		class ZenpageNews extends News {
+		class ZenpageNews extends Article {
 
 		}
 
@@ -33,4 +62,21 @@ if (OFFSET_PATH != 2) {
 	}
 	$_zp_zenpage = clone $_zp_CMS;
 }
+
+function zenphotoCompatibility($param = NULL) {
+	global $_zp_current_article, $_zp_current_page;
+
+	//zenphoto variables
+	global $_zp_current_zenpage_news, $_zp_current_zenpage_page;
+	if (is_object($_zp_current_page)) {
+		$_zp_current_zenpage_page = clone $_zp_current_page;
+	}
+	if (is_object($_zp_current_article)) {
+		$_zp_current_zenpage_news = clone $_zp_current_article;
+	}
+	return $param;
+}
+
+zp_register_filter('load_theme_script', 'zenphotoCompatibility');
+zp_register_filter('next_object_loop', 'zenphotoCompatibility');
 ?>

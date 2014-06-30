@@ -434,11 +434,11 @@ function commentFormUseCaptcha() {
  * @param string $error
  */
 function comment_form_postcomment($error) {
-	global $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_news, $_zp_current_zenpage_page;
+	global $_zp_current_album, $_zp_current_image, $_zp_current_article, $_zp_current_page;
 	if (( (commentsAllowed('comment_form_albums') && in_context(ZP_ALBUM) && !in_context(ZP_IMAGE) && $_zp_current_album->getCommentsAllowed()) ||
 					(commentsAllowed('comment_form_images') && in_context(ZP_IMAGE) && $_zp_current_image->getCommentsAllowed()) ||
-					(commentsAllowed('comment_form_articles') && in_context(ZP_ZENPAGE_NEWS_ARTICLE) && $_zp_current_zenpage_news->getCommentsAllowed()) ||
-					(commentsAllowed('comment_form_pages') && in_context(ZP_ZENPAGE_PAGE) && $_zp_current_zenpage_page->getCommentsAllowed()))
+					(commentsAllowed('comment_form_articles') && in_context(ZP_ZENPAGE_NEWS_ARTICLE) && $_zp_current_article->getCommentsAllowed()) ||
+					(commentsAllowed('comment_form_pages') && in_context(ZP_ZENPAGE_PAGE) && $_zp_current_page->getCommentsAllowed()))
 	) {
 		$error = comment_form_handle_comment();
 	}
@@ -451,7 +451,7 @@ function comment_form_postcomment($error) {
  * @return NULL|boolean
  */
 function comment_form_handle_comment() {
-	global $_zp_current_image, $_zp_current_album, $_zp_comment_stored, $_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_HTML_cache;
+	global $_zp_current_image, $_zp_current_album, $_zp_comment_stored, $_zp_current_article, $_zp_current_page, $_zp_HTML_cache;
 	$comment_error = 0;
 	$cookie = zp_getCookie('zenphoto_comment');
 	if (isset($_POST['comment']) && (!isset($_POST['username']) || empty($_POST['username']))) { // 'username' is a honey-pot trap
@@ -468,11 +468,11 @@ function comment_form_handle_comment() {
 			$commentobject = $_zp_current_album;
 			$redirectTo = $_zp_current_album->getLink();
 		} else if (in_context(ZP_ZENPAGE_NEWS_ARTICLE)) {
-			$commentobject = $_zp_current_zenpage_news;
-			$redirectTo = FULLWEBPATH . '/index.php?p=news&title=' . $_zp_current_zenpage_news->getTitlelink();
+			$commentobject = $_zp_current_article;
+			$redirectTo = FULLWEBPATH . '/index.php?p=news&title=' . $_zp_current_article->getTitlelink();
 		} else if (in_context(ZP_ZENPAGE_PAGE)) {
-			$commentobject = $_zp_current_zenpage_page;
-			$redirectTo = FULLWEBPATH . '/index.php?p=pages&title=' . $_zp_current_zenpage_page->getTitlelink();
+			$commentobject = $_zp_current_page;
+			$redirectTo = FULLWEBPATH . '/index.php?p=pages&title=' . $_zp_current_page->getTitlelink();
 		} else {
 			$commentobject = NULL;
 			$error = gettext('Comment posted on unknown page!');
@@ -830,14 +830,14 @@ function printLatestComments($number, $shorten = '123', $type = "all", $item = N
 			case 'news':
 				$news = getItemByID('news', $comment['ownerid']);
 				if ($news) {
-					echo '<li><a href="' . $news->getLink() . '" class="commentmeta">' . gettext('News') . ':' . $news->getTitle() . $author . "</a><br />\n";
+					echo '<li><a href="' . $news->getLink() . '" class="commentmeta">' . gettext('Article') . ':' . $news->getTitle() . $author . "</a><br />\n";
 					echo '<span class="commentbody">' . $shortcomment . '</span></li>';
 				}
 				break;
 			case 'pages':
 				$page = getItemByID('news', $comment['ownerid']);
 				if ($page) {
-					echo '<li><a href="' . $page->getLink() . '" class="commentmeta">' . gettext('News') . ':' . $page->getTitle() . $author . "</a><br />\n";
+					echo '<li><a href="' . $page->getLink() . '" class="commentmeta">' . gettext('Article') . ':' . $page->getTitle() . $author . "</a><br />\n";
 					echo '<span class="commentbody">' . $shortcomment . '</span></li>';
 				}
 				break;
@@ -852,7 +852,7 @@ function printLatestComments($number, $shorten = '123', $type = "all", $item = N
  * @return int
  */
 function getCommentCount() {
-	global $_zp_current_image, $_zp_current_album, $_zp_current_zenpage_page, $_zp_current_zenpage_news;
+	global $_zp_current_image, $_zp_current_album, $_zp_current_page, $_zp_current_article;
 	if (in_context(ZP_IMAGE) && in_context(ZP_ALBUM)) {
 		if (is_null($_zp_current_image))
 			return false;
@@ -864,10 +864,10 @@ function getCommentCount() {
 	}
 	if (function_exists('is_News')) {
 		if (is_News()) {
-			return $_zp_current_zenpage_news->getCommentCount();
+			return $_zp_current_article->getCommentCount();
 		}
 		if (is_Pages()) {
-			return $_zp_current_zenpage_page->getCommentCount();
+			return $_zp_current_page->getCommentCount();
 		}
 	}
 }
@@ -880,7 +880,7 @@ function getCommentCount() {
  * @return bool
  */
 function next_comment($desc = false) {
-	global $_zp_current_image, $_zp_current_album, $_zp_current_comment, $_zp_comments, $_zp_current_zenpage_page, $_zp_current_zenpage_news;
+	global $_zp_current_image, $_zp_current_album, $_zp_current_comment, $_zp_comments, $_zp_current_page, $_zp_current_article;
 //ZENPAGE: comments support
 	if (is_null($_zp_current_comment)) {
 		if (in_context(ZP_IMAGE) AND in_context(ZP_ALBUM)) {
@@ -892,10 +892,10 @@ function next_comment($desc = false) {
 		}
 		if (function_exists('is_NewsArticle')) {
 			if (is_NewsArticle()) {
-				$_zp_comments = $_zp_current_zenpage_news->getComments(false, false, $desc);
+				$_zp_comments = $_zp_current_article->getComments(false, false, $desc);
 			}
 			if (is_Pages()) {
-				$_zp_comments = $_zp_current_zenpage_page->getComments(false, false, $desc);
+				$_zp_comments = $_zp_current_page->getComments(false, false, $desc);
 			}
 		}
 		if (empty($_zp_comments)) {

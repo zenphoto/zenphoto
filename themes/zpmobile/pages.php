@@ -40,7 +40,7 @@ if (class_exists('CMS')) {
 							<?php
 							printPageContent();
 							printCodeblock(1);
-							$subpages = $_zp_current_zenpage_page->getPages();
+							$subpages = $_zp_current_page->getPages();
 							if ($subpages) {
 								?>
 								<ul data-role="listview" data-inset="true" data-theme="a" class="ui-listview ui-group-theme-a">

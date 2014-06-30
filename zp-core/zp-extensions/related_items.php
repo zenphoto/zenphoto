@@ -10,7 +10,7 @@ $plugin_description = gettext('Provides functionality to get the related items t
 $plugin_author = "Malte Müller (acrylian)";
 
 function getRelatedItems($type = 'news', $album = NULL) {
-	global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_page, $_zp_current_zenpage_news, $_zp_gallery_page;
+	global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_gallery_page;
 	$tags = getTags();
 	if (!empty($tags)) { // if there are tags at all
 		$searchstring = '';
@@ -92,7 +92,7 @@ function getRelatedItems($type = 'news', $album = NULL) {
  * @param string $type "albums", "images", "news", "pages"
  */
 function createRelatedItemsResultArray($result, $type) {
-	global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_page, $_zp_current_zenpage_news, $_zp_gallery_page;
+	global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_current_page, $_zp_current_article, $_zp_gallery_page;
 	switch ($_zp_gallery_page) {
 		case 'album.php':
 			$current = $_zp_current_album;
@@ -101,10 +101,10 @@ function createRelatedItemsResultArray($result, $type) {
 			$current = $_zp_current_image;
 			break;
 		case 'news.php':
-			$current = $_zp_current_zenpage_news;
+			$current = $_zp_current_article;
 			break;
 		case 'pages.php':
-			$current = $_zp_current_zenpage_page;
+			$current = $_zp_current_page;
 			break;
 	}
 	$results = array();
@@ -149,7 +149,7 @@ function createRelatedItemsResultArray($result, $type) {
  * @param bool $thumb For $type = 'albums' or 'images' if a thumb should be shown (default size as set on the options)
  */
 function printRelatedItems($number = 5, $type = 'news', $specific = NULL, $excerpt = NULL, $thumb = false, $date = false) {
-	global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_page, $_zp_current_zenpage_news;
+	global $_zp_gallery, $_zp_current_album, $_zp_current_image;
 	$label = array('albums' => gettext('Albums'), 'images' => gettext('Images'), 'news' => gettext('News'), 'pages' => gettext('Pages'));
 	$result = getRelatedItems($type, $specific);
 	$resultcount = count($result);
@@ -182,13 +182,13 @@ function printRelatedItems($number = 5, $type = 'news', $specific = NULL, $excer
 							$category = gettext('Image');
 							break;
 						case 'news':
-							$obj = new News($item['name']);
+							$obj = newArticle($item['name']);
 							$url = $obj->getLink();
 							$text = $obj->getContent();
 							$category = gettext('News');
 							break;
 						case 'pages':
-							$obj = new Page($item['name']);
+							$obj = newPage($item['name']);
 							$url = $obj->getLink();
 							$text = $obj->getContent();
 							$category = gettext('Page');

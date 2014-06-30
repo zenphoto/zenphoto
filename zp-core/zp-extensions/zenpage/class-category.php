@@ -1,5 +1,9 @@
 <?php
 
+function newCategory($catllink, $create = NULL) {
+	return new Category($catllink, $create);
+}
+
 /**
  * zenpage news category class
  *
@@ -193,7 +197,7 @@ class Category extends CMSRoot {
 			if (is_array($result)) {
 				foreach ($result as $row) {
 					if (strlen($row['sort_order']) == $mychild) {
-						$subcat = new Category($row['titlelink']);
+						$subcat = newCategory($row['titlelink']);
 						$success = $success && $subcat->remove();
 					}
 				}
@@ -214,7 +218,7 @@ class Category extends CMSRoot {
 		$subcategories = array();
 		$sortorder = $this->getSortOrder();
 		foreach ($_zp_CMS->getAllCategories($visible, $sorttype, $sortdirection) as $cat) {
-			$catobj = new Category($cat['titlelink']);
+			$catobj = newCategory($cat['titlelink']);
 			if ($catobj->getParentID() == $this->getID() && $catobj->getSortOrder() != $sortorder) { // exclude the category itself!
 				array_push($subcategories, $catobj->getTitlelink());
 			}
@@ -266,7 +270,7 @@ class Category extends CMSRoot {
 			$currentparentid = $parentid;
 		}
 		foreach ($allitems as $item) {
-			$obj = new Category($item['titlelink']);
+			$obj = newCategory($item['titlelink']);
 			$itemtitlelink = $obj->getTitlelink();
 			$itemid = $obj->getID();
 			$itemparentid = $obj->getParentID();
@@ -296,7 +300,7 @@ class Category extends CMSRoot {
 			} else {
 				$sql = 'SELECT `titlelink` FROM ' . prefix('news_categories') . ' WHERE `id`=' . $parentID;
 				$result = query_single_row($sql);
-				$obj = new Category($result['titlelink']);
+				$obj = newCategory($result['titlelink']);
 				$hash = $obj->getPassword();
 			}
 		}
@@ -394,7 +398,6 @@ class Category extends CMSRoot {
 	 * @return int
 	 */
 	function getIndex($sortorder, $sortdirection, $sticky) {
-		global $_zp_CMS, $_zp_current_zenpage_news;
 		if ($this->index == NULL) {
 			$articles = $_zp_CMS->getArticles(0, NULL, true, $sortorder, $sortdirection, $sticky);
 			for ($i = 0; $i < count($articles); $i++) {
@@ -414,7 +417,6 @@ class Category extends CMSRoot {
 	 * @return object
 	 */
 	function getPrevArticle($sortorder = 'date', $sortdirection = 'desc', $sticky = true) {
-		global $_zp_CMS, $_zp_current_zenpage_news;
 		$index = $this->getIndex($sortorder, $sortdirection, $sticky);
 		$article = $this->getArticle($index - 1);
 		return $article;
@@ -426,7 +428,6 @@ class Category extends CMSRoot {
 	 * @return object
 	 */
 	function getNextArticle($sortorder = 'date', $sortdirection = 'desc', $sticky = true) {
-		global $_zp_CMS, $_zp_current_zenpage_news;
 		$index = $this->getIndex($sortorder, $sortdirection, $sticky);
 		$article = $this->getArticle($index + 1);
 		return $article;
