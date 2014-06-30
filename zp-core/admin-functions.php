@@ -769,7 +769,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 									}
 									$list = array();
 									foreach ($row['selections'] as $rowkey => $rowvalue) {
-										$list[$rowkey] = postIndexEncode($rowvalue);
+										$list[$rowkey] = $rowvalue;
 									}
 									generateListFromArray(array($v), $list, false, true);
 									?>

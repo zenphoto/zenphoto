@@ -2093,10 +2093,10 @@ zp-core/zp-extensions/tinymce/plugins/pagebreak
 zp-core/zp-extensions/tinymce/plugins/pagebreak/plugin.min.js
 zp-core/zp-extensions/tinymce/plugins/paste
 zp-core/zp-extensions/tinymce/plugins/paste/plugin.min.js
-zp-core/zp-extensions/tinymce/plugins/pastezen
-zp-core/zp-extensions/tinymce/plugins/pastezen/pastezen.php
-zp-core/zp-extensions/tinymce/plugins/pastezen/pastezen_popup.js
-zp-core/zp-extensions/tinymce/plugins/pastezen/plugin.min.js
+zp-core/zp-extensions/tinymce/plugins/pasteobj
+zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php
+zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj_popup.js
+zp-core/zp-extensions/tinymce/plugins/pasteobj/plugin.min.js
 zp-core/zp-extensions/tinymce/plugins/preview
 zp-core/zp-extensions/tinymce/plugins/preview/plugin.min.js
 zp-core/zp-extensions/tinymce/plugins/print

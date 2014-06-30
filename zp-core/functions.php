@@ -930,7 +930,7 @@ function getAllSubAlbumIDs($albumfolder = '') {
  */
 function handleSearchParms($what, $album = NULL, $image = NULL) {
 	global $_zp_current_search, $zp_request, $_zp_last_album, $_zp_current_album,
-	$_zp_current_news, $_zp_current_page, $_zp_gallery, $_zp_loggedin;
+	$_zp_current_article, $_zp_current_page, $_zp_gallery, $_zp_loggedin;
 	$_zp_last_album = zp_getCookie('zenphoto_last_album');
 	if (is_object($zp_request) && get_class($zp_request) == 'SearchEngine') { //	we are are on a search
 		return $zp_request->getAlbumList();
@@ -982,10 +982,10 @@ function handleSearchParms($what, $album = NULL, $image = NULL) {
 				}
 			}
 		}
-		if (!is_null($_zp_current_news)) {
+		if (!is_null($_zp_current_article)) {
 			$news = $_zp_current_search->getArticles(0, NULL, true);
 			if (!empty($news)) {
-				$tltlelink = $_zp_current_news->getTitlelink();
+				$tltlelink = $_zp_current_article->getTitlelink();
 				foreach ($news as $anews) {
 					if ($anews['titlelink'] == $tltlelink) {
 						$context = $context | ZP_SEARCH_LINKED;
@@ -2193,7 +2193,7 @@ function printStandardMeta() {
 				case 'albums':
 					return newAlbum($result['folder'], false, true);
 				case 'news':
-					return new News($result['titlelink']);
+					return newArticle($result['titlelink']);
 				case 'pages':
 					return new Page($result['titlelink']);
 				case 'news_categories':

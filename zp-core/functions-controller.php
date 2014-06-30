@@ -31,7 +31,7 @@ function zpRewriteURL($query) {
 					unset($query['date']);
 				}
 				if (isset($query['title'])) {
-					$obj = new News($query['title'], false);
+					$obj = newArticle($query['title'], false);
 					if (!$obj->loaded)
 						return '';
 					$redirectURL = $obj->getLink();
@@ -141,7 +141,7 @@ function zp_load_gallery() {
 	$_zp_comments = NULL;
 	$_zp_current_context = 0;
 	$_zp_current_search = NULL;
-	$_zp_current_news = NULL;
+	$_zp_current_article = NULL;
 	$_zp_current_page = NULL;
 	$_zp_current_category = NULL;
 	$_zp_post_date = NULL;
@@ -226,7 +226,7 @@ function load_zenpage_pages($titlelink) {
 
 /**
  * Loads a zenpage news article
- * Sets up $_zp_current_news and returns it as the function result.
+ * Sets up $_zp_current_article and returns it as the function result.
  *
  * @param array $request an array with one member: the key is "date", "category", or "title" and specifies
  * what you want loaded. The value is the date or title of the article wanted
@@ -234,7 +234,7 @@ function load_zenpage_pages($titlelink) {
  * @return object
  */
 function load_zenpage_news($request) {
-	global $_zp_current_news, $_zp_current_category, $_zp_post_date;
+	global $_zp_current_article, $_zp_current_category, $_zp_post_date;
 	if (isset($request['date'])) {
 		add_context(ZP_ZENPAGE_NEWS_DATE);
 		$_zp_post_date = sanitize($request['date']);
@@ -256,11 +256,11 @@ function load_zenpage_news($request) {
 		$result = query_single_row($sql);
 		if (is_array($result)) {
 			add_context(ZP_ZENPAGE_NEWS_ARTICLE | ZP_ZENPAGE_SINGLE);
-			$_zp_current_news = new News($titlelink);
+			$_zp_current_article = newArticle($titlelink);
 		} else {
 			$_GET['p'] = 'NEWS:' . $titlelink;
 		}
-		return $_zp_current_news;
+		return $_zp_current_article;
 	}
 	return true;
 }

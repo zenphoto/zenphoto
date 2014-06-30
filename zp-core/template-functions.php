@@ -375,7 +375,7 @@ function printBareGalleryTitle() {
  * @param bool $listparents If the parent objects should be printed in reversed order before the current
  */
 function getHeadTitle($separator = ' | ', $listparents = true) {
-	global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_current_news, $_zp_current_page, $_zp_gallery_page, $_zp_current_category, $_zp_page, $_myFavorites;
+	global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_current_article, $_zp_current_page, $_zp_gallery_page, $_zp_current_category, $_zp_page, $_myFavorites;
 	$mainsitetitle = html_encode(getBare(getMainSiteName()));
 	$separator = html_encode($separator);
 	if ($mainsitetitle) {
@@ -3346,8 +3346,8 @@ function getTags() {
 		global $_zp_current_page;
 		$tags = $_zp_current_page->getTags();
 	} else if (in_context(ZP_ZENPAGE_NEWS_ARTICLE)) {
-		global $_zp_current_news;
-		$tags = $_zp_current_news->getTags();
+		global $_zp_current_article;
+		$tags = $_zp_current_article->getTags();
 	} else {
 		$tags = array();
 	}
@@ -4057,7 +4057,7 @@ function setThemeColumns() {
  * @return string
  */
 function checkForGuest(&$hint = NULL, &$show = NULL) {
-	global $_zp_gallery, $_zp_gallery_page, $_zp_current_page, $_zp_current_category, $_zp_current_news;
+	global $_zp_gallery, $_zp_gallery_page, $_zp_current_page, $_zp_current_category, $_zp_current_article;
 	$authType = zp_apply_filter('checkForGuest', NULL);
 	if (!is_null($authType))
 		return $authType;
@@ -4077,8 +4077,8 @@ function checkForGuest(&$hint = NULL, &$show = NULL) {
 		if (!empty($hash) && zp_getCookie($authType) == $hash) {
 			return $authType;
 		}
-	} else if (!is_null($_zp_current_news)) {
-		$authType = $_zp_current_news->checkAccess($hint, $show);
+	} else if (!is_null($_zp_current_article)) {
+		$authType = $_zp_current_article->checkAccess($hint, $show);
 		return $authType;
 	} else if (isset($_GET['album'])) { // album page
 		list($album, $image) = rewrite_get_album_image('album', 'image');
@@ -4120,7 +4120,7 @@ function checkForGuest(&$hint = NULL, &$show = NULL) {
  */
 function checkAccess(&$hint = NULL, &$show = NULL) {
 	global $_zp_current_album, $_zp_current_search, $_zp_gallery, $_zp_gallery_page,
-	$_zp_current_page, $_zp_current_news;
+	$_zp_current_page, $_zp_current_article;
 	if (GALLERY_SECURITY != 'public') // only registered users allowed
 		$show = true; //	therefore they will need to supply their user id is something fails below
 
@@ -4163,7 +4163,7 @@ function checkAccess(&$hint = NULL, &$show = NULL) {
  */
 function getPageRedirect() {
 	global $_zp_login_error, $_zp_password_form_printed, $_zp_current_search, $_zp_gallery_page,
-	$_zp_current_album, $_zp_current_image, $_zp_current_news;
+	$_zp_current_album, $_zp_current_image, $_zp_current_article;
 	switch ($_zp_gallery_page) {
 		case 'index.php':
 			$action = '/index.php';
@@ -4179,8 +4179,8 @@ function getPageRedirect() {
 			break;
 		case 'news.php':
 			$action = '/index.php?userlog=1&p=news';
-			if (!is_null($_zp_current_news)) {
-				$action .= '&title=' . urlencode($_zp_current_news->getTitlelink());
+			if (!is_null($_zp_current_article)) {
+				$action .= '&title=' . urlencode($_zp_current_article->getTitlelink());
 			}
 			break;
 		case 'password.php':
@@ -4305,7 +4305,7 @@ function exposeZenPhotoInformations($obj = '', $plugins = '', $theme = '') {
  * @return string
  */
 function getCodeblock($number = 1, $object = NULL) {
-	global $_zp_current_album, $_zp_current_image, $_zp_current_news, $_zp_current_page, $_zp_gallery, $_zp_gallery_page;
+	global $_zp_current_album, $_zp_current_image, $_zp_current_article, $_zp_current_page, $_zp_gallery, $_zp_gallery_page;
 	if (!$number) {
 		setOptionDefault('codeblock_first_tab', 0);
 	}
@@ -4325,8 +4325,8 @@ function getCodeblock($number = 1, $object = NULL) {
 			}
 		}
 		if (in_context(ZP_ZENPAGE_NEWS_ARTICLE)) {
-			if ($_zp_current_news->checkAccess()) {
-				$object = $_zp_current_news;
+			if ($_zp_current_article->checkAccess()) {
+				$object = $_zp_current_article;
 			}
 		}
 	}

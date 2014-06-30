@@ -325,7 +325,7 @@ function printNewsArticlesList($number) {
 				if ($nr == $newscount) {
 					break;
 				}
-				$newsobj = new News($items[$nr]['titlelink']);
+				$newsobj = newArticle($items[$nr]['titlelink']);
 				$count++;
 				echo "<li>";
 				if ($_GET['zenpage'] == "articles") {
