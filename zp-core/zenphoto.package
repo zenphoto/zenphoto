@@ -21,10 +21,10 @@ themes/basic/themeoptions.php
 themes/basic/images
 themes/basic/images/50percent.png
 themes/basic/images/admin-buttonback.jpg
-themes/basic/images/est-logo-blue.png
-themes/basic/images/est-logo-sterile.png
 themes/basic/images/img-bg.gif
 themes/basic/images/tag.png
+themes/basic/images/zen-logo-blue.png
+themes/basic/images/zen-logo-sterile.png
 themes/basic/styles
 themes/basic/styles/dark.css
 themes/basic/styles/light.css
@@ -70,9 +70,9 @@ themes/effervescence+/images/dark-bullet.png
 themes/effervescence+/images/dark_arrow_right.png
 themes/effervescence+/images/effervescence.png
 themes/effervescence+/images/err-passwordprotected.png
-themes/effervescence+/images/est-logo.png
 themes/effervescence+/images/imageDefault.png
 themes/effervescence+/images/search.png
+themes/effervescence+/images/zen-logo.png
 themes/effervescence+/styles
 themes/effervescence+/styles/blue and green play.txt
 themes/effervescence+/styles/effervescence.txt
@@ -120,11 +120,11 @@ themes/garland/images/bg-content-right.png
 themes/garland/images/bg-content.png
 themes/garland/images/bg-navigation.png
 themes/garland/images/body.png
-themes/garland/images/est-logo.png
 themes/garland/images/menu-album.png
 themes/garland/images/menu-sub.png
 themes/garland/images/search.png
 themes/garland/images/search_bg.png
+themes/garland/images/zen-logo.png
 themes/gray_highlights
 themes/gray_highlights/album.php
 themes/gray_highlights/archive.php
@@ -145,7 +145,7 @@ themes/gray_highlights/css/reset.css
 themes/gray_highlights/css/text.css
 themes/gray_highlights/css/theme.css
 themes/gray_highlights/images
-themes/gray_highlights/images/est-logo.png
+themes/gray_highlights/images/zen-logo.png
 themes/zenpage
 themes/zenpage/404.php
 themes/zenpage/album.php
@@ -234,8 +234,6 @@ themes/zpArdoise/images/bg3.jpg
 themes/zpArdoise/images/close.png
 themes/zpArdoise/images/download.png
 themes/zpArdoise/images/err-passwordprotected.gif
-themes/zpArdoise/images/est-logo-dark.png
-themes/zpArdoise/images/est-logo-lightt.png
 themes/zpArdoise/images/favicon.ico
 themes/zpArdoise/images/help.png
 themes/zpArdoise/images/hr.gif
@@ -247,6 +245,8 @@ themes/zpArdoise/images/map.png
 themes/zpArdoise/images/rss.png
 themes/zpArdoise/images/search-drop.png
 themes/zpArdoise/images/video-placeholder.jpg
+themes/zpArdoise/images/zen-logo-dark.png
+themes/zpArdoise/images/zen-logo-light.png
 themes/zpArdoise/js
 themes/zpArdoise/js/fadeSliderToggle.js
 themes/zpArdoise/js/jquery.galleriffic.js
@@ -320,7 +320,6 @@ themes/zpEnlighten/images/body.png
 themes/zpEnlighten/images/breadcrumb-back.jpg
 themes/zpEnlighten/images/breadcrumb-back.png
 themes/zpEnlighten/images/corner-right.png
-themes/zpEnlighten/images/est-logo.png
 themes/zpEnlighten/images/filter.png
 themes/zpEnlighten/images/footer.jpg
 themes/zpEnlighten/images/footer.png
@@ -341,6 +340,7 @@ themes/zpEnlighten/images/white_pixel.png
 themes/zpEnlighten/images/white_pixel_6.png
 themes/zpEnlighten/images/white_pixel_7.png
 themes/zpEnlighten/images/white_pixel_8.png
+themes/zpEnlighten/images/zen-logo.png
 themes/zpEnlighten/js
 themes/zpEnlighten/js/jquery.corner.js
 themes/zpfocus
@@ -379,7 +379,6 @@ themes/zpfocus/images/arrow_right_grey.png
 themes/zpfocus/images/arrows.png
 themes/zpfocus/images/bg-faux.jpg
 themes/zpfocus/images/close.png
-themes/zpfocus/images/est-logo.png
 themes/zpfocus/images/facebook.png
 themes/zpfocus/images/favicon.ico
 themes/zpfocus/images/google.png
@@ -401,6 +400,7 @@ themes/zpfocus/images/search.png
 themes/zpfocus/images/search_icon.gif
 themes/zpfocus/images/shout.png
 themes/zpfocus/images/twitter.png
+themes/zpfocus/images/zen-logo.png
 themes/zpfocus/js
 themes/zpfocus/js/index.html
 themes/zpfocus/js/superfish.js
@@ -572,7 +572,6 @@ themes/zpminimal/css/cbStyles/style5/images/loading_background.png
 themes/zpminimal/images
 themes/zpminimal/images/details.png
 themes/zpminimal/images/drop.gif
-themes/zpminimal/images/est-logo.png
 themes/zpminimal/images/larr.png
 themes/zpminimal/images/loading.gif
 themes/zpminimal/images/logo.gif
@@ -581,6 +580,7 @@ themes/zpminimal/images/reset.gif
 themes/zpminimal/images/search.gif
 themes/zpminimal/images/slideshow-controls.png
 themes/zpminimal/images/social.png
+themes/zpminimal/images/zen-logo.png
 themes/zpminimal/images/zoom.png
 themes/zpminimal/z_disable_comment_form
 themes/zpminimal/z_disable_comment_form/comment_form.php
@@ -604,8 +604,8 @@ themes/zpmobile/theme_description.php
 themes/zpmobile/themeoptions.php
 themes/zpmobile/images
 themes/zpmobile/images/admin-buttonback.jpg
-themes/zpmobile/images/est-logo.png
 themes/zpmobile/images/rss.png
+themes/zpmobile/images/zen-logo.png
 themes/zpmobile/jquerymobile
 themes/zpmobile/jquerymobile/jquery.mobile-1.4.2.min.css
 themes/zpmobile/jquerymobile/jquery.mobile-1.4.2.min.js
@@ -883,6 +883,7 @@ plugins/cacheHeader.php
 plugins/cookieInvalidator.php
 plugins/create_album.php
 plugins/customFieldExtender.php
+plugins/customFieldExtenderWerk.php
 plugins/disableAction.php
 plugins/disableWatermark.php
 plugins/filter-fileSearches.php
@@ -1033,8 +1034,6 @@ zp-core/images/err-imagegeneral.png
 zp-core/images/err-imagenotfound.png
 zp-core/images/err-noflashplayer.png
 zp-core/images/err-passwordprotected.png
-zp-core/images/est-logo-light.png
-zp-core/images/est-logo.png
 zp-core/images/fail.png
 zp-core/images/favicon.ico
 zp-core/images/folder.png
@@ -1076,6 +1075,8 @@ zp-core/images/toggleroh.png
 zp-core/images/view.png
 zp-core/images/warn.png
 zp-core/images/wheel.png
+zp-core/images/zen-logo-light.png
+zp-core/images/zen-logo.png
 zp-core/images/zp.png
 zp-core/images/zp_gold.png
 zp-core/images/strengths
@@ -1772,8 +1773,8 @@ zp-core/zp-extensions/image_effects/sepia.js
 zp-core/zp-extensions/image_effects/slided.txt
 zp-core/zp-extensions/image_effects/sphere.txt
 zp-core/zp-extensions/images
-zp-core/zp-extensions/images/est-logo-light.png
-zp-core/zp-extensions/images/est-logo-small.png
+zp-core/zp-extensions/images/zen-logo-light.png
+zp-core/zp-extensions/images/zen-logo.png
 zp-core/zp-extensions/jcarousel_thumb_nav
 zp-core/zp-extensions/jcarousel_thumb_nav/jcarousel.css
 zp-core/zp-extensions/jcarousel_thumb_nav/jcarousel.js
@@ -2092,10 +2093,10 @@ zp-core/zp-extensions/tinymce/plugins/pagebreak
 zp-core/zp-extensions/tinymce/plugins/pagebreak/plugin.min.js
 zp-core/zp-extensions/tinymce/plugins/paste
 zp-core/zp-extensions/tinymce/plugins/paste/plugin.min.js
-zp-core/zp-extensions/tinymce/plugins/pasteest
-zp-core/zp-extensions/tinymce/plugins/pasteest/pasteest.php
-zp-core/zp-extensions/tinymce/plugins/pasteest/pasteest_popup.js
-zp-core/zp-extensions/tinymce/plugins/pasteest/plugin.min.js
+zp-core/zp-extensions/tinymce/plugins/pastezen
+zp-core/zp-extensions/tinymce/plugins/pastezen/pastezen.php
+zp-core/zp-extensions/tinymce/plugins/pastezen/pastezen_popup.js
+zp-core/zp-extensions/tinymce/plugins/pastezen/plugin.min.js
 zp-core/zp-extensions/tinymce/plugins/preview
 zp-core/zp-extensions/tinymce/plugins/preview/plugin.min.js
 zp-core/zp-extensions/tinymce/plugins/print
@@ -2235,8 +2236,6 @@ zp-core/zp-extensions/zenpage/images/loadingAnimation.gif
 zp-core/zp-extensions/zenpage/images/pass_blue.png
 zp-core/zp-extensions/zenpage/images/view.png
 zp-core/zp-extensions/zenpage/images/zenpage-logo.gif
-zp-core/zp-extensions/zenphotoCompatibilityPack
-zp-core/zp-extensions/zenphotoCompatibilityPack/deprecated-functions.php
 zp-core/zp-extensions/zpCaptcha
 zp-core/zp-extensions/zpCaptcha/c.php
 zp-core/version.php:*
@@ -2250,4 +2249,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-2252
+2251

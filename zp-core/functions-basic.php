@@ -416,7 +416,7 @@ function setOptionDefault($key, $default) {
 	} else {
 		if (!is_null($creator)) {
 			$sql = 'UPDATE ' . prefix('options') . 'SET `creator`=' . db_quote($creator) . ' WHERE `name`=' . db_quote($key) . ' AND `ownerid`=0 AND `theme`=""';
-			query($sql);
+			query($sql, false);
 		}
 	}
 }
