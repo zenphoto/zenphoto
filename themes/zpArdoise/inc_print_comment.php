@@ -14,7 +14,7 @@
 			break;
 		case 'news.php':
 			$comments_open = getOption('comment_form_articles');
-			$comments_allowed = $_zp_current_news->getCommentsAllowed();
+			$comments_allowed = $_zp_current_article->getCommentsAllowed();
 			break;
 		default:
 			return;

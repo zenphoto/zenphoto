@@ -159,7 +159,7 @@ if (!defined('WEBPATH'))
 															?>
 															<li<?php if ($c > SHOW_ITEMS) echo ' class="news_extrashow" style="display:none;"'; ?>>
 																<?php printNewsURL(); ?>
-																<p style="text-indent:1em;"><?php echo exerpt($_zp_current_news->getContent(), TRUNCATE_LENGTH); ?></p>
+																<p style="text-indent:1em;"><?php echo exerpt($_zp_current_article->getContent(), TRUNCATE_LENGTH); ?></p>
 															</li>
 															<?php
 														}
