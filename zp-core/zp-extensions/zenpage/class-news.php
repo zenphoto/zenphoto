@@ -1,5 +1,9 @@
 <?php
 
+function newArticle($titlelink, $allowCreate = NULL) {
+	return new Article($titlelink, $allowCreate);
+}
+
 /**
  * zenpage news class
  *
@@ -13,7 +17,7 @@ if (!defined('NEWS_POSITION_NORMAL')) { // No idea why this is needed, but clone
 	define('NEWS_POSITION_STICK_TO_TOP', 9);
 }
 
-class ZenpageNews extends ZenpageItems {
+class Article extends CMSItems {
 
 	var $manage_rights = MANAGE_ALL_NEWS_RIGHTS;
 	var $manage_some_rights = ZENPAGE_NEWS_RIGHTS;
@@ -88,7 +92,7 @@ class ZenpageNews extends ZenpageItems {
 			$id = parent::copy(array('titlelink' => $newID));
 		}
 		if ($id) {
-			$newobj = new ZenpageNews($newID);
+			$newobj = newArticle($newID);
 			$newobj->setTitle($newtitle);
 			$newobj->setTags($this->getTags(false));
 			$newobj->setShow(0);
@@ -136,7 +140,7 @@ class ZenpageNews extends ZenpageItems {
 		$categories = $this->getCategories();
 		if (!empty($categories)) {
 			foreach ($categories as $cat) {
-				$catobj = new ZenpageCategory($cat['titlelink']);
+				$catobj = newCategory($cat['titlelink']);
 				$password = $catobj->getPassword();
 				if (!empty($password)) {
 					if (!$only)
@@ -165,11 +169,11 @@ class ZenpageNews extends ZenpageItems {
 	function categoryIsVisible() {
 		if (zp_loggedin(ALL_NEWS_RIGHTS))
 			return true;
-		global $_zp_zenpage;
+		global $_zp_CMS;
 		$categories = $this->getCategories(false);
 		if (count($categories) > 0) {
 			foreach ($categories as $cat) {
-				if ($_zp_zenpage->visibleCategory($cat)) {
+				if ($_zp_CMS->visibleCategory($cat)) {
 					return true;
 				}
 			}
@@ -193,7 +197,7 @@ class ZenpageNews extends ZenpageItems {
 			return 'zp_public_access';
 		} else {
 			foreach ($categories as $cat) {
-				$catobj = new ZenpageCategory($cat['titlelink']);
+				$catobj = newCategory($cat['titlelink']);
 				$guestaccess = $catobj->checkforGuest($hint, $show);
 				if ($guestaccess) {
 					return $guestaccess;
@@ -227,7 +231,7 @@ class ZenpageNews extends ZenpageItems {
 			$mycategories = $_zp_current_admin_obj->getObjects('news');
 			if (!empty($mycategories)) {
 				foreach ($this->getCategories() as $category) {
-					$cat = new ZenpageCategory($category['titlelink']);
+					$cat = newCategory($category['titlelink']);
 					if ($cat->isMyItem(ZENPAGE_NEWS_RIGHTS)) { // only override item visibility if we "own" the category
 						return true;
 					}
@@ -270,7 +274,7 @@ class ZenpageNews extends ZenpageItems {
 			$categories = $this->getCategories();
 			$count = 0;
 			foreach ($categories as $cat) {
-				$catobj = new ZenpageCategory($cat['titlelink']);
+				$catobj = newCategory($cat['titlelink']);
 				$parentid = $catobj->getParentID();
 				$parentcats = $catobj->getParents();
 				foreach ($parentcats as $parentcat) {
@@ -305,9 +309,9 @@ class ZenpageNews extends ZenpageItems {
 	 * @return int
 	 */
 	function getIndex($sortorder, $sortdirection, $sticky) {
-		global $_zp_zenpage, $_zp_current_zenpage_news;
+		global $_zp_CMS;
 		if ($this->index == NULL) {
-			$articles = $_zp_zenpage->getArticles(0, NULL, true, $sortorder, $sortdirection, $sticky);
+			$articles = $_zp_CMS->getArticles(0, NULL, true, $sortorder, $sortdirection, $sticky);
 			for ($i = 0; $i < count($articles); $i++) {
 				$article = $articles[$i];
 				if ($this->getTitlelink() == $article['titlelink']) {
@@ -328,9 +332,9 @@ class ZenpageNews extends ZenpageItems {
 	 * @return object
 	 */
 	function getPrevArticle($sortorder = 'date', $sortdirection = false, $sticky = true) {
-		global $_zp_zenpage, $_zp_current_zenpage_news;
+		global $_zp_CMS;
 		$index = $this->getIndex($sortorder, $sortdirection, $sticky);
-		$article = $_zp_zenpage->getArticle($index - 1);
+		$article = $_zp_CMS->getArticle($index - 1);
 		return $article;
 	}
 
@@ -343,9 +347,9 @@ class ZenpageNews extends ZenpageItems {
 	 * @return object
 	 */
 	function getNextArticle($sortorder = 'date', $sortdirection = false, $sticky = true) {
-		global $_zp_zenpage, $_zp_current_zenpage_news;
+		global $_zp_CMS;
 		$index = $this->getIndex($sortorder, $sortdirection, $sticky);
-		$article = $_zp_zenpage->getArticle($index + 1);
+		$article = $_zp_CMS->getArticle($index + 1);
 		return $article;
 	}
 

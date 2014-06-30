@@ -7,9 +7,9 @@ if (!defined('WEBPATH'))
 <!DOCTYPE html>
 <html>
 	<head>
-		
+
 		<?php zp_apply_filter('theme_head'); ?>
-		
+
 		<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
 		<link rel="stylesheet" href="<?php echo pathurlencode(dirname(dirname($zenCSS))); ?>/common.css" type="text/css" />
 	</head>
@@ -37,7 +37,7 @@ if (!defined('WEBPATH'))
 				echo '</p>';
 			}
 			?>
-			<?php printZenPhoto20(); ?>
+			<?php printSoftwareLink(); ?>
 		</div>
 		<?php
 		zp_apply_filter('theme_body_close');

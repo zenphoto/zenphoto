@@ -77,8 +77,8 @@ class ThemeOptions {
 						gettext('Custom menu')			 => array('key' => 'garland_menu', 'type' => OPTION_TYPE_CUSTOM, 'desc' => gettext('Set this to the <em>menu_manager</em> menu you wish to use.') . $note)
 		);
 		if (extensionEnabled('zenpage')) {
-			global $_zp_zenpage;
-			$pages = $_zp_zenpage->getPages(false);
+			global $_zp_CMS;
+			$pages = $_zp_CMS->getPages(false);
 			$list = array();
 			foreach ($pages as $page) {
 				$list[getBare($page['title'])] = $page['titlelink'];

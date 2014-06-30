@@ -1,5 +1,9 @@
 <?php
 
+function newPage($titlelink, $allowCreate = NULL) {
+	return new Page($titlelink, $allowCreate);
+}
+
 /**
  * zenpage page class
  *
@@ -7,7 +11,7 @@
  * @package plugins
  * @subpackage zenpage
  */
-class ZenpagePage extends ZenpageItems {
+class Page extends CMSItems {
 
 	var $manage_rights = MANAGE_ALL_PAGES_RIGHTS;
 	var $manage_some_rights = ZENPAGE_PAGES_RIGHTS;
@@ -114,7 +118,7 @@ class ZenpagePage extends ZenpageItems {
 			$id = parent::copy(array('titlelink' => $newID));
 		}
 		if ($id) {
-			$newobj = new ZenpagePage($newID);
+			$newobj = newPage($newID);
 			$newobj->setTitle($newtitle);
 			$newobj->setSortOrder(NULL);
 			$newobj->setTags($this->getTags(false));
@@ -142,7 +146,7 @@ class ZenpagePage extends ZenpageItems {
 				if (is_array($result)) {
 					foreach ($result as $row) {
 						if (strlen($row['sort_order']) == $mychild) {
-							$subpage = new ZenpagePage($row['titlelink']);
+							$subpage = newPage($row['titlelink']);
 							$success = $success && $subpage->remove();
 						}
 					}
@@ -160,8 +164,8 @@ class ZenpagePage extends ZenpageItems {
 	 * @return array
 	 */
 	function getParents(&$parentid = '', $initparents = true) {
-		global $parentpages, $_zp_zenpage;
-		$allitems = $_zp_zenpage->getPages();
+		global $parentpages, $_zp_CMS;
+		$allitems = $_zp_CMS->getPages();
 		if ($initparents) {
 			$parentpages = array();
 		}
@@ -171,7 +175,7 @@ class ZenpagePage extends ZenpageItems {
 			$currentparentid = $parentid;
 		}
 		foreach ($allitems as $item) {
-			$obj = new ZenpagePage($item['titlelink']);
+			$obj = newPage($item['titlelink']);
 			$itemtitlelink = $obj->getTitlelink();
 			$itemid = $obj->getID();
 			$itemparentid = $obj->getParentID();
@@ -193,10 +197,10 @@ class ZenpagePage extends ZenpageItems {
 	 * @return array
 	 */
 	function getPages($published = NULL, $toplevel = false, $number = NULL, $sorttype = NULL, $sortdirection = NULL) {
-		global $_zp_zenpage;
+		global $_zp_CMS;
 		$subpages = array();
 		$sortorder = $this->getSortOrder();
-		$pages = $_zp_zenpage->getPages($published, false, $number, $sorttype, $sortdirection, $this);
+		$pages = $_zp_CMS->getPages($published, false, $number, $sorttype, $sortdirection, $this);
 		foreach ($pages as $page) {
 			if ($page['parentid'] == $this->getID() && $page['sort_order'] != $sortorder) { // exclude the page itself!
 				array_push($subpages, $page);
@@ -223,7 +227,7 @@ class ZenpagePage extends ZenpageItems {
 			} else {
 				$sql = 'SELECT `titlelink` FROM ' . prefix('pages') . ' WHERE `id`=' . $parentID;
 				$result = query_single_row($sql);
-				$pageobj = new ZenpagePage($result['titlelink']);
+				$pageobj = newPage($result['titlelink']);
 				$hash = $pageobj->getPassword();
 			}
 		}

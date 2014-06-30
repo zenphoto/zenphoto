@@ -29,7 +29,7 @@ if (function_exists('printContactForm')) {
 			</div>
 			<?php @call_user_func('printLanguageSelector'); ?>
 			<div id="credit">
-				<?php printZenPhoto20(); ?>
+				<?php printSoftwareLink(); ?>
 			</div>
 			<?php
 			zp_apply_filter('theme_body_close');

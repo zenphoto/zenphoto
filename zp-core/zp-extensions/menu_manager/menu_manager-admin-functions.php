@@ -41,10 +41,10 @@ function printItemsListTable($item, $flag) {
 			case "album":
 				$link = '<a href="../../admin-edit.php?page=edit&amp;album=' . html_encode($item['link']) . '">' . html_encode(truncate_string($item['link'], 40, '...')) . '</a>';
 				break;
-			case "zenpagepage":
+			case "Page":
 				$link = '<a href="../zenpage/admin-edit.php?page&amp;titlelink=' . html_encode($item['link']) . '">' . html_encode(truncate_string($item['link'], 40, '...')) . '</a>';
 				break;
-			case "zenpagecategory":
+			case "category":
 				$link = '<a href="../zenpage/admin-edit.php?newscategory&amp;titlelink=' . html_encode($item['link']) . '">' . html_encode(truncate_string($item['link'], 40, '...')) . '</a>';
 				break;
 			case 'customlink':
@@ -372,11 +372,11 @@ function addPagesToDatabase($menuset, $base = NULL) {
 		$link = $item['titlelink'];
 		$parent = $parents[$level - 1];
 		$sql = "INSERT INTO " . prefix('menu') . " (`title`, `link`, `type`, `show`,`menuset`,`sort_order`, `parentid`) " .
-						'VALUES (' . db_quote($item['title']) . ',' . db_quote($link) . ',"zenpagepage",' . $show . ',' . db_quote($menuset) . ',' . db_quote($order) . ',' . $parent . ')';
+						'VALUES (' . db_quote($item['title']) . ',' . db_quote($link) . ',"Page",' . $show . ',' . db_quote($menuset) . ',' . db_quote($order) . ',' . $parent . ')';
 		if (query($sql, false)) {
 			$id = db_insert_id();
 		} else {
-			$rslt = query_single_row('SELECT `id` FROM' . prefix('menu') . ' WHERE `type`="zenpagepage" AND `link`="' . $link . '"');
+			$rslt = query_single_row('SELECT `id` FROM' . prefix('menu') . ' WHERE `type`="Page" AND `link`="' . $link . '"');
 			$id = $rslt['id'];
 		}
 		$parents[$level] = $id;
@@ -410,11 +410,11 @@ function addCategoriesToDatabase($menuset, $base = NULL) {
 		$link = $item['titlelink'];
 		$parent = $parents[$level - 1];
 		$sql = "INSERT INTO " . prefix('menu') . " (`title`, `link`, `type`, `show`,`menuset`,`sort_order`,`parentid`) " .
-						'VALUES (' . db_quote($item['title']) . ',' . db_quote($link) . ',"zenpagecategory", 1,' . db_quote($menuset) . ',' . db_quote($order) . ',' . $parent . ')';
+						'VALUES (' . db_quote($item['title']) . ',' . db_quote($link) . ',"category", 1,' . db_quote($menuset) . ',' . db_quote($order) . ',' . $parent . ')';
 		if (query($sql, false)) {
 			$id = db_insert_id();
 		} else {
-			$rslt = query_single_row('SELECT `id` FROM' . prefix('menu') . ' WHERE `type`="zenpagecategory" AND `link`="' . $link . '"');
+			$rslt = query_single_row('SELECT `id` FROM' . prefix('menu') . ' WHERE `type`="category" AND `link`="' . $link . '"');
 			$id = $rslt['id'];
 		}
 		$parents[$level] = $id;
@@ -451,7 +451,7 @@ function addItem(&$reports) {
 			addAlbumsToDatabase($menuset);
 			if (extensionEnabled('zenpage')) {
 				query("INSERT INTO " . prefix('menu') . " (`title`,`link`,`type`,`show`,`menuset`,`sort_order`) " .
-								"VALUES ('" . gettext('News index') . "', '" . getNewsIndexURL() . "', 'zenpagenewsindex', '1', " . db_quote($menuset) . ", '001')", true);
+								"VALUES ('" . gettext('News index') . "', '" . getNewsIndexURL() . "', 'newsindex', '1', " . db_quote($menuset) . ", '001')", true);
 				addPagesToDatabase($menuset);
 				addCategoriesToDatabase($menuset);
 			}
@@ -461,11 +461,11 @@ function addItem(&$reports) {
 			addAlbumsToDatabase($menuset);
 			$reports[] = "<p class = 'messagebox fade-message'>" . gettext("Menu items for all albums added.") . " </p>";
 			return NULL;
-		case 'all_zenpagepages':
+		case 'all_Pages':
 			addPagesToDatabase($menuset);
 			$reports[] = "<p class = 'messagebox fade-message'>" . gettext("Menu items for all Zenpage pages added.") . " </p>";
 			return NULL;
-		case 'all_zenpagecategorys':
+		case 'all_categorys':
 			addCategoriesToDatabase($menuset);
 			$reports[] = "<p class = 'messagebox fade-message'>" . gettext("Menu items for all Zenpage categories added.") . " </p>";
 			return NULL;
@@ -486,7 +486,7 @@ function addItem(&$reports) {
 			}
 			$successmsg = sprintf(gettext("Gallery index menu item <em>%s</em> added"), $result['link']);
 			break;
-		case 'zenpagepage':
+		case 'Page':
 			$result['title'] = NULL;
 			$result['link'] = sanitize($_POST['pageselect']);
 			if (empty($result['link'])) {
@@ -495,7 +495,7 @@ function addItem(&$reports) {
 			}
 			$successmsg = sprintf(gettext("Zenpage page menu item <em>%s</em> added"), $result['link']);
 			break;
-		case 'zenpagenewsindex':
+		case 'newsindex':
 			$result['title'] = process_language_string_save("title", 2);
 			$result['link'] = NULL;
 			if (empty($result['title'])) {
@@ -504,7 +504,7 @@ function addItem(&$reports) {
 			}
 			$successmsg = sprintf(gettext("Zenpage news index menu item <em>%s</em> added"), $result['link']);
 			break;
-		case 'zenpagecategory':
+		case 'category':
 			$result['title'] = NULL;
 			$result['link'] = sanitize($_POST['categoryselect']);
 			if (empty($result['link'])) {
@@ -634,7 +634,7 @@ $reports) {
 				return $result;
 			}
 			break;
-		case 'zenpagepage':
+		case 'Page':
 			$result['title'] = NULL;
 			$result['link'] = sanitize($_POST['pageselect']);
 			if (empty($result['link'])) {
@@ -642,7 +642,7 @@ $reports) {
 				return $result;
 			}
 			break;
-		case 'zenpagenewsindex':
+		case 'newsindex':
 			$result['title'] = process_language_string_save("title", 2);
 			$result['link'] = NULL;
 			if (empty($result['title'])) {
@@ -650,7 +650,7 @@ $reports) {
 				return $result;
 			}
 			break;
-		case 'zenpagecategory':
+		case 'category':
 			$result['title'] = NULL;
 			$result['link'] = sanitize($_POST['categoryselect']);
 			if (empty($result['link'])) {
@@ -792,12 +792,12 @@ function printAlbumsSelector($current) {
  *
  * @return string
  */
-function printZenpagePagesSelector($current) {
-	global $_zp_gallery, $_zp_zenpage;
+function printPagesSelector($current) {
+	global $_zp_gallery, $_zp_CMS;
 	?>
 	<select id="pageselector" name="pageselect">
 		<?php
-		$pages = $_zp_zenpage->getPages(false);
+		$pages = $_zp_CMS->getPages(false);
 		foreach ($pages as $key => $page) {
 			if ($page['titlelink'] == $current) {
 				$selected = ' selected= "selected
@@ -806,7 +806,7 @@ function printZenpagePagesSelector($current) {
 			} else {
 				$selected = '';
 			}
-			$pageobj = new ZenpagePage($page['titlelink']);
+			$pageobj = newPage($page['titlelink']);
 			$level = substr_count($pageobj->getSortOrder(), "-");
 			$arrow = "";
 			for ($count = 1; $count <= $level; $count++) {
@@ -829,19 +829,19 @@ function printZenpagePagesSelector($current) {
  *
  * @return string
  */
-function printZenpageNewsCategorySelector($current) {
-	global $_zp_gallery, $_zp_zenpage;
+function printNewsCategorySelector($current) {
+	global $_zp_gallery, $_zp_CMS;
 	?>
 	<select id="categoryselector" name="categoryselect">
 		<?php
-		$cats = $_zp_zenpage->getAllCategories(false);
+		$cats = $_zp_CMS->getAllCategories(false);
 		foreach ($cats as $cat) {
 			if ($cat['titlelink'] == $current) {
 				$selected = ' selected="selected"';
 			} else {
 				$selected = '';
 			}
-			$catobj = new ZenpageCategory($cat['titlelink']);
+			$catobj = newCategory($cat['titlelink']);
 			//This is much easier than hacking the nested list function to work with this
 			$getparents = $catobj->getParents();
 			$levelmark = '';

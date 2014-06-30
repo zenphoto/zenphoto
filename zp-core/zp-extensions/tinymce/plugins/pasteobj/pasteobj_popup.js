@@ -1,5 +1,5 @@
 /**
- * pastezen tinyMCE popup
+ * pasteobj tinyMCE popup
  *
  * @author Stephen Billard (sbillard)
  */
@@ -12,9 +12,9 @@ var tinymce, tinyMCE;
  * that you load this script into your dialogs.
  *
  * @static
- * @class pasteZenPopup
+ * @class pasteObjPopup
  */
-var pasteZenPopup = {
+var pasteObjPopup = {
 	/**
 	 * Initializes the popup this will be called automatically.
 	 *
@@ -39,7 +39,7 @@ var pasteZenPopup = {
 		// Setup local DOM
 		self.dom = self.editor.windowManager.createInstance('tinymce.dom.DOMUtils', document, {
 			ownEvents: true,
-			proxy: pasteZenPopup._eventProxy
+			proxy: pasteObjPopup._eventProxy
 		});
 
 		self.dom.bind(window, 'ready', self._onDOMLoaded, self);
@@ -54,12 +54,12 @@ var pasteZenPopup = {
 		 * @param {tinymce.Editor} editor Editor instance.
 		 * @example
 		 * // Alerts the selected contents when the dialog is loaded
-		 * pasteZenPopup.onInit.add(function(ed) {
+		 * pasteObjPopup.onInit.add(function(ed) {
 		 *     alert(ed.selection.getContent());
 		 * });
 		 *
 		 * // Executes the init method on page load in some object using the SomeObject scope
-		 * pasteZenPopup.onInit.add(SomeObject.init, SomeObject);
+		 * pasteObjPopup.onInit.add(SomeObject.init, SomeObject);
 		 */
 		self.onInit = {
 			add: function(func, scope) {
@@ -160,7 +160,7 @@ var pasteZenPopup = {
 	 * @method storeSelection
 	 */
 	storeSelection: function() {
-		this.editor.windowManager.bookmark = pasteZenPopup.editor.selection.getBookmark(1);
+		this.editor.windowManager.bookmark = pasteObjPopup.editor.selection.getBookmark(1);
 	},
 	/**
 	 * Restores any stored selection. This can be useful since some browsers
@@ -169,7 +169,7 @@ var pasteZenPopup = {
 	 * @method restoreSelection
 	 */
 	restoreSelection: function() {
-		var self = pasteZenPopup;
+		var self = pasteObjPopup;
 
 		if (!self.isWindow && tinymce.isIE) {
 			self.editor.selection.moveToBookmark(self.editor.windowManager.bookmark);
@@ -185,7 +185,7 @@ var pasteZenPopup = {
 	 * @param {string} option Option name to get the file_broswer_callback function name from.
 	 */
 	openBrowser: function(element_id, type) {
-		pasteZenPopup.restoreSelection();
+		pasteObjPopup.restoreSelection();
 		this.editor.execCallback('file_browser_callback', element_id, document.getElementById(element_id).value, type, window);
 	},
 	/**
@@ -214,7 +214,7 @@ var pasteZenPopup = {
 		var e = window.event.srcElement;
 
 		if (e.nodeName == 'INPUT' && (e.type == 'submit' || e.type == 'button')) {
-			pasteZenPopup.restoreSelection();
+			pasteObjPopup.restoreSelection();
 		}
 	},
 	/*	_restoreSelection : function() {
@@ -222,11 +222,11 @@ var pasteZenPopup = {
 
 	 // If user focus a non text input or textarea
 	 if ((e.nodeName != 'INPUT' && e.nodeName != 'TEXTAREA') || e.type != 'text')
-	 pasteZenPopup.restoreSelection();
+	 pasteObjPopup.restoreSelection();
 	 },*/
 
 	_onDOMLoaded: function() {
-		var t = pasteZenPopup, ti = document.title, h, nv;
+		var t = pasteObjPopup, ti = document.title, h, nv;
 
 		// Translate page
 		if (t.features.translate_i18n !== false) {
@@ -271,12 +271,12 @@ var pasteZenPopup = {
 		// Restore selection in IE when focus is placed on a non textarea or input element of the type text
 		if (tinymce.Env.ie) {
 			if (tinymce.Env.ie < 11) {
-				document.attachEvent('onmouseup', pasteZenPopup._restoreSelection);
+				document.attachEvent('onmouseup', pasteObjPopup._restoreSelection);
 
 				// Add base target element for it since it would fail with modal dialogs
 				t.dom.add(t.dom.select('head')[0], 'base', {target: '_self'});
 			} else {
-				document.addEventListener('mouseup', pasteZenPopup._restoreSelection, false);
+				document.addEventListener('mouseup', pasteObjPopup._restoreSelection, false);
 			}
 		}
 
@@ -298,7 +298,7 @@ var pasteZenPopup = {
 
 		// Patch for accessibility
 		tinymce.each(t.dom.select('select'), function(e) {
-			e.onkeydown = pasteZenPopup._accessHandler;
+			e.onkeydown = pasteObjPopup._accessHandler;
 		});
 
 		// Call onInit
@@ -322,7 +322,7 @@ var pasteZenPopup = {
 			});
 		}
 
-		document.onkeyup = pasteZenPopup._closeWinKeyHandler;
+		document.onkeyup = pasteObjPopup._closeWinKeyHandler;
 
 		if ('textContent' in document) {
 			t.uiWindow.getEl('head').firstChild.textContent = document.title;
@@ -347,17 +347,17 @@ var pasteZenPopup = {
 		e = e || window.event;
 
 		if (e.keyCode == 27) {
-			pasteZenPopup.close();
+			pasteObjPopup.close();
 		}
 	},
 	_eventProxy: function(id) {
 		return function(evt) {
-			pasteZenPopup.dom.events.callNativeHandler(id, evt);
+			pasteObjPopup.dom.events.callNativeHandler(id, evt);
 		};
 	}
 };
 
-pasteZenPopup.init();
+pasteObjPopup.init();
 
 tinymce.util.Dispatcher = function(scope) {
 	this.scope = scope || this;

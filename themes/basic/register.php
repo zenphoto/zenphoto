@@ -30,7 +30,7 @@ if (function_exists('printRegistrationForm')) {
 			<?php @call_user_func('printUserLogin_out', ""); ?>
 			<?php @call_user_func('printLanguageSelector'); ?>
 			<div id="credit">
-				<?php printZenPhoto20(); ?>
+				<?php printSoftwareLink(); ?>
 			</div>
 			<?php
 			zp_apply_filter('theme_body_close');

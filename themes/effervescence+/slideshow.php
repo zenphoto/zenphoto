@@ -76,7 +76,7 @@ if (function_exists('printSlideShow')) {
 				<?php
 				printThemeInfo();
 				?>
-				<?php printZenPhotoLink('gray'); ?>
+				<?php printPackageLink('gray'); ?>
 			</div> <!-- footlinks -->
 			<?php
 			printFooter();

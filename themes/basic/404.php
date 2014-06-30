@@ -28,7 +28,7 @@ if (!defined('WEBPATH'))
 			</div>
 		</div>
 		<div id="credit">
-			<?php printZenPhoto20(); ?>
+			<?php printSoftwareLink(); ?>
 		</div>
 		<?php
 		zp_apply_filter('theme_body_close');

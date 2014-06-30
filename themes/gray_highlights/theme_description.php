@@ -1,6 +1,6 @@
 <?php
 
-// Zenphoto theme definition file
+// theme definition file
 $theme_description['name'] = 'Gray Highlights';
 $theme_description['author'] = 'The Whole Life To Learn';
 $theme_description['version'] = '1.0.0';

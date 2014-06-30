@@ -40,13 +40,23 @@
  * If you disable the plugin and run setup, all fields defined will be removed
  * from the database.
  *
+ * Instructions for cloning this plugin:
+ *
+ * You should copy this script and rename it to whatever you want to call your custom
+ * version--say xyzzyCustomFieldExtender.php
+ *
+ * Be sure to change the class name to something unique--say class xyzzyCustomFieldExtender.
+ * Also rename the two functions <code>getCustomField</code> and <code>printCustomField</code>.
+ * For instance <code>getXyzzyField</code> and <code>printXyzzyField</code>. These changes
+ * allow your plugin to co-exist with other custom field extender plugins.
+ *
  * @author Stephen Billard (sbillard)
  * @package plugins
  * @subpackage example
  * @category package
  *
  */
-$plugin_is_filter = 5 | CLASS_PLUGIN;
+$plugin_is_filter = /* defaultExtension( */ 5 | CLASS_PLUGIN /* ) */; //	if you have such a plugin you probably want to use it
 $plugin_description = gettext('Adds user defined fields to database tables');
 $plugin_notice = gettext('This plugin attaches the "custom data" filters. The raw custom data field is not editable when the plugin has fields defined for the object.');
 $plugin_author = "Stephen Billard (sbillard)";
@@ -57,6 +67,7 @@ if (file_exists(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/common/fi
 	require_once(stripSuffix(__FILE__) . '/fieldExtender.php');
 }
 
+//NOTE: you should choose a unique class name to be sure not to conflict with another custom field extender plugin
 class customFieldExtender extends fieldExtender {
 
 	static $fields = array(
@@ -91,12 +102,12 @@ class customFieldExtender extends fieldExtender {
 		return parent::_mediaItemEdit($html, $object, $i, self::$fields);
 	}
 
-	static function zenpageItemSave($custom, $object) {
-		return parent::_zenpageItemSave($custom, $object, self::$fields);
+	static function cmsItemSave($custom, $object) {
+		return parent::_cmsItemSave($custom, $object, self::$fields);
 	}
 
-	static function zenpageItemEdit($html, $object) {
-		return parent::_zenpageItemEdit($html, $object, self::$fields);
+	static function cmsItemEdit($html, $object) {
+		return parent::_cmsItemEdit($html, $object, self::$fields);
 	}
 
 	static function register() {
@@ -111,7 +122,7 @@ class customFieldExtender extends fieldExtender {
 
 function getCustomField($field, $object = NULL, &$detail = NULL) {
 	global $_zp_current_admin_obj, $_zp_current_album, $_zp_current_image
-	, $_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_current_category;
+	, $_zp_current_article, $_zp_current_page, $_zp_current_category;
 
 	$objects = $tables = array();
 	if (is_null($object)) {
@@ -121,11 +132,11 @@ function getCustomField($field, $object = NULL, &$detail = NULL) {
 		} else if (in_context(ZP_ALBUM)) {
 			$object = $_zp_current_album;
 		} else if (in_context(ZP_ZENPAGE_NEWS_ARTICLE)) {
-			$object = $_zp_current_zenpage_news;
+			$object = $_zp_current_article;
 			if ($_zp_current_category)
 				$objects[$tables[] = 'news_categories'] = $_zp_current_category;
 		} else if (in_context(ZP_ZENPAGE_PAGE)) {
-			$object = $_zp_current_zenpage_page;
+			$object = $_zp_current_page;
 		} else if (in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
 			$object = $_zp_current_category;
 		} else {

@@ -3,7 +3,7 @@
 /* Generates doc file for filters
  *
  * @author Stephen Billard (sbillard)
- * 
+ *
  * @package plugins
  * @subpackage development
  * @category package
@@ -176,7 +176,7 @@ function processFilters() {
 						$class = 'Object';
 						if (strpos($basename, 'zenpage') !== false) {
 							$class = 'Object';
-							$subclass = 'Zenpage';
+							$subclass = 'CMS';
 						} else {
 							if (!$subclass) {
 								switch ($basename) {
@@ -211,7 +211,7 @@ function processFilters() {
 					} else if (strpos($script, 'admin') !== false) {
 						$class = 'Admin';
 						if (strpos($script, 'zenpage') !== false) {
-							$subclass = 'Zenpage';
+							$subclass = 'CMS';
 						} else if (strpos($basename, 'comment') !== false || strpos($key, 'comment')) {
 							$subclass = 'Comment';
 						} else if (strpos($basename, 'edit') !== false || strpos($key, 'album') !== false || strpos($key, 'image') !== false) {
@@ -220,7 +220,7 @@ function processFilters() {
 					} else if (strpos($script, 'template') !== false) {
 						$class = 'Template';
 					} else if (strpos($basename, 'zenpage') !== false) {
-						$class = 'Zenpage';
+						$class = 'CMS';
 					} else {
 						$class = 'Miscellaneous';
 					}

@@ -38,7 +38,7 @@ if (defined('OFFSET_PATH')) {
 	require_once(dirname(dirname(__FILE__)) . '/admin-globals.php');
 
 	if (extensionEnabled('zenpage')) {
-		require_once(dirname(dirname(__FILE__)) . '/' . PLUGIN_FOLDER . '/zenpage/zenpage-admin-functions.php');
+		require_once(dirname(dirname(__FILE__)) . '/' . PLUGIN_FOLDER . '/zenpage/admin-functions.php');
 	}
 
 	admin_securityChecks(NULL, currentRelativeURL());
@@ -226,7 +226,7 @@ if (defined('OFFSET_PATH')) {
 							$postinfo .= '<li class="import-exists">' . sprintf(gettext('%1$s with the title/titlelink <em>%2$s</em> already exists!'), $post['type'], $post['title']);
 						}
 						// Get new id of the article
-						$newarticle = new ZenpageNews($titlelink, true);
+						$newarticle = newArticle($titlelink, true);
 						$newarticleid = $newarticle->getID();
 						// getting the categories and tags assigned to this post (Wordpress pages do not have tags or categories
 						$termrelations = wp_query_full_array("

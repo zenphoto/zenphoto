@@ -222,7 +222,7 @@ class fieldExtender {
 	 * @param object $object
 	 * @return string
 	 */
-	static function _zenpageItemSave($custom, $object, $fields) {
+	static function _cmsItemSave($custom, $object, $fields) {
 		foreach ($fields as $field) {
 			if ($field['table'] == $object->table) {
 				$olddata = $object->get($field['name']);
@@ -242,7 +242,7 @@ class fieldExtender {
 	 * @param object $object
 	 * @return string
 	 */
-	static function _zenpageItemEdit($html, $object, $fields) {
+	static function _cmsItemEdit($html, $object, $fields) {
 		foreach ($fields as $field) {
 			if ($field['table'] == $object->table) {
 				$html .= '<tr><td>' . $field['desc'] . '</td><td>';
@@ -279,16 +279,16 @@ value="' . html_encode($object->get($field['name'])) . '" />';
 			zp_register_filter("edit_admin_custom_data", "$me::adminEdit");
 		}
 		if (isset($items['news'])) {
-			zp_register_filter("save_article_custom_data", "$me::zenpageItemSave");
-			zp_register_filter("edit_article_custom_data", "$me::zenpageItemEdit");
+			zp_register_filter("save_article_custom_data", "$me::cmsItemSave");
+			zp_register_filter("edit_article_custom_data", "$me::cmsItemEdit");
 		}
 		if (isset($items['news_categories'])) {
-			zp_register_filter("save_category_custom_data", "$me::zenpageItemSave");
-			zp_register_filter("edit_category_custom_data", "$me::zenpageItemEdit");
+			zp_register_filter("save_category_custom_data", "$me::cmsItemSave");
+			zp_register_filter("edit_category_custom_data", "$me::cmsItemEdit");
 		}
 		if (isset($items['pages'])) {
-			zp_register_filter("save_page_custom_data", "$me::zenpageItemSave");
-			zp_register_filter("edit_page_custom_data", "$me::zenpageItemEdit");
+			zp_register_filter("save_page_custom_data", "$me::cmsItemSave");
+			zp_register_filter("edit_page_custom_data", "$me::cmsItemEdit");
 		}
 		if (OFFSET_PATH && !getOption($me . "_addedFields")) {
 			zp_register_filter('admin_note', "$me::adminNotice");

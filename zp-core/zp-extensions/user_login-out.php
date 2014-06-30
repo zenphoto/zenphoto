@@ -57,10 +57,10 @@ if (in_context(ZP_INDEX)) {
 					$__redirect['image'] = $_zp_current_image->filename;
 				}
 				if (in_context('ZP_ZENPAGE_PAGE')) {
-					$__redirect['title'] = $_zp_current_zenpage_page->getTitlelink();
+					$__redirect['title'] = $_zp_current_page->getTitlelink();
 				}
 				if (in_context('ZP_ZENPAGE_NEWS_ARTICLE')) {
-					$__redirect['title'] = $_zp_current_zenpage_news->getTitlelink();
+					$__redirect['title'] = $_zp_current_article->getTitlelink();
 				}
 				if (in_context('ZP_ZENPAGE_NEWS_CATEGORY')) {
 					$__redirect['category'] = $_zp_current_category->getTitlelink();

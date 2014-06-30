@@ -34,7 +34,7 @@ function css_head($ignore) {
 	return $ignore;
 }
 
-function printZenPhoto20() {
+function printSoftwareLink() {
 	global $themeColor;
 	switch ($themeColor) {
 		case 'dark':
@@ -47,7 +47,7 @@ function printZenPhoto20() {
 			$logo = 'sterile';
 			break;
 	}
-	printZenphotoLink($logo);
+	printPackageLink($logo);
 }
 
 function switcher_head($ignore) {

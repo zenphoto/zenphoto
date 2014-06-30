@@ -115,7 +115,7 @@ function getAllTagsFromAlbum($albumname, $subalbums = false, $mode = 'images') {
  *
  */
 function getAllTagsFromZenpage($mode = 'news') {
-	global $_zp_gallery, $_zp_zenpage;
+	global $_zp_gallery, $_zp_CMS;
 	if (!extensionEnabled('zenpage')) {
 		return FALSE;
 	}
@@ -131,9 +131,9 @@ function getAllTagsFromZenpage($mode = 'news') {
 				$published = 'published';
 			}
 			$type = 'news';
-			$items = $_zp_zenpage->getArticles(false, $published);
+			$items = $_zp_CMS->getArticles(false, $published);
 			foreach ($items as $item) {
-				$obj = new ZenpageNews($item['titlelink']);
+				$obj = newArticle($item['titlelink']);
 				if ($obj->checkAccess()) {
 					$ids[] = $obj->getID();
 				}
@@ -142,9 +142,9 @@ function getAllTagsFromZenpage($mode = 'news') {
 		case 'pages':
 			$published = !zp_loggedin(ZENPAGE_NEWS_RIGHTS | ALL_NEWS_RIGHTS);
 			$type = 'pages';
-			$items = $_zp_zenpage->getPages($published);
+			$items = $_zp_CMS->getPages($published);
 			foreach ($items as $item) {
-				$obj = new ZenpagePage($item['titlelink']);
+				$obj = newPage($item['titlelink']);
 				if ($obj->checkAccess()) {
 					$ids[] = $obj->getID();
 				}

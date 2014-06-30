@@ -38,7 +38,7 @@
  * </ul>
  *
  * @author Stephen Billard (sbillard)
- * 
+ *
  * @package plugins
  * @subpackage admin
  */
@@ -257,7 +257,7 @@ class ExternalFeed extends feed {
 				$this->imagesize = $this->getImageSize();
 				$this->itemnumber = getOption("externalFeed_zenpage_items"); // # of Items displayed on the feed
 				require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/image_album_statistics.php');
-				require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/zenpage-template-functions.php');
+				require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/template-functions.php');
 
 				break;
 			case 'pages': //Zenpage News
@@ -282,7 +282,7 @@ class ExternalFeed extends feed {
 						break;
 				}
 				$this->channel_title = html_encode($this->channel_title . $titleappendix);
-				require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/zenpage-template-functions.php');
+				require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/template-functions.php');
 				break;
 
 			case 'comments': //Comments
@@ -319,7 +319,7 @@ class ExternalFeed extends feed {
 				}
 				$this->channel_title = html_encode($this->channel_title . $title . gettext(' (latest comments)'));
 				if (extensionEnabled('zenpage')) {
-					require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/zenpage-template-functions.php');
+					require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/template-functions.php');
 				}
 				break;
 			case 'null': //we just want the class instantiated
@@ -397,14 +397,14 @@ class ExternalFeed extends feed {
 	protected function getItemNews($item) {
 		$categories = '';
 		$feeditem['enclosure'] = '';
-		$obj = new ZenpageNews($item['titlelink']);
+		$obj = newArticle($item['titlelink']);
 		$title = $feeditem['title'] = get_language_string($obj->getTitle('all'), $this->locale);
 		$link = $obj->getLink();
 		$count2 = 0;
 		$plaincategories = $obj->getCategories();
 		$categories = '';
 		foreach ($plaincategories as $cat) {
-			$catobj = new ZenpageCategory($cat['titlelink']);
+			$catobj = newCategory($cat['titlelink']);
 			$categories .= get_language_string($catobj->getTitle('all'), $this->locale) . ', ';
 		}
 		$categories = rtrim($categories, ', ');
@@ -456,7 +456,7 @@ class ExternalFeed extends feed {
 				$news = array($news);
 			}
 			foreach ($news as $article) {
-				$obj = new ZenpageNews($article, false);
+				$obj = newArticle($article, false);
 				if ($obj->loaded) {
 					$items[] = array('titlelink' => $article);
 				}
@@ -468,7 +468,7 @@ class ExternalFeed extends feed {
 				$pages = array($pages);
 			}
 			foreach ($pages as $page) {
-				$obj = new ZenpagePage($page, false);
+				$obj = newPage($page, false);
 				if ($obj->loaded) {
 					$items[] = array('titlelink' => $page);
 				}

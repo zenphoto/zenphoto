@@ -16,10 +16,11 @@ require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cacheManager
 $iMutex = new Mutex('i', getOption('imageProcessorConcurrency'));
 $iMutex->lock();
 
-$extension = sanitize(sanitize($_REQUEST['plugin']));
+$extension = sanitize($_REQUEST['plugin']);
 setupLog(sprintf(gettext('Plugin:%s setup started'), $extension), true);
 $option_interface = NULL;
 $plugin_is_filter = 5 | THEME_PLUGIN;
+
 require_once(getPlugin($extension . '.php'));
 
 if (extensionEnabled($extension)) {

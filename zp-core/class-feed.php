@@ -223,7 +223,7 @@ class feed {
 
 				if (isset($this->options['category'])) {
 					$this->catlink = $this->options['category'];
-					$catobj = new ZenpageCategory($this->catlink);
+					$catobj = new Category($this->catlink);
 					$this->cattitle = $catobj->getTitle();
 					$this->newsoption = 'category';
 				} else {
@@ -314,7 +314,7 @@ class feed {
 	 * @return array
 	 */
 	public function getitems() {
-		global $_zp_zenpage;
+		global $_zp_CMS;
 		switch ($this->feedtype) {
 			case 'gallery':
 				if ($this->mode == "albums") {
@@ -347,7 +347,7 @@ class feed {
 				if ($this->sortorder) {
 					$items = getZenpageStatistic($this->itemnumber, 'pages', $this->sortorder, $this->sortdirection);
 				} else {
-					$items = $_zp_zenpage->getPages(NULL, false, $this->itemnumber);
+					$items = $_zp_CMS->getPages(NULL, false, $this->itemnumber);
 				}
 				break;
 			case 'comments':
@@ -398,7 +398,7 @@ class feed {
 	 * @return array
 	 */
 	protected function getitemPages($item, $len) {
-		$obj = new ZenpagePage($item['titlelink']);
+		$obj = new Page($item['titlelink']);
 		$feeditem['title'] = $feeditem['title'] = get_language_string($obj->getTitle('all'), $this->locale);
 		$feeditem['link'] = $obj->getLink();
 		$desc = $obj->getContent($this->locale);

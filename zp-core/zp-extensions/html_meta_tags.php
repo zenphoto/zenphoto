@@ -145,8 +145,8 @@ class htmlmetatags {
 	 *
 	 */
 	static function getHTMLMetaData() {
-		global $_zp_gallery, $_zp_galley_page, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_news,
-		$_zp_current_zenpage_page, $_zp_gallery_page, $_zp_current_category, $_zp_authority, $_zp_conf_vars, $_myFavorites,
+		global $_zp_gallery, $_zp_galley_page, $_zp_current_album, $_zp_current_image, $_zp_current_article,
+		$_zp_current_page, $_zp_gallery_page, $_zp_current_category, $_zp_authority, $_zp_conf_vars, $_myFavorites,
 		$htmlmetatags_need_cache;
 		zp_register_filter('image_processor_uri', 'htmlmetatags::ipURI');
 		$host = sanitize("http://" . $_SERVER['HTTP_HOST']);
@@ -195,7 +195,7 @@ class htmlmetatags {
 						$pagetitle = getBareNewsTitle() . " - ";
 						$date = getNewsDate();
 						$desc = trim(getBare(getNewsContent()));
-						$canonicalurl = $host . $_zp_current_zenpage_news->getLink();
+						$canonicalurl = $host . $_zp_current_article->getLink();
 					} else if (is_NewsCategory()) {
 						$pagetitle = $_zp_current_category->getTitlelink() . " - ";
 						$date = strftime(DATE_FORMAT);
@@ -214,7 +214,7 @@ class htmlmetatags {
 				$pagetitle = getBarePageTitle() . " - ";
 				$date = getPageDate();
 				$desc = trim(getBare(getPageContent()));
-				$canonicalurl = $host . $_zp_current_zenpage_page->getLink();
+				$canonicalurl = $host . $_zp_current_page->getLink();
 				break;
 			default: // for all other possible static custom pages
 				$custompage = stripSuffix($_zp_gallery_page);
@@ -345,7 +345,7 @@ class htmlmetatags {
 								case 'news.php':
 									if (function_exists("is_NewsArticle")) {
 										if (is_NewsArticle()) {
-											$altlink .= '/' . _NEWS_ . '/' . html_encode($_zp_current_zenpage_news->getTitlelink());
+											$altlink .= '/' . _NEWS_ . '/' . html_encode($_zp_current_article->getTitlelink());
 										} else if (is_NewsCategory()) {
 											$altlink .= '/' . _NEWS_ . '/' . html_encode($_zp_current_category->getTitlelink());
 										} else {
@@ -354,7 +354,7 @@ class htmlmetatags {
 									}
 									break;
 								case 'pages.php':
-									$altlink .= '/' . _PAGES_ . '/' . html_encode($_zp_current_zenpage_page->getTitlelink());
+									$altlink .= '/' . _PAGES_ . '/' . html_encode($_zp_current_page->getTitlelink());
 									break;
 								case 'archive.php':
 									$altlink .= '/' . $_zp_conf_vars['special_pages']['archive']['rewrite'] . '/';
@@ -403,7 +403,7 @@ class htmlmetatags {
 	 * @param array $array the array of the tags or categories to list
 	 */
 	private static function getMetaKeywords() {
-		global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_current_category, $_zp_gallery_page, $_zp_zenpage;
+		global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_current_article, $_zp_current_page, $_zp_current_category, $_zp_gallery_page, $_zp_CMS;
 		$words = '';
 		if (is_object($_zp_current_album) OR is_object($_zp_current_image)) {
 			$tags = getTags();
@@ -422,7 +422,7 @@ class htmlmetatags {
 				$tags = getTags();
 				$words = htmlmetatags::getMetaAlbumAndImageTags($tags, "gallery");
 			} else if (is_News()) {
-				$tags = $_zp_zenpage->getAllCategories();
+				$tags = $_zp_CMS->getAllCategories();
 				$words .= htmlmetatags::getMetaAlbumAndImageTags($tags, "zenpage");
 			} else if (is_NewsCategory()) {
 				$words .= $_zp_current_category->getTitle();

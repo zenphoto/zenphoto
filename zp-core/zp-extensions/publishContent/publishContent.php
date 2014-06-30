@@ -62,7 +62,7 @@ if (isset($_POST['set_defaults'])) {
 		case 'categories':
 			$report = 'categories';
 			foreach ($_POST as $key => $titlelink) {
-				$obj = new ZenpageCategory($titlelink);
+				$obj = newCategory($titlelink);
 				$obj->setShow(1);
 				$obj->save();
 			}
@@ -70,14 +70,14 @@ if (isset($_POST['set_defaults'])) {
 		case 'news':
 			$report = 'news';
 			foreach ($_POST as $key => $titlelink) {
-				$obj = new ZenpageNews($titlelink);
+				$obj = newArticle($titlelink);
 				$obj->setShow(1);
 				$obj->save();
 			}
 			break;
 		case 'pages':
 			foreach ($_POST as $key => $titlelink) {
-				$obj = new ZenpagePage($titlelink);
+				$obj = newPage($titlelink);
 				$obj->setShow(1);
 				$obj->save();
 			}
@@ -471,13 +471,13 @@ echo '</head>';
 					?>
 				</fieldset>
 				<?php
-				if (class_exists('Zenpage')) {
+				if (class_exists('CMS')) {
 					$visible = $report == 'categories';
-					$items = $_zp_zenpage->getAllCategories(false);
+					$items = $_zp_CMS->getAllCategories(false);
 					$output = '';
 					$c = 0;
 					foreach ($items as $key => $item) {
-						$itemobj = new ZenpageCategory($item['titlelink']);
+						$itemobj = newCategory($item['titlelink']);
 						if (!$itemobj->getShow()) {
 							$c++;
 							$output .= '<li><label><input type="checkbox" name="' . $item['titlelink'] . '" value="' . $item['titlelink'] . '" class="catcheck" />' . $itemobj->getTitle() . '</label><a href="' . html_encode($itemobj->getLink()) . '" title="' . html_encode($itemobj->getTitle()) . '"> (' . gettext('View') . ')</a></li>';
@@ -532,11 +532,11 @@ echo '</head>';
 					<br class="clearall" />
 					<?php
 					$visible = $report == 'news';
-					$items = $_zp_zenpage->getArticles(0, false);
+					$items = $_zp_CMS->getArticles(0, false);
 					$output = '';
 					$c = 0;
 					foreach ($items as $key => $item) {
-						$itemobj = new ZenpageNews($item['titlelink']);
+						$itemobj = newArticle($item['titlelink']);
 						if (!$itemobj->getShow()) {
 							$c++;
 							$output .= '<li><label><input type="checkbox" name="' . $item['titlelink'] . '" value="' . $item['titlelink'] . '" class="artcheck" />' . $itemobj->getTitle() . '</label><a href="' . html_encode($itemobj->getLink()) . '" title="' . html_encode($itemobj->getTitle()) . '"> (' . gettext('View') . ')</a></li>';
@@ -588,11 +588,11 @@ echo '</head>';
 					</fieldset>
 					<?php
 					$visible = $report == 'pages';
-					$items = $_zp_zenpage->getPages(false);
+					$items = $_zp_CMS->getPages(false);
 					$output = '';
 					$c = 0;
 					foreach ($items as $key => $item) {
-						$itemobj = new ZenpagePage($item['titlelink']);
+						$itemobj = newPage($item['titlelink']);
 						if (!$itemobj->getShow()) {
 							$c++;
 							$output .= '<li><label><input type="checkbox" name="' . $item['titlelink'] . '" value="' . $item['titlelink'] . '" class="pagecheck" />' . $itemobj->getTitle() . '</label><a href="' . html_encode($itemobj->getLink()) . '" title="' . html_encode($itemobj->getTitle()) . '"> (' . gettext('View') . ')</a></li>';

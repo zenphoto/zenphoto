@@ -1,5 +1,9 @@
 <?php
 
+function newCategory($catllink, $create = NULL) {
+	return new Category($catllink, $create);
+}
+
 /**
  * zenpage news category class
  *
@@ -7,7 +11,7 @@
  * @package plugins
  * @subpackage zenpage
  */
-class ZenpageCategory extends ZenpageRoot {
+class Category extends CMSRoot {
 
 	var $manage_rights = MANAGE_ALL_NEWS_RIGHTS;
 	var $manage_some_rights = ZENPAGE_NEWS_RIGHTS;
@@ -193,7 +197,7 @@ class ZenpageCategory extends ZenpageRoot {
 			if (is_array($result)) {
 				foreach ($result as $row) {
 					if (strlen($row['sort_order']) == $mychild) {
-						$subcat = new ZenpageCategory($row['titlelink']);
+						$subcat = newCategory($row['titlelink']);
 						$success = $success && $subcat->remove();
 					}
 				}
@@ -210,11 +214,11 @@ class ZenpageCategory extends ZenpageRoot {
 	 * @return array
 	 */
 	function getSubCategories($visible = true, $sorttype = NULL, $sortdirection = NULL) {
-		global $_zp_zenpage;
+		global $_zp_CMS;
 		$subcategories = array();
 		$sortorder = $this->getSortOrder();
-		foreach ($_zp_zenpage->getAllCategories($visible, $sorttype, $sortdirection) as $cat) {
-			$catobj = new ZenpageCategory($cat['titlelink']);
+		foreach ($_zp_CMS->getAllCategories($visible, $sorttype, $sortdirection) as $cat) {
+			$catobj = newCategory($cat['titlelink']);
 			if ($catobj->getParentID() == $this->getID() && $catobj->getSortOrder() != $sortorder) { // exclude the category itself!
 				array_push($subcategories, $catobj->getTitlelink());
 			}
@@ -255,8 +259,8 @@ class ZenpageCategory extends ZenpageRoot {
 	 * @return array
 	 */
 	function getParents(&$parentid = '', $initparents = true) {
-		global $parentcats, $_zp_zenpage;
-		$allitems = $_zp_zenpage->getAllCategories(false);
+		global $parentcats, $_zp_CMS;
+		$allitems = $_zp_CMS->getAllCategories(false);
 		if ($initparents) {
 			$parentcats = array();
 		}
@@ -266,7 +270,7 @@ class ZenpageCategory extends ZenpageRoot {
 			$currentparentid = $parentid;
 		}
 		foreach ($allitems as $item) {
-			$obj = new ZenpageCategory($item['titlelink']);
+			$obj = newCategory($item['titlelink']);
 			$itemtitlelink = $obj->getTitlelink();
 			$itemid = $obj->getID();
 			$itemparentid = $obj->getParentID();
@@ -296,7 +300,7 @@ class ZenpageCategory extends ZenpageRoot {
 			} else {
 				$sql = 'SELECT `titlelink` FROM ' . prefix('news_categories') . ' WHERE `id`=' . $parentID;
 				$result = query_single_row($sql);
-				$obj = new ZenpageCategory($result['titlelink']);
+				$obj = newCategory($result['titlelink']);
 				$hash = $obj->getPassword();
 			}
 		}
@@ -370,8 +374,8 @@ class ZenpageCategory extends ZenpageRoot {
 	 * @return array
 	 */
 	function getArticles($articles_per_page = 0, $published = NULL, $ignorepagination = false, $sortorder = NULL, $sortdirection = NULL, $sticky = NULL) {
-		global $_zp_zenpage;
-		return $_zp_zenpage->getArticles($articles_per_page, $published, $ignorepagination, $sortorder, $sortdirection, $sticky, $this);
+		global $_zp_CMS;
+		return $_zp_CMS->getArticles($articles_per_page, $published, $ignorepagination, $sortorder, $sortdirection, $sticky, $this);
 	}
 
 	/**
@@ -394,9 +398,8 @@ class ZenpageCategory extends ZenpageRoot {
 	 * @return int
 	 */
 	function getIndex($sortorder, $sortdirection, $sticky) {
-		global $_zp_zenpage, $_zp_current_zenpage_news;
 		if ($this->index == NULL) {
-			$articles = $_zp_zenpage->getArticles(0, NULL, true, $sortorder, $sortdirection, $sticky);
+			$articles = $_zp_CMS->getArticles(0, NULL, true, $sortorder, $sortdirection, $sticky);
 			for ($i = 0; $i < count($articles); $i++) {
 				$article = $articles[$i];
 				if ($this->getTitlelink() == $article['titlelink']) {
@@ -414,7 +417,6 @@ class ZenpageCategory extends ZenpageRoot {
 	 * @return object
 	 */
 	function getPrevArticle($sortorder = 'date', $sortdirection = 'desc', $sticky = true) {
-		global $_zp_zenpage, $_zp_current_zenpage_news;
 		$index = $this->getIndex($sortorder, $sortdirection, $sticky);
 		$article = $this->getArticle($index - 1);
 		return $article;
@@ -426,7 +428,6 @@ class ZenpageCategory extends ZenpageRoot {
 	 * @return object
 	 */
 	function getNextArticle($sortorder = 'date', $sortdirection = 'desc', $sticky = true) {
-		global $_zp_zenpage, $_zp_current_zenpage_news;
 		$index = $this->getIndex($sortorder, $sortdirection, $sticky);
 		$article = $this->getArticle($index + 1);
 		return $article;
@@ -440,7 +441,7 @@ class ZenpageCategory extends ZenpageRoot {
 	 * @return string
 	 */
 	function getLink($page = NULL) {
-		global $_zp_zenpage;
+		global $_zp_CMS;
 		if ($page > 1) {
 			$pager = $page . '/';
 			$page = '&p=' . $page;

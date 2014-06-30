@@ -8,49 +8,49 @@
 </head>
 
 <body>
-<?php zp_apply_filter('theme_body_open'); ?>
+	<?php zp_apply_filter('theme_body_open'); ?>
 
-<div id="main">
+	<div id="main">
 
-	<div id="header">
-		<h1><?php echo getGalleryTitle();?></h1>
+		<div id="header">
+			<h1><?php echo getGalleryTitle(); ?></h1>
 		</div>
 
 		<div id="content">
-		<div id="breadcrumb">
-	<h2><a href="<?php echo getGalleryIndexURL(); ?>">Index</a> » <strong><?php echo gettext("Object not found"); ?></strong></h2>
-	</div>
-	
-	<div id="content-error">
-	
-		<div class="errorbox">
- 		<?php
-		echo gettext("The Zenphoto object you are requesting cannot be found.");
-		if (isset($album)) {
-			echo '<br />'.gettext("Album").': '.sanitize($album);
-		}
-		if (isset($image)) {
-			echo '<br />'.gettext("Image").': '.sanitize($image);
-		}
-		if (isset($obj)) {
-			echo '<br />'.gettext("Theme page").': '.substr(basename($obj),0,-4);
-		}
- 		?>
-		</div>
-	
-</div> 
-		
+			<div id="breadcrumb">
+				<h2><a href="<?php echo getGalleryIndexURL(); ?>">Index</a> » <strong><?php echo gettext("Object not found"); ?></strong></h2>
+			</div>
 
+			<div id="content-error">
 
-<div id="footer">
-<?php include("footer.php"); ?>
-</div>
+				<div class="errorbox">
+					<?php
+					echo gettext("The Object you are requesting cannot be found.");
+					if (isset($album)) {
+						echo '<br />' . gettext("Album") . ': ' . sanitize($album);
+					}
+					if (isset($image)) {
+						echo '<br />' . gettext("Image") . ': ' . sanitize($image);
+					}
+					if (isset($obj)) {
+						echo '<br />' . gettext("Theme page") . ': ' . substr(basename($obj), 0, -4);
+					}
+					?>
+				</div>
+
+			</div>
 
 
 
-</div><!-- content -->
+			<div id="footer">
+				<?php include("footer.php"); ?>
+			</div>
 
-</div><!-- main -->
-<?php zp_apply_filter('theme_body_close'); ?>
+
+
+		</div><!-- content -->
+
+	</div><!-- main -->
+	<?php zp_apply_filter('theme_body_close'); ?>
 </body>
 </html>

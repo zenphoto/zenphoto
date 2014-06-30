@@ -174,7 +174,7 @@ function printZDToggleClass($option, $c, $number_to_show) {
 }
 
 function printLatestNewsCustom($number = 5, $category = '', $showdate = true, $showcontent = true, $contentlength = 70, $showcat = true) {
-	global $_zp_gallery, $_zp_current_zenpage_news;
+	global $_zp_gallery, $_zp_current_article;
 	$latest = getLatestNews($number, $category);
 	echo "\n<div id=\"latestnews-spotlight\">\n";
 	$count = "";
@@ -182,13 +182,13 @@ function printLatestNewsCustom($number = 5, $category = '', $showdate = true, $s
 		$count++;
 		$category = "";
 		$categories = "";
-		$obj = new ZenpageNews($item['titlelink']);
+		$obj = newArticle($item['titlelink']);
 		$title = htmlspecialchars($obj->getTitle());
 		$link = getNewsURL($item['titlelink']);
 		$count2 = 0;
 		$category = $obj->getCategories();
 		foreach ($category as $cat) {
-			$catobj = new ZenpageCategory($cat['titlelink']);
+			$catobj = new Category($cat['titlelink']);
 			$count2++;
 			if ($count2 != 1) {
 				$categories = $categories . "; ";

@@ -809,20 +809,20 @@ class SearchEngine {
 	 * Returns an array of News article IDs belonging to the search categories
 	 */
 	protected function subsetNewsCategories() {
-		global $_zp_zenpage;
+		global $_zp_CMS;
 		if (!is_array($this->category_list))
 			return false;
 		$cat = '';
-		$list = $_zp_zenpage->getAllCategories();
+		$list = $_zp_CMS->getAllCategories();
 		if (!empty($list)) {
 			foreach ($list as $category) {
 				if (in_array($category['title'], $this->category_list)) {
-					$catobj = new ZenpageCategory($category['titlelink']);
+					$catobj = new Category($category['titlelink']);
 					$cat .= ' `cat_id`=' . $catobj->getID() . ' OR';
 					$subcats = $catobj->getSubCategories();
 					if ($subcats) {
 						foreach ($subcats as $subcat) {
-							$catobj = new ZenpageCategory($subcat);
+							$catobj = new Category($subcat);
 							$cat .= ' `cat_id`=' . $catobj->getID() . ' OR';
 						}
 					}
@@ -1807,7 +1807,7 @@ class SearchEngine {
 			if ($ignorepagination || !$articles_per_page) {
 				return $articles;
 			}
-			return array_slice($articles, Zenpage::getOffset($articles_per_page), $articles_per_page);
+			return array_slice($articles, CMS::getOffset($articles_per_page), $articles_per_page);
 		}
 	}
 

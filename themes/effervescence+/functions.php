@@ -341,7 +341,7 @@ function annotateImage() {
 }
 
 function printFooter($admin = true) {
-	global $_zp_themeroot, $_zp_gallery, $_zp_gallery_page, $_zp_current_zenpage_news, $_zp_current_zenpage_page;
+	global $_zp_themeroot, $_zp_gallery, $_zp_gallery_page;
 	$h = NULL;
 	?>
 	<!-- Footer -->
@@ -385,7 +385,7 @@ function printFooter($admin = true) {
 		?>
 
 		<?php printThemeInfo(); ?>
-		<?php printZenphotoLink(); ?>
+		<?php printPackageLink(); ?>
 		<br />
 		<?php
 		if (function_exists('printFavoritesURL') && $_zp_gallery_page != 'password.php' && $_zp_gallery_page != 'favorites.php') {

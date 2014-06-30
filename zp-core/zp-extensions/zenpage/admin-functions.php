@@ -6,8 +6,7 @@
  * @package plugins
  * @subpackage zenpage
  */
-global $_zp_zenpage, $_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_current_category;
-Zenpage::expiry();
+CMS::expiry();
 
 /**
  * Retrieves posted expiry date and checks it against the current date/time
@@ -115,7 +114,7 @@ function updatePage(&$reports, $newpage = false) {
 		}
 	}
 	// update page
-	$page = new ZenpagePage($titlelink, true);
+	$page = newPage($titlelink, true);
 
 	$notice = processCredentials($page);
 	$page->setTitle($title);
@@ -183,7 +182,7 @@ function deletePage($titlelink) {
 	if (is_object($titlelink)) {
 		$obj = $titlelink;
 	} else {
-		$obj = new ZenpagePage($titlelink);
+		$obj = newPage($titlelink);
 	}
 	$result = $obj->remove();
 	if ($result) {
@@ -395,7 +394,7 @@ function updateArticle(&$reports, $newarticle = false) {
 		}
 	}
 	// update article
-	$article = new ZenpageNews($titlelink, true);
+	$article = newArticle($titlelink, true);
 	$article->setTitle($title);
 	$article->setContent($content);
 	$article->setExtracontent($extracontent);
@@ -464,7 +463,7 @@ function deleteArticle($titlelink) {
 	if (is_object($titlelink)) {
 		$obj = $titlelink;
 	} else {
-		$obj = new ZenpageNews($titlelink);
+		$obj = newArticle($titlelink);
 	}
 	$result = $obj->remove();
 	if ($result) {
@@ -483,15 +482,15 @@ function deleteArticle($titlelink) {
  * @param obj $obj object of the news article
  */
 function printArticleCategories($obj) {
-  $cat = $obj->getCategories();
-  $number = 0;
-  foreach ($cat as $cats) {
-    $number++;
-    if ($number != 1) {
-      echo ", ";
-    }
-    echo get_language_string($cats['title']);
-  }
+	$cat = $obj->getCategories();
+	$number = 0;
+	foreach ($cat as $cats) {
+		$number++;
+		if ($number != 1) {
+			echo ", ";
+		}
+		echo get_language_string($cats['title']);
+	}
 }
 
 /**
@@ -518,13 +517,13 @@ function printPageArticleTags($obj) {
  * @param string $option "all" to show all categories if creating a new article without categories assigned, empty if editing an existing article that already has categories assigned.
  */
 function printCategorySelection($id = '', $option = '') {
-	global $_zp_zenpage;
+	global $_zp_CMS;
 
 	$selected = '';
 	echo "<ul class='zenpagechecklist'>\n";
-	$all_cats = $_zp_zenpage->getAllCategories(false);
+	$all_cats = $_zp_CMS->getAllCategories(false);
 	foreach ($all_cats as $cats) {
-		$catobj = new ZenpageCategory($cats['titlelink']);
+		$catobj = newCategory($cats['titlelink']);
 		if ($option != "all") {
 			$cat2news = query_single_row("SELECT cat_id FROM " . prefix('news2cat') . " WHERE news_id = " . $id . " AND cat_id = " . $catobj->getID());
 			if ($cat2news['cat_id'] != "") {
@@ -549,8 +548,8 @@ function printCategorySelection($id = '', $option = '') {
  *
  */
 function printArticleDatesDropdown() {
-	global $_zp_zenpage, $subpage;
-	$datecount = $_zp_zenpage->getAllArticleDates();
+	global $_zp_CMS, $subpage;
+	$datecount = $_zp_CMS->getAllArticleDates();
 	$lastyear = "";
 	$nr = "";
 	$option = getNewsAdminOption(array('category' => 0, 'published' => 0, 'sortorder' => 0, 'articles_page' => 1));
@@ -646,7 +645,7 @@ function getNewsAdminOptionPath($list) {
  *
  */
 function printUnpublishedDropdown() {
-	global $_zp_zenpage;
+	global $_zp_CMS;
 	?>
 	<form name="AutoListBox3" id="unpublisheddropdown" style="float: left; margin-left: 10px;"	action="#">
 		<select name="ListBoxURL" size="1"	onchange="gotoLink(this.form)">
@@ -694,7 +693,7 @@ function printUnpublishedDropdown() {
  *
  */
 function printSortOrderDropdown() {
-	global $_zp_zenpage;
+	global $_zp_CMS;
 	?>
 	<form name="AutoListBox4" id="sortorderdropdown" style="float: left; margin-left: 10px;"	action="#">
 		<select name="ListBoxURL" size="1"	onchange="gotoLink(this.form)">
@@ -745,8 +744,8 @@ function printSortOrderDropdown() {
  *
  */
 function printCategoryDropdown() {
-	global $_zp_zenpage;
-	$result = $_zp_zenpage->getAllCategories(false);
+	global $_zp_CMS;
+	$result = $_zp_CMS->getAllCategories(false);
 	if (isset($_GET['date'])) {
 		$datelink = "&amp;date=" . sanitize($_GET['date']);
 		$datelinkall = "?date=" . sanitize($_GET['date']);
@@ -770,7 +769,7 @@ function printCategoryDropdown() {
 			echo "<option $selected value='admin-news-articles.php" . getNewsAdminOptionPath($option) . "'>" . gettext("All categories") . "</option>\n";
 
 			foreach ($result as $cat) {
-				$catobj = new ZenpageCategory($cat['titlelink']);
+				$catobj = newCategory($cat['titlelink']);
 				// check if there are articles in this category. If not don't list the category.
 				$count = count($catobj->getArticles(0, 'all'));
 				$count = " (" . $count . ")";
@@ -812,7 +811,7 @@ function printCategoryDropdown() {
  *
  */
 function printArticlesPerPageDropdown() {
-	global $_zp_zenpage, $subpage, $articles_page;
+	global $_zp_CMS, $subpage, $articles_page;
 	?>
 	<form name="AutoListBox5" id="articlesperpagedropdown" method="POST" style="float: left; margin-left: 10px;"	action="#">
 		<select name="ListBoxURL" size="1"	onchange="gotoLink(this.form)">
@@ -902,7 +901,7 @@ function updateCategory(&$reports, $newcategory = false) {
 	}
 	//update category
 	$show = getcheckboxState('show');
-	$cat = new ZenpageCategory($titlelink, true);
+	$cat = newCategory($titlelink, true);
 	$notice = processCredentials($cat);
 	$cat->setPermalink(getcheckboxState('permalink'));
 	$cat->set('title', $title);
@@ -957,7 +956,7 @@ function updateCategory(&$reports, $newcategory = false) {
  *
  */
 function deleteCategory($titlelink) {
-	$obj = new ZenpageCategory($titlelink);
+	$obj = newCategory($titlelink);
 	$result = $obj->remove();
 	if ($result) {
 		return "<p class='messagebox fade-message'>" . gettext("Category successfully deleted!") . "</p>";
@@ -973,7 +972,7 @@ function deleteCategory($titlelink) {
  * @return string
  */
 function printCategoryListSortableTable($cat, $flag) {
-	global $_zp_zenpage;
+	global $_zp_CMS;
 	if ($flag) {
 		$img = '../../images/drag_handle_flag.png';
 	} else {
@@ -1107,7 +1106,7 @@ function printCategoryCheckboxListEntry($cat, $articleid, $option, $class = '') 
  * @return string | bool
  */
 function printNestedItemsList($listtype = 'cats-sortablelist', $articleid = '', $option = '', $class = 'nestedItem') {
-	global $_zp_zenpage;
+	global $_zp_CMS;
 	switch ($listtype) {
 		case 'cats-checkboxlist':
 		default:
@@ -1121,10 +1120,10 @@ function printNestedItemsList($listtype = 'cats-sortablelist', $articleid = '', 
 	switch ($listtype) {
 		case 'cats-checkboxlist':
 		case 'cats-sortablelist':
-			$items = $_zp_zenpage->getAllCategories(false);
+			$items = $_zp_CMS->getAllCategories(false);
 			break;
 		case 'pages-sortablelist':
-			$items = $_zp_zenpage->getPages(false);
+			$items = $_zp_CMS->getPages(false);
 			break;
 		default:
 			$items = array();
@@ -1137,11 +1136,11 @@ function printNestedItemsList($listtype = 'cats-sortablelist', $articleid = '', 
 		switch ($listtype) {
 			case 'cats-checkboxlist':
 			case 'cats-sortablelist':
-				$itemobj = new ZenpageCategory($item['titlelink']);
+				$itemobj = newCategory($item['titlelink']);
 				$ismypage = $itemobj->isMyItem(ZENPAGE_NEWS_RIGHTS);
 				break;
 			case 'pages-sortablelist':
-				$itemobj = new ZenpagePage($item['titlelink']);
+				$itemobj = newPage($item['titlelink']);
 				$ismypage = $itemobj->isMyItem(ZENPAGE_PAGES_RIGHTS);
 				break;
 		}
@@ -1319,19 +1318,19 @@ function checkHitcounterDisplay($item) {
  * @param string $option What the statistic should be shown of: "news", "pages", "categories"
  */
 function getNewsPagesStatistic($option) {
-	global $_zp_zenpage;
+	global $_zp_CMS;
 	switch ($option) {
 		case "news":
-			$items = $_zp_zenpage->getArticles();
+			$items = $_zp_CMS->getArticles();
 			$type = gettext("Articles");
 			break;
 		case "pages":
-			$items = $_zp_zenpage->getPages(false);
+			$items = $_zp_CMS->getPages(false);
 			$type = gettext("Pages");
 			break;
 		case "categories":
 			$type = gettext("Categories");
-			$cats = $_zp_zenpage->getAllCategories(false);
+			$cats = $_zp_CMS->getAllCategories(false);
 			$total = count($cats);
 			$unpub = 0;
 			break;
@@ -1342,13 +1341,13 @@ function getNewsPagesStatistic($option) {
 		foreach ($items as $item) {
 			switch ($option) {
 				case "news":
-					$itemobj = new ZenpageNews($item['titlelink']);
+					$itemobj = newArticle($item['titlelink']);
 					break;
 				case "pages":
-					$itemobj = new ZenpagePage($item['titlelink']);
+					$itemobj = newPage($item['titlelink']);
 					break;
 				case "categories":
-					$itemobj = new ZenpageCategory($item['titlelink']);
+					$itemobj = newCategory($item['titlelink']);
 					break;
 			}
 			$show = $itemobj->getShow();
@@ -1416,7 +1415,7 @@ function printZenpageIconLegend() {
 			<?php
 		}
 		?>
-		<li><img src="images/add.png" alt="" /><?php echo gettext("pick tinyMCE:zen source"); ?></li>
+		<li><img src="images/add.png" alt="" /><?php echo gettext("pick source"); ?></li>
 		<li><img src="../../images/pass.png" alt="" /><img	src="../../images/action.png" alt="" /><img src="images/clock.png" alt="" /><?php echo gettext("Published/Not published/Scheduled for publishing"); ?></li>
 		<li><img src="../../images/comments-on.png" alt="" /><img src="../../images/comments-off.png" alt="" /><?php echo gettext("Comments on/off"); ?></li>
 		<li><img src="../../images/view.png" alt="" /><?php echo gettext("View"); ?></li>
@@ -1623,7 +1622,7 @@ function printPublishIconLink($object, $type, $linkback = '') {
 	 *
 	 */
 	function processZenpageBulkActions($type) {
-		global $_zp_zenpage;
+		global $_zp_CMS;
 		$action = false;
 		if (isset($_POST['ids'])) {
 			//echo "action for checked items:". $_POST['checkallaction'];
@@ -1666,7 +1665,7 @@ function printPublishIconLink($object, $type, $linkback = '') {
 							case 'alltags':
 								$allarticles = $obj->getArticles('', 'all', true);
 								foreach ($allarticles as $article) {
-									$newsobj = new ZenpageNews($article['titlelink']);
+									$newsobj = newArticle($article['titlelink']);
 									$mytags = array_unique(array_merge($tags, $newsobj->getTags(false)));
 									$newsobj->setTags($mytags);
 									$newsobj->save();
@@ -1675,7 +1674,7 @@ function printPublishIconLink($object, $type, $linkback = '') {
 							case 'clearalltags':
 								$allarticles = $obj->getArticles('', 'all', true);
 								foreach ($allarticles as $article) {
-									$newsobj = new ZenpageNews($article['titlelink']);
+									$newsobj = newArticle($article['titlelink']);
 									$newsobj->setTags(array());
 									$newsobj->save();
 								}
@@ -1684,7 +1683,7 @@ function printPublishIconLink($object, $type, $linkback = '') {
 								$catarray = array();
 								$allcats = $obj->getCategories();
 								foreach ($cats as $cat) {
-									$catitem = $_zp_zenpage->getCategory($cat);
+									$catitem = $_zp_CMS->getCategory($cat);
 									$catarray[] = $catitem['titlelink']; //to use the setCategories method we need an array with just the titlelinks!
 								}
 								$allcatsarray = array();

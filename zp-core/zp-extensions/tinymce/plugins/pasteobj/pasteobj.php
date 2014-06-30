@@ -17,9 +17,9 @@ header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 <html>
 	<head>
 		<?php printStandardMeta(); ?>
-		<title>tinyMCE:zen</title>
+		<title>tinyMCE:obj</title>
 		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.js"></script>
-		<script type="text/javascript" src="pastezen_popup.js"></script>
+		<script type="text/javascript" src="pasteobj_popup.js"></script>
 
 	</head>
 
@@ -49,17 +49,17 @@ header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 				// a simple link
 				$image = false;
 				if (isset($args['news'])) {
-					$obj = new ZenpageNews($args['news']);
+					$obj = newNews($args['news']);
 					$title = gettext('<em>news article</em>: %s');
 					$token = gettext('title with link to news article');
 				}
 				if (isset($args['pages'])) {
-					$obj = new ZenpagePage($args['pages']);
+					$obj = newPage($args['pages']);
 					$title = gettext('<em>page</em>: %s');
 					$token = gettext('title with link to page');
 				}
 				if (isset($args['news_categories'])) {
-					$obj = new ZenpageCategory($args['news_categories']);
+					$obj = newCategory($args['news_categories']);
 					$title = gettext('<em>category</em>: %s');
 					$token = gettext('title with link to category');
 				}
@@ -105,8 +105,8 @@ header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 				}
 
 				function paste() {
-					pasteZenPopup.execCommand('mceInsertContent', false, $('#content').html());
-					pasteZenPopup.close();
+					pasteobjPopup.execCommand('mceInsertContent', false, $('#content').html());
+					pasteobjPopup.close();
 				}
 
 				window.onload = function() {

@@ -10,11 +10,11 @@
 			break;
 		case 'pages.php':
 			$comments_open = getOption('comment_form_pages');
-			$comments_allowed = $_zp_current_zenpage_page->getCommentsAllowed();
+			$comments_allowed = $_zp_current_page->getCommentsAllowed();
 			break;
 		case 'news.php':
 			$comments_open = getOption('comment_form_articles');
-			$comments_allowed = $_zp_current_zenpage_news->getCommentsAllowed();
+			$comments_allowed = $_zp_current_article->getCommentsAllowed();
 			break;
 		default:
 			return;

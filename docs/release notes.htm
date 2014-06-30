@@ -77,7 +77,7 @@
 		</style>
 	<body>
 <h1>ZenPhoto20 v1.0.0 release notes</h1><h2>Fresh start</h2>
-<p>ZenPhoto 20 has been forked from the Zenphoto.org 1.4.6 release. Some cleanup of code and fixes have been applied and some small new features added. Themes and plugins that are compliant with Zehphoto 1.4.6 (without use of the deprecated-functions plugin) &nbsp;will&nbsp;work with this software.&nbsp;</p>
+<p>ZenPhoto20 has been forked from the Zenphoto.org 1.4.6 release. Some cleanup of code and fixes have been applied and some small new features added. Themes and plugins that are compliant with Zehphoto 1.4.6 (without use of the deprecated-functions plugin) will&nbsp;work with this software.&nbsp;</p>
 <p><strong>Note:</strong> part of this cleanup was to purge the deprecated functions for a fresh start. Lingering calls to these functions will now result in a PHP fault.&nbsp;If you have a custom theme it is recommended you first use the <em>check deprecated use</em> button&nbsp;in the Zenphoto 1.4.6 admin utilities to be sure that you are not using one of the functions which is no longer available.</p>
 <h2>Eliminate the concept of "suppoted" unsupported themes and plugins</h2>
 <p>Instead of having a repository for "unsupported" scripts and themes we will include then in the package. Example&nbsp;plugins will reside in the <code>plugins</code> folder. New themes will, of course, be found in the <code>themes</code> folder.</p>
@@ -89,10 +89,10 @@
 <p>Running the script extracts the release source scripts and then starts&nbsp;the setup process. This workflow is&nbsp;less prone to such things as mis-matched versions of the individual files or overwriting album files.</p>
 <h2>Suffix-less image links</h2>
 <p>If you use <em>mod_rewrite</em> with a <em>mod_rewrite suffix</em> and your image names are unique in their prefix you can select the option <em>Unique images</em>&nbsp;on the general options tab so that your image page links will not include the image suffix. For instance if your <em>mod_rewrite suffix</em> is <code>.htm</code> then&nbsp;the link to the image <code>myalbum/myimage.jpg</code>&nbsp;will have the link <code>myalbum/myimage.htm.</code></p>
-<h2>tinyMCE:zen plugin</h2>
+<h2>tinyMCE:obj plugin</h2>
 <p>This plugin replaces tinyZenpage as the preferred means for inserting ZenPhoto20 objects into tinyMCE editor windows.</p>
 <p>On the back end each object has a "pick" icon (<img src="https://cloud.githubusercontent.com/assets/2474007/3194486/59db3546-ecff-11e3-8c27-e5c44fd92f2b.png" alt="add" />) that you use to select the object. The overview lists also have a pick icon for each object, so it is not necessary to browse all the way to the object's tab.</p>
-<p>Click on the icon to select the object for pasting. Then go to your tinyMCE editor window, place the cursor where you want the insertion, and select either the&nbsp;<code>zen</code>&nbsp;button or the tinyMCE:zen dropdown from the tools menu item. This will bring up the tinyMCE:zen handler. Select any options you wish and press the&nbsp;<code>paste</code>&nbsp;button.</p>
+<p>Click on the icon to select the object for pasting. Then go to your tinyMCE editor window, place the cursor where you want the insertion, and select either the&nbsp;<code>zen</code>&nbsp;button or the tinyMCE:obj dropdown from the tools menu item. This will bring up the tinyMCE:zen handler. Select any options you wish and press the&nbsp;<code>paste</code>&nbsp;button.</p>
 <p>You can even paste custom sized/cropped images. The&nbsp;<code>crop image</code>&nbsp;plugin provides a pick icon that selects the size and cropping of the working crop.</p>
 <h2>Copy-able object links for all objects</h2>
 <p>A side benefit of the tinyMCE:zen implementation is that you can also use your clipboard to cut and paste links to spots other than tinyMCE editors.</p>
@@ -117,6 +117,8 @@
 <h2>Language specific tags</h2>
 <p>Tags may now be assigned a language on the <code>tags</code> tab. If a tag is associated with a language it will not be displayed unless the viewer's language matches the tag language. The default is for tags to be visible in all languages.</p>
 <p>Along with this change comes two new sorting orders for the <code>tags</code> tab. Tags can be sorted by language and most recently added as well as alphabetically and by use count.</p>
+<h2>General unification of objects and names</h2>
+<p>There was considerable inconsistency in both the naming and the methods used in zenphoto objects. We have made progress in making things more uniform. But don't fret. If you have custom plugins or themes from zenphoto version 1.4.6 or later there is a <code>zenphotoCompatibilityPack</code> plugin that will keep them running just fine.</p>
 <h2>General bug fixes</h2>
 <p>I have fixed multiple&nbsp;bugs discovered either in my efforts to provide the above or from discussions on Zenphoto forums and tickets.</p>	</body>
 </html>

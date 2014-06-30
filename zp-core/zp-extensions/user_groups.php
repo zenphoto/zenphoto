@@ -8,7 +8,7 @@
  * simply sets the user <i>rights</i> one time. Afterwards the user is independent from the <i>template</i>.
  *
  * @author Stephen Billard (sbillard)
- * 
+ *
  * @package plugins
  * @subpackage users
  */
@@ -103,7 +103,7 @@ class user_groups {
 	}
 
 	static function groupList($userobj, $i, $background, $current, $template) {
-		global $_zp_authority, $_zp_zenpage, $_zp_gallery;
+		global $_zp_authority;
 		$group = $userobj->getGroup();
 		$admins = $_zp_authority->getAdministrators('groups');
 		$groups = array();

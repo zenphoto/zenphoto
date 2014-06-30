@@ -1351,8 +1351,14 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 							$Apache = stristr($_SERVER['SERVER_SOFTWARE'], "apache");
 							$Nginx = stristr($_SERVER['SERVER_SOFTWARE'], "nginx");
 							$htfile = $serverpath . '/.htaccess';
-							$ht = trim(@file_get_contents($htfile));
-							$htu = strtoupper($ht);
+							$copyaccess = false;
+							if (file_exists($htfile)) {
+								$ht = trim(@file_get_contents($htfile));
+								$htu = strtoupper($ht);
+							} else {
+								$ht = $htu = false;
+								$copyaccess = $Apache;
+							}
 							$vr = "";
 							$ch = 1;
 							$j = 0;
@@ -2568,6 +2574,9 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 								}
 								if ($debug) {
 									$task .= '&debug=' . $debug;
+								}
+								if ($copyaccess) {
+									$task .= '&copyaccess';
 								}
 							}
 

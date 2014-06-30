@@ -78,7 +78,7 @@ if (!defined('WEBPATH'))
 			?>
 			<?php if (class_exists('RSS')) printRSSLink('Album', '', gettext('Album RSS'), ' | '); ?>
 			<?php printCustomPageURL(gettext("Archive View"), "archive"); ?> |
-			<?php printZenPhoto20(); ?>
+			<?php printSoftwareLink(); ?>
 			<?php @call_user_func('printUserLogin_out', " | "); ?>
 		</div>
 		<?php

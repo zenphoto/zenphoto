@@ -33,10 +33,10 @@ if (isset($_GET['generatesitemaps'])) {
 	$sitemap_albums = getSitemapAlbums();
 	$sitemap_images = getSitemapImages();
 	if (extensionEnabled('zenpage')) {
-		$sitemap_newsindex = getSitemapZenpageNewsIndex();
-		$sitemap_articles = getSitemapZenpageNewsArticles();
-		$sitemap_categories = getSitemapZenpageNewsCategories();
-		$sitemap_pages = getSitemapZenpagePages();
+		$sitemap_newsindex = getSitemapNewsIndex();
+		$sitemap_articles = getSitemapNewsArticles();
+		$sitemap_categories = getSitemapNewsCategories();
+		$sitemap_pages = getSitemapPages();
 	}
 	$numberAppend = '';
 	if (isset($_GET['generatesitemaps']) &&

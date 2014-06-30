@@ -8,7 +8,7 @@
  */
 define("OFFSET_PATH", 4);
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
-require_once("zenpage-admin-functions.php");
+require_once("admin-functions.php");
 
 admin_securityChecks(ZENPAGE_NEWS_RIGHTS, currentRelativeURL());
 
@@ -35,14 +35,14 @@ if (isset($_GET['delete'])) {
 }
 if (isset($_GET['hitcounter'])) {
 	XSRFdefender('hitcounter');
-	$x = $_zp_zenpage->getCategory(sanitize_numeric($_GET['id']));
-	$obj = new ZenpageCategory($x['titlelink']);
+	$x = $_zp_CMS->getCategory(sanitize_numeric($_GET['id']));
+	$obj = newCategory($x['titlelink']);
 	$obj->set('hitcounter', 0);
 	$obj->save();
 }
 if (isset($_GET['publish'])) {
 	XSRFdefender('update');
-	$obj = new ZenpageCategory(sanitize($_GET['titlelink']));
+	$obj = newCategory(sanitize($_GET['titlelink']));
 	$obj->setShow(sanitize_numeric($_GET['publish']));
 	$obj->save();
 }
@@ -51,13 +51,13 @@ if (isset($_GET['save'])) {
 	updateCategory($reports, true);
 }
 if (isset($_GET['id'])) {
-	$x = $_zp_zenpage->getCategory(sanitize_numeric($_GET['id']));
-	$result = new ZenpageCategory($x['titlelink']);
+	$x = $_zp_CMS->getCategory(sanitize_numeric($_GET['id']));
+	$result = newCategory($x['titlelink']);
 } else if (isset($_GET['update'])) {
 	XSRFdefender('update_categories');
 	$result = updateCategory($reports);
 } else {
-	$result = new ZenpageCategory('');
+	$result = newCategory('');
 }
 
 printAdminHeader('news', 'categories');
@@ -188,7 +188,7 @@ zenpageJSCSS();
 							<?php
 						}
 						?>
-						<li><img src="images/add.png" alt="" /><?php echo gettext("pick tinyMCE:zen source"); ?></li>
+						<li><img src="images/add.png" alt="" /><?php echo gettext("pick source"); ?></li>
 						<li><img src="images/view.png" alt="" /><?php echo gettext('View'); ?></li>
 						<?php
 						if (extensionEnabled('hitcounter')) {

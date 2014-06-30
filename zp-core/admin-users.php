@@ -778,7 +778,7 @@ echo $refresh;
 														printManagedObjects('albums', $albumlist, $album_alter_rights, $userobj, $id, gettext('user'), $flag);
 														if (extensionEnabled('zenpage')) {
 															$pagelist = array();
-															$pages = $_zp_zenpage->getPages(false);
+															$pages = $_zp_CMS->getPages(false);
 															foreach ($pages as $page) {
 																if (!$page['parentid']) {
 																	$pagelist[get_language_string($page['title'])] = $page['titlelink'];
@@ -786,7 +786,7 @@ echo $refresh;
 															}
 															printManagedObjects('pages', $pagelist, $album_alter_rights, $userobj, $id, gettext('user'), NULL);
 															$newslist = array();
-															$categories = $_zp_zenpage->getAllCategories(false);
+															$categories = $_zp_CMS->getAllCategories(false);
 															foreach ($categories as $category) {
 																$newslist[get_language_string($category['title'])] = $category['titlelink'];
 															}
