@@ -40,6 +40,16 @@
  * If you disable the plugin and run setup, all fields defined will be removed
  * from the database.
  *
+ * Instructions for cloning this plugin:
+ *
+ * You should copy this script and rename it to whatever you want to call your custom
+ * version--say xyzzyCustomFieldExtender.php
+ *
+ * Be sure to change the class name to something unique--say class xyzzyCustomFieldExtender.
+ * Also rename the two functions <code>getCustomField</code> and <code>printCustomField</code>.
+ * For instance <code>getXyzzyField</code> and <code>printXyzzyField</code>. These changes
+ * allow your plugin to co-exist with other custom field extender plugins.
+ *
  * @author Stephen Billard (sbillard)
  * @package plugins
  * @subpackage example
@@ -57,6 +67,7 @@ if (file_exists(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/common/fi
 	require_once(stripSuffix(__FILE__) . '/fieldExtender.php');
 }
 
+//NOTE: you should choose a unique class name to be sure not to conflict with another custom field extender plugin
 class customFieldExtender extends fieldExtender {
 
 	static $fields = array(
