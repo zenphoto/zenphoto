@@ -191,7 +191,7 @@ datepickerJS();
         <div class="floatright">
 					<?php
 					printCategoryDropdown($subpage);
-					printArticleDatesDropdown($subpage);
+					printNewsDatesDropdown($subpage);
 					printUnpublishedDropdown($subpage);
 					printSortOrderDropdown($subpage);
 					printArticlesPerPageDropdown($subpage);
@@ -281,7 +281,7 @@ datepickerJS();
 
 								</td>
 								<td>
-									<?php printArticleCategories($article) ?><br />
+									<?php printNewsCategories($article) ?><br />
 								</td>
 								<td>
 									<?php echo html_encode($article->getAuthor()); ?>

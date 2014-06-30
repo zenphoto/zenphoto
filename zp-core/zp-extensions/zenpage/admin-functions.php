@@ -481,7 +481,7 @@ function deleteArticle($titlelink) {
  *
  * @param obj $obj object of the news article
  */
-function printArticleCategories($obj) {
+function printNewsCategories($obj) {
 	$cat = $obj->getCategories();
 	$number = 0;
 	foreach ($cat as $cats) {
@@ -547,7 +547,7 @@ function printCategorySelection($id = '', $option = '') {
  * Prints the dropdown menu for the date archive selector for the news articles list
  *
  */
-function printArticleDatesDropdown() {
+function printNewsDatesDropdown() {
 	global $_zp_CMS, $subpage;
 	$datecount = $_zp_CMS->getAllArticleDates();
 	$lastyear = "";
