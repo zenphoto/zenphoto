@@ -140,7 +140,7 @@ function footer() {
 		<?php @call_user_func('mobileTheme::controlLink'); ?>
 		<br />
 		<?php @call_user_func('printLanguageSelector'); ?>
-		<?php printPackageLink(); ?>
+		<?php printZenphotoLink(); ?>
 	</div>
 	<?php
 }

@@ -86,7 +86,7 @@ function jqm_printFooterNav() {
 		@call_user_func('printLanguageSelector', "langselector");
 		?>
 		<ul id="footerlist">
-			<li><?php printPackageLink(); ?> and <a href="http://jquerymobile.com">jQueryMobile</a></li>
+			<li><?php printZenphotoLink(); ?> and <a href="http://jquerymobile.com">jQueryMobile</a></li>
 			<li><?php echo gettext('zpMobile theme by'); ?> <a href="http://www.maltem.de">Malte Müller</a></li>
 		</ul>
 		<?php

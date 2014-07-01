@@ -4246,7 +4246,7 @@ function printPasswordForm($_password_hint, $_password_showuser = NULL, $_passwo
  * @param string $mod set background
  *
  */
-function printPackageLink($mod = null) {
+function printZenphotoLink($mod = null) {
 	if ($mod)
 		$mod = '-' . $mod;
 	$image = getPlugin('images/zen-logo' . $mod . '.png', true, true);

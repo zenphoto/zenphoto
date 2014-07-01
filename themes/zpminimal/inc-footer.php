@@ -15,7 +15,7 @@
 			}
 			?>
 		</span>
-		<span id="zpcredit">| <?php printPackageLink(); ?></span>
+		<span id="zpcredit">| <?php printZenphotoLink(); ?></span>
 			<?php if ($_zp_gallery_page == 'album.php') { ?>
 				<?php if ($_zp_current_album->getParent()) {
 					$linklabel = gettext('Subalbum');

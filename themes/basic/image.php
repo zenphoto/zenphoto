@@ -104,10 +104,10 @@ if (!defined('WEBPATH'))
 				printTags('links', gettext('<strong>Tags:</strong>') . ' ', 'taglist', '');
 				?>
 				<br class="clearall" />
-
 				<?php @call_user_func('printGoogleMap'); ?>
 				<?php @call_user_func('printRating'); ?>
 				<?php @call_user_func('printCommentForm'); ?>
+
 			</div>
 		</div>
 		<div id="credit">

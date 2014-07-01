@@ -25,7 +25,7 @@
 			<div class="footer-left">
 				&copy; <?php printGalleryTitle(); ?>
 
-<?php printPackageLink(); ?>
+<?php printZenphotoLink(); ?>
 			</div>
 		</div>
 			<?php if (function_exists('printLanguageSelector')) { ?>

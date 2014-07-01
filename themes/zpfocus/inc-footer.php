@@ -8,7 +8,7 @@
 		<div id="zpcredit">
 			<?php
 			if ($zpfocus_show_credit) {
-				printPackageLink();
+				printZenphotoLink();
 			}
 			?>
 		</div>
