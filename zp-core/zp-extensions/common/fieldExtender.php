@@ -182,13 +182,12 @@ class fieldExtender {
 	static function _mediaItemSave($object, $i, $fields) {
 		foreach ($fields as $field) {
 			if ($field['table'] == $object->table) {
-				$olddata = $object->get($field['name']);
-				$object->set($field['name'], $newdata = $_POST[$field['name'] . '_' . $i]);
-				if ($olddata != $newdata) {
-					$updated = true;
+				if (isset($_POST[$field['name'] . '_' . $i])) {
+					$object->set($field['name'], $newdata = $_POST[$field['name'] . '_' . $i]);
 				}
 			}
 		}
+		return $object;
 	}
 
 	/**
@@ -226,11 +225,7 @@ class fieldExtender {
 	static function _cmsItemSave($custom, $object, $fields) {
 		foreach ($fields as $field) {
 			if ($field['table'] == $object->table) {
-				$olddata = $object->get($field['name']);
 				$object->set($field['name'], $newdata = $_POST[$field['name']]);
-				if ($olddata != $newdata) {
-					$updated = true;
-				}
 			}
 		}
 		return $custom;
