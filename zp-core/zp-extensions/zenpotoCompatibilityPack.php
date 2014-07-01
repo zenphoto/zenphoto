@@ -40,27 +40,37 @@ $plugin_is_filter = defaultExtension(1 | CLASS_PLUGIN);
 $plugin_description = gettext("Zenphoto compatibility.");
 $plugin_author = "Stephen Billard (sbillard)";
 
-if (OFFSET_PATH != 2) {
-	if (extensionEnabled('zenpage')) {
+switch (OFFSET_PATH) {
+	case 2:
+		break;
 
-		class Zenpage extends CMS {
-
+	case 0:
+		//load up the deprecated functions from Zenphoto
+		foreach (getPluginFiles('*.php', 'zenpotoCompatibilityPack') as $deprecated) {
+			require_once($deprecated);
 		}
 
-		class ZenpagePage extends Page {
+	default:
+		if (extensionEnabled('zenpage')) {
+
+			class Zenpage extends CMS {
+
+			}
+
+			class ZenpagePage extends Page {
+
+			}
+
+			class ZenpageNews extends Article {
+
+			}
+
+			class ZenpageCategory extends Category {
+
+			}
 
 		}
-
-		class ZenpageNews extends Article {
-
-		}
-
-		class ZenpageCategory extends Category {
-
-		}
-
-	}
-	$_zp_zenpage = clone $_zp_CMS;
+		$_zp_zenpage = clone $_zp_CMS;
 }
 
 function zenphotoCompatibility($param = NULL) {
@@ -75,10 +85,6 @@ function zenphotoCompatibility($param = NULL) {
 		$_zp_current_zenpage_news = clone $_zp_current_article;
 	}
 	return $param;
-}
-
-function printZenphotoLink() {
-	printPackageLink();
 }
 
 zp_register_filter('load_theme_script', 'zenphotoCompatibility');

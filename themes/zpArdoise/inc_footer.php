@@ -54,7 +54,7 @@
 		</div>
 
 		<div id="zpcredit">
-			<?php printPackageLink(getOption('css_style')); ?>
+			<?php printZenphotoLink(getOption('css_style')); ?>
 			<?php
 			if (($_zp_gallery_page == 'image.php') ||
 							(($_zp_gallery_page == 'album.php') && (getOption('use_galleriffic')) && (getNumImages() > 0)) ||

@@ -121,50 +121,8 @@ class customFieldExtender extends fieldExtender {
 }
 
 function getCustomField($field, $object = NULL, &$detail = NULL) {
-	global $_zp_current_admin_obj, $_zp_current_album, $_zp_current_image
-	, $_zp_current_article, $_zp_current_page, $_zp_current_category;
-
-	$objects = $tables = array();
-	if (is_null($object)) {
-		if (in_context(ZP_IMAGE)) {
-			$object = $_zp_current_image;
-			$objects[$tables[] = 'albums'] = $_zp_current_album;
-		} else if (in_context(ZP_ALBUM)) {
-			$object = $_zp_current_album;
-		} else if (in_context(ZP_ZENPAGE_NEWS_ARTICLE)) {
-			$object = $_zp_current_article;
-			if ($_zp_current_category)
-				$objects[$tables[] = 'news_categories'] = $_zp_current_category;
-		} else if (in_context(ZP_ZENPAGE_PAGE)) {
-			$object = $_zp_current_page;
-		} else if (in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
-			$object = $_zp_current_category;
-		} else {
-			zp_error(gettext('There is no defined context, you must pass a comment object.'));
-		}
-	}
-	$tables[] = $object->table;
-	$objects[$object->table] = $object;
-	$field = strtolower($field);
-
-	var_dump($field);
-	var_dump($tables);
-
-	foreach (customFieldExtender::$fields as $try) {
-		if ($field == strtolower($try['name']) && in_array($try['table'], $tables)) {
-			$detail = $try;
-			$object = $objects[$try['table']];
-			break;
-		}
-	}
-	if (isset($detail)) {
-
-		var_dump($detail);
-
-		return get_language_string($object->get($detail['name']));
-	} else {
-		zp_error(gettext('Field not defined.'));
-	}
+	$detail = NULL;
+	return fieldExtender::getField($field, $object, $detail, customFieldExtender::$fields);
 }
 
 function printCustomField($field, $label = NULL, $object = NULL) {

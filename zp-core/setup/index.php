@@ -2576,7 +2576,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 									$task .= '&debug=' . $debug;
 								}
 								if ($copyaccess) {
-									$task .= '&copyaccess';
+									$task .= '&copyhtaccess';
 								}
 							}
 

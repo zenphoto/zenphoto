@@ -188,7 +188,6 @@ themes/zpArdoise
 themes/zpArdoise/404.php
 themes/zpArdoise/album.php
 themes/zpArdoise/archive.php
-themes/zpArdoise/changelog.txt
 themes/zpArdoise/contact.php
 themes/zpArdoise/favorites.php
 themes/zpArdoise/functions.php
@@ -2249,4 +2248,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-2251
+2250

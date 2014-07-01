@@ -202,16 +202,17 @@ class fieldExtender {
 	static function _mediaItemEdit($html, $object, $i, $fields) {
 		foreach ($fields as $field) {
 			if ($field['table'] == $object->table) {
-				$html .= '<tr><td>' . $field['desc'] . '</td><td>';
+				$html .= "<tr>\n<td>" . $field['desc'] . "</td>\n<td>";
 				if (in_array(strtolower($field['type']), array('varchar', 'int', 'tinytext'))) {
 					$html .= '<input name = "' . $field['name'] . '_' . $i . '" type = "text" style = "width:100%;" value = "' . html_encode($object->get($field['name'])) . '" />';
 				} else {
 					$html .= '<textarea name = "' . $field['name'] . '_' . $i . '" style = "width:100%;" rows = "6">' . html_encode($object->get($field['name'])) . '</textarea>';
 				}
 
-				$html .='</td></tr>';
+				$html .="</td>\n</tr>\n";
 			}
 		}
+
 		return $html;
 	}
 
@@ -326,6 +327,47 @@ value="' . html_encode($object->get($field['name'])) . '" />';
 	static function _setCustomData($obj, $values) {
 		foreach ($values as $field => $value) {
 			$obj->set($field, $value);
+		}
+	}
+
+	static function getField($field, $object = NULL, &$detail = NULL, $fields) {
+		global $_zp_current_admin_obj, $_zp_current_album, $_zp_current_image
+		, $_zp_current_article, $_zp_current_page, $_zp_current_category;
+		$objects = $tables = array();
+		if (is_null($object)) {
+			if (in_context(ZP_IMAGE)) {
+				$object = $_zp_current_image;
+				$objects[$tables[] = 'albums'] = $_zp_current_album;
+			} else if (in_context(ZP_ALBUM)) {
+				$object = $_zp_current_album;
+			} else if (in_context(ZP_ZENPAGE_NEWS_ARTICLE)) {
+				$object = $_zp_current_article;
+				if ($_zp_current_category)
+					$objects[$tables[] = 'news_categories'] = $_zp_current_category;
+			} else if (in_context(ZP_ZENPAGE_PAGE)) {
+				$object = $_zp_current_page;
+			} else if (in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
+				$object = $_zp_current_category;
+			} else {
+				zp_error(gettext('There is no defined context, you must pass a comment object.'));
+			}
+		}
+
+		$tables[] = $object->table;
+		$objects[$object->table] = $object;
+		$field = strtolower($field);
+
+		foreach ($fields as $try) {
+			if ($field == strtolower($try['name']) && in_array($try['table'], $tables)) {
+				$detail = $try;
+				$object = $objects[$try['table']];
+				break;
+			}
+		}
+		if (isset($detail)) {
+			return get_language_string($object->get($detail['name']));
+		} else {
+			zp_error(gettext('Field not defined.'));
 		}
 	}
 
