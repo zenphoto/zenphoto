@@ -1,4 +1,6 @@
 <?php
+$_zp_page_check = 'my_checkPageValidity';
+
 setOption('themeSwitcher_css', preg_replace('~top:\s.*px;~', 'top: 40px;', getOption('themeSwitcher_css')), false);
 
 // Check some settings
@@ -86,7 +88,6 @@ if (is_null($zenpage_homepage))
 // override width setting for maps
 setOption('gmap_width', '100%', false);
 
-$_zp_page_check = 'my_checkPageValidity';
 
 // include useragent detector, set variable for mobile users...
 require_once('inc-browser.php');
@@ -268,11 +269,8 @@ function printZDToggleClass($option, $c, $number_to_show) {
 
 function my_checkPageValidity($request, $gallery_page, $page) {
 	switch ($gallery_page) {
-		case 'gallery.php':
-			$gallery_page = 'index.php'; //	same as an album gallery index
-			break;
 		case 'index.php':
-			if (!extensionEnabled('zenpage') || getOption('custom_index_page') == 'gallery') { // only one index page if zenpage plugin is enabled or custom index page is set
+			if (!checkForPage(getOption('zenpage_homepage'))) {
 				break;
 			}
 		default:

@@ -1033,7 +1033,7 @@ function rewrite_path($rewrite, $plain, $webpath = NULL) {
 	} else {
 		$path = $plain;
 	}
-	if ($path{0} == "/") {
+	if ($path && $path{0} == "/") {
 		$path = substr($path, 1);
 	}
 	return $webpath . "/" . $path;

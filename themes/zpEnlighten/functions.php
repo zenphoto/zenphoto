@@ -100,11 +100,11 @@ function printZDRoundedCornerJS() {
 	?>
 	<script type="text/javascript" src="<?php echo $_zp_themeroot; ?>/js/jquery.corner.js"></script>
 	<script type="text/javascript">
-			//<!-- <![CDATA[
-			$(document).ready(function() {
-				$(".album,#slideshowlink a,textarea,#exif_link a").corner("keep 5px");
-			});
-			// ]]> -->
+		//<!-- <![CDATA[
+		$(document).ready(function() {
+			$(".album,#slideshowlink a,textarea,#exif_link a").corner("keep 5px");
+		});
+		// ]]> -->
 	</script>
 	<?php
 }
@@ -120,7 +120,7 @@ function my_checkPageValidity($request, $gallery_page, $page) {
 					$gallery_page = 'news.php'; //	really a news page
 					break;
 				}
-				if (getOption('zenpage_homepage')) {
+				if (checkForPage(getOption('zenpage_homepage'))) {
 					return $page == 1; // only one page if zenpage enabled.
 				}
 			}

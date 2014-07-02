@@ -12,17 +12,29 @@ if (!OFFSET_PATH) {
 	setOption('personnal_thumb_width', '267', false);
 	setOption('personnal_thumb_height', '133', false);
 
-	setOption('comment_form_toggle', false, false);	// force this option of comment_form, to avoid JS conflits
+	setOption('comment_form_toggle', false, false); // force this option of comment_form, to avoid JS conflits
 	setOption('comment_form_pagination', false, false); // force this option of comment_form, to avoid JS conflits
-	setOption('tinymce_comments', null, false);	 // force this option to disable tinyMCE for comment form
+	setOption('tinymce_comments', null, false); // force this option to disable tinyMCE for comment form
 
 	$_zenpage_enabled = extensionEnabled('zenpage');
 	$_zp_page_check = 'my_checkPageValidity';
 }
 
 function my_checkPageValidity($request, $gallery_page, $page) {
-	if ($gallery_page == 'gallery.php') {
-		$gallery_page = 'index.php';
+	switch ($gallery_page) {
+		case 'index.php':
+			if (!checkForPage(getOption('zenpage_homepage'))) {
+				break;
+			}
+		default:
+			if ($page != 1) {
+				return false;
+			}
+		case 'news.php':
+		case 'album.php':
+		case 'favorites.php';
+		case 'search.php':
+			break;
 	}
 	return checkPageValidity($request, $gallery_page, $page);
 }
@@ -172,7 +184,7 @@ function zpArdoise_printImageStatistic($number, $option, $albumfolder = '', $sho
 /* zpArdoise_printEXIF */
 
 function zpardoise_printEXIF() {
-	$Meta_data = getImageMetaData();	// put all exif data in a array
+	$Meta_data = getImageMetaData(); // put all exif data in a array
 	if (!is_null($Meta_data)) {
 		$Exifs_list = '';
 		if (isset($Meta_data['EXIFModel'])) {
