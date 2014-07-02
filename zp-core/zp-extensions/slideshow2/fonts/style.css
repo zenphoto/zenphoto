@@ -9,7 +9,15 @@
 	font-style: normal;
 }
 
-[class*="icon-"] {
+.slideshow .icon-play,
+.slideshow .icon-pause,
+.slideshow .icon-arrow-down,
+.slideshow .icon-stop,
+.slideshow .icon-arrow-right,
+.slideshow .icon-backward,
+.slideshow .icon-arrow-up,
+.slideshow .icon-forward,
+.slideshow .icon-arrow-left {
 	font-family: 'cycle2-icons';
 	speak: none;
 	font-style: normal;
@@ -23,30 +31,30 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
-.icon-play:before {
+.slideshow .icon-play:before {
 	content: "\e600";
 }
-.icon-pause:before {
+.slideshow .icon-pause:before {
 	content: "\e601";
 }
-.icon-arrow-down:before {
+.slideshow .icon-arrow-down:before {
 	content: "\e605";
 }
-.icon-stop:before {
+.slideshow .icon-stop:before {
 	content: "\e602";
 }
-.icon-arrow-right:before {
+.slideshow .icon-arrow-right:before {
 	content: "\e606";
 }
-.icon-backward:before {
+.slideshow .icon-backward:before {
 	content: "\e603";
 }
-.icon-arrow-up:before {
+.slideshow .icon-arrow-up:before {
 	content: "\e607";
 }
-.icon-forward:before {
+.slideshow .icon-forward:before {
 	content: "\e604";
 }
-.icon-arrow-left:before {
+.slideshow .icon-arrow-left:before {
 	content: "\e608";
 }
