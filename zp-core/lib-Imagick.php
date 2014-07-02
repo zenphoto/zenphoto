@@ -189,8 +189,8 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 
 		switch ($type) {
 			case 'gif':
-				$im->setCompression(Imagick::COMPRESSION_LZW);
-				$im->setCompressionQuality($qual);
+				$im->setImageCompression(Imagick::COMPRESSION_LZW);
+				$im->setImageCompressionQuality($qual);
 
 				if ($interlace) {
 					$im->setInterlaceScheme(Imagick::INTERLACE_GIF);
@@ -200,8 +200,8 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 
 			case 'jpeg':
 			case 'jpg':
-				$im->setCompression(Imagick::COMPRESSION_JPEG);
-				$im->setCompressionQuality($qual);
+				$im->setImageCompression(Imagick::COMPRESSION_JPEG);
+				$im->setImageCompressionQuality($qual);
 
 				if ($interlace) {
 					$im->setInterlaceScheme(Imagick::INTERLACE_JPEG);
@@ -210,8 +210,8 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 				break;
 
 			case 'png':
-				$im->setCompression(Imagick::COMPRESSION_ZIP);
-				$im->setCompressionQuality($qual);
+				$im->setImageCompression(Imagick::COMPRESSION_ZIP);
+				$im->setImageCompressionQuality($qual);
 
 				if ($interlace) {
 					$im->setInterlaceScheme(Imagick::INTERLACE_PNG);
