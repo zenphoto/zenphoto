@@ -27,6 +27,7 @@ if (!getOption('tinymce_tinyzenpage')) {
 					selector: "<?php echo $MCEselector; ?>",
 									language: "<?php echo $locale; ?>",
 									relative_urls: false,
+									image_advtab: true,
 									content_css: "<?php echo $MCEcss; ?>",
 <?php
 if ($filehandler) {
