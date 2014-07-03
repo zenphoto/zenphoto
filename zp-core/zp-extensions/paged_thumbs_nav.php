@@ -469,7 +469,7 @@ class pagedThumbsNav {
  *
  */
 function printPagedThumbsNav($imagesperpage = '', $counter = false, $prev = '', $next = '', $width = NULL, $height = NULL, $crop = NULL, $placeholders = NULL, $showpagelist = false, $pagelistprevnext = false, $pagelistlength = 6) {
-	$pagedthumbsobj = newPagedThumbsNav($imagesperpage, $counter, $prev, $next, $width, $height, $crop, $placeholders, $showpagelist, $pagelistprevnext, $pagelistlength);
+	$pagedthumbsobj = new PagedThumbsNav($imagesperpage, $counter, $prev, $next, $width, $height, $crop, $placeholders, $showpagelist, $pagelistprevnext, $pagelistlength);
 	echo "<div id=\"pagedthumbsnav\">\n";
 	//$thumbs = $pagedthumbsobj->getThumbs();
 	//echo "<pre>"; print_r($thumbs); echo "</pre>";

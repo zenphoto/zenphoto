@@ -23,8 +23,11 @@
 			?>
 			<p>
 				<label for="anon"> (<?php echo gettext("<em>anonymous</em>"); ?>)</label>
-				<input type="checkbox" name="anon" id="anon" value="1"<?php if ($stored['anon']) echo ' checked="checked"';
-		echo $disabled['anon']; ?> />
+				<input type="checkbox" name="anon" id="anon" value="1"<?php
+				if ($stored['anon'])
+					echo ' checked="checked"';
+				echo $disabled['anon'];
+				?> />
 			</p>
 			<?php
 		}
@@ -95,16 +98,19 @@
 	if (getOption('comment_form_private') && !$disabled['private']) {
 		?>
 		<p>
-			<label for="private"><?php echo gettext("Private comment (do not publish)"); ?></label>
-			<input type="checkbox" id="private" name="private" value="1"<?php if ($stored['private']) echo ' checked="checked"'; ?> />
+			<label for="private">
+				<?php echo gettext("Private comment (do not publish)"); ?>
+				<input type="checkbox" id="private" name="private" value="1"<?php if ($stored['private']) echo ' checked="checked"'; ?> />
+			</label>
 		</p>
 		<?php
 	}
 	?>
-	<br />
-	<textarea name="comment" rows="6" cols="42" class="textarea_inputbox"><?php echo $stored['comment'];
-	echo $disabled['comment'];
-	?></textarea>
+	<br clear="all">
+	<textarea name="comment" rows="6" cols="42" class="textarea_inputbox"><?php
+		echo $stored['comment'];
+		echo $disabled['comment'];
+		?></textarea>
 	<br />
 	<input type="submit" class="button buttons"  value="<?php echo gettext('Add Comment'); ?>" />
 </form>

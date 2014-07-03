@@ -684,6 +684,9 @@ label:hover {
 	float: left;
 	display: block;
 }
+#commentform label[for=private] {
+	width: auto !important;
+}
 #registration_form input[type="text"],
 #registration_form input[type="password"],
 #mailform input[type="text"],
