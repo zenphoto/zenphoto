@@ -10,10 +10,10 @@
 $MCEcss = 'dark_content.css';
 $MCEskin = "tundora";
 $MCEselector = "textarea.textarea_inputbox";
-$MCEplugins = "advlist autolink lists link image charmap print preview hr anchor pagebreak " .
+$MCEplugins = "advlist autolink lists link image charmap hr anchor pagebreak " .
 				"searchreplace wordcount visualblocks visualchars code fullscreen " .
-				"insertdatetime save contextmenu directionality " .
-				"emoticons paste";
+				"insertdatetime save contextmenu " .
+				"emoticons paste ";
 $MCEmenubar = "edit insert view format tools";
 $MCEtoolbars = array();
 $MCEstatusbar = false;

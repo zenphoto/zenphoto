@@ -3,6 +3,28 @@
  * The configuration parameters for TinyMCE 4.x.
  *
  * base configuration file
+ *
+ * Note:
+ *
+ * The following variables are presumed to have been set up by the specific configuration
+ * file before including this script:
+ *
+ * <ul>
+ * 	<li>$MCEselector: the class(es) upon which tinyMCE will activate</li>
+ * 	<li>$MCEplugins: the list of plugins to include in the configuration</li>
+ * 	<li>$MCEtoolbars: toolbar(s) for the configuration</li>
+ * 	<li>$MCEstatusbar: Status to true for a status bar, false for none</li>
+ * 	<li>$MCEmenubar: Status to true for a status bar, false for none</li>
+ * </ul>
+ *
+ * And the following variables are optional, if set they will be used, otherwise default
+ * settings will be selected:
+ *
+ * <ul>
+ * 	<li>$MCEcss: css file to be used by tinyMce</li>
+ * 	<li>$MCEimage_advtab: set to <var>false</var> to disable the advanced image tab on the image insert popup.</li>
+ * </ul>
+ *
  * @author Stephen Billard (sbillard)
  */
 $filehandler = zp_apply_filter('tinymce_zenpage_config', NULL);
@@ -12,6 +34,7 @@ if (isset($MCEcss)) {
 } else {
 	$MCEcss = getPlugin('tinymce/config/content.css', true, true);
 }
+
 
 if (!getOption('tinymce_tinyzenpage')) {
 	$MCEplugins = preg_replace('|\stinyzenpage|', '', $MCEplugins);
@@ -27,8 +50,14 @@ if (!getOption('tinymce_tinyzenpage')) {
 					selector: "<?php echo $MCEselector; ?>",
 									language: "<?php echo $locale; ?>",
 									relative_urls: false,
-									image_advtab: true,
-									content_css: "<?php echo $MCEcss; ?>",
+<?php
+if (!isset($MCEimage_advtab) || $MCEimage_advtab) {
+	?>
+						image_advtab: true,
+	<?php
+}
+?>
+					content_css: "<?php echo $MCEcss; ?>",
 <?php
 if ($filehandler) {
 	?>
