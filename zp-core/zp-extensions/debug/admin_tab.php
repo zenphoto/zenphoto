@@ -57,7 +57,7 @@ echo "\n</head>";
 										<?php
 										foreach ($accept as $key => $value) {
 											?>
-											<th width = 100 align="left"><?php echo $key; ?></th>
+											<th width = 100 align="left"><?php echo html_encode($key); ?></th>
 											<?php
 										}
 										?>
@@ -66,11 +66,11 @@ echo "\n</head>";
 									foreach ($httpaccept as $key => $accept) {
 										?>
 										<tr>
-											<td width=100 align="left"><?php echo $key; ?></td>
+											<td width=100 align="left"><?php echo html_encode($key); ?></td>
 											<?php
 											foreach ($accept as $value) {
 												?>
-												<td width=100 align="left"><?php echo $value; ?></td>
+												<td width=100 align="left"><?php echo html_encode($value); ?></td>
 												<?php
 											}
 											?>
@@ -184,8 +184,8 @@ echo "\n</head>";
 									foreach ($_COOKIE as $cookie => $cookiev) {
 										?>
 										<tr>
-											<td><input type="checkbox" name="delete_cookie[<?php echo postIndexEncode($cookie); ?>]" value="1"></td>
-											<td><?php echo $cookie; ?> </td>
+											<td><input type="checkbox" name="delete_cookie[<?php echo html_encode(postIndexEncode($cookie)); ?>]" value="1"></td>
+											<td><?php echo html_encode($cookie); ?> </td>
 											<td><?php echo html_encode(zp_cookieEncode($cookiev)); ?></td>
 										</tr>
 										<?php
