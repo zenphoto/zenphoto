@@ -156,7 +156,7 @@ header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 		} else {
 			?>
 			<p>
-				<?php printf(gettext('No source has been picked. You can pick a ZenPhoto20 object for insertion by browsing to the object and clicking on the %s icon.'), '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/add.png" />'); ?>
+				<?php printf(gettext('No source has been picked. You can pick a ZenPhoto20 object for insertion by browsing to the object and clicking on the %s icon. Custom sized and cropped images may be picked from the <em>crop image</em> page if the <code>crop_image</code> plugin is enabled.'), '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/add.png" />'); ?>
 			</p>
 			<?php
 		}
