@@ -1995,23 +1995,6 @@ function printStandardMeta() {
 	}
 
 	/**
-	 * Returns true if there is an internet connection
-	 *
-	 * @param string $host optional host name to test
-	 *
-	 * @return bool
-	 */
-	function is_connected($host = 'www.zenphoto.org') {
-		$err_no = $err_str = false;
-		$connected = @fsockopen($host, 80, $errno, $errstr, 0.5);
-		if ($connected) {
-			fclose($connected);
-			return true;
-		}
-		return false;
-	}
-
-	/**
 	 * produce debugging information on 404 errors
 	 * @param string $album
 	 * @param string $image

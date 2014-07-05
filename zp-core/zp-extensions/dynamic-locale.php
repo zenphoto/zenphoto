@@ -22,7 +22,7 @@
  * carry over to the admin pages. As will using <i>subdomains</i>.
  *
  * @author Stephen Billard (sbillard)
- * 
+ *
  * @package plugins
  * @subpackage seo
  */
@@ -59,6 +59,7 @@ function printLanguageSelector($flags = NULL) {
 					<?php printf(gettext('The locale %s is not supported on your server.'), html_encode($locale)); ?>
 					<br />
 					<?php echo gettext('See the troubleshooting guide on zenphoto.org for details.'); ?>
+					<?php echo gettext('You can use the <em>debug</em> plugin to see which locales your server supports.'); ?>
 				</h2>
 			</div>
 			<?php

@@ -627,7 +627,8 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 							checkMark($noxlate, gettext('PHP <code>gettext()</code> support'), gettext('PHP <code>gettext()</code> support [is not present]'), gettext("Localization requires native PHP <code>gettext()</code> support"));
 							checkmark(function_exists('flock') ? 1 : -1, gettext('PHP <code>flock</code> support'), gettext('PHP <code>flock</code> support [is not present]'), gettext('Zenpoto uses <code>flock</code> for serializing critical regions of code. Without <code>flock</code> active sites may experience <em>race conditions</em> which may be causing inconsistent data.'));
 							if ($_zp_setupCurrentLocale_result === false) {
-								checkMark(-1, gettext('PHP <code>setlocale()</code>'), ' ' . gettext('PHP <code>setlocale()</code> failed'), gettext("Locale functionality is not implemented on your platform or the specified locale does not exist. Language translation may not work.") . '<br />' . gettext('See the <a  href="http://www.zenphoto.org/news/troubleshooting-zenphoto#24">troubleshooting guide</a> on zenphoto.org for details.'));
+								checkMark(-1, gettext('PHP <code>setlocale()</code>'), ' ' . gettext('PHP <code>setlocale()</code> failed'), gettext("Locale functionality is not implemented on your platform or the specified locale does not exist. Language translation may not work.") . '<br />');
+								echo gettext('You can use the <em>debug</em> plugin to see which locales your server supports.');
 							}
 							primeMark(gettext('mb_strings'));
 							if (function_exists('mb_internal_encoding')) {
@@ -1376,7 +1377,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 								} else if ($Nginx) {
 									$err = gettext("Server seems to be <em>nginx</em>");
 									$mod = "&amp;mod_rewrite"; //	enable test to see if it works.
-									$desc = gettext('If you wish to create cruft-free URLs, you will need to configuring <a href="http://www.zenphoto.org/news/nginx-rewrite-rules-tutorial"><em>URL rewriting for NGINX servers</em></a>.') . ' ' .
+									$desc = gettext('If you wish to create cruft-free URLs, you will need to configuring <em>rewriting</em> for your NGINX server so that any link that does not go directly to a file goes to the installation root <code>index.php</code> script.') . ' ' .
 													'<br /><br />' . gettext('You can ignore this warning if you do not intend to set the <code>mod_rewrite</code> option.');
 								} else {
 									$mod = "&amp;mod_rewrite"; //	enable test to see if it works.
