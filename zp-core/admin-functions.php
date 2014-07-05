@@ -928,7 +928,8 @@ function printAdminHeader($tab, $subtab = NULL) {
 				if (!($l % 2) && preg_match('/[0-9a-f]{' . strlen($postkey) . '}/i', $postkey)) {
 					$key = postIndexDecode($postkey);
 				}
-				$switch = substr(explode('-', $posted)[0], strlen(CUSTOM_OPTION_PREFIX));
+				$switch = explode('-', $posted);
+				$switch = substr($switch[0], strlen(CUSTOM_OPTION_PREFIX));
 				switch ($switch) {
 					case 'text':
 						$value = process_language_string_save($postkey, 1);

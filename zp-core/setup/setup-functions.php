@@ -428,7 +428,7 @@ function setupLanguageSelector() {
 					<?php printf(gettext('<em>%s</em> is not available.'), html_encode($languages[$locale])); ?>
 					<?php printf(gettext('The locale %s is not supported on your server.'), html_encode($locale)); ?>
 					<br />
-					<?php echo gettext('See the <a href="http://www.zenphoto.org/news/troubleshooting-zenphoto#24">troubleshooting guide</a> on zenphoto.org for details.'); ?>
+					<?php echo gettext('You can use the <em>debug</em> plugin to see which locales your server supports.'); ?>
 				</h2>
 			</div>
 			<?php

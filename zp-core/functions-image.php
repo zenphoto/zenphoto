@@ -248,7 +248,7 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 			$size = $width = false;
 		} else {
 			// There's a problem up there somewhere...
-			imageError('404 Not Found', sprintf(gettext('Unknown error processing %s! Please report to the developers at <a href="http://www.zenphoto.org/">www.zenphoto.org</a>'), filesystemToInternal($imgfile)), 'err-imagegeneral.png');
+			imageError('404 Not Found', sprintf(gettext('Unknown error processing %s! Please report to the <a href="' . GITHUB . '/issues">developers</a>'), filesystemToInternal($imgfile)), 'err-imagegeneral.png');
 		}
 
 		$sizes = propSizes($size, $width, $height, $w, $h, $thumb, $image_use_side, $dim);
