@@ -1442,7 +1442,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 									<label><input type="checkbox" name="disclose_password<?php echo $suffix; ?>"
 																id="disclose_password<?php echo $suffix; ?>"
 																onclick="passwordClear('<?php echo $suffix; ?>');
-																		togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?></label>
+																				togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?></label>
 								</td>
 								<td>
 									<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
@@ -1975,7 +1975,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 } else {
 											 ?>
 											 onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');
-													 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
+															 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
 											 <?php
 										 }
 										 ?> />
@@ -3404,14 +3404,16 @@ function processManagedObjects($i, &$rights) {
 	$albums = array();
 	$pages = array();
 	$news = array();
+
 	$l_a = strlen($prefix_a = 'managed_albums_list_' . $i . '_');
 	$l_p = strlen($prefix_p = 'managed_pages_list_' . $i . '_');
 	$l_n = strlen($prefix_n = 'managed_news_list_' . $i . '_');
 	foreach ($_POST as $key => $value) {
+
 		if (substr($key, 0, $l_a) == $prefix_a) {
-			$key = sanitize(postIndexDecode(substr($key, $l_a)));
+			$key = sanitize(substr($key, $l_a));
 			if (preg_match('/(.*)(_edit|_view|_upload|_name)$/', $key, $matches)) {
-				$key = $matches[1];
+				$key = postIndexDecode($matches[1]);
 				if (array_key_exists($key, $albums)) {
 					switch ($matches[2]) {
 						case '_edit':
@@ -3429,17 +3431,20 @@ function processManagedObjects($i, &$rights) {
 					}
 				}
 			} else if ($value) {
+				$key = postIndexDecode($key);
 				$albums[$key] = array('data' => $key, 'name' => '', 'type' => 'album', 'edit' => 32767 & ~(MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_UPLOAD | MANAGED_OBJECT_RIGHTS_VIEW));
 			}
 		}
 		if (substr($key, 0, $l_p) == $prefix_p) {
 			if ($value) {
-				$pages[] = array('data' => substr($key, $l_p), 'type' => 'pages');
+				$key = postIndexDecode(substr($key, $l_p));
+				$pages[] = array('data' => $key, 'type' => 'pages');
 			}
 		}
 		if (substr($key, 0, $l_n) == $prefix_n) {
 			if ($value) {
-				$news[] = array('data' => substr($key, $l_n), 'type' => 'news');
+				$key = postIndexDecode(substr($key, $l_n));
+				$news[] = array('data' => $key, 'type' => 'news');
 			}
 		}
 	}
@@ -4503,7 +4508,7 @@ function printPageSelector($subpage, $rangeset, $script, $queryParams) {
 		}
 		?>
 		<select name="subpage" class="ignoredirty" id="subpage<?php echo $instances; ?>" onchange="launchScript('<?php echo WEBPATH . '/' . ZENFOLDER . '/' . $script; ?>',
-								[<?php echo $jump; ?>'subpage=' + $('#subpage<?php echo $instances; ?>').val()]);" >
+										[<?php echo $jump; ?>'subpage=' + $('#subpage<?php echo $instances; ?>').val()]);" >
 							<?php
 							foreach ($rangeset as $page => $range) {
 								?>
