@@ -26,12 +26,11 @@ if (strpos(__FILE__, ZENFOLDER) === false) {
 	define("PURGEOPTIONS_FOLDER", ZENFOLDER . '/' . PLUGIN_FOLDER . '/purgeOptions/');
 }
 
-if (zp_loggedin(OPTIONS_RIGHTS)) {
-	zp_register_filter('admin_tabs', 'purgeOptions_admin_tabs');
-}
+zp_register_filter('admin_tabs', 'purgeOptions_admin_tabs');
 
 function purgeOptions_admin_tabs($tabs) {
-	$tabs['options']['subtabs'][gettext("purge")] = "/" . PURGEOPTIONS_FOLDER . 'purgeOptions_tab.php?page=options&tab=purge';
+	if (zp_loggedin(OPTIONS_RIGHTS))
+		$tabs['options']['subtabs'][gettext("purge")] = "/" . PURGEOPTIONS_FOLDER . 'purgeOptions_tab.php?page=options&tab=purge';
 	return $tabs;
 }
 

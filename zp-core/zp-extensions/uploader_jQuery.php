@@ -9,7 +9,7 @@
  * PHP 5.3 or greater is required by the encorporated software.
  *
  * @author Stephen Billard (sbillard)
- * 
+ *
  * @package plugins
  * @subpackage admin
  */
@@ -23,8 +23,8 @@ if ($plugin_disable) {
 } else {
 	if (zp_loggedin(UPLOAD_RIGHTS)) {
 		zp_register_filter('upload_handlers', 'jQueryUploadHandler');
-		zp_register_filter('admin_tabs', 'jQueryUploadHandler_admin_tabs', 5);
 	}
+	zp_register_filter('admin_tabs', 'jQueryUploadHandler_admin_tabs', 5);
 }
 
 function jQueryUploadHandler($uploadHandlers) {
@@ -33,16 +33,18 @@ function jQueryUploadHandler($uploadHandlers) {
 }
 
 function jQueryUploadHandler_admin_tabs($tabs) {
-	$me = sprintf(gettext('images (%s)'), 'jQuery');
-	$mylink = 'admin-upload.php?page=upload&tab=jQuery&type=' . gettext('images');
-	if (is_null($tabs['upload'])) {
-		$tabs['upload'] = array('text'		 => gettext("upload"),
-						'link'		 => WEBPATH . "/" . ZENFOLDER . '/admin-upload.php',
-						'subtabs'	 => NULL);
+	if (zp_loggedin(UPLOAD_RIGHTS)) {
+		$me = sprintf(gettext('images (%s)'), 'jQuery');
+		$mylink = 'admin-upload.php?page=upload&tab=jQuery&type=' . gettext('images');
+		if (is_null($tabs['upload'])) {
+			$tabs['upload'] = array('text'		 => gettext("upload"),
+							'link'		 => WEBPATH . "/" . ZENFOLDER . '/admin-upload.php',
+							'subtabs'	 => NULL);
+		}
+		$tabs['upload']['subtabs'][$me] = $mylink;
+		if (zp_getcookie('uploadtype') == 'jQuery')
+			$tabs['upload']['link'] = WEBPATH . "/" . ZENFOLDER . '/' . $mylink;
 	}
-	$tabs['upload']['subtabs'][$me] = $mylink;
-	if (zp_getcookie('uploadtype') == 'jQuery')
-		$tabs['upload']['link'] = WEBPATH . "/" . ZENFOLDER . '/' . $mylink;
 	return $tabs;
 }
 

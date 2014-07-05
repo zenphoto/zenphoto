@@ -18,7 +18,7 @@
  *
  *
  * @author Stephen Billard (sbillard)
- * 
+ *
  * @package plugins
  * @subpackage admin
  */
@@ -72,16 +72,18 @@ if (getOption('elFinder_tinymce')) {
 }
 
 function elFinder_admin_tabs($tabs) {
-	$me = sprintf(gettext('files (%s)'), 'elFinder');
-	$mylink = PLUGIN_FOLDER . '/' . 'elFinder/filemanager.php?page=upload&tab=elFinder&type=' . gettext('files');
-	if (is_null($tabs['upload'])) {
-		$tabs['upload'] = array('text'		 => gettext("upload"),
-						'link'		 => WEBPATH . "/" . ZENFOLDER . '/admin-upload.php',
-						'subtabs'	 => NULL);
+	if (zp_loggedin(FILES_RIGHTS)) {
+		$me = sprintf(gettext('files (%s)'), 'elFinder');
+		$mylink = PLUGIN_FOLDER . '/' . 'elFinder/filemanager.php?page=upload&tab=elFinder&type=' . gettext('files');
+		if (is_null($tabs['upload'])) {
+			$tabs['upload'] = array('text'		 => gettext("upload"),
+							'link'		 => WEBPATH . "/" . ZENFOLDER . '/admin-upload.php',
+							'subtabs'	 => NULL);
+		}
+		$tabs['upload']['subtabs'][$me] = $mylink;
+		if (zp_getcookie('uploadtype') == 'elFinder')
+			$tabs['upload']['link'] = WEBPATH . "/" . ZENFOLDER . '/' . $mylink;
 	}
-	$tabs['upload']['subtabs'][$me] = $mylink;
-	if (zp_getcookie('uploadtype') == 'elFinder')
-		$tabs['upload']['link'] = WEBPATH . "/" . ZENFOLDER . '/' . $mylink;
 	return $tabs;
 }
 
