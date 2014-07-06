@@ -301,28 +301,33 @@ datepickerJS();
 								</td>
 
 								<?php
-								$option = getNewsAdminOptionPath(getNewsAdminOption(array('category' => 0, 'date' => 0, 'published' => 0, 'sortorder' => 0, 'articles_page' => 1, 'subpage' => 1)));
-								if (checkIfLockedNews($article)) {
+        $option = getNewsAdminOptionPath(getNewsAdminOption(array('category' => 0, 'date' => 0, 'published' => 0, 'sortorder' => 0, 'articles_page' => 1, 'subpage' => 1)));
+        if (empty($option)) {
+          $divider = '?';
+        } else {
+          $divider = '&amp;';
+        }
+        if (checkIfLockedNews($article)) {
 									?>
 									<td class="page-list_icon">
 										<?php printPublishIconLink($article, 'news'); ?>
 									</td>
 									<td class="page-list_icon">
 										<?php
+           
 										if ($article->getCommentsAllowed()) {
+           
 											?>
-											<a href="?commentson=0&amp;titlelink=<?php
+											<a href="<?php echo $option.$divider; ?>commentson=0&amp;titlelink=<?php
 											echo html_encode($article->getTitlelink());
-											echo $option;
 											?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo gettext('Disable comments'); ?>">
 												<img src="../../images/comments-on.png" alt="" title="<?php echo gettext("Comments on"); ?>" style="border: 0px;"/>
 											</a>
 											<?php
 										} else {
 											?>
-											<a href="?commentson=1&amp;titlelink=<?php
+											<a href="<?php echo $option.$divider; ?>commentson=1&amp;titlelink=<?php
 											echo html_encode($article->getTitlelink());
-											echo $option;
 											?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo gettext('Enable comments'); ?>">
 												<img src="../../images/comments-off.png" alt="" title="<?php echo gettext("Comments off"); ?>" style="border: 0px;"/>
 											</a>
@@ -342,9 +347,8 @@ datepickerJS();
 								<?php } ?>
 
 								<td class="page-list_icon">
-									<a href="../../../index.php?p=news&amp;title=<?php
+									<a target="_blank" href="../../../index.php?p=news&amp;title=<?php
 									echo $article->getTitlelink();
-									echo $option;
 									?>" title="<?php echo gettext('View article'); ?>">
 										<img src="images/view.png" alt="" title="<?php echo gettext('View article'); ?>" />
 									</a>
@@ -355,9 +359,8 @@ datepickerJS();
 									if (extensionEnabled('hitcounter')) {
 										?>
 										<td class="page-list_icon">
-											<a href="?hitcounter=1&amp;titlelink=<?php
+											<a href="<?php echo $option.$divider; ?>hitcounter=1&amp;titlelink=<?php
 											echo html_encode($article->getTitlelink());
-											echo $option;
 											?>&amp;XSRFToken=<?php echo getXSRFToken('hitcounter') ?>" title="<?php echo gettext('Reset hitcounter'); ?>">
 												<img src="../../images/reset.png" alt="" title="<?php echo gettext('Reset hitcounter'); ?>" /></a>
 										</td>
