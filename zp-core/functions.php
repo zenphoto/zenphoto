@@ -226,18 +226,6 @@ function shortenContent($articlecontent, $shorten, $shortenindicator, $forceindi
 }
 
 /**
- * Converts newline characters to break tags
- * @param string $str
- * @return string
- */
-function newlineBreak($str) {
-	$str = str_replace("\r\n", '<br />', $str);
-	$str = str_replace("\n", '<br />', $str);
-	$str = str_replace("\r", '<br />', $str);
-	return $str;
-}
-
-/**
  * Returns the oldest ancestor of an alubm;
  *
  * @param string $album an album object

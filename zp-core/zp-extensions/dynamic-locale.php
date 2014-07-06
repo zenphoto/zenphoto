@@ -58,7 +58,6 @@ function printLanguageSelector($flags = NULL) {
 					<?php printf(gettext('<em>%s</em> is not available.'), html_encode($locale)); ?>
 					<?php printf(gettext('The locale %s is not supported on your server.'), html_encode($locale)); ?>
 					<br />
-					<?php echo gettext('See the troubleshooting guide on zenphoto.org for details.'); ?>
 					<?php echo gettext('You can use the <em>debug</em> plugin to see which locales your server supports.'); ?>
 				</h2>
 			</div>
