@@ -143,9 +143,6 @@ class MergedRSS {
 								$sxe = self::fetch_from_cache($cache_file);
 								$results = $sxe->channel->item;
 							}
-						} else {
-							// we need to update the cache file
-							$sxe->asXML($cache_file);
 						}
 					}
 				}
