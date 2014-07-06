@@ -114,6 +114,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 			<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/toggleElements.css" type="text/css" />
 			<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jqueryui/jquery-ui-zenphoto.css" type="text/css" />
 			<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.css" type="text/css" />
+
+			<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/facebox/facebox.css" type="text/css" />
+
 			<?php
 			if ($_zp_RTL_css) {
 				?>
@@ -129,6 +132,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.scrollTo.js" type="text/javascript"></script>
 
 			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/dirtyforms/jquery.dirtyforms.js" type="text/javascript"></script>
+			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/facebox/facebox.js" type="text/javascript"></script>
 
 
 			<script type="text/javascript">
@@ -149,7 +153,14 @@ function printAdminHeader($tab, $subtab = NULL) {
 		<?php
 	}
 	?>
-					$.DirtyForms.message = '<?php echo addslashes(gettext('You have unsaved changes!')); ?>';
+					$.DirtyForms.message = '<?php echo gettext('You have unsaved changes!'); ?>';
+					$.DirtyForms.title = '<?php echo gettext('Are you sure?'); ?>';
+					$.DirtyForms.continueText = '<?php echo gettext('Leave'); ?>';
+					$.DirtyForms.stopText = '<?php echo gettext('Stay'); ?>';
+
+					$.facebox.settings.closeImage = '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/facebox/closelabel.png';
+					$('#modal').facebox();
+
 					$('form.dirtylistening').dirtyForms();
 				});
 				$(function() {
