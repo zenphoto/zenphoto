@@ -1132,6 +1132,11 @@ zp-core/js/zenphoto.js
 zp-core/js/dirtyforms
 zp-core/js/dirtyforms/jquery.dirtyforms.js
 zp-core/js/dirtyforms/tinymce.js
+zp-core/js/facebox
+zp-core/js/facebox/closelabel.png
+zp-core/js/facebox/facebox.css
+zp-core/js/facebox/facebox.js
+zp-core/js/facebox/loading.gif
 zp-core/js/jqueryui
 zp-core/js/jqueryui/jquery-ui-zenphoto.css
 zp-core/js/jqueryui/jquery-ui-zenphoto.js
@@ -2248,4 +2253,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-2250
+2255

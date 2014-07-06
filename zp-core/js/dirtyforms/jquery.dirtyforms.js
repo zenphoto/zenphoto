@@ -12,6 +12,8 @@ if (typeof jQuery == 'undefined')
 			debug: false,
 			message: 'You\'ve made changes on this page which aren\'t saved. If you leave you will lose these changes.',
 			title: 'Are you sure you want to do that?',
+			continueText: 'Continue',
+			stopText: 'Stop',
 			dirtyClass: 'dirty',
 			listeningClass: 'dirtylisten',
 			ignoreClass: 'ignoredirty',
@@ -21,8 +23,8 @@ if (typeof jQuery == 'undefined')
 				refire: function(content, ev) {
 					$.facebox(content);
 				},
-				fire: function(message, title) {
-					var content = '<h1>' + title + '</h1><p>' + message + '</p><p><a href="#" class="ignoredirty button medium red continue">Continue</a><a href="#" class="ignoredirty button medium cancel">Stop</a>';
+				fire: function(message, title, go, stop) {
+					var content = '<h1>' + title + '</h1><p>' + message + '</p><p><a href="#" class="ignoredirty button medium red continue">' + go + '</a><a href="#" class="ignoredirty button medium cancel">' + stop + '</a>';
 					$.facebox(content);
 				},
 				bind: function() {
@@ -422,7 +424,7 @@ if (typeof jQuery == 'undefined')
 		}
 
 		dirtylog('Deferring to the dialog');
-		settings.dialog.fire($.DirtyForms.message, $.DirtyForms.title);
+		settings.dialog.fire($.DirtyForms.message, $.DirtyForms.title, $.DirtyForms.continueText, $.DirtyForms.stopText);
 		settings.dialog.bind();
 	}
 
@@ -461,6 +463,7 @@ if (typeof jQuery == 'undefined')
 
 	var decidingContinue = function(ev) {
 		window.onbeforeunload = null; // fix for chrome
+		$(window).unbind('beforeunload');
 		ev.preventDefault();
 		settings.dialogStash = false;
 		$(document).trigger('decidingcontinued.dirtyforms');
