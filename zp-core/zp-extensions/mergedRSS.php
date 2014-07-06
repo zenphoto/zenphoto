@@ -152,7 +152,7 @@ class MergedRSS {
 		if (isset($this->myTitle)) {
 			$xml .= "\t<title>" . $this->myTitle . "</title>\n";
 		}
-		$xml .= "\t<atom:link href=\"http://" . WEBPATH . '/' . str_replace(SERVERPATH, '', __FILE__) . "\" rel=\"self\" type=\"application/rss+xml\" />\n";
+		$xml .= "\t<atom:link href=\"".PROTOCOL . ':/' . WEBPATH . '/index.php?mergedrss' . "\" rel=\"self\" type=\"application/rss+xml\" />\n";
 		if (isset($this->myLink)) {
 			$xml .= "\t<link>" . $this->myLink . "</link>\n";
 		}
@@ -219,5 +219,4 @@ class MergedRSS {
 	}
 
 }
-
 ?>
