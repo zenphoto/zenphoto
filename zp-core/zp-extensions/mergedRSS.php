@@ -10,8 +10,7 @@
  *
  * The merged feed is called by yourdomain.com/index.php?mergedrss
  *
- * While this plugin is meant for RSS feeds, you could also use even external RSS feeds.
- * But be aware that hijacking content may be a vialation of applicable laws!
+ * Be aware that hijacking content from sites that are not your own may be a violation of applicable laws!
  *
  * @author Malte Müller (acrylian)
  * @package plugins
@@ -109,81 +108,99 @@ class MergedRSS {
 
 	// exports the data as a returned value and/or outputted to the screen
 	public function export($return_as_string = true, $output = false, $limit = null) {
-		// initialize a combined item array for later
-		$items = array();
-		// loop through each feed
-		foreach ($this->myFeeds as $RSS_url) {
-			// determine my cache file name.  for now i assume they're all kept in a file called "cache"
-			$cache_file = SERVERPATH . '/' . STATIC_CACHE_FOLDER . '/rss/' . self::create_RSS_key($RSS_url);
-			// determine whether or not I should use the cached version of the xml
-			$use_cache = file_exists($cache_file) && time() - filemtime($cache_file) < $this->myCacheTime;
-			if ($use_cache) {
-				// retrieve cached version
-				$sxe = self::fetch_from_cache($cache_file);
-				$results = $sxe->channel->item;
-			} else {
-				// retrieve updated rss feed
-				$sxe = self::fetch_from_url($RSS_url);
-				$results = $sxe->channel->item;
-
-				if (!isset($results)) {
-					// couldn't fetch from the url. grab a cached version if we can
-					if (file_exists($cache_file)) {
-						$sxe = self::fetch_from_cache($cache_file);
-						$results = $sxe->channel->item;
-					}
+		//cache the full mergerd rss feed
+		$mergedrss_cache_file = SERVERPATH . '/' . STATIC_CACHE_FOLDER . '/rss/mergedrss.xml';
+		$use_mergedrss_cache = file_exists($mergedrss_cache_file) && time() - filemtime($mergedrss_cache_file) < $this->myCacheTime;
+		if ($use_mergedrss_cache) {
+			$xml = file_get_contents($mergedrss_cache_file);
+		} else {
+			// initialize a combined item array for later
+			$items = array();
+			// loop through each feed
+			foreach ($this->myFeeds as $RSS_url) {
+				// determine my cache file name.  for now i assume they're all kept in a file called "cache"
+				$cache_file = SERVERPATH . '/' . STATIC_CACHE_FOLDER . '/rss/' . self::create_RSS_key($RSS_url) . '.xml';
+				//local feeds are possibly already cached (rss cache enabled via main rss plugin) so no need to do it again
+				if (strstr($RSS_url, FULLWEBPATH)) {
+					$use_cache = false;
 				} else {
-					// we need to update the cache file
-					$sxe->asXML($cache_file);
+					$use_cache = file_exists($cache_file) && time() - filemtime($cache_file) < $this->myCacheTime;
+				}
+				if ($use_cache) {
+					// retrieve cached version
+					$sxe = self::fetch_from_cache($cache_file);
+					$results = $sxe->channel->item;
+				} else {
+					// retrieve updated rss feed
+					$sxe = self::fetch_from_url($RSS_url);
+					$results = $sxe->channel->item;
+					if ($use_cache) {
+						if (isset($results)) {
+							$sxe->asXML($cache_file);
+						} else {
+							// couldn't fetch from the url. grab a cached version if we can
+							if (file_exists($cache_file)) {
+								$sxe = self::fetch_from_cache($cache_file);
+								$results = $sxe->channel->item;
+							}
+						} else {
+							// we need to update the cache file
+							$sxe->asXML($cache_file);
+						}
+					}
+				}
+				if (isset($results)) {
+					// add each item to the master item list
+					foreach ($results as $item) {
+						$items[] = $item;
+					}
 				}
 			}
+		}
+		if (!$use_mergedrss_cache) {
+			// set all the initial, necessary xml data
+			$xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
+			$xml .= "<rss version=\"2.0\" xmlns:atom=\"http://www.w3.org/2005/Atom\">\n";
+			$xml .= "<channel>\n";
+			if (isset($this->myTitle)) {
+				$xml .= "\t<title>" . $this->myTitle . "</title>\n";
+			}
+			$xml .= "\t<atom:link href=\"" . PROTOCOL . ':/' . WEBPATH . '/index.php?mergedrss' . "\" rel=\"self\" type=\"application/rss+xml\" />\n";
+			if (isset($this->myLink)) {
+				$xml .= "\t<link>" . $this->myLink . "</link>\n";
+			}
+			if (isset($this->myDescription)) {
+				$xml .= "\t<description>" . $this->myDescription . "</description>\n";
+			}
+			if (isset($this->myPubDate)) {
+				$xml .= "\t<pubDate>" . $this->myPubDate . "</pubDate>\n";
+			}
 
-			if (isset($results)) {
-				// add each item to the master item list
-				foreach ($results as $item) {
-					$items[] = $item;
+
+			// if there are any items to add to the feed, let's do it
+			if (sizeof($items) > 0) {
+
+				// sort items
+				usort($items, array($this, "self::compare_items"));
+
+				// if desired, splice items into an array of the specified size
+				if (isset($limit)) {
+					array_splice($items, intval($limit));
+				}
+
+				// now let's convert all of our items to XML
+				for ($i = 0; $i < sizeof($items); $i++) {
+					$xml .= $items[$i]->asXML() . "\n";
 				}
 			}
+			$xml .= "</channel>\n</rss>";
+			// create full mergedrss cache file
+			$rssobj = new SimpleXMLElement($xml);
+			$rssobj->asXML($mergedrss_cache_file);
 		}
-		// set all the initial, necessary xml data
-		$xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
-		$xml .= "<rss version=\"2.0\" xmlns:content=\"http://purl.org/rss/1.0/modules/content/\" xmlns:wfw=\"http://wellformedweb.org/CommentAPI/\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:atom=\"http://www.w3.org/2005/Atom\" xmlns:sy=\"http://purl.org/rss/1.0/modules/syndication/\" xmlns:slash=\"http://purl.org/rss/1.0/modules/slash/\">\n";
-		$xml .= "<channel>\n";
-		if (isset($this->myTitle)) {
-			$xml .= "\t<title>" . $this->myTitle . "</title>\n";
-		}
-		$xml .= "\t<atom:link href=\"http://" . WEBPATH . '/' . str_replace(SERVERPATH, '', __FILE__) . "\" rel=\"self\" type=\"application/rss+xml\" />\n";
-		if (isset($this->myLink)) {
-			$xml .= "\t<link>" . $this->myLink . "</link>\n";
-		}
-		if (isset($this->myDescription)) {
-			$xml .= "\t<description>" . $this->myDescription . "</description>\n";
-		}
-		if (isset($this->myPubDate)) {
-			$xml .= "\t<pubDate>" . $this->myPubDate . "</pubDate>\n";
-		}
-
-
-		// if there are any items to add to the feed, let's do it
-		if (sizeof($items) > 0) {
-
-			// sort items
-			usort($items, array($this, "self::compare_items"));
-
-			// if desired, splice items into an array of the specified size
-			if (isset($limit)) {
-				array_splice($items, intval($limit));
-			}
-
-			// now let's convert all of our items to XML
-			for ($i = 0; $i < sizeof($items); $i++) {
-				$xml .= $items[$i]->asXML() . "\n";
-			}
-		}
-		$xml .= "</channel>\n</rss>";
-
 		// if output is desired print to screen
 		if ($output) {
+			header('Content-Type: application/xml');
 			echo $xml;
 		}
 
