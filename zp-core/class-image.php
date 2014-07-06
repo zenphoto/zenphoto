@@ -435,7 +435,7 @@ class Image extends MediaObject {
 		}
 		if (!empty($title)) {
 			if (getoption('transform_newlines')) {
-				$title = newlineBreak($title);
+				$title = nl2br($title);
 			}
 			$this->setTitle($title);
 		}
@@ -444,7 +444,7 @@ class Image extends MediaObject {
 		$desc = $this->get('IPTCImageCaption');
 		if (!empty($desc)) {
 			if (getoption('transform_newlines')) {
-				$desc = newlineBreak($desc);
+				$desc = nl2br($desc);
 			}
 			$this->setDesc($desc);
 		}

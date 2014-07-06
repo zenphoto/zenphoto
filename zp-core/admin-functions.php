@@ -133,7 +133,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 
 			<script type="text/javascript">
 				// <!-- <![CDATA[
-
 				function setClean(id) {
 					$('form#' + id).dirtyForms('setClean');
 					$('form#' + id).removeClass('tinyDirty');
@@ -1147,7 +1146,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 * @param string $class class of the selections
 	 */
 	function tagSelector($that, $postit, $showCounts = false, $tagsort = 'alpha', $addnew = true, $resizeable = false, $class = 'checkTagsAuto') {
-		global $_zp_admin_ordered_taglist, $_zp_admin_LC_taglist, $_zp_all_languages;
+		global $_zp_admin_ordered_taglist, $_zp_admin_LC_taglist;
 		if (is_null($_zp_admin_ordered_taglist)) {
 			switch ($tagsort) {
 				case 'language':
@@ -1180,7 +1179,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 				$_zp_admin_LC_taglist[$tag] = $tag;
 			}
 			$flags = array('' => WEBPATH . '/' . ZENFOLDER . '/images/placeholder.png');
-			foreach ($_zp_all_languages as $dirname) {
+			foreach (generateLanguageList('all') as $dirname) {
 				$flags[$dirname] = getLanguageFlag($dirname);
 			}
 
