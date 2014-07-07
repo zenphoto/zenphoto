@@ -8,9 +8,6 @@ if (!defined('WEBPATH'))
 <html>
 	<head>
 		<?php zp_apply_filter('theme_head'); ?>
-		
-		
-		 
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" type="text/css" />
 		<?php if (class_exists('RSS')) printRSSHeaderLink('Album', getAlbumTitle()); ?>
 	</head>
@@ -71,8 +68,10 @@ if (!defined('WEBPATH'))
 
 					</div>
 					<p style="clear: both; "></p>
-					<?php printPageListWithNav("« " . gettext("prev"), gettext("next") . " »"); ?>
-					<?php printTags('links', gettext('<strong>Tags:</strong>') . ' ', 'taglist', ', '); ?>
+					<?php
+					printPageListWithNav("« " . gettext("prev"), gettext("next") . " »");
+					printTags('links', gettext('<strong>Tags:</strong>') . ' ', 'taglist', ', ');
+					?>
 					<br style="clear:both;" /><br />
 					<?php
 					if (function_exists('printGoogleMap')) {
@@ -89,22 +88,24 @@ if (!defined('WEBPATH'))
 					}
 					?>
 					<br style="clear:both;" />
-					<?php if (function_exists('printAddToFavorites')) printAddToFavorites($_zp_current_album); ?>
-					<?php @call_user_func('printRating'); ?>
-					<?php @call_user_func('printCommentForm'); ?>
-
+					<?php
+					if (function_exists('printAddToFavorites'))
+						printAddToFavorites($_zp_current_album);
+					@call_user_func('printRating');
+					@call_user_func('printCommentForm');
+					?>
 				</div><!-- content left-->
 
 
 
 				<div id="sidebar">
-					<?php include("sidebar.php"); ?>
+<?php include("sidebar.php"); ?>
 				</div><!-- sidebar -->
 
 
 
 				<div id="footer">
-					<?php include("footer.php"); ?>
+<?php include("footer.php"); ?>
 				</div>
 
 			</div><!-- content -->

@@ -4,7 +4,7 @@
  * Initialize globals for Admin
  *
  * @author Stephen Billard (sbillard)
- * 
+ *
  * @package admin
  */
 // force UTF-8 Ø
@@ -69,13 +69,15 @@ if ($_zp_loggedin) {
 						'link'		 => WEBPATH . "/" . ZENFOLDER . '/admin-edit.php',
 						'subtabs'	 => NULL);
 	}
+
 	if (extensionEnabled('zenpage')) {
-		if ($_zp_loggedin & ZENPAGE_PAGES_RIGHTS) {
+		if (($_zp_loggedin & ZENPAGE_PAGES_RIGHTS) && getOption('zenpage_enabled_items') & 2) {
 			$zenphoto_tabs['pages'] = array('text'		 => gettext("pages"),
 							'link'		 => WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-pages.php',
 							'subtabs'	 => NULL);
 		}
-		if ($_zp_loggedin & ZENPAGE_NEWS_RIGHTS) {
+
+		if (($_zp_loggedin & ZENPAGE_NEWS_RIGHTS) && getOption('zenpage_enabled_items') & 1) {
 			$zenphoto_tabs['news'] = array('text'		 => gettext("news"),
 							'link'		 => WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-news-articles.php',
 							'subtabs'	 => array(gettext('articles')		 => PLUGIN_FOLDER . '/zenpage/admin-news-articles.php?page=news&tab=articles',

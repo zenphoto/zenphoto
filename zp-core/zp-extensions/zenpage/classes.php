@@ -29,6 +29,8 @@ class CMS {
 	// page defaults
 	protected $page_sortorder;
 	protected $page_sortdirection;
+	var $news_enabled = true;
+	var $pages_enabled = true;
 
 	/**
 	 * Class instantiator
@@ -39,6 +41,8 @@ class CMS {
 		foreach ($allcategories as $cat) {
 			$this->categoryStructure[$cat['id']] = $cat;
 		}
+		$this->news_enabled = getOption('zenpage_enabled_items') & 1;
+		$this->pages_enabled = getOption('zenpage_enabled_items') & 2;
 	}
 
 	static function expiry() {
