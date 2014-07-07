@@ -70,8 +70,10 @@ if (!defined('WEBPATH'))
 
 					</div>
 					<p style="clear: both; "></p>
-					<?php printPageListWithNav("« " . gettext("prev"), gettext("next") . " »"); ?>
-					<?php printTags('links', gettext('<strong>Tags:</strong>') . ' ', 'taglist', ', '); ?>
+					<?php 
+      printPageListWithNav("« " . gettext("prev"), gettext("next") . " »"); 
+      printTags('links', gettext('<strong>Tags:</strong>') . ' ', 'taglist', ', '); 
+     ?>
 					<br style="clear:both;" /><br />
 					<?php
 					if (function_exists('printGoogleMap')) {
@@ -88,19 +90,16 @@ if (!defined('WEBPATH'))
 					}
 					?>
 					<br style="clear:both;" />
-					<?php if (function_exists('printAddToFavorites')) printAddToFavorites($_zp_current_album); ?>
-					<?php @call_user_func('printRating'); ?>
-					<?php @call_user_func('printCommentForm'); ?>
-
+					<?php 
+      if (function_exists('printAddToFavorites')) printAddToFavorites($_zp_current_album); 
+      @call_user_func('printRating'); 
+      @call_user_func('printCommentForm'); 
+     ?>
 				</div><!-- content left-->
-
-
 
 				<div id="sidebar">
 					<?php include("sidebar.php"); ?>
 				</div><!-- sidebar -->
-
-
 
 				<div id="footer">
 					<?php include("footer.php"); ?>

@@ -67,12 +67,12 @@ if ($_zp_loggedin) {
 						'subtabs'	 => NULL);
 	}
 	if (extensionEnabled('zenpage')) {
-		if ($_zp_loggedin & ZENPAGE_PAGES_RIGHTS) {
+		if ($_zp_loggedin & ZENPAGE_PAGES_RIGHTS && $_zp_zenpage->pages_enabled) {
 			$zenphoto_tabs['pages'] = array('text'		 => gettext("pages"),
 							'link'		 => WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-pages.php',
 							'subtabs'	 => NULL);
 		}
-		if ($_zp_loggedin & ZENPAGE_NEWS_RIGHTS) {
+		if ($_zp_loggedin & ZENPAGE_NEWS_RIGHTS && $_zp_zenpage->news_enabled) {
 			$zenphoto_tabs['news'] = array('text'		 => gettext("news"),
 							'link'		 => WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-news-articles.php',
 							'subtabs'	 => array(gettext('articles')		 => PLUGIN_FOLDER . '/zenpage/admin-news-articles.php?page=news&tab=articles',

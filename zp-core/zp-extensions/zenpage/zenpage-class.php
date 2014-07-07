@@ -33,6 +33,8 @@ class Zenpage {
 	// page defaults
 	protected $page_sortorder;
 	protected $page_sortdirection;
+ var $news_enabled = true;
+ var $pages_enabled = true;
 
 	/**
 	 * Class instantiator
@@ -43,6 +45,16 @@ class Zenpage {
 		foreach ($allcategories as $cat) {
 			$this->categoryStructure[$cat['id']] = $cat;
 		}
+  if(getOption('enabled-zenpage-items') == 'news-and-pages' || getOption('enabled-zenpage-items') == 'news') {
+    $this->news_enabled = true;
+  } else {
+    $this->news_enabled = false;
+  }
+  if(getOption('enabled-zenpage-items') == 'news-and-pages' || getOption('enabled-zenpage-items') == 'pages') {
+    $this->pages_enabled = true;
+  } else {
+    $this->pages_enabled = false;
+  }
 	}
 
 	static function expiry() {

@@ -216,6 +216,7 @@ foreach ($_zp_exifvars as $key => $item) {
 	setOptionDefault($key, 0);
 }
 setOptionDefault('IPTC_encoding', 'ISO-8859-1');
+setOptionDefault('IPTC_convert_linebreaks', 0);
 
 setOptionDefault('UTF8_image_URI', 0);
 

@@ -64,7 +64,7 @@ if (function_exists('printCustomMenu') && getThemeOption('custom_index_page', NU
 } else { //	"standard zenpage sidebar menus
 	?>
 	<!-- standard menu -->	<?php
-	if (extensionEnabled('zenpage')) {
+	if (extensionEnabled('zenpage') && $_zp_zenpage->news_enabled) {
 		if (getNumNews(true)) {
 			?>
 			<div class="menu">
@@ -117,7 +117,7 @@ if (function_exists('printCustomMenu') && getThemeOption('custom_index_page', NU
 	?>
 
 	<?php
-	if (extensionEnabled('zenpage')) {
+	if (extensionEnabled('zenpage') && $_zp_zenpage->pages_enabled) {
 		if (getNumPages(true)) {
 			?>
 			<div class="menu">

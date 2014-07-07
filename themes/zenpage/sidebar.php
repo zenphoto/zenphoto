@@ -8,7 +8,7 @@ if (function_exists('printCustomMenu') && getOption('zenpage_custommenu')) {
 	</div>
 	<?php
 } else {
-	if (extensionEnabled('zenpage')) {
+	if (extensionEnabled('zenpage') && $_zp_zenpage->news_enabled) {
 		?>
 		<div class="menu">
 			<h3><?php echo gettext("News articles"); ?></h3>
@@ -42,7 +42,7 @@ if (function_exists('printCustomMenu') && getOption('zenpage_custommenu')) {
 		</div>
 	<?php } ?>
 
-	<?php if (extensionEnabled('zenpage')) { ?>
+	<?php if (extensionEnabled('zenpage') && $_zp_zenpage->pages_enabled) { ?>
 		<div class="menu">
 			<h3><?php echo gettext("Pages"); ?></h3>
 			<?php printPageMenu("list", "", "menu-active", "submenu", "menu-active"); ?>
@@ -56,11 +56,16 @@ if (function_exists('printCustomMenu') && getOption('zenpage_custommenu')) {
 	<h3><?php echo gettext("Archive"); ?></h3>
 	<ul>
 		<?php
+  if(extensionEnabled('Zenpage') && $_zp_zenpage->news_enabled) {
+    $archivelinktext = gettext("Gallery And News");
+  } else {
+    $archivelinktext = gettext("Gallery");
+  }
 		if ($_zp_gallery_page == "archive.php") {
-			echo "<li class='menu-active'>" . gettext("Gallery And News") . "</li>";
+			echo "<li class='menu-active'>" . $archivelinktext . "</li>";
 		} else {
 			echo "<li>";
-			printCustomPageURL(gettext("Gallery and News"), "archive");
+			printCustomPageURL($archivelinktext, "archive");
 			echo "</li>";
 		}
 		?>
@@ -84,7 +89,7 @@ if (class_exists('RSS') && (getOption('RSS_album_image') || getOption('RSS_artic
 			printRSSLink('Gallery', '<li>', gettext('Gallery'), '</li>');
 			?>
 			<?php
-			if (extensionEnabled('zenpage')) {
+			if (extensionEnabled('zenpage') && $_zp_zenpage->news_enabled) {
 				printRSSLink("News", "<li>", gettext("News"), '</li>');
 			}
 			?>

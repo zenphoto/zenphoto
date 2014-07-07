@@ -19,14 +19,14 @@ function jqm_loadScripts() {
  * Prints the rss links for use in the sidebar/bottom nav
  */
 function jqm_printRSSlinks() {
-	global $_zp_gallery_page, $_zp_themeroot;
+	global $_zp_gallery_page, $_zp_themeroot, $zp_zenpage;
 	if (class_exists('RSS')) {
 		?>
 		<h3><?php echo gettext('RSS'); ?></h3>
 		<ul>
 			<?php
 			// these links must change to ones with rel="external" so they are actually loaded via jquerymobile!
-			if (extensionEnabled('zenpage')) {
+			if (extensionEnabled('zenpage') && $_zp_zenpage->news_enabled) {
 				?>
 				<li class="rsslink"><a href="<?php echo html_encode(getRSSLink('News')); ?>" rel="external" data-ajax="false"><?php echo gettext('News'); ?></a></li>
 				<?php
@@ -64,9 +64,11 @@ function jqm_printMainHeaderNav() {
 		<div data-role="navbar">
 			<ul>
 				<li><a href="<?php echo getCustomPageURL('gallery'); ?>"><?php echo gettext('Gallery'); ?></a></li>
-				<?php if (extensionEnabled('zenpage')) { ?>
+				<?php if (extensionEnabled('zenpage') && $_zp_zenpage->news_enabled) { ?>
 					<li><a href="<?php echo getNewsIndexURL(); ?>"><?php echo gettext('News'); ?></a></li>
+    <?php if(extensionEnabled('zenpage') && $_zp_zenpage->pages_enabled) { ?>
 					<li><a href="<?php echo getPagesLink(); ?>"><?php echo gettext('Pages'); ?></a></li>
+    <?php } ?>
 				<?php } ?>
 				<li><a href="<?php echo getCustomPageURL('archive'); ?>"><?php echo gettext('Archive'); ?></a></li>
 			</ul>
@@ -141,10 +143,10 @@ function jqm_printNewsCategories($separator = '', $class = '') {
  * Prints the foldout (sidebar/bottom) menu links
  */
 function jqm_printMenusLinks() {
-	global $_zp_gallery_page;
+	global $_zp_gallery_page, $_zp_zenpage;
 	?>
 	<div id="collapsible-lists" data-collapsed="false">
-	<?php if (extensionEnabled('zenpage')) { ?>
+	<?php if (extensionEnabled('zenpage') && $_zp_zenpage->news_enabled) { ?>
 			<div data-role="collapsible" data-content-theme="c" data-theme="b"<?php if ($_zp_gallery_page == 'news.php') echo ' data-collapsed="false"'; ?>>
 				<h3><?php echo gettext('News'); ?></h3>
 			<?php printAllNewsCategories(gettext("All news"), TRUE, "", "menu-active", true, "submenu", "menu-active"); ?>
@@ -156,7 +158,7 @@ function jqm_printMenusLinks() {
 			<?php printAlbumMenu('list', true, '', '', '', '', 'Gallery Index', false, false, false); ?>
 			</div>
 		<?php } ?>
-	<?php if (extensionEnabled('zenpage')) { ?>
+	<?php if (extensionEnabled('zenpage') && $_zp_zenpage->pages_enabled) { ?>
 			<div data-role="collapsible" data-content-theme="c" data-theme="b"<?php if ($_zp_gallery_page == 'pages.php') echo ' data-collapsed="false"'; ?>>
 				<h3><?php echo gettext('Pages'); ?></h3>
 			<?php printPageMenu("list", "", "menu-active", "submenu", "menu-active", NULL, true, true, NULL); ?>

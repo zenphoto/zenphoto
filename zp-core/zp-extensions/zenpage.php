@@ -115,13 +115,26 @@ class zenpagecms {
 			setOptionDefault('zenpage_indexhitcounter', false);
 			setOptionDefault('menu_truncate_string', 0);
 			setOptionDefault('menu_truncate_indicator', '');
+   setOptionDefault('enabled-zenpage-items', 'news-and-pages');
 		}
 	}
 
 	function getOptionsSupported() {
 		global $_common_truncate_handler;
 
-		$options = array(gettext('Articles per page (theme)')					 => array('key'		 => 'zenpage_articles_per_page', 'type'	 => OPTION_TYPE_TEXTBOX,
+		$options = array(
+      gettext('Enabled Zenpage items') => array(
+										'key'			 => 'enabled-zenpage-items',
+										'type'		 => OPTION_TYPE_RADIO, 
+										'order'		 => 7, 
+										'buttons'	 => array(
+														gettext('Enable news articles and pages') => 'news-and-pages',
+														gettext('Enable news') => 'news',
+														gettext('Enable pages') => 'pages'
+										),
+										'desc'		 => gettext('This enables or disables the admin tabs for pages and/or news articles. Themes can check this using <code>if(extensionEnabled("zenpage") && $_zp_zenpage->news_enabled) { … }</code> or <code>if(extensionEnabled("zenpage") && $_zp_zenpage->pages_enabled) { … }</code> to enable or disable related menu display or else.')
+						), // The description of the option
+      gettext('Articles per page (theme)')					 => array('key'		 => 'zenpage_articles_per_page', 'type'	 => OPTION_TYPE_TEXTBOX,
 										'order'	 => 0,
 										'desc'	 => gettext("How many news articles you want to show per page on the news or news category pages.")),
 						gettext('News article text length')						 => array('key'		 => 'zenpage_text_length', 'type'	 => OPTION_TYPE_TEXTBOX,
@@ -268,18 +281,20 @@ class zenpagecms {
 	 * Zenpage admin toolbox links
 	 */
 	static function admin_toolbox_global($zf) {
-		if (zp_loggedin(ZENPAGE_NEWS_RIGHTS)) {
+  global $_zp_zenpage;
+		if (zp_loggedin(ZENPAGE_NEWS_RIGHTS) && $_zp_zenpage->news_enabled) {
 // admin has zenpage rights, provide link to the Zenpage admin tab
 			echo "<li><a href=\"" . $zf . '/' . PLUGIN_FOLDER . "/zenpage/admin-news-articles.php\">" . gettext("News") . "</a></li>";
 		}
-		if (zp_loggedin(ZENPAGE_PAGES_RIGHTS)) {
+		if (zp_loggedin(ZENPAGE_PAGES_RIGHTS) && $_zp_zenpage->pages_enabled) {
 			echo "<li><a href=\"" . $zf . '/' . PLUGIN_FOLDER . "/zenpage/admin-pages.php\">" . gettext("Pages") . "</a></li>";
 		}
 		return $zf;
 	}
 
 	static function admin_toolbox_pages($redirect, $zf) {
-		if (zp_loggedin(ZENPAGE_PAGES_RIGHTS)) {
+   global $_zp_zenpage;
+		if (zp_loggedin(ZENPAGE_PAGES_RIGHTS) && $_zp_zenpage->pages_enabled) {
 // page is zenpage page--provide edit, delete, and add links
 			echo "<li><a href=\"" . $zf . '/' . PLUGIN_FOLDER . "/zenpage/admin-edit.php?page&amp;edit&amp;titlelink=" . urlencode(getPageTitlelink()) . "\">" . gettext("Edit Page") . "</a></li>";
 			if (GALLERY_SESSION) {
@@ -296,9 +311,9 @@ class zenpagecms {
 	}
 
 	static function admin_toolbox_news($redirect, $zf) {
-		global $_zp_current_category, $_zp_current_zenpage_news;
+		global $_zp_zenpage, $_zp_current_category, $_zp_current_zenpage_news;
 		if (is_NewsArticle()) {
-			if (zp_loggedin(ZENPAGE_NEWS_RIGHTS)) {
+			if (zp_loggedin(ZENPAGE_NEWS_RIGHTS) && $_zp_zenpage->news_enabled) {
 
 
 

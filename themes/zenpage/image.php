@@ -118,10 +118,10 @@ if (!defined('WEBPATH'))
 						?>
 
 						<br style="clear:both" />
-<?php If (function_exists('printAddToFavorites')) printAddToFavorites($_zp_current_image); ?>
-					<?php @call_user_func('printRating'); ?>
-					<?php @call_user_func('printGoogleMap'); ?>
-
+<?php If (function_exists('printAddToFavorites')) printAddToFavorites($_zp_current_image); 
+      @call_user_func('printRating'); 
+      @call_user_func('printGoogleMap'); 
+      ?>
 					</div>
 <?php @call_user_func('printCommentForm'); ?>
 

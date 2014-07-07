@@ -60,13 +60,17 @@ if (class_exists('favorites')) {
 						}
 						?>
 					</div>
-					<?php @call_user_func('printSlideShowLink'); ?>
-					<?php printPageListWithNav("« " . gettext("prev"), gettext("next") . " »"); ?>
+					<?php 
+     @call_user_func('printSlideShowLink'); 
+     printPageListWithNav("« " . gettext("prev"), gettext("next") . " »"); 
+     ?>
 				</div>
 			</div>
 			<div id="credit">
-				<?php printZenphotoLink(); ?>
-				<?php @call_user_func('printUserLogin_out', " | "); ?>
+				<?php 
+    printZenphotoLink(); 
+    @call_user_func('printUserLogin_out', " | "); 
+    ?>
 			</div>
 			<?php
 			zp_apply_filter('theme_body_close');

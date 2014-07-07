@@ -440,6 +440,9 @@ class Image extends MediaObject {
 		/* iptc description */
 		$desc = $this->get('IPTCImageCaption');
 		if (!empty($desc)) {
+   if(getOption('IPTC_convert_linebreaks')) {
+     $desc = nl2br($desc);
+   }
 			$this->setDesc($desc);
 		}
 

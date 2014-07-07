@@ -58,7 +58,7 @@ if (!defined('WEBPATH'))
 						<?php printPageListWithNav("« " . gettext("prev"), gettext("next") . " »"); ?>
 
 						<?php
-					} else { // news article loop
+					} else if($_zp_zenpage->news_enabled) { // news article loop
 						printNewsPageListWithNav(gettext('next »'), gettext('« prev'), true, 'pagelist', true);
 						echo "<hr />";
 						while (next_news()):;
@@ -76,9 +76,11 @@ if (!defined('WEBPATH'))
 									printNewsCategories(", ", gettext("Categories: "), "newscategories");
 									?>
 								</div>
-								<?php printNewsContent(); ?>
-								<?php printCodeblock(1); ?>
-								<?php printTags('links', gettext('<strong>Tags:</strong>') . ' ', 'taglist', ', '); ?>
+								<?php
+            printNewsContent();
+            printCodeblock(1);
+            printTags('links', gettext('<strong>Tags:</strong>') . ' ', 'taglist', ', ');
+        ?>
 							</div>
 							<?php
 						endwhile;

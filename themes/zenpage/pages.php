@@ -51,8 +51,10 @@ if (class_exists('Zenpage')) {
 						} printTags('links', '', 'taglist', ', ');
 						?>
 						<br style="clear:both;" /><br />
-						<?php @call_user_func('printRating'); ?>
-						<?php @call_user_func('printCommentForm'); ?>
+						<?php 
+      @call_user_func('printRating'); 
+      @call_user_func('printCommentForm');
+      ?>
 					</div><!-- content left-->
 
 

@@ -288,6 +288,7 @@ if (isset($_GET['action'])) {
 			setOption('image_sortdirection', (int) isset($_POST['image_sortdirection']));
 			setOption('use_embedded_thumb', (int) isset($_POST['use_embedded_thumb']));
 			setOption('IPTC_encoding', sanitize($_POST['IPTC_encoding']));
+   setOption('IPTC_convert_linebreaks', (int) isset($_POST['IPTC_convert_linebreaks']));
 			foreach ($_zp_exifvars as $key => $item) {
 				$v = sanitize_numeric($_POST[$key]);
 				switch ($v) {
@@ -2335,6 +2336,15 @@ Zenphoto_Authority::printPasswordFormJS();
 									</tr>
 									<?php
 								}
+        ?>
+         <tr>
+										<td><?php echo gettext("IPTC caption linebreaks:"); ?></td>
+										<td>
+           <label><input type="checkbox" name="IPTC_convert_linebreaks" value="1"	<?php checked('1', getOption('IPTC_convert_linebreaks')); ?> /></label>
+										</td>
+										<td><?php echo gettext("If checked line breaks embeded in the IPTCcaption field will be converted to <br> on image importing."); ?></td>
+									</tr>
+        <?php 
 								if (GRAPHICS_LIBRARY == 'Imagick') {
 									$optionText = gettext('Imbed IPTC copyright');
 									$desc = gettext('If checked and an image has no IPTC data a copyright notice will be imbedded cached copies.');

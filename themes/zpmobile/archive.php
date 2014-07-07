@@ -29,7 +29,7 @@ if (!defined('WEBPATH')) die();
 			<h3><?php echo gettext('Gallery archive'); ?></h3>
 			<?php printAllDates(); ?>
 			<hr />
-			<?php if(function_exists("printNewsArchive")) { ?>
+			<?php if(extensionEnabled('zenpage') && $_zp_zenpage->news_enabled) { ?>
 			<h3><?php echo gettext('News archive'); ?></h3>
 			<?php printNewsArchive("archive"); ?>
 			<hr />

@@ -45,9 +45,11 @@ if (!defined('WEBPATH'))
 				printFavoritesURL(NULL, '', ' | ', '<br />');
 			}
 			?>
-			<?php if (class_exists('RSS')) printRSSLink('Gallery', '', 'RSS', ' | '); ?>
-			<?php printZenphotoLink(); ?>
-			<?php @call_user_func('printUserLogin_out', " | "); ?>
+			<?php 
+   if (class_exists('RSS')) printRSSLink('Gallery', '', 'RSS', ' | '); 
+   printZenphotoLink(); 
+   @call_user_func('printUserLogin_out', " | "); 
+   ?>
 		</div>
 		<?php
 		zp_apply_filter('theme_body_close');
