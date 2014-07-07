@@ -10,41 +10,49 @@
 				printRSSLink("Collection", "", gettext('This Album'), ", ", false, "rsslink");
 			}
 			printRSSLink("Gallery", "", (gettext('Gallery Images')), "", false, "rsslink");
-			if (extensionEnabled('zenpage')) {
+			if (extensionEnabled('zenpage') && getNumNews(true)) {
 				printRSSLink("News", '', ', ', gettext('News'), '', false);
 			}
 			?>
 		</span>
 		<span id="zpcredit">| <?php printZenphotoLink(); ?></span>
-			<?php if ($_zp_gallery_page == 'album.php') { ?>
-				<?php if ($_zp_current_album->getParent()) {
-					$linklabel = gettext('Subalbum');
-				} else {
-					$linklabel = gettext('Album');
-				} ?>
+		<?php if ($_zp_gallery_page == 'album.php') { ?>
+			<?php
+			if ($_zp_current_album->getParent()) {
+				$linklabel = gettext('Subalbum');
+			} else {
+				$linklabel = gettext('Album');
+			}
+			?>
 			<div id="album-prev" class="album-nav">
-				<?php $albumnav = getPrevAlbum();
+				<?php
+				$albumnav = getPrevAlbum();
 				if (!is_null($albumnav)) {
 					?>
 					<a href="<?php echo getPrevAlbumURL(); ?>" title="<?php echo html_encode($albumnav->getTitle()); ?>"><?php echo '&larr; ' . $linklabel . ': ' . truncate_string($albumnav->getTitle(), 20, '...'); ?></a>
-	<?php } ?>
+				<?php } ?>
 			</div>
 			<div id="album-next" class="album-nav">
-	<?php $albumnav = getNextAlbum();
-	if (!is_null($albumnav)) {
-		?>
+				<?php
+				$albumnav = getNextAlbum();
+				if (!is_null($albumnav)) {
+					?>
 					<a href="<?php echo getNextAlbumURL(); ?>" title="<?php echo html_encode($albumnav->getTitle()); ?>"><?php echo $linklabel . ': ' . truncate_string($albumnav->getTitle(), 20, '...') . ' &rarr;'; ?></a>
 	<?php } ?>
 			</div>
 <?php } ?>
 	</div>
 </div>
-<?php if (($_zp_gallery_page == 'image.php') && (function_exists('printPagedThumbsNav')) && (!function_exists('printThumbNav'))) {
+<?php
+if (($_zp_gallery_page == 'image.php') && (function_exists('printPagedThumbsNav')) && (!function_exists('printThumbNav'))) {
 	printPagedThumbsNav('8', true, '', '', 50, 50, true);
-} ?>
-<?php if (function_exists('printLanguageSelector')) {
+}
+?>
+<?php
+if (function_exists('printLanguageSelector')) {
 	printLanguageSelector("langselector");
-} ?>
+}
+?>
 <?php zp_apply_filter('theme_body_close'); ?>
 </body>
 </html>
