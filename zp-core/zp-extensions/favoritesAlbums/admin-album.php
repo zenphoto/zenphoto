@@ -2,6 +2,11 @@
 /**
  * This script is used to create dynamic albums from a favorites page.
  * @author Stephen Billard (sbillard)
+ *
+ * @author Stephen Billard (sbillard)
+ *
+ * copyright © 2014 Stephen L Billard
+ *
  * @package plugins
  * @subpackage media
  */

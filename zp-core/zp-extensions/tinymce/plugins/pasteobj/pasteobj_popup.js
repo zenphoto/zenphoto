@@ -2,6 +2,10 @@
  * pasteobj tinyMCE popup
  *
  * @author Stephen Billard (sbillard)
+ *
+ * copyright © 2014 Stephen L Billard
+ *
+ * adapted from the tinyMCE 4: compat3x
  */
 
 var tinymce, tinyMCE;

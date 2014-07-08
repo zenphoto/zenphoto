@@ -7,6 +7,9 @@
  * other plugin has attached the <i>theme_editor</i> filter.
  *
  * @author Stephen Billard (sbillard)
+ *
+ * copyright © 2014 Stephen L Billard
+ *
  * @package plugins
  * @subpackage admin
  */

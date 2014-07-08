@@ -1,6 +1,7 @@
 <?php
 /**
  * Theme file editor
+ *
  * @package admin
  * @author Ozh
  */

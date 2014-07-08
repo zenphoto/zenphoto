@@ -5,6 +5,8 @@
  *
  * @author Stephen Billard (sbillard)
  *
+ * copyright © 2014 Stephen L Billard
+ * 
  * @package admin
  */
 define('OFFSET_PATH', 1);

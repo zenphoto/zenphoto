@@ -4,6 +4,8 @@
  *
  * @author Stephen Billard (sbillard)
  *
+ * copyright © 2014 Stephen L Billard
+ *
  */
 // force UTF-8 Ø
 define('OFFSET_PATH', 3);
