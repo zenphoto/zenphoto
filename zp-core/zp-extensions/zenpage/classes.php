@@ -21,7 +21,7 @@ if (!defined('MENU_TRUNCATE_INDICATOR'))
 
 class CMS {
 
-	var $categoryStructure = array();
+	public $categoryStructure = array();
 	// article defaults (mirrors category vars)
 	protected $sortorder = 'date';
 	protected $sortdirection = true;
