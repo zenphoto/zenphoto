@@ -2,7 +2,7 @@
 // force UTF-8 Ø
 if (!defined('WEBPATH'))
 	die();
-if (class_exists('Zenpage')) {
+if (class_exists('Zenpage') && ZP_NEWS_ENABLED) {
 	?>
 	<!DOCTYPE html>
 	<html>

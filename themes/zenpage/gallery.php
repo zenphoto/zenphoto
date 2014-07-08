@@ -58,7 +58,7 @@ if (!defined('WEBPATH'))
 						<?php printPageListWithNav("« " . gettext("prev"), gettext("next") . " »"); ?>
 
 						<?php
-					} else if($_zp_zenpage->news_enabled) { // news article loop
+					} else if(ZP_NEWS_ENABLED) { // news article loop
 						printNewsPageListWithNav(gettext('next »'), gettext('« prev'), true, 'pagelist', true);
 						echo "<hr />";
 						while (next_news()):;

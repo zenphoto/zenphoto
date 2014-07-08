@@ -132,7 +132,7 @@ class zenpagecms {
 														gettext('Enable news') => 'news',
 														gettext('Enable pages') => 'pages'
 										),
-										'desc'		 => gettext('This enables or disables the admin tabs for pages and/or news articles. Themes can check this using <code>if(extensionEnabled("zenpage") && $_zp_zenpage->news_enabled) { … }</code> or <code>if(extensionEnabled("zenpage") && $_zp_zenpage->pages_enabled) { … }</code> to enable or disable related menu display or else.')
+										'desc'		 => gettext('This enables or disables the admin tabs for pages and/or news articles. To hide news and/or pages content on the front end as well, themes must be setup to use <br><code>if(extensionEnabled("zenpage") && ZP_NEWS_ENABLED) { … }</code> or <br><code>if(extensionEnabled("zenpage") && ZP_PAGES_ENABLED) { … }</code> in appropiate places. Same if disabled items should blocked as they otherwise still can be accessed via direct links. <p class="notebox"><strong>NOTE:</strong> This does not delete content and is not related to management rights.</p>')
 						), // The description of the option
       gettext('Articles per page (theme)')					 => array('key'		 => 'zenpage_articles_per_page', 'type'	 => OPTION_TYPE_TEXTBOX,
 										'order'	 => 0,
@@ -282,11 +282,11 @@ class zenpagecms {
 	 */
 	static function admin_toolbox_global($zf) {
   global $_zp_zenpage;
-		if (zp_loggedin(ZENPAGE_NEWS_RIGHTS) && $_zp_zenpage->news_enabled) {
+		if (zp_loggedin(ZENPAGE_NEWS_RIGHTS) && ZP_NEWS_ENABLED) {
 // admin has zenpage rights, provide link to the Zenpage admin tab
 			echo "<li><a href=\"" . $zf . '/' . PLUGIN_FOLDER . "/zenpage/admin-news-articles.php\">" . gettext("News") . "</a></li>";
 		}
-		if (zp_loggedin(ZENPAGE_PAGES_RIGHTS) && $_zp_zenpage->pages_enabled) {
+		if (zp_loggedin(ZENPAGE_PAGES_RIGHTS) && ZP_PAGES_ENABLED) {
 			echo "<li><a href=\"" . $zf . '/' . PLUGIN_FOLDER . "/zenpage/admin-pages.php\">" . gettext("Pages") . "</a></li>";
 		}
 		return $zf;
@@ -294,7 +294,7 @@ class zenpagecms {
 
 	static function admin_toolbox_pages($redirect, $zf) {
    global $_zp_zenpage;
-		if (zp_loggedin(ZENPAGE_PAGES_RIGHTS) && $_zp_zenpage->pages_enabled) {
+		if (zp_loggedin(ZENPAGE_PAGES_RIGHTS) && ZP_PAGES_ENABLED) {
 // page is zenpage page--provide edit, delete, and add links
 			echo "<li><a href=\"" . $zf . '/' . PLUGIN_FOLDER . "/zenpage/admin-edit.php?page&amp;edit&amp;titlelink=" . urlencode(getPageTitlelink()) . "\">" . gettext("Edit Page") . "</a></li>";
 			if (GALLERY_SESSION) {
@@ -313,7 +313,7 @@ class zenpagecms {
 	static function admin_toolbox_news($redirect, $zf) {
 		global $_zp_zenpage, $_zp_current_category, $_zp_current_zenpage_news;
 		if (is_NewsArticle()) {
-			if (zp_loggedin(ZENPAGE_NEWS_RIGHTS) && $_zp_zenpage->news_enabled) {
+			if (zp_loggedin(ZENPAGE_NEWS_RIGHTS) && ZP_NEWS_ENABLED) {
 
 
 

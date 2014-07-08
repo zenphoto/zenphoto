@@ -22,10 +22,24 @@ if (!defined('MENU_TRUNCATE_STRING'))
 	define('MENU_TRUNCATE_STRING', getOption('menu_truncate_string'));
 if (!defined('MENU_TRUNCATE_INDICATOR'))
 	define('MENU_TRUNCATE_INDICATOR', getOption('menu_truncate_indicator'));
+if (!defined('ZP_NEWS_ENABLED')) {
+  if (getOption('enabled-zenpage-items') == 'news-and-pages' || getOption('enabled-zenpage-items') == 'news') {
+    define('ZP_NEWS_ENABLED', true);
+  } else {
+    define('ZP_NEWS_ENABLED', false);
+  }
+}
+if (!defined('ZP_PAGES_ENABLED')) {
+  if (getOption('enabled-zenpage-items') == 'news-and-pages' || getOption('enabled-zenpage-items') == 'pages') {
+    define('ZP_PAGES_ENABLED', true);
+  } else {
+    define('ZP_PAGES_ENABLED', false);
+  }
+}
 
 class Zenpage {
 
-	var $categoryStructure = array();
+	public $categoryStructure = array();
 	// article defaults (mirrors category vars)
 	protected $sortorder = 'date';
 	protected $sortdirection = true;
@@ -33,9 +47,6 @@ class Zenpage {
 	// page defaults
 	protected $page_sortorder;
 	protected $page_sortdirection;
- var $news_enabled = true;
- var $pages_enabled = true;
-
 	/**
 	 * Class instantiator
 	 */
@@ -45,16 +56,6 @@ class Zenpage {
 		foreach ($allcategories as $cat) {
 			$this->categoryStructure[$cat['id']] = $cat;
 		}
-  if(getOption('enabled-zenpage-items') == 'news-and-pages' || getOption('enabled-zenpage-items') == 'news') {
-    $this->news_enabled = true;
-  } else {
-    $this->news_enabled = false;
-  }
-  if(getOption('enabled-zenpage-items') == 'news-and-pages' || getOption('enabled-zenpage-items') == 'pages') {
-    $this->pages_enabled = true;
-  } else {
-    $this->pages_enabled = false;
-  }
 	}
 
 	static function expiry() {
