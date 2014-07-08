@@ -871,6 +871,7 @@ class SearchEngine {
 				$sorttype = $this->extraparams['sorttype'];
 			}
 		}
+
 		$sorttype = lookupSortKey($sorttype, $defaulttype, $table);
 		if (is_null($sortdirection)) {
 			if (array_key_exists($table . 'sortdirection', $this->extraparams)) {
@@ -1392,7 +1393,7 @@ class SearchEngine {
 		if (empty($searchstring)) {
 			return array();
 		} // nothing to find
-		$criteria = $this->getCacheTag('albums', serialize($searchstring), $sorttype . ' ' . $sortdirection . ($mine) ? ' mine' : '');
+		$criteria = $this->getCacheTag('albums', serialize($searchstring), $sorttype . '_' . $sortdirection . '_' . (int) $mine);
 		if ($this->albums && $criteria == $this->searches['albums']) {
 			return $this->albums;
 		}
@@ -1541,10 +1542,9 @@ class SearchEngine {
 		$searchstring = $this->getSearchString();
 		$searchdate = $this->dates;
 		if (empty($searchstring) && empty($searchdate)) {
-			return array();
-		} // nothing to find
-
-		$criteria = $this->getCacheTag('images', serialize($searchstring) . ' ' . $searchdate, $sorttype . ' ' . $sortdirection . ($mine) ? ' mine' : '');
+			return array(); // nothing to find
+		}
+		$criteria = $this->getCacheTag('images', serialize($searchstring) . '_' . $searchdate, $sorttype . '_' . $sortdirection . '_' . (int) $mine);
 		if ($criteria == $this->searches['images']) {
 			return $this->images;
 		}
@@ -1745,7 +1745,7 @@ class SearchEngine {
 		if (empty($searchstring) && empty($searchdate)) {
 			return array();
 		} // nothing to find
-		$criteria = $this->getCacheTag('news', serialize($searchstring), $sorttype . ' ' . $sortdirection);
+		$criteria = $this->getCacheTag('news', serialize($searchstring), $sorttype . '_' . $sortdirection);
 		if ($this->pages && $criteria == $this->searches['pages']) {
 			return $this->pages;
 		}
@@ -1829,7 +1829,7 @@ class SearchEngine {
 		if (empty($searchstring) && empty($searchdate)) {
 			return array();
 		} // nothing to find
-		$criteria = $this->getCacheTag('news', serialize($searchstring), $sorttype . ' ' . $sortdirection);
+		$criteria = $this->getCacheTag('news', serialize($searchstring), $sorttype . '_' . $sortdirection);
 		if ($this->articles && $criteria == $this->searches['news']) {
 			return $this->articles;
 		}
