@@ -8,9 +8,7 @@ if (!defined('WEBPATH'))
 <html>
 	<head>
 		<?php zp_apply_filter('theme_head'); ?>
-		
-		
-		 
+
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" type="text/css" />
 		<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery', gettext('Gallery RSS')); ?>
 	</head>
@@ -59,7 +57,7 @@ if (!defined('WEBPATH'))
 						<?php printPageListWithNav("« " . gettext("prev"), gettext("next") . " »"); ?>
 
 						<?php
-					} else { // news article loop
+					} else if (getNumNews(true)) { // news article loop
 						printNewsPageListWithNav(gettext('next »'), gettext('« prev'), true, 'pagelist', true);
 						echo "<hr />";
 						while (next_news()):;
@@ -77,9 +75,11 @@ if (!defined('WEBPATH'))
 									printNewsCategories(", ", gettext("Categories: "), "newscategories");
 									?>
 								</div>
-								<?php printNewsContent(); ?>
-								<?php printCodeblock(1); ?>
-								<?php printTags('links', gettext('<strong>Tags:</strong>') . ' ', 'taglist', ', '); ?>
+								<?php
+								printNewsContent();
+								printCodeblock(1);
+								printTags('links', gettext('<strong>Tags:</strong>') . ' ', 'taglist', ', ');
+								?>
 							</div>
 							<?php
 						endwhile;

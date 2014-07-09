@@ -104,10 +104,11 @@ if (!defined('WEBPATH'))
 				printTags('links', gettext('<strong>Tags:</strong>') . ' ', 'taglist', '');
 				?>
 				<br class="clearall" />
-				<?php @call_user_func('printGoogleMap'); ?>
-				<?php @call_user_func('printRating'); ?>
-				<?php @call_user_func('printCommentForm'); ?>
-
+				<?php
+				@call_user_func('printGoogleMap');
+				@call_user_func('printRating');
+				@call_user_func('printCommentForm');
+				?>
 			</div>
 		</div>
 		<div id="credit">
@@ -117,8 +118,7 @@ if (!defined('WEBPATH'))
 			}
 			?>
 			<?php if (class_exists('RSS')) printRSSLink('Gallery', '', 'RSS', ' | '); ?>
-			<?php printCustomPageURL(gettext("Archive View"), "archive"); ?> |
-			<?php printSoftwareLink(); ?>
+			<?php printCustomPageURL(gettext("Archive View"), "archive"); ?> | <?php printSoftwareLink(); ?>
 			<?php @call_user_func('printUserLogin_out', " | "); ?>
 		</div>
 		<?php

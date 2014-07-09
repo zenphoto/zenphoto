@@ -109,13 +109,26 @@ class cmsFilters {
 			setOptionDefault('zenpage_indexhitcounter', false);
 			setOptionDefault('menu_truncate_string', 0);
 			setOptionDefault('menu_truncate_indicator', '');
+			setOptionDefault('zenpage_enabled_items', 3);
 		}
 	}
 
 	function getOptionsSupported() {
 		global $_common_truncate_handler;
 
-		$options = array(gettext('Articles per page (theme)')					 => array('key'		 => 'zenpage_articles_per_page', 'type'	 => OPTION_TYPE_NUMBER,
+		$options = array(
+						gettext('Enabled CMS items')									 => array(
+										'key'			 => 'zenpage_enabled_items',
+										'type'		 => OPTION_TYPE_RADIO,
+										'order'		 => 7,
+										'buttons'	 => array(
+														gettext('News')	 => 1,
+														gettext('Pages') => 2,
+														gettext('Both')	 => 3
+										),
+										'desc'		 => gettext('Select the CMS features you wish to use on your site.')
+						),
+						gettext('Articles per page (theme)')					 => array('key'		 => 'zenpage_articles_per_page', 'type'	 => OPTION_TYPE_TEXTBOX,
 										'order'	 => 0,
 										'desc'	 => gettext("How many news articles you want to show per page on the news or news category pages.")),
 						gettext('News article text length')						 => array('key'		 => 'zenpage_text_length', 'type'	 => OPTION_TYPE_NUMBER,
@@ -262,18 +275,20 @@ class cmsFilters {
 	 * Zenpage admin toolbox links
 	 */
 	static function admin_toolbox_global($zf) {
-		if (zp_loggedin(ZENPAGE_NEWS_RIGHTS)) {
+		global $_zp_CMS;
+		if (zp_loggedin(ZENPAGE_NEWS_RIGHTS) && $_zp_CMS->news_enabled) {
 // admin has zenpage rights, provide link to the Zenpage admin tab
 			echo "<li><a href=\"" . $zf . '/' . PLUGIN_FOLDER . "/zenpage/admin-news-articles.php\">" . gettext("News") . "</a></li>";
 		}
-		if (zp_loggedin(ZENPAGE_PAGES_RIGHTS)) {
+		if (zp_loggedin(ZENPAGE_PAGES_RIGHTS) && $_zp_CMS->pages_enabled) {
 			echo "<li><a href=\"" . $zf . '/' . PLUGIN_FOLDER . "/zenpage/admin-pages.php\">" . gettext("Pages") . "</a></li>";
 		}
 		return $zf;
 	}
 
 	static function admin_toolbox_pages($redirect, $zf) {
-		if (zp_loggedin(ZENPAGE_PAGES_RIGHTS)) {
+		global $_zp_CMS;
+		if (zp_loggedin(ZENPAGE_PAGES_RIGHTS) && $_zp_CMS->pages_enabled) {
 // page is zenpage page--provide edit, delete, and add links
 			echo "<li><a href=\"" . $zf . '/' . PLUGIN_FOLDER . "/zenpage/admin-edit.php?page&amp;edit&amp;titlelink=" . urlencode(getPageTitlelink()) . "\">" . gettext("Edit Page") . "</a></li>";
 			if (GALLERY_SESSION) {
@@ -290,9 +305,9 @@ class cmsFilters {
 	}
 
 	static function admin_toolbox_news($redirect, $zf) {
-		global $_zp_current_category, $_zp_current_article;
+		global $_zp_CMS, $_zp_current_category, $_zp_current_zenpage_news;
 		if (is_NewsArticle()) {
-			if (zp_loggedin(ZENPAGE_NEWS_RIGHTS)) {
+			if (zp_loggedin(ZENPAGE_NEWS_RIGHTS) && $_zp_CMS->news_enabled) {
 
 
 

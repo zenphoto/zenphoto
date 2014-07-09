@@ -8,9 +8,9 @@ if (function_exists('printRegistrationForm')) {
 	<!DOCTYPE html>
 	<html>
 		<head>
-			
+
 			<?php zp_apply_filter('theme_head'); ?>
-			
+
 			<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
 			<link rel="stylesheet" href="<?php echo pathurlencode(dirname(dirname($zenCSS))); ?>/common.css" type="text/css" />
 		</head>
@@ -27,8 +27,10 @@ if (function_exists('printRegistrationForm')) {
 				<h2><?php echo gettext('User Registration') ?></h2>
 				<?php printRegistrationForm(); ?>
 			</div>
-			<?php @call_user_func('printUserLogin_out', ""); ?>
-			<?php @call_user_func('printLanguageSelector'); ?>
+			<?php
+			@call_user_func('printUserLogin_out', "");
+			@call_user_func('printLanguageSelector');
+			?>
 			<div id="credit">
 				<?php printSoftwareLink(); ?>
 			</div>

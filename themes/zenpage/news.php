@@ -7,9 +7,7 @@ if (class_exists('CMS')) {
 	<!DOCTYPE html>
 	<html>
 		<head>
-			
-			
-			 
+
 			<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" type="text/css" />
 			<?php if (class_exists('RSS')) printRSSHeaderLink("News", "Zenpage news", ""); ?>
 			<?php zp_apply_filter('theme_head'); ?>
@@ -52,27 +50,39 @@ if (class_exists('CMS')) {
 
 					<div id="content-left">
 
-
 						<?php
 // single news article
 						if (is_NewsArticle()) {
+							if (getPrevNewsURL()) {
+								?>
+								<div class="singlenews_prev"><?php printPrevNewsLink(); ?></div>
+								<?php
+							}
+							if (getNextNewsURL()) {
+								?>
+								<div class="singlenews_next"><?php printNextNewsLink(); ?></div>
+								<?php
+							}
+							if (getPrevNewsURL() OR getNextNewsURL()) {
+								?>
+								<br style="clear:both" />
+								<?php
+							}
 							?>
-							<?php if (getPrevNewsURL()) { ?><div class="singlenews_prev"><?php printPrevNewsLink(); ?></div><?php } ?>
-							<?php if (getNextNewsURL()) { ?><div class="singlenews_next"><?php printNextNewsLink(); ?></div><?php } ?>
-							<?php if (getPrevNewsURL() OR getNextNewsURL()) { ?><br style="clear:both" /><?php } ?>
 							<h3><?php printNewsTitle(); ?></h3>
 							<div class="newsarticlecredit"><span class="newsarticlecredit-left"><?php printNewsDate(); ?> | <?php
 									if (function_exists('getCommentCount')) {
 										echo gettext("Comments:");
-										?> <?php echo getCommentCount(); ?> |<?php } ?> </span> <?php printNewsCategories(", ", gettext("Categories: "), "newscategories"); ?></div>
+										echo getCommentCount();
+										?> |<?php } ?> </span> <?php printNewsCategories(", ", gettext("Categories: "), "newscategories"); ?></div>
 							<?php
 							printNewsContent();
 							printCodeblock(1);
 							?>
 							<?php printTags('links', gettext('<strong>Tags:</strong>') . ' ', 'taglist', ', '); ?>
 							<br style="clear:both;" /><br />
-							<?php @call_user_func('printRating'); ?>
 							<?php
+							@call_user_func('printRating');
 							// COMMENTS TEST
 							@call_user_func('printCommentForm');
 						} else {
@@ -102,9 +112,9 @@ if (class_exists('CMS')) {
 										printNewsCategories(", ", gettext("Categories: "), "newscategories");
 										?>
 									</div>
-									<?php printNewsContent(); ?>
-									<?php printCodeblock(1); ?>
 									<?php
+									printNewsContent();
+									printCodeblock(1);
 									if (getTags()) {
 										echo gettext('<strong>Tags:</strong>');
 									} printTags('links', '', 'taglist', ', ');
@@ -117,9 +127,7 @@ if (class_exists('CMS')) {
 						}
 						?>
 
-
 					</div><!-- content left-->
-
 
 					<div id="sidebar">
 						<?php include("sidebar.php"); ?>

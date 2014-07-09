@@ -26,7 +26,7 @@ function jqm_printRSSlinks() {
 		<ul>
 			<?php
 			// these links must change to ones with rel="external" so they are actually loaded via jquerymobile!
-			if (extensionEnabled('zenpage')) {
+			if (extensionEnabled('zenpage') && getNumNews(true)) {
 				?>
 				<li class="rsslink"><a href="<?php echo html_encode(getRSSLink('News')); ?>" rel="external" data-ajax="false"><?php echo gettext('News'); ?></a></li>
 				<?php
@@ -64,10 +64,18 @@ function jqm_printMainHeaderNav() {
 		<div data-role="navbar">
 			<ul>
 				<li><a href="<?php echo getCustomPageURL('gallery'); ?>"><?php echo gettext('Gallery'); ?></a></li>
-				<?php if (extensionEnabled('zenpage')) { ?>
+				<?php
+				if (extensionEnabled('zenpage') && getNumNews(true)) {
+					?>
 					<li><a href="<?php echo getNewsIndexURL(); ?>"><?php echo gettext('News'); ?></a></li>
+					<?php
+				}
+				if (extensionEnabled('zenpage') && getNumPages(true)) {
+					?>
 					<li><a href="<?php echo getPagesLink(); ?>"><?php echo gettext('Pages'); ?></a></li>
-				<?php } ?>
+					<?php
+				}
+				?>
 				<li><a href="<?php echo getCustomPageURL('archive'); ?>"><?php echo gettext('Archive'); ?></a></li>
 			</ul>
 		</div><!-- /navbar -->
@@ -144,26 +152,34 @@ function jqm_printMenusLinks() {
 	global $_zp_gallery_page;
 	?>
 	<div id="collapsible-lists" data-collapsed="false">
-		<?php if (extensionEnabled('zenpage')) { ?>
+		<?php
+		if (extensionEnabled('zenpage') && getNumNews(true)) {
+			?>
 			<div data-role="collapsible" data-content-theme="c" data-theme="b"<?php if ($_zp_gallery_page == 'news.php') echo ' data-collapsed="false"'; ?>>
 				<h3><?php echo gettext('News'); ?></h3>
 				<?php printAllNewsCategories(gettext("All news"), TRUE, "", "menu-active", true, "submenu", "menu-active"); ?>
 			</div>
-		<?php } ?>
-		<?php if (function_exists('printAlbumMenu')) { ?>
+			<?php
+		}
+		if (function_exists('printAlbumMenu')) {
+			?>
 			<div data-role="collapsible" data-content-theme="c" data-theme="b"<?php if ($_zp_gallery_page == 'gallery.php' || $_zp_gallery_page == 'album.php' || $_zp_gallery_page == 'image.php') echo ' data-collapsed="false"'; ?>>
 				<h3><?php echo gettext('Gallery'); ?></h3>
 				<?php printAlbumMenu('list', true, '', '', '', '', 'Gallery Index', false, false, false); ?>
 			</div>
-		<?php } ?>
-		<?php if (extensionEnabled('zenpage')) { ?>
+			<?php
+		}
+		if (extensionEnabled('zenpage') && getNumPages(true)) {
+			?>
 			<div data-role="collapsible" data-content-theme="c" data-theme="b"<?php if ($_zp_gallery_page == 'pages.php') echo ' data-collapsed="false"'; ?>>
 				<h3><?php echo gettext('Pages'); ?></h3>
 				<?php printPageMenu("list", "", "menu-active", "submenu", "menu-active", NULL, true, true, NULL); ?>
 			</div>
-		<?php } ?>
+			<?php
+		}
+		?>
 		<div data-role="collapsible" data-content-theme="c" data-theme="b">
-			<?php jqm_printRSSlinks(); ?>
+		<?php jqm_printRSSlinks(); ?>
 		</div>
 	</div>
 	<?php

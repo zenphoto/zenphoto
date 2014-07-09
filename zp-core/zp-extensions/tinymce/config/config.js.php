@@ -26,6 +26,8 @@
  * </ul>
  *
  * @author Stephen Billard (sbillard)
+ *
+ * copyright © 2014 Stephen L Billard
  */
 $filehandler = zp_apply_filter('tinymce_zenpage_config', NULL);
 

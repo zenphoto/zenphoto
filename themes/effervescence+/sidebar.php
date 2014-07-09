@@ -2,6 +2,15 @@
 // force UTF-8 Ø
 
 rem_context(ZP_ALBUM | ZP_IMAGE);
+$archivlinktext = gettext('Gallery');
+if (extensionEnabled('zenpage')) {
+	if ($news = getNumNews(true)) {
+		$archivlinktext = gettext('Gallery and News');
+	}
+	$pages = getNumPages(true);
+} else {
+	$news = $pages = NULL;
+}
 
 if (function_exists('printCustomMenu') && ($menu = getOption('effervescence_menu'))) {
 	?>
@@ -12,16 +21,14 @@ if (function_exists('printCustomMenu') && ($menu = getOption('effervescence_menu
 	</div>
 	<?php
 } else { //	"standard zenpage sidebar menus
-	if (extensionEnabled('zenpage')) {
-		if (getNumNews(true)) {
-			?>
-			<div class="menu">
-				<h3><?php echo gettext("News articles"); ?></h3>
-				<?php printAllNewsCategories(gettext("All news"), true, "", "menu-active", true, "submenu", "menu-active"); ?>
-				<div class="menu_rule"></div>
-			</div>
-			<?php
-		}
+	if ($news) {
+		?>
+		<div class="menu">
+			<h3><?php echo gettext("News articles"); ?></h3>
+			<?php printAllNewsCategories(gettext("All news"), true, "", "menu-active", true, "submenu", "menu-active"); ?>
+			<div class="menu_rule"></div>
+		</div>
+		<?php
 	}
 	?>
 	<?php
@@ -63,16 +70,14 @@ if (function_exists('printCustomMenu') && ($menu = getOption('effervescence_menu
 	?>
 
 	<?php
-	if (extensionEnabled('zenpage')) {
-		if (getNumPages(true)) {
-			?>
-			<div class="menu">
-				<h3><?php echo gettext("Pages"); ?></h3>
-				<?php printPageMenu("list", "", "menu-active", "submenu", "menu-active"); ?>
-				<div class="menu_rule"></div>
-			</div>
-			<?php
-		}
+	if ($pages) {
+		?>
+		<div class="menu">
+			<h3><?php echo gettext("Pages"); ?></h3>
+			<?php printPageMenu("list", "", "menu-active", "submenu", "menu-active"); ?>
+			<div class="menu_rule"></div>
+		</div>
+		<?php
 	}
 	?>
 
@@ -107,9 +112,7 @@ if (function_exists('printCustomMenu') && ($menu = getOption('effervescence_menu
 				<?php
 				if (class_exists('RSS')) {
 					printRSSLink('Gallery', '<li>', gettext('Gallery'), '</li>');
-					?>
-					<?php
-					if (extensionEnabled('zenpage')) {
+					if ($news) {
 						printRSSLink("News", "<li>", gettext("News"), '</li>');
 					}
 				}

@@ -2,6 +2,10 @@
 /**
  * This is the "tokens" upload tab
  *
+ * @author Stephen Billard (sbillard)
+ *
+ * copyright © 2014 Stephen L Billard
+ *
  * @package plugins
  * @subpackage admin
  */
@@ -177,7 +181,7 @@ echo "\n</head>";
 					case 'cookie':
 						?>
 						<div class="tabbox">
-							<h1><?php echo gettext('Zenphoto browser cookies found.'); ?></h1>
+							<h1><?php echo gettext('Site browser cookies found.'); ?></h1>
 							<form name="cookie_form" class="dirtychyeck" method="post" action="?page=debug&amp;tab=cookie">
 								<table class="compact">
 									<?php

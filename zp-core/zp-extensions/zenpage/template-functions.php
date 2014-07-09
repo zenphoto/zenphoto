@@ -217,13 +217,16 @@ function printLatestNews($number = 5, $category = '', $showdate = true, $showcon
  */
 function getNumNews($total = false) {
 	global $_zp_CMS, $_zp_current_search;
-	if ($total) {
-		return count($_zp_CMS->getArticles(0));
-	} else if (in_context(ZP_SEARCH)) {
-		return count($_zp_current_search->getArticles());
-	} else {
-		return count($_zp_CMS->getArticles(0));
+	if ($_zp_CMS->news_enabled) {
+		if ($total) {
+			return count($_zp_CMS->getArticles(0));
+		} else if (in_context(ZP_SEARCH)) {
+			return count($_zp_current_search->getArticles());
+		} else {
+			return count($_zp_CMS->getArticles(0));
+		}
 	}
+	return NULL;
 }
 
 /**
@@ -236,7 +239,7 @@ function getNumNews($total = false) {
 function next_news() {
 	global $_zp_CMS, $_zp_current_article, $_zp_current_article_restore, $_zp_CMS_articles, $_zp_current_category, $_zp_gallery, $_zp_current_search;
 
-	if (is_null($_zp_CMS_articles)) {
+	if ($_zp_CMS->news_enabled && is_null($_zp_CMS_articles)) {
 		if (in_context(ZP_SEARCH)) {
 			//note: we do not know how to paginate the search page, so for now we will return all news articles
 			$_zp_CMS_articles = $_zp_current_search->getArticles(ZP_ARTICLES_PER_PAGE, NULL, true, NULL, NULL);
@@ -1689,22 +1692,25 @@ $_zp_CMS_pagelist = NULL;
  */
 function getNumPages($total = false) {
 	global $_zp_CMS, $_zp_CMS_pagelist, $_zp_current_search, $_zp_current_page;
-	$addquery = '';
-	if (!$total) {
-		if (in_context(ZP_SEARCH)) {
-			$_zp_CMS_pagelist = $_zp_current_search->getPages();
-			return count($_zp_CMS_pagelist);
-		} else if (in_context(ZP_ZENPAGE_PAGE)) {
-			if (!zp_loggedin(ADMIN_RIGHTS | ZENPAGE_PAGES_RIGHTS)) {
-				$addquery = ' AND `show` = 1';
+	if ($_zp_CMS->pages_enabled) {
+		$addquery = '';
+		if (!$total) {
+			if (in_context(ZP_SEARCH)) {
+				$_zp_CMS_pagelist = $_zp_current_search->getPages();
+				return count($_zp_CMS_pagelist);
+			} else if (in_context(ZP_ZENPAGE_PAGE)) {
+				if (!zp_loggedin(ADMIN_RIGHTS | ZENPAGE_PAGES_RIGHTS)) {
+					$addquery = ' AND `show` = 1';
+				}
+				return db_count('pages', 'WHERE parentid=' . $_zp_current_page->getID() . $addquery);
 			}
-			return db_count('pages', 'WHERE parentid=' . $_zp_current_page->getID() . $addquery);
 		}
+		if (!zp_loggedin(ADMIN_RIGHTS | ZENPAGE_PAGES_RIGHTS)) {
+			$addquery = ' WHERE `show` = 1';
+		}
+		return db_count('pages', $addquery);
 	}
-	if (!zp_loggedin(ADMIN_RIGHTS | ZENPAGE_PAGES_RIGHTS)) {
-		$addquery = ' WHERE `show` = 1';
-	}
-	return db_count('pages', $addquery);
+	return NULL;
 }
 
 /**
@@ -1715,7 +1721,7 @@ function getNumPages($total = false) {
 function next_page() {
 	global $_zp_CMS, $_zp_next_pagelist, $_zp_current_search, $_zp_current_page, $_zp_current_page_restore;
 
-	if (is_null($_zp_next_pagelist)) {
+	if ($_zp_CMS->pages_enabled && is_null($_zp_next_pagelist)) {
 		if (in_context(ZP_SEARCH)) {
 			$_zp_next_pagelist = $_zp_current_search->getPages(NULL, false, NULL, NULL, NULL);
 		} else if (in_context(ZP_ZENPAGE_PAGE)) {
@@ -2121,7 +2127,8 @@ function printPageMenu($option = 'list', $css_id = NULL, $css_class_topactive = 
  * @return bool
  */
 function checkForPage($titlelink) {
-	if (!empty($titlelink)) {
+	global $_zp_CMS;
+	if ($_zp_CMS->pages_enabled && !empty($titlelink)) {
 		load_zenpage_pages($titlelink);
 		return in_context(ZP_ZENPAGE_PAGE);
 	}

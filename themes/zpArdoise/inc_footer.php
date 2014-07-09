@@ -23,7 +23,7 @@
 					printRSSLink('Gallery', '', gettext('Latest images'), '', false, 'rss');
 					$rss = true;
 				}
-				if (($_zenpage_enabled) && (getOption('RSS_articles'))) {
+				if ($_zenpage_enabled && getOption('RSS_articles') && getNumNews(true)) {
 					if ($rss) {
 						$separ = ' | ';
 					} else {

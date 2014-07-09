@@ -3,6 +3,10 @@
 /*
  * Generate tab for debuging aids
  *
+ * @author Stephen Billard (sbillard)
+ *
+ * copyright © 2014 Stephen L Billard
+ *
  * @package plugins
  * @subpackage development
  */
