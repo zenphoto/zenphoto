@@ -245,15 +245,14 @@ if (isset($_GET['action'])) {
 			/** SAVE A SINGLE ALBUM ****************************************************** */
 			if (isset($_POST['album'])) {
 				$folder = sanitize_path($_POST['album']);
-				$album = newAlbum($folder);
+				$album = newAlbum($folder, false, true);
 				$notify = '';
 				$returnalbum = NULL;
-				if (isset($_POST['savealbuminfo'])) {
+				if (isset($_POST['savealbuminfo']) && $album->exists) {
 					$notify = processAlbumEdit(0, $album, $returnalbum);
 					$returntab = '&tagsort=' . $tagsort . '&tab=albuminfo';
 				}
-
-				if (isset($_POST['totalimages'])) {
+				if (isset($_POST['totalimages']) && $album->exists) {
 					if (isset($_POST['checkForPostTruncation'])) {
 						$returntab = '&tagsort=' . $tagsort . '&tab=imageinfo';
 						if (isset($_POST['ids'])) { //	process bulk actions, not individual image actions.
@@ -270,9 +269,8 @@ if (isset($_GET['action'])) {
 							if (isset($single) || $oldsort == ($newsort = sanitize($_POST['albumimagesort'], 3))) {
 								for ($i = 0; $i < $_POST['totalimages']; $i++) {
 									$filename = sanitize($_POST["$i-filename"]);
-// The file might no longer exist
-									$image = newImage($album, $filename);
-									if ($image->exists) {
+									$image = newImage($album, $filename, true);
+									if ($image->exists) { // The file might no longer exist
 										if (isset($_POST[$i . '-MoveCopyRename'])) {
 											$movecopyrename_action = sanitize($_POST[$i . '-MoveCopyRename'], 3);
 										} else {
@@ -921,8 +919,13 @@ echo "\n</head>";
 					<?php
 				} else if ($subtab == 'imageinfo') {
 					$singleimage = NULL;
-					if (isset($_GET['singleimage'])) {
-						$simage = sanitize($_GET['singleimage']);
+					if (isset($_GET['singleimage']) || $totalimages == 1) {
+						if ($totalimages == 1) {
+							$list = $images;
+							$simage = array_shift($list);
+						} else {
+							$simage = sanitize($_GET['singleimage']);
+						}
 						if (array_search($simage, $images) !== false) {
 							$allimagecount = 1;
 							$totalimages = 1;
@@ -1212,22 +1215,22 @@ echo "\n</head>";
 																<label class="checkboxlabel">
 																	<input type="radio" id="move-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="move"
 																				 onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>'
-																																					 , 'move');"  /> <?php echo gettext("Move"); ?>
+																																	 , 'move');"  /> <?php echo gettext("Move"); ?>
 																</label>
 																<label class="checkboxlabel">
 																	<input type="radio" id="copy-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="copy"
 																				 onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>'
-																																					 , 'copy');"  /> <?php echo gettext("Copy"); ?>
+																																	 , 'copy');"  /> <?php echo gettext("Copy"); ?>
 																</label>
 																<label class="checkboxlabel">
 																	<input type="radio" id="rename-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="rename"
 																				 onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>',
-																																					 'rename');"  /> <?php echo gettext("Rename File"); ?>
+																																	 'rename');"  /> <?php echo gettext("Rename File"); ?>
 																</label>
 																<label class="checkboxlabel">
 																	<input type="radio" id="Delete-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="delete"
 																				 onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>', '');
-																																					 deleteConfirm('Delete-<?php echo $currentimage; ?>', '<?php echo $currentimage; ?>', '<?php echo addslashes(gettext("Are you sure you want to select this image for deletion?")); ?>')" /> <?php echo gettext("Delete image") ?>
+																																	 deleteConfirm('Delete-<?php echo $currentimage; ?>', '<?php echo $currentimage; ?>', '<?php echo addslashes(gettext("Are you sure you want to select this image for deletion?")); ?>')" /> <?php echo gettext("Delete image") ?>
 																</label>
 																<br class="clearall" />
 																<div id="movecopydiv-<?php echo $currentimage; ?>" style="padding-top: .5em; padding-left: .5em; display: none;">
@@ -1344,7 +1347,7 @@ echo "\n</head>";
 																?>
 																<div class = "page-list_icon">
 																	<input class = "checkbox" type = "checkbox" name = "ids[]" value = "<?php echo $image->getFileName(); ?>" onclick = "triggerAllBox(this.form, 'ids[]', this.for
-																																			m.allbox);" />
+																														m.allbox);" />
 																</div>
 																<?php
 															}
@@ -1728,7 +1731,7 @@ echo "\n</head>";
 							<img	src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong>
 						</button>
 						<button type="reset" onclick="javascript:$('.deletemsg
-																												').hide();" >
+																											').hide();" >
 							<img	src="images/fail.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong>
 						</button>
 					</span>
@@ -1759,7 +1762,7 @@ echo "\n</head>";
 							<img	src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong>
 						</button>
 						<button type="reset" onclick="javascript:$('.deletemsg
-																																').hide();" >
+																															').hide();" >
 							<img	src="images/fail.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong>
 						</button>
 					</span>
