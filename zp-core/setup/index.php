@@ -489,7 +489,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 					}
 					?>
 					<p>
-						<?php printf(gettext("Welcome to ZenPhoto20! This page will set up version %1$s on your web server."), ZENPHOTO_VERSION); ?>
+						<?php printf(gettext('Welcome to ZenPhoto20! This page will set up version %1$s on your web server.'), ZENPHOTO_VERSION); ?>
 					</p>
 					<h2><?php echo gettext("Systems Check:"); ?></h2>
 					<?php
