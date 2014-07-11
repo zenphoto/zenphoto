@@ -107,8 +107,8 @@ header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 				}
 
 				function paste() {
-					pasteobjPopup.execCommand('mceInsertContent', false, $('#content').html());
-					pasteobjPopup.close();
+					pasteObjPopup.execCommand('mceInsertContent', false, $('#content').html());
+					pasteObjPopup.close();
 				}
 
 				window.onload = function() {
