@@ -224,9 +224,7 @@ class Zenpage {
 				$published = "published";
 			}
 		}
-		$newsCacheIndex = "$sortorder-$sortdirection-$published-" . (bool) $sticky;
 		if ($category) {
-			$newsCacheIndex .= '-' . $category->getTitlelink();
 			$sortObj = $category;
 		} else {
 			$sortObj = $this;
@@ -241,7 +239,10 @@ class Zenpage {
 		if (is_null($sortorder)) {
 			$sortorder = $sortObj->getSortType('news');
 		}
-
+    $newsCacheIndex = "$sortorder-$sortdirection-$published-" . (bool) $sticky;
+    if ($category) {
+			$newsCacheIndex .= '-' . $category->getTitlelink();
+		}
 		if (isset($_zp_newsCache[$newsCacheIndex])) {
 			$result = $_zp_newsCache[$newsCacheIndex];
 		} else {
