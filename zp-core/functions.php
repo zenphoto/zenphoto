@@ -1050,8 +1050,10 @@ function setupTheme($album = NULL) {
 		$parent = getUrAlbum($album);
 		$albumtheme = $parent->getAlbumTheme();
 		if (!empty($albumtheme)) {
-			$theme = $albumtheme;
-			$id = $parent->getID();
+			if (is_dir(SERVERPATH . "/" . THEMEFOLDER . "/$albumtheme")) {
+				$theme = $albumtheme;
+				$id = $parent->getID();
+			}
 		}
 	}
 	$theme = zp_apply_filter('setupTheme', $theme);
