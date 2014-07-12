@@ -400,7 +400,7 @@ if ($setup_checked) {
 		if ($mine == $me) {
 			$clone = '';
 			$index = $me . '/index.php';
-			@chmod($me, 0777);
+			@chmod($index, 0777);
 			$rootupdate = @copy(dirname(dirname(__FILE__)) . '/root_index.php', $index);
 			if (!$rootupdate) {
 				$f1 = @file_get_contents($index);
