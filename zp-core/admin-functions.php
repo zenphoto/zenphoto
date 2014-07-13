@@ -1238,7 +1238,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 		if ($addnew) {
 			?>
 			<span class="new_tag displayinline" >
-				<a href="javascript:addNewTag('<?php echo $postit; ?>');" title="<?php echo gettext('add tag'); ?>">
+				<a onclick="addNewTag('<?php echo $postit; ?>');" title="<?php echo gettext('add tag'); ?>">
 					<img src="images/add.png" title="<?php echo gettext('add tag'); ?>"/>
 				</a>
 				<input classs="<?php echo $class; ?> " type="text" value="" name="newtag_<?php echo $postit; ?>" id="newtag_<?php echo $postit; ?>" />
@@ -1346,7 +1346,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					<img	src="images/pass.png" alt="" />
 					<strong><?php echo gettext("Apply"); ?></strong>
 				</button>
-				<button type="reset" onclick="javascript:$('.deletemsg').hide();" >
+				<button type="reset" onclick="$('.deletemsg').hide();" >
 					<img	src="images/fail.png" alt="" />
 					<strong><?php echo gettext("Reset"); ?></strong>
 				</button>
@@ -1354,7 +1354,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					<?php
 					if (!$album->isDynamic()) {
 						?>
-						<button type="button" title="<?php echo addslashes(gettext('New subalbum')); ?>" onclick="javascript:newAlbum('<?php echo pathurlencode($album->name); ?>', true);">
+						<button type="button" title="<?php echo addslashes(gettext('New subalbum')); ?>" onclick="newAlbum('<?php echo pathurlencode($album->name); ?>', true);">
 							<img src="images/folder.png" alt="" />
 							<strong><?php echo gettext('New subalbum'); ?></strong>
 						</button>
@@ -1422,7 +1422,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 							<tr class="password<?php echo $suffix; ?>extrashow">
 								<td class="leftcolumn">
 									<p>
-										<a href="javascript:toggle_passwords('<?php echo $suffix; ?>',true);">
+										<a onclick="toggle_passwords('<?php echo $suffix; ?>', true);">
 											<?php echo gettext("Album password:"); ?>
 										</a>
 									</p>
@@ -1445,14 +1445,14 @@ function printAdminHeader($tab, $subtab = NULL) {
 							</tr>
 							<tr class="password<?php echo $suffix; ?>extrahide" style="display:none" >
 								<td class="leftcolumn">
-									<a href="javascript:toggle_passwords('<?php echo $suffix; ?>',false);">
+									<a onclick="toggle_passwords('<?php echo $suffix; ?>', false);">
 										<?php echo gettext("Album guest user:"); ?>
 									</a>
 									<br />
 									<label><input type="checkbox" name="disclose_password<?php echo $suffix; ?>"
 																id="disclose_password<?php echo $suffix; ?>"
 																onclick="passwordClear('<?php echo $suffix; ?>');
-																		togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?></label>
+																				togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?></label>
 								</td>
 								<td>
 									<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
@@ -1529,24 +1529,8 @@ function printAdminHeader($tab, $subtab = NULL) {
 							</td>
 						</tr>
 						<?php
-						$custom = zp_apply_filter('edit_album_custom_data', '', $album, $prefix);
-						if (empty($custom)) {
-							?>
-							<tr>
-								<td class="leftcolumn"><?php echo gettext("Custom data:"); ?></td>
-								<td>
-									<div id="customData_hide" class="customhide">
-										<a href="javascript:$('#customData_show').show();$('#customData_hide').hide();"><?php echo gettext('show content'); ?></a>
-									</div>
-									<div id="customData_show" style="display:none;">
-										<?php print_language_string_list($album->getCustomData('all'), $prefix . "album_custom_data", true, NULL, 'texteditor_albumcustomdata', '100%'); ?>
-									</div>
-								</td>
-							</tr>
-							<?php
-						} else {
-							echo $custom;
-						}
+						echo $custom = zp_apply_filter('edit_album_custom_data', '', $album, $prefix);
+
 						$sort = $sortby;
 						if (!$album->isDynamic()) {
 							$sort[gettext('Manual')] = 'manual';
@@ -1985,7 +1969,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 } else {
 											 ?>
 											 onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');
-													 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
+															 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
 											 <?php
 										 }
 										 ?> />
@@ -1997,7 +1981,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 							<?php echo gettext('Album will be deleted when changes are applied.'); ?>
 							<br class="clearall" />
 							<p class="buttons">
-								<a	href="javascript:toggleAlbumMCR('<?php echo $prefix; ?>', '');"><img src="images/reset.png" alt="" /><?php echo addslashes(gettext("Cancel")); ?></a>
+								<a	onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');"><img src="images/reset.png" alt="" /><?php echo addslashes(gettext("Cancel")); ?></a>
 							</p>
 						</div>
 						<div id="a-<?php echo $prefix; ?>movecopydiv" style="padding-top: .5em; padding-left: .5em; display: none;">
@@ -2034,7 +2018,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 							</select>
 							<br class="clearall" /><br />
 							<p class="buttons">
-								<a href="javascript:toggleAlbumMCR('<?php echo $prefix; ?>', '');"><img src="images/reset.png" alt="" /><?php echo addslashes(gettext("Cancel")); ?></a>
+								<a onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');"><img src="images/reset.png" alt="" /><?php echo addslashes(gettext("Cancel")); ?></a>
 							</p>
 						</div>
 						<div id="a-<?php echo $prefix; ?>renamediv" style="padding-top: .5em; padding-left: .5em; display: none;">
@@ -2042,7 +2026,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 							<input name="a-<?php echo $prefix; ?>renameto" type="text" value="<?php echo basename($album->name); ?>"/><br />
 							<br class="clearall" />
 							<p class="buttons">
-								<a href="javascript:toggleAlbumMCR('<?php echo $prefix; ?>', '');"><img src="images/reset.png" alt="" /><?php echo addslashes(gettext("Cancel")); ?></a>
+								<a onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');"><img src="images/reset.png" alt="" /><?php echo addslashes(gettext("Cancel")); ?></a>
 							</p>
 						</div>
 						<span class="clearall" ></span>
@@ -2093,7 +2077,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					<img	src="images/pass.png" alt="" />
 					<strong><?php echo gettext("Apply"); ?></strong>
 				</button>
-				<button type="reset" onclick="javascript:$('.deletemsg').hide();">
+				<button type="reset" onclick="$('.deletemsg').hide();">
 					<img	src="images/fail.png" alt="" />
 					<strong><?php echo gettext("Reset"); ?></strong>
 				</button>
@@ -2101,7 +2085,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					<?php
 					if (!$album->isDynamic()) {
 						?>
-						<button type="button" title="<?php echo addslashes(gettext('New subalbum')); ?>" onclick="javascript:newAlbum('<?php echo pathurlencode($album->name); ?>', true);">
+						<button type="button" title="<?php echo addslashes(gettext('New subalbum')); ?>" onclick="newAlbum('<?php echo pathurlencode($album->name); ?>', true);">
 							<img src="images/folder.png" alt="" />
 							<strong><?php echo gettext('New subalbum'); ?></strong>
 						</button>
@@ -2508,7 +2492,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 		if (isset($_POST[$prefix . 'owner']))
 			$album->setOwner(sanitize($_POST[$prefix . 'owner']));
 
-		$custom = process_language_string_save($prefix . 'album_custom_data', 1);
+		$custom = process_language_string_save($prefix . '-custom_data', 1);
 		$album->setCustomData(zp_apply_filter('save_album_custom_data', $custom, $prefix));
 		zp_apply_filter('save_album_utilities_data', $album, $prefix);
 		$album->save();
@@ -3364,7 +3348,7 @@ function printManagedObjects($type, $objlist, $alterrights, $userobj, $prefix_id
 
 	<div class="box-albums-unpadded">
 		<h2 class="h2_bordered_albums">
-			<a href="javascript:toggle('<?php echo $prefix ?>');" title="<?php echo html_encode($hint); ?>" ><?php echo $text . $itemcount; ?></a>
+			<a onclick="toggle('<?php echo $prefix ?>');" title="<?php echo html_encode($hint); ?>" ><?php echo $text . $itemcount; ?></a>
 		</h2>
 		<div id="<?php echo $prefix ?>" style="display:none;">
 			<ul class="albumchecklist">
@@ -4518,7 +4502,7 @@ function printPageSelector($subpage, $rangeset, $script, $queryParams) {
 		}
 		?>
 		<select name="subpage" class="ignoredirty" id="subpage<?php echo $instances; ?>" onchange="launchScript('<?php echo WEBPATH . '/' . ZENFOLDER . '/' . $script; ?>',
-								[<?php echo $jump; ?>'subpage=' + $('#subpage<?php echo $instances; ?>').val()]);" >
+										[<?php echo $jump; ?>'subpage=' + $('#subpage<?php echo $instances; ?>').val()]);" >
 							<?php
 							foreach ($rangeset as $page => $range) {
 								?>

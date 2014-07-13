@@ -154,7 +154,7 @@ printAdminHeader('overview', 'Database');
 					$table = substr($table, strlen($prefix));
 					$i++;
 					?>
-					<h3><a href="javascript:toggleRow('t_<?php echo $i; ?>')"><?php echo $table; ?></a></h3>
+					<h3><a onclick="toggleRow('t_<?php echo $i; ?>')"><?php echo $table; ?></a></h3>
 					<table id = "t_<?php echo $i; ?>" class="bordered" <?php if ($i > 1) { ?>style="display: none;" <?php } ?>>
 						<tr>
 							<?php

@@ -355,7 +355,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 												echo $updateitem;
 											}
 											?></strong></button>
-									<button type="reset" onclick="javascript:$('.copydelete').hide();" >
+									<button type="reset" onclick="$('.copydelete').hide();" >
 										<img src="../../images/reset.png" alt="" />
 										<strong><?php echo gettext("Reset"); ?></strong>
 									</button>
@@ -484,7 +484,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 															<?php
 															if (GALLERY_SECURITY == 'public') {
 																?>
-																<a href="javascript:toggle_passwords('',true);">
+																<a onclick="toggle_passwords('', true);">
 																	<?php echo gettext("Password:"); ?>
 																</a>
 																<?php
@@ -501,7 +501,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 																?>
 															</p>
 															<div class="passwordextrahide" style="display:none">
-																<a href="javascript:toggle_passwords('',false);">
+																<a onclick="toggle_passwords('', false);">
 																	<?php echo gettext("Guest user:"); ?>
 																</a>
 																<input type="text" size="27" id="user_name" name="user"
@@ -516,7 +516,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 																			 value="<?php echo $x; ?>" />
 																<br />
 																<label><input type="checkbox" name="disclose_password" id="disclose_password" onclick="passwordClear('');
-																		togglePassword('');"><?php echo gettext('Show password'); ?></label>
+																					togglePassword('');"><?php echo gettext('Show password'); ?></label>
 																<br />
 																<span class="password_field_">
 																	<span id="match"><?php echo gettext("(repeat)"); ?></span>
@@ -539,14 +539,14 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 														?>
 														<label class="checkboxlabel">
 															<input type="radio" id="copy_object" name="copy_delete_object" value="copy"
-																		 onclick="javascript:$('#copyfield').show();
-																				 $('#deletemsg').hide();" />
+																		 onclick="$('#copyfield').show();
+																						 $('#deletemsg').hide();" />
 																		 <?php echo gettext("Copy"); ?>
 														</label>
 														<label class="checkboxlabel">
 															<input type="radio" id="delete_object" name="copy_delete_object" value="delete"
 																		 onclick="deleteConfirm('delete_object', '', '<?php addslashes(printf(gettext('Are you sure you want to delete this %s?'), $deleteitem)); ?>');
-																				 $('#copyfield').hide();" />
+																						 $('#copyfield').hide();" />
 																		 <?php echo gettext('delete'); ?>
 														</label>
 														<br class="clearall" />
@@ -791,25 +791,8 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 										if (is_AdminEditPage("page")) {
 											$custom = zp_apply_filter('edit_page_custom_data', '', $result);
 										}
-										if (empty($custom)) {
-											?>
-											<tr>
-												<td class="topalign-nopadding"><?php echo gettext("Custom:"); ?></td>
-												<td class="middlecolumn">
-													<div id="customData_hide" class="customhide">
-														<a href="javascript:$('#customData_show').show();$('#customData_hide').hide();"><?php echo gettext('show content'); ?></a>
-													</div>
-													<div id="customData_show" style="display:none;">
-														<?php
-														print_language_string_list($result->getCustomData('all'), 'custom_data', true, NULL, 'custom_data', '100%', 'zenpage_language_string_list', 10);
-														?>
-													</div>
-												</td>
-											</tr>
-											<?php
-										} else {
-											echo $custom;
-										}
+										echo $custom;
+
 										if (!is_AdminEditPage("newscategory")) {
 											?>
 											<tr>
@@ -831,7 +814,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 													echo $updateitem;
 												}
 												?></strong></button>
-										<button type="reset" onclick="javascript:$('.copydelete').hide();">
+										<button type="reset" onclick="$('.copydelete').hide();">
 											<img src="../../images/reset.png" alt="" />
 											<strong><?php echo gettext("Reset"); ?></strong>
 										</button>

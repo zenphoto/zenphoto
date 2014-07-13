@@ -302,7 +302,7 @@ echo "\n" . '<div id = "content">';
 					?>
 					<li>
 						<span class="icons" id="<?php echo $theme; ?>_arrow">
-							<a href="javascript:showTheme('<?php echo $theme; ?>');" title="<?php echo gettext('Show'); ?>">
+							<a onclick="showTheme('<?php echo $theme; ?>');" title="<?php echo gettext('Show'); ?>">
 								<img class="icon-position-top4" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/images/arrow_down.png'; ?>" alt="" />
 							</a>
 						</span>

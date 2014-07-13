@@ -92,7 +92,7 @@ class text_watermark {
 		</script>
 		<p class="buttons">
 			<span id="text_watermark_image_loc"><?php echo $imageurl ?></span>
-			<button type="button" title="<?php echo gettext('Create'); ?>" onclick="javascript:createwm();"><strong><?php echo gettext('Create'); ?></strong></button>
+			<button type="button" title="<?php echo gettext('Create'); ?>" onclick="createwm();"><strong><?php echo gettext('Create'); ?></strong></button>
 		</p>
 		<?php
 	}

@@ -83,7 +83,7 @@ function adminToolbox() {
 			// ]]> -->
 		</script>
 		<div id="<?php echo $id; ?>">
-			<h3><a href="javascript:toggle('<?php echo $dataid; ?>');"><?php echo gettext('Admin Toolbox'); ?></a></h3>
+			<h3><a onclick="toggle('<?php echo $dataid; ?>');"><?php echo gettext('Admin Toolbox'); ?></a></h3>
 		</div>
 		<div id="<?php echo $dataid; ?>" style="display: none;">
 
@@ -2469,7 +2469,7 @@ function printImageMetadata($title = NULL, $toggle = true, $id = 'imagemetadata'
 		$refa = '</a>';
 		$style = ' style="display:none"';
 	} else if ($toggle) {
-		$refh = '<a href="javascript:toggle(\'' . $dataid . '\');" title="' . $title . '">';
+		$refh = '<a onclick="toggle(\'' . $dataid . '\');" title="' . $title . '">';
 		$refa = '</a>';
 		$style = ' style="display:none"';
 	}
@@ -3892,7 +3892,7 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 			<div>
 				<input type="text" name="words" value="" id="search_input" size="10" />
 				<?php if (count($fields) > 1 || $searchwords) { ?>
-					<a href="javascript:toggle('searchextrashow');" ><img src="<?php echo $iconsource; ?>" title="<?php echo gettext('search options'); ?>" alt="<?php echo gettext('fields'); ?>" id="searchfields_icon" /></a>
+					<a onclick="toggle('searchextrashow');" ><img src="<?php echo $iconsource; ?>" title="<?php echo gettext('search options'); ?>" alt="<?php echo gettext('fields'); ?>" id="searchfields_icon" /></a>
 				<?php } ?>
 				<input type="<?php echo $type; ?>" <?php echo $button; ?> class="button buttons" id="search_submit" <?php echo $buttonSource; ?> />
 				<?php

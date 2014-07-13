@@ -1366,6 +1366,7 @@ zp-core/zp-extensions/colorbox_js.php
 zp-core/zp-extensions/comment_form.php
 zp-core/zp-extensions/contact_form.php
 zp-core/zp-extensions/crop_image.php
+zp-core/zp-extensions/customData.php
 zp-core/zp-extensions/debug.php
 zp-core/zp-extensions/defaultCodeblocks.php
 zp-core/zp-extensions/deprecated-functions.php
@@ -2253,4 +2254,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-2255
+2256
