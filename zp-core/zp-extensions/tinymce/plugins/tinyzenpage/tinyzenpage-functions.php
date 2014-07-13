@@ -291,7 +291,7 @@ function getImageType($imageobj) {
  * @return string
  */
 function printNewsArticlesList($number) {
-	global $_zp_CMS, $_zp_current_zenpage_news, $host;
+	global $_zp_CMS, $_zp_current_article, $host;
 	if (isset($_GET['zenpage']) && $_GET['zenpage'] == "articles") {
 		echo "<h3>Zenpage: <em>" . gettext('Articles') . "</em> <small>" . gettext("(Click on article title to include a link)") . "</small></h3>";
 		if (isset($_GET['category'])) {
