@@ -355,7 +355,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 												echo $updateitem;
 											}
 											?></strong></button>
-									<button type="reset" onclick="javascript:$('.copydelete').hide();" >
+									<button type="reset" onclick="$('.copydelete').hide();" >
 										<img src="../../images/reset.png" alt="" />
 										<strong><?php echo gettext("Reset"); ?></strong>
 									</button>
@@ -484,7 +484,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 															<?php
 															if (GALLERY_SECURITY == 'public') {
 																?>
-																<a href="javascript:toggle_passwords('',true);">
+																<a onclick="toggle_passwords('',true);">
 																	<?php echo gettext("Password:"); ?>
 																</a>
 																<?php
@@ -501,7 +501,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 																?>
 															</p>
 															<div class="passwordextrahide" style="display:none">
-																<a href="javascript:toggle_passwords('',false);">
+																<a onclick="toggle_passwords('',false);">
 																	<?php echo gettext("Guest user:"); ?>
 																</a>
 																<input type="text" size="27" id="user_name" name="user"
@@ -539,7 +539,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 														?>
 														<label class="checkboxlabel">
 															<input type="radio" id="copy_object" name="copy_delete_object" value="copy"
-																		 onclick="javascript:$('#copyfield').show();
+																		 onclick="$('#copyfield').show();
 																				 $('#deletemsg').hide();" />
 																		 <?php echo gettext("Copy"); ?>
 														</label>
@@ -831,7 +831,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 													echo $updateitem;
 												}
 												?></strong></button>
-										<button type="reset" onclick="javascript:$('.copydelete').hide();">
+										<button type="reset" onclick="$('.copydelete').hide();">
 											<img src="../../images/reset.png" alt="" />
 											<strong><?php echo gettext("Reset"); ?></strong>
 										</button>

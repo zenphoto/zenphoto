@@ -2590,7 +2590,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 									<form>
 										<input type="hidden" name="xsrfToken" value="<?php echo $xsrftoken
 								?>" />
-										<p><?php printf(gettext('%s I acknowledge that proceeding will restructure my database.'), '<input type="checkbox" id="agree" value="0" onclick="javascript:$(\'#setup\').show();$(\'#agree\').attr(\'checked\',\'checked\')" />')
+										<p><?php printf(gettext('%s I acknowledge that proceeding will restructure my database.'), '<input type="checkbox" id="agree" value="0" onclick="$(\'#setup\').show();$(\'#agree\').attr(\'checked\',\'checked\')" />')
 								?></p>
 									</form>
 								</div>

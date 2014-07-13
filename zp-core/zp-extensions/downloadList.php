@@ -95,7 +95,7 @@ class DownloadList {
 		?>
 		<input type="hidden" name="password_enabled_downloadList" id="password_enabled_downloadList" value="0" />
 		<p class="password_downloadListextrashow">
-			<a href="javascript:toggle_passwords('_downloadList',true);">
+			<a onclick="toggle_passwords('_downloadList',true);">
 				<?php echo gettext("Password:"); ?>
 			</a>
 			<?php
@@ -112,7 +112,7 @@ class DownloadList {
 			?>
 		</p>
 		<div class="password_downloadListextrahide" style="display:none">
-			<a href="javascript:toggle_passwords('_downloadList',false);">
+			<a onclick="toggle_passwords('_downloadList',false);">
 				<?php echo gettext("Guest user:"); ?>
 			</a>
 			<br />

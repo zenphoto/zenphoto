@@ -205,9 +205,9 @@ echo '</head>' . "\n";
 								<tr>
 									<th>
 										<span style="font-weight: normal">
-											<a href="javascript:toggleExtraInfo('','user',true);"><?php echo gettext('Expand all'); ?></a>
+											<a onclick="toggleExtraInfo('','user',true);"><?php echo gettext('Expand all'); ?></a>
 											|
-											<a href="javascript:toggleExtraInfo('','user',false);"><?php echo gettext('Collapse all'); ?></a>
+											<a onclick="toggleExtraInfo('','user',false);"><?php echo gettext('Collapse all'); ?></a>
 										</span>
 									</th>
 									<th>
@@ -257,13 +257,13 @@ echo '</head>' . "\n";
 															 ?>
 												<span class="userextrashow">
 													<em><?php echo $kind; ?></em>:
-													<a href="javascript:toggleExtraInfo('<?php echo $id; ?>','user',true);" title="<?php echo $groupname; ?>" >
+													<a onclick="toggleExtraInfo('<?php echo $id; ?>','user',true);" title="<?php echo $groupname; ?>" >
 														<strong><?php echo $groupname; ?></strong>
 													</a>
 												</span>
 												<span style="display:none;" class="userextrahide">
 													<em><?php echo $kind; ?></em>:
-													<a href="javascript:toggleExtraInfo('<?php echo $id; ?>','user',false);" title="<?php echo $groupname; ?>" >
+													<a onclick="toggleExtraInfo('<?php echo $id; ?>','user',false);" title="<?php echo $groupname; ?>" >
 														<strong><?php echo $groupname; ?></strong>
 													</a>
 												</span>
@@ -379,9 +379,9 @@ echo '</head>' . "\n";
 								<tr>
 									<th>
 										<span style="font-weight: normal">
-											<a href="javascript:toggleExtraInfo('','user',true);"><?php echo gettext('Expand all'); ?></a>
+											<a onclick="toggleExtraInfo('','user',true);"><?php echo gettext('Expand all'); ?></a>
 											|
-											<a href="javascript:toggleExtraInfo('','user',false);"><?php echo gettext('Collapse all'); ?></a>
+											<a onclick="toggleExtraInfo('','user',false);"><?php echo gettext('Collapse all'); ?></a>
 										</span>
 									</th>
 									<th>

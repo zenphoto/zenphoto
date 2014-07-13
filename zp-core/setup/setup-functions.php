@@ -134,7 +134,7 @@ function checkMark($check, $text, $text2, $msg, $stopAutorun = true) {
 						<?php
 						if ($check == -3) {
 							?>
-							<a href="javascript:toggle_visibility('more<?php echo $moreid; ?>');">
+							<a onclick="toggle_visibility('more<?php echo $moreid; ?>');">
 								<?php echo gettext('<strong>Warning!</strong> click for details'); ?>
 							</a>
 							<div class="warning" id="more<?php echo $moreid; ?>" style="display: none">
@@ -142,7 +142,7 @@ function checkMark($check, $text, $text2, $msg, $stopAutorun = true) {
 								<?php
 							} else {
 								?>
-								<a href="javascript:toggle_visibility('more<?php echo $moreid; ?>');">
+								<a onclick="toggle_visibility('more<?php echo $moreid; ?>');">
 									<?php echo gettext('<strong>Notice!</strong> click for details'); ?>
 								</a>
 								<div class="notice" id="more<?php echo $moreid; ?>" style="display: none">

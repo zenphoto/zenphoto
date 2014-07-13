@@ -768,12 +768,12 @@ Zenphoto_Authority::printPasswordFormJS();
 												<li<?php echo $class; ?>>
 													<label class="displayinline" >
 														<input type="radio" name="locale" id="r_<?php echo $dirname; ?>" value="<?php echo $dirname; ?>"
-																	 onclick="javascript:radio_click('<?php echo $dirname; ?>');" <?php echo $r_attrs; ?>/>
+																	 onclick="radio_click('<?php echo $dirname; ?>');" <?php echo $r_attrs; ?>/>
 													</label>
 													<label class="displayinline flags">
 														<input id="language_allow_<?php echo $dirname; ?>" name="language_allow_<?php echo $dirname; ?>" type="checkbox"
 																	 value="<?php echo $dirname; ?>"<?php echo $c_attrs; ?>
-																	 onclick="javascript:enable_click('<?php echo $dirname; ?>');" />
+																	 onclick="enable_click('<?php echo $dirname; ?>');" />
 														<img src="<?php echo $flag; ?>" alt="<?php echo $languageAlt; ?>" width="24" height="16" />
 														<?php echo $language; ?>
 													</label>
@@ -944,7 +944,7 @@ Zenphoto_Authority::printPasswordFormJS();
 											<p class="notebox"><?php echo gettext('<strong>Note:</strong> visual editing is enabled so the editor overrides these settings on tags where the it is active.'); ?></p>
 										<?php } ?>
 										<p class="buttons">
-											<a href="javascript:resetallowedtags()" ><?php echo gettext('reset to default'); ?></a>
+											<a onclick="resetallowedtags()" ><?php echo gettext('reset to default'); ?></a>
 										</p>
 									</td>
 								</tr>
@@ -1104,8 +1104,8 @@ Zenphoto_Authority::printPasswordFormJS();
 								<tr>
 									<td><?php echo gettext('Gallery type') ?></td>
 									<td>
-										<label><input type="radio" name="gallery_security" value="public" alt="<?php echo gettext('public'); ?>"<?php if (GALLERY_SECURITY == 'public') echo ' checked="checked"' ?> onclick="javascript:$('.public_gallery').show();" /><?php echo gettext('public'); ?></label>
-										<label><input type="radio" name="gallery_security" value="private" alt="<?php echo gettext('private'); ?>"<?php if (GALLERY_SECURITY != 'public') echo 'checked="checked"' ?> onclick="javascript:$('.public_gallery').hide();" /><?php echo gettext('private'); ?></label>
+										<label><input type="radio" name="gallery_security" value="public" alt="<?php echo gettext('public'); ?>"<?php if (GALLERY_SECURITY == 'public') echo ' checked="checked"' ?> onclick="$('.public_gallery').show();" /><?php echo gettext('public'); ?></label>
+										<label><input type="radio" name="gallery_security" value="private" alt="<?php echo gettext('private'); ?>"<?php if (GALLERY_SECURITY != 'public') echo 'checked="checked"' ?> onclick="$('.public_gallery').hide();" /><?php echo gettext('private'); ?></label>
 									</td>
 									<td>
 										<?php echo gettext('Private galleries are viewable only by registered users.'); ?>
@@ -1117,7 +1117,7 @@ Zenphoto_Authority::printPasswordFormJS();
 									<tr class="passwordextrashow public_gallery">
 										<td style="background-color: #ECF1F2;">
 											<p>
-												<a href="javascript:toggle_passwords('',true);">
+												<a onclick="toggle_passwords('', true);">
 													<?php echo gettext("Gallery password:"); ?>
 												</a>
 											</p>
@@ -1145,7 +1145,7 @@ Zenphoto_Authority::printPasswordFormJS();
 									</tr>
 									<tr class="passwordextrahide" style="display:none">
 										<td>
-											<a href="javascript:toggle_passwords('',false);">
+											<a onclick="toggle_passwords('', false);">
 												<?php echo gettext("Gallery guest user:"); ?>
 											</a>
 										</td>
@@ -1443,7 +1443,7 @@ Zenphoto_Authority::printPasswordFormJS();
 									<tr class="passwordextrashow">
 										<td width="175">
 											<p>
-												<a href="javascript:toggle_passwords('',true);">
+												<a onclick="toggle_passwords('', true);">
 													<?php echo gettext("Search password:"); ?>
 												</a>
 											</p>
@@ -1469,7 +1469,7 @@ Zenphoto_Authority::printPasswordFormJS();
 									</tr>
 									<tr class="passwordextrahide" style="display:none">
 										<td width="175">
-											<a href="javascript:toggle_passwords('',false);">
+											<a onclick="toggle_passwords('', false);">
 												<?php echo gettext("Search guest user:"); ?>
 											</a>
 										</td>
@@ -2207,7 +2207,7 @@ Zenphoto_Authority::printPasswordFormJS();
 											<table class="compact">
 												<tr class="passwordextrashow">
 													<td style="margin:0; padding:0">
-														<a href="javascript:toggle_passwords('',true);">
+														<a onclick="toggle_passwords('', true);">
 															<?php echo gettext("password:"); ?>
 														</a>
 													</td>
@@ -2229,7 +2229,7 @@ Zenphoto_Authority::printPasswordFormJS();
 												</tr>
 												<tr class="passwordextrahide" style="display:none">
 													<td style="margin:0; padding:0">
-														<a href="javascript:toggle_passwords('',false);">
+														<a onclick="toggle_passwords('', false);">
 															<?php echo gettext("user:"); ?>
 														</a>
 													</td>

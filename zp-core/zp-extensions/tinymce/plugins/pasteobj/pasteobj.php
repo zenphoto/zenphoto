@@ -118,7 +118,7 @@ header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 			</script>
 			<h3>
 				<span class="buttons">
-					<button type="button" title="<?php echo gettext('paste'); ?>" onclick="javascript:paste();">
+					<button type="button" title="<?php echo gettext('paste'); ?>" onclick="paste();">
 						<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" onclick="paste();"  />
 						<?php echo gettext('paste'); ?>
 					</button>
