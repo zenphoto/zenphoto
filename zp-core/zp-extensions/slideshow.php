@@ -41,7 +41,7 @@ $plugin_disable = (extensionEnabled('slideshow2')) ? sprintf(gettext('Only one s
 $option_interface = 'slideshow';
 
 global $_zp_gallery, $_zp_gallery_page;
-if ($_zp_gallery_page == 'slideshoe.php' || getOption('slideshow_' . $_zp_gallery->getCurrentTheme() . '_' . stripSuffix($_zp_gallery_page))) {
+if ($_zp_gallery_page == 'slideshow.php' || getOption('slideshow_' . $_zp_gallery->getCurrentTheme() . '_' . stripSuffix($_zp_gallery_page))) {
 	zp_register_filter('theme_head', 'slideshow::header_js');
 }
 zp_register_filter('content_macro', 'slideshow::macro');
