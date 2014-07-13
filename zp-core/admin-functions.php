@@ -1452,7 +1452,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 									<label><input type="checkbox" name="disclose_password<?php echo $suffix; ?>"
 																id="disclose_password<?php echo $suffix; ?>"
 																onclick="passwordClear('<?php echo $suffix; ?>');
-																		togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?></label>
+																				togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?></label>
 								</td>
 								<td>
 									<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
@@ -1529,25 +1529,8 @@ function printAdminHeader($tab, $subtab = NULL) {
 							</td>
 						</tr>
 						<?php
-						$custom = zp_apply_filter('edit_album_custom_data', '', $album, $prefix);
-						if (empty($custom)) {
-							?>
-							<tr>
-								<td class="leftcolumn"><?php echo gettext("Custom data:"); ?></td>
-								<td>
-									<div id="customData_hide" class="customhide">
-										<a onclick="$('#customData_show').show();
-												$('#customData_hide').hide();"><?php echo gettext('show content'); ?></a>
-									</div>
-									<div id="customData_show" style="display:none;">
-		<?php print_language_string_list($album->getCustomData('all'), $prefix . "album_custom_data", true, NULL, 'texteditor_albumcustomdata', '100%'); ?>
-									</div>
-								</td>
-							</tr>
-							<?php
-						} else {
-							echo $custom;
-						}
+						echo $custom = zp_apply_filter('edit_album_custom_data', '', $album, $prefix);
+
 						$sort = $sortby;
 						if (!$album->isDynamic()) {
 							$sort[gettext('Manual')] = 'manual';
@@ -1605,7 +1588,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 								?>
 								<span id="album_custom_div<?php echo $suffix; ?>" class="customText" style="display:<?php echo $dsp; ?>;white-space:nowrap;">
 									<br />
-	<?php echo gettext('custom fields:') ?>
+									<?php echo gettext('custom fields:') ?>
 									<input id="customalbumsort<?php echo $suffix; ?>" class="customalbumsort" name="<?php echo $prefix; ?>customalbumsort" type="text" value="<?php echo html_encode($cvt); ?>" />
 								</span>
 							</td>
@@ -1661,7 +1644,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 								?>
 								<span id="image_custom_div<?php echo $suffix; ?>" class="customText" style="display:<?php echo $dsp; ?>;white-space:nowrap;">
 									<br />
-	<?php echo gettext('custom fields:') ?>
+									<?php echo gettext('custom fields:') ?>
 									<input id="customimagesort<?php echo $suffix; ?>" class="customimagesort" name="<?php echo $prefix; ?>customimagesort" type="text" value="<?php echo html_encode($cvt); ?>" />
 								</span>
 							</td>
@@ -1706,7 +1689,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 							<tr>
 								<td class="leftcolumn"><?php echo gettext("Album watermarks:"); ?> </td>
 								<td>
-		<?php $current = $album->getWatermark(); ?>
+									<?php $current = $album->getWatermark(); ?>
 									<select id="album_watermark<?php echo $suffix; ?>" name="<?php echo $prefix; ?>album_watermark">
 										<option value="<?php echo NO_WATERMARK; ?>" <?php if ($current == NO_WATERMARK) echo ' selected="selected"' ?> style="background-color:LightGray"><?php echo gettext('*no watermark'); ?></option>
 										<option value="" <?php if (empty($current)) echo ' selected="selected"' ?> style="background-color:LightGray"><?php echo gettext('*default'); ?></option>
@@ -1721,7 +1704,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 							<tr>
 								<td class="leftcolumn"></td>
 								<td>
-		<?php $current = $album->getWatermarkThumb(); ?>
+									<?php $current = $album->getWatermarkThumb(); ?>
 									<select id="album_watermark_thumb<?php echo $suffix; ?>" name="<?php echo $prefix; ?>album_watermark_thumb">
 										<option value="<?php echo NO_WATERMARK; ?>" <?php if ($current == NO_WATERMARK) echo ' selected="selected"' ?> style="background-color:LightGray"><?php echo gettext('*no watermark'); ?></option>
 										<option value="" <?php if (empty($current)) echo ' selected="selected"' ?> style="background-color:LightGray"><?php echo gettext('*default'); ?></option>
@@ -1841,18 +1824,18 @@ function printAdminHeader($tab, $subtab = NULL) {
 							<td class="leftcolumn topalign-nopadding"><br /><?php echo gettext("Codeblocks:"); ?></td>
 							<td>
 								<br />
-	<?php printCodeblockEdit($album, (int) $suffix); ?>
+								<?php printCodeblockEdit($album, (int) $suffix); ?>
 							</td>
 						</tr>
 					</table>
 				</td>
-	<?php $bglevels = array('#fff', '#f8f8f8', '#efefef', '#e8e8e8', '#dfdfdf', '#d8d8d8', '#cfcfcf', '#c8c8c8'); ?>
+				<?php $bglevels = array('#fff', '#f8f8f8', '#efefef', '#e8e8e8', '#dfdfdf', '#d8d8d8', '#cfcfcf', '#c8c8c8'); ?>
 				<td class="rightcolumn" valign="top">
 					<h2 class="h2_bordered_edit"><?php echo gettext("General"); ?></h2>
 					<div class="box-edit">
 						<label class="checkboxlabel">
 							<input type="checkbox" name="<?php echo $prefix; ?>Published" value="1" <?php if ($album->getShow()) echo ' checked="checked"'; ?> />
-	<?php echo gettext("Published"); ?>
+							<?php echo gettext("Published"); ?>
 						</label>
 						<label class="checkboxlabel">
 							<input type="checkbox" name="<?php echo $prefix . 'allowcomments'; ?>" value="1" <?php
@@ -1860,7 +1843,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 								echo ' checked="checked"';
 							}
 							?> />
-						<?php echo gettext("Allow Comments"); ?>
+										 <?php echo gettext("Allow Comments"); ?>
 						</label>
 						<?php
 						if (extensionEnabled('hitcounter')) {
@@ -1871,7 +1854,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 							?>
 							<label class="checkboxlabel">
 								<input type="checkbox" name="reset_hitcounter<?php echo $prefix; ?>"<?php if (!$hc) echo ' disabled="disabled"'; ?> />
-							<?php echo sprintf(ngettext("Reset hit counter (%u hit)", "Reset hit counter (%u hits)", $hc), $hc); ?>
+								<?php echo sprintf(ngettext("Reset hit counter (%u hit)", "Reset hit counter (%u hits)", $hc), $hc); ?>
 							</label>
 							<?php
 						}
@@ -1884,14 +1867,14 @@ function printAdminHeader($tab, $subtab = NULL) {
 								?>
 								<label class="checkboxlabel">
 									<input type="checkbox" id="reset_rating<?php echo $suffix; ?>" name="<?php echo $prefix; ?>reset_rating" value="1" />
-								<?php printf(gettext('Reset rating (%u stars)'), $hc); ?>
+									<?php printf(gettext('Reset rating (%u stars)'), $hc); ?>
 								</label>
 								<?php
 							} else {
 								?>
 								<label class="checkboxlabel">
 									<input type="checkbox" name="<?php echo $prefix; ?>reset_rating" value="1" disabled="disabled"/>
-								<?php echo gettext('Reset rating (unrated)'); ?>
+									<?php echo gettext('Reset rating (unrated)'); ?>
 								</label>
 								<?php
 							}
@@ -1961,19 +1944,19 @@ function printAdminHeader($tab, $subtab = NULL) {
 						<label class="checkboxlabel">
 							<input type="radio" id="a-<?php echo $prefix; ?>move" name="a-<?php echo $prefix; ?>MoveCopyRename" value="move"
 										 onclick="toggleAlbumMCR('<?php echo $prefix; ?>', 'move');"<?php echo $isPrimaryAlbum; ?> />
-	<?php echo gettext("Move"); ?>
+										 <?php echo gettext("Move"); ?>
 						</label>
 
 						<label class="checkboxlabel">
 							<input type="radio" id="a-<?php echo $prefix; ?>copy" name="a-<?php echo $prefix; ?>MoveCopyRename" value="copy"
 										 onclick="toggleAlbumMCR('<?php echo $prefix; ?>', 'copy');"/>
-	<?php echo gettext("Copy"); ?>
+										 <?php echo gettext("Copy"); ?>
 						</label>
 
 						<label class="checkboxlabel">
 							<input type="radio" id="a-<?php echo $prefix; ?>rename" name="a-<?php echo $prefix; ?>MoveCopyRename" value="rename"
 										 onclick="toggleAlbumMCR('<?php echo $prefix; ?>', 'rename');" <?php echo $isPrimaryAlbum; ?> />
-	<?php echo gettext("Rename Folder"); ?>
+										 <?php echo gettext("Rename Folder"); ?>
 						</label>
 
 						<label class="checkboxlabel">
@@ -1986,23 +1969,23 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 } else {
 											 ?>
 											 onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');
-													 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
+															 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
 											 <?php
 										 }
 										 ?> />
-	<?php echo gettext("Delete album"); ?>
+										 <?php echo gettext("Delete album"); ?>
 						</label>
 
 						<br class="clearall" />
 						<div class="deletemsg" id="deletemsg<?php echo $prefix; ?>"	style="padding-top: .5em; padding-left: .5em; color: red; display: none">
-	<?php echo gettext('Album will be deleted when changes are applied.'); ?>
+							<?php echo gettext('Album will be deleted when changes are applied.'); ?>
 							<br class="clearall" />
 							<p class="buttons">
 								<a	onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');"><img src="images/reset.png" alt="" /><?php echo addslashes(gettext("Cancel")); ?></a>
 							</p>
 						</div>
 						<div id="a-<?php echo $prefix; ?>movecopydiv" style="padding-top: .5em; padding-left: .5em; display: none;">
-								<?php echo gettext("to:"); ?>
+							<?php echo gettext("to:"); ?>
 							<select id="a-<?php echo $prefix; ?>albumselectmenu" name="a-<?php echo $prefix; ?>albumselect" onchange="">
 								<?php
 								$exclude = $album->name;
@@ -2039,7 +2022,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 							</p>
 						</div>
 						<div id="a-<?php echo $prefix; ?>renamediv" style="padding-top: .5em; padding-left: .5em; display: none;">
-	<?php echo gettext("to:"); ?>
+							<?php echo gettext("to:"); ?>
 							<input name="a-<?php echo $prefix; ?>renameto" type="text" value="<?php echo basename($album->name); ?>"/><br />
 							<br class="clearall" />
 							<p class="buttons">
@@ -2261,12 +2244,12 @@ function printAdminHeader($tab, $subtab = NULL) {
 			}
 			?>
 			<div class="page-list_extra">
-	<?php echo $sa; ?>
+				<?php echo $sa; ?>
 			</div>
 			<div class="page-list_extra">
-			<?php echo $si; ?>
+				<?php echo $si; ?>
 			</div>
-	<?php $wide = '40px'; ?>
+			<?php $wide = '40px'; ?>
 			<div class="page-list_iconwrapperalbum">
 				<div class="page-list_icon">
 					<?php
@@ -2509,7 +2492,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 		if (isset($_POST[$prefix . 'owner']))
 			$album->setOwner(sanitize($_POST[$prefix . 'owner']));
 
-		$custom = process_language_string_save($prefix . 'album_custom_data', 1);
+		$custom = process_language_string_save($prefix . '-custom_data', 1);
 		$album->setCustomData(zp_apply_filter('save_album_custom_data', $custom, $prefix));
 		zp_apply_filter('save_album_utilities_data', $album, $prefix);
 		$album->save();
@@ -3900,7 +3883,7 @@ function printBulkActions($checkarray, $checkAll = false) {
 	?>
 	<span style="float:right">
 		<select class="ignoredirty" name="checkallaction" id="checkallaction" size="1" onchange="checkFor(this);" >
-		<?php generateListFromArray(array('noaction'), $checkarray, false, true); ?>
+			<?php generateListFromArray(array('noaction'), $checkarray, false, true); ?>
 		</select>
 		<?php
 		if ($checkAll) {
@@ -4519,7 +4502,7 @@ function printPageSelector($subpage, $rangeset, $script, $queryParams) {
 		}
 		?>
 		<select name="subpage" class="ignoredirty" id="subpage<?php echo $instances; ?>" onchange="launchScript('<?php echo WEBPATH . '/' . ZENFOLDER . '/' . $script; ?>',
-								[<?php echo $jump; ?>'subpage=' + $('#subpage<?php echo $instances; ?>').val()]);" >
+										[<?php echo $jump; ?>'subpage=' + $('#subpage<?php echo $instances; ?>').val()]);" >
 							<?php
 							foreach ($rangeset as $page => $range) {
 								?>
@@ -4881,21 +4864,21 @@ function consolidatedEditMessages($subtab) {
 	if (!empty($errorbox)) {
 		?>
 		<div class="errorbox fade-message">
-		<?php echo implode('<br />', $errorbox); ?>
+			<?php echo implode('<br />', $errorbox); ?>
 		</div>
 		<?php
 	}
 	if (!empty($notebox)) {
 		?>
 		<div class="notebox fade-message">
-		<?php echo implode('<br />', $notebox); ?>
+			<?php echo implode('<br />', $notebox); ?>
 		</div>
 		<?php
 	}
 	if (!empty($messagebox)) {
 		?>
 		<div class="messagebox fade-message">
-		<?php echo implode('<br />', $messagebox); ?>
+			<?php echo implode('<br />', $messagebox); ?>
 		</div>
 		<?php
 	}

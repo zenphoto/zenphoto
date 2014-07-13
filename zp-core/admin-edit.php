@@ -1221,22 +1221,22 @@ echo "\n</head>";
 																<label class="checkboxlabel">
 																	<input type="radio" id="move-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="move"
 																				 onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>'
-																										 , 'move');"  /> <?php echo gettext("Move"); ?>
+																														 , 'move');"  /> <?php echo gettext("Move"); ?>
 																</label>
 																<label class="checkboxlabel">
 																	<input type="radio" id="copy-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="copy"
 																				 onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>'
-																										 , 'copy');"  /> <?php echo gettext("Copy"); ?>
+																														 , 'copy');"  /> <?php echo gettext("Copy"); ?>
 																</label>
 																<label class="checkboxlabel">
 																	<input type="radio" id="rename-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="rename"
 																				 onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>',
-																										 'rename');"  /> <?php echo gettext("Rename File"); ?>
+																														 'rename');"  /> <?php echo gettext("Rename File"); ?>
 																</label>
 																<label class="checkboxlabel">
 																	<input type="radio" id="Delete-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="delete"
 																				 onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>', '');
-																						 deleteConfirm('Delete-<?php echo $currentimage; ?>', '<?php echo $currentimage; ?>', '<?php echo addslashes(gettext("Are you sure you want to select this image for deletion?")); ?>')" /> <?php echo gettext("Delete image") ?>
+																										 deleteConfirm('Delete-<?php echo $currentimage; ?>', '<?php echo $currentimage; ?>', '<?php echo addslashes(gettext("Are you sure you want to select this image for deletion?")); ?>')" /> <?php echo gettext("Delete image") ?>
 																</label>
 																<br class="clearall" />
 																<div id="movecopydiv-<?php echo $currentimage; ?>" style="padding-top: .5em; padding-left: .5em; display: none;">
@@ -1353,7 +1353,7 @@ echo "\n</head>";
 																?>
 																<div class = "page-list_icon">
 																	<input class = "checkbox" type = "checkbox" name = "ids[]" value = "<?php echo $image->getFileName(); ?>" onclick = "triggerAllBox(this.form, 'ids[]', this.for
-																							m.allbox);" />
+																												m.allbox);" />
 																</div>
 																<?php
 															}
@@ -1469,25 +1469,7 @@ echo "\n</head>";
 															</td>
 														</tr>
 														<?php
-														$custom = zp_apply_filter('edit_image_custom_data', '', $image, $currentimage);
-														if (empty($custom)) {
-															?>
-															<tr>
-																<td valign="top"><?php echo gettext("Custom data:"); ?></td>
-																<td>
-																	<div id="customData_hide" class="customhide">
-																		<a onclick="$('#customData_show').show();
-																				$('#customData_hide').hide();"><?php echo gettext('show content'); ?></a>
-																	</div>
-																	<div id="customData_show" style="display:none;">
-						<?php print_language_string_list($image->getCustomData('all'), $currentimage . '-custom_data', true, NULL, 'texteditor_imagecustomdata', '100%'); ?>
-																	</div>
-																</td>
-															</tr>
-															<?php
-														} else {
-															echo $custom;
-														}
+														echo zp_apply_filter('edit_image_custom_data', '', $image, $currentimage);
 														?>
 														<tr>
 															<td valign="top"><?php echo gettext("Location:"); ?></td>
@@ -1567,7 +1549,7 @@ echo "\n</head>";
 																	?>
 																	<div class="metadata_container">
 																		<table class="metadata_table" >
-						<?php echo $data; ?>
+																			<?php echo $data; ?>
 																		</table>
 																	</div>
 																	<?php
@@ -1583,7 +1565,7 @@ echo "\n</head>";
 															<td class="topalign-nopadding"><br /><?php echo gettext("Codeblocks:"); ?></td>
 															<td>
 																<br />
-					<?php printCodeblockEdit($image, $currentimage); ?>
+																<?php printCodeblockEdit($image, $currentimage); ?>
 															</td>
 														</tr>
 														<?php
@@ -1656,7 +1638,7 @@ echo "\n</head>";
 											?>
 											<tr>
 												<td colspan="4" class="bordered" id="imagenavb">
-					<?php adminPageNav($pagenum, $totalpages, 'admin-edit.php', '?page=edit&amp;album=' . html_encode(pathurlencode($album->name)), '&amp;tab=imageinfo'); ?>
+													<?php adminPageNav($pagenum, $totalpages, 'admin-edit.php', '?page=edit&amp;album=' . html_encode(pathurlencode($album->name)), '&amp;tab=imageinfo'); ?>
 												</td>
 											</tr>
 											<?php
@@ -1726,9 +1708,9 @@ echo "\n</head>";
 					}
 					?>
 				</h1>
-					<?php consolidatedEditMessages('massedit'); ?>
+				<?php consolidatedEditMessages('massedit'); ?>
 				<form class="dirtylistening" onReset="setClean('form_albumedit-multi');" name="albumedit" id="form_albumedit-multi" autocomplete="off"	action="?page=edit&amp;action=save<?php echo $albumdir ?>" method="POST" >
-	<?php XSRFToken('albumedit'); ?>
+					<?php XSRFToken('albumedit'); ?>
 					<input type="hidden" name="totalalbums" value="<?php echo sizeof($albums); ?>" />
 					<span class="buttons">
 						<a href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-edit.php?page=edit">
@@ -1795,13 +1777,13 @@ echo "\n</head>";
 						}
 						?>
 						<p>
-			<?php printf(gettext('Current sort: <em>%1$s%2$s</em>.'), $sorttype, $dir); ?>
+							<?php printf(gettext('Current sort: <em>%1$s%2$s</em>.'), $sorttype, $dir); ?>
 						</p>
 						<p>
-			<?php echo gettext('Drag the albums into the order you wish them displayed.'); ?>
+							<?php echo gettext('Drag the albums into the order you wish them displayed.'); ?>
 						</p>
 						<p class="notebox">
-						<?php echo gettext('<strong>Note:</strong> Dragging an album under a different parent will move the album. You cannot move albums under a <em>dynamic</em> album.'); ?>
+							<?php echo gettext('<strong>Note:</strong> Dragging an album under a different parent will move the album. You cannot move albums under a <em>dynamic</em> album.'); ?>
 						</p>
 						<?php
 					}
@@ -1817,7 +1799,7 @@ echo "\n</head>";
 					printEditDropdown('', array('1', '2', '3', '4', '5'), $album_nesting);
 					?>
 					<form class="dirtylistening" onReset="setClean('sortableListForm');" action="?page=edit&amp;action=savealbumorder" method="post" name="sortableListForm" id="sortableListForm" onsubmit="return confirmAction();" >
-							<?php XSRFToken('savealbumorder'); ?>
+						<?php XSRFToken('savealbumorder'); ?>
 						<p class="buttons">
 							<?php
 							if ($album_nesting > 1 || zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
@@ -1838,27 +1820,27 @@ echo "\n</head>";
 						<br class="clearall" /><br />
 						<div class="bordered">
 							<div class="headline"><?php echo gettext("Edit this album"); ?>
-		<?php printBulkActions($checkarray_albums); ?>
+								<?php printBulkActions($checkarray_albums); ?>
 							</div>
 							<div class="subhead">
 								<label class="buttons" style="float: left">
 									<a href="admin-edit.php?showthumbs=<?php echo $thumbshow ?>" title="<?php echo gettext('Thumbnail generation may be time consuming on slow servers on when there are a lot of images.'); ?>">
-		<?php echo $thumbmsg; ?>
+										<?php echo $thumbmsg; ?>
 									</a>
 								</label>
 								<label style="float: right">
-												 <?php echo gettext("Check All"); ?> <input type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this
-																	.checked);" />
+									<?php echo gettext("Check All"); ?> <input type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this
+																				 .checked);" />
 								</label>
 							</div>
 
 							<ul class="page-list">
-		<?php printNestedAlbumsList($albums, $showthumb, NULL); ?>
+								<?php printNestedAlbumsList($albums, $showthumb, NULL); ?>
 							</ul>
 
 						</div>
 						<div>
-		<?php printAlbumLegend(); ?>
+							<?php printAlbumLegend(); ?>
 						</div>
 
 						<span id="serializeOutput" /></span>
@@ -1901,7 +1883,7 @@ echo "\n</head>";
 			?>
 		</div><!-- content -->
 	</div><!-- main -->
-<?php printAdminFooter(); ?>
+	<?php printAdminFooter(); ?>
 </body>
 <?php
 // to fool the validator
