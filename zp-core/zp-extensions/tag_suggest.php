@@ -45,7 +45,7 @@ function tagSuggestJS() {
 		// <!-- <![CDATA[
 		var _tagList = [<?php echo $list; ?>];
 		$(function() {
-			$('#search_input, #edit-editable_4, #newtag_tags_').tagSuggest({separator: '<?php echo $tagseparator; ?>', tags: _tagList})
+			$('#search_input, #edit-editable_4, .tagsuggest').tagSuggest({separator: '<?php echo $tagseparator; ?>', tags: _tagList})
 		});
 		// ]]> -->
 	</script>
