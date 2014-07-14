@@ -2762,3 +2762,7 @@ form.tinyDirty input[type=submit]:active{
 	text-decoration: none !important;
 	vertical-align: sub;
 }
+
+.pickedObject {
+	border: 1px dotted green;
+}
