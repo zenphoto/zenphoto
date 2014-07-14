@@ -305,7 +305,7 @@ class cmsFilters {
 	}
 
 	static function admin_toolbox_news($redirect, $zf) {
-		global $_zp_CMS, $_zp_current_category, $_zp_current_zenpage_news;
+		global $_zp_CMS, $_zp_current_category, $_zp_current_article;
 		if (is_NewsArticle()) {
 			if (zp_loggedin(ZENPAGE_NEWS_RIGHTS) && $_zp_CMS->news_enabled) {
 
