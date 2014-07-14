@@ -227,16 +227,8 @@ echo "\n</head>";
 											</a>
 											<?php
 										}
+										linkPickerIcon($image);
 										?>
-										<a href="javascript:$.ajax({
-											 type: 'POST',
-											 cache: false,
-											 data: '<?php echo pickSource($image); ?>',
-											 url: '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/pickSource.php'
-											 });"
-											 title="<?php echo gettext('pick source'); ?>">
-											<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="">
-										</a>
 									</p>
 									<?php
 								}

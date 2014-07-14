@@ -136,71 +136,69 @@ function printAdminHeader($tab, $subtab = NULL) {
 
 
 			<script type="text/javascript">
-				// <!-- <![CDATA[
-				function setClean(id) {
-					$('form#' + id).dirtyForms('setClean');
-					$('form#' + id).removeClass('tinyDirty');
-				}
-				$(document).ready(function() {
+								// <!-- <![CDATA[
+												function setClean(id) {
+												$('form#' + id).dirtyForms('setClean');
+																$('form#' + id).removeClass('tinyDirty');
+												}
+								$(document).ready(function() {
 	<?php
 	if (zp_has_filter('admin_head', 'colorbox::css')) {
 		?>
-						$("a.colorbox").colorbox({
-							maxWidth: "98%",
-							maxHeight: "98%",
-							close: '<?php echo addslashes(gettext("close")); ?>'
-						});
+									$("a.colorbox").colorbox({
+									maxWidth: "98%",
+													maxHeight: "98%",
+													close: '<?php echo addslashes(gettext("close")); ?>'
+									});
 		<?php
 	}
 	?>
-					$.DirtyForms.message = '<?php echo gettext('You have unsaved changes!'); ?>';
-					$.DirtyForms.title = '<?php echo gettext('Are you sure you want to leave this page?'); ?>';
-					$.DirtyForms.continueText = '<?php echo gettext('Leave'); ?>';
-					$.DirtyForms.stopText = '<?php echo gettext('Stay'); ?>';
-
-					$.facebox.settings.closeImage = '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/facebox/closelabel.png';
-					$('#modal').facebox();
-
-					$('form.dirtylistening').dirtyForms();
-				});
-				$(function() {
-					$(".tooltip ").tooltip({
-						show: 1000,
-						hide: 1000,
-						position: {
-							my: "center bottom-20",
-							at: "center top",
-							using: function(position, feedback) {
-								$(this).css(position);
-								$("<div>")
-												.addClass("arrow")
-												.addClass(feedback.vertical)
-												.addClass(feedback.horizontal)
-												.appendTo(this);
-							}
-						}
-					});
-					$(".page-list_icon").tooltip({
-						show: 1000,
-						hide: 1000,
-						position: {
-							my: "center bottom-20",
-							at: "center top",
-							using: function(position, feedback) {
-								$(this).css(position);
-								$("<div>")
-												.addClass("arrow")
-												.addClass(feedback.vertical)
-												.addClass(feedback.horizontal)
-												.appendTo(this);
-							}
-						}
-					});
-				});
-				jQuery(function($) {
-					$(".fade-message").fadeTo(5000, 1).fadeOut(1000);
-				})
-				// ]]> -->
+								$.DirtyForms.message = '<?php echo gettext('You have unsaved changes!'); ?>';
+												$.DirtyForms.title = '<?php echo gettext('Are you sure you want to leave this page?'); ?>';
+												$.DirtyForms.continueText = '<?php echo gettext('Leave'); ?>';
+												$.DirtyForms.stopText = '<?php echo gettext('Stay'); ?>';
+												$.facebox.settings.closeImage = '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/facebox/closelabel.png';
+												$('#modal').facebox();
+												$('form.dirtylistening').dirtyForms();
+								});
+												$(function() {
+												$(".tooltip ").tooltip({
+												show: 1000,
+																hide: 1000,
+																position: {
+																my: "center bottom-20",
+																				at: "center top",
+																				using: function(position, feedback) {
+																				$(this).css(position);
+																								$("<div>")
+																								.addClass("arrow")
+																								.addClass(feedback.vertical)
+																								.addClass(feedback.horizontal)
+																								.appendTo(this);
+																				}
+																}
+												});
+																$(".page-list_icon").tooltip({
+												show: 1000,
+																hide: 1000,
+																position: {
+																my: "center bottom-20",
+																				at: "center top",
+																				using: function(position, feedback) {
+																				$(this).css(position);
+																								$("<div>")
+																								.addClass("arrow")
+																								.addClass(feedback.vertical)
+																								.addClass(feedback.horizontal)
+																								.appendTo(this);
+																				}
+																}
+												});
+												});
+												jQuery(function($) {
+												$(".fade-message").fadeTo(5000, 1).fadeOut(1000);
+												})
+												// ]]> -->
 			</script>
 			<?php
 			zp_apply_filter('admin_head');
@@ -211,30 +209,30 @@ function printAdminHeader($tab, $subtab = NULL) {
 			<!--Nested Sortables-->
 			<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.ui.nestedSortable.js"></script>
 			<script type="text/javascript">
-				//<!-- <![CDATA[
-				$(document).ready(function() {
+												//<!-- <![CDATA[
+												$(document).ready(function() {
 
-					$('ul.page-list').nestedSortable({
-						disableNesting: 'no-nest',
-						forcePlaceholderSize: true,
-						handle: 'div',
-						items: 'li',
-						opacity: .6,
-						placeholder: 'placeholder',
-						tabSize: 25,
-						tolerance: 'intersect',
-						toleranceElement: '> div',
-						listType: 'ul'
-					});
-					$('.serialize').click(function() {
-						serialized = $('ul.page-list').nestedSortable('serialize');
-						if (serialized != original_order) {
-							$('#serializeOutput').html('<input type="hidden" name="order" size="30" maxlength="1000" value="' + serialized + '" />');
-						}
-					})
-					var original_order = $('ul.page-list').nestedSortable('serialize');
-				});
-				// ]]> -->
+								$('ul.page-list').nestedSortable({
+								disableNesting: 'no-nest',
+												forcePlaceholderSize: true,
+												handle: 'div',
+												items: 'li',
+												opacity: .6,
+												placeholder: 'placeholder',
+												tabSize: 25,
+												tolerance: 'intersect',
+												toleranceElement: '> div',
+												listType: 'ul'
+								});
+												$('.serialize').click(function() {
+								serialized = $('ul.page-list').nestedSortable('serialize');
+												if (serialized != original_order) {
+								$('#serializeOutput').html('<input type="hidden" name="order" size="30" maxlength="1000" value="' + serialized + '" />');
+								}
+								})
+												var original_order = $('ul.page-list').nestedSortable('serialize');
+								});
+												// ]]> -->
 			</script>
 			<!--Nested Sortables End-->
 			<?php
@@ -850,12 +848,12 @@ function printAdminHeader($tab, $subtab = NULL) {
 									<?php generateUnorderedListFromArray($cvarray, $row['checkboxes'], '', '', true, true, 'all_' . $key); ?>
 								</ul>
 								<script type="text/javascript">
-									// <!-- <![CDATA[
-									function <?php echo $key; ?>_all() {
-										var check = $('#all_<?php echo $key; ?>').prop('checked');
-										$('.all_<?php echo $key; ?>').prop('checked', check);
-									}
-									// ]]> -->
+																					// <!-- <![CDATA[
+																									function <?php echo $key; ?>_all() {
+																									var check = $('#all_<?php echo $key; ?>').prop('checked');
+																													$('.all_<?php echo $key; ?>').prop('checked', check);
+																									}
+																					// ]]> -->
 								</script>
 								<label>
 									<input type="checkbox" name="all_<?php echo $key; ?>" id="all_<?php echo $key; ?>" class="all_<?php echo $key; ?>" onclick="<?php echo $key; ?>_all();" <?php if ($all) echo ' checked="checked"'; ?>/>
@@ -871,11 +869,11 @@ function printAdminHeader($tab, $subtab = NULL) {
 							<td width="350" style="margin:0; padding:0">
 								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'text-' . $postkey; ?>" value="1" />
 								<script type="text/javascript">
-									// <!-- <![CDATA[
-									$(document).ready(function() {
-										$('#<?php echo $key; ?>_colorpicker').farbtastic('#<?php echo $key; ?>');
-									});
-									// ]]> -->
+																									// <!-- <![CDATA[
+																									$(document).ready(function() {
+																					$('#<?php echo $key; ?>_colorpicker').farbtastic('#<?php echo $key; ?>');
+																					});
+																									// ]]> -->
 								</script>
 								<table style="margin:0; padding:0" >
 									<tr>
@@ -895,21 +893,21 @@ function printAdminHeader($tab, $subtab = NULL) {
 								<span id="slider_display-<?php echo $postkey; ?>"><?php echo (int) $v; ?></span>
 								<input type="hidden" id="<?php echo $postkey; ?>" name="<?php echo $postkey; ?>" value="<?php echo $v; ?>" />
 								<script type="text/javascript">
-									// <!-- <![CDATA[
-									$(function() {
-										$("#slider-<?php echo $postkey; ?>").slider({
-											startValue: <?php echo (int) $v; ?>,
-											value: <?php echo (int) $v; ?>,
-											min: <?php echo (int) $min; ?>,
-											max: <?php echo (int) $max; ?>,
-											slide: function(event, ui) {
-												$("#<?php echo $postkey; ?>").val(ui.value);
-												$("#slider_display-<?php echo $postkey; ?>").html(ui.value);
-											}
-										});
-										$("#<?php echo $postkey; ?>").val($("#slider-<?php echo $postkey; ?>").slider("value"));
-									});
-									// ]]> -->
+																									// <!-- <![CDATA[
+																									$(function() {
+																									$("#slider-<?php echo $postkey; ?>").slider({
+																									startValue: <?php echo (int) $v; ?>,
+																													value: <?php echo (int) $v; ?>,
+																													min: <?php echo (int) $min; ?>,
+																													max: <?php echo (int) $max; ?>,
+																													slide: function(event, ui) {
+																													$("#<?php echo $postkey; ?>").val(ui.value);
+																																	$("#slider_display-<?php echo $postkey; ?>").html(ui.value);
+																													}
+																									});
+																													$("#<?php echo $postkey; ?>").val($("#slider-<?php echo $postkey; ?>").slider("value"));
+																									});
+																									// ]]> -->
 								</script>
 								<div id="slider-<?php echo $postkey; ?>"></div>
 
@@ -1215,22 +1213,22 @@ function printAdminHeader($tab, $subtab = NULL) {
 			}
 			?>
 			<script>
-				$(function() {
-					$("#resizable_<?php echo $postit; ?>").resizable({
+																				$(function() {
+																				$("#resizable_<?php echo $postit; ?>").resizable({
 		<?php
 		if (is_bool($resizeable)) {
 			?>
-						maxWidth: 250,
+																					maxWidth: 250,
 			<?php
 		}
 		?>
-					minWidth: 250,
-									minHeight: 120,
-									resize: function(event, ui) {
-									$('#list_<?php echo $postit; ?>').height($('#resizable_<?php echo $postit; ?>').height());
-									}
-				});
-			</script>
+																				minWidth: 250,
+																								minHeight: 120,
+																								resize: function(event, ui) {
+																								$('#list_<?php echo $postit; ?>').height($('#resizable_<?php echo $postit; ?>').height());
+																								}
+																				})
+																				});</script>
 			<?php
 		} else {
 			$tagclass = 'tagchecklist';
@@ -1452,7 +1450,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 									<label><input type="checkbox" name="disclose_password<?php echo $suffix; ?>"
 																id="disclose_password<?php echo $suffix; ?>"
 																onclick="passwordClear('<?php echo $suffix; ?>');
-																				togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?></label>
+																																					togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?></label>
 								</td>
 								<td>
 									<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
@@ -1507,17 +1505,17 @@ function printAdminHeader($tab, $subtab = NULL) {
 							<td class="leftcolumn"><?php echo gettext("Date:"); ?> </td>
 							<td>
 								<script type="text/javascript">
-									// <!-- <![CDATA[
-									$(function() {
-										$("#datepicker<?php echo $suffix; ?>").datepicker({
-											dateFormat: 'yy-mm-dd',
-											showOn: 'button',
-											buttonImage: 'images/calendar.png',
-											buttonText: '<?php echo addslashes(gettext('calendar')); ?>',
-											buttonImageOnly: true
-										});
-									});
-									// ]]> -->
+																									// <!-- <![CDATA[
+																									$(function() {
+																									$("#datepicker<?php echo $suffix; ?>").datepicker({
+																									dateFormat: 'yy-mm-dd',
+																													showOn: 'button',
+																													buttonImage: 'images/calendar.png',
+																													buttonText: '<?php echo addslashes(gettext('calendar')); ?>',
+																													buttonImageOnly: true
+																									});
+																									});
+																									// ]]> -->
 								</script>
 								<input type="text" id="datepicker<?php echo $suffix; ?>" size="20" name="<?php echo $prefix; ?>albumdate" value="<?php echo $d; ?>" />
 							</td>
@@ -1738,9 +1736,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 									if ($showThumb) {
 										?>
 										<script type="text/javascript">
-											// <!-- <![CDATA[
-											updateThumbPreview(document.getElementById('thumbselect'));
-											// ]]> -->
+																															// <!-- <![CDATA[
+																															updateThumbPreview(document.getElementById('thumbselect'));
+																															// ]]> -->
 										</script>
 										<?php
 									}
@@ -1883,35 +1881,35 @@ function printAdminHeader($tab, $subtab = NULL) {
 						$expirationdate = $album->getExpireDate();
 						?>
 						<script type="text/javascript">
-							// <!-- <![CDATA[
-							$(function() {
-								$("#<?php echo $prefix; ?>publishdate,#<?php echo $prefix; ?>expirationdate").datepicker({
-									dateFormat: 'yy-mm-dd',
-									showOn: 'button',
-									buttonImage: '../zp-core/images/calendar.png',
-									buttonText: '<?php echo addslashes(gettext("calendar")); ?>',
-									buttonImageOnly: true
-								});
-								$('#<?php echo $prefix; ?>publishdate').change(function() {
-									var today = new Date();
-									var pub = $('#<?php echo $prefix; ?>publishdate').datepicker('getDate');
-									if (pub.getTime() > today.getTime()) {
-										$(".<?php echo $prefix; ?>scheduledpublishing").html('<br /><?php echo addslashes(gettext('Future publishing date.')); ?>');
-									} else {
-										$(".<?php echo $prefix; ?>scheduledpublishing").html('');
-									}
-								});
-								$('#<?php echo $prefix; ?>expirationdate').change(function() {
-									var today = new Date();
-									var expiry = $('#<?php echo $prefix; ?>expirationdate').datepicker('getDate');
-									if (expiry.getTime() > today.getTime()) {
-										$(".<?php echo $prefix; ?>expire").html('');
-									} else {
-										$(".<?php echo $prefix; ?>expire").html('<br /><?php echo addslashes(gettext('Expired!')); ?>');
-									}
-								});
-							});
-							// ]]> -->
+																															// <!-- <![CDATA[
+																															$(function() {
+																															$("#<?php echo $prefix; ?>publishdate,#<?php echo $prefix; ?>expirationdate").datepicker({
+																															dateFormat: 'yy-mm-dd',
+																																			showOn: 'button',
+																																			buttonImage: '../zp-core/images/calendar.png',
+																																			buttonText: '<?php echo addslashes(gettext("calendar")); ?>',
+																																			buttonImageOnly: true
+																															});
+																																			$('#<?php echo $prefix; ?>publishdate').change(function() {
+																															var today = new Date();
+																																			var pub = $('#<?php echo $prefix; ?>publishdate').datepicker('getDate');
+																																			if (pub.getTime() > today.getTime()) {
+																															$(".<?php echo $prefix; ?>scheduledpublishing").html('<br /><?php echo addslashes(gettext('Future publishing date.')); ?>');
+																															} else {
+																															$(".<?php echo $prefix; ?>scheduledpublishing").html('');
+																															}
+																															});
+																																			$('#<?php echo $prefix; ?>expirationdate').change(function() {
+																															var today = new Date();
+																																			var expiry = $('#<?php echo $prefix; ?>expirationdate').datepicker('getDate');
+																																			if (expiry.getTime() > today.getTime()) {
+																															$(".<?php echo $prefix; ?>expire").html('');
+																															} else {
+																															$(".<?php echo $prefix; ?>expire").html('<br /><?php echo addslashes(gettext('Expired!')); ?>');
+																															}
+																															});
+																															});
+																															// ]]> -->
 						</script>
 						<br class="clearall" />
 						<hr />
@@ -1969,7 +1967,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 } else {
 											 ?>
 											 onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');
-															 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
+																																												 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
 											 <?php
 										 }
 										 ?> />
@@ -3765,12 +3763,12 @@ function printEditDropdown($subtab, $nestinglevels, $nesting) {
 			?>
 		</select>
 		<script type="text/javascript" >
-			// <!-- <![CDATA[
-			function gotoLink(form) {
-				var OptionIndex = form.ListBoxURL.selectedIndex;
-				parent.location = form.ListBoxURL.options[OptionIndex].value;
-			}
-			// ]]> -->
+																															// <!-- <![CDATA[
+																																			function gotoLink(form) {
+																																			var OptionIndex = form.ListBoxURL.selectedIndex;
+																																							parent.location = form.ListBoxURL.options[OptionIndex].value;
+																																			}
+																															// ]]> -->
 		</script>
 	</form>
 	<?php
@@ -3823,60 +3821,60 @@ function printBulkActions($checkarray, $checkAll = false) {
 	if ($tags || $movecopy || $categories || $changeowner) {
 		?>
 		<script type="text/javascript">
-			//<!-- <![CDATA[
-			function checkFor(obj) {
-				var sel = obj.options[obj.selectedIndex].value;
+																															//<!-- <![CDATA[
+																															function checkFor(obj) {
+																															var sel = obj.options[obj.selectedIndex].value;
 		<?php
 		if ($tags) {
 			?>
-					if (sel == 'addtags' || sel == 'alltags') {
-						$.colorbox({
-							href: "#mass_tags_data",
-							inline: true,
-							open: true,
-							close: '<?php echo gettext("ok"); ?>'
-						});
-					}
+																																if (sel == 'addtags' || sel == 'alltags') {
+																																$.colorbox({
+																																href: "#mass_tags_data",
+																																				inline: true,
+																																				open: true,
+																																				close: '<?php echo gettext("ok"); ?>'
+																																});
+																																}
 			<?php
 		}
 		if ($movecopy) {
 			?>
-					if (sel == 'moveimages' || sel == 'copyimages') {
-						$.colorbox({
-							href: "#mass_movecopy_data", inline: true,
-							open: true,
-							close: '<?php echo gettext("ok"); ?>'
-						});
-					}
+																																if (sel == 'moveimages' || sel == 'copyimages') {
+																																$.colorbox({
+																																href: "#mass_movecopy_data", inline: true,
+																																				open: true,
+																																				close: '<?php echo gettext("ok"); ?>'
+																																});
+																																}
 			<?php
 		}
 		if ($categories) {
 			?>
-					if (sel == 'addcats') {
-						$.colorbox({
-							href: "#mass_cats_data",
-							inline: true,
-							open: true,
-							close: '<?php echo gettext("ok"); ?>'
-						});
-					}
+																																if (sel == 'addcats') {
+																																$.colorbox({
+																																href: "#mass_cats_data",
+																																				inline: true,
+																																				open: true,
+																																				close: '<?php echo gettext("ok"); ?>'
+																																});
+																																}
 			<?php
 		}
 		if ($changeowner) {
 			?>
-					if (sel == 'changeowner') {
-						$.colorbox({
-							href: "#mass_owner_data",
-							inline: true,
-							open: true,
-							close: '<?php echo gettext("ok"); ?>'
-						});
-					}
+																																if (sel == 'changeowner') {
+																																$.colorbox({
+																																href: "#mass_owner_data",
+																																				inline: true,
+																																				open: true,
+																																				close: '<?php echo gettext("ok"); ?>'
+																																});
+																																}
 			<?php
 		}
 		?>
-			}
-			// ]]> -->
+																															}
+																															// ]]> -->
 		</script>
 		<?php
 	}
@@ -4199,29 +4197,29 @@ function processCommentBulkActions() {
 function codeblocktabsJS() {
 	?>
 	<script type="text/javascript" charset="utf-8">
-		// <!-- <![CDATA[
-		$(function() {
-			var tabContainers = $('div.tabs > div');
-			$('.first').addClass('selected');
-		});
-		function cbclick(num, id) {
-			$('.cbx-' + id).hide();
-			$('#cb' + num + '-' + id).show();
-			$('.cbt-' + id).removeClass('selected');
-			$('#cbt' + num + '-' + id).addClass('selected');
-		}
+																																		// <!-- <![CDATA[
+																																		$(function() {
+																																		var tabContainers = $('div.tabs > div');
+																																						$('.first').addClass('selected');
+																																		});
+																																		function cbclick(num, id) {
+																																		$('.cbx-' + id).hide();
+																																						$('#cb' + num + '-' + id).show();
+																																						$('.cbt-' + id).removeClass('selected');
+																																						$('#cbt' + num + '-' + id).addClass('selected');
+																																		}
 
-		function cbadd(id, offset) {
-			var num = $('#cbu-' + id + ' li').size() - offset;
-			$('li:last', $('#cbu-' + id)).remove();
-			$('#cbu-' + id).append('<li><a class="cbt-' + id + '" id="cbt' + num + '-' + id + '" href="javascript:cbclick(' + num + ',' + id + ');" title="' + '<?php echo gettext('codeblock %u'); ?>'.replace(/%u/, num) + '">&nbsp;&nbsp;' + num + '&nbsp;&nbsp;</a></li>');
-			$('#cbu-' + id).append('<li><a id="cbp-' + id + '" href="javascript:cbadd(' + id + ',' + offset + ');" title="<?php echo gettext('add codeblock'); ?>">&nbsp;&nbsp;+&nbsp;&nbsp;</a></li>');
-			$('#cbd-' + id).append('<div class="cbx-' + id + '" id="cb' + num + '-' + id + '" style="display:none">' +
-							'<textarea name="codeblock' + num + '-' + id + '" class="codeblock" id="codeblock' + num + '-' + id + '" rows="40" cols="60"></textarea>' +
-							'</div>');
-			cbclick(num, id);
-		}
-		// ]]> -->
+																														function cbadd(id, offset) {
+																														var num = $('#cbu-' + id + ' li').size() - offset;
+																																		$('li:last', $('#cbu-' + id)).remove();
+																																		$('#cbu-' + id).append('<li><a class="cbt-' + id + '" id="cbt' + num + '-' + id + '" href="javascript:cbclick(' + num + ',' + id + ');" title="' + '<?php echo gettext('codeblock %u'); ?>'.replace(/%u/, num) + '">&nbsp;&nbsp;' + num + '&nbsp;&nbsp;</a></li>');
+																																		$('#cbu-' + id).append('<li><a id="cbp-' + id + '" href="javascript:cbadd(' + id + ',' + offset + ');" title="<?php echo gettext('add codeblock'); ?>">&nbsp;&nbsp;+&nbsp;&nbsp;</a></li>');
+																																		$('#cbd-' + id).append('<div class="cbx-' + id + '" id="cb' + num + '-' + id + '" style="display:none">' +
+																																		'<textarea name="codeblock' + num + '-' + id + '" class="codeblock" id="codeblock' + num + '-' + id + '" rows="40" cols="60"></textarea>' +
+																																		'</div>');
+																																		cbclick(num, id);
+																														}
+																														// ]]> -->
 	</script>
 	<?php
 }
@@ -4502,7 +4500,7 @@ function printPageSelector($subpage, $rangeset, $script, $queryParams) {
 		}
 		?>
 		<select name="subpage" class="ignoredirty" id="subpage<?php echo $instances; ?>" onchange="launchScript('<?php echo WEBPATH . '/' . ZENFOLDER . '/' . $script; ?>',
-										[<?php echo $jump; ?>'subpage=' + $('#subpage<?php echo $instances; ?>').val()]);" >
+																																			[<?php echo $jump; ?>'subpage=' + $('#subpage<?php echo $instances; ?>').val()]);" >
 							<?php
 							foreach ($rangeset as $page => $range) {
 								?>
@@ -4964,26 +4962,25 @@ function pickSource($obj) {
 
 function linkPickerItem($obj, $id) {
 	?>
-	<input type = "text" name="<?php echo $id; ?>" id="<?php echo $id; ?>" value="<?php echo $obj->getLink(); ?>" disabled="disabled" title="<?php echo gettext('You can also copy the link to your clipboard to paste elsewhere'); ?>" style="width:100%;" />
+	<input type = "text" name="<?php echo $id; ?>" id="<?php echo $id; ?>" value="<?php echo $obj->getLink(); ?>" READONLY title="<?php echo gettext('You can also copy the link to your clipboard to paste elsewhere'); ?>" style="width:100%;" />
 	<?php
 }
 
 function linkPickerIcon($obj, $id = NULL, $extra = NULL) {
 	?>
-	<a href="javascript:
-	<?php
+	<a onclick="<?php
 	if ($id) {
 		?>
-			 $('#<?php echo $id; ?>').select();
-			 <?php
-		 }
-		 ?>
-		 $.ajax({
-		 type: 'POST',
-		 cache: false,
-		 data: '<?php echo pickSource($obj); ?>'<?php echo $extra; ?>,
-		 url: '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/pickSource.php'
-		 });"
+																																			$('#<?php echo $id; ?>').select();
+		<?php
+	}
+	?>
+																																		$.ajax({
+																																		type: 'POST',
+																																						cache: false,
+																																						data: '<?php echo pickSource($obj); ?>'<?php echo $extra; ?>,
+																																						url: '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/pickSource.php'
+																																		});"
 		 title="<?php echo gettext('pick source'); ?>">
 		<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="">
 	</a>
