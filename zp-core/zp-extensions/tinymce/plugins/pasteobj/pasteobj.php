@@ -80,11 +80,17 @@ header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 				var title = '<?php echo html_encodeTagged($obj->getTitle()); ?>';
 				var image = '<?php echo $image; ?>';
 
+
 				function zenchange() {
 					var selectedlink = $('input:radio[name=link]:checked').val();
 					switch (selectedlink) {
 						case 'none':
-							$('#content').html('<img src="' + image + '" />');
+							if ($('#addcaption').prop('checked')) {
+								caption = '<figcaption>' + title + '</figcaption>';
+							} else {
+								caption = '';
+							}
+							$('#content').html('<figure><img src="' + image + '" />' + caption + '</figure>');
 							break;
 						case 'title':
 							if (image) {
@@ -95,13 +101,23 @@ header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 							break;
 						case 'link':
 							if (image) {
-								$('#content').html('<a href="' + link + '" title="' + title + '"><img src="' + image + '" /></a>');
+								if ($('#addcaption').prop('checked')) {
+									caption = '<figcaption><a href="' + link + '" title="' + title + '">' + title + '</a></figcaption>';
+								} else {
+									caption = '';
+								}
+								$('#content').html('<figure><a href="' + link + '" title="' + title + '"><img src="' + image + '" /></a>' + caption + '</figure>');
 							} else {
 								$('#content').html('<a href="' + link + '" title="' + title + '">' + title + ' </a>');
 							}
 							break;
 						case 'link2':
-							$('#content').html('<a href="' + link2 + '" title="' + title + '"><img src="' + image + '" /></a>');
+							if ($('#addcaption').prop('checked')) {
+								caption = '<figcaption><a href="' + link2 + '" title="' + title + '">' + title + '</a></figcaption>';
+							} else {
+								caption = '';
+							}
+							$('#content').html('<figure><a href="' + link2 + '" title="' + title + '"><img src="' + image + '" /></a>' + caption + '</figure>');
 							break;
 					}
 				}
@@ -147,6 +163,12 @@ header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 						<input type="radio" name="link" value="link2" id="link_album" onchange="zenchange();" />
 						<?php echo gettext('image with link to album'); ?>
 					</label>
+					<?php
+				}
+				if ($image) {
+					?>
+					<br />
+					<label><input type="checkbox" name="addcaption" id="addcaption" onchange="zenchange()"	/><?php echo gettext('Include caption'); ?></label>
 					<?php
 				}
 				?>

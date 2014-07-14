@@ -95,23 +95,23 @@
 <p>Click on the icon to select the object for pasting. Then go to your tinyMCE editor window, place the cursor where you want the insertion, and select either the tinyMCE:obj paste button on the toolbar&nbsp;or the tinyMCE:obj dropdown from the <em>Insert</em>&nbsp;menu item. This will bring up the tinyMCE:obj handler. Select any options you wish and press the&nbsp;<code>paste</code>&nbsp;button.</p>
 <p>You can even paste custom sized/cropped images. The&nbsp;<code>crop image</code>&nbsp;plugin provides a pick icon that selects the size and cropping of the working crop.</p>
 <h2>Copy-able object links for all objects</h2>
-<p>A side benefit of the tinyMCE:zen implementation is that you can also use your clipboard to cut and paste links to spots other than tinyMCE editors.</p>
-<p>The administrative tabs for <em>Page</em>, <em>News articles</em>, <em>catgegory</em>,&nbsp;<em>Image</em>, and <em>Album</em> objects now provide link text that can be copied to the clipboard and pasted wherever desired. (For instance into the content of a&nbsp;<em>News article</em>.) In the case of Images, the <em>crop image</em> and <em>crop thumbnail</em> functions will give a link that will produce the cropped version of the image. These latter are easily inserted into your <em>News article</em> and <em>Page</em> contend by the <em>tinyMCE:zen</em> insert image feature.</p>
+<p>A side benefit of the tinyMCE:obj implementation is that you can also use your clipboard to copy&nbsp;and paste links to spots other than tinyMCE editors.</p>
+<p>The administrative tabs for <em>Page</em>, <em>News articles</em>, <em>catgegory</em>,&nbsp;<em>Image</em>, and <em>Album</em> objects now provide link text that can be copied to the clipboard and pasted wherever desired. (For instance into the content of a&nbsp;<em>News article</em>.) In the case of Images, the <em>crop image</em> function will give a link that will produce the cropped version of the image. These latter are easily inserted into your <em>News article</em> and <em>Page</em> contend by the <em>tinyMCE:obj</em>&nbsp;insert image feature.</p>
 <h2>Purge option for theme and plugin options</h2>
 <p>This feature provides a convenient means to remove options of deleted and forgotten themes and plugins. Of coures it also allows you to "start from scratch" on current ones.</p>
 <h2>Custom option handler NUMERIC type option.</h2>
-<p>Allows themes and plugins to specify that an option be numeric. This allows a shorter input field. Also the is validated as numeric.</p>
+<p>Allows themes and plugins to specify that an option be numeric. This allows a shorter input field. Also the data is validated as numeric when updated.</p>
 <h2>Favorites albums</h2>
 <p>Create albums from your favorites that can be viewed by others. Favorites albums are essentially "dynamic" albums with the criteria being the selected favoirtes instance.</p>
 <h2>Improved deprecated function handling</h2>
 <p>Use of deprecated functions is now logged rather than indicated by a PHP notice. This of course presumes that the deprecated functions plugin is enabled.</p>
 <p>These errors are logged in a new <code>deprecated</code> log to separate them from other issues and make them easily findable. Only one instance of any particular use of a deprecated function is logged, so the log is not cluttered.</p>
 <h2>Improved "dirty form" handling</h2>
-<p>We have switched the javascript that detects form changes and warns if you leave the page. This script better integrates with the <em>tinyMCE</em> editor.</p>
+<p>We have switched the javascript that detects form changes and warns if you leave the page. This script better integrates with the <em>tinyMCE</em> editor. This implementation also recognizes "clean" links--that is links that do not actually leave the page. You will not be warned unnecessarily when clicking these links.</p>
 <h2>elFinder Theme editor</h2>
 <p>If enabled elFinder will be used to edit themes.</p>
 <h2>Image metadata transformation&nbsp;option</h2>
-<p>There is now an option to allow newlines in image metadata to be converted to &lt;code&gt;&lt;br /&gt;&lt;/code&gt; tags. This option applies to any metadata destined to the ZenPhoto20 <em>description</em> or <em>title</em> database fields. The raw metadata is left unchanged. This transformation occurs when a new image is discovered or if medadata is refreshed.</p>
+<p>There is now an option to allow newlines in image metadata to be converted to <code>&lt;br /&gt;</code> tags. This option applies to any metadata destined to the ZenPhoto20 <em>description</em> or <em>title</em> database fields. The raw metadata is left unchanged. This transformation occurs when a new image is discovered or if medadata is refreshed.</p>
 <h2>Plugin tabs</h2>
 <p>The tab categories of plugins have been reorganized and simplified. In addition, a new tab "enabled" has been created to list all enabled plugins regardless of their category.</p>
 <h2>Language specific tags</h2>
@@ -120,5 +120,14 @@
 <h2>General unification of objects and names</h2>
 <p>There was considerable inconsistency in both the naming and the methods used in zenphoto objects. We have made progress in making things more uniform. But don't fret. If you have custom plugins or themes from zenphoto version 1.4.6 or later there is a <code>zenphotoCompatibilityPack</code> plugin that will keep them running just fine.</p>
 <h2>General bug fixes</h2>
-<p>I have fixed multiple&nbsp;bugs discovered either in my efforts to provide the above or from discussions on Zenphoto forums and tickets.</p>	</body>
+<p>I have fixed multiple&nbsp;bugs discovered either in my efforts to provide the above or from discussions on Zenphoto forums and tickets.</p>
+<h2>New plugins</h2>
+<ul>
+<li><em>debug</em>: provides tools for debugging your site such as <em>PHPinfo</em>, <em>locale</em> information, etc.</li>
+<li><em>customData</em>: Generally you should not be using the custom_data field of objects now that the <em>customFieldExtender</em> example plugin is availiable. But for legacy use this plugin enables the field on object edit pages.</li>
+<li><em>purgeOptions</em>: see above.</li>
+<li><em>favoritesAlbums</em>: see above.</li>
+<li><em>themeEditor</em>: This is the legacy theme editor which may be used instead of elFinder.</li>
+<li><em>zenphotoCompatibilityPack</em>: A plugin that provides a bridge to Zenphoto.org's 1.4.6 release compatible plugins and themes.</li>
+</ul>	</body>
 </html>
