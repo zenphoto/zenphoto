@@ -180,7 +180,7 @@ function printLanguageSelector($flags = NULL) {
 											'order'	 => 2,
 											'desc'	 => '<p class="notebox">' . $_common_locale_type . '</p>');
 						} else {
-							$_common_locale_type = gettext('* This option may be set via the <a href="javascript:gotoName(\'dynamic-locale\');"><em>dynamic-locale</em></a> plugin options.');
+							$_common_locale_type = gettext('* This option may be set via the <a onclick="gotoName(\'dynamic-locale\');"><em>dynamic-locale</em></a> plugin options.');
 							$options['note'] = array('key'		 => 'dynamic_locale_type',
 											'type'	 => OPTION_TYPE_NOTE,
 											'order'	 => 2,

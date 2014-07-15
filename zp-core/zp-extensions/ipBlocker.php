@@ -24,7 +24,7 @@
  * address, further access attempts from that IP accress will be ignored until a timeout has expired.
 
  * @author Stephen Billard (sbillard)
- * 
+ *
  * @package plugins
  * @subpackage admin
  */
@@ -151,7 +151,7 @@ class ipBlocker {
 					//-->
 				</script>
 				<p class="buttons">
-					<a href="javascript:clearips();"><?php echo gettext('clear list'); ?></a>
+					<a onclick="clearips();"><?php echo gettext('clear list'); ?></a>
 				</p>
 				<?php
 				break;

@@ -67,7 +67,7 @@ class print_album_menu {
 							'order'	 => 8,
 							'desc'	 => '<p class="notebox">' . $_common_truncate_handler . '</p>');
 		} else {
-			$_common_truncate_handler = gettext('* These options may be set via the <a href="javascript:gotoName(\'print_album_menu\');"><em>print_album_menu</em></a> plugin options.');
+			$_common_truncate_handler = gettext('* These options may be set via the <a onclick="gotoName(\'print_album_menu\');"><em>print_album_menu</em></a> plugin options.');
 			$options['note'] = array('key'		 => 'menu_truncate_note',
 							'type'	 => OPTION_TYPE_NOTE,
 							'order'	 => 8,
