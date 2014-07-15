@@ -86,11 +86,10 @@ header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 					switch (selectedlink) {
 						case 'none':
 							if ($('#addcaption').prop('checked')) {
-								caption = '<figcaption>' + title + '</figcaption>';
+								$('#content').html('<figure><img src="' + image + '" /><figcaption>' + title + '</figcaption></figure>');
 							} else {
-								caption = '';
+								$('#content').html('<img src="' + image + '" />');
 							}
-							$('#content').html('<figure><img src="' + image + '" />' + caption + '</figure>');
 							break;
 						case 'title':
 							if (image) {
@@ -102,22 +101,20 @@ header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 						case 'link':
 							if (image) {
 								if ($('#addcaption').prop('checked')) {
-									caption = '<figcaption><a href="' + link + '" title="' + title + '">' + title + '</a></figcaption>';
+									$('#content').html('<figure><a href="' + link + '" title="' + title + '"><img src="' + image + '" /></a><figcaption><a href="' + link + '" title="' + title + '">' + title + '</a></figcaption></figure>');
 								} else {
-									caption = '';
+									$('#content').html('<a href="' + link + '" title="' + title + '"><img src="' + image + '" /></a>');
 								}
-								$('#content').html('<figure><a href="' + link + '" title="' + title + '"><img src="' + image + '" /></a>' + caption + '</figure>');
 							} else {
 								$('#content').html('<a href="' + link + '" title="' + title + '">' + title + ' </a>');
 							}
 							break;
 						case 'link2':
 							if ($('#addcaption').prop('checked')) {
-								caption = '<figcaption><a href="' + link2 + '" title="' + title + '">' + title + '</a></figcaption>';
+								$('#content').html('<figure><a href="' + link2 + '" title="' + title + '"><img src="' + image + '" /></a>' + '<figcaption><a href="' + link2 + '" title="' + title + '">' + title + '</a></figcaption>' + '</figure>');
 							} else {
-								caption = '';
+								$('#content').html('<a href="' + link2 + '" title="' + title + '"><img src="' + image + '" /></a>');
 							}
-							$('#content').html('<figure><a href="' + link2 + '" title="' + title + '"><img src="' + image + '" /></a>' + caption + '</figure>');
 							break;
 					}
 				}

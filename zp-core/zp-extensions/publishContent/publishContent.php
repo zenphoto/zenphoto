@@ -386,13 +386,13 @@ echo '</head>';
 										?>
 										<li>
 											<p class="scheduleimagechecklisthead">
-												<a href="javascript:publishAll(<?php echo $albumid; ?>,'p');" title="<?php echo gettext('Set all to be published'); ?>">
+												<a onclick="publishAll(<?php echo $albumid; ?>, 'p');" title="<?php echo gettext('Set all to be published'); ?>">
 													<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" style="border: 0px;" alt="publish all" />
 												</a>
-												<a href="javascript:publishAll(<?php echo $albumid; ?>,'u');" title="<?php echo gettext('Set all to be un-published'); ?>">
+												<a onclick="publishAll(<?php echo $albumid; ?>, 'u');" title="<?php echo gettext('Set all to be un-published'); ?>">
 													<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" style="border: 0px;" alt="unpublish all" />
 												</a>
-												<a href="javascript:publishAll(<?php echo $albumid; ?>,'d');" title="<?php echo gettext('Set all to be deleted'); ?>">
+												<a onclick="publishAll(<?php echo $albumid; ?>, 'd');" title="<?php echo gettext('Set all to be deleted'); ?>">
 													<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/fail.png" style="border: 0px;" alt="delete all" />
 												</a>
 												&nbsp;&nbsp;&nbsp;&nbsp;<strong><?php echo $key; ?></strong>
@@ -442,10 +442,10 @@ echo '</head>';
 									?>
 								</ul>
 								<p class="scheduleimagechecklisthead">
-									<a href="javascript:publishAll('','p');" title="<?php echo gettext('Set all to be published'); ?>">
+									<a onclick="publishAll('', 'p');" title="<?php echo gettext('Set all to be published'); ?>">
 										<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" style="border: 0px;" alt="publish all" />
 									</a>
-									<a href="javascript:publishAll('','u');" title="<?php echo gettext('Set all to be un-published'); ?>">
+									<a onclick="publishAll('', 'u');" title="<?php echo gettext('Set all to be un-published'); ?>">
 										<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" style="border: 0px;" alt="unpublish all" />
 									</a>
 									&nbsp;&nbsp;&nbsp;&nbsp;<strong><?php echo gettext('all images'); ?></strong>

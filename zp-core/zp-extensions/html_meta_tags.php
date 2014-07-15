@@ -122,7 +122,7 @@ class htmlmetatags {
 							'order'	 => 13,
 							'desc'	 => '<p class="notebox">' . $_common_locale_type . '</p>');
 		} else {
-			$_common_locale_type = gettext('* This option may be set via the <a href="javascript:gotoName(\'html_meta_tags\');"><em>html_meta_tags</em></a> plugin options.');
+			$_common_locale_type = gettext('* This option may be set via the <a onclick="gotoName(\'html_meta_tags\');"><em>html_meta_tags</em></a> plugin options.');
 			$options['note'] = array('key'		 => 'html_meta_tags_locale_type',
 							'type'	 => OPTION_TYPE_NOTE,
 							'order'	 => 13,

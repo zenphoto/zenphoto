@@ -361,7 +361,7 @@ $subtab = printSubtabs();
 								if ($plugin_disable) {
 									preg_match('/\<a href="#(.*)">/', $plugin_disable, $matches);
 									if ($matches) {
-										$plugin_disable = str_replace($matches[0], '<a href="javascript:gotoPlugin(\'' . $matches[1] . '\');">', $plugin_disable);
+										$plugin_disable = str_replace($matches[0], '<a onclick="gotoPlugin(\'' . $matches[1] . '\');">', $plugin_disable);
 									}
 									echo $plugin_disable;
 								}
