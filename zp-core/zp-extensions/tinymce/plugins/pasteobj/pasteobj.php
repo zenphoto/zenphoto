@@ -14,6 +14,12 @@ admin_securityChecks(ALBUM_RIGHTS | ZENPAGE_PAGES_RIGHTS | ZENPAGE_NEWS_RIGHTS, 
 
 header('Last-Modified: ' . ZP_LAST_MODIFIED);
 header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
+
+function getIPSizedImage($size, $image) {
+	$wmt = getWatermarkParam($image, WATERMARK_IMAGE);
+	$args = getImageParameters(array($size, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, $wmt), $image->album->name);
+	return getImageProcessorURI($args, $image->album->name, $image->filename);
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -30,16 +36,20 @@ header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 		<?php
 		if (isset($_SESSION['pick'])) {
 			$args = $_SESSION['pick'];
+			$picture = isset($args['picture']);
+			if (!$size = getOption('pasteImageSize')) {
+				$size = getOption('image_size');
+			}
 			if (isset($args['album'])) {
 				if (isset($args['image'])) {
 					$obj = newImage(NULL, array('folder' => $args['album'], 'filename' => $args['image']));
 					$title = gettext('<em>image</em>: %s');
 					$token = gettext('%s with link to image');
-					if (isset($args['picture'])) {
+					if ($picture) {
 						$imageb = $image = $args['picture'];
 					} else {
 						$image = $obj->getThumb();
-						$imageb = $obj->getSizedImage(getOption('image_size'));
+						$imageb = preg_replace('~&check=(.*)~', '', getIPSizedImage($size, $obj));
 					}
 				} else {
 					$obj = newAlbum($args['album']);
@@ -47,7 +57,7 @@ header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 					$token = gettext('%s with link to album');
 					$image = $obj->getThumb();
 					$thumbobj = $obj->getAlbumThumbImage();
-					$imageb = $thumbobj->getSizedImage(getOption('image_size'));
+					$imageb = preg_replace('~check=(.*)~', '', getIPSizedImage($size, $thumbobj));
 				}
 				// an image type object
 			} else {
@@ -82,10 +92,15 @@ header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 				var link2 = '<?php echo $link2; ?>';
 				var title = '<?php echo html_encodeTagged($obj->getTitle()); ?>';
 				var image = '<?php echo $image; ?>';
-				var imageb = '<?php echo $imageb; ?>';
-
+				var imagec = '<?php echo $imageb; ?>';
+				var picture = <?php echo (int) $picture; ?>;
 				function zenchange() {
 					var selectedlink = $('input:radio[name=link]:checked').val();
+					if (picture) {
+						imageb = imagec;
+					} else {
+						imageb = imagec.replace('s=<?php echo $size; ?>', 's=' + $('#imagesize').val());
+					}
 					switch (selectedlink) {
 						case 'thumb':
 							if ($('#addcaption').prop('checked')) {
@@ -143,6 +158,14 @@ header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 				}
 
 				function paste() {
+					if ($('#imagesize').val() != <?php echo $size; ?>) {
+						$.ajax({
+							type: 'POST',
+							cache: false,
+							data: 'pasteImageSize=' + $('#imagesize').val(),
+							url: '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/pickSource.php'
+						});
+					}
 					pasteObjPopup.execCommand('mceInsertContent', false, $('#content').html());
 					pasteObjPopup.close();
 				}
@@ -165,7 +188,7 @@ header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 			<p>
 				<?php
 				if ($image) {
-					if (!isset($args['picture'])) {
+					if (!$picture) {
 						?>
 						<label class="nowrap"><input type="radio" name="link" value="thumb" id="link_none" onchange="zenchange();" /><?php echo gettext('thumb only'); ?></label>
 						<label class="nowrap"><input type="radio" name="link" value="thumblink" id="link_on" onchange="zenchange();" /><?php printf($token, 'thumb'); ?>
@@ -175,11 +198,11 @@ header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 							?>
 							<label class="nowrap">
 								<input type="radio" name="link" value="thumblink2" id="link_album" onchange="zenchange();" />
-				<?php echo gettext('thumb with link to album'); ?>
+								<?php echo gettext('thumb with link to album'); ?>
 							</label>
-								<?php
-							}
-							?>
+							<?php
+						}
+						?>
 						<br />
 						<?php
 					}
@@ -187,17 +210,28 @@ header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 					<label class="nowrap"><input type="radio" name="link" value="image" id="link_none" checked="checked" onchange="zenchange();" /><?php echo gettext('image only'); ?></label>
 					<label class="nowrap"><input type="radio" name="link" value="imagelink" id="link_on" onchange="zenchange();" /><?php printf($token, 'image'); ?>
 					</label>
-		<?php
-		if ($link2) {
-			?>
+					<?php
+					if ($link2) {
+						?>
 						<label class="nowrap">
 							<input type="radio" name="link" value="link2" id="link_album" onchange="zenchange();" />
-						<?php echo gettext('image with link to album'); ?>
+							<?php echo gettext('image with link to album'); ?>
 						</label>
-							<?php
-						}
-						?>
+						<?php
+					}
+					?>
 					<br />
+					<?php
+					if ($picture) {
+						?>
+						<input type="hidden" size="4" name="image_size" id="imagesize" value="<?php echo $size; ?>" />
+						<?php
+					} else {
+						?>
+						<input type="text" size="4" name="image_size" id="imagesize" value="<?php echo $size; ?>" onchange="zenchange();" />px
+						<?php
+					}
+					?>
 					<label><input type="checkbox" name="addcaption" id="addcaption" onchange="zenchange()"	/><?php echo gettext('Include caption'); ?></label>
 					<?php
 				} else {
@@ -205,21 +239,20 @@ header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 					<label class="nowrap"><input type="radio" name="link" value="title" id="link_title" onchange="zenchange();" /><?php echo gettext('title only'); ?></label>
 					<label class="nowrap"><input type="radio" name="link" value="link" id="link_on" checked="checked" onchange="zenchange();" /><?php echo $token; ?>
 					</label>
-		<?php
-	}
-	?>
+					<?php
+				}
+				?>
 			</p>
-
 
 			<div id="content"></div>
-	<?php
-} else {
-	?>
-			<p>
-			<?php printf(gettext('No source has been picked. You can pick a ZenPhoto20 object for insertion by browsing to the object and clicking on the %s icon. Custom sized and cropped images may be picked from the <em>crop image</em> page if the <code>crop_image</code> plugin is enabled.'), '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/add.png" />'); ?>
-			</p>
-				<?php
-			}
+			<?php
+		} else {
 			?>
+			<p>
+				<?php printf(gettext('No source has been picked. You can pick a ZenPhoto20 object for insertion by browsing to the object and clicking on the %s icon. Custom sized and cropped images may be picked from the <em>crop image</em> page if the <code>crop_image</code> plugin is enabled.'), '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/add.png" />'); ?>
+			</p>
+			<?php
+		}
+		?>
 	</body>
 </html>
