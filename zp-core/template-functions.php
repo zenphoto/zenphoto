@@ -2529,68 +2529,72 @@ function printImageMetadata($title = NULL, $toggle = true, $id = 'imagemetadata'
  * @return array
  */
 function getSizeCustomImage($size, $width = NULL, $height = NULL, $cw = NULL, $ch = NULL, $cx = NULL, $cy = NULL, $image = NULL) {
-	global $_zp_current_image;
-	if (is_null($image))
-		$image = $_zp_current_image;
-	if (is_null($image))
-		return false;
+  global $_zp_current_image;
+  if (is_null($image))
+    $image = $_zp_current_image;
+  if (is_null($image))
+    return false;
 
-	$h = $image->getHeight();
-	$w = $image->getWidth();
-	if (isImageVideo($image)) { // size is determined by the player
-		return array($w, $h);
-	}
-	$side = getOption('image_use_side');
-	$us = getOption('image_allow_upscale');
+  $h = $image->getHeight();
+  $w = $image->getWidth();
+  if (isImageVideo($image)) { // size is determined by the player
+    return array($w, $h);
+  }
+  //if we set width/height we are cropping and those are the sizes already
+  if (is_null($size) && !is_null($width) && !is_null($height)) {
+    return array($width, $height);
+  }
+  $side = getOption('image_use_side');
+  $us = getOption('image_allow_upscale');
+  $args = getImageParameters(array($size, $width, $height, $cw, $ch, $cx, $cy, NULL, NULL, NULL, NULL, NULL, NULL, NULL), $image->album->name);
+  @list($size, $width, $height, $cw, $ch, $cx, $cy, $quality, $thumb, $crop, $thumbstandin, $passedWM, $adminrequest, $effects) = $args;
+  if (!empty($size)) {
+    $dim = $size;
+    $width = $height = false;
+  } else if (!empty($width)) {
+    $dim = $width;
+    $size = $height = false;
+  } else if (!empty($height)) {
+    $dim = $height;
+    $size = $width = false;
+  } else {
+    $dim = 1;
+  }
 
-	$args = getImageParameters(array($size, $width, $height, $cw, $ch, $cx, $cy, NULL, NULL, NULL, NULL, NULL, NULL, NULL), $image->album->name);
-	@list($size, $width, $height, $cw, $ch, $cx, $cy, $quality, $thumb, $crop, $thumbstandin, $passedWM, $adminrequest, $effects) = $args;
-	if (!empty($size)) {
-		$dim = $size;
-		$width = $height = false;
-	} else if (!empty($width)) {
-		$dim = $width;
-		$size = $height = false;
-	} else if (!empty($height)) {
-		$dim = $height;
-		$size = $width = false;
-	} else {
-		$dim = 1;
-	}
+  if ($w == 0) {
+    $hprop = 1;
+  } else {
+    $hprop = round(($h / $w) * $dim);
+  }
+  if ($h == 0) {
+    $wprop = 1;
+  } else {
+    $wprop = round(($w / $h) * $dim);
+  }
 
-	if ($w == 0) {
-		$hprop = 1;
-	} else {
-		$hprop = round(($h / $w) * $dim);
-	}
-	if ($h == 0) {
-		$wprop = 1;
-	} else {
-		$wprop = round(($w / $h) * $dim);
-	}
-
-	if (($size && ($side == 'longest' && $h > $w) || ($side == 'height') || ($side == 'shortest' && $h < $w)) || $height) {
+  if (($size && ($side == 'longest' && $h > $w) || ($side == 'height') || ($side == 'shortest' && $h < $w)) || $height) {
 // Scale the height
-		$newh = $dim;
-		$neww = $wprop;
-	} else {
+    $newh = $dim;
+    $neww = $wprop;
+  } else {
 // Scale the width
-		$neww = $dim;
-		$newh = $hprop;
-	}
-	if (!$us && $newh >= $h && $neww >= $w) {
-		return array($w, $h);
-	} else {
-		if ($cw && $cw < $neww)
-			$neww = $cw;
-		if ($ch && $ch < $newh)
-			$newh = $ch;
-		if ($size && $ch && $cw) {
-			$neww = $cw;
-			$newh = $ch;
-		}
-		return array($neww, $newh);
-	}
+    $neww = $dim;
+    $newh = $hprop;
+  }
+  if (!$us && $newh >= $h && $neww >= $w) {
+    return array($w, $h);
+  } else {
+    if ($cw && $cw < $neww)
+      $neww = $cw;
+    if ($ch && $ch < $newh)
+      $newh = $ch;
+    if ($size && $ch && $cw) {
+      $neww = $cw;
+      $newh = $ch;
+    }
+    echo $neww . "/" . $newh;
+    return array($neww, $newh);
+  }
 }
 
 /**
@@ -2602,9 +2606,9 @@ function getSizeCustomImage($size, $width = NULL, $height = NULL, $cw = NULL, $c
  * @return array
  */
 function getSizeDefaultImage($size = NULL, $image = NULL) {
-	if (is_null($size))
-		$size = getOption('image_size');
-	return getSizeCustomImage($size, $image);
+  if (is_null($size))
+    $size = getOption('image_size');
+  return getSizeCustomImage($size, NULL, NULL, NULL, NULL, NULL, NULL, $image);
 }
 
 /**
