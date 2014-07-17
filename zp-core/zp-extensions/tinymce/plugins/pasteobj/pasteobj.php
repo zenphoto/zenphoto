@@ -14,6 +14,12 @@ admin_securityChecks(ALBUM_RIGHTS | ZENPAGE_PAGES_RIGHTS | ZENPAGE_NEWS_RIGHTS, 
 
 header('Last-Modified: ' . ZP_LAST_MODIFIED);
 header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
+
+function getIPSizedImage($size, $image) {
+	$wmt = getWatermarkParam($image, WATERMARK_IMAGE);
+	$args = getImageParameters(array($size, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, $wmt), $image->album->name);
+	return getImageProcessorURI($args, $image->album->name, $image->filename);
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -30,28 +36,35 @@ header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 		<?php
 		if (isset($_SESSION['pick'])) {
 			$args = $_SESSION['pick'];
+			$picture = isset($args['picture']);
+			if (!$size = getOption('pasteImageSize')) {
+				$size = getOption('image_size');
+			}
 			if (isset($args['album'])) {
 				if (isset($args['image'])) {
 					$obj = newImage(NULL, array('folder' => $args['album'], 'filename' => $args['image']));
 					$title = gettext('<em>image</em>: %s');
-					$token = gettext('image with link to image');
-					if (isset($args['picture'])) {
-						$image = $args['picture'];
+					$token = gettext('%s with link to image');
+					if ($picture) {
+						$imageb = $image = $args['picture'];
 					} else {
 						$image = $obj->getThumb();
+						$imageb = preg_replace('~&check=(.*)~', '', getIPSizedImage($size, $obj));
 					}
 				} else {
 					$obj = newAlbum($args['album']);
 					$title = gettext('<em>album</em>: %s');
-					$token = gettext('image with link to album');
+					$token = gettext('%s with link to album');
 					$image = $obj->getThumb();
+					$thumbobj = $obj->getAlbumThumbImage();
+					$imageb = preg_replace('~check=(.*)~', '', getIPSizedImage($size, $thumbobj));
 				}
 				// an image type object
 			} else {
 				// a simple link
-				$image = false;
+				$imageb = $image = NULL;
 				if (isset($args['news'])) {
-					$obj = newNews($args['news']);
+					$obj = newArticle($args['news']);
 					$title = gettext('<em>news article</em>: %s');
 					$token = gettext('title with link to news article');
 				}
@@ -79,16 +92,28 @@ header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 				var link2 = '<?php echo $link2; ?>';
 				var title = '<?php echo html_encodeTagged($obj->getTitle()); ?>';
 				var image = '<?php echo $image; ?>';
-
-
+				var imagec = '<?php echo $imageb; ?>';
+				var picture = <?php echo (int) $picture; ?>;
 				function zenchange() {
 					var selectedlink = $('input:radio[name=link]:checked').val();
+					if (picture) {
+						imageb = imagec;
+					} else {
+						imageb = imagec.replace('s=<?php echo $size; ?>', 's=' + $('#imagesize').val());
+					}
 					switch (selectedlink) {
-						case 'none':
+						case 'thumb':
 							if ($('#addcaption').prop('checked')) {
 								$('#content').html('<figure><img src="' + image + '" /><figcaption>' + title + '</figcaption></figure>');
 							} else {
 								$('#content').html('<img src="' + image + '" />');
+							}
+							break;
+						case 'image':
+							if ($('#addcaption').prop('checked')) {
+								$('#content').html('<figure><img src="' + imageb + '" /><figcaption>' + title + '</figcaption></figure>');
+							} else {
+								$('#content').html('<img src="' + imageb + '" />');
 							}
 							break;
 						case 'title':
@@ -98,28 +123,49 @@ header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 								$('#content').html(title);
 							}
 							break;
-						case 'link':
-							if (image) {
-								if ($('#addcaption').prop('checked')) {
-									$('#content').html('<figure><a href="' + link + '" title="' + title + '"><img src="' + image + '" /></a><figcaption><a href="' + link + '" title="' + title + '">' + title + '</a></figcaption></figure>');
-								} else {
-									$('#content').html('<a href="' + link + '" title="' + title + '"><img src="' + image + '" /></a>');
-								}
+						case 'thumblink':
+							if ($('#addcaption').prop('checked')) {
+								$('#content').html('<figure><a href="' + link + '" title="' + title + '"><img src="' + image + '" /></a><figcaption><a href="' + link + '" title="' + title + '">' + title + '</a></figcaption></figure>');
 							} else {
-								$('#content').html('<a href="' + link + '" title="' + title + '">' + title + ' </a>');
+								$('#content').html('<a href="' + link + '" title="' + title + '"><img src="' + image + '" /></a>');
 							}
 							break;
-						case 'link2':
+						case 'imagelink':
+							if ($('#addcaption').prop('checked')) {
+								$('#content').html('<figure><a href="' + link + '" title="' + title + '"><img src="' + imageb + '" /></a><figcaption><a href="' + link + '" title="' + title + '">' + title + '</a></figcaption></figure>');
+							} else {
+								$('#content').html('<a href="' + link + '" title="' + title + '"><img src="' + imageb + '" /></a>');
+							}
+							break;
+						case 'link':
+							$('#content').html('<a href="' + link + '" title="' + title + '">' + title + ' </a>');
+							break;
+						case 'thumblink2':
 							if ($('#addcaption').prop('checked')) {
 								$('#content').html('<figure><a href="' + link2 + '" title="' + title + '"><img src="' + image + '" /></a>' + '<figcaption><a href="' + link2 + '" title="' + title + '">' + title + '</a></figcaption>' + '</figure>');
 							} else {
 								$('#content').html('<a href="' + link2 + '" title="' + title + '"><img src="' + image + '" /></a>');
 							}
 							break;
+						case 'link2':
+							if ($('#addcaption').prop('checked')) {
+								$('#content').html('<figure><a href="' + link2 + '" title="' + title + '"><img src="' + imageb + '" /></a>' + '<figcaption><a href="' + link2 + '" title="' + title + '">' + title + '</a></figcaption>' + '</figure>');
+							} else {
+								$('#content').html('<a href="' + link2 + '" title="' + title + '"><img src="' + imageb + '" /></a>');
+							}
+							break;
 					}
 				}
 
 				function paste() {
+					if ($('#imagesize').val() != <?php echo $size; ?>) {
+						$.ajax({
+							type: 'POST',
+							cache: false,
+							data: 'pasteImageSize=' + $('#imagesize').val(),
+							url: '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/pickSource.php'
+						});
+					}
 					pasteObjPopup.execCommand('mceInsertContent', false, $('#content').html());
 					pasteObjPopup.close();
 				}
@@ -142,35 +188,61 @@ header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 			<p>
 				<?php
 				if ($image) {
+					if (!$picture) {
+						?>
+						<label class="nowrap"><input type="radio" name="link" value="thumb" id="link_none" onchange="zenchange();" /><?php echo gettext('thumb only'); ?></label>
+						<label class="nowrap"><input type="radio" name="link" value="thumblink" id="link_on" onchange="zenchange();" /><?php printf($token, 'thumb'); ?>
+						</label>
+						<?php
+						if ($link2) {
+							?>
+							<label class="nowrap">
+								<input type="radio" name="link" value="thumblink2" id="link_album" onchange="zenchange();" />
+								<?php echo gettext('thumb with link to album'); ?>
+							</label>
+							<?php
+						}
+						?>
+						<br />
+						<?php
+					}
 					?>
-					<label class="nowrap"><input type="radio" name="link" value="none" id="link_none" onchange="zenchange();" /><?php echo gettext('image only'); ?></label>
+					<label class="nowrap"><input type="radio" name="link" value="image" id="link_none" checked="checked" onchange="zenchange();" /><?php echo gettext('image only'); ?></label>
+					<label class="nowrap"><input type="radio" name="link" value="imagelink" id="link_on" onchange="zenchange();" /><?php printf($token, 'image'); ?>
+					</label>
+					<?php
+					if ($link2) {
+						?>
+						<label class="nowrap">
+							<input type="radio" name="link" value="link2" id="link_album" onchange="zenchange();" />
+							<?php echo gettext('image with link to album'); ?>
+						</label>
+						<?php
+					}
+					?>
+					<br />
+					<?php
+					if ($picture) {
+						?>
+						<input type="hidden" size="4" name="image_size" id="imagesize" value="<?php echo $size; ?>" />
+						<?php
+					} else {
+						?>
+						<input type="text" size="4" name="image_size" id="imagesize" value="<?php echo $size; ?>" onchange="zenchange();" />px
+						<?php
+					}
+					?>
+					<label><input type="checkbox" name="addcaption" id="addcaption" onchange="zenchange()"	/><?php echo gettext('Include caption'); ?></label>
 					<?php
 				} else {
 					?>
 					<label class="nowrap"><input type="radio" name="link" value="title" id="link_title" onchange="zenchange();" /><?php echo gettext('title only'); ?></label>
-					<?php
-				}
-				?>
-				<label class="nowrap"><input type="radio" name="link" value="link" id="link_on" checked="checked" onchange="zenchange();" /><?php echo $token; ?>
-				</label>
-				<?php
-				if ($link2) {
-					?>
-					<label class="nowrap">
-						<input type="radio" name="link" value="link2" id="link_album" onchange="zenchange();" />
-						<?php echo gettext('image with link to album'); ?>
+					<label class="nowrap"><input type="radio" name="link" value="link" id="link_on" checked="checked" onchange="zenchange();" /><?php echo $token; ?>
 					</label>
-					<?php
-				}
-				if ($image) {
-					?>
-					<br />
-					<label><input type="checkbox" name="addcaption" id="addcaption" onchange="zenchange()"	/><?php echo gettext('Include caption'); ?></label>
 					<?php
 				}
 				?>
 			</p>
-
 
 			<div id="content"></div>
 			<?php
