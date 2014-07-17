@@ -2515,72 +2515,67 @@ function printImageMetadata($title = NULL, $toggle = true, $id = 'imagemetadata'
  * @return array
  */
 function getSizeCustomImage($size, $width = NULL, $height = NULL, $cw = NULL, $ch = NULL, $cx = NULL, $cy = NULL, $image = NULL) {
-  global $_zp_current_image;
-  if (is_null($image))
-    $image = $_zp_current_image;
-  if (is_null($image))
-    return false;
+	global $_zp_current_image;
+	if (is_null($image))
+		$image = $_zp_current_image;
+	if (is_null($image))
+		return false;
 
-  $h = $image->getHeight();
-  $w = $image->getWidth();
-  if (isImageVideo($image)) { // size is determined by the player
-    return array($w, $h);
-  }
-  //if we set width/height we are cropping and those are the sizes already
-  if (is_null($size) && !is_null($width) && !is_null($height)) {
-    return array($width, $height);
-  }
-  $side = getOption('image_use_side');
-  $us = getOption('image_allow_upscale');
-  $args = getImageParameters(array($size, $width, $height, $cw, $ch, $cx, $cy, NULL, NULL, NULL, NULL, NULL, NULL, NULL), $image->album->name);
-  @list($size, $width, $height, $cw, $ch, $cx, $cy, $quality, $thumb, $crop, $thumbstandin, $passedWM, $adminrequest, $effects) = $args;
-  if (!empty($size)) {
-    $dim = $size;
-    $width = $height = false;
-  } else if (!empty($width)) {
-    $dim = $width;
-    $size = $height = false;
-  } else if (!empty($height)) {
-    $dim = $height;
-    $size = $width = false;
-  } else {
-    $dim = 1;
-  }
+	$h = $image->getHeight();
+	$w = $image->getWidth();
+	if (isImageVideo($image)) { // size is determined by the player
+		return array($w, $h);
+	}
 
-  if ($w == 0) {
-    $hprop = 1;
-  } else {
-    $hprop = round(($h / $w) * $dim);
-  }
-  if ($h == 0) {
-    $wprop = 1;
-  } else {
-    $wprop = round(($w / $h) * $dim);
-  }
+	$side = getOption('image_use_side');
+	$us = (bool) getOption('image_allow_upscale');
+	$args = getImageParameters(array($size, $width, $height, $cw, $ch, $cx, $cy, NULL, NULL, NULL, NULL, NULL, NULL, NULL), $image->album->name);
+	@list($size, $width, $height, $cw, $ch, $cx, $cy, $quality, $thumb, $crop, $thumbstandin, $passedWM, $adminrequest, $effects) = $args;
+	if (!empty($size)) {
+		$dim = $size;
+		$width = $height = false;
+	} else if (!empty($width)) {
+		$dim = $width;
+		$size = $height = false;
+	} else if (!empty($height)) {
+		$dim = $height;
+		$size = $width = false;
+	} else {
+		$dim = 1;
+	}
 
-  if (($size && ($side == 'longest' && $h > $w) || ($side == 'height') || ($side == 'shortest' && $h < $w)) || $height) {
+	if ($w == 0) {
+		$hprop = 1;
+	} else {
+		$hprop = round(($h / $w) * $dim);
+	}
+	if ($h == 0) {
+		$wprop = 1;
+	} else {
+		$wprop = round(($w / $h) * $dim);
+	}
+
+	if ($cw || $ch) { //	image is being cropped
+		if ($cw && $cw <= $w) {
+			$neww = $cw;
+		}
+		if ($ch && $ch <= $h) {
+			$newh = $ch;
+		}
+	} else if (($size && ($side == 'longest' && $h > $w) || ($side == 'height') || ($side == 'shortest' && $h < $w)) || $height) {
 // Scale the height
-    $newh = $dim;
-    $neww = $wprop;
-  } else {
+		$newh = $dim;
+		$neww = $wprop;
+	} else {
 // Scale the width
-    $neww = $dim;
-    $newh = $hprop;
-  }
-  if (!$us && $newh >= $h && $neww >= $w) {
-    return array($w, $h);
-  } else {
-    if ($cw && $cw < $neww)
-      $neww = $cw;
-    if ($ch && $ch < $newh)
-      $newh = $ch;
-    if ($size && $ch && $cw) {
-      $neww = $cw;
-      $newh = $ch;
-    }
-    echo $neww . "/" . $newh;
-    return array($neww, $newh);
-  }
+		$neww = $dim;
+		$newh = $hprop;
+	}
+	if (!$us && ($newh >= $h || $neww >= $w)) { //	upscaling required but not allowed
+		return array((int) $w, (int) $h);
+	} else {
+		return array((int) $neww, (int) $newh);
+	}
 }
 
 /**
@@ -2592,9 +2587,9 @@ function getSizeCustomImage($size, $width = NULL, $height = NULL, $cw = NULL, $c
  * @return array
  */
 function getSizeDefaultImage($size = NULL, $image = NULL) {
-  if (is_null($size))
-    $size = getOption('image_size');
-  return getSizeCustomImage($size, NULL, NULL, NULL, NULL, NULL, NULL, $image);
+	if (is_null($size))
+		$size = getOption('image_size');
+	return getSizeCustomImage($size, NULL, NULL, NULL, NULL, NULL, NULL, $image);
 }
 
 /**
@@ -3863,34 +3858,34 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 		<!-- search form -->
 		<form method="post" action="<?php echo $searchurl; ?>" id="search_form">
 			<script type="text/javascript">
-				// <!-- <![CDATA[
-				var within = <?php echo (int) $within; ?>;
-				function search_(way) {
-					within = way;
-					if (way) {
-						$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
+			// <!-- <![CDATA[
+			var within = <?php echo (int) $within; ?>;
+			function search_(way) {
+				within = way;
+				if (way) {
+					$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
 
-					} else {
-						lastsearch = '';
-						$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
-					}
-					$('#search_input').val('');
+				} else {
+					lastsearch = '';
+					$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
 				}
-				$('#search_form').submit(function() {
-					if (within) {
-						var newsearch = $.trim($('#search_input').val());
-						if (newsearch.substring(newsearch.length - 1) == ',') {
-							newsearch = newsearch.substr(0, newsearch.length - 1);
-						}
-						if (newsearch.length > 0) {
-							$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
-						} else {
-							$('#search_input').val('<?php echo $searchwords; ?>');
-						}
+				$('#search_input').val('');
+			}
+			$('#search_form').submit(function() {
+				if (within) {
+					var newsearch = $.trim($('#search_input').val());
+					if (newsearch.substring(newsearch.length - 1) == ',') {
+						newsearch = newsearch.substr(0, newsearch.length - 1);
 					}
-					return true;
-				});
-				// ]]> -->
+					if (newsearch.length > 0) {
+						$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
+					} else {
+						$('#search_input').val('<?php echo $searchwords; ?>');
+					}
+				}
+				return true;
+			});
+			// ]]> -->
 			</script>
 			<?php echo $prevtext; ?>
 			<div>
