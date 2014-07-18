@@ -27,6 +27,7 @@ function getIPSizedImage($size, $image) {
 		<?php printStandardMeta(); ?>
 		<title>tinyMCE:obj</title>
 		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.js"></script>
+		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/zenphoto.js"></script>
 		<script type="text/javascript" src="pasteobj_popup.js"></script>
 
 	</head>
@@ -109,6 +110,7 @@ function getIPSizedImage($size, $image) {
 								$('#content').html('<img src="' + image + '" />');
 							}
 							break;
+						default:
 						case 'image':
 							if ($('#addcaption').prop('checked')) {
 								$('#content').html('<figure><img src="' + imageb + '" /><figcaption>' + title + '</figcaption></figure>');
@@ -173,6 +175,7 @@ function getIPSizedImage($size, $image) {
 				window.onload = function() {
 					zenchange();
 				};
+
 				// ]]> -->
 			</script>
 			<h3>
@@ -246,6 +249,12 @@ function getIPSizedImage($size, $image) {
 
 			<div id="content"></div>
 			<?php
+			if ($image && !$picture) {
+				?>
+				<a href="javascript:launchScript('<?php echo WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/crop_image.php',['a=<?php echo pathurlencode($args['album']); ?>','i=<?php echo urlencode($args['image']); ?>','performcrop=pasteobj','size='+$('#imagesize').val()]);" title="<?php echo gettext('Click to bring up the custom cropping page.'); ?>">
+					<img src="<?php echo WEBPATH . "/" . ZENFOLDER . '/'; ?>images/shape_handles.png" alt="" /><?php echo gettext("Custom crop"); ?></a>
+				<?php
+			}
 		} else {
 			?>
 			<p>

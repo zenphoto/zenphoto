@@ -134,6 +134,7 @@ switch ($use_side) {
 		$sizedheight = $size;
 		break;
 }
+$pasteobj = isset($_REQUEST['performcrop']) && $_REQUEST['performcrop'] == 'pasteobj';
 
 $imageurl = getImageProcessorURI(array($size, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL), $albumname, $imagepart);
 $iW = round($sizedwidth * 0.9);
@@ -207,6 +208,7 @@ if (isset($_REQUEST['subpage'])) {
 } else {
 	$subpage = $tagsort = '';
 }
+
 printAdminHeader('edit', gettext('crop image'));
 ?>
 
@@ -234,7 +236,14 @@ printAdminHeader('edit', gettext('crop image'));
 			jcrop_api.setOptions({aspectRatio: 0});
 			resetBoundingBox();
 		}
-
+<?php
+if ($pasteobj && isset($_REQUEST['size'])) {
+	?>
+			jQuery('#new_size').val(<?php echo (int) sanitize_numeric($_REQUEST['size']); ?>);
+			sizeChange();
+	<?php
+}
+?>
 		jQuery('#aspect-ratio-width').keyup(aspectChange);
 		jQuery('#aspect-ratio-height').keyup(aspectChange);
 		jQuery('#new_size').keyup(sizeChange);
@@ -342,10 +351,16 @@ printAdminHeader('edit', gettext('crop image'));
 		<div id="content">
 			<?php zp_apply_filter('admin_note', 'crop_image', ''); ?>
 			<h1><?php echo gettext("Image cropping") . ": <em>" . $albumobj->name . " (" . $albumobj->getTitle() . ") /" . $imageobj->filename . " (" . $imageobj->getTitle() . ")</em>"; ?></h1>
-			<div id="notice_div">
-				<p><?php echo gettext('You can crop your image by dragging the crop handles on the image'); ?></p>
-				<p id="notice" class="notebox" style="width:<?php echo $sizedwidth; ?>px" ><?php echo gettext('<strong>Note:</strong> If you save these changes they are permanent!'); ?></p>
-			</div>
+			<?php
+			if (!$pasteobj) {
+				?>
+				<div id="notice_div">
+					<p><?php echo gettext('You can crop your image by dragging the crop handles on the image'); ?></p>
+					<p id="notice" class="notebox" style="width:<?php echo $sizedwidth; ?>px" ><?php echo gettext('<strong>Note:</strong> If you save these changes they are permanent!'); ?></p>
+				</div>
+				<?php
+			}
+			?>
 			<div style="display:block">
 
 				<div style="text-align:left; float: left;">
@@ -398,7 +413,8 @@ printAdminHeader('edit', gettext('crop image'));
 							</select>
 							<br />
 							<?php
-							echo linkPickerIcon($imageobj, 'imageURI', "+'&pick[picture]=' + $('#imageURI').val().replaceAll('&', ':')");
+							if (!$pasteobj)
+								echo linkPickerIcon($imageobj, 'imageURI', "+'&pick[picture]=' + $('#imageURI').val().replaceAll('&', ':')");
 							echo linkPickerItem($imageobj, 'imageURI');
 							?>
 						</p>
@@ -406,14 +422,26 @@ printAdminHeader('edit', gettext('crop image'));
 							<button type="reset" onclick="resetButton();" >
 								<img src="../images/fail.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong>
 							</button>
-							<button type="submit" id="submit" name="submit" value="<?php echo gettext('Apply the cropping') ?>">
-								<img src="../images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong>
-							</button>
 							<?php
+							if (!$pasteobj) {
+								?>
+								<button type="submit" id="submit" name="submit" value="<?php echo gettext('Apply the cropping') ?>">
+									<img src="../images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong>
+								</button>
+								<?php
+							}
 							if ($_REQUEST['performcrop'] == 'backend') {
 								?>
 								<button type="button" value="<?php echo gettext('Back') ?>" onclick="window.location = '../admin-edit.php?page=edit&album=<?php echo pathurlencode($albumname); ?>&subpage=<?php echo $subpage; ?>&tagsort=<?php echo html_encode($tagsort); ?>&tab=imageinfo'">
 									<img src="../images/arrow_left_blue_round.png" alt="" /><strong><?php echo gettext("Back"); ?></strong>
+								</button>
+								<?php
+							} else if ($pasteobj) {
+								?>
+								<button type="button" value="<?php echo gettext('Back') ?>" onclick="<?php echo linkPickerPick($imageobj, 'imageURI', "+'&pick[picture]=' + $('#imageURI').val().replaceAll('&', ':')"); ?> setClean('crop');
+											window.history.back();">
+									<img src="../images/arrow_left_blue_round.png" alt="" /><strong><?php echo gettext("Done");
+								?></strong>
 								</button>
 								<?php
 							} else {
