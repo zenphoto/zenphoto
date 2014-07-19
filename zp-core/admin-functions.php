@@ -572,7 +572,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 *    OPTION_TYPE_PASSWORD:         A passowrd textbox
 	 *    OPTION_TYPE_CLEARTEXT:     	  A textbox, but no sanitization on save
 	 * 		OPTION_TYPE_NUMBER:						A small textbox for numbers. NOTE: the default allows only positive integers
-	 * 																			(i.e. 'step' defaults to 1. If you need	other values supply a "limits" element, e.g:
+	 * 																			(i.e. 'step' defaults to 1.) If you need	other values supply a "limits" element, e.g:
 	 * 																			'limits' => array('min' => -25, 'max'=> 25, 'step' => 0.5)
 	 *    OPTION_TYPE_CHECKBOX:         A checkbox
 	 *    OPTION_TYPE_CUSTOM:           Handled by $optionHandler->handleOption()
