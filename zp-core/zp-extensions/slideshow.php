@@ -10,10 +10,14 @@
  * 		<li>Plugin Option 'slideshow_showdesc' -- Allows the show to display image descriptions</li>
  * 	</ul>
  *
- * The theme files <var>slideshow.php</var>, <var>slideshow.css</var>, and <var>slideshow-controls.png</var> must reside in the theme
- * folder. If you are creating a custom theme, copy these files one of the distributed themes.
- * Note that the Colorbox mode does not require these files as it is called on your theme's image.php and album.php direclty
- * via the slideshow button. The Colorbox plugin must be enabled and setup for these pages.
+ * For the jQuery Cycle mode, the theme file <var>slideshow.php</var> must reside in the theme
+ * folder. If you are creating a custom theme, copy this file from one of the 
+ * distributed themes. 
+ * A custom theme css file <var>slideshow.css</var> will be loaded from the theme
+ * folder, if not present, a default css file in the plugin folder will be loaded.  
+ *
+ * The Colorbox mode does not require these files as it is called on your theme's image.php, album.php, 
+ * search.php, and favorites.php (if enabled) directly via the slideshow button. The Colorbox plugin must be enabled and setup for these pages.
  *
  * <b>NOTE:</b> The jQuery Cycle and the jQuery Colorbox modes do not support movie and audio files.
  * In Colorbox mode there will be no slideshow button on the image page if that current image is a movie/audio file.
