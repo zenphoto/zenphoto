@@ -58,6 +58,7 @@ function getIPSizedImage($size, $image) {
 					$token = gettext('%s with link to album');
 					$image = $obj->getThumb();
 					$thumbobj = $obj->getAlbumThumbImage();
+					$args['image'] = $thumbobj->getFilename();
 					$imageb = preg_replace('~check=(.*)~', '', getIPSizedImage($size, $thumbobj));
 				}
 				// an image type object
