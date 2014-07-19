@@ -714,10 +714,10 @@ function getImageParameters($args, $album = NULL) {
 		case 'thumb':
 			$thumb = true;
 			if ($thumb_crop) {
-				$cw = $thumb_crop_width;
-				$ch = $thumb_crop_height;
+				$cw = (int) $thumb_crop_width;
+				$ch = (int) $thumb_crop_height;
 			}
-			$size = round($thumb_size);
+			$size = (int) round($thumb_size);
 			break;
 		case 'default':
 			$size = $image_default_size;
@@ -727,19 +727,47 @@ function getImageParameters($args, $album = NULL) {
 			if (empty($size) || !is_numeric($size)) {
 				$size = false; // 0 isn't a valid size anyway, so this is OK.
 			} else {
-				$size = round($size);
+				$size = (int) round($size);
 			}
 			break;
 	}
 
-	// Round each numeric variable, or set it to false if not a number.
-	list($width, $height, $cw, $ch, $quality) = array_map('sanitize_numeric', array($width, $height, $cw, $ch, $quality));
-	if (!is_null($cx)) {
-		$cx = sanitize_numeric($cx);
+	if (is_numeric($width)) {
+		$width = (int) round($width);
+	} else {
+		$width = false;
 	}
-	if (!is_null($cy)) {
-		$cy = sanitize_numeric($cy);
+	if (is_numeric($height)) {
+		$height = (int) round($height);
+	} else {
+		$height = false;
 	}
+	if (is_numeric($cw)) {
+		$cw = (int) round($cw);
+	} else {
+		$cw = false;
+	}
+	if (is_numeric($ch)) {
+		$ch = (int) round($ch);
+	} else {
+		$ch = false;
+	}
+	if (is_numeric($cx)) {
+		$cx = (int) round($cx);
+	} else {
+		$cx = false;
+	}
+	if (is_numeric($cy)) {
+		$cy = (int) round($cy);
+	} else {
+		$cy = false;
+	}
+	if (is_numeric($quality)) {
+		$quality = (int) round($quality);
+	} else {
+		$quality = (int) round($thumb_quality);
+	}
+
 	if (!empty($cw) || !empty($ch)) {
 		$crop = true;
 	}
@@ -754,13 +782,7 @@ function getImageParameters($args, $album = NULL) {
 			}
 		}
 	}
-	if (empty($quality)) {
-		if ($thumb) {
-			$quality = round($thumb_quality);
-		} else {
-			$quality = getOption('image_quality');
-		}
-	}
+
 	if (empty($WM)) {
 		if (!$thumb) {
 			if (!empty($album)) {

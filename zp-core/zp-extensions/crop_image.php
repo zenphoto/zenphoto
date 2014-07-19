@@ -134,6 +134,7 @@ switch ($use_side) {
 		$sizedheight = $size;
 		break;
 }
+$pasteobj = isset($_REQUEST['performcrop']) && $_REQUEST['performcrop'] == 'pasteobj';
 
 $imageurl = getImageProcessorURI(array($size, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL), $albumname, $imagepart);
 $iW = round($sizedwidth * 0.9);
@@ -207,6 +208,7 @@ if (isset($_REQUEST['subpage'])) {
 } else {
 	$subpage = $tagsort = '';
 }
+
 printAdminHeader('edit', gettext('crop image'));
 ?>
 
@@ -234,7 +236,14 @@ printAdminHeader('edit', gettext('crop image'));
 			jcrop_api.setOptions({aspectRatio: 0});
 			resetBoundingBox();
 		}
-
+<?php
+if ($pasteobj && isset($_REQUEST['size'])) {
+	?>
+			jQuery('#new_size').val(<?php echo (int) sanitize_numeric($_REQUEST['size']); ?>);
+			sizeChange();
+	<?php
+}
+?>
 		jQuery('#aspect-ratio-width').keyup(aspectChange);
 		jQuery('#aspect-ratio-height').keyup(aspectChange);
 		jQuery('#new_size').keyup(sizeChange);
@@ -335,106 +344,137 @@ printAdminHeader('edit', gettext('crop image'));
 </script>
 </head>
 <body>
-	<?php printLogoAndLinks(); ?>
+	<?php
+	if ($pasteobj) {
+		?>
 
-	<div id="main">
-		<?php printTabs(); ?>
 		<div id="content">
-			<?php zp_apply_filter('admin_note', 'crop_image', ''); ?>
-			<h1><?php echo gettext("Image cropping") . ": <em>" . $albumobj->name . " (" . $albumobj->getTitle() . ") /" . $imageobj->filename . " (" . $imageobj->getTitle() . ")</em>"; ?></h1>
-			<div id="notice_div">
-				<p><?php echo gettext('You can crop your image by dragging the crop handles on the image'); ?></p>
-				<p id="notice" class="notebox" style="width:<?php echo $sizedwidth; ?>px" ><?php echo gettext('<strong>Note:</strong> If you save these changes they are permanent!'); ?></p>
-			</div>
-			<div style="display:block">
+			<?php
+		} else {
+			printLogoAndLinks();
+			?>
 
-				<div style="text-align:left; float: left;">
-					<!-- This is the form that our event handler fills -->
-					<form class="dirtylistening" onReset="setClean('crop');"  name="crop" id="crop" action="?crop" onsubmit="return checkCoords();">
-						<?php XSRFToken('crop'); ?>
+			<div id="main">
+				<?php printTabs(); ?>
+				<div id="content">
+					<?php zp_apply_filter('admin_note', 'crop_image', ''); ?>
+					<h1><?php echo gettext("Image cropping") . ": <em>" . $albumobj->name . " (" . $albumobj->getTitle() . ") /" . $imageobj->filename . " (" . $imageobj->getTitle() . ")</em>"; ?></h1>
+					<div id="notice_div">
+						<p><?php echo gettext('You can crop your image by dragging the crop handles on the image'); ?></p>
+						<p id="notice" class="notebox" style="width:<?php echo $sizedwidth; ?>px" ><?php echo gettext('<strong>Note:</strong> If you save these changes they are permanent!'); ?></p>
+					</div>
+					<?php
+				}
+				?>
+				<div style="display:block">
 
-						<div style="width: <?php echo $sizedwidth; ?>px; height: <?php echo $sizedheight; ?>px; margin-bottom: 10px; border: 4px solid gray;">
-							<!-- This is the image we're attaching Jcrop to -->
-							<img src="<?php echo html_encode(pathurlencode($imageurl)); ?>" id="cropbox" />
-							<span class="floatright">
-								<?php echo sprintf(gettext('(<span id="new-width">%1$u</span> x <span id="new-height">%2$u</span> pixels)'), round($iW * ($width / $sizedwidth)), round($iH * ($height / $sizedheight)));
-								?>
-							</span>
-						</div>
-						<span class="clearall" ></span>
-						<p class="floatleft">
-							<?php echo gettext('size'); ?>
-							<input type = "text" name = "new_size" id = "new_size" size = "5" value = "<?php echo $originalSize; ?>" />
-							<br />
-							<?php
-							printf(gettext('crop width:%1$s %2$s crop height:%3$s'), '<input type="text" id="aspect-ratio-width" name="aspect-ratio-width" value="" size="5" />', '&nbsp;<span id="aspect" ><a id="swap_button" onclick="swapAspect();" title="' . gettext('swap width and height fields') . '" > <img src="crop_image/swap.png"> </a></span>&nbsp;', '<input type="text" id="aspect-ratio-height" name="aspect-ratio-height" value="" size="5" />');
-							?>
-						</p>
+					<div style="text-align:left; float: left;">
+						<!-- This is the form that our event handler fills -->
+						<form class="dirtylistening" onReset="setClean('crop');"  name="crop" id="crop" action="?crop" onsubmit="return checkCoords();">
+							<?php XSRFToken('crop'); ?>
 
-						<input type="hidden" size="4" id="x" name="x" value="<?php echo $iX ?>" />
-						<input type="hidden" size="4" id="y" name="y" value="<?php echo $iY ?>" />
-						<input type="hidden" size="4" id="x2" name="x2" value="<?php echo $iX + $iW ?>" />
-						<input type="hidden" size="4" id="y2" name="y2" value="<?php echo $iY + $iH ?>" />
-						<input type="hidden" size="4" id="w" name="w" value="<?php echo $iW ?>" />
-						<input type="hidden" size="4" id="h" name="h" value="<?php echo $iH ?>"  />
-						<input type="hidden" id="a" name="a" value="<?php echo html_encode($albumname); ?>" />
-						<input type="hidden" id="i" name="i" value="<?php echo html_encode($imagename); ?>" />
-						<input type="hidden" id="tagsort" name="tagsort" value="<?php echo html_encode($tagsort); ?>" />
-						<input type="hidden" id="subpage" name="subpage" value="<?php echo html_encode($subpage); ?>" />
-						<input type="hidden" id="crop" name="crop" value="crop" />
-						<input type="hidden" id="performcrop" name="performcrop" value="<?php echo html_encode(sanitize($_REQUEST['performcrop'])); ?>" />
-						<p class="floatleft">
-
-							<?php
-							echo gettext('Link image watermark');
-							$watermarks = getWatermarks();
-							$current = IMAGE_WATERMARK;
-							?>
-							<select id="watermark" name="watermark" onchange="watermarkChange();">
-								<option value="" <?php if (empty($current)) echo ' selected="selected"' ?> style="background-color:LightGray"><?php echo gettext('none'); ?></option>
+							<div style="width: <?php echo $sizedwidth; ?>px; height: <?php echo $sizedheight; ?>px; margin-bottom: 10px; border: 4px solid gray;">
+								<!-- This is the image we're attaching Jcrop to -->
+								<img src="<?php echo html_encode(pathurlencode($imageurl)); ?>" id="cropbox" />
+								<span class="floatright">
+									<?php echo sprintf(gettext('(<span id="new-width">%1$u</span> x <span id="new-height">%2$u</span> pixels)'), round($iW * ($width / $sizedwidth)), round($iH * ($height / $sizedheight)));
+									?>
+								</span>
+							</div>
+							<span class="clearall" ></span>
+							<p class="floatleft">
+								<?php echo gettext('size'); ?>
+								<input type = "text" name = "new_size" id = "new_size" size = "5" value = "<?php echo $originalSize; ?>" />
+								<br />
 								<?php
-								generateListFromArray(array($current), $watermarks, false, false);
+								printf(gettext('crop width:%1$s %2$s crop height:%3$s'), '<input type="text" id="aspect-ratio-width" name="aspect-ratio-width" value="" size="5" />', '&nbsp;<span id="aspect" ><a id="swap_button" onclick="swapAspect();" title="' . gettext('swap width and height fields') . '" > <img src="crop_image/swap.png"> </a></span>&nbsp;', '<input type="text" id="aspect-ratio-height" name="aspect-ratio-height" value="" size="5" />');
 								?>
-							</select>
-							<br />
-							<?php
-							echo linkPickerIcon($imageobj, 'imageURI', "+'&pick[picture]=' + $('#imageURI').val().replaceAll('&', ':')");
-							echo linkPickerItem($imageobj, 'imageURI');
-							?>
-						</p>
-						<p class="buttons">
-							<button type="reset" onclick="resetButton();" >
-								<img src="../images/fail.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong>
-							</button>
-							<button type="submit" id="submit" name="submit" value="<?php echo gettext('Apply the cropping') ?>">
-								<img src="../images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong>
-							</button>
-							<?php
-							if ($_REQUEST['performcrop'] == 'backend') {
+							</p>
+
+							<input type="hidden" size="4" id="x" name="x" value="<?php echo $iX ?>" />
+							<input type="hidden" size="4" id="y" name="y" value="<?php echo $iY ?>" />
+							<input type="hidden" size="4" id="x2" name="x2" value="<?php echo $iX + $iW ?>" />
+							<input type="hidden" size="4" id="y2" name="y2" value="<?php echo $iY + $iH ?>" />
+							<input type="hidden" size="4" id="w" name="w" value="<?php echo $iW ?>" />
+							<input type="hidden" size="4" id="h" name="h" value="<?php echo $iH ?>"  />
+							<input type="hidden" id="a" name="a" value="<?php echo html_encode($albumname); ?>" />
+							<input type="hidden" id="i" name="i" value="<?php echo html_encode($imagename); ?>" />
+							<input type="hidden" id="tagsort" name="tagsort" value="<?php echo html_encode($tagsort); ?>" />
+							<input type="hidden" id="subpage" name="subpage" value="<?php echo html_encode($subpage); ?>" />
+							<input type="hidden" id="crop" name="crop" value="crop" />
+							<input type="hidden" id="performcrop" name="performcrop" value="<?php echo html_encode(sanitize($_REQUEST['performcrop'])); ?>" />
+							<p class="floatleft">
+
+								<?php
+								echo gettext('Link image watermark');
+								$watermarks = getWatermarks();
+								$current = IMAGE_WATERMARK;
 								?>
-								<button type="button" value="<?php echo gettext('Back') ?>" onclick="window.location = '../admin-edit.php?page=edit&album=<?php echo pathurlencode($albumname); ?>&subpage=<?php echo $subpage; ?>&tagsort=<?php echo html_encode($tagsort); ?>&tab=imageinfo'">
-									<img src="../images/arrow_left_blue_round.png" alt="" /><strong><?php echo gettext("Back"); ?></strong>
+								<select id="watermark" name="watermark" onchange="watermarkChange();">
+									<option value="" <?php if (empty($current)) echo ' selected="selected"' ?> style="background-color:LightGray"><?php echo gettext('none'); ?></option>
+									<?php
+									generateListFromArray(array($current), $watermarks, false, false);
+									?>
+								</select>
+								<br />
+								<?php
+								if (!$pasteobj)
+									echo linkPickerIcon($imageobj, 'imageURI', "+'&pick[picture]=' + $('#imageURI').val().replaceAll('&', ':')");
+								echo linkPickerItem($imageobj, 'imageURI');
+								?>
+							</p>
+							<p class="buttons">
+								<button type="reset" onclick="resetButton();" >
+									<img src="../images/fail.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong>
 								</button>
 								<?php
-							} else {
+								if (!$pasteobj) {
+									?>
+									<button type="submit" id="submit" name="submit" value="<?php echo gettext('Apply the cropping') ?>">
+										<img src="../images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong>
+									</button>
+									<?php
+								}
+								if ($_REQUEST['performcrop'] == 'backend') {
+									?>
+									<button type="button" value="<?php echo gettext('Back') ?>" onclick="window.location = '../admin-edit.php?page=edit&album=<?php echo pathurlencode($albumname); ?>&subpage=<?php echo $subpage; ?>&tagsort=<?php echo html_encode($tagsort); ?>&tab=imageinfo'">
+										<img src="../images/arrow_left_blue_round.png" alt="" /><strong><?php echo gettext("Back"); ?></strong>
+									</button>
+									<?php
+								} else if ($pasteobj) {
+									?>
+									<button type="button" value="<?php echo gettext('Back') ?>" onclick="<?php echo linkPickerPick($imageobj, 'imageURI', "+'&pick[picture]=' + $('#imageURI').val().replaceAll('&', ':')"); ?> setClean('crop');
+												window.history.back();">
+										<img src="../images/arrow_left_blue_round.png" alt="" /><strong><?php echo gettext("Done");
+									?></strong>
+									</button>
+									<?php
+								} else {
+									?>
+									<button type="button" value="<?php echo gettext('Back') ?>" onclick="window.location = '../../index.php?album=<?php echo pathurlencode($albumname); ?>&image=<?php echo urlencode($imagename); ?>'">
+										<img src="../images/arrow_left_blue_round.png" alt="" /><strong><?php echo gettext("Back"); ?></strong>
+									</button>
+									<?php
+								}
 								?>
-								<button type="button" value="<?php echo gettext('Back') ?>" onclick="window.location = '../../index.php?album=<?php echo pathurlencode($albumname); ?>&image=<?php echo urlencode($imagename); ?>'">
-									<img src="../images/arrow_left_blue_round.png" alt="" /><strong><?php echo gettext("Back"); ?></strong>
-								</button>
-								<?php
-							}
-							?>
-						</p>
-					</form>
-				</div>
+							</p>
+						</form>
+					</div>
 
-				<br style="clear: both" />
-			</div><!-- block -->
+					<br style="clear: both" />
+				</div><!-- block -->
+			</div><!-- content -->
 
-		</div><!-- content -->
-
-		<?php printAdminFooter(); ?>
-	</div><!-- main -->
+			<?php
+			if (!$pasteobj) {
+				?>
+				<?php
+				printAdminFooter();
+				?>
+			</div><!-- main -->
+			<?php
+		}
+		?>
 </body>
 
 </html>
