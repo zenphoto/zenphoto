@@ -52,9 +52,11 @@ class auto_backup {
 	function getOptionsSupported() {
 		$options = array(gettext('Run interval')		 => array('key'		 => 'backup_interval', 'type'	 => OPTION_TYPE_NUMBER,
 										'order'	 => 1,
+										'limits' => array('min' => 1),
 										'desc'	 => gettext('The run interval (in days) for auto backup.')),
 						gettext('Backups to keep') => array('key'		 => 'backups_to_keep', 'type'	 => OPTION_TYPE_NUMBER,
 										'order'	 => 0,
+										'limits' => array('min' => 1),
 										'desc'	 => gettext('Auto backup will keep only this many backup sets. Older sets will be removed.'))
 		);
 		if ($d = getOption('last_backup_run')) {
