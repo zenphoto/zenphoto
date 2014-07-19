@@ -59,6 +59,7 @@ function getIPSizedImage($size, $image) {
 					$image = $obj->getThumb();
 					$thumbobj = $obj->getAlbumThumbImage();
 					$args['image'] = $thumbobj->getFilename();
+					$args['album'] = $thumbobj->album->getFilename();
 					$imageb = preg_replace('~check=(.*)~', '', getIPSizedImage($size, $thumbobj));
 				}
 				// an image type object
@@ -176,7 +177,6 @@ function getIPSizedImage($size, $image) {
 				window.onload = function() {
 					zenchange();
 				};
-
 				// ]]> -->
 			</script>
 			<h3>
@@ -194,14 +194,14 @@ function getIPSizedImage($size, $image) {
 				if ($image) {
 					if (!$picture) {
 						?>
-						<label class="nowrap"><input type="radio" name="link" value="thumb" id="link_none" onchange="zenchange();" /><?php echo gettext('thumb only'); ?></label>
-						<label class="nowrap"><input type="radio" name="link" value="thumblink" id="link_on" onchange="zenchange();" /><?php printf($token, 'thumb'); ?>
+						<label class="nowrap"><input type="radio" name="link" value="thumb" id="link_thumb_none" onchange="zenchange();" /><?php echo gettext('thumb only'); ?></label>
+						<label class="nowrap"><input type="radio" name="link" value="thumblink" id="link_thumb_image" checked="checked" onchange="zenchange();" /><?php printf($token, 'thumb'); ?>
 						</label>
 						<?php
 						if ($link2) {
 							?>
 							<label class="nowrap">
-								<input type="radio" name="link" value="thumblink2" id="link_album" onchange="zenchange();" />
+								<input type="radio" name="link" value="thumblink2" id="link_thumb_album" onchange="zenchange();" />
 								<?php echo gettext('thumb with link to album'); ?>
 							</label>
 							<?php
@@ -211,14 +211,14 @@ function getIPSizedImage($size, $image) {
 						<?php
 					}
 					?>
-					<label class="nowrap"><input type="radio" name="link" value="image" id="link_none" checked="checked" onchange="zenchange();" /><?php echo gettext('image only'); ?></label>
-					<label class="nowrap"><input type="radio" name="link" value="imagelink" id="link_on" onchange="zenchange();" /><?php printf($token, 'image'); ?>
+					<label class="nowrap"><input type="radio" name="link" value="image" id="link_image_none" onchange="zenchange();" /><?php echo gettext('image only'); ?></label>
+					<label class="nowrap"><input type="radio" name="link" value="imagelink" id="link_image_image"<?php if ($picture) echo 'checked="checked"'; ?> onchange="zenchange();" /><?php printf($token, 'image'); ?>
 					</label>
 					<?php
 					if ($link2) {
 						?>
 						<label class="nowrap">
-							<input type="radio" name="link" value="link2" id="link_album" onchange="zenchange();" />
+							<input type="radio" name="link" value="link2" id="link_image_album" onchange="zenchange();" />
 							<?php echo gettext('image with link to album'); ?>
 						</label>
 						<?php
