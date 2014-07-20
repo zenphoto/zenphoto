@@ -98,7 +98,7 @@ if (isset($_GET['action'])) {
 						$updated = false;
 						$error = false;
 						$userobj = NULL;
-						$pass = trim(sanitize($_POST['pass' . $i]));
+						$pass = trim(sanitize($_POST['pass' . $i], 0));
 						$user = trim(sanitize($_POST['adminuser' . $i]));
 						if (empty($user) && !empty($pass)) {
 							$notify = '?mismatch=nothing';
@@ -144,7 +144,7 @@ if (isset($_GET['action'])) {
 								if (isset($_POST['disclose_password' . $i]) && $_POST['disclose_password' . $i] == 'on') {
 									$pass2 = $pass;
 								} else {
-									$pass2 = trim(sanitize(@$_POST['pass_r' . $i]));
+									$pass2 = trim(sanitize(@$_POST['pass_r' . $i], 0));
 								}
 								if ($pass == $pass2) {
 									$pass2 = $userobj->getPass($pass);
@@ -654,7 +654,7 @@ echo $refresh;
 												<tr <?php if (!$current) echo 'style="display:none;"'; ?> class="userextrainfo">
 													<td <?php if (!empty($background)) echo " style=\"$background\""; ?> colspan="2">
 														<p class="notebox">
-		<?php echo gettext('<strong>Note:</strong> You must have ADMIN rights to alter anything but your personal information.'); ?>
+															<?php echo gettext('<strong>Note:</strong> You must have ADMIN rights to alter anything but your personal information.'); ?>
 														</p>
 													</td>
 												</tr>
@@ -689,20 +689,20 @@ echo $refresh;
 													$challenge = $userobj->getChallengePhraseInfo();
 													?>
 													<p>
-	<?php echo gettext('Challenge phrase') ?>
+														<?php echo gettext('Challenge phrase') ?>
 														<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="challengephrase-<?php echo $id ?>" name="<?php echo $id ?>-challengephrase"
 																	 value="<?php echo html_encode($challenge['challenge']); ?>"<?php echo $_disable; ?> />
 														<br />
-	<?php echo gettext('Challenge response') ?>
+														<?php echo gettext('Challenge response') ?>
 														<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="challengeresponse-<?php echo $id ?>" name="<?php echo $id ?>-challengeresponse"
 																	 value="<?php echo html_encode($challenge['response']); ?>"<?php echo $_disable; ?> />
 
 													</p>
-	<?php echo gettext("Full name"); ?>
+													<?php echo gettext("Full name"); ?>
 													<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="admin_name-<?php echo $id ?>" name="<?php echo $id ?>-admin_name"
 																 value="<?php echo html_encode($userobj->getName()); ?>"<?php if (in_array('name', $no_change)) echo ' disabled="disabled"'; ?> />
 													<p>
-	<?php echo gettext("Email"); ?>
+														<?php echo gettext("Email"); ?>
 														<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="admin_email-<?php echo $id ?>" name="<?php echo $id ?>-admin_email"
 																	 value="<?php echo html_encode($userobj->getEmail()); ?>"<?php if (in_array('email', $no_change)) echo ' disabled="disabled"'; ?> />
 													</p>
@@ -715,7 +715,7 @@ echo $refresh;
 																<p>
 																	<label>
 																		<input type="checkbox" name="createAlbum_<?php echo $id ?>" id="createAlbum_<?php echo $id ?>" value="1" <?php echo $alterrights; ?>/>
-				<?php echo gettext('create primary album'); ?>
+																		<?php echo gettext('create primary album'); ?>
 																	</label>
 																</p>
 																<?php
@@ -725,11 +725,11 @@ echo $refresh;
 															<p>
 																<label>
 																	<input type="checkbox" name="delinkAlbum_<?php echo $id ?>" id="delinkAlbum_<?php echo $id ?>" value="1" <?php echo $alterrights; ?>/>
-			<?php printf(gettext('delink primary album <strong>%1$s</strong>(<em>%2$s</em>)'), $primeAlbum->getTitle(), $primeAlbum->name); ?>
+																	<?php printf(gettext('delink primary album <strong>%1$s</strong>(<em>%2$s</em>)'), $primeAlbum->getTitle(), $primeAlbum->name); ?>
 																</label>
 															</p>
 															<p class="notebox">
-															<?php echo gettext('The primary album was created in association with the user. It will be removed if the user is deleted. Delinking the album removes this association.'); ?>
+																<?php echo gettext('The primary album was created in association with the user. It will be removed if the user is deleted. Delinking the album removes this association.'); ?>
 															</p>
 															<?php
 														}
@@ -798,7 +798,7 @@ echo $refresh;
 
 												</td>
 											</tr>
-	<?php echo $custom_row; ?>
+											<?php echo $custom_row; ?>
 										</table> <!-- end individual admin table -->
 									</td>
 								</tr>
@@ -810,7 +810,7 @@ echo $refresh;
 								<th></th>
 								<th></th>
 								<th>
-<?php printPageSelector($subpage, $rangeset, 'admin-users.php', array('page' => 'users')); ?>
+									<?php printPageSelector($subpage, $rangeset, 'admin-users.php', array('page' => 'users')); ?>
 								</th>
 							</tr>
 						</table> <!-- main admin table end -->
@@ -835,7 +835,7 @@ echo $refresh;
 							?>
 							<br class="clearall" />
 							<p class="notebox">
-		<?php printf(gettext('The <em>Zenphoto_Authority</em> object supports a higher version of user rights than currently selected. You may wish to migrate the user rights to gain the new functionality this version provides.'), Zenphoto_Authority::getVersion(), Zenphoto_Authority::$supports_version); ?>
+								<?php printf(gettext('The <em>Zenphoto_Authority</em> object supports a higher version of user rights than currently selected. You may wish to migrate the user rights to gain the new functionality this version provides.'), Zenphoto_Authority::getVersion(), Zenphoto_Authority::$supports_version); ?>
 								<br class="clearall" />
 								<span class="buttons">
 									<a onclick="launchScript('', ['action=migrate_rights', 'XSRFToken=<?php echo getXSRFToken('migrate_rights') ?>']);"><?php echo gettext('Migrate rights'); ?></a>
@@ -848,7 +848,7 @@ echo $refresh;
 							?>
 							<br class="clearall" />
 							<p class="notebox">
-		<?php printf(gettext('You may wish to revert the <em>Zenphoto_Authority</em> user rights to version %s for backwards compatibility with prior releases.'), Zenphoto_Authority::getVersion() - 1); ?>
+								<?php printf(gettext('You may wish to revert the <em>Zenphoto_Authority</em> user rights to version %s for backwards compatibility with prior releases.'), Zenphoto_Authority::getVersion() - 1); ?>
 								<br class="clearall" />
 								<span class="buttons">
 									<a onclick="launchScript('', ['action=migrate_rights', 'revert=true', 'XSRFToken=<?php echo getXSRFToken('migrate_rights') ?>']);"><?php echo gettext('Revert rights'); ?></a>

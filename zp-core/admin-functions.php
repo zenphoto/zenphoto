@@ -571,15 +571,17 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 *    OPTION_TYPE_TEXTBOX:          A textbox
 	 *    OPTION_TYPE_PASSWORD:         A passowrd textbox
 	 *    OPTION_TYPE_CLEARTEXT:     	  A textbox, but no sanitization on save
-	 * 		OPTION_TYPE_NUMBER:						A small textbox for numbers.
+	 * 		OPTION_TYPE_NUMBER:						A small textbox for numbers. NOTE: the default allows only positive integers
+	 * 																			(i.e. 'step' defaults to 1.) If you need	other values supply a "limits" element, e.g:
+	 * 																			'limits' => array('min' => -25, 'max'=> 25, 'step' => 0.5)
 	 *    OPTION_TYPE_CHECKBOX:         A checkbox
 	 *    OPTION_TYPE_CUSTOM:           Handled by $optionHandler->handleOption()
 	 *    OPTION_TYPE_TEXTAREA:         A textarea
 	 *    OPTION_TYPE_RICHTEXT:         A textarea with WYSIWYG editor attached
 	 *    OPTION_TYPE_RADIO:            Radio buttons (button names are in the 'buttons' index of the supported options array)
 	 *    OPTION_TYPE_SELECTOR:         Selector (selection list is in the 'selections' index of the supported options array
-	 *                                  null_selection contains the text for the empty selection. If not present there
-	 *                                  will be no empty selection)
+	 * 																			null_selection contains the text for the empty selection. If not present there
+	 * 																			will be no empty selection)
 	 *    OPTION_TYPE_CHECKBOX_ARRAY:   Checkbox array (checkbox list is in the 'checkboxes' index of the supported options array.)
 	 *    OPTION_TYPE_CHECKBOX_UL:      Checkbox UL (checkbox list is in the 'checkboxes' index of the supported options array.)
 	 *    OPTION_TYPE_COLOR_PICKER:     Color picker
@@ -689,28 +691,46 @@ function printAdminHeader($tab, $subtab = NULL) {
 							<?php
 							break;
 						case OPTION_TYPE_NUMBER:
-							$v = sanitize_numeric($v);
 						case OPTION_TYPE_CLEARTEXT:
-							$multilingual = false;
 						case OPTION_TYPE_PASSWORD:
 						case OPTION_TYPE_TEXTBOX:
 						case OPTION_TYPE_TEXTAREA:
 						case OPTION_TYPE_RICHTEXT;
-							if ($type == OPTION_TYPE_CLEARTEXT) {
-								$clear = 'clear';
-							} else {
-								$clear = '';
-							}
-							if ($type == OPTION_TYPE_NUMBER) {
-								$clear = 'numeric';
-							} else {
-								$clear = '';
-							}
-							if ($type == OPTION_TYPE_PASSWORD) {
-								$inputtype = 'password';
-								$multilingual = false;
-							} else {
-								$inputtype = 'text';
+							$clear = '';
+							$wide = '338px';
+							switch ($type) {
+								case OPTION_TYPE_CLEARTEXT:
+									$clear = 'clear';
+									$multilingual = false;
+									break;
+								case OPTION_TYPE_PASSWORD:
+									$inputtype = 'password';
+									$multilingual = false;
+									break;
+								case OPTION_TYPE_NUMBER:
+									$multilingual = false;
+									$clear = 'numeric';
+									if (!is_numeric($v))
+										$v = 0;
+									$wide = '100px';
+									if (isset($row['limits'])) {
+										$inputtype = 'number';
+										if (isset($row['limits']['min']))
+											$inputtype .= '" min="' . $row['limits']['min'];
+										if (isset($row['limits']['max']))
+											$inputtype .= '" max="' . $row['limits']['max'];
+										if (isset($row['limits']['step'])) {
+											$inputtype .= '" step="' . $row['limits']['step'];
+										} else {
+											$inputtype .= '" step="1';
+										}
+									} else {
+										$inputtype = 'number" min="0" step="1';
+									}
+									break;
+								default:
+									$inputtype = 'text';
+									break;
 							}
 							?>
 							<td width="350">
@@ -725,11 +745,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 										<textarea id="<?php echo $key; ?>"<?php if ($type == OPTION_TYPE_RICHTEXT) echo ' class="texteditor"'; ?> name="<?php echo $postkey; ?>" cols="<?php echo TEXTAREA_COLUMNS; ?>"	style="width: 320px" rows="6"<?php echo $disabled; ?>><?php echo html_encode($v); ?></textarea>
 										<?php
 									} else {
-										if ($type == OPTION_TYPE_NUMBER) {
-											$wide = '100px';
-										} else {
-											$wide = '338px';
-										}
 										?>
 										<input type="<?php echo $inputtype; ?>" id="<?php echo $key; ?>" name="<?php echo $postkey; ?>" style="width: <?php echo $wide; ?>" value="<?php echo html_encode($v); ?>"<?php echo $disabled; ?> />
 										<?php
@@ -944,7 +959,11 @@ function printAdminHeader($tab, $subtab = NULL) {
 						break;
 					case'numerictext':
 						if (isset($_POST[$postkey])) {
-							$value = sanitize_numeric($_POST[$postkey]);
+							if (is_numeric($_POST[$postkey])) {
+								$value = $_POST[$postkey];
+							} else {
+								$value = 0;
+							}
 						}
 						break;
 					case 'cleartext':

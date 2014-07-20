@@ -210,6 +210,20 @@ if (isset($_REQUEST['subpage'])) {
 }
 
 printAdminHeader('edit', gettext('crop image'));
+if ($pasteobj) {
+	?>
+	<style>
+		body {
+			text-align: center;
+			background-color: white;
+			background-image: none;
+		}
+		#pasteobj {
+			margin: 10px;
+		}
+	</style>
+	<?php
+}
 ?>
 
 <script src="<?php echo WEBPATH . '/' . ZENFOLDER ?>/js/jquery.Jcrop.js" type="text/javascript"></script>
@@ -348,7 +362,7 @@ if ($pasteobj && isset($_REQUEST['size'])) {
 	if ($pasteobj) {
 		?>
 
-		<div id="content">
+		<div id="pasteobj">
 			<?php
 		} else {
 			printLogoAndLinks();
