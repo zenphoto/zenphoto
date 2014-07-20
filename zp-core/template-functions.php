@@ -2592,7 +2592,6 @@ function getSizeCustomImage($size, $width = NULL, $height = NULL, $cw = NULL, $c
       $neww = $cw;
       $newh = $ch;
     }
-    echo $neww . "/" . $newh;
     return array($neww, $newh);
   }
 }
