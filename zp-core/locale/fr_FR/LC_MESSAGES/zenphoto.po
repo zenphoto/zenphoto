@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZenPhoto20 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-20 02:17-0500\n"
-"PO-Revision-Date: 2014-07-20 03:00-0500\n"
+"POT-Creation-Date: 2014-07-20 19:57-0500\n"
+"PO-Revision-Date: 2014-07-20 20:41-0500\n"
 "Last-Translator: \n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon & Vincent Bourganel "
 "<michel@mgagnon.net>\n"
@@ -217,7 +217,7 @@ msgstr "L’en-tête (commande header) qui sera générée"
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/plugins/disableAction.php:121
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/plugins/disableWatermark.php:96
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/plugins/showNoUserRights.php:46
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4612
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4631
 msgid "demo"
 msgstr "démonstrateur"
 
@@ -358,7 +358,7 @@ msgstr ""
 "pas les <em>droits d’administrateur</em>."
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/plugins/disableAction.php:107
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2154
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2173
 msgid "Published/Un-published"
 msgstr "Publié / non publié"
 
@@ -381,8 +381,8 @@ msgstr ""
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/effervescence+/sidebar.php:60
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/garland/sidebar.php:107
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpskeleton/inc-bottom.php:50
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2140
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3301
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2159
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3320
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/lib-auth.php:525
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/lib-auth.php:531
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/lib-auth.php:542
@@ -417,8 +417,8 @@ msgstr "Sélectionner les noms d’albums à exclure des recherches."
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/plugins/filter-fileSearches.php:84
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpskeleton/inc-bottom.php:49
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:493
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1699
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2141
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1718
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2160
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:1972
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:2024
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/utilities/gallery_statistics.php:76
@@ -442,7 +442,7 @@ msgid "Generates and displays a Doc file for filters."
 msgstr "Génère et affiche un fichier Doc pour les filtres."
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/plugins/filterDoc.php:23
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4613
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4632
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/deprecated-functions.php:118
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/macroList.php:86
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/rewriteRules.php:26
@@ -1442,9 +1442,9 @@ msgstr "Voir l’album :"
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpmobile/news.php:55
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpmobile/search.php:165
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpskeleton/gallery.php:36
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4492
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4511
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/comment_form/functions.php:30
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:588
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:592
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow2.php:268
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow2.php:588
 msgid "prev"
@@ -1514,10 +1514,10 @@ msgstr "préc."
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpmobile/news.php:59
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpmobile/search.php:165
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpskeleton/gallery.php:36
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4520
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4539
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/comment_form/functions.php:31
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/jplayer.php:472
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:589
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:593
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow2.php:272
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow2.php:589
 msgid "next"
@@ -1693,7 +1693,7 @@ msgstr "Couleur du thème"
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin.php:345
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/googleMap.php:502
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:66
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:590
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:594
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow2.php:590
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:33
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:39
@@ -1798,7 +1798,7 @@ msgstr "Nombre de résultats pour <em>%1$s</em> : %2$u"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/basic/search.php:62
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1408
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1505
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1524
 msgid "Date:"
 msgstr "Date : "
 
@@ -2422,8 +2422,8 @@ msgstr "Racine des albums"
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpmobile/functions.php:175
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpmobile/pages.php:29
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpmobile/pages.php:35
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3192
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3328
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3211
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3347
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/lib-auth.php:526
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/lib-auth.php:529
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/lib-auth.php:544
@@ -2513,8 +2513,8 @@ msgstr "Flux RSS"
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpskeleton/news.php:26
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpskeleton/news.php:33
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpskeleton/news.php:38
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3192
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3314
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3211
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3333
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/lib-auth.php:527
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/lib-auth.php:530
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/lib-auth.php:543
@@ -2570,7 +2570,7 @@ msgstr "Actualités"
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/template-functions.php:3808
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:73
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/html_meta_tags.php:221
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:744
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:748
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow2.php:726
 msgid "Search"
 msgstr "Recherche"
@@ -2866,14 +2866,14 @@ msgstr "Image de la page d’accueil"
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:2041
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:2069
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:2783
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/crop_image.php:414
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/crop_image.php:428
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/image_effects.php:125
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/image_effects.php:129
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/image_effects.php:133
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/image_effects.php:137
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/image_effects.php:141
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/image_effects.php:145
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:123
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:127
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow2.php:101
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow2.php:139
 msgid "none"
@@ -3080,7 +3080,7 @@ msgstr "Données personnalisées : "
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/gray_highlights/image.php:39
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1475
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1524
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1543
 msgid "Location:"
 msgstr "Lieu : "
 
@@ -3289,7 +3289,7 @@ msgstr ""
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpArdoise/album.php:62
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpEnlighten/404.php:33
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpEnlighten/image.php:57
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4756
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4775
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/defaultCodeblocks.php:34
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/related_items.php:182
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:101
@@ -3373,7 +3373,7 @@ msgstr "Un mot de passe est requis"
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpmasonry/inc-footer.php:31
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpmasonry/inc-header.php:139
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpmasonry/inc-header.php:154
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:586
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:590
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow2.php:586
 msgid "start slideshow"
 msgstr "démarrer le diaporama"
@@ -3384,7 +3384,7 @@ msgstr "démarrer le diaporama"
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpmasonry/inc-footer.php:32
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpmasonry/inc-header.php:140
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpmasonry/inc-header.php:155
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:587
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:591
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow2.php:587
 msgid "stop slideshow"
 msgstr "arrêter le diaporama"
@@ -3596,7 +3596,7 @@ msgstr "L’objet demandé n’a pu être trouvé."
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpminimal/inc-footer.php:24
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpmobile/functions.php:39
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:511
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4758
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4777
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/lib-auth.php:510
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/defaultCodeblocks.php:34
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:81
@@ -3619,7 +3619,7 @@ msgstr "Page du thème"
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpminimal/image.php:56
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpminimal/search.php:92
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpmobile/search.php:160
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:503
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:507
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow2.php:503
 msgid "View Slideshow"
 msgstr "Voir le diaporama"
@@ -3791,7 +3791,7 @@ msgstr "préc."
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpfocus/favorites.php:144
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpfocus/gallery.php:47
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpfocus/search.php:201
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:353
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:357
 msgid "Next"
 msgstr "Suivante"
 
@@ -4419,8 +4419,8 @@ msgstr "Envoyer l’email"
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1809
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1855
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1856
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1349
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2080
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1368
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2099
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-logs.php:124
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:593
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:1062
@@ -4444,7 +4444,7 @@ msgstr "Envoyer l’email"
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-users.php:826
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/lib-auth.php:1026
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/contact_form/form.php:135
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/crop_image.php:428
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/crop_image.php:442
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/debug/admin_tab.php:206
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:376
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:107
@@ -4521,8 +4521,8 @@ msgstr "Sous-albums"
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpskeleton/favorites.php:64
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpskeleton/gallery.php:27
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpskeleton/search.php:114
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2227
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2230
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2246
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2249
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/image_album_statistics.php:212
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/tinyURL.php:77
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/tweet_news.php:432
@@ -4697,11 +4697,11 @@ msgstr ""
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpmasonry/themeoptions.php:81
 msgid "Crop Album Thumbs to Landscape Orientation?"
-msgstr ""
+msgstr "Rogner les vignettes d’albums au format paysage ?"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpmasonry/themeoptions.php:83
 msgid "Check to crop the album thumbs to a more landscape orientation."
-msgstr ""
+msgstr "Cocher pour rogner les vignettes d’albums au format paysage."
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpmasonry/themeoptions.php:84
 msgid "Show Image Title on Album Pages?"
@@ -4728,9 +4728,8 @@ msgstr ""
 "précautions."
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpmasonry/themeoptions.php:90
-#, fuzzy
 msgid "Fix the sidebar's position?"
-msgstr "Position :"
+msgstr "Panneau latéral en position fixe ?"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpmasonry/themeoptions.php:92
 msgid ""
@@ -4738,6 +4737,10 @@ msgid ""
 "sidebar is too tall for the users\n"
 "\t\t\t\tviewport, it will revert to static position."
 msgstr ""
+"Cocher pour fixer la position du panneau latéral afin qu’il soit toujours "
+"visible lors du défilement.\n"
+"\t\t\t\tSi ce panneau est plus long que la taille de l’écran, il demeurera "
+"statique."
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpmasonry/themeoptions.php:94
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpminimal/themeoptions.php:42
@@ -4804,11 +4807,14 @@ msgid ""
 "news and pages.  Default is 2 (4 total\n"
 "\t\t\t\tpossible)."
 msgstr ""
+"Si vous utilisez Zenpage, saisissez le nombre de résultats de recherche à "
+"afficher pour les actualités et les pages.\n"
+"\t\t\t\tValeur par défaut : 2 (maximum possible : 4)."
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpmasonry/themeoptions.php:124
 #, fuzzy
 msgid "Colorbox Target Sized Image in Galleriffic"
-msgstr "image redimensionnée"
+msgstr "Taille de l’image affichée avec Colorbox."
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpmasonry/themeoptions.php:126
 msgid ""
@@ -4856,8 +4862,9 @@ msgid "Frontpage Slideshow Transition Effect?"
 msgstr "Effet de transition appliqué entre les images de la galerie"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpmasonry/themeoptions.php:140
+#, fuzzy
 msgid "Choose the transition effect, if slideshow is selected above."
-msgstr ""
+msgstr "Choisir l’effet de rotation, si le paramètre est sélectionné ci-haut."
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpmasonry/themeoptions.php:141
 #, fuzzy
@@ -4867,7 +4874,7 @@ msgstr "Diaporama : vitesse"
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpmasonry/themeoptions.php:143
 #, fuzzy
 msgid "Choose the delay of each rotation for slideshow in milliseconds."
-msgstr "Vitesse de la transition en millisecondes."
+msgstr "Saisir le délai entre chaque rotation en millisecondes"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpmasonry/themeoptions.php:144
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpskeleton/themeoptions.php:50
@@ -4986,6 +4993,9 @@ msgid ""
 "If using Zenpage, enter the number of search results to display for each "
 "news and pages.  Default is 2 (4 total possible)."
 msgstr ""
+"Si vous utilisez Zenpage, saisissez le nombre de résultats de recherche à "
+"afficher pour les actualités et les pages. Valeur par défaut : 2 (maximum "
+"possible : 4)."
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpminimal/themeoptions.php:42
 msgid ""
@@ -5162,13 +5172,15 @@ msgstr ""
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpskeleton/themeoptions.php:57
 msgid "Debug User Agent"
-msgstr ""
+msgstr "Agent-utilisateur (déboggage)"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpskeleton/themeoptions.php:59
 msgid ""
 "Check to display user information in the footer for debugging mobile "
 "displays."
 msgstr ""
+"Cocher pour afficher les informations d’utilisateur dans le pied de page "
+"pour débogger les navigateurs mobiles."
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpskeleton/themeoptions.php:60
 #, fuzzy
@@ -5185,7 +5197,7 @@ msgstr ""
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpskeleton/themeoptions.php:63
 #, fuzzy
 msgid "Popup (PrettyPhoto) Target"
-msgstr "La cible du menu est protégée par mot de passe."
+msgstr "Taille de l’image affichée avec Colorbox."
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpskeleton/themeoptions.php:65
 msgid "Sized (630px)"
@@ -5213,6 +5225,9 @@ msgid ""
 "Check to display a download button on the image page, behavour controlled by "
 "options->image->Full Image Protection."
 msgstr ""
+"Cocher pour afficher un bouton de téléchargement sur la page d’image ; le "
+"résultat dépend du paramètre défini par options –> image –> protection de "
+"l’image pleine grandeur"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpskeleton/themeoptions.php:70
 msgid "Show Archive"
@@ -5254,7 +5269,7 @@ msgstr "*Actions en lot*"
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:668
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:681
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:685
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2165
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2184
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-logs.php:117
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-themes.php:311
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1025
@@ -5310,7 +5325,7 @@ msgstr "Effacer les tags"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-albumsort.php:79
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:673
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2303
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2322
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/zenpage/admin-functions.php:257
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/zenpage/admin-news-articles.php:236
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/zenpage/admin-news-articles.php:320
@@ -5320,7 +5335,7 @@ msgstr "Désactiver les commentaires"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-albumsort.php:80
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:674
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2317
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2336
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/zenpage/admin-functions.php:263
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/zenpage/admin-news-articles.php:237
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/zenpage/admin-news-articles.php:328
@@ -5348,7 +5363,7 @@ msgid "Image order saved"
 msgstr "Ordre des images sauvegardé"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-albumsort.php:135
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4803
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4822
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/comment_form/admin-comments.php:269
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:921
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/zenpage/admin-functions.php:1726
@@ -5356,59 +5371,59 @@ msgid "Selected items deleted"
 msgstr "Les éléments sélectionnés ont été supprimés"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-albumsort.php:138
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4806
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4825
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:925
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/zenpage/admin-functions.php:1729
 msgid "Selected items published"
 msgstr "Les éléments sélectionnés sont publiés"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-albumsort.php:141
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4809
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4828
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:929
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/zenpage/admin-functions.php:1732
 msgid "Selected items unpublished"
 msgstr "Les éléments sélectionnés ne sont plus publiés"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-albumsort.php:144
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4812
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4831
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/zenpage/admin-functions.php:1735
 msgid "Comments enabled for selected items"
 msgstr "Les commentaires pour les éléments sélectionnés sont activés"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-albumsort.php:147
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4815
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4834
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/zenpage/admin-functions.php:1738
 msgid "Comments disabled for selected items"
 msgstr "Les commentaires pour les éléments sélectionnés sont désactivés"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-albumsort.php:150
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4818
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4837
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/zenpage/admin-functions.php:1741
 msgid "Hitcounter for selected items"
 msgstr "Compteur d’affichage pour les éléments sélectionnés"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-albumsort.php:153
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4821
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4840
 msgid "Tags added for selected items"
 msgstr "Les tags ont été ajoutés aux éléments sélectionnés"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-albumsort.php:156
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4824
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4843
 msgid "Tags cleared for selected items"
 msgstr "Les tags ont été effacés des éléments sélectionnés"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-albumsort.php:159
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4827
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4846
 msgid "Tags added for images of selected items"
 msgstr "Les tags ont été ajoutés aux images des éléments sélectionnés"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-albumsort.php:162
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4830
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4849
 msgid "Tags cleared for images of selected items"
 msgstr "Les tags ont été effacés des images des éléments sélectionnés"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-albumsort.php:169
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4796
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4815
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:12
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/menu_manager/menu_tab.php:36
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/zenpage/admin-functions.php:1762
@@ -5423,18 +5438,18 @@ msgstr "Aucun changement"
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1596
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1717
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1747
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1341
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2072
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1360
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2091
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-refresh-metadata.php:157
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-thumbcrop.php:288
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-thumbcrop.php:290
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/cacheManager/cacheDBImages.php:195
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/cacheManager/cacheImages.php:390
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/crop_image.php:440
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/crop_image.php:441
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/crop_image.php:446
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/crop_image.php:454
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/crop_image.php:455
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/crop_image.php:460
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/crop_image.php:468
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/crop_image.php:469
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:221
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/themeEditor/themes-editor.php:108
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/zenpage/admin-edit.php:350
@@ -5452,8 +5467,8 @@ msgstr "Retour"
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1750
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1807
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1853
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1345
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2076
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1364
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2095
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:592
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:1061
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:1085
@@ -5478,7 +5493,7 @@ msgstr "Retour"
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/comment_form/admin-comments.php:137
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/comment_form/admin-comments.php:324
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/comment_form/admin-comments.php:466
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/crop_image.php:434
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/crop_image.php:448
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/menu_manager/menu_tab.php:154
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/menu_manager/menu_tab.php:237
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:375
@@ -5506,8 +5521,8 @@ msgstr "Appliquer"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-albumsort.php:199
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-albumsort.php:253
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1364
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2095
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1383
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2114
 msgid "View Album"
 msgstr "Voir l’album"
 
@@ -5516,7 +5531,7 @@ msgid "Set the image order by dragging them to the positions you desire."
 msgstr "Choisissez l’ordre des images en les déplaçant dans l’ordre désiré."
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-albumsort.php:219
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3257
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3276
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:31
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/zenpage/admin-edit.php:124
 msgid "edit"
@@ -5553,7 +5568,7 @@ msgid "Create in:"
 msgstr "Créer dans : "
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-dynamic-album.php:184
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1733
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1752
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/favoritesAlbums/admin-album.php:160
 msgid "Thumbnail:"
 msgstr "Vignette : "
@@ -5670,13 +5685,13 @@ msgstr "Effacer les tags des images"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:686
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1224
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1945
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1964
 msgid "Move"
 msgstr "Déplacer"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:687
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1229
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1951
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1970
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/zenpage/admin-edit.php:544
 msgid "Copy"
 msgstr "Copier"
@@ -5725,10 +5740,10 @@ msgstr ""
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:856
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:913
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:915
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1355
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1357
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2086
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2088
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1374
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1376
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2105
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2107
 msgid "New subalbum"
 msgstr "Nouveau sous-album"
 
@@ -5748,7 +5763,7 @@ msgstr ""
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:881
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1832
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3891
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3910
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/comment_form/admin-comments.php:361
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/menu_manager/menu_tab.php:208
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/zenpage/admin-categories.php:161
@@ -5767,7 +5782,7 @@ msgid "%s (descending)"
 msgstr "%s (décroissant)"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1000
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1534
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1553
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:1274
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/exif/exif.php:663
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/exif/makers/canon.php:135
@@ -5834,7 +5849,7 @@ msgid "<strong>Size:</strong>"
 msgstr "<strong>Taille :</strong>"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1111
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1832
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1851
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/lib-auth.php:533
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/lib-auth.php:534
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/lib-auth.php:535
@@ -5852,8 +5867,8 @@ msgid "General"
 msgstr "Général"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1115
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1836
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2274
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1855
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2293
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-globals.php:34
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/favoritesHandler.php:141
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/zenpage/admin-edit.php:444
@@ -5863,7 +5878,7 @@ msgid "Published"
 msgstr "Publié"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1123
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1844
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1863
 msgid "Allow Comments"
 msgstr "Autoriser les commentaires"
 
@@ -5883,15 +5898,15 @@ msgstr[0] "Effacer les votes (%u étoile)"
 msgstr[1] "Effacer les votes (%u étoiles)"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1154
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1875
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1894
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/zenpage/admin-edit.php:682
 msgid "Reset rating (unrated)"
 msgstr "Effacer les votes (pas encore évalué)"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1169
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1417
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1514
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1890
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1533
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1909
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/publishContent/publishContent.php:311
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/zenpage/admin-edit.php:586
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/zenpage/admin-edit.php:614
@@ -5900,30 +5915,30 @@ msgstr "calendrier"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1176
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1201
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1897
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1922
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1916
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1941
 msgid "Future publishing date."
 msgstr "Date de publication ultérieure."
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1187
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1211
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1908
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1932
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1927
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1951
 msgid "Expired!"
 msgstr "Expiré !"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1196
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1917
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1936
 msgid "Publish date"
 msgstr "Date de publication"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1206
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1927
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1946
 msgid "Expiration date"
 msgstr "Date d’expiration"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1218
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1939
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1958
 msgid "Utilities"
 msgstr "Utilitaires"
 
@@ -5949,9 +5964,9 @@ msgstr "vers"
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1266
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1272
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1278
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1982
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2019
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2027
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2001
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2038
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2046
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/comment_form/admin-comments.php:141
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/comment_form/admin-comments.php:143
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/uploader_http/upload_form.php:71
@@ -6019,14 +6034,14 @@ msgid "Image watermark:"
 msgstr "Filigrane de l’image : "
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1440
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1692
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1707
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1711
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1726
 msgid "*no watermark"
 msgstr "*aucun filigrane"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1441
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1693
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1708
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1712
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1727
 msgid "*default"
 msgstr "*réglages par défaut"
 
@@ -6035,7 +6050,7 @@ msgid "thumb"
 msgstr "vignette"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1456
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:127
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:131
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow2.php:143
 msgid "full image"
 msgstr "image pleine grandeur"
@@ -6053,7 +6068,7 @@ msgid "None selected for display"
 msgstr "Aucune n’est sélectionnée pour être affichée"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1565
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1822
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1841
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:1401
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/zenpage/admin-edit.php:799
 msgid "Codeblocks:"
@@ -6151,7 +6166,7 @@ msgid "%1$s %2$s: %3$s%4$s"
 msgstr "%1$s %2$s : %3$s%4$s"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:127
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4611
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4630
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/pluginDoc.php:133
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/user-expiry.php:107
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/user_groups.php:218
@@ -6214,12 +6229,12 @@ msgstr "Ordre des images"
 msgid "Subalbums"
 msgstr "Sous-albums"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:655
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:657
 msgid "Deprecated."
 msgstr "Obsolète."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:860
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4609
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:875
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4628
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:1561
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-tags.php:160
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-users.php:474
@@ -6230,32 +6245,32 @@ msgstr "Obsolète."
 msgid "all"
 msgstr "tous"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1239
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1240
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1258
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1259
 msgid "add tag"
 msgstr "Ajouter des tags"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1385
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1404
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-globals.php:33
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/class-search.php:118
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/favoritesHandler.php:140
 msgid "Owner"
 msgstr "Propriétaire"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1402
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1421
 msgid "Album Title"
 msgstr "Titre de l’album"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1411
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1430
 msgid "Album Description:"
 msgstr "Description de l’album : "
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1424
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1465
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1443
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1484
 msgid "Album password:"
 msgstr "Mot de passe de l’album : "
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1438
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1457
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:1135
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:1461
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:2224
@@ -6264,11 +6279,11 @@ msgstr "Mot de passe de l’album : "
 msgid "clear password"
 msgstr "effacer le mot de passe"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1447
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1466
 msgid "Album guest user:"
 msgstr "Invité de l’album : "
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1453
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1472
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:1158
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:1482
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:2242
@@ -6279,17 +6294,17 @@ msgstr "Invité de l’album : "
 msgid "Show password"
 msgstr "Afficher le mot de passe"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1468
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1487
 msgid "repeat password:"
 msgstr "Saisir le mot de passe de nouveau"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1472
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1491
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/downloadList.php:143
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/zenpage/admin-edit.php:531
 msgid "Password hint:"
 msgstr "Astuce pour le mot de passe : "
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1536
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1555
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:822
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:1275
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:1664
@@ -6300,20 +6315,20 @@ msgstr "Astuce pour le mot de passe : "
 msgid "Custom"
 msgstr "Personnalisé"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1543
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1562
 msgid "Sort subalbums by:"
 msgstr "Trier les sous-albums par : "
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1549
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1568
 msgid "*gallery album sort order"
 msgstr "*ordre de tri des albums de la galerie"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1551
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1570
 msgid "*parent album subalbum sort order"
 msgstr "*ordre de tri des images du sous-album comme celui de l’album parent"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1571
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1626
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1590
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1645
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:1310
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:1689
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:1738
@@ -6323,8 +6338,8 @@ msgstr "*ordre de tri des images du sous-album comme celui de l’album parent"
 msgid "Descending"
 msgstr "Décroissant"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1589
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1645
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1608
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1664
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:1318
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:1708
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:1757
@@ -6332,71 +6347,71 @@ msgstr "Décroissant"
 msgid "custom fields:"
 msgstr "champs personnalisés :"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1596
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1615
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:1716
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:1806
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/favoritesHandler.php:117
 msgid "Sort images by"
 msgstr "Trier les images par"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1602
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1621
 msgid "*gallery image sort order"
 msgstr "*ordre de tri des images par défaut de la galerie"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1604
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1623
 msgid "*parent album image sort order"
 msgstr "*ordre de tri des images comme celui de l’album parent"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1655
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1674
 msgid "Album theme:"
 msgstr "Thème de l’album : "
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1667
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1686
 msgid "*gallery theme"
 msgstr "*thème de la galerie"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1688
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1707
 msgid "Album watermarks:"
 msgstr "Filigranes de l’album : "
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1714
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1733
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:1976
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/utilities/reset_albumthumbs.php:36
 msgid "Thumbs"
 msgstr "Vignettes"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1855
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1874
 #, php-format
 msgid "Reset hit counter (%u hit)"
 msgid_plural "Reset hit counter (%u hits)"
 msgstr[0] "Remettre le compteur de vues à zéro (total : %u affichage)"
 msgstr[1] "Remettre le compteur de vues à zéro (total : %u affichages)"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1868
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1887
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/zenpage/admin-edit.php:675
 #, php-format
 msgid "Reset rating (%u stars)"
 msgstr "Effacer les votes (%u étoiles)"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1957
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1976
 msgid "Rename Folder"
 msgstr "Renommer le dossier"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1974
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1993
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/template-functions.php:230
 msgid "Delete album"
 msgstr "Supprimer l’album"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1979
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1998
 msgid "Album will be deleted when changes are applied."
 msgstr "L’album sera effacé quand les modifications seront appliquées."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1986
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2023
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2005
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2042
 msgid "to:"
 msgstr "vers :"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2037
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2056
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-tags.php:157
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/class-search.php:108
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/lib-auth.php:514
@@ -6411,214 +6426,213 @@ msgstr "vers :"
 msgid "Tags"
 msgstr "Tags"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2051
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2070
 msgid "Dynamic album search:"
 msgstr "Recherche dans l’album dynamique :"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2114
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2133
 msgid "Clears the album’s cached images."
 msgstr "Supprime les images en cache de l’album."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2116
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2135
 msgid "Clear album image cache"
 msgstr "Vider le cache des images de l’album"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2119
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2138
 msgid "Resets album’s hit counters."
 msgstr "Remettre à zéro les compteurs de l’album"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2121
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2140
 msgid "Reset album hit counters"
 msgstr "Remettre à zéro les compteurs de l’album"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2128
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2147
 msgid "Refreshes the metadata for the album."
 msgstr "Actualise les métadonnées de l’album."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2130
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2149
 msgid "Refresh album metadata"
 msgstr "Actualiser les métadonnées de l’album"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2142
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2161
 msgid "Albums (dynamic)"
 msgstr "Albums dynamiques"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2143
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2162
 msgid "Images (dynamic)"
 msgstr "Images dynamiques"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2149
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2168
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/zenpage/admin-categories.php:187
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/zenpage/admin-functions.php:1414
 msgid "Has Password"
 msgstr "A un mot de passe"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2153
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4993
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2172
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:5012
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/zenpage/admin-categories.php:191
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/zenpage/admin-functions.php:1418
-#, fuzzy
 msgid "pick source"
-msgstr "choisir"
+msgstr "choisir la source"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2155
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2174
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/zenpage/admin-functions.php:1420
 msgid "Comments on/off"
 msgstr "Commentaires actifs / désactivés"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2156
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2175
 msgid "View the album"
 msgstr "Voir l’album"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2157
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2176
 msgid "Refresh metadata"
 msgstr "Actualiser les métadonnées"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2161
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2180
 msgid "Reset hit counters"
 msgstr "Remettre les compteurs à zéro"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2197
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2214
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2216
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2233
 #, php-format
 msgid "Edit this album: %s"
 msgstr "Modifier cet album : %s"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2228
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2231
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2247
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2250
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-globals.php:68
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/tinyURL.php:76
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/tweet_news.php:423
 msgid "albums"
 msgstr "albums"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2236
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2241
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2255
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2260
 msgid "Subalbum List"
 msgstr "Liste des sous-albums"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2256
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2275
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/zenpage/admin-functions.php:239
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/zenpage/admin-functions.php:1001
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/zenpage/admin-news-articles.php:298
 msgid "Password protected"
 msgstr "Protégé par mot de passe"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2270
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2289
 #, php-format
 msgid "Un-publish the album %s"
 msgstr "Dépublier l’album %s"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2284
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2303
 #, php-format
 msgid "Publish the album %s"
 msgstr "Publier l’album %s"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2288
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2307
 #, php-format
 msgid "Unpublished"
 msgstr "Non publié(e)"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2307
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2326
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/zenpage/admin-edit.php:651
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/zenpage/admin-functions.php:258
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/zenpage/admin-news-articles.php:321
 msgid "Comments on"
 msgstr "Commentaires actifs"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2321
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2340
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/zenpage/admin-functions.php:264
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/zenpage/admin-news-articles.php:329
 msgid "Comments off"
 msgstr "Commentaires désactivés"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2332
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2351
 msgid "View album"
 msgstr "Voir l’album"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2333
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2352
 #, php-format
 msgid "View album %s"
 msgstr "Voir l’album %s"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2340
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2358
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2378
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2359
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2377
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2397
 msgid "unavailable"
 msgstr "pas disponible"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2344
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2363
 #, php-format
 msgid "Refresh metadata for the album %s"
 msgstr "Actualiser les métadonnées de l’album %s"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2345
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2364
 #, php-format
 msgid "Refresh metadata in the album %s"
 msgstr "Actualiser les métadonnées dans l’album %s"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2362
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2381
 #, php-format
 msgid "Reset hit counters for album %s"
 msgstr "Remettre à zéro les compteurs de l’album %s"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2363
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2382
 #, php-format
 msgid "Reset hit counters for the album %s"
 msgstr "Remettre à zéro les compteurs de l’album %s"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2382
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2383
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2401
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2402
 #, php-format
 msgid "Delete the album %s"
 msgstr "Supprimer l’album %s"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2576
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2584
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2590
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2594
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2598
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2595
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2603
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2609
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2613
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2617
 #, php-format
 msgid "page %u"
 msgstr "page %u"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2576
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2578
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2595
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2597
 msgid "Previous page"
 msgstr "Page précédente"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2598
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2600
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2617
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2619
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/zenpage/template-functions.php:948
 msgid "Next page"
 msgstr "Page suivante"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2975
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2980
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2985
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2990
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2994
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2999
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3004
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3009
 msgid "Cannot create new theme."
 msgstr "Impossible de créer le nouveau thème."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2975
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2994
 #, php-format
 msgid "Directory “%s” already exists!"
 msgstr "Le dossier « %s » existe déjà !"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2980
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2999
 #, php-format
 msgid "Cannot find theme directory “%s” to copy!"
 msgstr "Impossible de trouver le dossier « %s » à copier !"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2985
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3004
 msgid "The <tt>/themes</tt> directory is not writable!"
 msgstr "Le dossier <tt>/themes</tt> n’est pas accessible en écriture !"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2990
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3009
 msgid "Could not create directory for the new theme"
 msgstr "Impossible de créer le dossier du nouveau thème"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3022
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3041
 #, php-format
 msgid ""
 "An error occurred while copying files. Please delete manually the new theme "
@@ -6628,69 +6642,69 @@ msgstr ""
 "manuellement le nouveau dossier de thèmes « %s » et essayer de nouveau, ou "
 "copiez les fichiers manuellement."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3030
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3049
 #, php-format
 msgid "Your theme, based on theme %s"
 msgstr "Votre thème, basé sur le thème %s"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3032
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3051
 msgid "Your theme"
 msgstr "Votre thème"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3052
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3071
 msgid "New custom theme created successfully!"
 msgstr "Le nouveau thème personnalisé a été créé avec succès !"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3054
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3073
 msgid "New custom theme created, but its description could not be updated"
 msgstr ""
 "Le nouveau thème personnalisé a été créé, mais sa description ne peut être "
 "mise à jour"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3186
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3205
 msgid "Rights:"
 msgstr "Droits :"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3250
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3269
 msgid "edit rights"
 msgstr "Droits d’édition"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3251
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3270
 msgid "view unpublished items"
 msgstr "Afficher les éléments non publiés"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3252
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3271
 msgid "upload rights"
 msgstr "Droits de chargement"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3253
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3272
 msgid "the album is dynamic"
 msgstr "l’album est dynamique"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3255
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3274
 msgid "Primary album"
 msgstr "Album principal"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3259
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3278
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/elFinder.php:79
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/uploader_http.php:32
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/uploader_jQuery.php:40
 msgid "upload"
 msgstr "chargement"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3261
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3280
 msgid "view unpublished"
 msgstr "Afficher les éléments non publiés"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3300
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3319
 msgid "Managed albums:"
 msgstr "Albums gérés : "
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3313
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3332
 msgid "Managed news categories:"
 msgstr "Catégories d’actualités gérées :"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3315
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3334
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/utilities/gallery_statistics.php:605
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/customData.php:61
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/multiple_layouts.php:93
@@ -6699,24 +6713,24 @@ msgstr "Catégories d’actualités gérées :"
 msgid "News categories"
 msgstr "Catégories d’actualités"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3327
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3346
 msgid "Managed pages:"
 msgstr "Pages gérées : "
 
 # General update at line 2669 : Select one or more %1$s for the %2$s to manage.
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3333
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3352
 #, php-format
 msgid "Select one or more %1$s for the %2$s to manage."
 msgstr "Sélectionnez un ou plusieurs %1$s de %2$s à gérer."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3334
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3353
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-users.php:779
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-users.php:788
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-users.php:794
 msgid "user"
 msgstr "utilisateur"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3335
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3354
 #, php-format
 msgid ""
 "Users with \"Admin\" or \"Manage all %1$s\" rights can manage all %2$s. All "
@@ -6726,115 +6740,115 @@ msgstr ""
 "<em>Gérer tous les %1$s</em> peuvent gérer tous les %2$s. Les autres ne "
 "peuvent gérer que ceux qui sont sélectionnés."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3338
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3357
 #, php-format
 msgid "You may manage these %s subject to the above rights."
 msgstr ""
 "Vous avez la possibilité de gérer ces %s en fonction des droits ci-dessus."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3755
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3774
 #, php-format
 msgid "Show %u album level"
 msgid_plural "Show %u album levels"
 msgstr[0] "Afficher %u niveau d’albums"
 msgstr[1] "Afficher %u niveaux d’albums"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3758
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3777
 #, php-format
 msgid "%u image per page"
 msgid_plural "%u images per page"
 msgstr[0] "%u image par page"
 msgstr[1] "%u images par page"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3835
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3846
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3858
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3870
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3854
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3865
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3877
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3889
 msgid "ok"
 msgstr "Ok"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3941
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3960
 msgid "Destination"
 msgstr "Destination"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4215
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4250
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4234
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4269
 #, php-format
 msgid "codeblock %u"
 msgstr "Bloc de code %u"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4216
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4256
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4235
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4275
 msgid "add codeblock"
 msgstr "ajouter un bloc de code"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4271
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4290
 msgid "Codeblock 0 is deprecated."
 msgstr "Le bloc de code 0 n’est plus utilisé."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4355
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4374
 #, php-format
 msgid "“%s” Cross Site Request Forgery blocked."
 msgstr "« %s » tentative d’hameçonnage bloquée."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4566
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4585
 msgid "setup"
 msgstr "installation"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4566
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4585
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-globals.php:113
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:1029
 msgid "security"
 msgstr "sécurité"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4566
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4585
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:1029
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/debug.php:24
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/markRelease.php:47
 msgid "debug"
 msgstr "déboggage"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4566
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4585
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/deprecated-functions.php:121
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/deprecated-functions/admin_tab.php:10
 msgid "deprecated"
 msgstr "obsolète"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4610
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4629
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:2773
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin.php:80
 msgid "enabled"
 msgstr "activé"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4614
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4633
 msgid "feed"
 msgstr "Flux RSS"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4615
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4634
 msgid "mail"
 msgstr "Email"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4616
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4635
 msgid "media"
 msgstr "médias"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4617
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4636
 msgid "misc"
 msgstr "divers"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4618
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4637
 msgid "spam"
 msgstr "indésirables"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4619
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4638
 msgid "seo"
 msgstr "moteurs de recherche"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4620
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4639
 msgid "uploader"
 msgstr "chargement"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4621
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4640
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-globals.php:96
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/user-expiry.php:95
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/user-expiry.php:105
@@ -6842,29 +6856,29 @@ msgstr "chargement"
 msgid "users"
 msgstr "utilisateurs"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4762
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4781
 #, php-format
 msgid "%s failed to delete."
 msgstr "%s n’a pu être effacé(e)."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4764
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4783
 #, php-format
 msgid "%s deleted successfully."
 msgstr "%s a bien été supprimé(e)."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4769
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4788
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-users.php:409
 msgid "You must supply a password."
 msgstr "Vous devez fournir un mot de passe."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4771
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4790
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:552
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-users.php:418
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/register_user.php:451
 msgid "Your passwords did not match."
 msgstr "Vos mots de passe ne correspondent pas"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4778
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4797
 msgid ""
 "The image edit form submission has been truncated. Try displaying fewer "
 "images on a page."
@@ -6872,73 +6886,75 @@ msgstr ""
 "Le formulaire d’édition des images a été tronqué. Veuillez afficher moins "
 "d’images par page."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4781
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4800
 msgid "Hit counters have been reset."
 msgstr "Les compteurs d’affichage ont été remis à zéro."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4784
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4803
 msgid "Cache has been purged."
 msgstr "Le cache a été vidé."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4787
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4806
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-upload.php:166
 msgid "Your files have been uploaded."
 msgstr "Vos fichiers ont été chargés."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4790
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4809
 #, php-format
 msgid "<em>%s</em> already exists."
 msgstr "<em>%s</em> existe déjà."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4793
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4812
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/comment_form/admin-comments.php:299
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:214
 msgid "Changes applied"
 msgstr "Modifications appliquées"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4840
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4859
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/seo_cleanup.php:51
 msgid "Image already exists."
 msgstr "L’image existe déjà."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4843
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4862
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/seo_cleanup.php:53
 msgid "Album already exists."
 msgstr "L’album existe déjà."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4846
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4865
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/seo_cleanup.php:55
 msgid "Cannot move, copy, or rename to a subalbum of this album."
 msgstr ""
 "Impossible de déplacer, de copier ou de renommer vers un sous-album de cet "
 "album."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4849
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4868
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/seo_cleanup.php:57
 msgid "Cannot move, copy, or rename to a dynamic album."
 msgstr ""
 "Impossible de déplacer, de copier ou de renommer vers un album dynamique."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4852
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4871
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/seo_cleanup.php:59
 msgid "Cannot rename an image to a different suffix"
 msgstr "Impossible de changer le suffixe de l’image"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4855
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4874
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/seo_cleanup.php:61
 msgid "Album delete failed"
 msgstr "L’album n’a pu être effacé"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4858
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4877
 #, php-format
 msgid "There was an error #%d with a move, copy, or rename operation."
 msgstr ""
 "Une erreur #%d s’est produite lors d’une opération de déplacement, de copie "
 "ou de renommage."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4965
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4984
 msgid "You can also copy the link to your clipboard to paste elsewhere"
 msgstr ""
+"Vous pouvez aussi copier le lien dans le presse-papier pour le coller "
+"ailleurs"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-globals.php:28
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/favoritesHandler.php:134
@@ -7145,6 +7161,8 @@ msgid ""
 "You can use the <em>debug</em> plugin to see which locales your server "
 "supports."
 msgstr ""
+"Vous pouvez utiliser l’extension  <em>debug</em> pour voir quels paramètres "
+"régionaux sont supportés par votre serveur."
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:593
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:1062
@@ -7229,9 +7247,8 @@ msgid "mod_rewrite suffix:"
 msgstr "Extension des pages (avec mod_rewrite) : "
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:661
-#, fuzzy
 msgid "Unique images"
-msgstr "Images"
+msgstr "Images uniques"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:668
 msgid ""
@@ -7284,6 +7301,9 @@ msgid ""
 "link to the image page for myalbum/myphoto.jpg will appear as myalbum/myphoto"
 "%s"
 msgstr ""
+"Si « images uniques » est coché, les liens des images n’auront pas "
+"d’extension. par exemple, le lien à l’image monalbum/maphoto.jpg apparaîtra "
+"comme monalbum/maphoto%s"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:681
 msgid ""
@@ -7291,6 +7311,9 @@ msgid ""
 "<em>mod_rewrite suffix</em> both be set and the image prefixes must be "
 "unique within an album!"
 msgstr ""
+"<strong>Remarque.</strong> Pour utiliser cette fonction, il faut que les "
+"modules <em>mod rewrite</em> et <em>mod_rewrite suffix</em> soient activés "
+"et les noms d’images (sans l’extension) soient uniques dans chaque album."
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:687
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-users.php:740
@@ -7670,7 +7693,7 @@ msgstr ""
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:3015
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:3045
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:3160
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-sqlform.php:102
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-sqlform.php:108
 msgid "save"
 msgstr "enregistrer"
 
@@ -8011,22 +8034,20 @@ msgid "<em>exact</em>"
 msgstr "<em>exact</em>"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:1579
-#, fuzzy
 msgid "Language specific tags"
-msgstr "Langue :"
+msgstr "Tags propres à une langue"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:1581
-#, fuzzy
 msgid "off"
-msgstr "Non"
+msgstr "aucun"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:1584
 msgid "generic"
-msgstr "fénérique"
+msgstr "génériques"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:1587
 msgid "specific"
-msgstr "spécifique"
+msgstr "spécifiques"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:1592
 msgid "Treat spaces as"
@@ -8651,9 +8672,8 @@ msgid "disabled"
 msgstr "désactivé"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:2356
-#, fuzzy
 msgid "replace newlines"
-msgstr "Index des actualités Zenpage"
+msgstr "remplacer les [codes de] nouvelles lignes"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:2361
 msgid "Select how image metadata fields are handled."
@@ -9203,7 +9223,7 @@ msgstr "Extensions disponibles"
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-plugins.php:147
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/class-search.php:107
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/favoritesHandler.php:110
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:115
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:119
 msgid "Description"
 msgstr "Description"
 
@@ -9410,6 +9430,7 @@ msgid "Most used"
 msgstr "le plus utilisé"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-tags.php:142
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/debug/admin_tab.php:144
 msgid "Language"
 msgstr "langue"
 
@@ -9430,18 +9451,17 @@ msgstr "attribuer"
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-tags.php:191
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-tags.php:268
 msgid "Universal"
-msgstr ""
+msgstr "Universel"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-tags.php:204
-#, fuzzy
 msgid ""
 "Place a checkmark in the box for each tag you wish to delete or to assign a "
 "language then press the appropriate button. The brackets contain the number "
 "of times the tag appears."
 msgstr ""
-"Cochez la case correspondant aux tags à supprimer et cliquez sur le bouton "
-"<em>Supprimer les tags cochés</em>. Le nombre d’occurences du tag apparaît "
-"entre parenthèses."
+"Cochez la case correspondant aux tags à supprimer ou à affecter à une "
+"langue, puis cliquer sur le bouton correspondant. La valeur entre crochets "
+"correspond au nombre de fois que le tag apparaît."
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-tags.php:209
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-tags.php:232
@@ -9631,7 +9651,7 @@ msgid "Reset to the default cropping"
 msgstr "Réinitialiser le rognage"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-thumbcrop.php:284
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/crop_image.php:433
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/crop_image.php:447
 msgid "Apply the cropping"
 msgstr "Appliquer le rognage"
 
@@ -10049,14 +10069,12 @@ msgid "source: %s"
 msgstr "source : %s"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin.php:353
-#, fuzzy
 msgid "release notes"
-msgstr "Visualiser les notes de la version Zenphoto %s"
+msgstr "notes de version"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin.php:353
-#, fuzzy
 msgid "notes"
-msgstr "Notes les plus récentes"
+msgstr "notes"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin.php:357
 #, php-format
@@ -15577,32 +15595,36 @@ msgstr ""
 msgid "Database engine"
 msgstr "Moteur de base de données"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-sqlform.php:64
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-sqlform.php:65
 #, php-format
 msgid "%s (experimental)"
 msgstr "%s (expérimental)"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-sqlform.php:72
-msgid "Database admin user"
-msgstr "Utilisateur administrateur de la base"
-
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-sqlform.php:77
-msgid "Database admin password"
-msgstr "Mot de passe administrateur de la base"
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-sqlform.php:76
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/wordpress_import.php:100
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/wordpress_import.php:418
+msgid "Database user"
+msgstr "Utilisateur de la base de données"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-sqlform.php:81
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/wordpress_import.php:101
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/wordpress_import.php:419
+msgid "Database password"
+msgstr "Mot de passe de la base de données"
+
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-sqlform.php:85
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/wordpress_import.php:102
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/wordpress_import.php:420
 msgid "Database host"
 msgstr "Hôte de la base de données"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-sqlform.php:86
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-sqlform.php:90
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/wordpress_import.php:99
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/wordpress_import.php:417
 msgid "Database name"
 msgstr "Nom de la base de données"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-sqlform.php:90
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-sqlform.php:94
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/wordpress_import.php:103
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/wordpress_import.php:421
 msgid "Database table prefix"
@@ -16504,26 +16526,26 @@ msgstr "Archive régulièrement la base de données."
 msgid "Run interval"
 msgstr "Intervalle d’éxécution"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/auto_backup.php:55
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/auto_backup.php:56
 msgid "The run interval (in days) for auto backup."
 msgstr "Nombre de jours entre deux sauvegardes automatiques."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/auto_backup.php:56
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/auto_backup.php:57
 msgid "Backups to keep"
 msgstr "Sauvegardes à conserver"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/auto_backup.php:58
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/auto_backup.php:60
 msgid ""
 "Auto backup will keep only this many backup sets. Older sets will be removed."
 msgstr ""
 "La sauvegarde automatique conserve uniquement le nombre de jeux de "
 "sauvegarde indiqué ici (les plus anciens seront effacés au fur et à mesure)."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/auto_backup.php:61
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/auto_backup.php:63
 msgid "Last backup"
 msgstr "Dernière sauvegarde"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/auto_backup.php:63
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/auto_backup.php:65
 #, php-format
 msgid "Auto Backup last ran %s."
 msgstr "Date de la dernière sauvegarde automatique : %s."
@@ -16605,7 +16627,7 @@ msgid "Crop height"
 msgstr "Rognage : hauteur"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/bxslider_thumb_nav.php:63
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:84
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:88
 msgid "Speed"
 msgstr "Vitesse"
 
@@ -16628,7 +16650,7 @@ msgstr ""
 "même au lieu de pointer à la page de visualisation de l’image."
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/bxslider_thumb_nav.php:69
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:80
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:84
 msgid "Mode"
 msgstr "Mode"
 
@@ -17143,6 +17165,10 @@ msgid ""
 "<strong>Note:</strong> you should also enable a multimedia player plugin to "
 "handle other media files."
 msgstr ""
+"Cette extension traite les fichiers multimédias  <code>3gp</code> et "
+"<code>mov</code>.<strong>Remarque.</strong> Vous devez aussi activer une "
+"extension de lecteur multimédia pour lire les autres types de fichiers "
+"multimédias."
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/class-video.php:54
 msgid "Quicktime video width"
@@ -18364,25 +18390,25 @@ msgstr "vous avez essayé de rogner un objet qui n’est pas une image."
 msgid "crop image"
 msgstr "rogner l’image"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/crop_image.php:340
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/crop_image.php:354
 msgid "Are you sure you want to permanently alter this image?"
 msgstr "Êtes-vous certain(e) de vous vouloir modifier cette image ?"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/crop_image.php:361
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/crop_image.php:375
 msgid "Image cropping"
 msgstr "Rognage de l’image"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/crop_image.php:363
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/crop_image.php:377
 msgid "You can crop your image by dragging the crop handles on the image"
 msgstr "Vous pouvez rogner une image en déplaçant les marques sur l’image."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/crop_image.php:364
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/crop_image.php:378
 msgid "<strong>Note:</strong> If you save these changes they are permanent!"
 msgstr ""
 "<strong>Note :</strong>si vous les enregistrez, ces modifications sont "
 "définitives !"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/crop_image.php:380
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/crop_image.php:394
 #, php-format
 msgid ""
 "(<span id=\"new-width\">%1$u</span> x <span id=\"new-height\">%2$u</span> "
@@ -18391,31 +18417,31 @@ msgstr ""
 "(<span id=\"new-width\">%1$u</span> x <span id=\"new-height\">%2$u</span> "
 "pixels)"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/crop_image.php:386
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/crop_image.php:400
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/galleryArticles.php:76
 msgid "size"
 msgstr "taille"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/crop_image.php:390
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/crop_image.php:404
 #, php-format
 msgid "crop width:%1$s %2$s crop height:%3$s"
 msgstr "largeur de rognage : %1$s %2$s – hauteur de rognage : %3$s"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/crop_image.php:390
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/crop_image.php:404
 msgid "swap width and height fields"
 msgstr "intervertir les champs largeur et hauteur"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/crop_image.php:409
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/crop_image.php:423
 msgid "Link image watermark"
 msgstr "Filigrane de l’image liée"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/crop_image.php:448
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/crop_image.php:462
 msgid "Done"
 msgstr "Terminé"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/customData.php:24
 msgid "This plugin exposes the \"custom_data\" field on objects."
-msgstr ""
+msgstr "Cette extension expose le champ « custom_data » des objets."
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/customData.php:25
 msgid ""
@@ -18424,9 +18450,8 @@ msgid ""
 msgstr ""
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/customData.php:56
-#, fuzzy
 msgid "Enabled custom_data"
-msgstr "Données personnalisées : "
+msgstr "Données personnalisées activées"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/customData.php:64
 msgid ""
@@ -18467,18 +18492,14 @@ msgstr "Information sur la configuration PHP de votre serveur."
 msgid "Supported locales:"
 msgstr "Paramètres régionaux supportés :"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/debug/admin_tab.php:144
-#, fuzzy
-msgid "Languange"
-msgstr "Langue :"
-
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/debug/admin_tab.php:145
-msgid "Sub-Languange"
-msgstr ""
+#, fuzzy
+msgid "Sub-Language"
+msgstr "Lieu (très précis)"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/debug/admin_tab.php:146
-msgid "Languange String"
-msgstr "Chaîne de définition de la langue"
+msgid "Language String"
+msgstr "Chaîne de langue"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/debug/admin_tab.php:184
 #, fuzzy
@@ -20564,6 +20585,9 @@ msgid ""
 "This plugin handles <code>flv</code>, <code>fla</code>, <code>mp3</code>, "
 "<code>mp4</code>, <code>m4v</code>, and <code>m4a</code> multi-media files."
 msgstr ""
+"Cette extension traite les fichiers multimédias  <code>flv</code>, "
+"<code>fla</code>, <code>mp3</code>, <code>mp4</code>, <code>m4v</code> et "
+"<code>m4a</code>."
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/jplayer.php:72
 msgid ""
@@ -20779,7 +20803,7 @@ msgid "restore screen"
 msgstr "restauration de l’image"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/jplayer.php:492
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:110
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:114
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow2.php:104
 msgid "shuffle"
 msgstr "lecture aléatoire"
@@ -23856,7 +23880,7 @@ msgstr ""
 "Un peu de patience s.v.p... Les fichiers du sitemap sont en train d’être "
 "créés."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:37
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:41
 msgid ""
 "Adds a theme function to call a slideshow either based on jQuery (default) "
 "or Colorbox."
@@ -23864,7 +23888,7 @@ msgstr ""
 "Ajoute au thème une fonction pour permettre de lancer un diaporama "
 "fonctionnant sur jQuery (par défaut) ou Colorbox."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:39
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:43
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow2.php:38
 #, php-format
 msgid ""
@@ -23874,17 +23898,17 @@ msgstr ""
 "Une seule extension de diaporama peut être activée. Or, <a href=\"#%1$s"
 "\"><code>%1$s</code></a> l’est déjà."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:82
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:86
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow2.php:83
 msgid "jQuery Cycle"
 msgstr "jQuery Cycle"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:82
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:86
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow2.php:83
 msgid "jQuery Colorbox"
 msgstr "jQuery Colorbox"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:83
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:87
 msgid ""
 "<em>jQuery Cycle</em> for slideshow using the jQuery Cycle plugin<br /"
 "><em>jQuery Colorbox</em> for slideshow using Colorbox (Colorbox plugin "
@@ -23899,12 +23923,12 @@ msgstr ""
 "peut pas être appelé directement ni utilisé dans la page slideshow.php du "
 "thème."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:86
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:90
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow2.php:87
 msgid "Speed of the transition in milliseconds."
 msgstr "Vitesse de la transition en millisecondes."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:95
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:99
 msgid ""
 "The scripts for which the slideshow is enabled. {Should have been set by the "
 "themes!}"
@@ -23912,111 +23936,111 @@ msgstr ""
 "Les scripts pour lesquels le diaporama est activé. <br />(Cela devrait être "
 "spécifié par les thèmes.)"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:102
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:134
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:106
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:138
 msgid "Slide width"
 msgstr "Largeur de la diapositive"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:104
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:136
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:108
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:140
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow2.php:94
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow2.php:152
 msgid "Width of the images in the slideshow."
 msgstr "Largeur des images dans le diaporama."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:105
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:109
 msgid "Slide height"
 msgstr "Hauteur de la diapositive"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:107
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:111
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow2.php:97
 msgid "Height of the images in the slideshow."
 msgstr "Hauteur des images dans le diaporama."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:108
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:112
 msgid "Cycle Effect"
 msgstr "Transitions"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:110
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:123
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:114
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:127
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow2.php:102
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow2.php:138
 msgid "fade"
 msgstr "fondu"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:110
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:114
 msgid "zoom"
 msgstr "zoom"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:110
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:114
 msgid "slide X"
 msgstr "selon l’axe X"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:110
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:114
 msgid "slide Y"
 msgstr "selon l’axe Y"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:110
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:114
 msgid "scroll up"
 msgstr "vers le haut"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:110
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:114
 msgid "scroll down"
 msgstr "vers le bas"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:110
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:114
 msgid "scroll left"
 msgstr "vers la gauche"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:110
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:114
 msgid "scroll right"
 msgstr "vers la droite"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:111
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:115
 msgid "The cycle slide effect to be used."
 msgstr "L’effet de transition à utiliser entre les images."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:112
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:116
 msgid "Timeout"
 msgstr "Limite de temps"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:114
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:118
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow2.php:120
 msgid "Milliseconds between slide transitions (0 to disable auto advance.)"
 msgstr ""
 "Nombre de millisecondes entre les transitions inter-images (mettre 0 pour "
 "désactiver la bascule automatique)."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:117
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:121
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow2.php:123
 msgid "Check if you want to show the image’s description below the slideshow."
 msgstr ""
 "Cocher cette case pour afficher la description de l’image sous le diaporama."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:121
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:125
 msgid "Colorbox transition"
 msgstr "Transition Colorbox"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:123
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:127
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow2.php:137
 msgid "elastic"
 msgstr "élastique"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:124
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:128
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow2.php:140
 msgid "The Colorbox transition slide effect to be used."
 msgstr "L’effet de transition Colorbox à utiliser."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:125
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:129
 msgid "Colorbox image type"
 msgstr "Type d’image Colorbox"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:127
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:131
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow2.php:143
 msgid "sized image"
 msgstr "image redimensionnée"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:128
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:132
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow2.php:144
 msgid ""
 "The image type you wish to use for the Colorbox. If you choose “sized image” "
@@ -24026,52 +24050,52 @@ msgstr ""
 "redimensionnée », la largeur du diaporama sera utilisée comme plus longue "
 "dimension de l’image."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:129
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:133
 msgid "Colorbox image title"
 msgstr "Titre d’image Colorbox"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:131
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:135
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow2.php:147
 msgid "If the image title should be shown at the bottom of the Colorbox."
 msgstr ""
 "Indique si le titre de l’image est affiché en bas de la boîte Colorbox."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:157
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:161
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow2.php:187
 msgid "Invalid slideshow album name!"
 msgstr "Le nom du diaporama de l’album est invalide !"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:165
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:169
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow2.php:195
 msgid "This album is password protected!"
 msgstr "Cet album est protégé par mot de passe !"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:181
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:185
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow2.php:263
 msgid "No images for the slideshow!"
 msgstr "Aucune image dans le diaporama !"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:349
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:353
 msgid "Previous"
 msgstr "Précédente"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:350
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:354
 msgid "Stop and return to album or image page"
 msgstr "Arrêter et retourner à la page de l’album ou de l’image"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:351
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:355
 msgid "Pause (to stop the slideshow without returning)"
 msgstr "Pause (pour arrêter le diaporama sans revenir à la page précédente)"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:352
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:356
 msgid "Play"
 msgstr "Lecture"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:384
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:388
 msgid ":"
 msgstr ":"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:445
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:449
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow2.php:414
 msgid ""
 "provide the album name as %1 and (optionally) <code>true</code> (or "
@@ -24084,7 +24108,7 @@ msgstr ""
 "défaut, les contrôles ne sont pas affichés. On peut aussi substituer les "
 "valeurs par défaut en spécifiant la largeur (%3) et la hauteur (%4)."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:567
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:571
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow2.php:567
 #, php-format
 msgid ""
@@ -24094,13 +24118,13 @@ msgstr ""
 "Le diaporama n’est pas disponible car Colorbox n’est activé sur les pages "
 "<em>%2$s</em> de %1$s."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:591
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:595
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow2.php:591
 #, php-format
 msgid "image %1$s of %2$s"
 msgstr "image %1$s de %2$s"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:698
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:702
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow2.php:679
 msgid "Invalid linking to the slideshow page."
 msgstr "Lien vers le diaporama incorrect."
@@ -24628,7 +24652,7 @@ msgstr "titre seulement"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:255
 msgid "Click to bring up the custom cropping page."
-msgstr ""
+msgstr "Cliquer pour afficher la page de rognage personnalisé."
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:256
 msgid "Custom crop"
@@ -25898,16 +25922,6 @@ msgstr "Manquant"
 msgid "Wordpress-Database info"
 msgstr "Infos de la base de données Wordpress"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/wordpress_import.php:100
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/wordpress_import.php:418
-msgid "Database user"
-msgstr "Utilisateur de la base de données"
-
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/wordpress_import.php:101
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/wordpress_import.php:419
-msgid "Database password"
-msgstr "Mot de passe de la base de données"
-
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/wordpress_import.php:113
 msgid ""
 "<strong>ERROR:</strong> Could not connect to the Wordpress database - Query "
@@ -27161,6 +27175,16 @@ msgid ""
 msgstr ""
 "Taille à utiliser si la police utilisée le permet (Polices <em>TTF</em> et "
 "<em>Imagick</em>)."
+
+#, fuzzy
+#~ msgid "Languange"
+#~ msgstr "Chaîne de définition de la langue"
+
+#~ msgid "Database admin user"
+#~ msgstr "Utilisateur administrateur de la base"
+
+#~ msgid "Database admin password"
+#~ msgstr "Mot de passe administrateur de la base"
 
 #~ msgid "The Zenphoto object you are requesting cannot be found."
 #~ msgstr "L’objet Zenphoto demandé n’a pu être trouvé."
