@@ -141,9 +141,9 @@ echo "\n</head>";
 								);
 								echo '<table class="bordered">' . "\n";
 								echo '<tr>' . "\n";
-								echo '  <th>' . gettext('Languange') . '</th>' . "\n";
-								echo '  <th>' . gettext('Sub-Languange') . '</th>' . "\n";
-								echo '  <th>' . gettext('Languange String') . '</th>' . "\n";
+								echo '  <th>' . gettext('Language') . '</th>' . "\n";
+								echo '  <th>' . gettext('Sub-Language') . '</th>' . "\n";
+								echo '  <th>' . gettext('Language String') . '</th>' . "\n";
 								echo '</tr>' . "\n";
 								foreach ($langs as $lang) {
 									echo '<tr>' . "\n";
