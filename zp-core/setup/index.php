@@ -157,16 +157,16 @@ if (isset($_POST['db'])) { //try to update the zp-config file
 	setupLog(gettext("db POST handling"));
 	$updatezp_config = true;
 	if (isset($_POST['db_software'])) {
-		$zp_cfg = updateConfigItem('db_software', setup_sanitize($_POST['db_software']), $zp_cfg);
+		$zp_cfg = updateConfigItem('db_software', trim(setup_sanitize($_POST['db_software'])), $zp_cfg);
 	}
 	if (isset($_POST['db_user'])) {
-		$zp_cfg = updateConfigItem('mysql_user', setup_sanitize($_POST['db_user']), $zp_cfg);
+		$zp_cfg = updateConfigItem('mysql_user', trim(setup_sanitize($_POST['db_user'])), $zp_cfg);
 	}
 	if (isset($_POST['db_pass'])) {
 		$zp_cfg = updateConfigItem('mysql_pass', setup_sanitize($_POST['db_pass'], 0), $zp_cfg);
 	}
 	if (isset($_POST['db_host'])) {
-		$zp_cfg = updateConfigItem('mysql_host', setup_sanitize($_POST['db_host']), $zp_cfg);
+		$zp_cfg = updateConfigItem('mysql_host', trim(setup_sanitize($_POST['db_host'])), $zp_cfg);
 	}
 	if (isset($_POST['db_database'])) {
 		$zp_cfg = updateConfigItem('mysql_database', trim(setup_sanitize($_POST['db_database'])), $zp_cfg);
@@ -391,15 +391,19 @@ if ($setup_checked) {
 	if (isset($_POST['db'])) {
 		setupLog(gettext("Post of Database credentials"), true);
 	} else {
-		$me = dirname(dirname(dirname(str_replace('\\', '/', __FILE__))));
-		$mine = SERVERPATH;
+		$me = realpath(dirname(dirname(dirname(str_replace('\\', '/', __FILE__)))));
+		$mine = realpath(SERVERPATH);
 		if (isWin() || isMac()) { // case insensitive file systems
 			$me = strtolower($me);
 			$mine = strtolower($mine);
 		}
-		if ($mine == $me) {
-			$clone = '';
-			$index = $me . '/index.php';
+		if ($mine == $me || !file_exists($mine . '/index.php')) {
+			if ($mine == $me) {
+				$clone = '';
+			} else {
+				$clone = ' ' . gettext('clone');
+			}
+			$index = $mine . '/index.php';
 			$rootupdate = @copy(dirname(dirname(__FILE__)) . '/root_index.php', $index);
 			if (!$rootupdate) {
 				$f1 = @file_get_contents($index);
