@@ -69,12 +69,12 @@
 			</select></td>
 		</tr>
 		<tr id="user" >
-			<td><?php echo gettext("Database admin user") ?></td>
+			<td><?php echo gettext("Database user") ?></td>
 			<td><input type="text" size="40" name="db_user"
 				value="<?php echo $_zp_conf_vars['mysql_user']; ?>" />&nbsp;</td>
 		</tr>
 		<tr id="pass" >
-			<td><?php echo gettext("Database admin password") ?></td>
+			<td><?php echo gettext("Database password") ?></td>
 			<td><input type="password" size="40" name="db_pass" value="<?php echo $_zp_conf_vars['mysql_pass']; ?>" />&nbsp;</td>
 		</tr>
 		<tr id="host" >
