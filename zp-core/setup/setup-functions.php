@@ -417,7 +417,6 @@ function setupLog($message, $anyway = false, $reset = false) {
 }
 
 function setupLanguageSelector() {
-	global $xsrftoken;
 	$languages = generateLanguageList();
 	if (isset($_REQUEST['locale'])) {
 		$locale = sanitize($_REQUEST['locale']);
@@ -474,7 +473,7 @@ function setupLanguageSelector() {
 }
 
 function setupXSRFDefender() {
-	global $xsrftoken;
+	$xsrftoken = setupXSRFToken();
 	if (!isset($_REQUEST['xsrfToken']) || $xsrftoken != $_REQUEST['xsrfToken']) {
 		?>
 		<p class="errorbox" >
@@ -483,6 +482,11 @@ function setupXSRFDefender() {
 		<?php
 		exit();
 	}
+}
+
+function setupXSRFToken() {
+	$zp_cfg = @file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
+	return sha1(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE . $zp_cfg . session_id());
 }
 
 function setup_sanitize($input_string, $sanitize_level = 3) {
@@ -557,8 +561,8 @@ function close_site($nht) {
 }
 
 function acknowledge($value) {
-	global $xsrftoken, $_zp_conf_vars;
-	$link = WEBPATH . '/' . ZENFOLDER . '/setup/index.php?security_ack=' . ((isset($_zp_conf_vars['security_ack']) ? $_zp_conf_vars['security_ack'] : NULL) | $value) . '&amp;xsrfToken=' . $xsrftoken;
+	global $_zp_conf_vars;
+	$link = WEBPATH . '/' . ZENFOLDER . '/setup/index.php?security_ack=' . ((isset($_zp_conf_vars['security_ack']) ? $_zp_conf_vars['security_ack'] : NULL) | $value) . '&amp;xsrfToken=' . setupXSRFToken();
 	return sprintf(gettext('Click <a href="%s">here</a> to acknowledge that you wish to ignore this issue. It will then become a warning.'), $link);
 }
 
@@ -591,7 +595,6 @@ function setupUserAuthorized() {
 }
 
 function updateConfigfile($zp_cfg) {
-	global $xsrftoken;
 	$mod1 = fileperms(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE) & 0777;
 	$mod2 = fileperms(SERVERPATH . '/' . DATA_FOLDER) & 0777;
 
@@ -610,7 +613,6 @@ function updateConfigfile($zp_cfg) {
 	}
 	@chmod(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE, $mod2);
 	$str = configMod();
-	$xsrftoken = sha1(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE . $str . session_id());
 }
 
 function checkUnique($table, $unique) {

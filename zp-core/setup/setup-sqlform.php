@@ -3,7 +3,7 @@
 		<p><?php echo gettext("Fill in the information below and <strong>setup</strong> will attempt to update your configuration file."); ?><br />
 		</p>
 		<form action="" method="post"><input type="hidden" name="db" value="yes" />
-			<input type="hidden" name="xsrfToken" value="<?php echo $xsrftoken ?>" />
+			<input type="hidden" name="xsrfToken" value="<?php echo setupXSRFToken() ?>" />
 			<?php
 			if ($debug) {
 				?>
@@ -61,15 +61,16 @@ foreach ($engines as $engine) {
 								}
 								?>
 								<option value="<?php echo $handler; ?>" <?php echo $modifiers; ?>>
-									<?php if (isset($engine['experimental']))
+									<?php
+									if (isset($engine['experimental']))
 										printf(gettext('%s (experimental)'), $handler);
 									else
 										echo $handler;
 									?>
 								</option>
-	<?php
-}
-?>
+								<?php
+							}
+							?>
 						</select></td>
 				</tr>
 				<tr id="user" >
@@ -99,9 +100,10 @@ foreach ($engines as $engine) {
 						$path = $_zp_conf_vars['mysql_prefix'];
 					}
 					?>
-					<td><input type="text" size="40" name="db_prefix" value="<?php echo $path;
-					;
-					?>" /></td>
+					<td><input type="text" size="40" name="db_prefix" value="<?php
+										 echo $path;
+										 ;
+										 ?>" /></td>
 				</tr>
 				<tr>
 					<td></td>

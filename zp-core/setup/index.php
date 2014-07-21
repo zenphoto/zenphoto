@@ -128,7 +128,6 @@ if (isset($_GET['mod_rewrite'])) {
 }
 
 $zp_cfg = @file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
-$xsrftoken = sha1(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE . $zp_cfg . session_id());
 
 $updatezp_config = false;
 
@@ -718,7 +717,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 							$good = checkMark($cfg, sprintf(gettext('<em>%1$s</em> file'), CONFIGFILE), sprintf(gettext('<em>%1$s</em> file [does not exist]'), CONFIGFILE), sprintf(gettext('Setup was not able to create this file. You will need to copy the <code>%1$s/zenphoto_cfg.txt</code> file to <code>%2$s/%3$s</code> then edit it as indicated in the file’s comments.'), ZENFOLDER, DATA_FOLDER, CONFIGFILE)) && $good;
 							if ($cfg) {
 								primeMark(gettext('File permissions'));
-								$chmodselector = '<form action="#"><input type="hidden" name="xsrfToken" value="' . $xsrftoken . '" />' .
+								$chmodselector = '<form action="#"><input type="hidden" name="xsrfToken" value="' . setupXSRFToken() . '" />' .
 												'<p>' . sprintf(gettext('Set File permissions to %s.'), permissionsSelector($permission_names, $chmod)) .
 												'</p></form>';
 								if (array_key_exists($chmod | 4, $permission_names)) {
@@ -791,7 +790,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 													break;
 											}
 											$msg2 = '<p>' . sprintf(gettext('If your server filesystem character set is different from <code>%s</code> and you create album or image filenames names containing characters with diacritical marks you may have problems with these objects.'), $charset_defined) . '</p>' .
-															'<form action="#"><input type="hidden" name="xsrfToken" value="' . $xsrftoken . '" /><input type="hidden" name="charset_attempts" value="' . $tries . '" /><p>' .
+															'<form action="#"><input type="hidden" name="xsrfToken" value="' . setupXSRFToken() . '" /><input type="hidden" name="charset_attempts" value="' . $tries . '" /><p>' .
 															gettext('Change the filesystem character set define to %1$s') .
 															'</p></form><br class="clearall" />';
 
@@ -2592,8 +2591,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 								<div class="warning" id="dbrestructure">
 									<p><?php echo gettext('<strong>Warning!</strong> This upgrade makes structural changes to the database which are not easily reversed. Be sure you have a database backup before proceeding.'); ?></p>
 									<form>
-										<input type="hidden" name="xsrfToken" value="<?php echo $xsrftoken
-								?>" />
+										<input type="hidden" name="xsrfToken" value="<?php echo setupXSRFToken(); ?>" />
 										<p><?php printf(gettext('%s I acknowledge that proceeding will restructure my database.'), '<input type="checkbox" id="agree" value="0" onclick="$(\'#setup\').show();$(\'#agree\').attr(\'checked\',\'checked\')" />')
 								?></p>
 									</form>
@@ -2641,7 +2639,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 								echo $task . $mod;
 								?>" method="post"<?php echo $hideGoButton; ?> >
 									<input type="hidden" name="setUTF8URI" id="setUTF8URI" value="dont" />
-									<input type="hidden" name="xsrfToken" value="<?php echo $xsrftoken ?>" />
+									<input type="hidden" name="xsrfToken" value="<?php echo setupXSRFToken(); ?>" />
 									<?php
 									if (isset($_REQUEST['autorun'])) {
 										if (!empty($_REQUEST['autorun'])) {
