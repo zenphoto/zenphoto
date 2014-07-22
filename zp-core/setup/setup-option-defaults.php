@@ -303,6 +303,19 @@ setOptionDefault('AlbumThumbSelect', 1);
 
 setOptionDefault('site_email', "zenphoto@" . $_SERVER['SERVER_NAME']);
 setOptionDefault('site_email_name', 'ZenPhoto20');
+
+//effervescence_plus migration
+if (file_exists(SERVERPATH . '/' . THEMEFOLDER . '/effervescence_plus')) {
+	if ($_zp_gallery->getCurrentTheme() == 'effervescence_plus') {
+		$_zp_gallery->setCurrentTheme('effervescence+');
+		$_zp_gallery->save();
+	}
+	$options = query_full_array('SELECT * FROM ' . prefix('options') . ' WHERE `theme`="effervescence_plus"');
+	foreach ($options as $option) {
+		setThemeOption($option['name'], $option['value'], NULL, 'effervescence+', true);
+	}
+	zpFunctions::removeDir(SERVERPATH . '/' . THEMEFOLDER . '/effervescence_plus');
+}
 ?>
 <p>
 	<?php
