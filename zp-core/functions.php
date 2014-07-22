@@ -2526,10 +2526,10 @@ function printStandardMeta() {
 		 */
 		static function hasPrimaryScripts() {
 			if (!defined('PRIMARY_INSTALLATION')) {
-				if (function_exists('readlink') && ($zen = realpath(str_replace('\\', '/', @readlink(SERVERPATH . '/' . ZENFOLDER))))) {
+				if (function_exists('readlink') && ($zen = str_replace('\\', '/', @readlink(SERVERPATH . '/' . ZENFOLDER)))) {
 					// no error reading the link info
 					$os = strtoupper(PHP_OS);
-					$sp = realpath(SERVERPATH);
+					$sp = SERVERPATH;
 					if (substr($os, 0, 3) == 'WIN' || $os == 'DARWIN') { // canse insensitive file systems
 						$sp = strtolower($sp);
 						$zen = strtolower($zen);
