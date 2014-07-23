@@ -752,15 +752,11 @@ function getImageParameters($args, $album = NULL) {
 	} else {
 		$ch = false;
 	}
-	if (is_numeric($cx)) {
+	if (!is_null($cx)) {
 		$cx = (int) round($cx);
-	} else {
-		$cx = false;
 	}
-	if (is_numeric($cy)) {
+	if (!is_null($cy)) {
 		$cy = (int) round($cy);
-	} else {
-		$cy = false;
 	}
 	if (is_numeric($quality)) {
 		$quality = (int) round($quality);
