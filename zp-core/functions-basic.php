@@ -326,7 +326,7 @@ function getOption($key) {
 	global $_zp_conf_vars, $_zp_options;
 	$key = strtolower($key);
 	if (is_null($_zp_options) && function_exists('query_full_array')) { // may be too early to use database!
-		// option table not yet loaded, load it (but not the theme options!)
+// option table not yet loaded, load it (but not the theme options!)
 		$sql = "SELECT `name`, `value` FROM " . prefix('options') . ' WHERE (`theme`="" OR `theme` IS NULL) AND `ownerid`=0';
 		$optionlist = query_full_array($sql, false);
 		if ($optionlist !== false) {
@@ -429,7 +429,7 @@ function setOptionDefault($key, $default) {
  */
 function loadLocalOptions($albumid, $theme) {
 	global $_zp_options;
-	//raw theme options
+//raw theme options
 	$sql = "SELECT `name`, `value` FROM " . prefix('options') . ' WHERE `theme`=' . db_quote($theme) . ' AND `ownerid`=0';
 	$optionlist = query_full_array($sql, false);
 	if ($optionlist !== false) {
@@ -438,7 +438,7 @@ function loadLocalOptions($albumid, $theme) {
 		}
 	}
 	if ($albumid) {
-		//album-theme options
+//album-theme options
 		$sql = "SELECT `name`, `value` FROM " . prefix('options') . ' WHERE `theme`=' . db_quote($theme) . ' AND `ownerid`=' . $albumid;
 		$optionlist = query_full_array($sql, false);
 		if ($optionlist !== false) {
@@ -491,7 +491,7 @@ function isHandledAlbum($path) {
 	global $_zp_albumHandlers;
 	foreach (array_keys($_zp_albumHandlers) as $suffix) {
 		if (file_exists($path . '.' . $suffix)) {
-			//	it is a handled album sans suffix
+//	it is a handled album sans suffix
 			return $suffix;
 		}
 	} return NULL;
@@ -511,13 +511,13 @@ function rewrite_get_album_image($albumvar, $imagevar) {
 	global $_zp_rewritten, $_zp_albumHandlers;
 	$ralbum = isset($_GET[$albumvar]) ? trim(sanitize_path($_GET[$albumvar]), '/') : NULL;
 	$rimage = isset($_GET[$imagevar]) ? sanitize($_GET[$imagevar]) : NULL;
-	//	we assume that everything is correct if rewrite rules were not applied
+//	we assume that everything is correct if rewrite rules were not applied
 	if ($_zp_rewritten) {
 		if (!empty($ralbum) && empty($rimage)) { //	rewrite rules never set the image part!
 			$path = internalToFilesystem(getAlbumFolder(SERVERPATH) . $ralbum);
 			if (IM_SUFFIX) { // require the rewrite have the suffix as well
 				if (preg_match('|^(.*)' . preg_quote(IM_SUFFIX) . '$|', $ralbum, $matches)) {
-					//has an IM_SUFFIX attached
+//has an IM_SUFFIX attached
 					$rimage = basename($matches[1]);
 					$ralbum = trim(dirname($matches[1]), '/');
 					$path = internalToFilesystem(getAlbumFolder(SERVERPATH) . $ralbum);
@@ -571,7 +571,7 @@ function rewrite_get_album_image($albumvar, $imagevar) {
  */
 function getImageCacheFilename($album8, $image8, $args) {
 	global $_zp_supported_images, $_zp_cachefileSuffix;
-	// this function works in FILESYSTEM_CHARSET, so convert the file names
+// this function works in FILESYSTEM_CHARSET, so convert the file names
 	$album = internalToFilesystem($album8);
 	if (is_array($image8)) {
 		$image8 = $image8['name'];
@@ -590,7 +590,7 @@ function getImageCacheFilename($album8, $image8, $args) {
 		$image = stripSuffix(internalToFilesystem($image8));
 	}
 
-	// Set default variable values.
+// Set default variable values.
 	$postfix = getImageCachePostfix($args);
 	if (empty($album)) {
 		$albumsep = '';
@@ -702,10 +702,9 @@ function getImageParameters($args, $album = NULL) {
 	$thumb_size = getOption('thumb_size');
 	$thumb_crop_width = getOption('thumb_crop_width');
 	$thumb_crop_height = getOption('thumb_crop_height');
-	$thumb_quality = getOption('thumb_quality');
 	$image_default_size = getOption('image_size');
 	$quality = getOption('image_quality');
-	// Set up the parameters
+// Set up the parameters
 	$thumb = $crop = false;
 	@list($size, $width, $height, $cw, $ch, $cx, $cy, $quality, $thumb, $crop, $thumbstandin, $WM, $adminrequest, $effects) = $args;
 	$thumb = $thumbstandin;
@@ -752,16 +751,25 @@ function getImageParameters($args, $album = NULL) {
 	} else {
 		$ch = false;
 	}
+	if (is_numeric($quality)) {
+		$quality = (int) round($quality);
+	} else {
+		$quality = false;
+	}
+	if (empty($quality)) {
+		if ($thumb) {
+			$quality = (int) round(getOption('thumb_quality'));
+		} else {
+			$quality = (int) round(getOption('image_quality'));
+		}
+	}
+
+
 	if (!is_null($cx)) {
 		$cx = (int) round($cx);
 	}
 	if (!is_null($cy)) {
 		$cy = (int) round($cy);
-	}
-	if (is_numeric($quality)) {
-		$quality = (int) round($quality);
-	} else {
-		$quality = (int) round($thumb_quality);
 	}
 
 	if (!empty($cw) || !empty($ch)) {
@@ -778,7 +786,6 @@ function getImageParameters($args, $album = NULL) {
 			}
 		}
 	}
-
 	if (empty($WM)) {
 		if (!$thumb) {
 			if (!empty($album)) {
@@ -789,7 +796,7 @@ function getImageParameters($args, $album = NULL) {
 			}
 		}
 	}
-	// Return an array of parameters used in image conversion.
+// Return an array of parameters used in image conversion.
 	$args = array($size, $width, $height, $cw, $ch, $cx, $cy, $quality, $thumb, $crop, $thumbstandin, $WM, $adminrequest, $effects);
 	return $args;
 }
@@ -1129,7 +1136,7 @@ function build_url($parts) {
 function pathurlencode($path) {
 	$parts = parse_url($path);
 	if (isset($parts['query'])) {
-		//	some kind of query link
+//	some kind of query link
 		$pairs = parse_query($parts['query']);
 		if (preg_match('/^a=.*\&i=?/i', $parts['query'])) { //image URI, handle & in file/folder names
 			$index = 'a';
@@ -1404,7 +1411,7 @@ function getAlbumInherited($folder, $field, &$id) {
  * @return string
  */
 function themeSetup($album) {
-	// we need to conserve memory in i.php so loading the classes is out of the question.
+// we need to conserve memory in i.php so loading the classes is out of the question.
 	$id = NULL;
 	$theme = getAlbumInherited(filesystemToInternal($album), 'album_theme', $id);
 	if (empty($theme)) {
@@ -1588,7 +1595,7 @@ function installSignature() {
  */
 function zp_session_start() {
 	if (session_id() == '') {
-		// force session cookie to be secure when in https
+// force session cookie to be secure when in https
 		if (secureServer()) {
 			$CookieInfo = session_get_cookie_params();
 			session_set_cookie_params($CookieInfo['lifetime'], $CookieInfo['path'], $CookieInfo['domain'], TRUE);
@@ -1610,7 +1617,7 @@ class Mutex {
 	private $lock = NULL;
 
 	function __construct($lock = 'zP', $concurrent = NULL) {
-		// if any of the construction fails, run in free mode (lock = NULL)
+// if any of the construction fails, run in free mode (lock = NULL)
 		if (function_exists('flock') && defined('SERVERPATH')) {
 			if ($concurrent) {
 				If ($subLock = self::which_lock($lock, $concurrent)) {
@@ -1623,13 +1630,13 @@ class Mutex {
 		return $this->lock;
 	}
 
-	// returns the integer id of the lock to be obtained
-	// rotates locks sequentially mod $concurrent
+// returns the integer id of the lock to be obtained
+// rotates locks sequentially mod $concurrent
 	private static function which_lock($lock, $concurrent) {
 		global $_zp_mutex;
 		$counter_file = SERVERPATH . '/' . DATA_FOLDER . '/' . MUTEX_FOLDER . '/' . $lock . '_counter';
 		$_zp_mutex->lock();
-		// increment the lock id:
+// increment the lock id:
 		if (@file_put_contents($counter_file, $count = (((int) @file_get_contents($counter_file)) + 1) % $concurrent)) {
 			$count++;
 		} else {
@@ -1646,14 +1653,14 @@ class Mutex {
 	}
 
 	public function lock() {
-		//if "flock" is not supported run un-serialized
-		//Only lock an unlocked mutex, we don't support recursive mutex'es
+//if "flock" is not supported run un-serialized
+//Only lock an unlocked mutex, we don't support recursive mutex'es
 		if (!$this->locked && $this->lock) {
 			if ($this->mutex = @fopen(SERVERPATH . '/' . DATA_FOLDER . '/' . MUTEX_FOLDER . '/' . $this->lock, 'wb')) {
 				if (flock($this->mutex, LOCK_EX)) {
 					$this->locked = true;
-					//We are entering a critical section so we need to change the ignore_user_abort setting so that the
-					//script doesn't stop in the critical section.
+//We are entering a critical section so we need to change the ignore_user_abort setting so that the
+//script doesn't stop in the critical section.
 					$this->ignoreUserAbort = ignore_user_abort(true);
 				}
 			}
@@ -1666,7 +1673,7 @@ class Mutex {
 	 */
 	public function unlock() {
 		if ($this->locked) {
-			//Only unlock a locked mutex.
+//Only unlock a locked mutex.
 			$this->locked = false;
 			ignore_user_abort($this->ignoreUserAbort); //Restore the ignore_user_abort setting.
 			flock($this->mutex, LOCK_UN);
