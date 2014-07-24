@@ -38,7 +38,7 @@ if (isset($MCEcss)) {
 }
 
 
-if (!getOption('tinymce_tinyzenpage')) {
+if (!extensionEnabled('tinyZenpage')) {
 	$MCEplugins = preg_replace('|\stinyzenpage|', '', $MCEplugins);
 }
 ?>

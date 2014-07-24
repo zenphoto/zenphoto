@@ -905,6 +905,7 @@ plugins/text_watermark/
 plugins/text_watermark/createwatermark.php
 plugins/text_watermark/text_watermark.htm
 plugins/text_watermark.php
+plugins/tinyZenpage.php
 zp-core
 zp-core/404.php
 zp-core/admin-albumsort.php
@@ -2254,4 +2255,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-2256
+2257
