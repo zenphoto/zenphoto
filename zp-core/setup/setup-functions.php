@@ -472,7 +472,7 @@ function setupLanguageSelector() {
 	<?php
 }
 
-function setupXSRFDefender() {
+function setupXSRFDefender($where) {
 	$xsrftoken = setupXSRFToken();
 	if (!isset($_REQUEST['xsrfToken']) || $xsrftoken != $_REQUEST['xsrfToken']) {
 		?>
@@ -485,8 +485,12 @@ function setupXSRFDefender() {
 }
 
 function setupXSRFToken() {
-	$zp_cfg = @file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
-	return sha1(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE . $zp_cfg . session_id());
+	if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
+		$zp_cfg = file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
+		return sha1(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE . $zp_cfg . session_id());
+	} else {
+		return false;
+	}
 }
 
 function setup_sanitize($input_string, $sanitize_level = 3) {

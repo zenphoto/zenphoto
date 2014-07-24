@@ -152,7 +152,7 @@ if ($i !== false) {
 }
 
 if (isset($_POST['db'])) { //try to update the zp-config file
-	setupXSRFDefender();
+	setupXSRFDefender('db');
 	setupLog(gettext("db POST handling"));
 	$updatezp_config = true;
 	if (isset($_POST['db_software'])) {
@@ -179,7 +179,7 @@ define('ACK_REGISTER_GLOBALS', 1);
 define('ACK_DISPLAY_ERRORS', 2);
 
 if (isset($_GET['security_ack'])) {
-	setupXSRFDefender();
+	setupXSRFDefender('security_ack');
 	$zp_cfg = updateConfigItem('security_ack', (isset($conf['security_ack']) ? $cache['keyword'] : NULL) | (int) $_GET['security_ack'], $zp_cfg, false);
 	$updatezp_config = true;
 }
@@ -192,7 +192,7 @@ $permission_names = array(
 );
 $permissions = array_keys($permission_names);
 if ($updatechmod = isset($_REQUEST['chmod_permissions'])) {
-	setupXSRFDefender();
+	setupXSRFDefender('chmod_permissions');
 	$selected = round($_REQUEST['chmod_permissions']);
 	if ($selected >= 0 && $selected < count($permissions)) {
 		$chmod = $permissions[$selected];
@@ -219,7 +219,7 @@ if ($updatechmod || $newconfig) {
 }
 
 if (isset($_REQUEST['FILESYSTEM_CHARSET'])) {
-	setupXSRFDefender();
+	setupXSRFDefender('FILESYSTEM_CHARSET');
 	$fileset = $_REQUEST['FILESYSTEM_CHARSET'];
 	$zp_cfg = updateConfigItem('FILESYSTEM_CHARSET', $fileset, $zp_cfg);
 	$updatezp_config = true;
@@ -1271,7 +1271,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 							foreach ($installed_files as $extra) {
 								$filelist .= filesystemToInternal(str_replace($base, '', $extra) . '<br />');
 							}
-							if (class_exists('zpFunctions') && zpFunctions::hasPrimaryScripts() && count($installed_files) > 0) {
+							if (zpFunctions::hasPrimaryScripts() && count($installed_files) > 0) {
 								if (defined('TEST_RELEASE') && TEST_RELEASE) {
 									$msg1 = gettext("ZenPhoto20 core files [This is a <em>debug</em> build. Some files are missing or seem wrong]");
 								} else {
