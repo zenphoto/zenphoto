@@ -4,17 +4,20 @@
  * Back-end <i>WYSIWYG</i> editor TinyMCE 4.x.
  *
  * You can place your own additional custom configuration files within
- * <var>%USER_PLUGIN_FOLDER%/tiny_mce/config</var> or <var>%THEMEFOLDER%/tiny_mce/config</var>
- * There is a naming convention for editor configurations
- * - zenphoto-<name>.php
- * - zenpage-<name>.php
- * - comment-<name>.php
+ * <var>%USER_PLUGIN_FOLDER%/tiny_mce/config</var> or <var>%THEMEFOLDER%/theme_name/tiny_mce/config</var> folder.
+ * The naming convention for these files is use prefix the file name with the intended
+ * use, e.g.
+ * <ul>
+ * 	<li>zenphoto-<name>.php</li>
+ * 	<li>zenpage-<name>.php</li>
+ * 	<li>comment-<name>.php</li>
+ * </ul>
  *
  * @package plugins
  * @subpackage admin
  */
 $plugin_is_filter = defaultExtension(5 | ADMIN_PLUGIN);
-$plugin_description = gettext("Text editor TinyMCE 4.x");
+$plugin_description = gettext("TinyMCE WYSIWYG editor");
 $plugin_author = "Malte Müller (acrylian)";
 $option_interface = 'tinymceOptions';
 
@@ -28,7 +31,7 @@ zp_register_filter('texteditor_config', 'tinymceConfigJS');
  */
 class tinymceOptions {
 
-	function tinymceOptions() {
+	function __construct() {
 		if (OFFSET_PATH == 2) {
 			$old = getOption('tinymce_zenphoto');
 			if (strpos($old, '.js.php') !== false)
@@ -50,35 +53,12 @@ class tinymceOptions {
 										'selections'		 => $configs_zenphoto,
 										'null_selection' => gettext('Disabled'),
 										'desc'					 => gettext('Applies to <em>admin</em> editable text other than for Zenpage pages and news articles.')),
-						gettext('tinyZenpage plugin')										 => array('key'		 => 'tinymce_tinyzenpage', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 1.5,
-										'desc'	 => gettext('Enable legacy tinyZenpage feature.')),
 						gettext('Text editor configuration - zenpage')	 => array('key'						 => 'tinymce_zenpage', 'type'					 => OPTION_TYPE_SELECTOR,
 										'order'					 => 1,
 										'selections'		 => $configs_zenpage,
 										'null_selection' => gettext('Disabled'),
 										'desc'					 => gettext('Applies to editing on the Zenpage <em>pages</em> and <em>news</em> tabs.'))
 		);
-		if (getOption('tinymce_tinyzenpage')) {
-			$tinyzenpageoptions = array(
-							gettext('Custom image size')					 => array('key'		 => 'tinymce_tinyzenpage_customimagesize', 'type'	 => OPTION_TYPE_NUMBER,
-											'order'	 => 2,
-											'desc'	 => gettext("Predefined size (px) for custom size images included using tinyZenpage.")),
-							gettext('Custom image size')					 => array('key'		 => 'tinymce_tinyzenpage_customimagesize', 'type'	 => OPTION_TYPE_NUMBER,
-											'order'	 => 2,
-											'desc'	 => gettext("Predefined size (px) for custom size images included using tinyZenpage.")),
-							gettext('Custom thumb crop - size')		 => array('key'		 => 'tinymce_tinyzenpage_customthumb_size', 'type'	 => OPTION_TYPE_NUMBER,
-											'order'	 => 2,
-											'desc'	 => gettext("Predefined size (px) for custom cropped thumb images included using tinyZenpage.")),
-							gettext('Custom thumb crop - width')	 => array('key'		 => 'tinymce_tinyzenpage_customthumb_cropwidth', 'type'	 => OPTION_TYPE_NUMBER,
-											'order'	 => 2,
-											'desc'	 => gettext("Predefined crop width (%) for custom cropped thumb  images included using tinyZenpage.")),
-							gettext('Custom thumb crop - height')	 => array('key'		 => 'tinymce_tinyzenpage_customthumb_cropheight', 'type'	 => OPTION_TYPE_NUMBER,
-											'order'	 => 2,
-											'desc'	 => gettext("Predefined crop height (%) for custom cropped thumb images included using tinyZenpage."))
-			);
-			$options = array_merge($options, $tinyzenpageoptions);
-		}
 		return $options;
 	}
 

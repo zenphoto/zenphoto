@@ -1083,19 +1083,6 @@ function parse_query($str) {
 }
 
 /**
- * createsa query string from the array passed
- * @param array $parts
- * @return string
- */
-function build_query($parts) {
-	$q = '';
-	foreach ($parts as $name => $value) {
-		$q .= $name . '=' . $value . '&';
-	}
-	return substr($q, 0, -1);
-}
-
-/**
  * Builds a url from parts
  * @param array $parts
  * @return string
@@ -1164,7 +1151,7 @@ function pathurlencode($path) {
 				$pairs[$name] = implode("/", array_map("rawurlencode", explode("/", $value)));
 			}
 		}
-		$parts['query'] = build_query($pairs);
+		$parts['query'] = http_build_query($pairs);
 	}
 	$parts['path'] = implode("/", array_map("rawurlencode", explode("/", $parts['path'])));
 	return build_url($parts);
