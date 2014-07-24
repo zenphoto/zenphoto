@@ -259,7 +259,10 @@ function getIPSizedImage($size, $image) {
 		} else {
 			?>
 			<p>
-				<?php printf(gettext('No source has been picked. You can pick a ZenPhoto20 object for insertion by browsing to the object and clicking on the %s icon. Custom sized and cropped images may be picked from the <em>crop image</em> page if the <code>crop_image</code> plugin is enabled.'), '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/add.png" />'); ?>
+				<?php echo gettext('No object source has been chosen.'); ?>
+			</p>
+			<p>
+				<?php printf(gettext('You can pick a ZenPhoto20 object for insertion by browsing to the object and clicking on the %s icon. This icon will be just below the <em>Title</em> of the object. You can quickly select objects from admin pages that list objects (e.g. the <em>albums</em>, <em>news</em>, <em>categories</em>, or <em>pages</em> tabs or the <em>image order</em> album subtab.) A <em>pick</em> icon is provided for each item in the list.'), '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/add.png" />'); ?>
 			</p>
 			<?php
 		}
