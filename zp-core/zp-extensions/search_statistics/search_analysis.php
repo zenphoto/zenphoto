@@ -133,12 +133,12 @@ $results_f = array_slice($results_f, 0, $limit_f, true);
 						<table class="bordered">
 							<tr class="statistic_wrapper">
 								<th class="statistic_short_title"><?php
-				if ($criterialimited) {
-					printf(gettext('Top %u successful search criteria'), $limit_s);
-				} else {
-					echo gettext('Successful search criteria');
-				}
-						?></th>
+									if ($criterialimited) {
+										printf(gettext('Top %u successful search criteria'), $limit_s);
+									} else {
+										echo gettext('Successful search criteria');
+									}
+									?></th>
 								<th class="statistic_graphwrap"></th>
 							</tr>
 							<?php
@@ -167,12 +167,12 @@ $results_f = array_slice($results_f, 0, $limit_f, true);
 						<table class="bordered">
 							<tr class="statistic_wrapper">
 								<th class="statistic_short_title"><?php
-				if ($criterialimited_f) {
-					printf(gettext('Top %u failed search criteria'), $limit_f);
-				} else {
-					echo gettext('Failed search criteria');
-				}
-						?></th>
+									if ($criterialimited_f) {
+										printf(gettext('Top %u failed search criteria'), $limit_f);
+									} else {
+										echo gettext('Failed search criteria');
+									}
+									?></th>
 								<th class="statistic_graphwrap"></th>
 							</tr>
 							<?php
@@ -200,12 +200,12 @@ $results_f = array_slice($results_f, 0, $limit_f, true);
 						<table class="bordered">
 							<tr class="statistic_wrapper">
 								<th class="statistic_link"><?php
-				if ($termlimited) {
-					printf(gettext('Top %u search terms used'), $limit_t);
-				} else {
-					echo gettext('Search terms used');
-				}
-						?></th>
+									if ($termlimited) {
+										printf(gettext('Top %u search terms used'), $limit_t);
+									} else {
+										echo gettext('Search terms used');
+									}
+									?></th>
 								<th class="statistic_graphwrap"></th>
 							</tr>
 							<?php
@@ -233,12 +233,12 @@ $results_f = array_slice($results_f, 0, $limit_f, true);
 						<table class="bordered">
 							<tr class="statistic_wrapper">
 								<th class="statistic_link"><?php
-				if ($sitelimited) {
-					printf(gettext('Top %u Search IPs'), $limit_i);
-				} else {
-					echo gettext('Search IPs');
-				}
-						?></th>
+									if ($sitelimited) {
+										printf(gettext('Top %u Search IPs'), $limit_i);
+									} else {
+										echo gettext('Search IPs');
+									}
+									?></th>
 								<th class="statistic_graphwrap"></th>
 							</tr>
 							<?php
@@ -268,7 +268,7 @@ $results_f = array_slice($results_f, 0, $limit_f, true);
 						</p>
 						<br class="clearall" />
 						<p>
-							<a href="<?php echo WEBPATH . '/' . ZENFOLDER ?>/admin-options.php?tab=plugin&amp;show-search_statistics#search_statistics" ><?php echo gettext('Change <em>Threshold</em> values') ?></a>
+							<a href="<?php echo WEBPATH . '/' . ZENFOLDER ?>/admin-options.php?tab=plugin&amp;single=search_statistics#search_statistics" ><?php echo gettext('Change <em>Threshold</em> values') ?></a>
 						</p>
 						<br class="clearall" />
 						<?php

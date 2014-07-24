@@ -119,7 +119,7 @@ echo '</head>' . "\n";
 						<button type="submit"><img src="../../images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 						<button type="reset"><img src="../../images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
 						<div class="floatright">
-							<a href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-options.php?'page=options&amp;tab=plugin&amp;show-user-expiry#user-expiry">
+							<a href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-options.php?'page=options&amp;tab=plugin&amp;single=user-expiry#user-expiry">
 								<img src="../../images/options.png" alt="" /> <strong><?php echo gettext('Options') ?></strong>
 							</a>
 						</div>

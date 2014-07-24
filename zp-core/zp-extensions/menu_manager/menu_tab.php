@@ -160,7 +160,7 @@ printSortableHead();
 						<a href="javascript:newMenuSet();">
 							<img src="../../images/add.png" alt="" /> <strong><?php echo gettext("New Menu"); ?></strong>
 						</a>
-						<a href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-options.php?'page=options&amp;tab=plugin&amp;show-menu_manager#menu_manager">
+						<a href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-options.php?'page=options&amp;tab=plugin&amp;single=menu_manager#menu_manager">
 							<img src="../../images/options.png" alt="" /> <strong><?php echo gettext('Options') ?></strong>
 						</a>
 					</div>
