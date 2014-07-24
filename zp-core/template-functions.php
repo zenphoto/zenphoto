@@ -204,10 +204,11 @@ function adminToolbox() {
 							?>
 							<li>
 								<?php printLinkHTML($zf . '/admin-edit.php?page=edit&album=' . pathurlencode($_zp_current_album->name), gettext('Edit album'), NULL, NULL, NULL); ?>
-								<?php
-								if (!$_zp_current_album->isDynamic()) {
-									if ($_zp_current_album->getNumAlbums()) {
-										?>
+							</li>
+							<?php
+							if (!$_zp_current_album->isDynamic()) {
+								if ($_zp_current_album->getNumAlbums()) {
+									?>
 									<li>
 										<?php printLinkHTML($zf . '/admin-edit.php?page=edit&album=' . pathurlencode($albumname) . '&tab=subalbuminfo', gettext("Sort subalbums"), NULL, NULL, NULL); ?>
 									</li>
