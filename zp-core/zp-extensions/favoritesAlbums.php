@@ -32,11 +32,7 @@ $plugin_description = gettext('Publish <em>favorites</em> into albums that other
 $plugin_author = "Stephen Billard (sbillard)";
 
 require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/favoritesHandler/favoritesClass.php');
-if (strpos(__FILE__, ZENFOLDER) === false) {
-	define("FAVORITESALBUM_FOLDER", USER_PLUGIN_FOLDER . '/favoritesAlbums/');
-} else {
-	define("FAVORITESALBUM_FOLDER", ZENFOLDER . '/' . PLUGIN_FOLDER . '/favoritesAlbums/');
-}
+define("FAVORITESALBUM_FOLDER", ZENFOLDER . '/' . PLUGIN_FOLDER . '/favoritesAlbums/');
 
 class favoritesAlbum extends favorites {
 
@@ -176,7 +172,7 @@ class favoritesAlbum extends favorites {
 		if ($_zp_gallery_page == 'favorites.php') {
 			?>
 			<li>
-				<a href="<?php echo WEBPATH . '/' . FAVORITESALBUM_FOLDER; ?>admin-album.php?title=<?php echo @$_GET['title']; ?>" title="<?php echo gettext('Create an album from favorites'); ?>"><?php echo gettext('Create Album'); ?></a>
+				<a href="<?php echo WEBPATH . '/' . FAVORITESALBUM_FOLDER; ?>admin-album.php?title=<?php echo @$_GET['instance']; ?>" title="<?php echo gettext('Create an album from favorites'); ?>"><?php echo gettext('Create Album'); ?></a>
 			</li>
 			<?php
 		}

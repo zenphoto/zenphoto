@@ -36,7 +36,7 @@ function getSubalbumImages($folder) {
 }
 
 $user = $_zp_current_admin_obj->getUser();
-$favorite = sanitize($_REQUEST['title']);
+$favorite = trim(sanitize($_REQUEST['title']), '/');
 if (isset($_POST['savealbum'])) {
 	XSRFdefender('savealbum');
 	$albumname = sanitize($_POST['album']);
