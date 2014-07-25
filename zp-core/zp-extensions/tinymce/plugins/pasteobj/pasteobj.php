@@ -107,7 +107,7 @@ function getIPSizedImage($size, $image) {
 					switch (selectedlink) {
 						case 'thumb':
 							if ($('#addcaption').prop('checked')) {
-								$('#content').html('<figure><img src="' + image + '" /><figcaption>' + title + '</figcaption></figure>');
+								$('#content').html('<figure class="thumbFigure"><img src="' + image + '" /><figcaption>' + title + '</figcaption></figure>');
 							} else {
 								$('#content').html('<img src="' + image + '" />');
 							}
@@ -115,7 +115,7 @@ function getIPSizedImage($size, $image) {
 						default:
 						case 'image':
 							if ($('#addcaption').prop('checked')) {
-								$('#content').html('<figure><img src="' + imageb + '" /><figcaption>' + title + '</figcaption></figure>');
+								$('#content').html('<figure class="imageFigure><img src="' + imageb + '" /><figcaption>' + title + '</figcaption></figure>');
 							} else {
 								$('#content').html('<img src="' + imageb + '" />');
 							}
@@ -129,14 +129,14 @@ function getIPSizedImage($size, $image) {
 							break;
 						case 'thumblink':
 							if ($('#addcaption').prop('checked')) {
-								$('#content').html('<figure><a href="' + link + '" title="' + title + '"><img src="' + image + '" /></a><figcaption><a href="' + link + '" title="' + title + '">' + title + '</a></figcaption></figure>');
+								$('#content').html('<figure class="thumbFigure"><a href="' + link + '" title="' + title + '"><img src="' + image + '" /></a><figcaption><a href="' + link + '" title="' + title + '">' + title + '</a></figcaption></figure>');
 							} else {
 								$('#content').html('<a href="' + link + '" title="' + title + '"><img src="' + image + '" /></a>');
 							}
 							break;
 						case 'imagelink':
 							if ($('#addcaption').prop('checked')) {
-								$('#content').html('<figure><a href="' + link + '" title="' + title + '"><img src="' + imageb + '" /></a><figcaption><a href="' + link + '" title="' + title + '">' + title + '</a></figcaption></figure>');
+								$('#content').html('<figure class="imageFigure"><a href="' + link + '" title="' + title + '"><img src="' + imageb + '" /></a><figcaption><a href="' + link + '" title="' + title + '">' + title + '</a></figcaption></figure>');
 							} else {
 								$('#content').html('<a href="' + link + '" title="' + title + '"><img src="' + imageb + '" /></a>');
 							}
@@ -146,14 +146,14 @@ function getIPSizedImage($size, $image) {
 							break;
 						case 'thumblink2':
 							if ($('#addcaption').prop('checked')) {
-								$('#content').html('<figure><a href="' + link2 + '" title="' + title + '"><img src="' + image + '" /></a>' + '<figcaption><a href="' + link2 + '" title="' + title + '">' + title + '</a></figcaption>' + '</figure>');
+								$('#content').html('<figure class="thumbFigure"><a href="' + link2 + '" title="' + title + '"><img src="' + image + '" /></a>' + '<figcaption><a href="' + link2 + '" title="' + title + '">' + title + '</a></figcaption>' + '</figure>');
 							} else {
 								$('#content').html('<a href="' + link2 + '" title="' + title + '"><img src="' + image + '" /></a>');
 							}
 							break;
 						case 'link2':
 							if ($('#addcaption').prop('checked')) {
-								$('#content').html('<figure><a href="' + link2 + '" title="' + title + '"><img src="' + imageb + '" /></a>' + '<figcaption><a href="' + link2 + '" title="' + title + '">' + title + '</a></figcaption>' + '</figure>');
+								$('#content').html('<figure class="imageFigure"><a href="' + link2 + '" title="' + title + '"><img src="' + imageb + '" /></a>' + '<figcaption><a href="' + link2 + '" title="' + title + '">' + title + '</a></figcaption>' + '</figure>');
 							} else {
 								$('#content').html('<a href="' + link2 + '" title="' + title + '"><img src="' + imageb + '" /></a>');
 							}
