@@ -1645,7 +1645,7 @@ Zenphoto_Authority::printPasswordFormJS();
 										<li><?php echo gettext('<code>partial word</code>: match the target with the start of words in the field'); ?></li>
 									</ul>
 									</p>
-									<p><?php echo gettext('If <code>Language specific tags</code> is set serches will ignore tags assigned to languages other than the viewer’s locale. Selecting <code>specific</code> requires an exact match to of the tag locale to the viewer locale. Otherwise generic matching is used, e.g. if the user is in the local <em>en_UK</en> he will view tags marked <en>en_US</en>.'); ?></p>
+									<p><?php echo gettext('If <code>Language specific tags</code> is set, searches will ignore tags assigned to languages other than the viewer’s locale. Selecting <code>specific</code> requires an exact match of the tag locale to the viewer locale. Otherwise generic matching is used, e.g. if the user is in the local <em>en_UK</em> he will view tags marked <em>en_US</em>.'); ?></p>
 									<p><?php echo gettext('Setting <code>Treat spaces as</code> to <em>OR</em> will cause search to trigger on any of the words in a string separated by spaces. Setting it to <em>AND</em> will cause the search to trigger only when all strings are present. Leaving the option unchecked will treat the whole string as a search target.') ?></p>
 									<p><?php echo gettext('<code>Default search</code> sets how searches from search page results behave. The search will either be from <em>within</em> the results of the previous search or will be a fresh <em>new</em> search.') ?></p>
 									<p><?php echo gettext('Setting <code>Do not return <em>{item}</em> matches</code> will cause search to ignore <em>{items}</em> when looking for matches.') ?></p>
