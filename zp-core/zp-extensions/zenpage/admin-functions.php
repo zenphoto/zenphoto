@@ -211,14 +211,9 @@ function printPagesListTable($page, $flag) {
 	<div class='page-list_row'>
 		<div class="page-list_title">
 			<?php
-			if (checkIfLockedPage($page)) {
-				echo "<a href='admin-edit.php?page&amp;titlelink=" . urlencode($page->getTitlelink()) . "'> ";
-				checkForEmptyTitle($page->getTitle(), "page");
-				echo "</a>" . checkHitcounterDisplay($page->getHitcounter());
-			} else {
-				checkForEmptyTitle($page->getTitle(), "page");
-				checkHitcounterDisplay($page->getShow());
-			}
+			echo "<a href='admin-edit.php?page&amp;titlelink=" . urlencode($page->getTitlelink()) . "'> ";
+			checkForEmptyTitle($page->getTitle(), "page");
+			echo "</a>" . checkHitcounterDisplay($page->getHitcounter());
 			?>
 		</div>
 		<div class="page-list_extra">
@@ -246,7 +241,9 @@ function printPagesListTable($page, $flag) {
 				?>
 			</div>
 
-			<?php if (checkIfLockedPage($page)) { ?>
+			<?php
+			if (checkIfLocked($page)) {
+				?>
 				<div class="page-list_icon">
 					<?php printPublishIconLink($page, "page"); ?>
 				</div>
@@ -267,14 +264,18 @@ function printPagesListTable($page, $flag) {
 					}
 					?>
 				</div>
-			<?php } else { ?>
+				<?php
+			} else {
+				?>
 				<div class="page-list_icon">
 					<img src="../../images/icon_inactive.png" alt="" title="<?php gettext('locked'); ?>" />
 				</div>
 				<div class="page-list_icon">
 					<img src="../../images/icon_inactive.png" alt="" title="<?php gettext('locked'); ?>" />
 				</div>
-			<?php } ?>
+				<?php
+			}
+			?>
 
 			<div class="page-list_icon">
 				<a href="../../../index.php?p=pages&amp;title=<?php echo js_encode($page->getTitlelink()); ?>" title="<?php echo gettext("View page"); ?>">
@@ -283,7 +284,7 @@ function printPagesListTable($page, $flag) {
 			</div>
 
 			<?php
-			if (checkIfLockedPage($page)) {
+			if (checkIfLocked($page)) {
 				if (extensionEnabled('hitcounter')) {
 					?>
 					<div class="page-list_icon">
@@ -303,7 +304,9 @@ function printPagesListTable($page, $flag) {
 				<div class="page-list_icon">
 					<input class="checkbox" type="checkbox" name="ids[]" value="<?php echo $page->getTitlelink(); ?>" onclick="triggerAllBox(this.form, 'ids[]', this.form.allbox);" />
 				</div>
-			<?php } else { ?>
+				<?php
+			} else {
+				?>
 				<div class="page-list_icon">
 					<img src="../../images/icon_inactive.png" alt="" title="<?php gettext('locked'); ?>" />
 				</div>
@@ -313,7 +316,12 @@ function printPagesListTable($page, $flag) {
 				<div class="page-list_icon">
 					<img src="../../images/icon_inactive.png" alt="" title="<?php gettext('locked'); ?>" />
 				</div>
-			<?php } ?>
+				<div class="page-list_icon">
+					<input class="checkbox" type="checkbox" name="disable" value="1" disabled="disabled" />
+				</div>
+				<?php
+			}
+			?>
 		</div><!--  icon wrapper end -->
 	</div>
 	<?php
@@ -996,11 +1004,11 @@ function printCategoryListSortableTable($cat, $flag) {
 
 		<div class="page-list_iconwrapper">
 			<div class="page-list_icon"><?php
-				$password = $cat->getPassword();
-				if (!empty($password)) {
-					echo '<img src="../../images/lock.png" style="border: 0px;" alt="' . gettext('Password protected') . '" title="' . gettext('Password protected') . '" />';
-				}
-				?>
+		$password = $cat->getPassword();
+		if (!empty($password)) {
+			echo '<img src="../../images/lock.png" style="border: 0px;" alt="' . gettext('Password protected') . '" title="' . gettext('Password protected') . '" />';
+		}
+			?>
 			</div>
 			<div class="page-list_icon">
 				<?php
@@ -1574,34 +1582,19 @@ function printPublishIconLink($object, $type, $linkback = '') {
 	}
 
 	/**
-	 * Checks if the current logged in admin user is the author that locked the page/article.
+	 * Checks if the current logged in  user is allowed to edit the page/article.
 	 * Only that author or any user with admin rights will be able to edit or unlock.
 	 *
-	 * @param object $page The array of the page or article to check
+	 * @param object $obj The page or article to check
 	 * @return bool
 	 */
-	function checkIfLockedPage($page) {
-		if (zp_loggedin(ADMIN_RIGHTS))
-			return true;
-		if ($page->getLocked()) {
-			return $page->isMyItem(ZENPAGE_PAGES_RIGHTS);
-		} else {
-			return true;
-		}
-	}
-
-	/**
-	 * Checks if the current logged in admin user is the author that locked the article.
-	 * Only that author or any user with admin rights will be able to edit or unlock.
-	 *
-	 * @param object $page The array of the page or article to check
-	 * @return bool
-	 */
-	function checkIfLockedNews($news) {
-		if (zp_loggedin(ADMIN_RIGHTS))
-			return true;
-		if ($news->getLocked()) {
-			return $news->isMyItem(ZENPAGE_NEWS_RIGHTS);
+	function checkIfLocked($obj) {
+		global $_zp_current_admin_obj;
+		if ($obj->getLocked()) {
+			if (zp_loggedin($obj->manage_rights)) {
+				return true;
+			}
+			return $obj->getAuthor() == $_zp_current_admin_obj->getUser();
 		} else {
 			return true;
 		}

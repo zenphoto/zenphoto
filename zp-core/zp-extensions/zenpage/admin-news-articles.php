@@ -270,13 +270,10 @@ datepickerJS();
 											break;
 									}
 
-									if (checkIfLockedNews($article)) {
-										echo '<a href="admin-edit.php' . getNewsAdminOptionPath(array_merge(array('newsarticle' => NULL, 'titlelink' => urlencode($article->getTitlelink())), getNewsAdminOption(array('category' => 0, 'date' => 0, 'published' => 0, 'sortorder' => 0, 'articles_page' => 1, 'subpage' => 1)))) . '">';
-										checkForEmptyTitle($article->getTitle(), "news");
-										echo '</a>' . checkHitcounterDisplay($article->getHitcounter()) . $sticky;
-									} else {
-										echo checkForEmptyTitle($article->getTitle(), "news") . '</a>' . checkHitcounterDisplay($article->getHitcounter());
-									}
+
+									echo '<a href="admin-edit.php' . getNewsAdminOptionPath(array_merge(array('newsarticle' => NULL, 'titlelink' => urlencode($article->getTitlelink())), getNewsAdminOption(array('category' => 0, 'date' => 0, 'published' => 0, 'sortorder' => 0, 'articles_page' => 1, 'subpage' => 1)))) . '">';
+									checkForEmptyTitle($article->getTitle(), "news");
+									echo '</a>' . checkHitcounterDisplay($article->getHitcounter()) . $sticky;
 									?>
 
 								</td>
@@ -306,7 +303,7 @@ datepickerJS();
 								} else {
 									$divider = '&amp;';
 								}
-								if (checkIfLockedNews($article)) {
+								if (checkIfLocked($article)) {
 									?>
 									<td class="page-list_icon">
 										<?php printPublishIconLink($article, 'news'); ?>
@@ -316,7 +313,7 @@ datepickerJS();
 										if ($article->getCommentsAllowed()) {
 											?>
 											<a href="<?php echo $option . $divider; ?>commentson=0&amp;titlelink=<?php
-											echo html_encode($article->getTitlelink());
+								echo html_encode($article->getTitlelink());
 											?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo gettext('Disable comments'); ?>">
 												<img src="../../images/comments-on.png" alt="" title="<?php echo gettext("Comments on"); ?>" style="border: 0px;"/>
 											</a>
@@ -324,7 +321,7 @@ datepickerJS();
 										} else {
 											?>
 											<a href="<?php echo $option . $divider; ?>commentson=1&amp;titlelink=<?php
-											echo html_encode($article->getTitlelink());
+								echo html_encode($article->getTitlelink());
 											?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo gettext('Enable comments'); ?>">
 												<img src="../../images/comments-off.png" alt="" title="<?php echo gettext("Comments off"); ?>" style="border: 0px;"/>
 											</a>
@@ -345,20 +342,20 @@ datepickerJS();
 
 								<td class="page-list_icon">
 									<a target="_blank" href="../../../index.php?p=news&amp;title=<?php
-									echo $article->getTitlelink();
-									?>" title="<?php echo gettext('View article'); ?>">
+								echo $article->getTitlelink();
+								?>" title="<?php echo gettext('View article'); ?>">
 										<img src="images/view.png" alt="" title="<?php echo gettext('View article'); ?>" />
 									</a>
 								</td>
 
 								<?php
-								if (checkIfLockedNews($article)) {
+								if (checkIfLocked($article)) {
 									if (extensionEnabled('hitcounter')) {
 										?>
 										<td class="page-list_icon">
 											<a href="<?php echo $option . $divider; ?>hitcounter=1&amp;titlelink=<?php
-											echo html_encode($article->getTitlelink());
-											?>&amp;XSRFToken=<?php echo getXSRFToken('hitcounter') ?>" title="<?php echo gettext('Reset hitcounter'); ?>">
+							echo html_encode($article->getTitlelink());
+										?>&amp;XSRFToken=<?php echo getXSRFToken('hitcounter') ?>" title="<?php echo gettext('Reset hitcounter'); ?>">
 												<img src="../../images/reset.png" alt="" title="<?php echo gettext('Reset hitcounter'); ?>" /></a>
 										</td>
 										<?php
@@ -366,10 +363,13 @@ datepickerJS();
 									?>
 									<td class="page-list_icon">
 										<a href="javascript:confirmDelete('admin-news-articles.php?delete=<?php
-										echo $article->getTitlelink();
-										echo $option;
-										?>&amp;XSRFToken=<?php echo getXSRFToken('delete') ?>','<?php echo js_encode(gettext('Are you sure you want to delete this article? THIS CANNOT BE UNDONE!')); ?>')" title="<?php echo gettext('Delete article'); ?>">
+							echo $article->getTitlelink();
+							echo $option;
+									?>&amp;XSRFToken=<?php echo getXSRFToken('delete') ?>','<?php echo js_encode(gettext('Are you sure you want to delete this article? THIS CANNOT BE UNDONE!')); ?>')" title="<?php echo gettext('Delete article'); ?>">
 											<img src="../../images/fail.png" alt="" title="<?php echo gettext('Delete article'); ?>" /></a>
+									</td>
+									<td class="page-list_icon">
+										<input type="checkbox" name="ids[]" value="<?php echo $article->getTitlelink(); ?>" onclick="triggerAllBox(this.form, 'ids[]', this.form.allbox);" />
 									</td>
 									<?php
 								} else {
@@ -381,14 +381,11 @@ datepickerJS();
 										<img src="../../images/icon_inactive.png" alt="" title="<?php gettext('locked'); ?>" />
 									</td>
 									<td class="page-list_icon">
-										<img src="../../images/icon_inactive.png" alt="" title="<?php gettext('locked'); ?>" />
+										<input type="checkbox" name="disabled" value="none" disabled="Disabled" />
 									</td>
 									<?php
 								}
 								?>
-								<td class="page-list_icon">
-									<input type="checkbox" name="ids[]" value="<?php echo $article->getTitlelink(); ?>" onclick="triggerAllBox(this.form, 'ids[]', this.form.allbox);" />
-								</td>
 							</tr>
 							<?php
 						}

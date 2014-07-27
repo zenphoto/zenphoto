@@ -40,7 +40,7 @@
  * </ul>
  *
  * @author Stephen Billard (sbillard)
- * 
+ *
  * @package plugins
  * @subpackage media
  */
@@ -320,7 +320,7 @@ if (OFFSET_PATH) {
 				$multi = false;
 				$list = array($_myFavorites->instance);
 			} else {
-				if ($multi = getOption('favorites_multi')) {
+				if ($multi = $_myFavorites->multi) {
 					$list = $_myFavorites->list;
 				} else {
 					$list = array('');
@@ -399,10 +399,9 @@ if (OFFSET_PATH) {
 				if (is_null($text)) {
 					$text = get_language_string(getOption('favorites_linktext'));
 				}
-				$list = $_myFavorites->getList();
 				$betwixt = NULL;
 				echo $before;
-				foreach ($_myFavorites->getList()as $instance) {
+				foreach ($_myFavorites->getList() as $instance) {
 					$link = $_myFavorites->getLink(NULL, $instance);
 					$display = $text;
 					if ($instance) {
