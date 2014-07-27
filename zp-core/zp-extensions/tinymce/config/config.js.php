@@ -2,7 +2,7 @@
 /**
  * The configuration parameters for TinyMCE 4.x.
  *
- * base configuration file
+ * base configuration file, included by all TinyMCE configuration files
  *
  * Note:
  *
@@ -21,8 +21,11 @@
  * settings will be selected:
  *
  * <ul>
+ * 	<li>$MCEdirection: set to "rtl" for right-to-left text flow</li>
+ * 	<li>$MCEspecial: used to insert arbitrary initialization parameters such as styles </li>
+ * 	<li>$MCEskin: set to the override the default tinyMCE skin</li>
  * 	<li>$MCEcss: css file to be used by tinyMce</li>
- * 	<li>$MCEimage_advtab: set to <var>false</var> to disable the advanced image tab on the image insert popup.</li>
+ * 	<li>$MCEimage_advtab: set to <var>false</var> to disable the advanced image tab on the image insert popup (<i>style</i>, <i>borders</i>, etc.)</li>
  * </ul>
  *
  * @author Stephen Billard (sbillard)
@@ -36,7 +39,10 @@ if (isset($MCEcss)) {
 } else {
 	$MCEcss = getPlugin('tinymce/config/content.css', true, true);
 }
-
+global $_zp_RTL_css;
+if ($_zp_RTL_css && !isset($MCEdirection)) {
+	$MCEdirection = 'rtl';
+}
 
 if (!extensionEnabled('tinyZenpage')) {
 	$MCEplugins = preg_replace('|\stinyzenpage|', '', $MCEplugins);
@@ -56,6 +62,11 @@ if (!extensionEnabled('tinyZenpage')) {
 if (!isset($MCEimage_advtab) || $MCEimage_advtab) {
 	?>
 						image_advtab: true,
+	<?php
+}
+if (isset($MCEdirection)) {
+	?>
+						directionality : '<?php echo $MCEdirection; ?>',
 	<?php
 }
 ?>
