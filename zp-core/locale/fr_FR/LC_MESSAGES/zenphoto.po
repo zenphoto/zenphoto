@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZenPhoto20 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-20 19:57-0500\n"
-"PO-Revision-Date: 2014-07-20 20:41-0500\n"
+"POT-Creation-Date: 2014-07-27 01:01-0500\n"
+"PO-Revision-Date: 2014-07-27 01:11-0500\n"
 "Last-Translator: \n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon & Vincent Bourganel "
 "<michel@mgagnon.net>\n"
@@ -138,7 +138,7 @@ msgstr ""
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpskeleton/inc-header.php:171
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpskeleton/inc-header.php:173
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpskeleton/search.php:22
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1705
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1708
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:2433
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:2434
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-themes.php:103
@@ -164,8 +164,8 @@ msgstr ""
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/lib-auth.php:579
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/lib-auth.php:585
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/lib-auth.php:586
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-option-defaults.php:384
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-option-defaults.php:385
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-option-defaults.php:397
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-option-defaults.php:398
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/cacheManager/cacheImages.php:150
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/defaultCodeblocks.php:34
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/externalFeed.php:70
@@ -668,9 +668,61 @@ msgid "watermark created"
 msgstr "Le filigrane a été créé"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/plugins/text_watermark.php:95
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1024
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1025
 msgid "Create"
 msgstr "Créer"
+
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/plugins/tinyZenpage.php:18
+#, fuzzy
+msgid "Enable legacy tinyZenpage."
+msgstr "Active l’ancienne fonction tinyZenpage."
+
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/plugins/tinyZenpage.php:27
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/plugins/tinyZenpage.php:29
+msgid "Custom image size"
+msgstr "Taille d’image personnalisée"
+
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/plugins/tinyZenpage.php:28
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/plugins/tinyZenpage.php:30
+msgid "Predefined size (px) for custom size images included using tinyZenpage."
+msgstr ""
+"Taille prédéfinie (px) pour les images de taille personnalisée insérées avec "
+"tinyZenpage."
+
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/plugins/tinyZenpage.php:31
+msgid "Custom thumb crop - size"
+msgstr "Rognage personnalisé des vignettes – taille"
+
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/plugins/tinyZenpage.php:32
+msgid ""
+"Predefined size (px) for custom cropped thumb images included using "
+"tinyZenpage."
+msgstr ""
+"Taille prédéfinie (px) pour les images rognées insérées avec tinyZenpage."
+
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/plugins/tinyZenpage.php:33
+msgid "Custom thumb crop - width"
+msgstr "Rognage personnalisé des vignettes – largeur"
+
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/plugins/tinyZenpage.php:34
+msgid ""
+"Predefined crop width (%) for custom cropped thumb  images included using "
+"tinyZenpage."
+msgstr ""
+"Largeur de rognage prédéfinie (%) pour les images rognées insérées avec "
+"tinyZenpage."
+
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/plugins/tinyZenpage.php:35
+msgid "Custom thumb crop - height"
+msgstr "Rognage personnalisé des vignettes – hauteur"
+
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/plugins/tinyZenpage.php:36
+msgid ""
+"Predefined crop height (%) for custom cropped thumb images included using "
+"tinyZenpage."
+msgstr ""
+"Hauteur de rognage prédéfinie (%) pour les vignettes d’images avec rognage "
+"personnalisé qui sont insérées avec tinyZenpage."
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/plugins/zenpotoCompatibilityPack/core-deprecated-functions.php:13
 msgid "Use printImageMetadata()."
@@ -1797,7 +1849,7 @@ msgid "Total matches for <em>%1$s</em>: %2$u"
 msgstr "Nombre de résultats pour <em>%1$s</em> : %2$u"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/basic/search.php:62
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1408
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1411
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1524
 msgid "Date:"
 msgstr "Date : "
@@ -2079,12 +2131,13 @@ msgstr[1] "%u commentaires"
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/garland/functions.php:149
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpmasonry/album.php:19
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpmasonry/favorites.php:22
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:623
 msgid "album"
 msgstr "album"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/effervescence+/functions.php:426
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/garland/functions.php:149
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1454
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1457
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-globals.php:115
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:2709
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/image_album_statistics.php:210
@@ -2252,7 +2305,7 @@ msgstr "Rechercher dans les actualités"
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpEnlighten/register.php:24
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpEnlighten/search.php:35
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/404.php:56
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1025
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1026
 msgid "Index"
 msgstr "Accueil"
 
@@ -3079,36 +3132,36 @@ msgid "Custom data:"
 msgstr "Données personnalisées : "
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/gray_highlights/image.php:39
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1475
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1478
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1543
 msgid "Location:"
 msgstr "Lieu : "
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/gray_highlights/image.php:40
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1481
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1484
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/comment_form/admin-comments.php:179
 msgid "City:"
 msgstr "Ville : "
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/gray_highlights/image.php:41
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1487
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1490
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/comment_form/admin-comments.php:181
 msgid "State:"
 msgstr "État, province : "
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/gray_highlights/image.php:42
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1493
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1496
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/comment_form/admin-comments.php:183
 msgid "Country:"
 msgstr "Pays : "
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/gray_highlights/image.php:43
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1499
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1502
 msgid "Credit:"
 msgstr "Crédits : "
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/gray_highlights/image.php:44
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1505
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1508
 msgid "Copyright:"
 msgstr "Copyright : "
 
@@ -3954,8 +4007,8 @@ msgstr "Catégories d’actualités"
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpfocus/news.php:74
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpfocus/pages.php:18
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpmobile/image.php:60
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1464
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1513
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1467
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1516
 msgid "Tags:"
 msgstr "Tags :"
 
@@ -4412,13 +4465,13 @@ msgstr "Envoyer l’email"
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:909
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:910
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1035
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1604
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1723
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1753
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1808
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1809
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1855
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1856
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1607
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1726
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1756
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1811
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1812
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1858
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1859
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1368
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2099
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-logs.php:124
@@ -4755,6 +4808,11 @@ msgid ""
 "example there is a logo.gif image in the images directory with a\n"
 "\t\t\t\theight of 83 (must enter height of image as well!)."
 msgstr ""
+"Saisir le nom d’un fichier image situé dans le répertoire « images » à "
+"utiliser comme logo.\n"
+"\t\t\t\tOu laissez vide pour afficher plutôt une représentation textuelle du "
+"nom de la galerie. \n"
+"\t\t\t\theight of 83"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpmasonry/themeoptions.php:99
 msgid "Logo Height"
@@ -4765,6 +4823,8 @@ msgid ""
 "If using a logo image above, you must enter the height of the image in "
 "pixels here."
 msgstr ""
+"Si vous utilisez une image comme signature, veuillez en saisir sa hauteur en "
+"pixels."
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpmasonry/themeoptions.php:102
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpminimal/themeoptions.php:34
@@ -4828,23 +4888,28 @@ msgstr ""
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpmasonry/themeoptions.php:129
 #, fuzzy
 msgid "Frontpage Slideshow?"
-msgstr "Diaporama"
+msgstr ""
+"Définir les paramètres de contenu du diaporama de la page d’accueil, si ce "
+"choix a été fait ci-haut."
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpmasonry/themeoptions.php:131
 msgid ""
 "Check if you want to show a slideshow on the frontpage. Contents of "
 "slideshow and settings can be selected below."
 msgstr ""
+"Cocher si vous souhaitez afficher un diaporama sur la page d’accueil. Le "
+"contenu et les paramètres du diaporama sont sélectionnés ci-dessous."
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpmasonry/themeoptions.php:132
-#, fuzzy
 msgid "Frontpage Slideshow Option"
-msgstr "Diaporama"
+msgstr "Paramétrage du diaporama en page d’accueil"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpmasonry/themeoptions.php:134
 msgid ""
 "Select the contents option of the frontpage slideshow if selected above."
 msgstr ""
+"Définir les paramètres de contenu du diaporama de la page d’accueil, si ce "
+"choix a été fait ci-haut."
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpmasonry/themeoptions.php:135
 #, fuzzy
@@ -5169,10 +5234,12 @@ msgstr "Petit"
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpskeleton/themeoptions.php:56
 msgid "Choose the relative thumb size for the album and search pages."
 msgstr ""
+"Choisir la taille relative de vignettes pour les pages d’albums et de "
+"recherche."
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpskeleton/themeoptions.php:57
 msgid "Debug User Agent"
-msgstr "Agent-utilisateur (déboggage)"
+msgstr "Agent-utilisateur (débogage)"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpskeleton/themeoptions.php:59
 msgid ""
@@ -5180,7 +5247,7 @@ msgid ""
 "displays."
 msgstr ""
 "Cocher pour afficher les informations d’utilisateur dans le pied de page "
-"pour débogger les navigateurs mobiles."
+"pour déboguer les navigateurs mobiles."
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpskeleton/themeoptions.php:60
 #, fuzzy
@@ -5234,9 +5301,10 @@ msgid "Show Archive"
 msgstr "Afficher l’archive"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpskeleton/themeoptions.php:72
-#, fuzzy
 msgid "Check to display the gallery and news archive menu item."
-msgstr "Cocher pour afficher l’image pleine grandeur avec Colorbox."
+msgstr ""
+"Cocher pour afficher les éléments de menu « galerie » et « archives "
+"d’actualités »."
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/themes/zpskeleton/themeoptions.php:76
 msgid "Image Strip"
@@ -5272,7 +5340,7 @@ msgstr "*Actions en lot*"
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2184
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-logs.php:117
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-themes.php:311
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1025
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1026
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/cacheManager.php:248
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/comment_form/admin-comments.php:131
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/comment_form/admin-comments.php:132
@@ -5435,9 +5503,9 @@ msgstr "Aucun changement"
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:841
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:903
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1027
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1596
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1717
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1747
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1599
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1720
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1750
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1360
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2091
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-refresh-metadata.php:157
@@ -5462,11 +5530,11 @@ msgstr "Retour"
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:848
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:907
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1031
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1600
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1720
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1750
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1807
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1853
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1603
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1723
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1753
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1810
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1856
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1364
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2095
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:592
@@ -5653,11 +5721,6 @@ msgstr ""
 msgid "New album name?"
 msgstr "Nom du nouvel album ?"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:623
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/template-functions.php:78
-msgid "new album"
-msgstr "nouvel album"
-
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:630
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/comment_form/admin-comments.php:97
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/menu_manager/menu_tab.php:126
@@ -5701,7 +5764,7 @@ msgid "Image metadata refreshed."
 msgstr "Les métadonnées des images ont été actualisées."
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:810
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1769
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1772
 msgid " descending"
 msgstr " décroissant"
 
@@ -5711,12 +5774,12 @@ msgid "Current sort: <em>%1$s%2$s</em>. "
 msgstr "Clé de tri utilisée : <em>%1$s%2$s</em>."
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:823
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1783
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1786
 msgid "Drag the albums into the order you wish them displayed."
 msgstr "Déplacez les albums dans l’ordre où vous souhaitez les afficher."
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:826
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1786
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1789
 msgid ""
 "<strong>Note:</strong> Dragging an album under a different parent will move "
 "the album. You cannot move albums under a <em>dynamic</em> album."
@@ -5748,12 +5811,12 @@ msgid "New subalbum"
 msgstr "Nouveau sous-album"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:865
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1822
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1825
 msgid "Edit this album"
 msgstr "Modifier cet album"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:874
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1827
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1830
 msgid ""
 "Thumbnail generation may be time consuming on slow servers on when there are "
 "a lot of images."
@@ -5762,7 +5825,7 @@ msgstr ""
 "de temps sur un serveur lent."
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:881
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1832
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1835
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:3910
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/comment_form/admin-comments.php:361
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/menu_manager/menu_tab.php:208
@@ -5848,7 +5911,13 @@ msgstr "px"
 msgid "<strong>Size:</strong>"
 msgstr "<strong>Taille :</strong>"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1111
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1106
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:300
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/zenpage/admin-edit.php:416
+msgid "Title:"
+msgstr "Titre : "
+
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1113
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1851
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/lib-auth.php:533
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/lib-auth.php:534
@@ -5866,7 +5935,7 @@ msgstr "<strong>Taille :</strong>"
 msgid "General"
 msgstr "Général"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1115
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1117
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1855
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:2293
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-globals.php:34
@@ -5877,12 +5946,12 @@ msgstr "Général"
 msgid "Published"
 msgstr "Publié"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1123
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1125
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1863
 msgid "Allow Comments"
 msgstr "Autoriser les commentaires"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1134
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1136
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/zenpage/admin-edit.php:659
 #, php-format
 msgid "Reset hitcounter (%u hit)"
@@ -5890,21 +5959,21 @@ msgid_plural "Reset hitcounter (%u hits)"
 msgstr[0] "Remettre le compteur à zéro (total : %u vue)"
 msgstr[1] "Remettre le compteur à zéro (total : %u vues)"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1147
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1149
 #, php-format
 msgid "Reset rating (%u star)"
 msgid_plural "Reset rating (%u stars)"
 msgstr[0] "Effacer les votes (%u étoile)"
 msgstr[1] "Effacer les votes (%u étoiles)"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1154
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1156
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1894
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/zenpage/admin-edit.php:682
 msgid "Reset rating (unrated)"
 msgstr "Effacer les votes (pas encore évalué)"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1169
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1417
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1171
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1420
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1533
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1909
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/publishContent/publishContent.php:311
@@ -5913,31 +5982,31 @@ msgstr "Effacer les votes (pas encore évalué)"
 msgid "calendar"
 msgstr "calendrier"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1176
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1201
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1178
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1203
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1916
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1941
 msgid "Future publishing date."
 msgstr "Date de publication ultérieure."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1187
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1211
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1189
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1213
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1927
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1951
 msgid "Expired!"
 msgstr "Expiré !"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1196
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1198
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1936
 msgid "Publish date"
 msgstr "Date de publication"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1206
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1208
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1946
 msgid "Expiration date"
 msgstr "Date d’expiration"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1218
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1220
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1958
 msgid "Utilities"
 msgstr "Utilitaires"
@@ -6010,96 +6079,90 @@ msgstr "Actualiser les métadonnées"
 msgid "Crop thumbnail"
 msgstr "Rogner la vignette"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1364
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1372
 msgid "Owner:"
 msgstr "Propriétaire : "
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1381
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:300
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/zenpage/admin-edit.php:416
-msgid "Title:"
-msgstr "Titre : "
-
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1387
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1390
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:296
 msgid "Description:"
 msgstr "Description : "
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1395
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1398
 msgid "Set as thumbnail for:"
 msgstr "Utiliser comme vignette pour :"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1437
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1440
 msgid "Image watermark:"
 msgstr "Filigrane de l’image : "
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1440
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1443
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1711
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1726
 msgid "*no watermark"
 msgstr "*aucun filigrane"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1441
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1444
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1712
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1727
 msgid "*default"
 msgstr "*réglages par défaut"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1455
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1458
 msgid "thumb"
 msgstr "vignette"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1456
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1459
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow.php:131
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/slideshow2.php:143
 msgid "full image"
 msgstr "image pleine grandeur"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1520
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1523
 msgid "No tags assigned"
 msgstr "Aucun tag assigné"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1530
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1533
 msgid "Metadata:"
 msgstr "Métadonnées :"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1547
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1550
 msgid "None selected for display"
 msgstr "Aucune n’est sélectionnée pour être affichée"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1565
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1568
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1841
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:1401
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/zenpage/admin-edit.php:799
 msgid "Codeblocks:"
 msgstr "Blocs de code :"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1576
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1579
 msgid "Edit all image data"
 msgstr "Modifier toutes les données de l’image"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1621
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1624
 msgid "prev image"
 msgstr "image précédente"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1628
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1631
 msgid "next image"
 msgstr "image suivante"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1703
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1706
 msgid "Edit All Albums in"
 msgstr "Modifier tous les albums de"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1761
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1764
 msgid "Edit Gallery"
 msgstr "Modifier la galerie"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1780
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1783
 #, php-format
 msgid "Current sort: <em>%1$s%2$s</em>."
 msgstr "Clé de tri utilisée : <em>%1$s%2$s</em>."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1793
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1796
 msgid ""
 "Select an album to edit its description and data, or <a href=\"?"
 "page=edit&amp;massedit\">mass-edit</a> all gallery level albums."
@@ -6108,18 +6171,18 @@ msgstr ""
 "href=\"?page=edit&amp;massedit\">modifiez en lot</a> tous les albums de la "
 "galerie."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1815
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1862
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1877
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1818
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1865
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1880
 msgid "New album"
 msgstr "Nouvel album"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1873
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-edit.php:1876
 msgid "There are no albums for you to edit."
 msgstr "Vous n’avez aucun album à éditer."
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:31
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-functions.php:581
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-functions.php:490
 msgid "A simpler media content management system"
 msgstr "Un système de gestion de contenu média très simple"
 
@@ -6141,17 +6204,17 @@ msgid "License"
 msgstr "Licence"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:38
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-functions.php:582
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-functions.php:491
 msgid "Support"
 msgstr "Soutien"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:39
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-functions.php:582
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-functions.php:491
 msgid "View Change log"
 msgstr "Voir la liste des changements"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:39
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-functions.php:582
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-functions.php:491
 msgid "Change log"
 msgstr "Liste des changements"
 
@@ -6250,16 +6313,16 @@ msgstr "tous"
 msgid "add tag"
 msgstr "Ajouter des tags"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1404
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1397
+msgid "Album Title"
+msgstr "Titre de l’album"
+
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1412
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-globals.php:33
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/class-search.php:118
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/favoritesHandler.php:140
 msgid "Owner"
 msgstr "Propriétaire"
-
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1421
-msgid "Album Title"
-msgstr "Titre de l’album"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:1430
 msgid "Album Description:"
@@ -6806,7 +6869,7 @@ msgstr "sécurité"
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/debug.php:24
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/markRelease.php:47
 msgid "debug"
-msgstr "déboggage"
+msgstr "débogage"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-functions.php:4585
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/deprecated-functions.php:121
@@ -7140,22 +7203,22 @@ msgstr ""
 "été réinitialisé."
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:577
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-functions.php:428
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-functions.php:376
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/dynamic-locale.php:58
 #, php-format
 msgid "<em>%s</em> is not available."
 msgstr "<em>%s</em> n’est pas disponible."
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:578
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-functions.php:429
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-functions.php:377
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/dynamic-locale.php:59
 #, php-format
 msgid "The locale %s is not supported on your server."
 msgstr "Le paramètre régional %s n’est pas supporté par votre serveur."
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:580
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:630
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-functions.php:431
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:631
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-functions.php:379
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/dynamic-locale.php:61
 msgid ""
 "You can use the <em>debug</em> plugin to see which locales your server "
@@ -7693,7 +7756,7 @@ msgstr ""
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:3015
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:3045
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:3160
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-sqlform.php:108
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-sqlform.php:110
 msgid "save"
 msgstr "enregistrer"
 
@@ -8133,12 +8196,19 @@ msgstr ""
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:1648
 msgid ""
-"If <code>Language specific tags</code> is set serches will ignore tags "
+"If <code>Language specific tags</code> is set, searches will ignore tags "
 "assigned to languages other than the viewer’s locale. Selecting "
-"<code>specific</code> requires an exact match to of the tag locale to the "
+"<code>specific</code> requires an exact match of the tag locale to the "
 "viewer locale. Otherwise generic matching is used, e.g. if the user is in "
-"the local <em>en_UK</en> he will view tags marked <en>en_US</en>."
+"the local <em>en_UK</em> he will view tags marked <em>en_US</em>."
 msgstr ""
+"Si le paramètre <code>tags spécifiques à chaque langue</code> est "
+"sélectionné, les recherches ignoreront les tags identifiés à d’autres "
+"langues que celle des paramètres régionaux de l’utilisateur. En choisissant "
+"<code>spécifique</code>, il faut un appariement parfait entre le paramètre "
+"régional du tag et celui de l’utilisateur. Sinon, un appariement générique "
+"est utilisé, de sorte qu’un usager dont le paramètre est <em>en_UK</em> "
+"pourra voir aussi les tags identifiés <em>en_US</em>."
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-options.php:1649
 msgid ""
@@ -9356,7 +9426,7 @@ msgstr "Poursuivre l’actualisation des métadonnées."
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-refresh-metadata.php:133
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/lib-auth.php:948
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1571
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1572
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/cacheManager/cacheDBImages.php:169
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/cacheManager/cacheImages.php:374
 msgid "Refresh"
@@ -9754,7 +9824,7 @@ msgid "Make a new Album"
 msgstr "Créer un nouvel album"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin-upload.php:281
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1033
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1034
 msgid "and"
 msgstr "et"
 
@@ -10057,8 +10127,9 @@ msgid "Official build"
 msgstr "Version officielle"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/admin.php:323
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/functions-basic.php:1263
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:410
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/functions-basic.php:1253
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:401
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:411
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/security-logger.php:132
 msgid "clone"
 msgstr "clone"
@@ -10308,20 +10379,20 @@ msgstr "Un objet album a été instancié sans utiliser la fonction newAlbum()."
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/class-album.php:1131
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/class-album.php:1577
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/favoritesAlbums.php:100
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/favoritesAlbums.php:96
 msgid "Invalid album instantiation: No album name"
 msgstr "Instanciation invalide de l’album : l’album n’a pas de nom"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/class-album.php:1134
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/class-album.php:1580
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/favoritesAlbums.php:103
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/favoritesAlbums.php:99
 #, php-format
 msgid "Invalid album instantiation: %1$s!=%2$s"
 msgstr "Instanciation invalide de l’album : %1$s!=%2$s"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/class-album.php:1136
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/class-album.php:1582
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/favoritesAlbums.php:105
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/favoritesAlbums.php:101
 #, php-format
 msgid "Invalid album instantiation: %s does not exist."
 msgstr "Instanciation invalide de l’album : %s n’existe pas"
@@ -10438,7 +10509,7 @@ msgstr "Erreur : le dossier « albums » (%s) est illisible."
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/exif/makers/sanyo.php:64
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/exif/makers/sanyo.php:68
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/exif/makers/sanyo.php:72
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-functions.php:366
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-functions.php:315
 msgid "Unknown"
 msgstr "Inconnu"
 
@@ -11631,12 +11702,12 @@ msgstr "Pas assez d’arguments ! Image non trouvée."
 msgid "Forbidden(2)"
 msgstr "Interdit (2)"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/functions-basic.php:1234
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/functions-basic.php:1224
 #, php-format
 msgid "%s log size limit exceeded"
 msgstr "La taille maximale du fichier de journalisation %s est dépassée"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/functions-basic.php:1234
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/functions-basic.php:1224
 #, php-format
 msgid "The %1$s log has exceeded its size limit and has been renamed to %2$s."
 msgstr ""
@@ -12267,7 +12338,7 @@ msgstr "Image : [<code>%s</code>]"
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/functions-image.php:54
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/lib-auth.php:566
 msgid "Debug"
-msgstr "Déboggage"
+msgstr "Débogage"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/functions-image.php:54
 msgid "Arguments:"
@@ -12462,8 +12533,8 @@ msgstr "0 octet"
 #, php-format
 msgid "ZenPhoto20 processed a 404 error on %s. See the debug log for details."
 msgstr ""
-"ZenPhoto20 a produit une erreur 404 sur %s. Voir le journal de déboggage "
-"pour plus de détails."
+"ZenPhoto20 a produit une erreur 404 sur %s. Voir le journal de débogage pour "
+"plus de détails."
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/functions.php:2188
 msgid "Click to show content"
@@ -12869,12 +12940,12 @@ msgstr "Le traitement d’image de %s s’est soldé par une erreur fatale."
 msgid "Suffix Not Allowed: %s"
 msgstr "Suffixe non autorisé : %s"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/index.php:146
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/index.php:148
 #, php-format
 msgid "Script processing %1$s:%2$.4f seconds"
 msgstr "Temps de traitement du script %1$s :%2$.4f secondes"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/index.php:150
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/index.php:152
 #, php-format
 msgid "Script processing total:%.4f seconds"
 msgstr "Temps de traitement total du script : %.4f secondes"
@@ -13337,7 +13408,7 @@ msgstr ""
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/lib-auth.php:566
 msgid "Allows viewing of the debug tab items."
-msgstr ""
+msgstr "Permet de voir les éléments de l’onglet de débogage."
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/lib-auth.php:584
 msgid "Codeblock"
@@ -13902,23 +13973,23 @@ msgstr ""
 msgid "ZenPhoto20 requires PHP version %s or greater"
 msgstr "ZenPhoto20 requiert la version %s de PHP ou une version plus récente"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:157
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:156
 msgid "db POST handling"
 msgstr "Gestion de la méthode POST de la base de données"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:189
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:188
 msgid "readonly"
 msgstr "lecture seule"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:190
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:189
 msgid "strict"
 msgstr "strict"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:191
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:190
 msgid "relaxed"
 msgstr "relaché"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:192
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:191
 msgid "loose"
 msgstr "permissif"
 
@@ -13938,53 +14009,53 @@ msgstr "– Mise à jour"
 msgid "install"
 msgstr "– Installation"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:377
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:374
 msgid "Completed system check"
 msgstr "Vérification du système complétée"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:384
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:381
 msgid "Setup cookie test successful"
 msgstr "Le test de cookie par le script d’installation a réussi"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:387
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:384
 msgid "Setup cookie test unsuccessful"
 msgstr "Le test de cookie par le script d’installation a échoué"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:392
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:389
 msgid "Post of Database credentials"
 msgstr "Affichage des informations de connexion à la base de données"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:412
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:413
 #, php-format
 msgid "ZenPhoto20 Setup v%1$s[%2$s]%3$s: %4$s"
 msgstr "Script d’installation de ZenPhoto20 v%1$s[%2$s]%3$s : %4$s"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:415
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:416
 msgid "Full environment"
 msgstr "Environnement complet"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:417
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:418
 msgid "Primitive environment"
 msgstr "Environnement de base"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:419
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:420
 #, php-format
 msgid "Query error: %s"
 msgstr "Erreur de requête : %s"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:433
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:434
 msgid "create"
 msgstr "créer"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:433
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:434
 msgid "update"
 msgstr "mettre à jour"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:466
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:467
 msgid "ZenPhoto20 Setup"
 msgstr "installation de ZenPhoto20"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:491
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:492
 #, php-format
 msgid ""
 "Welcome to ZenPhoto20! This page will set up version %1$s on your web server."
@@ -13992,34 +14063,34 @@ msgstr ""
 "Bienvenue sur ZenPhoto20 ! Cette page va vous permettre d’installer la "
 "version %1$s sur votre serveur."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:493
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:494
 msgid "Systems Check:"
 msgstr "Vérifications système : "
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:508
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:509
 msgid ""
 "<strong>Note:</strong> The release you are installing has debugging settings "
 "enabled!"
 msgstr ""
 "<strong>Note.</strong> La version que vous installez présentement a les "
-"paramètres de débuggage activés !"
+"paramètres de débogage activés !"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:520
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:521
 #, php-format
 msgid "Installing ZenPhoto20 v%s"
 msgstr "Installation de ZenPhoto20 v%s"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:533
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:534
 #, php-format
 msgid "<em>%s</em> security"
 msgstr "sécurité de <em>%s</em>"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:533
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:534
 #, php-format
 msgid "<em>%s</em> security [is compromised]"
 msgstr "La sécurité de <em>%s</em> est compromise"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:533
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:534
 #, php-format
 msgid ""
 "ZenPhoto20 suggests you make the sensitive files in the %1$s folder "
@@ -14031,12 +14102,12 @@ msgstr ""
 "propriétaire (droits = 0600). Les droits d’accès des fichiers <em>%2$s</em> "
 "sont présentement définis à %3$04o, ce qui permet un accès non autorisé."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:536
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:537
 #, php-format
 msgid "PHP version %s"
 msgstr "Version %s de PHP"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:536
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:537
 #, php-format
 msgid ""
 "PHP Version %1$s or greater is required. Version %2$s or greater is strongly "
@@ -14046,21 +14117,21 @@ msgstr ""
 "recommandé d’utiliser au moins la version %2$s. Utiliser les versions "
 "antérieures est à vos risques."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:539
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:540
 msgid "PHP <code>Sessions</code>."
 msgstr "Mode <code>Sessions</code> de PHP"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:539
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:544
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:540
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:545
 msgid "PHP <code>Sessions</code> [appear to not be working]."
 msgstr "Le mode <code>Sessions</em> de PHP [ne semble pas fonctionner]."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:542
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:543
 msgid "PHP <code>Sessions</code> [problems with <em>save_save_path</em>]."
 msgstr ""
 "Le mode <code>Sessions</em> de PHP [problème avec <em>save_save_path</em>]."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:542
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:543
 #, php-format
 msgid ""
 "The configured PHP session path could not be used. ZenPhoto20 has set the "
@@ -14069,19 +14140,19 @@ msgstr ""
 "Le chemin de session PHP configuré n’a pu être utilisé. ZenPhoto20 a donc "
 "plutôt défini le chemin au dossier %s."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:544
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:545
 msgid "PHP Sessions are required for administrative functions."
 msgstr "Les fonctions administratives requièrent des <em>sessions PHP</em>."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:560
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:561
 msgid "PHP <code>Register Globals</code>"
 msgstr "Directive <code>Register Globals</code> de PHP"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:560
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:561
 msgid "PHP <code>Register Globals</code> [is set]"
 msgstr "La directive <code>Register Globals</code> de PHP [est activée]"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:560
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:561
 msgid ""
 "PHP Register globals presents a security risk to any PHP application. See <a "
 "href=\"http://php.net/manual/en/security.globals.php\"><em>Using Register "
@@ -14094,15 +14165,15 @@ msgstr ""
 "a>. Veuillez modifier votre fichier <em>php.ini</em> afin d’inscrire le "
 "paramètre <code>register_globals = off</code>."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:567
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:568
 msgid "PHP <code>Safe Mode</code>"
 msgstr "Mode <code>Sans échec</code> de PHP"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:567
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:568
 msgid "PHP <code>Safe Mode</code> [is set]"
 msgstr "Le mode <code>Sans échec</code> de PHP est activé"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:567
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:568
 msgid ""
 "ZenPhoto20 functionality is reduced when PHP <code>safe mode</code> "
 "restrictions are in effect."
@@ -14110,11 +14181,11 @@ msgstr ""
 "Les fonctionnalités de ZenPhoto20 sont réduites quand <code>le mode sans "
 "échec</code> de PHP est activé."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:585
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:586
 msgid "<code>Suhosin</code> module [is enabled]"
 msgstr "Le module <code>Suhosin</code> est activé"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:585
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:586
 #, php-format
 msgid ""
 "The following PHP functions are blocked: %s. Flagged functions are required. "
@@ -14125,59 +14196,59 @@ msgstr ""
 "sont requises. Les autres fonctions de cette liste pourraient aussi être "
 "nécessaires, causant une réduction des fonctionnalitées, voire des erreurs."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:589
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:590
 msgid "Magic_quotes"
 msgstr "Magic_quotes"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:595
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:596
 msgid "PHP <code>magic_quotes_gpc</code>"
 msgstr "Module <code>magic_quotes_gpc</code> de PHP"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:595
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:596
 msgid "PHP <code>magic_quotes_gpc</code> [is enabled]"
 msgstr "Le module <code>magic_quotes_gpc</code> de PHP est activé"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:595
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:596
 msgid "We strongly recommend disabling <code>magic_quotes_gpc</code>."
 msgstr ""
 "Nous recommandons fortement de désactiver <code>magic_quotes_gpc</code>."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:601
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:602
 msgid "PHP <code>magic_quotes_runtime</code>"
 msgstr "Module <code>magic_quotes_runtime</code> de PHP"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:601
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:602
 msgid "PHP <code>magic_quotes_runtime</code> [is enabled]"
 msgstr "Le module <code>magic_quotes_runtime</code> de PHP est activé"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:601
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:602
 msgid "You must disable <code>magic_quotes_runtime</code>."
 msgstr ""
 "Vous devez désactiver le module <code>magic_quotes_runtime</code> de PHP."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:602
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:603
 msgid "PHP <code>magic_quotes_sybase</code>"
 msgstr "Module <code>magic_quotes_sybase</code> de PHP"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:602
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:603
 msgid "PHP <code>magic_quotes_sybase</code> [is enabled]"
 msgstr "Le module <code>magic_quotes_sybase</code> de PHP est activé"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:602
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:603
 msgid "You must disable <code>magic_quotes_sybase</code>."
 msgstr ""
 "Vous devez désactiver le module <code>magic_quotes_sybasec</code> de PHP."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:624
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:625
 msgid "PHP <code>display_errors</code>"
 msgstr "Directive <code>display_errors</code> de PHP"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:624
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:625
 #, php-format
 msgid "PHP <code>display_errors</code> [is enabled]"
 msgstr "Le paramètre <code>display_errors</code> de PHP est activé"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:624
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:625
 msgid ""
 "This setting may result in PHP error messages being displayed on WEB pages. "
 "These displays may contain sensitive information about your site."
@@ -14186,29 +14257,29 @@ msgstr ""
 "apparaissent sur des pages internet. Ceux-ci peuvent divulguer des "
 "informations sensibles sur votre site."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:626
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:627
 msgid "PHP <code>gettext()</code> support"
 msgstr "Support de <code>gettext()</code> de PHP"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:626
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:627
 msgid "PHP <code>gettext()</code> support [is not present]"
 msgstr "Le support de <code>gettext()</code> de PHP n’est pas présent"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:626
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:627
 msgid "Localization requires native PHP <code>gettext()</code> support"
 msgstr ""
 "Les fonctions de localisation nécessite l’activation du module "
 "<code>gettext()</code> de PHP"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:627
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:628
 msgid "PHP <code>flock</code> support"
 msgstr "Fonction <code>flock</code> de PHP"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:627
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:628
 msgid "PHP <code>flock</code> support [is not present]"
 msgstr "La fonction <code>flock</code> de PHP n’est pas supportée"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:627
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:628
 msgid ""
 "Zenpoto uses <code>flock</code> for serializing critical regions of code. "
 "Without <code>flock</code> active sites may experience <em>race conditions</"
@@ -14219,15 +14290,15 @@ msgstr ""
 "<em>sousvirer</em> à cause de demandes conflictuelles et ainsi produire des "
 "résultats imprévisibles."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:629
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:630
 msgid "PHP <code>setlocale()</code>"
 msgstr "Fonction <code>setlocale()</code> de PHP"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:629
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:630
 msgid "PHP <code>setlocale()</code> failed"
 msgstr "La fonction <code>setlocale()</code> de PHP a échoué"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:629
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:630
 msgid ""
 "Locale functionality is not implemented on your platform or the specified "
 "locale does not exist. Language translation may not work."
@@ -14236,11 +14307,11 @@ msgstr ""
 "ou le paramètre régional spécifié n’existe pas. La localisation ne "
 "fonctionnera sans doute pas."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:632
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:633
 msgid "mb_strings"
 msgstr "mb_strings"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:640
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:641
 msgid ""
 "Setting <em>mbstring.internal_encoding</em> to <strong>UTF-8</strong> in "
 "your <em>php.ini</em> file is recommended to insure accented and multi-byte "
@@ -14250,11 +14321,11 @@ msgstr ""
 "à <strong>UTF-8</strong> dans votre fichier <em>php.ini</em> pour utiliser "
 "sans problème les caractères accentués et multi-octets."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:641
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:642
 msgid "PHP <code>mbstring</code> package"
 msgstr "Module <code>mbstring</code> de PHP"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:641
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:642
 #, php-format
 msgid ""
 "PHP <code>mbstring</code> package [Your internal character set is <strong>"
@@ -14263,7 +14334,7 @@ msgstr ""
 "Module <code>mbstring</code> de PHP : [le jeu de caractères interne est "
 "<strong>%s</strong>]"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:645
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:646
 msgid ""
 "You need to install the <code>mbstring</code> package or correct the issue "
 "with <code>iconv()</code>"
@@ -14271,7 +14342,7 @@ msgstr ""
 "Vous devez installer le module <code>mbstring</code> de PHP ou corriger ce "
 "problème avec <code>iconv()</code>"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:646
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:647
 msgid ""
 "PHP <code>mbstring</code> package [is not present and <code>iconv()</code> "
 "is not working]"
@@ -14279,31 +14350,31 @@ msgstr ""
 "Le module <code>mbstring</code> de PHP n’est pas présent et <code>iconv()</"
 "code> ne fonctionne pas"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:648
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:649
 msgid ""
 "Strings generated internally by PHP may not display correctly. (e.g. dates)"
 msgstr ""
 "Les chaînes de caractères générées par PHP (comme les dates) peuvent ne pas "
 "s’afficher correctement."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:649
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:650
 msgid "PHP <code>mbstring</code> package [is not present]"
 msgstr "Le module <code>mbstring</code> de PHP n’est pas présent"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:655
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:656
 msgid "Graphics library"
 msgstr "Bibliothèque graphique"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:663
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:664
 #, php-format
 msgid "Graphics support: <code>%s</code>"
 msgstr "Bibliothèque graphique : <code>%s</code>"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:663
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:664
 msgid "Graphics support [is not installed]"
 msgstr "Aucune bibliothèque graphique n’est installée"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:663
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:664
 msgid ""
 "You need to install a graphics support library such as the <em>GD library</"
 "em> in your PHP"
@@ -14311,20 +14382,20 @@ msgstr ""
 "Vous devez installer une bibliothèque graphique comme <em>GD</em> dans votre "
 "configuration PHP"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:678
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:679
 #, php-format
 msgid "Your PHP graphics library does not support %1$s or %2$s"
 msgstr ""
 "La bibliothèque graphique de votre configuration PHP ne supporte pas %1$s ou "
 "%2$s"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:680
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:681
 #, php-format
 msgid "Your PHP graphics library does not support %1$s"
 msgstr ""
 "La bibliothèque graphique de votre configuration PHP ne supporte pas %1$s"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:683
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:684
 msgid ""
 "To correct this you should install a graphics library with appropriate image "
 "support in your PHP"
@@ -14332,14 +14403,14 @@ msgstr ""
 "Pour corriger cela, vous devriez installer dans votre configuration PHP une "
 "bibliothèque graphique qui offre le support des types d’images adéquats"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:685
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:686
 #, php-format
 msgid "Your PHP graphics library does not support %1$s, %2$s, or %3$s"
 msgstr ""
 "La bibliothèque graphique de votre configuration PHP ne supporte pas %1$s, "
 "%2$s ou %3$s"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:688
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:689
 msgid ""
 "To correct this you need to install GD with appropriate image support in "
 "your PHP"
@@ -14347,31 +14418,31 @@ msgstr ""
 "Pour corriger cela, vous devez installer dans votre configuration PHP la "
 "bibliothèque graphique GD avec le support des formats d’images adéquats"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:690
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:691
 msgid "PHP graphics image support"
 msgstr "Support graphique de PHP"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:691
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:692
 msgid "The unsupported image types will not be viewable in your albums."
 msgstr ""
 "Les types d’images non supportés ne seront pas visibles dans vos albums."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:695
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:696
 msgid "Graphics Library rotation support [is not present]"
 msgstr ""
 "La bibliothèque graphique requise pour gérer la rotation d’images n’est pas "
 "installée"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:695
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:696
 msgid ""
 "The graphics support library does not provide support for image rotation."
 msgstr "La bibliothèque graphique utilisée ne gère pas la rotation d’images."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:703
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:704
 msgid "Graphics support [configuration error]"
 msgstr "Problème avec le support graphique [erreur de configuration]"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:703
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:704
 msgid ""
 "No image handling library was loaded. Be sure that your PHP has a graphics "
 "support."
@@ -14379,17 +14450,17 @@ msgstr ""
 "Aucune bibliothèque de gestion d’images n’a été chargée. Assurez-vous que "
 "votre installation de PHP comporte une bibliothèque graphique."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:714
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:715
 #, php-format
 msgid "<em>%1$s</em> file"
 msgstr "fichier <em>%1$s</em>"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:714
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:715
 #, php-format
 msgid "<em>%1$s</em> file [does not exist]"
 msgstr "Le fichier <em>%1$s</em> n’existe pas"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:714
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:715
 #, php-format
 msgid ""
 "Setup was not able to create this file. You will need to copy the <code>%1$s/"
@@ -14401,31 +14472,31 @@ msgstr ""
 "l’éditer en suivant les instructions présentes dans les commentaires dudit "
 "fichier."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:716
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:717
 msgid "File permissions"
 msgstr "Droits des fichiers"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:718
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:719
 #, php-format
 msgid "Set File permissions to %s."
 msgstr "Établit les droits des fichiers à %s."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:721
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:722
 #, php-format
 msgid "<em>%1$s</em> (<code>0%2$o</code>)"
 msgstr "<em>%1$s</em> (<code>0%2$o</code>)"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:723
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:724
 #, php-format
 msgid "<em>unknown</em> (<code>%o</code>)"
 msgstr "<em>inconnu</em> (<code>%o</code>)"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:734
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:735
 #, php-format
 msgid "File Permissions [are %s]"
 msgstr "Les droits des fichiers sont : %s"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:735
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:736
 msgid ""
 "If file permissions are not set to <em>strict</em> or tighter there could be "
 "a security risk. However, on some servers the software does not function "
@@ -14438,11 +14509,11 @@ msgstr ""
 "rencontrez des problèmes, relancez l’installation en donnant un droit "
 "d’accès un peu plus ouvert."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:741
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:742
 msgid "Your filesystem is Macintosh"
 msgstr "Votre système de fichiers est celui du Macintosh"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:741
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:742
 msgid ""
 "Macintosh file names containing diacritical marks are beyond the scope of "
 "this software. You should avoid these."
@@ -14450,11 +14521,11 @@ msgstr ""
 "Zenphoto ne peut traiter les noms de fichiers Macintosh qui contiennent des "
 "caractères diacritiques (des caractères accentués). Vous devriez les éviter."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:748
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:749
 msgid "Character set"
 msgstr "Encodage des caractères"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:789
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:790
 #, php-format
 msgid ""
 "If your server filesystem character set is different from <code>%s</code> "
@@ -14465,37 +14536,37 @@ msgstr ""
 "%s</code> et que vous créez des albums et des images dont les noms ont des "
 "caractères accentués, vous risquez d’avoir des problèmes avec ces objets."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:791
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:792
 #, php-format
 msgid "Change the filesystem character set define to %1$s"
 msgstr "Définissez l’encodage des caractères du système de fichier en %1$s"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:805
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:806
 #, php-format
 msgid "The filesystem character define is %1$s [confirmed]"
 msgstr "L’encodage des caractères du système de fichiers est %1$s [confirmé]"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:810
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:811
 msgid "The filesystem character define is ISO-8859-1 [assumed]"
 msgstr ""
 "L’encodage des caractères du système de fichiers est ISO-8859-1 [par "
 "déduction]"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:815
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:816
 #, php-format
 msgid "The filesystem character define is %1$s [which seems wrong]"
 msgstr ""
 "L’encodage des caractères du système de fichiers est %1$s [ce qui semble "
 "incorrect]"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:820
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:821
 #, php-format
 msgid "The filesystem character define is %1$s [no test performed]"
 msgstr ""
 "L’encodage des caractères du système de fichiers est %1$s [aucun test "
 "effectué]"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:821
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:822
 #, php-format
 msgid ""
 "Setup did not perform a test of the filesystem character set. You can cause "
@@ -14507,40 +14578,40 @@ msgstr ""
 "en créant un fichier <strong><code>%2$s</code></strong> dans le dossier "
 "<code>%1$s</code> et en relançant l’installation."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:834
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:835
 msgid "Image URIs appear require the <em>filesystem</em> character set."
 msgstr ""
 "Les URI d’images nécessitent l’encodage du <em>système de fichiers</em>."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:835
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:836
 msgid "Image URIs appear to require the UTF-8 character set."
 msgstr "Les URI d’images semblent nécessiter l’encodage UTF-8."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:856
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:857
 msgid "You should enable the URL option <em>UTF8 image URIs</em>."
 msgstr ""
 "Vous devriez activer le paramètre <em>URI d’images au format UTF-8</em>."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:856
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:857
 msgid "<a href=\"javascript:uri(true)\">Please do</a>"
 msgstr "<a href=\"javascript:uri(true)\">Veuillez le faire</a>"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:873
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:874
 msgid "You should disable the URL option <em>UTF8 image URIs</em>."
 msgstr ""
 "Vous devriez désactiver le paramètre <em>URI d’images au format UTF-8</em>."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:873
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:874
 msgid "<a href=\"javascript:uri(false)\">Please do</a>"
 msgstr "<a href=\"javascript:uri(false)\">Veuillez le faire</a>"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:895
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:896
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-functions.php:126
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-functions.php:141
 msgid "Warning!"
 msgstr "Attention !"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:906
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:907
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/utilities/database_reference.php:32
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/utilities/refresh_database.php:8
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/utilities/refresh_metadata.php:8
@@ -14550,12 +14621,12 @@ msgstr "Attention !"
 msgid "Database"
 msgstr "Base de données"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:910
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:911
 #, php-format
 msgid "PHP <code>%s</code> support for configured Database"
 msgstr "<code>Support de %s</em> de PHP pour la base de données configurée"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:915
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:916
 #, php-format
 msgid ""
 " <code>%1$s</code> support (<a onclick=\"$('#%1$s').toggle('show')\" "
@@ -14564,26 +14635,26 @@ msgstr ""
 " support de <code>%1$s</code> (<a onclick=\"$('#%1$s').toggle('show')\" "
 ">expérimental</a>)"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:924
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:925
 #, php-format
 msgid "PHP <code>%s</code> support"
 msgstr "Support de <code>%s</em> de PHP"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:930
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:931
 #, php-format
 msgid "PHP <code>%s</code> support [is not installed]"
 msgstr "Le support de <code>%s</em> de PHP [n’est pas installé]"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:940
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:941
 msgid "No database selected"
 msgstr "Aucune base de données n’est sélectionnée"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:952
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:953
 #, php-format
 msgid "%1$s version %2$s"
 msgstr "%1$s version %2$s"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:952
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:953
 #, php-format
 msgid ""
 "%1$s Version %2$s or greater is required. Version %3$s or greater is "
@@ -14593,20 +14664,20 @@ msgstr ""
 "recommandé d’utiliser au moins la version %3$s. Utiliser une version "
 "antérieure est à vos risques."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:954
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:955
 msgid "Database connection"
 msgstr "Connexion à la base de données"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:960
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:961
 msgid "Database credentials in configuration file"
 msgstr "Paramètres de la base de données dans le fichier de configuration"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:960
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:961
 #, php-format
 msgid "<em>%1$s</em> reported: %2$s"
 msgstr "<em>%1$s</em> rapporté : %2$s"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:967
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:968
 msgid ""
 "You have not correctly set your <strong>Database</strong> <code>user</code>, "
 "<code>password</code>, etc. in your configuration file and <strong>setup</"
@@ -14617,32 +14688,32 @@ msgstr ""
 "fichier de configuration, et <strong>le script d’installation</strong> "
 "(setup) n’est pas en mesure d’écrire dans ce fichier."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:969
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:970
 msgid "Database setup in configuration file"
 msgstr "Paramétrage de la base de données dans le fichier de configuration"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:972
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:973
 #, php-format
 msgid "Connect to %s"
 msgstr "Connexion à %s"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:972
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:973
 msgid "Connect to Database [<code>CONNECT</code> query failed]"
 msgstr ""
 "Connexion à la base de données : [la requête <code>CONNECT</code> a échoué]"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:979
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:980
 #, php-format
 msgid "Database <code>%s</code> created"
 msgstr "Base de données <code>%s</code> créée"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:987
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:988
 #, php-format
 msgid "Click here to attempt to create <a href=\"?Create_Database\" >%s</a>."
 msgstr ""
 "Cliquez ici pour essayer de créer <a href=\"?Create_Database\" >%s</a>."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:992
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:993
 #, php-format
 msgid ""
 "Database <code>%s</code> not created [<code>CREATE DATABASE</code> query "
@@ -14651,7 +14722,7 @@ msgstr ""
 "La base de données <code>%s</code> n’a pu être créée. [La requête "
 "<code>CREATE DATABASE</code> a échoué.]"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:998
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:999
 msgid ""
 "You may need to set <code>SQL mode</code> <em>empty</em> in your Database "
 "configuration."
@@ -14659,98 +14730,98 @@ msgstr ""
 "Mettez le paramètre <code>mode SQL</code> sur <em>vide</em> dans la "
 "configuration de la base de données."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1002
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1003
 #, php-format
 msgid "<code>SQL mode</code> [query failed]"
 msgstr "<code>Mode SQL</code> : la requête a échoué"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1005
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1006
 #, php-format
 msgid "<code>SQL mode</code> [<em>%s</em> overridden]"
 msgstr "<code>Mode SQL</code> : [<em>%s</em> supplanté]"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1005
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1006
 msgid "Consider setting it <em>empty</em> in your Database configuration."
 msgstr ""
 "Mettez ce paramètre à <em>vide</em> dans la configuration de votre base de "
 "données."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1012
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1013
 msgid "<code>SQL mode</code>"
 msgstr "<code>Mode SQL</code>"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1012
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1013
 #, php-format
 msgid "<code>SQL mode</code> [is set to <em>%s</em>]"
 msgstr "Le <code>mode SQL</code> [est à <em>%s</em>]"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1012
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1013
 msgid "Consider setting it <em>empty</em> if you get Database errors."
 msgstr ""
 "Mettez ce paramètre à <em>vide</em> si vous obtenez des erreurs de base de "
 "données."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1016
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1017
 msgid "<code>SQL mode</code> [SET SESSION failed]"
 msgstr "<code>Mode SQL</code> : [La requête SET SESSION a échoué]"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1024
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1025
 msgid "Select"
 msgstr "Select"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1024
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1025
 msgid "Drop"
 msgstr "Drop"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1024
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1025
 msgid "Insert"
 msgstr "Insert"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1025
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1026
 msgid "Update"
 msgstr "Update"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1025
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1026
 msgid "Alter"
 msgstr "Alter"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1035
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1036
 msgid "Grants found:"
 msgstr "Habilitations trouvées : "
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1063
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1064
 msgid "The <em>SHOW GRANTS</em> query failed."
 msgstr "La requête <em>SHOW GRANTS</em> a échoué."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1065
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1066
 #, php-format
 msgid "Database <code>access rights</code> for <em>%s</em>"
 msgstr "<code>Droits d’accès</code> à la base de données <em>%s</em>"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1065
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1066
 #, php-format
 msgid "Database <code>access rights</code> for <em>%1$s</em> [%2$s]"
 msgstr "<code>Droits d’accès</code> à la base de données <em>%1$s</em> [%2$s]"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1065
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1066
 #, php-format
 msgid "Your Database user must have %s rights."
 msgstr "L’utilisateur de base de données doit avoir les droits %s."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1082
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1083
 msgid "<em>SHOW TABLES</em> [found no tables]"
 msgstr "La requête <em>SHOW TABLES</em> n’a trouvé aucune table"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1085
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1086
 #, php-format
 msgid "<em>SHOW TABLES</em> found: %s"
 msgstr "La requête <em>SHOW TABLES</em> a trouvé : %s"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1088
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1089
 msgid "<em>SHOW TABLES</em> [Failed]"
 msgstr "La requête <em>SHOW TABLES</em> a échoué."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1088
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1089
 #, php-format
 msgid ""
 "The database did not return a list of the database tables for <code>%s</"
@@ -14758,7 +14829,7 @@ msgid ""
 msgstr ""
 "La base de données n’a pas renvoyé de liste de tables pour <code>%s</code>."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1089
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1090
 msgid ""
 "<strong>Setup</strong> will attempt to create all tables. This will not over "
 "write any existing tables."
@@ -14767,33 +14838,33 @@ msgstr ""
 "tables. Cela n’effacera pas celles qui existent déjà."
 
 # Note : Les 5 champs suivants sont mis à jour parce qu'on supporte maintenant d'autres bases de données que le MySQL. J'ai donc remplacé "Paramètre MySQL..." par "... de la base de données"
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1115
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1116
 msgid "Database <code>field collations</code> [Image table]"
 msgstr ""
 "<code>Collation des champs</code> de la base de données : table d’images"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1118
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1119
 msgid "Database <code>field collations</code> [Album table]"
 msgstr ""
 "<code>Collation des champs</code> de la base de données : table d’albums"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1121
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1122
 msgid "Database <code>field collations</code> [Image and Album tables]"
 msgstr ""
 "<code>Collation des champs</code> de la base de données : tables d’images et "
 "d’albums"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1124
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1125
 msgid "Database <code>field collations</code> [SHOW COLUMNS query failed]"
 msgstr ""
 "<code>Collation des champs</code> de la base de données : la requête SHOW "
 "COLUMNS a échoué"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1127
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1128
 msgid "Database <code>field collations</code>"
 msgstr "<code>Collation des champs</code> de la base de données"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1127
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1128
 #, php-format
 msgid ""
 "%s is not UTF-8. You should consider porting your data to UTF-8 and changing "
@@ -14810,11 +14881,11 @@ msgstr[1] ""
 "format UTF-8 puis de modifier le paramètre « collation des champs » des "
 "tables de la base de données en <code>utf8_unicode_ci</code>"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1129
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1130
 msgid "Database <code>$conf[\"UTF-8\"]</code> [is not set <em>true</em>]"
 msgstr "Le paramètre <code>$conf[\"UTF-8\"]</code> [n’est pas à <em>vrai</em>]"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1129
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1130
 msgid ""
 "You should consider porting your data to UTF-8 and changing the collation of "
 "the database fields to <code>utf8_unicode_ci</code> and setting this "
@@ -14825,15 +14896,15 @@ msgstr ""
 "données en <code>utf8_unicode_ci</code> ; réglez ensuite ce paramètre à  "
 "<em>vrai</em>."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1134
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1135
 msgid "ZenPhoto20 files"
 msgstr "Fichiers ZenPhoto20"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1162
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1163
 msgid "ZenPhoto20 package [missing]"
 msgstr "Fichiers de base de ZenPhoto20 [absents]"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1162
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1163
 msgid ""
 "The file <code>zenphoto.package</code> is either missing, not readable, or "
 "defective. Your installation may be corrupt!"
@@ -14841,12 +14912,12 @@ msgstr ""
 "Le fichier <code>zenphoto.package</code> est soit absent, illisible ou "
 "défectueux. Votre installation est sans doute corrompue !"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1168
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1169
 #, php-format
 msgid "Setting permissions (0%o) for ZenPhoto20 package."
 msgstr "Paramétrage des droits d’accès (0%o) pour ZenPhoto20."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1273
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1274
 msgid ""
 "ZenPhoto20 core files [This is a <em>debug</em> build. Some files are "
 "missing or seem wrong]"
@@ -14854,13 +14925,13 @@ msgstr ""
 "Fichiers du cœur de ZenPhoto20. [Il s’agit d’une version de "
 "<em>développement</em>. Certains fichiers sont absents ou défectueux.]"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1275
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1276
 msgid "ZenPhoto20 core files [Some files are missing or seem wrong]"
 msgstr ""
 "Fichiers du cœur de ZenPhoto20. [Certains fichiers sont absents ou "
 "défectueux.]"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1277
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1278
 msgid ""
 "Perhaps there was a problem with the upload. You should check the following "
 "files: "
@@ -14868,14 +14939,14 @@ msgstr ""
 "Il y a peut être eu un problème lors du chargement vers le serveur. Vous "
 "devriez vérifier les fichiers suivants :"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1282
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1283
 msgid ""
 "ZenPhoto20 core files [Could not update the root <em>index.php</em> file.]"
 msgstr ""
 "Fichiers du cœur de ZenPhoto20. [Impossible de mettre à jour le fichier "
 "<em>index.php</em> du dossier principal.]"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1283
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1284
 #, php-format
 msgid ""
 "Perhaps there is a permissions issue. You should manually copy the %s "
@@ -14883,61 +14954,61 @@ msgid ""
 "<em>index.php</em>."
 msgstr ""
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1287
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1288
 msgid "ZenPhoto20 core files [This is a <em>debug</em> build]"
 msgstr ""
 "Fichiers du cœur de ZenPhoto20. [Il s’agit d’une version de "
 "<em>développement</em>.]"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1295
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1296
 msgid "ZenPhoto20 core files"
 msgstr "Fichiers du cœur de ZenPhoto20"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1297
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1298
 msgid "Installation files"
 msgstr "Fichiers d’installation"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1312
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1313
 #, php-format
 msgid ".svn [%s instance]"
 msgid_plural ".svn [%s instances]"
 msgstr[0] ".svn [%s instance]"
 msgstr[1] ".svn [%s instances]"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1315
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1316
 #, php-format
 msgid "php.ini [%s instance]"
 msgid_plural "php.ini [%s instances]"
 msgstr[0] "php.ini [%s instance]"
 msgstr[1] "php.ini [%s instances]"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1340
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1343
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1341
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1344
 msgid "ZenPhoto20 core folders [Some unknown files were found]"
 msgstr ""
 "Dossiers du cœur de ZenPhoto20. [Certains fichiers inconnus ont été trouvés.]"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1340
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1341
 msgid "The following files could not be deleted."
 msgstr "Les fichiers suivants n’ont pu être supprimés."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1343
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1344
 msgid "You should remove the following files: "
 msgstr "Vous devriez supprimer les fichiers suivants :"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1344
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1345
 msgid "Delete extra files"
 msgstr "Supprimez les fichiers supplémentaires"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1347
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1348
 msgid "ZenPhoto20 core file permissions"
 msgstr "Droits des fichiers du cœur de ZenPhoto20"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1347
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1348
 msgid "ZenPhoto20 core file permissions [not correct]"
 msgstr "Les droits des fichiers du cœur de ZenPhoto20 ne sont pas corrects"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1347
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1348
 msgid ""
 "Setup could not set the one or more components to the selected permissions "
 "level. You will have to set the permissions manually."
@@ -14945,15 +15016,15 @@ msgstr ""
 "Le script d’installation n’a pu appliquer les droits demandés à un ou "
 "plusieurs composants. Vous devrez les définir manuellement."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1350
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1351
 msgid "<em>.htaccess</em> file"
 msgstr "Fichier <em>.htaccess</em>"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1368
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1369
 msgid "<em>.htaccess</em> file [is empty or does not exist]"
 msgstr "Le fichier <em>.htaccess</em> est vide ou n’existe pas"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1371
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1372
 msgid ""
 "If you have the mod_rewrite module enabled an <em>.htaccess</em> file is "
 "required the root zenphoto folder to create cruft-free URLs."
@@ -14961,8 +15032,8 @@ msgstr ""
 "Si le module d’Apache mod_rewrite est activé, il faut placer un fichier <em>."
 "htaccess</em> à la racine du dossier zenphoto pour créer des URL propres."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1372
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1380
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1373
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1381
 msgid ""
 "You can ignore this warning if you do not intend to set the "
 "<code>mod_rewrite</code> option."
@@ -14970,7 +15041,7 @@ msgstr ""
 "Vous pouvez ignorer cette alerte si vous ne comptez pas utiliser l’option "
 "<code>mod_rewrite</code>."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1374
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1375
 msgid ""
 "<p class=\"buttons\"><a href=\"?copyhtaccess\" >Make setup create the file</"
 "a></p><br style=\"clear:both\" /><br />"
@@ -14978,11 +15049,11 @@ msgstr ""
 "<p class=\"buttons\"><a href=\"?copyhtaccess\" >Laisser le script "
 "d’installation créer le fichier</a></p><br style=\"clear:both\" /><br />"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1377
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1378
 msgid "Server seems to be <em>nginx</em>"
 msgstr "Le serveur semble être un serveur <em>nginx</em>"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1379
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1380
 msgid ""
 "If you wish to create cruft-free URLs, you will need to configuring "
 "<em>rewriting</em> for your NGINX server so that any link that does not go "
@@ -14990,7 +15061,7 @@ msgid ""
 "script."
 msgstr ""
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1383
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1384
 msgid ""
 "Server seems not to be <em>Apache</em> or <em>Apache-compatible</em>, "
 "<code>mod_rewrite</code> may not be available."
@@ -14999,7 +15070,7 @@ msgstr ""
 "<em>compatible Apache</em> ; le module <code>mod_rewrite</code> n’est sans "
 "doute pas disponible."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1420
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1421
 msgid ""
 "Server seems not to be Apache or Apache-compatible, <code>.htaccess</code> "
 "not required."
@@ -15007,7 +15078,7 @@ msgstr ""
 "Le serveur ne semble pas être un serveur Apache ni un compatible ; le "
 "fichier <code>.htaccess</code> n’est donc pas requis."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1423
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1424
 #, php-format
 msgid ""
 "The <em>.htaccess</em> file in your root folder is not the same version as "
@@ -15021,7 +15092,7 @@ msgstr ""
 "modifications au fichier <em>%s/htaccess</em> de cette version afin de "
 "produire un nouveau fichier <em>.htaccess</em>."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1425
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1426
 msgid ""
 "<p class=\"buttons\"><a href=\"?copyhtaccess\" >Replace the existing <em>."
 "htaccess</em> file with the current version</a></p><br style=\"clear:both\" /"
@@ -15031,29 +15102,29 @@ msgstr ""
 "htaccess</em> existant avec la version courante de ce fichier.</a></p><br "
 "style=\"clear:both\" /><br />"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1428
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1429
 msgid "<em>.htaccess</em> file [wrong version]"
 msgstr "Le fichier <em>.htaccess</em> n’est pas de la bonne version"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1442
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1443
 #, php-format
 msgid "<em>.htaccess</em> file (<em>RewriteEngine</em> is <strong>%s</strong>)"
 msgstr ""
 "Fichier <em>.htaccess</em> : (le paramètre <em>RewriteEngine</em> est à "
 "<strong>%s</strong>)"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1455
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1456
 msgid "<em>.htaccess</em> RewriteBase [is <em>missing</em>]"
 msgstr ""
 "Le paramètre RewriteBase du fichier <em>.htaccess</em> est <em>manquant</em>"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1461
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1462
 #, php-format
 msgid "<em>.htaccess</em> RewriteBase is <code>%s</code>"
 msgstr ""
 "Le paramètre RewriteBase du fichier <em>.htaccess</em> est <code>%s</code>"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1462
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1463
 #, php-format
 msgid ""
 "<em>.htaccess</em> RewriteBase is <code>%s</code> [Does not match install "
@@ -15062,14 +15133,14 @@ msgstr ""
 "Le paramètre RewriteBase du fichier <em>.htaccess</em> est <code>%s</code> "
 "[Cela ne correspond pas au dossier d’installation]"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1469
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1470
 #, php-format
 msgid "<em>.htaccess</em> RewriteBase is <code>%s</code> (fixed)"
 msgstr ""
 "Le paramètre RewriteBase du fichier <em>.htaccess</em> est <code>%s</code> "
 "(corrigé)"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1493
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1494
 msgid ""
 "Setup was not able to write to the file change RewriteBase match the install "
 "folder."
@@ -15078,7 +15149,7 @@ msgstr ""
 "corrigez le paramètre RewriteBase pour correspondre à votre dossier "
 "d’installation."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1494
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1495
 #, php-format
 msgid ""
 "Either make the file writeable or set <code>RewriteBase</code> in your "
@@ -15088,15 +15159,15 @@ msgstr ""
 "paramètre <code>RewriteBase</code> dans le fichier <code>.htaccess</code> en "
 "<code>%s</code>."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1496
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1497
 msgid "Rewrite rules updated"
 msgstr "Les règles de réécriture ont été mises à jour"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1496
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1497
 msgid "Rewrite rules updated [not updated]"
 msgstr "Règles de réécriture mises à jour [pas mises à jour]"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1496
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1497
 msgid ""
 "Setup was not able to write to the file change the rewrite rules for site "
 "upgrades."
@@ -15104,44 +15175,44 @@ msgstr ""
 "Le script d’installation n’a pas été en mesure d’écrire au fichier les "
 "règles de réécriture pour les mises à jour du site."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1502
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1505
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1517
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1503
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1506
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1518
 msgid "<em>robots.txt</em> file"
 msgstr "Fichier <em>robots.txt</em>"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1502
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1505
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1517
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1503
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1506
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1518
 msgid "<em>robots.txt</em> file [Not created]"
 msgstr "Le fichier <em>robots.txt</em> n’a pas été créé"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1502
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1503
 msgid "Setup could not find the  <em>example_robots.txt</em> file."
 msgstr ""
 "Le script d’installation n’a pas réussi à trouver le fichier "
 "<em>example_robots.txt</em>."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1505
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1506
 msgid ""
 "Setup did not create a <em>robots.txt</em> file because one already exists."
 msgstr ""
 "Le fichier <em>robots.txt</em> existant déjà, le script d’installation de "
 "Zenphoto n’y a pas touché."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1517
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1518
 msgid "Setup could not create a <em>robots.txt</em> file."
 msgstr ""
 "Le script d’installation n’a pas pu créer un fichier <em>robots.txt</em>."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1522
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1523
 msgid "albums [<code>$conf['external_album_folder']</code> is deprecated]"
 msgstr ""
 "Le paramètre [<code>$conf['external_album_folder']</code> des albums est "
 "obsolète]"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1522
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1546
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1523
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1547
 #, php-format
 msgid ""
 "You should update your configuration file to conform to the current %1$s "
@@ -15150,11 +15221,11 @@ msgstr ""
 "Vous devez mettre à jour votre fichier de configuration pour qu’il soit "
 "conforme au fichier-témoin %1$s."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1546
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1547
 msgid "<em>albums</em> folder"
 msgstr "Dossier <em>albums</em>"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1546
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1547
 msgid ""
 "<em>albums</em> folder [The line <code>\\$conf['album_folder']</code> is "
 "missing from your configuration file]"
@@ -15162,15 +15233,15 @@ msgstr ""
 "Dossier <em>albums</em> : [La ligne <code>\\$conf['album_folder']</code> est "
 "absente de votre fichier de configuration]"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1550
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1551
 msgid "<em>locale</em> folders"
 msgstr "Dossiers <em>locale</em>"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1550
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1551
 msgid "<em>locale</em> folders [Are not complete]"
 msgstr "Les dossiers <em>locale</em> sont incomplets"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1550
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1551
 msgid ""
 "Be sure you have uploaded the complete ZenPhoto20 package. You must have at "
 "least the <em>en_US</em> folder."
@@ -15178,19 +15249,19 @@ msgstr ""
 "Vérifiez que vous avez bien transféré la totalité des fichiers de "
 "ZenPhoto20. Vous devez avoir au moins le dossier <em>en_US</em>."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1551
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1552
 msgid "uploaded"
 msgstr "chargé(s)"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1556
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1557
 msgid "HTML cache"
 msgstr "Cache HTML"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1557
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1558
 msgid "Third party plugins"
 msgstr "Extensions tierces"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1567
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1568
 msgid ""
 "You need to address the problems indicated above then run <code>setup</code> "
 "again."
@@ -15198,85 +15269,85 @@ msgstr ""
 "Vous devez corriger les problèmes susmentionnés et relancer l’installation "
 "via <code>setup</code>."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1570
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1571
 msgid "Setup failed."
 msgstr "L’installation a échoué."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1581
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1582
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:2621
 msgid "You need <em>USER ADMIN</em> rights to run setup."
 msgstr ""
 "Vous avez besoin de droits d’administration (<em>USER ADMIN</em>) pour "
 "réaliser l’installation."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1583
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1584
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:2623
 msgid "You must be logged in to run setup."
 msgstr "Vous devez être connecté pour lancer l’installation."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1604
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:1605
 msgid "database connected"
 msgstr "base de données connectée"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:2364
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:2365
 msgid "About to create tables"
 msgstr "Prêt à créer les tables"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:2366
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:2367
 msgid "About to update tables"
 msgstr "Prêt à mettre à jour les tables"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:2368
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:2369
 msgid "Begin table creation"
 msgstr "Démarrage de la création de la table"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:2375
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:2391
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:2376
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:2392
 #, php-format
 msgid "Query %1$s Failed. Error: %2$s"
 msgstr "La requête <em>%1$s</em> a échoué. Erreur : %2$s"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:2377
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:2378
 #, php-format
 msgid "Table creation failure:<br />Query: %1$s<br />Error: %2$s"
 msgstr "Impossible de créer la table :<br />Requête : %1$s<br />Erreur : %2$s"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:2380
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:2393
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:2381
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:2394
 #, php-format
 msgid "Query ( %s ) Success."
 msgstr "La requête ( %s ) a réussi."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:2384
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:2385
 msgid "Begin table updates"
 msgstr "Démarrage de la mise à jour de la table"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:2400
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:2401
 msgid "Done with table create!"
 msgstr "Création de la table effectuée !"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:2402
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:2403
 msgid "Done with table create with errors!"
 msgstr "Création de la table effectuée, mais avec des erreurs."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:2406
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:2407
 msgid "Done with table update"
 msgstr "Mise à jour de la table effectuée !"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:2408
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:2409
 msgid "Done with table update with errors"
 msgstr "Mise à jour de la table effectuée, mais avec des erreurs."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:2423
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:2424
 msgid "Done with database creation and update"
 msgstr "Création et mise à jour de la table effectuée !"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:2425
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:2426
 #, php-format
 msgid "Previous Release was %s"
 msgstr "La version précédente était la version %s"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:2466
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:2467
 #, php-format
 msgid ""
 "You may <a href=\"%1$s\">set your admin user and password</a> or <a href="
@@ -15286,29 +15357,29 @@ msgstr ""
 "l’administrateur</a> ou <a href=\"%2$s\">lancer la sauvegarde/restauration</"
 "a>"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:2469
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:2470
 #, php-format
 msgid "You need to <a href=\"%1$s\">set your admin user and password</a>"
 msgstr ""
 "Vous devez <a href=\"%1$s\">spécifier les identifiant et mot de passe de "
 "l’administrateur</a>"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:2475
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:2476
 #, php-format
 msgid "You can now <a href=\"%1$s\">administer your gallery.</a>"
 msgstr "Vous pouvez maintenant <a href=\"%1$s\">gérer votre galerie</a>."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:2536
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:2537
 #, php-format
 msgid "Database tables to create: %s"
 msgstr "Tables de la base de données à créer : %s"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:2556
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:2557
 #, php-format
 msgid "Database tables to update: %s"
 msgstr "Tables de la base de données à mettre à jour : %s"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:2589
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/index.php:2590
 msgid ""
 "<strong>Warning!</strong> This upgrade makes structural changes to the "
 "database which are not easily reversed. Be sure you have a database backup "
@@ -15463,26 +15534,26 @@ msgstr ""
 msgid "<em>%1$s</em> folder%2$s"
 msgstr "Dossier %2$s <em>%1$s</em>"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-functions.php:377
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-functions.php:391
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-functions.php:326
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-functions.php:340
 msgid "change the definition"
 msgstr "changer la définition"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-functions.php:377
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-functions.php:391
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-functions.php:326
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-functions.php:340
 msgid "apply"
 msgstr "appliquer"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-functions.php:387
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-functions.php:336
 #, php-format
 msgid "%1$s (0%2$o)"
 msgstr "%1$s (0%2$o)"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-functions.php:481
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-functions.php:429
 msgid "An attempt at cross site reference forgery has been blocked."
 msgstr "Une tentative d’hameçonnage a été bloquée."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-functions.php:562
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-functions.php:471
 #, php-format
 msgid ""
 "Click <a href=\"%s\">here</a> to acknowledge that you wish to ignore this "
@@ -15491,15 +15562,15 @@ msgstr ""
 "Cliquez <a href=\"%s\">ici</a> pour signifier que vous souhaitez ignorer ce "
 "risque. Cela deviendra un avertissement. "
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-functions.php:581
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-functions.php:490
 msgid "<span class=\"zen-logo\"><a href=\"https://"
 msgstr "<span class=\"zen-logo\"><a href=\"https://"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-functions.php:604
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-functions.php:512
 msgid "Updated configuration file"
 msgstr "Fichier de configuration mis à jour"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-functions.php:630
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-functions.php:537
 #, php-format
 msgid ""
 "<strong>Warning:</strong> the <code>%s</code> table appears not to have a "
@@ -15562,23 +15633,23 @@ msgstr "Paramètres par défaut des utilisateurs"
 msgid "Newly registered and verified users"
 msgstr "Utilisateurs récemment inscrits et vérifiés"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-option-defaults.php:311
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-option-defaults.php:324
 msgid "Theme setup:"
 msgstr "Paramétrage des thèmes :"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-option-defaults.php:341
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-option-defaults.php:354
 #, php-format
 msgid "Copyright %1$u: %2$s"
 msgstr "©%1$u : %2$s"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-option-defaults.php:391
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-option-defaults.php:404
 msgid ""
 "You can insert your Gallery description on the Admin Options Gallery tab."
 msgstr ""
 "Vous pouvez saisir la description de votre galerie dans l’onglet « Options "
 "d’administration »."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-option-defaults.php:542
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-option-defaults.php:555
 msgid "Plugin setup:"
 msgstr "Paramétrage des extensions :"
 
@@ -15595,36 +15666,36 @@ msgstr ""
 msgid "Database engine"
 msgstr "Moteur de base de données"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-sqlform.php:65
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-sqlform.php:66
 #, php-format
 msgid "%s (experimental)"
 msgstr "%s (expérimental)"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-sqlform.php:76
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-sqlform.php:77
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/wordpress_import.php:100
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/wordpress_import.php:418
 msgid "Database user"
 msgstr "Utilisateur de la base de données"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-sqlform.php:81
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-sqlform.php:82
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/wordpress_import.php:101
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/wordpress_import.php:419
 msgid "Database password"
 msgstr "Mot de passe de la base de données"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-sqlform.php:85
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-sqlform.php:86
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/wordpress_import.php:102
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/wordpress_import.php:420
 msgid "Database host"
 msgstr "Hôte de la base de données"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-sqlform.php:90
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-sqlform.php:91
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/wordpress_import.php:99
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/wordpress_import.php:417
 msgid "Database name"
 msgstr "Nom de la base de données"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-sqlform.php:94
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup-sqlform.php:95
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/wordpress_import.php:103
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/wordpress_import.php:421
 msgid "Database table prefix"
@@ -15687,9 +15758,9 @@ msgid "Theme:%s setup started"
 msgstr "Thème : installation de %s commencée"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup_themeOptions.php:21
-#, fuzzy, php-format
+#, php-format
 msgid "Theme:%s triggered the deprecated functions plugin"
-msgstr "Il n’y a aucune fonction obsolète en ce moment."
+msgstr "Thème : %s a activé l’extension <em>fonctions obsolètes</em>"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/setup/setup_themeOptions.php:32
 #, php-format
@@ -15724,6 +15795,10 @@ msgid "Are you sure you want to delete this page? THIS CANNOT BE UNDONE!"
 msgstr ""
 "Êtes-vous certain(e) de vouloir supprimer cette page ?  Cette opération est "
 "IRRÉVERSIBLE !"
+
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/template-functions.php:78
+msgid "new album"
+msgstr "nouvel album"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/template-functions.php:86
 msgid "Admin Toolbox"
@@ -15778,7 +15853,7 @@ msgid "Create an album from the search"
 msgstr "Créer un album à partir de cette recherche"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/template-functions.php:293
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/favoritesAlbums.php:179
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/favoritesAlbums.php:175
 msgid "Create Album"
 msgstr "Créer un album"
 
@@ -17078,7 +17153,7 @@ msgstr "PDF"
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/class-WEBdocs.php:74
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/comment_form.php:146
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/galleryArticles.php:96
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/tinymce.php:51
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/tinymce.php:54
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/tinymce.php:59
 msgid "Disabled"
 msgstr "Désactivé"
@@ -18464,9 +18539,8 @@ msgid "Custom:"
 msgstr "Personnalisé :"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/debug.php:15
-#, fuzzy
 msgid "Debugging aids tab."
-msgstr "Onglet Fichiers"
+msgstr "Onglet débogage"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/debug.php:29
 msgid "phpinfo"
@@ -19322,7 +19396,7 @@ msgid "Publish <em>favorites</em> into albums that others can view."
 msgstr ""
 "Publier les <em>favoris</em> dans des albums que d’autres peuvent consulter."
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/favoritesAlbums.php:179
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/favoritesAlbums.php:175
 msgid "Create an album from favorites"
 msgstr "Créer un album à partir de vos favoris"
 
@@ -21060,7 +21134,7 @@ msgstr ""
 msgid "createMenuIfNotExists has posted processing errors to your debug log."
 msgstr ""
 "La fonction createMenuIfNotExists a inscrit des erreurs de traitement dans "
-"le journal de déboggage."
+"le journal de débogage."
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:25
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/zenpage/admin-categories.php:23
@@ -24488,29 +24562,21 @@ msgstr ""
 msgid "news categories"
 msgstr "catégories d’actualités"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/tinymce.php:17
-msgid "Text editor TinyMCE 4.x"
-msgstr "Éditeur de textes TinyMCE 4.x"
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/tinymce.php:20
+msgid "TinyMCE WYSIWYG editor"
+msgstr "Éditeur de textes TinyMCE WYSIWYG"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/tinymce.php:48
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/tinymce.php:51
 msgid "Text editor configuration - zenphoto"
 msgstr "Configuration de l’éditeur de texte – ZenPhoto"
 
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/tinymce.php:52
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/tinymce.php:55
 msgid ""
 "Applies to <em>admin</em> editable text other than for Zenpage pages and "
 "news articles."
 msgstr ""
 "S’applique au texte éditable par les <em>administrateurs</em> (sauf pour les "
 "pages et les actualités Zenpage)."
-
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/tinymce.php:53
-msgid "tinyZenpage plugin"
-msgstr "Extension tinyZenpage"
-
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/tinymce.php:55
-msgid "Enable legacy tinyZenpage feature."
-msgstr "Active l’ancienne fonction tinyZenpage."
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/tinymce.php:56
 msgid "Text editor configuration - zenpage"
@@ -24522,53 +24588,6 @@ msgid ""
 msgstr ""
 "S’applique au texte éditable par les administrateurs pour les <em>pages</em> "
 "et les <em>actualités</em> Zenpage."
-
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/tinymce.php:64
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/tinymce.php:67
-msgid "Custom image size"
-msgstr "Taille d’image personnalisée"
-
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/tinymce.php:66
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/tinymce.php:69
-msgid "Predefined size (px) for custom size images included using tinyZenpage."
-msgstr ""
-"Taille prédéfinie (px) pour les images de taille personnalisée insérées avec "
-"tinyZenpage."
-
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/tinymce.php:70
-msgid "Custom thumb crop - size"
-msgstr "Rognage personnalisé des vignettes – taille"
-
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/tinymce.php:72
-msgid ""
-"Predefined size (px) for custom cropped thumb images included using "
-"tinyZenpage."
-msgstr ""
-"Taille prédéfinie (px) pour les images rognées insérées avec tinyZenpage."
-
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/tinymce.php:73
-msgid "Custom thumb crop - width"
-msgstr "Rognage personnalisé des vignettes – largeur"
-
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/tinymce.php:75
-msgid ""
-"Predefined crop width (%) for custom cropped thumb  images included using "
-"tinyZenpage."
-msgstr ""
-"Largeur de rognage prédéfinie (%) pour les images rognées insérées avec "
-"tinyZenpage."
-
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/tinymce.php:76
-msgid "Custom thumb crop - height"
-msgstr "Rognage personnalisé des vignettes – hauteur"
-
-#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/tinymce.php:78
-msgid ""
-"Predefined crop height (%) for custom cropped thumb images included using "
-"tinyZenpage."
-msgstr ""
-"Hauteur de rognage prédéfinie (%) pour les vignettes d’images avec rognage "
-"personnalisé qui sont insérées avec tinyZenpage."
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:36
 msgid "ZenPhoto20 object insertion"
@@ -24659,12 +24678,19 @@ msgid "Custom crop"
 msgstr "Tognage personnalisé"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:262
+#, fuzzy
+msgid "No object source has been chosen."
+msgstr "Une demande de réinitialisation a été envoyée."
+
+#: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:265
 #, php-format
 msgid ""
-"No source has been picked. You can pick a ZenPhoto20 object for insertion by "
-"browsing to the object and clicking on the %s icon. Custom sized and cropped "
-"images may be picked from the <em>crop image</em> page if the "
-"<code>crop_image</code> plugin is enabled."
+"You can pick a ZenPhoto20 object for insertion by browsing to the object and "
+"clicking on the %s icon. This icon will be just below the <em>Title</em> of "
+"the object. You can quickly select objects from admin pages that list "
+"objects (e.g. the <em>albums</em>, <em>news</em>, <em>categories</em>, or "
+"<em>pages</em> tabs or the <em>image order</em> album subtab.) A <em>pick</"
+"em> icon is provided for each item in the list."
 msgstr ""
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/tinymce/plugins/tinyzenpage/js/dialog.php:85
@@ -26106,7 +26132,7 @@ msgid ""
 msgstr ""
 "Au cas où quelque chose ne fonctionnerait pas comme prévu, les résultats des "
 "requêtes sur la base de données Wordpress sont journalisés dans le journal "
-"de déboggage <code>zp-data/debug.log</code>"
+"de débogage <code>zp-data/debug.log</code>"
 
 #: F:\SITES\SitesGitHub\ZenPhoto20-MGdev/zp-core/zp-extensions/wordpress_import.php:408
 msgid "<strong>ERROR: </strong>The Zenpage CMS plugin is not enabled."
@@ -27175,6 +27201,12 @@ msgid ""
 msgstr ""
 "Taille à utiliser si la police utilisée le permet (Polices <em>TTF</em> et "
 "<em>Imagick</em>)."
+
+#~ msgid "Text editor TinyMCE 4.x"
+#~ msgstr "Éditeur de textes TinyMCE 4.x"
+
+#~ msgid "tinyZenpage plugin"
+#~ msgstr "Extension tinyZenpage"
 
 #, fuzzy
 #~ msgid "Languange"
