@@ -61,7 +61,7 @@ require_once(dirname(dirname(__FILE__)) . '/lib-utf8.php');
 
 if (isset($_REQUEST['autorun'])) {
 	if (!empty($_REQUEST['autorun'])) {
-		$autorun = setup_sanitize($_REQUEST['autorun']);
+		$autorun = strip_tags($_REQUEST['autorun']);
 	} else {
 		$autorun = 'admin';
 	}
@@ -156,22 +156,22 @@ if (isset($_POST['db'])) { //try to update the zp-config file
 	setupLog(gettext("db POST handling"));
 	$updatezp_config = true;
 	if (isset($_POST['db_software'])) {
-		$zp_cfg = updateConfigItem('db_software', trim(setup_sanitize($_POST['db_software'])), $zp_cfg);
+		$zp_cfg = updateConfigItem('db_software', trim(strip_tags($_POST['db_software'])), $zp_cfg);
 	}
 	if (isset($_POST['db_user'])) {
-		$zp_cfg = updateConfigItem('mysql_user', trim(setup_sanitize($_POST['db_user'])), $zp_cfg);
+		$zp_cfg = updateConfigItem('mysql_user', trim(strip_tags($_POST['db_user'])), $zp_cfg);
 	}
 	if (isset($_POST['db_pass'])) {
-		$zp_cfg = updateConfigItem('mysql_pass', setup_sanitize($_POST['db_pass'], 0), $zp_cfg);
+		$zp_cfg = updateConfigItem('mysql_pass', strip_tags($_POST['db_pass'], 0), $zp_cfg);
 	}
 	if (isset($_POST['db_host'])) {
-		$zp_cfg = updateConfigItem('mysql_host', trim(setup_sanitize($_POST['db_host'])), $zp_cfg);
+		$zp_cfg = updateConfigItem('mysql_host', trim(strip_tags($_POST['db_host'])), $zp_cfg);
 	}
 	if (isset($_POST['db_database'])) {
-		$zp_cfg = updateConfigItem('mysql_database', trim(setup_sanitize($_POST['db_database'])), $zp_cfg);
+		$zp_cfg = updateConfigItem('mysql_database', trim(strip_tags($_POST['db_database'])), $zp_cfg);
 	}
 	if (isset($_POST['db_prefix'])) {
-		$zp_cfg = updateConfigItem('mysql_prefix', str_replace(array('.', '/', '\\', '`', '"', "'"), '_', trim(setup_sanitize($_POST['db_prefix']))), $zp_cfg);
+		$zp_cfg = updateConfigItem('mysql_prefix', str_replace(array('.', '/', '\\', '`', '"', "'"), '_', trim(strip_tags($_POST['db_prefix']))), $zp_cfg);
 	}
 }
 
@@ -229,28 +229,29 @@ if ($updatezp_config) {
 	$updatezp_config = false;
 }
 
-$curdir = getcwd();
-chdir(dirname(dirname(__FILE__)));
 // Important. when adding new database support this switch may need to be extended,
 $engines = array();
 $preferences = array('mysqli' => 1, 'pdo_mysql' => 2, 'mysql' => 3);
 $cur = 999999;
 $preferred = NULL;
-foreach (setup_glob('functions-db-*.php') as $key => $engineMC) {
-	$engineMC = substr($engineMC, 13, -4);
-	$engine = strtolower($engineMC);
-	if (array_key_exists($engine, $preferences)) {
-		$order = $preferences[$engine];
-		$enabled = extension_loaded($engine);
-		if ($enabled && $order < $cur) {
-			$preferred = $engineMC;
-			$cur = $order;
+
+$dir = opendir(dirname(dirname(__FILE__)));
+while (($engineMC = readdir($dir)) !== false) {
+	if (preg_match('/^functions-db-(.+)\.php/', $engineMC)) {
+		$engineMC = substr($engineMC, 13, -4);
+		$engine = strtolower($engineMC);
+		if (array_key_exists($engine, $preferences)) {
+			$order = $preferences[$engine];
+			$enabled = extension_loaded($engine);
+			if ($enabled && $order < $cur) {
+				$preferred = $engineMC;
+				$cur = $order;
+			}
+			$engines[$order] = array('user' => true, 'pass' => true, 'host' => true, 'database' => true, 'prefix' => true, 'engine' => $engineMC, 'enabled' => $enabled);
 		}
-		$engines[$order] = array('user' => true, 'pass' => true, 'host' => true, 'database' => true, 'prefix' => true, 'engine' => $engineMC, 'enabled' => $enabled);
 	}
 }
 ksort($engines);
-chdir($curdir);
 
 if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
 	unset($_zp_conf_vars);
@@ -363,9 +364,6 @@ if ($newconfig || isset($_GET['copyhtaccess'])) {
 		@chmod($serverpath . '/.htaccess', 0777);
 		$ht = @file_get_contents(SERVERPATH . '/.htaccess');
 		$newht = file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/htaccess');
-		if (site_closed($ht)) {
-			$newht = close_site($newht);
-		}
 		file_put_contents($serverpath . '/.htaccess', $newht);
 		@chmod($serverpath . '/.htaccess', 0444);
 	}
@@ -523,7 +521,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 								checkmark(1, sprintf(gettext('Installing ZenPhoto20 v%s'), ZENPHOTO_VERSION), '', '');
 							}
 							chdir(dirname(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE));
-							$test = setup_glob('*.log');
+							$test = safe_glob('*.log');
 							$test[] = basename(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
 							$p = true;
 							foreach ($test as $file) {
@@ -2643,7 +2641,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 									<?php
 									if (isset($_REQUEST['autorun'])) {
 										if (!empty($_REQUEST['autorun'])) {
-											$auto = setup_sanitize($_REQUEST['autorun']);
+											$auto = strip_tags($_REQUEST['autorun']);
 										} else {
 											$auto = 'admin';
 										}

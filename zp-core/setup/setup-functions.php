@@ -306,57 +306,6 @@ function versionCheck($required, $desired, $found) {
 
 /**
  *
- * file lister for setup
- * @param $pattern
- * @param $flags
- */
-function setup_glob($pattern, $flags = 0) {
-	$split = explode('/', $pattern);
-	$match = array_pop($split);
-	$path_return = $path = implode('/', $split);
-	if (empty($path)) {
-		$path = '.';
-	} else {
-		$path_return = $path_return . '/';
-	}
-
-	if (($dir = opendir($path)) !== false) {
-		$glob = array();
-		while (($file = readdir($dir)) !== false) {
-			if (fnmatch($match, $file)) {
-				if ((is_dir("$path/$file")) || (!($flags & GLOB_ONLYDIR))) {
-					if ($flags & GLOB_MARK)
-						$file.='/';
-					$glob[] = $path_return . $file;
-				}
-			}
-		}
-		closedir($dir);
-		if (!($flags & GLOB_NOSORT))
-			sort($glob);
-		return $glob;
-	} else {
-		return array();
-	}
-}
-
-if (!function_exists('fnmatch')) {
-
-	/**
-	 * pattern match function in case it is not included in PHP
-	 *
-	 * @param string $pattern pattern
-	 * @param string $string haystack
-	 * @return bool
-	 */
-	function fnmatch($pattern, $string) {
-		return @preg_match('/^' . strtr(addcslashes($pattern, '\\.+^$(){}=!<>|'), array('*' => '.*', '?' => '.?')) . '$/i', $string);
-	}
-
-}
-
-/**
- *
  * drop-down for character set selection
  * @param $select
  */
@@ -440,7 +389,7 @@ function setupLanguageSelector() {
 		krsort($_languages, SORT_LOCALE_STRING);
 		$currentValue = getOption('locale');
 		foreach ($_languages as $text => $lang) {
-			if (setupLocale($lang)) {
+			if (i18nSetLocale($lang)) {
 				?>
 				<li<?php if ($lang == $currentValue) echo ' class="currentLanguage"'; ?>>
 					<?php
@@ -492,30 +441,6 @@ function setupXSRFToken() {
 		return false;
 	}
 }
-
-function setup_sanitize($input_string, $sanitize_level = 3) {
-	if (is_array($input_string)) {
-		foreach ($input_string as $output_key => $output_value) {
-			$output_string[$output_key] = setup_sanitize_string($output_value, $sanitize_level);
-		}
-		unset($output_key, $output_value);
-	} else {
-		$output_string = setup_sanitize_string($input_string, $sanitize_level);
-	}
-	return $output_string;
-}
-
-function setup_sanitize_string($input_string, $sanitize_level) {
-	if (get_magic_quotes_gpc())
-		$input_string = stripslashes($input_string);
-	if ($sanitize_level === 0) {
-		$input_string = str_replace(chr(0), " ", $input_string);
-	} else {
-		$input_string = strip_tags($input_string);
-	}
-	return $input_string;
-}
-
 /**
  * Returns true if we are running on a Windows server
  *
@@ -538,30 +463,6 @@ function checkPermissions($actual, $expected) {
 	} else {
 		return ($actual & 0770) == ($expected & 0770); //	We do not care about the execute permissions
 	}
-}
-
-/*
- * check if site is closed for proper update of .htaccess
- */
-
-function site_closed($ht) {
-	if (empty($ht)) {
-		return false;
-	} else {
-		preg_match('|[# ][ ]*RewriteRule(.*)plugins/site_upgrade/closed|', $ht, $matches);
-		return !(empty($matches)) && strpos($matches[0], '#') === false;
-	}
-}
-
-/**
- * if site was closed, keep it that way....
- */
-function close_site($nht) {
-	preg_match_all('|[# ][ ]*RewriteRule(.*)plugins/site_upgrade/closed|', $nht, $matches);
-	foreach ($matches[0] as $match) {
-		$nht = str_replace($match, ' ' . substr($match, 1), $nht);
-	}
-	return $nht;
 }
 
 function acknowledge($value) {
@@ -645,25 +546,6 @@ function mkdir_r($pathname, $mode) {
 		mkdir_r(dirname($pathname), $mode);
 	}
 	return is_dir($pathname) || @mkdir($pathname, $mode);
-}
-
-function setupLocale($locale) {
-	global $_zp_RTL_css;
-	$en1 = LOCAL_CHARSET;
-	$en2 = str_replace('ISO-', 'ISO', $en1);
-	$simple = str_replace('_', '-', $locale);
-	$simple = explode('-', $simple);
-	$try[$locale . '.UTF8'] = $locale . '.UTF8';
-	$try[$locale . '.UTF-8'] = $locale . '.UTF-8';
-	$try[$locale . '.@euro'] = $locale . '.@euro';
-	$try[$locale . '.' . $en2] = $locale . '.' . $en2;
-	$try[$locale . '.' . $en1] = $locale . '.' . $en1;
-	$try[$locale] = $locale;
-	$try[$simple[0]] = $simple[0];
-	$try['NULL'] = NULL;
-	$rslt = setlocale(LC_ALL, $try);
-	$_zp_RTL_css = in_array(substr($rslt, 0, 2), array('fa', 'ar', 'he', 'hi', 'ur'));
-	return $rslt;
 }
 
 /**

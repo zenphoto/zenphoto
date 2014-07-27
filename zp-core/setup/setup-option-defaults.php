@@ -536,7 +536,7 @@ foreach ($_languages as $language => $dirname) {
 		if (is_null(getOption('disallow_' . $dirname)) && $version < $zpversion) {
 			setOptionDefault('disallow_' . $dirname, 1);
 		}
-		if (setupLocale($dirname)) {
+		if (i18nSetLocale($dirname)) {
 			purgeOption('unsupported_' . $dirname);
 		} else {
 			setOption('unsupported_' . $dirname, 1);
