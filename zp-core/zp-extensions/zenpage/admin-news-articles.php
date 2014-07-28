@@ -27,7 +27,7 @@ if (isset($_POST['checkallaction'])) { // true if apply is pressed
 }
 if (isset($_GET['delete'])) {
 	XSRFdefender('delete');
-	$msg = deleteArticle(sanitize($_GET['delete']));
+	$msg = deleteZenpageObj(newArticle(sanitize($_GET['delete']), 'admin-news-articles.php'));
 	if (!empty($msg)) {
 		$reports[] = $msg;
 	}
@@ -313,7 +313,7 @@ datepickerJS();
 										if ($article->getCommentsAllowed()) {
 											?>
 											<a href="<?php echo $option . $divider; ?>commentson=0&amp;titlelink=<?php
-								echo html_encode($article->getTitlelink());
+											echo html_encode($article->getTitlelink());
 											?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo gettext('Disable comments'); ?>">
 												<img src="../../images/comments-on.png" alt="" title="<?php echo gettext("Comments on"); ?>" style="border: 0px;"/>
 											</a>
@@ -321,7 +321,7 @@ datepickerJS();
 										} else {
 											?>
 											<a href="<?php echo $option . $divider; ?>commentson=1&amp;titlelink=<?php
-								echo html_encode($article->getTitlelink());
+											echo html_encode($article->getTitlelink());
 											?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo gettext('Enable comments'); ?>">
 												<img src="../../images/comments-off.png" alt="" title="<?php echo gettext("Comments off"); ?>" style="border: 0px;"/>
 											</a>
@@ -342,8 +342,8 @@ datepickerJS();
 
 								<td class="page-list_icon">
 									<a target="_blank" href="../../../index.php?p=news&amp;title=<?php
-								echo $article->getTitlelink();
-								?>" title="<?php echo gettext('View article'); ?>">
+									echo $article->getTitlelink();
+									?>" title="<?php echo gettext('View article'); ?>">
 										<img src="images/view.png" alt="" title="<?php echo gettext('View article'); ?>" />
 									</a>
 								</td>
@@ -354,8 +354,8 @@ datepickerJS();
 										?>
 										<td class="page-list_icon">
 											<a href="<?php echo $option . $divider; ?>hitcounter=1&amp;titlelink=<?php
-							echo html_encode($article->getTitlelink());
-										?>&amp;XSRFToken=<?php echo getXSRFToken('hitcounter') ?>" title="<?php echo gettext('Reset hitcounter'); ?>">
+											echo html_encode($article->getTitlelink());
+											?>&amp;XSRFToken=<?php echo getXSRFToken('hitcounter') ?>" title="<?php echo gettext('Reset hitcounter'); ?>">
 												<img src="../../images/reset.png" alt="" title="<?php echo gettext('Reset hitcounter'); ?>" /></a>
 										</td>
 										<?php
@@ -363,9 +363,9 @@ datepickerJS();
 									?>
 									<td class="page-list_icon">
 										<a href="javascript:confirmDelete('admin-news-articles.php?delete=<?php
-							echo $article->getTitlelink();
-							echo $option;
-									?>&amp;XSRFToken=<?php echo getXSRFToken('delete') ?>','<?php echo js_encode(gettext('Are you sure you want to delete this article? THIS CANNOT BE UNDONE!')); ?>')" title="<?php echo gettext('Delete article'); ?>">
+										echo $article->getTitlelink();
+										echo $option;
+										?>&amp;XSRFToken=<?php echo getXSRFToken('delete') ?>','<?php echo js_encode(gettext('Are you sure you want to delete this article? THIS CANNOT BE UNDONE!')); ?>')" title="<?php echo gettext('Delete article'); ?>">
 											<img src="../../images/fail.png" alt="" title="<?php echo gettext('Delete article'); ?>" /></a>
 									</td>
 									<td class="page-list_icon">
