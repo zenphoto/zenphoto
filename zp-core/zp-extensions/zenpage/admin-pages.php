@@ -35,7 +35,7 @@ if (isset($_POST['update'])) {
 // remove the page from the database
 if (isset($_GET['delete'])) {
 	XSRFdefender('delete');
-	$msg = deletePage(sanitize($_GET['delete']));
+	$msg = deleteZenpageObj(newPage(sanitize($_GET['delete']), 'admin-pages.php'));
 	if (!empty($msg)) {
 		$reports[] = $msg;
 	}

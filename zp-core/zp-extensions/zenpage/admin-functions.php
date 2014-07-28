@@ -43,7 +43,7 @@ function processTags($object) {
 }
 
 /* * ************************
-  /* page functions
+	/* page functions
  * ************************* */
 
 /**
@@ -178,21 +178,38 @@ function updatePage(&$reports, $newpage = false) {
  * Deletes a page (and also if existing its subpages) from the database
  *
  */
-function deletePage($titlelink) {
-	if (is_object($titlelink)) {
-		$obj = $titlelink;
-	} else {
-		$obj = newPage($titlelink);
-	}
+function deleteZenpageObj($obj, $redirect = false) {
 	$result = $obj->remove();
 	if ($result) {
-		if (is_object($titlelink)) {
-			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-pages.php?deleted');
+		if ($redirect) {
+			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/' . $redirect . '?deleted');
 			exitZP();
 		}
-		return "<p class='messagebox fade-message'>" . gettext("Page successfully deleted!") . "</p>";
+		switch ($obj->table) {
+			case 'pages':
+				$msg = gettext("Page successfully deleted!");
+				break;
+			case 'news':
+				$msg = gettext("Article successfully deleted!");
+				break;
+			case 'news_categories':
+				$msg = gettext("Category successfully deleted!");
+				break;
+		}
+		return "<p class='messagebox fade-message'>" . $msg . "</p>";
 	}
-	return "<p class='errorbox fade-message'>" . gettext("Page delete failed!") . "</p>";
+	switch ($obj->table) {
+		case 'pages':
+			$msg = gettext("Page delete failed!");
+			break;
+		case 'news':
+			$msg = gettext("Article delete failed!");
+			break;
+		case 'news_categories':
+			$msg = gettext("Category  delete failed!");
+			break;
+	}
+	return "<p class='errorbox fade-message'>" . $msg . "</p>";
 }
 
 /**
@@ -328,7 +345,7 @@ function printPagesListTable($page, $flag) {
 }
 
 /* * ************************
-  /* news article functions
+	/* news article functions
  * ************************* */
 
 /**
@@ -464,27 +481,6 @@ function updateArticle(&$reports, $newarticle = false) {
 }
 
 /**
- * Deletes an news article from the database
- *
- */
-function deleteArticle($titlelink) {
-	if (is_object($titlelink)) {
-		$obj = $titlelink;
-	} else {
-		$obj = newArticle($titlelink);
-	}
-	$result = $obj->remove();
-	if ($result) {
-		if (is_object($titlelink)) {
-			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-news-articles.php?deleted');
-			exitZP();
-		}
-		return "<p class='messagebox fade-message'>" . gettext("Article successfully deleted!") . "</p>";
-	}
-	return "<p class='errorbox fade-message'>" . gettext("Article delete failed!") . "</p>";
-}
-
-/**
  * Print the categories of a news article for the news articles list
  *
  * @param obj $obj object of the news article
@@ -498,23 +494,6 @@ function printNewsCategories($obj) {
 			echo ", ";
 		}
 		echo get_language_string($cats['title']);
-	}
-}
-
-/**
- * Print the categories of a news article for the news articles list
- *
- * @param obj $obj object of the news article
- */
-function printPageArticleTags($obj) {
-	$tags = $obj->getTags();
-	$number = 0;
-	foreach ($tags as $tag) {
-		$number++;
-		if ($number != 1) {
-			echo ", ";
-		}
-		echo get_language_string($tag);
 	}
 }
 
@@ -850,7 +829,7 @@ function printArticlesPerPageDropdown() {
 }
 
 /* * ************************
-  /* Category functions
+	/* Category functions
  * ************************* */
 
 /**
@@ -957,19 +936,6 @@ function updateCategory(&$reports, $newcategory = false) {
 		$reports[] = $msg;
 	}
 	return $cat;
-}
-
-/**
- * Deletes a category (and also if existing its subpages) from the database
- *
- */
-function deleteCategory($titlelink) {
-	$obj = newCategory($titlelink);
-	$result = $obj->remove();
-	if ($result) {
-		return "<p class='messagebox fade-message'>" . gettext("Category successfully deleted!") . "</p>";
-	}
-	return "<p class='errorbox fade-message'>" . gettext("Category  delete failed!") . "</p>";
 }
 
 /**
@@ -1100,7 +1066,7 @@ function printCategoryCheckboxListEntry($cat, $articleid, $option, $class = '') 
 }
 
 /* * ************************
-  /* General functions
+	/* General functions
  * ************************* */
 
 /**
