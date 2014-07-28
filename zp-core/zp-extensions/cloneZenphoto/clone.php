@@ -15,8 +15,7 @@ XSRFdefender('cloneZenphoto');
 
 $msg = array();
 $folder = sanitize($_GET['clonePath']);
-$path = str_replace(WEBPATH, '/', SERVERPATH);
-$newinstall = trim(str_replace($path, '', $folder), '/') . '/';
+$newinstall = trim(sanitize($_GET['cloneWebPath']), '/') . '/';
 
 if (trim($folder, '/') == SERVERPATH) {
 	$msg[] = gettext('You attempted to clone to the master install.');
@@ -42,7 +41,7 @@ if (trim($folder, '/') == SERVERPATH) {
 		@mkdir($folder . THEMEFOLDER);
 	}
 	if (!file_exists($folder . '/' . CONFIGFILE)) {
-		$path = str_replace(array(' ', '/'), '_', trim($newinstall, '/')) . '_';
+		$path = str_replace(array(' ', '/'), '_', trim(str_replace(str_replace(WEBPATH, '/', SERVERPATH), '', $folder), '/')) . '_';
 		$zp_cfg = file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
 		$zp_cfg = updateConfigItem('mysql_prefix', $path, $zp_cfg);
 		file_put_contents($folder . '/' . DATA_FOLDER . '/' . CONFIGFILE, $zp_cfg);
@@ -123,30 +122,21 @@ if ($success) {
 	array_unshift($msg, '<h2>' . sprintf(gettext('Successful clone to %s'), $folder) . '</h2>' . "\n");
 	list($diff, $needs) = checkSignature(true);
 	if (empty($needs)) {
-		if (WEBPATH) {
-			$rootpath = str_replace(WEBPATH, '/', SERVERPATH);
-			$urlpath = str_replace(WEBPATH, '/', FULLWEBPATH);
-		} else {
-			$rootpath = SERVERPATH . '/';
-			$urlpath = FULLWEBPATH . '/';
+		$rslt = query_single_row('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="clone" AND `aux`=' . db_quote(trim($folder, '/')));
+		if (empty($rslt)) {
+			query('INSERT INTO ' . prefix('plugin_storage') . '(`type`,`aux`,`data`) VALUES("clone",' . db_quote(trim($folder, '/')) . ',' . db_quote(trim($newinstall, '/')) . ')');
 		}
-		if (substr($folder, 0, strlen($rootpath)) == $rootpath) {
-			$rslt = query_single_row('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="clone" AND `aux`=' . db_quote(trim($folder, '/')));
-			if (empty($rslt)) {
-				query('INSERT INTO ' . prefix('plugin_storage') . '(`type`,`aux`,`data`) VALUES("clone",' . db_quote(trim($folder, '/')) . ',' . db_quote(trim($urlpath . $newinstall, '/')) . ')');
-			}
-			$_SESSION['clone'] = array(
-							'folder'				 => trim($folder, '/'),
-							'UTF8_image_URI' => UTF8_IMAGE_URI,
-							'mod_rewrite'		 => MOD_REWRITE,
-							'hash'					 => HASH_SEED,
-							'strong_hash'		 => getOption('strong_hash'),
-							'adminuser'			 => $_zp_current_admin_obj->getUser(),
-							'adminpass'			 => $_zp_current_admin_obj->getPass()
-			);
+		$_SESSION['clone'] = array(
+						'folder'				 => trim($folder, '/'),
+						'UTF8_image_URI' => UTF8_IMAGE_URI,
+						'mod_rewrite'		 => MOD_REWRITE,
+						'hash'					 => HASH_SEED,
+						'strong_hash'		 => getOption('strong_hash'),
+						'adminuser'			 => $_zp_current_admin_obj->getUser(),
+						'adminpass'			 => $_zp_current_admin_obj->getPass()
+		);
 
-			$msg[] = '<p><span class="buttons"><a href="' . $urlpath . $newinstall . ZENFOLDER . '/setup/index.php?autorun" target=_newtab">' . gettext('setup the new install') . '</a></span><br class="clearall" /></p>' . "\n";
-		}
+		$msg[] = '<p><span class="buttons"><a href="' . $newinstall . ZENFOLDER . '/setup/index.php?autorun" target=_newtab">' . gettext('setup the new install') . '</a></span><br class="clearall" /></p>' . "\n";
 	} else {
 		$reinstall = '<p>' . sprintf(gettext('Before running setup for <code>%1$s</code> please reinstall the following setup files from the %2$s [%3$s] to this installation:'), $newinstall, ZENPHOTO_VERSION, ZENPHOTO_RELEASE) .
 						"\n" . '<ul>' . "\n";
