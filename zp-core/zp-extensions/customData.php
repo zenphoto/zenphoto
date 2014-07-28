@@ -9,7 +9,7 @@
  * Instead create a pluhin based on the <var>customFieldExtender</var> plugin
  * which allows you to extend the database with fields unique to your application.
  *
- * <strong>Note:</strong> You must enable the option for each object for which you wish to expose the <var>custom_data</var>
+ * <b>Note:</b> You must enable the option for each object for which you wish to expose the <var>custom_data</var>
  * field.
  *
  *

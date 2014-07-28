@@ -40,7 +40,7 @@ if (is_AdminEditPage('page')) {
 					$_GET['titlelink'] = $as;
 					break;
 				case 'delete':
-					$reports[] = deletePage($result);
+					$reports[] = deleteZenpageObj($result, 'admin-pages.php');
 					break;
 			}
 		}
@@ -55,7 +55,7 @@ if (is_AdminEditPage('page')) {
 	}
 	if (isset($_GET['delete'])) {
 		XSRFdefender('delete');
-		$msg = deletePage(sanitize($_GET['delete']));
+		$msg = deleteZenpageObj(newPage(sanitize($_GET['delete']), 'admin-pages.php'));
 		if (!empty($msg)) {
 			$reports[] = $msg;
 		}
@@ -82,7 +82,7 @@ if (is_AdminEditPage('newsarticle')) {
 					$_GET['titlelink'] = $as;
 					break;
 				case 'delete':
-					$reports[] = deleteArticle($result);
+					$reports[] = deleteZenpageObj($result, 'admin-news-articles.php');
 					break;
 			}
 		}
@@ -97,7 +97,7 @@ if (is_AdminEditPage('newsarticle')) {
 	}
 	if (isset($_GET['delete'])) {
 		XSRFdefender('delete');
-		$msg = deleteArticle(sanitize($_GET['delete']));
+		$msg = deleteZenpageObj(newArticle(sanitize($_GET['delete']), 'admin-news-articles.php'));
 		if (!empty($msg)) {
 			$reports[] = $msg;
 		}
@@ -185,6 +185,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 				$page = '&amp;subpage=' . sanitize_numeric($_GET['subpage']);
 			}
 			$saveitem = $updateitem = gettext('Apply');
+
 			if (is_AdminEditPage('newsarticle')) {
 				if (!empty($page)) {
 					$zenphoto_tabs['news']['subtabs'][gettext('articles')] .= $page;
@@ -197,6 +198,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 					$additem = gettext('New Article');
 					$deleteitem = gettext('Article');
 					$themepage = 'news';
+					$locked = !checkIfLocked($result);
 				}
 
 				if (is_AdminEditPage('newscategory')) {
@@ -212,6 +214,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 						}
 						$deleteitem = gettext('Category');
 						$themepage = 'news';
+						$locked = false;
 					}
 
 					if (is_AdminEditPage('page')) {
@@ -220,6 +223,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 						$additem = gettext('newPage');
 						$deleteitem = gettext('Page');
 						$themepage = 'pages';
+						$locked = !checkIfLocked($result);
 					}
 
 					if ($result->transient) {
@@ -302,6 +306,17 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 								<?php
 								XSRFToken('save');
 							} else {
+								if ($locked) {
+									?>
+									<script type="text/javascript">
+										window.onload = function() {
+											$('#form_cmsItemEdit :input').prop('disabled', true);
+											$('input[type="submit"]').attr('disabled', 'disabled');
+											$('input[type="reset"]').attr('disabled', 'disabled');
+										}
+									</script>
+									<?php
+								}
 								?>
 								<form class="dirtylistening" onReset="setClean('form_cmsItemEdit');" method="post" name="update" id="form_cmsItemEdit" action="admin-edit.php?<?php echo $admintype; ?>&amp;update<?php echo $page; ?>">
 									<?php
@@ -444,6 +459,14 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 														<label for="show"><?php echo gettext("Published"); ?></label>
 													</p>
 													<?php
+													if (!is_AdminEditPage("newscategory")) {
+														?>
+														<p class="checkbox">
+															<input name="locked" type="checkbox" id="locked" value="1" <?php checkIfChecked($result->getLocked()); ?> />
+															<label for="locked"><?php echo gettext("Locked for changes"); ?></label>
+														</p>
+														<?php
+													}
 													if (is_AdminEditPage('newsarticle')) {
 														$sticky = $result->get('sticky');
 														?>
@@ -457,16 +480,6 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 																<option value="<?php echo NEWS_POSITION_STICKY; ?>" <?php if ($sticky == NEWS_POSITION_STICKY) echo 'selected="selected"'; ?>><?php echo gettext("sticky"); ?></option>
 																<option value="<?php echo NEWS_POSITION_STICK_TO_TOP; ?>" <?php if ($sticky == NEWS_POSITION_STICK_TO_TOP) echo 'selected="selected"'; ?>><?php echo gettext("Stick to top"); ?></option>
 															</select>
-														</p>
-														<?php
-													}
-													?>
-													<?php
-													if (!is_AdminEditPage("newscategory")) {
-														?>
-														<p class="checkbox">
-															<input name="locked" type="checkbox" id="locked" value="1" <?php checkIfChecked($result->getLocked()); ?> />
-															<label for="locked"><?php echo gettext("Locked for changes"); ?></label>
 														</p>
 														<?php
 													}
@@ -516,7 +529,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 																			 value="<?php echo $x; ?>" />
 																<br />
 																<label><input type="checkbox" name="disclose_password" id="disclose_password" onclick="passwordClear('');
-																					togglePassword('');"><?php echo gettext('Show password'); ?></label>
+																		togglePassword('');"><?php echo gettext('Show password'); ?></label>
 																<br />
 																<span class="password_field_">
 																	<span id="match"><?php echo gettext("(repeat)"); ?></span>
@@ -540,13 +553,13 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 														<label class="checkboxlabel">
 															<input type="radio" id="copy_object" name="copy_delete_object" value="copy"
 																		 onclick="$('#copyfield').show();
-																						 $('#deletemsg').hide();" />
+																				 $('#deletemsg').hide();" />
 																		 <?php echo gettext("Copy"); ?>
 														</label>
 														<label class="checkboxlabel">
 															<input type="radio" id="delete_object" name="copy_delete_object" value="delete"
 																		 onclick="deleteConfirm('delete_object', '', '<?php addslashes(printf(gettext('Are you sure you want to delete this %s?'), $deleteitem)); ?>');
-																						 $('#copyfield').hide();" />
+																				 $('#copyfield').hide();" />
 																		 <?php echo gettext('delete'); ?>
 														</label>
 														<br class="clearall" />

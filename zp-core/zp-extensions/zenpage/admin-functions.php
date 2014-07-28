@@ -43,7 +43,7 @@ function processTags($object) {
 }
 
 /* * ************************
-  /* page functions
+	/* page functions
  * ************************* */
 
 /**
@@ -178,21 +178,38 @@ function updatePage(&$reports, $newpage = false) {
  * Deletes a page (and also if existing its subpages) from the database
  *
  */
-function deletePage($titlelink) {
-	if (is_object($titlelink)) {
-		$obj = $titlelink;
-	} else {
-		$obj = newPage($titlelink);
-	}
+function deleteZenpageObj($obj, $redirect = false) {
 	$result = $obj->remove();
 	if ($result) {
-		if (is_object($titlelink)) {
-			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-pages.php?deleted');
+		if ($redirect) {
+			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/' . $redirect . '?deleted');
 			exitZP();
 		}
-		return "<p class='messagebox fade-message'>" . gettext("Page successfully deleted!") . "</p>";
+		switch ($obj->table) {
+			case 'pages':
+				$msg = gettext("Page successfully deleted!");
+				break;
+			case 'news':
+				$msg = gettext("Article successfully deleted!");
+				break;
+			case 'news_categories':
+				$msg = gettext("Category successfully deleted!");
+				break;
+		}
+		return "<p class='messagebox fade-message'>" . $msg . "</p>";
 	}
-	return "<p class='errorbox fade-message'>" . gettext("Page delete failed!") . "</p>";
+	switch ($obj->table) {
+		case 'pages':
+			$msg = gettext("Page delete failed!");
+			break;
+		case 'news':
+			$msg = gettext("Article delete failed!");
+			break;
+		case 'news_categories':
+			$msg = gettext("Category  delete failed!");
+			break;
+	}
+	return "<p class='errorbox fade-message'>" . $msg . "</p>";
 }
 
 /**
@@ -211,14 +228,9 @@ function printPagesListTable($page, $flag) {
 	<div class='page-list_row'>
 		<div class="page-list_title">
 			<?php
-			if (checkIfLockedPage($page)) {
-				echo "<a href='admin-edit.php?page&amp;titlelink=" . urlencode($page->getTitlelink()) . "'> ";
-				checkForEmptyTitle($page->getTitle(), "page");
-				echo "</a>" . checkHitcounterDisplay($page->getHitcounter());
-			} else {
-				checkForEmptyTitle($page->getTitle(), "page");
-				checkHitcounterDisplay($page->getShow());
-			}
+			echo "<a href='admin-edit.php?page&amp;titlelink=" . urlencode($page->getTitlelink()) . "'> ";
+			checkForEmptyTitle($page->getTitle(), "page");
+			echo "</a>" . checkHitcounterDisplay($page->getHitcounter());
 			?>
 		</div>
 		<div class="page-list_extra">
@@ -246,7 +258,9 @@ function printPagesListTable($page, $flag) {
 				?>
 			</div>
 
-			<?php if (checkIfLockedPage($page)) { ?>
+			<?php
+			if (checkIfLocked($page)) {
+				?>
 				<div class="page-list_icon">
 					<?php printPublishIconLink($page, "page"); ?>
 				</div>
@@ -267,14 +281,18 @@ function printPagesListTable($page, $flag) {
 					}
 					?>
 				</div>
-			<?php } else { ?>
+				<?php
+			} else {
+				?>
 				<div class="page-list_icon">
 					<img src="../../images/icon_inactive.png" alt="" title="<?php gettext('locked'); ?>" />
 				</div>
 				<div class="page-list_icon">
 					<img src="../../images/icon_inactive.png" alt="" title="<?php gettext('locked'); ?>" />
 				</div>
-			<?php } ?>
+				<?php
+			}
+			?>
 
 			<div class="page-list_icon">
 				<a href="../../../index.php?p=pages&amp;title=<?php echo js_encode($page->getTitlelink()); ?>" title="<?php echo gettext("View page"); ?>">
@@ -283,7 +301,7 @@ function printPagesListTable($page, $flag) {
 			</div>
 
 			<?php
-			if (checkIfLockedPage($page)) {
+			if (checkIfLocked($page)) {
 				if (extensionEnabled('hitcounter')) {
 					?>
 					<div class="page-list_icon">
@@ -303,7 +321,9 @@ function printPagesListTable($page, $flag) {
 				<div class="page-list_icon">
 					<input class="checkbox" type="checkbox" name="ids[]" value="<?php echo $page->getTitlelink(); ?>" onclick="triggerAllBox(this.form, 'ids[]', this.form.allbox);" />
 				</div>
-			<?php } else { ?>
+				<?php
+			} else {
+				?>
 				<div class="page-list_icon">
 					<img src="../../images/icon_inactive.png" alt="" title="<?php gettext('locked'); ?>" />
 				</div>
@@ -313,14 +333,19 @@ function printPagesListTable($page, $flag) {
 				<div class="page-list_icon">
 					<img src="../../images/icon_inactive.png" alt="" title="<?php gettext('locked'); ?>" />
 				</div>
-			<?php } ?>
+				<div class="page-list_icon">
+					<input class="checkbox" type="checkbox" name="disable" value="1" disabled="disabled" />
+				</div>
+				<?php
+			}
+			?>
 		</div><!--  icon wrapper end -->
 	</div>
 	<?php
 }
 
 /* * ************************
-  /* news article functions
+	/* news article functions
  * ************************* */
 
 /**
@@ -456,27 +481,6 @@ function updateArticle(&$reports, $newarticle = false) {
 }
 
 /**
- * Deletes an news article from the database
- *
- */
-function deleteArticle($titlelink) {
-	if (is_object($titlelink)) {
-		$obj = $titlelink;
-	} else {
-		$obj = newArticle($titlelink);
-	}
-	$result = $obj->remove();
-	if ($result) {
-		if (is_object($titlelink)) {
-			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-news-articles.php?deleted');
-			exitZP();
-		}
-		return "<p class='messagebox fade-message'>" . gettext("Article successfully deleted!") . "</p>";
-	}
-	return "<p class='errorbox fade-message'>" . gettext("Article delete failed!") . "</p>";
-}
-
-/**
  * Print the categories of a news article for the news articles list
  *
  * @param obj $obj object of the news article
@@ -490,23 +494,6 @@ function printNewsCategories($obj) {
 			echo ", ";
 		}
 		echo get_language_string($cats['title']);
-	}
-}
-
-/**
- * Print the categories of a news article for the news articles list
- *
- * @param obj $obj object of the news article
- */
-function printPageArticleTags($obj) {
-	$tags = $obj->getTags();
-	$number = 0;
-	foreach ($tags as $tag) {
-		$number++;
-		if ($number != 1) {
-			echo ", ";
-		}
-		echo get_language_string($tag);
 	}
 }
 
@@ -842,7 +829,7 @@ function printArticlesPerPageDropdown() {
 }
 
 /* * ************************
-  /* Category functions
+	/* Category functions
  * ************************* */
 
 /**
@@ -952,19 +939,6 @@ function updateCategory(&$reports, $newcategory = false) {
 }
 
 /**
- * Deletes a category (and also if existing its subpages) from the database
- *
- */
-function deleteCategory($titlelink) {
-	$obj = newCategory($titlelink);
-	$result = $obj->remove();
-	if ($result) {
-		return "<p class='messagebox fade-message'>" . gettext("Category successfully deleted!") . "</p>";
-	}
-	return "<p class='errorbox fade-message'>" . gettext("Category  delete failed!") . "</p>";
-}
-
-/**
  * Prints the list entry of a single category for the sortable list
  *
  * @param array $cat Array storing the db info of the category
@@ -996,11 +970,11 @@ function printCategoryListSortableTable($cat, $flag) {
 
 		<div class="page-list_iconwrapper">
 			<div class="page-list_icon"><?php
-				$password = $cat->getPassword();
-				if (!empty($password)) {
-					echo '<img src="../../images/lock.png" style="border: 0px;" alt="' . gettext('Password protected') . '" title="' . gettext('Password protected') . '" />';
-				}
-				?>
+		$password = $cat->getPassword();
+		if (!empty($password)) {
+			echo '<img src="../../images/lock.png" style="border: 0px;" alt="' . gettext('Password protected') . '" title="' . gettext('Password protected') . '" />';
+		}
+			?>
 			</div>
 			<div class="page-list_icon">
 				<?php
@@ -1092,7 +1066,7 @@ function printCategoryCheckboxListEntry($cat, $articleid, $option, $class = '') 
 }
 
 /* * ************************
-  /* General functions
+	/* General functions
  * ************************* */
 
 /**
@@ -1574,34 +1548,19 @@ function printPublishIconLink($object, $type, $linkback = '') {
 	}
 
 	/**
-	 * Checks if the current logged in admin user is the author that locked the page/article.
+	 * Checks if the current logged in  user is allowed to edit the page/article.
 	 * Only that author or any user with admin rights will be able to edit or unlock.
 	 *
-	 * @param object $page The array of the page or article to check
+	 * @param object $obj The page or article to check
 	 * @return bool
 	 */
-	function checkIfLockedPage($page) {
-		if (zp_loggedin(ADMIN_RIGHTS))
-			return true;
-		if ($page->getLocked()) {
-			return $page->isMyItem(ZENPAGE_PAGES_RIGHTS);
-		} else {
-			return true;
-		}
-	}
-
-	/**
-	 * Checks if the current logged in admin user is the author that locked the article.
-	 * Only that author or any user with admin rights will be able to edit or unlock.
-	 *
-	 * @param object $page The array of the page or article to check
-	 * @return bool
-	 */
-	function checkIfLockedNews($news) {
-		if (zp_loggedin(ADMIN_RIGHTS))
-			return true;
-		if ($news->getLocked()) {
-			return $news->isMyItem(ZENPAGE_NEWS_RIGHTS);
+	function checkIfLocked($obj) {
+		global $_zp_current_admin_obj;
+		if ($obj->getLocked()) {
+			if (zp_loggedin($obj->manage_rights)) {
+				return true;
+			}
+			return $obj->getAuthor() == $_zp_current_admin_obj->getUser();
 		} else {
 			return true;
 		}

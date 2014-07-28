@@ -25,6 +25,7 @@ if (version_compare(PHP_VERSION, '5.0.0', '<')) {
 	die(sprintf(gettext('ZenPhoto20 requires PHP version %s or greater'), PHP_MIN_VERSION));
 }
 require_once(dirname(dirname(__FILE__)) . '/global-definitions.php');
+require_once(dirname(dirname(__FILE__)) . '/functions-common.php');
 
 $session_path = session_save_path();
 if (!file_exists($session_path) || !is_writable($session_path)) {
@@ -45,7 +46,7 @@ header("Expires: Thu, 19 Nov 1981 08:52:00 GMT");
 
 require_once(dirname(__FILE__) . '/setup-functions.php');
 //allow only one setup to run
-$setupMutex = new setupMutex();
+$setupMutex = new Mutex('sP');
 $setupMutex->lock();
 
 if ($debug = isset($_REQUEST['debug'])) {

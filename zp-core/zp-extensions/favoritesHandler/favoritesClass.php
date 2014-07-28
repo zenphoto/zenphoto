@@ -13,6 +13,7 @@ class favorites extends AlbumBase {
 	var $list = array('');
 	var $owner;
 	var $instance = '';
+	var $multi;
 
 	function __construct($user) {
 		$this->table = 'albums';
@@ -24,10 +25,12 @@ class favorites extends AlbumBase {
 		$this->albumSortDirection = getOption('favorites_album_sort_direction');
 		$this->imageSortType = getOption('favorites_image_sort_type');
 		$this->albumSortType = getOption('favorites_album_sort_type');
+		$this->multi = getOption('favorites_multi');
 		$list = query_full_array('SELECT `aux` FROM ' . prefix('plugin_storage') . ' WHERE `type`="favorites" AND `aux` REGEXP ' . db_quote('[[:<:]]' . $user . '[[:>:]]'));
 		foreach ($list as $aux) {
 			$instance = getSerializedArray($aux['aux']);
 			if (isset($instance[1])) {
+				$this->multi = true;
 				$this->list[$instance[1]] = $instance[1];
 			}
 		}
@@ -80,11 +83,11 @@ class favorites extends AlbumBase {
 			case 'images':
 				$folder = $obj->imagefolder;
 				$filename = $obj->filename;
-				$sql = 'SELECT DISTINCT `aux` FROM ' . prefix('plugin_storage') . '  WHERE `data`=' . db_quote(serialize(array('type' => 'images', 'id' => $folder . '/' . $filename)));
+				$sql = 'SELECT DISTINCT `aux` FROM ' . prefix('plugin_storage') . '  WHERE `type`="favorites" AND `data`=' . db_quote(serialize(array('type' => 'images', 'id' => $folder . '/' . $filename)));
 				break;
 			case 'albums':
 				$folder = $obj->name;
-				$sql = 'SELECT DISTINCT `aux` FROM ' . prefix('plugin_storage') . '  WHERE `data`=' . db_quote(serialize(array('type' => 'albums', 'id' => $folder)));
+				$sql = 'SELECT DISTINCT `aux` FROM ' . prefix('plugin_storage') . '  WHERE `type`="favorites" AND `data`=' . db_quote(serialize(array('type' => 'albums', 'id' => $folder)));
 				break;
 		}
 		$watchers = array();
@@ -109,10 +112,17 @@ class favorites extends AlbumBase {
 				<td>
 					<ul class="userlist">
 						<?php
-						foreach ($watchers as $watchee) {
+						foreach ($watchers as $aux) {
+							$aux = getSerializedArray($aux);
+							$watchee = $aux[0];
+							if (isset($aux[1])) {
+								$instance = '[' . $aux[1] . ']';
+							} else {
+								$instance = '';
+							}
 							?>
 							<li>
-								<?php echo html_encode($watchee); ?>
+								<?php echo html_encode($watchee . $instance); ?>
 							</li>
 							<?php
 						}

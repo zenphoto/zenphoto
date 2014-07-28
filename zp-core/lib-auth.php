@@ -1450,7 +1450,6 @@ class Zenphoto_Administrator extends PersistentObject {
 		foreach ($this->objects as $object) {
 			if ($object['type'] == $what) {
 				$result[$object['name']] = $object['data'];
-				break;
 			}
 		}
 		return $result;

@@ -27,7 +27,7 @@ if (isset($_POST['checkallaction'])) { // true if apply is pressed
 }
 if (isset($_GET['delete'])) {
 	XSRFdefender('delete');
-	$msg = deleteArticle(sanitize($_GET['delete']));
+	$msg = deleteZenpageObj(newArticle(sanitize($_GET['delete']), 'admin-news-articles.php'));
 	if (!empty($msg)) {
 		$reports[] = $msg;
 	}
@@ -270,13 +270,10 @@ datepickerJS();
 											break;
 									}
 
-									if (checkIfLockedNews($article)) {
-										echo '<a href="admin-edit.php' . getNewsAdminOptionPath(array_merge(array('newsarticle' => NULL, 'titlelink' => urlencode($article->getTitlelink())), getNewsAdminOption(array('category' => 0, 'date' => 0, 'published' => 0, 'sortorder' => 0, 'articles_page' => 1, 'subpage' => 1)))) . '">';
-										checkForEmptyTitle($article->getTitle(), "news");
-										echo '</a>' . checkHitcounterDisplay($article->getHitcounter()) . $sticky;
-									} else {
-										echo checkForEmptyTitle($article->getTitle(), "news") . '</a>' . checkHitcounterDisplay($article->getHitcounter());
-									}
+
+									echo '<a href="admin-edit.php' . getNewsAdminOptionPath(array_merge(array('newsarticle' => NULL, 'titlelink' => urlencode($article->getTitlelink())), getNewsAdminOption(array('category' => 0, 'date' => 0, 'published' => 0, 'sortorder' => 0, 'articles_page' => 1, 'subpage' => 1)))) . '">';
+									checkForEmptyTitle($article->getTitle(), "news");
+									echo '</a>' . checkHitcounterDisplay($article->getHitcounter()) . $sticky;
 									?>
 
 								</td>
@@ -306,7 +303,7 @@ datepickerJS();
 								} else {
 									$divider = '&amp;';
 								}
-								if (checkIfLockedNews($article)) {
+								if (checkIfLocked($article)) {
 									?>
 									<td class="page-list_icon">
 										<?php printPublishIconLink($article, 'news'); ?>
@@ -352,7 +349,7 @@ datepickerJS();
 								</td>
 
 								<?php
-								if (checkIfLockedNews($article)) {
+								if (checkIfLocked($article)) {
 									if (extensionEnabled('hitcounter')) {
 										?>
 										<td class="page-list_icon">
@@ -371,6 +368,9 @@ datepickerJS();
 										?>&amp;XSRFToken=<?php echo getXSRFToken('delete') ?>','<?php echo js_encode(gettext('Are you sure you want to delete this article? THIS CANNOT BE UNDONE!')); ?>')" title="<?php echo gettext('Delete article'); ?>">
 											<img src="../../images/fail.png" alt="" title="<?php echo gettext('Delete article'); ?>" /></a>
 									</td>
+									<td class="page-list_icon">
+										<input type="checkbox" name="ids[]" value="<?php echo $article->getTitlelink(); ?>" onclick="triggerAllBox(this.form, 'ids[]', this.form.allbox);" />
+									</td>
 									<?php
 								} else {
 									?>
@@ -381,14 +381,11 @@ datepickerJS();
 										<img src="../../images/icon_inactive.png" alt="" title="<?php gettext('locked'); ?>" />
 									</td>
 									<td class="page-list_icon">
-										<img src="../../images/icon_inactive.png" alt="" title="<?php gettext('locked'); ?>" />
+										<input type="checkbox" name="disabled" value="none" disabled="Disabled" />
 									</td>
 									<?php
 								}
 								?>
-								<td class="page-list_icon">
-									<input type="checkbox" name="ids[]" value="<?php echo $article->getTitlelink(); ?>" onclick="triggerAllBox(this.form, 'ids[]', this.form.allbox);" />
-								</td>
 							</tr>
 							<?php
 						}
