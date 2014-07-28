@@ -34,6 +34,7 @@ if (!file_exists($session_path) || !is_writable($session_path)) {
 }
 
 $session = session_start();
+
 session_cache_limiter('nocache');
 
 header('Content-Type: text/html; charset=UTF-8');
@@ -48,6 +49,11 @@ require_once(dirname(__FILE__) . '/setup-functions.php');
 //allow only one setup to run
 $setupMutex = new Mutex('sP');
 $setupMutex->lock();
+
+if (isset($_SESSION['clone'])) {
+	if (SERVERPATH != $_SESSION['clone']['folder'])
+		unset($_SESSION['clone']);
+}
 
 if ($debug = isset($_REQUEST['debug'])) {
 	if (!$debug = $_REQUEST['debug']) {
@@ -360,8 +366,9 @@ if (defined('CHMOD_VALUE')) {
 
 setOptionDefault('zp_plugin_security-logger', 9 | CLASS_PLUGIN);
 
-if ($newconfig || isset($_GET['copyhtaccess'])) {
-	if ($newconfig && !file_exists($serverpath . '/.htaccess') || setupUserAuthorized()) {
+$forcerewrite = isset($_SESSION['clone']['mod_rewrite']) && $_SESSION['clone']['mod_rewrite'] && !file_exists($serverpath . '/.htaccess');
+if ($newconfig || isset($_GET['copyhtaccess']) || $forcerewrite) {
+	if (($newconfig || $forcerewrite) && !file_exists($serverpath . '/.htaccess') || setupUserAuthorized()) {
 		@chmod($serverpath . '/.htaccess', 0777);
 		$ht = @file_get_contents(SERVERPATH . '/.htaccess');
 		$newht = file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/htaccess');
@@ -853,7 +860,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 														var image = new Image();
 														image.onload = function() {
 						<?php
-						if (!UTF8_IMAGE_URI) {
+						if (!(UTF8_IMAGE_URI || @$_SESSION['clone']['UTF8_image_URI'])) {
 							?>
 																$('#UTF8_uri_warn').html('<?php echo addslashes(gettext('You should enable the URL option <em>UTF8 image URIs</em>.')); ?>' + ' <?php echo addslashes(gettext('<a href="javascript:uri(true)">Please do</a>')); ?>');
 																$('#UTF8_uri_warn').show();
@@ -2477,22 +2484,28 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 									$link = sprintf(gettext('You can now <a href="%1$s">administer your gallery.</a>'), WEBPATH . '/' . ZENFOLDER . '/admin.php');
 								}
 								?>
-								<p id="golink" class="delayshow" style="display:none;
-									 "><?php echo $link; ?></p>
-									 <?php
-									 switch ($autorun) {
-										 case false:
-											 break;
-										 case 'gallery':
-										 case 'admin':
-											 $autorun = WEBPATH . '/' . ZENFOLDER . '/admin.php';
-											 break;
-										 default:
-											 break;
-									 }
-									 ?>
+								<p id="golink" class="delayshow" style="display:none;"><?php echo $link; ?></p>
+								<?php
+								switch ($autorun) {
+									case false:
+										break;
+									case 'gallery':
+									case 'admin':
+										$autorun = WEBPATH . '/' . ZENFOLDER . '/admin.php';
+										break;
+									default:
+										break;
+								}
+								?>
 								<script type="text/javascript">
 									window.onload = function() {
+			<?php
+			if (extensionEnabled('cloneZenphoto')) {
+				require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cloneZenphoto.php');
+				if (class_exists('cloneZenphoto'))
+					cloneZenphoto::setup($autorun);
+			}
+			?>
 										$('.delayshow').show();
 			<?php
 			if ($autorun) {

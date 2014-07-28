@@ -34,31 +34,40 @@ for ($i = 0; $i < 30; $i++) {
 
 
 setOption('zenphoto_install', serialize(installSignature()));
-
-if (Zenphoto_Authority::$preferred_version > ($oldv = getOption('libauth_version'))) {
-	if (empty($oldv)) {
-		//	The password hash of these old versions did not have the extra text.
-		//	Note: if the administrators table is empty we will re-do this option with the good stuff.
-		purgeOption('extra_auth_hash_text');
-		setOptionDefault('extra_auth_hash_text', '');
-	}
-	$msg = sprintf(gettext('Migrating lib-auth data version %1$s => version %2$s'), $oldv, Zenphoto_Authority::$preferred_version);
-	if (!$_zp_authority->migrateAuth(Zenphoto_Authority::$preferred_version)) {
-		$msg .= ': ' . gettext('failed');
-	}
-	echo $msg;
-	setupLog($msg, true);
-}
 $admins = $_zp_authority->getAdministrators('all');
 
 if (empty($admins)) { //	empty administrators table
 	$groupsdefined = NULL;
-	if (function_exists('hash')) {
-		setOption('strong_hash', 3);
+	if (isset($_SESSION['clone'])) { //replicate the user who cloned the install
+		setOption('UTF8_image_URI', $_SESSION['clone']['UTF8_image_URI']);
+		setOption('strong_hash', $_SESSION['clone']['strong_hash']);
+		setOption('extra_auth_hash_text', $_SESSION['clone']['hash']);
+		$_zp_current_admin_obj = new Zenphoto_Administrator($_SESSION['clone']['adminuser'], 1);
+		$_zp_current_admin_obj->set('pass', $_SESSION['clone']['adminpass']);
+		$_zp_current_admin_obj->setRights(ALL_RIGHTS);
+		$_zp_current_admin_obj->save();
+		$_zp_loggedin = ALL_RIGHTS;
 	} else {
-		setOption('strong_hash', 1);
+		if (Zenphoto_Authority::$preferred_version > ($oldv = getOption('libauth_version'))) {
+			if (empty($oldv)) {
+				//	The password hash of these old versions did not have the extra text.
+				//	Note: if the administrators table is empty we will re-do this option with the good stuff.
+				purgeOption('extra_auth_hash_text');
+				setOptionDefault('extra_auth_hash_text', '');
+			}
+			$msg = sprintf(gettext('Migrating lib-auth data version %1$s => version %2$s'), $oldv, Zenphoto_Authority::$preferred_version);
+			if (!$_zp_authority->migrateAuth(Zenphoto_Authority::$preferred_version)) {
+				$msg .= ': ' . gettext('failed');
+			}
+			echo $msg;
+			setupLog($msg, true);
+		} if (function_exists('hash')) {
+			setOption('strong_hash', 3);
+		} else {
+			setOption('strong_hash', 1);
+		}
+		purgeOption('extra_auth_hash_text');
 	}
-	purgeOption('extra_auth_hash_text');
 } else {
 	if (function_exists('hash') && getOption('strong_hash') == 2) {
 		setOption('strong_hash', 3);
@@ -565,9 +574,4 @@ $plugins = getPluginFiles('*.php');
 
 <?php
 $_zp_gallery->garbageCollect();
-if (extensionEnabled('auto_backup')) {
-	//Run the backup since for sure things have changed.
-	require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/auto_backup.php');
-	auto_backup::timer_handler('');
-}
 ?>
