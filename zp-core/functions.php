@@ -2057,38 +2057,39 @@ function printStandardMeta() {
 	function cron_starter($script, $params, $offsetPath, $inline = false) {
 		global $_zp_authority, $_zp_loggedin, $_zp_current_admin_obj, $_zp_HTML_cache;
 		$admin = $_zp_authority->getMasterUser();
-
-		if ($inline) {
-			$_zp_current_admin_obj = $admin;
-			$_zp_loggedin = $_zp_current_admin_obj->getRights();
-			foreach ($params as $key => $value) {
-				if ($key == 'XSRFTag') {
-					$key = 'XSRFToken';
-					$value = getXSRFToken($value);
+		if ($admin) {
+			if ($inline) {
+				$_zp_current_admin_obj = $admin;
+				$_zp_loggedin = $_zp_current_admin_obj->getRights();
+				foreach ($params as $key => $value) {
+					if ($key == 'XSRFTag') {
+						$key = 'XSRFToken';
+						$value = getXSRFToken($value);
+					}
+					$_POST[$key] = $_GET[$key] = $_REQUEST[$key] = $value;
 				}
-				$_POST[$key] = $_GET[$key] = $_REQUEST[$key] = $value;
+				require_once($script);
+			} else {
+				$auth = sha1($script . serialize($admin));
+				$paramlist = 'link=' . $script;
+				foreach ($params as $key => $value) {
+					$paramlist .= '&' . $key . '=' . $value;
+				}
+				$paramlist .= '&auth=' . $auth . '&offsetPath=' . $offsetPath;
+				$_zp_HTML_cache->abortHTMLCache();
+				?>
+				<script type="text/javascript">
+					// <!-- <![CDATA[
+					$.ajax({
+						type: 'POST',
+						cache: false,
+						data: '<?php echo $paramlist; ?>',
+						url: '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/cron_runner.php'
+					});
+					// ]]> -->
+				</script>
+				<?php
 			}
-			require_once($script);
-		} else {
-			$auth = sha1($script . serialize($admin));
-			$paramlist = 'link=' . $script;
-			foreach ($params as $key => $value) {
-				$paramlist .= '&' . $key . '=' . $value;
-			}
-			$paramlist .= '&auth=' . $auth . '&offsetPath=' . $offsetPath;
-			$_zp_HTML_cache->abortHTMLCache();
-			?>
-			<script type="text/javascript">
-				// <!-- <![CDATA[
-				$.ajax({
-					type: 'POST',
-					cache: false,
-					data: '<?php echo $paramlist; ?>',
-					url: '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/cron_runner.php'
-				});
-				// ]]> -->
-			</script>
-			<?php
 		}
 	}
 
