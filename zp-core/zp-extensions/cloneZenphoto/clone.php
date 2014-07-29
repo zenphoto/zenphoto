@@ -131,9 +131,8 @@ if ($success) {
 						'UTF8_image_URI' => UTF8_IMAGE_URI,
 						'mod_rewrite'		 => MOD_REWRITE,
 						'hash'					 => HASH_SEED,
-						'strong_hash'		 => getOption('strong_hash'),
-						'admin'					 => serialize($_zp_current_admin_obj)
-		);
+						'strong_hash'		 => getOption('strong_hash'));
+		$_SESSION['admin'] = serialize($_zp_current_admin_obj);
 
 		$msg[] = '<p><span class="buttons"><a href="' . $newinstall . ZENFOLDER . '/setup/index.php?autorun" target=_newtab">' . gettext('setup the new install') . '</a></span><br class="clearall" /></p>' . "\n";
 	} else {

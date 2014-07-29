@@ -51,7 +51,7 @@ class PersistentObject {
 	private $updates = NULL;
 
 	/**
-		}
+	  }
 	 *
 	 * Prime instantiator for zenphoto objects
 	 * @param $tablename	The name of the database table
@@ -134,6 +134,16 @@ class PersistentObject {
 	 * used to make the object "virgin" so it can be re-saved with a new id
 	 */
 	function clearID() {
+		$columns = array();
+		foreach (db_list_fields($this->table) as $field) {
+			if ($field['Field'] != 'id')
+				$columns[] = $field['Field'];
+		}
+		foreach ($this->data as $col => $update) {
+			if (in_array($col, $columns)) {
+				$this->updates[$col] = $update;
+			}
+		}
 		$this->id = 0;
 	}
 
@@ -334,29 +344,21 @@ class PersistentObject {
 		if (!$this->id) {
 			$this->setDefaults();
 			// Create a new object and set the id from the one returned.
-			$insert_data = array_merge($this->unique_set, $this->data, $this->updates, $this->tempdata);
+			$insert_data = array_merge($this->unique_set, $this->updates, $this->tempdata);
 			if (empty($insert_data)) {
 				return true;
 			}
-			$columns = array();
-			foreach (db_list_fields($this->table) as $field) {
-				if ($field['Field'] != 'id')
-					$columns[] = $field['Field'];
-			}
-			$i = 0;
 			$cols = $vals = '';
 			foreach ($insert_data as $col => $value) {
-				if (in_array($col, $columns)) {
-					if (!empty($cols)) {
-						$cols .= ", ";
-						$vals .= ", ";
-					}
-					$cols .= "`$col`";
-					if (is_null($value)) {
-						$vals .= "NULL";
-					} else {
-						$vals .= db_quote($value);
-					}
+				if (!empty($cols)) {
+					$cols .= ", ";
+					$vals .= ", ";
+				}
+				$cols .= "`$col`";
+				if (is_null($value)) {
+					$vals .= "NULL";
+				} else {
+					$vals .= db_quote($value);
 				}
 			}
 			$sql = 'INSERT INTO ' . prefix($this->table) . ' (' . $cols . ') VALUES (' . $vals . ')';

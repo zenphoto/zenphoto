@@ -53,7 +53,7 @@ if ($plugin_disable) {
 			$clones = array();
 			if ($result = query('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="clone"')) {
 				while ($row = db_fetch_assoc($result)) {
-					if (file_exists($row['aux']) . '/' . ZENFOLDER) {
+					if (file_exists($row['aux'] . '/' . ZENFOLDER . '/index.php')) {
 						$clones[$row['aux']] = $row['data'] . '/' . ZENFOLDER . '/setup/index.php?autorun';
 					} else {
 						query('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `id` = ' . $row['id']);

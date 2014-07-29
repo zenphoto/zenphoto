@@ -34,26 +34,12 @@ if (!file_exists($session_path) || !is_writable($session_path)) {
 }
 
 $session = session_start();
-
 session_cache_limiter('nocache');
-
-header('Content-Type: text/html; charset=UTF-8');
-header("HTTP/1.0 200 OK");
-header("Status: 200 OK");
-header("Cache-Control: no-cache, must-revalidate, no-store, pre-check=0, post-check=0, max-age=0");
-header("Pragma: no-cache");
-header('Last-Modified: ' . ZP_LAST_MODIFIED);
-header("Expires: Thu, 19 Nov 1981 08:52:00 GMT");
 
 require_once(dirname(__FILE__) . '/setup-functions.php');
 //allow only one setup to run
 $setupMutex = new Mutex('sP');
 $setupMutex->lock();
-
-if (isset($_SESSION['clone'])) {
-	if (SERVERPATH != $_SESSION['clone']['folder'])
-		unset($_SESSION['clone']);
-}
 
 if ($debug = isset($_REQUEST['debug'])) {
 	if (!$debug = $_REQUEST['debug']) {
@@ -125,9 +111,6 @@ $zptime = filemtime($oldconfig = SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFI
 @copy(dirname(dirname(__FILE__)) . '/dataaccess', $serverpath . '/' . DATA_FOLDER . '/.htaccess');
 @chmod($serverpath . '/' . DATA_FOLDER . '/.htaccess', 0444);
 
-if (session_id() == '') {
-	session_start();
-}
 if (isset($_GET['mod_rewrite'])) {
 	$mod = '&mod_rewrite=' . $_GET['mod_rewrite'];
 } else {
@@ -359,6 +342,21 @@ if ($selected_database) {
 }
 
 require_once(dirname(dirname(__FILE__)) . '/admin-functions.php');
+
+if (isset($_SESSION['clone'])) {
+	if (SERVERPATH != $_SESSION['clone']['folder']) {
+		unset($_SESSION['clone']);
+		unset($_SESSION['admin']);
+	}
+}
+
+header('Content-Type: text/html; charset=UTF-8');
+header("HTTP/1.0 200 OK");
+header("Status: 200 OK");
+header("Cache-Control: no-cache, must-revalidate, no-store, pre-check=0, post-check=0, max-age=0");
+header("Pragma: no-cache");
+header('Last-Modified: ' . ZP_LAST_MODIFIED);
+header("Expires: Thu, 19 Nov 1981 08:52:00 GMT");
 
 if (defined('CHMOD_VALUE')) {
 	$chmod = CHMOD_VALUE & 0666;
@@ -2604,8 +2602,9 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 									<p><?php echo gettext('<strong>Warning!</strong> This upgrade makes structural changes to the database which are not easily reversed. Be sure you have a database backup before proceeding.'); ?></p>
 									<form>
 										<input type="hidden" name="xsrfToken" value="<?php echo setupXSRFToken(); ?>" />
-										<p><?php printf(gettext('%s I acknowledge that proceeding will restructure my database.'), '<input type="checkbox" id="agree" value="0" onclick="$(\'#setup\').show();$(\'#agree\').attr(\'checked\',\'checked\')" />')
-								?></p>
+										<p>
+											<?php printf(gettext('%s I acknowledge that proceeding will restructure my database.'), '<input type="checkbox" id="agree" value="0" onclick="$(\'#setup\').show();$(\'#agree\').attr(\'checked\',\'checked\')" />') ?>
+										</p>
 									</form>
 								</div>
 								<?php
@@ -2646,10 +2645,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 								}
 								$task = html_encode($task);
 								?>
-								<form id="setup" action="<?php
-								echo WEBPATH . '/' . ZENFOLDER, '/setup/index.php?checked';
-								echo $task . $mod;
-								?>" method="post"<?php echo $hideGoButton; ?> >
+								<form id="setup" action="<?php echo WEBPATH . '/' . ZENFOLDER, '/setup/index.php?checked' . $task . $mod; ?>" method="post"<?php echo $hideGoButton; ?> >
 									<input type="hidden" name="setUTF8URI" id="setUTF8URI" value="dont" />
 									<input type="hidden" name="xsrfToken" value="<?php echo setupXSRFToken(); ?>" />
 									<?php
