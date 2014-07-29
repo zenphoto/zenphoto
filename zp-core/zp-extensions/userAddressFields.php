@@ -9,7 +9,7 @@
  * contained in the fields will be discarded.
  *
  * @author Stephen Billard (sbillard)
- * 
+ *
  * @package plugins
  * @subpackage users
  *
@@ -61,7 +61,7 @@ class userAddressFields extends fieldExtender {
 	}
 
 	static function adminSave($updated, $userobj, $i, $alter) {
-		parent::_adminSave($updated, $userobj, $i, $alter, self::fields());
+		return parent::_adminSave($updated, $userobj, $i, $alter, self::fields());
 	}
 
 	static function adminEdit($html, $userobj, $i, $background, $current) {
