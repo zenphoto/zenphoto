@@ -132,8 +132,7 @@ if ($success) {
 						'mod_rewrite'		 => MOD_REWRITE,
 						'hash'					 => HASH_SEED,
 						'strong_hash'		 => getOption('strong_hash'),
-						'adminuser'			 => $_zp_current_admin_obj->getUser(),
-						'adminpass'			 => $_zp_current_admin_obj->getPass()
+						'admin'					 => serialize($_zp_current_admin_obj)
 		);
 
 		$msg[] = '<p><span class="buttons"><a href="' . $newinstall . ZENFOLDER . '/setup/index.php?autorun" target=_newtab">' . gettext('setup the new install') . '</a></span><br class="clearall" /></p>' . "\n";

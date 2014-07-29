@@ -42,9 +42,8 @@ if (empty($admins)) { //	empty administrators table
 		setOption('UTF8_image_URI', $_SESSION['clone']['UTF8_image_URI']);
 		setOption('strong_hash', $_SESSION['clone']['strong_hash']);
 		setOption('extra_auth_hash_text', $_SESSION['clone']['hash']);
-		$_zp_current_admin_obj = new Zenphoto_Administrator($_SESSION['clone']['adminuser'], 1);
-		$_zp_current_admin_obj->set('pass', $_SESSION['clone']['adminpass']);
-		$_zp_current_admin_obj->setRights(ALL_RIGHTS);
+		$_zp_current_admin_obj = unserialize($_SESSION['clone']['admin']);
+		$_zp_current_admin_obj->clearID();
 		$_zp_current_admin_obj->save();
 		$_zp_loggedin = ALL_RIGHTS;
 	} else {
