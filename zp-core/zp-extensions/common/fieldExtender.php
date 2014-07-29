@@ -114,7 +114,7 @@ class fieldExtender {
 	static function _adminSave($updated, $userobj, $i, $alter, $fields) {
 		if ($userobj->getValid()) {
 			foreach ($fields as $field) {
-				if (isset($_POST[$field['name']])) {
+				if (isset($_POST[$field['name'] . '_' . $i])) {
 					if ($field['table'] == 'administrators') {
 						$olddata = $userobj->get($field['name']);
 						$userobj->set($field['name'], $newdata = $_POST[$field['name'] . '_' . $i]);
