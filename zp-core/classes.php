@@ -134,17 +134,17 @@ class PersistentObject {
 	 * used to make the object "virgin" so it can be re-saved with a new id
 	 */
 	function clearID() {
+		$this->data['id'] = $this->id = 0;
 		$columns = array();
-		foreach (db_list_fields($this->table) as $field) {
-			if ($field['Field'] != 'id')
-				$columns[] = $field['Field'];
+		$data = $this->data;
+		foreach (db_list_fields($this->table) as $col) {
+			$this->updates[$col['Field']] = $data[$col['Field']];
+			unset($data[$col['Field']]);
 		}
-		foreach ($this->data as $col => $update) {
-			if (in_array($col, $columns)) {
-				$this->updates[$col] = $update;
-			}
+		foreach ($data as $field => $value) {
+			unset($this->data[$field]);
+			$this->tempdata[$field] = $value;
 		}
-		$this->id = 0;
 	}
 
 	/**
@@ -344,7 +344,7 @@ class PersistentObject {
 		if (!$this->id) {
 			$this->setDefaults();
 			// Create a new object and set the id from the one returned.
-			$insert_data = array_merge($this->unique_set, $this->updates, $this->tempdata);
+			$insert_data = array_merge($this->unique_set, $this->updates);
 			if (empty($insert_data)) {
 				return true;
 			}
@@ -372,7 +372,6 @@ class PersistentObject {
 			$this->data['id'] = $this->id = (int) db_insert_id(); // so 'get' will retrieve it!
 			$this->loaded = true;
 			$this->updates = array();
-			$this->tempdata = array();
 		} else {
 			// Save the existing object (updates only) based on the existing id.
 			if (empty($this->updates)) {
