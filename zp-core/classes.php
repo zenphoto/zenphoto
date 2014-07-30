@@ -309,7 +309,7 @@ class PersistentObject {
 		// If we don't have an entry yet, this is a new record. Create it.
 		if (empty($entry)) {
 			if ($this->transient) { // no don't save it in the DB!
-				$entry = array_merge($this->unique_set, $this->updates, $this->tempdata);
+				$entry = $this->unique_set;
 				$entry['id'] = 0;
 			} else if (!$allowCreate) {
 				return NULL; // does not exist and we are not allowed to create it
