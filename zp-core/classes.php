@@ -378,20 +378,19 @@ class PersistentObject {
 			if (empty($this->updates)) {
 				return true;
 			} else {
-				$sql = 'UPDATE ' . prefix($this->table) . ' SET';
-				$i = 0;
+				$sql = '';
 				foreach ($this->updates as $col => $value) {
-					if ($i > 0)
+					if ($sql) {
 						$sql .= ",";
+					}
 					if (is_null($value)) {
 						$sql .= " `$col` = NULL";
 					} else {
 						$sql .= " `$col` = " . db_quote($value);
 					}
 					$this->data[$col] = $value;
-					$i++;
 				}
-				$sql .= ' WHERE id=' . $this->id . ';';
+				$sql = 'UPDATE ' . prefix($this->table) . ' SET' . $sql . ' WHERE id=' . $this->id . ';';
 				$success = query($sql);
 				if (!$success || db_affected_rows() != 1) {
 					return false;
