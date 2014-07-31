@@ -1126,32 +1126,29 @@ function pathurlencode($path) {
 //	some kind of query link
 		$pairs = parse_query($parts['query']);
 		if (preg_match('/^a=.*\&i=?/i', $parts['query'])) { //image URI, handle & in file/folder names
-			$index = 'a';
+			$other = '';
 			foreach ($pairs as $p => $q) {
 				switch ($p) {
+					case 'wmk':
+						if ($q == '!') {
+							break;
+						}
 					case 'i':
-						$index = 'i';
 					case 'a':
+						$pairs[$p] = implode("/", array_map("rawurlencode", explode("/", $q)));
 						break;
 					default:
 						if (is_null($q)) {
-							$pairs[$index] .= '&' . $p;
-						} else if (in_array($p, array('s', 'w', 'h', 'cw', 'ch', 'cx', 'cy', 'q', 'c', 't', 'wmk', 'admin', 'effects', 'z'))) { // image processor parameters
-							break 2;
-						} else {
-							$pairs[$index] .= '&' . $p . '=' . $q;
+							$other .= '&' . $p;
+							unset($pairs[$p]);
+						} else if (in_array($p, array('s', 'w', 'h', 'cw', 'ch', 'cx', 'cy', 'q', 'c', 't', 'admin', 'z'))) { // clean image processor parameters
+							$pairs[$p] = implode("/", array_map("rawurlencode", explode("/", $q)));
 						}
-						unset($pairs[$p]);
 						break;
 				}
 			}
 		}
-		foreach ($pairs as $name => $value) {
-			if ($value) {
-				$pairs[$name] = implode("/", array_map("rawurlencode", explode("/", $value)));
-			}
-		}
-		$parts['query'] = http_build_query($pairs);
+		$parts['query'] = http_build_query($pairs) . $other;
 	}
 	$parts['path'] = implode("/", array_map("rawurlencode", explode("/", $parts['path'])));
 	return build_url($parts);
