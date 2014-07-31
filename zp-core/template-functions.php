@@ -2558,9 +2558,13 @@ function getSizeCustomImage($size, $width = NULL, $height = NULL, $cw = NULL, $c
 	if ($cw || $ch) { //	image is being cropped
 		if ($cw && $cw <= $w) {
 			$neww = $cw;
+		} else {
+			$neww = $w;
 		}
 		if ($ch && $ch <= $h) {
 			$newh = $ch;
+		} else {
+			$newh = $h;
 		}
 	} else if (($size && ($side == 'longest' && $h > $w) || ($side == 'height') || ($side == 'shortest' && $h < $w)) || $height) {
 // Scale the height

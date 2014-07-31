@@ -296,6 +296,7 @@ datepickerJS();
 									}
 									?>
 								</td>
+								<td><?php echo linkPickerIcon($article); ?></td>
 								<?php
 								$option = getNewsAdminOptionPath(getNewsAdminOption(array('category' => 0, 'date' => 0, 'published' => 0, 'sortorder' => 0, 'articles_page' => 1, 'subpage' => 1)));
 								if (empty($option)) {
