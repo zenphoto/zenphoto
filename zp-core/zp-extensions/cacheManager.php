@@ -80,7 +80,7 @@
  * @package plugins
  * @subpackage admin
  */
-$plugin_is_filter = 5 | ADMIN_PLUGIN;
+$plugin_is_filter = defaultExtension(5 | ADMIN_PLUGIN);
 $plugin_description = gettext("Provides cache management utilities for Image, HTML, and RSS caches.");
 $plugin_author = "Stephen Billard (sbillard)";
 
