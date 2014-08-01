@@ -1,5 +1,4 @@
 <?php
-
 /**
  * "Clones" the currrent installation to a new location using symlinks. The <i>zp-core</i>, <i>themes</i>, <i>user plugins</i>
  * folders and the root <i>index.php</i> file are symlinked. Setup will create the other needed folders.
@@ -27,28 +26,52 @@ $plugin_author = "Stephen Billard (sbillard)";
 $plugin_disable = (SYMLINK) ? (zpFunctions::hasPrimaryScripts()) ? false : gettext('Only the primary installation may clone offspring installations.') : gettext('Your server does not support symbolic linking.');
 
 require_once(SERVERPATH . '/' . ZENFOLDER . '/reconfigure.php');
-if (!$plugin_disable) {
+if ($plugin_disable) {
+	enableExtension('cloneZenphoto', 0);
+} else {
 	zp_register_filter('admin_utilities_buttons', 'cloneZenphoto::button');
-}
 
-class cloneZenphoto {
+	class cloneZenphoto {
 
-	static function button($buttons) {
-		$buttons[] = array(
-						'category'		 => gettext('Admin'),
-						'enable'			 => true,
-						'button_text'	 => gettext('Clone installation'),
-						'formname'		 => 'cloneZenphoto',
-						'action'			 => PLUGIN_FOLDER . '/cloneZenphoto/cloneTab.php',
-						'icon'				 => 'images/folder.png',
-						'title'				 => gettext('Create a new installation using links to the current install files.'),
-						'alt'					 => gettext('Clone'),
-						'hidden'			 => '',
-						'rights'			 => ADMIN_RIGHTS
-		);
-		return $buttons;
+		static function button($buttons) {
+			$buttons[] = array(
+							'category'		 => gettext('Admin'),
+							'enable'			 => true,
+							'button_text'	 => gettext('Clone installation'),
+							'formname'		 => 'cloneZenphoto',
+							'action'			 => PLUGIN_FOLDER . '/cloneZenphoto/cloneTab.php',
+							'icon'				 => 'images/folder.png',
+							'title'				 => gettext('Create a new installation using links to the current install files.'),
+							'alt'					 => gettext('Clone'),
+							'hidden'			 => '',
+							'rights'			 => ADMIN_RIGHTS
+			);
+			return $buttons;
+		}
+
+		static function setup($auto) {
+			$clones = array();
+			if ($result = query('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="clone"')) {
+				while ($row = db_fetch_assoc($result)) {
+					if (file_exists($row['aux'] . '/' . ZENFOLDER . '/index.php')) {
+						$clones[$row['aux']] = $row['data'] . '/' . ZENFOLDER . '/setup/index.php?autorun';
+					} else {
+						query('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `id` = ' . $row['id']);
+					}
+				}
+				db_free_result($result);
+			}
+			if (!empty($clones)) {
+				foreach ($clones as $key => $clone) {
+					?>
+					window.open('<?php echo $clone; ?>','_newtab');
+					<?php
+				}
+			}
+			return $auto;
+		}
+
 	}
 
 }
-
 ?>

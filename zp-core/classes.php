@@ -131,6 +131,23 @@ class PersistentObject {
 	}
 
 	/**
+	 * used to make the object "virgin" so it can be re-saved with a new id
+	 */
+	function clearID() {
+		$this->data['id'] = $this->id = 0;
+		$columns = array();
+		$data = $this->data;
+		foreach (db_list_fields($this->table) as $col) {
+			$this->updates[$col['Field']] = $data[$col['Field']];
+			unset($data[$col['Field']]);
+		}
+		foreach ($data as $field => $value) {
+			unset($this->data[$field]);
+			$this->tempdata[$field] = $value;
+		}
+	}
+
+	/**
 	 * Sets default values for new objects using the set() method.
 	 * Should do nothing in the base class; subclasses should override.
 	 */
@@ -292,7 +309,7 @@ class PersistentObject {
 		// If we don't have an entry yet, this is a new record. Create it.
 		if (empty($entry)) {
 			if ($this->transient) { // no don't save it in the DB!
-				$entry = array_merge($this->unique_set, $this->updates, $this->tempdata);
+				$entry = $this->unique_set;
 				$entry['id'] = 0;
 			} else if (!$allowCreate) {
 				return NULL; // does not exist and we are not allowed to create it
@@ -327,24 +344,22 @@ class PersistentObject {
 		if (!$this->id) {
 			$this->setDefaults();
 			// Create a new object and set the id from the one returned.
-			$insert_data = array_merge($this->unique_set, $this->updates, $this->tempdata);
+			$insert_data = array_merge($this->unique_set, $this->updates);
 			if (empty($insert_data)) {
 				return true;
 			}
-			$i = 0;
 			$cols = $vals = '';
 			foreach ($insert_data as $col => $value) {
-				if ($i > 0)
+				if (!empty($cols)) {
 					$cols .= ", ";
-				$cols .= "`$col`";
-				if ($i > 0)
 					$vals .= ", ";
+				}
+				$cols .= "`$col`";
 				if (is_null($value)) {
 					$vals .= "NULL";
 				} else {
 					$vals .= db_quote($value);
 				}
-				$i++;
 			}
 			$sql = 'INSERT INTO ' . prefix($this->table) . ' (' . $cols . ') VALUES (' . $vals . ')';
 			$success = query($sql);
@@ -357,26 +372,24 @@ class PersistentObject {
 			$this->data['id'] = $this->id = (int) db_insert_id(); // so 'get' will retrieve it!
 			$this->loaded = true;
 			$this->updates = array();
-			$this->tempdata = array();
 		} else {
 			// Save the existing object (updates only) based on the existing id.
 			if (empty($this->updates)) {
 				return true;
 			} else {
-				$sql = 'UPDATE ' . prefix($this->table) . ' SET';
-				$i = 0;
+				$sql = '';
 				foreach ($this->updates as $col => $value) {
-					if ($i > 0)
+					if ($sql) {
 						$sql .= ",";
+					}
 					if (is_null($value)) {
 						$sql .= " `$col` = NULL";
 					} else {
 						$sql .= " `$col` = " . db_quote($value);
 					}
 					$this->data[$col] = $value;
-					$i++;
 				}
-				$sql .= ' WHERE id=' . $this->id . ';';
+				$sql = 'UPDATE ' . prefix($this->table) . ' SET' . $sql . ' WHERE id=' . $this->id . ';';
 				$success = query($sql);
 				if (!$success || db_affected_rows() != 1) {
 					return false;

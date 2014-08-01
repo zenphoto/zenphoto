@@ -3152,8 +3152,8 @@ function filterImageQuery($result, $source) {
  */
 function getRandomImages($daily = false) {
 	global $_zp_gallery;
-	if ($daily) {
-		$potd = getSerializedArray(getOption('picture_of_the_day'));
+	if ($daily && ($potd = getOption('picture_of_the_day'))) {
+		$potd = getSerializedArray($potd);
 		if (date('Y-m-d', $potd['day']) == date('Y-m-d')) {
 			$album = newAlbum($potd['folder'], true, true);
 			if ($album->exists) {
@@ -3862,34 +3862,34 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 		<!-- search form -->
 		<form method="post" action="<?php echo $searchurl; ?>" id="search_form">
 			<script type="text/javascript">
-			// <!-- <![CDATA[
-			var within = <?php echo (int) $within; ?>;
-			function search_(way) {
-				within = way;
-				if (way) {
-					$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
+				// <!-- <![CDATA[
+				var within = <?php echo (int) $within; ?>;
+				function search_(way) {
+					within = way;
+					if (way) {
+						$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
 
-				} else {
-					lastsearch = '';
-					$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
-				}
-				$('#search_input').val('');
-			}
-			$('#search_form').submit(function() {
-				if (within) {
-					var newsearch = $.trim($('#search_input').val());
-					if (newsearch.substring(newsearch.length - 1) == ',') {
-						newsearch = newsearch.substr(0, newsearch.length - 1);
-					}
-					if (newsearch.length > 0) {
-						$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
 					} else {
-						$('#search_input').val('<?php echo $searchwords; ?>');
+						lastsearch = '';
+						$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
 					}
+					$('#search_input').val('');
 				}
-				return true;
-			});
-			// ]]> -->
+				$('#search_form').submit(function() {
+					if (within) {
+						var newsearch = $.trim($('#search_input').val());
+						if (newsearch.substring(newsearch.length - 1) == ',') {
+							newsearch = newsearch.substr(0, newsearch.length - 1);
+						}
+						if (newsearch.length > 0) {
+							$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
+						} else {
+							$('#search_input').val('<?php echo $searchwords; ?>');
+						}
+					}
+					return true;
+				});
+				// ]]> -->
 			</script>
 			<?php echo $prevtext; ?>
 			<div>

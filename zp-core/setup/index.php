@@ -36,14 +36,6 @@ if (!file_exists($session_path) || !is_writable($session_path)) {
 $session = session_start();
 session_cache_limiter('nocache');
 
-header('Content-Type: text/html; charset=UTF-8');
-header("HTTP/1.0 200 OK");
-header("Status: 200 OK");
-header("Cache-Control: no-cache, must-revalidate, no-store, pre-check=0, post-check=0, max-age=0");
-header("Pragma: no-cache");
-header('Last-Modified: ' . ZP_LAST_MODIFIED);
-header("Expires: Thu, 19 Nov 1981 08:52:00 GMT");
-
 require_once(dirname(__FILE__) . '/setup-functions.php');
 //allow only one setup to run
 $setupMutex = new Mutex('sP');
@@ -119,9 +111,6 @@ $zptime = filemtime($oldconfig = SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFI
 @copy(dirname(dirname(__FILE__)) . '/dataaccess', $serverpath . '/' . DATA_FOLDER . '/.htaccess');
 @chmod($serverpath . '/' . DATA_FOLDER . '/.htaccess', 0444);
 
-if (session_id() == '') {
-	session_start();
-}
 if (isset($_GET['mod_rewrite'])) {
 	$mod = '&mod_rewrite=' . $_GET['mod_rewrite'];
 } else {
@@ -354,14 +343,30 @@ if ($selected_database) {
 
 require_once(dirname(dirname(__FILE__)) . '/admin-functions.php');
 
+if (isset($_SESSION['clone'])) {
+	if (SERVERPATH != $_SESSION['clone']['folder']) {
+		unset($_SESSION['clone']);
+		unset($_SESSION['admin']);
+	}
+}
+
+header('Content-Type: text/html; charset=UTF-8');
+header("HTTP/1.0 200 OK");
+header("Status: 200 OK");
+header("Cache-Control: no-cache, must-revalidate, no-store, pre-check=0, post-check=0, max-age=0");
+header("Pragma: no-cache");
+header('Last-Modified: ' . ZP_LAST_MODIFIED);
+header("Expires: Thu, 19 Nov 1981 08:52:00 GMT");
+
 if (defined('CHMOD_VALUE')) {
 	$chmod = CHMOD_VALUE & 0666;
 }
 
 setOptionDefault('zp_plugin_security-logger', 9 | CLASS_PLUGIN);
 
-if ($newconfig || isset($_GET['copyhtaccess'])) {
-	if ($newconfig && !file_exists($serverpath . '/.htaccess') || setupUserAuthorized()) {
+$forcerewrite = isset($_SESSION['clone']['mod_rewrite']) && $_SESSION['clone']['mod_rewrite'] && !file_exists($serverpath . '/.htaccess');
+if ($newconfig || isset($_GET['copyhtaccess']) || $forcerewrite) {
+	if (($newconfig || $forcerewrite) && !file_exists($serverpath . '/.htaccess') || setupUserAuthorized()) {
 		@chmod($serverpath . '/.htaccess', 0777);
 		$ht = @file_get_contents(SERVERPATH . '/.htaccess');
 		$newht = file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/htaccess');
@@ -853,7 +858,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 														var image = new Image();
 														image.onload = function() {
 						<?php
-						if (!UTF8_IMAGE_URI) {
+						if (!(UTF8_IMAGE_URI || @$_SESSION['clone']['UTF8_image_URI'])) {
 							?>
 																$('#UTF8_uri_warn').html('<?php echo addslashes(gettext('You should enable the URL option <em>UTF8 image URIs</em>.')); ?>' + ' <?php echo addslashes(gettext('<a href="javascript:uri(true)">Please do</a>')); ?>');
 																$('#UTF8_uri_warn').show();
@@ -2477,22 +2482,28 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 									$link = sprintf(gettext('You can now <a href="%1$s">administer your gallery.</a>'), WEBPATH . '/' . ZENFOLDER . '/admin.php');
 								}
 								?>
-								<p id="golink" class="delayshow" style="display:none;
-									 "><?php echo $link; ?></p>
-									 <?php
-									 switch ($autorun) {
-										 case false:
-											 break;
-										 case 'gallery':
-										 case 'admin':
-											 $autorun = WEBPATH . '/' . ZENFOLDER . '/admin.php';
-											 break;
-										 default:
-											 break;
-									 }
-									 ?>
+								<p id="golink" class="delayshow" style="display:none;"><?php echo $link; ?></p>
+								<?php
+								switch ($autorun) {
+									case false:
+										break;
+									case 'gallery':
+									case 'admin':
+										$autorun = WEBPATH . '/' . ZENFOLDER . '/admin.php';
+										break;
+									default:
+										break;
+								}
+								?>
 								<script type="text/javascript">
 									window.onload = function() {
+			<?php
+			if (extensionEnabled('cloneZenphoto')) {
+				require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cloneZenphoto.php');
+				if (class_exists('cloneZenphoto'))
+					cloneZenphoto::setup($autorun);
+			}
+			?>
 										$('.delayshow').show();
 			<?php
 			if ($autorun) {
@@ -2591,8 +2602,9 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 									<p><?php echo gettext('<strong>Warning!</strong> This upgrade makes structural changes to the database which are not easily reversed. Be sure you have a database backup before proceeding.'); ?></p>
 									<form>
 										<input type="hidden" name="xsrfToken" value="<?php echo setupXSRFToken(); ?>" />
-										<p><?php printf(gettext('%s I acknowledge that proceeding will restructure my database.'), '<input type="checkbox" id="agree" value="0" onclick="$(\'#setup\').show();$(\'#agree\').attr(\'checked\',\'checked\')" />')
-								?></p>
+										<p>
+											<?php printf(gettext('%s I acknowledge that proceeding will restructure my database.'), '<input type="checkbox" id="agree" value="0" onclick="$(\'#setup\').show();$(\'#agree\').attr(\'checked\',\'checked\')" />') ?>
+										</p>
 									</form>
 								</div>
 								<?php
@@ -2633,10 +2645,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 								}
 								$task = html_encode($task);
 								?>
-								<form id="setup" action="<?php
-								echo WEBPATH . '/' . ZENFOLDER, '/setup/index.php?checked';
-								echo $task . $mod;
-								?>" method="post"<?php echo $hideGoButton; ?> >
+								<form id="setup" action="<?php echo WEBPATH . '/' . ZENFOLDER, '/setup/index.php?checked' . $task . $mod; ?>" method="post"<?php echo $hideGoButton; ?> >
 									<input type="hidden" name="setUTF8URI" id="setUTF8URI" value="dont" />
 									<input type="hidden" name="xsrfToken" value="<?php echo setupXSRFToken(); ?>" />
 									<?php
