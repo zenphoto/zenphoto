@@ -19,7 +19,7 @@ function zpRewriteURL($query) {
 		sanitize($query);
 		switch ($query['p']) {
 			case 'news':
-				$redirectURL = _NEWS_;
+				$redirectURL = _NEWS_ . '/';
 				if (isset($query['category'])) {
 					$obj = new Category($query['category'], false);
 					if (!$obj->loaded)
@@ -27,7 +27,7 @@ function zpRewriteURL($query) {
 					$redirectURL = $obj->getLink();
 					unset($query['category']);
 				} else if (isset($query['date'])) {
-					$redirectURL = _NEWS_ARCHIVE_ . '/' . $query['date'];
+					$redirectURL = _NEWS_ARCHIVE_ . '/' . $query['date'] . '/';
 					unset($query['date']);
 				}
 				if (isset($query['title'])) {
@@ -39,7 +39,6 @@ function zpRewriteURL($query) {
 				}
 				break;
 			case 'pages':
-				$redirectURL = _PAGES_;
 				if (isset($query['title'])) {
 					$obj = new Page($query['title'], false);
 					if (!$obj->loaded)
@@ -51,14 +50,14 @@ function zpRewriteURL($query) {
 			case'search':
 				$redirectURL = _SEARCH_;
 				if (isset($query['date'])) {
-					$redirectURL = _ARCHIVE_ . '/' . $query['date'];
+					$redirectURL = _ARCHIVE_ . '/' . $query['date'] . '/';
 					unset($query['date']);
 				} else if (isset($query['searchfields']) && $query['searchfields'] == 'tags') {
 					$redirectURL = _TAGS_;
 					unset($query['searchfields']);
 				}
 				if (isset($query['words'])) {
-					$redirectURL .= '/' . $query['words'];
+					$redirectURL .= '/' . $query['words'] . '/';
 					unset($query['words']);
 				}
 				break;
@@ -101,15 +100,41 @@ function fix_path_redirect() {
 	if (MOD_REWRITE) {
 		$request_uri = getRequestURI();
 		$parts = parse_url($request_uri);
+		$redirectURL = '';
 		if (isset($parts['query'])) {
 			parse_str($parts['query'], $query);
 			$redirectURL = zpRewriteURL($query);
-			if ($redirectURL) {
-				header("HTTP/1.0 301 Moved Permanently");
-				header("Status: 301 Moved Permanently");
-				header('Location: ' . FULLWEBPATH . '/' . $redirectURL);
-				exitZP();
+		}
+		if (isset($_GET['album']) && !isset($_GET['image'])) {
+			//album URLs should end in a slash for consistency
+			if (substr($parts['path'], -1, 1) != '/') {
+				$redirectURL = zpRewriteURL($_GET);
 			}
+		}
+		if (isset($_GET['p'])) {
+			switch ($_GET['p']) {
+				case 'news':
+					if (!isset($_GET['title'])) {
+						//should be news/
+						if (substr($parts['path'], -1, 1) != '/') {
+							$redirectURL = zpRewriteURL($_GET);
+						}
+					}
+					break;
+				case 'search':
+					if (isset($_GET['date'])) {
+						if (substr($parts['path'], -1, 1) != '/') {
+							$redirectURL = zpRewriteURL($_GET);
+						}
+					}
+					break;
+			}
+		}
+		if ($redirectURL) {
+			header("HTTP/1.0 301 Moved Permanently");
+			header("Status: 301 Moved Permanently");
+			header('Location: ' . FULLWEBPATH . '/' . $redirectURL);
+			exitZP();
 		}
 	}
 }
@@ -237,7 +262,7 @@ function load_zenpage_news($request) {
 	global $_zp_current_article, $_zp_current_category, $_zp_post_date;
 	if (isset($request['date'])) {
 		add_context(ZP_ZENPAGE_NEWS_DATE);
-		$_zp_post_date = sanitize($request['date']);
+		$_zp_post_date = sanitize(rtrim($request['date'], '/'));
 	}
 	if (isset($request['category'])) {
 		$titlelink = sanitize(rtrim($request['category'], '/'));
