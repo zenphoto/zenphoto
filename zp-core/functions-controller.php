@@ -21,17 +21,17 @@ function zpRewriteURL($query) {
 			case 'news':
 				$redirectURL = _NEWS_ . '/';
 				if (isset($query['category'])) {
-					$obj = new Category($query['category'], false);
+					$obj = new Category(rtrim($query['category'], '/'), false);
 					if (!$obj->loaded)
 						return '';
 					$redirectURL = $obj->getLink();
 					unset($query['category']);
 				} else if (isset($query['date'])) {
-					$redirectURL = _NEWS_ARCHIVE_ . '/' . $query['date'] . '/';
+					$redirectURL = _NEWS_ARCHIVE_ . '/' . rtrim($query['date'], '/') . '/';
 					unset($query['date']);
 				}
 				if (isset($query['title'])) {
-					$obj = newArticle($query['title'], false);
+					$obj = newArticle(rtrim($query['title'], '/'), false);
 					if (!$obj->loaded)
 						return '';
 					$redirectURL = $obj->getLink();
@@ -40,7 +40,7 @@ function zpRewriteURL($query) {
 				break;
 			case 'pages':
 				if (isset($query['title'])) {
-					$obj = new Page($query['title'], false);
+					$obj = new Page(rtrim($query['title'], '/'), false);
 					if (!$obj->loaded)
 						return '';
 					$redirectURL = $obj->getLink();
@@ -50,7 +50,7 @@ function zpRewriteURL($query) {
 			case'search':
 				$redirectURL = _SEARCH_;
 				if (isset($query['date'])) {
-					$redirectURL = _ARCHIVE_ . '/' . $query['date'] . '/';
+					$redirectURL = _ARCHIVE_ . '/' . rtrim($query['date'], '/') . '/';
 					unset($query['date']);
 				} else if (isset($query['searchfields']) && $query['searchfields'] == 'tags') {
 					$redirectURL = _TAGS_;
@@ -62,13 +62,13 @@ function zpRewriteURL($query) {
 				}
 				break;
 			default:
-				$redirectURL = getCustomPageURL($query['p']);
+				$redirectURL = getCustomPageURL(rtrim($query['p'], '/'));
 				break;
 		}
 		unset($query['p']);
 		$redirectURL = preg_replace('~^' . WEBPATH . '/~', '', $redirectURL);
 		if (isset($query['page'])) {
-			$redirectURL.='/' . $query['page'];
+			$redirectURL.='/' . rtrim($query['page'], '/');
 			unset($query['page']);
 		}
 		$q = http_build_query($query);
@@ -100,34 +100,53 @@ function fix_path_redirect() {
 	if (MOD_REWRITE) {
 		$request_uri = getRequestURI();
 		$parts = parse_url($request_uri);
-		$redirectURL = '';
+		$redirectURL = NULL;
 		if (isset($parts['query'])) {
 			parse_str($parts['query'], $query);
 			$redirectURL = zpRewriteURL($query);
 		}
-		if (isset($_GET['album']) && !isset($_GET['image'])) {
-			//album URLs should end in a slash for consistency
-			if (substr($parts['path'], -1, 1) != '/') {
-				$redirectURL = zpRewriteURL($_GET);
+		if (isset($_GET['album'])) {
+			if (isset($_GET['image'])) {
+				//image URLs should not end in a slash
+				if (substr($parts['path'], -1, 1) == '/') {
+					$redirectURL = zpRewriteURL($_GET);
+				}
+			} else {
+				//album URLs should end in a slash for consistency
+				if (substr($parts['path'], -1, 1) != '/') {
+					$redirectURL = zpRewriteURL($_GET);
+				}
 			}
 		}
 		if (isset($_GET['p'])) {
-			switch ($_GET['p']) {
-				case 'news':
-					if (!isset($_GET['title'])) {
-						//should be news/
-						if (substr($parts['path'], -1, 1) != '/') {
-							$redirectURL = zpRewriteURL($_GET);
+			//page numbers do not have trailing slash
+			if (isset($_GET['page'])) {
+				if (substr($parts['path'], -1, 1) == '/') {
+					$redirectURL = zpRewriteURL($_GET);
+				}
+			} else {
+				switch ($_GET['p']) {
+					case 'news':
+						if (isset($_GET['title'])) {
+							//article URLs should not end in slash
+							if (substr($parts['path'], -1, 1) == '/') {
+								$redirectURL = zpRewriteURL($_GET);
+							}
+						} else {
+							//should be news/
+							if (substr($parts['path'], -1, 1) != '/') {
+								$redirectURL = zpRewriteURL($_GET);
+							}
 						}
-					}
-					break;
-				case 'search':
-					if (isset($_GET['date'])) {
-						if (substr($parts['path'], -1, 1) != '/') {
-							$redirectURL = zpRewriteURL($_GET);
+						break;
+					case 'search':
+						if (isset($_GET['date'])) {
+							if (substr($parts['path'], -1, 1) != '/') {
+								$redirectURL = zpRewriteURL($_GET);
+							}
 						}
-					}
-					break;
+						break;
+				}
 			}
 		}
 		if ($redirectURL) {
