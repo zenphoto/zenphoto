@@ -1469,7 +1469,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 									<label><input type="checkbox" name="disclose_password<?php echo $suffix; ?>"
 																id="disclose_password<?php echo $suffix; ?>"
 																onclick="passwordClear('<?php echo $suffix; ?>');
-																				togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?></label>
+																		togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?></label>
 								</td>
 								<td>
 									<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
@@ -1555,7 +1555,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						$sort[gettext('Custom')] = 'custom';
 						/*
 						 * not recommended--screws with peoples minds during pagination!
-							$sort[gettext('Random')] = 'random';
+						  $sort[gettext('Random')] = 'random';
 						 */
 						?>
 						<tr>
@@ -1986,7 +1986,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 } else {
 											 ?>
 											 onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');
-															 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
+													 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
 											 <?php
 										 }
 										 ?> />
@@ -4336,16 +4336,6 @@ function admin_securityChecks($rights, $return) {
 		if ($_zp_current_admin_obj->reset) {
 			$_zp_loggedin = USER_RIGHTS;
 		}
-	} else {
-		if (isset($_SESSION['admin'])) {
-			$user = unserialize($_SESSION['admin']);
-			$user2 = Zenphoto_Authority::getAnAdmin(array('`user`=' => $user->getUser(), '`valid`=' => 1));
-			if ($user2 && $user->getPass() == $user2->getPass()) {
-				Zenphoto_Authority::logUser($user2);
-				$_zp_current_admin_obj = $user2;
-				$_zp_loggedin = $_zp_current_admin_obj->getRights();
-			}
-		}
 	}
 	if (!zp_loggedin($rights)) {
 // prevent nefarious access to this page.
@@ -4533,7 +4523,7 @@ function printPageSelector($subpage, $rangeset, $script, $queryParams) {
 		}
 		?>
 		<select name="subpage" class="ignoredirty" id="subpage<?php echo $instances; ?>" onchange="launchScript('<?php echo WEBPATH . '/' . ZENFOLDER . '/' . $script; ?>',
-										[<?php echo $jump; ?>'subpage=' + $('#subpage<?php echo $instances; ?>').val()]);" >
+								[<?php echo $jump; ?>'subpage=' + $('#subpage<?php echo $instances; ?>').val()]);" >
 							<?php
 							foreach ($rangeset as $page => $range) {
 								?>
@@ -5016,12 +5006,12 @@ function linkPickerIcon($obj, $id = NULL, $extra = NULL) {
 	<a onclick="<?php
 	if ($id) {
 		?>
-						$('#<?php echo $id; ?>').select();
+				$('#<?php echo $id; ?>').select();
 		<?php
 	}
 	?>
-					$('.pickedObject').removeClass('pickedObject');
-					$('#<?php echo $iconid; ?>').addClass('pickedObject');
+			$('.pickedObject').removeClass('pickedObject');
+			$('#<?php echo $iconid; ?>').addClass('pickedObject');
 	<?php linkPickerPick($obj, $id, $extra); ?>"
 		 title="<?php echo gettext('pick source'); ?>">
 		<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" id="<?php echo $iconid; ?>">

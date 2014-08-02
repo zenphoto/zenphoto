@@ -134,16 +134,11 @@ class PersistentObject {
 	 * used to make the object "virgin" so it can be re-saved with a new id
 	 */
 	function clearID() {
-		$this->data['id'] = $this->id = 0;
-		$columns = array();
-		$data = $this->data;
+		$insert_data = array_merge($this->data, $this->updates, $this->tempdata);
+		$insert_data['id'] = $this->id = 0;
+		$this->tempdata = $this->updates = $this->data = array();
 		foreach (db_list_fields($this->table) as $col) {
-			$this->updates[$col['Field']] = $data[$col['Field']];
-			unset($data[$col['Field']]);
-		}
-		foreach ($data as $field => $value) {
-			unset($this->data[$field]);
-			$this->tempdata[$field] = $value;
+			$this->updates[$col['Field']] = $insert_data[$col['Field']];
 		}
 	}
 
@@ -309,7 +304,7 @@ class PersistentObject {
 		// If we don't have an entry yet, this is a new record. Create it.
 		if (empty($entry)) {
 			if ($this->transient) { // no don't save it in the DB!
-				$entry = $this->unique_set;
+				$entry = array_merge($this->unique_set, $this->updates, $this->tempdata);
 				$entry['id'] = 0;
 			} else if (!$allowCreate) {
 				return NULL; // does not exist and we are not allowed to create it
@@ -343,8 +338,7 @@ class PersistentObject {
 		}
 		if (!$this->id) {
 			$this->setDefaults();
-			// Create a new object and set the id from the one returned.
-			$insert_data = array_merge($this->unique_set, $this->updates);
+			$insert_data = array_merge($this->unique_set, $this->updates, $this->tempdata);
 			if (empty($insert_data)) {
 				return true;
 			}
@@ -372,6 +366,7 @@ class PersistentObject {
 			$this->data['id'] = $this->id = (int) db_insert_id(); // so 'get' will retrieve it!
 			$this->loaded = true;
 			$this->updates = array();
+			$this->tempdata = array();
 		} else {
 			// Save the existing object (updates only) based on the existing id.
 			if (empty($this->updates)) {

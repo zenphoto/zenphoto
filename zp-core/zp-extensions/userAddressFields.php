@@ -43,8 +43,8 @@ class userAddressFields extends fieldExtender {
 				db_free_result($result);
 			}
 		}
-		if (OFFSET_PATH == 2 && isset($_SESSION['admin'])) {
-			$user = unserialize($_SESSION['admin']);
+		if (OFFSET_PATH == 2 && isset($_SESSION['admin'][bin2hex(SERVERPATH)])) {
+			$user = unserialize($_SESSION['admin'][bin2hex(SERVERPATH)]);
 			$user2 = Zenphoto_Authority::getAnAdmin(array('`user`=' => $user->getUser(), '`pass`=' => $user->getPass(), '`valid`=' => 1));
 			if ($user2) {
 				foreach (userAddressFields::fields() as $field) {

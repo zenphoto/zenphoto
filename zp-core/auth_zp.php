@@ -4,7 +4,7 @@
  * processes the authorization (or login) of admin users
  *
  * @author Stephen Billard (sbillard)
- * 
+ *
  * @package admin
  */
 // force UTF-8 Ø
@@ -70,8 +70,18 @@ if (isset($_POST['login'])) { //	Handle the login form.
 } else { //	no login form, check the cookie
 	if (isset($_GET['ticket'])) { // password reset query
 		$_zp_authority->validateTicket(sanitize($_GET['ticket']), sanitize(@$_GET['user']));
+	} else {
+		$_zp_loggedin = $_zp_authority->checkCookieCredentials();
+		if (!$_zp_loggedin && isset($_SESSION['admin'][bin2hex(SERVERPATH)])) { //	"passed" login
+			$user = unserialize($_SESSION['admin'][bin2hex(SERVERPATH)]);
+			$user2 = Zenphoto_Authority::getAnAdmin(array('`user`=' => $user->getUser(), '`valid`=' => 1));
+			if ($user2 && $user->getPass() == $user2->getPass()) {
+				Zenphoto_Authority::logUser($user2);
+				$_zp_current_admin_obj = $user2;
+				$_zp_loggedin = $_zp_current_admin_obj->getRights();
+			}
+		}
 	}
-	$_zp_loggedin = $_zp_authority->checkCookieCredentials();
 	if ($_zp_loggedin) {
 		$locale = $_zp_current_admin_obj->getLanguage();
 		if (!empty($locale)) { //	set his prefered language

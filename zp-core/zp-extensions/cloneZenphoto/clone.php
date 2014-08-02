@@ -40,7 +40,7 @@ if (trim($folder, '/') == SERVERPATH) {
 	if (!is_dir($folder . THEMEFOLDER)) {
 		@mkdir($folder . THEMEFOLDER);
 	}
-	if (!file_exists($folder . '/' . CONFIGFILE)) {
+	if (!file_exists($folder . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
 		$path = str_replace(array(' ', '/'), '_', trim(str_replace(str_replace(WEBPATH, '/', SERVERPATH), '', $folder), '/')) . '_';
 		$zp_cfg = file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
 		$zp_cfg = updateConfigItem('mysql_prefix', $path, $zp_cfg);
@@ -126,14 +126,13 @@ if ($success) {
 		if (empty($rslt)) {
 			query('INSERT INTO ' . prefix('plugin_storage') . '(`type`,`aux`,`data`) VALUES("clone",' . db_quote(trim($folder, '/')) . ',' . db_quote(trim($newinstall, '/')) . ')');
 		}
-		$_SESSION['clone'] = array(
-						'folder'				 => trim($folder, '/'),
+		$id = postIndexEncode(trim($folder, '/'));
+		$_SESSION['clone'][$id] = array(
 						'UTF8_image_URI' => UTF8_IMAGE_URI,
 						'mod_rewrite'		 => MOD_REWRITE,
 						'hash'					 => HASH_SEED,
 						'strong_hash'		 => getOption('strong_hash'));
-		$_SESSION['admin'] = serialize($_zp_current_admin_obj);
-
+		$_SESSION['admin'][$id] = serialize($_zp_current_admin_obj);
 		$msg[] = '<p><span class="buttons"><a href="' . $newinstall . ZENFOLDER . '/setup/index.php?autorun" target=_newtab">' . gettext('setup the new install') . '</a></span><br class="clearall" /></p>' . "\n";
 	} else {
 		$reinstall = '<p>' . sprintf(gettext('Before running setup for <code>%1$s</code> please reinstall the following setup files from the %2$s [%3$s] to this installation:'), $newinstall, ZENPHOTO_VERSION, ZENPHOTO_RELEASE) .

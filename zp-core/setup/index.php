@@ -343,13 +343,6 @@ if ($selected_database) {
 
 require_once(dirname(dirname(__FILE__)) . '/admin-functions.php');
 
-if (isset($_SESSION['clone'])) {
-	if (SERVERPATH != $_SESSION['clone']['folder']) {
-		unset($_SESSION['clone']);
-		unset($_SESSION['admin']);
-	}
-}
-
 header('Content-Type: text/html; charset=UTF-8');
 header("HTTP/1.0 200 OK");
 header("Status: 200 OK");
@@ -364,7 +357,7 @@ if (defined('CHMOD_VALUE')) {
 
 setOptionDefault('zp_plugin_security-logger', 9 | CLASS_PLUGIN);
 
-$forcerewrite = isset($_SESSION['clone']['mod_rewrite']) && $_SESSION['clone']['mod_rewrite'] && !file_exists($serverpath . '/.htaccess');
+$forcerewrite = isset($_SESSION['clone'][bin2hex(SERVERPATH)]['mod_rewrite']) && $_SESSION['clone'][bin2hex(SERVERPATH)]['mod_rewrite'] && !file_exists($serverpath . '/.htaccess');
 if ($newconfig || isset($_GET['copyhtaccess']) || $forcerewrite) {
 	if (($newconfig || $forcerewrite) && !file_exists($serverpath . '/.htaccess') || setupUserAuthorized()) {
 		@chmod($serverpath . '/.htaccess', 0777);
@@ -858,7 +851,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 														var image = new Image();
 														image.onload = function() {
 						<?php
-						if (!(UTF8_IMAGE_URI || @$_SESSION['clone']['UTF8_image_URI'])) {
+						if (!(UTF8_IMAGE_URI || @$_SESSION['clone'][bin2hex(SERVERPATH)]['UTF8_image_URI'])) {
 							?>
 																$('#UTF8_uri_warn').html('<?php echo addslashes(gettext('You should enable the URL option <em>UTF8 image URIs</em>.')); ?>' + ' <?php echo addslashes(gettext('<a href="javascript:uri(true)">Please do</a>')); ?>');
 																$('#UTF8_uri_warn').show();
@@ -2467,6 +2460,8 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 							}
 
 							if ($createTables) {
+								$clones = array();
+
 								if ($_zp_loggedin == ADMIN_RIGHTS) {
 									$filelist = safe_glob(SERVERPATH . "/" . BACKUPFOLDER . '/*.zdb');
 									if (count($filelist) > 0) {
@@ -2479,12 +2474,22 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 										}
 									}
 								} else {
+									if (extensionEnabled('cloneZenphoto')) {
+										require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cloneZenphoto.php');
+										if (class_exists('cloneZenphoto'))
+											$clones = cloneZenphoto::setup($autorun);
+									}
 									$link = sprintf(gettext('You can now <a href="%1$s">administer your gallery.</a>'), WEBPATH . '/' . ZENFOLDER . '/admin.php');
+									foreach ($clones as $clone => $url) {
+										?>
+										<p class="delayshow" style="display:none;"><a href="<?php echo $url; ?>" target="_blank"><?php echo sprintf(gettext('Setup %s'), $clone); ?></p>
+										<?php
+									}
 								}
 								?>
 								<p id="golink" class="delayshow" style="display:none;"><?php echo $link; ?></p>
 								<?php
-								switch ($autorun) {
+								switch ($autorun && empty($clones)) {
 									case false:
 										break;
 									case 'gallery':
@@ -2496,21 +2501,25 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 								}
 								?>
 								<script type="text/javascript">
-									window.onload = function() {
+									function launchAdmin() {
 			<?php
+			$clones = array();
 			if (extensionEnabled('cloneZenphoto')) {
 				require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cloneZenphoto.php');
 				if (class_exists('cloneZenphoto'))
-					cloneZenphoto::setup($autorun);
+					$clones = cloneZenphoto::setup($autorun);
 			}
 			?>
+										window.location = '<?php echo WEBPATH . '/' . ZENFOLDER . '/admin.php'; ?>';
+									}
+									window.onload = function() {
 										$('.delayshow').show();
 			<?php
 			if ($autorun) {
 				?>
 											if (!imageErr) {
 												$('#golink').hide();
-												window.location = '<?php echo $autorun; ?>';
+												launchAdmin();
 											}
 				<?php
 			}

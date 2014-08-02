@@ -1,4 +1,5 @@
 <?php
+
 /**
  * "Clones" the currrent installation to a new location using symlinks. The <i>zp-core</i>, <i>themes</i>, <i>user plugins</i>
  * folders and the root <i>index.php</i> file are symlinked. Setup will create the other needed folders.
@@ -49,26 +50,21 @@ if ($plugin_disable) {
 			return $buttons;
 		}
 
-		static function setup($auto) {
+		static function setup() {
+			global $_zp_current_admin_obj;
 			$clones = array();
 			if ($result = query('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="clone"')) {
 				while ($row = db_fetch_assoc($result)) {
 					if (file_exists($row['aux'] . '/' . ZENFOLDER . '/index.php')) {
 						$clones[$row['aux']] = $row['data'] . '/' . ZENFOLDER . '/setup/index.php?autorun';
+						$_SESSION['admin'][bin2hex($row['aux'])] = serialize($_zp_current_admin_obj);
 					} else {
 						query('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `id` = ' . $row['id']);
 					}
 				}
 				db_free_result($result);
 			}
-			if (!empty($clones)) {
-				foreach ($clones as $key => $clone) {
-					?>
-					window.open('<?php echo $clone; ?>','_newtab');
-					<?php
-				}
-			}
-			return $auto;
+			return $clones;
 		}
 
 	}
