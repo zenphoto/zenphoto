@@ -86,7 +86,7 @@ function adminToolbox() {
 			<h3><a onclick="toggle('<?php echo $dataid; ?>');"><?php echo gettext('Admin Toolbox'); ?></a></h3>
 		</div>
 		<div id="<?php echo $dataid; ?>" style="display: none;">
-
+			<?php printf(gettext('Logged in as <em>%s</em>'), $_zp_current_admin_obj->getUser()); ?>
 			<ul style="list-style-type: none;" >
 				<?php
 				$outputA = ob_get_contents();
@@ -3863,34 +3863,34 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 		<!-- search form -->
 		<form method="post" action="<?php echo $searchurl; ?>" id="search_form">
 			<script type="text/javascript">
-			// <!-- <![CDATA[
-			var within = <?php echo (int) $within; ?>;
-			function search_(way) {
-				within = way;
-				if (way) {
-					$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
+				// <!-- <![CDATA[
+				var within = <?php echo (int) $within; ?>;
+				function search_(way) {
+					within = way;
+					if (way) {
+						$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
 
-				} else {
-					lastsearch = '';
-					$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
-				}
-				$('#search_input').val('');
-			}
-			$('#search_form').submit(function() {
-				if (within) {
-					var newsearch = $.trim($('#search_input').val());
-					if (newsearch.substring(newsearch.length - 1) == ',') {
-						newsearch = newsearch.substr(0, newsearch.length - 1);
-					}
-					if (newsearch.length > 0) {
-						$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
 					} else {
-						$('#search_input').val('<?php echo $searchwords; ?>');
+						lastsearch = '';
+						$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
 					}
+					$('#search_input').val('');
 				}
-				return true;
-			});
-			// ]]> -->
+				$('#search_form').submit(function() {
+					if (within) {
+						var newsearch = $.trim($('#search_input').val());
+						if (newsearch.substring(newsearch.length - 1) == ',') {
+							newsearch = newsearch.substr(0, newsearch.length - 1);
+						}
+						if (newsearch.length > 0) {
+							$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
+						} else {
+							$('#search_input').val('<?php echo $searchwords; ?>');
+						}
+					}
+					return true;
+				});
+				// ]]> -->
 			</script>
 			<?php echo $prevtext; ?>
 			<div>
