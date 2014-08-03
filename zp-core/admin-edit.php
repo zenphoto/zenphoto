@@ -1109,15 +1109,19 @@ echo "\n</head>";
 																	<input type="checkbox" id="Visible-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-Visible" value="1" <?php if ($image->getShow()) echo ' checked = "checked"'; ?> />
 																	<?php echo gettext("Published"); ?>
 																</label>
-																<label class="checkboxlabel">
-																	<input type="checkbox" id="allowcomments-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-allowcomments" value="1" <?php
-																	if ($image->getCommentsAllowed()) {
-																		echo ' checked = "checked"';
-																	}
-																	?> />
-																				 <?php echo gettext("Allow Comments"); ?>
-																</label>
 																<?php
+																if (extensionEnabled('comment_form')) {
+																	?>
+																	<label class="checkboxlabel">
+																		<input type="checkbox" id="allowcomments-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-allowcomments" value="1" <?php
+																		if ($image->getCommentsAllowed()) {
+																			echo ' checked = "checked"';
+																		}
+																		?> />
+																					 <?php echo gettext("Allow Comments"); ?>
+																	</label>
+																	<?php
+																}
 																if (extensionEnabled('hitcounter')) {
 																	$hc = $image->get('hitcounter');
 																	if (empty($hc)) {
