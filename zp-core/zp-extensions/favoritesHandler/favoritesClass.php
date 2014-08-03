@@ -27,6 +27,7 @@ class favorites extends AlbumBase {
 		$this->albumSortType = getOption('favorites_album_sort_type');
 		$this->multi = getOption('favorites_multi');
 		$list = query_full_array('SELECT `aux` FROM ' . prefix('plugin_storage') . ' WHERE `type`="favorites" AND `aux` REGEXP ' . db_quote('[[:<:]]' . $user . '[[:>:]]'));
+
 		foreach ($list as $aux) {
 			$instance = getSerializedArray($aux['aux']);
 			if (isset($instance[1])) {
@@ -46,6 +47,10 @@ class favorites extends AlbumBase {
 
 	function getList() {
 		return $this->list;
+	}
+
+	function getOwner() {
+		return $this->owner;
 	}
 
 	function addImage($img) {

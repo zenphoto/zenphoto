@@ -14,7 +14,8 @@
  * To create a <i>favorites</i> album visit the <i>favorites</i> link of the content
  * you wish to share. In the <var>admin toolbox</var> on that page you will find
  * a link to create an album. (Much like such a link is present on search pages to
- * allow you to create dynamic albums.)
+ * allow you to create dynamic albums.) <b>NOTE:</b> the user must have upload rights
+ * to at least one album or he will have no place to put the favorites album.
  *
  * <i>favorites</i> albums are represented in the album folders by files with the suffix
  * <var>fav</var>. However, like dynamic albums, the suffix will normally be omitted
