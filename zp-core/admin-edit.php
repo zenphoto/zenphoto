@@ -1035,10 +1035,7 @@ echo "\n</head>";
 													<strong><?php echo gettext("Reset"); ?></strong>
 												</button>
 											</p>
-
 											<?php if (!$singleimage) printBulkActions($checkarray_images, true); ?>
-
-
 										</td>
 									</tr>
 									<?php
@@ -1102,13 +1099,9 @@ echo "\n</head>";
 															<p><?php echo gettext("<strong>Dimensions:</strong>"); ?><br /><?php echo $image->getWidth(); ?> x  <?php echo $image->getHeight() . ' ' . gettext('px'); ?></p>
 															<p><?php echo gettext("<strong>Size:</strong>"); ?><br /><?php echo byteConvert($image->getImageFootprint()); ?></p>
 														</td>
-
 														<td align = "left" valign = "top"><?php echo gettext("Title:");
 																?></td>
 														<td><?php print_language_string_list($image->getTitle('all'), $currentimage . '-title', false, NULL, '', '100%'); ?>
-
-
-
 														<td style="padding-left: 1em; text-align: left; border-bottom:none;" rowspan="14" valign="top">
 															<h2 class="h2_bordered_edit"><?php echo gettext("General"); ?></h2>
 															<div class="box-edit">
@@ -1461,6 +1454,7 @@ echo "\n</head>";
 														</td>
 													</tr>
 													<?php
+													echo zp_apply_filter('edit_image_custom_data', '', $image, $currentimage);
 													if ($singleimage) {
 														?>
 														<tr>
@@ -1471,9 +1465,6 @@ echo "\n</head>";
 																</div>
 															</td>
 														</tr>
-														<?php
-														echo zp_apply_filter('edit_image_custom_data', '', $image, $currentimage);
-														?>
 														<tr>
 															<td valign="top"><?php echo gettext("Location:"); ?></td>
 															<td><?php print_language_string_list($image->getLocation('all'), $currentimage . '-location', false, NULL, '', '100%'); ?>
@@ -1527,42 +1518,42 @@ echo "\n</head>";
 														</tr>
 														<?php
 													}
-													if ($image->get('hasMetadata')) {
-														?>
-														<tr>
-															<td valign="top"><?php echo gettext("Metadata:"); ?></td>
-															<td>
-																<?php
-																$data = '';
-																$exif = $image->getMetaData();
-																if (false !== $exif) {
-																	foreach ($exif as $field => $value) {
-																		if (!empty($value)) {
-																			$display = $_zp_exifvars[$field][3];
-																			if ($display) {
-																				$label = $_zp_exifvars[$field][2];
-																				$data .= "<tr><td class=\"medtadata_tag\">$label: </td> <td>" . html_encode($value) . "</td></tr>\n";
+													if ($singleimage) {
+														if ($image->get('hasMetadata')) {
+															?>
+															<tr>
+																<td valign="top"><?php echo gettext("Metadata:"); ?></td>
+																<td>
+																	<?php
+																	$data = '';
+																	$exif = $image->getMetaData();
+																	if (false !== $exif) {
+																		foreach ($exif as $field => $value) {
+																			if (!empty($value)) {
+																				$display = $_zp_exifvars[$field][3];
+																				if ($display) {
+																					$label = $_zp_exifvars[$field][2];
+																					$data .= "<tr><td class=\"medtadata_tag\">$label: </td> <td>" . html_encode($value) . "</td></tr>\n";
+																				}
 																			}
 																		}
 																	}
-																}
-																if (empty($data)) {
-																	echo gettext('None selected for display');
-																} else {
+																	if (empty($data)) {
+																		echo gettext('None selected for display');
+																	} else {
+																		?>
+																		<div class="metadata_container">
+																			<table class="metadata_table" >
+																				<?php echo $data; ?>
+																			</table>
+																		</div>
+																		<?php
+																	}
 																	?>
-																	<div class="metadata_container">
-																		<table class="metadata_table" >
-																			<?php echo $data; ?>
-																		</table>
-																	</div>
-																	<?php
-																}
-																?>
-															</td>
-														</tr>
-														<?php
-													}
-													if ($singleimage) {
+																</td>
+															</tr>
+															<?php
+														}
 														?>
 														<tr valign="top">
 															<td class="topalign-nopadding"><br /><?php echo gettext("Codeblocks:"); ?></td>
