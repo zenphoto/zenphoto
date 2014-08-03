@@ -1569,6 +1569,10 @@ button.positive,.buttons a.positive {
 	background-color: white;
 }
 
+.scrollable_list {
+	height:8em !important;
+}
+
 .customchecklist li {
 	background: none;
 	padding-left: 0;

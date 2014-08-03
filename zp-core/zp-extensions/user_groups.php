@@ -106,44 +106,26 @@ class user_groups {
 		global $_zp_authority;
 		$group = $userobj->getGroup();
 		$admins = $_zp_authority->getAdministrators('groups');
-		$groups = array();
+		$membership = $groups = array();
 		$hisgroups = explode(',', $userobj->getGroup());
+
+		$userid = $userobj->getUser();
 		$admins = sortMultiArray($admins, 'user');
 		foreach ($admins as $user) {
-			if ($template || $user['name'] != 'template') {
-				$groups[] = $user;
+			if (in_array($user['user'], $hisgroups)) {
+				$membership[] = $user;
+			} else {
+				if ($template || $user['name'] != 'template') {
+					$groups[] = $user;
+				}
 			}
 		}
+		$groups = array_merge($membership, array(array('name' => '', 'user' => '', 'custom_data' => gettext('*no group affiliation'))), $groups);
+
 		if (empty($groups))
 			return gettext('no groups established'); // no groups setup yet
-		$grouppart = '
-		<script type="text/javascript">
-			// <!-- <![CDATA[
-			function groupchange' . $i . '(type) {
-				switch (type) {
-				case 0:	//	none
-					$(\'.user-' . $i . '\').prop(\'disabled\',false);
-					$(\'.templatelist' . $i . '\').prop(\'checked\',false);
-					$(\'.grouplist' . $i . '\').prop(\'checked\',false);
-					break;
-				case 1:	//	group
-					$(\'.user-' . $i . '\').prop(\'disabled\',true);
-					$(\'.user-' . $i . '\').prop(\'checked\',false);
-					$(\'#noGroup_' . $i . '\').prop(\'checked\',false);
-					$(\'.templatelist' . $i . '\').prop(\'checked\',false);
-					break;
-				case 2:	//	template
-					$(\'.user-' . $i . '\').prop(\'disabled\',false);
-					$(\'#noGroup_' . $i . '\').prop(\'checked\',false);
-					$(\'.grouplist' . $i . '\').prop(\'checked\',false);
-					break;
-			}
-		}
-		//]]> -->
-	</script>' . "\n";
 
-		$grouppart .= '<ul class="customchecklist">' . "\n";
-		$grouppart .= '<label title="' . gettext('*no group affiliation') . '"><input type="checkbox" id="noGroup_' . $i . '" name="' . $i . 'group[]" value="" onclick="groupchange' . $i . '(0);" />' . gettext('*no group selected') . '</label>' . "\n";
+		$grouppart = '<ul class="customchecklist scrollable_list" >' . "\n";
 
 		foreach ($groups as $key => $user) {
 			if ($user['name'] == 'template') {
@@ -161,11 +143,46 @@ class user_groups {
 			} else {
 				$checked = '';
 			}
-			$grouppart .= '<label title="' . html_encode($user['custom_data']) . $type . '"' . $highlight . '><input type="checkbox" class="' . $class . '" name="' . $i . 'group[]" value="' . $user['user'] . '" onclick="groupchange' . $i . '(' . $case . ');"' . $checked . ' />' . html_encode($user['user']) . '</label>' . "\n";
+			if (empty($user['user'])) {
+				$display = gettext('*no group selected');
+				$case = 0;
+				if (empty($hisgroups)) {
+					$checked = ' checked="checked"';
+				}
+			} else {
+				$display = $user['user'];
+			}
+			$grouppart .= '<label title="' . html_encode($user['custom_data']) . $type . '"' . $highlight . '><input type="checkbox" class="' . $class . '" name="' . $i . 'group[]" id="' . $user['user'] . '_' . $i . '" value="' . $user['user'] . '" onclick="groupchange' . $i . '(' . $case . ');"' . $checked . ' />' . html_encode($display) . '</label>' . "\n";
 		}
 
 		$grouppart .= "</ul>\n";
-
+		$grouppart .= '
+		<script type="text/javascript">
+			// <!-- <![CDATA[
+			function groupchange' . $i . '(type) {
+				switch (type) {
+				case 0:	//	none
+					$(\'.user-' . $i . '\').prop(\'disabled\',false);
+					$(\'.templatelist' . $i . '\').prop(\'checked\',false);
+					$(\'.grouplist' . $i . '\').prop(\'checked\',false);
+					$(\'#_' . $i . '\').prop(\'checked\',true);
+					break;
+				case 1:	//	group
+					$(\'#_' . $i . '\').prop(\'disabled\',false);
+					$(\'#_' . $i . '\').prop(\'checked\',false);
+					$(\'.user-' . $i . '\').prop(\'disabled\',true);
+					$(\'.user-' . $i . '\').prop(\'checked\',false);
+					$(\'.templatelist' . $i . '\').prop(\'checked\',false);
+					break;
+				case 2:	//	template
+					$(\'.user-' . $i . '\').prop(\'disabled\',false);
+					$(\'.grouplist' . $i . '\').prop(\'checked\',false);
+					$(\'#_' . $i . '\').prop(\'checked\',false);
+					break;
+			}
+		}
+		//]]> -->';
+		$grouppart .= '</script>' . "\n";
 		return $grouppart;
 	}
 
@@ -236,5 +253,4 @@ class user_groups {
 	}
 
 }
-
 ?>
