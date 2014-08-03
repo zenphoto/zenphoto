@@ -281,8 +281,19 @@ while ($old != $albumname) {
 
 	</table>
 
-	<input type="submit" value="<?php echo addslashes(gettext('Create the album')); ?>" class="button" />
-</form>
+	<?php
+	if (empty($albumlist)) {
+		?>
+		<p class="errorbox">
+			<?php echo gettext('There is no place you are allowed to put this album.'); ?>
+		</p>
+		<?php
+	} else {
+		?>
+		<input type="submit" value="<?php echo gettext('Create the album'); ?>" class="button" />
+		<?php
+	}
+	?></form>
 
 <?php
 echo "\n" . '</div>';
