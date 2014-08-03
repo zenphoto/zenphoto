@@ -287,6 +287,9 @@ while ($old != $albumname) {
 		<p class="errorbox">
 			<?php echo gettext('There is no place you are allowed to put this album.'); ?>
 		</p>
+		<p>
+			<?php echo gettext('You must have <em>upload</em> rights to at least one album to have a place to store this album.'); ?>
+		</p>
 		<?php
 	} else {
 		?>
