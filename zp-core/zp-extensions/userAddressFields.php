@@ -43,7 +43,7 @@ class userAddressFields extends fieldExtender {
 				db_free_result($result);
 			}
 		}
-		$cloneid = bin2hex(realpath(SERVERPATH));
+		$cloneid = bin2hex(FULLWEBPATH);
 		if (OFFSET_PATH == 2 && isset($_SESSION['admin'][$cloneid])) {
 			$user = unserialize($_SESSION['admin'][$cloneid]);
 			$user2 = Zenphoto_Authority::getAnAdmin(array('`user`=' => $user->getUser(), '`pass`=' => $user->getPass(), '`valid`=' => 1));

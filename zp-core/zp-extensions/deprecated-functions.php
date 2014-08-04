@@ -241,7 +241,7 @@ class deprecated_functions {
 						'enable'			 => true,
 						'button_text'	 => gettext('Check deprecated use'),
 						'formname'		 => 'deprecated_functions_check.php',
-						'action'			 => WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions/check_for_deprecated.php',
+						'action'			 => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions/check_for_deprecated.php',
 						'icon'				 => 'images/magnify.png',
 						'title'				 => gettext("Searches PHP scripts for use of deprecated functions."),
 						'alt'					 => gettext('Check for update'),

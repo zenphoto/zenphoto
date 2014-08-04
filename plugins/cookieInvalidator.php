@@ -32,7 +32,7 @@ class cookieInvalidator {
 						'enable'			 => true,
 						'button_text'	 => gettext('Invalidate cookies'),
 						'formname'		 => 'cookieInvalidator',
-						'action'			 => WEBPATH . '/' . ZENFOLDER . '/admin.php?action=cookieInvalidator::setBase',
+						'action'			 => FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=cookieInvalidator::setBase',
 						'icon'				 => 'images/fail.png',
 						'title'				 => sprintf(gettext('Cookies prior to %s are invalid'), date('Y-m-d H:i:s', $base)),
 						'alt'					 => '',

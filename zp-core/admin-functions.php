@@ -450,14 +450,16 @@ function printAdminHeader($tab, $subtab = NULL) {
 						}
 						$tab = substr($source, $i + 4);
 					}
-					if (!$link) {
-						$bt = debug_backtrace();
-						$bt = array_shift($bt);
-						if (isset($bt['file'])) {
-							$link = str_replace(SERVERPATH, '', str_replace('\\', '/', $bt['file']));
-						}
-					}
-					if (strpos($link, '/') !== 0) { // zp_core relative
+					if (empty($link)) {
+						$link = getRequestURI();
+						/*
+						  $bt = debug_backtrace();
+						  $bt = array_shift($bt);
+						  if (isset($bt['file'])) {
+						  $link = str_replace(SERVERPATH, '', str_replace('\\', '/', $bt['file']));
+						  }
+						 */
+					} else if (strpos($link, '/') !== 0) { // zp_core relative
 						$link = WEBPATH . '/' . ZENFOLDER . '/' . $link;
 					} else {
 						$link = WEBPATH . $link;
@@ -1469,7 +1471,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 									<label><input type="checkbox" name="disclose_password<?php echo $suffix; ?>"
 																id="disclose_password<?php echo $suffix; ?>"
 																onclick="passwordClear('<?php echo $suffix; ?>');
-																				togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?></label>
+																		togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?></label>
 								</td>
 								<td>
 									<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
@@ -1990,7 +1992,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 } else {
 											 ?>
 											 onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');
-															 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
+													 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
 											 <?php
 										 }
 										 ?> />
@@ -4530,7 +4532,7 @@ function printPageSelector($subpage, $rangeset, $script, $queryParams) {
 		}
 		?>
 		<select name="subpage" class="ignoredirty" id="subpage<?php echo $instances; ?>" onchange="launchScript('<?php echo WEBPATH . '/' . ZENFOLDER . '/' . $script; ?>',
-										[<?php echo $jump; ?>'subpage=' + $('#subpage<?php echo $instances; ?>').val()]);" >
+								[<?php echo $jump; ?>'subpage=' + $('#subpage<?php echo $instances; ?>').val()]);" >
 							<?php
 							foreach ($rangeset as $page => $range) {
 								?>
@@ -5013,12 +5015,12 @@ function linkPickerIcon($obj, $id = NULL, $extra = NULL) {
 	<a onclick="<?php
 	if ($id) {
 		?>
-						$('#<?php echo $id; ?>').select();
+				$('#<?php echo $id; ?>').select();
 		<?php
 	}
 	?>
-					$('.pickedObject').removeClass('pickedObject');
-					$('#<?php echo $iconid; ?>').addClass('pickedObject');
+			$('.pickedObject').removeClass('pickedObject');
+			$('#<?php echo $iconid; ?>').addClass('pickedObject');
 	<?php linkPickerPick($obj, $id, $extra); ?>"
 		 title="<?php echo gettext('pick source'); ?>">
 		<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" id="<?php echo $iconid; ?>">
