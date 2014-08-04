@@ -577,28 +577,18 @@ function getPluginFiles($pattern, $folder = '', $stripsuffix = true) {
 		$folder .= '/';
 	$list = array();
 	$curdir = getcwd();
-	$basepath = SERVERPATH . "/" . USER_PLUGIN_FOLDER . '/' . $folder;
-	if (is_dir($basepath)) {
-		chdir($basepath);
-		$filelist = safe_glob($pattern);
-		foreach ($filelist as $file) {
-			$key = filesystemToInternal($file);
-			if ($stripsuffix) {
-				$key = stripSuffix($key);
+	$sources = array(SERVERPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/' . $folder, SERVERPATH . "/" . USER_PLUGIN_FOLDER . '/' . $folder);
+	foreach ($sources as $basepath) {
+		if (is_dir($basepath)) {
+			chdir($basepath);
+			$filelist = safe_glob($pattern);
+			foreach ($filelist as $file) {
+				$key = filesystemToInternal($file);
+				if ($stripsuffix) {
+					$key = stripSuffix($key);
+				}
+				$list[$key] = $basepath . $file;
 			}
-			$list[$key] = $basepath . $file;
-		}
-	}
-	$basepath = SERVERPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/' . $folder;
-	if (file_exists($basepath)) {
-		chdir($basepath);
-		$filelist = safe_glob($pattern);
-		foreach ($filelist as $file) {
-			$key = filesystemToInternal($file);
-			if ($stripsuffix) {
-				$key = stripSuffix($key);
-			}
-			$list[$key] = $basepath . $file;
 		}
 	}
 	chdir($curdir);
@@ -625,31 +615,26 @@ function getPluginFiles($pattern, $folder = '', $stripsuffix = true) {
 function getPlugin($plugin, $inTheme = false, $webpath = false) {
 	global $_zp_gallery;
 	$pluginFile = NULL;
+	$sources = array('/' . USER_PLUGIN_FOLDER . '/' . internalToFilesystem($plugin), '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/' . internalToFilesystem($plugin));
 	if ($inTheme === true) {
 		$inTheme = $_zp_gallery->getCurrentTheme();
 	}
 	if ($inTheme) {
-		$pluginFile = '/' . THEMEFOLDER . '/' . internalToFilesystem($inTheme . '/' . $plugin);
-		if (!file_exists(SERVERPATH . $pluginFile)) {
-			$pluginFile = false;
+		array_unshift($sources, '/' . THEMEFOLDER . '/' . internalToFilesystem($inTheme . '/' . $plugin));
+	}
+
+	foreach ($sources as $file) {
+		if (file_exists(SERVERPATH . $file)) {
+			$pluginFile = $file;
+			break;
 		}
 	}
-	if (!$pluginFile) {
-		$pluginFile = '/' . USER_PLUGIN_FOLDER . '/' . internalToFilesystem($plugin);
-		if (!file_exists(SERVERPATH . $pluginFile)) {
-			$pluginFile = '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/' . internalToFilesystem($plugin);
-			if (!file_exists(SERVERPATH . $pluginFile)) {
-				$pluginFile = false;
-			}
-		}
-	}
+
 	if ($pluginFile) {
 		if ($webpath) {
-			if (is_string($webpath)) {
-				return $webpath . filesystemToInternal($pluginFile);
-			} else {
-				return WEBPATH . filesystemToInternal($pluginFile);
-			}
+			if (!is_string($webpath))
+				$webpath = WEBPATH;
+			return $webpath . filesystemToInternal($pluginFile);
 		} else {
 			return SERVERPATH . $pluginFile;
 		}
