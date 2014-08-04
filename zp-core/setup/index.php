@@ -357,7 +357,7 @@ if (defined('CHMOD_VALUE')) {
 
 setOptionDefault('zp_plugin_security-logger', 9 | CLASS_PLUGIN);
 
-$cloneid = bin2hex(realpath(SERVERPATH));
+$cloneid = bin2hex(FULLWEBPATH);
 $forcerewrite = isset($_SESSION['clone'][$cloneid]['mod_rewrite']) && $_SESSION['clone'][$cloneid]['mod_rewrite'] && !file_exists($serverpath . '/.htaccess');
 if ($newconfig || isset($_GET['copyhtaccess']) || $forcerewrite) {
 	if (($newconfig || $forcerewrite) && !file_exists($serverpath . '/.htaccess') || setupUserAuthorized()) {

@@ -96,7 +96,7 @@ printAdminHeader('overview', 'clone');
 					if (WEBPATH) {
 						$urlpath = str_replace(WEBPATH, '/', FULLWEBPATH);
 					} else {
-						$urlpath = FULLWEBPATH . '/';
+						$urlpath = FULLWEBPATH;
 					}
 					$path = str_replace(WEBPATH, '/', SERVERPATH);
 					?>
@@ -157,7 +157,8 @@ printAdminHeader('overview', 'clone');
 						<?php XSRFToken('cloneZenphoto'); ?>
 						<input type="hidden" name="clone" value="true" />
 						<input type="hidden" name="clonePath" id="clonePath" value="" />
-						<?php echo gettext('Verify WEB link to this install:'); ?><br /><input type="text" name="cloneWebPath" id="cloneWebPath" value="" size="100">
+						<?php echo gettext('Verify WEB link to this install:'); ?><br />
+						<input type="text" name="cloneWebPath" id="cloneWebPath" value="" size="100">
 						<?php XSRFToken('cloneZenphoto'); ?>
 						<br />
 						<br />

@@ -126,13 +126,13 @@ if ($success) {
 		if (empty($rslt)) {
 			query('INSERT INTO ' . prefix('plugin_storage') . '(`type`,`aux`,`data`) VALUES("clone",' . db_quote(trim($folder, '/')) . ',' . db_quote(trim($newinstall, '/')) . ')');
 		}
-		$id = postIndexEncode(trim(realpath($folder), '/'));
-		$_SESSION['clone'][$id] = array(
+		$cloneid = bin2hex(rtrim($newinstall, '/'));
+		$_SESSION['clone'][$cloneid] = array(
 						'UTF8_image_URI' => UTF8_IMAGE_URI,
 						'mod_rewrite'		 => MOD_REWRITE,
 						'hash'					 => HASH_SEED,
 						'strong_hash'		 => getOption('strong_hash'));
-		$_SESSION['admin'][$id] = serialize($_zp_current_admin_obj);
+		$_SESSION['admin'][$cloneid] = serialize($_zp_current_admin_obj);
 		$msg[] = '<p><span class="buttons"><a href="' . $newinstall . ZENFOLDER . '/setup/index.php?autorun" target=_newtab">' . gettext('setup the new install') . '</a></span><br class="clearall" /></p>' . "\n";
 	} else {
 		$reinstall = '<p>' . sprintf(gettext('Before running setup for <code>%1$s</code> please reinstall the following setup files from the %2$s [%3$s] to this installation:'), $newinstall, ZENPHOTO_VERSION, ZENPHOTO_RELEASE) .

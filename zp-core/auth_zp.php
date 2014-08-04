@@ -72,7 +72,7 @@ if (isset($_POST['login'])) { //	Handle the login form.
 		$_zp_authority->validateTicket(sanitize($_GET['ticket']), sanitize(@$_GET['user']));
 	} else {
 		$_zp_loggedin = $_zp_authority->checkCookieCredentials();
-		$cloneid = bin2hex(realpath(SERVERPATH));
+		$cloneid = bin2hex(FULLWEBPATH);
 		if (!$_zp_loggedin && isset($_SESSION['admin'][$cloneid])) { //	"passed" login
 			$user = unserialize($_SESSION['admin'][$cloneid]);
 			$user2 = Zenphoto_Authority::getAnAdmin(array('`user`=' => $user->getUser(), '`valid`=' => 1));
