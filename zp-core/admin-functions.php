@@ -3210,6 +3210,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 			<?php
 			$element = 3;
 			$activeset = false;
+			?>
+			<input type="checkbox" name="<?php echo $id; ?>-rightsenabled" class="user-<?php echo $id; ?>" value="1" checked="checked" <?php echo $alterrights; ?> style="display:none" />
+			<?php
 			foreach ($rightslist as $rightselement => $right) {
 				if ($right['display']) {
 					if (($right['set'] != gettext('Pages') && $right['set'] != gettext('News')) || extensionEnabled('zenpage')) {

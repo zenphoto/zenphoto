@@ -36,7 +36,10 @@ class user_groups {
 		$templates = false;
 		$custom = $objects = array();
 		$oldgroups = $userobj->getGroup();
+		$oldrights = $userobj->getRights();
+		$oldobjects = $userobj->getObjects();
 		$rights = 0;
+
 		foreach ($groups as $key => $groupname) {
 			if (empty($groupname)) {
 				//	force the first template to happen
@@ -79,7 +82,9 @@ class user_groups {
 		$userobj->setGroup($newgroups = implode(',', $groups));
 		$userobj->setRights($rights);
 		$userobj->setObjects($objects);
-		return $newgroups != $oldgroups || $templates;
+
+		$updated = $newgroups != $oldgroups || $oldobjects != $objects || (empty($newgroups) && $rights != $oldrights);
+		return $updated;
 	}
 
 	/**
@@ -253,4 +258,5 @@ class user_groups {
 	}
 
 }
+
 ?>

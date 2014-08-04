@@ -23,6 +23,10 @@
  * "desc" is the "display name" of the field
  * "type" is the database field type: int, varchar, tinytext, text, mediumtext, and longtext.
  * "size" is the byte size of the varchar or int field (it is not needed for other types)
+ * "edit" is is how the content is show on the edit tab. Values: multilingual, normal, function:<i>editor function</i>
+ *
+ * The <i>editor function</i> will be passed three parameters: the object, the $_POST instance, the field array,
+ * and the action: "edit" or "save". The function must return the processed data to be displayed or saved.
  *
  * Database fields names must conform to
  * {@link http://dev.mysql.com/doc/refman/5.0/en/identifiers.html MySQL field naming rules}.
@@ -103,6 +107,70 @@ class fieldExtender {
 	}
 
 	/**
+	 * The generic field element save handler
+	 * @param type $obj
+	 * @param type $instance
+	 * @param type $fields
+	 */
+	static protected function _saveHandler($obj, $instance, $field) {
+
+		if (isset($field['edit'])) {
+			$action = $field['edit'];
+		} else {
+			$action = '';
+		}
+
+		switch ($action) {
+			case'multilingual':
+				$newdata = process_language_string_save($instance . '-' . $field['name']);
+				break;
+			case'function':
+				$newdata = @call_user_func($field['function'], $obj, $instance, $field, 'save');
+				break;
+			default:
+				if (!is_null($instance)) {
+					$instance = '_' . $instance;
+				}
+				if (isset($_POST[$field['name'] . $instance])) {
+					$newdata = sanitize($_POST[$field['name'] . $instance]);
+				} else {
+					$newdata = NULL;
+				}
+		}
+		return $newdata;
+	}
+
+	/**
+	 * generic handler for the edit fields
+	 * @param $obj
+	 * @param $instance
+	 * @param type $field
+	 * @return type
+	 */
+	static protected function _editHandler($obj, $field, $instance) {
+		switch (@$field['edit']) {
+			case 'multilingual':
+				ob_start();
+				print_language_string_list($obj->get($field['name']), $instance . '-' . $field['name']);
+				$item = ob_get_contents();
+				ob_end_clean();
+				$formatted = true;
+				break;
+			case'function':
+				$item = @call_user_func($field['function'], $obj, $instance, $field, 'edit');
+				$formatted = true;
+				break;
+			default:
+				if ($instance)
+					$instance = '_' . $instance;
+				$item = html_encode($obj->get($field['name']));
+				$formatted = false;
+				break;
+		}
+		return array($item, $formatted);
+	}
+
+	/**
 	 * Process the save of user object type elements
 	 *
 	 * @param boolean $updated
@@ -114,18 +182,17 @@ class fieldExtender {
 	static function _adminSave($updated, $userobj, $i, $alter, $fields) {
 		if ($userobj->getValid()) {
 			foreach ($fields as $field) {
-				if (isset($_POST[$field['name'] . '_' . $i])) {
-					if ($field['table'] == 'administrators') {
-						$olddata = $userobj->get($field['name']);
-						$userobj->set($field['name'], $newdata = $_POST[$field['name'] . '_' . $i]);
-						if ($olddata != $newdata) {
-							$updated = true;
-						}
+				if ($field['table'] == 'administrators') {
+					$olddata = $userobj->get($field['name']);
+					$newdata = fieldExtender::_saveHandler($userobj, $i, $field);
+					$userobj->set($field['name'], $newdata);
+					if ($olddata != $newdata) {
+						$updated = true;
 					}
 				}
 			}
+			return $updated;
 		}
-		return $updated;
 	}
 
 	/**
@@ -142,12 +209,17 @@ class fieldExtender {
 		$list = array();
 		foreach ($fields as $field) {
 			if ($field['table'] == 'administrators') {
+				list($item, $formatted) = fieldExtender::_editHandler($userobj, $field, $i);
 				$input = '<fieldset>' .
 								'<legend>' . $field['desc'] . '</legend>';
-				if (in_array(strtolower($field['type']), array('varchar', 'int', 'tinytext'))) {
-					$input .= '<input name = "' . $field['name'] . '_' . $i . '" type = "text" size = "' . TEXT_INPUT_SIZE . '" value = "' . html_encode($userobj->get($field['name'])) . '" />';
+				if ($formatted) {
+					$html .= $item;
 				} else {
-					$input .= '<textarea name = "' . $field['name'] . '_' . $i . '" cols = "' . TEXTAREA_COLUMNS . '"rows = "1">' . html_encode($userobj->get($field['name'])) . '</textarea>';
+					if (in_array(strtolower($field['type']), array('varchar', 'int', 'tinytext'))) {
+						$input .= '<input name = "' . $field['name'] . '_' . $i . '" type = "text" size = "' . TEXT_INPUT_SIZE . '" value = "' . $item . '" />';
+					} else {
+						$input .= '<textarea name = "' . $field['name'] . '_' . $i . '" cols = "' . TEXTAREA_COLUMNS . '"rows = "1">' . $item . '</textarea>';
+					}
 				}
 
 				$input .='</fieldset>';
@@ -182,9 +254,8 @@ class fieldExtender {
 	static function _mediaItemSave($object, $i, $fields) {
 		foreach ($fields as $field) {
 			if ($field['table'] == $object->table) {
-				if (isset($_POST[$field['name'] . '_' . $i])) {
-					$object->set($field['name'], $newdata = $_POST[$field['name'] . '_' . $i]);
-				}
+				$newdata = fieldExtender::_saveHandler($object, $i, $field);
+				$object->set($field['name'], $newdata);
 			}
 		}
 		return $object;
@@ -201,11 +272,16 @@ class fieldExtender {
 	static function _mediaItemEdit($html, $object, $i, $fields) {
 		foreach ($fields as $field) {
 			if ($field['table'] == $object->table) {
+				list($item, $formatted) = fieldExtender::_editHandler($object, $field, $i);
 				$html .= "<tr>\n<td>" . $field['desc'] . "</td>\n<td>";
-				if (in_array(strtolower($field['type']), array('varchar', 'int', 'tinytext'))) {
-					$html .= '<input name = "' . $field['name'] . '_' . $i . '" type = "text" style = "width:100%;" value = "' . html_encode($object->get($field['name'])) . '" />';
+				if ($formatted) {
+					$html .= $item;
 				} else {
-					$html .= '<textarea name = "' . $field['name'] . '_' . $i . '" style = "width:100%;" rows = "6">' . html_encode($object->get($field['name'])) . '</textarea>';
+					if (in_array(strtolower($field['type']), array('varchar', 'int', 'tinytext'))) {
+						$html .= '<input name = "' . $field['name'] . '_' . $i . '" type = "text" style = "width:100%;" value = "' . $item . '" />';
+					} else {
+						$html .= '<textarea name = "' . $field['name'] . '_' . $i . '" style = "width:100%;" rows = "6">' . $item . '</textarea>';
+					}
 				}
 
 				$html .="</td>\n</tr>\n";
@@ -225,7 +301,8 @@ class fieldExtender {
 	static function _cmsItemSave($custom, $object, $fields) {
 		foreach ($fields as $field) {
 			if ($field['table'] == $object->table) {
-				$object->set($field['name'], $newdata = $_POST[$field['name']]);
+				$newdata = fieldExtender::_saveHandler($object, NULL, $field);
+				$object->set($field['name'], $newdata);
 			}
 		}
 		return $custom;
@@ -241,12 +318,17 @@ class fieldExtender {
 	static function _cmsItemEdit($html, $object, $fields) {
 		foreach ($fields as $field) {
 			if ($field['table'] == $object->table) {
+				list($item, $formatted) = fieldExtender::_editHandler($object, $field, NULL);
 				$html .= '<tr><td>' . $field['desc'] . '</td><td>';
-				if (in_array(strtolower($field['type']), array('varchar', 'int', 'tinytext'))) {
-					$html .= '<input name="' . $field['name'] . '" type="text" style = "width:97%;"
-value="' . html_encode($object->get($field['name'])) . '" />';
+				if ($formatted) {
+					$html .= $item;
 				} else {
-					$html .= '<textarea name = "' . $field['name'] . '" style = "width:97%;" "rows="6">' . html_encode($object->get($field['name'])) . '</textarea>';
+					if (in_array(strtolower($field['type']), array('varchar', 'int', 'tinytext'))) {
+						$html .= '<input name="' . $field['name'] . '" type="text" style = "width:97%;"
+value="' . $item . '" />';
+					} else {
+						$html .= '<textarea name = "' . $field['name'] . '" style = "width:97%;" "rows="6">' . $item . '</textarea>';
+					}
 				}
 			}
 		}

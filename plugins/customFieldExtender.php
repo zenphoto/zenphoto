@@ -21,6 +21,10 @@
  * "desc" is the "display name" of the field
  * "type" is the database field type: int, varchar, tinytext, text, mediumtext, and longtext.
  * "size" is the byte size of the varchar or int field (it is not needed for other types)
+ * "edit" is is how the content is show on the edit tab. Values: multilingual, normal, function:<i>editor function</i>
+ *
+ * The <i>editor function</i> will be passed three parameters: the object, the $_POST instance, the field array,
+ * and the action: "edit" or "save". The function must return the processed data to be displayed or saved.
  *
  * Database
  * fields must conform to {@link http://dev.mysql.com/doc/refman/5.0/en/identifiers.html MySQL field naming rules}.
@@ -71,9 +75,9 @@ if (file_exists(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/common/fi
 class customFieldExtender extends fieldExtender {
 
 	static $fields = array(
-					array('table' => 'albums', 'name' => 'Finish_Disc', 'desc' => 'Finish Disc', 'type' => 'varchar', 'size' => 50),
-					array('table' => 'news', 'name' => 'Finish_Lip', 'desc' => 'Finish Lip', 'type' => 'varchar', 'size' => 50),
-					array('table' => 'images', 'name' => 'Option', 'desc' => 'Option', 'type' => 'varchar', 'size' => 50),
+					array('table' => 'albums', 'name' => 'Finish_Disc', 'desc' => 'Finish Disc', 'type' => 'varchar', 'size' => 50, 'edit' => 'multilingual'),
+					array('table' => 'news', 'name' => 'Finish_Lip', 'desc' => 'Finish Lip', 'type' => 'varchar', 'size' => 50, 'edit' => 'function', 'function' => 'testFunction'),
+					array('table' => 'images', 'name' => 'custom_option', 'desc' => 'Custom option', 'type' => 'varchar', 'size' => 50, 'edit' => 'multilingual'),
 					array('table' => 'news_categories', 'name' => 'Rear_Size', 'desc' => 'Front Size', 'type' => 'varchar', 'size' => 50),
 					array('table' => 'pages', 'name' => 'Rear_Size', 'desc' => 'Rear Size', 'type' => 'varchar', 'size' => 50)
 	);
@@ -118,6 +122,14 @@ class customFieldExtender extends fieldExtender {
 		parent::_adminNotice($tab, $subtab, 'customFieldExtender');
 	}
 
+}
+
+function testFunction($obj, $instance, $field, $type) {
+	if ($type == 'save') {
+		return sanitize($_POST[$field['name'] . '_' . $instance]);
+	} else {
+		return '<input name = "' . $field['name'] . '_' . $instance . '" type = "text" size = "' . TEXT_INPUT_SIZE . '" value = "' . html_encode($obj->get($field['name'])) . '" />';
+	}
 }
 
 function getCustomField($field, $object = NULL, &$detail = NULL) {
