@@ -38,18 +38,19 @@ $admins = $_zp_authority->getAdministrators('all');
 
 if (empty($admins)) { //	empty administrators table
 	$groupsdefined = NULL;
-
-	if (isset($_SESSION['clone'][bin2hex(SERVERPATH)])) { //replicate the user who cloned the install
-		$clone = $_SESSION['clone'][bin2hex(SERVERPATH)];
+	if (isset($_SESSION['clone'][$cloneid])) { //replicate the user who cloned the install
+		$clone = $_SESSION['clone'][$cloneid];
 		setOption('UTF8_image_URI', $clone['UTF8_image_URI']);
 		setOption('strong_hash', $clone['strong_hash']);
 		setOption('extra_auth_hash_text', $clone['hash']);
-		$_zp_current_admin_obj = unserialize($_SESSION['admin'][bin2hex(SERVERPATH)]);
+		if ($clone['mod_rewrite'])
+			$_GET['mod_rewrite'] = true;
+		$_zp_current_admin_obj = unserialize($_SESSION['admin'][$cloneid]);
 		$_zp_current_admin_obj->clearID();
 		$_zp_current_admin_obj->save();
 		$_zp_loggedin = ALL_RIGHTS;
 		setOption('license_accepted', ZENPHOTO_VERSION . '[' . ZENPHOTO_RELEASE . ']');
-		unset($_SESSION['clone'][bin2hex(SERVERPATH)]);
+		unset($_SESSION['clone'][$cloneid]);
 	} else {
 		if (Zenphoto_Authority::$preferred_version > ($oldv = getOption('libauth_version'))) {
 			if (empty($oldv)) {

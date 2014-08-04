@@ -3,7 +3,7 @@
  * Use this utility to reset your album thumbnails to either "random" or from an ordered field query
  *
  * @author Stephen Billard (sbillard)
- * 
+ *
  * @package admin
  */
 define('OFFSET_PATH', 3);
@@ -16,7 +16,7 @@ $buttonlist[] = array(
 				'enable'			 => true,
 				'button_text'	 => gettext('Reset album thumbs'),
 				'formname'		 => 'reset_albumthumbs.php',
-				'action'			 => 'utilities/reset_albumthumbs.php',
+				'action'			 => WEBPATH . '/' . ZENFOLDER . '/utilities/reset_albumthumbs.php',
 				'icon'				 => 'images/reset.png',
 				'title'				 => gettext('Reset album thumbnails to either random or most recent'),
 				'alt'					 => '',

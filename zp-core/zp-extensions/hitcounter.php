@@ -213,7 +213,7 @@ class hitcounter {
 						'enable'			 => true,
 						'button_text'	 => gettext('Reset all hitcounters'),
 						'formname'		 => 'reset_all_hitcounters.php',
-						'action'			 => PLUGIN_FOLDER . '/hitcounter.php?action=reset_all_hitcounters',
+						'action'			 => WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/hitcounter.php?action=reset_all_hitcounters',
 						'icon'				 => 'images/reset.png',
 						'alt'					 => '',
 						'title'				 => gettext('Reset all hitcounters to zero'),

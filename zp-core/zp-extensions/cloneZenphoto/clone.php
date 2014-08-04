@@ -126,7 +126,7 @@ if ($success) {
 		if (empty($rslt)) {
 			query('INSERT INTO ' . prefix('plugin_storage') . '(`type`,`aux`,`data`) VALUES("clone",' . db_quote(trim($folder, '/')) . ',' . db_quote(trim($newinstall, '/')) . ')');
 		}
-		$id = postIndexEncode(trim($folder, '/'));
+		$id = postIndexEncode(trim(realpath($folder), '/'));
 		$_SESSION['clone'][$id] = array(
 						'UTF8_image_URI' => UTF8_IMAGE_URI,
 						'mod_rewrite'		 => MOD_REWRITE,

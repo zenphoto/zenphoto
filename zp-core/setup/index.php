@@ -357,7 +357,8 @@ if (defined('CHMOD_VALUE')) {
 
 setOptionDefault('zp_plugin_security-logger', 9 | CLASS_PLUGIN);
 
-$forcerewrite = isset($_SESSION['clone'][bin2hex(SERVERPATH)]['mod_rewrite']) && $_SESSION['clone'][bin2hex(SERVERPATH)]['mod_rewrite'] && !file_exists($serverpath . '/.htaccess');
+$cloneid = bin2hex(realpath(SERVERPATH));
+$forcerewrite = isset($_SESSION['clone'][$cloneid]['mod_rewrite']) && $_SESSION['clone'][$cloneid]['mod_rewrite'] && !file_exists($serverpath . '/.htaccess');
 if ($newconfig || isset($_GET['copyhtaccess']) || $forcerewrite) {
 	if (($newconfig || $forcerewrite) && !file_exists($serverpath . '/.htaccess') || setupUserAuthorized()) {
 		@chmod($serverpath . '/.htaccess', 0777);
@@ -851,7 +852,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 														var image = new Image();
 														image.onload = function() {
 						<?php
-						if (!(UTF8_IMAGE_URI || @$_SESSION['clone'][bin2hex(SERVERPATH)]['UTF8_image_URI'])) {
+						if (!(UTF8_IMAGE_URI || @$_SESSION['clone'][$cloneid]['UTF8_image_URI'])) {
 							?>
 																$('#UTF8_uri_warn').html('<?php echo addslashes(gettext('You should enable the URL option <em>UTF8 image URIs</em>.')); ?>' + ' <?php echo addslashes(gettext('<a href="javascript:uri(true)">Please do</a>')); ?>');
 																$('#UTF8_uri_warn').show();
