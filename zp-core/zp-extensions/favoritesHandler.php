@@ -395,7 +395,7 @@ if (OFFSET_PATH) {
 		 */
 		function printFavoritesURL($text = NULL, $before = NULL, $between = NULL, $after = NULL) {
 			global $_myFavorites;
-			if (zp_loggedin(ALBUM_RIGHTS)) {
+			if (zp_loggedin()) {
 				if (is_null($text)) {
 					$text = get_language_string(getOption('favorites_linktext'));
 				}
