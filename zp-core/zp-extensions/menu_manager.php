@@ -445,7 +445,7 @@ function getCurrentMenuItem($menuset) {
 				break;
 			default:
 				$checkitem = getItemTitleAndURL($item);
-				if ($currentpageURL == rtrim($checkitem['url'], '/')) {
+				if ($currentpageURL == html_encode(rtrim($checkitem['url'], '/'))) {
 					$currentkey = $key;
 					break 2;
 				}
