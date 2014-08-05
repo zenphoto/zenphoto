@@ -216,7 +216,7 @@ class fieldExtender {
 				list($item, $formatted) = fieldExtender::_editHandler($userobj, $field, $i);
 				if (!is_null($formatted)) {
 					$input = '<fieldset>' .
-									'<legend>' . $field['desc'] . '</legend>';
+									'<legend>' . gettext($field['desc']) . '</legend>';
 					if ($formatted) {
 						$html .= $item;
 					} else {
@@ -279,7 +279,7 @@ class fieldExtender {
 			if ($field['table'] == $object->table) {
 				list($item, $formatted) = fieldExtender::_editHandler($object, $field, $i);
 				if (!is_null($formatted)) {
-					$html .= "<tr>\n<td>" . $field['desc'] . "</td>\n<td>";
+					$html .= "<tr>\n<td>" . gettext($field['desc']) . "</td>\n<td>";
 					if ($formatted) {
 						$html .= $item;
 					} else {
@@ -326,7 +326,7 @@ class fieldExtender {
 			if ($field['table'] == $object->table) {
 				list($item, $formatted) = fieldExtender::_editHandler($object, $field, NULL);
 				if (!is_null($formatted)) {
-					$html .= '<tr><td>' . $field['desc'] . '</td><td>';
+					$html .= '<tr><td>' . gettext($field['desc']) . '</td><td>';
 					if ($formatted) {
 						$html .= $item;
 					} else {

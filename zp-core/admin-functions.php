@@ -1410,23 +1410,28 @@ function printAdminHeader($tab, $subtab = NULL) {
 								<?php echo linkPickerItem($album, 'pick_link'); ?>
 							</td>
 						</tr>
-						<tr>
-							<td class="leftcolumn"><?php echo gettext("Owner"); ?></td>
-							<td class="middlecolumn">
-								<?php
-								if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
-									?>
-									<select name="<?php echo $prefix; ?>owner">
-										<?php echo admin_album_list($album->getOwner()); ?>
-									</select>
-									<?php
-								} else {
-									echo $album->getOwner();
-								}
-								?>
-							</td>
-						</tr>
+						<?php
+						/*
+						  <tr>
+						  <td class="leftcolumn"><?php echo gettext("Owner"); ?></td>
+						  <td class="middlecolumn">
+						  <?php
+						  if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
+						  ?>
+						  <select name="<?php echo $prefix; ?>owner">
+						  <?php echo admin_album_list($album->getOwner()); ?>
+						  </select>
+						  <?php
+						  } else {
+						  echo $album->getOwner();
+						  }
+						  ?>
+						  </td>
+						  </tr>
 
+						 *
+						 */
+						?>
 						<tr>
 							<td class="leftcolumn">
 								<?php echo gettext("Album Description:"); ?>
@@ -1471,7 +1476,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 									<label><input type="checkbox" name="disclose_password<?php echo $suffix; ?>"
 																id="disclose_password<?php echo $suffix; ?>"
 																onclick="passwordClear('<?php echo $suffix; ?>');
-																		togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?></label>
+																				togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?></label>
 								</td>
 								<td>
 									<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
@@ -1541,13 +1546,16 @@ function printAdminHeader($tab, $subtab = NULL) {
 								<input type="text" id="datepicker<?php echo $suffix; ?>" size="20" name="<?php echo $prefix; ?>albumdate" value="<?php echo $d; ?>" />
 							</td>
 						</tr>
-						<tr>
-							<td class="leftcolumn"><?php echo gettext("Location:"); ?> </td>
-							<td class="middlecolumn">
-								<?php print_language_string_list($album->getLocation(), $prefix . "albumlocation", false, NULL, 'hint', '100%'); ?>
-							</td>
-						</tr>
 						<?php
+						/*
+						  <tr>
+						  <td class="leftcolumn"><?php echo gettext("Location:"); ?> </td>
+						  <td class="middlecolumn">
+						  <?php print_language_string_list($album->getLocation(), $prefix . "albumlocation", false, NULL, 'hint', '100%'); ?>
+						  </td>
+						  </tr>
+						  <?php
+						 */
 						echo $custom = zp_apply_filter('edit_album_custom_data', '', $album, $prefix);
 
 						$sort = $sortby;
@@ -1992,7 +2000,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 } else {
 											 ?>
 											 onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');
-													 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
+															 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
 											 <?php
 										 }
 										 ?> />
@@ -4532,7 +4540,7 @@ function printPageSelector($subpage, $rangeset, $script, $queryParams) {
 		}
 		?>
 		<select name="subpage" class="ignoredirty" id="subpage<?php echo $instances; ?>" onchange="launchScript('<?php echo WEBPATH . '/' . ZENFOLDER . '/' . $script; ?>',
-								[<?php echo $jump; ?>'subpage=' + $('#subpage<?php echo $instances; ?>').val()]);" >
+										[<?php echo $jump; ?>'subpage=' + $('#subpage<?php echo $instances; ?>').val()]);" >
 							<?php
 							foreach ($rangeset as $page => $range) {
 								?>
@@ -5015,12 +5023,12 @@ function linkPickerIcon($obj, $id = NULL, $extra = NULL) {
 	<a onclick="<?php
 	if ($id) {
 		?>
-				$('#<?php echo $id; ?>').select();
+						$('#<?php echo $id; ?>').select();
 		<?php
 	}
 	?>
-			$('.pickedObject').removeClass('pickedObject');
-			$('#<?php echo $iconid; ?>').addClass('pickedObject');
+					$('.pickedObject').removeClass('pickedObject');
+					$('#<?php echo $iconid; ?>').addClass('pickedObject');
 	<?php linkPickerPick($obj, $id, $extra); ?>"
 		 title="<?php echo gettext('pick source'); ?>">
 		<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" id="<?php echo $iconid; ?>">

@@ -878,6 +878,7 @@ themes/zpskeleton/js/zpskeleton.js
 themes/zpskeleton/register_user
 themes/zpskeleton/register_user/register_user_form.php
 plugins
+plugins/mediaFields.php
 plugins/cacheHeader.php
 plugins/cookieInvalidator.php
 plugins/create_album.php
@@ -1394,6 +1395,7 @@ zp-core/zp-extensions/jcarousel_thumb_nav.php
 zp-core/zp-extensions/jplayer.php
 zp-core/zp-extensions/macroList.php
 zp-core/zp-extensions/markRelease.php
+zp-core/zp-extensions/mediaFields.php
 zp-core/zp-extensions/menu_manager.php
 zp-core/zp-extensions/mergedRSS.php
 zp-core/zp-extensions/mobileTheme.php
@@ -2255,4 +2257,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-2257
+2259

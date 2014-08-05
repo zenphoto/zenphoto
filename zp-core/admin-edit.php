@@ -1365,24 +1365,27 @@ echo "\n</head>";
 														</td>
 
 													</tr>
-													<tr>
-														<td align="left" valign="top"><?php echo gettext("Owner:"); ?></td>
-														<td style="width:100%;">
-															<?php
-															if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
-																?>
-																<select name="<?php echo $currentimage; ?>-owner">
-																	<?php echo admin_album_list($image->getOwner()); ?>
-																</select>
-																<?php
-															} else {
-																echo $image->getOwner();
-															}
-															?>
-														</td>
+													<?php
+													/*
+													  <tr>
+													  <td align="left" valign="top"><?php echo gettext("Owner:"); ?></td>
+													  <td style="width:100%;">
+													  <?php
+													  if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
+													  ?>
+													  <select name="<?php echo $currentimage; ?>-owner">
+													  <?php echo admin_album_list($image->getOwner()); ?>
+													  </select>
+													  <?php
+													  } else {
+													  echo $image->getOwner();
+													  }
+													  ?>
+													  </td>
 
-													</tr>
-
+													  </tr>
+													 */
+													?>
 													<tr>
 														<td align="left" valign="top"><?php echo gettext("Description:"); ?></td>
 														<td><?php print_language_string_list($image->getDesc('all'), $currentimage . '-desc', true, NULL, 'texteditor', '100%'); ?></td>
@@ -1431,34 +1434,37 @@ echo "\n</head>";
 													</tr>
 
 													<?php
-													$current = $image->getWatermark();
-													?>
-													<tr>
-														<td align="left" valign="top" width="150"><?php echo gettext("Image watermark:"); ?> </td>
-														<td>
-															<select id="image_watermark-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-image_watermark" onclick="toggleWMUse(<?php echo $currentimage; ?>);">
-																<option value="<?php echo NO_WATERMARK; ?>" <?php if ($current == NO_WATERMARK) echo ' selected="selected"' ?> style="background-color:LightGray"><?php echo gettext('*no watermark'); ?></option>
-																<option value="" <?php if (empty($current)) echo ' selected="selected"' ?> style="background-color:LightGray"><?php echo gettext('*default'); ?></option>
-																<?php
-																$watermarks = getWatermarks();
-																generateListFromArray(array($current), $watermarks, false, false);
-																?>
-															</select>
-															<?php
-															if ($current == '')
-																$displaystyle = 'none';
-															else
-																$displaystyle = 'inline';
-															?>
-															<span id="WMUSE_<?php echo $currentimage; ?>" style="display:<?php echo $displaystyle; ?>">
-																<?php $wmuse = $image->getWMUse(); ?>
-																<label><input type="checkbox" value="1" id="wm_image-<?php echo $currentimage; ?>" name="wm_image-<?php echo $currentimage; ?>" <?php if ($wmuse & WATERMARK_IMAGE) echo 'checked="checked"'; ?> /><?php echo gettext('image'); ?></label>
-																<label><input type="checkbox" value="1" id="wm_thumb-<?php echo $currentimage; ?>" name="wm_thumb-<?php echo $currentimage; ?>" <?php if ($wmuse & WATERMARK_THUMB) echo 'checked="checked"'; ?> /><?php echo gettext('thumb'); ?></label>
-																<label><input type="checkbox" value="1" id="wm_full-<?php echo $currentimage; ?>" name="wm_full-<?php echo $currentimage; ?>" <?php if ($wmuse & WATERMARK_FULL) echo 'checked="checked"'; ?> /><?php echo gettext('full image'); ?></label>
-															</span>
-														</td>
-													</tr>
-													<?php
+													/*
+													  $current = $image->getWatermark();
+													  ?>
+													  <tr>
+													  <td align="left" valign="top" width="150"><?php echo gettext("Image watermark:"); ?> </td>
+													  <td>
+													  <select id="image_watermark-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-image_watermark" onclick="toggleWMUse(<?php echo $currentimage; ?>);">
+													  <option value="<?php echo NO_WATERMARK; ?>" <?php if ($current == NO_WATERMARK) echo ' selected="selected"' ?> style="background-color:LightGray"><?php echo gettext('*no watermark'); ?></option>
+													  <option value="" <?php if (empty($current)) echo ' selected="selected"' ?> style="background-color:LightGray"><?php echo gettext('*default'); ?></option>
+													  <?php
+													  $watermarks = getWatermarks();
+													  generateListFromArray(array($current), $watermarks, false, false);
+													  ?>
+													  </select>
+													  <?php
+													  if ($current == '')
+													  $displaystyle = 'none';
+													  else
+													  $displaystyle = 'inline';
+													  ?>
+													  <span id="WMUSE_<?php echo $currentimage; ?>" style="display:<?php echo $displaystyle; ?>">
+													  <?php $wmuse = $image->getWMUse(); ?>
+													  <label><input type="checkbox" value="1" id="wm_image-<?php echo $currentimage; ?>" name="wm_image-<?php echo $currentimage; ?>" <?php if ($wmuse & WATERMARK_IMAGE) echo 'checked="checked"'; ?> /><?php echo gettext('image'); ?></label>
+													  <label><input type="checkbox" value="1" id="wm_thumb-<?php echo $currentimage; ?>" name="wm_thumb-<?php echo $currentimage; ?>" <?php if ($wmuse & WATERMARK_THUMB) echo 'checked="checked"'; ?> /><?php echo gettext('thumb'); ?></label>
+													  <label><input type="checkbox" value="1" id="wm_full-<?php echo $currentimage; ?>" name="wm_full-<?php echo $currentimage; ?>" <?php if ($wmuse & WATERMARK_FULL) echo 'checked="checked"'; ?> /><?php echo gettext('full image'); ?></label>
+													  </span>
+													  </td>
+													  </tr>
+													  <?php
+													 */
+
 													echo zp_apply_filter('edit_image_custom_data', '', $image, $currentimage);
 													if ($singleimage) {
 														?>
@@ -1470,42 +1476,46 @@ echo "\n</head>";
 																</div>
 															</td>
 														</tr>
-														<tr>
-															<td valign="top"><?php echo gettext("Location:"); ?></td>
-															<td><?php print_language_string_list($image->getLocation('all'), $currentimage . '-location', false, NULL, '', '100%'); ?>
-															</td>
-														</tr>
-
-														<tr>
-															<td valign="top"><?php echo gettext("City:"); ?></td>
-															<td><?php print_language_string_list($image->getCity('all'), $currentimage . '-city', false, NULL, '', '100%'); ?>
-															</td>
-														</tr>
-
-														<tr>
-															<td valign="top"><?php echo gettext("State:"); ?></td>
-															<td><?php print_language_string_list($image->getState('all'), $currentimage . '-state', false, NULL, '', '100%'); ?>
-															</td>
-														</tr>
-
-														<tr>
-															<td valign="top"><?php echo gettext("Country:"); ?></td>
-															<td><?php print_language_string_list($image->getCountry('all'), $currentimage . '-country', false, NULL, '', '100%'); ?>
-															</td>
-														</tr>
-
-														<tr>
-															<td valign="top"><?php echo gettext("Credit:"); ?></td>
-															<td><?php print_language_string_list($image->getCredit('all'), $currentimage . '-credit', false, NULL, '', '100%'); ?>
-															</td>
-														</tr>
-
-														<tr>
-															<td valign="top"><?php echo gettext("Copyright:"); ?></td>
-															<td><?php print_language_string_list($image->getCopyright('all'), $currentimage . '-copyright', false, NULL, '', '100%'); ?>
-															</td>
-														</tr>
 														<?php
+														/*
+														  <tr>
+														  <td valign="top"><?php echo gettext("Location:"); ?></td>
+														  <td><?php print_language_string_list($image->getLocation('all'), $currentimage . '-location', false, NULL, '', '100%'); ?>
+														  </td>
+														  </tr>
+
+														  <tr>
+														  <td valign="top"><?php echo gettext("City:"); ?></td>
+														  <td><?php print_language_string_list($image->getCity('all'), $currentimage . '-city', false, NULL, '', '100%'); ?>
+														  </td>
+														  </tr>
+
+														  <tr>
+														  <td valign="top"><?php echo gettext("State:"); ?></td>
+														  <td><?php print_language_string_list($image->getState('all'), $currentimage . '-state', false, NULL, '', '100%'); ?>
+														  </td>
+														  </tr>
+
+														  <tr>
+														  <td valign="top"><?php echo gettext("Country:"); ?></td>
+														  <td><?php print_language_string_list($image->getCountry('all'), $currentimage . '-country', false, NULL, '', '100%'); ?>
+														  </td>
+														  </tr>
+
+														  <tr>
+														  <td valign="top"><?php echo gettext("Credit:"); ?></td>
+														  <td><?php print_language_string_list($image->getCredit('all'), $currentimage . '-credit', false, NULL, '', '100%'); ?>
+														  </td>
+														  </tr>
+
+														  <tr>
+														  <td valign="top"><?php echo gettext("Copyright:"); ?></td>
+														  <td><?php print_language_string_list($image->getCopyright('all'), $currentimage . '-copyright', false, NULL, '', '100%'); ?>
+														  </td>
+														  </tr>
+														  <?php
+
+														 */
 													} else {
 														?>
 														<tr>
