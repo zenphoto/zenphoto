@@ -39,10 +39,6 @@ if (isset($_GET['action'])) {
 			exitZP();
 		case 'savegroups':
 			if (isset($_POST['checkForPostTruncation'])) {
-
-				var_dump($_POST);
-
-
 				for ($i = 0; $i < $_POST['totalgroups']; $i++) {
 					$groupname = trim(sanitize($_POST[$i . '-group']));
 					if (!empty($groupname)) {
