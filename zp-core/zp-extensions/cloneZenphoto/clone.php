@@ -6,6 +6,8 @@
  *
  * @package admin
  */
+ 
+ // UTF-8 Ø
 define('OFFSET_PATH', 4);
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 require_once(SERVERPATH . '/' . ZENFOLDER . '/reconfigure.php');
@@ -28,6 +30,8 @@ if (trim($folder, '/') == SERVERPATH) {
 			$targets[THEMEFOLDER . '/' . $theme] = 'dir';
 		}
 	}
+
+
 	foreach (array(internalToFilesystem('charset_tést'), internalToFilesystem('charset.tést')) as $charset) {
 		if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . $charset)) {
 			$targets[DATA_FOLDER . '/' . $charset] = 'file';
@@ -128,6 +132,7 @@ if ($success) {
 		}
 		$cloneid = bin2hex(rtrim($newinstall, '/'));
 		$_SESSION['clone'][$cloneid] = array(
+						'link'					 => $newinstall,
 						'UTF8_image_URI' => UTF8_IMAGE_URI,
 						'mod_rewrite'		 => MOD_REWRITE,
 						'hash'					 => HASH_SEED,

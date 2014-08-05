@@ -53,16 +53,18 @@ printAdminHeader('overview', 'clone');
 					<br />
 					<br />
 					<?php
-					$folderlist = array();
+					$current = $folderlist = array();
 					if (isset($_POST['path'])) {
 						$path = sanitize($_POST['path']);
 					} else {
 						if (WEBPATH) {
 							$path = str_replace(WEBPATH, '/', SERVERPATH);
+							$current = array(trim(dirname(SERVERPATH), '/') . '/');
 						} else {
 							$path = SERVERPATH . '/';
 						}
 					}
+
 					$downtitle = '.../' . basename($path);
 					$uppath = str_replace('\\', '/', dirname($path));
 
@@ -136,7 +138,7 @@ printAdminHeader('overview', 'clone');
 						if (!empty($folderlist)) {
 							?>
 							<select id="cloneFolder" name="cloneFolder" onchange="folderChange();">
-								<?php generateListFromArray(array(), $folderlist, false, true); ?>
+								<?php generateListFromArray($current, $folderlist, false, true); ?>
 							</select>
 							<?php
 						}
