@@ -208,7 +208,7 @@ class mediaFields extends fieldExtender {
 
 	static function watermark($image, $currentimage, $field, $type) {
 		if ($type == 'save') {
-			$wmt = sanitize($_POST["$$currentimage-image_watermark"], 3);
+			$wmt = sanitize($_POST[$currentimage . "-image_watermark"], 3);
 			$image->setWatermark($wmt);
 			$wmuse = 0;
 			if (isset($_POST['wm_image-' . $currentimage]))
