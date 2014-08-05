@@ -1324,7 +1324,7 @@ if ($c <= 0) {
 							foreach ($installed_files as $extra) {
 								$filelist .= filesystemToInternal(str_replace($base, '', $extra) . '<br />');
 							}
-							if (zpFunctions::hasPrimaryScripts() && count($installed_files) > 0) {
+							if (class_exists('zpFunctions') && zpFunctions::hasPrimaryScripts() && count($installed_files) > 0) {
 								if (defined('TEST_RELEASE') && TEST_RELEASE) {
 									$msg1 = gettext("Zenphoto core files [This is a <em>debug</em> build. Some files are missing or seem wrong]");
 								} else {
@@ -1547,7 +1547,7 @@ if ($c <= 0) {
 								if (file_exists($serverpath . '/robots.txt')) {
 									checkmark(-2, gettext('<em>robots.txt</em> file'), gettext('<em>robots.txt</em> file [Not created]'), gettext('Setup did not create a <em>robots.txt</em> file because one already exists.'));
 								} else {
-									$text = explode('****delete all lines above and including this one *******', $robots);
+									$text = explode('# Place it in the root folder of your web pages.', $robots);
 									$d = dirname(dirname(dirname($_SERVER['SCRIPT_NAME'])));
 									if ($d == '/')
 										$d = '';
