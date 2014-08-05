@@ -197,7 +197,7 @@ class mediaFields extends fieldExtender {
 					});
 					// ]]> -->
 				</script>
-				<input type="text" id="datepicker_<?php echo $instance; ?>" size="20" name="<?php echo $instance; ?>-date						 value="<?php echo $d; ?>" />
+				<input type="text" id="datepicker_<?php echo $instance; ?>" size="20" name="<?php echo $instance; ?>-date" value="<?php echo $d; ?>" />
 				<?php
 				$item = ob_get_contents();
 				ob_end_clean();
