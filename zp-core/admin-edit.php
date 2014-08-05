@@ -298,12 +298,16 @@ if (isset($_GET['action'])) {
 											$image->setExpireDate(sanitize($_POST['expirationdate-' . $i]));
 											$image->setTitle(process_language_string_save("$i-title", 2));
 											$image->setDesc(process_language_string_save("$i-desc", EDITOR_SANITIZE_LEVEL));
-											$image->setLocation(process_language_string_save("$i-location", 3));
-											$image->setCity(process_language_string_save("$i-city", 3));
-											$image->setState(process_language_string_save("$i-state", 3));
-											$image->setCountry(process_language_string_save("$i-country", 3));
-											$image->setCredit(process_language_string_save("$i-credit", 1));
-											$image->setCopyright(process_language_string_save("$i-copyright", 1));
+//TODO:remove
+//											$image->setLocation(process_language_string_save("$i-location", 3));
+//											$image->setCity(process_language_string_save("$i-city", 3));
+//											$image->setState(process_language_string_save("$i-state", 3));
+//											$image->setCountry(process_language_string_save("$i-country", 3));
+//											$image->setCredit(process_language_string_save("$i-credit", 1));
+//											$image->setCopyright(process_language_string_save("$i-copyright", 1));
+//											$image->setDateTime(sanitize($_POST["$i-date"]));
+//											if (isset($_POST[$i . '-owner']))
+//												$image->setOwner(sanitize($_POST[$i . '-owner']));
 											if (isset($_POST[$i . '-oldrotation']) && isset($_POST[$i . '-rotation'])) {
 												$oldrotation = (int) $_POST[$i . '-oldrotation'];
 												$rotation = (int) $_POST[$i . '-rotation'];
@@ -327,7 +331,6 @@ if (isset($_GET['action'])) {
 											$tags = array_unique($tags);
 											$image->setTags($tags);
 
-											$image->setDateTime(sanitize($_POST["$i-date"]));
 											$image->setShow(isset($_POST["$i-Visible"]));
 											$image->setCommentsAllowed(isset($_POST["$i-allowcomments"]));
 											if (isset($_POST["reset_hitcounter$i"])) {
@@ -346,8 +349,6 @@ if (isset($_GET['action'])) {
 											if (zp_loggedin(CODEBLOCK_RIGHTS)) {
 												$image->setCodeblock(processCodeblockSave($i));
 											}
-											if (isset($_POST[$i . '-owner']))
-												$image->setOwner(sanitize($_POST[$i . '-owner']));
 											$image->set('filesize', filesize($image->localpath));
 
 											$custom = process_language_string_save("$i-custom_data", 1);
@@ -943,6 +944,7 @@ echo "\n</head>";
 					<!-- Images List -->
 					<div id="tab_imageinfo" class="tabbox">
 						<?php
+						global $albumHeritage;
 						$albumHeritage = array();
 						$t = explode('/', $album->name);
 						While (!empty($t)) {
@@ -1099,7 +1101,7 @@ echo "\n</head>";
 															<p><?php echo gettext("<strong>Dimensions:</strong>"); ?><br /><?php echo $image->getWidth(); ?> x  <?php echo $image->getHeight() . ' ' . gettext('px'); ?></p>
 															<p><?php echo gettext("<strong>Size:</strong>"); ?><br /><?php echo byteConvert($image->getImageFootprint()); ?></p>
 														</td>
-														<td align = "left" valign = "top"><?php echo gettext("Title:");
+														<td align="left" valign="top" width="50%"><?php echo gettext("Title:");
 																?></td>
 														<td><?php print_language_string_list($image->getTitle('all'), $currentimage . '-title', false, NULL, '', '100%'); ?>
 														<td style="padding-left: 1em; text-align: left; border-bottom:none;" rowspan="14" valign="top">
@@ -1223,17 +1225,17 @@ echo "\n</head>";
 																<label class="checkboxlabel">
 																	<input type="radio" id="copy-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="copy"
 																				 onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>'
-																														 , 'copy');"  /> <?php echo gettext("Copy"); ?>
+																																		 , 'copy');"  /> <?php echo gettext("Copy"); ?>
 																</label>
 																<label class="checkboxlabel">
 																	<input type="radio" id="rename-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="rename"
 																				 onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>',
-																														 'rename');"  /> <?php echo gettext("Rename File"); ?>
+																																		 'rename');"  /> <?php echo gettext("Rename File"); ?>
 																</label>
 																<label class="checkboxlabel">
 																	<input type="radio" id="Delete-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="delete"
 																				 onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>', '');
-																										 deleteConfirm('Delete-<?php echo $currentimage; ?>', '<?php echo $currentimage; ?>', '<?php echo addslashes(gettext("Are you sure you want to select this image for deletion?")); ?>')" /> <?php echo gettext("Delete image") ?>
+																														 deleteConfirm('Delete-<?php echo $currentimage; ?>', '<?php echo $currentimage; ?>', '<?php echo addslashes(gettext("Are you sure you want to select this image for deletion?")); ?>')" /> <?php echo gettext("Delete image") ?>
 																</label>
 																<br class="clearall" />
 																<div id="movecopydiv-<?php echo $currentimage; ?>" style="padding-top: .5em; padding-left: .5em; display: none;">
@@ -1350,7 +1352,7 @@ echo "\n</head>";
 																?>
 																<div class = "page-list_icon">
 																	<input class = "checkbox" type = "checkbox" name = "ids[]" value = "<?php echo $image->getFileName(); ?>" onclick = "triggerAllBox(this.form, 'ids[]', this.for
-																												m.allbox);" />
+																																	m.allbox);" />
 																</div>
 																<?php
 															}
@@ -1366,24 +1368,24 @@ echo "\n</head>";
 
 													</tr>
 													<?php
-													/*
-													  <tr>
-													  <td align="left" valign="top"><?php echo gettext("Owner:"); ?></td>
-													  <td style="width:100%;">
-													  <?php
-													  if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
-													  ?>
-													  <select name="<?php echo $currentimage; ?>-owner">
-													  <?php echo admin_album_list($image->getOwner()); ?>
-													  </select>
-													  <?php
-													  } else {
-													  echo $image->getOwner();
-													  }
-													  ?>
-													  </td>
+													/*TODO:remove
+														<tr>
+														<td align="left" valign="top"><?php echo gettext("Owner:"); ?></td>
+														<td style="width:100%;">
+														<?php
+														if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
+														?>
+														<select name="<?php echo $currentimage; ?>-owner">
+														<?php echo admin_album_list($image->getOwner()); ?>
+														</select>
+														<?php
+														} else {
+														echo $image->getOwner();
+														}
+														?>
+														</td>
 
-													  </tr>
+														</tr>
 													 */
 													?>
 													<tr>
@@ -1392,77 +1394,78 @@ echo "\n</head>";
 													</tr>
 
 													<?php
-													if ($album->albumSubRights() & MANAGED_OBJECT_RIGHTS_EDIT) {
+													/*TODO:remove
+														if ($album->albumSubRights() & MANAGED_OBJECT_RIGHTS_EDIT) {
 														?>
 														<tr>
-															<td align="left" valign="top"><span class="nowrap"><?php echo gettext("Set as thumbnail for:"); ?></span></td>
-															<td>
-																<select name="album_thumb-<?php echo $currentimage; ?>" >
-																	<option value=""></option>
-																	<?php generateListFromArray(array(), $albumHeritage, false, true); ?>
-																</select>
-															</td>
+														<td align="left" valign="top"><span class="nowrap"><?php echo gettext("Set as thumbnail for:"); ?></span></td>
+														<td>
+														<select name="album_thumb-<?php echo $currentimage; ?>" >
+														<option value=""></option>
+														<?php generateListFromArray(array(), $albumHeritage, false, true); ?>
+														</select>
+														</td>
 														</tr>
 														<?php
-													}
-													?>
+														}
 
-													<tr align="left" valign="top">
+
+
+														<tr align="left" valign="top">
 														<td valign="top"><?php echo gettext("Date:"); ?></td>
 														<td>
-															<script type="text/javascript">
-																// <!-- <![CDATA[
-																$(function() {
-																	$("#datepicker_<?php echo $currentimage; ?>").datepicker({
-																		dateFormat: 'yy-mm-dd',
-																		showOn: 'button',
-																		buttonImage: 'images/calendar.png',
-																		buttonText: '<?php echo gettext('calendar'); ?>',
-																		buttonImageOnly: true
-																	});
-																});
-																// ]]> -->
-															</script>
-															<input type="text" id="datepicker_<?php echo $currentimage; ?>" size="20" name="<?php echo $currentimage; ?>-date"
-																		 value="<?php
-																		 $d = $image->getDateTime();
-																		 if ($d != '0000-00-00 00:00:00') {
-																			 echo $d;
-																		 }
-																		 ?>" />
+														<script type="text/javascript">
+														// <!-- <![CDATA[
+														$(function() {
+														$("#datepicker_<?php echo $currentimage; ?>").datepicker({
+														dateFormat: 'yy-mm-dd',
+														showOn: 'button',
+														buttonImage: 'images/calendar.png',
+														buttonText: '<?php echo gettext('calendar'); ?>',
+														buttonImageOnly: true
+														});
+														});
+														// ]]> -->
+														</script>
+														<input type="text" id="datepicker_<?php echo $currentimage; ?>" size="20" name="<?php echo $currentimage; ?>-date"
+														value="<?php
+														$d = $image->getDateTime();
+														if ($d != '0000-00-00 00:00:00') {
+														echo $d;
+														}
+														?>" />
 														</td>
-													</tr>
+														</tr>
 
-													<?php
-													/*
-													  $current = $image->getWatermark();
-													  ?>
-													  <tr>
-													  <td align="left" valign="top" width="150"><?php echo gettext("Image watermark:"); ?> </td>
-													  <td>
-													  <select id="image_watermark-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-image_watermark" onclick="toggleWMUse(<?php echo $currentimage; ?>);">
-													  <option value="<?php echo NO_WATERMARK; ?>" <?php if ($current == NO_WATERMARK) echo ' selected="selected"' ?> style="background-color:LightGray"><?php echo gettext('*no watermark'); ?></option>
-													  <option value="" <?php if (empty($current)) echo ' selected="selected"' ?> style="background-color:LightGray"><?php echo gettext('*default'); ?></option>
-													  <?php
-													  $watermarks = getWatermarks();
-													  generateListFromArray(array($current), $watermarks, false, false);
-													  ?>
-													  </select>
-													  <?php
-													  if ($current == '')
-													  $displaystyle = 'none';
-													  else
-													  $displaystyle = 'inline';
-													  ?>
-													  <span id="WMUSE_<?php echo $currentimage; ?>" style="display:<?php echo $displaystyle; ?>">
-													  <?php $wmuse = $image->getWMUse(); ?>
-													  <label><input type="checkbox" value="1" id="wm_image-<?php echo $currentimage; ?>" name="wm_image-<?php echo $currentimage; ?>" <?php if ($wmuse & WATERMARK_IMAGE) echo 'checked="checked"'; ?> /><?php echo gettext('image'); ?></label>
-													  <label><input type="checkbox" value="1" id="wm_thumb-<?php echo $currentimage; ?>" name="wm_thumb-<?php echo $currentimage; ?>" <?php if ($wmuse & WATERMARK_THUMB) echo 'checked="checked"'; ?> /><?php echo gettext('thumb'); ?></label>
-													  <label><input type="checkbox" value="1" id="wm_full-<?php echo $currentimage; ?>" name="wm_full-<?php echo $currentimage; ?>" <?php if ($wmuse & WATERMARK_FULL) echo 'checked="checked"'; ?> /><?php echo gettext('full image'); ?></label>
-													  </span>
-													  </td>
-													  </tr>
-													  <?php
+
+														$current = $image->getWatermark();
+														?>
+														<tr>
+														<td align="left" valign="top" width="150"><?php echo gettext("Image watermark:"); ?> </td>
+														<td>
+														<select id="image_watermark-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-image_watermark" onclick="toggleWMUse(<?php echo $currentimage; ?>);">
+														<option value="<?php echo NO_WATERMARK; ?>" <?php if ($current == NO_WATERMARK) echo ' selected="selected"' ?> style="background-color:LightGray"><?php echo gettext('*no watermark'); ?></option>
+														<option value="" <?php if (empty($current)) echo ' selected="selected"' ?> style="background-color:LightGray"><?php echo gettext('*default'); ?></option>
+														<?php
+														$watermarks = getWatermarks();
+														generateListFromArray(array($current), $watermarks, false, false);
+														?>
+														</select>
+														<?php
+														if ($current == '')
+														$displaystyle = 'none';
+														else
+														$displaystyle = 'inline';
+														?>
+														<span id="WMUSE_<?php echo $currentimage; ?>" style="display:<?php echo $displaystyle; ?>">
+														<?php $wmuse = $image->getWMUse(); ?>
+														<label><input type="checkbox" value="1" id="wm_image-<?php echo $currentimage; ?>" name="wm_image-<?php echo $currentimage; ?>" <?php if ($wmuse & WATERMARK_IMAGE) echo 'checked="checked"'; ?> /><?php echo gettext('image'); ?></label>
+														<label><input type="checkbox" value="1" id="wm_thumb-<?php echo $currentimage; ?>" name="wm_thumb-<?php echo $currentimage; ?>" <?php if ($wmuse & WATERMARK_THUMB) echo 'checked="checked"'; ?> /><?php echo gettext('thumb'); ?></label>
+														<label><input type="checkbox" value="1" id="wm_full-<?php echo $currentimage; ?>" name="wm_full-<?php echo $currentimage; ?>" <?php if ($wmuse & WATERMARK_FULL) echo 'checked="checked"'; ?> /><?php echo gettext('full image'); ?></label>
+														</span>
+														</td>
+														</tr>
+														<?php
 													 */
 
 													echo zp_apply_filter('edit_image_custom_data', '', $image, $currentimage);
@@ -1477,43 +1480,43 @@ echo "\n</head>";
 															</td>
 														</tr>
 														<?php
-														/*
-														  <tr>
-														  <td valign="top"><?php echo gettext("Location:"); ?></td>
-														  <td><?php print_language_string_list($image->getLocation('all'), $currentimage . '-location', false, NULL, '', '100%'); ?>
-														  </td>
-														  </tr>
+														/*TODO:remove
+															<tr>
+															<td valign="top"><?php echo gettext("Location:"); ?></td>
+															<td><?php print_language_string_list($image->getLocation('all'), $currentimage . '-location', false, NULL, '', '100%'); ?>
+															</td>
+															</tr>
 
-														  <tr>
-														  <td valign="top"><?php echo gettext("City:"); ?></td>
-														  <td><?php print_language_string_list($image->getCity('all'), $currentimage . '-city', false, NULL, '', '100%'); ?>
-														  </td>
-														  </tr>
+															<tr>
+															<td valign="top"><?php echo gettext("City:"); ?></td>
+															<td><?php print_language_string_list($image->getCity('all'), $currentimage . '-city', false, NULL, '', '100%'); ?>
+															</td>
+															</tr>
 
-														  <tr>
-														  <td valign="top"><?php echo gettext("State:"); ?></td>
-														  <td><?php print_language_string_list($image->getState('all'), $currentimage . '-state', false, NULL, '', '100%'); ?>
-														  </td>
-														  </tr>
+															<tr>
+															<td valign="top"><?php echo gettext("State:"); ?></td>
+															<td><?php print_language_string_list($image->getState('all'), $currentimage . '-state', false, NULL, '', '100%'); ?>
+															</td>
+															</tr>
 
-														  <tr>
-														  <td valign="top"><?php echo gettext("Country:"); ?></td>
-														  <td><?php print_language_string_list($image->getCountry('all'), $currentimage . '-country', false, NULL, '', '100%'); ?>
-														  </td>
-														  </tr>
+															<tr>
+															<td valign="top"><?php echo gettext("Country:"); ?></td>
+															<td><?php print_language_string_list($image->getCountry('all'), $currentimage . '-country', false, NULL, '', '100%'); ?>
+															</td>
+															</tr>
 
-														  <tr>
-														  <td valign="top"><?php echo gettext("Credit:"); ?></td>
-														  <td><?php print_language_string_list($image->getCredit('all'), $currentimage . '-credit', false, NULL, '', '100%'); ?>
-														  </td>
-														  </tr>
+															<tr>
+															<td valign="top"><?php echo gettext("Credit:"); ?></td>
+															<td><?php print_language_string_list($image->getCredit('all'), $currentimage . '-credit', false, NULL, '', '100%'); ?>
+															</td>
+															</tr>
 
-														  <tr>
-														  <td valign="top"><?php echo gettext("Copyright:"); ?></td>
-														  <td><?php print_language_string_list($image->getCopyright('all'), $currentimage . '-copyright', false, NULL, '', '100%'); ?>
-														  </td>
-														  </tr>
-														  <?php
+															<tr>
+															<td valign="top"><?php echo gettext("Copyright:"); ?></td>
+															<td><?php print_language_string_list($image->getCopyright('all'), $currentimage . '-copyright', false, NULL, '', '100%'); ?>
+															</td>
+															</tr>
+															<?php
 
 														 */
 													} else {
@@ -1839,7 +1842,7 @@ echo "\n</head>";
 								</label>
 								<label style="float: right">
 									<?php echo gettext("Check All"); ?> <input type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this
-																	.checked);" />
+																			.checked);" />
 								</label>
 							</div>
 

@@ -44,7 +44,7 @@
  * @category package
  *
  */
-$plugin_is_filter = defaultExtension(5 | CLASS_PLUGIN); //	if you have such a plugin you probably want to use it
+$plugin_is_filter = defaultExtension(99 | CLASS_PLUGIN); //	if you have such a plugin you probably want to use it
 $plugin_description = gettext('Adds user defined fields to database tables');
 $plugin_notice = gettext('This plugin attaches the "custom data" filters. The raw custom data field is not editable when the plugin has fields defined for the object.');
 $plugin_author = "Stephen Billard (sbillard)";
@@ -53,61 +53,68 @@ require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/common/field
 
 class mediaFields extends fieldExtender {
 
-	static $fields = array(
-					array('table' => 'albums', 'name' => 'owner', 'desc' => 'Owner:', 'type' => 'varchar', 'size' => 50, 'edit' => 'function', 'function' => 'mediaFields::owner'),
-					array('table' => 'albums', 'name' => 'location', 'desc' => 'Location:', 'type' => 'varchar', 'size' => 50, 'edit' => 'multilingual'),
-					array('table' => 'images', 'name' => 'image_watermark', 'desc' => 'Image watermark:', 'type' => 'varchar', 'size' => 50, 'edit' => 'function', 'function' => 'mediaFields::watermark'),
-					array('table' => 'images', 'name' => 'owner', 'desc' => 'Owner:', 'type' => 'varchar', 'size' => 50, 'edit' => 'function', 'function' => 'mediaFields::owner'),
-					array('table' => 'images', 'name' => 'location', 'desc' => 'Location:', 'type' => 'varchar', 'size' => 50, 'edit' => 'multilingual'),
-					array('table' => 'images', 'name' => 'city', 'desc' => 'City:', 'type' => 'varchar', 'size' => 50, 'edit' => 'multilingual'),
-					array('table' => 'images', 'name' => 'state', 'desc' => 'State:', 'type' => 'varchar', 'size' => 50, 'edit' => 'multilingual'),
-					array('table' => 'images', 'name' => 'country', 'desc' => 'Country:', 'type' => 'varchar', 'size' => 50, 'edit' => 'multilingual'),
-					array('table' => 'images', 'name' => 'copyright', 'desc' => 'Copyright:', 'type' => 'varchar', 'size' => 50, 'edit' => 'multilingual')
-	);
+	static function fields() {
+		return array(
+						//album fields
+						array('table' => 'albums', 'name' => 'owner', 'desc' => gettext('Owner:'), 'type' => 'varchar', 'size' => 50, 'edit' => 'function', 'function' => 'mediaFields::owner'),
+						array('table' => 'albums', 'name' => 'date', 'desc' => gettext('Date:'), 'type' => 'varchar', 'size' => 50, 'edit' => 'function', 'function' => 'mediaFields::date'),
+						array('table' => 'albums', 'name' => 'location', 'desc' => gettext('Location:'), 'type' => 'varchar', 'size' => 50, 'edit' => 'multilingual'),
+						//image fields
+						array('table' => 'images', 'name' => 'owner', 'desc' => gettext('Owner:'), 'type' => 'varchar', 'size' => 50, 'edit' => 'function', 'function' => 'mediaFields::owner'),
+						array('table' => 'images', 'name' => 'album_thumb', 'desc' => gettext('Set as thumbnail for:'), 'type' => 'varchar', 'size' => 50, 'edit' => 'function', 'function' => 'mediaFields::thumb'),
+						array('table' => 'images', 'name' => 'date', 'desc' => gettext('Date:'), 'type' => 'varchar', 'size' => 50, 'edit' => 'function', 'function' => 'mediaFields::date'),
+						array('table' => 'images', 'name' => 'image_watermark', 'desc' => gettext('Image watermark:'), 'type' => 'varchar', 'size' => 50, 'edit' => 'function', 'function' => 'mediaFields::watermark'),
+						array('table' => 'images', 'name' => 'location', 'desc' => gettext('Location:'), 'type' => 'varchar', 'size' => 50, 'edit' => 'multilingual'),
+						array('table' => 'images', 'name' => 'city', 'desc' => gettext('City:'), 'type' => 'varchar', 'size' => 50, 'edit' => 'multilingual'),
+						array('table' => 'images', 'name' => 'state', 'desc' => gettext('State:'), 'type' => 'varchar', 'size' => 50, 'edit' => 'multilingual'),
+						array('table' => 'images', 'name' => 'country', 'desc' => gettext('Country:'), 'type' => 'varchar', 'size' => 50, 'edit' => 'multilingual'),
+						array('table' => 'images', 'name' => 'credit', 'desc' => gettext('Credit:'), 'type' => 'varchar', 'size' => 50, 'edit' => 'multilingual'),
+						array('table' => 'images', 'name' => 'copyright', 'desc' => gettext('Copyright:'), 'type' => 'varchar', 'size' => 50, 'edit' => 'multilingual')
+		);
+	}
 
 	function __construct() {
-		parent::constructor('mediaFields', self::$fields);
+		$protected = array('date', 'owner');
+		$fields = self::fields();
+		//do not add/remove some critical DB fields
+		foreach ($fields as $key => $field) {
+			if (in_array($field['name'], $protected))
+				unset($fields[$key]);
+		}
+		parent::constructor('mediaFields', $fields);
 		//  for translations need to define the display names
-		gettext('Owner:');
-		gettext("Location:");
-		gettext("City:");
-		gettext("State:");
-		gettext("Country:");
-		gettext("Credit:");
-		gettext("Copyright:");
-		gettext("Image watermark:");
 	}
 
 	static function addToSearch($list) {
-		return parent::_addToSearch($list, self::$fields);
+		return parent::_addToSearch($list, self::fields());
 	}
 
 	static function adminSave($updated, $userobj, $i, $alter) {
-		parent::_adminSave($updated, $userobj, $i, $alter, self::$fields);
+		parent::_adminSave($updated, $userobj, $i, $alter, self::fields());
 	}
 
 	static function adminEdit($html, $userobj, $i, $background, $current) {
-		return parent::_adminEdit($html, $userobj, $i, $background, $current, self::$fields);
+		return parent::_adminEdit($html, $userobj, $i, $background, $current, self::fields());
 	}
 
 	static function mediaItemSave($object, $i) {
-		return parent::_mediaItemSave($object, $i, self::$fields);
+		return parent::_mediaItemSave($object, $i, self::fields());
 	}
 
 	static function mediaItemEdit($html, $object, $i) {
-		return parent::_mediaItemEdit($html, $object, $i, self::$fields);
+		return parent::_mediaItemEdit($html, $object, $i, self::fields());
 	}
 
 	static function cmsItemSave($custom, $object) {
-		return parent::_cmsItemSave($custom, $object, self::$fields);
+		return parent::_cmsItemSave($custom, $object, self::fields());
 	}
 
 	static function cmsItemEdit($html, $object) {
-		return parent::_cmsItemEdit($html, $object, self::$fields);
+		return parent::_cmsItemEdit($html, $object, self::fields());
 	}
 
 	static function register() {
-		parent::_register('mediaFields', self::$fields);
+		parent::_register('mediaFields', self::fields());
 	}
 
 	static function adminNotice($tab, $subtab) {
@@ -116,7 +123,7 @@ class mediaFields extends fieldExtender {
 
 	static function owner($obj, $instance, $field, $type) {
 		if ($type == 'save') {
-			return sanitize($instance . '-' . $_POST[$field['name']]);
+			return sanitize($_POST[$instance . '-' . $field['name']]);
 		} else {
 			$item = NULL;
 			if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
@@ -133,9 +140,86 @@ class mediaFields extends fieldExtender {
 		}
 	}
 
+	static function thumb($image, $currentimage, $field, $type) {
+		global $albumHeritage;
+		if ($type == 'save') {
+			if ($thumbnail = $_POST[$currentimage . '-' . $field['name']]) {
+				$talbum = newAlbum($thumbnail);
+				if ($image->imagefolder == $thumbnail) {
+					$talbum->setThumb($image->filename);
+				} else {
+					$talbum->setThumb('/' . $image->imagefolder . '/' . $image->filename);
+				}
+				$talbum->save();
+			}
+			return NULL;
+		} else {
+			$item = NULL;
+			if ($image->album->albumSubRights() & MANAGED_OBJECT_RIGHTS_EDIT) {
+				ob_start();
+				?>
+				<select name="<?php echo $currentimage . '-' . $field['name']; ?>" >
+					<option value=""></option>
+					<?php generateListFromArray(array(), $albumHeritage, false, true); ?>
+				</select>
+				<?php
+				$item = ob_get_contents();
+				ob_end_clean();
+			}
+			return $item;
+		}
+	}
+
+	static function date($obj, $instance, $field, $type) {
+		global $albumHeritage;
+		if ($type == 'save') {
+			return sanitize($_POST[$instance . '-' . $field['name']]);
+		} else {
+			$item = NULL;
+			if (true || $obj->isMyItem($obj->manage_some_rights)) {
+				$d = $obj->getDateTime();
+				if ($d == '0000-00-00 00:00:00') {
+					$d = '';
+					;
+				}
+				ob_start();
+				?>
+				<script type="text/javascript">
+					// <!-- <![CDATA[
+					$(function() {
+						$("#datepicker_<?php echo $instance; ?>").datepicker({
+							dateFormat: 'yy-mm-dd',
+							showOn: 'button',
+							buttonImage: 'images/calendar.png',
+							buttonText: '<?php echo gettext('calendar'); ?>',
+							buttonImageOnly: true
+						});
+					});
+					// ]]> -->
+				</script>
+				<input type="text" id="datepicker_<?php echo $instance; ?>" size="20" name="<?php echo $instance; ?>-date						 value="<?php echo $d; ?>" />
+				<?php
+				$item = ob_get_contents();
+				ob_end_clean();
+			}
+			return $item;
+		}
+	}
+
 	static function watermark($image, $currentimage, $field, $type) {
 		if ($type == 'save') {
-			return sanitize($instance . '-' . $_POST[$field['name']]);
+			$wmt = sanitize($_POST["$$currentimage-image_watermark"], 3);
+			$image->setWatermark($wmt);
+			$wmuse = 0;
+			if (isset($_POST['wm_image-' . $currentimage]))
+				$wmuse = $wmuse | WATERMARK_IMAGE;
+			if (isset($_POST['wm_thumb-' . $currentimage]))
+				$wmuse = $wmuse | WATERMARK_THUMB;
+			if (isset($_POST['wm_full-' . $currentimage]))
+				$wmuse = $wmuse | WATERMARK_FULL;
+			$image->setWMUse($wmuse);
+
+			return NULL;
 		} else {
 			$item = NULL;
 			if ($image->isMyItem($image->manage_some_rights)) {

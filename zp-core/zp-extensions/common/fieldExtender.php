@@ -125,7 +125,7 @@ class fieldExtender {
 				$newdata = process_language_string_save($instance . '-' . $field['name']);
 				break;
 			case'function':
-				$newdata = @call_user_func($field['function'], $obj, $instance, $field, 'save');
+				$newdata = call_user_func($field['function'], $obj, $instance, $field, 'save');
 				break;
 			default:
 				if (!is_null($instance)) {
@@ -137,6 +137,7 @@ class fieldExtender {
 					$newdata = NULL;
 				}
 		}
+
 		return $newdata;
 	}
 
@@ -189,7 +190,8 @@ class fieldExtender {
 				if ($field['table'] == 'administrators') {
 					$olddata = $userobj->get($field['name']);
 					$newdata = fieldExtender::_saveHandler($userobj, $i, $field);
-					$userobj->set($field['name'], $newdata);
+					if (!is_null($newdata))
+						$userobj->set($field['name'], $newdata);
 					if ($olddata != $newdata) {
 						$updated = true;
 					}
@@ -216,7 +218,7 @@ class fieldExtender {
 				list($item, $formatted) = fieldExtender::_editHandler($userobj, $field, $i);
 				if (!is_null($formatted)) {
 					$input = '<fieldset>' .
-									'<legend>' . gettext($field['desc']) . '</legend>';
+									'<legend>' . $field['desc'] . '</legend>';
 					if ($formatted) {
 						$html .= $item;
 					} else {
@@ -260,7 +262,8 @@ class fieldExtender {
 		foreach ($fields as $field) {
 			if ($field['table'] == $object->table) {
 				$newdata = fieldExtender::_saveHandler($object, $i, $field);
-				$object->set($field['name'], $newdata);
+				if (!is_null($newdata))
+					$object->set($field['name'], $newdata);
 			}
 		}
 		return $object;
@@ -279,7 +282,7 @@ class fieldExtender {
 			if ($field['table'] == $object->table) {
 				list($item, $formatted) = fieldExtender::_editHandler($object, $field, $i);
 				if (!is_null($formatted)) {
-					$html .= "<tr>\n<td>" . gettext($field['desc']) . "</td>\n<td>";
+					$html .= "<tr>\n<td>" . $field['desc'] . "</td>\n<td>";
 					if ($formatted) {
 						$html .= $item;
 					} else {
@@ -308,7 +311,8 @@ class fieldExtender {
 		foreach ($fields as $field) {
 			if ($field['table'] == $object->table) {
 				$newdata = fieldExtender::_saveHandler($object, NULL, $field);
-				$object->set($field['name'], $newdata);
+				if (!is_null($newdata))
+					$object->set($field['name'], $newdata);
 			}
 		}
 		return $custom;
@@ -326,7 +330,7 @@ class fieldExtender {
 			if ($field['table'] == $object->table) {
 				list($item, $formatted) = fieldExtender::_editHandler($object, $field, NULL);
 				if (!is_null($formatted)) {
-					$html .= '<tr><td>' . gettext($field['desc']) . '</td><td>';
+					$html .= '<tr><td>' . $field['desc'] . '</td><td>';
 					if ($formatted) {
 						$html .= $item;
 					} else {
