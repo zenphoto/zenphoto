@@ -97,7 +97,7 @@ if (!defined('WEBPATH'))
 		<?php } else { ?>
 			<script type="text/javascript" src="<?php echo $_zp_themeroot; ?>/js/zpardoise_light.js"></script>
 		<?php } ?>
-		<?php if (($_zp_gallery_page == 'album.php') && (getOption('use_galleriffic')) && (isImagePage() == true)) { ?>
+		<?php if (($_zp_gallery_page == 'album.php' || $_zp_gallery_page == 'favorites.php') && (getOption('use_galleriffic')) && (isImagePage() == true)) { ?>
 			<script type="text/javascript">
 								//<![CDATA[
 												(function($) {
@@ -323,6 +323,7 @@ if (!defined('WEBPATH'))
 				<?php
 				if (($_zp_gallery_page == 'gallery.php') ||
 								($_zp_gallery_page == 'album.php') ||
+								($_zp_gallery_page == 'favorites.php') ||
 								($_zp_gallery_page == 'image.php')) {
 					$galleryactive = true;
 				} else {
