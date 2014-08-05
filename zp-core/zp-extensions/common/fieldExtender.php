@@ -26,7 +26,7 @@
  * "edit" is is how the content is show on the edit tab. Values: multilingual, normal, function:<i>editor function</i>
  *
  * The <i>editor function</i> will be passed three parameters: the object, the $_POST instance, the field array,
- * and the action: "edit" or "save". The function must return the processed data to be displayed or saved.
+ * and the action: "edit" or "save". The function must return an array of the the processed data to be displayed and a format indicator or  the data to be saved.
  *
  * Database fields names must conform to
  * {@link http://dev.mysql.com/doc/refman/5.0/en/identifiers.html MySQL field naming rules}.
@@ -157,8 +157,12 @@ class fieldExtender {
 				$formatted = true;
 				break;
 			case'function':
-				$item = @call_user_func($field['function'], $obj, $instance, $field, 'edit');
-				$formatted = true;
+				$item = call_user_func($field['function'], $obj, $instance, $field, 'edit');
+				if (is_null($item)) {
+					$formatted = NULL;
+				} else {
+					$formatted = true;
+				}
 				break;
 			default:
 				if ($instance)
@@ -210,20 +214,21 @@ class fieldExtender {
 		foreach ($fields as $field) {
 			if ($field['table'] == 'administrators') {
 				list($item, $formatted) = fieldExtender::_editHandler($userobj, $field, $i);
-				$input = '<fieldset>' .
-								'<legend>' . $field['desc'] . '</legend>';
-				if ($formatted) {
-					$html .= $item;
-				} else {
-					if (in_array(strtolower($field['type']), array('varchar', 'int', 'tinytext'))) {
-						$input .= '<input name = "' . $field['name'] . '_' . $i . '" type = "text" size = "' . TEXT_INPUT_SIZE . '" value = "' . $item . '" />';
+				if (!is_null($formatted)) {
+					$input = '<fieldset>' .
+									'<legend>' . $field['desc'] . '</legend>';
+					if ($formatted) {
+						$html .= $item;
 					} else {
-						$input .= '<textarea name = "' . $field['name'] . '_' . $i . '" cols = "' . TEXTAREA_COLUMNS . '"rows = "1">' . $item . '</textarea>';
+						if (in_array(strtolower($field['type']), array('varchar', 'int', 'tinytext'))) {
+							$input .= '<input name = "' . $field['name'] . '_' . $i . '" type = "text" size = "' . TEXT_INPUT_SIZE . '" value = "' . $item . '" />';
+						} else {
+							$input .= '<textarea name = "' . $field['name'] . '_' . $i . '" cols = "' . TEXTAREA_COLUMNS . '"rows = "1">' . $item . '</textarea>';
+						}
 					}
+					$input .='</fieldset>';
+					$list[] = $input;
 				}
-
-				$input .='</fieldset>';
-				$list[] = $input;
 			}
 		}
 		if (($count = count($list)) % 2) {
@@ -273,18 +278,19 @@ class fieldExtender {
 		foreach ($fields as $field) {
 			if ($field['table'] == $object->table) {
 				list($item, $formatted) = fieldExtender::_editHandler($object, $field, $i);
-				$html .= "<tr>\n<td>" . $field['desc'] . "</td>\n<td>";
-				if ($formatted) {
-					$html .= $item;
-				} else {
-					if (in_array(strtolower($field['type']), array('varchar', 'int', 'tinytext'))) {
-						$html .= '<input name = "' . $field['name'] . '_' . $i . '" type = "text" style = "width:100%;" value = "' . $item . '" />';
+				if (!is_null($formatted)) {
+					$html .= "<tr>\n<td>" . $field['desc'] . "</td>\n<td>";
+					if ($formatted) {
+						$html .= $item;
 					} else {
-						$html .= '<textarea name = "' . $field['name'] . '_' . $i . '" style = "width:100%;" rows = "6">' . $item . '</textarea>';
+						if (in_array(strtolower($field['type']), array('varchar', 'int', 'tinytext'))) {
+							$html .= '<input name = "' . $field['name'] . '_' . $i . '" type = "text" style = "width:100%;" value = "' . $item . '" />';
+						} else {
+							$html .= '<textarea name = "' . $field['name'] . '_' . $i . '" style = "width:100%;" rows = "6">' . $item . '</textarea>';
+						}
 					}
+					$html .="</td>\n</tr>\n";
 				}
-
-				$html .="</td>\n</tr>\n";
 			}
 		}
 
@@ -319,15 +325,17 @@ class fieldExtender {
 		foreach ($fields as $field) {
 			if ($field['table'] == $object->table) {
 				list($item, $formatted) = fieldExtender::_editHandler($object, $field, NULL);
-				$html .= '<tr><td>' . $field['desc'] . '</td><td>';
-				if ($formatted) {
-					$html .= $item;
-				} else {
-					if (in_array(strtolower($field['type']), array('varchar', 'int', 'tinytext'))) {
-						$html .= '<input name="' . $field['name'] . '" type="text" style = "width:97%;"
-value="' . $item . '" />';
+				if (!is_null($formatted)) {
+					$html .= '<tr><td>' . $field['desc'] . '</td><td>';
+					if ($formatted) {
+						$html .= $item;
 					} else {
-						$html .= '<textarea name = "' . $field['name'] . '" style = "width:97%;" "rows="6">' . $item . '</textarea>';
+						if (in_array(strtolower($field['type']), array('varchar', 'int', 'tinytext'))) {
+							$html .= '<input name="' . $field['name'] . '" type="text" style = "width:97%;"
+value="' . $item . '" />';
+						} else {
+							$html .= '<textarea name = "' . $field['name'] . '" style = "width:97%;" "rows="6">' . $item . '</textarea>';
+						}
 					}
 				}
 			}

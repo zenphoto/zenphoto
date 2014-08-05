@@ -787,6 +787,8 @@ class Zenphoto_Authority {
 		foreach (self::getAuthCookies() as $cookie => $value) {
 			zp_clearCookie($cookie);
 		}
+		if (isset($_SESSION['admin'][bin2hex(FULLWEBPATH)]))
+			unset($_SESSION['admin'][bin2hex(FULLWEBPATH)]);
 		$_zp_loggedin = false;
 		$_zp_pre_authorization = array();
 		return zp_apply_filter('zp_logout', NULL, $_zp_current_admin_obj);
@@ -1226,7 +1228,7 @@ class Zenphoto_Authority {
 		<p>
 			<label for="disclose_password<?php echo $id; ?>"><?php echo gettext('Show password'); ?></label>
 			<input type="checkbox" name="disclose_password<?php echo $id; ?>" id="disclose_password<?php echo $id; ?>" onclick="passwordClear('<?php echo $id; ?>');
-					togglePassword('<?php echo $id; ?>');">
+							togglePassword('<?php echo $id; ?>');">
 		</p>
 		<p class="password_field_<?php echo $id; ?>">
 			<label for="pass_r<?php echo $id; ?>" id="match<?php echo $id; ?>"><?php echo gettext("Repeat password") . $flag; ?></label>

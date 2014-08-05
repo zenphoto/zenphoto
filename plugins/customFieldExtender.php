@@ -1,5 +1,4 @@
 <?php
-
 /*
  * This plugin is used to extend the gallery database table fields. The
  * administrative tabs for the objects will have input items for these new fields.
@@ -76,8 +75,8 @@ class customFieldExtender extends fieldExtender {
 
 	static $fields = array(
 					array('table' => 'albums', 'name' => 'Finish_Disc', 'desc' => 'Finish Disc', 'type' => 'varchar', 'size' => 50, 'edit' => 'multilingual'),
-					array('table' => 'news', 'name' => 'Finish_Lip', 'desc' => 'Finish Lip', 'type' => 'varchar', 'size' => 50, 'edit' => 'function', 'function' => 'testFunction'),
-					array('table' => 'images', 'name' => 'custom_option', 'desc' => 'Custom option', 'type' => 'varchar', 'size' => 50, 'edit' => 'multilingual'),
+					array('table' => 'news', 'name' => 'Finish_Lip', 'desc' => 'Finish Lip', 'type' => 'varchar', 'size' => 50),
+					array('table' => 'images', 'name' => 'custom_option', 'desc' => 'Custom option', 'type' => 'varchar', 'size' => 50, 'edit' => 'function', 'function' => 'customFieldExtender::custom_option'),
 					array('table' => 'news_categories', 'name' => 'Rear_Size', 'desc' => 'Front Size', 'type' => 'varchar', 'size' => 50),
 					array('table' => 'pages', 'name' => 'Rear_Size', 'desc' => 'Rear Size', 'type' => 'varchar', 'size' => 50)
 	);
@@ -122,14 +121,25 @@ class customFieldExtender extends fieldExtender {
 		parent::_adminNotice($tab, $subtab, 'customFieldExtender');
 	}
 
-}
-
-function testFunction($obj, $instance, $field, $type) {
-	if ($type == 'save') {
-		return sanitize($_POST[$field['name'] . '_' . $instance]);
-	} else {
-		return '<input name = "' . $field['name'] . '_' . $instance . '" type = "text" size = "' . TEXT_INPUT_SIZE . '" value = "' . html_encode($obj->get($field['name'])) . '" />';
+	static function custom_option($obj, $instance, $field, $type) {
+		if ($type == 'save') {
+			return sanitize($instance . '-' . $_POST[$field['name']]);
+		} else {
+			$item = NULL;
+			if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
+				ob_start();
+				?>
+				<select name="<?php echo $instance . '-' . $field['name']; ?>">
+					<?php echo admin_album_list($obj->getOwner()); ?>
+				</select>
+				<?php
+				$item = ob_get_contents();
+				ob_end_clean();
+			}
+			return $item;
+		}
 	}
+
 }
 
 function getCustomField($field, $object = NULL, &$detail = NULL) {
