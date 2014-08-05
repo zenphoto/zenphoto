@@ -50,7 +50,7 @@ switch (OFFSET_PATH) {
 
 	case 0:
 		//load up the deprecated functions from Zenphoto
-		foreach (getPluginFiles('*.php', 'zenpotoCompatibilityPack') as $deprecated) {
+		foreach (getPluginFiles('*.php', 'zenphotoCompatibilityPack') as $deprecated) {
 			require_once($deprecated);
 		}
 
