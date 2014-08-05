@@ -86,7 +86,7 @@ function adminToolbox() {
 			<h3><a onclick="toggle('<?php echo $dataid; ?>');"><?php echo gettext('Admin Toolbox'); ?></a></h3>
 		</div>
 		<div id="<?php echo $dataid; ?>" style="display: none;">
-
+			<?php printf(gettext('Logged in as <em>%s</em>'), $_zp_current_admin_obj->getUser()); ?>
 			<ul style="list-style-type: none;" >
 				<?php
 				$outputA = ob_get_contents();
@@ -2043,6 +2043,7 @@ function makeImageCurrent($image) {
 	global $_zp_current_album, $_zp_current_image;
 	$_zp_current_image = $image;
 	$_zp_current_album = $_zp_current_image->getAlbum();
+	save_context();
 	set_context(ZP_INDEX | ZP_ALBUM | ZP_IMAGE);
 }
 
@@ -3152,8 +3153,8 @@ function filterImageQuery($result, $source) {
  */
 function getRandomImages($daily = false) {
 	global $_zp_gallery;
-	if ($daily) {
-		$potd = getSerializedArray(getOption('picture_of_the_day'));
+	if ($daily && ($potd = getOption('picture_of_the_day'))) {
+		$potd = getSerializedArray($potd);
 		if (date('Y-m-d', $potd['day']) == date('Y-m-d')) {
 			$album = newAlbum($potd['folder'], true, true);
 			if ($album->exists) {
@@ -3737,7 +3738,7 @@ function getSearchURL($words, $dates, $fields, $page, $object_list = NULL) {
 		}
 		$words = strtr($words, array('%' => '__25__', '&' => '__26__', '#' => '__23__'));
 		if ($rewrite) {
-			$url .= urlencode($words);
+			$url .= urlencode($words) . '/';
 		} else {
 			$url .= "&words=" . urlencode($words);
 		}
@@ -3747,14 +3748,14 @@ function getSearchURL($words, $dates, $fields, $page, $object_list = NULL) {
 			$dates = implode(',', $dates);
 		}
 		if ($rewrite) {
-			$url .= $dates;
+			$url .= $dates . '/';
 		} else {
 			$url .= "&date=$dates";
 		}
 	}
 	if ($page > 1) {
 		if ($rewrite) {
-			$url .= "/$page";
+			$url .= $page;
 		} else {
 			if ($urls) {
 				$urls .= '&';
@@ -3862,34 +3863,34 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 		<!-- search form -->
 		<form method="post" action="<?php echo $searchurl; ?>" id="search_form">
 			<script type="text/javascript">
-			// <!-- <![CDATA[
-			var within = <?php echo (int) $within; ?>;
-			function search_(way) {
-				within = way;
-				if (way) {
-					$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
+				// <!-- <![CDATA[
+				var within = <?php echo (int) $within; ?>;
+				function search_(way) {
+					within = way;
+					if (way) {
+						$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
 
-				} else {
-					lastsearch = '';
-					$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
-				}
-				$('#search_input').val('');
-			}
-			$('#search_form').submit(function() {
-				if (within) {
-					var newsearch = $.trim($('#search_input').val());
-					if (newsearch.substring(newsearch.length - 1) == ',') {
-						newsearch = newsearch.substr(0, newsearch.length - 1);
-					}
-					if (newsearch.length > 0) {
-						$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
 					} else {
-						$('#search_input').val('<?php echo $searchwords; ?>');
+						lastsearch = '';
+						$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
 					}
+					$('#search_input').val('');
 				}
-				return true;
-			});
-			// ]]> -->
+				$('#search_form').submit(function() {
+					if (within) {
+						var newsearch = $.trim($('#search_input').val());
+						if (newsearch.substring(newsearch.length - 1) == ',') {
+							newsearch = newsearch.substr(0, newsearch.length - 1);
+						}
+						if (newsearch.length > 0) {
+							$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
+						} else {
+							$('#search_input').val('<?php echo $searchwords; ?>');
+						}
+					}
+					return true;
+				});
+				// ]]> -->
 			</script>
 			<?php echo $prevtext; ?>
 			<div>

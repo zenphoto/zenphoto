@@ -80,7 +80,7 @@
  * @package plugins
  * @subpackage admin
  */
-$plugin_is_filter = 5 | ADMIN_PLUGIN;
+$plugin_is_filter = defaultExtension(5 | ADMIN_PLUGIN);
 $plugin_description = gettext("Provides cache management utilities for Image, HTML, and RSS caches.");
 $plugin_author = "Stephen Billard (sbillard)";
 
@@ -351,7 +351,7 @@ class cacheManager {
 						'enable'			 => $enable,
 						'button_text'	 => gettext('Cache manager'),
 						'formname'		 => 'cacheManager_button',
-						'action'			 => WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cacheManager/cacheImages.php?page=overview&tab=images',
+						'action'			 => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cacheManager/cacheImages.php?page=overview&tab=images',
 						'icon'				 => 'images/cache.png',
 						'alt'					 => '',
 						'hidden'			 => '',
@@ -365,7 +365,7 @@ class cacheManager {
 							'enable'			 => true,
 							'button_text'	 => gettext('Purge RSS cache'),
 							'formname'		 => 'purge_rss_cache.php',
-							'action'			 => WEBPATH . '/' . ZENFOLDER . '/admin.php?action=clear_rss_cache',
+							'action'			 => FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=clear_rss_cache',
 							'icon'				 => 'images/edit-delete.png',
 							'alt'					 => '',
 							'title'				 => gettext('Delete all files from the RSS cache'),
@@ -379,7 +379,7 @@ class cacheManager {
 						'enable'			 => true,
 						'button_text'	 => gettext('Purge Image cache'),
 						'formname'		 => 'purge_image_cache.php',
-						'action'			 => WEBPATH . '/' . ZENFOLDER . '/admin.php?action=action=clear_cache',
+						'action'			 => FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=action=clear_cache',
 						'icon'				 => 'images/edit-delete.png',
 						'alt'					 => '',
 						'title'				 => gettext('Delete all files from the Image cache'),
@@ -391,7 +391,7 @@ class cacheManager {
 						'enable'			 => true,
 						'button_text'	 => gettext('Purge HTML cache'),
 						'formname'		 => 'clearcache_button',
-						'action'			 => WEBPATH . '/' . ZENFOLDER . '/admin.php?action=clear_html_cache',
+						'action'			 => FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=clear_html_cache',
 						'icon'				 => 'images/edit-delete.png',
 						'title'				 => gettext('Clear the static HTML cache. HTML pages will be re-cached as they are viewed.'),
 						'alt'					 => '',

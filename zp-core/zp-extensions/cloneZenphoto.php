@@ -24,31 +24,50 @@
 $plugin_is_filter = 5 | ADMIN_PLUGIN;
 $plugin_description = gettext('Allows multiple installations to share a single set of script files.');
 $plugin_author = "Stephen Billard (sbillard)";
-$plugin_disable = (SYMLINK) ? (zpFunctions::hasPrimaryScripts()) ? false : gettext('Only the primary installation may clone offspring installations.') : gettext('Your server does not support symbolic linking.');
+$plugin_disable = (SYMLINK) ? (TEST_RELEASE || zpFunctions::hasPrimaryScripts()) ? false : gettext('Only the primary installation may clone offspring installations.') : gettext('Your server does not support symbolic linking.');
 
 require_once(SERVERPATH . '/' . ZENFOLDER . '/reconfigure.php');
-if (!$plugin_disable) {
+if ($plugin_disable) {
+	enableExtension('cloneZenphoto', 0);
+} else {
 	zp_register_filter('admin_utilities_buttons', 'cloneZenphoto::button');
-}
 
-class cloneZenphoto {
+	class cloneZenphoto {
 
-	static function button($buttons) {
-		$buttons[] = array(
-						'category'		 => gettext('Admin'),
-						'enable'			 => true,
-						'button_text'	 => gettext('Clone installation'),
-						'formname'		 => 'cloneZenphoto',
-						'action'			 => PLUGIN_FOLDER . '/cloneZenphoto/cloneTab.php',
-						'icon'				 => 'images/folder.png',
-						'title'				 => gettext('Create a new installation using links to the current install files.'),
-						'alt'					 => gettext('Clone'),
-						'hidden'			 => '',
-						'rights'			 => ADMIN_RIGHTS
-		);
-		return $buttons;
+		static function button($buttons) {
+			$buttons[] = array(
+							'category'		 => gettext('Admin'),
+							'enable'			 => true,
+							'button_text'	 => gettext('Clone installation'),
+							'formname'		 => 'cloneZenphoto',
+							'action'			 => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cloneZenphoto/cloneTab.php',
+							'icon'				 => 'images/folder.png',
+							'title'				 => gettext('Create a new installation using links to the current install files.'),
+							'alt'					 => gettext('Clone'),
+							'hidden'			 => '',
+							'rights'			 => ADMIN_RIGHTS
+			);
+			return $buttons;
+		}
+
+		static function setup() {
+			global $_zp_current_admin_obj;
+			$clones = array();
+			if ($result = query('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="clone"')) {
+				while ($row = db_fetch_assoc($result)) {
+					if (file_exists($row['aux'] . '/' . ZENFOLDER . '/index.php')) {
+						$clones[$row['aux']] = $row['data'] . '/' . ZENFOLDER . '/setup/index.php?autorun';
+						$_SESSION['admin'][bin2hex($row['aux'])] = serialize($_zp_current_admin_obj);
+					} else {
+						query('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `id` = ' . $row['id']);
+					}
+				}
+				db_free_result($result);
+			}
+			return $clones;
+		}
+
 	}
 
 }
-
 ?>

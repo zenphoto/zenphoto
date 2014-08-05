@@ -97,7 +97,7 @@ if (!defined('WEBPATH'))
 		<?php } else { ?>
 			<script type="text/javascript" src="<?php echo $_zp_themeroot; ?>/js/zpardoise_light.js"></script>
 		<?php } ?>
-		<?php if (($_zp_gallery_page == 'album.php') && (getOption('use_galleriffic')) && (isImagePage() == true)) { ?>
+		<?php if (($_zp_gallery_page == 'album.php' || $_zp_gallery_page == 'favorites.php') && (getOption('use_galleriffic')) && (isImagePage() == true)) { ?>
 			<script type="text/javascript">
 								//<![CDATA[
 												(function($) {
@@ -260,9 +260,9 @@ if (!defined('WEBPATH'))
 																													case 63235: case 39:
 																																	if (e.ctrlKey || (docElem.scrollLeft == docElem.scrollWidth - docElem.clientWidth)) {
 	<?php if ($NextURL) { ?>window.location.href = nextURL; <?php } ?>return false; }
-																												break;
-																																case 63234: case 37:
-																																if (e.ctrlKey || (docElem.scrollLeft == 0)) {
+																										break;
+																														case 63234: case 37:
+																														if (e.ctrlKey || (docElem.scrollLeft == 0)) {
 	<?php if ($PrevURL) { ?>window.location.href = prevURL; <?php } ?>return false; }
 																										break;
 																										}
@@ -272,7 +272,7 @@ if (!defined('WEBPATH'))
 																										document.onkeydown = keyboardNavigation;
 																														//]]>
 			</script>
-<?php } ?>
+		<?php } ?>
 
 		<script type="text/javascript">
 																															//<![CDATA[
@@ -304,25 +304,26 @@ if (!defined('WEBPATH'))
 	</head>
 
 	<body>
-				<?php zp_apply_filter('theme_body_open'); ?>
+		<?php zp_apply_filter('theme_body_open'); ?>
 
 		<div id="page">
-<?php if (($_zp_gallery_page != 'image.php') || (getOption('show_image_logo_on_image'))) { ?>
+			<?php if (($_zp_gallery_page != 'image.php') || (getOption('show_image_logo_on_image'))) { ?>
 				<div id="site-title" class="clearfix">
-	<?php if (extensionEnabled('dynamic-locale')) { ?>
+					<?php if (extensionEnabled('dynamic-locale')) { ?>
 						<div id="flag"><?php printLanguageSelector('langselector'); ?></div>
-				<?php } ?>
+					<?php } ?>
 					<!-- banniere -->
 					<div id="banniere">
 						<a href="<?php echo html_encode(getMainSiteURL()); ?>" title="<?php echo gettext('Home'); ?>"><img id="zplogo" src="<?php echo $_zp_themeroot; ?>/images/<?php echo getOption('use_image_logo_filename'); ?>" alt="<?php echo getGalleryTitle(); ?>" /></a>
 					</div>
 				</div>
-				<?php } ?>
+			<?php } ?>
 
 			<div id="main-menu">
 				<?php
 				if (($_zp_gallery_page == 'gallery.php') ||
 								($_zp_gallery_page == 'album.php') ||
+								($_zp_gallery_page == 'favorites.php') ||
 								($_zp_gallery_page == 'image.php')) {
 					$galleryactive = true;
 				} else {
@@ -360,12 +361,9 @@ if (!defined('WEBPATH'))
 					<?php } ?>
 					<?php if (extensionEnabled('contact_form')) { ?>
 						<li <?php if ($_zp_gallery_page == 'contact.php') { ?>class="active"<?php } ?>><?php printCustomPageURL(gettext('Contact'), 'contact'); ?></li>
-	<?php
-}
-if (function_exists('printFavoritesURL')) {
-	printFavoritesURL(NULL, '<li>', '</li><li>', '</li>');
-}
-?>
+						<?php
+					}
+					?>
 				</ul>
 
 			</div>		<!-- END #MAIN-MENU -->

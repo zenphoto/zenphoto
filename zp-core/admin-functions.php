@@ -450,14 +450,16 @@ function printAdminHeader($tab, $subtab = NULL) {
 						}
 						$tab = substr($source, $i + 4);
 					}
-					if (!$link) {
-						$bt = debug_backtrace();
-						$bt = array_shift($bt);
-						if (isset($bt['file'])) {
-							$link = str_replace(SERVERPATH, '', str_replace('\\', '/', $bt['file']));
-						}
-					}
-					if (strpos($link, '/') !== 0) { // zp_core relative
+					if (empty($link)) {
+						$link = getRequestURI();
+						/*
+						  $bt = debug_backtrace();
+						  $bt = array_shift($bt);
+						  if (isset($bt['file'])) {
+						  $link = str_replace(SERVERPATH, '', str_replace('\\', '/', $bt['file']));
+						  }
+						 */
+					} else if (strpos($link, '/') !== 0) { // zp_core relative
 						$link = WEBPATH . '/' . ZENFOLDER . '/' . $link;
 					} else {
 						$link = WEBPATH . $link;
@@ -1555,7 +1557,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						$sort[gettext('Custom')] = 'custom';
 						/*
 						 * not recommended--screws with peoples minds during pagination!
-							$sort[gettext('Random')] = 'random';
+						  $sort[gettext('Random')] = 'random';
 						 */
 						?>
 						<tr>
@@ -1854,15 +1856,19 @@ function printAdminHeader($tab, $subtab = NULL) {
 							<input type="checkbox" name="<?php echo $prefix; ?>Published" value="1" <?php if ($album->getShow()) echo ' checked="checked"'; ?> />
 							<?php echo gettext("Published"); ?>
 						</label>
-						<label class="checkboxlabel">
-							<input type="checkbox" name="<?php echo $prefix . 'allowcomments'; ?>" value="1" <?php
-							if ($album->getCommentsAllowed()) {
-								echo ' checked="checked"';
-							}
-							?> />
-										 <?php echo gettext("Allow Comments"); ?>
-						</label>
 						<?php
+						if (extensionEnabled('comment_form')) {
+							?>
+							<label class="checkboxlabel">
+								<input type="checkbox" name="<?php echo $prefix . 'allowcomments'; ?>" value="1" <?php
+								if ($album->getCommentsAllowed()) {
+									echo ' checked="checked"';
+								}
+								?> />
+											 <?php echo gettext("Allow Comments"); ?>
+							</label>
+							<?php
+						}
 						if (extensionEnabled('hitcounter')) {
 							$hc = $album->get('hitcounter');
 							if (empty($hc)) {
@@ -3206,6 +3212,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 			<?php
 			$element = 3;
 			$activeset = false;
+			?>
+			<input type="checkbox" name="<?php echo $id; ?>-rightsenabled" class="user-<?php echo $id; ?>" value="1" checked="checked" <?php echo $alterrights; ?> style="display:none" />
+			<?php
 			foreach ($rightslist as $rightselement => $right) {
 				if ($right['display']) {
 					if (($right['set'] != gettext('Pages') && $right['set'] != gettext('News')) || extensionEnabled('zenpage')) {
@@ -3452,6 +3461,7 @@ function processManagedObjects($i, &$rights) {
 				$pages[] = array('data' => $key, 'type' => 'pages');
 			}
 		}
+
 		if (substr($key, 0, $l_n) == $prefix_n) {
 			if ($value) {
 				$key = postIndexDecode(substr($key, $l_n));
@@ -3483,6 +3493,7 @@ function processManagedObjects($i, &$rights) {
 			$pages = array();
 		}
 	}
+
 	if (empty($news)) {
 		if (!($rights & MANAGE_ALL_NEWS_RIGHTS)) {
 			$rights = $rights & ~ZENPAGE_NEWS_RIGHTS;
@@ -4330,8 +4341,10 @@ function admin_securityChecks($rights, $return) {
 	checkInstall();
 	httpsRedirect();
 
-	if ($_zp_current_admin_obj && $_zp_current_admin_obj->reset) {
-		$_zp_loggedin = USER_RIGHTS;
+	if ($_zp_current_admin_obj) {
+		if ($_zp_current_admin_obj->reset) {
+			$_zp_loggedin = USER_RIGHTS;
+		}
 	}
 	if (!zp_loggedin($rights)) {
 // prevent nefarious access to this page.

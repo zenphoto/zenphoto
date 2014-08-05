@@ -38,6 +38,9 @@ function getSubalbumImages($folder) {
 $user = $_zp_current_admin_obj->getUser();
 $favorite = trim(sanitize($_REQUEST['title']), '/');
 if (isset($_POST['savealbum'])) {
+
+	var_dump($_POST);
+
 	XSRFdefender('savealbum');
 	$albumname = sanitize($_POST['album']);
 	if ($album = sanitize($_POST['albumselect'])) {
@@ -191,8 +194,23 @@ while ($old != $albumname) {
 		</tr>
 
 	</table>
+	<?php
+	if (empty($albumlist)) {
+		?>
+		<p class="errorbox">
+			<?php echo gettext('There is no place you are allowed to put this album.'); ?>
+		</p>
+		<p>
+			<?php echo gettext('You must have <em>upload</em> rights to at least one album to have a place to store this album.'); ?>
+		</p>
+		<?php
+	} else {
+		?>
+		<input type="submit" value="<?php echo gettext('Create the album'); ?>" class="button" />
+		<?php
+	}
+	?>
 
-	<input type="submit" value="<?php echo gettext('Create the album'); ?>" class="button" />
 </form>
 
 <?php

@@ -89,8 +89,8 @@ if (count($_POST) > 0) {
 		foreach ($_POST as $key => $newName) {
 			if (!empty($newName)) {
 				$newName = sanitize($newName, 3);
-				$key = postIndexDecode(sanitize($key));
 				$key = substr($key, 2); // strip off the 'R_'
+				$key = postIndexDecode(sanitize($key));
 				$newtag = query_single_row('SELECT `id` FROM ' . prefix('tags') . ' WHERE `name`=' . db_quote($newName));
 				$oldtag = query_single_row('SELECT `id` FROM ' . prefix('tags') . ' WHERE `name`=' . db_quote($key));
 				if (is_array($newtag)) { // there is an existing tag of the same name

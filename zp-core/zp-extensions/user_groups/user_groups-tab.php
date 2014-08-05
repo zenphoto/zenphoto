@@ -22,14 +22,7 @@ if (isset($_GET['subpage'])) {
 
 $admins = $_zp_authority->getAdministrators('all');
 
-$ordered = array();
-foreach ($admins as $key => $admin) {
-	$ordered[$key] = $admin['user'];
-}
-asort($ordered);
-$adminordered = array();
-foreach ($ordered as $key => $user)
-	$adminordered[] = $admins[$key];
+$adminordered = sortMultiArray($admins, 'user');
 
 if (isset($_GET['action'])) {
 	$action = sanitize($_GET['action']);
@@ -46,6 +39,10 @@ if (isset($_GET['action'])) {
 			exitZP();
 		case 'savegroups':
 			if (isset($_POST['checkForPostTruncation'])) {
+
+				var_dump($_POST);
+
+
 				for ($i = 0; $i < $_POST['totalgroups']; $i++) {
 					$groupname = trim(sanitize($_POST[$i . '-group']));
 					if (!empty($groupname)) {
@@ -87,8 +84,8 @@ if (isset($_GET['action'])) {
 							$target = 'user_' . $i . '-';
 							foreach ($_POST as $item => $username) {
 								if (strpos($item, $target) !== false) {
-									$item = sanitize(postIndexDecode($item));
-									$username = substr($item, strlen($target));
+									$username = postIndexDecode(substr(sanitize($item), strlen($target)));
+									//$username = substr($item, strlen($target));
 									$user = Zenphoto_Authority::getAnAdmin(array('`user`=' => $username, '`valid`>=' => 1));
 									$user->setRights($group->getRights());
 									$user->setObjects($group->getObjects());
@@ -205,9 +202,9 @@ echo '</head>' . "\n";
 								<tr>
 									<th>
 										<span style="font-weight: normal">
-											<a onclick="toggleExtraInfo('','user',true);"><?php echo gettext('Expand all'); ?></a>
+											<a onclick="toggleExtraInfo('', 'user', true);"><?php echo gettext('Expand all'); ?></a>
 											|
-											<a onclick="toggleExtraInfo('','user',false);"><?php echo gettext('Collapse all'); ?></a>
+											<a onclick="toggleExtraInfo('', 'user', false);"><?php echo gettext('Collapse all'); ?></a>
 										</span>
 									</th>
 									<th>
@@ -257,13 +254,13 @@ echo '</head>' . "\n";
 															 ?>
 												<span class="userextrashow">
 													<em><?php echo $kind; ?></em>:
-													<a onclick="toggleExtraInfo('<?php echo $id; ?>','user',true);" title="<?php echo $groupname; ?>" >
+													<a onclick="toggleExtraInfo('<?php echo $id; ?>', 'user', true);" title="<?php echo $groupname; ?>" >
 														<strong><?php echo $groupname; ?></strong>
 													</a>
 												</span>
 												<span style="display:none;" class="userextrahide">
 													<em><?php echo $kind; ?></em>:
-													<a onclick="toggleExtraInfo('<?php echo $id; ?>','user',false);" title="<?php echo $groupname; ?>" >
+													<a onclick="toggleExtraInfo('<?php echo $id; ?>', 'user', false);" title="<?php echo $groupname; ?>" >
 														<strong><?php echo $groupname; ?></strong>
 													</a>
 												</span>
@@ -332,7 +329,8 @@ echo '</head>' . "\n";
 														}
 														?>
 														<ul class="shortchecklist">
-															<?php generateUnorderedListFromArray($members, $users, 'user_' . $id . '-', false, true, false); ?>
+															<?php generateUnorderedListFromArray($members, $members, 'user_' . $id . '-', false, true, false); ?>
+															<?php generateUnorderedListFromArray(array(), array_diff($users, $members), 'user_' . $id . '-', false, true, false); ?>
 														</ul>
 													</div>
 												</div>
@@ -379,9 +377,9 @@ echo '</head>' . "\n";
 								<tr>
 									<th>
 										<span style="font-weight: normal">
-											<a onclick="toggleExtraInfo('','user',true);"><?php echo gettext('Expand all'); ?></a>
+											<a onclick="toggleExtraInfo('', 'user', true);"><?php echo gettext('Expand all'); ?></a>
 											|
-											<a onclick="toggleExtraInfo('','user',false);"><?php echo gettext('Collapse all'); ?></a>
+											<a onclick="toggleExtraInfo('', 'user', false);"><?php echo gettext('Collapse all'); ?></a>
 										</span>
 									</th>
 									<th>
@@ -466,9 +464,7 @@ echo '</head>' . "\n";
 								$id = 0;
 								foreach ($adminordered as $user) {
 									if ($user['valid']) {
-
 										$userobj = new Zenphoto_Administrator($user['user'], $user['valid']);
-
 										$group = $user['group'];
 										?>
 										<tr>
@@ -504,4 +500,5 @@ echo '</head>' . "\n";
 		</div>
 	</div>
 </body>
+
 </html>

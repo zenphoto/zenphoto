@@ -131,6 +131,18 @@ class PersistentObject {
 	}
 
 	/**
+	 * used to make the object "virgin" so it can be re-saved with a new id
+	 */
+	function clearID() {
+		$insert_data = array_merge($this->data, $this->updates, $this->tempdata);
+		$insert_data['id'] = $this->id = 0;
+		$this->tempdata = $this->updates = $this->data = array();
+		foreach (db_list_fields($this->table) as $col) {
+			$this->updates[$col['Field']] = $insert_data[$col['Field']];
+		}
+	}
+
+	/**
 	 * Sets default values for new objects using the set() method.
 	 * Should do nothing in the base class; subclasses should override.
 	 */
@@ -326,25 +338,22 @@ class PersistentObject {
 		}
 		if (!$this->id) {
 			$this->setDefaults();
-			// Create a new object and set the id from the one returned.
 			$insert_data = array_merge($this->unique_set, $this->updates, $this->tempdata);
 			if (empty($insert_data)) {
 				return true;
 			}
-			$i = 0;
 			$cols = $vals = '';
 			foreach ($insert_data as $col => $value) {
-				if ($i > 0)
+				if (!empty($cols)) {
 					$cols .= ", ";
-				$cols .= "`$col`";
-				if ($i > 0)
 					$vals .= ", ";
+				}
+				$cols .= "`$col`";
 				if (is_null($value)) {
 					$vals .= "NULL";
 				} else {
 					$vals .= db_quote($value);
 				}
-				$i++;
 			}
 			$sql = 'INSERT INTO ' . prefix($this->table) . ' (' . $cols . ') VALUES (' . $vals . ')';
 			$success = query($sql);
@@ -363,20 +372,19 @@ class PersistentObject {
 			if (empty($this->updates)) {
 				return true;
 			} else {
-				$sql = 'UPDATE ' . prefix($this->table) . ' SET';
-				$i = 0;
+				$sql = '';
 				foreach ($this->updates as $col => $value) {
-					if ($i > 0)
+					if ($sql) {
 						$sql .= ",";
+					}
 					if (is_null($value)) {
 						$sql .= " `$col` = NULL";
 					} else {
 						$sql .= " `$col` = " . db_quote($value);
 					}
 					$this->data[$col] = $value;
-					$i++;
 				}
-				$sql .= ' WHERE id=' . $this->id . ';';
+				$sql = 'UPDATE ' . prefix($this->table) . ' SET' . $sql . ' WHERE id=' . $this->id . ';';
 				$success = query($sql);
 				if (!$success || db_affected_rows() != 1) {
 					return false;

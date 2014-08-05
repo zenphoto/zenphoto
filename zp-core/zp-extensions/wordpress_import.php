@@ -21,7 +21,7 @@ if (defined('OFFSET_PATH')) {
 						'enable'			 => true,
 						'button_text'	 => gettext('Wordpress Importer'),
 						'formname'		 => 'wordpress_import.php',
-						'action'			 => WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/wordpress_import.php',
+						'action'			 => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/wordpress_import.php',
 						'icon'				 => WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/wordpress_import/wpmini-blue.png',
 						'title'				 => gettext('An importer for Wordpress posts and pages to Zenpage.'),
 						'alt'					 => '',

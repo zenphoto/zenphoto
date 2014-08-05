@@ -21,7 +21,7 @@ if (defined('OFFSET_PATH')) {
 						'enable'			 => false,
 						'button_text'	 => gettext('User mailing list'),
 						'formname'		 => 'user_mailing_list.php',
-						'action'			 => WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/user_mailing_list.php',
+						'action'			 => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/user_mailing_list.php',
 						'icon'				 => 'images/icon_mail.png',
 						'title'				 => gettext('There are no other registered users who have provided an e-mail address.'),
 						'alt'					 => '',

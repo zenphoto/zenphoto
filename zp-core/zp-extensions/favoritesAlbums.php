@@ -14,7 +14,8 @@
  * To create a <i>favorites</i> album visit the <i>favorites</i> link of the content
  * you wish to share. In the <var>admin toolbox</var> on that page you will find
  * a link to create an album. (Much like such a link is present on search pages to
- * allow you to create dynamic albums.)
+ * allow you to create dynamic albums.) <b>NOTE:</b> the user must have upload rights
+ * to at least one album or he will have no place to put the favorites album.
  *
  * <i>favorites</i> albums are represented in the album folders by files with the suffix
  * <var>fav</var>. However, like dynamic albums, the suffix will normally be omitted
@@ -55,7 +56,7 @@ class favoritesAlbum extends favorites {
 			$parts = explode('=', $param);
 			switch (trim($parts[0])) {
 				case 'USER':
-					$this->owner = trim($parts[1]);
+					$owner = trim($parts[1]);
 					break;
 				case 'TITLE':
 					$this->instance = trim($parts[1]);
@@ -66,7 +67,7 @@ class favoritesAlbum extends favorites {
 			}
 		}
 
-		parent::__construct($this->owner);
+		parent::__construct($owner);
 		$this->exists = true;
 		if (!is_dir(stripSuffix($this->localpath))) {
 			$this->linkname = stripSuffix($folder8);
@@ -169,12 +170,14 @@ class favoritesAlbum extends favorites {
 
 	static function toolbox($zf) {
 		global $_zp_gallery_page;
-		if ($_zp_gallery_page == 'favorites.php') {
-			?>
-			<li>
-				<a href="<?php echo WEBPATH . '/' . FAVORITESALBUM_FOLDER; ?>admin-album.php?title=<?php echo @$_GET['instance']; ?>" title="<?php echo gettext('Create an album from favorites'); ?>"><?php echo gettext('Create Album'); ?></a>
-			</li>
-			<?php
+		if (zp_loggedin(UPLOAD_RIGHTS)) {
+			if ($_zp_gallery_page == 'favorites.php') {
+				?>
+				<li>
+					<a href="<?php echo WEBPATH . '/' . FAVORITESALBUM_FOLDER; ?>admin-album.php?title=<?php echo @$_GET['instance']; ?>" title="<?php echo gettext('Create an album from favorites'); ?>"><?php echo gettext('Create Album'); ?></a>
+				</li>
+				<?php
+			}
 		}
 		return $zf;
 	}

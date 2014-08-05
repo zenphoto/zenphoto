@@ -342,7 +342,7 @@ class cmsFilters {
  * @return string
  */
 function getNewsIndexURL() {
-	return zp_apply_filter('getLink', rewrite_path(_NEWS_, "/index.php?p=news"), 'news.php', NULL);
+	return zp_apply_filter('getLink', rewrite_path(_NEWS_ . '/', "/index.php?p=news"), 'news.php', NULL);
 }
 
 /**

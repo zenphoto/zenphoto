@@ -175,7 +175,7 @@ class jquery_rating {
 						'enable'			 => true,
 						'button_text'	 => gettext('Reset all ratings'),
 						'formname'		 => 'clearrating_button',
-						'action'			 => PLUGIN_FOLDER . '/rating.php?action=clear_rating',
+						'action'			 => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/rating.php?action=clear_rating',
 						'icon'				 => 'images/reset.png',
 						'title'				 => gettext('Sets all ratings to unrated.'),
 						'alt'					 => '',

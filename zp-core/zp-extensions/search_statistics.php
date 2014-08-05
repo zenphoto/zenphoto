@@ -19,7 +19,7 @@
  *   Zenpage results were not enabled.
  *
  * @author Stephen Billard (sbillard)
- * 
+ *
  * @package plugins
  * @subpackage admin
  */
@@ -83,7 +83,7 @@ class search_statistics {
 						'enable'			 => true,
 						'button_text'	 => gettext('Search statistics'),
 						'formname'		 => 'search_statistics_button',
-						'action'			 => PLUGIN_FOLDER . '/search_statistics/search_analysis.php',
+						'action'			 => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/search_statistics/search_analysis.php',
 						'icon'				 => 'images/bar_graph.png',
 						'title'				 => gettext('Analyze searches'),
 						'alt'					 => '',

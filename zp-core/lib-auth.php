@@ -62,6 +62,7 @@ class Zenphoto_Authority {
 	 */
 	function __construct() {
 		$this->admin_all = $this->admin_groups = $this->admin_users = $this->admin_other = array();
+
 		$sql = 'SELECT * FROM ' . prefix('administrators') . ' ORDER BY `rights` DESC, `id`';
 		$admins = query($sql, false);
 		if ($admins) {
@@ -665,6 +666,7 @@ class Zenphoto_Authority {
 					if ($_zp_loggedin) {
 						self::logUser($user);
 						$_zp_current_admin_obj = $user;
+						session_regenerate_id(true);
 					} else {
 						zp_clearCookie("zp_user_auth"); // Clear the cookie, just in case
 						$_zp_login_error = 1;
@@ -785,6 +787,8 @@ class Zenphoto_Authority {
 		foreach (self::getAuthCookies() as $cookie => $value) {
 			zp_clearCookie($cookie);
 		}
+		if (isset($_SESSION['admin'][bin2hex(FULLWEBPATH)]))
+			unset($_SESSION['admin'][bin2hex(FULLWEBPATH)]);
 		$_zp_loggedin = false;
 		$_zp_pre_authorization = array();
 		return zp_apply_filter('zp_logout', NULL, $_zp_current_admin_obj);

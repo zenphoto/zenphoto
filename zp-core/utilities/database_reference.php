@@ -13,7 +13,7 @@ $buttonlist[] = $mybutton = array(
 				'enable'			 => true,
 				'button_text'	 => gettext('Database quick reference'),
 				'formname'		 => 'database_reference.php',
-				'action'			 => 'utilities/database_reference.php',
+				'action'			 => FULLWEBPATH . '/' . ZENFOLDER . '/utilities/database_reference.php',
 				'icon'				 => 'images/info.png',
 				'title'				 => gettext('Shows all database table and field info for quick reference.'),
 				'alt'					 => '',
@@ -240,6 +240,6 @@ printAdminHeader('overview', 'Database');
 			</div>
 		</div><!-- content -->
 	</div><!-- main -->
-<?php printAdminFooter(); ?>
+	<?php printAdminFooter(); ?>
 </body>
 </html>

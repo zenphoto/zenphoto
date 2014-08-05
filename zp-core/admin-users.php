@@ -175,11 +175,13 @@ if (isset($_GET['action'])) {
 							}
 							$rights = 0;
 							if ($alter) {
-								$oldrights = $userobj->getRights() & ~(ALBUM_RIGHTS | ZENPAGE_PAGES_RIGHTS | ZENPAGE_NEWS_RIGHTS);
-								$rights = processRights($i);
-								if (($rights & ~(ALBUM_RIGHTS | ZENPAGE_PAGES_RIGHTS | ZENPAGE_NEWS_RIGHTS)) != $oldrights) {
-									$userobj->setRights($rights | NO_RIGHTS);
-									markUpdated();
+								if (isset($_POST[$i . '-rightsenabled'])) {
+									$oldrights = $userobj->getRights() & ~(ALBUM_RIGHTS | ZENPAGE_PAGES_RIGHTS | ZENPAGE_NEWS_RIGHTS);
+									$rights = processRights($i);
+									if (($rights & ~(ALBUM_RIGHTS | ZENPAGE_PAGES_RIGHTS | ZENPAGE_NEWS_RIGHTS)) != $oldrights) {
+										$userobj->setRights($rights | NO_RIGHTS);
+										markUpdated();
+									}
 								}
 								$oldobjects = $userobj->getObjects();
 								foreach ($oldobjects as $key => $oldobj) {

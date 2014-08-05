@@ -138,7 +138,7 @@ class SearchEngine {
 		} else {
 			$this->words = NULL;
 			if (isset($_REQUEST['date'])) { // words & dates are mutually exclusive
-				$this->dates = sanitize($_REQUEST['date'], 3);
+				$this->dates = rtrim(sanitize($_REQUEST['date'], 3), '/');
 				if (isset($_REQUEST['whichdate'])) {
 					$this->whichdates = sanitize($_REQUEST['whichdate']);
 				}

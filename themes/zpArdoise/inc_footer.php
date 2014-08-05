@@ -54,22 +54,22 @@
 		</div>
 
 		<div id="zpcredit">
-			<?php printZenphotoLink(getOption('css_style')); ?>
 			<?php
+			printZenphotoLink(getOption('css_style'));
 			if (($_zp_gallery_page == 'image.php') ||
 							(($_zp_gallery_page == 'album.php') && (getOption('use_galleriffic')) && (getNumImages() > 0)) ||
 							(($_zenpage_enabled) && (is_NewsArticle()))) {
 				?>
 				<img id="icon-help" src="<?php echo $_zp_themeroot; ?>/images/help.png" title="<?php echo gettext('You can browse with the arrows keys of your keyboard'); ?>" alt="help" />
-			<?php } ?>
-		</div>
-	</div>
+				<?php
+			}
+			?>
+		</div> <!-- END #zpcredit-->
+	</div>	<!-- END #foot-left -->
 </div>		<!-- END #FOOTER -->
 </div>			<!-- END #PAGE -->
 
-<?php
-zp_apply_filter('theme_body_close');
-?>
+<?php zp_apply_filter('theme_body_close'); ?>
 
 </body>
 </html>

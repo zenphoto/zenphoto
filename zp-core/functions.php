@@ -577,28 +577,18 @@ function getPluginFiles($pattern, $folder = '', $stripsuffix = true) {
 		$folder .= '/';
 	$list = array();
 	$curdir = getcwd();
-	$basepath = SERVERPATH . "/" . USER_PLUGIN_FOLDER . '/' . $folder;
-	if (is_dir($basepath)) {
-		chdir($basepath);
-		$filelist = safe_glob($pattern);
-		foreach ($filelist as $file) {
-			$key = filesystemToInternal($file);
-			if ($stripsuffix) {
-				$key = stripSuffix($key);
+	$sources = array(SERVERPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/' . $folder, SERVERPATH . "/" . USER_PLUGIN_FOLDER . '/' . $folder);
+	foreach ($sources as $basepath) {
+		if (is_dir($basepath)) {
+			chdir($basepath);
+			$filelist = safe_glob($pattern);
+			foreach ($filelist as $file) {
+				$key = filesystemToInternal($file);
+				if ($stripsuffix) {
+					$key = stripSuffix($key);
+				}
+				$list[$key] = $basepath . $file;
 			}
-			$list[$key] = $basepath . $file;
-		}
-	}
-	$basepath = SERVERPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/' . $folder;
-	if (file_exists($basepath)) {
-		chdir($basepath);
-		$filelist = safe_glob($pattern);
-		foreach ($filelist as $file) {
-			$key = filesystemToInternal($file);
-			if ($stripsuffix) {
-				$key = stripSuffix($key);
-			}
-			$list[$key] = $basepath . $file;
 		}
 	}
 	chdir($curdir);
@@ -625,31 +615,26 @@ function getPluginFiles($pattern, $folder = '', $stripsuffix = true) {
 function getPlugin($plugin, $inTheme = false, $webpath = false) {
 	global $_zp_gallery;
 	$pluginFile = NULL;
+	$sources = array('/' . USER_PLUGIN_FOLDER . '/' . internalToFilesystem($plugin), '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/' . internalToFilesystem($plugin));
 	if ($inTheme === true) {
 		$inTheme = $_zp_gallery->getCurrentTheme();
 	}
 	if ($inTheme) {
-		$pluginFile = '/' . THEMEFOLDER . '/' . internalToFilesystem($inTheme . '/' . $plugin);
-		if (!file_exists(SERVERPATH . $pluginFile)) {
-			$pluginFile = false;
+		array_unshift($sources, '/' . THEMEFOLDER . '/' . internalToFilesystem($inTheme . '/' . $plugin));
+	}
+
+	foreach ($sources as $file) {
+		if (file_exists(SERVERPATH . $file)) {
+			$pluginFile = $file;
+			break;
 		}
 	}
-	if (!$pluginFile) {
-		$pluginFile = '/' . USER_PLUGIN_FOLDER . '/' . internalToFilesystem($plugin);
-		if (!file_exists(SERVERPATH . $pluginFile)) {
-			$pluginFile = '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/' . internalToFilesystem($plugin);
-			if (!file_exists(SERVERPATH . $pluginFile)) {
-				$pluginFile = false;
-			}
-		}
-	}
+
 	if ($pluginFile) {
 		if ($webpath) {
-			if (is_string($webpath)) {
-				return $webpath . filesystemToInternal($pluginFile);
-			} else {
-				return WEBPATH . filesystemToInternal($pluginFile);
-			}
+			if (!is_string($webpath))
+				$webpath = WEBPATH;
+			return $webpath . filesystemToInternal($pluginFile);
 		} else {
 			return SERVERPATH . $pluginFile;
 		}
@@ -2057,38 +2042,39 @@ function printStandardMeta() {
 	function cron_starter($script, $params, $offsetPath, $inline = false) {
 		global $_zp_authority, $_zp_loggedin, $_zp_current_admin_obj, $_zp_HTML_cache;
 		$admin = $_zp_authority->getMasterUser();
-
-		if ($inline) {
-			$_zp_current_admin_obj = $admin;
-			$_zp_loggedin = $_zp_current_admin_obj->getRights();
-			foreach ($params as $key => $value) {
-				if ($key == 'XSRFTag') {
-					$key = 'XSRFToken';
-					$value = getXSRFToken($value);
+		if ($admin) {
+			if ($inline) {
+				$_zp_current_admin_obj = $admin;
+				$_zp_loggedin = $_zp_current_admin_obj->getRights();
+				foreach ($params as $key => $value) {
+					if ($key == 'XSRFTag') {
+						$key = 'XSRFToken';
+						$value = getXSRFToken($value);
+					}
+					$_POST[$key] = $_GET[$key] = $_REQUEST[$key] = $value;
 				}
-				$_POST[$key] = $_GET[$key] = $_REQUEST[$key] = $value;
+				require_once($script);
+			} else {
+				$auth = sha1($script . serialize($admin));
+				$paramlist = 'link=' . $script;
+				foreach ($params as $key => $value) {
+					$paramlist .= '&' . $key . '=' . $value;
+				}
+				$paramlist .= '&auth=' . $auth . '&offsetPath=' . $offsetPath;
+				$_zp_HTML_cache->abortHTMLCache();
+				?>
+				<script type="text/javascript">
+					// <!-- <![CDATA[
+					$.ajax({
+						type: 'POST',
+						cache: false,
+						data: '<?php echo $paramlist; ?>',
+						url: '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/cron_runner.php'
+					});
+					// ]]> -->
+				</script>
+				<?php
 			}
-			require_once($script);
-		} else {
-			$auth = sha1($script . serialize($admin));
-			$paramlist = 'link=' . $script;
-			foreach ($params as $key => $value) {
-				$paramlist .= '&' . $key . '=' . $value;
-			}
-			$paramlist .= '&auth=' . $auth . '&offsetPath=' . $offsetPath;
-			$_zp_HTML_cache->abortHTMLCache();
-			?>
-			<script type="text/javascript">
-				// <!-- <![CDATA[
-				$.ajax({
-					type: 'POST',
-					cache: false,
-					data: '<?php echo $paramlist; ?>',
-					url: '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/cron_runner.php'
-				});
-				// ]]> -->
-			</script>
-			<?php
 		}
 	}
 

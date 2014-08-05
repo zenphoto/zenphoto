@@ -18,7 +18,7 @@ class favorites extends AlbumBase {
 	function __construct($user) {
 		$this->table = 'albums';
 		$this->name = $user;
-		$this->owner = $user;
+		$this->setOwner($this->owner = $user);
 		$this->setTitle(get_language_string(getOption('favorites_title')));
 		$this->setDesc(get_language_string(getOption('favorites_desc')));
 		$this->imageSortDirection = getOption('favorites_image_sort_direction');
@@ -27,6 +27,7 @@ class favorites extends AlbumBase {
 		$this->albumSortType = getOption('favorites_album_sort_type');
 		$this->multi = getOption('favorites_multi');
 		$list = query_full_array('SELECT `aux` FROM ' . prefix('plugin_storage') . ' WHERE `type`="favorites" AND `aux` REGEXP ' . db_quote('[[:<:]]' . $user . '[[:>:]]'));
+
 		foreach ($list as $aux) {
 			$instance = getSerializedArray($aux['aux']);
 			if (isset($instance[1])) {

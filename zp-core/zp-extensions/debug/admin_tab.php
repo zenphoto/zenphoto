@@ -46,6 +46,17 @@ echo "\n</head>";
 						</div>
 						<?php
 						break;
+					case'session':
+						?>
+						<div class="tabbox">
+							<h1><?php echo gettext('_SESSION array'); ?></h1>
+							<?php
+							$session = preg_replace('/^Array\n/', '<pre>', print_r($_SESSION, true)) . '</pre>';
+							echo $session;
+							?>
+						</div>
+						<?php
+						break;
 					case 'http':
 						$httpaccept = parseHttpAcceptLanguage();
 						if (count($httpaccept) > 0) {

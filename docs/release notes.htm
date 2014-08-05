@@ -76,7 +76,24 @@
 			}
 		</style>
 	<body>
-<h1>ZenPhoto20 v1.0.0 release notes</h1><h2>Fresh start</h2>
+<h1>ZenPhoto20 v1.0.0.1 release notes</h1><p>&nbsp;</p>
+<h1 style="text-align: center;">Version 1.0.0.1</h1>
+<h2>Multi-llingual custom field extensions</h2>
+<p>The custom field extension feature now supports multi-lingual fields. It also allows you to provide custom formatting on the admin tab and custom processing of the "saves" data.</p>
+<h2>User management improvements</h2>
+<p>User and group lists are now sorted via a&nbsp;case insensitive natual sort. In cases where there are check boxes, those &nbsp;users with the box checked are shown at the top of the list.</p>
+<h2>Cloning improvements</h2>
+<p>When you clone an installation ZenPhoto20 will automataically setup the configuration and initial user of the clone. The initial user will be the user who executed the clone operation. He his logon to the clone install will be identical to the his logon to the master when the clone was created.</p>
+<p>If setup is run on the master it will provide a set of links to cause setup to be run on the clones as well. Thus the setup of a site is better automated. (We did try automatically running setup on the clones but ran into several browser issues such as pop-up blockers that were not circumventable.)</p>
+<h2>Canonical URLs</h2>
+<p>ZenPhoto20 _rewrite_ processing will now cause a "301 peranantly moved" redirect if it receives a link that does not conform to the Canonical standard it implements. Basically this means that links that "look" like indexes to sub-items (albums and the News index, for instance) will end with a trailing slash. Items which are interpreted as "final destinations" (An image or single news item, for instance) will not have a trailing slash.</p>
+<h2>Bug Fixes</h2>
+<p>As usual, I have fixed bugs found while implementing these features and ones reported on the Zenphoto.org forum that were applicable to ZenPhoto20.</p>
+<p>&nbsp;</p>
+<hr />
+<p>&nbsp;&nbsp;</p>
+<h1 style="text-align: center;">Version 1.0.0</h1>
+<h2>Fresh start</h2>
 <p>ZenPhoto20 has been forked from the Zenphoto.org 1.4.6 release. Some cleanup of code and fixes have been applied and some small new features added. Themes and plugins that are compliant with Zehphoto 1.4.6 (without use of the deprecated-functions plugin) will&nbsp;work with this software.&nbsp;</p>
 <p><strong>Note:</strong> part of this cleanup was to purge the deprecated functions for a fresh start. Lingering calls to these functions will now result in a PHP fault.&nbsp;If you have a custom theme it is recommended you first use the <em>check deprecated use</em> button&nbsp;in the Zenphoto 1.4.6 admin utilities to be sure that you are not using one of the functions which is no longer available.</p>
 <h2>Eliminate the concept of "suppoted" unsupported themes and plugins</h2>

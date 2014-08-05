@@ -21,7 +21,7 @@ $_SESSION['adminRequest'] = @$_COOKIE['zp_user_auth']; //	Allow "unprotected" i.
 $zenphoto_tabs = array();
 
 require_once(SERVERPATH . "/" . ZENFOLDER . '/rewrite.php');
-if (OFFSET_PATH != 2 && !getOption('license_accepted')) {
+if (OFFSET_PATH != 2 && !getOption('license_accepted') && !isset($_zp_invisible_execute)) {
 	require_once(dirname(__FILE__) . '/license.php');
 }
 
