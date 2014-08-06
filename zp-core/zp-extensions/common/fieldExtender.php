@@ -20,10 +20,14 @@
  *
  * "table" is the database table name (without prefix) of the object to which the field is to be added.
  * "name" is the MySQL field name for the new field
- * "desc" is the "display name" of the field
- * "type" is the database field type: int, varchar, tinytext, text, mediumtext, and longtext.
+ * "desc" is the "display name" of the field. If the value is NULL no edit field will show on the admin tab.
+ * "type" is the database field type: int, varchar, tinytext, text, mediumtext, etc.
  * "size" is the byte size of the varchar or int field (it is not needed for other types)
- * "edit" is is how the content is show on the edit tab. Values: multilingual, normal, function:<i>editor function</i>
+ * "edit" is is how the content is show on the edit tab. Values: multilingual, normal, function. If the value is NULL
+ * there will be direct save of the result to the object
+ * "function" is the function to call if the edit type is a function
+ * "attribute" is the attribute(s) of the field, e.g. NOT NULL, UNSIGNED, etc.
+ * "default" is the database "default" value
  *
  * The <i>editor function</i> will be passed three parameters: the object, the $_POST instance, the field array,
  * and the action: "edit" or "save". The function must return an array of the the processed data to be displayed and a format indicator or  the data to be saved.
@@ -72,6 +76,10 @@ class fieldExtender {
 						break;
 				}
 				$sql = 'ALTER TABLE ' . prefix($newfield['table']) . ' ADD COLUMN `' . $newfield['name'] . '` ' . $dbType;
+				if (isset($newfield['attribute']))
+					$sql.= ' ' . $newfield['attribute'];
+				if (isset($newfield['default']))
+					$sql.= ' DEFAULT ' . $newfield['default'];
 				if (query($sql, false) && in_array($newfield['table'], array('albums', 'images', 'news', 'news_categories', 'pages')))
 					$fields[] = strtolower($newfield['name']);
 			}
@@ -121,6 +129,9 @@ class fieldExtender {
 		}
 
 		switch ($action) {
+			case NULL:
+				$newdata = NULL;
+				break;
 			case'multilingual':
 				$newdata = process_language_string_save($instance . '-' . $field['name']);
 				break;
@@ -149,7 +160,15 @@ class fieldExtender {
 	 * @return type
 	 */
 	static protected function _editHandler($obj, $field, $instance) {
-		switch (@$field['edit']) {
+		if (isset($field['edit'])) {
+			$action = $field['edit'];
+		} else {
+			$action = '';
+		}
+		switch ($action) {
+			case NULL:
+				$item = $formatted = NULL;
+				break;
 			case 'multilingual':
 				ob_start();
 				print_language_string_list($obj->get($field['name']), $instance . '-' . $field['name']);

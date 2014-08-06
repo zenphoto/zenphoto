@@ -1849,12 +1849,6 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 														`filename` varchar(255) NOT NULL default '',
 														`title` text,
 														`desc` text,
-														`location` text,
-														`city` tinytext,
-														`state` tinytext,
-														`country` tinytext,
-														`credit` text,
-														`copyright` text,
 														`commentson` int(1) UNSIGNED NOT NULL default '1',
 														`show` int(1) NOT NULL default '1',
 														`date` datetime default NULL,
@@ -1876,8 +1870,6 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 														`rating` float,
 														`rating_status` int(1) DEFAULT 3,
 														`hasMetadata` int(1) DEFAULT 0,
-														`watermark` varchar(255) DEFAULT NULL,
-														`watermark_use` int(1) DEFAULT 7,
 														`owner` varchar(64) DEFAULT NULL,
 														`filesize` int(11),
 														`codeblock` text,
@@ -2066,12 +2058,6 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 						$sql_statements[] = "ALTER TABLE $tbl_albums ADD COLUMN `commentson` int(1) UNSIGNED NOT NULL default '1';";
 						$sql_statements[] = "ALTER TABLE $tbl_albums ADD COLUMN `subalbum_sort_type` varchar(20) default NULL;";
 //v1.1.7 omits	$sql_statements[] = "ALTER TABLE $tbl_albums ADD COLUMN `tags` text;";
-						$sql_statements[] = "ALTER TABLE $tbl_images ADD COLUMN `location` tinytext;";
-						$sql_statements[] = "ALTER TABLE $tbl_images ADD COLUMN `city` tinytext;";
-						$sql_statements[] = "ALTER TABLE $tbl_images ADD COLUMN `state` tinytext;";
-						$sql_statements[] = "ALTER TABLE $tbl_images ADD COLUMN `country` tinytext;";
-						$sql_statements[] = "ALTER TABLE $tbl_images ADD COLUMN `credit` tinytext;";
-						$sql_statements[] = "ALTER TABLE $tbl_images ADD COLUMN `copyright` tinytext;";
 						$sql_statements[] = "ALTER TABLE $tbl_images ADD COLUMN `date` datetime default NULL;";
 //v1.1.7 omits	$sql_statements[] = "ALTER TABLE $tbl_images ADD COLUMN `tags` text;";
 //v1.2.7 omits	$sql_statements[] = "ALTER TABLE $tbl_images ADD COLUMN `EXIFValid` int(1) UNSIGNED default NULL;";
@@ -2161,7 +2147,6 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 						//v1.2.1
 						$sql_statements[] = "ALTER TABLE $tbl_albums CHANGE `title` `title` TEXT";
 						$sql_statements[] = "ALTER TABLE $tbl_images CHANGE `title` `title` TEXT";
-						$sql_statements[] = "ALTER TABLE $tbl_images CHANGE `location` `location` TEXT";
 						$sql_statements[] = "ALTER TABLE $tbl_images CHANGE `credit` `credit` TEXT";
 						$sql_statements[] = "ALTER TABLE $tbl_images CHANGE `copyright` `copyright` TEXT";
 						//v1.2.2
@@ -2245,8 +2230,6 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 						//v1.2.8
 						$sql_statements[] = 'ALTER TABLE ' . $tbl_albums . ' CHANGE `place` `location` TEXT';
 						//v1.3
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_images . ' ADD COLUMN `watermark` varchar(255) DEFAULT NULL';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_images . ' ADD COLUMN `watermark_use` int(1) DEFAULT 7';
 						$sql_statements[] = 'ALTER TABLE ' . $tbl_images . ' ADD COLUMN `owner` varchar(64) DEFAULT NULL';
 						$sql_statements[] = 'ALTER TABLE ' . $tbl_images . ' ADD COLUMN `filesize` INT';
 						$sql_statements[] = 'ALTER TABLE ' . $tbl_administrators . ' ADD COLUMN `quota` INT';

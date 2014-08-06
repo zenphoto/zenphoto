@@ -12,15 +12,6 @@
  * must use the "get()" methods to retrieve the content for display. E.g.
  * <code>echo $_zp_current_album->get('new_field');</code>
  *
- * Fields are defined in the class as a multi-dimensional array, one row per
- * object/field. The elements of each row are:
- *
- * "table" is the database table name (without prefix) of the object to which the field is to be added.
- * "name" is the MySQL field name for the new field
- * "desc" is the "display name" of the field
- * "type" is the database field type: int, varchar, tinytext, text, mediumtext, and longtext.
- * "size" is the byte size of the varchar or int field (it is not needed for other types)
- * "edit" is is how the content is show on the edit tab. Values: multilingual, normal, function:<i>editor function</i>
  *
  * The <i>editor function</i> will be passed three parameters: the object, the $_POST instance, the field array,
  * and the action: "edit" or "save". The function must return the processed data to be displayed or saved.
@@ -32,13 +23,6 @@
  * <b>NOTE:</b> you must run setup to cause changes to be made to the database.
  * (Database changes should not be made on an active site. You should close the site
  * when you run setup.)
- *
- * If a field already exists in the database the database definition will stand.
- * If you need to change the type or size of a field you must remove it from the
- * array (commenting it out works), run setup, add back the field with the new
- * definition, and run setup again. This process does delete any stored data, so
- * you may want to use the backup/restore facility to save and later restore
- * existing field data.
  *
  * If you disable the plugin and run setup, all fields defined will be removed
  * from the database.
@@ -72,6 +56,9 @@ if (file_exists(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/common/fi
 
 //NOTE: you should choose a unique class name to be sure not to conflict with another custom field extender plugin
 class customFieldExtender extends fieldExtender {
+	/*
+	 * For definition of this array see fieldExtender.php in the extensions/common folder
+	 */
 
 	static $fields = array(
 					array('table' => 'albums', 'name' => 'Finish_Disc', 'desc' => 'Finish Disc', 'type' => 'varchar', 'size' => 50, 'edit' => 'multilingual'),

@@ -12,28 +12,11 @@
  * setting these fields. But if this plugin is not enabled, these fields will <b>NOT</b> be preserved
  * in the database.
  *
- * Fields are defined in the class as a multi-dimensional array, one row per
- * object/field. The elements of each row are:
- *
- * "table" is the database table name (without prefix) of the object to which the field is to be added.
- * "name" is the MySQL field name for the new field
- * "desc" is the "display name" of the field
- * "type" is the database field type: int, varchar, tinytext, text, mediumtext, and longtext.
- * "size" is the byte size of the varchar or int field (it is not needed for other types)
- * "edit" is is how the content is show on the edit tab. Values: multilingual, normal, function:<i>editor function</i>
- *
- * The <i>editor function</i> will be passed three parameters: the object, the $_POST instance, the field array,
- * and the action: "edit" or "save". The function must return the processed data to be displayed or saved.
- *
- * Database
- * fields must conform to {@link http://dev.mysql.com/doc/refman/5.0/en/identifiers.html MySQL field naming rules}.
- * If fields are subsequently removed from this array, they will be dropped from the database.
- *
  * <b>NOTE:</b> you must run setup to cause changes to be made to the database.
  * (Database changes should not be made on an active site. You should close the site
  * when you run setup.)
  *
- * If you disable the plugin and run setup, all fields defined will be removed
+ * If you disable the plugin and run setup, fields defined will be removed
  * from the database.
  *
  * You should copy this script to the user plugin folder if you wish to customize it.
@@ -54,35 +37,39 @@ require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/common/field
 class mediaFields extends fieldExtender {
 
 	static function fields() {
+		/*
+		 * For definition of this array see fieldExtender.php in the extensions/common folder
+		 */
 		return array(
-						//album fields
-						array('table' => 'albums', 'name' => 'owner', 'desc' => gettext('Owner:'), 'type' => 'varchar', 'size' => 50, 'edit' => 'function', 'function' => 'mediaFields::owner'),
-						array('table' => 'albums', 'name' => 'date', 'desc' => gettext('Date:'), 'type' => 'varchar', 'size' => 50, 'edit' => 'function', 'function' => 'mediaFields::date'),
-						array('table' => 'albums', 'name' => 'location', 'desc' => gettext('Location:'), 'type' => 'varchar', 'size' => 50, 'edit' => 'multilingual'),
+//album fields
+						array('table' => 'albums', 'name' => 'owner', 'desc' => gettext('Owner:'), 'type' => 'varchar', 'size' => 64, 'edit' => 'function', 'function' => 'mediaFields::owner', 'default' => 'NULL'),
+						array('table' => 'albums', 'name' => 'date', 'desc' => gettext('Date:'), 'type' => 'datetime', 'edit' => 'function', 'function' => 'mediaFields::date'),
+						array('table' => 'albums', 'name' => 'location', 'desc' => gettext('Location:'), 'type' => 'text', 'edit' => 'multilingual'),
 						//image fields
-						array('table' => 'images', 'name' => 'owner', 'desc' => gettext('Owner:'), 'type' => 'varchar', 'size' => 50, 'edit' => 'function', 'function' => 'mediaFields::owner'),
-						array('table' => 'images', 'name' => 'album_thumb', 'desc' => gettext('Set as thumbnail for:'), 'type' => 'varchar', 'size' => 50, 'edit' => 'function', 'function' => 'mediaFields::thumb'),
-						array('table' => 'images', 'name' => 'date', 'desc' => gettext('Date:'), 'type' => 'varchar', 'size' => 50, 'edit' => 'function', 'function' => 'mediaFields::date'),
-						array('table' => 'images', 'name' => 'image_watermark', 'desc' => gettext('Image watermark:'), 'type' => 'varchar', 'size' => 50, 'edit' => 'function', 'function' => 'mediaFields::watermark'),
-						array('table' => 'images', 'name' => 'location', 'desc' => gettext('Location:'), 'type' => 'varchar', 'size' => 50, 'edit' => 'multilingual'),
-						array('table' => 'images', 'name' => 'city', 'desc' => gettext('City:'), 'type' => 'varchar', 'size' => 50, 'edit' => 'multilingual'),
-						array('table' => 'images', 'name' => 'state', 'desc' => gettext('State:'), 'type' => 'varchar', 'size' => 50, 'edit' => 'multilingual'),
-						array('table' => 'images', 'name' => 'country', 'desc' => gettext('Country:'), 'type' => 'varchar', 'size' => 50, 'edit' => 'multilingual'),
-						array('table' => 'images', 'name' => 'credit', 'desc' => gettext('Credit:'), 'type' => 'varchar', 'size' => 50, 'edit' => 'multilingual'),
-						array('table' => 'images', 'name' => 'copyright', 'desc' => gettext('Copyright:'), 'type' => 'varchar', 'size' => 50, 'edit' => 'multilingual')
+						array('table' => 'images', 'name' => 'owner', 'desc' => gettext('Owner:'), 'type' => 'varchar', 'size' => 64, 'edit' => 'function', 'function' => 'mediaFields::owner', 'default' => 'NULL'),
+						array('table' => 'images', 'name' => 'album_thumb', 'desc' => gettext('Set as thumbnail for:'), 'type' => NULL, 'edit' => 'function', 'function' => 'mediaFields::thumb'),
+						array('table' => 'images', 'name' => 'date', 'desc' => gettext('Date:'), 'type' => 'datetime', 'edit' => 'function', 'function' => 'mediaFields::date'),
+						array('table' => 'images', 'name' => 'watermark', 'desc' => gettext('Image watermark:'), 'type' => 'varchar', 'size' => 255, 'edit' => 'function', 'function' => 'mediaFields::watermark', 'default' => NULL),
+						array('table' => 'images', 'name' => 'watermark_use', 'desc' => NULL, 'type' => 'int', 'size' => 1, 'edit' => NULL, 'attribute' => 'UNSIGNED', 'default' => 7),
+						array('table' => 'images', 'name' => 'location', 'desc' => gettext('Location:'), 'type' => 'text', 'edit' => 'multilingual'),
+						array('table' => 'images', 'name' => 'city', 'desc' => gettext('City:'), 'type' => 'tinytext', 'size' => 50, 'edit' => 'multilingual'),
+						array('table' => 'images', 'name' => 'state', 'desc' => gettext('State:'), 'type' => 'tinytext', 'size' => 50, 'edit' => 'multilingual'),
+						array('table' => 'images', 'name' => 'country', 'desc' => gettext('Country:'), 'type' => 'tinytext', 'size' => 50, 'edit' => 'multilingual'),
+						array('table' => 'images', 'name' => 'credit', 'desc' => gettext('Credit:'), 'type' => 'text', 'edit' => 'multilingual'),
+						array('table' => 'images', 'name' => 'copyright', 'desc' => gettext('Copyright:'), 'type' => 'text', 'edit' => 'multilingual')
 		);
 	}
 
 	function __construct() {
 		$protected = array('date', 'owner');
 		$fields = self::fields();
-		//do not add/remove some critical DB fields
+//do not add/remove some critical DB fields
 		foreach ($fields as $key => $field) {
 			if (in_array($field['name'], $protected))
 				unset($fields[$key]);
 		}
 		parent::constructor('mediaFields', $fields);
-		//  for translations need to define the display names
+//  for translations need to define the display names
 	}
 
 	static function addToSearch($list) {
@@ -208,7 +195,7 @@ class mediaFields extends fieldExtender {
 
 	static function watermark($image, $currentimage, $field, $type) {
 		if ($type == 'save') {
-			$wmt = sanitize($_POST[$currentimage . "-image_watermark"], 3);
+			$wmt = sanitize($_POST[$currentimage . '-' . $field['name']], 3);
 			$image->setWatermark($wmt);
 			$wmuse = 0;
 			if (isset($_POST['wm_image-' . $currentimage]))
@@ -226,9 +213,9 @@ class mediaFields extends fieldExtender {
 				$current = $image->getWatermark();
 				ob_start();
 				?>
-				<select id="image_watermark-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-image_watermark" onclick="toggleWMUse(<?php echo $currentimage; ?>);">
-					<option value="<?php echo NO_WATERMARK; ?>" <?php if ($current == NO_WATERMARK) echo ' selected="selected"' ?> style="background-color:LightGray"><?php echo gettext('*no watermark'); ?></option>
-					<option value="" <?php if (empty($current)) echo ' selected="selected"' ?> style="background-color:LightGray"><?php echo gettext('*default'); ?></option>
+				<select id="image_watermark-<?php echo $currentimage; ?>" name="<?php echo $currentimage . '-' . $field['name']; ?>" onclick="toggleWMUse(<?php echo $currentimage; ?>);">
+					<option value="<?php echo NO_WATERMARK; ?>" <?php if ($current == NO_WATERMARK) echo ' selected = "selected"' ?> style="background-color:LightGray"><?php echo gettext('*no watermark'); ?></option>
+					<option value="" <?php if (empty($current)) echo ' selected = "selected"' ?> style="background-color:LightGray"><?php echo gettext('*default'); ?></option>
 					<?php
 					$watermarks = getWatermarks();
 					generateListFromArray(array($current), $watermarks, false, false);
@@ -242,9 +229,9 @@ class mediaFields extends fieldExtender {
 				?>
 				<span id="WMUSE_<?php echo $currentimage; ?>" style="display:<?php echo $displaystyle; ?>">
 					<?php $wmuse = $image->getWMUse(); ?>
-					<label><input type="checkbox" value="1" id="wm_image-<?php echo $currentimage; ?>" name="wm_image-<?php echo $currentimage; ?>" <?php if ($wmuse & WATERMARK_IMAGE) echo 'checked="checked"'; ?> /><?php echo gettext('image'); ?></label>
-					<label><input type="checkbox" value="1" id="wm_thumb-<?php echo $currentimage; ?>" name="wm_thumb-<?php echo $currentimage; ?>" <?php if ($wmuse & WATERMARK_THUMB) echo 'checked="checked"'; ?> /><?php echo gettext('thumb'); ?></label>
-					<label><input type="checkbox" value="1" id="wm_full-<?php echo $currentimage; ?>" name="wm_full-<?php echo $currentimage; ?>" <?php if ($wmuse & WATERMARK_FULL) echo 'checked="checked"'; ?> /><?php echo gettext('full image'); ?></label>
+					<label><input type="checkbox" value="1" id="wm_image-<?php echo $currentimage; ?>" name="wm_image-<?php echo $currentimage; ?>" <?php if ($wmuse & WATERMARK_IMAGE) echo 'checked = "checked"'; ?> /><?php echo gettext('image'); ?></label>
+					<label><input type="checkbox" value="1" id="wm_thumb-<?php echo $currentimage; ?>" name="wm_thumb-<?php echo $currentimage; ?>" <?php if ($wmuse & WATERMARK_THUMB) echo 'checked = "checked"'; ?> /><?php echo gettext('thumb'); ?></label>
+					<label><input type="checkbox" value="1" id="wm_full-<?php echo $currentimage; ?>" name="wm_full-<?php echo $currentimage; ?>" <?php if ($wmuse & WATERMARK_FULL) echo 'checked = "checked"'; ?> /><?php echo gettext('full image'); ?></label>
 				</span>
 				<?php
 				$item = ob_get_contents();

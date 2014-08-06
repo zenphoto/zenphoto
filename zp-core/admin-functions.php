@@ -453,11 +453,11 @@ function printAdminHeader($tab, $subtab = NULL) {
 					if (empty($link)) {
 						$link = getRequestURI();
 						/*
-							$bt = debug_backtrace();
-							$bt = array_shift($bt);
-							if (isset($bt['file'])) {
-							$link = str_replace(SERVERPATH, '', str_replace('\\', '/', $bt['file']));
-							}
+						  $bt = debug_backtrace();
+						  $bt = array_shift($bt);
+						  if (isset($bt['file'])) {
+						  $link = str_replace(SERVERPATH, '', str_replace('\\', '/', $bt['file']));
+						  }
 						 */
 					} else if (strpos($link, '/') !== 0) { // zp_core relative
 						$link = WEBPATH . '/' . ZENFOLDER . '/' . $link;
@@ -1410,28 +1410,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 								<?php echo linkPickerItem($album, 'pick_link'); ?>
 							</td>
 						</tr>
-						<?php
-						/*TODO:remove
-							<tr>
-							<td class="leftcolumn"><?php echo gettext("Owner"); ?></td>
-							<td class="middlecolumn">
-							<?php
-							if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
-							?>
-							<select name="<?php echo $prefix; ?>owner">
-							<?php echo admin_album_list($album->getOwner()); ?>
-							</select>
-							<?php
-							} else {
-							echo $album->getOwner();
-							}
-							?>
-							</td>
-							</tr>
-
-						 *
-						 */
-						?>
 						<tr>
 							<td class="leftcolumn">
 								<?php echo gettext("Album Description:"); ?>
@@ -1522,42 +1500,42 @@ function printAdminHeader($tab, $subtab = NULL) {
 							<?php
 						}
 						/*
-							$d = $album->getDateTime();
-							if ($d == "0000-00-00 00:00:00") {
-							$d = "";
-							}
-							?>
+						  $d = $album->getDateTime();
+						  if ($d == "0000-00-00 00:00:00") {
+						  $d = "";
+						  }
+						  ?>
 
-							<tr>
-							<td class="leftcolumn"><?php echo gettext("Date:"); ?> </td>
-							<td>
-							<script type="text/javascript">
-							// <!-- <![CDATA[
-							$(function() {
-							$("#datepicker<?php echo $suffix; ?>").datepicker({
-							dateFormat: 'yy-mm-dd',
-							showOn: 'button',
-							buttonImage: 'images/calendar.png',
-							buttonText: '<?php echo addslashes(gettext('calendar')); ?>',
-							buttonImageOnly: true
-							});
-							});
-							// ]]> -->
-							</script>
-							<input type="text" id="datepicker<?php echo $suffix; ?>" size="20" name="<?php echo $prefix; ?>albumdate" value="<?php echo $d; ?>" />
-							</td>
-							</tr>
-							<?php
+						  <tr>
+						  <td class="leftcolumn"><?php echo gettext("Date:"); ?> </td>
+						  <td>
+						  <script type="text/javascript">
+						  // <!-- <![CDATA[
+						  $(function() {
+						  $("#datepicker<?php echo $suffix; ?>").datepicker({
+						  dateFormat: 'yy-mm-dd',
+						  showOn: 'button',
+						  buttonImage: 'images/calendar.png',
+						  buttonText: '<?php echo addslashes(gettext('calendar')); ?>',
+						  buttonImageOnly: true
+						  });
+						  });
+						  // ]]> -->
+						  </script>
+						  <input type="text" id="datepicker<?php echo $suffix; ?>" size="20" name="<?php echo $prefix; ?>albumdate" value="<?php echo $d; ?>" />
+						  </td>
+						  </tr>
+						  <?php
 
 						 */
 						/*
-							<tr>
-							<td class="leftcolumn"><?php echo gettext("Location:"); ?> </td>
-							<td class="middlecolumn">
-							<?php print_language_string_list($album->getLocation(), $prefix . "albumlocation", false, NULL, 'hint', '100%'); ?>
-							</td>
-							</tr>
-							<?php
+						  <tr>
+						  <td class="leftcolumn"><?php echo gettext("Location:"); ?> </td>
+						  <td class="middlecolumn">
+						  <?php print_language_string_list($album->getLocation(), $prefix . "albumlocation", false, NULL, 'hint', '100%'); ?>
+						  </td>
+						  </tr>
+						  <?php
 						 */
 						echo $custom = zp_apply_filter('edit_album_custom_data', '', $album, $prefix);
 
@@ -1568,7 +1546,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						$sort[gettext('Custom')] = 'custom';
 						/*
 						 * not recommended--screws with peoples minds during pagination!
-							$sort[gettext('Random')] = 'random';
+						  $sort[gettext('Random')] = 'random';
 						 */
 						?>
 						<tr>
@@ -2467,11 +2445,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 		}
 		$tags = array_unique($tags);
 		$album->setTags($tags);
-//TODO: remove
-//		$album->setDateTime(sanitize($_POST[$prefix . "albumdate"]));
-//		$album->setLocation(process_language_string_save($prefix . 'albumlocation', 3));
-//		if (isset($_POST[$prefix . 'owner']))
-//			$album->setOwner(sanitize($_POST[$prefix . 'owner']));
 		if (isset($_POST[$prefix . 'thumb']))
 			$album->setThumb(sanitize($_POST[$prefix . 'thumb']));
 		$album->setShow((int) isset($_POST[$prefix . 'Published']));
