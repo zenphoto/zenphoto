@@ -27,9 +27,9 @@ if ($filehandler) {
 					plugins: [
 									"advlist autolink lists link image charmap print preview anchor",
 									"searchreplace visualblocks code fullscreen",
-									"insertdatetime media table contextmenu paste"
+									"insertdatetime media table contextmenu paste tinyzenpage"
 					],
-									toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | code",
+									toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | code | tinyzenpage",
 									statusbar: false,
 									setup: function(ed) {
 									ed.on('change', function(e) {
