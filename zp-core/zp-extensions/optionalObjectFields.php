@@ -127,7 +127,11 @@ class optionalObjectFields extends fieldExtender {
 
 	static function owner($obj, $instance, $field, $type) {
 		if ($type == 'save') {
-			return sanitize($_POST[$instance . '-' . $field['name']]);
+			if (isset($_POST[$instance . '-' . $field['name']])) {
+				return sanitize($_POST[$instance . '-' . $field['name']]);
+			} else {
+				return NULL;
+			}
 		} else {
 			$item = NULL;
 			if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
@@ -147,14 +151,16 @@ class optionalObjectFields extends fieldExtender {
 	static function thumb($image, $currentimage, $field, $type) {
 		global $albumHeritage;
 		if ($type == 'save') {
-			if ($thumbnail = $_POST[$currentimage . '-' . $field['name']]) {
-				$talbum = newAlbum($thumbnail);
-				if ($image->imagefolder == $thumbnail) {
-					$talbum->setThumb($image->filename);
-				} else {
-					$talbum->setThumb('/' . $image->imagefolder . '/' . $image->filename);
+			if (isset($_POST[$currentimage . '-' . $field['name']])) {
+				if ($thumbnail = $_POST[$currentimage . '-' . $field['name']]) {
+					$talbum = newAlbum($thumbnail);
+					if ($image->imagefolder == $thumbnail) {
+						$talbum->setThumb($image->filename);
+					} else {
+						$talbum->setThumb('/' . $image->imagefolder . '/' . $image->filename);
+					}
+					$talbum->save();
 				}
-				$talbum->save();
 			}
 			return NULL;
 		} else {
@@ -177,7 +183,11 @@ class optionalObjectFields extends fieldExtender {
 	static function date($obj, $instance, $field, $type) {
 		global $albumHeritage;
 		if ($type == 'save') {
-			return sanitize($_POST[$instance . '-' . $field['name']]);
+			if (isset($_POST[$instance . '-' . $field['name']])) {
+				return sanitize($_POST[$instance . '-' . $field['name']]);
+			} else {
+				return NULL;
+			}
 		} else {
 			$item = NULL;
 			if (true || $obj->isMyItem($obj->manage_some_rights)) {
@@ -212,17 +222,18 @@ class optionalObjectFields extends fieldExtender {
 
 	static function watermark($image, $currentimage, $field, $type) {
 		if ($type == 'save') {
-			$wmt = sanitize($_POST[$currentimage . '-' . $field['name']], 3);
-			$image->setWatermark($wmt);
-			$wmuse = 0;
-			if (isset($_POST['wm_image-' . $currentimage]))
-				$wmuse = $wmuse | WATERMARK_IMAGE;
-			if (isset($_POST['wm_thumb-' . $currentimage]))
-				$wmuse = $wmuse | WATERMARK_THUMB;
-			if (isset($_POST['wm_full-' . $currentimage]))
-				$wmuse = $wmuse | WATERMARK_FULL;
-			$image->setWMUse($wmuse);
-
+			if (isset($_POST[$currentimage . '-' . $field['name']])) {
+				$wmt = sanitize($_POST[$currentimage . '-' . $field['name']], 3);
+				$image->setWatermark($wmt);
+				$wmuse = 0;
+				if (isset($_POST['wm_image-' . $currentimage]))
+					$wmuse = $wmuse | WATERMARK_IMAGE;
+				if (isset($_POST['wm_thumb-' . $currentimage]))
+					$wmuse = $wmuse | WATERMARK_THUMB;
+				if (isset($_POST['wm_full-' . $currentimage]))
+					$wmuse = $wmuse | WATERMARK_FULL;
+				$image->setWMUse($wmuse);
+			}
 			return NULL;
 		} else {
 			$item = NULL;
