@@ -165,7 +165,7 @@ class optionalObjectFields extends fieldExtender {
 			return NULL;
 		} else {
 			$item = NULL;
-			if ($image->album->albumSubRights() & MANAGED_OBJECT_RIGHTS_EDIT) {
+			if ($image->album->subRights() & MANAGED_OBJECT_RIGHTS_EDIT) {
 				ob_start();
 				?>
 				<select name="<?php echo $currentimage . '-' . $field['name']; ?>" >

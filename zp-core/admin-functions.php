@@ -488,7 +488,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 		if (!is_array($zenphoto_tabs['edit']['subtabs'])) {
 			$zenphoto_tabs['edit']['subtabs'] = array();
 		}
-		$subrights = $album->albumSubRights();
+		$subrights = $album->subRights();
 		if (!$album->isDynamic() && $album->getNumImages()) {
 			if ($subrights & (MANAGED_OBJECT_RIGHTS_UPLOAD || MANAGED_OBJECT_RIGHTS_EDIT)) {
 				$zenphoto_tabs['edit']['subtabs'] = array_merge(
@@ -2146,7 +2146,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 * */
 	function printAlbumEditRow($album, $show_thumb, $owner) {
 		global $_zp_current_admin_obj;
-		$enableEdit = $album->albumSubRights() & MANAGED_OBJECT_RIGHTS_EDIT;
+		$enableEdit = $album->subRights() & MANAGED_OBJECT_RIGHTS_EDIT;
 		if (is_object($owner)) {
 			$owner = $owner->name;
 		}
@@ -3202,27 +3202,29 @@ function printAdminHeader($tab, $subtab = NULL) {
 function printManagedObjects($type, $objlist, $alterrights, $userobj, $prefix_id, $kind, $flag) {
 	$rest = $extra = $extra2 = array();
 	$rights = $userobj->getRights();
+	$full = $userobj->getObjects();
+
 	$legend = '';
+	$icon_edit = '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/options.png" class="icon-position-top3" alt="" title="' . gettext('edit rights') . '" />';
+	$icon_view = '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/action.png" class="icon-position-top3" alt="" title="' . gettext('view unpublished items') . '" />';
+	$icon_upload = '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/arrow_up.png" class="icon-position-top3"  alt="" title="' . gettext('upload rights') . '"/>';
+	$icon_upload_disabled = '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/arrow_up.png" class="icon-position-top3"  alt="" title="' . gettext('the album is dynamic') . '"/>';
+
 	switch ($type) {
 		case 'albums':
 			if ($rights & (MANAGE_ALL_ALBUM_RIGHTS | ADMIN_RIGHTS)) {
 				$cv = $objlist;
 				$alterrights = ' disabled="disabled"';
 			} else {
-				$full = $userobj->getObjects();
-				$cv = $extra = array();
-				$icon_edit_album = '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/options.png" class="icon-position-top3" alt="" title="' . gettext('edit rights') . '" />';
-				$icon_view_image = '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/action.png" class="icon-position-top3" alt="" title="' . gettext('view unpublished items') . '" />';
-				$icon_upload = '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/arrow_up.png" class="icon-position-top3"  alt="" title="' . gettext('upload rights') . '"/>';
-				$icon_upload_disabled = '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/arrow_up.png" class="icon-position-top3"  alt="" title="' . gettext('the album is dynamic') . '"/>';
+				$cv = $extra = $extra2 = array();
 				if (!empty($flag)) {
 					$legend .= '* ' . gettext('Primary album') . ' ';
 				}
-				$legend .= $icon_edit_album . ' ' . gettext('edit') . ' ';
+				$legend .= $icon_edit . ' ' . gettext('edit') . ' ';
 				if ($rights & UPLOAD_RIGHTS)
 					$legend .= $icon_upload . ' ' . gettext('upload') . ' ';
 				if (!($rights & VIEW_UNPUBLISHED_RIGHTS))
-					$legend .= $icon_view_image . ' ' . gettext('view unpublished') . ' ';
+					$legend .= $icon_view . ' ' . gettext('view unpublished') . ' ';
 				foreach ($full as $item) {
 					if ($item['type'] == 'album') {
 						if (in_array($item['data'], $flag)) {
@@ -3232,7 +3234,7 @@ function printManagedObjects($type, $objlist, $alterrights, $userobj, $prefix_id
 						}
 						$cv[$item['name'] . $note] = $item['data'];
 						$extra[$item['data']][] = array('name' => 'name', 'value' => $item['name'], 'display' => '', 'checked' => 0);
-						$extra[$item['data']][] = array('name' => 'edit', 'value' => MANAGED_OBJECT_RIGHTS_EDIT, 'display' => $icon_edit_album, 'checked' => $item['edit'] & MANAGED_OBJECT_RIGHTS_EDIT);
+						$extra[$item['data']][] = array('name' => 'edit', 'value' => MANAGED_OBJECT_RIGHTS_EDIT, 'display' => $icon_edit, 'checked' => $item['edit'] & MANAGED_OBJECT_RIGHTS_EDIT);
 						if (($rights & UPLOAD_RIGHTS)) {
 							if (hasDynamicAlbumSuffix($item['data']) && !is_dir(ALBUM_FOLDER_SERVERPATH . $item['data'])) {
 								$extra[$item['data']][] = array('name' => 'upload', 'value' => MANAGED_OBJECT_RIGHTS_UPLOAD, 'display' => $icon_upload_disabled, 'checked' => 0, 'disable' => true);
@@ -3241,14 +3243,14 @@ function printManagedObjects($type, $objlist, $alterrights, $userobj, $prefix_id
 							}
 						}
 						if (!($rights & VIEW_UNPUBLISHED_RIGHTS)) {
-							$extra[$item['data']][] = array('name' => 'view', 'value' => MANAGED_OBJECT_RIGHTS_VIEW, 'display' => $icon_view_image, 'checked' => $item['edit'] & MANAGED_OBJECT_RIGHTS_VIEW);
+							$extra[$item['data']][] = array('name' => 'view', 'value' => MANAGED_OBJECT_RIGHTS_VIEW, 'display' => $icon_view, 'checked' => $item['edit'] & MANAGED_OBJECT_RIGHTS_VIEW);
 						}
 					}
 				}
 				$rest = array_diff($objlist, $cv);
 				foreach ($rest as $unmanaged) {
 					$extra2[$unmanaged][] = array('name' => 'name', 'value' => $unmanaged, 'display' => '', 'checked' => 0);
-					$extra2[$unmanaged][] = array('name' => 'edit', 'value' => MANAGED_OBJECT_RIGHTS_EDIT, 'display' => $icon_edit_album, 'checked' => 1);
+					$extra2[$unmanaged][] = array('name' => 'edit', 'value' => MANAGED_OBJECT_RIGHTS_EDIT, 'display' => $icon_edit, 'checked' => 1);
 					if (($rights & UPLOAD_RIGHTS)) {
 						if (hasDynamicAlbumSuffix($unmanaged) && !is_dir(ALBUM_FOLDER_SERVERPATH . $unmanaged)) {
 							$extra2[$unmanaged][] = array('name' => 'upload', 'value' => MANAGED_OBJECT_RIGHTS_UPLOAD, 'display' => $icon_upload_disabled, 'checked' => 0, 'disable' => true);
@@ -3257,7 +3259,7 @@ function printManagedObjects($type, $objlist, $alterrights, $userobj, $prefix_id
 						}
 					}
 					if (!($rights & VIEW_UNPUBLISHED_RIGHTS)) {
-						$extra2[$unmanaged][] = array('name' => 'view', 'value' => MANAGED_OBJECT_RIGHTS_VIEW, 'display' => $icon_view_image, 'checked' => 1);
+						$extra2[$unmanaged][] = array('name' => 'view', 'value' => MANAGED_OBJECT_RIGHTS_VIEW, 'display' => $icon_view, 'checked' => 1);
 					}
 				}
 			}
@@ -3271,8 +3273,26 @@ function printManagedObjects($type, $objlist, $alterrights, $userobj, $prefix_id
 				$rest = array();
 				$alterrights = ' disabled="disabled"';
 			} else {
-				$cv = $userobj->getObjects('news');
+				$cv = $extra = $extra2 = array();
 				$rest = array_diff($objlist, $cv);
+				$legend .= $icon_edit . ' ' . gettext('edit') . ' ' . $icon_view . ' ' . gettext('view unpublished') . ' ';
+				foreach ($full as $item) {
+					if ($item['type'] == 'news') {
+						$cv[$item['name']] = $item['data'];
+						$extra[$item['data']][] = array('name' => 'name', 'value' => $item['name'], 'display' => '', 'checked' => 0);
+						$extra[$item['data']][] = array('name' => 'edit', 'value' => MANAGED_OBJECT_RIGHTS_EDIT, 'display' => $icon_edit, 'checked' => $item['edit'] & MANAGED_OBJECT_RIGHTS_EDIT);
+
+
+						$extra[$item['data']][] = array('name' => 'view', 'value' => MANAGED_OBJECT_RIGHTS_VIEW, 'display' => $icon_view, 'checked' => $item['edit'] & MANAGED_OBJECT_RIGHTS_VIEW);
+					}
+				}
+				$rest = array_diff($objlist, $cv);
+				foreach ($rest as $unmanaged) {
+					$extra2[$unmanaged][] = array('name' => 'name', 'value' => $unmanaged, 'display' => '', 'checked' => 0);
+					$extra2[$unmanaged][] = array('name' => 'edit', 'value' => MANAGED_OBJECT_RIGHTS_EDIT, 'display' => $icon_edit, 'checked' => 1);
+
+					$extra2[$unmanaged][] = array('name' => 'view', 'value' => MANAGED_OBJECT_RIGHTS_VIEW, 'display' => $icon_view, 'checked' => 1);
+				}
 			}
 			$text = gettext("Managed news categories:");
 			$simplename = gettext('News');
@@ -3285,8 +3305,24 @@ function printManagedObjects($type, $objlist, $alterrights, $userobj, $prefix_id
 				$rest = array();
 				$alterrights = ' disabled="disabled"';
 			} else {
-				$cv = $userobj->getObjects('pages');
+				$cv = $extra = $extra2 = array();
 				$rest = array_diff($objlist, $cv);
+				$legend .= $icon_edit . ' ' . gettext('edit') . ' ' . $icon_view . ' ' . gettext('view unpublished') . ' ';
+				foreach ($full as $item) {
+					if ($item['type'] == 'pages') {
+						$cv[$item['name']] = $item['data'];
+						$extra[$item['data']][] = array('name' => 'name', 'value' => $item['name'], 'display' => '', 'checked' => 0);
+						$extra[$item['data']][] = array('name' => 'edit', 'value' => MANAGED_OBJECT_RIGHTS_EDIT, 'display' => $icon_edit, 'checked' => $item['edit'] & MANAGED_OBJECT_RIGHTS_EDIT);
+						$extra[$item['data']][] = array('name' => 'view', 'value' => MANAGED_OBJECT_RIGHTS_VIEW, 'display' => $icon_view, 'checked' => $item['edit'] & MANAGED_OBJECT_RIGHTS_VIEW);
+					}
+				}
+				$rest = array_diff($objlist, $cv);
+				foreach ($rest as $unmanaged) {
+					$extra2[$unmanaged][] = array('name' => 'name', 'value' => $unmanaged, 'display' => '', 'checked' => 0);
+					$extra2[$unmanaged][] = array('name' => 'edit', 'value' => MANAGED_OBJECT_RIGHTS_EDIT, 'display' => $icon_edit, 'checked' => 1);
+
+					$extra2[$unmanaged][] = array('name' => 'view', 'value' => MANAGED_OBJECT_RIGHTS_VIEW, 'display' => $icon_view, 'checked' => 1);
+				}
 			}
 			$text = gettext("Managed pages:");
 			$simplename = $objectname = gettext('Pages');
@@ -3307,7 +3343,6 @@ function printManagedObjects($type, $objlist, $alterrights, $userobj, $prefix_id
 		$itemcount = '';
 	}
 	?>
-
 	<div class="box-albums-unpadded">
 		<h2 class="h2_bordered_albums">
 			<a onclick="toggle('<?php echo $prefix ?>');" title="<?php echo html_encode($hint); ?>" ><?php echo $text . $itemcount; ?></a>
@@ -3364,9 +3399,9 @@ function processManagedObjects($i, &$rights) {
 	$l_a = strlen($prefix_a = 'managed_albums_list_' . $i . '_');
 	$l_p = strlen($prefix_p = 'managed_pages_list_' . $i . '_');
 	$l_n = strlen($prefix_n = 'managed_news_list_' . $i . '_');
-	foreach ($_POST as $key => $value) {
 
-		if (substr($key, 0, $l_a) == $prefix_a) {
+	foreach ($_POST as $key => $value) {
+		if (substr($key, 0, $l_a) == $prefix_a) { //albums
 			$key = sanitize(substr($key, $l_a));
 			if (preg_match('/(.*)(_edit|_view|_upload|_name)$/', $key, $matches)) {
 				$key = postIndexDecode($matches[1]);
@@ -3391,17 +3426,49 @@ function processManagedObjects($i, &$rights) {
 				$albums[$key] = array('data' => $key, 'name' => '', 'type' => 'album', 'edit' => 32767 & ~(MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_UPLOAD | MANAGED_OBJECT_RIGHTS_VIEW));
 			}
 		}
-		if (substr($key, 0, $l_p) == $prefix_p) {
-			if ($value) {
-				$key = postIndexDecode(substr($key, $l_p));
-				$pages[] = array('data' => $key, 'type' => 'pages');
+		if (substr($key, 0, $l_p) == $prefix_p) { //pages
+			$key = sanitize(substr($key, $l_p));
+			if (preg_match('/(.*)(_edit|_view|_name)$/', $key, $matches)) {
+				$key = postIndexDecode($matches[1]);
+				if (array_key_exists($key, $pages)) {
+					switch ($matches[2]) {
+						case '_edit':
+							$pages[$key]['edit'] = $pages[$key]['edit'] | MANAGED_OBJECT_RIGHTS_EDIT;
+							break;
+						case '_view':
+							$pages[$key]['edit'] = $pages[$key]['edit'] | MANAGED_OBJECT_RIGHTS_VIEW;
+							break;
+						case '_name':
+							$pages[$key]['name'] = $value;
+							break;
+					}
+				}
+			} else if ($value) {
+				$key = postIndexDecode($key);
+				$pages[$key] = array('data' => $key, 'type' => 'pages', 'edit' => 32767 & ~(MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW));
 			}
 		}
 
-		if (substr($key, 0, $l_n) == $prefix_n) {
-			if ($value) {
-				$key = postIndexDecode(substr($key, $l_n));
-				$news[] = array('data' => $key, 'type' => 'news');
+		if (substr($key, 0, $l_n) == $prefix_n) { //news
+			$key = sanitize(substr($key, $l_n));
+			if (preg_match('/(.*)(_edit|_view|_name)$/', $key, $matches)) {
+				$key = postIndexDecode($matches[1]);
+				if (array_key_exists($key, $news)) {
+					switch ($matches[2]) {
+						case '_edit':
+							$news[$key]['edit'] = $news[$key]['edit'] | MANAGED_OBJECT_RIGHTS_EDIT;
+							break;
+						case '_view':
+							$news[$key]['edit'] = $news[$key]['edit'] | MANAGED_OBJECT_RIGHTS_VIEW;
+							break;
+						case '_name':
+							$news[$key]['name'] = $value;
+							break;
+					}
+				}
+			} else if ($value) {
+				$key = postIndexDecode($key);
+				$news[$key] = array('data' => $key, 'type' => 'news', 'edit' => 32767 & ~(MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW));
 			}
 		}
 	}
@@ -3440,6 +3507,7 @@ function processManagedObjects($i, &$rights) {
 			$news = array();
 		}
 	}
+
 	$objects = array_merge($albums, $pages, $news);
 	return $objects;
 }

@@ -666,7 +666,7 @@ echo "\n</head>";
 				} else {
 					$subalbums = getNestedAlbumList($album, $subalbum_nesting);
 					$allimages = $album->getImages(0, 0, $oldalbumimagesort, $direction);
-					if (!($album->albumSubRights() & MANAGED_OBJECT_RIGHTS_EDIT)) {
+					if (!($album->subRights() & MANAGED_OBJECT_RIGHTS_EDIT)) {
 						$allimages = array();
 						$requestor = $_zp_current_admin_obj->getUser();
 						$albumowner = $album->getOwner();
@@ -752,7 +752,7 @@ echo "\n</head>";
 					<!-- Subalbum list goes here -->
 					<?php
 					if (count($subalbums) > 0) {
-						$enableEdit = $album->albumSubRights() & MANAGED_OBJECT_RIGHTS_EDIT;
+						$enableEdit = $album->subRights() & MANAGED_OBJECT_RIGHTS_EDIT;
 						?>
 						<div id="tab_subalbuminfo" class="tabbox">
 							<?php

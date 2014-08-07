@@ -62,7 +62,7 @@ class AlbumBase extends MediaObject {
 	protected $lastimagesort = NULL; // remember the order for the last album/image sorts
 	protected $lastsubalbumsort = NULL;
 	protected $albumthumbnail = NULL; // remember the album thumb for the duration of the script
-	protected $subrights = NULL; //	cache for album subrights
+	protected $subrights = NULL; //	cache for subrights
 
 	function __construct($folder8, $cache = true) {
 		$this->linkname = $this->name = $folder8;
@@ -761,7 +761,7 @@ class AlbumBase extends MediaObject {
 			return $parent;
 		}
 		if (zp_loggedin($action)) {
-			$subRights = $this->albumSubRights();
+			$subRights = $this->subRights();
 			if (is_null($subRights)) {
 // no direct rights, but if this is a private gallery and the album is published he should be allowed to see it
 				if (GALLERY_SECURITY != 'public' && $this->getShow() && $action == LIST_RIGHTS) {
@@ -895,7 +895,7 @@ class AlbumBase extends MediaObject {
 	 * returns the mitigated album rights.
 	 * returns NULL if not a managed album
 	 */
-	function albumSubRights() {
+	function subRights() {
 		if (!is_null($this->subrights)) {
 			return $this->subrights;
 		}
@@ -950,7 +950,7 @@ class AlbumBase extends MediaObject {
 		}
 		if ($mine && !($mine & (MANAGE_ALL_ALBUM_RIGHTS))) {
 //	check for managed album view unpublished image rights
-			$mine = $this->albumSubRights() & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW);
+			$mine = $this->subRights() & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW);
 		}
 		$sortkey = $this->getImageSortKey($sorttype);
 		if (($sortkey == '`sort_order`') || ($sortkey == 'RAND()')) {

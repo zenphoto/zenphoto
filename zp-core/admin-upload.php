@@ -265,7 +265,7 @@ foreach ($albumlist as $key => $value) {
 							$modified_rights = MANAGED_OBJECT_RIGHTS_EDIT;
 						} else {
 							$rightsalbum = $rightsalbum = newAlbum($passedalbum);
-							$modified_rights = $rightsalbum->albumSubRights();
+							$modified_rights = $rightsalbum->subRights();
 						}
 						if ($modified_rights & MANAGED_OBJECT_RIGHTS_EDIT) { //	he has edit rights, allow new album creation
 							$display = '';

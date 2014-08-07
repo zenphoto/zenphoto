@@ -841,23 +841,21 @@ function populateManagedObjectsList($type, $id, $rights = false) {
 		}
 	}
 	if (empty($type) || $type == 'pages') {
-		$sql = 'SELECT ' . prefix('pages') . '.`title`,' . prefix('pages') . '.`titlelink` FROM ' . prefix('pages') . ', ' .
-						prefix('admin_to_object') . " WHERE " . prefix('admin_to_object') . ".adminid=" . $id .
-						" AND " . prefix('pages') . ".id=" . prefix('admin_to_object') . ".objectid AND " . prefix('admin_to_object') . ".type='pages'";
-		$currentvalues = query($sql, false);
+		$sql = 'SELECT ' . prefix('pages') . '.`title`,' . prefix('pages') . '.`titlelink`, ' . prefix('admin_to_object') . '.`edit` FROM ' . prefix('pages') . ', ' . prefix('admin_to_object') . " WHERE " . prefix('admin_to_object') . ".adminid=" . $id . " AND " . prefix('pages') . ".id=" . prefix('admin_to_object') . ".objectid AND " . prefix('admin_to_object') . ".type='pages'";
+		$currentvalues = query($sql, true);
 		if ($currentvalues) {
 			while ($item = db_fetch_assoc($currentvalues)) {
 				if ($type) {
 					$cv[get_language_string($item['title'])] = $item['titlelink'];
 				} else {
-					$cv[] = array('data' => $item['titlelink'], 'name' => get_language_string($item['title']), 'type' => 'pages');
+					$cv[] = array('data' => $item['titlelink'], 'name' => get_language_string($item['title']), 'type' => 'pages', 'edit' => $item['edit'] + 0);
 				}
 			}
 			db_free_result($currentvalues);
 		}
 	}
 	if (empty($type) || $type == 'news') {
-		$sql = 'SELECT ' . prefix('news_categories') . '.`titlelink`,' . prefix('news_categories') . '.`title` FROM ' . prefix('news_categories') . ', ' .
+		$sql = 'SELECT ' . prefix('news_categories') . '.`titlelink`,' . prefix('news_categories') . '.`title`, ' . prefix('admin_to_object') . '.`edit` FROM ' . prefix('news_categories') . ', ' .
 						prefix('admin_to_object') . " WHERE " . prefix('admin_to_object') . ".adminid=" . $id .
 						" AND " . prefix('news_categories') . ".id=" . prefix('admin_to_object') . ".objectid AND " . prefix('admin_to_object') . ".type='news'";
 		$currentvalues = query($sql, false);
@@ -866,7 +864,7 @@ function populateManagedObjectsList($type, $id, $rights = false) {
 				if ($type) {
 					$cv[get_language_string($item['title'])] = $item['titlelink'];
 				} else {
-					$cv[] = array('data' => $item['titlelink'], 'name' => get_language_string($item['title']), 'type' => 'news');
+					$cv[] = array('data' => $item['titlelink'], 'name' => get_language_string($item['title']), 'type' => 'news', 'edit' => $item['edit'] + 0);
 				}
 			}
 			db_free_result($currentvalues);
