@@ -300,26 +300,10 @@ if (isset($_GET['action'])) {
 													Gallery::clearCache(SERVERCACHE . '/' . $album->name);
 												}
 											}
-											$tagsprefix = 'tags_' . $i . '-';
-											$tags = array();
-											$l = strlen($tagsprefix);
-											foreach ($_POST as $key => $value) {
-												if (substr($key, 0, $l) == $tagsprefix) {
-													if ($value) {
-														$tags[] = sanitize(postIndexDecode(substr($key, $l)));
-													}
-												}
-											}
-											$tags = array_unique($tags);
-											$image->setTags($tags);
-
 											$image->setShow(isset($_POST["$i-Visible"]));
 											$image->setCommentsAllowed(isset($_POST["$i-allowcomments"]));
 											if (isset($_POST["reset_hitcounter$i"])) {
 												$image->set('hitcounter', 0);
-											}
-											if (zp_loggedin(CODEBLOCK_RIGHTS)) {
-												$image->setCodeblock(processCodeblockSave($i));
 											}
 											$image->set('filesize', filesize($image->localpath));
 
@@ -1076,7 +1060,7 @@ echo "\n</head>";
 															<p><?php echo gettext("<strong>Dimensions:</strong>"); ?><br /><?php echo $image->getWidth(); ?> x  <?php echo $image->getHeight() . ' ' . gettext('px'); ?></p>
 															<p><?php echo gettext("<strong>Size:</strong>"); ?><br /><?php echo byteConvert($image->getImageFootprint()); ?></p>
 														</td>
-														<td align="left" valign="top" width="50%"><?php echo gettext("Title:");
+														<td align="left" valign="top" width="25%"><?php echo gettext("Title:");
 																?></td>
 														<td><?php print_language_string_list($image->getTitle('all'), $currentimage . '-title', false, NULL, '', '100%'); ?>
 														<td style="padding-left: 1em; text-align: left; border-bottom:none;" rowspan="14" valign="top">
@@ -1346,20 +1330,44 @@ echo "\n</head>";
 														<td align="left" valign="top"><?php echo gettext("Description:"); ?></td>
 														<td><?php print_language_string_list($image->getDesc('all'), $currentimage . '-desc', true, NULL, 'texteditor', '100%'); ?></td>
 													</tr>
-
 													<?php
-													echo zp_apply_filter('edit_image_custom_data', '', $image, $currentimage);
-													if ($singleimage) {
+													if ($image->get('hasMetadata')) {
 														?>
 														<tr>
-															<td valign="top"><?php echo gettext("Tags:"); ?></td>
+															<td valign="top"><?php echo gettext("Metadata:"); ?></td>
 															<td>
-																<div class="box-edit-unpadded">
-																	<?php tagSelector($image, 'tags_' . $currentimage . '-', false, $tagsort, true, 1); ?>
-																</div>
+																<?php
+																$data = '';
+																$exif = $image->getMetaData();
+																if (false !== $exif) {
+																	foreach ($exif as $field => $value) {
+																		if (!empty($value)) {
+																			$display = $_zp_exifvars[$field][3];
+																			if ($display) {
+																				$label = $_zp_exifvars[$field][2];
+																				$data .= "<tr><td class=\"medtadata_tag\">$label: </td> <td>" . html_encode($value) . "</td></tr>\n";
+																			}
+																		}
+																	}
+																}
+																if (empty($data)) {
+																	echo gettext('None selected for display');
+																} else {
+																	?>
+																	<div class="metadata_container">
+																		<table class="metadata_table" >
+																			<?php echo $data; ?>
+																		</table>
+																	</div>
+																	<?php
+																}
+																?>
 															</td>
 														</tr>
 														<?php
+													}
+													if ($singleimage) {
+														echo zp_apply_filter('edit_image_custom_data', '', $image, $currentimage);
 													} else {
 														?>
 														<tr>
@@ -1375,55 +1383,6 @@ echo "\n</head>";
 																?>
 															</td>
 														</tr>
-														<?php
-													}
-													if ($singleimage) {
-														if ($image->get('hasMetadata')) {
-															?>
-															<tr>
-																<td valign="top"><?php echo gettext("Metadata:"); ?></td>
-																<td>
-																	<?php
-																	$data = '';
-																	$exif = $image->getMetaData();
-																	if (false !== $exif) {
-																		foreach ($exif as $field => $value) {
-																			if (!empty($value)) {
-																				$display = $_zp_exifvars[$field][3];
-																				if ($display) {
-																					$label = $_zp_exifvars[$field][2];
-																					$data .= "<tr><td class=\"medtadata_tag\">$label: </td> <td>" . html_encode($value) . "</td></tr>\n";
-																				}
-																			}
-																		}
-																	}
-																	if (empty($data)) {
-																		echo gettext('None selected for display');
-																	} else {
-																		?>
-																		<div class="metadata_container">
-																			<table class="metadata_table" >
-																				<?php echo $data; ?>
-																			</table>
-																		</div>
-																		<?php
-																	}
-																	?>
-																</td>
-															</tr>
-															<?php
-														}
-														?>
-														<tr valign="top">
-															<td class="topalign-nopadding"><br /><?php echo gettext("Codeblocks:"); ?></td>
-															<td>
-																<br />
-																<?php printCodeblockEdit($image, $currentimage); ?>
-															</td>
-														</tr>
-														<?php
-													} else {
-														?>
 														<tr>
 															<td colspan="2" style="border-bottom:none;">
 																<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit&tab=imageinfo&album=' . $album->name . '&singleimage=' . $image->filename . '&subpage=' . $pagenum; ?>"><img src="images/options.png" /> <?php echo gettext('Edit all image data'); ?></a>

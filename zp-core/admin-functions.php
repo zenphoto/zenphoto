@@ -1499,45 +1499,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 							</tr>
 							<?php
 						}
-						/*
-						  $d = $album->getDateTime();
-						  if ($d == "0000-00-00 00:00:00") {
-						  $d = "";
-						  }
-						  ?>
-
-						  <tr>
-						  <td class="leftcolumn"><?php echo gettext("Date:"); ?> </td>
-						  <td>
-						  <script type="text/javascript">
-						  // <!-- <![CDATA[
-						  $(function() {
-						  $("#datepicker<?php echo $suffix; ?>").datepicker({
-						  dateFormat: 'yy-mm-dd',
-						  showOn: 'button',
-						  buttonImage: 'images/calendar.png',
-						  buttonText: '<?php echo addslashes(gettext('calendar')); ?>',
-						  buttonImageOnly: true
-						  });
-						  });
-						  // ]]> -->
-						  </script>
-						  <input type="text" id="datepicker<?php echo $suffix; ?>" size="20" name="<?php echo $prefix; ?>albumdate" value="<?php echo $d; ?>" />
-						  </td>
-						  </tr>
-						  <?php
-
-						 */
-						/*
-						  <tr>
-						  <td class="leftcolumn"><?php echo gettext("Location:"); ?> </td>
-						  <td class="middlecolumn">
-						  <?php print_language_string_list($album->getLocation(), $prefix . "albumlocation", false, NULL, 'hint', '100%'); ?>
-						  </td>
-						  </tr>
-						  <?php
-						 */
-						echo $custom = zp_apply_filter('edit_album_custom_data', '', $album, $prefix);
 
 						$sort = $sortby;
 						if (!$album->isDynamic()) {
@@ -1826,15 +1787,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 								</td>
 							</tr>
 							<?php
+							echo $custom = zp_apply_filter('edit_album_custom_data', '', $album, $prefix);
 						}
 						?>
-						<tr valign="top">
-							<td class="leftcolumn topalign-nopadding"><br /><?php echo gettext("Codeblocks:"); ?></td>
-							<td>
-								<br />
-								<?php printCodeblockEdit($album, (int) $suffix); ?>
-							</td>
-						</tr>
 					</table>
 				</td>
 				<?php $bglevels = array('#fff', '#f8f8f8', '#efefef', '#e8e8e8', '#dfdfdf', '#d8d8d8', '#cfcfcf', '#c8c8c8'); ?>
@@ -2495,9 +2450,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 		if (isset($_POST[$prefix . 'album_watermark'])) {
 			$album->setWatermark(sanitize($_POST[$prefix . 'album_watermark'], 3));
 			$album->setWatermarkThumb(sanitize($_POST[$prefix . 'album_watermark_thumb'], 3));
-		}
-		if (zp_loggedin(CODEBLOCK_RIGHTS)) {
-			$album->setCodeblock(processCodeblockSave((int) $prefix));
 		}
 
 		$custom = process_language_string_save($prefix . '-custom_data', 1);

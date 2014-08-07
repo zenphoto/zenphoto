@@ -1,6 +1,6 @@
 <?php
 /*
- * This plugin is used to provide the optional media  database table fields. The
+ * This plugin is used to provide for <i>object</i> optional database table fields. The
  * administrative tabs for the objects will have input items for these  fields.
  * They will be placed in the proximate location of the "custom data" field on the page.
  *
@@ -23,40 +23,57 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
- * @subpackage media
+ * @subpackage admin
  * @category package
  *
  */
-$plugin_is_filter = defaultExtension(99 | CLASS_PLUGIN); //	if you have such a plugin you probably want to use it
-$plugin_description = gettext('Adds user defined fields to database tables');
-$plugin_notice = gettext('This plugin attaches the "custom data" filters. The raw custom data field is not editable when the plugin has fields defined for the object.');
+$plugin_is_filter = defaultExtension(1 | CLASS_PLUGIN); //	we want this done last so the codeblocks go at the end
+$plugin_description = gettext('Handles the "optional" object fields');
+
 $plugin_author = "Stephen Billard (sbillard)";
 
 require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/common/fieldExtender.php');
 
-class mediaFields extends fieldExtender {
+class optionalObjectFields extends fieldExtender {
 
 	static function fields() {
 		/*
 		 * For definition of this array see fieldExtender.php in the extensions/common folder
 		 */
 		return array(
-//album fields
-						array('table' => 'albums', 'name' => 'owner', 'desc' => gettext('Owner:'), 'type' => 'varchar', 'size' => 64, 'edit' => 'function', 'function' => 'mediaFields::owner', 'default' => 'NULL'),
-						array('table' => 'albums', 'name' => 'date', 'desc' => gettext('Date:'), 'type' => 'datetime', 'edit' => 'function', 'function' => 'mediaFields::date'),
+						/*
+						 * album fields
+						 */
+						array('table' => 'albums', 'name' => 'owner', 'desc' => gettext('Owner:'), 'type' => 'varchar', 'size' => 64, 'edit' => 'function', 'function' => 'optionalObjectFields::owner', 'default' => 'NULL'),
+						array('table' => 'albums', 'name' => 'date', 'desc' => gettext('Date:'), 'type' => 'datetime', 'edit' => 'function', 'function' => 'optionalObjectFields::date'),
 						array('table' => 'albums', 'name' => 'location', 'desc' => gettext('Location:'), 'type' => 'text', 'edit' => 'multilingual'),
-						//image fields
-						array('table' => 'images', 'name' => 'owner', 'desc' => gettext('Owner:'), 'type' => 'varchar', 'size' => 64, 'edit' => 'function', 'function' => 'mediaFields::owner', 'default' => 'NULL'),
-						array('table' => 'images', 'name' => 'album_thumb', 'desc' => gettext('Set as thumbnail for:'), 'type' => NULL, 'edit' => 'function', 'function' => 'mediaFields::thumb'),
-						array('table' => 'images', 'name' => 'date', 'desc' => gettext('Date:'), 'type' => 'datetime', 'edit' => 'function', 'function' => 'mediaFields::date'),
-						array('table' => 'images', 'name' => 'watermark', 'desc' => gettext('Image watermark:'), 'type' => 'varchar', 'size' => 255, 'edit' => 'function', 'function' => 'mediaFields::watermark', 'default' => NULL),
+						array('table' => 'albums', 'name' => 'codeblocks', 'desc' => gettext('Coceblocks:'), 'type' => NULL, 'edit' => 'function', 'function' => 'optionalObjectFields::codeblocks'),
+						/*
+						 * image fields
+						 */
+						array('table' => 'images', 'name' => 'owner', 'desc' => gettext('Owner:'), 'type' => 'varchar', 'size' => 64, 'edit' => 'function', 'function' => 'optionalObjectFields::owner', 'default' => 'NULL'),
+						array('table' => 'images', 'name' => 'album_thumb', 'desc' => gettext('Set as thumbnail for:'), 'type' => NULL, 'edit' => 'function', 'function' => 'optionalObjectFields::thumb'),
+						array('table' => 'images', 'name' => 'date', 'desc' => gettext('Date:'), 'type' => 'datetime', 'edit' => 'function', 'function' => 'optionalObjectFields::date'),
+						array('table' => 'images', 'name' => 'watermark', 'desc' => gettext('Image watermark:'), 'type' => 'varchar', 'size' => 255, 'edit' => 'function', 'function' => 'optionalObjectFields::watermark', 'default' => NULL),
 						array('table' => 'images', 'name' => 'watermark_use', 'desc' => NULL, 'type' => 'int', 'size' => 1, 'edit' => NULL, 'attribute' => 'UNSIGNED', 'default' => 7),
 						array('table' => 'images', 'name' => 'location', 'desc' => gettext('Location:'), 'type' => 'text', 'edit' => 'multilingual'),
 						array('table' => 'images', 'name' => 'city', 'desc' => gettext('City:'), 'type' => 'tinytext', 'size' => 50, 'edit' => 'multilingual'),
 						array('table' => 'images', 'name' => 'state', 'desc' => gettext('State:'), 'type' => 'tinytext', 'size' => 50, 'edit' => 'multilingual'),
 						array('table' => 'images', 'name' => 'country', 'desc' => gettext('Country:'), 'type' => 'tinytext', 'size' => 50, 'edit' => 'multilingual'),
 						array('table' => 'images', 'name' => 'credit', 'desc' => gettext('Credit:'), 'type' => 'text', 'edit' => 'multilingual'),
-						array('table' => 'images', 'name' => 'copyright', 'desc' => gettext('Copyright:'), 'type' => 'text', 'edit' => 'multilingual')
+						array('table' => 'images', 'name' => 'copyright', 'desc' => gettext('Copyright:'), 'type' => 'text', 'edit' => 'multilingual'),
+						array('table' => 'images', 'name' => 'tags', 'desc' => gettext('Tags:'), 'type' => NULL, 'edit' => 'function', 'function' => 'optionalObjectFields::tags'),
+						array('table' => 'images', 'name' => 'codeblocks', 'desc' => gettext('Coceblocks:'), 'type' => NULL, 'edit' => 'function', 'function' => 'optionalObjectFields::codeblocks'),
+						/*
+						 * page fields
+						 */
+						array('table' => 'pages', 'name' => 'extracontent', 'desc' => gettext('Extra Content:'), 'type' => NULL, 'edit' => 'function', 'function' => 'optionalObjectFields::extracontent'),
+						array('table' => 'pages', 'name' => 'codeblocks', 'desc' => gettext('Coceblocks:'), 'type' => NULL, 'edit' => 'function', 'function' => 'optionalObjectFields::codeblocks'),
+						/*
+						 * news article fields
+						 */
+						array('table' => 'news', 'name' => 'extracontent', 'desc' => gettext('Extra Content:'), 'type' => NULL, 'edit' => 'function', 'function' => 'optionalObjectFields::extracontent'),
+						array('table' => 'news', 'name' => 'codeblocks', 'desc' => gettext('Coceblocks:'), 'type' => NULL, 'edit' => 'function', 'function' => 'optionalObjectFields::codeblocks')
 		);
 	}
 
@@ -68,7 +85,7 @@ class mediaFields extends fieldExtender {
 			if (in_array($field['name'], $protected))
 				unset($fields[$key]);
 		}
-		parent::constructor('mediaFields', $fields);
+		parent::constructor('optionalObjectFields', $fields);
 //  for translations need to define the display names
 	}
 
@@ -101,11 +118,11 @@ class mediaFields extends fieldExtender {
 	}
 
 	static function register() {
-		parent::_register('mediaFields', self::fields());
+		parent::_register('optionalObjectFields', self::fields());
 	}
 
 	static function adminNotice($tab, $subtab) {
-		parent::_adminNotice($tab, $subtab, 'mediaFields');
+		parent::_adminNotice($tab, $subtab, 'optionalObjectFields');
 	}
 
 	static function owner($obj, $instance, $field, $type) {
@@ -241,27 +258,69 @@ class mediaFields extends fieldExtender {
 		}
 	}
 
-}
-
-function getCustomField($field, $object = NULL, &$detail = NULL) {
-	$detail = NULL;
-	return fieldExtender::getField($field, $object, $detail, customFieldExtender::$fields);
-}
-
-function printCustomField($field, $label = NULL, $object = NULL) {
-	$detail = NULL;
-	$text = getCustomField($field, $object, $detail);
-	if (is_null($label)) {
-		$label = $detail['desc'] . ': ';
+	static function tags($image, $currentimage, $field, $type) {
+		global $tagsort;
+		if ($type == 'save') {
+			$tagsprefix = 'tags_' . $currentimage . '-';
+			$tags = array();
+			$l = strlen($tagsprefix);
+			foreach ($_POST as $key => $value) {
+				if (substr($key, 0, $l) == $tagsprefix) {
+					if ($value) {
+						$tags[] = sanitize(postIndexDecode(substr($key, $l)));
+					}
+				}
+			}
+			$tags = array_unique($tags);
+			$image->setTags($tags);
+			return NULL;
+		} else {
+			ob_start();
+			?>
+			<div class="box-edit-unpadded">
+				<?php tagSelector($image, 'tags_' . $currentimage . '-', false, $tagsort, true, 1); ?>
+			</div>
+			<?php
+			$item = ob_get_contents();
+			ob_end_clean();
+			return $item;
+		}
 	}
-	if (!empty($text)) {
-		echo html_encodeTagged($label . $text);
+
+	static function codeblocks($obj, $instance, $field, $type) {
+		if ($type == 'save') {
+			if (zp_loggedin(CODEBLOCK_RIGHTS)) {
+				$obj->setCodeblock(processCodeblockSave($instance));
+			}
+			return NULL;
+		} else {
+			ob_start();
+			printCodeblockEdit($obj, $instance);
+			$item = ob_get_contents();
+			ob_end_clean();
+			return $item;
+		}
 	}
+
+	static function extracontent($obj, $instance, $field, $type) {
+		if ($type == 'save') {
+			$extracontent = zpFunctions::updateImageProcessorLink(process_language_string_save("extracontent", EDITOR_SANITIZE_LEVEL));
+			$obj->setExtracontent($extracontent);
+			return NULL;
+		} else {
+			ob_start();
+			print_language_string_list($obj->getExtraContent('all'), 'extracontent', true, NULL, 'extracontent', '100%', 'zenpage_language_string_list', 10);
+			$item = ob_get_contents();
+			ob_end_clean();
+			return $item;
+		}
+	}
+
 }
 
 if (OFFSET_PATH == 2) { // setup call: add the fields into the database
-	new mediaFields;
+	new optionalObjectFields;
 } else {
-	mediaFields::register();
+	optionalObjectFields::register();
 }
 ?>

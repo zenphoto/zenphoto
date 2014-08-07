@@ -784,20 +784,6 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 											</td>
 										</tr>
 										<?php
-										if (!is_AdminEditPage("newscategory")) {
-											?>
-											<tr>
-												<td class="topalign-padding"><?php echo gettext("ExtraContent:"); ?></td>
-												<td class="middlecolumn">
-													<?php
-													print_language_string_list($result->getExtraContent('all'), 'extracontent', true, NULL, 'extracontent', '100%', 'zenpage_language_string_list', 10);
-													?>
-												</td>
-											</tr>
-											<?php
-										}
-
-
 										if (is_AdminEditPage("newsarticle")) {
 											$custom = zp_apply_filter('edit_article_custom_data', '', $result);
 										}
@@ -808,17 +794,6 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 											$custom = zp_apply_filter('edit_page_custom_data', '', $result);
 										}
 										echo $custom;
-
-										if (!is_AdminEditPage("newscategory")) {
-											?>
-											<tr>
-												<td class="topalign-nopadding"><?php echo gettext("Codeblocks:"); ?></td>
-												<td class="topalign-nopadding middlecolumn">
-													<?php printCodeblockEdit($result, 0); ?>
-												</td>
-											</tr>
-											<?php
-										}
 										?>
 									</table>
 									<span class="buttons">

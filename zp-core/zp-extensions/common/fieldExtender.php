@@ -64,24 +64,26 @@ class fieldExtender {
 		$current = $fields = array();
 		if (extensionEnabled($me)) { //need to update the database tables.
 			foreach ($newfields as $newfield) {
-				$current[$newfield['table']][$newfield['name']] = true;
-				unset($previous[$newfield['table']][$newfield['name']]);
-				switch (strtolower($newfield['type'])) {
-					default:
-						$dbType = strtoupper($newfield['type']);
-						break;
-					case 'int':
-					case 'varchar':
-						$dbType = strtoupper($newfield['type']) . '(' . min(255, $newfield['size']) . ')';
-						break;
+				if (!is_null($newfield['type'])) {
+					$current[$newfield['table']][$newfield['name']] = true;
+					unset($previous[$newfield['table']][$newfield['name']]);
+					switch (strtolower($newfield['type'])) {
+						default:
+							$dbType = strtoupper($newfield['type']);
+							break;
+						case 'int':
+						case 'varchar':
+							$dbType = strtoupper($newfield['type']) . '(' . min(255, $newfield['size']) . ')';
+							break;
+					}
+					$sql = 'ALTER TABLE ' . prefix($newfield['table']) . ' ADD COLUMN `' . $newfield['name'] . '` ' . $dbType;
+					if (isset($newfield['attribute']))
+						$sql.= ' ' . $newfield['attribute'];
+					if (isset($newfield['default']))
+						$sql.= ' DEFAULT ' . $newfield['default'];
+					if (query($sql, false) && in_array($newfield['table'], array('albums', 'images', 'news', 'news_categories', 'pages')))
+						$fields[] = strtolower($newfield['name']);
 				}
-				$sql = 'ALTER TABLE ' . prefix($newfield['table']) . ' ADD COLUMN `' . $newfield['name'] . '` ' . $dbType;
-				if (isset($newfield['attribute']))
-					$sql.= ' ' . $newfield['attribute'];
-				if (isset($newfield['default']))
-					$sql.= ' DEFAULT ' . $newfield['default'];
-				if (query($sql, false) && in_array($newfield['table'], array('albums', 'images', 'news', 'news_categories', 'pages')))
-					$fields[] = strtolower($newfield['name']);
 			}
 			setOption(get_class($this) . '_addedFields', serialize($current));
 		} else {
@@ -125,7 +127,7 @@ class fieldExtender {
 		if (isset($field['edit'])) {
 			$action = $field['edit'];
 		} else {
-			$action = '';
+			$action = 'default';
 		}
 
 		switch ($action) {
@@ -163,7 +165,7 @@ class fieldExtender {
 		if (isset($field['edit'])) {
 			$action = $field['edit'];
 		} else {
-			$action = '';
+			$action = 'default';
 		}
 		switch ($action) {
 			case NULL:
@@ -301,7 +303,7 @@ class fieldExtender {
 			if ($field['table'] == $object->table) {
 				list($item, $formatted) = fieldExtender::_editHandler($object, $field, $i);
 				if (!is_null($formatted)) {
-					$html .= "<tr>\n<td>" . $field['desc'] . "</td>\n<td>";
+					$html .= '<tr>' . "\n" . '<td><span class="nowrap">' . $field['desc'] . "</td>\n<td>";
 					if ($formatted) {
 						$html .= $item;
 					} else {
@@ -349,7 +351,7 @@ class fieldExtender {
 			if ($field['table'] == $object->table) {
 				list($item, $formatted) = fieldExtender::_editHandler($object, $field, NULL);
 				if (!is_null($formatted)) {
-					$html .= '<tr><td>' . $field['desc'] . '</td><td>';
+					$html .= '<tr>' . "\n" . '<td><span class="nowrap">' . $field['desc'] . "</td>\n<td>";
 					if ($formatted) {
 						$html .= $item;
 					} else {
