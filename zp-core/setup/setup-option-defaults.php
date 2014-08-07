@@ -236,15 +236,6 @@ setOptionDefault('sharpen_threshold', 3);
 setOptionDefault('search_space_is_or', 0);
 setOptionDefault('search_no_albums', 0);
 
-//	 update group descriptions location
-$admins = $_zp_authority->getAdministrators('groups');
-foreach ($admins as $group) {
-	if (is_null($group['other_credentials'])) {
-		$sql = 'UPDATE ' . prefix('administrators') . ' SET `custom_data` = NULL, `other_credentials`=' . db_quote($group['custom_data']) . ' WHERE `id`=' . $group['id'];
-		query($sql);
-	}
-}
-
 // default groups
 if (!is_array($groupsdefined)) {
 	$groupsdefined = array();

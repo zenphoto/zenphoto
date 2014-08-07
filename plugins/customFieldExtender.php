@@ -45,7 +45,7 @@
  */
 $plugin_is_filter = /* defaultExtension( */ 5 | CLASS_PLUGIN /* ) */; //	if you have such a plugin you probably want to use it
 $plugin_description = gettext('Adds user defined fields to database tables');
-$plugin_notice = gettext('This plugin attaches the "custom data" filters. The raw custom data field is not editable when the plugin has fields defined for the object.');
+
 $plugin_author = "Stephen Billard (sbillard)";
 
 if (file_exists(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/common/fieldExtender.php')) {

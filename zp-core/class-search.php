@@ -109,7 +109,6 @@ class SearchEngine {
 		$this->search_structure['tags_exact'] = ''; //	internal use only field
 		$this->search_structure['filename'] = gettext('File/Folder name');
 		$this->search_structure['date'] = gettext('Date');
-		$this->search_structure['custom_data'] = gettext('Custom data');
 		$this->search_structure['location'] = gettext('Location/Place');
 		$this->search_structure['city'] = gettext('City');
 		$this->search_structure['state'] = gettext('State');

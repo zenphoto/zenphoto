@@ -306,9 +306,7 @@ if (isset($_GET['action'])) {
 												$image->set('hitcounter', 0);
 											}
 											$image->set('filesize', filesize($image->localpath));
-
-											$custom = process_language_string_save("$i-custom_data", 1);
-											$image->setCustomData(zp_apply_filter('save_image_custom_data', $custom, $i));
+											zp_apply_filter('save_image_custom_data', NULL, $i, $image);
 											zp_apply_filter('save_image_utilities_data', $image, $i);
 
 											echo "<br/>back to admin";
@@ -1184,17 +1182,17 @@ echo "\n</head>";
 																<label class="checkboxlabel">
 																	<input type="radio" id="copy-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="copy"
 																				 onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>'
-																														 , 'copy');"  /> <?php echo gettext("Copy"); ?>
+																										 , 'copy');"  /> <?php echo gettext("Copy"); ?>
 																</label>
 																<label class="checkboxlabel">
 																	<input type="radio" id="rename-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="rename"
 																				 onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>',
-																														 'rename');"  /> <?php echo gettext("Rename File"); ?>
+																										 'rename');"  /> <?php echo gettext("Rename File"); ?>
 																</label>
 																<label class="checkboxlabel">
 																	<input type="radio" id="Delete-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="delete"
 																				 onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>', '');
-																										 deleteConfirm('Delete-<?php echo $currentimage; ?>', '<?php echo $currentimage; ?>', '<?php echo addslashes(gettext("Are you sure you want to select this image for deletion?")); ?>')" /> <?php echo gettext("Delete image") ?>
+																						 deleteConfirm('Delete-<?php echo $currentimage; ?>', '<?php echo $currentimage; ?>', '<?php echo addslashes(gettext("Are you sure you want to select this image for deletion?")); ?>')" /> <?php echo gettext("Delete image") ?>
 																</label>
 																<br class="clearall" />
 																<div id="movecopydiv-<?php echo $currentimage; ?>" style="padding-top: .5em; padding-left: .5em; display: none;">
@@ -1311,7 +1309,7 @@ echo "\n</head>";
 																?>
 																<div class = "page-list_icon">
 																	<input class = "checkbox" type = "checkbox" name = "ids[]" value = "<?php echo $image->getFileName(); ?>" onclick = "triggerAllBox(this.form, 'ids[]', this.for
-																												m.allbox);" />
+																							m.allbox);" />
 																</div>
 																<?php
 															}

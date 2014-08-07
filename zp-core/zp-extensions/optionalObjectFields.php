@@ -63,17 +63,17 @@ class optionalObjectFields extends fieldExtender {
 						array('table' => 'images', 'name' => 'credit', 'desc' => gettext('Credit:'), 'type' => 'text', 'edit' => 'multilingual'),
 						array('table' => 'images', 'name' => 'copyright', 'desc' => gettext('Copyright:'), 'type' => 'text', 'edit' => 'multilingual'),
 						array('table' => 'images', 'name' => 'tags', 'desc' => gettext('Tags:'), 'type' => NULL, 'edit' => 'function', 'function' => 'optionalObjectFields::tags'),
-						array('table' => 'images', 'name' => 'codeblocks', 'desc' => gettext('Coceblocks:'), 'type' => NULL, 'edit' => 'function', 'function' => 'optionalObjectFields::codeblocks'),
+						array('table' => 'images', 'name' => 'codeblock', 'desc' => gettext('Coceblocks:'), 'type' => 'text', 'edit' => 'function', 'function' => 'optionalObjectFields::codeblocks'),
 						/*
 						 * page fields
 						 */
-						array('table' => 'pages', 'name' => 'extracontent', 'desc' => gettext('Extra Content:'), 'type' => NULL, 'edit' => 'function', 'function' => 'optionalObjectFields::extracontent'),
-						array('table' => 'pages', 'name' => 'codeblocks', 'desc' => gettext('Coceblocks:'), 'type' => NULL, 'edit' => 'function', 'function' => 'optionalObjectFields::codeblocks'),
+						array('table' => 'pages', 'name' => 'extracontent', 'desc' => gettext('Extra Content:'), 'type' => 'text', 'edit' => 'function', 'function' => 'optionalObjectFields::extracontent'),
+						array('table' => 'pages', 'name' => 'codeblock', 'desc' => gettext('Coceblocks:'), 'type' => 'text', 'edit' => 'function', 'function' => 'optionalObjectFields::codeblocks'),
 						/*
 						 * news article fields
 						 */
-						array('table' => 'news', 'name' => 'extracontent', 'desc' => gettext('Extra Content:'), 'type' => NULL, 'edit' => 'function', 'function' => 'optionalObjectFields::extracontent'),
-						array('table' => 'news', 'name' => 'codeblocks', 'desc' => gettext('Coceblocks:'), 'type' => NULL, 'edit' => 'function', 'function' => 'optionalObjectFields::codeblocks')
+						array('table' => 'news', 'name' => 'extracontent', 'desc' => gettext('Extra Content:'), 'type' => 'text', 'edit' => 'function', 'function' => 'optionalObjectFields::extracontent'),
+						array('table' => 'news', 'name' => 'codeblock', 'desc' => gettext('Coceblocks:'), 'type' => 'text', 'edit' => 'function', 'function' => 'optionalObjectFields::codeblocks')
 		);
 	}
 
