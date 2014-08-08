@@ -697,9 +697,12 @@ class CMSRoot extends ThemeObject {
  */
 class CMSItems extends CMSRoot {
 
+	protected $subrights = NULL; //	cache for subrights
+
 	/**
 	 * Class instantiator
 	 */
+
 	function __construct() {
 		// no action required
 	}
@@ -852,6 +855,31 @@ class CMSItems extends CMSRoot {
 			$this->set('expiredate', $newtime);
 		} else {
 			$this->set('expiredate', NULL);
+		}
+	}
+
+	function subRights() {
+		global $_zp_current_admin_obj;
+		if (!is_null($this->subrights)) {
+			return $this->subrights;
+		}
+		global $_zp_admin_album_list;
+		if (zp_loggedin(MANAGE_ALL_PAGE_RIGHTS)) {
+			$this->subrights = MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW;
+			return $this->subrights;
+		}
+
+		$objects = $_zp_current_admin_obj->getObjects();
+		$me = $this->getTitlelink();
+		foreach ($objects as $object) {
+			if ($object['type'] == $this->table) {
+				if ($object['data'] == $me) {
+					$this->subrights = $object['edit'];
+					return $this->subrights;
+				}
+			}
+			$this->subrights = MANAGED_OBJECT_RIGHTS_VIEW;
+			return MANAGED_OBJECT_RIGHTS_VIEW;
 		}
 	}
 

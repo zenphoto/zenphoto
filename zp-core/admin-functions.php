@@ -3298,6 +3298,11 @@ function printManagedObjects($type, $objlist, $alterrights, $userobj, $prefix_id
 			$simplename = gettext('News');
 			$objectname = gettext('News categories');
 			$prefix = 'managed_news_list_' . $prefix_id . '_';
+
+			//TODO:subrights disable
+			$extra = $extra2 = array();
+			$legend = '';
+
 			break;
 		case 'pages':
 			if ($rights & (MANAGE_ALL_PAGES_RIGHTS | ADMIN_RIGHTS)) {
@@ -3327,6 +3332,11 @@ function printManagedObjects($type, $objlist, $alterrights, $userobj, $prefix_id
 			$text = gettext("Managed pages:");
 			$simplename = $objectname = gettext('Pages');
 			$prefix = 'managed_pages_list_' . $prefix_id . '_';
+
+			//TODO:subrights disable
+			$extra = $extra2 = array();
+			$legend = '';
+
 			break;
 	}
 	if (empty($alterrights)) {
@@ -3915,7 +3925,7 @@ function printBulkActions($checkarray, $checkAll = false) {
 	?>
 	<span style="float:right">
 		<select class="ignoredirty" name="checkallaction" id="checkallaction" size="1" onchange="checkFor(this);" >
-			<?php generateListFromArray(array('noaction'), $checkarray, false, true); ?>
+		<?php generateListFromArray(array('noaction'), $checkarray, false, true); ?>
 		</select>
 		<?php
 		if ($checkAll) {
@@ -4898,21 +4908,21 @@ function consolidatedEditMessages($subtab) {
 	if (!empty($errorbox)) {
 		?>
 		<div class="errorbox fade-message">
-			<?php echo implode('<br />', $errorbox); ?>
+		<?php echo implode('<br />', $errorbox); ?>
 		</div>
 		<?php
 	}
 	if (!empty($notebox)) {
 		?>
 		<div class="notebox fade-message">
-			<?php echo implode('<br />', $notebox); ?>
+		<?php echo implode('<br />', $notebox); ?>
 		</div>
 		<?php
 	}
 	if (!empty($messagebox)) {
 		?>
 		<div class="messagebox fade-message">
-			<?php echo implode('<br />', $messagebox); ?>
+		<?php echo implode('<br />', $messagebox); ?>
 		</div>
 		<?php
 	}
