@@ -78,6 +78,10 @@
 	<body>
 <h1>ZenPhoto20 v1.0.0.1 release notes</h1><p>&nbsp;</p>
 <h1 style="text-align: center;">Version 1.0.0.1</h1>
+<h2>Sub-rights for pages and news categories</h2>
+<p>Users may now be given "view-only" rights to pages and news categories by un-checking the <em>edit</em> sub-right of the object in the managed objects list.</p>
+<h2>Optional Object Fields</h2>
+<p>Many of the fields associated with album, image, article, and page objects are now optional. The standard configuration is provided by the <code>optionalObjectFields</code> plugin. If you want none of these fields, simply disable the plugin. If you want your own subset of the fields you can make a copy of the <code>optionalObjectFields</code> plugin in the plugins folder. Edit the array in the <code>fields()</code> method to remove the elements of the fields you do not want supported. Run setup and the fields will be gone.</p>
 <h2>Multi-llingual custom field extensions</h2>
 <p>The custom field extension feature now supports multi-lingual fields. It also allows you to provide custom formatting on the admin tab and custom processing of the "saves" data.</p>
 <h2>User management improvements</h2>
