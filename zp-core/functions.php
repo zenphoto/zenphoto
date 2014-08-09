@@ -834,7 +834,7 @@ function populateManagedObjectsList($type, $id, $rights = false) {
 				if ($type && !$rights) {
 					$cv[$name] = $folder;
 				} else {
-					$cv[] = array('data' => $folder, 'name' => $name, 'type' => 'album', 'edit' => $albumitem['edit'] + 0);
+					$cv[] = array('data' => $folder, 'name' => $name, 'type' => 'album', 'edit' => (int) $albumitem['edit']);
 				}
 			}
 			db_free_result($currentvalues);
@@ -848,7 +848,7 @@ function populateManagedObjectsList($type, $id, $rights = false) {
 				if ($type) {
 					$cv[get_language_string($item['title'])] = $item['titlelink'];
 				} else {
-					$cv[] = array('data' => $item['titlelink'], 'name' => get_language_string($item['title']), 'type' => 'pages', 'edit' => $item['edit'] + 0);
+					$cv[] = array('data' => $item['titlelink'], 'name' => get_language_string($item['title']), 'type' => 'pages', 'edit' => (int) $item['edit']);
 				}
 			}
 			db_free_result($currentvalues);
@@ -864,7 +864,7 @@ function populateManagedObjectsList($type, $id, $rights = false) {
 				if ($type) {
 					$cv[get_language_string($item['title'])] = $item['titlelink'];
 				} else {
-					$cv[] = array('data' => $item['titlelink'], 'name' => get_language_string($item['title']), 'type' => 'news', 'edit' => $item['edit'] + 0);
+					$cv[] = array('data' => $item['titlelink'], 'name' => get_language_string($item['title']), 'type' => 'news', 'edit' => (int) $item['edit']);
 				}
 			}
 			db_free_result($currentvalues);
