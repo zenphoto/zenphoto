@@ -58,11 +58,21 @@ class customData {
 	function __construct() {
 
 		if (OFFSET_PATH == 2) {
-			setOptionDefault('customDataAlbums', (int) query('SELECT `custom_data` FROM ' . prefix('albums') . ' LIMIT 1', false));
-			setOptionDefault('customDataImages', (int) query('SELECT `custom_data` FROM ' . prefix('images') . ' LIMIT 1', false));
-			setOptionDefault('customDataNews', (int) query('SELECT `custom_data` FROM ' . prefix('news') . ' LIMIT 1', false));
-			setOptionDefault('customDataPages', (int) query('SELECT `custom_data` FROM ' . prefix('pages') . ' LIMIT 1', false));
-			setOptionDefault('customDataCategories', (int) query('SELECT `custom_data` FROM ' . prefix('news_categories') . ' LIMIT 1', false));
+			$rslt = query('SELECT `custom_data` FROM ' . prefix('albums') . ' LIMIT 1', false);
+			$rslt = (int) empty($rslt);
+			setOptionDefault('customDataAlbums', $rslt);
+			$rslt = query('SELECT `custom_data` FROM ' . prefix('images') . ' LIMIT 1', false);
+			$rslt = (int) empty($rslt);
+			setOptionDefault('customDataImages', $rslt);
+			$rslt = query('SELECT `custom_data` FROM ' . prefix('news') . ' LIMIT 1', false);
+			$rslt = (int) empty($rslt);
+			setOptionDefault('customDataNews', $rslt);
+			$rslt = query('SELECT `custom_data` FROM ' . prefix('pages') . ' LIMIT 1', false);
+			$rslt = (int) empty($rslt);
+			setOptionDefault('customDataPages', $rslt);
+			$rslt = query('SELECT `custom_data` FROM ' . prefix('news_categories') . ' LIMIT 1', false);
+			$rslt = (int) empty($rslt);
+			setOptionDefault('customDataCategories', $rslt);
 
 			if (getOption('customDataAlbums')) {
 				query('ALTER TABLE ' . prefix('albums') . ' ADD COLUMN `custom_data` TEXT', false);
