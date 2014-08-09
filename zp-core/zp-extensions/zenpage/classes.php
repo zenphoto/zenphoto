@@ -80,7 +80,18 @@ class CMS {
 	/*	 * ********************************* */
 
 	function visibleCategory($cat) {
-		return $this->categoryStructure[$cat['cat_id']]['show'];
+		$vis = $this->categoryStructure[$cat['cat_id']]['show'];
+		if (GALLERY_SECURITY != 'public') {
+			if (zp_loggedin()) {
+				if (!$vis = zp_loggedin(MANAGE_ALL_NEWS_RIGHTS)) {
+					$cat = newCategory($cat['titlelink']);
+					$vis = $cat->isMyItem(LIST_RIGHTS);
+				}
+			} else {
+				$vis = false;
+			}
+		}
+		return $vis;
 	}
 
 	/**
@@ -312,7 +323,7 @@ class CMS {
 					$getUnpublished = true;
 					break;
 				case "all":
-					$getUnpublished = true;
+					$getUnpublished = zp_loggedin(MANAGE_ALL_NEWS_RIGHTS);
 					$show = false;
 					break;
 			}
@@ -358,7 +369,7 @@ class CMS {
 			if ($resource) {
 				while ($item = db_fetch_assoc($resource)) {
 					$article = newArticle($item['titlelink']);
-					if ($getUnpublished || $article->isMyItem(ZENPAGE_NEWS_RIGHTS) || $currentcategory && ($article->inNewsCategory($currentcategory)) || $article->categoryIsVisible()) {
+					if ($getUnpublished || $article->isMyItem(LIST_RIGHTS) || $currentcategory && ($article->inNewsCategory($currentcategory)) || $article->categoryIsVisible()) {
 						$result[] = $item;
 					}
 				}
@@ -570,7 +581,7 @@ class CMS {
 		if ($visible) {
 			foreach ($structure as $key => $cat) {
 				$catobj = newCategory($cat['titlelink']);
-				if ($catobj->getShow() || $catobj->isMyItem(LIST_RIGHTS)) {
+				if (($catobj->getShow() && GALLERY_SECURITY == 'public') || $catobj->isMyItem(LIST_RIGHTS)) {
 					$structure[$key]['show'] = 1;
 				} else {
 					unset($structure[$key]);
