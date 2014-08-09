@@ -368,7 +368,7 @@ function printNewsURL($before = '') {
 function getNewsContent($shorten = false, $shortenindicator = NULL, $readmore = NULL) {
 	global $_zp_current_image, $_zp_gallery, $_zp_current_article, $_zp_page;
 	if (!$_zp_current_article->checkAccess()) {
-		return '<p>' . gettext('<em>This entry belongs to a protected album.</em>') . '</p>';
+		return '<p>' . gettext('<em>This entry belongs to a protected category.</em>') . '</p>';
 	}
 	$excerptbreak = false;
 	if (!$shorten && !is_NewsArticle()) {

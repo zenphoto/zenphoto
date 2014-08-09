@@ -225,6 +225,8 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 						$themepage = 'pages';
 						$locked = !checkIfLocked($result);
 					}
+					if (!$result->isMyItem($result->manage_some_rights))
+						$locked = true;
 
 					if ($result->transient) {
 						if (is_AdminEditPage('newsarticle')) {
@@ -528,8 +530,10 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 																			 onkeyup="passwordStrength('');"
 																			 value="<?php echo $x; ?>" />
 																<br />
-																<label><input type="checkbox" name="disclose_password" id="disclose_password" onclick="passwordClear('');
-																					togglePassword('');"><?php echo gettext('Show password'); ?></label>
+																<label>
+																	<input type="checkbox" name="disclose_password" id="disclose_password" onclick="passwordClear('');
+																			togglePassword('');"><?php echo gettext('Show password'); ?>
+																</label>
 																<br />
 																<span class="password_field_">
 																	<span id="match"><?php echo gettext("(repeat)"); ?></span>
@@ -553,13 +557,13 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 														<label class="checkboxlabel">
 															<input type="radio" id="copy_object" name="copy_delete_object" value="copy"
 																		 onclick="$('#copyfield').show();
-																						 $('#deletemsg').hide();" />
+																				 $('#deletemsg').hide();" />
 																		 <?php echo gettext("Copy"); ?>
 														</label>
 														<label class="checkboxlabel">
 															<input type="radio" id="delete_object" name="copy_delete_object" value="delete"
 																		 onclick="deleteConfirm('delete_object', '', '<?php addslashes(printf(gettext('Are you sure you want to delete this %s?'), $deleteitem)); ?>');
-																						 $('#copyfield').hide();" />
+																				 $('#copyfield').hide();" />
 																		 <?php echo gettext('delete'); ?>
 														</label>
 														<br class="clearall" />

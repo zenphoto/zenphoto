@@ -219,20 +219,17 @@ class Article extends CMSItems {
 			return true;
 		}
 		if (zp_loggedin($action)) {
-			if (GALLERY_SECURITY != 'public' && $this->getShow() && $action == LIST_RIGHTS) {
+			if (GALLERY_SECURITY == 'public' && $this->getShow() && $action == LIST_RIGHTS) {
 				return LIST_RIGHTS;
 			}
 			if ($_zp_current_admin_obj->getUser() == $this->getAuthor()) {
 				return true; //	he is the author
 			}
-			if ($this->getShow() && $action == LIST_RIGHTS) {
-				return true;
-			}
 			$mycategories = $_zp_current_admin_obj->getObjects('news');
 			if (!empty($mycategories)) {
 				foreach ($this->getCategories() as $category) {
 					$cat = newCategory($category['titlelink']);
-					if ($cat->isMyItem(ZENPAGE_NEWS_RIGHTS)) { // only override item visibility if we "own" the category
+					if ($cat->isMyItem($action)) {
 						return true;
 					}
 				}

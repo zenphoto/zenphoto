@@ -162,7 +162,7 @@ class CMS {
 		$result = query('SELECT * FROM ' . prefix('pages') . $show . ' ORDER by `' . $sortorder . '`' . $sortdir);
 		if ($result) {
 			while ($row = db_fetch_assoc($result)) {
-				if ($all || $row['show']) {
+				if ($all || ($row['show'] && GALLERY_SECURITY == 'public')) {
 					$all_pages[] = $row;
 				} else if ($_zp_loggedin) {
 					$page = newPage($row['titlelink']);
@@ -863,8 +863,7 @@ class CMSItems extends CMSRoot {
 		if (!is_null($this->subrights)) {
 			return $this->subrights;
 		}
-		global $_zp_admin_album_list;
-		if (zp_loggedin(MANAGE_ALL_PAGE_RIGHTS)) {
+		if (zp_loggedin($this->manage_rights)) {
 			$this->subrights = MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW;
 			return $this->subrights;
 		}
@@ -874,12 +873,12 @@ class CMSItems extends CMSRoot {
 		foreach ($objects as $object) {
 			if ($object['type'] == $this->table) {
 				if ($object['data'] == $me) {
-					$this->subrights = $object['edit'];
+					$this->subrights = $object['edit'] | MANAGED_OBJECT_MEMBER;
 					return $this->subrights;
 				}
 			}
-			$this->subrights = MANAGED_OBJECT_RIGHTS_VIEW;
-			return MANAGED_OBJECT_RIGHTS_VIEW;
+			$this->subrights = 0;
+			return 0;
 		}
 	}
 

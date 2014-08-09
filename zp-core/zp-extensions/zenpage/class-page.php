@@ -269,15 +269,19 @@ class Page extends CMSItems {
 			return true;
 		}
 		if (zp_loggedin($action)) {
-			if (GALLERY_SECURITY != 'public' && $this->getShow() && $action == LIST_RIGHTS) {
+			if (GALLERY_SECURITY == 'public' && $this->getShow() && $action == LIST_RIGHTS) {
 				return LIST_RIGHTS;
 			}
 			if ($_zp_current_admin_obj->getUser() == $this->getAuthor()) {
 				return true;
 			}
-			$mypages = $_zp_current_admin_obj->getObjects('pages');
-			if (!empty($mypages)) {
-				if (array_search($this->getTitlelink(), $mypages) !== false) {
+			$subRights = $this->subRights();
+			if ($subRights) {
+				$rights = LIST_RIGHTS;
+				if ($subRights & (MANAGED_OBJECT_RIGHTS_EDIT)) {
+					$rights = $rights | ZENPAGE_PAGES_RIGHTS;
+				}
+				if ($action & $rights) {
 					return true;
 				}
 			}

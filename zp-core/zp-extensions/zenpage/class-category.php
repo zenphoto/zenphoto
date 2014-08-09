@@ -19,6 +19,7 @@ class Category extends CMSRoot {
 	protected $sortorder = 'date';
 	protected $sortdirection = true;
 	protected $sortSticky = true;
+	protected $subrights = NULL; //	cache for subrights
 
 	function __construct($catlink, $create = NULL) {
 		if (is_array($catlink)) {
@@ -331,21 +332,47 @@ class Category extends CMSRoot {
 		return $this->checkforGuest() != 'zp_public_access';
 	}
 
+	function subRights() {
+		global $_zp_current_admin_obj;
+		if (!is_null($this->subrights)) {
+			return $this->subrights;
+		}
+		if (zp_loggedin($this->manage_rights)) {
+			$this->subrights = MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW;
+			return $this->subrights;
+		}
+
+		$objects = $_zp_current_admin_obj->getObjects();
+		$me = $this->getTitlelink();
+		foreach ($objects as $object) {
+			if ($object['type'] == 'news') {
+				if ($object['data'] == $me) {
+					$this->subrights = $object['edit'] | MANAGED_OBJECT_MEMBER;
+					return $this->subrights;
+				}
+			}
+		}
+		$this->subrights = 0;
+		return 0;
+	}
+
 	function isMyItem($action) {
 		global $_zp_current_admin_obj;
 		if (parent::isMyItem($action)) {
 			return true;
 		}
 		if (zp_loggedin($action)) {
-			if ($action == LIST_RIGHTS && $this->getShow()) {
+			if ($this->getShow() && GALLERY_SECURITY == 'public' && $action == LIST_RIGHTS) {
 				return true;
 			}
-			$mycategories = $_zp_current_admin_obj->getObjects('news');
-			if (!empty($mycategories)) {
-				$allowed = $this->getParents();
-				array_unshift($allowed, $this->getTitlelink());
-				$overlap = array_intersect($mycategories, $allowed);
-				if (!empty($overlap)) {
+
+			$subRights = $this->subRights();
+			if ($subRights) {
+				$rights = LIST_RIGHTS;
+				if ($subRights & MANAGED_OBJECT_RIGHTS_EDIT) {
+					$rights = $rights | ZENPAGE_NEWS_RIGHTS;
+				}
+				if ($action & $rights) {
 					return true;
 				}
 			}

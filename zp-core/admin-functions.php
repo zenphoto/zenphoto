@@ -3275,34 +3275,34 @@ function printManagedObjects($type, $objlist, $alterrights, $userobj, $prefix_id
 			} else {
 				$cv = $extra = $extra2 = array();
 				$rest = array_diff($objlist, $cv);
-				$legend .= $icon_edit . ' ' . gettext('edit') . ' ' . $icon_view . ' ' . gettext('view unpublished') . ' ';
+				$legend .= $icon_edit . ' ' . gettext('edit');
+				/* For now we do not override unnpublished
+				  $legend .= ' ' . $icon_view . ' ' . gettext('view unpublished') . ' ';
+				 */
 				foreach ($full as $item) {
 					if ($item['type'] == 'news') {
 						$cv[$item['name']] = $item['data'];
 						$extra[$item['data']][] = array('name' => 'name', 'value' => $item['name'], 'display' => '', 'checked' => 0);
 						$extra[$item['data']][] = array('name' => 'edit', 'value' => MANAGED_OBJECT_RIGHTS_EDIT, 'display' => $icon_edit, 'checked' => $item['edit'] & MANAGED_OBJECT_RIGHTS_EDIT);
 
-
-						$extra[$item['data']][] = array('name' => 'view', 'value' => MANAGED_OBJECT_RIGHTS_VIEW, 'display' => $icon_view, 'checked' => $item['edit'] & MANAGED_OBJECT_RIGHTS_VIEW);
+						/* TODO: does this make any sense?
+						  $extra[$item['data']][] = array('name' => 'view', 'value' => MANAGED_OBJECT_RIGHTS_VIEW, 'display' => $icon_view, 'checked' => $item['edit'] & MANAGED_OBJECT_RIGHTS_VIEW);
+						 */
 					}
 				}
 				$rest = array_diff($objlist, $cv);
 				foreach ($rest as $unmanaged) {
 					$extra2[$unmanaged][] = array('name' => 'name', 'value' => $unmanaged, 'display' => '', 'checked' => 0);
 					$extra2[$unmanaged][] = array('name' => 'edit', 'value' => MANAGED_OBJECT_RIGHTS_EDIT, 'display' => $icon_edit, 'checked' => 1);
-
-					$extra2[$unmanaged][] = array('name' => 'view', 'value' => MANAGED_OBJECT_RIGHTS_VIEW, 'display' => $icon_view, 'checked' => 1);
+					/* For we do not provide unpublished override
+					  $extra2[$unmanaged][] = array('name' => 'view', 'value' => MANAGED_OBJECT_RIGHTS_VIEW, 'display' => $icon_view, 'checked' => 1);
+					 */
 				}
 			}
 			$text = gettext("Managed news categories:");
 			$simplename = gettext('News');
 			$objectname = gettext('News categories');
 			$prefix = 'managed_news_list_' . $prefix_id . '_';
-
-			//TODO:subrights disable
-			$extra = $extra2 = array();
-			$legend = '';
-
 			break;
 		case 'pages':
 			if ($rights & (MANAGE_ALL_PAGES_RIGHTS | ADMIN_RIGHTS)) {
@@ -3312,33 +3312,35 @@ function printManagedObjects($type, $objlist, $alterrights, $userobj, $prefix_id
 			} else {
 				$cv = $extra = $extra2 = array();
 				$rest = array_diff($objlist, $cv);
-				$legend .= $icon_edit . ' ' . gettext('edit') . ' ' . $icon_view . ' ' . gettext('view unpublished') . ' ';
+				$legend .= $icon_edit . ' ' . gettext('edit');
+				/* For now we do not override unnpublished
+				  $legend .= ' ' . $icon_view . ' ' . gettext('view unpublished') . ' ';
+				 */
 				foreach ($full as $item) {
 					if ($item['type'] == 'pages') {
 						$cv[$item['name']] = $item['data'];
 						$extra[$item['data']][] = array('name' => 'name', 'value' => $item['name'], 'display' => '', 'checked' => 0);
 						$extra[$item['data']][] = array('name' => 'edit', 'value' => MANAGED_OBJECT_RIGHTS_EDIT, 'display' => $icon_edit, 'checked' => $item['edit'] & MANAGED_OBJECT_RIGHTS_EDIT);
-						$extra[$item['data']][] = array('name' => 'view', 'value' => MANAGED_OBJECT_RIGHTS_VIEW, 'display' => $icon_view, 'checked' => $item['edit'] & MANAGED_OBJECT_RIGHTS_VIEW);
+						/* For we do not provide unpublished override
+						  $extra[$item['data']][] = array('name' => 'view', 'value' => MANAGED_OBJECT_RIGHTS_VIEW, 'display' => $icon_view, 'checked' => $item['edit'] & MANAGED_OBJECT_RIGHTS_VIEW);
+						 */
 					}
 				}
 				$rest = array_diff($objlist, $cv);
 				foreach ($rest as $unmanaged) {
 					$extra2[$unmanaged][] = array('name' => 'name', 'value' => $unmanaged, 'display' => '', 'checked' => 0);
 					$extra2[$unmanaged][] = array('name' => 'edit', 'value' => MANAGED_OBJECT_RIGHTS_EDIT, 'display' => $icon_edit, 'checked' => 1);
-
-					$extra2[$unmanaged][] = array('name' => 'view', 'value' => MANAGED_OBJECT_RIGHTS_VIEW, 'display' => $icon_view, 'checked' => 1);
+					/* For we do not provide unpublished override
+					  $extra2[$unmanaged][] = array('name' => 'view', 'value' => MANAGED_OBJECT_RIGHTS_VIEW, 'display' => $icon_view, 'checked' => 1);
+					 */
 				}
 			}
 			$text = gettext("Managed pages:");
 			$simplename = $objectname = gettext('Pages');
 			$prefix = 'managed_pages_list_' . $prefix_id . '_';
-
-			//TODO:subrights disable
-			$extra = $extra2 = array();
-			$legend = '';
-
 			break;
 	}
+
 	if (empty($alterrights)) {
 		$hint = sprintf(gettext('Select one or more %1$s for the %2$s to manage.'), $simplename, $kind) . ' ';
 		if ($kind == gettext('user')) {
@@ -3418,13 +3420,13 @@ function processManagedObjects($i, &$rights) {
 				if (array_key_exists($key, $albums)) {
 					switch ($matches[2]) {
 						case '_edit':
-							$albums[$key]['edit'] = $albums[$key]['edit'] | MANAGED_OBJECT_RIGHTS_EDIT;
+							$albums[$key]['edit'] = $albums[$key]['edit'] | MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_MEMBER;
 							break;
 						case '_upload':
-							$albums[$key]['edit'] = $albums[$key]['edit'] | MANAGED_OBJECT_RIGHTS_UPLOAD;
+							$albums[$key]['edit'] = $albums[$key]['edit'] | MANAGED_OBJECT_RIGHTS_UPLOAD | MANAGED_OBJECT_MEMBER;
 							break;
 						case '_view':
-							$albums[$key]['edit'] = $albums[$key]['edit'] | MANAGED_OBJECT_RIGHTS_VIEW;
+							$albums[$key]['edit'] = $albums[$key]['edit'] | MANAGED_OBJECT_RIGHTS_VIEW | MANAGED_OBJECT_MEMBER;
 							break;
 						case '_name':
 							$albums[$key]['name'] = $value;
@@ -3433,7 +3435,7 @@ function processManagedObjects($i, &$rights) {
 				}
 			} else if ($value) {
 				$key = postIndexDecode($key);
-				$albums[$key] = array('data' => $key, 'name' => '', 'type' => 'album', 'edit' => 32767 & ~(MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_UPLOAD | MANAGED_OBJECT_RIGHTS_VIEW));
+				$albums[$key] = array('data' => $key, 'name' => '', 'type' => 'album', 'edit' => MANAGED_OBJECT_MEMBER);
 			}
 		}
 		if (substr($key, 0, $l_p) == $prefix_p) { //pages
@@ -3443,10 +3445,10 @@ function processManagedObjects($i, &$rights) {
 				if (array_key_exists($key, $pages)) {
 					switch ($matches[2]) {
 						case '_edit':
-							$pages[$key]['edit'] = $pages[$key]['edit'] | MANAGED_OBJECT_RIGHTS_EDIT;
+							$pages[$key]['edit'] = $pages[$key]['edit'] | MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_MEMBER;
 							break;
 						case '_view':
-							$pages[$key]['edit'] = $pages[$key]['edit'] | MANAGED_OBJECT_RIGHTS_VIEW;
+							$pages[$key]['edit'] = $pages[$key]['edit'] | MANAGED_OBJECT_RIGHTS_VIEW | MANAGED_OBJECT_MEMBER;
 							break;
 						case '_name':
 							$pages[$key]['name'] = $value;
@@ -3455,7 +3457,7 @@ function processManagedObjects($i, &$rights) {
 				}
 			} else if ($value) {
 				$key = postIndexDecode($key);
-				$pages[$key] = array('data' => $key, 'type' => 'pages', 'edit' => 32767 & ~(MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW));
+				$pages[$key] = array('data' => $key, 'type' => 'pages', 'edit' => MANAGED_OBJECT_MEMBER);
 			}
 		}
 
@@ -3466,10 +3468,10 @@ function processManagedObjects($i, &$rights) {
 				if (array_key_exists($key, $news)) {
 					switch ($matches[2]) {
 						case '_edit':
-							$news[$key]['edit'] = $news[$key]['edit'] | MANAGED_OBJECT_RIGHTS_EDIT;
+							$news[$key]['edit'] = $news[$key]['edit'] | MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_MEMBER;
 							break;
 						case '_view':
-							$news[$key]['edit'] = $news[$key]['edit'] | MANAGED_OBJECT_RIGHTS_VIEW;
+							$news[$key]['edit'] = $news[$key]['edit'] | MANAGED_OBJECT_RIGHTS_VIEW | MANAGED_OBJECT_MEMBER;
 							break;
 						case '_name':
 							$news[$key]['name'] = $value;
@@ -3478,7 +3480,7 @@ function processManagedObjects($i, &$rights) {
 				}
 			} else if ($value) {
 				$key = postIndexDecode($key);
-				$news[$key] = array('data' => $key, 'type' => 'news', 'edit' => 32767 & ~(MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW));
+				$news[$key] = array('data' => $key, 'type' => 'news', 'edit' => MANAGED_OBJECT_MEMBER);
 			}
 		}
 	}
@@ -3925,7 +3927,7 @@ function printBulkActions($checkarray, $checkAll = false) {
 	?>
 	<span style="float:right">
 		<select class="ignoredirty" name="checkallaction" id="checkallaction" size="1" onchange="checkFor(this);" >
-		<?php generateListFromArray(array('noaction'), $checkarray, false, true); ?>
+			<?php generateListFromArray(array('noaction'), $checkarray, false, true); ?>
 		</select>
 		<?php
 		if ($checkAll) {
@@ -4908,21 +4910,21 @@ function consolidatedEditMessages($subtab) {
 	if (!empty($errorbox)) {
 		?>
 		<div class="errorbox fade-message">
-		<?php echo implode('<br />', $errorbox); ?>
+			<?php echo implode('<br />', $errorbox); ?>
 		</div>
 		<?php
 	}
 	if (!empty($notebox)) {
 		?>
 		<div class="notebox fade-message">
-		<?php echo implode('<br />', $notebox); ?>
+			<?php echo implode('<br />', $notebox); ?>
 		</div>
 		<?php
 	}
 	if (!empty($messagebox)) {
 		?>
 		<div class="messagebox fade-message">
-		<?php echo implode('<br />', $messagebox); ?>
+			<?php echo implode('<br />', $messagebox); ?>
 		</div>
 		<?php
 	}

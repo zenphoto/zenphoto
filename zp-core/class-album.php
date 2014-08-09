@@ -762,21 +762,16 @@ class AlbumBase extends MediaObject {
 		}
 		if (zp_loggedin($action)) {
 			$subRights = $this->subRights();
-			if (is_null($subRights)) {
-// no direct rights, but if this is a private gallery and the album is published he should be allowed to see it
-				if (GALLERY_SECURITY != 'public' && $this->getShow() && $action == LIST_RIGHTS) {
-					return LIST_RIGHTS;
-				}
-			} else {
-				$albumrights = LIST_RIGHTS;
+			if ($subRights) {
+				$rights = LIST_RIGHTS;
 				if ($subRights & (MANAGED_OBJECT_RIGHTS_EDIT)) {
-					$albumrights = $albumrights | ALBUM_RIGHTS;
+					$rights = $rights | ALBUM_RIGHTS;
 				}
 				if ($subRights & MANAGED_OBJECT_RIGHTS_UPLOAD) {
-					$albumrights = $albumrights | UPLOAD_RIGHTS;
+					$rights = $rights | UPLOAD_RIGHTS;
 				}
-				if ($action & $albumrights) {
-					return ($_zp_loggedin ^ (ALBUM_RIGHTS | UPLOAD_RIGHTS)) | $albumrights;
+				if ($action & $rights) {
+					return ($_zp_loggedin ^ (ALBUM_RIGHTS | UPLOAD_RIGHTS)) | $rights;
 				} else {
 					return false;
 				}
@@ -904,16 +899,12 @@ class AlbumBase extends MediaObject {
 			$this->subrights = MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_UPLOAD | MANAGED_OBJECT_RIGHTS_VIEW;
 			return $this->subrights;
 		}
-		if (zp_loggedin(VIEW_UNPUBLISHED_RIGHTS)) {
-			$base = MANAGED_OBJECT_RIGHTS_VIEW;
-		} else {
-			$base = NULL;
-		}
+
 		getManagedAlbumList();
 		if (count($_zp_admin_album_list) > 0) {
 			$desired_folders = explode('/', $this->name);
 			foreach ($_zp_admin_album_list as $adminalbum => $rights) {
-// see if it is one of the managed folders or a subfolder there of
+				// see if it is one of the managed folders or a subfolder there of
 				$admin_folders = explode('/', $adminalbum);
 				$level = 0;
 				$ok = true;
@@ -925,12 +916,14 @@ class AlbumBase extends MediaObject {
 					$level++;
 				}
 				if ($ok) {
-					$this->subrights = $rights | $base;
+					$this->subrights = $rights | MANAGED_OBJECT_MEMBER;
+					if (zp_loggedin(VIEW_UNPUBLISHED_RIGHTS))
+						$this->subrights = $this->subrights | MANAGED_OBJECT_RIGHTS_VIEW;
 					return $this->subrights;
 				}
 			}
 		}
-		$this->subrights = $base;
+		$this->subrights = 0;
 		return $this->subrights;
 	}
 

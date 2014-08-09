@@ -820,8 +820,10 @@ class Gallery {
 				case 2:
 					$row['show'] = 0;
 			}
-
-			if ($mine || $row['show'] || (($list = $album->isMyItem(LIST_RIGHTS)) && is_null($album->getParent())) || (is_null($mine) && $list && $viewUnpublished)) {
+			if ($mine ||
+							($row['show'] && (GALLERY_SECURITY == 'public')) ||
+							(($list = $album->isMyItem(LIST_RIGHTS)) && is_null($album->getParent())) ||
+							(is_null($mine) && $list && $viewUnpublished)) {
 				$albums_ordered[] = $folder;
 			}
 		}
