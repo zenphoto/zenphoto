@@ -1563,10 +1563,9 @@ class Zenphoto_Administrator extends PersistentObject {
 			$sql = "DELETE FROM " . prefix('admin_to_object') . ' WHERE `adminid`=' . $id;
 			$result = query($sql, false);
 			foreach ($objects as $object) {
+				$edit = MANAGED_OBJECT_MEMBER;
 				if (array_key_exists('edit', $object)) {
-					$edit = $object['edit'] | 32767 & ~(MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_UPLOAD | MANAGED_OBJECT_RIGHTS_VIEW);
-				} else {
-					$edit = 32767;
+					$edit = $object['edit'] | MANAGED_OBJECT_MEMBER;
 				}
 				switch ($object['type']) {
 					case 'album':
