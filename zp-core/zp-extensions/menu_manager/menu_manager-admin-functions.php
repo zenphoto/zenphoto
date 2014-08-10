@@ -34,7 +34,6 @@ function updateItemsSortorder() {
  */
 function printItemsListTable($item, $flag) {
 	global $_zp_gallery;
-
 	$array = getItemTitleAndURL($item);
 	if ($array['valid']) {
 		switch ($item['type']) {
@@ -205,7 +204,7 @@ function printItemsList($items) {
 function printItemEditLink($item) {
 	$link = "";
 	$array = getItemTitleAndURL($item);
-	$title = html_encode($array['title']);
+	$title = html_encode(get_language_string($array['title']));
 	$link = '<a href="menu_tab_edit.php?edit&amp;id=' . $item['id'] . "&amp;type=" . $item['type'] . "&amp;menuset=" . html_encode(checkChosenMenuset()) . '">' . $title . '</a>';
 	echo $link;
 }
