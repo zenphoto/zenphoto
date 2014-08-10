@@ -81,14 +81,15 @@ class CMS {
 
 	function visibleCategory($cat) {
 		$vis = $this->categoryStructure[$cat['cat_id']]['show'];
-		if (GALLERY_SECURITY != 'public') {
-			if (zp_loggedin()) {
-				if (!$vis = zp_loggedin(MANAGE_ALL_NEWS_RIGHTS)) {
-					$cat = newCategory($cat['titlelink']);
-					$vis = $cat->isMyItem(LIST_RIGHTS);
-				}
-			} else {
-				$vis = false;
+		if (zp_loggedin()) {
+			if (!$mine = zp_loggedin(MANAGE_ALL_NEWS_RIGHTS)) {
+				$cat = newCategory($cat['titlelink']);
+				$mine = $cat->isMyItem(LIST_RIGHTS);
+			}
+			if ($mine)
+				return true;
+			if (GALLERY_SECURITY != 'public') {
+				return false;
 			}
 		}
 		return $vis;
