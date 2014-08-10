@@ -84,7 +84,7 @@ class CMS {
 		if (zp_loggedin()) {
 			if (!$mine = zp_loggedin(MANAGE_ALL_NEWS_RIGHTS)) {
 				$cat = newCategory($cat['titlelink']);
-				$mine = $cat->isMyItem(LIST_RIGHTS);
+				$mine = $cat->subRights();
 			}
 			if ($mine)
 				return true;
@@ -370,7 +370,7 @@ class CMS {
 			if ($resource) {
 				while ($item = db_fetch_assoc($resource)) {
 					$article = newArticle($item['titlelink']);
-					if ($getUnpublished || $article->isMyItem(LIST_RIGHTS) || $currentcategory && ($article->inNewsCategory($currentcategory)) || $article->categoryIsVisible()) {
+					if ($getUnpublished || $article->subRights() || $currentcategory && ($article->inNewsCategory($currentcategory)) || $article->categoryIsVisible()) {
 						$result[] = $item;
 					}
 				}
@@ -582,7 +582,8 @@ class CMS {
 		if ($visible) {
 			foreach ($structure as $key => $cat) {
 				$catobj = newCategory($cat['titlelink']);
-				if (($catobj->getShow() && GALLERY_SECURITY == 'public') || $catobj->isMyItem(LIST_RIGHTS)) {
+
+				if (($catobj->getShow() && GALLERY_SECURITY == 'public') || $catobj->subRights()) {
 					$structure[$key]['show'] = 1;
 				} else {
 					unset($structure[$key]);

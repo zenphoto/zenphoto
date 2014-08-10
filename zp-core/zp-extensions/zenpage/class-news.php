@@ -167,7 +167,7 @@ class Article extends CMSItems {
 	 * returns true if the article exists in any published category (or in no categories)
 	 */
 	function categoryIsVisible() {
-		if (zp_loggedin(ALL_NEWS_RIGHTS))
+		if (zp_loggedin(MANAGE_ALL_NEWS_RIGHTS))
 			return true;
 		global $_zp_CMS;
 		$categories = $this->getCategories(false);
