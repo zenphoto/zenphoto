@@ -771,7 +771,7 @@ class AlbumBase extends MediaObject {
 					$rights = $rights | UPLOAD_RIGHTS;
 				}
 				if ($action & $rights) {
-					return ($_zp_loggedin ^ (ALBUM_RIGHTS | UPLOAD_RIGHTS)) | $rights;
+					return true;
 				} else {
 					return false;
 				}
@@ -899,31 +899,20 @@ class AlbumBase extends MediaObject {
 			$this->subrights = MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_UPLOAD | MANAGED_OBJECT_RIGHTS_VIEW;
 			return $this->subrights;
 		}
-
+		$this->subrights = 0;
 		getManagedAlbumList();
 		if (count($_zp_admin_album_list) > 0) {
-			$desired_folders = explode('/', $this->name);
-			foreach ($_zp_admin_album_list as $adminalbum => $rights) {
-				// see if it is one of the managed folders or a subfolder there of
-				$admin_folders = explode('/', $adminalbum);
-				$level = 0;
-				$ok = true;
-				foreach ($admin_folders as $folder) {
-					if ($level >= count($desired_folders) || $folder != $desired_folders[$level]) {
-						$ok = false;
-						break;
-					}
-					$level++;
-				}
-				if ($ok) {
-					$this->subrights = $rights | MANAGED_OBJECT_MEMBER;
+			$uralbum = getUrAlbum($this);
+			if ($uralbum->name == $this->name) {
+				if (isset($_zp_admin_album_list[$uralbum->name])) {
+					$this->subrights = $_zp_admin_album_list[$uralbum->name] | MANAGED_OBJECT_MEMBER;
 					if (zp_loggedin(VIEW_UNPUBLISHED_RIGHTS))
 						$this->subrights = $this->subrights | MANAGED_OBJECT_RIGHTS_VIEW;
-					return $this->subrights;
 				}
+			} else {
+				$this->subrights = $uralbum->subRights();
 			}
 		}
-		$this->subrights = 0;
 		return $this->subrights;
 	}
 

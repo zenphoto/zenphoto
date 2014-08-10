@@ -879,19 +879,18 @@ class CMSItems extends CMSRoot {
 			$this->subrights = MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW;
 			return $this->subrights;
 		}
-
+		$this->subrights = 0;
 		$objects = $_zp_current_admin_obj->getObjects();
 		$me = $this->getTitlelink();
 		foreach ($objects as $object) {
 			if ($object['type'] == $this->table) {
 				if ($object['data'] == $me) {
 					$this->subrights = $object['edit'] | MANAGED_OBJECT_MEMBER;
-					return $this->subrights;
+					break;
 				}
 			}
-			$this->subrights = 0;
-			return 0;
 		}
+		return $this->subrights;
 	}
 
 }

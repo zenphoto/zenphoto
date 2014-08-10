@@ -813,6 +813,8 @@ class Gallery {
 		foreach ($results as $row) { // check for visible
 			$folder = $row['folder'];
 			$album = newAlbum($folder);
+			$subrights = $album->subrights();
+
 			switch (checkPublishDates($row)) {
 				case 1:
 					$album->setShow(0);
@@ -820,10 +822,12 @@ class Gallery {
 				case 2:
 					$row['show'] = 0;
 			}
+
 			if ($mine ||
-							($row['show'] && (GALLERY_SECURITY == 'public')) ||
-							(($list = $album->isMyItem(LIST_RIGHTS)) && is_null($album->getParent())) ||
-							(is_null($mine) && $list && $viewUnpublished)) {
+							GALLERY_SECURITY == 'public' && ($row['show'] || $viewUnpublished) // public gallery and published or overridden by parameter
+							|| $subrights && is_null($album->getParent()) // is the user's managed album
+							|| $subrights && ($row['show'] || $subrights & MANAGED_OBJECT_RIGHTS_VIEW || $viewUnpublished) //	managed subalbum and published or user has unpublished rights or overriden by parameter
+			) {
 				$albums_ordered[] = $folder;
 			}
 		}
