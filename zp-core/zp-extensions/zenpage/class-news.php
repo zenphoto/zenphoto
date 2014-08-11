@@ -207,6 +207,37 @@ class Article extends CMSItems {
 		return false;
 	}
 
+	function subRights() {
+		global $_zp_current_admin_obj;
+		if (!is_null($this->subrights)) {
+			return $this->subrights;
+		}
+		if (zp_loggedin($this->manage_rights)) {
+			$this->subrights = MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW;
+			return $this->subrights;
+		}
+		$this->subrights = 0;
+
+		$categories = $this->getCategories();
+		if (!empty($categories)) {
+			$objects = $_zp_current_admin_obj->getObjects();
+			$possible = array();
+			foreach ($objects as $object) {
+				if ($object['type'] == 'news') {
+					$possible[$object['data']] = $object;
+				}
+			}
+			if (!empty($possible)) {
+				foreach ($categories as $category) {
+					if (array_key_exists($category['titlelink'], $possible)) {
+						$this->subrights = $this->subRights() | $possible[$category['titlelink']]['edit'] | MANAGED_OBJECT_MEMBER;
+					}
+				}
+			}
+		}
+		return $this->subrights;
+	}
+
 	/**
 	 * Checks if user is news author
 	 * @param bit $action what the caller wants to do

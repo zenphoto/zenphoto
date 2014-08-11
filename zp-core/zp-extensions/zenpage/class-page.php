@@ -257,6 +257,29 @@ class Page extends CMSItems {
 		return $this->checkforGuest() != 'zp_public_access';
 	}
 
+	function subRights() {
+		global $_zp_current_admin_obj;
+		if (!is_null($this->subrights)) {
+			return $this->subrights;
+		}
+		if (zp_loggedin($this->manage_rights)) {
+			$this->subrights = MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW;
+			return $this->subrights;
+		}
+		$this->subrights = 0;
+		$objects = $_zp_current_admin_obj->getObjects();
+		$me = $this->getTitlelink();
+		foreach ($objects as $object) {
+			if ($object['type'] == $this->table) {
+				if ($object['data'] == $me) {
+					$this->subrights = $object['edit'] | MANAGED_OBJECT_MEMBER;
+					break;
+				}
+			}
+		}
+		return $this->subrights;
+	}
+
 	/**
 	 * Checks if user is author of page
 	 * @param bit $action what the caller wants to do

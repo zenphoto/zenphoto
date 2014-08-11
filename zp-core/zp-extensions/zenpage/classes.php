@@ -585,7 +585,7 @@ class CMS {
 		if ($visible) {
 			foreach ($structure as $key => $cat) {
 				$catobj = newCategory($cat['titlelink']);
-				if (($catobj->getShow() && ($all || GALLERY_SECURITY == 'public')) || $catobj->subRights()) {
+				if ($catobj->getShow() && ($all || GALLERY_SECURITY == 'public') || $catobj->subRights()) {
 					$structure[$key]['show'] = 1;
 				} else {
 					unset($structure[$key]);
@@ -871,29 +871,6 @@ class CMSItems extends CMSRoot {
 		} else {
 			$this->set('expiredate', NULL);
 		}
-	}
-
-	function subRights() {
-		global $_zp_current_admin_obj;
-		if (!is_null($this->subrights)) {
-			return $this->subrights;
-		}
-		if (zp_loggedin($this->manage_rights)) {
-			$this->subrights = MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW;
-			return $this->subrights;
-		}
-		$this->subrights = 0;
-		$objects = $_zp_current_admin_obj->getObjects();
-		$me = $this->getTitlelink();
-		foreach ($objects as $object) {
-			if ($object['type'] == $this->table) {
-				if ($object['data'] == $me) {
-					$this->subrights = $object['edit'] | MANAGED_OBJECT_MEMBER;
-					break;
-				}
-			}
-		}
-		return $this->subrights;
 	}
 
 }
