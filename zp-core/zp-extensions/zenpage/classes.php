@@ -80,11 +80,13 @@ class CMS {
 	/*	 * ********************************* */
 
 	function visibleCategory($cat) {
+		if (zp_loggedin(MANAGE_ALL_NEWS_RIGHTS))
+			return true;
+
 		$vis = $this->categoryStructure[$cat['cat_id']]['show'];
 		if (zp_loggedin()) {
-			if (!$mine = zp_loggedin(MANAGE_ALL_NEWS_RIGHTS)) {
-				$cat = newCategory($cat['titlelink']);
-				$mine = $cat->subRights();
+			if (!$mine = zp_loggedin(ALL_NEWS_RIGHTS)) {
+				$catobj = newCategory($cat['titlelink']);
 			}
 			if ($mine)
 				return true;
@@ -217,7 +219,7 @@ class CMS {
 	function getArticles($articles_per_page = 0, $published = NULL, $ignorepagination = false, $sortorder = NULL, $sortdirection = NULL, $sticky = NULL, $category = NULL) {
 		global $_zp_current_category, $_zp_post_date, $_zp_newsCache;
 		if (empty($published)) {
-			if (zp_loggedin() || $category && $category->isMyItem(ZENPAGE_NEWS_RIGHTS)) {
+			if (zp_loggedin(MANAGE_ALL_NEWS_RIGHTS) || $category && $category->isMyItem(ZENPAGE_NEWS_RIGHTS)) {
 				$published = "all";
 			} else {
 				$published = "published";
@@ -579,11 +581,11 @@ class CMS {
 				$sortorder = "sort_order";
 				break;
 		}
+		$all = zp_loggedin(ALL_NEWS_RIGHTS);
 		if ($visible) {
 			foreach ($structure as $key => $cat) {
 				$catobj = newCategory($cat['titlelink']);
-
-				if (($catobj->getShow() && GALLERY_SECURITY == 'public') || $catobj->subRights()) {
+				if (($catobj->getShow() && ($all || GALLERY_SECURITY == 'public')) || $catobj->subRights()) {
 					$structure[$key]['show'] = 1;
 				} else {
 					unset($structure[$key]);
