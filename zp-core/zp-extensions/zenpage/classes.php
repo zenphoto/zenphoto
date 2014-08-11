@@ -82,16 +82,11 @@ class CMS {
 	function visibleCategory($cat) {
 		if (zp_loggedin(MANAGE_ALL_NEWS_RIGHTS))
 			return true;
-
 		$vis = $this->categoryStructure[$cat['cat_id']]['show'];
-		if (zp_loggedin()) {
-			if (!$mine = zp_loggedin(ALL_NEWS_RIGHTS)) {
-				$catobj = newCategory($cat['titlelink']);
-			}
-			if ($mine)
+		if (!$vis && zp_loggedin()) {
+			$catobj = newCategory($cat['titlelink']);
+			if ($catobj->isMyItem(LIST_RIGHTS)) {
 				return true;
-			if (GALLERY_SECURITY != 'public') {
-				return false;
 			}
 		}
 		return $vis;
@@ -176,11 +171,11 @@ class CMS {
 		$result = query('SELECT * FROM ' . prefix('pages') . $show . ' ORDER by `' . $sortorder . '`' . $sortdir);
 		if ($result) {
 			while ($row = db_fetch_assoc($result)) {
-				if ($all || ($row['show'] && GALLERY_SECURITY == 'public')) {
+				if ($all || $row['show']) {
 					$all_pages[] = $row;
 				} else if ($_zp_loggedin) {
 					$page = newPage($row['titlelink']);
-					if ($page->isMyItem(LIST_RIGHTS)) {
+					if ($page->subRights()) {
 						$all_pages[] = $row;
 						if ($number && count($result) >= $number) {
 							break;
@@ -225,6 +220,7 @@ class CMS {
 				$published = "published";
 			}
 		}
+
 		if ($category) {
 			$sortObj = $category;
 		} else {
@@ -247,10 +243,11 @@ class CMS {
 		if (isset($_zp_newsCache[$newsCacheIndex])) {
 			$result = $_zp_newsCache[$newsCacheIndex];
 		} else {
-			$show = $currentcategory = false;
+			$show = $currentCat = false;
 			if ($category) {
+
 				if (is_object($_zp_current_category)) {
-					$currentcategory = $_zp_current_category->getTitlelink();
+					$currentCat = $_zp_current_category->getTitlelink();
 				}
 				$showConjunction = ' AND ';
 				// new code to get nested cats
@@ -367,12 +364,19 @@ class CMS {
 			} else {
 				$sql = "SELECT date, title, titlelink, sticky FROM " . prefix('news') . $show . $datesearch . " " . $order;
 			}
+
 			$resource = query($sql);
 			$result = array();
 			if ($resource) {
 				while ($item = db_fetch_assoc($resource)) {
 					$article = newArticle($item['titlelink']);
-					if ($getUnpublished || $article->subRights() || $currentcategory && ($article->inNewsCategory($currentcategory)) || $article->categoryIsVisible()) {
+					if ($incurrent = $currentCat) {
+						$incurrent = $article->inNewsCategory($currentCat);
+					}
+
+					if ($getUnpublished || //	override published
+									($article->getShow() && (($incurrent || $article->categoryIsVisible()) || $article->subRights())) //	published in ""visible" or managed category
+					) {
 						$result[] = $item;
 					}
 				}
@@ -581,11 +585,11 @@ class CMS {
 				$sortorder = "sort_order";
 				break;
 		}
-		$all = zp_loggedin(ALL_NEWS_RIGHTS);
+		$all = zp_loggedin(MANAGE_ALL_NEWS_RIGHTS);
 		if ($visible) {
 			foreach ($structure as $key => $cat) {
 				$catobj = newCategory($cat['titlelink']);
-				if ($catobj->getShow() && ($all || GALLERY_SECURITY == 'public') || $catobj->subRights()) {
+				if ($all || $catobj->getShow() || $catobj->subRights()) {
 					$structure[$key]['show'] = 1;
 				} else {
 					unset($structure[$key]);

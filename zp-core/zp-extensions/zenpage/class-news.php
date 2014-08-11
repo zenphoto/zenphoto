@@ -21,7 +21,7 @@ class Article extends CMSItems {
 
 	var $manage_rights = MANAGE_ALL_NEWS_RIGHTS;
 	var $manage_some_rights = ZENPAGE_NEWS_RIGHTS;
-	var $view_rights = ALL_NEWS_RIGHTS;
+	var $access_rights = ALL_NEWS_RIGHTS;
 	var $categories = NULL;
 	var $index = NULL;
 
@@ -251,7 +251,7 @@ class Article extends CMSItems {
 		}
 		if (zp_loggedin($action)) {
 			if (GALLERY_SECURITY == 'public' && $this->getShow() && $action == LIST_RIGHTS) {
-				return LIST_RIGHTS;
+				return true;
 			}
 			if ($_zp_current_admin_obj->getUser() == $this->getAuthor()) {
 				return true; //	he is the author
@@ -265,6 +265,25 @@ class Article extends CMSItems {
 					}
 				}
 			}
+		}
+		return false;
+	}
+
+	/**
+	 *
+	 * Checks if viewing of object is allowed
+	 * @param string $hint
+	 * @param string $show
+	 */
+	function checkAccess(&$hint = NULL, &$show = NULL) {
+		$categories = $this->getCategories();
+		if (empty($categories)) { //	no protection on un-categorized news articles
+			return true;
+		}
+		foreach ($categories as $category) {
+			$catobj = newCategory($category['titlelink']);
+			if (!$catobj->isProtected() || $catobj->subRights())
+				return true;
 		}
 		return false;
 	}

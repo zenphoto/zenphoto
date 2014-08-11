@@ -56,7 +56,7 @@ class AlbumBase extends MediaObject {
 	var $sidecars = array(); // keeps the list of suffixes associated with this album
 	var $manage_rights = MANAGE_ALL_ALBUM_RIGHTS;
 	var $manage_some_rights = ALBUM_RIGHTS;
-	var $view_rights = ALL_ALBUMS_RIGHTS;
+	var $access_rights = ALL_ALBUMS_RIGHTS;
 	protected $subalbums = null; // Full album array storage.
 	protected $index;
 	protected $lastimagesort = NULL; // remember the order for the last album/image sorts

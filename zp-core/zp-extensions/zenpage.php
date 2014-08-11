@@ -248,14 +248,14 @@ class cmsFilters {
 				if ($_zp_current_page->isMyItem(LIST_RIGHTS)) {
 					return true;
 				}
-				break;
+				return false;
 			case 'news.php':
 				if (in_context(ZP_ZENPAGE_NEWS_ARTICLE)) {
 					if ($_zp_current_article->isMyItem(LIST_RIGHTS)) {
 						return true;
 					}
 				} else { //	must be category or main news page?
-					if (zp_loggedin(ALL_NEWS_RIGHTS) || !is_object($_zp_current_category) || !$_zp_current_category->isProtected()) {
+					if (zp_loggedin(MANAGE_ALL_NEWS_RIGHTS) || !is_object($_zp_current_category) || !$_zp_current_category->isProtected()) {
 						return true;
 					}
 					if (is_object($_zp_current_category)) {
@@ -265,7 +265,6 @@ class cmsFilters {
 					}
 				}
 				return false;
-				break;
 		}
 		return $fail;
 	}

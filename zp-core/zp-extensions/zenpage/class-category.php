@@ -15,7 +15,7 @@ class Category extends CMSRoot {
 
 	var $manage_rights = MANAGE_ALL_NEWS_RIGHTS;
 	var $manage_some_rights = ZENPAGE_NEWS_RIGHTS;
-	var $view_rights = ALL_NEWS_RIGHTS;
+	var $access_rights = ALL_NEWS_RIGHTS;
 	protected $sortorder = 'date';
 	protected $sortdirection = true;
 	protected $sortSticky = true;
@@ -329,7 +329,7 @@ class Category extends CMSRoot {
 	 * @return bool
 	 */
 	function isProtected() {
-		return $this->checkforGuest() != 'zp_public_access';
+		return GALLERY_SECURITY != 'public' || $this->checkforGuest() != 'zp_public_access';
 	}
 
 	function subRights() {
@@ -362,7 +362,7 @@ class Category extends CMSRoot {
 			return true;
 		}
 		if (zp_loggedin($action)) {
-			if ($this->getShow() && GALLERY_SECURITY == 'public' && $action == LIST_RIGHTS) {
+			if ($this->getShow() && $action == LIST_RIGHTS) {
 				return true;
 			}
 

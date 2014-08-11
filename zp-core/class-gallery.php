@@ -824,9 +824,9 @@ class Gallery {
 			}
 
 			if ($mine ||
-							GALLERY_SECURITY == 'public' && ($row['show'] || $viewUnpublished) // public gallery and published or overridden by parameter
+							($row['show'] || $viewUnpublished) // published or overridden by parameter
 							|| $subrights && is_null($album->getParent()) // is the user's managed album
-							|| $subrights && ($row['show'] || $subrights & MANAGED_OBJECT_RIGHTS_VIEW || $viewUnpublished) //	managed subalbum and published or user has unpublished rights or overriden by parameter
+							|| $subrights && ($subrights & MANAGED_OBJECT_RIGHTS_VIEW ) //	managed subalbum and  user has unpublished rights
 			) {
 				$albums_ordered[] = $folder;
 			}
