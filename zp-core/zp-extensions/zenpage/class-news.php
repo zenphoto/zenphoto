@@ -276,6 +276,8 @@ class Article extends CMSItems {
 	 * @param string $show
 	 */
 	function checkAccess(&$hint = NULL, &$show = NULL) {
+		if (zp_loggedin(ALL_NEWS_RIGHTS))
+			return true;
 		$categories = $this->getCategories();
 		if (empty($categories)) { //	no protection on un-categorized news articles
 			return true;

@@ -51,7 +51,7 @@ class PersistentObject {
 	private $updates = NULL;
 
 	/**
-		}
+	  }
 	 *
 	 * Prime instantiator for zenphoto objects
 	 * @param $tablename	The name of the database table
@@ -700,6 +700,9 @@ class ThemeObject extends PersistentObject {
 	 */
 	function isMyItem($action) {
 		if (zp_loggedin($this->manage_rights)) {
+			return true;
+		}
+		if ($action == LIST_RIGHTS && zp_loggedin($this->access_rights)) {
 			return true;
 		}
 		if (zp_apply_filter('check_credentials', false, $this, $action)) {
