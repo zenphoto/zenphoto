@@ -47,7 +47,7 @@ class optionalObjectFields extends fieldExtender {
 						array('table' => 'albums', 'name' => 'owner', 'desc' => gettext('Owner:'), 'type' => 'varchar', 'size' => 64, 'edit' => 'function', 'function' => 'optionalObjectFields::owner', 'default' => 'NULL'),
 						array('table' => 'albums', 'name' => 'date', 'desc' => gettext('Date:'), 'type' => 'datetime', 'edit' => 'function', 'function' => 'optionalObjectFields::date'),
 						array('table' => 'albums', 'name' => 'location', 'desc' => gettext('Location:'), 'type' => 'text', 'edit' => 'multilingual'),
-						array('table' => 'albums', 'name' => 'codeblocks', 'desc' => gettext('Coceblocks:'), 'type' => NULL, 'edit' => 'function', 'function' => 'optionalObjectFields::codeblocks'),
+						array('table' => 'albums', 'name' => 'codeblocks', 'desc' => gettext('Codeblocks:'), 'type' => NULL, 'edit' => 'function', 'function' => 'optionalObjectFields::codeblocks'),
 						/*
 						 * image fields
 						 */
@@ -63,17 +63,17 @@ class optionalObjectFields extends fieldExtender {
 						array('table' => 'images', 'name' => 'credit', 'desc' => gettext('Credit:'), 'type' => 'text', 'edit' => 'multilingual'),
 						array('table' => 'images', 'name' => 'copyright', 'desc' => gettext('Copyright:'), 'type' => 'text', 'edit' => 'multilingual'),
 						array('table' => 'images', 'name' => 'tags', 'desc' => gettext('Tags:'), 'type' => NULL, 'edit' => 'function', 'function' => 'optionalObjectFields::tags'),
-						array('table' => 'images', 'name' => 'codeblock', 'desc' => gettext('Coceblocks:'), 'type' => 'text', 'edit' => 'function', 'function' => 'optionalObjectFields::codeblocks'),
+						array('table' => 'images', 'name' => 'codeblock', 'desc' => gettext('Codeblocks:'), 'type' => 'text', 'edit' => 'function', 'function' => 'optionalObjectFields::codeblocks'),
 						/*
 						 * page fields
 						 */
 						array('table' => 'pages', 'name' => 'extracontent', 'desc' => gettext('Extra Content:'), 'type' => 'text', 'edit' => 'function', 'function' => 'optionalObjectFields::extracontent'),
-						array('table' => 'pages', 'name' => 'codeblock', 'desc' => gettext('Coceblocks:'), 'type' => 'text', 'edit' => 'function', 'function' => 'optionalObjectFields::codeblocks'),
+						array('table' => 'pages', 'name' => 'codeblock', 'desc' => gettext('Codeblocks:'), 'type' => 'text', 'edit' => 'function', 'function' => 'optionalObjectFields::codeblocks'),
 						/*
 						 * news article fields
 						 */
 						array('table' => 'news', 'name' => 'extracontent', 'desc' => gettext('Extra Content:'), 'type' => 'text', 'edit' => 'function', 'function' => 'optionalObjectFields::extracontent'),
-						array('table' => 'news', 'name' => 'codeblock', 'desc' => gettext('Coceblocks:'), 'type' => 'text', 'edit' => 'function', 'function' => 'optionalObjectFields::codeblocks')
+						array('table' => 'news', 'name' => 'codeblock', 'desc' => gettext('Codeblocks:'), 'type' => 'text', 'edit' => 'function', 'function' => 'optionalObjectFields::codeblocks')
 		);
 	}
 
@@ -301,12 +301,12 @@ class optionalObjectFields extends fieldExtender {
 	static function codeblocks($obj, $instance, $field, $type) {
 		if ($type == 'save') {
 			if (zp_loggedin(CODEBLOCK_RIGHTS)) {
-				$obj->setCodeblock(processCodeblockSave($instance));
+				$obj->setCodeblock(processCodeblockSave((int) $instance));
 			}
 			return NULL;
 		} else {
 			ob_start();
-			printCodeblockEdit($obj, $instance);
+			printCodeblockEdit($obj, (int) $instance);
 			$item = ob_get_contents();
 			ob_end_clean();
 			return $item;
