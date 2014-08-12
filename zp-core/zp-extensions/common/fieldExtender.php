@@ -123,17 +123,16 @@ class fieldExtender {
 	 * @param type $fields
 	 */
 	static protected function _saveHandler($obj, $instance, $field) {
-
-		if (isset($field['edit'])) {
+		if (array_key_exists('edit', $field)) {
 			$action = $field['edit'];
+			if (is_null($action)) {
+				return NULL;
+			}
 		} else {
 			$action = 'default';
 		}
 
 		switch ($action) {
-			case NULL:
-				$newdata = NULL;
-				break;
 			case'multilingual':
 				$newdata = process_language_string_save($instance . '-' . $field['name']);
 				break;
@@ -162,15 +161,16 @@ class fieldExtender {
 	 * @return type
 	 */
 	static protected function _editHandler($obj, $field, $instance) {
-		if (isset($field['edit'])) {
+		if (array_key_exists('edit', $field)) {
 			$action = $field['edit'];
+			if (is_null($action)) {
+				return array(NULL, NULL);
+			}
 		} else {
 			$action = 'default';
 		}
+
 		switch ($action) {
-			case NULL:
-				$item = $formatted = NULL;
-				break;
 			case 'multilingual':
 				ob_start();
 				print_language_string_list($obj->get($field['name']), $instance . '-' . $field['name']);
@@ -308,9 +308,9 @@ class fieldExtender {
 						$html .= $item;
 					} else {
 						if (in_array(strtolower($field['type']), array('varchar', 'int', 'tinytext'))) {
-							$html .= '<input name = "' . $field['name'] . '_' . $i . '" type = "text" style = "width:100%;" value = "' . $item . '" />';
+							$html .= '<input name="' . $field['name'] . '_' . $i . '" type = "text" style = "width:100%;" value = "' . $item . '" />';
 						} else {
-							$html .= '<textarea name = "' . $field['name'] . '_' . $i . '" style = "width:100%;" rows = "6">' . $item . '</textarea>';
+							$html .= '<textarea name="' . $field['name'] . '_' . $i . '" style = "width:100%;" rows = "6">' . $item . '</textarea>';
 						}
 					}
 					$html .="</td>\n</tr>\n";
