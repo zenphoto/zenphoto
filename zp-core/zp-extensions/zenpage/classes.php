@@ -118,6 +118,8 @@ class CMS {
 		} else {
 			$all = !$published;
 		}
+		$published = $published && !zp_loggedin(ZENPAGE_PAGES_RIGHTS);
+
 		$gettop = '';
 		if ($published) {
 			if ($toplevel)
@@ -167,6 +169,10 @@ class CMS {
 				$sortdir = '';
 				break;
 		}
+
+
+
+
 		$all_pages = array(); // Disabled cache var for now because it does not return un-publishded and published if logged on index.php somehow if logged in.
 		$result = query('SELECT * FROM ' . prefix('pages') . $show . ' ORDER by `' . $sortorder . '`' . $sortdir);
 		if ($result) {
@@ -177,10 +183,18 @@ class CMS {
 					$page = newPage($row['titlelink']);
 					if ($page->subRights()) {
 						$all_pages[] = $row;
-						if ($number && count($result) >= $number) {
-							break;
+					} else {
+						$parentid = $page->getParentID();
+						if ($parentid) {
+							$parent = getItemByID('pages', $parentid);
+							if ($parent->subRights() & MANAGED_OBJECT_RIGHTS_VIEW) {
+								$all_pages[] = $row;
+							}
 						}
 					}
+				}
+				if ($number && count($result) >= $number) {
+					break;
 				}
 			}
 			db_free_result($result);

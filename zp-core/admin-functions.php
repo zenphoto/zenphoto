@@ -3297,27 +3297,20 @@ function printManagedObjects($type, $objlist, $alterrights, $userobj, $prefix_id
 			} else {
 				$cv = $extra = $extra2 = array();
 				$rest = array_diff($objlist, $cv);
-				$legend .= $icon_edit . ' ' . gettext('edit');
-				/* For now we do not override unnpublished
-				  $legend .= ' ' . $icon_view . ' ' . gettext('view unpublished');
-				 */
+				$legend = $icon_edit . ' ' . gettext('edit') . ' ' . $icon_view . ' ' . gettext('view unpublished');
 				foreach ($full as $item) {
 					if ($item['type'] == 'pages') {
 						$cv[$item['name']] = $item['data'];
 						$extra[$item['data']][] = array('name' => 'name', 'value' => $item['name'], 'display' => '', 'checked' => 0);
 						$extra[$item['data']][] = array('name' => 'edit', 'value' => MANAGED_OBJECT_RIGHTS_EDIT, 'display' => $icon_edit, 'checked' => $item['edit'] & MANAGED_OBJECT_RIGHTS_EDIT);
-						/* For we do not provide unpublished override
-						  $extra[$item['data']][] = array('name' => 'view', 'value' => MANAGED_OBJECT_RIGHTS_VIEW, 'display' => $icon_view, 'checked' => $item['edit'] & MANAGED_OBJECT_RIGHTS_VIEW);
-						 */
+						$extra[$item['data']][] = array('name' => 'view', 'value' => MANAGED_OBJECT_RIGHTS_VIEW, 'display' => $icon_view, 'checked' => $item['edit'] & MANAGED_OBJECT_RIGHTS_VIEW);
 					}
 				}
 				$rest = array_diff($objlist, $cv);
 				foreach ($rest as $unmanaged) {
 					$extra2[$unmanaged][] = array('name' => 'name', 'value' => $unmanaged, 'display' => '', 'checked' => 0);
 					$extra2[$unmanaged][] = array('name' => 'edit', 'value' => MANAGED_OBJECT_RIGHTS_EDIT, 'display' => $icon_edit, 'checked' => 1);
-					/* For we do not provide unpublished override
-					  $extra2[$unmanaged][] = array('name' => 'view', 'value' => MANAGED_OBJECT_RIGHTS_VIEW, 'display' => $icon_view, 'checked' => 1);
-					 */
+					$extra2[$unmanaged][] = array('name' => 'view', 'value' => MANAGED_OBJECT_RIGHTS_VIEW, 'display' => $icon_view, 'checked' => 1);
 				}
 			}
 			$text = gettext("Managed pages:");
@@ -3346,10 +3339,10 @@ function printManagedObjects($type, $objlist, $alterrights, $userobj, $prefix_id
 		</h2>
 		<div id="<?php echo $prefix ?>" style="display:none;">
 			<ul class="albumchecklist">
-				<?php
-				generateUnorderedListFromArray($cv, $cv, $prefix, $alterrights, true, true, 'user-' . $prefix_id, $extra);
-				generateUnorderedListFromArray(array(), $rest, $prefix, $alterrights, true, true, 'user-' . $prefix_id, $extra2);
-				?>
+	<?php
+	generateUnorderedListFromArray($cv, $cv, $prefix, $alterrights, true, true, 'user-' . $prefix_id, $extra);
+	generateUnorderedListFromArray(array(), $rest, $prefix, $alterrights, true, true, 'user-' . $prefix_id, $extra2);
+	?>
 			</ul>
 			<span class="floatright"><?php echo $legend; ?>&nbsp;&nbsp;&nbsp;&nbsp;</span>
 			<br class="clearall" />
@@ -3772,26 +3765,26 @@ function printEditDropdown($subtab, $nestinglevels, $nesting) {
 	?>
 	<form name="AutoListBox2" style="float: right;" action="#" >
 		<select name="ListBoxURL" size="1" onchange="gotoLink(this.form);">
-			<?php
-			foreach ($nestinglevels as $nestinglevel) {
-				if ($nesting == $nestinglevel) {
-					$selected = 'selected="selected"';
-				} else {
-					$selected = "";
-				}
-				echo '<option ' . $selected . ' value="admin-edit.php' . $link . $nestinglevel . '">';
-				switch ($subtab) {
-					case '':
-					case 'subalbuminfo':
-						printf(ngettext('Show %u album level', 'Show %u album levels', $nestinglevel), $nestinglevel);
-						break;
-					case 'imageinfo':
-						printf(ngettext('%u image per page', '%u images per page', $nestinglevel), $nestinglevel);
-						break;
-				}
-				echo '</option>';
-			}
-			?>
+	<?php
+	foreach ($nestinglevels as $nestinglevel) {
+		if ($nesting == $nestinglevel) {
+			$selected = 'selected="selected"';
+		} else {
+			$selected = "";
+		}
+		echo '<option ' . $selected . ' value="admin-edit.php' . $link . $nestinglevel . '">';
+		switch ($subtab) {
+			case '':
+			case 'subalbuminfo':
+				printf(ngettext('Show %u album level', 'Show %u album levels', $nestinglevel), $nestinglevel);
+				break;
+			case 'imageinfo':
+				printf(ngettext('%u image per page', '%u images per page', $nestinglevel), $nestinglevel);
+				break;
+		}
+		echo '</option>';
+	}
+	?>
 		</select>
 		<script type="text/javascript" >
 			// <!-- <![CDATA[
@@ -3912,11 +3905,11 @@ function printBulkActions($checkarray, $checkAll = false) {
 	?>
 	<span style="float:right">
 		<select class="ignoredirty" name="checkallaction" id="checkallaction" size="1" onchange="checkFor(this);" >
-			<?php generateListFromArray(array('noaction'), $checkarray, false, true); ?>
+	<?php generateListFromArray(array('noaction'), $checkarray, false, true); ?>
 		</select>
-		<?php
-		if ($checkAll) {
-			?>
+			<?php
+			if ($checkAll) {
+				?>
 			<br />
 			<?php
 			echo gettext("Check All");
@@ -3926,14 +3919,14 @@ function printBulkActions($checkarray, $checkAll = false) {
 		}
 		?>
 	</span>
-	<?php
-	if ($tags) {
-		?>
+		<?php
+		if ($tags) {
+			?>
 		<div id="mass_tags" style="display:none;">
 			<div id="mass_tags_data">
-				<?php
-				tagSelector(NULL, 'mass_tags_', false, getTagOrder(), true, false, 'checkTagsAuto ignoredirty');
-				?>
+		<?php
+		tagSelector(NULL, 'mass_tags_', false, getTagOrder(), true, false, 'checkTagsAuto ignoredirty');
+		?>
 			</div>
 		</div>
 		<?php
@@ -3942,9 +3935,9 @@ function printBulkActions($checkarray, $checkAll = false) {
 		?>
 		<div id="mass_cats" style="display:none;">
 			<ul id="mass_cats_data">
-				<?php
-				printNestedItemsList('cats-checkboxlist', '', 'all', 'ignoredirty');
-				?>
+		<?php
+		printNestedItemsList('cats-checkboxlist', '', 'all', 'ignoredirty');
+		?>
 			</ul>
 		</div>
 		<?php
@@ -3954,9 +3947,9 @@ function printBulkActions($checkarray, $checkAll = false) {
 		<div id="mass_owner" style="display:none;">
 			<ul id="mass_owner_data">
 				<select class="ignoredirty" id="massownermenu" name="massownerselect" onchange="">
-					<?php
-					echo admin_album_list(NULL);
-					?>
+		<?php
+		echo admin_album_list(NULL);
+		?>
 				</select>
 			</ul>
 		</div>
@@ -3968,29 +3961,29 @@ function printBulkActions($checkarray, $checkAll = false) {
 		<div id="mass_movecopy_copy" style="display:none;">
 			<div id="mass_movecopy_data">
 				<input type="hidden" name="massfolder" value="<?php echo $album->name; ?>" />
-				<?php
-				echo gettext('Destination');
-				?>
+		<?php
+		echo gettext('Destination');
+		?>
 				<select class="ignoredirty" id="massalbumselectmenu" name="massalbumselect" onchange="">
-					<?php
-					foreach ($mcr_albumlist as $fullfolder => $albumtitle) {
-						$singlefolder = $fullfolder;
-						$saprefix = "";
-						$salevel = 0;
-						$selected = "";
-						if ($album->name == $fullfolder) {
-							$selected = " selected=\"selected\" ";
-						}
-						// Get rid of the slashes in the subalbum, while also making a subalbum prefix for the menu.
-						while (strstr($singlefolder, '/') !== false) {
-							$singlefolder = substr(strstr($singlefolder, '/'), 1);
-							$saprefix = "&nbsp; &nbsp;&nbsp;" . $saprefix;
-							$salevel++;
-						}
-						echo '<option value="' . $fullfolder . '"' . ($salevel > 0 ? ' style="background-color: ' . $bglevels[$salevel] . ';"' : '')
-						. "$selected>" . $saprefix . $singlefolder . "</option>\n";
+				<?php
+				foreach ($mcr_albumlist as $fullfolder => $albumtitle) {
+					$singlefolder = $fullfolder;
+					$saprefix = "";
+					$salevel = 0;
+					$selected = "";
+					if ($album->name == $fullfolder) {
+						$selected = " selected=\"selected\" ";
 					}
-					?>
+					// Get rid of the slashes in the subalbum, while also making a subalbum prefix for the menu.
+					while (strstr($singlefolder, '/') !== false) {
+						$singlefolder = substr(strstr($singlefolder, '/'), 1);
+						$saprefix = "&nbsp; &nbsp;&nbsp;" . $saprefix;
+						$salevel++;
+					}
+					echo '<option value="' . $fullfolder . '"' . ($salevel > 0 ? ' style="background-color: ' . $bglevels[$salevel] . ';"' : '')
+					. "$selected>" . $saprefix . $singlefolder . "</option>\n";
+				}
+				?>
 				</select>
 			</div>
 		</div>
@@ -4275,9 +4268,9 @@ function printCodeblockEdit($obj, $id) {
 	?>
 	<div id="cbd-<?php echo $id; ?>" class="tabs">
 		<ul id="<?php echo 'cbu' . '-' . $id; ?>" class="tabNavigation">
-			<?php
-			for ($i = $start; $i < $codeblockCount; $i++) {
-				?>
+	<?php
+	for ($i = $start; $i < $codeblockCount; $i++) {
+		?>
 				<li><a class="<?php if ($i == 1) echo 'first '; ?>cbt-<?php echo $id; ?>" id="<?php echo 'cbt' . $i . '-' . $id; ?>" onclick="cbclick(<?php echo $i . ',' . $id; ?>);" title="<?php printf(gettext('codeblock %u'), $i); ?>">&nbsp;&nbsp;<?php echo $i; ?>&nbsp;&nbsp;</a></li>
 				<?php
 			}
@@ -4292,236 +4285,236 @@ function printCodeblockEdit($obj, $id) {
 			?>
 		</ul>
 
-		<?php
-		for ($i = $start; $i < $codeblockCount; $i++) {
-			?>
+	<?php
+	for ($i = $start; $i < $codeblockCount; $i++) {
+		?>
 			<div class="cbx-<?php echo $id; ?>" id="cb<?php echo $i . '-' . $id; ?>"<?php if ($i != 1) echo ' style="display:none"'; ?>>
-				<?php
-				if (!$i) {
-					?>
+			<?php
+			if (!$i) {
+				?>
 					<span class="notebox"><?php echo gettext('Codeblock 0 is deprecated.') ?></span>
 					<?php
 				}
 				?>
 				<textarea name="codeblock<?php echo $i; ?>-<?php echo $id; ?>" class="codeblock" id="codeblock<?php echo $i; ?>-<?php echo $id; ?>" rows="40" cols="60"<?php echo $disabled; ?>><?php echo html_encode(@$codeblock[$i]); ?></textarea>
 			</div>
-			<?php
-		}
-		?>
+		<?php
+	}
+	?>
 	</div>
-	<?php
-}
+		<?php
+	}
 
-/**
- *
- * handles saveing of codeblock edits
- * @param object $object
- * @param int $id
- * @return string
- */
-function processCodeblockSave($id) {
-	$codeblock = array();
-	$i = (int) !isset($_POST['codeblock0-' . $id]);
-	while (isset($_POST['codeblock' . $i . '-' . $id])) {
-		$v = sanitize($_POST['codeblock' . $i . '-' . $id], 0);
-		if ($v) {
-			$codeblock[$i] = $v;
+	/**
+	 *
+	 * handles saveing of codeblock edits
+	 * @param object $object
+	 * @param int $id
+	 * @return string
+	 */
+	function processCodeblockSave($id) {
+		$codeblock = array();
+		$i = (int) !isset($_POST['codeblock0-' . $id]);
+		while (isset($_POST['codeblock' . $i . '-' . $id])) {
+			$v = sanitize($_POST['codeblock' . $i . '-' . $id], 0);
+			if ($v) {
+				$codeblock[$i] = $v;
+			}
+			$i++;
 		}
-		$i++;
-	}
-	return serialize($codeblock);
-}
-
-/**
- * Standard admin pages checks
- * @param bit $rights
- * @param string $return--where to go after login
- */
-function admin_securityChecks($rights, $return) {
-	global $_zp_current_admin_obj, $_zp_loggedin;
-	checkInstall();
-	httpsRedirect();
-
-	if ($_zp_current_admin_obj) {
-		if ($_zp_current_admin_obj->reset) {
-			$_zp_loggedin = USER_RIGHTS;
-		}
-	}
-	if (!zp_loggedin($rights)) {
-// prevent nefarious access to this page.
-		$returnurl = urldecode($return);
-		if (!zp_apply_filter('admin_allow_access', false, $returnurl)) {
-			$uri = explode('?', $returnurl);
-			header("HTTP/1.0 302 Found");
-			header("Status: 302 Found");
-			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . $uri[0]);
-			exitZP();
-		}
-	}
-}
-
-/**
- *
- * Checks if protocol not https and redirects if https required
- */
-function httpsRedirect() {
-	if (SERVER_PROTOCOL == 'https_admin') {
-// force https login
-		if (!isset($_SERVER["HTTPS"])) {
-			$redirect = "https://" . $_SERVER['HTTP_HOST'] . getRequestURI();
-			header("Location:$redirect");
-			exitZP();
-		}
-	}
-}
-
-/**
- * Checks for Cross Site Request Forgeries
- * @param string $action
- */
-function XSRFdefender($action) {
-	$token = getXSRFToken($action);
-	if (!isset($_REQUEST['XSRFToken']) || $_REQUEST['XSRFToken'] != $token) {
-		zp_apply_filter('admin_XSRF_access', false, $action);
-		header("HTTP/1.0 302 Found");
-		header("Status: 302 Found");
-		header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=external&error&msg=' . sprintf(gettext('“%s” Cross Site Request Forgery blocked.'), $action));
-		exitZP();
-	}
-	unset($_REQUEST['XSRFToken']);
-	unset($_POST['XSRFToken']);
-	unset($_GET['XSRFToken']);
-}
-
-/**
- * getPageSelector "diff" function
- *
- * returns the shortest string difference
- * @param string $string1
- * @param string2 $string2
- */
-function minDiff($string1, $string2) {
-	if ($string1 == $string2) {
-		return $string2;
-	}
-	if (empty($string1)) {
-		return substr($string2, 0, 10);
-	}
-	if (empty($string2)) {
-		return substr($string1, 0, 10);
-	}
-	if (strlen($string2) > strlen($string1)) {
-		$base = $string2;
-	} else {
-		$base = $string1;
-	}
-	for ($i = 0; $i < min(strlen($string1), strlen($string2)); $i++) {
-		if ($string1[$i] != $string2[$i]) {
-			$base = substr($string2, 0, max($i + 1, 10));
-			break;
-		}
-	}
-	return rtrim($base, '-_');
-}
-
-/**
- * getPageSelector "diff" function
- *
- * Used when you want getPgeSelector to show the full text of the items
- * @param string $string1
- * @param string $string2
- * @return string
- */
-function fullText($string1, $string2) {
-	return $string2;
-}
-
-/**
- * getPageSelector "diff" function
- *
- * returns the shortest "date" difference
- * @param string $date1
- * @param string $date2
- * @return string
- */
-function dateDiff($date1, $date2) {
-	$separators = array('', '-', '-', ' ', ':', ':');
-	preg_match('/(.*)-(.*)-(.*) (.*):(.*):(.*)/', $date1, $matches1);
-	preg_match('/(.*)-(.*)-(.*) (.*):(.*):(.*)/', $date2, $matches2);
-	if (empty($matches1)) {
-		$matches1 = array(0, 0, 0, 0, 0, 0, 0);
-	}
-	if (empty($matches2)) {
-		$matches2 = array(0, 0, 0, 0, 0, 0, 0);
+		return serialize($codeblock);
 	}
 
-	$date = '';
-	for ($i = 1; $i <= 6; $i++) {
-		if (@$matches1[$i] != @$matches2[$i]) {
-			break;
-		}
-	}
-	switch ($i) {
-		case 7:
-		case 6:
-			$date = ':' . $matches2[6];
-		case 5:
-		case 4:
-			$date = ' ' . $matches2[4] . ':' . $matches2[5] . $date;
-		default:
-			$date = $matches2[1] . '-' . $matches2[2] . '-' . $matches2[3] . $date;
-	}
-	return rtrim($date, ':-');
-}
+	/**
+	 * Standard admin pages checks
+	 * @param bit $rights
+	 * @param string $return--where to go after login
+	 */
+	function admin_securityChecks($rights, $return) {
+		global $_zp_current_admin_obj, $_zp_loggedin;
+		checkInstall();
+		httpsRedirect();
 
-/**
- * returns a selector list based on the "names" of the list items
- *
- *
- * @param array $list
- * @param int $itmes_per_page
- * @param string $diff
- * 									"fullText" for the complete names
- * 									"minDiff" for a truncated string showing just the unique characters of the names
- * 									"dateDiff" it the "names" are really dates.
- * @return array
- */
-function getPageSelector($list, $itmes_per_page, $diff = 'fullText') {
-	$rangeset = array();
-	$pages = round(ceil(count($list) / (int) $itmes_per_page));
-	$list = array_values($list);
-	if ($pages > 1) {
-		$ranges = array();
-		for ($page = 0; $page < $pages; $page++) {
-			$ranges[$page]['start'] = strtolower($list[$page * $itmes_per_page]);
-			$last = (int) ($page * $itmes_per_page + $itmes_per_page - 1);
-			if (array_key_exists($last, $list)) {
-				$ranges[$page]['end'] = strtolower($list[$last]);
-			} else {
-				$ranges[$page]['end'] = strtolower(@array_pop($list));
+		if ($_zp_current_admin_obj) {
+			if ($_zp_current_admin_obj->reset) {
+				$_zp_loggedin = USER_RIGHTS;
 			}
 		}
-		$last = '';
-		foreach ($ranges as $page => $range) {
-			$next = @$ranges[$page + 1]['start'];
-			$rangeset[$page] = $diff($last, $range['start']) . ' » ' . $diff($next, $range['end']);
-			$last = $range['end'];
+		if (!zp_loggedin($rights)) {
+// prevent nefarious access to this page.
+			$returnurl = urldecode($return);
+			if (!zp_apply_filter('admin_allow_access', false, $returnurl)) {
+				$uri = explode('?', $returnurl);
+				header("HTTP/1.0 302 Found");
+				header("Status: 302 Found");
+				header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . $uri[0]);
+				exitZP();
+			}
 		}
 	}
-	return $rangeset;
-}
 
-function printPageSelector($subpage, $rangeset, $script, $queryParams) {
-	global $instances;
-	$pages = count($rangeset);
-	$jump = $query = '';
-	foreach ($queryParams as $param => $value) {
-		$query .= $param . '=' . $value . '&amp;';
-		$jump .= "'" . $param . "=" . $value . "',";
+	/**
+	 *
+	 * Checks if protocol not https and redirects if https required
+	 */
+	function httpsRedirect() {
+		if (SERVER_PROTOCOL == 'https_admin') {
+// force https login
+			if (!isset($_SERVER["HTTPS"])) {
+				$redirect = "https://" . $_SERVER['HTTP_HOST'] . getRequestURI();
+				header("Location:$redirect");
+				exitZP();
+			}
+		}
 	}
-	$query = '?' . $query;
-	if ($subpage > 0) {
-		?>
+
+	/**
+	 * Checks for Cross Site Request Forgeries
+	 * @param string $action
+	 */
+	function XSRFdefender($action) {
+		$token = getXSRFToken($action);
+		if (!isset($_REQUEST['XSRFToken']) || $_REQUEST['XSRFToken'] != $token) {
+			zp_apply_filter('admin_XSRF_access', false, $action);
+			header("HTTP/1.0 302 Found");
+			header("Status: 302 Found");
+			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=external&error&msg=' . sprintf(gettext('“%s” Cross Site Request Forgery blocked.'), $action));
+			exitZP();
+		}
+		unset($_REQUEST['XSRFToken']);
+		unset($_POST['XSRFToken']);
+		unset($_GET['XSRFToken']);
+	}
+
+	/**
+	 * getPageSelector "diff" function
+	 *
+	 * returns the shortest string difference
+	 * @param string $string1
+	 * @param string2 $string2
+	 */
+	function minDiff($string1, $string2) {
+		if ($string1 == $string2) {
+			return $string2;
+		}
+		if (empty($string1)) {
+			return substr($string2, 0, 10);
+		}
+		if (empty($string2)) {
+			return substr($string1, 0, 10);
+		}
+		if (strlen($string2) > strlen($string1)) {
+			$base = $string2;
+		} else {
+			$base = $string1;
+		}
+		for ($i = 0; $i < min(strlen($string1), strlen($string2)); $i++) {
+			if ($string1[$i] != $string2[$i]) {
+				$base = substr($string2, 0, max($i + 1, 10));
+				break;
+			}
+		}
+		return rtrim($base, '-_');
+	}
+
+	/**
+	 * getPageSelector "diff" function
+	 *
+	 * Used when you want getPgeSelector to show the full text of the items
+	 * @param string $string1
+	 * @param string $string2
+	 * @return string
+	 */
+	function fullText($string1, $string2) {
+		return $string2;
+	}
+
+	/**
+	 * getPageSelector "diff" function
+	 *
+	 * returns the shortest "date" difference
+	 * @param string $date1
+	 * @param string $date2
+	 * @return string
+	 */
+	function dateDiff($date1, $date2) {
+		$separators = array('', '-', '-', ' ', ':', ':');
+		preg_match('/(.*)-(.*)-(.*) (.*):(.*):(.*)/', $date1, $matches1);
+		preg_match('/(.*)-(.*)-(.*) (.*):(.*):(.*)/', $date2, $matches2);
+		if (empty($matches1)) {
+			$matches1 = array(0, 0, 0, 0, 0, 0, 0);
+		}
+		if (empty($matches2)) {
+			$matches2 = array(0, 0, 0, 0, 0, 0, 0);
+		}
+
+		$date = '';
+		for ($i = 1; $i <= 6; $i++) {
+			if (@$matches1[$i] != @$matches2[$i]) {
+				break;
+			}
+		}
+		switch ($i) {
+			case 7:
+			case 6:
+				$date = ':' . $matches2[6];
+			case 5:
+			case 4:
+				$date = ' ' . $matches2[4] . ':' . $matches2[5] . $date;
+			default:
+				$date = $matches2[1] . '-' . $matches2[2] . '-' . $matches2[3] . $date;
+		}
+		return rtrim($date, ':-');
+	}
+
+	/**
+	 * returns a selector list based on the "names" of the list items
+	 *
+	 *
+	 * @param array $list
+	 * @param int $itmes_per_page
+	 * @param string $diff
+	 * 									"fullText" for the complete names
+	 * 									"minDiff" for a truncated string showing just the unique characters of the names
+	 * 									"dateDiff" it the "names" are really dates.
+	 * @return array
+	 */
+	function getPageSelector($list, $itmes_per_page, $diff = 'fullText') {
+		$rangeset = array();
+		$pages = round(ceil(count($list) / (int) $itmes_per_page));
+		$list = array_values($list);
+		if ($pages > 1) {
+			$ranges = array();
+			for ($page = 0; $page < $pages; $page++) {
+				$ranges[$page]['start'] = strtolower($list[$page * $itmes_per_page]);
+				$last = (int) ($page * $itmes_per_page + $itmes_per_page - 1);
+				if (array_key_exists($last, $list)) {
+					$ranges[$page]['end'] = strtolower($list[$last]);
+				} else {
+					$ranges[$page]['end'] = strtolower(@array_pop($list));
+				}
+			}
+			$last = '';
+			foreach ($ranges as $page => $range) {
+				$next = @$ranges[$page + 1]['start'];
+				$rangeset[$page] = $diff($last, $range['start']) . ' » ' . $diff($next, $range['end']);
+				$last = $range['end'];
+			}
+		}
+		return $rangeset;
+	}
+
+	function printPageSelector($subpage, $rangeset, $script, $queryParams) {
+		global $instances;
+		$pages = count($rangeset);
+		$jump = $query = '';
+		foreach ($queryParams as $param => $value) {
+			$query .= $param . '=' . $value . '&amp;';
+			$jump .= "'" . $param . "=" . $value . "',";
+		}
+		$query = '?' . $query;
+		if ($subpage > 0) {
+			?>
 		<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . $script . $query; ?>subpage=<?php echo ($subpage - 1); ?>" >« <?php echo gettext('prev'); ?></a>
 		<?php
 	}
@@ -4533,19 +4526,19 @@ function printPageSelector($subpage, $rangeset, $script, $queryParams) {
 		}
 		?>
 		<select name="subpage" class="ignoredirty" id="subpage<?php echo $instances; ?>" onchange="launchScript('<?php echo WEBPATH . '/' . ZENFOLDER . '/' . $script; ?>', [<?php echo $jump; ?>'subpage=' + $('#subpage<?php echo $instances; ?>').val()]);" >
-			<?php
-			foreach ($rangeset as $page => $range) {
-				?>
+		<?php
+		foreach ($rangeset as $page => $range) {
+			?>
 				<option value="<?php echo $page; ?>" <?php if ($page == $subpage) echo ' selected="selected"'; ?>><?php echo $range; ?></option>
 				<?php
 			}
 			?>
 		</select>
-		<?php
-	}
-	if ($pages > $subpage + 1) {
-		if ($pages > 2) {
-			?>
+			<?php
+		}
+		if ($pages > $subpage + 1) {
+			if ($pages > 2) {
+				?>
 			|
 		<?php }
 		?>
@@ -4894,106 +4887,106 @@ function consolidatedEditMessages($subtab) {
 	if (!empty($errorbox)) {
 		?>
 		<div class="errorbox fade-message">
-			<?php echo implode('<br />', $errorbox); ?>
+		<?php echo implode('<br />', $errorbox); ?>
 		</div>
-		<?php
-	}
-	if (!empty($notebox)) {
-		?>
+			<?php
+		}
+		if (!empty($notebox)) {
+			?>
 		<div class="notebox fade-message">
-			<?php echo implode('<br />', $notebox); ?>
+		<?php echo implode('<br />', $notebox); ?>
 		</div>
-		<?php
-	}
-	if (!empty($messagebox)) {
-		?>
+			<?php
+		}
+		if (!empty($messagebox)) {
+			?>
 		<div class="messagebox fade-message">
-			<?php echo implode('<br />', $messagebox); ?>
+		<?php echo implode('<br />', $messagebox); ?>
 		</div>
-		<?php
+			<?php
+		}
 	}
-}
 
-/**
- * returns an array of the theme scripts not in the exclude array
- * @param array $exclude those scripts to ignore
- * @return array
- */
-function getThemeFiles($exclude) {
-	global $_zp_gallery;
-	$files = array();
-	foreach (array_keys($_zp_gallery->getThemes()) as $theme) {
-		$curdir = getcwd();
-		$root = SERVERPATH . '/' . THEMEFOLDER . '/' . $theme . '/';
-		chdir($root);
-		$filelist = safe_glob('*.php');
-		$list = array();
-		foreach ($filelist as $file) {
-			if (!in_array($file, $exclude)) {
-				$files[$theme][] = filesystemToInternal($file);
+	/**
+	 * returns an array of the theme scripts not in the exclude array
+	 * @param array $exclude those scripts to ignore
+	 * @return array
+	 */
+	function getThemeFiles($exclude) {
+		global $_zp_gallery;
+		$files = array();
+		foreach (array_keys($_zp_gallery->getThemes()) as $theme) {
+			$curdir = getcwd();
+			$root = SERVERPATH . '/' . THEMEFOLDER . '/' . $theme . '/';
+			chdir($root);
+			$filelist = safe_glob('*.php');
+			$list = array();
+			foreach ($filelist as $file) {
+				if (!in_array($file, $exclude)) {
+					$files[$theme][] = filesystemToInternal($file);
+				}
+			}
+			chdir($curdir);
+		}
+		return $files;
+	}
+
+	/**
+	 *
+	 * Checks for bad parentIDs from old move/copy bug
+	 * @param unknown_type $albumname
+	 * @param unknown_type $id
+	 */
+	function checkAlbumParentid($albumname, $id, $recorder) {
+		$album = newAlbum($albumname);
+		$oldid = $album->getParentID();
+		if ($oldid != $id) {
+			$album->set('parentid', $id);
+			$album->save();
+			if (is_null($oldid))
+				$oldid = '<em>NULL</em>';
+			if (is_null($id))
+				$id = '<em>NULL</em>';
+			$msg = sprintf('Fixed album <strong>%1$s</strong>: parentid was %2$s should have been %3$s<br />', $albumname, $oldid, $id);
+			$recorder($msg, true);
+			echo $msg;
+		}
+		$id = $album->getID();
+		if (!$album->isDynamic()) {
+			$albums = $album->getAlbums();
+			foreach ($albums as $albumname) {
+				checkAlbumParentid($albumname, $id, $recorder);
 			}
 		}
-		chdir($curdir);
 	}
-	return $files;
-}
 
-/**
- *
- * Checks for bad parentIDs from old move/copy bug
- * @param unknown_type $albumname
- * @param unknown_type $id
- */
-function checkAlbumParentid($albumname, $id, $recorder) {
-	$album = newAlbum($albumname);
-	$oldid = $album->getParentID();
-	if ($oldid != $id) {
-		$album->set('parentid', $id);
-		$album->save();
-		if (is_null($oldid))
-			$oldid = '<em>NULL</em>';
-		if (is_null($id))
-			$id = '<em>NULL</em>';
-		$msg = sprintf('Fixed album <strong>%1$s</strong>: parentid was %2$s should have been %3$s<br />', $albumname, $oldid, $id);
-		$recorder($msg, true);
-		echo $msg;
-	}
-	$id = $album->getID();
-	if (!$album->isDynamic()) {
-		$albums = $album->getAlbums();
-		foreach ($albums as $albumname) {
-			checkAlbumParentid($albumname, $id, $recorder);
+	function clonedFrom() {
+		if (PRIMARY_INSTALLATION) {
+			return false;
+		} else {
+			$zen = str_replace('\\', '/', @readlink(SERVERPATH . '/' . ZENFOLDER));
+			return dirname($zen);
 		}
 	}
-}
 
-function clonedFrom() {
-	if (PRIMARY_INSTALLATION) {
-		return false;
-	} else {
-		$zen = str_replace('\\', '/', @readlink(SERVERPATH . '/' . ZENFOLDER));
-		return dirname($zen);
+	function pickSource($obj) {
+		$params = '';
+		switch ($obj->table) {
+			case 'albums':
+				$params = 'pick[album]=' . $obj->getFileName();
+				break;
+			case 'images':
+				$params = 'pick[album]=' . $obj->album->getFileName() . '&pick[image]=' . $obj->getFileName();
+				break;
+			default:
+				$params = 'pick[' . $obj->table . ']=' . $obj->getTitleLink();
+				break;
+		}
+		return $params;
 	}
-}
 
-function pickSource($obj) {
-	$params = '';
-	switch ($obj->table) {
-		case 'albums':
-			$params = 'pick[album]=' . $obj->getFileName();
-			break;
-		case 'images':
-			$params = 'pick[album]=' . $obj->album->getFileName() . '&pick[image]=' . $obj->getFileName();
-			break;
-		default:
-			$params = 'pick[' . $obj->table . ']=' . $obj->getTitleLink();
-			break;
-	}
-	return $params;
-}
-
-function linkPickerItem($obj, $id) {
-	?>
+	function linkPickerItem($obj, $id) {
+		?>
 	<input type = "text" name="<?php echo $id; ?>" id="<?php echo $id; ?>" value="<?php echo $obj->getLink(); ?>" READONLY title="<?php echo gettext('You can also copy the link to your clipboard to paste elsewhere'); ?>" style="width:100%;" />
 	<?php
 }
