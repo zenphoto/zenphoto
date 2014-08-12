@@ -80,12 +80,12 @@ class CMS {
 	/*	 * ********************************* */
 
 	function visibleCategory($cat) {
-		if (zp_loggedin(MANAGE_ALL_NEWS_RIGHTS))
+		if (zp_loggedin(MANAGE_ALL_NEWS_RIGHTS | VIEW_UNPUBLISHED_NEWS_RIGHTS))
 			return true;
 		$vis = $this->categoryStructure[$cat['cat_id']]['show'];
 		if (!$vis && zp_loggedin()) {
 			$catobj = newCategory($cat['titlelink']);
-			if ($catobj->isMyItem(LIST_RIGHTS)) {
+			if ($catobj->subRights()) {
 				return true;
 			}
 		}
@@ -214,7 +214,7 @@ class CMS {
 	function getArticles($articles_per_page = 0, $published = NULL, $ignorepagination = false, $sortorder = NULL, $sortdirection = NULL, $sticky = NULL, $category = NULL) {
 		global $_zp_current_category, $_zp_post_date, $_zp_newsCache;
 		if (empty($published)) {
-			if (zp_loggedin(MANAGE_ALL_NEWS_RIGHTS) || $category && $category->isMyItem(ZENPAGE_NEWS_RIGHTS)) {
+			if (zp_loggedin(ZENPAGE_NEWS_RIGHTS | VIEW_UNPUBLISHED_NEWS_RIGHTS)) {
 				$published = "all";
 			} else {
 				$published = "published";
@@ -368,14 +368,17 @@ class CMS {
 			$resource = query($sql);
 			$result = array();
 			if ($resource) {
+				if (zp_loggedin(VIEW_UNPUBLISHED_NEWS_RIGHTS))
+					$getUnpublished = true;
 				while ($item = db_fetch_assoc($resource)) {
 					$article = newArticle($item['titlelink']);
 					if ($incurrent = $currentCat) {
 						$incurrent = $article->inNewsCategory($currentCat);
 					}
-
-					if ($getUnpublished || //	override published
-									($article->getShow() && (($incurrent || $article->categoryIsVisible()) || $article->subRights())) //	published in ""visible" or managed category
+					$subrights = $article->subRights();
+					if ($getUnpublished //	override published
+									|| ($article->getShow() && (($incurrent || $article->categoryIsVisible()) || $subrights)) //	published in "visible" or managed category
+									|| ($subrights & MANAGED_OBJECT_RIGHTS_VIEW) //	he is allowed to see unpublished articles in one of the article's categories
 					) {
 						$result[] = $item;
 					}
