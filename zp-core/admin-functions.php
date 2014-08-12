@@ -452,13 +452,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 					}
 					if (empty($link)) {
 						$link = getRequestURI();
-						/*
-							$bt = debug_backtrace();
-							$bt = array_shift($bt);
-							if (isset($bt['file'])) {
-							$link = str_replace(SERVERPATH, '', str_replace('\\', '/', $bt['file']));
-							}
-						 */
 					} else if (strpos($link, '/') !== 0) { // zp_core relative
 						$link = WEBPATH . '/' . ZENFOLDER . '/' . $link;
 					} else {
@@ -1454,7 +1447,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 									<label><input type="checkbox" name="disclose_password<?php echo $suffix; ?>"
 																id="disclose_password<?php echo $suffix; ?>"
 																onclick="passwordClear('<?php echo $suffix; ?>');
-																		togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?></label>
+																				togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?></label>
 								</td>
 								<td>
 									<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
@@ -1507,7 +1500,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						$sort[gettext('Custom')] = 'custom';
 						/*
 						 * not recommended--screws with peoples minds during pagination!
-							$sort[gettext('Random')] = 'random';
+						  $sort[gettext('Random')] = 'random';
 						 */
 						?>
 						<tr>
@@ -1936,7 +1929,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 } else {
 											 ?>
 											 onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');
-													 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
+															 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
 											 <?php
 										 }
 										 ?> />
@@ -3167,12 +3160,11 @@ function printAdminHeader($tab, $subtab = NULL) {
 						}
 						?>
 						<label title="<?php echo html_encode(get_language_string($right['hint'])); ?>">
-							<input type="checkbox" name="<?php echo $id . '-' . $rightselement; ?>" id="<?php echo $rightselement . '-' . $id; ?>" class="user-<?php echo $id; ?>"
-										 value="<?php echo $right['value']; ?>"<?php
-										 if ($rights & $right['value'])
-											 echo ' checked="checked"';
-										 echo $alterrights;
-										 ?> /> <?php echo $right['name']; ?>
+							<input type="checkbox" name="<?php echo $id . '-' . $rightselement; ?>" id="<?php echo $rightselement . '-' . $id; ?>" class="user-<?php echo $id; ?>" value="<?php echo $right['value']; ?>"<?php
+							if ($rights & $right['value'])
+								echo ' checked="checked"';
+							echo $alterrights;
+							?> /> <?php echo $right['name']; ?>
 						</label>
 						<?php
 					} else {
@@ -3305,7 +3297,7 @@ function printManagedObjects($type, $objlist, $alterrights, $userobj, $prefix_id
 				$rest = array_diff($objlist, $cv);
 				$legend .= $icon_edit . ' ' . gettext('edit');
 				/* For now we do not override unnpublished
-					$legend .= ' ' . $icon_view . ' ' . gettext('view unpublished');
+				  $legend .= ' ' . $icon_view . ' ' . gettext('view unpublished');
 				 */
 				foreach ($full as $item) {
 					if ($item['type'] == 'pages') {
@@ -3313,7 +3305,7 @@ function printManagedObjects($type, $objlist, $alterrights, $userobj, $prefix_id
 						$extra[$item['data']][] = array('name' => 'name', 'value' => $item['name'], 'display' => '', 'checked' => 0);
 						$extra[$item['data']][] = array('name' => 'edit', 'value' => MANAGED_OBJECT_RIGHTS_EDIT, 'display' => $icon_edit, 'checked' => $item['edit'] & MANAGED_OBJECT_RIGHTS_EDIT);
 						/* For we do not provide unpublished override
-							$extra[$item['data']][] = array('name' => 'view', 'value' => MANAGED_OBJECT_RIGHTS_VIEW, 'display' => $icon_view, 'checked' => $item['edit'] & MANAGED_OBJECT_RIGHTS_VIEW);
+						  $extra[$item['data']][] = array('name' => 'view', 'value' => MANAGED_OBJECT_RIGHTS_VIEW, 'display' => $icon_view, 'checked' => $item['edit'] & MANAGED_OBJECT_RIGHTS_VIEW);
 						 */
 					}
 				}
@@ -3322,7 +3314,7 @@ function printManagedObjects($type, $objlist, $alterrights, $userobj, $prefix_id
 					$extra2[$unmanaged][] = array('name' => 'name', 'value' => $unmanaged, 'display' => '', 'checked' => 0);
 					$extra2[$unmanaged][] = array('name' => 'edit', 'value' => MANAGED_OBJECT_RIGHTS_EDIT, 'display' => $icon_edit, 'checked' => 1);
 					/* For we do not provide unpublished override
-						$extra2[$unmanaged][] = array('name' => 'view', 'value' => MANAGED_OBJECT_RIGHTS_VIEW, 'display' => $icon_view, 'checked' => 1);
+					  $extra2[$unmanaged][] = array('name' => 'view', 'value' => MANAGED_OBJECT_RIGHTS_VIEW, 'display' => $icon_view, 'checked' => 1);
 					 */
 				}
 			}
@@ -4279,18 +4271,18 @@ function printCodeblockEdit($obj, $id) {
 		$start = (int) getOption('codeblock_first_tab');
 	}
 	?>
-	<div id="cbd-<?php echo (int) $id; ?>" class="tabs">
-		<ul id="<?php echo 'cbu' . '-' . (int) $id; ?>" class="tabNavigation">
+	<div id="cbd-<?php echo $id; ?>" class="tabs">
+		<ul id="<?php echo 'cbu' . '-' . $id; ?>" class="tabNavigation">
 			<?php
 			for ($i = $start; $i < $codeblockCount; $i++) {
 				?>
-				<li><a class="<?php if ($i == 1) echo 'first '; ?>cbt-<?php echo (int) $id; ?>" id="<?php echo 'cbt' . $i . '-' . (int) $id; ?>" onclick="cbclick(<?php echo $i . ',' . (int) $id; ?>);" title="<?php printf(gettext('codeblock %u'), $i); ?>">&nbsp;&nbsp;<?php echo $i; ?>&nbsp;&nbsp;</a></li>
+				<li><a class="<?php if ($i == 1) echo 'first '; ?>cbt-<?php echo $id; ?>" id="<?php echo 'cbt' . $i . '-' . $id; ?>" onclick="cbclick(<?php echo $i . ',' . $id; ?>);" title="<?php printf(gettext('codeblock %u'), $i); ?>">&nbsp;&nbsp;<?php echo $i; ?>&nbsp;&nbsp;</a></li>
 				<?php
 			}
 			if (zp_loggedin(CODEBLOCK_RIGHTS)) {
 				$disabled = '';
 				?>
-				<li><a id="<?php echo 'cbp' . '-' . (int) $id; ?>" onclick="cbadd(<?php echo (int) $id; ?>,<?php echo 1 - $start; ?>);" title="<?php echo gettext('add codeblock'); ?>">&nbsp;&nbsp;+&nbsp;&nbsp;</a></li>
+				<li><a id="<?php echo 'cbp' . '-' . $id; ?>" onclick="cbadd(<?php echo $id; ?>,<?php echo 1 - $start; ?>);" title="<?php echo gettext('add codeblock'); ?>">&nbsp;&nbsp;+&nbsp;&nbsp;</a></li>
 				<?php
 			} else {
 				$disabled = ' disabled="disabled"';
@@ -4301,7 +4293,7 @@ function printCodeblockEdit($obj, $id) {
 		<?php
 		for ($i = $start; $i < $codeblockCount; $i++) {
 			?>
-			<div class="cbx-<?php echo (int) $id; ?>" id="cb<?php echo $i . '-' . (int) $id; ?>"<?php if ($i != 1) echo ' style="display:none"'; ?>>
+			<div class="cbx-<?php echo $id; ?>" id="cb<?php echo $i . '-' . $id; ?>"<?php if ($i != 1) echo ' style="display:none"'; ?>>
 				<?php
 				if (!$i) {
 					?>
@@ -4309,7 +4301,7 @@ function printCodeblockEdit($obj, $id) {
 					<?php
 				}
 				?>
-				<textarea name="codeblock<?php echo $i; ?>-<?php echo (int) $id; ?>" class="codeblock" id="codeblock<?php echo $i; ?>-<?php echo (int) $id; ?>" rows="40" cols="60"<?php echo $disabled; ?>><?php echo html_encode(@$codeblock[$i]); ?></textarea>
+				<textarea name="codeblock<?php echo $i; ?>-<?php echo $id; ?>" class="codeblock" id="codeblock<?php echo $i; ?>-<?php echo $id; ?>" rows="40" cols="60"<?php echo $disabled; ?>><?php echo html_encode(@$codeblock[$i]); ?></textarea>
 			</div>
 			<?php
 		}
@@ -4538,11 +4530,10 @@ function printPageSelector($subpage, $rangeset, $script, $queryParams) {
 			<?php
 		}
 		?>
-		<select name="subpage" class="ignoredirty" id="subpage<?php echo $instances; ?>" onchange="launchScript('<?php echo WEBPATH . '/' . ZENFOLDER . '/' . $script; ?>',
-								[<?php echo $jump; ?>'subpage=' + $('#subpage<?php echo $instances; ?>').val()]);" >
-							<?php
-							foreach ($rangeset as $page => $range) {
-								?>
+		<select name="subpage" class="ignoredirty" id="subpage<?php echo $instances; ?>" onchange="launchScript('<?php echo WEBPATH . '/' . ZENFOLDER . '/' . $script; ?>', [<?php echo $jump; ?>'subpage=' + $('#subpage<?php echo $instances; ?>').val()]);" >
+			<?php
+			foreach ($rangeset as $page => $range) {
+				?>
 				<option value="<?php echo $page; ?>" <?php if ($page == $subpage) echo ' selected="selected"'; ?>><?php echo $range; ?></option>
 				<?php
 			}
@@ -5022,12 +5013,12 @@ function linkPickerIcon($obj, $id = NULL, $extra = NULL) {
 	<a onclick="<?php
 	if ($id) {
 		?>
-				$('#<?php echo $id; ?>').select();
+						$('#<?php echo $id; ?>').select();
 		<?php
 	}
 	?>
-			$('.pickedObject').removeClass('pickedObject');
-			$('#<?php echo $iconid; ?>').addClass('pickedObject');
+					$('.pickedObject').removeClass('pickedObject');
+					$('#<?php echo $iconid; ?>').addClass('pickedObject');
 	<?php linkPickerPick($obj, $id, $extra); ?>"
 		 title="<?php echo gettext('pick source'); ?>">
 		<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" id="<?php echo $iconid; ?>">
