@@ -114,17 +114,18 @@ class CMS {
 		}
 		if (is_null($published)) {
 			$published = !zp_loggedin();
-			$all = zp_loggedin(MANAGE_ALL_PAGES_RIGHTS);
+			$all = zp_loggedin(MANAGE_ALL_PAGES_RIGHTS | VIEW_UNPUBLISHED_PAGE_RIGHTS);
 		} else {
 			$all = !$published;
 		}
 		$published = $published && !zp_loggedin(ZENPAGE_PAGES_RIGHTS);
+		$now = date('Y-m-d H:i:s');
 
 		$gettop = '';
 		if ($published) {
 			if ($toplevel)
 				$gettop = " AND parentid IS NULL";
-			$show = " WHERE `show` = 1 AND date <= '" . date('Y-m-d H:i:s') . "'" . $gettop;
+			$show = " WHERE `show` = 1 AND date <= '" . $now . "'" . $gettop;
 		} else {
 			if ($toplevel)
 				$gettop = " WHERE parentid IS NULL";
@@ -177,7 +178,7 @@ class CMS {
 		$result = query('SELECT * FROM ' . prefix('pages') . $show . ' ORDER by `' . $sortorder . '`' . $sortdir);
 		if ($result) {
 			while ($row = db_fetch_assoc($result)) {
-				if ($all || $row['show']) {
+				if ($all || ($row['show'] && $row['date'] <= $now)) {
 					$all_pages[] = $row;
 				} else if ($_zp_loggedin) {
 					$page = newPage($row['titlelink']);
@@ -234,6 +235,7 @@ class CMS {
 				$published = "published";
 			}
 		}
+		$now = date('Y-m-d H:i:s');
 
 		if ($category) {
 			$sortObj = $category;
@@ -321,15 +323,15 @@ class CMS {
 			/** get all articles * */
 			switch ($published) {
 				case "published":
-					$show = "$showConjunction `show` = 1 AND date <= '" . date('Y-m-d H:i:s') . "'";
+					$show = "$showConjunction `show` = 1 AND date <= '" . $now . "'";
 					$getUnpublished = false;
 					break;
 				case "published-unpublished":
-					$show = "$showConjunction `show` = 1 AND date <= '" . date('Y-m-d H:i:s') . "'";
+					$show = "$showConjunction `show` = 1 AND date <= '" . $now . "'";
 					$getUnpublished = true;
 					break;
 				case "unpublished":
-					$show = "$showConjunction `show` = 0 AND date <= '" . date('Y-m-d H:i:s') . "'";
+					$show = "$showConjunction `show` = 0 AND date <= '" . $now . "'";
 					$getUnpublished = true;
 					break;
 				case 'sticky':
@@ -391,7 +393,7 @@ class CMS {
 					}
 					$subrights = $article->subRights();
 					if ($getUnpublished //	override published
-									|| ($article->getShow() && (($incurrent || $article->categoryIsVisible()) || $subrights)) //	published in "visible" or managed category
+									|| ($article->getShow() && $article->getDateTime() <= $now && (($incurrent || $article->categoryIsVisible()) || $subrights)) //	published in "visible" or managed category
 									|| ($subrights & MANAGED_OBJECT_RIGHTS_VIEW) //	he is allowed to see unpublished articles in one of the article's categories
 					) {
 						$result[] = $item;
