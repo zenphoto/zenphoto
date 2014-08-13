@@ -793,13 +793,13 @@ echo $refresh;
 																	$pagelist[get_language_string($page['title'])] = $page['titlelink'];
 																}
 															}
-															printManagedObjects('pages', $pagelist, $album_alter_rights, $userobj, $id, gettext('user'), NULL);
 															$newslist = array();
 															$categories = $_zp_CMS->getAllCategories(false);
 															foreach ($categories as $category) {
 																$newslist[get_language_string($category['title'])] = $category['titlelink'];
 															}
 															printManagedObjects('news', $newslist, $album_alter_rights, $userobj, $id, gettext('user'), NULL);
+															printManagedObjects('pages', $pagelist, $album_alter_rights, $userobj, $id, gettext('user'), NULL);
 														}
 													}
 													?>

@@ -225,6 +225,8 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 						$themepage = 'pages';
 						$locked = !checkIfLocked($result);
 					}
+					if (!$result->isMyItem($result->manage_some_rights))
+						$locked = true;
 
 					if ($result->transient) {
 						if (is_AdminEditPage('newsarticle')) {
@@ -528,8 +530,10 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 																			 onkeyup="passwordStrength('');"
 																			 value="<?php echo $x; ?>" />
 																<br />
-																<label><input type="checkbox" name="disclose_password" id="disclose_password" onclick="passwordClear('');
-																					togglePassword('');"><?php echo gettext('Show password'); ?></label>
+																<label>
+																	<input type="checkbox" name="disclose_password" id="disclose_password" onclick="passwordClear('');
+																			togglePassword('');"><?php echo gettext('Show password'); ?>
+																</label>
 																<br />
 																<span class="password_field_">
 																	<span id="match"><?php echo gettext("(repeat)"); ?></span>
@@ -553,13 +557,13 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 														<label class="checkboxlabel">
 															<input type="radio" id="copy_object" name="copy_delete_object" value="copy"
 																		 onclick="$('#copyfield').show();
-																						 $('#deletemsg').hide();" />
+																				 $('#deletemsg').hide();" />
 																		 <?php echo gettext("Copy"); ?>
 														</label>
 														<label class="checkboxlabel">
 															<input type="radio" id="delete_object" name="copy_delete_object" value="delete"
 																		 onclick="deleteConfirm('delete_object', '', '<?php addslashes(printf(gettext('Are you sure you want to delete this %s?'), $deleteitem)); ?>');
-																						 $('#copyfield').hide();" />
+																				 $('#copyfield').hide();" />
 																		 <?php echo gettext('delete'); ?>
 														</label>
 														<br class="clearall" />
@@ -784,20 +788,6 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 											</td>
 										</tr>
 										<?php
-										if (!is_AdminEditPage("newscategory")) {
-											?>
-											<tr>
-												<td class="topalign-padding"><?php echo gettext("ExtraContent:"); ?></td>
-												<td class="middlecolumn">
-													<?php
-													print_language_string_list($result->getExtraContent('all'), 'extracontent', true, NULL, 'extracontent', '100%', 'zenpage_language_string_list', 10);
-													?>
-												</td>
-											</tr>
-											<?php
-										}
-
-
 										if (is_AdminEditPage("newsarticle")) {
 											$custom = zp_apply_filter('edit_article_custom_data', '', $result);
 										}
@@ -808,17 +798,6 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 											$custom = zp_apply_filter('edit_page_custom_data', '', $result);
 										}
 										echo $custom;
-
-										if (!is_AdminEditPage("newscategory")) {
-											?>
-											<tr>
-												<td class="topalign-nopadding"><?php echo gettext("Codeblocks:"); ?></td>
-												<td class="topalign-nopadding middlecolumn">
-													<?php printCodeblockEdit($result, 0); ?>
-												</td>
-											</tr>
-											<?php
-										}
 										?>
 									</table>
 									<span class="buttons">

@@ -769,7 +769,7 @@ class Gallery {
 		} else {
 			$albumid = '=' . $parentalbum->getID();
 			$obj = $parentalbum;
-			$viewUnpublished = (zp_loggedin() && $obj->albumSubRights() & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW));
+			$viewUnpublished = (zp_loggedin() && $obj->subRights() & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW));
 		}
 
 		if (($sortkey == '`sort_order`') || ($sortkey == 'RAND()')) { // manual sort is always ascending
@@ -813,6 +813,8 @@ class Gallery {
 		foreach ($results as $row) { // check for visible
 			$folder = $row['folder'];
 			$album = newAlbum($folder);
+			$subrights = $album->subrights();
+
 			switch (checkPublishDates($row)) {
 				case 1:
 					$album->setShow(0);
@@ -821,7 +823,11 @@ class Gallery {
 					$row['show'] = 0;
 			}
 
-			if ($mine || $row['show'] || (($list = $album->isMyItem(LIST_RIGHTS)) && is_null($album->getParent())) || (is_null($mine) && $list && $viewUnpublished)) {
+			if ($mine ||
+							($row['show'] || $viewUnpublished) // published or overridden by parameter
+							|| $subrights && is_null($album->getParent()) // is the user's managed album
+							|| $subrights && ($subrights & MANAGED_OBJECT_RIGHTS_VIEW ) //	managed subalbum and  user has unpublished rights
+			) {
 				$albums_ordered[] = $folder;
 			}
 		}

@@ -161,7 +161,7 @@ if ($_REQUEST['origin'] == 'upload') {
 
 			foreach ($_managed_folders as $key => $folder) {
 				$rightsalbum = newAlbum($folder);
-				$modified_rights = $rightsalbum->albumSubRights();
+				$modified_rights = $rightsalbum->subRights();
 				if ($uploadlimit <= 0) {
 					$modified_rights = $modified_rights & ~MANAGED_OBJECT_RIGHTS_UPLOAD;
 				}

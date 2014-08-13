@@ -21,7 +21,7 @@ class Article extends CMSItems {
 
 	var $manage_rights = MANAGE_ALL_NEWS_RIGHTS;
 	var $manage_some_rights = ZENPAGE_NEWS_RIGHTS;
-	var $view_rights = ALL_NEWS_RIGHTS;
+	var $access_rights = ALL_NEWS_RIGHTS;
 	var $categories = NULL;
 	var $index = NULL;
 
@@ -167,7 +167,7 @@ class Article extends CMSItems {
 	 * returns true if the article exists in any published category (or in no categories)
 	 */
 	function categoryIsVisible() {
-		if (zp_loggedin(ALL_NEWS_RIGHTS))
+		if (zp_loggedin(MANAGE_ALL_NEWS_RIGHTS))
 			return true;
 		global $_zp_CMS;
 		$categories = $this->getCategories(false);
@@ -207,6 +207,37 @@ class Article extends CMSItems {
 		return false;
 	}
 
+	function subRights() {
+		global $_zp_current_admin_obj;
+		if (!is_null($this->subrights)) {
+			return $this->subrights;
+		}
+		if (zp_loggedin($this->manage_rights)) {
+			$this->subrights = MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW;
+			return $this->subrights;
+		}
+		$this->subrights = 0;
+
+		$categories = $this->getCategories();
+		if (!empty($categories)) {
+			$objects = $_zp_current_admin_obj->getObjects();
+			$possible = array();
+			foreach ($objects as $object) {
+				if ($object['type'] == 'news') {
+					$possible[$object['data']] = $object;
+				}
+			}
+			if (!empty($possible)) {
+				foreach ($categories as $category) {
+					if (array_key_exists($category['titlelink'], $possible)) {
+						$this->subrights = $this->subRights() | $possible[$category['titlelink']]['edit'] | MANAGED_OBJECT_MEMBER;
+					}
+				}
+			}
+		}
+		return $this->subrights;
+	}
+
 	/**
 	 * Checks if user is news author
 	 * @param bit $action what the caller wants to do
@@ -219,24 +250,42 @@ class Article extends CMSItems {
 			return true;
 		}
 		if (zp_loggedin($action)) {
-			if (GALLERY_SECURITY != 'public' && $this->getShow() && $action == LIST_RIGHTS) {
-				return LIST_RIGHTS;
+			if (GALLERY_SECURITY == 'public' && $this->getShow() && $action == LIST_RIGHTS) {
+				return true;
 			}
 			if ($_zp_current_admin_obj->getUser() == $this->getAuthor()) {
 				return true; //	he is the author
-			}
-			if ($this->getShow() && $action == LIST_RIGHTS) {
-				return true;
 			}
 			$mycategories = $_zp_current_admin_obj->getObjects('news');
 			if (!empty($mycategories)) {
 				foreach ($this->getCategories() as $category) {
 					$cat = newCategory($category['titlelink']);
-					if ($cat->isMyItem(ZENPAGE_NEWS_RIGHTS)) { // only override item visibility if we "own" the category
+					if ($cat->isMyItem($action)) {
 						return true;
 					}
 				}
 			}
+		}
+		return false;
+	}
+
+	/**
+	 *
+	 * Checks if viewing of object is allowed
+	 * @param string $hint
+	 * @param string $show
+	 */
+	function checkAccess(&$hint = NULL, &$show = NULL) {
+		if (zp_loggedin(ALL_NEWS_RIGHTS))
+			return true;
+		$categories = $this->getCategories();
+		if (empty($categories)) { //	no protection on un-categorized news articles
+			return true;
+		}
+		foreach ($categories as $category) {
+			$catobj = newCategory($category['titlelink']);
+			if (!$catobj->isProtected() || $catobj->subRights())
+				return true;
 		}
 		return false;
 	}

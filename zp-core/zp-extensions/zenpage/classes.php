@@ -80,7 +80,16 @@ class CMS {
 	/*	 * ********************************* */
 
 	function visibleCategory($cat) {
-		return $this->categoryStructure[$cat['cat_id']]['show'];
+		if (zp_loggedin(MANAGE_ALL_NEWS_RIGHTS | VIEW_UNPUBLISHED_NEWS_RIGHTS))
+			return true;
+		$vis = $this->categoryStructure[$cat['cat_id']]['show'];
+		if (!$vis && zp_loggedin()) {
+			$catobj = newCategory($cat['titlelink']);
+			if ($catobj->subRights()) {
+				return true;
+			}
+		}
+		return $vis;
 	}
 
 	/**
@@ -105,15 +114,18 @@ class CMS {
 		}
 		if (is_null($published)) {
 			$published = !zp_loggedin();
-			$all = zp_loggedin(MANAGE_ALL_PAGES_RIGHTS);
+			$all = zp_loggedin(MANAGE_ALL_PAGES_RIGHTS | VIEW_UNPUBLISHED_PAGE_RIGHTS);
 		} else {
 			$all = !$published;
 		}
+		$published = $published && !zp_loggedin(ZENPAGE_PAGES_RIGHTS);
+		$now = date('Y-m-d H:i:s');
+
 		$gettop = '';
 		if ($published) {
 			if ($toplevel)
 				$gettop = " AND parentid IS NULL";
-			$show = " WHERE `show` = 1 AND date <= '" . date('Y-m-d H:i:s') . "'" . $gettop;
+			$show = " WHERE `show` = 1 AND date <= '" . $now . "'" . $gettop;
 		} else {
 			if ($toplevel)
 				$gettop = " WHERE parentid IS NULL";
@@ -158,20 +170,32 @@ class CMS {
 				$sortdir = '';
 				break;
 		}
+
+
+
+
 		$all_pages = array(); // Disabled cache var for now because it does not return un-publishded and published if logged on index.php somehow if logged in.
 		$result = query('SELECT * FROM ' . prefix('pages') . $show . ' ORDER by `' . $sortorder . '`' . $sortdir);
 		if ($result) {
 			while ($row = db_fetch_assoc($result)) {
-				if ($all || $row['show']) {
+				if ($all || ($row['show'] && $row['date'] <= $now)) {
 					$all_pages[] = $row;
 				} else if ($_zp_loggedin) {
 					$page = newPage($row['titlelink']);
-					if ($page->isMyItem(LIST_RIGHTS)) {
+					if ($page->subRights()) {
 						$all_pages[] = $row;
-						if ($number && count($result) >= $number) {
-							break;
+					} else {
+						$parentid = $page->getParentID();
+						if ($parentid) {
+							$parent = getItemByID('pages', $parentid);
+							if ($parent->subRights() & MANAGED_OBJECT_RIGHTS_VIEW) {
+								$all_pages[] = $row;
+							}
 						}
 					}
+				}
+				if ($number && count($result) >= $number) {
+					break;
 				}
 			}
 			db_free_result($result);
@@ -205,12 +229,14 @@ class CMS {
 	function getArticles($articles_per_page = 0, $published = NULL, $ignorepagination = false, $sortorder = NULL, $sortdirection = NULL, $sticky = NULL, $category = NULL) {
 		global $_zp_current_category, $_zp_post_date, $_zp_newsCache;
 		if (empty($published)) {
-			if (zp_loggedin() || $category && $category->isMyItem(ZENPAGE_NEWS_RIGHTS)) {
+			if (zp_loggedin(ZENPAGE_NEWS_RIGHTS | VIEW_UNPUBLISHED_NEWS_RIGHTS)) {
 				$published = "all";
 			} else {
 				$published = "published";
 			}
 		}
+		$now = date('Y-m-d H:i:s');
+
 		if ($category) {
 			$sortObj = $category;
 		} else {
@@ -233,10 +259,11 @@ class CMS {
 		if (isset($_zp_newsCache[$newsCacheIndex])) {
 			$result = $_zp_newsCache[$newsCacheIndex];
 		} else {
-			$show = $currentcategory = false;
+			$show = $currentCat = false;
 			if ($category) {
+
 				if (is_object($_zp_current_category)) {
-					$currentcategory = $_zp_current_category->getTitlelink();
+					$currentCat = $_zp_current_category->getTitlelink();
 				}
 				$showConjunction = ' AND ';
 				// new code to get nested cats
@@ -296,15 +323,15 @@ class CMS {
 			/** get all articles * */
 			switch ($published) {
 				case "published":
-					$show = "$showConjunction `show` = 1 AND date <= '" . date('Y-m-d H:i:s') . "'";
+					$show = "$showConjunction `show` = 1 AND date <= '" . $now . "'";
 					$getUnpublished = false;
 					break;
 				case "published-unpublished":
-					$show = "$showConjunction `show` = 1 AND date <= '" . date('Y-m-d H:i:s') . "'";
+					$show = "$showConjunction `show` = 1 AND date <= '" . $now . "'";
 					$getUnpublished = true;
 					break;
 				case "unpublished":
-					$show = "$showConjunction `show` = 0 AND date <= '" . date('Y-m-d H:i:s') . "'";
+					$show = "$showConjunction `show` = 0 AND date <= '" . $now . "'";
 					$getUnpublished = true;
 					break;
 				case 'sticky':
@@ -312,7 +339,7 @@ class CMS {
 					$getUnpublished = true;
 					break;
 				case "all":
-					$getUnpublished = true;
+					$getUnpublished = zp_loggedin(MANAGE_ALL_NEWS_RIGHTS);
 					$show = false;
 					break;
 			}
@@ -353,12 +380,22 @@ class CMS {
 			} else {
 				$sql = "SELECT date, title, titlelink, sticky FROM " . prefix('news') . $show . $datesearch . " " . $order;
 			}
+
 			$resource = query($sql);
 			$result = array();
 			if ($resource) {
+				if (zp_loggedin(VIEW_UNPUBLISHED_NEWS_RIGHTS))
+					$getUnpublished = true;
 				while ($item = db_fetch_assoc($resource)) {
 					$article = newArticle($item['titlelink']);
-					if ($getUnpublished || $article->isMyItem(ZENPAGE_NEWS_RIGHTS) || $currentcategory && ($article->inNewsCategory($currentcategory)) || $article->categoryIsVisible()) {
+					if ($incurrent = $currentCat) {
+						$incurrent = $article->inNewsCategory($currentCat);
+					}
+					$subrights = $article->subRights();
+					if ($getUnpublished //	override published
+									|| ($article->getShow() && $article->getDateTime() <= $now && (($incurrent || $article->categoryIsVisible()) || $subrights)) //	published in "visible" or managed category
+									|| ($subrights & MANAGED_OBJECT_RIGHTS_VIEW) //	he is allowed to see unpublished articles in one of the article's categories
+					) {
 						$result[] = $item;
 					}
 				}
@@ -567,10 +604,11 @@ class CMS {
 				$sortorder = "sort_order";
 				break;
 		}
+		$all = zp_loggedin(MANAGE_ALL_NEWS_RIGHTS);
 		if ($visible) {
 			foreach ($structure as $key => $cat) {
 				$catobj = newCategory($cat['titlelink']);
-				if ($catobj->getShow() || $catobj->isMyItem(LIST_RIGHTS)) {
+				if ($all || $catobj->getShow() || $catobj->subRights()) {
 					$structure[$key]['show'] = 1;
 				} else {
 					unset($structure[$key]);
@@ -697,9 +735,12 @@ class CMSRoot extends ThemeObject {
  */
 class CMSItems extends CMSRoot {
 
+	protected $subrights = NULL; //	cache for subrights
+
 	/**
 	 * Class instantiator
 	 */
+
 	function __construct() {
 		// no action required
 	}

@@ -82,8 +82,15 @@ printAdminHeader('options', '');
 								break;
 						}
 					}
-					if (isset($owners[ZENFOLDER][PLUGIN_FOLDER]))
-						$owners[ZENFOLDER . '/' . PLUGIN_FOLDER] = $owners['zp-core']['zp-extensions'];
+
+					if (isset($owners[USER_PLUGIN_FOLDER])) {
+						$owners[USER_PLUGIN_FOLDER] = array_unique($owners[USER_PLUGIN_FOLDER]);
+						natcasesort($owners[USER_PLUGIN_FOLDER]);
+					}
+					if (isset($owners[ZENFOLDER][PLUGIN_FOLDER])) {
+						$owners[ZENFOLDER . '/' . PLUGIN_FOLDER] = array_unique($owners['zp-core']['zp-extensions']);
+						natcasesort($owners[ZENFOLDER . '/' . PLUGIN_FOLDER]);
+					}
 					unset($owners[ZENFOLDER]);
 
 					if (isset($owners[THEMEFOLDER])) {
@@ -94,6 +101,7 @@ printAdminHeader('options', '');
 							}
 						}
 						$owners[THEMEFOLDER] = array_unique($owners[THEMEFOLDER]);
+						natcasesort($owners[THEMEFOLDER]);
 					}
 					if (empty($owners)) {
 						echo gettext('No option owners have been located.');

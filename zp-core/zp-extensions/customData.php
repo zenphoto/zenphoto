@@ -6,11 +6,12 @@
  * This is because the field is <b>shared</b> by all users so conflicts in use
  * are unavoidable.
  *
- * Instead create a pluhin based on the <var>customFieldExtender</var> plugin
+ * Instead create a plugin based on the <var>fieldExtender</var> class
  * which allows you to extend the database with fields unique to your application.
+ * examples are the <var>optionalObjectFields</var> and <var>customFieldExtender</var> plugins.
  *
  * <b>Note:</b> You must enable the option for each object for which you wish to expose the <var>custom_data</var>
- * field.
+ * field. If you an option is not enabled the customdata field for that object will be removed.
  *
  *
  * @author Stephen Billard (sbillard)
@@ -28,28 +29,77 @@ $option_interface = 'customData';
 
 if (getOption('customDataAlbums')) {
 	zp_register_filter("edit_album_custom_data", "customData::mediaItemEdit");
+	zp_register_filter("searchable_fields", "customData::searches");
+	zp_register_filter("save_album_custom_data", "customData::custom_data");
 }
 if (getOption('customDataImages')) {
 	zp_register_filter("edit_image_custom_data", "customData::mediaItemEdit");
+	zp_register_filter("searchable_fields", "customData::searches");
+	zp_register_filter("save_image_custom_data", "customData::custom_data");
 }
 if (getOption('customDataNews')) {
 	zp_register_filter("edit_article_custom_data", "customData::cmsItemEdit");
+	zp_register_filter("searchable_fields", "customData::searches");
+	zp_register_filter("save_article_custom_data", "customData::custom_data");
 }
 if (getOption('customDataCategories')) {
 	zp_register_filter("edit_category_custom_data", "customData::cmsItemEdit");
+	zp_register_filter("searchable_fields", "customData::searches");
+	zp_register_filter("save_category_custom_data", "customData::custom_data");
 }
 if (getOption('customDatapages')) {
 	zp_register_filter("edit_page_custom_data", "customData::cmsItemEdit");
+	zp_register_filter("searchable_fields", "customData::searches");
+	zp_register_filter("save_page_custom_data", "customData::custom_data");
 }
 
 class customData {
 
 	function __construct() {
-		setOptionDefault('customDataAlbums', 1);
-		setOptionDefault('customDataImages', 1);
-		setOptionDefault('customDataNews', 1);
-		setOptionDefault('customDataPages', 1);
-		setOptionDefault('customDataCategories', 1);
+
+		if (OFFSET_PATH == 2) {
+			$rslt = query('SELECT `custom_data` FROM ' . prefix('albums') . ' LIMIT 1', false);
+			$rslt = (int) empty($rslt);
+			setOptionDefault('customDataAlbums', $rslt);
+			$rslt = query('SELECT `custom_data` FROM ' . prefix('images') . ' LIMIT 1', false);
+			$rslt = (int) empty($rslt);
+			setOptionDefault('customDataImages', $rslt);
+			$rslt = query('SELECT `custom_data` FROM ' . prefix('news') . ' LIMIT 1', false);
+			$rslt = (int) empty($rslt);
+			setOptionDefault('customDataNews', $rslt);
+			$rslt = query('SELECT `custom_data` FROM ' . prefix('pages') . ' LIMIT 1', false);
+			$rslt = (int) empty($rslt);
+			setOptionDefault('customDataPages', $rslt);
+			$rslt = query('SELECT `custom_data` FROM ' . prefix('news_categories') . ' LIMIT 1', false);
+			$rslt = (int) empty($rslt);
+			setOptionDefault('customDataCategories', $rslt);
+
+			if (getOption('customDataAlbums')) {
+				query('ALTER TABLE ' . prefix('albums') . ' ADD COLUMN `custom_data` TEXT', false);
+			} else {
+				query('ALTER TABLE ' . prefix('albums') . ' DROP `custom_data`', false);
+			}
+			if (getOption('customDataImages')) {
+				query('ALTER TABLE ' . prefix('images') . ' ADD COLUMN `custom_data` TEXT', false);
+			} else {
+				query('ALTER TABLE ' . prefix('images') . ' DROP `custom_data`', false);
+			}
+			if (getOption('customDataNews')) {
+				query('ALTER TABLE ' . prefix('news') . ' ADD COLUMN `custom_data` TEXT', false);
+			} else {
+				query('ALTER TABLE ' . prefix('news') . ' DROP `custom_data`', false);
+			}
+			if (getOption('customDataPages')) {
+				query('ALTER TABLE ' . prefix('pages') . ' ADD COLUMN `custom_data` TEXT', false);
+			} else {
+				query('ALTER TABLE ' . prefix('pages') . ' DROP `custom_data`', false);
+			}
+			if (getOption('customDataCategories')) {
+				query('ALTER TABLE ' . prefix('news_categories') . ' ADD COLUMN `custom_data` TEXT', false);
+			} else {
+				query('ALTER TABLE ' . prefix('news_categories') . ' DROP `custom_data`', false);
+			}
+		}
 	}
 
 	function getOptionsSupported() {
@@ -96,6 +146,23 @@ class customData {
 		$html .= ob_get_contents();
 		ob_end_clean();
 		return $html;
+	}
+
+	static function searches($list) {
+		$list['custom_data'] = gettext('Custom data');
+		return $list;
+	}
+
+	static function custom_data($custom, $i, $obj = NULL) {
+		if (is_object($i)) {
+			$obj = $i;
+			$i = NULL;
+		} else {
+			$i = $i . '-';
+		}
+		$custom = process_language_string_save($i . "custom_data", 1);
+		$obj->setCustomData($custom);
+		return $custom;
 	}
 
 }

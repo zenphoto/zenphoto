@@ -15,7 +15,7 @@ class Page extends CMSItems {
 
 	var $manage_rights = MANAGE_ALL_PAGES_RIGHTS;
 	var $manage_some_rights = ZENPAGE_PAGES_RIGHTS;
-	var $view_rights = ALL_PAGES_RIGHTS;
+	var $access_rights = ALL_PAGES_RIGHTS;
 
 	function __construct($titlelink, $allowCreate = NULL) {
 		if (is_array($titlelink)) {
@@ -257,6 +257,29 @@ class Page extends CMSItems {
 		return $this->checkforGuest() != 'zp_public_access';
 	}
 
+	function subRights() {
+		global $_zp_current_admin_obj;
+		if (!is_null($this->subrights)) {
+			return $this->subrights;
+		}
+		if (zp_loggedin($this->manage_rights)) {
+			$this->subrights = MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW;
+			return $this->subrights;
+		}
+		$this->subrights = 0;
+		$objects = $_zp_current_admin_obj->getObjects();
+		$me = $this->getTitlelink();
+		foreach ($objects as $object) {
+			if ($object['type'] == $this->table) {
+				if ($object['data'] == $me) {
+					$this->subrights = $object['edit'] | MANAGED_OBJECT_MEMBER;
+					break;
+				}
+			}
+		}
+		return $this->subrights;
+	}
+
 	/**
 	 * Checks if user is author of page
 	 * @param bit $action what the caller wants to do
@@ -269,15 +292,19 @@ class Page extends CMSItems {
 			return true;
 		}
 		if (zp_loggedin($action)) {
-			if (GALLERY_SECURITY != 'public' && $this->getShow() && $action == LIST_RIGHTS) {
+			if (GALLERY_SECURITY == 'public' && $this->getShow() && $action == LIST_RIGHTS) {
 				return LIST_RIGHTS;
 			}
 			if ($_zp_current_admin_obj->getUser() == $this->getAuthor()) {
 				return true;
 			}
-			$mypages = $_zp_current_admin_obj->getObjects('pages');
-			if (!empty($mypages)) {
-				if (array_search($this->getTitlelink(), $mypages) !== false) {
+			$subRights = $this->subRights();
+			if ($subRights) {
+				$rights = LIST_RIGHTS;
+				if ($subRights & (MANAGED_OBJECT_RIGHTS_EDIT)) {
+					$rights = $rights | ZENPAGE_PAGES_RIGHTS;
+				}
+				if ($action & $rights) {
 					return true;
 				}
 			}

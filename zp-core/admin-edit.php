@@ -280,15 +280,6 @@ if (isset($_GET['action'])) {
 											unset($single);
 											$image->remove();
 										} else {
-											if ($thumbnail = sanitize($_POST['album_thumb-' . $i])) { //selected as an album thumb
-												$talbum = newAlbum($thumbnail);
-												if ($image->imagefolder == $thumbnail) {
-													$talbum->setThumb($image->filename);
-												} else {
-													$talbum->setThumb('/' . $image->imagefolder . '/' . $image->filename);
-												}
-												$talbum->save();
-											}
 											if (isset($_POST[$i . '-reset_rating'])) {
 												$image->set('total_value', 0);
 												$image->set('total_votes', 0);
@@ -298,12 +289,7 @@ if (isset($_GET['action'])) {
 											$image->setExpireDate(sanitize($_POST['expirationdate-' . $i]));
 											$image->setTitle(process_language_string_save("$i-title", 2));
 											$image->setDesc(process_language_string_save("$i-desc", EDITOR_SANITIZE_LEVEL));
-											$image->setLocation(process_language_string_save("$i-location", 3));
-											$image->setCity(process_language_string_save("$i-city", 3));
-											$image->setState(process_language_string_save("$i-state", 3));
-											$image->setCountry(process_language_string_save("$i-country", 3));
-											$image->setCredit(process_language_string_save("$i-credit", 1));
-											$image->setCopyright(process_language_string_save("$i-copyright", 1));
+
 											if (isset($_POST[$i . '-oldrotation']) && isset($_POST[$i . '-rotation'])) {
 												$oldrotation = (int) $_POST[$i . '-oldrotation'];
 												$rotation = (int) $_POST[$i . '-rotation'];
@@ -314,45 +300,17 @@ if (isset($_GET['action'])) {
 													Gallery::clearCache(SERVERCACHE . '/' . $album->name);
 												}
 											}
-											$tagsprefix = 'tags_' . $i . '-';
-											$tags = array();
-											$l = strlen($tagsprefix);
-											foreach ($_POST as $key => $value) {
-												if (substr($key, 0, $l) == $tagsprefix) {
-													if ($value) {
-														$tags[] = sanitize(postIndexDecode(substr($key, $l)));
-													}
-												}
-											}
-											$tags = array_unique($tags);
-											$image->setTags($tags);
-
-											$image->setDateTime(sanitize($_POST["$i-date"]));
 											$image->setShow(isset($_POST["$i-Visible"]));
 											$image->setCommentsAllowed(isset($_POST["$i-allowcomments"]));
 											if (isset($_POST["reset_hitcounter$i"])) {
 												$image->set('hitcounter', 0);
 											}
-											$wmt = sanitize($_POST["$i-image_watermark"], 3);
-											$image->setWatermark($wmt);
-											$wmuse = 0;
-											if (isset($_POST['wm_image-' . $i]))
-												$wmuse = $wmuse | WATERMARK_IMAGE;
-											if (isset($_POST['wm_thumb-' . $i]))
-												$wmuse = $wmuse | WATERMARK_THUMB;
-											if (isset($_POST['wm_full-' . $i]))
-												$wmuse = $wmuse | WATERMARK_FULL;
-											$image->setWMUse($wmuse);
-											if (zp_loggedin(CODEBLOCK_RIGHTS)) {
-												$image->setCodeblock(processCodeblockSave($i));
-											}
-											if (isset($_POST[$i . '-owner']))
-												$image->setOwner(sanitize($_POST[$i . '-owner']));
 											$image->set('filesize', filesize($image->localpath));
-
-											$custom = process_language_string_save("$i-custom_data", 1);
-											$image->setCustomData(zp_apply_filter('save_image_custom_data', $custom, $i));
+											zp_apply_filter('save_image_custom_data', NULL, $i, $image);
 											zp_apply_filter('save_image_utilities_data', $image, $i);
+
+											echo "<br/>back to admin";
+
 											$image->save();
 
 // Process move/copy/rename
@@ -708,7 +666,7 @@ echo "\n</head>";
 				} else {
 					$subalbums = getNestedAlbumList($album, $subalbum_nesting);
 					$allimages = $album->getImages(0, 0, $oldalbumimagesort, $direction);
-					if (!($album->albumSubRights() & MANAGED_OBJECT_RIGHTS_EDIT)) {
+					if (!($album->subRights() & MANAGED_OBJECT_RIGHTS_EDIT)) {
 						$allimages = array();
 						$requestor = $_zp_current_admin_obj->getUser();
 						$albumowner = $album->getOwner();
@@ -794,7 +752,7 @@ echo "\n</head>";
 					<!-- Subalbum list goes here -->
 					<?php
 					if (count($subalbums) > 0) {
-						$enableEdit = $album->albumSubRights() & MANAGED_OBJECT_RIGHTS_EDIT;
+						$enableEdit = $album->subRights() & MANAGED_OBJECT_RIGHTS_EDIT;
 						?>
 						<div id="tab_subalbuminfo" class="tabbox">
 							<?php
@@ -943,6 +901,7 @@ echo "\n</head>";
 					<!-- Images List -->
 					<div id="tab_imageinfo" class="tabbox">
 						<?php
+						global $albumHeritage;
 						$albumHeritage = array();
 						$t = explode('/', $album->name);
 						While (!empty($t)) {
@@ -951,7 +910,11 @@ echo "\n</head>";
 							$albumHeritage[' ' . str_repeat('» ', count($t)) . basename($name)] = $name;
 						}
 						consolidatedEditMessages('imageinfo');
-						if (!$singleimage) {
+						if ($singleimage) {
+							if (isset($_GET['subpage'])) {
+								$parent .= '&album=' . html_encode(pathurlencode($album->name)) . '&tab=imageinfo&subpage=' . sanitize($_GET['subpage']);
+							}
+						} else {
 							$numsteps = ceil(max($allimagecount, $imagesTab_imageCount) / ADMIN_IMAGES_STEP);
 							if ($numsteps) {
 								$steps = array();
@@ -1099,7 +1062,7 @@ echo "\n</head>";
 															<p><?php echo gettext("<strong>Dimensions:</strong>"); ?><br /><?php echo $image->getWidth(); ?> x  <?php echo $image->getHeight() . ' ' . gettext('px'); ?></p>
 															<p><?php echo gettext("<strong>Size:</strong>"); ?><br /><?php echo byteConvert($image->getImageFootprint()); ?></p>
 														</td>
-														<td align = "left" valign = "top"><?php echo gettext("Title:");
+														<td align="left" valign="top" width="25%"><?php echo gettext("Title:");
 																?></td>
 														<td><?php print_language_string_list($image->getTitle('all'), $currentimage . '-title', false, NULL, '', '100%'); ?>
 														<td style="padding-left: 1em; text-align: left; border-bottom:none;" rowspan="14" valign="top">
@@ -1366,146 +1329,47 @@ echo "\n</head>";
 
 													</tr>
 													<tr>
-														<td align="left" valign="top"><?php echo gettext("Owner:"); ?></td>
-														<td style="width:100%;">
-															<?php
-															if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
-																?>
-																<select name="<?php echo $currentimage; ?>-owner">
-																	<?php echo admin_album_list($image->getOwner()); ?>
-																</select>
-																<?php
-															} else {
-																echo $image->getOwner();
-															}
-															?>
-														</td>
-
-													</tr>
-
-													<tr>
 														<td align="left" valign="top"><?php echo gettext("Description:"); ?></td>
 														<td><?php print_language_string_list($image->getDesc('all'), $currentimage . '-desc', true, NULL, 'texteditor', '100%'); ?></td>
 													</tr>
-
 													<?php
-													if ($album->albumSubRights() & MANAGED_OBJECT_RIGHTS_EDIT) {
+													if ($image->get('hasMetadata')) {
 														?>
 														<tr>
-															<td align="left" valign="top"><span class="nowrap"><?php echo gettext("Set as thumbnail for:"); ?></span></td>
+															<td valign="top"><?php echo gettext("Metadata:"); ?></td>
 															<td>
-																<select name="album_thumb-<?php echo $currentimage; ?>" >
-																	<option value=""></option>
-																	<?php generateListFromArray(array(), $albumHeritage, false, true); ?>
-																</select>
+																<?php
+																$data = '';
+																$exif = $image->getMetaData();
+																if (false !== $exif) {
+																	foreach ($exif as $field => $value) {
+																		if (!empty($value)) {
+																			$display = $_zp_exifvars[$field][3];
+																			if ($display) {
+																				$label = $_zp_exifvars[$field][2];
+																				$data .= "<tr><td class=\"medtadata_tag\">$label: </td> <td>" . html_encode($value) . "</td></tr>\n";
+																			}
+																		}
+																	}
+																}
+																if (empty($data)) {
+																	echo gettext('None selected for display');
+																} else {
+																	?>
+																	<div class="metadata_container">
+																		<table class="metadata_table" >
+																			<?php echo $data; ?>
+																		</table>
+																	</div>
+																	<?php
+																}
+																?>
 															</td>
 														</tr>
 														<?php
 													}
-													?>
-
-													<tr align="left" valign="top">
-														<td valign="top"><?php echo gettext("Date:"); ?></td>
-														<td>
-															<script type="text/javascript">
-																// <!-- <![CDATA[
-																$(function() {
-																	$("#datepicker_<?php echo $currentimage; ?>").datepicker({
-																		dateFormat: 'yy-mm-dd',
-																		showOn: 'button',
-																		buttonImage: 'images/calendar.png',
-																		buttonText: '<?php echo gettext('calendar'); ?>',
-																		buttonImageOnly: true
-																	});
-																});
-																// ]]> -->
-															</script>
-															<input type="text" id="datepicker_<?php echo $currentimage; ?>" size="20" name="<?php echo $currentimage; ?>-date"
-																		 value="<?php
-																		 $d = $image->getDateTime();
-																		 if ($d != '0000-00-00 00:00:00') {
-																			 echo $d;
-																		 }
-																		 ?>" />
-														</td>
-													</tr>
-
-													<?php
-													$current = $image->getWatermark();
-													?>
-													<tr>
-														<td align="left" valign="top" width="150"><?php echo gettext("Image watermark:"); ?> </td>
-														<td>
-															<select id="image_watermark-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-image_watermark" onclick="toggleWMUse(<?php echo $currentimage; ?>);">
-																<option value="<?php echo NO_WATERMARK; ?>" <?php if ($current == NO_WATERMARK) echo ' selected="selected"' ?> style="background-color:LightGray"><?php echo gettext('*no watermark'); ?></option>
-																<option value="" <?php if (empty($current)) echo ' selected="selected"' ?> style="background-color:LightGray"><?php echo gettext('*default'); ?></option>
-																<?php
-																$watermarks = getWatermarks();
-																generateListFromArray(array($current), $watermarks, false, false);
-																?>
-															</select>
-															<?php
-															if ($current == '')
-																$displaystyle = 'none';
-															else
-																$displaystyle = 'inline';
-															?>
-															<span id="WMUSE_<?php echo $currentimage; ?>" style="display:<?php echo $displaystyle; ?>">
-																<?php $wmuse = $image->getWMUse(); ?>
-																<label><input type="checkbox" value="1" id="wm_image-<?php echo $currentimage; ?>" name="wm_image-<?php echo $currentimage; ?>" <?php if ($wmuse & WATERMARK_IMAGE) echo 'checked="checked"'; ?> /><?php echo gettext('image'); ?></label>
-																<label><input type="checkbox" value="1" id="wm_thumb-<?php echo $currentimage; ?>" name="wm_thumb-<?php echo $currentimage; ?>" <?php if ($wmuse & WATERMARK_THUMB) echo 'checked="checked"'; ?> /><?php echo gettext('thumb'); ?></label>
-																<label><input type="checkbox" value="1" id="wm_full-<?php echo $currentimage; ?>" name="wm_full-<?php echo $currentimage; ?>" <?php if ($wmuse & WATERMARK_FULL) echo 'checked="checked"'; ?> /><?php echo gettext('full image'); ?></label>
-															</span>
-														</td>
-													</tr>
-													<?php
-													echo zp_apply_filter('edit_image_custom_data', '', $image, $currentimage);
 													if ($singleimage) {
-														?>
-														<tr>
-															<td valign="top"><?php echo gettext("Tags:"); ?></td>
-															<td>
-																<div class="box-edit-unpadded">
-																	<?php tagSelector($image, 'tags_' . $currentimage . '-', false, $tagsort, true, 1); ?>
-																</div>
-															</td>
-														</tr>
-														<tr>
-															<td valign="top"><?php echo gettext("Location:"); ?></td>
-															<td><?php print_language_string_list($image->getLocation('all'), $currentimage . '-location', false, NULL, '', '100%'); ?>
-															</td>
-														</tr>
-
-														<tr>
-															<td valign="top"><?php echo gettext("City:"); ?></td>
-															<td><?php print_language_string_list($image->getCity('all'), $currentimage . '-city', false, NULL, '', '100%'); ?>
-															</td>
-														</tr>
-
-														<tr>
-															<td valign="top"><?php echo gettext("State:"); ?></td>
-															<td><?php print_language_string_list($image->getState('all'), $currentimage . '-state', false, NULL, '', '100%'); ?>
-															</td>
-														</tr>
-
-														<tr>
-															<td valign="top"><?php echo gettext("Country:"); ?></td>
-															<td><?php print_language_string_list($image->getCountry('all'), $currentimage . '-country', false, NULL, '', '100%'); ?>
-															</td>
-														</tr>
-
-														<tr>
-															<td valign="top"><?php echo gettext("Credit:"); ?></td>
-															<td><?php print_language_string_list($image->getCredit('all'), $currentimage . '-credit', false, NULL, '', '100%'); ?>
-															</td>
-														</tr>
-
-														<tr>
-															<td valign="top"><?php echo gettext("Copyright:"); ?></td>
-															<td><?php print_language_string_list($image->getCopyright('all'), $currentimage . '-copyright', false, NULL, '', '100%'); ?>
-															</td>
-														</tr>
-														<?php
+														echo zp_apply_filter('edit_image_custom_data', '', $image, $currentimage);
 													} else {
 														?>
 														<tr>
@@ -1521,55 +1385,6 @@ echo "\n</head>";
 																?>
 															</td>
 														</tr>
-														<?php
-													}
-													if ($singleimage) {
-														if ($image->get('hasMetadata')) {
-															?>
-															<tr>
-																<td valign="top"><?php echo gettext("Metadata:"); ?></td>
-																<td>
-																	<?php
-																	$data = '';
-																	$exif = $image->getMetaData();
-																	if (false !== $exif) {
-																		foreach ($exif as $field => $value) {
-																			if (!empty($value)) {
-																				$display = $_zp_exifvars[$field][3];
-																				if ($display) {
-																					$label = $_zp_exifvars[$field][2];
-																					$data .= "<tr><td class=\"medtadata_tag\">$label: </td> <td>" . html_encode($value) . "</td></tr>\n";
-																				}
-																			}
-																		}
-																	}
-																	if (empty($data)) {
-																		echo gettext('None selected for display');
-																	} else {
-																		?>
-																		<div class="metadata_container">
-																			<table class="metadata_table" >
-																				<?php echo $data; ?>
-																			</table>
-																		</div>
-																		<?php
-																	}
-																	?>
-																</td>
-															</tr>
-															<?php
-														}
-														?>
-														<tr valign="top">
-															<td class="topalign-nopadding"><br /><?php echo gettext("Codeblocks:"); ?></td>
-															<td>
-																<br />
-																<?php printCodeblockEdit($image, $currentimage); ?>
-															</td>
-														</tr>
-														<?php
-													} else {
-														?>
 														<tr>
 															<td colspan="2" style="border-bottom:none;">
 																<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit&tab=imageinfo&album=' . $album->name . '&singleimage=' . $image->filename . '&subpage=' . $pagenum; ?>"><img src="images/options.png" /> <?php echo gettext('Edit all image data'); ?></a>

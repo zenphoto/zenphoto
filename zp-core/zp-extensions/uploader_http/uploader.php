@@ -115,7 +115,7 @@ if (isset($_POST['processed'])) {
 				}
 			}
 			if ($error == UPLOAD_ERR_OK && ($filecount || isset($_POST['newalbum']))) {
-				if ($album->albumSubRights() & MANAGED_OBJECT_RIGHTS_EDIT) {
+				if ($album->subRights() & MANAGED_OBJECT_RIGHTS_EDIT) {
 //	he has edit rights, allow new album creation
 					header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit&album=' . pathurlencode($folder) . '&uploaded&subpage=1&tab=imageinfo&albumimagesort=id_desc');
 				} else {

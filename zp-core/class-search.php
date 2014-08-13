@@ -109,7 +109,6 @@ class SearchEngine {
 		$this->search_structure['tags_exact'] = ''; //	internal use only field
 		$this->search_structure['filename'] = gettext('File/Folder name');
 		$this->search_structure['date'] = gettext('Date');
-		$this->search_structure['custom_data'] = gettext('Custom data');
 		$this->search_structure['location'] = gettext('Location/Place');
 		$this->search_structure['city'] = gettext('City');
 		$this->search_structure['state'] = gettext('State');
@@ -120,7 +119,6 @@ class SearchEngine {
 		if (extensionEnabled('zenpage') && !$dynamic_album) {
 //zenpage fields
 			$this->search_structure['content'] = gettext('Content');
-			$this->search_structure['extracontent'] = gettext('ExtraContent');
 			$this->search_structure['author'] = gettext('Author');
 			$this->search_structure['lastchangeauthor'] = gettext('Last Editor');
 			$this->search_structure['titlelink'] = gettext('TitleLink');
@@ -1413,7 +1411,7 @@ class SearchEngine {
 							if (file_exists(ALBUM_FOLDER_SERVERPATH . internalToFilesystem($albumname))) {
 								$album = newAlbum($albumname);
 								$uralbum = getUrAlbum($album);
-								$viewUnpublished = ($this->search_unpublished || zp_loggedin() && $uralbum->albumSubRights() & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW));
+								$viewUnpublished = ($this->search_unpublished || zp_loggedin() && $uralbum->subRights() & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW));
 								switch (checkPublishDates($row)) {
 									case 1:
 										$album->setShow(0);
@@ -1574,7 +1572,7 @@ class SearchEngine {
 							$allow = false;
 							$album = newAlbum($albumname);
 							$uralbum = getUrAlbum($album);
-							$viewUnpublished = ($this->search_unpublished || zp_loggedin() && $uralbum->albumSubRights() & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW));
+							$viewUnpublished = ($this->search_unpublished || zp_loggedin() && $uralbum->subRights() & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW));
 							switch (checkPublishDates($row)) {
 								case 1:
 									$imageobj = newImage($this, $row['filename']);

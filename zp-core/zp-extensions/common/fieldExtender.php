@@ -20,10 +20,14 @@
  *
  * "table" is the database table name (without prefix) of the object to which the field is to be added.
  * "name" is the MySQL field name for the new field
- * "desc" is the "display name" of the field
- * "type" is the database field type: int, varchar, tinytext, text, mediumtext, and longtext.
+ * "desc" is the "display name" of the field. If the value is NULL no edit field will show on the admin tab.
+ * "type" is the database field type: int, varchar, tinytext, text, mediumtext, etc.
  * "size" is the byte size of the varchar or int field (it is not needed for other types)
- * "edit" is is how the content is show on the edit tab. Values: multilingual, normal, function:<i>editor function</i>
+ * "edit" is is how the content is show on the edit tab. Values: multilingual, normal, function. If the value is NULL
+ * there will be direct save of the result to the object
+ * "function" is the function to call if the edit type is a function
+ * "attribute" is the attribute(s) of the field, e.g. NOT NULL, UNSIGNED, etc.
+ * "default" is the database "default" value
  *
  * The <i>editor function</i> will be passed three parameters: the object, the $_POST instance, the field array,
  * and the action: "edit" or "save". The function must return an array of the the processed data to be displayed and a format indicator or  the data to be saved.
@@ -60,20 +64,26 @@ class fieldExtender {
 		$current = $fields = array();
 		if (extensionEnabled($me)) { //need to update the database tables.
 			foreach ($newfields as $newfield) {
-				$current[$newfield['table']][$newfield['name']] = true;
-				unset($previous[$newfield['table']][$newfield['name']]);
-				switch (strtolower($newfield['type'])) {
-					default:
-						$dbType = strtoupper($newfield['type']);
-						break;
-					case 'int':
-					case 'varchar':
-						$dbType = strtoupper($newfield['type']) . '(' . min(255, $newfield['size']) . ')';
-						break;
+				if (!is_null($newfield['type'])) {
+					$current[$newfield['table']][$newfield['name']] = true;
+					unset($previous[$newfield['table']][$newfield['name']]);
+					switch (strtolower($newfield['type'])) {
+						default:
+							$dbType = strtoupper($newfield['type']);
+							break;
+						case 'int':
+						case 'varchar':
+							$dbType = strtoupper($newfield['type']) . '(' . min(255, $newfield['size']) . ')';
+							break;
+					}
+					$sql = 'ALTER TABLE ' . prefix($newfield['table']) . ' ADD COLUMN `' . $newfield['name'] . '` ' . $dbType;
+					if (isset($newfield['attribute']))
+						$sql.= ' ' . $newfield['attribute'];
+					if (isset($newfield['default']))
+						$sql.= ' DEFAULT ' . $newfield['default'];
+					if (query($sql, false) && in_array($newfield['table'], array('albums', 'images', 'news', 'news_categories', 'pages')))
+						$fields[] = strtolower($newfield['name']);
 				}
-				$sql = 'ALTER TABLE ' . prefix($newfield['table']) . ' ADD COLUMN `' . $newfield['name'] . '` ' . $dbType;
-				if (query($sql, false) && in_array($newfield['table'], array('albums', 'images', 'news', 'news_categories', 'pages')))
-					$fields[] = strtolower($newfield['name']);
 			}
 			setOption(get_class($this) . '_addedFields', serialize($current));
 		} else {
@@ -113,11 +123,13 @@ class fieldExtender {
 	 * @param type $fields
 	 */
 	static protected function _saveHandler($obj, $instance, $field) {
-
-		if (isset($field['edit'])) {
+		if (array_key_exists('edit', $field)) {
 			$action = $field['edit'];
+			if (is_null($action)) {
+				return NULL;
+			}
 		} else {
-			$action = '';
+			$action = 'default';
 		}
 
 		switch ($action) {
@@ -125,7 +137,7 @@ class fieldExtender {
 				$newdata = process_language_string_save($instance . '-' . $field['name']);
 				break;
 			case'function':
-				$newdata = @call_user_func($field['function'], $obj, $instance, $field, 'save');
+				$newdata = call_user_func($field['function'], $obj, $instance, $field, 'save');
 				break;
 			default:
 				if (!is_null($instance)) {
@@ -137,6 +149,7 @@ class fieldExtender {
 					$newdata = NULL;
 				}
 		}
+
 		return $newdata;
 	}
 
@@ -148,7 +161,16 @@ class fieldExtender {
 	 * @return type
 	 */
 	static protected function _editHandler($obj, $field, $instance) {
-		switch (@$field['edit']) {
+		if (array_key_exists('edit', $field)) {
+			$action = $field['edit'];
+			if (is_null($action)) {
+				return array(NULL, NULL);
+			}
+		} else {
+			$action = 'default';
+		}
+
+		switch ($action) {
 			case 'multilingual':
 				ob_start();
 				print_language_string_list($obj->get($field['name']), $instance . '-' . $field['name']);
@@ -189,7 +211,8 @@ class fieldExtender {
 				if ($field['table'] == 'administrators') {
 					$olddata = $userobj->get($field['name']);
 					$newdata = fieldExtender::_saveHandler($userobj, $i, $field);
-					$userobj->set($field['name'], $newdata);
+					if (!is_null($newdata))
+						$userobj->set($field['name'], $newdata);
 					if ($olddata != $newdata) {
 						$updated = true;
 					}
@@ -260,7 +283,8 @@ class fieldExtender {
 		foreach ($fields as $field) {
 			if ($field['table'] == $object->table) {
 				$newdata = fieldExtender::_saveHandler($object, $i, $field);
-				$object->set($field['name'], $newdata);
+				if (!is_null($newdata))
+					$object->set($field['name'], $newdata);
 			}
 		}
 		return $object;
@@ -279,14 +303,14 @@ class fieldExtender {
 			if ($field['table'] == $object->table) {
 				list($item, $formatted) = fieldExtender::_editHandler($object, $field, $i);
 				if (!is_null($formatted)) {
-					$html .= "<tr>\n<td>" . $field['desc'] . "</td>\n<td>";
+					$html .= '<tr>' . "\n" . '<td><span class="nowrap">' . $field['desc'] . "</td>\n<td>";
 					if ($formatted) {
 						$html .= $item;
 					} else {
 						if (in_array(strtolower($field['type']), array('varchar', 'int', 'tinytext'))) {
-							$html .= '<input name = "' . $field['name'] . '_' . $i . '" type = "text" style = "width:100%;" value = "' . $item . '" />';
+							$html .= '<input name="' . $field['name'] . '_' . $i . '" type = "text" style = "width:100%;" value = "' . $item . '" />';
 						} else {
-							$html .= '<textarea name = "' . $field['name'] . '_' . $i . '" style = "width:100%;" rows = "6">' . $item . '</textarea>';
+							$html .= '<textarea name="' . $field['name'] . '_' . $i . '" style = "width:100%;" rows = "6">' . $item . '</textarea>';
 						}
 					}
 					$html .="</td>\n</tr>\n";
@@ -308,7 +332,8 @@ class fieldExtender {
 		foreach ($fields as $field) {
 			if ($field['table'] == $object->table) {
 				$newdata = fieldExtender::_saveHandler($object, NULL, $field);
-				$object->set($field['name'], $newdata);
+				if (!is_null($newdata))
+					$object->set($field['name'], $newdata);
 			}
 		}
 		return $custom;
@@ -326,7 +351,7 @@ class fieldExtender {
 			if ($field['table'] == $object->table) {
 				list($item, $formatted) = fieldExtender::_editHandler($object, $field, NULL);
 				if (!is_null($formatted)) {
-					$html .= '<tr><td>' . $field['desc'] . '</td><td>';
+					$html .= '<tr>' . "\n" . '<td><span class="nowrap">' . $field['desc'] . "</td>\n<td>";
 					if ($formatted) {
 						$html .= $item;
 					} else {

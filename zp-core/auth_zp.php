@@ -25,6 +25,7 @@ foreach (Zenphoto_Authority::getRights() as $key => $right) {
 define('MANAGED_OBJECT_RIGHTS_EDIT', 1);
 define('MANAGED_OBJECT_RIGHTS_UPLOAD', 2);
 define('MANAGED_OBJECT_RIGHTS_VIEW', 4);
+define('MANAGED_OBJECT_MEMBER', 16);
 define('LIST_RIGHTS', NO_RIGHTS);
 if (!defined('USER_RIGHTS')) {
 	define('USER_RIGHTS', NO_RIGHTS);

@@ -43,7 +43,7 @@ function processTags($object) {
 }
 
 /* * ************************
-	/* page functions
+  /* page functions
  * ************************* */
 
 /**
@@ -58,8 +58,6 @@ function updatePage(&$reports, $newpage = false) {
 	$title = process_language_string_save("title", 2);
 	$author = sanitize($_POST['author']);
 	$content = zpFunctions::updateImageProcessorLink(process_language_string_save("content", EDITOR_SANITIZE_LEVEL));
-	$extracontent = zpFunctions::updateImageProcessorLink(process_language_string_save("extracontent", EDITOR_SANITIZE_LEVEL));
-	$custom = process_language_string_save("custom_data", 1);
 	$show = getcheckboxState('show');
 	$date = sanitize($_POST['date']);
 	$lastchange = sanitize($_POST['lastchange']);
@@ -67,9 +65,6 @@ function updatePage(&$reports, $newpage = false) {
 	$expiredate = getExpiryDatePost();
 	$commentson = getcheckboxState('commentson');
 	$permalink = getcheckboxState('permalink');
-	if (zp_loggedin(CODEBLOCK_RIGHTS)) {
-		$codeblock = processCodeblockSave(0);
-	}
 	$locked = getcheckboxState('locked');
 	$date = sanitize($_POST['date']);
 	if ($newpage) {
@@ -115,18 +110,12 @@ function updatePage(&$reports, $newpage = false) {
 	}
 	// update page
 	$page = newPage($titlelink, true);
-
 	$notice = processCredentials($page);
 	$page->setTitle($title);
 	$page->setContent($content);
-	$page->setExtracontent($extracontent);
-	$page->setCustomData(zp_apply_filter('save_page_custom_data', $custom, $page));
 	$page->setShow($show);
 	$page->setDateTime($date);
 	$page->setCommentsAllowed($commentson);
-	if (zp_loggedin(CODEBLOCK_RIGHTS)) {
-		$page->setCodeblock($codeblock);
-	}
 	$page->setAuthor($author);
 	$page->setLastchange($lastchange);
 	$page->setLastchangeauthor($lastchangeauthor);
@@ -142,6 +131,7 @@ function updatePage(&$reports, $newpage = false) {
 		$page->set('used_ips', 0);
 	}
 	processTags($page);
+
 	if ($newpage) {
 		$msg = zp_apply_filter('new_page', '', $page);
 		if (empty($title)) {
@@ -167,6 +157,7 @@ function updatePage(&$reports, $newpage = false) {
 			$reports[] = "<p class='messagebox fade-message'>" . sprintf(gettext("Page <em>%s</em> updated"), $titlelink) . '</p>';
 		}
 	}
+	zp_apply_filter('save_page_custom_data', NULL, $page);
 	$page->save();
 	if ($msg) {
 		$reports[] = $msg;
@@ -345,7 +336,7 @@ function printPagesListTable($page, $flag) {
 }
 
 /* * ************************
-	/* news article functions
+  /* news article functions
  * ************************* */
 
 /**
@@ -361,8 +352,6 @@ function updateArticle(&$reports, $newarticle = false) {
 	$title = process_language_string_save("title", 2);
 	$author = sanitize($_POST['author']);
 	$content = zpFunctions::updateImageProcessorLink(process_language_string_save("content", EDITOR_SANITIZE_LEVEL));
-	$extracontent = zpFunctions::updateImageProcessorLink(process_language_string_save("extracontent", EDITOR_SANITIZE_LEVEL));
-	$custom = process_language_string_save("custom_data", 1);
 	$show = getcheckboxState('show');
 	$date = sanitize($_POST['date']);
 	$expiredate = getExpiryDatePost();
@@ -370,9 +359,6 @@ function updateArticle(&$reports, $newarticle = false) {
 	$lastchange = sanitize($_POST['lastchange']);
 	$lastchangeauthor = sanitize($_POST['lastchangeauthor']);
 	$commentson = getcheckboxState('commentson');
-	if (zp_loggedin(CODEBLOCK_RIGHTS)) {
-		$codeblock = processCodeblockSave(0);
-	}
 	$locked = getcheckboxState('locked');
 	if ($newarticle) {
 		$titlelink = seoFriendly(get_language_string($title));
@@ -422,14 +408,9 @@ function updateArticle(&$reports, $newarticle = false) {
 	$article = newArticle($titlelink, true);
 	$article->setTitle($title);
 	$article->setContent($content);
-	$article->setExtracontent($extracontent);
-	$article->setCustomData(zp_apply_filter('save_article_custom_data', $custom, $article));
 	$article->setShow($show);
 	$article->setDateTime($date);
 	$article->setCommentsAllowed($commentson);
-	if (zp_loggedin(CODEBLOCK_RIGHTS)) {
-		$article->setCodeblock($codeblock);
-	}
 	$article->setAuthor($author);
 	$article->setLastchange($lastchange);
 	$article->setLastchangeauthor($lastchangeauthor);
@@ -472,6 +453,7 @@ function updateArticle(&$reports, $newarticle = false) {
 			$reports[] = "<p class='messagebox fade-message'>" . sprintf(gettext("Article <em>%s</em> updated"), $titlelink) . '</p>';
 		}
 	}
+	zp_apply_filter('save_article_custom_data', NULL, $article);
 	$article->save();
 
 	if ($msg) {
@@ -829,7 +811,7 @@ function printArticlesPerPageDropdown() {
 }
 
 /* * ************************
-	/* Category functions
+  /* Category functions
  * ************************* */
 
 /**
@@ -845,7 +827,6 @@ function updateCategory(&$reports, $newcategory = false) {
 	$permalink = getcheckboxState('permalink');
 	$title = process_language_string_save("title", 2);
 	$desc = process_language_string_save("desc", EDITOR_SANITIZE_LEVEL);
-	$custom = process_language_string_save("custom_data", 1);
 
 	if ($newcategory) {
 		$titlelink = seoFriendly(get_language_string($title));
@@ -893,7 +874,6 @@ function updateCategory(&$reports, $newcategory = false) {
 	$cat->setPermalink(getcheckboxState('permalink'));
 	$cat->set('title', $title);
 	$cat->setDesc($desc);
-	$cat->setCustomData(zp_apply_filter('save_category_custom_data', $custom, $cat));
 	$cat->setShow($show);
 	if (getcheckboxState('resethitcounter')) {
 		$cat->set('hitcounter', 0);
@@ -931,6 +911,7 @@ function updateCategory(&$reports, $newcategory = false) {
 			$reports[] = "<p class='errorbox fade-message'>" . sprintf(gettext("A category with the title/titlelink <em>%s</em> already exists!"), html_encode($cat->getTitle())) . "</p>";
 		}
 	}
+	zp_apply_filter('save_category_custom_data', NULL, $cat);
 	$cat->save();
 	if ($msg) {
 		$reports[] = $msg;
@@ -970,11 +951,11 @@ function printCategoryListSortableTable($cat, $flag) {
 
 		<div class="page-list_iconwrapper">
 			<div class="page-list_icon"><?php
-		$password = $cat->getPassword();
-		if (!empty($password)) {
-			echo '<img src="../../images/lock.png" style="border: 0px;" alt="' . gettext('Password protected') . '" title="' . gettext('Password protected') . '" />';
-		}
-			?>
+				$password = $cat->getPassword();
+				if (!empty($password)) {
+					echo '<img src="../../images/lock.png" style="border: 0px;" alt="' . gettext('Password protected') . '" title="' . gettext('Password protected') . '" />';
+				}
+				?>
 			</div>
 			<div class="page-list_icon">
 				<?php
@@ -1066,7 +1047,7 @@ function printCategoryCheckboxListEntry($cat, $articleid, $option, $class = '') 
 }
 
 /* * ************************
-	/* General functions
+  /* General functions
  * ************************* */
 
 /**

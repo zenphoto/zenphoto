@@ -1750,7 +1750,6 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 														`name` text,
 														`email` text,
 														`rights` int,
-														`custom_data` text,
 														`valid` int(1) NOT NULL DEFAULT 1,
 														`group` varchar(64) DEFAULT NULL,
 														`date` datetime,
@@ -1806,7 +1805,6 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 														`total_value` int(11) DEFAULT 0,
 														`total_votes` int(11) DEFAULT 0,
 														`used_ips` longtext,
-														`custom_data` text,
 														`dynamic` int(1) DEFAULT 0,
 														`search_params` text,
 														`album_theme` varchar(127),
@@ -1816,7 +1814,6 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 														`watermark` varchar(255),
 														`watermark_thumb` varchar(255),
 														`owner` varchar(64) DEFAULT NULL,
-														`codeblock` text,
 														PRIMARY KEY (`id`),
 														UNIQUE `folder` (`folder`)
 														)	$collation;";
@@ -1849,12 +1846,6 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 														`filename` varchar(255) NOT NULL default '',
 														`title` text,
 														`desc` text,
-														`location` text,
-														`city` tinytext,
-														`state` tinytext,
-														`country` tinytext,
-														`credit` text,
-														`copyright` text,
 														`commentson` int(1) UNSIGNED NOT NULL default '1',
 														`show` int(1) NOT NULL default '1',
 														`date` datetime default NULL,
@@ -1872,15 +1863,11 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 														`total_value` int(11) unsigned default '0',
 														`total_votes` int(11) unsigned default '0',
 														`used_ips` longtext,
-														`custom_data` text,
 														`rating` float,
 														`rating_status` int(1) DEFAULT 3,
 														`hasMetadata` int(1) DEFAULT 0,
-														`watermark` varchar(255) DEFAULT NULL,
-														`watermark_use` int(1) DEFAULT 7,
 														`owner` varchar(64) DEFAULT NULL,
 														`filesize` int(11),
-														`codeblock` text,
 														`user` varchar(64) DEFAULT NULL,
 														`password` varchar(64) DEFAULT NULL,
 														`password_hint` text,
@@ -1896,12 +1883,10 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 														`id` int(11) UNSIGNED NOT NULL auto_increment,
 														`title` text,
 														`content` longtext,
-														`extracontent` text,
 														`show` int(1) unsigned NOT NULL default '1',
 														`date` datetime,
 														`titlelink` varchar(255) NOT NULL,
 														`commentson` int(1) UNSIGNED NOT NULL,
-														`codeblock` text,
 														`author` varchar(64) NOT NULL,
 														`lastchange` datetime default NULL,
 														`lastchangeauthor` varchar(64) NOT NULL,
@@ -1915,7 +1900,6 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 														`rating` float,
 														`rating_status` int(1) DEFAULT 3,
 														`sticky` int(1) DEFAULT 0,
-														`custom_data` text,
 														`truncation` int(1) unsigned default 0,
 														PRIMARY KEY (`id`),
 														UNIQUE (`titlelink`)
@@ -1935,7 +1919,6 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 														`parentid` int(11) DEFAULT NULL,
 														`sort_order` varchar(48) DEFAULT NULL,
 														`desc` text,
-														`custom_data` text,
 														`show` int(1) unsigned NOT NULL default '1',
 														PRIMARY KEY (`id`),
 														UNIQUE (`titlelink`)
@@ -1957,12 +1940,10 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 														`parentid` int(11) unsigned default NULL,
 														`title` text,
 														`content` longtext,
-														`extracontent` text,
 														`sort_order`varchar(48) NOT NULL default '',
 														`show` int(1) unsigned NOT NULL default '1',
 														`titlelink` varchar(255) NOT NULL,
 														`commentson` int(1) unsigned NOT NULL,
-														`codeblock` text,
 														`author` varchar(64) NOT NULL,
 														`date` datetime default NULL,
 														`lastchange` datetime default NULL,
@@ -1979,7 +1960,6 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 														`user` varchar(64) DEFAULT NULL,
 														`password` varchar(64) DEFAULT NULL,
 														`password_hint` text,
-														`custom_data` text,
 														`truncation` int(1) unsigned default 0,
 														PRIMARY KEY (`id`),
 														UNIQUE (`titlelink`)
@@ -2066,12 +2046,6 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 						$sql_statements[] = "ALTER TABLE $tbl_albums ADD COLUMN `commentson` int(1) UNSIGNED NOT NULL default '1';";
 						$sql_statements[] = "ALTER TABLE $tbl_albums ADD COLUMN `subalbum_sort_type` varchar(20) default NULL;";
 //v1.1.7 omits	$sql_statements[] = "ALTER TABLE $tbl_albums ADD COLUMN `tags` text;";
-						$sql_statements[] = "ALTER TABLE $tbl_images ADD COLUMN `location` tinytext;";
-						$sql_statements[] = "ALTER TABLE $tbl_images ADD COLUMN `city` tinytext;";
-						$sql_statements[] = "ALTER TABLE $tbl_images ADD COLUMN `state` tinytext;";
-						$sql_statements[] = "ALTER TABLE $tbl_images ADD COLUMN `country` tinytext;";
-						$sql_statements[] = "ALTER TABLE $tbl_images ADD COLUMN `credit` tinytext;";
-						$sql_statements[] = "ALTER TABLE $tbl_images ADD COLUMN `copyright` tinytext;";
 						$sql_statements[] = "ALTER TABLE $tbl_images ADD COLUMN `date` datetime default NULL;";
 //v1.1.7 omits	$sql_statements[] = "ALTER TABLE $tbl_images ADD COLUMN `tags` text;";
 //v1.2.7 omits	$sql_statements[] = "ALTER TABLE $tbl_images ADD COLUMN `EXIFValid` int(1) UNSIGNED default NULL;";
@@ -2094,8 +2068,6 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 						$sql_statements[] = "ALTER TABLE $tbl_albums ADD COLUMN `total_value` int(11) UNSIGNED default '0';";
 						$sql_statements[] = "ALTER TABLE $tbl_albums ADD COLUMN `total_votes` int(11) UNSIGNED default '0';";
 						$sql_statements[] = "ALTER TABLE $tbl_albums ADD COLUMN `used_ips` longtext;";
-						$sql_statements[] = "ALTER TABLE $tbl_albums ADD COLUMN `custom_data` text";
-						$sql_statements[] = "ALTER TABLE $tbl_images ADD COLUMN `custom_data` text";
 						$sql_statements[] = "ALTER TABLE $tbl_albums CHANGE `password` `password` varchar(255) NOT NULL DEFAULT ''";
 
 						//v1.1.5
@@ -2161,7 +2133,6 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 						//v1.2.1
 						$sql_statements[] = "ALTER TABLE $tbl_albums CHANGE `title` `title` TEXT";
 						$sql_statements[] = "ALTER TABLE $tbl_images CHANGE `title` `title` TEXT";
-						$sql_statements[] = "ALTER TABLE $tbl_images CHANGE `location` `location` TEXT";
 						$sql_statements[] = "ALTER TABLE $tbl_images CHANGE `credit` `credit` TEXT";
 						$sql_statements[] = "ALTER TABLE $tbl_images CHANGE `copyright` `copyright` TEXT";
 						//v1.2.2
@@ -2213,7 +2184,6 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 						$sql_statements[] = 'ALTER TABLE ' . $tbl_news . ' ADD COLUMN `used_ips` longtext';
 						$sql_statements[] = 'ALTER TABLE ' . $tbl_news . ' ADD COLUMN `rating_status` int(1) UNSIGNED default 3';
 						//v1.2.6
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_administrators . ' ADD COLUMN `custom_data` TEXT';
 						$sql_statements[] = 'ALTER TABLE ' . $tbl_administrators . ' CHANGE `password` `pass` varchar(64)';
 						$sql_statements[] = 'ALTER TABLE ' . $tbl_administrators . ' ADD COLUMN `valid` int(1) NOT NULL DEFAULT 1';
 						$sql_statements[] = 'ALTER TABLE ' . $tbl_administrators . ' ADD COLUMN `group` varchar(64)';
@@ -2238,15 +2208,13 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 						$sql_statements[] = "ALTER TABLE $tbl_options CHANGE `name` `name` varchar(191) DEFAULT NULL";
 						$sql_statements[] = "ALTER TABLE $tbl_options DROP INDEX `unique_option`";
 						$sql_statements[] = "ALTER TABLE $tbl_options ADD UNIQUE `unique_option` (`name`, `ownerid`, `theme`)";
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_images . ' DROP COLUMN `EXIFValid`';
+						$sql_statements[] = 'ALTER TABLE ' . $tbl_images . ' DROP `EXIFValid`';
 						$sql_statements[] = 'ALTER TABLE ' . $tbl_images . ' ADD COLUMN `hasMetadata` int(1) default 0';
 						$sql_statements[] = 'UPDATE ' . $tbl_images . ' SET `date`=NULL WHERE `date`="0000-00-00 00:00:00"'; // empty dates should be NULL
 						$sql_statements[] = 'UPDATE ' . $tbl_albums . ' SET `date`=NULL WHERE `date`="0000-00-00 00:00:00"'; // force metadata refresh
 						//v1.2.8
 						$sql_statements[] = 'ALTER TABLE ' . $tbl_albums . ' CHANGE `place` `location` TEXT';
 						//v1.3
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_images . ' ADD COLUMN `watermark` varchar(255) DEFAULT NULL';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_images . ' ADD COLUMN `watermark_use` int(1) DEFAULT 7';
 						$sql_statements[] = 'ALTER TABLE ' . $tbl_images . ' ADD COLUMN `owner` varchar(64) DEFAULT NULL';
 						$sql_statements[] = 'ALTER TABLE ' . $tbl_images . ' ADD COLUMN `filesize` INT';
 						$sql_statements[] = 'ALTER TABLE ' . $tbl_administrators . ' ADD COLUMN `quota` INT';
@@ -2263,8 +2231,6 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 						$sql_statements[] = 'ALTER TABLE ' . $tbl_admin_to_object . ' CHANGE `albumid` `objectid` int(11) UNSIGNED NOT NULL';
 						$sql_statements[] = 'ALTER TABLE ' . $tbl_administrators . ' CHANGE `albums` `objects` varchar(64)';
 						$sql_statements[] = "ALTER TABLE $tbl_news ADD COLUMN `sticky` int(1) default 0";
-						$sql_statements[] = "ALTER TABLE $tbl_albums ADD COLUMN `codeblock` TEXT";
-						$sql_statements[] = "ALTER TABLE $tbl_images ADD COLUMN `codeblock` TEXT";
 						$sql_statements[] = "ALTER TABLE $tbl_admin_to_object ADD COLUMN `edit` int default 32767";
 
 						//v1.4.0
@@ -2280,9 +2246,6 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 						$sql_statements[] = 'UPDATE ' . $tbl_obj_to_tag . ' SET `type`="pages" WHERE `type`="zenpage_pages"';
 						$sql_statements[] = 'ALTER TABLE ' . $tbl_administrators . ' ADD COLUMN `language` VARCHAR(5)';
 						$sql_statements[] = "ALTER TABLE $tbl_news_categories ADD COLUMN `desc` text;";
-						$sql_statements[] = "ALTER TABLE $tbl_news_categories ADD COLUMN `custom_data` text";
-						$sql_statements[] = "ALTER TABLE $tbl_pages ADD COLUMN `custom_data` text";
-						$sql_statements[] = "ALTER TABLE $tbl_news ADD COLUMN `custom_data` text";
 						$sql_statements[] = "ALTER TABLE $tbl_images DROP FOREIGN KEY `images_ibfk1`";
 						$sql_statements[] = "ALTER TABLE $tbl_menu_manager ADD COLUMN `span_id` varchar(43) default NULL";
 						$sql_statements[] = "ALTER TABLE $tbl_menu_manager ADD COLUMN `span_class` varchar(43) default NULL";
@@ -2427,30 +2390,6 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 								}
 								require(dirname(__FILE__) . '/setup-option-defaults.php');
 
-								if ($debug == 'base64') {
-									// update zenpage codeblocks--remove the base64 encoding
-									$sql = 'SELECT `id`, `codeblock` FROM ' . prefix('news') . ' WHERE `codeblock` NOT REGEXP "^a:[0-9]+: {
-							"';
-									$result = query_full_array($sql, false);
-									if (is_array($result)) {
-										foreach ($result as $row) {
-											$codeblock = base64_decode($row['codeblock']);
-											$sql = 'UPDATE ' . prefix('news') . ' SET `codeblock`=' . db_quote($codeblock) . ' WHERE `id`=' . $row['id'];
-											query($sql);
-										}
-									}
-									$sql = 'SELECT `id`, `codeblock` FROM ' . prefix('pages') . ' WHERE `codeblock` NOT REGEXP "^a:[0-9]+: {
-								"';
-									$result = query_full_array($sql, false);
-									if (is_array($result)) {
-										foreach ($result as $row) {
-											$codeblock = base64_decode($row['codeblock']);
-											$sql = 'UPDATE ' . prefix('pages') . ' SET `codeblock`=' . db_quote($codeblock) . ' WHERE `id`=' . $row['id'];
-											query($sql);
-										}
-									}
-								}
-
 								if ($debug == 'albumids') {
 									// fixes 1.2 move/copy albums with wrong ids
 									$albums = $_zp_gallery->getAlbums();
@@ -2483,7 +2422,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 									$link = sprintf(gettext('You can now <a href="%1$s">administer your gallery.</a>'), WEBPATH . '/' . ZENFOLDER . '/admin.php');
 									foreach ($clones as $clone => $url) {
 										?>
-										<p class="delayshow" style="display:none;"><?php echo sprintf(gettext('Setup <a href="%1$s">%2$s</a>'), $url, $clone); ?></p>
+										<p class="delayshow" style="display:none;"><?php echo sprintf(gettext('Setup <a href="%1$s" target="_blank">%2$s</a>'), $url, $clone); ?></p>
 										<?php
 									}
 								}

@@ -422,7 +422,7 @@ class ThemeObject extends PersistentObject {
 	var $comments = NULL; //Contains an array of the comments of the object
 	var $manage_rights = ADMIN_RIGHTS;
 	var $manage_some_rights = ADMIN_RIGHTS;
-	var $view_rights = VIEW_ALL_RIGHTS;
+	var $access_rights = VIEW_ALL_RIGHTS;
 
 	/**
 	 * Class instantiator
@@ -702,7 +702,7 @@ class ThemeObject extends PersistentObject {
 		if (zp_loggedin($this->manage_rights)) {
 			return true;
 		}
-		if (zp_loggedin($this->view_rights) && ($action == LIST_RIGHTS)) { // sees all
+		if ($action == LIST_RIGHTS && zp_loggedin($this->access_rights)) {
 			return true;
 		}
 		if (zp_apply_filter('check_credentials', false, $this, $action)) {
