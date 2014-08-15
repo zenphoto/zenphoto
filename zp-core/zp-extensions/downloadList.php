@@ -95,7 +95,7 @@ class DownloadList {
 		?>
 		<input type="hidden" name="password_enabled_downloadList" id="password_enabled_downloadList" value="0" />
 		<p class="password_downloadListextrashow">
-			<a onclick="toggle_passwords('_downloadList',true);">
+			<a onclick="toggle_passwords('_downloadList', true);">
 				<?php echo gettext("Password:"); ?>
 			</a>
 			<?php
@@ -112,7 +112,7 @@ class DownloadList {
 			?>
 		</p>
 		<div class="password_downloadListextrahide" style="display:none">
-			<a onclick="toggle_passwords('_downloadList',false);">
+			<a onclick="toggle_passwords('_downloadList', false);">
 				<?php echo gettext("Guest user:"); ?>
 			</a>
 			<br />
@@ -553,7 +553,8 @@ function printDownloadAlbumZipURL($linktext = NULL, $albumobj = NULL, $fromcache
 	if (is_null($albumobj)) {
 		$albumobj = $_zp_current_album;
 	}
-	if (!is_null($albumobj) && !$albumobj->isDynamic()) {
+
+	if (!is_null($albumobj)) {
 		$file = $albumobj->name . '.zip';
 		DownloadList::addListItem($file);
 		if (getOption('downloadList_showdownloadcounter')) {
@@ -619,11 +620,9 @@ if (isset($_GET['download'])) {
 		AlbumZip::create($item, $fromcache);
 		exitZP();
 	} else {
-		require_once(SERVERPATH . '/' . ZENFOLDER . '/lib-MimeTypes.php');
-		$item = (int) $item;
-		$path = query_single_row("SELECT `aux` FROM " . prefix('plugin_storage') . " WHERE id=" . $item);
-		$_downloadFile = internalToFilesystem($path['aux']);
-		if (file_exists($_downloadFile)) {
+		$path = query_single_row("SELECT `aux` FROM " . prefix('plugin_storage') . " WHERE id=" . (int) $item);
+		if (array_key_exists('aux', $path) && file_exists($_downloadFile = internalToFilesystem($path['aux']))) {
+			require_once(SERVERPATH . '/' . ZENFOLDER . '/lib-MimeTypes.php');
 			DownloadList::updateListItemCount($_downloadFile);
 			$ext = getSuffix($_downloadFile);
 			$mimetype = getMimeString($ext);
