@@ -329,7 +329,7 @@ class AlbumZip {
 		$albums = $album->getAlbums();
 		foreach ($albums as $albumname) {
 			$subalbum = newAlbum($albumname);
-			if ($subalbum->exists && !$album->isDynamic()) {
+			if ($subalbum->exists) {
 				self::AddAlbum($subalbum, $root);
 			}
 		}
@@ -364,7 +364,7 @@ class AlbumZip {
 		$albums = $album->getAlbums();
 		foreach ($albums as $albumname) {
 			$subalbum = newAlbum($albumname);
-			if ($subalbum->exists && !$album->isDynamic()) {
+			if ($subalbum->exists) {
 				self::AddAlbumCache($subalbum, $root);
 			}
 		}
