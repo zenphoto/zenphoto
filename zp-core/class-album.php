@@ -756,9 +756,12 @@ class AlbumBase extends MediaObject {
 	 * returns true of access is allowed
 	 */
 	function isMyItem($action) {
-		global $_zp_loggedin;
+		global $_zp_current_admin_obj;
 		if ($parent = parent::isMyItem($action)) {
 			return $parent;
+		}
+		if ($_zp_current_admin_obj && $_zp_current_admin_obj->getUser() == $this->getOwner()) {
+			return true;
 		}
 		if (zp_loggedin($action)) {
 			$subRights = $this->subRights();
