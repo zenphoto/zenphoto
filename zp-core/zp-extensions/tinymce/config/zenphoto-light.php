@@ -10,7 +10,7 @@ $MCEselector = "textarea.texteditor";
 $MCEplugins = "advlist autolink lists link image charmap anchor " .
 				"searchreplace visualchars visualblocks code fullscreen " .
 				"insertdatetime media contextmenu paste directionality ";
-$MCEtoolbars[1] = "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify ltr rtl | bullist numlist outdent indent | link image | code";
+$MCEtoolbars[1] = "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | ltr rtl code";
 $MCEstatusbar = false;
 $MCEmenubar = false;
 include(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/tinymce/config/config.js.php');
