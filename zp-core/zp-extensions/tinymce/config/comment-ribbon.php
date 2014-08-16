@@ -9,7 +9,7 @@
 $MCEselector = "textarea.textarea_inputbox";
 $MCEplugins = "advlist autolink lists link image charmap hr anchor pagebreak " .
 				"searchreplace wordcount visualblocks visualchars code fullscreen " .
-				"insertdatetime save contextmenu " .
+				"insertdatetime save contextmenu directionality " .
 				"emoticons paste ";
 $MCEmenubar = "edit insert view format tools";
 $MCEtoolbars = array();
