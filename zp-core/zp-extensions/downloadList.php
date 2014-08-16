@@ -29,7 +29,7 @@
  *
  * The list has a CSS class <var>downloadList</var> attached.
  *
- * @author Malte Müller (acrylian)
+ * @author Malte Müller (acrylian), Stephen Billard (sbillard)
  * @package plugins
  * @subpackage media
  * @tags "file download", "download manager", download
@@ -289,33 +289,48 @@ class AlbumZip {
 	 * @param object $album album object to add
 	 * @param int $base the length of the base album name
 	 */
-	static function AddAlbum($album, $base, $filebase) {
+	static function AddAlbum($album, $root) {
 		global $_zp_zip_list, $zip_gallery;
-		$albumbase = substr($album->name, $base) . '/';
-		foreach ($album->sidecars as $suffix) {
-			$f = $albumbase . $album->name . '.' . $suffix;
-			if (file_exists(internalToFilesystem($f))) {
-				$_zp_zip_list[$filebase . $f] = $f;
+		$root = rtrim($root, '/');
+		$rootdir = dirname($root);
+
+		if ($rootdir == '.' || $rootdir == '/') {
+			$rootdir = '/';
+		} else {
+			$rootdir .= '/';
+		}
+
+		if ($root != $album->name) { // we don't collect the sidecars for the base album
+			foreach ($album->sidecars as $suffix) {
+				$f = $rootdir . basename($album->name) . '.' . $suffix;
+				$full = ALBUM_FOLDER_SERVERPATH . internalToFilesystem($album->name) . '.' . $suffix;
+				if (file_exists(internalToFilesystem($full))) {
+					$_zp_zip_list[$full] = $f;
+				}
 			}
 		}
+
+		$albumroot = substr($album->name, strlen($root)) . '/';
 		$images = $album->getImages();
 		foreach ($images as $imagename) {
 			$image = newImage($album, $imagename);
-			$f = $albumbase . $image->filename;
-			$_zp_zip_list[$filebase . internalToFilesystem($f)] = $f;
-			$imagebase = stripSuffix($image->filename);
+			$f = $albumroot . $image->filename;
+			$full = ALBUM_FOLDER_SERVERPATH . internalToFilesystem($image->album->name) . '/' . internalToFilesystem($image->filename);
+			$_zp_zip_list[$full] = $f;
+
+			$f = stripSuffix($f);
+			$full = stripSuffix($full);
 			foreach ($image->sidecars as $suffix) {
-				$f = $albumbase . $imagebase . '.' . $suffix;
-				if (file_exists($f)) {
-					$_zp_zip_list[$filebase . $f] = $f;
+				if (file_exists($full . '.' . $suffix)) {
+					$_zp_zip_list[$full . '.' . $suffix] = $f . '.' . $suffix;
 				}
 			}
 		}
 		$albums = $album->getAlbums();
 		foreach ($albums as $albumname) {
 			$subalbum = newAlbum($albumname);
-			if ($subalbum->exists && !$album->isDynamic()) {
-				self::AddAlbum($subalbum, $base, $filebase);
+			if ($subalbum->exists) {
+				self::AddAlbum($subalbum, $root);
 			}
 		}
 	}
@@ -327,24 +342,30 @@ class AlbumZip {
 	 * @param object $album album object to add
 	 * @param int $base the length of the base album name
 	 */
-	static function AddAlbumCache($album, $base, $filebase) {
+	static function AddAlbumCache($album, $root) {
 		global $_zp_zip_list, $zip_gallery, $defaultSize;
-		$albumbase = substr($album->name, $base) . '/';
+		$albumbase = substr($album->name, strlen($root)) . '/';
+		if ($albumbase{0} != '/')
+			$albumbase = '/' . $albumbase;
 		$images = $album->getImages();
 		foreach ($images as $imagename) {
 			$image = newImage($album, $imagename);
 			$uri = $image->getSizedImage($defaultSize);
+
 			if (strpos($uri, 'i.php?') === false) {
 				$f = $albumbase . $image->filename;
-				$c = $albumbase . basename($uri);
-				$_zp_zip_list[$filebase . $c] = $f;
+				if (UTF8_IMAGE_URI) {
+					$uri = internalToFilesystem($uri);
+				}
+				$_zp_zip_list[$uri] = $f;
 			}
 		}
+
 		$albums = $album->getAlbums();
 		foreach ($albums as $albumname) {
 			$subalbum = newAlbum($albumname);
-			if ($subalbum->exists && !$album->isDynamic()) {
-				self::AddAlbumCache($subalbum, $base, $filebase);
+			if ($subalbum->exists) {
+				self::AddAlbumCache($subalbum, $root);
 			}
 		}
 	}
@@ -370,32 +391,34 @@ class AlbumZip {
 	/**
 	 * Creates a zip file of the album
 	 *
-	 * @param string $albumname album folder
+	 * @param object $album album folder
+	 * @param string $zipname name of zip file
 	 * @param bool fromcache if true, images will be the "sized" image in the cache file
 	 */
-	static function create($albumname, $fromcache) {
+	static function create($album, $zipname, $fromcache) {
 		global $_zp_zip_list, $_zp_gallery, $defaultSize;
-		$album = newAlbum($albumname);
-		if (!$album->isMyItem(LIST_RIGHTS) && !checkAlbumPassword($albumname)) {
+		if (!$album->isMyItem(LIST_RIGHTS) && !checkAlbumPassword($album->name)) {
 			self::pageError(403, gettext("Forbidden"));
 		}
 		if (!$album->exists) {
 			self::pageError(404, gettext('Album not found'));
 		}
+
 		$_zp_zip_list = array();
 		if ($fromcache) {
 			$opt = array('large_file_size' => 5 * 1024 * 1024, 'comment' => sprintf(gettext('Created from cached images of %1$s on %2$s.'), $album->name, zpFormattedDate(DATE_FORMAT, time())));
 			loadLocalOptions(false, $_zp_gallery->getCurrentTheme());
 			$defaultSize = getOption('image_size');
-			self::AddAlbumCache($album, strlen($albumname), SERVERPATH . '/' . CACHEFOLDER . '/' . $albumname);
+			self::AddAlbumCache($album, $album->name . '/');
 		} else {
 			$opt = array('large_file_size' => 5 * 1024 * 1024, 'comment' => sprintf(gettext('Created from images in %1$s on %2$s.'), $album->name, zpFormattedDate(DATE_FORMAT, time())));
-			self::AddAlbum($album, strlen($albumname), SERVERPATH . '/' . ALBUMFOLDER . '/' . $albumname);
+			self::AddAlbum($album, $album->name . '/');
 		}
-		$zip = new ZipStream($albumname . '.zip', $opt);
+
+		$zip = new ZipStream($zipname . '.zip', $opt);
 		foreach ($_zp_zip_list as $path => $file) {
 			@set_time_limit(6000);
-			$zip->add_file_from_path(internalToFilesystem($file), internalToFilesystem($path));
+			$zip->add_file_from_path(internalToFilesystem($file), $path);
 		}
 		$zip->finish();
 	}
@@ -555,7 +578,24 @@ function printDownloadAlbumZipURL($linktext = NULL, $albumobj = NULL, $fromcache
 	}
 
 	if (!is_null($albumobj)) {
-		$file = $albumobj->name . '.zip';
+		$query['albumzip'] = 'true';
+		if (get_class($albumobj) == 'favorites') {
+			$query['download'] = $file = gettext('My favorites');
+			$query['user'] = $albumobj->name;
+			$instance = $query['instance'] = $albumobj->instance;
+			if ($instance) {
+				$file .= '[' . $instance . ']';
+				$query['download'] .= '[' . $instance . ']';
+			}
+			$file .= '.zip';
+		} else {
+			$query['download'] = pathurlencode($albumobj->name);
+			$file = $albumobj->name . '.zip';
+		}
+		if ($fromcache) {
+			$query['fromcache'] = 'true';
+		}
+
 		DownloadList::addListItem($file);
 		if (getOption('downloadList_showdownloadcounter')) {
 			$downloaditem = DownloadList::getListItemFromDB($file);
@@ -570,11 +610,6 @@ function printDownloadAlbumZipURL($linktext = NULL, $albumobj = NULL, $fromcache
 		}
 		if (!empty($linktext)) {
 			$file = $linktext;
-		}
-		$query['download'] = pathurlencode($albumobj->name);
-		$query['albumzip'] = 'true';
-		if ($fromcache) {
-			$query['fromcache'] = 'true';
 		}
 		$link = FULLWEBPATH . '/' . preg_replace('~^' . WEBPATH . '/~', '', $request['path']) . '?' . http_build_query($query);
 		echo '<a href="' . html_encode($link) . '" rel="nofollow">' . html_encode($file) . '</a>' . $filesize;
@@ -617,7 +652,17 @@ if (isset($_GET['download'])) {
 		} else {
 			$fromcache = getOption('downloadList_zipFromCache');
 		}
-		AlbumZip::create($item, $fromcache);
+		if (isset($_GET['instance'])) {
+			$album = new favorites(sanitize($_GET['user']));
+			if ($instance = trim(sanitize($_GET['instance']), '/')) {
+				$album->instance = $instance;
+			}
+		} else {
+			$album = newAlbum($item, false, true);
+		}
+		if ($album->exists) {
+			AlbumZip::create($album, $item, $fromcache);
+		}
 		exitZP();
 	} else {
 		$path = query_single_row("SELECT `aux` FROM " . prefix('plugin_storage') . " WHERE id=" . (int) $item);
