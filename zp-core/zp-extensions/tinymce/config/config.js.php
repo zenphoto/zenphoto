@@ -40,10 +40,15 @@ if (isset($MCEcss)) {
 	$MCEcss = getPlugin('tinymce/config/content.css', true, true);
 }
 global $_zp_RTL_css;
-if ($_zp_RTL_css && !isset($MCEdirection)) {
-	$MCEdirection = 'rtl';
+if (!isset($MCEdirection)) {
+	if ($_zp_RTL_css) {
+		$MCEdirection = 'rtl';
+	} else {
+		if (getOption('tiny_mce_rtl_override')) {
+			$MCEdirection = 'rtl';
+		}
+	}
 }
-
 if (!extensionEnabled('tinyZenpage')) {
 	$MCEplugins = preg_replace('|\stinyzenpage|', '', $MCEplugins);
 }
