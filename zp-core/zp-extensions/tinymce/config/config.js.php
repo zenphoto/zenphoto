@@ -40,8 +40,14 @@ if (isset($MCEcss)) {
 	$MCEcss = getPlugin('tinymce/config/content.css', true, true);
 }
 global $_zp_RTL_css;
-if ($_zp_RTL_css && !isset($MCEdirection)) {
-	$MCEdirection = 'rtl';
+if (!isset($MCEdirection)) {
+	if ($_zp_RTL_css) {
+		$MCEdirection = 'rtl';
+	} else {
+		if (getOption('tiny_mce_rtl_override')) {
+			$MCEdirection = 'rtl';
+		}
+	}
 }
 
 if (!extensionEnabled('tinyZenpage')) {
@@ -100,10 +106,17 @@ if (empty($MCEtoolbars)) {
 		<?php
 	}
 }
+if ($MCEmenubar) {
+	if (!is_string($MCEmenubar)) {
+		$MCEmenubar = "file edit insert view format table tools ";
+	}
+} else {
+	$MCEmenubar = "false";
+}
 ?>
 
 					statusbar: <?php echo ($MCEstatusbar) ? 'true' : 'false'; ?>,
-									menubar: <?php echo ($MCEmenubar) ? 'true' : 'false'; ?>,
+									menubar: '<?php echo $MCEmenubar; ?>',
 									setup: function(editor) {
 									editor.on('blur', function(ed, e) {
 									form = $(editor.getContainer()).closest('form');

@@ -10,7 +10,7 @@ $MCEselector = "textarea.texteditor";
 $MCEplugins = "advlist autolink lists link image charmap hr anchor pagebreak " .
 				"searchreplace visualchars wordcount visualblocks  code fullscreen " .
 				"insertdatetime media nonbreaking save contextmenu " .
-				"emoticons template paste ";
+				"emoticons template paste directionality ";
 
 $MCEtoolbars = array();
 $MCEstatusbar = false;

@@ -9,9 +9,9 @@
 $MCEselector = "textarea.textarea_inputbox";
 $MCEplugins = "advlist autolink lists link image charmap hr anchor pagebreak " .
 				"searchreplace visualblocks visualchars code " .
-				"insertdatetime media contextmenu " .
+				"insertdatetime media contextmenu directionality " .
 				"emoticons paste";
-$MCEtoolbars[1] = "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | searchreplace visualchars | emoticons | code";
+$MCEtoolbars[1] = "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | searchreplace visualchars | emoticons | ltr rtl code";
 $MCEstatusbar = false;
 $MCEmenubar = false;
 include(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/tinymce/config/config.js.php');

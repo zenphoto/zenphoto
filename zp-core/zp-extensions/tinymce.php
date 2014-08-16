@@ -45,6 +45,10 @@ class tinymceOptions {
 	}
 
 	function getOptionsSupported() {
+		global $_zp_RTL_css;
+		if ($_zp_RTL_css) {
+			setOption('tiny_mce_rtl_override', 1, false);
+		}
 		$configs_zenpage = gettinymceConfigFiles('zenpage');
 		$configs_zenphoto = gettinymceConfigFiles('zenphoto');
 		$options = array(
@@ -57,8 +61,10 @@ class tinymceOptions {
 										'order'					 => 1,
 										'selections'		 => $configs_zenpage,
 										'null_selection' => gettext('Disabled'),
-										'desc'					 => gettext('Applies to editing on the Zenpage <em>pages</em> and <em>news</em> tabs.'))
-		);
+										'desc'					 => gettext('Applies to editing on the Zenpage <em>pages</em> and <em>news</em> tabs.')),
+						gettext('Text editor text direction')						 => array('key'		 => 'tiny_mce_rtl_override', 'type'	 => OPTION_TYPE_CHECKBOX,
+										'order'	 => 2,
+										'desc'	 => gettext('This option should be checked if your language writing direction is right-to-left')));
 		return $options;
 	}
 
