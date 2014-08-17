@@ -1876,7 +1876,6 @@ function printStandardMeta() {
 		if (empty($theme)) {
 			$theme = $_zp_gallery->getCurrentTheme();
 		}
-
 		// album-theme
 		$sql = "SELECT `value` FROM " . prefix('options') . " WHERE `name`=" . db_quote($option) . " AND `ownerid`=" . $id . " AND `theme`=" . db_quote($theme);
 		$db = query_single_row($sql);
