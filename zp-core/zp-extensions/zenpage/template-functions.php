@@ -781,7 +781,7 @@ function printCurrentNewsArchive($before = '', $mode = 'formatted', $format = '%
  * @param int $limit truncation of display text
  * @return string
  */
-function printAllNewsCategories($newsindex = 'All news', $counter = TRUE, $css_id = '', $css_class_topactive = '', $startlist = true, $css_class = '', $css_class_active = '', $option = 'list', $showsubs = false, $limit = NULL) {
+function printAllNewsCategories($newsindex = 'All news', $counter = true, $css_id = '', $css_class_topactive = '', $startlist = true, $css_class = '', $css_class_active = '', $option = 'list', $showsubs = false, $limit = NULL) {
 	printNestedMenu($option, 'allcategories', $counter, $css_id, $css_class_topactive, $css_class, $css_class_active, $newsindex, $showsubs, $startlist, $limit);
 }
 
@@ -1453,6 +1453,7 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 		$css_class_active = "";
 		rem_context(ZP_ZENPAGE_PAGE);
 	}
+
 	if (0 == count($items) + (int) ($mode == 'allcategories'))
 		return; // nothing to do
 	$startlist = $startlist && !($option == 'omit-top' || $option == 'list-sub');
