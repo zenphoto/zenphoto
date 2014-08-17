@@ -485,7 +485,7 @@ function addItem(&$reports) {
 			}
 			$successmsg = sprintf(gettext("Gallery index menu item <em>%s</em> added"), $result['link']);
 			break;
-		case 'Page':
+		case 'page':
 			$result['title'] = NULL;
 			$result['link'] = sanitize($_POST['pageselect']);
 			if (empty($result['link'])) {
@@ -572,6 +572,7 @@ function addItem(&$reports) {
 		default:
 			break;
 	}
+
 	$count = db_count('menu', 'WHERE menuset=' . db_quote($menuset));
 	$order = sprintf('%03u', $count);
 	$sql = "INSERT INTO " . prefix('menu') . " ( `title`, `link`, `type`, `show`, `menuset`, `sort_order`, `include_li`, `span_id`, `span_class`) " .
@@ -799,9 +800,7 @@ function printPagesSelector($current) {
 		$pages = $_zp_CMS->getPages(false);
 		foreach ($pages as $key => $page) {
 			if ($page['titlelink'] == $current) {
-				$selected = ' selected= "selected
-
-			"';
+				$selected = ' selected= "selected"';
 			} else {
 				$selected = '';
 			}
@@ -811,7 +810,7 @@ function printPagesSelector($current) {
 			for ($count = 1; $count <= $level; $count++) {
 				$arrow .= "» ";
 			}
-			echo "<option value = '" . html_encode($pageobj->getTitlelink()) . "'" . $selected . '>';
+			echo "<option value='" . html_encode($pageobj->getTitlelink()) . "'" . $selected . '>';
 			echo $arrow . $pageobj->getTitle() . unpublishedZenphotoItemCheck($pageobj) . "</option>";
 		}
 		?>
