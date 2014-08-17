@@ -42,7 +42,7 @@ if (isset($_POST['savealbum'])) {
 	$albumname = sanitize($_POST['album']);
 	if ($album = sanitize($_POST['albumselect'])) {
 		$albumobj = newAlbum($album);
-		$allow = $albumobj->isMyItem(ALBUM_RIGHTS);
+		$allow = $albumobj->isMyItem(UPLOAD_RIGHTS);
 	} else {
 		$allow = zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS);
 	}
