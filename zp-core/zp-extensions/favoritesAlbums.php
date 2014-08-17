@@ -14,7 +14,7 @@
  * To create a <i>favorites</i> album visit the <i>favorites</i> link of the content
  * you wish to share. In the <var>admin toolbox</var> on that page you will find
  * a link to create an album. (Much like such a link is present on search pages to
- * allow you to create dynamic albums.) <b>NOTE:</b> the user must have upload rights
+ * allow you to create dynamic albums.) <b>NOTE:</b> the user must have <var>upload</var> rights
  * to at least one album or he will have no place to put the favorites album.
  *
  * <i>favorites</i> albums are represented in the album folders by files with the suffix
@@ -170,7 +170,7 @@ class favoritesAlbum extends favorites {
 
 	static function toolbox($zf) {
 		global $_zp_gallery_page;
-		if (zp_loggedin(UPLOAD_RIGHTS)) {
+		if (zp_loggedin(ALBUM_RIGHTS)) {
 			if ($_zp_gallery_page == 'favorites.php') {
 				?>
 				<li>
