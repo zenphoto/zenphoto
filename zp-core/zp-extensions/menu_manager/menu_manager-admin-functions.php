@@ -40,7 +40,7 @@ function printItemsListTable($item, $flag) {
 			case "album":
 				$link = '<a href="../../admin-edit.php?page=edit&amp;album=' . html_encode($item['link']) . '">' . html_encode(truncate_string($item['link'], 40, '...')) . '</a>';
 				break;
-			case "Page":
+			case "page":
 				$link = '<a href="../zenpage/admin-edit.php?page&amp;titlelink=' . html_encode($item['link']) . '">' . html_encode(truncate_string($item['link'], 40, '...')) . '</a>';
 				break;
 			case "category":
@@ -90,13 +90,13 @@ function printItemsListTable($item, $flag) {
 				<?php
 				if ($item['show'] === '1') {
 					?>
-					<a href="menu_tab.php?publish&amp;id=<?php echo $item['id'] . "&amp;show=0"; ?>&amp;add&amp;XSRFToken=<?php echo getXSRFToken('update_menu') ?>" title="<?php echo gettext('hide'); ?>" >
+					<a href="menu_tab.php?publish&amp;id=<?php echo $item['id'] . "&amp;show=0&amp;menuset=" . html_encode($item['menuset']); ?>&amp;add&amp;XSRFToken=<?php echo getXSRFToken('update_menu') ?>" title="<?php echo gettext('hide'); ?>" >
 						<img src="../../images/pass.png"	alt="<?php echo gettext('hide'); ?>" style="border: 0px;" />
 					</a>
 					<?php
 				} else {
 					?>
-					<a href="menu_tab.php?publish&amp;id=<?php echo $item['id'] . "&amp;show=1"; ?>&amp;add&amp;XSRFToken=<?php echo getXSRFToken('update_menu') ?>"  title="<?php echo gettext('show'); ?>">
+					<a href="menu_tab.php?publish&amp;id=<?php echo $item['id'] . "&amp;show=1&amp;menuset=" . html_encode($item['menuset']) ?>&amp;add&amp;XSRFToken=<?php echo getXSRFToken('update_menu') ?>"  title="<?php echo gettext('show'); ?>">
 						<img src="../../images/action.png"	alt="<?php echo gettext('show'); ?>" style="border: 0px;" />
 					</a>
 					<?php

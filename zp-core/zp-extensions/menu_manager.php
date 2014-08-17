@@ -229,7 +229,7 @@ function getItemTitleAndURL($item) {
 			}
 			$array = array("title" => $title, "url" => $url, "name" => $item['link'], 'protected' => $protected, 'theme' => $themename);
 			break;
-		case "Page":
+		case "page":
 			$sql = 'SELECT * FROM ' . prefix('pages') . ' WHERE `titlelink`="' . $item['link'] . '"';
 			$result = query_single_row($sql);
 			if (is_array($result)) {
