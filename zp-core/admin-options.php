@@ -13,7 +13,6 @@ require_once(dirname(__FILE__) . '/admin-globals.php');
 require_once(SERVERPATH . '/' . ZENFOLDER . '/functions-config.php');
 
 admin_securityChecks(OPTIONS_RIGHTS, currentRelativeURL());
-
 define('PLUGINS_PER_PAGE', max(1, getOption('plugins_per_page')));
 if (isset($_GET['subpage'])) {
 	$subpage = sanitize_numeric($_GET['subpage']);
@@ -2474,6 +2473,7 @@ Zenphoto_Authority::printPasswordFormJS();
 						}
 						if (!(false === ($requirePath = getPlugin('themeoptions.php', $themename)))) {
 							require_once($requirePath);
+							$_zp_gallery->setCurrentTheme($themename);
 							$optionHandler = new ThemeOptions();
 							$supportedOptions = $optionHandler->getOptionsSupported();
 							if (method_exists($optionHandler, 'getOptionsDisabled')) {

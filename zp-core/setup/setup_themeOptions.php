@@ -28,6 +28,7 @@ if (!empty($requirePath)) {
 	require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cacheManager.php');
 	require_once(SERVERPATH . '/' . THEMEFOLDER . '/' . $theme . '/themeoptions.php');
 	/* prime the default theme options */
+	$_zp_gallery->setCurrentTheme($theme);
 	$optionHandler = new ThemeOptions();
 	setupLog(sprintf(gettext('Theme:%s option interface instantiated'), $theme), true);
 }
