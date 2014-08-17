@@ -292,11 +292,6 @@ class favorites extends AlbumBase {
 		return $count;
 	}
 
-	static function toolbox($zf) {
-		printFavoritesURL(gettext('Favorites'), '<li>', '</li><li>', '</li>');
-		return $zf;
-	}
-
 	function getLink($page = NULL, $instance = NULL) {
 		$link = _FAVORITES_ . '/';
 		$link_no = 'index.php?p=favorites';

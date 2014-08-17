@@ -260,7 +260,7 @@ if (OFFSET_PATH) {
 } else {
 	zp_register_filter('load_theme_script', 'favorites::loadScript');
 	zp_register_filter('checkPageValidity', 'favorites::pageCount');
-	zp_register_filter('admin_toolbox_global', 'favorites::toolbox', 21);
+	zp_register_filter('admin_toolbox_global', 'favoritesToolbox', 21);
 	if (zp_loggedin()) {
 		if (isset($_POST['addToFavorites'])) {
 			$___Favorites = new favorites($_zp_current_admin_obj->getUser());
@@ -297,6 +297,11 @@ if (OFFSET_PATH) {
 			}
 		}
 		$_myFavorites = new favorites($_zp_current_admin_obj->getUser());
+
+		function favoritesToolbox($zf) {
+			printFavoritesURL(gettext('Favorites'), '<li>', '</li><li>', '</li>');
+			return $zf;
+		}
 
 		function printAddToFavorites($obj, $add = NULL, $remove = NULL) {
 			global $_myFavorites, $_zp_current_admin_obj, $_zp_gallery_page, $_myFavorites_button_count;
@@ -394,24 +399,32 @@ if (OFFSET_PATH) {
 		 * @param type $text
 		 */
 		function printFavoritesURL($text = NULL, $before = NULL, $between = NULL, $after = NULL) {
-			global $_myFavorites;
+			global $_myFavorites, $_zp_gallery_page;
 			if (zp_loggedin()) {
 				if (is_null($text)) {
 					$text = get_language_string(getOption('favorites_linktext'));
 				}
+				if ($_zp_gallery_page == 'favorites.php') {
+					$current = $_myFavorites->instance;
+				} else {
+					$current = NULL;
+				}
+
 				$betwixt = NULL;
 				echo $before;
 				foreach ($_myFavorites->getList() as $instance) {
-					$link = $_myFavorites->getLink(NULL, $instance);
-					$display = $text;
-					if ($instance) {
-						$display .= '[' . $instance . ']';
+					if ($instance !== $current) {
+						$link = $_myFavorites->getLink(NULL, $instance);
+						$display = $text;
+						if ($instance) {
+							$display .= '[' . $instance . ']';
+						}
+						echo $betwixt;
+						$betwixt = $between;
+						?>
+						<a href="<?php echo $link; ?>" class="favorite_link"><?php echo html_encode($display); ?> </a>
+						<?php
 					}
-					echo $betwixt;
-					$betwixt = $between;
-					?>
-					<a href="<?php echo $link; ?>" class="favorite_link"><?php echo html_encode($display); ?> </a>
-					<?php
 				}
 				echo $after;
 			}

@@ -30,7 +30,7 @@
  * being uploaded are in a mixed release state.
  *
  * @author Stephen Billard (sbillard)
- * 
+ *
  * @package plugins
  * @subpackage admin
  */
@@ -42,7 +42,7 @@ $plugin_notice = (MOD_REWRITE) ? false : gettext('<em>mod_rewrite</em> is not en
 switch (OFFSET_PATH) {
 	case 0:
 		$state = @$_zp_conf_vars['site_upgrade_state'];
-		if ((!zp_loggedin(ADMIN_RIGHTS) && $state == 'closed_for_test') || $state == 'closed') {
+		if ((!zp_loggedin(ADMIN_RIGHTS | DEBUG_RIGHTS) && $state == 'closed_for_test') || $state == 'closed') {
 			if (isset($_zp_conf_vars['special_pages']['page']['rewrite'])) {
 				$page = $_zp_conf_vars['special_pages']['page']['rewrite'];
 			} else {

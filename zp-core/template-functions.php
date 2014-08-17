@@ -196,7 +196,6 @@ function adminToolbox() {
 					case 'image.php':
 						$inImage = true; // images are also in albums[sic]
 					case 'album.php':
-					case 'favorites.php';
 						// script is album.php
 						$albumname = $_zp_current_album->name;
 						if ($_zp_current_album->isMyItem(ALBUM_RIGHTS)) {
@@ -247,6 +246,8 @@ function adminToolbox() {
 								<?php
 							}
 						}
+					case 'favorites.php';
+						$albumname = $_zp_current_album->name;
 						zp_apply_filter('admin_toolbox_album', $albumname, $zf);
 						if ($inImage) {
 							// script is image.php
@@ -3863,34 +3864,34 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 		<!-- search form -->
 		<form method="post" action="<?php echo $searchurl; ?>" id="search_form">
 			<script type="text/javascript">
-				// <!-- <![CDATA[
-				var within = <?php echo (int) $within; ?>;
-				function search_(way) {
-					within = way;
-					if (way) {
-						$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
+			// <!-- <![CDATA[
+			var within = <?php echo (int) $within; ?>;
+			function search_(way) {
+				within = way;
+				if (way) {
+					$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
 
-					} else {
-						lastsearch = '';
-						$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
-					}
-					$('#search_input').val('');
+				} else {
+					lastsearch = '';
+					$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
 				}
-				$('#search_form').submit(function() {
-					if (within) {
-						var newsearch = $.trim($('#search_input').val());
-						if (newsearch.substring(newsearch.length - 1) == ',') {
-							newsearch = newsearch.substr(0, newsearch.length - 1);
-						}
-						if (newsearch.length > 0) {
-							$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
-						} else {
-							$('#search_input').val('<?php echo $searchwords; ?>');
-						}
+				$('#search_input').val('');
+			}
+			$('#search_form').submit(function() {
+				if (within) {
+					var newsearch = $.trim($('#search_input').val());
+					if (newsearch.substring(newsearch.length - 1) == ',') {
+						newsearch = newsearch.substr(0, newsearch.length - 1);
 					}
-					return true;
-				});
-				// ]]> -->
+					if (newsearch.length > 0) {
+						$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
+					} else {
+						$('#search_input').val('<?php echo $searchwords; ?>');
+					}
+				}
+				return true;
+			});
+			// ]]> -->
 			</script>
 			<?php echo $prevtext; ?>
 			<div>
@@ -4127,7 +4128,6 @@ function checkAccess(&$hint = NULL, &$show = NULL) {
 	$_zp_current_page, $_zp_current_article;
 	if (GALLERY_SECURITY != 'public') // only registered users allowed
 		$show = true; //	therefore they will need to supply their user id is something fails below
-
 	if ($_zp_gallery->isUnprotectedPage(stripSuffix($_zp_gallery_page)))
 		return true;
 	if (zp_loggedin()) {
