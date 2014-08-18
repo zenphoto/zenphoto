@@ -1445,7 +1445,6 @@ zp-core/zp-extensions/wordpress_import.php
 zp-core/zp-extensions/xmpMetadata.php
 zp-core/zp-extensions/zenpage.php
 zp-core/zp-extensions/zenphoto_sendmail.php
-zp-core/zp-extensions/zenpotoCompatibilityPack.php
 zp-core/zp-extensions/zpCaptcha.php
 zp-core/zp-extensions/bxslider_thumb_nav
 zp-core/zp-extensions/bxslider_thumb_nav/jquery.bxslider.css
@@ -2256,4 +2255,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-2258
+2257
