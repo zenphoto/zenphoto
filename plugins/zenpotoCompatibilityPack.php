@@ -73,8 +73,8 @@ switch (OFFSET_PATH) {
 
 			}
 
+			$_zp_zenpage = clone $_zp_CMS;
 		}
-		$_zp_zenpage = clone $_zp_CMS;
 }
 
 function zenphotoCompatibility($param = NULL) {
