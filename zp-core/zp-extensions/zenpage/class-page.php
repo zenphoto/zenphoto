@@ -262,18 +262,20 @@ class Page extends CMSItems {
 		if (!is_null($this->subrights)) {
 			return $this->subrights;
 		}
-		if (zp_loggedin($this->manage_rights)) {
-			$this->subrights = MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW;
-			return $this->subrights;
-		}
 		$this->subrights = 0;
-		$objects = $_zp_current_admin_obj->getObjects();
-		$me = $this->getTitlelink();
-		foreach ($objects as $object) {
-			if ($object['type'] == $this->table) {
-				if ($object['data'] == $me) {
-					$this->subrights = $object['edit'] | MANAGED_OBJECT_MEMBER;
-					break;
+		if (zp_loggedin()) {
+			if (zp_loggedin($this->manage_rights)) {
+				$this->subrights = MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW;
+				return $this->subrights;
+			}
+			$objects = $_zp_current_admin_obj->getObjects();
+			$me = $this->getTitlelink();
+			foreach ($objects as $object) {
+				if ($object['type'] == $this->table) {
+					if ($object['data'] == $me) {
+						$this->subrights = $object['edit'] | MANAGED_OBJECT_MEMBER;
+						break;
+					}
 				}
 			}
 		}
