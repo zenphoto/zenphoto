@@ -894,26 +894,28 @@ class AlbumBase extends MediaObject {
 	 * returns NULL if not a managed album
 	 */
 	function subRights() {
+		global $_zp_admin_album_list;
 		if (!is_null($this->subrights)) {
 			return $this->subrights;
 		}
-		global $_zp_admin_album_list;
-		if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
-			$this->subrights = MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_UPLOAD | MANAGED_OBJECT_RIGHTS_VIEW;
-			return $this->subrights;
-		}
 		$this->subrights = 0;
-		getManagedAlbumList();
-		if (count($_zp_admin_album_list) > 0) {
-			$uralbum = getUrAlbum($this);
-			if ($uralbum->name == $this->name) {
-				if (isset($_zp_admin_album_list[$uralbum->name])) {
-					$this->subrights = $_zp_admin_album_list[$uralbum->name] | MANAGED_OBJECT_MEMBER;
-					if (zp_loggedin(VIEW_UNPUBLISHED_RIGHTS))
-						$this->subrights = $this->subrights | MANAGED_OBJECT_RIGHTS_VIEW;
+		if (zp_loggedin()) {
+			if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
+				$this->subrights = MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_UPLOAD | MANAGED_OBJECT_RIGHTS_VIEW;
+				return $this->subrights;
+			}
+			getManagedAlbumList();
+			if (count($_zp_admin_album_list) > 0) {
+				$uralbum = getUrAlbum($this);
+				if ($uralbum->name == $this->name) {
+					if (isset($_zp_admin_album_list[$uralbum->name])) {
+						$this->subrights = $_zp_admin_album_list[$uralbum->name] | MANAGED_OBJECT_MEMBER;
+						if (zp_loggedin(VIEW_UNPUBLISHED_RIGHTS))
+							$this->subrights = $this->subrights | MANAGED_OBJECT_RIGHTS_VIEW;
+					}
+				} else {
+					$this->subrights = $uralbum->subRights();
 				}
-			} else {
-				$this->subrights = $uralbum->subRights();
 			}
 		}
 		return $this->subrights;

@@ -337,18 +337,20 @@ class Category extends CMSRoot {
 		if (!is_null($this->subrights)) {
 			return $this->subrights;
 		}
-		if (zp_loggedin($this->manage_rights)) {
-			$this->subrights = MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW;
-			return $this->subrights;
-		}
+		if (zp_loggedin()) {
+			if (zp_loggedin($this->manage_rights)) {
+				$this->subrights = MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW;
+				return $this->subrights;
+			}
 
-		$objects = $_zp_current_admin_obj->getObjects();
-		$me = $this->getTitlelink();
-		foreach ($objects as $object) {
-			if ($object['type'] == 'news') {
-				if ($object['data'] == $me) {
-					$this->subrights = $object['edit'] | MANAGED_OBJECT_MEMBER;
-					return $this->subrights;
+			$objects = $_zp_current_admin_obj->getObjects();
+			$me = $this->getTitlelink();
+			foreach ($objects as $object) {
+				if ($object['type'] == 'news') {
+					if ($object['data'] == $me) {
+						$this->subrights = $object['edit'] | MANAGED_OBJECT_MEMBER;
+						return $this->subrights;
+					}
 				}
 			}
 		}
