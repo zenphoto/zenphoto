@@ -308,9 +308,6 @@ if (isset($_GET['action'])) {
 											$image->set('filesize', filesize($image->localpath));
 											zp_apply_filter('save_image_custom_data', NULL, $i, $image);
 											zp_apply_filter('save_image_utilities_data', $image, $i);
-
-											echo "<br/>back to admin";
-
 											$image->save();
 
 // Process move/copy/rename
