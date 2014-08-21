@@ -427,6 +427,7 @@ class Category extends CMSRoot {
 	 * @return int
 	 */
 	function getIndex($sortorder, $sortdirection, $sticky) {
+		global $_zp_CMS;
 		if ($this->index == NULL) {
 			$articles = $_zp_CMS->getArticles(0, NULL, true, $sortorder, $sortdirection, $sticky);
 			for ($i = 0; $i < count($articles); $i++) {
