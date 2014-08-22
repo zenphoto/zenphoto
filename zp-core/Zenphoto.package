@@ -4,7 +4,6 @@ themes/basic
 themes/basic/404.php
 themes/basic/album.php
 themes/basic/archive.php
-themes/basic/archive2.php
 themes/basic/common.css
 themes/basic/contact.php
 themes/basic/favorites.php
@@ -1719,4 +1718,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1721
+1720
