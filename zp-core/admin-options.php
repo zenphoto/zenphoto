@@ -1538,10 +1538,10 @@ Zenphoto_Authority::printPasswordFormJS();
 								<script>
 																					$(function() {
 																					$("#resizable").resizable({
-																					maxWidth: 350,
-																									minWidth: 350, minHeight: 120,
+																					minHeight: 120,
 																									resize: function(event, ui) {
-																									$('#searchchecklist').height($('#resizable').height());
+																									$(this).css("width", '');
+																													$('#searchchecklist').height($('#resizable').height());
 																									}
 																					});
 																					});</script>
@@ -2306,17 +2306,18 @@ Zenphoto_Authority::printPasswordFormJS();
 													 <?php checked('1', getOption('use_lock_image')); ?> />
 									</td>
 									<td><?php echo gettext("Substitute a <em>lock</em> image for thumbnails of password protected albums when the viewer has not supplied the password. If your theme supplies an <code>images/err-passwordprotected.png</code> image, it will be shown. Otherwise the zenphoto default lock image is displayed."); ?></td>
-								</tr>
+
 								<script>
 																									$(function() {
 																									$("#resizable").resizable({
-																									maxWidth: 350,
-																													minWidth: 350, minHeight: 120,
+																									minHeight: 120,
 																													resize: function(event, ui) {
-																													$('#metadatalist').height($('#resizable').height());
+																													$(this).css("width", '');
+																																	$('#metadatalist').height($('#resizable').height());
 																													}
 																									});
-																									});</script>
+																									});							</script>
+								</tr>
 								<tr>
 									<td><?php echo gettext("Metadata"); ?></td>
 									<td>
@@ -3059,12 +3060,12 @@ Zenphoto_Authority::printPasswordFormJS();
 									<td>
 										<p><?php echo gettext("Normally this option should be set to <em>http</em>. If you are running a secure server, change this to <em>https</em>. Select <em>secure admin</em> if you need only to insure secure access to <code>admin</code> pages."); ?></p>
 										<p class="notebox"><?php
-											echo gettext("<strong>Note:</strong>" .
-															"<br /><br />Login from the front-end user login form is secure only if <em>https</em> is selected." .
-															"<br /><br />If you select <em>https</em> or <em>secure admin</em> your server <strong>MUST</strong> support <em>https</em>.  " .
-															"If you set either of these on a server which does not support <em>https</em> you will not be able to access the <code>admin</code> pages to reset the option! " .
-															'Your only possibility then is to change the option named <span class="inlinecode">server_protocol</span> in the <em>options</em> table of your database.');
-											?>
+							echo gettext("<strong>Note:</strong>" .
+											"<br /><br />Login from the front-end user login form is secure only if <em>https</em> is selected." .
+											"<br /><br />If you select <em>https</em> or <em>secure admin</em> your server <strong>MUST</strong> support <em>https</em>.  " .
+											"If you set either of these on a server which does not support <em>https</em> you will not be able to access the <code>admin</code> pages to reset the option! " .
+											'Your only possibility then is to change the option named <span class="inlinecode">server_protocol</span> in the <em>options</em> table of your database.');
+							?>
 										</p>
 									</td>
 								</tr>

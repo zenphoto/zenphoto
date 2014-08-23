@@ -320,7 +320,7 @@ class optionalObjectFields extends fieldExtender {
 			return NULL;
 		} else {
 			ob_start();
-			print_language_string_list($obj->getExtraContent('all'), 'extracontent', true, NULL, 'extracontent', '100%', 'zenpage_language_string_list', 10);
+			print_language_string_list($obj->getExtraContent('all'), 'extracontent', true, NULL, 'extracontent', '100%', 'zenpage_language_string_list', 13);
 			$item = ob_get_contents();
 			ob_end_clean();
 			return $item;

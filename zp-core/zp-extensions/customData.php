@@ -134,7 +134,7 @@ class customData {
 		ob_start();
 		?>
 		<tr>
-			<td class="topalign-nopadding"><?php echo gettext("Custom:"); ?></td>
+			<td class="topalign-nopadding nowrap"><?php echo gettext("Custom:"); ?></td>
 			<td class="middlecolumn">
 				<?php
 				print_language_string_list($object->getCustomData('all'), 'custom_data', true, NULL, 'custom_data', '100%', 'zenpage_language_string_list', 10);

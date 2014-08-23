@@ -158,10 +158,8 @@ function printAdminHeader($tab, $subtab = NULL) {
 					$.DirtyForms.continueText = '<?php echo gettext('Leave'); ?>';
 					$.DirtyForms.stopText = '<?php echo gettext('Stay'); ?>';
 					$.facebox.settings.closeImage = '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/facebox/closelabel.png';
-
 					$('#modal').facebox();
 					$('form.dirtylistening').dirtyForms();
-
 				});
 				$(function() {
 					$(".tooltip ").tooltip({
@@ -1231,19 +1229,12 @@ function printAdminHeader($tab, $subtab = NULL) {
 			<script>
 				$(function() {
 					$("#resizable_<?php echo $postit; ?>").resizable({
-		<?php
-		if (is_bool($resizeable)) {
-			?>
-						maxWidth: 250,
-			<?php
-		}
-		?>
-					minWidth: 250,
-									minHeight: 120,
-									resize: function(event, ui) {
-									$('#list_<?php echo $postit; ?>').height($('#resizable_<?php echo $postit; ?>').height());
-									}
-				})
+						minHeight: 120,
+						resize: function(event, ui) {
+							$(this).css("width", '');
+							$('#list_<?php echo $postit; ?>').height($('#resizable_<?php echo $postit; ?>').height());
+						}
+					})
 				});</script>
 			<?php
 		} else {
@@ -1449,7 +1440,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 									<label><input type="checkbox" name="disclose_password<?php echo $suffix; ?>"
 																id="disclose_password<?php echo $suffix; ?>"
 																onclick="passwordClear('<?php echo $suffix; ?>');
-																				togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?></label>
+																		togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?></label>
 								</td>
 								<td>
 									<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
@@ -1931,7 +1922,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 } else {
 											 ?>
 											 onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');
-															 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
+													 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
 											 <?php
 										 }
 										 ?> />
@@ -2573,7 +2564,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 * @param int $rows set to the number of rows to show.
 	 */
 	function print_language_string_list($dbstring, $name, $textbox = false, $locale = NULL, $edit = '', $wide = TEXT_INPUT_SIZE, $ulclass = 'language_string_list', $rows = 6) {
-		global $_zp_active_languages, $_zp_current_locale;
+		global $_zp_active_languages, $_zp_current_locale, $_lsInstance;
 		$dbstring = zpFunctions::unTagURLs($dbstring);
 		if (!empty($edit))
 			$edit = ' class="' . $edit . '"';
@@ -2596,8 +2587,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 				$activelang[$allLang[$lang]] = $lang;
 			}
 		}
+		echo '<div id="ls_' . ++$_lsInstance . '">' . "\n";
 
-		if (getOption('multi_lingual') && !empty($activelang)) {
+		if ($multi = getOption('multi_lingual') && !empty($activelang)) {
 			if ($textbox) {
 				if (strpos($wide, '%') === false) {
 					$width = ' cols="' . $wide . '"';
@@ -2649,7 +2641,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			} else {
 				$class = '';
 			}
-			echo '<ul class="' . $ulclass . $class . '"' . ">\n";
+			echo '<ul id="ul_' . $_lsInstance . '" class="' . $ulclass . $class . '"' . ">\n";
 			$empty = true;
 
 			foreach ($emptylang as $key => $lang) {
@@ -2714,6 +2706,21 @@ function printAdminHeader($tab, $subtab = NULL) {
 			} else {
 				echo '<input name="' . $name . '_' . $locale . '"' . $edit . ' type="text" value="' . html_encode($dbstring) . '"' . $width . ' />';
 			}
+		}
+		echo "</div>\n";
+		if ($multi) {
+			?>
+			<script type="text/javascript">
+				$(function() {
+					$('#ls_<?php echo $_lsInstance; ?>').resizable({
+						minHeight: 60,
+						resize: function(event, ui) {
+							$(this).css("width", '');
+							$('#ul_<?php echo $_lsInstance; ?>').height($('#ls_<?php echo $_lsInstance; ?>').height());
+						}
+					});
+				});</script>
+			<?php
 		}
 	}
 
@@ -5010,12 +5017,12 @@ function linkPickerIcon($obj, $id = NULL, $extra = NULL) {
 	<a onclick="<?php
 	if ($id) {
 		?>
-						$('#<?php echo $id; ?>').select();
+				$('#<?php echo $id; ?>').select();
 		<?php
 	}
 	?>
-					$('.pickedObject').removeClass('pickedObject');
-					$('#<?php echo $iconid; ?>').addClass('pickedObject');
+			$('.pickedObject').removeClass('pickedObject');
+			$('#<?php echo $iconid; ?>').addClass('pickedObject');
 	<?php linkPickerPick($obj, $id, $extra); ?>"
 		 title="<?php echo gettext('pick source'); ?>">
 		<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" id="<?php echo $iconid; ?>">
