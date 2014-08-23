@@ -1376,7 +1376,7 @@ class SearchEngine {
 		if (empty($searchstring)) {
 			return array();
 		} // nothing to find
-		$criteria = $this->getCacheTag('albums', serialize($searchstring), $sorttype . ' ' . $sortdirection . ($mine) ? ' mine' : '');
+		$criteria = $this->getCacheTag('albums', serialize($searchstring), $sorttype . ' ' . $sortdirection . ' '. $mine);
 		if ($this->albums && $criteria == $this->searches['albums']) {
 			return $this->albums;
 		}
@@ -1528,7 +1528,7 @@ class SearchEngine {
 			return array();
 		} // nothing to find
 
-		$criteria = $this->getCacheTag('images', serialize($searchstring) . ' ' . $searchdate, $sorttype . ' ' . $sortdirection . ($mine) ? ' mine' : '');
+		$criteria = $this->getCacheTag('images', serialize($searchstring) . ' ' . $searchdate, $sorttype . ' ' . $sortdirection . ' '.$mine);
 		if ($criteria == $this->searches['images']) {
 			return $this->images;
 		}
