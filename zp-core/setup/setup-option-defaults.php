@@ -94,7 +94,7 @@ if (isset($_GET['mod_rewrite'])) {
 			$('img').error(function() {
 				var link = $(this).attr('src');
 				var title = $(this).attr('title');
-				$(this).parent().html('<a href="' + link + '"><img src="../images/fail.png" title="' + title + '"></a>');
+				$(this).parent().html('<a href="' + link + '" target="_blank"><img src="../images/fail.png" title="' + title + '"></a>');
 				imageErr = true;
 			});
 		});
