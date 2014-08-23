@@ -5,6 +5,7 @@
  * Zenphoto plugin default light configuration
  */
 $filehandler = zp_apply_filter('tinymce_zenpage_config', NULL);
+global $_zp_RTL_css;
 ?>
 <script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER . "/" . PLUGIN_FOLDER; ?>/tinymce4/tinymce.min.js"></script>
 <script type="text/javascript">
@@ -12,6 +13,7 @@ $filehandler = zp_apply_filter('tinymce_zenpage_config', NULL);
 					tinymce.init({
 					selector: "textarea.texteditor",
 									language: "<?php echo $locale; ?>",
+									directionality: "<?php echo $_zp_RTL_css ? 'rtl' : 'ltr'; ?>",
 									menubar: false,
 									relative_urls: false,
 									image_advtab: true,
@@ -26,10 +28,10 @@ if ($filehandler) {
 ?>
 					plugins: [
 									"advlist autolink lists link image charmap print preview anchor",
-									"searchreplace visualblocks code fullscreen",
+									"searchreplace visualblocks code fullscreen directionality",
 									"insertdatetime media table contextmenu paste tinyzenpage"
 					],
-									toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | code | tinyzenpage",
+									toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | code fullscreen | tinyzenpage | ltr rtl",
 									statusbar: false,
 									setup: function(ed) {
 									ed.on('change', function(e) {

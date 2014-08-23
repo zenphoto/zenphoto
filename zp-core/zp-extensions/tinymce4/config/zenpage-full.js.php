@@ -5,6 +5,7 @@
  * Zenpage plugin default light configuration
  */
 $filehandler = zp_apply_filter('tinymce_zenpage_config', NULL);
+global $_zp_RTL_css;
 ?>
 <script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER . "/" . PLUGIN_FOLDER; ?>/tinymce4/tinymce.min.js"></script>
 <script type="text/javascript">
@@ -12,6 +13,7 @@ $filehandler = zp_apply_filter('tinymce_zenpage_config', NULL);
 					tinymce.init({
 					selector: "textarea.content,textarea.desc,textarea.extracontent",
 									language: "<?php echo $locale; ?>",
+									directionality: "<?php echo $_zp_RTL_css ? 'rtl' : 'ltr'; ?>",
 									relative_urls: false,
 									image_advtab: true,
 									content_css: "<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/tinymce4/config/content.css",
@@ -30,7 +32,7 @@ if ($filehandler) {
 									"emoticons template paste tinyzenpage"
 					],
 									toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
-									toolbar2: "print preview media | forecolor backcolor emoticons tinyzenpage | code fullscreen",
+									toolbar2: "print preview media | forecolor backcolor emoticons | tinyzenpage | code fullscreen | ltr rtl",
 									setup: function(ed) {
 									ed.on('change', function(e) {
 									$('.dirty-check').addClass('dirty');
