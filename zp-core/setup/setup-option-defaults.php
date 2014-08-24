@@ -547,12 +547,6 @@ foreach ($_languages as $language => $dirname) {
 	}
 }
 
-//cleanup from misspelling.
-if (file_exists(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/zenpotoCompatibilityPack.php')) {
-	unlink(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/zenpotoCompatibilityPack.php');
-	zpFunctions::removeDir(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/zenpotoCompatibilityPack');
-}
-
 //The following should be done LAST so it catches anything done above
 //set plugin default options by instantiating the options interface
 

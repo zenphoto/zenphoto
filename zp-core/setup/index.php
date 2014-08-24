@@ -422,6 +422,12 @@ if ($setup_checked) {
 	}
 	setcookie('setup_test_cookie', ZENPHOTO_RELEASE, time() + 3600, '/');
 }
+//cleanup from misspelling.
+@unlink(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/zenpotoCompatibilityPack.php');
+@unlink(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpotoCompatibilityPack.php');
+if (is_dir(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/zenpotoCompatibilityPack')) {
+	zpFunctions::removeDir(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/zenpotoCompatibilityPack');
+}
 
 if (!isset($_zp_setupCurrentLocale_result) || empty($_zp_setupCurrentLocale_result)) {
 	if (DEBUG_LOCALE)
@@ -493,12 +499,13 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 					</p>
 					<h2><?php echo gettext("Systems Check:"); ?></h2>
 					<?php
-					/*					 * ***************************************************************************
-					 *                                                                           *
-					 *                             SYSTEMS CHECK                                 *
-					 *                                                                           *
-					 * *************************************************************************** */
-
+					/**
+					 * ************************************************************************
+					 *                                                                        *
+					 *                             SYSTEMS CHECK                              *
+					 *                                                                        *
+					 * ************************************************************************
+					 */
 					global $_zp_conf_vars;
 					$good = true;
 
