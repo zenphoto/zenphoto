@@ -528,7 +528,7 @@ codeblocktabsJS();
 																<br />
 																<label>
 																	<input type="checkbox" name="disclose_password" id="disclose_password" onclick="passwordClear('');
-																						togglePassword('');"><?php echo gettext('Show password'); ?>
+																			togglePassword('');"><?php echo gettext('Show password'); ?>
 																</label>
 																<br />
 																<span class="password_field_">
@@ -553,13 +553,13 @@ codeblocktabsJS();
 														<label class="checkboxlabel">
 															<input type="radio" id="copy_object" name="copy_delete_object" value="copy"
 																		 onclick="$('#copyfield').show();
-																						 $('#deletemsg').hide();" />
+																				 $('#deletemsg').hide();" />
 																		 <?php echo gettext("Copy"); ?>
 														</label>
 														<label class="checkboxlabel">
 															<input type="radio" id="delete_object" name="copy_delete_object" value="delete"
 																		 onclick="deleteConfirm('delete_object', '', '<?php addslashes(printf(gettext('Are you sure you want to delete this %s?'), $deleteitem)); ?>');
-																						 $('#copyfield').hide();" />
+																				 $('#copyfield').hide();" />
 																		 <?php echo gettext('delete'); ?>
 														</label>
 														<br class="clearall" />
@@ -776,9 +776,9 @@ codeblocktabsJS();
 											<td class="middlecolumn">
 												<?php
 												if (is_AdminEditPage("newscategory")) {
-													print_language_string_list($result->getDesc('all'), 'desc', true, NULL, 'desc', '100%', 'zenpage_language_string_list', 20);
+													print_language_string_list($result->getDesc('all'), 'desc', true, NULL, 'desc', '100%', 'zenpage_language_string_list', 10);
 												} else {
-													print_language_string_list($result->getContent('all'), 'content', true, NULL, 'content', '100%', 'zenpage_language_string_list', 35);
+													print_language_string_list($result->getContent('all'), 'content', true, NULL, 'content', '100%', 'zenpage_language_string_list', 13);
 												}
 												?>
 											</td>
