@@ -10,7 +10,7 @@ $host = "http://" . html_encode($_SERVER["HTTP_HOST"]);
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	</head>
 	<body>
-		<div style="text-align: center; width 450px;">
+		<div style="text-align: center; width: 450px;">
 			<?php
 			if (isset($_GET['image']) && isset($_GET['album'])) {
 				$imagename = sanitize($_GET['image']);
