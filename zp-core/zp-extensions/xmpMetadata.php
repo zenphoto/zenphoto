@@ -576,7 +576,7 @@ class xmpMetadata {
 	function getOptionsSupported() {
 		global $_zp_supported_images, $_zp_extra_filetypes;
 		$list = $_zp_supported_images;
-		foreach (array('gif', 'bmp') as $suffix) {
+		foreach (array('gif', 'wbmp') as $suffix) {
 			$key = array_search($suffix, $list);
 			if ($key !== false)
 				unset($list[$key]);
