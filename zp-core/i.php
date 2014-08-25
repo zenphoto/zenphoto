@@ -177,6 +177,7 @@ if (!$debug) {
 	// ... and redirect the browser to it.
 	$suffix = getSuffix($newfilename);
 	switch ($suffix) {
+		case 'wbm':
 		case 'wbmp':
 			$suffix = 'wbmp';
 			break;

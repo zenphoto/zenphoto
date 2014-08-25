@@ -576,21 +576,13 @@ class xmpMetadata {
 	 */
 	function getOptionsSupported() {
 		global $_zp_supported_images, $_zp_extra_filetypes;
-		$list = $_zp_supported_images;
-		foreach (array('gif', 'wbmp') as $suffix) {
-			$key = array_search($suffix, $list);
-			if ($key !== false)
-				unset($list[$key]);
-		}
-		natcasesort($list);
-		$types = array();
+		$list = array_diff($_zp_supported_images, array('gif', 'wbmp', 'wbm'));
 		foreach ($_zp_extra_filetypes as $suffix => $type) {
 			if ($type == 'Video')
-				$types[] = $suffix;
+				$list[] = $suffix;
 		}
-		natcasesort($types);
-		$list = array_merge($list, $types);
 		$listi = array();
+		natcasesort($list);
 		foreach ($list as $suffix) {
 			$listi[$suffix] = 'xmpMetadata_examine_images_' . $suffix;
 		}

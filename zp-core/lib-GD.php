@@ -65,6 +65,7 @@ if (!function_exists('zp_graphicsLibInfo')) {
 		$_lib_GD_info['JPG'] = ($imgtypes & IMG_JPG) ? 'jpg' : false;
 		$_lib_GD_info['JPEG'] = ($imgtypes & IMG_JPG) ? 'jpg' : false;
 		$_lib_GD_info['PNG'] = ($imgtypes & IMG_PNG) ? 'png' : false;
+		$_lib_GD_info['WBM'] = ($imgtypes & IMG_WBMP) ? 'jpg' : false;
 		$_lib_GD_info['WBMP'] = ($imgtypes & IMG_WBMP) ? 'jpg' : false;
 		unset($imgtypes);
 		unset($info);
@@ -84,6 +85,7 @@ if (!function_exists('zp_graphicsLibInfo')) {
 			switch ($ext) {
 				case 'png':
 					return imagecreatefrompng($imgfile);
+				case 'wbm':
 				case 'wbmp':
 					return imagecreatefromwbmp($imgfile);
 				case 'jpeg':
@@ -112,6 +114,7 @@ if (!function_exists('zp_graphicsLibInfo')) {
 				case 'png':
 					$qual = max(0, 9 - round($qual / 10));
 					return imagepng($im, $filename, $qual);
+				case 'wbm':
 				case 'wbmp':
 					return imagewbmp($im, $filename);
 				case 'jpeg':
