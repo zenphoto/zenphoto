@@ -13,7 +13,7 @@
  * </ul>
  *
  * @author Stephen Billard (sbillard)
- * 
+ *
  * @package plugins
  * @subpackage admin
  */
@@ -132,7 +132,10 @@ class security_logger {
 					$addl .= ' ' . gettext('clone');
 				}
 				break;
-			case 'setup_proptect':
+			case 'setup_restore':
+				$type = gettext('Restore setup scripts');
+				break;
+			case 'setup_protect':
 				$type = gettext('Protect setup scripts');
 				break;
 			case 'user_new':

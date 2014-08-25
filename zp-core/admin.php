@@ -42,7 +42,6 @@ if (zp_loggedin()) { /* Display the admin pages. Do action handling first. */
 		if (zp_loggedin($needs)) {
 			switch ($action) {
 				/** clear the image cache **************************************************** */
-				/*				 * *************************************************************************** */
 				case "clear_cache":
 					XSRFdefender('clear_cache');
 					Gallery::clearCache();
@@ -51,7 +50,6 @@ if (zp_loggedin()) { /* Display the admin pages. Do action handling first. */
 					break;
 
 				/** clear the RSScache ********************************************************** */
-				/*				 * *************************************************************************** */
 				case "clear_rss_cache":
 					if (class_exists('RSS')) {
 						XSRFdefender('clear_cache');
@@ -63,7 +61,6 @@ if (zp_loggedin()) { /* Display the admin pages. Do action handling first. */
 					break;
 
 				/** clear the HTMLcache ****************************************************** */
-				/*				 * *************************************************************************** */
 				case 'clear_html_cache':
 					XSRFdefender('ClearHTMLCache');
 					require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/static_html_cache.php');
@@ -73,17 +70,21 @@ if (zp_loggedin()) { /* Display the admin pages. Do action handling first. */
 					break;
 
 				/** restore the setup files ************************************************** */
-				/*				 * *************************************************************************** */
 				case 'restore_setup':
 					XSRFdefender('restore_setup');
-					checkSignature(true);
-					zp_apply_filter('log_setup', true, 'protect', gettext('enabled'));
-					$class = 'messagebox';
-					$msg = gettext('Setup files restored.');
+					list($diff, $needs) = checkSignature(true);
+					if (empty($needs)) {
+						zp_apply_filter('log_setup', true, 'restore', gettext('restored'));
+						$class = 'messagebox';
+						$msg = gettext('Setup files restored.');
+					} else {
+						zp_apply_filter('log_setup', false, 'restore', implode(', ', $needs));
+						$class = 'errorbox';
+						$msg = gettext('Setup files restore failed.');
+					}
 					break;
 
 				/** protect the setup files ************************************************** */
-				/*				 * *************************************************************************** */
 				case 'protect_setup':
 					XSRFdefender('protect_setup');
 					chdir(SERVERPATH . '/' . ZENFOLDER . '/setup/');
@@ -95,16 +96,21 @@ if (zp_loggedin()) { /* Display the admin pages. Do action handling first. */
 							@chmod(SERVERPATH . '/' . ZENFOLDER . '/setup/' . $component . '.xxx', FILE_MOD);
 						} else {
 							@chmod(SERVERPATH . '/' . ZENFOLDER . '/setup/' . $component, FILE_MOD);
-							$rslt[] = '../setup/' . $component;
+							$rslt[] = $component;
 						}
 					}
-					zp_apply_filter('log_setup', true, 'protect', gettext('protected'));
-					$class = 'messagebox';
-					$msg = gettext('Setup files protected.');
+					if (empty($rslt)) {
+						zp_apply_filter('log_setup', true, 'protect', gettext('protected'));
+						$class = 'messagebox';
+						$msg = gettext('Setup files protected.');
+					} else {
+						zp_apply_filter('log_setup', false, 'protect', implode(', ', $rslt));
+						$class = 'errorbox';
+						$msg = gettext('Protecting setup files failed.');
+					}
 					break;
 
 				/** external script return *************************************************** */
-				/*				 * *************************************************************************** */
 				case 'external':
 					if (isset($_GET['error'])) {
 						$class = sanitize($_GET['error']);
@@ -122,7 +128,6 @@ if (zp_loggedin()) { /* Display the admin pages. Do action handling first. */
 					break;
 
 				/** default ****************************************************************** */
-				/*				 * *************************************************************************** */
 				default:
 					call_user_func($action);
 					break;
@@ -153,7 +158,7 @@ if (zp_loggedin()) { /* Display the admin pages. Do action handling first. */
 $from = NULL;
 if (zp_loggedin() && !empty($zenphoto_tabs)) {
 	if (!$_zp_current_admin_obj->getID() || empty($msg) && !zp_loggedin(OVERVIEW_RIGHTS)) {
-		// admin access without overview rights, redirect to first tab
+// admin access without overview rights, redirect to first tab
 		$tab = array_shift($zenphoto_tabs);
 		$link = $tab['link'];
 		header('location:' . $link);
@@ -186,7 +191,7 @@ printAdminHeader('overview');
 <?php
 echo "\n</head>";
 if (!zp_loggedin()) {
-	// If they are not logged in, display the login form and exit
+// If they are not logged in, display the login form and exit
 	?>
 	<body style="background-image: none">
 		<?php $_zp_authority->printLoginForm($from); ?>
@@ -516,7 +521,8 @@ if (!zp_loggedin()) {
 							$filters = $_zp_filters;
 							$c = count($plugins);
 							?>
-							<h3><a onclick="toggle('plugins_hide');toggle('plugins_show');" ><?php printf(ngettext("%u active plugin:", "%u active plugins:", $c), $c); ?></a></h3>
+							<h3><a onclick="toggle('plugins_hide');
+											toggle('plugins_show');" ><?php printf(ngettext("%u active plugin:", "%u active plugins:", $c), $c); ?></a></h3>
 							<div id="plugins_hide" style="display:none">
 								<ul class="plugins">
 									<?php
@@ -563,7 +569,8 @@ if (!zp_loggedin()) {
 							<?php
 							$c = count($filters);
 							?>
-							<h3><a onclick="toggle('filters_hide');toggle('filters_show');" ><?php printf(ngettext("%u active filter:", "%u active filters:", $c), $c); ?></a></h3>
+							<h3><a onclick="toggle('filters_hide');
+											toggle('filters_show');" ><?php printf(ngettext("%u active filter:", "%u active filters:", $c), $c); ?></a></h3>
 							<div id="filters_hide" style="display:none">
 								<ul class="plugins">
 									<?php
