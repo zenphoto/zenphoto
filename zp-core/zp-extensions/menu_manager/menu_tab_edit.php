@@ -10,7 +10,7 @@ admin_securityChecks(NULL, currentRelativeURL());
 
 $page = 'edit';
 
-$result = "";
+$result = NULL;
 $reports = array();
 if (isset($_GET['id'])) {
 	$result = getItem(sanitize($_GET['id']));
@@ -87,54 +87,60 @@ $menuset = checkChosenMenuset();
 								$('#link').val($(this).val());
 							});
 							break;
-						case 'all_pages':
-							$('#albumselector,#pageselector,#categoryselector,#custompageselector,#titleinput,#titlelabel,#link_row,#visible_row,#span_row').hide();
-							$('#selector').html('<?php echo js_encode(gettext("All Zenpage pages")); ?>');
-							$('#description').html('<?php echo js_encode(gettext("This adds menu items for all Zenpage pages.")); ?>');
-							break;
-						case 'page':
-							$('#albumselector,#categoryselector,#custompageselector,#link_row,#titleinput').hide();
-							$('#selector').html('<?php echo js_encode(gettext("Zenpage page")); ?>');
-							$('#description').html('<?php echo js_encode(gettext("Creates a link to a Zenpage Page.")); ?>');
-							$('#link').attr('disabled', true);
-							$('#pageselector').show();
-							$('#titlelabel').html('<?php echo js_encode(gettext('Page')); ?>');
-							$('#pageselector').change(function() {
-								$('#link').val($(this).val());
-							});
-							break;
-						case 'newsindex':
-							$('#albumselector,#pageselector,#categoryselector,#custompageselector,#link_row').hide();
-							$('#selector').html('<?php echo js_encode(gettext("Zenpage news index")); ?>');
-							$('#description').html('<?php echo js_encode(gettext("Creates a link to the Zenpage News Index.")); ?>');
-							$('#link').attr('disabled', true);
-							$('#titleinput').show();
-							$('#link').val('<?php echo getNewsIndexURL(); ?>');
-							break;
-						case 'all_categorys':
-							$('#albumselector,#pageselector,#categoryselector,#custompageselector,#titleinput,#titlelabel,#link_row,#visible_row,#span_row').hide();
-							$('#selector').html('<?php echo js_encode(gettext("All Zenpage categories")); ?>');
-							$('#description').html('<?php echo js_encode(gettext("This adds menu items for all Zenpage categories.")); ?>');
-							break;
-						case 'category':
-							$('#albumselector,#pageselector,#custompageselector,#custompageselector,#titleinput,#link_row').hide();
-							$('#selector').html('<?php echo js_encode(gettext("Zenpage news category")); ?>');
-							$('#description').html('<?php echo js_encode(gettext("Creates a link to a Zenpage News article category.")); ?>');
-							$("#link").attr('disabled', true);
-							$('#categoryselector').show();
-							$('#titlelabel').html('<?php echo js_encode(gettext('Category')); ?>');
-							$('#categoryselector').change(function() {
-								$('#link').val($(this).val());
-							});
-							break;
-						case 'custompage':
-							$('#albumselector,#pageselector,#categoryselector,#link,').hide();
-							$('#custompageselector').show();
-							$('#selector').html('<?php echo js_encode(gettext("Custom page")); ?>');
-							$('#description').html('<?php echo js_encode(gettext('Creates a link to a custom theme page as described in the theming tutorial.')); ?>');
-							$('#link_label').html('<?php echo js_encode(gettext('Script page')); ?>');
-							$('#titleinput').show();
-							break;
+<?php
+if (extensionEnabled('zenpage')) {
+	?>
+							case 'all_pages':
+								$('#albumselector,#pageselector,#categoryselector,#custompageselector,#titleinput,#titlelabel,#link_row,#visible_row,#span_row').hide();
+								$('#selector').html('<?php echo js_encode(gettext("All Zenpage pages")); ?>');
+								$('#description').html('<?php echo js_encode(gettext("This adds menu items for all Zenpage pages.")); ?>');
+								break;
+							case 'page':
+								$('#albumselector,#categoryselector,#custompageselector,#link_row,#titleinput').hide();
+								$('#selector').html('<?php echo js_encode(gettext("Zenpage page")); ?>');
+								$('#description').html('<?php echo js_encode(gettext("Creates a link to a Zenpage Page.")); ?>');
+								$('#link').attr('disabled', true);
+								$('#pageselector').show();
+								$('#titlelabel').html('<?php echo js_encode(gettext('Page')); ?>');
+								$('#pageselector').change(function() {
+									$('#link').val($(this).val());
+								});
+								break;
+							case 'newsindex':
+								$('#albumselector,#pageselector,#categoryselector,#custompageselector,#link_row').hide();
+								$('#selector').html('<?php echo js_encode(gettext("Zenpage news index")); ?>');
+								$('#description').html('<?php echo js_encode(gettext("Creates a link to the Zenpage News Index.")); ?>');
+								$('#link').attr('disabled', true);
+								$('#titleinput').show();
+								$('#link').val('<?php echo getNewsIndexURL(); ?>');
+								break;
+							case 'all_categorys':
+								$('#albumselector,#pageselector,#categoryselector,#custompageselector,#titleinput,#titlelabel,#link_row,#visible_row,#span_row').hide();
+								$('#selector').html('<?php echo js_encode(gettext("All Zenpage categories")); ?>');
+								$('#description').html('<?php echo js_encode(gettext("This adds menu items for all Zenpage categories.")); ?>');
+								break;
+							case 'category':
+								$('#albumselector,#pageselector,#custompageselector,#custompageselector,#titleinput,#link_row').hide();
+								$('#selector').html('<?php echo js_encode(gettext("Zenpage news category")); ?>');
+								$('#description').html('<?php echo js_encode(gettext("Creates a link to a Zenpage News article category.")); ?>');
+								$("#link").attr('disabled', true);
+								$('#categoryselector').show();
+								$('#titlelabel').html('<?php echo js_encode(gettext('Category')); ?>');
+								$('#categoryselector').change(function() {
+									$('#link').val($(this).val());
+								});
+								break;
+							case 'custompage':
+								$('#albumselector,#pageselector,#categoryselector,#link,').hide();
+								$('#custompageselector').show();
+								$('#selector').html('<?php echo js_encode(gettext("Custom page")); ?>');
+								$('#description').html('<?php echo js_encode(gettext('Creates a link to a custom theme page as described in the theming tutorial.')); ?>');
+								$('#link_label').html('<?php echo js_encode(gettext('Script page')); ?>');
+								$('#titleinput').show();
+								break;
+	<?php
+}
+?>
 						case "customlink":
 							$('#albumselector,#pageselector,#categoryselector,#custompageselector').hide();
 							$('#selector').html('<?php echo js_encode(gettext("Custom link")); ?>');
@@ -266,11 +272,12 @@ if (is_array($result)) {
 					$add = '&amp;update';
 				}
 				?>
-				<form class="dirtylistening" onReset="setClean('add');"  method="post" id="add" name="add" action="menu_tab_edit.php?save<?php
-				echo $add;
-				if ($menuset)
-					echo '&amp;menuset=' . $menuset;
-				?>" style="display: none">
+				<form class="dirtylistening" onReset="setClean('add')
+										;"  method="post" id="add" name="add" action="menu_tab_edit.php?save<?php
+							echo $add;
+							if ($menuset)
+								echo '&amp;menuset=' . $menuset;
+							?>" style="display: none">
 							<?php XSRFToken('update_menu'); ?>
 					<input type="hidden" name="update" id="update" value="<?php echo html_encode($action); ?>" />
 					<input type="hidden" name="id" id="id" value="<?php echo $id; ?>" />
@@ -363,7 +370,15 @@ if (is_array($result)) {
 								?>
 								<tr>
 									<td colspan="2">
-										<span class="notebox"><?php printf(gettext('Target does not exists in <em>%1$s</em> theme'), $array['theme']); ?></span>
+										<span class="notebox">
+											<?php
+											if (array_key_exists('theme', $array)) {
+												printf(gettext('Target does not exist in <em>%1$s</em> theme'), $array['theme']);
+											} else {
+												echo gettext('Target does not exist.');
+											}
+											?>
+										</span>
 									</td>
 								</tr>
 								<?php

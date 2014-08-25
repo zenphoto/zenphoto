@@ -2194,7 +2194,7 @@ function getLatestZenpageComments($number, $type = "all", $itemID = "") {
 			}
 		}
 	}
-	switch ($type) {
+	switch (strtolower($type)) {
 		case "news":
 			$whereNews = " WHERE $newsshow news.id = " . $itemID . " AND c.ownerid = news.id AND c.type = 'news' AND c.private = 0 AND c.inmoderation = 0" . $newspasswordcheck;
 			break;

@@ -2739,7 +2739,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 			if (preg_match('/^' . $name . '_[a-z]{2}_[A-Z]{2}$/', $key)) {
 				$key = substr($key, $l);
 				if (in_array($key, $languages)) {
-					$strings[$key] = sanitize($value, $sanitize_level);
+					$value = sanitize($value, $sanitize_level);
+					if (!empty($value))
+						$strings[$key] = $value;
 				}
 			}
 		}
