@@ -41,11 +41,24 @@ function printItemsListTable($item, $flag) {
 			case "album":
 				$link = '<a href="../../admin-edit.php?page=edit&amp;album=' . html_encode($item['link']) . '">' . html_encode(truncate_string($item['link'], 40, '...')) . '</a>';
 				break;
+			case "zenpagenewsindex":
+				if(!class_exists('zenpage')) {
+					$link = '<span class="notebox">'.gettext('Zenpage CMS plugin required for this item type!').'</span>';
+				}
+				break;
 			case "zenpagepage":
-				$link = '<a href="../zenpage/admin-edit.php?page&amp;titlelink=' . html_encode($item['link']) . '">' . html_encode(truncate_string($item['link'], 40, '...')) . '</a>';
+				if(class_exists('zenpage')) {
+					$link = '<a href="../zenpage/admin-edit.php?page&amp;titlelink=' . html_encode($item['link']) . '">' . html_encode(truncate_string($item['link'], 40, '...')) . '</a>';
+				} else {
+					$link = '<span class="notebox">'.gettext('Zenpage CMS plugin required for this item type!').'</span>';
+				}
 				break;
 			case "zenpagecategory":
-				$link = '<a href="../zenpage/admin-edit.php?newscategory&amp;titlelink=' . html_encode($item['link']) . '">' . html_encode(truncate_string($item['link'], 40, '...')) . '</a>';
+				if(class_exists('zenpage')) {
+					$link = '<a href="../zenpage/admin-edit.php?newscategory&amp;titlelink=' . html_encode($item['link']) . '">' . html_encode(truncate_string($item['link'], 40, '...')) . '</a>';
+				} else {
+					$link = '<span class="notebox">'.gettext('Zenpage CMS plugin required for this item type!').'</span>';
+				}
 				break;
 			case 'customlink':
 				$link = '<a href="' . html_encode($item['link']) . '">' . html_encode(truncate_string($item['link'], 40, '...')) . '</a>';

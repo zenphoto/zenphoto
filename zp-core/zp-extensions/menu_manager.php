@@ -203,7 +203,7 @@ function checkChosenItemStatus() {
 function getItemTitleAndURL($item) {
 	global $_zp_gallery;
 	$themename = $_zp_gallery->getCurrentTheme();
-	$array = array();
+	$array = array("title" => '', "url" => '', "name" => '', 'protected' => false, 'theme' => $themename);
 	$valid = true;
 	$title = get_language_string($item['title']);
 	switch ($item['type']) {
@@ -228,38 +228,44 @@ function getItemTitleAndURL($item) {
 			$array = array("title" => $title, "url" => $url, "name" => $item['link'], 'protected' => $protected, 'theme' => $themename);
 			break;
 		case "zenpagepage":
-			$sql = 'SELECT * FROM ' . prefix('pages') . ' WHERE `titlelink`="' . $item['link'] . '"';
-			$result = query_single_row($sql);
-			if (is_array($result)) {
-				$obj = new ZenpagePage($item['link']);
-				$url = $obj->getLink(0);
-				$protected = $obj->isProtected();
-				$title = $obj->getTitle();
-			} else {
-				$valid = false;
-				$url = '';
-				$protected = 0;
+			if(class_exists('zenpage')) {
+				$sql = 'SELECT * FROM ' . prefix('pages') . ' WHERE `titlelink`="' . $item['link'] . '"';
+				$result = query_single_row($sql);
+				if (is_array($result)) {
+					$obj = new ZenpagePage($item['link']);
+					$url = $obj->getLink(0);
+					$protected = $obj->isProtected();
+					$title = $obj->getTitle();
+				} else {
+					$valid = false;
+					$url = '';
+					$protected = 0;
+				}
+				$array = array("title" => $title, "url" => $url, "name" => $item['link'], 'protected' => $protected, 'theme' => $themename);
 			}
-			$array = array("title" => $title, "url" => $url, "name" => $item['link'], 'protected' => $protected, 'theme' => $themename);
 			break;
 		case "zenpagenewsindex":
-			$url = getNewsIndexURL();
-			$array = array("title" => get_language_string($item['title']), "url" => $url, "name" => $url, 'protected' => false);
+			if(class_exists('zenpage')) {
+				$url = getNewsIndexURL();
+				$array = array("title" => get_language_string($item['title']), "url" => $url, "name" => $url, 'protected' => false);
+			} 
 			break;
 		case "zenpagecategory":
-			$sql = "SELECT title FROM " . prefix('news_categories') . " WHERE titlelink = '" . $item['link'] . "'";
-			$obj = query_single_row($sql, false);
-			if ($obj) {
-				$obj = new ZenpageCategory($item['link']);
-				$title = $obj->getTitle();
-				$protected = $obj->isProtected();
-				$url = $obj->getLink(0);
-			} else {
-				$valid = false;
-				$url = '';
-				$protected = 0;
-			}
-			$array = array("title" => $title, "url" => $url, "name" => $item['link'], 'protected' => $protected, 'theme' => $themename);
+			if(class_exists('zenpage')) {
+				$sql = "SELECT title FROM " . prefix('news_categories') . " WHERE titlelink = '" . $item['link'] . "'";
+				$obj = query_single_row($sql, false);
+				if ($obj) {
+					$obj = new ZenpageCategory($item['link']);
+					$title = $obj->getTitle();
+					$protected = $obj->isProtected();
+					$url = $obj->getLink(0);
+				} else {
+					$valid = false;
+					$url = '';
+					$protected = 0;
+				}
+				$array = array("title" => $title, "url" => $url, "name" => $item['link'], 'protected' => $protected, 'theme' => $themename);
+			} 
 			break;
 		case "custompage":
 			$root = SERVERPATH . '/' . THEMEFOLDER . '/' . $themename . '/';
