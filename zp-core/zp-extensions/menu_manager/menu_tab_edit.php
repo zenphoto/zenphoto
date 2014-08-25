@@ -109,7 +109,7 @@ $menuset = checkChosenMenuset();
 							$('#description').html('<?php echo js_encode(gettext("Creates a link to the Zenpage News Index.")); ?>');
 							$('#link').attr('disabled', true);
 							$('#titleinput').show();
-							$('#link').val('<?php echo getNewsIndexURL(); ?>');
+							$('#link').val('<?php if(class_exists("zenpage")) echo getNewsIndexURL(); ?>');
 							break;
 						case 'all_zenpagecategorys':
 							$('#albumselector,#pageselector,#categoryselector,#custompageselector,#titleinput,#titlelabel,#link_row,#visible_row,#span_row').hide();
