@@ -177,7 +177,7 @@ if (!$debug) {
 	// ... and redirect the browser to it.
 	$suffix = getSuffix($newfilename);
 	switch ($suffix) {
-		case 'bmp':
+		case 'wbmp':
 			$suffix = 'wbmp';
 			break;
 		case 'jpg':
