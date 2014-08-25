@@ -116,7 +116,7 @@ $image_path = $imageobj->localpath;
 $suffix = getSuffix($image_path);
 
 switch ($suffix) {
-	case 'bmp':
+	case 'wbmp':
 		$suffix = 'wbmp';
 		break;
 	case 'jpg':

@@ -375,11 +375,11 @@ function addPagesToDatabase($menuset, $base = NULL) {
 		$link = $item['titlelink'];
 		$parent = $parents[$level - 1];
 		$sql = "INSERT INTO " . prefix('menu') . " (`title`, `link`, `type`, `show`,`menuset`,`sort_order`, `parentid`) " .
-						'VALUES (' . db_quote($item['title']) . ',' . db_quote($link) . ',"Page",' . $show . ',' . db_quote($menuset) . ',' . db_quote($order) . ',' . $parent . ')';
+						'VALUES (' . db_quote($item['title']) . ',' . db_quote($link) . ',"page",' . $show . ',' . db_quote($menuset) . ',' . db_quote($order) . ',' . $parent . ')';
 		if (query($sql, false)) {
 			$id = db_insert_id();
 		} else {
-			$rslt = query_single_row('SELECT `id` FROM' . prefix('menu') . ' WHERE `type`="Page" AND `link`="' . $link . '"');
+			$rslt = query_single_row('SELECT `id` FROM' . prefix('menu') . ' WHERE `type`="page" AND `link`="' . $link . '"');
 			$id = $rslt['id'];
 		}
 		$parents[$level] = $id;
@@ -755,7 +755,7 @@ $reports) {
  *
  * @param string $current
 
-  set to the album name selected (if any)
+	set to the album name selected (if any)
  *
  * @return string
  */
@@ -825,7 +825,7 @@ function printPagesSelector($current) {
  *
  * @param string $current
 
-  set to category selected (if any)
+	set to category selected (if any)
  *
  * @return string
  */
