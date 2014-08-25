@@ -1198,7 +1198,7 @@ function updateItemSortorder($mode = 'pages') {
  * @return string
  */
 function checkForEmptyTitle($titlefield, $type, $truncate = true) {
-	switch ($type) {
+	switch (strtolower($type)) {
 		case "page":
 			$text = gettext("Untitled page");
 			break;
