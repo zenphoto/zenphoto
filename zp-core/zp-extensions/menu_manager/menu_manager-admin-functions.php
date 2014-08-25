@@ -36,7 +36,7 @@ function printItemsListTable($item, $flag) {
 	global $_zp_gallery;
 	$array = getItemTitleAndURL($item);
 	if ($array['valid']) {
-		switch ($item['type']) {
+		switch (strtolower($item['type'])) {
 			case "album":
 				$link = '<a href="../../admin-edit.php?page=edit&amp;album=' . html_encode($item['link']) . '">' . html_encode(truncate_string($item['link'], 40, '...')) . '</a>';
 				break;
@@ -57,7 +57,11 @@ function printItemsListTable($item, $flag) {
 				break;
 		}
 	} else {
-		$link = '<span class="notebox">' . sprintf(gettext('Target does not exists in <em>%1$s</em> theme'), $array['theme']) . '</span>';
+		if (array_key_exists('theme', $array)) {
+			$link = '<span class="notebox">' . sprintf(gettext('Target does not exist in <em>%1$s</em> theme'), $array['theme']) . '</span>';
+		} else {
+			$link = '<span class="notebox">' . gettext('Target does not exist');
+		}
 	}
 	?>
 	<div class="page-list_row">
@@ -460,14 +464,6 @@ function addItem(&$reports) {
 			addAlbumsToDatabase($menuset);
 			$reports[] = "<p class = 'messagebox fade-message'>" . gettext("Menu items for all albums added.") . " </p>";
 			return NULL;
-		case 'all_Pages':
-			addPagesToDatabase($menuset);
-			$reports[] = "<p class = 'messagebox fade-message'>" . gettext("Menu items for all Zenpage pages added.") . " </p>";
-			return NULL;
-		case 'all_categorys':
-			addCategoriesToDatabase($menuset);
-			$reports[] = "<p class = 'messagebox fade-message'>" . gettext("Menu items for all Zenpage categories added.") . " </p>";
-			return NULL;
 		case 'album':
 			$result['title'] = $result['link'] = sanitize($_POST['albumselect']);
 			if (empty($result['link'])) {
@@ -485,6 +481,14 @@ function addItem(&$reports) {
 			}
 			$successmsg = sprintf(gettext("Gallery index menu item <em>%s</em> added"), $result['link']);
 			break;
+		case 'all_pages':
+			addPagesToDatabase($menuset);
+			$reports[] = "<p class = 'messagebox fade-message'>" . gettext("Menu items for all Zenpage pages added.") . " </p>";
+			return NULL;
+		case 'all_categorys':
+			addCategoriesToDatabase($menuset);
+			$reports[] = "<p class = 'messagebox fade-message'>" . gettext("Menu items for all Zenpage categories added.") . " </p>";
+			return NULL;
 		case 'page':
 			$result['title'] = NULL;
 			$result['link'] = sanitize($_POST['pageselect']);
@@ -601,9 +605,7 @@ function addItem(&$reports) {
  * Updates a menu item (custom link, custom page only) set via POST
  *
  */
-function updateMenuItem(&
-
-$reports) {
+function updateMenuItem(&$reports) {
 	$menuset = checkChosenMenuset();
 	$result = array();
 	$result['id'] = sanitize($_POST['id']);
@@ -634,7 +636,7 @@ $reports) {
 				return $result;
 			}
 			break;
-		case 'Page':
+		case 'page':
 			$result['title'] = NULL;
 			$result['link'] = sanitize($_POST['pageselect']);
 			if (empty($result['link'])) {

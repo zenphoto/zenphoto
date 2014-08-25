@@ -208,7 +208,7 @@ function getItemTitleAndURL($item) {
 	$array = array();
 	$valid = true;
 	$title = get_language_string($item['title']);
-	switch ($item['type']) {
+	switch (strtolower($item['type'])) {
 		case "galleryindex":
 			$array = array("title" => get_language_string($item['title']), "url" => WEBPATH, "name" => WEBPATH, 'protected' => false, 'theme' => $themename);
 			break;
@@ -232,7 +232,7 @@ function getItemTitleAndURL($item) {
 		case "page":
 			$sql = 'SELECT * FROM ' . prefix('pages') . ' WHERE `titlelink`="' . $item['link'] . '"';
 			$result = query_single_row($sql);
-			if (is_array($result)) {
+			if (is_array($result) && extensionEnabled('zenpage')) {
 				$obj = newPage($item['link']);
 				$url = $obj->getLink(0);
 				$protected = $obj->isProtected();
@@ -242,16 +242,21 @@ function getItemTitleAndURL($item) {
 				$url = '';
 				$protected = 0;
 			}
-			$array = array("title" => $title, "url" => $url, "name" => $item['link'], 'protected' => $protected, 'theme' => $themename);
+			$array = array("title" => $title, "url" => $url, "name" => $item['link'], 'protected' => $protected,);
 			break;
 		case "newsindex":
-			$url = getNewsIndexURL();
+			if ($valid = extensionEnabled('zenpage')) {
+				$url = getNewsIndexURL();
+			} else {
+				$url = '';
+			}
 			$array = array("title" => get_language_string($item['title']), "url" => $url, "name" => $url, 'protected' => false);
 			break;
 		case "category":
+			$valid = extensionEnabled('zenpage');
 			$sql = "SELECT title FROM " . prefix('news_categories') . " WHERE titlelink = '" . $item['link'] . "'";
 			$obj = query_single_row($sql, false);
-			if ($obj) {
+			if ($obj && $valid) {
 				$obj = newCategory($item['link']);
 				$title = $obj->getTitle();
 				$protected = $obj->isProtected();
@@ -261,7 +266,7 @@ function getItemTitleAndURL($item) {
 				$url = '';
 				$protected = 0;
 			}
-			$array = array("title" => $title, "url" => $url, "name" => $item['link'], 'protected' => $protected, 'theme' => $themename);
+			$array = array("title" => $title, "url" => $url, "name" => $item['link'], 'protected' => $protected);
 			break;
 		case "custompage":
 			$root = SERVERPATH . '/' . THEMEFOLDER . '/' . $themename . '/';
