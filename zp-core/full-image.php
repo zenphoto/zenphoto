@@ -4,7 +4,7 @@
  * handles the watermarking and protecting of the full image link
  *
  * @author Stephen Billard (sbillard)
- * 
+ *
  * @package core
  */
 // force UTF-8 Ø
@@ -116,6 +116,7 @@ $image_path = $imageobj->localpath;
 $suffix = getSuffix($image_path);
 
 switch ($suffix) {
+	case 'wbm':
 	case 'wbmp':
 		$suffix = 'wbmp';
 		break;
