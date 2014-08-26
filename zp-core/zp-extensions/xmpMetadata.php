@@ -576,7 +576,7 @@ class xmpMetadata {
 	 */
 	function getOptionsSupported() {
 		global $_zp_supported_images, $_zp_extra_filetypes;
-		$list = array_diff($_zp_supported_images, array('gif', 'wbmp', 'wbm'));
+		$list = array_diff($_zp_supported_images, array('gif', 'wbmp', 'wbm', 'bmp'));
 		foreach ($_zp_extra_filetypes as $suffix => $type) {
 			if ($type == 'Video')
 				$list[] = $suffix;

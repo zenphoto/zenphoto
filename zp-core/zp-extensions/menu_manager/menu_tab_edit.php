@@ -130,17 +130,17 @@ if (extensionEnabled('zenpage')) {
 									$('#link').val($(this).val());
 								});
 								break;
-							case 'custompage':
-								$('#albumselector,#pageselector,#categoryselector,#link,').hide();
-								$('#custompageselector').show();
-								$('#selector').html('<?php echo js_encode(gettext("Custom page")); ?>');
-								$('#description').html('<?php echo js_encode(gettext('Creates a link to a custom theme page as described in the theming tutorial.')); ?>');
-								$('#link_label').html('<?php echo js_encode(gettext('Script page')); ?>');
-								$('#titleinput').show();
-								break;
 	<?php
 }
 ?>
+						case 'custompage':
+							$('#albumselector,#pageselector,#categoryselector,#link').hide();
+							$('#custompageselector').show();
+							$('#selector').html('<?php echo js_encode(gettext("Custom page")); ?>');
+							$('#description').html('<?php echo js_encode(gettext('Creates a link to a custom theme script page.')); ?>');
+							$('#link_label').html('<?php echo js_encode(gettext('Script page')); ?>');
+							$('#titleinput').show();
+							break;
 						case "customlink":
 							$('#albumselector,#pageselector,#categoryselector,#custompageselector').hide();
 							$('#selector').html('<?php echo js_encode(gettext("Custom link")); ?>');
