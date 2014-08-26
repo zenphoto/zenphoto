@@ -79,6 +79,11 @@ class favorites extends AlbumBase {
 		zp_apply_filter('favoritesHandler_action', 'remove', $alb, $this->name);
 	}
 
+	/**
+	 * returns an array of users watching the object
+	 * @param object $obj
+	 * @return array
+	 */
 	static function getWatchers($obj) {
 		switch ($obj->table) {
 			case 'images':
@@ -101,40 +106,42 @@ class favorites extends AlbumBase {
 		return $watchers;
 	}
 
-	static function showWatchers($html, $obj, $prefix) {
+	/**
+	 * Prints a list of users/instances watching the object
+	 * NOTE: the caller must enclose the list with the appropraite UL, OL, or DL html
+	 * @param type $obj
+	 * @param type $list_type if NULL, use li tags. otherwise the array will have the start, middle, and end tags.
+	 */
+	static function listWatchers($obj, $list_type = NULL) {
 		$watchers = self::getWatchers($obj);
-		if (!empty($watchers)) {
-			natcasesort($watchers);
-			?>
-			<tr>
-				<td>
-					<?php echo gettext('Users watching:'); ?>
-				</td>
-				<td>
-					<ul class="userlist">
-						<?php
-						foreach ($watchers as $aux) {
-							$aux = getSerializedArray($aux);
-							$watchee = $aux[0];
-							if (isset($aux[1])) {
-								$instance = '[' . $aux[1] . ']';
-							} else {
-								$instance = '';
-							}
-							?>
-							<li>
-								<?php echo html_encode($watchee . $instance); ?>
-							</li>
-							<?php
-						}
-						?>
-					</ul>
-				</td>
-			</tr>
-			<?php
-		}
 
-		return $html;
+		if (!empty($watchers)) {
+			if (is_null($list_type)) {
+				$start = '<li>';
+				$separate = '';
+				$end = '</li>';
+			} else {
+				list($start, $separate, $end) = $list_type;
+			}
+
+			foreach ($watchers as $key => $aux) {
+				$watchers[$key] = getSerializedArray($aux);
+			}
+			$watchers = sortMultiArray($watchers, array(1, 2));
+
+			foreach ($watchers as $aux) {
+				$watchee = $aux[0];
+				if (isset($aux[1])) {
+					$instance = $aux[1];
+					if (is_null($list_type)) {
+						$instance = '[' . $instance . ']';
+					}
+				} else {
+					$instance = '';
+				}
+				echo $start . html_encode($watchee) . $separate . html_encode($instance) . $end;
+			}
+		}
 	}
 
 	/**

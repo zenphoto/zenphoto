@@ -48,11 +48,11 @@ $plugin_is_filter = 5 | FEATURE_PLUGIN;
 $plugin_description = gettext('Support for <em>favorites</em> handling.');
 $plugin_author = "Stephen Billard (sbillard)";
 
-$option_interface = 'favoritesOptions';
+$option_interface = 'favoritesHandler';
 
 require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/favoritesHandler/favoritesClass.php');
 
-class favoritesOptions {
+class favoritesHandler {
 
 	function __construct() {
 		if (OFFSET_PATH == 2) {
@@ -240,6 +240,34 @@ class favoritesOptions {
 		return false;
 	}
 
+	static function showWatchers($html, $obj, $prefix) {
+		$watchers = favorites::getWatchers($obj);
+		if (!empty($watchers)) {
+			?>
+			<tr>
+				<td>
+					<?php echo gettext('Users watching:'); ?>
+				</td>
+				<td class="top">
+					<dl class="userlist">
+						<dh>
+							<dt><em><?php echo gettext('User'); ?></em></dt>
+							<dd><em><?php echo gettext('instance'); ?></em></dd>
+						</dh>
+						<?php favorites::listWatchers($obj, array('<dt>', '</dt><dd>', '</dd>')) ?>
+					</dl>
+				</td>
+			</tr>
+			<?php
+		}
+		return $html;
+	}
+
+	static function toolbox($zf) {
+		printFavoritesURL(gettext('Favorites'), '<li>', '</li><li>', '</li>');
+		return $zf;
+	}
+
 }
 
 $_zp_conf_vars['special_pages']['favorites'] = array('define'	 => '_FAVORITES_', 'rewrite'	 => getOption('favorites_link'),
@@ -255,12 +283,12 @@ $_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%F
 				'rule'		 => '%REWRITE% index.php?p=favorites [L,QSA]');
 
 if (OFFSET_PATH) {
-	zp_register_filter('edit_album_custom_data', 'favorites::showWatchers');
-	zp_register_filter('edit_image_custom_data', 'favorites::showWatchers');
+	zp_register_filter('edit_album_custom_data', 'favoritesHandler::showWatchers');
+	zp_register_filter('edit_image_custom_data', 'favoritesHandler::showWatchers');
 } else {
 	zp_register_filter('load_theme_script', 'favorites::loadScript');
 	zp_register_filter('checkPageValidity', 'favorites::pageCount');
-	zp_register_filter('admin_toolbox_global', 'favoritesToolbox', 21);
+	zp_register_filter('admin_toolbox_global', 'favoritesHandler::toolbox', 21);
 	if (zp_loggedin()) {
 		if (isset($_POST['addToFavorites'])) {
 			$___Favorites = new favorites($_zp_current_admin_obj->getUser());
@@ -297,11 +325,6 @@ if (OFFSET_PATH) {
 			}
 		}
 		$_myFavorites = new favorites($_zp_current_admin_obj->getUser());
-
-		function favoritesToolbox($zf) {
-			printFavoritesURL(gettext('Favorites'), '<li>', '</li><li>', '</li>');
-			return $zf;
-		}
 
 		function printAddToFavorites($obj, $add = NULL, $remove = NULL) {
 			global $_myFavorites, $_zp_current_admin_obj, $_zp_gallery_page, $_myFavorites_button_count;
