@@ -151,8 +151,15 @@ function getMenuItems($menuset, $visible) {
 			$visible = 'all';
 			break;
 	}
-	$result = query_full_array("SELECT * FROM " . prefix('menu') . $where . " ORDER BY sort_order", false, 'sort_order');
-	$_menu_manager_items[$menuset][$visible] = $result;
+	$result = query("SELECT * FROM " . prefix('menu') . $where . " ORDER BY sort_order", false, 'sort_order');
+	while ($row = db_fetch_assoc($result)) {
+		$row['type'] = strtolower($row['type']);
+		if (strpos($row['type'], 'zenpage') !== false)
+			$row['type'] = str_replace('zenpage', '', $row['type']);
+		$_menu_manager_items[$menuset][$visible][] = $row;
+	}
+	db_free_result($result);
+
 	return $_menu_manager_items[$menuset][$visible];
 }
 
@@ -208,7 +215,7 @@ function getItemTitleAndURL($item) {
 	$array = array();
 	$valid = true;
 	$title = get_language_string($item['title']);
-	switch (strtolower($item['type'])) {
+	switch ($item['type']) {
 		case "galleryindex":
 			$array = array("title" => get_language_string($item['title']), "url" => WEBPATH, "name" => WEBPATH, 'protected' => false, 'theme' => $themename);
 			break;
