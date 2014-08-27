@@ -2723,11 +2723,14 @@ dd {
 	vertical-align: top;
 }
 
-ul.userlist {
+ul.userlist, dl.userlist {
 	clear: both;
 	padding: 0;
 	margin: 0px;
 	list-style-type: none;
+}
+dl.userlist dt {
+	font-weight:normal;
 }
 
 form.dirty button[type=submit],

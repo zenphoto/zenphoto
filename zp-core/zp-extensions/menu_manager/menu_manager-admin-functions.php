@@ -36,7 +36,7 @@ function printItemsListTable($item, $flag) {
 	global $_zp_gallery;
 	$array = getItemTitleAndURL($item);
 	if ($array['valid']) {
-		switch (strtolower($item['type'])) {
+		switch ($item['type']) {
 			case "album":
 				$link = '<a href="../../admin-edit.php?page=edit&amp;album=' . html_encode($item['link']) . '">' . html_encode(truncate_string($item['link'], 40, '...')) . '</a>';
 				break;
@@ -755,7 +755,7 @@ $reports) {
  *
  * @param string $current
 
-	set to the album name selected (if any)
+  set to the album name selected (if any)
  *
  * @return string
  */
@@ -825,7 +825,7 @@ function printPagesSelector($current) {
  *
  * @param string $current
 
-	set to category selected (if any)
+  set to category selected (if any)
  *
  * @return string
  */
