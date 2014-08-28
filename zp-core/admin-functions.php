@@ -1409,11 +1409,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 							?>
 							<tr class="password<?php echo $suffix; ?>extrashow">
 								<td class="leftcolumn">
-									<p>
-										<a onclick="toggle_passwords('<?php echo $suffix; ?>', true);">
-											<?php echo gettext("Album password:"); ?>
-										</a>
-									</p>
+									<a onclick="toggle_passwords('<?php echo $suffix; ?>', true);">
+										<?php echo gettext("Album password:"); ?>
+									</a>
 								</td>
 								<td class="middlecolumn">
 									<?php
@@ -1500,7 +1498,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						$sort[gettext('Custom')] = 'custom';
 						/*
 						 * not recommended--screws with peoples minds during pagination!
-							$sort[gettext('Random')] = 'random';
+						  $sort[gettext('Random')] = 'random';
 						 */
 						?>
 						<tr>
