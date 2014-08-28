@@ -477,6 +477,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 													}
 													if (is_AdminEditPage('page') || is_AdminEditPage('newscategory')) {
 														?>
+														<br />
 														<p class="passwordextrashow" <?php if (GALLERY_SECURITY != 'public') echo 'style="display:none"'; ?>>
 															<input	type="hidden" name="password_enabled" id="password_enabled" value="0" />
 															<?php
@@ -507,14 +508,17 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 																			 value="<?php echo html_encode($user); ?>" />
 																<span id="strength"><?php echo gettext("Password:"); ?></span>
 																<br />
+																<?php 
+																// Autofill honeypot hack (hidden password input), 
+																// needed to prevent "Are you sure?" from tiggering when autofill is enabled in browsers 
+																// http://benjaminjshore.info/2014/05/chrome-auto-fill-honey-pot-hack.html
+																?>
+																<input class="ays-ignore" type="password" name="pass" style="display:none;" />
 																<input type="password" size="27"
 																			 id="pass" name="pass"
 																			 onkeydown="passwordClear('');"
 																			 onkeyup="passwordStrength('');"
 																			 value="<?php echo $x; ?>" />
-																<br />
-																<label><input type="checkbox" name="disclose_password" id="disclose_password" onclick="passwordClear('');
-																					togglePassword('');"><?php echo gettext('Show password'); ?></label>
 																<br />
 																<span class="password_field_">
 																	<span id="match"><?php echo gettext("(repeat)"); ?></span>
@@ -526,6 +530,9 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 																				 value="<?php echo $x; ?>" />
 																	<br />
 																</span>
+																<label><input type="checkbox" name="disclose_password" id="disclose_password" onclick="passwordClear('');
+																					togglePassword('');"><?php echo gettext('Show password'); ?></label>
+																<br /><br />
 																<?php echo gettext("Password hint:"); ?>
 																<br />
 																<?php print_language_string_list($hint, 'hint', false, NULL, 'hint', 27); ?>

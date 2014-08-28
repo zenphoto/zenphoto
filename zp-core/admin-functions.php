@@ -142,7 +142,10 @@ function printAdminHeader($tab, $subtab = NULL) {
 		<?php
 	}
 	?>
-					$('form.dirty-check').areYouSure({'message': '<?php echo addslashes(gettext('You have unsaved changes!')); ?>'});
+					$('form.dirty-check').areYouSure({
+						'message': '<?php echo addslashes(gettext('You have unsaved changes!')); ?>',
+						'addRemoveFieldsMarksDirty':false
+					});
 				});
 				$(function() {
 					$(".tooltip ").tooltip({
@@ -1259,6 +1262,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 									</p>
 								</td>
 								<td class="middlecolumn">
+									<p>
 									<?php
 									$x = $album->getPassword();
 									if (empty($x)) {
@@ -1272,55 +1276,71 @@ function printAdminHeader($tab, $subtab = NULL) {
 										<?php
 									}
 									?>
+									</p>
 								</td>
 							</tr>
 							<tr class="password<?php echo $suffix; ?>extrahide" style="display:none" >
 								<td class="leftcolumn">
-									<a href="javascript:toggle_passwords('<?php echo $suffix; ?>',false);">
-										<?php echo gettext("Album guest user:"); ?>
-									</a>
-									<br />
-									<label><input type="checkbox" name="disclose_password<?php echo $suffix; ?>"
-																id="disclose_password<?php echo $suffix; ?>"
-																onclick="passwordClear('<?php echo $suffix; ?>');
-																		togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?></label>
+									<p>
+										<a href="javascript:toggle_passwords('<?php echo $suffix; ?>',false);">
+											<?php echo gettext("Album guest user:"); ?>
+										</a>
+									</p>	
 								</td>
 								<td>
-									<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
+									<p>
+										<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
 												 onkeydown="passwordClear('<?php echo $suffix; ?>');"
 												 id="user_name<?php echo $suffix; ?>" name="user<?php echo $suffix; ?>"
 												 value="<?php echo $album->getUser(); ?>" />
+									</p>
 								</td>
 							</tr>
 							<tr class="password<?php echo $suffix; ?>extrahide" style="display:none" >
 								<td class="leftcolumn">
 									<p>
 										<span id="strength<?php echo $suffix; ?>"><?php echo gettext("Album password:"); ?></span>
-										<br />
-										<span id="match<?php echo $suffix; ?>" class="password_field_<?php echo $suffix; ?>">
-											<?php echo gettext("repeat password:"); ?>
-										</span>
 									</p>
 									<p>
-										<?php echo gettext("Password hint:"); ?>
+										<span id="match<?php echo $suffix; ?>" class="password_field_<?php echo $suffix; ?>">
+											<?php echo gettext("Repeat password:"); ?>
+										</span>
 									</p>
 								</td>
 								<td>
-									<p>
+									<p> <?php 
+										// Autofill honeypot hack (hidden password input), 
+										// needed to prevent "Are you sure?" from tiggering when autofill is enabled in browsers 
+										// http://benjaminjshore.info/2014/05/chrome-auto-fill-honey-pot-hack.html
+										?>
+										<input class="ays-ignore" type="password" name="pass" style="display:none;" />
 										<input type="password"
 													 id="pass<?php echo $suffix; ?>" name="pass<?php echo $suffix; ?>"
 													 onkeydown="passwordClearZ('<?php echo $suffix; ?>');"
 													 onkeyup="passwordStrength('<?php echo $suffix; ?>');"
 													 value="<?php echo $x; ?>" />
+										<label><input class="ays-ignore" type="checkbox" name="disclose_password<?php echo $suffix; ?>"
+																id="disclose_password<?php echo $suffix; ?>"
+																onclick="passwordClear('<?php echo $suffix; ?>');
+																		togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?></label>
 										<br />
 										<span class="password_field_<?php echo $suffix; ?>">
-											<input type="password"
+											<input class="ays-ignore" type="password"
 														 id="pass_r<?php echo $suffix; ?>" name="pass_r<?php echo $suffix; ?>" disabled="disabled"
 														 onkeydown="passwordClear('<?php echo $suffix; ?>');"
 														 onkeyup="passwordMatch('<?php echo $suffix; ?>');"
 														 value="<?php echo $x; ?>" />
 										</span>
 									</p>
+								</td>	
+							</tr>
+							<tr class="password<?php echo $suffix; ?>extrahide" style="display:none" >
+								<td>
+									<p>
+										<?php echo gettext("Password hint:"); ?>
+									</p>
+								</td>
+								<td>	
 									<p>
 										<?php print_language_string_list($album->getPasswordHint('all'), "hint" . $suffix, false, NULL, 'hint', '100%'); ?>
 									</p>
