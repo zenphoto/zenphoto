@@ -1330,7 +1330,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 		?>
 		<input type="hidden" name="<?php echo $prefix; ?>folder" value="<?php echo $album->name; ?>" />
 		<input type="hidden" name="tagsort" value="<?php echo html_encode($tagsort); ?>" />
-		<input	type="hidden" name="password_enabled<?php echo $suffix; ?>" id="password_enabled<?php echo $suffix; ?>" value="0" />
+		<input type="hidden" name="password_enabled<?php echo $suffix; ?>" id="password_enabled<?php echo $suffix; ?>" value="0" />
 		<?php
 		if ($buttons) {
 			?>
@@ -1409,11 +1409,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 							?>
 							<tr class="password<?php echo $suffix; ?>extrashow">
 								<td class="leftcolumn">
-									<p>
-										<a onclick="toggle_passwords('<?php echo $suffix; ?>', true);">
-											<?php echo gettext("Album password:"); ?>
-										</a>
-									</p>
+									<a onclick="toggle_passwords('<?php echo $suffix; ?>', true);">
+										<?php echo gettext("Album password:"); ?>
+									</a>
 								</td>
 								<td class="middlecolumn">
 									<?php
@@ -1437,13 +1435,18 @@ function printAdminHeader($tab, $subtab = NULL) {
 										<?php echo gettext("Album guest user:"); ?>
 									</a>
 									<br />
-									<label><input type="checkbox" name="disclose_password<?php echo $suffix; ?>"
-																id="disclose_password<?php echo $suffix; ?>"
-																onclick="passwordClear('<?php echo $suffix; ?>');
-																		togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?></label>
+									<label>
+										<input type="checkbox"
+													 name="disclose_password<?php echo $suffix; ?>"
+													 id="disclose_password<?php echo $suffix; ?>"
+													 onclick="passwordClear('<?php echo $suffix; ?>');
+															 togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?>
+									</label>
 								</td>
 								<td>
-									<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
+									<input type="text"
+												 class="passignore<?php echo $suffix; ?> ignoredirty" autocomplete="off"
+												 size="<?php echo TEXT_INPUT_SIZE; ?>"
 												 onkeydown="passwordClear('<?php echo $suffix; ?>');"
 												 id="user_name<?php echo $suffix; ?>" name="user<?php echo $suffix; ?>"
 												 value="<?php echo $album->getUser(); ?>" />
@@ -1465,6 +1468,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 								<td>
 									<p>
 										<input type="password"
+													 class="passignore<?php echo $suffix; ?> ignoredirty" autocomplete="off"
 													 id="pass<?php echo $suffix; ?>" name="pass<?php echo $suffix; ?>"
 													 onkeydown="passwordClearZ('<?php echo $suffix; ?>');"
 													 onkeyup="passwordStrength('<?php echo $suffix; ?>');"
@@ -1472,6 +1476,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										<br />
 										<span class="password_field_<?php echo $suffix; ?>">
 											<input type="password"
+														 class="passignore<?php echo $suffix; ?> ignoredirty" autocomplete="off"
 														 id="pass_r<?php echo $suffix; ?>" name="pass_r<?php echo $suffix; ?>" disabled="disabled"
 														 onkeydown="passwordClear('<?php echo $suffix; ?>');"
 														 onkeyup="passwordMatch('<?php echo $suffix; ?>');"

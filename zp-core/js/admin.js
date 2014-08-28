@@ -251,10 +251,20 @@ function showfield(obj, fld) {
 // password field hide/disable
 function toggle_passwords(id, pwd_enable) {
 	toggleExtraInfo('', 'password' + id, pwd_enable);
+	jQuery('#user_name' + id).val('');
+	jQuery('#pass' + id).val('');
+	jQuery('#pass_r' + id).val('');
 	if (pwd_enable) {
 		jQuery('#password_enabled' + id).val('1');
+		jQuery('#user_name' + id).removeClass('ignoredirty');
+		jQuery('#pass' + id).removeClass('ignoredirty');
+		jQuery('#pass_r' + id).removeClass('ignoredirty');
 	} else {
 		jQuery('#password_enabled' + id).val('0');
+		jQuery('#user_name' + id).dirtyForms('setClean');
+		jQuery('#pass' + id).dirtyForms('setClean');
+		jQuery('#pass_r' + id).val('').dirtyForms('setClean');
+
 	}
 }
 

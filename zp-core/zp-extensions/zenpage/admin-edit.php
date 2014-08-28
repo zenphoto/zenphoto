@@ -515,12 +515,18 @@ codeblocktabsJS();
 																<a onclick="toggle_passwords('', false);">
 																	<?php echo gettext("Guest user:"); ?>
 																</a>
-																<input type="text" size="27" id="user_name" name="user"
+																<input type="text"
+																			 class="passignore ignoredirty" autocomplete="off"
+																			 size="27"
+																			 id="user_name"
+																			 name="user"
 																			 onkeydown="passwordClear('');"
 																			 value="<?php echo html_encode($user); ?>" />
 																<span id="strength"><?php echo gettext("Password:"); ?></span>
 																<br />
-																<input type="password" size="27"
+																<input type="password"
+																			 class="passignore ignoredirty" autocomplete="off"
+																			 size="27"
 																			 id="pass" name="pass"
 																			 onkeydown="passwordClear('');"
 																			 onkeyup="passwordStrength('');"
@@ -534,7 +540,9 @@ codeblocktabsJS();
 																<span class="password_field_">
 																	<span id="match"><?php echo gettext("(repeat)"); ?></span>
 																	<br />
-																	<input type="password" size="27"
+																	<input type="password"
+																				 class="passignore ignoredirty" autocomplete="off"
+																				 size="27"
 																				 id="pass_r" name="pass_r" disabled="disabled"
 																				 onkeydown="passwordClear('');"
 																				 onkeyup="passwordMatch('');"

@@ -1149,7 +1149,9 @@ Zenphoto_Authority::printPasswordFormJS();
 											</a>
 										</td>
 										<td>
-											<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
+											<input type="text"
+														 class="passignore ignoredirty" autocomplete="off"
+														 size="<?php echo TEXT_INPUT_SIZE; ?>"
 														 onkeydown="passwordClear('');"
 														 id="user_name"  name="user"
 														 value="<?php echo html_encode($_zp_gallery->getUser()); ?>" />
@@ -1171,14 +1173,18 @@ Zenphoto_Authority::printPasswordFormJS();
 											</span>
 										</td>
 										<td>
-											<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
+											<input type="password"
+														 class="passignore ignoredirty" autocomplete="off"
+														 size="<?php echo TEXT_INPUT_SIZE; ?>"
 														 id="pass" name="pass"
 														 onkeydown="passwordClear('');"
 														 onkeyup="passwordStrength('');"
 														 value="<?php echo $x; ?>" />
 											<br />
 											<span class="password_field_">
-												<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
+												<input type="password"
+															 class="passignore ignoredirty" autocomplete="off"
+															 size="<?php echo TEXT_INPUT_SIZE; ?>"
 															 id="pass_r" name="pass_r" disabled="disabled"
 															 onkeydown="passwordClear('');"
 															 onkeyup="passwordMatch('');"
@@ -1473,7 +1479,9 @@ Zenphoto_Authority::printPasswordFormJS();
 											</a>
 										</td>
 										<td>
-											<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
+											<input type="text"
+														 class="passignore ignoredirty" autocomplete="off"
+														 size="<?php echo TEXT_INPUT_SIZE; ?>"
 														 onkeydown="passwordClear('');"
 														 id="user_name"  name="user"
 														 value="<?php echo html_encode(getOption('search_user')); ?>" />
@@ -1495,14 +1503,18 @@ Zenphoto_Authority::printPasswordFormJS();
 											</span>
 										</td>
 										<td>
-											<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
+											<input type="password"
+														 class="passignore ignoredirty" autocomplete="off"
+														 size="<?php echo TEXT_INPUT_SIZE; ?>"
 														 id="pass" name="pass"
 														 onkeydown="passwordClear('');"
 														 onkeyup="passwordStrength('');"
 														 value="<?php echo $x; ?>" />
 											<br />
 											<span class="password_field_">
-												<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
+												<input type="password"
+															 class="passignore ignoredirty" autocomplete="off"
+															 size="<?php echo TEXT_INPUT_SIZE; ?>"
 															 id="pass_r" name="pass_r" disabled="disabled"
 															 onkeydown="passwordClear('');"
 															 onkeyup="passwordMatch('');"
@@ -2252,14 +2264,18 @@ Zenphoto_Authority::printPasswordFormJS();
 														</span>
 													</td>
 													<td style="margin:0; padding:0">
-														<input type="password" size="30"
+														<input type="password"
+																	 class="passignore ignoredirty" autocomplete="off"
+																	 size="30"
 																	 id="pass" name="pass"
 																	 onkeydown="passwordClear('');"
 																	 onkeyup="passwordStrength('');"
 																	 value="<?php echo $x; ?>" />
 														<br />
 														<span class="password_field_">
-															<input type="password" size="30"
+															<input type="password"
+																		 class="passignore ignoredirty" autocomplete="off"
+																		 size="30"
 																		 id="pass_r" name="pass_r" disabled="disabled"
 																		 onkeydown="passwordClear('');"
 																		 onkeyup="passwordMatch('');"
@@ -2316,7 +2332,7 @@ Zenphoto_Authority::printPasswordFormJS();
 																																	$('#metadatalist').height($('#resizable').height());
 																													}
 																									});
-																									});							</script>
+																									});</script>
 								</tr>
 								<tr>
 									<td><?php echo gettext("Metadata"); ?></td>
@@ -3060,12 +3076,12 @@ Zenphoto_Authority::printPasswordFormJS();
 									<td>
 										<p><?php echo gettext("Normally this option should be set to <em>http</em>. If you are running a secure server, change this to <em>https</em>. Select <em>secure admin</em> if you need only to insure secure access to <code>admin</code> pages."); ?></p>
 										<p class="notebox"><?php
-							echo gettext("<strong>Note:</strong>" .
-											"<br /><br />Login from the front-end user login form is secure only if <em>https</em> is selected." .
-											"<br /><br />If you select <em>https</em> or <em>secure admin</em> your server <strong>MUST</strong> support <em>https</em>.  " .
-											"If you set either of these on a server which does not support <em>https</em> you will not be able to access the <code>admin</code> pages to reset the option! " .
-											'Your only possibility then is to change the option named <span class="inlinecode">server_protocol</span> in the <em>options</em> table of your database.');
-							?>
+											echo gettext("<strong>Note:</strong>" .
+															"<br /><br />Login from the front-end user login form is secure only if <em>https</em> is selected." .
+															"<br /><br />If you select <em>https</em> or <em>secure admin</em> your server <strong>MUST</strong> support <em>https</em>.  " .
+															"If you set either of these on a server which does not support <em>https</em> you will not be able to access the <code>admin</code> pages to reset the option! " .
+															'Your only possibility then is to change the option named <span class="inlinecode">server_protocol</span> in the <em>options</em> table of your database.');
+											?>
 										</p>
 									</td>
 								</tr>
