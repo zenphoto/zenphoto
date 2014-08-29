@@ -55,7 +55,7 @@ if ($plugin_disable) {
 			$clones = array();
 			if ($result = query('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="clone"')) {
 				while ($row = db_fetch_assoc($result)) {
-					if (file_exists($row['aux'] . '/' . ZENFOLDER . '/index.php')) {
+					if (file_exists($row['aux'] . '/' . DATA_FOLDER . '/zenphoto.cfg.php')) {
 						$clones[$row['aux']] = $row['data'] . '/' . ZENFOLDER . '/setup/index.php?autorun';
 						$_SESSION['admin'][bin2hex($row['aux'])] = serialize($_zp_current_admin_obj);
 					} else {
