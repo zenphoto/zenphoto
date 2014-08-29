@@ -1090,6 +1090,7 @@ Zenphoto_Authority::printPasswordFormJS();
 											</p>
 										</td>
 										<td style="background-color: #ECF1F2;">
+											<p>
 											<?php
 											$x = $_zp_gallery->getPassword();
 											if (empty($x)) {
@@ -1103,6 +1104,7 @@ Zenphoto_Authority::printPasswordFormJS();
 												<?php
 											}
 											?>
+											</p>
 										</td>
 										<td style="background-color: #ECF1F2;">
 											<p>
@@ -1112,17 +1114,20 @@ Zenphoto_Authority::printPasswordFormJS();
 									</tr>
 									<tr class="passwordextrahide" style="display:none">
 										<td>
+											<p>
 											<a href="javascript:toggle_passwords('',false);">
 												<?php echo gettext("Gallery guest user:"); ?>
 											</a>
+											</p>
 										</td>
 										<td>
+											<p>
 											<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
 														 onkeydown="passwordClear('');"
 														 id="user_name"  name="user"
 														 value="<?php echo html_encode($_zp_gallery->getUser()); ?>" />
-											<br />
-											<label><input type="checkbox" name="disclose_password" id="disclose_password" onclick="passwordClear(''); togglePassword('');" /><?php echo gettext('Show password'); ?></label>
+											</p>
+											
 										</td>
 										<td>
 											<?php echo gettext("User ID for the gallery guest user") ?>
@@ -1139,6 +1144,12 @@ Zenphoto_Authority::printPasswordFormJS();
 											</span>
 										</td>
 										<td>
+											<?php 
+											// Autofill honeypot hack (hidden password input), 
+											// needed to prevent "Are you sure?" from tiggering when autofill is enabled in browsers 
+											// http://benjaminjshore.info/2014/05/chrome-auto-fill-honey-pot-hack.html
+											?>
+											<input class="ays-ignore" type="password" name="pass" style="display:none;" />
 											<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
 														 id="pass" name="pass"
 														 onkeydown="passwordClear('');"
@@ -1152,6 +1163,8 @@ Zenphoto_Authority::printPasswordFormJS();
 															 onkeyup="passwordMatch('');"
 															 value="<?php echo $x; ?>" />
 											</span>
+											<label><input type="checkbox" name="disclose_password" id="disclose_password" onclick="passwordClear(''); togglePassword('');" /><?php echo gettext('Show password'); ?></label>
+											
 										</td>
 										<td>
 											<?php echo gettext("Master password for the gallery. If this is set, visitors must know this password to view the gallery."); ?>
@@ -1446,7 +1459,7 @@ Zenphoto_Authority::printPasswordFormJS();
 														 id="user_name"  name="user"
 														 value="<?php echo html_encode(getOption('search_user')); ?>" />
 											<br />
-											<label><input type="checkbox" name="disclose_password" id="disclose_password" onclick="passwordClear(''); togglePassword('');" /><?php echo gettext('Show password'); ?></label>
+											
 										</td>
 										<td>
 											<?php echo gettext("User ID for the search guest user") ?>
@@ -1463,6 +1476,12 @@ Zenphoto_Authority::printPasswordFormJS();
 											</span>
 										</td>
 										<td>
+											<?php 
+											// Autofill honeypot hack (hidden password input), 
+											// needed to prevent "Are you sure?" from tiggering when autofill is enabled in browsers 
+											// http://benjaminjshore.info/2014/05/chrome-auto-fill-honey-pot-hack.html
+											?>
+											<input class="ays-ignore" type="password" name="pass" style="display:none;" />
 											<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
 														 id="pass" name="pass"
 														 onkeydown="passwordClear('');"
@@ -1476,6 +1495,7 @@ Zenphoto_Authority::printPasswordFormJS();
 															 onkeyup="passwordMatch('');"
 															 value="<?php echo $x; ?>" />
 											</span>
+											<label><input type="checkbox" name="disclose_password" id="disclose_password" onclick="passwordClear(''); togglePassword('');" /><?php echo gettext('Show password'); ?></label>
 										</td>
 										<td>
 											<?php echo gettext("Password for the search guest user. If this is set, visitors must know this password to view search results."); ?>
@@ -2192,8 +2212,7 @@ Zenphoto_Authority::printPasswordFormJS();
 																	 onkeydown="passwordClear('');"
 																	 id="user_name"  name="user"
 																	 value="<?php echo html_encode(getOption('protected_image_user')); ?>" />
-														<br />
-														<label><input type="checkbox" name="disclose_password" id="disclose_password" onclick="passwordClear(''); togglePassword('');" /><?php echo gettext('Show password'); ?></label>
+
 													</td>
 												</tr>
 												<tr class="passwordextrahide" style="display:none" >
@@ -2207,6 +2226,12 @@ Zenphoto_Authority::printPasswordFormJS();
 														</span>
 													</td>
 													<td style="margin:0; padding:0">
+														<?php 
+														// Autofill honeypot hack (hidden password input), 
+														// needed to prevent "Are you sure?" from tiggering when autofill is enabled in browsers 
+														// http://benjaminjshore.info/2014/05/chrome-auto-fill-honey-pot-hack.html
+														?>
+														<input class="ays-ignore" type="password" name="pass" style="display:none;" />
 														<input type="password" size="30"
 																	 id="pass" name="pass"
 																	 onkeydown="passwordClear('');"
@@ -2220,6 +2245,8 @@ Zenphoto_Authority::printPasswordFormJS();
 																		 onkeyup="passwordMatch('');"
 																		 value="<?php echo $x; ?>" />
 														</span>
+														<br />
+														<label><input type="checkbox" name="disclose_password" id="disclose_password" onclick="passwordClear(''); togglePassword('');" /><?php echo gettext('Show password'); ?></label>
 													</td>
 												</tr>
 												<tr class="passwordextrahide" style="display:none" >
