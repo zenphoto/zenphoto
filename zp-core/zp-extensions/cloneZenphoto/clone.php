@@ -6,8 +6,7 @@
  *
  * @package admin
  */
- 
- // UTF-8 Ø
+// UTF-8 Ø
 define('OFFSET_PATH', 4);
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 require_once(SERVERPATH . '/' . ZENFOLDER . '/reconfigure.php');
@@ -87,6 +86,7 @@ if (trim($folder, '/') == SERVERPATH) {
 							$msg[] = sprintf(gettext('The existing symlink <code>%s</code> could not be removed.'), $folder . filesystemToInternal($target)) . "<br />\n";
 							$success = false;
 						}
+						@chmod($folder . $target, FOLDER_MOD);
 					}
 					break;
 				case 'file':
@@ -110,6 +110,7 @@ if (trim($folder, '/') == SERVERPATH) {
 						}
 						$success = false;
 					}
+					@chmod($folder . $target, FILE_MOD);
 					break;
 			}
 		} else {
@@ -126,9 +127,9 @@ if ($success) {
 	array_unshift($msg, '<h2>' . sprintf(gettext('Successful clone to %s'), $folder) . '</h2>' . "\n");
 	list($diff, $needs) = checkSignature(true);
 	if (empty($needs)) {
-		$rslt = query_single_row('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="clone" AND `aux`=' . db_quote(trim($folder, '/')));
+		$rslt = query_single_row('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="clone" AND `aux`=' . db_quote(rtrim($folder, '/')));
 		if (empty($rslt)) {
-			query('INSERT INTO ' . prefix('plugin_storage') . '(`type`,`aux`,`data`) VALUES("clone",' . db_quote(trim($folder, '/')) . ',' . db_quote(trim($newinstall, '/')) . ')');
+			query('INSERT INTO ' . prefix('plugin_storage') . '(`type`,`aux`,`data`) VALUES("clone",' . db_quote(rtrim($folder, '/')) . ',' . db_quote(trim($newinstall, '/')) . ')');
 		}
 		$cloneid = bin2hex(rtrim($newinstall, '/'));
 		$_SESSION['clone'][$cloneid] = array(
