@@ -1701,8 +1701,8 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 						$collation = db_collation();
 
 						/*						 * *********************************************************************************
-						  Add new fields in the upgrade section. This section should remain static except for new
-						  tables. This tactic keeps all changes in one place so that noting gets accidentaly omitted.
+							Add new fields in the upgrade section. This section should remain static except for new
+							tables. This tactic keeps all changes in one place so that noting gets accidentaly omitted.
 						 * ********************************************************************************** */
 
 						//v1.2
@@ -2424,10 +2424,11 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 									if (extensionEnabled('cloneZenphoto')) {
 										require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cloneZenphoto.php');
 										if (class_exists('cloneZenphoto'))
-											$clones = cloneZenphoto::setup($autorun);
+											$clones = cloneZenphoto::setup();
 									}
 									$link = sprintf(gettext('You can now <a href="%1$s">administer your gallery.</a>'), WEBPATH . '/' . ZENFOLDER . '/admin.php');
 									foreach ($clones as $clone => $url) {
+										$autorun = false;
 										?>
 										<p class="delayshow" style="display:none;"><?php echo sprintf(gettext('Setup <a href="%1$s" target="_blank">%2$s</a>'), $url, $clone); ?></p>
 										<?php
@@ -2436,7 +2437,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 								?>
 								<p id="golink" class="delayshow" style="display:none;"><?php echo $link; ?></p>
 								<?php
-								switch ($autorun && empty($clones)) {
+								switch ($autorun) {
 									case false:
 										break;
 									case 'gallery':
@@ -2449,14 +2450,6 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 								?>
 								<script type="text/javascript">
 									function launchAdmin() {
-			<?php
-			$clones = array();
-			if (extensionEnabled('cloneZenphoto')) {
-				require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cloneZenphoto.php');
-				if (class_exists('cloneZenphoto'))
-					$clones = cloneZenphoto::setup($autorun);
-			}
-			?>
 										window.location = '<?php echo WEBPATH . '/' . ZENFOLDER . '/admin.php'; ?>';
 									}
 									window.onload = function() {
