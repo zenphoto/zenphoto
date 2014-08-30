@@ -22897,7 +22897,7 @@ msgstr ""
 "op de gewenste plek gebruik maken van <br><code>if(extensionEnabled(\"zenpage"
 "\") && ZP_NEWS_ENABLED) { … }</code> of "
 "<br><code>if(extensionEnabled(\"zenpage\") && ZP_PAGES_ENABLED) { … }</"
-"code><br>Hetzelfde geldt voor"
+"code><br>"
 
 #: ZpTranslation-Master/zp-core/zp-extensions/zenpage.php:137
 msgid "Articles per page (theme)"
