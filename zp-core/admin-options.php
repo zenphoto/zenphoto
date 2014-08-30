@@ -1127,7 +1127,7 @@ Zenphoto_Authority::printPasswordFormJS();
 														 id="user_name"  name="user"
 														 value="<?php echo html_encode($_zp_gallery->getUser()); ?>" />
 											</p>
-											
+
 										</td>
 										<td>
 											<?php echo gettext("User ID for the gallery guest user") ?>
@@ -1144,9 +1144,9 @@ Zenphoto_Authority::printPasswordFormJS();
 											</span>
 										</td>
 										<td>
-											<?php 
-											// Autofill honeypot hack (hidden password input), 
-											// needed to prevent "Are you sure?" from tiggering when autofill is enabled in browsers 
+											<?php
+											// Autofill honeypot hack (hidden password input),
+											// needed to prevent "Are you sure?" from tiggering when autofill is enabled in browsers
 											// http://benjaminjshore.info/2014/05/chrome-auto-fill-honey-pot-hack.html
 											?>
 											<input class="ays-ignore" type="password" name="pass" style="display:none;" />
@@ -1164,7 +1164,7 @@ Zenphoto_Authority::printPasswordFormJS();
 															 value="<?php echo $x; ?>" />
 											</span>
 											<label><input type="checkbox" name="disclose_password" id="disclose_password" onclick="passwordClear(''); togglePassword('');" /><?php echo gettext('Show password'); ?></label>
-											
+
 										</td>
 										<td>
 											<?php echo gettext("Master password for the gallery. If this is set, visitors must know this password to view the gallery."); ?>
@@ -1459,7 +1459,7 @@ Zenphoto_Authority::printPasswordFormJS();
 														 id="user_name"  name="user"
 														 value="<?php echo html_encode(getOption('search_user')); ?>" />
 											<br />
-											
+
 										</td>
 										<td>
 											<?php echo gettext("User ID for the search guest user") ?>
@@ -1476,9 +1476,9 @@ Zenphoto_Authority::printPasswordFormJS();
 											</span>
 										</td>
 										<td>
-											<?php 
-											// Autofill honeypot hack (hidden password input), 
-											// needed to prevent "Are you sure?" from tiggering when autofill is enabled in browsers 
+											<?php
+											// Autofill honeypot hack (hidden password input),
+											// needed to prevent "Are you sure?" from tiggering when autofill is enabled in browsers
 											// http://benjaminjshore.info/2014/05/chrome-auto-fill-honey-pot-hack.html
 											?>
 											<input class="ays-ignore" type="password" name="pass" style="display:none;" />
@@ -2226,9 +2226,9 @@ Zenphoto_Authority::printPasswordFormJS();
 														</span>
 													</td>
 													<td style="margin:0; padding:0">
-														<?php 
-														// Autofill honeypot hack (hidden password input), 
-														// needed to prevent "Are you sure?" from tiggering when autofill is enabled in browsers 
+														<?php
+														// Autofill honeypot hack (hidden password input),
+														// needed to prevent "Are you sure?" from tiggering when autofill is enabled in browsers
 														// http://benjaminjshore.info/2014/05/chrome-auto-fill-honey-pot-hack.html
 														?>
 														<input class="ays-ignore" type="password" name="pass" style="display:none;" />
@@ -2369,9 +2369,9 @@ Zenphoto_Authority::printPasswordFormJS();
 										<td>
            <label><input type="checkbox" name="IPTC_convert_linebreaks" value="1"	<?php checked('1', getOption('IPTC_convert_linebreaks')); ?> /></label>
 										</td>
-										<td><?php echo gettext("If checked line breaks embeded in the IPTCcaption field will be converted to <br> on image importing."); ?></td>
+										<td><?php echo gettext("If checked line breaks embeded in the IPTCcaption field will be converted to <code>&lt;br&gt;</code> on image importing."); ?></td>
 									</tr>
-        <?php 
+        <?php
 								if (GRAPHICS_LIBRARY == 'Imagick') {
 									$optionText = gettext('Imbed IPTC copyright');
 									$desc = gettext('If checked and an image has no IPTC data a copyright notice will be imbedded cached copies.');
