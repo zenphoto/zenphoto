@@ -139,6 +139,7 @@ function getMenuItems($menuset, $visible) {
 					array_key_exists($visible, $_menu_manager_items[$menuset])) {
 		return $_menu_manager_items[$menuset][$visible];
 	}
+	$_menu_manager_items[$menuset][$visible] = array();
 	switch ($visible) {
 		case 'visible':
 			$where = " WHERE `show` = 1 AND menuset = " . db_quote($menuset);
@@ -152,13 +153,15 @@ function getMenuItems($menuset, $visible) {
 			break;
 	}
 	$result = query("SELECT * FROM " . prefix('menu') . $where . " ORDER BY sort_order", false, 'sort_order');
-	while ($row = db_fetch_assoc($result)) {
-		$row['type'] = strtolower($row['type']);
-		if (strpos($row['type'], 'zenpage') !== false)
-			$row['type'] = str_replace('zenpage', '', $row['type']);
-		$_menu_manager_items[$menuset][$visible][] = $row;
+	if ($result) {
+		while ($row = db_fetch_assoc($result)) {
+			$row['type'] = strtolower($row['type']);
+			if (strpos($row['type'], 'zenpage') !== false)
+				$row['type'] = str_replace('zenpage', '', $row['type']);
+			$_menu_manager_items[$menuset][$visible][] = $row;
+		}
+		db_free_result($result);
 	}
-	db_free_result($result);
 
 	return $_menu_manager_items[$menuset][$visible];
 }

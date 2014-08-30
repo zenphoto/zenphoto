@@ -155,7 +155,7 @@ class ThemeOptions {
 				echo "</select>\n";
 				break;
 			case 'effervescence_menu':
-				$menusets = array();
+				$menusets = array($currentValue => $currentValue);
 				echo '<select id="EF_menuset" name="effervescence_menu"';
 				if (function_exists('printCustomMenu') && getThemeOption('custom_index_page', NULL, 'effervescence+') === 'gallery') {
 					$result = query_full_array("SELECT DISTINCT menuset FROM " . prefix('menu') . " ORDER BY menuset");
