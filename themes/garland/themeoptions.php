@@ -104,7 +104,7 @@ class ThemeOptions {
 	function handleOption($option, $currentValue) {
 		switch ($option) {
 			case 'garland_menu':
-				$menusets = array();
+				$menusets = array($currentValue => $currentValue);
 				echo '<select id="garland_menuset" name="garland_menu"';
 				if (function_exists('printCustomMenu') && getThemeOption('custom_index_page', NULL, 'garland') === 'gallery') {
 					$result = query_full_array("SELECT DISTINCT menuset FROM " . prefix('menu') . " ORDER BY menuset");
