@@ -242,6 +242,15 @@ class favoritesHandler {
 
 	static function showWatchers($html, $obj, $prefix) {
 		$watchers = favorites::getWatchers($obj);
+		$multi = false;
+		foreach ($watchers as $key => $aux) {
+			$array = getSerializedArray($aux);
+			if (array_key_exists(1, $array)) {
+				$multi = true;
+				break;
+			}
+		}
+
 		if (!empty($watchers)) {
 			?>
 			<tr>
@@ -249,13 +258,25 @@ class favoritesHandler {
 					<?php echo gettext('Users watching:'); ?>
 				</td>
 				<td class="top">
-					<dl class="userlist">
-						<dh>
-							<dt><em><?php echo gettext('User'); ?></em></dt>
-							<dd><em><?php echo gettext('instance'); ?></em></dd>
-						</dh>
-						<?php favorites::listWatchers($obj, array('<dt>', '</dt><dd>', '</dd>')) ?>
-					</dl>
+					<?php
+					if ($multi) {
+						?>
+						<dl class="userlist">
+							<dh>
+								<dt><em><?php echo gettext('User'); ?></em></dt>
+								<dd><em><?php echo gettext('instance'); ?></em></dd>
+							</dh>
+							<?php favorites::listWatchers($obj, array('<dt>', '</dt><dd>', '</dd>')); ?>
+						</dl>
+						<?php
+					} else {
+						?>
+						<ul class="userlist">
+							<?php favorites::listWatchers($obj, array('<li>', '', '</li>')); ?>
+						</ul>
+						<?php
+					}
+					?>
 				</td>
 			</tr>
 			<?php
@@ -344,7 +365,7 @@ if (OFFSET_PATH) {
 			$table = $obj->table;
 			$target = array('type' => $table);
 			if ($_zp_gallery_page == 'favorites.php') {
-				//	 only need one remove button since we know the instance
+//	 only need one remove button since we know the instance
 				$multi = false;
 				$list = array($_myFavorites->instance);
 			} else {
