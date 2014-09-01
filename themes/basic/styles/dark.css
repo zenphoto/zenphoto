@@ -444,32 +444,6 @@ label:hover {
 #map {margin-left: -77px;}
 #rating { margin-top: 10px; }
 
-/* Admin Toolbox
------------------------------- */
-#admin, #admin_data{
-	position: fixed;
-	right: 0px;
-	top: 0px;
-	width: 120px;
-	border-bottom: 1px solid #444;
-	border-left: 1px solid #444;
-	background: #222;
-    z-index: 2;
-}
-#admin_data{
-	top: 0px;
-	padding-top: 20px;
-	z-index: 1;
-	line-height: 1.6em;
-}
-#admin h3 {
-	font-weight: normal;
-	color: #aaa;
-	margin:0;
-	padding:0;
-}
-#admin h3:hover { color: #86a1b6; }
-
 /* Search Box
 ------------------------------ */
 #search {

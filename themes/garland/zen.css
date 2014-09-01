@@ -621,35 +621,6 @@ top: 6px;
 	outline: none
 }
 
-/* Admin Toolbox
------------------------------- */
-#admin, #admin_data{
-	position:fixed;
-	right:0;
-	top:0;
-	z-index: 1000;
-	border-left: 1px solid #E6E6DF;
-	border-bottom: 1px solid #E6E6DF;
-	background: #edf5fa;
-	width:120px;
-}
-#admin_data{
-	top:17px;
-}
-#admin_data h3 {
-	font: 105% Arial, "Helvetica Neue", Helvetica, sans-serif;
-	font-weight: bold;
-	color: #494949;
-	border-bottom: 1px dashed #E6E6DF;
-	margin:0;
-	padding:0;
-}
-
-
-#admin_data ul  {
-margin-left: -30px;
-}
-
 /* Archive View
 ---------------------------- */
 #archive{
