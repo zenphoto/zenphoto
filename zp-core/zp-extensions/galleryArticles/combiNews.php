@@ -1,6 +1,6 @@
 <?php
 
-class Combi extends Zenpage {
+class Combi extends CMS {
 
 	/**
 	 * Gets news articles and images of a gallery to show them together on the news section

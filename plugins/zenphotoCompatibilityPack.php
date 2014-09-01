@@ -55,7 +55,7 @@ switch (OFFSET_PATH) {
 		}
 
 	default:
-		if (extensionEnabled('zenpage')) {
+		if (class_exists('CMS')) {
 
 			class Zenpage extends CMS {
 

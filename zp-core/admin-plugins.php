@@ -220,20 +220,6 @@ $subtab = printSubtabs();
 				$plugin_is_filter = 1 | THEME_PLUGIN;
 				if ($str = isolate('$plugin_is_filter', $pluginStream)) {
 					eval($str);
-					if ($plugin_is_filter < THEME_PLUGIN) {
-						if ($plugin_is_filter < 0) {
-							$plugin_is_filter = abs($plugin_is_filter) | THEME_PLUGIN | ADMIN_PLUGIN;
-						} else {
-							if ($plugin_is_filter == 1) {
-								$plugin_is_filter = 1 | THEME_PLUGIN;
-							} else {
-								$plugin_is_filter = $plugin_is_filter | CLASS_PLUGIN;
-							}
-						}
-					}
-					if ($currentsetting && $currentsetting != $plugin_is_filter) {
-						setOption($opt, $plugin_is_filter); //	the script has changed its setting!
-					}
 				}
 				$optionlink = NULL;
 				if ($str = isolate('$option_interface', $pluginStream)) {
