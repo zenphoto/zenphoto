@@ -880,19 +880,14 @@ echo "\n</head>";
 					<?php
 				} else if ($subtab == 'imageinfo') {
 					$singleimage = NULL;
-					if (isset($_GET['singleimage']) || $totalimages == 1) {
-						if ($totalimages == 1) {
-							$list = $images;
-							$simage = array_shift($list);
-						} else {
-							$simage = sanitize($_GET['singleimage']);
-						}
-						if (array_search($simage, $images) !== false) {
-							$allimagecount = 1;
-							$totalimages = 1;
-							$singleimage = $simage;
-							$images = array($simage);
-						}
+					if ($totalimages == 1) {
+						$_GET['singleimage'] = array_shift($images);
+					}
+					if (isset($_GET['singleimage'])) {
+						$singleimage = $simage = sanitize($_GET['singleimage']);
+						$allimagecount = 1;
+						$totalimages = 1;
+						$images = array($simage);
 					}
 					?>
 					<!-- Images List -->
