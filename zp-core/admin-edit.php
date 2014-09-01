@@ -884,10 +884,10 @@ echo "\n</head>";
 						$_GET['singleimage'] = array_shift($images);
 					}
 					if (isset($_GET['singleimage'])) {
-						$singleimage = $simage = sanitize($_GET['singleimage']);
+						$singleimage = sanitize($_GET['singleimage']);
 						$allimagecount = 1;
 						$totalimages = 1;
-						$images = array($simage);
+						$images = array($singleimage);
 					}
 					?>
 					<!-- Images List -->
