@@ -1285,7 +1285,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										<a href="javascript:toggle_passwords('<?php echo $suffix; ?>',false);">
 											<?php echo gettext("Album guest user:"); ?>
 										</a>
-									</p>	
+									</p>
 								</td>
 								<td>
 									<p>
@@ -1308,9 +1308,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 									</p>
 								</td>
 								<td>
-									<p> <?php 
-										// Autofill honeypot hack (hidden password input), 
-										// needed to prevent "Are you sure?" from tiggering when autofill is enabled in browsers 
+									<p> <?php
+										// Autofill honeypot hack (hidden password input),
+										// needed to prevent "Are you sure?" from tiggering when autofill is enabled in browsers
 										// http://benjaminjshore.info/2014/05/chrome-auto-fill-honey-pot-hack.html
 										?>
 										<input class="ays-ignore" type="password" name="pass" style="display:none;" />
@@ -1332,7 +1332,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 														 value="<?php echo $x; ?>" />
 										</span>
 									</p>
-								</td>	
+								</td>
 							</tr>
 							<tr class="password<?php echo $suffix; ?>extrahide" style="display:none" >
 								<td>
@@ -1340,7 +1340,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										<?php echo gettext("Password hint:"); ?>
 									</p>
 								</td>
-								<td>	
+								<td>
 									<p>
 										<?php print_language_string_list($album->getPasswordHint('all'), "hint" . $suffix, false, NULL, 'hint', '100%'); ?>
 									</p>
@@ -2422,7 +2422,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 		}
 		return $notify;
 	}
- 
+
  /**
   * Process the image edit form posted
   * @param obj $image Image object
