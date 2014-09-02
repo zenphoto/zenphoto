@@ -115,7 +115,7 @@ function getTitleBreadcrumb($before = ' ( ', $between = ' / ', $after = ' ) ') {
 				$parents = getParentAlbums();
 			}
 		} else {
-			$album = new Album($_zp_gallery, $_zp_current_search->dynalbumname);
+			$album = newAlbum($_zp_current_search->dynalbumname);
 			$parents = getParentAlbums($album);
 			if (in_context(ZP_ALBUM_LINKED)) {
 				array_push($parents, $album);
@@ -168,8 +168,7 @@ function printPPSlideShowLink($linktext = '', $linkstyle = '') {
 			if (in_array($suffix, $suffixes)) {
 				$count++;
 				if (is_array($image)) {
-					$albobj = new Album($image['folder']);
-					$imgobj = newImage($albobj, $image['filename']);
+					$imgobj = newImage(NULL, $image);
 				} else {
 					$imgobj = newImage($_zp_current_album, $image);
 				}
