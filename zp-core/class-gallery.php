@@ -642,12 +642,11 @@ class Gallery {
 								if (count($images) > 0) {
 									$image = newImage($album, array_shift($images));
 									$album->setDateTime($image->getDateTime());
+									$album->save();
 								}
 							}
 							$album->garbageCollect(true);
-							$album->preLoad();
 						}
-						$album->save();
 						zp_apply_filter('album_refresh', $album);
 					}
 				}

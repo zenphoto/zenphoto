@@ -1020,6 +1020,8 @@ class AlbumBase extends MediaObject {
 	 * load accurate values into the database.
 	 */
 	function preLoad() {
+		if ($this->isDynamic())
+			return;
 		$images = $this->getImages(0);
 		$subalbums = $this->getAlbums(0);
 		foreach ($subalbums as $dir) {
