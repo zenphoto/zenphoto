@@ -247,7 +247,7 @@ class SearchEngine {
 		} else {
 			$list = explode(',', $fields);
 			foreach ($this->search_structure as $key => $display) {
-				if (in_array($key, $list)) {
+				if ($display && in_array($key, $list)) {
 					$setlist[$display] = $key;
 				}
 			}

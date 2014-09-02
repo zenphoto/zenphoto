@@ -83,11 +83,20 @@ function adminToolbox() {
 			// ]]> -->
 		</script>
 		<div id="<?php echo $id; ?>">
-			<h3><a onclick="toggle('<?php echo $dataid; ?>');"><?php echo gettext('Admin Toolbox'); ?></a></h3>
+			<h3>
+				<a onclick="toggle('<?php echo $dataid; ?>');">
+					<?php echo gettext('Admin Toolbox'); ?>
+				</a>
+			</h3>
 		</div>
 		<div id="<?php echo $dataid; ?>" style="display: none;">
-			<?php printf(gettext('Logged in as <em>%s</em>'), $_zp_current_admin_obj->getUser()); ?>
+
 			<ul style="list-style-type: none;" >
+				<li>
+					<em><?php echo $_zp_current_admin_obj->getUser(); ?></em>
+					<br /><br />
+				</li>
+
 				<?php
 				$outputA = ob_get_contents();
 				ob_end_clean();

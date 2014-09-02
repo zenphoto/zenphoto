@@ -377,9 +377,11 @@ function printAlbumMenuJumpAlbum($albums, $option, $albumpath, $firstimagelink, 
 			$link = "<option $selected value='" . html_encode($subalbum->getLink(1)) . "'>" . $arrow . getBare($subalbum->getTitle()) . $count . "</option>";
 		}
 		echo $link;
-		$subalbums = $subalbum->getAlbums();
-		if (!empty($subalbums)) {
-			printAlbumMenuJumpAlbum($subalbums, $option, $albumpath, $firstimagelink, $level + 1);
+		if (!$subalbum->isDynamic()) {
+			$subalbums = $subalbum->getAlbums();
+			if (!empty($subalbums)) {
+				printAlbumMenuJumpAlbum($subalbums, $option, $albumpath, $firstimagelink, $level + 1);
+			}
 		}
 	}
 }
