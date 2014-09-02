@@ -1654,7 +1654,7 @@ echo "\n</head>";
 							<?php
 							if ($album_nesting > 1 || zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 								?>
-								<button class="serialize" type="submit" class="buttons"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
+								<button class="serialize buttons" type="submit"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 								<?php
 							}
 							if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
@@ -1696,7 +1696,7 @@ echo "\n</head>";
 							<?php
 							if ($album_nesting > 1 || zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 								?>
-								<button class="serialize" type="submit" class="buttons"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
+								<button class="serialize buttons" type="submit"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 								<?php
 							}
 							if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
