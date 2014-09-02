@@ -245,14 +245,14 @@ if (isset($_GET['action'])) {
         $album = newAlbum($folder);
         $notify = '';
         $returnalbum = NULL;
-        
+
         if (isset($_GET['singleimage'])) {
           $filename = sanitize($_POST["0-filename"]);
           // The file might no longer exist
           $image = newImage($album, $filename);
           if ($image->exists) {
             $notify = processImageEdit($image, 0);
-            $qs_albumsuffix = ''; 
+            $qs_albumsuffix = '';
             $returnalbum = html_encode(pathurlencode($album->name));
             $returntab = '&tab=imageinfo&singleimage='.html_encode($image->filename);
           } // if image exists
@@ -807,8 +807,8 @@ echo "\n</head>";
 				} else if ($subtab == 'imageinfo') {
 					$singleimage = NULL;
 					if (isset($_GET['singleimage'])) {
-     
-						$simage = sanitize($_GET['singleimage']); 
+
+						$simage = sanitize($_GET['singleimage']);
 						if (array_search($simage, $images) !== false) {
 							$allimagecount = 1;
 							$singleimage = $simage;
@@ -841,7 +841,7 @@ echo "\n</head>";
 								<br style='clear:both'/>
 								<?php
 							}
-						} 
+						}
 						if ($allimagecount) {
         if($singleimage) { ?>
           <form class="dirty-check" name="albumedit2"	id="form_imageedit" action="?page=edit&amp;action=save<?php echo "&amp;album=" . html_encode(pathurlencode($album->name)); ?>&amp;singleimage=<?php html_encode($singleimage); ?>&amp;subpage=1"	method="post" autocomplete="off">
@@ -854,8 +854,8 @@ echo "\n</head>";
 								<input type="hidden" name="subpage" value="<?php echo html_encode($pagenum); ?>" />
 								<input type="hidden" name="tagsort" value="<?php echo html_encode($tagsort); ?>" />
 								<input type="hidden" name="oldalbumimagesort" value="<?php echo html_encode($oldalbumimagesort); ?>" />
-        <input type="hidden" name="albumimagesort" value="" />  
-      
+        <input type="hidden" name="albumimagesort" value="" />
+
 								<?php $totalpages = ceil(($allimagecount / $imagesTab_imageCount)); ?>
 								<table class="bordered">
 									<?php
@@ -863,7 +863,7 @@ echo "\n</head>";
 										?>
 										<tr>
 											<td><?php echo gettext("Click on the image to change the thumbnail cropping."); ?>	</td>
-											
+
 											<td align="right">
 												<?php
 												$sort = $sortby;
@@ -1329,11 +1329,11 @@ echo "\n</head>";
              	<tr>
 														<td valign="top"><?php echo gettext("Tags:"); ?></td>
 														<td>
-                <?php 
-                  $imagetags = $image->getTags(); 
-                  if(count($imagetags) != 0) { 
-                    echo implode(', ',$imagetags); 
-                  } else { 
+                <?php
+                  $imagetags = $image->getTags();
+                  if(count($imagetags) != 0) {
+                    echo implode(', ',$imagetags);
+                  } else {
                     echo gettext('No tags assigned');
                   }
                 ?>
@@ -1648,8 +1648,7 @@ echo "\n</head>";
 					consolidatedEditMessages('');
 					printEditDropdown('', array('1', '2', '3', '4', '5'), $album_nesting);
 					?>
-					<form class="dirty-check" action="?page=edit&amp;action=savealbumorder" method="post" name="sortableListForm" id="sortableListForm" onsubmit="return confir
-																																				mAction();">
+					<form class="dirty-check" action="?page=edit&amp;action=savealbumorder" method="post" name="sortableListForm" id="sortableListForm" onsubmit="return confirmAction();">
 									<?php XSRFToken('savealbumorder'); ?>
 						<p class="buttons">
 							<?php
