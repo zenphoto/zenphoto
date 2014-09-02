@@ -1614,7 +1614,7 @@ echo "\n</head>";
 							<?php
 							if ($album_nesting > 1 || zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 								?>
-								<button class="serialize" type="submit" class="buttons"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
+								<button class="serialize buttons" type="submit" ><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 								<button type="reset" value="<?php echo gettext('Reset') ?>">
 									<img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong>
 								</button>
@@ -1661,7 +1661,7 @@ echo "\n</head>";
 							<?php
 							if ($album_nesting > 1 || zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 								?>
-								<button class="serialize" type="submit" class="buttons">
+								<button class="serialize buttons" type="submit" >
 									<img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong>
 								</button>
 								<button type="reset" value="<?php echo gettext('Reset') ?>">
