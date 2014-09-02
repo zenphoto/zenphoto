@@ -9,6 +9,7 @@
  * Executes the configuration change code
  */
 function reconfigureAction($mandatory) {
+	return; // This sucks. Our users don't need a babysitter.
 	list($diff, $needs) = checkSignature($mandatory);
 	$diffkeys = array_keys($diff);
 	if ($mandatory || in_array('ZENPHOTO', $diffkeys) || in_array('FOLDER', $diffkeys)) {
