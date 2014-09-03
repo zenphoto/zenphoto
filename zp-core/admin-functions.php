@@ -482,6 +482,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			$zenphoto_tabs['edit']['subtabs'] = array();
 		}
 		$subrights = $album->subRights();
+
 		if (!$album->isDynamic() && $album->getNumImages()) {
 			if ($subrights & (MANAGED_OBJECT_RIGHTS_UPLOAD || MANAGED_OBJECT_RIGHTS_EDIT)) {
 				$zenphoto_tabs['edit']['subtabs'] = array_merge(
@@ -494,8 +495,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 								array(gettext('Image order') => 'admin-albumsort.php' . $albumlink . '&tab=sort'), $zenphoto_tabs['edit']['subtabs']
 				);
 			}
-		}
-		if (!$album->isDynamic() && $album->getNumAlbums()) {
 			$zenphoto_tabs['edit']['subtabs'] = array_merge(
 							array(gettext('Subalbums') => 'admin-edit.php' . $albumlink . '&tab=subalbuminfo'), $zenphoto_tabs['edit']['subtabs']
 			);
@@ -1396,6 +1395,32 @@ function printAdminHeader($tab, $subtab = NULL) {
 								<?php echo linkPickerItem($album, 'pick_link'); ?>
 							</td>
 						</tr>
+						<?php
+						if ($album->isDynamic()) {
+							?>
+							<tr>
+								<td align="left" valign="top" width="150"><em><?php echo get_class($album); ?></em></td>
+								<td class="noinput">
+
+									<?php
+									switch ($album->isDynamic()) {
+										case 'alb':
+											echo html_encode(urldecode($album->getSearchParams()));
+											break;
+										case'fav':
+											echo html_encode($album->owner);
+											if ($album->instance) {
+												echo ' [' . html_encode($album->instance) . ']';
+											}
+											break;
+									}
+									?>
+								</td>
+							</tr>
+
+							<?php
+						}
+						?>
 						<tr>
 							<td class="leftcolumn">
 								<?php echo gettext("Album Description:"); ?>
@@ -1440,7 +1465,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 													 name="disclose_password<?php echo $suffix; ?>"
 													 id="disclose_password<?php echo $suffix; ?>"
 													 onclick="passwordClear('<?php echo $suffix; ?>');
-																	 togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?>
+															 togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?>
 									</label>
 								</td>
 								<td>
@@ -1927,7 +1952,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 } else {
 											 ?>
 											 onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');
-															 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
+													 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
 											 <?php
 										 }
 										 ?> />
@@ -2002,25 +2027,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 					</div>
 				</td>
 			</tr>
+
 		</table>
-		<?php
-		if ($album->isDynamic()) {
-			?>
-			<table>
-				<tr>
-					<td align="left" valign="top" width="150"><?php echo gettext("Dynamic album search:"); ?></td>
-					<td>
-						<table class="noinput">
-							<tr>
-								<td><?php echo html_encode(urldecode($album->getSearchParams())); ?></td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-			</table>
-			<?php
-		}
-		?>
+
 
 		<br class="clearall" />
 		<?php
@@ -5010,12 +5019,12 @@ function linkPickerIcon($obj, $id = NULL, $extra = NULL) {
 	<a onclick="<?php
 	if ($id) {
 		?>
-						$('#<?php echo $id; ?>').select();
+				$('#<?php echo $id; ?>').select();
 		<?php
 	}
 	?>
-					$('.pickedObject').removeClass('pickedObject');
-					$('#<?php echo $iconid; ?>').addClass('pickedObject');
+			$('.pickedObject').removeClass('pickedObject');
+			$('#<?php echo $iconid; ?>').addClass('pickedObject');
 	<?php linkPickerPick($obj, $id, $extra); ?>"
 		 title="<?php echo gettext('pick source'); ?>">
 		<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" id="<?php echo $iconid; ?>">
