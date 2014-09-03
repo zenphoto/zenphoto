@@ -237,7 +237,7 @@ function getTitleBreadcrumb($before = ' ( ', $between = ' | ', $after = ' ) ') {
 				$parents = getParentAlbums();
 			}
 		} else {
-			$album = new Album($_zp_gallery, $dynamic_album);
+			$album = newAlbum($dynamic_album);
 			$parents = getParentAlbums($album);
 			if (in_context(ZP_ALBUM_LINKED)) {
 				array_push($parents, $album);
