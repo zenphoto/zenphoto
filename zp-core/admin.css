@@ -2586,14 +2586,14 @@ Tooltip styling
 ************************************/
 .ui-tooltip, .arrow:after {
 	background: #f5f5f5;
-	border: 2px solid #4D4D4D;
+	border: 1px solid #4D4D4D;
 }
 .ui-tooltip {
 	padding: 10px 20px;
 	color: black;
-	border-radius: 20px;
-	font: 14px "Helvetica Neue", Sans-Serif;
-	box-shadow: 0 0 7px black;
+	border-radius: 10px;
+	font: 13px "Helvetica Neue", Sans-Serif;
+	box-shadow: 0 0 2px black;
 	text-align:left;
 	background: #f5f5f5;
 }
