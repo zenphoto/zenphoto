@@ -358,6 +358,7 @@ function setupLog($message, $anyway = false, $reset = false) {
 		if ($f) {
 			fwrite($f, strip_tags($message) . "\n");
 			fclose($f);
+			chmod(SETUPLOG, DATA_MOD);
 			clearstatcache();
 		}
 		if (is_object($_zp_mutex))
