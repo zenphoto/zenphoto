@@ -2833,20 +2833,6 @@ function adminPageNav($pagenum, $totalpages, $adminpage, $parms, $tab = '') {
 	}
 
 	/**
-	 * Takes a comment and makes the body of an email.
-	 *
-	 * @param string $str comment
-	 * @param string $name author
-	 * @param string $albumtitle album
-	 * @param string $imagetitle image
-	 * @return string
-	 */
-	function commentReply($str, $name, $albumtitle, $imagetitle) {
-		$str = "$name commented on $imagetitle in the album $albumtitle: %0D%0A%0D%0A" . implode('%0D%0A', explode('\n', wordwrap(getBare($str), 75, '\n')));
-		return $str;
-	}
-
-	/**
 	 * Extracts and returns a 'statement' from a PHP script so that it may be 'evaled'
 	 *
 	 * @param string $target the assignment variable to match on

@@ -928,4 +928,35 @@ function getCommentStored($numeric = false) {
 	}
 	return $_zp_comment_stored;
 }
+
+
+	/**
+	 * Takes a comment and makes the body of an email.
+	 *
+	 * @param obj $obj Object of the item commented on
+	 * @param string $author Comment author
+	 * @param string $fullcomment The comment itself
+	 * @return string
+	 */
+	function commentReply($obj, $author, $fullcomment) {
+  if (is_object($obj)) {
+    $comment = ": %0D%0A%0D%0A" . implode('%0D%0A', explode('\n', wordwrap(getBare($fullcomment), 75, '\n')));
+    $message = '';
+    switch ($obj->table) {
+      case 'albums':
+        $title = $obj->getTitle();
+        $message = sprintf(gettext('%1$s commented on album %2$s%3$s'), $author, $obj->getTitle(),$comment);
+        break;
+      default:
+      case 'images':
+        $message = sprintf(gettext('%1$s commented on %2$s in album %3$s%4$s'), $author, $obj->getTitle(), $obj->getAlbum()->getTitle(), $comment);
+        break;
+      case 'news':
+      case 'pages':
+        $message = sprintf(gettext('%1$s commented on %2$s%3$s'), $author, $obj->getTitle(),$comment);
+        break;
+    }
+    return $message;
+  }
+}
 ?>
