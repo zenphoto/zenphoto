@@ -208,20 +208,7 @@ class security_logger {
 			fclose($f);
 			clearstatcache();
 			if (!$preexists) {
-				@chmod($file, 0660 & CHMOD_VALUE);
-				if (strtoupper(substr(PHP_OS, 0, 3)) == 'WIN') {
-					$permission = fileperms($file) & 0700; //	on Windows owner==group==public
-					$check = $permission != 0600 & CHMOD_VALUE;
-				} else {
-					$permission = fileperms($file) & 0777;
-					$check = $permission != 0660 & CHMOD_VALUE;
-				}
-				if ($check) {
-					$f = fopen($file, 'a');
-					fwrite($f, "\t\t" . gettext('Set Security log permissions') . "\t\t\t" . gettext('Failed') . "\t\t" . sprintf(gettext('File permissions of Security log are %04o'), $permission) . "\n");
-					fclose($f);
-					clearstatcache();
-				}
+				@chmod($file, DATA_MOD);
 			}
 		}
 		$_zp_mutex->unlock();
