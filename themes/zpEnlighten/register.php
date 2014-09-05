@@ -4,17 +4,15 @@ if (!defined('WEBPATH'))
 ?>
 <!DOCTYPE html>
 <head>
-<?php zp_apply_filter('theme_head'); ?>
-	<title><?php echo getBareGalleryTitle(); ?></title>
-	<meta http-equiv="content-type" content="text/html; charset=<?php echo getOption('charset'); ?>" />
+	<?php zp_apply_filter('theme_head'); ?>
 	<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" type="text/css" />
 </head>
 <body>
-<?php zp_apply_filter('theme_body_open'); ?>
+	<?php zp_apply_filter('theme_body_open'); ?>
 
 	<div id="main">
 
-<?php include("header.php"); ?>
+		<?php include("header.php"); ?>
 
 		<div id="content">
 
@@ -22,30 +20,30 @@ if (!defined('WEBPATH'))
 				<h2>
 					<?php if (extensionEnabled('zenpage')) { ?>
 						<a href="<?php echo getGalleryIndexURL(); ?>" title="<?php gettext('Index'); ?>"><?php echo gettext("Index"); ?></a>»
-<?php } ?>
+					<?php } ?>
 					<a href="<?php echo htmlspecialchars(getCustomPageURl('gallery')); ?>" title="<?php echo gettext('Gallery'); ?>"><?php echo gettext("Gallery"); ?></a>
 				</h2>
 			</div>
 
 			<div id="content-left">
 				<h1><?php echo gettext('User Registration') ?></h1>
-<?php printRegistrationForm(); ?>
+				<?php printRegistrationForm(); ?>
 			</div><!-- content left-->
 
 
 			<div id="sidebar">
-<?php include("sidebar.php"); ?>
+				<?php include("sidebar.php"); ?>
 			</div><!-- sidebar -->
 
 
 
 			<div id="footer">
-<?php include("footer.php"); ?>
+				<?php include("footer.php"); ?>
 			</div>
 
 		</div><!-- content -->
 
 	</div><!-- main -->
-<?php zp_apply_filter('theme_body_close'); ?>
+	<?php zp_apply_filter('theme_body_close'); ?>
 </body>
 </html>

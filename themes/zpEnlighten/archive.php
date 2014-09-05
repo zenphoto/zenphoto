@@ -1,12 +1,11 @@
-<?php if (!defined('WEBPATH'))
+<?php
+if (!defined('WEBPATH'))
 	die();
 ?>
 <!DOCTYPE html>
 <head>
 	<?php printZDRoundedCornerJS(); ?>
-<?php zp_apply_filter('theme_head'); ?>
-	<title><?php echo getBareGalleryTitle(); ?> | <?php echo gettext("Archive View"); ?></title>
-	<meta http-equiv="content-type" content="text/html; charset=<?php echo getOption('charset'); ?>" />
+	<?php zp_apply_filter('theme_head'); ?>
 	<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" type="text/css" />
 <?php printRSSHeaderLink('Gallery', gettext('Gallery RSS')); ?>
 </head>

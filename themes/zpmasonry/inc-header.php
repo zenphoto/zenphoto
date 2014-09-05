@@ -2,10 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-		<meta http-equiv="content-type" content="text/html; charset=<?php echo getOption('charset'); ?>" />
+		<?php zp_apply_filter('theme_head'); ?>
 		<link rel="stylesheet" type="text/css" href="<?php echo $_zp_themeroot; ?>/css/<?php echo $zpmas_css; ?>.css" />
 		<?php
-		zp_apply_filter('theme_head');
 		switch ($_zp_gallery_page) {
 			case 'index.php':
 				if ($_zp_page > 1) {
@@ -127,9 +126,9 @@
 		<meta name="description" content="<?php echo $zpmas_metadesc; ?>" />
 
 		<script src="<?php echo FULLWEBPATH . "/" . ZENFOLDER ?>/zp-extensions/colorbox_js/jquery.colorbox-min.js" type="text/javascript"></script>
-<?php if ($zpmas_ss) { ?>
+		<?php if ($zpmas_ss) { ?>
 			<script src="<?php echo FULLWEBPATH . "/" . ZENFOLDER ?>/zp-extensions/slideshow/jquery.cycle.all.js" type="text/javascript"></script>
-<?php } ?>
+		<?php } ?>
 		<link rel="stylesheet" href="<?php echo FULLWEBPATH . "/" . ZENFOLDER ?>/zp-extensions/colorbox_js/themes/<?php echo $zpmas_cbstyle; ?>/colorbox.css" type="text/css" media="screen"/>
 		<script type="text/javascript">
 			$(document).ready(function() {
@@ -163,7 +162,7 @@
 					maxWidth: '90%',
 					arrowKey: true
 				});
-		<?php if ($zpmas_fixsidebar) { ?>
+<?php if ($zpmas_fixsidebar) { ?>
 					var top = $('#sidebar-inner').offset().top - parseFloat($('#sidebar-inner').css('marginTop').replace(/auto/, 0));
 					var sidenavHeight = $("#sidebar-inner").height(); //Get height of sidebar
 					var winHeight = $(window).height(); //Get height of viewport
@@ -192,7 +191,7 @@
 						prev: '#larr'
 					});
 					$('#cycle ul').css('display', 'block');
-		<?php } ?>
+<?php } ?>
 			});
 		</script>
 		<?php
@@ -210,7 +209,7 @@
 				#sidebar{margin-top:<?php echo $fixadjust; ?>px;}
 				h1#logo.image-logo a{height:<?php echo $zpmas_logoheight; ?>px;}
 			</style>
-<?php } ?>
+		<?php } ?>
 		<style>
 			#cycle li {width:<?php echo $zpmas_ss_size_w; ?>px;height:<?php echo $zpmas_ss_size_h; ?>px;}
 		</style>
@@ -223,30 +222,34 @@
 			});
 <?php if (getOption('zp_plugin_reCaptcha')) { ?>
 				var RecaptchaOptions = {
-					theme: <?php if ($zpmas_css == 'dark') {
+					theme: <?php
+	if ($zpmas_css == 'dark') {
 		echo '\'blackglass\'';
 	} else {
 		echo '\'white\'';
-	} ?>
+	}
+	?>
 				};
 <?php } ?>
 		</script>
-<?php if (getOption('zpmas_customcss') != null) { ?>
+		<?php if (getOption('zpmas_customcss') != null) { ?>
 			<style>
 	<?php echo getOption('zpmas_customcss'); ?>
 			</style>
-<?php } ?>
+		<?php } ?>
 	</head>
 	<body>
-<?php zp_apply_filter('theme_body_open'); ?>
+		<?php zp_apply_filter('theme_body_open'); ?>
 		<div id="header">
-<?php include ("inc-menu.php"); ?>
+			<?php include ("inc-menu.php"); ?>
 			<div id="header-inner">
-<?php if ($zpmas_css == 'dark') {
-	printSearchForm('', 'searchform', '', gettext('Search'), "$_zp_themeroot/images/media-eject-inv.png", null, null, null);
-} else {
-	printSearchForm('', 'searchform', '', gettext('Search'), "$_zp_themeroot/images/media-eject.png", null, null, null);
-} ?>
+				<?php
+				if ($zpmas_css == 'dark') {
+					printSearchForm('', 'searchform', '', gettext('Search'), "$_zp_themeroot/images/media-eject-inv.png", null, null, null);
+				} else {
+					printSearchForm('', 'searchform', '', gettext('Search'), "$_zp_themeroot/images/media-eject.png", null, null, null);
+				}
+				?>
 				<h1 id="logo"<?php if (strlen($zpmas_logo) > 0) echo ' class="image-logo"'; ?>><a href="<?php echo $zpmas_homelink; ?>" title="<?php echo gettext("Gallery Index"); ?>"><?php echo getGalleryTitle(); ?></a></h1>
 			</div>
 		</div>

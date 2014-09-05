@@ -4,10 +4,8 @@ if (!defined('WEBPATH'))
 ?>
 <!DOCTYPE html>
 <head>
-	<?php printZDRoundedCornerJS(); ?>
 	<?php zp_apply_filter('theme_head'); ?>
-	<title><?php echo getBareImageTitle(); ?> | <?php echo getBareAlbumTitle(); ?> | <?php echo getBareGalleryTitle(); ?></title>
-	<meta http-equiv="content-type" content="text/html; charset=<?php echo getOption('charset'); ?>" />
+	<?php printZDRoundedCornerJS(); ?>
 	<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" type="text/css" />
 	<script type="text/javascript">
 		// <!-- <![CDATA[
@@ -130,29 +128,29 @@ if (!defined('WEBPATH'))
 						printRating();
 					}
 					?>
-				<?php if (function_exists('printGoogleMap')) printGoogleMap(); ?>
+					<?php if (function_exists('printGoogleMap')) printGoogleMap(); ?>
 
 				</div>
-					<?php if (function_exists('printCommentForm')) { ?>
+				<?php if (function_exists('printCommentForm')) { ?>
 					<div id="comments">
-					<?php printCommentForm(); ?>
+						<?php printCommentForm(); ?>
 					</div>
-<?php } ?>
+				<?php } ?>
 
 			</div><!-- content-left -->
 
 			<div id="sidebar">
-<?php include("sidebar.php"); ?>
+				<?php include("sidebar.php"); ?>
 			</div>
 
 			<div id="footer">
-<?php include("footer.php"); ?>
+				<?php include("footer.php"); ?>
 			</div>
 
 
 		</div><!-- content -->
 
 	</div><!-- main -->
-<?php zp_apply_filter('theme_body_close'); ?>
+	<?php zp_apply_filter('theme_body_close'); ?>
 </body>
 </html>

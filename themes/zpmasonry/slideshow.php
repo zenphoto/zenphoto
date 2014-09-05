@@ -14,14 +14,13 @@ if (!defined('WEBPATH'))
 	<!DOCTYPE html>
 	<html>
 		<head>
-	<?php zp_apply_filter('theme_head'); ?>
+			<?php zp_apply_filter('theme_head'); ?>
 			<meta name="viewport" content="width=device-width" />
-			<title><?php echo gettext('Slideshow') . ' | ' . getBareGalleryTitle(); ?></title>
 		</head>
 		<body>
 			<?php zp_apply_filter('theme_body_open'); ?>
 			<?php printGslideshow(); ?>
-	<?php zp_apply_filter('theme_body_close'); ?>
+			<?php zp_apply_filter('theme_body_close'); ?>
 		</body>
 	</html>
 
@@ -30,19 +29,17 @@ if (!defined('WEBPATH'))
 	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 	<html xmlns="http://www.w3.org/1999/xhtml">
 		<head>
+			<?php zp_apply_filter('theme_head'); ?>
 			<link rel="stylesheet" href="<?php echo WEBPATH; ?>/themes/zenpage/slideshow.css" type="text/css" />
-	<?php zp_apply_filter('theme_head'); ?>
-			<title><?php printBareGalleryTitle(); ?> <?php echo gettext("Slideshow"); ?></title>
-			<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
-	<?php printSlideShowJS(); ?>
+			<?php printSlideShowJS(); ?>
 
 		</head>
 		<body>
-				<?php zp_apply_filter('theme_body_open'); ?>
+			<?php zp_apply_filter('theme_body_open'); ?>
 			<div id="slideshowpage">
-			<?php printSlideShow(true, true); ?>
+				<?php printSlideShow(true, true); ?>
 			</div>
-	<?php zp_apply_filter('theme_body_close'); ?>
+			<?php zp_apply_filter('theme_body_close'); ?>
 
 		</body>
 	</html>

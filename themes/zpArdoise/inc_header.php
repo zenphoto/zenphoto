@@ -7,71 +7,6 @@ if (!defined('WEBPATH'))
 <html>
 	<head>
 		<?php zp_apply_filter('theme_head'); ?>
-		<title>
-			<?php
-			echo getMainSiteName();
-			if (($_zp_gallery_page == 'index.php') && ($isHomePage)) {
-				echo ' | ' . gettext('Home');
-			}
-			if (($_zp_gallery_page == 'index.php') && (!$isHomePage)) {
-				echo ' | ' . gettext('Gallery');
-			}
-			if ($_zp_gallery_page == '404.php') {
-				echo ' | ' . gettext('Object not found');
-			}
-			if ($_zp_gallery_page == 'album.php') {
-				echo ' | ' . getBareAlbumTitle();
-				if ($_zp_page > 1) {
-					echo ' [' . $_zp_page . ']';
-				}
-			}
-			if ($_zp_gallery_page == 'archive.php') {
-				echo ' | ' . gettext('Archive View');
-			}
-			if ($_zp_gallery_page == 'contact.php') {
-				echo ' | ' . gettext('Contact');
-			}
-			if ($_zp_gallery_page == 'favorites.php') {
-				echo ' | ' . gettext('My favorites');
-				if ($_zp_page > 1) {
-					echo ' [' . $_zp_page . ']';
-				}
-			}
-			if ($_zp_gallery_page == 'gallery.php') {
-				echo ' | ' . gettext('Gallery');
-				if ($_zp_page > 1) {
-					echo ' [' . $_zp_page . ']';
-				}
-			}
-			if ($_zp_gallery_page == 'image.php') {
-				echo ' | ' . getBareAlbumTitle() . ' | ' . getBareImageTitle();
-			}
-			if (($_zp_gallery_page == 'news.php') && (!is_NewsArticle())) {
-				echo ' | ' . gettext('News');
-				if ($_zp_page > 1) {
-					echo ' [' . $_zp_page . ']';
-				}
-			}
-			if (($_zp_gallery_page == 'news.php') && (is_NewsArticle())) {
-				echo ' | ' . gettext('News') . ' | ' . getBareNewsTitle();
-			}
-			if ($_zp_gallery_page == 'pages.php') {
-				echo ' | ' . getBarePageTitle();
-			}
-			if ($_zp_gallery_page == 'password.php') {
-				echo ' | ' . gettext('Password Required...');
-			}
-			if ($_zp_gallery_page == 'register.php') {
-				echo ' | ' . gettext('Register');
-			}
-			if ($_zp_gallery_page == 'search.php') {
-				echo ' | ' . gettext('Search');
-				if ($_zp_page > 1) {
-					echo ' [' . $_zp_page . ']';
-				}
-			}
-			?>
-		</title>
 		<?php
 		if (extensionEnabled('rss')) {
 			if (getOption('RSS_album_image')) {
@@ -260,17 +195,17 @@ if (!defined('WEBPATH'))
 																													case 63235: case 39:
 																																	if (e.ctrlKey || (docElem.scrollLeft == docElem.scrollWidth - docElem.clientWidth)) {
 	<?php if ($NextURL) { ?>window.location.href = nextURL; <?php } ?>return false; }
-																										break;
-																														case 63234: case 37:
-																														if (e.ctrlKey || (docElem.scrollLeft == 0)) {
+																													break;
+																																	case 63234: case 37:
+																																	if (e.ctrlKey || (docElem.scrollLeft == 0)) {
 	<?php if ($PrevURL) { ?>window.location.href = prevURL; <?php } ?>return false; }
-																										break;
-																										}
-																										return true;
-																										}
+																													break;
+																													}
+																													return true;
+																													}
 
-																										document.onkeydown = keyboardNavigation;
-																														//]]>
+																													document.onkeydown = keyboardNavigation;
+																																	//]]>
 			</script>
 		<?php } ?>
 
