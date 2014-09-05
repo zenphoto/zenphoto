@@ -128,7 +128,6 @@ $zpskel_social = function_exists('printAddThis');
 		}
 		?>
 		<script src="<?php echo $_zp_themeroot; ?>/js/zpskeleton.js"></script>
-		<title><?php echo $zpskel_metatitle; ?></title>
 		<meta name="description" content="<?php echo $zpskel_metadesc; ?>" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/css/style.css">

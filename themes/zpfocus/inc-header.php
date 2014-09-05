@@ -3,8 +3,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-		 
 		<?php
+		zp_apply_filter('theme_head');
 		// Set some things depending on what page we are on...
 		switch ($_zp_gallery_page) {
 			case 'index.php':
@@ -117,7 +117,6 @@
 		}
 		?>
 
-		<title><?php echo $zpfocus_metatitle; ?></title>
 		<meta name="description" content="<?php echo $zpfocus_metadesc; ?>" />
 
 		<?php require_once(SERVERPATH . '/' . ZENFOLDER . "/zp-extensions/print_album_menu.php"); ?>
@@ -131,7 +130,6 @@
 		<link rel="stylesheet" type="text/css" href="<?php echo $_zp_themeroot; ?>/css/ie6.css" />
 		<![endif]-->
 		<link rel="shortcut icon" href="<?php echo $_zp_themeroot; ?>/images/favicon.ico" />
-		<?php zp_apply_filter('theme_head'); ?>
 		<script type="text/javascript" src="<?php echo $_zp_themeroot; ?>/js/superfish.js"></script>
 		<script type="text/javascript">
 			jQuery(function() {

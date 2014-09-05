@@ -2,8 +2,6 @@
 <!DOCTYPE html>
 <head>
 	<?php zp_apply_filter('theme_head'); ?>
-	<title><?php echo getBareGalleryTitle(); ?> | <?php echo gettext("Object not found"); ?></title>
-	<meta http-equiv="content-type" content="text/html; charset=<?php echo getOption('charset'); ?>" />
 	<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" type="text/css" />
 </head>
 

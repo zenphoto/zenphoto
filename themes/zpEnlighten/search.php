@@ -1,12 +1,11 @@
-<?php if (!defined('WEBPATH'))
+<?php
+if (!defined('WEBPATH'))
 	die();
 ?>
 <!DOCTYPE html>
 <head>
 	<?php printZDRoundedCornerJS(); ?>
-<?php zp_apply_filter('theme_head'); ?>
-	<title><?php echo getBareGalleryTitle(); ?> | <?php echo gettext("Search"); ?></title>
-	<meta http-equiv="content-type" content="text/html; charset=<?php echo getOption('charset'); ?>" />
+	<?php zp_apply_filter('theme_head'); ?>
 	<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" type="text/css" />
 	<?php printRSSHeaderLink('Gallery', gettext('Gallery RSS')); ?>
 <?php printZDSearchToggleJS(); ?>
@@ -128,7 +127,7 @@
 					}
 					?>
 				</h3>
-<?php if (getNumAlbums() != 0) { ?>
+					<?php if (getNumAlbums() != 0) { ?>
 					<div id="albums">
 	<?php while (next_album()): ?>
 							<div class="album">
@@ -142,17 +141,17 @@
 								</div>
 								<p style="clear: both; "></p>
 							</div>
-					<?php endwhile; ?>
+	<?php endwhile; ?>
 
 					</div>
-<?php } ?>
-<?php if (getNumImages() > 0) { ?>
+				<?php } ?>
+					<?php if (getNumImages() > 0) { ?>
 					<div id="images">
-						<?php while (next_image()): ?>
+	<?php while (next_image()): ?>
 							<div class="image">
 								<div class="imagethumb"><a href="<?php echo html_encode(getImageURL()); ?>" title="<?php echo getBareImageTitle(); ?>"><?php printImageThumb(getBareImageTitle()); ?></a></div>
 							</div>
-					<?php endwhile; ?>
+	<?php endwhile; ?>
 					</div>
 					<br clear="all" />
 				<?php } ?>
