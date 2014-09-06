@@ -508,12 +508,13 @@ if (extensionEnabled('slideshow2')) {
 			$pagenr = sanitize_numeric($_GET['page']);
 		}
 		$slideshowhidden = '';
+		$slideshowlink = rewrite_path(_PAGE_ . '/slideshow', "index.php?p=slideshow");
+
 		$numberofimages = 0;
 		if (in_context(ZP_SEARCH)) {
 			$imagenumber = '';
 			$imagefile = '';
 			$albumnr = 0;
-			$slideshowlink = rewrite_path(_PAGE_ . '/slideshow', "index.php?p=slideshow");
 			$slideshowhidden = '<input type="hidden" name="preserve_search_params" value="' . html_encode($_zp_current_search->getSearchParams()) . '" />';
 		} else {
 			if (in_context(ZP_IMAGE)) {
@@ -529,10 +530,7 @@ if (extensionEnabled('slideshow2')) {
 			} else {
 				$albumnr = $_zp_current_album->getID();
 			}
-			if ($albumnr) {
-				$slideshowlink = rewrite_path(pathurlencode($_zp_current_album->getFilename()) . '/' . _PAGE_ . '/slideshow', "index.php?p=slideshow&amp;album=" . urlencode($_zp_current_album->getFilename()));
-			} else {
-				$slideshowlink = rewrite_path(_PAGE_ . '/slideshow', "index.php?p=slideshow");
+			if (!$albumnr) {
 				$slideshowhidden = '<input type="hidden" name="favorites_page" value="1" />' . "\n" . '<input type="hidden" name="title" value="' . $_myFavorites->instance . '" />';
 			}
 		}
