@@ -4433,8 +4433,8 @@ function checkPageValidity($request, $gallery_page, $page) {
 }
 
 function print404status() {
-	global $obj;
-	list($album, $image, $galleryPage, $theme, $page) = $obj;
+	global $_404_data;
+	list($album, $image, $galleryPage, $theme, $page) = $_404_data;
 	echo "\n<strong>" . gettext("Error:</strong> the requested object was not found.");
 	if ($album) {
 		echo '<br />' . sprintf(gettext('Album: %s'), html_encode($album));

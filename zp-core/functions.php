@@ -1973,8 +1973,8 @@ function printStandardMeta() {
 	 * @param string $theme
 	 */
 	function debug404() {
-		global $obj;
-		list($album, $image, $galleryPage, $theme, $page) = $obj;
+		global $_404_data;
+		list($album, $image, $galleryPage, $theme, $page) = $_404_data;
 		if (DEBUG_404) {
 			$list = explode('/', $album);
 			if (array_shift($list) == 'cache') {

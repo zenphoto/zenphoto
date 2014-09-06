@@ -25,7 +25,7 @@ if (isset($_GET['fromlogout'])) {
 	exitZP();
 }
 
-$obj = array($album, $image, @$_zp_gallery_page, @$_index_theme, $_zp_page);
+$_404_data = array($album, $image, $obj = @$_zp_gallery_page, @$_index_theme, $_zp_page);
 debug404();
 
 $_zp_gallery_page = '404.php';
