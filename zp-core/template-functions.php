@@ -1965,13 +1965,16 @@ function getNumImages() {
  * @since 1.1.4
  */
 function getTotalImagesIn($album) {
-	global $_zp_gallery;
+	global $_zp_gallery, $_zp_albums_visited_getTotalImagesIn;
+	$_zp_albums_visited_getTotalImagesIn[] = $album->name;
 	$sum = $album->getNumImages();
 	$subalbums = $album->getAlbums(0);
 	while (count($subalbums) > 0) {
 		$albumname = array_pop($subalbums);
-		$album = newAlbum($albumname);
-		$sum = $sum + getTotalImagesIn($album);
+		if (!in_array($albumname, $_zp_albums_visited_getTotalImagesIn)) {
+			$album = newAlbum($albumname);
+			$sum = $sum + getTotalImagesIn($album);
+		}
 	}
 	return $sum;
 }
@@ -3876,34 +3879,34 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 		<!-- search form -->
 		<form method="post" action="<?php echo $searchurl; ?>" id="search_form">
 			<script type="text/javascript">
-				// <!-- <![CDATA[
-				var within = <?php echo (int) $within; ?>;
-				function search_(way) {
-					within = way;
-					if (way) {
-						$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
+					// <!-- <![CDATA[
+					var within = <?php echo (int) $within; ?>;
+					function search_(way) {
+						within = way;
+						if (way) {
+							$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
 
-					} else {
-						lastsearch = '';
-						$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
-					}
-					$('#search_input').val('');
-				}
-				$('#search_form').submit(function() {
-					if (within) {
-						var newsearch = $.trim($('#search_input').val());
-						if (newsearch.substring(newsearch.length - 1) == ',') {
-							newsearch = newsearch.substr(0, newsearch.length - 1);
-						}
-						if (newsearch.length > 0) {
-							$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
 						} else {
-							$('#search_input').val('<?php echo $searchwords; ?>');
+							lastsearch = '';
+							$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
 						}
+						$('#search_input').val('');
 					}
-					return true;
-				});
-				// ]]> -->
+					$('#search_form').submit(function() {
+						if (within) {
+							var newsearch = $.trim($('#search_input').val());
+							if (newsearch.substring(newsearch.length - 1) == ',') {
+								newsearch = newsearch.substr(0, newsearch.length - 1);
+							}
+							if (newsearch.length > 0) {
+								$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
+							} else {
+								$('#search_input').val('<?php echo $searchwords; ?>');
+							}
+						}
+						return true;
+					});
+					// ]]> -->
 			</script>
 			<?php echo $prevtext; ?>
 			<div>

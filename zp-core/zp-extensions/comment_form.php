@@ -399,7 +399,7 @@ function printCommentForm($showcomments = true, $addcommenttext = NULL, $addhead
 	<?php
 	if (getOption('comment_form_rss') && getOption('RSS_comments')) {
 		?>
-		<br class="clearall" />
+		<br clear="all" />
 		<?php
 		if (class_exists('RSS')) {
 			switch ($_zp_gallery_page) {

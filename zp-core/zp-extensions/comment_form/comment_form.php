@@ -110,7 +110,9 @@
 	<textarea name="comment" rows="6" cols="42" class="textarea_inputbox"><?php
 		echo $stored['comment'];
 		echo $disabled['comment'];
-		?></textarea>
+		?>
+	</textarea>
+	<br clear="all">
 	<br />
 	<input type="submit" class="button buttons"  value="<?php echo gettext('Add Comment'); ?>" />
 </form>

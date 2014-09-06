@@ -10,7 +10,8 @@
 			<h1><?php printAlbumTitle(true); ?></h1>
 			<p><?php printAlbumDesc(true); ?></p>
 			<div class="album-meta">
-				<?php $singletag = getTags();
+				<?php
+				$singletag = getTags();
 				$tagstring = implode(', ', $singletag);
 				?>
 				<ul class="taglist">
@@ -23,11 +24,11 @@
 							$divider = '';
 						}
 						?>
-					<?php if (getNumAlbums() > 0) echo getNumAlbums() . ' ' . gettext("subalbums"); ?>
-					<?php echo $divider; ?>
-<?php if (getNumImages() > 0) echo getNumImages() . ' ' . gettext("images"); ?>
+						<?php if (getNumAlbums() > 0) echo getNumAlbums() . ' ' . gettext("subalbums"); ?>
+						<?php echo $divider; ?>
+						<?php if (getNumImages() > 0) echo getNumImages() . ' ' . gettext("images"); ?>
 					</li>
-<?php if (strlen($tagstring) > 0) { ?><li class="meta-tags"><?php printTags('links', '', 'taglist', ', '); ?></li><?php } ?>
+					<?php if (strlen($tagstring) > 0) { ?><li class="meta-tags"><?php printTags('links', '', 'taglist', ', '); ?></li><?php } ?>
 				</ul>
 			</div>
 		</div>
@@ -35,13 +36,14 @@
 </div>
 <div class="wrapper">
 	<div class="container">
-<?php $c = 0;
-while (next_album()):
-	?>
+		<?php
+		$c = 0;
+		while (next_album()):
+			?>
 			<div class="one-third column album">
 				<h4><?php echo getBareAlbumTitle(); ?></h4>
 				<a href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo gettext('View album:'); ?> <?php echo getBareAlbumTitle(); ?>">
-	<?php printCustomAlbumThumbImage(getBareAlbumTitle(), null, 420, 200, 420, 200, null, null, 'remove-attributes'); ?>
+					<?php printCustomAlbumThumbImage(getBareAlbumTitle(), null, 420, 200, 420, 200, null, null, 'remove-attributes'); ?>
 				</a>
 				<div class="album-meta">
 					<ul class="taglist">
@@ -54,9 +56,9 @@ while (next_album()):
 								$divider = '';
 							}
 							?>
-	<?php if (getNumAlbums() > 0) echo getNumAlbums() . ' ' . gettext("subalbums"); ?>
-	<?php echo $divider; ?>
-			<?php if (getNumImages() > 0) echo getNumImages() . ' ' . gettext("images"); ?>
+							<?php if (getNumAlbums() > 0) echo getNumAlbums() . ' ' . gettext("subalbums"); ?>
+							<?php echo $divider; ?>
+							<?php if (getNumImages() > 0) echo getNumImages() . ' ' . gettext("images"); ?>
 						</li>
 					</ul>
 				</div>
@@ -87,66 +89,85 @@ while (next_album()):
 			?>
 			<div class="<?php echo $colclass; ?> columns image imagegrid">
 				<a href="<?php echo html_encode(getImageURL()); ?>" title="<?php echo getBareImageTitle(); ?>">
-			<?php
-			if ($thumbcrop) {
-				printCustomSizedImage(getBareImageTitle(), null, $imagesize, $imagesize, $imagesize, $imagesize, null, null, 'remove-attributes', null, true);
-			} else {
-				printCustomSizedImage(getBareImageTitle(), $imagesize, null, null, null, null, null, null, 'remove-attributes', null, true);
-			}
-			?>
+					<?php
+					if ($thumbcrop) {
+						printCustomSizedImage(getBareImageTitle(), null, $imagesize, $imagesize, $imagesize, $imagesize, null, null, 'remove-attributes', null, true);
+					} else {
+						printCustomSizedImage(getBareImageTitle(), $imagesize, null, null, null, null, null, null, 'remove-attributes', null, true);
+					}
+					?>
 				</a>
 			</div>
-				<?php
-				$c++;
-				$mobilebreak = $c % 2;
-				if ($c == $breakcount) {
-					echo '<br class="clear clearforboth" />';
-					$c = 0;
-				} else if ($mobilebreak == 0) {
-					echo '<br class="clear clearformobile" />';
-				} endwhile;
-			?>
+			<?php
+			$c++;
+			$mobilebreak = $c % 2;
+			if ($c == $breakcount) {
+				echo '<br class="clear clearforboth" />';
+				$c = 0;
+			} else if ($mobilebreak == 0) {
+				echo '<br class="clear clearformobile" />';
+			} endwhile;
+		?>
 		<div class="sixteen columns">
 			<?php if ((hasNextPage()) || (hasPrevPage())) printPageListWithNav("«", "»", false, true, 'pagination', null, true, 5); ?>
-<?php
-if (function_exists('printAddToFavorites')) {
-	printAddToFavorites($_zp_current_album);
-}
-?>
+			<?php
+			if (function_exists('printAddToFavorites')) {
+				printAddToFavorites($_zp_current_album);
+			}
+			?>
 			<?php printPPSlideShowLink(gettext('Slideshow')); ?>
 			<?php if ($zpskel_social) include ('inc-social.php'); ?>
-				<?php if ((function_exists('printGoogleMap'))) { ?>
+			<?php if ((function_exists('printGoogleMap'))) { ?>
 				<div id="map">
 					<?php printGoogleMap(); ?>
 				</div>
-<?php } ?>
+			<?php } ?>
 		</div>
 	</div>
 </div>
 <div class="wrapper contrast">
 	<div class="container">
 		<div class="sixteen columns">
-			<?php if (function_exists('printAlbumMenu')) { ?><div class="jump-menu"><?php printAlbumMenu('jump'); ?></div><?php } ?>
+			<?php if (function_exists('printAlbumMenu')) { ?><div class="jump-menu"><?php printAlbumMenu('jump');
+				?>
+				</div>
+				<?php
+			}
+			?>
 			<ul class="taglist rss">
-				<?php if (getOption('RSS_album_image')) { ?><li><?php printRSSLink('Collection', '', gettext('Latest Images of this Album'), '', false); ?></li><?php } ?>
-				<?php if ((function_exists('printCommentForm')) && (getOption('RSS_comments'))) { ?><li><?php printRSSLink('Comments-album', '', gettext('Latest Comments of this Album'), '', false); ?></li><?php } ?>
+				<?php if (getOption('RSS_album_image')) { ?><li><?php printRSSLink('Collection', '', gettext('Latest Images of this Album'), '', false); ?></li>
+					<?php
+				}
+				?>
+				<?php
+				if ((function_exists('printCommentForm')) && (getOption('RSS_comments'))) {
+					?>
+					<li><?php printRSSLink('Comments-album', '', gettext('Latest Comments of this Album'), '', false); ?></li>
+					<?php
+				}
+				?>
 			</ul>
 		</div>
 	</div>
 </div>
-<?php if ((function_exists('printRating')) || (function_exists('printCommentForm'))) { ?>
+<?php
+if (function_exists('printRating') || function_exists('printCommentForm')) {
+	?>
 	<div class="wrapper">
 		<div class="container">
 			<div class="sixteen columns">
-	<?php if (function_exists('printRating')) { ?>
+				<?php
+				if (function_exists('printRating')) {
+					?>
 					<div id="rating"><?php printRating(); ?><hr /></div>
-	<?php } ?>
-	<?php
-	if (function_exists('printCommentForm')) {
-		printCommentForm();
-		echo '<hr />';
-	}
-	?>
+						<?php
+					}
+
+					if (function_exists('printCommentForm')) {
+						printCommentForm();
+						echo '<hr />';
+					}
+					?>
 			</div>
 		</div>
 	</div>

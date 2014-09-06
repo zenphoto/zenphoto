@@ -290,8 +290,8 @@ class AlbumZip {
 	 * @param int $base the length of the base album name
 	 */
 	static function AddAlbum($album, $fromcache, $level = 0) {
-		global $_zp_zip_list, $_zp_zip_albums_seen, $zip_gallery, $defaultSize;
-		$_zp_zip_albums_seen[] = $album->name;
+		global $_zp_zip_list, $_zp_albums_visited_albumMenu, $zip_gallery, $defaultSize;
+		$_zp_albums_visited_albumMenu[] = $album->name;
 
 		$albumfolders = explode('/', $album->name);
 		$subalbums = array();
@@ -344,7 +344,7 @@ class AlbumZip {
 		$albums = $album->getAlbums();
 		foreach ($albums as $albumname) {
 			$subalbum = newAlbum($albumname);
-			if (!in_array($subalbum->name, $_zp_zip_albums_seen) && $subalbum->exists) {
+			if (!in_array($subalbum->name, $_zp_albums_visited_albumMenu) && $subalbum->exists) {
 				self::AddAlbum($subalbum, $fromcache, $level + 1);
 			}
 		}
@@ -376,7 +376,7 @@ class AlbumZip {
 	 * @param bool fromcache if true, images will be the "sized" image in the cache file
 	 */
 	static function create($album, $zipname, $fromcache) {
-		global $_zp_zip_list, $_zp_zip_albums_seen, $_zp_gallery, $defaultSize;
+		global $_zp_zip_list, $_zp_albums_visited_albumMenu, $_zp_gallery, $defaultSize;
 		if (!$album->isMyItem(LIST_RIGHTS) && !checkAlbumPassword($album->name)) {
 			self::pageError(403, gettext("Forbidden"));
 		}
@@ -384,7 +384,7 @@ class AlbumZip {
 			self::pageError(404, gettext('Album not found'));
 		}
 
-		$_zp_zip_albums_seen = $_zp_zip_list = array();
+		$_zp_albums_visited_albumMenu = $_zp_zip_list = array();
 		if ($fromcache) {
 			$opt = array('large_file_size' => 5 * 1024 * 1024, 'comment' => sprintf(gettext('Created from cached images of %1$s on %2$s.'), $album->name, zpFormattedDate(DATE_FORMAT, time())));
 			$defaultSize = getThemeOption('image_size', NULL, $_zp_gallery->getCurrentTheme());
