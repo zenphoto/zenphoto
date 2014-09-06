@@ -30,7 +30,7 @@ if (!defined('MENU_TRUNCATE_INDICATOR'))
 define('ALBUM_MENU_COUNT', getOption('print_album_menu_count'));
 define('ALBUM_MENU_SHOWSUBS', getOption('print_album_menu_showsubs'));
 
-$_zp_zip_albums_seen = array();
+$_zp_albums_visited_albumMenu = array();
 
 /**
  * Plugin option handling class
@@ -209,7 +209,7 @@ function printAlbumMenuList($option, $showcount = NULL, $css_id = '', $css_class
  * @param int $limit truncation of display text
  */
 function printAlbumMenuListAlbum($albums, $folder, $option, $showcount, $showsubs, $css_class, $css_class_topactive, $css_class_active, $firstimagelink, $keeptopactive, $limit = NULL) {
-	global $_zp_gallery, $_zp_current_album, $_zp_current_search, $_zp_zip_albums_seen;
+	global $_zp_gallery, $_zp_current_album, $_zp_current_search, $_zp_albums_visited_albumMenu;
 	if (is_null($limit)) {
 		$limit = MENU_TRUNCATE_STRING;
 	}
@@ -232,7 +232,7 @@ function printAlbumMenuListAlbum($albums, $folder, $option, $showcount, $showsub
 						);
 
 		if ($process && hasDynamicAlbumSuffix($album) && !is_dir(ALBUM_FOLDER_SERVERPATH . $album)) {
-			if (in_array($album, $_zp_zip_albums_seen))
+			if (in_array($album, $_zp_albums_visited_albumMenu))
 				$process = false; // skip already seen dynamic albums
 		}
 		$topalbum = newAlbum($album, true);
@@ -292,9 +292,9 @@ function printAlbumMenuListAlbum($albums, $folder, $option, $showcount, $showsub
 			$subalbums = $topalbum->getAlbums();
 			if (!empty($subalbums)) {
 				echo "\n<ul" . $css_class . ">\n";
-				array_push($_zp_zip_albums_seen, $album);
+				array_push($_zp_albums_visited_albumMenu, $album);
 				printAlbumMenuListAlbum($subalbums, $folder, $option, $showcount, $showsubs, $css_class, $css_class_topactive, $css_class_active, $firstimagelink, false, $limit);
-				array_pop($_zp_zip_albums_seen);
+				array_pop($_zp_albums_visited_albumMenu);
 				echo "\n</ul>\n";
 			}
 		}
@@ -360,7 +360,7 @@ function printAlbumMenuJump($option = "count", $indexname = "Gallery Index", $fi
  * @param int $level current level
  */
 function printAlbumMenuJumpAlbum($albums, $option, $albumpath, $firstimagelink, $level = 1) {
-	global $_zp_gallery, $_zp_zip_albums_seen;
+	global $_zp_gallery, $_zp_albums_visited_albumMenu;
 	foreach ($albums as $album) {
 		$subalbum = newAlbum($album, true);
 		if ($option === "count" AND $subalbum->getNumImages() > 0) {
@@ -377,8 +377,8 @@ function printAlbumMenuJumpAlbum($albums, $option, $albumpath, $firstimagelink, 
 			$link = "<option $selected value='" . html_encode($subalbum->getLink(1)) . "'>" . $arrow . getBare($subalbum->getTitle()) . $count . "</option>";
 		}
 		echo $link;
-		if (!in_array($subalbum->name, $_zp_zip_albums_seen) && $subalbum->exists) {
-			$_zp_zip_albums_seen[] = $subalbum->name;
+		if (!in_array($subalbum->name, $_zp_albums_visited_albumMenu) && $subalbum->exists) {
+			$_zp_albums_visited_albumMenu[] = $subalbum->name;
 			$subalbums = $subalbum->getAlbums();
 			if (!empty($subalbums)) {
 				printAlbumMenuJumpAlbum($subalbums, $option, $albumpath, $firstimagelink, $level + 1);

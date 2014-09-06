@@ -11,12 +11,12 @@
  * 	</ul>
  *
  * For the jQuery Cycle mode, the theme file <var>slideshow.php</var> must reside in the theme
- * folder. If you are creating a custom theme, copy this file from one of the 
- * distributed themes. 
+ * folder. If you are creating a custom theme, copy this file from one of the
+ * distributed themes.
  * A custom theme css file <var>slideshow.css</var> will be loaded from the theme
- * folder, if not present, a default css file in the plugin folder will be loaded.  
+ * folder, if not present, a default css file in the plugin folder will be loaded.
  *
- * The Colorbox mode does not require these files as it is called on your theme's image.php, album.php, 
+ * The Colorbox mode does not require these files as it is called on your theme's image.php, album.php,
  * search.php, and favorites.php (if enabled) directly via the slideshow button. The Colorbox plugin must be enabled and setup for these pages.
  *
  * <b>NOTE:</b> The jQuery Cycle and the jQuery Colorbox modes do not support movie and audio files.
@@ -512,12 +512,12 @@ if (extensionEnabled('slideshow')) {
 			$pagenr = sanitize_numeric($_GET['page']);
 		}
 		$slideshowhidden = '';
+		$slideshowlink = rewrite_path(_PAGE_ . '/slideshow', "index.php?p=slideshow");
 		$numberofimages = 0;
 		if (in_context(ZP_SEARCH)) {
 			$imagenumber = '';
 			$imagefile = '';
 			$albumnr = 0;
-			$slideshowlink = rewrite_path(_PAGE_ . '/slideshow', "index.php?p=slideshow");
 			$slideshowhidden = '<input type="hidden" name="preserve_search_params" value="' . html_encode($_zp_current_search->getSearchParams()) . '" />';
 		} else {
 			if (in_context(ZP_IMAGE)) {
@@ -533,10 +533,7 @@ if (extensionEnabled('slideshow')) {
 			} else {
 				$albumnr = $_zp_current_album->getID();
 			}
-			if ($albumnr) {
-				$slideshowlink = rewrite_path(pathurlencode($_zp_current_album->getFileName()) . '/' . _PAGE_ . '/slideshow', "index.php?p=slideshow&amp;album=" . urlencode($_zp_current_album->getFileName()));
-			} else {
-				$slideshowlink = rewrite_path(_PAGE_ . '/slideshow', "index.php?p=slideshow");
+			if (!$albumnr) {
 				$slideshowhidden = '<input type="hidden" name="favorites_page" value="1" />' . "\n" . '<input type="hidden" name="title" value="' . $_myFavorites->instance . '" />';
 			}
 		}

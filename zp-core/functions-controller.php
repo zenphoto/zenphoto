@@ -411,6 +411,7 @@ function prepareCustomPage() {
 		$_zp_script = ZENFOLDER . '/' . $subfolder . $page . '.php';
 	} else {
 		$_zp_gallery_page = $page . '.php';
+
 		switch ($_zp_gallery_page) {
 			case 'search.php':
 				if (!empty($searchalbums)) { //	we are within a search of a specific album(s)

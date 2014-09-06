@@ -263,7 +263,7 @@ foreach ($subalbums as $folder) {
 		<tr>
 			<td><?php echo gettext('Album <em>Tag</em>'); ?></td>
 			<td>
-				<input type="text" size="40" name="album_tag" id="album_tag" value="<?php echo html_encode($albumname); ?>" disabled="disabled" />
+				<input type="text" size="40" name="album_tag" id="album_tag" value="<?php echo html_encode($albumname) . '.' . time(); ?>" disabled="disabled" />
 				<?php echo gettext('Select <em>tagged</em> to tag the search results with this <em>tag</em> and use as the album criteria.'); ?>
 			</td>
 		</tr>

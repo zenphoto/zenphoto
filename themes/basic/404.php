@@ -24,7 +24,7 @@ if (!defined('WEBPATH'))
 				</h2>
 			</div>
 			<div id="padbox">
-				<?php print404status(isset($album) ? $album : NULL, isset($image) ? $image : NULL, $obj); ?>
+				<?php print404status(); ?>
 			</div>
 		</div>
 		<div id="credit">

@@ -5,9 +5,9 @@ if (!defined('WEBPATH'))
 <!DOCTYPE html>
 <html>
 	<head>
-		
+
 		<?php zp_apply_filter('theme_head'); ?>
-		
+
 
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot ?>/zen.css" type="text/css" />
 		<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery', gettext('Gallery RSS')); ?>
@@ -43,7 +43,7 @@ if (!defined('WEBPATH'))
 									</h2>
 									<h3><?php echo gettext('Page not found') ?></h3>
 									<div class="errorbox">
-										<?php print404status(isset($album) ? $album : NULL, isset($image) ? $image : NULL, $obj); ?>
+										<?php print404status(); ?>
 									</div>
 									<?php footer(); ?>
 									<p style="clear: both;"></p>
