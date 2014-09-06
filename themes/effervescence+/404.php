@@ -52,7 +52,7 @@ if (!defined('WEBPATH'))
 			<small>&nbsp;</small>
 			<div id="main">
 				<?php
-				print404status(isset($album) ? $album : NULL, isset($image) ? $image : NULL, $obj);
+				print404status();
 				?>
 			</div>
 		</div>

@@ -9,20 +9,11 @@
 		<h2 id="logo"><a href="<?php echo getGalleryIndexURL(); ?>"><?php echo getBareGalleryTitle(); ?></a></h2>
 	<?php } ?>
 	<div class="post">
-		<br /><h4>
-			<?php
-			echo gettext("The page you are requesting cannot be found.");
-			if (isset($album)) {
-				echo '<br />' . sprintf(gettext('Album: %s'), sanitize($album));
-			}
-			if (isset($image)) {
-				echo '<br />' . sprintf(gettext('Image: %s'), sanitize($image));
-			}
-			if (isset($obj)) {
-				echo '<br />' . sprintf(gettext('Page: %s'), substr(basename($obj), 0, -4));
-			}
-			?>
-		</h4><br />
+		<br />
+		<div class="errorbox">
+			<?php print404status(); ?>
+		</div>
+		<br />
 	</div>
 </div>
 

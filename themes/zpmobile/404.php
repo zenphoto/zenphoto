@@ -7,9 +7,9 @@ if (!defined('WEBPATH'))
 <html>
 	<head>
 		<?php zp_apply_filter('theme_head'); ?>
-		
-		
-		 
+
+
+
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" />
 		<?php jqm_loadScripts(); ?>
@@ -29,8 +29,7 @@ if (!defined('WEBPATH'))
 					<div id="content-error">
 						<div class="errorbox">
 							<?php
-							echo gettext("The object you are requesting cannot be found.");
-							print404status(isset($album) ? $album : NULL, isset($image) ? $image : NULL, $obj);
+							print404status();
 							?>
 						</div>
 					</div>

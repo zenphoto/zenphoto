@@ -22,18 +22,7 @@
 			<div id="content-error">
 
 				<div class="errorbox">
-					<?php
-					echo gettext("The Object you are requesting cannot be found.");
-					if (isset($album)) {
-						echo '<br />' . gettext("Album") . ': ' . sanitize($album);
-					}
-					if (isset($image)) {
-						echo '<br />' . gettext("Image") . ': ' . sanitize($image);
-					}
-					if (isset($obj)) {
-						echo '<br />' . gettext("Theme page") . ': ' . substr(basename($obj), 0, -4);
-					}
-					?>
+					<?php print404status(); ?>
 				</div>
 
 			</div>

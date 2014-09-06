@@ -4432,20 +4432,21 @@ function checkPageValidity($request, $gallery_page, $page) {
 	return $request;
 }
 
-function print404status($album, $image, $obj) {
-	global $_zp_page;
+function print404status() {
+	global $obj;
+	list($album, $image, $galleryPage, $theme, $page) = $obj;
 	echo "\n<strong>" . gettext("Error:</strong> the requested object was not found.");
-	if (isset($album)) {
+	if ($album) {
 		echo '<br />' . sprintf(gettext('Album: %s'), html_encode($album));
 
-		if (isset($image)) {
+		if ($image) {
 			echo '<br />' . sprintf(gettext('Image: %s'), html_encode($image));
 		}
 	} else {
-		echo '<br />' . sprintf(gettext('Page: %s'), html_encode(substr(basename($obj), 0, -4)));
+		echo '<br />' . sprintf(gettext('Page: %s'), html_encode(substr(basename($galleryPage), 0, -4)));
 	}
-	if (isset($_zp_page) && $_zp_page > 1) {
-		echo '/' . $_zp_page;
+	if ($page > 1) {
+		echo '/' . $page;
 	}
 }
 

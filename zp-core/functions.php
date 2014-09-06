@@ -1972,7 +1972,9 @@ function printStandardMeta() {
 	 * @param string $image
 	 * @param string $theme
 	 */
-	function debug404($album, $image, $theme) {
+	function debug404() {
+		global $obj;
+		list($album, $image, $galleryPage, $theme, $page) = $obj;
 		if (DEBUG_404) {
 			$list = explode('/', $album);
 			if (array_shift($list) == 'cache') {
