@@ -483,22 +483,27 @@ function printAdminHeader($tab, $subtab = NULL) {
 		}
 		$subrights = $album->subRights();
 
-		if (!$album->isDynamic() && $album->getNumImages()) {
-			if ($subrights & (MANAGED_OBJECT_RIGHTS_UPLOAD || MANAGED_OBJECT_RIGHTS_EDIT)) {
-				$zenphoto_tabs['edit']['subtabs'] = array_merge(
-								array(gettext('Images') => 'admin-edit.php' . $albumlink . '&tab=imageinfo'), $zenphoto_tabs['edit']['subtabs']
-				);
-				$default = 'imageinfo';
+		if (!$album->isDynamic()) {
+			if ($album->getNumImages()) {
+				if ($subrights & (MANAGED_OBJECT_RIGHTS_UPLOAD || MANAGED_OBJECT_RIGHTS_EDIT)) {
+					$zenphoto_tabs['edit']['subtabs'] = array_merge(
+									array(gettext('Images') => 'admin-edit.php' . $albumlink . '&tab=imageinfo'), $zenphoto_tabs['edit']['subtabs']
+					);
+					$default = 'imageinfo';
+				}
+				if ($subrights & MANAGED_OBJECT_RIGHTS_EDIT) {
+					$zenphoto_tabs['edit']['subtabs'] = array_merge(
+									array(gettext('Image order') => 'admin-albumsort.php' . $albumlink . '&tab=sort'), $zenphoto_tabs['edit']['subtabs']
+					);
+				}
 			}
-			if ($subrights & MANAGED_OBJECT_RIGHTS_EDIT) {
+			$subalbums = $album->getAlbums();
+			if (!empty($subalbums)) {
 				$zenphoto_tabs['edit']['subtabs'] = array_merge(
-								array(gettext('Image order') => 'admin-albumsort.php' . $albumlink . '&tab=sort'), $zenphoto_tabs['edit']['subtabs']
+								array(gettext('Subalbums') => 'admin-edit.php' . $albumlink . '&tab=subalbuminfo'), $zenphoto_tabs['edit']['subtabs']
 				);
+				$default = 'subalbuminfo';
 			}
-			$zenphoto_tabs['edit']['subtabs'] = array_merge(
-							array(gettext('Subalbums') => 'admin-edit.php' . $albumlink . '&tab=subalbuminfo'), $zenphoto_tabs['edit']['subtabs']
-			);
-			$default = 'subalbuminfo';
 		}
 		if ($subrights & MANAGED_OBJECT_RIGHTS_EDIT) {
 			$zenphoto_tabs['edit']['subtabs'] = array_merge(
@@ -1465,7 +1470,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 													 name="disclose_password<?php echo $suffix; ?>"
 													 id="disclose_password<?php echo $suffix; ?>"
 													 onclick="passwordClear('<?php echo $suffix; ?>');
-															 togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?>
+																	 togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?>
 									</label>
 								</td>
 								<td>
@@ -1952,7 +1957,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 } else {
 											 ?>
 											 onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');
-													 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
+															 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
 											 <?php
 										 }
 										 ?> />
@@ -5019,12 +5024,12 @@ function linkPickerIcon($obj, $id = NULL, $extra = NULL) {
 	<a onclick="<?php
 	if ($id) {
 		?>
-				$('#<?php echo $id; ?>').select();
+						$('#<?php echo $id; ?>').select();
 		<?php
 	}
 	?>
-			$('.pickedObject').removeClass('pickedObject');
-			$('#<?php echo $iconid; ?>').addClass('pickedObject');
+					$('.pickedObject').removeClass('pickedObject');
+					$('#<?php echo $iconid; ?>').addClass('pickedObject');
 	<?php linkPickerPick($obj, $id, $extra); ?>"
 		 title="<?php echo gettext('pick source'); ?>">
 		<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" id="<?php echo $iconid; ?>">
