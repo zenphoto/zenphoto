@@ -521,17 +521,6 @@ function rewrite_get_album_image($albumvar, $imagevar) {
 					$rimage = basename($matches[1]);
 					$ralbum = trim(dirname($matches[1]), '/');
 					$path = internalToFilesystem(getAlbumFolder(SERVERPATH) . $ralbum);
-
-					if (!getSuffix($rimage)) { //	an image without suffix, go look for it
-						$candidates = safe_glob($path . '/' . $rimage . '.*');
-						foreach ($candidates as $try) { // we will use the first "image" we find
-							if (Gallery::validImage($try) || Gallery::validImageAlt($try)) {
-								$rimage = basename($try);
-								if (Gallery::validImageAlt($try)) //	look no further incase there is a thumb image
-									break;
-							}
-						}
-					}
 				}
 			} else { //	have to figure it out
 				if (Gallery::validImage($ralbum) || Gallery::validImageAlt($ralbum)) { //	it is an image request
