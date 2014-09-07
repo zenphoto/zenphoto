@@ -240,6 +240,14 @@ function zp_load_image($folder, $filename) {
 	}
 	if (!is_object($album) || !$album->exists)
 		return false;
+	if (!getSuffix($filename) && $album->isDynamic()) { //	still some work to do
+		foreach ($album->getImages() as $image) {
+			if (stripSuffix($image['filename']) == $filename) {
+				$filename = $image['filename'];
+				break;
+			}
+		}
+	}
 	$_zp_current_image = newImage($album, $filename, true);
 	if (is_null($_zp_current_image) || !$_zp_current_image->exists) {
 		return false;
