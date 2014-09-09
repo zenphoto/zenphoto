@@ -155,7 +155,7 @@ class PersistentObject {
 	 */
 	function move($new_unique_set) {
 		// Check if we have a row
-		$result = query_single_row('SELECT * FROM ' . prefix($this->table) . getWhereClause($new_unique_set) . ' LIMIT 1;');
+		$result = query_single_row('SELECT * FROM ' . prefix($this->table) . getWhereClause($new_unique_set) . ' LIMIT 1');
 		if (!$result || $result['id'] == $this->id) { //	we should not find an entry for the new unique set!
 			if (!zp_apply_filter('move_object', true, $this, $new_unique_set)) {
 				return false;
@@ -178,7 +178,7 @@ class PersistentObject {
 	 */
 	function copy($new_unique_set) {
 		// Check if we have a row
-		$result = query('SELECT * FROM ' . prefix($this->table) . getWhereClause($new_unique_set) . ' LIMIT 1;');
+		$result = query('SELECT * FROM ' . prefix($this->table) . getWhereClause($new_unique_set) . ' LIMIT 1');
 
 		if ($result && db_num_rows($result) == 0) {
 			if (!zp_apply_filter('copy_object', true, $this, $new_unique_set)) {
@@ -285,7 +285,7 @@ class PersistentObject {
 	private function load($allowCreate) {
 		$new = $entry = null;
 		// Set up the SQL query in case we need it...
-		$sql = 'SELECT * FROM ' . prefix($this->table) . getWhereClause($this->unique_set) . ' LIMIT 1;';
+		$sql = 'SELECT * FROM ' . prefix($this->table) . getWhereClause($this->unique_set) . ' LIMIT 1';
 		// But first, try the cache.
 		if ($this->use_cache) {
 			$entry = $this->getFromCache();
