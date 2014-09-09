@@ -701,6 +701,8 @@ function printAdminHeader($tab, $subtab = NULL) {
 								case OPTION_TYPE_CLEARTEXT:
 									$clear = 'clear';
 									$multilingual = false;
+								default:
+									$inputtype = 'text';
 									break;
 								case OPTION_TYPE_PASSWORD:
 									$inputtype = 'password';
@@ -726,9 +728,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 									} else {
 										$inputtype = 'number" min="0" step="1';
 									}
-									break;
-								default:
-									$inputtype = 'text';
 									break;
 							}
 							?>
