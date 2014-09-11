@@ -4435,10 +4435,40 @@ function checkPageValidity($request, $gallery_page, $page) {
 function print404status() {
 	global $_404_data;
 	list($album, $image, $galleryPage, $theme, $page) = $_404_data;
+	if (DEBUG_404) {
+		$list = explode('/', $album);
+		if (array_shift($list) != 'cache') {
+			$target = getRequestURI();
+			if (!in_array($target, array(WEBPATH . '/favicon.ico', WEBPATH . '/zp-data/tést.jpg'))) {
+				$server = array();
+				foreach (array('REQUEST_URI', 'HTTP_REFERER', 'REMOTE_ADDR', 'REDIRECT_STATUS') as $key) {
+					$server[$key] = @$_SERVER[$key];
+				}
+				$request = $_REQUEST;
+				$request['theme'] = $theme;
+				if (!empty($image)) {
+					$request['image'] = $image;
+				}
+
+				ob_start();
+				var_dump($server);
+				$server = preg_replace('~array\s*\(.*\)\s*~', '', html_decode(getBare(ob_get_contents())));
+				ob_end_clean();
+				ob_start();
+				var_dump($request);
+				$request['theme'] = $theme;
+				if (!empty($image)) {
+					$request['image'] = $image;
+				}
+				$request = preg_replace('~array\s*\(.*\)\s*~', '', html_decode(getBare(ob_get_contents())));
+				ob_end_clean();
+				debugLog("404 error details\n" . $server . $request);
+			}
+		}
+	}
 	echo "\n<strong>" . gettext("Error:</strong> the requested object was not found.");
 	if ($album) {
 		echo '<br />' . sprintf(gettext('Album: %s'), html_encode($album));
-
 		if ($image) {
 			echo '<br />' . sprintf(gettext('Image: %s'), html_encode($image));
 		}

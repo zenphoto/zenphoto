@@ -1967,53 +1967,6 @@ function printStandardMeta() {
 	}
 
 	/**
-	 * produce debugging information on 404 errors
-	 * @param string $album
-	 * @param string $image
-	 * @param string $theme
-	 */
-	function debug404() {
-		global $_404_data;
-		list($album, $image, $galleryPage, $theme, $page) = $_404_data;
-		if (DEBUG_404) {
-			$list = explode('/', $album);
-			if (array_shift($list) == 'cache') {
-				return;
-			}
-			$ignore = array('/favicon.ico', '/zp-data/tést.jpg');
-			$target = getRequestURI();
-			foreach ($ignore as $uri) {
-				if ($target == $uri)
-					return;
-			}
-			$server = array();
-			foreach (array('REQUEST_URI', 'HTTP_REFERER', 'REMOTE_ADDR', 'REDIRECT_STATUS') as $key) {
-				$server[$key] = @$_SERVER[$key];
-			}
-			$request = $_REQUEST;
-			$request['theme'] = $theme;
-			if (!empty($image)) {
-				$request['image'] = $image;
-			}
-
-			trigger_error(sprintf(gettext('ZenPhoto20 processed a 404 error on %s. See the debug log for details.'), $target), E_USER_NOTICE);
-			ob_start();
-			var_dump($server);
-			$server = preg_replace('~array\s*\(.*\)\s*~', '', html_decode(getBare(ob_get_contents())));
-			ob_end_clean();
-			ob_start();
-			var_dump($request);
-			$request['theme'] = $theme;
-			if (!empty($image)) {
-				$request['image'] = $image;
-			}
-			$request = preg_replace('~array\s*\(.*\)\s*~', '', html_decode(getBare(ob_get_contents())));
-			ob_end_clean();
-			debugLog("404 error details\n" . $server . $request);
-		}
-	}
-
-	/**
 	 * returns an XSRF token
 	 * @param striong $action
 	 */
