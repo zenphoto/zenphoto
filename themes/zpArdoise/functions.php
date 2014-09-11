@@ -21,10 +21,13 @@ if (!OFFSET_PATH) {
 }
 
 function my_checkPageValidity($request, $gallery_page, $page) {
+	global $_zenpage_enabled;
 	switch ($gallery_page) {
 		case 'index.php':
-			if (!checkForPage(getOption('zenpage_homepage'))) {
-				break;
+			if ($_zenpage_enabled) { // check if Zenpage is enabled or not
+				if (!checkForPage(getOption('zenpage_homepage'))) {
+					break;
+				}
 			}
 		default:
 			if ($page != 1) {
@@ -205,4 +208,5 @@ function zpardoise_printEXIF() {
 		echo $Exifs_list;
 	}
 }
+
 ?>
