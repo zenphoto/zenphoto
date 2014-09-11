@@ -26,7 +26,6 @@ if (isset($_GET['fromlogout'])) {
 }
 
 $_404_data = array($album, $image, $obj = @$_zp_gallery_page, @$_index_theme, $_zp_page);
-debug404();
 
 $_zp_gallery_page = '404.php';
 if (isset($_index_theme)) {
@@ -51,12 +50,14 @@ if ($_zp_script && file_exists($_zp_script)) {
 		</head>
 		<body>
 			<?php
+			zp_apply_filter('theme_body_open');
 			print404status();
 			?>
 			<br />
 			<a href="<?php echo html_encode(getGalleryIndexURL()); ?>"
 				 title="<?php echo gettext('Index'); ?>"><?php echo sprintf(gettext("Return to %s"), getGalleryTitle()); ?></a>
 		</body>
+		<?php zp_apply_filter('theme_body_close'); ?>
 	</html>
 	<?php
 }
