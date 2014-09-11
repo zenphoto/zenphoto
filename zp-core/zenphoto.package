@@ -1125,6 +1125,7 @@ zp-core/js/jquery.masonry.min.js
 zp-core/js/jquery.pagination.js
 zp-core/js/jquery.scrollTo.js
 zp-core/js/jquery.ui.nestedSortable.js
+zp-core/js/jquery.ui.touch-punch.min.js
 zp-core/js/sprintf.js
 zp-core/js/tag.js
 zp-core/js/toggleElements.css
@@ -1431,6 +1432,7 @@ zp-core/zp-extensions/themeEditor.php
 zp-core/zp-extensions/themeSwitcher.php
 zp-core/zp-extensions/tinymce.php
 zp-core/zp-extensions/tinyURL.php
+zp-core/zp-extensions/touchPunch.php
 zp-core/zp-extensions/trivialSpam.php
 zp-core/zp-extensions/tweet_news.php
 zp-core/zp-extensions/uploader_http.php
@@ -2255,4 +2257,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-2257
+2259
