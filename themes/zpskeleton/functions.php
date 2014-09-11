@@ -269,8 +269,10 @@ function printZDToggleClass($option, $c, $number_to_show) {
 function my_checkPageValidity($request, $gallery_page, $page) {
 	switch ($gallery_page) {
 		case 'index.php':
-			if (!checkForPage(getOption('zenpage_homepage'))) {
-				break;
+			if (function_exists("checkForPage")) { // check if Zenpage is enabled or not
+				if (!checkForPage(getOption('zenpage_homepage'))) {
+					break;
+				}
 			}
 		default:
 			if ($page != 1) {
