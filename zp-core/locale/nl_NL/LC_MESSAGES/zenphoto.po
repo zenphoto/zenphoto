@@ -10335,7 +10335,7 @@ msgstr "Je moet deze voorwaarden accepteren om Zenphoto te kunnen gebruiken."
 
 #: ZpTranslation-Master/zp-core/license.php:48
 msgid "I agree to these terms and conditions"
-msgstr "Ik ga accord met deze voorwaarden."
+msgstr "Ik ga accoord met deze voorwaarden."
 
 #: ZpTranslation-Master/zp-core/no_uploader.php:13
 msgid "There are no upload handlers enabled that can service your request."
