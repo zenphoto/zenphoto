@@ -11297,6 +11297,9 @@ msgstr "Afbeelding %s kan niet getoond worden (unsharp)."
 #, php-format
 msgid "Watermark %s not renderable."
 msgstr "Watermerk %s kan niet getoond worden."
+#: ZpTranslation-Master/zp-core/license.php:48
+msgid "I agree to these terms and conditions"
+msgstr "Ik ga accoord met deze voorwaarden."
 
 #: D:\github\ZenPhoto20/zp-core/functions-image.php:425
 #, php-format
