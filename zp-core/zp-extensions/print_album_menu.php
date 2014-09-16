@@ -371,10 +371,11 @@ function printAlbumMenuJumpAlbum($albums, $option, $albumpath, $firstimagelink, 
 		$arrow = str_replace(':', '» ', str_pad("", $level - 1, ":"));
 
 		$selected = checkSelectedAlbum($subalbum->name, "album");
+		$title = shortenContent(getBare($subalbum->getTitle()), MENU_TRUNCATE_STRING, MENU_TRUNCATE_INDICATOR);
 		if ($firstimagelink && $subalbum->getNumImages() != 0) {
-			$link = "<option $selected value='" . html_encode($subalbum->getImage(0)->getLink()) . "'>" . $arrow . getBare($subalbum->getTitle()) . $count . "</option>";
+			$link = "<option $selected value='" . html_encode($subalbum->getImage(0)->getLink()) . "'>" . $arrow . $title . $count . "</option>";
 		} else {
-			$link = "<option $selected value='" . html_encode($subalbum->getLink(1)) . "'>" . $arrow . getBare($subalbum->getTitle()) . $count . "</option>";
+			$link = "<option $selected value='" . html_encode($subalbum->getLink(1)) . "'>" . $arrow . $title . $count . "</option>";
 		}
 		echo $link;
 		if (!in_array($subalbum->name, $_zp_albums_visited_albumMenu) && $subalbum->exists) {
