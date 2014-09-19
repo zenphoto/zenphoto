@@ -4116,7 +4116,7 @@ msgid ""
 "<strong>Note:</strong> visual editing is enabled so the editor overrides "
 "these settings on tags where the it is active."
 msgstr ""
-"<strong>Opmerking:</strong> Omdat TinyMCE actief is, worden een aantal "
+"<strong>Opmerking:</strong> Omdat TinyMCE actief is, worden deze "
 "instellingen genegeerd."
 
 #: ZpTranslation-Master/zp-core/admin-options.php:914
