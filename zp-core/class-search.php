@@ -1695,6 +1695,10 @@ class SearchEngine {
 		return $this->album;
 	}
 
+	function isDynamic() {
+		return false;
+	}
+
 	/**
 	 *
 	 * return the list of albums found
