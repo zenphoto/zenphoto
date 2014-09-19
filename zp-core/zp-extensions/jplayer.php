@@ -649,17 +649,23 @@ class jPlayer {
 					//	an invalid option parameter!
 					return;
 			}
+			if (in_context(ZP_SEARCH)) {
+				$id = '0';
+			} else {
+				$id = $albumobj->getID();
+			}
 			?>
 			<script type="text/javascript">
 								//<![CDATA[
 								$(document).ready(function(){
 				new jPlayerPlaylist({
-				jPlayer: "#jquery_jplayer_<?php echo $albumobj->getID(); ?>",
-								cssSelectorAncestor: "#jp_container_<?php echo $albumobj->getID(); ?>"
+				jPlayer: "#jquery_jplayer_<?php echo $id; ?>",
+								cssSelectorAncestor: "#jp_container_<?php echo $id; ?>"
 				}, [
 			<?php
 			$count = '';
 			$number = '';
+
 			foreach ($entries as $entry) {
 				$count++;
 				if (is_array($entry)) {
@@ -677,7 +683,6 @@ class jPlayer {
 					$videoThumb = '';
 					$this->setModeAndSuppliedFormat($ext);
 					if ($option == 'playlist' && getOption('jplayer_poster')) {
-						$albumfolder = $albumobj->name;
 						$videoThumb = ',poster:"' . $video->getCustomImage(null, $this->width, $this->height, $this->width, $this->height, null, null, true) . '"';
 					}
 					$playtime = '';
@@ -729,9 +734,9 @@ class jPlayer {
 			<?php
 			if ($option == 'playlist') {
 				?>
-				<div id="jp_container_<?php echo $albumobj->getID(); ?>" class="jp-video <?php echo $this->playersize; ?>">
+				<div id="jp_container_<?php echo $id; ?>" class="jp-video <?php echo $this->playersize; ?>">
 					<div class="jp-type-playlist">
-						<div id="jquery_jplayer_<?php echo $albumobj->getID(); ?>" class="jp-jplayer"></div>
+						<div id="jquery_jplayer_<?php echo $id; ?>" class="jp-jplayer"></div>
 						<div class="jp-gui">
 							<div class="jp-video-play">
 								<a href="javascript:;" class="jp-video-play-icon" tabindex="1">play</a>
@@ -770,8 +775,8 @@ class jPlayer {
 				<?php
 			} else { // playlist-audio
 				?>
-				<div id="jquery_jplayer_<?php echo $albumobj->getID(); ?>" class="jp-jplayer"></div>
-				<div id="jp_container_<?php echo $albumobj->getID(); ?>" class="jp-audio">
+				<div id="jquery_jplayer_<?php echo $id; ?>" class="jp-jplayer"></div>
+				<div id="jp_container_<?php echo $id; ?>" class="jp-audio">
 					<div class="jp-type-playlist">
 						<div class="jp-gui jp-interface">
 							<?php echo $this->getPlayerHTMLparts('audio', 'controls-playlist'); ?>
