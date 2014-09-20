@@ -649,11 +649,7 @@ class jPlayer {
 					//	an invalid option parameter!
 					return;
 			}
-			if (in_context(ZP_SEARCH)) {
-				$id = '0';
-			} else {
-				$id = $albumobj->getID();
-			}
+			$id = $albumobj->getID();
 			?>
 			<script type="text/javascript">
 								//<![CDATA[
