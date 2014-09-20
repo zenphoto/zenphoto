@@ -6440,7 +6440,7 @@ msgid ""
 "<strong>Note:</strong> visual editing is enabled so the editor overrides "
 "these settings on tags where the it is active."
 msgstr ""
-"<strong>Opmerking:</strong> Omdat TinyMCE actief is, worden een aantal "
+"<strong>Opmerking:</strong> Omdat TinyMCE actief is, worden deze "
 "instellingen genegeerd."
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:946
