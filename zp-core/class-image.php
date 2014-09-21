@@ -55,7 +55,7 @@ function newImage($album, $filename, $quiet = false) {
 		}
 	}
 	if ($image) {
-		if ($album && $album->isDynamic()) {
+		if ($album && is_subclass_of($album, 'AlbumBase') && $album->isDynamic()) {
 			$image->albumname = $album->name;
 			$image->albumlink = $album->linkname;
 			$image->albumnamealbum = $album;
