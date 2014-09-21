@@ -1696,7 +1696,7 @@ class SearchEngine {
 	}
 
 	function isDynamic() {
-		return false;
+		return 'search';
 	}
 
 	/**
