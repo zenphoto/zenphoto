@@ -57,7 +57,7 @@ class Combi extends CMS {
 			$show = "";
 			$imagesshow = "";
 		}
-		getAllAccessibleAlbums($_zp_gallery, $albumlist, false);
+		getAllAccessibleAlbums($_zp_gallery, $albumlist);
 		if (empty($albumlist)) {
 			$albumWhere = 'albums.`id` is NULL';
 		} else {
