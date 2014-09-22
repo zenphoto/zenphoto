@@ -10,7 +10,7 @@
 global $_zp_current_context_stack, $_zp_HTML_cache;
 
 if (!function_exists("json_encode")) {
-	// load the drop-in replacement library
+// load the drop-in replacement library
 	require_once(dirname(__FILE__) . '/lib-json.php');
 }
 
@@ -64,7 +64,7 @@ function parseAllowedTags(&$source) {
 			return false;
 		}
 		$tag = trim(substr($source, 0, $i));
-		//strip forbidden tags from list
+//strip forbidden tags from list
 		if ($tag == 'script') {
 			return 0;
 		}
@@ -170,9 +170,9 @@ function shortenContent($articlecontent, $shorten, $shortenindicator, $forceindi
 	global $_user_tags;
 	if ($shorten && ($forceindicator || (mb_strlen($articlecontent) > $shorten))) {
 		$allowed_tags = getAllowedTags('allowed_tags');
-		//remove script to be replaced later
+//remove script to be replaced later
 		$articlecontent = preg_replace('~<script.*?/script>~is', '', $articlecontent);
-		//remove HTML comments
+//remove HTML comments
 		$articlecontent = preg_replace('~<!--.*?-->~is', '', $articlecontent);
 		$short = mb_substr($articlecontent, 0, $shorten);
 		$short2 = kses($short . '</p>', $allowed_tags);
@@ -200,7 +200,7 @@ function shortenContent($articlecontent, $shorten, $shortenindicator, $forceindi
 		}
 		$short = truncate_string($articlecontent, $shorten, '');
 		if ($short != $articlecontent) { //	we actually did remove some stuff
-			// drop open tag strings
+// drop open tag strings
 			$open = mb_strrpos($short, '<');
 			if ($open > mb_strrpos($short, '>')) {
 				$short = mb_substr($short, 0, $open);
@@ -217,7 +217,7 @@ function shortenContent($articlecontent, $shorten, $shortenindicator, $forceindi
 		$articlecontent = $short;
 	}
 	if (isset($matches)) {
-		//replace the script text
+//replace the script text
 		foreach ($matches[0] as $script) {
 			$articlecontent = $script . $articlecontent;
 		}
@@ -437,13 +437,13 @@ function zp_mail($subject, $message, $email_list = NULL, $cc_addresses = NULL, $
 			$from_mail = getOption('site_email');
 			$from_name = get_language_string(getOption('site_email_name'));
 
-			// Convert to UTF-8
+// Convert to UTF-8
 			if (LOCAL_CHARSET != 'UTF-8') {
 				$subject = $_zp_UTF8->convert($subject, LOCAL_CHARSET);
 				$message = $_zp_UTF8->convert($message, LOCAL_CHARSET);
 			}
 
-			//	we do not support rich text
+//	we do not support rich text
 			$message = preg_replace('~<p[^>]*>~', "\n", $message); // Replace the start <p> or <p attr="">
 			$message = preg_replace('~</p>~', "\n", $message); // Replace the end
 			$message = preg_replace('~<br[^>]*>~', "\n", $message); // Replace <br> or <br ...>
@@ -456,7 +456,7 @@ function zp_mail($subject, $message, $email_list = NULL, $cc_addresses = NULL, $
 			$message = getBare($message);
 			$message = preg_replace('~\n\n\n+~', "\n\n", $message);
 
-			// Send the mail
+// Send the mail
 			if (count($email_list) > 0) {
 				$result = zp_apply_filter('sendmail', '', $email_list, $subject, $message, $from_mail, $from_name, $cc_addresses, $replyTo); // will be true if all mailers succeeded
 			}
@@ -539,7 +539,7 @@ function checkAlbumPassword($album, &$hint = NULL) {
 			}
 			$album = $album->getParent();
 		}
-		// revert all tlhe way to the gallery
+// revert all tlhe way to the gallery
 		$hash = $_zp_gallery->getPassword();
 		$authType = 'zp_gallery_auth';
 		$saved_auth = zp_getCookie($authType);
@@ -911,7 +911,7 @@ function handleSearchParms($what, $album = NULL, $image = NULL) {
 		$context = get_context();
 		$_zp_current_search = new SearchEngine();
 		$_zp_current_search->setSearchParams($params);
-		// check to see if we are still "in the search context"
+// check to see if we are still "in the search context"
 		if (!is_null($image)) {
 			$dynamic_album = $_zp_current_search->getDynamicAlbum();
 			if ($_zp_current_search->getImageIndex($album->name, $image->filename) !== false) {
@@ -927,7 +927,7 @@ function handleSearchParms($what, $album = NULL, $image = NULL) {
 			if (hasDynamicAlbumSuffix($albumname) && !is_dir(ALBUM_FOLDER_SERVERPATH . $albumname)) {
 				$albumname = stripSuffix($albumname); // strip off the suffix as it will not be reflected in the search path
 			}
-			//	see if the album is within the search context. NB for these purposes we need to look at all albums!
+//	see if the album is within the search context. NB for these purposes we need to look at all albums!
 			$save_logon = $_zp_loggedin;
 			$_zp_loggedin = $_zp_loggedin | VIEW_ALL_RIGHTS;
 			$search_album_list = $_zp_current_search->getAlbums(0);
@@ -1310,1367 +1310,1368 @@ function printLinkHTML($url, $text, $title = NULL, $class = NULL, $id = NULL) {
  */
 function printStandardMeta() {
 	$lang = substr(getUserLocale(), 0, 2);
-	?>
-	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" lang="<?php echo $lang; ?>" >
-		<?php
-	}
+	echo '<meta http-equiv="content-type" content="text/html; charset=' . LOCAL_CHARSET . '"';
+	if ($lang)
+		echo ' lang="' . $lang . '"';
+	echo ">\n";
+}
 
-	/**
-	 * shuffles an array maintaining the keys
-	 *
-	 * @param array $array
-	 * @return boolean
-	 */
-	function shuffle_assoc(&$array) {
-		$keys = array_keys($array);
-		shuffle($keys);
-		foreach ($keys as $key) {
-			$new[$key] = $array[$key];
+/**
+ * shuffles an array maintaining the keys
+ *
+ * @param array $array
+ * @return boolean
+ */
+function shuffle_assoc(&$array) {
+	$keys = array_keys($array);
+	shuffle($keys);
+	foreach ($keys as $key) {
+		$new[$key] = $array[$key];
+	}
+	$array = $new;
+	return true;
+}
+
+/**
+ * sorts the found albums (images) by the required key(s)
+ *
+ * NB: this sort is sensitive to the key(s) chosen and makes
+ * the appropriate sorts based on same. Some multi-key sorts
+ * will not make any sense and will give unexpected results.
+ * Most notably any that contain the keys "title" or "desc"
+ * as these require multi-lingual sorts.
+ *
+ * @param array $results
+ * @param string $sortkey
+ * @param string $order
+ */
+function sortByKey($results, $sortkey, $order) {
+	$sortkey = str_replace('`', '', $sortkey);
+	switch ($sortkey) {
+		case 'title':
+		case 'desc':
+			return sortByMultilingual($results, $sortkey, $order);
+		case 'RAND()':
+			shuffle($results);
+			return $results;
+		default:
+			if (preg_match('`[\/\(\)\*\+\-!\^\%\<\>\ = \&\|]`', $sortkey)) {
+				return $results; //	We cannot deal with expressions
+			}
+	}
+	$indicies = explode(',', $sortkey);
+	foreach ($indicies as $key => $index) {
+		$indicies[$key] = trim($index);
+	}
+	$results = sortMultiArray($results, $indicies, $order, true, false, true);
+	return $results;
+}
+
+/**
+ * multidimensional array column sort
+ *
+ * @param array $array The multidimensional array to be sorted
+ * @param mixed $index Which key(s) should be sorted by
+ * @param string $order true for descending sorts
+ * @param bool $natsort If natural order should be used
+ * @param bool $case_sensitive If the sort should be case sensitive
+ * @return array
+ *
+ * @author redoc (http://codingforums.com/showthread.php?t=71904)
+ */
+function sortMultiArray($array, $index, $descending = false, $natsort = true, $case_sensitive = false, $preservekeys = false, $remove_criteria = array()) {
+	if (is_array($array) && count($array) > 0) {
+		if (is_array($index)) {
+			$indicies = $index;
+		} else {
+			$indicies = array($index);
 		}
-		$array = $new;
-		return true;
-	}
-
-	/**
-	 * sorts the found albums (images) by the required key(s)
-	 *
-	 * NB: this sort is sensitive to the key(s) chosen and makes
-	 * the appropriate sorts based on same. Some multi-key sorts
-	 * will not make any sense and will give unexpected results.
-	 * Most notably any that contain the keys "title" or "desc"
-	 * as these require multi-lingual sorts.
-	 *
-	 * @param array $results
-	 * @param string $sortkey
-	 * @param string $order
-	 */
-	function sortByKey($results, $sortkey, $order) {
-		$sortkey = str_replace('`', '', $sortkey);
-		switch ($sortkey) {
-			case 'title':
-			case 'desc':
-				return sortByMultilingual($results, $sortkey, $order);
-			case 'RAND()':
-				shuffle($results);
-				return $results;
-			default:
-				if (preg_match('`[\/\(\)\*\+\-!\^\%\<\>\=\&\|]`', $sortkey)) {
-					return $results; //	We cannot deal with expressions
+		if ($descending) {
+			$separator = '~~';
+		} else {
+			$separator = '  ';
+		}
+		foreach ($array as $key => $row) {
+			$temp[$key] = '';
+			foreach ($indicies as $index) {
+				if (is_array($row) && array_key_exists($index, $row)) {
+					$temp[$key] .= get_language_string($row[$index]) . $separator;
+					if (in_array($index, $remove_criteria)) {
+						unset($array[$key][$index]);
+					}
 				}
+			}
+			$temp[$key] .= $key;
 		}
-		$indicies = explode(',', $sortkey);
-		foreach ($indicies as $key => $index) {
-			$indicies[$key] = trim($index);
-		}
-		$results = sortMultiArray($results, $indicies, $order, true, false, true);
-		return $results;
-	}
-
-	/**
-	 * multidimensional array column sort
-	 *
-	 * @param array $array The multidimensional array to be sorted
-	 * @param mixed $index Which key(s) should be sorted by
-	 * @param string $order true for descending sorts
-	 * @param bool $natsort If natural order should be used
-	 * @param bool $case_sensitive If the sort should be case sensitive
-	 * @return array
-	 *
-	 * @author redoc (http://codingforums.com/showthread.php?t=71904)
-	 */
-	function sortMultiArray($array, $index, $descending = false, $natsort = true, $case_sensitive = false, $preservekeys = false, $remove_criteria = array()) {
-		if (is_array($array) && count($array) > 0) {
-			if (is_array($index)) {
-				$indicies = $index;
+		if ($natsort) {
+			if ($case_sensitive) {
+				natsort($temp);
 			} else {
-				$indicies = array($index);
+				natcasesort($temp);
 			}
 			if ($descending) {
-				$separator = '~~';
+				$temp = array_reverse($temp, TRUE);
+			}
+		} else {
+			if ($descending) {
+				arsort($temp);
 			} else {
-				$separator = '  ';
+				asort($temp);
 			}
-			foreach ($array as $key => $row) {
-				$temp[$key] = '';
-				foreach ($indicies as $index) {
-					if (is_array($row) && array_key_exists($index, $row)) {
-						$temp[$key] .= get_language_string($row[$index]) . $separator;
-						if (in_array($index, $remove_criteria)) {
-							unset($array[$key][$index]);
-						}
-					}
-				}
-				$temp[$key] .= $key;
-			}
-			if ($natsort) {
-				if ($case_sensitive) {
-					natsort($temp);
-				} else {
-					natcasesort($temp);
-				}
-				if ($descending) {
-					$temp = array_reverse($temp, TRUE);
-				}
-			} else {
-				if ($descending) {
-					arsort($temp);
-				} else {
-					asort($temp);
-				}
-			}
-			foreach (array_keys($temp) as $key) {
-				if (!$preservekeys && is_numeric($key)) {
-					$sorted[] = $array[$key];
-				} else {
-					$sorted[$key] = $array[$key];
-				}
-			}
-			return $sorted;
 		}
-		return $array;
+		foreach (array_keys($temp) as $key) {
+			if (!$preservekeys && is_numeric($key)) {
+				$sorted[] = $array[$key];
+			} else {
+				$sorted[$key] = $array[$key];
+			}
+		}
+		return $sorted;
 	}
+	return $array;
+}
 
-	/**
-	 * Returns a list of album IDs that the current viewer is not allowed to see
-	 *
-	 * @return array
-	 */
-	function getNotViewableAlbums() {
-		global $_zp_not_viewable_album_list, $_zp_gallery;
-		if (zp_loggedin(ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS))
-			return array(); //admins can see all
-		$hint = '';
-		if (is_null($_zp_not_viewable_album_list)) {
-			$sql = 'SELECT `folder`, `id`, `password`, `show` FROM ' . prefix('albums') . ' WHERE `show`=0 OR `password`!=""';
-			$result = query($sql);
-			if ($result) {
-				$_zp_not_viewable_album_list = array();
-				while ($row = db_fetch_assoc($result)) {
-					if (checkAlbumPassword($row['folder'])) {
-						$album = newAlbum($row['folder']);
-						if (!($row['show'] || $album->isMyItem(LIST_RIGHTS))) {
-							$_zp_not_viewable_album_list[] = $row['id'];
-						}
-					} else {
+/**
+ * Returns a list of album IDs that the current viewer is not allowed to see
+ *
+ * @return array
+ */
+function getNotViewableAlbums() {
+	global $_zp_not_viewable_album_list, $_zp_gallery;
+	if (zp_loggedin(ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS))
+		return array(); //admins can see all
+	$hint = '';
+	if (is_null($_zp_not_viewable_album_list)) {
+		$sql = 'SELECT `folder`, `id`, `password`, `show` FROM ' . prefix('albums') . ' WHERE `show`=0 OR `password`!=""';
+		$result = query($sql);
+		if ($result) {
+			$_zp_not_viewable_album_list = array();
+			while ($row = db_fetch_assoc($result)) {
+				if (checkAlbumPassword($row['folder'])) {
+					$album = newAlbum($row['folder']);
+					if (!($row['show'] || $album->isMyItem(LIST_RIGHTS))) {
 						$_zp_not_viewable_album_list[] = $row['id'];
 					}
-				}
-				db_free_result($result);
-			}
-		}
-		return $_zp_not_viewable_album_list;
-	}
-
-	/**
-	 * Checks to see if a URL is valid
-	 *
-	 * @param string $url the URL being checked
-	 * @return bool
-	 */
-	function isValidURL($url) {
-		return preg_match('|^http(s)?://[a-z0-9-]+(.[a-z0-9-]+)*(:[0-9]+)?(/.*)?$|i', $url);
-	}
-
-	/**
-	 * pattern match function Works with characters with diacritical marks where the PHP one does not.
-	 *
-	 * @param string $pattern pattern
-	 * @param string $string haystack
-	 * @return bool
-	 */
-	function safe_fnmatch($pattern, $string) {
-		return @preg_match('/^' . strtr(addcslashes($pattern, '\\.+^$(){}=!<>|'), array('*' => '.*', '?' => '.?')) . '$/i', $string);
-	}
-
-	/**
-	 * returns a list of comment record 'types' for "images"
-	 * @param string $quote quotation mark to use
-	 *
-	 * @return string
-	 */
-	function zp_image_types($quote) {
-		global $_zp_extra_filetypes;
-		$typelist = $quote . 'images' . $quote . ',' . $quote . '_images' . $quote . ',';
-		$types = array_unique($_zp_extra_filetypes);
-		foreach ($types as $type) {
-			$typelist .= $quote . strtolower($type) . 's' . $quote . ',';
-		}
-		return substr($typelist, 0, -1);
-	}
-
-	/**
-
-	 * Returns video argument of the current Image.
-	 *
-	 * @param object $image optional image object
-	 * @return bool
-	 */
-	function isImageVideo($image = NULL) {
-		if (is_null($image)) {
-			if (!in_context(ZP_IMAGE))
-				return false;
-			global $_zp_current_image;
-			$image = $_zp_current_image;
-		}
-		return strtolower(get_class($image)) == 'video';
-	}
-
-	/**
-	 * Returns true if the image is a standard photo type
-	 *
-	 * @param object $image optional image object
-	 * @return bool
-	 */
-	function isImagePhoto($image = NULL) {
-		if (is_null($image)) {
-			if (!in_context(ZP_IMAGE))
-				return false;
-			global $_zp_current_image;
-			$image = $_zp_current_image;
-		}
-		$class = strtolower(get_class($image));
-		return $class == 'image' || $class == 'transientimage';
-	}
-
-	/**
-	 * Copies a directory recursively
-	 * @param string $srcdir the source directory.
-	 * @param string $dstdir the destination directory.
-	 * @return the total number of files copied.
-	 */
-	function dircopy($srcdir, $dstdir) {
-		$num = 0;
-		if (!is_dir($dstdir))
-			mkdir($dstdir);
-		if ($curdir = opendir($srcdir)) {
-			while ($file = readdir($curdir)) {
-				if ($file != '.' && $file != '..') {
-					$srcfile = $srcdir . '/' . $file;
-					$dstfile = $dstdir . '/' . $file;
-					if (is_file($srcfile)) {
-						if (is_file($dstfile))
-							$ow = filemtime($srcfile) - filemtime($dstfile);
-						else
-							$ow = 1;
-						if ($ow > 0) {
-							if (copy($srcfile, $dstfile)) {
-								touch($dstfile, filemtime($srcfile));
-								$num++;
-							}
-						}
-					} else if (is_dir($srcfile)) {
-						$num += dircopy($srcfile, $dstfile);
-					}
+				} else {
+					$_zp_not_viewable_album_list[] = $row['id'];
 				}
 			}
-			closedir($curdir);
+			db_free_result($result);
 		}
-		return $num;
 	}
+	return $_zp_not_viewable_album_list;
+}
 
-	/**
-	 * Returns a byte size from a size value (eg: 100M).
-	 *
-	 * @param int $bytes
-	 * @return string
-	 */
-	function byteConvert($bytes) {
-		if ($bytes <= 0)
-			return gettext('0 Bytes');
-		$convention = 1024; //[1000->10^x|1024->2^x]
-		$s = array('Bytes', 'kB', 'mB', 'GB', 'TB', 'PB', 'EB', 'ZB');
-		$e = floor(log($bytes, $convention));
-		return round($bytes / pow($convention, $e), 2) . ' ' . $s[$e];
+/**
+ * Checks to see if a URL is valid
+ *
+ * @param string $url the URL being checked
+ * @return bool
+ */
+function isValidURL($url) {
+	return preg_match('|^http(s)?://[a-z0-9-]+(.[a-z0-9-]+)*(:[0-9]+)?(/.*)?$|i', $url);
+}
+
+/**
+ * pattern match function Works with characters with diacritical marks where the PHP one does not.
+ *
+ * @param string $pattern pattern
+ * @param string $string haystack
+ * @return bool
+ */
+function safe_fnmatch($pattern, $string) {
+	return @preg_match('/^' . strtr(addcslashes($pattern, '\\.+^$(){}=!<>|'), array('*' => '.*', '?' => '.?')) . '$/i', $string);
+}
+
+/**
+ * returns a list of comment record 'types' for "images"
+ * @param string $quote quotation mark to use
+ *
+ * @return string
+ */
+function zp_image_types($quote) {
+	global $_zp_extra_filetypes;
+	$typelist = $quote . 'images' . $quote . ',' . $quote . '_images' . $quote . ',';
+	$types = array_unique($_zp_extra_filetypes);
+	foreach ($types as $type) {
+		$typelist .= $quote . strtolower($type) . 's' . $quote . ',';
 	}
+	return substr($typelist, 0, -1);
+}
 
-	/**
-	 * Converts a datetime to connoical form
-	 *
-	 * @param string $datetime input date/time string
-	 * @param bool $raw set to true to return the timestamp otherwise you get a string
-	 * @return mixed
-	 */
-	function dateTimeConvert($datetime, $raw = false) {
-		// Convert 'yyyy:mm:dd hh:mm:ss' to 'yyyy-mm-dd hh:mm:ss' for Windows' strtotime compatibility
-		$datetime = preg_replace('/(\d{4}):(\d{2}):(\d{2})/', ' \1-\2-\3', $datetime);
-		$time = strtotime($datetime);
-		if ($time == -1 || $time === false)
+/**
+
+ * Returns video argument of the current Image.
+ *
+ * @param object $image optional image object
+ * @return bool
+ */
+function isImageVideo($image = NULL) {
+	if (is_null($image)) {
+		if (!in_context(ZP_IMAGE))
 			return false;
-		if ($raw)
-			return $time;
-		return date('Y-m-d H:i:s', $time);
+		global $_zp_current_image;
+		$image = $_zp_current_image;
 	}
+	return strtolower(get_class($image)) == 'video';
+}
 
-	/*	 * * Context Manipulation Functions ****** */
-	/*	 * *************************************** */
-
-	/* Contexts are simply constants that tell us what variables are available to us
-	 * at any given time. They should be set and unset with those variables.
-	 */
-
-	function get_context() {
-		global $_zp_current_context;
-		return $_zp_current_context;
+/**
+ * Returns true if the image is a standard photo type
+ *
+ * @param object $image optional image object
+ * @return bool
+ */
+function isImagePhoto($image = NULL) {
+	if (is_null($image)) {
+		if (!in_context(ZP_IMAGE))
+			return false;
+		global $_zp_current_image;
+		$image = $_zp_current_image;
 	}
+	$class = strtolower(get_class($image));
+	return $class == 'image' || $class == 'transientimage';
+}
 
-	function set_context($context) {
-		global $_zp_current_context;
-		$_zp_current_context = $context;
+/**
+ * Copies a directory recursively
+ * @param string $srcdir the source directory.
+ * @param string $dstdir the destination directory.
+ * @return the total number of files copied.
+ */
+function dircopy($srcdir, $dstdir) {
+	$num = 0;
+	if (!is_dir($dstdir))
+		mkdir($dstdir);
+	if ($curdir = opendir($srcdir)) {
+		while ($file = readdir($curdir)) {
+			if ($file != '.' && $file != '..') {
+				$srcfile = $srcdir . '/' . $file;
+				$dstfile = $dstdir . '/' . $file;
+				if (is_file($srcfile)) {
+					if (is_file($dstfile))
+						$ow = filemtime($srcfile) - filemtime($dstfile);
+					else
+						$ow = 1;
+					if ($ow > 0) {
+						if (copy($srcfile, $dstfile)) {
+							touch($dstfile, filemtime($srcfile));
+							$num++;
+						}
+					}
+				} else if (is_dir($srcfile)) {
+					$num += dircopy($srcfile, $dstfile);
+				}
+			}
+		}
+		closedir($curdir);
 	}
+	return $num;
+}
 
-	function in_context($context) {
-		return get_context() & $context;
-	}
+/**
+ * Returns a byte size from a size value (eg: 100M).
+ *
+ * @param int $bytes
+ * @return string
+ */
+function byteConvert($bytes) {
+	if ($bytes <= 0)
+		return gettext('0 Bytes');
+	$convention = 1024; //[1000->10^x|1024->2^x]
+	$s = array('Bytes', 'kB', 'mB', 'GB', 'TB', 'PB', 'EB', 'ZB');
+	$e = floor(log($bytes, $convention));
+	return round($bytes / pow($convention, $e), 2) . ' ' . $s[$e];
+}
 
-	function add_context($context) {
-		set_context(get_context() | $context);
-	}
+/**
+ * Converts a datetime to connoical form
+ *
+ * @param string $datetime input date/time string
+ * @param bool $raw set to true to return the timestamp otherwise you get a string
+ * @return mixed
+ */
+function dateTimeConvert($datetime, $raw = false) {
+	// Convert 'yyyy:mm:dd hh:mm:ss' to 'yyyy-mm-dd hh:mm:ss' for Windows' strtotime compatibility
+	$datetime = preg_replace('/(\d{4}):(\d{2}):(\d{2})/', ' \1-\2-\3', $datetime);
+	$time = strtotime($datetime);
+	if ($time == -1 || $time === false)
+		return false;
+	if ($raw)
+		return $time;
+	return date('Y-m-d H:i:s', $time);
+}
 
-	function rem_context($context) {
-		global $_zp_current_context;
-		set_context(get_context() & ~$context);
-	}
+/* * * Context Manipulation Functions ****** */
+/* * *************************************** */
+
+/* Contexts are simply constants that tell us what variables are available to us
+ * at any given time. They should be set and unset with those variables.
+ */
+
+function get_context() {
+	global $_zp_current_context;
+	return $_zp_current_context;
+}
+
+function set_context($context) {
+	global $_zp_current_context;
+	$_zp_current_context = $context;
+}
+
+function in_context($context) {
+	return get_context() & $context;
+}
+
+function add_context($context) {
+	set_context(get_context() | $context);
+}
+
+function rem_context($context) {
+	global $_zp_current_context;
+	set_context(get_context() & ~$context);
+}
 
 // Use save and restore rather than add/remove when modifying contexts.
-	function save_context() {
-		global $_zp_current_context, $_zp_current_context_stack;
-		array_push($_zp_current_context_stack, $_zp_current_context);
-	}
+function save_context() {
+	global $_zp_current_context, $_zp_current_context_stack;
+	array_push($_zp_current_context_stack, $_zp_current_context);
+}
 
-	function restore_context() {
-		global $_zp_current_context, $_zp_current_context_stack;
-		$_zp_current_context = array_pop($_zp_current_context_stack);
-	}
+function restore_context() {
+	global $_zp_current_context, $_zp_current_context_stack;
+	$_zp_current_context = array_pop($_zp_current_context_stack);
+}
 
-	/**
-	 *
-	 * Sanitizes a "redirect" post
-	 * @param string $redirectTo
-	 * @return string
-	 */
-	function sanitizeRedirect($redirectTo, $forceHost = false) {
-		$redirect = NULL;
-		if ($redirectTo && $redir = parse_url($redirectTo)) {
-			if (isset($redir['scheme']) && isset($redir['host'])) {
-				$redirect .= $redir['scheme'] . '://' . sanitize($redir['host']);
-			} else {
-				if ($forceHost) {
-					$redirect .= PROTOCOL . '://' . $_SERVER['HTTP_HOST'];
-					if (WEBPATH && strpos($redirectTo, WEBPATH) === false) {
-						$redirect .= WEBPATH;
-					}
+/**
+ *
+ * Sanitizes a "redirect" post
+ * @param string $redirectTo
+ * @return string
+ */
+function sanitizeRedirect($redirectTo, $forceHost = false) {
+	$redirect = NULL;
+	if ($redirectTo && $redir = parse_url($redirectTo)) {
+		if (isset($redir['scheme']) && isset($redir['host'])) {
+			$redirect .= $redir['scheme'] . '://' . sanitize($redir['host']);
+		} else {
+			if ($forceHost) {
+				$redirect .= PROTOCOL . '://' . $_SERVER['HTTP_HOST'];
+				if (WEBPATH && strpos($redirectTo, WEBPATH) === false) {
+					$redirect .= WEBPATH;
 				}
-			}
-			if (isset($redir['path'])) {
-				$redirect .= urldecode(sanitize($redir['path']));
-			}
-			if (isset($redir['query'])) {
-				$redirect .= '?' . sanitize($redir['query']);
-			}
-			if (isset($redir['fragment'])) {
-				$redirect .= '#' . sanitize($redir['fragment']);
 			}
 		}
-		return $redirect;
+		if (isset($redir['path'])) {
+			$redirect .= urldecode(sanitize($redir['path']));
+		}
+		if (isset($redir['query'])) {
+			$redirect .= '?' . sanitize($redir['query']);
+		}
+		if (isset($redir['fragment'])) {
+			$redirect .= '#' . sanitize($redir['fragment']);
+		}
 	}
+	return $redirect;
+}
 
-	/**
-	 * checks password posting
-	 *
-	 * @param string $authType override of athorization type
-	 */
-	function zp_handle_password($authType = NULL, $check_auth = NULL, $check_user = NULL) {
-		global $_zp_loggedin, $_zp_login_error, $_zp_current_album, $_zp_current_page, $_zp_gallery;
-		if (empty($authType)) { // not supplied by caller
-			$check_auth = '';
-			if (isset($_GET['z']) && @$_GET['p'] == 'full-image' || isset($_GET['p']) && $_GET['p'] == '*full-image') {
-				$authType = 'zp_image_auth';
-				$check_auth = getOption('protected_image_password');
-				$check_user = getOption('protected_image_user');
-			} else if (in_context(ZP_SEARCH)) { // search page
-				$authType = 'zp_search_auth';
-				$check_auth = getOption('search_password');
-				$check_user = getOption('search_user');
-			} else if (in_context(ZP_ALBUM)) { // album page
-				$authType = "zp_album_auth_" . $_zp_current_album->getID();
-				$check_auth = $_zp_current_album->getPassword();
-				$check_user = $_zp_current_album->getUser();
-				if (empty($check_auth)) {
-					$parent = $_zp_current_album->getParent();
-					while (!is_null($parent)) {
-						$check_auth = $parent->getPassword();
-						$check_user = $parent->getUser();
-						$authType = "zp_album_auth_" . $parent->getID();
-						if (!empty($check_auth)) {
-							break;
-						}
-						$parent = $parent->getParent();
+/**
+ * checks password posting
+ *
+ * @param string $authType override of athorization type
+ */
+function zp_handle_password($authType = NULL, $check_auth = NULL, $check_user = NULL) {
+	global $_zp_loggedin, $_zp_login_error, $_zp_current_album, $_zp_current_page, $_zp_gallery;
+	if (empty($authType)) { // not supplied by caller
+		$check_auth = '';
+		if (isset($_GET['z']) && @$_GET['p'] == 'full-image' || isset($_GET['p']) && $_GET['p'] == '*full-image') {
+			$authType = 'zp_image_auth';
+			$check_auth = getOption('protected_image_password');
+			$check_user = getOption('protected_image_user');
+		} else if (in_context(ZP_SEARCH)) { // search page
+			$authType = 'zp_search_auth';
+			$check_auth = getOption('search_password');
+			$check_user = getOption('search_user');
+		} else if (in_context(ZP_ALBUM)) { // album page
+			$authType = "zp_album_auth_" . $_zp_current_album->getID();
+			$check_auth = $_zp_current_album->getPassword();
+			$check_user = $_zp_current_album->getUser();
+			if (empty($check_auth)) {
+				$parent = $_zp_current_album->getParent();
+				while (!is_null($parent)) {
+					$check_auth = $parent->getPassword();
+					$check_user = $parent->getUser();
+					$authType = "zp_album_auth_" . $parent->getID();
+					if (!empty($check_auth)) {
+						break;
 					}
-				}
-			} else if (in_context(ZP_ZENPAGE_PAGE)) {
-				$authType = "zp_page_auth_" . $_zp_current_page->getID();
-				$check_auth = $_zp_current_page->getPassword();
-				$check_user = $_zp_current_page->getUser();
-				if (empty($check_auth)) {
-					$pageobj = $_zp_current_page;
-					while (empty($check_auth)) {
-						$parentID = $pageobj->getParentID();
-						if ($parentID == 0)
-							break;
-						$sql = 'SELECT `titlelink` FROM ' . prefix('pages') . ' WHERE `id`=' . $parentID;
-						$result = query_single_row($sql);
-						$pageobj = new Page($result['titlelink']);
-						$authType = "zp_page_auth_" . $pageobj->getID();
-						$check_auth = $pageobj->getPassword();
-						$check_user = $pageobj->getUser();
-					}
+					$parent = $parent->getParent();
 				}
 			}
-			if (empty($check_auth)) { // anything else is controlled by the gallery credentials
-				$authType = 'zp_gallery_auth';
-				$check_auth = $_zp_gallery->getPassword();
-				$check_user = $_zp_gallery->getUser();
+		} else if (in_context(ZP_ZENPAGE_PAGE)) {
+			$authType = "zp_page_auth_" . $_zp_current_page->getID();
+			$check_auth = $_zp_current_page->getPassword();
+			$check_user = $_zp_current_page->getUser();
+			if (empty($check_auth)) {
+				$pageobj = $_zp_current_page;
+				while (empty($check_auth)) {
+					$parentID = $pageobj->getParentID();
+					if ($parentID == 0)
+						break;
+					$sql = 'SELECT `titlelink` FROM ' . prefix('pages') . ' WHERE `id`=' . $parentID;
+					$result = query_single_row($sql);
+					$pageobj = new Page($result['titlelink']);
+					$authType = "zp_page_auth_" . $pageobj->getID();
+					$check_auth = $pageobj->getPassword();
+					$check_user = $pageobj->getUser();
+				}
 			}
 		}
-		// Handle the login form.
-		if (DEBUG_LOGIN)
-			debugLog("zp_handle_password: \$authType=$authType; \$check_auth=$check_auth; \$check_user=$check_user; ");
-		if (isset($_POST['password']) && isset($_POST['pass'])) { // process login form
-			if (isset($_POST['user'])) {
-				$post_user = sanitize($_POST['user']);
-			} else {
-				$post_user = '';
-			}
-			$post_pass = sanitize($_POST['pass']);
+		if (empty($check_auth)) { // anything else is controlled by the gallery credentials
+			$authType = 'zp_gallery_auth';
+			$check_auth = $_zp_gallery->getPassword();
+			$check_user = $_zp_gallery->getUser();
+		}
+	}
+	// Handle the login form.
+	if (DEBUG_LOGIN)
+		debugLog("zp_handle_password: \$authType=$authType; \$check_auth=$check_auth; \$check_user=$check_user; ");
+	if (isset($_POST['password']) && isset($_POST['pass'])) { // process login form
+		if (isset($_POST['user'])) {
+			$post_user = sanitize($_POST['user']);
+		} else {
+			$post_user = '';
+		}
+		$post_pass = sanitize($_POST['pass']);
 
-			foreach (Zenphoto_Authority::$hashList as $hash => $hi) {
-				$auth = Zenphoto_Authority::passwordHash($post_user, $post_pass, $hi);
-				$success = ($auth == $check_auth) && $post_user == $check_user;
-				if (DEBUG_LOGIN)
-					debugLog("zp_handle_password($success): \$post_user=$post_user; \$post_pass=$post_pass; \$check_auth=$check_auth; \$auth=$auth; \$hash=$hash;");
-				if ($success) {
-					break;
-				}
-			}
-			$success = zp_apply_filter('guest_login_attempt', $success, $post_user, $post_pass, $authType);
+		foreach (Zenphoto_Authority::$hashList as $hash => $hi) {
+			$auth = Zenphoto_Authority::passwordHash($post_user, $post_pass, $hi);
+			$success = ($auth == $check_auth) && $post_user == $check_user;
+			if (DEBUG_LOGIN)
+				debugLog("zp_handle_password($success): \$post_user=$post_user; \$post_pass=$post_pass; \$check_auth=$check_auth; \$auth=$auth; \$hash=$hash;");
 			if ($success) {
-				// Correct auth info. Set the cookie.
-				if (DEBUG_LOGIN)
-					debugLog("zp_handle_password: valid credentials");
-				zp_setCookie($authType, $auth);
-				if (isset($_POST['redirect'])) {
-					$redirect_to = sanitizeRedirect($_POST['redirect'], true);
-					if (!empty($redirect_to)) {
-						header("Location: " . $redirect_to);
-						exitZP();
-					}
+				break;
+			}
+		}
+		$success = zp_apply_filter('guest_login_attempt', $success, $post_user, $post_pass, $authType);
+		if ($success) {
+			// Correct auth info. Set the cookie.
+			if (DEBUG_LOGIN)
+				debugLog("zp_handle_password: valid credentials");
+			zp_setCookie($authType, $auth);
+			if (isset($_POST['redirect'])) {
+				$redirect_to = sanitizeRedirect($_POST['redirect'], true);
+				if (!empty($redirect_to)) {
+					header("Location: " . $redirect_to);
+					exitZP();
 				}
-			} else {
-				// Clear the cookie, just in case
-				if (DEBUG_LOGIN)
-					debugLog("zp_handle_password: invalid credentials");
-				zp_clearCookie($authType);
-				$_zp_login_error = true;
 			}
-			return;
+		} else {
+			// Clear the cookie, just in case
+			if (DEBUG_LOGIN)
+				debugLog("zp_handle_password: invalid credentials");
+			zp_clearCookie($authType);
+			$_zp_login_error = true;
 		}
-		if (empty($check_auth)) { //no password on record or admin logged in
+		return;
+	}
+	if (empty($check_auth)) { //no password on record or admin logged in
+		return;
+	}
+	if (($saved_auth = zp_getCookie($authType)) != '') {
+		if ($saved_auth == $check_auth) {
+			if (DEBUG_LOGIN)
+				debugLog("zp_handle_password: valid cookie");
 			return;
-		}
-		if (($saved_auth = zp_getCookie($authType)) != '') {
-			if ($saved_auth == $check_auth) {
-				if (DEBUG_LOGIN)
-					debugLog("zp_handle_password: valid cookie");
-				return;
-			} else {
-				// Clear the cookie
-				if (DEBUG_LOGIN)
-					debugLog("zp_handle_password: invalid cookie");
-				zp_clearCookie($authType);
-			}
+		} else {
+			// Clear the cookie
+			if (DEBUG_LOGIN)
+				debugLog("zp_handle_password: invalid cookie");
+			zp_clearCookie($authType);
 		}
 	}
+}
 
-	/**
-	 *
-	 * Gets an option directly from the database.
-	 * @param string $key
-	 */
-	function getOptionFromDB($key) {
-		$sql = "SELECT `value` FROM " . prefix('options') . " WHERE `name`=" . db_quote($key) . " AND `ownerid`=0";
-		$optionlist = query_single_row($sql, false);
-		return @$optionlist['value'];
+/**
+ *
+ * Gets an option directly from the database.
+ * @param string $key
+ */
+function getOptionFromDB($key) {
+	$sql = "SELECT `value` FROM " . prefix('options') . " WHERE `name`=" . db_quote($key) . " AND `ownerid`=0";
+	$optionlist = query_single_row($sql, false);
+	return @$optionlist['value'];
+}
+
+/**
+ * Set options local to theme and/or album
+ *
+ * @param string $key
+ * @param string $value
+ * @param object $album
+ * @param string $theme default theme
+ * @param bool $default set to true for setting default theme options (does not set the option if it already exists)
+ */
+function setThemeOption($key, $value, $album, $theme, $default = false) {
+	global $_zp_options;
+	if (is_null($album)) {
+		$id = 0;
+	} else {
+		$id = $album->getID();
+		$theme = $album->getAlbumTheme();
 	}
+	$creator = THEMEFOLDER . '/' . $theme;
 
-	/**
-	 * Set options local to theme and/or album
-	 *
-	 * @param string $key
-	 * @param string $value
-	 * @param object $album
-	 * @param string $theme default theme
-	 * @param bool $default set to true for setting default theme options (does not set the option if it already exists)
-	 */
-	function setThemeOption($key, $value, $album, $theme, $default = false) {
-		global $_zp_options;
-		if (is_null($album)) {
-			$id = 0;
-		} else {
-			$id = $album->getID();
-			$theme = $album->getAlbumTheme();
-		}
-		$creator = THEMEFOLDER . '/' . $theme;
-
-		$sql = 'INSERT INTO ' . prefix('options') . ' (`name`,`ownerid`,`theme`,`creator`,`value`) VALUES (' . db_quote($key) . ',0,' . db_quote($theme) . ',' . db_quote($creator) . ',';
-		$sqlu = ' ON DUPLICATE KEY UPDATE `value`=';
-		if (is_null($value)) {
-			$sql .= 'NULL';
-			$sqlu .= 'NULL';
-		} else {
-			$sql .= db_quote($value);
-			$sqlu .= db_quote($value);
-		}
-		$sql .= ') ';
-		if ($default) {
-			if (!isset($_zp_options[$key]))
-				$_zp_options[$key] = $value;
-		} else {
-			$sql .= $sqlu;
+	$sql = 'INSERT INTO ' . prefix('options') . ' (`name`,`ownerid`,`theme`,`creator`,`value`) VALUES (' . db_quote($key) . ',0,' . db_quote($theme) . ',' . db_quote($creator) . ',';
+	$sqlu = ' ON DUPLICATE KEY UPDATE `value`=';
+	if (is_null($value)) {
+		$sql .= 'NULL';
+		$sqlu .= 'NULL';
+	} else {
+		$sql .= db_quote($value);
+		$sqlu .= db_quote($value);
+	}
+	$sql .= ') ';
+	if ($default) {
+		if (!isset($_zp_options[$key]))
 			$_zp_options[$key] = $value;
-		}
-		$result = query($sql, false);
+	} else {
+		$sql .= $sqlu;
+		$_zp_options[$key] = $value;
 	}
+	$result = query($sql, false);
+}
 
-	/**
-	 * Used to set default values for theme specific options
-	 *
-	 * @param string $key
-	 * @param mixed $value
-	 */
-	function setThemeOptionDefault($key, $value) {
-		$bt = debug_backtrace();
-		$b = array_shift($bt);
-		$theme = basename(dirname($b['file']));
-		setThemeOption($key, $value, NULL, $theme, true);
+/**
+ * Used to set default values for theme specific options
+ *
+ * @param string $key
+ * @param mixed $value
+ */
+function setThemeOptionDefault($key, $value) {
+	$bt = debug_backtrace();
+	$b = array_shift($bt);
+	$theme = basename(dirname($b['file']));
+	setThemeOption($key, $value, NULL, $theme, true);
+}
+
+/**
+ * Returns the value of a theme option
+ *
+ * @param string $option option key
+ * @param object $album
+ * @param string $theme default theme name
+ * @return mixed
+ */
+function getThemeOption($option, $album = NULL, $theme = NULL) {
+	global $_set_theme_album, $_zp_gallery;
+	if (is_null($album)) {
+		$album = $_set_theme_album;
 	}
-
-	/**
-	 * Returns the value of a theme option
-	 *
-	 * @param string $option option key
-	 * @param object $album
-	 * @param string $theme default theme name
-	 * @return mixed
-	 */
-	function getThemeOption($option, $album = NULL, $theme = NULL) {
-		global $_set_theme_album, $_zp_gallery;
-		if (is_null($album)) {
-			$album = $_set_theme_album;
-		}
-		if (is_null($album)) {
-			$id = 0;
-		} else {
-			$id = $album->getID();
-			$theme = $album->getAlbumTheme();
-		}
-		if (empty($theme)) {
-			$theme = $_zp_gallery->getCurrentTheme();
-		}
-		// album-theme
-		$sql = "SELECT `value` FROM " . prefix('options') . " WHERE `name`=" . db_quote($option) . " AND `ownerid`=" . $id . " AND `theme`=" . db_quote($theme);
+	if (is_null($album)) {
+		$id = 0;
+	} else {
+		$id = $album->getID();
+		$theme = $album->getAlbumTheme();
+	}
+	if (empty($theme)) {
+		$theme = $_zp_gallery->getCurrentTheme();
+	}
+	// album-theme
+	$sql = "SELECT `value` FROM " . prefix('options') . " WHERE `name`=" . db_quote($option) . " AND `ownerid`=" . $id . " AND `theme`=" . db_quote($theme);
+	$db = query_single_row($sql);
+	if (!$db) {
+		// raw theme option
+		$sql = "SELECT `value` FROM " . prefix('options') . " WHERE `name`=" . db_quote($option) . " AND `ownerid`=0 AND `theme`=" . db_quote($theme);
 		$db = query_single_row($sql);
 		if (!$db) {
-			// raw theme option
-			$sql = "SELECT `value` FROM " . prefix('options') . " WHERE `name`=" . db_quote($option) . " AND `ownerid`=0 AND `theme`=" . db_quote($theme);
+			// raw album option
+			$sql = "SELECT `value` FROM " . prefix('options') . " WHERE `name`=" . db_quote($option) . " AND `ownerid`=" . $id . " AND `theme`=NULL";
 			$db = query_single_row($sql);
 			if (!$db) {
-				// raw album option
-				$sql = "SELECT `value` FROM " . prefix('options') . " WHERE `name`=" . db_quote($option) . " AND `ownerid`=" . $id . " AND `theme`=NULL";
-				$db = query_single_row($sql);
-				if (!$db) {
-					return getOption($option);
-				}
+				return getOption($option);
 			}
 		}
-		return $db['value'];
 	}
+	return $db['value'];
+}
 
-	/**
-	 * Returns true if all the right conditions are set to allow comments for the $type
-	 *
-	 * @param string $type Which comments
-	 * @return bool
-	 */
-	function commentsAllowed($type) {
-		return getOption($type) && (!MEMBERS_ONLY_COMMENTS || zp_loggedin(ADMIN_RIGHTS | POST_COMMENT_RIGHTS));
-	}
+/**
+ * Returns true if all the right conditions are set to allow comments for the $type
+ *
+ * @param string $type Which comments
+ * @return bool
+ */
+function commentsAllowed($type) {
+	return getOption($type) && (!MEMBERS_ONLY_COMMENTS || zp_loggedin(ADMIN_RIGHTS | POST_COMMENT_RIGHTS));
+}
 
-	/**
-	 * Returns the viewer's IP address
-	 * Deals with transparent proxies
-	 *
-	 * @return string
-	 */
-	function getUserIP() {
-		$pattern = '~^([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])$~';
-		if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-			$ip = sanitize($_SERVER['HTTP_X_FORWARDED_FOR']);
-			if (preg_match($pattern, $ip)) {
-				return $ip;
-			}
-		}
-		$ip = sanitize($_SERVER['REMOTE_ADDR']);
+/**
+ * Returns the viewer's IP address
+ * Deals with transparent proxies
+ *
+ * @return string
+ */
+function getUserIP() {
+	$pattern = '~^([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])$~';
+	if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+		$ip = sanitize($_SERVER['HTTP_X_FORWARDED_FOR']);
 		if (preg_match($pattern, $ip)) {
 			return $ip;
 		}
-		return NULL;
 	}
+	$ip = sanitize($_SERVER['REMOTE_ADDR']);
+	if (preg_match($pattern, $ip)) {
+		return $ip;
+	}
+	return NULL;
+}
 
-	/**
-	 * Strips out and/or replaces characters from the string that are not "soe" friendly
-	 *
-	 * @param string $string
-	 * @return string
-	 */
-	function seoFriendly($string) {
-		$string = trim(preg_replace('~\s+\.\s*~', '.', $string));
-		if (zp_has_filter('seoFriendly')) {
-			$string = zp_apply_filter('seoFriendly', $string);
-		} else { // no filter, do basic cleanup
-			$string = trim($string);
-			$string = preg_replace("/\s+/", "-", $string);
-			$string = preg_replace("/[^a-zA-Z0-9_.-]/", "-", $string);
-			$string = str_replace(array('---', '--'), '-', $string);
+/**
+ * Strips out and/or replaces characters from the string that are not "soe" friendly
+ *
+ * @param string $string
+ * @return string
+ */
+function seoFriendly($string) {
+	$string = trim(preg_replace('~\s+\.\s*~', '.', $string));
+	if (zp_has_filter('seoFriendly')) {
+		$string = zp_apply_filter('seoFriendly', $string);
+	} else { // no filter, do basic cleanup
+		$string = trim($string);
+		$string = preg_replace("/\s+/", "-", $string);
+		$string = preg_replace("/[^a-zA-Z0-9_.-]/", "-", $string);
+		$string = str_replace(array('---', '--'), '-', $string);
+	}
+	return $string;
+}
+
+/**
+ *
+ * emit the javascript seojs() function
+ */
+function seoFriendlyJS() {
+	if (zp_has_filter('seoFriendly_js')) {
+		echo zp_apply_filter('seoFriendly_js');
+	} else {
+		?>
+		function seoFriendlyJS(fname) {
+		fname=fname.trim();
+		fname=fname.replace(/\s+\.\s*/,'.');
+		fname = fname.replace(/\s+/g, '-');
+		fname = fname.replace(/[^a-zA-Z0-9_.-]/g, '-');
+		fname = fname.replace(/--*/g, '-');
+		return fname;
 		}
-		return $string;
+		<?php
 	}
+}
 
-	/**
-	 *
-	 * emit the javascript seojs() function
-	 */
-	function seoFriendlyJS() {
-		if (zp_has_filter('seoFriendly_js')) {
-			echo zp_apply_filter('seoFriendly_js');
-		} else {
-			?>
-			function seoFriendlyJS(fname) {
-			fname=fname.trim();
-			fname=fname.replace(/\s+\.\s*/,'.');
-			fname = fname.replace(/\s+/g, '-');
-			fname = fname.replace(/[^a-zA-Z0-9_.-]/g, '-');
-			fname = fname.replace(/--*/g, '-');
-			return fname;
+/**
+ * returns an XSRF token
+ * @param striong $action
+ */
+function getXSRFToken($action) {
+	global $_zp_current_admin_obj;
+	return sha1($action . prefix(getUserIP()) . serialize($_zp_current_admin_obj) . session_id());
+}
+
+/**
+ * Emits a "hidden" input for the XSRF token
+ * @param string $action
+ */
+function XSRFToken($action) {
+	?>
+	<input type="hidden" name="XSRFToken" id="XSRFToken" value="<?php echo getXSRFToken($action); ?>" />
+	<?php
+}
+
+/**
+ * Starts a sechedule script run
+ * @param string $script The script file to load
+ * @param array $params "POST" parameters
+ * @param bool $inline set to true to run the task "in-line". Set false run asynchronously
+ */
+function cron_starter($script, $params, $offsetPath, $inline = false) {
+	global $_zp_authority, $_zp_loggedin, $_zp_current_admin_obj, $_zp_HTML_cache;
+	$admin = $_zp_authority->getMasterUser();
+	if ($admin) {
+		if ($inline) {
+			$_zp_current_admin_obj = $admin;
+			$_zp_loggedin = $_zp_current_admin_obj->getRights();
+			foreach ($params as $key => $value) {
+				if ($key == 'XSRFTag') {
+					$key = 'XSRFToken';
+					$value = getXSRFToken($value);
+				}
+				$_POST[$key] = $_GET[$key] = $_REQUEST[$key] = $value;
 			}
+			require_once($script);
+		} else {
+			$auth = sha1($script . serialize($admin));
+			$paramlist = 'link=' . $script;
+			foreach ($params as $key => $value) {
+				$paramlist .= '&' . $key . '=' . $value;
+			}
+			$paramlist .= '&auth=' . $auth . '&offsetPath=' . $offsetPath;
+			$_zp_HTML_cache->abortHTMLCache();
+			?>
+			<script type="text/javascript">
+				// <!-- <![CDATA[
+				$.ajax({
+					type: 'POST',
+					cache: false,
+					data: '<?php echo $paramlist; ?>',
+					url: '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/cron_runner.php'
+				});
+				// ]]> -->
+			</script>
 			<?php
 		}
 	}
+}
 
-	/**
-	 * returns an XSRF token
-	 * @param striong $action
-	 */
-	function getXSRFToken($action) {
-		global $_zp_current_admin_obj;
-		return sha1($action . prefix(getUserIP()) . serialize($_zp_current_admin_obj) . session_id());
+/**
+ *
+ * Check if logged in (with specific rights)
+ * Returns a true value if there is a user logged on with the required rights
+ *
+ * @param bit $rights rights required by the caller
+ *
+ * @return bool
+ */
+function zp_loggedin($rights = ALL_RIGHTS) {
+	global $_zp_loggedin;
+	return $_zp_loggedin & ($rights | ADMIN_RIGHTS);
+}
+
+/**
+ * Provides an error protected read of image EXIF/IPTC data
+ *
+ * @param string $path image path
+ * @return array
+ *
+ */
+function read_exif_data_protected($path) {
+	if (DEBUG_EXIF) {
+		debugLog("Begin read_exif_data_protected($path)");
+		$start = microtime(true);
 	}
-
-	/**
-	 * Emits a "hidden" input for the XSRF token
-	 * @param string $action
-	 */
-	function XSRFToken($action) {
-		?>
-		<input type="hidden" name="XSRFToken" id="XSRFToken" value="<?php echo getXSRFToken($action); ?>" />
-		<?php
+	try {
+		$rslt = read_exif_data_raw($path, false);
+	} catch (Exception $e) {
+		debugLog("read_exif_data($path) exception: " . $e->getMessage());
+		$rslt = array();
 	}
+	if (DEBUG_EXIF) {
+		$time = microtime(true) - $start;
+		debugLog(sprintf("End read_exif_data_protected($path) [%f]", $time));
+	}
+	return $rslt;
+}
 
-	/**
-	 * Starts a sechedule script run
-	 * @param string $script The script file to load
-	 * @param array $params "POST" parameters
-	 * @param bool $inline set to true to run the task "in-line". Set false run asynchronously
-	 */
-	function cron_starter($script, $params, $offsetPath, $inline = false) {
-		global $_zp_authority, $_zp_loggedin, $_zp_current_admin_obj, $_zp_HTML_cache;
-		$admin = $_zp_authority->getMasterUser();
-		if ($admin) {
-			if ($inline) {
-				$_zp_current_admin_obj = $admin;
-				$_zp_loggedin = $_zp_current_admin_obj->getRights();
-				foreach ($params as $key => $value) {
-					if ($key == 'XSRFTag') {
-						$key = 'XSRFToken';
-						$value = getXSRFToken($value);
+/**
+ *
+ * fetches the path to the flag image
+ * @param string $lang whose flag
+ * @return string
+ */
+function getLanguageFlag($lang) {
+	if (file_exists(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/locale/' . $lang . '/flag.png')) {
+		$flag = WEBPATH . '/' . USER_PLUGIN_FOLDER . '/locale/' . $lang . '/flag.png';
+	} else if (file_exists(SERVERPATH . '/' . ZENFOLDER . '/locale/' . $lang . '/flag.png')) {
+		$flag = WEBPATH . '/' . ZENFOLDER . '/locale/' . $lang . '/flag.png';
+	} else {
+		$flag = WEBPATH . '/' . ZENFOLDER . '/locale/missing_flag.png';
+	}
+	return $flag;
+}
+
+/**
+ * Gets an item object by id
+ *
+ * @param string $table database table to search
+ * @param int $id id of the item to get
+ * @return mixed
+ */
+function getItemByID($table, $id) {
+	if ($result = query_single_row('SELECT * FROM ' . prefix($table) . ' WHERE id =' . (int) $id)) {
+		switch ($table) {
+			case 'images':
+				if ($alb = getItemByID('albums', $result['albumid'])) {
+					return newImage($alb, $result['filename'], true);
+				}
+				break;
+			case 'albums':
+				return newAlbum($result['folder'], false, true);
+			case 'news':
+				return newArticle($result['titlelink']);
+			case 'pages':
+				return new Page($result['titlelink']);
+			case 'news_categories':
+				return new Category($result['titlelink']);
+		}
+	}
+	return NULL;
+}
+
+/**
+ * uses down and up arrow links to show and hide sections of HTML
+ *
+ * @param string $content the id of the html section to be revealed
+ * @param bool $visible true if the content is initially visible
+ */
+function reveal($content, $visible = false) {
+	?>
+	<span id="<?php echo $content; ?>_reveal"<?php if ($visible) echo 'style="display:none;"'; ?> class="icons">
+		<a onclick="reveal('<?php echo $content; ?>')" title="<?php echo gettext('Click to show content'); ?>">
+			<img src="../../images/arrow_down.png" alt="" class="icon-position-top4" />
+		</a>
+	</span>
+	<span id="<?php echo $content; ?>_hide"<?php if (!$visible) echo 'style="display:none;"'; ?> class="icons">
+		<a onclick="reveal('<?php echo $content; ?>')" title="<?php echo gettext('Click to hide content'); ?>">
+			<img src="../../images/arrow_up.png" alt="" class="icon-position-top4" />
+		</a>
+	</span>
+	<?php
+}
+
+/**
+ * Deals with the [macro parameters] substitutions
+ *
+ * See the macroList plugin for details
+ *
+ * @param string $text
+ * @return string
+ */
+function applyMacros($text) {
+	$content_macros = getMacros();
+	preg_match_all('/\[(\w+)(.*?)\]/i', $text, $instances);
+	foreach ($instances[0] as $instance => $macro_instance) {
+		$macroname = strtoupper($instances[1][$instance]);
+		if (array_key_exists($macroname, $content_macros)) {
+			$macro = $content_macros[$macroname];
+			$p = $instances[2][$instance];
+			$data = NULL;
+			$class = $macro['class'];
+			if ($p) {
+				$p = trim(utf8::sanitize(str_replace("\xC2\xA0", ' ', strip_tags($p)))); //	remove hard spaces and invalid characters
+				$p = preg_replace("~\s+=\s+(?=(?:[^\"]*+\"[^\"]*+\")*+[^\"]*+$)~", "=", $p); //	deblank assignment operator
+				preg_match_all("~'[^'\"]++'|\"[^\"]++\"|[^\s]++~", $p, $l); //	parse the parameter list
+				$parms = array();
+				$k = 0;
+				foreach ($l[0] as $s) {
+					if ($s != ',') {
+						$parms[$k++] = trim($s, '\'"'); //	remove any quote marks
 					}
-					$_POST[$key] = $_GET[$key] = $_REQUEST[$key] = $value;
 				}
-				require_once($script);
 			} else {
-				$auth = sha1($script . serialize($admin));
-				$paramlist = 'link=' . $script;
-				foreach ($params as $key => $value) {
-					$paramlist .= '&' . $key . '=' . $value;
-				}
-				$paramlist .= '&auth=' . $auth . '&offsetPath=' . $offsetPath;
-				$_zp_HTML_cache->abortHTMLCache();
-				?>
-				<script type="text/javascript">
-					// <!-- <![CDATA[
-					$.ajax({
-						type: 'POST',
-						cache: false,
-						data: '<?php echo $paramlist; ?>',
-						url: '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/cron_runner.php'
-					});
-					// ]]> -->
-				</script>
-				<?php
+				$parms = array();
 			}
-		}
-	}
-
-	/**
-	 *
-	 * Check if logged in (with specific rights)
-	 * Returns a true value if there is a user logged on with the required rights
-	 *
-	 * @param bit $rights rights required by the caller
-	 *
-	 * @return bool
-	 */
-	function zp_loggedin($rights = ALL_RIGHTS) {
-		global $_zp_loggedin;
-		return $_zp_loggedin & ($rights | ADMIN_RIGHTS);
-	}
-
-	/**
-	 * Provides an error protected read of image EXIF/IPTC data
-	 *
-	 * @param string $path image path
-	 * @return array
-	 *
-	 */
-	function read_exif_data_protected($path) {
-		if (DEBUG_EXIF) {
-			debugLog("Begin read_exif_data_protected($path)");
-			$start = microtime(true);
-		}
-		try {
-			$rslt = read_exif_data_raw($path, false);
-		} catch (Exception $e) {
-			debugLog("read_exif_data($path) exception: " . $e->getMessage());
-			$rslt = array();
-		}
-		if (DEBUG_EXIF) {
-			$time = microtime(true) - $start;
-			debugLog(sprintf("End read_exif_data_protected($path) [%f]", $time));
-		}
-		return $rslt;
-	}
-
-	/**
-	 *
-	 * fetches the path to the flag image
-	 * @param string $lang whose flag
-	 * @return string
-	 */
-	function getLanguageFlag($lang) {
-		if (file_exists(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/locale/' . $lang . '/flag.png')) {
-			$flag = WEBPATH . '/' . USER_PLUGIN_FOLDER . '/locale/' . $lang . '/flag.png';
-		} else if (file_exists(SERVERPATH . '/' . ZENFOLDER . '/locale/' . $lang . '/flag.png')) {
-			$flag = WEBPATH . '/' . ZENFOLDER . '/locale/' . $lang . '/flag.png';
-		} else {
-			$flag = WEBPATH . '/' . ZENFOLDER . '/locale/missing_flag.png';
-		}
-		return $flag;
-	}
-
-	/**
-	 * Gets an item object by id
-	 *
-	 * @param string $table database table to search
-	 * @param int $id id of the item to get
-	 * @return mixed
-	 */
-	function getItemByID($table, $id) {
-		if ($result = query_single_row('SELECT * FROM ' . prefix($table) . ' WHERE id =' . (int) $id)) {
-			switch ($table) {
-				case 'images':
-					if ($alb = getItemByID('albums', $result['albumid'])) {
-						return newImage($alb, $result['filename'], true);
+			$parameters = array();
+			if (!empty($macro['params'])) {
+				$err = false;
+				foreach ($macro['params'] as $key => $type) {
+					$data = false;
+					if (array_key_exists($key, $parms)) {
+						switch (trim($type, '*')) {
+							case 'int':
+								if (is_numeric($parms[$key])) {
+									$parameters[] = (int) $parms[$key];
+								} else {
+									$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> parameter %2$d should be a number.'), trim($macro_instance, '[]'), $key + 1) . '</span>';
+									$class = 'error';
+								}
+								break;
+							case 'string':
+								if (is_string($parms[$key])) {
+									$parameters[] = $parms[$key];
+								} else {
+									$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> parameter %2$d should be a string.'), trim($macro_instance, '[]'), $key + 1) . '</span>';
+									$class = 'error';
+								}
+								break;
+							case 'bool':
+								switch (strtolower($parms[$key])) {
+									case ("true"):
+										$parameters[] = true;
+										break;
+									case ("false"):
+										$parameters[] = false;
+										break;
+									default:
+										$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> parameter %2$d should be <code>true</code> or <code>false</code>.'), trim($macro_instance, '[]'), $key + 1) . '</span>';
+										$class = 'error';
+										break;
+								}
+								break;
+							case 'array':
+								$l = array_slice($parms, $key);
+								$parms = array();
+								foreach ($l as $key => $p) {
+									$x = explode('=', $p);
+									if (count($x) == 2) {
+										$parms[$x[0]] = $x[1];
+									} else {
+										$parms[$key] = $x[0];
+									}
+								}
+								$parameters[] = $parms;
+								break;
+							default:
+								$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> parameter %2$d is incorrectly defined.'), trim($macro_instance, '[]'), $key + 1) . '</span>';
+								$class = 'error';
+								break;
+						}
+					} else {
+						if (strpos($type, '*') === false) {
+							$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> parameter %2$d is missing.'), trim($macro_instance, '[]'), $key + 1) . '</span>';
+							$class = 'error';
+						}
+						break;
+					}
+				}
+			} else {
+				if (!empty($p)) {
+					$class = 'error';
+					$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> macro does not take parameters'), trim($macro_instance, '[]')) . '</span>';
+				}
+			}
+			switch ($class) {
+				case 'error':
+					break;
+				case 'function';
+				case 'procedure':
+					if (is_callable($macro['value'])) {
+						if ($class == 'function') {
+							ob_start();
+							$data = call_user_func_array($macro['value'], $parameters);
+							if (empty($data)) {
+								$data = ob_get_contents();
+							}
+							ob_end_clean();
+						} else {
+							ob_start();
+							call_user_func_array($macro['value'], $parameters);
+							$data = ob_get_contents();
+							ob_end_clean();
+						}
+						if (empty($data)) {
+							$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> retuned no data'), trim($macro_instance, '[]')) . '</span>';
+						} else {
+							$data = "\n<!--Begin " . $macroname . "-->\n" . $data . "\n<!--End " . $macroname . "-->\n";
+						}
+					} else {
+						$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> <code>%2$s</code> is not callable'), trim($macro_instance, '[]'), $macro['value']) . '</span>';
 					}
 					break;
-				case 'albums':
-					return newAlbum($result['folder'], false, true);
-				case 'news':
-					return newArticle($result['titlelink']);
-				case 'pages':
-					return new Page($result['titlelink']);
-				case 'news_categories':
-					return new Category($result['titlelink']);
+				case 'constant':
+					$data = "\n<!--Begin " . $macroname . "-->\n" . $macro['value'] . "\n<!--End " . $macroname . "-->\n";
+					break;
+				case 'expression':
+					$expression = '$data = ' . $macro['value'];
+					$parms = array_reverse($parms, true);
+					preg_match_all('/\$\d+/', $macro['value'], $replacements);
+					foreach ($replacements as $rkey => $v) {
+						if (empty($v))
+							unset($replacements[$rkey]);
+					}
+					if (count($parms) == count($replacements)) {
+
+						foreach ($parms as $key => $value) {
+							$key++;
+							$expression = preg_replace('/\$' . $key . '/', db_quote($value), $expression);
+						}
+						eval($expression);
+						if (!isset($data) || is_null($data)) {
+							$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> retuned no data'), trim($macro_instance, '[]')) . '</span>';
+						} else {
+							$data = "\n<!--Begin " . $macroname . "-->\n" . $data . "\n<!--End " . $macroname . "-->\n";
+						}
+					} else {
+						$data = '<span class="error">' . sprintf(ngettext('<em>[%1$s]</em> takes %2$d parameter', '<em>[%1$s]</em> takes %2$d parameters', count($replacements)), trim($macro_instance, '[]'), count($replacements)) . '</span>';
+					}
+					break;
+			}
+			$text = str_replace($macro_instance, $data, $text);
+		}
+	}
+	return $text;
+}
+
+function getMacros() {
+	global $_zp_content_macros;
+	if (is_null($_zp_content_macros)) {
+		$_zp_content_macros = zp_apply_filter('content_macro', array());
+	}
+	return $_zp_content_macros;
+}
+
+class zpFunctions {
+
+	/**
+	 *
+	 * creates an SEO language prefix list
+	 */
+	static function LanguageSubdomains() {
+		$domains = array();
+		$langs = generateLanguageList();
+		$domains = array();
+		foreach ($langs as $value) {
+			$domains[substr($value, 0, 2)][] = $value;
+		}
+		$langs = array();
+		foreach ($domains as $simple => $full) {
+			if (count($full) > 1) {
+				foreach ($full as $loc) {
+					$langs[$loc] = $loc;
+				}
+			} else {
+				$langs[$full[0]] = $simple;
 			}
 		}
-		return NULL;
+		if (isset($langs[SITE_LOCALE])) {
+			$langs[SITE_LOCALE] = '';
+		}
+		return $langs;
 	}
 
 	/**
-	 * uses down and up arrow links to show and hide sections of HTML
+	 * Returns a canonical language name string for the location
 	 *
-	 * @param string $content the id of the html section to be revealed
-	 * @param bool $visible true if the content is initially visible
+	 * @param string $loc the location. If NULL use the current cookie
+	 * @param string separator will be used between the major and qualifier parts, e.g. en_US
+	 *
+	 * @return string
 	 */
-	function reveal($content, $visible = false) {
-		?>
-		<span id="<?php echo $content; ?>_reveal"<?php if ($visible) echo 'style="display:none;"'; ?> class="icons">
-			<a onclick="reveal('<?php echo $content; ?>')" title="<?php echo gettext('Click to show content'); ?>">
-				<img src="../../images/arrow_down.png" alt="" class="icon-position-top4" />
-			</a>
-		</span>
-		<span id="<?php echo $content; ?>_hide"<?php if (!$visible) echo 'style="display:none;"'; ?> class="icons">
-			<a onclick="reveal('<?php echo $content; ?>')" title="<?php echo gettext('Click to hide content'); ?>">
-				<img src="../../images/arrow_up.png" alt="" class="icon-position-top4" />
-			</a>
-		</span>
-		<?php
+	static function getLanguageText($loc = NULL, $separator = NULL) {
+		global $_locale_Subdomains;
+		if (is_null($loc)) {
+			$text = @$_locale_Subdomains[zp_getCookie('dynamic_locale')];
+		} else {
+			$text = @$_locale_Subdomains[$loc];
+		}
+		if (!is_null($separator)) {
+			$text = str_replace('_', $separator, $text);
+		}
+		return $text;
 	}
 
 	/**
-	 * Deals with the [macro parameters] substitutions
+	 * initializes the $_zp_exifvars array display state
 	 *
-	 * See the macroList plugin for details
+	 */
+	static function setexifvars() {
+		global $_zp_exifvars;
+		/*
+		 * Note: If fields are added or deleted, setup should be run or the new data won't be stored
+		 * (but existing fields will still work; nothing breaks).
+		 *
+		 * This array should be ordered by logical associations as it will be the order that EXIF information
+		 * is displayed
+		 */
+		$_zp_exifvars = array(
+						// Database Field       		 => array('source', 'Metadata Key', 'ZP Display Text', Display?	size,	enabled, type)
+						'EXIFMake'									 => array('IFD0', 'Make', gettext('Camera Maker'), true, 52, true, 'string'),
+						'EXIFModel'									 => array('IFD0', 'Model', gettext('Camera Model'), true, 52, true, 'string'),
+						'EXIFDescription'						 => array('IFD0', 'ImageDescription', gettext('Image Title'), false, 52, true, 'string'),
+						'IPTCObjectName'						 => array('IPTC', 'ObjectName', gettext('Object Name'), false, 256, true, 'string'),
+						'IPTCImageHeadline'					 => array('IPTC', 'ImageHeadline', gettext('Image Headline'), false, 256, true, 'string'),
+						'IPTCImageCaption'					 => array('IPTC', 'ImageCaption', gettext('Image Caption'), false, 2000, true, 'string'),
+						'IPTCImageCaptionWriter'		 => array('IPTC', 'ImageCaptionWriter', gettext('Image Caption Writer'), false, 32, true, 'string'),
+						'EXIFDateTime'							 => array('SubIFD', 'DateTime', gettext('Time Taken'), true, 52, true, 'time'),
+						'EXIFDateTimeOriginal'			 => array('SubIFD', 'DateTimeOriginal', gettext('Original Time Taken'), true, 52, true, 'time'),
+						'EXIFDateTimeDigitized'			 => array('SubIFD', 'DateTimeDigitized', gettext('Time Digitized'), true, 52, true, 'time'),
+						'IPTCDateCreated'						 => array('IPTC', 'DateCreated', gettext('Date Created'), false, 8, true, 'time'),
+						'IPTCTimeCreated'						 => array('IPTC', 'TimeCreated', gettext('Time Created'), false, 11, true, 'time'),
+						'IPTCDigitizeDate'					 => array('IPTC', 'DigitizeDate', gettext('Digital Creation Date'), false, 8, true, 'time'),
+						'IPTCDigitizeTime'					 => array('IPTC', 'DigitizeTime', gettext('Digital Creation Time'), false, 11, true, 'time'),
+						'EXIFArtist'								 => array('IFD0', 'Artist', gettext('Artist'), false, 52, true, 'string'),
+						'IPTCImageCredit'						 => array('IPTC', 'ImageCredit', gettext('Image Credit'), false, 32, true, 'string'),
+						'IPTCByLine'								 => array('IPTC', 'ByLine', gettext('Byline'), false, 32, true, 'string'),
+						'IPTCByLineTitle'						 => array('IPTC', 'ByLineTitle', gettext('Byline Title'), false, 32, true, 'string'),
+						'IPTCSource'								 => array('IPTC', 'Source', gettext('Image Source'), false, 32, true, 'string'),
+						'IPTCContact'								 => array('IPTC', 'Contact', gettext('Contact'), false, 128, true, 'string'),
+						'EXIFCopyright'							 => array('IFD0', 'Copyright', gettext('Copyright Holder'), false, 128, true, 'string'),
+						'IPTCCopyright'							 => array('IPTC', 'Copyright', gettext('Copyright Notice'), false, 128, true, 'string'),
+						'IPTCKeywords'							 => array('IPTC', 'Keywords', gettext('Keywords'), false, 0, true, 'string'),
+						'EXIFExposureTime'					 => array('SubIFD', 'ExposureTime', gettext('Shutter Speed'), true, 52, true, 'string'),
+						'EXIFFNumber'								 => array('SubIFD', 'FNumber', gettext('Aperture'), true, 52, true, 'number'),
+						'EXIFISOSpeedRatings'				 => array('SubIFD', 'ISOSpeedRatings', gettext('ISO Sensitivity'), true, 52, true, 'number'),
+						'EXIFExposureBiasValue'			 => array('SubIFD', 'ExposureBiasValue', gettext('Exposure Compensation'), true, 52, true, 'string'),
+						'EXIFMeteringMode'					 => array('SubIFD', 'MeteringMode', gettext('Metering Mode'), true, 52, true, 'string'),
+						'EXIFFlash'									 => array('SubIFD', 'Flash', gettext('Flash Fired'), true, 52, true, 'string'),
+						'EXIFImageWidth'						 => array('SubIFD', 'ExifImageWidth', gettext('Original Width'), false, 52, true, 'number'),
+						'EXIFImageHeight'						 => array('SubIFD', 'ExifImageHeight', gettext('Original Height'), false, 52, true, 'number'),
+						'EXIFOrientation'						 => array('IFD0', 'Orientation', gettext('Orientation'), false, 52, true, 'string'),
+						'EXIFSoftware'							 => array('IFD0', 'Software', gettext('Software'), false, 999, true, 'string'),
+						'EXIFContrast'							 => array('SubIFD', 'Contrast', gettext('Contrast Setting'), false, 52, true, 'string'),
+						'EXIFSharpness'							 => array('SubIFD', 'Sharpness', gettext('Sharpness Setting'), false, 52, true, 'string'),
+						'EXIFSaturation'						 => array('SubIFD', 'Saturation', gettext('Saturation Setting'), false, 52, true, 'string'),
+						'EXIFWhiteBalance'					 => array('SubIFD', 'WhiteBalance', gettext('White Balance'), false, 52, true, 'string'),
+						'EXIFSubjectDistance'				 => array('SubIFD', 'SubjectDistance', gettext('Subject Distance'), false, 52, true, 'number'),
+						'EXIFFocalLength'						 => array('SubIFD', 'FocalLength', gettext('Focal Length'), true, 52, true, 'number'),
+						'EXIFLensType'							 => array('SubIFD', 'LensType', gettext('Lens Type'), false, 52, true, 'string'),
+						'EXIFLensInfo'							 => array('SubIFD', 'LensInfo', gettext('Lens Info'), false, 52, true, 'string'),
+						'EXIFFocalLengthIn35mmFilm'	 => array('SubIFD', 'FocalLengthIn35mmFilm', gettext('35mm Focal Length Equivalent'), false, 52, true, 'string'),
+						'IPTCCity'									 => array('IPTC', 'City', gettext('City'), false, 32, true, 'string'),
+						'IPTCSubLocation'						 => array('IPTC', 'SubLocation', gettext('Sub-location'), false, 32, true, 'string'),
+						'IPTCState'									 => array('IPTC', 'State', gettext('Province/State'), false, 32, true, 'string'),
+						'IPTCLocationCode'					 => array('IPTC', 'LocationCode', gettext('Country/Primary Location Code'), false, 3, true, 'string'),
+						'IPTCLocationName'					 => array('IPTC', 'LocationName', gettext('Country/Primary Location Name'), false, 64, true, 'string'),
+						'IPTCContentLocationCode'		 => array('IPTC', 'ContentLocationCode', gettext('Content Location Code'), false, 3, true, 'string'),
+						'IPTCContentLocationName'		 => array('IPTC', 'ContentLocationName', gettext('Content Location Name'), false, 64, true, 'string'),
+						'EXIFGPSLatitude'						 => array('GPS', 'Latitude', gettext('Latitude'), false, 52, true, 'number'),
+						'EXIFGPSLatitudeRef'				 => array('GPS', 'Latitude Reference', gettext('Latitude Reference'), false, 52, true, 'string'),
+						'EXIFGPSLongitude'					 => array('GPS', 'Longitude', gettext('Longitude'), false, 52, true, 'number'),
+						'EXIFGPSLongitudeRef'				 => array('GPS', 'Longitude Reference', gettext('Longitude Reference'), false, 52, true, 'string'),
+						'EXIFGPSAltitude'						 => array('GPS', 'Altitude', gettext('Altitude'), false, 52, true, 'number'),
+						'EXIFGPSAltitudeRef'				 => array('GPS', 'Altitude Reference', gettext('Altitude Reference'), false, 52, true, 'string'),
+						'IPTCOriginatingProgram'		 => array('IPTC', 'OriginatingProgram', gettext('Originating Program '), false, 32, true, 'string'),
+						'IPTCProgramVersion'				 => array('IPTC', 'ProgramVersion', gettext('Program Version'), false, 10, true, 'string'),
+						'VideoFormat'								 => array('VIDEO', 'fileformat', gettext('Video File Format'), false, 32, true, 'string'),
+						'VideoSize'									 => array('VIDEO', 'filesize', gettext('Video File Size'), false, 32, true, 'number'),
+						'VideoArtist'								 => array('VIDEO', 'artist', gettext('Video Artist'), false, 256, true, 'string'),
+						'VideoTitle'								 => array('VIDEO', 'title', gettext('Video Title'), false, 256, true, 'string'),
+						'VideoBitrate'							 => array('VIDEO', 'bitrate', gettext('Bitrate'), false, 32, true, 'number'),
+						'VideoBitrate_mode'					 => array('VIDEO', 'bitrate_mode', gettext('Bitrate_Mode'), false, 32, true, 'string'),
+						'VideoBits_per_sample'			 => array('VIDEO', 'bits_per_sample', gettext('Bits per sample'), false, 32, true, 'number'),
+						'VideoCodec'								 => array('VIDEO', 'codec', gettext('Codec'), false, 32, true, 'string'),
+						'VideoCompression_ratio'		 => array('VIDEO', 'compression_ratio', gettext('Compression Ratio'), false, 32, true, 'number'),
+						'VideoDataformat'						 => array('VIDEO', 'dataformat', gettext('Video Dataformat'), false, 32, true, 'string'),
+						'VideoEncoder'							 => array('VIDEO', 'encoder', gettext('File Encoder'), false, 10, true, 'string'),
+						'VideoSamplerate'						 => array('VIDEO', 'Samplerate', gettext('Sample rate'), false, 32, true, 'number'),
+						'VideoChannelmode'					 => array('VIDEO', 'channelmode', gettext('Channel mode'), false, 32, true, 'string'),
+						'VideoFormat'								 => array('VIDEO', 'format', gettext('Format'), false, 10, true, 'string'),
+						'VideoChannels'							 => array('VIDEO', 'channels', gettext('Channels'), false, 10, true, 'number'),
+						'VideoFramerate'						 => array('VIDEO', 'framerate', gettext('Frame rate'), false, 32, true, 'number'),
+						'VideoResolution_x'					 => array('VIDEO', 'resolution_x', gettext('X Resolution'), false, 32, true, 'number'),
+						'VideoResolution_y'					 => array('VIDEO', 'resolution_y', gettext('Y Resolution'), false, 32, true, 'number'),
+						'VideoAspect_ratio'					 => array('VIDEO', 'pixel_aspect_ratio', gettext('Aspect ratio'), false, 32, true, 'number'),
+						'VideoPlaytime'							 => array('VIDEO', 'playtime_string', gettext('Play Time'), false, 10, true, 'number'),
+						'XMPrating'									 => array('XMP', 'rating', gettext('XMP Rating'), false, 10, true, 'string'),
+		);
+		foreach ($_zp_exifvars as $key => $item) {
+			if (!is_null($disable = getOption($key . '-disabled'))) {
+				$_zp_exifvars[$key][5] = !$disable;
+			}
+			$_zp_exifvars[$key][3] = getOption($key);
+		}
+	}
+
+	/**
 	 *
+	 * Returns true if the install is not a "clone"
+	 */
+	static function hasPrimaryScripts() {
+		if (!defined('PRIMARY_INSTALLATION')) {
+			if (function_exists('readlink') && ($zen = str_replace('\\', '/', @readlink(SERVERPATH . '/' . ZENFOLDER)))) {
+				// no error reading the link info
+				$os = strtoupper(PHP_OS);
+				$sp = SERVERPATH;
+				if (substr($os, 0, 3) == 'WIN' || $os == 'DARWIN') { // canse insensitive file systems
+					$sp = strtolower($sp);
+					$zen = strtolower($zen);
+				}
+				define('PRIMARY_INSTALLATION', $sp == dirname($zen));
+			} else {
+				define('PRIMARY_INSTALLATION', true);
+			}
+		}
+		return PRIMARY_INSTALLATION;
+	}
+
+	/**
+	 *
+	 * Recursively clears and removes a folder
+	 * @param string $path
+	 * @return boolean
+	 */
+	static function removeDir($path, $within = false) {
+		if (($dir = @opendir($path)) !== false) {
+			while (($file = readdir($dir)) !== false) {
+				if ($file != '.' && $file != '..') {
+					if ((is_dir($path . '/' . $file))) {
+						if (!zpFunctions::removeDir($path . '/' . $file)) {
+							return false;
+						}
+					} else {
+						@chmod($path . $file, 0777);
+						if (!@unlink($path . '/' . $file)) {
+							return false;
+						}
+					}
+				}
+			}
+			closedir($dir);
+			if (!$within) {
+				@chmod($path, 0777);
+				if (!@rmdir($path)) {
+					return false;
+				}
+			}
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * inserts location independent WEB path tags in place of site path tags
+	 * @param string $text
+	 */
+	static function tagURLs($text) {
+		if (is_string($text) && preg_match('/^a:[0-9]+:{/', $text)) { //	serialized array
+			$text = getSerializedArray($text);
+			$serial = true;
+		} else {
+			$serial = false;
+		}
+		if (is_array($text)) {
+			foreach ($text as $key => $textelement) {
+				$text[$key] = self::TagURLs($textelement);
+			}
+			if ($serial) {
+				$text = serialize($text);
+			}
+		} else {
+			$text = str_replace(WEBPATH, '{*WEBPATH*}', str_replace(FULLWEBPATH, '{*FULLWEBPATH*}', $text));
+		}
+		return $text;
+	}
+
+	/**
+	 * reverses tagURLs()
 	 * @param string $text
 	 * @return string
 	 */
-	function applyMacros($text) {
-		$content_macros = getMacros();
-		preg_match_all('/\[(\w+)(.*?)\]/i', $text, $instances);
-		foreach ($instances[0] as $instance => $macro_instance) {
-			$macroname = strtoupper($instances[1][$instance]);
-			if (array_key_exists($macroname, $content_macros)) {
-				$macro = $content_macros[$macroname];
-				$p = $instances[2][$instance];
-				$data = NULL;
-				$class = $macro['class'];
-				if ($p) {
-					$p = trim(utf8::sanitize(str_replace("\xC2\xA0", ' ', strip_tags($p)))); //	remove hard spaces and invalid characters
-					$p = preg_replace("~\s+=\s+(?=(?:[^\"]*+\"[^\"]*+\")*+[^\"]*+$)~", "=", $p); //	deblank assignment operator
-					preg_match_all("~'[^'\"]++'|\"[^\"]++\"|[^\s]++~", $p, $l); //	parse the parameter list
-					$parms = array();
-					$k = 0;
-					foreach ($l[0] as $s) {
-						if ($s != ',') {
-							$parms[$k++] = trim($s, '\'"'); //	remove any quote marks
-						}
-					}
-				} else {
-					$parms = array();
-				}
-				$parameters = array();
-				if (!empty($macro['params'])) {
-					$err = false;
-					foreach ($macro['params'] as $key => $type) {
-						$data = false;
-						if (array_key_exists($key, $parms)) {
-							switch (trim($type, '*')) {
-								case 'int':
-									if (is_numeric($parms[$key])) {
-										$parameters[] = (int) $parms[$key];
-									} else {
-										$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> parameter %2$d should be a number.'), trim($macro_instance, '[]'), $key + 1) . '</span>';
-										$class = 'error';
-									}
-									break;
-								case 'string':
-									if (is_string($parms[$key])) {
-										$parameters[] = $parms[$key];
-									} else {
-										$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> parameter %2$d should be a string.'), trim($macro_instance, '[]'), $key + 1) . '</span>';
-										$class = 'error';
-									}
-									break;
-								case 'bool':
-									switch (strtolower($parms[$key])) {
-										case ("true"):
-											$parameters[] = true;
-											break;
-										case ("false"):
-											$parameters[] = false;
-											break;
-										default:
-											$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> parameter %2$d should be <code>true</code> or <code>false</code>.'), trim($macro_instance, '[]'), $key + 1) . '</span>';
-											$class = 'error';
-											break;
-									}
-									break;
-								case 'array':
-									$l = array_slice($parms, $key);
-									$parms = array();
-									foreach ($l as $key => $p) {
-										$x = explode('=', $p);
-										if (count($x) == 2) {
-											$parms[$x[0]] = $x[1];
-										} else {
-											$parms[$key] = $x[0];
-										}
-									}
-									$parameters[] = $parms;
-									break;
-								default:
-									$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> parameter %2$d is incorrectly defined.'), trim($macro_instance, '[]'), $key + 1) . '</span>';
-									$class = 'error';
-									break;
-							}
-						} else {
-							if (strpos($type, '*') === false) {
-								$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> parameter %2$d is missing.'), trim($macro_instance, '[]'), $key + 1) . '</span>';
-								$class = 'error';
-							}
-							break;
-						}
-					}
-				} else {
-					if (!empty($p)) {
-						$class = 'error';
-						$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> macro does not take parameters'), trim($macro_instance, '[]')) . '</span>';
-					}
-				}
-				switch ($class) {
-					case 'error':
-						break;
-					case 'function';
-					case 'procedure':
-						if (is_callable($macro['value'])) {
-							if ($class == 'function') {
-								ob_start();
-								$data = call_user_func_array($macro['value'], $parameters);
-								if (empty($data)) {
-									$data = ob_get_contents();
-								}
-								ob_end_clean();
-							} else {
-								ob_start();
-								call_user_func_array($macro['value'], $parameters);
-								$data = ob_get_contents();
-								ob_end_clean();
-							}
-							if (empty($data)) {
-								$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> retuned no data'), trim($macro_instance, '[]')) . '</span>';
-							} else {
-								$data = "\n<!--Begin " . $macroname . "-->\n" . $data . "\n<!--End " . $macroname . "-->\n";
-							}
-						} else {
-							$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> <code>%2$s</code> is not callable'), trim($macro_instance, '[]'), $macro['value']) . '</span>';
-						}
-						break;
-					case 'constant':
-						$data = "\n<!--Begin " . $macroname . "-->\n" . $macro['value'] . "\n<!--End " . $macroname . "-->\n";
-						break;
-					case 'expression':
-						$expression = '$data = ' . $macro['value'];
-						$parms = array_reverse($parms, true);
-						preg_match_all('/\$\d+/', $macro['value'], $replacements);
-						foreach ($replacements as $rkey => $v) {
-							if (empty($v))
-								unset($replacements[$rkey]);
-						}
-						if (count($parms) == count($replacements)) {
+	static function unTagURLs($text) {
+		if (is_string($text) && preg_match('/^a:[0-9]+:{/', $text)) { //	serialized array
+			$text = getSerializedArray($text);
+			$serial = true;
+		} else {
+			$serial = false;
+		}
+		if (is_array($text)) {
+			foreach ($text as $key => $textelement) {
+				$text[$key] = self::unTagURLs($textelement);
+			}
+			if ($serial) {
+				$text = serialize($text);
+			}
+		} else {
+			$text = str_replace('{*WEBPATH*}', WEBPATH, str_replace('{*FULLWEBPATH*}', FULLWEBPATH, $text));
+		}
+		return $text;
+	}
 
-							foreach ($parms as $key => $value) {
-								$key++;
-								$expression = preg_replace('/\$' . $key . '/', db_quote($value), $expression);
-							}
-							eval($expression);
-							if (!isset($data) || is_null($data)) {
-								$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> retuned no data'), trim($macro_instance, '[]')) . '</span>';
-							} else {
-								$data = "\n<!--Begin " . $macroname . "-->\n" . $data . "\n<!--End " . $macroname . "-->\n";
-							}
-						} else {
-							$data = '<span class="error">' . sprintf(ngettext('<em>[%1$s]</em> takes %2$d parameter', '<em>[%1$s]</em> takes %2$d parameters', count($replacements)), trim($macro_instance, '[]'), count($replacements)) . '</span>';
-						}
-						break;
+	/**
+	 * Searches out i.php image links and replaces them with cache links if image is cached
+	 * @param string $text
+	 * @return string
+	 */
+	static function updateImageProcessorLink($text) {
+		if (is_string($text) && preg_match('/^a:[0-9]+:{/', $text)) { //	serialized array
+			$text = getSerializedArray($text);
+			$serial = true;
+		} else {
+			$serial = false;
+		}
+		if (is_array($text)) {
+			foreach ($text as $key => $textelement) {
+				$text[$key] = self::updateImageProcessorLink($textelement);
+			}
+			if ($serial) {
+				$text = serialize($text);
+			}
+		} else {
+			preg_match_all('|<\s*img.*?\ssrc\s*=\s*"([^"]*)?|', $text, $matches);
+			foreach ($matches[1] as $key => $match) {
+				preg_match('|.*i\.php\?(.*)|', $match, $imgproc);
+				if ($imgproc) {
+					$match = preg_split('~\&[amp;]*~', $imgproc[1]);
+					$set = array();
+					foreach ($match as $v) {
+						$s = explode('=', $v);
+						$set[$s[0]] = $s[1];
+					}
+					$args = getImageArgs($set);
+					$imageuri = getImageURI($args, urldecode($set['a']), urldecode($set['i']), NULL);
+					if (strpos($imageuri, 'i.php') === false) {
+						$text = str_replace($matches[1][$key], $imageuri, $text);
+					}
 				}
-				$text = str_replace($macro_instance, $data, $text);
 			}
 		}
 		return $text;
 	}
 
-	function getMacros() {
-		global $_zp_content_macros;
-		if (is_null($_zp_content_macros)) {
-			$_zp_content_macros = zp_apply_filter('content_macro', array());
+	static function pluginDebug($extension, $priority, $start) {
+		list($usec, $sec) = explode(" ", microtime());
+		$end = (float) $usec + (float) $sec;
+		$class = array();
+		if ($priority & CLASS_PLUGIN) {
+			$class[] = 'CLASS';
 		}
-		return $_zp_content_macros;
+		if ($priority & ADMIN_PLUGIN) {
+			$class[] = 'ADMIN';
+		}
+		if ($priority & FEATURE_PLUGIN) {
+			$class[] = 'FEATURE';
+		}
+		if ($priority & THEME_PLUGIN) {
+			$class[] = 'THEME';
+		}
+		if (empty($class))
+			$class[] = 'theme';
+		debugLog(sprintf('    ' . $extension . '(%s:%u)=>%.4fs', implode('|', $class), $priority & PLUGIN_PRIORITY, $end - $start));
 	}
 
-	class zpFunctions {
+}
 
-		/**
-		 *
-		 * creates an SEO language prefix list
-		 */
-		static function LanguageSubdomains() {
-			$domains = array();
-			$langs = generateLanguageList();
-			$domains = array();
-			foreach ($langs as $value) {
-				$domains[substr($value, 0, 2)][] = $value;
-			}
-			$langs = array();
-			foreach ($domains as $simple => $full) {
-				if (count($full) > 1) {
-					foreach ($full as $loc) {
-						$langs[$loc] = $loc;
-					}
-				} else {
-					$langs[$full[0]] = $simple;
-				}
-			}
-			if (isset($langs[SITE_LOCALE])) {
-				$langs[SITE_LOCALE] = '';
-			}
-			return $langs;
-		}
+/**
+ * Standins for when no captcha is enabled
+ */
+class _zp_captcha {
 
-		/**
-		 * Returns a canonical language name string for the location
-		 *
-		 * @param string $loc the location. If NULL use the current cookie
-		 * @param string separator will be used between the major and qualifier parts, e.g. en_US
-		 *
-		 * @return string
-		 */
-		static function getLanguageText($loc = NULL, $separator = NULL) {
-			global $_locale_Subdomains;
-			if (is_null($loc)) {
-				$text = @$_locale_Subdomains[zp_getCookie('dynamic_locale')];
-			} else {
-				$text = @$_locale_Subdomains[$loc];
-			}
-			if (!is_null($separator)) {
-				$text = str_replace('_', $separator, $text);
-			}
-			return $text;
-		}
+	var $name = NULL; // "captcha" name if no captcha plugin loaded
 
-		/**
-		 * initializes the $_zp_exifvars array display state
-		 *
-		 */
-		static function setexifvars() {
-			global $_zp_exifvars;
-			/*
-			 * Note: If fields are added or deleted, setup should be run or the new data won't be stored
-			 * (but existing fields will still work; nothing breaks).
-			 *
-			 * This array should be ordered by logical associations as it will be the order that EXIF information
-			 * is displayed
-			 */
-			$_zp_exifvars = array(
-							// Database Field       		 => array('source', 'Metadata Key', 'ZP Display Text', Display?	size,	enabled, type)
-							'EXIFMake'									 => array('IFD0', 'Make', gettext('Camera Maker'), true, 52, true, 'string'),
-							'EXIFModel'									 => array('IFD0', 'Model', gettext('Camera Model'), true, 52, true, 'string'),
-							'EXIFDescription'						 => array('IFD0', 'ImageDescription', gettext('Image Title'), false, 52, true, 'string'),
-							'IPTCObjectName'						 => array('IPTC', 'ObjectName', gettext('Object Name'), false, 256, true, 'string'),
-							'IPTCImageHeadline'					 => array('IPTC', 'ImageHeadline', gettext('Image Headline'), false, 256, true, 'string'),
-							'IPTCImageCaption'					 => array('IPTC', 'ImageCaption', gettext('Image Caption'), false, 2000, true, 'string'),
-							'IPTCImageCaptionWriter'		 => array('IPTC', 'ImageCaptionWriter', gettext('Image Caption Writer'), false, 32, true, 'string'),
-							'EXIFDateTime'							 => array('SubIFD', 'DateTime', gettext('Time Taken'), true, 52, true, 'time'),
-							'EXIFDateTimeOriginal'			 => array('SubIFD', 'DateTimeOriginal', gettext('Original Time Taken'), true, 52, true, 'time'),
-							'EXIFDateTimeDigitized'			 => array('SubIFD', 'DateTimeDigitized', gettext('Time Digitized'), true, 52, true, 'time'),
-							'IPTCDateCreated'						 => array('IPTC', 'DateCreated', gettext('Date Created'), false, 8, true, 'time'),
-							'IPTCTimeCreated'						 => array('IPTC', 'TimeCreated', gettext('Time Created'), false, 11, true, 'time'),
-							'IPTCDigitizeDate'					 => array('IPTC', 'DigitizeDate', gettext('Digital Creation Date'), false, 8, true, 'time'),
-							'IPTCDigitizeTime'					 => array('IPTC', 'DigitizeTime', gettext('Digital Creation Time'), false, 11, true, 'time'),
-							'EXIFArtist'								 => array('IFD0', 'Artist', gettext('Artist'), false, 52, true, 'string'),
-							'IPTCImageCredit'						 => array('IPTC', 'ImageCredit', gettext('Image Credit'), false, 32, true, 'string'),
-							'IPTCByLine'								 => array('IPTC', 'ByLine', gettext('Byline'), false, 32, true, 'string'),
-							'IPTCByLineTitle'						 => array('IPTC', 'ByLineTitle', gettext('Byline Title'), false, 32, true, 'string'),
-							'IPTCSource'								 => array('IPTC', 'Source', gettext('Image Source'), false, 32, true, 'string'),
-							'IPTCContact'								 => array('IPTC', 'Contact', gettext('Contact'), false, 128, true, 'string'),
-							'EXIFCopyright'							 => array('IFD0', 'Copyright', gettext('Copyright Holder'), false, 128, true, 'string'),
-							'IPTCCopyright'							 => array('IPTC', 'Copyright', gettext('Copyright Notice'), false, 128, true, 'string'),
-							'IPTCKeywords'							 => array('IPTC', 'Keywords', gettext('Keywords'), false, 0, true, 'string'),
-							'EXIFExposureTime'					 => array('SubIFD', 'ExposureTime', gettext('Shutter Speed'), true, 52, true, 'string'),
-							'EXIFFNumber'								 => array('SubIFD', 'FNumber', gettext('Aperture'), true, 52, true, 'number'),
-							'EXIFISOSpeedRatings'				 => array('SubIFD', 'ISOSpeedRatings', gettext('ISO Sensitivity'), true, 52, true, 'number'),
-							'EXIFExposureBiasValue'			 => array('SubIFD', 'ExposureBiasValue', gettext('Exposure Compensation'), true, 52, true, 'string'),
-							'EXIFMeteringMode'					 => array('SubIFD', 'MeteringMode', gettext('Metering Mode'), true, 52, true, 'string'),
-							'EXIFFlash'									 => array('SubIFD', 'Flash', gettext('Flash Fired'), true, 52, true, 'string'),
-							'EXIFImageWidth'						 => array('SubIFD', 'ExifImageWidth', gettext('Original Width'), false, 52, true, 'number'),
-							'EXIFImageHeight'						 => array('SubIFD', 'ExifImageHeight', gettext('Original Height'), false, 52, true, 'number'),
-							'EXIFOrientation'						 => array('IFD0', 'Orientation', gettext('Orientation'), false, 52, true, 'string'),
-							'EXIFSoftware'							 => array('IFD0', 'Software', gettext('Software'), false, 999, true, 'string'),
-							'EXIFContrast'							 => array('SubIFD', 'Contrast', gettext('Contrast Setting'), false, 52, true, 'string'),
-							'EXIFSharpness'							 => array('SubIFD', 'Sharpness', gettext('Sharpness Setting'), false, 52, true, 'string'),
-							'EXIFSaturation'						 => array('SubIFD', 'Saturation', gettext('Saturation Setting'), false, 52, true, 'string'),
-							'EXIFWhiteBalance'					 => array('SubIFD', 'WhiteBalance', gettext('White Balance'), false, 52, true, 'string'),
-							'EXIFSubjectDistance'				 => array('SubIFD', 'SubjectDistance', gettext('Subject Distance'), false, 52, true, 'number'),
-							'EXIFFocalLength'						 => array('SubIFD', 'FocalLength', gettext('Focal Length'), true, 52, true, 'number'),
-							'EXIFLensType'							 => array('SubIFD', 'LensType', gettext('Lens Type'), false, 52, true, 'string'),
-							'EXIFLensInfo'							 => array('SubIFD', 'LensInfo', gettext('Lens Info'), false, 52, true, 'string'),
-							'EXIFFocalLengthIn35mmFilm'	 => array('SubIFD', 'FocalLengthIn35mmFilm', gettext('35mm Focal Length Equivalent'), false, 52, true, 'string'),
-							'IPTCCity'									 => array('IPTC', 'City', gettext('City'), false, 32, true, 'string'),
-							'IPTCSubLocation'						 => array('IPTC', 'SubLocation', gettext('Sub-location'), false, 32, true, 'string'),
-							'IPTCState'									 => array('IPTC', 'State', gettext('Province/State'), false, 32, true, 'string'),
-							'IPTCLocationCode'					 => array('IPTC', 'LocationCode', gettext('Country/Primary Location Code'), false, 3, true, 'string'),
-							'IPTCLocationName'					 => array('IPTC', 'LocationName', gettext('Country/Primary Location Name'), false, 64, true, 'string'),
-							'IPTCContentLocationCode'		 => array('IPTC', 'ContentLocationCode', gettext('Content Location Code'), false, 3, true, 'string'),
-							'IPTCContentLocationName'		 => array('IPTC', 'ContentLocationName', gettext('Content Location Name'), false, 64, true, 'string'),
-							'EXIFGPSLatitude'						 => array('GPS', 'Latitude', gettext('Latitude'), false, 52, true, 'number'),
-							'EXIFGPSLatitudeRef'				 => array('GPS', 'Latitude Reference', gettext('Latitude Reference'), false, 52, true, 'string'),
-							'EXIFGPSLongitude'					 => array('GPS', 'Longitude', gettext('Longitude'), false, 52, true, 'number'),
-							'EXIFGPSLongitudeRef'				 => array('GPS', 'Longitude Reference', gettext('Longitude Reference'), false, 52, true, 'string'),
-							'EXIFGPSAltitude'						 => array('GPS', 'Altitude', gettext('Altitude'), false, 52, true, 'number'),
-							'EXIFGPSAltitudeRef'				 => array('GPS', 'Altitude Reference', gettext('Altitude Reference'), false, 52, true, 'string'),
-							'IPTCOriginatingProgram'		 => array('IPTC', 'OriginatingProgram', gettext('Originating Program '), false, 32, true, 'string'),
-							'IPTCProgramVersion'				 => array('IPTC', 'ProgramVersion', gettext('Program Version'), false, 10, true, 'string'),
-							'VideoFormat'								 => array('VIDEO', 'fileformat', gettext('Video File Format'), false, 32, true, 'string'),
-							'VideoSize'									 => array('VIDEO', 'filesize', gettext('Video File Size'), false, 32, true, 'number'),
-							'VideoArtist'								 => array('VIDEO', 'artist', gettext('Video Artist'), false, 256, true, 'string'),
-							'VideoTitle'								 => array('VIDEO', 'title', gettext('Video Title'), false, 256, true, 'string'),
-							'VideoBitrate'							 => array('VIDEO', 'bitrate', gettext('Bitrate'), false, 32, true, 'number'),
-							'VideoBitrate_mode'					 => array('VIDEO', 'bitrate_mode', gettext('Bitrate_Mode'), false, 32, true, 'string'),
-							'VideoBits_per_sample'			 => array('VIDEO', 'bits_per_sample', gettext('Bits per sample'), false, 32, true, 'number'),
-							'VideoCodec'								 => array('VIDEO', 'codec', gettext('Codec'), false, 32, true, 'string'),
-							'VideoCompression_ratio'		 => array('VIDEO', 'compression_ratio', gettext('Compression Ratio'), false, 32, true, 'number'),
-							'VideoDataformat'						 => array('VIDEO', 'dataformat', gettext('Video Dataformat'), false, 32, true, 'string'),
-							'VideoEncoder'							 => array('VIDEO', 'encoder', gettext('File Encoder'), false, 10, true, 'string'),
-							'VideoSamplerate'						 => array('VIDEO', 'Samplerate', gettext('Sample rate'), false, 32, true, 'number'),
-							'VideoChannelmode'					 => array('VIDEO', 'channelmode', gettext('Channel mode'), false, 32, true, 'string'),
-							'VideoFormat'								 => array('VIDEO', 'format', gettext('Format'), false, 10, true, 'string'),
-							'VideoChannels'							 => array('VIDEO', 'channels', gettext('Channels'), false, 10, true, 'number'),
-							'VideoFramerate'						 => array('VIDEO', 'framerate', gettext('Frame rate'), false, 32, true, 'number'),
-							'VideoResolution_x'					 => array('VIDEO', 'resolution_x', gettext('X Resolution'), false, 32, true, 'number'),
-							'VideoResolution_y'					 => array('VIDEO', 'resolution_y', gettext('Y Resolution'), false, 32, true, 'number'),
-							'VideoAspect_ratio'					 => array('VIDEO', 'pixel_aspect_ratio', gettext('Aspect ratio'), false, 32, true, 'number'),
-							'VideoPlaytime'							 => array('VIDEO', 'playtime_string', gettext('Play Time'), false, 10, true, 'number'),
-							'XMPrating'									 => array('XMP', 'rating', gettext('XMP Rating'), false, 10, true, 'string'),
-			);
-			foreach ($_zp_exifvars as $key => $item) {
-				if (!is_null($disable = getOption($key . '-disabled'))) {
-					$_zp_exifvars[$key][5] = !$disable;
-				}
-				$_zp_exifvars[$key][3] = getOption($key);
-			}
-		}
+	function getCaptcha($prompt = NULL) {
+		return array('input' => NULL, 'html' => '<p class="errorbox">' . gettext('No captcha handler is enabled.') . '</p>', 'hidden' => '');
+	}
 
-		/**
-		 *
-		 * Returns true if the install is not a "clone"
-		 */
-		static function hasPrimaryScripts() {
-			if (!defined('PRIMARY_INSTALLATION')) {
-				if (function_exists('readlink') && ($zen = str_replace('\\', '/', @readlink(SERVERPATH . '/' . ZENFOLDER)))) {
-					// no error reading the link info
-					$os = strtoupper(PHP_OS);
-					$sp = SERVERPATH;
-					if (substr($os, 0, 3) == 'WIN' || $os == 'DARWIN') { // canse insensitive file systems
-						$sp = strtolower($sp);
-						$zen = strtolower($zen);
-					}
-					define('PRIMARY_INSTALLATION', $sp == dirname($zen));
-				} else {
-					define('PRIMARY_INSTALLATION', true);
-				}
-			}
-			return PRIMARY_INSTALLATION;
-		}
+	function checkCaptcha($s1, $s2) {
+		return false;
+	}
 
-		/**
-		 *
-		 * Recursively clears and removes a folder
-		 * @param string $path
-		 * @return boolean
-		 */
-		static function removeDir($path, $within = false) {
-			if (($dir = @opendir($path)) !== false) {
-				while (($file = readdir($dir)) !== false) {
-					if ($file != '.' && $file != '..') {
-						if ((is_dir($path . '/' . $file))) {
-							if (!zpFunctions::removeDir($path . '/' . $file)) {
-								return false;
-							}
-						} else {
-							@chmod($path . $file, 0777);
-							if (!@unlink($path . '/' . $file)) {
-								return false;
-							}
-						}
-					}
-				}
-				closedir($dir);
-				if (!$within) {
-					@chmod($path, 0777);
-					if (!@rmdir($path)) {
-						return false;
-					}
-				}
-				return true;
-			}
-			return false;
-		}
+}
 
-		/**
-		 * inserts location independent WEB path tags in place of site path tags
-		 * @param string $text
-		 */
-		static function tagURLs($text) {
-			if (is_string($text) && preg_match('/^a:[0-9]+:{/', $text)) { //	serialized array
-				$text = getSerializedArray($text);
-				$serial = true;
-			} else {
-				$serial = false;
-			}
-			if (is_array($text)) {
-				foreach ($text as $key => $textelement) {
-					$text[$key] = self::TagURLs($textelement);
-				}
-				if ($serial) {
-					$text = serialize($text);
-				}
-			} else {
-				$text = str_replace(WEBPATH, '{*WEBPATH*}', str_replace(FULLWEBPATH, '{*FULLWEBPATH*}', $text));
-			}
-			return $text;
-		}
+/**
+ * stand-in for when there is no HTML cache plugin enabled
+ */
+class _zp_HTML_cache {
 
-		/**
-		 * reverses tagURLs()
-		 * @param string $text
-		 * @return string
-		 */
-		static function unTagURLs($text) {
-			if (is_string($text) && preg_match('/^a:[0-9]+:{/', $text)) { //	serialized array
-				$text = getSerializedArray($text);
-				$serial = true;
-			} else {
-				$serial = false;
-			}
-			if (is_array($text)) {
-				foreach ($text as $key => $textelement) {
-					$text[$key] = self::unTagURLs($textelement);
-				}
-				if ($serial) {
-					$text = serialize($text);
-				}
-			} else {
-				$text = str_replace('{*WEBPATH*}', WEBPATH, str_replace('{*FULLWEBPATH*}', FULLWEBPATH, $text));
-			}
-			return $text;
-		}
-
-		/**
-		 * Searches out i.php image links and replaces them with cache links if image is cached
-		 * @param string $text
-		 * @return string
-		 */
-		static function updateImageProcessorLink($text) {
-			if (is_string($text) && preg_match('/^a:[0-9]+:{/', $text)) { //	serialized array
-				$text = getSerializedArray($text);
-				$serial = true;
-			} else {
-				$serial = false;
-			}
-			if (is_array($text)) {
-				foreach ($text as $key => $textelement) {
-					$text[$key] = self::updateImageProcessorLink($textelement);
-				}
-				if ($serial) {
-					$text = serialize($text);
-				}
-			} else {
-				preg_match_all('|<\s*img.*?\ssrc\s*=\s*"([^"]*)?|', $text, $matches);
-				foreach ($matches[1] as $key => $match) {
-					preg_match('|.*i\.php\?(.*)|', $match, $imgproc);
-					if ($imgproc) {
-						$match = preg_split('~\&[amp;]*~', $imgproc[1]);
-						$set = array();
-						foreach ($match as $v) {
-							$s = explode('=', $v);
-							$set[$s[0]] = $s[1];
-						}
-						$args = getImageArgs($set);
-						$imageuri = getImageURI($args, urldecode($set['a']), urldecode($set['i']), NULL);
-						if (strpos($imageuri, 'i.php') === false) {
-							$text = str_replace($matches[1][$key], $imageuri, $text);
-						}
-					}
-				}
-			}
-			return $text;
-		}
-
-		static function pluginDebug($extension, $priority, $start) {
-			list($usec, $sec) = explode(" ", microtime());
-			$end = (float) $usec + (float) $sec;
-			$class = array();
-			if ($priority & CLASS_PLUGIN) {
-				$class[] = 'CLASS';
-			}
-			if ($priority & ADMIN_PLUGIN) {
-				$class[] = 'ADMIN';
-			}
-			if ($priority & FEATURE_PLUGIN) {
-				$class[] = 'FEATURE';
-			}
-			if ($priority & THEME_PLUGIN) {
-				$class[] = 'THEME';
-			}
-			if (empty($class))
-				$class[] = 'theme';
-			debugLog(sprintf('    ' . $extension . '(%s:%u)=>%.4fs', implode('|', $class), $priority & PLUGIN_PRIORITY, $end - $start));
-		}
+	function disable() {
 
 	}
 
-	/**
-	 * Standins for when no captcha is enabled
-	 */
-	class _zp_captcha {
-
-		var $name = NULL; // "captcha" name if no captcha plugin loaded
-
-		function getCaptcha($prompt = NULL) {
-			return array('input' => NULL, 'html' => '<p class="errorbox">' . gettext('No captcha handler is enabled.') . '</p>', 'hidden' => '');
-		}
-
-		function checkCaptcha($s1, $s2) {
-			return false;
-		}
+	function startHTMLCache() {
 
 	}
 
-	/**
-	 * stand-in for when there is no HTML cache plugin enabled
-	 */
-	class _zp_HTML_cache {
-
-		function disable() {
-
-		}
-
-		function startHTMLCache() {
-
-		}
-
-		function abortHTMLCache() {
-
-		}
-
-		function endHTMLCache() {
-
-		}
-
-		function clearHtmlCache() {
-
-		}
+	function abortHTMLCache() {
 
 	}
 
-	zpFunctions::setexifvars();
-	$_locale_Subdomains = zpFunctions::LanguageSubdomains();
-	?>
+	function endHTMLCache() {
+
+	}
+
+	function clearHtmlCache() {
+
+	}
+
+}
+
+zpFunctions::setexifvars();
+$_locale_Subdomains = zpFunctions::LanguageSubdomains();
+?>

@@ -453,7 +453,7 @@ function getUserLocale() {
 		} else {
 			$matches = explode('.', @$_SERVER['HTTP_HOST']);
 			$_zp_current_locale = validateLocale($matches[0], 'HTTP_HOST');
-			if ($_zp_current_locale) {
+			if ($_zp_current_locale && zp_getCookie('dynamic_locale')) {
 				zp_clearCookie('dynamic_locale');
 			}
 			if (DEBUG_LOCALE)
