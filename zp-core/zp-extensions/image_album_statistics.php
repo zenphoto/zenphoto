@@ -83,19 +83,20 @@ function getAlbumStatistic($number = 5, $option, $albumfolder = '', $sortdirecti
 
 	$albums = array();
 	$result = query("SELECT id, title, folder, thumb FROM " . prefix('albums') . $albumWhere . " ORDER BY " . $sortorder . " " . $sortdir . " LIMIT " . $number);
-	while ($row = db_fetch_assoc($result)) {
-		if (empty($albumfolder) || strpos($row['folder'], $albumfolder) === 0) {
-			$obj = newAlbum($row['folder'], true);
-			if ($obj->exists && $obj->checkAccess()) {
-				$albums[] = $row;
-				if (count($albums) >= $number) { // got enough
-					break;
+	if ($result) {
+		while ($row = db_fetch_assoc($result)) {
+			if (empty($albumfolder) || strpos($row['folder'], $albumfolder) === 0) {
+				$obj = newAlbum($row['folder'], true);
+				if ($obj->exists && $obj->checkAccess()) {
+					$albums[] = $row;
+					if (count($albums) >= $number) { // got enough
+						break;
+					}
 				}
 			}
 		}
+		db_free_result($result);
 	}
-	db_free_result($result);
-
 	return $albums;
 }
 
@@ -434,18 +435,20 @@ function getImageStatistic($number, $option, $albumfolder = '', $collection = fa
 		}
 	} else {
 		$result = query("SELECT images.filename AS filename, albums.folder AS folder FROM " . prefix('images') . " AS images, " . prefix('albums') . " AS albums " . "WHERE (images.albumid = albums.id) " . $albumWhere . " ORDER BY " . $sortorder . " " . $sortdir);
-		while ($row = db_fetch_assoc($result)) {
-			if (empty($albumfolder) || strpos($row['folder'], $albumfolder) === 0) {
-				$image = newImage(NULL, $row, true);
-				if ($image->exists && $image->checkAccess()) {
-					$imageArray[] = $image;
-					if (count($imageArray) >= $number) { // got enough
-						break;
+		if ($result) {
+			while ($row = db_fetch_assoc($result)) {
+				if (empty($albumfolder) || strpos($row['folder'], $albumfolder) === 0) {
+					$image = newImage(NULL, $row, true);
+					if ($image->exists && $image->checkAccess()) {
+						$imageArray[] = $image;
+						if (count($imageArray) >= $number) { // got enough
+							break;
+						}
 					}
 				}
 			}
+			db_free_result($result);
 		}
-		db_free_result($result);
 	}
 	return $imageArray;
 }
