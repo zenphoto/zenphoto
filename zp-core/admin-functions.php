@@ -45,15 +45,15 @@ function printAdminFooter($addl = '') {
 
 function datepickerJS() {
 	$lang = str_replace('_', '-', getOption('locale'));
-	if (!file_exists(SERVERPATH . '/' . ZENFOLDER . '/js/jqueryui/i18n/jquery.ui.datepicker-' . $lang . '.js')) {
+	if (!file_exists(SERVERPATH . '/' . ZENFOLDER . '/js/jqueryui/i18n/datepicker-' . $lang . '.js')) {
 		$lang = substr($lang, 0, 2);
-		if (!file_exists(SERVERPATH . '/' . ZENFOLDER . '/js/jqueryui/i18n/jquery.ui.datepicker-' . $lang . '.js')) {
+		if (!file_exists(SERVERPATH . '/' . ZENFOLDER . '/js/jqueryui/i18n/datepicker-' . $lang . '.js')) {
 			$lang = '';
 		}
 	}
 	if (!empty($lang)) {
 		?>
-		<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jqueryui/i18n/jquery.ui.datepicker-<?php echo $lang; ?>.js" type="text/javascript"></script>
+		<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jqueryui/i18n/datepicker-<?php echo $lang; ?>.js" type="text/javascript"></script>
 		<?php
 	}
 }
@@ -148,7 +148,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					$('form#' + id).dirtyForms('setClean');
 					$('form#' + id).removeClass('tinyDirty');
 				}
-				$(document).ready(function() {
+				$(document).ready(function () {
 	<?php
 	if (zp_has_filter('admin_head', 'colorbox::css')) {
 		?>
@@ -168,14 +168,14 @@ function printAdminHeader($tab, $subtab = NULL) {
 					$('#modal').facebox();
 					$('form.dirtylistening').dirtyForms();
 				});
-				$(function() {
+				$(function () {
 					$(".tooltip ").tooltip({
 						show: 1000,
 						hide: 1000,
 						position: {
 							my: "center bottom-5",
 							at: "center top",
-							using: function(position, feedback) {
+							using: function (position, feedback) {
 								$(this).css(position);
 								$("<div>")
 
@@ -191,7 +191,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						position: {
 							my: "center bottom-5",
 							at: "center top",
-							using: function(position, feedback) {
+							using: function (position, feedback) {
 								$(this).css(position);
 								$("<div>")
 
@@ -202,7 +202,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						}
 					});
 				});
-				jQuery(function($) {
+				jQuery(function ($) {
 					$(".fade-message").fadeTo(5000, 1).fadeOut(1000);
 				})
 				// ]]> -->
@@ -217,7 +217,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.ui.nestedSortable.js"></script>
 			<script type="text/javascript">
 				//<!-- <![CDATA[
-				$(document).ready(function() {
+				$(document).ready(function () {
 
 					$('ul.page-list').nestedSortable({
 						disableNesting: 'no-nest',
@@ -231,7 +231,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						toleranceElement: '> div',
 						listType: 'ul'
 					});
-					$('.serialize').click(function() {
+					$('.serialize').click(function () {
 						serialized = $('ul.page-list').nestedSortable('serialize');
 						if (serialized != original_order) {
 							$('#serializeOutput').html('<input type="hidden" name="order" size="30" maxlength="1000" value="' + serialized + '" />');
@@ -890,7 +890,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'text-' . $postkey; ?>" value="1" />
 								<script type="text/javascript">
 									// <!-- <![CDATA[
-									$(document).ready(function() {
+									$(document).ready(function () {
 										$('#<?php echo $key; ?>_colorpicker').farbtastic('#<?php echo $key; ?>');
 									});
 									// ]]> -->
@@ -914,13 +914,13 @@ function printAdminHeader($tab, $subtab = NULL) {
 								<input type="hidden" id="<?php echo $postkey; ?>" name="<?php echo $postkey; ?>" value="<?php echo $v; ?>" />
 								<script type="text/javascript">
 									// <!-- <![CDATA[
-									$(function() {
+									$(function () {
 										$("#slider-<?php echo $postkey; ?>").slider({
 											startValue: <?php echo (int) $v; ?>,
 											value: <?php echo (int) $v; ?>,
 											min: <?php echo (int) $min; ?>,
 											max: <?php echo (int) $max; ?>,
-											slide: function(event, ui) {
+											slide: function (event, ui) {
 												$("#<?php echo $postkey; ?>").val(ui.value);
 												$("#slider_display-<?php echo $postkey; ?>").html(ui.value);
 											}
@@ -1237,10 +1237,10 @@ function printAdminHeader($tab, $subtab = NULL) {
 			}
 			?>
 			<script>
-				$(function() {
+				$(function () {
 					$("#resizable_<?php echo $postit; ?>").resizable({
 						minHeight: 120,
-						resize: function(event, ui) {
+						resize: function (event, ui) {
 							$(this).css("width", '');
 							$('#list_<?php echo $postit; ?>').height($('#resizable_<?php echo $postit; ?>').height());
 						}
@@ -1476,7 +1476,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 													 name="disclose_password<?php echo $suffix; ?>"
 													 id="disclose_password<?php echo $suffix; ?>"
 													 onclick="passwordClear('<?php echo $suffix; ?>');
-															 togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?>
+																	 togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?>
 									</label>
 								</td>
 								<td>
@@ -1878,7 +1878,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						?>
 						<script type="text/javascript">
 							// <!-- <![CDATA[
-							$(function() {
+							$(function () {
 								$("#<?php echo $prefix; ?>publishdate,#<?php echo $prefix; ?>expirationdate").datepicker({
 									dateFormat: 'yy-mm-dd',
 									showOn: 'button',
@@ -1886,7 +1886,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 									buttonText: '<?php echo addslashes(gettext("calendar")); ?>',
 									buttonImageOnly: true
 								});
-								$('#<?php echo $prefix; ?>publishdate').change(function() {
+								$('#<?php echo $prefix; ?>publishdate').change(function () {
 									var today = new Date();
 									var pub = $('#<?php echo $prefix; ?>publishdate').datepicker('getDate');
 									if (pub.getTime() > today.getTime()) {
@@ -1895,7 +1895,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										$(".<?php echo $prefix; ?>scheduledpublishing").html('');
 									}
 								});
-								$('#<?php echo $prefix; ?>expirationdate').change(function() {
+								$('#<?php echo $prefix; ?>expirationdate').change(function () {
 									var today = new Date();
 									var expiry = $('#<?php echo $prefix; ?>expirationdate').datepicker('getDate');
 									if (expiry.getTime() > today.getTime()) {
@@ -1963,7 +1963,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 } else {
 											 ?>
 											 onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');
-													 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
+															 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
 											 <?php
 										 }
 										 ?> />
@@ -2359,7 +2359,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						<?php
 					} else {
 						?>
-						<a class="delete" href="javascript:confirmDeleteAlbum('?page=edit&amp;action=deletealbum&amp;album=<?php echo urlencode(pathurlencode($album->name)); ?>&amp;return=<?php echo html_encode(pathurlencode(dirname($album->name))); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete') ?>');" title="<?php echo sprintf(gettext("Delete the album %s"), js_encode($album->name)); ?>">
+						<a class="delete" href="javascript:confirmDeleteAlbum('?page=edit&amp;action=deletealbum&amp;album=<?php echo urlencode(pathurlencode($album->name)); ?>&amp;return=<?php echo html_encode(pathurlencode($owner)); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete') ?>');" title="<?php echo sprintf(gettext("Delete the album %s"), js_encode($album->name)); ?>">
 							<img src="images/fail.png" style="border: 0px;" alt="" title="<?php echo sprintf(gettext('Delete the album %s'), js_encode($album->name)); ?>" />
 						</a>
 						<?php
@@ -2736,10 +2736,10 @@ function printAdminHeader($tab, $subtab = NULL) {
 		if ($multi) {
 			?>
 			<script type="text/javascript">
-				$(function() {
+				$(function () {
 					$('#ls_<?php echo $_lsInstance; ?>').resizable({
 						minHeight: 60,
-						resize: function(event, ui) {
+						resize: function (event, ui) {
 							$(this).css("width", '');
 							$('#ul_<?php echo $_lsInstance; ?>').height($('#ls_<?php echo $_lsInstance; ?>').height());
 						}
@@ -4244,7 +4244,7 @@ function codeblocktabsJS() {
 	?>
 	<script type="text/javascript" charset="utf-8">
 		// <!-- <![CDATA[
-		$(function() {
+		$(function () {
 			var tabContainers = $('div.tabs > div');
 			$('.first').addClass('selected');
 		});
@@ -5030,12 +5030,12 @@ function linkPickerIcon($obj, $id = NULL, $extra = NULL) {
 	<a onclick="<?php
 	if ($id) {
 		?>
-				$('#<?php echo $id; ?>').select();
+						$('#<?php echo $id; ?>').select();
 		<?php
 	}
 	?>
-			$('.pickedObject').removeClass('pickedObject');
-			$('#<?php echo $iconid; ?>').addClass('pickedObject');
+					$('.pickedObject').removeClass('pickedObject');
+					$('#<?php echo $iconid; ?>').addClass('pickedObject');
 	<?php linkPickerPick($obj, $id, $extra); ?>"
 		 title="<?php echo gettext('pick source'); ?>">
 		<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" id="<?php echo $iconid; ?>">
