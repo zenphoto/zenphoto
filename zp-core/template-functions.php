@@ -3762,14 +3762,14 @@ function getSearchURL($words, $dates, $fields, $page, $object_list = NULL) {
 			$dates = implode(',', $dates);
 		}
 		if ($rewrite) {
-			$url .= $dates . '/';
+			$url .= $dates;
 		} else {
 			$url .= "&date=$dates";
 		}
 	}
 	if ($page > 1) {
 		if ($rewrite) {
-			$url .= $page;
+			$url .= '/' . $page;
 		} else {
 			if ($urls) {
 				$urls .= '&';
@@ -3877,34 +3877,34 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 		<!-- search form -->
 		<form method="post" action="<?php echo $searchurl; ?>" id="search_form">
 			<script type="text/javascript">
-					// <!-- <![CDATA[
-					var within = <?php echo (int) $within; ?>;
-					function search_(way) {
-						within = way;
-						if (way) {
-							$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
+				// <!-- <![CDATA[
+				var within = <?php echo (int) $within; ?>;
+				function search_(way) {
+					within = way;
+					if (way) {
+						$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
 
-						} else {
-							lastsearch = '';
-							$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
-						}
-						$('#search_input').val('');
+					} else {
+						lastsearch = '';
+						$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
 					}
-					$('#search_form').submit(function () {
-						if (within) {
-							var newsearch = $.trim($('#search_input').val());
-							if (newsearch.substring(newsearch.length - 1) == ',') {
-								newsearch = newsearch.substr(0, newsearch.length - 1);
-							}
-							if (newsearch.length > 0) {
-								$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
-							} else {
-								$('#search_input').val('<?php echo $searchwords; ?>');
-							}
+					$('#search_input').val('');
+				}
+				$('#search_form').submit(function () {
+					if (within) {
+						var newsearch = $.trim($('#search_input').val());
+						if (newsearch.substring(newsearch.length - 1) == ',') {
+							newsearch = newsearch.substr(0, newsearch.length - 1);
 						}
-						return true;
-					});
-					// ]]> -->
+						if (newsearch.length > 0) {
+							$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
+						} else {
+							$('#search_input').val('<?php echo $searchwords; ?>');
+						}
+					}
+					return true;
+				});
+				// ]]> -->
 			</script>
 			<?php echo $prevtext; ?>
 			<div>
