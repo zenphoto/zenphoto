@@ -1,22 +1,38 @@
-	<div id="thumbs-nogal">
-		<ul class="clearfix thumbs-nogal" id="no-gal-ul">
-		<?php $col = 1; ?>
-		<?php while (next_image()) { ?>
-			<?php $lastcol = ''; ?>
-			<?php if ($col == 5) { ?>
+<div id="thumbs-nogal">
+	<ul class="clearfix thumbs-nogal" id="no-gal-ul">
+		<?php
+		define('ARD_COLUMNS', getOption('images_per_row'));
+		$col = 1;
+		while (next_image()) {
+			$lastcol = '';
+			if ($col == ARD_COLUMNS) {
+				?>
 				<li class="no-gal-li-lastimg">
-				<?php $col = 0; ?>
-			<?php } else { ?>
+					<?php
+					$col = 0;
+				} else {
+					?>
 				<li class="no-gal-li">
-			<?php } ?>
-			<?php $fullimage = getFullImageURL(); ?>
-			<?php if ((getOption('use_colorbox_album')) && (!empty($fullimage))) { ?>
-				<a class="thumb colorbox" href="<?php echo html_encode(pathurlencode($fullimage)); ?>" title="<?php echo getBareImageTitle(); ?>"><?php printImageThumb(getAnnotatedImageTitle()); ?></a>
-			<?php } else { ?>
-				<a class="thumb" href="<?php echo html_encode(getImageURL()); ?>" title="<?php echo getBareImageTitle(); ?>"><?php printImageThumb(getAnnotatedImageTitle()); ?></a>
-			<?php } ?>
+					<?php
+				}
+				$fullimage = getFullImageURL();
+				if ((getOption('use_colorbox_album')) && (!empty($fullimage))) {
+					?>
+					<a class="thumb colorbox" href="<?php echo html_encode(pathurlencode($fullimage)); ?>" title="<?php echo getBareImageTitle(); ?>"><?php printImageThumb(getAnnotatedImageTitle()); ?></a>
+					<?php
+				} else {
+					?>
+					<a class="thumb" href="<?php echo html_encode(getImageURL()); ?>" title="<?php echo getBareImageTitle(); ?>"><?php printImageThumb(getAnnotatedImageTitle()); ?></a>
+					<?php
+				}
+				?>
 			</li>
-			<?php $col++; ?>
-		<?php } ?>
-		</ul>
-	</div>
+			<?php
+			if ($col === 0) {
+				echo '<br style="clear:left">';
+			}
+			$col++;
+		}
+		?>
+	</ul>
+</div>

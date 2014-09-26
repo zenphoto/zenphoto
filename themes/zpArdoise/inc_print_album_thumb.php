@@ -1,10 +1,11 @@
 <div id="album-wrap" class="clearfix">
 	<ul>
 		<?php
+		define('ARD_COLUMNS', getOption('albums_per_row'));
 		$col = 1;
 		while (next_album()) {
 			$lastcol = '';
-			if ($col == 3) {
+			if ($col == ARD_COLUMNS) {
 				$lastcol = ' class="lastcol"';
 				$col = 0;
 			}
