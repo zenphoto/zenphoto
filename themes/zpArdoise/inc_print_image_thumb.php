@@ -1,11 +1,11 @@
 <div id="thumbs-nogal">
 	<ul class="clearfix thumbs-nogal" id="no-gal-ul">
 		<?php
-		define('ARD_COLUMNS', getOption('images_per_row'));
+		define('ARD_IMAGE_COLUMNS', getOption('images_per_row'));
 		$col = 1;
 		while (next_image()) {
 			$lastcol = '';
-			if ($col == ARD_COLUMNS) {
+			if ($col == ARD_IMAGE_COLUMNS) {
 				?>
 				<li class="no-gal-li-lastimg">
 					<?php
