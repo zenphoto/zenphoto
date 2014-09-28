@@ -169,10 +169,10 @@ class galleryArticles {
 
 	/**
 	 *
-	 * Formats the message and calls sendTweet() on an object
+	 * publishes the article
 	 * @param object $obj
 	 */
-	private static function publishArticle($obj, $override = NULL) {
+	static function publishArticle($obj, $override = NULL) {
 		global $_zp_CMS;
 		switch ($type = $obj->table) {
 			case 'albums':
