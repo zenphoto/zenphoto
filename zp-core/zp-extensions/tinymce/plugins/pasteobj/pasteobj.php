@@ -218,7 +218,7 @@ function getIPSizedImage($size, $image) {
 						<?php
 						if ($imagef) {
 							?>
-							<label class="nowrap"><input type="radio" name="link" value="thumblinkfull" id="link_thumb_full" onchange="zenchange();" /><?php echo gettext('thumb with link to full image'); ?></label>
+							<label class="nowrap"><input type="radio" name="link" value="thumblinkfull" id="link_thumb_full" onchange="zenchange();" /><?php echo gettext('thumb with link to full-sized image'); ?></label>
 							<?php
 						}
 						if ($link2) {
@@ -240,7 +240,7 @@ function getIPSizedImage($size, $image) {
 					<?php
 					if ($imagef) {
 						?>
-						<label class="nowrap"><input type="radio" name="link" value="imagelinkfull" id="link_image_full" onchange="zenchange();" /><?php echo gettext('image with link to full image'); ?></label>
+						<label class="nowrap"><input type="radio" name="link" value="imagelinkfull" id="link_image_full" onchange="zenchange();" /><?php echo gettext('image with link to full-sized image'); ?></label>
 						<?php
 					}
 					?>
