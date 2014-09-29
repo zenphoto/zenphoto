@@ -22,7 +22,7 @@
  * <b>NOTE:</b> This plugin does not expire users with <var>ADMIN_RIGHTS</var>!
  *
  * @author Stephen Billard (sbillard)
- * 
+ *
  * @package plugins
  * @subpackage users
  */
@@ -75,7 +75,7 @@ class user_expiry {
 										gettext('Warning interval')			 => array('key'		 => 'user_expiry_warn_interval', 'type'	 => OPTION_TYPE_NUMBER,
 														'order'	 => 2,
 														'desc'	 => gettext('The period in days before the expiry during which a warning message will be sent to the user. (If set to zero, no warning occurs.)')),
-										gettext('Auto renew')						 => array('key'		 => 'user_expiry_auto_renew', 'type'	 => OPTION_TYPE_NUMBER,
+										gettext('Auto renew')						 => array('key'		 => 'user_expiry_auto_renew', 'type'	 => OPTION_TYPE_CHECKBOX,
 														'order'	 => 3,
 														'desc'	 => gettext('Automatically renew the subscription if the user visits during the warning period.')),
 										gettext('Password cycle')				 => array('key'		 => 'user_expiry_password_cycle', 'type'	 => OPTION_TYPE_NUMBER,
