@@ -19,7 +19,7 @@ function zpRewriteURL($query) {
 		sanitize($query);
 		switch ($query['p']) {
 			case 'news':
-				$redirectURL = _NEWS_ . '/';
+				$redirectURL = _NEWS_;
 				if (isset($query['category'])) {
 					$obj = new Category(rtrim($query['category'], '/'), false);
 					if (!$obj->loaded)
@@ -66,14 +66,10 @@ function zpRewriteURL($query) {
 				break;
 		}
 		unset($query['p']);
-		$redirectURL = preg_replace('~^' . WEBPATH . '/~', '', $redirectURL);
 		if (isset($query['page'])) {
-			$redirectURL.='/' . rtrim($query['page'], '/');
+			$redirectURL = rtrim($redirectURL, '/') . '/' . rtrim($query['page'], '/');
 			unset($query['page']);
 		}
-		$q = http_build_query($query);
-		if ($q)
-			$redirectURL .= '?' . $q;
 	} else if (isset($query['album'])) {
 		if (isset($query['image'])) {
 			$obj = newImage(NULL, array('folder' => $query['album'], 'filename' => $query['image']), true);
@@ -81,14 +77,21 @@ function zpRewriteURL($query) {
 		} else {
 			$obj = newAlbum($query['album'], NULL, true);
 		}
-		unset($query['album']);
 		if (!$obj->exists)
 			return '';
-		$redirectURL = preg_replace('~^' . WEBPATH . '/~', '', $obj->getLink());
-		$q = http_build_query($query);
-		if ($q)
-			$redirectURL .= '?' . $q;
+
+		unset($query['album']);
+		$redirectURL = preg_replace('~^' . WEBPATH . '/~', '', $obj->getLink(@$query['page']));
+		unset($query['page']);
+	} else if (isset($query['page'])) { //index page
+		$redirectURL = _PAGE_ . '/' . rtrim($query['page'], '/');
+		unset($query['page']);
 	}
+
+	if ($redirectURL && !empty($query)) {
+		$redirectURL .= '?' . http_build_query($query);
+	}
+
 	return $redirectURL;
 }
 
@@ -101,10 +104,14 @@ function fix_path_redirect() {
 		$request_uri = getRequestURI();
 		$parts = parse_url($request_uri);
 		$redirectURL = NULL;
+
 		if (isset($parts['query'])) {
 			parse_str($parts['query'], $query);
 			$redirectURL = zpRewriteURL($query);
+		} else {
+			$query = array();
 		}
+
 		if (isset($_GET['album'])) {
 			if (isset($_GET['image'])) {
 				//image URLs should not end in a slash
@@ -118,42 +125,51 @@ function fix_path_redirect() {
 				}
 			}
 		}
+
 		if (isset($_GET['p'])) {
-			//page numbers do not have trailing slash
-			if (isset($_GET['page'])) {
-				if (substr($parts['path'], -1, 1) == '/') {
-					$redirectURL = zpRewriteURL($_GET);
-				}
-			} else {
-				switch ($_GET['p']) {
-					case 'news':
-						if (isset($_GET['title'])) {
-							//article URLs should not end in slash
-							if (substr($parts['path'], -1, 1) == '/') {
-								$redirectURL = zpRewriteURL($_GET);
-							}
-						} else {
-							//should be news/
-							if (substr($parts['path'], -1, 1) != '/') {
-								$redirectURL = zpRewriteURL($_GET);
-							}
+			switch ($_GET['p']) {
+				case 'news':
+					if (isset($_GET['title'])) {
+						//article URLs should not end in slash
+						if (substr($parts['path'], -1, 1) == '/') {
+							$redirectURL = zpRewriteURL($_GET);
 						}
-						break;
-					case 'search':
-						if (isset($_GET['date'])) {
-							if (substr($parts['path'], -1, 1) != '/') {
-								$redirectURL = zpRewriteURL($_GET);
-							}
+					} else {
+						//should be news/
+						if (substr($parts['path'], -1, 1) != '/') {
+							$redirectURL = zpRewriteURL($_GET);
 						}
-						break;
-				}
+					}
+					break;
+				case 'search':
+					if (isset($_GET['date'])) {
+						if (substr($parts['path'], -1, 1) != '/') {
+							$redirectURL = zpRewriteURL($_GET);
+						}
+					}
+					break;
 			}
 		}
+		//page numbers do not have trailing slash
+		if (isset($_GET['page'])) {
+			if (substr($parts['path'], -1, 1) == '/') {
+				$redirectURL = zpRewriteURL($_GET);
+			}
+		}
+
 		if ($redirectURL) {
-			header("HTTP/1.0 301 Moved Permanently");
-			header("Status: 301 Moved Permanently");
-			header('Location: ' . FULLWEBPATH . '/' . $redirectURL);
-			exitZP();
+			$parts2 = parse_url($redirectURL);
+			if (isset($parts2['query'])) {
+				parse_str($parts2['query'], $query2);
+			} else {
+				$query2 = array();
+			}
+			if ($query != $query2 || preg_replace('~^' . WEBPATH . '/~', '', $parts['path']) != preg_replace('~^' . WEBPATH . '/~', '', $parts2['path'])) {
+				header("HTTP/1.0 301 Moved Permanently");
+				header("Status: 301 Moved Permanently");
+				header('Location: ' . FULLWEBPATH . '/' . preg_replace('~^' . WEBPATH . '/~', '', $redirectURL));
+				exitZP();
+			}
 		}
 	}
 }

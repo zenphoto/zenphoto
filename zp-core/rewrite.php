@@ -123,7 +123,7 @@ function getRules() {
 	}
 
 	$rules = explode("_SPECIAL_", trim($rules));
-	$rules = array_merge(explode("\n", $rules[0]), $specialPageRules, explode("\n", $rules[1]), array("\t#### Catch-all", "\t" . 'RewriteRule ^(.*)/?$	index.php?album=$1 [L,QSA]'));
+	$rules = array_merge(explode("\n", $rules[0]), $specialPageRules, explode("\n", $rules[1]), array("\t#### Catch-all", "\t" . 'RewriteRule ^(.*?)/*$	index.php?album=$1 [L,QSA]'));
 	return array($definitions, $rules);
 }
 

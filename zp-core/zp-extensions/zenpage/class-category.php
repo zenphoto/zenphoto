@@ -473,7 +473,7 @@ class Category extends CMSRoot {
 	function getLink($page = NULL) {
 		global $_zp_CMS;
 		if ($page > 1) {
-			$pager = $page . '/';
+			$pager = $page;
 			$page = '&p=' . $page;
 		} else {
 			$pager = $page = '';

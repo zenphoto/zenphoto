@@ -10,7 +10,7 @@
  * obscure the information that they might convey.
  *
  * @author Stephen Billard (sbillard)
- * 
+ *
  * @package plugins
  * @subpackage admin
  */
@@ -39,9 +39,9 @@ switch (OFFSET_PATH) {
 }
 $_zp_conf_vars['special_pages']['tiny'] = array('define'	 => '_TINY_', 'rewrite'	 => getOption('tinyURL_text'),
 				'option'	 => 'tinyURL_text', 'default'	 => 'tiny/');
-$_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%TINY%([0-9]+)/?$',
+$_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%TINY%([0-9]+)/*$',
 				'rule'		 => '%REWRITE% index.php?p=$1&t [L,QSA]');
-$_zp_conf_vars['special_pages'][] = array('define' => false, 'rewrite' => '^%TINY%([0-9]+)/([0-9]+)/?$', 'rule' => '%REWRITE% index.php?p=$1&page=$2&t [L,QSA]');
+$_zp_conf_vars['special_pages'][] = array('define' => false, 'rewrite' => '^%TINY%([0-9]+)/([0-9]+)/*$', 'rule' => '%REWRITE% index.php?p=$1&page=$2&t [L,QSA]');
 $_zp_conf_vars['special_pages'][] = array('definition' => '%TINY%', 'rewrite' => '_TINY_');
 
 class tinyURL {
