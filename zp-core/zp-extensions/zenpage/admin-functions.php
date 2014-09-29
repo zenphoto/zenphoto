@@ -512,26 +512,61 @@ function printCategorySelection($id = '', $option = '') {
 	echo "</ul>\n";
 }
 
+function printAuthorDropdown() {
+	$rslt = query_full_array('SELECT DISTINCT `author` FROM ' . prefix('news'));
+	if (count($rslt) > 1) {
+		$authors = array();
+		foreach ($rslt as $row) {
+			$authors[] = $row['author'];
+		}
+		if (isset($_GET['author'])) {
+			$cur_author = sanitize($_GET['author']);
+			$selected = 'selected="selected"';
+		} else {
+			$selected = $cur_author = NULL;
+		}
+		$option = getNewsAdminOption(array('category' => 0, 'date' => 0, 'published' => 0, 'sortorder' => 0, 'articles_page' => 1));
+		?>
+		<form name="AutoListBox0" id="articleauthordropdown" style="float:left; margin:5px;" action="#" >
+			<select name="ListBoxURL" size="1" onchange="gotoLink(this.form)">
+				<?php
+				echo "<option $selected value='admin-news-articles.php" . getNewsAdminOptionPath($option) . "'>" . gettext("All Authors") . "</option>";
+				foreach ($authors as $author) {
+					if ($cur_author == $author) {
+						$selected = 'selected="selected"';
+					} else {
+						$selected = '';
+					}
+					echo "<option $selected value='admin-news-articles.php" . getNewsAdminOptionPath(array_merge(array('author' => $author), $option)) . "'>$author</option>\n";
+				}
+				?>
+			</select>
+
+		</form>
+		<?php
+	}
+}
+
 /**
  * Prints the dropdown menu for the date archive selector for the news articles list
  *
  */
 function printNewsDatesDropdown() {
-	global $_zp_CMS, $subpage;
+	global $_zp_CMS;
 	$datecount = $_zp_CMS->getAllArticleDates();
 	$lastyear = "";
 	$nr = "";
-	$option = getNewsAdminOption(array('category' => 0, 'published' => 0, 'sortorder' => 0, 'articles_page' => 1));
+	$option = getNewsAdminOption(array('author' => 0, 'category' => 0, 'published' => 0, 'sortorder' => 0, 'articles_page' => 1));
 	if (!isset($_GET['date'])) {
-		$selected = 'selected="selected"';
+		$selected = 'selected = "selected"';
 	} else {
 		$selected = "";
 	}
 	?>
-	<form name="AutoListBox1" id="articledatesdropdown" style="float:left; margin-left: 10px;" action="#" >
+	<form name="AutoListBox1" id="articledatesdropdown" style="float:left; margin:5px;" action="#" >
 		<select name="ListBoxURL" size="1" onchange="gotoLink(this.form)">
 			<?php
-			echo "<option $selected value='admin-news-articles.php" . getNewsAdminOptionPath(array_merge(array('date' => 'all'), $option)) . "'>" . gettext("View all months") . "</option>";
+			echo "<option $selected value='admin-news-articles.php" . getNewsAdminOptionPath($option) . "'>" . gettext("View all months") . "</option>";
 			while (list($key, $val) = each($datecount)) {
 				$nr++;
 				if ($key == '0000-00-01') {
@@ -557,14 +592,7 @@ function printNewsDatesDropdown() {
 			}
 			?>
 		</select>
-		<script type="text/javascript" >
-			// <!-- <![CDATA[
-			function gotoLink(form) {
-				var OptionIndex = form.ListBoxURL.selectedIndex;
-				parent.location = form.ListBoxURL.options[OptionIndex].value;
-			}
-			// ]]> -->
-		</script>
+
 	</form>
 	<?php
 }
@@ -590,7 +618,7 @@ function getNewsAdminOption($test) {
 }
 
 /**
- * Creates the admin paths for news articles if you use the dropdowns on the admin news article list together
+ * Crea tes the a dmin paths for news articles if you use the dropdowns on the admin news article list together
  *
  * @param array $list an parameter array of item=>value for instance, the result of getNewsAdminOption()
  * @return string
@@ -610,13 +638,13 @@ function getNewsAdminOptionPath($list) {
 }
 
 /**
- * Prints the dropdown menu for the published/un-publishd selector for the news articles list
+ * Prints the dropdown menu for the published/un- publis hd selector for the news articles list
  *
  */
 function printUnpublishedDropdown() {
 	global $_zp_CMS;
 	?>
-	<form name="AutoListBox3" id="unpublisheddropdown" style="float: left; margin-left: 10px;"	action="#">
+	<form name="AutoListBox3" id="unpublisheddropdown" style="float:left; margin:5px;"	action="#">
 		<select name="ListBoxURL" size="1"	onchange="gotoLink(this.form)">
 			<?php
 			$all = "";
@@ -638,21 +666,14 @@ function printUnpublishedDropdown() {
 			} else {
 				$all = "selected='selected'";
 			}
-			$option = getNewsAdminOption(array('category' => 0, 'date' => 0, 'sortorder' => 0, 'articles_page' => 1));
+			$option = getNewsAdminOption(array('author' => 0, 'category' => 0, 'date' => 0, 'sortorder' => 0, 'articles_page' => 1));
 			echo "<option $all value='admin-news-articles.php" . getNewsAdminOptionPath($option) . "'>" . gettext("All articles") . "</option>\n";
 			echo "<option $published value='admin-news-articles.php" . getNewsAdminOptionPath(array_merge(array('published' => 'yes'), $option)) . "'>" . gettext("Published") . "</option>\n";
 			echo "<option $unpublished value='admin-news-articles.php" . getNewsAdminOptionPath(array_merge(array('published' => 'no'), $option)) . "'>" . gettext("Un-published") . "</option>\n";
 			echo "<option $sticky value='admin-news-articles.php" . getNewsAdminOptionPath(array_merge(array('published' => 'sticky'), $option)) . "'>" . gettext("Sticky") . "</option>\n";
 			?>
 		</select>
-		<script type="text/javascript">
-			// <!-- <![CDATA[
-			function gotoLink(form) {
-				var OptionIndex = form.ListBoxURL.selectedIndex;
-				parent.location = form.ListBoxURL.options[OptionIndex].value;
-			}
-			// ]]> -->
-		</script>
+
 	</form>
 	<?php
 }
@@ -664,7 +685,7 @@ function printUnpublishedDropdown() {
 function printSortOrderDropdown() {
 	global $_zp_CMS;
 	?>
-	<form name="AutoListBox4" id="sortorderdropdown" style="float: left; margin-left: 10px;"	action="#">
+	<form name="AutoListBox4" id="sortorderdropdown" style="float:left; margin:5px;"	action="#">
 		<select name="ListBoxURL" size="1"	onchange="gotoLink(this.form)">
 			<?php
 			$orderdate_desc = '';
@@ -689,21 +710,14 @@ function printSortOrderDropdown() {
 			} else {
 				$orderdate_desc = "selected='selected'";
 			}
-			$option = getNewsAdminOption(array('category' => 0, 'date' => 0, 'published' => 0, 'articles_page' => 1));
+			$option = getNewsAdminOption(array('author' => 0, 'category' => 0, 'date' => 0, 'published' => 0, 'articles_page' => 1));
 			echo "<option $orderdate_desc value='admin-news-articles.php" . getNewsAdminOptionPath(array_merge(array('sortorder' => 'date-desc'), $option)) . "'>" . gettext("Order by date descending") . "</option>\n";
 			echo "<option $orderdate_asc value='admin-news-articles.php" . getNewsAdminOptionPath(array_merge(array('sortorder' => 'date-asc'), $option)) . "'>" . gettext("Order by date ascending") . "</option>\n";
 			echo "<option $ordertitle_desc value='admin-news-articles.php" . getNewsAdminOptionPath(array_merge(array('sortorder' => 'title-desc'), $option)) . "'>" . gettext("Order by title descending") . "</option>\n";
 			echo "<option $ordertitle_asc value='admin-news-articles.php" . getNewsAdminOptionPath(array_merge(array('sortorder' => 'title-asc'), $option)) . "'>" . gettext("Order by title ascending") . "</option>\n";
 			?>
 		</select>
-		<script type="text/javascript">
-			// <!-- <![CDATA[
-			function gotoLink(form) {
-				var OptionIndex = form.ListBoxURL.selectedIndex;
-				parent.location = form.ListBoxURL.options[OptionIndex].value;
-			}
-			// ]]> -->
-		</script>
+
 	</form>
 	<?php
 }
@@ -715,77 +729,72 @@ function printSortOrderDropdown() {
 function printCategoryDropdown() {
 	global $_zp_CMS;
 	$result = $_zp_CMS->getAllCategories(false);
-	if (isset($_GET['date'])) {
-		$datelink = "&amp;date=" . sanitize($_GET['date']);
-		$datelinkall = "?date=" . sanitize($_GET['date']);
-	} else {
-		$datelink = "";
-		$datelinkall = "";
-	}
+	if (count($result) > 0) {
+		if (isset($_GET['date'])) {
+			$datelink = "&amp;date=" . sanitize($_GET['date']);
+			$datelinkall = "?date=" . sanitize($_GET['date']);
+		} else {
+			$datelink = "";
+			$datelinkall = "";
+		}
 
-	if (isset($_GET['category'])) {
-		$selected = '';
-		$category = sanitize($_GET['category']);
-	} else {
-		$selected = "selected='selected'";
-		$category = "";
-	}
-	?>
-	<form name ="AutoListBox2" id="categorydropdown" style="float:left" action="#" >
-		<select name="ListBoxURL" size="1" onchange="gotoLink(this.form)">
-			<?php
-			$option = getNewsAdminOption(array('date' => 0, 'published' => 0, 'sortorder' => 0, 'articles_page' => 1));
-			echo "<option $selected value='admin-news-articles.php" . getNewsAdminOptionPath($option) . "'>" . gettext("All categories") . "</option>\n";
+		if (isset($_GET['category'])) {
+			$selected = '';
+			$category = sanitize($_GET['category']);
+		} else {
+			$selected = "selected='selected'";
+			$category = "";
+		}
+		$option = getNewsAdminOption(array('author' => 0, 'date' => 0, 'published' => 0, 'sortorder' => 0, 'articles_page' => 1));
+		?>
+		<form name ="AutoListBox2" id="categorydropdown" style="float:left; margin:5px;" action="#" >
+			<select name="ListBoxURL" size="1" onchange="gotoLink(this.form)">
+				<?php
+				echo "<option $selected value='admin-news-articles.php" . getNewsAdminOptionPath($option) . "'>" . gettext("All categories") . "</option>\n";
 
-			foreach ($result as $cat) {
-				$catobj = newCategory($cat['titlelink']);
-				// check if there are articles in this category. If not don't list the category.
-				$count = count($catobj->getArticles(0, 'all'));
-				$count = " (" . $count . ")";
-				if ($category == $cat['titlelink']) {
-					$selected = "selected='selected'";
-				} else {
-					$selected = "";
+				foreach ($result as $cat) {
+					$catobj = newCategory($cat['titlelink']);
+					// check if there are articles in this category. If not don't list the category.
+					$count = count($catobj->getArticles(0, 'all'));
+					$count = " (" . $count . ")";
+					if ($category == $cat['titlelink']) {
+						$selected = "selected='selected'";
+					} else {
+						$selected = "";
+					}
+					//This is much easier than hacking the nested list function to work with this
+					$getparents = $catobj->getParents();
+					$levelmark = '';
+					foreach ($getparents as $parent) {
+						$levelmark .= '» ';
+					}
+					$title = $catobj->getTitle();
+					if (empty($title)) {
+						$title = '*' . $catobj->getTitlelink() . '*';
+					}
+					if ($count != " (0)") {
+						echo "<option $selected value='admin-news-articles.php" . getNewsAdminOptionPath(array_merge(array(
+										'category' => $catobj->getTitlelink()), $option)) . "'>" . $levelmark . $title . $count . "</option>\n";
+					}
 				}
-				//This is much easier than hacking the nested list function to work with this
-				$getparents = $catobj->getParents();
-				$levelmark = '';
-				foreach ($getparents as $parent) {
-					$levelmark .= '» ';
-				}
-				$title = $catobj->getTitle();
-				if (empty($title)) {
-					$title = '*' . $catobj->getTitlelink() . '*';
-				}
-				if ($count != " (0)") {
-					echo "<option $selected value='admin-news-articles.php" . getNewsAdminOptionPath(array_merge(array('category' => $catobj->getTitlelink()), $option)) . "'>" . $levelmark . $title . $count . "</option>\n";
-				}
-			}
-			?>
-		</select>
-		<script type="text/javascript" >
-			// <!-- <![CDATA[
-			function gotoLink(form) {
-				var OptionIndex = form.ListBoxURL.selectedIndex;
-				parent.location = form.ListBoxURL.options[OptionIndex].value;
-			}
-			// ]]> -->
-		</script>
-	</form>
-	<?php
+				?>
+			</select>
+		</form>
+		<?php
+	}
 }
 
 /**
  * Prints the dropdown menu for the articles per page selector for the news articles list
  *
  */
-function printArticlesPerPageDropdown() {
-	global $_zp_CMS, $subpage, $articles_page;
+function printArticlesPerPageDropdown($subpage) {
+	global $_zp_CMS, $articles_page;
+	$option = getNewsAdminOption(array('author' => 0, 'category' => 0, 'date' => 0, 'published' => 0, 'sortorder' => 0));
 	?>
-	<form name="AutoListBox5" id="articlesperpagedropdown" method="POST" style="float: left; margin-left: 10px;"	action="#">
+	<form name="AutoListBox5" id="articlesperpagedropdown" method="POST" style="float:left; margin:5px;"	action="#">
 		<select name="ListBoxURL" size="1"	onchange="gotoLink(this.form)">
 			<?php
-			$option = getNewsAdminOption(array('category' => 0, 'date' => 0, 'published' => 0, 'sortorder' => 0));
 			$list = array_unique(array(15, 30, 60, max(1, getOption('articles_per_page'))));
 			sort($list);
 			foreach ($list as $count) {
@@ -795,17 +804,8 @@ function printArticlesPerPageDropdown() {
 			}
 			?>
 			<option <?php if ($articles_page == 0) echo 'selected="selected"'; ?> value="admin-news-articles.php<?php echo getNewsAdminOptionPath(array_merge(array('articles_page' => 'all'), $option)); ?>"><?php echo gettext("All"); ?></option>
-
 		</select>
-		<script type="text/javascript">
-			// <!-- <![CDATA[
-			function gotoLink(form) {
-				var OptionIndex = form.ListBoxURL.selectedIndex;
-				parent.location = form.ListBoxURL.options[OptionIndex].value;
-			}
-			// ]]> -->
-		</script>
-		&nbsp;&nbsp;
+
 	</form>
 	<?php
 }
@@ -823,7 +823,8 @@ function printArticlesPerPageDropdown() {
  */
 function updateCategory(&$reports, $newcategory = false) {
 	$date = date('Y-m-d_H-i-s');
-	$id = sanitize_numeric($_POST['id']);
+	$id = sanitize_numeric($_POST[
+					'id']);
 	$permalink = getcheckboxState('permalink');
 	$title = process_language_string_save("title", 2);
 	$desc = process_language_string_save("desc", EDITOR_SANITIZE_LEVEL);
@@ -837,14 +838,16 @@ function updateCategory(&$reports, $newcategory = false) {
 		if ($rslt) {
 			//already exists
 			$time = explode(' ', microtime());
-			$titlelink = $titlelink . '_' . ($time[1] + $time[0]);
+			$titlelink = $titlelink . '_' . ($time[
+							1] + $time[0]);
 			$reports[] = "<p class='warningbox fade-message'>" . gettext('Duplicate category title') . '</p>';
 		}
 		$oldtitlelink = $titlelink;
 	} else {
 		$titlelink = $oldtitlelink = sanitize($_POST['titlelink-old'], 3);
 		if (getcheckboxState('edittitlelink')) {
-			$titlelink = sanitize($_POST['titlelink'], 3);
+			$titlelink = sanitize($_POST[
+							'titlelink'], 3);
 			if (empty($titlelink)) {
 				$titlelink = seoFriendly(get_language_string($title));
 				if (empty($titlelink)) {
@@ -893,7 +896,8 @@ function updateCategory(&$reports, $newcategory = false) {
 		} else if ($notice) {
 			$reports[] = "<p class='errorbox fade-message'>" . gettext('Your passwords were empty or did not match') . '</p>';
 		} else {
-			$reports[] = "<p class='messagebox fade-message'>" . sprintf(gettext("Category <em>%s</em> added"), $titlelink) . '</p>';
+			$reports[
+							] = "<p class='messagebox fade-message'>" . sprintf(gettext("Category <em>%s</em> added"), $titlelink) . '</p>';
 		}
 	} else {
 		$msg = zp_apply_filter('update_category', '', $cat, $oldtitlelink);
@@ -1350,8 +1354,8 @@ function zenpageJSCSS() {
 	<link rel="stylesheet" href="zenpage.css" type="text/css" />
 	<script type="text/javascript">
 		// <!-- <![CDATA[
-		$(document).ready(function() {
-			$("#tip a").click(function() {
+		$(document).ready(function () {
+			$("#tip a").click(function () {
 				$("#tips").toggle("slow");
 			});
 		});

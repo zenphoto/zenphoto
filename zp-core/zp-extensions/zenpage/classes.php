@@ -256,6 +256,8 @@ class CMS {
 		if ($category) {
 			$newsCacheIndex .= '-' . $category->getTitlelink();
 		}
+		$showConjunction = ' WHERE ';
+
 		if (isset($_zp_newsCache[$newsCacheIndex])) {
 			$result = $_zp_newsCache[$newsCacheIndex];
 		} else {
@@ -279,8 +281,6 @@ class CMS {
 				} else {
 					$cat = " cat.cat_id = '" . $catid . "' AND cat.news_id = news.id ";
 				}
-			} else {
-				$showConjunction = ' WHERE ';
 			}
 
 			if ($sticky) {
@@ -345,8 +345,8 @@ class CMS {
 			}
 			$order = " ORDER BY $sticky";
 
+			$datesearch = '';
 			if (in_context(ZP_ZENPAGE_NEWS_DATE)) {
-				$datesearch = '';
 				switch ($published) {
 					case "published":
 						$datesearch = "date LIKE '$_zp_post_date%' ";
@@ -359,11 +359,8 @@ class CMS {
 						break;
 				}
 				if ($datesearch) {
-					if ($show) {
-						$datesearch = ' AND ' . $datesearch;
-					} else {
-						$datesearch = ' WHERE ' . $datesearch;
-					}
+
+					$datesearch = $showConjunction . $datesearch . ' ';
 				}
 				$order .= " date DESC";
 			} else {
@@ -376,9 +373,9 @@ class CMS {
 				$order .= $sort1;
 			}
 			if ($category) {
-				$sql = "SELECT DISTINCT news.date, news.title, news.titlelink, news.sticky FROM " . prefix('news') . " as news, " . prefix('news2cat') . " as cat WHERE" . $cat . $show . $order;
+				$sql = "SELECT DISTINCT news.date, news.title, news.titlelink, news.sticky FROM " . prefix('news') . " as news, " . prefix('news2cat') . " as cat WHERE" . $cat . $show . $datesearch . $order;
 			} else {
-				$sql = "SELECT date, title, titlelink, sticky FROM " . prefix('news') . $show . $datesearch . " " . $order;
+				$sql = "SELECT date, title, titlelink, sticky FROM " . prefix('news') . $show . $datesearch . $order;
 			}
 
 			$resource = query($sql);
