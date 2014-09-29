@@ -1248,11 +1248,11 @@ class Album extends AlbumBase {
 		$rslt = false;
 		if (PersistentObject::remove()) {
 			foreach ($this->getImages() as $filename) {
-				$image = newImage($this, $filename);
+				$image = newImage($this, $filename, true);
 				$image->remove();
 			}
 			foreach ($this->getAlbums() as $folder) {
-				$subalbum = newAlbum($folder);
+				$subalbum = newAlbum($folder, true, true);
 				$subalbum->remove();
 			}
 			$curdir = getcwd();

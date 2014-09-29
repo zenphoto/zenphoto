@@ -72,11 +72,22 @@ datepickerJS();
 			return true;
 		}
 	}
+
+	function gotoLink(form) {
+		var OptionIndex = form.ListBoxURL.selectedIndex;
+		parent.location = form.ListBoxURL.options[OptionIndex].value;
+	}
 	// ]]> -->
 </script>
+
 </head>
 <body>
 	<?php
+	if (isset($_GET['author'])) {
+		$cur_author = sanitize($_GET['author']);
+	} else {
+		$cur_author = NULL;
+	}
 	printLogoAndLinks();
 	?>
 	<div id="main">
@@ -101,8 +112,11 @@ datepickerJS();
 				?>
 				<h1><?php echo gettext('Articles'); ?>
 					<?php
+					if (isset($_GET['author'])) {
+						echo "<em><small>" . html_encode(sanitize($_GET['author'])) . '</small></em>';
+					}
 					if (isset($_GET['category'])) {
-						echo "<em>" . html_encode(sanitize($_GET['category'])) . '</em>';
+						echo "<em><small>" . html_encode(sanitize($_GET['category'])) . '</small></em>';
 					}
 					if (isset($_GET['date'])) {
 						$_zp_post_date = sanitize($_GET['date']);
@@ -139,13 +153,13 @@ datepickerJS();
 					$result = $_zp_CMS->getArticles(0, $published, false, $sortorder, $direction, false, $catobj);
 					foreach ($result as $key => $article) {
 						$article = newArticle($article['titlelink']);
-						if (!$article->isMyItem(ZENPAGE_NEWS_RIGHTS)) {
+						if (!$article->isMyItem(ZENPAGE_NEWS_RIGHTS) || ($cur_author && $cur_author != $article->getAuthor())) {
 							unset($result[$key]);
 						}
 					}
 					foreach ($resultU as $key => $article) {
 						$article = newArticle($article['titlelink']);
-						if (!$article->isMyItem(ZENPAGE_NEWS_RIGHTS)) {
+						if (!$article->isMyItem(ZENPAGE_NEWS_RIGHTS) || ($cur_author && $cur_author != $article->getAuthor())) {
 							unset($resultU[$key]);
 						}
 					}
@@ -190,10 +204,11 @@ datepickerJS();
 					<span class="zenpagestats"><?php printNewsStatistic($articles, count($resultU)); ?></span></h1>
 				<div class="floatright">
 					<?php
-					printCategoryDropdown($subpage);
-					printNewsDatesDropdown($subpage);
-					printUnpublishedDropdown($subpage);
-					printSortOrderDropdown($subpage);
+					printAuthorDropdown();
+					printCategoryDropdown();
+					printNewsDatesDropdown();
+					printUnpublishedDropdown();
+					printSortOrderDropdown();
 					printArticlesPerPageDropdown($subpage);
 					?>
 					<span class="buttons">

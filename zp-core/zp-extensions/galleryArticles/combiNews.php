@@ -57,7 +57,7 @@ class Combi extends CMS {
 			$show = "";
 			$imagesshow = "";
 		}
-		getAllAccessibleAlbums($_zp_gallery, $albumlist, false);
+		self::getAllAccessibleAlbums($_zp_gallery, $albumlist);
 		if (empty($albumlist)) {
 			$albumWhere = 'albums.`id` is NULL';
 		} else {
@@ -233,6 +233,23 @@ class Combi extends CMS {
 		return $result;
 	}
 
+	/**
+	 * Gets an array of the album ids of all accessible albums (publich or user dependend)
+	 *
+	 * @param object $obj from whence to get the albums
+	 * @param array $albumlist collects the list
+	 */
+	protected function getAllAccessibleAlbums($obj, &$albumlist) {
+		$locallist = $obj->getAlbums();
+		foreach ($locallist as $folder) {
+			$album = newAlbum($folder);
+			If (!$album->isDynamic() && $album->checkAccess()) {
+				$albumlist[] = $album->getID();
+				self::getAllAccessibleAlbums($album, $albumlist);
+			}
+		}
+	}
+
 }
 
 global $plugin_is_filter;
@@ -240,26 +257,26 @@ enableExtension('galleryArticles', $plugin_is_filter);
 
 $obj = new Combi();
 $combi = $obj->getOldCombiNews();
-$cat = newCategory('combiNews', true);
+$cat = newCategory('combinews', true);
 $cat->setTitle(gettext('combiNews'));
 $cat->setDesc(gettext('Auto category for ported combi-news articles.'));
 $cat->save();
+
 foreach ($combi as $article) {
 	switch ($article['type']) {
 		case 'images':
 			$obj = newImage(NULL, array('folder' => $article['albumname'], 'filename' => $article['titlelink']), false);
-			if ($obj->exists) {
-				$obj->setPublishDate($article['date']);
-				self::publishArticle($obj, 'combiNews');
-			}
 			break;
 		case 'albums':
 			$obj = newAlbum($article['albumname'], false);
-			if ($obj->exists) {
-				$obj->setPublishDate($article['date']);
-				self::publishArticle($obj, 'combiNews');
-			}
 			break;
+		default:
+			$obj = NULL;
+			break;
+	}
+	if ($obj && $obj->exists) {
+		$obj->setPublishDate($article['date']);
+		galleryArticles::publishArticle($obj, 'combinews');
 	}
 }
 purgeOption('zenpage_combinews');
