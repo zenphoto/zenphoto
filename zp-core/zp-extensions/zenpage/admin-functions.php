@@ -530,7 +530,7 @@ function printAuthorDropdown() {
 		<form name="AutoListBox0" id="articleauthordropdown" style="float:left; margin:5px;" action="#" >
 			<select name="ListBoxURL" size="1" onchange="gotoLink(this.form)">
 				<?php
-				echo "<option $selected value='admin-news-articles.php" . getNewsAdminOptionPath($option) . "'>" . gettext("All Authors") . "</option>";
+				echo "<option $selected value='admin-news-articles.php" . getNewsAdminOptionPath($option) . "'>" . gettext("All authors") . "</option>";
 				foreach ($authors as $author) {
 					if ($cur_author == $author) {
 						$selected = 'selected="selected"';

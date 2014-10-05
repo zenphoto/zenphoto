@@ -522,7 +522,7 @@ class AlbumBase extends MediaObject {
 		$rewrite = pathurlencode($this->linkname) . '/';
 		$plain = '/index.php?album=' . pathurlencode($this->name);
 		if ($page > 1) {
-			$rewrite .=_PAGE_ . '/' . $page . '/';
+			$rewrite .=_PAGE_ . '/' . $page;
 			$plain .= "&page=$page";
 		}
 		return zp_apply_filter('getLink', rewrite_path($rewrite, $plain), $this, $page);

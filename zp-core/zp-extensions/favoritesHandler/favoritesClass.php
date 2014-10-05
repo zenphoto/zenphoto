@@ -310,7 +310,7 @@ class favorites extends AlbumBase {
 			$link_no .= '&instance=' . $instance;
 		}
 		if ($page > 1) {
-			$link .= $page . '/';
+			$link .= $page;
 			$link_no .= '&page=' . $page;
 		}
 		return zp_apply_filter('getLink', rewrite_path($link, $link_no), 'favorites.php', $page);
