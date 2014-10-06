@@ -105,6 +105,7 @@
 <h2>Cloning improvements</h2>
 <p>When you clone an installation ZenPhoto20 will automataically setup the configuration and initial user of the clone. The initial user will be the user who executed the clone operation. He his logon to the clone install will be identical to the his logon to the master when the clone was created.</p>
 <p>If setup is run on the master it will provide a set of links to cause setup to be run on the clones as well. Thus the setup of a site is better automated. (We did try automatically running setup on the clones but ran into several browser issues such as pop-up blockers that were not circumventable.)</p>
+<p>When you change the site state of the master site (close, close for test, open) the change will be applied to the clone sites as well.</p>
 <h2>Canonical URLs</h2>
 <p>ZenPhoto20 _rewrite_ processing will now cause a "301 peranantly moved" redirect if it receives a link that does not conform to the Canonical standard it implements. Basically this means that links that "look" like indexes to sub-items (albums and the News index, for instance) will end with a trailing slash. Items which are interpreted as "final destinations" (An image or single news item, for instance) will not have a trailing slash.</p>
 <h2>Bug Fixes</h2>
