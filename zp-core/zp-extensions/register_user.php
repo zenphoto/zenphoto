@@ -19,7 +19,7 @@
  * <b>NOTE:</b> If you change the rights of a user pending verification you have verified the user!
  *
  * @author Stephen Billard (sbillard)
- * 
+ *
  * @package plugins
  * @subpackage users
  */
@@ -34,11 +34,6 @@ $_zp_conf_vars['special_pages']['register_user'] = array('define'	 => '_REGISTER
 $_zp_conf_vars['special_pages'][] = array('definition' => '%REGISTER_USER%', 'rewrite' => '_REGISTER_USER_');
 
 $_zp_conf_vars['special_pages'][] = array('define' => false, 'rewrite' => '%REGISTER_USER%', 'rule' => '^%REWRITE%/*$		index.php?p=' . 'register' . ' [L,QSA]');
-
-
-if (getOption('register_user_address_info')) {
-	require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/comment_form/functions.php');
-}
 
 /**
  * Plugin class
@@ -291,7 +286,7 @@ class register_user {
 						if (MOD_REWRITE) {
 							$verify = '?verify=';
 						} else {
-							$verify ='&verify=';
+							$verify = '&verify=';
 						}
 						$_link = PROTOCOL . "://" . $_SERVER['HTTP_HOST'] . register_user::getLink() . $verify . bin2hex(serialize(array('user' => $user, 'email' => $admin_e)));
 						$_message = sprintf(get_language_string(getOption('register_user_text')), $_link, $admin_n, $user, $pass);
