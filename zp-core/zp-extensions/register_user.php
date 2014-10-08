@@ -66,10 +66,10 @@ class register_user {
 		$options = array(
 						gettext('Link text')							 => array('key'		 => 'register_user_page_link', 'type'	 => OPTION_TYPE_TEXTAREA,
 										'order'	 => 1,
-										'desc'	 => gettext('If this option is set, the visitor login form will include a link to this page. The link text will be labeled with the text provided.')),
+										'desc'	 => gettext('Default text for the retgister user link.')),
 						gettext('Hint text')							 => array('key'		 => 'register_user_page_tip', 'type'	 => OPTION_TYPE_TEXTAREA,
 										'order'	 => 2.5,
-										'desc'	 => gettext('If this option is set, the visitor login form will include a link to this page. The link text will be labeled with the text provided.')),
+										'desc'	 => gettext('Default hint text for the register user link.')),
 						gettext('Notify*')								 => array('key'		 => 'register_user_notify', 'type'	 => OPTION_TYPE_CHECKBOX,
 										'order'	 => 4,
 										'desc'	 => gettext('If checked, an e-mail will be sent to the gallery admin when a new user has verified his registration.')),
@@ -532,7 +532,7 @@ function printRegistrationForm($thanks = NULL) {
  * @param string $next text to follow the URL
  * @param string $class optional class
  */
-function printRegisterURL($_linktext, $prev = '', $next = '', $class = NULL) {
+function printRegisterURL($_linktext = NULL, $prev = '', $next = '', $class = NULL, $hint = NULL) {
 	if (!zp_loggedin()) {
 		if (!is_null($class)) {
 			$class = 'class="' . $class . '"';
@@ -540,9 +540,12 @@ function printRegisterURL($_linktext, $prev = '', $next = '', $class = NULL) {
 		if (is_null($_linktext)) {
 			$_linktext = get_language_string(getOption('register_user_page_link'));
 		}
+		if (is_null($hint)) {
+			$hint = get_language_string(getOption('register_user_page_tip'));
+		}
 		echo $prev;
 		?>
-		<a href="<?php echo html_encode(register_user::getLink()); ?>"<?php echo $class; ?> title="<?php echo html_encode($_linktext); ?>" id="register_link"><?php echo $_linktext; ?> </a>
+		<a href="<?php echo html_encode(register_user::getLink()); ?>"<?php echo $class; ?> title="<?php echo html_encode($hint); ?>" id="register_link"><?php echo $_linktext; ?> </a>
 		<?php
 		echo $next;
 	}
