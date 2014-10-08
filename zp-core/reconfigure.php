@@ -15,8 +15,8 @@ function reconfigureAction($mandatory) {
 	list($diff, $needs) = checkSignature($mandatory);
 	$diffkeys = array_keys($diff);
 	if ($mandatory || in_array('ZENPHOTO', $diffkeys) || in_array('FOLDER', $diffkeys)) {
-		if (isset($_GET['rss'])) {
-			if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/rss-closed.xml')) {
+		if (isset($_GET['rss']) || isset($_GET['external'])) {
+			if (isset($_GET['rss']) && file_exists(SERVERPATH . '/' . DATA_FOLDER . '/rss-closed.xml')) {
 				$xml = file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/rss-closed.xml');
 				$xml = preg_replace('~<pubDate>(.*)</pubDate>~', '<pubDate>' . date("r", time()) . '</pubDate>', $xml);
 				echo $xml;

@@ -1511,14 +1511,17 @@ function exitZP() {
  * @return string
  */
 function installSignature() {
-	$testFiles = array('template-functions.php'	 => filesize(SERVERPATH . '/' . ZENFOLDER . '/template-functions.php'),
-					'functions-filter.php'		 => filesize(SERVERPATH . '/' . ZENFOLDER . '/functions-filter.php'),
-					'lib-auth.php'						 => filesize(SERVERPATH . '/' . ZENFOLDER . '/lib-auth.php'),
-					'lib-utf8.php'						 => filesize(SERVERPATH . '/' . ZENFOLDER . '/lib-utf8.php'),
-					'functions.php'						 => filesize(SERVERPATH . '/' . ZENFOLDER . '/functions.php'),
-					'functions-basic.php'			 => filesize(SERVERPATH . '/' . ZENFOLDER . '/functions-basic.php'),
-					'functions-controller.php' => filesize(SERVERPATH . '/' . ZENFOLDER . '/functions-controller.php'),
-					'functions-image.php'			 => filesize(SERVERPATH . '/' . ZENFOLDER . '/functions-image.php'));
+	$folder = dirname(__FILE__);
+	$testFiles = array(
+					'template-functions.php'	 => filesize($folder . '/template-functions.php'),
+					'functions-filter.php'		 => filesize($folder . '/functions-filter.php'),
+					'lib-auth.php'						 => filesize($folder . '/lib-auth.php'),
+					'lib-utf8.php'						 => filesize($folder . '/lib-utf8.php'),
+					'functions.php'						 => filesize($folder . '/functions.php'),
+					'functions-basic.php'			 => filesize($folder . '/functions-basic.php'),
+					'functions-controller.php' => filesize($folder . '/functions-controller.php'),
+					'functions-image.php'			 => filesize($folder . '/functions-image.php')
+	);
 
 	if (isset($_SERVER['SERVER_SOFTWARE'])) {
 		$s = $_SERVER['SERVER_SOFTWARE'];
@@ -1533,7 +1536,7 @@ function installSignature() {
 	}
 	return array_merge($testFiles, array('SERVER_SOFTWARE'	 => $s,
 					'ZENPHOTO'				 => $version . '[' . ZENPHOTO_RELEASE . ']',
-					'FOLDER'					 => dirname(SERVERPATH . '/' . ZENFOLDER),
+					'FOLDER'					 => dirname(dirname(__FILE__)),
 					'DATABASE'				 => $dbs['application'] . ' ' . $dbs['version']
 					)
 	);
