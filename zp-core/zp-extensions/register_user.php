@@ -287,7 +287,12 @@ class register_user {
 						}
 					} else {
 						$userobj->save();
-						$_link = PROTOCOL . "://" . $_SERVER['HTTP_HOST'] . register_user::getLink() . '?verify=' . bin2hex(serialize(array('user' => $user, 'email' => $admin_e)));
+						if (MOD_REWRITE) {
+							$verify = '?verify=';
+						} else {
+							$verify ='&verify=';
+						}
+						$_link = PROTOCOL . "://" . $_SERVER['HTTP_HOST'] . register_user::getLink() . $verify . bin2hex(serialize(array('user' => $user, 'email' => $admin_e)));
 						$_message = sprintf(get_language_string(getOption('register_user_text')), $_link, $admin_n, $user, $pass);
 						$_notify = zp_mail(get_language_string(gettext('Registration confirmation')), $_message, array($user => $admin_e));
 						if (empty($_notify)) {
