@@ -582,7 +582,7 @@ class Mutex {
 // rotates locks sequentially mod $concurrent
 	private static function which_lock($lock, $concurrent, $folder) {
 		global $_zp_mutex;
-		$counter_file = $folder . $lock . '_counter';
+		$counter_file = $folder . DATA_FOLDER . '/' . MUTEX_FOLDER . '/' . $lock . '_counter';
 		$_zp_mutex->lock();
 // increment the lock id:
 		if (@file_put_contents($counter_file, $count = (((int) @file_get_contents($counter_file)) + 1) % $concurrent)) {
