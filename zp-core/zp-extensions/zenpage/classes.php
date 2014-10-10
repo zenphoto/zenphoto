@@ -263,7 +263,6 @@ class CMS {
 		} else {
 			$show = $currentCat = false;
 			if ($category) {
-
 				if (is_object($_zp_current_category)) {
 					$currentCat = $_zp_current_category->getTitlelink();
 				}
@@ -323,6 +322,7 @@ class CMS {
 			/** get all articles * */
 			switch ($published) {
 				case "published":
+				default:
 					$show = "$showConjunction `show` = 1 AND date <= '" . $now . "'";
 					$getUnpublished = false;
 					break;
@@ -359,7 +359,6 @@ class CMS {
 						break;
 				}
 				if ($datesearch) {
-
 					$datesearch = $showConjunction . $datesearch . ' ';
 				}
 				$order .= " date DESC";
