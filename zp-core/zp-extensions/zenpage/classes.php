@@ -323,15 +323,15 @@ class CMS {
 			switch ($published) {
 				case "published":
 				default:
-					$show = "$showConjunction `show` = 1 AND date <= '" . $now . "'";
+					$show = "$showConjunction `show`=1 AND date<='" . $now . "'";
 					$getUnpublished = false;
 					break;
 				case "published-unpublished":
-					$show = "$showConjunction `show` = 1 AND date <= '" . $now . "'";
+					$show = "$showConjunction `show`=1 AND date<='" . $now . "'";
 					$getUnpublished = true;
 					break;
 				case "unpublished":
-					$show = "$showConjunction `show` = 0 AND date <= '" . $now . "'";
+					$show = "$showConjunction `show`=0 AND date<='" . $now . "'";
 					$getUnpublished = true;
 					break;
 				case 'sticky':
@@ -343,6 +343,7 @@ class CMS {
 					$show = false;
 					break;
 			}
+			$showConjunction = ' AND ';
 			$order = " ORDER BY $sticky";
 
 			$datesearch = '';
