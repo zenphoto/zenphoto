@@ -263,7 +263,6 @@ class CMS {
 		} else {
 			$show = $currentCat = false;
 			if ($category) {
-
 				if (is_object($_zp_current_category)) {
 					$currentCat = $_zp_current_category->getTitlelink();
 				}
@@ -323,15 +322,16 @@ class CMS {
 			/** get all articles * */
 			switch ($published) {
 				case "published":
-					$show = "$showConjunction `show` = 1 AND date <= '" . $now . "'";
+				default:
+					$show = "$showConjunction `show`=1 AND date<='" . $now . "'";
 					$getUnpublished = false;
 					break;
 				case "published-unpublished":
-					$show = "$showConjunction `show` = 1 AND date <= '" . $now . "'";
+					$show = "$showConjunction `show`=1 AND date<='" . $now . "'";
 					$getUnpublished = true;
 					break;
 				case "unpublished":
-					$show = "$showConjunction `show` = 0 AND date <= '" . $now . "'";
+					$show = "$showConjunction `show`=0 AND date<='" . $now . "'";
 					$getUnpublished = true;
 					break;
 				case 'sticky':
@@ -343,6 +343,7 @@ class CMS {
 					$show = false;
 					break;
 			}
+			$showConjunction = ' AND ';
 			$order = " ORDER BY $sticky";
 
 			$datesearch = '';
@@ -359,7 +360,6 @@ class CMS {
 						break;
 				}
 				if ($datesearch) {
-
 					$datesearch = $showConjunction . $datesearch . ' ';
 				}
 				$order .= " date DESC";

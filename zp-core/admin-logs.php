@@ -3,7 +3,7 @@
  * user_groups log--tabs
  *
  * @author Stephen Billard (sbillard)
- * 
+ *
  * @package plugins
  */
 define('OFFSET_PATH', 1);
@@ -190,7 +190,7 @@ echo "\n</head>";
 										<p>
 											<span class="nowrap">
 												<?php
-												echo str_replace(' ', '&nbsp;', html_encode(getBare(trim($line))));
+												echo str_replace(' ', '&nbsp;', html_encode(sanitize(trim($line), 3)));
 												?>
 											</span>
 										</p>

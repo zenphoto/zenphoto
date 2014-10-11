@@ -9,6 +9,14 @@
  */
 
 /**
+ * Common error reporting for query errors
+ * @param type $sql
+ */
+function dbErrorReport($sql) {
+	trigger_error(sprintf(gettext('%1$s Error: ( %2$s ) failed. %1$s returned the error %3$s'), DATABASE_SOFTWARE, $sql, db_error()), E_USER_ERROR);
+}
+
+/**
  *
  * Traps errors and insures thy are logged.
  * @param int $errno
@@ -198,7 +206,7 @@ function sanitize_string($input, $sanitize_level) {
 				return ksesProcess($input, getAllowedTags('style_tags'));
 			case 3:
 				// Full sanitation.  Strips all code.
-				return getBare($input);
+				return ksesProcess($input, array());
 			case 1:
 				// Text formatting sanititation.
 				$input = sanitize_script($input);
