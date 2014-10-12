@@ -166,13 +166,13 @@ function ksesProcess($input_string, $allowed_tags) {
 	if (function_exists('kses')) {
 		return kses($input_string, $allowed_tags);
 	} else {
-		$content = preg_replace('~<script.*?/script>~is', '', $content);
-		$content = preg_replace('~<style.*?/style>~is', '', $content);
-		$content = preg_replace('~<!--.*?-->~is', '', $content);
-		$content = strip_tags($content);
-		$content = str_replace('&nbsp;', ' ', $content);
-		$content = html_entity_decode($content, ENT_QUOTES, 'UTF-8');
-		return $content;
+		$content = preg_replace('~<script.*?/script>~is', '', $input_string);
+		$content = preg_replace('~<style.*?/style>~is', '', $input_string);
+		$content = preg_replace('~<!--.*?-->~is', '', $input_string);
+		$content = strip_tags($input_string);
+		$content = str_replace('&nbsp;', ' ', $input_string);
+		$content = html_entity_decode($input_string, ENT_QUOTES, 'UTF-8');
+		return $input_string;
 	}
 }
 
