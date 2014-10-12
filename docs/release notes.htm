@@ -76,7 +76,7 @@
 			}
 		</style>
 	<body>
-<h1>ZenPhoto20 v1.0.0.5 release notes</h1><h2>New &nbsp;dropdown selector on the news articles page</h2>
+<h1>ZenPhoto20 v1.0.0.6 release notes</h1><h2>New &nbsp;dropdown selector on the news articles page</h2>
 <p>There is now a drop-down selector to allow showing articles of a specific author. In addition, the "data" selector has been fixed to work when a category is also selected.</p>
 <h2>Added support for tablets</h2>
 <p>A plugin is now available to enable touch drag and drop for&nbsp;image, album, and page sorting.</p>
@@ -106,6 +106,11 @@
 <p>When you change the site state of the master site (close, close for test, open) the change will be applied to the clone sites as well.</p>
 <h2>Canonical URLs</h2>
 <p>ZenPhoto20 _rewrite_ processing will now cause a "301 peranantly moved" redirect if it receives a link that does not conform to the Canonical standard it implements. Basically this means that links that "look" like indexes to sub-items (albums and the News index, for instance) will end with a trailing slash. Items which are interpreted as "final destinations" (An image or single news item, for instance) will not have a trailing slash.</p>
+<h2>New plugins</h2>
+<ul>
+<li><em>overrideEXIFDesc: p</em>rovides a means to compensate for software or cameras which place the image description in the<em> EXIF desc</em> field which by standard is used for the image title.</li>
+<li>optionalObjectFields: extends the use of&nbsp;<em>customFieldExtender </em>to allow&nbsp;certain object fields to be omitted. The distributed version of the plugin supports all the "standard" object fields. You can customize it to add/remove fields of your choice.</li>
+</ul>
 <h2>Bug Fixes</h2>
 <p>As usual, I have fixed bugs found while implementing these features and ones reported on the Zenphoto.org forum that were applicable to ZenPhoto20.</p>
 <p>&nbsp;</p>
