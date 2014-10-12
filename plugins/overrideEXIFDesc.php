@@ -4,6 +4,14 @@
  * Causes the EXIF "desc" field to be moved to the IPTC image caption field (so
  * long as this field is empty) to allow use as the zenphoto description.
  *
+ * The EXIF standard defines the "description" field as the image title so in
+ * compliance with this standard this field may be used to populate the "desc" field
+ * of the image if no higher priority "title" field exists in the image. (See the user
+ * guide for metadata mapping.)
+ *
+ * Some software and cameras do not follow this standard, so this plugin was created
+ * to compensate for their deviance from the standard.
+ *
  * <b>Note:</b> this will happen whenever the image metadata is updated and only
  * when the metadata is updated.
  *
