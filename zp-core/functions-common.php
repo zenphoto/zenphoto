@@ -166,7 +166,13 @@ function ksesProcess($input_string, $allowed_tags) {
 	if (function_exists('kses')) {
 		return kses($input_string, $allowed_tags);
 	} else {
-		return getBare($input_string);
+		$content = preg_replace('~<script.*?/script>~is', '', $content);
+		$content = preg_replace('~<style.*?/style>~is', '', $content);
+		$content = preg_replace('~<!--.*?-->~is', '', $content);
+		$content = strip_tags($content);
+		$content = str_replace('&nbsp;', ' ', $content);
+		$content = html_entity_decode($content, ENT_QUOTES, 'UTF-8');
+		return $content;
 	}
 }
 
@@ -176,13 +182,7 @@ function ksesProcess($input_string, $allowed_tags) {
  * @return type
  */
 function getBare($content) {
-	$content = preg_replace('~<script.*?/script>~is', '', $content);
-	$content = preg_replace('~<style.*?/style>~is', '', $content);
-	$content = preg_replace('~<!--.*?-->~is', '', $content);
-	$content = strip_tags($content);
-	$content = str_replace('&nbsp;', ' ', $content);
-	$content = html_entity_decode($content, ENT_QUOTES, 'UTF-8');
-	return $content;
+	return kesesProcess($content, array());
 }
 
 /** returns a sanitized string for the sanitize function

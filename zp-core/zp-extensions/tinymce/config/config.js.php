@@ -30,7 +30,7 @@
  *
  * @author Stephen Billard (sbillard)
  *
- * copyright © 2014 Stephen L Billard
+ * Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
  */
 $filehandler = zp_apply_filter('tinymce_zenpage_config', NULL);
 
