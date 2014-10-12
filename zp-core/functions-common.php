@@ -182,7 +182,7 @@ function ksesProcess($input_string, $allowed_tags) {
  * @return type
  */
 function getBare($content) {
-	return kesesProcess($content, array());
+	return ksesProcess($content, array());
 }
 
 /** returns a sanitized string for the sanitize function
