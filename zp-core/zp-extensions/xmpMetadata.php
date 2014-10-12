@@ -903,11 +903,6 @@ class xmpMetadata {
 			$metadata = self::extract($source);
 			$image->set('hasMetadata', count($metadata > 0));
 			foreach ($metadata as $field => $element) {
-				if (array_key_exists($field, $_zp_exifvars)) {
-					if (!$_zp_exifvars[$field][5]) {
-						continue; //	the field has been disabled
-					}
-				}
 				$v = self::to_string($element);
 
 				switch ($field) {

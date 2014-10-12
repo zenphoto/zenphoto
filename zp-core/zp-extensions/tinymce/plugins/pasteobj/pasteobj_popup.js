@@ -3,7 +3,7 @@
  *
  * @author Stephen Billard (sbillard)
  *
- * copyright © 2014 Stephen L Billard
+ * Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
  *
  * adapted from the tinyMCE 4: compat3x
  */
@@ -24,7 +24,7 @@ var pasteObjPopup = {
 	 *
 	 * @method init
 	 */
-	init: function() {
+	init: function () {
 		var self = this, parentWin, settings, uiWindow;
 
 		// Find window & API
@@ -66,7 +66,7 @@ var pasteObjPopup = {
 		 * pasteObjPopup.onInit.add(SomeObject.init, SomeObject);
 		 */
 		self.onInit = {
-			add: function(func, scope) {
+			add: function (func, scope) {
 				self.listeners.push({func: func, scope: scope});
 			}
 		};
@@ -80,7 +80,7 @@ var pasteObjPopup = {
 	 * @method getWin
 	 * @return {Window} Reference to the parent window that opened the dialog.
 	 */
-	getWin: function() {
+	getWin: function () {
 		// Added frameElement check to fix bug: #2817583
 		return (!window.frameElement && window.dialogArguments) || opener || parent || top;
 	},
@@ -92,7 +92,7 @@ var pasteObjPopup = {
 	 * @param {String} defaultValue Optional default value to return.
 	 * @return {String} Argument value or default value if it wasn't found.
 	 */
-	getWindowArg: function(name, defaultValue) {
+	getWindowArg: function (name, defaultValue) {
 		var value = this.params[name];
 
 		return tinymce.is(value) ? value : defaultValue;
@@ -105,7 +105,7 @@ var pasteObjPopup = {
 	 * @param {String} defaultValue Optional default value to return.
 	 * @return {String} Parameter value or default value if it wasn't found.
 	 */
-	getParam: function(name, defaultValue) {
+	getParam: function (name, defaultValue) {
 		return this.editor.getParam(name, defaultValue);
 	},
 	/**
@@ -117,7 +117,7 @@ var pasteObjPopup = {
 	 * @param {Object} val Optional value to pass with the comman like an URL.
 	 * @param {Object} a Optional arguments object.
 	 */
-	execCommand: function(cmd, ui, val, args) {
+	execCommand: function (cmd, ui, val, args) {
 		args = args || {};
 		args.skip_focus = 1;
 
@@ -130,7 +130,7 @@ var pasteObjPopup = {
 	 *
 	 * @method resizeToInnerSize
 	 */
-	resizeToInnerSize: function() {
+	resizeToInnerSize: function () {
 		/*var self = this;
 
 		 // Detach it to workaround a Chrome specific bug
@@ -152,8 +152,8 @@ var pasteObjPopup = {
 	 * @method executeOnLoad
 	 * @param {String} evil String to evalutate on init.
 	 */
-	executeOnLoad: function(evil) {
-		this.onInit.add(function() {
+	executeOnLoad: function (evil) {
+		this.onInit.add(function () {
 			eval(evil);
 		});
 	},
@@ -163,7 +163,7 @@ var pasteObjPopup = {
 	 *
 	 * @method storeSelection
 	 */
-	storeSelection: function() {
+	storeSelection: function () {
 		this.editor.windowManager.bookmark = pasteObjPopup.editor.selection.getBookmark(1);
 	},
 	/**
@@ -172,7 +172,7 @@ var pasteObjPopup = {
 	 *
 	 * @method restoreSelection
 	 */
-	restoreSelection: function() {
+	restoreSelection: function () {
 		var self = pasteObjPopup;
 
 		if (!self.isWindow && tinymce.isIE) {
@@ -188,7 +188,7 @@ var pasteObjPopup = {
 	 * @param {string} type Type of browser to open image/file/flash.
 	 * @param {string} option Option name to get the file_broswer_callback function name from.
 	 */
-	openBrowser: function(element_id, type) {
+	openBrowser: function (element_id, type) {
 		pasteObjPopup.restoreSelection();
 		this.editor.execCallback('file_browser_callback', element_id, document.getElementById(element_id).value, type, window);
 	},
@@ -197,7 +197,7 @@ var pasteObjPopup = {
 	 *
 	 * @method close
 	 */
-	close: function() {
+	close: function () {
 		var t = this;
 
 		// To avoid domain relaxing issue in Opera
@@ -214,7 +214,7 @@ var pasteObjPopup = {
 	},
 	// Internal functions
 
-	_restoreSelection: function() {
+	_restoreSelection: function () {
 		var e = window.event.srcElement;
 
 		if (e.nodeName == 'INPUT' && (e.type == 'submit' || e.type == 'button')) {
@@ -229,7 +229,7 @@ var pasteObjPopup = {
 	 pasteObjPopup.restoreSelection();
 	 },*/
 
-	_onDOMLoaded: function() {
+	_onDOMLoaded: function () {
 		var t = pasteObjPopup, ti = document.title, h, nv;
 
 		// Translate page
@@ -295,19 +295,19 @@ var pasteObjPopup = {
 		}
 
 		if (!tinymce.isIE && !t.isWindow) {
-			t.dom.bind(document, 'focus', function() {
+			t.dom.bind(document, 'focus', function () {
 				t.editor.windowManager.focus(t.id);
 			});
 		}
 
 		// Patch for accessibility
-		tinymce.each(t.dom.select('select'), function(e) {
+		tinymce.each(t.dom.select('select'), function (e) {
 			e.onkeydown = pasteObjPopup._accessHandler;
 		});
 
 		// Call onInit
 		// Init must be called before focus so the selection won't get lost by the focus call
-		tinymce.each(t.listeners, function(o) {
+		tinymce.each(t.listeners, function (o) {
 			o.func.call(o.scope, t.editor);
 		});
 
@@ -316,8 +316,8 @@ var pasteObjPopup = {
 			window.focus();
 
 			// Focus element with mceFocus class
-			tinymce.each(document.forms, function(f) {
-				tinymce.each(f.elements, function(e) {
+			tinymce.each(document.forms, function (f) {
+				tinymce.each(f.elements, function (e) {
 					if (t.dom.hasClass(e, 'mceFocus') && !e.disabled) {
 						e.focus();
 						return false; // Break loop
@@ -334,7 +334,7 @@ var pasteObjPopup = {
 			t.uiWindow.getEl('head').firstChild.innerText = document.title;
 		}
 	},
-	_accessHandler: function(e) {
+	_accessHandler: function (e) {
 		e = e || window.event;
 
 		if (e.keyCode == 13 || e.keyCode == 32) {
@@ -347,15 +347,15 @@ var pasteObjPopup = {
 			return tinymce.dom.Event.cancel(e);
 		}
 	},
-	_closeWinKeyHandler: function(e) {
+	_closeWinKeyHandler: function (e) {
 		e = e || window.event;
 
 		if (e.keyCode == 27) {
 			pasteObjPopup.close();
 		}
 	},
-	_eventProxy: function(id) {
-		return function(evt) {
+	_eventProxy: function (id) {
+		return function (evt) {
 			pasteObjPopup.dom.events.callNativeHandler(id, evt);
 		};
 	}
@@ -363,17 +363,17 @@ var pasteObjPopup = {
 
 pasteObjPopup.init();
 
-tinymce.util.Dispatcher = function(scope) {
+tinymce.util.Dispatcher = function (scope) {
 	this.scope = scope || this;
 	this.listeners = [];
 
-	this.add = function(callback, scope) {
+	this.add = function (callback, scope) {
 		this.listeners.push({cb: callback, scope: scope || this.scope});
 
 		return callback;
 	};
 
-	this.addToTop = function(callback, scope) {
+	this.addToTop = function (callback, scope) {
 		var self = this, listener = {cb: callback, scope: scope || self.scope};
 
 		// Create new listeners if addToTop is executed in a dispatch loop
@@ -386,10 +386,10 @@ tinymce.util.Dispatcher = function(scope) {
 		return callback;
 	};
 
-	this.remove = function(callback) {
+	this.remove = function (callback) {
 		var listeners = this.listeners, output = null;
 
-		tinymce.each(listeners, function(listener, i) {
+		tinymce.each(listeners, function (listener, i) {
 			if (callback == listener.cb) {
 				output = listener;
 				listeners.splice(i, 1);
@@ -400,7 +400,7 @@ tinymce.util.Dispatcher = function(scope) {
 		return output;
 	};
 
-	this.dispatch = function() {
+	this.dispatch = function () {
 		var self = this, returnValue, args = arguments, i, listeners = self.listeners, listener;
 
 		self.inDispatch = true;

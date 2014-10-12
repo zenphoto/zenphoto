@@ -2,10 +2,15 @@
  Copyright 2010 Mal Curtis
  */
 
+/*
+ * Adapted for ZenPhoto20 by Stephen Billard
+ * Adaaptations copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+ */
+
 if (typeof jQuery == 'undefined')
 	throw ("jQuery Required");
 
-(function($) {
+(function ($) {
 	// Public General Plugin methods $.DirtyForms
 	$.extend({
 		DirtyForms: {
@@ -20,16 +25,16 @@ if (typeof jQuery == 'undefined')
 			choiceContinue: false,
 			helpers: [],
 			dialog: {
-				refire: function(content, ev) {
+				refire: function (content, ev) {
 					$.facebox(content);
 				},
-				fire: function(message, title, go, stop) {
+				fire: function (message, title, go, stop) {
 					var content = '<h1>' + title + '</h1><p>' + message + '</p><p><a href="#" class="ignoredirty button medium red continue">' + go + '</a><a href="#" class="ignoredirty button medium cancel">' + stop + '</a>';
 					$.facebox(content);
 				},
-				bind: function() {
-					var close = function(decision) {
-						return function(e) {
+				bind: function () {
+					var close = function (decision) {
+						return function (e) {
 							e.preventDefault();
 							$(document).trigger('close.facebox');
 							decision(e);
@@ -38,7 +43,7 @@ if (typeof jQuery == 'undefined')
 					$('#facebox .cancel, #facebox .close, #facebox_overlay').click(close(decidingCancel));
 					$('#facebox .continue').click(close(decidingContinue));
 				},
-				stash: function() {
+				stash: function () {
 					var fb = $('#facebox');
 					return ($.trim(fb.html()) == '' || fb.css('display') != 'block') ?
 									false :
@@ -46,28 +51,28 @@ if (typeof jQuery == 'undefined')
 				},
 				selector: '#facebox .content'
 			},
-			isDirty: function() {
+			isDirty: function () {
 				return $(':dirtylistening').dirtyForms('isDirty');
 			},
-			disable: function() {
+			disable: function () {
 				settings.disabled = true;
 			},
-			ignoreParentDocs: function() {
+			ignoreParentDocs: function () {
 				settings.watchParentDocs = false;
 			},
-			choiceCommit: function(e) {
+			choiceCommit: function (e) {
 				choiceCommit(e);
 			},
-			isDeciding: function() {
+			isDeciding: function () {
 				return settings.deciding;
 			},
-			decidingContinue: function(e) {
+			decidingContinue: function (e) {
 				decidingContinue(e);
 			},
-			decidingCancel: function(e) {
+			decidingCancel: function (e) {
 				decidingCancel(e);
 			},
-			dirtylog: function(msg) {
+			dirtylog: function (msg) {
 				dirtylog(msg);
 			}
 		}
@@ -75,23 +80,23 @@ if (typeof jQuery == 'undefined')
 
 	// Create a custom selector $('form:dirty')
 	$.extend($.expr[":"], {
-		dirtylistening: function(a) {
+		dirtylistening: function (a) {
 			return $(a).hasClass($.DirtyForms.listeningClass);
 		},
-		dirty: function(a) {
+		dirty: function (a) {
 			return $(a).hasClass($.DirtyForms.dirtyClass);
 		}
 	});
 
 	// Public Element methods ( $('form').dirtyForms('methodName', args) )
 	var methods = {
-		init: function() {
+		init: function () {
 			var core = $.DirtyForms;
 
 			dirtylog('Adding forms to watch');
 			bindExit();
 
-			return this.each(function(e) {
+			return this.each(function (e) {
 				if (!$(this).is('form'))
 					return;
 				dirtylog('Adding form ' + $(this).attr('id') + ' to forms to watch');
@@ -116,7 +121,7 @@ if (typeof jQuery == 'undefined')
 			});
 		},
 		// Returns true if any of the supplied elements are dirty
-		isDirty: function() {
+		isDirty: function () {
 			var isDirty = false;
 			var node = this;
 			if (settings.disabled)
@@ -125,13 +130,13 @@ if (typeof jQuery == 'undefined')
 				isDirty = true;
 				return true;
 			}
-			this.each(function(e) {
+			this.each(function (e) {
 				if ($(this).hasClass($.DirtyForms.dirtyClass)) {
 					isDirty = true;
 					return true;
 				}
 			});
-			$.each($.DirtyForms.helpers, function(key, obj) {
+			$.each($.DirtyForms.helpers, function (key, obj) {
 				if ("isDirty" in obj) {
 					if (obj.isDirty(node)) {
 						isDirty = true;
@@ -151,18 +156,18 @@ if (typeof jQuery == 'undefined')
 			return isDirty;
 		},
 		// Marks the element(s) that match the selector dirty
-		setDirty: function() {
+		setDirty: function () {
 			dirtylog('setDirty called');
-			return this.each(function(e) {
+			return this.each(function (e) {
 				$(this).addClass($.DirtyForms.dirtyClass).parents('form').addClass($.DirtyForms.dirtyClass);
 			});
 		},
 		// "Cleans" this dirty form by essentially forgetting that it is dirty
-		setClean: function() {
+		setClean: function () {
 			dirtylog('setClean called');
 			settings.focused = {element: false, value: false};
 
-			return this.each(function(e) {
+			return this.each(function (e) {
 				var node = this;
 
 				// remove the current dirty class
@@ -180,7 +185,7 @@ if (typeof jQuery == 'undefined')
 				}
 
 				// Clean helpers
-				$.each($.DirtyForms.helpers, function(key, obj) {
+				$.each($.DirtyForms.helpers, function (key, obj) {
 					if ("setClean" in obj) {
 						obj.setClean(node);
 					}
@@ -191,7 +196,7 @@ if (typeof jQuery == 'undefined')
 		// ADD NEW METHODS HERE
 	};
 
-	$.fn.dirtyForms = function(method) {
+	$.fn.dirtyForms = function (method) {
 		// Method calling logic
 		if (methods[method]) {
 			return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
@@ -204,13 +209,13 @@ if (typeof jQuery == 'undefined')
 
 	// Deprecated Methods for Backward Compatibility
 	// DO NOT ADD MORE METHODS LIKE THESE, ADD METHODS WHERE INDICATED ABOVE
-	$.fn.setDirty = function() {
+	$.fn.setDirty = function () {
 		return this.dirtyForms('setDirty');
 	}
-	$.fn.isDirty = function() {
+	$.fn.isDirty = function () {
 		return this.dirtyForms('isDirty');
 	}
-	$.fn.cleanDirty = function() {
+	$.fn.cleanDirty = function () {
 		return this.dirtyForms('setClean');
 	}
 
@@ -229,17 +234,17 @@ if (typeof jQuery == 'undefined')
 		focused: {"element": false, "value": false}
 	}, $.DirtyForms);
 
-	var onReset = function() {
+	var onReset = function () {
 		$(this).parents('form').dirtyForms('setClean');
 	}
 
-	var onSelectionChange = function() {
+	var onSelectionChange = function () {
 		if ($(this).hasClass($.DirtyForms.ignoreClass))
 			return;
 		$(this).dirtyForms('setDirty');
 	}
 
-	var onFocus = function() {
+	var onFocus = function () {
 		element = $(this);
 		if (focusedIsDirty()) {
 			settings.focused['element'].dirtyForms('setDirty');
@@ -247,13 +252,13 @@ if (typeof jQuery == 'undefined')
 		settings.focused['element'] = element;
 		settings.focused['value'] = element.val();
 	}
-	var focusedIsDirty = function() {
+	var focusedIsDirty = function () {
 		// Check, whether the value of focused element has changed
 		return settings.focused["element"] &&
 						(settings.focused["element"].val() !== settings.focused["value"]);
 	}
 
-	var dirtylog = function(msg) {
+	var dirtylog = function (msg) {
 		if (!$.DirtyForms.debug)
 			return;
 		msg = "[DirtyForms] " + msg;
@@ -264,7 +269,7 @@ if (typeof jQuery == 'undefined')
 						alert(msg);
 	}
 
-	var bindExit = function() {
+	var bindExit = function () {
 		if (settings.exitBound)
 			return;
 
@@ -295,9 +300,9 @@ if (typeof jQuery == 'undefined')
 		settings.exitBound = true;
 	}
 
-	var getIgnoreAnchorSelector = function() {
+	var getIgnoreAnchorSelector = function () {
 		var result = '';
-		$.each($.DirtyForms.helpers, function(key, obj) {
+		$.each($.DirtyForms.helpers, function (key, obj) {
 			if ("ignoreAnchorSelector" in obj) {
 				if (result.length > 0) {
 					result += ',';
@@ -308,19 +313,19 @@ if (typeof jQuery == 'undefined')
 		return result;
 	}
 
-	var aBindFn = function(ev) {
+	var aBindFn = function (ev) {
 		// Filter out any anchors the helpers wish to exclude
 		if (!$(this).is(getIgnoreAnchorSelector())) {
 			bindFn(ev);
 		}
 	}
 
-	var formBindFn = function(ev) {
+	var formBindFn = function (ev) {
 		settings.currentForm = this;
 		bindFn(ev);
 	}
 
-	var beforeunloadBindFn = function(ev) {
+	var beforeunloadBindFn = function (ev) {
 		var result = bindFn(ev);
 
 		if (result && settings.doubleunloadfix != true) {
@@ -329,7 +334,7 @@ if (typeof jQuery == 'undefined')
 		}
 
 		settings.doubleunloadfix = true;
-		setTimeout(function() {
+		setTimeout(function () {
 			settings.doubleunloadfix = false;
 		}, 200);
 
@@ -348,7 +353,7 @@ if (typeof jQuery == 'undefined')
 		}
 	}
 
-	var bindFn = function(ev) {
+	var bindFn = function (ev) {
 		dirtylog('Entering: Leaving Event fired, type: ' + ev.type + ', element: ' + ev.target + ', class: ' + $(ev.target).attr('class') + ' and id: ' + ev.target.id);
 
 		if (ev.type == 'beforeunload' && settings.doubleunloadfix) {
@@ -428,7 +433,7 @@ if (typeof jQuery == 'undefined')
 		settings.dialog.bind();
 	}
 
-	var isDifferentTarget = function(ev) {
+	var isDifferentTarget = function (ev) {
 		var aTarget = $(ev.target).attr('target');
 		if (typeof aTarget === 'string') {
 			aTarget = aTarget.toLowerCase();
@@ -436,7 +441,7 @@ if (typeof jQuery == 'undefined')
 		return (aTarget === '_blank');
 	}
 
-	var choiceCommit = function(ev) {
+	var choiceCommit = function (ev) {
 		if (settings.deciding) {
 			$(document).trigger('choicecommit.dirtyforms');
 			if ($.DirtyForms.choiceContinue) {
@@ -448,7 +453,7 @@ if (typeof jQuery == 'undefined')
 		}
 	}
 
-	var decidingCancel = function(ev) {
+	var decidingCancel = function (ev) {
 		ev.preventDefault();
 		$(document).trigger('decidingcancelled.dirtyforms');
 		if (settings.dialog !== false && settings.dialogStash !== false)
@@ -461,7 +466,7 @@ if (typeof jQuery == 'undefined')
 		settings.deciding = settings.currentForm = settings.decidingEvent = false;
 	}
 
-	var decidingContinue = function(ev) {
+	var decidingContinue = function (ev) {
 		window.onbeforeunload = null; // fix for chrome
 		$(window).unbind('beforeunload');
 		ev.preventDefault();
@@ -471,7 +476,7 @@ if (typeof jQuery == 'undefined')
 		settings.deciding = settings.currentForm = settings.decidingEvent = false;
 	}
 
-	var clearUnload = function() {
+	var clearUnload = function () {
 		// I'd like to just be able to unbind this but there seems
 		// to be a bug in jQuery which doesn't unbind onbeforeunload
 		dirtylog('Clearing the beforeunload event');
@@ -480,7 +485,7 @@ if (typeof jQuery == 'undefined')
 		$(document).trigger('beforeunload.dirtyforms');
 	}
 
-	var refire = function(e) {
+	var refire = function (e) {
 		$(document).trigger('beforeRefire.dirtyforms');
 		$(document).trigger('beforeunload.dirtyforms');
 		switch (e.type) {
