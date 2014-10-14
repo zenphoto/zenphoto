@@ -2379,7 +2379,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						$dest .= '.' . suffix;
 					}
 				}
-				if ($e = $album->move($dest)) {
+				if ($e = $album->move($dest,$album->name)) {
 					$notify = "&mcrerr=" . $e;
 				} else {
 					$redirectto = $dest;
@@ -3513,52 +3513,53 @@ function processOrder($orderstr) {
  *
  */
 function postAlbumSort($parentid) {
-	if (isset($_POST['order']) && !empty($_POST['order'])) {
-		$order = processOrder(sanitize($_POST['order']));
-		$sortToID = array();
-		foreach ($order as $id => $orderlist) {
-			$id = str_replace('id_', '', $id);
-			$sortToID[implode('-', $orderlist)] = $id;
-		}
-		foreach ($order as $item => $orderlist) {
-			$item = str_replace('id_', '', $item);
-			$currentalbum = query_single_row('SELECT * FROM ' . prefix('albums') . ' WHERE `id`=' . $item);
-			$sortorder = array_pop($orderlist);
-			if (count($orderlist) > 0) {
-				$newparent = $sortToID[implode('-', $orderlist)];
-			} else {
-				$newparent = $parentid;
-			}
-			if ($newparent == $currentalbum['parentid']) {
-				$sql = 'UPDATE ' . prefix('albums') . ' SET `sort_order`=' . db_quote($sortorder) . ' WHERE `id`=' . $item;
-				query($sql);
-			} else { // have to do a move
-				$albumname = $currentalbum['folder'];
-				$album = newAlbum($albumname);
-				if (strpos($albumname, '/') !== false) {
-					$albumname = basename($albumname);
-				}
-				if (is_null($newparent)) {
-					$dest = $albumname;
-				} else {
-					$parent = query_single_row('SELECT * FROM ' . prefix('albums') . ' WHERE `id`=' . $newparent);
-					if ($parent['dynamic']) {
-						return "&mcrerr=5";
-					} else {
-						$dest = $parent['folder'] . '/' . $albumname;
-					}
-				}
-				if ($e = $album->move($dest)) {
-					return "&mcrerr=" . $e;
-				} else {
-					$album->setSortOrder($sortorder);
-					$album->save();
-				}
-			}
-		}
-		return true;
-	}
-	return false;
+  if (isset($_POST['order']) && !empty($_POST['order'])) {
+    $order = processOrder(sanitize($_POST['order']));
+    $sortToID = array();
+    foreach ($order as $id => $orderlist) {
+      $id = str_replace('id_', '', $id);
+      $sortToID[implode('-', $orderlist)] = $id;
+    }
+    foreach ($order as $item => $orderlist) {
+      $item = str_replace('id_', '', $item);
+      $currentalbum = query_single_row('SELECT * FROM ' . prefix('albums') . ' WHERE `id`=' . $item);
+      $oldalbum = $currentalbum['folder'];
+      $sortorder = array_pop($orderlist);
+      if (count($orderlist) > 0) {
+        $newparent = $sortToID[implode('-', $orderlist)];
+      } else {
+        $newparent = $parentid;
+      }
+      if ($newparent == $currentalbum['parentid']) {
+        $sql = 'UPDATE ' . prefix('albums') . ' SET `sort_order`=' . db_quote($sortorder) . ' WHERE `id`=' . $item;
+        query($sql);
+      } else { // have to do a move
+        $albumname = $currentalbum['folder'];
+        $album = newAlbum($albumname);
+        if (strpos($albumname, '/') !== false) {
+          $albumname = basename($albumname);
+        }
+        if (is_null($newparent)) {
+          $dest = $albumname;
+        } else {
+          $parent = query_single_row('SELECT * FROM ' . prefix('albums') . ' WHERE `id`=' . $newparent);
+          if ($parent['dynamic']) {
+            return "&mcrerr=5";
+          } else {
+            $dest = $parent['folder'] . '/' . $albumname;
+          }
+        }
+        if ($e = $album->move($dest, $oldalbum)) {
+          return "&mcrerr=" . $e;
+        } else {
+          $album->setSortOrder($sortorder);
+          $album->save();
+        }
+      }
+    }
+    return true;
+  }
+  return false;
 }
 
 /**

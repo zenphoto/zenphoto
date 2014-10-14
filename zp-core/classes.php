@@ -156,11 +156,13 @@ class PersistentObject {
 	function move($new_unique_set) {
 		// Check if we have a row
 		$result = query_single_row('SELECT * FROM ' . prefix($this->table) . getWhereClause($new_unique_set) . ' LIMIT 1;');
+  debugLogVar('PersistentObject move() getWhereClause($new_unique_set): ',getWhereClause($new_unique_set));
 		if (!$result || $result['id'] == $this->id) { //	we should not find an entry for the new unique set!
 			if (!zp_apply_filter('move_object', true, $this, $new_unique_set)) {
 				return false;
 			}
 			$sql = 'UPDATE ' . prefix($this->table) . getSetClause($new_unique_set) . ' ' . getWhereClause($this->unique_set);
+   debugLogVar('PersistentObject move() sql: ',$sql);
 			$result = query($sql);
 			if ($result && db_affected_rows() == 1) { //	and the update should have effected just one record
 				$this->unique_set = $new_unique_set;
