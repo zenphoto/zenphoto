@@ -64,10 +64,13 @@ function getIPSizedImage($size, $image) {
 					$args['album'] = $thumbobj->album->getFilename();
 					$imageb = preg_replace('~check=(.*)~', '', getIPSizedImage($size, $thumbobj));
 				}
+				$alt1 = $obj->getFileName();
+				$title1 = getBare($obj->getTitle());
+
 				// an image type object
 			} else {
 				// a simple link
-				$imagef = $imageb = $image = NULL;
+				$imagef = $imageb = $image = $alt1 = $title1 = NULL;
 				if (isset($args['news'])) {
 					$obj = newArticle($args['news']);
 					$title = gettext('<em>news article</em>: %s');
@@ -88,18 +91,21 @@ function getIPSizedImage($size, $image) {
 			if ($image && $obj->table == 'images') {
 				$link2 = $obj->album->getLink();
 			} else {
-				$link2 = false;
+				$link2 = $alt2 = $title2 = false;
 			}
 			?>
 			<script type="text/javascript">
 				// <!-- <![CDATA[
 				var link = '<?php echo $link; ?>';
 				var link2 = '<?php echo $link2; ?>';
+				var alt1 = '<?php echo $alt1; ?>';
+				var title1 = '<?php echo $title1; ?>';
 				var title = '<?php echo html_encodeTagged($obj->getTitle()); ?>';
-				var image = '<?php echo $image; ?>';
-				var imagec = '<?php echo $imageb; ?>';
+				var image = '<img src="<?php echo $image; ?>" alt="' + alt1 + '" title="' + title1 + '" />';
+				var imagec = '<img src="<?php echo $imageb; ?>" alt="' + alt1 + '" title="' + title1 + '" />';
 				var imagef = '<?php echo $imagef; ?>';
 				var picture = <?php echo (int) $picture; ?>;
+
 				function zenchange() {
 					var selectedlink = $('input:radio[name=link]:checked').val();
 					if (picture) {
@@ -107,20 +113,21 @@ function getIPSizedImage($size, $image) {
 					} else {
 						imageb = imagec.replace('s=<?php echo $size; ?>', 's=' + $('#imagesize').val());
 					}
+
 					switch (selectedlink) {
 						case 'thumb':
 							if ($('#addcaption').prop('checked')) {
-								$('#content').html('<figure class="thumbFigure"><img src="' + image + '" /><figcaption>' + title + '</figcaption></figure>');
+								$('#content').html('<figure class="thumbFigure">' + image + '<figcaption>' + title + '</figcaption></figure>');
 							} else {
-								$('#content').html('<img src="' + image + '" />');
+								$('#content').html(image);
 							}
 							break;
 						default:
 						case 'image':
 							if ($('#addcaption').prop('checked')) {
-								$('#content').html('<figure class="imageFigure"><img src="' + imageb + '" /><figcaption>' + title + '</figcaption></figure>');
+								$('#content').html('<figure class="imageFigure">' + imageb + '<figcaption>' + title + '</figcaption></figure>');
 							} else {
-								$('#content').html('<img src="' + imageb + '" />');
+								$('#content').html(imageb);
 							}
 							break;
 						case 'title':
@@ -132,23 +139,23 @@ function getIPSizedImage($size, $image) {
 							break;
 						case 'thumblink':
 							if ($('#addcaption').prop('checked')) {
-								$('#content').html('<figure class="thumbFigure"><a href="' + link + '" title="' + title + '" class="tinyMCE_OBJ_thumb"><img src="' + image + '" /></a><figcaption><a href="' + link + '" title="' + title + '" class="tinyMCE_OBJ_thumb">' + title + '</a></figcaption></figure>');
+								$('#content').html('<figure class="thumbFigure"><a href="' + link + '" title="' + title + '" class="tinyMCE_OBJ_thumb">' + image + '</a><figcaption><a href="' + link + '" title="' + title + '" class="tinyMCE_OBJ_thumb">' + title + '</a></figcaption></figure>');
 							} else {
-								$('#content').html('<a href="' + link + '" title="' + title + '" class="tinyMCE_OBJ_thumb"><img src="' + image + '" /></a>');
+								$('#content').html('<a href="' + link + '" title="' + title + '" class="tinyMCE_OBJ_thumb">' + image + '</a>');
 							}
 							break;
 						case 'imagelink':
 							if ($('#addcaption').prop('checked')) {
-								$('#content').html('<figure class="imageFigure"><a href="' + link + '" title="' + title + '" class="tinyMCE_OBJ_image"><img src="' + imageb + '" /></a><figcaption><a href="' + link + '" title="' + title + '" class="tinyMCE_OBJ_image">' + title + '</a></figcaption></figure>');
+								$('#content').html('<figure class="imageFigure"><a href="' + link + '" title="' + title + '" class="tinyMCE_OBJ_image">' + imageb + '</a><figcaption><a href="' + link + '" title="' + title + '" class="tinyMCE_OBJ_image">' + title + '</a></figcaption></figure>');
 							} else {
-								$('#content').html('<a href="' + link + '" title="' + title + '" class="tinyMCE_OBJ_image"><img src="' + imageb + '" /></a>');
+								$('#content').html('<a href="' + link + '" title="' + title + '" class="tinyMCE_OBJ_image">' + imageb + '</a>');
 							}
 							break;
 						case 'imagelinkfull':
 							if ($('#addcaption').prop('checked')) {
-								$('#content').html('<figure class="imageFigure"><a href="' + imagef + '" title="' + title + '" class="tinyMCE_OBJ_full"><img src="' + imageb + '" /></a><figcaption><a href="' + imagef + '" title="' + title + '" class="tinyMCE_OBJ_full">' + title + '</a></figcaption></figure>');
+								$('#content').html('<figure class="imageFigure"><a href="' + imagef + '" title="' + title + '" class="tinyMCE_OBJ_full">' + imageb + '</a><figcaption><a href="' + imagef + '" title="' + title + '" class="tinyMCE_OBJ_full">' + title + '</a></figcaption></figure>');
 							} else {
-								$('#content').html('<a href="' + imagef + '" title="' + title + '" class="tinyMCE_OBJ_full"><img src="' + imageb + '" /></a>');
+								$('#content').html('<a href="' + imagef + '" title="' + title + '" class="tinyMCE_OBJ_full">' + imageb + '</a>');
 							}
 							break;
 						case 'link':
@@ -156,27 +163,28 @@ function getIPSizedImage($size, $image) {
 							break;
 						case 'thumblink2':
 							if ($('#addcaption').prop('checked')) {
-								$('#content').html('<figure class="thumbFigure"><a href="' + link2 + '" title="' + title + '" class="tinyMCE_OBJ_thumb"><img src="' + image + '" /></a>' + '<figcaption><a href="' + link2 + '" title="' + title + '" class="tinyMCE_OBJ_thumb">' + title + '</a></figcaption>' + '</figure>');
+								$('#content').html('<figure class="thumbFigure"><a href="' + link2 + '" title="' + title + '" class="tinyMCE_OBJ_thumb">' + image + '</a>' + '<figcaption><a href="' + link2 + '" title="' + title + '" class="tinyMCE_OBJ_thumb">' + title + '</a></figcaption>' + '</figure>');
 							} else {
-								$('#content').html('<a href="' + link2 + '" title="' + title + '" class="tinyMCE_OBJ_thumb"><img src="' + image + '" /></a>');
+								$('#content').html('<a href="' + link2 + '" title="' + title + '" class="tinyMCE_OBJ_thumb">' + image + '</a>');
 							}
 							break;
 						case 'thumblinkfull':
 							if ($('#addcaption').prop('checked')) {
-								$('#content').html('<figure class="thumbFigure"><a href="' + imagef + '" title="' + title + '" class="tinyMCE_OBJ_full"><img src="' + image + '" /></a>' + '<figcaption><a href="' + imagef + '" title="' + title + '" class="tinyMCE_OBJ_full">' + title + '</a></figcaption>' + '</figure>');
+								$('#content').html('<figure class="thumbFigure"><a href="' + imagef + '" title="' + title + '" class="tinyMCE_OBJ_full">' + image + '</a>' + '<figcaption><a href="' + imagef + '" title="' + title + '" class="tinyMCE_OBJ_full">' + title + '</a></figcaption>' + '</figure>');
 							} else {
-								$('#content').html('<a href="' + imagef + '" title="' + title + '" class="tinyMCE_OBJ_full"><img src="' + image + '" /></a>');
+								$('#content').html('<a href="' + imagef + '" title="' + title + '" class="tinyMCE_OBJ_full">' + image + '</a>');
 							}
 							break;
 
 						case 'link2':
 							if ($('#addcaption').prop('checked')) {
-								$('#content').html('<figure class="imageFigure"><a href="' + link2 + '" title="' + title + '" class="tinyMCE_OBJ_image"><img src="' + imageb + '" /></a>' + '<figcaption><a href="' + link2 + '" title="' + title + '" class="tinyMCE_OBJ">' + title + '</a></figcaption>' + '</figure>');
+								$('#content').html('<figure class="imageFigure"><a href="' + link2 + '" title="' + title + '" class="tinyMCE_OBJ_image">' + imageb + '</a>' + '<figcaption><a href="' + link2 + '" title="' + title + '" class="tinyMCE_OBJ">' + title + '</a></figcaption>' + '</figure>');
 							} else {
-								$('#content').html('<a href="' + link2 + '" title="' + title + '" class="tinyMCE_OBJ_image"><img src="' + imageb + '" /></a>');
+								$('#content').html('<a href="' + link2 + '" title="' + title + '" class="tinyMCE_OBJ_image">' + imageb + '</a>');
 							}
 							break;
 					}
+
 				}
 
 				function paste() {
