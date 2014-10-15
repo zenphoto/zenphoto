@@ -2411,7 +2411,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						$renameto .= '.' . $suffix;
 					}
 				}
-				if ($e = $album->rename($renameto)) {
+				if ($e = $album->rename($renameto,$album->name)) {
 					$notify = "&mcrerr=" . $e;
 				} else {
 					$redirectto = $renameto;
@@ -2429,6 +2429,7 @@ function printAdminHeader($tab, $subtab = NULL) {
   * @param type $index Index of the image if within the images list or 0 if single image edit
   */
  function processImageEdit($image, $index) {
+  
   $notify = '';
   if (isset($_POST[$index . '-MoveCopyRename'])) {
     $movecopyrename_action = sanitize($_POST[$index . '-MoveCopyRename'], 3);
@@ -2513,8 +2514,9 @@ function printAdminHeader($tab, $subtab = NULL) {
     $image->setCustomData(zp_apply_filter('save_image_custom_data', $custom, $index));
     zp_apply_filter('save_image_utilities_data', $image, $index);
     $image->save();
-
+      
     // Process move/copy/rename
+    $folder = $image->getAlbumName();
     if ($movecopyrename_action == 'move') {
       $dest = sanitize_path($_POST[$index . '-albumselect']);
       if ($dest && $dest != $folder) {

@@ -699,8 +699,8 @@ class AlbumBase extends MediaObject {
 	 * @param string $newfolder the new folder name of this album (including subalbum paths)
 	 * @return boolean true on success or false on failure.
 	 */
-	function rename($newfolder) {
-		return $this->move($newfolder);
+	function rename($newfolder,$oldfolder='') {
+		return $this->move($newfolder,$oldfolder);
 	}
 
 	protected function succeed($dest) {
