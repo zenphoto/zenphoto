@@ -326,7 +326,7 @@ class security_logger {
 					return $allow;
 				break;
 		}
-		security_logger::Logger(0, $user, $name, 'blocked_access', '', $page);
+		security_logger::Logger(0, $user, $name, 'blocked_access', '', getRequestURI());
 		return $allow;
 	}
 
@@ -357,7 +357,7 @@ class security_logger {
 				break;
 		}
 		if (!$allow)
-			security_logger::Logger(2, $user, $name, 'blocked_album', '', $page);
+			security_logger::Logger(2, $user, $name, 'blocked_album', '', getRequestURI());
 		return $allow;
 	}
 
