@@ -588,7 +588,6 @@ class AlbumBase extends MediaObject {
 		@chmod($this->localpath, 0777);
 		$success = @rename(rtrim($this->localpath, '/'), $dest);
 		@chmod($dest, $perms);
-
 		if ($success) {
 			$this->localpath = $dest . "/";
 			$filestomove = safe_glob($filemask);
@@ -1292,17 +1291,17 @@ class Album extends AlbumBase {
 	 *
 	 */
 	function move($newfolder) {
+		$oldfolder = $this->name;
 		$rslt = $this->_move($newfolder);
 		if (!$rslt) {
 // Then: go through the db and change the album (and subalbum) paths. No ID changes are necessary for a move.
 // Get the subalbums.
-			$sql = "SELECT id, folder FROM " . prefix('albums') . " WHERE folder LIKE " . db_quote(db_LIKE_escape($this->name) . '/%');
+			$sql = "SELECT id, folder FROM " . prefix('albums') . " WHERE folder LIKE " . db_quote(db_LIKE_escape($oldfolder) . '/%');
 			$result = query($sql);
 			if ($result) {
+				$len = strlen($oldfolder);
 				while ($subrow = db_fetch_assoc($result)) {
-					$newsubfolder = $subrow['folder'];
-					$newsubfolder = $newfolder . substr($newsubfolder, strlen($this->name));
-					$sql = "UPDATE " . prefix('albums') . " SET folder=" . db_quote($newsubfolder) . " WHERE id=" . $subrow['id'];
+					$sql = "UPDATE " . prefix('albums') . " SET folder=" . db_quote($newfolder . substr($subrow['folder'], $len)) . " WHERE id=" . $subrow['id'];
 					query($sql);
 				}
 			}
