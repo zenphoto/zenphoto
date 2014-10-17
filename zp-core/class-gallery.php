@@ -292,24 +292,21 @@ class Gallery {
 	function getThemes() {
 		if (empty($this->themes)) {
 			$themedir = SERVERPATH . "/themes";
-			$themes = array();
 			if ($dp = @opendir($themedir)) {
 				while (false !== ($dir = readdir($dp))) {
 					if (substr($dir, 0, 1) != "." && is_dir("$themedir/$dir")) {
 						$themefile = $themedir . "/$dir/theme_description.php";
 						$dir8 = filesystemToInternal($dir);
+						$this->themes[$dir8] = array('name' => gettext('Unknown'), 'author' => gettext('Unknown'), 'version' => gettext('Unknown'), 'desc' => gettext('<strong>Missing theme info file!</strong>'), 'date' => gettext('Unknown'));
 						if (file_exists($themefile)) {
 							$theme_description = array();
 							require($themefile);
-							$themes[$dir8] = $theme_description;
-						} else {
-							$themes[$dir8] = array('name' => gettext('Unknown'), 'author' => gettext('Unknown'), 'version' => gettext('Unknown'), 'desc' => gettext('<strong>Missing theme info file!</strong>'), 'date' => gettext('Unknown'));
+							$this->themes[$dir8] = $theme_description;
 						}
 					}
 				}
-				ksort($themes, SORT_LOCALE_STRING);
+				ksort($this->themes, SORT_LOCALE_STRING);
 			}
-			$this->themes = $themes;
 		}
 		return $this->themes;
 	}
