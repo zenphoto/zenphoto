@@ -2379,7 +2379,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						$dest .= '.' . suffix;
 					}
 				}
-				if ($e = $album->move($dest,$album->name)) {
+				if ($e = $album->move($dest)) {
 					$notify = "&mcrerr=" . $e;
 				} else {
 					$redirectto = $dest;
@@ -2411,7 +2411,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						$renameto .= '.' . $suffix;
 					}
 				}
-				if ($e = $album->rename($renameto,$album->name)) {
+				if ($e = $album->rename($renameto)) {
 					$notify = "&mcrerr=" . $e;
 				} else {
 					$redirectto = $renameto;
@@ -3551,7 +3551,7 @@ function postAlbumSort($parentid) {
             $dest = $parent['folder'] . '/' . $albumname;
           }
         }
-        if ($e = $album->move($dest, $oldalbum)) {
+        if ($e = $album->move($dest)) {
           return "&mcrerr=" . $e;
         } else {
           $album->setSortOrder($sortorder);

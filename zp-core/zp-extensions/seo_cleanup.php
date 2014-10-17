@@ -76,7 +76,7 @@ if (defined('OFFSET_PATH')) {
 			} else {
 				$newname .= '/' . $seoname;
 			}
-			if ($e = $obj->rename($newname,$subalbum)) {
+			if ($e = $obj->rename($newname)) {
 				$error = getE($e, $subalbum, $newname);
 				printf(gettext('<em>%1$s</em> rename to <em>%2$s</em> failed: %3$s'), $subalbum, $newname, $error);
 				echo "<br />\n";

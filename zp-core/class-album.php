@@ -690,7 +690,7 @@ class AlbumBase extends MediaObject {
 	 * @return int 0 on success and error indicator on failure.
 	 *
 	 */
-	function move($newfolder,$oldfolder='') {
+	function move($newfolder) {
 		return parent::move(array('folder' => $newfolder));
 	}
 
@@ -699,8 +699,8 @@ class AlbumBase extends MediaObject {
 	 * @param string $newfolder the new folder name of this album (including subalbum paths)
 	 * @return boolean true on success or false on failure.
 	 */
-	function rename($newfolder,$oldfolder='') {
-		return $this->move($newfolder,$oldfolder);
+	function rename($newfolder) {
+		return $this->move($newfolder);
 	}
 
 	protected function succeed($dest) {
@@ -1375,7 +1375,8 @@ class Album extends AlbumBase {
 	 * @return int 0 on success and error indicator on failure.
 	 *
 	 */
-	function move($newfolder,$oldfolder='') {
+	function move($newfolder) {
+  $oldfolder = $this->name;
 		$rslt = $this->_move($newfolder);
 		if (!$rslt) {
 // Then: go through the db and change the album (and subalbum) paths. No ID changes are necessary for a move.
