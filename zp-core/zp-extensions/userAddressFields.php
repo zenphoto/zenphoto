@@ -30,14 +30,16 @@ class userAddressFields extends fieldExtender {
 			$result = query('SELECT * FROM ' . prefix('administrators') . ' WHERE `valid`!=0');
 			if ($result) {
 				while ($row = db_fetch_assoc($result)) {
-					$custom = getSerializedArray($row['custom_data']);
-					if (!empty($custom)) {
-						$sql = 'UPDATE ' . prefix('administrators') . ' SET ';
-						foreach ($custom as $field => $val) {
-							$sql.= '`' . $field . '`=' . db_quote($val) . ',';
+					if (array_key_exists('custom_data', $row)) {
+						$custom = getSerializedArray($row['custom_data']);
+						if (!empty($custom)) {
+							$sql = 'UPDATE ' . prefix('administrators') . ' SET ';
+							foreach ($custom as $field => $val) {
+								$sql.= '`' . $field . '`=' . db_quote($val) . ',';
+							}
+							$sql .= '`custom_data`=NULL WHERE `id`=' . $row['id'];
+							query($sql);
 						}
-						$sql .= '`custom_data`=NULL WHERE `id`=' . $row['id'];
-						query($sql);
 					}
 				}
 				db_free_result($result);
