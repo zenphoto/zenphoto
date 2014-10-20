@@ -1379,19 +1379,15 @@ class Album extends AlbumBase {
   $oldfolder = $this->name;
 		$rslt = $this->_move($newfolder);
 		if (!$rslt) {
-// Then: go through the db and change the album (and subalbum) paths. No ID changes are necessary for a move.
-// Get the subalbums.
-    // Here $this->name was used but that had already the new name and not the old we actually want to update here
-    // This data was lost as no were found
+			// Then: go through the db and change the album (and subalbum) paths. No ID changes are necessary for a move.
+			// Get the subalbums.
 			$sql = "SELECT id, folder FROM " . prefix('albums') . " WHERE folder LIKE " . db_quote(db_LIKE_escape($oldfolder) . '/%');
-   debugLogVar('Album class move() sql): ',$sql);
 			$result = query($sql);
 			if ($result) {
 				while ($subrow = db_fetch_assoc($result)) {
 					$newsubfolder = $subrow['folder'];
 					$newsubfolder = $newfolder . substr($newsubfolder, strlen($oldfolder));
 					$sql = "UPDATE " . prefix('albums') . " SET folder=" . db_quote($newsubfolder) . " WHERE id=" . $subrow['id'];
-     debugLogVar('Album class move() update sql): ',$sql);
 					query($sql);
 				}
 			}
