@@ -44,10 +44,12 @@ function storeConfig($zp_cfg, $folder = NULL) {
 		$folder = SERVERPATH . '/';
 	}
 	$mod = fileperms($folder . DATA_FOLDER . '/' . CONFIGFILE) & 0777;
+
 	@rename($folder . DATA_FOLDER . '/' . CONFIGFILE, $backkup = $folder . DATA_FOLDER . '/' . stripSuffix(CONFIGFILE) . '.bak.php');
 	@chmod($backup, $mod);
 	file_put_contents($folder . DATA_FOLDER . '/' . CONFIGFILE, $zp_cfg);
-	@chmod($foder . DATA_FOLDER . '/' . CONFIGFILE, $mod);
+	clearstatcache();
+	@chmod($folder . DATA_FOLDER . '/' . CONFIGFILE, $mod);
 }
 
 ?>

@@ -475,6 +475,7 @@ function acknowledge($value) {
 
 function configMod() {
 	$mod = 0600;
+	$str = NULL;
 	while (empty($str)) {
 		@chmod(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE, $mod);
 		$str = @file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
