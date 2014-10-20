@@ -215,7 +215,7 @@ if (isset($_REQUEST['FILESYSTEM_CHARSET'])) {
 	$updatezp_config = true;
 }
 if ($updatezp_config) {
-	updateConfigfile($zp_cfg);
+	storeConfig($zp_cfg);
 	$updatezp_config = false;
 }
 
@@ -287,9 +287,8 @@ if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
 }
 
 if ($updatezp_config) {
-	updateConfigfile($zp_cfg);
+	storeConfig($zp_cfg);
 }
-
 
 $result = true;
 $environ = false;
@@ -855,9 +854,9 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 														$('#UTF8_uri_warn').hide();
 													}
 													var loadSucceeded = true;
-													$(document).ready(function() {
+													$(document).ready(function () {
 														var image = new Image();
-														image.onload = function() {
+														image.onload = function () {
 						<?php
 						if (!(UTF8_IMAGE_URI || @$_SESSION['clone'][$cloneid]['UTF8_image_URI'])) {
 							?>
@@ -872,7 +871,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 						}
 						?>
 														};
-														image.onerror = function() {
+														image.onerror = function () {
 															$('#UTF8_uri_text').html('<?php echo addslashes($req_iso); ?>');
 						<?php
 						if (UTF8_IMAGE_URI) {
@@ -1701,8 +1700,8 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 						$collation = db_collation();
 
 						/*						 * *********************************************************************************
-							Add new fields in the upgrade section. This section should remain static except for new
-							tables. This tactic keeps all changes in one place so that noting gets accidentaly omitted.
+						  Add new fields in the upgrade section. This section should remain static except for new
+						  tables. This tactic keeps all changes in one place so that noting gets accidentaly omitted.
 						 * ********************************************************************************** */
 
 						//v1.2
@@ -2452,7 +2451,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 									function launchAdmin() {
 										window.location = '<?php echo WEBPATH . '/' . ZENFOLDER . '/admin.php'; ?>';
 									}
-									window.onload = function() {
+									window.onload = function () {
 										$('.delayshow').show();
 			<?php
 			if ($autorun) {

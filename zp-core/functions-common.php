@@ -87,6 +87,26 @@ function internalToFilesystem($filename) {
 }
 
 /**
+ * Returns the suffix of a file name
+ *
+ * @param string $filename
+ * @return string
+ */
+function getSuffix($filename) {
+	return strtolower(substr(strrchr($filename, "."), 1));
+}
+
+/**
+ * returns a file name sans the suffix
+ *
+ * @param unknown_type $filename
+ * @return unknown
+ */
+function stripSuffix($filename) {
+	return str_replace(strrchr($filename, "."), '', $filename);
+}
+
+/**
  * Takes user input meant to be used within a path to a file or folder and
  * removes anything that could be insecure or malicious, or result in duplicate
  * representations for the same physical file.

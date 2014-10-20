@@ -1303,26 +1303,6 @@ function imgSrcURI($uri) {
 }
 
 /**
- * Returns the suffix of a file name
- *
- * @param string $filename
- * @return string
- */
-function getSuffix($filename) {
-	return strtolower(substr(strrchr($filename, "."), 1));
-}
-
-/**
- * returns a file name sans the suffix
- *
- * @param unknown_type $filename
- * @return unknown
- */
-function stripSuffix($filename) {
-	return str_replace(strrchr($filename, "."), '', $filename);
-}
-
-/**
  * returns the non-empty value of $field from the album or one of its parents
  *
  * @param string $folder the album name
