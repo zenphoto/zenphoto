@@ -475,7 +475,6 @@ function acknowledge($value) {
 
 function configMod() {
 	$mod = 0600;
-	$str = '';
 	while (empty($str)) {
 		@chmod(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE, $mod);
 		$str = @file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
@@ -484,7 +483,6 @@ function configMod() {
 		}
 		$mod = $mod | $mod >> 3;
 	}
-	return $str;
 }
 
 function printSetupFooter() {
