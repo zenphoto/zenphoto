@@ -529,16 +529,17 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 							}
 							chdir(dirname(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE));
 							$test = safe_glob('*.log');
-							$test[] = basename(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
+							array_push($test, basename(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE));
 							$p = true;
+							$wrong = array();
 							foreach ($test as $file) {
 								$permission = fileperms(dirname(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE) . '/' . $file) & 0777;
 								if (!checkPermissions($permission, 0600)) {
 									$p = -1;
-									break;
+									$wrong[] = $file;
 								}
 							}
-							checkMark($p, sprintf(gettext('<em>%s</em> security'), DATA_FOLDER), sprintf(gettext('<em>%s</em> security [is compromised]'), DATA_FOLDER), sprintf(gettext('ZenPhoto20 suggests you make the sensitive files in the %1$s folder accessable by <em>owner</em> only (permissions = 0600). The file permissions for <em>%2$s</em> are %3$04o which may allow unauthorized access.'), DATA_FOLDER, $file, $permission));
+							checkMark($p, sprintf(gettext('<em>%s</em> security'), DATA_FOLDER), sprintf(gettext('<em>%s</em> security [is compromised]'), DATA_FOLDER), sprintf(gettext('ZenPhoto20 suggests you make the sensitive files in the %1$s folder accessable by <em>owner</em> only (permissions = 0600). The file permissions for <em>%2$s</em> are %3$04o which may allow unauthorized access.'), DATA_FOLDER, implode(', ', $wrong), $permission));
 
 							$err = versionCheck(PHP_MIN_VERSION, PHP_DESIRED_VERSION, PHP_VERSION);
 							$good = checkMark($err, sprintf(gettext("PHP version %s"), PHP_VERSION), "", sprintf(gettext('PHP Version %1$s or greater is required. Version %2$s or greater is strongly recommended. Use earlier versions at your own risk.'), PHP_MIN_VERSION, PHP_DESIRED_VERSION), false) && $good;
