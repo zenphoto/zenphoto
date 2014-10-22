@@ -147,15 +147,7 @@ ul li div.contenttext {
 	font-weight: normal;
 }
 
-div.albumdesc {
-	margin: 8px 0 8px 0;
-	font-size: 13px !important;
-	font-weight: normal;
-	width: 100%;
-}
-.albumdesc p {
-	width: 100% !important;
-}
+
 
 #mainpage {
 	position: relative;
@@ -209,6 +201,18 @@ ul.jp-toggles {
 	z-index: 1000;
 }
 
+ul.ui-listview li a img {
+display: block;
+float: left;
+padding: 0;
+margin-right: 10px;
+}
+
+ul.ui-listview li a div.albumdesc {
+	margin: 8px 0 8px 0;
+	font-size: 13px !important;
+	font-weight: normal;
+}
 
 #image img {
 	width: 100% !important;
