@@ -1,6 +1,6 @@
 <?php 
 // force UTF-8 Ø
-if (!defined('WEBPATH')) die(); ;
+if (!defined('WEBPATH')) die();
 ?>
 <!DOCTYPE html> 
 <html>
@@ -24,19 +24,17 @@ if (!defined('WEBPATH')) die(); ;
 		<div class="content-primary">
 		<h2>Gallery</h2>
 		<?php printGalleryDesc(); ?>
-		<br />
 		<?php if(hasPrevPage() || hasNextPage()) printPageListWithNav(gettext("prev"), gettext("next"),false,true,'pagelist',NULL,true,7); ?>
-	
-		
-			<ul data-role="listview" data-inset="true" data-theme="a" class="ui-listview ui-group-theme-a">
+		<ul data-role="listview" data-inset="true">
 			<?php while (next_album()): ?>
-					<li class="ui-li-has-thumb"><a href="<?php echo html_encode(getAlbumURL());?>" title="<?php echo gettext('View album:'); ?> <?php printAnnotatedAlbumTitle();?>"><?php printCustomAlbumThumbImage(getAnnotatedAlbumTitle(), null, 80, 80, 80, 80, NULL, null, NULL,NULL); ?>
-					<?php printAlbumTitle(); ?><small> (<?php printAlbumDate(""); ?>)</small>
-					<div class="albumdesc"><?php echo shortenContent(getAlbumDesc(), 57,'(...)',false); ?></div>
-					<small class="ui-li-count"><?php jqm_printImageAlbumCount()?></small>	
-				</a>
-				
-			</li>
+							<li>
+								<a href="<?php echo html_encode(getAlbumURL());?>" title="<?php echo gettext('View album:'); ?>">
+									<?php printCustomAlbumThumbImage(getAnnotatedAlbumTitle(), null, 79, 79, 79, 79, NULL, null, NULL,NULL); ?>
+									<h3><?php printAlbumTitle(); ?><small> (<?php printAlbumDate(''); ?>)</small></h3>
+									<div class="albumdesc"><?php echo shortenContent(getAlbumDesc(), 100,'(...)',false); ?></div>
+									<small class="ui-li-aside ui-li-count"><?php jqm_printImageAlbumCount()?></small>
+								</a>
+							</li>
 			<?php endwhile; ?>
 		</ul>
 		<?php if(hasPrevPage() || hasNextPage()) printPageListWithNav(gettext("prev"), gettext("next"),false,true,'pagelist',NULL,true,7); ?>

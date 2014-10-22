@@ -133,23 +133,44 @@ if (!defined('WEBPATH'))
 						?>
 					</h3>
 						<?php if (getNumAlbums() != 0) { ?>
-						<ul data-role="listview" data-inset="true" data-theme="c" class="ui-listview ui-group-theme-a">
+						<ul data-role="listview" data-inset="true">
 	<?php while (next_album()): ?>
-								<li>
-									<a href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo gettext('View album:'); ?>">
-		<?php printCustomAlbumThumbImage(getAnnotatedAlbumTitle(), null, 80, 80, 80, 80, NULL, null, NULL, NULL); ?>
-										<h3><?php echo getAlbumTitle(); ?> <small><?php printAlbumDate(); ?></small></h3><?php printAlbumDesc(); ?>
-									</a>
-								</li>
+							<li>
+								<a href="<?php echo html_encode(getAlbumURL());?>" title="<?php echo gettext('View album:'); ?>">
+									<?php printCustomAlbumThumbImage(getAnnotatedAlbumTitle(), null, 79, 79, 79, 79, NULL, null, NULL,NULL); ?>
+									<h3><?php printAlbumTitle(); ?><small> (<?php printAlbumDate(''); ?>)</small></h3>
+									<div class="albumdesc"><?php echo shortenContent(getAlbumDesc(), 100,'(...)',false); ?></div>
+									<small class="ui-li-aside ui-li-count"><?php jqm_printImageAlbumCount()?></small>
+								</a>
+							</li>
 						<?php endwhile; ?>
 						</ul>
 					<?php } ?>
 						<?php if (getNumImages() > 0) { ?>
-						<div id="images">
-	<?php while (next_image()) { ?>
-								<div class="image">
-									<div class="imagethumb"><a href="<?php echo html_encode(getImageURL()); ?>" title="<?php printBareImageTitle(); ?>"><?php printCustomSizedImage(getAnnotatedImageTitle(), NULL, 80, 80, 80, 80, NULL, NULL, NULL, NULL, true, NULL); ?></a></div>
-								</div>
+						<div class="ui-grid-c">
+	<?php 
+	$count = '';
+	while (next_image()) { 
+		$count++;
+				switch($count) {
+					case 1:
+						$imgclass = ' ui-block-a';
+						break;
+					case 2:
+						$imgclass = ' ui-block-b';
+						break;
+					case 3:
+						$imgclass = ' ui-block-c';
+						break;
+					case 4:
+						$imgclass = ' ui-block-d';
+						$count = ''; // reset to start with a again;
+						break;
+				}
+	?>
+				<a class="image<?php echo $imgclass; ?>" href="<?php echo html_encode(getImageURL());?>" title="<?php printBareImageTitle();?>">
+					<?php printCustomSizedImage(getAnnotatedImageTitle(), NULL,230, 230, 230, 230, NULL, NULL, NULL, NULL, true, NULL); ?>
+				</a>
 	<?php } ?>
 						</div>
 						<br class="clearall" />
