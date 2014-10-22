@@ -128,7 +128,7 @@ class DownloadList {
 						 onkeyup="passwordStrength('_downloadList');"
 						 value="<?php echo $x; ?>" />
 			<label><input type="checkbox" name="disclose_password_downloadList" id="disclose_password_downloadList" onclick="passwordClear('_downloadList');
-					togglePassword('_downloadList');"><?php echo gettext('Show password'); ?></label>
+							togglePassword('_downloadList');"><?php echo gettext('Show password'); ?></label>
 			<br />
 			<span class="password_field__downloadList">
 				<span id="match_downloadList"><?php echo gettext("(repeat)"); ?></span>
@@ -270,7 +270,7 @@ class DownloadList {
 		?>
 		<script type="text/javascript">
 			// <!-- <![CDATA[
-			window.onload = function() {
+			window.onload = function () {
 				alert('<?php printf(gettext('File “%s” was not found.'), $file); ?>');
 			}
 			// ]]> -->
@@ -623,7 +623,6 @@ if (isset($_GET['download'])) {
 		}
 	}
 	if (isset($_GET['albumzip'])) {
-		DownloadList::updateListItemCount($item . '.zip');
 		require_once(SERVERPATH . '/' . ZENFOLDER . '/lib-zipStream.php');
 		if (isset($_GET['fromcache'])) {
 			$fromcache = sanitize($isset($_GET['fromcache']));
@@ -639,6 +638,7 @@ if (isset($_GET['download'])) {
 			$album = newAlbum($item, false, true);
 		}
 		AlbumZip::create($album, $item, $fromcache);
+		DownloadList::updateListItemCount($item . '.zip');
 	} else {
 		$path = query_single_row("SELECT `aux` FROM " . prefix('plugin_storage') . " WHERE id=" . (int) $item);
 		if (array_key_exists('aux', $path) && file_exists($_downloadFile = internalToFilesystem($path['aux']))) {
