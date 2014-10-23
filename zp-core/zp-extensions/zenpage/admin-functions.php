@@ -1079,6 +1079,9 @@ function printNestedItemsList($listtype = 'cats-sortablelist', $articleid = '', 
 	switch ($listtype) {
 		case 'cats-checkboxlist':
 		case 'cats-sortablelist':
+
+			//Without this the order is incorrect until the 2nd page reload…
+			$_zp_zenpage = new Zenpage();
 			$items = $_zp_CMS->getAllCategories(false);
 			break;
 		case 'pages-sortablelist':
@@ -1139,7 +1142,7 @@ function printNestedItemsList($listtype = 'cats-sortablelist', $articleid = '', 
 					printCategoryCheckboxListEntry($itemobj, $articleid, $option, $class);
 					break;
 				case 'cats-sortablelist':
-					echo str_pad("\t", $indent - 1, "\t") . "<li id=\"id_" . $itemid . "\" class=\"clear-element page-item1 left\">";
+					echo str_pad("\t", $indent - 1, "\t") . "<li id=\"id_" . $itemid . "\">";
 					printCategoryListSortableTable($itemobj, $toodeep);
 					break;
 				case 'pages-sortablelist':

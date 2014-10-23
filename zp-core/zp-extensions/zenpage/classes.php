@@ -617,7 +617,7 @@ class CMS {
 			if ($sorttype == 'random') {
 				shuffle($structure);
 			} else {
-				$structure = sortMultiArray($structure, $sortorder, $sortdirection, true, false, false);
+				$structure = sortMultiArray($structure, $sortorder, !$sortdirection, true, false, false);
 			}
 		}
 		return $structure;

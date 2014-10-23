@@ -127,8 +127,10 @@ class DownloadList {
 						 onkeydown="passwordClear('_downloadList');"
 						 onkeyup="passwordStrength('_downloadList');"
 						 value="<?php echo $x; ?>" />
-			<label><input type="checkbox" name="disclose_password_downloadList" id="disclose_password_downloadList" onclick="passwordClear('_downloadList');
-							togglePassword('_downloadList');"><?php echo gettext('Show password'); ?></label>
+			<label>
+				<input type="checkbox" name="disclose_password_downloadList" id="disclose_password_downloadList" onclick="passwordClear('_downloadList');
+						togglePassword('_downloadList');"><?php echo gettext('Show password'); ?>
+			</label>
 			<br />
 			<span class="password_field__downloadList">
 				<span id="match_downloadList"><?php echo gettext("(repeat)"); ?></span>
@@ -377,11 +379,11 @@ class AlbumZip {
 	 */
 	static function create($album, $zipname, $fromcache) {
 		global $_zp_zip_list, $_zp_albums_visited_albumMenu, $_zp_gallery, $defaultSize;
-		if (!$album->isMyItem(LIST_RIGHTS) && !checkAlbumPassword($album->name)) {
-			self::pageError(403, gettext("Forbidden"));
-		}
 		if (!$album->exists) {
 			self::pageError(404, gettext('Album not found'));
+		}
+		if (!$album->checkAccess()) {
+			self::pageError(403, gettext("Forbidden"));
 		}
 
 		$_zp_albums_visited_albumMenu = $_zp_zip_list = array();
@@ -598,6 +600,7 @@ function printDownloadAlbumZipURL($linktext = NULL, $albumobj = NULL, $fromcache
  * Process any download requests
  */
 if (isset($_GET['download'])) {
+	$_zp_HTML_cache->abortHTMLCache();
 	$item = sanitize($_GET['download']);
 	if (empty($item) || !extensionEnabled('downloadList')) {
 		if (TEST_RELEASE) {
@@ -613,11 +616,20 @@ if (isset($_GET['download'])) {
 //	credentials required to download
 		if (!zp_loggedin((getOption('downloadList_rights')) ? FILES_RIGHTS : ALL_RIGHTS)) {
 			$user = getOption('downloadList_user');
-			zp_handle_password('download_auth', $hash, $user);
-			if (!empty($hash) && zp_getCookie('download_auth') != $hash) {
+			if (!zp_handle_password('download_auth', $hash, $user)) {
 				$show = ($user) ? true : NULL;
 				$hint = get_language_string(getOption('downloadList_hint'));
-				printPasswordForm($hint, true, $show, '?download=' . $item);
+				$_zp_gallery_page = 'password.php';
+				$_zp_script = $_zp_themeroot . '/password.php';
+				if (!file_exists(internalToFilesystem($_zp_script))) {
+					$_zp_script = SERVERPATH . '/' . ZENFOLDER . '/password.php';
+				}
+				header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
+				header("HTTP/1.0 302 Found");
+				header("Status: 302 Found");
+				header('Last-Modified: ' . ZP_LAST_MODIFIED);
+				include(internalToFilesystem($_zp_script));
+				exposeZenPhotoInformations($_zp_script, array(), $theme);
 				exitZP();
 			}
 		}
