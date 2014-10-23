@@ -130,14 +130,14 @@ class Zenphoto_Authority {
 						var url = 'url(<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/strengths/strength' + strength + '.png)';
 						$('#slider-password_strength').css('background-image', url);
 					}
-					$(function() {
+					$(function () {
 						$("#slider-password_strength").slider({
 				<?php $v = getOption('password_strength'); ?>
 							startValue: <?php echo $v; ?>,
 							value: <?php echo $v; ?>,
 							min: 1,
 							max: 30,
-							slide: function(event, ui) {
+							slide: function (event, ui) {
 								$("#password_strength").val(ui.value);
 								$('#password_strength_display').html(ui.value);
 								sliderColor(ui.value);
@@ -1096,99 +1096,105 @@ class Zenphoto_Authority {
 		?>
 		<script type="text/javascript">
 			// <!-- <![CDATA[
-			function passwordStrength(id) {
-				var inputa = '#pass' + id;
-				var inputb = '#pass_r' + id;
-				var displaym = '#match' + id;
-				var displays = '#strength' + id;
-				var numeric = 0;
-				var special = 0;
-				var upper = 0;
-				var lower = 0;
-				var str = $(inputa).val();
-				var len = str.length;
-				var strength = 0;
-				for (c = 0; c < len; c++) {
-					if (str[c].match(/[0-9]/)) {
-						numeric++;
-					} else if (str[c].match(/[^A-Za-z0-9]/)) {
-						special++;
-					} else if (str[c].toUpperCase() == str[c]) {
-						upper++;
-					} else {
-						lower++;
-					}
-				}
-				if (upper != len) {
-					upper = upper * 2;
-				}
-				if (lower == len) {
-					lower = lower * 0.75;
-				}
-				if (numeric != len) {
-					numeric = numeric * 4;
-				}
-				if (special != len) {
-					special = special * 5;
-				}
-				len = Math.max(0, (len - 6) * .35);
-				strength = Math.min(30, Math.round(upper + lower + numeric + special + len));
-				if (str.length == 0) {
-					$(displays).css('color', 'black');
-					$(displays).html('<?php echo gettext('Password'); ?>');
-					$(inputa).css('background-image', 'none');
-				} else {
-					if (strength < 15) {
-						$(displays).css('color', '#ff0000');
-						$(displays).html('<?php echo gettext('password strength weak'); ?>');
-					} else if (strength < 25) {
-						$(displays).css('color', '#ff0000');
-						$(displays).html('<?php echo gettext('password strength good'); ?>');
-					} else {
-						$(displays).css('color', '#008000');
-						$(displays).html('<?php echo gettext('password strength strong'); ?>');
-					}
-					if (strength < <?php echo (int) getOption('password_strength'); ?>) {
-						$(inputb).attr('disabled', 'disabled');
-						$(displays).css('color', '#ff0000');
-						$(displays).html('<?php echo gettext('password strength too weak'); ?>');
-					} else {
-						$(inputb).removeAttr('disabled');
-						passwordMatch(id);
-					}
-					var url = 'url(<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/strengths/strength' + strength + '.png)';
-					$(inputa).css('background-image', url);
-					$(inputa).css('background-size', '100%');
-				}
-			}
-
-			function passwordMatch(id) {
-				var inputa = '#pass' + id;
-				var inputb = '#pass_r' + id;
-				var display = '#match' + id;
-				if ($('#disclose_password' + id).prop('checked')) {
-					if ($(inputa).val() === $(inputb).val()) {
-						if ($(inputa).val().trim() !== '') {
-							$(display).css('color', '#008000');
-							$(display).html('<?php echo gettext('passwords match'); ?>');
+		<?php
+		if (OFFSET_PATH) {
+			?>
+				function passwordStrength(id) {
+					var inputa = '#pass' + id;
+					var inputb = '#pass_r' + id;
+					var displaym = '#match' + id;
+					var displays = '#strength' + id;
+					var numeric = 0;
+					var special = 0;
+					var upper = 0;
+					var lower = 0;
+					var str = $(inputa).val();
+					var len = str.length;
+					var strength = 0;
+					for (c = 0; c < len; c++) {
+						if (str[c].match(/[0-9]/)) {
+							numeric++;
+						} else if (str[c].match(/[^A-Za-z0-9]/)) {
+							special++;
+						} else if (str[c].toUpperCase() == str[c]) {
+							upper++;
+						} else {
+							lower++;
 						}
+					}
+					if (upper != len) {
+						upper = upper * 2;
+					}
+					if (lower == len) {
+						lower = lower * 0.75;
+					}
+					if (numeric != len) {
+						numeric = numeric * 4;
+					}
+					if (special != len) {
+						special = special * 5;
+					}
+					len = Math.max(0, (len - 6) * .35);
+					strength = Math.min(30, Math.round(upper + lower + numeric + special + len));
+					if (str.length == 0) {
+						$(displays).css('color', 'black');
+						$(displays).html('<?php echo gettext('Password'); ?>');
+						$(inputa).css('background-image', 'none');
 					} else {
-						$(display).css('color', '#ff0000');
-						$(display).html('<?php echo gettext('passwords do not match'); ?>');
+						if (strength < 15) {
+							$(displays).css('color', '#ff0000');
+							$(displays).html('<?php echo gettext('password strength weak'); ?>');
+						} else if (strength < 25) {
+							$(displays).css('color', '#ff0000');
+							$(displays).html('<?php echo gettext('password strength good'); ?>');
+						} else {
+							$(displays).css('color', '#008000');
+							$(displays).html('<?php echo gettext('password strength strong'); ?>');
+						}
+						if (strength < <?php echo (int) getOption('password_strength'); ?>) {
+							$(inputb).attr('disabled', 'disabled');
+							$(displays).css('color', '#ff0000');
+							$(displays).html('<?php echo gettext('password strength too weak'); ?>');
+						} else {
+							$(inputb).removeAttr('disabled');
+							passwordMatch(id);
+						}
+						var url = 'url(<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/strengths/strength' + strength + '.png)';
+						$(inputa).css('background-image', url);
+						$(inputa).css('background-size', '100%');
 					}
 				}
-			}
 
-			function passwordClear(id) {
-				var inputa = '#pass' + id;
-				var inputb = '#pass_r' + id;
-				if ($(inputa).val().trim() === '') {
-					$(inputa).val('');
+				function passwordMatch(id) {
+					var inputa = '#pass' + id;
+					var inputb = '#pass_r' + id;
+					var display = '#match' + id;
+					if ($('#disclose_password' + id).prop('checked')) {
+						if ($(inputa).val() === $(inputb).val()) {
+							if ($(inputa).val().trim() !== '') {
+								$(display).css('color', '#008000');
+								$(display).html('<?php echo gettext('passwords match'); ?>');
+							}
+						} else {
+							$(display).css('color', '#ff0000');
+							$(display).html('<?php echo gettext('passwords do not match'); ?>');
+						}
+					}
 				}
-				if ($(inputb).val().trim() === '') {
-					$(inputb).val('');
+
+				function passwordClear(id) {
+					var inputa = '#pass' + id;
+					var inputb = '#pass_r' + id;
+					if ($(inputa).val().trim() === '') {
+						$(inputa).val('');
+					}
+					if ($(inputb).val().trim() === '') {
+						$(inputb).val('');
+					}
 				}
-			}
+			<?php
+		}
+		?>
 			function togglePassword(id) {
 				if ($('#pass' + id).attr('type') == 'password') {
 					var oldp = $('#pass' + id);
@@ -1232,7 +1238,7 @@ class Zenphoto_Authority {
 		<p>
 			<label for="disclose_password<?php echo $id; ?>"><?php echo gettext('Show password'); ?></label>
 			<input type="checkbox" name="disclose_password<?php echo $id; ?>" id="disclose_password<?php echo $id; ?>" onclick="passwordClear('<?php echo $id; ?>');
-							togglePassword('<?php echo $id; ?>');">
+					togglePassword('<?php echo $id; ?>');">
 		</p>
 		<p class="password_field_<?php echo $id; ?>">
 			<label for="pass_r<?php echo $id; ?>" id="match<?php echo $id; ?>"><?php echo gettext("Repeat password") . $flag; ?></label>

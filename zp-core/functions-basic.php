@@ -1116,7 +1116,8 @@ function pathurlencode($path) {
 		$pairs = parse_query($parts['query']);
 		$parts['query'] = http_build_query($pairs);
 	}
-	$parts['path'] = implode("/", array_map("rawurlencode", explode("/", $parts['path'])));
+	if (array_key_exists('path', $parts))
+		$parts['path'] = implode("/", array_map("rawurlencode", explode("/", $parts['path'])));
 	return build_url($parts);
 }
 
