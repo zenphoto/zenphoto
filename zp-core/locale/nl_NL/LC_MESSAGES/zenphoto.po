@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.4.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-30 18:26+0100\n"
+"POT-Creation-Date: 2014-10-23 18:21+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: fretzl\n"
 "Language-Team: \n"
@@ -53,7 +53,7 @@ msgstr "Galerij Index"
 #: ZpTranslation-Master/themes/basic/404.php:23
 #: ZpTranslation-Master/themes/zenpage/404.php:27
 #: ZpTranslation-Master/themes/zpmobile/404.php:26
-#: ZpTranslation-Master/zp-core/template-functions.php:443
+#: ZpTranslation-Master/zp-core/template-functions.php:486
 msgid "Object not found"
 msgstr "Object niet gevonden"
 
@@ -111,7 +111,7 @@ msgstr "Albumindex"
 #: ZpTranslation-Master/themes/zenpage/search.php:149
 #: ZpTranslation-Master/themes/zpmobile/album.php:33
 #: ZpTranslation-Master/themes/zpmobile/favorites.php:34
-#: ZpTranslation-Master/themes/zpmobile/gallery.php:33
+#: ZpTranslation-Master/themes/zpmobile/gallery.php:31
 #: ZpTranslation-Master/themes/zpmobile/search.php:139
 msgid "View album:"
 msgstr "Bekijk album:"
@@ -143,12 +143,12 @@ msgstr "Bekijk album:"
 #: ZpTranslation-Master/themes/zpmobile/album.php:69
 #: ZpTranslation-Master/themes/zpmobile/favorites.php:30
 #: ZpTranslation-Master/themes/zpmobile/favorites.php:57
-#: ZpTranslation-Master/themes/zpmobile/gallery.php:28
-#: ZpTranslation-Master/themes/zpmobile/gallery.php:42
+#: ZpTranslation-Master/themes/zpmobile/gallery.php:27
+#: ZpTranslation-Master/themes/zpmobile/gallery.php:40
 #: ZpTranslation-Master/themes/zpmobile/image.php:32
 #: ZpTranslation-Master/themes/zpmobile/news.php:54
-#: ZpTranslation-Master/themes/zpmobile/search.php:164
-#: ZpTranslation-Master/zp-core/admin-functions.php:4454
+#: ZpTranslation-Master/themes/zpmobile/search.php:185
+#: ZpTranslation-Master/zp-core/admin-functions.php:4443
 #: ZpTranslation-Master/zp-core/zp-extensions/comment_form/functions.php:30
 #: ZpTranslation-Master/zp-core/zp-extensions/slideshow.php:591
 #: ZpTranslation-Master/zp-core/zp-extensions/slideshow2.php:268
@@ -183,12 +183,12 @@ msgstr "vorige"
 #: ZpTranslation-Master/themes/zpmobile/album.php:69
 #: ZpTranslation-Master/themes/zpmobile/favorites.php:30
 #: ZpTranslation-Master/themes/zpmobile/favorites.php:57
-#: ZpTranslation-Master/themes/zpmobile/gallery.php:28
-#: ZpTranslation-Master/themes/zpmobile/gallery.php:42
+#: ZpTranslation-Master/themes/zpmobile/gallery.php:27
+#: ZpTranslation-Master/themes/zpmobile/gallery.php:40
 #: ZpTranslation-Master/themes/zpmobile/image.php:35
 #: ZpTranslation-Master/themes/zpmobile/news.php:58
-#: ZpTranslation-Master/themes/zpmobile/search.php:164
-#: ZpTranslation-Master/zp-core/admin-functions.php:4482
+#: ZpTranslation-Master/themes/zpmobile/search.php:185
+#: ZpTranslation-Master/zp-core/admin-functions.php:4471
 #: ZpTranslation-Master/zp-core/zp-extensions/comment_form/functions.php:31
 #: ZpTranslation-Master/zp-core/zp-extensions/jplayer.php:471
 #: ZpTranslation-Master/zp-core/zp-extensions/slideshow.php:592
@@ -348,7 +348,7 @@ msgstr "Een wachtwoord is nodig om de opgevraagde pagina te bekijken."
 #: ZpTranslation-Master/themes/basic/register.php:24
 #: ZpTranslation-Master/themes/effervescence_plus/register.php:52
 #: ZpTranslation-Master/themes/garland/register.php:42
-#: ZpTranslation-Master/zp-core/template-functions.php:447
+#: ZpTranslation-Master/zp-core/template-functions.php:490
 #: ZpTranslation-Master/zp-core/zp-extensions/html_meta_tags.php:220
 #: ZpTranslation-Master/zp-core/zp-extensions/register_user.php:55
 msgid "Register"
@@ -449,7 +449,7 @@ msgstr "Hoofdindex"
 #: ZpTranslation-Master/themes/effervescence_plus/search.php:105
 #: ZpTranslation-Master/themes/effervescence_plus/slideshow.php:34
 #: ZpTranslation-Master/themes/zpmobile/functions.php:60
-#: ZpTranslation-Master/zp-core/template-functions.php:1422
+#: ZpTranslation-Master/zp-core/template-functions.php:1465
 #: ZpTranslation-Master/zp-core/zp-extensions/menu_manager.php:826
 #: ZpTranslation-Master/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:463
 msgid "Home"
@@ -480,7 +480,7 @@ msgstr "Nieuwsarchief"
 
 #: ZpTranslation-Master/themes/effervescence_plus/contact.php:53
 #: ZpTranslation-Master/zp-core/functions.php:2400
-#: ZpTranslation-Master/zp-core/template-functions.php:447
+#: ZpTranslation-Master/zp-core/template-functions.php:490
 #: ZpTranslation-Master/zp-core/zp-extensions/html_meta_tags.php:220
 msgid "Contact"
 msgstr "Contact"
@@ -573,7 +573,7 @@ msgid "Effervescence %1$s %2$s"
 msgstr "Effervescence %1$s %2$s"
 
 #: ZpTranslation-Master/themes/effervescence_plus/functions.php:323
-#: ZpTranslation-Master/zp-core/template-functions.php:1107
+#: ZpTranslation-Master/zp-core/template-functions.php:1150
 msgid "The album is password protected."
 msgstr "Dit is album is beveiligd met een wachtwoord."
 
@@ -958,7 +958,7 @@ msgstr "Galerij"
 #: ZpTranslation-Master/themes/effervescence_plus/sidebar.php:53
 #: ZpTranslation-Master/themes/garland/sidebar.php:107
 #: ZpTranslation-Master/zp-core/admin-functions.php:2003
-#: ZpTranslation-Master/zp-core/admin-functions.php:3264
+#: ZpTranslation-Master/zp-core/admin-functions.php:3252
 #: ZpTranslation-Master/zp-core/lib-auth.php:525
 #: ZpTranslation-Master/zp-core/lib-auth.php:531
 #: ZpTranslation-Master/zp-core/lib-auth.php:542
@@ -973,7 +973,7 @@ msgstr "Galerij"
 #: ZpTranslation-Master/zp-core/lib-auth.php:575
 #: ZpTranslation-Master/zp-core/lib-auth.php:579
 #: ZpTranslation-Master/zp-core/lib-auth.php:582
-#: ZpTranslation-Master/zp-core/template-functions.php:110
+#: ZpTranslation-Master/zp-core/template-functions.php:191
 #: ZpTranslation-Master/zp-core/utilities/gallery_statistics.php:72
 #: ZpTranslation-Master/zp-core/utilities/gallery_statistics.php:572
 #: ZpTranslation-Master/zp-core/zp-extensions/cacheManager.php:150
@@ -995,8 +995,8 @@ msgstr "Albums"
 #: ZpTranslation-Master/themes/zpmobile/functions.php:163
 #: ZpTranslation-Master/themes/zpmobile/pages.php:28
 #: ZpTranslation-Master/themes/zpmobile/pages.php:34
-#: ZpTranslation-Master/zp-core/admin-functions.php:3155
-#: ZpTranslation-Master/zp-core/admin-functions.php:3291
+#: ZpTranslation-Master/zp-core/admin-functions.php:3143
+#: ZpTranslation-Master/zp-core/admin-functions.php:3279
 #: ZpTranslation-Master/zp-core/lib-auth.php:526
 #: ZpTranslation-Master/zp-core/lib-auth.php:529
 #: ZpTranslation-Master/zp-core/lib-auth.php:544
@@ -1017,7 +1017,7 @@ msgstr "Albums"
 #: ZpTranslation-Master/zp-core/zp-extensions/tweet_news.php:93
 #: ZpTranslation-Master/zp-core/zp-extensions/zenpage.php:290
 #: ZpTranslation-Master/zp-core/zp-extensions/zenpage/admin-pages.php:105
-#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1315
+#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1317
 msgid "Pages"
 msgstr "Pagina’s"
 
@@ -1025,8 +1025,8 @@ msgstr "Pagina’s"
 #: ZpTranslation-Master/themes/effervescence_plus/themeoptions.php:77
 #: ZpTranslation-Master/themes/zenpage/sidebar.php:56
 #: ZpTranslation-Master/themes/zpmobile/functions.php:73
-#: ZpTranslation-Master/zp-core/template-functions.php:1271
-#: ZpTranslation-Master/zp-core/template-functions.php:1326
+#: ZpTranslation-Master/zp-core/template-functions.php:1314
+#: ZpTranslation-Master/zp-core/template-functions.php:1369
 #: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:876
 msgid "Archive"
 msgstr "Archief"
@@ -1049,8 +1049,8 @@ msgstr "RSS"
 #: ZpTranslation-Master/themes/zpmobile/functions.php:31
 #: ZpTranslation-Master/themes/zpmobile/functions.php:68
 #: ZpTranslation-Master/themes/zpmobile/functions.php:151
-#: ZpTranslation-Master/zp-core/admin-functions.php:3155
-#: ZpTranslation-Master/zp-core/admin-functions.php:3277
+#: ZpTranslation-Master/zp-core/admin-functions.php:3143
+#: ZpTranslation-Master/zp-core/admin-functions.php:3265
 #: ZpTranslation-Master/zp-core/lib-auth.php:527
 #: ZpTranslation-Master/zp-core/lib-auth.php:530
 #: ZpTranslation-Master/zp-core/lib-auth.php:543
@@ -1059,9 +1059,9 @@ msgstr "RSS"
 #: ZpTranslation-Master/zp-core/lib-auth.php:569
 #: ZpTranslation-Master/zp-core/lib-auth.php:576
 #: ZpTranslation-Master/zp-core/lib-auth.php:580
-#: ZpTranslation-Master/zp-core/template-functions.php:418
-#: ZpTranslation-Master/zp-core/template-functions.php:420
-#: ZpTranslation-Master/zp-core/template-functions.php:422
+#: ZpTranslation-Master/zp-core/template-functions.php:461
+#: ZpTranslation-Master/zp-core/template-functions.php:463
+#: ZpTranslation-Master/zp-core/template-functions.php:465
 #: ZpTranslation-Master/zp-core/zp-extensions/cacheManager.php:152
 #: ZpTranslation-Master/zp-core/zp-extensions/comment_form.php:82
 #: ZpTranslation-Master/zp-core/zp-extensions/comment_form/functions.php:833
@@ -1081,10 +1081,10 @@ msgstr "Nieuws"
 #: ZpTranslation-Master/themes/effervescence_plus/slideshow.php:55
 #: ZpTranslation-Master/themes/zenpage/album.php:26
 #: ZpTranslation-Master/themes/zpmobile/functions.php:62
-#: ZpTranslation-Master/zp-core/template-functions.php:447
-#: ZpTranslation-Master/zp-core/template-functions.php:1288
-#: ZpTranslation-Master/zp-core/template-functions.php:1319
-#: ZpTranslation-Master/zp-core/template-functions.php:3828
+#: ZpTranslation-Master/zp-core/template-functions.php:490
+#: ZpTranslation-Master/zp-core/template-functions.php:1331
+#: ZpTranslation-Master/zp-core/template-functions.php:1362
+#: ZpTranslation-Master/zp-core/template-functions.php:3871
 #: ZpTranslation-Master/zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:68
 #: ZpTranslation-Master/zp-core/zp-extensions/html_meta_tags.php:220
 #: ZpTranslation-Master/zp-core/zp-extensions/slideshow.php:747
@@ -1447,7 +1447,7 @@ msgstr "« Vorige"
 
 #: ZpTranslation-Master/themes/garland/password.php:40
 #: ZpTranslation-Master/zp-core/password.php:6
-#: ZpTranslation-Master/zp-core/template-functions.php:447
+#: ZpTranslation-Master/zp-core/template-functions.php:490
 #: ZpTranslation-Master/zp-core/zp-extensions/html_meta_tags.php:220
 msgid "Password required"
 msgstr "Wachtwoord vereist"
@@ -1537,7 +1537,7 @@ msgid "Search album"
 msgstr "Zoek in album"
 
 #: ZpTranslation-Master/themes/zenpage/search.php:170
-#: ZpTranslation-Master/themes/zpmobile/search.php:161
+#: ZpTranslation-Master/themes/zpmobile/search.php:182
 msgid "Sorry, no matches found. Try refining your search."
 msgstr "Sorry, geen resultaten. Probeer de zoekopdracht te herformuleren."
 
@@ -1640,14 +1640,14 @@ msgid "The Zenphoto object you are requesting cannot be found."
 msgstr "Het Zenphoto object dat je zoekt kan niet gevonden worden."
 
 #: ZpTranslation-Master/themes/zpmobile/archive.php:26
-#: ZpTranslation-Master/zp-core/template-functions.php:447
+#: ZpTranslation-Master/zp-core/template-functions.php:490
 #: ZpTranslation-Master/zp-core/zp-extensions/html_meta_tags.php:220
 msgid "Archive view"
 msgstr "Bekijk het archief"
 
 #: ZpTranslation-Master/themes/zpmobile/functions.php:39
 #: ZpTranslation-Master/zp-core/admin-functions.php:465
-#: ZpTranslation-Master/zp-core/admin-functions.php:4702
+#: ZpTranslation-Master/zp-core/admin-functions.php:4691
 #: ZpTranslation-Master/zp-core/lib-auth.php:510
 #: ZpTranslation-Master/zp-core/zp-extensions/defaultCodeblocks.php:34
 #: ZpTranslation-Master/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:81
@@ -1727,7 +1727,7 @@ msgstr "Laatste afbeeldingen"
 msgid "Latest news"
 msgstr "Laatste nieuws"
 
-#: ZpTranslation-Master/themes/zpmobile/search.php:159
+#: ZpTranslation-Master/themes/zpmobile/search.php:180
 #: ZpTranslation-Master/zp-core/zp-extensions/slideshow.php:506
 #: ZpTranslation-Master/zp-core/zp-extensions/slideshow2.php:503
 msgid "View Slideshow"
@@ -1785,8 +1785,8 @@ msgstr "*Bulk acties*"
 #: ZpTranslation-Master/zp-core/zp-extensions/comment_form/admin-comments.php:131
 #: ZpTranslation-Master/zp-core/zp-extensions/comment_form/admin-comments.php:132
 #: ZpTranslation-Master/zp-core/zp-extensions/comment_form/admin-comments.php:350
-#: ZpTranslation-Master/zp-core/zp-extensions/comment_form/admin-comments.php:457
-#: ZpTranslation-Master/zp-core/zp-extensions/comment_form/admin-comments.php:473
+#: ZpTranslation-Master/zp-core/zp-extensions/comment_form/admin-comments.php:458
+#: ZpTranslation-Master/zp-core/zp-extensions/comment_form/admin-comments.php:474
 #: ZpTranslation-Master/zp-core/zp-extensions/menu_manager/menu_tab.php:182
 #: ZpTranslation-Master/zp-core/zp-extensions/menu_manager/menu_tab.php:244
 #: ZpTranslation-Master/zp-core/zp-extensions/publishContent/publishContent.php:421
@@ -1794,7 +1794,7 @@ msgstr "*Bulk acties*"
 #: ZpTranslation-Master/zp-core/zp-extensions/zenpage/admin-news-articles.php:231
 #: ZpTranslation-Master/zp-core/zp-extensions/zenpage/admin-pages.php:143
 #: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1042
-#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1413
+#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1415
 msgid "Delete"
 msgstr "Verwijder"
 
@@ -1870,70 +1870,70 @@ msgid "Image order saved"
 msgstr "Afbeeldingsvolgorde opgeslagen"
 
 #: ZpTranslation-Master/zp-core/admin-albumsort.php:135
-#: ZpTranslation-Master/zp-core/admin-functions.php:4747
+#: ZpTranslation-Master/zp-core/admin-functions.php:4736
 #: ZpTranslation-Master/zp-core/zp-extensions/comment_form/admin-comments.php:269
 #: ZpTranslation-Master/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:933
-#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1711
+#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1713
 msgid "Selected items deleted"
 msgstr "Geselecteerde onderdelen verwijderd"
 
 #: ZpTranslation-Master/zp-core/admin-albumsort.php:138
-#: ZpTranslation-Master/zp-core/admin-functions.php:4750
+#: ZpTranslation-Master/zp-core/admin-functions.php:4739
 #: ZpTranslation-Master/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:937
-#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1714
+#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1716
 msgid "Selected items published"
 msgstr "Geselecteerde onderdelen gepubliceerd"
 
 #: ZpTranslation-Master/zp-core/admin-albumsort.php:141
-#: ZpTranslation-Master/zp-core/admin-functions.php:4753
+#: ZpTranslation-Master/zp-core/admin-functions.php:4742
 #: ZpTranslation-Master/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:941
-#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1717
+#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1719
 msgid "Selected items unpublished"
 msgstr "Geselecteerde onderdelen niet gepubliceerd"
 
 #: ZpTranslation-Master/zp-core/admin-albumsort.php:144
-#: ZpTranslation-Master/zp-core/admin-functions.php:4756
-#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1720
+#: ZpTranslation-Master/zp-core/admin-functions.php:4745
+#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1722
 msgid "Comments enabled for selected items"
 msgstr "Reacties geactiveerd voor de geselecteerde onderdelen"
 
 #: ZpTranslation-Master/zp-core/admin-albumsort.php:147
-#: ZpTranslation-Master/zp-core/admin-functions.php:4759
-#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1723
+#: ZpTranslation-Master/zp-core/admin-functions.php:4748
+#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1725
 msgid "Comments disabled for selected items"
 msgstr "Reacties niet geactiveerd voor de geselecteerde onderdelen"
 
 #: ZpTranslation-Master/zp-core/admin-albumsort.php:150
-#: ZpTranslation-Master/zp-core/admin-functions.php:4762
-#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1726
+#: ZpTranslation-Master/zp-core/admin-functions.php:4751
+#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1728
 msgid "Hitcounter for selected items"
 msgstr "Hit-teller voor geselecteerd onderdeel"
 
 #: ZpTranslation-Master/zp-core/admin-albumsort.php:153
-#: ZpTranslation-Master/zp-core/admin-functions.php:4765
+#: ZpTranslation-Master/zp-core/admin-functions.php:4754
 msgid "Tags added for selected items"
 msgstr "Tags toegevoegd aan geselecteerde onderdelen."
 
 #: ZpTranslation-Master/zp-core/admin-albumsort.php:156
-#: ZpTranslation-Master/zp-core/admin-functions.php:4768
+#: ZpTranslation-Master/zp-core/admin-functions.php:4757
 msgid "Tags cleared for selected items"
 msgstr "Tags verwijderd uit de geselecteerde onderdelen."
 
 #: ZpTranslation-Master/zp-core/admin-albumsort.php:159
-#: ZpTranslation-Master/zp-core/admin-functions.php:4771
+#: ZpTranslation-Master/zp-core/admin-functions.php:4760
 msgid "Tags added for images of selected items"
 msgstr "Tags toegevoegd aan afbeeldingen van de geselecteerde onderdelen."
 
 #: ZpTranslation-Master/zp-core/admin-albumsort.php:162
-#: ZpTranslation-Master/zp-core/admin-functions.php:4774
+#: ZpTranslation-Master/zp-core/admin-functions.php:4763
 msgid "Tags cleared for images of selected items"
 msgstr "Tags verwijderd uit afbeeldingen van de geselecteerde onderdelen."
 
 #: ZpTranslation-Master/zp-core/admin-albumsort.php:169
-#: ZpTranslation-Master/zp-core/admin-functions.php:4740
+#: ZpTranslation-Master/zp-core/admin-functions.php:4729
 #: ZpTranslation-Master/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:12
 #: ZpTranslation-Master/zp-core/zp-extensions/menu_manager/menu_tab.php:36
-#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1747
+#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1749
 msgid "Nothing changed"
 msgstr "Er is niets veranderd"
 
@@ -1971,8 +1971,8 @@ msgstr "Terug"
 #: ZpTranslation-Master/zp-core/admin-edit.php:1476
 #: ZpTranslation-Master/zp-core/admin-edit.php:1568
 #: ZpTranslation-Master/zp-core/admin-edit.php:1599
-#: ZpTranslation-Master/zp-core/admin-edit.php:1658
-#: ZpTranslation-Master/zp-core/admin-edit.php:1700
+#: ZpTranslation-Master/zp-core/admin-edit.php:1657
+#: ZpTranslation-Master/zp-core/admin-edit.php:1699
 #: ZpTranslation-Master/zp-core/admin-functions.php:1189
 #: ZpTranslation-Master/zp-core/admin-functions.php:1939
 #: ZpTranslation-Master/zp-core/admin-options.php:584
@@ -1998,7 +1998,7 @@ msgstr "Terug"
 #: ZpTranslation-Master/zp-core/zp-extensions/cacheManager/cacheImages.php:336
 #: ZpTranslation-Master/zp-core/zp-extensions/comment_form/admin-comments.php:137
 #: ZpTranslation-Master/zp-core/zp-extensions/comment_form/admin-comments.php:324
-#: ZpTranslation-Master/zp-core/zp-extensions/comment_form/admin-comments.php:466
+#: ZpTranslation-Master/zp-core/zp-extensions/comment_form/admin-comments.php:467
 #: ZpTranslation-Master/zp-core/zp-extensions/crop_image.php:347
 #: ZpTranslation-Master/zp-core/zp-extensions/menu_manager/menu_tab.php:154
 #: ZpTranslation-Master/zp-core/zp-extensions/menu_manager/menu_tab.php:237
@@ -2035,7 +2035,7 @@ msgid "Set the image order by dragging them to the positions you desire."
 msgstr "Sorteer de afbeeldingen door ze te slepen..."
 
 #: ZpTranslation-Master/zp-core/admin-albumsort.php:219
-#: ZpTranslation-Master/zp-core/admin-functions.php:3220
+#: ZpTranslation-Master/zp-core/admin-functions.php:3208
 #: ZpTranslation-Master/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:31
 #: ZpTranslation-Master/zp-core/zp-extensions/zenpage/admin-edit.php:124
 msgid "edit"
@@ -2144,12 +2144,12 @@ msgstr ""
 "HERSTELD WORDEN!"
 
 #: ZpTranslation-Master/zp-core/admin-edit.php:514
-#: ZpTranslation-Master/zp-core/template-functions.php:75
+#: ZpTranslation-Master/zp-core/template-functions.php:76
 msgid "New album name?"
 msgstr "Naam voor het nieuwe album?"
 
 #: ZpTranslation-Master/zp-core/admin-edit.php:514
-#: ZpTranslation-Master/zp-core/template-functions.php:75
+#: ZpTranslation-Master/zp-core/template-functions.php:76
 msgid "new album"
 msgstr "nieuw album"
 
@@ -2243,12 +2243,12 @@ msgid "New subalbum"
 msgstr "Nieuw subalbum"
 
 #: ZpTranslation-Master/zp-core/admin-edit.php:749
-#: ZpTranslation-Master/zp-core/admin-edit.php:1670
+#: ZpTranslation-Master/zp-core/admin-edit.php:1669
 msgid "Edit this album"
 msgstr "Bewerk dit album"
 
 #: ZpTranslation-Master/zp-core/admin-edit.php:758
-#: ZpTranslation-Master/zp-core/admin-edit.php:1675
+#: ZpTranslation-Master/zp-core/admin-edit.php:1674
 msgid ""
 "Thumbnail generation may be time consuming on slow servers on when there are "
 "a lot of images."
@@ -2257,8 +2257,8 @@ msgstr ""
 "zeer veel afbeeldingen zijn."
 
 #: ZpTranslation-Master/zp-core/admin-edit.php:765
-#: ZpTranslation-Master/zp-core/admin-edit.php:1680
-#: ZpTranslation-Master/zp-core/admin-functions.php:3851
+#: ZpTranslation-Master/zp-core/admin-edit.php:1679
+#: ZpTranslation-Master/zp-core/admin-functions.php:3840
 #: ZpTranslation-Master/zp-core/zp-extensions/comment_form/admin-comments.php:361
 #: ZpTranslation-Master/zp-core/zp-extensions/menu_manager/menu_tab.php:208
 #: ZpTranslation-Master/zp-core/zp-extensions/zenpage/admin-categories.php:161
@@ -2365,7 +2365,7 @@ msgstr "Zoom"
 #: ZpTranslation-Master/zp-core/zp-extensions/zenpage/admin-edit.php:375
 #: ZpTranslation-Master/zp-core/zp-extensions/zenpage/admin-edit.php:828
 #: ZpTranslation-Master/zp-core/zp-extensions/zenpage/admin-edit.php:832
-#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1405
+#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1407
 msgid "View"
 msgstr "Bekijk"
 
@@ -2417,7 +2417,7 @@ msgstr "Algemeen"
 #: ZpTranslation-Master/zp-core/zp-extensions/favoritesHandler.php:140
 #: ZpTranslation-Master/zp-core/zp-extensions/zenpage/admin-edit.php:442
 #: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:668
-#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1527
+#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1529
 msgid "Published"
 msgstr "Gepubliceerd"
 
@@ -2497,7 +2497,7 @@ msgstr ""
 "Weet je zeker dat je deze afbeelding wilt selecteren voor verwijdering?"
 
 #: ZpTranslation-Master/zp-core/admin-edit.php:1124
-#: ZpTranslation-Master/zp-core/template-functions.php:257
+#: ZpTranslation-Master/zp-core/template-functions.php:299
 msgid "Delete image"
 msgstr "Verwijder"
 
@@ -2674,13 +2674,13 @@ msgstr ""
 "Selecteer een album om de beschrijving en data te bewerken of <a href=\"?"
 "page=edit&amp;massedit\">mass-edit</a> alle albums gelijktijdig."
 
-#: ZpTranslation-Master/zp-core/admin-edit.php:1663
-#: ZpTranslation-Master/zp-core/admin-edit.php:1705
-#: ZpTranslation-Master/zp-core/admin-edit.php:1720
+#: ZpTranslation-Master/zp-core/admin-edit.php:1662
+#: ZpTranslation-Master/zp-core/admin-edit.php:1704
+#: ZpTranslation-Master/zp-core/admin-edit.php:1719
 msgid "New album"
 msgstr "Nieuw album"
 
-#: ZpTranslation-Master/zp-core/admin-edit.php:1716
+#: ZpTranslation-Master/zp-core/admin-edit.php:1715
 msgid "There are no albums for you to edit."
 msgstr "Er zijn geen albums om te bewerken"
 
@@ -2735,7 +2735,7 @@ msgid "%1$s %2$s: %3$s%4$s"
 msgstr "%1$s %2$s: %3$s%4$s"
 
 #: ZpTranslation-Master/zp-core/admin-functions.php:122
-#: ZpTranslation-Master/zp-core/admin-functions.php:4569
+#: ZpTranslation-Master/zp-core/admin-functions.php:4558
 #: ZpTranslation-Master/zp-core/pluginDoc.php:127
 #: ZpTranslation-Master/zp-core/zp-extensions/user-expiry.php:106
 #: ZpTranslation-Master/zp-core/zp-extensions/user_groups.php:217
@@ -2807,7 +2807,7 @@ msgid "Deprecated."
 msgstr "Verouderd."
 
 #: ZpTranslation-Master/zp-core/admin-functions.php:795
-#: ZpTranslation-Master/zp-core/admin-functions.php:4568
+#: ZpTranslation-Master/zp-core/admin-functions.php:4557
 #: ZpTranslation-Master/zp-core/admin-options.php:1548
 #: ZpTranslation-Master/zp-core/admin-tags.php:157
 #: ZpTranslation-Master/zp-core/admin-users.php:471
@@ -2971,7 +2971,7 @@ msgid "Rename Folder"
 msgstr "Hernoem map"
 
 #: ZpTranslation-Master/zp-core/admin-functions.php:1836
-#: ZpTranslation-Master/zp-core/template-functions.php:226
+#: ZpTranslation-Master/zp-core/template-functions.php:268
 msgid "Delete album"
 msgstr "Verwijder album"
 
@@ -2990,7 +2990,6 @@ msgstr "naar:"
 #: ZpTranslation-Master/zp-core/lib-auth.php:533
 #: ZpTranslation-Master/zp-core/lib-auth.php:558
 #: ZpTranslation-Master/zp-core/lib-auth.php:585
-#: ZpTranslation-Master/zp-core/template-functions.php:119
 #: ZpTranslation-Master/zp-core/utilities/gallery_statistics.php:92
 #: ZpTranslation-Master/zp-core/utilities/gallery_statistics.php:583
 #: ZpTranslation-Master/zp-core/zp-extensions/wordpress_import.php:464
@@ -3036,7 +3035,7 @@ msgstr "Afbeeldingen (dynamisch)"
 
 #: ZpTranslation-Master/zp-core/admin-functions.php:2012
 #: ZpTranslation-Master/zp-core/zp-extensions/zenpage/admin-categories.php:187
-#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1400
+#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1402
 msgid "Has Password"
 msgstr "Heeft wachtwoord"
 
@@ -3045,7 +3044,7 @@ msgid "Published/Un-published"
 msgstr "Gepubliceerd / Niet gepubliceerd"
 
 #: ZpTranslation-Master/zp-core/admin-functions.php:2017
-#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1404
+#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1406
 msgid "Comments on/off"
 msgstr "Reacties aan/uit"
 
@@ -3166,52 +3165,52 @@ msgstr "Reset hit-tellers voor het album %s"
 msgid "Delete the album %s"
 msgstr "Verwijder het album %s"
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:2557
-#: ZpTranslation-Master/zp-core/admin-functions.php:2565
-#: ZpTranslation-Master/zp-core/admin-functions.php:2571
-#: ZpTranslation-Master/zp-core/admin-functions.php:2575
-#: ZpTranslation-Master/zp-core/admin-functions.php:2579
+#: ZpTranslation-Master/zp-core/admin-functions.php:2559
+#: ZpTranslation-Master/zp-core/admin-functions.php:2567
+#: ZpTranslation-Master/zp-core/admin-functions.php:2573
+#: ZpTranslation-Master/zp-core/admin-functions.php:2577
+#: ZpTranslation-Master/zp-core/admin-functions.php:2581
 #, php-format
 msgid "page %u"
 msgstr "pagina %u"
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:2557
 #: ZpTranslation-Master/zp-core/admin-functions.php:2559
+#: ZpTranslation-Master/zp-core/admin-functions.php:2561
 msgid "Previous page"
 msgstr "Vorige pagina"
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:2579
 #: ZpTranslation-Master/zp-core/admin-functions.php:2581
+#: ZpTranslation-Master/zp-core/admin-functions.php:2583
 #: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:988
 msgid "Next page"
 msgstr "Volgende pagina"
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:2938
-#: ZpTranslation-Master/zp-core/admin-functions.php:2943
-#: ZpTranslation-Master/zp-core/admin-functions.php:2948
-#: ZpTranslation-Master/zp-core/admin-functions.php:2953
+#: ZpTranslation-Master/zp-core/admin-functions.php:2926
+#: ZpTranslation-Master/zp-core/admin-functions.php:2931
+#: ZpTranslation-Master/zp-core/admin-functions.php:2936
+#: ZpTranslation-Master/zp-core/admin-functions.php:2941
 msgid "Cannot create new theme."
 msgstr "Kan geen nieuw thema creëren"
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:2938
+#: ZpTranslation-Master/zp-core/admin-functions.php:2926
 #, php-format
 msgid "Directory “%s” already exists!"
 msgstr "De map “%s” bestaat al!"
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:2943
+#: ZpTranslation-Master/zp-core/admin-functions.php:2931
 #, php-format
 msgid "Cannot find theme directory “%s” to copy!"
 msgstr "Kan de te kopiëren map “%s” niet vinden!"
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:2948
+#: ZpTranslation-Master/zp-core/admin-functions.php:2936
 msgid "The <tt>/themes</tt> directory is not writable!"
 msgstr "Er kan niet naar de <tt>/thema</tt> map geschreven worden!"
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:2953
+#: ZpTranslation-Master/zp-core/admin-functions.php:2941
 msgid "Could not create directory for the new theme"
 msgstr "Kon geen map aanmaken voor het nieuwe thema"
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:2985
+#: ZpTranslation-Master/zp-core/admin-functions.php:2973
 #, php-format
 msgid ""
 "An error occurred while copying files. Please delete manually the new theme "
@@ -3221,69 +3220,69 @@ msgstr ""
 "nieuwe thema-map “%s” en probeer het nogmaals of kopiëer de bestanden "
 "handmatig."
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:2993
+#: ZpTranslation-Master/zp-core/admin-functions.php:2981
 #, php-format
 msgid "Your theme, based on theme %s"
 msgstr "Je thema, gebaseerd op het %s thema."
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:2995
+#: ZpTranslation-Master/zp-core/admin-functions.php:2983
 msgid "Your theme"
 msgstr "Je thema"
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:3015
+#: ZpTranslation-Master/zp-core/admin-functions.php:3003
 msgid "New custom theme created successfully!"
 msgstr "Nieuw zelfgemaakt thema met succes gereëerd!"
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:3017
+#: ZpTranslation-Master/zp-core/admin-functions.php:3005
 msgid "New custom theme created, but its description could not be updated"
 msgstr ""
 "Nieuw aangepast thema gecreëerd maar de beschrijving kon niet ge-update "
 "worden."
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:3149
+#: ZpTranslation-Master/zp-core/admin-functions.php:3137
 msgid "Rights:"
 msgstr "Rechten:"
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:3213
+#: ZpTranslation-Master/zp-core/admin-functions.php:3201
 msgid "edit rights"
 msgstr "gebruikersrechten"
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:3214
+#: ZpTranslation-Master/zp-core/admin-functions.php:3202
 msgid "view unpublished items"
 msgstr "Bekijk niet-gepubliceerde afbeeldingen."
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:3215
+#: ZpTranslation-Master/zp-core/admin-functions.php:3203
 msgid "upload rights"
 msgstr "upload rechten"
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:3216
+#: ZpTranslation-Master/zp-core/admin-functions.php:3204
 msgid "the album is dynamic"
 msgstr "het album is dynamisch"
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:3218
+#: ZpTranslation-Master/zp-core/admin-functions.php:3206
 msgid "Primary album"
 msgstr "Startalbum"
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:3222
+#: ZpTranslation-Master/zp-core/admin-functions.php:3210
 #: ZpTranslation-Master/zp-core/zp-extensions/elFinder.php:76
 #: ZpTranslation-Master/zp-core/zp-extensions/uploader_http.php:32
 #: ZpTranslation-Master/zp-core/zp-extensions/uploader_jQuery.php:39
 msgid "upload"
 msgstr "upload"
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:3224
+#: ZpTranslation-Master/zp-core/admin-functions.php:3212
 msgid "view unpublished"
 msgstr "bekijk niet-gepubliceerde"
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:3263
+#: ZpTranslation-Master/zp-core/admin-functions.php:3251
 msgid "Managed albums:"
 msgstr "Beheerde albums:"
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:3276
+#: ZpTranslation-Master/zp-core/admin-functions.php:3264
 msgid "Managed news categories:"
 msgstr "Beheerde nieuwscategorieën."
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:3278
+#: ZpTranslation-Master/zp-core/admin-functions.php:3266
 #: ZpTranslation-Master/zp-core/utilities/gallery_statistics.php:605
 #: ZpTranslation-Master/zp-core/zp-extensions/multiple_layouts.php:92
 #: ZpTranslation-Master/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:123
@@ -3291,23 +3290,23 @@ msgstr "Beheerde nieuwscategorieën."
 msgid "News categories"
 msgstr "Nieuwscategorieën"
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:3290
+#: ZpTranslation-Master/zp-core/admin-functions.php:3278
 msgid "Managed pages:"
 msgstr "Beheerde pagina’s"
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:3296
+#: ZpTranslation-Master/zp-core/admin-functions.php:3284
 #, php-format
 msgid "Select one or more %1$s for the %2$s to manage."
 msgstr "Selecteer één of meer %1$s voor de %2$s om te beheren."
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:3297
+#: ZpTranslation-Master/zp-core/admin-functions.php:3285
 #: ZpTranslation-Master/zp-core/admin-users.php:775
 #: ZpTranslation-Master/zp-core/admin-users.php:784
 #: ZpTranslation-Master/zp-core/admin-users.php:790
 msgid "user"
 msgstr "gebruiker"
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:3298
+#: ZpTranslation-Master/zp-core/admin-functions.php:3286
 #, php-format
 msgid ""
 "Users with \"Admin\" or \"Manage all %1$s\" rights can manage all %2$s. All "
@@ -3316,77 +3315,77 @@ msgstr ""
 "Gebruikers met “Admin” of  “Beheer alle %1$s” rechten  kunnen alle %2$s "
 "beheren. Anderen kunnen alleen de geselecteerde onderdelen beheren."
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:3301
+#: ZpTranslation-Master/zp-core/admin-functions.php:3289
 #, php-format
 msgid "You may manage these %s subject to the above rights."
 msgstr "Je kunt de %s beheren op basis van bovenstaande rechten."
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:3714
+#: ZpTranslation-Master/zp-core/admin-functions.php:3703
 #, php-format
 msgid "Show %u album level"
 msgid_plural "Show %u album levels"
 msgstr[0] "Toon %u album level"
 msgstr[1] "Toon %u album levels"
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:3717
+#: ZpTranslation-Master/zp-core/admin-functions.php:3706
 #, php-format
 msgid "%u image per page"
 msgid_plural "%u images per page"
 msgstr[0] "%u afbeelding per pagina"
 msgstr[1] "%u afbeeldingen per pagina"
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:3794
-#: ZpTranslation-Master/zp-core/admin-functions.php:3806
-#: ZpTranslation-Master/zp-core/admin-functions.php:3818
-#: ZpTranslation-Master/zp-core/admin-functions.php:3830
+#: ZpTranslation-Master/zp-core/admin-functions.php:3783
+#: ZpTranslation-Master/zp-core/admin-functions.php:3795
+#: ZpTranslation-Master/zp-core/admin-functions.php:3807
+#: ZpTranslation-Master/zp-core/admin-functions.php:3819
 msgid "ok"
 msgstr "ok"
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:3901
+#: ZpTranslation-Master/zp-core/admin-functions.php:3890
 msgid "Destination"
 msgstr "Bestemming"
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:4177
-#: ZpTranslation-Master/zp-core/admin-functions.php:4212
+#: ZpTranslation-Master/zp-core/admin-functions.php:4166
+#: ZpTranslation-Master/zp-core/admin-functions.php:4201
 #, php-format
 msgid "codeblock %u"
 msgstr "codeblock %u"
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:4178
-#: ZpTranslation-Master/zp-core/admin-functions.php:4218
+#: ZpTranslation-Master/zp-core/admin-functions.php:4167
+#: ZpTranslation-Master/zp-core/admin-functions.php:4207
 msgid "add codeblock"
 msgstr "codeblock toevoegen"
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:4233
+#: ZpTranslation-Master/zp-core/admin-functions.php:4222
 msgid "Codeblock 0 is deprecated."
 msgstr "Codeblock 0 is verouderd."
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:4317
+#: ZpTranslation-Master/zp-core/admin-functions.php:4306
 #, php-format
 msgid "“%s” Cross Site Request Forgery blocked."
 msgstr "“%s” Cross Site Request Forgery geblokkeerd."
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:4528
+#: ZpTranslation-Master/zp-core/admin-functions.php:4517
 msgid "setup"
 msgstr "setup"
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:4528
+#: ZpTranslation-Master/zp-core/admin-functions.php:4517
 #: ZpTranslation-Master/zp-core/admin-globals.php:108
 #: ZpTranslation-Master/zp-core/admin-options.php:996
 msgid "security"
 msgstr "beveiliging"
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:4528
+#: ZpTranslation-Master/zp-core/admin-functions.php:4517
 #: ZpTranslation-Master/zp-core/admin-options.php:996
 #: ZpTranslation-Master/zp-core/zp-extensions/markRelease.php:45
 msgid "debug"
 msgstr "debug"
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:4570
+#: ZpTranslation-Master/zp-core/admin-functions.php:4559
 msgid "demo"
 msgstr "demo"
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:4571
+#: ZpTranslation-Master/zp-core/admin-functions.php:4560
 #: ZpTranslation-Master/zp-core/zp-extensions/deprecated-functions.php:106
 #: ZpTranslation-Master/zp-core/zp-extensions/macroList.php:85
 #: ZpTranslation-Master/zp-core/zp-extensions/rewriteRules.php:24
@@ -3394,35 +3393,35 @@ msgstr "demo"
 msgid "development"
 msgstr "ontwikkeling"
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:4572
+#: ZpTranslation-Master/zp-core/admin-functions.php:4561
 msgid "feed"
 msgstr "feed"
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:4573
+#: ZpTranslation-Master/zp-core/admin-functions.php:4562
 msgid "mail"
 msgstr "mail"
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:4574
+#: ZpTranslation-Master/zp-core/admin-functions.php:4563
 msgid "media"
 msgstr "media"
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:4575
+#: ZpTranslation-Master/zp-core/admin-functions.php:4564
 msgid "misc"
 msgstr "diversen"
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:4576
+#: ZpTranslation-Master/zp-core/admin-functions.php:4565
 msgid "spam"
 msgstr "spam"
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:4577
+#: ZpTranslation-Master/zp-core/admin-functions.php:4566
 msgid "seo"
 msgstr "seo"
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:4578
+#: ZpTranslation-Master/zp-core/admin-functions.php:4567
 msgid "uploader"
 msgstr "uploader"
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:4579
+#: ZpTranslation-Master/zp-core/admin-functions.php:4568
 #: ZpTranslation-Master/zp-core/admin-globals.php:91
 #: ZpTranslation-Master/zp-core/zp-extensions/user-expiry.php:94
 #: ZpTranslation-Master/zp-core/zp-extensions/user-expiry.php:104
@@ -3430,36 +3429,36 @@ msgstr "uploader"
 msgid "users"
 msgstr "gebruikers"
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:4700
+#: ZpTranslation-Master/zp-core/admin-functions.php:4689
 #: ZpTranslation-Master/zp-core/zp-extensions/defaultCodeblocks.php:34
 #: ZpTranslation-Master/zp-core/zp-extensions/related_items.php:181
 #: ZpTranslation-Master/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:101
 msgid "Image"
 msgstr "Afbeelding"
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:4706
+#: ZpTranslation-Master/zp-core/admin-functions.php:4695
 #, php-format
 msgid "%s failed to delete."
 msgstr "%s te verwijderen mislukt."
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:4708
+#: ZpTranslation-Master/zp-core/admin-functions.php:4697
 #, php-format
 msgid "%s deleted successfully."
 msgstr "%s succesvol verwijderd."
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:4713
+#: ZpTranslation-Master/zp-core/admin-functions.php:4702
 #: ZpTranslation-Master/zp-core/admin-users.php:406
 msgid "You must supply a password."
 msgstr "Je moet een wachtwoord invoeren."
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:4715
+#: ZpTranslation-Master/zp-core/admin-functions.php:4704
 #: ZpTranslation-Master/zp-core/admin-options.php:544
 #: ZpTranslation-Master/zp-core/admin-users.php:415
-#: ZpTranslation-Master/zp-core/zp-extensions/register_user.php:450
+#: ZpTranslation-Master/zp-core/zp-extensions/register_user.php:455
 msgid "Your passwords did not match."
 msgstr "Je wachtwoorden komen niet overeen."
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:4722
+#: ZpTranslation-Master/zp-core/admin-functions.php:4711
 msgid ""
 "The image edit form submission has been truncated. Try displaying fewer "
 "images on a page."
@@ -3467,64 +3466,64 @@ msgstr ""
 "De veranderingen zijn niet volledig bewaard. Probeer het nogmaals maar met "
 "minder afbeeldingen per pagina."
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:4725
+#: ZpTranslation-Master/zp-core/admin-functions.php:4714
 msgid "Hit counters have been reset."
 msgstr "Hit-tellers zijn gereset."
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:4728
+#: ZpTranslation-Master/zp-core/admin-functions.php:4717
 msgid "Cache has been purged."
 msgstr "Cache is gewist."
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:4731
+#: ZpTranslation-Master/zp-core/admin-functions.php:4720
 #: ZpTranslation-Master/zp-core/admin-upload.php:155
 msgid "Your files have been uploaded."
 msgstr "Je bestanden zijn geupload."
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:4734
+#: ZpTranslation-Master/zp-core/admin-functions.php:4723
 #, php-format
 msgid "<em>%s</em> already exists."
 msgstr "<em>%s</em> bestaat al."
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:4737
+#: ZpTranslation-Master/zp-core/admin-functions.php:4726
 #: ZpTranslation-Master/zp-core/zp-extensions/comment_form/admin-comments.php:299
 #: ZpTranslation-Master/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:214
 msgid "Changes applied"
 msgstr "Wijzigingen opgeslagen"
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:4784
+#: ZpTranslation-Master/zp-core/admin-functions.php:4773
 #: ZpTranslation-Master/zp-core/zp-extensions/seo_cleanup.php:50
 msgid "Image already exists."
 msgstr "Afbeelding bestaat al."
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:4787
+#: ZpTranslation-Master/zp-core/admin-functions.php:4776
 #: ZpTranslation-Master/zp-core/zp-extensions/seo_cleanup.php:52
 msgid "Album already exists."
 msgstr "Album bestaat al."
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:4790
+#: ZpTranslation-Master/zp-core/admin-functions.php:4779
 #: ZpTranslation-Master/zp-core/zp-extensions/seo_cleanup.php:54
 msgid "Cannot move, copy, or rename to a subalbum of this album."
 msgstr ""
 "Verplaatsen, kopiëren of hernoemen naar een subalbum is niet mogelijk met "
 "dit album."
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:4793
+#: ZpTranslation-Master/zp-core/admin-functions.php:4782
 #: ZpTranslation-Master/zp-core/zp-extensions/seo_cleanup.php:56
 msgid "Cannot move, copy, or rename to a dynamic album."
 msgstr ""
 "Verplaatsen, kopiëren of hernoemen naar een dynamisch album is niet mogelijk."
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:4796
+#: ZpTranslation-Master/zp-core/admin-functions.php:4785
 #: ZpTranslation-Master/zp-core/zp-extensions/seo_cleanup.php:58
 msgid "Cannot rename an image to a different suffix"
 msgstr "Het is niet mogelijk om een bestand een andere extensie te geven."
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:4799
+#: ZpTranslation-Master/zp-core/admin-functions.php:4788
 #: ZpTranslation-Master/zp-core/zp-extensions/seo_cleanup.php:60
 msgid "Album delete failed"
 msgstr "Verwijderen van album mislukt!"
 
-#: ZpTranslation-Master/zp-core/admin-functions.php:4802
+#: ZpTranslation-Master/zp-core/admin-functions.php:4791
 #, php-format
 msgid "There was an error #%d with a move, copy, or rename operation."
 msgstr ""
@@ -4114,9 +4113,9 @@ msgstr ""
 #: ZpTranslation-Master/zp-core/admin-options.php:911
 msgid ""
 "<strong>Note:</strong> visual editing is enabled so the editor overrides "
-"these settings on tags where the it is active."
+"these settings on tags where it is active."
 msgstr ""
-"<strong>Opmerking:</strong> Omdat TinyMCE actief is, worden deze "
+"<strong>Opmerking:</strong> Omdat TinyMCE actief is, worden een aantal "
 "instellingen genegeerd."
 
 #: ZpTranslation-Master/zp-core/admin-options.php:914
@@ -5651,7 +5650,6 @@ msgstr ""
 "gebruikersnaam moet invullen."
 
 #: ZpTranslation-Master/zp-core/admin-plugins.php:110
-#: ZpTranslation-Master/zp-core/template-functions.php:147
 msgid "Plugins"
 msgstr "Plugins"
 
@@ -5784,7 +5782,6 @@ msgstr "Gebruiksinformatie"
 #: ZpTranslation-Master/zp-core/lib-auth.php:534
 #: ZpTranslation-Master/zp-core/lib-auth.php:559
 #: ZpTranslation-Master/zp-core/lib-auth.php:586
-#: ZpTranslation-Master/zp-core/template-functions.php:133
 #: ZpTranslation-Master/zp-core/zp-extensions/menu_manager/menu_tab.php:164
 #: ZpTranslation-Master/zp-core/zp-extensions/user-expiry/user-expiry-tab.php:123
 msgid "Options"
@@ -6137,7 +6134,7 @@ msgstr "Huidig thema"
 #: ZpTranslation-Master/zp-core/admin-themes.php:289
 #: ZpTranslation-Master/zp-core/utilities/gallery_statistics.php:446
 #: ZpTranslation-Master/zp-core/zp-extensions/comment_form.php:289
-#: ZpTranslation-Master/zp-core/zp-extensions/comment_form/admin-comments.php:449
+#: ZpTranslation-Master/zp-core/zp-extensions/comment_form/admin-comments.php:450
 msgid "Edit"
 msgstr "Bewerken"
 
@@ -6850,18 +6847,18 @@ msgstr ""
 "Een albumobject was geïnstantieerd zonder de functie <em>newAlbum()</em> te "
 "gebruiken."
 
-#: ZpTranslation-Master/zp-core/class-album.php:1201
+#: ZpTranslation-Master/zp-core/class-album.php:1200
 #: ZpTranslation-Master/zp-core/class-album.php:1651
 msgid "Invalid album instantiation: No album name"
 msgstr "Album niet gevonden: Geen albumnaam."
 
-#: ZpTranslation-Master/zp-core/class-album.php:1204
+#: ZpTranslation-Master/zp-core/class-album.php:1203
 #: ZpTranslation-Master/zp-core/class-album.php:1654
 #, php-format
 msgid "Invalid album instantiation: %1$s!=%2$s"
 msgstr "Album niet gevonden: %1$s!=%2$s"
 
-#: ZpTranslation-Master/zp-core/class-album.php:1206
+#: ZpTranslation-Master/zp-core/class-album.php:1205
 #: ZpTranslation-Master/zp-core/class-album.php:1656
 #, php-format
 msgid "Invalid album instantiation: %s does not exist."
@@ -7101,7 +7098,7 @@ msgstr "Title-link"
 #: ZpTranslation-Master/zp-core/zp-extensions/wordpress_import.php:455
 #: ZpTranslation-Master/zp-core/zp-extensions/zenpage/admin-categories.php:124
 #: ZpTranslation-Master/zp-core/zp-extensions/zenpage/admin-edit.php:699
-#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1318
+#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1320
 msgid "Categories"
 msgstr "Categorieën"
 
@@ -9580,7 +9577,7 @@ msgstr "Geen rechten"
 #: ZpTranslation-Master/zp-core/lib-auth.php:520
 #: ZpTranslation-Master/zp-core/lib-auth.php:539
 #: ZpTranslation-Master/zp-core/lib-auth.php:564
-#: ZpTranslation-Master/zp-core/template-functions.php:96
+#: ZpTranslation-Master/zp-core/template-functions.php:177
 msgid "Overview"
 msgstr "Overzicht"
 
@@ -9593,7 +9590,7 @@ msgstr "Bekijk alle"
 #: ZpTranslation-Master/zp-core/lib-auth.php:522
 #: ZpTranslation-Master/zp-core/lib-auth.php:549
 #: ZpTranslation-Master/zp-core/lib-auth.php:575
-#: ZpTranslation-Master/zp-core/template-functions.php:103
+#: ZpTranslation-Master/zp-core/template-functions.php:184
 #: ZpTranslation-Master/zp-core/zp-extensions/uploader_http/upload_form.php:68
 #: ZpTranslation-Master/zp-core/zp-extensions/uploader_http/upload_form.php:69
 msgid "Upload"
@@ -9624,7 +9621,6 @@ msgstr "Beheer alle albums"
 #: ZpTranslation-Master/zp-core/lib-auth.php:532
 #: ZpTranslation-Master/zp-core/lib-auth.php:557
 #: ZpTranslation-Master/zp-core/lib-auth.php:584
-#: ZpTranslation-Master/zp-core/template-functions.php:140
 msgid "Themes"
 msgstr "Thema’s"
 
@@ -12280,99 +12276,87 @@ msgstr ""
 "Weet je zeker dat je deze pagina wilt verwijderen? DIT KAN NIET HERSTELD "
 "WORDEN!"
 
-#: ZpTranslation-Master/zp-core/template-functions.php:83
-msgid "Admin Toolbox"
-msgstr "Admin Toolbox"
-
-#: ZpTranslation-Master/zp-core/template-functions.php:126
-msgid "Users"
-msgstr "Gebruikers"
-
-#: ZpTranslation-Master/zp-core/template-functions.php:150
-msgid "Logs"
-msgstr "Logs"
-
-#: ZpTranslation-Master/zp-core/template-functions.php:169
+#: ZpTranslation-Master/zp-core/template-functions.php:211
 msgid "Sort Gallery"
 msgstr "Sorteer albums"
 
-#: ZpTranslation-Master/zp-core/template-functions.php:178
+#: ZpTranslation-Master/zp-core/template-functions.php:220
 msgid "New Album"
 msgstr "Nieuw album"
 
-#: ZpTranslation-Master/zp-core/template-functions.php:202
+#: ZpTranslation-Master/zp-core/template-functions.php:244
 msgid "Edit album"
 msgstr "Bewerk album"
 
-#: ZpTranslation-Master/zp-core/template-functions.php:209
+#: ZpTranslation-Master/zp-core/template-functions.php:251
 msgid "Sort subalbums"
 msgstr "Sorteer subalbums"
 
-#: ZpTranslation-Master/zp-core/template-functions.php:216
+#: ZpTranslation-Master/zp-core/template-functions.php:258
 msgid "Sort images"
 msgstr "Sorteer afbeeldingen"
 
-#: ZpTranslation-Master/zp-core/template-functions.php:226
+#: ZpTranslation-Master/zp-core/template-functions.php:268
 msgid "Delete the album"
 msgstr "Verwijder het album"
 
-#: ZpTranslation-Master/zp-core/template-functions.php:235
+#: ZpTranslation-Master/zp-core/template-functions.php:277
 msgid "Upload Here"
 msgstr "Upload"
 
-#: ZpTranslation-Master/zp-core/template-functions.php:241
+#: ZpTranslation-Master/zp-core/template-functions.php:283
 msgid "New Album Here"
 msgstr "Nieuw album"
 
-#: ZpTranslation-Master/zp-core/template-functions.php:257
+#: ZpTranslation-Master/zp-core/template-functions.php:299
 msgid "Delete the image"
 msgstr "Verwijderen de afbeelding"
 
-#: ZpTranslation-Master/zp-core/template-functions.php:264
+#: ZpTranslation-Master/zp-core/template-functions.php:306
 msgid "Edit image"
 msgstr "Bewerk afbeelding"
 
-#: ZpTranslation-Master/zp-core/template-functions.php:289
+#: ZpTranslation-Master/zp-core/template-functions.php:331
 msgid "Create an album from the search"
 msgstr "Maak een album aan vanuit de zoekfunctie"
 
-#: ZpTranslation-Master/zp-core/template-functions.php:289
+#: ZpTranslation-Master/zp-core/template-functions.php:331
 msgid "Create Album"
 msgstr "Maak album"
 
-#: ZpTranslation-Master/zp-core/template-functions.php:314
+#: ZpTranslation-Master/zp-core/template-functions.php:356
 #: ZpTranslation-Master/zp-core/zp-extensions/user_login-out.php:117
 msgid "Logout"
 msgstr "Log uit"
 
-#: ZpTranslation-Master/zp-core/template-functions.php:449
+#: ZpTranslation-Master/zp-core/template-functions.php:492
 #: ZpTranslation-Master/zp-core/zp-extensions/favoritesHandler.php:60
 #: ZpTranslation-Master/zp-core/zp-extensions/html_meta_tags.php:222
 msgid "My favorites"
 msgstr "Mijn favorieten"
 
-#: ZpTranslation-Master/zp-core/template-functions.php:844
-#: ZpTranslation-Master/zp-core/template-functions.php:940
+#: ZpTranslation-Master/zp-core/template-functions.php:887
+#: ZpTranslation-Master/zp-core/template-functions.php:983
 #: ZpTranslation-Master/zp-core/zp-extensions/menu_manager.php:611
 msgid "Previous Page"
 msgstr "Vorige Pagina"
 
-#: ZpTranslation-Master/zp-core/template-functions.php:846
-#: ZpTranslation-Master/zp-core/template-functions.php:1046
+#: ZpTranslation-Master/zp-core/template-functions.php:889
+#: ZpTranslation-Master/zp-core/template-functions.php:1089
 #: ZpTranslation-Master/zp-core/zp-extensions/menu_manager.php:651
 msgid "Next Page"
 msgstr "Volgende Pagina"
 
-#: ZpTranslation-Master/zp-core/template-functions.php:963
+#: ZpTranslation-Master/zp-core/template-functions.php:1006
 #: ZpTranslation-Master/zp-core/zp-extensions/menu_manager.php:617
 msgid "Page 1"
 msgstr "pagina 1"
 
-#: ZpTranslation-Master/zp-core/template-functions.php:978
-#: ZpTranslation-Master/zp-core/template-functions.php:987
-#: ZpTranslation-Master/zp-core/template-functions.php:1017
-#: ZpTranslation-Master/zp-core/template-functions.php:1024
-#: ZpTranslation-Master/zp-core/template-functions.php:1034
+#: ZpTranslation-Master/zp-core/template-functions.php:1021
+#: ZpTranslation-Master/zp-core/template-functions.php:1030
+#: ZpTranslation-Master/zp-core/template-functions.php:1060
+#: ZpTranslation-Master/zp-core/template-functions.php:1067
+#: ZpTranslation-Master/zp-core/template-functions.php:1077
 #: ZpTranslation-Master/zp-core/zp-extensions/menu_manager.php:622
 #: ZpTranslation-Master/zp-core/zp-extensions/menu_manager.php:640
 #: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1048
@@ -12383,7 +12367,7 @@ msgid_plural "Page %u"
 msgstr[0] "pagina %u"
 msgstr[1] "pagina’s %u"
 
-#: ZpTranslation-Master/zp-core/template-functions.php:998
+#: ZpTranslation-Master/zp-core/template-functions.php:1041
 #: ZpTranslation-Master/zp-core/zp-extensions/menu_manager.php:632
 #: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1057
 #, php-format
@@ -12392,40 +12376,40 @@ msgid_plural "Page %1$u"
 msgstr[0] "pagina %1$u"
 msgstr[1] "pagina %1$u"
 
-#: ZpTranslation-Master/zp-core/template-functions.php:1110
+#: ZpTranslation-Master/zp-core/template-functions.php:1153
 msgid "The album is un-published."
 msgstr "Dit album is niet gepubliceerd."
 
-#: ZpTranslation-Master/zp-core/template-functions.php:1219
+#: ZpTranslation-Master/zp-core/template-functions.php:1262
 msgid "Album Thumbnails"
 msgstr "Albumthumbnails"
 
-#: ZpTranslation-Master/zp-core/template-functions.php:1319
+#: ZpTranslation-Master/zp-core/template-functions.php:1362
 msgid "Return to search"
 msgstr "Keer terug naar <em>zoeken</em>"
 
-#: ZpTranslation-Master/zp-core/template-functions.php:1326
+#: ZpTranslation-Master/zp-core/template-functions.php:1369
 msgid "Return to archive"
 msgstr "Keer terug naar <em>archief</em>"
 
-#: ZpTranslation-Master/zp-core/template-functions.php:2093
+#: ZpTranslation-Master/zp-core/template-functions.php:2136
 msgid "The image is marked un-published."
 msgstr "Deze afbeelding is als niet-gepubliceerd gemarkeerd."
 
-#: ZpTranslation-Master/zp-core/template-functions.php:2468
+#: ZpTranslation-Master/zp-core/template-functions.php:2511
 msgid "Image Info"
 msgstr "Foto-informatie"
 
-#: ZpTranslation-Master/zp-core/template-functions.php:3324
+#: ZpTranslation-Master/zp-core/template-functions.php:3367
 #, php-format
 msgid "View image: %s"
 msgstr "Bekijk afbeelding: %s"
 
-#: ZpTranslation-Master/zp-core/template-functions.php:3515
+#: ZpTranslation-Master/zp-core/template-functions.php:3558
 msgid "No popular tags"
 msgstr "Geen populaire tags"
 
-#: ZpTranslation-Master/zp-core/template-functions.php:3823
+#: ZpTranslation-Master/zp-core/template-functions.php:3866
 msgid ""
 "printSearchForm $album_list parameter is deprecated. Pass array(\"albums"
 "\"=>array(album, album, ...)) instead."
@@ -12433,41 +12417,41 @@ msgstr ""
 "printSearchForm $album_list parameter is verouderd. Gebruik in plaats "
 "daarvan array(“albums”=>aray(album, album,...))."
 
-#: ZpTranslation-Master/zp-core/template-functions.php:3839
+#: ZpTranslation-Master/zp-core/template-functions.php:3882
 #, php-format
 msgid "%s within previous results"
 msgstr "%s binnen vorige resultaten"
 
-#: ZpTranslation-Master/zp-core/template-functions.php:3914
+#: ZpTranslation-Master/zp-core/template-functions.php:3957
 msgid "search options"
 msgstr "zoekopties"
 
-#: ZpTranslation-Master/zp-core/template-functions.php:3914
+#: ZpTranslation-Master/zp-core/template-functions.php:3957
 msgid "fields"
 msgstr "velden"
 
-#: ZpTranslation-Master/zp-core/template-functions.php:3954
+#: ZpTranslation-Master/zp-core/template-functions.php:3997
 msgid "Within"
 msgstr "binnen"
 
-#: ZpTranslation-Master/zp-core/template-functions.php:3958
+#: ZpTranslation-Master/zp-core/template-functions.php:4001
 #: ZpTranslation-Master/zp-core/zp-extensions/flag_thumbnail.php:91
 msgid "New"
 msgstr "Nieuw"
 
-#: ZpTranslation-Master/zp-core/template-functions.php:4016
+#: ZpTranslation-Master/zp-core/template-functions.php:4059
 msgid "no date"
 msgstr "geen datum"
 
-#: ZpTranslation-Master/zp-core/template-functions.php:4246
+#: ZpTranslation-Master/zp-core/template-functions.php:4289
 msgid "The page you are trying to view is password protected."
 msgstr "Deze pagina is beveiligd met een wachtwoord."
 
-#: ZpTranslation-Master/zp-core/template-functions.php:4251
+#: ZpTranslation-Master/zp-core/template-functions.php:4294
 msgid "login"
 msgstr "login"
 
-#: ZpTranslation-Master/zp-core/template-functions.php:4268
+#: ZpTranslation-Master/zp-core/template-functions.php:4311
 msgid ""
 "Powered by <a href=\"http://www.zenphoto.org\" title=\"A simpler web album"
 "\"><span id=\"zen-part\">zen</span><span id=\"photo-part\">PHOTO</span></a>"
@@ -12475,21 +12459,21 @@ msgstr ""
 "Powered by <a href=\"http://www.zenphoto.org\" title=\"A simpler web album"
 "\"><span id=\"zen-part\">zen</span><span id=\"photo-part\">PHOTO</span></a>"
 
-#: ZpTranslation-Master/zp-core/template-functions.php:4432
+#: ZpTranslation-Master/zp-core/template-functions.php:4475
 msgid "Zenphoto Error:</strong> the requested object was not found."
 msgstr "Zenphoto fout:</strong> het gevraagde object kon niet gevonden worden."
 
-#: ZpTranslation-Master/zp-core/template-functions.php:4434
+#: ZpTranslation-Master/zp-core/template-functions.php:4477
 #, php-format
 msgid "Album: %s"
 msgstr "Album: %s"
 
-#: ZpTranslation-Master/zp-core/template-functions.php:4437
+#: ZpTranslation-Master/zp-core/template-functions.php:4480
 #, php-format
 msgid "Image: %s"
 msgstr "Afbeelding: %s"
 
-#: ZpTranslation-Master/zp-core/template-functions.php:4440
+#: ZpTranslation-Master/zp-core/template-functions.php:4483
 #, php-format
 msgid "Page: %s"
 msgstr "Pagina: %s"
@@ -14484,7 +14468,7 @@ msgid "edit comment"
 msgstr "Bewerk reactie"
 
 #: ZpTranslation-Master/zp-core/zp-extensions/comment_form/admin-comments.php:130
-#: ZpTranslation-Master/zp-core/zp-extensions/comment_form/admin-comments.php:455
+#: ZpTranslation-Master/zp-core/zp-extensions/comment_form/admin-comments.php:456
 msgid "Are you sure you want to delete this comment?"
 msgstr "Weet je zeker dat je deze reactie wilt verwijderen?"
 
@@ -14623,54 +14607,54 @@ msgstr "[nieuws]"
 msgid "[page]"
 msgstr "[pagina]"
 
-#: ZpTranslation-Master/zp-core/zp-extensions/comment_form/admin-comments.php:422
-#: ZpTranslation-Master/zp-core/zp-extensions/comment_form/admin-comments.php:470
+#: ZpTranslation-Master/zp-core/zp-extensions/comment_form/admin-comments.php:423
+#: ZpTranslation-Master/zp-core/zp-extensions/comment_form/admin-comments.php:471
 msgid "Anonymous posting"
 msgstr "Anoniem versturen"
 
-#: ZpTranslation-Master/zp-core/zp-extensions/comment_form/admin-comments.php:431
-#: ZpTranslation-Master/zp-core/zp-extensions/comment_form/admin-comments.php:468
+#: ZpTranslation-Master/zp-core/zp-extensions/comment_form/admin-comments.php:432
+#: ZpTranslation-Master/zp-core/zp-extensions/comment_form/admin-comments.php:469
 msgid "Private message"
 msgstr "privé reactie"
 
-#: ZpTranslation-Master/zp-core/zp-extensions/comment_form/admin-comments.php:438
+#: ZpTranslation-Master/zp-core/zp-extensions/comment_form/admin-comments.php:439
 msgid "Approve this message (not SPAM)"
 msgstr "Keur dit bericht goed (geen SPAM)"
 
-#: ZpTranslation-Master/zp-core/zp-extensions/comment_form/admin-comments.php:439
+#: ZpTranslation-Master/zp-core/zp-extensions/comment_form/admin-comments.php:440
 msgid "Approve this message (not SPAM"
 msgstr "Keur dit bericht goed (geen SPAM)"
 
-#: ZpTranslation-Master/zp-core/zp-extensions/comment_form/admin-comments.php:443
 #: ZpTranslation-Master/zp-core/zp-extensions/comment_form/admin-comments.php:444
+#: ZpTranslation-Master/zp-core/zp-extensions/comment_form/admin-comments.php:445
 msgid "Mark this message as SPAM"
 msgstr "Markeer dit bericht als SPAM"
 
-#: ZpTranslation-Master/zp-core/zp-extensions/comment_form/admin-comments.php:448
+#: ZpTranslation-Master/zp-core/zp-extensions/comment_form/admin-comments.php:449
 msgid "Edit this comment."
 msgstr "Bewerk deze reactie."
 
-#: ZpTranslation-Master/zp-core/zp-extensions/comment_form/admin-comments.php:451
+#: ZpTranslation-Master/zp-core/zp-extensions/comment_form/admin-comments.php:452
 msgid "Reply:"
 msgstr "Reageer:"
 
-#: ZpTranslation-Master/zp-core/zp-extensions/comment_form/admin-comments.php:452
+#: ZpTranslation-Master/zp-core/zp-extensions/comment_form/admin-comments.php:453
 msgid "Reply"
 msgstr "Reageer"
 
-#: ZpTranslation-Master/zp-core/zp-extensions/comment_form/admin-comments.php:456
+#: ZpTranslation-Master/zp-core/zp-extensions/comment_form/admin-comments.php:457
 msgid "Delete this comment."
 msgstr "Verwijder deze reactie."
 
-#: ZpTranslation-Master/zp-core/zp-extensions/comment_form/admin-comments.php:469
+#: ZpTranslation-Master/zp-core/zp-extensions/comment_form/admin-comments.php:470
 msgid "Marked as spam/approved"
 msgstr "Gemarkeerd als spam/goedgekeurd"
 
-#: ZpTranslation-Master/zp-core/zp-extensions/comment_form/admin-comments.php:471
+#: ZpTranslation-Master/zp-core/zp-extensions/comment_form/admin-comments.php:472
 msgid "Edit comment"
 msgstr "Bewerk reactie"
 
-#: ZpTranslation-Master/zp-core/zp-extensions/comment_form/admin-comments.php:472
+#: ZpTranslation-Master/zp-core/zp-extensions/comment_form/admin-comments.php:473
 msgid "E-mail comment author"
 msgstr "E-mail de auteur van de reactie"
 
@@ -14899,6 +14883,21 @@ msgstr "Reactie gepost op onbekende pagina!"
 #: ZpTranslation-Master/zp-core/zp-extensions/comment_form/functions.php:912
 msgid "Anonymous"
 msgstr "Anoniem"
+
+#: ZpTranslation-Master/zp-core/zp-extensions/comment_form/functions.php:948
+#, php-format
+msgid "%1$s commented on album %2$s%3$s"
+msgstr "%1$s gaf reactie op album %2$s%3$s"
+
+#: ZpTranslation-Master/zp-core/zp-extensions/comment_form/functions.php:952
+#, php-format
+msgid "%1$s commented on %2$s in album %3$s%4$s"
+msgstr "%1$s gaf reactie op %2$s in album %3$s%4$s"
+
+#: ZpTranslation-Master/zp-core/zp-extensions/comment_form/functions.php:956
+#, php-format
+msgid "%1$s commented on %2$s%3$s"
+msgstr "%1$s gaf reactie op %2$s%3$s"
 
 #: ZpTranslation-Master/zp-core/zp-extensions/common/fieldExtender.php:306
 #, php-format
@@ -16585,12 +16584,12 @@ msgstr ""
 "logon."
 
 #: ZpTranslation-Master/zp-core/zp-extensions/federated_logon.php:353
-#: ZpTranslation-Master/zp-core/zp-extensions/register_user.php:362
+#: ZpTranslation-Master/zp-core/zp-extensions/register_user.php:367
 msgid "Zenphoto Gallery registration"
 msgstr "Zenphoto galerij registratie"
 
 #: ZpTranslation-Master/zp-core/zp-extensions/federated_logon.php:353
-#: ZpTranslation-Master/zp-core/zp-extensions/register_user.php:362
+#: ZpTranslation-Master/zp-core/zp-extensions/register_user.php:367
 #, php-format
 msgid ""
 "%1$s (%2$s) has registered for the zenphoto gallery providing an e-mail "
@@ -16729,8 +16728,8 @@ msgstr "Selecteer het icoon voor afbeeldingen met geodata."
 #: ZpTranslation-Master/zp-core/zp-extensions/flag_thumbnail.php:85
 #: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:669
 #: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1011
-#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1519
-#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1543
+#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1521
+#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1545
 msgid "Un-published"
 msgstr "Niet gepubliceerd"
 
@@ -18881,7 +18880,7 @@ msgstr "Alles verwijderen"
 #: ZpTranslation-Master/zp-core/zp-extensions/publishContent/publishContent.php:411
 #: ZpTranslation-Master/zp-core/zp-extensions/zenpage/admin-edit.php:419
 #: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1008
-#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1532
+#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1534
 msgid "Publish"
 msgstr "Publiceer"
 
@@ -19477,24 +19476,24 @@ msgstr "Je moet het land invoeren"
 msgid "You must supply the postal code field."
 msgstr "Je moet de postcode invoeren."
 
-#: ZpTranslation-Master/zp-core/zp-extensions/register_user.php:292
+#: ZpTranslation-Master/zp-core/zp-extensions/register_user.php:297
 msgid "Registration confirmation"
 msgstr "Registratiebevestiging"
 
-#: ZpTranslation-Master/zp-core/zp-extensions/register_user.php:389
+#: ZpTranslation-Master/zp-core/zp-extensions/register_user.php:394
 msgid "you are already logged in."
 msgstr "je bent reeds ingelogd."
 
-#: ZpTranslation-Master/zp-core/zp-extensions/register_user.php:401
+#: ZpTranslation-Master/zp-core/zp-extensions/register_user.php:406
 msgid "Thank you for registering."
 msgstr "Dank je voor je registratie."
 
-#: ZpTranslation-Master/zp-core/zp-extensions/register_user.php:405
+#: ZpTranslation-Master/zp-core/zp-extensions/register_user.php:410
 msgid "You may now log onto the site and verify your personal information."
 msgstr ""
 "Je kunt nu inloggen op de site en je persoonlijke gegevens controleren."
 
-#: ZpTranslation-Master/zp-core/zp-extensions/register_user.php:424
+#: ZpTranslation-Master/zp-core/zp-extensions/register_user.php:429
 msgid ""
 "Your registration information has been accepted. An email has been sent to "
 "you to verify your email address."
@@ -19502,52 +19501,52 @@ msgstr ""
 "Je registratie is geaccepteerd. Er is een e-mail verzonden om je e-mailadres "
 "te verifiëren."
 
-#: ZpTranslation-Master/zp-core/zp-extensions/register_user.php:433
-#: ZpTranslation-Master/zp-core/zp-extensions/register_user.php:441
-#: ZpTranslation-Master/zp-core/zp-extensions/register_user.php:449
-#: ZpTranslation-Master/zp-core/zp-extensions/register_user.php:457
-#: ZpTranslation-Master/zp-core/zp-extensions/register_user.php:465
-#: ZpTranslation-Master/zp-core/zp-extensions/register_user.php:473
-#: ZpTranslation-Master/zp-core/zp-extensions/register_user.php:481
-#: ZpTranslation-Master/zp-core/zp-extensions/register_user.php:497
-#: ZpTranslation-Master/zp-core/zp-extensions/register_user.php:513
+#: ZpTranslation-Master/zp-core/zp-extensions/register_user.php:438
+#: ZpTranslation-Master/zp-core/zp-extensions/register_user.php:446
+#: ZpTranslation-Master/zp-core/zp-extensions/register_user.php:454
+#: ZpTranslation-Master/zp-core/zp-extensions/register_user.php:462
+#: ZpTranslation-Master/zp-core/zp-extensions/register_user.php:470
+#: ZpTranslation-Master/zp-core/zp-extensions/register_user.php:478
+#: ZpTranslation-Master/zp-core/zp-extensions/register_user.php:486
+#: ZpTranslation-Master/zp-core/zp-extensions/register_user.php:502
+#: ZpTranslation-Master/zp-core/zp-extensions/register_user.php:518
 msgid "Registration failed."
 msgstr "Registratie mislukt."
 
-#: ZpTranslation-Master/zp-core/zp-extensions/register_user.php:434
+#: ZpTranslation-Master/zp-core/zp-extensions/register_user.php:439
 #, php-format
 msgid "The user ID <em>%s</em> is already in use."
 msgstr "Er is al een gebruiker met e-mailadres <em>%s</em>."
 
-#: ZpTranslation-Master/zp-core/zp-extensions/register_user.php:442
+#: ZpTranslation-Master/zp-core/zp-extensions/register_user.php:447
 msgid "Passwords may not be empty."
 msgstr "Wachtwoorden mogen niet leeg zijn !"
 
-#: ZpTranslation-Master/zp-core/zp-extensions/register_user.php:458
+#: ZpTranslation-Master/zp-core/zp-extensions/register_user.php:463
 msgid "You have not filled in all the fields."
 msgstr "Je hebt niet alle velden ingevuld."
 
-#: ZpTranslation-Master/zp-core/zp-extensions/register_user.php:466
+#: ZpTranslation-Master/zp-core/zp-extensions/register_user.php:471
 msgid "Invalid verification link."
 msgstr "Ongeldige verificatie-link."
 
-#: ZpTranslation-Master/zp-core/zp-extensions/register_user.php:474
+#: ZpTranslation-Master/zp-core/zp-extensions/register_user.php:479
 msgid "Enter a valid email address."
 msgstr "Vul een geldig e-mailadres in."
 
-#: ZpTranslation-Master/zp-core/zp-extensions/register_user.php:482
+#: ZpTranslation-Master/zp-core/zp-extensions/register_user.php:487
 msgid "The CAPTCHA you entered was not correct."
 msgstr "De ingevoerde CAPTCHA is niet correct."
 
-#: ZpTranslation-Master/zp-core/zp-extensions/register_user.php:489
+#: ZpTranslation-Master/zp-core/zp-extensions/register_user.php:494
 msgid "Verification failed."
 msgstr "Verificatie mislukt."
 
-#: ZpTranslation-Master/zp-core/zp-extensions/register_user.php:490
+#: ZpTranslation-Master/zp-core/zp-extensions/register_user.php:495
 msgid "Your registration request could not be completed."
 msgstr "Je registratie kon niet voltooid worden."
 
-#: ZpTranslation-Master/zp-core/zp-extensions/register_user.php:503
+#: ZpTranslation-Master/zp-core/zp-extensions/register_user.php:508
 msgid ""
 "Your registration attempt failed a <code>register_user_registered</code> "
 "filter check."
@@ -21382,7 +21381,7 @@ msgstr "<strong>LET OP!:</strong> Dit album bevat geen afbeeldingen."
 
 #: ZpTranslation-Master/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage-functions.php:296
 #: ZpTranslation-Master/zp-core/zp-extensions/zenpage/admin-news-articles.php:102
-#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1311
+#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1313
 msgid "Articles"
 msgstr "Artikelen"
 
@@ -23036,7 +23035,7 @@ msgstr ""
 #: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:288
 #: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1032
 #: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1034
-#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1409
+#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1411
 msgid "Reset hitcounter"
 msgstr "Reset hit-teller"
 
@@ -23891,12 +23890,12 @@ msgid "Edit this category"
 msgstr "Bewerk deze categorie"
 
 #: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1002
-#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1524
+#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1526
 msgid "Un-publish"
 msgstr "On-publiceer"
 
 #: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1005
-#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1513
+#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1515
 msgid "Scheduled for published"
 msgstr "Ingepland voor publicatie"
 
@@ -23909,34 +23908,34 @@ msgstr "Bekijk categorie"
 msgid "Delete Category"
 msgstr "Verwijder categorie"
 
-#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1234
+#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1236
 msgid "Untitled page"
 msgstr "Naamloze pagina"
 
-#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1237
+#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1239
 msgid "Untitled article"
 msgstr "Naamloos artikel"
 
-#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1240
+#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1242
 msgid "Untitled category"
 msgstr "Naamloze categorie"
 
-#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1292
+#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1294
 msgid "hit"
 msgstr "bezoeker"
 
-#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1294
+#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1296
 msgid "hits"
 msgstr "bezoekers"
 
-#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1353
+#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1355
 #, php-format
 msgid "(<strong>%1$u</strong> page)"
 msgid_plural "(<strong>%1$u</strong> pages)"
 msgstr[0] "<strong>%1$u</strong> pagina"
 msgstr[1] "<strong>%1$u</strong> pagina’s"
 
-#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1355
+#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1357
 #, php-format
 msgid "(<strong>%1$u</strong> page, <strong>%2$u</strong> un-published)"
 msgid_plural ""
@@ -23946,14 +23945,14 @@ msgstr[0] ""
 msgstr[1] ""
 "<strong>%1$u</strong> pagina’s (<strong>%2$u</strong> niet gepubliceerd)"
 
-#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1361
+#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1363
 #, php-format
 msgid "(<strong>%1$u</strong> news)"
 msgid_plural "(<strong>%1$u</strong> news)"
 msgstr[0] "<strong>%1$u</strong> artikel"
 msgstr[1] "<strong>%1$u</strong> artikelen"
 
-#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1363
+#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1365
 #, php-format
 msgid "(<strong>%1$u</strong> news, <strong>%2$u</strong> un-published)"
 msgid_plural "(<strong>%1$u</strong> news, <strong>%2$u</strong> un-published)"
@@ -23962,50 +23961,50 @@ msgstr[0] ""
 msgstr[1] ""
 "(<strong>%1$u</strong> artikelen, <strong>%2$u</strong> niet gepubliceerd)"
 
-#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1369
+#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1371
 #, php-format
 msgid "(<strong>%1$u</strong> category)"
 msgid_plural "(<strong>%1$u</strong> categories)"
 msgstr[0] "<strong>%1$u</strong> categorie"
 msgstr[1] "<strong>%1$u</strong> categorieën"
 
-#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1400
+#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1402
 msgid "Published/Not published/Scheduled for publishing"
 msgstr "Gepubliceerd / Niet gepubliceerd / Ingepland voor publicatie"
 
-#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1510
+#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1512
 msgid "Publish immediately (skip scheduling)"
 msgstr "Publiceer direct"
 
-#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1516
+#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1518
 msgid "Enable scheduled publishing"
 msgstr "Zet ingeplande publicatie aan"
 
-#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1537
+#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1539
 msgid "Publish (override expiration)"
 msgstr "Publiceer"
 
-#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1729
+#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1731
 msgid "Tags added to selected items"
 msgstr "Tags toegevoegd aan geselecteerde onderdelen."
 
-#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1732
+#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1734
 msgid "Tags cleared from selected items"
 msgstr "Tags verwijderd uit geselecteerde onderdelen."
 
-#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1735
+#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1737
 msgid "Tags added to articles of selected items"
 msgstr "Tags toegevoegd aan artikelen van de geselecteerde onderdelen."
 
-#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1738
+#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1740
 msgid "Tags cleared from articles of selected items"
 msgstr "Tags verwijderd uit artikelen van de geselecteerde onderdelen."
 
-#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1741
+#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1743
 msgid "Categories added to selected items"
 msgstr "Categorieën toegevoegd aan geselecteerde onderdelen."
 
-#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1744
+#: ZpTranslation-Master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1746
 msgid "Categories cleared from selected items"
 msgstr "Categorieën verwijderd uit geselecteerde onderdelen."
 
@@ -24184,6 +24183,15 @@ msgid ""
 msgstr ""
 "De grootte van het font als dit schaalbaar is. (<em>TTF</em> en <em>Imagick</"
 "em> fonts) "
+
+#~ msgid "Admin Toolbox"
+#~ msgstr "Admin Toolbox"
+
+#~ msgid "Users"
+#~ msgstr "Gebruikers"
+
+#~ msgid "Logs"
+#~ msgstr "Logs"
 
 #~ msgid "expand all fields"
 #~ msgstr "klap alle velden uit"
