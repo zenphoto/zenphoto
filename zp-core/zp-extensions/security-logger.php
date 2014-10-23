@@ -222,7 +222,7 @@ class security_logger {
 			$user = $_zp_current_admin_obj->getUser();
 			$name = $_zp_current_admin_obj->getName();
 		} else {
-			$user = $name = '';
+			$user = $name = NULL;
 		}
 		return array($user, $name);
 	}
@@ -316,7 +316,7 @@ class security_logger {
 	 */
 	static function adminGate($allow, $page) {
 		list($user, $name) = security_logger::populate_user();
-		switch (getOption('logger_log_type')) {
+		switch (getOption('logge_access_log_type')) {
 			case 'all':
 				break;
 			case 'all_user':
