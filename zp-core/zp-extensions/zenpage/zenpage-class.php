@@ -886,12 +886,17 @@ class Zenpage {
 				}
 			}
 		}
-
 		if (!is_null($sorttype) || !is_null($sortdirection)) {
 			if ($sorttype == 'random') {
 				shuffle($structure);
 			} else {
-				$structure = sortMultiArray($structure, $sortorder, $sortdirection, true, false, false);
+     //sortMultiArray descending = true
+     if($sortdirection) {
+       $sortdir = false;
+     } else {
+       $sortdir = true;
+     }
+				$structure = sortMultiArray($structure, $sortorder, $sortdir, true, false, false);
 			}
 		}
 		return $structure;
