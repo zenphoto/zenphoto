@@ -120,6 +120,13 @@ if (is_AdminEditPage('newscategory')) {
 		$result->setShow(1);
 	}
 }
+/*
+ * Here we should restart if any action processing has occurred to be sure that everything is
+ * in its proper state. But that would require significant rewrite of the handling and
+ * reporting code so is impractical. Instead we will presume that all that needs to be restarted
+ * is the CMS object.
+ */
+$_zp_CMS = new CMS();
 
 printAdminHeader($tab, ($result->transient) ? gettext('add') : gettext('edit'));
 zp_apply_filter('texteditor_config', 'zenpage');
@@ -307,7 +314,7 @@ codeblocktabsJS();
 								if ($locked) {
 									?>
 									<script type="text/javascript">
-										window.onload = function() {
+										window.onload = function () {
 											$('#form_cmsItemEdit :input').prop('disabled', true);
 											$('input[type="submit"]').attr('disabled', 'disabled');
 											$('input[type="reset"]').attr('disabled', 'disabled');
@@ -599,7 +606,7 @@ codeblocktabsJS();
 
 															<script type="text/javascript">
 																// <!-- <![CDATA[
-																$(function() {
+																$(function () {
 																	$("#date").datepicker({
 																		dateFormat: 'yy-mm-dd',
 																		showOn: 'button',
@@ -627,7 +634,7 @@ codeblocktabsJS();
 														<p>
 															<script type="text/javascript">
 																// <!-- <![CDATA[
-																$(function() {
+																$(function () {
 																	$("#expiredate").datepicker({
 																		dateFormat: 'yy-mm-dd',
 																		showOn: 'button',
