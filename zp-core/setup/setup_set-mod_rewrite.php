@@ -13,6 +13,9 @@
 require_once(dirname(dirname(__FILE__)) . '/functions-basic.php');
 require_once(dirname(__FILE__) . '/setup-functions.php');
 
+$iMutex = new Mutex('i', getOption('imageProcessorConcurrency'));
+$iMutex->lock();
+
 $mod_rewrite = MOD_REWRITE;
 if (is_null($mod_rewrite)) {
 	$msg = gettext('The option “mod_rewrite” will be set to “enabled”.');
