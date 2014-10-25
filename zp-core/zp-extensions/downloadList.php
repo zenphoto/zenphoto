@@ -584,63 +584,67 @@ function printDownloadAlbumZipURL($linktext = NULL, $albumobj = NULL, $fromcache
  * Process any download requests
  */
 if (isset($_GET['download'])) {
-	$item = sanitize($_GET['download']);
-	if (empty($item) || !extensionEnabled('downloadList')) {
-		if (TEST_RELEASE) {
-			zp_error(gettext('Forbidden'));
-		} else {
-			header("HTTP/1.0 403 " . gettext("Forbidden"));
-			header("Status: 403 " . gettext("Forbidden"));
-			exitZP(); //	terminate the script with no output
-		}
-	}
-	$hash = getOption('downloadList_password');
-	if (GALLERY_SECURITY != 'public' || $hash) {
-//	credentials required to download
-		if (!zp_loggedin((getOption('downloadList_rights')) ? FILES_RIGHTS : ALL_RIGHTS)) {
-			$user = getOption('downloadList_user');
-			zp_handle_password('download_auth', $hash, $user);
-			if (!empty($hash) && zp_getCookie('download_auth') != $hash) {
-				$show = ($user) ? true : NULL;
-				$hint = get_language_string(getOption('downloadList_hint'));
-				printPasswordForm($hint, true, $show, '?download=' . $item);
-				exitZP();
-			}
-		}
-	}
-	if (isset($_GET['albumzip'])) {
-		DownloadList::updateListItemCount($item . '.zip');
-		require_once(SERVERPATH . '/' . ZENFOLDER . '/lib-zipStream.php');
-		if (isset($_GET['fromcache'])) {
-			$fromcache = sanitize($isset($_GET['fromcache']));
-		} else {
-			$fromcache = getOption('downloadList_zipFromCache');
-		}
-		AlbumZip::create($item, $fromcache);
-		exitZP();
-	} else {
-		require_once(SERVERPATH . '/' . ZENFOLDER . '/lib-MimeTypes.php');
-		$item = (int) $item;
-		$path = query_single_row("SELECT `aux` FROM " . prefix('plugin_storage') . " WHERE id=" . $item);
-		$_downloadFile = internalToFilesystem($path['aux']);
-		if (file_exists($_downloadFile)) {
-			DownloadList::updateListItemCount($_downloadFile);
-			$ext = getSuffix($_downloadFile);
-			$mimetype = getMimeString($ext);
-			header('Content-Description: File Transfer');
-			header('Content-Type: ' . $mimetype);
-			header('Content-Disposition: attachment; filename=' . basename(urldecode($_downloadFile)));
-			header('Content-Transfer-Encoding: binary');
-			header('Expires: 0');
-			header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
-			header('Pragma: public');
-			header('Content-Length: ' . filesize($_downloadFile));
-			flush();
-			readfile($_downloadFile);
-			exitZP();
-		} else {
-			zp_register_filter('theme_body_open', 'DownloadList::noFile');
-		}
-	}
+  $item = sanitize($_GET['download']);
+  if (empty($item) || !extensionEnabled('downloadList')) {
+    if (TEST_RELEASE) {
+      zp_error(gettext('Forbidden'));
+    } else {
+      header("HTTP/1.0 403 " . gettext("Forbidden"));
+      header("Status: 403 " . gettext("Forbidden"));
+      exitZP(); //	terminate the script with no output
+    }
+  }
+  $hash = getOption('downloadList_password');
+  if (GALLERY_SECURITY != 'public' || $hash) {
+    //	credentials required to download
+    $user = getOption('downloadList_user');
+    zp_handle_password('download_auth', $hash, $user);
+    if ((!empty($hash) && zp_getCookie('download_auth') != $hash) || !zp_loggedin((getOption('downloadList_rights')) ? FILES_RIGHTS : ALL_RIGHTS)) {
+      $show = ($user) ? true : NULL;
+      $hint = '';
+      if (!empty($hash)) {
+        $hint = get_language_string(getOption('downloadList_hint'));
+      }
+      if (isset($_GET['albumzip'])) {
+        $item .= '&albumzip';
+      }
+      printPasswordForm($hint, true, $show, '?download=' . $item);
+      exitZP();
+    }
+  }
+  if (isset($_GET['albumzip'])) {
+    DownloadList::updateListItemCount($item . '.zip');
+    require_once(SERVERPATH . '/' . ZENFOLDER . '/lib-zipStream.php');
+    if (isset($_GET['fromcache'])) {
+      $fromcache = sanitize($isset($_GET['fromcache']));
+    } else {
+      $fromcache = getOption('downloadList_zipFromCache');
+    }
+    AlbumZip::create($item, $fromcache);
+    exitZP();
+  } else {
+    require_once(SERVERPATH . '/' . ZENFOLDER . '/lib-MimeTypes.php');
+    $item = (int) $item;
+    $path = query_single_row("SELECT `aux` FROM " . prefix('plugin_storage') . " WHERE id=" . $item);
+    $_downloadFile = internalToFilesystem($path['aux']);
+    if (file_exists($_downloadFile)) {
+      DownloadList::updateListItemCount($_downloadFile);
+      $ext = getSuffix($_downloadFile);
+      $mimetype = getMimeString($ext);
+      header('Content-Description: File Transfer');
+      header('Content-Type: ' . $mimetype);
+      header('Content-Disposition: attachment; filename=' . basename(urldecode($_downloadFile)));
+      header('Content-Transfer-Encoding: binary');
+      header('Expires: 0');
+      header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+      header('Pragma: public');
+      header('Content-Length: ' . filesize($_downloadFile));
+      flush();
+      readfile($_downloadFile);
+      exitZP();
+    } else {
+      zp_register_filter('theme_body_open', 'DownloadList::noFile');
+    }
+  }
 }
-?>
+    ?>
