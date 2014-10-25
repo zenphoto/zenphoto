@@ -29,7 +29,10 @@ class Article extends CMSItems {
 		if (is_array($titlelink)) {
 			$titlelink = $titlelink['titlelink'];
 		}
-		$new = $this->instantiate('news', array('titlelink' => $titlelink), 'titlelink', true, empty($titlelink), $allowCreate);
+		if ($this->instantiate('news', array('titlelink' => $titlelink), 'titlelink', true, empty($titlelink), $allowCreate)) {
+			$this->setPermalink(1);
+			$this->setDateTime(date('Y-m-d H:i:s'));
+		}
 		$this->exists = $this->loaded;
 	}
 
@@ -96,7 +99,7 @@ class Article extends CMSItems {
 			$newobj->setTitle($newtitle);
 			$newobj->setTags($this->getTags(false));
 			$newobj->setShow(0);
-			$newobj->setDateTime(date('Y-m-d H:i:s'));
+			$newobj->setDateTime('');
 			$newobj->save();
 			$categories = array();
 			foreach ($this->getCategories() as $cat) {

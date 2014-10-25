@@ -79,8 +79,8 @@ if ($_zp_loggedin) {
 
 		if (($_zp_loggedin & ZENPAGE_NEWS_RIGHTS) && getOption('zenpage_enabled_items') & 1) {
 			$zenphoto_tabs['news'] = array('text'		 => gettext("news"),
-							'link'		 => WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-news-articles.php',
-							'subtabs'	 => array(gettext('articles')		 => PLUGIN_FOLDER . '/zenpage/admin-news-articles.php?page=news&tab=articles',
+							'link'		 => WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-news.php',
+							'subtabs'	 => array(gettext('articles')		 => PLUGIN_FOLDER . '/zenpage/admin-news.php?page=news&tab=articles',
 											gettext('categories')	 => PLUGIN_FOLDER . '/zenpage/admin-categories.php?page=news&tab=categories'),
 							'default'	 => 'articles');
 		}

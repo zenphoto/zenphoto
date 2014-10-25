@@ -21,7 +21,10 @@ class Page extends CMSItems {
 		if (is_array($titlelink)) {
 			$titlelink = $titlelink['titlelink'];
 		}
-		$new = $this->instantiate('pages', array('titlelink' => $titlelink), 'titlelink', true, empty($titlelink), $allowCreate);
+		if ($this->instantiate('pages', array('titlelink' => $titlelink), 'titlelink', true, empty($titlelink), $allowCreate)) {
+			$this->setPermalink(1);
+			$this->setDateTime(date('Y-m-d H:i:s'));
+		}
 		$this->exists = $this->loaded;
 	}
 
@@ -122,7 +125,7 @@ class Page extends CMSItems {
 			$newobj->setTitle($newtitle);
 			$newobj->setSortOrder(NULL);
 			$newobj->setTags($this->getTags(false));
-			$newobj->setDateTime(date('Y-m-d H:i:s'));
+			$newobj->setDateTime('');
 			$newobj->setShow(0);
 			$newobj->save();
 			return $newobj;
