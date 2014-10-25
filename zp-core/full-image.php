@@ -89,9 +89,18 @@ if (($hash || !$albumobj->checkAccess()) && !zp_loggedin(VIEW_FULLIMAGE_RIGHTS))
 	}
 
 	if (empty($hash) || (!empty($hash) && zp_getCookie($authType) != $hash)) {
+		require_once(SERVERPATH . "/" . ZENFOLDER . '/rewrite.php');
 		require_once(dirname(__FILE__) . "/template-functions.php");
 		require_once(SERVERPATH . "/" . ZENFOLDER . '/functions-controller.php');
 		zp_load_gallery();
+
+		foreach (getEnabledPlugins() as $extension => $plugin) {
+			if ($plugin['priority'] & THEME_PLUGIN) {
+				require_once($plugin['path']);
+				$_zp_loaded_plugins[$extension] = $extension;
+			}
+		}
+
 		$theme = setupTheme($albumobj);
 		$custom = $_zp_themeroot . '/functions.php';
 		if (file_exists($custom)) {

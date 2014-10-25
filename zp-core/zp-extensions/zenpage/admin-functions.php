@@ -823,8 +823,7 @@ function printArticlesPerPageDropdown($subpage) {
  */
 function updateCategory(&$reports, $newcategory = false) {
 	$date = date('Y-m-d_H-i-s');
-	$id = sanitize_numeric($_POST[
-					'id']);
+	$id = sanitize_numeric($_POST['id']);
 	$permalink = getcheckboxState('permalink');
 	$title = process_language_string_save("title", 2);
 	$desc = process_language_string_save("desc", EDITOR_SANITIZE_LEVEL);
@@ -1139,7 +1138,7 @@ function printNestedItemsList($listtype = 'cats-sortablelist', $articleid = '', 
 					printCategoryCheckboxListEntry($itemobj, $articleid, $option, $class);
 					break;
 				case 'cats-sortablelist':
-					echo str_pad("\t", $indent - 1, "\t") . "<li id=\"id_" . $itemid . "\" class=\"clear-element page-item1 left\">";
+					echo str_pad("\t", $indent - 1, "\t") . "<li id=\"id_" . $itemid . "\">";
 					printCategoryListSortableTable($itemobj, $toodeep);
 					break;
 				case 'pages-sortablelist':

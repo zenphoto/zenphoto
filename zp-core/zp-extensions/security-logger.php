@@ -180,6 +180,7 @@ class security_logger {
 		$f = fopen($file, 'a');
 		if ($f) {
 			if (!$preexists) { // add a header
+				@chmod($file, DATA_MOD);
 				fwrite($f, gettext('date' . "\t" . 'requestor’s IP' . "\t" . 'type' . "\t" . 'user ID' . "\t" . 'user name' . "\t" . 'outcome' . "\t" . 'authority' . "\tadditional information\n"));
 			}
 			$message = date('Y-m-d H:i:s') . "\t";
@@ -207,9 +208,6 @@ class security_logger {
 			fwrite($f, $message . "\n");
 			fclose($f);
 			clearstatcache();
-			if (!$preexists) {
-				@chmod($file, DATA_MOD);
-			}
 		}
 		$_zp_mutex->unlock();
 		setupCurrentLocale($cur_locale); //	restore to whatever was in effect.
@@ -224,7 +222,7 @@ class security_logger {
 			$user = $_zp_current_admin_obj->getUser();
 			$name = $_zp_current_admin_obj->getName();
 		} else {
-			$user = $name = '';
+			$user = $name = NULL;
 		}
 		return array($user, $name);
 	}
@@ -318,7 +316,7 @@ class security_logger {
 	 */
 	static function adminGate($allow, $page) {
 		list($user, $name) = security_logger::populate_user();
-		switch (getOption('logger_log_type')) {
+		switch (getOption('logge_access_log_type')) {
 			case 'all':
 				break;
 			case 'all_user':

@@ -1676,9 +1676,11 @@ function sanitizeRedirect($redirectTo, $forceHost = false) {
 }
 
 /**
- * checks password posting
+ * checks password posting or existing password cookie
  *
  * @param string $authType override of athorization type
+ *
+ * @return bool true if authorized
  */
 function zp_handle_password($authType = NULL, $check_auth = NULL, $check_user = NULL) {
 	global $_zp_loggedin, $_zp_login_error, $_zp_current_album, $_zp_current_page, $_zp_gallery;
@@ -1773,16 +1775,16 @@ function zp_handle_password($authType = NULL, $check_auth = NULL, $check_user = 
 			zp_clearCookie($authType);
 			$_zp_login_error = true;
 		}
-		return;
+		return $success;
 	}
 	if (empty($check_auth)) { //no password on record or admin logged in
-		return;
+		return true;
 	}
 	if (($saved_auth = zp_getCookie($authType)) != '') {
 		if ($saved_auth == $check_auth) {
 			if (DEBUG_LOGIN)
 				debugLog("zp_handle_password: valid cookie");
-			return;
+			return true;
 		} else {
 			// Clear the cookie
 			if (DEBUG_LOGIN)
@@ -1790,6 +1792,7 @@ function zp_handle_password($authType = NULL, $check_auth = NULL, $check_user = 
 			zp_clearCookie($authType);
 		}
 	}
+	return false;
 }
 
 /**

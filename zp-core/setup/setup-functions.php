@@ -475,7 +475,7 @@ function acknowledge($value) {
 
 function configMod() {
 	$mod = 0600;
-	$str = '';
+	$str = NULL;
 	while (empty($str)) {
 		@chmod(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE, $mod);
 		$str = @file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
@@ -484,7 +484,6 @@ function configMod() {
 		}
 		$mod = $mod | $mod >> 3;
 	}
-	return $str;
 }
 
 function printSetupFooter() {
@@ -499,27 +498,6 @@ function setupUserAuthorized() {
 	} else {
 		return true; //	in a primitive environment
 	}
-}
-
-function updateConfigfile($zp_cfg) {
-	$mod1 = fileperms(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE) & 0777;
-	$mod2 = fileperms(SERVERPATH . '/' . DATA_FOLDER) & 0777;
-
-	@chmod(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE, 0777);
-	if (is_writeable(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
-		rename(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE, $backkup = SERVERPATH . '/' . DATA_FOLDER . '/' . str_replace(strrchr(CONFIGFILE, "."), '', CONFIGFILE) . '.bak.php');
-		chmod($backkup, $mod1);
-		if ($handle = fopen(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE, 'w')) {
-			if (fwrite($handle, $zp_cfg)) {
-				setupLog(gettext("Updated configuration file"));
-				$base = true;
-			}
-		}
-		fclose($handle);
-		clearstatcache();
-	}
-	@chmod(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE, $mod2);
-	$str = configMod();
 }
 
 function checkUnique($table, $unique) {

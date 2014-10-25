@@ -127,8 +127,10 @@ class DownloadList {
 						 onkeydown="passwordClear('_downloadList');"
 						 onkeyup="passwordStrength('_downloadList');"
 						 value="<?php echo $x; ?>" />
-			<label><input type="checkbox" name="disclose_password_downloadList" id="disclose_password_downloadList" onclick="passwordClear('_downloadList');
-					togglePassword('_downloadList');"><?php echo gettext('Show password'); ?></label>
+			<label>
+				<input type="checkbox" name="disclose_password_downloadList" id="disclose_password_downloadList" onclick="passwordClear('_downloadList');
+						togglePassword('_downloadList');"><?php echo gettext('Show password'); ?>
+			</label>
 			<br />
 			<span class="password_field__downloadList">
 				<span id="match_downloadList"><?php echo gettext("(repeat)"); ?></span>
@@ -270,7 +272,7 @@ class DownloadList {
 		?>
 		<script type="text/javascript">
 			// <!-- <![CDATA[
-			window.onload = function() {
+			window.onload = function () {
 				alert('<?php printf(gettext('File “%s” was not found.'), $file); ?>');
 			}
 			// ]]> -->
@@ -340,11 +342,9 @@ class AlbumZip {
 				}
 			}
 		}
-
-		$albums = $album->getAlbums();
-		foreach ($albums as $albumname) {
+		foreach ($album->getAlbums() as $albumname) {
 			$subalbum = newAlbum($albumname);
-			if (!in_array($subalbum->name, $_zp_albums_visited_albumMenu) && $subalbum->exists) {
+			if (!in_array($subalbum->name, $_zp_albums_visited_albumMenu) && $subalbum->exists && $subalbum->checkAccess()) {
 				self::AddAlbum($subalbum, $fromcache, $level + 1);
 			}
 		}
@@ -377,11 +377,11 @@ class AlbumZip {
 	 */
 	static function create($album, $zipname, $fromcache) {
 		global $_zp_zip_list, $_zp_albums_visited_albumMenu, $_zp_gallery, $defaultSize;
-		if (!$album->isMyItem(LIST_RIGHTS) && !checkAlbumPassword($album->name)) {
-			self::pageError(403, gettext("Forbidden"));
-		}
 		if (!$album->exists) {
 			self::pageError(404, gettext('Album not found'));
+		}
+		if (!$album->checkAccess()) {
+			self::pageError(403, gettext("Forbidden"));
 		}
 
 		$_zp_albums_visited_albumMenu = $_zp_zip_list = array();
@@ -598,6 +598,7 @@ function printDownloadAlbumZipURL($linktext = NULL, $albumobj = NULL, $fromcache
  * Process any download requests
  */
 if (isset($_GET['download'])) {
+	$_zp_HTML_cache->abortHTMLCache();
 	$item = sanitize($_GET['download']);
 	if (empty($item) || !extensionEnabled('downloadList')) {
 		if (TEST_RELEASE) {
@@ -613,17 +614,25 @@ if (isset($_GET['download'])) {
 //	credentials required to download
 		if (!zp_loggedin((getOption('downloadList_rights')) ? FILES_RIGHTS : ALL_RIGHTS)) {
 			$user = getOption('downloadList_user');
-			zp_handle_password('download_auth', $hash, $user);
-			if (!empty($hash) && zp_getCookie('download_auth') != $hash) {
+			if (!zp_handle_password('download_auth', $hash, $user)) {
 				$show = ($user) ? true : NULL;
 				$hint = get_language_string(getOption('downloadList_hint'));
-				printPasswordForm($hint, true, $show, '?download=' . $item);
+				$_zp_gallery_page = 'password.php';
+				$_zp_script = $_zp_themeroot . '/password.php';
+				if (!file_exists(internalToFilesystem($_zp_script))) {
+					$_zp_script = SERVERPATH . '/' . ZENFOLDER . '/password.php';
+				}
+				header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
+				header("HTTP/1.0 302 Found");
+				header("Status: 302 Found");
+				header('Last-Modified: ' . ZP_LAST_MODIFIED);
+				include(internalToFilesystem($_zp_script));
+				exposeZenPhotoInformations($_zp_script, array(), $theme);
 				exitZP();
 			}
 		}
 	}
 	if (isset($_GET['albumzip'])) {
-		DownloadList::updateListItemCount($item . '.zip');
 		require_once(SERVERPATH . '/' . ZENFOLDER . '/lib-zipStream.php');
 		if (isset($_GET['fromcache'])) {
 			$fromcache = sanitize($isset($_GET['fromcache']));
@@ -639,6 +648,7 @@ if (isset($_GET['download'])) {
 			$album = newAlbum($item, false, true);
 		}
 		AlbumZip::create($album, $item, $fromcache);
+		DownloadList::updateListItemCount($item . '.zip');
 	} else {
 		$path = query_single_row("SELECT `aux` FROM " . prefix('plugin_storage') . " WHERE id=" . (int) $item);
 		if (array_key_exists('aux', $path) && file_exists($_downloadFile = internalToFilesystem($path['aux']))) {

@@ -64,6 +64,14 @@ if (isset($_GET['hitcounter'])) {
 	$obj->save();
 	$reports[] = '<p class="messagebox fade-message">' . gettext("Hitcounter reset") . '</p>';
 }
+/*
+ * Here we should restart if any action processing has occurred to be sure that everything is
+ * in its proper state. But that would require significant rewrite of the handling and
+ * reporting code so is impractical. Instead we will presume that all that needs to be restarted
+ * is the CMS object.
+ */
+$_zp_CMS = new CMS();
+
 printAdminHeader('pages');
 printSortableHead();
 zenpageJSCSS();

@@ -1116,7 +1116,8 @@ function pathurlencode($path) {
 		$pairs = parse_query($parts['query']);
 		$parts['query'] = http_build_query($pairs);
 	}
-	$parts['path'] = implode("/", array_map("rawurlencode", explode("/", $parts['path'])));
+	if (array_key_exists('path', $parts))
+		$parts['path'] = implode("/", array_map("rawurlencode", explode("/", $parts['path'])));
 	return build_url($parts);
 }
 
@@ -1300,26 +1301,6 @@ function imgSrcURI($uri) {
 	if (UTF8_IMAGE_URI)
 		return filesystemToInternal($uri);
 	return $uri;
-}
-
-/**
- * Returns the suffix of a file name
- *
- * @param string $filename
- * @return string
- */
-function getSuffix($filename) {
-	return strtolower(substr(strrchr($filename, "."), 1));
-}
-
-/**
- * returns a file name sans the suffix
- *
- * @param unknown_type $filename
- * @return unknown
- */
-function stripSuffix($filename) {
-	return str_replace(strrchr($filename, "."), '', $filename);
 }
 
 /**

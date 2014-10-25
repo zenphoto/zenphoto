@@ -59,6 +59,13 @@ if (isset($_GET['id'])) {
 } else {
 	$result = newCategory('');
 }
+/*
+ * Here we should restart if any action processing has occurred to be sure that everything is
+ * in its proper state. But that would require significant rewrite of the handling and
+ * reporting code so is impractical. Instead we will presume that all that needs to be restarted
+ * is the CMS object.
+ */
+$_zp_CMS = new CMS();
 
 printAdminHeader('news', 'categories');
 zp_apply_filter('texteditor_config', 'zenpage');
@@ -83,8 +90,8 @@ zenpageJSCSS();
 		}
 	}
 
-	$(document).ready(function() {
-		$('form [name=checkeditems] #checkallaction').change(function() {
+	$(document).ready(function () {
+		$('form [name=checkeditems] #checkallaction').change(function () {
 			if ($(this).val() == 'deleteall') {
 				// general text about "items" so it can be reused!
 				alert('<?php echo js_encode(gettext('Are you sure you want to delete all selected items? THIS CANNOT BE UNDONE!')); ?>');

@@ -3858,34 +3858,33 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 		<!-- search form -->
 		<form method="post" action="<?php echo $searchurl; ?>" id="search_form">
 			<script type="text/javascript">
-					// <!-- <![CDATA[
-					var within = <?php echo (int) $within; ?>;
-					function search_(way) {
-						within = way;
-						if (way) {
-							$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
-
-						} else {
-							lastsearch = '';
-							$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
-						}
-						$('#search_input').val('');
+				// <!-- <![CDATA[
+				var within = <?php echo (int) $within; ?>;
+				function search_(way) {
+					within = way;
+					if (way) {
+						$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
+					} else {
+						lastsearch = '';
+						$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
 					}
-					$('#search_form').submit(function () {
-						if (within) {
-							var newsearch = $.trim($('#search_input').val());
-							if (newsearch.substring(newsearch.length - 1) == ',') {
-								newsearch = newsearch.substr(0, newsearch.length - 1);
-							}
-							if (newsearch.length > 0) {
-								$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
-							} else {
-								$('#search_input').val('<?php echo $searchwords; ?>');
-							}
+					$('#search_input').val('');
+				}
+				$('#search_form').submit(function () {
+					if (within) {
+						var newsearch = $.trim($('#search_input').val());
+						if (newsearch.substring(newsearch.length - 1) == ',') {
+							newsearch = newsearch.substr(0, newsearch.length - 1);
 						}
-						return true;
-					});
-					// ]]> -->
+						if (newsearch.length > 0) {
+							$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
+						} else {
+							$('#search_input').val('<?php echo $searchwords; ?>');
+						}
+					}
+					return true;
+				});
+				// ]]> -->
 			</script>
 			<?php echo $prevtext; ?>
 			<div>
@@ -4155,49 +4154,6 @@ function checkAccess(&$hint = NULL, &$show = NULL) {
 }
 
 /**
- * Returns a redirection link for the password form
- *
- * @return string
- */
-function getPageRedirect() {
-	global $_zp_login_error, $_zp_password_form_printed, $_zp_current_search, $_zp_gallery_page,
-	$_zp_current_album, $_zp_current_image, $_zp_current_article;
-	switch ($_zp_gallery_page) {
-		case 'index.php':
-			$action = '/index.php';
-			break;
-		case 'album.php':
-			$action = '/index.php?userlog=1&album=' . pathurlencode($_zp_current_album->name);
-			break;
-		case 'image.php':
-			$action = '/index.php?userlog=1&album=' . pathurlencode($_zp_current_album->name) . '&image=' . urlencode($_zp_current_image->filename);
-			break;
-		case 'pages.php':
-			$action = '/index.php?userlog=1&p=pages&title=' . urlencode(getPageTitlelink());
-			break;
-		case 'news.php':
-			$action = '/index.php?userlog=1&p=news';
-			if (!is_null($_zp_current_article)) {
-				$action .= '&title=' . urlencode($_zp_current_article->getTitlelink());
-			}
-			break;
-		case 'password.php':
-			$action = str_replace(SEO_WEBPATH, '', getRequestURI());
-			if ($action == '/') {
-				$action = '/index.php';
-			}
-			break;
-		default:
-			if (in_context(ZP_SEARCH)) {
-				$action = '/index.php?userlog=1&p=search' . $_zp_current_search->getSearchParams();
-			} else {
-				$action = '/index.php?userlog=1&p=' . substr($_zp_gallery_page, 0, -4);
-			}
-	}
-	return SEO_WEBPATH . $action;
-}
-
-/**
  * Prints the album password form
  *
  * @param string $hint hint to the password
@@ -4213,9 +4169,18 @@ function printPasswordForm($_password_hint, $_password_showuser = NULL, $_passwo
 	if ($_zp_password_form_printed)
 		return;
 	$_zp_password_form_printed = true;
-
-	if (is_null($_password_redirect))
-		$_password_redirect = getPageRedirect();
+	if (is_null($_password_redirect)) {
+		$parts = parse_url(getRequestURI());
+		if (array_key_exists('query', $parts)) {
+			$query = parse_query($parts['query']);
+		} else {
+			$query = array();
+		}
+		$query['userlog'] = 1;
+		$parts['query'] = http_build_query($query);
+		$action = build_url($parts);
+		$_password_redirect = SEO_WEBPATH . $action;
+	}
 	?>
 	<div id="passwordform">
 		<?php
