@@ -342,11 +342,9 @@ class AlbumZip {
 				}
 			}
 		}
-
-		$albums = $album->getAlbums();
-		foreach ($albums as $albumname) {
+		foreach ($album->getAlbums() as $albumname) {
 			$subalbum = newAlbum($albumname);
-			if (!in_array($subalbum->name, $_zp_albums_visited_albumMenu) && $subalbum->exists) {
+			if (!in_array($subalbum->name, $_zp_albums_visited_albumMenu) && $subalbum->exists && $subalbum->checkAccess()) {
 				self::AddAlbum($subalbum, $fromcache, $level + 1);
 			}
 		}
