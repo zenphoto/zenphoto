@@ -76,16 +76,17 @@
 			}
 		</style>
 	<body>
-<h1>ZenPhoto20 v1.0.0.6 release notes</h1><h2>New &nbsp;dropdown selector on the news articles page</h2>
+<h1>ZenPhoto20 v1.0.0.7 release notes</h1><h1>&nbsp;</h1>
+<h2>New &nbsp;dropdown selector on the news articles page</h2>
 <p>There is now a drop-down selector to allow showing articles of a specific author. In addition, the "data" selector has been fixed to work when a category is also selected.</p>
 <h2>Added support for tablets</h2>
-<p>A plugin is now available to enable touch drag and drop for&nbsp;image, album, and page sorting.</p>
+<p>The <em>touchPunch</em>&nbsp;plugin is now available to enable touch drag and drop for&nbsp;image, album, and page sorting.</p>
 <h2>Dynamic album enhancement</h2>
 <p>There is now a facility to manually create a dynamic album. In this case an administrator directly enters the search criteria rather than capturing it from a search.</p>
 <h2>Wireless Application Protocol Bitmap support (GD library)</h2>
 <p>The GD library will now recognize&nbsp;<em>wbmp</em> (<em>wbm</em>) files. This change removes <em>bmp</em> (which the library&nbsp;does not support) from its list.</p>
 <h2>Favorites plugin enhancements</h2>
-<p>Add a favorites::listWatchers() function to assits in output of users watching an object. Now use a DL list to show the watchers on the administrative tabs.</p>
+<p>A new function,&nbsp;<em>favorites::listWatchers()</em>, is available&nbsp;to assits in output of users watching an object. The plugin now&nbsp;uses a DL list to show the watchers on the administrative tabs.</p>
 <h2>Resizable language string input areas</h2>
 <p>If the <em>Multi-lingual</em> option is selected text input areas such as <em>page</em> and <em>article&nbsp;</em>content fields can be expanded by dragging on the resize handle at the lower right of the field. If tinyMCE is enabled the individual language edit boxes expand giving the ability to see multiple language translations at a time.</p>
 <h2>TinyMce language directionality</h2>
@@ -102,7 +103,7 @@
 <p>User and group lists are now sorted via a&nbsp;case insensitive natual sort. In cases where there are check boxes, those &nbsp;users with the box checked are shown at the top of the list.</p>
 <h2>Cloning improvements</h2>
 <p>When you clone an installation ZenPhoto20 will automataically setup the configuration and initial user of the clone. The initial user will be the user who executed the clone operation. He his logon to the clone install will be identical to the his logon to the master when the clone was created.</p>
-<p>If setup is run on the master it will provide a set of links to cause setup to be run on the clones as well. Thus the setup of a site is better automated. (We did try automatically running setup on the clones but ran into several browser issues such as pop-up blockers that were not circumventable.)</p>
+<p>If setup is run on the master it will provide a set of links to allow&nbsp;setup to be run on the clones as well. Thus the setup of a site is better automated. (We did try automatically running setup on the clones but ran into several browser issues such as pop-up blockers that were not circumventable.)</p>
 <p>When you change the site state of the master site (close, close for test, open) the change will be applied to the clone sites as well.</p>
 <h2>Canonical URLs</h2>
 <p>ZenPhoto20 _rewrite_ processing will now cause a "301 peranantly moved" redirect if it receives a link that does not conform to the Canonical standard it implements. Basically this means that links that "look" like indexes to sub-items (albums and the News index, for instance) will end with a trailing slash. Items which are interpreted as "final destinations" (An image or single news item, for instance) will not have a trailing slash.</p>
