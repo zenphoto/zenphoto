@@ -25,7 +25,9 @@ class Category extends CMSRoot {
 		if (is_array($catlink)) {
 			$catlink = $catlink['titlelink'];
 		}
-		$new = $this->instantiate('news_categories', array('titlelink' => $catlink), 'titlelink', true, empty($catlink), $create);
+		if ($this->instantiate('news_categories', array('titlelink' => $catlink), 'titlelink', true, empty($catlink), $create)) {
+			$this->setShow(1);
+		}
 		$this->exists = $this->loaded;
 	}
 
@@ -182,6 +184,29 @@ class Category extends CMSRoot {
 	 */
 	function setPasswordHint($hint) {
 		$this->set('password_hint', $hint);
+	}
+
+	/**
+	 * duplicates a category
+	 * @param string $newtitle the title for the new category
+	 */
+	function copy($newtitle) {
+		$newID = $newtitle;
+		$id = parent::copy(array('titlelink' => $newID));
+		if (!$id) {
+			$newID = $newtitle . ':' . seoFriendly(date('Y-m-d_H-i-s'));
+			$id = parent::copy(array('titlelink' => $newID));
+		}
+		if ($id) {
+			$newobj = newCategory($newID);
+			$newobj->setTitle($newtitle);
+			$newobj->setShow(1);
+			$newobj->setSortOrder(NULL);
+			$newobj->setDateTime(date('Y-m-d H:i:s'));
+			$newobj->save();
+			return $newobj;
+		}
+		return false;
 	}
 
 	/**

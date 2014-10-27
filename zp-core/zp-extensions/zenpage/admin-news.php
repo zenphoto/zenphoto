@@ -1,6 +1,6 @@
 <?php
 /**
- * zenpage admin-news-articles.php
+ * zenpage admin-news.php
  *
  * @author Malte Müller (acrylian)
  * @package plugins
@@ -27,7 +27,7 @@ if (isset($_POST['checkallaction'])) { // true if apply is pressed
 }
 if (isset($_GET['delete'])) {
 	XSRFdefender('delete');
-	$msg = deleteZenpageObj(newArticle(sanitize($_GET['delete']), 'admin-news-articles.php'));
+	$msg = deleteZenpageObj(newArticle(sanitize($_GET['delete']), 'admin-news.php'));
 	if (!empty($msg)) {
 		$reports[] = $msg;
 	}
@@ -219,7 +219,7 @@ datepickerJS();
 				<?php
 				$option = getNewsAdminOptionPath(getNewsAdminOption(array('category' => 0, 'date' => 0, 'published' => 0, 'sortorder' => 0, 'articles_page' => 1, 'subpage' => 1), '?'));
 				?>
-				<form class="dirtylistening" onReset="setClean('form_zenpageitemlist');" action="admin-news-articles.php<?php echo $option; ?>" method="post" name="checkeditems" id="form_zenpageitemlist" onsubmit="return confirmAction();">
+				<form class="dirtylistening" onReset="setClean('form_zenpageitemlist');" action="admin-news.php<?php echo $option; ?>" method="post" name="checkeditems" id="form_zenpageitemlist" onsubmit="return confirmAction();">
 					<?php XSRFToken('checkeditems'); ?>
 					<div class="buttons">
 						<button type="submit" title="<?php echo gettext('Apply'); ?>"><img src="../../images/pass.png" alt="" /><strong><?php echo gettext('Apply'); ?></strong>
@@ -230,7 +230,7 @@ datepickerJS();
 					<table class="bordered">
 						<tr>
 							<th colspan="13" id="imagenav">
-								<?php printPageSelector($subpage, $rangeset, PLUGIN_FOLDER . '/zenpage/admin-news-articles.php', $options); ?>
+								<?php printPageSelector($subpage, $rangeset, PLUGIN_FOLDER . '/zenpage/admin-news.php', $options); ?>
 							</th>
 						</tr>
 						<tr>
@@ -378,7 +378,7 @@ datepickerJS();
 									}
 									?>
 									<td class="page-list_icon">
-										<a href="javascript:confirmDelete('admin-news-articles.php?delete=<?php
+										<a href="javascript:confirmDelete('admin-news.php?delete=<?php
 										echo $article->getTitlelink();
 										echo $option;
 										?>&amp;XSRFToken=<?php echo getXSRFToken('delete') ?>','<?php echo js_encode(gettext('Are you sure you want to delete this article? THIS CANNOT BE UNDONE!')); ?>')" title="<?php echo gettext('Delete article'); ?>">
@@ -407,7 +407,7 @@ datepickerJS();
 						}
 						?>
 						<tr>
-							<td id="imagenavb" colspan="11"><?php printPageSelector($subpage, $rangeset, PLUGIN_FOLDER . '/zenpage/admin-news-articles.php', $options); ?>	</td>
+							<td id="imagenavb" colspan="11"><?php printPageSelector($subpage, $rangeset, PLUGIN_FOLDER . '/zenpage/admin-news.php', $options); ?>	</td>
 						</tr>
 					</table>
 

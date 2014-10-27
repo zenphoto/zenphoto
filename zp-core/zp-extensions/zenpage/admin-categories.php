@@ -50,15 +50,7 @@ if (isset($_GET['save'])) {
 	XSRFdefender('save_categories');
 	updateCategory($reports, true);
 }
-if (isset($_GET['id'])) {
-	$x = $_zp_CMS->getCategory(sanitize_numeric($_GET['id']));
-	$result = newCategory($x['titlelink']);
-} else if (isset($_GET['update'])) {
-	XSRFdefender('update_categories');
-	$result = updateCategory($reports);
-} else {
-	$result = newCategory('');
-}
+
 /*
  * Here we should restart if any action processing has occurred to be sure that everything is
  * in its proper state. But that would require significant rewrite of the handling and

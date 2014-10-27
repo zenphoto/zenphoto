@@ -27,8 +27,6 @@ if (isset($_POST['dbname']) || isset($_POST['dbuser']) || isset($_POST['dbpass']
 	XSRFdefender('databaseinfo');
 }
 
-
-$webpath = WEBPATH . '/' . ZENFOLDER . '/';
 $zenphoto_tabs['overview']['subtabs'] = array(gettext('Database') => '');
 printAdminHeader('overview', 'Database');
 ?>

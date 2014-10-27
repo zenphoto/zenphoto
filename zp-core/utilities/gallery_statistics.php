@@ -31,7 +31,6 @@ $buttonlist[] = array(
 admin_securityChecks(OVERVIEW_RIGHTS, currentRelativeURL());
 
 $_zp_gallery->garbageCollect();
-$webpath = WEBPATH . '/' . ZENFOLDER . '/';
 
 $zenphoto_tabs['overview']['subtabs'] = array(gettext('Statistics') => '');
 printAdminHeader('overview', 'statistics');
@@ -64,7 +63,6 @@ function gallerystats_filesize_r($path) {
  * @param int $limit Number of entries to show
  */
 function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number = 0, $to_number = 10) {
-	global $webpath;
 	$limit = $from_number . "," . $to_number;
 	$bargraphmaxsize = 90;
 	switch ($type) {
@@ -270,7 +268,7 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 		} else if ($type === "pages" OR $type === "news") {
 			$name = $item['titlelink'];
 		} else if ($type === "newscategories") {
-			$name = $item['title'];
+			$name = $item['titlelink'];
 		} else if ($type === "tags") {
 			$name = "";
 		}
@@ -363,7 +361,7 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 		}
 		switch ($type) {
 			case "albums":
-				$editurl = $webpath . "/admin-edit.php?page=edit&amp;album=" . $name;
+				$editurl = WEBPATH . '/' . ZENFOLDER . "/admin-edit.php?page=edit&amp;album=" . $name;
 				$viewurl = WEBPATH . "/index.php?album=" . $name;
 				$title = get_language_string($item['title']);
 				break;
@@ -378,28 +376,28 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 						}
 						$value = $value . ">" . get_language_string($getalbumfolder['title']) . "</span> (" . $getalbumfolder['folder'] . ")";
 					}
-					$editurl = $webpath . "/admin-edit.php?page=edit&amp;album=" . $getalbumfolder['folder'] . "&amp;image=" . $item['filename'] . "&amp;tab=imageinfo#IT";
+					$editurl = WEBPATH . '/' . ZENFOLDER . "/admin-edit.php?page=edit&amp;album=" . $getalbumfolder['folder'] . "&amp;image=" . $item['filename'] . "&amp;tab=imageinfo#IT";
 					$viewurl = WEBPATH . "/index.php?album=" . $getalbumfolder['folder'] . "&amp;image=" . $name;
 					$title = get_language_string($item['title']);
 				}
 				break;
 			case "pages":
-				$editurl = $webpath . '/' . PLUGIN_FOLDER . "/zenpage/admin-edit.php?page&amp;titlelink=" . $name;
+				$editurl = WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . "/zenpage/admin-edit.php?page&amp;titlelink=" . $name;
 				$viewurl = WEBPATH . "/index.php?p=pages&amp;title=" . $name;
 				$title = get_language_string($item['title']);
 				break;
 			case "news":
-				$editurl = $webpath . '/' . PLUGIN_FOLDER . "/zenpage/admin-edit.php?news&amp;titlelink=" . $name;
+				$editurl = WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . "/zenpage/admin-edit.php?newsarticle&amp;titlelink=" . $name;
 				$viewurl = WEBPATH . "/index.php?p=news&amp;title=" . $name;
 				$title = get_language_string($item['title']);
 				break;
 			case "newscategories":
-				$editurl = $webpath . '/' . PLUGIN_FOLDER . "/zenpage/admin-categories.php?edit&amp;id=" . $item['id'];
+				$editurl = WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . "/zenpage/admin-edit.php?newscategory&amp;titlelink=" . $name;
 				$viewurl = WEBPATH . "/index.php?p=news&amp;category=" . $name;
 				$title = get_language_string($item['titlelink']);
 				break;
 			case "tags":
-				$editurl = $webpath . "/admin-tags.php";
+				$editurl = WEBPATH . '/' . ZENFOLDER . "/admin-tags.php";
 				$viewurl = WEBPATH . "/index.php?p=search&amp;searchfields=tags&amp;words=" . $item['name'];
 				$title = get_language_string($item['name']);
 				break;

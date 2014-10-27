@@ -23,7 +23,6 @@ if (isset($_GET['clearsitemapcache'])) {
 	exitZP();
 }
 
-$webpath = WEBPATH . '/' . ZENFOLDER . '/';
 $zenphoto_tabs['overview']['subtabs'] = array(gettext('Sitemap') => '');
 printAdminHeader('overview', 'sitemap');
 if (isset($_GET['generatesitemaps'])) {
@@ -56,7 +55,7 @@ if (isset($_GET['generatesitemaps'])) {
 <link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-statistics.css" type="text/css" media="screen" />
 <script type="text/javascript">
 	// <!-- <![CDATA[
-	$(document).ready(function() {
+	$(document).ready(function () {
 		/*	$(".colorbox").colorbox({
 		 iframe: false,
 		 inline:true,
@@ -157,7 +156,7 @@ function sitemap_printAvailableSitemaps() {
 						?>
 						<script type="text/javascript">
 							// <!-- <![CDATA[
-							$(document).ready(function() {
+							$(document).ready(function () {
 								window.location = "<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/sitemap-extended/sitemap-extended-admin.php";
 							});
 							// ]]> -->

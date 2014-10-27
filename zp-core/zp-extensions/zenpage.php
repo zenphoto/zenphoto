@@ -277,7 +277,7 @@ class cmsFilters {
 		global $_zp_CMS;
 		if (zp_loggedin(ZENPAGE_NEWS_RIGHTS) && $_zp_CMS->news_enabled) {
 // admin has zenpage rights, provide link to the Zenpage admin tab
-			echo "<li><a href=\"" . $zf . '/' . PLUGIN_FOLDER . "/zenpage/admin-news-articles.php\">" . gettext("News") . "</a></li>";
+			echo "<li><a href=\"" . $zf . '/' . PLUGIN_FOLDER . "/zenpage/admin-news.php\">" . gettext("News") . "</a></li>";
 		}
 		if (zp_loggedin(ZENPAGE_PAGES_RIGHTS) && $_zp_CMS->pages_enabled) {
 			echo "<li><a href=\"" . $zf . '/' . PLUGIN_FOLDER . "/zenpage/admin-pages.php\">" . gettext("Pages") . "</a></li>";
@@ -316,7 +316,7 @@ class cmsFilters {
 // XSRF defense requires sessions
 					?>
 					<li>
-						<a href="javascript:confirmDelete('<?php echo $zf . '/' . PLUGIN_FOLDER; ?>/zenpage/admin-news-articles.php?del=<?php echo getNewsID(); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete'); ?>',deleteArticle)"
+						<a href="javascript:confirmDelete('<?php echo $zf . '/' . PLUGIN_FOLDER; ?>/zenpage/admin-news.php?del=<?php echo getNewsID(); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete'); ?>',deleteArticle)"
 							 title="<?php echo gettext("Delete article"); ?>"><?php echo gettext("Delete Article"); ?>	</a>
 					</li>
 					<?php

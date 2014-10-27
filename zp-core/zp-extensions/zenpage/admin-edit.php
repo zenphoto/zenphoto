@@ -20,104 +20,58 @@ admin_securityChecks($rights, currentRelativeURL());
 
 $saveitem = '';
 $reports = array();
-if (is_AdminEditPage('page')) {
-	$tab = 'pages';
-	if (isset($_GET['titlelink'])) {
-		$result = newPage(urldecode(sanitize($_GET['titlelink'])));
-	} else if (isset($_GET['update'])) {
-		XSRFdefender('update');
-		$result = updatePage($reports);
-		if (getCheckboxState('copy_delete_object')) {
-			switch (sanitize($_POST['copy_delete_object'])) {
-				case 'copy':
-					$as = trim(sanitize(sanitize($_POST['copy_object_as'])));
-					if (empty($as)) {
-						$as = sprintf(gettext('copy of %s'), $result->getTitle());
-					}
-					$as = seoFriendly($as);
-					$result->copy($as);
-					$result = newPage($as);
-					$_GET['titlelink'] = $as;
-					break;
-				case 'delete':
-					$reports[] = deleteZenpageObj($result, 'admin-pages.php');
-					break;
-			}
-		}
-	} else {
-		$result = newPage('');
-		$result->setPermalink(1);
-		$result->setDateTime(date('Y-m-d H:i:s'));
-	}
-	if (isset($_GET['save'])) {
-		XSRFdefender('save');
-		$result = updatePage($reports, true);
-	}
-	if (isset($_GET['delete'])) {
-		XSRFdefender('delete');
-		$msg = deleteZenpageObj(newPage(sanitize($_GET['delete']), 'admin-pages.php'));
-		if (!empty($msg)) {
-			$reports[] = $msg;
-		}
-	}
-}
 
-if (is_AdminEditPage('newsarticle')) {
-	$tab = 'news';
-	if (isset($_GET['titlelink'])) {
-		$result = newArticle(urldecode(sanitize($_GET['titlelink'])));
-	} else if (isset($_GET['update'])) {
-		XSRFdefender('update');
-		$result = updateArticle($reports);
-		if (getCheckboxState('copy_delete_object')) {
-			switch (sanitize($_POST['copy_delete_object'])) {
-				case 'copy':
-					$as = trim(sanitize(sanitize($_POST['copy_object_as'])));
-					if (empty($as)) {
-						$as = sprintf(gettext('copy of %s'), $result->getTitle());
-					}
-					$as = seoFriendly($as);
-					$result->copy($as);
-					$result = newArticle($as);
-					$_GET['titlelink'] = $as;
-					break;
-				case 'delete':
-					$reports[] = deleteZenpageObj($result, 'admin-news-articles.php');
-					break;
-			}
-		}
-	} else {
-		$result = newArticle('');
-		$result->setPermalink(1);
-		$result->setDateTime(date('Y-m-d H:i:s'));
-	}
-	if (isset($_GET['save'])) {
-		XSRFdefender('save');
-		$result = updateArticle($reports, true);
-	}
-	if (isset($_GET['delete'])) {
-		XSRFdefender('delete');
-		$msg = deleteZenpageObj(newArticle(sanitize($_GET['delete']), 'admin-news-articles.php'));
-		if (!empty($msg)) {
-			$reports[] = $msg;
-		}
-	}
-}
-if (is_AdminEditPage('newscategory')) {
+if (is_AdminEditPage('page')) {
+	$_GET['tab'] = $tab = 'pages';
+	$new = 'newPage';
+	$update = 'updatePage';
+} else if (is_AdminEditPage('newsarticle')) {
+	$_GET['tab'] = $tab = 'news';
+	$new = 'newArticle';
+	$update = 'updateArticle';
+} else if (is_AdminEditPage('newscategory')) {
 	$tab = 'news';
 	$_GET['tab'] = 'categories';
-	if (isset($_GET['save'])) {
-		XSRFdefender('save');
-		updateCategory($reports, true);
+	$new = 'newCategory';
+	$update = 'updateCategory';
+}
+
+
+
+if (isset($_GET['titlelink'])) {
+	$result = $new(urldecode(sanitize($_GET['titlelink'])));
+} else if (isset($_GET['update'])) {
+	XSRFdefender('update');
+	$result = $update($reports);
+	if (getCheckboxState('copy_delete_object')) {
+		switch (sanitize($_POST['copy_delete_object'])) {
+			case 'copy':
+				$as = trim(sanitize(sanitize($_POST['copy_object_as'])));
+				if (empty($as)) {
+					$as = sprintf(gettext('copy of %s'), $result->getTitle());
+				}
+				$as = seoFriendly($as);
+				$result->copy($as);
+				$result = $new($as);
+				$_GET['titlelink'] = $as;
+				break;
+			case 'delete':
+				$reports[] = deleteZenpageObj($result, 'admin-' . $_GET['tab'] . '.php');
+				break;
+		}
 	}
-	if (isset($_GET['titlelink'])) {
-		$result = newCategory(urldecode(sanitize($_GET['titlelink'])));
-	} else if (isset($_GET['update'])) {
-		XSRFdefender('update');
-		$result = updateCategory($reports);
-	} else {
-		$result = newCategory('');
-		$result->setShow(1);
+} else {
+	$result = $new('');
+}
+if (isset($_GET['save'])) {
+	XSRFdefender('save');
+	$result = $update($reports, true);
+}
+if (isset($_GET['delete'])) {
+	XSRFdefender('delete');
+	$msg = deleteZenpageObj('new' . $new(sanitize($_GET['delete']), 'admin-pages.php'));
+	if (!empty($msg)) {
+		$reports[] = $msg;
 	}
 }
 /*
@@ -336,7 +290,7 @@ codeblocktabsJS();
 
 								<?php
 								if (is_AdminEditPage("newsarticle")) {
-									$backurl = 'admin-news-articles.php?' . $page;
+									$backurl = 'admin-news.php?' . $page;
 									if (isset($_GET['category']))
 										$backurl .= '&amp;category=' . html_encode(sanitize($_GET['category']));
 									if (isset($_GET['date']))
@@ -541,7 +495,7 @@ codeblocktabsJS();
 																<br />
 																<label>
 																	<input type="checkbox" name="disclose_password" id="disclose_password" onclick="passwordClear('');
-																			togglePassword('');"><?php echo gettext('Show password'); ?>
+																						togglePassword('');"><?php echo gettext('Show password'); ?>
 																</label>
 																<br />
 																<span class="password_field_">
@@ -563,18 +517,18 @@ codeblocktabsJS();
 															<?php
 														}
 													}
-													if (!$result->transient && !is_AdminEditPage('newscategory')) {
+													if (!$result->transient) {
 														?>
 														<label class="checkboxlabel">
 															<input type="radio" id="copy_object" name="copy_delete_object" value="copy"
 																		 onclick="$('#copyfield').show();
-																				 $('#deletemsg').hide();" />
+																						 $('#deletemsg').hide();" />
 																		 <?php echo gettext("Copy"); ?>
 														</label>
 														<label class="checkboxlabel">
 															<input type="radio" id="delete_object" name="copy_delete_object" value="delete"
 																		 onclick="deleteConfirm('delete_object', '', '<?php addslashes(printf(gettext('Are you sure you want to delete this %s?'), $deleteitem)); ?>');
-																				 $('#copyfield').hide();" />
+																						 $('#copyfield').hide();" />
 																		 <?php echo gettext('delete'); ?>
 														</label>
 														<br class="clearall" />
