@@ -2231,7 +2231,7 @@ zp-core/zp-extensions/zenpage
 zp-core/zp-extensions/zenpage/admin-categories.php
 zp-core/zp-extensions/zenpage/admin-edit.php
 zp-core/zp-extensions/zenpage/admin-functions.php
-zp-core/zp-extensions/zenpage/admin-news-articles.php
+zp-core/zp-extensions/zenpage/admin-news.php
 zp-core/zp-extensions/zenpage/admin-pages.php
 zp-core/zp-extensions/zenpage/class-category.php
 zp-core/zp-extensions/zenpage/class-news.php
