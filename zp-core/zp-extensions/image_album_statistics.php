@@ -82,7 +82,7 @@ function getAlbumStatistic($number = 5, $option, $albumfolder = '', $sortdirecti
 	}
 
 	$albums = array();
-	$result = query("SELECT id, title, folder, thumb FROM " . prefix('albums') . $albumWhere . " ORDER BY " . $sortorder . " " . $sortdir . " LIMIT " . $number);
+	$result = query("SELECT id, title, folder, thumb FROM " . prefix('albums') . " ORDER BY " . $sortorder . " " . $sortdir . " LIMIT " . $number);
 	if ($result) {
 		while ($row = db_fetch_assoc($result)) {
 			if (empty($albumfolder) || strpos($row['folder'], $albumfolder) === 0) {

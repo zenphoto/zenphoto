@@ -47,8 +47,6 @@ if (defined('OFFSET_PATH')) {
 		XSRFdefender('wordpress');
 	}
 
-	$webpath = WEBPATH . '/' . ZENFOLDER . '/';
-
 	// some extra functions
 	function wp_query_full_array($sql, $wpconnection) {
 		$result = mysql_query($sql, $wpconnection) or die(gettext("Query failed : ") . mysql_error());

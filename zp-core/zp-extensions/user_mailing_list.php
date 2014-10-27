@@ -54,7 +54,6 @@ if (defined('OFFSET_PATH')) {
 		XSRFdefender('mailing_list');
 	}
 
-	$webpath = WEBPATH . '/' . ZENFOLDER . '/';
 	$admins = $_zp_authority->getAdministrators();
 	$zenphoto_tabs['overview']['subtabs'] = array(gettext('Mailing') => '');
 
