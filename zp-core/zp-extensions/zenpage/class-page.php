@@ -21,7 +21,8 @@ class Page extends CMSItems {
 		if (is_array($titlelink)) {
 			$titlelink = $titlelink['titlelink'];
 		}
-		if ($this->instantiate('pages', array('titlelink' => $titlelink), 'titlelink', true, empty($titlelink), $allowCreate)) {
+		$new = $this->instantiate('pages', array('titlelink' => $titlelink), 'titlelink', true, empty($titlelink), $allowCreate);
+		if ($new || empty($titlelink)) {
 			$this->setPermalink(1);
 			$this->setDateTime(date('Y-m-d H:i:s'));
 		}
