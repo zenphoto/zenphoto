@@ -101,9 +101,9 @@ function getIPSizedImage($size, $image) {
 				var alt1 = '<?php echo $alt1; ?>';
 				var title1 = '<?php echo $title1; ?>';
 				var title = '<?php echo html_encodeTagged($obj->getTitle()); ?>';
-				var image = '<img src="<?php echo $image; ?>" alt="' + alt1 + '" title="' + title1 + '" />';
-				var imagec = '<img src="<?php echo $imageb; ?>" alt="' + alt1 + '" title="' + title1 + '" />';
-				var imagef = '<?php echo $imagef; ?>';
+				var image = '<img src="<?php echo addslashes($image); ?>" alt="' + alt1 + '" title="' + title1 + '" />';
+				var imagec = '<img src="<?php echo addslashes($imageb); ?>" alt="' + alt1 + '" title="' + title1 + '" />';
+				var imagef = '<?php echo addslashes($imagef); ?>';
 				var picture = <?php echo (int) $picture; ?>;
 
 				function zenchange() {

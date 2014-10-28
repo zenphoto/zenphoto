@@ -25,7 +25,8 @@ class Category extends CMSRoot {
 		if (is_array($catlink)) {
 			$catlink = $catlink['titlelink'];
 		}
-		if ($this->instantiate('news_categories', array('titlelink' => $catlink), 'titlelink', true, empty($catlink), $create)) {
+		$new = $this->instantiate('news_categories', array('titlelink' => $catlink), 'titlelink', true, empty($catlink), $create);
+		if ($new || empty($catlink)) {
 			$this->setShow(1);
 		}
 		$this->exists = $this->loaded;

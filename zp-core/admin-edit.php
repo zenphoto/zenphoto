@@ -554,13 +554,13 @@ if (isset($_GET['album']) && (empty($subtab) || $subtab == 'albuminfo') || isset
 	<script type="text/javascript">
 		//<!-- <![CDATA[
 		var albumdbfields = [<?php echo $albumdbfields; ?>];
-		$(function() {
+		$(function () {
 			$('.customalbumsort').tagSuggest({
 				tags: albumdbfields
 			});
 		});
 		var imagedbfields = [<?php echo $imagedbfields; ?>];
-		$(function() {
+		$(function () {
 			$('.customimagesort').tagSuggest({
 				tags: imagedbfields
 			});
@@ -1119,7 +1119,7 @@ echo "\n</head>";
 																?>
 																<script type="text/javascript">
 																	// <!-- <![CDATA[
-																	$(function() {
+																	$(function () {
 																		$("#publishdate-<?php echo $currentimage; ?>,#expirationdate-<?php echo $currentimage; ?>").datepicker({
 																			dateFormat: 'yy-mm-dd',
 																			showOn: 'button',
@@ -1127,7 +1127,7 @@ echo "\n</head>";
 																			buttonText: '<?php echo gettext("calendar"); ?>',
 																			buttonImageOnly: true
 																		});
-																		$('#publishdate-<?php echo $currentimage; ?>').change(function() {
+																		$('#publishdate-<?php echo $currentimage; ?>').change(function () {
 																			var today = new Date();
 																			var pub = $('#publishdate-<?php echo $currentimage; ?>').datepicker('getDate');
 																			if (pub.getTime() > today.getTime()) {
@@ -1136,7 +1136,7 @@ echo "\n</head>";
 																				$(".scheduledpublishing-<?php echo $currentimage; ?>").html('');
 																			}
 																		});
-																		$('#expirationdate-<?php echo $currentimage; ?>').change(function() {
+																		$('#expirationdate-<?php echo $currentimage; ?>').change(function () {
 																			var today = new Date();
 																			var expiry = $('#expirationdate-<?php echo $currentimage; ?>').datepicker('getDate');
 																			if (expiry.getTime() > today.getTime()) {
@@ -1182,17 +1182,17 @@ echo "\n</head>";
 																<label class="checkboxlabel">
 																	<input type="radio" id="copy-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="copy"
 																				 onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>'
-																										 , 'copy');"  /> <?php echo gettext("Copy"); ?>
+																														 , 'copy');"  /> <?php echo gettext("Copy"); ?>
 																</label>
 																<label class="checkboxlabel">
 																	<input type="radio" id="rename-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="rename"
 																				 onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>',
-																										 'rename');"  /> <?php echo gettext("Rename File"); ?>
+																														 'rename');"  /> <?php echo gettext("Rename File"); ?>
 																</label>
 																<label class="checkboxlabel">
 																	<input type="radio" id="Delete-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="delete"
 																				 onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>', '');
-																						 deleteConfirm('Delete-<?php echo $currentimage; ?>', '<?php echo $currentimage; ?>', '<?php echo addslashes(gettext("Are you sure you want to select this image for deletion?")); ?>')" /> <?php echo gettext("Delete image") ?>
+																										 deleteConfirm('Delete-<?php echo $currentimage; ?>', '<?php echo $currentimage; ?>', '<?php echo addslashes(gettext("Are you sure you want to select this image for deletion?")); ?>')" /> <?php echo gettext("Delete image") ?>
 																</label>
 																<br class="clearall" />
 																<div id="movecopydiv-<?php echo $currentimage; ?>" style="padding-top: .5em; padding-left: .5em; display: none;">
@@ -1308,8 +1308,8 @@ echo "\n</head>";
 															if (!$singleimage) {
 																?>
 																<div class = "page-list_icon">
-																	<input class = "checkbox" type = "checkbox" name = "ids[]" value = "<?php echo $image->getFileName(); ?>" onclick = "triggerAllBox(this.form, 'ids[]', this.for
-																							m.allbox);" />
+																	<input class = "checkbox" type = "checkbox" name = "ids[]" value="<?php echo $image->getFileName(); ?>" onclick="triggerAllBox(this.form, 'ids[]', this.for
+																												m.allbox);" />
 																</div>
 																<?php
 															}
