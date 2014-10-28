@@ -1442,7 +1442,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 													 name="disclose_password<?php echo $suffix; ?>"
 													 id="disclose_password<?php echo $suffix; ?>"
 													 onclick="passwordClear('<?php echo $suffix; ?>');
-															 togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?>
+																	 togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?>
 									</label>
 								</td>
 								<td>
@@ -1500,7 +1500,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						$sort[gettext('Custom')] = 'custom';
 						/*
 						 * not recommended--screws with peoples minds during pagination!
-							$sort[gettext('Random')] = 'random';
+						  $sort[gettext('Random')] = 'random';
 						 */
 						?>
 						<tr>
@@ -1929,7 +1929,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 } else {
 											 ?>
 											 onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');
-													 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
+															 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
 											 <?php
 										 }
 										 ?> />
@@ -4979,30 +4979,24 @@ function linkPickerItem($obj, $id) {
 }
 
 function linkPickerPick($obj, $id = NULL, $extra = NULL) {
-	?>
-	$.ajax({
+	?>$.ajax({
 	type: 'POST',
 	cache: false,
-	data: '<?php echo pickSource($obj); ?>'<?php echo $extra; ?>,
+	data: '<?php echo addslashes(pickSource($obj)); ?>'<?php echo $extra; ?>,
 	url: '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/pickSource.php'
-	});
-	<?php
+	});	<?php
 }
 
 function linkPickerIcon($obj, $id = NULL, $extra = NULL) {
 	$iconid = uniqid();
-	?>
-	<a onclick="<?php
 	if ($id) {
-		?>
-				$('#<?php echo $id; ?>').select();
-		<?php
+		$clickid = "$('#$id').select();";
+	} else {
+		$clickid = '';
 	}
 	?>
-			$('.pickedObject').removeClass('pickedObject');
-			$('#<?php echo $iconid; ?>').addClass('pickedObject');
-	<?php linkPickerPick($obj, $id, $extra); ?>"
-		 title="<?php echo gettext('pick source'); ?>">
+	<a onclick="<?php echo $clickid; ?>$('.pickedObject').removeClass('pickedObject');
+				$('#<?php echo $iconid; ?>').addClass('pickedObject');<?php linkPickerPick($obj, $id, $extra); ?>" title="<?php echo gettext('pick source'); ?>">
 		<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" id="<?php echo $iconid; ?>">
 	</a>
 	<?php
