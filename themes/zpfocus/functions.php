@@ -144,7 +144,7 @@ function printZDSearchToggleJS() {
 /* Prints the "Show more results link" for search results for Zenpage items */
 
 function printZDSearchShowMoreLink($option, $number_to_show) {
-	$option = strtolower(sanitize($option));
+	$option = strtolower($option);
 	$number_to_show = sanitize_numeric($number_to_show);
 	switch ($option) {
 		case "news":
@@ -165,7 +165,7 @@ function printZDSearchShowMoreLink($option, $number_to_show) {
 /* Adds the css class necessary for toggling of Zenpage items search results */
 
 function printZDToggleClass($option, $c, $number_to_show) {
-	$option = strtolower(sanitize($option));
+	$option = strtolower($option);
 	$c = sanitize_numeric($c);
 	$number_to_show = sanitize_numeric($number_to_show);
 	if ($c > $number_to_show) {

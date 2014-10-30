@@ -754,7 +754,7 @@ class SearchEngine {
 						$sanitizedwords .= $singlesearchstring;
 						break;
 					default:
-						$sanitizedwords .= search_quote(sanitize($singlesearchstring, 3));
+						$sanitizedwords .= search_quote($singlesearchstring);
 						break;
 				}
 			}

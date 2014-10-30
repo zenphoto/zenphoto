@@ -409,7 +409,7 @@ class htmlmetatags {
 			$tags = getTags();
 			$words .= htmlmetatags::getMetaAlbumAndImageTags($tags, "gallery");
 		} else if ($_zp_gallery_page === "index.php") {
-			$tags = array_keys(getAllTagsCount()); // get all if no specific item is set
+			$tags = array_keys(getAllTagsUnique()); // get all if no specific item is set
 			$words .= htmlmetatags::getMetaAlbumAndImageTags($tags, "gallery");
 		}
 		if (extensionEnabled('zenpage')) {

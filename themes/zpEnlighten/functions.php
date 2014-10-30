@@ -62,7 +62,7 @@ function printZDSearchToggleJS() {
  * @param int $number_to_show how many search results should be shown initially
  */
 function printZDSearchShowMoreLink($option, $number_to_show) {
-	$option = strtolower(sanitize($option));
+	$option = strtolower($option);
 	$number_to_show = sanitize_numeric($number_to_show);
 	switch ($option) {
 		case "news":
@@ -87,7 +87,7 @@ function printZDSearchShowMoreLink($option, $number_to_show) {
  * @param string $c After which result item the toggling should begin. Here to be passed from the results loop.
  */
 function printZDToggleClass($option, $c, $number_to_show) {
-	$option = strtolower(sanitize($option));
+	$option = strtolower($option);
 	$c = sanitize_numeric($c);
 	$number_to_show = sanitize_numeric($number_to_show);
 	if ($c > $number_to_show) {
@@ -101,7 +101,7 @@ function printZDRoundedCornerJS() {
 	<script type="text/javascript" src="<?php echo $_zp_themeroot; ?>/js/jquery.corner.js"></script>
 	<script type="text/javascript">
 		//<!-- <![CDATA[
-		$(document).ready(function() {
+		$(document).ready(function () {
 			$(".album,#slideshowlink a,textarea,#exif_link a").corner("keep 5px");
 		});
 		// ]]> -->

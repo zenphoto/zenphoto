@@ -190,7 +190,7 @@ echo "\n</head>";
 										<p>
 											<span class="nowrap">
 												<?php
-												echo str_replace(' ', '&nbsp;', html_encode(sanitize(trim($line), 3)));
+												echo str_replace(' ', '&nbsp;', html_encode(trim($line)));
 												?>
 											</span>
 										</p>

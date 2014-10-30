@@ -26,7 +26,6 @@ function getAllTagsFromAlbum($albumname, $subalbums = false, $mode = 'images') {
 	$passwordcheck = '';
 	$imageWhere = '';
 	$tagWhere = "";
-	$albumname = sanitize($albumname);
 	if (empty($albumname)) {
 		return FALSE;
 	}
@@ -246,13 +245,8 @@ function printAllTags($tags, $mode, $separator = '', $class = '', $showcounter =
 	if (!is_array($tags)) {
 		return FALSE;
 	}
-	$size_min = sanitize_numeric($size_min);
-	$size_max = sanitize_numeric($size_max);
-	$count_min = sanitize_numeric($count_min);
-	$count_max = sanitize_numeric($count_max);
-	$separator = sanitize($separator);
 	if (!empty($class))
-		$class = 'class="' . sanitize($class) . '"';
+		$class = 'class="' . $class . '"';
 	$counter = '';
 	echo "<ul " . $class . ">\n";
 	$loopcount = '';

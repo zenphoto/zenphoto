@@ -1071,8 +1071,6 @@ function setupTheme($album = NULL) {
  */
 function getAllTagsUnique($language = NULL) {
 	global $_zp_unique_tags, $_zp_current_locale;
-	if (!is_null($_zp_unique_tags))
-		return $_zp_unique_tags; // cache them.
 	if (is_null($language)) {
 		switch (getOption('languageTagSearch')) {
 			case 1:
@@ -1082,10 +1080,12 @@ function getAllTagsUnique($language = NULL) {
 				$language = $_zp_current_locale;
 				break;
 			default:
-				$langage = '';
+				$language = '';
 				break;
 		}
 	}
+	if (isset($_zp_unique_tags[$language]))
+		return $_zp_unique_tags[$language]; // cache them.
 
 	$_zp_unique_tags = array();
 	$sql = "SELECT DISTINCT `name`,`language` FROM " . prefix('tags');
@@ -1096,11 +1096,11 @@ function getAllTagsUnique($language = NULL) {
 	$unique_tags = query($sql);
 	if ($unique_tags) {
 		while ($tagrow = db_fetch_assoc($unique_tags)) {
-			$_zp_unique_tags[mb_strtolower($tagrow['name'])] = $tagrow['name'];
+			$_zp_unique_tags[$language][mb_strtolower($tagrow['name'])] = $tagrow['name'];
 		}
 		db_free_result($unique_tags);
 	}
-	return $_zp_unique_tags;
+	return $_zp_unique_tags[$language];
 }
 
 /**
@@ -1118,12 +1118,15 @@ function getAllTagsCount($language = NULL) {
 		return $_zp_count_tags[$language];
 
 	$_zp_count_tags[$language] = array();
-	$sql = "SELECT DISTINCT tags.name, tags.id, tags.language, (SELECT COUNT(*) FROM " . prefix('obj_to_tag') . " as object WHERE object.tagid = tags.id) AS count FROM " . prefix('tags') . " as tags ORDER BY `name`";
+	$sql = 'SELECT DISTINCT tags.name, tags.id, (SELECT COUNT(*) FROM ' . prefix('obj_to_tag') . ' as object WHERE object.tagid = tags.id) AS count FROM ' . prefix('tags') . ' as tags ';
+	if (!empty($language)) {
+		$sql .= ' WHERE tags.language="" OR tags.language LIKE ' . db_quote(db_LIKE_escape($language) . '/%');
+	}
+	$sql .= ' ORDER BY tags.name';
 	$tagresult = query($sql);
 	if ($tagresult) {
 		while ($tag = db_fetch_assoc($tagresult)) {
-			if (empty($tag['language']) || $language && substr($tag['language'], 0, strlen($language)) == $language)
-				$_zp_count_tags[$language][$tag['name']] = $tag['count'];
+			$_zp_count_tags[$language][$tag['name']] = $tag['count'];
 		}
 		db_free_result($tagresult);
 	}
