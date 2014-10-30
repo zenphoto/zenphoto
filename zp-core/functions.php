@@ -1117,7 +1117,7 @@ function getAllTagsCount($language = NULL) {
 	if (is_null($language)) {
 		$language = $_zp_current_locale;
 	}
-	$sql = "SELECT DISTINCT tags.name, tags.id,tags.language, (SELECT COUNT(*) FROM " . prefix('obj_to_tag') . " as object WHERE object.tagid = tags.id) AS count FROM " . prefix('tags') . " as tags ORDER BY `name`";
+	$sql = "SELECT DISTINCT tags.name, tags.id, tags.language, (SELECT COUNT(*) FROM " . prefix('obj_to_tag') . " as object WHERE object.tagid = tags.id) AS count FROM " . prefix('tags') . " as tags ORDER BY `name`";
 	$tagresult = query($sql);
 	if ($tagresult) {
 		while ($tag = db_fetch_assoc($tagresult)) {
@@ -1437,22 +1437,17 @@ function sortMultiArray($array, $index, $descending = false, $natsort = true, $c
  * @return array
  */
 function getNotViewableAlbums() {
-	global $_zp_not_viewable_album_list, $_zp_gallery;
+	global $_zp_not_viewable_album_list;
 	if (zp_loggedin(ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS))
 		return array(); //admins can see all
-	$hint = '';
 	if (is_null($_zp_not_viewable_album_list)) {
-		$sql = 'SELECT `folder`, `id`, `password`, `show` FROM ' . prefix('albums') . ' WHERE `show`=0 OR `password`!=""';
+		$sql = 'SELECT `folder`, `id` FROM ' . prefix('albums');
 		$result = query($sql);
 		if ($result) {
 			$_zp_not_viewable_album_list = array();
 			while ($row = db_fetch_assoc($result)) {
-				if (checkAlbumPassword($row['folder'])) {
-					$album = newAlbum($row['folder']);
-					if (!($row['show'] || $album->isMyItem(LIST_RIGHTS))) {
-						$_zp_not_viewable_album_list[] = $row['id'];
-					}
-				} else {
+				$album = newAlbum($row['folder']);
+				if (!$album->checkAccess()) {
 					$_zp_not_viewable_album_list[] = $row['id'];
 				}
 			}
@@ -1592,7 +1587,7 @@ function byteConvert($bytes) {
  * @return mixed
  */
 function dateTimeConvert($datetime, $raw = false) {
-	// Convert 'yyyy:mm:dd hh:mm:ss' to 'yyyy-mm-dd hh:mm:ss' for Windows' strtotime compatibility
+// Convert 'yyyy:mm:dd hh:mm:ss' to 'yyyy-mm-dd hh:mm:ss' for Windows' strtotime compatibility
 	$datetime = preg_replace('/(\d{4}):(\d{2}):(\d{2})/', ' \1-\2-\3', $datetime);
 	$time = strtotime($datetime);
 	if ($time == -1 || $time === false)
@@ -1735,7 +1730,7 @@ function zp_handle_password($authType = NULL, $check_auth = NULL, $check_user = 
 			$check_user = $_zp_gallery->getUser();
 		}
 	}
-	// Handle the login form.
+// Handle the login form.
 	if (DEBUG_LOGIN)
 		debugLog("zp_handle_password: \$authType=$authType; \$check_auth=$check_auth; \$check_user=$check_user; ");
 	if (isset($_POST['password']) && isset($_POST['pass'])) { // process login form
@@ -1880,7 +1875,7 @@ function getThemeOption($option, $album = NULL, $theme = NULL) {
 	if (empty($theme)) {
 		$theme = $_zp_gallery->getCurrentTheme();
 	}
-	// album-theme
+// album-theme
 	$sql = "SELECT `value` FROM " . prefix('options') . " WHERE `name`=" . db_quote($option) . " AND `ownerid`=" . $id . " AND `theme`=" . db_quote($theme);
 	$db = query_single_row($sql);
 	if (!$db) {

@@ -3518,16 +3518,13 @@ function getAllDates($order = 'asc') {
 		$sql .= " WHERE `show` = 1";
 	}
 	$hidealbums = getNotViewableAlbums();
-	if (!is_null($hidealbums)) {
+	if (!empty($hidealbums)) {
 		if (zp_loggedin()) {
 			$sql .= ' WHERE ';
 		} else {
 			$sql .= ' AND ';
 		}
-		foreach ($hidealbums as $id) {
-			$sql .= '`albumid`!=' . $id . ' AND ';
-		}
-		$sql = substr($sql, 0, -5);
+		$sql .= '`albumid` NOT IN (' . implode(',', $hidealbums) . ')';
 	}
 	$result = query($sql);
 	if ($result) {

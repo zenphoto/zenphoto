@@ -973,10 +973,8 @@ class SearchEngine {
 				break;
 			default:
 				$hidealbums = getNotViewableAlbums();
-				if (!is_null($hidealbums)) {
-					foreach ($hidealbums as $id) {
-						$sql .= ' AND `albumid`!=' . $id;
-					}
+				if (!empty($hidealbums)) {
+					$sql .= ' AND `albumid` NOT IN (' . implode(',', $hidealbums) . ')';
 				}
 				if (is_null($sorttype)) {
 					if (empty($this->album)) {
