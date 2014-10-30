@@ -1111,22 +1111,23 @@ function getAllTagsUnique($language = NULL) {
  */
 function getAllTagsCount($language = NULL) {
 	global $_zp_count_tags, $_zp_current_locale;
-	if (!is_null($_zp_count_tags))
-		return $_zp_count_tags;
-	$_zp_count_tags = array();
 	if (is_null($language)) {
 		$language = $_zp_current_locale;
 	}
+	if (isset($_zp_count_tags[$language]))
+		return $_zp_count_tags[$language];
+
+	$_zp_count_tags[$language] = array();
 	$sql = "SELECT DISTINCT tags.name, tags.id, tags.language, (SELECT COUNT(*) FROM " . prefix('obj_to_tag') . " as object WHERE object.tagid = tags.id) AS count FROM " . prefix('tags') . " as tags ORDER BY `name`";
 	$tagresult = query($sql);
 	if ($tagresult) {
 		while ($tag = db_fetch_assoc($tagresult)) {
 			if (empty($tag['language']) || $language && substr($tag['language'], 0, strlen($language)) == $language)
-				$_zp_count_tags[$tag['name']] = $tag['count'];
+				$_zp_count_tags[$language][$tag['name']] = $tag['count'];
 		}
 		db_free_result($tagresult);
 	}
-	return $_zp_count_tags;
+	return $_zp_count_tags[$language];
 }
 
 /**
