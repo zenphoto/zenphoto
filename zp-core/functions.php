@@ -386,11 +386,7 @@ function zp_mail($subject, $message, $email_list = NULL, $cc_addresses = NULL, $
 		}
 	}
 	if (is_null($email_list)) {
-		if ($_zp_authority) {
-			$email_list = $_zp_authority->getAdminEmail();
-		} else {
-			return gettext('Mail send failed.');
-		}
+		$email_list = $_zp_authority->getAdminEmail();
 	} else {
 		foreach ($email_list as $key => $email) {
 			if (!is_valid_email_zp($email)) {
