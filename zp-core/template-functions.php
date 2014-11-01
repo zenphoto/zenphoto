@@ -3518,16 +3518,13 @@ function getAllDates($order = 'asc') {
 		$sql .= " WHERE `show` = 1";
 	}
 	$hidealbums = getNotViewableAlbums();
-	if (!is_null($hidealbums)) {
+	if (!empty($hidealbums)) {
 		if (zp_loggedin()) {
 			$sql .= ' WHERE ';
 		} else {
 			$sql .= ' AND ';
 		}
-		foreach ($hidealbums as $id) {
-			$sql .= '`albumid`!=' . $id . ' AND ';
-		}
-		$sql = substr($sql, 0, -5);
+		$sql .= '`albumid` NOT IN (' . implode(',', $hidealbums) . ')';
 	}
 	$result = query($sql);
 	if ($result) {
@@ -4233,7 +4230,7 @@ function exposeZenPhotoInformations($obj = '', $plugins = '', $theme = '') {
 		echo "\n<!-- zenphoto version " . ZENPHOTO_VERSION . " [" . ZENPHOTO_FULL_RELEASE . "]";
 		echo " THEME: " . $theme . " (" . $a . ")";
 		$graphics = zp_graphicsLibInfo();
-		$graphics = sanitize(str_replace('<br />', ', ', $graphics['Library_desc']), 3);
+		$graphics = str_replace('<br />', ', ', $graphics['Library_desc']);
 		echo " GRAPHICS LIB: " . $graphics . " { memory: " . INI_GET('memory_limit') . " }";
 		echo ' PLUGINS: ';
 		if (count($plugins) > 0) {

@@ -160,13 +160,9 @@ if (!$plugin_disable && !OFFSET_PATH && getOption('bxslider_' . $_zp_gallery->ge
 			}
 			if (is_null($fullimagelink)) {
 				$fullimagelink = getOption('bxslider_fullimagelink');
-			} else {
-				$fullimagelink = sanitize($fullimagelink);
 			}
 			if (is_null($mode)) {
 				$mode = getOption('bxslider_mode');
-			} else {
-				$mode = sanitize($mode);
 			}
 			if (is_null($speed)) {
 				$speed = getOption('bxslider_speed');
@@ -238,7 +234,7 @@ if (!$plugin_disable && !OFFSET_PATH && getOption('bxslider_' . $_zp_gallery->ge
 				?>
 			</ul>
 			<script type="text/javascript">
-				$(document).ready(function() {
+				$(document).ready(function () {
 					var index = $('.bxslider<?php echo $albumid; ?> li.activeimg').index();
 					index = ++index;
 					currentPager = parseInt(index / <?php echo $maxitems; ?>)

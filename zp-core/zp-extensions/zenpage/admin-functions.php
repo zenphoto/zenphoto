@@ -39,7 +39,7 @@ function processTags($object) {
 		}
 	}
 	$tags = array_unique($tags);
-	$object->setTags(sanitize($tags, 3));
+	$object->setTags($tags);
 }
 
 /* * ************************
@@ -1587,7 +1587,6 @@ function printPublishIconLink($object, $type, $linkback = '') {
 								}
 							}
 						}
-						$cats = sanitize($cats, 3);
 					}
 					$n = 0;
 					foreach ($links as $titlelink) {

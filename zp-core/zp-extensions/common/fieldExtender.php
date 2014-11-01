@@ -66,8 +66,6 @@ class fieldExtender {
 		if (extensionEnabled($me)) { //need to update the database tables.
 			foreach ($newfields as $newfield) {
 				if (!is_null($newfield['type'])) {
-					$current[$newfield['table']][$newfield['name']] = true;
-					unset($previous[$newfield['table']][$newfield['name']]);
 					switch (strtolower($newfield['type'])) {
 						default:
 							$dbType = strtoupper($newfield['type']);
@@ -77,13 +75,20 @@ class fieldExtender {
 							$dbType = strtoupper($newfield['type']) . '(' . min(255, $newfield['size']) . ')';
 							break;
 					}
-					$sql = 'ALTER TABLE ' . prefix($newfield['table']) . ' ADD COLUMN `' . $newfield['name'] . '` ' . $dbType;
+					if (isset($previous[$newfield['table']][$newfield['name']])) {
+						$cmd = ' CHANGE `' . $newfield['name'] . '`';
+					} else {
+						$cmd = ' ADD COLUMN';
+					}
+					$sql = 'ALTER TABLE ' . prefix($newfield['table']) . $cmd . ' `' . $newfield['name'] . '` ' . $dbType;
 					if (isset($newfield['attribute']))
 						$sql.= ' ' . $newfield['attribute'];
 					if (isset($newfield['default']))
 						$sql.= ' DEFAULT ' . $newfield['default'];
 					if (query($sql, false) && in_array($newfield['table'], array('albums', 'images', 'news', 'news_categories', 'pages')))
 						$fields[] = strtolower($newfield['name']);
+					$current[$newfield['table']][$newfield['name']] = $dbType;
+					unset($previous[$newfield['table']][$newfield['name']]);
 				}
 			}
 			setOption(get_class($this) . '_addedFields', serialize($current));
