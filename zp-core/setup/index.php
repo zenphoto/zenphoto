@@ -157,13 +157,13 @@ if (isset($_POST['db'])) { //try to update the zp-config file
 		$zp_cfg = updateConfigItem('db_software', setup_sanitize($_POST['db_software']), $zp_cfg);
 	}
 	if (isset($_POST['db_user'])) {
-		$zp_cfg = updateConfigItem('mysql_user', setup_sanitize($_POST['db_user']), $zp_cfg);
+		$zp_cfg = updateConfigItem('mysql_user', setup_sanitize($_POST['db_user'], 0), $zp_cfg);
 	}
 	if (isset($_POST['db_pass'])) {
-		$zp_cfg = updateConfigItem('mysql_pass', setup_sanitize($_POST['db_pass']), $zp_cfg);
+		$zp_cfg = updateConfigItem('mysql_pass', setup_sanitize($_POST['db_pass'], 0), $zp_cfg);
 	}
 	if (isset($_POST['db_host'])) {
-		$zp_cfg = updateConfigItem('mysql_host', setup_sanitize($_POST['db_host']), $zp_cfg);
+		$zp_cfg = updateConfigItem('mysql_host', setup_sanitize($_POST['db_host'], 0), $zp_cfg);
 	}
 	if (isset($_POST['db_database'])) {
 		$zp_cfg = updateConfigItem('mysql_database', trim(setup_sanitize($_POST['db_database'])), $zp_cfg);
