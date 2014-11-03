@@ -599,7 +599,7 @@ if (isset($_GET['download'])) {
     //	credentials required to download
     $user = getOption('downloadList_user');
     zp_handle_password('download_auth', $hash, $user);
-    if ((!empty($hash) && zp_getCookie('download_auth') != $hash) || !zp_loggedin((getOption('downloadList_rights')) ? FILES_RIGHTS : ALL_RIGHTS)) {
+    if ((!empty($hash) && zp_getCookie('download_auth') != $hash) && !zp_loggedin((getOption('downloadList_rights')) ? FILES_RIGHTS : ALL_RIGHTS)) {
       $show = ($user) ? true : NULL;
       $hint = '';
       if (!empty($hash)) {
@@ -647,4 +647,4 @@ if (isset($_GET['download'])) {
     }
   }
 }
-    ?>
+?>

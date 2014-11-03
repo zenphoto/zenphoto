@@ -1684,13 +1684,14 @@ function zp_handle_password($authType = NULL, $check_auth = NULL, $check_user = 
 	// Handle the login form.
 	if (DEBUG_LOGIN)
 		debugLog("zp_handle_password: \$authType=$authType; \$check_auth=$check_auth; \$check_user=$check_user; ");
+
 	if (isset($_POST['password']) && isset($_POST['pass'])) { // process login form
 		if (isset($_POST['user'])) {
 			$post_user = sanitize($_POST['user']);
 		} else {
 			$post_user = '';
 		}
-		$post_pass = sanitize($_POST['pass']);
+		$post_pass = $_POST['pass']; // We should not sanitize the password
 
 		foreach (Zenphoto_Authority::$hashList as $hash => $hi) {
 			$auth = Zenphoto_Authority::passwordHash($post_user, $post_pass, $hi);
