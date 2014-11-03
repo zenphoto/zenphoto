@@ -104,7 +104,7 @@ function elFinder_tinymce($discard) {
 				popup_css: false, // Disable TinyMCE's default popup CSS
 				resizable: 'yes'
 			}, {
-				setUrl: function(url) {
+				setUrl: function (url) {
 					win.document.getElementById(field_name).value = url;
 				}
 			});
@@ -122,7 +122,7 @@ function elFinderThemeEdit($html, $theme) {
 													'page=upload',
 													'tab=elFinder',
 													'type=files',
-													'themeEdit=<?php echo" . urlencode($theme) . "'
+													'themeEdit=" . urlencode($theme) . "'
 												]);";
 	return $html;
 }
