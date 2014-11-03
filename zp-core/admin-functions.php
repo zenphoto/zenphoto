@@ -44,7 +44,7 @@ function printAdminFooter($addl = '') {
 }
 
 function datepickerJS() {
-	$lang = str_replace('_', '-', getOption('locale'));
+	$lang = str_replace('_', '-', LOCALE_OPTION);
 	if (!file_exists(SERVERPATH . '/' . ZENFOLDER . '/js/jqueryui/i18n/datepicker-' . $lang . '.js')) {
 		$lang = substr($lang, 0, 2);
 		if (!file_exists(SERVERPATH . '/' . ZENFOLDER . '/js/jqueryui/i18n/datepicker-' . $lang . '.js')) {
@@ -270,7 +270,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 		foreach ($zenphoto_tabs as $atab) {
 			$chars = $chars + mb_strlen($atab['text']);
 		}
-		switch (getOption('locale')) {
+		switch (LOCALE_OPTION) {
 			case 'zh_CN':
 			case 'zh_TW':
 			case 'ja_JP':
@@ -397,7 +397,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			foreach ($tabs as $atab => $val) {
 				$chars = $chars + mb_strlen($atab);
 			}
-			switch (getOption('locale')) {
+			switch (LOCALE_OPTION) {
 				case 'zh_CN':
 				case 'zh_TW':
 				case 'ja_JP':
@@ -1442,7 +1442,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 													 name="disclose_password<?php echo $suffix; ?>"
 													 id="disclose_password<?php echo $suffix; ?>"
 													 onclick="passwordClear('<?php echo $suffix; ?>');
-																	 togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?>
+															 togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?>
 									</label>
 								</td>
 								<td>
@@ -1757,7 +1757,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 													$image = newImage($thumbalbum, $filename);
 												}
 												$selected = ($imagename == $thumb);
-												if (Gallery::validImage($filename) || !is_null($image->objectsThumb)) {
+												if (Gallery::imageObjectClass($filename) == 'Image' || !is_null($image->objectsThumb)) {
 													echo "\n<option";
 													if ($_zp_gallery->getThumbSelectImages()) {
 														echo " class=\"thumboption\"";
@@ -1929,7 +1929,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 } else {
 											 ?>
 											 onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');
-															 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
+													 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
 											 <?php
 										 }
 										 ?> />
@@ -2776,7 +2776,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 				while ($zip_entry = zip_read($zip)) { // Skip non-images in the zip file.
 					$fname = zip_entry_name($zip_entry);
 					$seoname = internalToFilesystem(seoFriendly($fname));
-					if (Gallery::validImage($seoname) || Gallery::validImageAlt($seoname)) {
+					if (Gallery::imageObjectClass($seoname)) {
 						if (zip_entry_open($zip, $zip_entry, "r")) {
 							$buf = zip_entry_read($zip_entry, zip_entry_filesize($zip_entry));
 							$path_file = str_replace("/", DIRECTORY_SEPARATOR, $dir . '/' . $seoname);
@@ -4996,7 +4996,7 @@ function linkPickerIcon($obj, $id = NULL, $extra = NULL) {
 	}
 	?>
 	<a onclick="<?php echo $clickid; ?>$('.pickedObject').removeClass('pickedObject');
-				$('#<?php echo $iconid; ?>').addClass('pickedObject');<?php linkPickerPick($obj, $id, $extra); ?>" title="<?php echo gettext('pick source'); ?>">
+			$('#<?php echo $iconid; ?>').addClass('pickedObject');<?php linkPickerPick($obj, $id, $extra); ?>" title="<?php echo gettext('pick source'); ?>">
 		<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" id="<?php echo $iconid; ?>">
 	</a>
 	<?php

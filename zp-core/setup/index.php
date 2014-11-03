@@ -147,22 +147,22 @@ if (isset($_POST['db'])) { //try to update the zp-config file
 	setupLog(gettext("db POST handling"));
 	$updatezp_config = true;
 	if (isset($_POST['db_software'])) {
-		$zp_cfg = updateConfigItem('db_software', trim(strip_tags($_POST['db_software'])), $zp_cfg);
+		$zp_cfg = updateConfigItem('db_software', trim(sanitize($_POST['db_software'], 0)), $zp_cfg);
 	}
 	if (isset($_POST['db_user'])) {
-		$zp_cfg = updateConfigItem('mysql_user', trim(strip_tags($_POST['db_user'])), $zp_cfg);
+		$zp_cfg = updateConfigItem('mysql_user', trim(sanitize($_POST['db_user'], 0)), $zp_cfg);
 	}
 	if (isset($_POST['db_pass'])) {
-		$zp_cfg = updateConfigItem('mysql_pass', strip_tags($_POST['db_pass'], 0), $zp_cfg);
+		$zp_cfg = updateConfigItem('mysql_pass', trim(sanitize($_POST['db_pass'], 0)), $zp_cfg);
 	}
 	if (isset($_POST['db_host'])) {
-		$zp_cfg = updateConfigItem('mysql_host', trim(strip_tags($_POST['db_host'])), $zp_cfg);
+		$zp_cfg = updateConfigItem('mysql_host', trim(sanitize($_POST['db_host'], 0)), $zp_cfg);
 	}
 	if (isset($_POST['db_database'])) {
-		$zp_cfg = updateConfigItem('mysql_database', trim(strip_tags($_POST['db_database'])), $zp_cfg);
+		$zp_cfg = updateConfigItem('mysql_database', trim(sanitize($_POST['db_database'], 0)), $zp_cfg);
 	}
 	if (isset($_POST['db_prefix'])) {
-		$zp_cfg = updateConfigItem('mysql_prefix', str_replace(array('.', '/', '\\', '`', '"', "'"), '_', trim(strip_tags($_POST['db_prefix']))), $zp_cfg);
+		$zp_cfg = updateConfigItem('mysql_prefix', str_replace(array('.', '/', '\\', '`', '"', "'"), '_', trim(sanitize($_POST['db_prefix'], 0))), $zp_cfg);
 	}
 }
 

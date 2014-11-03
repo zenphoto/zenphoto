@@ -1493,9 +1493,8 @@ function safe_fnmatch($pattern, $string) {
  * @return string
  */
 function zp_image_types($quote) {
-	global $_zp_extra_filetypes;
-	$typelist = $quote . 'images' . $quote . ',' . $quote . '_images' . $quote . ',';
-	$types = array_unique($_zp_extra_filetypes);
+	global $_zp_images_classes;
+	$types = array_unique($_zp_images_classes);
 	foreach ($types as $type) {
 		$typelist .= $quote . strtolower($type) . 's' . $quote . ',';
 	}
@@ -1743,11 +1742,11 @@ function zp_handle_password($authType = NULL, $check_auth = NULL, $check_user = 
 		debugLog("zp_handle_password: \$authType=$authType; \$check_auth=$check_auth; \$check_user=$check_user; ");
 	if (isset($_POST['password']) && isset($_POST['pass'])) { // process login form
 		if (isset($_POST['user'])) {
-			$post_user = sanitize($_POST['user']);
+			$post_user = sanitize($_POST['user'], 0);
 		} else {
 			$post_user = '';
 		}
-		$post_pass = sanitize($_POST['pass']);
+		$post_pass = sanitize($_POST['pass'], 0);
 
 		foreach (Zenphoto_Authority::$hashList as $hash => $hi) {
 			$auth = Zenphoto_Authority::passwordHash($post_user, $post_pass, $hi);

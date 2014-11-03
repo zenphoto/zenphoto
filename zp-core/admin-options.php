@@ -257,8 +257,7 @@ if (isset($_GET['action'])) {
 			setOption('watermark_w_offset', sanitize($_POST['watermark_w_offset'], 3));
 			setOption('image_cache_suffix', sanitize($_POST['image_cache_suffix']));
 
-			$imageplugins = array_unique($_zp_extra_filetypes);
-			$imageplugins[] = 'Image';
+			$imageplugins = array_unique($_zp_images_classes);
 			foreach ($imageplugins as $plugin) {
 				$opt = $plugin . '_watermark';
 				if (isset($_POST[$opt])) {
@@ -2058,8 +2057,7 @@ Zenphoto_Authority::printPasswordFormJS();
 												</td>
 											</tr>
 											<?php
-											$imageplugins = array_unique($_zp_extra_filetypes);
-											$imageplugins[] = 'Image';
+											$imageplugins = array_unique($_zp_images_classes);
 											ksort($imageplugins, SORT_LOCALE_STRING);
 											foreach ($imageplugins as $plugin) {
 												$opt = $plugin . '_watermark';

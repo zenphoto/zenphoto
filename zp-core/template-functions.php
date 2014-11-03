@@ -1101,8 +1101,8 @@ function printAlbumTitle() {
 	echo html_encodeTagged(getAlbumTitle());
 }
 
-function printBareAlbumTitle() {
-	echo html_encodeTagged(getBareAlbumTitle());
+function printBareAlbumTitle($length = 0) {
+	echo html_encodeTagged(truncate_string(getBareAlbumTitle(), $length));
 }
 
 /**
@@ -3215,7 +3215,7 @@ function getRandomImagesAlbum($rootAlbum = NULL, $daily = false) {
 		shuffle($images);
 		while (count($images) > 0) {
 			$result = array_pop($images);
-			if (Gallery::validImage($result['filename'])) {
+			if (Gallery::imageObjectClass($result['filename']) == 'Image') {
 				$image = newImage(newAlbum($result['folder']), $result['filename']);
 			}
 		}

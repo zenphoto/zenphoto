@@ -127,11 +127,11 @@ class GoogleMap {
 		if (!defined('BASEPATH'))
 			define('BASEPATH', true); //	for no access test in googleMap.php
 		require_once(dirname(__FILE__) . '/googleMap/CodeIgniter-Google-Maps-V3-API/Googlemaps.php');
-		$loc = getOption('locale');
+		$loc = LOCALE_OPTION;
 		if (empty($loc)) {
 			$loc = '';
 		} else {
-			$loc = '&amp;language=' . substr(getOption('locale'), 0, 2);
+			$loc = '&amp;language=' . substr(LOCALE_OPTION, 0, 2);
 		}
 		?>
 		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false<?php echo $loc; ?>"></script>
@@ -195,30 +195,32 @@ function omsAdditions() {
  */
 function getGeoCoord($image) {
 	global $_zp_current_image;
-	$result = false;
 	if (isImageClass($image)) {
 		$_zp_current_image = $image;
-		$exif = $_zp_current_image->getMetaData();
-		if ((!empty($exif['EXIFGPSLatitude'])) && (!empty($exif['EXIFGPSLongitude']))) {
-			$lat_c = explode('.', str_replace(',', '.', $exif['EXIFGPSLatitude']) . '.0');
+		$lat = $_zp_current_image->get('EXIFGPSLatitude');
+		$long = $_zp_current_image->get('EXIFGPSLongitude');
+		if (!empty($lat) && !empty($long)) {
+			$lat_c = explode('.', str_replace(',', '.', $lat) . '.0');
 			$lat_f = round((float) abs($lat_c[0]) + ($lat_c[1] / pow(10, strlen($lat_c[1]))), 12);
-			if (strtoupper(@$exif['EXIFGPSLatitudeRef']{0}) == 'S') {
+			$ref = $_zp_current_image->get('EXIFGPSLatitudeRef');
+			if (strtoupper($ref && $ref{0}) == 'S') {
 				$lat_f = -$lat_f;
 			}
 
-			$long_c = explode('.', str_replace(',', '.', $exif['EXIFGPSLongitude']) . '.0');
+			$long_c = explode('.', str_replace(',', '.', $long) . '.0');
 			$long_f = round((float) abs($long_c[0]) + ($long_c[1] / pow(10, strlen($long_c[1]))), 12);
-			if (strtoupper(@$exif['EXIFGPSLongitudeRef']{0}) == 'W') {
+			$ref = $_zp_current_image->get('EXIFGPSLongitudeRef');
+			if ($ref && strtoupper($ref{0}) == 'W') {
 				$long_f = -$long_f;
 			}
 
 			$thumb = '<a href="javascript:image(\'' . $_zp_current_image->albumname . '\',\'' . $_zp_current_image->filename . '\');"><img src="' . getCustomImageURL(150) . '" /></a>';
 
-			$result = array('lat' => $lat_f, 'long' => $long_f, 'title' => $_zp_current_image->getTitle(), 'desc' => $_zp_current_image->getDesc(), 'thumb' => $thumb);
+			return array('lat' => $lat_f, 'long' => $long_f, 'title' => $_zp_current_image->getTitle(), 'desc' => $_zp_current_image->getDesc(), 'thumb' => $thumb);
 		}
+	} else {
+		return false;
 	}
-
-	return $result;
 }
 
 /**
@@ -494,7 +496,7 @@ function printGoogleMap($text = NULL, $id = NULL, $hide = NULL, $obj = NULL, $ca
 				</a>
 				<script type="text/javascript">
 					//<![CDATA[
-					$(document).ready(function() {
+					$(document).ready(function () {
 						$(".google_map").colorbox({
 							iframe: true,
 							innerWidth: '<?php echo (int) (getOption('gmap_width') + 20) ?>px',

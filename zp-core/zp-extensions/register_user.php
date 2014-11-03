@@ -218,14 +218,14 @@ class register_user {
 		if (isset($_POST['admin_email'])) {
 			$admin_e = trim(sanitize($_POST['admin_email']));
 		} else {
-			$admin_e = trim(sanitize($_POST['user']));
+			$admin_e = trim(sanitize($_POST['user'], 0));
 		}
 		if (!is_valid_email_zp($admin_e)) {
 			$_notify = 'invalidemail';
 		}
 
-		$pass = trim(sanitize($_POST['pass']));
-		$user = trim(sanitize($_POST['user']));
+		$pass = trim(sanitize($_POST['pass'], 0));
+		$user = trim(sanitize($_POST['user'], 0));
 		if (empty($pass)) {
 			$_notify = 'empty';
 		} else if (!empty($user) && !(empty($admin_n)) && !empty($admin_e)) {

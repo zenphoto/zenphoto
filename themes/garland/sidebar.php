@@ -83,14 +83,12 @@ if (function_exists('printCustomMenu') && getThemeOption('custom_index_page', NU
 		?>
 		<div class="menu">
 			<?php
-			if (extensionEnabled('zenpage')) {
-				if ($_zp_gallery_page == 'index.php' || $_zp_gallery_page != 'gallery.php') {
-					?>
-					<h3>
-						<a href="<?php echo html_encode(getCustomPageURL('gallery')); ?>" title="<?php echo gettext('Album index'); ?>"><?php echo gettext("Gallery"); ?></a>
-					</h3>
-					<?php
-				}
+			if (extensionEnabled('zenpage') && $_zp_gallery_page != 'gallery.php') {
+				?>
+				<h3>
+					<a href="<?php echo html_encode(getCustomPageURL('gallery')); ?>" title="<?php echo gettext('Album index'); ?>"><?php echo gettext("Gallery"); ?></a>
+				</h3>
+				<?php
 			} else {
 				?>
 				<h3><?php echo gettext("Gallery"); ?></h3>

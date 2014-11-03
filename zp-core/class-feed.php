@@ -171,7 +171,7 @@ class feed {
 		if (isset($this->options['lang'])) {
 			$this->locale = $this->options['lang'];
 		} else {
-			$this->locale = getOption('locale');
+			$this->locale = LOCALE_OPTION;
 		}
 		$this->locale_xml = strtr($this->locale, '_', '-');
 		if (isset($this->options['sortdir'])) {

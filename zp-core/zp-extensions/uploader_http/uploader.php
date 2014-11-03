@@ -84,7 +84,7 @@ if (isset($_POST['processed'])) {
 					$soename = seoFriendly($name);
 					$error = zp_apply_filter('check_upload_quota', UPLOAD_ERR_OK, $tmp_name);
 					if (!$error) {
-						if (Gallery::validImage($name) || Gallery::validImageAlt($name)) {
+						if (Gallery::imageObjectClass($name)) {
 							if (strrpos($soename, '.') === 0)
 								$soename = md5($name) . $soename; // soe stripped out all the name.
 							if (!$error) {

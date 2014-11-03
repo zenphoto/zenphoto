@@ -6,8 +6,6 @@
  */
 // force UTF-8 Ø
 
-$_zp_extra_filetypes = array(); // contains file extensions and the handler class for alternate images
-
 define('WATERMARK_IMAGE', 1);
 define('WATERMARK_THUMB', 2);
 define('WATERMARK_FULL', 4);
@@ -21,12 +19,14 @@ define('WATERMARK_FULL', 4);
  * @return object
  */
 function newImage($album, $filename, $quiet = false) {
-	global $_zp_extra_filetypes, $_zp_missing_image;
+	global $_zp_missing_image;
 	if (is_array($filename)) {
 		$xalbum = newAlbum($filename['folder'], true, true);
 		$filename = $filename['filename'];
+		$dyn = false;
 	} else {
 		if ($album->isDynamic()) {
+			$dyn = true;
 			$xalbum = NULL;
 			foreach ($album->getImages() as $image) {
 				if ($filename == $image['filename']) {
@@ -36,6 +36,7 @@ function newImage($album, $filename, $quiet = false) {
 			}
 		} else {
 			$xalbum = $album;
+			$dyn = false;
 		}
 	}
 	if (!is_object($xalbum) || !$xalbum->exists || !isAlbumClass($xalbum)) {
@@ -45,17 +46,13 @@ function newImage($album, $filename, $quiet = false) {
 		}
 		return $_zp_missing_image;
 	}
-	if ($object = Gallery::validImageAlt($filename)) {
+	if ($object = Gallery::imageObjectClass($filename)) {
 		$image = New $object($xalbum, $filename, $quiet);
 	} else {
-		if (Gallery::validImage($filename)) {
-			$image = New Image($xalbum, $filename, $quiet);
-		} else {
-			$image = NULL;
-		}
+		$image = NULL;
 	}
 	if ($image) {
-		if ($album && is_subclass_of($album, 'AlbumBase') && $album->isDynamic()) {
+		if ($album && is_subclass_of($album, 'AlbumBase') && $dyn) {
 			$image->albumname = $album->name;
 			$image->albumlink = $album->linkname;
 			$image->albumnamealbum = $album;
@@ -81,13 +78,7 @@ function newImage($album, $filename, $quiet = false) {
  * @param object $image
  * @return bool
  */
-function isImageClass($image = NULL) {
-	global $_zp_current_image;
-	if (is_null($image)) {
-		if (!in_context(ZP_IMAGE))
-			return false;
-		$image = $_zp_current_image;
-	}
+function isImageClass($image) {
 	return is_object($image) && ($image->table == 'images');
 }
 

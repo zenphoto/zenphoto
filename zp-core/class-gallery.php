@@ -1046,13 +1046,22 @@ class Gallery {
 
 	/**
 	 * registers object handlers for image varients
-	 * @global array $_zp_extra_filetypes
 	 * @param type $suffix
 	 * @param type $objectName
 	 */
 	static function addImageHandler($suffix, $objectName) {
-		global $_zp_extra_filetypes;
-		$_zp_extra_filetypes[strtolower($suffix)] = $objectName;
+		global $_zp_images_classes;
+		$_zp_images_classes[strtolower($suffix)] = $objectName;
+	}
+
+	/**
+	 * Returns the object class based in the filename suffix
+	 * @param string $filename
+	 * @return string
+	 */
+	static function imageObjectClass($filename) {
+		global $_zp_images_classes;
+		return @$_zp_images_classes[getSuffix($filename)];
 	}
 
 	/**
@@ -1060,6 +1069,8 @@ class Gallery {
 	 *
 	 * @param string $filename the name of the target
 	 * @return bool
+	 *
+	 * @deprecated probably no real use any more
 	 */
 	static function validImage($filename) {
 		global $_zp_supported_images;
@@ -1071,10 +1082,14 @@ class Gallery {
 	 *
 	 * @param string $filename
 	 * @return bool
+	 *
+	 * @deprecated probably no real use any more
 	 */
 	static function validImageAlt($filename) {
-		global $_zp_extra_filetypes;
-		return @$_zp_extra_filetypes[getSuffix($filename)];
+		$obj = self::imageObjectClass($filename);
+		if ($obj == 'Image')
+			$obj = NULL;
+		return $obj;
 	}
 
 	/**

@@ -656,7 +656,7 @@ class Zenphoto_Authority {
 	function handleLogon() {
 		global $_zp_current_admin_obj, $_zp_login_error, $_zp_captcha, $_zp_loggedin;
 		if (isset($_POST['login'])) {
-			$post_user = sanitize(@$_POST['user']);
+			$post_user = sanitize(@$_POST['user'], 0);
 			$post_pass = sanitize(@$_POST['pass'], 0);
 			$_zp_loggedin = false;
 
@@ -830,7 +830,7 @@ class Zenphoto_Authority {
 		}
 
 		if (isset($_POST['user'])) {
-			$requestor = sanitize($_POST['user'], 3);
+			$requestor = sanitize($_POST['user'], 0);
 		} else {
 			$requestor = '';
 		}
@@ -1238,7 +1238,7 @@ class Zenphoto_Authority {
 		<p>
 			<label for="disclose_password<?php echo $id; ?>"><?php echo gettext('Show password'); ?></label>
 			<input type="checkbox" name="disclose_password<?php echo $id; ?>" id="disclose_password<?php echo $id; ?>" onclick="passwordClear('<?php echo $id; ?>');
-					togglePassword('<?php echo $id; ?>');">
+							togglePassword('<?php echo $id; ?>');">
 		</p>
 		<p class="password_field_<?php echo $id; ?>">
 			<label for="pass_r<?php echo $id; ?>" id="match<?php echo $id; ?>"><?php echo gettext("Repeat password") . $flag; ?></label>

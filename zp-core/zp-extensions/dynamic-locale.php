@@ -51,7 +51,7 @@ function printLanguageSelector($flags = NULL) {
 	$languages = generateLanguageList();
 	if (isset($_REQUEST['locale'])) {
 		$locale = sanitize($_REQUEST['locale']);
-		if (getOption('locale') != $locale) {
+		if (LOCALE_OPTION != $locale) {
 			?>
 			<div class="errorbox">
 				<h2>
@@ -72,7 +72,7 @@ function printLanguageSelector($flags = NULL) {
 		?>
 		<ul class="flags">
 			<?php
-			$currentValue = getOption('locale');
+			$currentValue = LOCALE_OPTION;
 			$request = parse_url(getRequestURI());
 			$separator = '?';
 			if (isset($request['query'])) {
@@ -135,10 +135,10 @@ function printLanguageSelector($flags = NULL) {
 					} else {
 						?>
 						<form action="#" method="post">
-							<input type="hidden" name="oldlocale" value="<?php echo getOption('locale'); ?>" />
+							<input type="hidden" name="oldlocale" value="<?php echo LOCALE_OPTION; ?>" />
 							<select id="dynamic-locale" class="languageselect" name="locale" onchange="this.form.submit()">
 								<?php
-								$currentValue = getOption('locale');
+								$currentValue = LOCALE_OPTION;
 								foreach ($languages as $key => $item) {
 									echo '<option class="languageoption" value="' . html_encode($item) . '"';
 									if ($item == $currentValue) {
