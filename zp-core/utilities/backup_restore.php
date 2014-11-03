@@ -455,7 +455,7 @@ if (isset($_REQUEST['backup'])) {
 			</script>
 		';
 	}
-	$_zp_options = NULL; //invalidate any options from before the restore
+	primeOptions(); //invalidate any options from before the restore
 	if (getOption('zenphoto_install') !== $signaure) {
 		$l1 = '<a href="' . WEBPATH . '/' . ZENFOLDER . '/setup.php">';
 		$messages .= '<div class="notebox">

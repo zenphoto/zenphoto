@@ -478,15 +478,8 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 				<?php
 				$blindInstall = $warn = false;
 
-				if ($connection && !isset($_zp_options)) {
-					$sql = "SELECT `name`, `value` FROM " . prefix('options');
-					$optionlist = query_full_array($sql, false);
-					if ($optionlist) {
-						$_zp_options = array();
-						foreach ($optionlist as $option) {
-							$_zp_options[strtolower($option['name'])] = $option['value'];
-						}
-					}
+				if ($connection && empty($_zp_options)) {
+					primeOptions();
 				}
 
 				if (!$setup_checked && (($upgrade && $autorun) || setupUserAuthorized())) {
