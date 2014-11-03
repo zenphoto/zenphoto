@@ -1101,8 +1101,8 @@ function printAlbumTitle() {
 	echo html_encodeTagged(getAlbumTitle());
 }
 
-function printBareAlbumTitle() {
-	echo html_encodeTagged(getBareAlbumTitle());
+function printBareAlbumTitle($length = 0) {
+	echo html_encodeTagged(truncate_string(getBareAlbumTitle(), $length));
 }
 
 /**
