@@ -38,7 +38,7 @@ function access($attr, $path, $data, $volume) {
 
 function accessImage($attr, $path, $data, $volume) {
 	//	allow only images
-	if (access($attr, $path, $data, $volume) || (!is_dir($path) && !Gallery::validImage($path))) {
+	if (access($attr, $path, $data, $volume) || (!is_dir($path) && !Gallery::imageObjectClass($path) == 'Image')) {
 		return !($attr == 'read' || $attr == 'write');
 	}
 	return NULL;

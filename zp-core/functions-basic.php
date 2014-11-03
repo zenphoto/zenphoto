@@ -232,10 +232,10 @@ $_zp_cachefileSuffix = zp_graphicsLibInfo();
 define('GRAPHICS_LIBRARY', $_zp_cachefileSuffix['Library']);
 unset($_zp_cachefileSuffix['Library']);
 unset($_zp_cachefileSuffix['Library_desc']);
-$_zp_supported_images = array();
+$_zp_supported_images = $_zp_images_classes = array();
 foreach ($_zp_cachefileSuffix as $key => $type) {
 	if ($type) {
-		$_zp_supported_images[] = strtolower($key);
+		$_zp_images_classes[$_zp_supported_images[] = strtolower($key)] = 'Image';
 	}
 }
 
@@ -323,8 +323,7 @@ function js_encode($this_string) {
  * @param string $key the name of the option.
  */
 function getOption($key) {
-	global $_zp_conf_vars, $_zp_options;
-	$key = strtolower($key);
+	global $_zp_options;
 	if (is_null($_zp_options) && function_exists('query_full_array')) { // may be too early to use database!
 // option table not yet loaded, load it (but not the theme options!)
 		$sql = "SELECT `name`, `value` FROM " . prefix('options') . ' WHERE (`theme`="" OR `theme` IS NULL) AND `ownerid`=0';
@@ -336,7 +335,7 @@ function getOption($key) {
 			}
 		}
 	}
-	if (isset($_zp_options[$key])) {
+	if (isset($_zp_options[$key = strtolower($key)])) {
 		return $_zp_options[$key];
 	} else {
 		return NULL;
@@ -523,7 +522,7 @@ function rewrite_get_album_image($albumvar, $imagevar) {
 					$path = internalToFilesystem(getAlbumFolder(SERVERPATH) . $ralbum);
 				}
 			} else { //	have to figure it out
-				if (Gallery::validImage($ralbum) || Gallery::validImageAlt($ralbum)) { //	it is an image request
+				if (Gallery::imageObjectClass($ralbum)) { //	it is an image request
 					$rimage = basename($ralbum);
 					$ralbum = trim(dirname($ralbum), '/');
 					$path = internalToFilesystem(getAlbumFolder(SERVERPATH) . $ralbum);

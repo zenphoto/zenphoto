@@ -103,8 +103,7 @@ foreach ($albumlist as $key => $value) {
 			<p>
 				<?php
 				natcasesort($_zp_supported_images);
-				$types = array_keys($_zp_extra_filetypes);
-				$types = array_merge($_zp_supported_images, $types);
+				$types = array_keys($_zp_images_classes);
 				$types[] = 'ZIP';
 				$types = zp_apply_filter('upload_filetypes', $types);
 				natcasesort($types);
