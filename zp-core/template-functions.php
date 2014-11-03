@@ -1973,19 +1973,21 @@ function getTotalImagesIn($album) {
  * @return bool
  */
 function next_image($all = false, $firstPageCount = NULL, $mine = NULL) {
-	global $_zp_images, $_zp_current_image, $_zp_current_album, $_zp_page, $_zp_current_image_restore, $_zp_current_search, $_zp_gallery, $_firstPageImages;
+	global $_zp_images, $_zp_current_image, $_zp_current_album, $_zp_page, $_zp_current_image_restore, $_zp_current_search, $_zp_gallery, $_firstPageImages, $_imagePageOffset;
 	if (is_null($firstPageCount)) {
 		$firstPageCount = $_firstPageImages;
 	}
-	$imagePageOffset = getTotalPages(2); /* gives us the count of pages for album thumbs */
+	if (is_null($_imagePageOffset)) {
+		$_imagePageOffset = getTotalPages(2); /* gives us the count of pages for album thumbs */
+	}
 	if ($all) {
 		$imagePage = 1;
 		$firstPageCount = 0;
 	} else {
 		$_firstPageImages = $firstPageCount; /* save this so pagination can see it */
-		$imagePage = $_zp_page - $imagePageOffset;
+		$imagePage = $_zp_page - $_imagePageOffset;
 	}
-	if ($firstPageCount > 0 && $imagePageOffset > 0) {
+	if ($firstPageCount > 0 && $_imagePageOffset > 0) {
 		$imagePage = $imagePage + 1; /* can share with last album page */
 	}
 	if ($imagePage <= 0) {

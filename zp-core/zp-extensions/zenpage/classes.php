@@ -22,6 +22,7 @@ if (!defined('MENU_TRUNCATE_INDICATOR'))
 class CMS {
 
 	public $categoryStructure = array();
+	protected $categoryCache = array();
 	// article defaults (mirrors category vars)
 	protected $sortorder = 'date';
 	protected $sortdirection = true;
@@ -580,6 +581,7 @@ class CMS {
 	 * @return array
 	 */
 	function getAllCategories($visible = true, $sorttype = NULL, $sortdirection = NULL) {
+
 		$structure = $this->getCategoryStructure();
 		if (is_null($sortdirection))
 			$sortdirection = $this->sortdirection;
@@ -602,25 +604,30 @@ class CMS {
 				break;
 		}
 		$all = zp_loggedin(MANAGE_ALL_NEWS_RIGHTS);
-		if ($visible) {
-			foreach ($structure as $key => $cat) {
-				$catobj = newCategory($cat['titlelink']);
-				if ($all || $catobj->getShow() || $catobj->subRights()) {
-					$structure[$key]['show'] = 1;
-				} else {
-					unset($structure[$key]);
+		if (array_key_exists($key = $sortorder . (int) $sortdirection . (bool) $visible . (bool) $all, $this->categoryCache)) {
+			return $this->categoryCache[$key];
+		} else {
+			if ($visible) {
+				foreach ($structure as $key => $cat) {
+					$catobj = newCategory($cat['titlelink']);
+					if ($all || $catobj->getShow() || $catobj->subRights()) {
+						$structure[$key]['show'] = 1;
+					} else {
+						unset($structure[$key]);
+					}
 				}
 			}
-		}
 
-		if (!is_null($sorttype) || !is_null($sortdirection)) {
-			if ($sorttype == 'random') {
-				shuffle($structure);
-			} else {
-				$structure = sortMultiArray($structure, $sortorder, !$sortdirection, true, false, false);
+			if (!is_null($sorttype) || !is_null($sortdirection)) {
+				if ($sorttype == 'random') {
+					shuffle($structure);
+				} else {
+					$structure = sortMultiArray($structure, $sortorder, !$sortdirection, true, false, false);
+				}
 			}
+			$this->categoryCache[$key] = $structure;
+			return $structure;
 		}
-		return $structure;
 	}
 
 	/**
