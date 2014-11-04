@@ -326,6 +326,10 @@ $subtab = printSubtabs();
 																		 ?>
 							<span class="icons"><a href="<?php echo $optionlink; ?>" title="<?php printf(gettext("Change %s options"), $extension); ?>"><img class="icon-position-top3" src="images/options.png" alt="" /></a></span>
 							<?php
+						} else {
+							?>
+							<span class="icons"><img class="icon-position-top3" src="images/place_holder_icon.png" alt="" /></span>
+							<?php
 						}
 						if ($plugin_notice) {
 							?>
