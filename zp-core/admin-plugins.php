@@ -258,28 +258,25 @@ $subtab = printSubtabs();
 							<img class="zp_logoicon" src="<?php echo $ico; ?>" alt="<?php echo gettext('logo'); ?>" title="<?php echo $whose; ?>" />
 							<?php
 							if ($plugin_is_filter & CLASS_PLUGIN) {
-								$icon = $plugin_is_filter | THEME_PLUGIN | ADMIN_PLUGIN;
+								$iconA = '<img class="zp_logoicon" width="8px" src="images/place_holder_icon.png" /><a title="' . gettext('class plugin') . '"><img class="zp_logoicon" src="images/folder_picture.png" /></a><img class="zp_logoicon" width="8px" src="images/place_holder_icon.png" />';
+								$iconT = '';
 							} else {
-								$icon = $plugin_is_filter;
+								if ($plugin_is_filter & ADMIN_PLUGIN) {
+									$iconA = '<a title="' . gettext('admin plugin') . '"><img class="zp_logoicon" src="images/folder.png" /></a>';
+								} else {
+									$iconA = '<img class="zp_logoicon" src="images/place_holder_icon.png" />';
+								}
+								if ($plugin_is_filter & FEATURE_PLUGIN) {
+									$iconT = '<a title="' . gettext('feature plugin') . '"><img class="zp_logoicon" src="images/pictures.png" /></a>';
+								} else if ($plugin_is_filter & THEME_PLUGIN) {
+									$iconT = '<a title="' . gettext('theme plugin') . '"><img class="zp_logoicon" src="images/pictures_dn.png" /></a>';
+								} else {
+									$iconT = '<img class="zp_logoicon" src="images/place_holder_icon.png" />';
+								}
 							}
-							if ($icon & THEME_PLUGIN | FEATURE_PLUGIN) {
-								?>
-								<a title="<?php echo gettext('theme plugin'); ?>"><img class="zp_logoicon" src="images/pictures.png" /></a>
-								<?php
-							} else {
-								?>
-								<img src="images/place_holder_icon.png" />
-								<?php
-							}
-							if ($icon & ADMIN_PLUGIN) {
-								?>
-								<a title="<?php echo gettext('Admin plugin'); ?>"><img class="zp_logoicon" src="images/cache.png" /></a>
-								<?php
-							} else {
-								?>
-								<img src="images/place_holder_icon.png" />
-								<?php
-							}
+							echo $iconT;
+							echo $iconA;
+
 							$attributes = '';
 							if ($parserr) {
 								$optionlink = false;
@@ -383,7 +380,10 @@ $subtab = printSubtabs();
 		<ul class="iconlegend">
 			<li><img src="images/zp_gold.png" alt=""><?php echo gettext('Official plugin'); ?></li>
 			<li><img src="images/zp.png" alt=""><?php echo gettext('Supplemental plugin'); ?></li>
-			<li><img src="images/cache.png" alt=""><?php echo gettext('Admin plugin'); ?></li>
+			<li><img src="images/folder_picture.png" alt=""><?php echo gettext('Class plugin'); ?></li>
+			<li><img src="images/folder.png" alt=""><?php echo gettext('Admin plugin'); ?></li>
+			<li><img src="images/pictures.png" alt=""><?php echo gettext('Feature plugin'); ?></li>
+			<li><img src="images/pictures_dn.png" alt=""><?php echo gettext('Theme plugin'); ?></li>
 			<li><img src="images/info.png" alt=""><?php echo gettext('Usage info'); ?></li>
 			<li><img src="images/options.png" alt=""><?php echo gettext('Options'); ?></li>
 			<li><img src="images/action.png" alt=""><img src="images/warn.png" alt=""><?php echo gettext('Warning note'); ?></li>
