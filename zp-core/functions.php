@@ -1091,7 +1091,7 @@ function getAllTagsUnique($language = NULL) {
 	if (isset($_zp_unique_tags[$language]))
 		return $_zp_unique_tags[$language]; // cache them.
 
-	$_zp_unique_tags = array();
+	$_zp_unique_tags[$language] = array();
 	$sql = "SELECT DISTINCT `name`,`language` FROM " . prefix('tags');
 	if ($language) {
 		$sql .= ' WHERE (`language`="" OR `language` LIKE ' . db_quote(db_LIKE_escape($language) . '/%') . ')';
