@@ -42,12 +42,6 @@ if (OFFSET_PATH == 2) {
 	$listed = $deprecated->listed_functions;
 	if (empty($listed)) {
 		enableExtension('deprecated-functions', 0);
-	} else {
-		enableExtension('deprecated-functions', $plugin_is_filter);
-//	Yes, I know some people will be annoyed that this keeps coming back,
-//	but each release may deprecated new functions which would then just give
-//	(perhaps unseen) errors. Better the user should disable this once he knows
-//	his site is working.
 	}
 }
 

@@ -20,6 +20,8 @@ setupLog(sprintf(gettext('Theme:%s setup started'), $theme), true);
 if (!protectedTheme($theme)) {
 	setupLog(sprintf(gettext('Theme:%s triggered the deprecated functions plugin'), $theme), true);
 	enableExtension('deprecated-functions', 900 | CLASS_PLUGIN);
+	require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions.php');
+	$deprecate = true;
 }
 
 $requirePath = getPlugin('themeoptions.php', $theme);
@@ -39,11 +41,16 @@ setupLog(sprintf(gettext('Theme:%s setup completed'), $theme), true);
 
 $iMutex->unlock();
 
-$fp = fopen(SERVERPATH . '/' . ZENFOLDER . '/images/pass.png', 'rb');
+if (isset($deprecate) && $deprecate) {
+	$img = 'pass_2.png';
+} else {
+	$img = 'pass.png';
+}
+$fp = fopen(SERVERPATH . '/' . ZENFOLDER . '/images/' . $img, 'rb');
 // send the right headers
 header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
 header("Content-Type: image/png");
-header("Content-Length: " . filesize(SERVERPATH . '/' . ZENFOLDER . '/images/pass.png'));
+header("Content-Length: " . filesize(SERVERPATH . '/' . ZENFOLDER . '/images/' . $img));
 // dump the picture and stop the script
 fpassthru($fp);
 fclose($fp);
