@@ -1101,8 +1101,8 @@ function printAlbumTitle() {
 	echo html_encodeTagged(getAlbumTitle());
 }
 
-function printBareAlbumTitle() {
-	echo html_encodeTagged(getBareAlbumTitle());
+function printBareAlbumTitle($length = 0) {
+	echo html_encodeTagged(truncate_string(getBareAlbumTitle(), $length));
 }
 
 /**
@@ -1973,19 +1973,21 @@ function getTotalImagesIn($album) {
  * @return bool
  */
 function next_image($all = false, $firstPageCount = NULL, $mine = NULL) {
-	global $_zp_images, $_zp_current_image, $_zp_current_album, $_zp_page, $_zp_current_image_restore, $_zp_current_search, $_zp_gallery, $_firstPageImages;
+	global $_zp_images, $_zp_current_image, $_zp_current_album, $_zp_page, $_zp_current_image_restore, $_zp_current_search, $_zp_gallery, $_firstPageImages, $_imagePageOffset;
 	if (is_null($firstPageCount)) {
 		$firstPageCount = $_firstPageImages;
 	}
-	$imagePageOffset = getTotalPages(2); /* gives us the count of pages for album thumbs */
+	if (is_null($_imagePageOffset)) {
+		$_imagePageOffset = getTotalPages(2); /* gives us the count of pages for album thumbs */
+	}
 	if ($all) {
 		$imagePage = 1;
 		$firstPageCount = 0;
 	} else {
 		$_firstPageImages = $firstPageCount; /* save this so pagination can see it */
-		$imagePage = $_zp_page - $imagePageOffset;
+		$imagePage = $_zp_page - $_imagePageOffset;
 	}
-	if ($firstPageCount > 0 && $imagePageOffset > 0) {
+	if ($firstPageCount > 0 && $_imagePageOffset > 0) {
 		$imagePage = $imagePage + 1; /* can share with last album page */
 	}
 	if ($imagePage <= 0) {
@@ -3215,7 +3217,7 @@ function getRandomImagesAlbum($rootAlbum = NULL, $daily = false) {
 		shuffle($images);
 		while (count($images) > 0) {
 			$result = array_pop($images);
-			if (Gallery::validImage($result['filename'])) {
+			if (Gallery::imageObjectClass($result['filename']) == 'Image') {
 				$image = newImage(newAlbum($result['folder']), $result['filename']);
 			}
 		}
@@ -3518,16 +3520,13 @@ function getAllDates($order = 'asc') {
 		$sql .= " WHERE `show` = 1";
 	}
 	$hidealbums = getNotViewableAlbums();
-	if (!is_null($hidealbums)) {
+	if (!empty($hidealbums)) {
 		if (zp_loggedin()) {
 			$sql .= ' WHERE ';
 		} else {
 			$sql .= ' AND ';
 		}
-		foreach ($hidealbums as $id) {
-			$sql .= '`albumid`!=' . $id . ' AND ';
-		}
-		$sql = substr($sql, 0, -5);
+		$sql .= '`albumid` NOT IN (' . implode(',', $hidealbums) . ')';
 	}
 	$result = query($sql);
 	if ($result) {
@@ -4233,7 +4232,7 @@ function exposeZenPhotoInformations($obj = '', $plugins = '', $theme = '') {
 		echo "\n<!-- zenphoto version " . ZENPHOTO_VERSION . " [" . ZENPHOTO_FULL_RELEASE . "]";
 		echo " THEME: " . $theme . " (" . $a . ")";
 		$graphics = zp_graphicsLibInfo();
-		$graphics = sanitize(str_replace('<br />', ', ', $graphics['Library_desc']), 3);
+		$graphics = str_replace('<br />', ', ', $graphics['Library_desc']);
 		echo " GRAPHICS LIB: " . $graphics . " { memory: " . INI_GET('memory_limit') . " }";
 		echo ' PLUGINS: ';
 		if (count($plugins) > 0) {

@@ -129,7 +129,7 @@ class favoritesAlbum extends favorites {
 			$this->set('parentid', $parentalbum->getID());
 			$title = substr($title, strrpos($title, '/') + 1);
 		}
-		$this->set('title', sanitize($title, 2));
+		$this->set('title', $title);
 		return true;
 	}
 

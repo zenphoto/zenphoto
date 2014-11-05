@@ -75,7 +75,7 @@ class jcarousel {
 		}
 		?>
 		<script>
-			(function($) {
+			(function ($) {
 				var userAgent = navigator.userAgent.toLowerCase();
 
 				$.browser = {
@@ -145,13 +145,9 @@ if (!$plugin_disable && !OFFSET_PATH && getOption('jcarousel_' . $_zp_gallery->g
 			}
 			if (is_null($fullimagelink)) {
 				$fullimagelink = getOption('jcarousel_fullimagelink');
-			} else {
-				$fullimagelink = sanitize($fullimagelink);
 			}
 			if (is_null($vertical)) {
 				$vertical = getOption('jcarousel_vertical');
-			} else {
-				$vertical = sanitize($vertical);
 			}
 			if ($vertical) {
 				$vertical = 'true';
@@ -216,40 +212,40 @@ if (!$plugin_disable && !OFFSET_PATH && getOption('jcarousel_' . $_zp_gallery->g
 			?>
 			<script type="text/javascript">
 			// <!-- <![CDATA[
-			var mycarousel_itemList = [
+				var mycarousel_itemList = [
 			<?php echo $items; ?>
-			];
+				];
 
-			function mycarousel_itemLoadCallback(carousel, state) {
-				for (var i = carousel.first; i <= carousel.last; i++) {
-					if (carousel.has(i)) {
-						continue;
+				function mycarousel_itemLoadCallback(carousel, state) {
+					for (var i = carousel.first; i <= carousel.last; i++) {
+						if (carousel.has(i)) {
+							continue;
+						}
+						if (i > mycarousel_itemList.length) {
+							break;
+						}
+						carousel.add(i, mycarousel_getItemHTML(mycarousel_itemList[i - 1]));
 					}
-					if (i > mycarousel_itemList.length) {
-						break;
+				}
+
+				function mycarousel_getItemHTML(item) {
+					if (item.active === "") {
+						html = '<a href="' + item.link + '" title="' + item.title + '"><img src="' + item.url + '" width="<?php echo $width; ?>" height="<?php echo $height; ?>" alt="' + item.url + '" /></a>';
+					} else {
+						html = '<a href="' + item.link + '" title="' + item.title + '"><img class="activecarouselimage" src="' + item.url + '" width="<?php echo $width; ?>" height="<?php echo $height; ?>" alt="' + item.url + '" /></a>';
 					}
-					carousel.add(i, mycarousel_getItemHTML(mycarousel_itemList[i - 1]));
+					return html;
 				}
-			}
 
-			function mycarousel_getItemHTML(item) {
-				if (item.active === "") {
-					html = '<a href="' + item.link + '" title="' + item.title + '"><img src="' + item.url + '" width="<?php echo $width; ?>" height="<?php echo $height; ?>" alt="' + item.url + '" /></a>';
-				} else {
-					html = '<a href="' + item.link + '" title="' + item.title + '"><img class="activecarouselimage" src="' + item.url + '" width="<?php echo $width; ?>" height="<?php echo $height; ?>" alt="' + item.url + '" /></a>';
-				}
-				return html;
-			}
-
-			jQuery(document).ready(function() {
-				jQuery("#mycarousel").jcarousel({
-					vertical: <?php echo $vertical; ?>,
-					size: mycarousel_itemList.length,
-					start: <?php echo $imgnumber; ?>,
-					scroll: <?php echo $thumbscroll; ?>,
-					itemLoadCallback: {onBeforeAnimation: mycarousel_itemLoadCallback}
+				jQuery(document).ready(function () {
+					jQuery("#mycarousel").jcarousel({
+						vertical: <?php echo $vertical; ?>,
+						size: mycarousel_itemList.length,
+						start: <?php echo $imgnumber; ?>,
+						scroll: <?php echo $thumbscroll; ?>,
+						itemLoadCallback: {onBeforeAnimation: mycarousel_itemLoadCallback}
+					});
 				});
-			});
 			// ]]> -->
 			</script>
 			<ul id="mycarousel">

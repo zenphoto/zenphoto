@@ -80,7 +80,7 @@ $map = function_exists('printGoogleMap');
 						}
 						printParentBreadcrumb();
 						?></span>
-					<?php printAlbumTitle(); ?>
+					<?php printBareAlbumTitle(25); ?>
 				</div>
 			</div> <!-- wrapnav -->
 

@@ -278,7 +278,6 @@ function generateSitemapIndexCacheFile() {
  * @return string
  */
 function sitemap_getChangefreq($changefreq = '') {
-	$changefreq = sanitize($changefreq);
 	switch ($changefreq) {
 		case 'always':
 		case 'hourly':
@@ -287,7 +286,6 @@ function sitemap_getChangefreq($changefreq = '') {
 		case 'monthly':
 		case 'yearly':
 		case 'never':
-			$changefreq = $changefreq;
 			break;
 		default:
 			$changefreq = 'daily';
@@ -487,7 +485,6 @@ function getSitemapAlbums() {
 	$albumchangefreq = getOption('sitemap_changefreq_albums');
 	$imagechangefreq = getOption('sitemap_changefreq_images');
 	$albumlastmod = getOption('sitemap_lastmod_albums');
-	$albumlastmod = sanitize($albumlastmod);
 	$imagelastmod = getOption('sitemap_lastmod_images');
 
 	$albums = array();

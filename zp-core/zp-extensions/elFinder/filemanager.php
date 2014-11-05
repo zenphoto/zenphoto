@@ -12,6 +12,15 @@ $locale = substr(getOption("locale"), 0, 2);
 if (empty($locale))
 	$locale = 'en';
 printAdminHeader('upload', 'files');
+
+if (isset($_REQUEST['themeEdit'])) {
+	$theme = sanitize($_REQUEST['themeEdit']);
+	$_zp_admin_tab = 'themes';
+	$title = gettext('Theme Manager');
+} else {
+	$theme = false;
+	$title = gettext('File Manager');
+}
 ?>
 
 <link rel="stylesheet" type="text/css" media="screen" href="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/elFinder/'; ?>css/elfinder.min.css">
@@ -34,25 +43,30 @@ echo "\n</head>";
 		<div id="content">
 			<?php ?>
 			<div id="container">
-				<?php $subtab = printSubtabs(); ?>
+				<?php
+				$subtab = getSubtabs();
+				if (!$theme)
+					printSubtabs();
+				?>
 				<div class="tabbox">
 					<?php zp_apply_filter('admin_note', 'upload', $subtab); ?>
-					<h1><?php echo gettext('File Manager'); ?></h1>
+					<h1><?php echo $title; ?></h1>
 					<script type="text/javascript">
-						$().ready(function() {
+						$().ready(function () {
 							var elf = $('#elfinder').elfinder({
 								lang: '<?php echo $locale; ?>', // language (OPTIONAL)
 								customData: {
 									'XSRFToken': '<?php echo getXSRFToken('elFinder'); ?>',
 									'zp_user_auth': '<?php echo zp_getCookie('zp_user_auth'); ?>',
 <?php
-if (isset($_REQUEST['themeEdit'])) {
-	$theme = sanitize($_REQUEST['themeEdit']);
+if ($theme) {
 	if (zp_loggedin(THEMES_RIGHTS) && is_dir(SERVERPATH . '/' . THEMEFOLDER . '/' . $theme)) {
 		?>
 											'themeEdit': '<?php echo $theme; ?>',
 		<?php
 	}
+} else {
+	$theme = false;
 }
 ?>
 									'origin': 'upload'
@@ -62,7 +76,7 @@ if (isset($_REQUEST['themeEdit'])) {
 						});
 					</script>
 					<?php
-					if (zp_loggedin(ALBUM_RIGHTS)) {
+					if (zp_loggedin(ALBUM_RIGHTS) && !$theme) {
 						?>
 						<p class="notebox">
 							<?php echo gettext('<strong>Note:</strong> Accessing the Albums folder with this utility is equivalent to using FTP to access it. <em>Copy</em> and <em>rename</em> do not carry the database data with the change.'); ?>

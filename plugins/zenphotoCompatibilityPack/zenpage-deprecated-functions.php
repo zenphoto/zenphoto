@@ -47,7 +47,6 @@ function printNewsImageTags($option = 'links', $preText = NULL, $class = 'taglis
  */
 function getSubCategories($catlink) {
 	deprecated_functions::notify(gettext('Use instead the Zenpage category class method getSubCategories().'), E_USER_NOTICE);
-	$catlink = sanitize($catlink);
 	$catobj = new ZenpageCategory($catlink);
 	return $catobj->getSubCategories();
 }
@@ -108,7 +107,6 @@ function getCategoryTitle($catlink) {
  */
 function getCategoryID($catlink) {
 	deprecated_functions::notify(gettext('Use instead the Zenpage category class method getID().'), E_USER_NOTICE);
-	$catlink = sanitize($catlink);
 	$catobj = new ZenpageCategory($catlink);
 	return $catobj->getID();
 }

@@ -386,7 +386,11 @@ function zp_mail($subject, $message, $email_list = NULL, $cc_addresses = NULL, $
 		}
 	}
 	if (is_null($email_list)) {
-		$email_list = $_zp_authority->getAdminEmail();
+		if ($_zp_authority) {
+			$email_list = $_zp_authority->getAdminEmail();
+		} else {
+			return gettext('Mail send failed.');
+		}
 	} else {
 		foreach ($email_list as $key => $email) {
 			if (!is_valid_email_zp($email)) {
@@ -1071,8 +1075,6 @@ function setupTheme($album = NULL) {
  */
 function getAllTagsUnique($language = NULL) {
 	global $_zp_unique_tags, $_zp_current_locale;
-	if (!is_null($_zp_unique_tags))
-		return $_zp_unique_tags; // cache them.
 	if (is_null($language)) {
 		switch (getOption('languageTagSearch')) {
 			case 1:
@@ -1082,12 +1084,14 @@ function getAllTagsUnique($language = NULL) {
 				$language = $_zp_current_locale;
 				break;
 			default:
-				$langage = '';
+				$language = '';
 				break;
 		}
 	}
+	if (isset($_zp_unique_tags[$language]))
+		return $_zp_unique_tags[$language]; // cache them.
 
-	$_zp_unique_tags = array();
+	$_zp_unique_tags[$language] = array();
 	$sql = "SELECT DISTINCT `name`,`language` FROM " . prefix('tags');
 	if ($language) {
 		$sql .= ' WHERE (`language`="" OR `language` LIKE ' . db_quote(db_LIKE_escape($language) . '/%') . ')';
@@ -1096,11 +1100,11 @@ function getAllTagsUnique($language = NULL) {
 	$unique_tags = query($sql);
 	if ($unique_tags) {
 		while ($tagrow = db_fetch_assoc($unique_tags)) {
-			$_zp_unique_tags[mb_strtolower($tagrow['name'])] = $tagrow['name'];
+			$_zp_unique_tags[$language][mb_strtolower($tagrow['name'])] = $tagrow['name'];
 		}
 		db_free_result($unique_tags);
 	}
-	return $_zp_unique_tags;
+	return $_zp_unique_tags[$language];
 }
 
 /**
@@ -1111,22 +1115,26 @@ function getAllTagsUnique($language = NULL) {
  */
 function getAllTagsCount($language = NULL) {
 	global $_zp_count_tags, $_zp_current_locale;
-	if (!is_null($_zp_count_tags))
-		return $_zp_count_tags;
-	$_zp_count_tags = array();
 	if (is_null($language)) {
 		$language = $_zp_current_locale;
 	}
-	$sql = "SELECT DISTINCT tags.name, tags.id,tags.language, (SELECT COUNT(*) FROM " . prefix('obj_to_tag') . " as object WHERE object.tagid = tags.id) AS count FROM " . prefix('tags') . " as tags ORDER BY `name`";
+	if (isset($_zp_count_tags[$language]))
+		return $_zp_count_tags[$language];
+
+	$_zp_count_tags[$language] = array();
+	$sql = 'SELECT DISTINCT tags.name, tags.id, (SELECT COUNT(*) FROM ' . prefix('obj_to_tag') . ' as object WHERE object.tagid = tags.id) AS count FROM ' . prefix('tags') . ' as tags ';
+	if (!empty($language)) {
+		$sql .= ' WHERE tags.language="" OR tags.language LIKE ' . db_quote(db_LIKE_escape($language) . '/%');
+	}
+	$sql .= ' ORDER BY tags.name';
 	$tagresult = query($sql);
 	if ($tagresult) {
 		while ($tag = db_fetch_assoc($tagresult)) {
-			if (empty($tag['language']) || $language && substr($tag['language'], 0, strlen($language)) == $language)
-				$_zp_count_tags[$tag['name']] = $tag['count'];
+			$_zp_count_tags[$language][$tag['name']] = $tag['count'];
 		}
 		db_free_result($tagresult);
 	}
-	return $_zp_count_tags;
+	return $_zp_count_tags[$language];
 }
 
 /**
@@ -1437,22 +1445,17 @@ function sortMultiArray($array, $index, $descending = false, $natsort = true, $c
  * @return array
  */
 function getNotViewableAlbums() {
-	global $_zp_not_viewable_album_list, $_zp_gallery;
+	global $_zp_not_viewable_album_list;
 	if (zp_loggedin(ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS))
 		return array(); //admins can see all
-	$hint = '';
 	if (is_null($_zp_not_viewable_album_list)) {
-		$sql = 'SELECT `folder`, `id`, `password`, `show` FROM ' . prefix('albums') . ' WHERE `show`=0 OR `password`!=""';
+		$sql = 'SELECT `folder`, `id` FROM ' . prefix('albums');
 		$result = query($sql);
 		if ($result) {
 			$_zp_not_viewable_album_list = array();
 			while ($row = db_fetch_assoc($result)) {
-				if (checkAlbumPassword($row['folder'])) {
-					$album = newAlbum($row['folder']);
-					if (!($row['show'] || $album->isMyItem(LIST_RIGHTS))) {
-						$_zp_not_viewable_album_list[] = $row['id'];
-					}
-				} else {
+				$album = newAlbum($row['folder']);
+				if (!$album->checkAccess()) {
 					$_zp_not_viewable_album_list[] = $row['id'];
 				}
 			}
@@ -1490,9 +1493,8 @@ function safe_fnmatch($pattern, $string) {
  * @return string
  */
 function zp_image_types($quote) {
-	global $_zp_extra_filetypes;
-	$typelist = $quote . 'images' . $quote . ',' . $quote . '_images' . $quote . ',';
-	$types = array_unique($_zp_extra_filetypes);
+	global $_zp_images_classes;
+	$types = array_unique($_zp_images_classes);
 	foreach ($types as $type) {
 		$typelist .= $quote . strtolower($type) . 's' . $quote . ',';
 	}
@@ -1592,7 +1594,7 @@ function byteConvert($bytes) {
  * @return mixed
  */
 function dateTimeConvert($datetime, $raw = false) {
-	// Convert 'yyyy:mm:dd hh:mm:ss' to 'yyyy-mm-dd hh:mm:ss' for Windows' strtotime compatibility
+// Convert 'yyyy:mm:dd hh:mm:ss' to 'yyyy-mm-dd hh:mm:ss' for Windows' strtotime compatibility
 	$datetime = preg_replace('/(\d{4}):(\d{2}):(\d{2})/', ' \1-\2-\3', $datetime);
 	$time = strtotime($datetime);
 	if ($time == -1 || $time === false)
@@ -1735,16 +1737,16 @@ function zp_handle_password($authType = NULL, $check_auth = NULL, $check_user = 
 			$check_user = $_zp_gallery->getUser();
 		}
 	}
-	// Handle the login form.
+// Handle the login form.
 	if (DEBUG_LOGIN)
 		debugLog("zp_handle_password: \$authType=$authType; \$check_auth=$check_auth; \$check_user=$check_user; ");
 	if (isset($_POST['password']) && isset($_POST['pass'])) { // process login form
 		if (isset($_POST['user'])) {
-			$post_user = sanitize($_POST['user']);
+			$post_user = sanitize($_POST['user'], 0);
 		} else {
 			$post_user = '';
 		}
-		$post_pass = sanitize($_POST['pass']);
+		$post_pass = sanitize($_POST['pass'], 0);
 
 		foreach (Zenphoto_Authority::$hashList as $hash => $hi) {
 			$auth = Zenphoto_Authority::passwordHash($post_user, $post_pass, $hi);
@@ -1880,7 +1882,7 @@ function getThemeOption($option, $album = NULL, $theme = NULL) {
 	if (empty($theme)) {
 		$theme = $_zp_gallery->getCurrentTheme();
 	}
-	// album-theme
+// album-theme
 	$sql = "SELECT `value` FROM " . prefix('options') . " WHERE `name`=" . db_quote($option) . " AND `ownerid`=" . $id . " AND `theme`=" . db_quote($theme);
 	$db = query_single_row($sql);
 	if (!$db) {

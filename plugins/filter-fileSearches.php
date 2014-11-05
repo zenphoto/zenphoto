@@ -5,7 +5,7 @@
  * This plugin is intended as an example of the use of the album_filter and image_filter filters.
  *
  * @author Stephen Billard (sbillard)
- * 
+ *
  * @package plugins
  * @subpackage example
  * @category package
@@ -50,8 +50,7 @@ class filter_file_searches_options {
 	}
 
 	function getOptionsSupported() {
-		global $_zp_gallery, $_zp_supported_images, $_zp_extra_filetypes, $mysetoptions;
-
+		global $_zp_gallery, $_zp_images_classes, $mysetoptions;
 
 		$dir = opendir($albumdir = $_zp_gallery->getAlbumDir());
 		$albums = array();
@@ -70,10 +69,8 @@ class filter_file_searches_options {
 		foreach ($albums as $album) {
 			$lista[$album] = 'filter_file_searches_albums_' . $album;
 		}
-		natcasesort($_zp_supported_images);
-		$types = array_keys($_zp_extra_filetypes);
-		natcasesort($types);
-		$list = array_merge($_zp_supported_images, $types);
+		$list = array_keys($_zp_images_classes);
+		natcasesort($list);
 		$listi = array();
 		foreach ($list as $suffix) {
 			$listi[$suffix] = 'filter_file_searches_images_' . $suffix;

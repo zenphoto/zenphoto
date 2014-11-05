@@ -18,7 +18,7 @@
  * Additional icons can be used by placing them in the <var>%USER_PLUGIN_FOLDER%/flag_thumbnail</var> folder.
  *
  * @author Stephen Billard (sbillard) and Malte Müller (acrylian)
- * 
+ *
  * @package plugins
  * @subpackage media
  */
@@ -162,8 +162,7 @@ class flag_thumbnail {
 				$obj = $obj->getAlbumThumbImage();
 			}
 			if (is_object($obj) && get_class($obj) == 'Image') {
-				$exif = $obj->getMetaData();
-				if (!empty($exif['EXIFGPSLatitude']) && !empty($exif['EXIFGPSLongitude'])) {
+				if ($obj->get('EXIFGPSLatitude') && $obj->get('EXIFGPSLongitude')) {
 					if (getOption('flag_thumbnail_use_text')) {
 						$text = getOption('flag_thumbnail_geodata_text');
 						$html .= '<span class="textasnewflag" style="position: absolute;bottom: 10px;right: 6px;">' . $text . "</span>\n";

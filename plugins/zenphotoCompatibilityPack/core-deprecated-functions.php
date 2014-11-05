@@ -4,7 +4,6 @@
  * Zenphoto general deprecated functions
  */
 
-
 /**
  * @deprecated
  * @since 1.2.7
@@ -55,7 +54,7 @@ function getCommentDate($format = NULL) {
  * @deprecated
  * @since 1.2.7
  */
- function getCommentTime($format = '%I:%M %p') {
+function getCommentTime($format = '%I:%M %p') {
 	deprecated_functions::notify(gettext('Use getCommentDateTime().'));
 	global $_zp_current_comment;
 	return myts_date($format, $_zp_current_comment['date']);
@@ -734,8 +733,8 @@ function addPluginType($suffix, $objectName) {
  *
  */
 function is_valid_image($filename) {
-	deprecated_functions::notify(gettext("use Gallery::validImage()"));
-	return Gallery::validImage($filename);
+	deprecated_functions::notify(gettext("use Gallery::imageObjectClass() to obtain the objech handler"));
+	return Gallery::imageObjectClass($filename) == 'Image';
 }
 
 /**
@@ -744,8 +743,8 @@ function is_valid_image($filename) {
  *
  */
 function is_valid_other_type($filename) {
-	deprecated_functions::notify(gettext("use Gallery::validImageAlt()"));
-	return Gallery::validImageAlt($filename);
+	deprecated_functions::notify(gettext("use Gallery::imageObjectClass() to obtain the object handler"));
+	return Gallery::imageObjectClass($filename) !== 'Image';
 }
 
 ?>

@@ -90,8 +90,8 @@ setOption('mod_rewrite_detected', 0);
 if (isset($_GET['mod_rewrite'])) {
 	?>
 	<script type="text/javascript">
-		$(function() {
-			$('img').error(function() {
+		$(function () {
+			$('img').error(function () {
 				var link = $(this).attr('src');
 				var title = $(this).attr('title');
 				$(this).parent().html('<a href="' + link + '" target="_blank"><img src="../images/fail.png" title="' + title + '"></a>');
@@ -446,7 +446,7 @@ if ($data['unprotected_pages']) {
 	setOptionDefault('gallery_page_unprotected_contact', 1);
 	$unprotected = array();
 }
-$_zp_options = NULL; // get a fresh start
+primeOptions(); // get a fresh start
 $optionlist = getOptionList();
 foreach ($optionlist as $key => $option) {
 	if ($option && strpos($key, 'gallery_page_unprotected_') === 0) {

@@ -8,6 +8,8 @@
  * @package core
  */
 // force UTF-8 Ø
+define('LOCALE_OPTION', getOption('locale'));
+
 function getLanguageArray() {
 	return array(
 					'af'		 => gettext('Afrikaans'),
@@ -316,14 +318,14 @@ function setupDomain($domain = NULL, $type = NULL) {
  */
 function setupCurrentLocale($override = NULL) {
 	if (is_null($override)) {
-		$locale = getOption('locale');
+		$locale = LOCALE_OPTION;
 	} else {
 		$locale = $override;
 	}
 	if (getOption('disallow_' . $locale)) {
 		if (DEBUG_LOCALE)
 			debugLogBacktrace("setupCurrentLocale($override): $locale denied by option.");
-		$locale = getOption('locale');
+		$locale = LOCALE_OPTION;
 		if (empty($locale) || getOption('disallow_' . $locale)) {
 			$languages = generateLanguageList();
 			$locale = array_shift($languages);
@@ -467,7 +469,7 @@ function getUserLocale() {
 		}
 
 		if (!$_zp_current_locale) {
-			$localeOption = getOption('locale');
+			$localeOption = LOCALE_OPTION;
 			$_zp_current_locale = zp_getCookie('dynamic_locale');
 
 			if (DEBUG_LOCALE)
@@ -517,14 +519,13 @@ function getUserLocale() {
  */
 function get_language_string($dbstring, $locale = NULL) {
 	$strings = getSerializedArray($dbstring);
-	$actual_local = getOption('locale');
 	if (is_null($locale))
-		$locale = $actual_local;
+		$locale = LOCALE_OPTION;
 	if (isset($strings[$locale])) {
 		return $strings[$locale];
 	}
-	if (isset($strings[$actual_local])) {
-		return $strings[$actual_local];
+	if (isset($strings[LOCALE_OPTION])) {
+		return $strings[LOCALE_OPTION];
 	}
 	if (isset($strings['en_US'])) {
 		return $strings['en_US'];

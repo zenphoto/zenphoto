@@ -11,6 +11,7 @@
  *
  */
 // force UTF-8 Ø
+$_zp_options = array();
 require_once(dirname(__FILE__) . '/global-definitions.php');
 require_once(dirname(__FILE__) . '/functions-common.php');
 
@@ -179,6 +180,7 @@ if (!$data && OFFSET_PATH != 2) {
 	reconfigureAction(3);
 }
 
+primeOptions();
 $data = getOption('charset');
 if (!$data) {
 	$data = 'UTF-8';
@@ -232,10 +234,10 @@ $_zp_cachefileSuffix = zp_graphicsLibInfo();
 define('GRAPHICS_LIBRARY', $_zp_cachefileSuffix['Library']);
 unset($_zp_cachefileSuffix['Library']);
 unset($_zp_cachefileSuffix['Library_desc']);
-$_zp_supported_images = array();
+$_zp_supported_images = $_zp_images_classes = array();
 foreach ($_zp_cachefileSuffix as $key => $type) {
 	if ($type) {
-		$_zp_supported_images[] = strtolower($key);
+		$_zp_images_classes[$_zp_supported_images[] = strtolower($key)] = 'Image';
 	}
 }
 
@@ -317,16 +319,9 @@ function js_encode($this_string) {
 	return $this_string;
 }
 
-/**
- * Get a option stored in the database.
- * This function reads the options only once, in order to improve performance.
- * @param string $key the name of the option.
- */
-function getOption($key) {
-	global $_zp_conf_vars, $_zp_options;
-	$key = strtolower($key);
-	if (is_null($_zp_options) && function_exists('query_full_array')) { // may be too early to use database!
-// option table not yet loaded, load it (but not the theme options!)
+function primeOptions() {
+	global $_zp_options;
+	if (function_exists('query_full_array')) { //	incase we are in primitive mode
 		$sql = "SELECT `name`, `value` FROM " . prefix('options') . ' WHERE (`theme`="" OR `theme` IS NULL) AND `ownerid`=0';
 		$optionlist = query_full_array($sql, false);
 		if ($optionlist !== false) {
@@ -336,7 +331,16 @@ function getOption($key) {
 			}
 		}
 	}
-	if (isset($_zp_options[$key])) {
+}
+
+/**
+ * Get a option stored in the database.
+ * This function reads the options only once, in order to improve performance.
+ * @param string $key the name of the option.
+ */
+function getOption($key) {
+	global $_zp_options;
+	if (isset($_zp_options[$key = strtolower($key)])) {
 		return $_zp_options[$key];
 	} else {
 		return NULL;
@@ -463,9 +467,6 @@ function purgeOption($key) {
  */
 function getOptionList() {
 	global $_zp_options;
-	if (NULL == $_zp_options) {
-		getOption('nil'); // pre-load from the database
-	}
 	return $_zp_options;
 }
 
@@ -523,7 +524,7 @@ function rewrite_get_album_image($albumvar, $imagevar) {
 					$path = internalToFilesystem(getAlbumFolder(SERVERPATH) . $ralbum);
 				}
 			} else { //	have to figure it out
-				if (Gallery::validImage($ralbum) || Gallery::validImageAlt($ralbum)) { //	it is an image request
+				if (Gallery::imageObjectClass($ralbum)) { //	it is an image request
 					$rimage = basename($ralbum);
 					$ralbum = trim(dirname($ralbum), '/');
 					$path = internalToFilesystem(getAlbumFolder(SERVERPATH) . $ralbum);

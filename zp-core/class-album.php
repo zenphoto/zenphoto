@@ -34,13 +34,7 @@ function newAlbum($folder8, $cache = true, $quiet = false) {
  * @param object $album
  * @return bool
  */
-function isAlbumClass($album = NULL) {
-	global $_zp_current_album;
-	if (is_null($album)) {
-		if (!in_context(ZP_ALBUM))
-			return false;
-		$album = $_zp_current_album;
-	}
+function isAlbumClass($album) {
 	return is_object($album) && ($album->table == 'albums');
 }
 
@@ -95,7 +89,7 @@ class AlbumBase extends MediaObject {
 		$this->setShow($_zp_gallery->getAlbumPublish());
 		$this->set('mtime', time());
 		$title = trim($this->name);
-		$this->set('title', sanitize($title, 2));
+		$this->set('title', $title);
 		return true;
 	}
 
@@ -1152,7 +1146,7 @@ class Album extends AlbumBase {
 			$this->set('parentid', $parentalbum->getID());
 			$title = substr($title, strrpos($title, '/') + 1);
 		}
-		$this->set('title', sanitize($title, 2));
+		$this->set('title', $title);
 		return true;
 	}
 
@@ -1456,11 +1450,11 @@ class Album extends AlbumBase {
 				if ($dirs && (is_dir($albumdir . $file) || hasDynamicAlbumSuffix($file))) {
 					$files[] = $file8;
 				} else if (!$dirs && is_file($albumdir . $file)) {
-					if (Gallery::validImageAlt($file)) {
+					if ($handler = Gallery::imageObjectClass($file)) {
 						$files[] = $file8;
-						$others[] = $file8;
-					} else if (Gallery::validImage($file)) {
-						$files[] = $file8;
+						if ($handler !== 'Image') {
+							$others[] = $file8;
+						}
 					}
 				}
 			}
@@ -1473,7 +1467,7 @@ class Album extends AlbumBase {
 				foreach ($files as $image) {
 					if ($image != $other) {
 						$image_root = substr($image, 0, strrpos($image, "."));
-						if ($image_root == $others_root && Gallery::validImage($image)) {
+						if ($image_root == $others_root && Gallery::imageObjectClass($image) == 'Image') {
 							$others_thumbs[] = $image;
 						}
 					}
