@@ -1442,7 +1442,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 													 name="disclose_password<?php echo $suffix; ?>"
 													 id="disclose_password<?php echo $suffix; ?>"
 													 onclick="passwordClear('<?php echo $suffix; ?>');
-															 togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?>
+																	 togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?>
 									</label>
 								</td>
 								<td>
@@ -1929,7 +1929,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 } else {
 											 ?>
 											 onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');
-													 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
+															 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
 											 <?php
 										 }
 										 ?> />
@@ -4667,8 +4667,10 @@ function getPluginTabs() {
 
 	ksort($classes);
 	$tabs[$classXlate['all']] = 'admin-plugins.php?page=plugins&tab=all';
-	$tabs[$classXlate['thirdparty']] = 'admin-plugins.php?page=plugins&tab=thirdparty';
-	$tabs[$classXlate['enabled']] = 'admin-plugins.php?page=plugins&tab=active';
+	if (!empty($thirdparty))
+		$tabs[$classXlate['thirdparty']] = 'admin-plugins.php?page=plugins&tab=thirdparty';
+	if (!empty($active))
+		$tabs[$classXlate['enabled']] = 'admin-plugins.php?page=plugins&tab=active';
 	switch ($default) {
 		case 'all':
 			$currentlist = array_keys($paths);
@@ -5008,7 +5010,7 @@ function linkPickerIcon($obj, $id = NULL, $extra = NULL) {
 	}
 	?>
 	<a onclick="<?php echo $clickid; ?>$('.pickedObject').removeClass('pickedObject');
-			$('#<?php echo $iconid; ?>').addClass('pickedObject');<?php linkPickerPick($obj, $id, $extra); ?>" title="<?php echo gettext('pick source'); ?>">
+				$('#<?php echo $iconid; ?>').addClass('pickedObject');<?php linkPickerPick($obj, $id, $extra); ?>" title="<?php echo gettext('pick source'); ?>">
 		<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" id="<?php echo $iconid; ?>">
 	</a>
 	<?php
