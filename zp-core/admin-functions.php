@@ -44,7 +44,7 @@ function printAdminFooter($addl = '') {
 }
 
 function datepickerJS() {
-	$lang = str_replace('_', '-', LOCALE_OPTION);
+	$lang = str_replace('_', '-', getOption('locale'));
 	if (!file_exists(SERVERPATH . '/' . ZENFOLDER . '/js/jqueryui/i18n/datepicker-' . $lang . '.js')) {
 		$lang = substr($lang, 0, 2);
 		if (!file_exists(SERVERPATH . '/' . ZENFOLDER . '/js/jqueryui/i18n/datepicker-' . $lang . '.js')) {
@@ -270,7 +270,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 		foreach ($zenphoto_tabs as $atab) {
 			$chars = $chars + mb_strlen($atab['text']);
 		}
-		switch (LOCALE_OPTION) {
+		switch (getOption('locale')) {
 			case 'zh_CN':
 			case 'zh_TW':
 			case 'ja_JP':
@@ -397,7 +397,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			foreach ($tabs as $atab => $val) {
 				$chars = $chars + mb_strlen($atab);
 			}
-			switch (LOCALE_OPTION) {
+			switch (getOption('locale')) {
 				case 'zh_CN':
 				case 'zh_TW':
 				case 'ja_JP':

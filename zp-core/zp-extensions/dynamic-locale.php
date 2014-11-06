@@ -48,10 +48,11 @@ if (getOption('dynamic_locale_subdomain')) {
  *
  */
 function printLanguageSelector($flags = NULL) {
+	$localeOption = getOption('locale');
 	$languages = generateLanguageList();
 	if (isset($_REQUEST['locale'])) {
 		$locale = sanitize($_REQUEST['locale']);
-		if (LOCALE_OPTION != $locale) {
+		if ($localeOption != $locale) {
 			?>
 			<div class="errorbox">
 				<h2>
@@ -72,7 +73,6 @@ function printLanguageSelector($flags = NULL) {
 		?>
 		<ul class="flags">
 			<?php
-			$currentValue = LOCALE_OPTION;
 			$request = parse_url(getRequestURI());
 			$separator = '?';
 			if (isset($request['query'])) {
@@ -95,9 +95,9 @@ function printLanguageSelector($flags = NULL) {
 				$uri .= '?' . $request['query'];
 			foreach ($languages as $text => $lang) {
 				?>
-				<li<?php if ($lang == $currentValue) echo ' class="currentLanguage"'; ?>>
+				<li<?php if ($lang == $localeOption) echo ' class="currentLanguage"'; ?>>
 					<?php
-					if ($lang != $currentValue) {
+					if ($lang != $localeOption) {
 						switch (LOCALE_TYPE) {
 							case 2:
 								?>
@@ -120,7 +120,7 @@ function printLanguageSelector($flags = NULL) {
 								?>
 								<img src="<?php echo $flag; ?>" alt="<?php echo $text; ?>" title="<?php echo $text; ?>" />
 								<?php
-								if ($lang != $currentValue) {
+								if ($lang != $localeOption) {
 									?>
 								</a>
 								<?php
@@ -135,13 +135,12 @@ function printLanguageSelector($flags = NULL) {
 					} else {
 						?>
 						<form action="#" method="post">
-							<input type="hidden" name="oldlocale" value="<?php echo LOCALE_OPTION; ?>" />
+							<input type="hidden" name="oldlocale" value="<?php echo getOption('locale'); ?>" />
 							<select id="dynamic-locale" class="languageselect" name="locale" onchange="this.form.submit()">
 								<?php
-								$currentValue = LOCALE_OPTION;
 								foreach ($languages as $key => $item) {
 									echo '<option class="languageoption" value="' . html_encode($item) . '"';
-									if ($item == $currentValue) {
+									if ($item == $localeOption) {
 										echo ' selected="selected"';
 									}
 									echo ' >';

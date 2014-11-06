@@ -569,7 +569,7 @@ function getSerializedArray($string) {
 		} else {
 			return array();
 		}
-	} else if (strlen($string) == 0 && !is_bool($string)) {
+	} else if (!$string && !is_bool($string)) {
 		return array();
 	} else {
 		return array($string);
