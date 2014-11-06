@@ -38,6 +38,7 @@
  *
  * @package plugins
  * @subpackage admin
+ * @category package
  */
 
 $plugin_is_filter = defaultExtension(1 | CLASS_PLUGIN);
