@@ -4620,6 +4620,7 @@ function getPluginTabs() {
 
 	$classXlate = array(
 					'all'					 => gettext('all'),
+					'thirdparty'	 => gettext('3rd party'),
 					'enabled'			 => gettext('enabled'),
 					'admin'				 => gettext('admin'),
 					'demo'				 => gettext('demo'),
@@ -4635,20 +4636,27 @@ function getPluginTabs() {
 	);
 	zp_apply_filter('plugin_tabs', $classXlate);
 
-	$classes = $member = array();
+	$classes = $member = $thirdparty = array();
 	foreach ($paths as $plugin => $path) {
 		$p = file_get_contents($path);
-		$i = strpos($p, '* @subpackage');
-		if (($key = $i) !== false) {
-			$key = strtolower(trim(substr($p, $i + 13, strpos($p, "\n", $i) - $i - 13)));
+		$key = 'misc';
+		if ($str = isolate('@subpackage', $p)) {
+			preg_match('|@subpackage\s+(.*)\s|', $str, $matches);
+			if (isset($matches[1])) {
+				$key = strtolower(trim($matches[1]));
+			}
 		}
-		if (empty($key)) {
-			$key = 'misc';
-		}
-		$classes[$key]['list'][] = $plugin;
+
+		$classes[$key][] = $plugin;
 		if (extensionEnabled($plugin)) {
 			$active[$plugin] = $path;
 		}
+		if ($str = isolate('@category', $p)) {
+			preg_match('|@category\s+(.*)\s|', $str, $matches);
+			if (!isset($matches[1]) || $matches[1] != 'package')
+				$thirdparty[$plugin] = $path;
+		}
+
 		if (array_key_exists($key, $classXlate)) {
 			$local = $classXlate[$key];
 		} else {
@@ -4659,6 +4667,7 @@ function getPluginTabs() {
 
 	ksort($classes);
 	$tabs[$classXlate['all']] = 'admin-plugins.php?page=plugins&tab=all';
+	$tabs[$classXlate['thirdparty']] = 'admin-plugins.php?page=plugins&tab=thirdparty';
 	$tabs[$classXlate['enabled']] = 'admin-plugins.php?page=plugins&tab=active';
 	switch ($default) {
 		case 'all':
@@ -4666,6 +4675,9 @@ function getPluginTabs() {
 			break;
 		case 'active':
 			$currentlist = array_keys($active);
+			break;
+		case'thirdparty':
+			$currentlist = array_keys($thirdparty);
 			break;
 		default:
 			$currentlist = array();
@@ -4676,7 +4688,7 @@ function getPluginTabs() {
 	foreach ($classes as $class => $list) {
 		$tabs[$classXlate[$class]] = 'admin-plugins.php?page=plugins&tab=' . $class;
 		if ($class == $default) {
-			$currentlist = $list['list'];
+			$currentlist = $list;
 		}
 	}
 	return array($tabs, $default, $currentlist, $paths, $member);

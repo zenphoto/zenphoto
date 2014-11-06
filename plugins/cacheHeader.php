@@ -8,13 +8,13 @@
  * any caching agent in the path.
  *
  * @author Stephen Billard (sbillard)
- * 
+ *
  * @package plugins
  * @subpackage example
  * @category package
  */
 $plugin_is_filter = 9 | ADMIN_PLUGIN | THEME_PLUGIN;
-$plugin_description = gettext('Outputs a "Cache-control" header with selected caching options for all class-page pages.');
+$plugin_description = gettext('Outputs a "Cache-control" header with selected caching options.');
 $plugin_author = "Stephen Billard (sbillard)";
 $option_interface = 'cacheHeader_options';
 
