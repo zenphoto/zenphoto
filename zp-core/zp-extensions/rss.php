@@ -160,13 +160,13 @@ class rss_options {
  * 																		"Comments-page" for comments of only the page it is called from
  * 																		"Comments-all" for comments from all albums, images, news articels and pages
  * 																		"Pages" feed for all pages
- * @param string $lang optional to display a feed link for a specific language. Enter the locale like "de_DE" (the locale must be installed to work of course). If empty the locale set in the admin option or the language selector (LOCALE_OPTION is used.
+ * @param string $lang optional to display a feed link for a specific language. Enter the locale like "de_DE" (the locale must be installed to work of course). If empty the locale set in the admin option or the language selector (getOption('locale') is used.
  * @param string $addl provided additional data for feeds (e.g. album object for album feeds, $categorylink for zenpage categories
  */
 function getRSSLink($option, $lang = NULL, $addl = NULL) {
 	global $_zp_current_album, $_zp_current_image, $_zp_current_admin_obj, $_zp_current_category;
 	if (empty($lang)) {
-		$lang = zpFunctions::getLanguageText(LOCALE_OPTION);
+		$lang = zpFunctions::getLanguageText(getOption('locale'));
 	}
 	$link = NULL;
 	switch (strtolower($option)) {
@@ -289,7 +289,7 @@ function getRSSLink($option, $lang = NULL, $addl = NULL) {
  * @param string $next text to appear after the link
  * @param bool $printIcon print an RSS icon beside it? if true, the icon is zp-core/images/rss.png
  * @param string $class css class
- * @param string $lang optional to display a feed link for a specific language. Enter the locale like "de_DE" (the locale must be installed to work of course). If empty the locale set in the admin option or the language selector (LOCALE_OPTION is used.
+ * @param string $lang optional to display a feed link for a specific language. Enter the locale like "de_DE" (the locale must be installed to work of course). If empty the locale set in the admin option or the language selector (getOption('locale') is used.
  * @param string $addl provided additional data for feeds (e.g. album object for album feeds, $categorylink for zenpage categories
  */
 function printRSSLink($option, $prev, $linktext, $next, $printIcon = true, $class = null, $lang = '', $addl = NULL) {
@@ -319,7 +319,7 @@ function printRSSLink($option, $prev, $linktext, $next, $printIcon = true, $clas
  * 																		"AlbumsRSS" for latest albums
  * 																		"AlbumsRSScollection" only for latest subalbums with the album it is called from
  * @param string $linktext title of the link
- * @param string $lang optional to display a feed link for a specific language. Enter the locale like "de_DE" (the locale must be installed to work of course). If empty the locale set in the admin option or the language selector (LOCALE_OPTION is used.
+ * @param string $lang optional to display a feed link for a specific language. Enter the locale like "de_DE" (the locale must be installed to work of course). If empty the locale set in the admin option or the language selector (getOption('locale') is used.
  * @param string $addl provided additional data for feeds (e.g. album object for album feeds, $categorylink for zenpage categories
  *
  */

@@ -1316,7 +1316,7 @@ function getAlbumInherited($folder, $field, &$id) {
 	$folders = explode('/', filesystemToInternal($folder));
 	$album = array_shift($folders);
 	$like = ' LIKE ' . db_quote(db_LIKE_escape($album));
-	while (count($folders) > 0) {
+	while (!empty($folders)) {
 		$album .= '/' . array_shift($folders);
 		$like .= ' OR `folder` LIKE ' . db_quote(db_LIKE_escape($album));
 	}

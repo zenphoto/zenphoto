@@ -44,7 +44,7 @@ function printAdminFooter($addl = '') {
 }
 
 function datepickerJS() {
-	$lang = str_replace('_', '-', LOCALE_OPTION);
+	$lang = str_replace('_', '-', getOption('locale'));
 	if (!file_exists(SERVERPATH . '/' . ZENFOLDER . '/js/jqueryui/i18n/datepicker-' . $lang . '.js')) {
 		$lang = substr($lang, 0, 2);
 		if (!file_exists(SERVERPATH . '/' . ZENFOLDER . '/js/jqueryui/i18n/datepicker-' . $lang . '.js')) {
@@ -270,7 +270,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 		foreach ($zenphoto_tabs as $atab) {
 			$chars = $chars + mb_strlen($atab['text']);
 		}
-		switch (LOCALE_OPTION) {
+		switch (getOption('locale')) {
 			case 'zh_CN':
 			case 'zh_TW':
 			case 'ja_JP':
@@ -397,7 +397,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			foreach ($tabs as $atab => $val) {
 				$chars = $chars + mb_strlen($atab);
 			}
-			switch (LOCALE_OPTION) {
+			switch (getOption('locale')) {
 				case 'zh_CN':
 				case 'zh_TW':
 				case 'ja_JP':
@@ -1442,7 +1442,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 													 name="disclose_password<?php echo $suffix; ?>"
 													 id="disclose_password<?php echo $suffix; ?>"
 													 onclick="passwordClear('<?php echo $suffix; ?>');
-															 togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?>
+																	 togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?>
 									</label>
 								</td>
 								<td>
@@ -1929,7 +1929,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 } else {
 											 ?>
 											 onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');
-													 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
+															 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
 											 <?php
 										 }
 										 ?> />
@@ -4620,6 +4620,7 @@ function getPluginTabs() {
 
 	$classXlate = array(
 					'all'					 => gettext('all'),
+					'thirdparty'	 => gettext('3rd party'),
 					'enabled'			 => gettext('enabled'),
 					'admin'				 => gettext('admin'),
 					'demo'				 => gettext('demo'),
@@ -4635,20 +4636,27 @@ function getPluginTabs() {
 	);
 	zp_apply_filter('plugin_tabs', $classXlate);
 
-	$classes = $member = array();
+	$classes = $member = $thirdparty = array();
 	foreach ($paths as $plugin => $path) {
 		$p = file_get_contents($path);
-		$i = strpos($p, '* @subpackage');
-		if (($key = $i) !== false) {
-			$key = strtolower(trim(substr($p, $i + 13, strpos($p, "\n", $i) - $i - 13)));
+		$key = 'misc';
+		if ($str = isolate('@subpackage', $p)) {
+			preg_match('|@subpackage\s+(.*)\s|', $str, $matches);
+			if (isset($matches[1])) {
+				$key = strtolower(trim($matches[1]));
+			}
 		}
-		if (empty($key)) {
-			$key = 'misc';
-		}
-		$classes[$key]['list'][] = $plugin;
+
+		$classes[$key][] = $plugin;
 		if (extensionEnabled($plugin)) {
 			$active[$plugin] = $path;
 		}
+		if ($str = isolate('@category', $p)) {
+			preg_match('|@category\s+(.*)\s|', $str, $matches);
+			if (!isset($matches[1]) || $matches[1] != 'package')
+				$thirdparty[$plugin] = $path;
+		}
+
 		if (array_key_exists($key, $classXlate)) {
 			$local = $classXlate[$key];
 		} else {
@@ -4659,13 +4667,19 @@ function getPluginTabs() {
 
 	ksort($classes);
 	$tabs[$classXlate['all']] = 'admin-plugins.php?page=plugins&tab=all';
-	$tabs[$classXlate['enabled']] = 'admin-plugins.php?page=plugins&tab=active';
+	if (!empty($thirdparty))
+		$tabs[$classXlate['thirdparty']] = 'admin-plugins.php?page=plugins&tab=thirdparty';
+	if (!empty($active))
+		$tabs[$classXlate['enabled']] = 'admin-plugins.php?page=plugins&tab=active';
 	switch ($default) {
 		case 'all':
 			$currentlist = array_keys($paths);
 			break;
 		case 'active':
 			$currentlist = array_keys($active);
+			break;
+		case'thirdparty':
+			$currentlist = array_keys($thirdparty);
 			break;
 		default:
 			$currentlist = array();
@@ -4676,7 +4690,7 @@ function getPluginTabs() {
 	foreach ($classes as $class => $list) {
 		$tabs[$classXlate[$class]] = 'admin-plugins.php?page=plugins&tab=' . $class;
 		if ($class == $default) {
-			$currentlist = $list['list'];
+			$currentlist = $list;
 		}
 	}
 	return array($tabs, $default, $currentlist, $paths, $member);
@@ -4996,7 +5010,7 @@ function linkPickerIcon($obj, $id = NULL, $extra = NULL) {
 	}
 	?>
 	<a onclick="<?php echo $clickid; ?>$('.pickedObject').removeClass('pickedObject');
-			$('#<?php echo $iconid; ?>').addClass('pickedObject');<?php linkPickerPick($obj, $id, $extra); ?>" title="<?php echo gettext('pick source'); ?>">
+				$('#<?php echo $iconid; ?>').addClass('pickedObject');<?php linkPickerPick($obj, $id, $extra); ?>" title="<?php echo gettext('pick source'); ?>">
 		<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" id="<?php echo $iconid; ?>">
 	</a>
 	<?php

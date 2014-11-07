@@ -8,7 +8,6 @@
  * @package core
  */
 // force UTF-8 Ø
-define('LOCALE_OPTION', getOption('locale'));
 
 function getLanguageArray() {
 	return array(
@@ -300,12 +299,12 @@ function setupDomain($domain = NULL, $type = NULL) {
 			break;
 	}
 	bindtextdomain($domain, $domainpath);
-	// function only since php 4.2.0
+// function only since php 4.2.0
 	if (function_exists('bind_textdomain_codeset')) {
 		bind_textdomain_codeset($domain, 'UTF-8');
 	}
 	textdomain($domain);
-	//invalidate because the locale was not setup until now
+//invalidate because the locale was not setup until now
 	$_zp_active_languages = $_zp_all_languages = NULL;
 }
 
@@ -318,20 +317,20 @@ function setupDomain($domain = NULL, $type = NULL) {
  */
 function setupCurrentLocale($override = NULL) {
 	if (is_null($override)) {
-		$locale = LOCALE_OPTION;
+		$locale = getOption('locale');
 	} else {
 		$locale = $override;
 	}
 	if (getOption('disallow_' . $locale)) {
 		if (DEBUG_LOCALE)
 			debugLogBacktrace("setupCurrentLocale($override): $locale denied by option.");
-		$locale = LOCALE_OPTION;
+		$locale = getOption('locale');
 		if (empty($locale) || getOption('disallow_' . $locale)) {
 			$languages = generateLanguageList();
 			$locale = array_shift($languages);
 		}
 	}
-	// gettext setup
+// gettext setup
 	@putenv("LANG=$locale"); // Windows ???
 	@putenv("LANGUAGE=$locale"); // Windows ???
 	$result = i18nSetLocale($locale);
@@ -361,7 +360,7 @@ function setupCurrentLocale($override = NULL) {
  * @return array
  */
 function parseHttpAcceptLanguage($str = NULL) {
-	// getting http instruction if not provided
+// getting http instruction if not provided
 	if (!$str) {
 		$str = @$_SERVER['HTTP_ACCEPT_LANGUAGE'];
 	}
@@ -369,29 +368,29 @@ function parseHttpAcceptLanguage($str = NULL) {
 		return array();
 	}
 	$langs = explode(',', $str);
-	// creating output list
+// creating output list
 	$accepted = array();
 	foreach ($langs as $lang) {
-		// parsing language preference instructions
-		// 2_digit_code[-longer_code][;q=coefficient]
+// parsing language preference instructions
+// 2_digit_code[-longer_code][;q=coefficient]
 		if (preg_match('/([A-Za-z]{1,2})(-([A-Za-z0-9]+))?(;q=([0-9\.]+))?/', $lang, $found)) {
-			// 2 digit lang code
+// 2 digit lang code
 			$code = $found[1];
-			// lang code complement
+// lang code complement
 			$morecode = array_key_exists(3, $found) ? $found[3] : false;
-			// full lang code
+// full lang code
 			$fullcode = $morecode ? $code . '_' . $morecode : $code;
-			// coefficient (preference value, will be used in sorting the list)
+// coefficient (preference value, will be used in sorting the list)
 			$coef = sprintf('%3.1f', array_key_exists(5, $found) ? $found[5] : '1');
-			// for sorting by coefficient
+// for sorting by coefficient
 			if ($coef) { //	q=0 means do not supply this language
-				// adding
+// adding
 				$accepted[$coef . '-' . $code] = array('code' => $code, 'coef' => $coef, 'morecode' => $morecode, 'fullcode' => $fullcode);
 			}
 		}
 	}
 
-	// sorting the list by coefficient desc
+// sorting the list by coefficient desc
 	krsort($accepted);
 	if (DEBUG_LOCALE) {
 		debugLog("parseHttpAcceptLanguage($str)");
@@ -469,7 +468,7 @@ function getUserLocale() {
 		}
 
 		if (!$_zp_current_locale) {
-			$localeOption = LOCALE_OPTION;
+			$localeOption = getOption('locale');
 			$_zp_current_locale = zp_getCookie('dynamic_locale');
 
 			if (DEBUG_LOCALE)
@@ -491,7 +490,7 @@ function getUserLocale() {
 		}
 
 		if (empty($_zp_current_locale)) {
-			// return "default" language, English if allowed, otherwise whatever is the "first" allowed language
+// return "default" language, English if allowed, otherwise whatever is the "first" allowed language
 			$languageSupport = generateLanguageList();
 			if (empty($languageSupport) || in_array('en_US', $languageSupport)) {
 				$_zp_current_locale = 'en_US';
@@ -519,16 +518,16 @@ function getUserLocale() {
  */
 function get_language_string($dbstring, $locale = NULL) {
 	$strings = getSerializedArray($dbstring);
-	if (is_null($locale))
-		$locale = LOCALE_OPTION;
-	if (isset($strings[$locale])) {
-		return $strings[$locale];
-	}
-	if (isset($strings[LOCALE_OPTION])) {
-		return $strings[LOCALE_OPTION];
-	}
-	if (isset($strings['en_US'])) {
-		return $strings['en_US'];
+	if (count($strings) > 1) {
+		if (!empty($locale) && isset($strings[$locale])) {
+			return $strings[$locale];
+		}
+		if (isset($strings[$locale = getOption('locale')])) {
+			return $strings[$locale];
+		}
+		if (isset($strings['en_US'])) {
+			return $strings['en_US'];
+		}
 	}
 	return array_shift($strings);
 }
@@ -553,10 +552,10 @@ function getTimezones() {
 				}
 			}
 		}
-		// Only keep one city (the first and also most important) for each set of possibilities.
+// Only keep one city (the first and also most important) for each set of possibilities.
 		$cities = array_unique($cities);
 
-		// Sort by area/city name.
+// Sort by area/city name.
 		ksort($cities, SORT_LOCALE_STRING);
 	}
 	return $cities;

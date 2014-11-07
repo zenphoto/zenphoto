@@ -37,7 +37,7 @@ if (isset($_GET['mergedrss'])) {
 	if (isset($_GET['lang'])) {
 		$locale = sanitize($_GET['lang']);
 	} else {
-		$locale = LOCALE_OPTION;
+		$locale = getOption('locale');
 	}
 	$gallery = new Gallery();
 	// Create new MergedRSS object with desired parameters

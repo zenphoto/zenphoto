@@ -53,12 +53,12 @@ $_zp_missing_image = new Transientimage($_zp_missing_album, SERVERPATH . '/' . Z
  * */
 function parseAllowedTags(&$source) {
 	$source = trim($source);
-	if (substr($source, 0, 1) != "(") {
+	if (@$source{0} != "(") {
 		return false;
 	}
 	$source = substr($source, 1); //strip off the open paren
 	$a = array();
-	while ((strlen($source) > 1) && (substr($source, 0, 1) != ")")) {
+	while (strlen($source) > 1 && $source{0} != ")") {
 		$i = strpos($source, '=>');
 		if ($i === false) {
 			return false;
@@ -69,7 +69,7 @@ function parseAllowedTags(&$source) {
 			return 0;
 		}
 		$source = trim(substr($source, $i + 2));
-		if (substr($source, 0, 1) != "(") {
+		if (@$source{0} != "(") {
 			return false;
 		}
 		$x = parseAllowedTags($source);
@@ -78,7 +78,7 @@ function parseAllowedTags(&$source) {
 		}
 		$a[$tag] = $x;
 	}
-	if (substr($source, 0, 1) != ')') {
+	if (@$source{0} != ')') {
 		return false;
 	}
 	$source = trim(substr($source, 1)); //strip the close paren

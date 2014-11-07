@@ -123,15 +123,14 @@ class GoogleMap {
 	 * Add required informations in the header
 	 */
 	static function js() {
-
 		if (!defined('BASEPATH'))
 			define('BASEPATH', true); //	for no access test in googleMap.php
 		require_once(dirname(__FILE__) . '/googleMap/CodeIgniter-Google-Maps-V3-API/Googlemaps.php');
-		$loc = LOCALE_OPTION;
+		$loc = getOption('locale');
 		if (empty($loc)) {
 			$loc = '';
 		} else {
-			$loc = '&amp;language=' . substr(LOCALE_OPTION, 0, 2);
+			$loc = '&amp;language=' . substr(getOption('locale'), 0, 2);
 		}
 		?>
 		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false<?php echo $loc; ?>"></script>

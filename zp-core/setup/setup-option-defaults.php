@@ -549,7 +549,7 @@ foreach ($_languages as $language => $dirname) {
 
 //The following should be done LAST so it catches anything done above
 //set plugin default options by instantiating the options interface
-
+enableExtension('deprecated-functions', 0); //	innocent until proven guilty.
 $plugins = getPluginFiles('*.php');
 ?>
 <p>
