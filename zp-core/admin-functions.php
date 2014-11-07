@@ -1222,7 +1222,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 				<a onclick="addNewTag('<?php echo $postit; ?>');" title="<?php echo gettext('add tag'); ?>">
 					<img src="images/add.png" title="<?php echo gettext('add tag'); ?>"/>
 				</a>
-				<input class="tagsuggest <?php echo $class; ?> " type="text" value="" name="newtag_<?php echo $postit; ?>" id="newtag_<?php echo $postit; ?>" />
+				<input class="tagsuggest <?php echo $class; ?>" type="text" value="" name="newtag_<?php echo $postit; ?>" id="newtag_<?php echo $postit; ?>" />
 			</span>
 
 			<?php
@@ -1237,7 +1237,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						?>
 						<li id="<?php echo $tag; ?>_element">
 							<label class="displayinline">
-								<input id="<?php echo $listitem; ?>"<?php echo $class; ?> name="<?php echo $listitem; ?>" type="checkbox" checked="checked"	value="1" />
+								<input id="<?php echo $listitem; ?>" class="<?php echo $class; ?>" name="<?php echo $listitem; ?>" type="checkbox" checked="checked" value="1" />
 								<img src="<?php echo $flags[$languages[$item]]; ?>" height="10" width="16" />
 								<?php
 								if ($showCounts) {
@@ -1259,7 +1259,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					?>
 					<li id="<?php echo $tag; ?>_element">
 						<label class="displayinline">
-							<input id="<?php echo $listitem; ?>"<?php echo $class; ?> name="<?php echo $listitem; ?>" type="checkbox" value="1" />
+							<input id="<?php echo $listitem; ?>" class="<?php echo $class; ?>" name="<?php echo $listitem; ?>" type="checkbox" value="1" />
 							<img src="<?php echo $flags[$languages[$item]]; ?>" height="10" width="16" />
 							<?php
 							if ($showCounts) {
