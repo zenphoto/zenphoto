@@ -1838,11 +1838,11 @@ function setThemeOption($key, $value, $album, $theme, $default = false) {
 	}
 	$sql .= ') ';
 	if ($default) {
-		if (!isset($_zp_options[$key]))
+		if (!isset($_zp_options[$key = strtolower($key)]))
 			$_zp_options[$key] = $value;
 	} else {
 		$sql .= $sqlu;
-		$_zp_options[$key] = $value;
+		$_zp_options[strtolower($key)] = $value;
 	}
 	$result = query($sql, false);
 }
