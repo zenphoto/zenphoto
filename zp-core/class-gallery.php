@@ -1061,7 +1061,11 @@ class Gallery {
 	 */
 	static function imageObjectClass($filename) {
 		global $_zp_images_classes;
-		return @$_zp_images_classes[getSuffix($filename)];
+		if (isset($_zp_images_classes[$suffix = getSuffix($filename)])) {
+			return $_zp_images_classes[$suffix];
+		} else {
+			return false;
+		}
 	}
 
 	/**

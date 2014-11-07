@@ -322,12 +322,12 @@ function js_encode($this_string) {
 function primeOptions() {
 	global $_zp_options;
 	if (function_exists('query_full_array')) { //	incase we are in primitive mode
-		$sql = "SELECT `name`, `value` FROM " . prefix('options') . ' WHERE (`theme`="" OR `theme` IS NULL) AND `ownerid`=0';
+		$sql = "SELECT LCASE(`name`) as name, `value` FROM " . prefix('options') . ' WHERE (`theme`="" OR `theme` IS NULL) AND `ownerid`=0';
 		$optionlist = query_full_array($sql, false);
 		if ($optionlist !== false) {
 			$_zp_options = array();
 			foreach ($optionlist as $option) {
-				$_zp_options[strtolower($option['name'])] = $option['value'];
+				$_zp_options[$option['name']] = $option['value'];
 			}
 		}
 	}
@@ -434,20 +434,20 @@ function setOptionDefault($key, $default) {
 function loadLocalOptions($albumid, $theme) {
 	global $_zp_options;
 //raw theme options
-	$sql = "SELECT `name`, `value` FROM " . prefix('options') . ' WHERE `theme`=' . db_quote($theme) . ' AND `ownerid`=0';
+	$sql = "SELECT LCASE(`name`) as name, `value` FROM " . prefix('options') . ' WHERE `theme`=' . db_quote($theme) . ' AND `ownerid`=0';
 	$optionlist = query_full_array($sql, false);
 	if ($optionlist !== false) {
 		foreach ($optionlist as $option) {
-			$_zp_options[strtolower($option['name'])] = $option['value'];
+			$_zp_options[$option['name']] = $option['value'];
 		}
 	}
 	if ($albumid) {
 //album-theme options
-		$sql = "SELECT `name`, `value` FROM " . prefix('options') . ' WHERE `theme`=' . db_quote($theme) . ' AND `ownerid`=' . $albumid;
+		$sql = "SELECT LCASE(`name`) as name, `value` FROM " . prefix('options') . ' WHERE `theme`=' . db_quote($theme) . ' AND `ownerid`=' . $albumid;
 		$optionlist = query_full_array($sql, false);
 		if ($optionlist !== false) {
 			foreach ($optionlist as $option) {
-				$_zp_options[strtolower($option['name'])] = $option['value'];
+				$_zp_options[$option['name']] = $option['value'];
 			}
 		}
 	}
