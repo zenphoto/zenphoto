@@ -598,7 +598,7 @@ function printDownloadAlbumZipURL($linktext = NULL, $albumobj = NULL, $fromcache
  * Process any download requests
  */
 if (isset($_GET['download'])) {
-	$_zp_HTML_cache->abortHTMLCache();
+	$_zp_HTML_cache->abortHTMLCache(true);
 	$item = sanitize($_GET['download']);
 	if (empty($item) || !extensionEnabled('downloadList')) {
 		if (TEST_RELEASE) {
