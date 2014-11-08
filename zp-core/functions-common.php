@@ -562,6 +562,9 @@ function getSerializedArray($string) {
 	if (is_array($string)) {
 		return $string;
 	}
+	if (is_null($string) || $string === '') {
+		return array();
+	}
 	if (preg_match('/^a:[0-9]+:{/', $string)) {
 		$r = @unserialize($string);
 		if ($r) {
