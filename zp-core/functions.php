@@ -2019,7 +2019,7 @@ function cron_starter($script, $params, $offsetPath, $inline = false) {
 				$paramlist .= '&' . $key . '=' . $value;
 			}
 			$paramlist .= '&auth=' . $auth . '&offsetPath=' . $offsetPath;
-			$_zp_HTML_cache->abortHTMLCache();
+			$_zp_HTML_cache->abortHTMLCache(true);
 			?>
 			<script type="text/javascript">
 				// <!-- <![CDATA[
@@ -2663,7 +2663,7 @@ class _zp_HTML_cache {
 
 	}
 
-	function abortHTMLCache() {
+	function abortHTMLCache($flush) {
 
 	}
 
