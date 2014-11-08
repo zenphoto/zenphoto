@@ -97,11 +97,13 @@ class fieldExtender {
 		}
 
 		$set_fields = array_flip(explode(',', getOption('search_fields')));
-		foreach ($previous as $table => $orpahed) { //drop fields no longer defined
-			foreach ($orpahed as $field => $v) {
-				unset($set_fields[$field]);
-				$sql = 'ALTER TABLE ' . prefix($table) . ' DROP `' . $field . '`';
-				query($sql, false);
+		foreach ($previous as $table => $orphaned) { //drop fields no longer defined
+			if ($orphaned) {
+				foreach ($orphaned as $field => $v) {
+					unset($set_fields[$field]);
+					$sql = 'ALTER TABLE ' . prefix($table) . ' DROP `' . $field . '`';
+					query($sql, false);
+				}
 			}
 		}
 		$set_fields = array_unique(array_merge($fields, array_flip($set_fields)));
