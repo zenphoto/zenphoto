@@ -311,7 +311,7 @@ class fieldExtender {
 			if ($field['table'] == $object->table) {
 				list($item, $formatted) = fieldExtender::_editHandler($object, $field, $i);
 				if (!is_null($formatted)) {
-					$html .= '<tr>' . "\n" . '<td><span class="nowrap">' . $field['desc'] . "</td>\n<td>";
+					$html .= '<tr>' . "\n" . '<td><span class="nowrap">' . $field['desc'] . "</span></td>\n<td>";
 					if ($formatted) {
 						$html .= $item;
 					} else {
