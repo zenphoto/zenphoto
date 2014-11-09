@@ -15,15 +15,8 @@ require_once(dirname(dirname(__FILE__)) . '/' . PLUGIN_FOLDER . '/security-logge
 zp_apply_filter('log_setup', true, 'install', '');
 
 /* fix for NULL theme name */
-$active = getOptionList();
-$sql = "SELECT * FROM " . prefix('options') . ' WHERE `theme` IS NULL';
-$optionlist = query_full_array($sql);
-if ($optionlist) {
-	foreach ($optionlist as $option) {
-		query('DELETE FROM ' . prefix('options') . ' WHERE `id`=' . $option['id']);
-		setOption($option['name'], $active[$option['name']]);
-	}
-}
+Query('UPDATE ' . prefix('options') . ' SET `theme`="" WHERE `theme` IS NULL');
+
 $lib_auth_extratext = "";
 $salt = 'abcdefghijklmnopqursuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789~!@#$%^&*()_+-={}[]|;,.<>?/';
 $list = range(0, strlen($salt) - 1);
@@ -313,7 +306,7 @@ if (file_exists(SERVERPATH . '/' . THEMEFOLDER . '/effervescence_plus')) {
 		$_zp_gallery->setCurrentTheme('effervescence+');
 		$_zp_gallery->save();
 	}
-	$options = query_full_array('SELECT * FROM ' . prefix('options') . ' WHERE `theme`="effervescence_plus"');
+	$options = query_full_array('SELECT LCASE(`name`) as name, `value` FROM ' . prefix('options') . ' WHERE `theme`="effervescence_plus"');
 	foreach ($options as $option) {
 		setThemeOption($option['name'], $option['value'], NULL, 'effervescence+', true);
 	}
@@ -446,9 +439,12 @@ if ($data['unprotected_pages']) {
 	setOptionDefault('gallery_page_unprotected_contact', 1);
 	$unprotected = array();
 }
+
 primeOptions(); // get a fresh start
 $optionlist = getOptionList();
+
 foreach ($optionlist as $key => $option) {
+
 	if ($option && strpos($key, 'gallery_page_unprotected_') === 0) {
 		$unprotected[] = str_replace('gallery_page_unprotected_', '', $key);
 	}

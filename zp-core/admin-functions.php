@@ -1222,7 +1222,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 				<a onclick="addNewTag('<?php echo $postit; ?>');" title="<?php echo gettext('add tag'); ?>">
 					<img src="images/add.png" title="<?php echo gettext('add tag'); ?>"/>
 				</a>
-				<input class="tagsuggest <?php echo $class; ?> " type="text" value="" name="newtag_<?php echo $postit; ?>" id="newtag_<?php echo $postit; ?>" />
+				<input class="tagsuggest <?php echo $class; ?>" type="text" value="" name="newtag_<?php echo $postit; ?>" id="newtag_<?php echo $postit; ?>" />
 			</span>
 
 			<?php
@@ -1237,7 +1237,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						?>
 						<li id="<?php echo $tag; ?>_element">
 							<label class="displayinline">
-								<input id="<?php echo $listitem; ?>"<?php echo $class; ?> name="<?php echo $listitem; ?>" type="checkbox" checked="checked"	value="1" />
+								<input id="<?php echo $listitem; ?>" class="<?php echo $class; ?>" name="<?php echo $listitem; ?>" type="checkbox" checked="checked" value="1" />
 								<img src="<?php echo $flags[$languages[$item]]; ?>" height="10" width="16" />
 								<?php
 								if ($showCounts) {
@@ -1259,7 +1259,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					?>
 					<li id="<?php echo $tag; ?>_element">
 						<label class="displayinline">
-							<input id="<?php echo $listitem; ?>"<?php echo $class; ?> name="<?php echo $listitem; ?>" type="checkbox" value="1" />
+							<input id="<?php echo $listitem; ?>" class="<?php echo $class; ?>" name="<?php echo $listitem; ?>" type="checkbox" value="1" />
 							<img src="<?php echo $flags[$languages[$item]]; ?>" height="10" width="16" />
 							<?php
 							if ($showCounts) {
@@ -1442,7 +1442,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 													 name="disclose_password<?php echo $suffix; ?>"
 													 id="disclose_password<?php echo $suffix; ?>"
 													 onclick="passwordClear('<?php echo $suffix; ?>');
-																	 togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?>
+															 togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?>
 									</label>
 								</td>
 								<td>
@@ -1929,7 +1929,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 } else {
 											 ?>
 											 onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');
-															 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
+													 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
 											 <?php
 										 }
 										 ?> />
@@ -3649,6 +3649,7 @@ function getNestedAlbumList($subalbum, $levels, $level = array()) {
 	} else {
 		$albums = $subalbum->getAlbums();
 	}
+
 	$list = array();
 	foreach ($albums as $analbum) {
 		$albumobj = newAlbum($analbum);
@@ -5010,7 +5011,7 @@ function linkPickerIcon($obj, $id = NULL, $extra = NULL) {
 	}
 	?>
 	<a onclick="<?php echo $clickid; ?>$('.pickedObject').removeClass('pickedObject');
-				$('#<?php echo $iconid; ?>').addClass('pickedObject');<?php linkPickerPick($obj, $id, $extra); ?>" title="<?php echo gettext('pick source'); ?>">
+			$('#<?php echo $iconid; ?>').addClass('pickedObject');<?php linkPickerPick($obj, $id, $extra); ?>" title="<?php echo gettext('pick source'); ?>">
 		<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" id="<?php echo $iconid; ?>">
 	</a>
 	<?php

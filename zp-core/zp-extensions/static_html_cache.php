@@ -208,11 +208,17 @@ class static_html_cache {
 	 * Aborts HTML caching
 	 * Used for instance, when there is a 404 error or such
 	 *
+	 * @param bool $flush set to false to discard prior output
+	 *
 	 */
-	function abortHTMLCache() {
+	function abortHTMLCache($flush) {
 		if (!empty($this->pageCachePath)) {
 			$this->pageCachePath = NULL;
-			ob_end_flush();
+			if ($flush) {
+				ob_end_flush();
+			} else {
+				ob_end_clean();
+			}
 		}
 	}
 
