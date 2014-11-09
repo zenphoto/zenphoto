@@ -4178,7 +4178,7 @@ function printPasswordForm($_password_hint, $_password_showuser = NULL, $_passwo
 		$query['userlog'] = 1;
 		$parts['query'] = http_build_query($query);
 		$action = build_url($parts);
-		$_password_redirect = SEO_WEBPATH . $action;
+		$_password_redirect = $action;
 	}
 	?>
 	<div id="passwordform">
