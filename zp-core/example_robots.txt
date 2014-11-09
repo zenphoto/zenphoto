@@ -21,7 +21,7 @@ Disallow: /zenphoto/page/search/
 Disallow: /zenphoto/uploaded/
 Disallow: /zenphoto/backup/
 
-# Link to the sitemap file if using teh sitemap-extended plugin.
+# Link to the sitemap file if using the sitemap-extended plugin.
 # Change it to your domain and uncomment the line to use it:
 # sitemap: http://www.yourdomain.com/cache_html/sitemap/sitemapindex.xml
 
