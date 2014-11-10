@@ -3857,33 +3857,33 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 		<!-- search form -->
 		<form method="post" action="<?php echo $searchurl; ?>" id="search_form">
 			<script type="text/javascript">
-				// <!-- <![CDATA[
-				var within = <?php echo (int) $within; ?>;
-				function search_(way) {
-					within = way;
-					if (way) {
-						$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
-					} else {
-						lastsearch = '';
-						$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
-					}
-					$('#search_input').val('');
-				}
-				$('#search_form').submit(function () {
-					if (within) {
-						var newsearch = $.trim($('#search_input').val());
-						if (newsearch.substring(newsearch.length - 1) == ',') {
-							newsearch = newsearch.substr(0, newsearch.length - 1);
-						}
-						if (newsearch.length > 0) {
-							$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
+					// <!-- <![CDATA[
+					var within = <?php echo (int) $within; ?>;
+					function search_(way) {
+						within = way;
+						if (way) {
+							$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
 						} else {
-							$('#search_input').val('<?php echo $searchwords; ?>');
+							lastsearch = '';
+							$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
 						}
+						$('#search_input').val('');
 					}
-					return true;
-				});
-				// ]]> -->
+					$('#search_form').submit(function () {
+						if (within) {
+							var newsearch = $.trim($('#search_input').val());
+							if (newsearch.substring(newsearch.length - 1) == ',') {
+								newsearch = newsearch.substr(0, newsearch.length - 1);
+							}
+							if (newsearch.length > 0) {
+								$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
+							} else {
+								$('#search_input').val('<?php echo $searchwords; ?>');
+							}
+						}
+						return true;
+					});
+					// ]]> -->
 			</script>
 			<?php echo $prevtext; ?>
 			<div>
@@ -4274,7 +4274,7 @@ function getCodeblock($number = 1, $object = NULL) {
 		setOptionDefault('codeblock_first_tab', 0);
 	}
 	if (!is_object($object)) {
-		if ($_zp_gallery_page == 'index.php') {
+		if ($_zp_gallery_page == 'index.php' || $_zp_gallery_page == 'gallery.php') {
 			$object = $_zp_gallery;
 		}
 		if (in_context(ZP_ALBUM)) {

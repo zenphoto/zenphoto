@@ -6,9 +6,7 @@ if (class_exists('CMS')) {
 	<!DOCTYPE html>
 	<html>
 		<head>
-			
 			<?php zp_apply_filter('theme_head'); ?>
-			
 			<link rel="stylesheet" href="<?php echo $_zp_themeroot ?>/zen.css" type="text/css" />
 			<?php if (class_exists('RSS')) printRSSHeaderLink("News", "Zenpage news", ""); ?>
 		</head>
@@ -21,6 +19,7 @@ if (class_exists('CMS')) {
 						<div id="logo-floater">
 							<div>
 								<h1 class="title"><a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a></h1>
+								<span id="galleryDescription"><?php printGalleryDesc(); ?></span>
 							</div>
 						</div>
 					</div>
