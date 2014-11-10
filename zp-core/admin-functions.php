@@ -2519,7 +2519,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 		$start = max(1, $pagenum - 7);
 		$total = min($start + 15, $totalpages + 1);
 		if ($start != 1) {
-			echo "\n <li><a href=" . $url . 'subpage=' . ($p = max($start - 8, 1)) . $tab . ' title="' . sprintf(gettext('page %u'), $p) . '">. . .</a></li>';
+			echo "\n <li><a href=\"" . $url . 'subpage=' . ($p = max($start - 8, 1)) . $tab . '" title="' . sprintf(gettext('page %u'), $p) . '">. . .</a></li>';
 		}
 		for ($i = $start; $i < $total; $i++) {
 			if ($i == $pagenum) {
@@ -2529,7 +2529,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			}
 		}
 		if ($i < $totalpages) {
-			echo "\n <li><a href=" . $url . 'subpage=' . ($p = min($pagenum + 22, $totalpages + 1)) . $tab . ' title="' . sprintf(gettext('page %u'), $p) . '">. . .</a></li>';
+			echo "\n <li><a href=\"" . $url . 'subpage=' . ($p = min($pagenum + 22, $totalpages + 1)) . $tab . '" title="' . sprintf(gettext('page %u'), $p) . '">. . .</a></li>';
 		}
 		echo "<li class=\"next\">";
 		if ($pagenum < $totalpages) {
