@@ -177,7 +177,7 @@ codeblocktabsJS();
 					if (is_AdminEditPage('page')) {
 						$subtab = 'edit';
 						$admintype = 'page';
-						$additem = gettext('newPage');
+						$additem = gettext('New Page');
 						$deleteitem = gettext('Page');
 						$themepage = 'pages';
 						$locked = !checkIfLocked($result);
@@ -198,7 +198,7 @@ codeblocktabsJS();
 						}
 						if (is_AdminEditPage('page')) {
 							?>
-							<h1><?php echo gettext('newPage'); ?></h1>
+							<h1><?php echo gettext('New Page'); ?></h1>
 							<?php
 						}
 					} else if (!$result->loaded) {
