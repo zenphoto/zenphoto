@@ -6,9 +6,8 @@ if (class_exists('favorites')) {
 	<!DOCTYPE html>
 	<html>
 		<head>
-			
 			<?php zp_apply_filter('theme_head'); ?>
-			
+
 			<link rel="stylesheet" href="<?php echo $_zp_themeroot ?>/zen.css" type="text/css" />
 			<?php if (class_exists('RSS')) printRSSHeaderLink('Album', getAlbumTitle()); ?>
 		</head>
@@ -23,6 +22,7 @@ if (class_exists('favorites')) {
 								<h1 class="title">
 									<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo getGalleryTitle(); ?></a>
 								</h1>
+								<span id="galleryDescription"><?php printGalleryDesc(); ?></span>
 							</div>
 						</div>
 					</div><!-- header -->
