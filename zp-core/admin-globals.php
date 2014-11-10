@@ -176,4 +176,7 @@ if ($_zp_loggedin) {
 
 	loadLocalOptions(false, $_zp_gallery->getCurrentTheme());
 }
+define('ADMIN_THUMB_LARGE', 160);
+define('ADMIN_THUMB_MEDIUM', 80);
+define('ADMIN_THUMB_SMALL', 40);
 ?>
