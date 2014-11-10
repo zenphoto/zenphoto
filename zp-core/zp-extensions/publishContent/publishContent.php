@@ -303,7 +303,7 @@ echo '</head>';
 
 				<script type="text/javascript">
 					//<!-- <![CDATA[
-					$(function() {
+					$(function () {
 						$("#publish_date").datepicker({
 							dateFormat: 'yy-mm-dd',
 							showOn: 'button',
@@ -423,12 +423,11 @@ echo '</head>';
 																</td>
 																<td>
 																	<?php $image = newImage($album, $display); ?>
-																	<img src="<?php echo html_encode(pathurlencode(getAdminThumb($image, 'large'))); ?>" alt="<?php echo $image->filename; ?>"/>
+																	<img src="<?php echo html_encode(pathurlencode(getAdminThumb($image, 'medium'))); ?>" alt="<?php echo $image->filename; ?>"/>
 																</td>
 																<td>
 																	<?php printf(gettext('%s'), $display); ?><a href="<?php echo html_encode($image->getLink()); ?>" title="<?php echo html_encode($image->getTitle()); ?>"> (<?php echo gettext('View'); ?>)</a>
 																</td>
-
 															</tr>
 														</table>
 													</li>

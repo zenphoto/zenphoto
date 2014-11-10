@@ -56,7 +56,7 @@ printAdminHeader('edit', 'sort');
 ?>
 <script type="text/javascript">
 	//<!-- <![CDATA[
-	$(function() {
+	$(function () {
 		$('#images').sortable();
 	});
 	// ]]> -->
@@ -213,7 +213,7 @@ echo "\n</head>";
 											 src="<?php echo getAdminThumb($image, 'large'); ?>"
 											 alt="<?php echo html_encode($image->getTitle()); ?>"
 											 title="<?php echo html_encode($image->getTitle()) . ' (' . html_encode($image->getFileName()) . ')'; ?>"
-											 width="80" height="80"  />
+											 width="<?php echo ADMIN_THUMB_LARGE; ?>" height="<?php echo ADMIN_THUMB_LARGE; ?>"  />
 									<p>
 										<input type="checkbox" name="ids[]" value="<?php echo $image->filename; ?>">
 										<a href="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/admin-edit.php?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>&amp;image=<?php echo urlencode($image->filename); ?>&amp;tab=imageinfo#IT" title="<?php echo gettext('edit'); ?>">

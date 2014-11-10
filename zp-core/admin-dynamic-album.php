@@ -211,7 +211,7 @@ foreach ($subalbums as $folder) {
 						if (isImagePhoto($image) || !is_null($image->objectsThumb)) {
 							echo "\n<option class=\"thumboption\"";
 							if ($showThumb) {
-								echo " style=\"background-image: url(" . html_encode($image->getSizedImage(80)) .
+								echo " style=\"background-image: url(" . html_encode($image->getSizedImage(ADMIN_THUMB_MEDIUM)) .
 								"); background-repeat: no-repeat;\"";
 							}
 							echo " value=\"" . $imagepath . "\"";
