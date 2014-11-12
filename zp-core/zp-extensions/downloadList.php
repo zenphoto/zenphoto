@@ -597,20 +597,22 @@ if (isset($_GET['download'])) {
   $hash = getOption('downloadList_password');
   if (GALLERY_SECURITY != 'public' || $hash) {
     //	credentials required to download
-    $user = getOption('downloadList_user');
-    zp_handle_password('download_auth', $hash, $user);
-    if ((!empty($hash) && zp_getCookie('download_auth') != $hash) && !zp_loggedin((getOption('downloadList_rights')) ? FILES_RIGHTS : ALL_RIGHTS)) {
-      $show = ($user) ? true : NULL;
-      $hint = '';
-      if (!empty($hash)) {
-        $hint = get_language_string(getOption('downloadList_hint'));
-      }
-      if (isset($_GET['albumzip'])) {
-        $item .= '&albumzip';
-      }
-      printPasswordForm($hint, true, $show, '?download=' . $item);
-      exitZP();
-    }
+    if(!zp_loggedin((getOption('downloadList_rights')) ? FILES_RIGHTS : ALL_RIGHTS)) {
+    	$user = getOption('downloadList_user');
+    	zp_handle_password('download_auth', $hash, $user);
+    	if ((!empty($hash) && zp_getCookie('download_auth') != $hash)) {
+      	$show = ($user) ? true : NULL;
+      	$hint = '';
+      	if (!empty($hash)) {
+        	$hint = get_language_string(getOption('downloadList_hint'));
+      	}
+      	if (isset($_GET['albumzip'])) {
+        	$item .= '&albumzip';
+      	}
+      	printPasswordForm($hint, true, $show, '?download=' . $item);
+      	exitZP();
+    	}
+  	}
   }
   if (isset($_GET['albumzip'])) {
     DownloadList::updateListItemCount($item . '.zip');
