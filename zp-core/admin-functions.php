@@ -1442,7 +1442,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 													 name="disclose_password<?php echo $suffix; ?>"
 													 id="disclose_password<?php echo $suffix; ?>"
 													 onclick="passwordClear('<?php echo $suffix; ?>');
-															 togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?>
+																	 togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?>
 									</label>
 								</td>
 								<td>
@@ -1714,7 +1714,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										$subalbums = $album->getAlbums(0);
 										foreach ($subalbums as $folder) {
 											$newalbum = newAlbum($folder);
-											if ($_zp_gallery->getSecondLevelThumbs()) {
+											if ($images = $_zp_gallery->getSecondLevelThumbs()) {
 												$images = $newalbum->getImages(0);
 												foreach ($images as $filename) {
 													if (is_array($filename)) {
@@ -1723,7 +1723,8 @@ function printAdminHeader($tab, $subtab = NULL) {
 														$imagelist[] = '/' . $folder . '/' . $filename;
 													}
 												}
-											} else {
+											}
+											if (empty($images)) {
 												$t = $newalbum->getAlbumThumbImage();
 												if (strtolower(get_class($t)) !== 'transientimage' && $t->exists) {
 													$imagelist[] = '/' . $t->getAlbumName() . '/' . $t->filename;
@@ -1798,10 +1799,10 @@ function printAdminHeader($tab, $subtab = NULL) {
 							?>
 							<label class="checkboxlabel">
 								<input type="checkbox" name="<?php echo $prefix . 'allowcomments'; ?>" value="1" <?php
-								if ($album->getCommentsAllowed()) {
-									echo ' checked="checked"';
-								}
-								?> />
+					if ($album->getCommentsAllowed()) {
+						echo ' checked="checked"';
+					}
+							?> />
 											 <?php echo gettext("Allow Comments"); ?>
 							</label>
 							<?php
@@ -1929,7 +1930,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 } else {
 											 ?>
 											 onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');
-													 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
+															 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
 											 <?php
 										 }
 										 ?> />
@@ -2519,7 +2520,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 		$start = max(1, $pagenum - 7);
 		$total = min($start + 15, $totalpages + 1);
 		if ($start != 1) {
-			echo "\n <li><a href=\"" . $url . 'subpage=' . ($p = max($start - 8, 1)) . $tab . '" title="' . sprintf(gettext('page %u'), $p) . '">. . .</a></li>';
+			echo "\n <li><a href=" . $url . 'subpage=' . ($p = max($start - 8, 1)) . $tab . ' title="' . sprintf(gettext('page %u'), $p) . '">. . .</a></li>';
 		}
 		for ($i = $start; $i < $total; $i++) {
 			if ($i == $pagenum) {
@@ -2529,7 +2530,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			}
 		}
 		if ($i < $totalpages) {
-			echo "\n <li><a href=\"" . $url . 'subpage=' . ($p = min($pagenum + 22, $totalpages + 1)) . $tab . '" title="' . sprintf(gettext('page %u'), $p) . '">. . .</a></li>';
+			echo "\n <li><a href=" . $url . 'subpage=' . ($p = min($pagenum + 22, $totalpages + 1)) . $tab . ' title="' . sprintf(gettext('page %u'), $p) . '">. . .</a></li>';
 		}
 		echo "<li class=\"next\">";
 		if ($pagenum < $totalpages) {
@@ -3149,10 +3150,10 @@ function printAdminHeader($tab, $subtab = NULL) {
 						?>
 						<label title="<?php echo html_encode(get_language_string($right['hint'])); ?>">
 							<input type="checkbox" name="<?php echo $id . '-' . $rightselement; ?>" id="<?php echo $rightselement . '-' . $id; ?>" class="user-<?php echo $id; ?>" value="<?php echo $right['value']; ?>"<?php
-							if ($rights & $right['value'])
-								echo ' checked="checked"';
-							echo $alterrights;
-							?> /> <?php echo $right['name']; ?>
+				if ($rights & $right['value'])
+					echo ' checked="checked"';
+				echo $alterrights;
+						?> /> <?php echo $right['name']; ?>
 						</label>
 						<?php
 					} else {
@@ -5018,7 +5019,7 @@ function linkPickerIcon($obj, $id = NULL, $extra = NULL) {
 	}
 	?>
 	<a onclick="<?php echo $clickid; ?>$('.pickedObject').removeClass('pickedObject');
-			$('#<?php echo $iconid; ?>').addClass('pickedObject');<?php linkPickerPick($obj, $id, $extra); ?>" title="<?php echo gettext('pick source'); ?>">
+				$('#<?php echo $iconid; ?>').addClass('pickedObject');<?php linkPickerPick($obj, $id, $extra); ?>" title="<?php echo gettext('pick source'); ?>">
 		<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" id="<?php echo $iconid; ?>">
 	</a>
 	<?php
