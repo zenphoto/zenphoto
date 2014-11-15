@@ -385,9 +385,9 @@ themes/zpmobile/jquerymobile/images/icons-svg/user-black.svg
 themes/zpmobile/jquerymobile/images/icons-svg/user-white.svg
 themes/zpmobile/jquerymobile/images/icons-svg/video-black.svg
 themes/zpmobile/jquerymobile/images/icons-svg/video-white.svg
-themes/zpmobile/jquerymobile/jquery.mobile-1.4.2.min.css
-themes/zpmobile/jquerymobile/jquery.mobile-1.4.2.min.js
-themes/zpmobile/jquerymobile/jquery.mobile-1.4.2.min.map
+themes/zpmobile/jquerymobile/jquery.mobile-1.4.5.min.css
+themes/zpmobile/jquerymobile/jquery.mobile-1.4.5.min.js
+themes/zpmobile/jquerymobile/jquery.mobile-1.4.5.min.map
 themes/zpmobile/news.php
 themes/zpmobile/pages.php
 themes/zpmobile/password.php
