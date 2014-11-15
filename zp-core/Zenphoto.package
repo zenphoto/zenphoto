@@ -1592,13 +1592,10 @@ zp-core/zp-extensions/tinymce4/skins/lightgray
 zp-core/zp-extensions/tinymce4/skins/lightgray/content.inline.min.css
 zp-core/zp-extensions/tinymce4/skins/lightgray/content.min.css
 zp-core/zp-extensions/tinymce4/skins/lightgray/fonts
-zp-core/zp-extensions/tinymce4/skins/lightgray/fonts/readme.md
-zp-core/zp-extensions/tinymce4/skins/lightgray/fonts/tinymce-small.dev.svg
 zp-core/zp-extensions/tinymce4/skins/lightgray/fonts/tinymce-small.eot
 zp-core/zp-extensions/tinymce4/skins/lightgray/fonts/tinymce-small.svg
 zp-core/zp-extensions/tinymce4/skins/lightgray/fonts/tinymce-small.ttf
 zp-core/zp-extensions/tinymce4/skins/lightgray/fonts/tinymce-small.woff
-zp-core/zp-extensions/tinymce4/skins/lightgray/fonts/tinymce.dev.svg
 zp-core/zp-extensions/tinymce4/skins/lightgray/fonts/tinymce.eot
 zp-core/zp-extensions/tinymce4/skins/lightgray/fonts/tinymce.svg
 zp-core/zp-extensions/tinymce4/skins/lightgray/fonts/tinymce.ttf
@@ -1718,4 +1715,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1720
+1717
