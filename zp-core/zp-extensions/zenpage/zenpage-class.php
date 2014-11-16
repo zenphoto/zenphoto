@@ -192,6 +192,33 @@ class Zenpage {
 		return $all_pages;
 	}
 
+ /**
+   * Returns a list of Zenpage page IDs that the current viewer is not allowed to see
+   * Helper function to be used with getAllTagsUnique() and getAllTagsCount()
+   * Note if the Zenpage plugin is not enabled but items exists this returns no IDs so you need an extra check afterwards!
+   * 
+   * @return array
+   */
+  function getNotViewablePages() {
+    global $_zp_not_viewable_pages_list;
+    if (zp_loggedin(ADMIN_RIGHTS | ALL_PAGES_RIGHTS)) {
+      return array(); //admins can see all
+    }
+    if (is_null($_zp_not_viewable_pages_list)) {
+      $items = $this->getPages(true, false, NULL, NULL, NULL);
+      if (!is_null($items)) {
+        $_zp_not_viewable_pages_list = array();
+        foreach ($items as $item) {
+          $obj = new ZenpageNews($item['titlelink']);
+          if (!$obj->isProtected()) {
+            $_zp_not_viewable_pages_list[] = $obj->getID();
+          }
+        }
+      }
+    }
+    return $_zp_not_viewable_pages_list;
+  }
+ 
 	/*	 * ********************************* */
 	/* general news article functions   */
 	/*	 * ********************************* */
@@ -404,8 +431,35 @@ class Zenpage {
 		}
 		return $result;
 	}
+ 
+ /**
+   * Returns a list of Zenpage news article IDs that the current viewer is not allowed to see
+   * Helper function to be used with getAllTagsUnique() and getAllTagsCount() or db queries only
+   * Note if the Zenpage plugin is not enabled but items exists this returns no IDs so you need an extra check afterwards!
+   *
+   * @return array
+   */
+  function getNotViewableNews() {
+    global $_zp_not_viewable_news_list;
+    if (zp_loggedin(ADMIN_RIGHTS | ALL_NEWS_RIGHTS)) {
+      return array(); //admins can see all
+    }
+    if (is_null($_zp_not_viewable_news_list)) {
+      $items = $this->getArticles(0, 'published', true, NULL, NULL, NULL, NULL);
+      if (!is_null($items)) {
+        $_zp_not_viewable_news_list = array();
+        foreach ($items as $item) {
+          $obj = new ZenpageNews($item['titlelink']);
+          if ($obj->isProtected()) {
+            $_zp_not_viewable_news_list[] = $obj->getID();
+          }
+        }
+      }
+    }
+    return $_zp_not_viewable_news_list;
+  }
 
-	/**
+  /**
 	 * Returns an article from the album based on the index passed.
 	 *
 	 * @param int $index

@@ -1093,19 +1093,80 @@ function getAllTagsUnique() {
  * @return array
  */
 function getAllTagsCount() {
-	global $_zp_count_tags;
-	if (!is_null($_zp_count_tags))
-		return $_zp_count_tags;
-	$_zp_count_tags = array();
-	$sql = "SELECT DISTINCT tags.name, tags.id, (SELECT COUNT(*) FROM " . prefix('obj_to_tag') . " as object WHERE object.tagid = tags.id) AS count FROM " . prefix('tags') . " as tags ORDER BY `name`";
-	$tagresult = query($sql);
-	if ($tagresult) {
-		while ($tag = db_fetch_assoc($tagresult)) {
-			$_zp_count_tags[$tag['name']] = $tag['count'];
-		}
-		db_free_result($tagresult);
-	}
-	return $_zp_count_tags;
+  global $_zp_count_tags, $_zp_object_to_tags;
+  if (!is_null($_zp_count_tags))
+    return $_zp_count_tags;
+  $_zp_count_tags = array();
+  $sql = "SELECT DISTINCT tags.name, tags.id, (SELECT COUNT(*) FROM " . prefix('obj_to_tag') . " as object WHERE object.tagid = tags.id) AS count FROM " . prefix('tags') . " as tags ORDER BY `name`";
+  $tagresult = query($sql);
+  if ($tagresult) {
+    $tags = array();
+    while ($tag = db_fetch_assoc($tagresult)) {
+      $_zp_count_tags[$tag['name']] = getTagCountByAccess($tag);
+    }
+    db_free_result($tagresult);
+  }
+  return $_zp_count_tags;
+}
+
+/**
+ * Checks if the items a tag is assigned can be viewed by the current users and returns the corrected count if not
+ * Helper function for getAllTagsCount()
+ * 
+ * @global obj $_zp_zenpage
+ * @param array $tag Array representing a tag containing its name and id at least
+ * @return int
+ */
+function getTagCountByAccess($tag) {
+  global $_zp_zenpage,$_zp_object_to_tags;
+  if($tag['count'] == 0) {
+    return $tag['count'];
+  }
+  if (is_null($_zp_object_to_tags)) {
+    $sql = "SELECT tagid, type, objectid FROM " . prefix('obj_to_tag') . " ORDER BY tagid";
+    $_zp_object_to_tags = query_full_array($sql); 
+  }
+  $hidealbums = getNotViewableAlbums();
+  $hideimages = getNotViewableImages();
+  if (extensionEnabled('Zenpage')) {
+    $hidenews = $_zp_zenpage->getNotViewableNews();
+    $hidepages = $_zp_zenpage->getNotViewablePages();
+  }
+  $count = '';
+  foreach($_zp_object_to_tags as $tagcheck) {
+    if ($tagcheck['tagid'] == $tag['id']) {
+      switch ($tagcheck['type']) {
+        case 'albums':
+          if (!in_array($tagcheck['objectid'], $hidealbums)) {
+            $count++;
+          }
+          break;
+        case 'images':
+          if (!in_array($tagcheck['objectid'], $hideimages)) {
+            $count++;
+          }
+          break;
+        case 'news':
+          if (extensionEnabled('Zenpage') && ZP_NEWS_ENABLED) {
+            if (!in_array($tagcheck['objectid'], $hidenews)) {
+              $count++;
+            }
+          }
+          break;
+        case 'pages':
+          if (extensionEnabled('Zenpage') && ZP_PAGES_ENABLED) {
+            if (!in_array($tagcheck['objectid'], $hidepages)) {
+              $count++;
+            }
+          }
+          break;
+      }
+    }
+  }
+  if(empty($count)) {
+    $count = 0;
+  }
+  return $count;
 }
 
 /**
@@ -1385,10 +1446,9 @@ function sortMultiArray($array, $index, $descending = false, $natsort = true, $c
  * @return array
  */
 function getNotViewableAlbums() {
-	global $_zp_not_viewable_album_list, $_zp_gallery;
+	global $_zp_not_viewable_album_list;
 	if (zp_loggedin(ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS))
 		return array(); //admins can see all
-	$hint = '';
 	if (is_null($_zp_not_viewable_album_list)) {
 		$sql = 'SELECT `folder`, `id`, `password`, `show` FROM ' . prefix('albums') . ' WHERE `show`=0 OR `password`!=""';
 		$result = query($sql);
@@ -1411,6 +1471,36 @@ function getNotViewableAlbums() {
 }
 
 /**
+ * Returns a list of image IDs that the current viewer is not allowed to see
+ *
+ * @return array
+ */
+function getNotViewableImages() {
+  global $_zp_not_viewable_image_list;
+  if (zp_loggedin(ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS)) {
+    return array(); //admins can see all
+  }
+  $hidealbums = getNotViewableAlbums();
+  $where = '';
+  if (!is_null($hidealbums)) {
+    foreach ($hidealbums as $id) {
+      $where .= ' AND `albumid` = ' . $id;
+    }
+  }
+  if (is_null($_zp_not_viewable_image_list)) {
+    $sql = 'SELECT `id` FROM ' . prefix('images') . ' WHERE `show`= 0' . $where;
+    $result = query($sql);
+    if ($result) {
+      $_zp_not_viewable_image_list = array();
+      while ($row = db_fetch_assoc($result)) {
+        $_zp_not_viewable_image_list[] = $row['id'];
+      }
+    }
+  }
+  return $_zp_not_viewable_image_list;
+}
+
+  /**
  * Checks to see if a URL is valid
  *
  * @param string $url the URL being checked
