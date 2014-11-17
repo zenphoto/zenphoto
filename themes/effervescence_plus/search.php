@@ -144,7 +144,7 @@ $backgroundImagePath = "";
 						?>
 						<div id="efsearch">
 							<?php
-							if ($numpages > 0) {
+							if ($numpages > 0 && ZP_PAGES_ENABLED) {
 								?>
 								<div id="efsearchhead_pages">
 									<h3><?php printf(gettext('Pages (%s)'), $numpages); ?></h3>
@@ -175,7 +175,7 @@ $backgroundImagePath = "";
 								</div>
 								<?php
 							}
-							if ($numnews > 0) {
+							if ($numnews > 0 && ZP_NEWS_ENABLED) {
 								if ($numpages > 0)
 									echo '<br />';
 								?>

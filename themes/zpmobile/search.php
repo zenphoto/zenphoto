@@ -71,8 +71,8 @@ if (!defined('WEBPATH'))
 						</h3>
 						<?php
 					}
-					if ($_zp_page == 1) { //test of zenpage searches
-						if ($numpages > 0) {
+					if ($zenpage && $_zp_page == 1) { //test of zenpage searches
+						if ($numpages > 0 && ZP_PAGES_ENABLED) {
 							$number_to_show = 5;
 							$c = 0;
 							?>
@@ -93,7 +93,7 @@ if (!defined('WEBPATH'))
 							</ul>
 							<?php
 						}
-						if ($numnews > 0) {
+						if ($numnews > 0 && ZP_NEWS_ENABLED) {
 							$number_to_show = 5;
 							$c = 0;
 							?>
