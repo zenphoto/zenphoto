@@ -1068,23 +1068,30 @@ function setupTheme($album = NULL) {
 
 /**
  * Returns an array of unique tag names
- *
+ * @param bool $exclude_unassigned Set to true if you wish to exclude tags that are not 
+ *                                assigned to an item or are assigned to not viewable items by the current user
  * @return array
  */
-function getAllTagsUnique() {
-	global $_zp_unique_tags;
-	if (!is_null($_zp_unique_tags))
-		return $_zp_unique_tags; // cache them.
-	$_zp_unique_tags = array();
-	$sql = "SELECT DISTINCT `name` FROM " . prefix('tags') . ' ORDER BY `name`';
-	$unique_tags = query($sql);
-	if ($unique_tags) {
-		while ($tagrow = db_fetch_assoc($unique_tags)) {
-			$_zp_unique_tags[] = $tagrow['name'];
-		}
-		db_free_result($unique_tags);
-	}
-	return $_zp_unique_tags;
+function getAllTagsUnique($exclude_unassigned = false) {
+  global $_zp_unique_tags;
+  if (!is_null($_zp_unique_tags))
+    return $_zp_unique_tags; // cache them.
+  $_zp_unique_tags = array();
+  $sql = "SELECT DISTINCT `name`, `id` FROM " . prefix('tags') . ' ORDER BY `name`';
+  $unique_tags = query($sql);
+  if ($unique_tags) {
+    while ($tagrow = db_fetch_assoc($unique_tags)) {
+      if ($exclude_unassigned) {
+        if (getTagCountByAccess($tag) != 0) {
+          $_zp_unique_tags[] = $tagrow['name'];
+        }
+      } else {
+        $_zp_unique_tags[] = $tagrow['name'];
+      }
+    }
+    db_free_result($unique_tags);
+  }
+  return $_zp_unique_tags;
 }
 
 /**
@@ -1119,7 +1126,7 @@ function getAllTagsCount() {
  */
 function getTagCountByAccess($tag) {
   global $_zp_zenpage,$_zp_object_to_tags;
-  if($tag['count'] == 0) {
+  if(array_key_exists('count',$tag) && $tag['count'] == 0) {
     return $tag['count'];
   }
   if (is_null($_zp_object_to_tags)) {
