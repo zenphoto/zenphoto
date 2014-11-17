@@ -1082,7 +1082,7 @@ function getAllTagsUnique($exclude_unassigned = false) {
   if ($unique_tags) {
     while ($tagrow = db_fetch_assoc($unique_tags)) {
       if ($exclude_unassigned) {
-        if (getTagCountByAccess($tag) != 0) {
+        if (getTagCountByAccess($tagrow) != 0) {
           $_zp_unique_tags[] = $tagrow['name'];
         }
       } else {
