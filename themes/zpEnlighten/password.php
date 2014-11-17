@@ -4,23 +4,23 @@ if (!defined('WEBPATH'))
 ?>
 <!DOCTYPE html>
 <head>
-<?php zp_apply_filter('theme_head'); ?>
+	<?php zp_apply_filter('theme_head'); ?>
 	<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" type="text/css" />
 </head>
 
 <body>
-<?php zp_apply_filter('theme_body_open'); ?>
+	<?php zp_apply_filter('theme_body_open'); ?>
 
 	<div id="main">
 
-<?php include("header.php"); ?>
+		<?php include("header.php"); ?>
 
 		<div id="content">
 			<div id="breadcrumb">
 				<h2>
 					<?php if (extensionEnabled('zenpage')) { ?>
 						<a href="<?php echo getGalleryIndexURL(); ?>" title="<?php gettext('Index'); ?>"><?php echo gettext("Index"); ?></a>»
-<?php } ?>
+					<?php } ?>
 					<a href="<?php echo htmlspecialchars(getCustomPageURl('gallery')); ?>" title="<?php echo gettext('Gallery'); ?>"><?php echo gettext("Gallery") . " » "; ?></a>
 					<strong><?php echo gettext("A password is required for the page you requested"); ?></strong>
 				</h2>
@@ -29,7 +29,7 @@ if (!defined('WEBPATH'))
 			<div id="content-error">
 
 				<div class="errorbox">
-<?php printPasswordForm($hint, $show); ?>
+					<?php printPasswordForm($hint, $show, false); ?>
 				</div>
 
 				<?php
@@ -42,7 +42,7 @@ if (!defined('WEBPATH'))
 
 
 			<div id="footer">
-<?php include("footer.php"); ?>
+				<?php include("footer.php"); ?>
 			</div>
 
 
@@ -50,6 +50,6 @@ if (!defined('WEBPATH'))
 		</div><!-- content -->
 
 	</div><!-- main -->
-<?php zp_apply_filter('theme_body_close'); ?>
+	<?php zp_apply_filter('theme_body_close'); ?>
 </body>
 </html>

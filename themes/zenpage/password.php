@@ -8,9 +8,9 @@ if (!defined('WEBPATH'))
 <html>
 	<head>
 		<?php zp_apply_filter('theme_head'); ?>
-		
-		
-		 
+
+
+
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" type="text/css" />
 	</head>
 
@@ -31,7 +31,7 @@ if (!defined('WEBPATH'))
 				<div id="content-error">
 
 					<div class="errorbox">
-						<?php printPasswordForm($hint, $show); ?>
+						<?php printPasswordForm($hint, $show, false); ?>
 					</div>
 
 					<?php
