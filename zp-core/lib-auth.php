@@ -829,6 +829,7 @@ class Zenphoto_Authority {
 			$redirect = getRequestURI();
 		}
 
+		$cycle = sanitize_numeric(@$_GET['cycle']) + 1;
 		if (isset($_POST['user'])) {
 			$requestor = sanitize($_POST['user'], 0);
 		} else {
@@ -845,23 +846,31 @@ class Zenphoto_Authority {
 		$info = array('challenge' => '', 'response' => '');
 		if (!empty($requestor)) {
 			$admin = self::getAnAdmin(array('`user`=' => $requestor, '`valid`=' => 1));
-			if (is_object($admin) && rand(0, 4)) {
-				if ($admin->getEmail()) {
-					$star = $showCaptcha;
-				}
-				$info = $admin->getChallengePhraseInfo();
-			}
-			if (empty($info['challenge'])) {
-				$questions = array(gettext("What is your father’s middle name?"),
+			$info = $admin->getChallengePhraseInfo();
+			if (empty($info['challenge']) || ($cycle > 2 && ($cycle % 5) != 1)) {
+				$locale = getUserLocale();
+				$questions = array(
+								gettext("What is your father’s middle name?"),
 								gettext("What street did your Grandmother live on?"),
 								gettext("Who was your favorite singer?"),
 								gettext("When did you first get a computer?"),
 								gettext("How much wood could a woodchuck chuck if a woodchuck could chuck wood?"),
 								gettext("What is the date of the Ides of March?")
 				);
-				$v = (int) md5($requestor);
-				$v = $v % count($questions);
-				$info = array('challenge' => $questions[$v], 'response' => 0x00);
+				$rslt = query('SELECT `challenge_phrase`,`language` FROM ' . prefix('administrators') . ' WHERE `challenge_phrase` IS NOT NULL');
+				while ($row = db_fetch_assoc($rslt)) {
+					if (is_null($row['language']) || $row['language'] == $locale) {
+						$questions[] = getSerializedArray($row['challenge_phrase'])['challenge'];
+					}
+				}
+				db_free_result($rslt);
+				$questions = array_unique($questions);
+				shuffle($questions);
+				$info = array('challenge' => $questions[$cycle % count($questions)], 'response' => 0x00);
+			} else {
+				if ($admin->getEmail()) {
+					$star = $showCaptcha;
+				}
 			}
 		}
 		if (!$star) {
@@ -915,6 +924,7 @@ class Zenphoto_Authority {
 					}
 					break;
 			}
+
 			switch ($whichForm) {
 				case 'challenge':
 					?>
@@ -953,8 +963,8 @@ class Zenphoto_Authority {
 							?>
 							<div class="buttons">
 								<button type="submit" value="<?php echo gettext("Submit"); ?>"<?php if (!$info['challenge']) echo ' disabled="disabled"'; ?> ><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><?php echo gettext("Submit"); ?></button>
-								<button type="button" value="<?php echo gettext("Refresh"); ?>" id="challenge_refresh" onclick="launchScript('<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php', ['logon_step=challenge', 'ref=' + $('#user').val()]);" ><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/refresh.png" alt="" /><?php echo gettext("Refresh"); ?></button>
-								<button type="button" value="<?php echo gettext("Return"); ?>" onclick="launchScript('<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php', ['logon_step=', 'ref=' + $('#user').val()]);" ><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/refresh.png" alt="" /><?php echo gettext("Return"); ?></button>
+								<button type="button" value="<?php echo gettext("Refresh"); ?>" id="challenge_refresh" onclick="launchScript('<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php', ['logon_step=challenge', 'ref=' + $('#user').val(), 'cycle=<?php echo $cycle; ?>']);" ><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/refresh.png" alt="" /><?php echo gettext("Refresh"); ?></button>
+								<button type="button" value="<?php echo gettext("Return"); ?>" onclick="launchScript('<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php', ['logon_step=', 'ref=' + $('#user').val(), 'cycle=<?php echo $cycle; ?>']);" ><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/refresh.png" alt="" /><?php echo gettext("Return"); ?></button>
 							</div>
 							<br class="clearall" />
 						</fieldset>
