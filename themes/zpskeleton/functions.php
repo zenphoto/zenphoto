@@ -1,6 +1,4 @@
 <?php
-$_zp_page_check = 'my_checkPageValidity';
-
 setOption('themeSwitcher_css', preg_replace('~top:\s.*px;~', 'top: 40px;', getOption('themeSwitcher_css')), false);
 
 // Check some settings
@@ -264,26 +262,5 @@ function printZDToggleClass($option, $c, $number_to_show) {
 	if ($c > $number_to_show) {
 		echo ' class="' . $option . '_extrashow" style="display:none;"';
 	}
-}
-
-function my_checkPageValidity($request, $gallery_page, $page) {
-	switch ($gallery_page) {
-		case 'index.php':
-			if (function_exists("checkForPage")) { // check if Zenpage is enabled or not
-				if (!checkForPage(getOption('zenpage_homepage'))) {
-					break;
-				}
-			}
-		default:
-			if ($page != 1) {
-				return false;
-			}
-		case 'news.php':
-		case 'album.php':
-		case 'favorites.php';
-		case 'search.php':
-			break;
-	}
-	return checkPageValidity($request, $gallery_page, $page);
 }
 ?>
