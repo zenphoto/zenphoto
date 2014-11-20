@@ -860,7 +860,8 @@ class Zenphoto_Authority {
 				$rslt = query('SELECT `challenge_phrase`,`language` FROM ' . prefix('administrators') . ' WHERE `challenge_phrase` IS NOT NULL');
 				while ($row = db_fetch_assoc($rslt)) {
 					if (is_null($row['language']) || $row['language'] == $locale) {
-						$questions[] = getSerializedArray($row['challenge_phrase'])['challenge'];
+						$q = getSerializedArray($row['challenge_phrase']);
+						$questions[] = $q['challenge'];
 					}
 				}
 				db_free_result($rslt);
@@ -1248,7 +1249,7 @@ class Zenphoto_Authority {
 		<p>
 			<label for="disclose_password<?php echo $id; ?>"><?php echo gettext('Show password'); ?></label>
 			<input type="checkbox" name="disclose_password<?php echo $id; ?>" id="disclose_password<?php echo $id; ?>" onclick="passwordClear('<?php echo $id; ?>');
-							togglePassword('<?php echo $id; ?>');">
+					togglePassword('<?php echo $id; ?>');">
 		</p>
 		<p class="password_field_<?php echo $id; ?>">
 			<label for="pass_r<?php echo $id; ?>" id="match<?php echo $id; ?>"><?php echo gettext("Repeat password") . $flag; ?></label>
