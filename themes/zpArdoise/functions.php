@@ -17,29 +17,6 @@ if (!OFFSET_PATH) {
 	setOption('tinymce_comments', null, false); // force this option to disable tinyMCE for comment form
 
 	$_zenpage_enabled = extensionEnabled('zenpage');
-	$_zp_page_check = 'my_checkPageValidity';
-}
-
-function my_checkPageValidity($request, $gallery_page, $page) {
-	global $_zenpage_enabled;
-	switch ($gallery_page) {
-		case 'index.php':
-			if ($_zenpage_enabled) { // check if Zenpage is enabled or not
-				if (!checkForPage(getOption('zenpage_homepage'))) {
-					break;
-				}
-			}
-		default:
-			if ($page != 1) {
-				return false;
-			}
-		case 'news.php':
-		case 'album.php':
-		case 'favorites.php';
-		case 'search.php':
-			break;
-	}
-	return checkPageValidity($request, $gallery_page, $page);
 }
 
 /* zpArdoise_printRandomImages
