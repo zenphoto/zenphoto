@@ -41,7 +41,7 @@ $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 $option_interface = "downloadList";
 
 zp_register_filter('admin_utilities_buttons', 'DownloadList::button');
-
+ 
 /**
  * Plugin option handling class
  *
@@ -179,6 +179,7 @@ class DownloadList {
 		if (!$checkitem) {
 			query("INSERT INTO " . prefix('plugin_storage') . " (`type`,`aux`,`data`) VALUES ('downloadList'," . db_quote($path) . ",'0')");
 		}
+  zp_apply_filter('downloadlist_processdownload',$path);
 	}
 
 	/*	 * Gets the download items from all download items from the database. For internal use in the downloadList functions.
@@ -399,6 +400,7 @@ class AlbumZip {
 		}
 		$zip->finish();
 	}
+	
 
 }
 
