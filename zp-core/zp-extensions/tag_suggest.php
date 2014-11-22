@@ -26,8 +26,7 @@ function tagSuggestJS() {
 	?>
 	<link type="text/css" rel="stylesheet" href="<?php echo pathurlencode($css); ?>" />
 	<?php
-	$taglist = getAllTagsUnique();
-
+	$taglist = getAllTagsUnique(OFFSET_PATH ? false : NULL, !OFFSET_PATH);
 	$c = 0;
 	$list = '';
 	foreach ($taglist AS $tag) {
@@ -45,7 +44,7 @@ function tagSuggestJS() {
 	<script type="text/javascript">
 		// <!-- <![CDATA[
 		var _tagList = [<?php echo $list; ?>];
-		$(function() {
+		$(function () {
 			$('#search_input, #edit-editable_4, .tagsuggest').tagSuggest({separator: '<?php echo $tagseparator; ?>', tags: _tagList})
 		});
 		// ]]> -->
