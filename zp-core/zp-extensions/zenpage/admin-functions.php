@@ -1245,7 +1245,7 @@ function zenpagePublish($obj, $show) {
  * @return string
  */
 function skipScheduledPublishing($obj) {
-	$obj->setDate(date('Y-m-d H:i:s'));
+	$obj->setDateTime(date('Y-m-d H:i:s'));
 	$obj->setShow(1);
 	$obj->save();
 }
