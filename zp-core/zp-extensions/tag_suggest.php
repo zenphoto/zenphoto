@@ -12,10 +12,18 @@ $plugin_is_filter = 9 | THEME_PLUGIN;
 $plugin_description = gettext("Enables jQuery tag suggestions on the search field.");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 
-zp_register_filter('theme_head', 'tagSuggestJS');
-zp_register_filter('admin_head', 'tagSuggestJS');
+zp_register_filter('theme_head', 'tagSuggestJS_frontend');
+zp_register_filter('admin_head', 'tagSuggestJS_admin');
 
-function tagSuggestJS() {
+function tagSuggestJS_admin() {
+  tagSuggestJS(false);
+}
+
+function tagSuggestJS_frontend() {
+  tagSuggestJS(true);
+}
+
+function tagSuggestJS($exclude = true) {
 	// the scripts needed
 	?>
 	<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/encoder.js"></script>
@@ -25,22 +33,21 @@ function tagSuggestJS() {
 	?>
 	<link type="text/css" rel="stylesheet" href="<?php echo pathurlencode($css); ?>" />
 	<?php
-	$taglist = getAllTagsUnique();
-
-	$c = 0;
-	$list = '';
-	foreach ($taglist AS $tag) {
-		if ($c > 0)
-			$list .= ',';
-		$c++;
-		$list .= '"' . addslashes($tag) . '"';
-	}
-	if (OFFSET_PATH || getOption('search_space_is') == 'OR') {
-		$tagseparator = ' ';
-	} else {
-		$tagseparator = ',';
-	}
-	?>
+   $taglist = getAllTagsUnique($exclude);
+   $c = 0;
+   $list = '';
+   foreach ($taglist AS $tag) {
+     if ($c > 0)
+       $list .= ',';
+     $c++;
+     $list .= '"' . addslashes($tag) . '"';
+   }
+   if (OFFSET_PATH || getOption('search_space_is') == 'OR') {
+     $tagseparator = ' ';
+   } else {
+     $tagseparator = ',';
+   }
+   ?>
 	<script type="text/javascript">
 		// <!-- <![CDATA[
 		var _tagList = [<?php echo $list; ?>];

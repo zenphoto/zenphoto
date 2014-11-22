@@ -1073,25 +1073,39 @@ function setupTheme($album = NULL) {
  * @return array
  */
 function getAllTagsUnique($exclude_unassigned = false) {
-  global $_zp_unique_tags;
-  if (!is_null($_zp_unique_tags))
-    return $_zp_unique_tags; // cache them.
-  $_zp_unique_tags = array();
+  global $_zp_unique_tags, $_zp_unique_tags_excluded;
+  //need to cache all and filtered tags indiviually
+  if ($exclude_unassigned) {
+    if (!is_null($_zp_unique_tags_excluded)) {
+      return $_zp_unique_tags_excluded; // cache them.
+    }
+  } else {
+    if (!is_null($_zp_unique_tags)) {
+      return $_zp_unique_tags; // cache them.
+    }
+  }
+  $all_unique_tags = array();
   $sql = "SELECT DISTINCT `name`, `id` FROM " . prefix('tags') . ' ORDER BY `name`';
   $unique_tags = query($sql);
   if ($unique_tags) {
     while ($tagrow = db_fetch_assoc($unique_tags)) {
       if ($exclude_unassigned) {
         if (getTagCountByAccess($tagrow) != 0) {
-          $_zp_unique_tags[] = $tagrow['name'];
+          $all_unique_tags[] = $tagrow['name'];
         }
       } else {
-        $_zp_unique_tags[] = $tagrow['name'];
+        $all_unique_tags[] = $tagrow['name'];
       }
     }
     db_free_result($unique_tags);
   }
-  return $_zp_unique_tags;
+  if ($exclude_unassigned) {
+    $_zp_unique_tags_excluded = $all_unique_tags;
+    return $_zp_unique_tags_excluded;
+  } else {
+    $_zp_unique_tags = $all_unique_tags;
+    return $_zp_unique_tags;
+  }
 }
 
 /**
