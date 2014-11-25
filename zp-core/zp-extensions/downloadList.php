@@ -519,12 +519,13 @@ function printDownloadURL($file, $linktext = NULL) {
 	}
 	if (getOption('downloadList_showdownloadcounter')) {
 		$downloaditem = DownloadList::getListItemFromDB($file);
+		$downloaditem = DownloadList::getListItemFromDB($file);
 		if ($downloaditem) {
-			$downloadcount = ' - ' . sprintf(ngettext('%u download', '%u downloads', $downloaditem['data']), $downloaditem['data']);
+			$downloadcount = $downloaditem['data'];
 		} else {
-			$downloadcount = ' - 0 downloads';
+			$downloadcount = 0;
 		}
-		$filesize .= $downloadcount;
+		$filesize .= ' - ' . sprintf(ngettext('%u download', '%u downloads', $downloadcount), $downloadcount);
 	}
 	if (empty($linktext)) {
 		$filename = basename($file);
@@ -578,11 +579,11 @@ function printDownloadAlbumZipURL($linktext = NULL, $albumobj = NULL, $fromcache
 		if (getOption('downloadList_showdownloadcounter')) {
 			$downloaditem = DownloadList::getListItemFromDB($file);
 			if ($downloaditem) {
-				$downloadcount = ' - ' . sprintf(ngettext('%u download', '%u downloads', $downloaditem['data']), $downloaditem['data']);
+				$downloadcount = $downloaditem['data'];
 			} else {
-				$downloadcount = ' - 0 downloads';
+				$downloadcount = 0;
 			}
-			$filesize = '<small>' . $downloadcount . '</small>';
+			$filesize = '<small> - ' . sprintf(ngettext('%u download', '%u downloads', $downloadcount), $downloadcount) . '</small>';
 		} else {
 			$filesize = '';
 		}
