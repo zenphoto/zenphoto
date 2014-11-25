@@ -523,7 +523,7 @@ function printDownloadURL($file, $linktext = NULL) {
 		if ($downloaditem) {
 			$downloadcount = ' - ' . sprintf(ngettext('%u download', '%u downloads', $downloaditem['data']), $downloaditem['data']);
 		} else {
-			$downloadcount = ' - 0 downloads';
+			$downloadcount = ' - ' . gettext('0 downloads');
 		}
 		$filesize .= $downloadcount;
 	}
@@ -563,7 +563,7 @@ function printDownloadAlbumZipURL($linktext = NULL, $albumobj = NULL, $fromcache
 			if ($downloaditem) {
 				$downloadcount = ' - ' . sprintf(ngettext('%u download', '%u downloads', $downloaditem['data']), $downloaditem['data']);
 			} else {
-				$downloadcount = ' - 0 downloads';
+				$downloadcount = ' - ' . gettext('0 downloads');
 			}
 			$filesize = '<small>' . $downloadcount . '</small>';
 		} else {
