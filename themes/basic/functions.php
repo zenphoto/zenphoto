@@ -63,7 +63,7 @@ function switcher_head($ignore) {
 	?>
 	<script type="text/javascript">
 		// <!-- <![CDATA[
-		window.onload = function() {
+		window.onload = function () {
 			$('#themeSwitcher_zenpage').html('');
 		}
 		function switchColors() {
@@ -95,3 +95,4 @@ function switcher_controllink($ignore) {
 
 $_zp_page_check = 'checkPageValidity'; //	opt-in, standard behavior
 ?>
+
