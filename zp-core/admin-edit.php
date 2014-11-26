@@ -122,7 +122,7 @@ if (isset($_GET['action'])) {
 			break;
 		case 'sorttags':
 			if (isset($_GET['subpage'])) {
-				$pg = '&subpage=' . $_GET['subpage'];
+				$pg = '&subpage=' . sanitize($_GET['subpage']);
 				$tab = '&tab=imageinfo';
 			} else {
 				$pg = '';
@@ -393,9 +393,9 @@ if (isset($_GET['action'])) {
 				$qs_albumsuffix .= '&album=' . pathurlencode($folder);
 			}
 			if (isset($_POST['subpage'])) {
-				$pg = '&subpage=' . sanitize($_POST['subpage']);
+				$pg = '&subpage=' . ($subpage = sanitize($_POST['subpage']));
 			} else {
-				$pg = '';
+				$subpage = $pg = false;
 			}
 			$msg = zp_apply_filter('edit_error', '');
 			if ($msg) {
@@ -407,7 +407,21 @@ if (isset($_GET['action'])) {
 				if (empty($notify))
 					$notify = '&saved';
 			}
-			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $qs_albumsuffix . $notify . $pg . $returntab);
+
+			if ($notify == '&saved' && $subpage && ($single || !isset($_POST['totalimages']))) {
+				if ($subpage == 'object') {
+					if (isset($image)) {
+						$link = $image->getLink();
+					} else {
+						$link = $album->getLink();
+					}
+					header('Location: ' . $link);
+				} else {
+					header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . preg_replace('~singleimage=(.*)&~', '', $qs_albumsuffix) . $notify . $pg . $returntab);
+				}
+			} else {
+				header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $qs_albumsuffix . $notify . $pg . $returntab);
+			}
 			exitZP();
 			break;
 
@@ -700,9 +714,13 @@ echo "\n</head>";
 				}
 				if (!isset($pagenum)) {
 					if (isset($_GET['subpage'])) {
-						$pagenum = max(intval($_GET['subpage']), 1);
-						if (($pagenum - 1) * $imagesTab_imageCount >= $allimagecount)
-							$pagenum--;
+						if (is_numeric($_GET['subpage'])) {
+							$pagenum = max(intval($_GET['subpage']), 1);
+							if (($pagenum - 1) * $imagesTab_imageCount >= $allimagecount)
+								$pagenum--;
+						} else {
+							$pagenum = sanitize($_GET['subpage']);
+						}
 					} else {
 						$pagenum = 1;
 					}
@@ -908,7 +926,7 @@ echo "\n</head>";
 						consolidatedEditMessages('imageinfo');
 						if ($singleimage) {
 							if (isset($_GET['subpage'])) {
-								$parent .= '&album=' . html_encode(pathurlencode($album->name)) . '&tab=imageinfo&subpage=' . sanitize($_GET['subpage']);
+								$parent .= '&album=' . html_encode(pathurlencode($album->name)) . '&tab=imageinfo&subpage=' . html_encode(sanitize($_GET['subpage']));
 							}
 						} else {
 							$numsteps = ceil(max($allimagecount, $imagesTab_imageCount) / ADMIN_IMAGES_STEP);
@@ -1182,17 +1200,17 @@ echo "\n</head>";
 																<label class="checkboxlabel">
 																	<input type="radio" id="copy-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="copy"
 																				 onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>'
-																										 , 'copy');"  /> <?php echo gettext("Copy"); ?>
+																														 , 'copy');"  /> <?php echo gettext("Copy"); ?>
 																</label>
 																<label class="checkboxlabel">
 																	<input type="radio" id="rename-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="rename"
 																				 onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>',
-																										 'rename');"  /> <?php echo gettext("Rename File"); ?>
+																														 'rename');"  /> <?php echo gettext("Rename File"); ?>
 																</label>
 																<label class="checkboxlabel">
 																	<input type="radio" id="Delete-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="delete"
 																				 onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>', '');
-																						 deleteConfirm('Delete-<?php echo $currentimage; ?>', '<?php echo $currentimage; ?>', '<?php echo addslashes(gettext("Are you sure you want to select this image for deletion?")); ?>')" /> <?php echo gettext("Delete image") ?>
+																										 deleteConfirm('Delete-<?php echo $currentimage; ?>', '<?php echo $currentimage; ?>', '<?php echo addslashes(gettext("Are you sure you want to select this image for deletion?")); ?>')" /> <?php echo gettext("Delete image") ?>
 																</label>
 																<br class="clearall" />
 																<div id="movecopydiv-<?php echo $currentimage; ?>" style="padding-top: .5em; padding-left: .5em; display: none;">
@@ -1309,7 +1327,7 @@ echo "\n</head>";
 																?>
 																<div class = "page-list_icon">
 																	<input class = "checkbox" type = "checkbox" name = "ids[]" value="<?php echo $image->getFileName(); ?>" onclick="triggerAllBox(this.form, 'ids[]', this.for
-																							m.allbox);" />
+																												m.allbox);" />
 																</div>
 																<?php
 															}
