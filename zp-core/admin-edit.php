@@ -408,7 +408,7 @@ if (isset($_GET['action'])) {
 					$notify = '&saved';
 			}
 
-			if ($notify == '&saved' && $subpage && ($single || !isset($_POST['totalimages']))) {
+			if ($notify == '&saved' && $subpage && (isset($single) && $single || !isset($_POST['totalimages']))) {
 				if ($subpage == 'object') {
 					if (isset($image)) {
 						$link = $image->getLink();
