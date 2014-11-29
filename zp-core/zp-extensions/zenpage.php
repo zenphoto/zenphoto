@@ -289,7 +289,7 @@ class cmsFilters {
 		global $_zp_CMS;
 		if (zp_loggedin(ZENPAGE_PAGES_RIGHTS) && $_zp_CMS && $_zp_CMS->pages_enabled) {
 // page is zenpage page--provide edit, delete, and add links
-			echo "<li><a href=\"" . $zf . '/' . PLUGIN_FOLDER . "/zenpage/admin-edit.php?page&amp;edit&amp;titlelink=" . urlencode(getPageTitlelink()) . "\">" . gettext("Edit Page") . "</a></li>";
+			echo "<li><a href=\"" . $zf . '/' . PLUGIN_FOLDER . "/zenpage/admin-edit.php?page&amp;edit&amp;titlelink=" . urlencode(getPageTitlelink()) . "&amp;subpage=object\">" . gettext("Edit Page") . "</a></li>";
 			if (GALLERY_SESSION) {
 // XSRF defense requires sessions
 				?>
@@ -308,7 +308,7 @@ class cmsFilters {
 		if (is_NewsArticle()) {
 			if (zp_loggedin(ZENPAGE_NEWS_RIGHTS) && $_zp_CMS && $_zp_CMS->news_enabled) {
 // page is a NewsArticle--provide zenpage edit, delete, and Add links
-				echo "<li><a href=\"" . $zf . '/' . PLUGIN_FOLDER . "/zenpage/admin-edit.php?newsarticle&amp;edit&amp;titlelink=" . html_encode($_zp_current_article->getTitleLink()) . "\">" . gettext("Edit Article") . "</a></li>";
+				echo "<li><a href=\"" . $zf . '/' . PLUGIN_FOLDER . "/zenpage/admin-edit.php?newsarticle&amp;edit&amp;titlelink=" . html_encode($_zp_current_article->getTitleLink()) . "&amp;subpage=object\">" . gettext("Edit Article") . "</a></li>";
 				if (GALLERY_SESSION) {
 // XSRF defense requires sessions
 					?>

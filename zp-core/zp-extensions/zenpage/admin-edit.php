@@ -57,8 +57,13 @@ if (isset($_GET['titlelink'])) {
 				break;
 			case 'delete':
 				$reports[] = deleteZenpageObj($result, 'admin-' . $_GET['tab'] . '.php');
+				unset($_POST['subpage']);
 				break;
 		}
+	}
+	if (isset($_POST['subpage']) && $_POST['subpage'] == 'object' && count($reports) <= 1) {
+		header('Location: ' . $result->getLink());
+		exitZP();
 	}
 } else {
 	$result = $new('');
@@ -280,6 +285,12 @@ codeblocktabsJS();
 								<form class="dirtylistening" onReset="setClean('form_cmsItemEdit');" method="post" name="update" id="form_cmsItemEdit" action="admin-edit.php?<?php echo $admintype; ?>&amp;update<?php echo $page; ?>">
 									<?php
 									XSRFToken('update');
+								}
+								if (isset($_GET['subpage'])) {
+									?>
+									<input type="hidden" name="subpage" id="subpage" value="<?php echo html_encode(sanitize($_GET['subpage'])); ?>" />
+
+									<?php
 								}
 								?>
 								<input type="hidden" name="id" value="<?php echo $result->getID(); ?>" />

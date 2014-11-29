@@ -340,7 +340,8 @@ class RSS extends feed {
 	 *
 	 */
 	function __construct($options = NULL) {
-		global $_zp_gallery, $_zp_current_admin_obj, $_zp_loggedin;
+		global $_zp_gallery, $_zp_current_admin_obj, $_zp_loggedin, $_zp_gallery_page;
+		$_zp_gallery_page = 'RSS.php';
 		if (empty($options))
 			self::feed404();
 
