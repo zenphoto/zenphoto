@@ -924,11 +924,9 @@ class Zenphoto_Authority {
 								<br />
 								<?php } else {
 										if ( !$admin->getEmail() ) { ?>
-											<p class="logon_form_text"><?php echo gettext('This User ID has not supplied a challenge question<br />or e-mail address.'); ?>
-												<div class="errorbox"><?php echo gettext('A password reset is not possible.'); ?></div>
-											</p>
+											<fieldset><p class="logon_form_text errorbox"><?php echo gettext('A password reset is not possible.'); ?></p></fieldset>
 									<?php } else { ?>
-											<p class="logon_form_text"><?php echo gettext('This User ID has not supplied a challenge question but you may request a reset by e-mail by clicking the link below'); ?></p>
+											<p class="logon_form_text"><?php echo gettext('Please request a reset by e-mail by clicking the link below.'); ?></p>
 								<?php
 									}
 								}
