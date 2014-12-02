@@ -104,7 +104,7 @@ var ZenpageDialog = {
 		}
 		if($('#rightwrap').prop('checked')) {
 			// we don't need (inline) css attached to the image/link it they are wrapped for the title, the div does the wrapping!
-			if($('#showtitle').prop('checked')) {
+			if($('#showtitle:checked').val() != 1 && $('#showdesc:checked').val() != 1) {
 				textwrap_float = ' style=\'float: left;\'';
 			}
 			textwrap = 'class=\''+cssclass+'_left\''+textwrap_float;
