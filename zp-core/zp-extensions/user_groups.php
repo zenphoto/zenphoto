@@ -125,8 +125,7 @@ class user_groups {
 				}
 			}
 		}
-		$groups = array_merge($membership, array(array('name' => '', 'user' => '', 'custom_data' => gettext('*no group affiliation'))), $groups);
-
+		$groups = array_merge($membership, array(array('name' => '', 'user' => '', 'other_credentials' => '')), $groups);
 		if (empty($groups))
 			return gettext('no groups established'); // no groups setup yet
 
@@ -157,7 +156,7 @@ class user_groups {
 			} else {
 				$display = $user['user'];
 			}
-			$grouppart .= '<label title="' . html_encode($user['custom_data']) . $type . '"' . $highlight . '><input type="checkbox" class="' . $class . '" name="' . $i . 'group[]" id="' . $user['user'] . '_' . $i . '" value="' . $user['user'] . '" onclick="groupchange' . $i . '(' . $case . ');"' . $checked . ' />' . html_encode($display) . '</label>' . "\n";
+			$grouppart .= '<label title="' . html_encode($user['other_credentials']) . $type . '"' . $highlight . '><input type="checkbox" class="' . $class . '" name="' . $i . 'group[]" id="' . $user['user'] . '_' . $i . '" value="' . $user['user'] . '" onclick="groupchange' . $i . '(' . $case . ');"' . $checked . ' />' . html_encode($display) . '</label>' . "\n";
 		}
 
 		$grouppart .= "</ul>\n";
