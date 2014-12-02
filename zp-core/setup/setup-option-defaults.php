@@ -29,6 +29,20 @@ for ($i = 0; $i < 30; $i++) {
 setOption('zenphoto_install', serialize(installSignature()));
 $admins = $_zp_authority->getAdministrators('all');
 
+$str = gettext("What is your father’s middle name?");
+$questions[] = getSerializedArray(getAllTranslations($str));
+$str = gettext("What street did your Grandmother live on?");
+$questions[] = getSerializedArray(getAllTranslations($str));
+$str = gettext("Who was your favorite singer?");
+$questions[] = getSerializedArray(getAllTranslations($str));
+$str = gettext("When did you first get a computer?");
+$questions[] = getSerializedArray(getAllTranslations($str));
+$str = gettext("How much wood could a woodchuck chuck if a woodchuck could chuck wood?");
+$questions[] = getSerializedArray(getAllTranslations($str));
+$str = gettext("What is the date of the Ides of March?");
+$questions[] = getSerializedArray(getAllTranslations($str));
+setOptionDefault('challenge_foils', serialize($questions));
+
 if (empty($admins)) { //	empty administrators table
 	$groupsdefined = NULL;
 	if (isset($_SESSION['clone'][$cloneid])) { //replicate the user who cloned the install
