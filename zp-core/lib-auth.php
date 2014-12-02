@@ -679,7 +679,7 @@ class Zenphoto_Authority {
 							exitZP();
 						}
 					}
-					$_zp_login_error = gettext('Sorry, that is not the answer.');
+					if ( !empty($info['challenge']) && !empty($_POST['pass'])) { $_zp_login_error = gettext('Sorry, that is not the answer.'); }
 					$_REQUEST['logon_step'] = 'challenge';
 					break;
 				case 'captcha':
@@ -836,7 +836,7 @@ class Zenphoto_Authority {
 		$info = array('challenge' => '', 'response' => '');
 		if (!empty($requestor)) {
 			$admin = self::getAnAdmin(array('`user`=' => $requestor, '`valid`=' => 1));
-			if (is_object($admin) && rand(0, 4)) {
+			if (is_object($admin)) {
 				if ($admin->getEmail()) {
 					$star = $showCaptcha;
 				}
@@ -907,10 +907,12 @@ class Zenphoto_Authority {
 								<input class="textfield" name="user" id="user" type="text" size="35" value="<?php echo html_encode($requestor); ?>" />
 							</fieldset>
 							<?php
-							if ($requestor) {
+							if ($requestor && $admin) {
 								if (!empty($info['challenge'])) {
 								?>
-								<p class="logon_form_text"><?php echo gettext('Supply the correct response to the question below and you will be directed to a page where you can change your password.'); ?></p>
+								<p class="logon_form_text"><?php echo gettext('Supply the correct response to the question below and you will be directed to a page where you can change your password.'); ?>
+								<?php if ( $admin->getEmail() ) { echo gettext('<br />You may also use the link below to request a reset by e-mail.'); } ?>
+								</p>
 								<fieldset><legend><?php echo gettext('Challenge question:') ?></legend>
 									<?php
 									echo html_encode($info['challenge']);
@@ -920,13 +922,21 @@ class Zenphoto_Authority {
 									<input class="textfield" name="pass" id="pass" type="text" size="35" />
 								</fieldset>
 								<br />
-								<?php } else { ?><p class="logon_form_text"><?php echo gettext('This User ID has not supplied a challenge question. Please try a <code>Request reset by e-mail</code> by clicking the link below'); ?></p>
-							<?php }
+								<?php } else {
+										if ( !$admin->getEmail() ) { ?>
+											<p class="logon_form_text"><?php echo gettext('This User ID has not supplied a challenge question<br />or e-mail address.'); ?>
+												<div class="errorbox"><?php echo gettext('A password reset is not possible.'); ?></div>
+											</p>
+									<?php } else { ?>
+											<p class="logon_form_text"><?php echo gettext('This User ID has not supplied a challenge question but you may request a reset by e-mail by clicking the link below'); ?></p>
+								<?php
+									}
+								}
 							} else {
 								?>
 								<p class="logon_form_text">
 									<?php
-									echo gettext('Enter your User ID and press <code>Refresh</code> to get your challenge question.');
+									echo gettext('Enter your User ID and press <code>Refresh</code> to get your challenge question and/or get a link to request a reset by e-mail.');
 									?>
 								</p>
 								<?php
@@ -941,7 +951,7 @@ class Zenphoto_Authority {
 						</fieldset>
 						<br />
 						<?php
-						if ($star) {
+						if ( $star && $admin->getEmail() ) {
 							?>
 							<p class="logon_link">
 								<a href="javascript:launchScript('<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php',['logon_step=captcha', 'ref='+$('#user').val()]);" >
