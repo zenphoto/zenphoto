@@ -845,8 +845,9 @@ class Zenphoto_Authority {
 		$mails = array();
 		$info = array('challenge' => '', 'response' => '');
 		if (!empty($requestor)) {
-			$admin = self::getAnAdmin(array('`user`=' => $requestor, '`valid`=' => 1));
-			$info = $admin->getChallengePhraseInfo();
+			if ($admin = self::getAnAdmin(array('`user`=' => $requestor, '`valid`=' => 1))) {
+				$info = $admin->getChallengePhraseInfo();
+			}
 			if (empty($info['challenge']) || ($cycle > 2 && ($cycle % 5) != 1)) {
 				$locale = getUserLocale();
 				$questions = array(
