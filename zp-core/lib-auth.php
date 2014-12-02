@@ -842,18 +842,6 @@ class Zenphoto_Authority {
 				}
 				$info = $admin->getChallengePhraseInfo();
 			}
-			if (empty($info['challenge'])) {
-				$questions = array(gettext("What is your father’s middle name?"),
-								gettext("What street did your Grandmother live on?"),
-								gettext("Who was your favorite singer?"),
-								gettext("When did you first get a computer?"),
-								gettext("How much wood could a woodchuck chuck if a woodchuck could chuck wood?"),
-								gettext("What is the date of the Ides of March?")
-				);
-				$v = (int) md5($requestor);
-				$v = $v % count($questions);
-				$info = array('challenge' => $questions[$v], 'response' => 0x00);
-			}
 		}
 		if (!$star) {
 			$admins = $this->getAdministrators();
@@ -920,6 +908,7 @@ class Zenphoto_Authority {
 							</fieldset>
 							<?php
 							if ($requestor) {
+								if (!empty($info['challenge'])) {
 								?>
 								<p class="logon_form_text"><?php echo gettext('Supply the correct response to the question below and you will be directed to a page where you can change your password.'); ?></p>
 								<fieldset><legend><?php echo gettext('Challenge question:') ?></legend>
@@ -931,7 +920,8 @@ class Zenphoto_Authority {
 									<input class="textfield" name="pass" id="pass" type="text" size="35" />
 								</fieldset>
 								<br />
-								<?php
+								<?php } else { ?><p class="logon_form_text"><?php echo gettext('This User ID has not supplied a challenge question. Please try a <code>Request reset by e-mail</code> by clicking the link below'); ?></p>
+							<?php }
 							} else {
 								?>
 								<p class="logon_form_text">
