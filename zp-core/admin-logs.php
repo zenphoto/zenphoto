@@ -51,10 +51,31 @@ if (isset($_GET['action'])) {
 				}
 				break;
 			case 'download_log':
-				include_once(SERVERPATH . '/' . ZENFOLDER . '/lib-zipStream.php');
-				$zip = new ZipStream(sanitize($_GET['tab'], 3) . '.zip');
-				$zip->add_file_from_path(basename($file), $file);
-				$zip->finish();
+				$zipname = sanitize($_GET['tab'], 3) . '.zip';
+				if (class_exists('ZipArchive')) {
+					$zip = new ZipArchive;
+					$zip->open($zipname, ZipArchive::CREATE);
+					$zip->addFile($file, basename($file));
+					$zip->close();
+					ob_get_clean();
+					header("Pragma: public");
+					header("Expires: 0");
+					header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+					header("Cache-Control: private", false);
+					header("Content-Type: application/zip");
+					header("Content-Disposition: attachment; filename=" . basename($zipname) . ";" );
+					header("Content-Transfer-Encoding: binary");
+					header("Content-Length: " . filesize($zipname));
+					readfile($zipname);
+					// remove zip file from temp path
+					unlink($zipname);
+					exit;
+				} else {
+					include_once(SERVERPATH . '/' . ZENFOLDER . '/lib-zipStream.php');
+					$zip = new ZipStream($zipname);
+					$zip->add_file_from_path(internalToFilesystem(basename($file)),internalToFilesystem($file));
+					$zip->finish();
+				}
 				break;
 		}
 	}
