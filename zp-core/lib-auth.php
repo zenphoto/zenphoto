@@ -949,7 +949,7 @@ class Zenphoto_Authority {
 						</fieldset>
 						<br />
 						<?php
-						if ( $star && $admin->getEmail() ) {
+						if ( $star && (!empty($requestor) && $admin->getEmail()) ) {
 							?>
 							<p class="logon_link">
 								<a href="javascript:launchScript('<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php',['logon_step=captcha', 'ref='+$('#user').val()]);" >
