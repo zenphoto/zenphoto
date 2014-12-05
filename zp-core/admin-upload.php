@@ -278,7 +278,7 @@ foreach ($albumlist as $key => $value) {
 								<label for="newalbumcheckbox"><?php echo gettext("Make a new Album"); ?></label>
 							</div>
 							<div id="publishtext"><?php echo gettext("and"); ?>
-								<input type="checkbox" name="publishalbum" id="publishalbum" value="1" <?php echo $publishchecked; ?> onchange="publishCheck();" />
+								<input type="checkbox" name="publishalbum" id="publishalbum" value="true" <?php echo $publishchecked; ?> onchange="publishCheck();" />
 								<label for="publishalbum"><?php echo gettext("Publish the album so everyone can see it."); ?></label>
 							</div>
 						</div>
