@@ -178,10 +178,15 @@ foreach ($albumlist as $key => $value) {
 	<?php seoFriendlyJS(); ?>
 					function buttonstate(good) {
 						$('#albumtitleslot').val($('#albumtitle').val());
+
 						var publishalbumchecked;
-						if ($('#publishalbum').prop('checked')) { publishalbumchecked = 1 }
-							else { publishalbumchecked = 0 }
+						if ($('#publishalbum').prop('checked')) {
+							publishalbumchecked = 1 ;
+						} else {
+							publishalbumchecked = 0;
+						}
 						$('#publishalbumslot').val(publishalbumchecked);
+
 						if (good) {
 							$('#fileUploadbuttons').show();
 						} else {
@@ -190,8 +195,12 @@ foreach ($albumlist as $key => $value) {
 					}
 
 					function publishCheck() {
-						if ($('#publishalbum').prop('checked')) { publishalbumchecked = 1 }
-							else { publishalbumchecked = 0 }
+						var publishalbumchecked;
+						if ($('#publishalbum').prop('checked')) {
+							publishalbumchecked = 1 ;
+						} else {
+							publishalbumchecked = 0;
+						}
 						$('#publishalbumslot').val(publishalbumchecked);
 					}
 
