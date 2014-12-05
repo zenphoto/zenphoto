@@ -189,6 +189,12 @@ foreach ($albumlist as $key => $value) {
 						}
 					}
 
+					function publishCheck() {
+						if ($('#publishalbum').prop('checked')) { publishalbumchecked = 1 }
+							else { publishalbumchecked = 0 }
+						$('#publishalbumslot').val(publishalbumchecked);
+					}
+
 					function albumSelect() {
 						var sel = document.getElementById('albumselectmenu');
 						var selected = sel.options[sel.selectedIndex].value;
@@ -269,7 +275,7 @@ foreach ($albumlist as $key => $value) {
 								<label for="newalbumcheckbox"><?php echo gettext("Make a new Album"); ?></label>
 							</div>
 							<div id="publishtext"><?php echo gettext("and"); ?>
-								<input type="checkbox" name="publishalbum" id="publishalbum" value="1" <?php echo $publishchecked; ?> />
+								<input type="checkbox" name="publishalbum" id="publishalbum" value="1" <?php echo $publishchecked; ?> onchange="publishCheck();" />
 								<label for="publishalbum"><?php echo gettext("Publish the album so everyone can see it."); ?></label>
 							</div>
 						</div>
