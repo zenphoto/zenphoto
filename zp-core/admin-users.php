@@ -120,7 +120,7 @@ if (isset($_GET['action'])) {
 							}
 
 							if (isset($_POST[$i . '-admin_name'])) {
-								$admin_n = trim(sanitize(sanitize($_POST[$i . '-admin_name'])));
+								$admin_n = trim(sanitize($_POST[$i . '-admin_name']));
 								if ($admin_n != $userobj->getName()) {
 									markUpdated();
 									$userobj->setName($admin_n);
