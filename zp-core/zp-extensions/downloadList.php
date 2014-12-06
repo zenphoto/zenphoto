@@ -129,7 +129,7 @@ class DownloadList {
 						 value="<?php echo $x; ?>" />
 			<label>
 				<input type="checkbox" name="disclose_password_downloadList" id="disclose_password_downloadList" onclick="passwordClear('_downloadList');
-						togglePassword('_downloadList');"><?php echo gettext('Show password'); ?>
+								togglePassword('_downloadList');"><?php echo gettext('Show password'); ?>
 			</label>
 			<br />
 			<span class="password_field__downloadList">
@@ -393,12 +393,36 @@ class AlbumZip {
 			$opt = array('large_file_size' => 5 * 1024 * 1024, 'comment' => sprintf(gettext('Created from images in %1$s on %2$s.'), $album->name, zpFormattedDate(DATE_FORMAT, time())));
 		}
 		self::AddAlbum($album, $fromcache);
-		$zip = new ZipStream($zipname . '.zip', $opt);
-		foreach ($_zp_zip_list as $path => $file) {
-			@set_time_limit(6000);
-			$zip->add_file_from_path(internalToFilesystem($file), $path);
+		if (class_exists('ZipArchive')) {
+			$zipfileFS = tempnam('', 'zip');
+			$zip = new ZipArchive;
+			$zip->open($zipfileFS, ZipArchive::CREATE);
+			foreach ($_zp_zip_list as $path => $file) {
+				@set_time_limit(6000);
+				$zip->addFile($path, internalToFilesystem(trim($file, '/')));
+			}
+			$zip->close();
+			ob_get_clean();
+			header("Pragma: public");
+			header("Expires: 0");
+			header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+			header("Cache-Control: private", false);
+			header("Content-Type: application/zip");
+			header("Content-Disposition: attachment; filename=" . basename($zipname . '.zip') . ";");
+			header("Content-Transfer-Encoding: binary");
+			header("Content-Length: " . filesize($zipfileFS));
+			readfile($zipfileFS);
+			// remove zip file from temp path
+			unlink($zipfileFS);
+		} else {
+			require_once(SERVERPATH . '/' . ZENFOLDER . '/lib-zipStream.php');
+			$zip = new ZipStream(internalToFilesystem($zipname) . '.zip', $opt);
+			foreach ($_zp_zip_list as $path => $file) {
+				@set_time_limit(6000);
+				$zip->add_file_from_path(internalToFilesystem($file), $path);
+			}
+			$zip->finish();
 		}
-		$zip->finish();
 	}
 
 }
@@ -634,7 +658,6 @@ if (isset($_GET['download'])) {
 		}
 	}
 	if (isset($_GET['albumzip'])) {
-		require_once(SERVERPATH . '/' . ZENFOLDER . '/lib-zipStream.php');
 		if (isset($_GET['fromcache'])) {
 			$fromcache = sanitize($isset($_GET['fromcache']));
 		} else {
@@ -650,6 +673,7 @@ if (isset($_GET['download'])) {
 		}
 		AlbumZip::create($album, $item, $fromcache);
 		DownloadList::updateListItemCount($item . '.zip');
+		exitZP();
 	} else {
 		$path = query_single_row("SELECT `aux` FROM " . prefix('plugin_storage') . " WHERE id=" . (int) $item);
 		if (array_key_exists('aux', $path) && file_exists($_downloadFile = internalToFilesystem($path['aux']))) {

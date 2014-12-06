@@ -53,11 +53,8 @@ if (isset($_GET['action'])) {
 				}
 				break;
 			case 'download_log':
-				include_once(SERVERPATH . '/' . ZENFOLDER . '/lib-zipStream.php');
-				$zip = new ZipStream(sanitize($_GET['tab'], 3) . '.zip');
-				$zip->add_file_from_path(basename($file), $file);
-				$zip->finish();
-				break;
+				putZip(sanitize($_GET['tab'], 3) . '.zip', $file);
+				exitZP();
 		}
 	}
 }
