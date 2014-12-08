@@ -30,7 +30,7 @@ if (is_AdminEditPage('page')) {
 		if (getCheckboxState('copy_delete_object')) {
 			switch (sanitize($_POST['copy_delete_object'])) {
 				case 'copy':
-					$as = trim(sanitize(sanitize($_POST['copy_object_as'])));
+					$as = trim(sanitize($_POST['copy_object_as']));
 					if (empty($as)) {
 						$as = sprintf(gettext('copy of %s'), $result->getTitle());
 					}
@@ -72,7 +72,7 @@ if (is_AdminEditPage('newsarticle')) {
 		if (getCheckboxState('copy_delete_object')) {
 			switch (sanitize($_POST['copy_delete_object'])) {
 				case 'copy':
-					$as = trim(sanitize(sanitize($_POST['copy_object_as'])));
+					$as = trim(sanitize($_POST['copy_object_as']));
 					if (empty($as)) {
 						$as = sprintf(gettext('copy of %s'), $result->getTitle());
 					}
@@ -508,9 +508,9 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 																			 value="<?php echo html_encode($user); ?>" />
 																<span id="strength"><?php echo gettext("Password:"); ?></span>
 																<br />
-																<?php 
-																// Autofill honeypot hack (hidden password input), 
-																// needed to prevent "Are you sure?" from tiggering when autofill is enabled in browsers 
+																<?php
+																// Autofill honeypot hack (hidden password input),
+																// needed to prevent "Are you sure?" from tiggering when autofill is enabled in browsers
 																// http://benjaminjshore.info/2014/05/chrome-auto-fill-honey-pot-hack.html
 																?>
 																<input class="ays-ignore" type="password" name="pass" style="display:none;" />
