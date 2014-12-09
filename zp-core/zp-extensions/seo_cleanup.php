@@ -8,7 +8,7 @@
  * Note: Clicking the button causes this process to execute. There is no <i>undo</i>.
  *
  * @author Stephen Billard (sbillard)
- * 
+ *
  * @package plugins
  * @subpackage seo
  */
