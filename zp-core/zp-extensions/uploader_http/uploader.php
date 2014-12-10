@@ -61,7 +61,7 @@ if (isset($_POST['processed'])) {
 			@chmod($targetPath, FOLDER_MOD);
 			$album = newAlbum($folder);
 			if ($album->exists) {
-				$album->setShow((int) !empty($_POST['publishalbum']));
+				$album->setShow((int) ($_POST['publishalbum'] == 'true'));
 				$title = sanitize($_POST['albumtitle'], 2);
 				if (!empty($title) && $newAlbum) {
 					$album->setTitle($title);

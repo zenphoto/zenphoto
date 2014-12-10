@@ -24,7 +24,7 @@
  *
  * 		In particular, there should be array elements for:
  * 				'id' (unique), 'user' (unique),	'pass',	'name', 'email', 'rights', 'valid',
- * 				'group', and 'custom_data'
+ * 				'group', and 'other_credentials'
  *
  * 		So long as all these indices are populated it should not matter when and where
  * 		the data is stored.
@@ -111,7 +111,9 @@ class Zenphoto_Authority {
 										'desc' => sprintf(gettext('Users must provide passwords a strength of at least %s. The repeat password field will be disabled until this floor is met.'), '<span id="password_strength_display">' . getOption('password_strength') . '</span>')),
 						gettext('Password hash algorithm')	 => array('key'				 => 'strong_hash', 'type'			 => OPTION_TYPE_SELECTOR,
 										'selections' => $encodings,
-										'desc'			 => sprintf(gettext('The hashing algorithm to be used. In order of robustness the choices are %s'), '<code>' . implode('</code> > <code>', array_flip($encodings)) . '</code>'))
+										'desc'			 => sprintf(gettext('The hashing algorithm to be used. In order of robustness the choices are %s'), '<code>' . implode('</code> > <code>', array_flip($encodings)) . '</code>')),
+						gettext('Challenge phrase foils')		 => array('key'	 => 'challenge_foil', 'type' => OPTION_TYPE_CUSTOM,
+										'desc' => gettext('These <em>foil</em> challenge phrases will be presented randomly. This list should not be empty, otherwise hackers can discover valid user IDs and know that there is an answer to any presented challenge phrase.'))
 		);
 	}
 
@@ -153,7 +155,29 @@ class Zenphoto_Authority {
 				<div id="slider-password_strength"></div>
 				<?php
 				break;
+			case 'challenge_foil':
+				$questions = getSerializedArray(getOption('challenge_foils'));
+				$questions[] = array('');
+				foreach ($questions as $key => $question) {
+					?>
+					<?php print_language_string_list($question, 'challenge_foil_' . $key, false, NULL, '', '100%'); ?>	<br/>
+					<?php
+				}
+				break;
 		}
+	}
+
+	function handleOptionSave($themename, $themealbum) {
+		$questions = array();
+		foreach ($_POST as $key => $value) {
+			if (!empty($value)) {
+				preg_match('~challenge_foil_(\d+)_(.*)~', $key, $matches);
+				if (!empty($matches)) {
+					$questions[$matches[1]][$matches[2]] = sanitize($value);
+				}
+			}
+		}
+		setOption('challenge_foils', serialize($questions));
 	}
 
 	static function getVersion() {
@@ -847,17 +871,15 @@ class Zenphoto_Authority {
 		if (!empty($requestor)) {
 			if ($admin = self::getAnAdmin(array('`user`=' => $requestor, '`valid`=' => 1))) {
 				$info = $admin->getChallengePhraseInfo();
+			} else {
+				$info = array('challenge' => '');
 			}
 			if (empty($info['challenge']) || ($cycle > 2 && ($cycle % 5) != 1)) {
 				$locale = getUserLocale();
-				$questions = array(
-								gettext("What is your father’s middle name?"),
-								gettext("What street did your Grandmother live on?"),
-								gettext("Who was your favorite singer?"),
-								gettext("When did you first get a computer?"),
-								gettext("How much wood could a woodchuck chuck if a woodchuck could chuck wood?"),
-								gettext("What is the date of the Ides of March?")
-				);
+				$questions = array();
+				foreach (getSerializedArray(getOption('challenge_foils')) as $question) {
+					$questions[] = get_language_string($question);
+				}
 				$rslt = query('SELECT `challenge_phrase`,`language` FROM ' . prefix('administrators') . ' WHERE `challenge_phrase` IS NOT NULL');
 				while ($row = db_fetch_assoc($rslt)) {
 					if (is_null($row['language']) || $row['language'] == $locale) {
@@ -1250,7 +1272,7 @@ class Zenphoto_Authority {
 		<p>
 			<label for="disclose_password<?php echo $id; ?>"><?php echo gettext('Show password'); ?></label>
 			<input type="checkbox" name="disclose_password<?php echo $id; ?>" id="disclose_password<?php echo $id; ?>" onclick="passwordClear('<?php echo $id; ?>');
-					togglePassword('<?php echo $id; ?>');">
+							togglePassword('<?php echo $id; ?>');">
 		</p>
 		<p class="password_field_<?php echo $id; ?>">
 			<label for="pass_r<?php echo $id; ?>" id="match<?php echo $id; ?>"><?php echo gettext("Repeat password") . $flag; ?></label>

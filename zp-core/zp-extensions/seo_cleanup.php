@@ -8,7 +8,7 @@
  * Note: Clicking the button causes this process to execute. There is no <i>undo</i>.
  *
  * @author Stephen Billard (sbillard)
- * 
+ *
  * @package plugins
  * @subpackage seo
  */
@@ -132,7 +132,7 @@ if (defined('OFFSET_PATH')) {
 		$count = sanitize_numeric($_GET['imagecount']);
 		$albumcount = sanitize_numeric($_GET['albumcount']);
 		$albums = array();
-		foreach (explode(',', sanitize(sanitize($_GET['todo']))) as $album) {
+		foreach (explode(',', sanitize($_GET['todo'])) as $album) {
 			$albums[] = sanitize($album);
 		}
 	} else {

@@ -2697,6 +2697,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 				$locale = 'en_US';
 			if (isset($strings[$locale])) {
 				$dbstring = $strings[$locale];
+				unset($strings[$locale]);
 			} else {
 				$dbstring = array_shift($strings);
 			}
@@ -2704,6 +2705,13 @@ function printAdminHeader($tab, $subtab = NULL) {
 				echo '<textarea name="' . $name . '_' . $locale . '"' . $edit . $width . '	rows="' . $rows . '">' . html_encode($dbstring) . '</textarea>';
 			} else {
 				echo '<input name="' . $name . '_' . $locale . '"' . $edit . ' type="text" value="' . html_encode($dbstring) . '"' . $width . ' />';
+			}
+			foreach ($strings as $key => $dbstring) {
+				if (!empty($dbstring)) {
+					?>
+					<input type="hidden" name="<?php echo $name . '_' . $key; ?>" value="<?php echo html_encode($dbstring); ?>" />
+					<?php
+				}
 			}
 		}
 		echo "</div>\n";
@@ -2772,39 +2780,51 @@ function printAdminHeader($tab, $subtab = NULL) {
 	}
 
 	/**
+	 * Outputs a file for zip download
+	 * @param string $zipname name of the zip file
+	 * @param string $file the file to zip
+	 */
+	function putZip($zipname, $file) {
+		//we are dealing with file system items, convert the names
+		$fileFS = internalToFilesystem($file);
+		if (class_exists('ZipArchive')) {
+			$zipfileFS = tempnam('', 'zip');
+			$zip = new ZipArchive;
+			$zip->open($zipfileFS, ZipArchive::CREATE);
+			$zip->addFile($fileFS, basename($fileFS));
+			$zip->close();
+			ob_get_clean();
+			header("Pragma: public");
+			header("Expires: 0");
+			header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+			header("Cache-Control: private", false);
+			header("Content-Type: application/zip");
+			header("Content-Disposition: attachment; filename=" . basename($zipname) . ";");
+			header("Content-Transfer-Encoding: binary");
+			header("Content-Length: " . filesize($zipfileFS));
+			readfile($zipfileFS);
+			// remove zip file from temp path
+			unlink($zipfileFS);
+		} else {
+			include_once(SERVERPATH . '/' . ZENFOLDER . '/lib-zipStream.php');
+			$zip = new ZipStream(internalToFilesystem($zipname));
+			$zip->add_file_from_path(basename($fileFS), $fileFS);
+			$zip->finish();
+		}
+	}
+
+	/**
 	 * Unzips an image archive
 	 *
 	 * @param file $file the archive
 	 * @param string $dir where the images go
 	 */
-	function unzip($file, $dir) { //check if zziplib is installed
-		if (function_exists('zip_open')) {
-			$zip = zip_open($file);
-			if ($zip) {
-				while ($zip_entry = zip_read($zip)) { // Skip non-images in the zip file.
-					$fname = zip_entry_name($zip_entry);
-					$seoname = internalToFilesystem(seoFriendly($fname));
-					if (Gallery::imageObjectClass($seoname)) {
-						if (zip_entry_open($zip, $zip_entry, "r")) {
-							$buf = zip_entry_read($zip_entry, zip_entry_filesize($zip_entry));
-							$path_file = str_replace("/", DIRECTORY_SEPARATOR, $dir . '/' . $seoname);
-							$fp = fopen($path_file, "w");
-							fwrite($fp, $buf);
-							fclose($fp);
-							clearstatcache();
-							zip_entry_close($zip_entry);
-							$albumname = substr($dir, strlen(ALBUM_FOLDER_SERVERPATH));
-							$album = newAlbum($albumname);
-							$image = newImage($album, $seoname);
-							if ($fname != $seoname) {
-								$image->setTitle($fname);
-								$image->save();
-							}
-						}
-					}
-				}
-				zip_close($zip);
-			}
+	function unzip($file, $dir) {
+		if (class_exists('ZipArchive')) {
+			$zip = new ZipArchive;
+			$zip->open($file);
+			$zip->extractTo($dir);
+			$zip->close();
 		} else {
 			require_once(dirname(__FILE__) . '/lib-pclzip.php');
 			$zip = new PclZip($file);

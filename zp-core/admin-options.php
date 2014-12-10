@@ -991,7 +991,7 @@ Zenphoto_Authority::printPasswordFormJS();
 										<p><?php echo gettext("Email:"); ?></p>
 									</td>
 									<td width="350">
-										<p><?php print_language_string_list(getOption('site_email_name'), 'site_email_name'); ?></p>
+										<p><input type="text" size="48" name="site_email_name" value="<?php echo get_language_string(getOption('site_email_name')) ?>" /></p>
 										<p><input type="text" size="48" id="site_email" name="site_email"  value="<?php echo getOption('site_email'); ?>" /></p>
 									</td>
 									<td><?php echo gettext("This email name and address will be used as the <em>From</em> address for all mails sent by the gallery."); ?></td>
