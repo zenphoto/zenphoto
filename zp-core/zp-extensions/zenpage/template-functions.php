@@ -1052,39 +1052,6 @@ function getTotalNewsPages() {
   /*********************************************************************** */
 
 /**
- * Returns the title and the titlelink of the next or previous article in single news article pagination as an array
- * Returns false if there is none (or option is empty)
- *
- * NOTE: This is not available if using the CombiNews feature
- *
- * @param string $option "prev" or "next"
- * @param string $sortorder "desc" (default)or "asc" for descending or ascending news. Required if these for next_news() loop are changed.
- * @param string $sortdirection "date" (default) or "title" for sorting by date or title. Required if these for next_news() loop are changed.
- *
- * @return mixed
- */
-function getNextPrevNews($option = '', $sortorder = 'date', $sortdirection = 'desc') {
-	global $_zp_CMS, $_zp_current_article;
-
-	$sortdir = $sortdirection && strtolower($sortdirection) != 'asc';
-	if (!empty($option)) {
-		switch ($option) {
-			case "prev":
-				$article = $_zp_current_article->getPrevArticle($sortorder, $sortdir);
-				if (!$article)
-					return false;
-				return array("link" => $article->getLink(), "title" => $article->getTitle());
-			case "next":
-				$article = $_zp_current_article->getNextArticle($sortorder, $sortdir);
-				if (!$article)
-					return false;
-				return array("link" => $article->getLink(), "title" => $article->getTitle());
-		}
-	}
-	return false;
-}
-
-/**
  * Returns the title and the titlelink of the next article in single news article pagination as an array
  * Returns false if there is none (or option is empty)
  *
@@ -1095,7 +1062,13 @@ function getNextPrevNews($option = '', $sortorder = 'date', $sortdirection = 'de
  * @return mixed
  */
 function getNextNewsURL($sortorder = 'date', $sortdirection = 'desc') {
-	return getNextPrevNews("next", $sortorder, $sortdirection);
+	global $_zp_current_article;
+	if (is_object($_zp_current_article)) {
+		$article = $_zp_current_article->getNextArticle($sortorder, $sortdirection);
+		if ($article)
+			return array("link" => $article->getLink(), "title" => $article->getTitle());
+	}
+	return false;
 }
 
 /**
@@ -1109,7 +1082,12 @@ function getNextNewsURL($sortorder = 'date', $sortdirection = 'desc') {
  * @return mixed
  */
 function getPrevNewsURL($sortorder = 'date', $sortdirection = 'desc') {
-	return getNextPrevNews("prev", $sortorder, $sortdirection);
+	global $_zp_current_article;
+	if (is_object($_zp_current_article)) {
+		$article = $_zp_current_article->getPrevArticle($sortorder, $sortdirection);
+		if ($article)
+			return array("link" => $article->getLink(), "title" => $article->getTitle());
+	}return false;
 }
 
 /**
@@ -1123,7 +1101,7 @@ function getPrevNewsURL($sortorder = 'date', $sortdirection = 'desc') {
  * @return string
  */
 function printNextNewsLink($next = " »", $sortorder = 'date', $sortdirection = 'desc') {
-	$article_url = getNextPrevNews("next", $sortorder, $sortdirection);
+	$article_url = getNextNewsURL($sortorder, $sortdirection);
 	if ($article_url && array_key_exists('link', $article_url) && $article_url['link'] != "") {
 		echo "<a href=\"" . html_encode($article_url['link']) . "\" title=\"" . html_encode(getBare($article_url['title'])) . "\">" . $article_url['title'] . "</a> " . html_encode($next);
 	}
@@ -1140,7 +1118,7 @@ function printNextNewsLink($next = " »", $sortorder = 'date', $sortdirection = 
  * @return string
  */
 function printPrevNewsLink($prev = "« ", $sortorder = 'date', $sortdirection = 'desc') {
-	$article_url = getNextPrevNews("prev", $sortorder, $sortdirection);
+	$article_url = getPrevNewsURL($sortorder, $sortdirection);
 	if ($article_url && array_key_exists('link', $article_url) && $article_url['link'] != "") {
 		echo html_encode($prev) . " <a href=\"" . html_encode($article_url['link']) . "\" title=\"" . html_encode(getBare($article_url['title'])) . "\">" . $article_url['title'] . "</a>";
 	}
