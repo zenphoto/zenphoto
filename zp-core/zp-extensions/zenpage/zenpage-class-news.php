@@ -310,7 +310,7 @@ class ZenpageNews extends ZenpageItems {
 
 	/**
 	 * Get the index of this article
-  * 
+  *
 	 * @param string $sortorder
 	 * @param bool $sortdirection TRUE for ascending, FALSE for descending
   * @param bool $sticky If sticky article should come first
@@ -333,24 +333,24 @@ class ZenpageNews extends ZenpageItems {
 
 	/**
 	 * Return the previous article
-  * 
+  *
   * @param string $sortorder
 	 * @param bool $sortdirection TRUE for ascending, FALSE for descending
   * @param bool $sticky If sticky article should come first
 	 * @return object
 	 */
- 
- 
+
+
 	function getPrevArticle($sortorder = 'date', $sortdirection = false, $sticky = true) {
 		global $_zp_zenpage, $_zp_current_zenpage_news;
 		$index = $this->getIndex($sortorder, $sortdirection, $sticky);
-		$article = $_zp_zenpage->getArticle($index - 1);
+		$article = $_zp_zenpage->getArticle($index + 1);
 		return $article;
 	}
 
 	/**
 	 * Returns the next article.
-  * 
+  *
 	 * @param string $sortorder
 	 * @param bool $sortdirection TRUE for ascending, FALSE for descending
   * @param bool $sticky If sticky article should come first
@@ -359,7 +359,7 @@ class ZenpageNews extends ZenpageItems {
 	function getNextArticle($sortorder = 'date', $sortdirection = false, $sticky = true) {
 		global $_zp_zenpage, $_zp_current_zenpage_news;
 		$index = $this->getIndex($sortorder, $sortdirection, $sticky);
-		$article = $_zp_zenpage->getArticle($index + 1);
+		$article = $_zp_zenpage->getArticle($index - 1);
 		return $article;
 	}
 
