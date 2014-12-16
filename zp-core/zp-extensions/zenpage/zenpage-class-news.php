@@ -344,7 +344,7 @@ class ZenpageNews extends ZenpageItems {
 	function getPrevArticle($sortorder = 'date', $sortdirection = false, $sticky = true) {
 		global $_zp_zenpage, $_zp_current_zenpage_news;
 		$index = $this->getIndex($sortorder, $sortdirection, $sticky);
-		$article = $_zp_zenpage->getArticle($index + 1);
+		$article = $_zp_zenpage->getArticle($index - 1);
 		return $article;
 	}
 
@@ -359,7 +359,7 @@ class ZenpageNews extends ZenpageItems {
 	function getNextArticle($sortorder = 'date', $sortdirection = false, $sticky = true) {
 		global $_zp_zenpage, $_zp_current_zenpage_news;
 		$index = $this->getIndex($sortorder, $sortdirection, $sticky);
-		$article = $_zp_zenpage->getArticle($index - 1);
+		$article = $_zp_zenpage->getArticle($index + 1);
 		return $article;
 	}
 
