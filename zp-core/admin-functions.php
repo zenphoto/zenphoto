@@ -1257,7 +1257,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 				foreach ($them as $tagLC => $item) {
 					$listitem = $postit . postIndexEncode($item);
 					?>
-					<li id="<?php echo $tag; ?>_element">
+					<li id="<?php echo $tagLC; ?>_element">
 						<label class="displayinline">
 							<input id="<?php echo $listitem; ?>" class="<?php echo $class; ?>" name="<?php echo $listitem; ?>" type="checkbox" value="1" />
 							<img src="<?php echo $flags[$languages[$item]]; ?>" height="10" width="16" />
@@ -4329,17 +4329,21 @@ function printCodeblockEdit($obj, $id) {
  * @param int $id
  * @return string
  */
-function processCodeblockSave($id) {
+function processCodeblockSave($id, $obj) {
 	$codeblock = array();
+	$found = false;
 	$i = (int) !isset($_POST['codeblock0-' . $id]);
 	while (isset($_POST['codeblock' . $i . '-' . $id])) {
+		$found = true;
 		$v = sanitize($_POST['codeblock' . $i . '-' . $id], 0);
 		if ($v) {
 			$codeblock[$i] = $v;
 		}
 		$i++;
 	}
-	return serialize($codeblock);
+	if ($found) {
+		$obj->setCodeblock(serialize($codeblock));
+	}
 }
 
 /**

@@ -275,16 +275,20 @@ class optionalObjectFields extends fieldExtender {
 		if ($type == 'save') {
 			$tagsprefix = 'tags_' . $currentimage . '-';
 			$tags = array();
+			$found = false;
 			$l = strlen($tagsprefix);
 			foreach ($_POST as $key => $value) {
 				if (substr($key, 0, $l) == $tagsprefix) {
+					$found = true;
 					if ($value) {
 						$tags[] = sanitize(postIndexDecode(substr($key, $l)));
 					}
 				}
 			}
-			$tags = array_unique($tags);
-			$image->setTags($tags);
+			if ($found) {
+				$tags = array_unique($tags);
+				$image->setTags($tags);
+			}
 			return NULL;
 		} else {
 			ob_start();
@@ -302,7 +306,7 @@ class optionalObjectFields extends fieldExtender {
 	static function codeblocks($obj, $instance, $field, $type) {
 		if ($type == 'save') {
 			if (zp_loggedin(CODEBLOCK_RIGHTS)) {
-				$obj->setCodeblock(processCodeblockSave((int) $instance));
+				processCodeblockSave((int) $instance, $obj);
 			}
 			return NULL;
 		} else {

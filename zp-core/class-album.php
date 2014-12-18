@@ -1290,7 +1290,7 @@ class Album extends AlbumBase {
 		if (!$rslt) {
 // Then: go through the db and change the album (and subalbum) paths. No ID changes are necessary for a move.
 // Get the subalbums.
-			$sql = "SELECT id, folder FROM " . prefix('albums') . " WHERE folder LIKE " . db_quote(db_LIKE_escape($oldfolder) . '/%');
+			$sql = "SELECT id, folder FROM " . prefix('albums') . " WHERE folder LIKE " . db_quote(db_LIKE_escape($oldfolder) . '%');
 			$result = query($sql);
 			if ($result) {
 				$len = strlen($oldfolder);

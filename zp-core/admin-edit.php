@@ -1390,7 +1390,7 @@ echo "\n</head>";
 															<td valign="top"><?php echo gettext("Tags:"); ?></td>
 															<td>
 																<?php
-																$imagetags = $image->getTags();
+																$imagetags = $image->getTags(false);
 																if (count($imagetags) != 0) {
 																	echo implode(', ', $imagetags);
 																} else {
