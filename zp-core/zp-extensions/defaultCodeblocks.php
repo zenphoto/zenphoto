@@ -53,7 +53,7 @@ class defaultCodeblocks {
 
 	function handleOptionSave($themename, $themealbum) {
 		if (zp_loggedin(CODEBLOCK_RIGHTS)) {
-			$this->setCodeblock(processCodeblockSave(0));
+			processCodeblockSave(0, $this);
 		}
 		return false;
 	}

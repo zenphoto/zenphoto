@@ -76,7 +76,20 @@
 			}
 		</style>
 	<body>
-<h1>ZenPhoto20 v1.0.1.0 release notes</h1><h1 style="text-align: center;">Version 1.0.1</h1>
+<h1>ZenPhoto20 v1.0.1.0 release notes</h1><p>&nbsp;</p>
+<h2>Serach tag selection</h2>
+<p>A "all" checkbox has been added to the search form to more conveniently select a small number of fields from a larger list.</p>
+<h2>ZipArchive</h2>
+<p>ZipArchive is a PHP module for processing Zip files. If this module is configured in a sites PHP build ZenPhoto20 will use it rather than loading third party Zip file handlers.</p>
+<h2>Extended secyruty question foils</h2>
+<p>Security question foils (those questions asked that were not supplied by the user) are an important security feature. If only valid security questions are presented then hackers can tell if they have successfully guessed a user id and will know that there is an answer to the question. Thus it is only a matter of guessing the answer which can often be done by examining publicly available information about the user.</p>
+<p>There are two enhancements to security questions implemented now. First, the administrator may create as many foils as he wishes to increase the work a hacker must do to try to hack an answer. Second, security questions provided by other users may be presented, again increasing the work of hackers.</p>
+<h2>Checkbox toggle for searche fields</h2>
+<p>The search form now has a toggle to check/uncheck all search fields. This makes it easier to search on a limited number of the possible fields.</p>
+<hr />
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h1 style="text-align: center;">Version 1.0.1</h1>
 <h2>Mouse click minimization</h2>
 <p>When you "apply" changes on admin edit tabs you will now be returned to the page that launched the edit. That is if you use the front-end admin toolbox to edit an image the apply button will return you to the image page. If you got there from the "Edit all image data" link you will return to the page of images. This behavior is cancelled if any errors occur.</p>
 <p><strong>Performance enhancements</strong></p>

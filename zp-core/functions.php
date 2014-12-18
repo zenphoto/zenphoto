@@ -1095,7 +1095,7 @@ function getAllTagsUnique($language = NULL, $assigned = true) {
 	$_zp_unique_tags[$language][(int) $assigned] = array();
 	$sql = 'SELECT DISTINCT tags.name, tags.id, (SELECT COUNT(*) FROM ' . prefix('obj_to_tag') . ' as object WHERE object.tagid = tags.id) AS count FROM ' . prefix('tags') . ' as tags ';
 	if (!empty($language)) {
-		$sql .= ' WHERE tags.language="" OR tags.language LIKE ' . db_quote(db_LIKE_escape($language) . '/%');
+		$sql .= ' WHERE tags.language="" OR tags.language LIKE ' . db_quote(db_LIKE_escape($language) . '%');
 	}
 	$sql .= ' ORDER BY tags.name';
 	$unique_tags = query($sql);
@@ -1127,7 +1127,7 @@ function getAllTagsCount($language = NULL) {
 	$_zp_count_tags[$language] = array();
 	$sql = 'SELECT DISTINCT tags.name, tags.id, (SELECT COUNT(*) FROM ' . prefix('obj_to_tag') . ' as object WHERE object.tagid = tags.id) AS count FROM ' . prefix('tags') . ' as tags ';
 	if (!empty($language)) {
-		$sql .= ' WHERE tags.language="" OR tags.language LIKE ' . db_quote(db_LIKE_escape($language) . '/%');
+		$sql .= ' WHERE tags.language="" OR tags.language LIKE ' . db_quote(db_LIKE_escape($language) . '%');
 	}
 	$sql .= ' ORDER BY tags.name';
 	$tagresult = query($sql);
@@ -1211,18 +1211,16 @@ function readTags($id, $tbl, $language) {
 	}
 
 	$tags = array();
-	$sql = 'SELECT `tagid` FROM ' . prefix('obj_to_tag') . ' WHERE `type`="' . $tbl . '" AND `objectid` = "' . $id . '"';
+
+	$sql = 'SELECT * FROM ' . prefix('tags') . ' AS tags, ' . prefix('obj_to_tag') . ' AS objects WHERE `type`="' . $tbl . '" AND `objectid`="' . $id . '" AND tagid=tags.id';
+
+	if ($language) {
+		$sql .= ' AND (tags.language="" OR tags.language LIKE ' . db_quote(db_LIKE_escape($language) . '%') . ')';
+	}
 	$result = query($sql);
 	if ($result) {
 		while ($row = db_fetch_assoc($result)) {
-			$sql = 'SELECT `name` FROM' . prefix('tags') . ' WHERE `id`="' . $row['tagid'] . '"';
-			if ($language) {
-				$sql .= ' AND (`language`="" OR `language`=' . db_quote(db_LIKE_escape($language) . '/%') . ')';
-			}
-			$dbtag = query_single_row($sql);
-			if ($dbtag) {
-				$tags[mb_strtolower($dbtag['name'])] = $dbtag['name'];
-			}
+			$tags[mb_strtolower($row['name'])] = $row['name'];
 		}
 		db_free_result($result);
 	}

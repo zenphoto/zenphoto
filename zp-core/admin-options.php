@@ -169,7 +169,7 @@ if (isset($_GET['action'])) {
 			$_zp_gallery->setSecurity(sanitize($_POST['gallery_security'], 3));
 			$notify = processCredentials($_zp_gallery);
 			if (zp_loggedin(CODEBLOCK_RIGHTS)) {
-				$_zp_gallery->setCodeblock(processCodeblockSave(0));
+				processCodeblockSave(0, $_zp_gallery);
 			}
 			$_zp_gallery->save();
 			$returntab = "&tab=gallery";
