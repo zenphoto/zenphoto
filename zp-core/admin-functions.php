@@ -2427,8 +2427,9 @@ function printAdminHeader($tab, $subtab = NULL) {
   * Process the image edit form posted
   * @param obj $image Image object
   * @param type $index Index of the image if within the images list or 0 if single image edit
+  * @param boolean $massedit Whether editing single image (false) or multiple images at once (true). Note: to determine whether to process additional fields in single image edit mode.
   */
- function processImageEdit($image, $index) {
+ function processImageEdit($image, $index, $massedit=true) {
 
   $notify = '';
   if (isset($_POST[$index . '-MoveCopyRename'])) {
@@ -2457,12 +2458,6 @@ function printAdminHeader($tab, $subtab = NULL) {
     $image->setExpireDate(sanitize($_POST['expirationdate-' . $index]));
     $image->setTitle(process_language_string_save("$index-title", 2));
     $image->setDesc(process_language_string_save("$index-desc", EDITOR_SANITIZE_LEVEL));
-    $image->setLocation(process_language_string_save("$index-location", 3));
-    $image->setCity(process_language_string_save("$index-city", 3));
-    $image->setState(process_language_string_save("$index-state", 3));
-    $image->setCountry(process_language_string_save("$index-country", 3));
-    $image->setCredit(process_language_string_save("$index-credit", 1));
-    $image->setCopyright(process_language_string_save("$index-copyright", 1));
     if (isset($_POST[$index . '-oldrotation']) && isset($_POST[$index . '-rotation'])) {
       $oldrotation = (int) $_POST[$index . '-oldrotation'];
       $rotation = (int) $_POST[$index . '-rotation'];
@@ -2473,20 +2468,32 @@ function printAdminHeader($tab, $subtab = NULL) {
         Gallery::clearCache(SERVERCACHE . '/' . $album->name);
       }
     }
-    $tagsprefix = 'tags_' . $index . '-';
-    $tags = array();
-    $l = strlen($tagsprefix);
-    foreach ($_POST as $key => $value) {
-      $key = postIndexDecode($key);
-      if (substr($key, 0, $l) == $tagsprefix) {
-        if ($value) {
-          $tags[] = sanitize(substr($key, $l));
-        }
-      }
-    }
-    $tags = array_unique($tags);
-    $image->setTags($tags);
-
+	if (!$massedit) {
+		$image->setLocation(process_language_string_save("$index-location", 3));
+		$image->setCity(process_language_string_save("$index-city", 3));
+		$image->setState(process_language_string_save("$index-state", 3));
+		$image->setCountry(process_language_string_save("$index-country", 3));
+		$image->setCredit(process_language_string_save("$index-credit", 1));
+		$image->setCopyright(process_language_string_save("$index-copyright", 1));
+		$tagsprefix = 'tags_' . $index . '-';
+		$tags = array();
+		$l = strlen($tagsprefix);
+		foreach ($_POST as $key => $value) {
+			$key = postIndexDecode($key);
+			if (substr($key, 0, $l) == $tagsprefix) {
+				if ($value) {
+					$tags[] = sanitize(substr($key, $l));
+				}
+			}
+		}
+		$tags = array_unique($tags);
+		$image->setTags($tags);
+		if (zp_loggedin(CODEBLOCK_RIGHTS)) {
+			$image->setCodeblock(processCodeblockSave($index));
+		}
+		$custom = process_language_string_save("$index-custom_data", 1);
+		$image->setCustomData(zp_apply_filter('save_image_custom_data', $custom, $index));
+	}
     $image->setDateTime(sanitize($_POST["$index-date"]));
     $image->setShow(isset($_POST["$index-Visible"]));
     $image->setCommentsAllowed(isset($_POST["$index-allowcomments"]));
@@ -2503,15 +2510,11 @@ function printAdminHeader($tab, $subtab = NULL) {
     if (isset($_POST['wm_full-' . $index]))
       $wmuse = $wmuse | WATERMARK_FULL;
     $image->setWMUse($wmuse);
-    if (zp_loggedin(CODEBLOCK_RIGHTS)) {
-      $image->setCodeblock(processCodeblockSave($index));
-    }
+    
     if (isset($_POST[$index . '-owner']))
       $image->setOwner(sanitize($_POST[$index . '-owner']));
     $image->set('filesize', filesize($image->localpath));
 
-    $custom = process_language_string_save("$index-custom_data", 1);
-    $image->setCustomData(zp_apply_filter('save_image_custom_data', $custom, $index));
     zp_apply_filter('save_image_utilities_data', $image, $index);
     $image->save();
 

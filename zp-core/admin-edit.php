@@ -251,7 +251,7 @@ if (isset($_GET['action'])) {
           // The file might no longer exist
           $image = newImage($album, $filename);
           if ($image->exists) {
-            $notify = processImageEdit($image, 0);
+            $notify = processImageEdit($image, 0, false);
             $qs_albumsuffix = '';
             $returnalbum = html_encode(pathurlencode($album->name));
             $returntab = '&tab=imageinfo&singleimage='.html_encode($image->filename);
