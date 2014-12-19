@@ -1411,6 +1411,7 @@ zp-core/zp-extensions/menu_manager.php
 zp-core/zp-extensions/mergedRSS.php
 zp-core/zp-extensions/mobileTheme.php
 zp-core/zp-extensions/multiple_layouts.php
+zp-core/zp-extensions/nanospell.php
 zp-core/zp-extensions/optionalObjectFields.php
 zp-core/zp-extensions/paged_thumbs_nav.php
 zp-core/zp-extensions/PHPMailer.php
@@ -2292,4 +2293,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-2294
+2295
