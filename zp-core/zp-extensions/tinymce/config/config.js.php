@@ -32,15 +32,17 @@
  *
  * Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
  */
+global $MCEskin, $MCEdirection, $MCEcss, $MCEspecial, $MCEimage_advtab;
+
 $filehandler = zp_apply_filter('tinymce_zenpage_config', NULL);
 
-if (isset($MCEcss)) {
+if ($MCEcss) {
 	$MCEcss = getPlugin('tinymce/config/' . $MCEcss, true, true);
 } else {
 	$MCEcss = getPlugin('tinymce/config/content.css', true, true);
 }
 global $_zp_RTL_css;
-if (!isset($MCEdirection)) {
+if ($MCEdirection == NULL) {
 	if ($_zp_RTL_css) {
 		$MCEdirection = 'rtl';
 	} else {
@@ -65,12 +67,12 @@ if (!extensionEnabled('tinyZenpage')) {
 									language: "<?php echo $locale; ?>",
 									relative_urls: false,
 <?php
-if (!isset($MCEimage_advtab) || $MCEimage_advtab) {
+if ($MCEimage_advtab == NULL || $MCEimage_advtab) {
 	?>
 						image_advtab: true,
 	<?php
 }
-if (isset($MCEdirection)) {
+if ($MCEdirection) {
 	?>
 						directionality : '<?php echo $MCEdirection; ?>',
 	<?php
@@ -87,10 +89,10 @@ if ($filehandler) {
 ?>
 					plugins: ["<?php echo $MCEplugins; ?>"],
 <?php
-if (isset($MCEspecial)) {
+if ($MCEspecial) {
 	echo $MCEspecial . ',';
 }
-if (isset($MCEskin)) {
+if ($MCEskin) {
 	?>
 						skin: "<?php echo $MCEskin; ?>",
 	<?php
