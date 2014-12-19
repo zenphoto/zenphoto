@@ -75,7 +75,9 @@ class tinymceOptions {
 }
 
 function tinymceConfigJS($mode) {
-	global $_editorconfig;
+	global $_editorconfig, $MCEskin, $MCEdirection, $MCEcss, $MCEspecial, $MCEimage_advtab, $MCEtoolbars;
+	$MCEskin = $MCEdirection = $MCEcss = $MCEspecial = $MCEimage_advtab = $MCEtoolbars = NULL;
+
 	if (empty($_editorconfig)) { // only if we get here first!
 		$locale = 'en';
 		$loc = str_replace('_', '-', getOption("locale"));

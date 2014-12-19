@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This plugin adds spelling checking for tinyMCE edit windows.
  *
@@ -25,13 +26,16 @@ $plugin_disable = (file_exists(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/nanospe
 zp_register_filter('tinymce_zenpage_config', 'nanospell_spellchecker');
 
 function nanospell_spellchecker($discard) {
-	global $MCEspecial, $locale;
-	?>
-	<!--nanospell for tinyMCE is enabled-->
-	<?php
+	global $MCEspecial, $MCEtoolbars, $locale;
 	$MCEspecial = 'external_plugins: { "nanospell": "' . WEBPATH . '/' . USER_PLUGIN_FOLDER . '/nanospell/plugin.js" },' . "\n" .
 					'nanospell_server:"php",' . "\n" .
 					'language: "' . $locale . '"';
+
+	if (!empty($MCEtoolbars)) {
+		$bar = array_pop($MCEtoolbars);
+		array_push($MCEtoolbars, $bar . ' | nanospell');
+	}
 	return $discard;
 }
+
 ?>
