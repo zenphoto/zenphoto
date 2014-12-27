@@ -32,8 +32,6 @@
  *
  * Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
  */
-global $MCEskin, $MCEdirection, $MCEcss, $MCEspecial, $MCEimage_advtab;
-
 $filehandler = zp_apply_filter('tinymce_zenpage_config', NULL);
 
 if ($MCEcss) {

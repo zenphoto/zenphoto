@@ -366,8 +366,13 @@ function printNewsURL($before = '') {
  * @return string
  */
 function getNewsContent($shorten = false, $shortenindicator = NULL, $readmore = NULL) {
+<<<<<<< HEAD:zp-core/zp-extensions/zenpage/template-functions.php
 	global $_zp_current_image, $_zp_gallery, $_zp_current_article, $_zp_page;
 	if (!$_zp_current_article->checkAccess()) {
+=======
+	global $_zp_current_image, $_zp_gallery, $_zp_current_zenpage_news, $_zp_page;
+	if (!$_zp_current_zenpage_news->checkAccess()) {
+>>>>>>> upstream/master:zp-core/zp-extensions/zenpage/zenpage-template-functions.php
 		return '<p>' . gettext('<em>This entry belongs to a protected category.</em>') . '</p>';
 	}
 	$excerptbreak = false;

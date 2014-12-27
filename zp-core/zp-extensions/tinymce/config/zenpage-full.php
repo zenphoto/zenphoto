@@ -15,4 +15,5 @@ $MCEtoolbars[1] = "insertfile undo redo | styleselect | bold italic | alignleft 
 $MCEtoolbars[2] = "media | emoticons pasteobj tinyzenpage | ltr rtl code fullscreen";
 $MCEstatusbar = true;
 $MCEmenubar = true;
+
 include(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/tinymce/config/config.js.php');
