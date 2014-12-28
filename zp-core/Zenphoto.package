@@ -398,7 +398,7 @@ themes/zpmobile/theme_description.php
 themes/zpmobile/themeoptions.php
 zp-core
 zp-core/404.php
-zp-core/Zenphoto.package_NIET GOED
+zp-core/Zenphoto.package
 zp-core/admin-albumsort.php
 zp-core/admin-dynamic-album.php
 zp-core/admin-edit.php
