@@ -384,6 +384,7 @@ zp-core/admin-upload.php
 zp-core/admin-users.php
 zp-core/admin.css
 zp-core/admin.php
+zp-core/admintoolbox.css
 zp-core/auth_zp.php
 zp-core/cacheprotect
 zp-core/class-album.php
@@ -1700,4 +1701,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1702
+1703

@@ -1,0 +1,76 @@
+/* Clear Outer Styles */
+		#zp__admin_module * {
+			font-family: Helvetica, Arial, sans-serif !important;
+			font-size: 12px !important;
+			line-height: 15px !important;
+			font-weight: normal;
+		}
+		#zp__admin_module {
+			text-align: left;
+			position: fixed;
+			right: 4px;
+			top: 4px;
+
+			border: 1px solid rgba(0,0,0,0.15);
+			border-radius: 2px;
+			background: rgba(255,255,255,0.9);
+			z-index: 100001;
+
+			box-shadow: 0 1px 0 rgba(0,0,0,0.1);
+			min-width: 100px;
+		}
+		#zp__admin_link {
+			position: relative;
+			padding: 4px 8px;
+		}
+		#zp__admin_link {
+			display: block;
+			text-decoration: none;
+			white-space: nowrap;
+		}
+		#zp__admin_link > span {
+			border-right: 1px solid rgba(0,0,0,0.1);
+			padding-right: 7px;
+			margin-right: 5px;
+			display: inline-block;
+			color: rgba(0,0,0,0.4) !important;
+		}
+		#zp__admin_link:hover {
+			background-color: white;
+			border-color: rgba(0,0,0, 0.2);
+		}
+		#zp__admin_link:hover h3 {
+			color: #0CF !important;
+		}
+		#zp__admin_data {
+			z-index: 10000;
+			line-height: 16px;
+		}
+		#zp__admin_data ul, #zp__admin_data li {
+			padding: 0;
+			margin: 0;
+		}
+		#zp__admin_data a {
+			text-decoration: none;
+			color: #09C;
+			display: block;
+			padding: 2px 8px;
+		}
+		#zp__admin_data a:hover {
+			color: #0CF;
+			background-color: white;
+		}
+		#zp__admin_link h3 {
+			font-weight: bold;
+			color: #999;
+			margin: 0;
+			padding: 0;
+			font-size: 15px !important;
+			display: inline;
+		}
+		/* Transitions */
+		#zp__admin_link h3, #zp__admin_link a {
+			transition: all 0.1s ease-out;
+			-moz-transition: all 0.1s ease-out;
+			-webkit-transition: all 0.1s ease-out;
+		}

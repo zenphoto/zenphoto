@@ -52,6 +52,7 @@ function printZenJavascripts() {
 			var deletePage = "<?php echo gettext("Are you sure you want to delete this page? THIS CANNOT BE UNDONE!"); ?>";
 			// ]]> -->
 		</script>
+		<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admintoolbox.css" type="text/css" />
 		<?php
 	}
 }
@@ -64,9 +65,6 @@ function adminToolbox() {
 	global $_zp_current_album, $_zp_current_image, $_zp_current_search, $_zp_gallery_page, $_zp_gallery, $_zp_current_admin_obj, $_zp_loggedin;
 	if (zp_loggedin()) {
 		$zf = PROTOCOL . '://' . $_SERVER['HTTP_HOST'] . WEBPATH . "/" . ZENFOLDER;
-		$outerid = 'zp__admin_module';
-		$id = 'zp__admin_link';
-		$dataid = 'zp__admin_data';
 		$page = getCurrentPage();
 		ob_start();
 		?>
@@ -80,90 +78,12 @@ function adminToolbox() {
 			}
 			// ]]> -->
 		</script>
-		<style>
-		/* Clear Outer Styles */
-		#<?php echo $outerid;?> * {
-			font-family: Helvetica, Arial, sans-serif !important;
-			font-size: 12px !important;
-			line-height: 15px !important;
-			font-weight: normal;
-		}
-		#<?php echo $outerid;?> {
-			text-align: left;
-			position: fixed;
-			right: 4px;
-			top: 4px;
-
-			border: 1px solid rgba(0,0,0,0.15);
-			border-radius: 2px;
-			background: rgba(255,255,255,0.9);
-			z-index: 100001;
-
-			box-shadow: 0 1px 0 rgba(0,0,0,0.1);
-			min-width: 100px;
-		}
-		#<?php echo $id;?> {
-			position: relative;
-			padding: 4px 8px;
-		}
-		#<?php echo $id;?> {
-			display: block;
-			text-decoration: none;
-			white-space: nowrap;
-		}
-		#<?php echo $id;?> > span {
-			border-right: 1px solid rgba(0,0,0,0.1);
-			padding-right: 7px;
-			margin-right: 5px;
-			display: inline-block;
-			color: rgba(0,0,0,0.4) !important;
-		}
-		#<?php echo $id;?>:hover {
-			background-color: white;
-			border-color: rgba(0,0,0, 0.2);
-		}
-		#<?php echo $id;?>:hover h3 {
-			color: #0CF !important;
-		}
-		#<?php echo $dataid;?> {
-			z-index: 10000;
-			line-height: 16px;
-		}
-		#<?php echo $dataid;?> ul, #<?php echo $dataid;?> li {
-			padding: 0;
-			margin: 0;
-		}
-		#<?php echo $dataid;?> a {
-			text-decoration: none;
-			color: #09C;
-			display: block;
-			padding: 2px 8px;
-		}
-		#<?php echo $dataid;?> a:hover {
-			color: #0CF;
-			background-color: white;
-		}
-		#<?php echo $id;?> h3 {
-			font-weight: bold;
-			color: #999;
-			margin: 0;
-			padding: 0;
-			font-size: 15px !important;
-			display: inline;
-		}
-		/* Transitions */
-		#<?php echo $id;?> h3, #<?php echo $id;?> a {
-			transition: all 0.1s ease-out;
-			-moz-transition: all 0.1s ease-out;
-			-webkit-transition: all 0.1s ease-out;
-		}
-		</style>
-		<div id="<?php echo $outerid;?>">
-			<a id="<?php echo $id; ?>" href="javascript:toggle('<?php echo $dataid; ?>');">
+		<div id="zp__admin_module">
+			<a id="zp__admin_link" href="javascript:toggle('zp__admin_data');">
 				<span>ZP</span>
 				<h3><?php echo $_zp_current_admin_obj->getUser(); ?></h3>
 			</a>
-			<div id="<?php echo $dataid; ?>" style="display: none;">
+			<div id="zp__admin_data" style="display: none;">
 
 				<ul style="list-style-type: none;" >
 					<?php
