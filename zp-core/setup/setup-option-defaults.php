@@ -25,6 +25,24 @@ for ($i = 0; $i < 30; $i++) {
 	$lib_auth_extratext = $lib_auth_extratext . $salt{$list[$i]};
 }
 
+//clean up tag list quoted strings
+$sql = 'SELECT * FROM ' . prefix('tags') . ' WHERE `name` LIKE \'"%\' OR `name` LIKE "\'%"';
+$result = query($sql);
+if ($result) {
+	while ($row = db_fetch_assoc($result)) {
+		$sql = 'UPDATE ' . prefix('tags') . ' SET `name`=' . db_quote(trim($row['name'], '"\'')) . ' WHERE `id`=' . $row['id'];
+		if (!query($sql, false)) {
+			$oldtag = $row['id'];
+			$sql = 'DELETE FROM ' . prefix('tags') . ' WHERE `id`=' . $oldtag;
+			query($sql);
+			$sql = 'SELECT * FROM ' . prefix('tags') . ' WHERE `name`=' . db_quote(trim($row['name'], '"\''));
+			$row = query_single_row($sql);
+			if (!empty($row)) {
+				$sql = 'UPDATE ' . prefix('obj_to_tag') . ' SET `tagid`=' . $row['id'] . ' WHERE `tagid`=' . $oldtag;
+			}
+		}
+	}
+}
 
 setOption('zenphoto_install', serialize(installSignature()));
 $admins = $_zp_authority->getAdministrators('all');
