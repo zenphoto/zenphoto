@@ -11,7 +11,6 @@ if (!defined('OFFSET_PATH'))
 $_zp_script_timer['start'] = microtime();
 require_once(dirname(__FILE__) . '/global-definitions.php');
 require_once(dirname(__FILE__) . '/functions.php');
-getUserLocale(); //prime the locale
 
 zp_apply_filter('feature_plugin_load');
 if (DEBUG_PLUGINS) {
