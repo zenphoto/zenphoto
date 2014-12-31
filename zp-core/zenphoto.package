@@ -1124,7 +1124,6 @@ zp-core/images/strengths/strength8.png
 zp-core/images/strengths/strength9.png
 zp-core/js
 zp-core/js/admin.js
-zp-core/js/encoder.js
 zp-core/js/farbtastic.css
 zp-core/js/farbtastic.js
 zp-core/js/htmlencoder.js
@@ -1138,7 +1137,6 @@ zp-core/js/jquery.scrollTo.js
 zp-core/js/jquery.ui.nestedSortable.js
 zp-core/js/jquery.ui.touch-punch.min.js
 zp-core/js/sprintf.js
-zp-core/js/tag.js
 zp-core/js/toggleElements.css
 zp-core/js/upload.js
 zp-core/js/zenphoto.js
@@ -1978,7 +1976,9 @@ zp-core/zp-extensions/slideshow2/fonts/ie7.css
 zp-core/zp-extensions/slideshow2/fonts/ie7.js
 zp-core/zp-extensions/slideshow2/fonts/style.css
 zp-core/zp-extensions/tag_suggest
+zp-core/zp-extensions/tag_suggest/encoder.js
 zp-core/zp-extensions/tag_suggest/tag.css
+zp-core/zp-extensions/tag_suggest/tag.js
 zp-core/zp-extensions/themeEditor
 zp-core/zp-extensions/themeEditor/themes-editor.php
 zp-core/zp-extensions/tinymce
