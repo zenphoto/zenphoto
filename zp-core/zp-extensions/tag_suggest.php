@@ -27,7 +27,6 @@ function tagSuggestJS() {
 	<link type="text/css" rel="stylesheet" href="<?php echo pathurlencode($css); ?>" />
 	<?php
 	$taglist = getAllTagsUnique(OFFSET_PATH ? false : NULL, !OFFSET_PATH);
-	ksort($taglist);
 	$tags = array();
 	foreach ($taglist as $tag) {
 		$tags[] = addslashes($tag);
