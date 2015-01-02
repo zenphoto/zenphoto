@@ -387,7 +387,6 @@ class Image extends MediaObject {
 				}
 			}
 		}
-
 		zp_apply_filter('image_metadata', $this);
 
 		/* "import" metadata into database fields as makes sense */

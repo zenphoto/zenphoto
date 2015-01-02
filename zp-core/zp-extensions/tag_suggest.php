@@ -19,22 +19,19 @@ zp_register_filter('admin_head', 'tagSuggestJS');
 function tagSuggestJS() {
 	// the scripts needed
 	?>
-	<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/encoder.js"></script>
-	<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/tag.js"></script>
+	<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/tag_suggest/encoder.js"></script>
+	<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/tag_suggest/tag.js"></script>
 	<?php
 	$css = getPlugin('tag_suggest/tag.css', true, true);
 	?>
 	<link type="text/css" rel="stylesheet" href="<?php echo pathurlencode($css); ?>" />
 	<?php
 	$taglist = getAllTagsUnique(OFFSET_PATH ? false : NULL, !OFFSET_PATH);
-	$c = 0;
-	$list = '';
-	foreach ($taglist AS $tag) {
-		if ($c > 0)
-			$list .= ',';
-		$c++;
-		$list .= '"' . addslashes($tag) . '"';
+	$tags = array();
+	foreach ($taglist as $tag) {
+		$tags[] = addslashes($tag);
 	}
+
 	if (OFFSET_PATH || getOption('search_space_is') == 'OR') {
 		$tagseparator = ' ';
 	} else {
@@ -43,7 +40,7 @@ function tagSuggestJS() {
 	?>
 	<script type="text/javascript">
 		// <!-- <![CDATA[
-		var _tagList = [<?php echo $list; ?>];
+		var _tagList = ["<?php echo implode($tags, '","'); ?>"];
 		$(function () {
 			$('#search_input, #edit-editable_4, .tagsuggest').tagSuggest({separator: '<?php echo $tagseparator; ?>', tags: _tagList})
 		});

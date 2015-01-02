@@ -1,4 +1,4 @@
-span.tagMatches { 
+span.tagMatches {
 	width: 165px;
 	position: absolute;
 	z-index: 100;
@@ -6,15 +6,15 @@ span.tagMatches {
 	text-align: left;
 	overflow: auto;
 	border: 0;
-} 
-    
-span.tagMatches span { 
+}
+
+span.tagMatches span {
 	color: gray;
-	cursor: pointer; 
-	width: 150px; 
-	background-color: #F5F5F3; 
-} 
+	cursor: pointer;
+	width: 150px;
+	background-color: #F5F5F3;
+}
 
 ._tag_suggestion {
-	float: left; 
+	float: left;
 }

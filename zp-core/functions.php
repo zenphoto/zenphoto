@@ -20,7 +20,6 @@ require_once(SERVERPATH . '/' . ZENFOLDER . '/lib-kses.php');
 
 $_zp_captcha = new _zp_captcha(); // this will be overridden by the plugin if enabled.
 $_zp_HTML_cache = new _zp_HTML_cache(); // this will be overridden by the plugin if enabled.
-//setup session before checking for logon cookie
 require_once(dirname(__FILE__) . '/functions-i18n.php');
 
 if (GALLERY_SESSION) {
@@ -1151,7 +1150,7 @@ function storeTags($tags, $id, $tbl) {
 	if ($id) {
 		$tagsLC = array();
 		foreach ($tags as $key => $tag) {
-			$tag = trim($tag);
+			$tag = trim($tag, '\'"');
 			if (!empty($tag)) {
 				$lc_tag = mb_strtolower($tag);
 				if (!in_array($lc_tag, $tagsLC)) {
@@ -1178,7 +1177,7 @@ function storeTags($tags, $id, $tbl) {
 		foreach ($tags as $key => $tag) {
 			$dbtag = query_single_row("SELECT `id` FROM " . prefix('tags') . " WHERE `name`=" . db_quote($key));
 			if (!is_array($dbtag)) { // tag does not exist
-				query("INSERT INTO " . prefix('tags') . " (name) VALUES (" . db_quote($key) . ")", false);
+				query('INSERT INTO ' . prefix('tags') . ' (name) VALUES (' . db_quote($key) . ')', false);
 				$dbtag = array('id' => db_insert_id());
 			}
 			query("INSERT INTO " . prefix('obj_to_tag') . "(`objectid`, `tagid`, `type`) VALUES (" . $id . "," . $dbtag['id'] . ",'" . $tbl . "')");

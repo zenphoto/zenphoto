@@ -178,16 +178,6 @@ function generateLanguageList($all = false) {
 }
 
 /**
- * Sets the locale, etc. to the zenphoto domain details.
- * Returns the result of setupCurrentLocale()
- *
- */
-function setMainDomain() {
-	$locale = getUserLocale();
-	return setupCurrentLocale($locale);
-}
-
-/**
  * Gettext replacement function for separate translations of third party themes.
  * @param string $string The string to be translated
  * @param string $theme The name of the plugin. Only required for strings on the 'theme_description.php' file like the general theme description. If the theme is the current theme the function sets it automatically.
@@ -429,82 +419,87 @@ function validateLocale($userlocale, $source) {
 }
 
 /**
+ * Sets the locale, etc. to the zenphoto domain details.
+ * Returns the result of setupCurrentLocale()
+ *
+ */
+function setMainDomain() {
+	global $_zp_current_admin_obj, $_zp_current_locale;
+	if (DEBUG_LOCALE)
+		debugLogBackTrace("setMainDomain()");
+	if (isset($_REQUEST['locale'])) {
+		$_zp_current_locale = validateLocale(sanitize($_REQUEST['locale']), (isset($_POST['locale'])) ? 'POST' : 'URI string');
+		if ($_zp_current_locale) {
+			zp_setCookie('dynamic_locale', $_zp_current_locale);
+		} else {
+			zp_clearCookie('dynamic_locale');
+		}
+		if (DEBUG_LOCALE)
+			debugLog("dynamic_locale from URL: " . sanitize($_REQUEST['locale']) . "=>$_zp_current_locale");
+	} else {
+		$matches = explode('.', @$_SERVER['HTTP_HOST']);
+		$_zp_current_locale = validateLocale($matches[0], 'HTTP_HOST');
+		if ($_zp_current_locale && zp_getCookie('dynamic_locale')) {
+			zp_clearCookie('dynamic_locale');
+		}
+		if (DEBUG_LOCALE)
+			debugLog("dynamic_locale from HTTP_HOST: " . sanitize($matches[0]) . "=>$_zp_current_locale");
+	}
+
+	if (!$_zp_current_locale && is_object($_zp_current_admin_obj)) {
+		$_zp_current_locale = $_zp_current_admin_obj->getLanguage();
+		if (DEBUG_LOCALE)
+			debugLog("locale from user: " . $_zp_current_locale);
+	}
+
+	if (!$_zp_current_locale) {
+		$localeOption = getOption('locale');
+		$_zp_current_locale = zp_getCookie('dynamic_locale');
+
+		if (DEBUG_LOCALE)
+			debugLog("locale from option: " . $localeOption . '; dynamic locale=' . $_zp_current_locale);
+		if (empty($localeOption) && empty($_zp_current_locale)) { // if one is not set, see if there is a match from 'HTTP_ACCEPT_LANGUAGE'
+			$languageSupport = generateLanguageList();
+			$userLang = parseHttpAcceptLanguage();
+			foreach ($userLang as $lang) {
+				$l = strtoupper($lang['fullcode']);
+				$_zp_current_locale = validateLocale($l, 'HTTP Accept Language');
+				if ($_zp_current_locale)
+					break;
+			}
+		} else {
+			if (empty($_zp_current_locale)) {
+				$_zp_current_locale = $localeOption;
+			}
+		}
+	}
+
+	if (empty($_zp_current_locale)) {
+// return "default" language, English if allowed, otherwise whatever is the "first" allowed language
+		$languageSupport = generateLanguageList();
+		if (empty($languageSupport) || in_array('en_US', $languageSupport)) {
+			$_zp_current_locale = 'en_US';
+		} else {
+			$_zp_current_locale = array_shift($languageSupport);
+		}
+		if (DEBUG_LOCALE)
+			debugLog("locale from language list: " . $_zp_current_locale);
+	} else {
+		setOption('locale', $_zp_current_locale, false);
+	}
+	if (DEBUG_LOCALE)
+		debugLog("getUserLocale Returning locale: " . $_zp_current_locale);
+
+	return setupCurrentLocale($_zp_current_locale);
+}
+
+/**
  * Returns a saved (or posted) locale. Posted locales are stored as a cookie.
  *
  * Sets the 'locale' option to the result (non-persistent)
  */
 function getUserLocale() {
-	global $_zp_current_admin_obj, $_zp_current_locale;
-	if (!$_zp_current_locale) {
-		if (DEBUG_LOCALE)
-			debugLogBackTrace("getUserLocale()");
-		if (isset($_REQUEST['locale'])) {
-			if (isset($_POST['locale'])) {
-				$_zp_current_locale = validateLocale(sanitize($_POST['locale']), 'POST');
-			} else {
-				$_zp_current_locale = validateLocale(sanitize($_GET['locale']), 'URI string');
-			}
-			if ($_zp_current_locale) {
-				zp_setCookie('dynamic_locale', $_zp_current_locale);
-			} else {
-				zp_clearCookie('dynamic_locale');
-			}
-			if (DEBUG_LOCALE)
-				debugLog("dynamic_locale from URL: " . sanitize($_REQUEST['locale']) . "=>$_zp_current_locale");
-		} else {
-			$matches = explode('.', @$_SERVER['HTTP_HOST']);
-			$_zp_current_locale = validateLocale($matches[0], 'HTTP_HOST');
-			if ($_zp_current_locale && zp_getCookie('dynamic_locale')) {
-				zp_clearCookie('dynamic_locale');
-			}
-			if (DEBUG_LOCALE)
-				debugLog("dynamic_locale from HTTP_HOST: " . sanitize($matches[0]) . "=>$_zp_current_locale");
-		}
-
-		if (!$_zp_current_locale && is_object($_zp_current_admin_obj)) {
-			$_zp_current_locale = $_zp_current_admin_obj->getLanguage();
-			if (DEBUG_LOCALE)
-				debugLog("locale from user: " . $_zp_current_locale);
-		}
-
-		if (!$_zp_current_locale) {
-			$localeOption = getOption('locale');
-			$_zp_current_locale = zp_getCookie('dynamic_locale');
-
-			if (DEBUG_LOCALE)
-				debugLog("locale from option: " . $localeOption . '; dynamic locale=' . $_zp_current_locale);
-			if (empty($localeOption) && empty($_zp_current_locale)) { // if one is not set, see if there is a match from 'HTTP_ACCEPT_LANGUAGE'
-				$languageSupport = generateLanguageList();
-				$userLang = parseHttpAcceptLanguage();
-				foreach ($userLang as $lang) {
-					$l = strtoupper($lang['fullcode']);
-					$_zp_current_locale = validateLocale($l, 'HTTP Accept Language');
-					if ($_zp_current_locale)
-						break;
-				}
-			} else {
-				if (empty($_zp_current_locale)) {
-					$_zp_current_locale = $localeOption;
-				}
-			}
-		}
-
-		if (empty($_zp_current_locale)) {
-// return "default" language, English if allowed, otherwise whatever is the "first" allowed language
-			$languageSupport = generateLanguageList();
-			if (empty($languageSupport) || in_array('en_US', $languageSupport)) {
-				$_zp_current_locale = 'en_US';
-			} else {
-				$_zp_current_locale = array_shift($languageSupport);
-			}
-			if (DEBUG_LOCALE)
-				debugLog("locale from language list: " . $_zp_current_locale);
-		} else {
-			setOption('locale', $_zp_current_locale, false);
-		}
-		if (DEBUG_LOCALE)
-			debugLog("getUserLocale Returning locale: " . $_zp_current_locale);
-	}
+	global $_zp_current_locale;
 	return $_zp_current_locale;
 }
 

@@ -2548,8 +2548,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 		echo '</li></ul>';
 	}
 
-	$_zp_current_locale = NULL;
-
 	/**
 	 * Generates an editable list of language strings
 	 *

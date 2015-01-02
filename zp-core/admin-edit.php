@@ -563,8 +563,6 @@ if (isset($_GET['album']) && (empty($subtab) || $subtab == 'albuminfo') || isset
 	sort($dbfields);
 	$imagedbfields = implode(',', $dbfields);
 	?>
-	<script type="text/javascript" src="js/encoder.js"></script>
-	<script type="text/javascript" src="js/tag.js"></script>
 	<script type="text/javascript">
 		//<!-- <![CDATA[
 		var albumdbfields = [<?php echo $albumdbfields; ?>];
