@@ -688,11 +688,11 @@ function formatData($type,$tag,$intel,$data) {
 function formatExposure($data) {
 	if (strpos($data,'/')===false) {
 		if ($data >= 1) {
-			return round($data, 2).' '.gettext('sec');
+			return round($data, 2).' sec';
 		} else {
 			$n=0; $d=0;
 			ConvertToFraction($data, $n, $d);
-			return $n.'/'.$d.' '.gettext('sec');
+			return $n.'/'.$d.' sec';
 		}
 	} else {
 		return gettext('Bulb');
