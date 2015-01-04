@@ -998,6 +998,7 @@ zp-core/zenphoto.package
 zp-core/zenphoto_cfg.txt
 zp-core/exif
 zp-core/exif/exif.php
+zp-core/exif/exifTranslations.php
 zp-core/exif/makers
 zp-core/exif/makers/canon.php
 zp-core/exif/makers/fujifilm.php
@@ -2276,4 +2277,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-2278
+2279
