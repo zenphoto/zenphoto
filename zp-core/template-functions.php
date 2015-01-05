@@ -53,6 +53,24 @@ function printThemeHeadItems() {
 			var deleteImage = "<?php echo gettext("Are you sure you want to delete the image? THIS CANNOT BE UNDONE!"); ?>";
 			var deleteArticle = "<?php echo gettext("Are you sure you want to delete this article? THIS CANNOT BE UNDONE!"); ?>";
 			var deletePage = "<?php echo gettext("Are you sure you want to delete this page? THIS CANNOT BE UNDONE!"); ?>";
+
+
+			function newAlbum(folder, albumtab) {
+				var album = prompt('<?php echo gettext('New album name?'); ?>', '<?php echo gettext('new album'); ?>');
+				if (album) {
+					launchScript('<?php echo PROTOCOL . '://' . $_SERVER['HTTP_HOST'] . WEBPATH . "/" . ZENFOLDER; ?>/admin-edit.php', ['action=newalbum', 'album=' + encodeURIComponent(folder), 'name=' + encodeURIComponent(album), 'albumtab=' + albumtab, 'XSRFToken=<?php echo getXSRFToken('newalbum'); ?>']);
+				}
+			}
+
+			window.addEventListener('load', function () {
+				if (!$('#admin_data').length) {
+					$('<link>')
+									.appendTo('head')
+									.attr({type: 'text/css', rel: 'stylesheet'})
+									.attr('href', '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/toolbox.css');
+
+				}
+			}, false);
 			// ]]> -->
 		</script>
 		<?php
@@ -70,18 +88,9 @@ function adminToolbox() {
 		$id = 'admin';
 		$dataid = 'admin_data';
 		$page = getCurrentPage();
+
 		ob_start();
 		?>
-		<script type="text/javascript">
-			// <!-- <![CDATA[
-			function newAlbum(folder, albumtab) {
-				var album = prompt('<?php echo gettext('New album name?'); ?>', '<?php echo gettext('new album'); ?>');
-				if (album) {
-					launchScript('<?php echo $zf; ?>/admin-edit.php', ['action=newalbum', 'album=' + encodeURIComponent(folder), 'name=' + encodeURIComponent(album), 'albumtab=' + albumtab, 'XSRFToken=<?php echo getXSRFToken('newalbum'); ?>']);
-				}
-			}
-			// ]]> -->
-		</script>
 		<div id="<?php echo $id; ?>">
 			<h3>
 				<a onclick="toggle('<?php echo $dataid; ?>');">
@@ -3905,10 +3914,10 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 					foreach ($object_list as $key => $list) {
 						?>
 						<input type="hidden" name="in<?php echo $key ?>" value="<?php
-			if (is_array($list))
-				echo html_encode(implode(',', $list));
-			else
-				echo html_encode($list);
+						if (is_array($list))
+							echo html_encode(implode(',', $list));
+						else
+							echo html_encode($list);
 						?>" />
 									 <?php
 								 }
