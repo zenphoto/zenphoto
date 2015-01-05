@@ -267,38 +267,36 @@ div.jp-seeking-bg {
 button.jp-mute,
 button.jp-unmute,
 button.jp-volume-max {
+	position: absolute;
 	width:22px;
 	height:22px;
-	margin-top:12px;
 }
 
 div.jp-audio div.jp-type-single button.jp-mute,
 div.jp-audio div.jp-type-single button.jp-unmute {
-	margin-left: 130px;
-	margin-top:0px;
+	top:0px;
+	left: 180px;
 }
 
 div.jp-audio div.jp-type-playlist button.jp-mute,
 div.jp-audio div.jp-type-playlist button.jp-unmute {
-	margin-top: 0;
-	margin-left: 74px;
-
+	top: 0px;
+	left: 165px;
 }
 
 div.jp-audio div.jp-type-playlist button.jp-volume-max {
-	margin-top: 0;
-	margin-left: 20px;
+	top: 0;
+	left: 210px;
 }
 
-div.jp-audio button.jp-volume-max {
-	margin-top: 0;
-	margin-left: 26px;
+div.jp-audio div.jp-type-single button.jp-volume-max {
+	top: 0;
+	left: 225px;
 }
 
 div.jp-video button.jp-mute,
 div.jp-video button.jp-unmute,
 div.jp-video button.jp-volume-max {
-	position: absolute;
 	top:0px;
 	margin-top:0;
 }
@@ -307,7 +305,6 @@ div.jp-video button.jp-mute,
 div.jp-video button.jp-unmute {
 	left: 55px;
 }
-
 
 div.jp-video button.jp-volume-max {
 	left: 124px;
