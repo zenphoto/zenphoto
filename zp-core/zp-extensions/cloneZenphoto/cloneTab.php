@@ -121,9 +121,9 @@ printAdminHeader('overview', 'clone');
 							newinstall = $('#clonePath').val().replace('<?php echo $path; ?>', '');
 							$('#cloneWebPath').val('<?php echo $urlpath; ?>' + newinstall);
 						}
-						window.onload = function() {
+						window.addEventListener('load', function () {
 							folderChange();
-						}
+						}, false);
 						// ]]> -->
 					</script>
 					<form name="changeDir" id="changeDir" action="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cloneZenphoto/cloneTab.php'; ?>" method="post">

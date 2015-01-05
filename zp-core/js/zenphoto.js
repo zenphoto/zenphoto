@@ -29,8 +29,6 @@ function launchScript(script, params) {
 	window.location = script + '?' + params.join('&');
 }
 
-
-
 function addslashes(str) {
 	// Escapes single quote, double quotes and backslash characters in a string with backslashes
 	//

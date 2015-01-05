@@ -449,9 +449,9 @@ if (isset($_REQUEST['backup'])) {
 	} else {
 		$messages = '
 			<script type="text/javascript">
-				window.onload = function() {
+				window.addEventListener(\'load\',  = function() {
 					window.location = "' . FULLWEBPATH . '/' . ZENFOLDER . '/' . UTILITIES_FOLDER . '/backup_restore.php?compression=' . $compression_handler . '";
-				}
+				}, false);
 			</script>
 		';
 	}
