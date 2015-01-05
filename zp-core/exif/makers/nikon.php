@@ -226,19 +226,19 @@ function formatNikonData($type, $tag, $intel, $model, $data) {
 				case "0003":
 					if ($model == 0) { //Quality
 						switch ($data) {
-							case 1: $data = '%vga basic%';
+							case 1: $data = '!vga basic!';
 								break;
-							case 2: $data = '%vga normal%';
+							case 2: $data = '!vga normal!';
 								break;
-							case 3: $data = '%vga fine%';
+							case 3: $data = '!vga fine!';
 								break;
-							case 4: $data = '%sxga basic%';
+							case 4: $data = '!sxga basic!';
 								break;
-							case 5: $data = '%sxga normal%';
+							case 5: $data = '!sxga normal!';
 								break;
-							case 6: $data = '%sxga fine%';
+							case 6: $data = '!sxga fine!';
 								break;
-							default: $data = '%unknown%' . ": " . $data;
+							default: $data = '!unknown!' . ": " . $data;
 								break;
 						}
 					}
@@ -246,11 +246,11 @@ function formatNikonData($type, $tag, $intel, $model, $data) {
 				case "0004":
 					if ($model == 0) { //Color
 						switch ($data) {
-							case 1: $data = '%color%';
+							case 1: $data = '!color!';
 								break;
-							case 2: $data = '%monochrome%';
+							case 2: $data = '!monochrome!';
 								break;
-							default: $data = '%unknown%' . ": " . $data;
+							default: $data = '!unknown!' . ": " . $data;
 								break;
 						}
 					}
@@ -258,17 +258,17 @@ function formatNikonData($type, $tag, $intel, $model, $data) {
 				case "0005":
 					if ($model == 0) { //Image Adjustment
 						switch ($data) {
-							case 0: $data = '%normal%';
+							case 0: $data = '!normal!';
 								break;
-							case 1: $data = '%bright+%';
+							case 1: $data = '!bright+!';
 								break;
-							case 2: $data = '%bright-%';
+							case 2: $data = '!bright-!';
 								break;
-							case 3: $data = '%contrast+%';
+							case 3: $data = '!contrast+!';
 								break;
-							case 4: $data = '%contrast-%';
+							case 4: $data = '!contrast-!';
 								break;
-							default: $data = '%unknown%' . ": " . $data;
+							default: $data = '!unknown!' . ": " . $data;
 								break;
 						}
 					}
@@ -284,7 +284,7 @@ function formatNikonData($type, $tag, $intel, $model, $data) {
 								break;
 							case 5: $data = "ISO-100";
 								break;
-							default: $data = '%unknown%' . ": " . $data;
+							default: $data = '!unknown!' . ": " . $data;
 								break;
 						}
 					}
@@ -292,21 +292,21 @@ function formatNikonData($type, $tag, $intel, $model, $data) {
 				case "0007":
 					if ($model == 0) { //White Balance
 						switch ($data) {
-							case 0: $data = '%auto%';
+							case 0: $data = '!auto!';
 								break;
-							case 1: $data = '%preset%';
+							case 1: $data = '!preset!';
 								break;
-							case 2: $data = '%daylight%';
+							case 2: $data = '!daylight!';
 								break;
-							case 3: $data = '%incandescence%';
+							case 3: $data = '!incandescence!';
 								break;
-							case 4: $data = '%fluorescence%';
+							case 4: $data = '!fluorescence!';
 								break;
-							case 5: $data = '%cloudy%';
+							case 5: $data = '!cloudy!';
 								break;
-							case 6: $data = '%speedlight%';
+							case 6: $data = '!speedlight!';
 								break;
-							default: $data = '%unknown%' . ": " . $data;
+							default: $data = '!unknown!' . ": " . $data;
 								break;
 						}
 					}
@@ -314,11 +314,11 @@ function formatNikonData($type, $tag, $intel, $model, $data) {
 				case "000b":
 					if ($model == 0) { //Converter
 						switch ($data) {
-							case 0: $data = '%none%';
+							case 0: $data = '!none!';
 								break;
-							case 1: $data = '%fisheye%';
+							case 1: $data = '!fisheye!';
 								break;
-							default: $data = '%unknown%' . ": " . $data;
+							default: $data = '!unknown!' . ": " . $data;
 								break;
 						}
 					}
@@ -334,7 +334,7 @@ function formatNikonData($type, $tag, $intel, $model, $data) {
 					break;
 				case "0088":
 					if ($model == 1) { //AF Focus Position
-						$temp = '%center%';
+						$temp = '!center!';
 						$data = bin2hex($data);
 						$data = str_replace("01", "Top", $data);
 						$data = str_replace("02", "Bottom", $data);
@@ -356,9 +356,9 @@ function formatNikonData($type, $tag, $intel, $model, $data) {
 					if ($model == 1) { //Lens Type
 						$data = hexdec(substr($data, 0, 2));
 						switch ($data) {
-							case 0: $data = '%af non d%';
+							case 0: $data = '!af non d!';
 								break;
-							case 1: $data = '%manual%';
+							case 1: $data = '!manual!';
 								break;
 							case 2: $data = "AF-D or AF-S";
 								break;
@@ -368,7 +368,7 @@ function formatNikonData($type, $tag, $intel, $model, $data) {
 								break;
 							case 14: $data = "AF-D G VR";
 								break;
-							default: $data = '%unknown%' . ": " . $data;
+							default: $data = '!unknown!' . ": " . $data;
 								break;
 						}
 					}
@@ -377,15 +377,15 @@ function formatNikonData($type, $tag, $intel, $model, $data) {
 					if ($model == 1) { //Flash type
 						$data = hexdec(substr($data, 0, 2));
 						if ($data == 0)
-							$data = '%did not fire%';
+							$data = '!did not fire!';
 						else if ($data == 4)
-							$data = '%unknown%';
+							$data = '!unknown!';
 								else if ($data == 7)
-									$data = '%external%';
+									$data = '!external!';
 								else if ($data == 9)
-									$data = '%on camera%';
+									$data = '!on camera!';
 								else
-									$data = '%unknown%' . ": " . $data;
+									$data = '!unknown!' . ": " . $data;
 					}
 					break;
 			}

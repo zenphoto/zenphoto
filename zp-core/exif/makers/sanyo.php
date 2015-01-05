@@ -70,20 +70,20 @@ $type, $tag, $intel, $data) {
 				$data = gettext("Normal"
 				);
 			else
-				$data = '%unknown%' . ": " . $data;
+				$data = '!unknown!' . ": " . $data;
 		}
 		if ($tag == "0201") { //Quality
 			if ($data == 2)
-				$data = '%high%';
+				$data = '!high!';
 			else
-				$data = '%unknown%' . " : " . $data;
+				$data = '!unknown!' . " : " . $data;
 		}
 		if ($tag == "0202") { //Macro
 			if ($data == 0)
 				$data = gettext("Normal"
 				);
 			else
-				$data = '%unknown%' . ": " . $data;
+				$data = '!unknown!' . ": " . $data;
 		}
 	} else if ($type == "UNDEFINED") {
 

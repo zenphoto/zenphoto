@@ -618,23 +618,23 @@ function formatData($type, $tag, $intel, $data) {
 					// Example of how all of these tag formatters should be...
 					switch ($data) {
 						case 0 : // not set, presume normal
-						case 1 : $data = '%1: normal (0 deg)%';
+						case 1 : $data = '!1: normal (0 deg)!';
 							break;
-						case 2 : $data = '%2: mirrored%';
+						case 2 : $data = '!2: mirrored!';
 							break;
-						case 3 : $data = '%3: upside-down%';
+						case 3 : $data = '!3: upside-down!';
 							break;
-						case 4 : $data = '%4: upside-down mirrored%';
+						case 4 : $data = '!4: upside-down mirrored!';
 							break;
-						case 5 : $data = '%5: 90 deg cw mirrored%';
+						case 5 : $data = '!5: 90 deg cw mirrored!';
 							break;
-						case 6 : $data = '%6: 90 deg ccw%';
+						case 6 : $data = '!6: 90 deg ccw!';
 							break;
-						case 7 : $data = '%7: 90 deg ccw mirrored%';
+						case 7 : $data = '!7: 90 deg ccw mirrored!';
 							break;
-						case 8 : $data = '%8: 90 deg cw%';
+						case 8 : $data = '!8: 90 deg cw!';
 							break;
-						default : $data = sprintf('%d: ' . '%unknown%', $data);
+						default : $data = sprintf('%d: ' . '!unknown!', $data);
 							break;
 					}
 					break;
@@ -642,95 +642,95 @@ function formatData($type, $tag, $intel, $data) {
 				case 'a210': // FocalPlaneResolutionUnit
 				case '0128': // ThumbnailResolutionUnit
 					switch ($data) {
-						case 1: $data = '%no unit%';
+						case 1: $data = '!no unit!';
 							break;
-						case 2: $data = '%inch%';
+						case 2: $data = '!inch!';
 							break;
-						case 3: $data = '%centimeter%';
+						case 3: $data = '!centimeter!';
 							break;
 					}
 					break;
 				case '0213': // YCbCrPositioning
 					switch ($data) {
-						case 1: $data = '%center of pixel array%';
+						case 1: $data = '!center of pixel array!';
 							break;
-						case 2: $data = '%datum point%';
+						case 2: $data = '!datum point!';
 							break;
 					}
 					break;
 				case '8822': // ExposureProgram
 					switch ($data) {
-						case 1: $data = '%manual%';
+						case 1: $data = '!manual!';
 							break;
-						case 2: $data = '%program%';
+						case 2: $data = '!program!';
 							break;
-						case 3: $data = '%aperture priority%';
+						case 3: $data = '!aperture priority!';
 							break;
-						case 4: $data = '%shutter priority%';
+						case 4: $data = '!shutter priority!';
 							break;
-						case 5: $data = '%program creative%';
+						case 5: $data = '!program creative!';
 							break;
-						case 6: $data = '%program action%';
+						case 6: $data = '!program action!';
 							break;
-						case 7: $data = '%portrait%';
+						case 7: $data = '!portrait!';
 							break;
-						case 8: $data = '%landscape%';
+						case 8: $data = '!landscape!';
 							break;
-						default: $data = '%unknown%' . ': ' . $data;
+						default: $data = '!unknown!' . ': ' . $data;
 							break;
 					}
 					break;
 				case '8830': // SensitivityType
 					switch ($data) {
-						case 1: $data = '%standard output sensitivity%';
+						case 1: $data = '!standard output sensitivity!';
 							break;
-						case 2: $data = '%recommended exposure index%';
+						case 2: $data = '!recommended exposure index!';
 							break;
-						case 3: $data = '%iso speed%';
+						case 3: $data = '!iso speed!';
 							break;
-						case 4: $data = '%standard output sensitivity and recommended exposure index%';
+						case 4: $data = '!standard output sensitivity and recommended exposure index!';
 							break;
-						case 5: $data = '%standard output sensitivity and iso speed%';
+						case 5: $data = '!standard output sensitivity and iso speed!';
 							break;
-						case 6: $data = '%recommended exposure index and iso speed%';
+						case 6: $data = '!recommended exposure index and iso speed!';
 							break;
-						case 7: $data = '%standard output sensitivity, recommended exposure index and iso speed%';
+						case 7: $data = '!standard output sensitivity, recommended exposure index and iso speed!';
 							break;
-						default: $data = '%unknown%' . ': ' . $data;
+						default: $data = '!unknown!' . ': ' . $data;
 							break;
 					}
 					break;
 				case '9207': // MeteringMode
 					switch ($data) {
-						case 1: $data = '%average%';
+						case 1: $data = '!average!';
 							break;
-						case 2: $data = '%center weighted average%';
+						case 2: $data = '!center weighted average!';
 							break;
-						case 3: $data = '%spot%';
+						case 3: $data = '!spot!';
 							break;
-						case 4: $data = '%multi-spot%';
+						case 4: $data = '!multi-spot!';
 							break;
-						case 5: $data = '%pattern%';
+						case 5: $data = '!pattern!';
 							break;
-						case 6: $data = '%partial%';
+						case 6: $data = '!partial!';
 							break;
-						case 255: $data = '%other%';
+						case 255: $data = '!other!';
 							break;
-						default: $data = '%unknown%' . ': ' . $data;
+						default: $data = '!unknown!' . ': ' . $data;
 							break;
 					}
 					break;
 				case '9208': // LightSource
 					switch ($data) {
-						case 1: $data = '%daylight%';
+						case 1: $data = '!daylight!';
 							break;
-						case 2: $data = '%fluorescent%';
+						case 2: $data = '!fluorescent!';
 							break;
-						case 3: $data = '%tungsten%';
+						case 3: $data = '!tungsten!';
 							break; // 3 Tungsten (Incandescent light)
 						// 4 Flash
 						// 9 Fine Weather
-						case 10: $data = '%flash%';
+						case 10: $data = '!flash!';
 							break; // 10 Cloudy Weather
 						// 11 Shade
 						// 12 Daylight Fluorescent (D 5700 - 7100K)
@@ -738,11 +738,11 @@ function formatData($type, $tag, $intel, $data) {
 						// 14 Cool White Fluorescent (W 3900 -4500K)
 						// 15 White Fluorescent (WW 3200 - 3700K)
 						// 10 Flash
-						case 17: $data = '%standard light a%';
+						case 17: $data = '!standard light a!';
 							break;
-						case 18: $data = '%standard light b%';
+						case 18: $data = '!standard light b!';
 							break;
-						case 19: $data = '%standard light c%';
+						case 19: $data = '!standard light c!';
 							break;
 						case 20: $data = 'D55';
 							break;
@@ -752,11 +752,11 @@ function formatData($type, $tag, $intel, $data) {
 							break;
 						case 23: $data = 'D50';
 							break;
-						case 24: $data = '%iso studio tungsten%';
+						case 24: $data = '!iso studio tungsten!';
 							break;
-						case 255: $data = '%other%';
+						case 255: $data = '!other!';
 							break;
-						default: $data = '%unknown%' . ': ' . $data;
+						default: $data = '!unknown!' . ': ' . $data;
 							break;
 					}
 					break;
@@ -769,97 +769,97 @@ function formatData($type, $tag, $intel, $data) {
 						case 24:
 						case 32:
 						case 64:
-						case 80: $data = '%no flash%';
+						case 80: $data = '!no flash!';
 							break;
-						case 1: $data = '%flash%';
+						case 1: $data = '!flash!';
 							break;
-						case 5: $data = '%flash, strobe return light not detected%';
+						case 5: $data = '!flash, strobe return light not detected!';
 							break;
-						case 7: $data = '%flash, strobe return light detected%';
+						case 7: $data = '!flash, strobe return light detected!';
 							break;
-						case 9: $data = '%compulsory flash%';
+						case 9: $data = '!compulsory flash!';
 							break;
-						case 13: $data = '%compulsory flash, return light not detected%';
+						case 13: $data = '!compulsory flash, return light not detected!';
 							break;
-						case 15: $data = '%compulsory flash, return light detected%';
+						case 15: $data = '!compulsory flash, return light detected!';
 							break;
-						case 25: $data = '%flash, auto-mode%';
+						case 25: $data = '!flash, auto-mode!';
 							break;
-						case 29: $data = '%flash, auto-mode, return light not detected%';
+						case 29: $data = '!flash, auto-mode, return light not detected!';
 							break;
-						case 31: $data = '%flash, auto-mode, return light detected%';
+						case 31: $data = '!flash, auto-mode, return light detected!';
 							break;
-						case 65: $data = '%red eye%';
+						case 65: $data = '!red eye!';
 							break;
-						case 69: $data = '%red eye, return light not detected%';
+						case 69: $data = '!red eye, return light not detected!';
 							break;
-						case 71: $data = '%red eye, return light detected%';
+						case 71: $data = '!red eye, return light detected!';
 							break;
-						case 73: $data = '%red eye, compulsory flash%';
+						case 73: $data = '!red eye, compulsory flash!';
 							break;
-						case 77: $data = '%red eye, compulsory flash, return light not detected%';
+						case 77: $data = '!red eye, compulsory flash, return light not detected!';
 							break;
-						case 79: $data = '%red eye, compulsory flash, return light detected%';
+						case 79: $data = '!red eye, compulsory flash, return light detected!';
 							break;
-						case 89: $data = '%red eye, auto-mode%';
+						case 89: $data = '!red eye, auto-mode!';
 							break;
-						case 93: $data = '%red eye, auto-mode, return light not detected%';
+						case 93: $data = '!red eye, auto-mode, return light not detected!';
 							break;
-						case 95: $data = '%red eye, auto-mode, return light detected%';
+						case 95: $data = '!red eye, auto-mode, return light detected!';
 							break;
-						default: $data = '%unknown%' . ': ' . $data;
+						default: $data = '!unknown!' . ': ' . $data;
 							break;
 					}
 					break;
 				case 'a001': // ColorSpace
 					if ($data == 1)
-						$data = '%srgb%';
+						$data = '!srgb!';
 					else
-						$data = '%uncalibrated%';
+						$data = '!uncalibrated!';
 					break;
 				case 'a002': // ExifImageWidth
 				case 'a003': // ExifImageHeight
-					$data = $data . ' ' . '%pixels%';
+					$data = $data . ' ' . '!pixels!';
 					break;
 				case '0103': // Compression
 					switch ($data) {
-						case 1: $data = '%no compression%';
+						case 1: $data = '!no compression!';
 							break;
-						case 6: $data = '%jpeg compression%';
+						case 6: $data = '!jpeg compression!';
 							break;
-						default: $data = '%unknown%' . ': ' . $data;
+						default: $data = '!unknown!' . ': ' . $data;
 							break;
 					}
 					break;
 				case 'a217': // SensingMethod
 					switch ($data) {
-						case 1: $data = '%not defined%';
+						case 1: $data = '!not defined!';
 							break;
-						case 2: $data = '%one chip color area sensor%';
+						case 2: $data = '!one chip color area sensor!';
 							break;
-						case 3: $data = '%two chip color area sensor%';
+						case 3: $data = '!two chip color area sensor!';
 							break;
-						case 4: $data = '%three chip color area sensor%';
+						case 4: $data = '!three chip color area sensor!';
 							break;
-						case 5: $data = '%color sequential area sensor%';
+						case 5: $data = '!color sequential area sensor!';
 							break;
-						case 7: $data = '%trilinear sensor%';
+						case 7: $data = '!trilinear sensor!';
 							break;
-						case 8: $data = '%color sequential linear sensor%';
+						case 8: $data = '!color sequential linear sensor!';
 							break;
-						default: $data = '%unknown%' . ': ' . $data;
+						default: $data = '!unknown!' . ': ' . $data;
 							break;
 					}
 					break;
 				case '0106': // PhotometricInterpretation
 					switch ($data) {
-						case 1: $data = '%monochrome%';
+						case 1: $data = '!monochrome!';
 							break;
-						case 2: $data = '%rgb%';
+						case 2: $data = '!rgb!';
 							break;
-						case 6: $data = '%ycbcr%';
+						case 6: $data = '!ycbcr!';
 							break;
-						default: $data = '%unknown%' . ': ' . $data;
+						default: $data = '!unknown!' . ': ' . $data;
 							break;
 					}
 					break;
@@ -895,17 +895,17 @@ function formatData($type, $tag, $intel, $data) {
 				case '9000': // ExifVersion
 				case 'a000': // FlashPixVersion
 				case '0002': // InteroperabilityVersion
-					$data = '%version%' . ' ' . $data / 100;
+					$data = '!version!' . ' ' . $data / 100;
 					break;
 				case 'a300': // FileSource
 					$data = bin2hex($data);
 					$data = str_replace('00', '', $data);
-					$data = str_replace('03', '%digital still camera%', $data);
+					$data = str_replace('03', '!digital still camera!', $data);
 					break;
 				case 'a301': // SceneType
 					$data = bin2hex($data);
 					$data = str_replace('00', '', $data);
-					$data = str_replace('01', '%directly photographed%', $data);
+					$data = str_replace('01', '!directly photographed!', $data);
 					break;
 				case '9101': // ComponentsConfiguration
 					$data = bin2hex($data);
@@ -935,15 +935,15 @@ function formatData($type, $tag, $intel, $data) {
 function formatExposure($data) {
 	if (strpos($data, '/') === false) {
 		if ($data >= 1) {
-			return round($data, 2) . ' ' . '%sec%';
+			return round($data, 2) . ' ' . '!sec!';
 		} else {
 			$n = 0;
 			$d = 0;
 			ConvertToFraction($data, $n, $d);
-			return $n . '/' . $d . ' ' . '%sec%';
+			return $n . '/' . $d . ' ' . '!sec!';
 		}
 	} else {
-		return '%bulb%';
+		return '!bulb!';
 	}
 }
 
@@ -1085,7 +1085,7 @@ function read_exif_data_raw($path, $verbose) {
 
 	if (!$in || !$seek) { // if the path was invalid, this error will catch it
 		$result['Errors'] = 1;
-		$result['Error'][$result['Errors']] = '%the file could not be found.%';
+		$result['Error'][$result['Errors']] = '!the file could not be found.!';
 		return $result;
 	}
 
@@ -1197,7 +1197,7 @@ function read_exif_data_raw($path, $verbose) {
 		$result['Endien'] = 'Motorola';
 	} else {
 		$intel = 1; // not sure what the default should be, but this seems reasonable
-		$result['Endien'] = '%unknown%';
+		$result['Endien'] = '!unknown!';
 	}
 
 	// 2 bytes of 0x002a

@@ -103,15 +103,15 @@ function formatPanasonicData($type, $tag, $intel, $data) {
 			else if ($data == 16)
 				$data = "1-area-focusing";
 			else if ($data == 4096)
-				$data = '%3-area-focusing (high speed)%';
+				$data = '!3-area-focusing (high speed)!';
 			else if ($data == 4112)
-				$data = '%1-area-focusing (high speed)%';
+				$data = '!1-area-focusing (high speed)!';
 			else if ($data == 16)
-				$data = '%1-area-focusing%';
+				$data = '!1-area-focusing!';
 			else if ($data == 1)
-				$data = '%spot-focusing%';
+				$data = '!spot-focusing!';
 			else
-				$data = '%unknown%' . " (" . $data . ")";
+				$data = '!unknown!' . " (" . $data . ")";
 		}
 	} else if ($type == "URATIONAL" || $type == "SRATIONAL") {
 		$data = unRational($data, $type, $intel);
@@ -120,119 +120,119 @@ function formatPanasonicData($type, $tag, $intel, $data) {
 
 		if ($tag == "0001") { //Image Quality
 			if ($data == 2)
-				$data = '%high%';
+				$data = '!high!';
 			else if ($data == 3)
-				$data = '%standard%';
+				$data = '!standard!';
 			else if ($data == 6)
-				$data = '%very high%';
+				$data = '!very high!';
 			else if ($data == 7)
-				$data = '%raw%';
+				$data = '!raw!';
 			else
-				$data = '%unknown%' . " (" . $data . ")";
+				$data = '!unknown!' . " (" . $data . ")";
 		}
 		if ($tag == "0003") { //White Balance
 			if ($data == 1)
-				$data = '%auto%';
+				$data = '!auto!';
 			else if ($data == 2)
-				$data = '%daylight%';
+				$data = '!daylight!';
 			else if ($data == 3)
-				$data = '%cloudy%';
+				$data = '!cloudy!';
 			else if ($data == 4)
-				$data = '%halogen%';
+				$data = '!halogen!';
 			else if ($data == 5)
-				$data = '%manual%';
+				$data = '!manual!';
 			else if ($data == 8)
-				$data = '%flash%';
+				$data = '!flash!';
 			else if ($data == 10)
-				$data = '%black and white%';
+				$data = '!black and white!';
 			else if ($data == 11)
-				$data = '%manual%';
+				$data = '!manual!';
 			else
-				$data = '%unknown%' . " (" . $data . ")";
+				$data = '!unknown!' . " (" . $data . ")";
 		}
 		if ($tag == "0007") { //Focus Mode
 			if ($data == 1)
-				$data = '%auto%';
+				$data = '!auto!';
 			else if ($data == 2)
-				$data = '%manual%';
+				$data = '!manual!';
 			else if ($data == 4)
-				$data = '%auto, focus button%';
+				$data = '!auto, focus button!';
 			else if ($data == 5)
-				$data = '%auto, continuous%';
+				$data = '!auto, continuous!';
 			else
-				$data = '%unknown%' . " (" . $data . ")";
+				$data = '!unknown!' . " (" . $data . ")";
 		}
 		if ($tag == "001a") { //Image Stabilizer
 			if ($data == 2)
-				$data = '%mode 1%';
+				$data = '!mode 1!';
 			else if ($data == 3)
-				$data = '%off%';
+				$data = '!off!';
 			else if ($data == 4)
-				$data = '%mode 2%';
+				$data = '!mode 2!';
 			else
-				$data = '%unknown%' . " (" . $data . ")";
+				$data = '!unknown!' . " (" . $data . ")";
 		}
 		if ($tag == "001c") { //Macro mode
 			if ($data == 1)
-				$data = '%on%';
+				$data = '!on!';
 			else if ($data == 2)
-				$data = '%off%';
+				$data = '!off!';
 			else
-				$data = '%unknown%' . " (" . $data . ")";
+				$data = '!unknown!' . " (" . $data . ")";
 		}
 		if ($tag == "001f") { //Shooting Mode
 			if ($data == 1)
-				$data = '%normal%';
+				$data = '!normal!';
 			else if ($data == 2)
-				$data = '%portrait%';
+				$data = '!portrait!';
 			else if ($data == 3)
-				$data = '%scenery%';
+				$data = '!scenery!';
 			else if ($data == 4)
-				$data = '%sports%';
+				$data = '!sports!';
 			else if ($data == 5)
-				$data = '%night portrait%';
+				$data = '!night portrait!';
 			else if ($data == 6)
-				$data = '%program%';
+				$data = '!program!';
 			else if ($data == 7)
-				$data = '%aperture priority%';
+				$data = '!aperture priority!';
 			else if ($data == 8)
-				$data = '%shutter priority%';
+				$data = '!shutter priority!';
 			else if ($data == 9)
-				$data = '%macro%';
+				$data = '!macro!';
 			else if ($data == 11)
-				$data = '%manual%';
+				$data = '!manual!';
 			else if ($data == 13)
-				$data = '%panning%';
+				$data = '!panning!';
 			else if ($data == 14)
-				$data = '%simple%';
+				$data = '!simple!';
 			else if ($data == 18)
-				$data = '%fireworks%';
+				$data = '!fireworks!';
 			else if ($data == 19)
-				$data = '%party%';
+				$data = '!party!';
 			else if ($data == 20)
-				$data = '%snow%';
+				$data = '!snow!';
 			else if ($data == 21)
-				$data = '%night scenery%';
+				$data = '!night scenery!';
 			else if ($data == 22)
-				$data = '%food%';
+				$data = '!food!';
 			else if ($data == 23)
-				$data = '%baby%';
+				$data = '!baby!';
 			else if ($data == 27)
-				$data = '%high sensitivity%';
+				$data = '!high sensitivity!';
 			else if ($data == 29)
-				$data = '%underwater%';
+				$data = '!underwater!';
 			else if ($data == 33)
-				$data = '%pet%';
+				$data = '!pet!';
 			else
-				$data = '%unknown%' . " (" . $data . ")";
+				$data = '!unknown!' . " (" . $data . ")";
 		}
 		if ($tag == "0020") { //Audio
 			if ($data == 1)
-				$data = '%yes%';
+				$data = '!yes!';
 			else if ($data == 2)
-				$data = '%no%';
+				$data = '!no!';
 			else
-				$data = '%unknown%' . " (" . $data . ")";
+				$data = '!unknown!' . " (" . $data . ")";
 		}
 		if ($tag == "0023") { //White Balance Bias
 			$data = $data . " EV";
@@ -242,75 +242,75 @@ function formatPanasonicData($type, $tag, $intel, $data) {
 		}
 		if ($tag == "0028") { //Colour Effect
 			if ($data == 1)
-				$data = '%off%';
+				$data = '!off!';
 			else if ($data == 2)
-				$data = '%warm%';
+				$data = '!warm!';
 			else if ($data == 3)
-				$data = '%cool%';
+				$data = '!cool!';
 			else if ($data == 4)
-				$data = '%black and white%';
+				$data = '!black and white!';
 			else if ($data == 5)
-				$data = '%sepia%';
+				$data = '!sepia!';
 			else
-				$data = '%unknown%' . " (" . $data . ")";
+				$data = '!unknown!' . " (" . $data . ")";
 		}
 		if ($tag == "002a") { //Burst Mode
 			if ($data == 0)
-				$data = '%off%';
+				$data = '!off!';
 			else if ($data == 1)
-				$data = '%low/high quality%';
+				$data = '!low/high quality!';
 			else if ($data == 2)
-				$data = '%infinite%';
+				$data = '!infinite!';
 			else
-				$data = '%unknown%' . " (" . $data . ")";
+				$data = '!unknown!' . " (" . $data . ")";
 		}
 		if ($tag == "002c") { //Contrast
 			if ($data == 0)
-				$data = '%standard%';
+				$data = '!standard!';
 			else if ($data == 1)
-				$data = '%low%';
+				$data = '!low!';
 			else if ($data == 2)
-				$data = '%high%';
+				$data = '!high!';
 			else
-				$data = '%unknown%' . " (" . $data . ")";
+				$data = '!unknown!' . " (" . $data . ")";
 		}
 		if ($tag == "002d") { //Noise Reduction
 			if ($data == 0)
-				$data = '%standard%';
+				$data = '!standard!';
 			else if ($data == 1)
-				$data = '%low%';
+				$data = '!low!';
 			else if ($data == 2)
-				$data = '%high%';
+				$data = '!high!';
 			else
-				$data = '%unknown%' . " (" . $data . ")";
+				$data = '!unknown!' . " (" . $data . ")";
 		}
 		if ($tag == "002e") { //Self Timer
 			if ($data == 1)
-				$data = '%off%';
+				$data = '!off!';
 			else if ($data == 2)
-				$data = '10 ' . '%sec%';
+				$data = '10 ' . '!sec!';
 			else if ($data == 3)
-				$data = '2 ' . '%sec%';
+				$data = '2 ' . '!sec!';
 			else
-				$data = '%unknown%' . " (" . $data . ")";
+				$data = '!unknown!' . " (" . $data . ")";
 		}
 		if ($tag == "0030") { //Rotation
 			if ($data == 1)
-				$data = '%horizontal (normal)%';
+				$data = '!horizontal (normal)!';
 			else if ($data == 6)
-				$data = '%rotate 90 cw%';
+				$data = '!rotate 90 cw!';
 			else if ($data == 8)
-				$data = '%rotate 270 cw%';
+				$data = '!rotate 270 cw!';
 			else
-				$data = '%unknown%' . " (" . $data . ")";
+				$data = '!unknown!' . " (" . $data . ")";
 		}
 		if ($tag == "0032") { //Color Mode
 			if ($data == 0)
-				$data = '%normal%';
+				$data = '!normal!';
 			else if ($data == 1)
-				$data = '%natural%';
+				$data = '!natural!';
 			else
-				$data = '%unknown%' . " (" . $data . ")";
+				$data = '!unknown!' . " (" . $data . ")";
 		}
 		if ($tag == "0036") { //Travel Day
 			$data = $data;

@@ -103,7 +103,7 @@ function formatOlympusData($type, $tag, $intel, $data) {
 			else if ($data == 1)
 			$data = gettext ("Macro");
 			else
-			$data = '%unknown%' . ": " . $data;
+			$data = '!unknown!' . ": " . $data;
 		}
 	} else if ($type == "UNDEFINED") {
 
