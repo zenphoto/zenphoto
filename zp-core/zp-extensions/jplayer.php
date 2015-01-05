@@ -679,9 +679,7 @@ class jPlayer {
 					}
 					$playtime = '';
 					if (getOption('jplayer_playlist_playtime')) {
-						if (!empty($playtime)) {
 							$playtime = ' (' . $video->get('VideoPlaytime') . ')';
-						}
 					}
 					?>
 						{
@@ -794,7 +792,7 @@ class jPlayer {
 						</div>
 						<div class="jp-playlist">
 							<ul>
-								<li></li>
+								<li>&nbsp;</li>
 							</ul>
 						</div>
 						<?php echo $this->getPlayerHTMLparts('audio', 'no-solution'); ?>
