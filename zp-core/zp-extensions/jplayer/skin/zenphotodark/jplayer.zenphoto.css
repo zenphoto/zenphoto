@@ -125,7 +125,6 @@ div.jp-controls-holder {
 	margin:0 auto;
 	position: relative;
 	overflow:hidden;
-	height: 40px;
 	top:-8px; /* This negative value depends on the size of the text in jp-currentTime and jp-duration */
 }
 
@@ -276,7 +275,7 @@ button.jp-volume-max {
 
 div.jp-audio div.jp-type-single button.jp-mute,
 div.jp-audio div.jp-type-single button.jp-unmute {
-	margin-left: 130px;	
+	margin-left: 130px;
 	margin-top:0px;
 }
 
@@ -294,7 +293,7 @@ div.jp-audio div.jp-type-playlist button.jp-volume-max {
 
 div.jp-audio button.jp-volume-max {
 	margin-top: 0;
-	margin-left: 26px;	
+	margin-left: 26px;
 }
 
 div.jp-video button.jp-mute,
@@ -359,7 +358,7 @@ div.jp-audio div.jp-type-playlist div.jp-volume-bar {
 }
 
 div.jp-volume-bar-value {
-	background: url("jplayer.zenphoto.png") 0 -148px repeat-x; 
+	background: url("jplayer.zenphoto.png") 0 -148px repeat-x;
 	width:0px;
 	height:5px;
 }
@@ -376,7 +375,7 @@ div.jp-audio div.jp-time-holder {
 div.jp-audio div.jp-type-single div.jp-time-holder {
 	left:65px;
 	width:60px;
-	
+
 }
 
 
@@ -401,11 +400,11 @@ div.jp-duration {
 }
 
 div.jp-video div.jp-current-time {
-	margin-left:15px; 
+	margin-left:15px;
 }
 div.jp-video div.jp-duration {
 	margin-right:20px;
-} 
+}
 
 
 div.jp-video div.jp-type-playlist div.jp-current-time {
@@ -554,20 +553,23 @@ div.jp-video-full div.jp-video-play {
 	height:100%;
 	z-index:1000;
 }
-a.jp-video-play-icon {
+.jp-video-play-icon {
 	position:relative;
 	display:block;
 	width: 112px;
 	height: 100px;
+	border: none;
 	margin-left:-56px;
 	margin-top:-50px;
 	left:50%;
 	top:50%;
-	background: url("jplayer.zenphoto.play.png") 0 0 no-repeat;
+	background: url("jplayer.zenphoto.play.png") no-repeat;
 	text-indent:-9999px;
 }
 div.jp-video-play:hover button.jp-video-play-icon {
 	background: url("jplayer.zenphoto.play.png") 0 -100px no-repeat;
+	border: none;
+	cursor: pointer;
 }
 
 
