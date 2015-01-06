@@ -1808,20 +1808,6 @@ zp-core/zp-extensions/jplayer/skin/blue.monday/mustache/jplayer.blue.monday.audi
 zp-core/zp-extensions/jplayer/skin/blue.monday/mustache/jplayer.blue.monday.audio.stream.html
 zp-core/zp-extensions/jplayer/skin/blue.monday/mustache/jplayer.blue.monday.video.playlist.html
 zp-core/zp-extensions/jplayer/skin/blue.monday/mustache/jplayer.blue.monday.video.single.html
-zp-core/zp-extensions/jplayer/skin/circle.player
-zp-core/zp-extensions/jplayer/skin/circle.player/bgr.jpg
-zp-core/zp-extensions/jplayer/skin/circle.player/buffer.png
-zp-core/zp-extensions/jplayer/skin/circle.player/circle.player.css
-zp-core/zp-extensions/jplayer/skin/circle.player/controls.jpg
-zp-core/zp-extensions/jplayer/skin/circle.player/progress.png
-zp-core/zp-extensions/jplayer/skin/circle.player/progress_sprite.jpg
-zp-core/zp-extensions/jplayer/skin/circle.skin
-zp-core/zp-extensions/jplayer/skin/circle.skin/bgr.jpg
-zp-core/zp-extensions/jplayer/skin/circle.skin/buffer.png
-zp-core/zp-extensions/jplayer/skin/circle.skin/circle.player.css
-zp-core/zp-extensions/jplayer/skin/circle.skin/controls.jpg
-zp-core/zp-extensions/jplayer/skin/circle.skin/progress.png
-zp-core/zp-extensions/jplayer/skin/circle.skin/progress_sprite.jpg
 zp-core/zp-extensions/jplayer/skin/pink.flag
 zp-core/zp-extensions/jplayer/skin/pink.flag/jplayer.pink.flag.css
 zp-core/zp-extensions/jplayer/skin/pink.flag/jplayer.pink.flag.jpg
@@ -2277,4 +2263,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-2279
+2265
