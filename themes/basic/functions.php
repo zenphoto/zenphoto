@@ -63,9 +63,9 @@ function switcher_head($ignore) {
 	?>
 	<script type="text/javascript">
 		// <!-- <![CDATA[
-		window.onload = function () {
+		window.addEventListener('load', function () {
 			$('#themeSwitcher_zenpage').html('');
-		}
+		}, false);
 		function switchColors() {
 			personality = $('#themeColor').val();
 			window.location = '?themeColor=' + personality;

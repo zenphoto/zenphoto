@@ -56,8 +56,13 @@ if (!extensionEnabled('tinyZenpage')) {
 ?>
 <script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER . "/" . PLUGIN_FOLDER; ?>/tinymce/tinymce.min.js"></script>
 <script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER . "/" . PLUGIN_FOLDER; ?>/tinymce/jquery.tinymce.min.js"></script>
-<script src="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/js/dirtyforms/tinymce.js" type="text/javascript"></script>
-
+<?php
+if (OFFSET_PATH) {
+	?>
+	<script src="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/js/dirtyforms/tinymce.js" type="text/javascript"></script>
+	<?php
+}
+?>
 <script type="text/javascript">
 // <!-- <![CDATA[
 					tinymce.init({

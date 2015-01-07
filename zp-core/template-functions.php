@@ -53,6 +53,24 @@ function printThemeHeadItems() {
 			var deleteImage = "<?php echo gettext("Are you sure you want to delete the image? THIS CANNOT BE UNDONE!"); ?>";
 			var deleteArticle = "<?php echo gettext("Are you sure you want to delete this article? THIS CANNOT BE UNDONE!"); ?>";
 			var deletePage = "<?php echo gettext("Are you sure you want to delete this page? THIS CANNOT BE UNDONE!"); ?>";
+
+
+			function newAlbum(folder, albumtab) {
+				var album = prompt('<?php echo gettext('New album name?'); ?>', '<?php echo gettext('new album'); ?>');
+				if (album) {
+					launchScript('<?php echo PROTOCOL . '://' . $_SERVER['HTTP_HOST'] . WEBPATH . "/" . ZENFOLDER; ?>/admin-edit.php', ['action=newalbum', 'album=' + encodeURIComponent(folder), 'name=' + encodeURIComponent(album), 'albumtab=' + albumtab, 'XSRFToken=<?php echo getXSRFToken('newalbum'); ?>']);
+				}
+			}
+
+			window.addEventListener('load', function () {
+				if (!$('#admin_data').length) {
+					$('<link>')
+									.appendTo('head')
+									.attr({type: 'text/css', rel: 'stylesheet'})
+									.attr('href', '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/toolbox.css');
+
+				}
+			}, false);
 			// ]]> -->
 		</script>
 		<?php
@@ -70,18 +88,9 @@ function adminToolbox() {
 		$id = 'admin';
 		$dataid = 'admin_data';
 		$page = getCurrentPage();
+
 		ob_start();
 		?>
-		<script type="text/javascript">
-			// <!-- <![CDATA[
-			function newAlbum(folder, albumtab) {
-				var album = prompt('<?php echo gettext('New album name?'); ?>', '<?php echo gettext('new album'); ?>');
-				if (album) {
-					launchScript('<?php echo $zf; ?>/admin-edit.php', ['action=newalbum', 'album=' + encodeURIComponent(folder), 'name=' + encodeURIComponent(album), 'albumtab=' + albumtab, 'XSRFToken=<?php echo getXSRFToken('newalbum'); ?>']);
-				}
-			}
-			// ]]> -->
-		</script>
 		<div id="<?php echo $id; ?>">
 			<h3>
 				<a onclick="toggle('<?php echo $dataid; ?>');">
@@ -2412,17 +2421,19 @@ function printImageURL($text, $title, $class = NULL, $id = NULL) {
  */
 function getImageMetaData($image = NULL, $displayonly = true) {
 	global $_zp_current_image, $_zp_exifvars;
+	require_once(SERVERPATH . '/' . ZENFOLDER . '/exif/exifTranslations.php');
 	if (is_null($image))
 		$image = $_zp_current_image;
 	if (is_null($image) || !$image->get('hasMetadata')) {
 		return false;
 	}
 	$data = $image->getMetaData();
-	if ($displayonly) {
-		foreach ($data as $field => $value) { //	remove the empty or not selected to display
-			if (!$value || !$_zp_exifvars[$field][3]) {
-				unset($data[$field]);
-			}
+
+	foreach ($data as $field => $value) { //	remove the empty or not selected to display
+		if ($displayonly && (!$value || !$_zp_exifvars[$field][3])) {
+			unset($data[$field]);
+		} else {
+			$data[$field] = exifTranslate($value);
 		}
 	}
 	if (count($data) > 0) {
@@ -3857,39 +3868,39 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 		<!-- search form -->
 		<form method="post" action="<?php echo $searchurl; ?>" id="search_form">
 			<script type="text/javascript">
-				// <!-- <![CDATA[
-				var within = <?php echo (int) $within; ?>;
-				function search_(way) {
-					within = way;
-					if (way) {
-						$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
-					} else {
-						lastsearch = '';
-						$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
-					}
-					$('#search_input').val('');
-				}
-				$('#search_form').submit(function () {
-					if (within) {
-						var newsearch = $.trim($('#search_input').val());
-						if (newsearch.substring(newsearch.length - 1) == ',') {
-							newsearch = newsearch.substr(0, newsearch.length - 1);
-						}
-						if (newsearch.length > 0) {
-							$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
+					// <!-- <![CDATA[
+					var within = <?php echo (int) $within; ?>;
+					function search_(way) {
+						within = way;
+						if (way) {
+							$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
 						} else {
-							$('#search_input').val('<?php echo $searchwords; ?>');
+							lastsearch = '';
+							$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
 						}
+						$('#search_input').val('');
 					}
-					return true;
-				});
-				function search_all() {
-					//search all is copyright by Stephen Billard for use in ZenPhoto20. All rights reserved
-					var check = $('#SEARCH_checkall').prop('checked');
-					$('.SEARCH_checkall').prop('checked', check);
-				}
+					$('#search_form').submit(function () {
+						if (within) {
+							var newsearch = $.trim($('#search_input').val());
+							if (newsearch.substring(newsearch.length - 1) == ',') {
+								newsearch = newsearch.substr(0, newsearch.length - 1);
+							}
+							if (newsearch.length > 0) {
+								$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
+							} else {
+								$('#search_input').val('<?php echo $searchwords; ?>');
+							}
+						}
+						return true;
+					});
+					function search_all() {
+						//search all is copyright by Stephen Billard for use in ZenPhoto20. All rights reserved
+						var check = $('#SEARCH_checkall').prop('checked');
+						$('.SEARCH_checkall').prop('checked', check);
+					}
 
-				// ]]> -->
+					// ]]> -->
 			</script>
 			<?php echo $prevtext; ?>
 			<div>

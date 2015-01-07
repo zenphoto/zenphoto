@@ -141,11 +141,11 @@ switch (OFFSET_PATH) {
 					if (zpFunctions::hasPrimaryScripts() && empty($needs)) {
 						?>
 						<script type="text/javascript">
-							window.onload = function() {
-								$('#site_upgrade').submit(function() {
+							window.addEventListener('load', function () {
+								$('#site_upgrade').submit(function () {
 									return confirm('<?php echo gettext('Your setup scripts are not protected!'); ?>');
 								})
-							}
+							}, false);
 						</script>
 						<?php
 					}

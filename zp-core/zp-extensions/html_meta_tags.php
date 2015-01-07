@@ -379,7 +379,7 @@ class htmlmetatags {
 			$meta .= '<script type="text/javascript">' . "\n";
 			$meta .= 'var caches = ["' . implode('","', $htmlmetatags_need_cache) . '"];' . "\n";
 			$meta .= '
-					window.onload = function() {
+					window.addEventListener(\'load\',  function() {
 						var index,value;
 						for (index in caches) {
 								value = caches[index];
@@ -389,7 +389,7 @@ class htmlmetatags {
 									url: value
 								});
 						}
-					}
+					}, false);
 					';
 			$meta .= '</script>' . "\n";
 		}

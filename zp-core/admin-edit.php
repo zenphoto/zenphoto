@@ -899,6 +899,7 @@ echo "\n</head>";
 					?>
 					<?php
 				} else if ($subtab == 'imageinfo') {
+					require_once(SERVERPATH . '/' . ZENFOLDER . '/exif/exifTranslations.php');
 					$singleimage = NULL;
 					if ($totalimages == 1) {
 						$_GET['singleimage'] = array_shift($images);
@@ -1359,7 +1360,7 @@ echo "\n</head>";
 																			$display = $_zp_exifvars[$field][3];
 																			if ($display) {
 																				$label = $_zp_exifvars[$field][2];
-																				$data .= "<tr><td class=\"medtadata_tag\">$label: </td> <td>" . html_encode($value) . "</td></tr>\n";
+																				$data .= "<tr><td class=\"medtadata_tag\">$label: </td> <td>" . html_encode(exifTranslate($value)) . "</td></tr>\n";
 																			}
 																		}
 																	}
