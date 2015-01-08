@@ -379,9 +379,9 @@ function html_encodeTagged($original, $allowScript = true) {
 	}
 	if (class_exists('tidy') && $str != $original) {
 		$tidy = new tidy();
-		$tidy->parseString($str, array('show-body-only' => true), 'utf8');
+		$tidy->parseString($str, array('show-body-only' => 1, 'quote-marks' => 1, 'quote-ampersand' => 1), 'utf8');
 		$tidy->cleanRepair();
-		$str = $tidy;
+		$str = $tidy->value;
 	}
 	return $str;
 }
