@@ -617,7 +617,7 @@ codeblocktabsJS();
 															echo gettext('Publish date (YYYY-MM-DD) ');
 															$date = $result->getPublishDate();
 															?>
-															<input name="pubdate" type="text" id="pubdate" value="<?php echo $date; ?>" onchange="checkFuturePub();" <?php if ($date > date('Y-m-d H:i:s')) echo 'style="color:red"'; ?> />
+															<input name="pubdate" type="text" id="pubdate" value="<?php echo $date; ?>" onchange="checkFuturePub();" <?php if ($date > date('Y-m-d H:i:s')) echo 'style="color:blue"'; ?> />
 														</p>
 														<p>
 															<script type="text/javascript">
