@@ -390,7 +390,7 @@ ul.language_string_list {
 
 /* scheduled publishing
 --------------------------*/
-.scheduledpublishing, .expire {
+.expire {
 	color: red;
 	font-weight: normal;
 }

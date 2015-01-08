@@ -164,6 +164,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					$.DirtyForms.title = '<?php echo gettext('Are you sure you want to leave this page?'); ?>';
 					$.DirtyForms.continueText = '<?php echo gettext('Leave'); ?>';
 					$.DirtyForms.stopText = '<?php echo gettext('Stay'); ?>';
+					$.DirtyForms.ignoreClass = '.ui-datepicker-next, .ui-datepicker-prev, .ui-icon-circle-triangle-w, .ui-icon-circle-triangle-e, .ignoredirty';
 					$.facebox.settings.closeImage = '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/facebox/closelabel.png';
 					$('#modal').facebox();
 					$('form.dirtylistening').dirtyForms();
@@ -1803,7 +1804,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 value="1" <?php if ($album->getShow()) echo ' checked="checked"'; ?>
 										 onclick="$('#<?php echo $prefix; ?>publishdate').val('');
 													 $('#<?php echo $prefix; ?>expirationdate').val('');
-													 $('.<?php echo $prefix; ?>scheduledpublishing').html('');
+													 $('#<?php echo $prefix; ?>publishdate').css('color', 'black');
 													 $('.<?php echo $prefix; ?>expire').html('');"
 										 />
 										 <?php echo gettext("Published"); ?>
@@ -1871,9 +1872,11 @@ function printAdminHeader($tab, $subtab = NULL) {
 									var today = new Date();
 									var pub = $('#<?php echo $prefix; ?>publishdate').datepicker('getDate');
 									if (pub.getTime() > today.getTime()) {
-										$(".<?php echo $prefix; ?>scheduledpublishing").html('<br /><?php echo addslashes(gettext('Future publishing date.')); ?>');
+										$("<?php echo $prefix; ?>Published").removeAttr('checked');
+										$('#<?php echo $prefix; ?>publishdate').css('color', 'blue');
 									} else {
-										$(".<?php echo $prefix; ?>scheduledpublishing").html('');
+										$("<?php echo $prefix; ?>Published").attr('checked', 'checked');
+										$('#<?php echo $prefix; ?>publishdate').css('color', 'black');
 									}
 								});
 								$('#<?php echo $prefix; ?>expirationdate').change(function () {
@@ -1893,14 +1896,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 						<p>
 							<label for="<?php echo $prefix; ?>publishdate"><?php echo gettext('Publish date'); ?> <small>(YYYY-MM-DD)</small></label>
 							<br /><input value="<?php echo $publishdate; ?>" type="text" size="20" maxlength="30" name="publishdate-<?php echo $prefix; ?>" id="<?php echo $prefix; ?>publishdate" />
-							<strong class="scheduledpublishing-<?php echo $prefix; ?>" style="color:red">
-								<?php
-								if (!empty($publishdate) && ($publishdate > date('Y-m-d H:i:s'))) {
-									echo '<br />' . gettext('Future publishing date.');
-								}
-								?>
-							</strong>
-							<br /><br />
 							<label for="<?php echo $prefix; ?>expirationdate"><?php echo gettext('Expiration date'); ?> <small>(YYYY-MM-DD)</small></label>
 							<br /><input value="<?php echo $expirationdate; ?>" type="text" size="20" maxlength="30" name="expirationdate-<?php echo $prefix; ?>" id="<?php echo $prefix; ?>expirationdate" />
 							<strong class="<?php echo $prefix; ?>expire" style="color:red">

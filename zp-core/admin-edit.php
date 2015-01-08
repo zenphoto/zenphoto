@@ -1094,7 +1094,7 @@ echo "\n</head>";
 																				 value="1" <?php if ($image->getShow()) echo ' checked = "checked"'; ?>
 																				 onclick="$('#publishdate-<?php echo $currentimage; ?>').val('');
 																										 $('#expirationdate-<?php echo $currentimage; ?>').val('');
-																										 $('.scheduledpublishing-<?php echo $currentimage; ?>').html('');
+																										 $('#publishdate-<?php echo $currentimage; ?>').css('color', 'black ');
 																										 $('.expire-<?php echo $currentimage; ?>').html('');"
 																				 />
 																				 <?php echo gettext("Published"); ?>
@@ -1162,9 +1162,12 @@ echo "\n</head>";
 																			var today = new Date();
 																			var pub = $('#publishdate-<?php echo $currentimage; ?>').datepicker('getDate');
 																			if (pub.getTime() > today.getTime()) {
-																				$(".scheduledpublishing-<?php echo $currentimage; ?>").html('<br /><?php echo addslashes(gettext('Future publishing date.')); ?>');
+																				$("Visible-<?php echo $currentimage; ?>").removeAttr('checked');
+																				$('#publishdate-<?php echo $currentimage; ?>').css('color', 'blue');
+
 																			} else {
-																				$(".scheduledpublishing-<?php echo $currentimage; ?>").html('');
+																				$("Visible-<?php echo $currentimage; ?>").attr('checked', 'checked');
+																				$('#publishdate-<?php echo $currentimage; ?>').css('color', 'black');
 																			}
 																		});
 																		$('#expirationdate-<?php echo $currentimage; ?>').change(function () {
@@ -1184,14 +1187,6 @@ echo "\n</head>";
 																<p>
 																	<label for="publishdate-<?php echo $currentimage; ?>"><?php echo gettext('Publish date'); ?> <small>(YYYY-MM-DD)</small></label>
 																	<br /><input value="<?php echo $publishdate; ?>" type="text" size="20" maxlength="30" name="publishdate-<?php echo $currentimage; ?>" id="publishdate-<?php echo $currentimage; ?>" />
-																	<strong class="scheduledpublishing-<?php echo $currentimage; ?>" style="color:red">
-																		<?php
-																		if (!empty($publishdate) && ($publishdate > date('Y-m-d H:i:s'))) {
-																			echo '<br />' . gettext('Future publishing date.');
-																		}
-																		?>
-																	</strong>
-																	<br /><br />
 																	<label for="expirationdate-<?php echo $currentimage; ?>"><?php echo gettext('Expiration date'); ?> <small>(YYYY-MM-DD)</small></label>
 																	<br /><input value="<?php echo $expirationdate; ?>" type="text" size="20" maxlength="30" name="expirationdate-<?php echo $currentimage; ?>" id="expirationdate-<?php echo $currentimage; ?>" />
 																	<strong class="expire-<?php echo $currentimage; ?>" style="color:red">
