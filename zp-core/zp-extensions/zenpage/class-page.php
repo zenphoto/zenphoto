@@ -1,9 +1,5 @@
 <?php
 
-function newPage($titlelink, $allowCreate = NULL) {
-	return new Page($titlelink, $allowCreate);
-}
-
 /**
  * zenpage page class
  *
@@ -11,6 +7,12 @@ function newPage($titlelink, $allowCreate = NULL) {
  * @package plugins
  * @subpackage zenpage
  */
+// force UTF-8 Ø
+
+function newPage($titlelink, $allowCreate = NULL) {
+	return new Page($titlelink, $allowCreate);
+}
+
 class Page extends CMSItems {
 
 	var $manage_rights = MANAGE_ALL_PAGES_RIGHTS;

@@ -46,27 +46,6 @@ class CMS {
 		$this->pages_enabled = getOption('zenpage_enabled_items') & 2;
 	}
 
-	static function expiry() {
-		/**
-		 * Un-publishes pages/news whose expiration date has been reached
-		 *
-		 */
-		$sql = ' WHERE `date`<="' . date('Y-m-d H:i:s') . '" AND `show`="1"' .
-						' AND `expiredate`<="' . date('Y-m-d H:i:s') . '"' .
-						' AND `expiredate`!="0000-00-00 00:00:00"' .
-						' AND `expiredate` IS NOT NULL';
-		foreach (array('news' => 'News', 'pages' => 'Page') as $table => $class) {
-			$result = query_full_array('SELECT * FROM ' . prefix($table) . $sql);
-			if ($result) {
-				foreach ($result as $item) {
-					$obj = new $class($item['titlelink']);
-					$obj->setShow(0);
-					$obj->save();
-				}
-			}
-		}
-	}
-
 	/**
 	 * Provides the complete category structure regardless of permissions.
 	 * This is needed for quick checking of status of a category and is used only internally to the Zenpage core.
@@ -172,14 +151,11 @@ class CMS {
 				break;
 		}
 
-
-
-
 		$all_pages = array(); // Disabled cache var for now because it does not return un-publishded and published if logged on index.php somehow if logged in.
 		$result = query('SELECT * FROM ' . prefix('pages') . $show . ' ORDER by `' . $sortorder . '`' . $sortdir);
 		if ($result) {
 			while ($row = db_fetch_assoc($result)) {
-				if ($all || ($row['show'] && $row['date'] <= $now)) {
+				if ($all || $row['show']) {
 					$all_pages[] = $row;
 				} else if ($_zp_loggedin) {
 					$page = newPage($row['titlelink']);
@@ -391,7 +367,7 @@ class CMS {
 					}
 					$subrights = $article->subRights();
 					if ($getUnpublished //	override published
-									|| ($article->getShow() && $article->getDateTime() <= $now && (($incurrent || $article->categoryIsVisible()) || $subrights)) //	published in "visible" or managed category
+									|| ($article->getShow() && (($incurrent || $article->categoryIsVisible()) || $subrights)) //	published in "visible" or managed category
 									|| ($subrights & MANAGED_OBJECT_RIGHTS_VIEW) //	he is allowed to see unpublished articles in one of the article's categories
 					) {
 						$result[] = $item;
@@ -869,35 +845,6 @@ class CMSItems extends CMSRoot {
 	 */
 	function setExtraContent($ec) {
 		$this->set("extracontent", zpFunctions::tagURLs($ec));
-	}
-
-	/**
-	 * Returns the expire date
-	 *
-	 * @return string
-	 */
-	function getExpireDate() {
-		$dt = $this->get("expiredate");
-		if ($dt == '0000-00-00 00:00:00') {
-			return NULL;
-		} else {
-			return $dt;
-		}
-	}
-
-	/**
-	 * sets the expire date
-	 *
-	 */
-	function setExpireDate($ed) {
-		if ($ed) {
-			$newtime = dateTimeConvert($ed);
-			if ($newtime === false)
-				return;
-			$this->set('expiredate', $newtime);
-		} else {
-			$this->set('expiredate', NULL);
-		}
 	}
 
 }

@@ -811,14 +811,6 @@ class Gallery {
 			$album = newAlbum($folder);
 			$subrights = $album->subrights();
 
-			switch (checkPublishDates($row)) {
-				case 1:
-					$album->setShow(0);
-					$album->save();
-				case 2:
-					$row['show'] = 0;
-			}
-
 			if ($mine ||
 							($row['show'] || $viewUnpublished) // published or overridden by parameter
 							|| $subrights && is_null($album->getParent()) // is the user's managed album

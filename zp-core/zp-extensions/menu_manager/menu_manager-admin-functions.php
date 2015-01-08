@@ -81,11 +81,11 @@ function printItemsListTable($item, $flag) {
 				<?php
 				if ($array['protected']) {
 					?>
-					<img src="../../images/lock_2.png" alt="<?php echo gettext("The object of this menu is under password protection"); ?>" title="<?php echo gettext("The object of this menu is under password protection"); ?>" style="border: 0px;" />
+					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock_2.png" alt="<?php echo gettext("The object of this menu is under password protection"); ?>" title="<?php echo gettext("The object of this menu is under password protection"); ?>" style="border: 0px;" />
 					<?php
 				} else {
 					?>
-					<img src="../../images/place_holder_icon.png" alt="<?php echo gettext("under password protection"); ?>" style="border: 0px;" />
+					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/place_holder_icon.png" alt="<?php echo gettext("under password protection"); ?>" style="border: 0px;" />
 					<?php
 				}
 				?>
@@ -95,13 +95,13 @@ function printItemsListTable($item, $flag) {
 				if ($item['show'] === '1') {
 					?>
 					<a href="menu_tab.php?publish&amp;id=<?php echo $item['id'] . "&amp;show=0&amp;menuset=" . html_encode($item['menuset']); ?>&amp;add&amp;XSRFToken=<?php echo getXSRFToken('update_menu') ?>" title="<?php echo gettext('hide'); ?>" >
-						<img src="../../images/pass.png"	alt="<?php echo gettext('hide'); ?>" style="border: 0px;" />
+						<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png"	alt="<?php echo gettext('hide'); ?>" style="border: 0px;" />
 					</a>
 					<?php
 				} else {
 					?>
 					<a href="menu_tab.php?publish&amp;id=<?php echo $item['id'] . "&amp;show=1&amp;menuset=" . html_encode($item['menuset']) ?>&amp;add&amp;XSRFToken=<?php echo getXSRFToken('update_menu') ?>"  title="<?php echo gettext('show'); ?>">
-						<img src="../../images/action.png"	alt="<?php echo gettext('show'); ?>" style="border: 0px;" />
+						<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/action.png"	alt="<?php echo gettext('show'); ?>" style="border: 0px;" />
 					</a>
 					<?php
 				}
@@ -114,7 +114,7 @@ function printItemsListTable($item, $flag) {
 						if (!empty($array['url'])) {
 							?>
 							<a href="<?php echo $array['url']; ?>">
-								<img src="../../images/view.png" alt="<?php echo gettext('view'); ?>" title="<?php echo gettext('view'); ?>" style="border: 0px;" />
+								<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/view.png" alt="<?php echo gettext('view'); ?>" title="<?php echo gettext('view'); ?>" style="border: 0px;" />
 							</a>
 							<?php
 							break;
@@ -123,7 +123,7 @@ function printItemsListTable($item, $flag) {
 					case 'menufunction':
 					case 'html':
 						?>
-						<img src="../../images/icon_inactive.png" alt="" style="border: 0px;" />
+						<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/icon_inactive.png" alt="" style="border: 0px;" />
 						<?php
 						break;
 				}
@@ -131,7 +131,7 @@ function printItemsListTable($item, $flag) {
 			</div>
 			<div class="page-list_icon">
 				<a href="javascript:deleteMenuItem('<?php echo $item['id']; ?>','<?php printf(gettext('Ok to delete %s? This cannot be undone.'), html_encode($array['name'])); ?>');" >
-					<img src="../../images/fail.png" alt="<?php echo gettext('delete'); ?>" title="<?php echo gettext('delete'); ?>" style="border: 0px;" />
+					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/fail.png" alt="<?php echo gettext('delete'); ?>" title="<?php echo gettext('delete'); ?>" style="border: 0px;" />
 				</a>
 			</div>
 			<div class="page-list_icon">
@@ -891,10 +891,10 @@ function printCustomPageSelector($current) {
  * @return string
  */
 function unpublishedZenphotoItemCheck($obj, $dropdown = true) {
-	if ($obj->getShow() != "1") {
-		$show = "*";
-	} else {
+	if ($obj->getShow()) {
 		$show = "";
+	} else {
+		$show = "*";
 	}
 	return $show;
 }

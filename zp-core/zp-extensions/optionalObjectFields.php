@@ -195,7 +195,6 @@ class optionalObjectFields extends fieldExtender {
 				$d = $obj->getDateTime();
 				if ($d == '0000-00-00 00:00:00') {
 					$d = '';
-					;
 				}
 				ob_start();
 				?>

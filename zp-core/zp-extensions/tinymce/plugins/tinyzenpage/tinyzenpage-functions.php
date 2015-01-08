@@ -57,16 +57,14 @@ function printSubLevelAlbums(&$albumobj) {
  * @return string
  */
 function unpublishedZenphotoItemCheck($obj, $dropdown = true) {
-	$span1 = "";
-	$span2 = "";
-	if ($obj->getShow() != "1") {
-		if (!$dropdown) {
-			$span1 = "<span class='unpublisheditem'>";
-			$span2 = "</span>";
-		}
-		$show = $span1 . "*" . $span2;
-	} else {
+	if ($obj->getShow()) {
 		$show = "";
+	} else {
+		if (!$dropdown) {
+			$span1 = "<span class='unpublisheditem'>*</span>";
+		} else {
+			$show = '*';
+		}
 	}
 	return $show;
 }
@@ -575,7 +573,7 @@ function unpublishedZenpageItemCheck($page) {
 	switch ($class) {
 		case 'News':
 		case 'Page':
-			if ($page->getShow() === "0") {
+			if ($page->getShow()) {
 				$unpublishednote = "<span style='color: red; font-weight: bold'>*</span>";
 			}
 			switch ($class) {

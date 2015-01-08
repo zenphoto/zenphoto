@@ -120,6 +120,13 @@ if ($zp_request && $_zp_script && file_exists($_zp_script = SERVERPATH . "/" . i
 			$_zp_script = SERVERPATH . '/' . ZENFOLDER . '/password.php';
 		}
 	}
+	$tables = array('albums', 'images');
+	if (extensionEnabled('zenpage')) {
+		$tables = array_merge($tables, array('news', 'pages'));
+	}
+	foreach ($tables as $table) {
+		updatePublished($table);
+	}
 	// Include the appropriate page for the requested object, and a 200 OK header.
 	header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 	header("HTTP/1.0 200 OK");

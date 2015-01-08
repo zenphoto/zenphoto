@@ -981,24 +981,19 @@ function handleSearchParms($what, $album = NULL, $image = NULL) {
 }
 
 /**
+ * Updates published status based on publishdate and expiredate
  *
- * checks if the item has expired
- * @param array $row database row of the object
+ * @param string $table the database table
  */
-function checkPublishDates($row) {
-	if (@$row['show']) {
-		if (isset($row['expiredate']) && $row['expiredate'] && $row['expiredate'] != '0000-00-00 00:00:00') {
-			if ($row['expiredate'] <= date('Y-m-d H:i:s')) {
-				return 1;
-			}
-		}
-		if (isset($row['publishdate']) && $row['publishdate'] && $row['publishdate'] != '0000-00-00 00:00:00') {
-			if ($row['publishdate'] >= date('Y-m-d H:i:s')) {
-				return 2;
-			}
-		}
-		return null;
-	}
+function updatePublished($table) {
+	//publish items that have matured
+	$sql = 'UPDATE ' . prefix($table) . ' SET `show`=1 WHERE `publishdate`!="0000-00-00 00:00:00" AND `publishdate`<=' . db_quote(date('Y-m-d H:i:s'));
+	query($sql);
+
+	//unpublish items that have expired or are not published yet
+	$sql = 'UPDATE ' . prefix($table) . ' SET `show`=0 WHERE (`expiredate`!="0000-00-00 00:00:00" AND `expiredate`<' . db_quote(date('Y-m-d H:i:s')) . ')' .
+					' OR `publishdate`>' . db_quote(date('Y-m-d H:i:s'));
+	query($sql);
 }
 
 /**
@@ -2129,12 +2124,12 @@ function reveal($content, $visible = false) {
 	?>
 	<span id="<?php echo $content; ?>_reveal"<?php if ($visible) echo 'style="display:none;"'; ?> class="icons">
 		<a onclick="reveal('<?php echo $content; ?>')" title="<?php echo gettext('Click to show content'); ?>">
-			<img src="../../images/arrow_down.png" alt="" class="icon-position-top4" />
+			<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/arrow_down.png" alt="" class="icon-position-top4" />
 		</a>
 	</span>
 	<span id="<?php echo $content; ?>_hide"<?php if (!$visible) echo 'style="display:none;"'; ?> class="icons">
 		<a onclick="reveal('<?php echo $content; ?>')" title="<?php echo gettext('Click to hide content'); ?>">
-			<img src="../../images/arrow_up.png" alt="" class="icon-position-top4" />
+			<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/arrow_up.png" alt="" class="icon-position-top4" />
 		</a>
 	</span>
 	<?php

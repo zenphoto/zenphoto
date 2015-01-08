@@ -83,7 +83,7 @@ $menuset = checkChosenMenuset();
 							$('#link').attr('disabled', true);
 							$('#albumselector').show();
 							$('#titlelabel').html('<?php echo js_encode(gettext('Album')); ?>');
-							$('#albumselector').change(function() {
+							$('#albumselector').change(function () {
 								$('#link').val($(this).val());
 							});
 							break;
@@ -102,7 +102,7 @@ if (extensionEnabled('zenpage')) {
 								$('#link').attr('disabled', true);
 								$('#pageselector').show();
 								$('#titlelabel').html('<?php echo js_encode(gettext('Page')); ?>');
-								$('#pageselector').change(function() {
+								$('#pageselector').change(function () {
 									$('#link').val($(this).val());
 								});
 								break;
@@ -126,7 +126,7 @@ if (extensionEnabled('zenpage')) {
 								$("#link").attr('disabled', true);
 								$('#categoryselector').show();
 								$('#titlelabel').html('<?php echo js_encode(gettext('Category')); ?>');
-								$('#categoryselector').change(function() {
+								$('#categoryselector').change(function () {
 									$('#link').val($(this).val());
 								});
 								break;
@@ -183,7 +183,7 @@ if (extensionEnabled('zenpage')) {
 			</script>
 			<script type="text/javascript">
 				//<!-- <![CDATA[
-				$(document).ready(function() {
+				$(document).ready(function () {
 <?php
 if (is_array($result)) {
 	?>
@@ -195,7 +195,7 @@ if (is_array($result)) {
 	<?php
 }
 ?>
-					$('#typeselector').change(function() {
+					$('#typeselector').change(function () {
 						$('input').val(''); // reset all input values so we do not carry them over from one type to another
 						$('#link').val('');
 						handleSelectorChange($(this).val());
@@ -224,9 +224,9 @@ if (is_array($result)) {
 			}
 			?>
 			<p class="buttons">
-				<strong><a href="menu_tab.php?menuset=<?php echo $menuset; ?>"><img	src="../../images/arrow_left_blue_round.png" alt="" /><?php echo gettext("Back"); ?></a></strong>
+				<strong><a href="menu_tab.php?menuset=<?php echo $menuset; ?>"><img	src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/arrow_left_blue_round.png" alt="" /><?php echo gettext("Back"); ?></a></strong>
 				<span class="floatright">
-					<strong><a href="menu_tab_edit.php?add&amp;menuset=<?php echo urlencode($menuset); ?>"><img src="../../images/add.png" alt="" /> <?php echo gettext("Add Menu Items"); ?></a></strong>
+					<strong><a href="menu_tab_edit.php?add&amp;menuset=<?php echo urlencode($menuset); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" /> <?php echo gettext("Add Menu Items"); ?></a></strong>
 				</span>
 			</p>
 			<br class="clearall" /><br />
@@ -387,8 +387,8 @@ if (is_array($result)) {
 						?>
 					</table>
 					<p class="buttons">
-						<button type="submit"><img src="../../images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
-						<button type="reset"><img src="../../images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
+						<button type="submit"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
+						<button type="reset"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
 					</p>
 					<br class="clearall" /><br />
 				</form>

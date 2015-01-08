@@ -358,7 +358,7 @@ class ExternalFeed extends feed {
 			$feeditem['desc'] = $albumobj->getDesc($this->locale);
 
 			$feeditem['title'] = $imagenumber;
-			$feeditem['pubdate'] = date("r", strtotime($albumobj->getDateTime()));
+			$feeditem['pubdate'] = date("r", strtotime($albumobj->getPublishDate()));
 		} else {
 			if (isAlbumClass($item)) {
 				$albumobj = $item;
@@ -372,7 +372,7 @@ class ExternalFeed extends feed {
 
 			$feeditem['desc'] = $item->getDesc($this->locale);
 			$feeditem['title'] = sprintf('%1$s (%2$s)', $item->getTitle($this->locale), $albumobj->getTitle($this->locale));
-			$feeditem['pubdate'] = date("r", strtotime($item->getDateTime()));
+			$feeditem['pubdate'] = date("r", strtotime($item->getPublishDate()));
 		}
 
 //link
@@ -420,7 +420,7 @@ class ExternalFeed extends feed {
 		$feeditem['link'] = $link;
 		$feeditem['media_content'] = '';
 		$feeditem['media_thumbnail'] = '';
-		$feeditem['pubdate'] = date("r", strtotime($obj->getDateTime()));
+		$feeditem['pubdate'] = date("r", strtotime($obj->getPublishDate()));
 
 		return $feeditem;
 	}

@@ -46,11 +46,7 @@ if (isset($_GET['publish'])) {
 	$obj = newPage(sanitize($_GET['titlelink']));
 	zenpagePublish($obj, sanitize_numeric($_GET['publish']));
 }
-if (isset($_GET['skipscheduling'])) {
-	XSRFdefender('update');
-	$obj = newPage($result['titlelink']);
-	skipScheduledPublishing($obj);
-}
+
 if (isset($_GET['commentson'])) {
 	XSRFdefender('update');
 	$obj = newPage(sanitize($_GET['titlelink']));
@@ -75,6 +71,7 @@ $_zp_CMS = new CMS();
 printAdminHeader('pages');
 printSortableHead();
 zenpageJSCSS();
+updatePublished('pages');
 ?>
 <script type="text/javascript">
 	//<!-- <![CDATA[
@@ -125,7 +122,7 @@ zenpageJSCSS();
 			?>
 			<p class="buttons">
 				<button class="serialize" type="submit">
-					<img src="../../images/pass.png" alt="" />
+					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" />
 					<strong><?php echo gettext("Apply"); ?></strong>
 				</button>
 				<?php
@@ -134,7 +131,7 @@ zenpageJSCSS();
 					<span class="floatright">
 						<strong>
 							<a href="admin-edit.php?page&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add') ?>">
-								<img src="images/add.png" alt="" /> <?php echo gettext('New Page'); ?></a>
+								<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" /> <?php echo gettext('New Page'); ?></a>
 						</strong>
 					</span>
 					<?php
@@ -183,7 +180,7 @@ zenpageJSCSS();
 		<input name="update" type="hidden" value="Save Order" />
 		<p class="buttons">
 			<button class="serialize" type="submit" title="<?php echo gettext('Apply'); ?>">
-				<img src="../../images/pass.png" alt="" />
+				<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" />
 				<strong><?php echo gettext('Apply'); ?></strong>
 			</button>
 		</p>

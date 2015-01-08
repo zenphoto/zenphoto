@@ -1694,7 +1694,8 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 						$sql_statements = array();
 						$collation = db_collation();
 
-						/*						 * *********************************************************************************
+						/*
+						 * ********************************************************************************
 						  Add new fields in the upgrade section. This section should remain static except for new
 						  tables. This tactic keeps all changes in one place so that noting gets accidentaly omitted.
 						 * ********************************************************************************** */
@@ -1737,7 +1738,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 														`type` tinytext,
 														`objectid` int(11) UNSIGNED NOT NULL,
 														PRIMARY KEY (`id`)
-		)	$collation;";
+														)	$collation;";
 						}
 
 						// v. 1.1.5
@@ -1894,6 +1895,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 														`hitcounter` int(11) unsigned default 0,
 														`permalink` int(1) unsigned NOT NULL default 0,
 														`locked` int(1) unsigned NOT NULL default 0,
+														`publishdate` datetime default NULL,
 														`expiredate` datetime default NULL,
 														`total_value` int(11) unsigned default '0',
 														`total_votes` int(11) unsigned default '0',
@@ -1952,6 +1954,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 														`hitcounter` int(11) unsigned default 0,
 														`permalink` int(1) unsigned NOT NULL default 0,
 														`locked` int(1) unsigned NOT NULL default 0,
+														`publishdate` datetime default NULL,
 														`expiredate` datetime default NULL,
 														`total_value` int(11) unsigned default '0',
 														`total_votes` int(11) unsigned default '0',
@@ -2300,6 +2303,9 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 						//ZenPhoto20
 						//v1.0.0
 						$sql_statements[] = "ALTER TABLE $tbl_tags ADD COLUMN `language` varchar(5) NOT NULL default '';";
+						//v1.0.2
+						$sql_statements[] = 'ALTER TABLE ' . $tbl_news . ' ADD COLUMN `publishdate` datetime default NULL';
+						$sql_statements[] = 'ALTER TABLE ' . $tbl_pages . ' ADD COLUMN `publishdate` datetime default NULL';
 
 						// do this last incase there are any field changes of like names!
 						foreach ($_zp_exifvars as $key => $exifvar) {
