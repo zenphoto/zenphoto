@@ -733,7 +733,7 @@ function addPluginType($suffix, $objectName) {
  *
  */
 function is_valid_image($filename) {
-	deprecated_functions::notify(gettext("use Gallery::imageObjectClass() to obtain the objech handler"));
+	deprecated_functions::notify(gettext("use Gallery::imageObjectClass() to obtain the object handler"));
 	return Gallery::imageObjectClass($filename) == 'Image';
 }
 
