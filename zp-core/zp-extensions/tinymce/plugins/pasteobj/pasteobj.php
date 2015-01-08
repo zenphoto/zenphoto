@@ -98,12 +98,12 @@ function getIPSizedImage($size, $image) {
 				// <!-- <![CDATA[
 				var link = '<?php echo $link; ?>';
 				var link2 = '<?php echo $link2; ?>';
-				var alt1 = '<?php echo $alt1; ?>';
-				var title1 = '<?php echo $title1; ?>';
-				var title = '<?php echo html_encodeTagged($obj->getTitle()); ?>';
-				var image = '<img src="<?php echo addslashes($image); ?>" alt="' + alt1 + '" title="' + title1 + '" />';
-				var imagec = '<img src="<?php echo addslashes($imageb); ?>" alt="' + alt1 + '" title="' + title1 + '" />';
-				var imagef = '<?php echo addslashes($imagef); ?>';
+				var alt1 = '<?php echo html_encode($alt1); ?>';
+				var title1 = '<?php echo html_encode($title1); ?>';
+				var title = '<?php echo html_encode($obj->getTitle()); ?>';
+				var image = '<img src="<?php echo html_encode($image); ?>" alt="' + alt1 + '" title="' + title1 + '" />';
+				var imagec = '<img src="<?php echo html_encode($imageb); ?>" alt="' + alt1 + '" title="' + title1 + '" />';
+				var imagef = '<?php echo html_encode($imagef); ?>';
 				var picture = <?php echo (int) $picture; ?>;
 
 				function zenchange() {
