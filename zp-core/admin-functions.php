@@ -164,7 +164,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 					$.DirtyForms.title = '<?php echo gettext('Are you sure you want to leave this page?'); ?>';
 					$.DirtyForms.continueText = '<?php echo gettext('Leave'); ?>';
 					$.DirtyForms.stopText = '<?php echo gettext('Stay'); ?>';
-					$.DirtyForms.ignoreClass = '.ui-datepicker-next, .ui-datepicker-prev, .ui-icon-circle-triangle-w, .ui-icon-circle-triangle-e, .ignoredirty';
 					$.facebox.settings.closeImage = '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/facebox/closelabel.png';
 					$('#modal').facebox();
 					$('form.dirtylistening').dirtyForms();

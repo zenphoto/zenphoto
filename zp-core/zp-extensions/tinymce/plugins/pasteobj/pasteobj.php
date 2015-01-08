@@ -200,9 +200,7 @@ function getIPSizedImage($size, $image) {
 					pasteObjPopup.close();
 				}
 
-				window.addEventListener('load', function () {
-					zenchange();
-				}, false);
+				window.addEventListener('load', zenchange, false);
 				// ]]> -->
 			</script>
 			<h3>
