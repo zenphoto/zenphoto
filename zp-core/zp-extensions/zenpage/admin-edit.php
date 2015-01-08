@@ -114,9 +114,12 @@ codeblocktabsJS();
 		var today = new Date();
 		var pub = $('#pubdate').datepicker('getDate');
 		if (pub.getTime() > today.getTime()) {
-			$(".scheduledpublishing").html('<?php echo addslashes(gettext('Future publishing date:')); ?>');
+			$('#show').removeAttr('checked');
+			$("#pubdate").css("color", "blue");
 		} else {
-			$(".scheduledpublishing").html('');
+			$('#show').attr('checked', 'checked');
+			$("#pubdate").css("color", "black");
+
 		}
 	}
 	function toggleTitlelink() {
@@ -407,6 +410,20 @@ codeblocktabsJS();
 														<p><?php echo gettext("Author:"); ?> <?php authorSelector($result->getAuthor()); ?></p>
 														<?php
 													}
+													?>
+													<p class="checkbox">
+														<input name="show"
+																	 type="checkbox"
+																	 id="show"
+																	 value="1" <?php checkIfChecked($result->getShow()); ?>
+																	 onclick="$('#pubdate').val('');
+																				 $('#expiredate').val('');
+																				 $('#pubdate').css('color', 'black');
+																				 $('.expire').html('');"
+																	 />
+														<label for="show"><?php echo gettext("Published"); ?></label>
+													</p>
+													<?php
 													if (!$result->transient) {
 														?>
 														<p class="checkbox">
@@ -422,18 +439,6 @@ codeblocktabsJS();
 																	 value="1" <?php checkIfChecked($result->getPermalink()); ?>
 																	 />
 														<label for="permalink"><?php echo gettext("Enable permaTitlelink"); ?></label>
-													</p>
-													<p class="checkbox">
-														<input name="show"
-																	 type="checkbox"
-																	 id="show"
-																	 value="1" <?php checkIfChecked($result->getShow()); ?>
-																	 onclick="$('#pubdate').val('');
-																				 $('#expiredate').val('');
-																				 $('.scheduledpublishing').html('');
-																				 $('.expire').html('');"
-																	 />
-														<label for="show"><?php echo gettext("Published"); ?></label>
 													</p>
 													<?php
 													if (!is_AdminEditPage("newscategory")) {
@@ -612,15 +617,7 @@ codeblocktabsJS();
 															echo gettext('Publish date (YYYY-MM-DD) ');
 															$date = $result->getPublishDate();
 															?>
-															<input name="pubdate" type="text" id="pubdate" value="<?php echo $date; ?>" onchange="checkFuturePub();" />
-															<br />
-															<strong class='scheduledpublishing'>
-																<?php
-																if ($date > date('Y-m-d H:i:s')) {
-																	echo addslashes(gettext('Future publishing date:'));
-																}
-																?>
-															</strong>
+															<input name="pubdate" type="text" id="pubdate" value="<?php echo $date; ?>" onchange="checkFuturePub();" <?php if ($date > date('Y-m-d H:i:s')) echo 'style="color:red"'; ?> />
 														</p>
 														<p>
 															<script type="text/javascript">
