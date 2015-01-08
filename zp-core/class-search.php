@@ -1410,13 +1410,6 @@ class SearchEngine {
 								$album = newAlbum($albumname);
 								$uralbum = getUrAlbum($album);
 								$viewUnpublished = ($this->search_unpublished || zp_loggedin() && $uralbum->subRights() & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW));
-								switch (checkPublishDates($row)) {
-									case 1:
-										$album->setShow(0);
-										$album->save();
-									case 2:
-										$row['show'] = 0;
-								}
 								if ($mine || (is_null($mine) && $album->isMyItem(LIST_RIGHTS)) || (checkAlbumPassword($albumname) && ($row['show'] || $viewUnpublished))) {
 									if (empty($this->album_list) || in_array($albumname, $this->album_list)) {
 										$result[] = array('name' => $albumname, 'weight' => $weights[$row['id']]);
@@ -1571,15 +1564,7 @@ class SearchEngine {
 							$album = newAlbum($albumname);
 							$uralbum = getUrAlbum($album);
 							$viewUnpublished = ($this->search_unpublished || zp_loggedin() && $uralbum->subRights() & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW));
-							switch (checkPublishDates($row)) {
-								case 1:
-									$imageobj = newImage($this, $row['filename']);
-									$imageobj->setShow(0);
-									$imageobj->save();
-								case 2:
-									$row['show'] = 0;
-									break;
-							}
+
 							if ($mine || is_null($mine) && ($album->isMyItem(LIST_RIGHTS) || checkAlbumPassword($albumname) && ($album->getShow() || $viewUnpublished))) {
 								$allow = empty($this->album_list) || in_array($albumname, $this->album_list);
 							}

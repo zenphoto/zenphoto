@@ -210,7 +210,7 @@ class tweet {
 				if (getOption('tweet_news_protected') || !$obj->isProtected()) {
 					switch ($type = $obj->table) {
 						case 'pages':
-							$dt = $obj->getDateTime();
+							$dt = $obj->getPublishDate();
 							if ($dt > date('Y-m-d H:i:s')) {
 								$result = query_single_row('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="tweet_news" AND `aux`="pending_pages" AND `data`=' . db_quote($obj->getTitlelink()));
 								if (!$result) {
@@ -235,7 +235,7 @@ class tweet {
 							if (!$tweet) {
 								break;
 							}
-							$dt = $obj->getDateTime();
+							$dt = $obj->getPublishDate();
 							if ($dt > date('Y-m-d H:i:s')) {
 								$result = query_single_row('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="tweet_news" AND `aux`="pending" AND `data`=' . db_quote($obj->getTitlelink()));
 								if (!$result) {

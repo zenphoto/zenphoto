@@ -716,11 +716,10 @@ function getSitemapPages() {
 			$data .= sitemap_echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
 			foreach ($pages as $page) {
 				$pageobj = newPage($page['titlelink']);
-				$date = substr($pageobj->getDatetime(), 0, 10);
-				$lastchange = '';
+				$lastchange = $date = substr($pageobj->getPublishDate(), 0, 10);
 				if (!is_null($pageobj->getLastchange()))
 					$lastchange = substr($pageobj->getLastchange(), 0, 10);
-				if ($date > $lastchange && !empty($lastchangedate))
+				if ($date > $lastchange)
 					$date = $lastchange;
 				if (!$pageobj->isProtected()) {
 					switch (SITEMAP_LOCALE_TYPE) {
@@ -836,11 +835,10 @@ function getSitemapNewsArticles() {
 			$data .= sitemap_echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
 			foreach ($articles as $article) {
 				$articleobj = newArticle($article['titlelink']);
-				$date = substr($articleobj->getDatetime(), 0, 10);
-				$lastchange = '';
+				$lastchange = $date = substr($articleobj->getPublishDate(), 0, 10);
 				if (!is_null($articleobj->getLastchange()))
 					$lastchange = substr($articleobj->getLastchange(), 0, 10);
-				if ($date > $lastchange && !empty($lastchangedate))
+				if ($date > $lastchange)
 					$date = $lastchange;
 				if (!$articleobj->inProtectedCategory()) {
 					switch (SITEMAP_LOCALE_TYPE) {

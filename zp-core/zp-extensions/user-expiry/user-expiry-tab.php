@@ -127,11 +127,11 @@ echo '</head>' . "\n";
 				<form action="?action=expiry" class="dirtylistening" onReset="setClean('userExpiry_form');" id="userExpiry_form" method="post" autocomplete="off" >
 					<?php XSRFToken('expiry'); ?>
 					<span class="buttons">
-						<button type="submit"><img src="../../images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
-						<button type="reset"><img src="../../images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
+						<button type="submit"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
+						<button type="reset"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
 						<div class="floatright">
 							<a href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-options.php?'page=options&amp;tab=plugin&amp;single=user-expiry#user-expiry">
-								<img src="../../images/options.png" alt="" /> <strong><?php echo gettext('Options') ?></strong>
+								<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/options.png" alt="" /> <strong><?php echo gettext('Options') ?></strong>
 							</a>
 						</div>
 					</span>
@@ -205,25 +205,25 @@ echo '</head>' . "\n";
 						}
 						?>
 					</ul>
-					<img src="../../images/fail.png" /> <?php echo gettext('Remove'); ?>
-					<img src="../../images/lock_2.png" /> <?php echo gettext('Disable'); ?>
-					<img src="../../images/lock_open.png" /> <?php echo gettext('Enable'); ?>
+					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/fail.png" /> <?php echo gettext('Remove'); ?>
+					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock_2.png" /> <?php echo gettext('Disable'); ?>
+					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock_open.png" /> <?php echo gettext('Enable'); ?>
 					<?php
 					if (getOption('user_expiry_password_cycle')) {
 						?>
-						<img src="../../images/reset.png" /> <?php echo gettext('Force password renewal'); ?>
+						<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" /> <?php echo gettext('Force password renewal'); ?>
 						<?php
 					}
 					if ($subscription) {
 						?>
-						<img src="../../images/pass.png" /> <?php echo gettext('Renew'); ?>
-						<img src="../../images/envelope.png" /> <?php echo gettext('Email renewal link'); ?>
+						<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" /> <?php echo gettext('Renew'); ?>
+						<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/envelope.png" /> <?php echo gettext('Email renewal link'); ?>
 						<?php
 					}
 					?>
 					<p class="buttons">
-						<button type="submit"><img src="../../images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
-						<button type="reset"><img src="../../images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
+						<button type="submit"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
+						<button type="reset"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
 					</p>
 					<br class="clearall" /><br /><br />
 				</form>

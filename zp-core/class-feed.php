@@ -409,7 +409,7 @@ class feed {
 		$feeditem['category'] = '';
 		$feeditem['media_content'] = '';
 		$feeditem['media_thumbnail'] = '';
-		$feeditem['pubdate'] = date("r", strtotime($obj->getDatetime()));
+		$feeditem['pubdate'] = date("r", strtotime($obj->getPublishDate()));
 		return $feeditem;
 	}
 

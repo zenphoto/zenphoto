@@ -6,7 +6,6 @@
  * @package plugins
  * @subpackage zenpage
  */
-CMS::expiry();
 
 /**
  * Retrieves posted expiry date and checks it against the current date/time
@@ -58,15 +57,16 @@ function updatePage(&$reports, $newpage = false) {
 	$title = process_language_string_save("title", 2);
 	$author = sanitize($_POST['author']);
 	$content = zpFunctions::updateImageProcessorLink(process_language_string_save("content", EDITOR_SANITIZE_LEVEL));
-	$show = getcheckboxState('show');
 	$date = sanitize($_POST['date']);
 	$lastchange = sanitize($_POST['lastchange']);
 	$lastchangeauthor = sanitize($_POST['lastchangeauthor']);
+	$pubdate = sanitize($_POST['pubdate']);
 	$expiredate = getExpiryDatePost();
 	$commentson = getcheckboxState('commentson');
 	$permalink = getcheckboxState('permalink');
 	$locked = getcheckboxState('locked');
-	$date = sanitize($_POST['date']);
+	$show = getcheckboxState('show') && $pubdate <= date(date('Y-m-d H:i:s'));
+
 	if ($newpage) {
 		$titlelink = seoFriendly(get_language_string($title));
 		if (empty($titlelink)) {
@@ -122,6 +122,7 @@ function updatePage(&$reports, $newpage = false) {
 	$page->setPermalink($permalink);
 	$page->setLocked($locked);
 	$page->setExpiredate($expiredate);
+	$page->setPublishDate($pubdate);
 	if (getcheckboxState('resethitcounter')) {
 		$page->set('hitcounter', 0);
 	}
@@ -260,13 +261,13 @@ function printPagesListTable($page, $flag) {
 					if ($page->getCommentsAllowed()) {
 						?>
 						<a href="?commentson=0&amp;titlelink=<?php echo html_encode($page->getTitlelink()); ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo gettext('Disable comments'); ?>">
-							<img src="../../images/comments-on.png" alt="" title="<?php echo gettext("Comments on"); ?>" style="border: 0px;"/>
+							<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/comments-on.png" alt="" title="<?php echo gettext("Comments on"); ?>" style="border: 0px;"/>
 						</a>
 						<?php
 					} else {
 						?>
 						<a href="?commentson=1&amp;titlelink=<?php echo html_encode($page->getTitlelink()); ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo gettext('Enable comments'); ?>">
-							<img src="../../images/comments-off.png" alt="" title="<?php echo gettext("Comments off"); ?>" style="border: 0px;"/>
+							<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/comments-off.png" alt="" title="<?php echo gettext("Comments off"); ?>" style="border: 0px;"/>
 						</a>
 						<?php
 					}
@@ -276,10 +277,10 @@ function printPagesListTable($page, $flag) {
 			} else {
 				?>
 				<div class="page-list_icon">
-					<img src="../../images/icon_inactive.png" alt="" title="<?php gettext('locked'); ?>" />
+					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/icon_inactive.png" alt="" title="<?php gettext('locked'); ?>" />
 				</div>
 				<div class="page-list_icon">
-					<img src="../../images/icon_inactive.png" alt="" title="<?php gettext('locked'); ?>" />
+					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/icon_inactive.png" alt="" title="<?php gettext('locked'); ?>" />
 				</div>
 				<?php
 			}
@@ -287,7 +288,7 @@ function printPagesListTable($page, $flag) {
 
 			<div class="page-list_icon">
 				<a href="../../../index.php?p=pages&amp;title=<?php echo js_encode($page->getTitlelink()); ?>" title="<?php echo gettext("View page"); ?>">
-					<img src="images/view.png" alt="" title="<?php echo gettext("view"); ?>" />
+					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/view.png" alt="" title="<?php echo gettext("view"); ?>" />
 				</a>
 			</div>
 
@@ -297,17 +298,14 @@ function printPagesListTable($page, $flag) {
 					?>
 					<div class="page-list_icon">
 						<a href="?hitcounter=1&amp;titlelink=<?php echo html_encode($page->getTitlelink()); ?>&amp;add&amp;XSRFToken=<?php echo getXSRFToken('hitcounter') ?>" title="<?php echo gettext("Reset hitcounter"); ?>">
-							<img src="../../images/reset.png" alt="" title="<?php echo gettext("Reset hitcounter"); ?>" /></a>
+							<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" title="<?php echo gettext("Reset hitcounter"); ?>" /></a>
 					</div>
 					<?php
 				}
 				?>
 				<div class="page-list_icon">
 					<a href="javascript:confirmDelete('admin-pages.php?delete=<?php echo $page->getTitlelink(); ?>&amp;add&amp;XSRFToken=<?php echo getXSRFToken('delete') ?>',deletePage)" title="<?php echo gettext("Delete page"); ?>">
-						<img src="../../images/fail.png" alt="" title="<?php echo gettext("delete"); ?>" /></a>
-				</div>
-				<div class="page-list_icon">
-					<?php echo linkPickerIcon($page, 'link_source_' . $page->getID()); ?>
+						<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/fail.png" alt="" title="<?php echo gettext("delete"); ?>" /></a>
 				</div>
 				<div class="page-list_icon">
 					<input class="checkbox" type="checkbox" name="ids[]" value="<?php echo $page->getTitlelink(); ?>" onclick="triggerAllBox(this.form, 'ids[]', this.form.allbox);" />
@@ -316,13 +314,13 @@ function printPagesListTable($page, $flag) {
 			} else {
 				?>
 				<div class="page-list_icon">
-					<img src="../../images/icon_inactive.png" alt="" title="<?php gettext('locked'); ?>" />
+					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/icon_inactive.png" alt="" title="<?php gettext('locked'); ?>" />
 				</div>
 				<div class="page-list_icon">
-					<img src="../../images/icon_inactive.png" alt="" title="<?php gettext('locked'); ?>" />
+					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/icon_inactive.png" alt="" title="<?php gettext('locked'); ?>" />
 				</div>
 				<div class="page-list_icon">
-					<img src="../../images/icon_inactive.png" alt="" title="<?php gettext('locked'); ?>" />
+					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/icon_inactive.png" alt="" title="<?php gettext('locked'); ?>" />
 				</div>
 				<div class="page-list_icon">
 					<input class="checkbox" type="checkbox" name="disable" value="1" disabled="disabled" />
@@ -354,12 +352,15 @@ function updateArticle(&$reports, $newarticle = false) {
 	$content = zpFunctions::updateImageProcessorLink(process_language_string_save("content", EDITOR_SANITIZE_LEVEL));
 	$show = getcheckboxState('show');
 	$date = sanitize($_POST['date']);
+	$pubdate = sanitize($_POST['pubdate']);
 	$expiredate = getExpiryDatePost();
 	$permalink = getcheckboxState('permalink');
 	$lastchange = sanitize($_POST['lastchange']);
 	$lastchangeauthor = sanitize($_POST['lastchangeauthor']);
 	$commentson = getcheckboxState('commentson');
 	$locked = getcheckboxState('locked');
+	$show = getcheckboxState('show') && $pubdate <= date(date('Y-m-d H:i:s'));
+
 	if ($newarticle) {
 		$titlelink = seoFriendly(get_language_string($title));
 		if (empty($titlelink)) {
@@ -417,6 +418,7 @@ function updateArticle(&$reports, $newarticle = false) {
 	$article->setPermalink($permalink);
 	$article->setLocked($locked);
 	$article->setExpiredate($expiredate);
+	$article->setPublishDate($pubdate);
 	$article->setSticky(sanitize_numeric($_POST['sticky']));
 	if (getcheckboxState('resethitcounter')) {
 		$article->set('hitcounter', 0);
@@ -971,25 +973,25 @@ function printCategoryListSortableTable($cat, $flag) {
 					$title = gettext("Un-publish");
 					?>
 					<a href="?publish=0&amp;titlelink=<?php echo html_encode($cat->getTitlelink()); ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo $title; ?>">
-						<img src="../../images/pass.png" alt="<?php gettext("Scheduled for published"); ?>" title="<?php echo $title; ?>" /></a>
+						<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="<?php gettext("Scheduled for publishing"); ?>" title="<?php echo $title; ?>" /></a>
 					<?php
 				} else {
 					$title = gettext("Publish");
 					?>
 					<a href="?publish=1&amp;titlelink=<?php echo html_encode($cat->getTitlelink()); ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo $title; ?>">
-						<img src="../../images/action.png" alt="<?php echo gettext("Un-published"); ?>" title="<?php echo $title; ?>" /></a>
+						<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/action.png" alt="<?php echo gettext("Un-published"); ?>" title="<?php echo $title; ?>" /></a>
 					<?php
 				}
 				?>
 			</div>
 			<div class="page-list_icon">
 				<?php if ($count == 0) { ?>
-					<img src="../../images/icon_inactive.png" alt="<?php gettext('locked'); ?>" />
+					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/icon_inactive.png" alt="<?php gettext('locked'); ?>" />
 					<?php
 				} else {
 					?>
 					<a href="../../../index.php?p=news&amp;category=<?php echo js_encode($cat->getTitlelink()); ?>" title="<?php echo gettext("View category"); ?>">
-						<img src="images/view.png" alt="view" />
+						<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/view.png" alt="view" />
 					</a>
 				<?php } ?>
 			</div>
@@ -999,7 +1001,7 @@ function printCategoryListSortableTable($cat, $flag) {
 				<div class="page-list_icon"><a
 						href="?hitcounter=1&amp;id=<?php echo $cat->getID(); ?>&amp;tab=categories&amp;XSRFToken=<?php echo getXSRFToken('hitcounter') ?>"
 						title="<?php echo gettext("Reset hitcounter"); ?>"> <img
-							src="../../images/reset.png"
+							src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png"
 							alt="<?php echo gettext("Reset hitcounter"); ?>" /> </a>
 				</div>
 				<?php
@@ -1008,7 +1010,7 @@ function printCategoryListSortableTable($cat, $flag) {
 			<div class="page-list_icon">
 				<a href="javascript:confirmDelete('admin-categories.php?delete=<?php echo js_encode($cat->getTitlelink()); ?>&amp;tab=categories&amp;XSRFToken=<?php echo getXSRFToken('delete_category') ?>',deleteCategory)"
 					 title="<?php echo gettext("Delete Category"); ?>"><img
-						src="../../images/fail.png" alt="<?php echo gettext("Delete"); ?>"
+						src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/fail.png" alt="<?php echo gettext("Delete"); ?>"
 						title="<?php echo gettext("Delete Category"); ?>" /></a>
 			</div>
 			<div class="page-list_icon">
@@ -1231,22 +1233,9 @@ function checkForEmptyTitle($titlefield, $type, $truncate = true) {
  * @return string
  */
 function zenpagePublish($obj, $show) {
-	if ($show > 1) {
-		$obj->setExpireDate(NULL);
-	}
-	$obj->setShow((int) ($show && 1));
-	$obj->save();
-}
-
-/**
- * Skips the scheduled publishing by setting the date of a page or article to the current date to publish it immediately
- *
- * @param object $obj
- * @return string
- */
-function skipScheduledPublishing($obj) {
-	$obj->setDateTime(date('Y-m-d H:i:s'));
-	$obj->setShow(1);
+	$obj->setExpireDate(NULL);
+	$obj->setPublishDate(NULL);
+	$obj->setShow($show);
 	$obj->save();
 }
 
@@ -1308,8 +1297,7 @@ function getNewsPagesStatistic($option) {
 					$itemobj = newCategory($item['titlelink']);
 					break;
 			}
-			$show = $itemobj->getShow();
-			if ($show == 1) {
+			if ($itemobj->getShow()) {
 				$pub++;
 			}
 		}
@@ -1369,22 +1357,25 @@ function printZenpageIconLegend() {
 		<?php
 		if (GALLERY_SECURITY == 'public') {
 			?>
-			<li><img src="../../images/lock.png" alt="" /><?php echo gettext("Has Password"); ?></li>
+			<li><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock.png" alt="" /><?php echo gettext("Has Password"); ?></li>
 			<?php
 		}
 		?>
-		<li><img src="images/add.png" alt="" /><?php echo gettext("pick source"); ?></li>
-		<li><img src="../../images/pass.png" alt="" /><img	src="../../images/action.png" alt="" /><img src="images/clock.png" alt="" /><?php echo gettext("Published/Not published/Scheduled for publishing"); ?></li>
-		<li><img src="../../images/comments-on.png" alt="" /><img src="../../images/comments-off.png" alt="" /><?php echo gettext("Comments on/off"); ?></li>
-		<li><img src="../../images/view.png" alt="" /><?php echo gettext("View"); ?></li>
+		<li><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" /><?php echo gettext("pick source"); ?></li>
+		<li>
+			<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><img	src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/action.png" alt="" />
+			<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/clock.png" alt="" /><?php echo gettext("Published/Not published/Scheduled for publishing"); ?>
+		</li>
+		<li><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/comments-on.png" alt="" /><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/comments-off.png" alt="" /><?php echo gettext("Comments on/off"); ?></li>
+		<li><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/view.png" alt="" /><?php echo gettext("View"); ?></li>
 		<?php
 		if (extensionEnabled('hitcounter')) {
 			?>
-			<li><img src="../../images/reset.png" alt="" /><?php echo gettext("Reset hitcounter"); ?></li>
+			<li><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" /><?php echo gettext("Reset hitcounter"); ?></li>
 			<?php
 		}
 		?>
-		<li><img src="../../images/fail.png" alt="" /><?php echo gettext("Delete"); ?></li>
+		<li><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/fail.png" alt="" /><?php echo gettext("Delete"); ?></li>
 	</ul>
 	<?php
 }
@@ -1424,12 +1415,12 @@ function authorSelector($author = NULL) {
  * @return string
  */
 function printPublished($object) {
-	$dt = $object->getDateTime();
+	$dt = $object->getPublishDate();
 	if ($dt > date('Y-m-d H:i:s')) {
-		if ($object->getShow() != 1) {
-			echo '<span class="inactivescheduledate">' . $dt . '</strong>';
-		} else {
+		if ($object->getShow()) {
 			echo '<span class="scheduledate">' . $dt . '</strong>';
+		} else {
+			echo '<span class="inactivescheduledate">' . $dt . '</strong>';
 		}
 	} else {
 		echo '<span>' . $dt . '</span>';
@@ -1479,233 +1470,215 @@ function printPublishIconLink($object, $type, $linkback = '') {
 			$urladd .= "&amp;articles_page=" . sanitize_numeric($_GET['articles_page']);
 		}
 	}
-	if ($object->getDateTime() > date('Y-m-d H:i:s')) {
-		if ($object->getShow()) {
-			$title = gettext("Publish immediately (skip scheduling)");
-			?>
-			<a href="?skipscheduling=1&amp;titlelink=<?php echo html_encode($object->getTitlelink()) . $urladd; ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo $title; ?>">
-				<img src="images/clock.png" alt="<?php gettext("Scheduled for published"); ?>" title="<?php echo $title; ?>" /></a>
-			<?php
-		} else {
-			$title = gettext("Enable scheduled publishing");
-			?>
-			<a href="?publish=1&amp;titlelink=<?php echo html_encode($object->getTitlelink()) . $urladd; ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo $title; ?>">
-				<img src="../../images/action.png" alt="<?php echo gettext("Un-published"); ?>" title="<?php echo $title; ?>" /></a>
-			<?php
-		}
+
+	if ($object->getShow()) {
+		$title = gettext("Un-publish");
+		?>
+		<a href="?publish=0&amp;titlelink=<?php echo html_encode($object->getTitlelink()) . $urladd; ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo $title; ?>">
+			<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="<?php echo gettext("Published"); ?>" title="<?php echo $title; ?>" /></a>
+		<?php
 	} else {
-		if ($object->getShow()) {
-			$title = gettext("Un-publish");
+		if ($object->getPublishDate() > date('Y-m-d H:i:s')) {
+			//overriding scheduling
 			?>
-			<a href="?publish=0&amp;titlelink=<?php echo html_encode($object->getTitlelink()) . $urladd; ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo $title; ?>">
-				<img src="../../images/pass.png" alt="<?php echo gettext("Published"); ?>" title="<?php echo $title; ?>" /></a>
+			<a href="?publish=2&amp;titlelink=<?php echo html_encode($object->getTitlelink()) . $urladd; ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>">
+				<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/clock.png" alt="<?php echo gettext("Un-published"); ?>" title= "<?php echo gettext("Publish (override scheduling)"); ?>" /></a>
 			<?php
 		} else {
-			$dt = $object->getExpireDate();
-			if (empty($dt)) {
-				$title = gettext("Publish");
-				?>
-				<a href="?publish=1&amp;titlelink=<?php echo html_encode($object->getTitlelink()) . $urladd; ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>">
-					<?php
-				} else {
-					$title = gettext("Publish (override expiration)");
-					?>
-					<a href="?publish=2&amp;titlelink=<?php echo html_encode($object->getTitlelink()) . $urladd; ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>">
-						<?php
-					}
-					?>
-					<img src="../../images/action.png" alt="<?php echo gettext("Un-published"); ?>" title= "<?php echo $title; ?>" /></a>
-				<?php
-			}
+			?>
+			<a href="?publish=1&amp;titlelink=<?php echo html_encode($object->getTitlelink()) . $urladd; ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>">
+				<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/action.png" alt="<?php echo gettext("Un-published"); ?>" title= "<?php echo gettext("Publish"); ?>" /></a>
+			<?php
 		}
 	}
+}
 
-	/**
-	 * Checks if a checkbox is selected and checks it if.
-	 *
-	 * @param string $field the array field of an item array to be checked (for example "permalink" or "comments on")
-	 */
-	function checkIfChecked($field) {
-		if ($field) {
-			echo 'checked="checked"';
-		}
+/**
+ * Checks if a checkbox is selected and checks it if.
+ *
+ * @param string $field the array field of an item array to be checked (for example "permalink" or "comments on")
+ */
+function checkIfChecked($field) {
+	if ($field) {
+		echo 'checked="checked"';
 	}
+}
 
-	/**
-	 * Checks if the current logged in  user is allowed to edit the page/article.
-	 * Only that author or any user with admin rights will be able to edit or unlock.
-	 *
-	 * @param object $obj The page or article to check
-	 * @return bool
-	 */
-	function checkIfLocked($obj) {
-		global $_zp_current_admin_obj;
-		if ($obj->getLocked()) {
-			if (zp_loggedin($obj->manage_rights)) {
-				return true;
-			}
-			return $obj->getAuthor() == $_zp_current_admin_obj->getUser();
-		} else {
+/**
+ * Checks if the current logged in  user is allowed to edit the page/article.
+ * Only that author or any user with admin rights will be able to edit or unlock.
+ *
+ * @param object $obj The page or article to check
+ * @return bool
+ */
+function checkIfLocked($obj) {
+	global $_zp_current_admin_obj;
+	if ($obj->getLocked()) {
+		if (zp_loggedin($obj->manage_rights)) {
 			return true;
 		}
+		return $obj->getAuthor() == $_zp_current_admin_obj->getUser();
+	} else {
+		return true;
 	}
+}
 
-	/**
-	 * Checks if the current admin-edit.php page is called for news articles or for pages.
-	 *
-	 * @param string $page What you want to check for, "page" or "newsarticle"
-	 * @return bool
-	 */
-	function is_AdminEditPage($page) {
-		return isset($_GET[$page]);
-	}
+/**
+ * Checks if the current admin-edit.php page is called for news articles or for pages.
+ *
+ * @param string $page What you want to check for, "page" or "newsarticle"
+ * @return bool
+ */
+function is_AdminEditPage($page) {
+	return isset($_GET[$page]);
+}
 
-	/**
-	 * Processes the check box bulk actions
-	 *
-	 */
-	function processZenpageBulkActions($type) {
-		global $_zp_CMS;
-		$action = false;
-		if (isset($_POST['ids'])) {
-			//echo "action for checked items:". $_POST['checkallaction'];
-			$action = sanitize($_POST['checkallaction']);
-			$links = sanitize($_POST['ids']);
-			$total = count($links);
-			$message = NULL;
-			$sql = '';
-			if ($action != 'noaction') {
-				if ($total > 0) {
-					if ($action == 'addtags' || $action == 'alltags') {
-						$tags = bulkTags();
-					}
-					if ($action == 'addcats') {
-						foreach ($_POST as $key => $value) {
-							if (substr($key, 0, 3) == 'cat') {
-								if ($value) {
-									$cats[] = sanitize(postIndexDecode(substr($key, 3)));
-								}
+/**
+ * Processes the check box bulk actions
+ *
+ */
+function processZenpageBulkActions($type) {
+	global $_zp_CMS;
+	$action = false;
+	if (isset($_POST['ids'])) {
+		//echo "action for checked items:". $_POST['checkallaction'];
+		$action = sanitize($_POST['checkallaction']);
+		$links = sanitize($_POST['ids']);
+		$total = count($links);
+		$message = NULL;
+		$sql = '';
+		if ($action != 'noaction') {
+			if ($total > 0) {
+				if ($action == 'addtags' || $action == 'alltags') {
+					$tags = bulkTags();
+				}
+				if ($action == 'addcats') {
+					foreach ($_POST as $key => $value) {
+						if (substr($key, 0, 3) == 'cat') {
+							if ($value) {
+								$cats[] = sanitize(postIndexDecode(substr($key, 3)));
 							}
 						}
 					}
-					$n = 0;
-					foreach ($links as $titlelink) {
-						$class = 'Zenpage' . $type;
-						$obj = new $class($titlelink);
+				}
+				$n = 0;
+				foreach ($links as $titlelink) {
+					$class = 'Zenpage' . $type;
+					$obj = new $class($titlelink);
 
-						switch ($action) {
-							case 'deleteall':
-								$obj->remove();
-								break;
-							case 'addtags':
-								$mytags = array_unique(array_merge($tags, $obj->getTags(false)));
-								$obj->setTags($mytags);
-								break;
-							case 'cleartags':
-								$obj->setTags(array());
-								break;
-							case 'alltags':
-								$allarticles = $obj->getArticles('', 'all', true);
-								foreach ($allarticles as $article) {
-									$newsobj = newArticle($article['titlelink']);
-									$mytags = array_unique(array_merge($tags, $newsobj->getTags(false)));
-									$newsobj->setTags($mytags);
-									$newsobj->save();
-								}
-								break;
-							case 'clearalltags':
-								$allarticles = $obj->getArticles('', 'all', true);
-								foreach ($allarticles as $article) {
-									$newsobj = newArticle($article['titlelink']);
-									$newsobj->setTags(array());
-									$newsobj->save();
-								}
-								break;
-							case 'addcats':
-								$catarray = array();
-								$allcats = $obj->getCategories();
-								foreach ($cats as $cat) {
-									$catitem = $_zp_CMS->getCategory($cat);
-									$catarray[] = $catitem['titlelink']; //to use the setCategories method we need an array with just the titlelinks!
-								}
-								$allcatsarray = array();
-								foreach ($allcats as $allcat) {
-									$allcatsarray[] = $allcat['titlelink']; //same here!
-								}
-								$mycats = array_unique(array_merge($catarray, $allcatsarray));
-								$obj->setCategories($mycats);
-								break;
-							case 'clearcats':
-								$obj->setCategories(array());
-								break;
-							case 'showall':
-								$obj->set('show', 1);
-								break;
-							case 'hideall':
-								$obj->set('show', 0);
-								break;
-							case 'commentson':
-								$obj->set('commentson', 1);
-								break;
-							case 'commentsoff':
-								$obj->set('commentson', 0);
-								break;
-							case 'resethitcounter':
-								$obj->set('hitcounter', 0);
-								break;
-						}
-						$obj->save();
+					switch ($action) {
+						case 'deleteall':
+							$obj->remove();
+							break;
+						case 'addtags':
+							$mytags = array_unique(array_merge($tags, $obj->getTags(false)));
+							$obj->setTags($mytags);
+							break;
+						case 'cleartags':
+							$obj->setTags(array());
+							break;
+						case 'alltags':
+							$allarticles = $obj->getArticles('', 'all', true);
+							foreach ($allarticles as $article) {
+								$newsobj = newArticle($article['titlelink']);
+								$mytags = array_unique(array_merge($tags, $newsobj->getTags(false)));
+								$newsobj->setTags($mytags);
+								$newsobj->save();
+							}
+							break;
+						case 'clearalltags':
+							$allarticles = $obj->getArticles('', 'all', true);
+							foreach ($allarticles as $article) {
+								$newsobj = newArticle($article['titlelink']);
+								$newsobj->setTags(array());
+								$newsobj->save();
+							}
+							break;
+						case 'addcats':
+							$catarray = array();
+							$allcats = $obj->getCategories();
+							foreach ($cats as $cat) {
+								$catitem = $_zp_CMS->getCategory($cat);
+								$catarray[] = $catitem['titlelink']; //to use the setCategories method we need an array with just the titlelinks!
+							}
+							$allcatsarray = array();
+							foreach ($allcats as $allcat) {
+								$allcatsarray[] = $allcat['titlelink']; //same here!
+							}
+							$mycats = array_unique(array_merge($catarray, $allcatsarray));
+							$obj->setCategories($mycats);
+							break;
+						case 'clearcats':
+							$obj->setCategories(array());
+							break;
+						case 'showall':
+							$obj->set('show', 1);
+							break;
+						case 'hideall':
+							$obj->set('show', 0);
+							break;
+						case 'commentson':
+							$obj->set('commentson', 1);
+							break;
+						case 'commentsoff':
+							$obj->set('commentson', 0);
+							break;
+						case 'resethitcounter':
+							$obj->set('hitcounter', 0);
+							break;
 					}
+					$obj->save();
 				}
 			}
 		}
-		return $action;
 	}
+	return $action;
+}
 
-	function zenpageBulkActionMessage($action) {
-		switch ($action) {
-			case 'deleteall':
-				$message = gettext('Selected items deleted');
-				break;
-			case 'showall':
-				$message = gettext('Selected items published');
-				break;
-			case 'hideall':
-				$message = gettext('Selected items unpublished');
-				break;
-			case 'commentson':
-				$message = gettext('Comments enabled for selected items');
-				break;
-			case 'commentsoff':
-				$message = gettext('Comments disabled for selected items');
-				break;
-			case 'resethitcounter':
-				$message = gettext('Hitcounter for selected items');
-				break;
-			case 'addtags':
-				$message = gettext('Tags added to selected items');
-				break;
-			case 'cleartags':
-				$message = gettext('Tags cleared from selected items');
-				break;
-			case 'alltags':
-				$message = gettext('Tags added to articles of selected items');
-				break;
-			case 'clearalltags':
-				$message = gettext('Tags cleared from articles of selected items');
-				break;
-			case 'addcats':
-				$message = gettext('Categories added to selected items');
-				break;
-			case 'clearcats':
-				$message = gettext('Categories cleared from selected items');
-				break;
-			default:
-				return "<p class='notebox fade-message'>" . gettext('Nothing changed') . "</p>";
-		}
-		if (isset($message)) {
-			return "<p class='messagebox fade-message'>" . $message . "</p>";
-		}
-		return false;
+function zenpageBulkActionMessage($action) {
+	switch ($action) {
+		case 'deleteall':
+			$message = gettext('Selected items deleted');
+			break;
+		case 'showall':
+			$message = gettext('Selected items published');
+			break;
+		case 'hideall':
+			$message = gettext('Selected items unpublished');
+			break;
+		case 'commentson':
+			$message = gettext('Comments enabled for selected items');
+			break;
+		case 'commentsoff':
+			$message = gettext('Comments disabled for selected items');
+			break;
+		case 'resethitcounter':
+			$message = gettext('Hitcounter for selected items');
+			break;
+		case 'addtags':
+			$message = gettext('Tags added to selected items');
+			break;
+		case 'cleartags':
+			$message = gettext('Tags cleared from selected items');
+			break;
+		case 'alltags':
+			$message = gettext('Tags added to articles of selected items');
+			break;
+		case 'clearalltags':
+			$message = gettext('Tags cleared from articles of selected items');
+			break;
+		case 'addcats':
+			$message = gettext('Categories added to selected items');
+			break;
+		case 'clearcats':
+			$message = gettext('Categories cleared from selected items');
+			break;
+		default:
+			return "<p class='notebox fade-message'>" . gettext('Nothing changed') . "</p>";
 	}
-	?>
+	if (isset($message)) {
+		return "<p class='messagebox fade-message'>" . $message . "</p>";
+	}
+	return false;
+}
+?>

@@ -972,15 +972,6 @@ class AlbumBase extends MediaObject {
 		$images_ordered = array();
 		foreach ($results as $key => $row) {
 // check for visible
-			switch (checkPublishDates($row)) {
-				case 1:
-					$imageobj = newImage($this, $row['filename']);
-					$imageobj->setShow(0);
-					$imageobj->save();
-				case 2:
-					$row['show'] = 0;
-					break;
-			}
 			if ($row['show'] || $mine) {
 // don't display it
 				$images_ordered[] = $row['filename'];

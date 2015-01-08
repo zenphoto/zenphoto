@@ -151,17 +151,17 @@ printSortableHead();
 				?>
 				<span class="buttons">
 					<button class="serialize" type="submit">
-						<img src="../../images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong>
+						<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong>
 					</button>
 					<a href="menu_tab_edit.php?add&amp;menuset=<?php echo urlencode($menuset); ?>">
-						<img src="../../images/add.png" alt="" /> <strong><?php echo gettext("Add Menu Items"); ?></strong>
+						<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" /> <strong><?php echo gettext("Add Menu Items"); ?></strong>
 					</a>
 					<div class="floatright">
 						<a href="javascript:newMenuSet();">
-							<img src="../../images/add.png" alt="" /> <strong><?php echo gettext("New Menu"); ?></strong>
+							<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" /> <strong><?php echo gettext("New Menu"); ?></strong>
 						</a>
 						<a href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-options.php?'page=options&amp;tab=plugin&amp;single=menu_manager#menu_manager">
-							<img src="../../images/options.png" alt="" /> <strong><?php echo gettext('Options') ?></strong>
+							<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/options.png" alt="" /> <strong><?php echo gettext('Options') ?></strong>
 						</a>
 					</div>
 				</span>
@@ -189,10 +189,10 @@ printSortableHead();
 								if ($count > 0) {
 									?>
 									<span class="buttons">
-										<strong><a href="javascript:dupMenuSet();" title="<?php printf(gettext('Duplicate %s menu'), $menuset); ?>"><img src="../../images/page_white_copy.png" alt="" /><?php echo gettext("Duplicate menu"); ?></a></strong>
+										<strong><a href="javascript:dupMenuSet();" title="<?php printf(gettext('Duplicate %s menu'), $menuset); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/page_white_copy.png" alt="" /><?php echo gettext("Duplicate menu"); ?></a></strong>
 									</span>
 									<span class="buttons">
-										<strong><a href="javascript:deleteMenuSet();" title="<?php printf(gettext('Delete %s menu'), $menuset); ?>"><img src="../../images/fail.png" alt="" /><?php echo gettext("Delete menu"); ?></a></strong>
+										<strong><a href="javascript:deleteMenuSet();" title="<?php printf(gettext('Delete %s menu'), $menuset); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/fail.png" alt="" /><?php echo gettext("Delete menu"); ?></a></strong>
 									</span>
 									<?php
 								}
@@ -234,14 +234,14 @@ printSortableHead();
 				<span id="serializeOutput"></span>
 				<input name="update" type="hidden" value="Save Order" />
 				<p class="buttons">
-					<button class="serialize" type="submit"><img src="../../images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
+					<button class="serialize" type="submit"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 				</p>
 			</form>
 			<ul class="iconlegend">
-				<li><img src="../../images/lock_2.png" alt="" /><?php echo gettext("Menu target is password protected"); ?></li>
-				<li><img src="../../images/pass.png" alt="" /><img	src="../../images/action.png" alt="" /><?php echo gettext("Show/hide"); ?></li>
-				<li><img src="../zenpage/images/view.png" alt="" /><?php echo gettext("View"); ?></li>
-				<li><img src="../../images/fail.png" alt="" /><?php echo gettext("Delete"); ?></li>
+				<li><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock_2.png" alt="" /><?php echo gettext("Menu target is password protected"); ?></li>
+				<li><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><img	src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/action.png" alt="" /><?php echo gettext("Show/hide"); ?></li>
+				<li><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/view.png" alt="" /><?php echo gettext("View"); ?></li>
+				<li><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/fail.png" alt="" /><?php echo gettext("Delete"); ?></li>
 			</ul>
 		</div>
 	</div>

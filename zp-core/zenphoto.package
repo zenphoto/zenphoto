@@ -993,6 +993,7 @@ zp-core/root_index.php
 zp-core/setup.php
 zp-core/template-filters.php
 zp-core/template-functions.php
+zp-core/toolbox.css
 zp-core/zenphoto-rewrite.txt
 zp-core/zenphoto.package
 zp-core/zenphoto_cfg.txt
@@ -1033,6 +1034,7 @@ zp-core/images/burst.png
 zp-core/images/cache.png
 zp-core/images/calendar.png
 zp-core/images/captcha_background.png
+zp-core/images/clock.png
 zp-core/images/comments-off.png
 zp-core/images/comments-on.png
 zp-core/images/drag_handle.png
@@ -2241,15 +2243,6 @@ zp-core/zp-extensions/zenpage/deprecated-functions.php
 zp-core/zp-extensions/zenpage/index.php
 zp-core/zp-extensions/zenpage/template-functions.php
 zp-core/zp-extensions/zenpage/zenpage.css
-zp-core/zp-extensions/zenpage/images
-zp-core/zp-extensions/zenpage/images/add.png
-zp-core/zp-extensions/zenpage/images/clock.png
-zp-core/zp-extensions/zenpage/images/folder.png
-zp-core/zp-extensions/zenpage/images/info.png
-zp-core/zp-extensions/zenpage/images/loadingAnimation.gif
-zp-core/zp-extensions/zenpage/images/pass_blue.png
-zp-core/zp-extensions/zenpage/images/view.png
-zp-core/zp-extensions/zenpage/images/zenpage-logo.gif
 zp-core/zp-extensions/zpCaptcha
 zp-core/zp-extensions/zpCaptcha/c.php
 zp-core/version.php:*
@@ -2263,4 +2256,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-2265
+2258

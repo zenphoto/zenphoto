@@ -261,7 +261,7 @@ printAdminHeader('tags');
 							</div>
 							<p class="buttons">
 								<button type="submit" id='save_tags' value="<?php echo gettext("Add tags"); ?>">
-									<img src="images/add.png" alt="" /><?php echo gettext("Add tags"); ?>
+									<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>images/add.png" alt="" /><?php echo gettext("Add tags"); ?>
 								</button>
 							</p>
 							<select name="language" id="language" class="ignoredirty">

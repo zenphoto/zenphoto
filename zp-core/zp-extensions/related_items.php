@@ -218,19 +218,9 @@ function printRelatedItems($number = 5, $type = 'news', $specific = NULL, $excer
 					<h4><a href="<?php echo html_encode(pathurlencode($url)); ?>" title="<?php echo html_encode($obj->getTitle()); ?>"><?php echo html_encode($obj->getTitle()); ?></a>
 						<?php
 						if ($date) {
-							switch ($item['type']) {
-								case 'albums':
-								case 'images':
-									$d = $obj->getDateTime();
-									break;
-								case 'news':
-								case 'pages':
-									$d = $obj->getDateTime();
-									break;
-							}
 							?>
 							<span class="relateditems_date">
-								<?php echo zpFormattedDate(DATE_FORMAT, strtotime($d)); ?>
+								<?php echo zpFormattedDate(DATE_FORMAT, strtotime($obj->getDateTime())); ?>
 							</span>
 							<?php
 						}

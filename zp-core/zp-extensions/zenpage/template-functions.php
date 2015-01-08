@@ -632,7 +632,7 @@ function printNewsCategories($separator = '', $before = '', $class = '') {
 }
 
 /**
- * Gets the date of the current news article
+ * Gets the creation date of the current news article
  *
  * @return string
  */
@@ -1165,6 +1165,7 @@ function getZenpageStatistic($number = 10, $option = "all", $mode = "popular", $
 							"rating"			 => $obj->getRating(),
 							"content"			 => $obj->getContent(),
 							"date"				 => $obj->getDateTime(),
+							"pubdate"			 => $obj->getPublishDate(),
 							"type"				 => "News"
 			);
 		}
@@ -1886,7 +1887,7 @@ function getPageContent($titlelink = NULL, $published = true) {
 	// print content of a page directly on a normal zenphoto theme page or any other page for example
 	if (!empty($titlelink)) {
 		$page = newPage($titlelink);
-		if ($page->getShow() OR ( !$page->getShow() AND ! $published)) {
+		if ($page->getShow() || (!$page->getShow() && !$published)) {
 			return $page->getContent();
 		}
 	}
@@ -1921,7 +1922,7 @@ function getPageExtraContent($titlelink = '', $published = true) {
 	// print content of a page directly on a normal zenphoto theme page for example
 	if (!empty($titlelink)) {
 		$page = newPage($titlelink);
-		if ($page->getShow() OR ( !$page->getShow() AND ! $published)) {
+		if ($page->getShow() || (!$page->getShow() && !$published)) {
 			return $page->getExtracontent();
 		}
 	}
@@ -2269,6 +2270,4 @@ function zenpageAlbumImage($albumname, $imagename = NULL, $size = NULL, $linkalb
 		<?php
 	}
 }
-
-CMS::expiry();
 ?>

@@ -38,11 +38,7 @@ if (isset($_GET['publish'])) {
 	$obj = newArticle(sanitize($_GET['titlelink']));
 	zenpagePublish($obj, sanitize_numeric($_GET['publish']));
 }
-if (isset($_GET['skipscheduling'])) {
-	XSRFdefender('update');
-	$obj = newArticle(sanitize($_GET['titlelink']));
-	skipScheduledPublishing($obj);
-}
+
 if (isset($_GET['commentson'])) {
 	XSRFdefender('update');
 	$obj = newArticle(sanitize($_GET['titlelink']));
@@ -60,6 +56,7 @@ if (isset($_GET['hitcounter'])) {
 printAdminHeader('news', 'articles');
 zenpageJSCSS();
 datepickerJS();
+updatePublished('news');
 ?>
 
 <script type="text/javascript">
@@ -212,7 +209,7 @@ datepickerJS();
 					printArticlesPerPageDropdown($subpage);
 					?>
 					<span class="buttons">
-						<a href="admin-edit.php?newsarticle&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add') ?>"> <img src="images/add.png" alt="" /> <strong><?php echo gettext("New Article"); ?></strong></a>
+						<a href="admin-edit.php?newsarticle&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add') ?>"> <img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" /> <strong><?php echo gettext("New Article"); ?></strong></a>
 					</span>
 					<br style="clear: both" />
 				</div>
@@ -222,7 +219,7 @@ datepickerJS();
 				<form class="dirtylistening" onReset="setClean('form_zenpageitemlist');" action="admin-news.php<?php echo $option; ?>" method="post" name="checkeditems" id="form_zenpageitemlist" onsubmit="return confirmAction();">
 					<?php XSRFToken('checkeditems'); ?>
 					<div class="buttons">
-						<button type="submit" title="<?php echo gettext('Apply'); ?>"><img src="../../images/pass.png" alt="" /><strong><?php echo gettext('Apply'); ?></strong>
+						<button type="submit" title="<?php echo gettext('Apply'); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><strong><?php echo gettext('Apply'); ?></strong>
 						</button>
 					</div>
 					<br style="clear: both" /><br />
@@ -331,7 +328,7 @@ datepickerJS();
 											<a href="<?php echo $option . $divider; ?>commentson=0&amp;titlelink=<?php
 											echo html_encode($article->getTitlelink());
 											?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo gettext('Disable comments'); ?>">
-												<img src="../../images/comments-on.png" alt="" title="<?php echo gettext("Comments on"); ?>" style="border: 0px;"/>
+												<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/comments-on.png" alt="" title="<?php echo gettext("Comments on"); ?>" style="border: 0px;"/>
 											</a>
 											<?php
 										} else {
@@ -339,7 +336,7 @@ datepickerJS();
 											<a href="<?php echo $option . $divider; ?>commentson=1&amp;titlelink=<?php
 											echo html_encode($article->getTitlelink());
 											?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo gettext('Enable comments'); ?>">
-												<img src="../../images/comments-off.png" alt="" title="<?php echo gettext("Comments off"); ?>" style="border: 0px;"/>
+												<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/comments-off.png" alt="" title="<?php echo gettext("Comments off"); ?>" style="border: 0px;"/>
 											</a>
 											<?php
 										}
@@ -349,10 +346,10 @@ datepickerJS();
 								} else {
 									?>
 									<td class="page-list_icon">
-										<img src="../../images/icon_inactive.png" alt="<?php gettext('locked'); ?>" />
+										<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/icon_inactive.png" alt="<?php gettext('locked'); ?>" />
 									</td>
 									<td class="page-list_icon">
-										<img src="../../images/icon_inactive.png" alt="<?php gettext('locked'); ?>" />
+										<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/icon_inactive.png" alt="<?php gettext('locked'); ?>" />
 									</td>
 								<?php } ?>
 
@@ -360,7 +357,7 @@ datepickerJS();
 									<a target="_blank" href="../../../index.php?p=news&amp;title=<?php
 									echo $article->getTitlelink();
 									?>" title="<?php echo gettext('View article'); ?>">
-										<img src="images/view.png" alt="" title="<?php echo gettext('View article'); ?>" />
+										<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/view.png" alt="" title="<?php echo gettext('View article'); ?>" />
 									</a>
 								</td>
 
@@ -372,7 +369,7 @@ datepickerJS();
 											<a href="<?php echo $option . $divider; ?>hitcounter=1&amp;titlelink=<?php
 											echo html_encode($article->getTitlelink());
 											?>&amp;XSRFToken=<?php echo getXSRFToken('hitcounter') ?>" title="<?php echo gettext('Reset hitcounter'); ?>">
-												<img src="../../images/reset.png" alt="" title="<?php echo gettext('Reset hitcounter'); ?>" /></a>
+												<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" title="<?php echo gettext('Reset hitcounter'); ?>" /></a>
 										</td>
 										<?php
 									}
@@ -382,7 +379,7 @@ datepickerJS();
 										echo $article->getTitlelink();
 										echo $option;
 										?>&amp;XSRFToken=<?php echo getXSRFToken('delete') ?>','<?php echo js_encode(gettext('Are you sure you want to delete this article? THIS CANNOT BE UNDONE!')); ?>')" title="<?php echo gettext('Delete article'); ?>">
-											<img src="../../images/fail.png" alt="" title="<?php echo gettext('Delete article'); ?>" /></a>
+											<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/fail.png" alt="" title="<?php echo gettext('Delete article'); ?>" /></a>
 									</td>
 									<td class="page-list_icon">
 										<input type="checkbox" name="ids[]" value="<?php echo $article->getTitlelink(); ?>" onclick="triggerAllBox(this.form, 'ids[]', this.form.allbox);" />
@@ -391,10 +388,10 @@ datepickerJS();
 								} else {
 									?>
 									<td class="page-list_icon">
-										<img src="../../images/icon_inactive.png" alt="" title="<?php gettext('locked'); ?>" />
+										<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/icon_inactive.png" alt="" title="<?php gettext('locked'); ?>" />
 									</td>
 									<td class="page-list_icon">
-										<img src="../../images/icon_inactive.png" alt="" title="<?php gettext('locked'); ?>" />
+										<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/icon_inactive.png" alt="" title="<?php gettext('locked'); ?>" />
 									</td>
 									<td class="page-list_icon">
 										<input type="checkbox" name="disabled" value="none" disabled="Disabled" />
@@ -412,7 +409,7 @@ datepickerJS();
 					</table>
 
 
-					<p class="buttons"><button type="submit" title="<?php echo gettext('Apply'); ?>"><img src="../../images/pass.png" alt="" /><strong><?php echo gettext('Apply'); ?></strong></button></p>
+					<p class="buttons"><button type="submit" title="<?php echo gettext('Apply'); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><strong><?php echo gettext('Apply'); ?></strong></button></p>
 				</form>
 				<?php printZenpageIconLegend(); ?>
 				<br class="clearall" />

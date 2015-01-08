@@ -44,6 +44,12 @@ if ($result) {
 	}
 }
 
+//migrate CMS "publish" dates
+foreach (array('news', 'pages') as $table) {
+	$sql = 'UPDATE ' . prefix($table) . ' SET `publishdate`=`date` WHERE `publishdate` is NULL';
+	query($sql);
+}
+
 setOption('zenphoto_install', serialize(installSignature()));
 $admins = $_zp_authority->getAdministrators('all');
 

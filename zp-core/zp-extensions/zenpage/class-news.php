@@ -1,9 +1,5 @@
 <?php
 
-function newArticle($titlelink, $allowCreate = NULL) {
-	return new Article($titlelink, $allowCreate);
-}
-
 /**
  * zenpage news class
  *
@@ -11,10 +7,16 @@ function newArticle($titlelink, $allowCreate = NULL) {
  * @package plugins
  * @subpackage zenpage
  */
+// force UTF-8 Ø
+
 if (!defined('NEWS_POSITION_NORMAL')) { // No idea why this is needed, but clones get already defined errors.
 	define('NEWS_POSITION_NORMAL', 0);
 	define('NEWS_POSITION_STICKY', 1);
 	define('NEWS_POSITION_STICK_TO_TOP', 9);
+}
+
+function newArticle($titlelink, $allowCreate = NULL) {
+	return new Article($titlelink, $allowCreate);
 }
 
 class Article extends CMSItems {

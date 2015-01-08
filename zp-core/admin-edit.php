@@ -15,6 +15,8 @@ require_once(dirname(__FILE__) . '/admin-globals.php');
 require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/tag_suggest.php');
 
 admin_securityChecks(ALBUM_RIGHTS, $return = currentRelativeURL());
+updatePublished('albums');
+updatePublished('images');
 
 if (isset($_GET['tab'])) {
 	$subtab = sanitize($_GET['tab']);
@@ -165,8 +167,13 @@ if (isset($_GET['action'])) {
 		/*		 * *************************************************************************** */
 		case "publish":
 			XSRFdefender('albumedit');
+
+
+
 			$album = newAlbum($folder);
 			$album->setShow($_GET['value']);
+			$album->setPublishDate(NULL);
+			$album->setExpireDate(NULL);
 			$album->save();
 			$return = sanitize_path($r = $_GET['return']);
 			if (!empty($return)) {
@@ -285,8 +292,9 @@ if (isset($_GET['action'])) {
 												$image->set('total_votes', 0);
 												$image->set('used_ips', 0);
 											}
-											$image->setPublishDate(sanitize($_POST['publishdate-' . $i]));
+											$pubdate = $image->setPublishDate(sanitize($_POST['publishdate-' . $i]));
 											$image->setExpireDate(sanitize($_POST['expirationdate-' . $i]));
+											$image->setShow(isset($_POST["$i-Visible"]) && $pubdate <= date(date('Y-m-d H:i:s')));
 											$image->setTitle(process_language_string_save("$i-title", 2));
 											$image->setDesc(process_language_string_save("$i-desc", EDITOR_SANITIZE_LEVEL));
 
@@ -300,7 +308,6 @@ if (isset($_GET['action'])) {
 													Gallery::clearCache(SERVERCACHE . '/' . $album->name);
 												}
 											}
-											$image->setShow(isset($_POST["$i-Visible"]));
 											$image->setCommentsAllowed(isset($_POST["$i-allowcomments"]));
 											if (isset($_POST["reset_hitcounter$i"])) {
 												$image->set('hitcounter', 0);
@@ -1082,8 +1089,15 @@ echo "\n</head>";
 															<h2 class="h2_bordered_edit"><?php echo gettext("General"); ?></h2>
 															<div class="box-edit">
 																<label class="checkboxlabel">
-																	<input type="checkbox" id="Visible-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-Visible" value="1" <?php if ($image->getShow()) echo ' checked = "checked"'; ?> />
-																	<?php echo gettext("Published"); ?>
+																	<input type="checkbox" id="Visible-<?php echo $currentimage; ?>"
+																				 name="<?php echo $currentimage; ?>-Visible"
+																				 value="1" <?php if ($image->getShow()) echo ' checked = "checked"'; ?>
+																				 onclick="$('#publishdate-<?php echo $currentimage; ?>').val('');
+																										 $('#expirationdate-<?php echo $currentimage; ?>').val('');
+																										 $('.scheduledpublishing-<?php echo $currentimage; ?>').html('');
+																										 $('.expire-<?php echo $currentimage; ?>').html('');"
+																				 />
+																				 <?php echo gettext("Published"); ?>
 																</label>
 																<?php
 																if (extensionEnabled('comment_form')) {

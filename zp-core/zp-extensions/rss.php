@@ -618,9 +618,9 @@ class RSS extends feed {
 		}
 //date
 		if ($this->mode != "albums") {
-			$feeditem['pubdate'] = date("r", strtotime($item->getDateTime()));
+			$feeditem['pubdate'] = date("r", strtotime($item->getPublishDate()));
 		} else {
-			$feeditem['pubdate'] = date("r", strtotime($albumobj->getDateTime()));
+			$feeditem['pubdate'] = date("r", strtotime($albumobj->getPublishDate()));
 		}
 		return $feeditem;
 	}

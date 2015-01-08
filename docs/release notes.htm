@@ -76,7 +76,11 @@
 			}
 		</style>
 	<body>
-<h1>ZenPhoto20 v1.0.1.0 release notes</h1><h2>Dynamically translatable image metadata strings</h2>
+<h1>ZenPhoto20 v1.0.1.0 release notes</h1><h2>Rationalization of published states</h2>
+<p>The <code>show()</code> method of all objects now correctly reflects if the object is currently <em>published</em>. The <code>show()</code> method for objects which have a future publishing date will return <em>false</em> until the publishing date has occurred. At that time <em>true</em> will be returned. For objects that have expiry dates, once that date has passed the object will become <em>unpublished</em> and the <code>show()</code> method will return <em>false</em>.</p>
+<p>If you explicitly publish an object that has expired or whose publish date is in the future then the expiry and publish dates will be cancelled.</p>
+<p>This means that the database <code>show</code> column is the sole arbitrator of whether an object should be visible to the general public.</p>
+<h2>Dynamically translatable image metadata strings</h2>
 <p>Prior to this change, when metadata was imported from an image, text strings describing the data were translated in the language of whomever was viewing the image when it was first discovered. This data was then stored into the database for future display. The result of this defect was that these strings were often in the "wrong" language for the current viewer.</p>
 <p>The string translation is now delayed&nbsp;until the data is about to be displayed. This insures that the current language will be used for the translation.</p>
 <p>Please note that metadata&nbsp;collected before this change will have been statically translated and cannot be re-translated. You should perform a "Refresh Metadata" operation&nbsp;to get existing metadata&nbsp;updated to the dynamically translatable form.</p>
