@@ -87,18 +87,18 @@
 <h2>Tag handling improvements</h2>
 <p>Stored tags no longer are quoted if they contain special characters. This allows them to be suggested by typing the fist character. The database is automatically updated during setup and metdata&nbsp;importation will insure that tags are not quoted.</p>
 <p>The <em>tag_suggest</em>&nbsp;target tag selection algorithm has been re-written for performance improvements. You would see these as browser slow-downs when you type in the textbox of the search form or the tags textbox on the admin pages.</p>
-<p>There is also an option for tag suggestions on theme pages. This option allows you do filter tags so that only frequently used ones are suggested. You set the option to the threshold useage count and only tags used at least that number of times will be offered as suggestions.</p>
+<p>There is also an option for tag suggestions on theme pages. This option allows you do filter tags so that only frequently used ones are suggested. You set the option to the threshold usage&nbsp;count and only tags used at least that number of times will be offered as suggestions.</p>
 <h2>Spelling correction in <em>tinyMCE</em></h2>
 <p>A plugin is provided to enable use of <em>nanospell</em> with any <em>tinyMCE</em> editor window. <strong>NOTE</strong>: <em>nanospell</em> is NOT included with ZenPhoto20. Use of <em>nanospell</em> requires a specific <a href="http://tinymcespellcheck.com/license">license</a>&nbsp;for use so you must select the appropriate license/download. Instructions for installing <em>nanospell</em> are included with the plugin documentation.</p>
-<h2>Serach tag selection</h2>
+<h2>Search&nbsp;tag selection</h2>
 <p>An "all" checkbox has been added to the search form to more conveniently select a small number of fields from a larger list.</p>
 <h2>ZipArchive</h2>
 <p>ZipArchive is a PHP module for processing Zip files. If this module is configured in a sites PHP build ZenPhoto20 will use it rather than loading third party Zip file handlers.</p>
-<h2>Extended secyruty question foils</h2>
+<h2>Extended security&nbsp;question foils</h2>
 <p>Security question foils (those questions asked that were not supplied by the user) are an important security feature. If only valid security questions are presented then hackers can tell if they have successfully guessed a user id and will know that there is an answer to the question. Thus it is only a matter of guessing the answer which can often be done by examining publicly available information about the user.</p>
 <p>There are two enhancements to security questions implemented now. First, the administrator may create as many foils as he wishes to increase the work a hacker must do to try to hack an answer. Second, security questions provided by other users may be presented, again increasing the work of hackers.</p>
-<h2>Checkbox toggle for searche fields</h2>
-<p>The search form now has a toggle to check/uncheck all search fields. This makes it easier to search on a limited number of the possible fields.</p>
+<h2>Checkbox toggle for search&nbsp;fields</h2>
+<p>The search form now has a toggle to check/un-check all search fields. This makes it easier to search on a limited number of the possible fields.</p>
 <hr />
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -116,7 +116,7 @@
 <h2>Wireless Application Protocol Bitmap support (GD library)</h2>
 <p>The GD library will now recognize&nbsp;<em>wbmp</em> (<em>wbm</em>) files. This change removes <em>bmp</em> (which the library&nbsp;does not support) from its list.</p>
 <h2>Favorites plugin enhancements</h2>
-<p>A new function,&nbsp;<em>favorites::listWatchers()</em>, is available&nbsp;to assits in output of users watching an object. The plugin now&nbsp;uses a DL list to show the watchers on the administrative tabs.</p>
+<p>A new function,&nbsp;<em>favorites::listWatchers()</em>, is available&nbsp;to assists&nbsp;in output of users watching an object. The plugin now&nbsp;uses a DL list to show the watchers on the administrative tabs.</p>
 <h2>Resizable language string input areas</h2>
 <p>If the <em>Multi-lingual</em> option is selected text input areas such as <em>page</em> and <em>article&nbsp;</em>content fields can be expanded by dragging on the resize handle at the lower right of the field. If tinyMCE is enabled the individual language edit boxes expand giving the ability to see multiple language translations at a time.</p>
 <h2>TinyMce language directionality</h2>
@@ -124,22 +124,22 @@
 <h2>Download for dynamic albums and favoitied</h2>
 <p>The <em>downloadList</em> plugin now supports "album zips" for dynamic albums and for the user's favorites.</p>
 <h2>Sub-rights for pages and news categories</h2>
-<p>Users may now be given "view-only" rights to pages and news categories by un-checking the <em>edit</em> sub-right of the object in the managed objects list. You can also allow users to view un-published items that are members of a category or offspring of a page by checking the <em>view unpublished</em> checkbox (either for the manged object or the global setting.)</p>
+<p>Users may now be given "view-only" rights to pages and news categories by un-checking the <em>edit</em> sub-right of the object in the managed objects list. You can also allow users to view un-published items that are members of a category or offspring of a page by checking the <em>view unpublished</em> checkbox (either for the managed&nbsp;object or the global setting.)</p>
 <h2>Optional Object Fields</h2>
 <p>Many of the fields associated with album, image, article, and page objects are now optional. The standard configuration is provided by the <code>optionalObjectFields</code> plugin. If you want none of these fields, simply disable the plugin. If you want your own subset of the fields you can make a copy of the <code>optionalObjectFields</code> plugin in the plugins folder. Edit the array in the <code>fields()</code> method to remove the elements of the fields you do not want supported. Run setup and the fields will be gone.</p>
 <h2>Multi-llingual custom field extensions</h2>
 <p>The custom field extension feature now supports multi-lingual fields. It also allows you to provide custom formatting on the admin tab and custom processing of the "saves" data.</p>
 <h2>User management improvements</h2>
-<p>User and group lists are now sorted via a&nbsp;case insensitive natual sort. In cases where there are check boxes, those &nbsp;users with the box checked are shown at the top of the list.</p>
+<p>User and group lists are now sorted via a&nbsp;case insensitive natural&nbsp;sort. In cases where there are check boxes, those &nbsp;users with the box checked are shown at the top of the list.</p>
 <h2>Cloning improvements</h2>
-<p>When you clone an installation ZenPhoto20 will automataically setup the configuration and initial user of the clone. The initial user will be the user who executed the clone operation. He his logon to the clone install will be identical to the his logon to the master when the clone was created.</p>
+<p>When you clone an installation ZenPhoto20 will automatically&nbsp;setup the configuration and initial user of the clone. The initial user will be the user who executed the clone operation. He his logon to the clone install will be identical to the his logon to the master when the clone was created.</p>
 <p>If setup is run on the master it will provide a set of links to allow&nbsp;setup to be run on the clones as well. Thus the setup of a site is better automated. (We did try automatically running setup on the clones but ran into several browser issues such as pop-up blockers that were not circumventable.)</p>
 <p>When you change the site state of the master site (close, close for test, open) the change will be applied to the clone sites as well.</p>
 <h2>Canonical URLs</h2>
-<p>ZenPhoto20 _rewrite_ processing will now cause a "301 peranantly moved" redirect if it receives a link that does not conform to the Canonical standard it implements. Basically this means that links that "look" like indexes to sub-items (albums and the News index, for instance) will end with a trailing slash. Items which are interpreted as "final destinations" (An image or single news item, for instance) will not have a trailing slash.</p>
+<p>ZenPhoto20 _rewrite_ processing will now cause a "301 permanently&nbsp;moved" redirect if it receives a link that does not conform to the Canonical standard it implements. Basically this means that links that "look" like indexes to sub-items (albums and the News index, for instance) will end with a trailing slash. Items which are interpreted as "final destinations" (An image or single news item, for instance) will not have a trailing slash.</p>
 <h2>New plugins</h2>
 <ul>
-<li><em>overrideEXIFDesc: p</em>rovides a means to compensate for software or cameras which place the image description in the<em> EXIF desc</em> field which by standard is used for the image title.</li>
+<li><em>overrideEXIFDesc: pprovides</em>&nbsp;a means to compensate for software or cameras which place the image description in the<em> EXIF desc</em> field which by standard is used for the image title.</li>
 <li>optionalObjectFields: extends the use of&nbsp;<em>customFieldExtender </em>to allow&nbsp;certain object fields to be omitted. The distributed version of the plugin supports all the "standard" object fields. You can customize it to add/remove fields of your choice.</li>
 </ul>
 <h2>Bug Fixes</h2>
@@ -151,14 +151,14 @@
 <h2>Fresh start</h2>
 <p>ZenPhoto20 has been forked from the Zenphoto.org 1.4.6 release. Some cleanup of code and fixes have been applied and some small new features added. Themes and plugins that are compliant with Zehphoto 1.4.6 (without use of the deprecated-functions plugin) will&nbsp;work with this software.&nbsp;</p>
 <p><strong>Note:</strong> part of this cleanup was to purge the deprecated functions for a fresh start. Lingering calls to these functions will now result in a PHP fault.&nbsp;If you have a custom theme it is recommended you first use the <em>check deprecated use</em> button&nbsp;in the Zenphoto 1.4.6 admin utilities to be sure that you are not using one of the functions which is no longer available.</p>
-<h2>Eliminate the concept of "suppoted" unsupported themes and plugins</h2>
+<h2>Eliminate the concept of "supported" unsupported themes and plugins</h2>
 <p>Instead of having a repository for "unsupported" scripts and themes we will include then in the package. Example&nbsp;plugins will reside in the <code>plugins</code> folder. New themes will, of course, be found in the <code>themes</code> folder.</p>
 <p>Newly included&nbsp;themes: gray_highlights (an albums only theme), zpArdoise, zpEnlighten, zpfocus, zpminimal, zpmasonry, and zpskelleton.</p>
 <p>Newly included example plugins: cacheHeader, cookieInvalidator, create_album, customFieldExtender, disableAction, disableWatermark, filter-fileSearches, galleryToken, headConsolidator, no_show, pluginEnabler, showNoUserRights, single_album, and text_watermark.</p>
 <p>Inclusion of other themes and plugins will be considered by request.</p>
 <h2>New release packaging</h2>
 <p>Each "tagged" release includes a zip file containing a self-extracting installation script. This file is about one third the size of the individual source files (of which there are about 2000.) So uploading a new release is considerably faster.</p>
-<p>Running the script extracts the release source scripts and then starts&nbsp;the setup process. This workflow is&nbsp;less prone to such things as mis-matched versions of the individual files or overwriting album files.</p>
+<p>Running the script extracts the release source scripts and then starts&nbsp;the setup process. This work flow&nbsp;is&nbsp;less prone to such things as mis-matched versions of the individual files or overwriting album files.</p>
 <h2>Suffix-less image links</h2>
 <p>If you use <em>mod_rewrite</em> with a <em>mod_rewrite suffix</em> and your image names are unique in their prefix you can select the option <em>Unique images</em>&nbsp;on the general options tab so that your image page links will not include the image suffix. For instance if your <em>mod_rewrite suffix</em> is <code>.htm</code> then&nbsp;the link to the image <code>myalbum/myimage.jpg</code>&nbsp;will have the link <code>myalbum/myimage.htm.</code></p>
 <h2>tinyMCE:obj plugin</h2>
@@ -168,18 +168,18 @@
 <p>You can even paste custom sized/cropped images. When you have selected an image object a link is included that takes you to a "cropping" page. Set up the image crop as pleases you, click on the "Done" button and you will be back in the tinyMCE:obj window with your custom cropped image ready to insert.</p>
 <h2>Copy-able object links for all objects</h2>
 <p>A side benefit of the tinyMCE:obj implementation is that you can also use your clipboard to copy&nbsp;and paste links to spots other than tinyMCE editors.</p>
-<p>The administrative tabs for <em>Page</em>, <em>News articles</em>, <em>catgegory</em>,&nbsp;<em>Image</em>, and <em>Album</em> objects now provide link text that can be copied to the clipboard and pasted wherever desired. (For instance into the content of a&nbsp;<em>News article</em>.) In the case of Images, the <em>crop image</em> function will give a link that will produce the cropped version of the image. These latter are easily inserted into your <em>News article</em> and <em>Page</em> contend by the <em>tinyMCE:obj</em>&nbsp;insert image feature.</p>
+<p>The administrative tabs for <em>Page</em>, <em>News articles</em>, category,&nbsp;<em>Image</em>, and <em>Album</em> objects now provide link text that can be copied to the clipboard and pasted wherever desired. (For instance into the content of a&nbsp;<em>News article</em>.) In the case of Images, the <em>crop image</em> function will give a link that will produce the cropped version of the image. These latter are easily inserted into your <em>News article</em> and <em>Page</em> contend by the <em>tinyMCE:obj</em>&nbsp;insert image feature.</p>
 <h2>Purge option for theme and plugin options</h2>
-<p>This feature provides a convenient means to remove options of deleted and forgotten themes and plugins. Of coures it also allows you to "start from scratch" on current ones.</p>
+<p>This feature provides a convenient means to remove options of deleted and forgotten themes and plugins. Of course&nbsp;it also allows you to "start from scratch" on current ones.</p>
 <h2>Custom option handler NUMERIC type option.</h2>
 <p>Allows themes and plugins to specify that an option be numeric. This allows a shorter input field. Also the data is validated as numeric when updated.</p>
 <h2>Favorites albums</h2>
-<p>Create albums from your favorites that can be viewed by others. Favorites albums are essentially "dynamic" albums with the criteria being the selected favoirtes instance.</p>
+<p>Create albums from your favorites that can be viewed by others. Favorites albums are essentially "dynamic" albums with the criteria being the selected favorites&nbsp;instance.</p>
 <h2>Improved deprecated function handling</h2>
 <p>Use of deprecated functions is now logged rather than indicated by a PHP notice. This of course presumes that the deprecated functions plugin is enabled.</p>
 <p>These errors are logged in a new <code>deprecated</code> log to separate them from other issues and make them easily findable. Only one instance of any particular use of a deprecated function is logged, so the log is not cluttered.</p>
 <h2>Improved "dirty form" handling</h2>
-<p>We have switched the javascript that detects form changes and warns if you leave the page. This script better integrates with the <em>tinyMCE</em> editor. This implementation also recognizes "clean" links--that is links that do not actually leave the page. You will not be warned unnecessarily when clicking these links.</p>
+<p>We have switched the JavaScript&nbsp;that detects form changes and warns if you leave the page. This script better integrates with the <em>tinyMCE</em> editor. This implementation also recognizes "clean" links--that is links that do not actually leave the page. You will not be warned unnecessarily when clicking these links.</p>
 <h2>elFinder Theme editor</h2>
 <p>If enabled elFinder will be used to edit themes.</p>
 <h2>Image metadata transformation&nbsp;option</h2>
