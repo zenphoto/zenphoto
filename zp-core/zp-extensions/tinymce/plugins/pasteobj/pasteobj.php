@@ -62,10 +62,9 @@ function getIPSizedImage($size, $image) {
 					$thumbobj = $obj->getAlbumThumbImage();
 					$args['image'] = $thumbobj->getFilename();
 					$args['album'] = $thumbobj->album->getFilename();
-					$imageb = preg_replace('~check=(.*)~', '', getIPSizedImage($size, $thumbobj));
+					$imageb = preg_replace('~&check=(.*)~', '', getIPSizedImage($size, $thumbobj));
 				}
 				$alt1 = $obj->getFileName();
-				$title1 = getBare($obj->getTitle());
 
 				// an image type object
 			} else {
@@ -88,6 +87,8 @@ function getIPSizedImage($size, $image) {
 				}
 			}
 			$link = $obj->getLink();
+			$title1 = getBare($obj->getTitle());
+
 			if ($image && $obj->table == 'images') {
 				$link2 = $obj->album->getLink();
 			} else {
@@ -98,12 +99,12 @@ function getIPSizedImage($size, $image) {
 				// <!-- <![CDATA[
 				var link = '<?php echo $link; ?>';
 				var link2 = '<?php echo $link2; ?>';
-				var alt1 = '<?php echo html_encode($alt1); ?>';
-				var title1 = '<?php echo html_encodeTagged($title1); ?>';
-				var title = '<?php echo html_encodeTagged($obj->getTitle()); ?>';
-				var image = '<img src="<?php echo html_encode($image); ?>" alt="' + alt1 + '" title="' + title1 + '" />';
-				var imagec = '<img src="<?php echo html_encode($imageb); ?>" alt="' + alt1 + '" title="' + title1 + '" />';
-				var imagef = '<?php echo html_encode($imagef); ?>';
+				var alt1 = '<?php echo addslashes($alt1); ?>'.replace(/"/g, '\\"');
+				var title1 = '<?php echo addslashes($title1); ?>'.replace(/"/g, '\\"');
+				var title = '<?php echo sprintf($title, addslashes($title1)); ?>'.replace(/"/g, '\\"');
+				var image = '<img src="<?php echo pathurlencode($image); ?>" alt="' + alt1 + '" title="' + title1 + '" />';
+				var imagec = '<img src="<?php echo pathurlencode($imageb); ?>" alt="' + alt1 + '" title="' + title1 + '" />';
+				var imagef = '<?php echo pathurlencode($imagef); ?>';
 				var picture = <?php echo (int) $picture; ?>;
 
 				function zenchange() {
@@ -184,7 +185,6 @@ function getIPSizedImage($size, $image) {
 							}
 							break;
 					}
-
 				}
 
 				function paste() {
@@ -201,6 +201,7 @@ function getIPSizedImage($size, $image) {
 				}
 
 				window.addEventListener('load', zenchange, false);
+
 				// ]]> -->
 			</script>
 			<h3>
