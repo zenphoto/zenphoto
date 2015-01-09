@@ -1817,6 +1817,8 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 														`watermark_thumb` varchar(255),
 														`owner` varchar(64) DEFAULT NULL,
 														PRIMARY KEY (`id`),
+														KEY (`publishdate`),
+														KEY (`expiredate`),
 														UNIQUE `folder` (`folder`)
 														)	$collation;";
 						}
@@ -1875,6 +1877,8 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 														`password_hint` text,
 														PRIMARY KEY (`id`),
 														KEY (`albumid`),
+														KEY (`publishdate`),
+														KEY (`expiredate`),
 														UNIQUE `filename` (`filename`,`albumid`)
 														)	$collation;";
 						}
@@ -1905,6 +1909,8 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 														`sticky` int(1) DEFAULT 0,
 														`truncation` int(1) unsigned default 0,
 														PRIMARY KEY (`id`),
+														KEY (`publishdate`),
+														KEY (`expiredate`),
 														UNIQUE (`titlelink`)
 														) $collation;";
 						}
@@ -1966,6 +1972,8 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 														`password_hint` text,
 														`truncation` int(1) unsigned default 0,
 														PRIMARY KEY (`id`),
+														KEY (`publishdate`),
+														KEY (`expiredate`),
 														UNIQUE (`titlelink`)
 														) $collation;";
 						}
@@ -2306,7 +2314,14 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 						//v1.0.2
 						$sql_statements[] = 'ALTER TABLE ' . $tbl_news . ' ADD COLUMN `publishdate` datetime default NULL';
 						$sql_statements[] = 'ALTER TABLE ' . $tbl_pages . ' ADD COLUMN `publishdate` datetime default NULL';
-
+						$sql_statements[] = "ALTER TABLE $tbl_albums ADD INDEX expiredate (`expiredate`);";
+						$sql_statements[] = "ALTER TABLE $tbl_albums ADD INDEX publishdate (`publishdate`);";
+						$sql_statements[] = "ALTER TABLE $tbl_images ADD INDEX expiredate (`expiredate`);";
+						$sql_statements[] = "ALTER TABLE $tbl_images ADD INDEX publishdate (`publishdate`);";
+						$sql_statements[] = "ALTER TABLE $tbl_news ADD INDEX expiredate (`expiredate`);";
+						$sql_statements[] = "ALTER TABLE $tbl_news ADD INDEX publishdate (`publishdate`);";
+						$sql_statements[] = "ALTER TABLE $tbl_pages ADD INDEX expiredate (`expiredate`);";
+						$sql_statements[] = "ALTER TABLE $tbl_pages ADD INDEX publishdate (`publishdate`);";
 						// do this last incase there are any field changes of like names!
 						foreach ($_zp_exifvars as $key => $exifvar) {
 							if ($s = $exifvar[4]) {
