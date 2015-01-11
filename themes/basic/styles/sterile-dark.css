@@ -23,8 +23,8 @@ body {
 	background: #333333;
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
- 	-khtml-border-topright: 10px;
- 	border-radius: 10px;
+	-khtml-border-topright: 10px;
+	border-radius: 10px;
 	border: 1px solid #2a2a2a;
 }
 * html #main{width: 720px;}
@@ -48,14 +48,14 @@ body {
 	padding: 20px 10px 10px 20px;
 	-moz-border-radius: 10px 10px 0px 0px;
 	-webkit-border-radius: 10px 10px 0px 0px;
- 	-khtml-border-topright: 10px 10px 0px 0px;
- 	border-radius: 10px 10px 0px 0px;
+	-khtml-border-topright: 10px 10px 0px 0px;
+	border-radius: 10px 10px 0px 0px;
 	background: #c0db5a;
 	height:30px;
 	border-bottom: 1px solid #2a2a2a;
 }
 #padbox {
- 	padding: 20px !important;
+	padding: 20px !important;
 }
 
 #exif {
@@ -146,7 +146,7 @@ blockquote {
 }
 acronym {
 	cursor: help;
-  border-bottom: 1px solid;
+	border-bottom: 1px solid;
 }
 
 /* Page Navigation
@@ -414,7 +414,7 @@ label {
 
 .required {
 	color: #9C3;
-  cursor: help;
+	cursor: help;
 }
 
 .gravatar {
@@ -436,13 +436,17 @@ label {
 	position:fixed;
 	right:0;
 	top:0;
+	width: 130px;
 	border-left: 1px solid #2a2a2a;
 	border-bottom: 1px solid #2a2a2a;
 	background: #1a1a1a;
-	width:120px;
+	z-index: 2; 	text-align: left;
 }
 #admin_data{
-	top:20px;
+	top: 0px;
+	padding-top: 20px;
+	z-index: 1;
+	line-height: 1.6em;
 }
 #admin h3 {
 	font: 100% Arial, "Helvetica Neue", Helvetica, sans-serif;
@@ -451,6 +455,7 @@ label {
 	border-bottom: 1px dashed #2a2a2a;
 	margin:0;
 	padding:0;
+	text-align: center;
 }
 
 /* Search Box
@@ -467,8 +472,8 @@ label {
 	margin:0px;
 }
 #search input.button {
-  padding: 1px;
-  font-size: 80%;
+	padding: 1px;
+	font-size: 80%;
 }
 #search a {
 	text-decoration: none;
@@ -485,8 +490,8 @@ label {
 	top: 4px;
 }
 .clear {
-  clear:both;
-  height:10px;
+	clear:both;
+	height:10px;
 }
 
 /* Archive View

@@ -459,13 +459,13 @@ label:hover {
 	padding-top: 20px;
 	z-index: 1;
 	line-height: 1.6em;
-
 }
 #admin h3 {
 	font-weight: normal;
 	color: #999;
 	margin:0;
-	padding:0; text-align: center;
+	padding:0;
+	text-align: center;
 }
 #admin h3:hover { color: #036; }
 

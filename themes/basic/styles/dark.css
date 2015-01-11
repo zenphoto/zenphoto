@@ -54,7 +54,7 @@ body {
 	padding-bottom: 14px;
 	margin-bottom: 20px;
 	/*min-height: 40px;
-  _height: 40px;*/
+	_height: 40px;*/
 }
 #gallerytitle h2 {
 	font-weight: normal;
@@ -122,22 +122,22 @@ blockquote {
 }
 
 #imagemetadata {
-  text-align: right;
+	text-align: right;
 }
 
 #imagemetadata table {
-  text-align: left;
-  line-height: 1em;
-  border: 1px solid #ccc;
-  top: 2em;
-  right: 0px;
-  background-color: #fafafa;
+	text-align: left;
+	line-height: 1em;
+	border: 1px solid #ccc;
+	top: 2em;
+	right: 0px;
+	background-color: #fafafa;
 }
 
 #imagemetadata table td {
-  border-bottom: 1px solid #f0f0f0;
-  background-color: #f8f8f8;
-  padding: 2px 5px;
+	border-bottom: 1px solid #f0f0f0;
+	background-color: #f8f8f8;
+	padding: 2px 5px;
 }
 
 
@@ -192,7 +192,7 @@ ul.pagelist li.next {
 }
 
 #exif_link {
-  float: right;
+	float: right;
 }
 
 /* Tags
@@ -261,7 +261,7 @@ span.tags_title {
 }
 .album {
 	margin: 0 12px 8px 0;
-  padding: 10px 8px 8px 10px;
+	padding: 10px 8px 8px 10px;
 	float: left;
 	width: 305px;
 	border: 1px solid #444;
@@ -450,11 +450,11 @@ label:hover {
 	position: fixed;
 	right: 0px;
 	top: 0px;
-	width: 120px;
+	width: 130px;
 	border-bottom: 1px solid #444;
 	border-left: 1px solid #444;
 	background: #222;
-	z-index: 2;
+	z-index: 2; 	text-align: left;
 }
 #admin_data{
 	top: 0px;
@@ -467,6 +467,7 @@ label:hover {
 	color: #aaa;
 	margin:0;
 	padding:0;
+	text-align: center;
 }
 #admin h3:hover { color: #86a1b6; }
 
@@ -497,8 +498,8 @@ label:hover {
 	top: 4px;
 }
 .clear {
-  clear:both;
-  height:10px;
+	clear:both;
+	height:10px;
 }
 
 /* Archive View
