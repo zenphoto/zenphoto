@@ -61,7 +61,7 @@ class cookieInvalidator {
 
 }
 
-if (isset($_COOKIE)) {
+if (isset($_COOKIE) && OFFSET_PATH != 2) {
 	cookieInvalidator::invalidate($_COOKIE);
 }
 ?>
