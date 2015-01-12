@@ -268,7 +268,7 @@ if ($_REQUEST['origin'] == 'upload') {
 						'tmbCrop'				 => false,
 						'tmbBgColor'		 => 'transparent',
 						'uploadAllow'		 => array('image'),
-						'accessControl'	 => 'accessImage',
+						'accessControl'	 => 'access',
 						'acceptedName'	 => '/^[^\.].*$/'
 		);
 	}
