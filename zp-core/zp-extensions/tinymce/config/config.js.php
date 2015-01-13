@@ -32,7 +32,7 @@
  *
  * Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
  */
-$filehandler = zp_apply_filter('tinymce_zenpage_config', NULL);
+$filehandler = zp_apply_filter('tinymce_config', NULL);
 
 if ($MCEcss) {
 	$MCEcss = getPlugin('tinymce/config/' . $MCEcss, true, true);

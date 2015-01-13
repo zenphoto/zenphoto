@@ -38,7 +38,16 @@ function access($attr, $path, $data, $volume) {
 
 function accessImage($attr, $path, $data, $volume) {
 	//	allow only images
-	if (access($attr, $path, $data, $volume) || (!is_dir($path) && !Gallery::imageObjectClass($path) == 'Image')) {
+	if (access($attr, $path, $data, $volume) || (!is_dir($path) && !exif_imagetype($path))) {
+		return !($attr == 'read' || $attr == 'write');
+	}
+	return NULL;
+}
+
+function accessMedia($attr, $path, $data, $volume) {
+	//allow only tinyMCE recognized media suffixes
+	$valid = array("mp3", "wav", "mp4", "webm", "ogg", "swf");
+	if (access($attr, $path, $data, $volume) || (!is_dir($path) && !in_array(getSuffix($path), $valid))) {
 		return !($attr == 'read' || $attr == 'write');
 	}
 	return NULL;
@@ -56,9 +65,9 @@ function accessAlbums($attr, $path, $data, $volume) {
 }
 
 $opts = array();
+$rights = zp_loggedin();
 
 if ($_REQUEST['origin'] == 'upload') {
-	$rights = zp_loggedin();
 	$themeAlias = sprintf(gettext('Themes (%s)'), THEMEFOLDER);
 	if (isset($_REQUEST['themeEdit'])) {
 		$rights = 0;
@@ -291,6 +300,17 @@ if ($_REQUEST['origin'] == 'upload') {
 						'accessControl'	 => 'accessImage',
 						'acceptedName'	 => '/^[^\.].*$/'
 		);
+		switch (@$_GET['type']) {
+			case 'media':
+				$opts['roots'][0]['accessControl'] = 'accessMedia';
+				break;
+			case 'image':
+				$opts['roots'][0]['accessControl'] = 'accessImage';
+				break;
+			default:
+				$opts['roots'][0]['accessControl'] = 'access';
+				break;
+		}
 	}
 }
 

@@ -68,7 +68,8 @@ if (zp_loggedin(FILES_RIGHTS)) {
 							customData: {
 							'XSRFToken':'<?php echo getXSRFToken('elFinder'); ?>',
 											'zp_user_auth':'<?php echo zp_getCookie('zp_user_auth'); ?>',
-											'origin':'tinyMCE'
+											'origin':'tinyMCE',
+											'type':'<?php echo sanitize(@$_GET['type']); ?>'
 							},
 							url : '<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/elFinder/'; ?>php/connector_zp.php', // connector URL (REQUIRED)
 							getFileCallback: function(file) { // editor callback
