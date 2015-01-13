@@ -68,7 +68,7 @@ if (getOption('elFinder_files') && zp_loggedin(FILES_RIGHTS)) {
 	zp_register_filter('theme_editor', 'elFinderThemeEdit');
 }
 if (getOption('elFinder_tinymce')) {
-	zp_register_filter('tinymce_zenpage_config', 'elFinder_tinymce');
+	zp_register_filter('tinymce_config', 'elFinder_tinymce');
 }
 
 function elFinder_admin_tabs($tabs) {
@@ -89,13 +89,13 @@ function elFinder_admin_tabs($tabs) {
 
 function elFinder_tinymce($discard) {
 
-	$file = FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/elFinder/elfinder.php?XSRFToken=' . getXSRFToken('elFinder');
+	$file = FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/elFinder/elfinder.php?XSRFToken=' . getXSRFToken('elFinder') . '&type=';
 	?>
 	<script type="text/javascript">
 		// <!-- <![CDATA[
 		function elFinderBrowser(field_name, url, type, win) {
 			tinymce.activeEditor.windowManager.open({
-				file: '<?php echo $file; ?>', // use an absolute path!
+				file: '<?php echo $file; ?>' + type, // use an absolute path!
 				title: 'elFinder 2.0',
 				width: 900,
 				height: 450,

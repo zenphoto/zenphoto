@@ -23,7 +23,7 @@ $plugin_description = gettext("Spellchecker for tinyMCE.");
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_disable = (file_exists(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/nanospell/plugin.js')) ? false : 'You must download and install the nanospell spellchecker for tinymce—see the plugin documentation for details.';
 
-zp_register_filter('tinymce_zenpage_config', 'nanospell_spellchecker');
+zp_register_filter('tinymce_config', 'nanospell_spellchecker');
 
 function nanospell_spellchecker($discard) {
 	global $MCEspecial, $MCEtoolbars, $locale;
