@@ -699,6 +699,9 @@ class ThemeObject extends PersistentObject {
 	 * @param bit $action what the caller wants to do
 	 */
 	function isMyItem($action) {
+  if (!$this->checkPublishDates()) {
+    $this->setShow(0);
+  }
 		if (zp_loggedin($this->manage_rights)) {
 			return true;
 		}
@@ -727,9 +730,6 @@ class ThemeObject extends PersistentObject {
 	 * @param string $show
 	 */
 	function checkAccess(&$hint = NULL, &$show = NULL) {
-    if (!$this->checkPublishDates()) {
-      $this->setShow(0);
-    }
     if ($this->isMyItem(LIST_RIGHTS)) {
       return true;
     }
