@@ -6,7 +6,7 @@
  * or from a custom reCaptcha theme such as the <i>lt-blue</i> theme included.
  *
  * The <i>lt-blue></i> theme is intended as an example of how to create a custom theme.
- * You can create themes and place them into the %PLUGINS%/reCpatcha folder. The folder name will be the theme name. The only
+ * You can create themes and place them into the <var>%USER_PLUGIN_FOLDER%/reCpatcha</var> folder. The folder name will be the theme name. The only
  * required file is <var>reCaptcha.html</var> but you can include other items like images, etc. in the folder.
  *
  * Your custom <var>reCaptcha.html</var> will be processed at run time making substitutions of the followng "definitions":
