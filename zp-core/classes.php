@@ -727,11 +727,42 @@ class ThemeObject extends PersistentObject {
 	 * @param string $show
 	 */
 	function checkAccess(&$hint = NULL, &$show = NULL) {
-		if ($this->isMyItem(LIST_RIGHTS)) {
-			return true;
-		}
-		return $this->checkforGuest($hint, $show);
-	}
+    if (!$this->checkPublishDates()) {
+      $this->setShow(0);
+    }
+    if ($this->isMyItem(LIST_RIGHTS)) {
+      return true;
+    }
+    return $this->checkforGuest($hint, $show);
+  }
+  
+  /**
+   * Checks if the item is either expired or in scheduled publishing
+   * A class method wrapper of the functions.php function of the same name
+   * @return boolean
+   */
+  function checkPublishDates() {
+    $row = array();
+    if (isAlbumClass($this) || isImageClass($this)) {
+      $row = array(
+          'show' => $this->getShow(),
+          'expiredate' => $this->getExpireDate(),
+          'publishdate' => $this->getPublishDate()
+      );
+    } else if ($this->table == 'news' || $this->table == 'pages') {
+      $row = array(
+          'show' => $this->getShow(),
+          'expiredate' => $this->getExpireDate(),
+          'publishdate' => $this->getDateTime()
+      );
+    }
+    $check = checkPublishDates($row);
+    if ($check == 1 || $check == 2) {
+      return false;
+    } else {
+      return true;
+    }
+  }
 
 }
 
