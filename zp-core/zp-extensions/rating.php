@@ -409,7 +409,7 @@ function printRating($vote = 3, $object = NULL, $text = true) {
  */
 function getRating($object = NULL) {
 	if (is_null($object)) {
-		$object = getCurrentPageObject();
+		$object = jquery_rating::getCurrentPageObject();
 		if (!$object)
 			return NULL;
 	}
