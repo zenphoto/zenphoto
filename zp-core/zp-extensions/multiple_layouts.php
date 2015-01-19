@@ -2,20 +2,21 @@
 
 /**
  *
- * Provides functionality to select individual templates files to items additionally to the standard theme pages
- * album.php, image.php and for Zenpage pages.php and news.php (articles and categories).
+ * Provides functionality to select different templates for the standard theme pages <i>album.php</i>, <i>image.php</i>
+ * and for Zenpage <i>pages.php</i> and <i>news.php</i>.
  *
- * The additional files have to be clones of the standard theme pages which must be kept as default ones.
- * The file names of these additional files must match these patterns and should not include special characters or characters with diacritical marks:
+ * The additional template files have to be clones of the standard theme pages which must be kept as default ones.
+ * The file names of these additional template files must match these patterns and should not include special characters or characters with diacritical marks:
  *
  * Zenphoto gallery items:
- * <hr>
- * For albums: album<i>customname</i>.php<br>
- * For images : image<i>customname</i>.php
+ * <ul>
+ * <li>For albums: album<var>customname</var>.php</li>
+ * <li>For images : image<var>customname</var>.php</li>
+ * <ul/>
  *
- * "use image layout equivalent" checkbox:
- * If you want to avoid selecting a specific layout for all images in an album you can check this option
- * on the album's edit page. Then for the images automatically a layout is assigned as well.
+ * "Select album layout" checkbox:
+ * If you want to avoid to manually select a specific layout for all images in an album you can check this option
+ * on the album's edit page. Then a layout is assigned to the images automatically as well.
  *
  * Example:
  * You select an album layout page named "album_test.php" for an album. If you select that option mentioned above an image layout named "image_test.php"

@@ -6,12 +6,12 @@
  * If the logon succeeds it will log that user onto Zenphoto. An attempt will be
  * made to match the user to an existing Zenphoto user. If such is found, then the
  * user is logged in as that Zenphoto user. If not, a Zenphoto user will be created
- * and the user logged in as him.
+ * and logged in.
  *
  * The default priviledges for a created user are obtained from the <i>viewers</i> group.
  * (The user will belong to that group.) This will be the case whether or not the
  * user_groups plugin is enabled. If you want to be able to specify unique default
- * priviledges you will have to use the user_groups plugin at least until you have
+ * priviledges you will have to use the <i>user_groups</i> plugin at least until you have
  * defined your default group.
  *
  * You may also find the <i>user_expiry</i> plugin useful in conjunction with this plugin.

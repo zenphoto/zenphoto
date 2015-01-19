@@ -1,6 +1,7 @@
 <?php
 
 /**
+ * Create news articles when a gallery item is published.
  *
  * @package plugins
  * @author Stephen Billard (sbillard)

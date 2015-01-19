@@ -1,9 +1,9 @@
 <?php
 
 /**
- * This plugin deals with functions have been removed from mainstream Zenphoto as they have been
- * supplanted.
- * They are not maintained and they are not guaranteed to function correctly with the
+ * This plugin deals with functions that have either been altered* or removed** from mainstream Zenphoto completely.
+ * Altered functions have deprecated parameters.
+ * Removed functions are not maintained and they are not guaranteed to function correctly with the
  * current version of Zenphoto.
  *
  * The actual set of functions resides in a <var>deprecated-functions.php</var> script within
@@ -23,7 +23,7 @@
  * plugin options. Find the function and uncheck the box by the function.
  *
  * A utility button is provided that allows you to search themes and plugins for uses of functions which have been deprecated.
- * Use it to be proactive in replacing these discontinued items.
+ * Use it to be proactive in replacing or changing these items.
  *
  * @author Stephen Billard (sbillard)
  * @package plugins

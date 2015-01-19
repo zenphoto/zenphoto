@@ -1,6 +1,6 @@
 <?php
 /**
- * This plugin will edit the tokens in the %DATA_FOLDER% zenphoto.cfg file
+ * This plugin will edit the tokens in the <var>%DATA_FOLDER%/zenphoto.cfg</var> file
  *
  *
  * @author Stephen Billard (sbillard)

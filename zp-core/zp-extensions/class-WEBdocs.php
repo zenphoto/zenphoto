@@ -3,7 +3,7 @@
 /**
  * Plugin handler for certain standard document formats.
  * These are displayed a <i>WEBdocs</i> provider e.g. <i>Google Docs viewer</i>. The item is displayed in an iFrame sized based on the image size option.
- * Of course, your site must be accessable by provider and your viewer must have a any required account credentials for this to work.
+ * Of course, your site must be accessable by provider and your viewer must have the required account credentials for this to work.
  *
  * The plugin is an extension of <var>TextObject</var>. For more details see the <i>class-textobject</i> plugin.
  *

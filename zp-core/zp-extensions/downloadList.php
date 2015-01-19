@@ -3,10 +3,10 @@
  *
  * A plugin to generate a file download list.
  * This download folder can be relative to your Zenphoto root (<i>foldername</i>) or external to it (<i>../foldername</i>).
- * By default the <var>%UPLOAD_FOLDER%</var> folder is chosen so you can use the file manager to manage those files.
+ * By default the <var>%UPLOAD_FOLDER%</var> folder is chosen so you can use the file manager to manage these files.
  *
  * You can also override that folder by using the <var>printdownloadList()</var> function parameters directly. Additionally
- * you can set a downloadlink to a specific file directly as well using <code>printDownloadURL(<i>path-to-file</i>);<code>.
+ * you can set a downloadlink to a specific file directly by using <code>printDownloadURL(<i>path-to-file</i>);<code>.
  *
  * The file names and the download path of the items are stored with the number of downloads in the database's plugin_storage table.
  *
@@ -41,7 +41,7 @@ $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 $option_interface = "downloadList";
 
 zp_register_filter('admin_utilities_buttons', 'DownloadList::button');
- 
+
 /**
  * Plugin option handling class
  *
@@ -400,7 +400,7 @@ class AlbumZip {
 		}
 		$zip->finish();
 	}
-	
+
 
 }
 

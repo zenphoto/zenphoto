@@ -1,6 +1,6 @@
 <?php
 /**
- * Zenphoto default captcha handler
+ * Zenphoto default CAPTCHA handler
  *
  * @author Stephen Billard (sbillard)
  * @package plugins

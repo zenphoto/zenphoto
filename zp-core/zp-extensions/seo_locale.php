@@ -6,7 +6,7 @@
  * This filter will detect a language setting from the URI and
  * set the locale accordingly.
  *
- * In addition, theme URLs will have the languageid inserted into them
+ * In addition, theme URLs will have the language-id inserted into them
  * so that the above processing will result in the language being set.
  *
  * This plugin should not be used if you are using <i>subdomain locales</i>
@@ -14,10 +14,10 @@
  *
  * The URL format is:<br>
  * <var>mod_rewrite</var><br>
- * 			/ <i>languageid</i> / <i>standard url</i><br>
+ * 			/ <i>language-id</i> / <i>standard url</i><br>
  * <var>else</var><br>
- * 			<i>standard url</i>?locale=<i>languageid</i><br>
- * Where <i>languageid</i> is the local identifier (e.g. en, en_US, fr_FR, etc.)
+ * 			<i>standard url</i>?locale=<i>language-id</i><br>
+ * Where <i>language-id</i> is the local identifier (e.g. en, en_US, fr_FR, etc.)
  *
  *
  * <b>NOTE:</b> the implementation of these URIs requires that Zenphoto parse the URI, save the

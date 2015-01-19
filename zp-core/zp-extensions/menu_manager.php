@@ -2,7 +2,7 @@
 
 /**
  *
- * Lets you create arbitrary menus and place them on your theme pages.
+ * Lets you create custom menus and place them on your theme pages.
  *
  * Use the <var>Menu</var> tab to create your menus. Use <var>printCustomMenu()</var> to place them on your pages.
  *
@@ -248,7 +248,7 @@ function getItemTitleAndURL($item) {
 			if(class_exists('zenpage')) {
 				$url = getNewsIndexURL();
 				$array = array("title" => get_language_string($item['title']), "url" => $url, "name" => $url, 'protected' => false);
-			} 
+			}
 			break;
 		case "zenpagecategory":
 			if(class_exists('zenpage')) {
@@ -265,7 +265,7 @@ function getItemTitleAndURL($item) {
 					$protected = 0;
 				}
 				$array = array("title" => $title, "url" => $url, "name" => $item['link'], 'protected' => $protected, 'theme' => $themename);
-			} 
+			}
 			break;
 		case "custompage":
 			$root = SERVERPATH . '/' . THEMEFOLDER . '/' . $themename . '/';

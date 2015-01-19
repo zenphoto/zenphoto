@@ -1,7 +1,9 @@
 <?php
 /**
  *
- * This plugin is the centralized Cache manager for Zenphoto. It provides:
+ * This plugin is the centralized Cache manager for Zenphoto.
+ *
+ * It provides:
  * <ul>
  * 		<li>Options to purge the HTML and RSS caches on publish state changes of:
  * 			<ul>
@@ -30,7 +32,6 @@
  * 			Use a different <i>theme name</i> for custom versions that you create. If you set image options that
  * 			impact the default caching you will need to re-create these caching sizes by one of the above methods.
  * 		</li>
- *
  * 		<li>
  * 			The <i>pre-creating</i> process will cause your browser to display each and every image that has not
  * 			been previously cached. If your server does not do a good job of thread management this may swamp

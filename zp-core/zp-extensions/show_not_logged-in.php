@@ -1,6 +1,6 @@
 <?php
 /**
- * When enabled, Zenphoto users will be appear not to be logged-in when viewing gallery pages
+ * When enabled, Zenphoto users will be appear not to be logged-in when viewing gallery pages.
  *
  * @author Stephen Billard (sbillard)
  * @package plugins

@@ -9,7 +9,7 @@
  * You can create themes and place them into the <var>%USER_PLUGIN_FOLDER%/reCpatcha</var> folder. The folder name will be the theme name. The only
  * required file is <var>reCaptcha.html</var> but you can include other items like images, etc. in the folder.
  *
- * Your custom <var>reCaptcha.html</var> will be processed at run time making substitutions of the followng "definitions":
+ * Your custom <var>reCaptcha.html</var> will be processed at runtime making substitutions of the followng "definitions":
  * <ul>
  * 	<li><var>__GETHELP__</var> => <i>localized text for</i> "Help"</li>
  * 	<li><var>__GETIMAGE__</var> => <i>localized text for</i> "Get an image CAPTCHA"</li>

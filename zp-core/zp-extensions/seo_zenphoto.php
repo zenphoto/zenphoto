@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Translates characters with diacritical marks to simple equivilents
+ * Translates characters with diacritical marks to simple equivalents
  * @package plugins
  * @subpackage seo
  */

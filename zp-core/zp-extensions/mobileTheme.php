@@ -2,7 +2,7 @@
 /**
  *
  * Mobile devices are detected with
- * {@link http://code.google.com/p/php-mobile-detect/ php-mobile-detect}
+ * {@link http://code.google.com/p/php-mobile-detect/ php-mobile-detect}.
  * A particular theme may be designated for <i>phones</i> and for <i>tablets</i>. If the connecting
  * device is one of those, the theme will automatically switch to the designated mobile theme.
  *
@@ -11,7 +11,8 @@
  *
  * You may place a call on <var>mobileTheme::controlLink();</var> in your theme(s) to allow the client viewer
  * to override the switch and view your standard gallery theme. If the same call is placed in your gallery
- * theme he will be able to switch back as well. <b>NOTE:</b> This link is present only when the browsing client
+ * theme he will be able to switch back as well.
+ * <b>NOTE:</b> This link is present only when the browsing client
  * is a mobile device!
  *
  * Class <var>mobile</var> methods you can use in your theme:

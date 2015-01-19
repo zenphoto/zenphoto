@@ -10,7 +10,7 @@
  *
  * The content of the array is as follows:
  * <ol>
- * 	<li>"class	 => <var>macro class</var>, see below.</li>
+ * 	<li>"class"	 => <var>macro class</var>, see below.</li>
  * 	<li>"params" => An array of parameter types. Append an <b>*</b> if the parameter may be omitted. The types allowed are:
  * 		<ul>
  * 			<li>"string": may be enclosed in quotation marks when the macro is invoked. The quotes are stripped before the macro is processed. </li>
@@ -24,7 +24,7 @@
  * 	<li>"desc"	 => Text that describes the macro usage.</li>
  * </ol>
  *
- * macro classes:
+ * Macro classes:
  * 	<ol>
  * 		<li>
  * 			<var>procedure</var> calls a script function that produces output. The output is captured and inserted in place of the macro instance.
@@ -41,21 +41,23 @@
  * 		</li>
  * 	</ol>
  *
- * useage examples:
+ * Useage examples:
  * 	<ol>
  * 		<li>
- * 			[CODEBLOCK 3]
+ * 			[CODEBLOCK 3] (Places codeblock number 3 in your content)
  * 		</li>
  * 		<li>
- * 			[PAGE]
+ * 			[PAGE] (Prints the current page number)
  * 		</li>
  * 		<li>
- * 			[ZENPHOTO_VERSION]
+ * 			[ZENPHOTO_VERSION] (Prints the version of the Zenphoto installation)
  * 		</li>
  * 		<li>
- * 			[pageLink register]
+ * 			[PAGELINK mylinktext customscriptpage] (Provides text for a link to a "custom" script page)
  * 		</li>
  * 	</ol>
+ *
+ * <b>Note</b> the <var>spaces<var> after the <var>[<var> and before the <var>]<var> square brackets. They are used in these examples to prevent the code from actually executing. They should not be present in your real code.
  *
  * @author Stephen Billard (sbillard)
  * @package plugins

@@ -4,13 +4,13 @@
  *
  * Enable this filter to scan images (or <i>xmp sidecar</i> files) for metadata.
  *
- * Relevant metadata found will be incorporated into the image (or album object)
- * see <i>{@link http://www.aiim.org/documents/standards/xmpspecification.pdf  Adobe XMP Specification}</i>
+ * Relevant metadata found will be incorporated into the image (or album object).
+ * See <i>{@link http://www.adobe.com/devnet/xmp.html  Adobe XMP Specification}</i>
  * for xmp metadata description. This plugin attempts to map the <i>xmp metadata</i> to Zenphoto or IPTC fields.
  *
  * If a sidecar file exists, it will take precedence (the image file will not be
  * examined.) The sidecar file should reside in the same folder, have the same <i>prefix</i> name as the
- * image (album), and the suffix <var>.xmp</var>. Thus, the sidecar for <var><i>image</i>.jpg</var> would be named
+ * image (album), and the suffix <var>.xmp</var>. Thus, the sidecar for <i>image</i>.jpg would be named
  * <i>image</i><var>.xmp</var>.
  *
  * NOTE: dynamic albums have an <var>.alb</var> suffix. Append <var>.xmp</var> to that name so

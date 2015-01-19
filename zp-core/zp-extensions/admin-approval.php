@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Overrides of the <i>publish</i> save handling use such that only
+ * Overrides of the <i>publish</i> save handling such that only
  * a User with <var>ADMIN_RIGHTS</var> or <var>MANAGE_ALL_<i>object</i></var> rights may
  * mark an object published.
  *

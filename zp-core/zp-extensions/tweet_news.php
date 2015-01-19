@@ -1,6 +1,6 @@
 <?php
 /**
- * Use to tweet new objects as they are published
+ * Use to tweet new objects as they are published.
  *
  * @package plugins
  * @author Stephen Billard (sbillard)
