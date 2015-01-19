@@ -1,8 +1,8 @@
 <?php
 
 /**
- * Prints a paged thumbnail navigation to be used on a theme's image.php, independent of the album.php's thumbs loop
- * The function contains some predefined CSS ids you can use for styling.
+ * Prints a paged thumbnail navigation to be used on a theme's <i>image.php</i>, independent of the album.php's thumbs loop
+ * The function contains some predefined CSS id's you can use for styling.
  *
  * @author Malte Müller (acrylian)
  * @package plugins

@@ -5,7 +5,7 @@
  *
  * Supports such statistics as "most popular", "latest", "top rated", etc.
  *
- * <b>CAUTION:</b> The usage to get an specific album has changed. You now have to pass the foldername of an album instead the album title.
+ * <b>CAUTION:</b> The way to get a specific album has changed. You now have to pass the foldername of an album instead the album title.
  *
  * @author Malte Müller (acrylian), Stephen Billard (sbillard)
  * @package plugins

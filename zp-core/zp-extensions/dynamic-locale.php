@@ -1,14 +1,14 @@
 <?php
 /**
- * Allow the site viewer to select a localization.
+ * Allow the site viewer to select a localization (language).
  *
- * Only the zenphoto and theme gettext() string are localized by this facility.
+ * Only the zp-core and theme gettext() string are localized by this facility.
  *
  * If you want to support image descriptions, etc. in multiple languages you will
  * have to enable the <i>multi-lingual</i> option found next to the language selector on
- * the admin gallery configuration page. Then you will have to provide appropriate
+ * the admin <i>Gallery</i> configuration page. Then you will have to provide appropriate
  * alternate translations for the fields you use. While there is a field for
- * strings for all zenphoto supported languages you need supply only those you choose.
+ * strings for all Zenphoto supported languages you need supply only those you choose.
  * The others language strings will default to your local language.
  *
  * Locale selection may occur in several ways:
@@ -18,7 +18,7 @@
  * 	<li>The <i>subdomain locales</i> option</li>
  * </ul>
  *
- * This plugiin applies only to the theme pages--not Admin. The <em>language cookie</i>, if set, will
+ * This plugin applies only to the theme pages--not Admin. The <em>language cookie</i>, if set, will
  * carry over to the admin pages. As will using <i>subdomains</i>.
  *
  * @author Stephen Billard (sbillard)
