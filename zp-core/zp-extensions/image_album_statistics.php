@@ -368,11 +368,12 @@ function getImageStatistic($number, $option, $albumfolder = '', $collection = fa
 	} else {
 		$obj = $_zp_gallery;
 	}
-	getAllAccessibleAlbums($obj, $albumlist, true);
+	/* getAllAccessibleAlbums($obj, $albumlist, true);
 	if (empty($albumlist)) {
 		return array();
-	}
-	$albumWhere = ' AND albums.`id` in (' . implode(',', $albumlist) . ')';
+	} */
+	$albumWhere = '';
+	//$albumWhere = ' AND albums.`id` in (' . implode(',', $albumlist) . ')';
 	if ($threshold > 0) {
 		$albumWhere .= ' AND images.total_votes >= ' . $threshold;
 	}
