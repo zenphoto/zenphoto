@@ -2657,14 +2657,13 @@ dt,dd {
 dt {
 	font-weight: bold;
 }
-
-.bar {
-	background: #f0f0f0;
-}
-
 dd {
 	width: 60%;
 	margin-left: -10px;
+}
+
+.bar {
+	background: #f0f0f0;
 }
 
 .top {
