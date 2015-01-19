@@ -626,7 +626,7 @@ function getAllAlbums($album = NULL) {
 function getAllAccessibleAlbums($obj, &$albumlist, $scan) {
 	global $_zp_gallery;
 	$locallist = $obj->getAlbums();
-	foreach ($locallist as $folder) {
+ foreach ($locallist as $folder) {
 		$album = newAlbum($folder);
 		If (!$album->isDynamic() && $album->checkAccess()) {
 			if ($scan)
@@ -3106,9 +3106,9 @@ function printSizedImageURL($size, $text, $title, $class = NULL, $id = NULL) {
 function filterImageQuery($result, $source) {
 	if ($result) {
 		while ($row = db_fetch_assoc($result)) {
-			$image = newImage(NULL, $row);
-			$album = $image->album;
-			if ($album->name == $source || $album->checkAccess()) {
+			$image = newImage(null, $row);
+   $album = $image->album;
+   if ($album->name == $source || $album->checkAccess()) {
 				if (isImagePhoto($image)) {
 					if ($image->checkAccess()) {
 						return $image;
@@ -3144,7 +3144,7 @@ function getRandomImages($daily = false) {
 	if (zp_loggedin()) {
 		$imageWhere = '';
 	} else {
-		$imageWhere = " AND " . prefix('images') . ".show=1";
+   $imageWhere = " AND " . prefix('images') . ".show=1";
 	}
 	$result = query('SELECT `folder`, `filename` ' .
 					' FROM ' . prefix('images') . ', ' . prefix('albums') .
@@ -3296,7 +3296,8 @@ function printRandomImages($number = 5, $class = null, $option = 'all', $rootAlb
 					break;
 				case 2:
 					$sizes = getSizeDefaultThumb($randomImage);
-					$html = '<img src="' . html_encode(pathurlencode($randomImage->getThumb())) . '" width="' . $sizes[0] . '" height="' . $sizes[1] . '" alt="' . html_encode($randomImage->getTitle()) . '" />' . "\n";
+					//$html = '<img src="' . html_encode(pathurlencode($randomImage->getThumb())) . '" width="' . $sizes[0] . '" height="' . $sizes[1] . '" alt="' . html_encode($randomImage->getTitle()) . '" />' . "\n";
+      $html = $randomImage->filename." (".$randomImage->album->name.")";
 					break;
 			}
 			echo zp_apply_filter('custom_image_html', $html, false);
