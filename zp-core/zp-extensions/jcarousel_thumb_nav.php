@@ -1,7 +1,7 @@
 <?php
 /**
  * JavaScript thumb nav plugin with dynamic loading of thumbs on request via JavaScript.
- * Place <var>printThumbNav()</var> on your theme's image.php where you want it to appear.
+ * Place <var>printThumbNav()</var> on your theme's <i>image.php</i> where you want it to appear.
  *
  * Supports theme based custom css files (place <var>jcarousel.css</var> and needed images in your theme's folder).
  *

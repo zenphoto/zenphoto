@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Provides functions to print a tag cloud/list of all image tags from an album optionally including the subalbums or the album tags including sub album tags.
+ * Provides functions to print a tag cloud/list of all image tags from an album (optionally including the subalbums) or the album tags including sub album tags.
  * Or alternatively a tag cloud/list of all tags used by either Zenpage news articles or pages.
  *
  * Note: The optional counter prints the total number of the tag used, not just for the select items (as clicking on it will return all anyway.)

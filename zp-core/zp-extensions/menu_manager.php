@@ -2,7 +2,7 @@
 
 /**
  *
- * Lets you create arbitrary menus and place them on your theme pages.
+ * Lets you create custom menus and place them on your theme pages.
  *
  * Use the <var>Menu</var> tab to create your menus. Use <var>printCustomMenu()</var> to place them on your pages.
  *

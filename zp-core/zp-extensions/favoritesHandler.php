@@ -12,7 +12,7 @@
  * will contain the object. If the name is left empty the object will be added
  * to the <i>un-named</i> favorite instance.
  *
- * <b>Note:</b> if the <var>tgag_suggest</var> plugin is enabled there will be
+ * <b>Note:</b> If the <var>tag_suggest</var> plugin is enabled there will be
  * suggestions made for the text field much like the "tag suggestions" for searching.
  *
  * If an object is contained in multiple favorites there will be multiple <var>remove</var> buttons.
@@ -30,7 +30,7 @@
  * 	</li>
  *
  * 	<li>
- * 	The standard <i>image</i> page should also contain a call on <i>printAddToFavorites</i>
+ * 	The standard <i>image</i> page should also contain a call on <i>printAddToFavorites()</i>
  * 	</li>
  *
  * 	<li>

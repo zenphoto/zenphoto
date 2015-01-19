@@ -14,7 +14,7 @@
  * album. If you want to assign images from subalbums, you need to do that for each
  * subalbum.)
  *
- * A user who exceeds his quota will not be allowed to upload files.
+ * A user who exceeds his quota will not be allowed to upload more files.
  *
  * Because of the difficulty of policing quotas when ZIP files are uploaded this plugin
  * has an option to diable ZIP file upload.

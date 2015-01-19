@@ -5,7 +5,7 @@
  * Options are provided for setting the required registration details and the default
  * user rights that will be granted.
  *
- * Place a call on printRegistrationForm() where you want the form to appear.
+ * Place a call on <var>printRegistrationForm()</var> where you want the form to appear.
  * Probably the best use is to create a new <i>custom page</i> script just for handling these
  * user registrations. Then put a link to that script on your index page so that people
  * who wish to register will click on the link and be taken to the registration page.

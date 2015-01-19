@@ -3,10 +3,10 @@
 /**
  * Generates individually sitemap.org compatible XML files for use with Google and other search engines.
  * It supports albums and images as well as optionally Zenpage pages, news articles and news categories.
- * Sitemaps need to be generated via the button on the admin overview page and then are cached as static
- * files in the /%STATIC_CACHE_FOLDER%/sitemap/ folder.
- * There are individual sitemaps for all of the above item types generated as well as a sitemapindex file.
- * Album sitemaps are splitted into individual sitemaps per album (incl. all albums pages) and image sitemaps
+ * Sitemaps need to be generated via the button on the admin overview page and are cached as static
+ * files in the <var>/%STATIC_CACHE_FOLDER%/sitemap/</var> folder.
+ * Individual sitemaps are generated for all of the above item types as well as a sitemapindex file.
+ * Album sitemaps are split into individual sitemaps per album (incl. all albums pages) and image sitemaps
  * into individual sitemaps per album.
  *
  * The sitemapindex file can be referenced via <var>www.yourdomain.com/zenphoto/index.php?sitemap</var> or

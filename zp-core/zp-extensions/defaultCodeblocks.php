@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Use supply default codeblocks to theme pages.
+ * Supply default codeblocks to theme pages.
  *
  * @author Stephen Billard (sbillard)
  *

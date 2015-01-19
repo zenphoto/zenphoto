@@ -7,8 +7,8 @@
  * login access to the gallery.
  *
  * If the user visits the gallery within one week prior to his expiry date
- * a mail will be sent to the user (if there is an email address)
- * warning of the impending expiration.
+ * an email will be sent to the user (if there is an email address)
+ * warning him of the impending expiration.
  *
  * There is a subtab added to the "admin" tab for managing expirations.
  * A list of users without <var>ADMIN_RITGHTS</var> will be presented indicating each
@@ -16,7 +16,7 @@
  * expired dates are shown in red.
  *
  * From this tab the user may be removed, disabled (enabled)
- * or renewed. (Renewal is for a new "interval" from his last renewal (or the
+ * or renewed. Renewal is for a new "interval" from his last renewal (or the
  * current date if adding the interval would not bring him up-to-date.)
  *
  * <b>NOTE:</b> This plugin does not expire users with <var>ADMIN_RIGHTS</var>!

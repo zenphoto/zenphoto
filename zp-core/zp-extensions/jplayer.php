@@ -1,7 +1,7 @@
 <?php
 /**
  * Support for the jPlayer jQuery/Flash 2.0.0 multimedia player (jplayer.org). It will play natively via HTML5 in capable browser
- * if the appropiate multimedia formats are provided. This is not an adaption of the existing 3rd party plugin zenjPlayer but a full featured plugin.
+ * if the appropiate multimedia formats are provided.
 
  * Audio: <var>.mp3</var>, <var>.m4a</var>, <var>.fla</var> - Counterpart formats <var>.oga</var> and <var>.webma</var> supported (see note below!)<br>
  * Video: <var>.m4v</var>/<var>.mp4</var>, <var>.flv</var> - Counterpart formats <var>.ogv</var> and <var>.webmv</var> supported (see note below!)
@@ -23,14 +23,14 @@
  * If you have problems with any format being recognized, you might need to tell your server about the mime types first:
  * See examples on {@link http://jplayer.org/latest/developer-guide/#jPlayer-server-response the jplayer site}.
  *
- * Note on POPCORN Support (http://popcornjs.org)
+ * NOTE on POPCORN Support (http://popcornjs.org):
  * jPlayer has support for this interactive libary and its plugin is included but currently not loaded or implemented. You need to customize the plugin or your theme to use it.
  * Please refer to http://jplayer.org/latest/developer-guide/ and http://popcornjs.org to learn about this extra functionality.
  *
  * NOTE ON PLAYER SKINS:<br>
  * The look of the player is determined by a pure HTML/CSS based skin (theme). There may occur display issues with themes.
  * Only the default skins <var>zenphotolight</var> and <var>zenphotodark</var>
- * have been tested with the standard themes (and not even with all it works perfectly). Those two themes are also have a responsive width.
+ * have been tested with the standard themes (and it does not work perfectly for all)). Those two themes are also have a responsive width.
  * So you might need to adjust the skin yourself to work with your theme. It is recommended that
  * you place your custom skins within the root /plugins folder like:
  *
@@ -58,8 +58,8 @@
  * [MEDIAPLAYER album1 video.mp4]
  *
  * If you are using more than one player on a page you need to pass a 2nd parameter with for example an unique number:<br>
- * [MEDIAPLAYER album1 video1.mp4 1]<br>
- * [MEDIAPLAYER album2 video2.mp4 2]
+ * [MEDIAPLAYER album1 video1.mp4 <var>1</var>]<br>
+ * [MEDIAPLAYER album2 video2.mp4 <var>2</var>]
  *
  * <b>NOTE:</b> This player does not support external albums!
  *
@@ -115,9 +115,9 @@ class jplayer_options {
 			setOptionDefault('jplayer_skin', 'zenphotolight');
 			setOptionDefault('jplayer_counterparts', 0);
 			/* TODO: what are these sizes?
-			  $player = new jPlayer();
-			  cacheManager::deleteThemeCacheSizes('jplayer');
-			  cacheManager::addThemeCacheSize('jplayer', NULL, $player->width, $player->height, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+				$player = new jPlayer();
+				cacheManager::deleteThemeCacheSizes('jplayer');
+				cacheManager::addThemeCacheSize('jplayer', NULL, $player->width, $player->height, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 			 */
 		}
 	}
@@ -125,9 +125,9 @@ class jplayer_options {
 	function getOptionsSupported() {
 		$skins = getjPlayerSkins();
 		/*
-		  The player size is entirely styled via the CSS skin so there is no free size option. For audio (without thumb/poster) that is always 480px width.
-		  The original jPlayer skin comes with 270p (480x270px) and 360p (640x360px) sizes for videos but the zenphoto custom skin comes with some more like 480p and 1080p.
-		  If you need different sizes than you need to make your own skin (see the skin option for info about that)
+			The player size is entirely styled via the CSS skin so there is no free size option. For audio (without thumb/poster) that is always 480px width.
+			The original jPlayer skin comes with 270p (480x270px) and 360p (640x360px) sizes for videos but the zenphoto custom skin comes with some more like 480p and 1080p.
+			If you need different sizes than you need to make your own skin (see the skin option for info about that)
 		 */
 
 		return array(gettext('Autoplay')									 => array('key'	 => 'jplayer_autoplay', 'type' => OPTION_TYPE_CHECKBOX,
@@ -589,8 +589,8 @@ class jPlayer {
 		foreach ($suffixes as $suffix) {
 			$filesuffix = $suffix;
 			/* if($suffix == 'oga') {
-			  $filesuffix = 'ogg';
-			  } */
+				$filesuffix = 'ogg';
+				} */
 			$counterpart = str_replace($ext, $filesuffix, $moviepath);
 			//$suffix = str_replace('.','',$suffix);
 			if (file_exists(str_replace(FULLWEBPATH, SERVERPATH, $counterpart))) {
