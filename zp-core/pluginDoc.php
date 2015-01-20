@@ -180,6 +180,38 @@ if (!defined('OFFSET_PATH')) {
 					.buttons .tip {
 						text-align: left;
 					}
+
+					dl {
+						display: block;
+						clear: both;
+						width: 100%;
+					}
+
+					dt,dd {
+						vertical-align: top;
+						display: inline-block;
+						width: 35%;
+						margin: 0;
+						padding: 5px;
+					}
+
+					dt {
+						font-weight: bold;
+					}
+					dd {
+						width: 60%;
+						margin-left: -10px;
+					}
+
+
+					ul, ol {
+						list-style: none;
+						padding: 0;
+					}
+					li {
+						margin-left: 1.5em;
+						padding-bottom: 0.5em;
+					}
 					ul.options  {
 						list-style: none;
 						margin-left: 0;
@@ -187,14 +219,6 @@ if (!defined('OFFSET_PATH')) {
 					}
 					ul.options li {
 						list-style: none;
-						margin-left: 1.5em;
-						padding-bottom: 0.5em;
-					}
-					ol {
-						list-style: none;
-						padding: 0;
-					}
-					ol li {
 						margin-left: 1.5em;
 						padding-bottom: 0.5em;
 					}
@@ -404,6 +428,12 @@ if (!defined('OFFSET_PATH')) {
 						'&lt;/ol&gt;'		 => '</ol>',
 						'&lt;li&gt;'		 => '<li>',
 						'&lt;/li&gt;'		 => '</li>',
+						'&lt;dl&gt;'		 => '<dl>',
+						'&lt;/dl&gt;'		 => '</dl>',
+						'&lt;dt&gt;'		 => '<dt>',
+						'&lt;/dt&gt;'		 => '</dt>',
+						'&lt;dd&gt;'		 => '<dd>',
+						'&lt;/dd&gt;'		 => '</dd>',
 						'&lt;pre&gt;'		 => '<pre>',
 						'&lt;/pre&gt;'	 => '</pre>',
 						'&lt;br&gt;'		 => '<br />',

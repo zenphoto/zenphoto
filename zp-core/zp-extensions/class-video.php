@@ -3,7 +3,7 @@
 /**
  *
  * This plugin directly handles the <code>3gp</code> and <code>mov</code> <i>video</i>
- * class images if if <i>Apple Quicktime</i> is installed on the visitor system.
+ * class images if <i>Apple Quicktime</i> is installed on the visitors system.
  * Other formats require a multimedia player to be enabled. The actual supported multimedia types may vary
  * according to the player enabled.
  *

@@ -1,21 +1,18 @@
 <?php
 
 /**
- * This plugin deals with functions have been removed from the mainstream as they have been
- * supplanted.
- * They are not maintained and they are not guaranteed to function correctly with the
- * current version.
+ * This plugin deals with functions that have either been altered or removed completely.
  *
  * The actual set of functions resides in a <var>deprecated-functions.php</var> script within
- * the plugins folder. (General deprecated functions are in the %PLUGIN_FOLDER%/deprecated-functins folder)
+ * the plugins folder. (General deprecated functions are in the <var>%PLUGIN_FOLDER%/deprecated-functins</var> folder)
  *
- * Convention is that the deprecated functions script will have a class defined for containing the following:
+ * Convention is that the deprecated functions script will have a class defined indicataing the following:
  *
- * <ul>
- * <li>general functions with parameters which have been deprecated: these are declared <var>public static</var></li>
- * <li>class methods that have been deprecated: these are declared <var>static</var></li>
- * <li>clas methods with parameters which have been deprecated: these are declared <var>final static</var></li>
- * </ul>
+ * <dl>
+ * <dt><var>public static</var></dt><dd>general functions with parameters which have been deprecated.</dd>
+ * <dt><var>static</var></dt><dd>class methods that have been deprecated.</dd>
+ * <dt><var>final static</var></dt><dd>class methods with parameters which have been deprecated.</dd>
+ * </dl>
  *
  * The default settings cause an <var>E_USER_NOTICE</var> error to be generated when the function is used.
  * The text of the error message will tell you how to replace calls on the deprecated function. The error
@@ -23,7 +20,7 @@
  * plugin options. Find the function and uncheck the box by the function.
  *
  * A utility button is provided that allows you to search themes and plugins for uses of functions which have been deprecated.
- * Use it to be proactive in replacing these discontinued items.
+ * Use it to be proactive in replacing or changing these items.
  *
  * @author Stephen Billard (sbillard)
  *

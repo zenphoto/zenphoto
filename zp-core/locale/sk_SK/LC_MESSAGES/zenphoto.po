@@ -2210,6 +2210,8 @@ msgstr "Obrázok"
 #, php-format
 msgid "Rating: %1$u (Votes: %2$u)"
 msgstr "Hodnotenie: %1$u (Hlasov: %2$u)"
+msgid "Archive view"
+msgstr "Prehľad archívu"
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/functions.php:174
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/image_album_statistics.php:232
@@ -2670,6 +2672,10 @@ msgstr "Popis"
 #, fuzzy
 msgid "SubAlbums in "
 msgstr "Podalbumy"
+msgid "New album name?"
+msgstr "Nový názov albumu?"
+msgid "new album"
+msgstr "Nový album"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/album.php:40
 #: D:\github\ZenPhoto20/themes/zpfocus/album.php:41
@@ -2970,6 +2976,8 @@ msgstr ""
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:71
 msgid "Check to use an image file instead of text as your logo."
 msgstr ""
+msgid "Delete image"
+msgstr "Vymazať obrázok"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:72
 msgid "Use Image as Logo Filename:"
@@ -3598,6 +3606,8 @@ msgstr "Ďalšia stránka"
 #, fuzzy
 msgid "« Prev"
 msgstr "« Späť"
+msgid "Delete album"
+msgstr "Vymazať album"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/search.php:22
 #: D:\github\ZenPhoto20/themes/zpminimal/search.php:23
@@ -6612,6 +6622,10 @@ msgstr ""
 msgid ""
 "This email name and address will be used as the <em>From</em> address for "
 "all mails sent by the gallery."
+msgid "Name:"
+msgstr "Meno:"
+msgid "Email:"
+msgstr "E-Mail:"
 msgstr ""
 "Toto mailové meno a adresa bude použité ako odosielateľ všetkých mailov "
 "poslaných zo Zenphota."
@@ -7660,6 +7674,8 @@ msgid "Imbed IPTC copyright"
 msgstr "Vložiť IPTC copyright"
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:2392
+msgid "Imbed IPTC copyright"
+msgstr "Vložiť IPTC copyright"
 msgid ""
 "If checked and an image has no IPTC data a copyright notice will be imbedded "
 "cached copies."
@@ -8409,6 +8425,32 @@ msgid ""
 msgstr ""
 "Nové tagy pridáte tak, že do zoznamu <em>Nové tagy</em> vpíšete požadované "
 "výrazy. Potom len kliknete na <em>Pridať tagy</em>."
+msgid "File updated successfully"
+msgstr "Súbor úspešne aktualizovaný"
+msgid "Could not write file. Please check its write permissions"
+msgstr "Súbor sa nepodarilo uložiť. Skontrolujte oprávnenia."
+msgid "Cannot edit this theme!"
+msgstr "Túto šablónu nemôžete upravovať!"
+msgid "Cannot edit this file!"
+msgstr "Tento súbor nemôžete upravovať!"
+msgid "Theme File Editor"
+msgstr "Editor súborov šablóny"
+msgid "Back to the theme list"
+msgstr "Späť na zoznam šablón"
+msgid "Theme template files (.php)"
+msgstr "Súbory šablón šablóny (.php)"
+msgid "JavaScript files (.js)"
+msgstr "Súbory javaskriptu (.js)"
+msgid "Style sheets (.css)"
+msgstr "CSS súbory (.css)"
+msgid "Other text files"
+msgstr "Ostatné textové súbory"
+msgid "Edit this file"
+msgstr "Upraviť tento súbor"
+msgid "File <tt>%s</tt> from theme %s"
+msgstr "Súbor <tt>%s</tt> z šablóny %s"
+msgid "Update File"
+msgstr "Aktualizovať súbor"
 
 #: D:\github\ZenPhoto20/zp-core/admin-themes.php:58
 #, php-format
@@ -8580,6 +8622,8 @@ msgid ""
 msgstr ""
 "Orez miniatúr je vypnutý. Aktivujte túto možnosť pre šablónu ak chcete "
 "orezávať miniatúry."
+msgid "thumbnail preview"
+msgstr "ukázka miniatúry"
 
 #: D:\github\ZenPhoto20/zp-core/admin-upload.php:102
 msgid "Upload Images"
@@ -12364,6 +12408,8 @@ msgid ""
 msgstr ""
 "Vpíšte správnu odpoveď na otázku hore a budete presmerovaní na stránku, kde "
 "môžete zmeniť svoje heslo."
+msgid "<br />You may also use the link below to request a reset by e-mail."
+msgstr "<br />Môžete tiež použiť odkaz nižšie na požiadanie o reset mailom."
 
 #: D:\github\ZenPhoto20/zp-core/lib-auth.php:926
 msgid "Challenge question:"
@@ -12380,6 +12426,8 @@ msgid ""
 msgstr ""
 "Vpíšte vaše Používateľské ID, stlačte <code>Obnoviť</code> a dostanete sa k "
 "otázke výzvy."
+msgid "Submit"
+msgstr "Odoslať"
 
 #: D:\github\ZenPhoto20/zp-core/lib-auth.php:949
 #: D:\github\ZenPhoto20/zp-core/lib-auth.php:1070

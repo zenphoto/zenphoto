@@ -15,7 +15,7 @@
  * only logged in <i>Administrators</i> can access the <i>front end</i>. You can then, as the administrator, view the
  * site to be sure that all your changes are as you wish them to be.
  *
- * Once your testing is completed satisfactorily you <i>open</i> your site to all visitors.
+ * Once your testing is completed you <i>open</i> your site to all visitors.
  *
  * Change the files in <var>plugins/site_upgrade</var> to meet your needs. (<b>Note</b> these files will
  * be copied to that folder during setup the first time you do an install. Setup will not overrite any existing
@@ -24,7 +24,7 @@
  * files.)
  *
  *
- * The plugin works best if mod_rewrite is active and the <var>.htaccess</var> file exists. If these are not the case
+ * The plugin works best if <var>mod_rewrite</var> is active and the <var>.htaccess</var> file exists. If this is not the case
  * the plugin will still work in most cases. However if you the release you are upgrading to has significant changes involving
  * plugin loading of the front-end site there may be PHP failures due if the site is accessed while the files
  * being uploaded are in a mixed release state.

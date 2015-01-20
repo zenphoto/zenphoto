@@ -2,9 +2,9 @@
 /**
  * Prints a list of all albums context sensitive.
  *
- * menu types:
+ * Menu types:
  * 	<ul>
- * 			<li><var>list</var> for html list</li>
+ * 			<li><var>list</var> for HTML list</li>
  * 			<li><var>list-top</var> for only the top level albums</li>
  * 			<li><var>omit-top</var> same as list, but the first level of albums is omitted</li>
  * 			<li><var>list-sub</var> lists the offspring level of subalbums for the current album</li>

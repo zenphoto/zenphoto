@@ -11,7 +11,7 @@
  * The default priviledges for a created user are obtained from the <i>viewers</i> group.
  * (The user will belong to that group.) This will be the case whether or not the
  * user_groups plugin is enabled. If you want to be able to specify unique default
- * priviledges you will have to use the user_groups plugin at least until you have
+ * priviledges you will have to use the <i>user_groups</i> plugin at least until you have
  * defined your default group.
  *
  * You may also find the <i>user_expiry</i> plugin useful in conjunction with this plugin.
@@ -42,7 +42,7 @@
  *
  *
  * @author Stephen Billard (sbillard)
- * 
+ *
  * @package plugins
  * @subpackage users
  */

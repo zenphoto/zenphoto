@@ -6,7 +6,7 @@
  * By default the <var>%UPLOAD_FOLDER%</var> folder is chosen so you can use the file manager to manage those files.
  *
  * You can also override that folder by using the <var>printdownloadList()</var> function parameters directly. Additionally
- * you can set a downloadlink to a specific file directly as well using <code>printDownloadURL(<i>path-to-file</i>);<code>.
+ * you can set a downloadlink to a specific file directly by using <code>printDownloadURL(<i>path-to-file</i>);<code>.
  *
  * The file names and the download path of the items are stored with the number of downloads in the database's plugin_storage table.
  *
