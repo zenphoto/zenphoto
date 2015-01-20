@@ -163,7 +163,7 @@ function getField($field, $level = 3) {
 	if (isset($_POST[$field])) {
 		return sanitize($_POST[$field], $level);
 	} else {
-		return '';
+		return false;
 	}
 }
 
@@ -333,6 +333,7 @@ function printContactForm($subject_override = '') {
 						<input type="hidden" id="subject" name="subject"	value="<?php echo html_encode($subject); ?>" />
 						<input type="hidden" id="message"	name="message" value="<?php echo html_encode($message); ?>" />
 						<input type="hidden" id="mailaddress" name="mailaddress" value="<?php echo html_encode($mailaddress); ?>" />
+						<input type="hidden" id="username"	name="username" value="<?php echo html_encode($mailcontent['honeypot']); ?>" />
 						<input type="submit" value="<?php echo gettext("Confirm"); ?>" />
 					</form>
 					<form id="discard" action="<?php echo html_encode(getRequestURI()); ?>" method="post" accept-charset="UTF-8">
@@ -349,25 +350,32 @@ function printContactForm($subject_override = '') {
 				$_POST['message'] = $message;
 				$_POST['mailaddress'] = $mailaddress;
 				$_POST['name'] = $name;
+				$_POST['username'] = $mailcontent['honeypot'];
 			}
 		}
 	}
 	if (isset($_POST['confirm'])) {
-		$subject = sanitize($_POST['subject']);
-		$message = sanitize($_POST['message'], 1);
-		$mailaddress = sanitize($_POST['mailaddress']);
-		$name = sanitize($_POST['name']);
+		$subject = getField('subject');
+		$message = getField('message', 1);
+		$mailaddress = getField('mailaddress');
+		$name = getField('name');
 		$mailinglist = explode(';', getOption("contactform_mailaddress"));
 		if (getOption('contactform_sendcopy')) {
 			$sendcopy = array($name => $mailaddress);
 		} else {
 			$sendcopy = NULL;
 		}
-
 		// If honeypot was triggered, silently don't send the message
-		if (empty($mailcontent['honeypot'])) {
+		if (getField('username')) {
+			if ($sendcopy) {
+				$err_msg = zp_mail($subject, $message, array(), NULL, $sendcopy, array($name => $mailaddress));
+			} else {
+				$err_msg = false;
+			}
+		} else {
 			$err_msg = zp_mail($subject, $message, $mailinglist, $sendcopy, NULL, array($name => $mailaddress));
 		}
+
 		if ($err_msg) {
 			$msgs = explode('.', $err_msg);
 			unset($msgs[0]); //	the "mail send failed" text
