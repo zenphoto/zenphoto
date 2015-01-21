@@ -1117,6 +1117,7 @@ function getAllTagsUnique($checkaccess = false) {
  * 
  * @param bool $exclude_unassigned Set to true if you wish to exclude tags that are not assigne to any item
  * @param bool $checkaccess Set to true if you wish to exclude tags that are assigned to items (or are not assigned at all) the visitor is not allowed to see
+ *                          If set to true it overrides the $exclude_unassigned parameter. 
  *                          Beware that this may cause overhead on large sites. Usage of the html_static_cache plugin is strongely recommended.
  * @return array
  */
@@ -1157,7 +1158,7 @@ function getAllTagsCount($exclude_unassigned = false, $checkaccess = false) {
 
 /**
  * Checks if the items a tag is assigned at all and if it can be viewed by the current visitor and returns the corrected count
- * Helper function for getAllTagsCount()
+ * Helper function used optionally within getAllTagsCount() and getAllTagsUnique()
  * 
  * @global obj $_zp_zenpage
  * @param array $tag Array representing a tag containing its name and id at least

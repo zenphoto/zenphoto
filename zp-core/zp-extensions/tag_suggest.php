@@ -32,7 +32,7 @@ class tagsuggest {
           => array(
               'key'	 => 'tagsuggest_checkaccess', 
               'type' => OPTION_TYPE_CHECKBOX,
-              'desc' => gettext("Check if you wish to exclude tags that are assigned to items (or are not assigned at all) the visitor is not allowed to see. <p class='notebox'><strong>Note:</strong> Beware that this may cause overhead on larger sites. The usage of the html_static_cache plugin is recommended.</p>"))
+              'desc' => gettext("Check if you wish to exclude tags that are assigned to items (or are not assigned at all) the visitor is not allowed to see. This overrides the exlude unassigned option. <p class='notebox'><strong>Note:</strong> Beware that this may cause overhead on larger sites. The usage of the html_static_cache plugin is recommended.</p>"))
          );
      return $options;
   }
