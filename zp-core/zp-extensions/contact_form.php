@@ -320,8 +320,9 @@ function printContactForm($subject_override = '') {
 
 			if (getOption('contactform_confirm')) {
 				echo get_language_string(getOption("contactform_confirmtext"));
-				if (getOption('contactform_sendcopy'))
-					echo get_language_string(getOption("contactform_sendcopy_text"));
+				if (getOption('contactform_sendcopy')) {
+      echo get_language_string(getOption("contactform_sendcopy_text"));
+    }
 				?>
 				<div>
 					<?PHP
@@ -334,6 +335,7 @@ function printContactForm($subject_override = '') {
 						<input type="hidden" id="subject" name="subject"	value="<?php echo html_encode($subject); ?>" />
 						<input type="hidden" id="message"	name="message" value="<?php echo html_encode($message); ?>" />
 						<input type="hidden" id="mailaddress" name="mailaddress" value="<?php echo html_encode($mailaddress); ?>" />
+      <input type="text" id="username" name="username" value="<?php echo html_encode($mailcontent['honeypot']); ?>" style="display: none" />
 						<input type="submit" value="<?php echo gettext("Confirm"); ?>" />
 					</form>
 					<form id="discard" action="<?php echo html_encode(getRequestURI()); ?>" method="post" accept-charset="UTF-8">
@@ -357,6 +359,7 @@ function printContactForm($subject_override = '') {
 		$subject = sanitize($_POST['subject']);
 		$message = sanitize($_POST['message'], 1);
 		$mailaddress = sanitize($_POST['mailaddress']);
+  $honeypot = sanitize($_POST['username']);
 		$name = sanitize($_POST['name']);
 		$mailinglist = explode(';', getOption("contactform_mailaddress"));
 		if (getOption('contactform_sendcopy')) {
@@ -364,9 +367,9 @@ function printContactForm($subject_override = '') {
 		} else {
 			$sendcopy = NULL;
 		}
-
 		// If honeypot was triggered, silently don't send the message
-		if (empty($mailcontent['honeypot'])) {
+		$err_msg = false;
+		if (empty($honeypot)) {
 			$err_msg = zp_mail($subject, $message, $mailinglist, $sendcopy, NULL, array($name => $mailaddress));
 		}
 		if ($err_msg) {
