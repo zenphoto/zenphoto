@@ -63,6 +63,7 @@ function tagSuggestJS($exclude_unassigned = false, $checkaccess = false) {
    } else {
      if ($exclude_unassigned) {
        $taglist = getAllTagsCount(true);
+       $taglist = array_keys($taglist);
      } else {
        $taglist = getAllTagsUnique(false);
      }
