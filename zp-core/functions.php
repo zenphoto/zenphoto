@@ -1165,7 +1165,7 @@ function getAllTagsCount($exclude_unassigned = false, $checkaccess = false) {
  * @return int
  */
 function getTagCountByAccess($tag) {
-  global $_zp_zenpage;
+  global $_zp_zenpage, $_zp_object_to_tags;
   if (array_key_exists('count', $tag) && $tag['count'] == 0) {
     return $tag['count'];
   }
@@ -1183,12 +1183,14 @@ function getTagCountByAccess($tag) {
       return $tag['count'];
     }
     return 0;
+  } 
+  if (is_null($_zp_object_to_tags)) {
+    $sql = "SELECT tagid, type, objectid FROM " . prefix('obj_to_tag') . " ORDER BY tagid";
+    $_zp_object_to_tags = query_full_array($sql); 
   }
-  $sql = "SELECT tagid, type, objectid FROM " . prefix('obj_to_tag') . " ORDER BY tagid";
-  $result = query($sql);
   $count = '';
-  if ($result) {
-    while ($tagcheck = db_fetch_assoc($result)) {
+  if ($_zp_object_to_tags) {
+    foreach($_zp_object_to_tags as $tagcheck) {
       if ($tagcheck['tagid'] == $tag['id']) {
         switch ($tagcheck['type']) {
           case 'albums':
@@ -1218,7 +1220,6 @@ function getTagCountByAccess($tag) {
         }
       }
     }
-    db_free_result($result);
   }
   if (empty($count)) {
     $count = 0;
