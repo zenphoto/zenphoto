@@ -3407,7 +3407,7 @@ function printTags($option = 'links', $preText = NULL, $class = NULL, $separator
  * @param int $minfontsize minimum font size the cloud should display
  * @param bool $exclude_unassigned True or false if you wish to exclude tags that are not assigne to any item (default: true)
  * @param bool $checkaccess True or false (default: false) if you wish to exclude tags that are assigned to items (or are not assigned at all) the visitor is not allowed to see
- *                          Beware that this may cause overhead on large sites. Usage of the html_static_cache is strongely recommended then.
+ * Beware that this may cause overhead on large sites. Usage of the static_html_cache is strongely recommended then.
  * @since 1.1
  */
 function printAllTagsAs($option, $class = '', $sort = NULL, $counter = FALSE, $links = TRUE, $maxfontsize = 2, $maxcount = 50, $mincount = 10, $limit = NULL, $minfontsize = 0.8, $exclude_unassigned = true, $checkaccess = false) {
