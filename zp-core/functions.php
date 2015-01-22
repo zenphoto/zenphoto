@@ -1068,9 +1068,9 @@ function setupTheme($album = NULL) {
 
 /**
  * Returns an array of unique tag names
- * 
+ *
  * @param bool $checkaccess Set to true if you wish to exclude tags that are assigned to items (or are not assigned at all) the visitor is not allowed to see
- *                          Beware that this may cause overhead on large sites. Usage of the html_static_cache plugin is strongely recommended.
+ * Beware that this may cause overhead on large sites. Usage of the static_html_cache plugin is strongely recommended.
  * @return array
  */
 function getAllTagsUnique($checkaccess = false) {
@@ -1114,11 +1114,11 @@ function getAllTagsUnique($checkaccess = false) {
 
 /**
  * Returns an array indexed by 'tag' with the element value the count of the tag
- * 
+ *
  * @param bool $exclude_unassigned Set to true if you wish to exclude tags that are not assigne to any item
  * @param bool $checkaccess Set to true if you wish to exclude tags that are assigned to items (or are not assigned at all) the visitor is not allowed to see
- *                          If set to true it overrides the $exclude_unassigned parameter. 
- *                          Beware that this may cause overhead on large sites. Usage of the html_static_cache plugin is strongely recommended.
+ * If set to true it overrides the $exclude_unassigned parameter.
+ * Beware that this may cause overhead on large sites. Usage of the static_html_cache plugin is strongely recommended.
  * @return array
  */
 function getAllTagsCount($exclude_unassigned = false, $checkaccess = false) {
@@ -1157,11 +1157,11 @@ function getAllTagsCount($exclude_unassigned = false, $checkaccess = false) {
 }
 
 /**
- * Checks if the items a tag is assigned at all and if it can be viewed by the current visitor and returns the corrected count
+ * Checks if a tag is assigned at all and if it can be viewed by the current visitor and returns the corrected count
  * Helper function used optionally within getAllTagsCount() and getAllTagsUnique()
- * 
+ *
  * @global obj $_zp_zenpage
- * @param array $tag Array representing a tag containing its name and id at least
+ * @param array $tag Array representing a tag containing at least its name and id
  * @return int
  */
 function getTagCountByAccess($tag) {
