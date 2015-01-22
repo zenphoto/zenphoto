@@ -342,6 +342,7 @@ if ($selected_database) {
 }
 
 require_once(dirname(dirname(__FILE__)) . '/admin-functions.php');
+require_once(dirname(dirname(__FILE__)) . '/' . PLUGIN_FOLDER . '/security-logger.php');
 
 header('Content-Type: text/html; charset=UTF-8');
 header("HTTP/1.0 200 OK");
@@ -388,6 +389,8 @@ if ($setup_checked) {
 	if (isset($_POST['db'])) {
 		setupLog(gettext("Post of Database credentials"), true);
 	} else {
+		zp_apply_filter('log_setup', true, 'install', gettext('Started'));
+
 		$me = realpath(dirname(dirname(dirname(str_replace('\\', '/', __FILE__)))));
 		$mine = realpath(SERVERPATH);
 		if (isWin() || isMac()) { // case insensitive file systems
@@ -2422,6 +2425,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 							}
 
 							if ($createTables) {
+								zp_apply_filter('log_setup', true, 'install', gettext('Completed'));
 								$clones = array();
 
 								if ($_zp_loggedin == ADMIN_RIGHTS) {
