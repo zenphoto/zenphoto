@@ -365,13 +365,9 @@ function printContactForm($subject_override = '') {
 		} else {
 			$sendcopy = NULL;
 		}
-		// If honeypot was triggered, silently don't send the message
+
 		if (getField('username')) {
-			if ($sendcopy) {
-				$err_msg = zp_mail($subject, $message, array(), NULL, $sendcopy, array($name => $mailaddress));
-			} else {
-				$err_msg = false;
-			}
+			$err_msg = false; // If honeypot was triggered, silently don't send the message
 		} else {
 			$err_msg = zp_mail($subject, $message, $mailinglist, $sendcopy, NULL, array($name => $mailaddress));
 		}
