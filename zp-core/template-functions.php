@@ -3848,7 +3848,6 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 				within = way;
 				if (way) {
 					$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
-
 				} else {
 					lastsearch = '';
 					$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
@@ -3869,6 +3868,11 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 				}
 				return true;
 			});
+    $(document).ready(function() {
+      $( $("#checkall_searchfields") ).on( "click", function() {
+        $("#searchextrashow :checkbox").prop("checked", $("#checkall_searchfields").prop("checked") );
+      });
+    });
 			// ]]> -->
 			</script>
 			<?php echo $prevtext; ?>
@@ -3926,6 +3930,7 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 						if (count($fields) > 1) {
 							?>
 							<ul>
+        <li><label><input type="checkbox" name="checkall_searchfields" id="checkall_searchfields" checked="checked">* <?php echo gettext('Check/uncheck all'); ?> *</label></li>
 								<?php
 								foreach ($fields as $display => $key) {
 									echo '<li><label><input id="SEARCH_' . $key . '" name="SEARCH_' . $key . '" type="checkbox"';
