@@ -735,7 +735,7 @@ function getSitemapZenpagePages() {
 							break;
 						case 2:
 							foreach ($sitemap_locales as $locale) {
-								$url = rewrite_path($locale . '/' . _PAGES_ . '/' . urlencode($page['titlelink']), '?p=pages&amp;title=' . urlencode($page['titlelink']), FULLWEBPATH);
+								$url = rewrite_path(_PAGES_ . '/' . urlencode($page['titlelink']), '?p=pages&amp;title=' . urlencode($page['titlelink']), dynamic_locale::fullHostPath($locale));
 								$data .= sitemap_echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 							}
 							break;
@@ -769,8 +769,8 @@ function getSitemapZenpageNewsIndex() {
 		switch (SITEMAP_LOCALE_TYPE) {
 			case 1:
 				foreach ($sitemap_locales as $locale) {
-					$url = seo_locale::localePath(true, $locale) . '/news/1';
-					$data .= sitemap_echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . sitemap_getISO8601Date() . "</lastmod>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+      $url = seo_locale::localePath(true, $locale) . '/' . _NEWS_ . '/1';
+          $data .= sitemap_echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . sitemap_getISO8601Date() . "</lastmod>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 				}
 				Break;
 			case 2:
@@ -798,7 +798,7 @@ function getSitemapZenpageNewsIndex() {
 				switch (SITEMAP_LOCALE_TYPE) {
 					case 1:
 						foreach ($sitemap_locales as $locale) {
-							$url = seo_locale::localePath(true, $locale) . '/news/' . $x;
+							$url = seo_locale::localePath(true, $locale) . '/' . _NEWS_ . '/' . $x;
 							$data .= sitemap_echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . sitemap_getISO8601Date() . "</lastmod>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 						}
 						break;
@@ -849,7 +849,7 @@ function getSitemapZenpageNewsArticles() {
 					switch (SITEMAP_LOCALE_TYPE) {
 						case 1:
 							foreach ($sitemap_locales as $locale) {
-								$url = seo_locale::localePath(true, $locale) . '/news/' . urlencode($articleobj->getTitlelink());
+								$url = seo_locale::localePath(true, $locale) . '/' . _NEWS_ . '/' . urlencode($articleobj->getTitlelink());
 								$data .= sitemap_echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 							}
 							break;
@@ -894,7 +894,7 @@ function getSitemapZenpageNewsCategories() {
 					switch (SITEMAP_LOCALE_TYPE) {
 						case 1:
 							foreach ($sitemap_locales as $locale) {
-								$url = seo_locale::localePath(true, $locale) . '/news/category/' . urlencode($catobj->getTitlelink()) . '/1';
+								$url = seo_locale::localePath(true, $locale) . '/' . _CATEGORY_ . '/' . urlencode($catobj->getTitlelink()) . '/1';
 								$data .= sitemap_echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 							}
 							break;
@@ -924,7 +924,7 @@ function getSitemapZenpageNewsCategories() {
 							switch (SITEMAP_LOCALE_TYPE) {
 								case 1:
 									foreach ($sitemap_locales as $locale) {
-										$url = seo_locale::localePath(true, $locale) . '/news/category/' . urlencode($catobj->getTitlelink()) . '/' . $x;
+										$url = seo_locale::localePath(true, $locale) . '/' . _CATEGORY_ . '/' . urlencode($catobj->getTitlelink()) . '/' . $x;
 										$data .= sitemap_echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 									}
 									break;
