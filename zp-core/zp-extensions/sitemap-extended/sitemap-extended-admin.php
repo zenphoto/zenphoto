@@ -150,7 +150,7 @@ function sitemap_printAvailableSitemaps() {
 					}
 					echo '</ul>';
 					if (!empty($metaURL)) {
-						echo '<p><img src="<?php echo WEBPATH . ' / ' . ZENFOLDER; ?>/images/ajax-loader.gif" alt="" /><br /><br />' . gettext('Sitemap files are being generated...Patience please.') . '</p>';
+						echo '<p><img src="' . WEBPATH . '/' . ZENFOLDER . '/images/ajax-loader.gif" alt="" /><br /><br />' . gettext('Sitemap files are being generated...Patience please.') . '</p>';
 					} else {
 						generateSitemapIndexCacheFile();
 						?>
