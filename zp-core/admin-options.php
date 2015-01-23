@@ -700,7 +700,7 @@ Zenphoto_Authority::printPasswordFormJS();
 											$c = 0;
 											foreach ($locales as $language => $dirname) {
 												$languageAlt = $language;
-												$class = '';
+												$languageV = $class = '';
 												if (!empty($dirname) && $dirname != 'en_US') {
 													$version = '';
 													$po = file_get_contents(SERVERPATH . "/" . ZENFOLDER . "/locale/" . $dirname . '/LC_MESSAGES/zenphoto.po');
@@ -727,7 +727,7 @@ Zenphoto_Authority::printPasswordFormJS();
 															$version = '';
 															$v = '?';
 														}
-														$language .= ' <small>{' . $v . $version . '}</small>';
+														$languageV = ' <small>{' . $v . $version . '}</small>';
 														$languageAlt .= ' {' . $v . $version . '}';
 														$class = ' style="background-color:#FFEFB7;"';
 													}
@@ -762,16 +762,20 @@ Zenphoto_Authority::printPasswordFormJS();
 												$c++;
 												?>
 												<li<?php echo $class; ?>>
-													<label class="displayinline" >
-														<input type="radio" name="locale" id="r_<?php echo $dirname; ?>" value="<?php echo $dirname; ?>"
-																	 onclick="radio_click('<?php echo $dirname; ?>');" <?php echo $r_attrs; ?>/>
+
+													<label class=""displayinline">
+																 <input type="radio" name="locale" id="r_<?php echo $dirname; ?>" value="<?php echo $dirname; ?>"
+																 onclick="radio_click('<?php echo $dirname; ?>');" <?php echo $r_attrs; ?>/>
 													</label>
-													<label class="displayinline flags">
-														<input id="language_allow_<?php echo $dirname; ?>" name="language_allow_<?php echo $dirname; ?>" type="checkbox"
-																	 value="<?php echo $dirname; ?>"<?php echo $c_attrs; ?>
-																	 onclick="enable_click('<?php echo $dirname; ?>');" />
-														<img src="<?php echo $flag; ?>" alt="<?php echo $languageAlt; ?>" width="24" height="16" />
-														<?php echo $language; ?>
+													<label class="flags">
+														<span class="displayinline">
+															<input id="language_allow_<?php echo $dirname; ?>" name="language_allow_<?php echo $dirname; ?>" type="checkbox"
+																		 value="<?php echo $dirname; ?>"<?php echo $c_attrs; ?>
+																		 onclick="enable_click('<?php echo $dirname; ?>');" />
+															<img src="<?php echo $flag; ?>" alt="<?php echo $languageAlt; ?>" width="24" height="16" />
+															<?php echo $language; ?>
+														</span>
+														<?php echo $languageV; ?>
 													</label>
 												</li>
 												<?php
@@ -1278,7 +1282,7 @@ Zenphoto_Authority::printPasswordFormJS();
 										/*
 										 * not recommended--screws with peoples minds during pagination!
 
-										  $sort[gettext('Random')] = 'random';
+											$sort[gettext('Random')] = 'random';
 										 */
 										$cvt = $cv = strtolower($_zp_gallery->getSortType());
 										ksort($sort, SORT_LOCALE_STRING);
@@ -1820,7 +1824,7 @@ Zenphoto_Authority::printPasswordFormJS();
 
 										/*
 										 * not recommended--screws with peoples minds during pagination!
-										  $sort[gettext('Random')] = 'random';
+											$sort[gettext('Random')] = 'random';
 										 */
 										$flip = array_flip($sort);
 										if (isset($flip[$cv])) {
