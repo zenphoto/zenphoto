@@ -126,6 +126,8 @@ class security_logger {
 				$type = gettext('Log downloaded');
 				break;
 			case 'setup_install':
+				$aux1 = $addl;
+				$success = 3;
 				$type = gettext('Install');
 				$addl = gettext('version') . ' ' . ZENPHOTO_VERSION . '[' . ZENPHOTO_RELEASE . "]";
 				if (!zpFunctions::hasPrimaryScripts()) {
@@ -199,8 +201,9 @@ class security_logger {
 				case 2:
 					$message .= gettext("Blocked") . "\t";
 					break;
-				default:
-					$message .= $success . "\t";
+				case 3:
+					$message .= $aux1 . "\t";
+					break;
 			}
 			if ($addl) {
 				$message .= "\t" . $addl;

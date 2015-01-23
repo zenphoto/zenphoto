@@ -11,8 +11,6 @@
 setupLog(gettext('Set default options'), true);
 
 require(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
-require_once(dirname(dirname(__FILE__)) . '/' . PLUGIN_FOLDER . '/security-logger.php');
-zp_apply_filter('log_setup', true, 'install', '');
 
 /* fix for NULL theme name */
 Query('UPDATE ' . prefix('options') . ' SET `theme`="" WHERE `theme` IS NULL');
