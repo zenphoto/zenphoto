@@ -89,9 +89,9 @@ class TextObject extends Image {
 		global $_zp_supported_images;
 		$msg = false;
 		if (!is_object($album) || !$album->exists) {
-			$msg = gettext('Invalid Textobject instantiation: Album does not exist');
+			$msg = sprintf(gettext('Invalid %s instantiation: Album does not exist'), get_class($this));
 		} else if (!$this->classSetup($album, $filename) || !file_exists($this->localpath) || is_dir($this->localpath)) {
-			$msg = gettext('Invalid Textobject instantiation: file does not exist');
+			$msg = sprintf(gettext('Invalid %s instantiation: file does not exist'), get_class($this));
 		}
 		if ($msg) {
 			$this->exists = false;
