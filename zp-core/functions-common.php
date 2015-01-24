@@ -60,7 +60,19 @@ function zpErrorHandler($errno, $errstr = '', $errfile = '', $errline = '') {
 		$errno = E_ERROR;
 	}
 	$msg = sprintf(gettext('%1$s: %2$s in %3$s on line %4$s'), $err, $errstr, $errfile, $errline);
-	debugLogBacktrace($msg, 1);
+	if (array_key_exists('REQUEST_URI', $_SERVER)) {
+		$uri = sanitize($_SERVER['REQUEST_URI']);
+		preg_match('|^(http[s]*\://[a-zA-Z0-9\-\.]+/?)*(.*)$|xis', $uri, $matches);
+		$uri = $matches[2];
+		if (!empty($matches[1])) {
+			$uri = '/' . $uri;
+		}
+	} else {
+		$uri = sanitize(@$_SERVER['SCRIPT_NAME']);
+	}
+	if ($uri)
+		$uri = "\nURI:" . urldecode(str_replace('\\', '/', $uri));
+	debugLogBacktrace($msg . $uri, 1);
 	return false;
 }
 
