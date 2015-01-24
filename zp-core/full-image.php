@@ -40,8 +40,8 @@ if (getOption('hotlink_protection') && isset($_SERVER['HTTP_REFERER'])) {
 	}
 }
 
-$albumobj = newAlbum($album8);
-$imageobj = newImage($albumobj, $image8);
+$albumobj = newAlbum($album8, true, true);
+$imageobj = newImage($albumobj, $image8, true);
 $args = getImageArgs($_GET);
 $args[0] = 'FULL';
 $adminrequest = $args[12];
