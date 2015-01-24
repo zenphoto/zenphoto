@@ -40,33 +40,24 @@ function newImage($album, $filename, $quiet = false) {
 		}
 	}
 	if (!is_object($xalbum) || !$xalbum->exists || !isAlbumClass($xalbum)) {
-		if (!$quiet) {
-			$msg = sprintf(gettext('Bad album object parameter to newImage(%s)'), $filename);
-			trigger_error($msg, E_USER_NOTICE);
-		}
-		return $_zp_missing_image;
-	}
-	if ($object = Gallery::imageObjectClass($filename)) {
-		$image = New $object($xalbum, $filename, $quiet);
+		$msg = sprintf(gettext('Bad album object parameter to newImage(%s)'), $filename);
 	} else {
-		$image = NULL;
-	}
-	if ($image) {
-		if ($album && is_subclass_of($album, 'AlbumBase') && $dyn) {
-			$image->albumname = $album->name;
-			$image->albumlink = $album->linkname;
-			$image->albumnamealbum = $album;
-		}
-		zp_apply_filter('image_instantiate', $image);
-		if ($image->exists) {
-			return $image;
-		} else {
+		if ($object = Gallery::imageObjectClass($filename)) {
+			$image = New $object($xalbum, $filename, $quiet);
+			if ($album && is_subclass_of($album, 'AlbumBase') && $dyn) {
+				$image->albumname = $album->name;
+				$image->albumlink = $album->linkname;
+				$image->albumnamealbum = $album;
+			}
+			zp_apply_filter('image_instantiate', $image);
+			if ($image->exists) {
+				return $image;
+			}
 			return $_zp_missing_image;
 		}
-	}
-
-	if (!$quiet) {
 		$msg = sprintf(gettext('Bad filename suffix in newImage(%s)'), $filename);
+	}
+	if (!$quiet) {
 		trigger_error($msg, E_USER_NOTICE);
 	}
 	return $_zp_missing_image;
