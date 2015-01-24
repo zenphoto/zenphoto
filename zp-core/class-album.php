@@ -1076,7 +1076,6 @@ class Album extends AlbumBase {
 	 * @return Album
 	 */
 	function __construct($folder8, $cache = true, $quiet = false) {
-
 		$folder8 = trim($folder8, '/');
 		$folderFS = internalToFilesystem($folder8);
 		$localpath = ALBUM_FOLDER_SERVERPATH . $folderFS . "/";
@@ -1084,9 +1083,7 @@ class Album extends AlbumBase {
 		$this->localpath = $localpath;
 		if (!$this->_albumCheck($folder8, $folderFS, $quiet))
 			return;
-
 		$new = $this->instantiate('albums', array('folder' => $this->name), 'folder', $cache, empty($folder8));
-
 		if ($new) {
 			$this->save();
 			zp_apply_filter('new_album', $this);
@@ -1104,9 +1101,9 @@ class Album extends AlbumBase {
 			$msg = gettext('Invalid album instantiation: No album name');
 		} else if (filesystemToInternal($folderFS) != $folder8) {
 // an attempt to spoof the album name.
-			$msg = sprintf(gettext('Invalid album instantiation: %1$s!=%2$s'), html_encode(filesystemToInternal($folderFS)), html_encode($folder8));
+			$msg = sprintf(gettext('Invalid album instantiation: %1$s!=%2$s'), html_encode(filesystemToInternal($folderFS)), $folder8);
 		} else if (!file_exists($this->localpath) || !(is_dir($this->localpath)) || $folder8{0} == '.' || preg_match('~/\.*/~', $folder8)) {
-			$msg = sprintf(gettext('Invalid album instantiation: %s does not exist.'), html_encode($folder8));
+			$msg = sprintf(gettext('Invalid album instantiation: %s does not exist.'), $folder8);
 		}
 		if ($msg) {
 			$this->exists = false;
@@ -1552,7 +1549,7 @@ class dynamicAlbum extends AlbumBase {
 // an attempt to spoof the album name.
 			$msg = sprintf(gettext('Invalid album instantiation: %1$s!=%2$s'), html_encode(filesystemToInternal($folderFS)), html_encode($folder8));
 		} else if (!file_exists($this->localpath) || is_dir($this->localpath)) {
-			$msg = sprintf(gettext('Invalid album instantiation: %s does not exist.'), html_encode($folder8));
+			$msg = sprintf(gettext('Invalid album instantiation: %s does not exist.'), $folder8);
 		}
 		if ($msg) {
 			$this->exists = false;
