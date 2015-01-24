@@ -389,7 +389,9 @@ if ($setup_checked) {
 	if (isset($_POST['db'])) {
 		setupLog(gettext("Post of Database credentials"), true);
 	} else {
-		zp_apply_filter('log_setup', true, 'install', gettext('Started'));
+
+		if (!isset($_REQUEST['xsrfToken']))
+			zp_apply_filter('log_setup', true, 'install', gettext('Started'));
 
 		$me = realpath(dirname(dirname(dirname(str_replace('\\', '/', __FILE__)))));
 		$mine = realpath(SERVERPATH);
