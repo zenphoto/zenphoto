@@ -301,6 +301,8 @@ function addNewTag(id) {
 		name = name.replaceAll('+', '__20__');
 		name = name.replaceAll('%', '__25__');
 		name = name.replaceAll('&', '__26__');
+		name = name.replaceAll('(', '__28__');
+		name = name.replaceAll(')', '__29__');
 		var lcname = name.toLowerCase();
 		var exists = $('#' + lcname).length;
 		if (exists) {
