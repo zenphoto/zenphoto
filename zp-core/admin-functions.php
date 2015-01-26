@@ -3,7 +3,7 @@
  * support functions for Admin
  * @package admin
  */
-// force UTF-8 Ã˜
+// force UTF-8 Ø
 
 require_once(dirname(__FILE__) . '/functions.php');
 
@@ -912,7 +912,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 * @param string $str
 	 */
 	function postIndexEncode($str) {
-		return strtr(urlencode($str), array('.' => '__2E__', '+' => '__20__', '%' => '__25__', '&' => '__26__', "'" => '__27__'));
+		return strtr(urlencode($str), array('.' => '__2E__', '+' => '__20__', '%' => '__25__', '&' => '__26__', "'" => '__27__', "(" => '__28__', ")" => '__29__'));
 	}
 
 	/**
@@ -922,7 +922,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 * @return string
 	 */
 	function postIndexDecode($str) {
-		return urldecode(strtr($str, array('__2E__' => '.', '__20__' => '+', '__25__' => '%', '__26__' => '&', '__27__' => "'")));
+		return urldecode(strtr($str, array('__2E__' => '.', '__20__' => '+', '__25__' => '%', '__26__' => '&', '__27__' => "'", '__28__' => "(", '__29__' => ")")));
 	}
 
 	/**
@@ -1974,12 +1974,12 @@ function printAdminHeader($tab, $subtab = NULL) {
 	function printAlbumButtons($album) {
 		if ($imagcount = $album->getNumImages() > 0) {
 			?>
-			<div class="button buttons tooltip" title="<?php echo addslashes(gettext("Clears the albumâ€™s cached images.")); ?>">
+			<div class="button buttons tooltip" title="<?php echo addslashes(gettext("Clears the album’s cached images.")); ?>">
 				<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?action=clear_cache&amp;album=' . html_encode($album->name); ?>&amp;XSRFToken=<?php echo getXSRFToken('clear_cache'); ?>">
 					<img src="images/edit-delete.png" /><?php echo gettext('Clear album image cache'); ?></a>
 				<br class="clearall" />
 			</div>
-			<div class="button buttons tooltip" title="<?php echo gettext("Resets albumâ€™s hit counters."); ?>">
+			<div class="button buttons tooltip" title="<?php echo gettext("Resets album’s hit counters."); ?>">
 				<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?action=reset_hitcounters&amp;album=' . html_encode($album->name) . '&amp;albumid=' . $album->getID(); ?>&amp;XSRFToken=<?php echo getXSRFToken('hitcounter'); ?>">
 					<img src="images/reset.png" /><?php echo gettext('Reset album hit counters'); ?></a>
 				<br class="clearall" />
@@ -2926,12 +2926,12 @@ function adminPageNav($pagenum, $totalpages, $adminpage, $parms, $tab = '') {
 
 		// If the target theme already exists, nothing to do.
 		if (is_dir($target)) {
-			return gettext('Cannot create new theme.') . ' ' . sprintf(gettext('Directory â€œ%sâ€ already exists!'), basename($target));
+			return gettext('Cannot create new theme.') . ' ' . sprintf(gettext('Directory “%s” already exists!'), basename($target));
 		}
 
 		// If source dir is missing, exit too
 		if (!is_dir($source)) {
-			return gettext('Cannot create new theme.') . ' ' . sprintf(gettext('Cannot find theme directory â€œ%sâ€ to copy!'), basename($source));
+			return gettext('Cannot create new theme.') . ' ' . sprintf(gettext('Cannot find theme directory “%s” to copy!'), basename($source));
 		}
 
 		// We must be able to write to the themes dir.
@@ -2973,7 +2973,7 @@ function adminPageNav($pagenum, $totalpages, $adminpage, $parms, $tab = '') {
 		foreach ($source_files as $file) {
 			$newfile = str_replace($source, $target, $file);
 			if (!copy("$file", "$newfile"))
-				return sprintf(gettext("An error occurred while copying files. Please delete manually the new theme directory â€œ%sâ€ and retry or copy files manually."), basename($target));
+				return sprintf(gettext("An error occurred while copying files. Please delete manually the new theme directory “%s” and retry or copy files manually."), basename($target));
 			@chmod("$newfile", FOLDER_MOD);
 		}
 
@@ -4305,7 +4305,7 @@ function XSRFdefender($action) {
 		zp_apply_filter('admin_XSRF_access', false, $action);
 		header("HTTP/1.0 302 Found");
 		header("Status: 302 Found");
-		header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=external&error&msg=' . sprintf(gettext('â€œ%sâ€ Cross Site Request Forgery blocked.'), $action));
+		header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=external&error&msg=' . sprintf(gettext('“%s” Cross Site Request Forgery blocked.'), $action));
 		exitZP();
 	}
 	unset($_REQUEST['XSRFToken']);
@@ -4424,7 +4424,7 @@ function getPageSelector($list, $itmes_per_page, $diff = 'fullText') {
 		$last = '';
 		foreach ($ranges as $page => $range) {
 			$next = @$ranges[$page + 1]['start'];
-			$rangeset[$page] = $diff($last, $range['start']) . ' Â» ' . $diff($next, $range['end']);
+			$rangeset[$page] = $diff($last, $range['start']) . ' » ' . $diff($next, $range['end']);
 			$last = $range['end'];
 		}
 	}
@@ -4442,7 +4442,7 @@ function printPageSelector($subpage, $rangeset, $script, $queryParams) {
 	$query = '?' . $query;
 	if ($subpage > 0) {
 		?>
-		<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . $script . $query; ?>subpage=<?php echo ($subpage - 1); ?>" >Â« <?php echo gettext('prev'); ?></a>
+		<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . $script . $query; ?>subpage=<?php echo ($subpage - 1); ?>" >« <?php echo gettext('prev'); ?></a>
 		<?php
 	}
 	if ($pages > 2) {
@@ -4470,7 +4470,7 @@ function printPageSelector($subpage, $rangeset, $script, $queryParams) {
 			|
 		<?php }
 		?>
-		<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . $script . $query; ?>subpage=<?php echo ($subpage + 1); ?>" ><?php echo gettext('next'); ?> Â»</a>
+		<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . $script . $query; ?>subpage=<?php echo ($subpage + 1); ?>" ><?php echo gettext('next'); ?> »</a>
 		<?php
 	}
 	$instances++;
