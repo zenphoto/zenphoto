@@ -10,19 +10,45 @@
 $plugin_is_filter = 9 | THEME_PLUGIN;
 $plugin_description = gettext("Enables jQuery tag suggestions on the search field.");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
-
+$option_interface = 'tagsuggest';
 zp_register_filter('theme_head', 'tagSuggestJS_frontend');
 zp_register_filter('admin_head', 'tagSuggestJS_admin');
+
+class tagsuggest {
+
+  function __construct() {
+    setOptionDefault('tagsuggest_excludeunassigned', 1);
+    setOptionDefault('tagsuggest_checkaccess', 0);
+  }
+
+  function getOptionsSupported() {
+    	$options = array(
+         gettext('Exclude unassigned')
+          => array(
+              'key'	 => 'tagsuggest_excludeunassigned',
+              'type' => OPTION_TYPE_CHECKBOX,
+              'desc' => gettext("Check if you wish to exclude tags are not assigned to any item.")),
+         gettext('Check tag access')
+          => array(
+              'key'	 => 'tagsuggest_checkaccess',
+              'type' => OPTION_TYPE_CHECKBOX,
+              'desc' => gettext("Check if you wish to exclude tags that are assigned to items (or are not assigned at all) the visitor is not allowed to see. This overrides the exlude unassigned option. <p class='notebox'><strong>Note:</strong> Beware that this may cause overhead on larger sites. The usage of the static_html_cache plugin is recommended.</p>"))
+         );
+     return $options;
+  }
+}
 
 function tagSuggestJS_admin() {
   tagSuggestJS(false);
 }
 
 function tagSuggestJS_frontend() {
-  tagSuggestJS(true);
+  $exclude_unassigned = getOption('tagsuggest_excludeunassigned');
+  $checkaccess = getOption('tagsuggest_checkaccess');
+  tagSuggestJS($exclude_unassigned,$checkaccess);
 }
 
-function tagSuggestJS($exclude = true) {
+function tagSuggestJS($exclude_unassigned = false, $checkaccess = false) {
 	// the scripts needed
 	?>
 	<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/encoder.js"></script>
@@ -32,7 +58,16 @@ function tagSuggestJS($exclude = true) {
 	?>
 	<link type="text/css" rel="stylesheet" href="<?php echo pathurlencode($css); ?>" />
 	<?php
-   $taglist = getAllTagsUnique($exclude);
+  if ($checkaccess) {
+     $taglist = getAllTagsUnique(true);
+   } else {
+     if ($exclude_unassigned) {
+       $taglist = getAllTagsCount(true);
+       $taglist = array_keys($taglist);
+     } else {
+       $taglist = getAllTagsUnique(false);
+     }
+   }
    $c = 0;
    $list = '';
    foreach ($taglist AS $tag) {
