@@ -318,7 +318,7 @@ class feed {
 		switch ($this->feedtype) {
 			case 'gallery':
 				if ($this->mode == "albums") {
-					$items = getAlbumStatistic($this->itemnumber, $this->sortorder, $this->albumfolder, $this->sortdirection);
+					$items = getAlbumStatistic($this->itemnumber, $this->sortorder, $this->albumfolder, 0, $this->sortdirection);
 				} else {
 					$items = getImageStatistic($this->itemnumber, $this->sortorder, $this->albumfolder, $this->collection, 0, $this->sortdirection);
 				}

@@ -42,6 +42,7 @@ class htmlmetatags {
 
 		// the html meta tag selector prechecked ones
 		setOptionDefault('htmlmeta_htmlmeta_tags', '1');
+		setOptionDefault('htmlmeta_tags_threshold', 1);
 		setOptionDefault('htmlmeta_http-equiv-cache-control', '1');
 		setOptionDefault('htmlmeta_http-equiv-pragma', '1');
 		setOptionDefault('htmlmeta_name=keywords', '1');
@@ -74,23 +75,28 @@ class htmlmetatags {
 										'selections' => array('no-cache' => "no-cache", 'public' => "public", 'private' => "private", 'no-store' => "no-store"),
 										'desc'			 => gettext("If the browser cache should be used.")),
 						gettext('Pragma')								 => array('key'				 => 'htmlmeta_pragma', 'type'			 => OPTION_TYPE_SELECTOR,
+										'order'			 => 2,
 										'selections' => array('no-cache' => "no-cache", 'cache' => "cache"),
 										'desc'			 => gettext("If the pages should be allowed to be cached on proxy servers.")),
 						gettext('Robots')								 => array('key'				 => 'htmlmeta_robots', 'type'			 => OPTION_TYPE_SELECTOR,
+										'order'			 => 3,
 										'selections' => array('noindex' => "noindex", 'index' => "index", 'nofollow' => "nofollow", 'noindex,nofollow' => "noindex,nofollow", 'noindex,follow' => "noindex,follow", 'index,nofollow' => "index,nofollow", 'none' => "none"),
 										'desc'			 => gettext("If and how robots are allowed to visit the site. Default is “index”. Note that you also should use a robot.txt file.")),
-						gettext('Revisit after')				 => array('key'	 => 'htmlmeta_revisit_after', 'type' => OPTION_TYPE_NUMBER,
-										'desc' => gettext("Request the crawler to revisit the page after x days.")),
-						gettext('Expires')							 => array('key'	 => 'htmlmeta_expires', 'type' => OPTION_TYPE_NUMBER,
-										'desc' => gettext("When the page should be loaded directly from the server and not from any cache. You can either set a date/time in international date format <em>Sat, 15 Dec 2001 12:00:00 GMT (example)</em> or a number. A number then means seconds, the default value <em>43200</em> means 12 hours.")),
+						gettext('Revisit after')				 => array('key'		 => 'htmlmeta_revisit_after', 'type'	 => OPTION_TYPE_NUMBER,
+										'order'	 => 4,
+										'desc'	 => gettext("Request the crawler to revisit the page after x days.")),
+						gettext('Expires')							 => array('key'		 => 'htmlmeta_expires', 'type'	 => OPTION_TYPE_NUMBER,
+										'order'	 => 5,
+										'desc'	 => gettext("When the page should be loaded directly from the server and not from any cache. You can either set a date/time in international date format <em>Sat, 15 Dec 2001 12:00:00 GMT (example)</em> or a number. A number then means seconds, the default value <em>43200</em> means 12 hours.")),
 						gettext('Canonical URL link')		 => array('key'		 => 'htmlmeta_canonical-url', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 11,
+										'order'	 => 6,
 										'desc'	 => gettext('This adds a link element to the head of each page with a <em>canonical url</em>. If the <code>seo_locale</code> plugin is enabled or <code>use subdomains</code> is checked it also generates alternate links for other languages (<code>&lt;link&nbsp;rel="alternate" hreflang="</code>...<code>" href="</code>...<code>" /&gt;</code>).')),
 						gettext('Site logo')						 => array('key'	 => 'htmlmeta_sitelogo', 'type' => OPTION_TYPE_TEXTBOX,
 										'desc' => gettext("Enter the full url to a specific site logo image. Facebook, Google+ and others will use that as the thumb shown in link previews within posts. For image or album pages the default size album or image thumb is used automatically.")),
 						gettext('Twitter name')					 => array('key'	 => 'htmlmeta_twittername', 'type' => OPTION_TYPE_TEXTBOX,
 										'desc' => gettext("If you enabled Twitter card meta tags, you need to enter your Twitter user name here.")),
 						gettext('HTML meta tags')				 => array('key'				 => 'htmlmeta_tags', 'type'			 => OPTION_TYPE_CHECKBOX_UL,
+										'order'			 => 12,
 										"checkboxes" => array(
 														"http-equiv='cache-control'"			 => "htmlmeta_http-equiv-cache-control",
 														"http-equiv='pragma'"							 => "htmlmeta_http-equiv-pragma",
@@ -117,20 +123,24 @@ class htmlmetatags {
 														"twitter:card"										 => "htmlmeta_twittercard"
 										),
 										"desc"			 => gettext("Which of the HTML meta tags should be used. For info about these in detail please refer to the net.")),
+						gettext('Keyword threshold')		 => array('key'		 => 'htmlmeta_tags_threshold', 'type'	 => OPTION_TYPE_NUMBER,
+										'order'	 => 13,
+										'limits' => array('min' => 1),
+										'desc'	 => gettext('Only keywords with at least this number of uses will be shown.')),
 						gettext('Use subdomains') . '*'	 => array('key'			 => 'dynamic_locale_subdomain', 'type'		 => OPTION_TYPE_CHECKBOX,
-										'order'		 => 12,
+										'order'		 => 7,
 										'disabled' => $_common_locale_type,
 										'desc'		 => $localdesc)
 		);
 		if ($_common_locale_type) {
 			$options['note'] = array('key'		 => 'html_meta_tags_locale_type', 'type'	 => OPTION_TYPE_NOTE,
-							'order'	 => 13,
+							'order'	 => 8,
 							'desc'	 => '<p class="notebox">' . $_common_locale_type . '</p>');
 		} else {
 			$_common_locale_type = gettext('* This option may be set via the <a onclick="gotoName(\'html_meta_tags\');"><em>html_meta_tags</em></a> plugin options.');
 			$options['note'] = array('key'		 => 'html_meta_tags_locale_type',
 							'type'	 => OPTION_TYPE_NOTE,
-							'order'	 => 13,
+							'order'	 => 8,
 							'desc'	 => gettext('<p class="notebox">*<strong>Note:</strong> The setting of this option is shared with other plugins.</p>'));
 		}
 		return $options;
@@ -414,7 +424,7 @@ class htmlmetatags {
 			$tags = getTags();
 			$words .= htmlmetatags::getMetaAlbumAndImageTags($tags, "gallery");
 		} else if ($_zp_gallery_page === "index.php") {
-			$tags = array_keys(getAllTagsUnique()); // get all if no specific item is set
+			$tags = array_keys(getAllTagsUnique(getOption('htmlmeta_tags_threshold'))); // get all if no specific item is set
 			$words .= htmlmetatags::getMetaAlbumAndImageTags($tags, "gallery");
 		}
 		if (extensionEnabled('zenpage')) {
