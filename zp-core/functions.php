@@ -1061,14 +1061,35 @@ function setupTheme($album = NULL) {
 	return $theme;
 }
 
+define('SELECT_IMAGES', 1);
+define('SELECT_ALBUMS', 2);
+define('SELECT_PAGES', 4);
+define('SELECT_ARTICLES', 8);
+
 /**
  * Returns an array of unique tag names
  *
+ * Tags are shown only if their occurance count is greater or equal to the threshold
+ * value passed.
+ *
+ * If the site visitor is not logged in this function returns only tags associated
+ * with "published" objects. However, the publish state is limited to the `show` column
+ * of the object. This is not totally "correct", however the computatioal intensity
+ * of returning only that might link to "visible" objects is prohibitive.
+ *
+ * Logged-in users will see all tags subject to the threshold limits
+ *
  * @param $language string exclude language tags other than this string
- * @param $count int threshold useage count
+ * @param $count int threshold occurance count
+ * @param $selector bitmap of what objects to include. See defines above for
+ * 									self-explanatory selectors. NOTE: pages and articles will
+ * 									be returned only if the zenpage plugin is enabled.
  * @return array
+ *
+ * @author Stephen Billard
+ * @copyright (c)Stephen Billard for use with ZenPhoto20
  */
-function getAllTagsUnique($language = NULL, $count = 1) {
+function getAllTagsUnique($language = NULL, $count = 1, $selector = 15) {
 	global $_zp_unique_tags, $_zp_current_locale;
 	if (is_null($language)) {
 		switch (getOption('languageTagSearch')) {
@@ -1086,20 +1107,38 @@ function getAllTagsUnique($language = NULL, $count = 1) {
 
 	if (!isset($_zp_unique_tags[$language][$count])) {
 		$_zp_unique_tags[$language][$count] = array();
-		$sql = 'SELECT DISTINCT tags.name, tags.id, (SELECT COUNT(*) FROM ' . prefix('obj_to_tag') . ' AS object WHERE object.tagid = tags.id) AS count FROM ' . prefix('tags') . ' AS tags';
-		if (!empty($language)) {
-			$sql .= ' WHERE (tags.language="" OR tags.language LIKE ' . db_quote(db_LIKE_escape($language) . '%') . ')';
+		if (empty($language)) {
+			$lang = '';
+		} else {
+			$lang = ' AND (tag.language="" OR tag.language LIKE ' . db_quote(db_LIKE_escape($language) . '%') . ')';
 		}
-		$sql .= ' ORDER BY tags.name';
-		$unique_tags = query($sql);
+		if (zp_loggedin()) {
+			$published = '';
+		} else {
+			$published = ' AND obj.objectid=object.id AND object.show=1';
+		}
+		query('CREATE TEMPORARY TABLE taglist(name VARCHAR(255), type TINYTEXT, id INT(11) UNSIGNED)');
+
+		if ($selector & SELECT_IMAGES)
+			query('INSERT INTO taglist SELECT tag.name, obj.type, object.id FROM ' . prefix('tags') . ' tag, ' . prefix('obj_to_tag') . ' obj, ' . prefix('images') . ' object WHERE (tag.id=obj.tagid	AND obj.type="images"' . $published . ') ' . $lang . ' ORDER BY tag.name');
+		if ($selector & SELECT_ALBUMS)
+			query('INSERT INTO taglist SELECT tag.name, obj.type, object.id FROM ' . prefix('tags') . ' tag, ' . prefix('obj_to_tag') . ' obj, ' . prefix('albums') . ' object WHERE (tag.id=obj.tagid AND obj.type="albums"' . $published . ') ' . $lang);
+		if (extensionEnabled('zenpage')) {
+			if ($selector & SELECT_PAGES)
+				query('INSERT INTO taglist SELECT tag.name, obj.type, object.id FROM ' . prefix('tags') . ' tag,' . prefix('obj_to_tag') . ' obj, ' . prefix('pages') . ' object WHERE (tag.id=obj.tagid AND obj.type="pages"' . $published . ')' . $lang);
+			if ($selector & SELECT_ARTICLES)
+				query('INSERT INTO taglist SELECT tag.name, obj.type, object.id FROM ' . prefix('tags') . ' tag, ' . prefix('obj_to_tag') . ' obj, ' . prefix('news') . ' object WHERE (tag.id=obj.tagid AND obj.type="news"' . $published . ') ' . $lang);
+		}
+		$unique_tags = query("SELECT name, count(*) as count FROM taglist GROUP BY name");
 		if ($unique_tags) {
 			while ($tagrow = db_fetch_assoc($unique_tags)) {
 				if ($tagrow['count'] >= $count) {
 					$_zp_unique_tags[$language][$count][mb_strtolower($tagrow['name'])] = $tagrow['name'];
 				}
 			}
-			db_free_result($unique_tags);
 		}
+		db_free_result($unique_tags);
+		query('DROP TEMPORARY TABLE taglist');
 	}
 	return $_zp_unique_tags[$language][$count];
 }
