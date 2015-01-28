@@ -220,7 +220,7 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 			}
 			break;
 		case "latestupdated":
-			$albums = getAlbumStatistic($to_number, 'latestupdated', '');
+			$albums = getAlbumStatistic($to_number, 'latestupdated');
 			$maxvalue = 1;
 			if (!empty($albums)) {
 				foreach ($albums as $key => $album) {
