@@ -67,7 +67,7 @@ function getAlbumStatistic($number = 5, $option, $albumfolder = false, $threshol
 			$sortorder = "id";
 			break;
 		case "latest-mtime":
-			$sortorder = "images.mtime";
+			$sortorder = "mtime";
 			break;
 		case "latest-date":
 			$sortorder = "date";
@@ -342,7 +342,7 @@ function printTopRatedAlbums($number = 5, $showtitle = false, $showdate = false,
 }
 
 /**
- * Prints the top voted albums
+ * Prints the latest updated albums
  *
  * @param string $number the number of albums to get
  * @param bool $showtitle if the album title should be shown
