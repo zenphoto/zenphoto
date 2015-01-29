@@ -83,8 +83,8 @@ if (empty($admins)) { //	empty administrators table
 	} else {
 		if (Zenphoto_Authority::$preferred_version > ($oldv = getOption('libauth_version'))) {
 			if (empty($oldv)) {
-				//	The password hash of these old versions did not have the extra text.
-				//	Note: if the administrators table is empty we will re-do this option with the good stuff.
+//	The password hash of these old versions did not have the extra text.
+//	Note: if the administrators table is empty we will re-do this option with the good stuff.
 				purgeOption('extra_auth_hash_text');
 				setOptionDefault('extra_auth_hash_text', '');
 			}
@@ -351,10 +351,14 @@ if (file_exists(SERVERPATH . '/' . THEMEFOLDER . '/effervescence_plus')) {
 ?>
 <p>
 	<?php
+	$deprecate = false;
 	$themes = array_keys($_zp_gallery->getThemes());
 	natcasesort($themes);
 	echo gettext('Theme setup:') . '<br />';
 	foreach ($themes as $theme) {
+		if (!protectedTheme($theme)) {
+			$deprecate = true;
+		}
 		?>
 		<span>
 			<img src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/setup/setup_themeOptions.php?theme=' . urlencode($theme); ?>" title="<?php echo $theme; ?>" alt="<?php echo $theme; ?>" height="16px" width="16px" />
@@ -581,7 +585,6 @@ foreach ($_languages as $language => $dirname) {
 
 //The following should be done LAST so it catches anything done above
 //set plugin default options by instantiating the options interface
-enableExtension('deprecated-functions', 0); //	innocent until proven guilty.
 $plugins = getPluginFiles('*.php');
 ?>
 <p>
@@ -590,6 +593,18 @@ $plugins = getPluginFiles('*.php');
 	natcasesort($plugins);
 	echo gettext('Plugin setup:') . '<br />';
 	foreach ($plugins as $extension) {
+		$path = getPlugin($extension . '.php');
+		if (strpos($path, SERVERPATH . '/' . USER_PLUGIN_FOLDER) === 0) {
+			$pluginStream = file_get_contents($path);
+			if ($str = isolate('@category', $pluginStream)) {
+				preg_match('|@category\s+(.*)\s|', $str, $matches);
+				if (!isset($matches[1]) || $matches[1] != 'package') {
+					$deprecate = true;
+				}
+			} else {
+				$deprecate = true;
+			}
+		}
 		?>
 		<span>
 			<img src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/setup/setup_pluginOptions.php?plugin=' . $extension; ?>" title="<?php echo $extension; ?>" alt="<?php echo $extension; ?>" height="16px" width="16px" />
@@ -600,5 +615,16 @@ $plugins = getPluginFiles('*.php');
 </p>
 
 <?php
+if ($deprecate) {
+	require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions.php');
+	$deprecated = new deprecated_functions();
+	$listed = sha1(serialize($deprecated->listed_functions));
+	if ($listed != getOption('deprecated_functions_signature')) {
+		setOption('deprecated_functions_signature', $listed);
+		enableExtension('deprecated-functions', 900 | CLASS_PLUGIN);
+		setupLog(gettext('There has been a change function deprecation. The deprecated-functions plugin has been enabled.'), true);
+	}
+}
+
 $_zp_gallery->garbageCollect();
 ?>
