@@ -37,7 +37,7 @@
  * Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
  *
  * @package plugins
- * @subpackage admin
+ * @subpackage development
  * @category package
  */
 

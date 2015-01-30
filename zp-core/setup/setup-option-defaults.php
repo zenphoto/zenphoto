@@ -355,8 +355,10 @@ if (file_exists(SERVERPATH . '/' . THEMEFOLDER . '/effervescence_plus')) {
 	$themes = array_keys($_zp_gallery->getThemes());
 	natcasesort($themes);
 	echo gettext('Theme setup:') . '<br />';
-	foreach ($themes as $theme) {
-		if (!protectedTheme($theme)) {
+	foreach ($themes as $key => $theme) {
+		if (protectedTheme($theme)) {
+			unset($themes[$key]);
+		} else {
 			$deprecate = true;
 		}
 		?>
@@ -592,7 +594,7 @@ $plugins = getPluginFiles('*.php');
 	$plugins = array_keys($plugins);
 	natcasesort($plugins);
 	echo gettext('Plugin setup:') . '<br />';
-	foreach ($plugins as $extension) {
+	foreach ($plugins as $key => $extension) {
 		$path = getPlugin($extension . '.php');
 		if (strpos($path, SERVERPATH . '/' . USER_PLUGIN_FOLDER) === 0) {
 			$pluginStream = file_get_contents($path);
@@ -610,6 +612,9 @@ $plugins = getPluginFiles('*.php');
 			<img src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/setup/setup_pluginOptions.php?plugin=' . $extension; ?>" title="<?php echo $extension; ?>" alt="<?php echo $extension; ?>" height="16px" width="16px" />
 		</span>
 		<?php
+		if (!$deprecate) {
+			unset($plugins[$key]);
+		}
 	}
 	?>
 </p>
@@ -623,6 +628,12 @@ if ($deprecate) {
 		setOption('deprecated_functions_signature', $listed);
 		enableExtension('deprecated-functions', 900 | CLASS_PLUGIN);
 		setupLog(gettext('There has been a change function deprecation. The deprecated-functions plugin has been enabled.'), true);
+	}
+	$compatibility = sha1(serialize($themes)) . sha1(serialize($plugins));
+	if ($compatibility != getOption('zenphotoCompatibilityPack_signature')) {
+		setOption('zenphotoCompatibilityPack_signature', $compatibility);
+		enableExtension('zenphotoCompatibilityPack', 1 | CLASS_PLUGIN);
+		setupLog(gettext('There has been a change themes or plugins. The zenphotoCompatibilityPack plugin has been enabled.'), true);
 	}
 }
 
