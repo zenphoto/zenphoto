@@ -8,12 +8,12 @@
  */
 /* * ********************************************* */
 /* ZENPAGE TEMPLATE FUNCTIONS
-  /*********************************************** */
+	/*********************************************** */
 
 
 /* * ********************************************* */
 /* General functions
-  /*********************************************** */
+	/*********************************************** */
 
 /**
  * Checks if the current page is in news context.
@@ -117,7 +117,7 @@ function getAuthor($fullname = false) {
 
 /* * ********************************************* */
 /* News article functions
-  /*********************************************** */
+	/*********************************************** */
 
 /**
  * Gets the latest news either only news articles or with the latest images or albums
@@ -787,7 +787,7 @@ function printAllNewsCategories($newsindex = 'All news', $counter = true, $css_i
 
 /* * ********************************************* */
 /* News article URL functions
-  /*********************************************** */
+	/*********************************************** */
 
 /**
  * Returns the full path to a news category
@@ -869,7 +869,7 @@ function getNewsArchivePath($date, $page) {
 
 /* * ********************************************************* */
 /* News index / category / date archive pagination functions
-  /********************************************************** */
+	/********************************************************** */
 
 function getNewsPathNav($page) {
 	global $_zp_current_category, $_zp_post_date;
@@ -1049,22 +1049,20 @@ function getTotalNewsPages() {
 
 /* * ********************************************************************* */
 /* Single news article pagination functions (previous and next article)
-  /*********************************************************************** */
+	/*********************************************************************** */
 
 /**
  * Returns the title and the titlelink of the next article in single news article pagination as an array
  * Returns false if there is none (or option is empty)
  *
  * NOTE: This is not available if using the CombiNews feature
- * @param string $sortorder "desc" (default)or "asc" for descending or ascending news. Required if these for next_news() loop are changed.
- * @param string $sortdirection "date" (default) or "title" for sorting by date or titlelink. Required if these for next_news() loop are changed.
  *
  * @return mixed
  */
-function getNextNewsURL($sortorder = 'date', $sortdirection = 'desc') {
+function getNextNewsURL() {
 	global $_zp_current_article;
 	if (is_object($_zp_current_article)) {
-		$article = $_zp_current_article->getNextArticle($sortorder, $sortdirection);
+		$article = $_zp_current_article->getNextArticle();
 		if ($article)
 			return array("link" => $article->getLink(), "title" => $article->getTitle());
 	}
@@ -1076,15 +1074,13 @@ function getNextNewsURL($sortorder = 'date', $sortdirection = 'desc') {
  * Returns false if there is none (or option is empty)
  *
  * NOTE: This is not available if using the CombiNews feature
- * @param string $sortorder "desc" (default)or "asc" for descending or ascending news. Required if these for next_news() loop are changed.
- * @param string $sortdirection "date" (default) or "title" for sorting by date or titlelink. Required if these for next_news() loop are changed.
  *
  * @return mixed
  */
-function getPrevNewsURL($sortorder = 'date', $sortdirection = 'desc') {
+function getPrevNewsURL() {
 	global $_zp_current_article;
 	if (is_object($_zp_current_article)) {
-		$article = $_zp_current_article->getPrevArticle($sortorder, $sortdirection);
+		$article = $_zp_current_article->getPrevArticle();
 		if ($article)
 			return array("link" => $article->getLink(), "title" => $article->getTitle());
 	}return false;
@@ -1096,12 +1092,10 @@ function getPrevNewsURL($sortorder = 'date', $sortdirection = 'desc') {
  * NOTE: This is not available if using the CombiNews feature
  *
  * @param string $next If you want to show something with the title of the article like a symbol
- * @param string $sortorder "desc" (default)or "asc" for descending or ascending news. Required if these for next_news() loop are changed.
- * @param string $sortdirection "date" (default) or "title" for sorting by date or titlelink. Required if these for next_news() loop are changed.
  * @return string
  */
-function printNextNewsLink($next = " »", $sortorder = 'date', $sortdirection = 'desc') {
-	$article_url = getNextNewsURL($sortorder, $sortdirection);
+function printNextNewsLink($next = " »") {
+	$article_url = getNextNewsURL();
 	if ($article_url && array_key_exists('link', $article_url) && $article_url['link'] != "") {
 		echo "<a href=\"" . html_encode($article_url['link']) . "\" title=\"" . html_encode(getBare($article_url['title'])) . "\">" . $article_url['title'] . "</a> " . html_encode($next);
 	}
@@ -1113,12 +1107,10 @@ function printNextNewsLink($next = " »", $sortorder = 'date', $sortdirection = 
  * NOTE: This is not available if using the CombiNews feature
  *
  * @param string $next If you want to show something with the title of the article like a symbol
- * @param string $sortorder "desc" (default)or "asc" for descending or ascending news. Required if these for next_news() loop are changed.
- * @param string $sortdirection "date" (default) or "title" for sorting by date or titlelink. Required if these for next_news() loop are changed.
  * @return string
  */
-function printPrevNewsLink($prev = "« ", $sortorder = 'date', $sortdirection = 'desc') {
-	$article_url = getPrevNewsURL($sortorder, $sortdirection);
+function printPrevNewsLink($prev = "« ") {
+	$article_url = getPrevNewsURL();
 	if ($article_url && array_key_exists('link', $article_url) && $article_url['link'] != "") {
 		echo html_encode($prev) . " <a href=\"" . html_encode($article_url['link']) . "\" title=\"" . html_encode(getBare($article_url['title'])) . "\">" . $article_url['title'] . "</a>";
 	}
@@ -1126,7 +1118,7 @@ function printPrevNewsLink($prev = "« ", $sortorder = 'date', $sortdirection = 
 
 /* * ******************************************************* */
 /* Functions - shared by Pages and News articles
-  /********************************************************* */
+	/********************************************************* */
 
 /**
  * Gets the statistic for pages, news articles or categories as an unordered list
@@ -1656,7 +1648,7 @@ function printZenpageItemsBreadcrumb($before = NULL, $after = NULL) {
 
 /* * ********************************************* */
 /* Pages functions
-  /*********************************************** */
+	/*********************************************** */
 $_zp_CMS_pagelist = NULL;
 
 /**
@@ -2117,7 +2109,7 @@ function checkForPage($titlelink) {
 
 /* * ********************************************* */
 /* Comments
-  /*********************************************** */
+	/*********************************************** */
 
 /**
  * Gets latest comments for news articles and pages

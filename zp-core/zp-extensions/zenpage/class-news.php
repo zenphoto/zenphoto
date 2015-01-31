@@ -360,15 +360,12 @@ class Article extends CMSItems {
 	/**
 	 * Get the index of this article
 	 *
-	 * @param string $sortorder
-	 * @param bool $sortdirection TRUE for ascending, FALSE for descending
-	 * @param bool $sticky If sticky article should come first
 	 * @return int
 	 */
-	function getIndex($sortorder, $sortdirection, $sticky) {
+	function getIndex() {
 		global $_zp_CMS;
 		if ($this->index == NULL) {
-			$articles = $_zp_CMS->getArticles(0, NULL, true, $sortorder, $sortdirection, $sticky);
+			$articles = $_zp_CMS->getArticles(0, NULL, true);
 			for ($i = 0; $i < count($articles); $i++) {
 				$article = $articles[$i];
 				if ($this->getTitlelink() == $article['titlelink']) {
@@ -383,14 +380,11 @@ class Article extends CMSItems {
 	/**
 	 * Return the previous article
 	 *
-	 * @param string $sortorder
-	 * @param bool $sortdirection TRUE for ascending, FALSE for descending
-	 * @param bool $sticky If sticky article should come first
-	 * @return object
+ * @return object
 	 */
-	function getPrevArticle($sortorder = 'date', $sortdirection = false, $sticky = true) {
+	function getPrevArticle() {
 		global $_zp_CMS;
-		$index = $this->getIndex($sortorder, $sortdirection, $sticky);
+		$index = $this->getIndex();
 		$article = $_zp_CMS->getArticle($index - 1);
 		return $article;
 	}
@@ -398,14 +392,11 @@ class Article extends CMSItems {
 	/**
 	 * Returns the next article.
 	 *
-	 * @param string $sortorder
-	 * @param bool $sortdirection TRUE for ascending, FALSE for descending
-	 * @param bool $sticky If sticky article should come first
 	 * @return object
 	 */
-	function getNextArticle($sortorder = 'date', $sortdirection = false, $sticky = true) {
+	function getNextArticle() {
 		global $_zp_CMS;
-		$index = $this->getIndex($sortorder, $sortdirection, $sticky);
+		$index = $this->getIndex();
 		$article = $_zp_CMS->getArticle($index + 1);
 		return $article;
 	}
