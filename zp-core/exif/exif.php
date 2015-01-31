@@ -255,7 +255,7 @@ function lookup_tag($tag) {
 		case '9203': $tag = 'BrightnessValue';
 			break; // positive rational number
 		case '9204': $tag = 'ExposureBiasValue';
-			break; // positive rational number (EV)
+			break; // signed rational number (EV)
 		case '9205': $tag = 'MaxApertureValue';
 			break; // positive rational number
 		case '9206': $tag = 'SubjectDistance';
@@ -305,7 +305,7 @@ function lookup_tag($tag) {
 		case 'a214': $tag = 'SubjectLocation';
 			break; // two integers 0-65535
 		case 'a215': $tag = 'ExposureIndex';
-			break; // positive rational number
+			break; // signed rational number
 		case 'a217': $tag = 'SensingMethod';
 			break; // values 1-8
 		case 'a300': $tag = 'FileSource';
@@ -1218,6 +1218,14 @@ function read_exif_data_raw($path, $verbose) {
 
 	if (hexdec($offset) > 8)
 		$unknown = fread($in, hexdec($offset) - 8); // fixed this bug in 1.3
+
+
+
+
+
+
+
+
 
 
 

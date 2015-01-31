@@ -2458,7 +2458,7 @@ class zpFunctions {
 						'VideoResolution_y'					 => array('VIDEO', 'resolution_y', gettext('Y Resolution'), false, 32, true, 'number'),
 						'VideoAspect_ratio'					 => array('VIDEO', 'pixel_aspect_ratio', gettext('Aspect ratio'), false, 32, true, 'number'),
 						'VideoPlaytime'							 => array('VIDEO', 'playtime_string', gettext('Play Time'), false, 10, true, 'number'),
-						'XMPrating'									 => array('XMP', 'rating', gettext('XMP Rating'), false, 10, true, 'string'),
+						'XMPRating'									 => array('XMP', 'rating', gettext('XMP Rating'), false, 10, true, 'string'),
 		);
 		foreach ($_zp_exifvars as $key => $item) {
 			if (!is_null($disable = getOption($key . '-disabled'))) {
