@@ -8,9 +8,9 @@ if (!defined('WEBPATH'))
 <html>
 	<head>
 		<?php zp_apply_filter('theme_head'); ?>
-		
-		
-		 
+
+
+
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" />
 		<?php jqm_loadScripts(); ?>
@@ -73,16 +73,19 @@ if (!defined('WEBPATH'))
 					}
 					?>
 					<br style="clear:both" />
-					<?php If (function_exists('printAddToFavorites')) printAddToFavorites($_zp_current_image); ?>
 					<?php
+						if (function_exists('printSlideShowLink')) {
+							echo '<span id="slideshowlink">';
+							printSlideShowLink();
+							echo '</span>';
+						}
+					if (function_exists('printAddToFavorites')) printAddToFavorites($_zp_current_image);
 					if (function_exists('printRating')) {
 						echo '<div id="rating">';
 						printRating();
 						echo '</div>';
 					}
-					?>
-					<?php if (function_exists('printGoogleMap')) printGoogleMap(); ?>
-					<?php
+					if (function_exists('printGoogleMap')) printGoogleMap();
 					if (function_exists('printCommentForm')) {
 						echo '<hr />';
 						printCommentForm();

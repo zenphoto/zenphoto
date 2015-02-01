@@ -2316,6 +2316,40 @@ function getMacros() {
 	return $_zp_content_macros;
 }
 
+/**
+ * generates a nested list of albums for the album tab sorting
+ * Returns an array of "albums" each element contains:
+ * 								'name' which is the folder name
+ * 								'sort_order' which is an array of the sort order set
+ *
+ * @param $subalbum root level album (NULL is the gallery)
+ * @param $levels how far to nest
+ * @param $level internal for keeping the sort order elements
+ * @return array
+ */
+function getNestedAlbumList($subalbum, $levels, $level = array()) {
+	global $_zp_gallery;
+	$cur = count($level);
+	$levels--; // make it 0 relative to sync with $cur
+	if (is_null($subalbum)) {
+		$albums = $_zp_gallery->getAlbums();
+	} else {
+		$albums = $subalbum->getAlbums();
+	}
+	$list = array();
+	foreach ($albums as $analbum) {
+		$albumobj = newAlbum($analbum);
+		if (!is_null($subalbum) || $albumobj->isMyItem(ALBUM_RIGHTS)) {
+			$level[$cur] = sprintf('%03u', $albumobj->getSortOrder());
+			$list[] = array('name' => $analbum, 'sort_order' => $level);
+			if ($cur < $levels && ($albumobj->getNumAlbums()) && !$albumobj->isDynamic()) {
+				$list = array_merge($list, getNestedAlbumList($albumobj, $levels + 1, $level));
+			}
+		}
+	}
+	return $list;
+}
+
 class zpFunctions {
 
 	/**
