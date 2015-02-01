@@ -94,20 +94,20 @@ function jqm_printFooterNav() {
 		<?php
 		$adminlink = '';
 		$favoriteslink = '';
-		if (zp_loggedin()) {
-			$adminlink = '<li><a rel="external" href="' . PROTOCOL . '://' . html_encode($_SERVER['HTTP_HOST'] . WEBPATH . '/' . ZENFOLDER) . '/admin.php">' . gettext('Admin') . '</a></li>';
+		if (!zp_loggedin() && function_exists('printRegisterURL')) {
+			if ($_zp_gallery_page != 'register.php') {
+				$_linktext = get_language_string(getOption('register_user_page_link'));
+				$adminlink = '<li><a rel="external" href="' . html_encode(register_user::getLink()) . '">' . $_linktext . '</a></li>';
+			} 
 		}
 		if (function_exists('printFavoritesURL')) {
-			ob_start();
-			printFavoritesURL(NULL, '<li>', '</li><li>', '</li>');
-			$favoriteslink = ob_get_contents();
-			ob_end_clean();
+			$favoriteslink = '<li><a rel="external" href="' . html_encode(getFavoritesURL()) . '">' . gettext('Favorites') . '</a></li>';
 		}
 		if ($adminlink || $favoriteslink) {
 			?>
 			<div data-role="navbar">
 				<ul id="footernav">
-		<?php echo $adminlink . $favoriteslink; ?>
+					<?php echo $adminlink . $favoriteslink; ?>
 				</ul>
 			</div>
 			<!-- /navbar -->
