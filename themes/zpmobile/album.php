@@ -66,19 +66,21 @@ if (!defined('WEBPATH')) die(); ?>
 			<?php endwhile; ?>
 		</div>
 		<br class="clearall" />
-		<?php if(hasPrevPage() || hasNextPage()) printPageListWithNav(gettext("prev"), gettext("next"),false,true,'pagelist',NULL,true,7); ?>
-		<?php
-					if (function_exists('printAddToFavorites')) {
-						echo "<br />";
-						printAddToFavorites($_zp_current_album);
-					}
-	
-	  ?>	
-			
-			<?php
-		if (function_exists('printCommentForm')) {
-		  printCommentForm();
-		}	?>
+		<?php 
+			if(hasPrevPage() || hasNextPage()) printPageListWithNav(gettext("prev"), gettext("next"),false,true,'pagelist',NULL,true,7); 
+		  if (function_exists('printSlideShowLink')) {
+				echo '<span id="slideshowlink">';
+				printSlideShowLink();
+				echo '</span>';
+			}
+			if (function_exists('printAddToFavorites')) {
+				echo "<br />";
+				printAddToFavorites($_zp_current_album);
+			}
+			if (function_exists('printCommentForm')) {
+		  	printCommentForm();
+			}	
+		?>
 		</div>
 		 <div class="content-secondary">
 			<?php jqm_printMenusLinks(); ?>
