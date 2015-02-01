@@ -107,7 +107,12 @@ function jqm_printFooterNav() {
 			?>
 			<div data-role="navbar">
 				<ul id="footernav">
-					<?php echo $adminlink . $favoriteslink; ?>
+					<?php 
+					echo $adminlink . $favoriteslink; 
+					if (function_exists("printUserLogin_out")) {
+						echo "<li>"; printUserLogin_out("", "", 0); echo "</li>";
+					}
+					?>
 				</ul>
 			</div>
 			<!-- /navbar -->
