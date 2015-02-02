@@ -65,7 +65,7 @@ class galleryArticles {
 			$options = array(gettext('Publish for')			 => array('key'				 => 'galleryArticles_items', 'type'			 => OPTION_TYPE_CHECKBOX_ARRAY,
 											'order'			 => 1,
 											'checkboxes' => $list,
-											'desc'			 => gettext('If a <em>type</em> is checked, a news article will be made when an object of that <em>type</em> is published.')),
+											'desc'			 => gettext('If a <em>type</em> is checked, a news article will be made when an object of that <em>type</em> is published. Note: These articles are static and will not be updated automatically if the original changes later!')),
 							gettext('Image title')			 => array('key'					 => 'galleryArticles_image_text', 'type'				 => OPTION_TYPE_TEXTBOX,
 											'order'				 => 3,
 											'multilingual' => true,
@@ -169,56 +169,72 @@ class galleryArticles {
 	}
 
 	/**
-	 *
-	 * Formats the message and calls sendTweet() on an object
-	 * @param object $obj
-	 */
-	private static function publishArticle($obj, $override = NULL) {
-		global $_zp_zenpage;
-		switch ($type = $obj->table) {
-			case 'albums':
-				$text = sprintf(get_language_string(getOption('galleryArticles_album_text')), $obj->getTitle());
-				$title = $folder = $obj->name;
-				$img = $obj->getAlbumThumbImage();
-				$class = 'galleryarticles-newalbum';
-				break;
-			case 'images':
-				$text = sprintf(get_language_string(getOption('galleryArticles_image_text')), $obj->getTitle(), $obj->album->getTitle());
-				$folder = $obj->imagefolder;
-				$title = $folder . '-' . $obj->filename;
-				$img = $obj;
-				$class = 'galleryarticles-newimage';
-				break;
-		}
-		$article = new ZenpageNews(seoFriendly('galleryAticles-' . $title));
-		$article->setTitle($text);
+   *
+   * Formats the message and calls sendTweet() on an object
+   * @param object $obj
+   */
+  private static function publishArticle($obj, $override = NULL) {
+    global $_zp_zenpage;
+    switch ($type = $obj->table) {
+      case 'albums':
+        $alb_title = unserialize($obj->getTitle('all'));
+        $galleryitem_text = unserialize(getOption('galleryArticles_album_text'));
+        foreach ($galleryitem_text as $key => $val) {
+          if (!empty($alb_title[$key])) {
+            $galleryitem_text[$key] = sprintf($galleryitem_text[$key], $alb_title[$key]);
+          }
+        }
+        $text = serialize($galleryitem_text);
+        $title = $folder = $obj->name;
+        $img = $obj->getAlbumThumbImage();
+        $class = 'galleryarticles-newalbum';
+        break;
+      case 'images':
+        //$text = sprintf(get_language_string(getOption('galleryArticles_image_text')), $obj->getTitle(), $obj->album->getTitle());
+        $img_title = unserialize($obj->getTitle('all'));
+        $alb_title = unserialize($obj->album->getTitle('all'));
+        $galleryitem_text = unserialize(getOption('galleryArticles_album_text'));
+        foreach ($galleryitem_text as $key => $val) {
+          if (!empty($img_title[$key])) {
+            $galleryitem_text[$key] = sprintf(get_language_string(getOption('galleryArticles_image_text')), $img_title[$key], $alb_title[$key]);
+          }
+        }
+        $text = serialize($galleryitem_text);
+        $folder = $obj->imagefolder;
+        $title = $folder . '-' . $obj->filename;
+        $img = $obj;
+        $class = 'galleryarticles-newimage';
+        break;
+    }
+    $article = new ZenpageNews(seoFriendly('galleryAticles-' . $title));
+    $article->setTitle($text);
 
-		$article->setContent('<p><a class="' . $class . '" href="' . $obj->getLink() . '"><img src="' . $img->getCustomImage(getOption('galleryArticles_size'), NULL, NULL, NULL, NULL, NULL, NULL, -1) . '"></a></p><p>' . $obj->getDesc() . '</p>');
-		$article->setShow(true);
-		$date = $obj->getPublishDate();
-		if (!$date)
-			$date = date('Y-m-d H:i:s');
-		$article->setDateTime($date);
-		$article->setAuthor('galleryArticles');
-		$article->save();
-		if ($override) {
-			$cat = $override;
-		} else {
-			$cat = getOption('galleryArticles_category');
-			if (getOption('galleryArticles_albumCategory')) {
-				$catlist = $_zp_zenpage->getAllCategories();
-				foreach ($catlist as $category) {
-					if ($category['titlelink'] == $folder) {
-						$cat = $category['titlelink'];
-						break;
-					}
-				}
-			}
-		}
-		$article->setCategories(array($cat));
-	}
+    $article->setContent('<p><a class="' . $class . '" href="' . $obj->getLink() . '"><img src="' . $img->getCustomImage(getOption('galleryArticles_size'), NULL, NULL, NULL, NULL, NULL, NULL, -1) . '"></a></p><p>' . $obj->getDesc() . '</p>');
+    $article->setShow(true);
+    $date = $obj->getPublishDate();
+    if (!$date)
+      $date = date('Y-m-d H:i:s');
+    $article->setDateTime($date);
+    $article->setAuthor('galleryArticles');
+    $article->save();
+    if ($override) {
+      $cat = $override;
+    } else {
+      $cat = getOption('galleryArticles_category');
+      if (getOption('galleryArticles_albumCategory')) {
+        $catlist = $_zp_zenpage->getAllCategories();
+        foreach ($catlist as $category) {
+          if ($category['titlelink'] == $folder) {
+            $cat = $category['titlelink'];
+            break;
+          }
+        }
+      }
+    }
+    $article->setCategories(array($cat));
+  }
 
-	/**
+  /**
 	 *
 	 * filter which checks if there are any matured items to be sent
 	 * @param string $script
