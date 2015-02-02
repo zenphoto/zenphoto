@@ -1186,11 +1186,12 @@ class Zenphoto_Authority {
 							$(displays).html('<?php echo gettext('password strength strong'); ?>');
 						}
 						if (strength < <?php echo (int) getOption('password_strength'); ?>) {
-							$(inputb).attr('disabled', 'disabled');
+							$(inputb).prop('disabled', true);
 							$(displays).css('color', '#ff0000');
 							$(displays).html('<?php echo gettext('password strength too weak'); ?>');
 						} else {
-							$(inputb).removeAttr('disabled');
+							$(inputb).parent().removeClass('ui-state-disabled');
+							$(inputb).prop('disabled', false);
 							passwordMatch(id);
 						}
 						var url = 'url(<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/strengths/strength' + strength + '.png)';
