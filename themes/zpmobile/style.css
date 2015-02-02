@@ -50,7 +50,8 @@ ul.taglist li a,
 .archive a,
 #archive a,
 h2.breadcrumb a,
-ul.pagelist li a {
+ul.pagelist li a,
+a.slideshowlink {
 	font-weight: normal;
 	text-decoration: none;
 	border: 1px solid #dddddd;
@@ -81,7 +82,8 @@ ul.taglist li a:hover,
 .archive a:hover,
 #archive a:hover,
 h2.breadcrumb a:hover,
-ul.pagelist li a:hover {
+ul.pagelist li a:hover,
+a.slideshowlink:hover {
 	text-decoration: none;
 	background-color: lightgray;
 }
@@ -93,7 +95,8 @@ ul.taglist li a:active,
 #archive a:active,
 h2.breadcrumb a:active,
 ul.pagelist li a:active,
-ul.pagelist li a:active {
+ul.pagelist li a:active,
+a.slideshowlink:active {
 	text-decoration: none;
 	background-color: darkgray;
 }
@@ -266,6 +269,17 @@ ul.archive ul li {
 	display: inline;
 }
 
+.slideshow_controls li a {
+	color: white;
+	text-decoration: none;
+
+}
+
+.slideshow_controls li a:hover,
+.slideshow_controls li a:active{
+	color: darkgray;
+}
+
 li.rsslink {
 	list-style: none;
 	margin-left: -15px;
@@ -384,7 +398,7 @@ li.rsslink {
 @media screen and (min-width: 500px) {
 	.content-primary {
 		line-height: 20px;
-  }
+	}
 }
 
 @media screen and (min-width: 960px) {
@@ -395,19 +409,19 @@ li.rsslink {
 		margin: 0 auto;
 	}
 	.content-primary {
-   	width: 600px;
-   	float: left;
-   	margin-right: 10px;
-   	padding-right: 10px;
+		width: 600px;
+		float: left;
+		margin-right: 10px;
+		padding-right: 10px;
 	}
 
-  .content-primary {
+	.content-primary {
 		line-height: 20px;
-  }
-  .content-secondary {
-   	width: 300px;
-   	float: right;
-  }
+	}
+	.content-secondary {
+		width: 300px;
+		float: right;
+	}
 
 }
 .error {

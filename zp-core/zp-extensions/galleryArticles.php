@@ -177,13 +177,28 @@ class galleryArticles {
 		global $_zp_CMS;
 		switch ($type = $obj->table) {
 			case 'albums':
-				$text = sprintf(get_language_string(getOption('galleryArticles_album_text')), $obj->getTitle());
+				$alb_title = unserialize($obj->getTitle('all'));
+				$galleryitem_text = unserialize(getOption('galleryArticles_album_text'));
+				foreach ($galleryitem_text as $key => $val) {
+					if (!empty($alb_title[$key])) {
+						$galleryitem_text[$key] = sprintf($galleryitem_text[$key], $alb_title[$key]);
+					}
+				}
+				$text = serialize($galleryitem_text);
 				$title = $folder = $obj->name;
 				$img = $obj->getAlbumThumbImage();
 				$class = 'galleryarticles-newalbum';
 				break;
 			case 'images':
-				$text = sprintf(get_language_string(getOption('galleryArticles_image_text')), $obj->getTitle(), $obj->album->getTitle());
+				$img_title = unserialize($obj->getTitle('all'));
+				$alb_title = unserialize($obj->album->getTitle('all'));
+				$galleryitem_text = unserialize(getOption('galleryArticles_album_text'));
+				foreach ($galleryitem_text as $key => $val) {
+					if (!empty($img_title[$key])) {
+						$galleryitem_text[$key] = sprintf(get_language_string(getOption('galleryArticles_image_text')), $img_title[$key], $alb_title[$key]);
+					}
+				}
+				$text = serialize($galleryitem_text);
 				$folder = $obj->imagefolder;
 				$title = $folder . '-' . $obj->filename;
 				$img = $obj;

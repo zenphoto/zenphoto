@@ -49,11 +49,8 @@ if (strpos($path, SERVERPATH . '/' . USER_PLUGIN_FOLDER) === 0) {
 	} else {
 		$deprecate = true;
 	}
-	if ($deprecate) {
-		setupLog(sprintf(gettext('Plugin:%s triggered the deprecated functions plugin'), $extension), true);
-		enableExtension('deprecated-functions', 900 | CLASS_PLUGIN);
-		require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions.php');
-	}
+} else {
+	$deprecate = false;
 }
 if ($option_interface) {
 	//	prime the default options
@@ -64,7 +61,7 @@ if ($option_interface) {
 setupLog(sprintf(gettext('Plugin:%s setup completed'), $extension), true);
 
 $iMutex->unlock();
-if (isset($deprecate) && $deprecate) {
+if ($deprecate) {
 	$img = 'pass_2.png';
 } else {
 	$img = 'pass.png';

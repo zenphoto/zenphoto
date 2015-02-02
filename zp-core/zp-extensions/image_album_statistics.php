@@ -17,7 +17,7 @@ $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 require_once(dirname(dirname(__FILE__)) . '/template-functions.php');
 
 /**
- * Returns a list of album statistic accordingly to $option
+ * Returns an array of album objects accordingly to $option
  *
  * @param int $number the number of albums to get
  * @param string $option
@@ -90,20 +90,33 @@ function getAlbumStatistic($number = 5, $option, $albumfolder = false, $threshol
 	}
 
 	$albums = array();
-	$result = query('SELECT id, title, folder, thumb FROM ' . prefix('albums') . $where . ' ORDER BY ' . $sortorder . $sortdir);
-	if ($result) {
-		while ($row = db_fetch_assoc($result)) {
-			if (empty($albumfolder) || strpos($row['folder'], $albumfolder) === 0) {
-				$obj = newAlbum($row['folder'], true);
-				if ($obj->exists && $obj->checkAccess()) {
-					$albums[] = $row;
-					if (count($albums) >= $number) { // got enough
-						break;
-					}
+	if ($albumfolder && $obj->isDynamic()) {
+		$albums = $obj->getAlbums(0, $sortorder, $sortdir);
+		foreach ($albums as $album) {
+			$album = newAlbum($album);
+			if ($album->checkAccess()) {
+				$albums[] = $album;
+				if (count($albums) >= $number) { // got enough
+					break;
 				}
 			}
 		}
-		db_free_result($result);
+	} else {
+		$result = query('SELECT id, title, folder, thumb FROM ' . prefix('albums') . $where . ' ORDER BY ' . $sortorder . $sortdir);
+		if ($result) {
+			while ($row = db_fetch_assoc($result)) {
+				if (empty($albumfolder) || strpos($row['folder'], $albumfolder) === 0) {
+					$obj = newAlbum($row['folder'], true);
+					if ($obj->exists && $obj->checkAccess()) {
+						$albums[] = newAlbum($row['folder']);
+						if (count($albums) >= $number) { // got enough
+							break;
+						}
+					}
+				}
+			}
+			db_free_result($result);
+		}
 	}
 	return $albums;
 }
@@ -150,7 +163,7 @@ function printAlbumStatistic($number, $option, $showtitle = false, $showdate = f
  * A helper function that only prints a item of the loop within printAlbumStatistic()
  * Not for standalone use.
  *
- * @param array $album the array that getAlbumsStatistic() submitted
+ * @param array $tempalbum object
  * @param string $option
  * 		"popular" for the most popular albums,
  * 		"latest" for the latest uploaded by id (Discovery)
@@ -174,7 +187,7 @@ function printAlbumStatistic($number, $option, $showtitle = false, $showdate = f
  * @param bool $crop 'true' (default) if the thumb should be cropped, 'false' if not
  * @param bool $firstimglink 'false' (default) if the album thumb link should lead to the album page, 'true' if to the first image of theh album if the album itself has images
  */
-function printAlbumStatisticItem($album, $option, $showtitle = false, $showdate = false, $showdesc = false, $desclength = 40, $showstatistic = '', $width = NULL, $height = NULL, $crop = NULL, $firstimglink = false) {
+function printAlbumStatisticItem($tempalbum, $option, $showtitle = false, $showdate = false, $showdesc = false, $desclength = 40, $showstatistic = '', $width = NULL, $height = NULL, $crop = NULL, $firstimglink = false) {
 	global $_zp_gallery;
 	$twidth = $width;
 	$theight = $height;
@@ -191,7 +204,7 @@ function printAlbumStatisticItem($album, $option, $showtitle = false, $showdate 
 			$crop = (int) $crop && true;
 		}
 	}
-	$tempalbum = newAlbum($album['folder']);
+
 	if ($firstimglink && $tempimage = $tempalbum->getImage(0)) {
 		$albumpath = $tempimage->getLink();
 	} else {
@@ -205,7 +218,11 @@ function printAlbumStatisticItem($album, $option, $showtitle = false, $showdate 
 			echo '<img src="' . html_encode(pathurlencode($albumthumb->getCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, TRUE))) . '" width="' . $sizes[0] . '" height="' . $sizes[1] . '" alt="' . html_encode($albumthumb->getTitle()) . '" /></a>' . "\n";
 			break;
 		case 1;
-			$sizes = getSizeCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, $albumthumb);
+			if (isImagePhoto($albumthumb)) {
+				$sizes = getSizeCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, $albumthumb);
+			} else {
+				$sizes = array($width, $height);
+			}
 			echo '<img src="' . html_encode(pathurlencode($albumthumb->getCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, TRUE))) . '" width="' . $sizes[0] . '" height="' . $sizes[1] . '" alt="' . html_encode($albumthumb->getTitle()) . '" /></a>' . "\n";
 			break;
 		case 2:
@@ -363,7 +380,7 @@ function printLatestUpdatedAlbums($number = 5, $showtitle = false, $showdate = f
 }
 
 /**
- * Returns a list of image statistic according to $option
+ * Returns an array of image objects according to $option
  *
  * NOTE: for performance reasons this function will NOT discover new images.
  *

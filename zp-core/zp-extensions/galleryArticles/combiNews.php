@@ -204,9 +204,8 @@ class Combi extends CMS {
 				$albums = getAlbumStatistic($articles_per_page, "latestupdated", false, 0, $sortdirection);
 				$latestalbums = array();
 				$counter = "";
-				foreach ($albums as $album) {
+				foreach ($albums as $tempalbum) {
 					$counter++;
-					$tempalbum = newAlbum($album['folder']);
 					$tempalbumthumb = $tempalbum->getAlbumThumbImage();
 					$timestamp = $tempalbum->get('mtime');
 					if ($timestamp == 0) {

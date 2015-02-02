@@ -199,7 +199,7 @@ class CMS {
 	 * @param boolean $ignorepagination Since also used for the news loop this function automatically paginates the results if the "page" GET variable is set. To avoid this behaviour if using it directly to get articles set this TRUE (default FALSE)
 	 * @param string $sortorder "date" (default), "title", "id, "popular", "mostrated", "toprated", "random"
 	 * 													This parameter is not used for date archives
-	 * @param bool $sortdirection TRUE for ascending, FALSE for descending. Note: This parameter is not used for date archives
+	 * @param bool $sortdirection TRUE for descending, FALSE for ascending. Note: This parameter is not used for date archives
 	 * @param bool $sticky set to true to place "sticky" articles at the front of the list.
 	 * @return array
 	 */

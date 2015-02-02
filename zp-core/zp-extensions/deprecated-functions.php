@@ -34,14 +34,6 @@ $plugin_is_filter = 900 | CLASS_PLUGIN;
 
 define('DEPRECATED_LOG', SERVERPATH . '/' . DATA_FOLDER . '/deprecated.log');
 
-if (OFFSET_PATH == 2) {
-	$deprecated = new deprecated_functions();
-	$listed = $deprecated->listed_functions;
-	if (empty($listed)) {
-		enableExtension('deprecated-functions', 0);
-	}
-}
-
 zp_register_filter('admin_utilities_buttons', 'deprecated_functions::button');
 zp_register_filter('admin_tabs', 'deprecated_functions::tabs');
 

@@ -17,12 +17,6 @@ $iMutex->lock();
 
 $theme = sanitize($_REQUEST['theme']);
 setupLog(sprintf(gettext('Theme:%s setup started'), $theme), true);
-if (!protectedTheme($theme)) {
-	setupLog(sprintf(gettext('Theme:%s triggered the deprecated functions plugin'), $theme), true);
-	enableExtension('deprecated-functions', 900 | CLASS_PLUGIN);
-	require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions.php');
-	$deprecate = true;
-}
 
 $requirePath = getPlugin('themeoptions.php', $theme);
 
@@ -41,10 +35,10 @@ setupLog(sprintf(gettext('Theme:%s setup completed'), $theme), true);
 
 $iMutex->unlock();
 
-if (isset($deprecate) && $deprecate) {
-	$img = 'pass_2.png';
-} else {
+if (protectedTheme($theme)) {
 	$img = 'pass.png';
+} else {
+	$img = 'pass_2.png';
 }
 $fp = fopen(SERVERPATH . '/' . ZENFOLDER . '/images/' . $img, 'rb');
 // send the right headers

@@ -252,9 +252,13 @@ class Image extends MediaObject {
 	 * @param type $field
 	 * @return type
 	 */
-	private function enabledMetadata($field) {
+	private function fetchMetadata($field) {
 		global $_zp_exifvars;
-		return $_zp_exifvars[$field][5];
+		if ($_zp_exifvars[$field][5]) {
+			return $this->get($field);
+		} else {
+			return NULL;
+		}
 	}
 
 	/**
@@ -364,7 +368,7 @@ class Image extends MediaObject {
 						}
 					}
 					/* iptc keywords (tags) */
-					if (self::enabledMetadata('IPTCKeywords')) {
+					if ($_zp_exifvars['IPTCKeywords'][5]) {
 						$datum = $this->getIPTCTagArray($IPTCtags['Keywords'], $iptc);
 						if (is_array($datum)) {
 							$tags = array();
@@ -383,30 +387,26 @@ class Image extends MediaObject {
 		/* "import" metadata into database fields as makes sense */
 
 		/* ZenPhoto20 "date" field population */
-		$date = '';
-		if (self::enabledMetadata('IPTCDateCreated')) {
-			$date = $this->get('IPTCDateCreated');
-			if (!empty($date)) {
-				if (strlen($date) > 8) {
-					$time = substr($date, 8);
-				} else {
-					/* got date from IPTC, now must get time */
-					$time = $this->get('IPTCTimeCreated');
-				}
-				$date = substr($date, 0, 4) . '-' . substr($date, 4, 2) . '-' . substr($date, 6, 2);
-				if (!empty($time)) {
-					$date = $date . ' ' . substr($time, 0, 2) . ':' . substr($time, 2, 2) . ':' . substr($time, 4, 2);
-				}
+		if ($date = self::fetchMetadata('IPTCDateCreated')) {
+			if (strlen($date) > 8) {
+				$time = substr($date, 8);
+			} else {
+				/* got date from IPTC, now must get time */
+				$time = $this->get('IPTCTimeCreated');
+			}
+			$date = substr($date, 0, 4) . '-' . substr($date, 4, 2) . '-' . substr($date, 6, 2);
+			if (!empty($time)) {
+				$date = $date . ' ' . substr($time, 0, 2) . ':' . substr($time, 2, 2) . ':' . substr($time, 4, 2);
 			}
 		}
-		if (empty($date) && self::enabledMetadata('EXIFDateTime')) {
-			$date = $this->get('EXIFDateTime');
+		if (empty($date)) {
+			$date = self::fetchMetadata('EXIFDateTime');
 		}
-		if (empty($date) && self::enabledMetadata('EXIFDateTimeOriginal')) {
-			$date = $this->get('EXIFDateTimeOriginal');
+		if (empty($date)) {
+			$date = self::fetchMetadata('EXIFDateTimeOriginal');
 		}
-		if (empty($date) && self::enabledMetadata('EXIFDateTimeDigitized')) {
-			$date = $this->get('EXIFDateTimeDigitized');
+		if (empty($date)) {
+			$date = self::fetchMetadata('EXIFDateTimeDigitized');
 		}
 		if (empty($date)) {
 			$this->setDateTime(strftime('%Y-%m-%d %H:%M:%S', $this->filemtime));
@@ -415,15 +415,12 @@ class Image extends MediaObject {
 		}
 
 		/* ZenPhoto20 "title" field population */
-		$title = '';
-		if (self::enabledMetadata('IPTCObjectName')) {
-			$title = $this->get('IPTCObjectName');
+		$title = self::fetchMetadata('IPTCObjectName');
+		if (empty($title)) {
+			$title = self::fetchMetadata('IPTCImageHeadline');
 		}
-		if (empty($title) && self::enabledMetadata('IPTCObjectName')) {
-			$title = $this->get('IPTCImageHeadline');
-		}
-		if (empty($title) && self::enabledMetadata('EXIFDescription')) {
-			$title = $this->get('EXIFDescription'); //EXIF title [sic]
+		if (empty($title)) {
+			$title = self::fetchMetadata('EXIFDescription'); //EXIF title [sic]
 		}
 		if (!empty($title)) {
 			if (getoption('transform_newlines')) {
@@ -433,59 +430,51 @@ class Image extends MediaObject {
 		}
 
 		/* ZenPhoto20 "description" field population */
-		if (self::enabledMetadata('IPTCImageCaption')) {
-			$desc = $this->get('IPTCImageCaption');
-			if (!empty($desc)) {
-				if (getoption('transform_newlines')) {
-					$desc = nl2br($desc);
-				}
-				$this->setDesc($desc);
+		$desc = self::fetchMetadata('IPTCImageCaption');
+		if (!empty($desc)) {
+			if (getoption('transform_newlines')) {
+				$desc = nl2br($desc);
 			}
+			$this->setDesc($desc);
 		}
 
+
 		/* ZenPhoto20 "location", "state", and "country" field population */
-		if (self::enabledMetadata('IPTCSubLocation')) {
-			$loc = $this->get('IPTCSubLocation');
-			if (!empty($loc)) {
-				$this->setLocation($loc);
-			}
+		$loc = self::fetchMetadata('IPTCSubLocation');
+		if (!empty($loc)) {
+			$this->setLocation($loc);
 		}
-		if (self::enabledMetadata('IPTCCity')) {
-			$city = $this->get('IPTCCity');
-			if (!empty($city)) {
-				$this->setCity($city);
-			}
+
+		$city = self::fetchMetadata('IPTCCity');
+		if (!empty($city)) {
+			$this->setCity($city);
 		}
-		if (self::enabledMetadata('IPTCState')) {
-			$state = $this->get('IPTCState');
-			if (!empty($state)) {
-				$this->setState($state);
-			}
+
+		$state = self::fetchMetadata('IPTCState');
+		if (!empty($state)) {
+			$this->setState($state);
 		}
-		if (self::enabledMetadata('IPTCLocationName')) {
-			$country = $this->get('IPTCLocationName');
-			if (!empty($country)) {
-				$this->setCountry($country);
-			}
+
+		$country = self::fetchMetadata('IPTCLocationName');
+		if (!empty($country)) {
+			$this->setCountry($country);
 		}
 
 		/* ZenPhoto20 "credit" field population */
-		if (self::enabledMetadata('IPTCByLine')) {
-			$credit = $this->get('IPTCByLine');
+		$credit = self::fetchMetadata('IPTCByLine');
+		if (empty($credit)) {
+			$credit = self::fetchMetadata('IPTCImageCredit');
 		}
-		if (empty($credit) && self::enabledMetadata('IPTCByLine')) {
-			$credit = $this->get('IPTCImageCredit');
-		}
-		if (empty($credit) && self::enabledMetadata('IPTCSource')) {
-			$credit = $this->get('IPTCSource');
+		if (empty($credit)) {
+			$credit = self::fetchMetadata('IPTCSource');
 		}
 		if (!empty($credit)) {
 			$this->setCredit($credit);
 		}
 
 		/* ZenPhoto20 "copyright" field population */
-		if (self::enabledMetadata('IPTCCopyright')) {
-			$this->setCopyright($this->get('IPTCCopyright'));
+		if ($copyright = self::fetchMetadata('IPTCCopyright')) {
+			$this->setCopyright($copyright);
 		}
 
 		$alb = $this->album;
