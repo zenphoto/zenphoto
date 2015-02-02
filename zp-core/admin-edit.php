@@ -167,9 +167,6 @@ if (isset($_GET['action'])) {
 		/*		 * *************************************************************************** */
 		case "publish":
 			XSRFdefender('albumedit');
-
-
-
 			$album = newAlbum($folder);
 			$album->setShow($_GET['value']);
 			$album->setPublishDate(NULL);
@@ -238,6 +235,9 @@ if (isset($_GET['action'])) {
 			}
 
 			$return = '?page=edit&tab=imageinfo&album=' . $return . '&metadata_refresh';
+			if (isset($_REQUEST['singleimage'])) {
+				$return .= '&singleimage=' . sanitize($_REQUEST['singleimage']);
+			}
 			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php' . $return);
 			exitZP();
 			break;
@@ -907,7 +907,7 @@ echo "\n</head>";
 					<?php
 				} else if ($subtab == 'imageinfo') {
 					require_once(SERVERPATH . '/' . ZENFOLDER . '/exif/exifTranslations.php');
-					$singleimage = NULL;
+					$singleimagelink = $singleimage = NULL;
 					if ($totalimages == 1) {
 						$_GET['singleimage'] = array_shift($images);
 					}
@@ -916,6 +916,7 @@ echo "\n</head>";
 						$allimagecount = 1;
 						$totalimages = 1;
 						$images = array($singleimage);
+						$singleimagelink = '&singleimage=' . html_encode($singleimage);
 					}
 					?>
 					<!-- Images List -->
@@ -1093,9 +1094,9 @@ echo "\n</head>";
 																				 name="<?php echo $currentimage; ?>-Visible"
 																				 value="1" <?php if ($image->getShow()) echo ' checked = "checked"'; ?>
 																				 onclick="$('#publishdate-<?php echo $currentimage; ?>').val('');
-																										 $('#expirationdate-<?php echo $currentimage; ?>').val('');
-																										 $('#publishdate-<?php echo $currentimage; ?>').css('color', 'black ');
-																										 $('.expire-<?php echo $currentimage; ?>').html('');"
+																						 $('#expirationdate-<?php echo $currentimage; ?>').val('');
+																						 $('#publishdate-<?php echo $currentimage; ?>').css('color', 'black ');
+																						 $('.expire-<?php echo $currentimage; ?>').html('');"
 																				 />
 																				 <?php echo gettext("Published"); ?>
 																</label>
@@ -1208,17 +1209,17 @@ echo "\n</head>";
 																<label class="checkboxlabel">
 																	<input type="radio" id="copy-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="copy"
 																				 onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>'
-																														 , 'copy');"  /> <?php echo gettext("Copy"); ?>
+																										 , 'copy');"  /> <?php echo gettext("Copy"); ?>
 																</label>
 																<label class="checkboxlabel">
 																	<input type="radio" id="rename-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="rename"
 																				 onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>',
-																														 'rename');"  /> <?php echo gettext("Rename File"); ?>
+																										 'rename');"  /> <?php echo gettext("Rename File"); ?>
 																</label>
 																<label class="checkboxlabel">
 																	<input type="radio" id="Delete-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="delete"
 																				 onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>', '');
-																										 deleteConfirm('Delete-<?php echo $currentimage; ?>', '<?php echo $currentimage; ?>', '<?php echo addslashes(gettext("Are you sure you want to select this image for deletion?")); ?>')" /> <?php echo gettext("Delete image") ?>
+																						 deleteConfirm('Delete-<?php echo $currentimage; ?>', '<?php echo $currentimage; ?>', '<?php echo addslashes(gettext("Are you sure you want to select this image for deletion?")); ?>')" /> <?php echo gettext("Delete image") ?>
 																</label>
 																<br class="clearall" />
 																<div id="movecopydiv-<?php echo $currentimage; ?>" style="padding-top: .5em; padding-left: .5em; display: none;">
@@ -1308,7 +1309,7 @@ echo "\n</head>";
 																<br class="clearall" />
 																<hr />
 																<div class="button buttons tooltip" title="<?php printf(gettext('Refresh %s metadata'), $image->filename); ?>">
-																	<a href="admin-edit.php?action=refresh&amp;album=<?php echo html_encode(pathurlencode($album->name)); ?>&amp;image=<?php echo urlencode($image->filename); ?>&amp;subpage=<?php echo $pagenum; ?>&amp;tagsort=<?php echo html_encode($tagsort); ?>&amp;XSRFToken=<?php echo getXSRFToken('imagemetadata'); ?>" >
+																	<a href="admin-edit.php?action=refresh&amp;album=<?php echo html_encode(pathurlencode($album->name)); ?>&amp;image=<?php echo urlencode($image->filename); ?>&amp;subpage=<?php echo $pagenum . $singleimagelink; ?>&amp;tagsort=<?php echo html_encode($tagsort); ?>&amp;XSRFToken=<?php echo getXSRFToken('imagemetadata'); ?>" >
 																		<img src="images/cache.png" alt="" /><?php echo gettext("Refresh Metadata"); ?>
 																	</a>
 																	<br class="clearall" />
@@ -1317,14 +1318,14 @@ echo "\n</head>";
 																if (isImagePhoto($image) || !is_null($image->objectsThumb)) {
 																	?>
 																	<div class="button buttons tooltip" title="<?php printf(gettext('crop %s'), $image->filename); ?>">
-																		<a href="admin-thumbcrop.php?a=<?php echo html_encode(pathurlencode($album->name)); ?>&amp;i=<?php echo urlencode($image->filename); ?>&amp;subpage=<?php echo $pagenum; ?>&amp;tagsort=<?php echo html_encode($tagsort); ?>" >
+																		<a href="admin-thumbcrop.php?a=<?php echo html_encode(pathurlencode($album->name)); ?>&amp;i=<?php echo urlencode($image->filename); ?>&amp;subpage=<?php echo $pagenum . $singleimagelink; ?>&amp;tagsort=<?php echo html_encode($tagsort); ?>" >
 																			<img src="images/shape_handles.png" alt="" /><?php echo gettext("Crop thumbnail"); ?>
 																		</a>
 																		<br class="clearall" />
 																	</div>
 																	<?php
 																}
-																echo zp_apply_filter('edit_image_utilities', '<!--image-->', $image, $currentimage, $pagenum, $tagsort); //pass space as HTML because there is already a button shown for cropimage
+																echo zp_apply_filter('edit_image_utilities', '<!--image-->', $image, $currentimage, $pagenum, $tagsort, $singleimage); //pass space as HTML because there is already a button shown for cropimage
 																?>
 																<span class="clearall" ></span>
 															</div>
@@ -1335,7 +1336,7 @@ echo "\n</head>";
 																?>
 																<div class = "page-list_icon">
 																	<input class = "checkbox" type = "checkbox" name = "ids[]" value="<?php echo $image->getFileName(); ?>" onclick="triggerAllBox(this.form, 'ids[]', this.for
-																												m.allbox);" />
+																							m.allbox);" />
 																</div>
 																<?php
 															}
