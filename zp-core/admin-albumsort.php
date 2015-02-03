@@ -57,8 +57,19 @@ printAdminHeader('edit', 'sort');
 <script type="text/javascript">
 	//<!-- <![CDATA[
 	$(function () {
-		$('#images').sortable();
+		$('#images').sortable({
+			change: function (event, ui) {
+				$('#sortableListForm').dirtyForms('setDirty');
+			}
+		});
 	});
+	function postSort(form) {
+		$('#sortableList').val($('#images').sortable('serialize'));
+		form.submit();
+	}
+	function cancelSort() {
+		$('#images').sortable('cancel');
+	}
 	// ]]> -->
 </script>
 <?php
@@ -176,23 +187,20 @@ echo "\n</head>";
 						}
 					}
 					?>
-					<form class="dirtylistening" onReset="setClean('sortableListForm');" action="?page=edit&amp;album=<?php echo $album->getFileName(); ?>&amp;saved&amp;tab=sort" method="post" name="sortableListForm" id="sortableListForm" >
-						<?php XSRFToken('save_sort'); ?>
-						<?php printBulkActions($checkarray_images, true); ?>
-						<script type="text/javascript">
-							// <!-- <![CDATA[
-							function postSort(form) {
-								$('#sortableList').val($('#images').sortable('serialize'));
-								form.submit();
-							}
-							// ]]> -->
-						</script>
+					<form class="dirtylistening" onReset="setClean('sortableListForm');
+								cancelSort();" action="?page=edit&amp;album=<?php echo $album->getFileName(); ?>&amp;saved&amp;tab=sort" method="post" name="sortableListForm" id="sortableListForm" >
+								<?php XSRFToken('save_sort'); ?>
+								<?php printBulkActions($checkarray_images, true); ?>
 
 						<p class="buttons">
 							<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $parent; ?>"><img	src="images/arrow_left_blue_round.png" alt="" /><strong><?php echo gettext("Back"); ?></strong></a>
 							<button type="submit" onclick="postSort(this.form);" >
 								<img	src="images/pass.png" alt="" />
 								<strong><?php echo gettext("Apply"); ?></strong>
+							</button>
+							<button type="reset">
+								<img	src="images/reset.png" alt="" />
+								<strong><?php echo gettext("Reset"); ?></strong>
 							</button>
 							<a href="<?php echo WEBPATH . "/index.php?album=" . html_encode(pathurlencode($album->getFileName())); ?>">
 								<img src="images/view.png" alt="" />
@@ -247,6 +255,10 @@ echo "\n</head>";
 								<button type="submit" onclick="postSort(this.form);" >
 									<img	src="images/pass.png" alt="" />
 									<strong><?php echo gettext("Apply"); ?></strong>
+								</button>
+								<button type="reset">
+									<img	src="images/reset.png" alt="" />
+									<strong><?php echo gettext("Reset"); ?></strong>
 								</button>
 								<a href="<?php echo WEBPATH . "/index.php?album=" . html_encode(pathurlencode($album->getFileName())); ?>">
 									<img src="images/view.png" alt="" />

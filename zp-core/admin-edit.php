@@ -167,9 +167,6 @@ if (isset($_GET['action'])) {
 		/*		 * *************************************************************************** */
 		case "publish":
 			XSRFdefender('albumedit');
-
-
-
 			$album = newAlbum($folder);
 			$album->setShow($_GET['value']);
 			$album->setPublishDate(NULL);
@@ -238,6 +235,9 @@ if (isset($_GET['action'])) {
 			}
 
 			$return = '?page=edit&tab=imageinfo&album=' . $return . '&metadata_refresh';
+			if (isset($_REQUEST['singleimage'])) {
+				$return .= '&singleimage=' . sanitize($_REQUEST['singleimage']);
+			}
 			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php' . $return);
 			exitZP();
 			break;
@@ -761,8 +761,9 @@ echo "\n</head>";
 					<!-- Album info box -->
 					<div id="tab_albuminfo" class="tabbox">
 						<?php consolidatedEditMessages('albuminfo'); ?>
-						<form class="dirtylistening" onReset="setClean('form_albumedit');" name="albumedit1" id="form_albumedit" autocomplete="off" action="?page=edit&amp;action=save<?php echo "&amp;album=" . pathurlencode($album->name); ?>"	method="post" >
-							<?php XSRFToken('albumedit'); ?>
+						<form class="dirtylistening" onReset="setClean('form_albumedit');
+										page - list" name="albumedit1" id="form_albumedit" autocomplete="off" action="?page=edit&amp;action=save<?php echo "&amp;album=" . pathurlencode($album->name); ?>"	method="post" >
+									<?php XSRFToken('albumedit'); ?>
 							<input type="hidden" name="album"	value="<?php echo $album->name; ?>" />
 							<input type="hidden"	name="savealbuminfo" value="1" />
 							<?php printAlbumEditForm(0, $album); ?>
@@ -782,8 +783,9 @@ echo "\n</head>";
 							<?php
 							printEditDropdown('subalbuminfo', array('1', '2', '3', '4', '5'), $subalbum_nesting);
 							?>
-							<form class="dirtylistening" onReset="setClean('sortableListForm');" action="?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>&amp;action=savesubalbumorder&amp;tab=subalbuminfo" method="post" name="sortableListForm" id="sortableListForm" onsubmit="return confirmAction();" >
-								<?php XSRFToken('savealbumorder'); ?>
+							<form class="dirtylistening" onReset="setClean('sortableListForm');
+												$('#albumsort').sortable('cancel');" action="?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>&amp;action=savesubalbumorder&amp;tab=subalbuminfo" method="post" name="sortableListForm" id="sortableListForm" onsubmit="return confirmAction();" >
+										<?php XSRFToken('savealbumorder'); ?>
 								<p>
 									<?php
 									$sorttype = strtolower($album->getSortType('album'));
@@ -867,7 +869,7 @@ echo "\n</head>";
 										?>
 									</div>
 
-									<ul class="page-list">
+									<ul class="page-list" id="albumsort">
 										<?php
 										printNestedAlbumsList($subalbums, $showthumb, $album);
 										?>
@@ -907,7 +909,7 @@ echo "\n</head>";
 					<?php
 				} else if ($subtab == 'imageinfo') {
 					require_once(SERVERPATH . '/' . ZENFOLDER . '/exif/exifTranslations.php');
-					$singleimage = NULL;
+					$singleimagelink = $singleimage = NULL;
 					if ($totalimages == 1) {
 						$_GET['singleimage'] = array_shift($images);
 					}
@@ -916,6 +918,7 @@ echo "\n</head>";
 						$allimagecount = 1;
 						$totalimages = 1;
 						$images = array($singleimage);
+						$singleimagelink = '&singleimage=' . html_encode($singleimage);
 					}
 					?>
 					<!-- Images List -->
@@ -1308,7 +1311,7 @@ echo "\n</head>";
 																<br class="clearall" />
 																<hr />
 																<div class="button buttons tooltip" title="<?php printf(gettext('Refresh %s metadata'), $image->filename); ?>">
-																	<a href="admin-edit.php?action=refresh&amp;album=<?php echo html_encode(pathurlencode($album->name)); ?>&amp;image=<?php echo urlencode($image->filename); ?>&amp;subpage=<?php echo $pagenum; ?>&amp;tagsort=<?php echo html_encode($tagsort); ?>&amp;XSRFToken=<?php echo getXSRFToken('imagemetadata'); ?>" >
+																	<a href="admin-edit.php?action=refresh&amp;album=<?php echo html_encode(pathurlencode($album->name)); ?>&amp;image=<?php echo urlencode($image->filename); ?>&amp;subpage=<?php echo $pagenum . $singleimagelink; ?>&amp;tagsort=<?php echo html_encode($tagsort); ?>&amp;XSRFToken=<?php echo getXSRFToken('imagemetadata'); ?>" >
 																		<img src="images/cache.png" alt="" /><?php echo gettext("Refresh Metadata"); ?>
 																	</a>
 																	<br class="clearall" />
@@ -1317,14 +1320,14 @@ echo "\n</head>";
 																if (isImagePhoto($image) || !is_null($image->objectsThumb)) {
 																	?>
 																	<div class="button buttons tooltip" title="<?php printf(gettext('crop %s'), $image->filename); ?>">
-																		<a href="admin-thumbcrop.php?a=<?php echo html_encode(pathurlencode($album->name)); ?>&amp;i=<?php echo urlencode($image->filename); ?>&amp;subpage=<?php echo $pagenum; ?>&amp;tagsort=<?php echo html_encode($tagsort); ?>" >
+																		<a href="admin-thumbcrop.php?a=<?php echo html_encode(pathurlencode($album->name)); ?>&amp;i=<?php echo urlencode($image->filename); ?>&amp;subpage=<?php echo $pagenum . $singleimagelink; ?>&amp;tagsort=<?php echo html_encode($tagsort); ?>" >
 																			<img src="images/shape_handles.png" alt="" /><?php echo gettext("Crop thumbnail"); ?>
 																		</a>
 																		<br class="clearall" />
 																	</div>
 																	<?php
 																}
-																echo zp_apply_filter('edit_image_utilities', '<!--image-->', $image, $currentimage, $pagenum, $tagsort); //pass space as HTML because there is already a button shown for cropimage
+																echo zp_apply_filter('edit_image_utilities', '<!--image-->', $image, $currentimage, $pagenum, $tagsort, $singleimage); //pass space as HTML because there is already a button shown for cropimage
 																?>
 																<span class="clearall" ></span>
 															</div>
@@ -1634,8 +1637,9 @@ echo "\n</head>";
 					consolidatedEditMessages('');
 					printEditDropdown('', array('1', '2', '3', '4', '5'), $album_nesting);
 					?>
-					<form class="dirtylistening" onReset="setClean('sortableListForm');" action="?page=edit&amp;action=savealbumorder" method="post" name="sortableListForm" id="sortableListForm" onsubmit="return confirmAction();" >
-						<?php XSRFToken('savealbumorder'); ?>
+					<form class="dirtylistening" onReset="setClean('sortableListForm');
+									$('#albumsort').sortable('cancel');" action="?page=edit&amp;action=savealbumorder" method="post" name="sortableListForm" id="sortableListForm" onsubmit="return confirmAction();" >
+								<?php XSRFToken('savealbumorder'); ?>
 						<p class="buttons">
 							<?php
 							if ($album_nesting > 1 || zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
@@ -1672,7 +1676,7 @@ echo "\n</head>";
 								</label>
 							</div>
 
-							<ul class="page-list">
+							<ul class="page-list" id="albumsort">
 								<?php printNestedAlbumsList($albums, $showthumb, NULL); ?>
 							</ul>
 

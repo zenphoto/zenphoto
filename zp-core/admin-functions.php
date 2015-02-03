@@ -195,7 +195,10 @@ function printAdminHeader($tab, $subtab = NULL) {
 						tabSize: 25,
 						tolerance: 'intersect',
 						toleranceElement: '> div',
-						listType: 'ul'
+						listType: 'ul',
+						change: function (event, ui) {
+							$('#sortableListForm').dirtyForms('setDirty');
+						}
 					});
 					$('.serialize').click(function () {
 						serialized = $('ul.page-list').nestedSortable('serialize');

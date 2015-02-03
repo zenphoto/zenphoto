@@ -16,9 +16,15 @@ $albumname = sanitize_path($_REQUEST['a']);
 $imagename = sanitize_path($_REQUEST['i']);
 
 $albumobj = newAlbum($albumname);
+
+if (isset($_REQUEST['singleimage'])) {
+	$singleimage = sanitize($_REQUEST['singleimage']);
+} else {
+	$singleimage = '';
+}
 if (!$albumobj->isMyItem(ALBUM_RIGHTS)) { // prevent nefarious access to this page.
 	if (!zp_apply_filter('admin_managed_albums_access', false, $return)) {
-		header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . $return);
+		header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . $return . ($singleimage) ? '&singleimage=' . html_encode($singleimage) : '');
 		exitZP();
 	}
 }
@@ -156,6 +162,8 @@ if (isset($_REQUEST['crop'])) {
 	$imageobj->save();
 
 	$return = '/admin-edit.php?page=edit&album=' . html_encode(pathurlencode($albumname)) . '&saved&subpage=' . html_encode(sanitize($_REQUEST['subpage'])) . '&tagsort=' . html_encode(sanitize($_REQUEST['tagsort'])) . '&tab=imageinfo';
+	if ($singleimage)
+		$return .= '&singleimage=' . html_encode($singleimage);
 	header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . $return);
 	exitZP();
 }
@@ -169,7 +177,7 @@ printAdminHeader('edit', 'thumbcrop');
 <script type="text/javascript" >
 	//<!-- <![CDATA[
 	var jcrop_api;
-	jQuery(window).load(function() {
+	jQuery(window).load(function () {
 		initJcrop();
 		function initJcrop() {
 			jcrop_api = jQuery.Jcrop('#cropbox');
@@ -227,17 +235,17 @@ printAdminHeader('edit', 'thumbcrop');
 </script>
 </head>
 <body>
-	<?php printLogoAndLinks(); ?>
+<?php printLogoAndLinks(); ?>
 
 	<div id="main">
-		<?php printTabs(); ?>
+<?php printTabs(); ?>
 		<div id="content">
 			<h1><?php echo gettext("Custom thumbnail cropping") . ": <em>" . $albumobj->name . " (" . $albumobj->getTitle() . ") /" . $imageobj->filename . " (" . $imageobj->getTitle() . ")</em>"; ?></h1>
 			<p><?php echo gettext("You can change the portion of your image which is shown in thumbnails by cropping it here."); ?></p>
 			<div style="display:block">
 				<div style="float: left; width:<?php echo $thumbcropwidth; ?>px; text-align: center;margin-right: 18px;  margin-bottom: 10px;">
 					<img src="<?php echo html_encode(pathurlencode($currentthumbimage)); ?>" style="width:<?php echo $thumbcropwidth; ?>px;height:<?php echo $thumbcropheight; ?>px; border: 4px solid gray; float: left"/>
-					<?php echo gettext("current thumbnail"); ?>
+<?php echo gettext("current thumbnail"); ?>
 				</div>
 
 				<div style="text-align:left; float: left;">
@@ -253,12 +261,19 @@ printAdminHeader('edit', 'thumbcrop');
 					<div style="width:<?php echo $cropwidth; ?>px;height:<?php echo $cropheight; ?>px; overflow:hidden; border: 4px solid green; float: left">
 						<img src="<?php echo html_encode(pathurlencode($imageurl)); ?>" id="preview" />
 					</div>
-					<?php echo gettext("thumbnail preview"); ?>
+<?php echo gettext("thumbnail preview"); ?>
 				</div>
 				<br clear="all">
 				<!-- This is the form that our event handler fills -->
 				<form class="dirtylistening" onReset="setClean('crop');" name="crop" id="crop" action="?crop" onsubmit="return checkCoords();">
 					<?php XSRFToken('thumb_crop'); ?>
+					<?php
+					if ($singleimage) {
+						?>
+						<input type="hidden" name="singleimage" value="<?php echo html_encode($singleimage); ?>" />
+						<?php
+					}
+					?>
 					<input type="hidden" size="4" id="x" name="x" value="<?php echo $iX ?>" />
 					<input type="hidden" size="4" id="y" name="y" value="<?php echo $iY ?>" />
 					<input type="hidden" size="4" id="x2" name="x2" value="<?php echo $iX + $iW ?>" />
@@ -285,7 +300,7 @@ printAdminHeader('edit', 'thumbcrop');
 								<img src="images/pass.png" alt="" />
 								<strong><?php echo gettext("Apply"); ?></strong>
 							</button>
-							<button type="reset" value="<?php echo gettext('Back') ?>" onclick="window.location = 'admin-edit.php?page=edit&album=<?php echo html_encode(pathurlencode($albumname)); ?>&subpage=<?php echo html_encode($subpage); ?>&tagsort=<?php echo html_encode($tagsort); ?>&tab=imageinfo'">
+							<button type="reset" value="<?php echo gettext('Back') ?>" onclick="window.location = 'admin-edit.php?page=edit&album=<?php echo html_encode(pathurlencode($albumname)); ?>&subpage=<?php echo html_encode($subpage) . ($singleimage) ? '&singleimage=' . html_encode($singleimage) : ''; ?>&tagsort=<?php echo html_encode($tagsort); ?>&tab=imageinfo'">
 								<img src="images/arrow_left_blue_round.png" alt="" />
 								<strong><?php echo gettext("Back"); ?></strong>
 							</button>
@@ -314,7 +329,7 @@ printAdminHeader('edit', 'thumbcrop');
 
 		</div><!-- content -->
 
-		<?php printAdminFooter(); ?>
+<?php printAdminFooter(); ?>
 	</div><!-- main -->
 </body>
 
