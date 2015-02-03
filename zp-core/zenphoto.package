@@ -1252,6 +1252,13 @@ zp-core/lib-gettext/gettext.inc
 zp-core/locale
 zp-core/locale/auto.png
 zp-core/locale/missing_flag.png
+zp-core/locale/cs_CZ
+zp-core/locale/cs_CZ/cs_CZ
+zp-core/locale/cs_CZ/cs_CZ/flag.png
+zp-core/locale/cs_CZ/cs_CZ/select_files_button.png
+zp-core/locale/cs_CZ/cs_CZ/LC_MESSAGES
+zp-core/locale/cs_CZ/cs_CZ/LC_MESSAGES/zenphoto.mo
+zp-core/locale/cs_CZ/cs_CZ/LC_MESSAGES/zenphoto.po
 zp-core/locale/da_DK
 zp-core/locale/da_DK/flag.png
 zp-core/locale/da_DK/LC_MESSAGES
@@ -2257,4 +2264,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-2259
+2266
