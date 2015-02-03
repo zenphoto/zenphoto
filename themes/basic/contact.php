@@ -8,9 +8,9 @@ if (function_exists('printContactForm')) {
 	<!DOCTYPE html>
 	<html>
 		<head>
+			
 			<?php zp_apply_filter('theme_head'); ?>
-			<?php printHeadTitle(); ?>
-			<meta charset="<?php echo LOCAL_CHARSET; ?>">
+			
 			<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
 			<link rel="stylesheet" href="<?php echo pathurlencode(dirname(dirname($zenCSS))); ?>/common.css" type="text/css" />
 		</head>
@@ -29,7 +29,7 @@ if (function_exists('printContactForm')) {
 			</div>
 			<?php @call_user_func('printLanguageSelector'); ?>
 			<div id="credit">
-				<?php printZenphotoLink(); ?>
+				<?php printSoftwareLink(); ?>
 			</div>
 			<?php
 			zp_apply_filter('theme_body_close');

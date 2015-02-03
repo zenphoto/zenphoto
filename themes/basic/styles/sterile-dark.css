@@ -23,8 +23,8 @@ body {
 	background: #333333;
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
- 	-khtml-border-topright: 10px;
- 	border-radius: 10px;
+	-khtml-border-topright: 10px;
+	border-radius: 10px;
 	border: 1px solid #2a2a2a;
 }
 * html #main{width: 720px;}
@@ -48,14 +48,14 @@ body {
 	padding: 20px 10px 10px 20px;
 	-moz-border-radius: 10px 10px 0px 0px;
 	-webkit-border-radius: 10px 10px 0px 0px;
- 	-khtml-border-topright: 10px 10px 0px 0px;
- 	border-radius: 10px 10px 0px 0px;
+	-khtml-border-topright: 10px 10px 0px 0px;
+	border-radius: 10px 10px 0px 0px;
 	background: #c0db5a;
 	height:30px;
 	border-bottom: 1px solid #2a2a2a;
 }
 #padbox {
- 	padding: 20px !important;
+	padding: 20px !important;
 }
 
 #exif {
@@ -146,7 +146,7 @@ blockquote {
 }
 acronym {
 	cursor: help;
-  border-bottom: 1px solid;
+	border-bottom: 1px solid;
 }
 
 /* Page Navigation
@@ -286,21 +286,21 @@ span.tags_title {
 
 /* favorites styles */
 .album .imageFavorites {
-position: absolute;
-right: 5px;
-bottom: 5px;
-z-index: 2000;
+	position: absolute;
+	right: 5px;
+	bottom: 5px;
+	z-index: 2000;
 }
 
 .imagethumb .imageFavorites {
-position: absolute;
-right: 12px;
-bottom: 18px;
-z-index: 2000;
+	position: absolute;
+	right: 12px;
+	bottom: 18px;
+	z-index: 2000;
 }
 
 .imageFavorites input:hover {
-cursor: pointer !important;
+	cursor: pointer !important;
 }
 
 
@@ -359,17 +359,17 @@ cursor: pointer !important;
 }
 
 img#captcha {
-display: block;
-float: left;
-margin-bottom: 5px;
+	display: block;
+	float: left;
+	margin-bottom: 5px;
 }
 input#code {
-float: left;
-margin-left: 10px;
-width: 10em !important;
+	float: left;
+	margin-left: 10px;
+	width: 10em !important;
 }
 #recaptcha_widget_div {
-float: left;
+	float: left;
 }
 
 
@@ -414,7 +414,7 @@ label {
 
 .required {
 	color: #9C3;
-  cursor: help;
+	cursor: help;
 }
 
 .gravatar {
@@ -430,6 +430,34 @@ label {
 }
 #rating { margin-top: 10px; }
 
+/* Admin Toolbox
+------------------------------ */
+#admin, #admin_data{
+	position:fixed;
+	right:0;
+	top:0;
+	width: 130px;
+	border-left: 1px solid #2a2a2a;
+	border-bottom: 1px solid #2a2a2a;
+	background: #1a1a1a;
+	z-index: 2; 	text-align: left;
+}
+#admin_data{
+	top: 0px;
+	padding-top: 20px;
+	z-index: 1;
+	line-height: 1.6em;
+}
+#admin h3 {
+	font: 100% Arial, "Helvetica Neue", Helvetica, sans-serif;
+	font-weight: bold;
+	color: #666;
+	border-bottom: 1px dashed #2a2a2a;
+	margin:0;
+	padding:0;
+	text-align: center;
+}
+
 /* Search Box
 ------------------------------ */
 #search {
@@ -444,26 +472,26 @@ label {
 	margin:0px;
 }
 #search input.button {
-  padding: 1px;
-  font-size: 80%;
+	padding: 1px;
+	font-size: 80%;
 }
 #search a {
-text-decoration: none;
+	text-decoration: none;
 }
 #search ul {
-border: 1px solid #ccc; position:absolute; text-align:left; list-style: none;
-height: 8em; width: 20em; overflow: auto;
-color: #fff;
-background-image:url(../images/50percent.png);
-z-index: 10;
+	border: 1px solid #ccc; position:absolute; text-align:left; list-style: none;
+	height: 8em; width: 20em; overflow: auto;
+	color: #fff;
+	background-image:url(../images/50percent.png);
+	z-index: 10;
 }
 #searchfields_icon {
-position: relative;
-top: 4px;
+	position: relative;
+	top: 4px;
 }
 .clear {
-  clear:both;
-  height:10px;
+	clear:both;
+	height:10px;
 }
 
 /* Archive View
@@ -539,21 +567,6 @@ ul.archive .month {
 }
 .errorlist {
 	list-style-type: none;
-}
-
-/* Zenphoto link
------------------------------- */
-
-#zen-part {
- font-family: Arial, Helvetica, sans-serif;
- font-size: 1.8em;
- font-weight: 100;
-}
-
-#photo-part {
- font-family: Arial, Helvetica, sans-serif;
- font-size: 0.9em;
- font-weight: bold;
 }
 
 /* centering flowplayer 3 on image.php */
@@ -652,61 +665,68 @@ label:hover {
 #registration_form p,
 #commentform p,
 #mailform p {
-clear: both;
+	clear: both;
 }
 
 #registration_form label,
 #commentform label,
 #mailform label {
-width: 30% !important;
-float: left; 
-display: block;
+	width: 30% !important;
+	float: left;
+	display: block;
+}
+#commentform label[for=private] {
+	width: auto !important;
 }
 #registration_form input[type="text"],
 #registration_form input[type="password"],
 #mailform input[type="text"],
 #commentform input[type="text"] {
-width: 65%;
+	width: 65%;
 }
 
 input.button {
-padding: 5px 8px 5px 8px!important;
-margin: 5px 0 0 0;
+	padding: 5px 8px 5px 8px!important;
+	margin: 5px 0 0 0;
 }
 
-#mailform textarea, 
+#mailform textarea,
 #commentform textarea#comment {
-clear: both;
-width: 95% !important;
-height: 150px;
+	clear: both;
+	width: 95% !important;
+	height: 150px;
 }
 
 form input[type="submit"],
 form input[type="reset"],
 form input[type="button"],
 a.slideshowlink {
-background-color: #EEF5F9;
-border: 0;
-font-size: 12px;
+	background-color: #EEF5F9;
+	border: 0;
+	font-size: 12px;
 }
 
-a.slideshowlink { 
-padding: 5px 6px 3px 6px;
-margin-top: 10px !important;
-text-decoration: none;
-clear: both;
-margin-top: 10px;
-display: inline-block;
-color: gray;
+a.slideshowlink {
+	padding: 5px 6px 3px 6px;
+	margin-top: 10px !important;
+	text-decoration: none;
+	clear: both;
+	margin-top: 10px;
+	display: inline-block;
+	color: gray;
 }
 
 
 .clearall {
-clear: both !important;
+	clear: both !important;
 }
 .clearleft {
-clear: left !important;
+	clear: left !important;
 }
 .clearright {
-clear: right !important;
+	clear: right !important;
+}
+
+.zen-logo img {
+	vertical-align: sub;
 }

@@ -5,12 +5,12 @@
  * Options are provided for setting the required registration details and the default
  * user rights that will be granted.
  *
- * Place a call on <i>printRegistrationForm()</i> where you want the form to appear.
+ * Place a call on <var>printRegistrationForm()</var> where you want the form to appear.
  * Probably the best use is to create a new <i>custom page</i> script just for handling these
  * user registrations. Then put a link to that script on your index page so that people
  * who wish to register will click on the link and be taken to the registration page.
  *
- * When successfully registered, a new Zenphoto user will be created with no logon rights. An e-mail
+ * When successfully registered, a new User will be created with no logon rights. An e-mail
  * will be sent to the user with a link to activate the user ID. When he clicks on that link
  * he will be taken to the registration page and the verification process will be completed.
  * At this point the user ID rights are set to the value of the plugin default user rights option
@@ -19,6 +19,7 @@
  * <b>NOTE:</b> If you change the rights of a user pending verification you have verified the user!
  *
  * @author Stephen Billard (sbillard)
+ *
  * @package plugins
  * @subpackage users
  */
@@ -33,11 +34,6 @@ $_zp_conf_vars['special_pages']['register_user'] = array('define'	 => '_REGISTER
 $_zp_conf_vars['special_pages'][] = array('definition' => '%REGISTER_USER%', 'rewrite' => '_REGISTER_USER_');
 
 $_zp_conf_vars['special_pages'][] = array('define' => false, 'rewrite' => '%REGISTER_USER%', 'rule' => '^%REWRITE%/*$		index.php?p=' . 'register' . ' [L,QSA]');
-
-
-if (getOption('register_user_address_info')) {
-	require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/comment_form/functions.php');
-}
 
 /**
  * Plugin class
@@ -70,10 +66,10 @@ class register_user {
 		$options = array(
 						gettext('Link text')							 => array('key'		 => 'register_user_page_link', 'type'	 => OPTION_TYPE_TEXTAREA,
 										'order'	 => 1,
-										'desc'	 => gettext('If this option is set, the visitor login form will include a link to this page. The link text will be labeled with the text provided.')),
+										'desc'	 => gettext('Default text for the retgister user link.')),
 						gettext('Hint text')							 => array('key'		 => 'register_user_page_tip', 'type'	 => OPTION_TYPE_TEXTAREA,
 										'order'	 => 2.5,
-										'desc'	 => gettext('If this option is set, the visitor login form will include a link to this page. The link text will be labeled with the text provided.')),
+										'desc'	 => gettext('Default hint text for the register user link.')),
 						gettext('Notify*')								 => array('key'		 => 'register_user_notify', 'type'	 => OPTION_TYPE_CHECKBOX,
 										'order'	 => 4,
 										'desc'	 => gettext('If checked, an e-mail will be sent to the gallery admin when a new user has verified his registration.')),
@@ -222,14 +218,14 @@ class register_user {
 		if (isset($_POST['admin_email'])) {
 			$admin_e = trim(sanitize($_POST['admin_email']));
 		} else {
-			$admin_e = trim(sanitize($_POST['user']));
+			$admin_e = trim(sanitize($_POST['user'], 0));
 		}
 		if (!is_valid_email_zp($admin_e)) {
 			$_notify = 'invalidemail';
 		}
 
-		$pass = trim(sanitize($_POST['pass']));
-		$user = trim(sanitize($_POST['user']));
+		$pass = trim(sanitize($_POST['pass'], 0));
+		$user = trim(sanitize($_POST['user'], 0));
 		if (empty($pass)) {
 			$_notify = 'empty';
 		} else if (!empty($user) && !(empty($admin_n)) && !empty($admin_e)) {
@@ -290,7 +286,7 @@ class register_user {
 						if (MOD_REWRITE) {
 							$verify = '?verify=';
 						} else {
-							$verify ='&verify=';
+							$verify = '&verify=';
 						}
 						$_link = PROTOCOL . "://" . $_SERVER['HTTP_HOST'] . register_user::getLink() . $verify . bin2hex(serialize(array('user' => $user, 'email' => $admin_e)));
 						$_message = sprintf(get_language_string(getOption('register_user_text')), $_link, $admin_n, $user, $pass);
@@ -364,7 +360,7 @@ function printRegistrationForm($thanks = NULL) {
 				$userobj->setGroup($group);
 				zp_apply_filter('register_user_verified', $userobj);
 				if (getOption('register_user_notify')) {
-					$_notify = zp_mail(gettext('Zenphoto Gallery registration'), sprintf(gettext('%1$s (%2$s) has registered for the zenphoto gallery providing an e-mail address of %3$s.'), $userobj->getName(), $userobj->getUser(), $userobj->getEmail()));
+					$_notify = zp_mail(gettext('ZenPhoto20 Gallery registration'), sprintf(gettext('%1$s (%2$s) has registered for the zenphoto gallery providing an e-mail address of %3$s.'), $userobj->getName(), $userobj->getUser(), $userobj->getEmail()));
 				}
 				if (empty($_notify)) {
 					if (getOption('register_user_create_album')) {
@@ -536,7 +532,7 @@ function printRegistrationForm($thanks = NULL) {
  * @param string $next text to follow the URL
  * @param string $class optional class
  */
-function printRegisterURL($_linktext, $prev = '', $next = '', $class = NULL) {
+function printRegisterURL($_linktext = NULL, $prev = '', $next = '', $class = NULL, $hint = NULL) {
 	if (!zp_loggedin()) {
 		if (!is_null($class)) {
 			$class = 'class="' . $class . '"';
@@ -544,9 +540,12 @@ function printRegisterURL($_linktext, $prev = '', $next = '', $class = NULL) {
 		if (is_null($_linktext)) {
 			$_linktext = get_language_string(getOption('register_user_page_link'));
 		}
+		if (is_null($hint)) {
+			$hint = get_language_string(getOption('register_user_page_tip'));
+		}
 		echo $prev;
 		?>
-		<a href="<?php echo html_encode(register_user::getLink()); ?>"<?php echo $class; ?> title="<?php echo html_encode($_linktext); ?>" id="register_link"><?php echo $_linktext; ?> </a>
+		<a href="<?php echo html_encode(register_user::getLink()); ?>"<?php echo $class; ?> title="<?php echo html_encode($hint); ?>" id="register_link"><?php echo $_linktext; ?> </a>
 		<?php
 		echo $next;
 	}

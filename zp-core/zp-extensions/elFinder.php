@@ -18,10 +18,11 @@
  *
  *
  * @author Stephen Billard (sbillard)
+ *
  * @package plugins
- * @subpackage uploader
+ * @subpackage admin
  */
-$plugin_is_filter = 5 | ADMIN_PLUGIN;
+$plugin_is_filter = defaultExtension(5 | ADMIN_PLUGIN);
 $plugin_description = gettext('Provides file handling for the <code>upload/files</code> tab and the <em>TinyMCE</em> file browser.');
 $plugin_author = "Stephen Billard (sbillard)";
 
@@ -64,34 +65,37 @@ class elFinder_options {
 
 if (getOption('elFinder_files') && zp_loggedin(FILES_RIGHTS)) {
 	zp_register_filter('admin_tabs', 'elFinder_admin_tabs', 50);
+	zp_register_filter('theme_editor', 'elFinderThemeEdit');
 }
 if (getOption('elFinder_tinymce')) {
-	zp_register_filter('tinymce_zenpage_config', 'elFinder_tinymce');
+	zp_register_filter('tinymce_config', 'elFinder_tinymce');
 }
 
 function elFinder_admin_tabs($tabs) {
-	$me = sprintf(gettext('files (%s)'), 'elFinder');
-	$mylink = PLUGIN_FOLDER . '/' . 'elFinder/filemanager.php?page=upload&tab=elFinder&type=' . gettext('files');
-	if (is_null($tabs['upload'])) {
-		$tabs['upload'] = array('text'		 => gettext("upload"),
-						'link'		 => WEBPATH . "/" . ZENFOLDER . '/admin-upload.php',
-						'subtabs'	 => NULL);
+	if (zp_loggedin(FILES_RIGHTS)) {
+		$me = sprintf(gettext('files (%s)'), 'elFinder');
+		$mylink = PLUGIN_FOLDER . '/' . 'elFinder/filemanager.php?page=upload&tab=elFinder&type=' . gettext('files');
+		if (is_null($tabs['upload'])) {
+			$tabs['upload'] = array('text'		 => gettext("upload"),
+							'link'		 => WEBPATH . "/" . ZENFOLDER . '/admin-upload.php',
+							'subtabs'	 => NULL);
+		}
+		$tabs['upload']['subtabs'][$me] = $mylink;
+		if (zp_getcookie('uploadtype') == 'elFinder')
+			$tabs['upload']['link'] = WEBPATH . "/" . ZENFOLDER . '/' . $mylink;
 	}
-	$tabs['upload']['subtabs'][$me] = $mylink;
-	if (zp_getcookie('uploadtype') == 'elFinder')
-		$tabs['upload']['link'] = $mylink;
 	return $tabs;
 }
 
 function elFinder_tinymce($discard) {
 
-	$file = FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/elFinder/elfinder.php?XSRFToken=' . getXSRFToken('elFinder');
+	$file = FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/elFinder/elfinder.php?XSRFToken=' . getXSRFToken('elFinder') . '&type=';
 	?>
 	<script type="text/javascript">
 		// <!-- <![CDATA[
 		function elFinderBrowser(field_name, url, type, win) {
 			tinymce.activeEditor.windowManager.open({
-				file: '<?php echo $file; ?>', // use an absolute path!
+				file: '<?php echo $file; ?>' + type, // use an absolute path!
 				title: 'elFinder 2.0',
 				width: 900,
 				height: 450,
@@ -100,7 +104,7 @@ function elFinder_tinymce($discard) {
 				popup_css: false, // Disable TinyMCE's default popup CSS
 				resizable: 'yes'
 			}, {
-				setUrl: function(url) {
+				setUrl: function (url) {
 					win.document.getElementById(field_name).value = url;
 				}
 			});
@@ -111,5 +115,15 @@ function elFinder_tinymce($discard) {
 
 	<?php
 	return 'elFinderBrowser';
+}
+
+function elFinderThemeEdit($html, $theme) {
+	$html = "launchScript('" . PLUGIN_FOLDER . "/elFinder/filemanager.php', [
+													'page=upload',
+													'tab=elFinder',
+													'type=files',
+													'themeEdit=" . urlencode($theme) . "'
+												]);";
+	return $html;
 }
 ?>

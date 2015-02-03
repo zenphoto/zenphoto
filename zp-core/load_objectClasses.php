@@ -1,9 +1,13 @@
 <?php
 
-/* * *****************************************************************************
- * Load the base classes (Image, Album, Gallery, etc.)                          *
- * ***************************************************************************** */
-
+/**
+ *
+ * Load the base classes (Image, Album, Gallery, etc.)
+ *
+ * @author Stephen Billard (sbillard)
+ *
+ * @package core
+ */
 require_once(dirname(__FILE__) . '/classes.php');
 require_once(dirname(__FILE__) . '/class-gallery.php');
 require_once(dirname(__FILE__) . '/class-album.php');

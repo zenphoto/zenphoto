@@ -4,6 +4,8 @@
  * Inserts or removes the qualifiers from the version file so that the install is switched between
  * a "debug" release and a normal release.
  *
+ * @author Stephen Billard (sbillard)
+ *
  * @package plugins
  * @subpackage development
  *
@@ -22,19 +24,19 @@ if (isset($_REQUEST['markRelease'])) {
 	if (isset($matches[2][1])) {
 		$originalVersion = $matches[2][1];
 	} else {
-		$originalVersion = preg_replace("~-[^RC]~i", '', $currentVersion);
+		$o = explode('-', $currentVersion);
+		$key = array_search('DEBUG', $o);
+		if ($key)
+			unset($o[$key]);
+		$originalVersion = implode('-', $o);
 	}
 	if ($_REQUEST['markRelease'] == 'released') {
-		if (preg_match('~-[^RC]~i', $originalVersion)) {
-			$originalVersion = preg_replace('~-.*~', '', $originalVersion);
-		}
 		$version = "define('ZENPHOTO_VERSION', '$originalVersion');";
 	} else {
-		preg_match_all('~([^-]*)~', $currentVersion, $matches);
-		$mark = $matches[0][0] . '-DEBUG';
-		$version = "define('ZENPHOTO_VERSION', '$mark'); //original: define('ZENPHOTO_VERSION', '$originalVersion');";
+		$version = "define('ZENPHOTO_VERSION', '$originalVersion-DEBUG');";
 	}
 	$v = preg_replace("~define\('ZENPHOTO_VERSION.*\n~", $version . "\n", $v);
+
 	file_put_contents(SERVERPATH . '/' . ZENFOLDER . '/version.php', $v);
 	header('location:' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');
 

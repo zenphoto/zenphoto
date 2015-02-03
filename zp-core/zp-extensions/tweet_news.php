@@ -2,9 +2,10 @@
 /**
  * Use to tweet new objects as they are published.
  *
- * @package plugins
  * @author Stephen Billard (sbillard)
- * @subpackage misc
+ *
+ * @package plugins
+ * @subpackage admin
  */
 $plugin_is_filter = 9 | FEATURE_PLUGIN;
 $plugin_description = gettext('Tweet news articles when published.');
@@ -69,7 +70,7 @@ class tweet {
 	 * supported options
 	 */
 	function getOptionsSupported() {
-		global $_zp_zenpage;
+		global $_zp_CMS;
 		$options = array(gettext('Consumer key')				 => array('key'		 => 'tweet_news_consumer', 'type'	 => OPTION_TYPE_TEXTBOX,
 										'order'	 => 2,
 										'desc'	 => gettext('This <code>tweet_news</code> app for this site needs a <em>consumer key</em>, a <em>consumer key secret</em>, an <em>access token</em>, and an <em>access token secret</em>.') . '<p class="notebox">' . gettext('Get these from <a href="http://dev.twitter.com/">Twitter developers</a>') . '</p>'),
@@ -111,9 +112,9 @@ class tweet {
 							'selections' => generateLanguageList(),
 							'desc'			 => gettext('Select the language for the Tweet message.'));
 		}
-		if (getOption('tweet_news_news') && is_object($_zp_zenpage)) {
+		if (getOption('tweet_news_news') && is_object($_zp_CMS)) {
 			$catlist = getSerializedArray(getOption('tweet_news_categories'));
-			$news_categories = $_zp_zenpage->getAllCategories(false);
+			$news_categories = $_zp_CMS->getAllCategories(false);
 			$catlist = array(gettext('*not categorized*') => 'tweet_news_categories_none');
 			foreach ($news_categories as $category) {
 				$option = 'tweet_news_categories_' . $category['titlelink'];
@@ -209,7 +210,7 @@ class tweet {
 				if (getOption('tweet_news_protected') || !$obj->isProtected()) {
 					switch ($type = $obj->table) {
 						case 'pages':
-							$dt = $obj->getDateTime();
+							$dt = $obj->getPublishDate();
 							if ($dt > date('Y-m-d H:i:s')) {
 								$result = query_single_row('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="tweet_news" AND `aux`="pending_pages" AND `data`=' . db_quote($obj->getTitlelink()));
 								if (!$result) {
@@ -234,7 +235,7 @@ class tweet {
 							if (!$tweet) {
 								break;
 							}
-							$dt = $obj->getDateTime();
+							$dt = $obj->getPublishDate();
 							if ($dt > date('Y-m-d H:i:s')) {
 								$result = query_single_row('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="tweet_news" AND `aux`="pending" AND `data`=' . db_quote($obj->getTitlelink()));
 								if (!$result) {
@@ -357,7 +358,7 @@ class tweet {
 			if ($result) {
 				foreach ($result as $article) {
 					query('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `id`=' . $article['id']);
-					$news = new ZenpageNews($article['titlelink']);
+					$news = newArticle($article['titlelink']);
 					self::tweetObject($news);
 				}
 			}
@@ -365,7 +366,7 @@ class tweet {
 			if ($result) {
 				foreach ($result as $page) {
 					query('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `id`=' . $page['id']);
-					$page = new ZenpageNews($page['titlelink']);
+					$page = newArticle($page['titlelink']);
 					self::tweetObject($page);
 				}
 			}

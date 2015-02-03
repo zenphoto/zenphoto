@@ -16,6 +16,7 @@
  *
  * @author Malte Müller (acrylian), Stephen Billard (sbillard)
  * @package plugins
+ * @subpackage theme
  */
 $plugin_description = gettext("Adds a theme function to print an album menu either as a nested list or as a dropdown menu.");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
@@ -29,7 +30,7 @@ if (!defined('MENU_TRUNCATE_INDICATOR'))
 define('ALBUM_MENU_COUNT', getOption('print_album_menu_count'));
 define('ALBUM_MENU_SHOWSUBS', getOption('print_album_menu_showsubs'));
 
-$_recursion_limiter = array();
+$_zp_albums_visited_albumMenu = array();
 
 /**
  * Plugin option handling class
@@ -46,7 +47,7 @@ class print_album_menu {
 
 	function getOptionsSupported() {
 		global $_common_truncate_handler;
-		$options = array(gettext('"List" subalbum level') => array('key'		 => 'print_album_menu_showsubs', 'type'	 => OPTION_TYPE_TEXTBOX,
+		$options = array(gettext('"List" subalbum level') => array('key'		 => 'print_album_menu_showsubs', 'type'	 => OPTION_TYPE_NUMBER,
 										'order'	 => 0,
 										'desc'	 => gettext('The depth of subalbum levels shown with the <code>printAlbumMenu</code> and <code>printAlbumMenuList</code> “List” option. Note: themes may override this default.')),
 						gettext('Show counts')					 => array('key'		 => 'print_album_menu_count', 'type'	 => OPTION_TYPE_CHECKBOX,
@@ -66,7 +67,7 @@ class print_album_menu {
 							'order'	 => 8,
 							'desc'	 => '<p class="notebox">' . $_common_truncate_handler . '</p>');
 		} else {
-			$_common_truncate_handler = gettext('* These options may be set via the <a href="javascript:gotoName(\'print_album_menu\');"><em>print_album_menu</em></a> plugin options.');
+			$_common_truncate_handler = gettext('* These options may be set via the <a onclick="gotoName(\'print_album_menu\');"><em>print_album_menu</em></a> plugin options.');
 			$options['note'] = array('key'		 => 'menu_truncate_note',
 							'type'	 => OPTION_TYPE_NOTE,
 							'order'	 => 8,
@@ -208,7 +209,7 @@ function printAlbumMenuList($option, $showcount = NULL, $css_id = '', $css_class
  * @param int $limit truncation of display text
  */
 function printAlbumMenuListAlbum($albums, $folder, $option, $showcount, $showsubs, $css_class, $css_class_topactive, $css_class_active, $firstimagelink, $keeptopactive, $limit = NULL) {
-	global $_zp_gallery, $_zp_current_album, $_zp_current_search, $_recursion_limiter;
+	global $_zp_gallery, $_zp_current_album, $_zp_current_search, $_zp_albums_visited_albumMenu;
 	if (is_null($limit)) {
 		$limit = MENU_TRUNCATE_STRING;
 	}
@@ -234,7 +235,7 @@ function printAlbumMenuListAlbum($albums, $folder, $option, $showcount, $showsub
 						);
 
 		if ($process && hasDynamicAlbumSuffix($album) && !is_dir(ALBUM_FOLDER_SERVERPATH . $album)) {
-			if (in_array($album, $_recursion_limiter))
+			if (in_array($album, $_zp_albums_visited_albumMenu))
 				$process = false; // skip already seen dynamic albums
 		}
 		$topalbum = newAlbum($album, true);
@@ -294,9 +295,9 @@ function printAlbumMenuListAlbum($albums, $folder, $option, $showcount, $showsub
 			$subalbums = $topalbum->getAlbums();
 			if (!empty($subalbums)) {
 				echo "\n<ul" . $css_class . ">\n";
-				array_push($_recursion_limiter, $album);
+				array_push($_zp_albums_visited_albumMenu, $album);
 				printAlbumMenuListAlbum($subalbums, $folder, $option, $showcount, $showsubs, $css_class, $css_class_topactive, $css_class_active, $firstimagelink, false, $limit);
-				array_pop($_recursion_limiter);
+				array_pop($_zp_albums_visited_albumMenu);
 				echo "\n</ul>\n";
 			}
 		}
@@ -349,31 +350,31 @@ function printAlbumMenuJump($option = "count", $indexname = "Gallery Index", $fi
 					<option <?php echo $selected; ?> value="<?php echo html_encode(getGalleryIndexURL()); ?>"><?php echo $indexname; ?></option>
 					<?php
 				}
-    $albums = getNestedAlbumList(null, $showsubs);
-    foreach($albums as $album) {
-      $albumobj = newAlbum($album['name'], true);
-      $count = '';
-      if ($option == "count") {
-        $numimages = $albumobj->getNumImages();
-        if($numimages != 0) {
-          $count = " (" . $numimages . ")";
-        } 
-      }
-      $sortorder = count($album['sort_order']);
-      $arrow = '';
-      if($sortorder > 1) {
-        for($c = 1; $c != $sortorder; $c++) {
-          $arrow .= '» '; 
-        }
-      }
-      $selected = checkSelectedAlbum($albumobj->name, "album");
-      if ($firstimagelink && $numimages != 0) {
-        $link = "<option $selected value='" . html_encode($albumobj->getImage(0)->getLink()) . "'>" . $arrow . getBare($albumobj->getTitle()) . $count . "</option>";
-      } else {
-        $link = "<option $selected value='" . html_encode($albumobj->getLink(1)) . "'>" . $arrow . getBare($albumobj->getTitle()) . $count . "</option>";
-      }
-      echo $link;
-    }
+				$albums = getNestedAlbumList(null, $showsubs);
+				foreach($albums as $album) {
+					$albumobj = newAlbum($album['name'], true);
+					$count = '';
+					if ($option == "count") {
+						$numimages = $albumobj->getNumImages();
+						if($numimages != 0) {
+							$count = " (" . $numimages . ")";
+						}
+					}
+					$sortorder = count($album['sort_order']);
+					$arrow = '';
+					if($sortorder > 1) {
+						for($c = 1; $c != $sortorder; $c++) {
+							$arrow .= '» ';
+						}
+					}
+					$selected = checkSelectedAlbum($albumobj->name, "album");
+					if ($firstimagelink && $numimages != 0) {
+						$link = "<option $selected value='" . html_encode($albumobj->getImage(0)->getLink()) . "'>" . $arrow . getBare($albumobj->getTitle()) . $count . "</option>";
+					} else {
+						$link = "<option $selected value='" . html_encode($albumobj->getLink(1)) . "'>" . $arrow . getBare($albumobj->getTitle()) . $count . "</option>";
+					}
+					echo $link;
+				}
 				?>
 			</select>
 		</p>

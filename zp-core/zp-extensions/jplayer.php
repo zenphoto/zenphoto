@@ -8,7 +8,7 @@
  *
  * IMPORTANT NOTE ON OGG AND WEBM COUNTERPART FORMATS:
  *
- * The counterpart formats are not valid formats for Zenphoto itself as that would confuse the management.
+ * The counterpart formats are not valid formats for zenphoto itself as that would confuse the management.
  * Therefore these formats can be uploaded via ftp only.
  * The files needed to have the same file name (beware the character case!). In single player usage the player
  * will check via file system if a counterpart file exists.
@@ -29,7 +29,7 @@
  *
  * NOTE ON PLAYER SKINS:<br>
  * The look of the player is determined by a pure HTML/CSS based skin (theme). There may occur display issues with themes.
- * Only the Zenphoto's own default skins <var>zenphotolight</var> and <var>zenphotodark</var>
+ * Only the default skins <var>zenphotolight</var> and <var>zenphotodark</var>
  * have been tested with the standard themes (and it does not work perfectly for all)). Those two themes are also have a responsive width.
  * So you might need to adjust the skin yourself to work with your theme. It is recommended that
  * you place your custom skins within the root /plugins folder like:
@@ -67,11 +67,11 @@
  * @package plugins
  * @subpackage media
  */
-$plugin_is_filter = 5 | CLASS_PLUGIN;
-$plugin_description = gettext("Enable <strong>jPlayer</strong> to handle multimedia files.");
-$plugin_notice = gettext("<strong>IMPORTANT</strong>: Only one multimedia extension plugin can be enabled at the time and the class-video plugin must be enabled, too.") . '<br /><br />' . gettext("Please see <a href='http://jplayer.org'>jplayer.org</a> for more info about the player and its license.");
+$plugin_is_filter = defaultExtension(5 | CLASS_PLUGIN);
+$plugin_description = gettext("This plugin handles <code>flv</code>, <code>fla</code>, <code>mp3</code>, <code>mp4</code>, <code>m4v</code>, and <code>m4a</code> multi-media files.");
+gettext("Please see <a href='http://jplayer.org'>jplayer.org</a> for more info about the player and its license.");
 $plugin_author = "Malte Müller (acrylian)";
-$plugin_disable = (getOption('album_folder_class') === 'external') ? gettext('This player does not support <em>External Albums</em>.') : extensionEnabled('class-video') ? false : gettext('The class-video plugin must be enabled for video support.');
+$plugin_disable = (getOption('album_folder_class') === 'external') ? gettext('This player does not support <em>External Albums</em>.') : false;
 
 $option_interface = 'jplayer_options';
 
@@ -85,7 +85,8 @@ if (!empty($_zp_multimedia_extension->name) || $plugin_disable) {
 		trigger_error(sprintf(gettext('jPlayer not enabled, %s is already instantiated.'), get_class($_zp_multimedia_extension)), E_USER_NOTICE);
 	}
 } else {
-
+	if (OFFSET_PATH != 2)
+		require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/class-video.php');
 	Gallery::addImageHandler('flv', 'Video');
 	Gallery::addImageHandler('fla', 'Video');
 	Gallery::addImageHandler('mp3', 'Video');
@@ -114,9 +115,9 @@ class jplayer_options {
 			setOptionDefault('jplayer_skin', 'zenphotolight');
 			setOptionDefault('jplayer_counterparts', 0);
 			/* TODO: what are these sizes?
-			  $player = new jPlayer();
-			  cacheManager::deleteThemeCacheSizes('jplayer');
-			  cacheManager::addThemeCacheSize('jplayer', NULL, $player->width, $player->height, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+				$player = new jPlayer();
+				cacheManager::deleteThemeCacheSizes('jplayer');
+				cacheManager::addThemeCacheSize('jplayer', NULL, $player->width, $player->height, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 			 */
 		}
 	}
@@ -124,9 +125,9 @@ class jplayer_options {
 	function getOptionsSupported() {
 		$skins = getjPlayerSkins();
 		/*
-		  The player size is entirely styled via the CSS skin so there is no free size option. For audio (without thumb/poster) that is always 480px width.
-		  The original jPlayer skin comes with 270p (480x270px) and 360p (640x360px) sizes for videos but the Zenphoto custom skin comes with some more like 480p and 1080p.
-		  If you need different sizes than you need to make your own skin (see the skin option for info about that)
+			The player size is entirely styled via the CSS skin so there is no free size option. For audio (without thumb/poster) that is always 480px width.
+			The original jPlayer skin comes with 270p (480x270px) and 360p (640x360px) sizes for videos but the zenphoto custom skin comes with some more like 480p and 1080p.
+			If you need different sizes than you need to make your own skin (see the skin option for info about that)
 		 */
 
 		return array(gettext('Autoplay')									 => array('key'	 => 'jplayer_autoplay', 'type' => OPTION_TYPE_CHECKBOX,
@@ -152,10 +153,10 @@ class jplayer_options {
 														gettext('jp-video-480p (720x405px)*')		 => "jp-video-480p",
 														gettext('jp-video-720p (1280x720px)*')	 => "jp-video-720p",
 														gettext('jp-video-1080p (1920x1080px)*') => "jp-video-1080p"),
-										'desc'			 => gettext("jPlayer is dependent on their HTML and CSS based skin. Sizes marked with a <strong>*</strong> are supported by the two Zenphoto custom skins only (these two skins are also responsive in width). If you need different sizes you need to modify a skin or make your own and also need to change values in the plugin class method getPlayerSize().")),
+										'desc'			 => gettext("jPlayer is dependent on their HTML and CSS based skin. Sizes marked with a <strong>*</strong> are supported by the two zenphoto custom skins only (these two skins are also responsive in width). If you need different sizes you need to modify a skin or make your own and also need to change values in the plugin class method getPlayerSize().")),
 						gettext('Player skin')							 => array('key'				 => 'jplayer_skin', 'type'			 => OPTION_TYPE_SELECTOR,
 										'selections' => $skins,
-										'desc'			 => gettext("Select the skin (theme) to use. <br />NOTE: Since the skin is pure HTML/CSS only there may be display issues with certain themes that require manual adjustments. The two Zenphoto custom skins are responsive regarding the player width. Place custom skin within the root plugins folder. See plugin documentation for more info."))
+										'desc'			 => gettext("Select the skin (theme) to use. <br />NOTE: Since the skin is pure HTML/CSS only there may be display issues with certain themes that require manual adjustments. The two zenphoto custom skins are responsive regarding the player width. Place custom skin within the root plugins folder. See plugin documentation for more info."))
 		);
 	}
 
@@ -563,7 +564,7 @@ class jPlayer {
 
 	/** TODO: Could not get this to work with Firefox. Low priority so postponed for sometime later...
 	 * Gets the mp3, m4v,m4a,mp4 counterpart formats (webm,ogg) for html5 browser compatibilty
-	 * NOTE: THese formats need to be uploaded via FTP as they are not valid file types for Zenphoto to avoid confusion
+	 * NOTE: These formats need to be uploaded via FTP as they are not valid file types for zenphoto to avoid confusion
 	 *
 	 * @param string $moviepath full link to the multimedia file to get counterpart formats to.
 	 * @param string $ext the file format extention to search the counterpart for (as we already have fetched that)
@@ -588,8 +589,8 @@ class jPlayer {
 		foreach ($suffixes as $suffix) {
 			$filesuffix = $suffix;
 			/* if($suffix == 'oga') {
-			  $filesuffix = 'ogg';
-			  } */
+				$filesuffix = 'ogg';
+				} */
 			$counterpart = str_replace($ext, $filesuffix, $moviepath);
 			//$suffix = str_replace('.','',$suffix);
 			if (file_exists(str_replace(FULLWEBPATH, SERVERPATH, $counterpart))) {
@@ -636,11 +637,7 @@ class jPlayer {
 					//	an invalid option parameter!
 					return;
 			}
-			if (in_context(ZP_SEARCH)) {
-				$id = '1';
-			} else {
-				$id = $albumobj->getID();
-			}
+			$id = $albumobj->getID();
 			?>
 			<script type="text/javascript">
 								//<![CDATA[
@@ -666,12 +663,7 @@ class jPlayer {
 					if (getOption('jplayer_playlist_numbered')) {
 						$numbering = '<span>' . $number . '</span>';
 					}
-					if (is_array($entry)) {
-						$albumobj = newAlbum($entry['folder']);
-						$video = newImage($albumobj, $entry['filename']);
-					} else {
-						$video = newImage($albumobj, $entry);
-					}
+					$video = newImage($albumobj, $entry);
 					$videoThumb = '';
 					$this->setModeAndSuppliedFormat($ext);
 					if ($option == 'playlist' && getOption('jplayer_poster')) {

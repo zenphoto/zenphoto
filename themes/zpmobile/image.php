@@ -8,8 +8,9 @@ if (!defined('WEBPATH'))
 <html>
 	<head>
 		<?php zp_apply_filter('theme_head'); ?>
-		<?php printHeadTitle(); ?>
-		<meta charset="<?php echo LOCAL_CHARSET; ?>">
+
+
+
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" />
 		<?php jqm_loadScripts(); ?>
@@ -78,7 +79,7 @@ if (!defined('WEBPATH'))
 							printSlideShowLink();
 							echo '</span>';
 						}
-					if (function_exists('printAddToFavorites')) printAddToFavorites($_zp_current_image); 
+					if (function_exists('printAddToFavorites')) printAddToFavorites($_zp_current_image);
 					if (function_exists('printRating')) {
 						echo '<div id="rating">';
 						printRating();
@@ -90,6 +91,7 @@ if (!defined('WEBPATH'))
 						printCommentForm();
 					}
 					?>
+
 				</div>
 				<div class="content-secondary">
 			<?php jqm_printMenusLinks(); ?>

@@ -2,9 +2,13 @@
 
 /**
  * functions-i18n.php -- support functions for internationalization
+ *
+ * @author Stephen Billard (sbillard)
+ *
  * @package core
  */
 // force UTF-8 Ø
+
 function getLanguageArray() {
 	return array(
 					'af'		 => gettext('Afrikaans'),
@@ -174,16 +178,6 @@ function generateLanguageList($all = false) {
 }
 
 /**
- * Sets the locale, etc. to the zenphoto domain details.
- * Returns the result of setupCurrentLocale()
- *
- */
-function setMainDomain() {
-	$locale = getUserLocale();
-	return setupCurrentLocale($locale);
-}
-
-/**
  * Gettext replacement function for separate translations of third party themes.
  * @param string $string The string to be translated
  * @param string $theme The name of the plugin. Only required for strings on the 'theme_description.php' file like the general theme description. If the theme is the current theme the function sets it automatically.
@@ -278,7 +272,7 @@ function i18nSetLocale($locale) {
 /**
  * Sets the translation domain and type for optional theme or plugin based translations
  * @param $domaine If $type "plugin" or "theme" the file/folder name of the theme or plugin
- * @param $type NULL (Zenphoto main translation), "theme" or "plugin"
+ * @param $type NULL (zenphoto main translation), "theme" or "plugin"
  */
 function setupDomain($domain = NULL, $type = NULL) {
 	global $_zp_active_languages, $_zp_all_languages;
@@ -295,12 +289,12 @@ function setupDomain($domain = NULL, $type = NULL) {
 			break;
 	}
 	bindtextdomain($domain, $domainpath);
-	// function only since php 4.2.0
+// function only since php 4.2.0
 	if (function_exists('bind_textdomain_codeset')) {
 		bind_textdomain_codeset($domain, 'UTF-8');
 	}
 	textdomain($domain);
-	//invalidate because the locale was not setup until now
+//invalidate because the locale was not setup until now
 	$_zp_active_languages = $_zp_all_languages = NULL;
 }
 
@@ -326,7 +320,7 @@ function setupCurrentLocale($override = NULL) {
 			$locale = array_shift($languages);
 		}
 	}
-	// gettext setup
+// gettext setup
 	@putenv("LANG=$locale"); // Windows ???
 	@putenv("LANGUAGE=$locale"); // Windows ???
 	$result = i18nSetLocale($locale);
@@ -356,7 +350,7 @@ function setupCurrentLocale($override = NULL) {
  * @return array
  */
 function parseHttpAcceptLanguage($str = NULL) {
-	// getting http instruction if not provided
+// getting http instruction if not provided
 	if (!$str) {
 		$str = @$_SERVER['HTTP_ACCEPT_LANGUAGE'];
 	}
@@ -364,29 +358,29 @@ function parseHttpAcceptLanguage($str = NULL) {
 		return array();
 	}
 	$langs = explode(',', $str);
-	// creating output list
+// creating output list
 	$accepted = array();
 	foreach ($langs as $lang) {
-		// parsing language preference instructions
-		// 2_digit_code[-longer_code][;q=coefficient]
+// parsing language preference instructions
+// 2_digit_code[-longer_code][;q=coefficient]
 		if (preg_match('/([A-Za-z]{1,2})(-([A-Za-z0-9]+))?(;q=([0-9\.]+))?/', $lang, $found)) {
-			// 2 digit lang code
+// 2 digit lang code
 			$code = $found[1];
-			// lang code complement
+// lang code complement
 			$morecode = array_key_exists(3, $found) ? $found[3] : false;
-			// full lang code
+// full lang code
 			$fullcode = $morecode ? $code . '_' . $morecode : $code;
-			// coefficient (preference value, will be used in sorting the list)
+// coefficient (preference value, will be used in sorting the list)
 			$coef = sprintf('%3.1f', array_key_exists(5, $found) ? $found[5] : '1');
-			// for sorting by coefficient
+// for sorting by coefficient
 			if ($coef) { //	q=0 means do not supply this language
-				// adding
+// adding
 				$accepted[$coef . '-' . $code] = array('code' => $code, 'coef' => $coef, 'morecode' => $morecode, 'fullcode' => $fullcode);
 			}
 		}
 	}
 
-	// sorting the list by coefficient desc
+// sorting the list by coefficient desc
 	krsort($accepted);
 	if (DEBUG_LOCALE) {
 		debugLog("parseHttpAcceptLanguage($str)");
@@ -425,75 +419,87 @@ function validateLocale($userlocale, $source) {
 }
 
 /**
+ * Sets the locale, etc. to the zenphoto domain details.
+ * Returns the result of setupCurrentLocale()
+ *
+ */
+function setMainDomain() {
+	global $_zp_current_admin_obj, $_zp_current_locale;
+	if (DEBUG_LOCALE)
+		debugLogBackTrace("setMainDomain()");
+	if (isset($_REQUEST['locale'])) {
+		$_zp_current_locale = validateLocale(sanitize($_REQUEST['locale']), (isset($_POST['locale'])) ? 'POST' : 'URI string');
+		if ($_zp_current_locale) {
+			zp_setCookie('dynamic_locale', $_zp_current_locale);
+		} else {
+			zp_clearCookie('dynamic_locale');
+		}
+		if (DEBUG_LOCALE)
+			debugLog("dynamic_locale from URL: " . sanitize($_REQUEST['locale']) . "=>$_zp_current_locale");
+	} else {
+		$matches = explode('.', @$_SERVER['HTTP_HOST']);
+		$_zp_current_locale = validateLocale($matches[0], 'HTTP_HOST');
+		if ($_zp_current_locale && zp_getCookie('dynamic_locale')) {
+			zp_clearCookie('dynamic_locale');
+		}
+		if (DEBUG_LOCALE)
+			debugLog("dynamic_locale from HTTP_HOST: " . sanitize($matches[0]) . "=>$_zp_current_locale");
+	}
+
+	if (!$_zp_current_locale && is_object($_zp_current_admin_obj)) {
+		$_zp_current_locale = $_zp_current_admin_obj->getLanguage();
+		if (DEBUG_LOCALE)
+			debugLog("locale from user: " . $_zp_current_locale);
+	}
+
+	if (!$_zp_current_locale) {
+		$localeOption = getOption('locale');
+		$_zp_current_locale = zp_getCookie('dynamic_locale');
+
+		if (DEBUG_LOCALE)
+			debugLog("locale from option: " . $localeOption . '; dynamic locale=' . $_zp_current_locale);
+		if (empty($localeOption) && empty($_zp_current_locale)) { // if one is not set, see if there is a match from 'HTTP_ACCEPT_LANGUAGE'
+			$languageSupport = generateLanguageList();
+			$userLang = parseHttpAcceptLanguage();
+			foreach ($userLang as $lang) {
+				$l = strtoupper($lang['fullcode']);
+				$_zp_current_locale = validateLocale($l, 'HTTP Accept Language');
+				if ($_zp_current_locale)
+					break;
+			}
+		} else {
+			if (empty($_zp_current_locale)) {
+				$_zp_current_locale = $localeOption;
+			}
+		}
+	}
+
+	if (empty($_zp_current_locale)) {
+// return "default" language, English if allowed, otherwise whatever is the "first" allowed language
+		$languageSupport = generateLanguageList();
+		if (empty($languageSupport) || in_array('en_US', $languageSupport)) {
+			$_zp_current_locale = 'en_US';
+		} else {
+			$_zp_current_locale = array_shift($languageSupport);
+		}
+		if (DEBUG_LOCALE)
+			debugLog("locale from language list: " . $_zp_current_locale);
+	} else {
+		setOption('locale', $_zp_current_locale, false);
+	}
+	if (DEBUG_LOCALE)
+		debugLog("getUserLocale Returning locale: " . $_zp_current_locale);
+
+	return setupCurrentLocale($_zp_current_locale);
+}
+
+/**
  * Returns a saved (or posted) locale. Posted locales are stored as a cookie.
  *
  * Sets the 'locale' option to the result (non-persistent)
  */
 function getUserLocale() {
-	global $_zp_current_admin_obj, $_zp_current_locale;
-	if (!$_zp_current_locale) {
-		if (DEBUG_LOCALE)
-			debugLogBackTrace("getUserLocale()");
-		if (isset($_REQUEST['locale'])) {
-			if (isset($_POST['locale'])) {
-				$_zp_current_locale = validateLocale(sanitize($_POST['locale']), 'POST');
-			} else {
-				$_zp_current_locale = validateLocale(sanitize($_GET['locale']), 'URI string');
-			}
-			if ($_zp_current_locale) {
-				zp_setCookie('dynamic_locale', $_zp_current_locale);
-			}
-			if (DEBUG_LOCALE)
-				debugLog("dynamic_locale from URL: " . sanitize($_REQUEST['locale']) . "=>$_zp_current_locale");
-		} else {
-			$matches = explode('.', @$_SERVER['HTTP_HOST']);
-			if ($_zp_current_locale = validateLocale($matches[0], 'HTTP_HOST')) {
-				zp_clearCookie('dynamic_locale');
-			}
-		}
-
-		if (!$_zp_current_locale && is_object($_zp_current_admin_obj)) {
-			$_zp_current_locale = $_zp_current_admin_obj->getLanguage();
-			if (DEBUG_LOCALE)
-				debugLog("locale from user: " . $_zp_current_locale);
-		}
-
-		if (!$_zp_current_locale) {
-			$localeOption = getOption('locale');
-			$_zp_current_locale = zp_getCookie('dynamic_locale');
-
-			if (DEBUG_LOCALE)
-				debugLog("locale from option: " . $localeOption . '; dynamic locale=' . $_zp_current_locale);
-			if (empty($localeOption) && empty($_zp_current_locale)) { // if one is not set, see if there is a match from 'HTTP_ACCEPT_LANGUAGE'
-				$languageSupport = generateLanguageList();
-				$userLang = parseHttpAcceptLanguage();
-				foreach ($userLang as $lang) {
-					$l = strtoupper($lang['fullcode']);
-					$_zp_current_locale = validateLocale($l, 'HTTP Accept Language');
-					if ($_zp_current_locale)
-						break;
-				}
-			} else {
-				if (empty($_zp_current_locale)) {
-					$_zp_current_locale = $localeOption;
-				}
-			}
-		}
-
-		if (empty($_zp_current_locale)) {
-			// return "default" language, English if allowed, otherwise whatever is the "first" allowed language
-			$languageSupport = generateLanguageList();
-			if (in_array('en_US', $languageSupport)) {
-				$_zp_current_locale = 'en_US';
-			} else {
-				$_zp_current_locale = array_shift($languageSupport);
-			}
-		} else {
-			setOption('locale', $_zp_current_locale, false);
-		}
-		if (DEBUG_LOCALE)
-			debugLog("getUserLocale Returning locale: " . $_zp_current_locale);
-	}
+	global $_zp_current_locale;
 	return $_zp_current_locale;
 }
 
@@ -507,17 +513,16 @@ function getUserLocale() {
  */
 function get_language_string($dbstring, $locale = NULL) {
 	$strings = getSerializedArray($dbstring);
-	$actual_local = getOption('locale');
-	if (is_null($locale))
-		$locale = $actual_local;
-	if (isset($strings[$locale])) {
-		return $strings[$locale];
-	}
-	if (isset($strings[$actual_local])) {
-		return $strings[$actual_local];
-	}
-	if (isset($strings['en_US'])) {
-		return $strings['en_US'];
+	if (count($strings) > 1) {
+		if (!empty($locale) && isset($strings[$locale])) {
+			return $strings[$locale];
+		}
+		if (isset($strings[$locale = getOption('locale')])) {
+			return $strings[$locale];
+		}
+		if (isset($strings['en_US'])) {
+			return $strings['en_US'];
+		}
 	}
 	return array_shift($strings);
 }
@@ -542,10 +547,10 @@ function getTimezones() {
 				}
 			}
 		}
-		// Only keep one city (the first and also most important) for each set of possibilities.
+// Only keep one city (the first and also most important) for each set of possibilities.
 		$cities = array_unique($cities);
 
-		// Sort by area/city name.
+// Sort by area/city name.
 		ksort($cities, SORT_LOCALE_STRING);
 	}
 	return $cities;

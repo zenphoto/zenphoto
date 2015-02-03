@@ -74,13 +74,14 @@ function my_checkPageValidity($request, $gallery_page, $page) {
 					$gallery_page = 'news.php'; //	really a news page
 					break;
 				}
-				if (getOption('zenpage_homepage')) {
+				if (checkForPage(getOption('zenpage_homepage'))) {
 					return $page == 1; // only one page if zenpage enabled.
 				}
 			}
 			break;
 		case 'news.php':
 		case 'album.php':
+		case 'favorites.php';
 		case 'search.php':
 			break;
 		default:

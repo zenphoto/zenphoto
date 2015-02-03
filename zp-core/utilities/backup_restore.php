@@ -5,6 +5,8 @@
  * This plugin provides a means to make backups of your ZenPhoto database and
  * at a later time restore the database to the contents of one of these backups.
  *
+ * @author Stephen Billard (sbillard)
+ *
  * @package admin
  */
 if (!defined('OFFSET_PATH'))
@@ -23,7 +25,7 @@ $buttonlist[] = array(
 				'enable'			 => true,
 				'button_text'	 => gettext('Backup/Restore'),
 				'formname'		 => 'backup_restore.php',
-				'action'			 => 'utilities/backup_restore.php',
+				'action'			 => FULLWEBPATH . '/' . ZENFOLDER . '/utilities/backup_restore.php',
 				'icon'				 => 'images/folder.png',
 				'title'				 => gettext('Backup and restore your gallery database.'),
 				'alt'					 => '',
@@ -447,17 +449,17 @@ if (isset($_REQUEST['backup'])) {
 	} else {
 		$messages = '
 			<script type="text/javascript">
-				window.onload = function() {
+				window.addEventListener(\'load\',  = function() {
 					window.location = "' . FULLWEBPATH . '/' . ZENFOLDER . '/' . UTILITIES_FOLDER . '/backup_restore.php?compression=' . $compression_handler . '";
-				}
+				}, false);
 			</script>
 		';
 	}
-	$_zp_options = NULL; //invalidate any options from before the restore
+	primeOptions(); //invalidate any options from before the restore
 	if (getOption('zenphoto_install') !== $signaure) {
 		$l1 = '<a href="' . WEBPATH . '/' . ZENFOLDER . '/setup.php">';
 		$messages .= '<div class="notebox">
-			<h2>' . sprintf(gettext('You have restored your database from a different instance of Zenphoto. You should run %1$ssetup%2$s to insure proper migration.'), $l1, '</a>') . '</h2>
+			<h2>' . sprintf(gettext('You have restored your database from a different instance of zenphoto. You should run %1$ssetup%2$s to insure proper migration.'), $l1, '</a>') . '</h2>
 			</div>';
 	}
 
@@ -466,7 +468,7 @@ if (isset($_REQUEST['backup'])) {
 		if (!$_zp_authority->migrateAuth($oldlibauth)) {
 			$messages .= '
 			<div class="errorbox fade-message">
-			<h2>' . gettext('Zenphoto Rights migration failed!') . '</h2>
+			<h2>' . gettext('Rights migration failed!') . '</h2>
 			</div>
 			';
 		}
@@ -583,7 +585,7 @@ if (isset($_GET['compression'])) {
 				echo gettext('You restore your database by selecting a backup and pressing the <em>Restore the Database</em> button.');
 				echo '</p><p class="notebox">' . gettext('<strong>Note:</strong> Each database table is emptied before the restore is attempted. After a successful restore the database will be in the same state as when the backup was created.');
 				echo '</p><p>';
-				echo gettext('Ideally a restore should be done only on the same version of Zenphoto on which the backup was created. If you are intending to upgrade, first do the restore on the version of Zenphoto you were running, then install the new Zenphoto. If this is not possible the restore can still be done, but if the database fields have changed between versions, data from changed fields will not be restored.');
+				echo gettext('Ideally a restore should be done only on the same version on which the backup was created. If you are intending to upgrade, first do the restore on the version you were running, then install the new zenphoto. If this is not possible the restore can still be done, but if the database fields have changed between versions, data from changed fields will not be restored.');
 				echo '</p>'
 				?>
 			</div>

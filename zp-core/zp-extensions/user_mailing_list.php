@@ -21,7 +21,7 @@ if (defined('OFFSET_PATH')) {
 						'enable'			 => false,
 						'button_text'	 => gettext('User mailing list'),
 						'formname'		 => 'user_mailing_list.php',
-						'action'			 => WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/user_mailing_list.php',
+						'action'			 => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/user_mailing_list.php',
 						'icon'				 => 'images/icon_mail.png',
 						'title'				 => gettext('There are no other registered users who have provided an e-mail address.'),
 						'alt'					 => '',
@@ -54,7 +54,6 @@ if (defined('OFFSET_PATH')) {
 		XSRFdefender('mailing_list');
 	}
 
-	$webpath = WEBPATH . '/' . ZENFOLDER . '/';
 	$admins = $_zp_authority->getAdministrators();
 	$zenphoto_tabs['overview']['subtabs'] = array(gettext('Mailing') => '');
 
@@ -121,7 +120,7 @@ if (defined('OFFSET_PATH')) {
 					} else {
 						?>
 						<h2><?php echo gettext('Please enter the message you want to send.'); ?></h2>
-						<form class="dirty-check" id="massmail" action="?sendmail" method="post" accept-charset="UTF-8">
+						<form class="dirtylistening" onReset="setClean('massmail');" id="massmail" action="?sendmail" method="post" accept-charset="UTF-8">
 							<?php XSRFToken('mailing_list'); ?>
 							<table>
 								<tr>

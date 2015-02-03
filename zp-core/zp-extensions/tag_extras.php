@@ -8,8 +8,9 @@
  *
  * @author Malte Müller (acrylian)
  * @package plugins
+ * @subpackage theme
  */
-$plugin_description = gettext("Provides functions to print a tag cloud of all tags from a Zenphoto object.");
+$plugin_description = gettext("Provides functions to print a tag cloud of all tags from a zenphoto object.");
 $plugin_author = "Malte Müller (acrylian)";
 
 /**
@@ -25,7 +26,6 @@ function getAllTagsFromAlbum($albumname, $subalbums = false, $mode = 'images') {
 	$passwordcheck = '';
 	$imageWhere = '';
 	$tagWhere = "";
-	$albumname = sanitize($albumname);
 	if (empty($albumname)) {
 		return FALSE;
 	}
@@ -114,7 +114,7 @@ function getAllTagsFromAlbum($albumname, $subalbums = false, $mode = 'images') {
  *
  */
 function getAllTagsFromZenpage($mode = 'news') {
-	global $_zp_gallery, $_zp_zenpage;
+	global $_zp_gallery, $_zp_CMS;
 	if (!extensionEnabled('zenpage')) {
 		return FALSE;
 	}
@@ -130,9 +130,9 @@ function getAllTagsFromZenpage($mode = 'news') {
 				$published = 'published';
 			}
 			$type = 'news';
-			$items = $_zp_zenpage->getArticles(false, $published);
+			$items = $_zp_CMS->getArticles(false, $published);
 			foreach ($items as $item) {
-				$obj = new ZenpageNews($item['titlelink']);
+				$obj = newArticle($item['titlelink']);
 				if ($obj->checkAccess()) {
 					$ids[] = $obj->getID();
 				}
@@ -141,9 +141,9 @@ function getAllTagsFromZenpage($mode = 'news') {
 		case 'pages':
 			$published = !zp_loggedin(ZENPAGE_NEWS_RIGHTS | ALL_NEWS_RIGHTS);
 			$type = 'pages';
-			$items = $_zp_zenpage->getPages($published);
+			$items = $_zp_CMS->getPages($published);
 			foreach ($items as $item) {
-				$obj = new ZenpagePage($item['titlelink']);
+				$obj = newPage($item['titlelink']);
 				if ($obj->checkAccess()) {
 					$ids[] = $obj->getID();
 				}
@@ -245,13 +245,8 @@ function printAllTags($tags, $mode, $separator = '', $class = '', $showcounter =
 	if (!is_array($tags)) {
 		return FALSE;
 	}
-	$size_min = sanitize_numeric($size_min);
-	$size_max = sanitize_numeric($size_max);
-	$count_min = sanitize_numeric($count_min);
-	$count_max = sanitize_numeric($count_max);
-	$separator = sanitize($separator);
 	if (!empty($class))
-		$class = 'class="' . sanitize($class) . '"';
+		$class = 'class="' . $class . '"';
 	$counter = '';
 	echo "<ul " . $class . ">\n";
 	$loopcount = '';

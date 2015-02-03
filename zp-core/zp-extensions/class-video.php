@@ -8,18 +8,21 @@
  * according to the player enabled.
  *
  * @author Stephen Billard (sbillard)
+ *
  * @package classes
  * @subpackage media
  */
 // force UTF-8 Ø
 
-$plugin_is_filter = 990 | CLASS_PLUGIN;
-$plugin_description = gettext('The Zenphoto <em>audio-video</em> handler.');
-$plugin_notice = gettext('This plugin must always be enabled to use multimedia content. Note that you should also enable a multimedia player. See the info of the player you use to see how it is configured.');
+$plugin_is_filter = defaultExtension(990 | CLASS_PLUGIN);
+$plugin_description = gettext('The <em>audio-video</em> handler.');
+$plugin_notice = gettext('This plugin handles <code>3gp</code> and <code>mov</code> multi-media files. <strong>Note:</strong> you should also enable a multimedia player plugin to handle other media files.');
 $plugin_author = "Stephen Billard (sbillard)";
 
-Gallery::addImageHandler('3gp', 'Video');
-Gallery::addImageHandler('mov', 'Video');
+if (extensionEnabled('class-video')) {
+	Gallery::addImageHandler('3gp', 'Video');
+	Gallery::addImageHandler('mov', 'Video');
+}
 $option_interface = 'VideoObject_Options';
 
 define('GETID3_INCLUDEPATH', SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/class-video/getid3/');
@@ -48,16 +51,16 @@ class VideoObject_Options {
 		return array(gettext('Watermark default images')	 => array('key'		 => 'video_watermark_default_images', 'type'	 => OPTION_TYPE_CHECKBOX,
 										'order'	 => 0,
 										'desc'	 => gettext('Check to place watermark image on default thumbnail images.')),
-						gettext('Quicktime video width')		 => array('key'		 => 'class-video_mov_w', 'type'	 => OPTION_TYPE_TEXTBOX,
+						gettext('Quicktime video width')		 => array('key'		 => 'class-video_mov_w', 'type'	 => OPTION_TYPE_NUMBER,
 										'order'	 => 2,
 										'desc'	 => ''),
-						gettext('Quicktime video height')		 => array('key'		 => 'class-video_mov_h', 'type'	 => OPTION_TYPE_TEXTBOX,
+						gettext('Quicktime video height')		 => array('key'		 => 'class-video_mov_h', 'type'	 => OPTION_TYPE_NUMBER,
 										'order'	 => 2,
 										'desc'	 => ''),
-						gettext('3gp video width')					 => array('key'		 => 'class-video_3gp_w', 'type'	 => OPTION_TYPE_TEXTBOX,
+						gettext('3gp video width')					 => array('key'		 => 'class-video_3gp_w', 'type'	 => OPTION_TYPE_NUMBER,
 										'order'	 => 2,
 										'desc'	 => ''),
-						gettext('3gp video height')					 => array('key'		 => 'class-video_3gp_h', 'type'	 => OPTION_TYPE_TEXTBOX,
+						gettext('3gp video height')					 => array('key'		 => 'class-video_3gp_h', 'type'	 => OPTION_TYPE_NUMBER,
 										'order'	 => 2,
 										'desc'	 => ''),
 						gettext('High quality alternate')		 => array('key'		 => 'class-video_videoalt', 'type'	 => OPTION_TYPE_TEXTBOX,
@@ -187,7 +190,7 @@ class Video extends Image {
 			$imgfile = $path . '/' . THEMEFOLDER . '/' . internalToFilesystem($_zp_gallery->getCurrentTheme()) . '/images' . $img;
 			if (!file_exists($imgfile)) { // first check if the theme has adefault image
 				$imgfile = $path . '/' . THEMEFOLDER . '/' . internalToFilesystem($_zp_gallery->getCurrentTheme()) . '/images/multimediaDefault.png';
-				if (!file_exists($imgfile)) { // if theme has a generic default image use it otherwise use the Zenphoto image
+				if (!file_exists($imgfile)) { // if theme has a generic default image use it otherwise use the standard image
 					$imgfile = $path . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/' . substr(basename(__FILE__), 0, -4) . $img;
 				}
 			}
@@ -202,15 +205,16 @@ class Video extends Image {
 	 *
 	 * @return string
 	 */
-	function getThumb($type = 'image') {
+	function getThumb($type = 'image', $wmt = NULL) {
 		$ts = getOption('thumb_size');
 		$sw = getOption('thumb_crop_width');
 		$sh = getOption('thumb_crop_height');
 		list($custom, $cw, $ch, $cx, $cy) = $this->getThumbCropping($ts, $sw, $sh);
-		$wmt = getOption('Video_watermark');
-		if (empty($wmt)) {
+		if (empty($wmt))
+			$wmt = getOption('Video_watermark');
+		if (empty($wmt))
 			$wmt = getWatermarkParam($this, WATERMARK_THUMB);
-		}
+
 		if ($this->objectsThumb == NULL) {
 			$mtime = $cx = $cy = NULL;
 			$filename = makeSpecialImageName($this->getThumbImageFile());
@@ -309,11 +313,6 @@ class Video extends Image {
 			}
 		}
 		return $vid;
-	}
-
-	function getBody($w = NULL, $h = NULL) {
-		Video_deprecated_functions::getBody();
-		$this->getContent($w, $h);
 	}
 
 	/**

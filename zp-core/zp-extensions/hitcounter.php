@@ -1,8 +1,10 @@
 <?php
 /**
- * Provides automatic hitcounter counting for Zenphoto objects
+ * Provides automatic hitcounter counting for gallery objects
  * @author Stephen Billard (sbillard)
+ *
  * @package plugins
+ * @subpackage theme
  */
 /** Reset hitcounters ********************************************************** */
 /* * ***************************************************************************** */
@@ -31,8 +33,8 @@ if (!defined('OFFSET_PATH')) {
 	}
 }
 
-$plugin_is_filter = 5 | ADMIN_PLUGIN | FEATURE_PLUGIN;
-$plugin_description = gettext('Automatically increments hitcounters on Zenphoto objects viewed by a <em>visitor</em>.');
+$plugin_is_filter = defaultExtension(5 | ADMIN_PLUGIN | FEATURE_PLUGIN);
+$plugin_description = gettext('Automatically increments hitcounters on gallery objects viewed by a <em>visitor</em>.');
 $plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'hitcounter';
@@ -162,7 +164,7 @@ class hitcounter {
 			}
 
 			if (!$skip) {
-				global $_zp_gallery_page, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_current_category;
+				global $_zp_gallery_page, $_zp_current_album, $_zp_current_image, $_zp_current_article, $_zp_current_page, $_zp_current_category;
 				if (checkAccess()) {
 					// count only if permitted to access
 					switch ($_zp_gallery_page) {
@@ -178,14 +180,14 @@ class hitcounter {
 							}
 							break;
 						case 'pages.php':
-							if (class_exists('Zenpage') && !zp_loggedin(ZENPAGE_PAGES_RIGHTS)) {
-								$_zp_current_zenpage_page->countHit();
+							if (class_exists('CMS') && !zp_loggedin(ZENPAGE_PAGES_RIGHTS)) {
+								$_zp_current_page->countHit();
 							}
 							break;
 						case 'news.php':
-							if (class_exists('Zenpage') && !zp_loggedin(ZENPAGE_NEWS_RIGHTS)) {
+							if (class_exists('CMS') && !zp_loggedin(ZENPAGE_NEWS_RIGHTS)) {
 								if (is_NewsArticle()) {
-									$_zp_current_zenpage_news->countHit();
+									$_zp_current_article->countHit();
 								} else if (is_NewsCategory()) {
 									$_zp_current_category->countHit();
 								}
@@ -211,7 +213,7 @@ class hitcounter {
 						'enable'			 => true,
 						'button_text'	 => gettext('Reset all hitcounters'),
 						'formname'		 => 'reset_all_hitcounters.php',
-						'action'			 => PLUGIN_FOLDER . '/hitcounter.php?action=reset_all_hitcounters',
+						'action'			 => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/hitcounter.php?action=reset_all_hitcounters',
 						'icon'				 => 'images/reset.png',
 						'alt'					 => '',
 						'title'				 => gettext('Reset all hitcounters to zero'),
@@ -230,7 +232,7 @@ class hitcounter {
  * @return string
  */
 function getHitcounter($obj = NULL) {
-	global $_zp_current_album, $_zp_current_image, $_zp_gallery_page, $_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_current_category;
+	global $_zp_current_album, $_zp_current_image, $_zp_gallery_page, $_zp_current_article, $_zp_current_page, $_zp_current_category;
 	if (is_null($obj)) {
 		switch ($_zp_gallery_page) {
 			case 'album.php':
@@ -240,13 +242,13 @@ function getHitcounter($obj = NULL) {
 				$obj = $_zp_current_image;
 				break;
 			case 'pages.php':
-				$obj = $_zp_current_zenpage_page;
+				$obj = $_zp_current_page;
 				break;
 			case 'news.php':
 				if (in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
 					$obj = $_zp_current_category;
 				} else {
-					$obj = $_zp_current_zenpage_news;
+					$obj = $_zp_current_article;
 					if (is_null($obj))
 						return 0;
 				}

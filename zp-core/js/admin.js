@@ -1,4 +1,4 @@
-/* Zenphoto administration javascript. */
+/* administration javascript. */
 
 function albumSwitch(sel, unchecknewalbum, msg1, msg2) {
 	var selected = sel.options[sel.selectedIndex];
@@ -251,10 +251,20 @@ function showfield(obj, fld) {
 // password field hide/disable
 function toggle_passwords(id, pwd_enable) {
 	toggleExtraInfo('', 'password' + id, pwd_enable);
+	jQuery('#user_name' + id).val('');
+	jQuery('#pass' + id).val('');
+	jQuery('#pass_r' + id).val('');
 	if (pwd_enable) {
 		jQuery('#password_enabled' + id).val('1');
+		jQuery('#user_name' + id).removeClass('ignoredirty');
+		jQuery('#pass' + id).removeClass('ignoredirty');
+		jQuery('#pass_r' + id).removeClass('ignoredirty');
 	} else {
 		jQuery('#password_enabled' + id).val('0');
+		jQuery('#user_name' + id).dirtyForms('setClean');
+		jQuery('#pass' + id).dirtyForms('setClean');
+		jQuery('#pass_r' + id).val('').dirtyForms('setClean');
+
 	}
 }
 
@@ -286,29 +296,35 @@ String.prototype.replaceAll = function(stringToFind, stringToReplace) {
 	return temp;
 }
 
+function bin2hex(s) {
+	//  discuss at: http://phpjs.org/functions/bin2hex/
+	// original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+	// bugfixed by: Onno Marsman
+	// bugfixed by: Linuxworld
+	// improved by: ntoniazzi (http://phpjs.org/functions/bin2hex:361#comment_177616)
+	//   example 1: bin2hex('Kev');
+	//   returns 1: '4b6576'
+	//   example 2: bin2hex(String.fromCharCode(0x00));
+	//   returns 2: '00'
+	var i, l, o = '', n;
+	s += '';
+	for (i = 0, l = s.length; i < l; i++) {
+		n = s.charCodeAt(i).toString(16);
+		o += n.length < 2 ? '0' + n : n;
+	}
+	return o;
+}
 
 function addNewTag(id) {
 	var tag;
 	tag = $('#newtag_' + id).val();
 	if (tag) {
 		$('#newtag_' + id).val('');
-		var name = id + tag;
-		//htmlentities
-		name = encodeURI(name);
-		name = name.replaceAll('%20', '__20__');
-		name = name.replaceAll("'", '__27__');
-		name = name.replaceAll('.', '__2E__');
-		name = name.replaceAll('+', '__20__');
-		name = name.replaceAll('%', '__25__');
-		name = name.replaceAll('&', '__26__');
-		name = name.replaceAll('(', '__28__');
-		name = name.replaceAll(')', '__29__');
-		var lcname = name.toLowerCase();
-		var exists = $('#' + lcname).length;
-		if (exists) {
-			$('#' + lcname + '_element').remove();
+		var name = id + bin2hex(tag);
+		if ($('#' + name).length) {
+			$('#' + name + '_element').remove();
 		}
-		html = '<li id="' + lcname + '_element"><label class="displayinline"><input id="' + lcname + '" name="' + name +
+		html = '<li id="' + name + '_element"><label class="displayinline"><input id="' + name + '" name="' + name +
 						'" type="checkbox" checked="checked" value="1" />' + tag + '</label></li>';
 		$('#list_' + id).prepend(html);
 	}

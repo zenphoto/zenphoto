@@ -18,7 +18,7 @@
  * Some key points to note:
  * 1. The naming convention for these plugins is class-«handler class».php.
  * 2. The statement setting the plugin_is_filter variable must be near the front of the file. This is important
- * as it is the indicator to the Zenphoto plugin loader to load the script at the same point that other
+ * as it is the indicator to the plugin loader to load the script at the same point that other
  * object modules are loaded.
  * 3. These objects are extension to the zenphoto "Image" class. This means they have all the properties of
  * an image plus whatever you add. Of course you will need to override some of the image class functions to
@@ -89,9 +89,9 @@ class TextObject extends Image {
 		global $_zp_supported_images;
 		$msg = false;
 		if (!is_object($album) || !$album->exists) {
-			$msg = gettext('Invalid Textobject instantiation: Album does not exist');
+			$msg = sprintf(gettext('Invalid %s instantiation: Album does not exist'), get_class($this));
 		} else if (!$this->classSetup($album, $filename) || !file_exists($this->localpath) || is_dir($this->localpath)) {
-			$msg = gettext('Invalid Textobject instantiation: file does not exist');
+			$msg = sprintf(gettext('Invalid %s instantiation: file does not exist'), get_class($this));
 		}
 		if ($msg) {
 			$this->exists = false;
@@ -106,7 +106,8 @@ class TextObject extends Image {
 		$new = $this->instantiate('images', array('filename' => $filename, 'albumid' => $this->album->getID()), 'filename');
 		if ($new || $this->filemtime != $this->get('mtime')) {
 			if ($new)
-				$this->setTitle($this->displayname); $title = $this->displayname;
+				$this->setTitle($this->displayname);
+			$title = $this->displayname;
 			$this->updateMetaData();
 			$this->set('mtime', $this->filemtime);
 			$this->save();
@@ -149,15 +150,16 @@ class TextObject extends Image {
 	 * @param string $type 'image' or 'album'
 	 * @return string
 	 */
-	function getThumb($type = 'image') {
+	function getThumb($type = 'image', $wmt = NULL) {
 		$ts = getOption('thumb_size');
 		$sw = getOption('thumb_crop_width');
 		$sh = getOption('thumb_crop_height');
 		list($custom, $cw, $ch, $cx, $cy) = $this->getThumbCropping($ts, $sw, $sh);
-		$wmt = $this->watermark;
-		if (empty($wmt)) {
+		if (empty($wmt))
+			$wmt = $this->watermark;
+		if (empty($wmt))
 			$wmt = getWatermarkParam($this, WATERMARK_THUMB);
-		}
+
 		if (is_null($this->objectsThumb)) {
 			$mtime = $cx = $cy = NULL;
 			$filename = makeSpecialImageName($this->getThumbImageFile());
@@ -171,11 +173,6 @@ class TextObject extends Image {
 		$args = getImageParameters(array($ts, $sw, $sh, $cw, $ch, $cx, $cy, NULL, true, true, true, $wmt, NULL, NULL), $this->album->name);
 		$cachefilename = getImageCacheFilename($alb = $this->album->name, $this->filename, $args);
 		return getImageURI($args, $alb, $filename, $mtime);
-	}
-
-	function getBody($w = NULL, $h = NULL) {
-		TextObject_deprecated_functions::getBody();
-		$this->getContent($w, $h);
 	}
 
 	/**

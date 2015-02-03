@@ -24,6 +24,7 @@
  * address, further access attempts from that IP accress will be ignored until a timeout has expired.
 
  * @author Stephen Billard (sbillard)
+ *
  * @package plugins
  * @subpackage admin
  */
@@ -81,15 +82,15 @@ class ipBlocker {
 										'selections'		 => $files,
 										'nullselection'	 => '',
 										'disabled'			 => !extensionEnabled('ipBlocker'),
-										'desc'					 => sprintf(gettext('Import an external IP list. <p class="notebox"><strong>NOTE:</strong> If this list is large it may exceed the capacity of Zenphoto and %s to process and store the results.'), DATABASE_SOFTWARE)),
+										'desc'					 => sprintf(gettext('Import an external IP list. <p class="notebox"><strong>NOTE:</strong> If this list is large it may exceed the capacity of zenphoto and %s to process and store the results.'), DATABASE_SOFTWARE)),
 						gettext('Action')					 => array('key'			 => 'ipBlocker_type', 'type'		 => OPTION_TYPE_RADIO,
 										'order'		 => 3,
 										'buttons'	 => $buttons,
 										'desc'		 => gettext('How the plugin will interpret the IP list.')),
-						gettext('Logon threshold') => array('key'		 => 'ipBlocker_threshold', 'type'	 => OPTION_TYPE_TEXTBOX,
+						gettext('Logon threshold') => array('key'		 => 'ipBlocker_threshold', 'type'	 => OPTION_TYPE_NUMBER,
 										'order'	 => 1,
 										'desc'	 => gettext('Admin page requests will be ignored after this many failed tries.')),
-						gettext('Logon cool off')	 => array('key'		 => 'ipBlocker_timeout', 'type'	 => OPTION_TYPE_TEXTBOX,
+						gettext('Logon cool off')	 => array('key'		 => 'ipBlocker_timeout', 'type'	 => OPTION_TYPE_NUMBER,
 										'order'	 => 2,
 										'desc'	 => gettext('The block will be removed after this many minutes.'))
 		);
@@ -150,7 +151,7 @@ class ipBlocker {
 					//-->
 				</script>
 				<p class="buttons">
-					<a href="javascript:clearips();"><?php echo gettext('clear list'); ?></a>
+					<a onclick="clearips();"><?php echo gettext('clear list'); ?></a>
 				</p>
 				<?php
 				break;

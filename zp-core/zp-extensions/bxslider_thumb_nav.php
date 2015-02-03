@@ -42,25 +42,25 @@ class bxslider {
 	function getOptionsSupported() {
 		global $_zp_gallery;
 		$options = array(
-						gettext('Minimum items')	 => array('key'		 => 'bxslider_minitems', 'type'	 => OPTION_TYPE_TEXTBOX,
+						gettext('Minimum items')	 => array('key'		 => 'bxslider_minitems', 'type'	 => OPTION_TYPE_NUMBER,
 										'desc'	 => gettext("The minimum number of slides to be shown. Slides will be sized down if carousel becomes smaller than the original size."),
 										'order'	 => 1),
-						gettext('Maximum items')	 => array('key'		 => 'bxslider_maxitems', 'type'	 => OPTION_TYPE_TEXTBOX,
+						gettext('Maximum items')	 => array('key'		 => 'bxslider_maxitems', 'type'	 => OPTION_TYPE_NUMBER,
 										'desc'	 => gettext("The maximum number of slides to be shown. Slides will be sized up if carousel becomes larger than the original size."),
 										'order'	 => 2),
-						gettext('Width')					 => array('key'		 => 'bxslider_width', 'type'	 => OPTION_TYPE_TEXTBOX,
+						gettext('Width')					 => array('key'		 => 'bxslider_width', 'type'	 => OPTION_TYPE_NUMBER,
 										'desc'	 => gettext("Width of the thumb. Note that the CSS might need to be adjusted."),
 										'order'	 => 3),
-						gettext('Height')					 => array('key'		 => 'bxslider_height', 'type'	 => OPTION_TYPE_TEXTBOX,
+						gettext('Height')					 => array('key'		 => 'bxslider_height', 'type'	 => OPTION_TYPE_NUMBER,
 										'desc'	 => gettext("Height of the thumb. Note that the CSS might need to be adjusted."),
 										'order'	 => 4),
-						gettext('Crop width')			 => array('key'		 => 'bxslider_cropw', 'type'	 => OPTION_TYPE_TEXTBOX,
+						gettext('Crop width')			 => array('key'		 => 'bxslider_cropw', 'type'	 => OPTION_TYPE_NUMBER,
 										'desc'	 => "",
 										'order'	 => 5),
-						gettext('Crop height')		 => array('key'		 => 'bxslider_croph', 'type'	 => OPTION_TYPE_TEXTBOX,
+						gettext('Crop height')		 => array('key'		 => 'bxslider_croph', 'type'	 => OPTION_TYPE_NUMBER,
 										'desc'	 => "",
 										'order'	 => 6),
-						gettext('Speed')					 => array('key'		 => 'bxslider_speed', 'type'	 => OPTION_TYPE_TEXTBOX,
+						gettext('Speed')					 => array('key'		 => 'bxslider_speed', 'type'	 => OPTION_TYPE_NUMBER,
 										'desc'	 => gettext("The speed in miliseconds the slides advance when clicked.)"),
 										'order'	 => 7),
 						gettext('Full image link') => array('key'		 => 'bxslider_fullimagelink', 'type'	 => OPTION_TYPE_CHECKBOX,
@@ -160,13 +160,9 @@ if (!$plugin_disable && !OFFSET_PATH && getOption('bxslider_' . $_zp_gallery->ge
 			}
 			if (is_null($fullimagelink)) {
 				$fullimagelink = getOption('bxslider_fullimagelink');
-			} else {
-				$fullimagelink = sanitize($fullimagelink);
 			}
 			if (is_null($mode)) {
 				$mode = getOption('bxslider_mode');
-			} else {
-				$mode = sanitize($mode);
 			}
 			if (is_null($speed)) {
 				$speed = getOption('bxslider_speed');
@@ -238,7 +234,7 @@ if (!$plugin_disable && !OFFSET_PATH && getOption('bxslider_' . $_zp_gallery->ge
 				?>
 			</ul>
 			<script type="text/javascript">
-				$(document).ready(function() {
+				$(document).ready(function () {
 					var index = $('.bxslider<?php echo $albumid; ?> li.activeimg').index();
 					index = ++index;
 					currentPager = parseInt(index / <?php echo $maxitems; ?>)

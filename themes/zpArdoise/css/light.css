@@ -1,0 +1,199 @@
+﻿body {
+	background: #ddd url(../images/bg3.jpg) repeat scroll;
+	color: #333;
+}
+div#page {
+	background: #eee;
+	border: 1px solid #bbb;
+}
+#site-title {
+	background: url(../images/hr_light.gif) repeat-x 0 50%;
+}
+#main-menu ul li a:hover, #main-menu ul li span:hover {
+	background: #bbb;
+}
+#main-menu ul li a.active, #main-menu ul li.active a {
+	background: #b45e2c;
+}
+h1, h2, h3, h4 {
+	color: #444;
+}
+a, a:active, a:focus, a:hover  {
+	color: #b45e2c;
+}
+img.cadre {
+	border: 1px solid #444;
+}
+img.ombreB {
+	border: 0 solid #444 !important;
+}
+input, textarea, select, .disabled_input label {
+	color: #333 !important;
+	background: #ddd !important;
+	border: 1px solid #bbb !important;
+}
+div.nav-img ul a, div.nav-img a {
+	border: 1px solid #bbb;
+	background: #bbb;
+}
+div.nav-img ul a:hover, div.nav-img a:hover {
+	border: 1px solid #b45e2c;
+	background: #b45e2c;
+}
+div.nav-img ul .disabledlink {
+	border: 1px solid #bbb;
+	color: #bbb;
+}
+div.pagination-nogal ul a, div.pagination-nogal ul a:visited, div.pagination-nogal ul li.current, div.pagination-news ul a, div.pagination-news ul a:visited, div.pagination-news ul li.current {
+	border: solid 1px #b45e2c;
+}
+div.pagination-nogal ul li.current, div.pagination-news ul li.current {
+	background: #b45e2c;
+	color: #fff;
+}
+div.pagination-nogal ul a:hover, div.pagination-news ul a:hover {
+	color: #333 !important;
+}
+div.pagination-nogal ul .disabledlink, div.pagination-news ul .disabledlink {
+	border: 1px solid #bbb;
+	color: #bbb;
+}
+div.news-cat-list {
+	background: url(../images/hr_light.gif) repeat-y;
+}
+.news-cat-active {
+	background: #bbb;
+}
+div#album-wrap ul li a.album-thumb {
+	border: 1px solid #bbb;
+}
+div#album-wrap ul li a.album-thumb:hover {
+	border: 1px solid #444;
+}
+#image-stat h4 {
+	background: #bbb url(../images/hr_light.gif) repeat-x 0 100%;
+}
+a.thumb, #image-stat a {
+	border: 1px solid #bbb;
+}
+a.thumb:hover, #image-stat a:hover {
+	border: 1px solid #444;
+}
+#image img, #image a img {
+	border: 0 solid #444;
+	box-shadow: 2px 2px 9px #111; -moz-box-shadow: 2px 2px 9px #111; -webkit-box-shadow: 2px 2px 9px #111;
+}
+#exif-infos {
+	background: url(../images/hr_light.gif) repeat-x;
+}
+div.ss-controls a , div.nav-controls a {
+	background: #bbb;
+}
+div.ss-controls a:hover, div.nav-controls a:hover {
+	background: #b45e2c;
+}
+div.slideshow-container {
+	background: url(../images/hr_light.gif) repeat-x;
+}
+div.loader {
+	background: url(../images/loader_light.gif) no-repeat center;
+}
+span.image-wrapper {
+	background: url(../images/hr_light.gif) repeat-x bottom;
+}
+div.extra-content {
+	background: url(../images/hr_light.gif) repeat-y;
+}
+div.slideshow img {
+	border: 0 none;
+	box-shadow: 2px 2px 9px #111; -moz-box-shadow: 2px 2px 9px #111; -webkit-box-shadow: 2px 2px 9px #111;
+}
+div.pagination a, div.pagination span.current {
+	border: 1px solid #b45e2c;
+}
+div.pagination span.ellipsis {
+	border: 1px solid #b45e2c;
+}
+div.pagination span.current {
+	background: #b45e2c;
+}
+div.pagination a:hover {
+	color: #333;
+	border-color: #b45e2c;
+}
+table#archive h4 {
+	border-bottom: 1px solid #666;
+}
+table#archive td#newsarchive {
+	background: url(../images/hr_light.gif) repeat-y;
+}
+#login-wrap {
+	background: #eee;
+}
+#passwordform {
+	background: #eee;
+}
+#loginform fieldset {
+	border: 1px solid #bbb;
+}
+#loginform legend {
+	color: #333;
+}
+#comment-wrap {
+	background: url(../images/hr_light.gif) repeat-x;
+}
+#comments {
+	background: url(../images/hr_light.gif) repeat-y;
+}
+input:hover, input:focus, textarea:hover, textarea:focus {
+	border: 1px solid #444 !important;
+}
+input[type=submit]:hover, input[type=submit]:focus, input[type=reset]:hover, input[type=reset]:focus, #rating-wrap input[type=button]:hover, #rating-wrap input[type=button]:focus {
+	background: #999 !important;
+}
+input[disabled="disabled"], textarea[disabled="disabled"] {
+	color: #777 !important;
+}
+button[type=submit], button[type=reset] {
+	background: #ddd !important;
+	border: 1px solid #bbb !important;
+	color: #333 !important;
+}
+button[type=submit]:hover, button[type=reset]:hover {
+	background: #999 !important;
+	border: 1px solid #444 !important;
+}
+div#footer {
+	background: url(../images/hr_light.gif) repeat-x;
+}
+#searchextrashow {
+	background: #ddd;
+	border: 1px solid #bbb;
+}
+#admin, #admin_data {
+	border: 1px solid #bbb;
+	background: #ddd;
+}
+#admin h3:hover {
+	color: #b45e2c;
+}
+#slidenav a, #slidenav a:visited {
+	background: #ddd;
+	border: 1px solid #bbb;
+	color: #666 !important;
+	box-shadow: 2px 2px 3px #111; -moz-box-shadow: 2px 2px 3px #111; -webkit-box-shadow: 2px 2px 3px #111;
+}
+#slidenav a.activeSlide {
+	background: #aaa;
+	color: #111 !important;
+}
+#slidenav a:hover {
+	color: #111 !important;
+}
+#paypal_button{
+	background: #eee!important;
+	border: 0px solid #eee!important;
+}
+#paypal_button:hover, #paypal_button:focus {
+	border: 0px solid #eee!important;
+}

@@ -1,0 +1,14 @@
+<h4><a name="filters"></a>Zenphoto filters</h4>
+
+<p>
+	<em>Filters</em> modify the behavior of existing Zenphoto functions and can be used by any of the plugin types. Examples of filter use are found noted with each filter. Filters are applied to the output of other functions and may make modifications to that output. So, for instance, <tt>filter_zenphoto_seo</tt> has a filter for the <tt>seoFriendlyURL</tt> function that changes accented characters into non accented equivalents.
+</p>
+<p>
+	Filters are added to a function (which has filtering support) by using the function <tt>zp_register_filter($hook, $function_name, $priority)</tt>. <tt>$hook</tt> is the name of the filter item, <tt>$function_name</tt> is the function that will be invoked to filter the item, and <tt>$priority</tt> is the rank of this filter among the list of filters for this item (defaults to plugin's priority as set with <tt>$plugin_is_filter</tt>). Filters are applied in ascending <tt>$priority</tt> order.
+</p>
+<p>
+	The registered function will be passed the parameters(with the exception of the filter name string) from the <tt>zp_apply_filter()</tt> call. The function must always return the initial parameter of the list (if it exists) as this is then passed on to subsequent filters in the chain. This provides a means of filters operating on the changes made by other filters.
+</p>
+<p>
+	Zenphoto currently provides filter invocation for the following. Function parameters are indicated within the parens:
+</p>

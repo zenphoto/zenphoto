@@ -1,6 +1,9 @@
 <?php
 /**
  * handles reconfiguration when the install signature has changed
+ *
+ * @author Stephen Billard (sbillard)
+ *
  * @package core
  */
 
@@ -12,8 +15,8 @@ function reconfigureAction($mandatory) {
 	list($diff, $needs) = checkSignature($mandatory);
 	$diffkeys = array_keys($diff);
 	if ($mandatory || in_array('ZENPHOTO', $diffkeys) || in_array('FOLDER', $diffkeys)) {
-		if (isset($_GET['rss'])) {
-			if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/rss-closed.xml')) {
+		if (isset($_GET['rss']) || isset($_GET['external'])) {
+			if (isset($_GET['rss']) && file_exists(SERVERPATH . '/' . DATA_FOLDER . '/rss-closed.xml')) {
 				$xml = file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/rss-closed.xml');
 				$xml = preg_replace('~<pubDate>(.*)</pubDate>~', '<pubDate>' . date("r", time()) . '</pubDate>', $xml);
 				echo $xml;
@@ -76,8 +79,7 @@ function reconfigureAction($mandatory) {
  * Checks details of configuration change
  */
 function checkSignature($auto) {
-	global $_configMutex;
-	global $_zp_DB_connection, $_reconfigureMutex;
+	global $_configMutex, $_zp_DB_connection, $_reconfigureMutex;
 	if (function_exists('query_full_array') && $_zp_DB_connection) {
 		$old = @unserialize(getOption('zenphoto_install'));
 		$new = installSignature();
@@ -96,7 +98,7 @@ function checkSignature($auto) {
 		}
 	}
 
-	$package = file_get_contents(dirname(__FILE__) . '/Zenphoto.package');
+	$package = file_get_contents(dirname(__FILE__) . '/zenphoto.package');
 	preg_match_all('|' . ZENFOLDER . '/setup/(.*)|', $package, $matches);
 	$needs = array();
 	foreach ($matches[1] as $need) {
@@ -107,7 +109,7 @@ function checkSignature($auto) {
 	if (file_exists(dirname(__FILE__) . '/setup/')) {
 		chdir(dirname(__FILE__) . '/setup/');
 		$found = safe_glob('*.xxx');
-		if (!empty($found) && $auto && zp_loggedin(ADMIN_RIGHTS)) {
+		if (!empty($found) && $auto && (defined('ADMIN_RIGHTS') && zp_loggedin(ADMIN_RIGHTS) || !$_zp_DB_connection)) {
 			foreach ($found as $script) {
 				chmod($script, 0777);
 				if (@rename($script, stripSuffix($script))) {
@@ -181,7 +183,7 @@ function reconfigurePage($diff, $needs, $mandatory) {
 	?>
 	<div class="reconfigbox">
 		<h1>
-			<?php echo gettext('Zenphoto has detected a change in your installation.'); ?>
+			<?php echo gettext('ZenPhoto20 has detected a change in your installation.'); ?>
 		</h1>
 		<div id="errors">
 			<ul>
@@ -196,7 +198,7 @@ function reconfigurePage($diff, $needs, $mandatory) {
 							echo '<li>' . sprintf(gettext('Your database software has changed from %1$s to %2$s.'), $rslt['old'], $rslt['new']) . '</li>';
 							break;
 						case 'ZENPHOTO':
-							echo '<li>' . sprintf(gettext('Zenphoto %1$s has been copied over %2$s.'), ZENPHOTO_VERSION . '[' . ZENPHOTO_RELEASE . ']', $rslt['old']) . '</li>';
+							echo '<li>' . sprintf(gettext('ZenPhoto20 %1$s has been copied over %2$s.'), ZENPHOTO_VERSION . '[' . ZENPHOTO_RELEASE . ']', $rslt['old']) . '</li>';
 							break;
 						case 'FOLDER':
 							echo '<li>' . sprintf(gettext('Your installation has moved from %1$s to %2$s.'), $rslt['old'], $rslt['new']) . '</li>';
@@ -217,7 +219,7 @@ function reconfigurePage($diff, $needs, $mandatory) {
 			} else {
 				$where = 'gallery';
 			}
-			$l1 = '<a href="' . WEBPATH . '/' . ZENFOLDER . '/setup.php?autorun=' . $where . '&amp;xsrfToken=' . getXSRFToken('setup') . '">';
+			$l1 = '<a href="' . WEBPATH . '/' . ZENFOLDER . '/setup.php?autorun=' . $where . '&amp;xsrfToken=' . @getXSRFToken('setup') . '">';
 			$l2 = '</a>';
 			if (array_key_exists('ZENPHOTO', $diff) || array_key_exists('FOLDER', $diff)) {
 				printf(gettext('The change detected is critical. You <strong>must</strong> run %1$ssetup%2$s for your site to function.'), $l1, $l2);

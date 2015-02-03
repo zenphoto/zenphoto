@@ -19,9 +19,10 @@ function css_head($ignore) {
 		$themeColor = getThemeOption('Theme_colors');
 	}
 
-	if ($editorConfig = getOption('tinymce4_comments')) {
+	if ($editorConfig = getOption('tinymce_comments')) {
 		if (strpos($themeColor, 'dark') !== false) {
-			setOption('tinymce4_comments', 'dark_' . $editorConfig, false);
+			$editorConfig = str_replace('_dark', '', stripSuffix($editorConfig)) . '_dark.php';
+			setOption('tinymce_comments', $editorConfig, false);
 		}
 	}
 
@@ -31,6 +32,22 @@ function css_head($ignore) {
 		$zenCSS = $_zp_themeroot . "/styles/light.css";
 	}
 	return $ignore;
+}
+
+function printSoftwareLink() {
+	global $themeColor;
+	switch ($themeColor) {
+		case 'dark':
+			$logo = 'blue';
+			break;
+		case'light':
+			$logo = 'light';
+			break;
+		default:
+			$logo = 'sterile';
+			break;
+	}
+	printZenphotoLink($logo);
 }
 
 function switcher_head($ignore) {
@@ -46,9 +63,9 @@ function switcher_head($ignore) {
 	?>
 	<script type="text/javascript">
 		// <!-- <![CDATA[
-		window.onload = function() {
+		window.addEventListener('load', function () {
 			$('#themeSwitcher_zenpage').html('');
-		}
+		}, false);
 		function switchColors() {
 			personality = $('#themeColor').val();
 			window.location = '?themeColor=' + personality;

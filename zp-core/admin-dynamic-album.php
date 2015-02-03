@@ -1,6 +1,9 @@
 <?php
 /**
  * This script is used to create dynamic albums from a search.
+ *
+ * @author Stephen Billard (sbillard)
+ *
  * @package core
  */
 // force UTF-8 Ø
@@ -31,75 +34,82 @@ function getSubalbumImages($folder) {
 $search = new SearchEngine(true);
 if (isset($_POST['savealbum'])) {
 	XSRFdefender('savealbum');
-	$albumname = sanitize($_POST['album']);
-	if ($album = sanitize($_POST['albumselect'])) {
-		$albumobj = newAlbum($album);
-		$allow = $albumobj->isMyItem(ALBUM_RIGHTS);
-	} else {
-		$allow = zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS);
-	}
-	if (!$allow) {
-		if (!zp_apply_filter('admin_managed_albums_access', false, $return)) {
-			zp_error(gettext("You do not have edit rights on this album."));
-		}
-	}
-	if ($_POST['create_tagged'] == 'static') {
-		$unpublished = isset($_POST['return_unpublished']);
-		$_POST['return_unpublished'] = true; //	state is frozen at this point, so unpublishing should not impact
-		$words = sanitize($_POST['album_tag']);
-		$searchfields[] = 'tags_exact';
-		// now tag each element
-		if (isset($_POST['return_albums'])) {
-			$subalbums = $search->getAlbums(0);
-			foreach ($subalbums as $analbum) {
-				$albumobj = newAlbum($analbum);
-				if ($unpublished || $albumobj->getShow()) {
-					$tags = array_unique(array_merge($albumobj->getTags(), array($words)));
-					$albumobj->setTags($tags);
-					$albumobj->save();
-				}
-			}
-		}
-		if (isset($_POST['return_images'])) {
-			$images = $search->getImages();
-			foreach ($images as $animage) {
-				$image = newImage(newAlbum($animage['folder']), $animage['filename']);
-				if ($unpublished || $image->getShow()) {
-					$tags = array_unique(array_merge($image->getTags(), array($words)));
-					$image->setTags($tags);
-					$image->save();
-				}
-			}
-		}
-	} else {
-		$searchfields = array();
-		foreach ($_POST as $key => $value) {
-			if (strpos($key, 'SEARCH_') !== false) {
-				$searchfields[] = sanitize(str_replace('SEARCH_', '', postIndexDecode($key)));
-			}
-		}
-		$words = sanitize($_POST['words']);
-	}
-	if (isset($_POST['thumb'])) {
-		$thumb = sanitize($_POST['thumb']);
-	} else {
-		$thumb = '';
-	}
-	$constraints = "\nCONSTRAINTS=" . 'inalbums=' . ((int) (isset($_POST['return_albums']))) . '&inimages=' . ((int) (isset($_POST['return_images']))) . '&unpublished=' . ((int) (isset($_POST['return_unpublished'])));
-	$redirect = $album . '/' . $albumname . '.alb';
+	$msg = gettext("Failed to save the album file");
+	$_GET['name'] = $albumname = sanitize($_POST['album']);
 
-	if (!empty($albumname)) {
-		$f = fopen(internalToFilesystem(ALBUM_FOLDER_SERVERPATH . $redirect), 'w');
-		if ($f !== false) {
-			fwrite($f, "WORDS=$words\nTHUMB=$thumb\nFIELDS=" . implode(',', $searchfields) . $constraints . "\n");
-			fclose($f);
-			clearstatcache();
-			// redirct to edit of this album
-			header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-edit.php?page=edit&album=" . pathurlencode($redirect));
-			exitZP();
+	if (trim($_POST['words'])) {
+		if ($album = sanitize($_POST['albumselect'])) {
+			$albumobj = newAlbum($album);
+			$allow = $albumobj->isMyItem(ALBUM_RIGHTS);
+		} else {
+			$allow = zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS);
 		}
+		if (!$allow) {
+			if (!zp_apply_filter('admin_managed_albums_access', false, $return)) {
+				zp_error(gettext("You do not have edit rights on this album."));
+			}
+		}
+		if ($_POST['create_tagged'] == 'static') {
+			$unpublished = isset($_POST['return_unpublished']);
+			$_POST['return_unpublished'] = true; //	state is frozen at this point, so unpublishing should not impact
+			$words = sanitize($_POST['album_tag']);
+			$searchfields[] = 'tags_exact';
+			// now tag each element
+			if (isset($_POST['return_albums'])) {
+				$subalbums = $search->getAlbums(0);
+				foreach ($subalbums as $analbum) {
+					$albumobj = newAlbum($analbum);
+					if ($unpublished || $albumobj->getShow()) {
+						$tags = array_unique(array_merge($albumobj->getTags(false), array($words)));
+						$albumobj->setTags($tags);
+						$albumobj->save();
+					}
+				}
+			}
+			if (isset($_POST['return_images'])) {
+				$images = $search->getImages();
+				foreach ($images as $animage) {
+					$image = newImage(newAlbum($animage['folder']), $animage['filename']);
+					if ($unpublished || $image->getShow()) {
+						$tags = array_unique(array_merge($image->getTags(false), array($words)));
+						$image->setTags($tags);
+						$image->save();
+					}
+				}
+			}
+		} else {
+			$searchfields = array();
+			foreach ($_POST as $key => $value) {
+				if (strpos($key, 'SEARCH_') !== false) {
+					$searchfields[] = sanitize(postIndexDecode(str_replace('SEARCH_', '', $key)));
+				}
+			}
+			$words = sanitize($_POST['words']);
+		}
+		if (isset($_POST['thumb'])) {
+			$thumb = sanitize($_POST['thumb']);
+		} else {
+			$thumb = '';
+		}
+		$constraints = "\nCONSTRAINTS=" . 'inalbums=' . ((int) (isset($_POST['return_albums']))) . '&inimages=' . ((int) (isset($_POST['return_images']))) . '&unpublished=' . ((int) (isset($_POST['return_unpublished'])));
+		$redirect = $album . '/' . $albumname . '.alb';
+
+		if (!empty($albumname)) {
+			$f = fopen(internalToFilesystem(ALBUM_FOLDER_SERVERPATH . $redirect), 'w');
+			if ($f !== false) {
+				fwrite($f, "WORDS=$words\nTHUMB=$thumb\nFIELDS=" . implode(',', $searchfields) . $constraints . "\n");
+				fclose($f);
+				clearstatcache();
+				// redirct to edit of this album
+				header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-edit.php?page=edit&album=" . pathurlencode($redirect));
+				exitZP();
+			}
+		}
+	} else {
+		$msg = gettext('Your search criteria is empty.');
 	}
 }
+
 $_GET['page'] = 'edit'; // pretend to be the edit page.
 printAdminHeader('edit', gettext('dynamic'));
 echo "\n</head>";
@@ -113,14 +123,25 @@ echo "<h1>" . gettext("Create Dynamic Album") . "</h1>\n";
 
 if (isset($_POST['savealbum'])) { // we fell through, some kind of error
 	echo "<div class=\"errorbox space\">";
-	echo "<h2>" . gettext("Failed to save the album file") . "</h2>";
+	echo "<h2>" . $msg . "</h2>";
 	echo "</div>\n";
 }
 
 $albumlist = array();
 genAlbumList($albumlist);
 $fields = $search->fieldList;
-$albumname = $words = $search->codifySearchString();
+$words = $search->codifySearchString();
+if (isset($_GET['name'])) {
+	$albumname = sanitize($_GET['name']);
+} else {
+	$albumname = seoFriendly(sanitize_path($words));
+	$old = '';
+	while ($old != $albumname) {
+		$old = $albumname;
+		$albumname = str_replace('--', '-', $albumname);
+	}
+}
+
 $images = $search->getImages(0);
 foreach ($images as $image) {
 	$folder = $image['folder'];
@@ -131,15 +152,8 @@ $subalbums = $search->getAlbums(0);
 foreach ($subalbums as $folder) {
 	getSubalbumImages($folder);
 }
-$albumname = sanitize_path($albumname);
-$albumname = seoFriendly($albumname);
-$old = '';
-while ($old != $albumname) {
-	$old = $albumname;
-	$albumname = str_replace('--', '-', $albumname);
-}
 ?>
-<form class="dirty-check" action="?savealbum" method="post">
+<form class="dirtylistening" onReset="setClean('savealbun_form');" id="savealbun_form" action="?savealbum" method="post" >
 	<?php XSRFToken('savealbum'); ?>
 	<input type="hidden" name="savealbum" value="yes" />
 	<table>
@@ -197,7 +211,7 @@ while ($old != $albumname) {
 						if (isImagePhoto($image) || !is_null($image->objectsThumb)) {
 							echo "\n<option class=\"thumboption\"";
 							if ($showThumb) {
-								echo " style=\"background-image: url(" . html_encode($image->getSizedImage(80)) .
+								echo " style=\"background-image: url(" . html_encode($image->getSizedImage(ADMIN_THUMB_MEDIUM)) .
 								"); background-repeat: no-repeat;\"";
 							}
 							echo " value=\"" . $imagepath . "\"";
@@ -249,8 +263,8 @@ while ($old != $albumname) {
 		<tr>
 			<td><?php echo gettext('Album <em>Tag</em>'); ?></td>
 			<td>
-				<input type="text" size="40" name="album_tag" id="album_tag" value="<?php echo html_encode($albumname); ?>" disabled="disabled" />
-				<?php echo gettext('Select <em>tagged</em> to tag the current search results with this <em>tag</em> and use as the album criteria.'); ?>
+				<input type="text" size="40" name="album_tag" id="album_tag" value="<?php echo html_encode($albumname) . '.' . time(); ?>" disabled="disabled" />
+				<?php echo gettext('Select <em>tagged</em> to tag the search results with this <em>tag</em> and use as the album criteria.'); ?>
 			</td>
 		</tr>
 		<tr>
@@ -278,8 +292,22 @@ while ($old != $albumname) {
 
 	</table>
 
-	<input type="submit" value="<?php echo addslashes(gettext('Create the album')); ?>" class="button" />
-</form>
+	<?php
+	if (empty($albumlist)) {
+		?>
+		<p class="errorbox">
+			<?php echo gettext('There is no place you are allowed to put this album.'); ?>
+		</p>
+		<p>
+			<?php echo gettext('You must have <em>upload</em> rights to at least one album to have a place to store this album.'); ?>
+		</p>
+		<?php
+	} else {
+		?>
+		<input type="submit" value="<?php echo gettext('Create the album'); ?>" class="button" />
+		<?php
+	}
+	?></form>
 
 <?php
 echo "\n" . '</div>';

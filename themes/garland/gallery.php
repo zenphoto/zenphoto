@@ -5,9 +5,9 @@ if (!defined('WEBPATH'))
 <!DOCTYPE html>
 <html>
 	<head>
+
 		<?php zp_apply_filter('theme_head'); ?>
-		<?php printHeadTitle(); ?>
-		<meta charset="<?php echo LOCAL_CHARSET; ?>">
+
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot ?>/zen.css" type="text/css" />
 		<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery', gettext('Gallery RSS')); ?>
 	</head>
@@ -48,7 +48,7 @@ if (!defined('WEBPATH'))
 												<div class="albumdesc">
 													<h3>
 														<a href="<?php echo getAlbumURL(); ?>" title="<?php printf(gettext('View album:  %s'), getBareAlbumTitle()); ?>">
-															<?php printAlbumTitle(); ?>
+															<?php printBareAlbumTitle(25); ?>
 														</a>
 													</h3>
 													<br />

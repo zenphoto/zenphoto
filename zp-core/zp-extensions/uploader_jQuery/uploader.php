@@ -24,8 +24,7 @@ if (isset($_POST['auth'])) {
 admin_securityChecks(UPLOAD_RIGHTS, $return = currentRelativeURL());
 
 $folder = zp_apply_filter('admin_upload_process', sanitize_path($_POST['folder']));
-$types = array_keys($_zp_extra_filetypes);
-$types = array_merge($_zp_supported_images, $types);
+$types = array_keys($_zp_images_classes);
 $types = zp_apply_filter('upload_filetypes', $types);
 
 $options = array(
@@ -58,7 +57,7 @@ if (!empty($folder)) {
 	if ($new) {
 		mkdir_recursive($targetPath, FOLDER_MOD);
 		$album = newAlbum($folder);
-		$album->setShow((int) !empty($_POST['publishalbum']));
+		$album->setShow((int) ($_POST['publishalbum'] == 'true'));
 		$album->setTitle(sanitize($_POST['albumtitle']));
 		$album->setOwner($_zp_current_admin_obj->getUser());
 		$album->save();
@@ -254,7 +253,7 @@ class UploadHandler {
 					file_put_contents($file_path, fopen($uploaded_file, 'r'), FILE_APPEND);
 				} else {
 					move_uploaded_file($uploaded_file, $file_path);
-					if (Gallery::validImage($name) || Gallery::validImageAlt($name)) {
+					if (Gallery::imageObjectClass($name)) {
 						@chmod($targetFile, FILE_MOD);
 						$album = newAlbum($folder);
 						$image = newImage($album, $seoname);

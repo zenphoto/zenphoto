@@ -8,8 +8,9 @@ if (!defined('WEBPATH'))
 <html>
 	<head>
 		<?php zp_apply_filter('theme_head'); ?>
-		<?php printHeadTitle(); ?>
-		<meta charset="<?php echo LOCAL_CHARSET; ?>">
+
+
+
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" type="text/css" />
 		<?php if (zp_has_filter('theme_head', 'colorbox::css')) { ?>
 			<script type="text/javascript">
@@ -50,9 +51,10 @@ if (!defined('WEBPATH'))
 			<div id="content">
 
 				<div id="breadcrumb">
-					<h2><a href="<?php echo getGalleryIndexURL(); ?>" title="<?php gettext('Index'); ?>"><?php echo gettext("Index"); ?></a> » <?php printParentBreadcrumb("", " » ", " » ");
-					printAlbumBreadcrumb("  ", " » ");
-					?>
+					<h2><a href="<?php echo getGalleryIndexURL(); ?>" title="<?php gettext('Index'); ?>"><?php echo gettext("Index"); ?></a> » <?php
+						printParentBreadcrumb("", " » ", " » ");
+						printAlbumBreadcrumb("  ", " » ");
+						?>
 						<strong><?php printImageTitle(); ?></strong> (<?php echo imageNumber() . "/" . getNumImages(); ?>)
 					</h2>
 				</div>
@@ -63,8 +65,8 @@ if (!defined('WEBPATH'))
 					//
 					if (function_exists('printThumbNav')) {
 						printThumbNav(3, 6, 50, 50, 50, 50, FALSE);
-					} else {
-						@call_user_func('printPagedThumbsNav', 6, FALSE, gettext('« prev thumbs'), gettext('next thumbs »'), 40, 40);
+					} else if (function_exists('printPagedThumbsNav')) {
+						printPagedThumbsNav(6, FALSE, gettext('« prev thumbs'), gettext('next thumbs »'), 40, 40);
 					}
 					?>
 
@@ -118,12 +120,15 @@ if (!defined('WEBPATH'))
 						?>
 
 						<br style="clear:both" />
-<?php If (function_exists('printAddToFavorites')) printAddToFavorites($_zp_current_image); 
-      @call_user_func('printRating'); 
-      @call_user_func('printGoogleMap'); 
-      ?>
+						<?php
+						If (function_exists('printAddToFavorites'))
+							printAddToFavorites($_zp_current_image);
+						@call_user_func('printRating');
+						@call_user_func('printGoogleMap');
+						?>
+
 					</div>
-<?php @call_user_func('printCommentForm'); ?>
+					<?php @call_user_func('printCommentForm'); ?>
 
 				</div><!-- content-left -->
 
@@ -132,15 +137,15 @@ if (!defined('WEBPATH'))
 				</div>
 
 				<div id="footer">
-<?php include("footer.php"); ?>
+					<?php include("footer.php"); ?>
 				</div>
 
 
 			</div><!-- content -->
 
 		</div><!-- main -->
-<?php
-zp_apply_filter('theme_body_close');
-?>
+		<?php
+		zp_apply_filter('theme_body_close');
+		?>
 	</body>
 </html>

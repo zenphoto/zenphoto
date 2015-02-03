@@ -4,14 +4,13 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
- * @subpackage feed
+ * @subpackage admin
  */
 // force UTF-8 Ø
 
-$plugin_is_filter = 900 | FEATURE_PLUGIN;
-$plugin_description = gettext('The Zenphoto <em>RSS</em> handler.');
+$plugin_is_filter = defaultExtension(900 | FEATURE_PLUGIN);
+$plugin_description = gettext('The <em>RSS</em> handler.');
 $plugin_notice = gettext('This plugin must be enabled to supply <em>RSS</em> feeds.') . '<br />' . gettext('<strong>Note:</strong> Theme support is required to display RSS links.');
-
 $plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'rss_options';
@@ -21,39 +20,6 @@ class rss_options {
 	function __construct() {
 		global $plugin_is_filter;
 		if (OFFSET_PATH == 2) {
-			setOptionDefault('zp_plugin_rss', $plugin_is_filter);
-//	migrate old RSS options
-			setOptionDefault('RSS_items', getOption('feed_items')); // options for standard images rss
-			setOptionDefault('RSS_imagesize', getOption('feed_imagesize'));
-			setOptionDefault('RSS_sortorder', getOption('feed_sortorder'));
-			setOptionDefault('RSS_items_albums', getOption('feed_items_albums')); // options for albums rss
-			setOptionDefault('RSS_imagesize_albums', getOption('feed_imagesize_albums'));
-			setOptionDefault('RSS_sortorder_albums', getOption('feed_sortorder_albums'));
-			setOptionDefault('RSS_enclosure', getOption('feed_enclosure'));
-			setOptionDefault('RSS_mediarss', getOption('feed_mediarss'));
-			setOptionDefault('RSS_cache', getOption('feed_cache'));
-			setOptionDefault('RSS_cache_expire', getOption('feed_cache_expire'));
-			setOptionDefault('RSS_hitcounter', getOption('feed_hitcounter'));
-			setOptionDefault('RSS_title', getOption('feed_title'));
-			setOptionDefault('RSS_truncate_length', getOption('zenpage_rss_length'));
-			setOptionDefault('RSS_zenpage_items', getOption('zenpage_rss_items'));
-
-
-			purgeOption('feed_items');
-			purgeOption('feed_imagesize');
-			purgeOption('feed_sortorder');
-			purgeOption('feed_items_albums');
-			purgeOption('feed_imagesize_albums');
-			purgeOption('feed_sortorder_albums');
-			purgeOption('feed_enclosure');
-			purgeOption('feed_mediarss');
-			purgeOption('feed_cache');
-			purgeOption('feed_cache_expire');
-			purgeOption('feed_hitcounter');
-			purgeOption('feed_title');
-			purgeOption('zenpage_rss_length');
-			purgeOption('zenpage_rss_items');
-
 			setOptionDefault('RSS_truncate_length', '100');
 			setOptionDefault('RSS_zenpage_items', '10');
 			setOptionDefault('RSS_items', 10); // options for standard images rss
@@ -81,19 +47,19 @@ class rss_options {
 														gettext('News/Page Comments')	 => 'RSS_article_comments'
 										),
 										'desc'			 => gettext('Check each RSS feed you wish to activate.')),
-						gettext('Image feed items:')			 => array('key'		 => 'RSS_items', 'type'	 => OPTION_TYPE_TEXTBOX,
+						gettext('Image feed items:')			 => array('key'		 => 'RSS_items', 'type'	 => OPTION_TYPE_NUMBER,
 										'order'	 => 1,
 										'desc'	 => gettext("The number of new images and comments you want to appear in your site’s RSS feed")),
-						gettext('Album feed items:')			 => array('key'		 => 'RSS_items_albums', 'type'	 => OPTION_TYPE_TEXTBOX,
+						gettext('Album feed items:')			 => array('key'		 => 'RSS_items_albums', 'type'	 => OPTION_TYPE_NUMBER,
 										'order'	 => 2,
 										'desc'	 => gettext("The number of new images and comments you want to appear in your site’s RSS feed")),
-						gettext('Image size')							 => array('key'		 => 'RSS_imagesize', 'type'	 => OPTION_TYPE_TEXTBOX,
+						gettext('Image size')							 => array('key'		 => 'RSS_imagesize', 'type'	 => OPTION_TYPE_NUMBER,
 										'order'	 => 3,
 										'desc'	 => gettext('Size of RSS image feed images:')),
-						gettext('Album image size')				 => array('key'		 => 'RSS_imagesize_albums', 'type'	 => OPTION_TYPE_TEXTBOX,
+						gettext('Album image size')				 => array('key'		 => 'RSS_imagesize_albums', 'type'	 => OPTION_TYPE_NUMBER,
 										'order'	 => 4,
 										'desc'	 => gettext('Size of RSS album feed images :')),
-						gettext('Image feed sort order:')	 => array('key'				 => 'RSS_sortorder', 'type'			 => OPTION_TYPE_SELECTOR,
+						gettext('Image feed sort order:')	 => array('key'				 => 'RSS_sortorder', 'type'			 => OPTION_TYPE_NUMBER,
 										'order'			 => 6,
 										'selections' => array(gettext('latest by id')					 => 'latest',
 														gettext('latest by date')				 => 'latest-date',
@@ -119,7 +85,7 @@ class rss_options {
 						gettext('Cache')									 => array('key'		 => 'RSS_cache', 'type'	 => OPTION_TYPE_CHECKBOX,
 										'order'	 => 10,
 										'desc'	 => sprintf(gettext('Check if you want to enable static RSS feed caching. The cached file will be placed within the <em>%s</em> folder.'), STATIC_CACHE_FOLDER)),
-						gettext('Cache expiration')				 => array('key'		 => 'RSS_cache_expire', 'type'	 => OPTION_TYPE_TEXTBOX,
+						gettext('Cache expiration')				 => array('key'		 => 'RSS_cache_expire', 'type'	 => OPTION_TYPE_NUMBER,
 										'order'	 => 11,
 										'desc'	 => gettext('Cache expire default is 86400 seconds (1 day = 24 hrs * 60 min * 60 sec).')),
 						gettext('Hitcounter')							 => array('key'		 => 'RSS_hitcounter', 'type'	 => OPTION_TYPE_CHECKBOX,
@@ -134,10 +100,10 @@ class rss_options {
 										'desc'	 => gettext('If checked links generated for logged‑in users will include a token identifying the user. Use of that link when not logged‑in will give the same feed as if the user were logged‑in.'))
 		);
 		if (extensionEnabled('zenpage')) {
-			$options[gettext('Feed text length')] = array('key'		 => 'RSS_truncate_length', 'type'	 => OPTION_TYPE_TEXTBOX,
+			$options[gettext('Feed text length')] = array('key'		 => 'RSS_truncate_length', 'type'	 => OPTION_TYPE_NUMBER,
 							'order'	 => 5.5,
 							'desc'	 => gettext("The text length of the Zenpage RSS feed items. No value for full length."));
-			$options[gettext('Zenpage feed items')] = array('key'		 => 'RSS_zenpage_items', 'type'	 => OPTION_TYPE_TEXTBOX,
+			$options[gettext('Zenpage feed items')] = array('key'		 => 'RSS_zenpage_items', 'type'	 => OPTION_TYPE_NUMBER,
 							'order'	 => 5,
 							'desc'	 => gettext("The number of news articles you want to appear in your site’s News RSS feed."));
 		}
@@ -194,14 +160,11 @@ class rss_options {
  * 																		"Comments-page" for comments of only the page it is called from
  * 																		"Comments-all" for comments from all albums, images, news articels and pages
  * 																		"Pages" feed for all pages
- * @param string $lang optional to display a feed link for a specific language. Enter the locale like "de_DE" (the locale must be installed on your Zenphoto to work of course). If empty the locale set in the admin option or the language selector (getOption('locale') is used.
+ * @param string $lang optional to display a feed link for a specific language. Enter the locale like "de_DE" (the locale must be installed to work of course). If empty the locale set in the admin option or the language selector (getOption('locale') is used.
  * @param string $addl provided additional data for feeds (e.g. album object for album feeds, $categorylink for zenpage categories
  */
 function getRSSLink($option, $lang = NULL, $addl = NULL) {
 	global $_zp_current_album, $_zp_current_image, $_zp_current_admin_obj, $_zp_current_category;
-	if (strtolower($option) == 'newswithimages') {
-		RSS_internal_deprecations::getRSSLink($option);
-	}
 	if (empty($lang)) {
 		$lang = zpFunctions::getLanguageText(getOption('locale'));
 	}
@@ -326,7 +289,7 @@ function getRSSLink($option, $lang = NULL, $addl = NULL) {
  * @param string $next text to appear after the link
  * @param bool $printIcon print an RSS icon beside it? if true, the icon is zp-core/images/rss.png
  * @param string $class css class
- * @param string $lang optional to display a feed link for a specific language. Enter the locale like "de_DE" (the locale must be installed on your Zenphoto to work of course). If empty the locale set in the admin option or the language selector (getOption('locale') is used.
+ * @param string $lang optional to display a feed link for a specific language. Enter the locale like "de_DE" (the locale must be installed to work of course). If empty the locale set in the admin option or the language selector (getOption('locale') is used.
  * @param string $addl provided additional data for feeds (e.g. album object for album feeds, $categorylink for zenpage categories
  */
 function printRSSLink($option, $prev, $linktext, $next, $printIcon = true, $class = null, $lang = '', $addl = NULL) {
@@ -356,7 +319,7 @@ function printRSSLink($option, $prev, $linktext, $next, $printIcon = true, $clas
  * 																		"AlbumsRSS" for latest albums
  * 																		"AlbumsRSScollection" only for latest subalbums with the album it is called from
  * @param string $linktext title of the link
- * @param string $lang optional to display a feed link for a specific language. Enter the locale like "de_DE" (the locale must be installed on your Zenphoto to work of course). If empty the locale set in the admin option or the language selector (getOption('locale') is used.
+ * @param string $lang optional to display a feed link for a specific language. Enter the locale like "de_DE" (the locale must be installed to work of course). If empty the locale set in the admin option or the language selector (getOption('locale') is used.
  * @param string $addl provided additional data for feeds (e.g. album object for album feeds, $categorylink for zenpage categories
  *
  */
@@ -377,7 +340,8 @@ class RSS extends feed {
 	 *
 	 */
 	function __construct($options = NULL) {
-		global $_zp_gallery, $_zp_current_admin_obj, $_zp_loggedin;
+		global $_zp_gallery, $_zp_current_admin_obj, $_zp_loggedin, $_zp_gallery_page;
+		$_zp_gallery_page = 'RSS.php';
 		if (empty($options))
 			self::feed404();
 
@@ -485,7 +449,7 @@ class RSS extends feed {
 				$this->imagesize = $this->getImageSize();
 				$this->itemnumber = getOption("RSS_zenpage_items"); // # of Items displayed on the feed
 				require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/image_album_statistics.php');
-				require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/zenpage-template-functions.php');
+				require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/template-functions.php');
 
 				break;
 			case 'pages': //Zenpage News RSS
@@ -510,7 +474,7 @@ class RSS extends feed {
 						break;
 				}
 				$this->channel_title = html_encode($this->channel_title . $titleappendix);
-				require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/zenpage-template-functions.php');
+				require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/template-functions.php');
 				break;
 
 			case 'comments': //Comments RSS
@@ -547,7 +511,7 @@ class RSS extends feed {
 				}
 				$this->channel_title = html_encode($this->channel_title . $title . gettext(' (latest comments)'));
 				if (extensionEnabled('zenpage')) {
-					require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/zenpage-template-functions.php');
+					require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/template-functions.php');
 				}
 				break;
 			case 'null': //we just want the class instantiated
@@ -654,9 +618,9 @@ class RSS extends feed {
 		}
 //date
 		if ($this->mode != "albums") {
-			$feeditem['pubdate'] = date("r", strtotime($item->getDateTime()));
+			$feeditem['pubdate'] = date("r", strtotime($item->getPublishDate()));
 		} else {
-			$feeditem['pubdate'] = date("r", strtotime($albumobj->getDateTime()));
+			$feeditem['pubdate'] = date("r", strtotime($albumobj->getPublishDate()));
 		}
 		return $feeditem;
 	}
@@ -670,14 +634,14 @@ class RSS extends feed {
 	protected function getItemNews($item) {
 		$categories = '';
 		$feeditem['enclosure'] = '';
-		$obj = new ZenpageNews($item['titlelink']);
+		$obj = newArticle($item['titlelink']);
 		$title = $feeditem['title'] = get_language_string($obj->getTitle('all'), $this->locale);
 		$link = $obj->getLink();
 		$count2 = 0;
 		$plaincategories = $obj->getCategories();
 		$categories = '';
 		foreach ($plaincategories as $cat) {
-			$catobj = new ZenpageCategory($cat['titlelink']);
+			$catobj = newCategory($cat['titlelink']);
 			$categories .= get_language_string($catobj->getTitle('all'), $this->locale) . ', ';
 		}
 		$categories = rtrim($categories, ', ');
@@ -719,7 +683,7 @@ class RSS extends feed {
 					<pubDate><?php echo date("r", time()); ?></pubDate>
 					<lastBuildDate><?php echo date("r", time()); ?></lastBuildDate>
 					<docs>http://blogs.law.harvard.edu/tech/rss</docs>
-					<generator>Zenphoto RSS Generator</generator>
+					<generator>ZenPhoto20 RSS Generator</generator>
 					<?php
 					foreach ($feeditems as $feeditem) {
 						switch ($this->feedtype) {

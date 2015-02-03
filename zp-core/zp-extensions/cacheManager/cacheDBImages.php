@@ -99,25 +99,39 @@ echo "\n" . '<div id="content">';
 							if (preg_match('~/' . CACHEFOLDER . '/~', $match)) {
 								$found++;
 								list($image, $args) = getImageProcessorURIFromCacheName($match, $watermarks);
-								if (!file_exists(getAlbumFolder() . $image)) {
-									recordMissing($table, $row, $image);
-								} else {
-									$uri = getImageURI($args, dirname($image), basename($image), NULL);
-									if (strpos($uri, 'i.php?') !== false) {
-										$fixed++;
-										$title = getTitle($table, $row);
-										?>
-										<a href="<?php echo html_encode($uri); ?>&amp;debug" title="<?php echo $title; ?>">
-											<?php
-											if (isset($args[10])) {
-												echo '<img src="' . html_encode(pathurlencode($uri)) . '" height="15" width="15" alt="x" />' . "\n";
-											} else {
-												echo '<img src="' . html_encode(pathurlencode($uri)) . '" height="20" width="20" alt="X" />' . "\n";
-											}
+								$try = $_zp_supported_images;
+								$base = stripSuffix($image);
+								$prime = getSuffix($image);
+								array_unshift($try, $prime);
+								$try = array_unique($try);
+								$missing = true;
+								//see if we can match the cache name to an image in the album.
+								//Note that the cache suffix may not match the image suffix
+								foreach ($try as $suffix) {
+									if (file_exists(getAlbumFolder() . $base . '.' . $suffix)) {
+										$missing = false;
+										$image = $base . '.' . $suffix;
+										$uri = getImageURI($args, dirname($image), basename($image), NULL);
+										if (strpos($uri, 'i.php?') !== false) {
+											$fixed++;
+											$title = getTitle($table, $row);
 											?>
-										</a>
-										<?php
+											<a href="<?php echo html_encode($uri); ?>&amp;debug" title="<?php echo $title; ?>">
+												<?php
+												if (isset($args[10])) {
+													echo '<img src="' . html_encode(pathurlencode($uri)) . '" height="15" width="15" alt="x" />' . "\n";
+												} else {
+													echo '<img src="' . html_encode(pathurlencode($uri)) . '" height="20" width="20" alt="X" />' . "\n";
+												}
+												?>
+											</a>
+											<?php
+										}
+										break;
 									}
+								}
+								if ($missing) {
+									recordMissing($table, $row, $image);
 								}
 								$cache_file = '{*WEBPATH*}/' . CACHEFOLDER . getImageCacheFilename(dirname($image), basename($image), $args);
 								if ($match != $cache_file) {

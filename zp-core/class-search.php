@@ -2,6 +2,9 @@
 
 /**
  * search class
+ *
+ * @author Stephen Billard (sbillard)
+ *
  * @package classes
  */
 // force UTF-8 Ø
@@ -23,6 +26,7 @@ class SearchEngine {
 	var $pages = NULL;
 	var $pattern;
 	var $tagPattern;
+	var $language;
 	private $exact = false;
 	protected $dynalbumname = NULL;
 	protected $album = NULL;
@@ -53,7 +57,12 @@ class SearchEngine {
 	 * @return SearchEngine
 	 */
 	function __construct($dynamic_album = false) {
-		global $_zp_exifvars, $_zp_gallery;
+		global $_zp_exifvars, $_zp_gallery, $_zp_current_locale;
+		if (getOption('languageTagSearch') == 1) {
+			$this->language = substr($_zp_current_locale, 0, 2);
+		} else {
+			$this->language = $_zp_current_locale;
+		}
 		switch ((int) getOption('exact_tag_match')) {
 			case 0:
 				// partial
@@ -100,7 +109,6 @@ class SearchEngine {
 		$this->search_structure['tags_exact'] = ''; //	internal use only field
 		$this->search_structure['filename'] = gettext('File/Folder name');
 		$this->search_structure['date'] = gettext('Date');
-		$this->search_structure['custom_data'] = gettext('Custom data');
 		$this->search_structure['location'] = gettext('Location/Place');
 		$this->search_structure['city'] = gettext('City');
 		$this->search_structure['state'] = gettext('State');
@@ -111,7 +119,6 @@ class SearchEngine {
 		if (extensionEnabled('zenpage') && !$dynamic_album) {
 //zenpage fields
 			$this->search_structure['content'] = gettext('Content');
-			$this->search_structure['extracontent'] = gettext('ExtraContent');
 			$this->search_structure['author'] = gettext('Author');
 			$this->search_structure['lastchangeauthor'] = gettext('Last Editor');
 			$this->search_structure['titlelink'] = gettext('TitleLink');
@@ -129,7 +136,7 @@ class SearchEngine {
 		} else {
 			$this->words = NULL;
 			if (isset($_REQUEST['date'])) { // words & dates are mutually exclusive
-				$this->dates = sanitize($_REQUEST['date'], 3);
+				$this->dates = rtrim(sanitize($_REQUEST['date'], 3), '/');
 				if (isset($_REQUEST['whichdate'])) {
 					$this->whichdates = sanitize($_REQUEST['whichdate']);
 				}
@@ -240,7 +247,7 @@ class SearchEngine {
 		} else {
 			$list = explode(',', $fields);
 			foreach ($this->search_structure as $key => $display) {
-				if (in_array($key, $list)) {
+				if ($display && in_array($key, $list)) {
 					$setlist[$display] = $key;
 				}
 			}
@@ -747,7 +754,7 @@ class SearchEngine {
 						$sanitizedwords .= $singlesearchstring;
 						break;
 					default:
-						$sanitizedwords .= search_quote(sanitize($singlesearchstring, 3));
+						$sanitizedwords .= search_quote($singlesearchstring);
 						break;
 				}
 			}
@@ -800,20 +807,20 @@ class SearchEngine {
 	 * Returns an array of News article IDs belonging to the search categories
 	 */
 	protected function subsetNewsCategories() {
-		global $_zp_zenpage;
+		global $_zp_CMS;
 		if (!is_array($this->category_list))
 			return false;
 		$cat = '';
-		$list = $_zp_zenpage->getAllCategories();
+		$list = $_zp_CMS->getAllCategories();
 		if (!empty($list)) {
 			foreach ($list as $category) {
 				if (in_array($category['title'], $this->category_list)) {
-					$catobj = new ZenpageCategory($category['titlelink']);
+					$catobj = new Category($category['titlelink']);
 					$cat .= ' `cat_id`=' . $catobj->getID() . ' OR';
 					$subcats = $catobj->getSubCategories();
 					if ($subcats) {
 						foreach ($subcats as $subcat) {
-							$catobj = new ZenpageCategory($subcat);
+							$catobj = new Category($subcat);
 							$cat .= ' `cat_id`=' . $catobj->getID() . ' OR';
 						}
 					}
@@ -849,7 +856,7 @@ class SearchEngine {
 	/**
 	 * get connical sort key and direction parameters.
 	 * @param type $sorttype sort field desired
-	 * @param type $sortdirection DESC or ASC
+	 * @param bool $sortdirection DESC or ASC
 	 * @param type $defaulttype if no sort type otherwise selected use this one
 	 * @param type $table the database table being searched
 	 * @return array
@@ -862,6 +869,7 @@ class SearchEngine {
 				$sorttype = $this->extraparams['sorttype'];
 			}
 		}
+
 		$sorttype = lookupSortKey($sorttype, $defaulttype, $table);
 		if (is_null($sortdirection)) {
 			if (array_key_exists($table . 'sortdirection', $this->extraparams)) {
@@ -965,10 +973,8 @@ class SearchEngine {
 				break;
 			default:
 				$hidealbums = getNotViewableAlbums();
-				if (!is_null($hidealbums)) {
-					foreach ($hidealbums as $id) {
-						$sql .= ' AND `albumid`!=' . $id;
-					}
+				if (!empty($hidealbums)) {
+					$sql .= ' AND `albumid` NOT IN (' . implode(',', $hidealbums) . ')';
 				}
 				if (is_null($sorttype)) {
 					if (empty($this->album)) {
@@ -1054,7 +1060,11 @@ class SearchEngine {
 				case 'tags':
 					unset($fields[$key]);
 					query('SET @serachfield="tags"');
-					$tagsql = 'SELECT @serachfield AS field, t.`name`, o.`objectid` FROM ' . prefix('tags') . ' AS t, ' . prefix('obj_to_tag') . ' AS o WHERE t.`id`=o.`tagid` AND o.`type`="' . $tbl . '" AND (';
+					$tagsql = 'SELECT @serachfield AS field, t.`name`,t.language, o.`objectid` FROM ' . prefix('tags') . ' AS t, ' . prefix('obj_to_tag') . ' AS o WHERE t.`id`=o.`tagid` ';
+					if (getOption('languageTagSearch')) {
+						$tagsql .= 'AND (t.language LIKE ' . db_quote(db_LIKE_escape($this->language) . '%') . ' OR t.language="") ';
+					}
+					$tagsql .= 'AND o.`type`="' . $tbl . '" AND (';
 					foreach ($searchstring as $singlesearchstring) {
 						switch ($singlesearchstring) {
 							case '&':
@@ -1177,27 +1187,29 @@ class SearchEngine {
 						$objectid = $idlist;
 						$idlist = array_pop($idstack);
 						$op = array_pop($opstack);
-						switch ($op) {
-							case '&':
-								if (is_array($objectid)) {
-									$idlist = array_intersect($idlist, $objectid);
-								} else {
-									$idlist = array();
-								}
-								break;
-							case '!':
-								break; // Paren followed by NOT is nonsensical?
-							case '&!':
-								if (is_array($objectid)) {
-									$idlist = array_diff($idlist, $objectid);
-								}
-								break;
-							case '';
-							case '|':
-								if (is_array($objectid)) {
-									$idlist = array_merge($idlist, $objectid);
-								}
-								break;
+						if (is_array($idlist)) {
+							switch ($op) {
+								case '&':
+									if (is_array($objectid)) {
+										$idlist = array_intersect($idlist, $objectid);
+									} else {
+										$idlist = array();
+									}
+									break;
+								case '!':
+									break; // Paren followed by NOT is nonsensical?
+								case '&!':
+									if (is_array($objectid)) {
+										$idlist = array_diff($idlist, $objectid);
+									}
+									break;
+								case '';
+								case '|':
+									if (is_array($objectid)) {
+										$idlist = array_merge($idlist, $objectid);
+									}
+									break;
+							}
 						}
 						$op = '';
 						break;
@@ -1345,7 +1357,8 @@ class SearchEngine {
 						}
 					} else {
 						list($key, $sortdirection) = $this->sortKey($sorttype, $sortdirection, 'title', 'images');
-						$key = trim($key . ' ' . $sortdirection);
+						if ($sortdirection)
+							$key .= ' DESC';
 					}
 					break;
 			}
@@ -1376,7 +1389,7 @@ class SearchEngine {
 		if (empty($searchstring)) {
 			return array();
 		} // nothing to find
-		$criteria = $this->getCacheTag('albums', serialize($searchstring), $sorttype . ' ' . $sortdirection . ' '. $mine);
+		$criteria = $this->getCacheTag('albums', serialize($searchstring), $sorttype . '_' . $sortdirection . '_' . (int) $mine);
 		if ($this->albums && $criteria == $this->searches['albums']) {
 			return $this->albums;
 		}
@@ -1396,14 +1409,7 @@ class SearchEngine {
 							if (file_exists(ALBUM_FOLDER_SERVERPATH . internalToFilesystem($albumname))) {
 								$album = newAlbum($albumname);
 								$uralbum = getUrAlbum($album);
-								$viewUnpublished = ($this->search_unpublished || zp_loggedin() && $uralbum->albumSubRights() & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW));
-								switch (checkPublishDates($row)) {
-									case 1:
-										$album->setShow(0);
-										$album->save();
-									case 2:
-										$row['show'] = 0;
-								}
+								$viewUnpublished = ($this->search_unpublished || zp_loggedin() && $uralbum->subRights() & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW));
 								if ($mine || (is_null($mine) && $album->isMyItem(LIST_RIGHTS)) || (checkAlbumPassword($albumname) && ($row['show'] || $viewUnpublished))) {
 									if (empty($this->album_list) || in_array($albumname, $this->album_list)) {
 										$result[] = array('name' => $albumname, 'weight' => $weights[$row['id']]);
@@ -1510,7 +1516,7 @@ class SearchEngine {
 	 * Returns an array of image names found in the search
 	 *
 	 * @param string $sorttype what to sort on
-	 * @param string $sortdirection what direction
+	 * @param bool $sortdirection what direction
 	 * @param bool $mine set true/false to overried ownership
 	 * @return array
 	 */
@@ -1525,10 +1531,9 @@ class SearchEngine {
 		$searchstring = $this->getSearchString();
 		$searchdate = $this->dates;
 		if (empty($searchstring) && empty($searchdate)) {
-			return array();
-		} // nothing to find
-
-		$criteria = $this->getCacheTag('images', serialize($searchstring) . ' ' . $searchdate, $sorttype . ' ' . $sortdirection . ' '.$mine);
+			return array(); // nothing to find
+		}
+		$criteria = $this->getCacheTag('images', serialize($searchstring) . '_' . $searchdate, $sorttype . '_' . $sortdirection . '_' . (int) $mine);
 		if ($criteria == $this->searches['images']) {
 			return $this->images;
 		}
@@ -1558,16 +1563,8 @@ class SearchEngine {
 							$allow = false;
 							$album = newAlbum($albumname);
 							$uralbum = getUrAlbum($album);
-							$viewUnpublished = ($this->search_unpublished || zp_loggedin() && $uralbum->albumSubRights() & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW));
-							switch (checkPublishDates($row)) {
-								case 1:
-									$imageobj = newImage($this, $row['filename']);
-									$imageobj->setShow(0);
-									$imageobj->save();
-								case 2:
-									$row['show'] = 0;
-									break;
-							}
+							$viewUnpublished = ($this->search_unpublished || zp_loggedin() && $uralbum->subRights() & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW));
+
 							if ($mine || is_null($mine) && ($album->isMyItem(LIST_RIGHTS) || checkAlbumPassword($albumname) && ($album->getShow() || $viewUnpublished))) {
 								$allow = empty($this->album_list) || in_array($albumname, $this->album_list);
 							}
@@ -1681,6 +1678,10 @@ class SearchEngine {
 		return $this->album;
 	}
 
+	function isDynamic() {
+		return 'search';
+	}
+
 	/**
 	 *
 	 * return the list of albums found
@@ -1704,7 +1705,7 @@ class SearchEngine {
 	 * @param bool $toplevel ignored, left for parameter compatibility
 	 * @param int $number ignored, left for parameter compatibility
 	 * @param string $sorttype the sort key
-	 * @param strng $sortdirection the sort order
+	 * @param bool $sortdirection the sort order
 	 *
 	 * @return array
 	 */
@@ -1716,7 +1717,7 @@ class SearchEngine {
 	 * Returns a list of Pages Titlelinks found in the search
 	 *
 	 * @parm string $sorttype optional sort field
-	 * @param string $sortdirection optional ordering
+	 * @param bool $sortdirection optional ordering
 	 *
 	 * @return array
 	 */
@@ -1729,7 +1730,7 @@ class SearchEngine {
 		if (empty($searchstring) && empty($searchdate)) {
 			return array();
 		} // nothing to find
-		$criteria = $this->getCacheTag('news', serialize($searchstring), $sorttype . ' ' . $sortdirection);
+		$criteria = $this->getCacheTag('news', serialize($searchstring), $sorttype . '_' . $sortdirection);
 		if ($this->pages && $criteria == $this->searches['pages']) {
 			return $this->pages;
 		}
@@ -1778,7 +1779,7 @@ class SearchEngine {
 	 * @param bool $published placeholder for consistent parameter list
 	 * @param bool $ignorepagination ignore pagination
 	 * @param string $sorttype field to sort on
-	 * @param string $sortdirection sort order
+	 * @param bool $sortdirection sort order
 	 *
 	 * @return array
 	 */
@@ -1791,7 +1792,7 @@ class SearchEngine {
 			if ($ignorepagination || !$articles_per_page) {
 				return $articles;
 			}
-			return array_slice($articles, Zenpage::getOffset($articles_per_page), $articles_per_page);
+			return array_slice($articles, CMS::getOffset($articles_per_page), $articles_per_page);
 		}
 	}
 
@@ -1799,7 +1800,7 @@ class SearchEngine {
 	 * Returns a list of News Titlelinks found in the search
 	 *
 	 * @param string $sorttype field to sort on
-	 * @param string $sortdirection sort order
+	 * @param bool $sortdirection sort order
 	 *
 	 * @return array
 	 */
@@ -1813,7 +1814,7 @@ class SearchEngine {
 		if (empty($searchstring) && empty($searchdate)) {
 			return array();
 		} // nothing to find
-		$criteria = $this->getCacheTag('news', serialize($searchstring), $sorttype . ' ' . $sortdirection);
+		$criteria = $this->getCacheTag('news', serialize($searchstring), $sorttype . '_' . $sortdirection);
 		if ($this->articles && $criteria == $this->searches['news']) {
 			return $this->articles;
 		}

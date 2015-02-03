@@ -1,6 +1,9 @@
 <?php
 /**
  * provides the Plugins tab of admin
+ *
+ * @author Stephen Billard (sbillard)
+ *
  * @package admin
  */
 // force UTF-8 Ø
@@ -63,7 +66,6 @@ if (isset($_GET['action'])) {
 }
 $saved = isset($_GET['saved']);
 printAdminHeader('plugins');
-zp_apply_filter('texteditor_config', 'zenphoto');
 
 natcasesort($pluginlist);
 $rangeset = getPageSelector($pluginlist, PLUGINS_PER_PAGE);
@@ -76,13 +78,6 @@ $filelist = array_slice($pluginlist, $subpage * PLUGINS_PER_PAGE, PLUGINS_PER_PA
 		toggle(plugin + '_hide');
 	}
 
-	$(document).ready(function() {
-		$(".plugin_doc").colorbox({
-			close: '<?php echo gettext("close"); ?>',
-			maxHeight: "98%",
-			innerWidth: '560px'
-		});
-	});
 	var pluginsToPage = ['<?php echo implode("','", $pluginlist); ?>'];
 	function gotoPlugin(plugin) {
 		i = Math.floor(jQuery.inArray(plugin, pluginsToPage) / <?php echo PLUGINS_PER_PAGE; ?>);
@@ -123,16 +118,16 @@ $subtab = printSubtabs();
 	?>
 	<p>
 		<?php
-		echo gettext("Plugins provide optional functionality for Zenphoto.") . ' ';
-		echo gettext("They may be provided as part of the Zenphoto distribution or as offerings from third parties.") . ' ';
+		echo gettext("Plugins provide optional functionality.") . ' ';
+		echo gettext("They may be provided as part of the distribution or as offerings from third parties.") . ' ';
 		echo sprintf(gettext("Third party plugins are placed in the <code>%s</code> folder and are automatically discovered."), USER_PLUGIN_FOLDER) . ' ';
 		echo gettext("If the plugin checkbox is checked, the plugin will be loaded and its functions made available. If the checkbox is not checked the plugin is disabled and occupies no resources.");
 		?>
-		<a href="http://www.zenphoto.org/news/category/extensions" alt="Zenphoto extensions section"> <?php echo gettext('Find more plugins'); ?></a>
+		<a href="http://www.zenphoto.org/news/category/extensions" alt="Extensions section"> <?php echo gettext('Find more plugins'); ?></a>
 	</p>
 	<p class='notebox'><?php echo gettext("<strong>Note:</strong> Support for a particular plugin may be theme dependent! You may need to add the plugin theme functions if the theme does not currently provide support."); ?>
 	</p>
-	<form class="dirty-check" id="form_plugins" action="?action=saveplugins&amp;page=plugins&amp;tab=<?php echo html_encode($subtab); ?>" method="post">
+	<form class="dirtylistening" onReset="setClean('form_plugins');" id="form_plugins" action="?action=saveplugins&amp;page=plugins&amp;tab=<?php echo html_encode($subtab); ?>" method="post" >
 		<?php XSRFToken('saveplugins'); ?>
 		<input type="hidden" name="saveplugins" value="yes" />
 		<input type="hidden" name="subpage" value="<?php echo $subpage; ?>" />
@@ -156,9 +151,27 @@ $subtab = printSubtabs();
 			<?php
 			foreach ($filelist as $extension) {
 				$opt = 'zp_plugin_' . $extension;
-				$third_party_plugin = strpos($paths[$extension], ZENFOLDER) === false;
 				$pluginStream = file_get_contents($paths[$extension]);
 				$parserr = 0;
+				$plugin_URL = FULLWEBPATH . '/' . ZENFOLDER . '/pluginDoc.php?extension=' . $extension;
+				if ($third_party_plugin = strpos($paths[$extension], ZENFOLDER) === false) {
+					if ($str = isolate('@category', $pluginStream)) {
+						preg_match('|@category\s+(.*)\s|', $str, $matches);
+						if (isset($matches[1]) && $matches[1] == 'package') {
+							$third_party_plugin = false;
+							$ico = 'images/zp.png';
+							$whose = gettext('Supplemental plugin');
+							$plugin_URL .= '&amp;type=supplemental';
+						}
+					}
+					if ($third_party_plugin) {
+						$whose = gettext('Third party plugin');
+						$plugin_URL .= '&amp;type=thirdparty';
+					}
+				} else {
+					$whose = gettext('Official plugin');
+					$ico = 'images/zp_gold.png';
+				}
 				if ($str = isolate('$plugin_description', $pluginStream)) {
 					if (false === eval($str)) {
 						$parserr = $parserr | 1;
@@ -203,28 +216,10 @@ $subtab = printSubtabs();
 				} else {
 					$plugin_disable = false;
 				}
-				$plugin_URL = FULLWEBPATH . '/' . ZENFOLDER . '/pluginDoc.php?extension=' . $extension;
-				if ($third_party_plugin) {
-					$plugin_URL .= '&amp;thirdparty';
-				}
 				$currentsetting = getOption($opt);
 				$plugin_is_filter = 1 | THEME_PLUGIN;
 				if ($str = isolate('$plugin_is_filter', $pluginStream)) {
 					eval($str);
-					if ($plugin_is_filter < THEME_PLUGIN) {
-						if ($plugin_is_filter < 0) {
-							$plugin_is_filter = abs($plugin_is_filter) | THEME_PLUGIN | ADMIN_PLUGIN;
-						} else {
-							if ($plugin_is_filter == 1) {
-								$plugin_is_filter = 1 | THEME_PLUGIN;
-							} else {
-								$plugin_is_filter = $plugin_is_filter | CLASS_PLUGIN;
-							}
-						}
-					}
-					if ($currentsetting && $currentsetting != $plugin_is_filter) {
-						setOption($opt, $plugin_is_filter); //	the script has changed its setting!
-					}
 				}
 				$optionlink = NULL;
 				if ($str = isolate('$option_interface', $pluginStream)) {
@@ -252,43 +247,36 @@ $subtab = printSubtabs();
 						<label id="<?php echo $extension; ?>">
 							<?php
 							if ($third_party_plugin) {
-								$whose = gettext('third party plugin');
 								$path = stripSuffix($paths[$extension]) . '/logo.png';
 								if (file_exists($path)) {
 									$ico = str_replace(SERVERPATH, WEBPATH, $path);
 								} else {
 									$ico = 'images/place_holder_icon.png';
 								}
-							} else {
-								$whose = 'Zenphoto official plugin';
-								$ico = 'images/zp_gold.png';
 							}
 							?>
 							<img class="zp_logoicon" src="<?php echo $ico; ?>" alt="<?php echo gettext('logo'); ?>" title="<?php echo $whose; ?>" />
 							<?php
 							if ($plugin_is_filter & CLASS_PLUGIN) {
-								$icon = $plugin_is_filter | THEME_PLUGIN | ADMIN_PLUGIN;
+								$iconA = '<img class="zp_logoicon" width="8px" src="images/place_holder_icon.png" /><a title="' . gettext('class plugin') . '"><img class="zp_logoicon" src="images/folder_picture.png" /></a><img class="zp_logoicon" width="8px" src="images/place_holder_icon.png" />';
+								$iconT = '';
 							} else {
-								$icon = $plugin_is_filter;
+								if ($plugin_is_filter & ADMIN_PLUGIN) {
+									$iconA = '<a title="' . gettext('admin plugin') . '"><img class="zp_logoicon" src="images/folder.png" /></a>';
+								} else {
+									$iconA = '<img class="zp_logoicon" src="images/place_holder_icon.png" />';
+								}
+								if ($plugin_is_filter & FEATURE_PLUGIN) {
+									$iconT = '<a title="' . gettext('feature plugin') . '"><img class="zp_logoicon" src="images/pictures.png" /></a>';
+								} else if ($plugin_is_filter & THEME_PLUGIN) {
+									$iconT = '<a title="' . gettext('theme plugin') . '"><img class="zp_logoicon" src="images/pictures_dn.png" /></a>';
+								} else {
+									$iconT = '<img class="zp_logoicon" src="images/place_holder_icon.png" />';
+								}
 							}
-							if ($icon & THEME_PLUGIN | FEATURE_PLUGIN) {
-								?>
-								<a title="<?php echo gettext('theme plugin'); ?>"><img class="zp_logoicon" src="images/pictures.png" /></a>
-								<?php
-							} else {
-								?>
-								<img src="images/place_holder_icon.png" />
-								<?php
-							}
-							if ($icon & ADMIN_PLUGIN) {
-								?>
-								<a title="<?php echo gettext('admin plugin'); ?>"><img class="zp_logoicon" src="images/cache.png" /></a>
-								<?php
-							} else {
-								?>
-								<img src="images/place_holder_icon.png" />
-								<?php
-							}
+							echo $iconT;
+							echo $iconA;
+
 							$attributes = '';
 							if ($parserr) {
 								$optionlink = false;
@@ -301,7 +289,7 @@ $subtab = printSubtabs();
 							if ($plugin_disable) {
 								?>
 								<span class="icons" id="<?php echo $extension; ?>_checkbox">
-									<a href="javascript:toggle('showdisable_<?php echo $extension; ?>');" title="<?php echo gettext('This plugin is disabled. Click for details.'); ?>">
+									<a onclick="toggle('showdisable_<?php echo $extension; ?>');" title="<?php echo gettext('This plugin is disabled. Click for details.'); ?>" >
 										<img src="images/action.png" alt="" class="zp_logoicon" />
 									</a>
 									<input type="hidden" name="<?php echo $opt; ?>" id="<?php echo $opt; ?>" value="0" />
@@ -326,16 +314,26 @@ $subtab = printSubtabs();
 						?>
 					</td>
 					<td width="60">
-						<span class="icons"><a class="plugin_doc" href="<?php echo $plugin_URL; ?>"><img class="icon-position-top3" src="images/info.png" title="<?php printf(gettext('More information on %s'), $extension); ?>" alt=""></a></span>
-						<?php
-						if ($optionlink) {
-							?>
+						<span class="icons"><a onclick="$.colorbox({
+									close: '<?php echo gettext("close"); ?>',
+									maxHeight: '80%',
+									maxWidth: '80%',
+									innerWidth: '560px',
+									href: '<?php echo $plugin_URL; ?>'
+								});"><img class="icon-position-top3" src="images/info.png" title="<?php printf(gettext('More information on %s'), $extension); ?>" alt=""></a></span>
+																	 <?php
+																	 if ($optionlink) {
+																		 ?>
 							<span class="icons"><a href="<?php echo $optionlink; ?>" title="<?php printf(gettext("Change %s options"), $extension); ?>"><img class="icon-position-top3" src="images/options.png" alt="" /></a></span>
+							<?php
+						} else {
+							?>
+							<span class="icons"><img class="icon-position-top3" src="images/place_holder_icon.png" alt="" /></span>
 							<?php
 						}
 						if ($plugin_notice) {
 							?>
-							<span class="icons"><a href="javascript:toggle('show_<?php echo $extension; ?>');" title ="<?php echo gettext('Plugin warnings'); ?>" ><img class="icon-position-top3" src="images/warn.png" alt="" /></a></span>
+							<span class="icons"><a onclick="toggle('show_<?php echo $extension; ?>');" title ="<?php echo gettext('Plugin warnings'); ?>" ><img class="icon-position-top3" src="images/warn.png" alt="" /></a></span>
 							<?php
 						}
 						?>
@@ -350,7 +348,7 @@ $subtab = printSubtabs();
 								if ($plugin_disable) {
 									preg_match('/\<a href="#(.*)">/', $plugin_disable, $matches);
 									if ($matches) {
-										$plugin_disable = str_replace($matches[0], '<a href="javascript:gotoPlugin(\'' . $matches[1] . '\');">', $plugin_disable);
+										$plugin_disable = str_replace($matches[0], '<a onclick="gotoPlugin(\'' . $matches[1] . '\');">', $plugin_disable);
 									}
 									echo $plugin_disable;
 								}
@@ -385,9 +383,14 @@ $subtab = printSubtabs();
 		<br />
 		<ul class="iconlegend">
 			<li><img src="images/zp_gold.png" alt=""><?php echo gettext('Official plugin'); ?></li>
+			<li><img src="images/zp.png" alt=""><?php echo gettext('Supplemental plugin'); ?></li>
+			<li><img src="images/folder_picture.png" alt=""><?php echo gettext('Class plugin'); ?></li>
+			<li><img src="images/folder.png" alt=""><?php echo gettext('Admin plugin'); ?></li>
+			<li><img src="images/pictures.png" alt=""><?php echo gettext('Feature plugin'); ?></li>
+			<li><img src="images/pictures_dn.png" alt=""><?php echo gettext('Theme plugin'); ?></li>
 			<li><img src="images/info.png" alt=""><?php echo gettext('Usage info'); ?></li>
 			<li><img src="images/options.png" alt=""><?php echo gettext('Options'); ?></li>
-			<li><img src="images/warn.png" alt=""><?php echo gettext('Warning note'); ?></li>
+			<li><img src="images/action.png" alt=""><img src="images/warn.png" alt=""><?php echo gettext('Warning note'); ?></li>
 		</ul>
 		<p class="buttons">
 			<button type="submit" value="<?php echo gettext('Apply') ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>

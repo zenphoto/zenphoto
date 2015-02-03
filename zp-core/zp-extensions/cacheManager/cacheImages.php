@@ -222,7 +222,7 @@ echo "\n" . '<div id = "content">';
 		}
 		//]]> -->
 	</script>
-	<form class="dirty-check" name="size_selections" action="?select&album=<?php echo $alb; ?>" method="post">
+	<form class="dirtylistening" onReset="setClean('size_selections');" id="size_selections" name="size_selections" action="?select&album=<?php echo $alb; ?>" method="post">
 		<?php XSRFToken('cacheImages') ?>
 		<ol class="no_bullets">
 			<?php
@@ -302,7 +302,7 @@ echo "\n" . '<div id = "content">';
 					?>
 					<li>
 						<span class="icons" id="<?php echo $theme; ?>_arrow">
-							<a href="javascript:showTheme('<?php echo $theme; ?>');" title="<?php echo gettext('Show'); ?>">
+							<a onclick="showTheme('<?php echo $theme; ?>');" title="<?php echo gettext('Show'); ?>">
 								<img class="icon-position-top4" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/images/arrow_down.png'; ?>" alt="" />
 							</a>
 						</span>

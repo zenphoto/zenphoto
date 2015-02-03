@@ -2,7 +2,7 @@
 define('OFFSET_PATH', 4);
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 if (extensionEnabled('zenpage')) {
-	require_once(dirname(dirname(dirname(__FILE__))) . '/' . PLUGIN_FOLDER . '/zenpage/zenpage-admin-functions.php');
+	require_once(dirname(dirname(dirname(__FILE__))) . '/' . PLUGIN_FOLDER . '/zenpage/admin-functions.php');
 }
 require_once(dirname(__FILE__) . '/menu_manager-admin-functions.php');
 
@@ -10,7 +10,7 @@ admin_securityChecks(NULL, currentRelativeURL());
 
 $page = 'edit';
 
-$result = "";
+$result = NULL;
 $reports = array();
 if (isset($_GET['id'])) {
 	$result = getItem(sanitize($_GET['id']));
@@ -61,12 +61,12 @@ $menuset = checkChosenMenuset();
 						case 'all_items':
 							$('#albumselector,#pageselector,#categoryselector,#custompageselector,#titleinput,#titlelabel,#link_row,#visible_row,#span_row').hide();
 							$('#selector').html('<?php echo js_encode(gettext("All menu items")); ?>');
-							$('#description').html('<?php echo js_encode(gettext('This adds menu items for all Zenphoto objects. (It creates a "default" menuset.)')); ?>');
+							$('#description').html('<?php echo js_encode(gettext('This adds menu items for all zenphoto objects. (It creates a "default" menuset.)')); ?>');
 							break;
 						case "galleryindex":
 							$('#albumselector,#pageselector,#categoryselector,#custompageselector,#link_row').hide();
 							$('#selector').html('<?php echo js_encode(gettext("Gallery index")); ?>');
-							$('#description').html('<?php echo js_encode(gettext("This is the normal Zenphoto gallery Index page.")); ?>');
+							$('#description').html('<?php echo js_encode(gettext("This is the normal zenphoto gallery Index page.")); ?>');
 							$('#link').attr('disabled', true);
 							$('#titleinput').show();
 							$('#link').val('<?php echo WEBPATH; ?>/');
@@ -74,71 +74,77 @@ $menuset = checkChosenMenuset();
 						case 'all_albums':
 							$('#albumselector,#pageselector,#categoryselector,#titleinput,#titlelabel,#link_row,#visible_row,#span_row').hide();
 							$('#selector').html('<?php echo js_encode(gettext("All Albums")); ?>');
-							$('#description').html('<?php echo js_encode(gettext("This adds menu items for all Zenphoto albums.")); ?>');
+							$('#description').html('<?php echo js_encode(gettext("This adds menu items for all zenphoto albums.")); ?>');
 							break;
 						case 'album':
 							$('#pageselector,#categoryselector,#custompageselector,#titleinput,#link_row').hide();
 							$('#selector').html('<?php echo js_encode(gettext("Album")); ?>');
-							$('#description').html('<?php echo js_encode(gettext("Creates a link to a Zenphoto Album.")); ?>');
+							$('#description').html('<?php echo js_encode(gettext("Creates a link to a zenphoto Album.")); ?>');
 							$('#link').attr('disabled', true);
 							$('#albumselector').show();
 							$('#titlelabel').html('<?php echo js_encode(gettext('Album')); ?>');
-							$('#albumselector').change(function() {
+							$('#albumselector').change(function () {
 								$('#link').val($(this).val());
 							});
 							break;
-						case 'all_zenpagepages':
-							$('#albumselector,#pageselector,#categoryselector,#custompageselector,#titleinput,#titlelabel,#link_row,#visible_row,#span_row').hide();
-							$('#selector').html('<?php echo js_encode(gettext("All Zenpage pages")); ?>');
-							$('#description').html('<?php echo js_encode(gettext("This adds menu items for all Zenpage pages.")); ?>');
-							break;
-						case 'zenpagepage':
-							$('#albumselector,#categoryselector,#custompageselector,#link_row,#titleinput').hide();
-							$('#selector').html('<?php echo js_encode(gettext("Zenpage page")); ?>');
-							$('#description').html('<?php echo js_encode(gettext("Creates a link to a Zenpage Page.")); ?>');
-							$('#link').attr('disabled', true);
-							$('#pageselector').show();
-							$('#titlelabel').html('<?php echo js_encode(gettext('Page')); ?>');
-							$('#pageselector').change(function() {
-								$('#link').val($(this).val());
-							});
-							break;
-						case 'zenpagenewsindex':
-							$('#albumselector,#pageselector,#categoryselector,#custompageselector,#link_row').hide();
-							$('#selector').html('<?php echo js_encode(gettext("Zenpage news index")); ?>');
-							$('#description').html('<?php echo js_encode(gettext("Creates a link to the Zenpage News Index.")); ?>');
-							$('#link').attr('disabled', true);
-							$('#titleinput').show();
-							$('#link').val('<?php if(class_exists("zenpage")) echo getNewsIndexURL(); ?>');
-							break;
-						case 'all_zenpagecategorys':
-							$('#albumselector,#pageselector,#categoryselector,#custompageselector,#titleinput,#titlelabel,#link_row,#visible_row,#span_row').hide();
-							$('#selector').html('<?php echo js_encode(gettext("All Zenpage categories")); ?>');
-							$('#description').html('<?php echo js_encode(gettext("This adds menu items for all Zenpage categories.")); ?>');
-							break;
-						case 'zenpagecategory':
-							$('#albumselector,#pageselector,#custompageselector,#custompageselector,#titleinput,#link_row').hide();
-							$('#selector').html('<?php echo js_encode(gettext("Zenpage news category")); ?>');
-							$('#description').html('<?php echo js_encode(gettext("Creates a link to a Zenpage News article category.")); ?>');
-							$("#link").attr('disabled', true);
-							$('#categoryselector').show();
-							$('#titlelabel').html('<?php echo js_encode(gettext('Category')); ?>');
-							$('#categoryselector').change(function() {
-								$('#link').val($(this).val());
-							});
-							break;
+<?php
+if (extensionEnabled('zenpage')) {
+	?>
+							case 'all_pages':
+								$('#albumselector,#pageselector,#categoryselector,#custompageselector,#titleinput,#titlelabel,#link_row,#visible_row,#span_row').hide();
+								$('#selector').html('<?php echo js_encode(gettext("All Zenpage pages")); ?>');
+								$('#description').html('<?php echo js_encode(gettext("This adds menu items for all Zenpage pages.")); ?>');
+								break;
+							case 'page':
+								$('#albumselector,#categoryselector,#custompageselector,#link_row,#titleinput').hide();
+								$('#selector').html('<?php echo js_encode(gettext("Zenpage page")); ?>');
+								$('#description').html('<?php echo js_encode(gettext("Creates a link to a Zenpage Page.")); ?>');
+								$('#link').attr('disabled', true);
+								$('#pageselector').show();
+								$('#titlelabel').html('<?php echo js_encode(gettext('Page')); ?>');
+								$('#pageselector').change(function () {
+									$('#link').val($(this).val());
+								});
+								break;
+							case 'newsindex':
+								$('#albumselector,#pageselector,#categoryselector,#custompageselector,#link_row').hide();
+								$('#selector').html('<?php echo js_encode(gettext("Zenpage news index")); ?>');
+								$('#description').html('<?php echo js_encode(gettext("Creates a link to the Zenpage News Index.")); ?>');
+								$('#link').attr('disabled', true);
+								$('#titleinput').show();
+								$('#link').val('<?php echo getNewsIndexURL(); ?>');
+								break;
+							case 'all_categorys':
+								$('#albumselector,#pageselector,#categoryselector,#custompageselector,#titleinput,#titlelabel,#link_row,#visible_row,#span_row').hide();
+								$('#selector').html('<?php echo js_encode(gettext("All Zenpage categories")); ?>');
+								$('#description').html('<?php echo js_encode(gettext("This adds menu items for all Zenpage categories.")); ?>');
+								break;
+							case 'category':
+								$('#albumselector,#pageselector,#custompageselector,#custompageselector,#titleinput,#link_row').hide();
+								$('#selector').html('<?php echo js_encode(gettext("Zenpage news category")); ?>');
+								$('#description').html('<?php echo js_encode(gettext("Creates a link to a Zenpage News article category.")); ?>');
+								$("#link").attr('disabled', true);
+								$('#categoryselector').show();
+								$('#titlelabel').html('<?php echo js_encode(gettext('Category')); ?>');
+								$('#categoryselector').change(function () {
+									$('#link').val($(this).val());
+								});
+								break;
+	<?php
+}
+?>
 						case 'custompage':
-							$('#albumselector,#pageselector,#categoryselector,#link,').hide();
+							$('#albumselector,#pageselector,#categoryselector,#link').hide();
 							$('#custompageselector').show();
 							$('#selector').html('<?php echo js_encode(gettext("Custom page")); ?>');
-							$('#description').html('<?php echo js_encode(gettext('Creates a link to a custom theme page as described in the theming tutorial.')); ?>');
+							$('#description').html('<?php echo js_encode(gettext('Creates a link to a custom theme script page.')); ?>');
 							$('#link_label').html('<?php echo js_encode(gettext('Script page')); ?>');
 							$('#titleinput').show();
 							break;
 						case "customlink":
 							$('#albumselector,#pageselector,#categoryselector,#custompageselector').hide();
 							$('#selector').html('<?php echo js_encode(gettext("Custom link")); ?>');
-							$('#description').html('<?php echo js_encode(gettext("Creates a link outside the Zenphoto structure. Use of a full URL is recommended (e.g. http://www.domain.com).")); ?>');
+							$('#description').html('<?php echo js_encode(gettext("Creates a link outside the zenphoto structure. Use of a full URL is recommended (e.g. http://www.domain.com).")); ?>');
 							$('#link').removeAttr('disabled');
 							$('#link_label').html('<?php echo js_encode(gettext('URL')); ?>');
 							$('#titleinput').show();
@@ -177,7 +183,7 @@ $menuset = checkChosenMenuset();
 			</script>
 			<script type="text/javascript">
 				//<!-- <![CDATA[
-				$(document).ready(function() {
+				$(document).ready(function () {
 <?php
 if (is_array($result)) {
 	?>
@@ -189,7 +195,7 @@ if (is_array($result)) {
 	<?php
 }
 ?>
-					$('#typeselector').change(function() {
+					$('#typeselector').change(function () {
 						$('input').val(''); // reset all input values so we do not carry them over from one type to another
 						$('#link').val('');
 						handleSelectorChange($(this).val());
@@ -218,9 +224,9 @@ if (is_array($result)) {
 			}
 			?>
 			<p class="buttons">
-				<strong><a href="menu_tab.php?menuset=<?php echo $menuset; ?>"><img	src="../../images/arrow_left_blue_round.png" alt="" /><?php echo gettext("Back"); ?></a></strong>
+				<strong><a href="menu_tab.php?menuset=<?php echo $menuset; ?>"><img	src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/arrow_left_blue_round.png" alt="" /><?php echo gettext("Back"); ?></a></strong>
 				<span class="floatright">
-					<strong><a href="menu_tab_edit.php?add&amp;menuset=<?php echo urlencode($menuset); ?>"><img src="../../images/add.png" alt="" /> <?php echo gettext("Add Menu Items"); ?></a></strong>
+					<strong><a href="menu_tab_edit.php?add&amp;menuset=<?php echo urlencode($menuset); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" /> <?php echo gettext("Add Menu Items"); ?></a></strong>
 				</span>
 			</p>
 			<br class="clearall" /><br />
@@ -247,11 +253,11 @@ if (is_array($result)) {
 						<?php
 						if (extensionEnabled('zenpage')) {
 							?>
-							<option value="all_zenpagepages"><?php echo gettext("All Zenpage pages"); ?></option>
-							<option value="zenpagepage"><?php echo gettext("Zenpage page"); ?></option>
-							<option value="zenpagenewsindex"><?php echo gettext("Zenpage news index"); ?></option>
-							<option value="all_zenpagecategorys"><?php echo gettext("All Zenpage news categories"); ?></option>
-							<option value="zenpagecategory"><?php echo gettext("Zenpage news category"); ?></option>
+							<option value="all_pages"><?php echo gettext("All pages"); ?></option>
+							<option value="page"><?php echo gettext("Page"); ?></option>
+							<option value="newsindex"><?php echo gettext("News index"); ?></option>
+							<option value="all_categorys"><?php echo gettext("All news categories"); ?></option>
+							<option value="category"><?php echo gettext("News category"); ?></option>
 							<?php
 						}
 						?>
@@ -266,11 +272,12 @@ if (is_array($result)) {
 					$add = '&amp;update';
 				}
 				?>
-				<form class="dirty-check" method="post" id="add" name="add" action="menu_tab_edit.php?save<?php
-				echo $add;
-				if ($menuset)
-					echo '&amp;menuset=' . $menuset;
-				?>" style="display: none">
+				<form class="dirtylistening" onReset="setClean('add')
+										;"  method="post" id="add" name="add" action="menu_tab_edit.php?save<?php
+							echo $add;
+							if ($menuset)
+								echo '&amp;menuset=' . $menuset;
+							?>" style="display: none">
 							<?php XSRFToken('update_menu'); ?>
 					<input type="hidden" name="update" id="update" value="<?php echo html_encode($action); ?>" />
 					<input type="hidden" name="id" id="id" value="<?php echo $id; ?>" />
@@ -302,9 +309,9 @@ if (is_array($result)) {
 								<span id="titleinput"><?php print_language_string_list($result['title'], "title", false, NULL, '', 100); ?></span>
 								<?php
 								printAlbumsSelector($result['link']);
-								if (class_exists('Zenpage')) {
-									printZenpagePagesSelector($result['link']);
-									printZenpageNewsCategorySelector($result['link']);
+								if (class_exists('CMS')) {
+									printPagesSelector($result['link']);
+									printNewsCategorySelector($result['link']);
 								}
 								?>
 							</td>
@@ -363,7 +370,15 @@ if (is_array($result)) {
 								?>
 								<tr>
 									<td colspan="2">
-										<span class="notebox"><?php printf(gettext('Target does not exists in <em>%1$s</em> theme'), $array['theme']); ?></span>
+										<span class="notebox">
+											<?php
+											if (array_key_exists('theme', $array)) {
+												printf(gettext('Target does not exist in <em>%1$s</em> theme'), $array['theme']);
+											} else {
+												echo gettext('Target does not exist.');
+											}
+											?>
+										</span>
 									</td>
 								</tr>
 								<?php
@@ -372,8 +387,8 @@ if (is_array($result)) {
 						?>
 					</table>
 					<p class="buttons">
-						<button type="submit"><img src="../../images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
-						<button type="reset"><img src="../../images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
+						<button type="submit"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
+						<button type="reset"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
 					</p>
 					<br class="clearall" /><br />
 				</form>

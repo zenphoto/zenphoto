@@ -9,9 +9,7 @@ if (!defined('WEBPATH'))
 		<?php
 		zp_apply_filter('theme_head');
 		?>
-		<?php printHeadTitle(); ?>
 		<?php $handler->theme_head($_zp_themeroot); ?>
-		<meta charset="<?php echo LOCAL_CHARSET; ?>">
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot ?>/zen.css" type="text/css" />
 		<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery', gettext('Gallery RSS')); ?>
 		<script type="text/javascript">
@@ -63,6 +61,7 @@ if (!defined('WEBPATH'))
 					<div id="logo-floater">
 						<div>
 							<h1 class="title"><a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a></h1>
+							<span id="galleryDescription"><?php printGalleryDesc(); ?></span>
 						</div>
 					</div>
 				</div>
@@ -104,7 +103,7 @@ if (!defined('WEBPATH'))
 										?>
 										<div id="garland_search">
 											<?php
-											if ($numpages > 0 && ZP_PAGES_ENABLED) {
+											if ($numpages > 0) {
 												?>
 												<div id="garland_searchhead_pages">
 													<h3><?php printf(gettext('Pages (%s)'), $numpages); ?></h3>
@@ -126,7 +125,7 @@ if (!defined('WEBPATH'))
 															?>
 															<li<?php if ($c > SHOW_ITEMS) echo ' class="pages_extrashow" style="display:none;"'; ?>>
 																<?php printPageURL(); ?>
-																<p style="text-indent:1em;"><?php echo exerpt($_zp_current_zenpage_page->getContent(), TRUNCATE_LENGTH); ?></p>
+																<p style="text-indent:1em;"><?php echo exerpt($_zp_current_page->getContent(), TRUNCATE_LENGTH); ?></p>
 															</li>
 															<?php
 														}
@@ -135,7 +134,7 @@ if (!defined('WEBPATH'))
 												</div>
 												<?php
 											}
-											if ($numnews > 0 && ZP_NEWS_ENABLED) {
+											if ($numnews > 0) {
 												if ($numpages > 0)
 													echo '<br />';
 												?>
@@ -159,7 +158,7 @@ if (!defined('WEBPATH'))
 															?>
 															<li<?php if ($c > SHOW_ITEMS) echo ' class="news_extrashow" style="display:none;"'; ?>>
 																<?php printNewsURL(); ?>
-																<p style="text-indent:1em;"><?php echo exerpt($_zp_current_zenpage_news->getContent(), TRUNCATE_LENGTH); ?></p>
+																<p style="text-indent:1em;"><?php echo exerpt($_zp_current_article->getContent(), TRUNCATE_LENGTH); ?></p>
 															</li>
 															<?php
 														}

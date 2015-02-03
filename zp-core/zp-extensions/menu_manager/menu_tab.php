@@ -3,7 +3,7 @@ define('OFFSET_PATH', 4);
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 require_once(dirname(dirname(dirname(__FILE__))) . '/template-functions.php');
 if (extensionEnabled('zenpage')) {
-	require_once(dirname(dirname(dirname(__FILE__))) . '/' . PLUGIN_FOLDER . '/zenpage/zenpage-admin-functions.php');
+	require_once(dirname(dirname(dirname(__FILE__))) . '/' . PLUGIN_FOLDER . '/zenpage/admin-functions.php');
 }
 require_once(dirname(dirname(dirname(__FILE__))) . '/' . PLUGIN_FOLDER . '/menu_manager/menu_manager-admin-functions.php');
 
@@ -136,13 +136,13 @@ printSortableHead();
 				echo "</small>";
 				?></h1>
 
-			<form class="dirty-check" action="menu_tab.php?menuset=<?php echo $menuset; ?>" method="post" name="update" onsubmit="return confirmAction();">
+			<form class="dirtylistening" onReset="setClean('update_form');" id="update_form" action="menu_tab.php?menuset=<?php echo $menuset; ?>" method="post" name="update" onsubmit="return confirmAction();">
 				<?php XSRFToken('update_menu'); ?>
 				<p>
 					<?php echo gettext("Drag the items into the order and nesting you wish displayed. Place the menu on your theme pages by calling printCustomMenu()."); ?>
 				</p>
 				<p class="notebox">
-					<?php echo gettext("<strong>IMPORTANT:</strong> This menu’s order is completely independent from any order of albums or pages set on the other admin pages. Use with customized themes that do not wish the standard Zenphoto display structure. Zenphoto functions such as the breadcrumb functions and the next_album() loop will NOT reflect of this menu’s structure!"); ?>
+					<?php echo gettext("<strong>IMPORTANT:</strong> This menu’s order is completely independent from any order of albums or pages set on the other admin pages. Use with customized themes that do not wish the standard zenphoto display structure. zenphoto functions such as the breadcrumb functions and the next_album() loop will NOT reflect of this menu’s structure!"); ?>
 				</p>
 				<?php
 				foreach ($reports as $report) {
@@ -151,17 +151,17 @@ printSortableHead();
 				?>
 				<span class="buttons">
 					<button class="serialize" type="submit">
-						<img src="../../images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong>
+						<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong>
 					</button>
 					<a href="menu_tab_edit.php?add&amp;menuset=<?php echo urlencode($menuset); ?>">
-						<img src="../../images/add.png" alt="" /> <strong><?php echo gettext("Add Menu Items"); ?></strong>
+						<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" /> <strong><?php echo gettext("Add Menu Items"); ?></strong>
 					</a>
 					<div class="floatright">
 						<a href="javascript:newMenuSet();">
-							<img src="../../images/add.png" alt="" /> <strong><?php echo gettext("New Menu"); ?></strong>
+							<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" /> <strong><?php echo gettext("New Menu"); ?></strong>
 						</a>
-						<a href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-options.php?'page=options&amp;tab=plugin&amp;show-menu_manager#menu_manager">
-							<img src="../../images/options.png" alt="" /> <strong><?php echo gettext('Options') ?></strong>
+						<a href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-options.php?'page=options&amp;tab=plugin&amp;single=menu_manager#menu_manager">
+							<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/options.png" alt="" /> <strong><?php echo gettext('Options') ?></strong>
 						</a>
 					</div>
 				</span>
@@ -189,10 +189,10 @@ printSortableHead();
 								if ($count > 0) {
 									?>
 									<span class="buttons">
-										<strong><a href="javascript:dupMenuSet();" title="<?php printf(gettext('Duplicate %s menu'), $menuset); ?>"><img src="../../images/page_white_copy.png" alt="" /><?php echo gettext("Duplicate menu"); ?></a></strong>
+										<strong><a href="javascript:dupMenuSet();" title="<?php printf(gettext('Duplicate %s menu'), $menuset); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/page_white_copy.png" alt="" /><?php echo gettext("Duplicate menu"); ?></a></strong>
 									</span>
 									<span class="buttons">
-										<strong><a href="javascript:deleteMenuSet();" title="<?php printf(gettext('Delete %s menu'), $menuset); ?>"><img src="../../images/fail.png" alt="" /><?php echo gettext("Delete menu"); ?></a></strong>
+										<strong><a href="javascript:deleteMenuSet();" title="<?php printf(gettext('Delete %s menu'), $menuset); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/fail.png" alt="" /><?php echo gettext("Delete menu"); ?></a></strong>
 									</span>
 									<?php
 								}
@@ -234,14 +234,14 @@ printSortableHead();
 				<span id="serializeOutput"></span>
 				<input name="update" type="hidden" value="Save Order" />
 				<p class="buttons">
-					<button class="serialize" type="submit"><img src="../../images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
+					<button class="serialize" type="submit"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 				</p>
 			</form>
 			<ul class="iconlegend">
-				<li><img src="../../images/lock_2.png" alt="" /><?php echo gettext("Menu target is password protected"); ?></li>
-				<li><img src="../../images/pass.png" alt="" /><img	src="../../images/action.png" alt="" /><?php echo gettext("Show/hide"); ?></li>
-				<li><img src="../zenpage/images/view.png" alt="" /><?php echo gettext("View"); ?></li>
-				<li><img src="../../images/fail.png" alt="" /><?php echo gettext("Delete"); ?></li>
+				<li><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock_2.png" alt="" /><?php echo gettext("Menu target is password protected"); ?></li>
+				<li><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><img	src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/action.png" alt="" /><?php echo gettext("Show/hide"); ?></li>
+				<li><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/view.png" alt="" /><?php echo gettext("View"); ?></li>
+				<li><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/fail.png" alt="" /><?php echo gettext("Delete"); ?></li>
 			</ul>
 		</div>
 	</div>

@@ -6,8 +6,9 @@ if (!defined('WEBPATH'))
 <html>
 	<head>
 		<?php zp_apply_filter('theme_head'); ?>
-<?php printHeadTitle(); ?>
-		<meta charset="<?php echo LOCAL_CHARSET; ?>">
+
+		
+		 
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" />
 		<?php jqm_loadScripts(); ?>
@@ -71,8 +72,8 @@ if (!defined('WEBPATH'))
 						</h3>
 						<?php
 					}
-					if ($zenpage && $_zp_page == 1) { //test of zenpage searches
-						if ($numpages > 0 && ZP_PAGES_ENABLED) {
+					if ($_zp_page == 1) { //test of zenpage searches
+						if ($numpages > 0) {
 							$number_to_show = 5;
 							$c = 0;
 							?>
@@ -93,7 +94,7 @@ if (!defined('WEBPATH'))
 							</ul>
 							<?php
 						}
-						if ($numnews > 0 && ZP_NEWS_ENABLED) {
+						if ($numnews > 0) {
 							$number_to_show = 5;
 							$c = 0;
 							?>

@@ -2,6 +2,8 @@
 /**
  * Use this utility to reset your album thumbnails to either "random" or from an ordered field query
  *
+ * @author Stephen Billard (sbillard)
+ *
  * @package admin
  */
 define('OFFSET_PATH', 3);
@@ -14,7 +16,7 @@ $buttonlist[] = array(
 				'enable'			 => true,
 				'button_text'	 => gettext('Reset album thumbs'),
 				'formname'		 => 'reset_albumthumbs.php',
-				'action'			 => 'utilities/reset_albumthumbs.php',
+				'action'			 => FULLWEBPATH . '/' . ZENFOLDER . '/utilities/reset_albumthumbs.php',
 				'icon'				 => 'images/reset.png',
 				'title'				 => gettext('Reset album thumbnails to either random or most recent'),
 				'alt'					 => '',
@@ -29,7 +31,6 @@ if (isset($_REQUEST['thumbtype']) || isset($_REQUEST['thumbselector'])) {
 }
 
 $buffer = '';
-$webpath = WEBPATH . '/' . ZENFOLDER . '/';
 
 $zenphoto_tabs['overview']['subtabs'] = array(gettext('Thumbs') => '');
 
@@ -79,7 +80,7 @@ echo '</head>';
 					<div class="buttons pad_button" id="set_all">
 						<button class="fixedwidth" type="submit"
 										title="<?php echo gettext("Sets all album thumbs to the selected criteria"); ?>">
-							<img src="<?php echo $webpath; ?>images/burst.png" alt="" />
+							<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/burst.png" alt="" />
 							<?php echo gettext("Set all albums to"); ?>
 						</button>
 						<select id="thumbtype" name="thumbtype">

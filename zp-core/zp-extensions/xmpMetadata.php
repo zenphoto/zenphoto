@@ -6,7 +6,7 @@
  *
  * Relevant metadata found will be incorporated into the image (or album object).
  * See <i>{@link http://www.adobe.com/devnet/xmp.html  Adobe XMP Specification}</i>
- * for xmp metadata description. This plugin attempts to map the <i>xmp metadata</i> to Zenphoto or IPTC fields.
+ * for xmp metadata description. This plugin attempts to map the <i>xmp metadata</i> to database or IPTC fields.
  *
  * If a sidecar file exists, it will take precedence (the image file will not be
  * examined.) The sidecar file should reside in the same folder, have the same <i>prefix</i> name as the
@@ -28,6 +28,7 @@
  * The plugin does not present any theme interface.
  *
  * @author Stephen Billard (sbillard)
+ *
  * @package plugins
  * @subpackage media
  */
@@ -574,22 +575,14 @@ class xmpMetadata {
 	 * @return array
 	 */
 	function getOptionsSupported() {
-		global $_zp_supported_images, $_zp_extra_filetypes;
-		$list = $_zp_supported_images;
-		foreach (array('gif', 'wbmp') as $suffix) {
-			$key = array_search($suffix, $list);
-			if ($key !== false)
-				unset($list[$key]);
-		}
-		natcasesort($list);
-		$types = array();
-		foreach ($_zp_extra_filetypes as $suffix => $type) {
+		global $_zp_supported_images, $_zp_images_classes;
+		$list = array_diff($_zp_supported_images, array('gif', 'wbmp', 'wbm', 'bmp'));
+		foreach ($_zp_images_classes as $suffix => $type) {
 			if ($type == 'Video')
-				$types[] = $suffix;
+				$list[] = $suffix;
 		}
-		natcasesort($types);
-		$list = array_merge($list, $types);
 		$listi = array();
+		natcasesort($list);
 		foreach ($list as $suffix) {
 			$listi[$suffix] = 'xmpMetadata_examine_images_' . $suffix;
 		}
@@ -910,11 +903,6 @@ class xmpMetadata {
 			$metadata = self::extract($source);
 			$image->set('hasMetadata', count($metadata > 0));
 			foreach ($metadata as $field => $element) {
-				if (array_key_exists($field, $_zp_exifvars)) {
-					if (!$_zp_exifvars[$field][5]) {
-						continue; //	the field has been disabled
-					}
-				}
 				$v = self::to_string($element);
 
 				switch ($field) {
@@ -1074,7 +1062,7 @@ class xmpMetadata {
 					}
 					break;
 				case 'dc:subject':
-					$tags = $object->getTags();
+					$tags = $object->getTags(false);
 					if (!empty($tags)) {
 						fwrite($f, "   <$elementXML>\n");
 						fwrite($f, "    <rdf:Bag>\n");

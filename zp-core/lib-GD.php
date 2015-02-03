@@ -45,7 +45,7 @@ class lib_GD_Options {
 if (!function_exists('zp_graphicsLibInfo')) {
 
 	/**
-	 * Zenphoto image manipulation functions using the PHP GD library
+	 * Image manipulation functions using the PHP GD library
 	 *
 	 */
 	if (extension_loaded('gd')) { // only define the functions if we have the proper versions
@@ -65,6 +65,7 @@ if (!function_exists('zp_graphicsLibInfo')) {
 		$_lib_GD_info['JPG'] = ($imgtypes & IMG_JPG) ? 'jpg' : false;
 		$_lib_GD_info['JPEG'] = ($imgtypes & IMG_JPG) ? 'jpg' : false;
 		$_lib_GD_info['PNG'] = ($imgtypes & IMG_PNG) ? 'png' : false;
+		$_lib_GD_info['WBM'] = ($imgtypes & IMG_WBMP) ? 'jpg' : false;
 		$_lib_GD_info['WBMP'] = ($imgtypes & IMG_WBMP) ? 'jpg' : false;
 		unset($imgtypes);
 		unset($info);
@@ -84,6 +85,7 @@ if (!function_exists('zp_graphicsLibInfo')) {
 			switch ($ext) {
 				case 'png':
 					return imagecreatefrompng($imgfile);
+				case 'wbm':
 				case 'wbmp':
 					return imagecreatefromwbmp($imgfile);
 				case 'jpeg':
@@ -112,6 +114,7 @@ if (!function_exists('zp_graphicsLibInfo')) {
 				case 'png':
 					$qual = max(0, 9 - round($qual / 10));
 					return imagepng($im, $filename, $qual);
+				case 'wbm':
 				case 'wbmp':
 					return imagewbmp($im, $filename);
 				case 'jpeg':
@@ -340,7 +343,8 @@ if (!function_exists('zp_graphicsLibInfo')) {
 		 * @return resource
 		 */
 		function zp_rotateImage($im, $rotate) {
-			$newim_rot = imagerotate($im, 360-$rotate, 0);//The GD Library rotates counterclockwise !
+			//GD rotates anti-clockwise
+			$newim_rot = imagerotate($im, 360 - $rotate, 0);
 			imagedestroy($im);
 			return $newim_rot;
 		}

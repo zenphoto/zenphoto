@@ -2,14 +2,15 @@
 // force UTF-8 Ø
 if (!defined('WEBPATH'))
 	die();
-if (class_exists('Zenpage') && ZP_NEWS_ENABLED) {
+if (class_exists('CMS')) {
 	?>
 	<!DOCTYPE html>
 	<html>
 		<head>
 			<?php zp_apply_filter('theme_head'); ?>
-			<?php printHeadTitle(); ?>
-			<meta charset="<?php echo LOCAL_CHARSET; ?>">
+			
+			
+			 
 			<meta name="viewport" content="width=device-width, initial-scale=1">
 			<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" />
 			<?php jqm_loadScripts(); ?>

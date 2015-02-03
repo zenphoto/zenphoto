@@ -77,8 +77,8 @@ class ThemeOptions {
 						gettext('Custom menu')			 => array('key' => 'garland_menu', 'type' => OPTION_TYPE_CUSTOM, 'desc' => gettext('Set this to the <em>menu_manager</em> menu you wish to use.') . $note)
 		);
 		if (extensionEnabled('zenpage')) {
-			global $_zp_zenpage;
-			$pages = $_zp_zenpage->getPages(false);
+			global $_zp_CMS;
+			$pages = $_zp_CMS->getPages(false);
 			$list = array();
 			foreach ($pages as $page) {
 				$list[getBare($page['title'])] = $page['titlelink'];
@@ -104,7 +104,7 @@ class ThemeOptions {
 	function handleOption($option, $currentValue) {
 		switch ($option) {
 			case 'garland_menu':
-				$menusets = array();
+				$menusets = array($currentValue => $currentValue);
 				echo '<select id="garland_menuset" name="garland_menu"';
 				if (function_exists('printCustomMenu') && getThemeOption('custom_index_page', NULL, 'garland') === 'gallery') {
 					$result = query_full_array("SELECT DISTINCT menuset FROM " . prefix('menu') . " ORDER BY menuset");

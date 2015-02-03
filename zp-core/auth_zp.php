@@ -2,6 +2,9 @@
 
 /**
  * processes the authorization (or login) of admin users
+ *
+ * @author Stephen Billard (sbillard)
+ *
  * @package admin
  */
 // force UTF-8 Ø
@@ -22,6 +25,7 @@ foreach (Zenphoto_Authority::getRights() as $key => $right) {
 define('MANAGED_OBJECT_RIGHTS_EDIT', 1);
 define('MANAGED_OBJECT_RIGHTS_UPLOAD', 2);
 define('MANAGED_OBJECT_RIGHTS_VIEW', 4);
+define('MANAGED_OBJECT_MEMBER', 16);
 define('LIST_RIGHTS', NO_RIGHTS);
 if (!defined('USER_RIGHTS')) {
 	define('USER_RIGHTS', NO_RIGHTS);
@@ -67,8 +71,20 @@ if (isset($_POST['login'])) { //	Handle the login form.
 } else { //	no login form, check the cookie
 	if (isset($_GET['ticket'])) { // password reset query
 		$_zp_authority->validateTicket(sanitize($_GET['ticket']), sanitize(@$_GET['user']));
+	} else {
+		$_zp_loggedin = $_zp_authority->checkCookieCredentials();
+		$cloneid = bin2hex(FULLWEBPATH);
+		if (!$_zp_loggedin && isset($_SESSION['admin'][$cloneid])) { //	"passed" login
+			$user = unserialize($_SESSION['admin'][$cloneid]);
+			$user2 = Zenphoto_Authority::getAnAdmin(array('`user`=' => $user->getUser(), '`valid`=' => 1));
+			if ($user2 && $user->getPass() == $user2->getPass()) {
+				Zenphoto_Authority::logUser($user2);
+				$_zp_current_admin_obj = $user2;
+				$_zp_loggedin = $_zp_current_admin_obj->getRights();
+			}
+		}
+		unset($cloneid);
 	}
-	$_zp_loggedin = $_zp_authority->checkCookieCredentials();
 	if ($_zp_loggedin) {
 		$locale = $_zp_current_admin_obj->getLanguage();
 		if (!empty($locale)) { //	set his prefered language

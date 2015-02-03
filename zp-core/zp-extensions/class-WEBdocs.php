@@ -8,6 +8,7 @@
  * The plugin is an extension of <var>TextObject</var>. For more details see the <i>class-textobject</i> plugin.
  *
  * @author Stephen Billard (sbillard)
+ *
  * @package plugins
  * @subpackage media
  *

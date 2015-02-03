@@ -2,6 +2,9 @@
 
 /**
  * Initialize globals for Admin
+ *
+ * @author Stephen Billard (sbillard)
+ *
  * @package admin
  */
 // force UTF-8 Ø
@@ -18,7 +21,7 @@ $_SESSION['adminRequest'] = @$_COOKIE['zp_user_auth']; //	Allow "unprotected" i.
 $zenphoto_tabs = array();
 
 require_once(SERVERPATH . "/" . ZENFOLDER . '/rewrite.php');
-if (OFFSET_PATH != 2 && !getOption('license_accepted')) {
+if (OFFSET_PATH != 2 && !getOption('license_accepted') && !isset($_zp_invisible_execute)) {
 	require_once(dirname(__FILE__) . '/license.php');
 }
 
@@ -66,16 +69,18 @@ if ($_zp_loggedin) {
 						'link'		 => WEBPATH . "/" . ZENFOLDER . '/admin-edit.php',
 						'subtabs'	 => NULL);
 	}
+
 	if (extensionEnabled('zenpage')) {
-		if ($_zp_loggedin & ZENPAGE_PAGES_RIGHTS && (getOption('enabled-zenpage-items') == 'news-and-pages' || getOption('enabled-zenpage-items') == 'pages')) {
+		if (($_zp_loggedin & ZENPAGE_PAGES_RIGHTS) && getOption('zenpage_enabled_items') & 2) {
 			$zenphoto_tabs['pages'] = array('text'		 => gettext("pages"),
 							'link'		 => WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-pages.php',
 							'subtabs'	 => NULL);
 		}
-		if ($_zp_loggedin & ZENPAGE_NEWS_RIGHTS && (getOption('enabled-zenpage-items') == 'news-and-pages' || getOption('enabled-zenpage-items') == 'news')) {
+
+		if (($_zp_loggedin & ZENPAGE_NEWS_RIGHTS) && getOption('zenpage_enabled_items') & 1) {
 			$zenphoto_tabs['news'] = array('text'		 => gettext("news"),
-							'link'		 => WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-news-articles.php',
-							'subtabs'	 => array(gettext('articles')		 => PLUGIN_FOLDER . '/zenpage/admin-news-articles.php?page=news&tab=articles',
+							'link'		 => WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-news.php',
+							'subtabs'	 => array(gettext('articles')		 => PLUGIN_FOLDER . '/zenpage/admin-news.php?page=news&tab=articles',
 											gettext('categories')	 => PLUGIN_FOLDER . '/zenpage/admin-categories.php?page=news&tab=categories'),
 							'default'	 => 'articles');
 		}
@@ -142,10 +147,11 @@ if ($_zp_loggedin) {
 	}
 
 	if ($_zp_loggedin & ADMIN_RIGHTS) {
-		list($subtabs, $default) = getLogTabs();
+		list($subtabs, $default, $new) = getLogTabs();
 		$zenphoto_tabs['logs'] = array('text'		 => gettext("logs"),
 						'link'		 => WEBPATH . "/" . ZENFOLDER . '/admin-logs.php?page=logs',
 						'subtabs'	 => $subtabs,
+						'alert'		 => $new,
 						'default'	 => $default);
 	}
 	if (!$_zp_current_admin_obj->getID()) {
@@ -170,4 +176,7 @@ if ($_zp_loggedin) {
 
 	loadLocalOptions(false, $_zp_gallery->getCurrentTheme());
 }
+define('ADMIN_THUMB_LARGE', 160);
+define('ADMIN_THUMB_MEDIUM', 80);
+define('ADMIN_THUMB_SMALL', 40);
 ?>

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * i.php: Zenphoto image processor
+ * i.php: zenphoto image processor
  * All *uncached* image requests go through this file
  * (As of 1.0.8 images are requested directly from the cache if they exist)
  * ******************************************************************************
@@ -177,6 +177,7 @@ if (!$debug) {
 	// ... and redirect the browser to it.
 	$suffix = getSuffix($newfilename);
 	switch ($suffix) {
+		case 'wbm':
 		case 'wbmp':
 			$suffix = 'wbmp';
 			break;

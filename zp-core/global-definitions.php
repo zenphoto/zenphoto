@@ -2,6 +2,7 @@
 
 if (!isset($_SERVER['HTTP_HOST']))
 	die();
+define('GITHUB', 'github.com/ZenPhoto20/ZenPhoto20');
 define('ZP_LAST_MODIFIED', gmdate('D, d M Y H:i:s') . ' GMT');
 require_once(dirname(__FILE__) . '/version.php'); // Include the version info.
 if (!function_exists("gettext")) {

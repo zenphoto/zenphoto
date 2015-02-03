@@ -5,7 +5,7 @@
  *
  * @author Malte Müller (acrylian)
  * @package plugins
- * @subpackage misc
+ * @subpackage admin
  */
 if (defined('OFFSET_PATH')) {
 	$plugin_is_filter = 5 | ADMIN_PLUGIN;
@@ -21,7 +21,7 @@ if (defined('OFFSET_PATH')) {
 						'enable'			 => true,
 						'button_text'	 => gettext('Wordpress Importer'),
 						'formname'		 => 'wordpress_import.php',
-						'action'			 => WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/wordpress_import.php',
+						'action'			 => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/wordpress_import.php',
 						'icon'				 => WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/wordpress_import/wpmini-blue.png',
 						'title'				 => gettext('An importer for Wordpress posts and pages to Zenpage.'),
 						'alt'					 => '',
@@ -38,7 +38,7 @@ if (defined('OFFSET_PATH')) {
 	require_once(dirname(dirname(__FILE__)) . '/admin-globals.php');
 
 	if (extensionEnabled('zenpage')) {
-		require_once(dirname(dirname(__FILE__)) . '/' . PLUGIN_FOLDER . '/zenpage/zenpage-admin-functions.php');
+		require_once(dirname(dirname(__FILE__)) . '/' . PLUGIN_FOLDER . '/zenpage/admin-functions.php');
 	}
 
 	admin_securityChecks(NULL, currentRelativeURL());
@@ -46,8 +46,6 @@ if (defined('OFFSET_PATH')) {
 	if (isset($_REQUEST['dbname']) || isset($_REQUEST['dbuser']) || isset($_REQUEST['dbpass']) || isset($_REQUEST['dbhost'])) {
 		XSRFdefender('wordpress');
 	}
-
-	$webpath = WEBPATH . '/' . ZENFOLDER . '/';
 
 	// some extra functions
 	function wp_query_full_array($sql, $wpconnection) {
@@ -106,7 +104,7 @@ if (defined('OFFSET_PATH')) {
 		if (empty($wp_dbname) || empty($wp_dbbuser) || empty($wp_dbpassword) || empty($wp_dbhost)) {
 			$dbinfo_incomplete = wpimport_TryAgainError($message);
 		}
-		$wpdbconnection = @mysql_connect($wp_dbhost, $wp_dbbuser, $wp_dbpassword, true); // open 2nd connection to Wordpress additionally to the existing Zenphoto connection
+		$wpdbconnection = @mysql_connect($wp_dbhost, $wp_dbbuser, $wp_dbpassword, true); // open 2nd connection to Wordpress additionally to the existing zenphoto connection
 		mysql_query("SET NAMES 'utf8'");
 		@mysql_query('SET SESSION sql_mode="";');
 		if (!$wpdbconnection) {
@@ -125,7 +123,7 @@ if (defined('OFFSET_PATH')) {
 			//echo "<li><strong>Categories</strong>: <pre>"; print_r($cats); echo "</pre></li>"; // for debugging
 			debugLogVar('Wordpress import - All Categories', $cats);
 
-			//Add categories to Zenphoto database
+			//Add categories to zenphoto database
 			if ($cats) {
 				foreach ($cats as $cat) {
 					$cattitlelink = $cat['slug'];
@@ -152,7 +150,7 @@ if (defined('OFFSET_PATH')) {
 			//echo "<li><strong>Tags</strong>: <pre>"; print_r($tags); echo "</pre></li>"; // for debugging
 			debugLogVar('Wordpress import - Tags import', $tags);
 
-			//Add tags to Zenphoto database
+			//Add tags to zenphoto database
 			if ($tags) {
 				foreach ($tags as $tag) {
 					if (query("INSERT INTO " . prefix('tags') . " (name) VALUES (" . db_quote($tag['slug']) . ")", false)) {
@@ -219,14 +217,14 @@ if (defined('OFFSET_PATH')) {
 				$post['type'] = $post['type'];
 				switch ($post['type']) {
 					case 'post':
-						//Add the post to Zenphoto database as Zenpage article
+						//Add the post to zenphoto database as Zenpage article
 						if (query("INSERT INTO " . prefix('news') . " (title,titlelink,content,date,lastchange,`show`,permalink) VALUES (" . db_quote($post['title']) . "," . db_quote($titlelink) . "," . db_quote($post['content']) . "," . db_quote($post['date']) . "," . db_quote($post['lastchange']) . "," . $show . ",1)", false)) {
 							$postinfo .= '<li class="import-success">' . sprintf(gettext('%1$s <em>%2$s</em> added'), $post['type'], $post['title']);
 						} else {
 							$postinfo .= '<li class="import-exists">' . sprintf(gettext('%1$s with the title/titlelink <em>%2$s</em> already exists!'), $post['type'], $post['title']);
 						}
 						// Get new id of the article
-						$newarticle = new ZenpageNews($titlelink, true);
+						$newarticle = newArticle($titlelink, true);
 						$newarticleid = $newarticle->getID();
 						// getting the categories and tags assigned to this post (Wordpress pages do not have tags or categories
 						$termrelations = wp_query_full_array("
@@ -282,7 +280,7 @@ if (defined('OFFSET_PATH')) {
 						}
 						break;
 					case 'page':
-						//Add the page to Zenphoto database as Zenpage page
+						//Add the page to zenphoto database as Zenpage page
 						if (query("INSERT INTO " . prefix('pages') . " (title,titlelink,content,date,lastchange,`show`,permalink) VALUES (" . db_quote($post['title']) . "," . db_quote($titlelink) . "," . db_quote($post['content']) . "," . db_quote($post['date']) . "," . db_quote($post['lastchange']) . "," . $show . ",1)", false)) {
 							$postinfo .= '<li class="import-success">' . sprintf(gettext('%1$s <em>%2$s</em> added'), $post['type'], $post['title']);
 						} else {
@@ -393,11 +391,11 @@ if (defined('OFFSET_PATH')) {
 							<li><?php echo gettext("<strong>Posts (post_status published and draft only) => Zenpage articles</strong>"); ?></li>
 							<li><?php echo gettext("<strong>Pages (post_status published and draft only) => Zenpage pages</strong>"); ?></li>
 							<li><?php echo gettext("<strong>Post categories => Zenpage categories including assignment to their article</strong>"); ?></li>
-							<li><?php echo gettext("<strong>Post tags => Zenphoto tags including assignment to their article</strong>"); ?></li>
-							<li><?php echo gettext("<strong>Post and page comments => Zenphoto comments including assignment to their article</strong>"); ?></li>
+							<li><?php echo gettext("<strong>Post tags => zenphoto tags including assignment to their article</strong>"); ?></li>
+							<li><?php echo gettext("<strong>Post and page comments => zenphoto comments including assignment to their article</strong>"); ?></li>
 						</ul>
 						<p class="notebox">
-							<?php echo gettext("<strong>IMPORTANT: </strong>If you are not using an fresh Zenphoto install it is <strong>strongly recommended to backup your database</strong> before running this importer. Make also sure that both databases use the same encoding so you do not get messed up character display."); ?>
+							<?php echo gettext("<strong>IMPORTANT: </strong>If you are not using an fresh zenphoto install it is <strong>strongly recommended to backup your database</strong> before running this importer. Make also sure that both databases use the same encoding so you do not get messed up character display."); ?>
 						</p>
 						<p class="notebox">
 							<?php echo gettext("<strong>Note:</strong> <em>Wordpress page and category nesting</em> is currently not preserved but can easily be recreated by drag and drop sorting."); ?>

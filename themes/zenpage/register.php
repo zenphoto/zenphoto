@@ -9,8 +9,9 @@ if (function_exists('printRegistrationForm')) {
 	<html>
 		<head>
 			<?php zp_apply_filter('theme_head'); ?>
-			<?php printHeadTitle(); ?>
-			<meta charset="<?php echo LOCAL_CHARSET; ?>">
+			
+			
+			 
 			<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" type="text/css" />
 		</head>
 		<body>

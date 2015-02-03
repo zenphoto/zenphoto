@@ -3,6 +3,8 @@
 /**
  * Used for setting theme/plugin default options
  *
+ * @author Stephen Billard (sbillard)
+ *
  * @package setup
  *
  */
@@ -18,7 +20,8 @@ $extension = sanitize($_REQUEST['plugin']);
 setupLog(sprintf(gettext('Plugin:%s setup started'), $extension), true);
 $option_interface = NULL;
 $plugin_is_filter = 5 | THEME_PLUGIN;
-require_once(getPlugin($extension . '.php'));
+
+require_once($path = getPlugin($extension . '.php'));
 
 if (extensionEnabled($extension)) {
 	//	update the enabled priority
@@ -38,7 +41,17 @@ if (extensionEnabled($extension)) {
 	setupLog(sprintf(gettext('Plugin:%s enabled (%2$s)'), $extension, $priority), true);
 	enableExtension($extension, $plugin_is_filter);
 }
-
+if (strpos($path, SERVERPATH . '/' . USER_PLUGIN_FOLDER) === 0) {
+	$pluginStream = file_get_contents($path);
+	if ($str = isolate('@category', $pluginStream)) {
+		preg_match('|@category\s+(.*)\s|', $str, $matches);
+		$deprecate = !isset($matches[1]) || $matches[1] != 'package';
+	} else {
+		$deprecate = true;
+	}
+} else {
+	$deprecate = false;
+}
 if ($option_interface) {
 	//	prime the default options
 	setupLog(sprintf(gettext('Plugin:%1$s option interface instantiated (%2$s)'), $extension, $option_interface), true);
@@ -48,12 +61,17 @@ if ($option_interface) {
 setupLog(sprintf(gettext('Plugin:%s setup completed'), $extension), true);
 
 $iMutex->unlock();
+if ($deprecate) {
+	$img = 'pass_2.png';
+} else {
+	$img = 'pass.png';
+}
+$fp = fopen(SERVERPATH . '/' . ZENFOLDER . '/images/' . $img, 'rb');
 
-$fp = fopen(SERVERPATH . '/' . ZENFOLDER . '/images/pass.png', 'rb');
 // send the right headers
 header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
 header("Content-Type: image/png");
-header("Content-Length: " . filesize(SERVERPATH . '/' . ZENFOLDER . '/images/pass.png'));
+header("Content-Length: " . filesize(SERVERPATH . '/' . ZENFOLDER . '/images/' . $img));
 // dump the picture and stop the script
 fpassthru($fp);
 fclose($fp);

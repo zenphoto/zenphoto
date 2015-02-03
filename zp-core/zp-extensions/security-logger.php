@@ -13,10 +13,11 @@
  * </ul>
  *
  * @author Stephen Billard (sbillard)
+ *
  * @package plugins
  * @subpackage admin
  */
-$plugin_is_filter = 100 | CLASS_PLUGIN;
+$plugin_is_filter = defaultExtension(100 | CLASS_PLUGIN);
 $plugin_description = gettext('Logs selected security events.');
 $plugin_author = "Stephen Billard (sbillard)";
 
@@ -52,7 +53,6 @@ class security_logger {
 	function __construct() {
 		global $plugin_is_filter;
 		if (OFFSET_PATH == 2) {
-			setOptionDefault('zp_plugin_security-logger', $plugin_is_filter);
 			setOptionDefault('logger_log_guests', 1);
 			setOptionDefault('logger_log_admin', 1);
 			setOptionDefault('logger_log_type', 'all');
@@ -126,13 +126,18 @@ class security_logger {
 				$type = gettext('Log downloaded');
 				break;
 			case 'setup_install':
+				$aux1 = $addl;
+				$success = 3;
 				$type = gettext('Install');
 				$addl = gettext('version') . ' ' . ZENPHOTO_VERSION . '[' . ZENPHOTO_RELEASE . "]";
 				if (!zpFunctions::hasPrimaryScripts()) {
 					$addl .= ' ' . gettext('clone');
 				}
 				break;
-			case 'setup_proptect':
+			case 'setup_restore':
+				$type = gettext('Restore setup scripts');
+				break;
+			case 'setup_protect':
 				$type = gettext('Protect setup scripts');
 				break;
 			case 'user_new':
@@ -177,6 +182,7 @@ class security_logger {
 		$f = fopen($file, 'a');
 		if ($f) {
 			if (!$preexists) { // add a header
+				@chmod($file, DATA_MOD);
 				fwrite($f, gettext('date' . "\t" . 'requestor’s IP' . "\t" . 'type' . "\t" . 'user ID' . "\t" . 'user name' . "\t" . 'outcome' . "\t" . 'authority' . "\tadditional information\n"));
 			}
 			$message = date('Y-m-d H:i:s') . "\t";
@@ -195,8 +201,9 @@ class security_logger {
 				case 2:
 					$message .= gettext("Blocked") . "\t";
 					break;
-				default:
-					$message .= $success . "\t";
+				case 3:
+					$message .= $aux1 . "\t";
+					break;
 			}
 			if ($addl) {
 				$message .= "\t" . $addl;
@@ -204,22 +211,6 @@ class security_logger {
 			fwrite($f, $message . "\n");
 			fclose($f);
 			clearstatcache();
-			if (!$preexists) {
-				@chmod($file, 0660 & CHMOD_VALUE);
-				if (strtoupper(substr(PHP_OS, 0, 3)) == 'WIN') {
-					$permission = fileperms($file) & 0700; //	on Windows owner==group==public
-					$check = $permission != 0600 & CHMOD_VALUE;
-				} else {
-					$permission = fileperms($file) & 0777;
-					$check = $permission != 0660 & CHMOD_VALUE;
-				}
-				if ($check) {
-					$f = fopen($file, 'a');
-					fwrite($f, "\t\t" . gettext('Set Security log permissions') . "\t\t\t" . gettext('Failed') . "\t\t" . sprintf(gettext('File permissions of Security log are %04o'), $permission) . "\n");
-					fclose($f);
-					clearstatcache();
-				}
-			}
 		}
 		$_zp_mutex->unlock();
 		setupCurrentLocale($cur_locale); //	restore to whatever was in effect.
@@ -234,7 +225,7 @@ class security_logger {
 			$user = $_zp_current_admin_obj->getUser();
 			$name = $_zp_current_admin_obj->getName();
 		} else {
-			$user = $name = '';
+			$user = $name = NULL;
 		}
 		return array($user, $name);
 	}
@@ -328,7 +319,7 @@ class security_logger {
 	 */
 	static function adminGate($allow, $page) {
 		list($user, $name) = security_logger::populate_user();
-		switch (getOption('logger_log_type')) {
+		switch (getOption('logge_access_log_type')) {
 			case 'all':
 				break;
 			case 'all_user':
@@ -336,7 +327,7 @@ class security_logger {
 					return $allow;
 				break;
 		}
-		security_logger::Logger(0, $user, $name, 'blocked_access', '', $page);
+		security_logger::Logger(0, $user, $name, 'blocked_access', '', getRequestURI());
 		return $allow;
 	}
 
@@ -367,7 +358,7 @@ class security_logger {
 				break;
 		}
 		if (!$allow)
-			security_logger::Logger(2, $user, $name, 'blocked_album', '', $page);
+			security_logger::Logger(2, $user, $name, 'blocked_album', '', getRequestURI());
 		return $allow;
 	}
 

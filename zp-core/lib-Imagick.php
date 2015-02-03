@@ -114,7 +114,7 @@ class lib_Imagick_Options {
 }
 
 /**
- * Zenphoto image manipulation functions using the Imagick library
+ * Image manipulation functions using the Imagick library
  */
 if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd'))) {
 	$_lib_Imagick_info = array();

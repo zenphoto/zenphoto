@@ -51,18 +51,9 @@ class PersistentObject {
 	private $updates = NULL;
 
 	/**
-	 *
-	 * @deprecated
-	 */
-	function PersistentObject($tablename, $unique_set, $cache_by = NULL, $use_cache = true, $is_transient = false, $allowCreate = true) {
-		deprecated_functions::PersistentObject();
-		return instantiate($tablename, $unique_set, $cache_by, $use_cache, $is_transient, $allowCreate);
-	}
-
-	/**
 	  }
 	 *
-	 * Prime instantiator for Zenphoto objects
+	 * Prime instantiator for zenphoto objects
 	 * @param $tablename	The name of the database table
 	 * @param $unique_set	An array of unique fields
 	 * @param $cache_by
@@ -137,6 +128,18 @@ class PersistentObject {
 			$this->updates[$var] = $value;
 		}
 		return true;
+	}
+
+	/**
+	 * used to make the object "virgin" so it can be re-saved with a new id
+	 */
+	function clearID() {
+		$insert_data = array_merge($this->data, $this->updates, $this->tempdata);
+		$insert_data['id'] = $this->id = 0;
+		$this->tempdata = $this->updates = $this->data = array();
+		foreach (db_list_fields($this->table) as $col) {
+			$this->updates[$col['Field']] = $insert_data[$col['Field']];
+		}
 	}
 
 	/**
@@ -335,25 +338,22 @@ class PersistentObject {
 		}
 		if (!$this->id) {
 			$this->setDefaults();
-			// Create a new object and set the id from the one returned.
 			$insert_data = array_merge($this->unique_set, $this->updates, $this->tempdata);
 			if (empty($insert_data)) {
 				return true;
 			}
-			$i = 0;
 			$cols = $vals = '';
 			foreach ($insert_data as $col => $value) {
-				if ($i > 0)
+				if (!empty($cols)) {
 					$cols .= ", ";
-				$cols .= "`$col`";
-				if ($i > 0)
 					$vals .= ", ";
+				}
+				$cols .= "`$col`";
 				if (is_null($value)) {
 					$vals .= "NULL";
 				} else {
 					$vals .= db_quote($value);
 				}
-				$i++;
 			}
 			$sql = 'INSERT INTO ' . prefix($this->table) . ' (' . $cols . ') VALUES (' . $vals . ')';
 			$success = query($sql);
@@ -372,20 +372,19 @@ class PersistentObject {
 			if (empty($this->updates)) {
 				return true;
 			} else {
-				$sql = 'UPDATE ' . prefix($this->table) . ' SET';
-				$i = 0;
+				$sql = '';
 				foreach ($this->updates as $col => $value) {
-					if ($i > 0)
+					if ($sql) {
 						$sql .= ",";
+					}
 					if (is_null($value)) {
 						$sql .= " `$col` = NULL";
 					} else {
 						$sql .= " `$col` = " . db_quote($value);
 					}
 					$this->data[$col] = $value;
-					$i++;
 				}
-				$sql .= ' WHERE id=' . $this->id . ';';
+				$sql = 'UPDATE ' . prefix($this->table) . ' SET' . $sql . ' WHERE id=' . $this->id . ';';
 				$success = query($sql);
 				if (!$success || db_affected_rows() != 1) {
 					return false;
@@ -423,7 +422,7 @@ class ThemeObject extends PersistentObject {
 	var $comments = NULL; //Contains an array of the comments of the object
 	var $manage_rights = ADMIN_RIGHTS;
 	var $manage_some_rights = ADMIN_RIGHTS;
-	var $view_rights = VIEW_ALL_RIGHTS;
+	var $access_rights = VIEW_ALL_RIGHTS;
 
 	/**
 	 * Class instantiator
@@ -515,10 +514,11 @@ class ThemeObject extends PersistentObject {
 	/**
 	 * Returns the tag data
 	 *
+	 * @param string $language
 	 * @return string
 	 */
-	function getTags() {
-		return readTags($this->getID(), $this->table);
+	function getTags($language = NULL) {
+		return readTags($this->getID(), $this->table, $language);
 	}
 
 	/**
@@ -541,7 +541,7 @@ class ThemeObject extends PersistentObject {
 	 * @return bool
 	 */
 	function hasTag($checktag) {
-		$tags = $this->getTags();
+		$tags = $this->getTags(false);
 		return in_array($checktag, $tags);
 	}
 
@@ -699,13 +699,10 @@ class ThemeObject extends PersistentObject {
 	 * @param bit $action what the caller wants to do
 	 */
 	function isMyItem($action) {
-  if (!$this->checkPublishDates()) {
-    $this->setShow(0);
-  }
 		if (zp_loggedin($this->manage_rights)) {
 			return true;
 		}
-		if (zp_loggedin($this->view_rights) && ($action == LIST_RIGHTS)) { // sees all
+		if ($action == LIST_RIGHTS && zp_loggedin($this->access_rights)) {
 			return true;
 		}
 		if (zp_apply_filter('check_credentials', false, $this, $action)) {
@@ -730,39 +727,69 @@ class ThemeObject extends PersistentObject {
 	 * @param string $show
 	 */
 	function checkAccess(&$hint = NULL, &$show = NULL) {
-    if ($this->isMyItem(LIST_RIGHTS)) {
-      return true;
-    }
-    return $this->checkforGuest($hint, $show);
-  }
-  
-  /**
-   * Checks if the item is either expired or in scheduled publishing
-   * A class method wrapper of the functions.php function of the same name
-   * @return boolean
-   */
-  function checkPublishDates() {
-    $row = array();
-    if (isAlbumClass($this) || isImageClass($this)) {
-      $row = array(
-          'show' => $this->getShow(),
-          'expiredate' => $this->getExpireDate(),
-          'publishdate' => $this->getPublishDate()
-      );
-    } else if ($this->table == 'news' || $this->table == 'pages') {
-      $row = array(
-          'show' => $this->getShow(),
-          'expiredate' => $this->getExpireDate(),
-          'publishdate' => $this->getDateTime()
-      );
-    }
-    $check = checkPublishDates($row);
-    if ($check == 1 || $check == 2) {
-      return false;
-    } else {
-      return true;
-    }
-  }
+		if ($this->isMyItem(LIST_RIGHTS)) {
+			return true;
+		}
+		return $this->checkforGuest($hint, $show);
+	}
+
+	/**
+	 * Returns the publish date
+	 *
+	 * @return string
+	 */
+	function getPublishDate() {
+		$dt = $this->get("publishdate");
+		if ($dt == '0000-00-00 00:00:00' || is_null($dt)) {
+			return $this->getDateTime();
+		} else {
+			return $dt;
+		}
+	}
+
+	/**
+	 * sets the publish date
+	 *
+	 */
+	function setPublishDate($ed) {
+		if ($ed) {
+			$newtime = dateTimeConvert($ed);
+			if ($newtime === false)
+				return;
+			$this->set('publishdate', $newtime);
+		} else {
+			$this->set('publishdate', NULL);
+		}
+	}
+
+	/**
+	 * Returns the expire date
+	 *
+	 * @return string
+	 */
+	function getExpireDate() {
+		$dt = $this->get("expiredate");
+		if ($dt == '0000-00-00 00:00:00') {
+			return NULL;
+		} else {
+			return $dt;
+		}
+	}
+
+	/**
+	 * sets the expire date
+	 *
+	 */
+	function setExpireDate($ed) {
+		if ($ed) {
+			$newtime = dateTimeConvert($ed);
+			if ($newtime === false)
+				return;
+			$this->set('expiredate', $newtime);
+		} else {
+			$this->set('expiredate', NULL);
+		}
+	}
 
 }
 
@@ -883,64 +910,6 @@ class MediaObject extends ThemeObject {
 	 */
 	function setPasswordHint($hint) {
 		$this->set('password_hint', zpFunctions::tagURLs($hint));
-	}
-
-	/**
-	 * Returns the expire date
-	 *
-	 * @return string
-	 */
-	function getExpireDate() {
-		$dt = $this->get("expiredate");
-		if ($dt == '0000-00-00 00:00:00') {
-			return NULL;
-		} else {
-			return $dt;
-		}
-	}
-
-	/**
-	 * sets the expire date
-	 *
-	 */
-	function setExpireDate($ed) {
-		if ($ed) {
-			$newtime = dateTimeConvert($ed);
-			if ($newtime === false)
-				return;
-			$this->set('expiredate', $newtime);
-		} else {
-			$this->set('expiredate', NULL);
-		}
-	}
-
-	/**
-	 * Returns the publish date
-	 *
-	 * @return string
-	 */
-	function getPublishDate() {
-		$dt = $this->get("publishdate");
-		if ($dt == '0000-00-00 00:00:00') {
-			return NULL;
-		} else {
-			return $dt;
-		}
-	}
-
-	/**
-	 * sets the publish date
-	 *
-	 */
-	function setPublishDate($ed) {
-		if ($ed) {
-			$newtime = dateTimeConvert($ed);
-			if ($newtime === false)
-				return;
-			$this->set('publishdate', $newtime);
-		} else {
-			$this->set('publishdate', NULL);
-		}
 	}
 
 }

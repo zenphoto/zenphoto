@@ -7,8 +7,6 @@ if (function_exists('printRegistrationForm')) {
 	<html>
 		<head>
 			<?php zp_apply_filter('theme_head'); ?>
-			<?php printHeadTitle(); ?>
-			<meta charset="<?php echo LOCAL_CHARSET; ?>">
 			<link rel="stylesheet" href="<?php echo $_zp_themeroot ?>/zen.css" type="text/css" />
 			<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery', gettext('Gallery RSS')); ?>
 		</head>
@@ -21,6 +19,7 @@ if (function_exists('printRegistrationForm')) {
 						<div id="logo-floater">
 							<div>
 								<h1 class="title"><a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a></h1>
+								<span id="galleryDescription"><?php printGalleryDesc(); ?></span>
 							</div>
 						</div>
 					</div>

@@ -2,7 +2,7 @@
 
 /**
  *
- * Used to cache Theme pages (i.e. those pages launched by the Zenphoto index.php script.)
+ * Used to cache Theme pages (i.e. those pages launched by the index.php script.)
  *
  * Exceptions to this are the <var>password.php</var> and <var>404.php</var> pages, any page listed in the
  * <i>Excluded pages</i> option, and any page whose script makes a call on the
@@ -16,7 +16,7 @@
  * image may be cached and the link changed to the cache folder. Similarly, pages
  * which contain comment forms are not cached because then the comment would never show.
  *
- * In addition, caching does not occur for pages viewed by Zenphoto users if the user has
+ * In addition, caching does not occur for pages viewed by logged-in users if the user has
  * <var>ADMIN</var> privileges or if he is the manager of an album being viewed or whose images are
  * being viewed. Likewise, Zenpage News and Pages are not cached when viewed by the author.
  *
@@ -25,7 +25,7 @@
  * @subpackage admin
  */
 $plugin_is_filter = 400 | CLASS_PLUGIN;
-$plugin_description = gettext("Adds static HTML cache functionality to Zenphoto.");
+$plugin_description = gettext("Adds static HTML cache functionality.");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 
 $option_interface = 'static_html_cache';
@@ -69,8 +69,8 @@ class static_html_cache {
 	 *
 	 */
 	function checkIfAllowedPage() {
-		global $_zp_gallery_page, $_zp_current_image, $_zp_current_album, $_zp_current_zenpage_page,
-		$_zp_current_zenpage_news, $_zp_current_admin_obj, $_zp_current_category, $_zp_authority;
+		global $_zp_gallery_page, $_zp_current_image, $_zp_current_album, $_zp_current_page,
+		$_zp_current_article, $_zp_current_admin_obj, $_zp_current_category, $_zp_authority;
 		if (zp_loggedin(ADMIN_RIGHTS)) { // don't cache for admin
 			return false;
 		}
@@ -84,12 +84,12 @@ class static_html_cache {
 				$title = $_zp_current_album->name;
 				break;
 			case 'pages.php':
-				$obj = $_zp_current_zenpage_page;
-				$title = $_zp_current_zenpage_page->getTitlelink();
+				$obj = $_zp_current_page;
+				$title = $_zp_current_page->getTitlelink();
 				break;
 			case 'news.php':
 				if (in_context(ZP_ZENPAGE_NEWS_ARTICLE)) {
-					$obj = $_zp_current_zenpage_news;
+					$obj = $_zp_current_article;
 					$title = $obj->getTitlelink();
 				} else {
 					if (in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
@@ -168,7 +168,7 @@ class static_html_cache {
 						$start_cache = (float) $usec + (float) $sec;
 						list($usec, $sec) = explode(' ', microtime());
 						$end = (float) $usec + (float) $sec;
-						echo "<!-- " . sprintf(gettext('Cached content of %3$s served by static_html_cache in %1$.4f seconds plus %2$.4f seconds unavoidable Zenphoto overhead.'), $end - $start_cache, $start_cache - $start, date('D, d M Y H:i:s', filemtime($cachefilepath))) . " -->\n";
+						echo "<!-- " . sprintf(gettext('Cached content of %3$s served by static_html_cache in %1$.4f seconds plus %2$.4f seconds unavoidable overhead.'), $end - $start_cache, $start_cache - $start, date('D, d M Y H:i:s', filemtime($cachefilepath))) . " -->\n";
 						exitZP();
 					}
 				}
@@ -208,11 +208,17 @@ class static_html_cache {
 	 * Aborts HTML caching
 	 * Used for instance, when there is a 404 error or such
 	 *
+	 * @param bool $flush set to false to discard prior output
+	 *
 	 */
-	function abortHTMLCache() {
+	function abortHTMLCache($flush) {
 		if (!empty($this->pageCachePath)) {
 			$this->pageCachePath = NULL;
-			ob_end_flush();
+			if ($flush) {
+				ob_end_flush();
+			} else {
+				ob_end_clean();
+			}
 		}
 	}
 
@@ -223,7 +229,7 @@ class static_html_cache {
 	 */
 	function createCacheFilepath($accessType) {
 		global $_zp_current_image, $_zp_current_album, $_zp_gallery_page, $_zp_authority,
-		$_zp_current_zenpage_news, $_zp_current_category, $_zp_current_zenpage_page, $_zp_gallery, $_zp_page;
+		$_zp_current_article, $_zp_current_category, $_zp_current_page, $_zp_gallery, $_zp_page;
 		// just make sure these are really empty
 		$cachefilepath = $_zp_gallery->getCurrentTheme() . '_' . str_replace('zp_', '', $accessType) . '_';
 		$album = "";
@@ -255,12 +261,12 @@ class static_html_cache {
 				break;
 			case 'pages.php':
 				$cachesubfolder = "pages";
-				$cachefilepath .= 'page-' . $_zp_current_zenpage_page->getTitlelink();
+				$cachefilepath .= 'page-' . $_zp_current_page->getTitlelink();
 				break;
 			case 'news.php':
 				$cachesubfolder = "pages";
-				if (is_object($_zp_current_zenpage_news)) {
-					$title = "-" . $_zp_current_zenpage_news->getTitlelink();
+				if (is_object($_zp_current_article)) {
+					$title = "-" . $_zp_current_article->getTitlelink();
 				}
 				if (is_object($_zp_current_category)) {
 					$category = "_cat-" . $_zp_current_category->getTitlelink();
@@ -326,9 +332,9 @@ class static_html_cache {
 	}
 
 	function getOptionsSupported() {
-		return array(gettext('Static HTML cache expire')	 => array('key'	 => 'static_cache_expire', 'type' => OPTION_TYPE_TEXTBOX,
+		return array(gettext('Static HTML cache expire')	 => array('key'	 => 'static_cache_expire', 'type' => OPTION_TYPE_NUMBER,
 										'desc' => gettext("When the cache should expire in seconds. Default is 86400 seconds (1 day  = 24 hrs * 60 min * 60 sec).")),
-						gettext('Excluded pages')						 => array('key'	 => 'static_cache_excludedpages', 'type' => OPTION_TYPE_TEXTBOX,
+						gettext('Excluded pages')						 => array('key'	 => 'static_cache_excludedpages', 'type' => OPTION_TYPE_TEXTAREA,
 										'desc' => gettext("The list of pages to be excluded from cache generation. Pages that can be excluded are custom theme pages including Zenpage pages (these optionally more specific by titlelink) and the standard theme files image.php (optionally by image file name), album.php (optionally by album folder name) or index.php.<br /> If you want to exclude a page completely enter <em>page-filename.php/</em>. <br />If you want to exclude a page by a specific title, image filename, or album folder name enter <em>pagefilename.php/titlelink or image filename or album folder</em>. Separate several entries by comma.")),
 		);
 	}

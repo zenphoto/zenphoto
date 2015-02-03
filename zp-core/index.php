@@ -1,21 +1,22 @@
 <?php
 
 /**
- * root script for Zenphoto
+ * root script for ZenPhoto20
  * @package core
  *
  */
+// force UTF-8 Ø
 if (!defined('OFFSET_PATH'))
 	die(); //	no direct linking
-
 $_zp_script_timer['start'] = microtime();
-// force UTF-8 Ø
 require_once(dirname(__FILE__) . '/global-definitions.php');
 require_once(dirname(__FILE__) . '/functions.php');
+
 zp_apply_filter('feature_plugin_load');
 if (DEBUG_PLUGINS) {
 	debugLog('Loading the "feature" plugins.');
 }
+
 foreach (getEnabledPlugins() as $extension => $plugin) {
 	$loadtype = $plugin['priority'];
 	if ($loadtype & FEATURE_PLUGIN) {
@@ -110,15 +111,21 @@ if ($_zp_page < 0) {
 
 //$_zp_script_timer['theme scripts'] = microtime();
 if ($zp_request && $_zp_script && file_exists($_zp_script = SERVERPATH . "/" . internalToFilesystem($_zp_script))) {
-	if (checkAccess($hint, $show)) { // ok to view
-	} else {
+	if (!checkAccess($hint, $show)) { // not ok to view
 		//	don't cache the logon page or you can never see the real one
-		$_zp_HTML_cache->abortHTMLCache();
+		$_zp_HTML_cache->abortHTMLCache(true);
 		$_zp_gallery_page = 'password.php';
 		$_zp_script = SERVERPATH . '/' . THEMEFOLDER . '/' . $_index_theme . '/password.php';
 		if (!file_exists(internalToFilesystem($_zp_script))) {
 			$_zp_script = SERVERPATH . '/' . ZENFOLDER . '/password.php';
 		}
+	}
+	$tables = array('albums', 'images');
+	if (extensionEnabled('zenpage')) {
+		$tables = array_merge($tables, array('news', 'pages'));
+	}
+	foreach ($tables as $table) {
+		updatePublished($table);
 	}
 	// Include the appropriate page for the requested object, and a 200 OK header.
 	header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
@@ -130,7 +137,7 @@ if ($zp_request && $_zp_script && file_exists($_zp_script = SERVERPATH . "/" . i
 } else {
 	// If the requested object does not exist, issue a 404 and redirect to the 404.php
 	// in the zp-core folder. This script will load the theme 404 page if it exists.
-	$_zp_HTML_cache->abortHTMLCache();
+	$_zp_HTML_cache->abortHTMLCache(false);
 	include(SERVERPATH . "/" . ZENFOLDER . '/404.php');
 }
 //$_zp_script_timer['theme script load'] = microtime();
@@ -144,10 +151,10 @@ $_zp_script_timer['end'] = microtime();
 foreach ($_zp_script_timer as $step => $time) {
 	list($usec, $sec) = explode(" ", $time);
 	$cur = (float) $usec + (float) $sec;
-	printf("<!-- " . gettext('Zenphoto script processing %1$s:%2$.4f seconds') . " -->\n", $step, $cur - $last);
+	printf("<!-- " . gettext('Script processing %1$s:%2$.4f seconds') . " -->\n", $step, $cur - $last);
 	$last = $cur;
 }
 if (count($_zp_script_timer) > 1)
-	printf("<!-- " . gettext('Zenphoto script processing total:%.4f seconds') . " -->\n", $last - $first);
+	printf("<!-- " . gettext('Script processing total:%.4f seconds') . " -->\n", $last - $first);
 $_zp_HTML_cache->endHTMLCache();
 ?>

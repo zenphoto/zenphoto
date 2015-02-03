@@ -6,6 +6,8 @@
  * Note: PHP version 5 states that the MySQL library is "Maintenance only, Long term deprecation announced."
  * It recommends using the PDO::MySQL or the MySQLi library instead.
  *
+ * @author Stephen Billard (sbillard)
+ *
  * @package core
  */
 // force UTF-8 Ø
@@ -40,7 +42,7 @@ function db_connect($config, $errorstop = true) {
 	} catch (PDOException $e) {
 		$_zp_DB_last_result = $e;
 		if ($errorstop) {
-			zp_error(sprintf(gettext('MySql Error: Zenphoto received the error %s when connecting to the database server.'), $e->getMessage()));
+			zp_error(sprintf(gettext('MySql Error: ZenPhoto20 received the error %s when connecting to the database server.'), $e->getMessage()));
 		}
 		$_zp_DB_connection = NULL;
 		return false;

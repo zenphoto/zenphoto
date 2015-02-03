@@ -18,7 +18,7 @@ function imageError($status_text, $errormessage, $errorimg = 'err-imagegeneral.p
 	global $newfilename, $album, $image;
 	$debug = isset($_GET['debug']);
 	if ($debug) {
-		echo('<strong>' . sprintf(gettext('Zenphoto Image Processing Error: %s'), $errormessage) . '</strong>'
+		echo('<strong>' . sprintf(gettext('Image Processing Error: %s'), $errormessage) . '</strong>'
 		. '<br /><br />' . sprintf(gettext('Request URI: [ <code>%s</code> ]'), html_encode(getRequestURI()))
 		. '<br />PHP_SELF: [ <code>' . sanitize($_SERVER['PHP_SELF'], 3) . '</code> ]'
 		. (empty($newfilename) ? '' : '<br />' . sprintf(gettext('Cache: [<code>%s</code>]'), '/' . CACHEFOLDER . '/' . sanitize($newfilename, 3)) . ' ')
@@ -54,16 +54,16 @@ function imageDebug($album, $image, $args, $imgfile) {
 	echo "<strong>" . gettext("Debug") . " <code>i.php</code> | " . gettext("Arguments:") . "</strong><br />\n\n"
 	?>
 	<ul>
-		<li><?php echo gettext("size ="); ?>   <strong> <?php echo sanitize($size, 3) ?> </strong></li>
-		<li><?php echo gettext("width =") ?>   <strong> <?php echo sanitize($width, 3) ?> </strong></li>
-		<li><?php echo gettext("height =") ?>  <strong> <?php echo sanitize($height, 3) ?> </strong></li>
-		<li><?php echo gettext("cw =") ?>      <strong> <?php echo sanitize($cw, 3) ?> </strong></li>
-		<li><?php echo gettext("ch =") ?>      <strong> <?php echo sanitize($ch, 3) ?> </strong></li>
-		<li><?php echo gettext("cx =") ?>      <strong> <?php echo sanitize($cx, 3) ?> </strong></li>
-		<li><?php echo gettext("cy =") ?>      <strong> <?php echo sanitize($cy, 3) ?> </strong></li>
-		<li><?php echo gettext("quality =") ?> <strong> <?php echo sanitize($quality, 3) ?> </strong></li>
-		<li><?php echo gettext("thumb =") ?>   <strong> <?php echo sanitize($thumb, 3) ?> </strong></li>
-		<li><?php echo gettext("crop =") ?>    <strong> <?php echo sanitize($crop, 3) ?> </strong></li>
+		<li><?php echo gettext("size ="); ?>   <strong> <?php echo $size ?> </strong></li>
+		<li><?php echo gettext("width =") ?>   <strong> <?php echo $width ?> </strong></li>
+		<li><?php echo gettext("height =") ?>  <strong> <?php echo $height ?> </strong></li>
+		<li><?php echo gettext("cw =") ?>      <strong> <?php echo $cw ?> </strong></li>
+		<li><?php echo gettext("ch =") ?>      <strong> <?php echo $ch ?> </strong></li>
+		<li><?php echo gettext("cx =") ?>      <strong> <?php echo $cx ?> </strong></li>
+		<li><?php echo gettext("cy =") ?>      <strong> <?php echo $cy ?> </strong></li>
+		<li><?php echo gettext("quality =") ?> <strong> <?php echo $quality ?> </strong></li>
+		<li><?php echo gettext("thumb =") ?>   <strong> <?php echo $thumb ?> </strong></li>
+		<li><?php echo gettext("crop =") ?>    <strong> <?php echo $crop ?> </strong></li>
 	</ul>
 	<?php
 }
@@ -248,7 +248,7 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 			$size = $width = false;
 		} else {
 			// There's a problem up there somewhere...
-			imageError('404 Not Found', sprintf(gettext('Unknown error processing %s! Please report to the developers at <a href="http://www.zenphoto.org/">www.zenphoto.org</a>'), filesystemToInternal($imgfile)), 'err-imagegeneral.png');
+			imageError('404 Not Found', sprintf(gettext('Unknown error processing %s! Please report to the <a href="' . GITHUB . '/issues">developers</a>'), filesystemToInternal($imgfile)), 'err-imagegeneral.png');
 		}
 
 		$sizes = propSizes($size, $width, $height, $w, $h, $thumb, $image_use_side, $dim);
@@ -440,9 +440,7 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 		@chmod($newfile, 0777);
 		if (zp_imageOutput($newim, getSuffix($newfile), $newfile, $quality)) { //	successful save of cached image
 			if (getOption('ImbedIPTC') && getSuffix($newfilename) == 'jpg' && GRAPHICS_LIBRARY != 'Imagick') { // the imbed function works only with JPEG images
-				global $_zp_extra_filetypes; //	because we are doing the require in a function!
-				if (!$_zp_extra_filetypes)
-					$_zp_extra_filetypes = array();
+				global $_zp_images_classes; //	because we are doing the require in a function!
 				require_once(dirname(__FILE__) . '/functions.php'); //	it is ok to increase memory footprint now since the image processing is complete
 				$iptc = array(
 								'1#090'	 => chr(0x1b) . chr(0x25) . chr(0x47), //	character set is UTF-8

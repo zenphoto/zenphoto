@@ -12,6 +12,7 @@
  *
  * @author Stephen Billard (sbillard)and Malte Müller (acrylian)
  * @package plugins
+ * @subpackage theme
  */
 if (!defined('OFFSET_PATH')) {
 	define('OFFSET_PATH', 3);
@@ -95,7 +96,7 @@ class jquery_rating {
 		return array(gettext('Voting state')							 => array('key'			 => 'rating_status', 'type'		 => OPTION_TYPE_RADIO,
 										'buttons'	 => $this->ratingstate,
 										'desc'		 => gettext('<em>Enable</em> state of voting.')),
-						gettext('Stars')										 => array('key'	 => 'rating_stars_count', 'type' => OPTION_TYPE_TEXTBOX,
+						gettext('Stars')										 => array('key'	 => 'rating_stars_count', 'type' => OPTION_TYPE_NUMBER,
 										'desc' => sprintf(ngettext('Rating will use %u star.', 'Rating will use %u stars.', $stars), $stars)),
 						gettext('Split stars')							 => array('key'			 => 'rating_split_stars', 'type'		 => OPTION_TYPE_RADIO,
 										'buttons'	 => array(gettext('full') => 1, gettext('half') => 2, gettext('third') => 3),
@@ -174,7 +175,7 @@ class jquery_rating {
 						'enable'			 => true,
 						'button_text'	 => gettext('Reset all ratings'),
 						'formname'		 => 'clearrating_button',
-						'action'			 => PLUGIN_FOLDER . '/rating.php?action=clear_rating',
+						'action'			 => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/rating.php?action=clear_rating',
 						'icon'				 => 'images/reset.png',
 						'title'				 => gettext('Sets all ratings to unrated.'),
 						'alt'					 => '',
@@ -215,16 +216,16 @@ class jquery_rating {
 	 * @return object
 	 */
 	static function getCurrentPageObject() {
-		global $_zp_gallery_page, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_news, $_zp_current_zenpage_page;
+		global $_zp_gallery_page, $_zp_current_album, $_zp_current_image, $_zp_current_article, $_zp_current_page;
 		switch ($_zp_gallery_page) {
 			case 'album.php':
 				return $_zp_current_album;
 			case 'image.php':
 				return $_zp_current_image;
 			case 'news.php':
-				return $_zp_current_zenpage_news;
+				return $_zp_current_article;
 			case 'pages.php':
-				return $_zp_current_zenpage_page;
+				return $_zp_current_page;
 			default:
 				return NULL;
 		}

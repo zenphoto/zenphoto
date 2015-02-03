@@ -69,7 +69,7 @@ class sitemap {
 		global $_common_locale_type;
 		$localdesc = '<p>' . gettext('If checked links to the alternative languages will be in the form <code><em>language</em>.domain</code> where <code><em>language</em></code> is the language code, e.g. <code><em>fr</em></code> for French.') . '</p>';
 		if (!$_common_locale_type) {
-			$localdesc .= '<p>' . gettext('This requires that you have created the appropriate subdomains pointing to your Zenphoto installation. That is <code>fr.mydomain.com/zenphoto/</code> must point to the same location as <code>mydomain.com/zenphoto/</code>. (Some providers will automatically redirect undefined subdomains to the main domain. If your provider does this, no subdomain creation is needed.)') . '</p>';
+			$localdesc .= '<p>' . gettext('This requires that you have created the appropriate subdomains pointing to your installation. That is <code>fr.mydomain.com/zenphoto/</code> must point to the same location as <code>mydomain.com/zenphoto/</code>. (Some providers will automatically redirect undefined subdomains to the main domain. If your provider does this, no subdomain creation is needed.)') . '</p>';
 		}
 		$options = array(
 						gettext('Gallery index page')													 => array('key'					 => 'sitemap_galleryindex', 'type'				 => OPTION_TYPE_TEXTBOX,
@@ -86,7 +86,7 @@ class sitemap {
 										'selections' => array(gettext("date")	 => "date",
 														gettext("mtime") => "mtime"),
 										'desc'			 => gettext('Field to use for the last modification date of images.')),
-						gettext('Change frequency - Zenphoto index')					 => array('key'				 => 'sitemap_changefreq_index', 'type'			 => OPTION_TYPE_SELECTOR,
+						gettext('Change frequency - ZenPhoto20 index')				 => array('key'				 => 'sitemap_changefreq_index', 'type'			 => OPTION_TYPE_SELECTOR,
 										'order'			 => 2,
 										'selections' => array(gettext("always")	 => "always",
 														gettext("hourly")	 => "hourly",
@@ -158,12 +158,12 @@ class sitemap {
 										'desc'			 => ''),
 						gettext('Enable Google image and video extension')		 => array('key'		 => 'sitemap_google', 'type'	 => OPTION_TYPE_CHECKBOX,
 										'order'	 => 9,
-										'desc'	 => gettext('If checked, the XML output file will be formatted using the Google XML image and video extensions where applicable.') . '<p class="notebox">' . gettext('<strong>Note:</strong> Other search engines (Yahoo, Bing) might not be able to read your sitemap. Also the Google extensions cover only image and video formats. If you use custom file types that are not covered by Zenphoto standard plugins or types like .mp3, .txt and .html you should probably not use this or modify the plugin. Also, if your site is really huge think about if you really need this setting as the creation may cause extra workload of your server and result in timeouts') . '</p>'),
+										'desc'	 => gettext('If checked, the XML output file will be formatted using the Google XML image and video extensions where applicable.') . '<p class="notebox">' . gettext('<strong>Note:</strong> Other search engines (Yahoo, Bing) might not be able to read your sitemap. Also the Google extensions cover only image and video formats. If you use custom file types that are not covered by standard plugins or types like .mp3, .txt and .html you should probably not use this or modify the plugin. Also, if your site is really huge think about if you really need this setting as the creation may cause extra workload of your server and result in timeouts') . '</p>'),
 						gettext('Google - URL to image license')							 => array('key'					 => 'sitemap_license', 'type'				 => OPTION_TYPE_TEXTBOX,
 										'order'				 => 10,
 										'multilingual' => true,
 										'desc'				 => gettext('Optional. Used only if the Google extension is checked. Must be an absolute URL address of the form: http://mydomain.com/license.html')),
-						gettext('Sitemap processing chunk')										 => array('key'		 => 'sitemap_processing_chunk', 'type'	 => OPTION_TYPE_TEXTBOX,
+						gettext('Sitemap processing chunk')										 => array('key'		 => 'sitemap_processing_chunk', 'type'	 => OPTION_TYPE_NUMBER,
 										'order'	 => 11,
 										'desc'	 => gettext('The number of albums that will be processed for each sitemap file. Lower this value if you get script timeouts when creating the files.')),
 						gettext('Use subdomains') . '*'												 => array('key'			 => 'dynamic_locale_subdomain', 'type'		 => OPTION_TYPE_CHECKBOX,
@@ -200,7 +200,7 @@ class sitemap {
 						'enable'			 => true,
 						'button_text'	 => gettext('Sitemap tools'),
 						'formname'		 => 'sitemap_button',
-						'action'			 => PLUGIN_FOLDER . '/sitemap-extended/sitemap-extended-admin.php',
+						'action'			 => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/sitemap-extended/sitemap-extended-admin.php',
 						'icon'				 => 'images/cache.png',
 						'title'				 => gettext('Generate or purge sitemap cache files.'),
 						'alt'					 => '',
@@ -278,7 +278,6 @@ function generateSitemapIndexCacheFile() {
  * @return string
  */
 function sitemap_getChangefreq($changefreq = '') {
-	$changefreq = sanitize($changefreq);
 	switch ($changefreq) {
 		case 'always':
 		case 'hourly':
@@ -287,7 +286,6 @@ function sitemap_getChangefreq($changefreq = '') {
 		case 'monthly':
 		case 'yearly':
 		case 'never':
-			$changefreq = $changefreq;
 			break;
 		default:
 			$changefreq = 'daily';
@@ -342,7 +340,7 @@ function sitemap_getDBLimit($items_per_sitemap = 2) {
 
 /* * TODO index links are not splitted into several sitemaps yet
  *
- * Gets the links to the index of a Zenphoto gallery incl. index pagination
+ * Gets the links to the index of a gallery incl. index pagination
  *
  * @return string
  */
@@ -487,7 +485,6 @@ function getSitemapAlbums() {
 	$albumchangefreq = getOption('sitemap_changefreq_albums');
 	$imagechangefreq = getOption('sitemap_changefreq_images');
 	$albumlastmod = getOption('sitemap_lastmod_albums');
-	$albumlastmod = sanitize($albumlastmod);
 	$imagelastmod = getOption('sitemap_lastmod_images');
 
 	$albums = array();
@@ -673,7 +670,7 @@ function getSitemapGoogleImageVideoExtras($albumobj, $imageobj, $locale) {
 		$location .= $imageobj->getCountry($locale);
 	}
 	$license = get_language_string(getOption('sitemap_license'), $locale);
-	if (isImageVideo($imageobj) && in_array($ext, array('.mpg', '.mpeg', '.mp4', '.m4v', '.mov', '.wmv', '.asf', '.avi', '.ra', '.ram', '.flv', '.swf'))) { // google says it can index these so we list them even if unsupported by Zenphoto
+	if (isImageVideo($imageobj) && in_array($ext, array('.mpg', '.mpeg', '.mp4', '.m4v', '.mov', '.wmv', '.asf', '.avi', '.ra', '.ram', '.flv', '.swf'))) { // google says it can index these so we list them even if unsupported by zenphoto
 		$data .= sitemap_echonl("\t\t<video:video>\n\t\t\t<video:thumbnail_loc>" . $host . html_encode($imageobj->getThumb()) . "</video:thumbnail_loc>\n");
 		$data .= sitemap_echonl("\t\t\t<video:title>" . html_encode($imageobj->getTitle($locale)) . "</video:title>");
 		if ($imageobj->getDesc()) {
@@ -705,25 +702,24 @@ function getSitemapGoogleImageVideoExtras($albumobj, $imageobj, $locale) {
  *
  * @return string
  */
-function getSitemapZenpagePages() {
-	global $_zp_zenpage, $sitemap_number;
+function getSitemapPages() {
+	global $_zp_CMS, $sitemap_number;
 	//not splitted into several sitemaps yet
 	if ($sitemap_number == 1) {
 		$data = '';
 		$limit = sitemap_getDBLimit(2);
 		$sitemap_locales = generateLanguageList();
 		$changefreq = getOption('sitemap_changefreq_pages');
-		$pages = $_zp_zenpage->getPages(true);
+		$pages = $_zp_CMS->getPages(true);
 		if ($pages) {
 			$data .= sitemap_echonl('<?xml version="1.0" encoding="UTF-8"?>');
 			$data .= sitemap_echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
 			foreach ($pages as $page) {
-				$pageobj = new ZenpagePage($page['titlelink']);
-				$date = substr($pageobj->getDatetime(), 0, 10);
-				$lastchange = '';
+				$pageobj = newPage($page['titlelink']);
+				$lastchange = $date = substr($pageobj->getPublishDate(), 0, 10);
 				if (!is_null($pageobj->getLastchange()))
 					$lastchange = substr($pageobj->getLastchange(), 0, 10);
-				if ($date > $lastchange && !empty($lastchangedate))
+				if ($date > $lastchange)
 					$date = $lastchange;
 				if (!$pageobj->isProtected()) {
 					switch (SITEMAP_LOCALE_TYPE) {
@@ -757,8 +753,8 @@ function getSitemapZenpagePages() {
  *
  * @return string
  */
-function getSitemapZenpageNewsIndex() {
-	global $_zp_zenpage, $sitemap_number;
+function getSitemapNewsIndex() {
+	global $_zp_CMS, $sitemap_number;
 	//not splitted into several sitemaps yet
 	if ($sitemap_number == 1) {
 		$data = '';
@@ -792,7 +788,7 @@ function getSitemapZenpageNewsIndex() {
 		  $zenpage_articles_per_page = ZP_ARTICLES_PER_PAGE;
 		  } */
 		$zenpage_articles_per_page = ZP_ARTICLES_PER_PAGE;
-		$newspages = ceil($_zp_zenpage->getTotalArticles() / $zenpage_articles_per_page);
+		$newspages = ceil($_zp_CMS->getTotalArticles() / $zenpage_articles_per_page);
 		if ($newspages > 1) {
 			for ($x = 2; $x <= $newspages; $x++) {
 				switch (SITEMAP_LOCALE_TYPE) {
@@ -826,24 +822,23 @@ function getSitemapZenpageNewsIndex() {
  * @param  string $changefreq One of the supported changefrequence values regarding sitemap.org. Default is empty or wrong is "daily".
  * @return string
  */
-function getSitemapZenpageNewsArticles() {
-	global $_zp_zenpage, $sitemap_number;
+function getSitemapNewsArticles() {
+	global $_zp_CMS, $sitemap_number;
 	//not splitted into several sitemaps yet
 	if ($sitemap_number == 1) {
 		$data = '';
 		$sitemap_locales = generateLanguageList();
 		$changefreq = getOption('sitemap_changefreq_news');
-		$articles = $_zp_zenpage->getArticles('', 'published', true, "date", "desc");
+		$articles = $_zp_CMS->getArticles('', 'published', true, "date", "desc");
 		if ($articles) {
 			$data .= sitemap_echonl('<?xml version="1.0" encoding="UTF-8"?>');
 			$data .= sitemap_echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
 			foreach ($articles as $article) {
-				$articleobj = new ZenpageNews($article['titlelink']);
-				$date = substr($articleobj->getDatetime(), 0, 10);
-				$lastchange = '';
+				$articleobj = newArticle($article['titlelink']);
+				$lastchange = $date = substr($articleobj->getPublishDate(), 0, 10);
 				if (!is_null($articleobj->getLastchange()))
 					$lastchange = substr($articleobj->getLastchange(), 0, 10);
-				if ($date > $lastchange && !empty($lastchangedate))
+				if ($date > $lastchange)
 					$date = $lastchange;
 				if (!$articleobj->inProtectedCategory()) {
 					switch (SITEMAP_LOCALE_TYPE) {
@@ -877,19 +872,19 @@ function getSitemapZenpageNewsArticles() {
  *
  * @return string
  */
-function getSitemapZenpageNewsCategories() {
-	global $_zp_zenpage, $sitemap_number;
+function getSitemapNewsCategories() {
+	global $_zp_CMS, $sitemap_number;
 	//TODO not splitted into several sitemaps yet
 	if ($sitemap_number == 1) {
 		$data = '';
 		$sitemap_locales = generateLanguageList();
 		$changefreq = getOption('sitemap_changefreq_newscats');
-		$newscats = $_zp_zenpage->getAllCategories();
+		$newscats = $_zp_CMS->getAllCategories();
 		if ($newscats) {
 			$data .= sitemap_echonl('<?xml version="1.0" encoding="UTF-8"?>');
 			$data .= sitemap_echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
 			foreach ($newscats as $newscat) {
-				$catobj = new ZenpageCategory($newscat['titlelink']);
+				$catobj = newCategory($newscat['titlelink']);
 				if (!$catobj->isProtected()) {
 					switch (SITEMAP_LOCALE_TYPE) {
 						case 1:

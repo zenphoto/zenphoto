@@ -6,6 +6,8 @@
  * Note: PHP version 5 states that the MySQL library is "Maintenance only, Long term deprecation announced."
  * It recommends using the PDO::MySQL or the MySQLi library instead.
  *
+ * @author Stephen Billard (sbillard)
+ *
  * @package core
  */
 // force UTF-8 Ø
@@ -30,14 +32,14 @@ function db_connect($config, $errorstop = true) {
 	}
 	if (!$_zp_DB_connection) {
 		if ($errorstop) {
-			zp_error(gettext('MySQLi Error: Zenphoto could not instantiate a connection.'));
+			zp_error(gettext('MySQLi Error: ZenPhoto20 could not instantiate a connection.'));
 		}
 		return false;
 	}
 	$_zp_DB_details['mysql_host'] = $config['mysql_host'];
 	if (!$_zp_DB_connection->select_db($config['mysql_database'])) {
 		if ($errorstop) {
-			zp_error(sprintf(gettext('MySQLi Error: MySQLi returned the error %1$s when Zenphoto tried to select the database %2$s.'), $_zp_DB_connection->error, $config['mysql_database']));
+			zp_error(sprintf(gettext('MySQLi Error: MySQLi returned the error %1$s when ZenPhoto20 tried to select the database %2$s.'), $_zp_DB_connection->error, $config['mysql_database']));
 		}
 		return false;
 	}
@@ -59,23 +61,23 @@ function db_connect($config, $errorstop = true) {
  */
 function query($sql, $errorstop = true) {
 	global $_zp_DB_connection, $_zp_DB_details;
-	if (EXPLAIN_SELECTS && strpos($sql, 'SELECT') !== false) {
-		$result = $_zp_DB_connection->query('EXPLAIN ' . $sql);
-		if ($result) {
-			$explaination = array();
-			while ($row = $result->fetch_assoc()) {
-				$explaination[] = $row;
+	if ($_zp_DB_connection) {
+		if (EXPLAIN_SELECTS && strpos($sql, 'SELECT') !== false) {
+			$result = $_zp_DB_connection->query('EXPLAIN ' . $sql);
+			if ($result) {
+				$explaination = array();
+				while ($row = $result->fetch_assoc()) {
+					$explaination[] = $row;
+				}
 			}
+			debugLogVar("EXPLAIN $sql", $explaination);
 		}
-		debugLogVar("EXPLAIN $sql", $explaination);
-	}
-	if ($result = @$_zp_DB_connection->query($sql)) {
-		return $result;
+		if ($result = @$_zp_DB_connection->query($sql)) {
+			return $result;
+		}
 	}
 	if ($errorstop) {
-		$sql = str_replace('`' . $_zp_DB_details['mysql_prefix'], '`[' . gettext('prefix') . ']', $sql);
-		$sql = str_replace($_zp_DB_details['mysql_database'], '[' . gettext('DB') . ']', $sql);
-		trigger_error(sprintf(gettext('%1$s Error: ( %2$s ) failed. %1$s returned the error %3$s'), DATABASE_SOFTWARE, $sql, db_error()), E_USER_ERROR);
+		dbErrorReport($sql);
 	}
 	return false;
 }
@@ -137,7 +139,11 @@ function query_full_array($sql, $errorstop = true, $key = NULL) {
  */
 function db_quote($string) {
 	global $_zp_DB_connection;
-	return "'" . $_zp_DB_connection->real_escape_string($string) . "'";
+	if ($_zp_DB_connection) {
+		return "'" . $_zp_DB_connection->real_escape_string($string) . "'";
+	} else {
+		return "" . addslashes($string) . "";
+	}
 }
 
 /*

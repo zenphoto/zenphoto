@@ -23,7 +23,6 @@ if (isset($_GET['clearsitemapcache'])) {
 	exitZP();
 }
 
-$webpath = WEBPATH . '/' . ZENFOLDER . '/';
 $zenphoto_tabs['overview']['subtabs'] = array(gettext('Sitemap') => '');
 printAdminHeader('overview', 'sitemap');
 if (isset($_GET['generatesitemaps'])) {
@@ -33,10 +32,10 @@ if (isset($_GET['generatesitemaps'])) {
 	$sitemap_albums = getSitemapAlbums();
 	$sitemap_images = getSitemapImages();
 	if (extensionEnabled('zenpage')) {
-		$sitemap_newsindex = getSitemapZenpageNewsIndex();
-		$sitemap_articles = getSitemapZenpageNewsArticles();
-		$sitemap_categories = getSitemapZenpageNewsCategories();
-		$sitemap_pages = getSitemapZenpagePages();
+		$sitemap_newsindex = getSitemapNewsIndex();
+		$sitemap_articles = getSitemapNewsArticles();
+		$sitemap_categories = getSitemapNewsCategories();
+		$sitemap_pages = getSitemapPages();
 	}
 	$numberAppend = '';
 	if (isset($_GET['generatesitemaps']) &&
@@ -56,7 +55,7 @@ if (isset($_GET['generatesitemaps'])) {
 <link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-statistics.css" type="text/css" media="screen" />
 <script type="text/javascript">
 	// <!-- <![CDATA[
-	$(document).ready(function() {
+	$(document).ready(function () {
 		/*	$(".colorbox").colorbox({
 		 iframe: false,
 		 inline:true,
@@ -109,7 +108,7 @@ function sitemap_printAvailableSitemaps() {
 					<p class="notebox"><?php echo gettext('<strong>NOTE:</strong> If your theme uses different custom settings instead of the backend options the sitemaps may not match your site.'); ?></p>
 					<p><?php echo gettext('This creates individual static xml sitemap files of the following items:'); ?></p>
 					<ul>
-						<li><strong><?php echo gettext('Zenphoto items'); ?></strong>
+						<li><strong><?php echo gettext('ZenPhoto20 items'); ?></strong>
 							<ul>
 								<li><em><?php echo gettext('Index pages'); ?></em></li>
 								<li><?php echo gettext('<em>Albums</em>: These are split into multiple sitemaps.'); ?></li>
@@ -151,13 +150,13 @@ function sitemap_printAvailableSitemaps() {
 					}
 					echo '</ul>';
 					if (!empty($metaURL)) {
-						echo '<p><img src="../../images/ajax-loader.gif" alt="" /><br /><br />' . gettext('Sitemap files are being generated...Patience please.') . '</p>';
+						echo '<p><img src="' . WEBPATH . '/' . ZENFOLDER . '/images/ajax-loader.gif" alt="" /><br /><br />' . gettext('Sitemap files are being generated...Patience please.') . '</p>';
 					} else {
 						generateSitemapIndexCacheFile();
 						?>
 						<script type="text/javascript">
 							// <!-- <![CDATA[
-							$(document).ready(function() {
+							$(document).ready(function () {
 								window.location = "<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/sitemap-extended/sitemap-extended-admin.php";
 							});
 							// ]]> -->

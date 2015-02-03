@@ -11,8 +11,14 @@ define('OFFSET_PATH', 3);
 require_once(dirname(dirname(__FILE__)) . '/admin-globals.php');
 require_once(dirname(dirname(__FILE__)) . '/' . PLUGIN_FOLDER . '/image_album_statistics.php');
 
+$tables = array('albums', 'images');
 if (extensionEnabled('zenpage')) {
-	require_once(dirname(dirname(__FILE__)) . '/' . PLUGIN_FOLDER . '/zenpage/zenpage-admin-functions.php');
+	require_once(dirname(dirname(__FILE__)) . '/' . PLUGIN_FOLDER . '/zenpage/admin-functions.php');
+	$tables = array_merge($tables, array('news', 'pages'));
+}
+// Include the appropriate page for the requested object, and a 200 OK header.
+foreach ($tables as $table) {
+	updatePublished($table);
 }
 
 $buttonlist[] = array(
@@ -20,7 +26,7 @@ $buttonlist[] = array(
 				'enable'			 => true,
 				'button_text'	 => gettext('Gallery Statistics'),
 				'formname'		 => 'gallery_statistics.php',
-				'action'			 => 'utilities/gallery_statistics.php',
+				'action'			 => FULLWEBPATH . '/' . ZENFOLDER . '/utilities/gallery_statistics.php',
 				'icon'				 => 'images/bar_graph.png',
 				'title'				 => gettext('Shows statistical graphs and info about your gallery’s images and albums.'),
 				'alt'					 => '',
@@ -31,7 +37,6 @@ $buttonlist[] = array(
 admin_securityChecks(OVERVIEW_RIGHTS, currentRelativeURL());
 
 $_zp_gallery->garbageCollect();
-$webpath = WEBPATH . '/' . ZENFOLDER . '/';
 
 $zenphoto_tabs['overview']['subtabs'] = array(gettext('Statistics') => '');
 printAdminHeader('overview', 'statistics');
@@ -64,7 +69,6 @@ function gallerystats_filesize_r($path) {
  * @param int $limit Number of entries to show
  */
 function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number = 0, $to_number = 10) {
-	global $webpath;
 	$limit = $from_number . "," . $to_number;
 	$bargraphmaxsize = 90;
 	switch ($type) {
@@ -216,16 +220,17 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 			}
 			break;
 		case "latestupdated":
-			$albums = getAlbumStatistic($to_number, 'latestupdated', '');
+			$albumObjects = getAlbumStatistic($to_number, 'latestupdated');
 			$maxvalue = 1;
-			if (!empty($albums)) {
-				foreach ($albums as $key => $album) {
-					$albumobj = newAlbum($album['folder']);
+			$itemssorted = array();
+			if (!empty($albumObjects)) {
+				foreach ($albumObjects as $key => $albumobj) {
+					$itemssorted[$key] = $albumobj->getData();
 					if ($albumobj->loaded)
-						$albums[$key]['imagenumber'] = $albumobj->getNumImages();
+						$itemssorted[$key]['imagenumber'] = $albumobj->getNumImages();
 				}
 			}
-			$itemssorted = $albums;
+
 			$headline = $typename . " - " . gettext("latest updated");
 			break;
 	}
@@ -270,7 +275,7 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 		} else if ($type === "pages" OR $type === "news") {
 			$name = $item['titlelink'];
 		} else if ($type === "newscategories") {
-			$name = $item['title'];
+			$name = $item['titlelink'];
 		} else if ($type === "tags") {
 			$name = "";
 		}
@@ -363,7 +368,7 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 		}
 		switch ($type) {
 			case "albums":
-				$editurl = $webpath . "/admin-edit.php?page=edit&amp;album=" . $name;
+				$editurl = WEBPATH . '/' . ZENFOLDER . "/admin-edit.php?page=edit&amp;album=" . $name;
 				$viewurl = WEBPATH . "/index.php?album=" . $name;
 				$title = get_language_string($item['title']);
 				break;
@@ -378,28 +383,28 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 						}
 						$value = $value . ">" . get_language_string($getalbumfolder['title']) . "</span> (" . $getalbumfolder['folder'] . ")";
 					}
-					$editurl = $webpath . "/admin-edit.php?page=edit&amp;album=" . $getalbumfolder['folder'] . "&amp;image=" . $item['filename'] . "&amp;tab=imageinfo#IT";
+					$editurl = WEBPATH . '/' . ZENFOLDER . "/admin-edit.php?page=edit&amp;album=" . $getalbumfolder['folder'] . "&amp;image=" . $item['filename'] . "&amp;tab=imageinfo#IT";
 					$viewurl = WEBPATH . "/index.php?album=" . $getalbumfolder['folder'] . "&amp;image=" . $name;
 					$title = get_language_string($item['title']);
 				}
 				break;
 			case "pages":
-				$editurl = $webpath . '/' . PLUGIN_FOLDER . "/zenpage/admin-edit.php?page&amp;titlelink=" . $name;
+				$editurl = WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . "/zenpage/admin-edit.php?page&amp;titlelink=" . $name;
 				$viewurl = WEBPATH . "/index.php?p=pages&amp;title=" . $name;
 				$title = get_language_string($item['title']);
 				break;
 			case "news":
-				$editurl = $webpath . '/' . PLUGIN_FOLDER . "/zenpage/admin-edit.php?news&amp;titlelink=" . $name;
+				$editurl = WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . "/zenpage/admin-edit.php?newsarticle&amp;titlelink=" . $name;
 				$viewurl = WEBPATH . "/index.php?p=news&amp;title=" . $name;
 				$title = get_language_string($item['title']);
 				break;
 			case "newscategories":
-				$editurl = $webpath . '/' . PLUGIN_FOLDER . "/zenpage/admin-categories.php?edit&amp;id=" . $item['id'];
+				$editurl = WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . "/zenpage/admin-edit.php?newscategory&amp;titlelink=" . $name;
 				$viewurl = WEBPATH . "/index.php?p=news&amp;category=" . $name;
 				$title = get_language_string($item['titlelink']);
 				break;
 			case "tags":
-				$editurl = $webpath . "/admin-tags.php";
+				$editurl = WEBPATH . '/' . ZENFOLDER . "/admin-tags.php";
 				$viewurl = WEBPATH . "/index.php?p=search&amp;searchfields=tags&amp;words=" . $item['name'];
 				$title = get_language_string($item['name']);
 				break;
@@ -552,7 +557,7 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 					<li><nobr><?php printf(gettext("Image cache size: <strong>%s</strong>"), byteConvert(gallerystats_filesize_r(SERVERPATH . '/' . CACHEFOLDER))); ?></nobr></li>
 					<li><nobr><?php printf(gettext("HTML cache size: <strong>%s</strong>"), byteConvert(gallerystats_filesize_r(SERVERPATH . '/' . STATIC_CACHE_FOLDER))); ?></nobr></li>
 					<li><nobr><?php printf(gettext("Uploaded folder size: <strong>%s</strong>"), byteConvert(gallerystats_filesize_r(SERVERPATH . '/' . UPLOAD_FOLDER))); ?></nobr></li>
-					<li><nobr><?php printf(gettext("Zenphoto scripts size: <strong>%s</strong>"), byteConvert(gallerystats_filesize_r(SERVERPATH . '/' . ZENFOLDER))); ?></nobr></li>
+					<li><nobr><?php printf(gettext("Core scripts size: <strong>%s</strong>"), byteConvert(gallerystats_filesize_r(SERVERPATH . '/' . ZENFOLDER))); ?></nobr></li>
 
 				</ul>
 
