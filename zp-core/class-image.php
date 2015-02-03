@@ -784,6 +784,11 @@ class Image extends MediaObject {
 			if ($result) {
 				query("DELETE FROM " . prefix('obj_to_tag') . "WHERE `type`='images' AND `objectid`=" . $this->id);
 				query("DELETE FROM " . prefix('comments') . "WHERE `type` ='images' AND `ownerid`=" . $this->id);
+				$filestodelete = safe_glob(SERVERCACHE . '/' . substr(dirname($this->localpath), strlen(ALBUM_FOLDER_SERVERPATH)) . '/*' . stripSuffix(basename($this->localpath)) . '*');
+				foreach ($filestodelete as $file) {
+					@chmod($file, 0777);
+					$result = $result && @unlink($file);
+				}
 			}
 		}
 		clearstatcache();
