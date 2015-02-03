@@ -784,6 +784,11 @@ class Image extends MediaObject {
 			if ($result) {
 				query("DELETE FROM " . prefix('obj_to_tag') . "WHERE `type`='images' AND `objectid`=" . $this->id);
 				query("DELETE FROM " . prefix('comments') . "WHERE `type` ='images' AND `ownerid`=" . $this->id);
+				$filestodelete = safe_glob(SERVERCACHE . '/' . substr(dirname($this->localpath), strlen(ALBUM_FOLDER_SERVERPATH)) . '/*' . stripSuffix(basename($this->localpath)) . '*');
+				foreach ($filestodelete as $file) {
+					@chmod($file, 0777);
+					$result = $result && @unlink($file);
+				}
 			}
 		}
 		clearstatcache();
@@ -822,7 +827,6 @@ class Image extends MediaObject {
 		@chmod($filename, 0777);
 		$result = @rename($this->localpath, $newpath);
 		@chmod($filename, FILE_MOD);
-		$this->localpath = $newpath;
 		clearstatcache();
 		if ($result) {
 			$filestomove = safe_glob(substr($this->localpath, 0, strrpos($this->localpath, '.')) . '.*');
@@ -831,7 +835,14 @@ class Image extends MediaObject {
 					$result = $result && @rename($file, stripSuffix($newpath) . '.' . getSuffix($file));
 				}
 			}
+			//purge the cache as it is easier than figuring out what the new cache name should be
+			$filestodelete = safe_glob(SERVERCACHE . '/' . substr(dirname($this->localpath), strlen(ALBUM_FOLDER_SERVERPATH)) . '/*' . stripSuffix(basename($this->localpath)) . '*');
+			foreach ($filestodelete as $file) {
+				@chmod($file, 0777);
+				@unlink($file);
+			}
 		}
+		$this->localpath = $newpath;
 		if ($result) {
 			if (parent::move(array('filename' => $newfilename, 'albumid' => $newalbum->getID()))) {
 				$this->set('mtime', filemtime($newpath));

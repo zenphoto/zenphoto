@@ -546,6 +546,18 @@ class AlbumBase extends MediaObject {
 		return $rslt;
 	}
 
+	protected function _removeCache($folder) {
+		$folder = trim($folder, '/');
+		$success = true;
+		$filestoremove = safe_glob(SERVERCACHE . '/' . $folder . '/*');
+		foreach ($filestoremove as $file) {
+			@chmod($file, 0777);
+			$success = $success && @unlink($file);
+		}
+		@rmdir(SERVERCACHE . '/' . $folder);
+		return $success;
+	}
+
 	/**
 	 * common album move code
 	 * @param type $newfolder
@@ -583,6 +595,8 @@ class AlbumBase extends MediaObject {
 		$success = @rename(rtrim($this->localpath, '/'), $dest);
 		@chmod($dest, $perms);
 		if ($success) {
+			//purge the cache
+			$success = $success && $this->_removeCache(substr($this->localpath, strlen(ALBUM_FOLDER_SERVERPATH)));
 			$this->localpath = $dest . "/";
 			$filestomove = safe_glob($filemask);
 			foreach ($filestomove as $file) {
@@ -1258,6 +1272,7 @@ class Album extends AlbumBase {
 					$success = $success && unlink($file);
 				}
 			}
+			$success = $success && $this->_removeCache(substr($this->localpath, strlen(ALBUM_FOLDER_SERVERPATH)));
 			@chmod($this->localpath, 0777);
 			$rslt = @rmdir($this->localpath) && $success;
 		}
@@ -1668,6 +1683,7 @@ class dynamicAlbum extends AlbumBase {
 			@chmod($this->localpath, 0777);
 			$rslt = @unlink($this->localpath);
 			clearstatcache();
+			$rslt = $rslt && $this->_removeCache();
 		}
 		return $rslt;
 	}

@@ -1457,14 +1457,14 @@ echo "\n</head>";
 													$i = array_search($image->filename, $images);
 													if ($i > 0) {
 														?>
-														<a href="?page=edit&tab=imageinfo&album=2013EN&singleimage=<?php echo html_encode($images[$i - 1]); ?>"><?php echo gettext('prev image'); ?></a>
+														<a href="?page=edit&tab=imageinfo&album=<?php echo pathurlencode($image->album->name); ?>&singleimage=<?php echo html_encode($images[$i - 1]); ?>"><?php echo gettext('prev image'); ?></a>
 														<?php
 													}
 													if (array_key_exists($i + 1, $images)) {
 														if ($i > 0)
 															echo ' | ';
 														?>
-														<a href="?page=edit&tab=imageinfo&album=2013EN&singleimage=<?php echo html_encode($images[$i + 1]); ?>"><?php echo gettext('next image'); ?></a>
+														<a href="?page=edit&tab=imageinfo&album=<?php echo pathurlencode($image->album->name); ?>&singleimage=<?php echo html_encode($images[$i + 1]); ?>"><?php echo gettext('next image'); ?></a>
 														<?php
 													}
 													?>
