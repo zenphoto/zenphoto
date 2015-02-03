@@ -134,9 +134,9 @@ class PersistentObject {
 	 * used to make the object "virgin" so it can be re-saved with a new id
 	 */
 	function clearID() {
-		$insert_data = array_merge($this->data, $this->updates, $this->tempdata);
+		$insert_data = array_merge($this->data, $this->updates);
 		$insert_data['id'] = $this->id = 0;
-		$this->tempdata = $this->updates = $this->data = array();
+		$this->updates = $this->data = array();
 		foreach (db_list_fields($this->table) as $col) {
 			$this->updates[$col['Field']] = $insert_data[$col['Field']];
 		}
@@ -188,7 +188,7 @@ class PersistentObject {
 				return false;
 			}
 			// Note: It's important for $new_unique_set to come last, as its values should override.
-			$insert_data = array_merge($this->data, $this->updates, $this->tempdata, $new_unique_set);
+			$insert_data = array_merge($this->data, $this->updates, $new_unique_set);
 			unset($insert_data['id']);
 			unset($insert_data['hitcounter']); //	start fresh on new copy
 			if (empty($insert_data)) {
@@ -304,7 +304,7 @@ class PersistentObject {
 		// If we don't have an entry yet, this is a new record. Create it.
 		if (empty($entry)) {
 			if ($this->transient) { // no don't save it in the DB!
-				$entry = array_merge($this->unique_set, $this->updates, $this->tempdata);
+				$entry = array_merge($this->unique_set, $this->updates);
 				$entry['id'] = 0;
 			} else if (!$allowCreate) {
 				return NULL; // does not exist and we are not allowed to create it
@@ -338,7 +338,7 @@ class PersistentObject {
 		}
 		if (!$this->id) {
 			$this->setDefaults();
-			$insert_data = array_merge($this->unique_set, $this->updates, $this->tempdata);
+			$insert_data = array_merge($this->unique_set, $this->updates);
 			if (empty($insert_data)) {
 				return true;
 			}
@@ -366,7 +366,6 @@ class PersistentObject {
 			$this->data['id'] = $this->id = (int) db_insert_id(); // so 'get' will retrieve it!
 			$this->loaded = true;
 			$this->updates = array();
-			$this->tempdata = array();
 		} else {
 			// Save the existing object (updates only) based on the existing id.
 			if (empty($this->updates)) {
