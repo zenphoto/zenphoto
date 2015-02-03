@@ -772,30 +772,36 @@ class Image extends MediaObject {
 	}
 
 	/**
-	 * Permanently delete this image (permanent: be careful!)
-	 * Returns the result of the unlink operation (whether the delete was successful)
-	 * @param bool $clean whether to remove the database entry.
-	 * @return bool
-	 */
-	function remove() {
-		$result = false;
-		if (parent::remove()) {
-			$result = true;
-			$filestodelete = safe_glob(substr($this->localpath, 0, strrpos($this->localpath, '.')) . '.*');
-			foreach ($filestodelete as $file) {
-				@chmod($file, 0777);
-				$result = $result && @unlink($file);
-			}
-			if ($result) {
-				query("DELETE FROM " . prefix('obj_to_tag') . "WHERE `type`='images' AND `objectid`=" . $this->id);
-				query("DELETE FROM " . prefix('comments') . "WHERE `type` ='images' AND `ownerid`=" . $this->id);
-			}
-		}
-		clearstatcache();
-		return $result;
-	}
+   * Permanently delete this image (permanent: be careful!)
+   * Returns the result of the unlink operation (whether the delete was successful)
+   * @param bool $clean whether to remove the database entry.
+   * @return bool
+   */
+  function remove() {
+    $result = false;
+    if (parent::remove()) {
+      $result = true;
+      $filestodelete = safe_glob(substr($this->localpath, 0, strrpos($this->localpath, '.')) . '.*');
+      foreach ($filestodelete as $file) {
+        @chmod($file, 0777);
+        $result = $result && @unlink($file);
+      }
+      if ($result) {
+        query("DELETE FROM " . prefix('obj_to_tag') . "WHERE `type`='images' AND `objectid`=" . $this->id);
+        query("DELETE FROM " . prefix('comments') . "WHERE `type` ='images' AND `ownerid`=" . $this->id);
+        $cachepath = SERVERCACHE . '/' . pathurlencode($this->album->name) . '/' . $this->filename;
+        $cachefilestodelete = safe_glob(substr($cachepath, 0, strrpos($cachepath, '.')) . '_*');
+        foreach ($cachefilestodelete as $file) {
+          @chmod($file, 0777);
+          @unlink($file);
+        }
+      }
+    }
+    clearstatcache();
+    return $result;
+  }
 
-	/**
+  /**
 	 * Moves an image to a new album and/or filename (rename).
 	 * Returns  0 on success and error indicator on failure.
 	 * @param Album $newalbum the album to move this file to. Must be a valid Album object.
