@@ -1081,16 +1081,19 @@ define('SELECT_ARTICLES', 8);
  *
  * @param $language string exclude language tags other than this string
  * @param $count int threshold occurance count
- * @param $selector bitmap of what objects to include. See defines above for
- * 									self-explanatory selectors. NOTE: pages and articles will
- * 									be returned only if the zenpage plugin is enabled.
+ * @param $returnCount bool set to true to return the tag counts
  * @return array
  *
  * @author Stephen Billard
  * @copyright (c)Stephen Billard for use with ZenPhoto20
  */
-function getAllTagsUnique($language = NULL, $count = 1, $selector = 15) {
-	global $_zp_unique_tags, $_zp_current_locale;
+function getAllTagsUnique($language = NULL, $count = 1, $returnCount = NULL) {
+	global $_zp_unique_tags, $_zp_count_tags, $_zp_current_locale;
+	if (is_null($returnCount)) {
+		$list = &$_zp_unique_tags;
+	} else {
+		$list = &$_zp_count_tags;
+	}
 	if (is_null($language)) {
 		switch (getOption('languageTagSearch')) {
 			case 1:
@@ -1105,25 +1108,29 @@ function getAllTagsUnique($language = NULL, $count = 1, $selector = 15) {
 		}
 	}
 
-	if (!isset($_zp_unique_tags[$language][$count])) {
-		$_zp_unique_tags[$language][$count] = array();
+	if (!isset($list[$language][$count])) {
+		$list[$language][$count] = array();
 		if (empty($language)) {
 			$lang = '';
 		} else {
 			$lang = ' AND (tag.language="" OR tag.language LIKE ' . db_quote(db_LIKE_escape($language) . '%') . ')';
 		}
-		$sql = 'SELECT tag.name, count(DISTINCT obj.objectid) as count FROM ' . prefix('tags') . ' tag, ' . prefix('obj_to_tag') . ' obj WHERE (tag.id=obj.tagid) ' . $lang . ' GROUP BY tag.name';
+		$sql = 'SELECT tag.name, count(DISTINCT tag.name,obj.type,obj.objectid) as count FROM ' . prefix('tags') . ' tag, ' . prefix('obj_to_tag') . ' obj WHERE (tag.id=obj.tagid) ' . $lang . ' GROUP BY tag.name';
 		$unique_tags = query($sql);
 		if ($unique_tags) {
 			while ($tagrow = db_fetch_assoc($unique_tags)) {
 				if ($tagrow['count'] >= $count) {
-					$_zp_unique_tags[$language][$count][mb_strtolower($tagrow['name'])] = $tagrow['name'];
+					if ($returnCount) {
+						$list[$language][$count][$tagrow['name']] = $tagrow['count'];
+					} else {
+						$list[$language][$count][mb_strtolower($tagrow['name'])] = $tagrow['name'];
+					}
 				}
 			}
 		}
 		db_free_result($unique_tags);
 	}
-	return $_zp_unique_tags[$language][$count];
+	return $list[$language][$count];
 }
 
 /**

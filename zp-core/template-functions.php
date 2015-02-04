@@ -3351,38 +3351,6 @@ function getTags() {
 }
 
 /**
- * Returns an array indexed by 'tag' with the element value the count of the tag
- * NOTE: only "used" tags are returned. I.e. count will be > 0
- *
- * @param $language string exclude language tags other than this string
- * @return array
- */
-function getAllTagsCount($language = NULL) {
-	global $_zp_count_tags, $_zp_current_locale;
-	if (is_null($language)) {
-		$language = $_zp_current_locale;
-	}
-	if (isset($_zp_count_tags[$language]))
-		return $_zp_count_tags[$language];
-
-	$_zp_count_tags[$language] = array();
-	$sql = 'SELECT DISTINCT tags.name, tags.id, (SELECT COUNT(*) FROM ' . prefix('obj_to_tag') . ' as object WHERE object.tagid = tags.id) AS count FROM ' . prefix('tags') . ' as tags ';
-	if (!empty($language)) {
-		$sql .= ' WHERE tags.language="" OR tags.language LIKE ' . db_quote(db_LIKE_escape($language) . '%');
-	}
-	$sql .= ' ORDER BY tags.name';
-	$tagresult = query($sql);
-	if ($tagresult) {
-		while ($tag = db_fetch_assoc($tagresult)) {
-			if ($tag['count'])
-				$_zp_count_tags[$language][$tag['name']] = $tag['count'];
-		}
-		db_free_result($tagresult);
-	}
-	return $_zp_count_tags[$language];
-}
-
-/**
  * Prints a list of tags, editable by admin
  *
  * @param string $option links by default, if anything else the
@@ -3462,11 +3430,12 @@ function printAllTagsAs($option, $class = '', $sort = NULL, $counter = FALSE, $l
 	if ($class != "") {
 		$class = ' class="' . $class . '"';
 	}
-	$tagcount = getAllTagsCount();
+	$tagcount = getAllTagsUnique(NULL, $mincount, true);
 	if (!is_array($tagcount)) {
 		return false;
 	}
 	switch ($sort) {
+		default:
 		case 'results':
 			arsort($tagcount);
 			if (!is_null($limit)) {
@@ -3474,12 +3443,10 @@ function printAllTagsAs($option, $class = '', $sort = NULL, $counter = FALSE, $l
 			}
 			break;
 		case 'random':
+			shuffle_assoc($tagcount);
 			if (!is_null($limit)) {
 				$tagcount = array_slice($tagcount, 0, $limit);
 			}
-			shuffle_assoc($tagcount);
-			break;
-		default:
 			break;
 	}
 	?>
@@ -3503,26 +3470,25 @@ function printAllTagsAs($option, $class = '', $sort = NULL, $counter = FALSE, $l
 				} else {
 					$size = '';
 				}
-				if ($val >= $mincount) {
-					if ($links) {
-						if (is_object($_zp_current_search)) {
-							$albumlist = $_zp_current_search->getAlbumList();
-						} else {
-							$albumlist = NULL;
-						}
-						$link = getSearchURL(search_quote($key), '', 'tags', 0, array('albums' => $albumlist));
-						?>
-						<li>
-							<a href="<?php echo html_encode($link); ?>" rel="nofollow"<?php echo $size; ?>><?php echo $key . $counter; ?></a>
-						</li>
-						<?php
+
+				if ($links) {
+					if (is_object($_zp_current_search)) {
+						$albumlist = $_zp_current_search->getAlbumList();
 					} else {
-						?>
-						<li<?php echo $size; ?>><?php echo $key . $counter; ?></li>
-						<?php
+						$albumlist = NULL;
 					}
+					$link = getSearchURL(search_quote($key), '', 'tags', 0, array('albums' => $albumlist));
+					?>
+					<li>
+						<a href="<?php echo html_encode($link); ?>" rel="nofollow"<?php echo $size; ?>><?php echo $key . $counter; ?></a>
+					</li>
+					<?php
+				} else {
+					?>
+					<li<?php echo $size; ?>><?php echo $key . $counter; ?></li>
+					<?php
 				}
-			} // while end
+			}
 		} else {
 			?>
 			<li><?php echo gettext('No popular tags'); ?></li>
@@ -3884,39 +3850,39 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 		<!-- search form -->
 		<form method="post" action="<?php echo $searchurl; ?>" id="search_form">
 			<script type="text/javascript">
-					// <!-- <![CDATA[
-					var within = <?php echo (int) $within; ?>;
-					function search_(way) {
-						within = way;
-						if (way) {
-							$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
+				// <!-- <![CDATA[
+				var within = <?php echo (int) $within; ?>;
+				function search_(way) {
+					within = way;
+					if (way) {
+						$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
+					} else {
+						lastsearch = '';
+						$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
+					}
+					$('#search_input').val('');
+				}
+				$('#search_form').submit(function () {
+					if (within) {
+						var newsearch = $.trim($('#search_input').val());
+						if (newsearch.substring(newsearch.length - 1) == ',') {
+							newsearch = newsearch.substr(0, newsearch.length - 1);
+						}
+						if (newsearch.length > 0) {
+							$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
 						} else {
-							lastsearch = '';
-							$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
+							$('#search_input').val('<?php echo $searchwords; ?>');
 						}
-						$('#search_input').val('');
 					}
-					$('#search_form').submit(function () {
-						if (within) {
-							var newsearch = $.trim($('#search_input').val());
-							if (newsearch.substring(newsearch.length - 1) == ',') {
-								newsearch = newsearch.substr(0, newsearch.length - 1);
-							}
-							if (newsearch.length > 0) {
-								$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
-							} else {
-								$('#search_input').val('<?php echo $searchwords; ?>');
-							}
-						}
-						return true;
-					});
-					function search_all() {
-						//search all is copyright by Stephen Billard for use in ZenPhoto20. All rights reserved
-						var check = $('#SEARCH_checkall').prop('checked');
-						$('.SEARCH_checkall').prop('checked', check);
-					}
+					return true;
+				});
+				function search_all() {
+					//search all is copyright by Stephen Billard for use in ZenPhoto20. All rights reserved
+					var check = $('#SEARCH_checkall').prop('checked');
+					$('.SEARCH_checkall').prop('checked', check);
+				}
 
-					// ]]> -->
+				// ]]> -->
 			</script>
 			<?php echo $prevtext; ?>
 			<div>
@@ -3930,10 +3896,10 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 					foreach ($object_list as $key => $list) {
 						?>
 						<input type="hidden" name="in<?php echo $key ?>" value="<?php
-						if (is_array($list))
-							echo html_encode(implode(',', $list));
-						else
-							echo html_encode($list);
+			if (is_array($list))
+				echo html_encode(implode(',', $list));
+			else
+				echo html_encode($list);
 						?>" />
 									 <?php
 								 }

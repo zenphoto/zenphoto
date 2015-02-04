@@ -49,4 +49,13 @@ function printHeadTitle($separator = ' | ', $listparentalbums = true, $listparen
 	deprecated_functions::notify(gettext('This feature is handled in the "theme_head" filter. For parameters set the theme options.'));
 }
 
+/**
+ * @deprecated
+ * @since 1.0.1
+ */
+function getAllTagsCount($language = NULL) {
+	deprecated_functions::notify(gettext('Use getAllTagsUnique()'));
+	return getAllTagsUnique($language, 1, true);
+}
+
 ?>
