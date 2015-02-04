@@ -986,11 +986,11 @@ function handleSearchParms($what, $album = NULL, $image = NULL) {
  * @param string $table the database table
  */
 function updatePublished($table) {
-	//publish items that have matured
+//publish items that have matured
 	$sql = 'UPDATE ' . prefix($table) . ' SET `show`=1 WHERE `publishdate`!="0000-00-00 00:00:00" AND `publishdate`<=' . db_quote(date('Y-m-d H:i:s'));
 	query($sql);
 
-	//unpublish items that have expired or are not published yet
+//unpublish items that have expired or are not published yet
 	$sql = 'UPDATE ' . prefix($table) . ' SET `show`=0 WHERE (`expiredate`!="0000-00-00 00:00:00" AND `expiredate`<' . db_quote(date('Y-m-d H:i:s')) . ')' .
 					' OR `publishdate`>' . db_quote(date('Y-m-d H:i:s'));
 	query($sql);
@@ -1112,24 +1112,8 @@ function getAllTagsUnique($language = NULL, $count = 1, $selector = 15) {
 		} else {
 			$lang = ' AND (tag.language="" OR tag.language LIKE ' . db_quote(db_LIKE_escape($language) . '%') . ')';
 		}
-		if (zp_loggedin()) {
-			$published = '';
-		} else {
-			$published = ' AND obj.objectid=object.id AND object.show=1';
-		}
-		query('CREATE TEMPORARY TABLE taglist(name VARCHAR(255), type TINYTEXT, id INT(11) UNSIGNED)');
-
-		if ($selector & SELECT_IMAGES)
-			query('INSERT INTO taglist SELECT tag.name, obj.type, object.id FROM ' . prefix('tags') . ' tag, ' . prefix('obj_to_tag') . ' obj, ' . prefix('images') . ' object WHERE (tag.id=obj.tagid	AND obj.type="images"' . $published . ') ' . $lang . ' ORDER BY tag.name');
-		if ($selector & SELECT_ALBUMS)
-			query('INSERT INTO taglist SELECT tag.name, obj.type, object.id FROM ' . prefix('tags') . ' tag, ' . prefix('obj_to_tag') . ' obj, ' . prefix('albums') . ' object WHERE (tag.id=obj.tagid AND obj.type="albums"' . $published . ') ' . $lang);
-		if (extensionEnabled('zenpage')) {
-			if ($selector & SELECT_PAGES)
-				query('INSERT INTO taglist SELECT tag.name, obj.type, object.id FROM ' . prefix('tags') . ' tag,' . prefix('obj_to_tag') . ' obj, ' . prefix('pages') . ' object WHERE (tag.id=obj.tagid AND obj.type="pages"' . $published . ')' . $lang);
-			if ($selector & SELECT_ARTICLES)
-				query('INSERT INTO taglist SELECT tag.name, obj.type, object.id FROM ' . prefix('tags') . ' tag, ' . prefix('obj_to_tag') . ' obj, ' . prefix('news') . ' object WHERE (tag.id=obj.tagid AND obj.type="news"' . $published . ') ' . $lang);
-		}
-		$unique_tags = query("SELECT name, count(*) as count FROM taglist GROUP BY name");
+		$sql = 'SELECT tag.name, count(DISTINCT obj.objectid) as count FROM ' . prefix('tags') . ' tag, ' . prefix('obj_to_tag') . ' obj WHERE (tag.id=obj.tagid) ' . $lang . ' GROUP BY tag.name';
+		$unique_tags = query($sql);
 		if ($unique_tags) {
 			while ($tagrow = db_fetch_assoc($unique_tags)) {
 				if ($tagrow['count'] >= $count) {
@@ -1138,7 +1122,6 @@ function getAllTagsUnique($language = NULL, $count = 1, $selector = 15) {
 			}
 		}
 		db_free_result($unique_tags);
-		query('DROP TEMPORARY TABLE taglist');
 	}
 	return $_zp_unique_tags[$language][$count];
 }
@@ -1763,7 +1746,7 @@ function zp_handle_password($authType = NULL, $check_auth = NULL, $check_user = 
 		}
 		$success = zp_apply_filter('guest_login_attempt', $success, $post_user, $post_pass, $authType);
 		if ($success) {
-			// Correct auth info. Set the cookie.
+// Correct auth info. Set the cookie.
 			if (DEBUG_LOGIN)
 				debugLog("zp_handle_password: valid credentials");
 			zp_setCookie($authType, $auth);
@@ -1775,7 +1758,7 @@ function zp_handle_password($authType = NULL, $check_auth = NULL, $check_user = 
 				}
 			}
 		} else {
-			// Clear the cookie, just in case
+// Clear the cookie, just in case
 			if (DEBUG_LOGIN)
 				debugLog("zp_handle_password: invalid credentials");
 			zp_clearCookie($authType);
@@ -1792,7 +1775,7 @@ function zp_handle_password($authType = NULL, $check_auth = NULL, $check_user = 
 				debugLog("zp_handle_password: valid cookie");
 			return true;
 		} else {
-			// Clear the cookie
+// Clear the cookie
 			if (DEBUG_LOGIN)
 				debugLog("zp_handle_password: invalid cookie");
 			zp_clearCookie($authType);
@@ -1890,11 +1873,11 @@ function getThemeOption($option, $album = NULL, $theme = NULL) {
 	$sql = "SELECT `value` FROM " . prefix('options') . " WHERE `name`=" . db_quote($option) . " AND `ownerid`=" . $id . " AND `theme`=" . db_quote($theme);
 	$db = query_single_row($sql);
 	if (!$db) {
-		// raw theme option
+// raw theme option
 		$sql = "SELECT `value` FROM " . prefix('options') . " WHERE `name`=" . db_quote($option) . " AND `ownerid`=0 AND `theme`=" . db_quote($theme);
 		$db = query_single_row($sql);
 		if (!$db) {
-			// raw album option
+// raw album option
 			$sql = "SELECT `value` FROM " . prefix('options') . " WHERE `name`=" . db_quote($option) . " AND `ownerid`=" . $id . " AND `theme`=NULL";
 			$db = query_single_row($sql);
 			if (!$db) {
@@ -2414,7 +2397,7 @@ class zpFunctions {
 		 * is displayed
 		 */
 		$_zp_exifvars = array(
-						// Database Field       		 => array('source', 'Metadata Key', 'ZP Display Text', Display?	size,	enabled, type)
+// Database Field       		 => array('source', 'Metadata Key', 'ZP Display Text', Display?	size,	enabled, type)
 						'EXIFMake'									 => array('IFD0', 'Make', gettext('Camera Maker'), true, 52, true, 'string'),
 						'EXIFModel'									 => array('IFD0', 'Model', gettext('Camera Model'), true, 52, true, 'string'),
 						'EXIFDescription'						 => array('IFD0', 'ImageDescription', gettext('Image Title'), false, 52, true, 'string'),
@@ -2509,7 +2492,7 @@ class zpFunctions {
 	static function hasPrimaryScripts() {
 		if (!defined('PRIMARY_INSTALLATION')) {
 			if (function_exists('readlink') && ($zen = str_replace('\\', '/', @readlink(SERVERPATH . '/' . ZENFOLDER)))) {
-				// no error reading the link info
+// no error reading the link info
 				$os = strtoupper(PHP_OS);
 				$sp = SERVERPATH;
 				if (substr($os, 0, 3) == 'WIN' || $os == 'DARWIN') { // canse insensitive file systems
