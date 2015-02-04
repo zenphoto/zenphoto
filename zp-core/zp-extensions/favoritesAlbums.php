@@ -161,6 +161,7 @@ class favoritesAlbum extends favorites {
 			$rslt = @unlink($this->localpath);
 			clearstatcache();
 		}
+		$this->_removeCache(substr($this->localpath, strlen(ALBUM_FOLDER_SERVERPATH)));
 		return $rslt;
 	}
 

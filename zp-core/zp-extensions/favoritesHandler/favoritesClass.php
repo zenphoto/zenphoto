@@ -76,6 +76,7 @@ class favorites extends AlbumBase {
 		$folder = $alb->name;
 		$sql = 'DELETE FROM ' . prefix('plugin_storage') . ' WHERE `type`="favorites" AND `aux`=' . db_quote($this->getInstance()) . ' AND `data`=' . db_quote(serialize(array('type' => 'albums', 'id' => $folder)));
 		query($sql);
+		$this->_removeCache(internalToFilesystem($folder));
 		zp_apply_filter('favoritesHandler_action', 'remove', $alb, $this->name);
 	}
 
