@@ -372,7 +372,6 @@ if (isset($_GET['action'])) {
 				$qs_albumsuffix = '';
 				if (isset($single))
 					$qs_albumsuffix .= '&singleimage=' . $single;
-
 				/** SAVE MULTIPLE ALBUMS ***************************************************** */
 			} else if ($_POST['totalalbums']) {
 				$notify = '';
@@ -414,21 +413,16 @@ if (isset($_GET['action'])) {
 				if (empty($notify))
 					$notify = '&saved';
 			}
-
-			if ($notify == '&saved' && $subpage && (isset($single) && $single || !isset($_POST['totalimages']))) {
-				if ($subpage == 'object') {
-					if (isset($image)) {
-						$link = $image->getLink();
-					} else {
-						$link = $album->getLink();
-					}
-					header('Location: ' . $link);
+			if ($notify == '&saved' && $subpage && $subpage == 'object') {
+				if (isset($image)) {
+					$link = $image->getLink();
 				} else {
-					header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . preg_replace('~singleimage=(.*)&~', '', $qs_albumsuffix) . $notify . $pg . $returntab);
+					$link = $album->getLink();
 				}
-			} else {
-				header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $qs_albumsuffix . $notify . $pg . $returntab);
+				header('Location: ' . $link);
+				exitZP();
 			}
+			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $qs_albumsuffix . $notify . $pg . $returntab);
 			exitZP();
 			break;
 
