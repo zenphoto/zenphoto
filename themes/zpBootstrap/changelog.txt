@@ -1,0 +1,104 @@
+* 1.4.6
+- comment_form/comment_form.php :
+	- rewrite of file to be compliant with zenphoto 1.4.6
+- contact_form/form.php :
+	- rewrite of file to be compliant with zenphoto 1.4.6
+- register_user/register_user_form.php :
+	- rewrite of file to be compliant with zenphoto 1.4.6
+- css/screen.css :
+	- graphical improvements
+- js/zpBootstrap.js :
+	- adaptation to zenphoto 1.4.6 (register and googlemap parts)
+	- fix issue : auto display login form when there is an error message
+- js/zpBootstrap.js, album.php, image.php, inc_header.php, favorites.php :
+	- supports favorites handler
+- js/zpBootstrap.js, inc_footer.php :
+	- rewrite of login part, to be compliant with 1.4.6
+- album.php, contact.php, image.php, inc_footer.php, inc_header.php, inc_print_comment.php, news.php, pages.php :
+	- replace function_exists('function_name') by extensionEnabled('plugin_name')
+	- replace class_exists('class_name') by extensionEnabled('plugin_name')
+- album.php, image.php, inc_header.php, favorites.php, functions.php, search.php, themeoptions.php :
+	- cleanup to use official slideshow plugin (only with colorbox option)
+- album.php, image.php, news.php, page.php :
+	- include of inc_print_comment.php only if comment_form is enabled
+- archives.php, home.php, inc_header.php, news.php, page.php :
+	- use new variable $_zenpage_enabled
+- inc_print_news.php, search.php :
+	- replace printNewsTitleLink() by printNewsURL() (deprecated with 1.4.6)
+- functions.php :
+	- add some operations (cleaned from inc_header.php)
+	- use new variable $_zenpage_enabled
+	- cleanup of some options not used
+	- new function my_checkPageValidity() to be compliant with zenphoto 1.4.6 (http://www.zenphoto.org/news/zenphoto-1.4.6#theme-changes-i-pagination-out-of-bound-checks)
+- home.php :
+	- rewrite of random picture loop
+	- cleanup printLatestNews() call (parameters deprecated with 1.4.6)
+- inc_header.php :
+	- supress some operations (now included in functions.php)
+	- fix issue : <meta http-equiv="content-type" content="text/html; charset=UTF-8" /> is deprecated with html5, replaced by <meta charset="UTF-8">
+	- add pagination in title tag on gallery, album, news, search and favorites pages
+	- cleanup getGalleryIndexURL() function (parameters deprecated with 1.4.6)
+	- use printRSSLink() instead of printZenpageRSSLink(), deprecated with 1.4.5
+- inc_print_album_thumb.php :
+	- replace getAlbumLinkURL() by getAlbumURL() (deprecated with 1.4.6)
+- inc_print_comment.php :
+	- use $_zp_current_obj->getCommentsAllowed() (getCommentsAllowed() and zenpageOpenedForComments() deprecated with 1.4.6) (https://github.com/zenphoto/zenphoto/commit/b276f34877fd3465bb4a9793f42d0814037fe9d3)
+- inc_print_image_thumb.php :
+	- replace getImageLinkURL() by getImageURL() (deprecated with 1.4.6)
+- search.php :
+	- cleanup next_news() function (parameters deprecated with 1.4.6)
+- themeoptions.php :
+	- use setThemeOptionDefault insteed of setThemeOption
+	- cleanup of some options not used
+	- supports cacheManager plugin (https://github.com/zenphoto/zenphoto/issues/696)
+
+
+* 1.4.3
+- bootstrap framework (css, js, images) :
+	- upgrade to bootstrap 2.0.4 (release of 06/01/2012)
+- css/screen.css :
+	- graphical improvements
+- js/zpBootstrap.js :
+	- supports GoogleMap plugin (never called with colorbox)
+	- adaptation to zenphoto 1.4.3 (login part)
+- register_user/register_user_form.php :
+	- rewrite of the file to be compliant to zenphoto 1.4.3 (inspired from register_user_form.php and printPasswordForm.php)
+- album.php, gallery.php, image.php, news.php, search.php, inc_header.php :
+	- fix html encoding
+- album.php :
+	- supports GoogleMap plugin (never called with colorbox option)
+- home.php :
+	- change request (thanks to Nikolay Vakulovich) : images of the slideshow link to the gallery page rather than the image page
+- image.php :
+	- supports new option to display Exif data
+- inc_footer.php :
+	- adaptation to zenphoto 1.4.3 (redesign login calling to avoid colorbox)
+- inc_header.php :
+	- fix an issue with 1.4.3 : use only $isHomePage variable to avoid warning of unknown value
+	- fix an issue with 1.4.3 : force $galleryactive to false to avoid warning of unknown value
+	- use rss icon of zpBootstrap theme
+	- supports GoogleMap plugin (never called in colorbox)
+- inc_print_album_thumb.php :
+	- fix an issue with 1.4.3 : missing some '' on options
+	- change request (Nikolay Vakulovich) : suppression of album description in the tooltip to avoid long description
+- inc_print_image_thumb.php :
+	- fix an issue  with 1.4.3 : code cleanup on next_image()
+- index.php :
+	- fix an issue with 1.4.3 : use only isHomePage variable to avoid warning of unknown value
+- functions.php :
+	- adaptation to zenphoto 1.4.3 (renaming of colorbox plugin)
+- register.php :
+	- fix an issue : add script to force modal to be open after confirmation of the registration
+- themeoptions.php :
+	- supports new option to display Exif data
+	- set some options (ie : albums_per_row, albums_per_page, images_per_row, images_per_page, colorbox_js)
+	- use SetOption instead SetOptionDefault for some options (in order to force the value of the options)
+
+
+*1.4.2.1
+- inc_header.php :
+	- fix an issue on RSS Feed : use options 'RSS_album_image' and 'RSS_articles'
+
+
+* 1.4.2
+initial version

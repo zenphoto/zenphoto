@@ -1,0 +1,90 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: zpBootstrap\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-04-16 22:34+0100\n"
+"PO-Revision-Date: 2012-04-23 17:39+0100\n"
+"Last-Translator: Fred Sondaar (fretzl) <fretzl@zenphoto.org>\n"
+"Language-Team: vincent3569 <vincent_bourganel@yahoo.fr>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: gettext_th\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-Language: Dutch\n"
+"X-Poedit-Country: NETHERLANDS\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SearchPath-0: C:\\Users\\Famille\\Documents\\_Vincent\\Site Internet\\Galerie photo\\themes\\zpBootstrap\n"
+
+#: C:\Users\Famille\Documents\_Vincent\Site
+#: Internet\Galerie
+#: photo\themes\zpBootstrap/archive.php:13
+msgid "News archive"
+msgstr "Nieuwsarchief"
+
+#: C:\Users\Famille\Documents\_Vincent\Site
+#: Internet\Galerie
+#: photo\themes\zpBootstrap/home.php:40
+msgid "Latest news"
+msgstr "Laatste nieuws"
+
+#: C:\Users\Famille\Documents\_Vincent\Site
+#: Internet\Galerie
+#: photo\themes\zpBootstrap/themeoptions.php:34
+msgid "Display a home page, with a slider of 5 random picts, the gallery description and the latest news."
+msgstr "Toont een homepage met een slider van 5 willekeurige afbeeldingen, de beschrijving van de galerij en het laatste nieuws."
+
+#: C:\Users\Famille\Documents\_Vincent\Site
+#: Internet\Galerie
+#: photo\themes\zpBootstrap/themeoptions.php:34
+msgid "If you use the plugin zenpage, you can use the full RSS Feed (News and Gallery) or only the Gallery RSS Feed."
+msgstr "Als je de Zenpage plugin gebruikt kun je óf de volledige RSS feed (Nieuws en Galerij) óf alleen de Galerij RSS feed gebruiken."
+
+#: C:\Users\Famille\Documents\_Vincent\Site
+#: Internet\Galerie
+#: photo\themes\zpBootstrap/themeoptions.php:34
+msgid "You can display a slideshow with colorbox and you can choose the size of the displayed images."
+msgstr "Je kunt een slidshow met Colorbox tonen en het formaat van de afbeeldingen instellen."
+
+#: C:\Users\Famille\Documents\_Vincent\Site
+#: Internet\Galerie
+#: photo\themes\zpBootstrap/themeoptions.php:36
+msgid "Display a link to the Archive list."
+msgstr "Toon een link naar de Archief-lijst."
+
+#: C:\Users\Famille\Documents\_Vincent\Site
+#: Internet\Galerie
+#: photo\themes\zpBootstrap/themeoptions.php:37
+msgid "Check to show a tag cloud in Archive list, with all the tags of the gallery."
+msgstr "Vink aan om een 'tag cloud' in de Archief-lijst te tonen met alle tags van de galerij."
+
+#: C:\Users\Famille\Documents\_Vincent\Site
+#: Internet\Galerie
+#: photo\themes\zpBootstrap/themeoptions.php:37
+msgid "Check to disable the warning message about plugins to disable."
+msgstr "Vink aan om waarschuwingen over het deactiveren van plugins NIET te tonen."
+
+#: C:\Users\Famille\Documents\_Vincent\Site
+#: Internet\Galerie
+#: photo\themes\zpBootstrap/functions.php:37
+msgid "<li>Disable <strong><em>Colorbox</em></strong> plugin (zpBoostrap uses and configures it's own colorbox and modal plugins)</li>"
+msgstr "<li>Deactiveer de<strong><em>Colorbox</em></strong> plugin (zpBoostrap gebruikt en configureert z'n eigen Colorbox en Modal plugins)</li>"
+
+#: C:\Users\Famille\Documents\_Vincent\Site
+#: Internet\Galerie
+#: photo\themes\zpBootstrap/functions.php:37
+msgid "<li>Disable <strong><em>Slideshow</em></strong> plugin (zpBoostrap uses and configures it's own colorbox plugin for the slideshow)</li>"
+msgstr "<li>Deactiveer de<strong><em>Slideshow</em></strong> plugin (zpBoostrap gebruikt en configureert z'n eigen Colorbox plugin voor de slideshow)</li>"
+
+#: C:\Users\Famille\Documents\_Vincent\Site
+#: Internet\Galerie
+#: photo\themes\zpBootstrap/functions.php:37
+msgid "<h4>Warning</h4><p>There are some plugins that you should be disabled in admin</p>"
+msgstr "<h4>Waarschuwing</h4><p>Er zijn enkele plugins die gedeactiveerd moeten worden</p>"
+
+#: C:\Users\Famille\Documents\_Vincent\Site
+#: Internet\Galerie
+#: photo\themes\zpBootstrap/functions.php:37
+msgid "You can turn off this message in the theme options."
+msgstr "Je kunt dit bericht uitzetten in de themaopties."
+
