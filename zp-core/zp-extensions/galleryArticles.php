@@ -23,11 +23,6 @@ if (getOption('galleryArticles_images'))
 zp_register_filter('admin_head', 'galleryArticles::scan');
 zp_register_filter('load_theme_script', 'galleryArticles::scan');
 
-/**
- *
- * Standard options interface
- *
- */
 class galleryArticles {
 
 	function __construct() {
@@ -170,35 +165,43 @@ class galleryArticles {
 
 	/**
 	 *
-	 * publishes the article
+	 * Formats the message and calls sendTweet() on an object
 	 * @param object $obj
 	 */
-	static function publishArticle($obj, $override = NULL) {
+	protected static function publishArticle($obj, $override = NULL) {
 		global $_zp_CMS;
 		switch ($type = $obj->table) {
 			case 'albums':
-				$alb_title = unserialize($obj->getTitle('all'));
-				$galleryitem_text = unserialize(getOption('galleryArticles_album_text'));
-				foreach ($galleryitem_text as $key => $val) {
-					if (!empty($alb_title[$key])) {
-						$galleryitem_text[$key] = sprintf($galleryitem_text[$key], $alb_title[$key]);
+				if (getOption('multi_lingual')) {
+					$alb_title = unserialize($obj->getTitle('all'));
+					$galleryitem_text = unserialize(getOption('galleryArticles_album_text'));
+					foreach ($galleryitem_text as $key => $val) {
+						if (!empty($alb_title[$key])) {
+							$galleryitem_text[$key] = sprintf($galleryitem_text[$key], $alb_title[$key]);
+						}
 					}
+					$text = serialize($galleryitem_text);
+				} else {
+					$text = sprintf(get_language_string(getOption('galleryArticles_album_text')), $obj->getTitle());
 				}
-				$text = serialize($galleryitem_text);
 				$title = $folder = $obj->name;
 				$img = $obj->getAlbumThumbImage();
 				$class = 'galleryarticles-newalbum';
 				break;
 			case 'images':
-				$img_title = unserialize($obj->getTitle('all'));
-				$alb_title = unserialize($obj->album->getTitle('all'));
-				$galleryitem_text = unserialize(getOption('galleryArticles_album_text'));
-				foreach ($galleryitem_text as $key => $val) {
-					if (!empty($img_title[$key])) {
-						$galleryitem_text[$key] = sprintf(get_language_string(getOption('galleryArticles_image_text')), $img_title[$key], $alb_title[$key]);
+				if (getOption('multi_lingual')) {
+					$img_title = unserialize($obj->getTitle('all'));
+					$alb_title = unserialize($obj->album->getTitle('all'));
+					$galleryitem_text = unserialize(getOption('galleryArticles_album_text'));
+					foreach ($galleryitem_text as $key => $val) {
+						if (!empty($img_title[$key])) {
+							$galleryitem_text[$key] = sprintf(get_language_string(getOption('galleryArticles_image_text')), $img_title[$key], $alb_title[$key]);
+						}
 					}
+					$text = serialize($galleryitem_text);
+				} else {
+					$text = sprintf(get_language_string(getOption('galleryArticles_image_text')), $obj->getTitle(), $obj->album->getTitle());
 				}
-				$text = serialize($galleryitem_text);
 				$folder = $obj->imagefolder;
 				$title = $folder . '-' . $obj->filename;
 				$img = $obj;
@@ -207,8 +210,20 @@ class galleryArticles {
 		}
 		$article = newArticle(seoFriendly('galleryAticles-' . $title));
 		$article->setTitle($text);
-
-		$article->setContent('<p><a class="' . $class . '" href="' . $obj->getLink() . '"><img src="' . $img->getCustomImage(getOption('galleryArticles_size'), NULL, NULL, NULL, NULL, NULL, NULL, -1) . '"></a></p><p>' . $obj->getDesc() . '</p>');
+		$imglink = $img->getCustomImage(getOption('galleryArticles_size'), NULL, NULL, NULL, NULL, NULL, NULL, -1);
+		if (getOption('multi_lingual')) {
+			$desc = unserialize($obj->getDesc('all'));
+			$desc_multi = '';
+			foreach ($desc as $key => $val) {
+				if (!empty($val)) {
+					$desc_multi[$key] = '<p><a class="' . $class . '" href="' . $obj->getLink() . '"><img src="' . $imglink . '"></a></p><p>' . $val . '</p>';
+				}
+			}
+			$desc = serialize($desc_multi);
+		} else {
+			$desc = '<p><a class="' . $class . '" href="' . $obj->getLink() . '"><img src="' . $imglink . '"></a></p><p>' . $obj->getDesc() . '</p>';
+		}
+		$article->setContent($desc);
 		$article->setShow(true);
 		$date = $obj->getPublishDate();
 		if (!$date)
