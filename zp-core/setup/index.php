@@ -1742,7 +1742,9 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 														`tagid` int(11) UNSIGNED NOT NULL,
 														`type` tinytext,
 														`objectid` int(11) UNSIGNED NOT NULL,
-														PRIMARY KEY (`id`)
+														PRIMARY KEY (`id`),
+														KEY (tagid),
+														KEY (objectid)
 														)	$collation;";
 						}
 

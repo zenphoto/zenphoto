@@ -1110,6 +1110,28 @@ function getAllTagsUnique($language = NULL, $count = 1, $returnCount = NULL) {
 
 	if (!isset($list[$language][$count])) {
 		$list[$language][$count] = array();
+
+		if (zp_loggedin()) {
+			$table = prefix('tags');
+		} else {
+			// create a table of only "published" tag assignments
+			$table = 'taglist';
+			query('CREATE TEMPORARY TABLE IF NOT EXISTS taglist (
+														`tagid` int(11) UNSIGNED NOT NULL,
+														`type` tinytext,
+														`objectid` int(11) UNSIGNED NOT NULL,
+														KEY (tagid),
+														KEY (objectid)
+														) CHARACTER SET utf8 COLLATE utf8_unicode_ci');
+			$tables = array('images', 'albums');
+			if (extensionEnabled('zenpage')) {
+				$tables = array_merge($tables, array('pages', 'news'));
+			}
+			foreach ($tables as $table) {
+				query('INSERT INTO taglist SELECT tag.tagid, tag.type, tag.objectid FROM ' . prefix('obj_to_tag') . ' tag, ' . prefix($table) . ' object WHERE tag.type="images" AND tag.objectid=object.id AND object.show=1');
+			}
+		}
+
 		if (empty($language)) {
 			$lang = '';
 		} else {
@@ -1117,6 +1139,7 @@ function getAllTagsUnique($language = NULL, $count = 1, $returnCount = NULL) {
 		}
 		$sql = 'SELECT tag.name, count(DISTINCT tag.name,obj.type,obj.objectid) as count FROM ' . prefix('tags') . ' tag, ' . prefix('obj_to_tag') . ' obj WHERE (tag.id=obj.tagid) ' . $lang . ' GROUP BY tag.name';
 		$unique_tags = query($sql);
+
 		if ($unique_tags) {
 			while ($tagrow = db_fetch_assoc($unique_tags)) {
 				if ($tagrow['count'] >= $count) {
@@ -1129,6 +1152,10 @@ function getAllTagsUnique($language = NULL, $count = 1, $returnCount = NULL) {
 			}
 		}
 		db_free_result($unique_tags);
+
+		if (!zp_loggedin()) {
+			query('DROP TEMPORARY TABLE taglist');
+		}
 	}
 	return $list[$language][$count];
 }
