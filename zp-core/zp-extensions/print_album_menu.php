@@ -318,8 +318,9 @@ function printAlbumMenuListAlbum($albums, $folder, $option, $showcount, $showsub
  * @param string $indexname insert the name (default "Gallery Index") how you want to call the link to the gallery index, insert "" if you don't use it, it is not printed then.
  * @param bool $firstimagelink If set to TRUE and if the album has images the link will point to page of the first image instead the album thumbnail page
  * @param string $css_class see printAlbumMenuList
+* @param bool $skipform If set to false this prints a full form option select list (default), if set to true it will only print the options
  */
-function printAlbumMenuJump($option = "count", $indexname = "Gallery Index", $firstimagelink = false, $showsubs = NULL) {
+function printAlbumMenuJump($option = "count", $indexname = "Gallery Index", $firstimagelink = false, $showsubs = NULL, $skipform = false) {
 	global $_zp_gallery, $_zp_current_album, $_zp_gallery_page;
 	if (!is_null($_zp_current_album) || $_zp_gallery_page == 'album.php') {
 		$currentfolder = $_zp_current_album->name;
@@ -330,6 +331,7 @@ function printAlbumMenuJump($option = "count", $indexname = "Gallery Index", $fi
 	if ($showsubs && !is_numeric($showsubs)) {
 		$showsubs = 9999999999;
  }
+ if(!$skipform) {
 	?>
 	<script type="text/javaScript">
 		// <!-- <![CDATA[
@@ -349,6 +351,7 @@ function printAlbumMenuJump($option = "count", $indexname = "Gallery Index", $fi
 					<option <?php echo $selected; ?> value="<?php echo html_encode(getGalleryIndexURL()); ?>"><?php echo $indexname; ?></option>
 					<?php
 				}
+		}
     $albums = getNestedAlbumList(null, $showsubs);
     foreach($albums as $album) {
       $albumobj = newAlbum($album['name'], true);
@@ -374,11 +377,12 @@ function printAlbumMenuJump($option = "count", $indexname = "Gallery Index", $fi
       }
       echo $link;
     }
-				?>
+if(!$skipform) {		?>
 			</select>
 		</p>
 	</form>
 	<?php
+	}
 }
 
 /**
