@@ -113,7 +113,7 @@ class print_album_menu {
  */
 function printAlbumMenu($option, $showcount = NULL, $css_id = '', $css_class_topactive = '', $css_class = '', $css_class_active = '', $indexname = "Gallery Index", $showsubs = NULL, $firstimagelink = false, $keeptopactive = false) {
 	if ($option == "jump") {
-		printAlbumMenuJump($showcount, $indexname, $firstimagelink,$showsubs);
+		printAlbumMenuJump($showcount, $indexname, $firstimagelink, $showsubs);
 	} else {
 		printAlbumMenuList($option, $showcount, $css_id, $css_class_topactive, $css_class, $css_class_active, $indexname, $showsubs, $firstimagelink, $keeptopactive);
 	}
@@ -215,13 +215,13 @@ function printAlbumMenuListAlbum($albums, $folder, $option, $showcount, $showsub
 	}
 	if (is_null($showcount)) {
 		$showcount = ALBUM_MENU_COUNT;
- }
+	}
 	if (is_null($showsubs)) {
 		$showsubs = ALBUM_MENU_SHOWSUBS;
- }
+	}
 	if ($showsubs && !is_numeric($showsubs)) {
 		$showsubs = 9999999999;
- }
+	}
 	$pagelevel = count(explode('/', $folder));
 	$currenturalbumname = "";
 
@@ -319,51 +319,54 @@ function printAlbumMenuListAlbum($albums, $folder, $option, $showcount, $showsub
  * @param string $indexname insert the name (default "Gallery Index") how you want to call the link to the gallery index, insert "" if you don't use it, it is not printed then.
  * @param bool $firstimagelink If set to TRUE and if the album has images the link will point to page of the first image instead the album thumbnail page
  * @param string $css_class see printAlbumMenuList
+ * @param bool $skipform If set to false this prints a full form option select list (default), if set to true it will only print the options
  */
-function printAlbumMenuJump($option = "count", $indexname = "Gallery Index", $firstimagelink = false, $showsubs = NULL) {
+function printAlbumMenuJump($option = "count", $indexname = "Gallery Index", $firstimagelink = false, $showsubs = NULL, $skipform = false) {
 	global $_zp_gallery, $_zp_current_album, $_zp_gallery_page;
 	if (!is_null($_zp_current_album) || $_zp_gallery_page == 'album.php') {
 		$currentfolder = $_zp_current_album->name;
 	}
- if (is_null($showsubs)) {
+	if (is_null($showsubs)) {
 		$showsubs = ALBUM_MENU_SHOWSUBS;
- }
+	}
 	if ($showsubs && !is_numeric($showsubs)) {
 		$showsubs = 9999999999;
- }
-	?>
-	<script type="text/javaScript">
-		// <!-- <![CDATA[
-		function gotoLink(form) {
-		var OptionIndex=form.ListBoxURL.selectedIndex;
-		parent.location = form.ListBoxURL.options[OptionIndex].value;
-		}
-		// ]]> -->
-	</script>
-	<form name="AutoListBox" action="#">
-		<p>
-			<select name="ListBoxURL" size="1" onchange="gotoLink(this.form);">
-				<?php
-				if (!empty($indexname)) {
-					$selected = checkSelectedAlbum("", "index");
-					?>
-					<option <?php echo $selected; ?> value="<?php echo html_encode(getGalleryIndexURL()); ?>"><?php echo $indexname; ?></option>
+	}
+	if (!$skipform) {
+		?>
+		<script type="text/javaScript">
+			// <!-- <![CDATA[
+			function gotoLink(form) {
+			var OptionIndex=form.ListBoxURL.selectedIndex;
+			parent.location = form.ListBoxURL.options[OptionIndex].value;
+			}
+			// ]]> -->
+		</script>
+		<form name="AutoListBox" action="#">
+			<p>
+				<select name="ListBoxURL" size="1" onchange="gotoLink(this.form);">
 					<?php
+					if (!empty($indexname)) {
+						$selected = checkSelectedAlbum("", "index");
+						?>
+						<option <?php echo $selected; ?> value="<?php echo html_encode(getGalleryIndexURL()); ?>"><?php echo $indexname; ?></option>
+						<?php
+					}
 				}
 				$albums = getNestedAlbumList(null, $showsubs);
-				foreach($albums as $album) {
+				foreach ($albums as $album) {
 					$albumobj = newAlbum($album['name'], true);
 					$count = '';
 					if ($option == "count") {
 						$numimages = $albumobj->getNumImages();
-						if($numimages != 0) {
+						if ($numimages != 0) {
 							$count = " (" . $numimages . ")";
 						}
 					}
 					$sortorder = count($album['sort_order']);
 					$arrow = '';
-					if($sortorder > 1) {
-						for($c = 1; $c != $sortorder; $c++) {
+					if ($sortorder > 1) {
+						for ($c = 1; $c != $sortorder; $c++) {
 							$arrow .= '» ';
 						}
 					}
@@ -375,11 +378,13 @@ function printAlbumMenuJump($option = "count", $indexname = "Gallery Index", $fi
 					}
 					echo $link;
 				}
-				?>
-			</select>
-		</p>
-	</form>
-	<?php
+				if (!$skipform) {
+					?>
+				</select>
+			</p>
+		</form>
+		<?php
+	}
 }
 
 /**
