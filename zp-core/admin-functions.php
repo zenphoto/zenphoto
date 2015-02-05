@@ -1162,7 +1162,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					break;
 			}
 			$languages = $counts = array();
-			$sql = "SELECT DISTINCT tags.name, tags.language, tags.id, (SELECT COUNT(*) FROM " . prefix('obj_to_tag') . " as object WHERE object.tagid = tags.id) AS count FROM " . prefix('tags') . " as tags ORDER BY $order";
+			$sql = 'SELECT DISTINCT tags.name, tags.language, tags.id, COUNT(*) as count FROM ' . prefix('obj_to_tag') . ' object, ' . prefix('tags') . ' tags WHERE object.tagid = tags.id GROUP BY tags.name ORDER BY ' . $order;
 			$tagresult = query($sql);
 			if ($tagresult) {
 				while ($tag = db_fetch_assoc($tagresult)) {
@@ -1510,7 +1510,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						$sort[gettext('Custom')] = 'custom';
 						/*
 						 * not recommended--screws with peoples minds during pagination!
-							$sort[gettext('Random')] = 'random';
+						  $sort[gettext('Random')] = 'random';
 						 */
 						?>
 						<tr>

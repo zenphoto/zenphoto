@@ -1112,10 +1112,10 @@ function getAllTagsUnique($language = NULL, $count = 1, $returnCount = NULL) {
 		$list[$language][$count] = array();
 
 		if (zp_loggedin()) {
-			$table = prefix('tags');
+			$source = prefix('obj_to_tag');
 		} else {
 			// create a table of only "published" tag assignments
-			$table = 'taglist';
+			$source = 'taglist';
 			query('CREATE TEMPORARY TABLE IF NOT EXISTS taglist (
 														`tagid` int(11) UNSIGNED NOT NULL,
 														`type` tinytext,
@@ -1128,7 +1128,8 @@ function getAllTagsUnique($language = NULL, $count = 1, $returnCount = NULL) {
 				$tables = array_merge($tables, array('pages', 'news'));
 			}
 			foreach ($tables as $table) {
-				query('INSERT INTO taglist SELECT tag.tagid, tag.type, tag.objectid FROM ' . prefix('obj_to_tag') . ' tag, ' . prefix($table) . ' object WHERE tag.type="' . $table . '" AND tag.objectid=object.id AND object.show=1');
+				$sql = 'INSERT INTO taglist SELECT tag.tagid, tag.type, tag.objectid FROM ' . prefix('obj_to_tag') . ' tag, ' . prefix($table) . ' object WHERE tag.type="' . $table . '" AND tag.objectid=object.id AND object.show=1';
+				query($sql);
 			}
 		}
 
@@ -1137,7 +1138,8 @@ function getAllTagsUnique($language = NULL, $count = 1, $returnCount = NULL) {
 		} else {
 			$lang = ' AND (tag.language="" OR tag.language LIKE ' . db_quote(db_LIKE_escape($language) . '%') . ')';
 		}
-		$sql = 'SELECT tag.name, count(DISTINCT tag.name,obj.type,obj.objectid) as count FROM ' . prefix('tags') . ' tag, ' . prefix('obj_to_tag') . ' obj WHERE (tag.id=obj.tagid) ' . $lang . ' GROUP BY tag.name';
+
+		$sql = 'SELECT tag.name, count(DISTINCT tag.name,obj.type,obj.objectid) as count FROM ' . prefix('tags') . ' tag, ' . $source . ' obj WHERE (tag.id=obj.tagid) ' . $lang . ' GROUP BY tag.name';
 		$unique_tags = query($sql);
 
 		if ($unique_tags) {
