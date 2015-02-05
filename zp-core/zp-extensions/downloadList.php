@@ -129,7 +129,7 @@ class DownloadList {
 						 value="<?php echo $x; ?>" />
 			<label>
 				<input type="checkbox" name="disclose_password_downloadList" id="disclose_password_downloadList" onclick="passwordClear('_downloadList');
-								togglePassword('_downloadList');"><?php echo gettext('Show password'); ?>
+						togglePassword('_downloadList');"><?php echo gettext('Show password'); ?>
 			</label>
 			<br />
 			<span class="password_field__downloadList">
@@ -522,7 +522,7 @@ function getDownloadURL($file) {
 	$link = '';
 	if ($id = DownloadList::getItemID($file)) {
 		$query['download'] = $id;
-		$link = FULLWEBPATH . '/' . preg_replace('~^' . WEBPATH . '/~', '', $request['path']) . '?' . http_build_query($query);
+		$link = FULLWEBPATH . '/' . preg_replace('~^' . WEBPATH . '/~', '', pathurlencode($request['path'])) . '?' . urldecode(http_build_query($query));
 	}
 	return $link;
 }
@@ -592,7 +592,7 @@ function printDownloadAlbumZipURL($linktext = NULL, $albumobj = NULL, $fromcache
 			}
 			$file .= '.zip';
 		} else {
-			$query['download'] = pathurlencode($albumobj->name);
+			$query['download'] = $albumobj->name;
 			$file = $albumobj->name . '.zip';
 		}
 		if ($fromcache) {
@@ -614,8 +614,8 @@ function printDownloadAlbumZipURL($linktext = NULL, $albumobj = NULL, $fromcache
 		if (!empty($linktext)) {
 			$file = $linktext;
 		}
-		$link = FULLWEBPATH . '/' . preg_replace('~^' . WEBPATH . '/~', '', $request['path']) . '?' . http_build_query($query);
-		echo '<a href="' . html_encode($link) . '" rel="nofollow">' . html_encode($file) . '</a>' . $filesize;
+		$link = preg_replace('~^' . WEBPATH . '/~', '', $request['path']);
+		echo '<a href="' . FULLWEBPATH . '/' . html_encode(pathurlencode($link)) . '?' . http_build_query($query) . '" rel="nofollow">' . html_encode($file) . '</a>' . $filesize;
 	}
 }
 
