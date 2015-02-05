@@ -1128,7 +1128,7 @@ function getAllTagsUnique($language = NULL, $count = 1, $returnCount = NULL) {
 				$tables = array_merge($tables, array('pages', 'news'));
 			}
 			foreach ($tables as $table) {
-				query('INSERT INTO taglist SELECT tag.tagid, tag.type, tag.objectid FROM ' . prefix('obj_to_tag') . ' tag, ' . prefix($table) . ' object WHERE tag.type="images" AND tag.objectid=object.id AND object.show=1');
+				query('INSERT INTO taglist SELECT tag.tagid, tag.type, tag.objectid FROM ' . prefix('obj_to_tag') . ' tag, ' . prefix($table) . ' object WHERE tag.type="' . $table . '" AND tag.objectid=object.id AND object.show=1');
 			}
 		}
 
