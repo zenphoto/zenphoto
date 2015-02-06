@@ -21,6 +21,7 @@ if (count($_POST) > 0) {
 		XSRFdefender('new_tags');
 		$language = sanitize($_POST['language']);
 		unset($_POST['language']);
+		unset($_POST['XSRFToken']);
 		foreach ($_POST as $value) {
 			if (!empty($value)) {
 				$value = html_decode(sanitize($value, 3));
