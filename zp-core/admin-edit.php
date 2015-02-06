@@ -1667,7 +1667,7 @@ echo "\n</head>";
 								</label>
 								<label style="float: right">
 									<?php echo gettext("Check All"); ?> <input type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this
-																				 .checked);" />
+																	.checked);" />
 								</label>
 							</div>
 

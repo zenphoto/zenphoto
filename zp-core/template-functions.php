@@ -3431,29 +3431,32 @@ function printAllTagsAs($option, $class = '', $sort = NULL, $counter = FALSE, $l
 		$class = ' class="' . $class . '"';
 	}
 	$tagcount = getAllTagsUnique(NULL, $mincount, true);
+
 	if (!is_array($tagcount)) {
 		return false;
 	}
+	arsort($tagcount);
+	if (!is_null($limit)) {
+		$tagcount = array_slice($tagcount, 0, $limit);
+	}
+	$keys = array_keys($tagcount);
 	switch ($sort) {
 		default:
+			natcasesort($keys);
+			break;
 		case 'results':
-			arsort($tagcount);
-			if (!is_null($limit)) {
-				$tagcount = array_slice($tagcount, 0, $limit);
-			}
+			//already in tag count order
 			break;
 		case 'random':
-			shuffle_assoc($tagcount);
-			if (!is_null($limit)) {
-				$tagcount = array_slice($tagcount, 0, $limit);
-			}
+			shuffle_assoc($keys);
 			break;
 	}
 	?>
 	<ul<?php echo $class; ?>>
 		<?php
 		if (count($tagcount) > 0) {
-			foreach ($tagcount as $key => $val) {
+			foreach ($keys as $key) {
+				$val = $tagcount[$key];
 				if (!$counter) {
 					$counter = "";
 				} else {
@@ -3896,10 +3899,10 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 					foreach ($object_list as $key => $list) {
 						?>
 						<input type="hidden" name="in<?php echo $key ?>" value="<?php
-			if (is_array($list))
-				echo html_encode(implode(',', $list));
-			else
-				echo html_encode($list);
+						if (is_array($list))
+							echo html_encode(implode(',', $list));
+						else
+							echo html_encode($list);
 						?>" />
 									 <?php
 								 }

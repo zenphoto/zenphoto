@@ -12,6 +12,8 @@ if (!defined('SORT_FLAG_CASE'))
 	define('SORT_FLAG_CASE', 0);
 if (!defined('SORT_NATURAL'))
 	define('SORT_NATURAL', 0);
+if (!defined('SORT_LOCALE_STRING'))
+	define('SORT_LOCALE_STRING', 0);
 
 define('ZENFOLDER', 'zp-core');
 define('PLUGIN_FOLDER', 'zp-extensions');
