@@ -233,6 +233,7 @@ class optionalObjectFields extends fieldExtender {
 				if (isset($_POST['wm_full-' . $currentimage]))
 					$wmuse = $wmuse | WATERMARK_FULL;
 				$image->setWMUse($wmuse);
+				$image->save();
 			}
 			return NULL;
 		} else {
@@ -287,6 +288,7 @@ class optionalObjectFields extends fieldExtender {
 			if ($found) {
 				$tags = array_unique($tags);
 				$image->setTags($tags);
+				$image->save();
 			}
 			return NULL;
 		} else {
@@ -306,6 +308,7 @@ class optionalObjectFields extends fieldExtender {
 		if ($type == 'save') {
 			if (zp_loggedin(CODEBLOCK_RIGHTS)) {
 				processCodeblockSave((int) $instance, $obj);
+				$obj->save();
 			}
 			return NULL;
 		} else {
@@ -321,6 +324,7 @@ class optionalObjectFields extends fieldExtender {
 		if ($type == 'save') {
 			$extracontent = zpFunctions::updateImageProcessorLink(process_language_string_save("extracontent", EDITOR_SANITIZE_LEVEL));
 			$obj->setExtracontent($extracontent);
+			$obj->save();
 			return NULL;
 		} else {
 			ob_start();
