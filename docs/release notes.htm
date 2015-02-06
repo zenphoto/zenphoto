@@ -76,8 +76,12 @@
 			}
 		</style>
 	<body>
-<h1>ZenPhoto20 v1.0.1.0 release notes</h1><h2>Rationalization of published states</h2>
-<p>The <code>show()</code> method of all objects now correctly reflects if the object is currently <em>published</em>. The <code>show()</code> method for objects which have a future publishing date will return <em>false</em> until the publishing date has occurred. At that time <em>true</em> will be returned. For objects that have expiry dates, once that date has passed the object will become <em>unpublished</em> and the <code>show()</code> method will return <em>false</em>.</p>
+<h1>ZenPhoto20 v1.0.1.1 release notes</h1><h2>New theme</h2>
+<p><a href="http://www.vincentbourganel.fr/news/zpbootstrap-a-responsive-theme-zenphoto-zenpage">zpBootstrap</a>&mdash;a responsive theme by Vincent Bourganel&nbsp;has been added to the distributed themes set.&nbsp;</p>
+<h2>Tag lists will reflect published state of the object</h2>
+<p>Tag suggestion lists and <code>html_meta_tags</code> keywords will not be gated by the published state of objects. Specifically, if the site viewer is not logged-in then tags associated with objects marked <em>unpublished</em> will not be included in the counts. This means, for instance, that if a tag is associated only with unpublished objects it will not be included in these lists. Note: object hierarchy&nbsp;is not applied in this for performance reasons. Thus for instance tags of <em>published</em> images in an <em>unpublished</em> album will be included.</p>
+<h2>Rationalization of published states</h2>
+<p><em>The <code>show()</code> method of all objects now correctly reflects if the object is currently published. The <code>show()</code> method for objects which have a future publishing date will return false until the publishing date has occurred. At that time true will be returned. For objects that have expiry dates, once that date has passed the object will become unpublished and the <code>show()</code> method will return false.</em></p>
 <p>If you explicitly publish an object that has expired or whose publish date is in the future then the expiry and publish dates will be cancelled.</p>
 <p>This means that the database <code>show</code> column is the sole arbitrator of whether an object should be visible to the general public.</p>
 <h2>Dynamically translatable image metadata strings</h2>

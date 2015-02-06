@@ -634,7 +634,7 @@ class xmpMetadata {
 						'EXIFFocalLength'				 => '<exif:FocalLength>',
 						'EXIFContrast'					 => '<exif:Contrast>',
 						'EXIFSharpness'					 => '<exif:Sharpness>',
-						'EXIFExposureTime'			 => '<exif:ShutterSpeedValue>',
+						'EXIFShutterSpeedValue'	 => '<exif:ShutterSpeedValue>',
 						'EXIFSaturation'				 => '<exif:Saturation>',
 						'EXIFWhiteBalance'			 => '<exif:WhiteBalance>',
 						'IPTCLocationCode'			 => '<Iptc4xmpCore:CountryCode>',

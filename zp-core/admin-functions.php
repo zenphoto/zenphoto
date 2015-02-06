@@ -2384,10 +2384,10 @@ function printAdminHeader($tab, $subtab = NULL) {
 			$prefix = "$index-";
 			$suffix = "_$index";
 		}
-		$tagsprefix = 'tags_' . $prefix;
 		$notify = '';
 		$album->setTitle(process_language_string_save($prefix . 'albumtitle', 2));
 		$album->setDesc(process_language_string_save($prefix . 'albumdesc', EDITOR_SANITIZE_LEVEL));
+		$tagsprefix = 'tags_' . $prefix;
 		$tags = array();
 		$l = strlen($tagsprefix);
 		foreach ($_POST as $key => $value) {

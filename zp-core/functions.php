@@ -1110,13 +1110,38 @@ function getAllTagsUnique($language = NULL, $count = 1, $returnCount = NULL) {
 
 	if (!isset($list[$language][$count])) {
 		$list[$language][$count] = array();
+
+		if (zp_loggedin()) {
+			$source = prefix('obj_to_tag');
+		} else {
+			// create a table of only "published" tag assignments
+			$source = 'taglist';
+			query('CREATE TEMPORARY TABLE IF NOT EXISTS taglist (
+														`tagid` int(11) UNSIGNED NOT NULL,
+														`type` tinytext,
+														`objectid` int(11) UNSIGNED NOT NULL,
+														KEY (tagid),
+														KEY (objectid)
+														) CHARACTER SET utf8 COLLATE utf8_unicode_ci');
+			$tables = array('images', 'albums');
+			if (extensionEnabled('zenpage')) {
+				$tables = array_merge($tables, array('pages', 'news'));
+			}
+			foreach ($tables as $table) {
+				$sql = 'INSERT INTO taglist SELECT tag.tagid, tag.type, tag.objectid FROM ' . prefix('obj_to_tag') . ' tag, ' . prefix($table) . ' object WHERE tag.type="' . $table . '" AND tag.objectid=object.id AND object.show=1';
+				query($sql);
+			}
+		}
+
 		if (empty($language)) {
 			$lang = '';
 		} else {
 			$lang = ' AND (tag.language="" OR tag.language LIKE ' . db_quote(db_LIKE_escape($language) . '%') . ')';
 		}
-		$sql = 'SELECT tag.name, count(DISTINCT tag.name,obj.type,obj.objectid) as count FROM ' . prefix('tags') . ' tag, ' . prefix('obj_to_tag') . ' obj WHERE (tag.id=obj.tagid) ' . $lang . ' GROUP BY tag.name';
+
+		$sql = 'SELECT tag.name, count(DISTINCT tag.name,obj.type,obj.objectid) as count FROM ' . prefix('tags') . ' tag, ' . $source . ' obj WHERE (tag.id=obj.tagid) ' . $lang . ' GROUP BY tag.name';
 		$unique_tags = query($sql);
+
 		if ($unique_tags) {
 			while ($tagrow = db_fetch_assoc($unique_tags)) {
 				if ($tagrow['count'] >= $count) {
@@ -1129,6 +1154,10 @@ function getAllTagsUnique($language = NULL, $count = 1, $returnCount = NULL) {
 			}
 		}
 		db_free_result($unique_tags);
+
+		if (!zp_loggedin()) {
+			query('DROP TEMPORARY TABLE taglist');
+		}
 	}
 	return $list[$language][$count];
 }
@@ -2428,7 +2457,8 @@ class zpFunctions {
 						'EXIFCopyright'							 => array('IFD0', 'Copyright', gettext('Copyright Holder'), false, 128, true, 'string'),
 						'IPTCCopyright'							 => array('IPTC', 'Copyright', gettext('Copyright Notice'), false, 128, true, 'string'),
 						'IPTCKeywords'							 => array('IPTC', 'Keywords', gettext('Keywords'), false, 0, true, 'string'),
-						'EXIFExposureTime'					 => array('SubIFD', 'ExposureTime', gettext('Shutter Speed'), true, 52, true, 'string'),
+						'EXIFExposureTime'					 => array('SubIFD', 'ExposureTime', gettext('Exposure time'), true, 52, true, 'string'),
+						'EXIFShutterSpeedValue'			 => array('SubIFD', 'ShutterSpeedValue', gettext('Shutter Speed'), true, 52, true, 'string'),
 						'EXIFFNumber'								 => array('SubIFD', 'FNumber', gettext('Aperture'), true, 52, true, 'number'),
 						'EXIFISOSpeedRatings'				 => array('SubIFD', 'ISOSpeedRatings', gettext('ISO Sensitivity'), true, 52, true, 'number'),
 						'EXIFExposureBiasValue'			 => array('SubIFD', 'ExposureBiasValue', gettext('Exposure Compensation'), true, 52, true, 'string'),

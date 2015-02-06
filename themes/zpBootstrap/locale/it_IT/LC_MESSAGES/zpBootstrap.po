@@ -1,0 +1,90 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: zpBootstrap\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-04-16 22:34+0100\n"
+"PO-Revision-Date: 2012-04-21 18:33+0100\n"
+"Last-Translator: vincent3569 <vincent_bourganel@yahoo.fr>\n"
+"Language-Team: vincent3569 <vincent_bourganel@yahoo.fr>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: gettext_th\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-Language: Italian\n"
+"X-Poedit-Country: ITALY\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SearchPath-0: C:\\Users\\Famille\\Documents\\_Vincent\\Site Internet\\Galerie photo\\themes\\zpBootstrap\n"
+
+#: C:\Users\Famille\Documents\_Vincent\Site
+#: Internet\Galerie
+#: photo\themes\zpBootstrap/archive.php:13
+msgid "News archive"
+msgstr "Archivio notizie"
+
+#: C:\Users\Famille\Documents\_Vincent\Site
+#: Internet\Galerie
+#: photo\themes\zpBootstrap/home.php:40
+msgid "Latest news"
+msgstr "Ultime notizie"
+
+#: C:\Users\Famille\Documents\_Vincent\Site
+#: Internet\Galerie
+#: photo\themes\zpBootstrap/themeoptions.php:34
+msgid "Display a home page, with a slider of 5 random picts, the gallery description and the latest news."
+msgstr "Consente di visualizzare una home page con una presentazione di cinque immagini casuali, la descrizione della galleria e le ultime novità."
+
+#: C:\Users\Famille\Documents\_Vincent\Site
+#: Internet\Galerie
+#: photo\themes\zpBootstrap/themeoptions.php:34
+msgid "If you use the plugin zenpage, you can use the full RSS Feed (News and Gallery) or only the Gallery RSS Feed."
+msgstr "Se si utilizza il zenpage plugin, è possibile utilizzare l'intero RSS (Notizie e Galleria) e la Galleria RSS solo."
+
+#: C:\Users\Famille\Documents\_Vincent\Site
+#: Internet\Galerie
+#: photo\themes\zpBootstrap/themeoptions.php:34
+msgid "You can display a slideshow with colorbox and you can choose the size of the displayed images."
+msgstr "È possibile visualizzare una presentazione con colorbox e si può scegliere la dimensione delle immagini visualizzate."
+
+#: C:\Users\Famille\Documents\_Vincent\Site
+#: Internet\Galerie
+#: photo\themes\zpBootstrap/themeoptions.php:36
+msgid "Display a link to the Archive list."
+msgstr "Consente di visualizzare un link agli archivi."
+
+#: C:\Users\Famille\Documents\_Vincent\Site
+#: Internet\Galerie
+#: photo\themes\zpBootstrap/themeoptions.php:37
+msgid "Check to show a tag cloud in Archive list, with all the tags of the gallery."
+msgstr "Consente di visualizzare una tag cloud presso l'Archivio, con tutti i tag della galleria."
+
+#: C:\Users\Famille\Documents\_Vincent\Site
+#: Internet\Galerie
+#: photo\themes\zpBootstrap/themeoptions.php:37
+msgid "Check to disable the warning message about plugins to disable."
+msgstr "È possibile rimuovere il messaggio di avviso sui plugin per disabilitare."
+
+#: C:\Users\Famille\Documents\_Vincent\Site
+#: Internet\Galerie
+#: photo\themes\zpBootstrap/functions.php:37
+msgid "<li>Disable <strong><em>Colorbox</em></strong> plugin (zpBoostrap uses and configures it's own colorbox and modal plugins)</li>"
+msgstr "<li>Disattivare il plugin <strong><em>Colorbox</em></strong> (zpBoostrap utilizzato e configura i suoi propri plugin colorbox e modal)</li>"
+
+#: C:\Users\Famille\Documents\_Vincent\Site
+#: Internet\Galerie
+#: photo\themes\zpBootstrap/functions.php:37
+msgid "<li>Disable <strong><em>Slideshow</em></strong> plugin (zpBoostrap uses and configures it's own colorbox plugin for the slideshow)</li>"
+msgstr "<li>Disattivare il plugin <strong><em>Slideshow</em></strong> (zpBoostrap configura e utilizza il proprio colorbox per slideshow)</li>"
+
+#: C:\Users\Famille\Documents\_Vincent\Site
+#: Internet\Galerie
+#: photo\themes\zpBootstrap/functions.php:37
+msgid "<h4>Warning</h4><p>There are some plugins that you should be disabled in admin</p>"
+msgstr "<h4>Attenzione</h4><p>Ci sono plugin che dovrebbero essere disattivati ​​nella somministrazione</p>"
+
+#: C:\Users\Famille\Documents\_Vincent\Site
+#: Internet\Galerie
+#: photo\themes\zpBootstrap/functions.php:37
+msgid "You can turn off this message in the theme options."
+msgstr "È possibile eliminare questo messaggio nelle opzioni del tema."
+

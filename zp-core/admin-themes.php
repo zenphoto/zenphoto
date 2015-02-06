@@ -203,17 +203,21 @@ if (count($themelist) == 0) {
 			$style = ($theme == $current_theme) ? ' ' . $current_theme_style : '';
 			$themedir = SERVERPATH . '/themes/' . internalToFilesystem($theme);
 			$themeweb = WEBPATH . "/themes/$theme";
+			$path = $themedir . '/logo.png';
+			if (file_exists($path)) {
+				$ico = $themeweb . '/logo.png';
+			} else {
+				$ico = NULL;
+			}
 			if (protectedTheme($theme, true)) {
 				$whose = 'Official theme';
-				$ico = 'images/zp_gold.png';
+				if (!$ico)
+					$ico = 'images/zp_gold.png';
 			} else {
 				$whose = gettext('Third party theme');
 				$path = $themedir . '/logo.png';
-				if (file_exists($path)) {
-					$ico = $themeweb . '/logo.png';
-				} else {
+				if (!$ico)
 					$ico = 'images/view.png';
-				}
 			}
 			?>
 			<tr>
