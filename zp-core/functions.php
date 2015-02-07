@@ -1518,6 +1518,7 @@ function safe_fnmatch($pattern, $string) {
 function zp_image_types($quote) {
 	global $_zp_images_classes;
 	$types = array_unique($_zp_images_classes);
+	$typelist = '';
 	foreach ($types as $type) {
 		$typelist .= $quote . strtolower($type) . 's' . $quote . ',';
 	}

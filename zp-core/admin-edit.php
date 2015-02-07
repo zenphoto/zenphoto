@@ -295,100 +295,84 @@ if (isset($_GET['action'])) {
 							if (!empty($action))
 								$notify = '&bulkmessage=' . $action;
 						} else {
-							$oldsort = sanitize($_POST['oldalbumimagesort'], 3);
-							if (getOption('albumimagedirection'))
-								$oldsort = $oldsort . '_desc';
 							if (isset($_POST['singleimage'])) {
 								$single = sanitize($_POST['singleimage']);
 							}
-							if (isset($single) || $oldsort == ($newsort = sanitize($_POST['albumimagesort'], 3))) {
-								for ($i = 0; $i < $_POST['totalimages']; $i++) {
-									$filename = sanitize($_POST["$i-filename"]);
-									$image = newImage($album, $filename, true);
-									if ($image->exists) { // The file might no longer exist
-										if (isset($_POST[$i . '-MoveCopyRename'])) {
-											$movecopyrename_action = sanitize($_POST[$i . '-MoveCopyRename'], 3);
-										} else {
-											$movecopyrename_action = '';
+							for ($i = 0; $i < $_POST['totalimages']; $i++) {
+								$filename = sanitize($_POST["$i-filename"]);
+								$image = newImage($album, $filename, true);
+								if ($image->exists) { // The file might no longer exist
+									if (isset($_POST[$i . '-MoveCopyRename'])) {
+										$movecopyrename_action = sanitize($_POST[$i . '-MoveCopyRename'], 3);
+									} else {
+										$movecopyrename_action = '';
+									}
+									if ($movecopyrename_action == 'delete') {
+										unset($single);
+										$image->remove();
+									} else {
+										if (isset($_POST[$i . '-reset_rating'])) {
+											$image->set('total_value', 0);
+											$image->set('total_votes', 0);
+											$image->set('used_ips', 0);
 										}
-										if ($movecopyrename_action == 'delete') {
-											unset($single);
-											$image->remove();
-										} else {
-											if (isset($_POST[$i . '-reset_rating'])) {
-												$image->set('total_value', 0);
-												$image->set('total_votes', 0);
-												$image->set('used_ips', 0);
-											}
-											$pubdate = $image->setPublishDate(sanitize($_POST['publishdate-' . $i]));
-											$image->setExpireDate(sanitize($_POST['expirationdate-' . $i]));
-											$image->setShow(isset($_POST["$i-Visible"]) && $pubdate <= date(date('Y-m-d H:i:s')));
-											$image->setTitle(process_language_string_save("$i-title", 2));
-											$image->setDesc(process_language_string_save("$i-desc", EDITOR_SANITIZE_LEVEL));
+										$pubdate = $image->setPublishDate(sanitize($_POST['publishdate-' . $i]));
+										$image->setExpireDate(sanitize($_POST['expirationdate-' . $i]));
+										$image->setShow(isset($_POST["$i-Visible"]) && $pubdate <= date(date('Y-m-d H:i:s')));
+										$image->setTitle(process_language_string_save("$i-title", 2));
+										$image->setDesc(process_language_string_save("$i-desc", EDITOR_SANITIZE_LEVEL));
 
-											if (isset($_POST[$i . '-oldrotation']) && isset($_POST[$i . '-rotation'])) {
-												$oldrotation = (int) $_POST[$i . '-oldrotation'];
-												$rotation = (int) $_POST[$i . '-rotation'];
-												if ($rotation != $oldrotation) {
-													$image->set('EXIFOrientation', $rotation);
-													$image->updateDimensions();
-													$album = $image->getAlbum();
-													Gallery::clearCache(SERVERCACHE . '/' . $album->name);
-												}
+										if (isset($_POST[$i . '-oldrotation']) && isset($_POST[$i . '-rotation'])) {
+											$oldrotation = (int) $_POST[$i . '-oldrotation'];
+											$rotation = (int) $_POST[$i . '-rotation'];
+											if ($rotation != $oldrotation) {
+												$image->set('EXIFOrientation', $rotation);
+												$image->updateDimensions();
+												$album = $image->getAlbum();
+												Gallery::clearCache(SERVERCACHE . '/' . $album->name);
 											}
-											$image->setCommentsAllowed(isset($_POST["$i-allowcomments"]));
-											if (isset($_POST["reset_hitcounter$i"])) {
-												$image->set('hitcounter', 0);
-											}
-											$image->set('filesize', filesize($image->localpath));
-											zp_apply_filter('save_image_custom_data', NULL, $i, $image);
-											zp_apply_filter('save_image_utilities_data', $image, $i);
-											$image->save();
+										}
+										$image->setCommentsAllowed(isset($_POST["$i-allowcomments"]));
+										if (isset($_POST["reset_hitcounter$i"])) {
+											$image->set('hitcounter', 0);
+										}
+										$image->set('filesize', filesize($image->localpath));
+										zp_apply_filter('save_image_custom_data', NULL, $i, $image);
+										zp_apply_filter('save_image_utilities_data', $image, $i);
+										$image->save();
 
 // Process move/copy/rename
-											if ($movecopyrename_action == 'move') {
-												unset($single);
-												$dest = sanitize_path($_POST[$i . '-albumselect']);
-												if ($dest && $dest != $folder) {
-													if ($e = $image->move($dest)) {
-														$notify = "&mcrerr=" . $e;
-													}
-												} else {
-// Cannot move image to same album.
-													$notify = "&mcrerr=2";
+										if ($movecopyrename_action == 'move') {
+											unset($single);
+											$dest = sanitize_path($_POST[$i . '-albumselect']);
+											if ($dest && $dest != $folder) {
+												if ($e = $image->move($dest)) {
+													$notify = "&mcrerr=" . $e;
 												}
-											} else if ($movecopyrename_action == 'copy') {
-												$dest = sanitize_path($_POST[$i . '-albumselect']);
-												if ($dest && $dest != $folder) {
-													if ($e = $image->copy($dest)) {
-														$notify = "&mcrerr=" . $e;
-													}
-												} else {
+											} else {
+// Cannot move image to same album.
+												$notify = "&mcrerr=2";
+											}
+										} else if ($movecopyrename_action == 'copy') {
+											$dest = sanitize_path($_POST[$i . '-albumselect']);
+											if ($dest && $dest != $folder) {
+												if ($e = $image->copy($dest)) {
+													$notify = "&mcrerr=" . $e;
+												}
+											} else {
 // Cannot copy image to existing album.
 // Or, copy with rename?
-													$notify = "&mcrerr=2";
-												}
-											} else if ($movecopyrename_action == 'rename') {
-												$renameto = sanitize_path($_POST[$i . '-renameto']);
-												if ($e = $image->rename($renameto)) {
-													$notify = "&mcrerr=" . $e;
-												} else {
-													$single = $renameto;
-												}
+												$notify = "&mcrerr=2";
+											}
+										} else if ($movecopyrename_action == 'rename') {
+											$renameto = sanitize_path($_POST[$i . '-renameto']);
+											if ($e = $image->rename($renameto)) {
+												$notify = "&mcrerr=" . $e;
+											} else {
+												$single = $renameto;
 											}
 										}
 									}
-								}
-							} else {
-								if (in_array(str_replace('_desc', '', $newsort), $_zp_sortby)) {
-									if (strpos($newsort, '_desc')) {
-										setOption('albumimagesort', substr($newsort, 0, -5));
-										setOption('albumimagedirection', 'DESC');
-									} else {
-										setOption('albumimagesort', $newsort);
-										setOption('albumimagedirection', '');
-									}
-									$notify = '&';
 								}
 							}
 						}
@@ -530,19 +514,6 @@ if (isset($_GET['action'])) {
 			}
 			break;
 	} // end of switch
-} else {
-	if (isset($_GET['albumimagesort'])) {
-		$newsort = sanitize($_GET['albumimagesort'], 3);
-		if (in_array(str_replace('_desc', '', $newsort), $_zp_sortby)) {
-			if (strpos($newsort, '_desc')) {
-				setOption('albumimagesort', substr($newsort, 0, -5), false);
-				setOption('albumimagedirection', 'DESC', false);
-			} else {
-				setOption('albumimagesort', $newsort, false);
-				setOption('albumimagedirection', '', false);
-			}
-		}
-	}
 }
 
 
@@ -712,7 +683,6 @@ echo "\n</head>";
 					$allimages = array();
 				} else {
 					$subalbums = getNestedAlbumList($album, $subalbum_nesting);
-					$allimages = $album->getImages(0, 0, $oldalbumimagesort, $direction);
 					if (!($album->subRights() & MANAGED_OBJECT_RIGHTS_EDIT)) {
 						$allimages = array();
 						$requestor = $_zp_current_admin_obj->getUser();
@@ -732,6 +702,8 @@ echo "\n</head>";
 							}
 							db_free_result($result);
 						}
+					} else {
+						$allimages = $album->getImages(0, 0, $oldalbumimagesort, $direction);
 					}
 				}
 				$allimagecount = count($allimages);
