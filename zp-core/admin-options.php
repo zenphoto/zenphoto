@@ -1250,7 +1250,7 @@ Zenphoto_Authority::printPasswordFormJS();
 									<td><?php echo gettext("Sort gallery by:"); ?></td>
 									<td>
 										<?php
-										$sort = $sortby;
+										$sort = $_zp_sortby;
 										$sort[gettext('Manual')] = 'manual';
 										$sort[gettext('Custom')] = 'custom';
 										/*
@@ -1634,7 +1634,7 @@ Zenphoto_Authority::printPasswordFormJS();
 									</td>
 								</tr>
 								<?php
-								$sort = $sortby;
+								$sort = $_zp_sortby;
 								$sort[gettext('Custom')] = 'custom';
 								?>
 								<tr>
@@ -1780,7 +1780,7 @@ Zenphoto_Authority::printPasswordFormJS();
 									<td><?php echo gettext("Sort images by"); ?></td>
 									<td>
 										<?php
-										$sort = $sortby;
+										$sort = $_zp_sortby;
 										$cvt = $cv = IMAGE_SORT_TYPE;
 										$sort[gettext('Custom')] = 'custom';
 

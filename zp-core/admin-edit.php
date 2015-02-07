@@ -269,10 +269,10 @@ if (isset($_GET['action'])) {
                 if (!empty($action))
                   $notify = '&bulkmessage=' . $action;
               } else {
-                $oldsort = sanitize($_POST['oldalbumimagesort'], 3);
+                $oldsort = checkAlbumimagesort(sanitize($_POST['oldalbumimagesort'], 3));
                 if (getOption('albumimagedirection'))
                   $oldsort = $oldsort . '_desc';
-                $newsort = sanitize($_POST['albumimagesort'], 3);
+                $newsort = checkAlbumimagesort(sanitize($_POST['albumimagesort'], 3));
                 if ($oldsort == $newsort) {
                   for ($i = 0; $i < $_POST['totalimages']; $i++) {
                     $filename = sanitize($_POST["$i-filename"]);
@@ -422,7 +422,7 @@ if (isset($_GET['action'])) {
 	} // end of switch
 } else {
 	if (isset($_GET['albumimagesort'])) {
-		$newsort = sanitize($_GET['albumimagesort'], 3);
+		$newsort = checkAlbumimagesort(sanitize($_GET['albumimagesort'],3));
 		if (strpos($newsort, '_desc')) {
 			setOption('albumimagesort', substr($newsort, 0, -5), false);
 			setOption('albumimagedirection', 'DESC', false);
@@ -698,7 +698,7 @@ echo "\n</head>";
 										} else {
 											$dir = '';
 										}
-										$sortNames = array_flip($sortby);
+										$sortNames = array_flip($_zp_sortby);
 										$sorttype = $sortNames[$sorttype];
 									} else {
 										$dir = '';
@@ -866,7 +866,7 @@ echo "\n</head>";
 
 											<td align="right">
 												<?php
-												$sort = $sortby;
+												$sort = $_zp_sortby;
 												foreach ($sort as $key => $value) {
 													$sort[sprintf(gettext('%s (descending)'), $key)] = $value . '_desc';
 												}
@@ -1620,7 +1620,7 @@ echo "\n</head>";
 							} else {
 								$dir = '';
 							}
-							$sortNames = array_flip($sortby);
+							$sortNames = array_flip($_zp_sortby);
 							$sorttype = $sortNames[$sorttype];
 						} else {
 							$dir = '';

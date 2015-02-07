@@ -166,18 +166,18 @@ function ksesProcess($input_string, $allowed_tags) {
  * @return type
  */
 function getBare($content) {
-	$content = preg_replace('~<script.*?/script>~is', '', $content);
-	$content = preg_replace('~<style.*?/style>~is', '', $content);
-	$content = preg_replace('~<!--.*?-->~is', '', $content);
-	$content = strip_tags($content);
-	$content = str_replace('&nbsp;', ' ', $content);
-	$content = html_entity_decode($content, ENT_QUOTES, 'UTF-8');
-	return $content;
+  $content = preg_replace('~<script.*?/script>~is', '', $content);
+  $content = preg_replace('~<style.*?/style>~is', '', $content);
+  $content = preg_replace('~<!--.*?-->~is', '', $content);
+  $content = strip_tags($content);
+  $content = str_replace('&nbsp;', ' ', $content);
+  $content = html_entity_decode($content, ENT_QUOTES, 'UTF-8');
+  return $content;
 }
 
 /** returns a sanitized string for the sanitize function
  * @param string $input_string
- * @param string $sanitize_level
+ * @param string $sanitize_level See sanitize()
  * @return string the sanitized string.
  */
 function sanitize_string($input, $sanitize_level) {
@@ -197,6 +197,7 @@ function sanitize_string($input, $sanitize_level) {
 			case 3:
 				// Full sanitation.  Strips all code.
 				return getBare($input);
+ 
 			case 1:
 				// Text formatting sanititation.
 				$input = sanitize_script($input);

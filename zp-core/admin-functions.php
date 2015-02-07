@@ -1148,7 +1148,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 * @since 1.1.3
 	 */
 	function printAlbumEditForm($index, $album, $buttons = true) {
-		global $sortby, $_zp_gallery, $mcr_albumlist, $_zp_albumthumb_selector, $_zp_current_admin_obj;
+		global $_zp_sortby, $_zp_gallery, $mcr_albumlist, $_zp_albumthumb_selector, $_zp_current_admin_obj;
 		$isPrimaryAlbum = '';
 		if (!zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 			$myalbum = $_zp_current_admin_obj->getAlbum();
@@ -1391,7 +1391,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						} else {
 							echo $custom;
 						}
-						$sort = $sortby;
+						$sort = $_zp_sortby;
 						if (!$album->isDynamic()) {
 							$sort[gettext('Manual')] = 'manual';
 						}
@@ -4843,4 +4843,20 @@ function clonedFrom() {
 		return dirname($zen);
 	}
 }
+
+/**
+ * Make sure the albumimagesort is only an allowed value. Otherwise returns nothing.
+ * @global array $_zp_sortby
+ * @param string $val
+ * @return string
+ */
+function checkAlbumimagesort($val) {
+  global $_zp_sortby;
+  foreach ($_zp_sortby as $sort) {
+    if ($val == $sort || $val == $sort . '_desc') {
+      return $val;
+    }
+  }
+}
+
 ?>

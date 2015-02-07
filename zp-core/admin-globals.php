@@ -22,7 +22,7 @@ if (OFFSET_PATH != 2 && !getOption('license_accepted')) {
 	require_once(dirname(__FILE__) . '/license.php');
 }
 
-$sortby = array(gettext('Filename')	 => 'filename',
+$_zp_sortby = array(gettext('Filename')	 => 'filename',
 				gettext('Date')			 => 'date',
 				gettext('Title')		 => 'title',
 				gettext('ID')				 => 'id',
