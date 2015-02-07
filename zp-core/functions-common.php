@@ -219,7 +219,7 @@ function getBare($content) {
 
 /** returns a sanitized string for the sanitize function
  * @param string $input_string
- * @param string $sanitize_level
+ * @param string $sanitize_level See sanitize()
  * @return string the sanitized string.
  */
 function sanitize_string($input, $sanitize_level) {

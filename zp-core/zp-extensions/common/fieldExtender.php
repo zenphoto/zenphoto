@@ -291,8 +291,9 @@ class fieldExtender {
 		foreach ($fields as $field) {
 			if ($field['table'] == $object->table) {
 				$newdata = fieldExtender::_saveHandler($object, $i, $field);
-				if (!is_null($newdata))
+				if (!is_null($newdata)) {
 					$object->set($field['name'], $newdata);
+				}
 			}
 		}
 		return $object;

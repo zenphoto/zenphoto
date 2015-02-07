@@ -242,6 +242,34 @@ if (isset($_GET['action'])) {
 			exitZP();
 			break;
 
+		/**
+		 * change sort order
+		 */
+		case "sortorder":
+			XSRFdefender('albumsortorder');
+			$oldsort = getOption('albumimagesort');
+			if (getOption('albumimagedirection'))
+				$oldsort = $oldsort . '_desc';
+			$newsort = sanitize($_POST['albumimagesort'], 3);
+			if ($newsort != $oldsort && in_array(str_replace('_desc', '', $newsort), $_zp_sortby)) {
+				if (strpos($newsort, '_desc')) {
+					setOption('albumimagesort', substr($newsort, 0, -5));
+					setOption('albumimagedirection', 'DESC');
+				} else {
+					setOption('albumimagesort', $newsort);
+					setOption('albumimagedirection', '');
+				}
+			}
+			$albumname = sanitize_path($_REQUEST['album']);
+			if (isset($_POST['subpage'])) {
+				$pg = '&subpage=' . sanitize($_POST['subpage']);
+			} else {
+				$pg = false;
+			}
+			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit&album=' . $albumname . $pg . '&tagsort=' . $tagsort . '&tab=imageinfo');
+			exitZP();
+			break;
+
 		/** SAVE ********************************************************************* */
 		/*		 * *************************************************************************** */
 		case "save":
@@ -352,14 +380,16 @@ if (isset($_GET['action'])) {
 									}
 								}
 							} else {
-								if (strpos($newsort, '_desc')) {
-									setOption('albumimagesort', substr($newsort, 0, -5));
-									setOption('albumimagedirection', 'DESC');
-								} else {
-									setOption('albumimagesort', $newsort);
-									setOption('albumimagedirection', '');
+								if (in_array(str_replace('_desc', '', $newsort), $_zp_sortby)) {
+									if (strpos($newsort, '_desc')) {
+										setOption('albumimagesort', substr($newsort, 0, -5));
+										setOption('albumimagedirection', 'DESC');
+									} else {
+										setOption('albumimagesort', $newsort);
+										setOption('albumimagedirection', '');
+									}
+									$notify = '&';
 								}
-								$notify = '&';
 							}
 						}
 					} else {
@@ -503,12 +533,14 @@ if (isset($_GET['action'])) {
 } else {
 	if (isset($_GET['albumimagesort'])) {
 		$newsort = sanitize($_GET['albumimagesort'], 3);
-		if (strpos($newsort, '_desc')) {
-			setOption('albumimagesort', substr($newsort, 0, -5), false);
-			setOption('albumimagedirection', 'DESC', false);
-		} else {
-			setOption('albumimagesort', $newsort, false);
-			setOption('albumimagedirection', '', false);
+		if (in_array(str_replace('_desc', '', $newsort), $_zp_sortby)) {
+			if (strpos($newsort, '_desc')) {
+				setOption('albumimagesort', substr($newsort, 0, -5), false);
+				setOption('albumimagedirection', 'DESC', false);
+			} else {
+				setOption('albumimagesort', $newsort, false);
+				setOption('albumimagedirection', '', false);
+			}
 		}
 	}
 }
@@ -790,7 +822,7 @@ echo "\n</head>";
 										} else {
 											$dir = '';
 										}
-										$sortNames = array_flip($sortby);
+										$sortNames = array_flip($_zp_sortby);
 										$sorttype = $sortNames[$sorttype];
 									} else {
 										$dir = '';
@@ -928,25 +960,57 @@ echo "\n</head>";
 							$albumHeritage[' ' . str_repeat('» ', count($t)) . basename($name)] = $name;
 						}
 						consolidatedEditMessages('imageinfo');
-						if ($singleimage) {
-							if (isset($_GET['subpage'])) {
-								$parent .= '&album=' . html_encode(pathurlencode($album->name)) . '&tab=imageinfo&subpage=' . html_encode(sanitize($_GET['subpage']));
-							}
-						} else {
-							$numsteps = ceil(max($allimagecount, $imagesTab_imageCount) / ADMIN_IMAGES_STEP);
-							if ($numsteps) {
-								$steps = array();
-								for ($i = 1; $i <= $numsteps; $i++) {
-									$steps[] = $i * ADMIN_IMAGES_STEP;
+						?>
+						<div style="padding-bottom:10px;">
+							<?php
+							echo gettext("Click on the image to change the thumbnail cropping.");
+							if ($singleimage) {
+								if (isset($_GET['subpage'])) {
+									$parent .= '&album=' . html_encode(pathurlencode($album->name)) . '&tab=imageinfo&subpage=' . html_encode(sanitize($_GET['subpage']));
+								}
+							} else {
+
+								$numsteps = ceil(max($allimagecount, $imagesTab_imageCount) / ADMIN_IMAGES_STEP);
+								if ($numsteps) {
+									?>
+									<?php
+									$steps = array();
+									for ($i = 1; $i <= $numsteps; $i++) {
+										$steps[] = $i * ADMIN_IMAGES_STEP;
+									}
+									printEditDropdown('imageinfo', $steps, $imagesTab_imageCount);
+									?>
+									<br style="clear:both"/><br />
+									<?php
 								}
 								?>
-								<div style="padding-bottom:10px;">
-									<?php printEditDropdown('imageinfo', $steps, $imagesTab_imageCount); ?>
-								</div>
-								<br style='clear:both'/>
+								<form  name="albumedit3" style="float: right;"	id="form_sortselect" action="?action=sortorder"	method="post" >
+									<?php XSRFToken('albumsortorder'); ?>
+									<input type="hidden" name="album"	value="<?php echo $album->name; ?>" />
+									<input type="hidden" name="subpage" value="<?php echo html_encode($pagenum); ?>" />
+									<input type="hidden" name="tagsort" value="<?php echo html_encode($tagsort); ?>" />
+									<?php
+									$sort = $_zp_sortby;
+									foreach ($sort as $key => $value) {
+										$sort[sprintf(gettext('%s (descending)'), $key)] = $value . '_desc';
+									}
+									$sort[gettext('Manual')] = 'manual';
+									ksort($sort, SORT_LOCALE_STRING);
+									if ($direction)
+										$oldalbumimagesort = $oldalbumimagesort . '_desc';
+									echo gettext("Display images by:");
+									echo '<select id="albumimagesort" name="albumimagesort" onchange="this.form.submit()">';
+									generateListFromArray(array($oldalbumimagesort), $sort, false, true);
+									echo '</select>';
+									?>
+								</form>
+
 								<?php
 							}
-						}
+							?>
+						</div>
+						<br style='clear:both'/>
+						<?php
 						if ($allimagecount) {
 							?>
 							<form class="dirtylistening" onReset="setClean('form_imageedit');" name="albumedit2"	id="form_imageedit" action="?page=edit&amp;action=save<?php echo "&amp;album=" . html_encode(pathurlencode($album->name)); ?>"	method="post" autocomplete="off" >
@@ -955,7 +1019,6 @@ echo "\n</head>";
 								<input type="hidden" name="totalimages" value="<?php echo $totalimages; ?>" />
 								<input type="hidden" name="subpage" value="<?php echo html_encode($pagenum); ?>" />
 								<input type="hidden" name="tagsort" value="<?php echo html_encode($tagsort); ?>" />
-								<input type="hidden" name="oldalbumimagesort" value="<?php echo html_encode($oldalbumimagesort); ?>" />
 								<?php
 								if ($singleimage) {
 									?>
@@ -966,40 +1029,6 @@ echo "\n</head>";
 
 								<?php $totalpages = ceil(($allimagecount / $imagesTab_imageCount)); ?>
 								<table class="bordered">
-									<?php
-									if (!$singleimage) {
-										?>
-										<tr>
-											<td><?php echo gettext("Click on the image to change the thumbnail cropping."); ?>	</td>
-
-											<td align="right">
-												<?php
-												$sort = $sortby;
-												foreach ($sort as $key => $value) {
-													$sort[sprintf(gettext('%s (descending)'), $key)] = $value . '_desc';
-												}
-												$sort[gettext('Manual')] = 'manual';
-												ksort($sort, SORT_LOCALE_STRING);
-												if ($direction)
-													$oldalbumimagesort = $oldalbumimagesort . '_desc';
-												echo gettext("Display images by:");
-												echo '<select id="albumimagesort" name="albumimagesort" onchange="this.form.submit()">';
-												generateListFromArray(array($oldalbumimagesort), $sort, false, true);
-												echo '</select>';
-												?>
-											</td>
-										</tr>
-										<?php
-										if ($allimagecount != $totalimages) { // need pagination links
-											?>
-											<tr>
-												<td colspan="4" class="bordered" id="imagenav"><?php adminPageNav($pagenum, $totalpages, 'admin-edit.php', '?page=edit&amp;tagsort=' . html_encode($tagsort) . '&amp;album=' . html_encode(pathurlencode($album->name)), '&amp;tab=imageinfo'); ?>
-												</td>
-											</tr>
-											<?php
-										}
-									}
-									?>
 									<tr>
 										<td colspan="4">
 											<p class="buttons">
@@ -1604,7 +1633,7 @@ echo "\n</head>";
 							} else {
 								$dir = '';
 							}
-							$sortNames = array_flip($sortby);
+							$sortNames = array_flip($_zp_sortby);
 							$sorttype = $sortNames[$sorttype];
 						} else {
 							$dir = '';
