@@ -52,22 +52,18 @@ div.jp-audio {
 }
 div.jp-video-270p {
 	max-width:480px;
-	max-height: 270px;
 }
 div.jp-video-360p {
 	max-width:640px;
 }
 div.jp-video-480p {
 	max-width:720px;
-	max-height: 480px;
 }
 div.jp-video-720p {
 	max-width:1280px;
-	max-height: 720px;
 }
 div.jp-video-1080p {
 	max-width:1920px;
-	max-height: 1080px;
 }
 
 div.jp-video-full {
