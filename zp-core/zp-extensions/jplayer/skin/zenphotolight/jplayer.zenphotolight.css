@@ -11,6 +11,10 @@
  * Skin Version: 1.1 (jPlayer 2.8.0)
  */
 
+button {
+	cursor: pointer;
+}
+
 div.jp-audio,
 div.jp-video {
 
@@ -181,6 +185,14 @@ button.jp-play:hover {
 	background: url("jplayer.zenphoto.png") -5px -31px no-repeat;
 }
 
+.jp-state-playing .jp-type-single button.jp-play {
+    background: url("jplayer.zenphoto.png") -108px 0 no-repeat;
+}
+
+.jp-state-playing .jp-type-single button.jp-play:hover {
+    background: url("jplayer.zenphoto.png") -108px -31px no-repeat;
+}
+
 button.jp-stop, button.jp-previous, button.jp-next {
 	width:22px;
 	height:22px;
@@ -313,15 +325,14 @@ div.jp-video button.jp-volume-max {
 button.jp-mute {
 	background: url("jplayer.zenphoto.png") -137px 0px no-repeat;
 }
-button.jp-mute:hover {
-	background: url("jplayer.zenphoto.png") -137px -31px no-repeat;
-}
-button.jp-unmute {
-	background: url("jplayer.zenphoto.png") -192px 0px no-repeat;
-	display: none;
-}
-button.jp-unmute:hover {
+
+button.jp-mute:hover,
+.jp-state-muted .jp-volume-controls .jp-mute:hover {
 	background: url("jplayer.zenphoto.png") -192px -31px no-repeat;
+}
+
+.jp-state-muted .jp-volume-controls .jp-mute {
+	background: url("jplayer.zenphoto.png") -192px 0 no-repeat;
 }
 
 button.jp-volume-max {
@@ -382,8 +393,10 @@ div.jp-audio div.jp-type-playlist div.jp-time-holder {
 
 div.jp-current-time,
 div.jp-duration {
+	position: relative;
 	width:30px;
 	font-size: 11px !important;
+	z-index: 10;
 }
 div.jp-current-time {
 	float: left;
@@ -391,8 +404,8 @@ div.jp-current-time {
 }
 div.jp-duration {
 	float: right;
-	display:inline;
 	text-align: right;
+	cursor: pointer;
 }
 
 div.jp-video div.jp-current-time {
@@ -440,6 +453,7 @@ div.jp-playlist {
 	width:100%;
 	background-color:#ddd;
 	border-top:1px solid lightgray;
+	padding: 2px 0;
 }
 div.jp-type-single div.jp-title,
 div.jp-type-playlist div.jp-title,
@@ -536,8 +550,8 @@ div.jp-video-play {
 	top:0;
 	left:0;
 	width:100%;
-	cursor:pointer;
 	background-color:rgba(0,0,0,0); /* Makes IE9 work with the active area over the whole video area. IE6/7/8 only have the button as active area. */
+	cursor: pointer;
 }
 div.jp-video-270p div.jp-video-play {
 	height:270px;
@@ -565,12 +579,7 @@ div.jp-video-full div.jp-video-play {
 div.jp-video-play:hover button.jp-video-play-icon {
 	background: url("jplayer.zenphoto.play.png") 0 -100px no-repeat;
 	border: none;
-	cursor: pointer;
 }
-
-
-
-
 
 div.jp-jplayer audio,
 div.jp-jplayer {
@@ -601,7 +610,7 @@ div.jp-audio .jp-type-single div.jp-toggles {
 	position: absolute;
 	top: -7px;
 	left: 205px;
-	width:22px;
+	width: 22px;
 }
 div.jp-audio .jp-type-playlist div.jp-toggles {
 	width:55px;
