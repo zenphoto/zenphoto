@@ -15,6 +15,10 @@ button {
 	cursor: pointer;
 }
 
+button::-moz-focus-inner {
+  border: 0;
+}
+
 div.jp-audio,
 div.jp-video {
 

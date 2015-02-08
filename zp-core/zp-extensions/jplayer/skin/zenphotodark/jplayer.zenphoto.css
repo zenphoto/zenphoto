@@ -15,6 +15,10 @@ button {
 	cursor: pointer;
 }
 
+button::-moz-focus-inner {
+  border: 0;
+}
+
 div.jp-audio,
 div.jp-video {
 
@@ -551,7 +555,7 @@ div.jp-video-play {
 	left:0;
 	width:100%;
 	background-color:rgba(0,0,0,0); /* Makes IE9 work with the active area over the whole video area. IE6/7/8 only have the button as active area. */
-	cursor: pointer;
+
 }
 div.jp-video-270p div.jp-video-play {
 	height:270px;
