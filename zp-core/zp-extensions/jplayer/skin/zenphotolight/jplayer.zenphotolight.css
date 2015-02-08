@@ -660,7 +660,11 @@ button.jp-repeat {
 }
 
 button.jp-repeat:hover {
-	background: url("jplayer.zenphoto.png") -279px -31px no-repeat;
+	background: url("jplayer.zenphoto.png") -279px -61px no-repeat;
+}
+
+.jp-state-looped .jp-repeat {
+	background: url("jplayer.zenphoto.png") -279px -61px no-repeat;
 }
 
 button.jp-shuffle {
