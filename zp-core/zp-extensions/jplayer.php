@@ -340,6 +340,8 @@ class jPlayer {
 			height: "' . $this->height . 'px",
 			cssClass: "' . $this->playersize . '"
 		},';
+		} else {
+			$playerconfig .= ',';
 		}
 
 		$playerconfig .= '
