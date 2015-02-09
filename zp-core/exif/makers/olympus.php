@@ -4,24 +4,24 @@
 //================================================================================================
 //================================================================================================
 /*
-  Exifer
-  Extracts EXIF information from digital photos.
+	Exifer
+	Extracts EXIF information from digital photos.
 
-  Copyright � 2003 Jake Olefsky
-  http://www.offsky.com/software/exif/index.php
-  jake@olefsky.com
+	Copyright � 2003 Jake Olefsky
+	http://www.offsky.com/software/exif/index.php
+	jake@olefsky.com
 
-  Please see exif.php for the complete information about this software.
+	Please see exif.php for the complete information about this software.
 
-  ------------
+	------------
 
-  This program is free software; you can redistribute it and/or modify it under the terms of
-  the GNU General Public License as published by the Free Software Foundation; either version 2
-  of the License, or (at your option) any later version.
+	This program is free software; you can redistribute it and/or modify it under the terms of
+	the GNU General Public License as published by the Free Software Foundation; either version 2
+	of the License, or (at your option) any later version.
 
-  This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
-  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-  See the GNU General Public License for more details. http://www.gnu.org/copyleft/gpl.html
+	This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+	without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+	See the GNU General Public License for more details. http://www.gnu.org/copyleft/gpl.html
  */
 
 //================================================================================================
@@ -71,8 +71,7 @@ function formatOlympusData($type, $tag, $intel, $data) {
 	} else if ($type == "URATIONAL" || $type == "SRATIONAL") {
 		$data = unRational($data, $type, $intel);
 		if ($intel == 1)
-			$data = i
-		ntel2Moto($data);
+			$data = intel2Moto($data);
 
 		if ($tag == "0204") { //DigitalZoom
 			$data = $data . "x";
@@ -91,19 +90,15 @@ function formatOlympusData($type, $tag, $intel, $data) {
 			else if ($data == 3)
 				$data = "SHQ";
 			else
-				$data = '
-
-		   gettext(  "Unknown") . ": "   .
-			 $data
-			;
-			}
-			if ($tag == "0202") { //Macro
+				$data = '!unknown!: ' . $data;
+		}
+		if ($tag == "0202") { //Macro
 			if ($data == 0)
-			$data = gettext ("Normal");
+				$data = '!normal!';
 			else if ($data == 1)
-			$data = gettext ("Macro");
+				$data = '!macro!';
 			else
-			$data = '!unknown!' . ": " . $data;
+				$data = '!unknown!: ' . $data;
 		}
 	} else if ($type == "UNDEFINED") {
 
@@ -155,10 +150,9 @@ function parseOlympus($block, &$result, $seek, $globalOffset) {
 	$num = bin2hex(substr($block, $place, $countfieldbits));
 	$place += 2;
 	if ($intel == 1)
-		$num = i
-	ntel2Moto($num);
+		$num = intel2Moto($num);
 	$ntags = hexdec($num);
-	$result['SubIFD  ']['    MakerNote']['MakerNoteNumTags'] = $ntags;
+	$result['SubIFD']['MakerNote']['MakerNoteNumTags'] = $ntags;
 
 	//loop thru all tags  Each field is 12 bytes
 	for ($i = 0; $i < $ntags; $i ++) {
@@ -166,24 +160,21 @@ function parseOlympus($block, &$result, $seek, $globalOffset) {
 		$tag = bin2hex(substr($block, $place, 2));
 		$place += 2;
 		if ($intel == 1)
-			$t
-		ag = intel2Moto($tag);
+			$tag = intel2Moto($tag);
 		$tag_name = lookup_Olympus_tag($tag);
 
 		//2 byte type
 		$type = bin2hex(substr($block, $place, 2));
 		$place += 2;
 		if ($intel == 1)
-			$t
-		ype = intel2Moto($type);
+			$type = intel2Moto($type);
 		lookup_type($type, $size);
 
 		//4 byte count of number of data units
 		$count = bin2hex(substr($block, $place, 4));
 		$place+=4;
 		if ($intel == 1)
-			$co
-		unt = intel2Moto($count);
+			$count = intel2Moto($count);
 		$bytesofdata = $size * hexdec($count);
 
 		//4 byte value of data or pointer to data
@@ -196,8 +187,7 @@ function parseOlympus($block, &$result, $seek, $globalOffset) {
 		} else {
 			$value = bin2hex($value);
 			if ($intel == 1)
-				$va
-			lue = intel2Moto($value);
+				$value = intel2Moto($value);
 			$v = fseek($seek, $globalOffset + hexdec($value)); //offsets are from TIFF header which is 12 bytes from the start of the file
 			if (isset($GLOBALS['exiferFileSize']) && $v == 0 && $bytesofdata < $GLOBALS['exiferFileSize']) {
 				$data = fread($seek, $bytesofdata);
@@ -213,14 +203,13 @@ function parseOlympus($block, &$result, $seek, $globalOffset) {
 			if ($type == "URATIONAL" || $type == "SRATIONAL" || $type == "USHORT" || $type == "SSHORT" || $type == "ULONG" || $type == "SLONG" || $type == "FLOAT" || $type == "DOUBLE") {
 				$data = bin2hex($data);
 				if ($intel == 1)
-					$da
-				ta = intel2Moto($data);
+					$data = intel2Moto($data);
 			}
 			$result['SubIFD']['MakerNote'][$tag_name . "_Verbose"]['RawData'] = $data;
 			$result['SubIFD']['MakerNote'][$tag_name . "_Verbose"]['Type'] = $type;
 			$result['SubIFD']['MakerNote'][$tag_name . "_Verbose"]['Bytes'] = $bytesofdata;
 		} else {
-			$result['SubIFD']['MakerNote   '][$tag_name] = $formated_data;
+			$result['SubIFD']['MakerNote'][$tag_name] = $formated_data;
 		}
 	}
 }
