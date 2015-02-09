@@ -1088,7 +1088,7 @@ define('SELECT_ARTICLES', 8);
  * @copyright (c)Stephen Billard for use with ZenPhoto20
  */
 function getAllTagsUnique($language = NULL, $count = 1, $returnCount = NULL) {
-	global $_zp_unique_tags, $_zp_count_tags, $_zp_current_locale;
+	global $_zp_unique_tags, $_zp_count_tags, $_zp_current_locale, $_zp_loggedin;
 	if (is_null($returnCount)) {
 		$list = &$_zp_unique_tags;
 	} else {
@@ -1111,7 +1111,7 @@ function getAllTagsUnique($language = NULL, $count = 1, $returnCount = NULL) {
 	if (!isset($list[$language][$count])) {
 		$list[$language][$count] = array();
 
-		if (zp_loggedin()) {
+		if (($_zp_loggedin & TAGS_RIGHTS) || ($_zp_loggedin & VIEW_UNPUBLISHED_PAGE_RIGHTS & VIEW_UNPUBLISHED_NEWS_RIGHTS & VIEW_UNPUBLISHED_RIGHTS == VIEW_UNPUBLISHED_PAGE_RIGHTS & VIEW_UNPUBLISHED_NEWS_RIGHTS & VIEW_UNPUBLISHED_RIGHTS)) {
 			$source = prefix('obj_to_tag');
 		} else {
 			// create a table of only "published" tag assignments
@@ -1123,12 +1123,17 @@ function getAllTagsUnique($language = NULL, $count = 1, $returnCount = NULL) {
 														KEY (tagid),
 														KEY (objectid)
 														) CHARACTER SET utf8 COLLATE utf8_unicode_ci');
-			$tables = array('images', 'albums');
+			$tables = array('images' => VIEW_UNPUBLISHED_RIGHTS, 'albums' => VIEW_UNPUBLISHED_RIGHTS);
 			if (extensionEnabled('zenpage')) {
-				$tables = array_merge($tables, array('pages', 'news'));
+				$tables = array_merge($tables, array('pages' => VIEW_UNPUBLISHED_PAGE_RIGHTS, 'news' => VIEW_UNPUBLISHED_NEWS_RIGHTS));
 			}
-			foreach ($tables as $table) {
-				$sql = 'INSERT INTO taglist SELECT tag.tagid, tag.type, tag.objectid FROM ' . prefix('obj_to_tag') . ' tag, ' . prefix($table) . ' object WHERE tag.type="' . $table . '" AND tag.objectid=object.id AND object.show=1';
+			foreach ($tables as $table => $rights) {
+				if ($_zp_loggedin & $rights) {
+					$show = '';
+				} else {
+					$show = ' AND tag.objectid=object.id AND object.show=1';
+				}
+				$sql = 'INSERT INTO taglist SELECT tag.tagid, tag.type, tag.objectid FROM ' . prefix('obj_to_tag') . ' tag, ' . prefix($table) . ' object WHERE tag.type="' . $table . '"' . $show;
 				query($sql);
 			}
 		}
