@@ -29,15 +29,29 @@ require_once(dirname(dirname(__FILE__)) . '/template-functions.php');
  * 		"toprated" for the best voted
  * 		"latestupdated" for the latest updated
  * 		"random" for random order (yes, strictly no statistical order...)
- * @param string $albumfolder The name of an album to get only the statistc for its subalbums
+ * @param string $albumfolder The name of an album to get only the statistc for its direct subalbums
  * @param integer $threshold the minimum number of ratings (for rating options) or hits (for popular option) an album must have to be included in the list. (Default 0)
+ * @param bool $collection only if $albumfolder is set: true if you want to get statistics to include all subalbum levels
  * @return array
  */
-function getAlbumStatistic($number = 5, $option, $albumfolder = '', $threshold = 0, $sortdirection = 'desc') {
+function getAlbumStatistic($number = 5, $option, $albumfolder = '', $threshold = 0, $sortdirection = 'desc', $collection = false) {
   global $_zp_gallery;
   if ($albumfolder) {
     $obj = newAlbum($albumfolder);
-    $albumWhere = ' WHERE `id` = ' . $obj->getID();
+    $albumWhere = ' WHERE parentid = ' . $obj->getID();
+    if($collection) {
+      $albumWhere = '';
+      $ids = getAllSubAlbumIDs($albumfolder);
+      if(!empty($ids)) {
+        foreach($ids as $id) {
+          $getids[] = $id['id'];
+        }
+        $getids = implode(', ',$getids);
+        $albumWhere = ' WHERE id IN ('. $getids.')';
+      } else {
+        $albumWhere = ' WHERE parentid = ' . $obj->getID();
+      }
+    } 
   } else {
     $obj = $_zp_gallery;
     $albumWhere = '';
@@ -406,6 +420,20 @@ function getImageStatistic($number, $option, $albumfolder = '', $collection = fa
   if ($albumfolder) {
     $obj = newAlbum($albumfolder);
     $albumWhere = ' AND albums.id = ' . $obj->getID();
+    if($collection) {
+      $albumWhere = '';
+      $ids = getAllSubAlbumIDs($albumfolder);
+      //echo "<pre>"; print_r($ids); echo "</pre>";
+      if(!empty($ids)) {
+        foreach($ids as $id) {
+            $getids[] = $id['id'];
+        }
+        $getids = implode(', ',$getids);
+        $albumWhere = ' AND albums.id IN ('. $getids.')';
+      } 
+    } else {
+      $albumWhere = ' AND albums.id = ' . $obj->getID();
+    }
   } else {
     $obj = $_zp_gallery;
     $albumWhere = '';
@@ -771,5 +799,4 @@ function getNumAllSubalbums($albumobj, $pre = '') {
 		return false;
 	}
 }
-
 ?>
