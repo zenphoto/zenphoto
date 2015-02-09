@@ -289,7 +289,6 @@ themes/zpBootstrap/functions.php
 themes/zpBootstrap/gallery.php
 themes/zpBootstrap/home.php
 themes/zpBootstrap/image.php
-themes/zpBootstrap/inc_footer.old.php
 themes/zpBootstrap/inc_footer.php
 themes/zpBootstrap/inc_header.php
 themes/zpBootstrap/inc_print_album_thumb.php
@@ -2355,4 +2354,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-2357
+2356

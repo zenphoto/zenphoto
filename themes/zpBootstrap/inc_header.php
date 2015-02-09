@@ -10,7 +10,7 @@ if ( !defined('WEBPATH') ) die();
 	<?php zp_apply_filter('theme_head'); ?>
 	<title>
 	<?php
-	echo getMainSiteName(); echo $_zp_gallery_page;
+	echo getMainSiteName();
 	if (($_zp_gallery_page == 'index.php') && ($isHomePage)) {echo ' | ' . gettext('Home'); }
 	if (($_zp_gallery_page == 'index.php') && (!$isHomePage)) {echo ' | ' . gettext('Gallery'); }
 	if ($_zp_gallery_page == '404.php') {echo ' | ' . gettext('Object not found'); }
