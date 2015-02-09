@@ -340,10 +340,18 @@ class jPlayer {
 			width: "100%",
 			height: "' . $this->height . 'px",
 			cssClass: "' . $this->playersize . '"
-		}';
+		},';
+		} else {
+			$playerconfig .= ',';
 		}
 
 		$playerconfig .= '
+			useStateClassSkin: true,
+			autoBlur: false,
+			smoothPlayBar: true,
+			keyEnabled: true,
+			remainingDuration: true,
+			toggleDuration: true
 			});
 		});
 	//]]>
@@ -381,15 +389,15 @@ class jPlayer {
 			$playerconfig .= $this->getPlayerHTMLparts($this->mode, 'toggles');
 			$playerconfig .= '
 						</div>';
+			$playerconfig .= '
+						</div>
+					</div>';
 			if (getOption('jplayer_showtitle')) {
 				$playerconfig .= '
 					<div class="jp-details">
 						<div class="jp-title" aria-label="title">' . html_encode($movietitle) . '</div>
 					</div>';
 			}
-			$playerconfig .= '
-					</div>
-				</div>';
 			$playerconfig .= $this->getPlayerHTMLparts($this->mode, 'no-solution');
 			$playerconfig .= '
 			</div>
@@ -471,7 +479,7 @@ class jPlayer {
 				if ($part == 'controls-playlist') {
 					$htmlpart .= '<button class="jp-next" role="button" tabindex="0">' . gettext('next') . '</button>	';
 				}
-				$htmlpart .= '<button class="jp-stop" role="button" tabindex="0">>' . gettext('stop') . '</button>';
+				$htmlpart .= '<button class="jp-stop" role="button" tabindex="0">' . gettext('stop') . '</button>';
 				$htmlpart .= '</div>';
 				break;
 			case 'toggles':
