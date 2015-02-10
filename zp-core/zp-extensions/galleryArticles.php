@@ -74,7 +74,7 @@ class galleryArticles {
 											'order'				 => 2,
 											'multilingual' => true,
 											'desc'				 => gettext('This text will be used as the <em>title</em> of the article. The album title will be substituted for <code>%1$s</code>.')),
-							gettext('size')							 => array('key'		 => 'galleryArticles_size', 'type'	 => OPTION_TYPE_TEXTBOX,
+							gettext('Size')							 => array('key'		 => 'galleryArticles_size', 'type'	 => OPTION_TYPE_TEXTBOX,
 											'order'	 => 5,
 											'desc'	 => gettext('Set the size the image will be displayed.')),
 							gettext('Publish protected') => array('key'		 => 'galleryArticles_protected', 'type'	 => OPTION_TYPE_CHECKBOX,
