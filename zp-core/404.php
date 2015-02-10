@@ -8,6 +8,9 @@ if (array_key_exists(0, $folders) && $folders[0] == CACHEFOLDER) {
 	require_once(SERVERPATH . '/' . ZENFOLDER . '/admin-functions.php');
 	require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cacheManager/functions.php');
 	unset($folders[0]);
+	if ($image) {
+		$folders[] = $image;
+	}
 	list($image, $args) = getImageProcessorURIFromCacheName(implode('/', $folders), getWatermarks());
 	if (file_exists(getAlbumFolder() . $image)) {
 		$uri = getImageURI($args, dirname($image), basename($image), NULL);
