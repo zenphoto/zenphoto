@@ -1272,8 +1272,17 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 								}
 							}
 							$filelist = '';
-							foreach ($installed_files as $extra) {
+							$report = $installed_files;
+							if (count($report) > 15) {
+								shuffle($report);
+								$report = array_slice($report, 0, 15);
+								natsort($report);
+							}
+							foreach ($report as $extra) {
 								$filelist .= filesystemToInternal(str_replace($base, '', $extra) . '<br />');
+							}
+							if ($report != $installed_files) {
+								$filelist .= '....<br />';
 							}
 							if (zpFunctions::hasPrimaryScripts() && count($installed_files) > 0) {
 								if (defined('TEST_RELEASE') && TEST_RELEASE) {

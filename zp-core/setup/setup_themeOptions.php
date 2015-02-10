@@ -11,12 +11,13 @@
 define('OFFSET_PATH', 2);
 require_once('setup-functions.php');
 require_once(dirname(dirname(__FILE__)) . '/admin-functions.php');
+$debug = TEST_RELEASE || isset($_GET['debug']);
 
 $iMutex = new Mutex('i', getOption('imageProcessorConcurrency'));
 $iMutex->lock();
 
 $theme = sanitize($_REQUEST['theme']);
-setupLog(sprintf(gettext('Theme:%s setup started'), $theme), true);
+setupLog(sprintf(gettext('Theme:%s setup started'), $theme));
 
 $requirePath = getPlugin('themeoptions.php', $theme);
 
@@ -26,12 +27,12 @@ if (!empty($requirePath)) {
 	/* prime the default theme options */
 	$_zp_gallery->setCurrentTheme($theme);
 	$optionHandler = new ThemeOptions();
-	setupLog(sprintf(gettext('Theme:%s option interface instantiated'), $theme), true);
+	setupLog(sprintf(gettext('Theme:%s option interface instantiated'), $theme));
 }
 /* then set any "standard" options that may not have been covered by the theme */
 standardThemeOptions($theme, NULL);
 /* and record that we finished */
-setupLog(sprintf(gettext('Theme:%s setup completed'), $theme), true);
+setupLog(sprintf(gettext('Theme:%s setup completed'), $theme));
 
 $iMutex->unlock();
 
