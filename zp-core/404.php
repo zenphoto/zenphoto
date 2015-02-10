@@ -13,14 +13,20 @@ if (array_key_exists(0, $folders) && $folders[0] == CACHEFOLDER) {
 	}
 	list($i, $args) = getImageProcessorURIFromCacheName(implode('/', $folders) . '/', getWatermarks());
 	if (file_exists(getAlbumFolder() . $i)) {
-		$uri = getImageURI($args, dirname($i), basename($i), NULL);
-		header("HTTP/1.0 302 Found");
-		header("Status: 302 Found");
-		header('Location: ' . $uri);
-		exitZP();
+		/* Prevent hotlinking to cache from other domains. */
+		if (isset($_SERVER['HTTP_REFERER'])) {
+			preg_match('|(.*)//([^/]*)|', $_SERVER['HTTP_REFERER'], $matches);
+			if (preg_replace('/^www\./', '', strtolower($_SERVER['SERVER_NAME'])) == preg_replace('/^www\./', '', strtolower($matches[2]))) {
+				//internal request
+				$uri = getImageURI($args, dirname($i), basename($i), NULL);
+				header("HTTP/1.0 302 Found");
+				header("Status: 302 Found");
+				header('Location: ' . $uri);
+				exitZP();
+			}
+		}
 	}
 }
-
 if (isset($_GET['fromlogout'])) {
 	header("HTTP/1.0 302 Found");
 	header("Status: 302 Found");
