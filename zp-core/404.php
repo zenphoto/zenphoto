@@ -11,9 +11,9 @@ if (array_key_exists(0, $folders) && $folders[0] == CACHEFOLDER) {
 	if ($image) {
 		$folders[] = $image;
 	}
-	list($image, $args) = getImageProcessorURIFromCacheName(implode('/', $folders), getWatermarks());
-	if (file_exists(getAlbumFolder() . $image)) {
-		$uri = getImageURI($args, dirname($image), basename($image), NULL);
+	list($i, $args) = getImageProcessorURIFromCacheName(implode('/', $folders) . '/', getWatermarks());
+	if (file_exists(getAlbumFolder() . $i)) {
+		$uri = getImageURI($args, dirname($i), basename($i), NULL);
 		header("HTTP/1.0 302 Found");
 		header("Status: 302 Found");
 		header('Location: ' . $uri);
@@ -27,7 +27,10 @@ if (isset($_GET['fromlogout'])) {
 	header('Location: ' . WEBPATH . '/index.php');
 	exitZP();
 }
-
+if (empty($image) && Gallery::imageObjectClass($album)) {
+	$image = basename($album);
+	$album = dirname($album);
+}
 $_404_data = array($album, $image, $obj = @$_zp_gallery_page, @$_index_theme, @$_zp_page);
 
 $_zp_gallery_page = '404.php';
