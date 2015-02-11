@@ -19,9 +19,10 @@ if (isset($_GET['bulkaction'])) {
 if (isset($_GET['deleted'])) {
 	$reports[] = "<p class='messagebox fade-message'>" . gettext("Article successfully deleted!") . "</p>";
 }
+
 if (isset($_POST['checkallaction'])) { // true if apply is pressed
 	XSRFdefender('checkeditems');
-	if ($action = processZenpageBulkActions('News')) {
+	if ($action = processZenpageBulkActions('Article')) {
 		bulkActionRedirect($action);
 	}
 }
