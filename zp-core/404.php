@@ -8,23 +8,35 @@ if (array_key_exists(0, $folders) && $folders[0] == CACHEFOLDER) {
 	require_once(SERVERPATH . '/' . ZENFOLDER . '/admin-functions.php');
 	require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cacheManager/functions.php');
 	unset($folders[0]);
-	list($image, $args) = getImageProcessorURIFromCacheName(implode('/', $folders), getWatermarks());
-	if (file_exists(getAlbumFolder() . $image)) {
-		$uri = getImageURI($args, dirname($image), basename($image), NULL);
-		header("HTTP/1.0 302 Found");
-		header("Status: 302 Found");
-		header('Location: ' . $uri);
-		exitZP();
+	if ($image) {
+		$folders[] = $image;
+	}
+	list($i, $args) = getImageProcessorURIFromCacheName(implode('/', $folders) . '/', getWatermarks());
+	if (file_exists(getAlbumFolder() . $i)) {
+		/* Prevent hotlinking to cache from other domains. */
+		if (isset($_SERVER['HTTP_REFERER'])) {
+			preg_match('|(.*)//([^/]*)|', $_SERVER['HTTP_REFERER'], $matches);
+			if (preg_replace('/^www\./', '', strtolower($_SERVER['SERVER_NAME'])) == preg_replace('/^www\./', '', strtolower($matches[2]))) {
+				//internal request
+				$uri = getImageURI($args, dirname($i), basename($i), NULL);
+				header("HTTP/1.0 302 Found");
+				header("Status: 302 Found");
+				header('Location: ' . $uri);
+				exitZP();
+			}
+		}
 	}
 }
-
 if (isset($_GET['fromlogout'])) {
 	header("HTTP/1.0 302 Found");
 	header("Status: 302 Found");
 	header('Location: ' . WEBPATH . '/index.php');
 	exitZP();
 }
-
+if (empty($image) && Gallery::imageObjectClass($album)) {
+	$image = basename($album);
+	$album = dirname($album);
+}
 $_404_data = array($album, $image, $obj = @$_zp_gallery_page, @$_index_theme, @$_zp_page);
 
 $_zp_gallery_page = '404.php';

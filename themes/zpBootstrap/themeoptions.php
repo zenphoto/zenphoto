@@ -65,16 +65,19 @@ class ThemeOptions {
 
 	function getOptionsSupported() {
 		return array(
-			gettext('Homepage') => array('order' => 1, 'key' => 'zpB_homepage', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext_th("Display a home page, with a slider of 5 random picts, the gallery description and the latest news.", 'zpBootstrap')),
-			gettext('Social Links') => array('order' => 2, 'key' => 'zpB_social_links', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext_th("Check to show some social links.", 'zpBootstrap')),
-			gettext('Allow search') => array('order' => 5, 'key' => 'allow_search', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext("Check to enable search form.")),
-			gettext('Archive View') => array('order' => 6, 'key' => 'zpB_show_archive', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext_th("Display a link to the Archive list.", 'zpBootstrap')),
-			gettext('Tags') => array('order' => 7, 'key' => 'zpB_show_tags', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext_th("Check to show a tag cloud in Archive list, with all the tags of the gallery.", 'zpBootstrap')),
-			gettext('Exif') => array('order' => 7, 'key' => 'zpB_show_exif', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext_th('Show the EXIF Data on Image page. Remember you have to check EXIFs data you want to show on admin>image>information EXIF.', 'zpBootstrap'))
+						gettext('Homepage')			 => array('order' => 1, 'key' => 'zpB_homepage', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext("Display a home page, with a slider of 5 random picts, the gallery description and the latest news.")),
+						gettext('Social Links')	 => array('order' => 2, 'key' => 'zpB_social_links', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext("Check to show some social links.")),
+						gettext('Allow search')	 => array('order' => 5, 'key' => 'allow_search', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext("Check to enable search form.")),
+						gettext('Archive View')	 => array('order' => 6, 'key' => 'zpB_show_archive', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext("Display a link to the Archive list.")),
+						gettext('Tags')					 => array('order' => 7, 'key' => 'zpB_show_tags', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext("Check to show a tag cloud in Archive list, with all the tags of the gallery.")),
+						gettext('Exif')					 => array('order' => 7, 'key' => 'zpB_show_exif', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Show the EXIF Data on Image page. Remember you have to check EXIFs data you want to show on admin>image>information EXIF.'))
 		);
 	}
 
 	function handleOption($option, $currentValue) {
+
 	}
+
 }
+
 ?>

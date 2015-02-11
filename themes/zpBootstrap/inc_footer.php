@@ -41,7 +41,7 @@
 	</div> <!-- /wrap -->
 
 	<!-- a supprimer en prod -->
-	<!--<div class="resize"></div>-->
+	<div class="resize"></div>
 
 	<?php zp_apply_filter('theme_body_close'); ?>
 

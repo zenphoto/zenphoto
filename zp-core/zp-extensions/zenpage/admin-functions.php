@@ -1563,9 +1563,7 @@ function processZenpageBulkActions($type) {
 				}
 				$n = 0;
 				foreach ($links as $titlelink) {
-					$class = 'Zenpage' . $type;
-					$obj = new $class($titlelink);
-
+					$obj = new $type($titlelink);
 					switch ($action) {
 						case 'deleteall':
 							$obj->remove();
@@ -1612,16 +1610,20 @@ function processZenpageBulkActions($type) {
 							$obj->setCategories(array());
 							break;
 						case 'showall':
-							$obj->set('show', 1);
+							$obj->setShow(1);
+							$obj->setPublishDate(NULL);
+							$obj->setExpireDate(NULL);
 							break;
 						case 'hideall':
-							$obj->set('show', 0);
+							$obj->setShow(0);
+							$obj->setPublishDate(NULL);
+							$obj->setExpireDate(NULL);
 							break;
 						case 'commentson':
-							$obj->set('commentson', 1);
+							$obj->setCommentsAllowed(1);
 							break;
 						case 'commentsoff':
-							$obj->set('commentson', 0);
+							$obj->setCommentsAllowed(0);
 							break;
 						case 'resethitcounter':
 							$obj->set('hitcounter', 0);
