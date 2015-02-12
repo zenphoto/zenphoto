@@ -16,4 +16,17 @@ function getNextPrevNews($option = 'Next', $sortorder = 'date', $sortdirection =
 	return $request($sortorder, $sortdirection);
 }
 
+/**
+ * Publishes a page or news article
+ *
+ * @param object $obj
+ * @param int $show the value for publishing
+ * @return string
+ */
+function zenpagePublish($obj, $show) {
+	deprecated_functions::notify(gettext('Use the setShow method directly.'));
+	$obj->setShow($show);
+	$obj->save();
+}
+
 ?>

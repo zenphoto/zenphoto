@@ -57,9 +57,9 @@ if (!empty($folder)) {
 	if ($new) {
 		mkdir_recursive($targetPath, FOLDER_MOD);
 		$album = newAlbum($folder);
-		$album->setShow((int) ($_POST['publishalbum'] == 'true'));
 		$album->setTitle(sanitize($_POST['albumtitle']));
 		$album->setOwner($_zp_current_admin_obj->getUser());
+		$album->setShow((int) ($_POST['publishalbum'] == 'true'));
 		$album->save();
 	}
 	@chmod($targetPath, FOLDER_MOD);

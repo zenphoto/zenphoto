@@ -37,7 +37,8 @@ if (isset($_GET['delete'])) {
 if (isset($_GET['publish'])) {
 	XSRFdefender('update');
 	$obj = newArticle(sanitize($_GET['titlelink']));
-	zenpagePublish($obj, sanitize_numeric($_GET['publish']));
+	$obj->setShow(sanitize_numeric($_GET['publish']));
+	$obj->save();
 }
 
 if (isset($_GET['commentson'])) {

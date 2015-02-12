@@ -14,51 +14,31 @@ $plugin_is_filter = 980 | ADMIN_PLUGIN;
 $plugin_description = gettext('Allows only users with Admin or Manage All rights to change the publish state of objects.');
 $plugin_author = "Stephen Billard (sbillard)";
 
-zp_register_filter('save_album_utilities_data', 'admin_approval::publishZenphoto');
-zp_register_filter('save_image_utilities_data', 'admin_approval::publishZenphoto');
-zp_register_filter('new_page', 'admin_approval::Zenpage');
-zp_register_filter('update_page', 'admin_approval::Zenpage');
-zp_register_filter('new_article', 'admin_approval::Zenpage');
-zp_register_filter('update_article', 'admin_approval::Zenpage');
-zp_register_filter('new_article', 'admin_approval::Zenpage');
-zp_register_filter('update_article', 'admin_approval::Zenpage');
+zp_register_filter('save_object', 'admin_approval::publish_object');
+zp_register_filter('edit_error', 'admin_approval::post_error');
 
 class admin_approval {
 
-	static function publish_object($object) {
-		$msg = '';
-		if (!zp_loggedin($object->manage_rights)) { // not allowed to change the published status
-			$data = $object->getData();
-			if (isset($data['show'])) {
-				$show = $data['show'];
-			} else {
-				$show = 0;
-			}
-			$newshow = $object->getShow();
-			$object->setShow($show);
-			if ($newshow != $show) {
-				$msg = gettext('You do not have rights to change the <em>publish</em> state.');
-			}
-		}
-		return $msg;
-	}
-
-	static function publishZenphoto($object, $i) {
+	static function publish_object($save, $object) {
 		global $_admin_approval_error;
-		$msg = admin_approval::publish_object($object);
-		if ($msg) {
-			$_admin_approval_error = $msg;
-			zp_register_filter('edit_error', 'admin_approval::post_error');
+		if (is_subclass_of($object, 'ThemeObject') && !zp_loggedin($object->manage_rights)) { // not allowed to change the published status
+			//	retrieve the original value of publish details
+			$data = $object->getData();
+			$show = (int) @$data['show'];
+			$pub = @$data['publishdate'];
+			$exp = @$data['expiredate'];
+			if ($object->getShow() != $show || $object->getPublishDate() != $pub || $object->getExpireDate() != $exp) { //	publish details have been changed, restore the original publish details
+				$object->set('show', $show);
+				$object->set('publishdate', $pub);
+				$object->set('expiredate', $exp);
+				$_admin_approval_error = gettext('You do not have rights to change the <em>publish</em> state.');
+				if (is_subclass_of($object, 'CMSItems')) {
+					$_admin_approval_error = '<p class="errorbox fade-message">' . $_admin_approval_error . '</p>';
+				}
+			}
 		}
-		return $object;
-	}
 
-	static function Zenpage($report, $object) {
-		$msg = admin_approval::publish_object($object);
-		if ($msg) {
-			$msg = '<p class="errorbox fade-message">' . $msg . '</p>';
-		}
-		return $report . $msg;
+		return $save;
 	}
 
 	static function post_error() {

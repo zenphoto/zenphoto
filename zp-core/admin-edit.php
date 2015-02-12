@@ -169,8 +169,6 @@ if (isset($_GET['action'])) {
 			XSRFdefender('albumedit');
 			$album = newAlbum($folder);
 			$album->setShow($_GET['value']);
-			$album->setPublishDate(NULL);
-			$album->setExpireDate(NULL);
 			$album->save();
 			$return = sanitize_path($r = $_GET['return']);
 			if (!empty($return)) {
@@ -318,7 +316,6 @@ if (isset($_GET['action'])) {
 										}
 										$pubdate = $image->setPublishDate(sanitize($_POST['publishdate-' . $i]));
 										$image->setExpireDate(sanitize($_POST['expirationdate-' . $i]));
-										$image->setShow(isset($_POST["$i-Visible"]) && $pubdate <= date(date('Y-m-d H:i:s')));
 										$image->setTitle(process_language_string_save("$i-title", 2));
 										$image->setDesc(process_language_string_save("$i-desc", EDITOR_SANITIZE_LEVEL));
 
@@ -337,6 +334,7 @@ if (isset($_GET['action'])) {
 											$image->set('hitcounter', 0);
 										}
 										$image->set('filesize', filesize($image->localpath));
+										$image->setShow(isset($_POST["$i-Visible"]));
 										zp_apply_filter('save_image_custom_data', NULL, $i, $image);
 										zp_apply_filter('save_image_utilities_data', $image, $i);
 										$image->save();

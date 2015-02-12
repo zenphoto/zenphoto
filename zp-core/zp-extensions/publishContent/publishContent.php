@@ -10,8 +10,6 @@ function unpublishSubalbums($album) {
 	foreach ($albums as $albumname) {
 		$subalbum = newAlbum($albumname);
 		$subalbum->setShow(false);
-		$subalbum->setPublishDate(NULL);
-		$subalbum->setExpireDate(NULL);
 		$subalbum->save();
 		unpublishSubalbums($subalbum);
 	}
@@ -37,8 +35,6 @@ if (isset($_POST['set_defaults'])) {
 			foreach ($_POST as $key => $albumid) {
 				$album = newAlbum(sanitize(postIndexDecode($key)));
 				$album->setShow(1);
-				$album->setExpireDate(NULL);
-				$album->setPublishDate(NULL);
 				$album->save();
 			}
 			$report = 'albums';
@@ -54,8 +50,6 @@ if (isset($_POST['set_defaults'])) {
 				switch (substr($action, 0, $i)) {
 					case 'pub':
 						$image->setShow(1);
-						$image->setExpireDate(NULL);
-						$image->setPublishDate(NULL);
 						$image->save();
 						break;
 					case 'del':
@@ -78,8 +72,6 @@ if (isset($_POST['set_defaults'])) {
 			foreach ($_POST as $key => $titlelink) {
 				$obj = newArticle($titlelink);
 				$obj->setShow(1);
-				$obj->setExpireDate(NULL);
-				$obj->setPublishDate(NULL);
 				$obj->save();
 			}
 			break;
@@ -87,8 +79,6 @@ if (isset($_POST['set_defaults'])) {
 			foreach ($_POST as $key => $titlelink) {
 				$obj = newPage($titlelink);
 				$obj->setShow(1);
-				$obj->setExpireDate(NULL);
-				$obj->setPublishDate(NULL);
 				$obj->save();
 			}
 			$report = 'pages';

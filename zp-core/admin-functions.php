@@ -1452,7 +1452,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 													 name="disclose_password<?php echo $suffix; ?>"
 													 id="disclose_password<?php echo $suffix; ?>"
 													 onclick="passwordClear('<?php echo $suffix; ?>');
-																	 togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?>
+															 togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?>
 									</label>
 								</td>
 								<td>
@@ -1805,9 +1805,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 name="<?php echo $prefix; ?>Published"
 										 value="1" <?php if ($album->getShow()) echo ' checked="checked"'; ?>
 										 onclick="$('#<?php echo $prefix; ?>publishdate').val('');
-													 $('#<?php echo $prefix; ?>expirationdate').val('');
-													 $('#<?php echo $prefix; ?>publishdate').css('color', 'black');
-													 $('.<?php echo $prefix; ?>expire').html('');"
+												 $('#<?php echo $prefix; ?>expirationdate').val('');
+												 $('#<?php echo $prefix; ?>publishdate').css('color', 'black');
+												 $('.<?php echo $prefix; ?>expire').html('');"
 										 />
 										 <?php echo gettext("Published"); ?>
 						</label>
@@ -1941,7 +1941,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 } else {
 											 ?>
 											 onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');
-															 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
+													 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
 											 <?php
 										 }
 										 ?> />
@@ -2436,7 +2436,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 		}
 		$pubdate = $album->setPublishDate(sanitize($_POST['publishdate-' . $prefix]));
 		$album->setExpireDate(sanitize($_POST['expirationdate-' . $prefix]));
-		$album->setShow(isset($_POST[$prefix . 'Published']) && $pubdate <= date(date('Y-m-d H:i:s')));
 		$fail = '';
 		processCredentials($album, $suffix);
 		$oldtheme = $album->getAlbumTheme();
@@ -2450,6 +2449,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			$album->setWatermark(sanitize($_POST[$prefix . 'album_watermark'], 3));
 			$album->setWatermarkThumb(sanitize($_POST[$prefix . 'album_watermark_thumb'], 3));
 		}
+		$album->setShow(isset($_POST[$prefix . 'Published']));
 
 		zp_apply_filter('save_album_custom_data', NULL, $prefix, $album);
 		zp_apply_filter('save_album_utilities_data', $album, $prefix);
@@ -4041,13 +4041,9 @@ function processAlbumBulkActions() {
 						break;
 					case 'showall':
 						$albumobj->setShow(1);
-						$albumobj->setPublishDate(NULL);
-						$albumobj->setExpireDate(NULL);
 						break;
 					case 'hideall':
 						$albumobj->setShow(0);
-						$albumobj->setPublishDate(NULL);
-						$albumobj->setExpireDate(NULL);
 						break;
 					case 'commentson':
 						$albumobj->setCommentsAllowed(1);
@@ -4129,14 +4125,10 @@ function processImageBulkActions($album) {
 						$imageobj->remove();
 						break;
 					case 'showall':
-						$imageobj->set('show', 1);
-						$imageobj->setPublishDate(NULL);
-						$imageobj->setExpireDate(NULL);
+						$imageobj->setShow(1);
 						break;
 					case 'hideall':
-						$imageobj->set('show', 0);
-						$imageobj->setPublishDate(NULL);
-						$imageobj->setExpireDate(NULL);
+						$imageobj->setShow(0);
 						break;
 					case 'commentson':
 						$imageobj->set('commentson', 1);
@@ -5034,7 +5026,7 @@ function linkPickerIcon($obj, $id = NULL, $extra = NULL) {
 	}
 	?>
 	<a onclick="<?php echo $clickid; ?>$('.pickedObject').removeClass('pickedObject');
-				$('#<?php echo $iconid; ?>').addClass('pickedObject');<?php linkPickerPick($obj, $id, $extra); ?>" title="<?php echo gettext('pick source'); ?>">
+			$('#<?php echo $iconid; ?>').addClass('pickedObject');<?php linkPickerPick($obj, $id, $extra); ?>" title="<?php echo gettext('pick source'); ?>">
 		<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" id="<?php echo $iconid; ?>">
 	</a>
 	<?php

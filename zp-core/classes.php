@@ -256,10 +256,11 @@ class PersistentObject {
 	/**
 	 *
 	 * returns the database record of the object
+	 * NOTE: if you want to be sure that the data is merged, save the object before invoking this function
+	 *
 	 * @return array
 	 */
 	function getData() {
-		$this->save();
 		return $this->data;
 	}
 
@@ -336,6 +337,10 @@ class PersistentObject {
 			zp_error('empty $this->unique set is empty');
 			return false;
 		}
+		if (!zp_apply_filter('save_object', true, $this)) {
+			// filter aborted the save
+			return false;
+		}
 		if (!$this->id) {
 			$this->setDefaults();
 			$insert_data = array_merge($this->unique_set, $this->updates);
@@ -394,7 +399,6 @@ class PersistentObject {
 				$this->updates = array();
 			}
 		}
-		zp_apply_filter('save_object', true, $this);
 		$this->addToCache($this->data);
 		return true;
 	}
@@ -504,9 +508,28 @@ class ThemeObject extends PersistentObject {
 	function setShow($show) {
 		$old_show = $this->get('show');
 		$new_show = (int) ($show && true);
-		$this->set('show', $new_show);
-		if ($old_show != $new_show && $this->get('id')) {
-			zp_apply_filter('show_change', $this);
+		if ($old_show != $new_show) {
+			$this->set('show', $new_show);
+			if ($this->get('id')) {
+				zp_apply_filter('show_change', $this);
+			}
+			if ($this->get('show') != $new_show) { //	filtere did not reverse the change
+				$p = $this->get("publishdate");
+				$d = date('Y-m-d H:i:s');
+				if ($new_show) { //	going from unpublished to published
+					if ($p && $p > $d) {
+						$this->setPublishDate($d); // "kill" scheduled publish
+					}
+					$this->setExpireDate(NULL); // "kill" any scheduled expiry
+				} else { //	going from published to unpulbished
+					if ($p && $p <= $d) {
+						$this->setPublishDate(NULL); // "kill" scheduled publish
+					}
+					if (($e = $this->get("expiredate")) && ($e > date('Y-m-d H:i:s'))) {
+						$this->setExpireDate(NULL); // "kill" scheduled expiry
+					}
+				}
+			}
 		}
 	}
 

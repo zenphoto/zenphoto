@@ -224,12 +224,12 @@ class galleryArticles {
 			$desc = '<p><a class="' . $class . '" href="' . $obj->getLink() . '"><img src="' . $imglink . '"></a></p><p>' . $obj->getDesc() . '</p>';
 		}
 		$article->setContent($desc);
-		$article->setShow(true);
 		$date = $obj->getPublishDate();
 		if (!$date)
 			$date = date('Y-m-d H:i:s');
 		$article->setDateTime($date);
 		$article->setAuthor('galleryArticles');
+		$article->setShow(true);
 		$article->save();
 		if ($override) {
 			$cat = $override;

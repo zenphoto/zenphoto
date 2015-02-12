@@ -113,8 +113,6 @@ function updatePage(&$reports, $newpage = false) {
 	$notice = processCredentials($page);
 	$page->setTitle($title);
 	$page->setContent($content);
-	$page->setShow($show);
-	$page->setDateTime($date);
 	$page->setCommentsAllowed($commentson);
 	$page->setAuthor($author);
 	$page->setLastchange($lastchange);
@@ -132,6 +130,7 @@ function updatePage(&$reports, $newpage = false) {
 		$page->set('used_ips', 0);
 	}
 	processTags($page);
+	$page->setShow($show);
 
 	if ($newpage) {
 		$msg = zp_apply_filter('new_page', '', $page);
@@ -160,6 +159,7 @@ function updatePage(&$reports, $newpage = false) {
 	}
 	zp_apply_filter('save_page_custom_data', NULL, $page);
 	$page->save();
+	$msg = zp_apply_filter('edit_error', $msg);
 	if ($msg) {
 		$reports[] = $msg;
 	}
@@ -409,7 +409,6 @@ function updateArticle(&$reports, $newarticle = false) {
 	$article = newArticle($titlelink, true);
 	$article->setTitle($title);
 	$article->setContent($content);
-	$article->setShow($show);
 	$article->setDateTime($date);
 	$article->setCommentsAllowed($commentson);
 	$article->setAuthor($author);
@@ -438,6 +437,7 @@ function updateArticle(&$reports, $newarticle = false) {
 		}
 	}
 	$article->setCategories($categories);
+	$article->setShow($show);
 	if ($newarticle) {
 		$msg = zp_apply_filter('new_article', '', $article);
 		if (empty($title)) {
@@ -457,6 +457,7 @@ function updateArticle(&$reports, $newarticle = false) {
 	}
 	zp_apply_filter('save_article_custom_data', NULL, $article);
 	$article->save();
+	$msg = zp_apply_filter('edit_error', $msg);
 
 	if ($msg) {
 		$reports[] = $msg;
@@ -878,7 +879,6 @@ function updateCategory(&$reports, $newcategory = false) {
 	$cat->setPermalink(getcheckboxState('permalink'));
 	$cat->set('title', $title);
 	$cat->setDesc($desc);
-	$cat->setShow($show);
 	if (getcheckboxState('resethitcounter')) {
 		$cat->set('hitcounter', 0);
 	}
@@ -887,6 +887,7 @@ function updateCategory(&$reports, $newcategory = false) {
 		$cat->set('total_votes', 0);
 		$cat->set('used_ips', 0);
 	}
+	$cat->setShow($show);
 
 	if ($newcategory) {
 		$msg = zp_apply_filter('new_category', '', $cat);
@@ -918,6 +919,7 @@ function updateCategory(&$reports, $newcategory = false) {
 	}
 	zp_apply_filter('save_category_custom_data', NULL, $cat);
 	$cat->save();
+	$msg = zp_apply_filter('edit_error', $msg);
 	if ($msg) {
 		$reports[] = $msg;
 	}
@@ -1223,20 +1225,6 @@ function checkForEmptyTitle($titlefield, $type, $truncate = true) {
 		$title = "<span style='color:red; font-weight: bold'>" . $text . "</span>";
 	}
 	echo $title;
-}
-
-/**
- * Publishes a page or news article
- *
- * @param object $obj
- * @param int $show the value for publishing
- * @return string
- */
-function zenpagePublish($obj, $show) {
-	$obj->setExpireDate(NULL);
-	$obj->setPublishDate(NULL);
-	$obj->setShow($show);
-	$obj->save();
 }
 
 /**
@@ -1611,13 +1599,9 @@ function processZenpageBulkActions($type) {
 							break;
 						case 'showall':
 							$obj->setShow(1);
-							$obj->setPublishDate(NULL);
-							$obj->setExpireDate(NULL);
 							break;
 						case 'hideall':
 							$obj->setShow(0);
-							$obj->setPublishDate(NULL);
-							$obj->setExpireDate(NULL);
 							break;
 						case 'commentson':
 							$obj->setCommentsAllowed(1);
