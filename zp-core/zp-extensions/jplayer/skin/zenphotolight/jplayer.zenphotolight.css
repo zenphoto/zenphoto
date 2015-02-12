@@ -187,11 +187,11 @@ button.jp-play:hover {
 	background: url("jplayer.zenphoto.png") -5px -31px no-repeat;
 }
 
-.jp-state-playing .jp-type-single button.jp-play {
+.jp-state-playing button.jp-play {
     background: url("jplayer.zenphoto.png") -108px 0 no-repeat;
 }
 
-.jp-state-playing .jp-type-single button.jp-play:hover {
+.jp-state-playing button.jp-play:hover {
     background: url("jplayer.zenphoto.png") -108px -31px no-repeat;
 }
 

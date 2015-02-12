@@ -27,7 +27,7 @@ div.jp-video {
 	/* Edit the font-size to counteract inherited font sizing.
 	 * Eg. 1.25em = 1 / 0.8em
 	 */
-
+	display: table;
 	font-size:12px !important; /* 1.25em for testing in site pages */ /* No parent CSS that can effect the size in the demos ZIP */
 	font-weight: normal;
 	font-family:Arial,Helvetica, Verdana, sans-serif;
@@ -187,11 +187,11 @@ button.jp-play:hover {
 	background: url("jplayer.zenphoto.png") -5px -31px no-repeat;
 }
 
-.jp-state-playing .jp-type-single button.jp-play {
+.jp-state-playing button.jp-play {
     background: url("jplayer.zenphoto.png") -108px 0 no-repeat;
 }
 
-.jp-state-playing .jp-type-single button.jp-play:hover {
+.jp-state-playing button.jp-play:hover {
     background: url("jplayer.zenphoto.png") -108px -31px no-repeat;
 }
 
@@ -337,6 +337,10 @@ button.jp-mute:hover,
 	background: url("jplayer.zenphoto.png") -192px 0 no-repeat;
 }
 
+.jp-state-muted .jp-volume-controls .jp-mute:hover {
+	background: url("jplayer.zenphoto.png") -192px 0 no-repeat;
+}
+
 button.jp-volume-max {
 	background: url("jplayer.zenphoto.png") -160px 0px no-repeat;
 }
@@ -447,7 +451,7 @@ div.jp-audio div.jp-type-playlist div.jp-duration {
 
 div.jp-title {
 	font-weight:bold;
-	text-align:center;
+	text-align:center !important;
 }
 
 div.jp-title,
@@ -651,15 +655,13 @@ button.jp-full-screen:hover {
 	background: url("jplayer.zenphoto.png") -220px -31px no-repeat;
 }
 
-button.jp-repeat {
+button.jp-repeat,
+button.jp-repeat:hover {
 	background: url("jplayer.zenphoto.png") -279px 0px no-repeat;
 }
 
-button.jp-repeat:hover {
-	background: url("jplayer.zenphoto.png") -279px -61px no-repeat;
-}
-
-.jp-state-looped .jp-repeat {
+.jp-state-looped .jp-repeat,
+.jp-state-looped .jp-repeat:hover {
 	background: url("jplayer.zenphoto.png") -279px -61px no-repeat;
 }
 

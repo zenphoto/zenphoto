@@ -115,9 +115,9 @@ class jplayer_options {
 			setOptionDefault('jplayer_skin', 'zenphotolight');
 			setOptionDefault('jplayer_counterparts', 0);
 			/* TODO: what are these sizes?
-				$player = new jPlayer();
-				cacheManager::deleteThemeCacheSizes('jplayer');
-				cacheManager::addThemeCacheSize('jplayer', NULL, $player->width, $player->height, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+			  $player = new jPlayer();
+			  cacheManager::deleteThemeCacheSizes('jplayer');
+			  cacheManager::addThemeCacheSize('jplayer', NULL, $player->width, $player->height, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 			 */
 		}
 	}
@@ -125,9 +125,9 @@ class jplayer_options {
 	function getOptionsSupported() {
 		$skins = getjPlayerSkins();
 		/*
-			The player size is entirely styled via the CSS skin so there is no free size option. For audio (without thumb/poster) that is always 480px width.
-			The original jPlayer skin comes with 270p (480x270px) and 360p (640x360px) sizes for videos but the zenphoto custom skin comes with some more like 480p and 1080p.
-			If you need different sizes than you need to make your own skin (see the skin option for info about that)
+		  The player size is entirely styled via the CSS skin so there is no free size option. For audio (without thumb/poster) that is always 480px width.
+		  The original jPlayer skin comes with 270p (480x270px) and 360p (640x360px) sizes for videos but the zenphoto custom skin comes with some more like 480p and 1080p.
+		  If you need different sizes than you need to make your own skin (see the skin option for info about that)
 		 */
 
 		return array(gettext('Autoplay')									 => array('key'	 => 'jplayer_autoplay', 'type' => OPTION_TYPE_CHECKBOX,
@@ -347,9 +347,6 @@ class jPlayer {
 
 		$playerconfig .= '
 			useStateClassSkin: true,
-			autoBlur: false,
-			smoothPlayBar: true,
-			keyEnabled: true,
 			remainingDuration: true,
 			toggleDuration: true
 			});
@@ -597,8 +594,8 @@ class jPlayer {
 		foreach ($suffixes as $suffix) {
 			$filesuffix = $suffix;
 			/* if($suffix == 'oga') {
-				$filesuffix = 'ogg';
-				} */
+			  $filesuffix = 'ogg';
+			  } */
 			$counterpart = str_replace($ext, $filesuffix, $moviepath);
 			//$suffix = str_replace('.','',$suffix);
 			if (file_exists(str_replace(FULLWEBPATH, SERVERPATH, $counterpart))) {
@@ -679,7 +676,7 @@ class jPlayer {
 					}
 					$playtime = '';
 					if (getOption('jplayer_playlist_playtime')) {
-							$playtime = ' (' . $video->get('VideoPlaytime') . ')';
+						$playtime = ' (' . $video->get('VideoPlaytime') . ')';
 					}
 					?>
 						{
@@ -717,6 +714,12 @@ class jPlayer {
 									cssClass: "<?php echo $this->playersize; ?>"
 					}
 			<?php } ?>
+				useStateClassSkin: true,
+								autoBlur: false,
+								smoothPlayBar: true,
+								keyEnabled: true,
+								remainingDuration: true,
+								toggleDuration: true
 				});
 				});
 								//]]>
