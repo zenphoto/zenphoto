@@ -346,9 +346,6 @@ class jPlayer {
 
 		$playerconfig .= '
 			useStateClassSkin: true,
-			autoBlur: false,
-			smoothPlayBar: true,
-			keyEnabled: true,
 			remainingDuration: true,
 			toggleDuration: true
 			});
@@ -710,21 +707,27 @@ class jPlayer {
 			?>
 				], {
 				swfPath: "<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/jplayer/js",
-								solution: "flash,html",
-			<?php if ($option == 'playlist') { ?>
+				solution: "flash,html",
+				<?php if ($option == 'playlist') { ?>
 					supplied: "m4v, mp4, m4a, mp3, fla, flv<?php echo $this->supplied_counterparts; ?>"
-			<?php } else { ?>
+				<?php } else { ?>
 					supplied: "m4a, mp3, fla<?php echo $this->supplied_counterparts; ?>"
 				<?php
-			}
-			if ($option != 'playlist-audio') {
+				}
+				if ($option != 'playlist-audio') {
 				?>
-					, size: {
+				, size: {
 					width: "<?php echo $this->width; ?>px",
-									height: "<?php echo $this->height; ?>px",
-									cssClass: "<?php echo $this->playersize; ?>"
-					}
-			<?php } ?>
+					height: "<?php echo $this->height; ?>px",
+					cssClass: "<?php echo $this->playersize; ?>"
+					},
+				<?php } ?>
+				useStateClassSkin: true,
+				autoBlur: false,
+				smoothPlayBar: true,
+				keyEnabled: true,
+				remainingDuration: true,
+				toggleDuration: true
 				});
 				});
 								//]]>
