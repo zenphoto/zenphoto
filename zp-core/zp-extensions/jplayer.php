@@ -346,9 +346,6 @@ class jPlayer {
 
 		$playerconfig .= '
 			useStateClassSkin: true,
-			autoBlur: false,
-			smoothPlayBar: true,
-			keyEnabled: true,
 			remainingDuration: true,
 			toggleDuration: true
 			});
