@@ -2470,10 +2470,11 @@ function getMacros() {
  *
  * @param $subalbum root level album (NULL is the gallery)
  * @param $levels how far to nest
+ * @param $checkalbumrights TRUE (Default) for album rights for backend usage, FALSE to skip for frontend usage 
  * @param $level internal for keeping the sort order elements
  * @return array
  */
-function getNestedAlbumList($subalbum, $levels, $level = array()) {
+function getNestedAlbumList($subalbum, $levels, $checkalbumrights = true, $level = array()) {
 	global $_zp_gallery;
 	$cur = count($level);
 	$levels--; // make it 0 relative to sync with $cur
@@ -2485,11 +2486,15 @@ function getNestedAlbumList($subalbum, $levels, $level = array()) {
 	$list = array();
 	foreach ($albums as $analbum) {
 		$albumobj = newAlbum($analbum);
-		if (!is_null($subalbum) || $albumobj->isMyItem(ALBUM_RIGHTS)) {
+  $accessallowed = true;
+  if($checkalbumrights) {
+    $accessallowed = $albumobj->isMyItem(ALBUM_RIGHTS);
+  } 
+		if (!is_null($subalbum) || $accessallowed) {
 			$level[$cur] = sprintf('%03u', $albumobj->getSortOrder());
 			$list[] = array('name' => $analbum, 'sort_order' => $level);
 			if ($cur < $levels && ($albumobj->getNumAlbums()) && !$albumobj->isDynamic()) {
-				$list = array_merge($list, getNestedAlbumList($albumobj, $levels + 1, $level));
+				$list = array_merge($list, getNestedAlbumList($albumobj, $levels + 1, $checkalbumrights, $level));
 			}
 		}
 	}

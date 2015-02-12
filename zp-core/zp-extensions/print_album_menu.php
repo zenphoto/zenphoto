@@ -352,7 +352,7 @@ function printAlbumMenuJump($option = "count", $indexname = "Gallery Index", $fi
 					<?php
 				}
 		}
-    $albums = getNestedAlbumList(null, $showsubs);
+    $albums = getNestedAlbumList(null, $showsubs, false);
     foreach($albums as $album) {
       $albumobj = newAlbum($album['name'], true);
       $count = '';
