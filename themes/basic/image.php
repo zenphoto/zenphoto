@@ -21,6 +21,12 @@ if (!defined('WEBPATH'))
 						href: "#imagemetadata",
 						close: '<?php echo gettext("close"); ?>'
 					});
+					$(".fullimage").colorbox({
+						maxWidth: "98%",
+						maxHeight: "98%",
+						photo: true,
+						close: '<?php echo gettext("close"); ?>'
+					});
 				});
 				// ]]> -->
 			</script>
@@ -67,7 +73,7 @@ if (!defined('WEBPATH'))
 					}
 					if (!empty($fullimage)) {
 						?>
-						<a href="<?php echo html_encode(pathurlencode($fullimage)); ?>" title="<?php printBareImageTitle(); ?>">
+						<a href="<?php echo html_encode(pathurlencode($fullimage)); ?>" title="<?php printBareImageTitle(); ?>" class="fullimage">
 							<?php
 						}
 						if (function_exists('printUserSizeImage') && isImagePhoto()) {
@@ -96,7 +102,7 @@ if (!defined('WEBPATH'))
 				@call_user_func('printSlideShowLink');
 
 				if (getImageMetaData()) {
-					printImageMetadata(NULL, 'colorbox');
+					printImageMetadata(NULL, 'colorbox_meta');
 					?>
 					<br class="clearall" />
 					<?php

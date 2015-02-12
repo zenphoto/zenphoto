@@ -101,8 +101,8 @@ class Article extends CMSItems {
 			$newobj = newArticle($newID);
 			$newobj->setTitle($newtitle);
 			$newobj->setTags($this->getTags(false));
-			$newobj->setShow(0);
 			$newobj->setDateTime('');
+			$newobj->setShow(0);
 			$newobj->save();
 			$categories = array();
 			foreach ($this->getCategories() as $cat) {
@@ -380,7 +380,7 @@ class Article extends CMSItems {
 	/**
 	 * Return the previous article
 	 *
- * @return object
+	 * @return object
 	 */
 	function getPrevArticle() {
 		global $_zp_CMS;

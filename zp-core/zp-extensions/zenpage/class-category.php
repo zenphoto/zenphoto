@@ -201,9 +201,9 @@ class Category extends CMSRoot {
 		if ($id) {
 			$newobj = newCategory($newID);
 			$newobj->setTitle($newtitle);
-			$newobj->setShow(1);
 			$newobj->setSortOrder(NULL);
 			$newobj->setDateTime(date('Y-m-d H:i:s'));
+			$newobj->setShow(1);
 			$newobj->save();
 			return $newobj;
 		}

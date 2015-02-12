@@ -86,10 +86,10 @@ class AlbumBase extends MediaObject {
 		}
 // Set default data for a new Album (title and parent_id)
 		$parentalbum = NULL;
-		$this->setShow($_zp_gallery->getAlbumPublish());
 		$this->set('mtime', time());
 		$title = trim($this->name);
 		$this->set('title', $title);
+		$this->setShow($_zp_gallery->getAlbumPublish());
 		return true;
 	}
 

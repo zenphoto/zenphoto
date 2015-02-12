@@ -150,9 +150,9 @@ class Image extends MediaObject {
 	 */
 	protected function setDefaults() {
 		global $_zp_gallery;
-		$this->setShow($_zp_gallery->getImagePublish());
 		$this->set('mtime', $this->filemtime);
 		$this->updateDimensions(); // deal with rotation issues
+		$this->setShow($_zp_gallery->getImagePublish());
 	}
 
 	/**
