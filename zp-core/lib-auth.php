@@ -852,6 +852,9 @@ class Zenphoto_Authority {
 		if (is_null($redirect)) {
 			$redirect = getRequestURI();
 		}
+		if (is_null($showUserField)) {
+			$showUserField = $_zp_gallery->getUserLogonField();
+		}
 
 		$cycle = sanitize_numeric(@$_GET['cycle']) + 1;
 		if (isset($_POST['user'])) {
