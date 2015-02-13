@@ -60,7 +60,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>edit_album_custom_data</strong></span>(<em>string, album, prefix</em>)</p>
 					<!-- description(Admin.Media)-edit_album_custom_data --><p>Allows a plugin to manage custom data for images. This invocation is for when the image is presented for editing.</p><!--e-->
-					<p class="handlers">For example see <em>plugin</em>/favoritesHandler.php</p>
+					<p class="handlers">For example see <em>plugin</em>/common/fieldExtender.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">admin-functions.php</li>
@@ -78,24 +78,25 @@
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>edit_error</strong></span>(<em>string</em>)</p>
-					<!-- description(Admin.Media)-edit_error --><p>Provides an interface for plugins to report errors when processing image or album saves.</p><!--e-->
+					<!-- description(Admin.Media)-edit_error --><p>Provides an interface for plugins to report errors when saves.</p><!--e-->
 					<p class="handlers">For example see <em>plugin</em>/admin-approval.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">admin-edit.php</li>
+						<li class="call_list"><em>plugin</em>/zenpage/admin-functions.php (3)</li>
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>edit_image_custom_data</strong></span>(<em>string, image, currentimage</em>)</p>
 					<!-- description(Admin.Media)-edit_image_custom_data --><p>Allows a plugin to manage custom data for images. This invocation is for when the comment is presented for editing.</p><!--e-->
-					<p class="handlers">For example see <em>plugin</em>/favoritesHandler.php</p>
+					<p class="handlers">For example see <em>plugin</em>/common/fieldExtender.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">admin-edit.php</li>
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
-					<p class="filterdef"><span class="inlinecode"><strong>edit_image_utilities</strong></span>(<em>string, image, currentimage, pagenum, tagsort</em>)</p>
+					<p class="filterdef"><span class="inlinecode"><strong>edit_image_utilities</strong></span>(<em>string, image, currentimage, pagenum, tagsort, singleimage</em>)</p>
 					<!-- description(Admin.Media)-edit_image_utilities --><p>Allows a plugin to place items in the <em>utilities</em> area for images. This invocation is for when the image is presented for editing.</p><!--e-->
 					<p class="handlers">For example see <em>plugin</em>/rating.php</p>
 					<p class="calls">Invoked from:</p>
@@ -324,7 +325,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>new_article</strong></span>(<em>string, article</em>)</p>
 					<!-- description(Admin.Zenpage)-new_article --><p>Invoked when a new news article is created.</p><!--e-->
-					<p class="handlers">For example see <em>plugin</em>/tweet_news.php</p>
+					<p class="handlers">For example see <em>plugin</em>/multiple_layouts.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list"><em>plugin</em>/zenpage/admin-functions.php</li>
@@ -342,7 +343,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>new_page</strong></span>(<em>string, page</em>)</p>
 					<!-- description(Admin.Zenpage)-new_page --><p>Invoked when a new Zenpage page is created.</p><!--e-->
-					<p class="handlers">For example see <em>plugin</em>/tweet_news.php</p>
+					<p class="handlers">For example see <em>plugin</em>/multiple_layouts.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list"><em>plugin</em>/zenpage/admin-functions.php</li>
@@ -525,7 +526,7 @@
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">admin.php (4)</li>
-						<li class="call_list">setup/setup-option-defaults.php</li>
+						<li class="call_list">setup/index.php (2)</li>
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
@@ -666,7 +667,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>getLink</strong></span>(<em>string, plain</em>)</p>
 					<!-- description(Object.Media)-getLink --><p>Called each time a URL is generated.</p><!--e-->
-					<p class="handlers">For example see <em>theme</em>/paradigm/functions.php</p>
+					<p class="handlers">For example see <em>theme</em>/zpbase/functions.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">class-album.php</li>
@@ -745,7 +746,7 @@
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>copy_object</strong></span>(<em>bool, object, new_unique_set</em>)</p>
-					<!-- description(Object.Root_class)-copy_object --><p>Invoked when an object"s <tt>copy</tt> method is called.</p><!--e-->
+					<!-- description(Object.Root_class)-copy_object --><p>Invoked when an object's <tt>copy</tt> method is called.</p><!--e-->
 					<p class="handlers">For example see <em>plugin</em>/multiple_layouts.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
@@ -754,7 +755,7 @@
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>move_object</strong></span>(<em>bool, object, new_unique_set</em>)</p>
-					<!-- description(Object.Root_class)-move_object --><p>Invoked when an object"s <tt>move</tt> method is called.</p><!--e-->
+					<!-- description(Object.Root_class)-move_object --><p>Invoked when an object's <tt>move</tt> method is called.</p><!--e-->
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">classes.php</li>
@@ -771,7 +772,7 @@
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>remove_object</strong></span>(<em>bool, object</em>)</p>
-					<!-- description(Object.Root_class)-remove_object --><p>Invoked when an object"s <tt>remove</tt> method is called.</p><!--e-->
+					<!-- description(Object.Root_class)-remove_object --><p>Invoked when an object's <tt>remove</tt> method is called.</p><!--e-->
 					<p class="handlers">For example see <em>plugin</em>/multiple_layouts.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
@@ -780,7 +781,8 @@
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>save_object</strong></span>(<em>bool, object</em>)</p>
-					<!-- description(Object.Root_class)-save_object --><p>Invoked when an object"s <tt>save</tt> method is invoked.</p><!--e-->
+					<!-- description(Object.Root_class)-save_object --><p>Invoked when an object's <tt>save</tt> method is invoked.</p><!--e-->
+					<p class="handlers">For example see <em>plugin</em>/admin-approval.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">classes.php</li>
@@ -872,7 +874,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>admin_toolbox_global</strong></span>(<em>zf</em>)</p>
 					<!-- description(Template.Miscellaneous)-admin_toolbox_global --><p>Allows plugins to insert links into the <em>general</em> part of the "admin toolbox".</p><!--e-->
-					<p class="handlers">For example see <em>plugin</em>/favoritesHandler.php</p>
+					<p class="handlers">For example see <em>plugin</em>/zenpage.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">template-functions.php</li>
@@ -1028,7 +1030,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>theme_head</strong></span>(<em></em>)</p>
 					<!-- description(Theme.Script)-theme_head --><p>Invoked by all themes just after the &lt;head&gt; HTML tag.</p><!--e-->
-					<p class="handlers">For example see <em>plugin</em>/jcarousel_thumb_nav.php</p>
+					<p class="handlers">For example see <em>plugin</em>/bxslider_thumb_nav.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">password.php</li>
@@ -1130,7 +1132,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>admin_login_attempt</strong></span>(<em>_zp_loggedin, post_user, post_pass</em>)</p>
 					<!-- description(User_management.Miscellaneous)-admin_login_attempt --><p>Reports logon attempts.</p><!--e-->
-					<p class="handlers">For example see <em>plugin</em>/user-expiry.php</p>
+					<p class="handlers">For example see <em>plugin</em>/ipBlocker.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">lib-auth.php</li>
@@ -1176,7 +1178,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>federated_login_attempt</strong></span>(<em>bool, user</em>)</p>
 					<!-- description(User_management.Miscellaneous)-federated_login_attempt --><p>Invoked when a user logs on via the Federated_Logon plugin. (As opposed to logging on through the normal authentication mechanism)</p><!--e-->
-					<p class="handlers">For example see <em>plugin</em>/user-expiry.php</p>
+					<p class="handlers">For example see <em>plugin</em>/ipBlocker.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list"><em>plugin</em>/federated_logon.php</li>
