@@ -632,13 +632,13 @@ if ($deprecate) {
 	if ($listed != getOption('deprecated_functions_signature')) {
 		setOption('deprecated_functions_signature', $listed);
 		enableExtension('deprecated-functions', 900 | CLASS_PLUGIN);
-		setupLog(gettext('There has been a change function deprecation. The deprecated-functions plugin has been enabled.'), true);
+		setupLog(gettext('There has been a change in function deprecation. The deprecated-functions plugin has been enabled.'), true);
 	}
 	$compatibility = sha1(serialize($themes)) . sha1(serialize($plugins));
 	if ($compatibility != getOption('zenphotoCompatibilityPack_signature')) {
 		setOption('zenphotoCompatibilityPack_signature', $compatibility);
 		enableExtension('zenphotoCompatibilityPack', 1 | CLASS_PLUGIN);
-		setupLog(gettext('There has been a change themes or plugins. The zenphotoCompatibilityPack plugin has been enabled.'), true);
+		setupLog(gettext('There has been a change of themes or plugins. The zenphotoCompatibilityPack plugin has been enabled.'), true);
 	}
 }
 
