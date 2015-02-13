@@ -22,6 +22,10 @@
  * This plugin can help to throttle these attacks. It works by monitoring failed logon attempts.
  * If a defined threashold is exceeded by requests from a particular IP
  * address, further access attempts from that IP accress will be ignored until a timeout has expired.
+ *
+ * <b>IP list importing</b>
+ *
+ * IP addresses may be supplied in a text file, one IP per line. Upload the text file to the <i>%UPLOAD_FOLDER%</i> folder.
 
  * @author Stephen Billard (sbillard)
  *
