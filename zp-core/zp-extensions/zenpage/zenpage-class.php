@@ -790,7 +790,7 @@ class Zenpage {
 				$counter = "";
 				foreach ($albums as $album) {
 					$counter++;
-					$tempalbum = newAlbum($album['folder']);
+					$tempalbum = $album;
 					$tempalbumthumb = $tempalbum->getAlbumThumbImage();
 					$timestamp = $tempalbum->get('mtime');
 					if ($timestamp == 0) {
