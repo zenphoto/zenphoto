@@ -335,7 +335,7 @@ class ExternalFeed extends feed {
 	 */
 	protected function getItemGallery($item) {
 		if ($this->mode == "albums") {
-			$albumobj = newAlbum($item['folder']);
+			$albumobj = $item;
 			$totalimages = $albumobj->getNumImages();
 			$itemlink = $this->host . pathurlencode($albumobj->getLink());
 			$thumb = $albumobj->getAlbumThumbImage();
