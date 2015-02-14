@@ -215,22 +215,25 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 					break;
 			}
 			break;
-		case "latestupdated":
-			$albums = getAlbumStatistic($to_number, 'latestupdated', '');
-			$maxvalue = 1;
-			if (!empty($albums)) {
-				foreach ($albums as $key => $album) {
-					$albumobj = newAlbum($album['folder']);
-					if ($albumobj->loaded)
-						$albums[$key]['imagenumber'] = $albumobj->getNumImages();
-				}
-			}
-			$itemssorted = $albums;
-			$headline = $typename . " - " . gettext("latest updated");
-			break;
-	}
+ case "latestupdated":
+      $albums = getAlbumStatistic($to_number, 'latestupdated', '');
+      $maxvalue = 1;
+      if (!empty($albums)) {
+        $stats_albums = array();
+        foreach ($albums as $key => $albumobj) {
+          if ($albumobj->loaded) {
+            $stats_albums[$key]['title'] = $albumobj->getTitle();
+            $stats_albums[$key]['folder'] = $albumobj->name;
+            $stats_albums[$key]['imagenumber'] = $albumobj->getNumImages();
+          }
+        }
+      }
+      $itemssorted = $stats_albums;
+      $headline = $typename . " - " . gettext("latest updated");
+      break;
+  }
 
-	if ($maxvalue == 0 || empty($itemssorted)) {
+  if ($maxvalue == 0 || empty($itemssorted)) {
 		$maxvalue = 1;
 		$no_hitcount_enabled_msg = '';
 		if ($sortorder == 'popular' && $type != 'rss' && !extensionEnabled('hitcounter')) {
@@ -270,7 +273,7 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 		} else if ($type === "pages" OR $type === "news") {
 			$name = $item['titlelink'];
 		} else if ($type === "newscategories") {
-			$name = $item['title'];
+			$name = $item['titlelink'];
 		} else if ($type === "tags") {
 			$name = "";
 		}
@@ -396,12 +399,12 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 			case "newscategories":
 				$editurl = $webpath . '/' . PLUGIN_FOLDER . "/zenpage/admin-categories.php?edit&amp;id=" . $item['id'];
 				$viewurl = WEBPATH . "/index.php?p=news&amp;category=" . $name;
-				$title = get_language_string($item['titlelink']);
+				$title = get_language_string($item['title']);
 				break;
 			case "tags":
 				$editurl = $webpath . "/admin-tags.php";
 				$viewurl = WEBPATH . "/index.php?p=search&amp;searchfields=tags&amp;words=" . $item['name'];
-				$title = get_language_string($item['name']);
+				$title = $item['name'];
 				break;
 			case "rss":
 				$editurl = '';

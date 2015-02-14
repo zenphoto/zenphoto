@@ -430,7 +430,6 @@ function getImageStatistic($number, $option, $albumfolder = '', $collection = fa
     if ($collection) {
       $albumWhere = '';
       $ids = getAllSubAlbumIDs($albumfolder);
-      //echo "<pre>"; print_r($ids); echo "</pre>";
       if (!empty($ids)) {
         foreach ($ids as $id) {
           $getids[] = $id['id'];
