@@ -25,6 +25,10 @@
 	border: 0;
 }
 
+.jp-video button {
+	cursor: pointer;
+}
+
 div.jp-audio,
 div.jp-video {
 
@@ -582,7 +586,6 @@ div.jp-video-full div.jp-video-play {
 div.jp-video-play:hover button.jp-video-play-icon {
 	background: url("jplayer.zenphoto.play.png") 0 -100px no-repeat;
 	border: none;
-	cursor: pointer;
 }
 
 div.jp-jplayer audio,
