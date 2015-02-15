@@ -1217,7 +1217,7 @@ function debugLog($message, $reset = false) {
 				} else {
 					$clone = ' ' . gettext('clone');
 				}
-				fwrite($f, '{' . $me . ':' . gmdate('D, d M Y H:i:s') . " GMT} ZenPhoto20 v" . ZENPHOTO_VERSION . '[' . ZENPHOTO_FULL_RELEASE . ']' . $clone . "\n");
+				fwrite($f, '{' . $me . ':' . gmdate('D, d M Y H:i:s') . " GMT} ZenPhoto20 v" . ZENPHOTO_VERSION . $clone . "\n");
 			}
 		} else {
 			$f = fopen($path, 'a');
