@@ -11,15 +11,19 @@
  * Skin Version: 1.1 (jPlayer 2.8.0)
  */
 
-button {
-	cursor: pointer;
+.jp-audio *:focus,
+.jp-audio-stream *:focus,
+.jp-video *:focus {
+	/* Disable the browser focus highlighting. */
+	outline:none;
 }
 
-button::-moz-focus-inner {
-  border: 0;
+.jp-audio button::-moz-focus-inner,
+.jp-audio-stream button::-moz-focus-inner,
+.jp-video button::-moz-focus-inner {
+	/* Disable the browser CSS3 focus highlighting. */
+	border: 0;
 }
-
-* {outline: none;}
 
 div.jp-audio,
 div.jp-video {
@@ -578,6 +582,7 @@ div.jp-video-full div.jp-video-play {
 div.jp-video-play:hover button.jp-video-play-icon {
 	background: url("jplayer.zenphoto.play.png") 0 -100px no-repeat;
 	border: none;
+	cursor: pointer;
 }
 
 div.jp-jplayer audio,
