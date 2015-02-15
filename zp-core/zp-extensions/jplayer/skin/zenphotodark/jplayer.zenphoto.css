@@ -11,15 +11,23 @@
  * Skin Version: 1.1 (jPlayer 2.8.0)
  */
 
-button {
+.jp-audio *:focus,
+.jp-audio-stream *:focus,
+.jp-video *:focus {
+	/* Disable the browser focus highlighting. */
+	outline:none;
+}
+
+.jp-audio button::-moz-focus-inner,
+.jp-audio-stream button::-moz-focus-inner,
+.jp-video button::-moz-focus-inner {
+	/* Disable the browser CSS3 focus highlighting. */
+	border: 0;
+}
+
+.jp-video button {
 	cursor: pointer;
 }
-
-button::-moz-focus-inner {
-  border: 0;
-}
-
-* {outline: none;}
 
 div.jp-audio,
 div.jp-video {
@@ -324,19 +332,12 @@ div.jp-video button.jp-volume-max {
 	left: 124px;
 }
 
-button.jp-mute {
+button.jp-mute,
+button.jp-mute:hover {
 	background: url("jplayer.zenphoto.png") -137px 0px no-repeat;
 }
 
-button.jp-mute:hover,
-.jp-state-muted .jp-volume-controls .jp-mute:hover {
-	background: url("jplayer.zenphoto.png") -192px -31px no-repeat;
-}
-
-.jp-state-muted .jp-volume-controls .jp-mute {
-	background: url("jplayer.zenphoto.png") -192px 0 no-repeat;
-}
-
+.jp-state-muted .jp-volume-controls .jp-mute,
 .jp-state-muted .jp-volume-controls .jp-mute:hover {
 	background: url("jplayer.zenphoto.png") -192px 0 no-repeat;
 }

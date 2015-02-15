@@ -3853,39 +3853,39 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 		<!-- search form -->
 		<form method="post" action="<?php echo $searchurl; ?>" id="search_form">
 			<script type="text/javascript">
-					// <!-- <![CDATA[
-					var within = <?php echo (int) $within; ?>;
-					function search_(way) {
-						within = way;
-						if (way) {
-							$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
+				// <!-- <![CDATA[
+				var within = <?php echo (int) $within; ?>;
+				function search_(way) {
+					within = way;
+					if (way) {
+						$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
+					} else {
+						lastsearch = '';
+						$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
+					}
+					$('#search_input').val('');
+				}
+				$('#search_form').submit(function () {
+					if (within) {
+						var newsearch = $.trim($('#search_input').val());
+						if (newsearch.substring(newsearch.length - 1) == ',') {
+							newsearch = newsearch.substr(0, newsearch.length - 1);
+						}
+						if (newsearch.length > 0) {
+							$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
 						} else {
-							lastsearch = '';
-							$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
+							$('#search_input').val('<?php echo $searchwords; ?>');
 						}
-						$('#search_input').val('');
 					}
-					$('#search_form').submit(function () {
-						if (within) {
-							var newsearch = $.trim($('#search_input').val());
-							if (newsearch.substring(newsearch.length - 1) == ',') {
-								newsearch = newsearch.substr(0, newsearch.length - 1);
-							}
-							if (newsearch.length > 0) {
-								$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
-							} else {
-								$('#search_input').val('<?php echo $searchwords; ?>');
-							}
-						}
-						return true;
-					});
-					function search_all() {
-						//search all is copyright by Stephen Billard for use in ZenPhoto20. All rights reserved
-						var check = $('#SEARCH_checkall').prop('checked');
-						$('.SEARCH_checkall').prop('checked', check);
-					}
+					return true;
+				});
+				function search_all() {
+					//search all is copyright by Stephen Billard for use in ZenPhoto20. All rights reserved
+					var check = $('#SEARCH_checkall').prop('checked');
+					$('.SEARCH_checkall').prop('checked', check);
+				}
 
-					// ]]> -->
+				// ]]> -->
 			</script>
 			<?php echo $prevtext; ?>
 			<div>
@@ -4232,7 +4232,7 @@ function exposeZenPhotoInformations($obj = '', $plugins = '', $theme = '') {
 
 	$a = basename($obj);
 	if ($a != 'full-image.php') {
-		echo "\n<!-- zenphoto version " . ZENPHOTO_VERSION . " [" . ZENPHOTO_FULL_RELEASE . "]";
+		echo "\n<!-- zenphoto version " . ZENPHOTO_VERSION;
 		echo " THEME: " . $theme . " (" . $a . ")";
 		$graphics = zp_graphicsLibInfo();
 		$graphics = str_replace('<br />', ', ', $graphics['Library_desc']);
