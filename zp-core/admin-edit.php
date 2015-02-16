@@ -1173,6 +1173,18 @@ echo "\n</head>";
 																	<?php
 																	$splits = preg_split('/!([(0-9)])/', $image->get('EXIFOrientation'));
 																	$rotation = $splits[0];
+																	$rotation_90 = 8;
+																	$rotation_270 = 6;
+																	if ( !getOption('use_imagick') ) {
+																		if ( in_array($rotation, array(6)) ) {
+																			$rotation_270 = 8;
+																			$rotation_90 = 6;
+																		}
+																		if ( in_array($rotation, array(8)) ) {
+																			$rotation_90 = 6;
+																			$rotation_270 = 8;
+																		}
+																	}
 																	if (!in_array($rotation, array(3, 6, 8))) {
 																		$rotation = 0;
 																	}
@@ -1186,8 +1198,8 @@ echo "\n</head>";
 																					 <?php echo gettext('none'); ?>
 																	</label>
 																	<label class="checkboxlabel">
-																		<input type="radio" id="rotation_90-<?php echo $currentimage; ?>"	name="<?php echo $currentimage; ?>-rotation" value="8" <?php
-																		checked(8, $rotation);
+																		<input type="radio" id="rotation_90-<?php echo $currentimage; ?>"	name="<?php echo $currentimage; ?>-rotation" value="<? echo $rotation_90; ?>" <?php
+																		checked($rotation_90, $rotation);
 																		echo $disablerotate
 																		?> />
 																					 <?php echo gettext('90 degrees'); ?>
@@ -1200,8 +1212,8 @@ echo "\n</head>";
 																					 <?php echo gettext('180 degrees'); ?>
 																	</label>
 																	<label class="checkboxlabel">
-																		<input type="radio" id="rotation_270-<?php echo $currentimage; ?>"	name="<?php echo $currentimage; ?>-rotation" value="6" <?php
-																		checked(6, $rotation);
+																		<input type="radio" id="rotation_270-<?php echo $currentimage; ?>"	name="<?php echo $currentimage; ?>-rotation" value="<? echo $rotation_270; ?>" <?php
+																		checked($rotation_270, $rotation);
 																		echo $disablerotate
 																		?> />
 																					 <?php echo gettext('270 degrees'); ?>
