@@ -57,6 +57,28 @@ switch (OFFSET_PATH) {
 	default:
 		zp_register_filter('admin_utilities_buttons', 'site_upgrade_button');
 		zp_register_filter('installation_information', 'site_upgrade_status');
+		zp_register_filter('admin_note', 'site_upgrade_note');
+
+		function site_upgrade_note($where) {
+			global $_zp_conf_vars;
+			switch (@$_zp_conf_vars['site_upgrade_state']) {
+				case 'closed':
+					?>
+					<p class="errorbox">
+						<strong><?php echo gettext('Site is now marked in upgrade.'); ?></strong></span>
+					</p>
+					<?php
+					break;
+				case 'closed_for_test';
+					?>
+					<p class="notebox">
+						<strong><?php echo gettext('Site is avaiable for testing only.');
+					?></strong>
+					</p>
+					<?php
+					break;
+			}
+		}
 
 		function site_upgrade_status() {
 			global $_zp_conf_vars;
