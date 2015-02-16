@@ -1277,8 +1277,8 @@ echo "\n</head>";
 																					 <?php echo gettext('none'); ?>
 																	</label>
 																	<label class="checkboxlabel">
-																		<input type="radio" id="rotation_90-<?php echo $currentimage; ?>"	name="<?php echo $currentimage; ?>-rotation" value="8" <?php
-																		checked(8, $rotation);
+																		<input type="radio" id="rotation_90-<?php echo $currentimage; ?>"	name="<?php echo $currentimage; ?>-rotation" value="6" <?php
+																		checked(6, $rotation);
 																		echo $disablerotate
 																		?> />
 																					 <?php echo gettext('90 degrees'); ?>
@@ -1291,8 +1291,8 @@ echo "\n</head>";
 																					 <?php echo gettext('180 degrees'); ?>
 																	</label>
 																	<label class="checkboxlabel">
-																		<input type="radio" id="rotation_270-<?php echo $currentimage; ?>"	name="<?php echo $currentimage; ?>-rotation" value="6" <?php
-																		checked(6, $rotation);
+																		<input type="radio" id="rotation_270-<?php echo $currentimage; ?>"	name="<?php echo $currentimage; ?>-rotation" value="8" <?php
+																		checked(8, $rotation);
 																		echo $disablerotate
 																		?> />
 																					 <?php echo gettext('270 degrees'); ?>
