@@ -519,19 +519,18 @@ function getImageRotation($imgfile) {
 	$imgfile = substr(filesystemToInternal($imgfile), strlen(ALBUM_FOLDER_SERVERPATH));
 	$result = query_single_row('SELECT EXIFOrientation FROM ' . prefix('images') . ' AS i JOIN ' . prefix('albums') . ' as a ON i.albumid = a.id WHERE ' . db_quote($imgfile) . ' = CONCAT(a.folder,"/",i.filename)');
 	if (is_array($result) && array_key_exists('EXIFOrientation', $result)) {
-		$splits = preg_split('/!([(0-9)])/', $result['EXIFOrientation']);
-		$rotation = $splits[0];
-		switch ($rotation) {
-			case 1 : return false; // none
-			case 2 : return false; // mirrored
-			case 3 : return 180; // upside-down (not 180 but close)
-			case 4 : return 180; // upside-down mirrored
-			case 5 : return 270; // 90 CW mirrored (not 270 but close)
-			case 6 : return 270; // 90 CCW
-			case 7 : return 90; // 90 CCW mirrored (not 90 but close)
-			case 8 : return 90; // 90 CW
+		switch (substr(trim($result['EXIFOrientation'], '!'), 0, 1)) {
+			case 0:
+			case 1: // none
+			case 2: return 0; // mirrored
+			case 3: // upside-down
+			case 4: return 180; // upside-down mirrored
+			case 5: // 90 CW mirrored
+			case 6: return 90; // 90 CCW
+			case 7: // 90 CCW mirrored
+			case 8: return 270; // 90 CW
 		}
 	}
-	return false;
+	return 0;
 }
 ?>
