@@ -833,60 +833,66 @@ function printAdminHeader($tab, $subtab = NULL) {
 	}
 
 	function processCustomOptionSave($returntab, $themename = NULL, $themealbum = NULL) {
-		$customHandlers = array();
-		foreach ($_POST as $postkey => $value) {
-			if (preg_match('/^' . CUSTOM_OPTION_PREFIX . '/', $postkey)) { // custom option!
-				$key = substr($postkey, strpos($postkey, '-') + 1);
-				$switch = substr($postkey, strlen(CUSTOM_OPTION_PREFIX), -strlen($key) - 1);
-				switch ($switch) {
-					case 'text':
-						$value = process_language_string_save($key, 1);
-						break;
-					case 'cleartext':
-						if (isset($_POST[$key])) {
-							$value = sanitize($_POST[$key], 0);
-						} else {
-							$value = '';
-						}
-						break;
-					case 'chkbox':
-						$value = (int) isset($_POST[$key]);
-						break;
-					case 'save':
-						$customHandlers[] = array('whom' => $key, 'extension' => sanitize($_POST[$postkey]));
-						continue;
-						break;
-					default:
-						if (isset($_POST[$key])) {
-							$value = sanitize($_POST[$key], 1);
-						} else {
-							$value = '';
-						}
-						break;
-				}
-				if ($themename) {
-					setThemeOption($key, $value, $themealbum, $themename);
-				} else {
-					setOption($key, $value);
-				}
-			} else {
-				if (strpos($postkey, 'show-') === 0) {
-					if ($value)
-						$returntab .= '&' . $postkey;
-				}
-			}
-		}
-		foreach ($customHandlers as $custom) {
-			if ($extension = $custom['extension']) {
-				require_once(getPlugin($extension . '.php'));
-			}
-			$whom = new $custom['whom']();
-			$returntab = $whom->handleOptionSave($themename, $themealbum) . $returntab;
-		}
-		return $returntab;
-	}
+  $customHandlers = array();
+  foreach ($_POST as $postkey => $value) {
+    if (preg_match('/^' . CUSTOM_OPTION_PREFIX . '/', $postkey)) { // custom option!
+      $key = substr($postkey, strpos($postkey, '-') + 1);
+      $switch = substr($postkey, strlen(CUSTOM_OPTION_PREFIX), -strlen($key) - 1);
+      switch ($switch) {
+        case 'text':
+          $value = process_language_string_save($key, 1);
+          break;
+        case 'cleartext':
+          if (isset($_POST[$key])) {
+            $value = sanitize($_POST[$key], 0);
+          } else {
+            $value = '';
+          }
+          break;
+        case 'chkbox':
+          $value = (int) isset($_POST[$key]);
+          break;
+        case 'save':
+          $customHandlers[] = array('whom' => $key, 'extension' => sanitize($_POST[$postkey]));
+          continue;
+          break;
+        default:
+          if (isset($_POST[$key])) {
+            $value = sanitize($_POST[$key], 1);
+          } else {
+            $value = '';
+          }
+          break;
+      }
+      if ($themename) {
+        setThemeOption($key, $value, $themealbum, $themename);
+      } else {
+        $creator = NULL;
+        if(isset($_GET['single'])) { // single plugin save
+          $ext = sanitize($_GET['single'],1);
+          $pl = getPlugin($ext . '.php',false,true);
+          $creator = str_replace(WEBPATH.'/','',$pl);
+        } 
+        setOption($key, $value, true, $creator);
+      }
+    } else {
+      if (strpos($postkey, 'show-') === 0) {
+        if ($value)
+          $returntab .= '&' . $postkey;
+      }
+    }
+  }
+  foreach ($customHandlers as $custom) {
+    if ($extension = $custom['extension']) {
+      require_once(getPlugin($extension . '.php'));
+    }
+    $whom = new $custom['whom']();
+    $returntab = $whom->handleOptionSave($themename, $themealbum) . $returntab;
+  }
+  return $returntab;
+}
 
-	/**
+/**
 	 *
 	 * Set defaults for standard theme options incase the theme has not done so
 	 * @param string $theme
