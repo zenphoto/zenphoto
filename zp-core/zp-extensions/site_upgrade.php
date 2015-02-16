@@ -41,6 +41,17 @@ $plugin_notice = (MOD_REWRITE) ? false : gettext('<em>mod_rewrite</em> is not en
 
 switch (OFFSET_PATH) {
 	case 0:
+
+		function site_upgrade_notice($html) {
+			?>
+			<div style="text-align: center;padding: 5px 10px 5px 10px;">
+				<strong style="background-color: #FFEFB7;color:black;">
+					<?php echo gettext('Site is avaiable for testing only.'); ?>
+				</strong>
+			</div>
+			<?php
+		}
+
 		$state = @$_zp_conf_vars['site_upgrade_state'];
 		if ((!zp_loggedin(ADMIN_RIGHTS | DEBUG_RIGHTS) && $state == 'closed_for_test') || $state == 'closed') {
 			if (isset($_zp_conf_vars['special_pages']['page']['rewrite'])) {
@@ -52,6 +63,8 @@ switch (OFFSET_PATH) {
 				header('location: ' . WEBPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/closed.php');
 				exit();
 			}
+		} else if ($state == 'closed_for_test') {
+			zp_register_filter('theme_body_open', 'site_upgrade_notice');
 		}
 		break;
 	default:
@@ -63,9 +76,21 @@ switch (OFFSET_PATH) {
 			global $_zp_conf_vars;
 			switch (@$_zp_conf_vars['site_upgrade_state']) {
 				case 'closed':
+					if ($where == 'Overview') {
+						?>
+						<form class="dirtylistening" name="site_upgrade_form" id="site_upgrade_form">
+						</form>
+						<script type="text/javascript">
+							$(document).ready(function () {
+								$('#site_upgrade_form').dirtyForms('setDirty');
+								$.DirtyForms.message = '<?php echo gettext('The site is closed!'); ?>';
+							});
+						</script>
+						<?php
+					}
 					?>
 					<p class="errorbox">
-						<strong><?php echo gettext('Site is now marked in upgrade.'); ?></strong></span>
+						<strong><?php echo gettext('The site is closed!'); ?></strong></span>
 					</p>
 					<?php
 					break;
@@ -140,6 +165,7 @@ switch (OFFSET_PATH) {
 									'action'			 => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/site_upgrade/site_upgrade.php',
 									'icon'				 => 'images/lock_open.png',
 									'title'				 => gettext('Make the site available for viewing administrators only.'),
+									'onclick'			 => "$('#site_upgrade_form').dirtyForms('setClean');this.form.submit();",
 									'alt'					 => '',
 									'hidden'			 => '<input type="hidden" name="siteState" value="closed_for_test" />',
 									'rights'			 => ADMIN_RIGHTS
