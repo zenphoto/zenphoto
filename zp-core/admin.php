@@ -179,7 +179,7 @@ printAdminHeader('overview');
 <script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.masonry.min.js"></script>
 <script type="text/javascript">
 	// <!-- <![CDATA[
-	$(function() {
+	$(function () {
 		$('#overviewboxes').masonry({
 			// options
 			itemSelector: '.overview-utility',
@@ -345,7 +345,7 @@ if (!zp_loggedin()) {
 										?>
 										<script type="text/javascript">
 											<!--
-											$(document).ready(function() {
+											$(document).ready(function () {
 												$(".doc").colorbox({
 													close: '<?php echo gettext("close"); ?>',
 													maxHeight: "98%",
@@ -522,7 +522,7 @@ if (!zp_loggedin()) {
 							$c = count($plugins);
 							?>
 							<h3><a onclick="toggle('plugins_hide');
-											toggle('plugins_show');" ><?php printf(ngettext("%u active plugin:", "%u active plugins:", $c), $c); ?></a></h3>
+									toggle('plugins_show');" ><?php printf(ngettext("%u active plugin:", "%u active plugins:", $c), $c); ?></a></h3>
 							<div id="plugins_hide" style="display:none">
 								<ul class="plugins">
 									<?php
@@ -570,7 +570,7 @@ if (!zp_loggedin()) {
 							$c = count($filters);
 							?>
 							<h3><a onclick="toggle('filters_hide');
-											toggle('filters_show');" ><?php printf(ngettext("%u active filter:", "%u active filters:", $c), $c); ?></a></h3>
+									toggle('filters_show');" ><?php printf(ngettext("%u active filter:", "%u active filters:", $c), $c); ?></a></h3>
 							<div id="filters_hide" style="display:none">
 								<ul class="plugins">
 									<?php
@@ -631,10 +631,23 @@ if (!zp_loggedin()) {
 								}
 								?>
 								<form name="<?php echo $button['formname']; ?>"	id="<?php echo $button['formname']; ?>" action="<?php echo $button['action']; ?>" class="overview_utility_buttons">
-									<?php if (isset($button['XSRFTag']) && $button['XSRFTag']) XSRFToken($button['XSRFTag']); ?>
-									<?php echo $button['hidden']; ?>
+									<?php
+									if (isset($button['XSRFTag']) && $button['XSRFTag'])
+										XSRFToken($button['XSRFTag']);
+									echo $button['hidden'];
+									if ($button['enable']) {
+										$disable = '';
+									} else {
+										$disable = ' disabled="disabled"';
+									}
+									if (isset($button['onclick'])) {
+										$type = 'type="button" onclick="' . $button['onclick'] . '"';
+									} else {
+										$type = 'type="submit"';
+									}
+									?>
 									<div class="buttons tooltip" title="<?php echo html_encode($button['title']); ?>">
-										<button class="fixedwidth" type="submit"<?php if (!$button['enable']) echo 'disabled="disabled"'; ?>>
+										<button class="fixedwidth" <?php echo $type . $disable; ?>>
 											<?php
 											if (!empty($button_icon)) {
 												?>

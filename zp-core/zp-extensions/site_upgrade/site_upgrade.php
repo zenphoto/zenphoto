@@ -8,7 +8,7 @@ admin_securityChecks(ALBUM_RIGHTS, currentRelativeURL());
 
 switch (isset($_GET['siteState']) ? $_GET['siteState'] : NULL) {
 	case 'closed':
-		$report = gettext('Site is now marked in upgrade.');
+		$report = '';
 		setSiteState('closed');
 		if (extensionEnabled('cloneZenphoto')) {
 			require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cloneZenphoto.php');
@@ -34,7 +34,7 @@ switch (isset($_GET['siteState']) ? $_GET['siteState'] : NULL) {
 		}
 		break;
 	case 'closed_for_test':
-		$report = gettext('Site is avaiable for testing only.');
+		$report = '';
 		setSiteState('closed_for_test');
 		if (extensionEnabled('cloneZenphoto')) {
 			require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cloneZenphoto.php');

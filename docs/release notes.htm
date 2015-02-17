@@ -76,7 +76,14 @@
 			}
 		</style>
 	<body>
-<h1>ZenPhoto20 v1.0.1.2 release notes</h1><h2 style="text-align: center;">Version 1.1.0</h2>
+<h1>ZenPhoto20 v1.1.0.2 release notes</h1><p>&nbsp;</p>
+<p><strong>Image rotation fixes</strong></p>
+<p>The original <em>zenphoto&nbsp;</em>code that handled image rotation was confused about the meanings of each of the <em>EXIF&nbsp;orientation</em> values. This was originally mitigated by also being confused as to how the<em> GD library</em> rotations worked. These two errors offset each other. But then the <em>Imagic </em>library was implemented. It rotated images in the opposite&nbsp;direction from the <em>GD library.</em></p>
+<p>Then someone noticed that GD rotated in the opposite direction from <em>zenphoto's </em>assumptions and "fixed" the code. This broke situations where a camera recorded&nbsp;the image rotation instead of just rotating the image as is normal.</p>
+<p>We have now fixed the implementation to be true to the specification. Camera set rotations now will work correctly. Unfortunately the downside of this is if you have "fixed" on your images on the prior software they may now be improperly rotated. You should re-import the image metadata&nbsp;or select the correct image rotation on the image tab.</p>
+<hr />
+<p>&nbsp;</p>
+<h2 style="text-align: center;">Version 1.1.0</h2>
 <h2>New theme</h2>
 <p><a href="http://www.vincentbourganel.fr/news/zpbootstrap-a-responsive-theme-zenphoto-zenpage">zpBootstrap</a>&mdash;a responsive theme by Vincent Bourganel&nbsp;has been added to the distributed themes set.&nbsp;</p>
 <h2>Tag lists will reflect published state of the object</h2>

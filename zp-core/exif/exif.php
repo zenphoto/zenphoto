@@ -626,13 +626,13 @@ function formatData($type, $tag, $intel, $data) {
 							break;
 						case 4 : $data = '!4: upside-down mirrored!';
 							break;
-						case 5 : $data = '!5: 90 deg cw mirrored!';
+						case 5 : $data = '!5: 90 deg ccw mirrored!';
 							break;
-						case 6 : $data = '!6: 90 deg ccw!';
+						case 6 : $data = '!6: 90 deg cw!';
 							break;
-						case 7 : $data = '!7: 90 deg ccw mirrored!';
+						case 7 : $data = '!7: 90 deg cw mirrored!';
 							break;
-						case 8 : $data = '!8: 90 deg cw!';
+						case 8 : $data = '!8: 90 deg ccw!';
 							break;
 						default : $data = sprintf('%d: ' . '!unknown!', $data);
 							break;
@@ -1216,6 +1216,7 @@ function read_exif_data_raw($path, $verbose) {
 
 	if (hexdec($offset) > 8)
 		$unknown = fread($in, hexdec($offset) - 8); // fixed this bug in 1.3
+
 
 
 // add 12 to the offset to account for TIFF header

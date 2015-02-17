@@ -1265,10 +1265,8 @@ echo "\n</head>";
 																	<?php echo gettext("Rotation:"); ?>
 																	<br />
 																	<?php
-																	$splits = preg_split('/!([(0-9)])/', $image->get('EXIFOrientation'));
-																	$rotation = $splits[0];
-																	if (!in_array($rotation, array(3, 6, 8)))
-																		$rotation = 0;
+																	$unflip = array(0 => 0, 1 => 0, 2 => 0, 3 => 3, 4 => 3, 5 => 8, 6 => 6, 7 => 6, 8 => 8);
+																	$rotation = @$unflip[substr(trim($image->get('EXIFOrientation'), '!'), 0, 1)];
 																	?>
 																	<input type="hidden" name="<?php echo $currentimage; ?>-oldrotation" value="<?php echo $rotation; ?>" />
 																	<label class="checkboxlabel">
@@ -1279,8 +1277,8 @@ echo "\n</head>";
 																					 <?php echo gettext('none'); ?>
 																	</label>
 																	<label class="checkboxlabel">
-																		<input type="radio" id="rotation_90-<?php echo $currentimage; ?>"	name="<?php echo $currentimage; ?>-rotation" value="8" <?php
-																		checked(8, $rotation);
+																		<input type="radio" id="rotation_90-<?php echo $currentimage; ?>"	name="<?php echo $currentimage; ?>-rotation" value="6" <?php
+																		checked(6, $rotation);
 																		echo $disablerotate
 																		?> />
 																					 <?php echo gettext('90 degrees'); ?>
@@ -1293,8 +1291,8 @@ echo "\n</head>";
 																					 <?php echo gettext('180 degrees'); ?>
 																	</label>
 																	<label class="checkboxlabel">
-																		<input type="radio" id="rotation_270-<?php echo $currentimage; ?>"	name="<?php echo $currentimage; ?>-rotation" value="6" <?php
-																		checked(6, $rotation);
+																		<input type="radio" id="rotation_270-<?php echo $currentimage; ?>"	name="<?php echo $currentimage; ?>-rotation" value="8" <?php
+																		checked(8, $rotation);
 																		echo $disablerotate
 																		?> />
 																					 <?php echo gettext('270 degrees'); ?>
