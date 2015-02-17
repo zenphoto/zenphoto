@@ -633,10 +633,18 @@ echo "\n</head>";
 						if (($pagenum - 1) * $imagesTab_imageCount >= $allimagecount)
 							$pagenum--;
 					} else {
-						$pagenum = 1;
+       if(isset($_GET['nopagination'])) {
+        $pagenum = 0;
+       } else {
+        $pagenum = 1;
+       }
 					}
 				}
-    $images = array_slice($allimages, ($pagenum - 1) * $imagesTab_imageCount, $imagesTab_imageCount);
+    if($pagenum == 0) {
+      $images = $allimages;
+    } else {
+      $images = array_slice($allimages, ($pagenum - 1) * $imagesTab_imageCount, $imagesTab_imageCount);
+    }
 				$totalimages = count($images);
 
 				$parent = dirname($album->name);
@@ -807,7 +815,6 @@ echo "\n</head>";
 				} else if ($subtab == 'imageinfo') {
 					$singleimage = NULL;
 					if (isset($_GET['singleimage'])) {
-
 						$simage = sanitize($_GET['singleimage']);
 						if (array_search($simage, $images) !== false) {
 							$allimagecount = 1;
