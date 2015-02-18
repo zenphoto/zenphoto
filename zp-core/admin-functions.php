@@ -1206,7 +1206,13 @@ function printAdminHeader($tab, $subtab = NULL) {
 							<img src="images/folder.png" alt="" />
 							<strong><?php echo gettext('New subalbum'); ?></strong>
 						</button>
-						<?php
+      <?php if(!$album->isDynamic()) { ?>
+         <button type="button" title="<?php echo addslashes(gettext('New dynamic subalbum')); ?>" onclick="javascript:newDynAlbum('<?php echo pathurlencode($album->name); ?>', false);">
+           <img src="images/folder.png" alt="" />
+											<strong><?php echo gettext('New dynamic subalbum'); ?></strong>
+								 </button>
+       <?php 
+      } 
 					}
 					?>
 					<a href="<?php echo WEBPATH . "/index.php?album=" . html_encode(pathurlencode($album->getFileName())); ?>">
@@ -1956,7 +1962,13 @@ function printAdminHeader($tab, $subtab = NULL) {
 							<img src="images/folder.png" alt="" />
 							<strong><?php echo gettext('New subalbum'); ?></strong>
 						</button>
-						<?php
+					<?php if(!$album->isDynamic()) { ?>
+         <button type="button" title="<?php echo addslashes(gettext('New dynamic subalbum')); ?>" onclick="javascript:newDynAlbum('<?php echo pathurlencode($album->name); ?>', false);">
+           <img src="images/folder.png" alt="" />
+											<strong><?php echo gettext('New dynamic subalbum'); ?></strong>
+								 </button>
+       <?php 
+      } 
 					}
 					?>
 					<a href="<?php echo WEBPATH . "/index.php?album=" . html_encode(pathurlencode($album->getFileName())); ?>">

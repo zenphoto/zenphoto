@@ -511,23 +511,29 @@ if (isset($_GET['album']) && (empty($subtab) || $subtab == 'albuminfo') || isset
 					var deleteAlbum1 = "<?php echo gettext("Are you sure you want to delete this entire album?"); ?>";
 					var deleteAlbum2 = "<?php echo gettext("Are you Absolutely Positively sure you want to delete the album? THIS CANNOT BE UNDONE!"); ?>";
 					function newAlbum(folder, albumtab) {
-					var album = prompt('<?php echo addslashes(gettext('New album name?')); ?>', '<?php echo addslashes(gettext('new album')); ?>');
+        var album = prompt('<?php echo addslashes(gettext('New album name?')); ?>', '<?php echo addslashes(gettext('new album')); ?>');
 									if (album) {
-					launchScript('', ['action=newalbum', 'folder=' + folder, 'name=' + encodeURIComponent(album), 'albumtab=' + albumtab, 'XSRFToken=<?php echo getXSRFToken('newalbum'); ?>']);
+          launchScript('', ['action=newalbum', 'folder=' + folder, 'name=' + encodeURIComponent(album), 'albumtab=' + albumtab, 'XSRFToken=<?php echo getXSRFToken('newalbum'); ?>']);
+        	}
 					}
+     	function newDynAlbum(folder, albumtab) {
+        var album = prompt('<?php echo addslashes(gettext('New dynamic album name?')); ?>', '<?php echo addslashes(gettext('new dynamic album')); ?>');
+									if (album) {
+          launchScript('admin-dynamic-album.php', ['words=' + encodeURIComponent(album), 'folder=' + encodeURIComponent(folder), 'XSRFToken=<?php echo getXSRFToken('newalbum'); ?>']);
+        	}
 					}
 	function confirmAction() {
-	if ($('#checkallaction').val() == 'deleteall') {
-	return confirm('<?php echo js_encode(gettext("Are you sure you want to delete the checked items?")); ?>');
-	} else if ($('#checkallaction').val() == 'deleteallalbum') {
-	if (confirm(deleteAlbum1)) {
-	return confirm(deleteAlbum2);
-	} else {
-	return false;
-	}
-	} else {
-	return true;
-	}
+  if ($('#checkallaction').val() == 'deleteall') {
+    return confirm('<?php echo js_encode(gettext("Are you sure you want to delete the checked items?")); ?>');
+  } else if ($('#checkallaction').val() == 'deleteallalbum') {
+    if (confirm(deleteAlbum1)) {
+      return confirm(deleteAlbum2);
+    } else {
+      return false;
+    }
+  } else {
+    return true;
+  }
 	}
 	// ]]> -->
 </script>
@@ -747,6 +753,12 @@ echo "\n</head>";
 												<img src="images/folder.png" alt="" />
 												<strong><?php echo gettext('New subalbum'); ?></strong>
 											</button>
+           <?php if(!$album->isDynamic()) { ?>
+            	<button type="button" title="<?php echo addslashes(gettext('New dynamic subalbum')); ?>" onclick="javascript:newDynAlbum('<?php echo pathurlencode($album->name); ?>', false);">
+												<img src="images/folder.png" alt="" />
+												<strong><?php echo gettext('New dynamic subalbum'); ?></strong>
+											</button>
+           <?php } ?>
 										</div>
 										<?php
 									}
@@ -1587,8 +1599,7 @@ echo "\n</head>";
 						<button type="submit">
 							<img	src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong>
 						</button>
-						<button type="reset" onclick="javascript:$('.deletemsg
-																												').hide();" >
+						<button type="reset" onclick="javascript:$('.deletemsg').hide();" >
 							<img	src="images/fail.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong>
 						</button>
 					</span>
@@ -1680,7 +1691,11 @@ echo "\n</head>";
 							if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 								?>
 								<button type="button" onclick="javascript:newAlbum('', false);"><img src="images/folder.png" alt="" /><strong><?php echo gettext('New album'); ?></strong></button>
-								<?php
+         <button type="button" title="<?php echo addslashes(gettext('New dynamic album')); ?>" onclick="javascript:newDynAlbum('', false);">
+												<img src="images/folder.png" alt="" />
+												<strong><?php echo gettext('New dynamic album'); ?></strong>
+									</button>
+        <?php 
 							}
 							?>
 						</p>
@@ -1722,7 +1737,11 @@ echo "\n</head>";
 							if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 								?>
 								<button type="button" onclick="javascript:newAlbum('', false);"><img src="images/folder.png" alt="" /><strong><?php echo gettext('New album'); ?></strong></button>
-								<?php
+          <button type="button" title="<?php echo addslashes(gettext('New dynamic subalbum')); ?>" onclick="javascript:newDynAlbum('', false);">
+												<img src="images/folder.png" alt="" />
+												<strong><?php echo gettext('New dynamic album'); ?></strong>
+											</button>
+        <?php
 							}
 							?>
 						</p>
@@ -1737,7 +1756,11 @@ echo "\n</head>";
 						?>
 						<p class="buttons">
 							<button type="button" onclick="javascript:newAlbum('', false);"><img src="images/folder.png" alt="" /><strong><?php echo gettext('New album'); ?></strong></button>
-						</p>
+       <button type="button" title="<?php echo addslashes(gettext('New dynamic album')); ?>" onclick="javascript:newDynAlbum('', false);">
+										<img src="images/folder.png" alt="" />
+										<strong><?php echo gettext('New dynamic album'); ?></strong>
+							</button>
+      </p>
 						<?php
 					}
 				}
