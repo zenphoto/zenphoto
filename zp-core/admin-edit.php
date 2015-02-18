@@ -599,6 +599,7 @@ if (isset($_GET['album']) && (empty($subtab) || $subtab == 'albuminfo') || isset
 			}
 		}
 	}
+
 	function confirmAction() {
 		if ($('#checkallaction').val() == 'deleteall') {
 			return confirm('<?php echo js_encode(gettext("Are you sure you want to delete the checked items?")); ?>');
@@ -611,6 +612,7 @@ if (isset($_GET['album']) && (empty($subtab) || $subtab == 'albuminfo') || isset
 		} else {
 			return true;
 		}
+
 	}
 	// ]]> -->
 </script>
@@ -836,6 +838,12 @@ echo "\n</head>";
 												<img src="images/folder.png" alt="" />
 												<strong><?php echo gettext('New subalbum'); ?></strong>
 											</button>
+											<?php if (!$album->isDynamic()) { ?>
+												<button type="button" title="<?php echo addslashes(gettext('New dynamic subalbum')); ?>" onclick="newAlbum('<?php echo pathurlencode($album->name); ?>', true);">
+													<img src="images/folder.png" alt="" />
+													<strong><?php echo gettext('New dynamic subalbum'); ?></strong>
+												</button>
+											<?php } ?>
 										</div>
 										<?php
 									}
@@ -895,6 +903,12 @@ echo "\n</head>";
 											<img src="images/folder.png" alt="" />
 											<strong><?php echo gettext('New subalbum'); ?></strong>
 										</button>
+										<?php if (!$album->isDynamic()) { ?>
+											<button type="button" title="<?php echo addslashes(gettext('New dynamic subalbum')); ?>" onclick="newAlbum('<?php echo pathurlencode($album->name); ?>', false);">
+												<img src="images/folder.png" alt="" />
+												<strong><?php echo gettext('New dynamic subalbum'); ?></strong>
+											</button>
+										<?php } ?>
 									</div>
 								</span>
 							</form>
@@ -1647,6 +1661,7 @@ echo "\n</head>";
 								<button type="button" onclick="newAlbum('', false);"><img src="images/folder.png" alt="" /><strong><?php echo gettext('New album'); ?></strong></button>
 								<button type="button" onclick="newAlbum('', true);"><img src="images/folder.png" alt="" /><strong><?php echo gettext('New dynamic album'); ?></strong></button>
 
+
 								<?php
 							}
 							?>
@@ -1709,8 +1724,12 @@ echo "\n</head>";
 					if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 						?>
 						<p class="buttons">
-							<button type="button" onclick="newAlbum('', false);"><img src="images/folder.png" alt="" /><strong><?php echo gettext('New album'); ?></strong></button>
-							<button type="button" onclick="newAlbum('', true);"><img src="images/folder.png" alt="" /><strong><?php echo gettext('New dynamic album'); ?></strong></button>
+							<button type="button" onclick="newAlbum('', false);">
+								<img src="images/folder.png" alt="" /><strong><?php echo gettext('New album'); ?></strong>
+							</button>
+							<button type="button" onclick="newAlbum('', true);">
+								<img src="images/folder.png" alt="" /><strong><?php echo gettext('New dynamic album'); ?></strong>
+							</button>
 						</p>
 						<?php
 					}
