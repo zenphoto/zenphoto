@@ -815,6 +815,12 @@ echo "\n</head>";
 											<img src="images/folder.png" alt="" />
 											<strong><?php echo gettext('New subalbum'); ?></strong>
 										</button>
+          <?php if(!$album->isDynamic()) { ?>
+            	<button type="button" title="<?php echo addslashes(gettext('New dynamic subalbum')); ?>" onclick="javascript:newDynAlbum('<?php echo pathurlencode($album->name); ?>', false);">
+												<img src="images/folder.png" alt="" />
+												<strong><?php echo gettext('New dynamic subalbum'); ?></strong>
+											</button>
+           <?php } ?>
 									</div>
 								</span>
 							</form>
