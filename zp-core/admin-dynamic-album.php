@@ -159,7 +159,10 @@ while ($old != $albumname) {
 						<option value="" style="font-weight: bold;">/</option>
 						<?php
 					}
-     $parentalbum = sanitize($_GET['folder']);
+     $parentalbum = '';
+    	if(isset($_GET['folder'])) {
+     		$parentalbum = sanitize($_GET['folder']);
+     }
 					$bglevels = array('#fff', '#f8f8f8', '#efefef', '#e8e8e8', '#dfdfdf', '#d8d8d8', '#cfcfcf', '#c8c8c8');
 					foreach ($albumlist as $fullfolder => $albumtitle) {
 						$singlefolder = $fullfolder;
