@@ -78,7 +78,7 @@ function reconfigureAction($mandatory) {
  *
  * Checks details of configuration change
  */
-function checkSignature($auto) {
+function checkSignature($mandatory) {
 	global $_configMutex, $_zp_DB_connection, $_reconfigureMutex;
 	if (function_exists('query_full_array') && $_zp_DB_connection) {
 		$old = @unserialize(getOption('zenphoto_install'));
@@ -109,7 +109,22 @@ function checkSignature($auto) {
 	if (file_exists(dirname(__FILE__) . '/setup/')) {
 		chdir(dirname(__FILE__) . '/setup/');
 		$found = safe_glob('*.xxx');
-		if (!empty($found) && $auto && (defined('ADMIN_RIGHTS') && zp_loggedin(ADMIN_RIGHTS) || !$_zp_DB_connection)) {
+		if (!empty($found) && $mandatory && (defined('ADMIN_RIGHTS') && zp_loggedin(ADMIN_RIGHTS) || !$_zp_DB_connection)) {
+			switch ($mandatory) {
+				case 0:
+					$addl = gettext('restored');
+					break;
+				case 1:
+				case 2:
+				case 3:
+					$addl = gettext('restored to run setup');
+					break;
+				case 4:
+					$addl = gettext('restored by cloning');
+					break;
+			}
+			zp_apply_filter('log_setup', true, 'restore', $addl);
+
 			foreach ($found as $script) {
 				chmod($script, 0777);
 				if (@rename($script, stripSuffix($script))) {
@@ -134,7 +149,7 @@ function checkSignature($auto) {
  * @return string
  */
 function signatureChange($tab = NULL, $subtab = NULL) {
-	list($diff, $needs) = checkSignature(false);
+	list($diff, $needs) = checkSignature(0);
 	reconfigurePage($diff, $needs, 0);
 	return $tab;
 }

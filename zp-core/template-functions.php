@@ -22,7 +22,7 @@ if (!defined('SEO_FULLWEBPATH')) {
  * Returns the zenphoto version string
  */
 function getVersion() {
-	return ZENPHOTO_VERSION . ' [' . ZENPHOTO_RELEASE . ']';
+	return ZENPHOTO_VERSION;
 }
 
 /**

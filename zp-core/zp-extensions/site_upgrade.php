@@ -185,7 +185,7 @@ switch (OFFSET_PATH) {
 									'hidden'			 => '<input type="hidden" name="siteState" value="open" />',
 									'rights'			 => ADMIN_RIGHTS
 					);
-					list($diff, $needs) = checkSignature(false);
+					list($diff, $needs) = checkSignature(0);
 					if (zpFunctions::hasPrimaryScripts() && empty($needs)) {
 						?>
 						<script type="text/javascript">

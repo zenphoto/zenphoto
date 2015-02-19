@@ -415,7 +415,7 @@ if ($setup_checked) {
 		} else {
 			$clone = ' ' . gettext('clone');
 		}
-		setupLog(sprintf(gettext('ZenPhoto20 Setup v%1$s[%2$s]%3$s: %4$s'), ZENPHOTO_VERSION, ZENPHOTO_RELEASE, $clone, date('r')), true, true); // initialize the log file
+		setupLog(sprintf(gettext('ZenPhoto20 Setup v%1$s%2$s: %3$s'), ZENPHOTO_VERSION, $clone, date('r')), true, true); // initialize the log file
 	}
 	if ($environ) {
 		setupLog(gettext("Full environment"));
