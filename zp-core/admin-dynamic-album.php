@@ -79,6 +79,7 @@ if (isset($_POST['savealbum'])) {
 			}
 		}
 		$words = sanitize($_POST['words']);
+  
 	}
 	if (isset($_POST['thumb'])) {
 		$thumb = sanitize($_POST['thumb']);
@@ -120,7 +121,8 @@ if (isset($_POST['savealbum'])) { // we fell through, some kind of error
 $albumlist = array();
 genAlbumList($albumlist);
 $fields = $search->fieldList;
-$albumname = $words = $search->codifySearchString();
+$albumname = $search->getSearchWords();
+$words = $search->codifySearchString();
 $images = $search->getImages(0);
 foreach ($images as $image) {
 	$folder = $image['folder'];
