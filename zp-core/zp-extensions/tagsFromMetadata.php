@@ -62,7 +62,7 @@ class tagsFromMetadata {
 					setupCurrentLocale($language);
 					$xlated = exifTranslate($meta);
 					if ($xlated != $en_us) { // the string has a translation in this language
-						$element[] = exifTranslate($xlated);
+						$element[] = $xlated;
 					}
 				}
 			}
