@@ -1085,7 +1085,7 @@ define('SELECT_ARTICLES', 8);
  * @return array
  *
  * @author Stephen Billard
- * @copyright (c)Stephen Billard for use with ZenPhoto20
+ * @Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
  */
 function getAllTagsUnique($language = NULL, $count = 1, $returnCount = NULL) {
 	global $_zp_unique_tags, $_zp_count_tags, $_zp_current_locale, $_zp_loggedin;

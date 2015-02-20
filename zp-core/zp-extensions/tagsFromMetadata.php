@@ -1,12 +1,26 @@
 <?php
 
 /**
+ * This plugin allows a site to automatically create and assign tags based on image
+ * metadata. Plugin options allow the site administrator to specify which image metadata
+ * fields to be processed. When metadata is imported from an image the plugin will
+ * look for data in the specified fields. If found, the image will be tagged with
+ * the value of these selected fields.
  *
+ * E.g. The when the EXIFModel field is selected the information the camera places in
+ * this field will become a tag. (Typically this is the camera name--<i>NIKON D300</i>
+ * for instance.) Thus it will be possible to tag search for images taken by a <i>NIKON D300</i>.
+ *
+ * <b>NOTE:</b> Only metadata fields that are enabled for processing may be chosen for tag candidates.
+ * It is not necessary to have chosen to display the field in metadata lists, though, so
+ * it is possible to search for fields that do not present in the <i>Image Info</i> display.
  *
  * @author Stephen Billard (sbillard)
  *
  * @package plugins
  * @subpackage media
+ *
+ * Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
  */
 $plugin_is_filter = 9 | CLASS_PLUGIN;
 $plugin_description = gettext('Extracts <em>XMP</em> metadata from images and <code>XMP</code> sidecar files.');
