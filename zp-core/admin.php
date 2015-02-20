@@ -74,7 +74,6 @@ if (zp_loggedin()) { /* Display the admin pages. Do action handling first. */
 					XSRFdefender('restore_setup');
 					list($diff, $needs) = checkSignature(true);
 					if (empty($needs)) {
-						zp_apply_filter('log_setup', true, 'restore', gettext('restored'));
 						$class = 'messagebox';
 						$msg = gettext('Setup files restored.');
 					} else {
@@ -247,7 +246,7 @@ if (!zp_loggedin()) {
 					unset($buttonlist[$key]);
 				}
 			}
-			list($diff, $needs) = checkSignature(false);
+			list($diff, $needs) = checkSignature(0);
 			if (zpFunctions::hasPrimaryScripts()) {
 				//	button to restore setup files if needed
 				if (!empty($needs)) {
@@ -359,7 +358,7 @@ if (!zp_loggedin()) {
 									} else {
 										$notes = '';
 									}
-									printf(gettext('ZenPhoto20 version <strong>%1$s [%2$s] (%3$s)</strong>'), ZENPHOTO_VERSION, ZENPHOTO_RELEASE, $official);
+									printf(gettext('ZenPhoto20 version <strong>%1$s (%2$s)</strong>'), ZENPHOTO_VERSION, $official);
 									echo $notes . $source;
 									?>
 								</li>

@@ -125,7 +125,7 @@ if (trim($folder, '/') == SERVERPATH) {
 }
 if ($success) {
 	array_unshift($msg, '<h2>' . sprintf(gettext('Successful clone to %s'), $folder) . '</h2>' . "\n");
-	list($diff, $needs) = checkSignature(true);
+	list($diff, $needs) = checkSignature(4);
 	if (empty($needs)) {
 		$rslt = query_single_row('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="clone" AND `aux`=' . db_quote(rtrim($folder, '/')));
 		if (empty($rslt)) {
@@ -141,7 +141,7 @@ if ($success) {
 		$_SESSION['admin'][$cloneid] = serialize($_zp_current_admin_obj);
 		$msg[] = '<p><span class="buttons"><a href="' . $newinstall . ZENFOLDER . '/setup/index.php?autorun" target=_newtab">' . gettext('setup the new install') . '</a></span><br class="clearall" /></p>' . "\n";
 	} else {
-		$reinstall = '<p>' . sprintf(gettext('Before running setup for <code>%1$s</code> please reinstall the following setup files from the %2$s [%3$s] to this installation:'), $newinstall, ZENPHOTO_VERSION, ZENPHOTO_RELEASE) .
+		$reinstall = '<p>' . sprintf(gettext('Before running setup for <code>%1$s</code> please reinstall the following setup files from the %2$s to this installation:'), $newinstall, ZENPHOTO_VERSION) .
 						"\n" . '<ul>' . "\n";
 		if (!empty($needs)) {
 			foreach ($needs as $script) {

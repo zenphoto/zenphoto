@@ -6,231 +6,236 @@
  * The data extracted from image metadata is created with "tags" that can later
  * be translated into the current active language when displayed.
  *
- * This change to the exif libraries was created and is copyrighted by Stephen Billard
+ * Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
  * for use with ZenPhoto20 CMS software.
  */
 
 function exifTranslate($source) {
-	$exifTranslate = array(
-					'!1-area-focusing!'																												 => gettext("1-area-focusing"),
-					'!1-area-focusing (high speed)!'																					 => gettext("1-area-focusing (High speed)"),
-					'!10s!'																																		 => gettext("10s"),
-					'!1: normal (0 deg)!'																											 => gettext('Normal (0 deg)'),
-					'!1st curtain sync!'																											 => gettext('1st curtain sync'),
-					'!2: mirrored!'																														 => gettext('Mirrored'),
-					'!2nd(rear)-curtain sync used!'																						 => gettext('2nd(rear)-curtain sync used'),
-					'!3-area-focusing (high speed)!'																					 => gettext("3-area-focusing (High speed)"),
-					'!3: upside-down!'																												 => gettext('Upside-down'),
-					'!4: upside-down mirrored!'																								 => gettext('Upside-down Mirrored'),
-					'!5: 90 deg ccw mirrored!'																								 => gettext('90 deg CCW Mirrored'),
-					'!6: 90 deg cw!'																													 => gettext('90 deg CW'),
-					'!7: 90 deg cw mirrored!'																									 => gettext('90 deg CW Mirrored'),
-					'!8: 90 deg ccw!'																													 => gettext('90 deg CCW'),
-					'!ae good!'																																 => gettext("AE Good"),
-					'!af non d!'																															 => gettext("AF non D"),
-					'!ai focus!'																															 => gettext("AI Focus"),
-					'!ai servo!'																															 => gettext("AI Servo"),
-					'!aperture priority!'																											 => gettext('Aperture Priority'),
-					'!aperture priority ae!'																									 => gettext("Aperture Priority AE"),
-					'!auto!'																																	 => gettext("Auto"),
-					'!auto + red eye reduction!'																							 => gettext("Auto + Red Eye Reduction"),
-					'!auto focus good!'																												 => gettext("Auto Focus Good"),
-					'!auto selected!'																													 => gettext("Auto Selected"),
-					'!auto, continuous!'																											 => gettext("Auto, Continuous"),
-					'!auto, focus button!'																										 => gettext("Auto, Focus button"),
-					'!auto-dep!'																															 => gettext("Auto-DEP"),
-					'!av!'																																		 => gettext("Av"),
-					'!average!'																																 => gettext('Average'),
-					'!baby!'																																	 => gettext("Baby"),
-					'!black & white!'																													 => gettext("Black & White"),
-					'!black and white!'																												 => gettext("Black and White"),
-					'!bright+!'																																 => gettext("Bright+"),
-					'!bright-!'																																 => gettext("Bright-"),
-					'!bulb!'																																	 => gettext('Bulb'),
-					'!center!'																																 => gettext("Center"),
-					'!center of pixel array!'																									 => gettext('Center of Pixel Array'),
-					'!center weighted average!'																								 => gettext('Center Weighted Average'),
-					'!center-weighted!'																												 => gettext("Center-weighted"),
-					'!centimeter!'																														 => gettext('Centimeter'),
-					'!chroma saturation high!'																								 => gettext("Chroma Saturation High"),
-					'!chroma saturation low(org)!'																						 => gettext("Chroma Saturation Low(ORG)"),
-					'!chroma saturation normal(std)!'																					 => gettext("Chroma Saturation Normal(STD)"),
-					'!close-up (macro)!'																											 => gettext("Close-up (Macro)"),
-					'!cloudy!'																																 => gettext("Cloudy"),
-					'!color!'																																	 => gettext("Color"),
-					'!color sequential area sensor!'																					 => gettext('Color Sequential Area Sensor'),
-					'!color sequential linear sensor!'																				 => gettext('Color Sequential Linear Sensor'),
-					'!compulsory flash!'																											 => gettext('Compulsory Flash'),
-					'!compulsory flash, return light detected!'																 => gettext('Compulsory Flash, Return light detected'),
-					'!compulsory flash, return light not detected!'														 => gettext('Compulsory Flash, Return light not detected'),
-					'!continuous!'																														 => gettext("Continuous"),
-					'!contrast high(hard)!'																										 => gettext("Contrast High(HARD)"),
-					'!contrast low(org)!'																											 => gettext("Contrast Low(ORG)"),
-					'!contrast normal(std)!'																									 => gettext("Contrast Normal(STD)"),
-					'!contrast+!'																															 => gettext("Contrast+"),
-					'!contrast-!'																															 => gettext("Contrast-"),
-					'!cool!'																																	 => gettext("Cool"),
-					'!custom!'																																 => gettext("Custom"),
-					'!datum point!'																														 => gettext('Datum Point'),
-					'!daylight!'																															 => gettext('Daylight'),
-					'!daylightcolor-fluorescence!'																						 => gettext("DaylightColor-fluorescence"),
-					'!daywhitecolor-fluorescence!'																						 => gettext("DaywhiteColor-fluorescence"),
-					'!did not fire!'																													 => gettext("Did Not Fire"),
-					'!digital still camera!'																									 => gettext('Digital Still Camera'),
-					'!directly photographed!'																									 => gettext('Directly Photographed'),
-					'!easyshoot!'																															 => gettext("EasyShoot"),
-					'!evaluative!'																														 => gettext("Evaluative"),
-					'!external!'																															 => gettext("External"),
-					'!external e-ttl!'																												 => gettext('External E-TTL'),
-					'!external flash!'																												 => gettext("External Flash"),
-					'!fast shutter!'																													 => gettext("Fast Shutter"),
-					'!fine!'																																	 => gettext("Fine"),
-					'!fireworks!'																															 => gettext("Fireworks"),
-					'!fisheye!'																																 => gettext("Fisheye"),
-					'!flash!'																																	 => gettext('Flash'),
-					'!flash did not fire!'																										 => gettext("Flash Did Not Fire"),
-					'!flash fired!'																														 => gettext("Flash Fired"),
-					'!flash, auto-mode!'																											 => gettext('Flash, Auto-Mode'),
-					'!flash, auto-mode, return light detected!'																 => gettext('Flash, Auto-Mode, Return light detected'),
-					'!flash, auto-mode, return light not detected!'														 => gettext('Flash, Auto-Mode, Return light not detected'),
-					'!flash, strobe return light detected!'																		 => gettext('Flash, strobe return light detected'),
-					'!flash, strobe return light not detected!'																 => gettext('Flash, strobe return light not detected'),
-					'!fluorescence!'																													 => gettext("Fluorescence"),
-					'!fluorescent!'																														 => gettext('Fluorescent'),
-					'!food!'																																	 => gettext("Food"),
-					'!fp sync used!'																													 => gettext('FP sync used'),
-					'!full auto!'																															 => gettext("Full Auto"),
-					'!halogen!'																																 => gettext("Halogen"),
-					'!hard!'																																	 => gettext("Hard"),
-					'!high!'																																	 => gettext("High"),
-					'!high sensitivity!'																											 => gettext("High Sensitivity"),
-					'!horizontal (normal)!'																										 => gettext("Horizontal (normal)"),
-					'!incandescence!'																													 => gettext("Incandescence"),
-					'!inch!'																																	 => gettext('Inch'),
-					'!infinite!'																															 => gettext("Infinite"),
-					'!internal flash!'																												 => gettext('Internal Flash'),
-					'!iso speed!'																															 => gettext('ISO Speed'),
-					'!iso studio tungsten!'																										 => gettext('ISO Studio Tungsten'),
-					'!jpeg compression!'																											 => gettext('Jpeg Compression'),
-					'!landscape!'																															 => gettext('Landscape'),
-					'!large!'																																	 => gettext("Large"),
-					'!left!'																																	 => gettext("Left"),
-					'!locked (pan mode)!'																											 => gettext("Locked (Pan Mode)"),
-					'!low!'																																		 => gettext("Low"),
-					'!low/high quality!'																											 => gettext("Low/High Quality"),
-					'!macro!'																																	 => gettext("Macro"),
-					'!macro/close-up!'																												 => gettext("Macro/Close-Up"),
-					'!manual!'																																 => gettext('Manual'),
-					'!manual exposure!'																												 => gettext("Manual Exposure"),
-					'!manual focus!'																													 => gettext("Manual Focus"),
-					'!medium!'																																 => gettext("Medium"),
-					'!mode 1!'																																 => gettext("Mode 1"),
-					'!mode 2!'																																 => gettext("Mode 2"),
-					'!monochrome!'																														 => gettext('Monochrome'),
-					'!multi-spot!'																														 => gettext('Multi-Spot'),
-					'!natural!'																																 => gettext("Natural"),
-					'!night!'																																	 => gettext("Night"),
-					'!night portrait!'																												 => gettext("Night Portrait"),
-					'!night scenery!'																													 => gettext("Night Scenery"),
-					'!no!'																																		 => gettext("No"),
-					'!no compression!'																												 => gettext('No Compression'),
-					'!no flash!'																															 => gettext('No Flash'),
-					'!no unit!'																																 => gettext('No Unit'),
-					'!no warning!'																														 => gettext("No Warning"),
-					'!none!'																																	 => gettext("None"),
-					'!normal!'																																 => gettext("Normal"),
-					'!not defined!'																														 => gettext('Not defined'),
-					'!off!'																																		 => gettext("Off"),
-					'!on!'																																		 => gettext("On"),
-					'!on + red eye reduction!'																								 => gettext("On + Red Eye Reduction"),
-					'!on camera!'																															 => gettext("On Camera"),
-					'!one chip color area sensor!'																						 => gettext('One Chip Color Area Sensor'),
-					'!one-shot!'																															 => gettext("One-Shot"),
-					'!other!'																																	 => gettext('Other'),
-					'!out of focus!'																													 => gettext("Out of Focus"),
-					'!over exposure!'																													 => gettext("Over Exposure"),
-					'!pan focus!'																															 => gettext("Pan Focus"),
-					'!panning!'																																 => gettext("Panning"),
-					'!partial!'																																 => gettext('Partial'),
-					'!party!'																																	 => gettext("Party"),
-					'!pattern!'																																 => gettext('Pattern'),
-					'!pet!'																																		 => gettext("Pet"),
-					'!pixels!'																																 => gettext('pixels'),
-					'!portrait!'																															 => gettext('Portrait'),
-					'!preset!'																																 => gettext("Preset"),
-					'!program!'																																 => gettext('Program'),
-					'!program action!'																												 => gettext('Program Action'),
-					'!program ae!'																														 => gettext("Program AE"),
-					'!program creative!'																											 => gettext('Program Creative'),
-					'!raw!'																																		 => gettext("RAW"),
-					'!recommended exposure index!'																						 => gettext('Recommended Exposure Index'),
-					'!recommended exposure index and iso speed!'															 => gettext('Recommended Exposure Index and ISO Speed'),
-					'!red eye!'																																 => gettext('Red Eye'),
-					'!red eye reduction!'																											 => gettext("Red Eye Reduction"),
-					'!red eye, auto-mode!'																										 => gettext('Red Eye, Auto-Mode'),
-					'!red eye, auto-mode, return light detected!'															 => gettext('Red Eye, Auto-Mode, Return light detected'),
-					'!red eye, auto-mode, return light not detected!'													 => gettext('Red Eye, Auto-Mode, Return light not detected'),
-					'!red eye, compulsory flash!'																							 => gettext('Red Eye, Compulsory Flash'),
-					'!red eye, compulsory flash, return light detected!'											 => gettext('Red Eye, Compulsory Flash, Return light detected'),
-					'!red eye, compulsory flash, return light not detected!'									 => gettext('Red Eye, Compulsory Flash, Return light not detected'),
-					'!red eye, return light detected!'																				 => gettext('Red Eye, Return light detected'),
-					'!red eye, return light not detected!'																		 => gettext('Red Eye, Return light not detected'),
-					'!red-eye reduction!'																											 => gettext("Red-Eye Reduction"),
-					'!rgb!'																																		 => gettext('RGB'),
-					'!right!'																																	 => gettext("Right"),
-					'!rotate 270 cw!'																													 => gettext("Rotate 270 CW"),
-					'!rotate 90 cw!'																													 => gettext("Rotate 90 CW"),
-					'!scenery!'																																 => gettext("Scenery"),
-					'!sec!'																																		 => gettext('sec'),
-					'!sepia!'																																	 => gettext("Sepia"),
-					'!shutter priority!'																											 => gettext('Shutter Priority'),
-					'!simple!'																																 => gettext("Simple"),
-					'!single!'																																 => gettext("Single"),
-					'!single/timer!'																													 => gettext("Single/Timer"),
-					'!slow shutter!'																													 => gettext("Slow Shutter"),
-					'!slow synchro!'																													 => gettext("Slow Synchro"),
-					'!small!'																																	 => gettext("Small"),
-					'!snow!'																																	 => gettext("Snow"),
-					'!soft!'																																	 => gettext("Soft"),
-					'!speedlight!'																														 => gettext("SpeedLight"),
-					'!sport!'																																	 => gettext("Sport"),
-					'!sports!'																																 => gettext("Sports"),
-					'!spot!'																																	 => gettext('Spot'),
-					'!spot-focusing!'																													 => gettext("Spot-focusing"),
-					'!srgb!'																																	 => gettext('sRGB'),
-					'!standard!'																															 => gettext("Standard"),
-					'!standard light a!'																											 => gettext('Standard Light A'),
-					'!standard light b!'																											 => gettext('Standard Light B'),
-					'!standard light c!'																											 => gettext('Standard Light C'),
-					'!standard output sensitivity!'																						 => gettext('Standard Output Sensitivity'),
-					'!standard output sensitivity and iso speed!'															 => gettext('Standard Output Sensitivity and ISO Speed'),
-					'!standard output sensitivity and recommended exposure index!'						 => gettext('Standard Output Sensitivity and Recommended Exposure Index'),
-					'!standard output sensitivity, recommended exposure index and iso speed!'	 => gettext('Standard Output Sensitivity, Recommended Exposure Index and ISO Speed'),
-					'!sunny!'																																	 => gettext("Sunny"),
-					'!superfine!'																															 => gettext("Superfine"),
-					'!sxga basic!'																														 => gettext("SXGA Basic"),
-					'!sxga fine!'																															 => gettext("SXGA Fine"),
-					'!sxga normal!'																														 => gettext("SXGA Normal"),
-					'!the file could not be found.!'																					 => gettext('The file could not be found.'),
-					'!three chip color area sensor!'																					 => gettext('Three Chip Color Area Sensor'),
-					'!trilinear sensor!'																											 => gettext('Trilinear Sensor'),
-					'!tungsten!'																															 => gettext('Tungsten'),
-					'!tv!'																																		 => gettext("Tv"),
-					'!two chip color area sensor!'																						 => gettext('Two Chip Color Area Sensor'),
-					'!uncalibrated!'																													 => gettext('Uncalibrated'),
-					'!underwater!'																														 => gettext("Underwater"),
-					'!unknown!'																																 => gettext('Unknown'),
-					'!version!'																																 => gettext('version'),
-					'!very high!'																															 => gettext("Very High"),
-					'!vga basic!'																															 => gettext("VGA Basic"),
-					'!vga fine!'																															 => gettext("VGA Fine"),
-					'!vga normal!'																														 => gettext("VGA Normal"),
-					'!warm!'																																	 => gettext("Warm"),
-					'!warning!'																																 => gettext("Warning"),
-					'!white-fluorescence!'																										 => gettext("White-fluorescence"),
-					'!ycbcr!'																																	 => gettext('YCbCr'),
-					'!yes!'																																		 => gettext("Yes")
-	);
-
-	return strtr($source, $exifTranslate);
+	preg_match('/\!.*\!/', $source, $matches);
+	if (isset($matches[0])) {
+		$sw = $matches[0];
+	} else {
+		return $source;
+	}
+	switch ($sw) {
+		default: return $source;
+		case '!1-area-focusing!' : return str_replace($matches[0], gettext("1-area-focusing"), $source);
+		case '!1-area-focusing (high speed)!' : return str_replace($matches[0], gettext("1-area-focusing (High speed)"), $source);
+		case '!10s!' : return str_replace($matches[0], gettext("10s"), $source);
+		case '!1: normal (0 deg)!' : return str_replace($matches[0], gettext('Normal (0 deg)'), $source);
+		case '!1st curtain sync!' : return str_replace($matches[0], gettext('1st curtain sync'), $source);
+		case '!2: mirrored!' : return str_replace($matches[0], gettext('Mirrored'), $source);
+		case '!2nd(rear)-curtain sync used!' : return str_replace($matches[0], gettext('2nd(rear)-curtain sync used'), $source);
+		case '!3-area-focusing (high speed)!' : return str_replace($matches[0], gettext("3-area-focusing (High speed)"), $source);
+		case '!3: upside-down!' : return str_replace($matches[0], gettext('Upside-down'), $source);
+		case '!4: upside-down mirrored!' : return str_replace($matches[0], gettext('Upside-down Mirrored'), $source);
+		case '!5: 90 deg ccw mirrored!' : return str_replace($matches[0], gettext('90 deg CCW Mirrored'), $source);
+		case '!6: 90 deg cw!' : return str_replace($matches[0], gettext('90 deg CW'), $source);
+		case '!7: 90 deg cw mirrored!' : return str_replace($matches[0], gettext('90 deg CW Mirrored'), $source);
+		case '!8: 90 deg ccw!' : return str_replace($matches[0], gettext('90 deg CCW'), $source);
+		case '!ae good!' : return str_replace($matches[0], gettext("AE Good"), $source);
+		case '!af non d!' : return str_replace($matches[0], gettext("AF non D"), $source);
+		case '!ai focus!' : return str_replace($matches[0], gettext("AI Focus"), $source);
+		case '!ai servo!' : return str_replace($matches[0], gettext("AI Servo"), $source);
+		case '!aperture priority!' : return str_replace($matches[0], gettext('Aperture Priority'), $source);
+		case '!aperture priority ae!' : return str_replace($matches[0], gettext("Aperture Priority AE"), $source);
+		case '!auto!' : return str_replace($matches[0], gettext("Auto"), $source);
+		case '!auto + red eye reduction!' : return str_replace($matches[0], gettext("Auto + Red Eye Reduction"), $source);
+		case '!auto focus good!' : return str_replace($matches[0], gettext("Auto Focus Good"), $source);
+		case '!auto selected!' : return str_replace($matches[0], gettext("Auto Selected"), $source);
+		case '!auto; continuous!' : return str_replace($matches[0], gettext("Auto; Continuous"), $source);
+		case '!auto; focus button!' : return str_replace($matches[0], gettext("Auto; Focus button"), $source);
+		case '!auto-dep!' : return str_replace($matches[0], gettext("Auto-DEP"), $source);
+		case '!av!' : return str_replace($matches[0], gettext("Av"), $source);
+		case '!average!' : return str_replace($matches[0], gettext('Average'), $source);
+		case '!baby!' : return str_replace($matches[0], gettext("Baby"), $source);
+		case '!black & white!' : return str_replace($matches[0], gettext("Black & White"), $source);
+		case '!black and white!' : return str_replace($matches[0], gettext("Black and White"), $source);
+		case '!bright+!' : return str_replace($matches[0], gettext("Bright+"), $source);
+		case '!bright-!' : return str_replace($matches[0], gettext("Bright-"), $source);
+		case '!bulb!' : return str_replace($matches[0], gettext('Bulb'), $source);
+		case '!center!' : return str_replace($matches[0], gettext("Center"), $source);
+		case '!center of pixel array!' : return str_replace($matches[0], gettext('Center of Pixel Array'), $source);
+		case '!center weighted average!' : return str_replace($matches[0], gettext('Center Weighted Average'), $source);
+		case '!center-weighted!' : return str_replace($matches[0], gettext("Center-weighted"), $source);
+		case '!centimeter!' : return str_replace($matches[0], gettext('Centimeter'), $source);
+		case '!chroma saturation high!' : return str_replace($matches[0], gettext("Chroma Saturation High"), $source);
+		case '!chroma saturation low(org)!' : return str_replace($matches[0], gettext("Chroma Saturation Low(ORG)"), $source);
+		case '!chroma saturation normal(std)!' : return str_replace($matches[0], gettext("Chroma Saturation Normal(STD)"), $source);
+		case '!close-up (macro)!' : return str_replace($matches[0], gettext("Close-up (Macro)"), $source);
+		case '!cloudy!' : return str_replace($matches[0], gettext("Cloudy"), $source);
+		case '!color!' : return str_replace($matches[0], gettext("Color"), $source);
+		case '!color sequential area sensor!' : return str_replace($matches[0], gettext('Color Sequential Area Sensor'), $source);
+		case '!color sequential linear sensor!' : return str_replace($matches[0], gettext('Color Sequential Linear Sensor'), $source);
+		case '!compulsory flash!' : return str_replace($matches[0], gettext('Compulsory Flash'), $source);
+		case '!compulsory flash; return str_replace($matches[0], light detected!' : return str_replace($matches[0], gettext('Compulsory Flash; Return light detected'), $source);
+		case '!compulsory flash; return str_replace($matches[0], light not detected!' : return str_replace($matches[0], gettext('Compulsory Flash; Return light not detected'), $source);
+		case '!continuous!' : return str_replace($matches[0], gettext("Continuous"), $source);
+		case '!contrast high(hard)!' : return str_replace($matches[0], gettext("Contrast High(HARD)"), $source);
+		case '!contrast low(org)!' : return str_replace($matches[0], gettext("Contrast Low(ORG)"), $source);
+		case '!contrast normal(std)!' : return str_replace($matches[0], gettext("Contrast Normal(STD)"), $source);
+		case '!contrast+!' : return str_replace($matches[0], gettext("Contrast+"), $source);
+		case '!contrast-!' : return str_replace($matches[0], gettext("Contrast-"), $source);
+		case '!cool!' : return str_replace($matches[0], gettext("Cool"), $source);
+		case '!custom!' : return str_replace($matches[0], gettext("Custom"), $source);
+		case '!datum point!' : return str_replace($matches[0], gettext('Datum Point'), $source);
+		case '!daylight!' : return str_replace($matches[0], gettext('Daylight'), $source);
+		case '!daylightcolor-fluorescence!' : return str_replace($matches[0], gettext("DaylightColor-fluorescence"), $source);
+		case '!daywhitecolor-fluorescence!' : return str_replace($matches[0], gettext("DaywhiteColor-fluorescence"), $source);
+		case '!did not fire!' : return str_replace($matches[0], gettext("Did Not Fire"), $source);
+		case '!digital still camera!' : return str_replace($matches[0], gettext('Digital Still Camera'), $source);
+		case '!directly photographed!' : return str_replace($matches[0], gettext('Directly Photographed'), $source);
+		case '!easyshoot!' : return str_replace($matches[0], gettext("EasyShoot"), $source);
+		case '!evaluative!' : return str_replace($matches[0], gettext("Evaluative"), $source);
+		case '!external!' : return str_replace($matches[0], gettext("External"), $source);
+		case '!external e-ttl!' : return str_replace($matches[0], gettext('External E-TTL'), $source);
+		case '!external flash!' : return str_replace($matches[0], gettext("External Flash"), $source);
+		case '!fast shutter!' : return str_replace($matches[0], gettext("Fast Shutter"), $source);
+		case '!fine!' : return str_replace($matches[0], gettext("Fine"), $source);
+		case '!fireworks!' : return str_replace($matches[0], gettext("Fireworks"), $source);
+		case '!fisheye!' : return str_replace($matches[0], gettext("Fisheye"), $source);
+		case '!flash!' : return str_replace($matches[0], gettext('Flash'), $source);
+		case '!flash did not fire!' : return str_replace($matches[0], gettext("Flash Did Not Fire"), $source);
+		case '!flash fired!' : return str_replace($matches[0], gettext("Flash Fired"), $source);
+		case '!flash; auto-mode!' : return str_replace($matches[0], gettext('Flash; Auto-Mode'), $source);
+		case '!flash; auto-mode; return str_replace($matches[0], light detected!' : return str_replace($matches[0], gettext('Flash; Auto-Mode; Return light detected'), $source);
+		case '!flash; auto-mode; return str_replace($matches[0], light not detected!' : return str_replace($matches[0], gettext('Flash; Auto-Mode; Return light not detected'), $source);
+		case '!flash; strobe return str_replace($matches[0], light detected!' : return str_replace($matches[0], gettext('Flash; strobe return str_replace($matches[0], light detected'), $source);
+		case '!flash; strobe return str_replace($matches[0], light not detected!' : return str_replace($matches[0], gettext('Flash; strobe return str_replace($matches[0], light not detected'), $source);
+		case '!fluorescence!' : return str_replace($matches[0], gettext("Fluorescence"), $source);
+		case '!fluorescent!' : return str_replace($matches[0], gettext('Fluorescent'), $source);
+		case '!food!' : return str_replace($matches[0], gettext("Food"), $source);
+		case '!fp sync used!' : return str_replace($matches[0], gettext('FP sync used'), $source);
+		case '!full auto!' : return str_replace($matches[0], gettext("Full Auto"), $source);
+		case '!halogen!' : return str_replace($matches[0], gettext("Halogen"), $source);
+		case '!hard!' : return str_replace($matches[0], gettext("Hard"), $source);
+		case '!high!' : return str_replace($matches[0], gettext("High"), $source);
+		case '!high sensitivity!' : return str_replace($matches[0], gettext("High Sensitivity"), $source);
+		case '!horizontal (normal)!' : return str_replace($matches[0], gettext("Horizontal (normal)"), $source);
+		case '!incandescence!' : return str_replace($matches[0], gettext("Incandescence"), $source);
+		case '!inch!' : return str_replace($matches[0], gettext('Inch'), $source);
+		case '!infinite!' : return str_replace($matches[0], gettext("Infinite"), $source);
+		case '!internal flash!' : return str_replace($matches[0], gettext('Internal Flash'), $source);
+		case '!iso speed!' : return str_replace($matches[0], gettext('ISO Speed'), $source);
+		case '!iso studio tungsten!' : return str_replace($matches[0], gettext('ISO Studio Tungsten'), $source);
+		case '!jpeg compression!' : return str_replace($matches[0], gettext('Jpeg Compression'), $source);
+		case '!landscape!' : return str_replace($matches[0], gettext('Landscape'), $source);
+		case '!large!' : return str_replace($matches[0], gettext("Large"), $source);
+		case '!left!' : return str_replace($matches[0], gettext("Left"), $source);
+		case '!locked (pan mode)!' : return str_replace($matches[0], gettext("Locked (Pan Mode)"), $source);
+		case '!low!' : return str_replace($matches[0], gettext("Low"), $source);
+		case '!low/high quality!' : return str_replace($matches[0], gettext("Low/High Quality"), $source);
+		case '!macro!' : return str_replace($matches[0], gettext("Macro"), $source);
+		case '!macro/close-up!' : return str_replace($matches[0], gettext("Macro/Close-Up"), $source);
+		case '!manual!' : return str_replace($matches[0], gettext('Manual'), $source);
+		case '!manual exposure!' : return str_replace($matches[0], gettext("Manual Exposure"), $source);
+		case '!manual focus!' : return str_replace($matches[0], gettext("Manual Focus"), $source);
+		case '!medium!' : return str_replace($matches[0], gettext("Medium"), $source);
+		case '!mode 1!' : return str_replace($matches[0], gettext("Mode 1"), $source);
+		case '!mode 2!' : return str_replace($matches[0], gettext("Mode 2"), $source);
+		case '!monochrome!' : return str_replace($matches[0], gettext('Monochrome'), $source);
+		case '!multi-spot!' : return str_replace($matches[0], gettext('Multi-Spot'), $source);
+		case '!natural!' : return str_replace($matches[0], gettext("Natural"), $source);
+		case '!night!' : return str_replace($matches[0], gettext("Night"), $source);
+		case '!night portrait!' : return str_replace($matches[0], gettext("Night Portrait"), $source);
+		case '!night scenery!' : return str_replace($matches[0], gettext("Night Scenery"), $source);
+		case '!no!' : return str_replace($matches[0], gettext("No"), $source);
+		case '!no compression!' : return str_replace($matches[0], gettext('No Compression'), $source);
+		case '!no flash!' : return str_replace($matches[0], gettext('No Flash'), $source);
+		case '!no unit!' : return str_replace($matches[0], gettext('No Unit'), $source);
+		case '!no warning!' : return str_replace($matches[0], gettext("No Warning"), $source);
+		case '!none!' : return str_replace($matches[0], gettext("None"), $source);
+		case '!normal!' : return str_replace($matches[0], gettext("Normal"), $source);
+		case '!not defined!' : return str_replace($matches[0], gettext('Not defined'), $source);
+		case '!off!' : return str_replace($matches[0], gettext("Off"), $source);
+		case '!on!' : return str_replace($matches[0], gettext("On"), $source);
+		case '!on + red eye reduction!' : return str_replace($matches[0], gettext("On + Red Eye Reduction"), $source);
+		case '!on camera!' : return str_replace($matches[0], gettext("On Camera"), $source);
+		case '!one chip color area sensor!' : return str_replace($matches[0], gettext('One Chip Color Area Sensor'), $source);
+		case '!one-shot!' : return str_replace($matches[0], gettext("One-Shot"), $source);
+		case '!other!' : return str_replace($matches[0], gettext('Other'), $source);
+		case '!out of focus!' : return str_replace($matches[0], gettext("Out of Focus"), $source);
+		case '!over exposure!' : return str_replace($matches[0], gettext("Over Exposure"), $source);
+		case '!pan focus!' : return str_replace($matches[0], gettext("Pan Focus"), $source);
+		case '!panning!' : return str_replace($matches[0], gettext("Panning"), $source);
+		case '!partial!' : return str_replace($matches[0], gettext('Partial'), $source);
+		case '!party!' : return str_replace($matches[0], gettext("Party"), $source);
+		case '!pattern!' : return str_replace($matches[0], gettext('Pattern'), $source);
+		case '!pet!' : return str_replace($matches[0], gettext("Pet"), $source);
+		case '!pixels!' : return str_replace($matches[0], gettext('pixels'), $source);
+		case '!portrait!' : return str_replace($matches[0], gettext('Portrait'), $source);
+		case '!preset!' : return str_replace($matches[0], gettext("Preset"), $source);
+		case '!program!' : return str_replace($matches[0], gettext('Program'), $source);
+		case '!program action!' : return str_replace($matches[0], gettext('Program Action'), $source);
+		case '!program ae!' : return str_replace($matches[0], gettext("Program AE"), $source);
+		case '!program creative!' : return str_replace($matches[0], gettext('Program Creative'), $source);
+		case '!raw!' : return str_replace($matches[0], gettext("RAW"), $source);
+		case '!recommended exposure index!' : return str_replace($matches[0], gettext('Recommended Exposure Index'), $source);
+		case '!recommended exposure index and iso speed!' : return str_replace($matches[0], gettext('Recommended Exposure Index and ISO Speed'), $source);
+		case '!red eye!' : return str_replace($matches[0], gettext('Red Eye'), $source);
+		case '!red eye reduction!' : return str_replace($matches[0], gettext("Red Eye Reduction"), $source);
+		case '!red eye; auto-mode!' : return str_replace($matches[0], gettext('Red Eye; Auto-Mode'), $source);
+		case '!red eye; auto-mode; return str_replace($matches[0], light detected!' : return str_replace($matches[0], gettext('Red Eye; Auto-Mode; Return light detected'), $source);
+		case '!red eye; auto-mode; return str_replace($matches[0], light not detected!' : return str_replace($matches[0], gettext('Red Eye; Auto-Mode; Return light not detected'), $source);
+		case '!red eye; compulsory flash!' : return str_replace($matches[0], gettext('Red Eye; Compulsory Flash'), $source);
+		case '!red eye; compulsory flash; return str_replace($matches[0], light detected!' : return str_replace($matches[0], gettext('Red Eye; Compulsory Flash; Return light detected'), $source);
+		case '!red eye; compulsory flash; return str_replace($matches[0], light not detected!' : return str_replace($matches[0], gettext('Red Eye; Compulsory Flash; Return light not detected'), $source);
+		case '!red eye; return str_replace($matches[0], light detected!' : return str_replace($matches[0], gettext('Red Eye; Return light detected'), $source);
+		case '!red eye; return str_replace($matches[0], light not detected!' : return str_replace($matches[0], gettext('Red Eye; Return light not detected'), $source);
+		case '!red-eye reduction!' : return str_replace($matches[0], gettext("Red-Eye Reduction"), $source);
+		case '!rgb!' : return str_replace($matches[0], gettext('RGB'), $source);
+		case '!right!' : return str_replace($matches[0], gettext("Right"), $source);
+		case '!rotate 270 cw!' : return str_replace($matches[0], gettext("Rotate 270 CW"), $source);
+		case '!rotate 90 cw!' : return str_replace($matches[0], gettext("Rotate 90 CW"), $source);
+		case '!scenery!' : return str_replace($matches[0], gettext("Scenery"), $source);
+		case '!sec!' : return str_replace($matches[0], gettext('sec'), $source);
+		case '!sepia!' : return str_replace($matches[0], gettext("Sepia"), $source);
+		case '!shutter priority!' : return str_replace($matches[0], gettext('Shutter Priority'), $source);
+		case '!simple!' : return str_replace($matches[0], gettext("Simple"), $source);
+		case '!single!' : return str_replace($matches[0], gettext("Single"), $source);
+		case '!single/timer!' : return str_replace($matches[0], gettext("Single/Timer"), $source);
+		case '!slow shutter!' : return str_replace($matches[0], gettext("Slow Shutter"), $source);
+		case '!slow synchro!' : return str_replace($matches[0], gettext("Slow Synchro"), $source);
+		case '!small!' : return str_replace($matches[0], gettext("Small"), $source);
+		case '!snow!' : return str_replace($matches[0], gettext("Snow"), $source);
+		case '!soft!' : return str_replace($matches[0], gettext("Soft"), $source);
+		case '!speedlight!' : return str_replace($matches[0], gettext("SpeedLight"), $source);
+		case '!sport!' : return str_replace($matches[0], gettext("Sport"), $source);
+		case '!sports!' : return str_replace($matches[0], gettext("Sports"), $source);
+		case '!spot!' : return str_replace($matches[0], gettext('Spot'), $source);
+		case '!spot-focusing!' : return str_replace($matches[0], gettext("Spot-focusing"), $source);
+		case '!srgb!' : return str_replace($matches[0], gettext('sRGB'), $source);
+		case '!standard!' : return str_replace($matches[0], gettext("Standard"), $source);
+		case '!standard light a!' : return str_replace($matches[0], gettext('Standard Light A'), $source);
+		case '!standard light b!' : return str_replace($matches[0], gettext('Standard Light B'), $source);
+		case '!standard light c!' : return str_replace($matches[0], gettext('Standard Light C'), $source);
+		case '!standard output sensitivity!' : return str_replace($matches[0], gettext('Standard Output Sensitivity'), $source);
+		case '!standard output sensitivity and iso speed!' : return str_replace($matches[0], gettext('Standard Output Sensitivity and ISO Speed'), $source);
+		case '!standard output sensitivity and recommended exposure index!' : return str_replace($matches[0], gettext('Standard Output Sensitivity and Recommended Exposure Index'), $source);
+		case '!standard output sensitivity; recommended exposure index and iso speed!' : return str_replace($matches[0], gettext('Standard Output Sensitivity; Recommended Exposure Index and ISO Speed'), $source);
+		case '!sunny!' : return str_replace($matches[0], gettext("Sunny"), $source);
+		case '!superfine!' : return str_replace($matches[0], gettext("Superfine"), $source);
+		case '!sxga basic!' : return str_replace($matches[0], gettext("SXGA Basic"), $source);
+		case '!sxga fine!' : return str_replace($matches[0], gettext("SXGA Fine"), $source);
+		case '!sxga normal!' : return str_replace($matches[0], gettext("SXGA Normal"), $source);
+		case '!the file could not be found.!' : return str_replace($matches[0], gettext('The file could not be found.'), $source);
+		case '!three chip color area sensor!' : return str_replace($matches[0], gettext('Three Chip Color Area Sensor'), $source);
+		case '!trilinear sensor!' : return str_replace($matches[0], gettext('Trilinear Sensor'), $source);
+		case '!tungsten!' : return str_replace($matches[0], gettext('Tungsten'), $source);
+		case '!tv!' : return str_replace($matches[0], gettext("Tv"), $source);
+		case '!two chip color area sensor!' : return str_replace($matches[0], gettext('Two Chip Color Area Sensor'), $source);
+		case '!uncalibrated!' : return str_replace($matches[0], gettext('Uncalibrated'), $source);
+		case '!underwater!' : return str_replace($matches[0], gettext("Underwater"), $source);
+		case '!unknown!' : return str_replace($matches[0], gettext('Unknown'), $source);
+		case '!version!' : return str_replace($matches[0], gettext('version'), $source);
+		case '!very high!' : return str_replace($matches[0], gettext("Very High"), $source);
+		case '!vga basic!' : return str_replace($matches[0], gettext("VGA Basic"), $source);
+		case '!vga fine!' : return str_replace($matches[0], gettext("VGA Fine"), $source);
+		case '!vga normal!' : return str_replace($matches[0], gettext("VGA Normal"), $source);
+		case '!warm!' : return str_replace($matches[0], gettext("Warm"), $source);
+		case '!warning!' : return str_replace($matches[0], gettext("Warning"), $source);
+		case '!white-fluorescence!' : return str_replace($matches[0], gettext("White-fluorescence"), $source);
+		case '!ycbcr!' : return str_replace($matches[0], gettext('YCbCr'), $source);
+		case '!yes!' : return str_replace($matches[0], gettext("Yes"), $source);
+	}
 }

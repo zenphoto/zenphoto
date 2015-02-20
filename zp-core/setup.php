@@ -37,7 +37,7 @@ if (empty($needs)) {
 								if ($found && (zp_loggedin(ADMIN_RIGHTS) || $_zp_conf_vars['db_software'] == 'NULL')) {
 									echo '<a href="' . WEBPATH . '/' . ZENFOLDER . '/setup.php?xsrfToken=' . getXSRFToken('setup') . '">' . gettext('Click to restore the setup scripts and run setup.') . '</a>';
 								} else {
-									printf(gettext('You must restore the setup files from the %1$s [%2$s] release.'), ZENPHOTO_VERSION, ZENPHOTO_RELEASE);
+									printf(gettext('You must restore the setup files from the %1$s release.'), ZENPHOTO_VERSION);
 								}
 							} else {
 								echo gettext('You must restore the setup files on your primary installation to run the setup operation.');

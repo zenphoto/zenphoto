@@ -966,6 +966,7 @@ class xmpMetadata {
 						if (!is_array($element)) {
 							$element = explode(',', $element);
 						}
+						$element = array_unique(array_merge($image->getTags(), $element));
 						$image->setTags($element);
 						break;
 				}
