@@ -783,6 +783,8 @@ msgstr "Galerie"
 #: D:\github\ZenPhoto20/themes/effervescence+/favorites.php:195
 msgid "Album is empty"
 msgstr "Das Album ist leer"
+msgid "Page not found"
+msgstr "Seite nicht gefunden"
 
 #: D:\github\ZenPhoto20/themes/effervescence+/archive.php:63
 #: D:\github\ZenPhoto20/themes/garland/archive.php:45
