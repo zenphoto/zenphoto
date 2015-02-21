@@ -502,7 +502,7 @@ if (!zp_loggedin()) {
 								<?php
 								if ($_zp_captcha) {
 									?>
-									<li><?php printf(gettext('CAPTCHA generator: <strong>%s</strong>'), $_zp_captcha->name) ?></li>
+									<li><?php printf(gettext('CAPTCHA generator: <strong>%s</strong>'), ($_zp_captcha->name) ? $_zp_captcha->name : gettext('none')) ?></li>
 									<?php
 								}
 								zp_apply_filter('installation_information');

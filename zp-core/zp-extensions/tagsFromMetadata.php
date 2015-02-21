@@ -66,7 +66,7 @@ class tagsFromMetadata {
 		global $_zp_exifvars;
 		$entry_locale = getUserLocale();
 		$languages = generateLanguageList();
-		$element = array();
+		$languageTags = $element = array();
 		$candidates = self::getTaggingItems();
 		foreach ($candidates as $key) {
 			if ($meta = $image->get($key)) {
@@ -77,6 +77,7 @@ class tagsFromMetadata {
 					$xlated = exifTranslate($meta);
 					if ($xlated != $en_us) { // the string has a translation in this language
 						$element[] = $xlated;
+						$languageTags[$language] = $xlated;
 					}
 				}
 			}
@@ -85,6 +86,10 @@ class tagsFromMetadata {
 		$element = array_unique(array_merge($image->getTags(), $element));
 		$image->setTags($element);
 		$image->save();
+		foreach ($languageTags as $language => $tag) {
+			$sql = 'UPDATE ' . prefix('tags') . ' SET `language`=' . db_quote($language) . ' WHERE `name`=' . db_quote($tag) . ' AND `language`=NULL OR `language` LIKE ""';
+			query($sql, false);
+		}
 		return $image;
 	}
 
