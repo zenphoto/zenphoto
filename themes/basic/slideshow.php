@@ -15,8 +15,20 @@ if (function_exists('printSlideShow')) {
 		</head>
 
 		<body>
-			<?php zp_apply_filter('theme_body_open'); ?>
-			<div id="slideshowpage">
+			<?php zp_apply_filter('theme_body_open'); 
+				switch(getOption('Theme_colors')) {
+					case 'light':
+					case 'sterile-light':
+						$class = 'slideshow_light';
+						break;
+					case 'dark':
+					case 'sterile-dark':
+						default:
+						$class = 'slideshow_dark';
+						break;
+				}
+			?>
+			<div id="slideshowpage" class="<?php echo $class; ?>">
 				<?php
 				printSlideShow(true, true);
 				?>
