@@ -50,6 +50,43 @@ if (MOD_REWRITE) {
 } else {
 	$searchurl = WEBPATH . "/index.php?p=search";
 }
+
+$searchstring = $search->getSearchString();
+if (is_array($searchstring)) {
+	?>
+	<script type="text/javascript">
+		function addSuggestedTag(tag) {
+			var name = 'tags_' + bin2hex(tag);
+			if ($('#' + name).length) {
+				$('#' + name + '_element').remove();
+			}
+			html = '<li id="' + name + '_element"><label class="displayinline"><input id="' + name + '" name="' + name +
+							'" type="checkbox" checked="checked" value="1" />' + tag + '</label></li>';
+			$('#list_tags_').prepend(html);
+		}
+		$(document).ready(function () {
+	<?php
+	foreach ($searchstring as $key => $singlesearchstring) {
+		switch ($singlesearchstring) {
+			case '&':
+			case '|':
+			case '!':
+			case '(':
+			case ')':
+				break;
+			default:
+				?>
+						addSuggestedTag('<?php echo $singlesearchstring; ?>');
+				<?php
+				break;
+		}
+	}
+	?>
+		});
+
+	</script>
+	<?php
+}
 ?>
 <h1>
 	<?php printf(ngettext('Tag %d search item', 'Tag %d search items', $count), $count); ?>
