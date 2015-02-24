@@ -77,9 +77,11 @@
 		</style>
 	<body>
 <h1>ZenPhoto20 v1.1.0.7 release notes</h1><p>&nbsp;</p>
-<h2>New plugin</h2>
+<h2>New plugins</h2>
 <p><em>tagsFromMetadata:</em></p>
 <p>This plugin will allow you to select specific metadata items from an image and set the values of these items as tags for the image. So, for instance, you can select <em>EXIFMake</em> and all your images will be tagged with the camera manufacturer's name (provided that camera does record that metadata item.) Tags will be created in each enabled language provided there is a unique translation in that language for the item.</p>
+<p><em>tagFromSearch:</em></p>
+<p>This plugin provides a means to tag objects found by a search. In addition, it (optionally) forces searches&nbsp;by visitors and users without <em>Tags</em>&nbsp;rights to be limited to the&nbsp;tags field.<br /><br />Thus you can apply a unique tag to results of a search so that they are "related" to&nbsp;each other. If you have selected the optional <em>Tags only</em>&nbsp;search <em>normal&nbsp;</em>viewers are limited&nbsp;to searching for defined tags.</p>
 <p><strong>Image rotation fixes</strong></p>
 <p>The original <em>zenphoto&nbsp;</em>code that handled image rotation was confused about the meanings of each of the <em>EXIF&nbsp;orientation</em> values. This was originally mitigated by also being confused as to how the<em> GD library</em> rotations worked. These two errors offset each other. But then the <em>Imagic </em>library was implemented. It rotated images in the opposite&nbsp;direction from the <em>GD library.</em></p>
 <p>Then someone noticed that GD rotated in the opposite direction from <em>zenphoto's </em>assumptions and "fixed" the code. This broke situations where a camera recorded&nbsp;the image rotation instead of just rotating the image as is normal.</p>
