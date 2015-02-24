@@ -72,7 +72,7 @@ function zpRewriteURL($query) {
 		}
 	} else if (isset($query['album'])) {
 		if (isset($query['image'])) {
-			$obj = newImage(NULL, array('folder' => $query['album'], 'filename' => $query['image']), true);
+			$obj = newImage(array('folder' => $query['album'], 'filename' => $query['image']), true);
 			unset($query['image']);
 		} else {
 			$obj = newAlbum($query['album'], NULL, true);

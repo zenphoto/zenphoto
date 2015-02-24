@@ -429,7 +429,7 @@ class feed {
 		switch ($item['type']) {
 			case 'images':
 				$title = get_language_string($item['title']);
-				$obj = newImage(NULL, array('folder' => $item['folder'], 'filename' => $item['filename']));
+				$obj = newImage(array('folder' => $item['folder'], 'filename' => $item['filename']));
 				$link = $obj->getlink();
 				$feeditem['pubdate'] = date("r", strtotime($item['date']));
 				$category = $item['albumtitle'];
