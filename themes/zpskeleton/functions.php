@@ -165,11 +165,7 @@ function printPPSlideShowLink($linktext = '', $linkstyle = '') {
 			$suffixes = array('jpg', 'jpeg', 'gif', 'png');
 			if (in_array($suffix, $suffixes)) {
 				$count++;
-				if (is_array($image)) {
-					$imgobj = newImage(NULL, $image);
-				} else {
-					$imgobj = newImage($_zp_current_album, $image);
-				}
+				$imgobj = newImage($_zp_current_album, $image);
 				$style = '';
 
 				if ($_zp_gallery_page == 'image.php' || in_context(ZP_SEARCH_LINKED)) {

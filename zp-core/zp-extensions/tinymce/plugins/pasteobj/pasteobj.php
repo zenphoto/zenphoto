@@ -43,7 +43,7 @@ function getIPSizedImage($size, $image) {
 			}
 			if (isset($args['album'])) {
 				if (isset($args['image'])) {
-					$obj = newImage(NULL, array('folder' => $args['album'], 'filename' => $args['image']));
+					$obj = newImage(array('folder' => $args['album'], 'filename' => $args['image']));
 					$imagef = $obj->getFullImage(FULLWEBPATH);
 					$title = gettext('<em>image</em>: %s');
 					$token = gettext('%s with link to image');

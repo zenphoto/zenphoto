@@ -433,7 +433,7 @@ class ExternalFeed extends feed {
 					$image = array($image);
 				}
 				foreach ($image as $filename) {
-					$obj = newImage(NULL, array('folder' => $album, 'filename' => $filename), true);
+					$obj = newImage(array('folder' => $album, 'filename' => $filename), true);
 					if ($obj->exists) {
 						$items[] = $obj;
 					}

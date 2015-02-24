@@ -1516,6 +1516,7 @@ zp-core/zp-extensions/slideshow2.php
 zp-core/zp-extensions/static_html_cache.php
 zp-core/zp-extensions/tag_extras.php
 zp-core/zp-extensions/tag_suggest.php
+zp-core/zp-extensions/tagFromSearch.php
 zp-core/zp-extensions/tagsFromMetadata.php
 zp-core/zp-extensions/themeEditor.php
 zp-core/zp-extensions/themeSwitcher.php
@@ -2060,6 +2061,8 @@ zp-core/zp-extensions/tag_suggest
 zp-core/zp-extensions/tag_suggest/encoder.js
 zp-core/zp-extensions/tag_suggest/tag.css
 zp-core/zp-extensions/tag_suggest/tag.js
+zp-core/zp-extensions/tagFromSearch
+zp-core/zp-extensions/tagFromSearch/tag.php
 zp-core/zp-extensions/themeEditor
 zp-core/zp-extensions/themeEditor/themes-editor.php
 zp-core/zp-extensions/tinymce
@@ -2348,4 +2351,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-2350
+2353

@@ -18,9 +18,13 @@ define('WATERMARK_FULL', 4);
  * @param bool $quiet set true to supress error messages (used by loadimage)
  * @return object
  */
-function newImage($album, $filename, $quiet = false) {
+function newImage($album, $filename = NULL, $quiet = false) {
 	global $_zp_missing_image;
-	if (is_array($filename)) {
+	if (is_array($album)) {
+		$xalbum = newAlbum($album['folder'], true, true);
+		$filename = $album['filename'];
+		$dyn = false;
+	} else if (is_array($filename)) {
 		$xalbum = newAlbum($filename['folder'], true, true);
 		$filename = $filename['filename'];
 		$dyn = false;

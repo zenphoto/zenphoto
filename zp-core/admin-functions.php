@@ -1136,6 +1136,11 @@ function printAdminHeader($tab, $subtab = NULL) {
 		}
 	}
 
+	function addTags($tags, $obj) {
+		$mytags = array_unique(array_merge($tags, $obj->getTags(false)));
+		$obj->setTags($mytags);
+	}
+
 	/**
 	 * Creates an unordered checklist of the tags
 	 *
@@ -1458,7 +1463,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 													 name="disclose_password<?php echo $suffix; ?>"
 													 id="disclose_password<?php echo $suffix; ?>"
 													 onclick="passwordClear('<?php echo $suffix; ?>');
-															 togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?>
+																	 togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?>
 									</label>
 								</td>
 								<td>
@@ -1760,7 +1765,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 											// there are some images to choose from
 											foreach ($imagelist as $imagename) {
 												if (is_array($imagename)) {
-													$image = newImage(NULL, $imagename);
+													$image = newImage($imagename);
 													$imagename = '/' . $imagename['folder'] . '/' . $imagename['filename'];
 													$filename = basename($imagename);
 												} else {
@@ -1811,9 +1816,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 name="<?php echo $prefix; ?>Published"
 										 value="1" <?php if ($album->getShow()) echo ' checked="checked"'; ?>
 										 onclick="$('#<?php echo $prefix; ?>publishdate').val('');
-												 $('#<?php echo $prefix; ?>expirationdate').val('');
-												 $('#<?php echo $prefix; ?>publishdate').css('color', 'black');
-												 $('.<?php echo $prefix; ?>expire').html('');"
+													 $('#<?php echo $prefix; ?>expirationdate').val('');
+													 $('#<?php echo $prefix; ?>publishdate').css('color', 'black');
+													 $('.<?php echo $prefix; ?>expire').html('');"
 										 />
 										 <?php echo gettext("Published"); ?>
 						</label>
@@ -1947,7 +1952,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 } else {
 											 ?>
 											 onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');
-													 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
+															 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
 											 <?php
 										 }
 										 ?> />
@@ -4067,8 +4072,7 @@ function processAlbumBulkActions() {
 						$albumobj->set('hitcounter', 0);
 						break;
 					case 'addtags':
-						$mytags = array_unique(array_merge($tags, $albumobj->getTags(false)));
-						$albumobj->setTags($mytags);
+						addTags($tags, $albumobj);
 						break;
 					case 'cleartags':
 						$albumobj->setTags(array());
@@ -4077,8 +4081,7 @@ function processAlbumBulkActions() {
 						$images = $albumobj->getImages();
 						foreach ($images as $imagename) {
 							$imageobj = newImage($albumobj, $imagename);
-							$mytags = array_unique(array_merge($tags, $imageobj->getTags(false)));
-							$imageobj->setTags($mytags);
+							addTags($tags, $imageobj);
 							$imageobj->save();
 						}
 						break;
@@ -4152,8 +4155,7 @@ function processImageBulkActions($album) {
 						$imageobj->set('hitcounter', 0);
 						break;
 					case 'addtags':
-						$mytags = array_unique(array_merge($tags, $imageobj->getTags(false)));
-						$imageobj->setTags($mytags);
+						addTags($tags, $imageobj);
 						break;
 					case 'cleartags':
 						$imageobj->setTags(array());
@@ -5038,7 +5040,7 @@ function linkPickerIcon($obj, $id = NULL, $extra = NULL) {
 	}
 	?>
 	<a onclick="<?php echo $clickid; ?>$('.pickedObject').removeClass('pickedObject');
-			$('#<?php echo $iconid; ?>').addClass('pickedObject');<?php linkPickerPick($obj, $id, $extra); ?>" title="<?php echo gettext('pick source'); ?>">
+				$('#<?php echo $iconid; ?>').addClass('pickedObject');<?php linkPickerPick($obj, $id, $extra); ?>" title="<?php echo gettext('pick source'); ?>">
 		<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" id="<?php echo $iconid; ?>">
 	</a>
 	<?php

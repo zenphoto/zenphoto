@@ -234,7 +234,7 @@ class jPlayer {
 
 	static function getMacrojplayer($albumname, $imagename, $count = 1) {
 		global $_zp_multimedia_extension;
-		$movie = newImage(NULL, array('folder' => $albumname, 'filename' => $imagename), true);
+		$movie = newImage(array('folder' => $albumname, 'filename' => $imagename), true);
 		if ($movie->exists) {
 			return $_zp_multimedia_extension->getPlayerConfig($movie, NULL, (int) $count);
 		} else {

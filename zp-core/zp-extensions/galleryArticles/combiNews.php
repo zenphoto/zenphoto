@@ -264,7 +264,7 @@ $cat->save();
 foreach ($combi as $article) {
 	switch ($article['type']) {
 		case 'images':
-			$obj = newImage(NULL, array('folder' => $article['albumname'], 'filename' => $article['titlelink']), false);
+			$obj = newImage(array('folder' => $article['albumname'], 'filename' => $article['titlelink']), false);
 			break;
 		case 'albums':
 			$obj = newAlbum($article['albumname'], false);
