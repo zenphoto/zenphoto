@@ -183,11 +183,12 @@ echo "\n</head>";
 								array_unshift($logtext, $header);
 								foreach ($logtext as $line) {
 									if ($line) {
+										$line = str_replace("\t", '  ', $line);
 										?>
 										<p>
 											<span class="nowrap">
 												<?php
-												echo str_replace(' ', '&nbsp;', html_encode(trim($line)));
+												echo str_replace(' ', '&nbsp;', html_encode($line));
 												?>
 											</span>
 										</p>

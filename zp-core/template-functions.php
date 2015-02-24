@@ -4388,29 +4388,25 @@ function print404status() {
 		if (array_shift($list) != 'cache') {
 			$target = getRequestURI();
 			if (!in_array($target, array(WEBPATH . '/favicon.ico', WEBPATH . '/zp-data/tést.jpg'))) {
-				$server = array();
+				$output = "404 error details\n\t\t\tSERVER:\n";
 				foreach (array('REQUEST_URI', 'HTTP_REFERER', 'REMOTE_ADDR', 'REDIRECT_STATUS') as $key) {
-					$server[$key] = @$_SERVER[$key];
+					if (is_null(@$_SERVER[$key])) {
+						$value = 'NULL';
+					} else {
+						$value = "'$_SERVER[$key]'";
+					}
+					$output .= "\t\t\t\t\t$key\t=>\t$value\n";
 				}
+				$output .= "\t\t\tREQUEST:\n";
 				$request = $_REQUEST;
 				$request['theme'] = $theme;
 				if (!empty($image)) {
 					$request['image'] = $image;
 				}
-
-				ob_start();
-				var_dump($server);
-				$server = preg_replace('~array\s*\(.*\)\s*~', '', html_decode(getBare(ob_get_contents())));
-				ob_end_clean();
-				ob_start();
-				var_dump($request);
-				$request['theme'] = $theme;
-				if (!empty($image)) {
-					$request['image'] = $image;
+				foreach ($request as $key => $value) {
+					$output .= "\t\t\t\t\t$key\t=>\t'$value'\n";
 				}
-				$request = preg_replace('~array\s*\(.*\)\s*~', '', html_decode(getBare(ob_get_contents())));
-				ob_end_clean();
-				debugLog("404 error details\n" . $server . $request);
+				debugLog($output);
 			}
 		}
 	}
