@@ -45,6 +45,7 @@ class SearchEngine {
 	protected $category_list = NULL; // list of categories for a news search
 	protected $searches = NULL; // remember the criteria for past searches
 	protected $extraparams = array(); // allow plugins to add to search parameters
+	private static $xlate = array('%' => '__25__', '&' => '__26__', '#' => '__23__', '/' => '__2F__', '\\' => '__5C__');
 //	mimic album object
 	var $loaded = false;
 	var $table = 'albums';
@@ -132,7 +133,7 @@ class SearchEngine {
 		}
 		$this->search_structure = zp_apply_filter('searchable_fields', $this->search_structure);
 		if (isset($_REQUEST['words'])) {
-			$this->words = strtr(sanitize($_REQUEST['words'], 4), array('__23__' => '#', '__25__' => '%', '__26__' => '&'));
+			$this->words = strtr(sanitize($_REQUEST['words'], 4), array_flip(self::$xlate));
 		} else {
 			$this->words = NULL;
 			if (isset($_REQUEST['date'])) { // words & dates are mutually exclusive
@@ -209,6 +210,19 @@ class SearchEngine {
 		$this->albums = NULL;
 		$this->searches = array('images' => NULL, 'albums' => NULL, 'pages' => NULL, 'news' => NULL);
 		zp_apply_filter('search_instantiate', $this);
+	}
+
+	/**
+	 * encodes search words so that they can get past browser/server stuff
+	 *
+	 * @param string $words
+	 * @return string
+	 *
+	 * @author Stephen Billard
+	 * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+	 */
+	static function encode($words) {
+		return strtr($words, self::$xlate);
 	}
 
 	/**

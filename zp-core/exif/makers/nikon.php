@@ -380,12 +380,12 @@ function formatNikonData($type, $tag, $intel, $model, $data) {
 							$data = '!did not fire!';
 						else if ($data == 4)
 							$data = '!unknown!';
-								else if ($data == 7)
-									$data = '!external!';
-								else if ($data == 9)
-									$data = '!on camera!';
-								else
-									$data = '!unknown!' . ": " . $data;
+						else if ($data == 7)
+							$data = '!external!';
+						else if ($data == 9)
+							$data = '!on camera!';
+						else
+							$data = '!unknown!' . ": " . $data;
 					}
 					break;
 			}
@@ -398,7 +398,6 @@ function formatNikonData($type, $tag, $intel, $model, $data) {
 // Nikon Special data section
 //====================================================================
 function parseNikon($block, &$result) {
-
 	if ($result['Endien'] == "Intel")
 		$intel = 1;
 	else
