@@ -324,6 +324,10 @@ class Image extends MediaObject {
 						'Subfile'							 => '8#010' //	Subfile														Size:2
 		);
 		$this->set('hasMetadata', 0);
+		foreach ($_zp_exifvars as $field => $exifvar) {
+			$this->set($field, NULL);
+		}
+
 		$result = array();
 		if (get_class($this) == 'Image') {
 			$localpath = $this->localpath;

@@ -699,7 +699,7 @@ class xmpMetadata {
 						$v = self::decode(trim(substr($item, $i + 2, -1)));
 						$key = array_search($tag, $desiredtags);
 						if ($key !== false) {
-							$xmp_parsed[$key] = $v;
+							$xmp_parsed[$key] = trim($v);
 						}
 					}
 				}
@@ -948,6 +948,25 @@ class xmpMetadata {
 							$v = $n[0] + ($n[1] + ($n[2] / 60) / 60);
 						} else {
 							$v = $n[0] + $n[1] / 60;
+						}
+						break;
+					case 'EXIFLensInfo':
+						preg_match_all('~(\d+/\d+)~', $v, $matches);
+						if (isset($matches[1]) && !empty($matches[1])) {
+							$lens = array();
+							foreach ($matches[1] as $i => $f) {
+								$term = explode('/', $f);
+								if ($term[0] != 0 && $term[1] != 0) {
+									$lens[$i] = convertToFraction($term[0] / $term[1]);
+								}
+							}
+							if ($lens[0] == $lens[1]) {
+								$v = sprintf('%0.0fmm f/%0.1f', $lens[0], $lens[2]);
+							} elseif ($lens[2] == $lens[3]) {
+								$v = sprintf('%0.0f-%0.0fmm f/%0.1f', $lens[0], $lens[1], $lens[2]);
+							} else {
+								$v = sprintf('%0.0f-%0.0fmm f/%0.1f-%0.1f', $lens[0], $lens[1], $lens[3], $lens[2]);
+							}
 						}
 						break;
 					case 'rating':
