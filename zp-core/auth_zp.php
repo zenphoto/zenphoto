@@ -94,6 +94,9 @@ if (isset($_POST['login'])) { //	Handle the login form.
 }
 if (!$_zp_loggedin) { //	Clear the ssl cookie
 	zp_clearCookie("zenphoto_ssl");
+	if (class_exists('ipBlocker')) {
+		ipBlocker::load();
+	}
 }
 // Handle a logout action.
 if (isset($_REQUEST['logout'])) {
