@@ -323,7 +323,8 @@ function adminToolbox() {
 					?>
 				</ul>
 			</div>
-			<?php
+		</div>
+		<?php
 		}
 	}
 }
