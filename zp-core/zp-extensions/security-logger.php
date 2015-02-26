@@ -196,7 +196,6 @@ class security_logger {
 					break;
 				case 1:
 					$message .= gettext("Success") . "\t";
-					$message .= substr($authority, 0, strrpos($authority, '_auth'));
 					break;
 				case 2:
 					$message .= gettext("Blocked") . "\t";
@@ -205,6 +204,7 @@ class security_logger {
 					$message .= $aux1 . "\t";
 					break;
 			}
+			$message .= str_replace('_auth', '', $authority);
 			if ($addl) {
 				$message .= "\t" . $addl;
 			}
@@ -419,7 +419,7 @@ class security_logger {
 	 * @param string $txt
 	 */
 	static function security_misc($success, $requestor, $auth, $txt) {
-		security_logger::Logger((int) ($success && true), NULL, NULL, $requestor, 'zp_admin_auth', $txt);
+		security_logger::Logger((int) $success, NULL, NULL, $requestor, $auth, $txt);
 		return $success;
 	}
 

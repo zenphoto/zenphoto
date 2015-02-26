@@ -45,6 +45,9 @@ if (isset($_index_theme)) {
 } else {
 	$_zp_script = NULL;
 }
+if (class_exists('ipBlocker')) {
+	ipBlocker::notFound();
+}
 
 header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 header("HTTP/1.0 404 Not Found");
