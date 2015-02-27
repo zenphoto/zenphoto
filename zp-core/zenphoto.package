@@ -1481,7 +1481,6 @@ zp-core/zp-extensions/ipBlocker.php
 zp-core/zp-extensions/jcarousel_thumb_nav.php
 zp-core/zp-extensions/jplayer.php
 zp-core/zp-extensions/macroList.php
-zp-core/zp-extensions/markRelease.php
 zp-core/zp-extensions/menu_manager.php
 zp-core/zp-extensions/mergedRSS.php
 zp-core/zp-extensions/mobileTheme.php
@@ -2351,4 +2350,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-2353
+2352
