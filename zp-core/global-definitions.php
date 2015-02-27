@@ -40,7 +40,8 @@ define('PLUGIN_PRIORITY', 1023);
 define('SYMLINK', function_exists('symlink') && strpos(@ini_get("suhosin.executor.func.blacklist"), 'symlink') === false);
 define('CASE_INSENSITIVE', file_exists(strtoupper(__FILE__)));
 
-$_debug = explode('-', preg_replace('~-RC\d+~', '', ZENPHOTO_VERSION) . '-')[1];
+$_debug = explode('-', preg_replace('~-RC\d+~', '', ZENPHOTO_VERSION) . '-');
+$_debug = $_debug[1];
 define('TEST_RELEASE', !empty($_debug));
 define('DEBUG_LOGIN', strpos($_debug, 'LOGIN')); // set to true to log admin saves and login attempts
 define('DEBUG_ERROR', TEST_RELEASE); // set to true to supply the calling sequence with zp_error messages
