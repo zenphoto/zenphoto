@@ -32,6 +32,10 @@
  * <li>Category</li>
  * </ul>
  *
+ * The definitions <var>ZP_PAGES_ENABLED</var> and <var>ZP_NEWS_ENABLED</var> are redundant
+ * since the classes will return no items if not enabled. Your theme should be sensitive to
+ * having no content anyway so the check for enabled is not needed.
+ *
  * @author Stephen Billard (sbillard)
  *
  * Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
@@ -75,6 +79,10 @@ switch (OFFSET_PATH) {
 			}
 
 			$_zp_zenpage = clone $_zp_CMS;
+
+			//define the useless legacy definitions
+			define('ZP_NEWS_ENABLED', true);
+			define('ZP_PAGES_ENABLED', true);
 		}
 }
 

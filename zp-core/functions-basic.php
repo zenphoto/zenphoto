@@ -348,6 +348,24 @@ function getOption($key) {
 }
 
 /**
+ * Returns a list of options that start with $pattern
+ * @global array $_zp_options
+ * @param string $pattern
+ * @return array
+ */
+function getOptionsLike($pattern) {
+	global $_zp_options;
+	$result = array();
+	$pattern = strtolower($pattern);
+	foreach ($_zp_options as $option => $value) {
+		if (strpos($option, $pattern) === 0) {
+			$result[$option] = $value;
+		}
+	}
+	return $result;
+}
+
+/**
  * Stores an option value.
  *
  * @param string $key name of the option.
