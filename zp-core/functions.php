@@ -14,9 +14,9 @@ if (!function_exists("json_encode")) {
 	require_once(dirname(__FILE__) . '/lib-json.php');
 }
 
-require_once(dirname(__FILE__) . '/functions-basic.php');
 require_once(dirname(__FILE__) . '/functions-filter.php');
-require_once(SERVERPATH . '/' . ZENFOLDER . '/lib-kses.php');
+require_once(dirname(__FILE__) . '/lib-kses.php');
+require_once(dirname(__FILE__) . '/functions-basic.php');
 
 $_zp_captcha = new _zp_captcha(); // this will be overridden by the plugin if enabled.
 $_zp_HTML_cache = new _zp_HTML_cache(); // this will be overridden by the plugin if enabled.
