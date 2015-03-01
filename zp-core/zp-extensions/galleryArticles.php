@@ -178,12 +178,10 @@ class galleryArticles {
     switch ($type = $obj->table) {
       case 'albums':
         if (getOption('multi_lingual')) {
-          $alb_title = unserialize($obj->getTitle('all'));
+          //$alb_title = unserialize($obj->getTitle('all'));
           $galleryitem_text = unserialize(getOption('galleryArticles_album_text'));
-          foreach ($galleryitem_text as $key => $val) {
-            if (!empty($alb_title[$key])) {
-              $galleryitem_text[$key] = sprintf($galleryitem_text[$key], $alb_title[$key]);
-            }
+          foreach ($galleryitem_text as $key => $val) { 
+            $galleryitem_text[$key] = sprintf($galleryitem_text[$key], $obj->getTitle($key));
           }
           $text = serialize($galleryitem_text);
         } else {
@@ -195,13 +193,9 @@ class galleryArticles {
         break;
       case 'images':
          if (getOption('multi_lingual')) {
-          $img_title = unserialize($obj->getTitle('all'));
-          $alb_title = unserialize($obj->album->getTitle('all'));
           $galleryitem_text = unserialize(getOption('galleryArticles_album_text'));
           foreach ($galleryitem_text as $key => $val) {
-            if (!empty($img_title[$key])) {
-              $galleryitem_text[$key] = sprintf(get_language_string(getOption('galleryArticles_image_text')), $img_title[$key], $alb_title[$key]);
-            }
+            $galleryitem_text[$key] = sprintf(get_language_string(getOption('galleryArticles_image_text')), $obj->getTitle($key), $obj->album->getTitle($key));
           }
           $text = serialize($galleryitem_text);
         } else {
@@ -213,18 +207,15 @@ class galleryArticles {
         $class = 'galleryarticles-newimage';
         break;
     }
-    $article = new ZenpageNews(seoFriendly('galleryAticles-' . $title));
+    $article = new ZenpageNews(seoFriendly('galleryArticles-' . $title));
     $article->setTitle($text);
     $imglink = $img->getCustomImage(getOption('galleryArticles_size'), NULL, NULL, NULL, NULL, NULL, NULL, -1);
     if (getOption('multi_lingual')) {
-      $desc = unserialize($obj->getDesc('all'));
-      $desc_multi = '';
-      foreach ($desc as $key => $val) {
-        if (!empty($val)) {
-          $desc_multi[$key] = '<p><a class="' . $class . '" href="' . $obj->getLink() . '"><img src="' . $imglink . '"></a></p><p>' . $val . '</p>';
-        }
+      $desc = '';
+      foreach ($galleryitem_text as $key => $val) { 
+        $desc[$key] = '<p><a class="' . $class . '" href="' . $obj->getLink() . '"><img src="' . $imglink . '"></a></p><p>' . $obj->getDesc($key) . '</p>';
       }
-      $desc = serialize($desc_multi);
+      $desc = serialize($desc);
     } else {
       $desc = '<p><a class="' . $class . '" href="' . $obj->getLink() . '"><img src="' . $imglink . '"></a></p><p>' . $obj->getDesc() . '</p>';
     }
