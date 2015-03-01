@@ -275,6 +275,9 @@ class htmlmetatags {
 		if (getOption('htmlmeta_name-rights')) {
 			$meta .= '<meta name="rights" content="' . $author . '">' . "\n";
 		}
+		if (getOption('htmlmeta_name-generator')) {
+			$meta .= '<meta name="generator" content="' . ZENPHOTO_VERSION . '">' . "\n";
+		}
 		if (getOption('htmlmeta_name-revisit-after')) {
 			$meta .= '<meta name="revisit-after" content="' . getOption("htmlmeta_revisit_after") . '">' . "\n";
 		}
