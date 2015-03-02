@@ -91,6 +91,9 @@ class CMS {
 		}
 		if (is_null($sorttype)) {
 			$sorttype = $this->getSortType('pages');
+			if (empty($sorttype)) {
+				$sorttype = 'date';
+			}
 		}
 		if (is_null($published)) {
 			$published = !zp_loggedin();
@@ -118,17 +121,7 @@ class CMS {
 		}
 		switch ($sorttype) {
 			default:
-			case 'date':
-				$sortorder = 'date';
-				break;
-			case 'lastchange':
-				$sortorder = 'lastchange';
-				break;
-			case 'title':
-				$sortorder = 'title';
-				break;
-			case 'id':
-				$sortorder = 'id';
+				$sortorder = $sorttype;
 				break;
 			case 'popular':
 				$sortorder = 'hitcounter';
@@ -143,10 +136,6 @@ class CMS {
 				break;
 			case 'random':
 				$sortorder = 'RAND()';
-				$sortdir = '';
-				break;
-			default:
-				$sortorder = 'sort_order';
 				$sortdir = '';
 				break;
 		}
@@ -213,7 +202,6 @@ class CMS {
 			}
 		}
 		$now = date('Y-m-d H:i:s');
-
 		if ($category) {
 			$sortObj = $category;
 		} else {
@@ -228,12 +216,14 @@ class CMS {
 		}
 		if (is_null($sortorder)) {
 			$sortorder = $sortObj->getSortType('news');
+			if (empty($sortorder)) {
+				$sortorder = 'date';
+			}
 		}
 		$newsCacheIndex = "$sortorder-$sortdirection-$published-" . (int) $sticky;
 		if ($category) {
 			$newsCacheIndex .= '-' . $category->getTitlelink();
 		}
-		$showConjunction = ' WHERE ';
 
 		if (isset($_zp_newsCache[$newsCacheIndex])) {
 			$result = $_zp_newsCache[$newsCacheIndex];
@@ -243,7 +233,6 @@ class CMS {
 				if (is_object($_zp_current_category)) {
 					$currentCat = $_zp_current_category->getTitlelink();
 				}
-				$showConjunction = ' AND ';
 				// new code to get nested cats
 				$catid = $category->getID();
 				$subcats = $category->getSubCategories();
@@ -253,9 +242,9 @@ class CMS {
 						$subcatobj = newCategory($subcat);
 						$cat .= "OR cat.cat_id = '" . $subcatobj->getID() . "' ";
 					}
-					$cat .= ") AND cat.news_id = news.id ";
+					$cat .= ") AND cat.news_id = news.id";
 				} else {
-					$cat = " cat.cat_id = '" . $catid . "' AND cat.news_id = news.id ";
+					$cat = " cat.cat_id = '" . $catid . "' AND cat.news_id = news.id";
 				}
 			}
 
@@ -269,19 +258,6 @@ class CMS {
 			}
 			// sortorder and sortdirection (only used for all news articles and categories naturally)
 			switch ($sortorder) {
-				case "date":
-				default:
-					$sort1 = "date" . $dir;
-					break;
-				case 'lastchange':
-					$sort1 = 'lastchange' . $dir;
-					break;
-				case "id":
-					$sort1 = "id" . $dir;
-					break;
-				case "title":
-					$sort1 = "title" . $dir;
-					break;
 				case "popular":
 					$sort1 = 'hitcounter' . $dir;
 					break;
@@ -294,25 +270,28 @@ class CMS {
 				case "random":
 					$sort1 = 'RAND()';
 					break;
+				default:
+					$sort1 = $sortorder . $dir;
+					break;
 			}
 
 			/** get all articles * */
 			switch ($published) {
 				case "published":
 				default:
-					$show = "$showConjunction `show`=1 AND date<='" . $now . "'";
+					$show = "`show`=1";
 					$getUnpublished = false;
 					break;
 				case "published-unpublished":
-					$show = "$showConjunction `show`=1 AND date<='" . $now . "'";
+					$show = "`show`=1";
 					$getUnpublished = true;
 					break;
 				case "unpublished":
-					$show = "$showConjunction `show`=0 AND date<='" . $now . "'";
+					$show = "`show`=0";
 					$getUnpublished = true;
 					break;
 				case 'sticky':
-					$show = "$showConjunction `sticky` <> 0";
+					$show = "`sticky` <> 0";
 					$getUnpublished = true;
 					break;
 				case "all":
@@ -320,24 +299,23 @@ class CMS {
 					$show = false;
 					break;
 			}
-			$showConjunction = ' AND ';
 			$order = " ORDER BY $sticky";
 
-			$datesearch = '';
 			if (in_context(ZP_ZENPAGE_NEWS_DATE)) {
 				switch ($published) {
 					case "published":
-						$datesearch = "date LIKE '$_zp_post_date%' ";
-						break;
 					case "unpublished":
-						$datesearch = "date LIKE '$_zp_post_date%' ";
-						break;
 					case "all":
 						$datesearch = "date LIKE '$_zp_post_date%' ";
 						break;
+					default:
+						$datesearch = '';
+						break;
 				}
 				if ($datesearch) {
-					$datesearch = $showConjunction . $datesearch . ' ';
+					if ($show) {
+						$datesearch = ' AND ' . $datesearch . ' ';
+					}
 				}
 				$order .= " date DESC";
 			} else {
@@ -350,10 +328,17 @@ class CMS {
 				$order .= $sort1;
 			}
 			if ($category) {
-				$sql = "SELECT DISTINCT news.date, news.title, news.titlelink, news.sticky FROM " . prefix('news') . " as news, " . prefix('news2cat') . " as cat WHERE" . $cat . $show . $datesearch . $order;
+				$sql = "SELECT DISTINCT news.date, news.publishdate, news.expiredate, news.lastchange, news.title, news.titlelink, news.sticky FROM " . prefix('news') . " as news, " . prefix('news2cat') . " as cat WHERE" . $cat;
+				if ($show || $datesearch) {
+					$sql .= ' AND ' . $show . $datesearch;
+				}
 			} else {
-				$sql = "SELECT date, title, titlelink, sticky FROM " . prefix('news') . $show . $datesearch . $order;
+				$sql = "SELECT * FROM " . prefix('news');
+				if ($show || $datesearch) {
+					$sql .= ' WHERE ' . $show . $datesearch;
+				}
 			}
+			$sql .= $order;
 
 			$resource = query($sql);
 			$result = array();

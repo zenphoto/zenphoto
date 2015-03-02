@@ -143,11 +143,17 @@ class galleryArticles {
 		global $_zp_CMS;
 		$lanugages = generateLanguageList();
 		$galleryitem_text = array();
+		$locale = getOption('locale');
 		switch ($type = $obj->table) {
 			case 'albums':
 				$dbstring = getOption('galleryArticles_album_text');
+				$localtext = get_language_string($dbstring);
+				$galleryitem_text[$locale] = sprintf($localtext, $obj->getTitle($locale));
 				foreach ($lanugages as $key) {
-					$galleryitem_text[$key] = sprintf(get_language_string($dbstring, $key), $obj->getTitle($key));
+					$languagetext = get_language_string($dbstring, $key);
+					if ($localtext != $languagetext) {
+						$galleryitem_text[$key] = sprintf($languagetext, $obj->getTitle($key));
+					}
 				}
 				$title = $folder = $obj->name;
 				$img = $obj->getAlbumThumbImage();
@@ -155,8 +161,13 @@ class galleryArticles {
 				break;
 			case 'images':
 				$dbstring = unserialize(getOption('galleryArticles_image_text'));
+				$localtext = get_language_string($dbstring);
+				$galleryitem_text[$locale] = sprintf($localtext, $obj->getTitle($locale), $obj->album->getTitle($locale));
 				foreach ($lanugages as $key => $val) {
-					$galleryitem_text[$key] = sprintf(get_language_string($dbstring, $key), $obj->getTitle($key), $obj->album->getTitle($key));
+					$languagetext = get_language_string($dbstring, $key);
+					if ($localtext != $languagetext) {
+						$galleryitem_text[$key] = sprintf($localtext, $obj->getTitle($key), $obj->album->getTitle($key));
+					}
 				}
 				$folder = $obj->imagefolder;
 				$title = $folder . '-' . $obj->filename;
@@ -176,9 +187,12 @@ class galleryArticles {
 		if (!$date)
 			$date = date('Y-m-d H:i:s');
 		$article->setDateTime($date);
+		$article->setLastchange(date('Y-m-d H:i:s'));
 		$article->setAuthor('galleryArticles');
+		$article->setLastchangeauthor('galleryArticles');
 		$article->setShow(true);
 		$article->save();
+
 		if ($override) {
 			$cat = $override;
 		} else {

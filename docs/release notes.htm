@@ -83,13 +83,15 @@
 <p><em>tagFromSearch:</em></p>
 <p>This plugin provides a means to tag objects found by a search. In addition, it (optionally) forces searches&nbsp;by visitors and users without <em>Tags</em>&nbsp;rights to be limited to the&nbsp;tags field.<br /><br />Thus you can apply a unique tag to results of a search so that they are "related" to&nbsp;each other. If you have selected the optional <em>Tags only</em>&nbsp;search <em>normal&nbsp;</em>viewers are limited&nbsp;to searching for defined tags.</p>
 <p><em>debug:<br />markRelease:</em></p>
-<p>The <em>markRelease</em>&nbsp;plugin&nbsp;has been consolodated into the&nbsp;<em>debug</em> plugin.&nbsp;In addition the functionality of the <code>Mark release</code> button is extended by plugin&nbsp;options to allow you to refine the debugging options that are set.</p>
+<p>The <em>markRelease</em>&nbsp;plugin&nbsp;has been consolidated&nbsp;into the&nbsp;<em>debug</em> plugin.&nbsp;In addition the functionality of the <code>Mark release</code> button is extended by plugin&nbsp;options to allow you to refine the debugging options that are set.</p>
 <p><em>ipBlocker:</em></p>
 <p>The plugin&nbsp;has been extensively rewritten to improve both performance and reporting of its actions. A new capability is added to monitor 404 errors and suspend ip address that generate them too quickly.</p>
 <p><strong>Image rotation fixes</strong></p>
 <p>The original <em>zenphoto&nbsp;</em>code that handled image rotation was confused about the meanings of each of the <em>EXIF&nbsp;orientation</em> values. This was originally mitigated by also being confused as to how the<em> GD library</em> rotations worked. These two errors offset each other. But then the <em>Imagic </em>library was implemented. It rotated images in the opposite&nbsp;direction from the <em>GD library.</em></p>
 <p>Then someone noticed that GD rotated in the opposite direction from <em>zenphoto's </em>assumptions and "fixed" the code. This broke situations where a camera recorded&nbsp;the image rotation instead of just rotating the image as is normal.</p>
 <p>We have now fixed the implementation to be true to the specification. Camera set rotations now will work correctly. Unfortunately the downside of this is if you have "fixed" on your images on the prior software they may now be improperly rotated. You should re-import the image metadata&nbsp;or select the correct image rotation on the image tab.</p>
+<h2>News article sort order selections</h2>
+<p>You may now select ordering by <em>Published date</em>, <em>Last change date</em>, and <em>Expiry date</em> in addition to the original <em>creation&nbsp;date</em> and <em>title </em>orders. <em>Creation date</em> (or <em>Last change date</em>) are now shown in addition to the <em>Published date</em>.</p>
 <hr />
 <p>&nbsp;</p>
 <h2 style="text-align: center;">Version 1.1.0</h2>

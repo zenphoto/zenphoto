@@ -51,6 +51,8 @@ if ($result) {
 foreach (array('news', 'pages') as $table) {
 	$sql = 'UPDATE ' . prefix($table) . ' SET `publishdate`=`date` WHERE `publishdate` is NULL';
 	query($sql);
+	$sql = 'UPDATE ' . prefix($table) . ' SET `lastchange`=`date` WHERE `lastchange` is NULL';
+	query($sql);
 }
 
 setOption('zenphoto_install', serialize(installSignature()));
