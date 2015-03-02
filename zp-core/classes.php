@@ -51,7 +51,7 @@ class PersistentObject {
 	private $updates = NULL;
 
 	/**
-		}
+	  }
 	 *
 	 * Prime instantiator for zenphoto objects
 	 * @param $tablename	The name of the database table

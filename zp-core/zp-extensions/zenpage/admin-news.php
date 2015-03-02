@@ -228,7 +228,7 @@ updatePublished('news');
 
 					<table class="bordered">
 						<tr>
-							<th colspan="13" id="imagenav">
+							<th colspan="14" id="imagenav">
 								<?php printPageSelector($subpage, $rangeset, PLUGIN_FOLDER . '/zenpage/admin-news.php', $options); ?>
 							</th>
 						</tr>
@@ -238,7 +238,7 @@ updatePublished('news');
 							</th>
 
 
-							<th colspan="6">
+							<th colspan="7">
 								<?php
 								$checkarray = array(
 												gettext('*Bulk actions*')			 => 'noaction',
@@ -260,10 +260,22 @@ updatePublished('news');
 							</th>
 						</tr>
 						<tr class="newstr">
-							<td class="subhead" colspan="13">
+							<th><!--title--></th>
+							<th><?php echo gettext('Categories'); ?></th>
+							<th><?php echo gettext('Author'); ?></th>
+							<th><?php
+								if ($sortorder == 'date') {
+									echo gettext('Date');
+								} else {
+									echo gettext('Last change date');
+								}
+								?></th>
+							<th><?php echo gettext('Published'); ?></th>
+							<th><?php echo gettext('Expires'); ?></th>
+							<th class="subhead" colspan="8">
 								<label style="float: right"><?php echo gettext("Check All"); ?> <input type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this.checked);" />
 								</label>
-							</td>
+							</th>
 						</tr>
 						<?php
 						foreach ($result as $article) {
@@ -296,6 +308,15 @@ updatePublished('news');
 								</td>
 								<td>
 									<?php echo html_encode($article->getAuthor()); ?>
+								</td>
+								<td>
+									<?php
+									if ($sortorder == 'date') {
+										echo $article->getDateTime();
+									} else {
+										echo $article->getLastchange();
+									}
+									?>
 								</td>
 								<td>
 									<?php printPublished($article); ?>

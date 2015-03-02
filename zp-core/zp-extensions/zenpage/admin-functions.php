@@ -684,6 +684,8 @@ function printUnpublishedDropdown() {
 /**
  * Prints the dropdown menu for the sortorder selector for the news articles list
  *
+ * @author Stephen Billard
+ * @Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
  */
 function printSortOrderDropdown() {
 	global $_zp_CMS;
@@ -691,36 +693,31 @@ function printSortOrderDropdown() {
 	<form name="AutoListBox4" id="sortorderdropdown" style="float:left; margin:5px;"	action="#">
 		<select name="ListBoxURL" size="1"	onchange="gotoLink(this.form)">
 			<?php
-			$orderdate_desc = '';
-			$orderdate_asc = '';
-			$ordertitle_desc = '';
-			$ordertitle_asc = '';
 			if (isset($_GET['sortorder'])) {
-				switch ($_GET['sortorder']) {
-					case "date-desc":
-						$orderdate_desc = "selected='selected'";
-						break;
-					case "date-asc":
-						$orderdate_asc = "selected='selected'";
-						break;
-					case "title-desc":
-						$ordertitle_desc = "selected='selected'";
-						break;
-					case "title-asc":
-						$ordertitle_asc = "selected='selected'";
-						break;
-				}
+				$selected = $_GET['sortorder'];
 			} else {
-				$orderdate_desc = "selected='selected'";
+				$selected = 'date-desc';
 			}
 			$option = getNewsAdminOption(array('author' => 0, 'category' => 0, 'date' => 0, 'published' => 0, 'articles_page' => 1));
-			echo "<option $orderdate_desc value='admin-news.php" . getNewsAdminOptionPath(array_merge(array('sortorder' => 'date-desc'), $option)) . "'>" . gettext("Order by date descending") . "</option>\n";
-			echo "<option $orderdate_asc value='admin-news.php" . getNewsAdminOptionPath(array_merge(array('sortorder' => 'date-asc'), $option)) . "'>" . gettext("Order by date ascending") . "</option>\n";
-			echo "<option $ordertitle_desc value='admin-news.php" . getNewsAdminOptionPath(array_merge(array('sortorder' => 'title-desc'), $option)) . "'>" . gettext("Order by title descending") . "</option>\n";
-			echo "<option $ordertitle_asc value='admin-news.php" . getNewsAdminOptionPath(array_merge(array('sortorder' => 'title-asc'), $option)) . "'>" . gettext("Order by title ascending") . "</option>\n";
+			$selections = array(
+							'date-desc'				 => gettext("Order by date descending"),
+							'date-asc'				 => gettext("Order by date ascending"),
+							'publishdate-desc' => gettext("Order by published descending"),
+							'publishdate-asc'	 => gettext("Order by published ascending"),
+							'expiredate-desc'	 => gettext("Order by expired descending"),
+							'expiredate-asc'	 => gettext("Order by expired ascending"),
+							'lastchange-desc'	 => gettext("Order by last change descending"),
+							'lastchange-asc'	 => gettext("Order by last change ascending"),
+							'title-desc'			 => gettext("Order by title descending"),
+							'title-asc'				 => gettext("Order by title ascending")
+			);
+			foreach ($selections as $sortorder => $text) {
+				?>
+				<option<?php if ($sortorder == $selected) echo ' selected="selected"'; ?> value="admin-news.php<?php echo getNewsAdminOptionPath(array_merge(array('sortorder' => $sortorder), $option)); ?>"><?php echo $text; ?></option>
+				<?php
+			}
 			?>
 		</select>
-
 	</form>
 	<?php
 }
@@ -1403,13 +1400,9 @@ function authorSelector($author = NULL) {
  * @return string
  */
 function printPublished($object) {
-	$dt = $object->getPublishDate();
+	$dt = $object->get('publishdate');
 	if ($dt > date('Y-m-d H:i:s')) {
-		if ($object->getShow()) {
-			echo '<span class="scheduledate">' . $dt . '</strong>';
-		} else {
-			echo '<span class="inactivescheduledate">' . $dt . '</strong>';
-		}
+		echo '<span class="scheduledate">' . $dt . '</strong>';
 	} else {
 		echo '<span>' . $dt . '</span>';
 	}
