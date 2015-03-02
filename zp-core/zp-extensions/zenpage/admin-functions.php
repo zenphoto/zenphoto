@@ -696,7 +696,7 @@ function printSortOrderDropdown() {
 			if (isset($_GET['sortorder'])) {
 				$selected = $_GET['sortorder'];
 			} else {
-				$selected = 'date-desc';
+				$selected = 'publishdate-desc';
 			}
 			$option = getNewsAdminOption(array('author' => 0, 'category' => 0, 'date' => 0, 'published' => 0, 'articles_page' => 1));
 			$selections = array(
