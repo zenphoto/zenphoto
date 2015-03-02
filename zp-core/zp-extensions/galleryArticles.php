@@ -141,7 +141,7 @@ class galleryArticles {
 	 */
 	protected static function publishArticle($obj, $override = NULL) {
 		global $_zp_CMS;
-		$lanugages = array_flip(generateLanguageList());
+		$lanugages = generateLanguageList();
 		$galleryitem_text = array();
 		switch ($type = $obj->table) {
 			case 'albums':
