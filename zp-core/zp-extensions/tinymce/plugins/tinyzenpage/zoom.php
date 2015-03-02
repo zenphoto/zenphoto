@@ -72,7 +72,7 @@ $host = "http://" . html_encode($_SERVER["HTTP_HOST"]);
 					}
 				} elseif (isset($_GET['pages'])) {
 					$item = sanitize($_GET['pages']);
-					$obj = new Page($item);
+					$obj = newPage($item);
 					$categories = '';
 				}
 				echo '<h3>' . $obj->getTitle() . '</h3>';

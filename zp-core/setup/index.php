@@ -855,7 +855,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 													}
 													var loadSucceeded = true;
 													$(document).ready(function () {
-														var image = new Image();
+														var image = newImage();
 														image.onload = function () {
 						<?php
 						if (!(UTF8_IMAGE_URI || @$_SESSION['clone'][$cloneid]['UTF8_image_URI'])) {

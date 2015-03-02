@@ -398,7 +398,7 @@ class feed {
 	 * @return array
 	 */
 	protected function getitemPages($item, $len) {
-		$obj = new Page($item['titlelink']);
+		$obj = newPage($item['titlelink']);
 		$feeditem['title'] = $feeditem['title'] = get_language_string($obj->getTitle('all'), $this->locale);
 		$feeditem['link'] = $obj->getLink();
 		$desc = $obj->getContent($this->locale);
@@ -454,7 +454,11 @@ class feed {
 					$title = get_language_string($item['title']);
 					$titlelink = $item['titlelink'];
 					$website = $item['website'];
-					$obj = new $item['type']($titlelink);
+					if ($item['type'] == 'news') {
+						$obj = newArticle($titlelink);
+					} else {
+						$obj = newPage($titlelink);
+					}
 					$commentpath = PROTOCOL . '://' . $this->host . html_encode($obj->getLink()) . "#" . $item['id'];
 				} else {
 					$commentpath = '';

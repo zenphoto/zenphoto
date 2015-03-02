@@ -2154,7 +2154,7 @@ function getItemByID($table, $id) {
 			case 'news':
 				return newArticle($result['titlelink']);
 			case 'pages':
-				return new Page($result['titlelink']);
+				return newPage($result['titlelink']);
 			case 'news_categories':
 				return new Category($result['titlelink']);
 		}
