@@ -336,7 +336,10 @@ class security_logger {
 			switch (getOption('logger_log_type')) {
 				case 'all':
 				case 'fail':
-					security_logger::Logger(0, NULL, NULL, 'auth_cookie', '', $id . ':' . $auth);
+					if ($id) {
+						$id .=':';
+					}
+					security_logger::Logger(0, NULL, NULL, 'auth_cookie', '', $id . $auth);
 			}
 		}
 		return $allow;
