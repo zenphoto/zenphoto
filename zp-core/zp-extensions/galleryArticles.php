@@ -178,7 +178,6 @@ class galleryArticles {
     switch ($type = $obj->table) {
       case 'albums':
         if (getOption('multi_lingual')) {
-          //$alb_title = unserialize($obj->getTitle('all'));
           $galleryitem_text = unserialize(getOption('galleryArticles_album_text'));
           foreach ($galleryitem_text as $key => $val) { 
             $galleryitem_text[$key] = sprintf($galleryitem_text[$key], $obj->getTitle($key));
@@ -192,10 +191,10 @@ class galleryArticles {
         $class = 'galleryarticles-newalbum';
         break;
       case 'images':
-         if (getOption('multi_lingual')) {
-          $galleryitem_text = unserialize(getOption('galleryArticles_album_text'));
+        if (getOption('multi_lingual')) {
+          $galleryitem_text = unserialize(getOption('galleryArticles_image_text'));
           foreach ($galleryitem_text as $key => $val) {
-            $galleryitem_text[$key] = sprintf(get_language_string(getOption('galleryArticles_image_text')), $obj->getTitle($key), $obj->album->getTitle($key));
+            $galleryitem_text[$key] = sprintf($galleryitem_text[$key], $obj->getTitle($key), $obj->album->getTitle($key));
           }
           $text = serialize($galleryitem_text);
         } else {
