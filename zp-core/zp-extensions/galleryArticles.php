@@ -20,8 +20,6 @@ if (getOption('galleryArticles_albums'))
 	zp_register_filter('new_album', 'galleryArticles::published');
 if (getOption('galleryArticles_images'))
 	zp_register_filter('new_image', 'galleryArticles::published');
-zp_register_filter('admin_head', 'galleryArticles::scan');
-zp_register_filter('load_theme_script', 'galleryArticles::scan');
 
 class galleryArticles {
 
@@ -129,78 +127,36 @@ class galleryArticles {
 	 * @param object $obj
 	 */
 	private static function publishArticlesWithCheck($obj) {
-		$type = $obj->table;
-		if (getOption('galleryArticles_' . $type)) {
-			if ($obj->getShow()) {
-				if (getOption('galleryArticles_protected') || !$obj->isProtected()) {
-					switch ($type = $obj->table) {
-
-						case 'albums':
-							$dt = $obj->getPublishDate();
-							if ($dt > date('Y-m-d H:i:s')) {
-								$result = query_single_row('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="galleryArticles" AND `aux`="pending_albums" AND `data`=' . db_quote($obj->name));
-								if (!$result) {
-									query('INSERT INTO ' . prefix('plugin_storage') . ' (`type`,`aux`,`data`) VALUES ("galleryArticles","pending_albums",' . db_quote($obj->name) . ')');
-								}
-							} else {
-								self::publishArticle($obj);
-							}
-							break;
-						case 'images':
-							$dt = $obj->getPublishDate();
-							if ($dt > date('Y-m-d H:i:s')) {
-								$result = query_single_row('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="galleryArticles" AND `aux`="pending_images" AND `data`=' . db_quote($obj->imagefolder . '/' . $obj->filename));
-								if (!$result) {
-									query('INSERT INTO ' . prefix('plugin_storage') . ' (`type`,`aux`,`data`) VALUES ("galleryArticles","pending_images",' . db_quote($obj->imagefolder . '/' . $obj->filename) . ')');
-								}
-							} else {
-								self::publishArticle($obj);
-							}
-							break;
-					}
-				}
+		if ($obj->getShow()) {
+			if (getOption('galleryArticles_protected') || !$obj->isProtected()) {
+				self::publishArticle($obj);
 			}
 		}
 	}
 
 	/**
 	 *
-	 * Formats the message and calls sendTweet() on an object
+	 * Creates the news article
 	 * @param object $obj
 	 */
 	protected static function publishArticle($obj, $override = NULL) {
 		global $_zp_CMS;
+		$lanugages = array_flip(generateLanguageList());
+		$galleryitem_text = array();
 		switch ($type = $obj->table) {
 			case 'albums':
-				if (getOption('multi_lingual')) {
-					$alb_title = unserialize($obj->getTitle('all'));
-					$galleryitem_text = unserialize(getOption('galleryArticles_album_text'));
-					foreach ($galleryitem_text as $key => $val) {
-						if (!empty($alb_title[$key])) {
-							$galleryitem_text[$key] = sprintf($galleryitem_text[$key], $alb_title[$key]);
-						}
-					}
-					$text = serialize($galleryitem_text);
-				} else {
-					$text = sprintf(get_language_string(getOption('galleryArticles_album_text')), $obj->getTitle());
+				$dbstring = getOption('galleryArticles_album_text');
+				foreach ($lanugages as $key) {
+					$galleryitem_text[$key] = sprintf(get_language_string($dbstring, $key), $obj->getTitle($key));
 				}
 				$title = $folder = $obj->name;
 				$img = $obj->getAlbumThumbImage();
 				$class = 'galleryarticles-newalbum';
 				break;
 			case 'images':
-				if (getOption('multi_lingual')) {
-					$img_title = unserialize($obj->getTitle('all'));
-					$alb_title = unserialize($obj->album->getTitle('all'));
-					$galleryitem_text = unserialize(getOption('galleryArticles_album_text'));
-					foreach ($galleryitem_text as $key => $val) {
-						if (!empty($img_title[$key])) {
-							$galleryitem_text[$key] = sprintf(get_language_string(getOption('galleryArticles_image_text')), $img_title[$key], $alb_title[$key]);
-						}
-					}
-					$text = serialize($galleryitem_text);
-				} else {
-					$text = sprintf(get_language_string(getOption('galleryArticles_image_text')), $obj->getTitle(), $obj->album->getTitle());
+				$dbstring = unserialize(getOption('galleryArticles_image_text'));
+				foreach ($lanugages as $key => $val) {
+					$galleryitem_text[$key] = sprintf(get_language_string($dbstring, $key), $obj->getTitle($key), $obj->album->getTitle($key));
 				}
 				$folder = $obj->imagefolder;
 				$title = $folder . '-' . $obj->filename;
@@ -208,22 +164,14 @@ class galleryArticles {
 				$class = 'galleryarticles-newimage';
 				break;
 		}
-		$article = newArticle(seoFriendly('galleryAticles-' . $title));
-		$article->setTitle($text);
+		$article = newArticle(seoFriendly('galleryArticles-' . $title));
+		$article->setTitle(serialize($galleryitem_text));
 		$imglink = $img->getCustomImage(getOption('galleryArticles_size'), NULL, NULL, NULL, NULL, NULL, NULL, -1);
-		if (getOption('multi_lingual')) {
-			$desc = unserialize($obj->getDesc('all'));
-			$desc_multi = '';
-			foreach ($desc as $key => $val) {
-				if (!empty($val)) {
-					$desc_multi[$key] = '<p><a class="' . $class . '" href="' . $obj->getLink() . '"><img src="' . $imglink . '"></a></p><p>' . $val . '</p>';
-				}
-			}
-			$desc = serialize($desc_multi);
-		} else {
-			$desc = '<p><a class="' . $class . '" href="' . $obj->getLink() . '"><img src="' . $imglink . '"></a></p><p>' . $obj->getDesc() . '</p>';
+		$desc = array();
+		foreach ($galleryitem_text as $key => $val) {
+			$desc[$key] = '<p><a class="' . $class . '" href="' . $obj->getLink() . '"><img src="' . $imglink . '"></a></p><p>' . $obj->getDesc($key) . '</p>';
 		}
-		$article->setContent($desc);
+		$article->setContent(serialize($desc));
 		$date = $obj->getPublishDate();
 		if (!$date)
 			$date = date('Y-m-d H:i:s');
@@ -246,38 +194,6 @@ class galleryArticles {
 			}
 		}
 		$article->setCategories(array($cat));
-	}
-
-	/**
-	 *
-	 * filter which checks if there are any matured items to be sent
-	 * @param string $script
-	 * @param bool $valid will be false if the object is not found (e.g. there will be a 404 error);
-	 * @return string
-	 */
-	static function scan($script, $valid = true) {
-		if ($script && $valid) {
-
-			$result = query_full_array('SELECT * FROM ' . prefix('albums') . ' AS album,' . prefix('plugin_storage') . ' AS store WHERE store.type="galleryArticles" AND store.aux="pending_albums" AND store.data = album.folder AND album.date <= ' . db_quote(date('Y-m-d H:i:s')));
-			if ($result) {
-				foreach ($result as $album) {
-					query('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `id`=' . $album['id']);
-					$album = newAlbum($album['folder']);
-					self::publishArticle($album);
-				}
-			}
-			$result = query_full_array('SELECT * FROM ' . prefix('images') . ' AS image,' . prefix('plugin_storage') . ' AS store WHERE store.type="galleryArticles" AND store.aux="pending_images" AND store.data LIKE image.filename AND image.date <= ' . db_quote(date('Y-m-d H:i:s')));
-			if ($result) {
-				foreach ($result as $image) {
-					query('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `id`=' . $image['id']);
-					$album = query_single_row('SELECT * FROM ' . prefix('albums') . ' WHERE `id`=' . $image['albumid']);
-					$album = newAlbum($album['folder']);
-					$image = newImage($album, $image['filename']);
-					self::publishArticle($image);
-				}
-			}
-		}
-		return $script;
 	}
 
 }

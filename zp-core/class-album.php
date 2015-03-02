@@ -1500,12 +1500,11 @@ class dynamicAlbum extends AlbumBase {
 		$this->localpath = $localpath;
 		if (!$this->_albumCheck($folder8, $folderFS, $quiet))
 			return;
-		$this->instantiate('albums', array('folder' => $this->name), 'folder', $cache, empty($folder8));
+		$new = $this->instantiate('albums', array('folder' => $this->name), 'folder', $cache, empty($folder8));
 		$this->exists = true;
 		if (!is_dir(stripSuffix($this->localpath))) {
 			$this->linkname = stripSuffix($folder8);
 		}
-		$new = !$this->get('search_params');
 		if ($new || (filemtime($this->localpath) > $this->get('mtime'))) {
 			$constraints = '';
 			$data = file_get_contents($this->localpath);
@@ -1683,7 +1682,7 @@ class dynamicAlbum extends AlbumBase {
 			@chmod($this->localpath, 0777);
 			$rslt = @unlink($this->localpath);
 			clearstatcache();
-			$rslt = $rslt && $this->_removeCache();
+			$rslt = $rslt && $this->_removeCache(substr($this->localpath, strlen(ALBUM_FOLDER_SERVERPATH)));
 		}
 		return $rslt;
 	}

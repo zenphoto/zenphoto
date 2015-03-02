@@ -65,7 +65,7 @@ function updatePage(&$reports, $newpage = false) {
 	$commentson = getcheckboxState('commentson');
 	$permalink = getcheckboxState('permalink');
 	$locked = getcheckboxState('locked');
-	$show = getcheckboxState('show') && $pubdate <= date(date('Y-m-d H:i:s'));
+	$show = getcheckboxState('show');
 
 	if ($newpage) {
 		$titlelink = seoFriendly(get_language_string($title));
@@ -359,7 +359,7 @@ function updateArticle(&$reports, $newarticle = false) {
 	$lastchangeauthor = sanitize($_POST['lastchangeauthor']);
 	$commentson = getcheckboxState('commentson');
 	$locked = getcheckboxState('locked');
-	$show = getcheckboxState('show') && $pubdate <= date(date('Y-m-d H:i:s'));
+	$show = getcheckboxState('show');
 
 	if ($newarticle) {
 		$titlelink = seoFriendly(get_language_string($title));

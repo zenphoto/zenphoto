@@ -51,7 +51,7 @@ class PersistentObject {
 	private $updates = NULL;
 
 	/**
-	  }
+		}
 	 *
 	 * Prime instantiator for zenphoto objects
 	 * @param $tablename	The name of the database table
@@ -513,19 +513,17 @@ class ThemeObject extends PersistentObject {
 			if ($this->get('id')) {
 				zp_apply_filter('show_change', $this);
 			}
-			if ($this->get('show') != $new_show) { //	filtere did not reverse the change
+			if ($this->get('show') == $new_show) { //	filter did not reverse the change
 				$p = $this->get("publishdate");
 				$d = date('Y-m-d H:i:s');
 				if ($new_show) { //	going from unpublished to published
-					if ($p && $p > $d) {
-						$this->setPublishDate($d); // "kill" scheduled publish
-					}
+					$this->setPublishDate($d); // published NOW
 					$this->setExpireDate(NULL); // "kill" any scheduled expiry
 				} else { //	going from published to unpulbished
 					if ($p && $p <= $d) {
 						$this->setPublishDate(NULL); // "kill" scheduled publish
 					}
-					if (($e = $this->get("expiredate")) && ($e > date('Y-m-d H:i:s'))) {
+					if (($e = $this->get("expiredate")) && ($e >= $d)) {
 						$this->setExpireDate(NULL); // "kill" scheduled expiry
 					}
 				}

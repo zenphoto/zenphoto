@@ -947,9 +947,9 @@ function handleSearchParms($what, $album = NULL, $image = NULL) {
 		if (!is_null($_zp_current_page)) {
 			$pages = $_zp_current_search->getPages();
 			if (!empty($pages)) {
-				$tltlelink = $_zp_current_page->getTitlelink();
+				$titlelink = $_zp_current_page->getTitlelink();
 				foreach ($pages as $apage) {
-					if ($apage == $tltlelink) {
+					if ($apage == $titlelink) {
 						$context = $context | ZP_SEARCH_LINKED;
 						break;
 					}
@@ -959,9 +959,9 @@ function handleSearchParms($what, $album = NULL, $image = NULL) {
 		if (!is_null($_zp_current_article)) {
 			$news = $_zp_current_search->getArticles(0, NULL, true);
 			if (!empty($news)) {
-				$tltlelink = $_zp_current_article->getTitlelink();
+				$titlelink = $_zp_current_article->getTitlelink();
 				foreach ($news as $anews) {
-					if ($anews['titlelink'] == $tltlelink) {
+					if ($anews['titlelink'] == $titlelink) {
 						$context = $context | ZP_SEARCH_LINKED;
 						break;
 					}
@@ -987,13 +987,26 @@ function handleSearchParms($what, $album = NULL, $image = NULL) {
  */
 function updatePublished($table) {
 //publish items that have matured
-	$sql = 'UPDATE ' . prefix($table) . ' SET `show`=1 WHERE `publishdate`!="0000-00-00 00:00:00" AND `publishdate`<=' . db_quote(date('Y-m-d H:i:s'));
-	query($sql);
+	$sql = 'SELECT * FROM ' . prefix($table) . ' WHERE `show`=0 AND `publishdate`!="0000-00-00 00:00:00" AND `publishdate`<=' . db_quote(date('Y-m-d H:i:s'));
+	$result = query($sql);
+	if ($result) {
+		while ($row = db_fetch_assoc($result)) {
+			$obj = getItemByID($table, $row['id']);
+			$obj->setShow(1);
+			$obj->save();
+		}
+	}
 
 //unpublish items that have expired or are not published yet
-	$sql = 'UPDATE ' . prefix($table) . ' SET `show`=0 WHERE (`expiredate`!="0000-00-00 00:00:00" AND `expiredate`<' . db_quote(date('Y-m-d H:i:s')) . ')' .
-					' OR `publishdate`>' . db_quote(date('Y-m-d H:i:s'));
-	query($sql);
+	$sql = 'SELECT * FROM ' . prefix($table) . ' WHERE `show`=1 AND (`expiredate`!="0000-00-00 00:00:00" AND `expiredate`<' . db_quote(date('Y-m-d H:i:s')) . ') OR `publishdate`>' . db_quote(date('Y-m-d H:i:s'));
+	$result = query($sql);
+	if ($result) {
+		while ($row = db_fetch_assoc($result)) {
+			$obj = getItemByID($table, $row['id']);
+			$obj->setShow(0);
+			$obj->save();
+		}
+	}
 }
 
 /**

@@ -45,8 +45,7 @@ class SearchEngine {
 	protected $category_list = NULL; // list of categories for a news search
 	protected $searches = NULL; // remember the criteria for past searches
 	protected $extraparams = array(); // allow plugins to add to search parameters
-	private static $xlate = array('%' => '__25__', '&' => '__26__', '#' => '__23__', '/' => '__2F__', '\\' => '__5C__');
-//	mimic album object
+	// mimic album object
 	var $loaded = false;
 	var $table = 'albums';
 	var $transient = true;
@@ -132,8 +131,10 @@ class SearchEngine {
 			}
 		}
 		$this->search_structure = zp_apply_filter('searchable_fields', $this->search_structure);
-		if (isset($_REQUEST['words'])) {
-			$this->words = strtr(sanitize($_REQUEST['words'], 4), array_flip(self::$xlate));
+		if (isset($_GET['token'])) {
+			$this->words = self::decode(sanitize($_REQUEST['token'], 4));
+		} else if (isset($_REQUEST['words'])) {
+			$this->words = sanitize($_REQUEST['words'], 4);
 		} else {
 			$this->words = NULL;
 			if (isset($_REQUEST['date'])) { // words & dates are mutually exclusive
@@ -222,7 +223,16 @@ class SearchEngine {
 	 * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
 	 */
 	static function encode($words) {
-		return strtr($words, self::$xlate);
+		return bin2hex($words);
+	}
+
+	/**
+	 * decodes search words
+	 * @param string $words
+	 * @return string
+	 */
+	static function decode($words) {
+		return hex2bin($words);
 	}
 
 	/**

@@ -27,8 +27,6 @@ if ($plugin_disable) {
 		zp_register_filter('new_article', 'tweet::newZenpageObject');
 	if (getOption('tweet_news_pages'))
 		zp_register_filter('new_page', 'tweet::newZenpageObject');
-	zp_register_filter('admin_head', 'tweet::scan');
-	zp_register_filter('load_theme_script', 'tweet::scan');
 	zp_register_filter('admin_overview', 'tweet::errorsOnOverview');
 	zp_register_filter('admin_note', 'tweet::errorsOnAdmin');
 	zp_register_filter('edit_album_utilities', 'tweet::tweeter');
@@ -55,7 +53,6 @@ class tweet {
 		setOptionDefault('tweet_news_consumer_secret', NULL);
 		setOptionDefault('tweet_news_oauth_token', NULL);
 		setOptionDefault('tweet_news_oauth_token_secret', NULL);
-		setOptionDefault('tweet_news_rescan', 1);
 		setOptionDefault('tweet_news_categories_none', NULL);
 		setOptionDefault('tweet_news_images', NULL);
 		setOptionDefault('tweet_news_albums', NULL);
@@ -87,17 +84,10 @@ class tweet {
 										'order'	 => 7,
 										'desc'	 => gettext('If checked, protected items will be tweeted. <strong>Note:</strong> followers will need the password to visit the tweeted link.'))
 		);
-		$note = '';
 		$list = array('<em>' . gettext('Albums') . '</em>' => 'tweet_news_albums', '<em>' . gettext('Images') . '</em>' => 'tweet_news_images');
 		if (extensionEnabled('zenpage')) {
 			$list['<em>' . gettext('News') . '</em>'] = 'tweet_news_news';
 			$list['<em>' . gettext('Pages') . '</em>'] = 'tweet_news_pages';
-			$options[gettext('Scan pending')] = array('key'		 => 'tweet_news_rescan', 'type'	 => OPTION_TYPE_CHECKBOX,
-							'order'	 => 8,
-							'desc'	 => gettext('<code>tweet_news</code> notices when a page or an article is published. ' .
-											'If the date is in the future, it is put in the <em>to-be-tweeted</em> and tweeted when that date arrives. ' .
-											'This option allows you to re-populate that list to the current state of scheduled tweets.')
-			);
 		} else {
 			setOption('tweet_news_news', 0);
 			setOption('tweet_news_pages', 0);
@@ -125,15 +115,6 @@ class tweet {
 							'order'			 => 6.5,
 							'checkboxes' => $catlist,
 							'desc'			 => gettext('Only those <em>news categories</em> checked will be Tweeted. <strong>Note:</strong> <em>*not categorized*</em> means those news articles which have no category assigned.'));
-		}
-		if (getOption('tweet_news_rescan')) {
-			setOption('tweet_news_rescan', 0);
-			$note = self::tweetRepopulate();
-		}
-		if ($note) {
-			$options['note'] = array('key'		 => 'tweet_news_rescan', 'type'	 => OPTION_TYPE_NOTE,
-							'order'	 => 0,
-							'desc'	 => $note);
 		}
 
 		return $options;
@@ -343,99 +324,6 @@ class tweet {
 			setupCurrentLocale($cur_locale); //	restore to whatever was in effect.
 		}
 		return $error;
-	}
-
-	/**
-	 *
-	 * filter which checks if there are any matured tweets to be sent
-	 * @param string $script
-	 * @param bool $valid will be false if the object is not found (e.g. there will be a 404 error);
-	 * @return string
-	 */
-	static function scan($script, $valid = true) {
-		if ($script && $valid) {
-			$result = query_full_array('SELECT * FROM ' . prefix('news') . ' AS news,' . prefix('plugin_storage') . ' AS store WHERE store.type="tweet_news" AND store.aux="pending" AND store.data = news.titlelink AND news.date <= ' . db_quote(date('Y-m-d H:i:s')));
-			if ($result) {
-				foreach ($result as $article) {
-					query('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `id`=' . $article['id']);
-					$news = newArticle($article['titlelink']);
-					self::tweetObject($news);
-				}
-			}
-			$result = query_full_array('SELECT * FROM ' . prefix('pages') . ' AS page,' . prefix('plugin_storage') . ' AS store WHERE store.type="tweet_news" AND store.aux="pending_pages" AND store.data = page.titlelink AND page.date <= ' . db_quote(date('Y-m-d H:i:s')));
-			if ($result) {
-				foreach ($result as $page) {
-					query('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `id`=' . $page['id']);
-					$page = newArticle($page['titlelink']);
-					self::tweetObject($page);
-				}
-			}
-			$result = query_full_array('SELECT * FROM ' . prefix('albums') . ' AS album,' . prefix('plugin_storage') . ' AS store WHERE store.type="tweet_news" AND store.aux="pending_albums" AND store.data = album.folder AND album.date <= ' . db_quote(date('Y-m-d H:i:s')));
-			if ($result) {
-				foreach ($result as $album) {
-					query('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `id`=' . $album['id']);
-					$album = newAlbum($album['folder']);
-					self::tweetObject($album);
-				}
-			}
-			$result = query_full_array('SELECT * FROM ' . prefix('images') . ' AS image,' . prefix('plugin_storage') . ' AS store WHERE store.type="tweet_news" AND store.aux="pending_images" AND store.data LIKE image.filename AND image.date <= ' . db_quote(date('Y-m-d H:i:s')));
-			if ($result) {
-				foreach ($result as $image) {
-					query('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `id`=' . $image['id']);
-					$album = query_single_row('SELECT * FROM ' . prefix('albums') . ' WHERE `id`=' . $image['albumid']);
-					$album = newAlbum($album['folder']);
-					$image = newImage($album, $image['filename']);
-					self::tweetObject($image);
-				}
-			}
-		}
-		return $script;
-	}
-
-	/**
-	 *
-	 * Collects all published news & pages whose publish date is in the future. Sets the scan list to those found
-	 */
-	private static function tweetRepopulate() {
-		$found = array();
-		query('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `type`="tweet_news" AND `aux`="pending"');
-		$result = query_full_array('SELECT * FROM ' . prefix('news') . ' WHERE `show`=1 AND `date`>' . db_quote(date('Y-m-d H:i:s')));
-		if ($result) {
-			foreach ($result as $pending) {
-				query('INSERT INTO ' . prefix('plugin_storage') . ' (`type`,`aux`,`data`) VALUES ("tweet_news","pending",' . db_quote($pending['titlelink']) . ')');
-			}
-			$found[] = gettext('news');
-		}
-		query('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `type`="tweet_news" AND `aux`="pending_pages"');
-		$result = query_full_array('SELECT * FROM ' . prefix('pages') . ' WHERE `show`=1 AND `date`>' . db_quote(date('Y-m-d H:i:s')));
-		if ($result) {
-			foreach ($result as $pending) {
-				query('INSERT INTO ' . prefix('plugin_storage') . ' (`type`,`aux`,`data`) VALUES ("tweet_news","pending_pages",' . db_quote($pending['titlelink']) . ')');
-			}
-			$found[] = gettext('pages');
-		}
-		query('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `type`="tweet_news" AND `aux`="pending_albums"');
-		$result = query_full_array('SELECT * FROM ' . prefix('albums') . ' WHERE `show`=1 AND `date`>' . db_quote(date('Y-m-d H:i:s')));
-		if ($result) {
-			foreach ($result as $pending) {
-				query('INSERT INTO ' . prefix('plugin_storage') . ' (`type`,`aux`,`data`) VALUES ("tweet_news","pending_albums",' . db_quote($pending['folder']) . ')');
-			}
-			$found[] = gettext('albums');
-		}
-		query('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `type`="tweet_news" AND `aux`="pending_images"');
-		$result = query_full_array('SELECT * FROM ' . prefix('images') . ' WHERE `show`=1 AND `date`>' . db_quote(date('Y-m-d H:i:s')));
-		if ($result) {
-			foreach ($result as $pending) {
-				$album = query_single_row('SELECT * FROM ' . prefix('albums') . ' WHERE `id`=' . $pending['albumid']);
-				query('INSERT INTO ' . prefix('plugin_storage') . ' (`type`,`aux`,`data`) VALUES ("tweet_news","pending_images",' . db_quote($album['folder'] . '/' . $pending['filename']) . ')');
-			}
-			$found[] = gettext('images');
-		}
-		if (empty($found)) {
-			return '<p class="messagebox">' . gettext('No scheduled news articles found.') . '</p>';
-		} else {
-			return '<p class="messagebox">' . gettext('Scheduled items have been noted for tweeting.') . '</p>';
-		}
 	}
 
 	/**

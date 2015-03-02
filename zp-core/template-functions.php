@@ -3683,7 +3683,7 @@ function isArchive() {
  * @since 1.1.3
  */
 function getSearchURL($words, $dates, $fields, $page, $object_list = NULL) {
-	$urls = '';
+	$urls = array();
 	$rewrite = false;
 	if (MOD_REWRITE) {
 		$rewrite = true;
@@ -3704,7 +3704,8 @@ function getSearchURL($words, $dates, $fields, $page, $object_list = NULL) {
 			$url = SEO_WEBPATH . '/' . _ARCHIVE_ . '/';
 		}
 	} else {
-		$url = SEO_WEBPATH . "/index.php?p=search";
+		$url = SEO_WEBPATH . "/index.php";
+		$urls[] = 'p=search';
 	}
 	if (!empty($fields) && empty($dates)) {
 		if (!is_array($fields)) {
@@ -3715,7 +3716,7 @@ function getSearchURL($words, $dates, $fields, $page, $object_list = NULL) {
 			$url = SEO_WEBPATH . '/' . _TAGS_ . '/';
 		} else {
 			$search = new SearchEngine();
-			$urls = $search->getSearchFieldsText($fields, 'searchfields=');
+			$urls[] = $search->getSearchFieldsText($fields, 'searchfields=');
 		}
 	}
 
@@ -3726,12 +3727,7 @@ function getSearchURL($words, $dates, $fields, $page, $object_list = NULL) {
 			}
 			$words = implode(',', $words);
 		}
-		$words = SearchEngine::encode($words);
-		if ($rewrite) {
-			$url .= urlencode($words) . '/';
-		} else {
-			$url .= "&words=" . urlencode($words);
-		}
+		$urls[] = "token=" . SearchEngine::encode($words);
 	}
 	if (!empty($dates)) {
 		if (is_array($dates)) {
@@ -3740,33 +3736,27 @@ function getSearchURL($words, $dates, $fields, $page, $object_list = NULL) {
 		if ($rewrite) {
 			$url .= $dates . '/';
 		} else {
-			$url .= "&date=$dates";
+			$urls[] .= "&date=$dates";
 		}
 	}
 	if ($page > 1) {
 		if ($rewrite) {
 			$url .= $page;
 		} else {
-			if ($urls) {
-				$urls .= '&';
-			}
-			$urls .= "page=$page";
-		}
-	}
-	if (!empty($urls)) {
-		if ($rewrite) {
-			$url .= '?' . $urls;
-		} else {
-			$url .= '&' . $urls;
+			$urls[] = "page=$page";
 		}
 	}
 	if (is_array($object_list)) {
 		foreach ($object_list as $key => $list) {
 			if (!empty($list)) {
-				$url .= '&in' . $key . '=' . html_encode(implode(',', $list));
+				$url[] = '&in' . $key . '=' . implode(',', $list);
 			}
 		}
 	}
+	if (!empty($urls)) {
+		$url .= '?' . implode('&', $urls);
+	}
+
 	return $url;
 }
 

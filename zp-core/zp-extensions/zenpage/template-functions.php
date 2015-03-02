@@ -8,12 +8,12 @@
  */
 /* * ********************************************* */
 /* ZENPAGE TEMPLATE FUNCTIONS
-	/*********************************************** */
+  /*********************************************** */
 
 
 /* * ********************************************* */
 /* General functions
-	/*********************************************** */
+  /*********************************************** */
 
 /**
  * Checks if the current page is in news context.
@@ -117,7 +117,7 @@ function getAuthor($fullname = false) {
 
 /* * ********************************************* */
 /* News article functions
-	/*********************************************** */
+  /*********************************************** */
 
 /**
  * Gets the latest news either only news articles or with the latest images or albums
@@ -787,7 +787,7 @@ function printAllNewsCategories($newsindex = 'All news', $counter = true, $css_i
 
 /* * ********************************************* */
 /* News article URL functions
-	/*********************************************** */
+  /*********************************************** */
 
 /**
  * Returns the full path to a news category
@@ -831,25 +831,19 @@ function printNewsCategoryURL($before = '', $catlink = '') {
  */
 function printNewsIndexURL($name = NULL, $before = '', $archive = NULL) {
 	global $_zp_post_date;
-	if ($_zp_post_date) {
-		if (is_null($archive)) {
-			$name = '<em>' . gettext('Archive') . '</em>';
-		} else {
-			$name = getBare(html_encode($archive));
-		}
-		$link = zp_apply_filter('getLink', rewrite_path(_ARCHIVE_ . '/', "/index.php?p=archive"), 'archive.php', NULL);
-	} else {
+	if (!in_context(ZP_SEARCH_LINKED)) {
 		if (is_null($name)) {
 			$name = gettext('News');
 		} else {
 			$name = getBare(html_encode($name));
 		}
 		$link = getNewsIndexURL();
+
+		if ($before) {
+			echo '<span class="beforetext">' . html_encode($before) . '</span>';
+		}
+		echo "<a href=\"" . html_encode($link) . "\" title=\"" . getBare($name) . "\">" . $name . "</a>";
 	}
-	if ($before) {
-		echo '<span class="beforetext">' . html_encode($before) . '</span>';
-	}
-	echo "<a href=\"" . html_encode($link) . "\" title=\"" . getBare($name) . "\">" . $name . "</a>";
 }
 
 /**
@@ -869,7 +863,7 @@ function getNewsArchivePath($date, $page) {
 
 /* * ********************************************************* */
 /* News index / category / date archive pagination functions
-	/********************************************************** */
+  /********************************************************** */
 
 function getNewsPathNav($page) {
 	global $_zp_current_category, $_zp_post_date;
@@ -1049,7 +1043,7 @@ function getTotalNewsPages() {
 
 /* * ********************************************************************* */
 /* Single news article pagination functions (previous and next article)
-	/*********************************************************************** */
+  /*********************************************************************** */
 
 /**
  * Returns the title and the titlelink of the next article in single news article pagination as an array
@@ -1118,7 +1112,7 @@ function printPrevNewsLink($prev = "« ") {
 
 /* * ******************************************************* */
 /* Functions - shared by Pages and News articles
-	/********************************************************* */
+  /********************************************************* */
 
 /**
  * Gets the statistic for pages, news articles or categories as an unordered list
@@ -1615,40 +1609,67 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
  * @param string $after Text to place after the breadcrumb item
  */
 function printZenpageItemsBreadcrumb($before = NULL, $after = NULL) {
-	global $_zp_current_page, $_zp_current_category;
-	$parentitems = array();
-	if (is_Pages()) {
-		//$parentid = $_zp_current_page->getParentID();
-		$parentitems = $_zp_current_page->getParents();
-	}
-	if (is_NewsCategory()) {
-		//$parentid = $_zp_current_category->getParentID();
-		$parentitems = $_zp_current_category->getParents();
-	}
-	foreach ($parentitems as $item) {
-		if (is_Pages()) {
-			$pageobj = newPage($item);
-			$parentitemurl = html_encode($pageobj->getLink());
-			$parentitemtitle = $pageobj->getTitle();
-		}
+	global $_zp_current_page, $_zp_current_category, $_zp_current_search;
+	if (in_context(ZP_SEARCH_LINKED)) {
+		$page = $_zp_current_search->page;
+		$searchwords = $_zp_current_search->getSearchWords();
+		$searchdate = $_zp_current_search->getSearchDate();
+		$searchfields = $_zp_current_search->getSearchFields(true);
 		if (is_NewsCategory()) {
-			$catobj = newCategory($item);
-			$parentitemurl = $catobj->getLink();
-			$parentitemtitle = $catobj->getTitle();
+			$search_obj_list = array('news' => $_zp_current_search->getCategoryList());
+		} else {
+			$search_obj_list = NULL;
+		}
+		$searchpagepath = getSearchURL($searchwords, $searchdate, $searchfields, $page, $search_obj_list);
+		if (empty($searchdate)) {
+			$title = gettext("Return to search");
+			$text = gettext("Search");
+		} else {
+			$title = gettext("Return to archive");
+			$text = gettext("Archive");
 		}
 		if ($before) {
 			echo '<span class="beforetext">' . html_encode($before) . '</span>';
 		}
-		echo"<a href='" . $parentitemurl . "'>" . html_encode($parentitemtitle) . "</a>";
+		echo"<a href='" . $searchpagepath . "' title='" . html_encode($title) . "'>" . html_encode($text) . "</a>";
 		if ($after) {
 			echo '<span class="aftertext">' . html_encode($after) . '</span>';
+		}
+	} else {
+		if (is_Pages()) {
+			//$parentid = $_zp_current_page->getParentID();
+			$parentitems = $_zp_current_page->getParents();
+		} else if (is_NewsCategory()) {
+			//$parentid = $_zp_current_category->getParentID();
+			$parentitems = $_zp_current_category->getParents();
+		} else {
+			$parentitems = array();
+		}
+		foreach ($parentitems as $item) {
+			if (is_Pages()) {
+				$pageobj = newPage($item);
+				$parentitemurl = $pageobj->getLink();
+				$parentitemtitle = $pageobj->getTitle();
+			}
+			if (is_NewsCategory()) {
+				$catobj = newCategory($item);
+				$parentitemurl = $catobj->getLink();
+				$parentitemtitle = $catobj->getTitle();
+			}
+			if ($before) {
+				echo '<span class="beforetext">' . html_encode($before) . '</span>';
+			}
+			echo"<a href='" . html_encode($parentitemurl) . "'>" . html_encode($parentitemtitle) . "</a>";
+			if ($after) {
+				echo '<span class="aftertext">' . html_encode($after) . '</span>';
+			}
 		}
 	}
 }
 
 /* * ********************************************* */
 /* Pages functions
-	/*********************************************** */
+  /*********************************************** */
 $_zp_CMS_pagelist = NULL;
 
 /**
@@ -2109,7 +2130,7 @@ function checkForPage($titlelink) {
 
 /* * ********************************************* */
 /* Comments
-	/*********************************************** */
+  /*********************************************** */
 
 /**
  * Gets latest comments for news articles and pages

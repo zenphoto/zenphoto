@@ -377,10 +377,7 @@ updatePublished('news');
 									}
 									?>
 									<td class="page-list_icon">
-										<a href="javascript:confirmDelete('admin-news.php?delete=<?php
-										echo $article->getTitlelink();
-										echo $option;
-										?>&amp;XSRFToken=<?php echo getXSRFToken('delete') ?>','<?php echo js_encode(gettext('Are you sure you want to delete this article? THIS CANNOT BE UNDONE!')); ?>')" title="<?php echo gettext('Delete article'); ?>">
+										<a href="javascript:confirmDelete('admin-news.php<?php echo $option . $divider; ?>delete=<?php echo $article->getTitlelink(); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete') ?>','<?php echo js_encode(gettext('Are you sure you want to delete this article? THIS CANNOT BE UNDONE!')); ?>')" title="<?php echo gettext('Delete article'); ?>">
 											<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/fail.png" alt="" title="<?php echo gettext('Delete article'); ?>" /></a>
 									</td>
 									<td class="page-list_icon">

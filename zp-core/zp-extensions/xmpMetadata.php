@@ -958,14 +958,21 @@ class xmpMetadata {
 								$term = explode('/', $f);
 								if ($term[0] != 0 && $term[1] != 0) {
 									$lens[$i] = convertToFraction($term[0] / $term[1]);
+								} else {
+									$lens[$i] = 0;
 								}
 							}
 							if ($lens[0] == $lens[1]) {
-								$v = sprintf('%0.0fmm f/%0.1f', $lens[0], $lens[2]);
-							} elseif ($lens[2] == $lens[3]) {
-								$v = sprintf('%0.0f-%0.0fmm f/%0.1f', $lens[0], $lens[1], $lens[2]);
+								$v = sprintf('%0.0fmm', $lens[0]);
 							} else {
-								$v = sprintf('%0.0f-%0.0fmm f/%0.1f-%0.1f', $lens[0], $lens[1], $lens[3], $lens[2]);
+								$v = sprintf('%0.0f-%0.0fmm', $lens[0], $lens[1]);
+							}
+							if ($lens[2] == $lens[3]) {
+								if ($lens[2] != 0) {
+									$v.= sprintf(' f/%0.1f', $lens[2]);
+								}
+							} else {
+								$v .= sprintf(' f/%0.1f-%0.1f', $lens[3], $lens[2]);
 							}
 						}
 						break;
