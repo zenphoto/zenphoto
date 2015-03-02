@@ -137,7 +137,7 @@ updatePublished('news');
 					} else {
 						$published = 'all';
 					}
-					$sortorder = 'date';
+					$sortorder = 'publishdate';
 					$direction = true;
 					if (isset($_GET['sortorder'])) {
 						list($sortorder, $sortdirection) = explode('-', $_GET['sortorder']);
@@ -189,10 +189,10 @@ updatePublished('news');
 						foreach ($result as $article) {
 							$list[] = $article[$sortorder];
 						}
-						if ($sortorder == 'date') {
-							$rangeset = getPageSelector($list, $articles_page, 'dateDiff');
-						} else {
+						if ($sortorder == 'title') {
 							$rangeset = getPageSelector($list, $articles_page);
+						} else {
+							$rangeset = getPageSelector($list, $articles_page, 'dateDiff');
 						}
 						$options = array_merge(array('page' => 'news', 'tab' => 'articles'), getNewsAdminOption(array('category' => 0, 'date' => 0, 'published' => 0, 'sortorder' => 0, 'articles_page' => 1)));
 						$result = array_slice($result, $offset, $articles_page);
