@@ -438,7 +438,7 @@ function getHeadTitle($separator = ' | ', $listparents = true) {
 				if (count($parents) != 0) {
 					$parents = array_reverse($parents);
 					foreach ($parents as $parent) {
-						$obj = new Page($parent);
+						$obj = newPage($parent);
 						$parentpages .= html_encode(getBare($obj->getTitle())) . $separator;
 					}
 				}

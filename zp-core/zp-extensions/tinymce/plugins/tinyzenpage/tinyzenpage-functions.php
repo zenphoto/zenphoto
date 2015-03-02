@@ -494,7 +494,7 @@ function printAllNestedList() {
 		foreach ($items as $key => $item) {
 			switch ($mode) {
 				case 'pages':
-					$obj = new Page($item['titlelink']);
+					$obj = newPage($item['titlelink']);
 					$itemcontent = truncate_string(getBare($obj->getContent()), 300);
 					$Page = _PAGES_ . '/' . $item['titlelink'];
 					$unpublished = unpublishedZenpageItemCheck($obj);
