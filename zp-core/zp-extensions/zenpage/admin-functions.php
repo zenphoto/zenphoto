@@ -700,8 +700,8 @@ function printSortOrderDropdown() {
 			}
 			$option = getNewsAdminOption(array('author' => 0, 'category' => 0, 'date' => 0, 'published' => 0, 'articles_page' => 1));
 			$selections = array(
-							'date-desc'				 => gettext("Order by date descending"),
-							'date-asc'				 => gettext("Order by date ascending"),
+							'date-desc'				 => gettext("Order by creation date descending"),
+							'date-asc'				 => gettext("Order by creation date ascending"),
 							'publishdate-desc' => gettext("Order by published descending"),
 							'publishdate-asc'	 => gettext("Order by published ascending"),
 							'expiredate-desc'	 => gettext("Order by expired descending"),

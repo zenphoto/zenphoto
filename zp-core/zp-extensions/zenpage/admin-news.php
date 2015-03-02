@@ -265,9 +265,9 @@ updatePublished('news');
 							<th><?php echo gettext('Author'); ?></th>
 							<th><?php
 								if ($sortorder == 'date') {
-									echo gettext('Date');
+									echo gettext('Created');
 								} else {
-									echo gettext('Last change date');
+									echo gettext('Last changed');
 								}
 								?></th>
 							<th><?php echo gettext('Published'); ?></th>
