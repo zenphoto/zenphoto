@@ -130,7 +130,10 @@ class SearchEngine {
 				$this->search_structure[strtolower($field)] = $row[2];
 			}
 		}
+
 		$this->search_structure = zp_apply_filter('searchable_fields', $this->search_structure);
+		asort($this->search_structure, SORT_LOCALE_STRING);
+
 		if (isset($_GET['token'])) {
 			$this->words = self::decode(sanitize($_REQUEST['token'], 4));
 		} else if (isset($_REQUEST['words'])) {
