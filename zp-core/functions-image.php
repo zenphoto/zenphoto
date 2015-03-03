@@ -17,15 +17,20 @@
 function imageError($status_text, $errormessage, $errorimg = 'err-imagegeneral.png') {
 	global $newfilename, $album, $image;
 	$debug = isset($_GET['debug']);
+	$msg = '<strong>' . sprintf(gettext('Image Processing Error: %s'), $errormessage) . '</strong>'
+					. '<br />' . sprintf(gettext('Request URI: [ <code>%s</code> ]'), html_encode(getRequestURI()))
+					. '<br />PHP_SELF: [ <code>' . sanitize($_SERVER['PHP_SELF'], 3) . '</code> ]';
+	if ($newfilename) {
+		$msg .='<br />' . sprintf(gettext('Cache: [<code>%s</code>]'), '/' . CACHEFOLDER . '/' . sanitize($newfilename, 3));
+	}
+	if ($image || $album) {
+		$msg.= '<br />' . sprintf(gettext('Image: [<code>%s</code>]'), sanitize($album . '/' . $image, 3));
+	}
 	if ($debug) {
-		echo('<strong>' . sprintf(gettext('Image Processing Error: %s'), $errormessage) . '</strong>'
-		. '<br /><br />' . sprintf(gettext('Request URI: [ <code>%s</code> ]'), html_encode(getRequestURI()))
-		. '<br />PHP_SELF: [ <code>' . sanitize($_SERVER['PHP_SELF'], 3) . '</code> ]'
-		. (empty($newfilename) ? '' : '<br />' . sprintf(gettext('Cache: [<code>%s</code>]'), '/' . CACHEFOLDER . '/' . sanitize($newfilename, 3)) . ' ')
-		. (empty($image) || empty($album) ? '' : ' <br />' . sprintf(gettext('Image: [<code>%s</code>]'), sanitize($album . '/' . $image, 3)) . ' <br />'));
+		echo $msg;
 	} else {
-		if (DEBUG_IMAGE_ERR) {
-			trigger_error($errormessage, E_USER_NOTICE);
+		if (DEBUG_IMAGE) {
+			debugLog(strip_tags(str_replace('<br />', "\n\t\t", $msg)));
 		}
 		header("HTTP/1.0 $status_text");
 		header("Status: $status_text");
