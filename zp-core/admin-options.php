@@ -185,6 +185,7 @@ if (isset($_GET['action'])) {
 					$searchfields[] = sanitize(postIndexDecode(substr($key, 7)));
 				}
 			}
+			natcasesort($searchfields);
 			setOption('search_fields', implode(',', $searchfields));
 			setOption('search_cache_duration', sanitize_numeric($_POST['search_cache_duration']));
 			$notify = processCredentials('search');
@@ -1282,7 +1283,7 @@ Zenphoto_Authority::printPasswordFormJS();
 										/*
 										 * not recommended--screws with peoples minds during pagination!
 
-											$sort[gettext('Random')] = 'random';
+										  $sort[gettext('Random')] = 'random';
 										 */
 										$cvt = $cv = strtolower($_zp_gallery->getSortType());
 										ksort($sort, SORT_LOCALE_STRING);
@@ -1824,7 +1825,7 @@ Zenphoto_Authority::printPasswordFormJS();
 
 										/*
 										 * not recommended--screws with peoples minds during pagination!
-											$sort[gettext('Random')] = 'random';
+										  $sort[gettext('Random')] = 'random';
 										 */
 										$flip = array_flip($sort);
 										if (isset($flip[$cv])) {

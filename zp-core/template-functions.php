@@ -3677,6 +3677,7 @@ function isArchive() {
  * @param mixed $words the search words target
  * @param mixed $dates the dates that limit the search
  * @param mixed $fields the fields on which to search
+ * NOTE: $words and $dates are mutually exclusive and $fields applies only to $words searches
  * @param int $page the page number for the URL
  * @param array $object_list the list of objects to search
  * @return string
@@ -3698,29 +3699,12 @@ function getSearchURL($words, $dates, $fields, $page, $object_list = NULL) {
 	}
 
 	if ($rewrite) {
-		if (empty($dates)) {
-			$url = SEO_WEBPATH . '/' . _SEARCH_ . '/';
-		} else {
-			$url = SEO_WEBPATH . '/' . _ARCHIVE_ . '/';
-		}
+		$url = SEO_WEBPATH . '/' . _SEARCH_ . '/token/';
 	} else {
 		$url = SEO_WEBPATH . "/index.php";
 		$urls[] = 'p=search';
 	}
-	if (!empty($fields) && empty($dates)) {
-		if (!is_array($fields)) {
-			$fields = explode(',', $fields);
-		}
-		$temp = $fields;
-		if ($rewrite && count($fields) == 1 && array_shift($temp) == 'tags') {
-			$url = SEO_WEBPATH . '/' . _TAGS_ . '/';
-		} else {
-			$search = new SearchEngine();
-			$urls[] = $search->getSearchFieldsText($fields, 'searchfields=');
-		}
-	}
-
-	if (!empty($words)) {
+	if ($words) {
 		if (is_array($words)) {
 			foreach ($words as $key => $word) {
 				$words[$key] = search_quote($word);
@@ -3728,15 +3712,26 @@ function getSearchURL($words, $dates, $fields, $page, $object_list = NULL) {
 			$words = implode(',', $words);
 		}
 		$urls[] = "token=" . SearchEngine::encode($words);
-	}
-	if (!empty($dates)) {
+		if (!empty($fields)) {
+			if (!is_array($fields)) {
+				$fields = explode(',', $fields);
+			}
+			$temp = $fields;
+			if ($rewrite && count($fields) == 1 && array_shift($temp) == 'tags') {
+				$url = SEO_WEBPATH . '/' . _TAGS_ . '/';
+			} else {
+				$search = new SearchEngine();
+				$urls[] = $search->getSearchFieldsText($fields, 'searchfields=');
+			}
+		}
+	} else { //	dates
 		if (is_array($dates)) {
 			$dates = implode(',', $dates);
 		}
 		if ($rewrite) {
-			$url .= $dates . '/';
+			$url = SEO_WEBPATH . '/' . _ARCHIVE_ . '/' . $dates . '/';
 		} else {
-			$urls[] .= "&date=$dates";
+			$urls[] = "date=$dates";
 		}
 	}
 	if ($page > 1) {
@@ -3746,10 +3741,11 @@ function getSearchURL($words, $dates, $fields, $page, $object_list = NULL) {
 			$urls[] = "page=$page";
 		}
 	}
+
 	if (is_array($object_list)) {
 		foreach ($object_list as $key => $list) {
 			if (!empty($list)) {
-				$url[] = '&in' . $key . '=' . implode(',', $list);
+				$url[] = 'in' . $key . '=' . implode(',', $list);
 			}
 		}
 	}
@@ -3842,39 +3838,39 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 	<div id="<?php echo $id; ?>">
 		<!-- search form -->
 		<script type="text/javascript">
-				// <!-- <![CDATA[
-				var within = <?php echo (int) $within; ?>;
-				function search_(way) {
-					within = way;
-					if (way) {
-						$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
-					} else {
-						lastsearch = '';
-						$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
-					}
-					$('#search_input').val('');
-				}
-				$('#search_form').submit(function () {
-					if (within) {
-						var newsearch = $.trim($('#search_input').val());
-						if (newsearch.substring(newsearch.length - 1) == ',') {
-							newsearch = newsearch.substr(0, newsearch.length - 1);
-						}
-						if (newsearch.length > 0) {
-							$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
+					// <!-- <![CDATA[
+					var within = <?php echo (int) $within; ?>;
+					function search_(way) {
+						within = way;
+						if (way) {
+							$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
 						} else {
-							$('#search_input').val('<?php echo $searchwords; ?>');
+							lastsearch = '';
+							$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
 						}
+						$('#search_input').val('');
 					}
-					return true;
-				});
-				function search_all() {
-					//search all is Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}. All rights reserved
-					var check = $('#SEARCH_checkall').prop('checked');
-					$('.SEARCH_checkall').prop('checked', check);
-				}
+					$('#search_form').submit(function () {
+						if (within) {
+							var newsearch = $.trim($('#search_input').val());
+							if (newsearch.substring(newsearch.length - 1) == ',') {
+								newsearch = newsearch.substr(0, newsearch.length - 1);
+							}
+							if (newsearch.length > 0) {
+								$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
+							} else {
+								$('#search_input').val('<?php echo $searchwords; ?>');
+							}
+						}
+						return true;
+					});
+					function search_all() {
+						//search all is Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}. All rights reserved
+						var check = $('#SEARCH_checkall').prop('checked');
+						$('.SEARCH_checkall').prop('checked', check);
+					}
 
-				// ]]> -->
+					// ]]> -->
 		</script>
 		<form method="post" action="<?php echo $searchurl; ?>" id="search_form">
 			<?php echo $prevtext; ?>
@@ -3901,9 +3897,6 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 				<br />
 				<?php
 				if (count($fields) > 1 || $searchwords) {
-					$fields = array_flip($fields);
-					natcasesort($fields);
-					$fields = array_flip($fields);
 					if (is_null($query_fields)) {
 						$query_fields = $engine->parseQueryFields();
 					} else {
