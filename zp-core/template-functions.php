@@ -3677,6 +3677,7 @@ function isArchive() {
  * @param mixed $words the search words target
  * @param mixed $dates the dates that limit the search
  * @param mixed $fields the fields on which to search
+ * NOTE: $words and $dates are mutually exclusive and $fields applies only to $words searches
  * @param int $page the page number for the URL
  * @param array $object_list the list of objects to search
  * @return string
@@ -3698,29 +3699,12 @@ function getSearchURL($words, $dates, $fields, $page, $object_list = NULL) {
 	}
 
 	if ($rewrite) {
-		if (empty($dates)) {
-			$url = SEO_WEBPATH . '/' . _SEARCH_ . '/';
-		} else {
-			$url = SEO_WEBPATH . '/' . _ARCHIVE_ . '/';
-		}
+		$url = SEO_WEBPATH . '/' . _SEARCH_ . '/token/';
 	} else {
 		$url = SEO_WEBPATH . "/index.php";
 		$urls[] = 'p=search';
 	}
-	if (!empty($fields) && empty($dates)) {
-		if (!is_array($fields)) {
-			$fields = explode(',', $fields);
-		}
-		$temp = $fields;
-		if ($rewrite && count($fields) == 1 && array_shift($temp) == 'tags') {
-			$url = SEO_WEBPATH . '/' . _TAGS_ . '/';
-		} else {
-			$search = new SearchEngine();
-			$urls[] = $search->getSearchFieldsText($fields, 'searchfields=');
-		}
-	}
-
-	if (!empty($words)) {
+	if ($words) {
 		if (is_array($words)) {
 			foreach ($words as $key => $word) {
 				$words[$key] = search_quote($word);
@@ -3728,15 +3712,26 @@ function getSearchURL($words, $dates, $fields, $page, $object_list = NULL) {
 			$words = implode(',', $words);
 		}
 		$urls[] = "token=" . SearchEngine::encode($words);
-	}
-	if (!empty($dates)) {
+		if (!empty($fields)) {
+			if (!is_array($fields)) {
+				$fields = explode(',', $fields);
+			}
+			$temp = $fields;
+			if ($rewrite && count($fields) == 1 && array_shift($temp) == 'tags') {
+				$url = SEO_WEBPATH . '/' . _TAGS_ . '/';
+			} else {
+				$search = new SearchEngine();
+				$urls[] = $search->getSearchFieldsText($fields, 'searchfields=');
+			}
+		}
+	} else { //	dates
 		if (is_array($dates)) {
 			$dates = implode(',', $dates);
 		}
 		if ($rewrite) {
-			$url .= $dates . '/';
+			$url = SEO_WEBPATH . '/' . _ARCHIVE_ . '/' . $dates . '/';
 		} else {
-			$urls[] .= "&date=$dates";
+			$urls[] = "date=$dates";
 		}
 	}
 	if ($page > 1) {
@@ -3746,10 +3741,11 @@ function getSearchURL($words, $dates, $fields, $page, $object_list = NULL) {
 			$urls[] = "page=$page";
 		}
 	}
+
 	if (is_array($object_list)) {
 		foreach ($object_list as $key => $list) {
 			if (!empty($list)) {
-				$url[] = '&in' . $key . '=' . implode(',', $list);
+				$url[] = 'in' . $key . '=' . implode(',', $list);
 			}
 		}
 	}
