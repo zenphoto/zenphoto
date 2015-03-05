@@ -81,8 +81,8 @@ switch (OFFSET_PATH) {
 			$_zp_zenpage = clone $_zp_CMS;
 
 			//define the useless legacy definitions
-			define('ZP_NEWS_ENABLED', true);
-			define('ZP_PAGES_ENABLED', true);
+			define('ZP_NEWS_ENABLED', $_zp_CMS->news_enabled);
+			define('ZP_PAGES_ENABLED', $_zp_CMS->pages_enabled);
 		}
 }
 
