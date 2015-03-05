@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.4.7\n"
 "Report-Msgid-Bugs-To: webmaster at momo-i.org\n"
-"POT-Creation-Date: 2015-02-24 13:57+0900\n"
+"POT-Creation-Date: 2015-03-05 10:39+0900\n"
 "PO-Revision-Date: 2009-08-12 08:30+0900\n"
 "Last-Translator: momo-i <webmaster at momo-i dot org>\n"
 "Language-Team: Japanese\n"
@@ -220,7 +220,7 @@ msgstr "%sの画像処理中に重大なエラーが返されました。"
 msgid "Suffix Not Allowed: %s"
 msgstr "不許可の拡張子: %s"
 
-#: zp-core/password.php:6 zp-core/template-functions.php:448
+#: zp-core/password.php:6 zp-core/template-functions.php:449
 #: zp-core/zp-extensions/html_meta_tags.php:225 themes/garland/password.php:40
 msgid "Password required"
 msgstr "パスワード必須"
@@ -566,8 +566,8 @@ msgstr "アルバムを作成"
 msgid "Logout"
 msgstr "ログアウト"
 
-#: zp-core/template-functions.php:419 zp-core/template-functions.php:421
-#: zp-core/template-functions.php:423 zp-core/lib-auth.php:527
+#: zp-core/template-functions.php:420 zp-core/template-functions.php:422
+#: zp-core/template-functions.php:424 zp-core/lib-auth.php:527
 #: zp-core/lib-auth.php:530 zp-core/lib-auth.php:543 zp-core/lib-auth.php:550
 #: zp-core/lib-auth.php:554 zp-core/lib-auth.php:569 zp-core/lib-auth.php:576
 #: zp-core/lib-auth.php:580 zp-core/admin-functions.php:3164
@@ -591,26 +591,26 @@ msgstr "ログアウト"
 msgid "News"
 msgstr "ニュース"
 
-#: zp-core/template-functions.php:444 themes/zenpage/404.php:27
+#: zp-core/template-functions.php:445 themes/zenpage/404.php:27
 #: themes/basic/404.php:23 themes/zpmobile/404.php:26
 msgid "Object not found"
 msgstr "オブジェクトは見つかりませんでした"
 
-#: zp-core/template-functions.php:448 zp-core/functions.php:2588
+#: zp-core/template-functions.php:449 zp-core/functions.php:2588
 #: zp-core/zp-extensions/html_meta_tags.php:225
 #: themes/effervescence_plus/contact.php:53
 msgid "Contact"
 msgstr "お問合せ"
 
-#: zp-core/template-functions.php:448
+#: zp-core/template-functions.php:449
 #: zp-core/zp-extensions/html_meta_tags.php:225
 #: zp-core/zp-extensions/register_user.php:55 themes/basic/register.php:24
 #: themes/garland/register.php:42 themes/effervescence_plus/register.php:52
 msgid "Register"
 msgstr "登録"
 
-#: zp-core/template-functions.php:448 zp-core/template-functions.php:1289
-#: zp-core/template-functions.php:1320 zp-core/template-functions.php:3833
+#: zp-core/template-functions.php:449 zp-core/template-functions.php:1290
+#: zp-core/template-functions.php:1321 zp-core/template-functions.php:3834
 #: zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:68
 #: zp-core/zp-extensions/html_meta_tags.php:225
 #: zp-core/zp-extensions/slideshow.php:747
@@ -620,35 +620,35 @@ msgstr "登録"
 msgid "Search"
 msgstr "検索"
 
-#: zp-core/template-functions.php:448
+#: zp-core/template-functions.php:449
 #: zp-core/zp-extensions/html_meta_tags.php:225 themes/zpmobile/archive.php:26
 msgid "Archive view"
 msgstr "アーカイブ閲覧"
 
-#: zp-core/template-functions.php:450
+#: zp-core/template-functions.php:451
 #: zp-core/zp-extensions/html_meta_tags.php:227
 #: zp-core/zp-extensions/favoritesHandler.php:60
 msgid "My favorites"
 msgstr "お気に入り"
 
-#: zp-core/template-functions.php:845 zp-core/template-functions.php:941
+#: zp-core/template-functions.php:846 zp-core/template-functions.php:942
 #: zp-core/zp-extensions/menu_manager.php:611
 msgid "Previous Page"
 msgstr "前のページ"
 
-#: zp-core/template-functions.php:847 zp-core/template-functions.php:1047
+#: zp-core/template-functions.php:848 zp-core/template-functions.php:1048
 #: zp-core/zp-extensions/menu_manager.php:651
 msgid "Next Page"
 msgstr "次のページ"
 
-#: zp-core/template-functions.php:964
+#: zp-core/template-functions.php:965
 #: zp-core/zp-extensions/menu_manager.php:617
 msgid "Page 1"
 msgstr "ページ1"
 
-#: zp-core/template-functions.php:979 zp-core/template-functions.php:988
-#: zp-core/template-functions.php:1018 zp-core/template-functions.php:1025
-#: zp-core/template-functions.php:1035
+#: zp-core/template-functions.php:980 zp-core/template-functions.php:989
+#: zp-core/template-functions.php:1019 zp-core/template-functions.php:1026
+#: zp-core/template-functions.php:1036
 #: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1048
 #: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1064
 #: zp-core/zp-extensions/menu_manager.php:622
@@ -658,7 +658,7 @@ msgid "Page %u"
 msgid_plural "Page %u"
 msgstr[0] "ページ %u"
 
-#: zp-core/template-functions.php:999
+#: zp-core/template-functions.php:1000
 #: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1057
 #: zp-core/zp-extensions/menu_manager.php:632
 #, php-format
@@ -666,35 +666,35 @@ msgid "Page %1$u"
 msgid_plural "Page %1$u"
 msgstr[0] "ページ %1$u"
 
-#: zp-core/template-functions.php:1108
+#: zp-core/template-functions.php:1109
 #: themes/effervescence_plus/functions.php:323
 msgid "The album is password protected."
 msgstr "アルバムはパスワードで保護されています。"
 
-#: zp-core/template-functions.php:1111
+#: zp-core/template-functions.php:1112
 msgid "The album is un-published."
 msgstr "アルバムは非公開です。"
 
-#: zp-core/template-functions.php:1220
+#: zp-core/template-functions.php:1221
 msgid "Album Thumbnails"
 msgstr "アルバムサムネイル"
 
-#: zp-core/template-functions.php:1272 zp-core/template-functions.php:1327
+#: zp-core/template-functions.php:1273 zp-core/template-functions.php:1328
 #: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:876
 #: themes/zenpage/sidebar.php:56 themes/effervescence_plus/themeoptions.php:77
 #: themes/effervescence_plus/sidebar.php:80 themes/zpmobile/functions.php:78
 msgid "Archive"
 msgstr "アーカイブ"
 
-#: zp-core/template-functions.php:1320
+#: zp-core/template-functions.php:1321
 msgid "Return to search"
 msgstr "検索へ戻る"
 
-#: zp-core/template-functions.php:1327
+#: zp-core/template-functions.php:1328
 msgid "Return to archive"
 msgstr "アーカイブへ戻る"
 
-#: zp-core/template-functions.php:1423
+#: zp-core/template-functions.php:1424
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:463
 #: zp-core/zp-extensions/menu_manager.php:826
 #: themes/effervescence_plus/favorites.php:71
@@ -713,24 +713,24 @@ msgstr "アーカイブへ戻る"
 msgid "Home"
 msgstr "ホーム"
 
-#: zp-core/template-functions.php:2094
+#: zp-core/template-functions.php:2095
 msgid "The image is marked un-published."
 msgstr "画像は非公開にマークされていません。"
 
-#: zp-core/template-functions.php:2469
+#: zp-core/template-functions.php:2470
 msgid "Image Info"
 msgstr "画像情報"
 
-#: zp-core/template-functions.php:3325
+#: zp-core/template-functions.php:3326
 #, php-format
 msgid "View image: %s"
 msgstr "画像閲覧: %s"
 
-#: zp-core/template-functions.php:3520
+#: zp-core/template-functions.php:3521
 msgid "No popular tags"
 msgstr "人気のタグはありません"
 
-#: zp-core/template-functions.php:3828
+#: zp-core/template-functions.php:3829
 msgid ""
 "printSearchForm $album_list parameter is deprecated. Pass array(\"albums"
 "\"=>array(album, album, ...)) instead."
@@ -738,45 +738,45 @@ msgstr ""
 "printSearchForm $album_list パラメータは非推奨です。代わりにarray(\"albums"
 "\"=>array(album, album,...))を通してください。"
 
-#: zp-core/template-functions.php:3844
+#: zp-core/template-functions.php:3845
 #, php-format
 msgid "%s within previous results"
 msgstr "前の結果内にある%s"
 
-#: zp-core/template-functions.php:3923
+#: zp-core/template-functions.php:3924
 msgid "search options"
 msgstr "検索オプション"
 
-#: zp-core/template-functions.php:3923
+#: zp-core/template-functions.php:3924
 msgid "fields"
 msgstr "フィールド"
 
-#: zp-core/template-functions.php:3963
+#: zp-core/template-functions.php:3964
 msgid "Within"
 msgstr "含む"
 
-#: zp-core/template-functions.php:3967
+#: zp-core/template-functions.php:3968
 #: zp-core/zp-extensions/flag_thumbnail.php:91
 msgid "New"
 msgstr "新規"
 
-#: zp-core/template-functions.php:3974
+#: zp-core/template-functions.php:3975
 msgid "Check/uncheck all"
 msgstr "全てチェック/チェックを外す"
 
-#: zp-core/template-functions.php:4026
+#: zp-core/template-functions.php:4027
 msgid "no date"
 msgstr "日付なし"
 
-#: zp-core/template-functions.php:4256
+#: zp-core/template-functions.php:4257
 msgid "The page you are trying to view is password protected."
 msgstr "閲覧しようとしているページはパスワードで保護されています。"
 
-#: zp-core/template-functions.php:4261
+#: zp-core/template-functions.php:4262
 msgid "login"
 msgstr "ログイン"
 
-#: zp-core/template-functions.php:4278
+#: zp-core/template-functions.php:4279
 msgid ""
 "Powered by <a href=\"http://www.zenphoto.org\" title=\"A simpler web album"
 "\"><span id=\"zen-part\">zen</span><span id=\"photo-part\">PHOTO</span></a>"
@@ -784,22 +784,22 @@ msgstr ""
 "Powered by <a href=\"http://www.zenphoto.org\" title=\"A simpler web album"
 "\"><span id=\"zen-part\">zen</span><span id=\"photo-part\">PHOTO</span></a>"
 
-#: zp-core/template-functions.php:4442
+#: zp-core/template-functions.php:4443
 msgid "Zenphoto Error:</strong> the requested object was not found."
 msgstr ""
 "Zenphoto エラー:</strong> 要求されたオブジェクトは見つかりませんでした。"
 
-#: zp-core/template-functions.php:4444
+#: zp-core/template-functions.php:4445
 #, php-format
 msgid "Album: %s"
 msgstr "アルバム: %s"
 
-#: zp-core/template-functions.php:4447
+#: zp-core/template-functions.php:4448
 #, php-format
 msgid "Image: %s"
 msgstr "画像: %s"
 
-#: zp-core/template-functions.php:4450
+#: zp-core/template-functions.php:4451
 #, php-format
 msgid "Page: %s"
 msgstr "ページ: %s"
@@ -2466,13 +2466,15 @@ msgstr "IPTCメタデータの画像のデフォルト文字エンコーディ�
 
 #: zp-core/admin-options.php:2368
 msgid "IPTC caption linebreaks:"
-msgstr ""
+msgstr "IPTCキャプション改行:"
 
 #: zp-core/admin-options.php:2372
 msgid ""
 "If checked line breaks embeded in the IPTCcaption field will be converted to "
 "<code>&lt;br&gt;</code> on image importing."
 msgstr ""
+"チェックした場合、IPTCキャプションフィールドに埋め込まれた改行コードは画像の"
+"インポート上で<code>&lt;br&gt;</code>に変換されます。"
 
 #: zp-core/admin-options.php:2376
 msgid "Imbed IPTC copyright"
@@ -4469,6 +4471,10 @@ msgid ""
 "to thwart hackers. Use the <strong>Setup » protect scripts</strong> button "
 "in the <em>Admin</em> section of the <em>Utility functions</em>. "
 msgstr ""
+"セットアップ環境は全くセキュアではありません。ハッカーを阻止するためにスクリ"
+"プトを保護する必要があります。<em>ユーティリティ機能</em>の<em>管理</em>セク"
+"ションにある<strong>セットアップ » スクリプトを保護</strong>ボタンを使用しま"
+"す。"
 
 #: zp-core/admin.php:272
 msgid "Setup » protect scripts"
@@ -5995,6 +6001,7 @@ msgstr ""
 #: zp-core/lib-auth.php:914
 msgid "<br />You may also use the link below to request a reset by e-mail."
 msgstr ""
+"<br />メールでリセットを要求するには以下のリンクを使用する必要もあります。"
 
 #: zp-core/lib-auth.php:916
 msgid "Challenge question:"
@@ -7330,6 +7337,8 @@ msgid ""
 "You must restore the setup files on your primary installation to run the "
 "setup operation."
 msgstr ""
+"セットアップ動作を実行するためのプライマリインストール上でセットアップファイ"
+"ルをレストアする必要があります。"
 
 #: zp-core/setup/setup_permissions_changer.php:18
 #, php-format
@@ -7652,6 +7661,12 @@ msgid ""
 "the table, and then restoring from the backup. Note, however, that the "
 "duplicate entries will be lost."
 msgstr ""
+"<strong>警告:</strong> <code>%s</code>テーブルは適切な<em>UNIQUE</em>キーを"
+"持っていないようです。予期しない動作を引き起こす可能性のある重複したエント"
+"リーがおそらくテーブルにあります。これは通常、バックアップから復元した後、"
+"Zenphotoのバックアップを作成するテーブルをドロップ、テーブルを復元するために"
+"セットアップを実行し、修正することが出来ます。ただし、重複したエントリーが失"
+"われますのでご注意ください。"
 
 #: zp-core/setup/index.php:22
 #, php-format
@@ -10197,6 +10212,8 @@ msgid ""
 "You have restored your database from a different instance of Zenphoto. You "
 "should run %1$ssetup%2$s to insure proper migration."
 msgstr ""
+"Zenphotoの異なるインスタンスからデータベースをレストアします。適切な移行を確"
+"実にするために%1$sセットアップ%2$sを実行する必要があります。"
 
 #: zp-core/utilities/backup_restore.php:469
 msgid "Zenphoto Rights migration failed!"
@@ -11146,6 +11163,8 @@ msgid ""
 "<em><strong>string</strong></em> may be enclosed in quotation marks when the "
 "macro is invoked. The quotes are stripped before the macro is processed."
 msgstr ""
+"マクロが呼び出された時に<em><strong>文字列</strong></em>を引用符で囲む必要が"
+"あります。マクロが処理される前に引用符が取り除かれます。"
 
 #: zp-core/zp-extensions/macroList/macroList_tab.php:36
 msgid "<em><strong>int</strong></em> a number"
@@ -11166,7 +11185,7 @@ msgstr ""
 
 #: zp-core/zp-extensions/macroList/macroList_tab.php:40
 msgid "Parameters within braces are optional."
-msgstr ""
+msgstr "中括弧を含むパラメーターは任意です。"
 
 #: zp-core/zp-extensions/PHPMailer.php:11
 msgid ""
@@ -11483,11 +11502,11 @@ msgid ""
 "hide news and/or pages content on the front end as well, themes must be "
 "setup to use <br><code>if(extensionEnabled(\"zenpage\") && ZP_NEWS_ENABLED) "
 "{ … }</code> or <br><code>if(extensionEnabled(\"zenpage\") && "
-"ZP_PAGES_ENABLED) { … }</code> in appropiate places. Same if disabled items "
+"ZP_PAGES_ENABLED) { … }</code> in appropriate places. Same if disabled items "
 "should blocked as they otherwise still can be accessed via direct links. <p "
 "class=\"notebox\"><strong>NOTE:</strong> This does not delete content and is "
 "not related to management rights.</p>"
-msgstr ""
+msgstr "これはページおよび/またはニュース記事の管理タブを有効または無効にします。同様にフロントエンド上のニュースやページをコンテンツ非表示にするには、テーマは設定が適切な場所に<br><code>if(extensionEnabled(\"zenpage\") && ZP_NEWS_ENABLED) { … }</code>または<br><code>if(extensionEnabled(\"zenpage\") && ZP_PAGES_ENABLED) { … }</code>を使用しなければなりません。彼らがそうでなければ、まだ直接リンクを介してアクセスすることができるように同じであれば使用できないアイテムはブロックされなければなりません。<p class=\"notebox\"><strong>注:</strong> これはコンテンツを削除しないことと管理権限とは関係ありません。</p>"
 
 #: zp-core/zp-extensions/zenpage.php:137
 msgid "Articles per page (theme)"
@@ -11812,6 +11831,10 @@ msgid ""
 "flagged with an \"*\" are class methods. Ones flagged \"+\" have deprecated "
 "parameters."
 msgstr ""
+"<strong>注:</strong> この検索は関数名がコメントまたは引用符で囲まれた文字列の"
+"中に表示されるときにインスタンスのために誤りになります。「*」のフラグが付けら"
+"れた関数はクラスメソッドです。「+」の付けられたものは非推奨パラメーターを持ち"
+"ます。"
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:13
 msgid "Use the instantiate method instead"
@@ -11826,22 +11849,29 @@ msgid ""
 "Sort parameter options should be set instead with the setSortType() and "
 "setSortDirection() object methods at the head of your script."
 msgstr ""
+"ソートパラメーターオプションはスクリプトの先頭にあるsetSortType()及び"
+"setSortDirection()オブジェクトメソットでかわりに設定されます。"
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:37
 msgid "Pass array(\"albums\" => array(album, album, ...)) for the object list."
 msgstr ""
+"オブジェクト一覧のarray(\"albums\" => array(album, album, ...))をパスします。"
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:45
 msgid ""
 "The parameter to getGalleryIndexURL() is deprecated. Use getCustomPageURL() "
 "instead for custom pages."
 msgstr ""
+"getGalleryIndexURL()へのパラメーターは非推奨です。カスタムページについて代わ"
+"りにgetCustomPageURL()を使用します。"
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:53
 msgid ""
 "The parameter order album::setSortDirection($what, $val) is deprecated. Use "
 "album::setSortDirection($val, $what) instead."
 msgstr ""
+"パラメーターの順序album::setSortDirection($what, $val)は非推奨です。代わりに"
+"album::setSortDirection($val, $what)を使用します。"
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:61
 msgid "Use the getFilename() method instead"
@@ -12069,6 +12099,9 @@ msgid ""
 "gives different results depending on the setting of <code>mod_rewrite</code> "
 "so which object method to use depends on what your settings were!"
 msgstr ""
+"適切なオブジェクトメソッドを使用します。<strong>注:</strong> この関数は使用す"
+"るオブジェクトメソッドが設定がなんであったかに依存するので、"
+"<code>mod_rewrite</code>の設定に応じて異なる結果が得られます！"
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:701
 msgid "use getLinkHTML()"
@@ -12153,6 +12186,8 @@ msgid ""
 "Functions flagged with an \"*\" are class methods. Ones flagged with \"+\" "
 "have deprecated parameters."
 msgstr ""
+"「*」のフラグが付けられた関数はクラスのメソッドです。「+」のフラグが付けられ"
+"たものは非推奨のパラーメーターを持ちます。"
 
 #: zp-core/zp-extensions/wordpress_import.php:12
 msgid "Import Wordpress pages, posts, categories, and comments to Zenpage."
@@ -12437,6 +12472,8 @@ msgid ""
 "will be substituted for <code>%2$s</code> and the image title for <code>"
 "%1$s</code>."
 msgstr ""
+"このテキストは記事の<em>タイトル</em>として使用されます。アルバムタイトルは"
+"<code>%2$s</code>及び<code>%1$s</code>の画像タイトルに置換されます。"
 
 #: zp-core/zp-extensions/galleryArticles.php:73
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:103
@@ -12449,6 +12486,8 @@ msgid ""
 "This text will be used as the <em>title</em> of the article. The album title "
 "will be substituted for <code>%1$s</code>."
 msgstr ""
+"このテキストは記事の<em>タイトル</em>として使用されます。アルバムタイトルは"
+"<code>%1$s</code>に置換されます。"
 
 #: zp-core/zp-extensions/galleryArticles.php:77
 #: zp-core/zp-extensions/cacheManager.php:257
@@ -12468,6 +12507,8 @@ msgid ""
 "Unless this is checked, objects which are \"protected\" will not have news "
 "articles generated."
 msgstr ""
+"これがチェックされていない限り「保護された」オブジェクトはニュース記事の生成"
+"を行いません。"
 
 #: zp-core/zp-extensions/galleryArticles.php:83
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:125
@@ -12488,6 +12529,8 @@ msgid ""
 "If this option is checked and a category matching the album folder exists, "
 "that will be used as the article category."
 msgstr ""
+"このオプションがチェックされてカテゴリにマッチしたアルバムフォルダーが存在す"
+"る場合、それは記事のカテゴリとして使用されます。"
 
 #: zp-core/zp-extensions/galleryArticles.php:92
 msgid "Import Combi-news"
@@ -12498,6 +12541,8 @@ msgid ""
 "If this option is checked, articles will be generated based on your old "
 "<em>Combi-news</em> settings."
 msgstr ""
+"このオプションをチェックした場合、記事は古い<em>コンビニュース</em>設定を元に"
+"生成されます。"
 
 #: zp-core/zp-extensions/publishContent.php:28
 msgid "A single place to quickly review your unpublished content."
@@ -12744,6 +12789,7 @@ msgid ""
 "Rewrite Tokens are not useful unless the <code>mod_rewrite</code> option is "
 "enabled."
 msgstr ""
+"トークン書き換えは<code>mod_rewrite</code>が有効化されるまで役に立ちません。"
 
 #: zp-core/zp-extensions/rewriteTokens.php:68
 msgid "rewriteTokens restored to default"
@@ -12768,6 +12814,8 @@ msgid ""
 "<p class=\"notebox\">Rewrite Tokens are not useful unless the "
 "<code>mod_rewrite</code> option is enabled.</p>"
 msgstr ""
+"<p class=\"notebox\">トークン書き換えは<code>mod_rewrite</code>が有効化される"
+"まで役に立ちません。</p>"
 
 #: zp-core/zp-extensions/rewriteTokens.php:104
 msgid "Restore defaults."
@@ -12785,7 +12833,7 @@ msgstr "<em>%s</em>ルールのリンクです。"
 
 #: zp-core/zp-extensions/rewriteTokens.php:192
 msgid "tokens"
-msgstr ""
+msgstr "トークン"
 
 #: zp-core/zp-extensions/cloneZenphoto.php:24
 msgid ""
@@ -12960,6 +13008,7 @@ msgstr "未割り当てを除外"
 #: zp-core/zp-extensions/tag_suggest.php:30
 msgid "Check if you wish to exclude tags are not assigned to any item."
 msgstr ""
+"任意のアイテムに割り当てられていないタグを除外したい場合チェックをします。"
 
 #: zp-core/zp-extensions/tag_suggest.php:31
 msgid "Check tag access"
@@ -12973,6 +13022,11 @@ msgid ""
 "that this may cause overhead on larger sites. The usage of the "
 "static_html_cache plugin is recommended.</p>"
 msgstr ""
+"アイテムに割り当てられている(または全く割り当てられていない)訪問者が見ること"
+"を許可されていないタグを除外したい場合チェックをします。<p "
+"class='notebox'><strong>注:</strong> これは大規模なサイトにオーバーヘッドが生"
+"じる可能性があることに注意してください。static_html_cacheプラグインの使用が推"
+"奨されます。</p>"
 
 #: zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:27
 msgid "Sitemap"
@@ -13510,6 +13564,8 @@ msgid ""
 "If you enabled Twitter card meta tags, you need to enter your Twitter user "
 "name here."
 msgstr ""
+"ツイッターのカードメタタグを有効にした場合、ここにツイッターのユーザー名を入"
+"力する必要があります。"
 
 #: zp-core/zp-extensions/html_meta_tags.php:93
 msgid "HTML meta tags"
@@ -13948,6 +14004,8 @@ msgid ""
 "If an option is chosen, normal theme URLs will be replaced with <i>tinyURL</"
 "i>s for that object."
 msgstr ""
+"オプションが選択された場合、通常テーマURLはそのオブジェクトの<i>tinyURL</i>で"
+"置換えられます。"
 
 #: zp-core/zp-extensions/tinyURL.php:83
 msgid "news categories"
@@ -15598,7 +15656,9 @@ msgid ""
 "defaults."
 msgstr ""
 "コントロールを表示(非表示)するために%2として<code>true</code>(または"
-"<code>false</code>)にし、%1としてアルバム名を提供します。コントロールの非表示はデフォルトです。幅(%3)及び高さ(%4)もデフォルトで上書きするように指定することも出来ます。"
+"<code>false</code>)にし、%1としてアルバム名を提供します。コントロールの非表示"
+"はデフォルトです。幅(%3)及び高さ(%4)もデフォルトで上書きするように指定するこ"
+"とも出来ます。"
 
 #: zp-core/zp-extensions/slideshow.php:506
 #: zp-core/zp-extensions/slideshow2.php:503 themes/zpmobile/search.php:180
@@ -15898,7 +15958,7 @@ msgstr "並び順を保存しました。"
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:53
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:60
 msgid "Zenpage CMS plugin required for this item type!"
-msgstr ""
+msgstr "Zenpage CMSプラグインはこのアイテムタイプに必要です！"
 
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:74
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:366
@@ -16269,7 +16329,8 @@ msgid ""
 "this default."
 msgstr ""
 "<code>printAlbumMenu</code>及び<code>printAlbumMenuList</code>の「一覧」オプ"
-"ションで表示されるサブアルバムのレベルの深さです。注: テーマはこのデフォルトを上書きします。"
+"ションで表示されるサブアルバムのレベルの深さです。注: テーマはこのデフォルト"
+"を上書きします。"
 
 #: zp-core/zp-extensions/print_album_menu.php:52
 msgid "Show counts"
@@ -16466,6 +16527,8 @@ msgid ""
 "This includes getNextPrevNews(), getNextNewsURL(), printNextNewsLink(), "
 "getPrevNewsURL() and printPrevNewsLink()."
 msgstr ""
+"これはgetNextPrevNews(), getNextNewsURL(), printNextNewsLink(),"
+"getPrevNewsURL()及びprintPrevNewsLink()を含みます。"
 
 #: zp-core/zp-extensions/zenpage/deprecated-functions.php:22
 #: zp-core/zp-extensions/zenpage/deprecated-functions.php:30
@@ -16475,6 +16538,9 @@ msgid ""
 "setSortDirection() and setSortSticky() object methods at the head of your "
 "script."
 msgstr ""
+"ソートパラメーターオプションはスクリプトの先頭でsetSortType()、"
+"setSortDirection()、及びsetSortSticky()のオブジェクトメソッドでかわりに設定さ"
+"れます。"
 
 #: zp-core/zp-extensions/zenpage/deprecated-functions.php:46
 #: zp-core/zp-extensions/zenpage/deprecated-functions.php:54
@@ -16483,7 +16549,9 @@ msgid ""
 "\"http://www.zenphoto.org/news/zenphoto-1.4.6\">Zenphoto 1.4.6 release "
 "notes</a>."
 msgstr ""
-"CombiNewsは非推奨です。「$option」パラメーターを削除します。<a href=\"http://www.zenphoto.org/news/zenphoto-1.4.6\">Zenphoto 1.4.6 リリースノート</a>を見てください。"
+"CombiNewsは非推奨です。「$option」パラメーターを削除します。<a href=\"http://"
+"www.zenphoto.org/news/zenphoto-1.4.6\">Zenphoto 1.4.6 リリースノート</a>を見"
+"てください。"
 
 #: zp-core/zp-extensions/zenpage/deprecated-functions.php:78
 #: zp-core/zp-extensions/zenpage/deprecated-functions.php:86
@@ -16723,7 +16791,8 @@ msgid ""
 "CombiNews is deprecated. See the <a href=\"http://www.zenphoto.org/news/"
 "zenphoto-1.4.6\">Zenphoto 1.4.6 release notes</a>."
 msgstr ""
-"CombiNewsは非推奨です。<a href=\"http://www.zenphoto.org/news/zenphoto-1.4.6\">Zenphoto 1.4.6 リリースノート</a>を見てください。"
+"CombiNewsは非推奨です。<a href=\"http://www.zenphoto.org/news/"
+"zenphoto-1.4.6\">Zenphoto 1.4.6 リリースノート</a>を見てください。"
 
 #: zp-core/zp-extensions/zenpage/deprecated-functions.php:831
 #: zp-core/zp-extensions/zenpage/deprecated-functions.php:841
@@ -17456,7 +17525,7 @@ msgstr "コンビニュース"
 
 #: zp-core/zp-extensions/galleryArticles/combiNews.php:18
 msgid "Auto category for ported combi-news articles."
-msgstr ""
+msgstr "移植されたコンビニュース記事の自動分類です。"
 
 #: zp-core/zp-extensions/comment_form.php:18
 msgid "Provides a unified comment handling facility."
@@ -17627,7 +17696,9 @@ msgstr "ページごとのコメント数"
 msgid ""
 "The comments that should show per page on the admin tab and when using the "
 "jQuery pagination"
-msgstr "jQueryのページネーションを使用する時に管理タブのページごとに表示するコメント数です。"
+msgstr ""
+"jQueryのページネーションを使用する時に管理タブのページごとに表示するコメント"
+"数です。"
 
 #: zp-core/zp-extensions/comment_form.php:135
 msgid "Comment editor configuration"
@@ -18130,7 +18201,7 @@ msgstr "スパムとしてマーク"
 
 #: zp-core/zp-extensions/comment_form/admin-comments.php:372
 msgid "The item upon which this comment was posted no longer exists."
-msgstr ""
+msgstr "コメントが投稿された際のアイテムはもはや存在しません。"
 
 #: zp-core/zp-extensions/comment_form/admin-comments.php:372
 msgid "<strong>Missing Object</strong> "
@@ -18256,6 +18327,8 @@ msgid ""
 "An example of how to reference global variables. In this case to dump the "
 "current gallery page variable."
 msgstr ""
+"グローバル変数を参照するための方法の一例です。この場合、現在のギャラリーペー"
+"ジの変数をダンプします。"
 
 #: zp-core/zp-extensions/exampleMacros.php:43
 msgid ""
@@ -18263,17 +18336,21 @@ msgid ""
 "<em>variable_1</em>=<code>value</code> <em>variable_2</em>=<code>value</"
 "code> <em>etc.</em>."
 msgstr ""
+"配列のパラメーター一覧のコンテンツをダンプします。配列は<em>variable_1</"
+"em>=<code>value</code> <em>variable_2</em>=<code>value</code> <em>等</em>の形"
+"式になります。"
 
 #: zp-core/zp-extensions/exampleMacros.php:48
 msgid ""
 "Provides text for a link to a \"custom\" script page indicated by a linktext "
 "(<code>%1</code>) and a custom page (<code>%2</code>)."
 msgstr ""
-"<code>%1</code>のリンクテキストとカスタムページ(<code>%2</code>)で示される「カスタム」スクリプトページヘのリンクのテキストを提供します。"
+"<code>%1</code>のリンクテキストとカスタムページ(<code>%2</code>)で示される"
+"「カスタム」スクリプトページヘのリンクのテキストを提供します。"
 
 #: zp-core/zp-extensions/exampleMacros.php:57
 msgid "The PARAM_DUMP macro was passed the following:"
-msgstr ""
+msgstr "PARAM_DUMPマクロは以下をパスしました:"
 
 #: zp-core/zp-extensions/rating.php:41
 msgid "All ratings have been set to <em>unrated</em>."
@@ -18649,6 +18726,8 @@ msgid ""
 "Responsive jQuery bxSlider thumb nav plugin based on <a href='http://"
 "bxslider.com'>http://bxslider.com</a>"
 msgstr ""
+"<a href='http://bxslider.com'>http://bxslider.com</a>を基にしたレスポンシブの"
+"jQuery bxSliderサムネイルナビプラグイン"
 
 #: zp-core/zp-extensions/bxslider_thumb_nav.php:45
 msgid "Minimum items"
@@ -18659,6 +18738,8 @@ msgid ""
 "The minimum number of slides to be shown. Slides will be sized down if "
 "carousel becomes smaller than the original size."
 msgstr ""
+"表示するスライドの最小数です。スライドはカルーセルが元のサイズより小さくなる"
+"場合、サイズダウンされます。"
 
 #: zp-core/zp-extensions/bxslider_thumb_nav.php:48
 msgid "Maximum items"
@@ -18669,11 +18750,14 @@ msgid ""
 "The maximum number of slides to be shown. Slides will be sized up if "
 "carousel becomes larger than the original size."
 msgstr ""
+"表示するスライドの最大数です。スライドはカルーセルが本のサイズより大きくなる"
+"場合、サイズアップされます。"
 
 #: zp-core/zp-extensions/bxslider_thumb_nav.php:52
 msgid "Width of the thumb. Note that the CSS might need to be adjusted."
 msgstr ""
-"サムネイルの幅です。CSSを調整する必要があるかもしれないことに注意してください。"
+"サムネイルの幅です。CSSを調整する必要があるかもしれないことに注意してくださ"
+"い。"
 
 #: zp-core/zp-extensions/bxslider_thumb_nav.php:55
 msgid "Height of the thumb. Note that the CSS might need to be adjusted."
@@ -18683,7 +18767,7 @@ msgstr ""
 
 #: zp-core/zp-extensions/bxslider_thumb_nav.php:64
 msgid "The speed in miliseconds the slides advance when clicked.)"
-msgstr ""
+msgstr "クリックした時にスライドを進めるミリ秒の速度です。)"
 
 #: zp-core/zp-extensions/bxslider_thumb_nav.php:71
 #: zp-core/zp-extensions/GoogleMap.php:94 themes/garland/themeoptions.php:93
@@ -18700,6 +18784,8 @@ msgstr "フェード"
 #: zp-core/zp-extensions/bxslider_thumb_nav.php:74
 msgid "The mode of the thumb nav. Note this might require theme changes."
 msgstr ""
+"サムネイルナビのモードです。これはテーマの変更が必要になることに注意してくだ"
+"さい。"
 
 #: zp-core/zp-extensions/bxslider_thumb_nav.php:84
 msgid ""
@@ -18776,9 +18862,9 @@ msgid ""
 "latest uploaded fetched by date, or latest by mtime for the latest uploaded "
 "fetched by the file’s last change timestamp."
 msgstr ""
-"新着アップロードのIDで新着、日付で取得した新着アップロードの日付"
-"で新着、またはファイルの最終変更タイムスタンプで取得した新着アップロードの"
-"mtimeで新着の中から選択します。 "
+"新着アップロードのIDで新着、日付で取得した新着アップロードの日付で新着、また"
+"はファイルの最終変更タイムスタンプで取得した新着アップロードのmtimeで新着の中"
+"から選択します。 "
 
 #: zp-core/zp-extensions/externalFeed.php:90 zp-core/zp-extensions/rss.php:104
 msgid "Album feed sort order:"
@@ -18786,15 +18872,15 @@ msgstr "アルバムフィードの並び順:"
 
 #: zp-core/zp-extensions/externalFeed.php:98
 msgid "In addition to the above you may select latest updated."
-msgstr ""
+msgstr "上記に加えて、最新の更新を選択することができます。"
 
 #: zp-core/zp-extensions/externalFeed.php:99
 msgid "New requestor:"
-msgstr ""
+msgstr "新規リクエスター:"
 
 #: zp-core/zp-extensions/externalFeed.php:101
 msgid "Supply a site name to add a new using site."
-msgstr ""
+msgstr "新しく使用するサイトを追加するにはサイト名を入力します。"
 
 #: zp-core/zp-extensions/externalFeed.php:102
 msgid "Registered sites:"
@@ -18812,8 +18898,8 @@ msgstr "フィードテキストの長さ"
 #: zp-core/zp-extensions/externalFeed.php:109
 msgid "The text length of the Zenpage feed items. No value for full length."
 msgstr ""
-"Zenpageのフィードアイテムのテキストの長さです。完全な長さにするには値を入"
-"れません。"
+"Zenpageのフィードアイテムのテキストの長さです。完全な長さにするには値を入れま"
+"せん。"
 
 #: zp-core/zp-extensions/externalFeed.php:110
 msgid "News feed items"
@@ -19531,9 +19617,9 @@ msgid ""
 "latest uploaded fetched by date, or latest by mtime for the latest uploaded "
 "fetched by the file’ last change timestamp."
 msgstr ""
-"新着アップロードのIDで新着、日付で取得した新着アップロードの日付"
-"で新着、またはファイルの最終変更タイムスタンプで取得した新着アップロードの"
-"mtimeで新着の中から選択します。 "
+"新着アップロードのIDで新着、日付で取得した新着アップロードの日付で新着、また"
+"はファイルの最終変更タイムスタンプで取得した新着アップロードのmtimeで新着の中"
+"から選択します。 "
 
 #: zp-core/zp-extensions/rss.php:112
 msgid "Choose between latest by id for the latest uploaded and latest updated"
@@ -20899,7 +20985,7 @@ msgstr "このプレーヤは<em>外部アルバム</em>をサポートしませ
 
 #: zp-core/zp-extensions/jplayer.php:74
 msgid "The class-video plugin must be enabled for video support."
-msgstr ""
+msgstr "class-videoプラグインは動画サポートぉ有効にする必要があります。"
 
 #: zp-core/zp-extensions/jplayer.php:85
 #, php-format
@@ -21045,7 +21131,9 @@ msgid ""
 "provide the album name (%1), media file name (%2) and a unique number (%3). "
 "(If there is only player instance on the page the parameter may be omitted.)"
 msgstr ""
-"アルバム名(%1)、メディアファイル名(%2)、またはユニークナンバー(%3)を提供します。(唯一のプレーヤインスタンスがページに存在する場合は、パラメータを省略してもよいです。)"
+"アルバム名(%1)、メディアファイル名(%2)、またはユニークナンバー(%3)を提供しま"
+"す。(唯一のプレーヤインスタンスがページに存在する場合は、パラメータを省略して"
+"もよいです。)"
 
 #: zp-core/zp-extensions/jplayer.php:291
 msgid "This multimedia format is not supported by jPlayer"
@@ -21166,8 +21254,8 @@ msgid ""
 "Prints a paged thumbs navigation on image.php, independent of the album."
 "php’s thumbs."
 msgstr ""
-"album.phpのサムネイルとは無関係にimage.php上のサムネイルナビゲー"
-"ションを表示します。"
+"album.phpのサムネイルとは無関係にimage.php上のサムネイルナビゲーションを表示"
+"します。"
 
 #: zp-core/zp-extensions/paged_thumbs_nav.php:24 themes/zenpage/image.php:67
 msgid "« prev thumbs"
@@ -21415,7 +21503,8 @@ msgstr "複数のセット"
 
 #: zp-core/zp-extensions/favoritesHandler.php:96
 msgid "If enabled a user may have multiple (named) favorites."
-msgstr "有効にした場合、ユーザーは複数の(名前を持つ)お気に入りを持つことが出来ます。"
+msgstr ""
+"有効にした場合、ユーザーは複数の(名前を持つ)お気に入りを持つことが出来ます。"
 
 #: zp-core/zp-extensions/favoritesHandler.php:97
 msgid "Add button"
@@ -21446,6 +21535,8 @@ msgid ""
 "<p class=\"notebox\">Favorites requires the <code>mod_rewrite</code> option "
 "be enabled.</p>"
 msgstr ""
+"<p class=\"notebox\">お気に入りは<code>mod_rewrite</code>オプションが有効であ"
+"る必要があります</p>"
 
 #: zp-core/zp-extensions/federated_logon/Auth/OpenID_detect.php:507
 msgid "back to Zenphoto"
@@ -21457,7 +21548,8 @@ msgid ""
 "Could not create the FileStore directory %s. Please check the effective "
 "permissions."
 msgstr ""
-"ファイルストアディレクトリ%sを作成できませんでした。有効なパーミッションを確認して下さい。"
+"ファイルストアディレクトリ%sを作成できませんでした。有効なパーミッションを確"
+"認して下さい。"
 
 #: zp-core/zp-extensions/federated_logon/OpenID_finish_auth.php:26
 msgid "Verification cancelled."
@@ -21471,13 +21563,13 @@ msgstr "OpenID認証に失敗: %s"
 #: zp-core/zp-extensions/federated_logon/OpenID_finish_auth.php:37
 #, php-format
 msgid "You have successfully verified <a href=\"%s\">%s</a> as your identity."
-msgstr ""
+msgstr "本人として<a href=\"%s\">%s</a>の検証に成功しました。"
 
 #: zp-core/zp-extensions/federated_logon/OpenID_finish_auth.php:112
 #: zp-core/zp-extensions/federated_logon/OpenID_try_auth.php:97
 #, php-format
 msgid "Federated logon error:<br />%s"
-msgstr ""
+msgstr "連携ログインエラー:<br />%s"
 
 #: zp-core/zp-extensions/federated_logon/Verisign_logon.php:34
 #: zp-core/zp-extensions/federated_logon/Verisign_logon.php:45
@@ -21500,11 +21592,11 @@ msgstr "Zenphotoへ戻る"
 
 #: zp-core/zp-extensions/federated_logon/OpenID_try_auth.php:21
 msgid "Not a valid OpenID URL"
-msgstr ""
+msgstr "OpenIDのURLが正しくありません"
 
 #: zp-core/zp-extensions/federated_logon/OpenID_try_auth.php:31
 msgid "Authentication error; not a valid OpenID."
-msgstr ""
+msgstr "認証エラー; OpenIDが正しくありません。"
 
 #: zp-core/zp-extensions/federated_logon/OpenID_try_auth.php:73
 #: zp-core/zp-extensions/federated_logon/OpenID_try_auth.php:87
@@ -21584,6 +21676,8 @@ msgid ""
 "Restores the files in the \"plugins/site_upgrade\" folder to their default "
 "state. Note: this will overwrite any custom edits you may have made."
 msgstr ""
+"”plugins/site_upgrade”フォルダのファイルをそれらのデフォルト状態にレストアし"
+"ます。注: これは作成した全てのカスタム編集を上書きします。"
 
 #: zp-core/zp-extensions/site_upgrade.php:115
 msgid "Site » test mode"
@@ -21614,7 +21708,7 @@ msgstr ""
 
 #: zp-core/zp-extensions/site_upgrade.php:162
 msgid "site_upgrade files Restored to original."
-msgstr ""
+msgstr "site_upgradeファイルはオリジナルへレストアされました。"
 
 #: zp-core/zp-extensions/site_upgrade.php:171
 #, php-format
@@ -21640,7 +21734,7 @@ msgstr "RSSフィードは現在利用可能ではありません。"
 
 #: zp-core/zp-extensions/site_upgrade.php:218
 msgid "externalFeed suspended"
-msgstr ""
+msgstr "externalFeed 一時停止"
 
 #: zp-core/zp-extensions/site_upgrade.php:225
 msgid "The external feed is currently not available."
@@ -21854,7 +21948,7 @@ msgstr "未公開ページはありません"
 
 #: zp-core/zp-extensions/slideshow2.php:36
 msgid "Slideshow plugin based on the Cycle2 jQuery plugin."
-msgstr ""
+msgstr "Cycle2 jQueryプラグインベースのスライドショープラグインです。"
 
 #: zp-core/zp-extensions/slideshow2.php:81
 msgid "Slideshow: Mode"
@@ -21924,10 +22018,13 @@ msgid ""
 "browsers that support CSS3 3D transforms. (IE10+, current Chrome, Firefox, "
 "Opera and Safari.)"
 msgstr ""
+"サイクルスライド効果が使用されます。フリップ遷移はCSS3の3Dトランスフォームを"
+"サポートしているブラウザでのみサポートされます。(IE10以上、現在のChrome、"
+"Firefox、Opera及びSafariです。)"
 
 #: zp-core/zp-extensions/slideshow2.php:112
 msgid "Slideshow: Tile Effect - Extra"
-msgstr ""
+msgstr "スライドショー: タイルエフェクト - 拡張"
 
 #: zp-core/zp-extensions/slideshow2.php:115
 msgid "Horziontal"
@@ -21936,6 +22033,7 @@ msgstr "水平"
 #: zp-core/zp-extensions/slideshow2.php:117
 msgid "If one of the tile effects is selected, this is its orientation."
 msgstr ""
+"タイルエフェクトの1つが選択された場合、これはそのオリエンテーションです。"
 
 #: zp-core/zp-extensions/slideshow2.php:118
 msgid "Slideshow: Timeout"
@@ -21982,8 +22080,8 @@ msgid ""
 "The scripts for which the cycle2 plugin is enabled. {If themes require it "
 "they might set this, otherwise you need to do it manually!}"
 msgstr ""
-"cycle2プラグインが有効なスクリプトです。 {テーマが必要とする場合、セットされなければ"
-"なりません。さもなくば、それを手動でする必要があります。}"
+"cycle2プラグインが有効なスクリプトです。 {テーマが必要とする場合、セットされ"
+"なければなりません。さもなくば、それを手動でする必要があります。}"
 
 #: zp-core/zp-extensions/slideshow2.php:270
 msgid "pause"
