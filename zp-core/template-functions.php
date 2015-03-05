@@ -3699,7 +3699,7 @@ function getSearchURL($words, $dates, $fields, $page, $object_list = NULL) {
 	}
 
 	if ($rewrite) {
-		$url = SEO_WEBPATH . '/' . _SEARCH_ . '/token/';
+		$url = SEO_WEBPATH . '/' . _SEARCH_ . '/';
 	} else {
 		$url = SEO_WEBPATH . "/index.php";
 		$urls[] = 'p=search';
@@ -3711,14 +3711,19 @@ function getSearchURL($words, $dates, $fields, $page, $object_list = NULL) {
 			}
 			$words = implode(',', $words);
 		}
-		$urls[] = "token=" . SearchEngine::encode($words);
+		$words = SearchEngine::encode($words);
+		if ($rewrite) {
+			$url .= $words . '/';
+		} else {
+			$urls[] = 'words=' . $words;
+		}
 		if (!empty($fields)) {
 			if (!is_array($fields)) {
 				$fields = explode(',', $fields);
 			}
 			$temp = $fields;
 			if ($rewrite && count($fields) == 1 && array_shift($temp) == 'tags') {
-				$url = SEO_WEBPATH . '/' . _TAGS_ . '/';
+				$url = SEO_WEBPATH . '/' . _TAGS_ . '/' . $words . '/';
 			} else {
 				$search = new SearchEngine();
 				$urls[] = $search->getSearchFieldsText($fields, 'searchfields=');
