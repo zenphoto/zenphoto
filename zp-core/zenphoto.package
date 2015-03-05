@@ -1790,7 +1790,6 @@ zp-core/zp-extensions/googleMap
 zp-core/zp-extensions/googleMap/googleMap.css
 zp-core/zp-extensions/googleMap/map.php
 zp-core/zp-extensions/googleMap/CodeIgniter-Google-Maps-V3-API
-zp-core/zp-extensions/googleMap/CodeIgniter-Google-Maps-V3-API/Google_Maps_V3_API_Documentation.pdf
 zp-core/zp-extensions/googleMap/CodeIgniter-Google-Maps-V3-API/Googlemaps.php
 zp-core/zp-extensions/googleMap/markerClustererPlus
 zp-core/zp-extensions/googleMap/markerClustererPlus/markerclusterer.js
@@ -2304,4 +2303,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-2306
+2305

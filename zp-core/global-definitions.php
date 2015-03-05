@@ -44,9 +44,7 @@ $_debug = explode('-', preg_replace('~-RC\d+~', '', ZENPHOTO_VERSION) . '-');
 $_debug = $_debug[1];
 define('TEST_RELEASE', !empty($_debug));
 define('DEBUG_LOGIN', strpos($_debug, 'LOGIN')); // set to true to log admin saves and login attempts
-define('DEBUG_ERROR', TEST_RELEASE); // set to true to supply the calling sequence with zp_error messages
 define('DEBUG_IMAGE', strpos($_debug, 'IMAGE')); // set to true to log image processing debug information.
-define('DEBUG_IMAGE_ERR', TEST_RELEASE); // set to true to flag image processing errors.
 define('DEBUG_404', strpos($_debug, '404')); // set to true to log 404 error processing debug information.
 define('DEBUG_EXIF', strpos($_debug, 'EXIF')); // set to true to log start/finish of exif processing. Useful to find problematic images.
 define('DEBUG_PLUGINS', strpos($_debug, 'PLUGINS')); // set to true to log plugin load sequence.

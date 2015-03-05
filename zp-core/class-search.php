@@ -134,10 +134,8 @@ class SearchEngine {
 		$this->search_structure = zp_apply_filter('searchable_fields', $this->search_structure);
 		asort($this->search_structure, SORT_LOCALE_STRING);
 
-		if (isset($_GET['token'])) {
-			$this->words = self::decode(sanitize($_REQUEST['token'], 4));
-		} else if (isset($_REQUEST['words'])) {
-			$this->words = sanitize($_REQUEST['words'], 4);
+		if (isset($_REQUEST['words'])) {
+			$this->words = self::decode(sanitize($_REQUEST['words'], 4));
 		} else {
 			$this->words = NULL;
 			if (isset($_REQUEST['date'])) { // words & dates are mutually exclusive
@@ -226,7 +224,8 @@ class SearchEngine {
 	 * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
 	 */
 	static function encode($words) {
-		return bin2hex($words);
+		$words = bin2hex($words);
+		return strlen($words) . '.' . $words;
 	}
 
 	/**
@@ -235,7 +234,11 @@ class SearchEngine {
 	 * @return string
 	 */
 	static function decode($words) {
-		return hex2bin($words);
+		preg_match('~^(\d+)\.([0-9a-f]+)$~', $words, $matches);
+		if (isset($matches[1]) && isset($matches[2]) && $matches[1] == strlen($matches[2])) {
+			$words = hex2bin($matches[2]);
+		}
+		return $words;
 	}
 
 	/**
