@@ -25,7 +25,7 @@ header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/tinymce/plugins/compat3x/tiny_mce_popup.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/tinyzenpage.css" media="screen" />
 		<script language="javascript" type="text/javascript">
-			$(document).ready(function() {
+			$(document).ready(function () {
 				$("a[rel='colorbox']").colorbox({
 					iframe: true,
 					innerWidth: '90%',
@@ -39,16 +39,32 @@ header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 					close: '<?php echo gettext("close"); ?>'
 				});
 
-				$('#imagetitle,#albumtitle,#customtext').click(function() {
+				$('#imagetitle,#albumtitle,#customtext').click(function () {
 					$('#imagesize').hide();
 					$('#titledesc').hide();
 				});
-				$('#image').click(function() {
+				$('#image').click(function () {
 					$('#imagesize').show();
 					$('#titledesc').show();
 				});
 			});
 		</script>
+		<style>
+			.warningbox {
+				padding: 5px 10px 5px 10px;
+				background-color: #fcf676;
+				border-width: 1px 1px 2px 1px;
+				border-style: solid;
+				border-color: #FFDEB5;
+				-moz-border-radius: 5px;
+				-khtml-border-radius: 5px;
+				-webkit-border-radius: 5px;
+				border-radius: 5px;
+				margin-bottom: 10px;
+				font-size: 100%;
+				list-style-type: none;
+			}
+		</style>
 		<?php
 		require_once("js/dialog.php");
 		require_once("tinyzenpage-functions.php");
@@ -169,8 +185,8 @@ header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 									<?php
 									if (empty($_GET['zenpage']) AND empty($_GET['album'])) {
 										?>
-										<h2>
-											<em>tiny</em>Zenpage</h2>
+										<h2><em>tiny</em>Zenpage</h2>
+										<p class="warningbox"><?php printf(gettext('<em>tiny</em>Zenpage ia deprecated. It is replaced by tinyMCE:obj. Please see the <a href="%s" target="_blank"><em>tinyMCE:obj plugin</em> release notes</a>'), WEBPATH . '/docs/release notes.htm#tinyMCE:obj'); ?></p>
 										<p>
 											<?php echo gettext("This provides access to your images and albums (select from the <em>Zenphoto</em> dropdown) as well as pages, news articles and news categories (select from the <em>Zenpage</em> dropdown) to easily include them in your pages and articles."); ?>
 										</p>
