@@ -1481,16 +1481,18 @@ function safe_glob($pattern, $flags = 0) {
  * Check to see if the setup script needs to be run
  */
 function checkInstall() {
-	preg_match('|([^-]*)|', ZENPHOTO_VERSION, $version);
-	if ($i = getOption('zenphoto_install')) {
-		$install = getSerializedArray($i);
-	} else {
-		$install = array('ZENPHOTO' => '0.0.0[0000]');
-	}
-	preg_match('|([^-]*).*\[(.*)\]|', $install['ZENPHOTO'], $matches);
-	if (isset($matches[1]) && isset($matches[2]) && $matches[1] != $version[1] || $matches[2] != ZENPHOTO_RELEASE || ((time() & 7) == 0) && OFFSET_PATH != 2 && $i != serialize(installSignature())) {
-		require_once(dirname(__FILE__) . '/reconfigure.php');
-		reconfigureAction(0);
+	if (OFFSET_PATH != 2) {
+		preg_match('|([^-]*)|', ZENPHOTO_VERSION, $version);
+		if ($i = getOption('zenphoto_install')) {
+			$install = getSerializedArray($i);
+		} else {
+			$install = array('ZENPHOTO' => '0.0.0[0000]');
+		}
+		preg_match('|([^-]*).*\[(.*)\]|', $install['ZENPHOTO'], $matches);
+		if (isset($install['REQUESTS'][0]) || isset($matches[1]) && isset($matches[2]) && $matches[1] != $version[1] || $matches[2] != ZENPHOTO_RELEASE || ((time() & 7) == 0) && OFFSET_PATH != 2 && $i != serialize(installSignature())) {
+			require_once(dirname(__FILE__) . '/reconfigure.php');
+			reconfigureAction(0);
+		}
 	}
 }
 
@@ -1537,7 +1539,8 @@ function installSignature() {
 	return array_merge($testFiles, array('SERVER_SOFTWARE'	 => $s,
 					'ZENPHOTO'				 => $version . '[' . ZENPHOTO_RELEASE . ']',
 					'FOLDER'					 => dirname(dirname(__FILE__)),
-					'DATABASE'				 => $dbs['application'] . ' ' . $dbs['version']
+					'DATABASE'				 => $dbs['application'] . ' ' . $dbs['version'],
+					'REQUESTS'				 => array()
 					)
 	);
 }
