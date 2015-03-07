@@ -104,10 +104,6 @@ class customFieldExtender extends fieldExtender {
 		parent::_register('customFieldExtender', self::$fields);
 	}
 
-	static function adminNotice($tab, $subtab) {
-		parent::_adminNotice($tab, $subtab, 'customFieldExtender');
-	}
-
 	static function custom_option($obj, $instance, $field, $type) {
 		if ($type == 'save') {
 			return sanitize($instance . '-' . $_POST[$field['name']]);

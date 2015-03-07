@@ -411,20 +411,8 @@ value="' . $item . '" />';
 			zp_register_filter("edit_page_custom_data", "$me::cmsItemEdit");
 		}
 		if (OFFSET_PATH && !getOption($me . "_addedFields")) {
-			zp_register_filter('admin_note', "$me::adminNotice");
+			setupRequest($me);
 		}
-	}
-
-	/**
-	 * Notification of need to run setup
-	 * @param type $tab
-	 * @param type $subtab
-	 * @param type $me
-	 * @return type
-	 */
-	static function _adminNotice($tab, $subtab, $me) {
-		echo '<p class="notebox">' . sprintf(gettext('You will need to run <a href="%1$s">setup</a> to update the database with the custom fields defined by the <em>%2$s</em> plugin.'), FULLWEBPATH . '/' . ZENFOLDER . '/setup.php', $me) . '</p>';
-		return $tab;
 	}
 
 	/**

@@ -122,10 +122,6 @@ class optionalObjectFields extends fieldExtender {
 		parent::_register('optionalObjectFields', self::fields());
 	}
 
-	static function adminNotice($tab, $subtab) {
-		parent::_adminNotice($tab, $subtab, 'optionalObjectFields');
-	}
-
 	static function owner($obj, $instance, $field, $type) {
 		if ($type == 'save') {
 			if (isset($_POST[$instance . '-' . $field['name']])) {
