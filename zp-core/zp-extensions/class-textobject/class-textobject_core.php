@@ -81,6 +81,17 @@ class TextObject extends Image {
 	}
 
 	/**
+	 * returns the database fields used by the object
+	 * @return array
+	 *
+	 * @author Stephen Billard
+	 * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+	 */
+	static function getMetadataFields() {
+		return array();
+	}
+
+	/**
 	 * Handles class common instantiation
 	 * @param $album
 	 * @param $filename

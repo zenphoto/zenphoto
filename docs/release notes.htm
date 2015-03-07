@@ -77,6 +77,10 @@
 		</style>
 	<body>
 <h1>ZenPhoto20 release notes</h1><p>&nbsp;</p>
+<h2>Database storage for image metadata&nbsp;fields</h2>
+<p>ZenPhoto20 now allows for database columns for image metadata&nbsp;to be optional. You can reduce the size of image database records by marking the ones you do not need <em>do not process</em> on the<em> image options</em> tab. When <code>setup</code> is run it will add or remove fields based on this setting. There is an additional checkbox on that tab,&nbsp;<em>Mark unused fields do not process</em>, that will cause ZenPhoto20 to examine the database for metadata&nbsp;columns that have not had any data stored. These are then marked <em>do not process</em>. Before using this option you should insure that you have a representative set of images and have refreshed their metadata&nbsp;so as to not remove columns that you might want.</p>
+<p>The <em>class-video</em> and <em>xmpMetadata</em> plugins&nbsp;will create database columns for their metadata&nbsp;only if they are enabled when <code>setup</code> is run.</p>
+<p>You may see a "configuration change" notice when you change the state of these options. This will indicate that a <em>setup request</em> has been made (and by what process.) This is a reminder that the change will not take effect until you have run <code>setup</code> so data that might be stored in these fields may not be saved&nbsp;to the database.</p>
 <h2>Plugins</h2>
 <p><em>tagsFromMetadata:</em></p>
 <p>This plugin will allow you to select specific metadata items from an image and set the values of these items as tags for the image. So, for instance, you can select <em>EXIFMake</em> and all your images will be tagged with the camera manufacturer's name (provided that camera does record that metadata item.) Tags will be created in each enabled language provided there is a unique translation in that language for the item.</p>

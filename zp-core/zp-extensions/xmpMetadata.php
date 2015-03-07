@@ -567,6 +567,9 @@ class xmpMetadata {
 	 */
 	function __construct() {
 		setOptionDefault('xmpMetadata_suffix', 'xmp');
+		if (OFFSET_PATH) {
+			zpFunctions::exifOptions('xmpMetadata', (extensionEnabled('xmpMetadata')) ? 0 : 2, self::getMetadataFields());
+		}
 	}
 
 	/**
@@ -602,6 +605,18 @@ class xmpMetadata {
 	 */
 	function handleOption($option, $currentValue) {
 
+	}
+
+	/**
+	 * returns the database fields used by the object
+	 * @return array
+	 *
+	 * @author Stephen Billard
+	 * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+	 */
+	static function getMetadataFields() {
+// Database Field       		 => array('source', 'Metadata Key', 'ZP Display Text', Display?	size,	enabled, type)
+		return array('XMPRating' => array('XMP', 'rating', gettext('XMP Rating'), false, 10, true, 'string'));
 	}
 
 	/**

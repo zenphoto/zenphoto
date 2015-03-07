@@ -75,16 +75,6 @@ function reconfigureAction($mandatory) {
 }
 
 /**
- * registers a request to have setup run
- * @param string $whom the requestor
- */
-function requestSetup($whom) {
-	$sig = installSignature();
-	$sig['REQUESTS'][] = $whom;
-	setOption('zenphoto_install', serialize($sig));
-}
-
-/**
  *
  * Checks details of configuration change
  */

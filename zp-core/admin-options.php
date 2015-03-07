@@ -239,8 +239,9 @@ if (isset($_GET['action'])) {
 			setOption('sharpen_amount', sanitize_numeric($_POST['sharpen_amount']));
 			setOption('image_max_size', sanitize_numeric($_POST['image_max_size']));
 			$num = str_replace(',', '.', sanitize($_POST['sharpen_radius']));
-			if (is_numeric($num))
+			if (is_numeric($num)) {
 				setOption('sharpen_radius', $num);
+			}
 			setOption('sharpen_threshold', sanitize_numeric($_POST['sharpen_threshold']));
 
 			if (isset($_POST['fullimage_watermark'])) {
@@ -293,20 +294,40 @@ if (isset($_GET['action'])) {
 			$_zp_gallery->setSortDirection((int) isset($_POST['image_sortdirection']), 'image');
 			setOption('use_embedded_thumb', (int) isset($_POST['use_embedded_thumb']));
 			setOption('IPTC_encoding', sanitize($_POST['IPTC_encoding']));
+			$disableEmpty = isset($_POST['disableEmpty']);
+			$dbChange = false;
 			foreach ($_zp_exifvars as $key => $item) {
 				$v = sanitize_numeric($_POST[$key]);
 				switch ($v) {
 					case 0:
 					case 1:
-						setOption($key . '-disabled', 0);
-						setOption($key, $v);
+						if ($item[4]) {
+							$dbChange = getOption($key . '-disabled');
+							$dis = 0;
+							if ($disableEmpty) {
+								$sql = "SELECT `id`,$key FROM " . prefix('images') . " WHERE $key IS NOT NULL AND TRIM($key) <> '' LIMIT 1";
+								$rslt = query_single_row($sql, false);
+								if (empty($rslt)) {
+									$dbChange = $dis = 1;
+								}
+							}
+						}
+						setOption($key . '-disabled', $dis);
+						setOption($key . '-display', $v);
 						break;
 					case 2:
-						setOption($key, 0);
+						if ($item[4]) {
+							$dbChange = !getOption($key . '-disabled');
+						}
+						setOption($key . '-display', 0);
 						setOption($key . '-disabled', 1);
 						break;
 				}
 			}
+			if ($dbChange) {
+				requestSetup('metadata_fields');
+			}
+
 			$_zp_gallery->save();
 			$returntab = "&tab=image";
 		}
@@ -2323,18 +2344,21 @@ Zenphoto_Authority::printPasswordFormJS();
 													 <?php checked('1', getOption('use_lock_image')); ?> />
 									</td>
 									<td><?php echo gettext("Substitute a <em>lock</em> image for thumbnails of password protected albums when the viewer has not supplied the password. If your theme supplies an <code>images/err-passwordprotected.png</code> image, it will be shown. Otherwise the zenphoto default lock image is displayed."); ?></td>
-
-								<script>
-																									$(function() {
-																									$("#resizable").resizable({
-																									minHeight: 120,
-																													resize: function(event, ui) {
-																													$(this).css("width", '');
-																																	$('#metadatalist').height($('#resizable').height());
-																													}
-																									});
-																									});</script>
 								</tr>
+								<script type="text/javascript">
+																									function checkMeta(cls) {
+																									$('.' + cls).prop('checked', 'checked');
+																									}
+																					$(function() {
+																					$("#resizable").resizable({
+																					minHeight: 120,
+																									resize: function(event, ui) {
+																									$(this).css("width", '');
+																													$('#metadatalist').height($('#resizable').height());
+																									}
+																					});
+																					});</script>
+
 								<tr>
 									<td><?php echo gettext("Metadata"); ?></td>
 									<td>
@@ -2358,9 +2382,9 @@ Zenphoto_Authority::printPasswordFormJS();
 													}
 													?>
 													<li>
-														<label><input id="<?php echo $key; ?>_show" name="<?php echo $key; ?>" type="radio"<?php echo $checked_show ?> value="1" /><img src ="images/pass.png" alt="<?php echo gettext('show'); ?>" /></label>
-														<label><input id="<?php echo $key; ?>_hide" name="<?php echo $key; ?>" type="radio"<?php echo $checked_hide ?> value="0" /><img src ="images/reset.png" alt="<?php echo gettext('hide'); ?>" /></label>
-														<label><input id="<?php echo $key; ?>_disable" name="<?php echo $key; ?>" type="radio"<?php echo $checked_disabled ?> value="2" /><img src ="images/fail.png" alt="<?php echo gettext('disabled'); ?>" /></label>
+														<label><input id="<?php echo $key; ?>_show" name="<?php echo $key; ?>" type="radio" class="showMeta"<?php echo $checked_show ?> value="1" /><img src ="images/pass.png" alt="<?php echo gettext('show'); ?>" /></label>
+														<label><input id="<?php echo $key; ?>_hide" name="<?php echo $key; ?>" type="radio" class="hideMeta"<?php echo $checked_hide ?> value="0" /><img src ="images/reset.png" alt="<?php echo gettext('hide'); ?>" /></label>
+														<label><input id="<?php echo $key; ?>_disable" name="<?php echo $key; ?>" type="radio" class="disableMeta"<?php echo $checked_disabled ?> value="2" /><img src ="images/fail.png" alt="<?php echo gettext('disabled'); ?>" /></label>
 														<?php echo $item[2]; ?>&nbsp;&nbsp;&nbsp;
 													</li>
 													<?php
@@ -2368,8 +2392,18 @@ Zenphoto_Authority::printPasswordFormJS();
 												?>
 											</ul>
 										</div>
-										<br />
+										<span class="floatright">
+											<?php echo gettext('all'); ?>
+											<label><input type="radio" onclick="checkMeta('showMeta');" /><img src ="images/pass.png" alt="<?php echo gettext('show'); ?>" /></label>
+											<label><input type="radio" onclick="checkMeta('hideMeta');" /><img src ="images/reset.png" alt="<?php echo gettext('hide'); ?>" /></label>
+											<label><input type="radio" onclick="checkMeta('disableMeta');" /><img src ="images/fail.png" alt="<?php echo gettext('disabled'); ?>" /></label>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										</span>
+
+										<br clear="all"/>
 										<p>
+											<label><input type="checkbox" name="disableEmpty" value="1" /><?php echo gettext('Mark unused fields <em>do not process</em>'); ?></label>
+											<br />
 											<label><input type="checkbox" name="transform_newlines" value="1" /><?php echo gettext('replace newlines'); ?></label>
 										</p>
 									</td>
@@ -2384,6 +2418,8 @@ Zenphoto_Authority::printPasswordFormJS();
 										</p>
 										<p>
 											<?php echo gettext('Hint: you can drag down the <em>drag handle</em> in the lower right corner to show more selections.') ?>
+										</p>
+										<?php echo gettext('Columns for fields marked <em>do not process</em> will be removed from the database on the next <code>setup</code> execution. Selecting the <em>Mark unused fields do not process</em> will cause metadata fields that have no values to be marked <em>do not process</em> allowing them to be removed from the database.') ?>
 										</p>
 										<p><?php echo gettext('If <em>replace newlines</em> is selected <code>&lt;br /&gt;</code> will replace <em>newline</em> characters from image metadata destined for <em>titles</em> and <em>descriptions</em>. This happens only when the metadata is imported so you may need to refresh your metadata to see the results.'); ?></p>
 									</td>

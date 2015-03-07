@@ -40,6 +40,9 @@ class VideoObject_Options {
 		setOptionDefault('class-video_3gp_w', 520);
 		setOptionDefault('class-video_3gp_h', 390);
 		setOptionDefault('class-video_videoalt', 'ogg, avi, wmv');
+		if (OFFSET_PATH) {
+			zpFunctions::exifOptions('class-video', (extensionEnabled('class-video')) ? 0 : 2, Video::getMetadataFields());
+		}
 	}
 
 	/**
@@ -84,6 +87,7 @@ class Video extends Image {
 	 */
 	function __construct($album, $filename, $quiet = false) {
 		global $_zp_supported_images;
+
 		$msg = false;
 		if (!is_object($album) || !$album->exists) {
 			$msg = gettext('Invalid video instantiation: Album does not exist');
@@ -119,6 +123,37 @@ class Video extends Image {
 			if ($new)
 				zp_apply_filter('new_image', $this);
 		}
+	}
+
+	/**
+	 * returns the database fields used by the object
+	 * @return array
+	 *
+	 * @author Stephen Billard
+	 * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+	 */
+	static function getMetadataFields() {
+// Database Field       		 => array('source', 'Metadata Key', 'ZP Display Text', Display?	size,	enabled, type)
+		return array('VideoFormat'						 => array('VIDEO', 'fileformat', gettext('Video File Format'), false, 32, true, 'string'),
+						'VideoSize'							 => array('VIDEO', 'filesize', gettext('Video File Size'), false, 32, true, 'number'),
+						'VideoArtist'						 => array('VIDEO', 'artist', gettext('Video Artist'), false, 256, true, 'string'),
+						'VideoTitle'						 => array('VIDEO', 'title', gettext('Video Title'), false, 256, true, 'string'),
+						'VideoBitrate'					 => array('VIDEO', 'bitrate', gettext('Bitrate'), false, 32, true, 'number'),
+						'VideoBitrate_mode'			 => array('VIDEO', 'bitrate_mode', gettext('Bitrate_Mode'), false, 32, true, 'string'),
+						'VideoBits_per_sample'	 => array('VIDEO', 'bits_per_sample', gettext('Bits per sample'), false, 32, true, 'number'),
+						'VideoCodec'						 => array('VIDEO', 'codec', gettext('Codec'), false, 32, true, 'string'),
+						'VideoCompression_ratio' => array('VIDEO', 'compression_ratio', gettext('Compression Ratio'), false, 32, true, 'number'),
+						'VideoDataformat'				 => array('VIDEO', 'dataformat', gettext('Video Dataformat'), false, 32, true, 'string'),
+						'VideoEncoder'					 => array('VIDEO', 'encoder', gettext('File Encoder'), false, 10, true, 'string'),
+						'VideoSamplerate'				 => array('VIDEO', 'Samplerate', gettext('Sample rate'), false, 32, true, 'number'),
+						'VideoChannelmode'			 => array('VIDEO', 'channelmode', gettext('Channel mode'), false, 32, true, 'string'),
+						'VideoFormat'						 => array('VIDEO', 'format', gettext('Format'), false, 10, true, 'string'),
+						'VideoChannels'					 => array('VIDEO', 'channels', gettext('Channels'), false, 10, true, 'number'),
+						'VideoFramerate'				 => array('VIDEO', 'framerate', gettext('Frame rate'), false, 32, true, 'number'),
+						'VideoResolution_x'			 => array('VIDEO', 'resolution_x', gettext('X Resolution'), false, 32, true, 'number'),
+						'VideoResolution_y'			 => array('VIDEO', 'resolution_y', gettext('Y Resolution'), false, 32, true, 'number'),
+						'VideoAspect_ratio'			 => array('VIDEO', 'pixel_aspect_ratio', gettext('Aspect ratio'), false, 32, true, 'number'),
+						'VideoPlaytime'					 => array('VIDEO', 'playtime_string', gettext('Play Time'), false, 10, true, 'number'));
 	}
 
 	/**
@@ -430,6 +465,19 @@ class Video extends Image {
 				}
 			}
 		}
+	}
+
+	/**
+	 * returns the class of the active multi-media handler
+	 * @global pseudoPlayer $_zp_multimedia_extension
+	 * @return string
+	 *
+	 * @author Stephen Billard
+	 * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+	 */
+	static function multimediaExtension() {
+		global $_zp_multimedia_extension;
+		return get_class($_zp_multimedia_extension);
 	}
 
 }

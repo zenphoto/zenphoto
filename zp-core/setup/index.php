@@ -1710,8 +1710,8 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 
 						/*
 						 * ********************************************************************************
-						  Add new fields in the upgrade section. This section should remain static except for new
-						  tables. This tactic keeps all changes in one place so that noting gets accidentaly omitted.
+							Add new fields in the upgrade section. This section should remain static except for new
+							tables. This tactic keeps all changes in one place so that noting gets accidentaly omitted.
 						 * ********************************************************************************** */
 
 						//v1.2
@@ -2339,17 +2339,8 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 						$sql_statements[] = "ALTER TABLE $tbl_pages ADD INDEX expiredate (`expiredate`);";
 						$sql_statements[] = "ALTER TABLE $tbl_pages ADD INDEX publishdate (`publishdate`);";
 						// do this last incase there are any field changes of like names!
-						foreach ($_zp_exifvars as $key => $exifvar) {
-							if ($s = $exifvar[4]) {
-								if ($s < 255) {
-									$size = "varchar($s)";
-								} else {
-									$size = 'MEDIUMTEXT';
-								}
-								$sql_statements[] = "ALTER TABLE $tbl_images ADD COLUMN `$key` $size default NULL";
-								$sql_statements[] = "ALTER TABLE $tbl_images CHANGE `$key` `$key` $size default NULL";
-							}
-						}
+						$meta = metadataFields($_zp_exifvars, false);
+						$sql_statements = array_merge($sql_statements, $meta);
 
 						/**
 						 * ************************************************************************************
