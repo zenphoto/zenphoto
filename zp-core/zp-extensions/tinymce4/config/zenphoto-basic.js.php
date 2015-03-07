@@ -31,7 +31,6 @@ if ($filehandler) {
 									"insertdatetime media table contextmenu paste tinyzenpage"
 					],
 									toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | tinyzenpage | ltr rtl",
-									statusbar: false,
 									setup: function(ed) {
 									ed.on('change', function(e) {
 									$('.dirty-check').addClass('dirty');
