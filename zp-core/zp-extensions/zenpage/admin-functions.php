@@ -569,7 +569,7 @@ function printNewsDatesDropdown() {
 	<form name="AutoListBox1" id="articledatesdropdown" style="float:left; margin:5px;" action="#" >
 		<select name="ListBoxURL" size="1" onchange="gotoLink(this.form)">
 			<?php
-			echo "<option $selected value='admin-news.php" . getNewsAdminOptionPath($option) . "'>" . gettext("View all months") . "</option>";
+			echo "<option $selected value='admin-news.php" . getNewsAdminOptionPath($option) . "'>" . gettext("View all months") . "</option>\n";
 			while (list($key, $val) = each($datecount)) {
 				$nr++;
 				if ($key == '0000-00-01') {
