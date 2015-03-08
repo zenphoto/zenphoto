@@ -16,7 +16,7 @@ require_once(dirname(__FILE__) . '/class-search.php');
 
 $_zp_loaded_plugins = array();
 // load the class & filter plugins
-if (OFFSET_PATH != 2) { // setup does not need (and might have problems with) plugins
+if (abs(OFFSET_PATH) != 2) { // setup does not need (and might have problems with) plugins
 	$masks[] = CLASS_PLUGIN;
 	if (OFFSET_PATH) {
 		$masks[] = ADMIN_PLUGIN | FEATURE_PLUGIN;

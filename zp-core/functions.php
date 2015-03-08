@@ -2495,13 +2495,13 @@ class zpFunctions {
 			if ($exifvar[4] && $v != $disable) {
 				$reenable = true;
 			}
-			setOption($key . '_disabled', $disable | $v);
+			setOption($key . '_disabled', $disable | ($v & 1));
 			$list[$key][5] = $disable == 0;
 		}
-		if ($reenable) {
-			if (OFFSET_PATH == 2) {
-				metadataFields($list);
-			} else {
+		if (OFFSET_PATH == 2) {
+			metadataFields($list);
+		} else {
+			if ($reenable) {
 				requestSetup($whom);
 			}
 		}

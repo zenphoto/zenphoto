@@ -28,6 +28,10 @@ $option_interface = 'VideoObject_Options';
 define('GETID3_INCLUDEPATH', SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/class-video/getid3/');
 require_once(dirname(__FILE__) . '/class-video/getid3/getid3.php');
 
+if (OFFSET_PATH) {
+	zpFunctions::exifOptions('Video Metadata', (extensionEnabled('class-video')) ? 0 : 2, Video::getMetadataFields());
+}
+
 /**
  * Option class for video objects
  *
@@ -40,9 +44,6 @@ class VideoObject_Options {
 		setOptionDefault('class-video_3gp_w', 520);
 		setOptionDefault('class-video_3gp_h', 390);
 		setOptionDefault('class-video_videoalt', 'ogg, avi, wmv');
-		if (OFFSET_PATH) {
-			zpFunctions::exifOptions('class-video', (extensionEnabled('class-video')) ? 0 : 2, Video::getMetadataFields());
-		}
 	}
 
 	/**

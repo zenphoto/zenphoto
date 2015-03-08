@@ -533,6 +533,7 @@ function checkUnique($table, $unique) {
 function metadataFields($list, $execute = true) {
 	$sql_statements = array();
 	$tbl_images = prefix('images');
+	ksort($list);
 	foreach ($list as $key => $exifvar) {
 		if ($s = $exifvar[4]) {
 			if ($exifvar[5]) {

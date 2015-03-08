@@ -295,21 +295,24 @@ if (isset($_GET['action'])) {
 			setOption('use_embedded_thumb', (int) isset($_POST['use_embedded_thumb']));
 			setOption('IPTC_encoding', sanitize($_POST['IPTC_encoding']));
 			$disableEmpty = isset($_POST['disableEmpty']);
-			$dbChange = false;
+			$dbChange = array();
 			foreach ($_zp_exifvars as $key => $item) {
 				$v = sanitize_numeric($_POST[$key]);
 				switch ($v) {
 					case 0:
 					case 1:
 						if ($item[4]) {
-							$dbChange = getOption($key . '-disabled');
 							$dis = 0;
 							if ($disableEmpty) {
 								$sql = "SELECT `id`,$key FROM " . prefix('images') . " WHERE $key IS NOT NULL AND TRIM($key) <> '' LIMIT 1";
 								$rslt = query_single_row($sql, false);
 								if (empty($rslt)) {
-									$dbChange = $dis = 1;
+									$dis = 1;
+									$dbChange[$item[0] . ' Metadata'] = $item[0] . ' Metadata';
 								}
+							}
+							if (getOption($key . '-disabled') != $dis) {
+								$dbChange[$item[0] . ' Metadata'] = $item[0] . ' Metadata';
 							}
 						}
 						setOption($key . '-disabled', $dis);
@@ -317,15 +320,17 @@ if (isset($_GET['action'])) {
 						break;
 					case 2:
 						if ($item[4]) {
-							$dbChange = !getOption($key . '-disabled');
+							if (!getOption($key . '-disabled')) {
+								$dbChange[$item[0] . ' Metadata'] = $item[0] . ' Metadata';
+							}
 						}
 						setOption($key . '-display', 0);
 						setOption($key . '-disabled', 1);
 						break;
 				}
 			}
-			if ($dbChange) {
-				requestSetup('metadata_fields');
+			foreach ($dbChange as $requestor) {
+				requestSetup($requestor);
 			}
 
 			$_zp_gallery->save();
