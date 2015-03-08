@@ -43,7 +43,9 @@
 		<div id="copyright">
 			<?php
 			echo getMainSiteName();
-			printCustomPageURL(gettext('Archive View'), 'archive', '', ' | ');
+			if (getOption('show_archive')) {
+				printCustomPageURL(gettext('Archive View'), 'archive', '', ' | ');
+			}
 			if (extensionEnabled('user_login-out')) {
 				printUserLogin_out(' | ', '', 2);
 			}
