@@ -9,7 +9,7 @@
  */
 // force UTF-8 Ø
 
-define('OFFSET_PATH', -2); //	 we don't want plugins loaded
+define('OFFSET_PATH', -2); //	 we don't want plugins loaded but we are not setup
 require_once(dirname(__FILE__) . '/admin-globals.php');
 require_once(dirname(__FILE__) . '/template-functions.php');
 
