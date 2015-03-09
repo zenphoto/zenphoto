@@ -416,8 +416,10 @@ function mkdir_recursive($pathname, $mode) {
  * Logs the calling stack
  *
  * @param string $message Message to prefix the backtrace
+ * @param int $omit count of "callers" to remove from backtrace
+ * @param string $log alternative log file
  */
-function debugLogBacktrace($message, $omit = 0) {
+function debugLogBacktrace($message, $omit = 0, $log = 'debug') {
 	$output = trim($message) . "\n";
 	// Get a backtrace.
 	$bt = debug_backtrace();
@@ -446,7 +448,7 @@ function debugLogBacktrace($message, $omit = 0) {
 	if (!empty($line)) {
 		$output .= 'from ' . $line;
 	}
-	debugLog($output);
+	debugLog($output, false, $log);
 }
 
 /**
@@ -454,6 +456,7 @@ function debugLogBacktrace($message, $omit = 0) {
  *
  * @param string $message message to insert in log [optional]
  * @param mixed $var the variable to record
+ * @param string $log alternative log file
  */
 function debugLogVar($message) {
 	$args = func_get_args();
@@ -464,11 +467,16 @@ function debugLogVar($message) {
 		$message .= ' ';
 		$var = $args[1];
 	}
+	if (count($args) == 3) {
+		$log = $args[2];
+	} else {
+		$log = 'debug';
+	}
 	ob_start();
 	var_dump($var);
 	$str = ob_get_contents();
 	ob_end_clean();
-	debugLog(trim($message) . "\r" . html_decode(getBare($str)));
+	debugLog(trim($message) . "\r" . html_decode(getBare($str)), false, $log);
 }
 
 /**

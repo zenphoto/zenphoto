@@ -1216,11 +1216,12 @@ function switchLog($log) {
  *
  * @param string $message the debug information
  * @param bool $reset set to true to reset the log to zero before writing the message
+ * @param string $log alternative log file
  */
-function debugLog($message, $reset = false) {
+function debugLog($message, $reset = false, $log = 'debug') {
 	if (defined('SERVERPATH')) {
 		global $_zp_mutex;
-		$path = SERVERPATH . '/' . DATA_FOLDER . '/debug.log';
+		$path = SERVERPATH . '/' . DATA_FOLDER . '/' . $log . '.log';
 		$me = getmypid();
 		if (is_object($_zp_mutex))
 			$_zp_mutex->lock();
