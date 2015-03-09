@@ -178,8 +178,8 @@ class galleryArticles {
     switch ($type = $obj->table) {
       case 'albums':
         if (getOption('multi_lingual')) {
-          $galleryitem_text = unserialize(getOption('galleryArticles_album_text'));
-          foreach ($galleryitem_text as $key => $val) { 
+          $option_text = unserialize(getOption('galleryArticles_album_text'));
+          foreach ($option_text as $key => $val) {
             $galleryitem_text[$key] = sprintf($galleryitem_text[$key], $obj->getTitle($key));
           }
           $text = serialize($galleryitem_text);
@@ -192,8 +192,8 @@ class galleryArticles {
         break;
       case 'images':
         if (getOption('multi_lingual')) {
-          $galleryitem_text = unserialize(getOption('galleryArticles_image_text'));
-          foreach ($galleryitem_text as $key => $val) {
+          $option_text = unserialize(getOption('galleryArticles_image_text'));
+          foreach ($option_text as $key => $val) {
             $galleryitem_text[$key] = sprintf($galleryitem_text[$key], $obj->getTitle($key), $obj->album->getTitle($key));
           }
           $text = serialize($galleryitem_text);
@@ -211,7 +211,7 @@ class galleryArticles {
     $imglink = $img->getCustomImage(getOption('galleryArticles_size'), NULL, NULL, NULL, NULL, NULL, NULL, -1);
     if (getOption('multi_lingual')) {
       $desc = '';
-      foreach ($galleryitem_text as $key => $val) { 
+      foreach ($option_text as $key => $val) {
         $desc[$key] = '<p><a class="' . $class . '" href="' . $obj->getLink() . '"><img src="' . $imglink . '"></a></p><p>' . $obj->getDesc($key) . '</p>';
       }
       $desc = serialize($desc);
