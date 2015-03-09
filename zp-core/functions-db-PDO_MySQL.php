@@ -150,7 +150,7 @@ function db_show($what, $aux = '') {
 			return query_full_array($sql);
 		case 'index':
 			$sql = "SHOW INDEX FROM `" . $_zp_DB_details['mysql_database'] . '`.' . $aux;
-			return query_full_array($sql);
+			return query_full_array($sql, false);
 	}
 }
 
