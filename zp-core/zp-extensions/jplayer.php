@@ -709,9 +709,9 @@ class jPlayer {
 				swfPath: "<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/jplayer/js",
 				solution: "flash,html",
 				<?php if ($option == 'playlist') { ?>
-					supplied: "m4v, mp4, m4a, mp3, fla, flv<?php echo $this->supplied_counterparts; ?>"
+					supplied: "m4v, mp4, m4a, mp3, fla, flv<?php echo $this->supplied_counterparts; ?>",
 				<?php } else { ?>
-					supplied: "m4a, mp3, fla<?php echo $this->supplied_counterparts; ?>"
+					supplied: "m4a, mp3, fla<?php echo $this->supplied_counterparts; ?>",
 				<?php
 				}
 				if ($option != 'playlist-audio') {
