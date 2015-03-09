@@ -1524,6 +1524,22 @@ button.positive,.buttons a.positive {
 	text-align: left;
 }
 
+/* metadata field checklist */
+.metadatalist {
+	border: 1px solid #ccc;
+	list-style: none;
+	height: 120px;
+	width: 390px;
+	overflow: auto;
+	background-color: white;
+	margin: 0;
+	padding: 0;
+}
+.metadatalist li {
+	padding-left: 0;
+	text-align: left;
+}
+
 /* scrollable checklists
 -----------------------------*/
 /* Undo some styles from the master stylesheet */
