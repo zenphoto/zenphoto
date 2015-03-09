@@ -1431,33 +1431,36 @@ function sortByKey($results, $sortkey, $order) {
 function sortMultiArray($array, $index, $descending = false, $natsort = true, $case_sensitive = false, $preservekeys = false, $remove_criteria = array()) {
 	if (is_array($array) && count($array) > 0) {
 		if (is_array($index)) {
-			$indicies = $index;
+			$indicies = array_reverse($index);
 		} else {
 			$indicies = array($index);
 		}
 		if ($descending) {
-			$separator = '~~';
+			$pad = '~';
 		} else {
-			$separator = '  ';
+			$pad = ' ';
 		}
 		foreach ($array as $key => $row) {
 			$temp[$key] = '';
+			$size = 0;
 			foreach ($indicies as $index) {
+				$prev = $size;
+				$size = 0;
 				if (is_array($row) && array_key_exists($index, $row)) {
-					$temp[$key] .= get_language_string($row[$index]) . $separator;
+					$word = get_language_string($row[$index]);
+					if (!$case_sensitive) {
+						$word = mb_strtolower($word);
+					}
+					$size = max($size, strlen($word));
+					$temp[$key] = str_pad($word, $prev, $pad) . $word;
 					if (in_array($index, $remove_criteria)) {
 						unset($array[$key][$index]);
 					}
 				}
 			}
-			$temp[$key] .= $key;
 		}
 		if ($natsort) {
-			if ($case_sensitive) {
-				natsort($temp);
-			} else {
-				natcasesort($temp);
-			}
+			natsort($temp);
 			if ($descending) {
 				$temp = array_reverse($temp, TRUE);
 			}
