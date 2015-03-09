@@ -953,6 +953,7 @@ plugins/zenphotoCompatibilityPack/core-deprecated-functions.php
 plugins/zenphotoCompatibilityPack/download-deprecated-functions.php
 plugins/zenphotoCompatibilityPack/favorites-deprecated-functions.php
 plugins/zenphotoCompatibilityPack/jcarosuel--deprecated-functions.php
+plugins/zenphotoCompatibilityPack/legacyConverter.php
 plugins/zenphotoCompatibilityPack/rating-deprecated-functions.php
 plugins/zenphotoCompatibilityPack/slideshow-deprecated-functions.php
 plugins/zenphotoCompatibilityPack/zenpage-deprecated-functions.php
@@ -2303,4 +2304,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-2305
+2306
