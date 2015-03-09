@@ -222,7 +222,7 @@ class favorites extends AlbumBase {
 				while ($row = db_fetch_assoc($result)) {
 					$id = $row['id'];
 					$data = getSerializedArray($row['data']);
-					$imageObj = newImage(array('folder' => dirname($data['id']), 'filename' => basename($data['id'])), true);
+					$imageObj = newImage(array('folder' => dirname($data['id']), 'filename' => basename($data['id'])), true, true);
 					if ($imageObj->exists) {
 						$images[] = array_merge(array('folder' => dirname($data['id']), 'filename' => basename($data['id'])), $imageObj->getData());
 					} else {
