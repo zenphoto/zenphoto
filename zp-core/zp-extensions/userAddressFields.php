@@ -101,10 +101,6 @@ class userAddressFields extends fieldExtender {
 		parent::_register('userAddressFields', self::fields());
 	}
 
-	static function adminNotice($tab, $subtab) {
-		parent::_adminNotice($tab, $subtab, 'userAddressFields');
-	}
-
 	static function getCustomData($obj) {
 		return parent::_getCustomData($obj, self::fields());
 	}

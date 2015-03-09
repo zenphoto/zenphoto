@@ -218,6 +218,16 @@ function reconfigurePage($diff, $needs, $mandatory) {
 						case 'FOLDER':
 							echo '<li>' . sprintf(gettext('Your installation has moved from %1$s to %2$s.'), $rslt['old'], $rslt['new']) . '</li>';
 							break;
+						case 'REQUESTS':
+							if (!empty($rslt)) {
+								echo gettext('setup has been requested by:');
+								echo '<ul>';
+								foreach ($rslt['old'] as $request) {
+									echo '<li>' . $request . '</li>';
+								}
+								echo '</ul>';
+							}
+							break;
 						default:
 							$sz = @filesize(SERVERPATH . '/' . ZENFOLDER . '/' . $thing);
 							echo '<li>' . sprintf(gettext('The script <code>%1$s</code> has changed.'), $thing) . '</li>';

@@ -1495,7 +1495,7 @@ class dynamicAlbum extends AlbumBase {
 	function __construct($folder8, $cache = true, $quiet = false) {
 		$folder8 = trim($folder8, '/');
 		$folderFS = internalToFilesystem($folder8);
-		$localpath = ALBUM_FOLDER_SERVERPATH . $folderFS . "/";
+		$localpath = ALBUM_FOLDER_SERVERPATH . $folderFS;
 		$this->linkname = $this->name = $folder8;
 		$this->localpath = $localpath;
 		if (!$this->_albumCheck($folder8, $folderFS, $quiet))

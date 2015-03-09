@@ -1481,28 +1481,32 @@ function safe_glob($pattern, $flags = 0) {
  * Check to see if the setup script needs to be run
  */
 function checkInstall() {
-	preg_match('|([^-]*)|', ZENPHOTO_VERSION, $version);
-	if ($i = getOption('zenphoto_install')) {
-		$install = getSerializedArray($i);
-	} else {
-		$install = array('ZENPHOTO' => '0.0.0[0000]');
-	}
-	preg_match('|([^-]*).*\[(.*)\]|', $install['ZENPHOTO'], $matches);
-	if (isset($matches[1]) && isset($matches[2]) && $matches[1] != $version[1] || $matches[2] != ZENPHOTO_RELEASE || ((time() & 7) == 0) && OFFSET_PATH != 2 && $i != serialize(installSignature())) {
-		require_once(dirname(__FILE__) . '/reconfigure.php');
-		reconfigureAction(0);
+	if (OFFSET_PATH != 2) {
+		preg_match('|([^-]*)|', ZENPHOTO_VERSION, $version);
+		if ($i = getOption('zenphoto_install')) {
+			$install = getSerializedArray($i);
+		} else {
+			$install = array('ZENPHOTO' => '0.0.0[0000]');
+		}
+		preg_match('|([^-]*).*\[(.*)\]|', $install['ZENPHOTO'], $matches);
+		if (isset($install['REQUESTS']) || isset($matches[1]) && isset($matches[2]) && $matches[1] != $version[1] || $matches[2] != ZENPHOTO_RELEASE || ((time() & 7) == 0) && OFFSET_PATH != 2 && $i != serialize(installSignature())) {
+			require_once(dirname(__FILE__) . '/reconfigure.php');
+			reconfigureAction(0);
+		}
 	}
 }
 
 /**
+ * registers a request to have setup run
+ * @param string $whom the requestor
  *
- * Call when terminating a script.
- * Closes the database to be sure that we do not build up outstanding connections
+ * @author Stephen Billard
+ * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
  */
-function exitZP() {
-	IF (function_exists('db_close'))
-		db_close();
-	exit();
+function requestSetup($whom) {
+	$sig = getSerializedArray(getOption('zenphoto_install'));
+	$sig['REQUESTS'][$whom] = $whom;
+	setOption('zenphoto_install', serialize($sig));
 }
 
 /**
@@ -1540,6 +1544,17 @@ function installSignature() {
 					'DATABASE'				 => $dbs['application'] . ' ' . $dbs['version']
 					)
 	);
+}
+
+/**
+ *
+ * Call when terminating a script.
+ * Closes the database to be sure that we do not build up outstanding connections
+ */
+function exitZP() {
+	IF (function_exists('db_close'))
+		db_close();
+	exit();
 }
 
 /**

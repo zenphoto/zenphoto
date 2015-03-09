@@ -71,10 +71,10 @@ if (class_exists('favorites')) {
 								<?php
 							} else {
 								?>
-								<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Albums Index'); ?>"><?php printGalleryTitle(); ?></a>
+								<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Albums Index'); ?>"><?php printGalleryTitle(); ?></a> </a> |
 								<?php
 							}
-							?></a> |
+							?>
 							<?php printParentBreadcrumb(); ?></span>
 						<?php printAlbumTitle(); ?>
 					</div>

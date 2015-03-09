@@ -288,24 +288,30 @@ class PersistentObject {
 	 */
 	private function load($allowCreate) {
 		$new = $entry = null;
-		// Set up the SQL query in case we need it...
-		$sql = 'SELECT * FROM ' . prefix($this->table) . getWhereClause($this->unique_set) . ' LIMIT 1;';
-		// But first, try the cache.
+		// First, try the cache.
 		if ($this->use_cache) {
 			$entry = $this->getFromCache();
 		}
 		// Check the database if: 1) not using cache, or 2) didn't get a hit.
 		if (empty($entry)) {
+			$sql = 'SELECT * FROM ' . prefix($this->table) . getWhereClause($this->unique_set) . ' LIMIT 1;';
 			$entry = query_single_row($sql, false);
 			// Save this entry into the cache so we get a hit next time.
-			if ($entry)
+			if ($entry) {
 				$this->addToCache($entry);
+			}
 		}
 
 		// If we don't have an entry yet, this is a new record. Create it.
 		if (empty($entry)) {
+
+			$result = db_list_fields($this->table);
+			foreach ($result as $row) {
+				$this->data[$row['Field']] = NULL;
+			}
+
 			if ($this->transient) { // no don't save it in the DB!
-				$entry = array_merge($this->unique_set, $this->updates);
+				$entry = array_merge($this->data, $this->unique_set);
 				$entry['id'] = 0;
 			} else if (!$allowCreate) {
 				return NULL; // does not exist and we are not allowed to create it

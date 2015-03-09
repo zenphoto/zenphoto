@@ -520,4 +520,41 @@ function checkUnique($table, $unique) {
 		<?php
 	}
 }
+
+/**
+ * Handles setting up or destroying metadata fields
+ * @param array $list
+ * @param bool $execute
+ * @return array (optional based on $execute)
+ *
+ * @author Stephen Billard
+ * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+ */
+function metadataFields($list, $execute = true) {
+	$sql_statements = array();
+	$tbl_images = prefix('images');
+	ksort($list);
+	foreach ($list as $key => $exifvar) {
+		if ($s = $exifvar[4]) {
+			if ($exifvar[5]) {
+				if ($s < 255) {
+					$size = "varchar($s)";
+				} else {
+					$size = 'MEDIUMTEXT';
+				}
+				$sql_statements[] = "ALTER TABLE $tbl_images ADD COLUMN `$key` $size default NULL";
+				$sql_statements[] = "ALTER TABLE $tbl_images CHANGE `$key` `$key` $size default NULL";
+			} else {
+				$sql_statements[] = "ALTER TABLE $tbl_images DROP COLUMN `$key`";
+			}
+		}
+	}
+	if ($execute) {
+		foreach ($sql_statements as $sql) {
+			db_table_update($sql);
+		}
+	} else {
+		return $sql_statements;
+	}
+}
 ?>
