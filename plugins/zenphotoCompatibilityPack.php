@@ -49,13 +49,51 @@ $plugin_is_filter = defaultExtension(1 | CLASS_PLUGIN);
 $plugin_description = gettext("Zenphoto compatibility.");
 $plugin_author = "Stephen Billard (sbillard)";
 
+class zenPhotoCompatibilityPack {
+
+	static function filter($param = NULL) {
+		global $_zp_current_article, $_zp_current_page;
+
+		//zenphoto variables
+		global $_zp_current_zenpage_news, $_zp_current_zenpage_page;
+		if (is_object($_zp_current_page)) {
+			$_zp_current_zenpage_page = clone $_zp_current_page;
+		}
+		if (is_object($_zp_current_article)) {
+			$_zp_current_zenpage_news = clone $_zp_current_article;
+		}
+		return $param;
+	}
+
+	static function admin_tabs($tabs) {
+		if (zp_loggedin(ADMIN_RIGHTS)) {
+			if (!isset($tabs['development'])) {
+				$tabs['development'] = array('text'		 => gettext("development"),
+								'subtabs'	 => NULL);
+			}
+			$tabs['development']['subtabs'][gettext("legacyConverter")] = '/' . USER_PLUGIN_FOLDER . '/zenphotoCompatibilityPack/legacyConverter.php?page=development&tab=' . gettext('legacyConverter');
+			$named = array_flip($tabs['development']['subtabs']);
+			natcasesort($named);
+			$tabs['development']['subtabs'] = $named = array_flip($named);
+			$link = array_shift($named);
+			if (strpos($link, '/') !== 0) { // zp_core relative
+				$tabs['development']['link'] = WEBPATH . '/' . ZENFOLDER . '/' . $link;
+			} else {
+				$tabs['development']['link'] = WEBPATH . $link;
+			}
+		}
+		return $tabs;
+	}
+
+}
+
 switch (OFFSET_PATH) {
 	case 2:
 		break;
 
 	case 0:
 		//load up the deprecated functions from Zenphoto
-		foreach (getPluginFiles('*.php', 'zenphotoCompatibilityPack') as $deprecated) {
+		foreach (getPluginFiles('*deprecated-functions.php', 'zenphotoCompatibilityPack') as $deprecated) {
 			require_once($deprecated);
 		}
 
@@ -86,20 +124,9 @@ switch (OFFSET_PATH) {
 		}
 }
 
-function zenphotoCompatibility($param = NULL) {
-	global $_zp_current_article, $_zp_current_page;
 
-	//zenphoto variables
-	global $_zp_current_zenpage_news, $_zp_current_zenpage_page;
-	if (is_object($_zp_current_page)) {
-		$_zp_current_zenpage_page = clone $_zp_current_page;
-	}
-	if (is_object($_zp_current_article)) {
-		$_zp_current_zenpage_news = clone $_zp_current_article;
-	}
-	return $param;
-}
 
-zp_register_filter('load_theme_script', 'zenphotoCompatibility');
-zp_register_filter('next_object_loop', 'zenphotoCompatibility');
+zp_register_filter('load_theme_script', 'zenphotoCompatibilityPack::filter');
+zp_register_filter('next_object_loop', 'zenphotoCompatibilityPack::filter');
+zp_register_filter('admin_tabs', 'zenphotoCompatibilityPack::admin_tabs');
 ?>
