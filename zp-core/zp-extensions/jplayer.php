@@ -716,7 +716,7 @@ class jPlayer {
 				}
 				if ($option != 'playlist-audio') {
 				?>
-				, size: {
+				size: {
 					width: "<?php echo $this->width; ?>px",
 					height: "<?php echo $this->height; ?>px",
 					cssClass: "<?php echo $this->playersize; ?>"
