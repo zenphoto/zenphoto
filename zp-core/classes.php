@@ -51,7 +51,7 @@ class PersistentObject {
 	private $updates = NULL;
 
 	/**
-		}
+	  }
 	 *
 	 * Prime instantiator for zenphoto objects
 	 * @param $tablename	The name of the database table
@@ -304,8 +304,14 @@ class PersistentObject {
 
 		// If we don't have an entry yet, this is a new record. Create it.
 		if (empty($entry)) {
+
+			$result = db_list_fields($this->table);
+			foreach ($result as $row) {
+				$this->data[$row['Field']] = NULL;
+			}
+
 			if ($this->transient) { // no don't save it in the DB!
-				$entry = array_merge($this->unique_set, $this->updates);
+				$entry = array_merge($this->data, $this->unique_set);
 				$entry['id'] = 0;
 			} else if (!$allowCreate) {
 				return NULL; // does not exist and we are not allowed to create it
