@@ -343,7 +343,7 @@ class PersistentObject {
 		}
 		if (!$this->id) {
 			$this->setDefaults();
-			$insert_data = array_merge($this->unique_set, $this->updates);
+			$insert_data = array_merge($this->unique_set, $this->updates, $this->tempdata);
 			if (empty($insert_data)) {
 				return true;
 			}
