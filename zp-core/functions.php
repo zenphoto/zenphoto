@@ -1442,19 +1442,16 @@ function sortMultiArray($array, $index, $descending = false, $natsort = true, $c
 		}
 		$size = 0;
 		foreach ($indicies as $index) {
-
-
 			$prev = $size;
 			$size = 0;
 			foreach ($array as $key => $row) {
-
 				if (is_array($row) && array_key_exists($index, $row)) {
 					$word = get_language_string($row[$index]);
 					if (!$case_sensitive) {
 						$word = mb_strtolower($word);
 					}
 					$size = max($size, strlen($word));
-					if ($prev) {
+					if (isset($temp[$key])) {
 						$temp[$key] = str_pad($temp[$key], $prev, $pad) . $word;
 					} else {
 						$temp[$key] = $word;
