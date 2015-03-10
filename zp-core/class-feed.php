@@ -386,7 +386,7 @@ class feed {
 			return $items;
 		}
 		if (TEST_RELEASE) {
-			trigger_error(gettext('Bad ' . $this->feed . ' feed:' . $this->feedtype), E_USER_WARNING);
+			zp_error(gettext('Bad ' . $this->feed . ' feed:' . $this->feedtype), E_USER_WARNING);
 		}
 		return NULL;
 	}

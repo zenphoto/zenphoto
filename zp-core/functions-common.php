@@ -13,7 +13,7 @@
  * @param type $sql
  */
 function dbErrorReport($sql) {
-	trigger_error(sprintf(gettext('%1$s Error: ( %2$s ) failed. %1$s returned the error %3$s'), DATABASE_SOFTWARE, $sql, db_error()), E_USER_ERROR);
+	zp_error(sprintf(gettext('%1$s Error: ( %2$s ) failed. %1$s returned the error %3$s'), DATABASE_SOFTWARE, $sql, db_error()), E_USER_ERROR);
 }
 
 /**
@@ -28,7 +28,7 @@ function dbErrorReport($sql) {
 function zpErrorHandler($errno, $errstr = '', $errfile = '', $errline = '') {
 	// check if function has been called by an exception
 	if (func_num_args() == 5) {
-		// called by trigger_error()
+		// called by zp_error()
 		list($errno, $errstr, $errfile, $errline) = func_get_args();
 	} else {
 		// caught exception

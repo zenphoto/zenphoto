@@ -237,6 +237,7 @@ if (!zp_loggedin()) {
 				}
 			}
 			$buttonlist = zp_apply_filter('admin_utilities_buttons', $buttonlist);
+
 			foreach ($buttonlist as $key => $button) {
 				if (zp_loggedin($button['rights'])) {
 					if (!array_key_exists('category', $button)) {
@@ -302,7 +303,7 @@ if (!zp_loggedin()) {
 				);
 			}
 
-			$buttonlist = sortMultiArray($buttonlist, array('category', 'button_text'), false);
+			$buttonlist = sortMultiArray($buttonlist, array('category', 'button_text'));
 
 			if (zp_loggedin(OVERVIEW_RIGHTS)) {
 				?>
