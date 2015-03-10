@@ -1469,9 +1469,9 @@ function sortMultiArray($array, $index, $descending = false, $natsort = true, $c
 		}
 
 		if ($descending) {
-			arsort($temp);
+			arsort($temp, SORT_LOCALE_STRING | SORT_NATURAL);
 		} else {
-			asort($temp);
+			asort($temp, SORT_LOCALE_STRING | SORT_NATURAL);
 		}
 
 		foreach (array_keys($temp) as $key) {
