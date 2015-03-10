@@ -105,7 +105,7 @@ class favoritesAlbum extends favorites {
 		if ($msg) {
 			$this->exists = false;
 			if (!$quiet) {
-				trigger_error($msg, E_USER_ERROR);
+				zp_error($msg, E_USER_ERROR);
 			}
 			return false;
 		}

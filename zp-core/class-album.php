@@ -1122,7 +1122,7 @@ class Album extends AlbumBase {
 		if ($msg) {
 			$this->exists = false;
 			if (!$quiet) {
-				trigger_error($msg, E_USER_ERROR);
+				zp_error($msg, E_USER_ERROR);
 			}
 			return false;
 		}
@@ -1440,7 +1440,7 @@ class Album extends AlbumBase {
 			} else {
 				$msg = sprintf(gettext("Error: The album named %s cannot be found."), html_encode($this->name));
 			}
-			trigger_error($msg, E_USER_NOTICE);
+			zp_error($msg, E_USER_NOTICE);
 			return array();
 		}
 
@@ -1568,7 +1568,7 @@ class dynamicAlbum extends AlbumBase {
 		if ($msg) {
 			$this->exists = false;
 			if (!$quiet) {
-				trigger_error($msg, E_USER_ERROR);
+				zp_error($msg, E_USER_ERROR);
 			}
 			return false;
 		}

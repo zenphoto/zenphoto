@@ -399,7 +399,7 @@ class Zenphoto_Authority {
 	 */
 	function migrateAuth($to) {
 		if ($to > self::$supports_version || $to < self::$preferred_version - 1) {
-			trigger_error(sprintf(gettext('Cannot migrate rights to version %1$s (Zenphoto_Authority supports only %2$s and %3$s.)'), $to, self::$supports_version, self::$preferred_version), E_USER_NOTICE);
+			zp_error(sprintf(gettext('Cannot migrate rights to version %1$s (Zenphoto_Authority supports only %2$s and %3$s.)'), $to, self::$supports_version, self::$preferred_version), E_USER_NOTICE);
 			return false;
 		}
 		$success = true;

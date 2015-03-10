@@ -1431,7 +1431,7 @@ function sortByKey($results, $sortkey, $order) {
 function sortMultiArray($array, $index, $descending = false, $natsort = true, $case_sensitive = false, $preservekeys = false, $remove_criteria = array()) {
 	if (is_array($array) && count($array) > 0) {
 		if (is_array($index)) {
-			$indicies = array_reverse($index);
+			$indicies = $index;
 		} else {
 			$indicies = array($index);
 		}
@@ -1440,37 +1440,40 @@ function sortMultiArray($array, $index, $descending = false, $natsort = true, $c
 		} else {
 			$pad = ' ';
 		}
-		foreach ($array as $key => $row) {
-			$temp[$key] = '';
+		$size = 0;
+		foreach ($indicies as $index) {
+
+
+			$prev = $size;
 			$size = 0;
-			foreach ($indicies as $index) {
-				$prev = $size;
-				$size = 0;
+			foreach ($array as $key => $row) {
+
 				if (is_array($row) && array_key_exists($index, $row)) {
 					$word = get_language_string($row[$index]);
 					if (!$case_sensitive) {
 						$word = mb_strtolower($word);
 					}
 					$size = max($size, strlen($word));
-					$temp[$key] = str_pad($word, $prev, $pad) . $word;
+					if ($prev) {
+						$temp[$key] = str_pad($temp[$key], $prev, $pad) . $word;
+					} else {
+						$temp[$key] = $word;
+					}
+
+
 					if (in_array($index, $remove_criteria)) {
 						unset($array[$key][$index]);
 					}
 				}
 			}
 		}
-		if ($natsort) {
-			natsort($temp);
-			if ($descending) {
-				$temp = array_reverse($temp, TRUE);
-			}
+
+		if ($descending) {
+			arsort($temp, SORT_LOCALE_STRING | SORT_NATURAL);
 		} else {
-			if ($descending) {
-				arsort($temp);
-			} else {
-				asort($temp);
-			}
+			asort($temp, SORT_LOCALE_STRING | SORT_NATURAL);
 		}
+
 		foreach (array_keys($temp) as $key) {
 			if (!$preservekeys && is_numeric($key)) {
 				$sorted[] = $array[$key];
