@@ -301,20 +301,23 @@ class PersistentObject {
 				$this->addToCache($entry);
 			}
 		}
-
 		// If we don't have an entry yet, this is a new record. Create it.
 		if (empty($entry)) {
-			$result = db_list_fields($this->table);
-			if ($result) {
-				foreach ($result as $row) {
-					$this->data[$row['Field']] = NULL;
+			if ($this->transient || !$allowCreate) { // no don't save it in the DB!
+				//	populate $this->data so that the set method will work correctly
+				$result = db_list_fields($this->table);
+				if ($result) {
+					foreach ($result as $row) {
+						$this->data[$row['Field']] = NULL;
+					}
 				}
-			}
-			$entry = $this->data = array_merge($this->data, $this->unique_set);
-			if ($this->transient) { // no don't save it in the DB!
-				$entry['id'] = 0;
-			} else if (!$allowCreate) {
-				return NULL; // does not exist and we are not allowed to create it
+				if ($allowCreate) {
+					$entry = array_merge($this->data, $this->unique_set);
+					$entry['id'] = 0;
+					$this->addToCache($entry);
+				} else {
+					return NULL; // does not exist and we are not allowed to create it
+				}
 			} else {
 				$new = true;
 				$this->save();
