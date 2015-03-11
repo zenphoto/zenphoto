@@ -643,6 +643,4 @@ if ($deprecate) {
 		setupLog(gettext('There has been a change of themes or plugins. The zenphotoCompatibilityPack plugin has been enabled.'), true);
 	}
 }
-
-$_zp_gallery->garbageCollect();
 ?>
