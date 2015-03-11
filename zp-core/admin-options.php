@@ -297,7 +297,11 @@ if (isset($_GET['action'])) {
 			$disableEmpty = isset($_POST['disableEmpty']);
 			$dbChange = array();
 			foreach ($_zp_exifvars as $key => $item) {
-				$v = sanitize_numeric($_POST[$key]);
+				if (isset($_POST[$key])) {
+					$v = sanitize_numeric($_POST[$key]);
+				} else {
+					$v = 2;
+				}
 				switch ($v) {
 					case 0:
 					case 1:

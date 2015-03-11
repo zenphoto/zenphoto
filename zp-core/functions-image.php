@@ -525,11 +525,14 @@ function getImageRotation($img) {
 		$rotation = $img->get('EXIFOrientation');
 	} else {
 		$imgfile = substr(filesystemToInternal($img), strlen(ALBUM_FOLDER_SERVERPATH));
-		$result = query_single_row('SELECT EXIFOrientation FROM ' . prefix('images') . ' AS i JOIN ' . prefix('albums') . ' as a ON i.albumid = a.id WHERE ' . db_quote($imgfile) . ' = CONCAT(a.folder,"/",i.filename)', false);
-		if (is_array($result) && array_key_exists('EXIFOrientation', $result)) {
-			$rotation = $result['EXIFOrientation'];
-		} else {
-			$rotation = 0;
+		$result = query_single_row('SELECT * FROM ' . prefix('images') . ' AS i JOIN ' . prefix('albums') . ' as a ON i.albumid = a.id WHERE ' . db_quote($imgfile) . ' = CONCAT(a.folder,"/",i.filename)', false);
+		$rotation = 0;
+		if (is_array($result)) {
+			if (array_key_exists('XMPOrientation', $result)) {
+				$rotation = $result['XMPOrientation'];
+			} else if (array_key_exists('EXIFOrientation', $result)) {
+				$rotation = $result['EXIFOrientation'];
+			}
 		}
 	}
 	switch (substr(trim($rotation, '!'), 0, 1)) {

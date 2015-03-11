@@ -167,7 +167,7 @@ if (isset($_REQUEST['crop'])) {
 	$quality = getOption('full_image_quality');
 	$rotate = false;
 	if (zp_imageCanRotate()) {
-		$rotate = getImageRotation($imgpath);
+		$rotate = getImageRotation($imageobj);
 	}
 	if (DEBUG_IMAGE)
 		debugLog("image_crop: crop " . basename($imgpath) . ":\$cw=$cw, \$ch=$ch, \$cx=$cx, \$cy=$cy \$rotate=$rotate");
