@@ -49,10 +49,50 @@ if ($result) {
 
 //migrate CMS "publish" dates
 foreach (array('news', 'pages') as $table) {
-	$sql = 'UPDATE ' . prefix($table) . ' SET `publishdate`=`date` WHERE `publishdate` is NULL';
+	$sql = 'UPDATE ' . prefix($table) . ' SET `publishdate`=`date` WHERE `publishdate` IS NULL';
 	query($sql);
-	$sql = 'UPDATE ' . prefix($table) . ' SET `lastchange`=`date` WHERE `lastchange` is NULL';
+	$sql = 'UPDATE ' . prefix($table) . ' SET `lastchange`=`date` WHERE `lastchange` IS NULL';
 	query($sql);
+}
+
+//migrate rotation and GPS data
+$result = db_list_fields('images');
+$where = '';
+if (isset($result['EXIFOrientation'])) {
+	$where = '(`rotation` IS NULL AND `EXIFOrientation`!="")';
+}
+if (isset($result['EXIFGPSLatitude'])) {
+	$where .= ' OR (`GPSLatitude` IS NULL AND NOT `EXIFGPSLatitude` IS NULL)';
+} else if (isset($result['EXIFGPSLongitude'])) {
+	$where .= ' OR (`GPSLongitude` IS NULL AND NOT `EXIFGPSLongitude` IS NULL)';
+} else if (isset($result['EXIFGPSAltitude'])) {
+	$where .= ' OR (`GPSAltitude` IS NULL AND NOT `EXIFGPSAltitude` IS NULL)';
+}
+if (!empty($where)) {
+	$sql = 'SELECT `id` FROM ' . prefix('images') . ' WHERE ' . $where;
+	$result = query($sql);
+	while ($row = db_fetch_assoc($result)) {
+		$img = getItemByID('images', $row['id']);
+		foreach (array('EXIFGPSLatitude', 'EXIFGPSLongitude') as $source) {
+			$data = $img->get($source);
+			if (!empty($data)) {
+				if (in_array(strtoupper($img->get($source . 'Ref')), array('S', 'W'))) {
+					$data = -$data;
+				}
+				$img->set(substr($source, 4), $data);
+			}
+		}
+		$alt = $img->get('EXIFGPSAltitude');
+		if (!empty($alt)) {
+			if ($img->get('EXIFGPSAltitudeRef') == '-') {
+				$alt = -$alt;
+			}
+			$img->set('GPSAltitude', $alt);
+		}
+		$img->set('rotation', substr(trim($img->get('EXIFOrientation'), '!'), 0, 1));
+		$img->save();
+	}
+	db_free_result($result);
 }
 
 setOption('zenphoto_install', serialize(installSignature()));

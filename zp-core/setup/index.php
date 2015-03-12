@@ -1710,8 +1710,8 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 
 						/*
 						 * ********************************************************************************
-							Add new fields in the upgrade section. This section should remain static except for new
-							tables. This tactic keeps all changes in one place so that noting gets accidentaly omitted.
+						  Add new fields in the upgrade section. This section should remain static except for new
+						  tables. This tactic keeps all changes in one place so that noting gets accidentaly omitted.
 						 * ********************************************************************************** */
 
 						//v1.2
@@ -1872,6 +1872,10 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 														`sort_order` int(11) unsigned default NULL,
 														`height` int(10) unsigned default NULL,
 														`width` int(10) unsigned default NULL,
+														`rotation` int(3) unsigned default 0,
+														`GPSLatitude` varchar(52) default NULL,
+														`GPSLongitude` varchar(52) default NULL,
+														`GPSAltitude` varchar(52) default NULL,
 														`thumbX` int(10) unsigned default NULL,
 														`thumbY` int(10) unsigned default NULL,
 														`thumbW` int(10) unsigned default NULL,
@@ -2338,6 +2342,12 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 						$sql_statements[] = "ALTER TABLE $tbl_news ADD INDEX publishdate (`publishdate`);";
 						$sql_statements[] = "ALTER TABLE $tbl_pages ADD INDEX expiredate (`expiredate`);";
 						$sql_statements[] = "ALTER TABLE $tbl_pages ADD INDEX publishdate (`publishdate`);";
+						//v1.1.2.8
+						$sql_statements[] = 'ALTER TABLE ' . $tbl_images . ' ADD COLUMN `rotation` int(3) default 0';
+						$sql_statements[] = 'ALTER TABLE ' . $tbl_images . ' ADD COLUMN `GPSLatitude` varchar(52) default NULL';
+						$sql_statements[] = 'ALTER TABLE ' . $tbl_images . ' ADD COLUMN `GPSLongitude` varchar(52) default NULL';
+						$sql_statements[] = 'ALTER TABLE ' . $tbl_images . ' ADD COLUMN	`GPSAltitude` varchar(52) default NULL';
+
 						// do this last incase there are any field changes of like names!
 						$meta = metadataFields($_zp_exifvars, false);
 						$sql_statements = array_merge($sql_statements, $meta);

@@ -192,7 +192,7 @@ if (isset($_REQUEST['crop'])) {
 	zp_imageKill($timg);
 	Gallery::clearCache(SERVERCACHE . '/' . $albumname);
 	// update the image data
-	$imageobj->set('EXIFOrientation', 0);
+	$imageobj->set('rotation', 0);
 	$imageobj->updateDimensions();
 	$imageobj->set('thumbX', NULL);
 	$imageobj->set('thumbY', NULL);
@@ -473,7 +473,7 @@ if ($pasteobj && isset($_REQUEST['size'])) {
 								} else if ($pasteobj) {
 									?>
 									<button type="button" value="<?php echo gettext('Back') ?>" onclick="<?php echo linkPickerPick($imageobj, 'imageURI', "+'&pick[picture]=' + $('#imageURI').val().replaceAll('&', ':')"); ?> setClean('crop');
-											window.history.back();">
+												window.history.back();">
 										<img src="../images/arrow_left_blue_round.png" alt="" /><strong><?php echo gettext("Done");
 									?></strong>
 									</button>

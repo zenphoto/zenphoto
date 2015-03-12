@@ -196,25 +196,12 @@ function getGeoCoord($image) {
 	global $_zp_current_image;
 	if (isImageClass($image)) {
 		$_zp_current_image = $image;
-		$lat = $_zp_current_image->get('EXIFGPSLatitude');
-		$long = $_zp_current_image->get('EXIFGPSLongitude');
+		$lat = $_zp_current_image->get('GPSLatitude');
+		$long = $_zp_current_image->get('GPSLongitude');
 		if (!empty($lat) && !empty($long)) {
-			$lat_c = explode('.', str_replace(',', '.', $lat) . '.0');
-			$lat_f = round((float) abs($lat_c[0]) + ($lat_c[1] / pow(10, strlen($lat_c[1]))), 12);
-			$ref = $_zp_current_image->get('EXIFGPSLatitudeRef');
-			if (strtoupper($ref && $ref{0}) == 'S') {
-				$lat_f = -$lat_f;
-			}
-
-			$long_c = explode('.', str_replace(',', '.', $long) . '.0');
-			$long_f = round((float) abs($long_c[0]) + ($long_c[1] / pow(10, strlen($long_c[1]))), 12);
-			$ref = $_zp_current_image->get('EXIFGPSLongitudeRef');
-			if ($ref && strtoupper($ref{0}) == 'W') {
-				$long_f = -$long_f;
-			}
-
+			$lat_f = floatval($lat);
+			$long_f = floatval($long);
 			$thumb = '<a href="javascript:image(\'' . $_zp_current_image->albumname . '\',\'' . $_zp_current_image->filename . '\');"><img src="' . getCustomImageURL(150) . '" /></a>';
-
 			return array('lat' => $lat_f, 'long' => $long_f, 'title' => $_zp_current_image->getTitle(), 'desc' => $_zp_current_image->getDesc(), 'thumb' => $thumb);
 		}
 	} else {

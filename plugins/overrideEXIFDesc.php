@@ -36,4 +36,5 @@ function exifDescIsZPdesc($image) {
 		if (!$image->get('IPTCImageCaption'))
 			$image->set('IPTCImageCaption', $desc);
 	}
+	return $image;
 }

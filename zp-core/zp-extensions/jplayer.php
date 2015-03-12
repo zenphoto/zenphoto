@@ -690,28 +690,16 @@ class jPlayer {
 			?>
 				], {
 				swfPath: "<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/jplayer/js",
-<<<<<<< HEAD
 								solution: "flash,html",
 			<?php if ($option == 'playlist') { ?>
 					supplied: "m4v, mp4, m4a, mp3, fla, flv<?php echo $this->supplied_counterparts; ?>"
 			<?php } else { ?>
 					supplied: "m4a, mp3, fla<?php echo $this->supplied_counterparts; ?>"
-=======
-				solution: "flash,html",
-				<?php if ($option == 'playlist') { ?>
-					supplied: "m4v, mp4, m4a, mp3, fla, flv<?php echo $this->supplied_counterparts; ?>",
-				<?php } else { ?>
-					supplied: "m4a, mp3, fla<?php echo $this->supplied_counterparts; ?>",
->>>>>>> upstream/master
 				<?php
 			}
 			if ($option != 'playlist-audio') {
 				?>
-<<<<<<< HEAD
 					, size: {
-=======
-				size: {
->>>>>>> upstream/master
 					width: "<?php echo $this->width; ?>px",
 									height: "<?php echo $this->height; ?>px",
 									cssClass: "<?php echo $this->playersize; ?>"

@@ -135,85 +135,6 @@ class galleryArticles {
 	}
 
 	/**
-<<<<<<< HEAD
-=======
-   *
-   * Formats the message and calls sendTweet() on an object
-   * @param object $obj
-   */
-  private static function publishArticle($obj, $override = NULL) {
-    global $_zp_zenpage;
-    switch ($type = $obj->table) {
-      case 'albums':
-        if (getOption('multi_lingual')) {
-          $option_text = unserialize(getOption('galleryArticles_album_text'));
-          foreach ($option_text as $key => $val) {
-            $galleryitem_text[$key] = sprintf($galleryitem_text[$key], $obj->getTitle($key));
-          }
-          $text = serialize($galleryitem_text);
-        } else {
-          $text = sprintf(get_language_string(getOption('galleryArticles_album_text')), $obj->getTitle());
-        }
-        $title = $folder = $obj->name;
-        $img = $obj->getAlbumThumbImage();
-        $class = 'galleryarticles-newalbum';
-        break;
-      case 'images':
-        if (getOption('multi_lingual')) {
-          $option_text = unserialize(getOption('galleryArticles_image_text'));
-          foreach ($option_text as $key => $val) {
-            $galleryitem_text[$key] = sprintf($galleryitem_text[$key], $obj->getTitle($key), $obj->album->getTitle($key));
-          }
-          $text = serialize($galleryitem_text);
-        } else {
-          $text = sprintf(get_language_string(getOption('galleryArticles_image_text')), $obj->getTitle(), $obj->album->getTitle());
-        }
-        $folder = $obj->imagefolder;
-        $title = $folder . '-' . $obj->filename;
-        $img = $obj;
-        $class = 'galleryarticles-newimage';
-        break;
-    }
-    $article = new ZenpageNews(seoFriendly('galleryArticles-' . $title));
-    $article->setTitle($text);
-    $imglink = $img->getCustomImage(getOption('galleryArticles_size'), NULL, NULL, NULL, NULL, NULL, NULL, -1);
-    if (getOption('multi_lingual')) {
-      $desc = '';
-      foreach ($option_text as $key => $val) {
-        $desc[$key] = '<p><a class="' . $class . '" href="' . $obj->getLink() . '"><img src="' . $imglink . '"></a></p><p>' . $obj->getDesc($key) . '</p>';
-      }
-      $desc = serialize($desc);
-    } else {
-      $desc = '<p><a class="' . $class . '" href="' . $obj->getLink() . '"><img src="' . $imglink . '"></a></p><p>' . $obj->getDesc() . '</p>';
-    }
-    $article->setContent($desc);
-    $article->setShow(true);
-    $date = $obj->getPublishDate();
-    if (!$date) {
-      $date = date('Y-m-d H:i:s');
-    }
-    $article->setDateTime($date);
-    $article->setAuthor('galleryArticles');
-    $article->save();
-    if ($override) {
-      $cat = $override;
-    } else {
-      $cat = getOption('galleryArticles_category');
-      if (getOption('galleryArticles_albumCategory')) {
-        $catlist = $_zp_zenpage->getAllCategories();
-        foreach ($catlist as $category) {
-          if ($category['titlelink'] == $folder) {
-            $cat = $category['titlelink'];
-            break;
-          }
-        }
-      }
-    }
-    $article->setCategories(array($cat));
-  }
-
-  /**
->>>>>>> upstream/master
 	 *
 	 * Creates the news article
 	 * @param object $obj
@@ -237,6 +158,12 @@ class galleryArticles {
 				$title = $folder = $obj->name;
 				$img = $obj->getAlbumThumbImage();
 				$class = 'galleryarticles-newalbum';
+
+				//debug code to catch where fav albums are being "newed"
+				debugLogBacktrace($obj->name . '(' . $obj->getID() . ') was published', 0, 'galleryArticles');
+				debugLog('object' . $obj->getID(), 'galleryArticles');
+				$title = $title . '(' . $obj->getID() . ')';
+
 				break;
 			case 'images':
 				$dbstring = unserialize(getOption('galleryArticles_image_text'));

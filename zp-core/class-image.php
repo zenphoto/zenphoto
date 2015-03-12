@@ -389,7 +389,7 @@ class Image extends MediaObject {
 						'ImageCaption'				 => '2#120', //	Image caption											Size:2000
 						'ImageCaptionWriter'	 => '2#122', //	Image caption writer							Size:32
 						'ImageType'						 => '2#130', //	Image type												Size:2
-						'Orientation'					 => '2#131', //	Image	 rientation									Size:1
+						'Orientation'					 => '2#131', //	Image	orientation									Size:1
 						'LangID'							 => '2#135', //	Language ID												Size:3
 						'Subfile'							 => '8#010' //	Subfile														Size:2
 		);
@@ -460,9 +460,10 @@ class Image extends MediaObject {
 				}
 			}
 		}
-		zp_apply_filter('image_metadata', $this);
-
 		/* "import" metadata into database fields as makes sense */
+
+		/* ZenPhoto20 Image Rotation */
+		$this->set('rotation', substr(trim(self::fetchMetadata('EXIFOrientation'), '!'), 0, 1));
 
 		/* ZenPhoto20 "date" field population */
 		if ($date = self::fetchMetadata('IPTCDateCreated')) {
@@ -500,6 +501,7 @@ class Image extends MediaObject {
 		if (empty($title)) {
 			$title = self::fetchMetadata('EXIFDescription'); //EXIF title [sic]
 		}
+
 		if (!empty($title)) {
 			if (getoption('transform_newlines')) {
 				$title = nl2br($title);
@@ -516,26 +518,36 @@ class Image extends MediaObject {
 			$this->setDesc($desc);
 		}
 
-
-		/* ZenPhoto20 "location", "state", and "country" field population */
-		$loc = self::fetchMetadata('IPTCSubLocation');
-		if (!empty($loc)) {
-			$this->setLocation($loc);
+		//	ZenPhoyo20 GPS data
+		foreach (array('EXIFGPSLatitude', 'EXIFGPSLongitude') as $source) {
+			$data = self::fetchMetadata($source);
+			if (!empty($data)) {
+				if (in_array(strtoupper(self::fetchMetadata($source . 'Ref')), array('S', 'W'))) {
+					$data = -$data;
+				}
+				$this->set(substr($source, 4), $data);
+			}
+		}
+		$alt = self::fetchMetadata('EXIFGPSAltitude');
+		if (!empty($alt)) {
+			if (self::fetchMetadata('EXIFGPSAltitudeRef') == '-') {
+				$alt = -$alt;
+			}
+			$this->set('GPSAltitude', $alt);
 		}
 
-		$city = self::fetchMetadata('IPTCCity');
-		if (!empty($city)) {
-			$this->setCity($city);
-		}
-
-		$state = self::fetchMetadata('IPTCState');
-		if (!empty($state)) {
-			$this->setState($state);
-		}
-
-		$country = self::fetchMetadata('IPTCLocationName');
-		if (!empty($country)) {
-			$this->setCountry($country);
+		//	simple field imports
+		$import = array(
+						'location'	 => 'IPTCSubLocation',
+						'city'			 => 'IPTCCity',
+						'city'			 => 'IPTCCity',
+						'state'			 => 'IPTCState',
+						'country'		 => 'IPTCLocationName',
+						'copyright'	 => 'IPTCCopyright'
+		);
+		foreach ($import as $key => $source) {
+			$data = self::fetchMetadata($source);
+			$this->set($key, $data);
 		}
 
 		/* ZenPhoto20 "credit" field population */
@@ -550,10 +562,7 @@ class Image extends MediaObject {
 			$this->setCredit($credit);
 		}
 
-		/* ZenPhoto20 "copyright" field population */
-		if ($copyright = self::fetchMetadata('IPTCCopyright')) {
-			$this->setCopyright($copyright);
-		}
+		zp_apply_filter('image_metadata', $this);
 
 		$alb = $this->album;
 		if (is_object($alb)) {
@@ -642,7 +651,7 @@ class Image extends MediaObject {
 		$height = $size['height'];
 		if (zp_imageCanRotate()) {
 			// Swap the width and height values if the image should be rotated
-			switch (substr(trim($this->get('EXIFOrientation'), '!'), 0, 1)) {
+			switch (substr(trim($this->get('rotation'), '!'), 0, 1)) {
 				case 5:
 				case 6:
 				case 7:
@@ -684,6 +693,10 @@ class Image extends MediaObject {
 			$h = $this->get('height');
 		}
 		return $h;
+	}
+
+	function getRotation() {
+		return $this->get('rotation');
 	}
 
 	/**
