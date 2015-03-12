@@ -162,7 +162,7 @@ class flag_thumbnail {
 				$obj = $obj->getAlbumThumbImage();
 			}
 			if (is_object($obj) && get_class($obj) == 'Image') {
-				if ($obj->get('EXIFGPSLatitude') && $obj->get('EXIFGPSLongitude')) {
+				if ($obj->get('GPSLatitude') && $obj->get('GPSLongitude')) {
 					if (getOption('flag_thumbnail_use_text')) {
 						$text = getOption('flag_thumbnail_geodata_text');
 						$html .= '<span class="textasnewflag" style="position: absolute;bottom: 10px;right: 6px;">' . $text . "</span>\n";

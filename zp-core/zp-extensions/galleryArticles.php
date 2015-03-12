@@ -158,6 +158,12 @@ class galleryArticles {
 				$title = $folder = $obj->name;
 				$img = $obj->getAlbumThumbImage();
 				$class = 'galleryarticles-newalbum';
+
+				//debug code to catch where fav albums are being "newed"
+				debugLogBacktrace($obj->name . '(' . $obj->getID() . ') was published', 0, 'galleryArticles');
+				debugLog('object' . $obj->getID(), 'galleryArticles');
+				$title = $title . '(' . $obj->getID() . ')';
+
 				break;
 			case 'images':
 				$dbstring = unserialize(getOption('galleryArticles_image_text'));
