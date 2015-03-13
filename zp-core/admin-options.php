@@ -2379,6 +2379,8 @@ Zenphoto_Authority::printPasswordFormJS();
 												<?php
 												foreach ($exifstuff as $key => $item) {
 													$checked_show = $checked_hide = $checked_disabled = '';
+													$class_show = ' class="showMeta"';
+													$class_hide = ' class="hideMeta"';
 													if (!$item[5]) {
 														$checked_disabled = ' checked="checked"';
 													} else {
@@ -2390,11 +2392,13 @@ Zenphoto_Authority::printPasswordFormJS();
 													}
 													if (!$item[4]) {
 														$checked_show = ' disabled="disabled"';
+														$class_show = '';
+														$class_hide = ' class="showMeta hideMeta"';
 													}
 													?>
 													<li>
-														<label><input id="<?php echo $key; ?>_show" name="<?php echo $key; ?>" type="radio" class="showMeta"<?php echo $checked_show ?> value="1" /><img src ="images/pass.png" alt="<?php echo gettext('show'); ?>" /></label>
-														<label><input id="<?php echo $key; ?>_hide" name="<?php echo $key; ?>" type="radio" class="hideMeta"<?php echo $checked_hide ?> value="0" /><img src ="images/reset.png" alt="<?php echo gettext('hide'); ?>" /></label>
+														<label><input id="<?php echo $key; ?>_show" name="<?php echo $key; ?>" type="radio" <?php echo $class_show . $checked_show ?> value="1" /><img src ="images/pass.png" alt="<?php echo gettext('show'); ?>" /></label>
+														<label><input id="<?php echo $key; ?>_hide" name="<?php echo $key; ?>" type="radio" <?php echo $class_hide . $checked_hide ?> value="0" /><img src ="images/reset.png" alt="<?php echo gettext('hide'); ?>" /></label>
 														<label><input id="<?php echo $key; ?>_disable" name="<?php echo $key; ?>" type="radio" class="disableMeta"<?php echo $checked_disabled ?> value="2" /><img src ="images/fail.png" alt="<?php echo gettext('disabled'); ?>" /></label>
 														<?php echo $item[0] . ' ' . $item[2]; ?>
 													</li>
@@ -2405,9 +2409,9 @@ Zenphoto_Authority::printPasswordFormJS();
 										</div>
 										<span class="floatright">
 											<?php echo gettext('all'); ?>
-											<label><input type="radio" onclick="checkMeta('showMeta');" /><img src ="images/pass.png" alt="<?php echo gettext('show'); ?>" /></label>
-											<label><input type="radio" onclick="checkMeta('hideMeta');" /><img src ="images/reset.png" alt="<?php echo gettext('hide'); ?>" /></label>
-											<label><input type="radio" onclick="checkMeta('disableMeta');" /><img src ="images/fail.png" alt="<?php echo gettext('disabled'); ?>" /></label>
+											<label><input type="radio" name="all_metadata" onclick="checkMeta('showMeta');" /><img src ="images/pass.png" alt="<?php echo gettext('show'); ?>" /></label>
+											<label><input type="radio" name="all_metadata" onclick="checkMeta('hideMeta');" /><img src ="images/reset.png" alt="<?php echo gettext('hide'); ?>" /></label>
+											<label><input type="radio" name="all_metadata" onclick="checkMeta('disableMeta');" /><img src ="images/fail.png" alt="<?php echo gettext('disabled'); ?>" /></label>
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										</span>
 
