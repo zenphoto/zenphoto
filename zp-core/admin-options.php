@@ -2358,6 +2358,23 @@ Zenphoto_Authority::printPasswordFormJS();
 																									function checkMeta(cls) {
 																									$('.' + cls).prop('checked', 'checked');
 																									}
+																					function setMetaDefaults() {
+																					$('.showMeta').prop('checked', 'checked');
+	<?php
+	foreach (zpFunctions::exifvars(true) as $key => $data) {
+		if (!$data[5]) {
+			?>
+																							$('#<?php echo $key; ?>_disable').prop('checked', 'checked');
+			<?php
+		} else
+		if (!$data[3] || !$data[4]) {
+			?>
+																							$('#<?php echo $key; ?>_hide').prop('checked', 'checked');
+			<?php
+		}
+	}
+	?>
+																					}
 																					$(function() {
 																					$("#resizable").resizable({
 																					minHeight: 120,
@@ -2409,6 +2426,7 @@ Zenphoto_Authority::printPasswordFormJS();
 										</div>
 										<span class="floatright">
 											<?php echo gettext('all'); ?>
+											<label><input type="radio" name="all_metadata" onclick="setMetaDefaults();" /><?php echo gettext('default'); ?></label>
 											<label><input type="radio" name="all_metadata" onclick="checkMeta('showMeta');" /><img src ="images/pass.png" alt="<?php echo gettext('show'); ?>" /></label>
 											<label><input type="radio" name="all_metadata" onclick="checkMeta('hideMeta');" /><img src ="images/reset.png" alt="<?php echo gettext('hide'); ?>" /></label>
 											<label><input type="radio" name="all_metadata" onclick="checkMeta('disableMeta');" /><img src ="images/fail.png" alt="<?php echo gettext('disabled'); ?>" /></label>
