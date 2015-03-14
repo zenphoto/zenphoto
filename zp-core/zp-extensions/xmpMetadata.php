@@ -616,7 +616,7 @@ class xmpMetadata {
 	 * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
 	 */
 	static function getMetadataFields() {
-// Database Field       		 => array('source', 'Metadata Key', 'ZP Display Text', Display?	size,	enabled, type)
+// Database Field       		 => array(0:'source', 1:'Metadata Key', 2;'ZP Display Text', 3:Display?	4:size,	5:enabled, type)
 		return array(
 						'XMPAperatureValue'		 => array('XMP', '<exif:ApertureValue>', gettext('Aperature Value'), false, 52, true, 'string'),
 						'XMPArtist'						 => array('XMP', '<dc:creator>', gettext('Artist'), false, 52, true, 'string'),

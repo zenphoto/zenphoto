@@ -2452,9 +2452,9 @@ class zpFunctions {
 	 * @author Stephen Billard
 	 * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
 	 */
-	static function setexifvars() {
-		global $_zp_exifvars, $_zp_images_classes;
-		;
+	static function exifvars($default = false) {
+		global $_zp_images_classes;
+
 		/*
 		 * Note: If fields are added or deleted, setup should be run or the new data won't be stored
 		 * (but existing fields will still work; nothing breaks).
@@ -2462,24 +2462,28 @@ class zpFunctions {
 		 * This array should be ordered by logical associations as it will be the order that EXIF information
 		 * is displayed
 		 */
-		$_zp_exifvars = array();
+		$exifvars = array();
 		$handlers = array_unique($_zp_images_classes);
 		$handlers[] = 'xmpMetadata';
 		foreach ($handlers as $handler) {
 			if (class_exists($handler)) {
-				$_zp_exifvars = array_merge($_zp_exifvars, $handler::getMetadataFields());
+				$exifvars = array_merge($exifvars, $handler::getMetadataFields());
 			}
+		}
+		$exifvars = sortMultiArray($exifvars, 2);
+		if ($default) {
+			return $exifvars;
 		}
 
-		foreach ($_zp_exifvars as $key => $item) {
+		foreach ($exifvars as $key => $item) {
 			if (!is_null($disable = getOption($key . '-disabled'))) {
-				$_zp_exifvars[$key][5] = !($disable & true);
+				$exifvars[$key][5] = !($disable & true);
 			}
 			if (!is_null($display = getOption($key . '-display'))) {
-				$_zp_exifvars[$key][3] = $display;
+				$exifvars[$key][3] = $display;
 			}
 		}
-		$_zp_exifvars = sortMultiArray($_zp_exifvars, 2);
+		return $exifvars;
 	}
 
 	/**
@@ -2740,6 +2744,6 @@ class _zp_HTML_cache {
 
 }
 
-zpFunctions::setexifvars();
+$_zp_exifvars = zpFunctions::exifvars();
 $_locale_Subdomains = zpFunctions::LanguageSubdomains();
 ?>

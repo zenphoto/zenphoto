@@ -594,6 +594,26 @@ Zenphoto_Authority::printPasswordFormJS();
 
 				if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 					?>
+					<script type="text/javascript">
+										// <!-- <![CDATA[
+										var oldselect = '<?php echo SITE_LOCALE; ?>';
+										function radio_click(id) {
+										if ($('#r_' + id).prop('checked')) {
+										$('#language_allow_' + oldselect).removeAttr('disabled');
+														oldselect = id;
+														$('#language_allow_' + id).attr('disabled', 'disabled');
+										}
+										}
+						function enable_click(id) {
+						if ($('#language_allow_' + id).prop('checked')) {
+						$('#r_' + id).removeAttr('disabled');
+						} else {
+						$('#r_' + id).attr('disabled', 'disabled');
+						}
+						}
+
+						// ]]> -->
+					</script>
 					<div id="tab_gallery" class="tabbox">
 						<?php
 						if (isset($_GET['local_failed'])) {
@@ -713,9 +733,6 @@ Zenphoto_Authority::printPasswordFormJS();
 								<tr>
 									<td width="175"><?php echo gettext("Language:"); ?></td>
 									<td width="350">
-										<?php
-										$currentValue = SITE_LOCALE;
-										?>
 										<br />
 										<ul class="languagelist">
 											<?php
@@ -782,13 +799,16 @@ Zenphoto_Authority::printPasswordFormJS();
 													}
 												}
 
-												if ($dirname == $currentValue) {
+												if ($dirname == SITE_LOCALE) {
 													$r_attrs = ' checked="checked"';
 													$c_attrs = ' checked="checked" disabled="disabled"';
 													?>
 													<input type="hidden" name="language_allow_<?php echo $dirname; ?>" value="1" />
+													<script type="text/javascript">
+																		$(document).ready(function(){
+														$('ul.languagelist').scrollTo('li:eq(<?php echo ($c - 2); ?>)');
+														});</script>
 													<?php
-													$ci = $c;
 												}
 												$c++;
 												?>
@@ -813,25 +833,6 @@ Zenphoto_Authority::printPasswordFormJS();
 											}
 											?>
 										</ul>
-										<script type="text/javascript">
-																			var oldselect = '<?php echo $currentValue; ?>';
-																			function radio_click(id) {
-																			if ($('#r_' + id).prop('checked')) {
-																			$('#language_allow_' + oldselect).removeAttr('disabled');
-																							oldselect = id;
-																							$('#language_allow_' + id).attr('disabled', 'disabled');
-																			}
-																			}
-															function enable_click(id) {
-															if ($('#language_allow_' + id).prop('checked')) {
-															$('#r_' + id).removeAttr('disabled');
-															} else {
-															$('#r_' + id).attr('disabled', 'disabled');
-															}
-															}
-															$(document).ready(function(){
-															$('ul.languagelist').scrollTo('li:eq(<?php echo ($ci - 2); ?>)');
-															});</script>
 										<br class="clearall" />
 										<p class="notebox"><?php printf(gettext('Highlighted languages are not current with ZenPhoto20 v%1$s. (The version of the out-of-date language is shown in braces.)'), $zpversion); ?></p>
 										<label class="checkboxlabel">
@@ -920,10 +921,10 @@ Zenphoto_Authority::printPasswordFormJS();
 											foreach ($totalsets as $key => $char) {
 												?>
 												<option value="<?php echo $key; ?>" <?php
-												if ($key == LOCAL_CHARSET)
-													echo 'selected="selected"';
-												if (!array_key_exists($key, $sets))
-													echo 'style="color: gray"';
+										if ($key == LOCAL_CHARSET)
+											echo 'selected="selected"';
+										if (!array_key_exists($key, $sets))
+											echo 'style="color: gray"';
 												?>><?php echo $char; ?></option>
 																<?php
 															}
@@ -946,9 +947,9 @@ Zenphoto_Authority::printPasswordFormJS();
 									</td>
 									<td>
 										<script type="text/javascript">
-																			// <!-- <![CDATA[
-																							function resetallowedtags() {
-																							$('#allowed_tags').val(<?php
+															// <!-- <![CDATA[
+																			function resetallowedtags() {
+																			$('#allowed_tags').val(<?php
 									$t = getOption('allowed_tags_default');
 									$tags = explode("\n", $t);
 									$c = 0;
@@ -966,8 +967,8 @@ Zenphoto_Authority::printPasswordFormJS();
 		}
 	}
 	?>);
-																							}
-																			// ]]> -->
+																			}
+															// ]]> -->
 										</script>
 										<p><?php echo gettext("Tags and attributes allowed in comments, descriptions, and other fields."); ?><p>
 										<p><?php echo gettext("Follow the form <em>tag</em> =&gt; (<em>attribute</em> =&gt; (<em>attribute</em>=&gt; (), <em>attribute</em> =&gt; ()...)))"); ?></p>
@@ -1580,15 +1581,15 @@ Zenphoto_Authority::printPasswordFormJS();
 									$fields = array_diff($fields, $set_fields);
 									?>
 								<script>
-																					$(function() {
-																					$("#resizable").resizable({
-																					minHeight: 120,
-																									resize: function(event, ui) {
-																									$(this).css("width", '');
-																													$('#searchchecklist').height($('#resizable').height());
-																									}
-																					});
-																					});</script>
+																	$(function() {
+																	$("#resizable").resizable({
+																	minHeight: 120,
+																					resize: function(event, ui) {
+																					$(this).css("width", '');
+																									$('#searchchecklist').height($('#resizable').height());
+																					}
+																	});
+																	});</script>
 								<td>
 									<?php echo gettext('Fields list:'); ?>
 									<div id="resizable">
@@ -1822,6 +1823,120 @@ Zenphoto_Authority::printPasswordFormJS();
 					require_once(dirname(__FILE__) . '/lib-Imagick.php');
 					require_once(dirname(__FILE__) . '/lib-GD.php');
 					?>
+
+					<script type="text/javascript">
+														// <!-- <![CDATA[
+														$(function() {
+														$("#slider-imagequality").slider({
+	<?php $v = getOption('image_quality'); ?>
+														startValue: <?php echo $v; ?>,
+																		value: <?php echo $v; ?>,
+																		min: 0,
+																		max: 100,
+																		slide: function(event, ui) {
+																		$("#imagequality").val(ui.value);
+																		}
+														});
+																		$("#imagequality").val($("#slider-imagequality").slider("value"));
+														});
+														$(function() {
+														$("#slider-fullimagequality").slider({
+	<?php $v = getOption('full_image_quality'); ?>
+														startValue: <?php echo $v; ?>,
+																		value: <?php echo $v; ?>,
+																		min: 0,
+																		max: 100,
+																		slide: function(event, ui) {
+																		$("#fullimagequality").val(ui.value);
+																		}
+														});
+																		$("#fullimagequality").val($("#slider-fullimagequality").slider("value"));
+														}); $(function() {
+										$("#slider-fullimagequality").slider({
+	<?php $v = getOption('full_image_quality'); ?>
+										startValue: <?php echo $v; ?>,
+														value: <?php echo $v; ?>,
+														min: 0,
+														max: 100,
+														slide: function(event, ui) {
+														$("#fullimagequality").val(ui.value);
+														}
+										});
+														$("#fullimagequality").val($("#slider-fullimagequality").slider("value"));
+										});
+														$(function() {
+														$("#slider-thumbquality").slider({
+	<?php $v = getOption('thumb_quality'); ?>
+														startValue: <?php echo $v; ?>,
+																		value: <?php echo $v; ?>,
+																		min: 0,
+																		max: 100,
+																		slide: function(event, ui) {
+																		$("#thumbquality").val(ui.value);
+																		}
+														});
+																		$("#thumbquality").val($("#slider-thumbquality").slider("value"));
+														});
+														$(function() {
+														$("#slider-sharpenamount").slider({
+	<?php $v = getOption('sharpen_amount'); ?>
+														startValue: <?php echo $v; ?>,
+																		value: <?php echo $v; ?>,
+																		min: 0,
+																		max: 100,
+																		slide: function(event, ui) {
+																		$("#sharpenamount").val(ui.value);
+																		}
+														});
+																		$("#sharpenamount").val($("#slider-sharpenamount").slider("value"));
+														});
+														$(function() {
+														$("#slider-workers").slider({
+	<?php $v = getOption('imageProcessorConcurrency'); ?>
+														startValue: <?php echo $v; ?>,
+																		value: <?php echo $v; ?>,
+																		min: 1,
+																		max:60,
+																		slide: function(event, ui) {
+																		$("#cache-workers").val(ui.value);
+																						$("#cache_processes").html($("#cache-workers").val());
+																		}
+														});
+																		$("#cache-workers").val($("#slider-workers").slider("value"));
+																		$("#cache_processes").html($("#cache-workers").val());
+														});
+														function checkMeta(cls) {
+														$('.' + cls).prop('checked', 'checked');
+														}
+										function setMetaDefaults() {
+										$('.showMeta').prop('checked', 'checked');
+	<?php
+	foreach (zpFunctions::exifvars(true) as $key => $data) {
+		if (!$data[5]) {
+			?>
+												$('#<?php echo $key; ?>_disable').prop('checked', 'checked');
+			<?php
+		} else
+		if (!$data[3] || !$data[4]) {
+			?>
+												$('#<?php echo $key; ?>_hide').prop('checked', 'checked');
+			<?php
+		}
+	}
+	?>
+										}
+										$(function() {
+										$("#resizable").resizable({
+										minHeight: 120,
+														resize: function(event, ui) {
+														$(this).css("width", '');
+																		$('#metadatalist').height($('#resizable').height());
+														}
+										});
+										});
+														// ]]> -->
+					</script>
+
 					<div id="tab_image" class="tabbox">
 						<?php zp_apply_filter('admin_note', 'options', $subtab); ?>
 						<form class="dirtylistening" onReset="setClean('form_options');" id="form_options" action="?action=saveoptions" method="post" autocomplete="off" >
@@ -1907,65 +2022,14 @@ Zenphoto_Authority::printPasswordFormJS();
 									<td width="350">
 										<p class="nowrap">
 											<?php echo gettext('Normal Image'); ?>&nbsp;<input type="text" size="3" id="imagequality" name="image_quality" value="<?php echo getOption('image_quality'); ?>" />
-											<script type="text/javascript">
-																								// <!-- <![CDATA[
-																								$(function() {
-																								$("#slider-imagequality").slider({
-	<?php $v = getOption('image_quality'); ?>
-																								startValue: <?php echo $v; ?>,
-																												value: <?php echo $v; ?>,
-																												min: 0,
-																												max: 100,
-																												slide: function(event, ui) {
-																												$("#imagequality").val(ui.value);
-																												}
-																								});
-																												$("#imagequality").val($("#slider-imagequality").slider("value"));
-																								});
-																								// ]]> -->
-											</script>
 										<div id="slider-imagequality"></div>
 										</p>
 										<p class="nowrap">
 											<?php echo gettext('<em>full</em> Image'); ?>&nbsp;<input type="text" size="3" id="fullimagequality" name="full_image_quality" value="<?php echo getOption('full_image_quality'); ?>" />
-											<script type="text/javascript">
-																								// <!-- <![CDATA[
-																								$(function() {
-																								$("#slider-fullimagequality").slider({
-	<?php $v = getOption('full_image_quality'); ?>
-																								startValue: <?php echo $v; ?>,
-																												value: <?php echo $v; ?>,
-																												min: 0,
-																												max: 100,
-																												slide: function(event, ui) {
-																												$("#fullimagequality").val(ui.value);
-																												}
-																								});
-																												$("#fullimagequality").val($("#slider-fullimagequality").slider("value"));
-																								});
-																								// ]]> -->
-											</script>
 										<div id="slider-fullimagequality"></div>
 										</p>
 										<p class="nowrap">
 											<?php echo gettext('Thumbnail'); ?>&nbsp;<input type="text" size="3" id="thumbquality" name="thumb_quality" value="<?php echo getOption('thumb_quality'); ?>" />
-											<script type="text/javascript">
-																								// <!-- <![CDATA[
-																								$(function() {
-																								$("#slider-thumbquality").slider({
-	<?php $v = getOption('thumb_quality'); ?>
-																								startValue: <?php echo $v; ?>,
-																												value: <?php echo $v; ?>,
-																												min: 0,
-																												max: 100,
-																												slide: function(event, ui) {
-																												$("#thumbquality").val(ui.value);
-																												}
-																								});
-																												$("#thumbquality").val($("#slider-thumbquality").slider("value"));
-																								});
-																								// ]]> -->
-											</script>
 										<div id="slider-thumbquality"></div>
 										</p>
 									</td>
@@ -2021,23 +2085,6 @@ Zenphoto_Authority::printPasswordFormJS();
 										</p>
 										<p class="nowrap">
 											<?php echo gettext('Amount'); ?>&nbsp;<input type="text" id="sharpenamount" name="sharpen_amount" size="3" value="<?php echo getOption('sharpen_amount'); ?>" />
-											<script type="text/javascript">
-																								// <!-- <![CDATA[
-																								$(function() {
-																								$("#slider-sharpenamount").slider({
-	<?php $v = getOption('sharpen_amount'); ?>
-																								startValue: <?php echo $v; ?>,
-																												value: <?php echo $v; ?>,
-																												min: 0,
-																												max: 100,
-																												slide: function(event, ui) {
-																												$("#sharpenamount").val(ui.value);
-																												}
-																								});
-																												$("#sharpenamount").val($("#slider-sharpenamount").slider("value"));
-																								});
-																								// ]]> -->
-											</script>
 										<div id="slider-sharpenamount"></div>
 										</p>
 
@@ -2159,25 +2206,6 @@ Zenphoto_Authority::printPasswordFormJS();
 								<tr>
 									<td><?php echo gettext("Caching concurrency:"); ?></td>
 									<td>
-										<script type="text/javascript">
-																							// <!-- <![CDATA[
-																							$(function() {
-																							$("#slider-workers").slider({
-	<?php $v = getOption('imageProcessorConcurrency'); ?>
-																							startValue: <?php echo $v; ?>,
-																											value: <?php echo $v; ?>,
-																											min: 1,
-																											max:60,
-																											slide: function(event, ui) {
-																											$("#cache-workers").val(ui.value);
-																															$("#cache_processes").html($("#cache-workers").val());
-																											}
-																							});
-																											$("#cache-workers").val($("#slider-workers").slider("value"));
-																											$("#cache_processes").html($("#cache-workers").val());
-																							});
-																							// ]]> -->
-										</script>
 										<div id="slider-workers"></div>
 										<input type="hidden" id="cache-workers" name="imageProcessorConcurrency" value="<?php echo getOption('imageProcessorConcurrency'); ?>" />
 									</td>
@@ -2211,9 +2239,9 @@ Zenphoto_Authority::printPasswordFormJS();
 													 <?php checked('1', getOption('protected_image_cache')); ?> />
 									</td>
 									<td><?php
-										echo gettext('If checked all image URIs will link to the image processor and the image cache will be disabled to browsers via an <em>.htaccess</em> file. Images are still cached but the image processor is used to serve the image rather than allowing the browser to fetch the file.') .
-										'<p class="notebox">' . gettext('<strong>WARNING	:</strong> This option adds significant overhead to <strong>each and every</strong> image reference! Some <em>JavaScript</em> and <em>Flash</em> based image handlers will not work with an image processor URI and are incompatible with this option.') . '</p>';
-										?></td>
+													 echo gettext('If checked all image URIs will link to the image processor and the image cache will be disabled to browsers via an <em>.htaccess</em> file. Images are still cached but the image processor is used to serve the image rather than allowing the browser to fetch the file.') .
+													 '<p class="notebox">' . gettext('<strong>WARNING	:</strong> This option adds significant overhead to <strong>each and every</strong> image reference! Some <em>JavaScript</em> and <em>Flash</em> based image handlers will not work with an image processor URI and are incompatible with this option.') . '</p>';
+													 ?></td>
 								</tr>
 								<tr>
 									<td><?php echo gettext("Secure image processor"); ?></td>
@@ -2222,9 +2250,9 @@ Zenphoto_Authority::printPasswordFormJS();
 													 <?php checked('1', getOption('secure_image_processor')); ?> />
 									</td>
 									<td><?php
-										echo gettext('When enabled, the image processor will check album access credentials.') .
-										'<p class="notebox">' . gettext('<strong>WARNING	:</strong> This option adds memory overhead to image caching! You may be unable to cache some images depending on your server memory availability.') . '</p>';
-										?></td>
+													 echo gettext('When enabled, the image processor will check album access credentials.') .
+													 '<p class="notebox">' . gettext('<strong>WARNING	:</strong> This option adds memory overhead to image caching! You may be unable to cache some images depending on your server memory availability.') . '</p>';
+													 ?></td>
 								</tr>
 								<tr>
 									<td><?php echo gettext("Full image protection:"); ?></td>
@@ -2354,25 +2382,12 @@ Zenphoto_Authority::printPasswordFormJS();
 									</td>
 									<td><?php echo gettext("Substitute a <em>lock</em> image for thumbnails of password protected albums when the viewer has not supplied the password. If your theme supplies an <code>images/err-passwordprotected.png</code> image, it will be shown. Otherwise the zenphoto default lock image is displayed."); ?></td>
 								</tr>
-								<script type="text/javascript">
-																									function checkMeta(cls) {
-																									$('.' + cls).prop('checked', 'checked');
-																									}
-																					$(function() {
-																					$("#resizable").resizable({
-																					minHeight: 120,
-																									resize: function(event, ui) {
-																									$(this).css("width", '');
-																													$('#metadatalist').height($('#resizable').height());
-																									}
-																					});
-																					});</script>
 
 								<tr>
 									<td><?php
-										echo gettext("Metadata");
-										$exifstuff = sortMultiArray($_zp_exifvars, array(2, 0));
-										?></td>
+													 echo gettext("Metadata");
+													 $exifstuff = sortMultiArray($_zp_exifvars, array(2, 0));
+													 ?></td>
 									<td>
 										<div id="resizable">
 											<ul id="metadatalist" class="metadatalist">
@@ -2409,6 +2424,7 @@ Zenphoto_Authority::printPasswordFormJS();
 										</div>
 										<span class="floatright">
 											<?php echo gettext('all'); ?>
+											<label><input type="radio" name="all_metadata" onclick="setMetaDefaults();" /><?php echo gettext('default'); ?></label>
 											<label><input type="radio" name="all_metadata" onclick="checkMeta('showMeta');" /><img src ="images/pass.png" alt="<?php echo gettext('show'); ?>" /></label>
 											<label><input type="radio" name="all_metadata" onclick="checkMeta('hideMeta');" /><img src ="images/reset.png" alt="<?php echo gettext('hide'); ?>" /></label>
 											<label><input type="radio" name="all_metadata" onclick="checkMeta('disableMeta');" /><img src ="images/fail.png" alt="<?php echo gettext('disabled'); ?>" /></label>
@@ -2934,9 +2950,9 @@ Zenphoto_Authority::printPasswordFormJS();
 					<div id="tab_plugin" class="tabbox">
 						<?php zp_apply_filter('admin_note', 'options', $subtab); ?>
 						<script type="text/javascript">
-																							// <!-- <![CDATA[
-																							var optionholder = new Array();
-																							// ]]> -->
+																			// <!-- <![CDATA[
+																			var optionholder = new Array();
+																			// ]]> -->
 						</script>
 						<form class="dirtylistening" onReset="setClean('form_options');" id="form_options" action="?action=saveoptions<?php if (isset($_GET['single'])) echo '&amp;single=' . $showExtension; ?>" method="post" autocomplete="off" >
 							<?php XSRFToken('saveoptions'); ?>
@@ -3128,12 +3144,12 @@ Zenphoto_Authority::printPasswordFormJS();
 									<td>
 										<p><?php echo gettext("Normally this option should be set to <em>http</em>. If you are running a secure server, change this to <em>https</em>. Select <em>secure admin</em> if you need only to insure secure access to <code>admin</code> pages."); ?></p>
 										<p class="notebox"><?php
-											echo gettext("<strong>Note:</strong>" .
-															"<br /><br />Login from the front-end user login form is secure only if <em>https</em> is selected." .
-															"<br /><br />If you select <em>https</em> or <em>secure admin</em> your server <strong>MUST</strong> support <em>https</em>.  " .
-															"If you set either of these on a server which does not support <em>https</em> you will not be able to access the <code>admin</code> pages to reset the option! " .
-															'Your only possibility then is to change the option named <span class="inlinecode">server_protocol</span> in the <em>options</em> table of your database.');
-											?>
+							echo gettext("<strong>Note:</strong>" .
+											"<br /><br />Login from the front-end user login form is secure only if <em>https</em> is selected." .
+											"<br /><br />If you select <em>https</em> or <em>secure admin</em> your server <strong>MUST</strong> support <em>https</em>.  " .
+											"If you set either of these on a server which does not support <em>https</em> you will not be able to access the <code>admin</code> pages to reset the option! " .
+											'Your only possibility then is to change the option named <span class="inlinecode">server_protocol</span> in the <em>options</em> table of your database.');
+							?>
 										</p>
 									</td>
 								</tr>
