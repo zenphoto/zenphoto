@@ -751,36 +751,11 @@ Zenphoto_Authority::printPasswordFormJS();
 												$languageV = $class = '';
 												if (!empty($dirname) && $dirname != 'en_US') {
 													$version = '';
-													$po = file_get_contents(SERVERPATH . "/" . ZENFOLDER . "/locale/" . $dirname . '/LC_MESSAGES/zenphoto.po');
-													$i = strpos($po, 'Project-Id-Version:');
-													$v = 'v';
-													if ($i !== false) {
-														$j = strpos($po, '\n', $i);
-														if ($j !== false) {
-															$pversion = strtolower(substr($po, $i + 19, $j - $i - 19));
-															if (strpos($pversion, 'zenphoto20') !== false) {
-																$vers = explode('.', trim(str_replace('zenphoto20', '', $pversion)));
-															} else {
-																$vers = explode('.', trim(str_replace('zenphoto', '', $pversion)));
-																$v = 'zenphoto ';
-															}
-															while (count($vers) < 3) {
-																$vers[] = 0;
-															}
-															$version = (int) $vers[0] . '.' . (int) $vers[1] . '.' . (int) $vers[2];
-														}
-													}
-													if ($v == 'zenphoto ' || version_compare($version, $zpversion) < 0) {
-														if (empty($version) || $version == '0.0.0') {
-															$version = '';
-															$v = '?';
-														}
-														$languageV = ' <small>{' . $v . $version . '}</small>';
-														$languageAlt .= ' {' . $v . $version . '}';
-														$class = ' style="background-color:#FFEFB7;"';
-													}
+													$stat = explode("\n", file_get_contents(SERVERPATH . "/" . ZENFOLDER . "/locale/" . $dirname . '/LC_MESSAGES/statistics.txt'));
+													preg_match_all('~([\d]+)~', $stat[1], $matches);
+													$languageP = ' <small>{' . $matches[0][1] . '%}</small>';
 												} else {
-													$version = $zpversion;
+													$languageP = '';
 												}
 												if (empty($dirname)) {
 													$flag = WEBPATH . '/' . ZENFOLDER . '/locale/auto.png';
@@ -826,7 +801,7 @@ Zenphoto_Authority::printPasswordFormJS();
 															<img src="<?php echo $flag; ?>" alt="<?php echo $languageAlt; ?>" width="24" height="16" />
 															<?php echo $language; ?>
 														</span>
-														<?php echo $languageV; ?>
+														<?php echo $languageP; ?>
 													</label>
 												</li>
 												<?php
@@ -834,7 +809,6 @@ Zenphoto_Authority::printPasswordFormJS();
 											?>
 										</ul>
 										<br class="clearall" />
-										<p class="notebox"><?php printf(gettext('Highlighted languages are not current with ZenPhoto20 v%1$s. (The version of the out-of-date language is shown in braces.)'), $zpversion); ?></p>
 										<label class="checkboxlabel">
 											<input type="checkbox" name="multi_lingual" value="1"	<?php checked('1', getOption('multi_lingual')); ?> /><?php echo gettext('Multi-lingual'); ?>
 										</label>
@@ -921,10 +895,10 @@ Zenphoto_Authority::printPasswordFormJS();
 											foreach ($totalsets as $key => $char) {
 												?>
 												<option value="<?php echo $key; ?>" <?php
-										if ($key == LOCAL_CHARSET)
-											echo 'selected="selected"';
-										if (!array_key_exists($key, $sets))
-											echo 'style="color: gray"';
+												if ($key == LOCAL_CHARSET)
+													echo 'selected="selected"';
+												if (!array_key_exists($key, $sets))
+													echo 'style="color: gray"';
 												?>><?php echo $char; ?></option>
 																<?php
 															}
@@ -2239,9 +2213,9 @@ Zenphoto_Authority::printPasswordFormJS();
 													 <?php checked('1', getOption('protected_image_cache')); ?> />
 									</td>
 									<td><?php
-													 echo gettext('If checked all image URIs will link to the image processor and the image cache will be disabled to browsers via an <em>.htaccess</em> file. Images are still cached but the image processor is used to serve the image rather than allowing the browser to fetch the file.') .
-													 '<p class="notebox">' . gettext('<strong>WARNING	:</strong> This option adds significant overhead to <strong>each and every</strong> image reference! Some <em>JavaScript</em> and <em>Flash</em> based image handlers will not work with an image processor URI and are incompatible with this option.') . '</p>';
-													 ?></td>
+										echo gettext('If checked all image URIs will link to the image processor and the image cache will be disabled to browsers via an <em>.htaccess</em> file. Images are still cached but the image processor is used to serve the image rather than allowing the browser to fetch the file.') .
+										'<p class="notebox">' . gettext('<strong>WARNING	:</strong> This option adds significant overhead to <strong>each and every</strong> image reference! Some <em>JavaScript</em> and <em>Flash</em> based image handlers will not work with an image processor URI and are incompatible with this option.') . '</p>';
+										?></td>
 								</tr>
 								<tr>
 									<td><?php echo gettext("Secure image processor"); ?></td>
@@ -2250,9 +2224,9 @@ Zenphoto_Authority::printPasswordFormJS();
 													 <?php checked('1', getOption('secure_image_processor')); ?> />
 									</td>
 									<td><?php
-													 echo gettext('When enabled, the image processor will check album access credentials.') .
-													 '<p class="notebox">' . gettext('<strong>WARNING	:</strong> This option adds memory overhead to image caching! You may be unable to cache some images depending on your server memory availability.') . '</p>';
-													 ?></td>
+										echo gettext('When enabled, the image processor will check album access credentials.') .
+										'<p class="notebox">' . gettext('<strong>WARNING	:</strong> This option adds memory overhead to image caching! You may be unable to cache some images depending on your server memory availability.') . '</p>';
+										?></td>
 								</tr>
 								<tr>
 									<td><?php echo gettext("Full image protection:"); ?></td>
@@ -2385,9 +2359,9 @@ Zenphoto_Authority::printPasswordFormJS();
 
 								<tr>
 									<td><?php
-													 echo gettext("Metadata");
-													 $exifstuff = sortMultiArray($_zp_exifvars, array(2, 0));
-													 ?></td>
+										echo gettext("Metadata");
+										$exifstuff = sortMultiArray($_zp_exifvars, array(2, 0));
+										?></td>
 									<td>
 										<div id="resizable">
 											<ul id="metadatalist" class="metadatalist">
@@ -3144,12 +3118,12 @@ Zenphoto_Authority::printPasswordFormJS();
 									<td>
 										<p><?php echo gettext("Normally this option should be set to <em>http</em>. If you are running a secure server, change this to <em>https</em>. Select <em>secure admin</em> if you need only to insure secure access to <code>admin</code> pages."); ?></p>
 										<p class="notebox"><?php
-							echo gettext("<strong>Note:</strong>" .
-											"<br /><br />Login from the front-end user login form is secure only if <em>https</em> is selected." .
-											"<br /><br />If you select <em>https</em> or <em>secure admin</em> your server <strong>MUST</strong> support <em>https</em>.  " .
-											"If you set either of these on a server which does not support <em>https</em> you will not be able to access the <code>admin</code> pages to reset the option! " .
-											'Your only possibility then is to change the option named <span class="inlinecode">server_protocol</span> in the <em>options</em> table of your database.');
-							?>
+											echo gettext("<strong>Note:</strong>" .
+															"<br /><br />Login from the front-end user login form is secure only if <em>https</em> is selected." .
+															"<br /><br />If you select <em>https</em> or <em>secure admin</em> your server <strong>MUST</strong> support <em>https</em>.  " .
+															"If you set either of these on a server which does not support <em>https</em> you will not be able to access the <code>admin</code> pages to reset the option! " .
+															'Your only possibility then is to change the option named <span class="inlinecode">server_protocol</span> in the <em>options</em> table of your database.');
+											?>
 										</p>
 									</td>
 								</tr>
