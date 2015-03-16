@@ -16,6 +16,7 @@
  */
 $plugin_is_filter = 5 | ADMIN_PLUGIN;
 $plugin_description = gettext('Enable legacy tinyZenpage.');
+$plugin_notice = gettext('tinyZenpage is deprecated. You should use <a href="' . WEBPATH . '/docs/release%20notes.htm#tinyMCE:obj">tinyMCE:obj</a> instead.');
 $plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'tinyZenpage';
