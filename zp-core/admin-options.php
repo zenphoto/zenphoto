@@ -748,14 +748,12 @@ Zenphoto_Authority::printPasswordFormJS();
 											$c = 0;
 											foreach ($locales as $language => $dirname) {
 												$languageAlt = $language;
-												$languageV = $class = '';
-												if (!empty($dirname) && $dirname != 'en_US') {
-													$version = '';
+												if (empty($dirname) || $dirname == 'en_US') {
+													$languageP = '';
+												} else {
 													$stat = explode("\n", file_get_contents(SERVERPATH . "/" . ZENFOLDER . "/locale/" . $dirname . '/LC_MESSAGES/statistics.txt'));
 													preg_match_all('~([\d]+)~', $stat[1], $matches);
-													$languageP = ' <small>{' . $matches[0][1] . '%}</small>';
-												} else {
-													$languageP = '';
+													$languageP = ' <small>[' . $matches[0][1] . '%]</small>';
 												}
 												if (empty($dirname)) {
 													$flag = WEBPATH . '/' . ZENFOLDER . '/locale/auto.png';
@@ -787,7 +785,7 @@ Zenphoto_Authority::printPasswordFormJS();
 												}
 												$c++;
 												?>
-												<li<?php echo $class; ?>>
+												<li>
 
 													<label class=""displayinline">
 																 <input type="radio" name="locale" id="r_<?php echo $dirname; ?>" value="<?php echo $dirname; ?>"
