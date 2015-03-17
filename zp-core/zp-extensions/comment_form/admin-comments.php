@@ -89,6 +89,7 @@ if (isset($_GET['action'])) {
 
 
 printAdminHeader('comments');
+zp_apply_filter('texteditor_config', 'comments');
 ?>
 <script type="text/javascript">
 	//<!-- <![CDATA[
@@ -189,7 +190,7 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 					?>
 					<label for = "comment"><?php echo gettext("Comment:");
 					?></label>
-					<textarea rows="8" cols="60" name="comment" class="texteditor"><?php echo html_encode($comment); ?></textarea>
+					<textarea rows="8" cols="60" name="comment" class="texteditor_comments"><?php echo html_encode($comment); ?></textarea>
 				</div>
 				<div class="commentformedit_box">
 					<h2 class="h2_bordered_edit"><?php echo gettext('Comment management'); ?></h2>
