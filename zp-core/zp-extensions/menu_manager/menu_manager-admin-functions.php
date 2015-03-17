@@ -34,6 +34,7 @@ function updateItemsSortorder() {
  */
 function printItemsListTable($item, $flag) {
 	global $_zp_gallery;
+	$link = '';
 	$array = getItemTitleAndURL($item);
 	if ($array['valid']) {
 		switch ($item['type']) {
@@ -755,7 +756,7 @@ $reports) {
  *
  * @param string $current
 
-  set to the album name selected (if any)
+	set to the album name selected (if any)
  *
  * @return string
  */
@@ -825,7 +826,7 @@ function printPagesSelector($current) {
  *
  * @param string $current
 
-  set to category selected (if any)
+	set to category selected (if any)
  *
  * @return string
  */

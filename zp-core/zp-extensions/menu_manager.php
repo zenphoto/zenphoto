@@ -961,6 +961,45 @@ function createMenuIfNotExists($menuitems, $menuset = 'default') {
 }
 
 /**
+ * Gets the direct child menu items of the current menu item. Returns the array of the items or false.
+ * @param string $menuset current menu set
+ * @param bool $all Set to false (default) for the next level children, true for children of all further levels
+ * @return array|false
+ */
+function getMenuItemChildren($menuset = 'default', $all = false) {
+	$sortorder = getCurrentMenuItem($menuset);
+	$items = getMenuItems($menuset, getMenuVisibility());
+	if (count($items) > 0) {
+		if ($sortorder) {
+			$length = strlen($sortorder);
+			$level = explode('-', $sortorder);
+			$level = count($level);
+			$children = array();
+			foreach ($items as $item) {
+				$itemlevel = explode('-', $item['sort_order']);
+				$itemlevel = count($itemlevel);
+				if ($all) {
+					$is_validchild = true;
+				} else {
+					if ($itemlevel == $level + 1) {
+						$is_validchild = true;
+					} else {
+						$is_validchild = false;
+					}
+				}
+				if (substr($item['sort_order'], 0, $length) == $sortorder && $item['sort_order'] != $sortorder && $is_validchild) {
+					array_push($children, $item);
+				}
+			}
+			if (!empty($children)) {
+				return $children;
+			}
+		}
+	}
+	return false;
+}
+
+/**
  * Prints a context sensitive menu of all pages as a unordered html list
  *
  * @param string $menuset the menu tree to output

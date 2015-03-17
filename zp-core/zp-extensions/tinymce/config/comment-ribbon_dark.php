@@ -9,7 +9,7 @@
  */
 $MCEcss = 'dark_content.css';
 $MCEskin = "tundora";
-$MCEselector = "textarea.textarea_inputbox";
+$MCEselector = "textarea.textarea_inputbox, textarea.texteditor_comments";
 $MCEplugins = "advlist autolink lists link image charmap hr anchor pagebreak " .
 				"searchreplace wordcount visualblocks visualchars code fullscreen " .
 				"insertdatetime save contextmenu directionality " .
