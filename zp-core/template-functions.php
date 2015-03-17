@@ -4192,41 +4192,41 @@ function checkAccess(&$hint = NULL, &$show = NULL) {
  * @return string
  */
 function getPageRedirect() {
-	global $_zp_login_error, $_zp_password_form_printed, $_zp_current_search, $_zp_gallery_page,
-	$_zp_current_album, $_zp_current_image, $_zp_current_zenpage_news;
-	switch ($_zp_gallery_page) {
-		case 'index.php':
-			$action = '/index.php';
-			break;
-		case 'album.php':
-			$action = '/index.php?userlog=1&album=' . pathurlencode($_zp_current_album->name);
-			break;
-		case 'image.php':
-			$action = '/index.php?userlog=1&album=' . pathurlencode($_zp_current_album->name) . '&image=' . urlencode($_zp_current_image->filename);
-			break;
-		case 'pages.php':
-			$action = '/index.php?userlog=1&p=pages&title=' . urlencode(getPageTitlelink());
-			break;
-		case 'news.php':
-			$action = '/index.php?userlog=1&p=news';
-			if (!is_null($_zp_current_zenpage_news)) {
-				$action .= '&title=' . urlencode($_zp_current_zenpage_news->getTitlelink());
-			}
-			break;
-		case 'password.php':
-			$action = str_replace(SEO_WEBPATH, '', getRequestURI());
-			if ($action == '/') {
-				$action = '/index.php';
-			}
-			break;
-		default:
-			if (in_context(ZP_SEARCH)) {
-				$action = '/index.php?userlog=1&p=search' . $_zp_current_search->getSearchParams();
-			} else {
-				$action = '/index.php?userlog=1&p=' . substr($_zp_gallery_page, 0, -4);
-			}
-	}
-	return SEO_WEBPATH . $action;
+  global $_zp_login_error, $_zp_password_form_printed, $_zp_current_search, $_zp_gallery_page,
+  $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_news;
+  switch ($_zp_gallery_page) {
+    case 'index.php':
+      $action = '/index.php';
+      break;
+    case 'album.php':
+      $action = '/index.php?userlog=1&album=' . pathurlencode($_zp_current_album->name);
+      break;
+    case 'image.php':
+      $action = '/index.php?userlog=1&album=' . pathurlencode($_zp_current_album->name) . '&image=' . urlencode($_zp_current_image->filename);
+      break;
+    case 'pages.php':
+      $action = '/index.php?userlog=1&p=pages&title=' . urlencode(getPageTitlelink());
+      break;
+    case 'news.php':
+      $action = '/index.php?userlog=1&p=news';
+      if (!is_null($_zp_current_zenpage_news)) {
+        $action .= '&title=' . urlencode($_zp_current_zenpage_news->getTitlelink());
+      }
+      break;
+    case 'password.php':
+      $action = str_replace(SEO_WEBPATH, '', getRequestURI());
+      if ($action == '/' . _PAGE_ . '/password' || $action == '/index.php?p=password') {
+        $action = '/index.php';
+      }
+      break;
+    default:
+      if (in_context(ZP_SEARCH)) {
+        $action = '/index.php?userlog=1&p=search' . $_zp_current_search->getSearchParams();
+      } else {
+        $action = '/index.php?userlog=1&p=' . substr($_zp_gallery_page, 0, -4);
+      }
+  }
+  return SEO_WEBPATH . $action;
 }
 
 /**
