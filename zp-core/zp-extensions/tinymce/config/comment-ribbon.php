@@ -6,7 +6,7 @@
  * Zenpage plugin default light configuration
  * @author Stephen Billard (sbillard)
  */
-$MCEselector = "textarea.textarea_inputbox";
+$MCEselector = "textarea.textarea_inputbox, textarea.texteditor_comments";
 $MCEplugins = "advlist autolink lists link image charmap hr anchor pagebreak " .
 				"searchreplace wordcount visualblocks visualchars code fullscreen " .
 				"insertdatetime save contextmenu directionality " .
