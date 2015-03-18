@@ -9,6 +9,8 @@ span.tagMatches {
 }
 
 span.tagMatches span {
+	top: 19px;
+	left: 0;
 	color: gray;
 	cursor: pointer;
 	width: 150px;
@@ -17,4 +19,7 @@ span.tagMatches span {
 
 ._tag_suggestion {
 	float: left;
+}
+.tagSuggestContainer {
+	position: relative;
 }

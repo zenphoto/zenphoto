@@ -27,7 +27,7 @@ function newImage($album, $filename = NULL, $quiet = false) {
 	} else if (is_array($filename)) {
 		$xalbum = newAlbum($filename['folder'], true, true);
 		$filename = $filename['filename'];
-		$dyn = false;
+		$dyn = is_object($album) && $album->isDynamic();
 	} else {
 		if ($album->isDynamic()) {
 			$dyn = true;

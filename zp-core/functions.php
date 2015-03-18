@@ -1444,11 +1444,17 @@ function sortMultiArray($array, $index, $descending = false, $natsort = true, $c
 		foreach ($indicies as $index) {
 			$prev = $size;
 			$size = 0;
+			$c = 0;
 			foreach ($array as $key => $row) {
-				if (is_array($row) && array_key_exists($index, $row)) {
-					$word = get_language_string($row[$index]);
-					if (!$case_sensitive) {
-						$word = mb_strtolower($word);
+				$c++;
+				if (is_array($row)) {
+					if (array_key_exists($index, $row)) {
+						$word = get_language_string($row[$index]);
+						if (!$case_sensitive) {
+							$word = mb_strtolower($word);
+						}
+					} else {
+						$word = $c;
 					}
 					$size = max($size, strlen($word));
 					if (isset($temp[$key])) {
@@ -1456,8 +1462,6 @@ function sortMultiArray($array, $index, $descending = false, $natsort = true, $c
 					} else {
 						$temp[$key] = $word;
 					}
-
-
 					if (in_array($index, $remove_criteria)) {
 						unset($array[$key][$index]);
 					}
