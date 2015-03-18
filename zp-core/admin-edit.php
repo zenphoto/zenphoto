@@ -1351,23 +1351,6 @@ echo "\n</head>";
 															</span>
 														</td>
 													</tr>
-             <?php if (!$singleimage) { ?>
-             	<tr>
-														<td valign="top"><?php echo gettext("Tags:"); ?></td>
-														<td>
-                <?php
-                  $imagetags = $image->getTags();
-                  if(count($imagetags) != 0) {
-                    echo implode(', ',$imagetags);
-                  } else {
-                    echo gettext('No tags assigned');
-                  }
-                ?>
-														</td>
-													</tr>
-            	<?php
-             }
-													if ($singleimage) { ?>
 													<tr>
 														<td valign="top"><?php echo gettext("Tags:"); ?></td>
 														<td>
@@ -1376,7 +1359,8 @@ echo "\n</head>";
 															</div>
 														</td>
 													</tr>
-              <?php
+													<?php
+													if ($singleimage) {
 														$custom = zp_apply_filter('edit_image_custom_data', '', $image, $currentimage);
 														if (empty($custom)) {
 															?>
