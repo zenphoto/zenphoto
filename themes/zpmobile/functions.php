@@ -11,6 +11,11 @@ function jqm_loadScripts() {
 	?>
 	<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/jquerymobile/jquery.mobile-1.4.5.min.css" />
 	<script type="text/javascript" src="<?php echo $_zp_themeroot; ?>/jquerymobile/jquery.mobile-1.4.5.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("#zp__admin_data a, a.downloadlist_link").attr('data-ajax','false');
+		});
+	</script>
 	<?php
 	printZDSearchToggleJS();
 }
@@ -94,20 +99,25 @@ function jqm_printFooterNav() {
 		<?php
 		$adminlink = '';
 		$favoriteslink = '';
-		if (zp_loggedin()) {
-			$adminlink = '<li><a rel="external" href="' . PROTOCOL . '://' . html_encode($_SERVER['HTTP_HOST'] . WEBPATH . '/' . ZENFOLDER) . '/admin.php">' . gettext('Admin') . '</a></li>';
+		if (!zp_loggedin() && function_exists('printRegisterURL')) {
+			if ($_zp_gallery_page != 'register.php') {
+				$_linktext = get_language_string(getOption('register_user_page_link'));
+				$adminlink = '<li><a rel="external" href="' . html_encode(register_user::getLink()) . '">' . $_linktext . '</a></li>';
+			} 
 		}
 		if (function_exists('printFavoritesURL')) {
-			ob_start();
-			printFavoritesURL(NULL, '<li>', '</li><li>', '</li>');
-			$favoriteslink = ob_get_contents();
-			ob_end_clean();
+			$favoriteslink = '<li><a rel="external" href="' . html_encode(getFavoritesURL()) . '">' . gettext('Favorites') . '</a></li>';
 		}
 		if ($adminlink || $favoriteslink) {
 			?>
 			<div data-role="navbar">
 				<ul id="footernav">
-		<?php echo $adminlink . $favoriteslink; ?>
+					<?php 
+					echo $adminlink . $favoriteslink; 
+					if (function_exists("printUserLogin_out")) {
+						echo "<li>"; printUserLogin_out("", "", 0); echo "</li>";
+					}
+					?>
 				</ul>
 			</div>
 			<!-- /navbar -->

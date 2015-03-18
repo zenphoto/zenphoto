@@ -269,10 +269,10 @@ if (isset($_GET['action'])) {
                 if (!empty($action))
                   $notify = '&bulkmessage=' . $action;
               } else {
-                $oldsort = sanitize($_POST['oldalbumimagesort'], 3);
+                $oldsort = checkAlbumimagesort(sanitize($_POST['oldalbumimagesort'], 3));
                 if (getOption('albumimagedirection'))
                   $oldsort = $oldsort . '_desc';
-                $newsort = sanitize($_POST['albumimagesort'], 3);
+                $newsort = checkAlbumimagesort(sanitize($_POST['albumimagesort'], 3));
                 if ($oldsort == $newsort) {
                   for ($i = 0; $i < $_POST['totalimages']; $i++) {
                     $filename = sanitize($_POST["$i-filename"]);
@@ -422,7 +422,7 @@ if (isset($_GET['action'])) {
 	} // end of switch
 } else {
 	if (isset($_GET['albumimagesort'])) {
-		$newsort = sanitize($_GET['albumimagesort'], 3);
+		$newsort = checkAlbumimagesort(sanitize($_GET['albumimagesort'],3));
 		if (strpos($newsort, '_desc')) {
 			setOption('albumimagesort', substr($newsort, 0, -5), false);
 			setOption('albumimagedirection', 'DESC', false);
@@ -511,23 +511,29 @@ if (isset($_GET['album']) && (empty($subtab) || $subtab == 'albuminfo') || isset
 					var deleteAlbum1 = "<?php echo gettext("Are you sure you want to delete this entire album?"); ?>";
 					var deleteAlbum2 = "<?php echo gettext("Are you Absolutely Positively sure you want to delete the album? THIS CANNOT BE UNDONE!"); ?>";
 					function newAlbum(folder, albumtab) {
-					var album = prompt('<?php echo addslashes(gettext('New album name?')); ?>', '<?php echo addslashes(gettext('new album')); ?>');
+        var album = prompt('<?php echo addslashes(gettext('New album name?')); ?>', '<?php echo addslashes(gettext('new album')); ?>');
 									if (album) {
-					launchScript('', ['action=newalbum', 'folder=' + folder, 'name=' + encodeURIComponent(album), 'albumtab=' + albumtab, 'XSRFToken=<?php echo getXSRFToken('newalbum'); ?>']);
+          launchScript('', ['action=newalbum', 'folder=' + folder, 'name=' + encodeURIComponent(album), 'albumtab=' + albumtab, 'XSRFToken=<?php echo getXSRFToken('newalbum'); ?>']);
+        	}
 					}
+     	function newDynAlbum(folder, albumtab) {
+        var album = prompt('<?php echo addslashes(gettext('New dynamic album name?')); ?>', '<?php echo addslashes(gettext('new dynamic album')); ?>');
+									if (album) {
+          launchScript('admin-dynamic-album.php', ['words=' + encodeURIComponent(album), 'folder=' + encodeURIComponent(folder), 'XSRFToken=<?php echo getXSRFToken('newalbum'); ?>']);
+        	}
 					}
 	function confirmAction() {
-	if ($('#checkallaction').val() == 'deleteall') {
-	return confirm('<?php echo js_encode(gettext("Are you sure you want to delete the checked items?")); ?>');
-	} else if ($('#checkallaction').val() == 'deleteallalbum') {
-	if (confirm(deleteAlbum1)) {
-	return confirm(deleteAlbum2);
-	} else {
-	return false;
-	}
-	} else {
-	return true;
-	}
+  if ($('#checkallaction').val() == 'deleteall') {
+    return confirm('<?php echo js_encode(gettext("Are you sure you want to delete the checked items?")); ?>');
+  } else if ($('#checkallaction').val() == 'deleteallalbum') {
+    if (confirm(deleteAlbum1)) {
+      return confirm(deleteAlbum2);
+    } else {
+      return false;
+    }
+  } else {
+    return true;
+  }
 	}
 	// ]]> -->
 </script>
@@ -633,10 +639,18 @@ echo "\n</head>";
 						if (($pagenum - 1) * $imagesTab_imageCount >= $allimagecount)
 							$pagenum--;
 					} else {
-						$pagenum = 1;
+       if(isset($_GET['nopagination'])) {
+        $pagenum = 0;
+       } else {
+        $pagenum = 1;
+       }
 					}
 				}
-    $images = array_slice($allimages, ($pagenum - 1) * $imagesTab_imageCount, $imagesTab_imageCount);
+    if($pagenum == 0) {
+      $images = $allimages;
+    } else {
+      $images = array_slice($allimages, ($pagenum - 1) * $imagesTab_imageCount, $imagesTab_imageCount);
+    }
 				$totalimages = count($images);
 
 				$parent = dirname($album->name);
@@ -698,7 +712,7 @@ echo "\n</head>";
 										} else {
 											$dir = '';
 										}
-										$sortNames = array_flip($sortby);
+										$sortNames = array_flip($_zp_sortby);
 										$sorttype = $sortNames[$sorttype];
 									} else {
 										$dir = '';
@@ -739,6 +753,12 @@ echo "\n</head>";
 												<img src="images/folder.png" alt="" />
 												<strong><?php echo gettext('New subalbum'); ?></strong>
 											</button>
+           <?php if(!$album->isDynamic()) { ?>
+            	<button type="button" title="<?php echo addslashes(gettext('New dynamic subalbum')); ?>" onclick="javascript:newDynAlbum('<?php echo pathurlencode($album->name); ?>', false);">
+												<img src="images/folder.png" alt="" />
+												<strong><?php echo gettext('New dynamic subalbum'); ?></strong>
+											</button>
+           <?php } ?>
 										</div>
 										<?php
 									}
@@ -795,6 +815,12 @@ echo "\n</head>";
 											<img src="images/folder.png" alt="" />
 											<strong><?php echo gettext('New subalbum'); ?></strong>
 										</button>
+          <?php if(!$album->isDynamic()) { ?>
+            	<button type="button" title="<?php echo addslashes(gettext('New dynamic subalbum')); ?>" onclick="javascript:newDynAlbum('<?php echo pathurlencode($album->name); ?>', false);">
+												<img src="images/folder.png" alt="" />
+												<strong><?php echo gettext('New dynamic subalbum'); ?></strong>
+											</button>
+           <?php } ?>
 									</div>
 								</span>
 							</form>
@@ -807,7 +833,6 @@ echo "\n</head>";
 				} else if ($subtab == 'imageinfo') {
 					$singleimage = NULL;
 					if (isset($_GET['singleimage'])) {
-
 						$simage = sanitize($_GET['singleimage']);
 						if (array_search($simage, $images) !== false) {
 							$allimagecount = 1;
@@ -866,7 +891,7 @@ echo "\n</head>";
 
 											<td align="right">
 												<?php
-												$sort = $sortby;
+												$sort = $_zp_sortby;
 												foreach ($sort as $key => $value) {
 													$sort[sprintf(gettext('%s (descending)'), $key)] = $value . '_desc';
 												}
@@ -1173,8 +1198,9 @@ echo "\n</head>";
 																	<?php
 																	$splits = preg_split('/!([(0-9)])/', $image->get('EXIFOrientation'));
 																	$rotation = $splits[0];
-																	if (!in_array($rotation, array(3, 6, 8)))
+																	if (!in_array($rotation, array(3, 6, 8))) {
 																		$rotation = 0;
+																	}
 																	?>
 																	<input type="hidden" name="<?php echo $currentimage; ?>-oldrotation" value="<?php echo $rotation; ?>" />
 																	<label class="checkboxlabel">
@@ -1185,8 +1211,8 @@ echo "\n</head>";
 																					 <?php echo gettext('none'); ?>
 																	</label>
 																	<label class="checkboxlabel">
-																		<input type="radio" id="rotation_90-<?php echo $currentimage; ?>"	name="<?php echo $currentimage; ?>-rotation" value="8" <?php
-																		checked(8, $rotation);
+																		<input type="radio" id="rotation_90-<?php echo $currentimage; ?>"	name="<?php echo $currentimage; ?>-rotation" value="6" <?php
+																		checked(6, $rotation);
 																		echo $disablerotate
 																		?> />
 																					 <?php echo gettext('90 degrees'); ?>
@@ -1199,8 +1225,8 @@ echo "\n</head>";
 																					 <?php echo gettext('180 degrees'); ?>
 																	</label>
 																	<label class="checkboxlabel">
-																		<input type="radio" id="rotation_270-<?php echo $currentimage; ?>"	name="<?php echo $currentimage; ?>-rotation" value="6" <?php
-																		checked(6, $rotation);
+																		<input type="radio" id="rotation_270-<?php echo $currentimage; ?>"	name="<?php echo $currentimage; ?>-rotation" value="8" <?php
+																		checked(8, $rotation);
 																		echo $disablerotate
 																		?> />
 																					 <?php echo gettext('270 degrees'); ?>
@@ -1567,8 +1593,7 @@ echo "\n</head>";
 						<button type="submit">
 							<img	src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong>
 						</button>
-						<button type="reset" onclick="javascript:$('.deletemsg
-																												').hide();" >
+						<button type="reset" onclick="javascript:$('.deletemsg').hide();" >
 							<img	src="images/fail.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong>
 						</button>
 					</span>
@@ -1620,7 +1645,7 @@ echo "\n</head>";
 							} else {
 								$dir = '';
 							}
-							$sortNames = array_flip($sortby);
+							$sortNames = array_flip($_zp_sortby);
 							$sorttype = $sortNames[$sorttype];
 						} else {
 							$dir = '';
@@ -1660,7 +1685,11 @@ echo "\n</head>";
 							if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 								?>
 								<button type="button" onclick="javascript:newAlbum('', false);"><img src="images/folder.png" alt="" /><strong><?php echo gettext('New album'); ?></strong></button>
-								<?php
+         <button type="button" title="<?php echo addslashes(gettext('New dynamic album')); ?>" onclick="javascript:newDynAlbum('', false);">
+												<img src="images/folder.png" alt="" />
+												<strong><?php echo gettext('New dynamic album'); ?></strong>
+									</button>
+        <?php
 							}
 							?>
 						</p>
@@ -1702,7 +1731,11 @@ echo "\n</head>";
 							if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 								?>
 								<button type="button" onclick="javascript:newAlbum('', false);"><img src="images/folder.png" alt="" /><strong><?php echo gettext('New album'); ?></strong></button>
-								<?php
+          <button type="button" title="<?php echo addslashes(gettext('New dynamic subalbum')); ?>" onclick="javascript:newDynAlbum('', false);">
+												<img src="images/folder.png" alt="" />
+												<strong><?php echo gettext('New dynamic album'); ?></strong>
+											</button>
+        <?php
 							}
 							?>
 						</p>
@@ -1717,7 +1750,11 @@ echo "\n</head>";
 						?>
 						<p class="buttons">
 							<button type="button" onclick="javascript:newAlbum('', false);"><img src="images/folder.png" alt="" /><strong><?php echo gettext('New album'); ?></strong></button>
-						</p>
+       <button type="button" title="<?php echo addslashes(gettext('New dynamic album')); ?>" onclick="javascript:newDynAlbum('', false);">
+										<img src="images/folder.png" alt="" />
+										<strong><?php echo gettext('New dynamic album'); ?></strong>
+							</button>
+      </p>
 						<?php
 					}
 				}

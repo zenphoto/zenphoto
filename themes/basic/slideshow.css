@@ -50,6 +50,30 @@
     font-size: 0.8em;
 	}
 	
+	#slideshowpage.slideshow_dark * {
+		color: white !important;
+	}
+	
+	#slideshowpage.slideshow_light * {
+		color: black !important;
+	}
+		
+	#slideshowpage.slideshow_dark #prev,
+	#slideshowpage.slideshow_dark #stop,
+	#slideshowpage.slideshow_dark #pause,
+	#slideshowpage.slideshow_dark #play,
+	#slideshowpage.slideshow_dark #next {
+		background-image:url(slideshow-controls-light.png);
+	}
+	
+	#slideshowpage.slideshow_light #prev,
+	#slideshowpage.slideshow_light #stop,
+	#slideshowpage.slideshow_light #pause,
+	#slideshowpage.slideshow_light #play,
+	#slideshowpage.slideshow_light #next {
+		background-image:url(slideshow-controls.png);
+	}
+	
 	#prev { 
 		display: block;
 		width: 46px;
@@ -57,18 +81,17 @@
 		margin: 0px; 
 		padding: 0;
 		float: left;
-		background-image:url(slideshow-controls.png);
 		background-position: 0 0;
 	}
 	
 	#prev:hover { 
-		background-image:url(slideshow-controls.png);
 		background-position: 0 -43px;
 	}
 	#prev:active { 
-		background-image:url(slideshow-controls.png);
 		background-position: 0 -86px;
 	}
+	
+
 	
 	#stop { 
 		display: block;
@@ -77,12 +100,10 @@
 		margin: 0px; 
 		padding: 0;
 		float: left;
-		background-image:url(slideshow-controls.png);
 		background-position: -46px 0px;
 	}
 	
 	#stop:hover { 
-		background-image:url(slideshow-controls.png);
 		background-position: -46px -43px;
 	}
 	
@@ -98,17 +119,14 @@
 		margin: 0px; 
 		padding: 0;
 		float: left;
-		background-image:url(slideshow-controls.png);
 		background-position: -85px 0px;
 	}
 	
 	#pause:hover { 
-		background-image:url(slideshow-controls.png);
 		background-position: -85px -43px;
 	}
 	
 	#pause:active { 
-		background-image:url(slideshow-controls.png);
 		background-position: -85px -86px;
 	}
 	
@@ -119,17 +137,14 @@
 		margin: 0px; 
 		padding: 0;
 		float: left;
-		background-image:url(slideshow-controls.png);
 		background-position: -126px 0px;
 	}
 	
 	#play:hover { 
-		background-image:url(slideshow-controls.png);
 		background-position: -126px -43px;
 	}
 	
 	#play:active { 
-		background-image:url(slideshow-controls.png);
 		background-position: -126px -86px;
 	}
 	
@@ -141,17 +156,14 @@
 		margin: 0px; 
 		padding: 0;
 		float: left;
-		background-image:url(slideshow-controls.png);
 		background-position: -167px 0px;
 	}
 	
 	#next:hover { 
-		background-image:url(slideshow-controls.png);
 		background-position: -167px -43px;
 	}
 	
 	#next:active { 
-		background-image:url(slideshow-controls.png);
 		background-position: -167px -86px;
 	}
 	

@@ -31,7 +31,6 @@ if ($filehandler) {
 									"emoticons template paste tinyzenpage"
 					],
 									toolbar: false,
-									statusbar: false,
 									setup: function(ed) {
 									ed.on('change', function(e) {
 									$('.dirty-check').addClass('dirty');

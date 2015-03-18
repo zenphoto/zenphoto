@@ -138,7 +138,7 @@ if ((function_exists("printUserLogin_out") ) || !zp_loggedin() && function_exist
 				printFavoritesURL(NULL, '<li>', '</li><li>', '</li>');
 			}
 			if (function_exists("printUserLogin_out")) {
-				printUserLogin_out("<li>", "</li>", 2);
+				printUserLogin_out("<li>", "</li>");
 			}
 			if (class_exists('mobileTheme')) {
 				?>

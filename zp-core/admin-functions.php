@@ -3,7 +3,7 @@
  * support functions for Admin
  * @package admin
  */
-// force UTF-8 Ø
+// force UTF-8 Ã˜
 
 require_once(dirname(__FILE__) . '/functions.php');
 
@@ -833,60 +833,66 @@ function printAdminHeader($tab, $subtab = NULL) {
 	}
 
 	function processCustomOptionSave($returntab, $themename = NULL, $themealbum = NULL) {
-		$customHandlers = array();
-		foreach ($_POST as $postkey => $value) {
-			if (preg_match('/^' . CUSTOM_OPTION_PREFIX . '/', $postkey)) { // custom option!
-				$key = substr($postkey, strpos($postkey, '-') + 1);
-				$switch = substr($postkey, strlen(CUSTOM_OPTION_PREFIX), -strlen($key) - 1);
-				switch ($switch) {
-					case 'text':
-						$value = process_language_string_save($key, 1);
-						break;
-					case 'cleartext':
-						if (isset($_POST[$key])) {
-							$value = sanitize($_POST[$key], 0);
-						} else {
-							$value = '';
-						}
-						break;
-					case 'chkbox':
-						$value = (int) isset($_POST[$key]);
-						break;
-					case 'save':
-						$customHandlers[] = array('whom' => $key, 'extension' => sanitize($_POST[$postkey]));
-						continue;
-						break;
-					default:
-						if (isset($_POST[$key])) {
-							$value = sanitize($_POST[$key], 1);
-						} else {
-							$value = '';
-						}
-						break;
-				}
-				if ($themename) {
-					setThemeOption($key, $value, $themealbum, $themename);
-				} else {
-					setOption($key, $value);
-				}
-			} else {
-				if (strpos($postkey, 'show-') === 0) {
-					if ($value)
-						$returntab .= '&' . $postkey;
-				}
-			}
-		}
-		foreach ($customHandlers as $custom) {
-			if ($extension = $custom['extension']) {
-				require_once(getPlugin($extension . '.php'));
-			}
-			$whom = new $custom['whom']();
-			$returntab = $whom->handleOptionSave($themename, $themealbum) . $returntab;
-		}
-		return $returntab;
-	}
+  $customHandlers = array();
+  foreach ($_POST as $postkey => $value) {
+    if (preg_match('/^' . CUSTOM_OPTION_PREFIX . '/', $postkey)) { // custom option!
+      $key = substr($postkey, strpos($postkey, '-') + 1);
+      $switch = substr($postkey, strlen(CUSTOM_OPTION_PREFIX), -strlen($key) - 1);
+      switch ($switch) {
+        case 'text':
+          $value = process_language_string_save($key, 1);
+          break;
+        case 'cleartext':
+          if (isset($_POST[$key])) {
+            $value = sanitize($_POST[$key], 0);
+          } else {
+            $value = '';
+          }
+          break;
+        case 'chkbox':
+          $value = (int) isset($_POST[$key]);
+          break;
+        case 'save':
+          $customHandlers[] = array('whom' => $key, 'extension' => sanitize($_POST[$postkey]));
+          continue;
+          break;
+        default:
+          if (isset($_POST[$key])) {
+            $value = sanitize($_POST[$key], 1);
+          } else {
+            $value = '';
+          }
+          break;
+      }
+      if ($themename) {
+        setThemeOption($key, $value, $themealbum, $themename);
+      } else {
+        $creator = NULL;
+        if(isset($_GET['single'])) { // single plugin save
+          $ext = sanitize($_GET['single'],1);
+          $pl = getPlugin($ext . '.php',false,true);
+          $creator = str_replace(WEBPATH.'/','',$pl);
+        } 
+        setOption($key, $value, true, $creator);
+      }
+    } else {
+      if (strpos($postkey, 'show-') === 0) {
+        if ($value)
+          $returntab .= '&' . $postkey;
+      }
+    }
+  }
+  foreach ($customHandlers as $custom) {
+    if ($extension = $custom['extension']) {
+      require_once(getPlugin($extension . '.php'));
+    }
+    $whom = new $custom['whom']();
+    $returntab = $whom->handleOptionSave($themename, $themealbum) . $returntab;
+  }
+  return $returntab;
+}
 
-	/**
+/**
 	 *
 	 * Set defaults for standard theme options incase the theme has not done so
 	 * @param string $theme
@@ -912,7 +918,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 * @param string $str
 	 */
 	function postIndexEncode($str) {
-		return strtr(urlencode($str), array('.' => '__2E__', '+' => '__20__', '%' => '__25__', '&' => '__26__', "'" => '__27__', "(" => '__28__', ")" => '__29__'));
+		return strtr(urlencode($str), array('.' => '__2E__', '+' => '__20__', '%' => '__25__', '&' => '__26__', "'" => '__27__', '(' => '__28__', ')' => '__29__'));
 	}
 
 	/**
@@ -922,7 +928,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 * @return string
 	 */
 	function postIndexDecode($str) {
-		return urldecode(strtr($str, array('__2E__' => '.', '__20__' => '+', '__25__' => '%', '__26__' => '&', '__27__' => "'", '__28__' => "(", '__29__' => ")")));
+		return urldecode(strtr($str, array('__2E__' => '.', '__20__' => '+', '__25__' => '%', '__26__' => '&', '__27__' => "'", '__28__' => '(', '__29__' => ')')));
 	}
 
 	/**
@@ -1148,7 +1154,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 * @since 1.1.3
 	 */
 	function printAlbumEditForm($index, $album, $buttons = true) {
-		global $sortby, $_zp_gallery, $mcr_albumlist, $_zp_albumthumb_selector, $_zp_current_admin_obj;
+		global $_zp_sortby, $_zp_gallery, $mcr_albumlist, $_zp_albumthumb_selector, $_zp_current_admin_obj;
 		$isPrimaryAlbum = '';
 		if (!zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 			$myalbum = $_zp_current_admin_obj->getAlbum();
@@ -1200,7 +1206,13 @@ function printAdminHeader($tab, $subtab = NULL) {
 							<img src="images/folder.png" alt="" />
 							<strong><?php echo gettext('New subalbum'); ?></strong>
 						</button>
-						<?php
+      <?php if(!$album->isDynamic()) { ?>
+         <button type="button" title="<?php echo addslashes(gettext('New dynamic subalbum')); ?>" onclick="javascript:newDynAlbum('<?php echo pathurlencode($album->name); ?>', false);">
+           <img src="images/folder.png" alt="" />
+											<strong><?php echo gettext('New dynamic subalbum'); ?></strong>
+								 </button>
+       <?php 
+      } 
 					}
 					?>
 					<a href="<?php echo WEBPATH . "/index.php?album=" . html_encode(pathurlencode($album->getFileName())); ?>">
@@ -1391,7 +1403,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						} else {
 							echo $custom;
 						}
-						$sort = $sortby;
+						$sort = $_zp_sortby;
 						if (!$album->isDynamic()) {
 							$sort[gettext('Manual')] = 'manual';
 						}
@@ -1950,7 +1962,13 @@ function printAdminHeader($tab, $subtab = NULL) {
 							<img src="images/folder.png" alt="" />
 							<strong><?php echo gettext('New subalbum'); ?></strong>
 						</button>
-						<?php
+					<?php if(!$album->isDynamic()) { ?>
+         <button type="button" title="<?php echo addslashes(gettext('New dynamic subalbum')); ?>" onclick="javascript:newDynAlbum('<?php echo pathurlencode($album->name); ?>', false);">
+           <img src="images/folder.png" alt="" />
+											<strong><?php echo gettext('New dynamic subalbum'); ?></strong>
+								 </button>
+       <?php 
+      } 
 					}
 					?>
 					<a href="<?php echo WEBPATH . "/index.php?album=" . html_encode(pathurlencode($album->getFileName())); ?>">
@@ -1974,12 +1992,12 @@ function printAdminHeader($tab, $subtab = NULL) {
 	function printAlbumButtons($album) {
 		if ($imagcount = $album->getNumImages() > 0) {
 			?>
-			<div class="button buttons tooltip" title="<?php echo addslashes(gettext("Clears the album’s cached images.")); ?>">
+			<div class="button buttons tooltip" title="<?php echo addslashes(gettext("Clears the albumâ€™s cached images.")); ?>">
 				<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?action=clear_cache&amp;album=' . html_encode($album->name); ?>&amp;XSRFToken=<?php echo getXSRFToken('clear_cache'); ?>">
 					<img src="images/edit-delete.png" /><?php echo gettext('Clear album image cache'); ?></a>
 				<br class="clearall" />
 			</div>
-			<div class="button buttons tooltip" title="<?php echo gettext("Resets album’s hit counters."); ?>">
+			<div class="button buttons tooltip" title="<?php echo gettext("Resets albumâ€™s hit counters."); ?>">
 				<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?action=reset_hitcounters&amp;album=' . html_encode($album->name) . '&amp;albumid=' . $album->getID(); ?>&amp;XSRFToken=<?php echo getXSRFToken('hitcounter'); ?>">
 					<img src="images/reset.png" /><?php echo gettext('Reset album hit counters'); ?></a>
 				<br class="clearall" />
@@ -2926,12 +2944,12 @@ function adminPageNav($pagenum, $totalpages, $adminpage, $parms, $tab = '') {
 
 		// If the target theme already exists, nothing to do.
 		if (is_dir($target)) {
-			return gettext('Cannot create new theme.') . ' ' . sprintf(gettext('Directory “%s” already exists!'), basename($target));
+			return gettext('Cannot create new theme.') . ' ' . sprintf(gettext('Directory â€œ%sâ€ already exists!'), basename($target));
 		}
 
 		// If source dir is missing, exit too
 		if (!is_dir($source)) {
-			return gettext('Cannot create new theme.') . ' ' . sprintf(gettext('Cannot find theme directory “%s” to copy!'), basename($source));
+			return gettext('Cannot create new theme.') . ' ' . sprintf(gettext('Cannot find theme directory â€œ%sâ€ to copy!'), basename($source));
 		}
 
 		// We must be able to write to the themes dir.
@@ -2973,7 +2991,7 @@ function adminPageNav($pagenum, $totalpages, $adminpage, $parms, $tab = '') {
 		foreach ($source_files as $file) {
 			$newfile = str_replace($source, $target, $file);
 			if (!copy("$file", "$newfile"))
-				return sprintf(gettext("An error occurred while copying files. Please delete manually the new theme directory “%s” and retry or copy files manually."), basename($target));
+				return sprintf(gettext("An error occurred while copying files. Please delete manually the new theme directory â€œ%sâ€ and retry or copy files manually."), basename($target));
 			@chmod("$newfile", FOLDER_MOD);
 		}
 
@@ -3564,41 +3582,6 @@ function postAlbumSort($parentid) {
     return true;
   }
   return false;
-}
-
-/**
- * generates a nested list of albums for the album tab sorting
- * Returns an array of "albums" each element contains:
- * 								'name' which is the folder name
- * 								'album' which is an album object for the album
- * 								'sort_order' which is an array of the sort order set
- *
- * @param $subalbum root level album (NULL is the gallery)
- * @param $levels how far to nest
- * @param $level internal for keeping the sort order elements
- * @return array
- */
-function getNestedAlbumList($subalbum, $levels, $level = array()) {
-	global $_zp_gallery;
-	$cur = count($level);
-	$levels--; // make it 0 relative to sync with $cur
-	if (is_null($subalbum)) {
-		$albums = $_zp_gallery->getAlbums();
-	} else {
-		$albums = $subalbum->getAlbums();
-	}
-	$list = array();
-	foreach ($albums as $analbum) {
-		$albumobj = newAlbum($analbum);
-		if (!is_null($subalbum) || $albumobj->isMyItem(ALBUM_RIGHTS)) {
-			$level[$cur] = sprintf('%03u', $albumobj->getSortOrder());
-			$list[] = array('name' => $analbum, 'sort_order' => $level);
-			if ($cur < $levels && ($albumobj->getNumAlbums()) && !$albumobj->isDynamic()) {
-				$list = array_merge($list, getNestedAlbumList($albumobj, $levels + 1, $level));
-			}
-		}
-	}
-	return $list;
 }
 
 /**
@@ -4305,7 +4288,7 @@ function XSRFdefender($action) {
 		zp_apply_filter('admin_XSRF_access', false, $action);
 		header("HTTP/1.0 302 Found");
 		header("Status: 302 Found");
-		header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=external&error&msg=' . sprintf(gettext('“%s” Cross Site Request Forgery blocked.'), $action));
+		header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=external&error&msg=' . sprintf(gettext('â€œ%sâ€ Cross Site Request Forgery blocked.'), $action));
 		exitZP();
 	}
 	unset($_REQUEST['XSRFToken']);
@@ -4424,7 +4407,7 @@ function getPageSelector($list, $itmes_per_page, $diff = 'fullText') {
 		$last = '';
 		foreach ($ranges as $page => $range) {
 			$next = @$ranges[$page + 1]['start'];
-			$rangeset[$page] = $diff($last, $range['start']) . ' » ' . $diff($next, $range['end']);
+			$rangeset[$page] = $diff($last, $range['start']) . ' Â» ' . $diff($next, $range['end']);
 			$last = $range['end'];
 		}
 	}
@@ -4442,7 +4425,7 @@ function printPageSelector($subpage, $rangeset, $script, $queryParams) {
 	$query = '?' . $query;
 	if ($subpage > 0) {
 		?>
-		<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . $script . $query; ?>subpage=<?php echo ($subpage - 1); ?>" >« <?php echo gettext('prev'); ?></a>
+		<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . $script . $query; ?>subpage=<?php echo ($subpage - 1); ?>" >Â« <?php echo gettext('prev'); ?></a>
 		<?php
 	}
 	if ($pages > 2) {
@@ -4470,7 +4453,7 @@ function printPageSelector($subpage, $rangeset, $script, $queryParams) {
 			|
 		<?php }
 		?>
-		<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . $script . $query; ?>subpage=<?php echo ($subpage + 1); ?>" ><?php echo gettext('next'); ?> »</a>
+		<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . $script . $query; ?>subpage=<?php echo ($subpage + 1); ?>" ><?php echo gettext('next'); ?> Â»</a>
 		<?php
 	}
 	$instances++;
@@ -4878,4 +4861,20 @@ function clonedFrom() {
 		return dirname($zen);
 	}
 }
+
+/**
+ * Make sure the albumimagesort is only an allowed value. Otherwise returns nothing.
+ * @global array $_zp_sortby
+ * @param string $val
+ * @return string
+ */
+function checkAlbumimagesort($val) {
+  global $_zp_sortby;
+  foreach ($_zp_sortby as $sort) {
+    if ($val == $sort || $val == $sort . '_desc') {
+      return $val;
+    }
+  }
+}
+
 ?>

@@ -26,7 +26,7 @@ if (!defined('WEBPATH'))
 				</h2>
 			</div>
 			<div id="padbox">
-				<?php printPasswordForm($hint, $show, false); ?>
+				<?php printPasswordForm('', true, false); ?>
 			</div>
 		</div>
 		<div id="credit">

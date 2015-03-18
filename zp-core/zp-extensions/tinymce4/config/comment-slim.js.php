@@ -11,7 +11,7 @@ global $_zp_RTL_css;
 <script type="text/javascript">
 // <!-- <![CDATA[
 	tinymce.init({
-		selector: "textarea.textarea_inputbox",
+		selector: "textarea.textarea_inputbox,textarea.texteditor_comments",
 		language: "<?php echo $locale; ?>",
 		directionality: "<?php echo $_zp_RTL_css ? 'rtl' : 'ltr'; ?>",
 		menubar: false,

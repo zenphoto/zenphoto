@@ -175,7 +175,7 @@ if (!$plugin_disable && !OFFSET_PATH && getOption('jcarousel_' . $_zp_gallery->g
 			if (count($jcarousel_items) >= 2) {
 				foreach ($jcarousel_items as $item) {
 					if (is_array($item)) {
-						$imgobj = newImage(newAlbum($item['folder']), $item['filename']);
+						$imgobj = newImage($_zp_current_album, $item['filename']);
 					} else {
 						$imgobj = newImage($_zp_current_album, $item);
 					}

@@ -1363,6 +1363,9 @@ class Album extends AlbumBase {
 			}
 			@chmod($this->localpath, 0777);
 			$rslt = @rmdir($this->localpath) && $success;
+   $cachepath = SERVERCACHE.'/'.pathurlencode($this->name).'/';
+   @chmod($cachepath, 0777);
+   @rmdir($cachepath);
 		}
 		clearstatcache();
 		return $rslt;

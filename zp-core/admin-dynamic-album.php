@@ -79,6 +79,7 @@ if (isset($_POST['savealbum'])) {
 			}
 		}
 		$words = sanitize($_POST['words']);
+  
 	}
 	if (isset($_POST['thumb'])) {
 		$thumb = sanitize($_POST['thumb']);
@@ -120,7 +121,8 @@ if (isset($_POST['savealbum'])) { // we fell through, some kind of error
 $albumlist = array();
 genAlbumList($albumlist);
 $fields = $search->fieldList;
-$albumname = $words = $search->codifySearchString();
+$albumname = $search->getSearchWords();
+$words = $search->codifySearchString();
 $images = $search->getImages(0);
 foreach ($images as $image) {
 	$folder = $image['folder'];
@@ -156,9 +158,13 @@ while ($old != $albumname) {
 					<?php
 					if (accessAllAlbums(UPLOAD_RIGHTS)) {
 						?>
-						<option value="" selected="selected" style="font-weight: bold;">/</option>
+						<option value="" style="font-weight: bold;">/</option>
 						<?php
 					}
+     $parentalbum = '';
+    	if(isset($_GET['folder'])) {
+     		$parentalbum = sanitize($_GET['folder']);
+     }
 					$bglevels = array('#fff', '#f8f8f8', '#efefef', '#e8e8e8', '#dfdfdf', '#d8d8d8', '#cfcfcf', '#c8c8c8');
 					foreach ($albumlist as $fullfolder => $albumtitle) {
 						$singlefolder = $fullfolder;
@@ -170,8 +176,11 @@ while ($old != $albumname) {
 							$saprefix = "&nbsp; &nbsp;&raquo;&nbsp;" . $saprefix;
 							$salevel++;
 						}
-						echo '<option value="' . $fullfolder . '"' . ($salevel > 0 ? ' style="background-color: ' . $bglevels[$salevel] . '; border-bottom: 1px dotted #ccc;"' : '')
-						. ">" . $saprefix . $singlefolder . " (" . $albumtitle . ')' . "</option>\n";
+      $selected = '';
+      if($parentalbum == $fullfolder) {
+        $selected = ' selected="selected"';
+      }
+						echo '<option value="' . $fullfolder . '"'.$selected.'>' . $saprefix . $singlefolder . ' (' . $albumtitle .')' . '</option>\n';
 					}
 					?>
 				</select>

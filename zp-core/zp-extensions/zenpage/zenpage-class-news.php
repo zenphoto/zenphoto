@@ -316,10 +316,13 @@ class ZenpageNews extends ZenpageItems {
   * @param bool $sticky If sticky article should come first
 	 * @return int
 	 */
-	function getIndex($sortorder, $sortdirection, $sticky) {
+	function getIndex() {
 		global $_zp_zenpage, $_zp_current_zenpage_news;
+  if (func_num_args() != 0) {
+    Zenpage_internal_deprecations::getIndex();
+  }
 		if ($this->index == NULL) {
-			$articles = $_zp_zenpage->getArticles(0, NULL, true, $sortorder, $sortdirection, $sticky);
+			$articles = $_zp_zenpage->getArticles(0, NULL, true);
 			for ($i = 0; $i < count($articles); $i++) {
 				$article = $articles[$i];
 				if ($this->getTitlelink() == $article['titlelink']) {
@@ -334,16 +337,16 @@ class ZenpageNews extends ZenpageItems {
 	/**
 	 * Return the previous article
   *
-  * @param string $sortorder
-	 * @param bool $sortdirection TRUE for ascending, FALSE for descending
-  * @param bool $sticky If sticky article should come first
 	 * @return object
 	 */
 
 
-	function getPrevArticle($sortorder = 'date', $sortdirection = false, $sticky = true) {
+	function getPrevArticle() {
 		global $_zp_zenpage, $_zp_current_zenpage_news;
-		$index = $this->getIndex($sortorder, $sortdirection, $sticky);
+  if (func_num_args() != 0) {
+    Zenpage_internal_deprecations::getPrevArticle();
+  }
+		$index = $this->getIndex();
 		$article = $_zp_zenpage->getArticle($index - 1);
 		return $article;
 	}
@@ -351,14 +354,14 @@ class ZenpageNews extends ZenpageItems {
 	/**
 	 * Returns the next article.
   *
-	 * @param string $sortorder
-	 * @param bool $sortdirection TRUE for ascending, FALSE for descending
-  * @param bool $sticky If sticky article should come first
 	 * @return object
 	 */
-	function getNextArticle($sortorder = 'date', $sortdirection = false, $sticky = true) {
+	function getNextArticle() {
 		global $_zp_zenpage, $_zp_current_zenpage_news;
-		$index = $this->getIndex($sortorder, $sortdirection, $sticky);
+  if (func_num_args() != 0) {
+    Zenpage_internal_deprecations::getNextArticle();
+  }
+		$index = $this->getIndex();
 		$article = $_zp_zenpage->getArticle($index + 1);
 		return $article;
 	}

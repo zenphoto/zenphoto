@@ -394,8 +394,7 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	 * @return Imagick
 	 */
 	function zp_rotateImage($im, $rotate) {
-		$im->rotateImage('none', 360 - $rotate); // GD rotates CCW, Imagick rotates CW
-
+		$im->rotateImage('none', 360 - $rotate);
 		return $im;
 	}
 

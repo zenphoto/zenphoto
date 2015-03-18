@@ -532,7 +532,7 @@ function printDownloadURL($file, $linktext = NULL) {
 	} else {
 		$filename = $linktext;
 	}
-	echo '<a href="' . html_encode(getDownloadURL($file)) . '" rel="nofollow">' . html_encode($filename) . '</a><small>' . $filesize . '</small>';
+	echo '<a href="' . html_encode(getDownloadURL($file)) . '" rel="nofollow" class="downloadlist_link">' . html_encode($filename) . '</a><small>' . $filesize . '</small>';
 }
 
 /**
@@ -578,7 +578,7 @@ function printDownloadAlbumZipURL($linktext = NULL, $albumobj = NULL, $fromcache
 			$query['fromcache'] = 'true';
 		}
 		$link = FULLWEBPATH . '/' . preg_replace('~^' . WEBPATH . '/~', '', $request['path']) . '?' . http_build_query($query);
-		echo '<a href="' . html_encode($link) . '" rel="nofollow">' . html_encode($file) . '</a>' . $filesize;
+		echo '<a href="' . html_encode($link) . '" rel="nofollow" class="downloadlist_link">' . html_encode($file) . '</a>' . $filesize;
 	}
 }
 

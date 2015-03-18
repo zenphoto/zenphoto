@@ -30,7 +30,7 @@ if (!defined('WEBPATH'))
 				<div id="content-error">
 
 					<div class="errorbox">
-						<?php printPasswordForm($hint, $show); ?>
+						<?php printPasswordForm('', true, false); ?>
 					</div>
 
 					<?php

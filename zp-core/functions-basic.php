@@ -341,13 +341,14 @@ function getOption($key) {
  *
  * @param string $key name of the option.
  * @param mixed $value new value of the option.
- * @param bool $persistent set to false if the option is stored in memory only
- * otherwise it is preserved in the database
+ * @param bool $persistent set to false if the option is stored in memory only. Otherwise it is preserved in the database
+ * @param string $creator name of the creator the option belongs to. Normally NULL for backend core options. 
+ *               "zp-core/zp-extensions/<plugin>.php" for official plugin and /plugins/<plugin>.php for user plugin options
  */
-function setOption($key, $value, $persistent = true) {
+function setOption($key, $value, $persistent = true, $creator = NULL) {
 	global $_zp_options;
 	if ($persistent) {
-		$sql = 'INSERT INTO ' . prefix('options') . ' (`name`,`ownerid`,`theme`,`value`) VALUES (' . db_quote($key) . ',0,"",';
+		$sql = 'INSERT INTO ' . prefix('options') . ' (`name`,`ownerid`,`theme`,`value`,`creator`) VALUES (' . db_quote($key) . ',0,"",';
 		$sqlu = ' ON DUPLICATE KEY UPDATE `value`=';
 		if (is_null($value)) {
 			$sql .= 'NULL';
@@ -356,6 +357,13 @@ function setOption($key, $value, $persistent = true) {
 			$sql .= db_quote($value);
 			$sqlu .= db_quote($value);
 		}
+  
+  if (is_null($creator)) {
+			$sql .= ',NULL';
+		} else {
+			$sql .= ','.db_quote($creator);
+		}
+  
 		$sql .= ') ' . $sqlu;
 		$result = query($sql, false);
 	} else {

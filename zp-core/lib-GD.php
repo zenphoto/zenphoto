@@ -340,7 +340,7 @@ if (!function_exists('zp_graphicsLibInfo')) {
 		 * @return resource
 		 */
 		function zp_rotateImage($im, $rotate) {
-			$newim_rot = imagerotate($im, 360-$rotate, 0);//The GD Library rotates counterclockwise !
+			$newim_rot = imagerotate($im, $rotate, 0);
 			imagedestroy($im);
 			return $newim_rot;
 		}

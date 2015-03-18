@@ -39,7 +39,7 @@ if (!defined('WEBPATH'))
 		<div id="content">
 			<small>&nbsp;</small>
 			<div id="main">
-				<?php printPasswordForm($hint, $show, false); ?>
+				<?php printPasswordForm('', true, false); ?>
 			</div>
 		</div>
 
