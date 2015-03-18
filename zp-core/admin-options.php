@@ -1296,7 +1296,9 @@ Zenphoto_Authority::printPasswordFormJS();
 												<td colspan="2">
 													<span id="customTextBox2" class="customText" style="display:<?php echo $dspc; ?>">
 														<?php echo gettext('custom fields:') ?>
-														<input id="customalbumsort" name="customalbumsort" type="text" value="<?php echo html_encode($cvt); ?>" />
+														<span class="tagSuggestContainer">
+															<input id="customalbumsort" name="customalbumsort" type="text" value="<?php echo html_encode($cvt); ?>" />
+														</span>
 													</span>
 												</td>
 											</tr>
@@ -1680,7 +1682,9 @@ Zenphoto_Authority::printPasswordFormJS();
 										<span id="album_custom_div" class="customText" style="display:<?php echo $dsp; ?>;white-space:nowrap;">
 											<br />
 											<?php echo gettext('custom fields:') ?>
-											<input id="customalbumsort" class="customalbumsort" name="customalbumsort" type="text" value="<?php echo html_encode($cvt); ?>" />
+											<span class="tagSuggestContainer">
+												<input id="customalbumsort" class="customalbumsort" name="customalbumsort" type="text" value="<?php echo html_encode($cvt); ?>" />
+											</span>
 										</span>
 									</td>
 
@@ -1729,7 +1733,9 @@ Zenphoto_Authority::printPasswordFormJS();
 										<span id="image_custom_div" class="customText" style="display:<?php echo $dsp; ?>;white-space:nowrap;">
 											<br />
 											<?php echo gettext('custom fields:') ?>
-											<input id="customimagesort" class="customimagesort" name="customimagesort" type="text" value="<?php echo html_encode($cvt); ?>" />
+											<span class="tagSuggestContainer">
+												<input id="customimagesort" class="customimagesort" name="customimagesort" type="text" value="<?php echo html_encode($cvt); ?>" />
+											</span>
 										</span>
 									</td>
 
@@ -1817,7 +1823,9 @@ Zenphoto_Authority::printPasswordFormJS();
 										<span id="customTextBox3" class="customText" style="display:<?php echo $dspc; ?>">
 											<br />
 											<?php echo gettext('custom fields:') ?>
-											<input id="customimagesort" name="customimagesort" type="text" value="<?php echo html_encode($cvt); ?>" />
+											<span class="tagSuggestContainer">
+												<input id="customimagesort" name="customimagesort" type="text" value="<?php echo html_encode($cvt); ?>" />
+											</span>
 										</span>
 
 									</td>

@@ -6,6 +6,8 @@ span.tagMatches {
 	text-align: left;
 	overflow: auto;
 	border: 0;
+	top: 19px;
+	left: 0;
 } 
     
 span.tagMatches span { 
@@ -17,4 +19,8 @@ span.tagMatches span {
 
 ._tag_suggestion {
 	float: left; 
+}
+
+.tagSuggestContainer {
+	position: relative;
 }
