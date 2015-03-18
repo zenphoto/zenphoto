@@ -175,6 +175,7 @@ class galleryArticles {
    */
   private static function publishArticle($obj, $override = NULL) {
     global $_zp_zenpage;
+    $galleryitem_text = array();
     switch ($type = $obj->table) {
       case 'albums':
         if (getOption('multi_lingual')) {
