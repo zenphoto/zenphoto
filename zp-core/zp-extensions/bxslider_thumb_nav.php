@@ -10,7 +10,7 @@
  *
  * @author Malte Müller (acrylian), Stephen Billard (sbillard), Fred Sondaar (fretzl)
  * @package plugins
- * @subpackage media
+ * @subpackage theme
  */
 $plugin_description = gettext("Responsive jQuery bxSlider thumb nav plugin based on <a href='http://bxslider.com'>http://bxslider.com</a>");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard), Fred Sondaar (fretzl)";
@@ -74,6 +74,7 @@ class bxslider {
 										'desc'			 => gettext("The mode of the thumb nav. Note this might require theme changes."),
 										'order'			 => 9)
 		);
+
 		foreach (getThemeFiles(array('404.php', 'themeoptions.php', 'theme_description.php', 'functions.php', 'password.php', 'sidebar.php', 'register.php', 'contact.php')) as $theme => $scripts) {
 			$list = array();
 			foreach ($scripts as $script) {
@@ -185,11 +186,7 @@ if (!$plugin_disable && !OFFSET_PATH && getOption('bxslider_' . $_zp_gallery->ge
 			}
 			if (count($bxslider_items) >= 2) {
 				foreach ($bxslider_items as $item) {
-					if (is_array($item)) {
-						$imgobj = newImage($_zp_current_album, $item['filename']);
-					} else {
-						$imgobj = newImage($_zp_current_album, $item);
-					}
+					$imgobj = newImage($_zp_current_album, $item);
 					if ($fullimagelink) {
 						$link = $imgobj->getFullImageURL();
 					} else {
