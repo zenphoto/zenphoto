@@ -289,8 +289,12 @@ class pagedThumbsNav {
 			if ($this->currentpage < $this->totalpages) {
 				$nextpageimagenr = $this->currentpage * $this->imagesperpage;
 				if (is_array($this->images[$nextpageimagenr])) {
-					//$albumobj = newAlbum($this->images[$nextpageimagenr]['folder']);
-					$this->nextpageimage = newImage($_zp_current_album, $this->images[$nextpageimagenr]['filename']);
+					if (in_context(ZP_SEARCH_LINKED)) {
+						$albumobj = newAlbum($this->images[$nextpageimagenr]['folder']);
+					} else {
+						$albumobj = $_zp_current_album;
+					}
+					$this->nextpageimage = newImage($albumobj, $this->images[$nextpageimagenr]['filename']);
 				} else {
 					$this->nextpageimage = newImage($_zp_current_album, $this->images[$nextpageimagenr]);
 				}

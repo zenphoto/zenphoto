@@ -190,7 +190,12 @@ if (!$plugin_disable && !OFFSET_PATH && getOption('bxslider_' . $_zp_gallery->ge
 			if (count($bxslider_items) >= 2) {
 				foreach ($bxslider_items as $item) {
 					if (is_array($item)) {
-						$imgobj = newImage($_zp_current_album, $item['filename']);
+						if (in_context(ZP_SEARCH_LINKED)) {
+							$albumobj = newAlbum($item['folder']);
+						} else {
+							$albumobj = $_zp_current_album;
+						}
+						$imgobj = newImage($albumobj, $item['filename']);
 					} else {
 						$imgobj = newImage($_zp_current_album, $item);
 					}
