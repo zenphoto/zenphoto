@@ -4167,7 +4167,7 @@ function printPasswordForm($_password_hint, $_password_showuser = NULL, $_passwo
 			$query = array();
 		}
 		$query['userlog'] = 1;
-		if ($_zp_gallery_page == 'password.php') {
+		if (isset($_GET['p']) && $_GET['p'] == 'password') {
 			// redirecting here would be terribly confusing
 			unset($query['p']);
 			$parts['path'] = SEO_WEBPATH;
