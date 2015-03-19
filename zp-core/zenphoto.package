@@ -923,7 +923,6 @@ plugins/cacheHeader.php
 plugins/cookieInvalidator.php
 plugins/create_album.php
 plugins/customFieldExtender.php
-plugins/customFieldExtenderWerk.php
 plugins/disableAction.php
 plugins/disableWatermark.php
 plugins/filter-fileSearches.php
@@ -2322,4 +2321,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-2324
+2323
