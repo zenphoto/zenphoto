@@ -1230,7 +1230,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 				<a onclick="addNewTag('<?php echo $postit; ?>');" title="<?php echo gettext('add tag'); ?>">
 					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" title="<?php echo gettext('add tag'); ?>"/>
 				</a>
-				<input class="tagsuggest <?php echo $class; ?>" type="text" value="" name="newtag_<?php echo $postit; ?>" id="newtag_<?php echo $postit; ?>" />
 				<span class="tagSuggestContainer">
 					<input class="tagsuggest <?php echo $class; ?> " type="text" value="" name="newtag_<?php echo $postit; ?>" id="newtag_<?php echo $postit; ?>" />
 				</span>
