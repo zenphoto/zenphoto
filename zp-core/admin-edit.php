@@ -670,7 +670,12 @@ echo "\n</head>";
 				} else {
 					$link = '';
 				}
-				$alb = removeParentAlbumNames($album);
+
+				if ( isset($_GET['singleimage']) ) {
+					$alb = "<a href='" . WEBPATH . '/' . ZENFOLDER . "/admin-edit.php?page=edit&amp;album=" . html_encode(pathurlencode($album->name)) . "&tab=imageinfo'>" . removeParentAlbumNames($album) . "</a>";
+				} else {
+					$alb = removeParentAlbumNames($album);
+				}
 				?>
 				<h1><?php printf(gettext('Edit Album: <em>%1$s%2$s</em>'), $link, $alb); ?></h1>
 				<?php
