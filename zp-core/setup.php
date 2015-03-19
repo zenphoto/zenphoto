@@ -6,11 +6,18 @@
  *
  * @package admin
  */
-define('OFFSET_PATH', 2);
+define('OFFSET_PATH', 1);
 require_once(dirname(__FILE__) . '/admin-globals.php');
 require_once(dirname(__FILE__) . '/reconfigure.php');
 
-list($diff, $needs) = checkSignature(isset($_GET['xsrfToken']) && $_GET['xsrfToken'] == getXSRFToken('setup'));
+admin_securityChecks(ADMIN_RIGHTS, $return = currentRelativeURL());
+
+if (isset($_GET['xsrfToken']) && $_GET['xsrfToken'] == getXSRFToken('setup')) {
+	$must = 5;
+} else {
+	$must = 0;
+}
+list($diff, $needs) = checkSignature($must);
 
 if (empty($needs)) {
 	header('Location: setup/index.php');
@@ -26,8 +33,11 @@ if (empty($needs)) {
 			<?php reconfigureCS(); ?>
 		</head>
 		<body>
+			<?php printLogoAndLinks(); ?>
 			<div id="main">
+				<?php printTabs(); ?>
 				<div id="content">
+					<h1><?php echo gettext('Setup request'); ?></h1>
 					<div class="tabbox">
 						<p>
 							<?php
