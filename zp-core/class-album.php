@@ -916,7 +916,12 @@ class AlbumBase extends MediaObject {
 	 * @return string
 	 */
 	function getAlbumTheme() {
-		return $this->get('album_theme');
+		global $_zp_gallery;
+		if (in_context(ZP_SEARCH_LINKED)) {
+			return $_zp_gallery->getCurrentTheme();
+		} else {
+			return $this->get('album_theme');
+		}
 	}
 
 	/**
