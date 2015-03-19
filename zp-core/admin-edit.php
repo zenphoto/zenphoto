@@ -652,13 +652,22 @@ echo "\n</head>";
       $images = array_slice($allimages, ($pagenum - 1) * $imagesTab_imageCount, $imagesTab_imageCount);
     }
 				$totalimages = count($images);
-
-				$parent = dirname($album->name);
+    
+    if ( isset($_GET['singleimage']) ) {
+      $parent = $album->name;
+    } else {
+      $parent = dirname($album->name);
+    }
 				if (($parent == '/') || ($parent == '.') || empty($parent)) {
-					$parent = '';
+      $parent = '';
 				} else {
-					$parent = "&amp;album=" . pathurlencode($parent);
+      $parent = "&amp;album=" . pathurlencode($parent);
 				}
+    
+    if ( isset($_GET['singleimage']) ) {
+      $parent .= '&amp;tab=imageinfo&amp;subpage='.$pagenum;
+    } 
+    
 				if (isset($_GET['metadata_refresh'])) {
 					echo '<div class="messagebox fade-message">';
 					echo "<h2>" . gettext("Image metadata refreshed.") . "</h2>";
@@ -670,12 +679,7 @@ echo "\n</head>";
 				} else {
 					$link = '';
 				}
-
-				if ( isset($_GET['singleimage']) ) {
-					$alb = "<a href='" . WEBPATH . '/' . ZENFOLDER . "/admin-edit.php?page=edit&amp;album=" . html_encode(pathurlencode($album->name)) . "&tab=imageinfo'>" . removeParentAlbumNames($album) . "</a>";
-				} else {
-					$alb = removeParentAlbumNames($album);
-				}
+				$alb = removeParentAlbumNames($album);
 				?>
 				<h1><?php printf(gettext('Edit Album: <em>%1$s%2$s</em>'), $link, $alb); ?></h1>
 				<?php
