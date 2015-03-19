@@ -230,7 +230,12 @@ class pagedThumbsNav {
 		$thumbs = array();
 		foreach ($curimages as $item) {
 			if (is_array($item)) {
-				$thumbs[] = newImage($_zp_current_album, $item['filename']);
+				if (in_context(ZP_SEARCH_LINKED)) {
+					$albumobj = newAlbum($item['folder']);
+				} else {
+					$albumobj = $_zp_current_album;
+				}
+				$thumbs[] = newImage($albumobj, $item['filename']);
 			} else {
 				$thumbs[] = newImage($_zp_current_album, $item);
 			}
