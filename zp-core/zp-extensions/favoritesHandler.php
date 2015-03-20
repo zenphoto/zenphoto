@@ -241,45 +241,47 @@ class favoritesHandler {
 	}
 
 	static function showWatchers($html, $obj, $prefix) {
-		$watchers = favorites::getWatchers($obj);
-		$multi = false;
-		foreach ($watchers as $key => $aux) {
-			$array = getSerializedArray($aux);
-			if (array_key_exists(1, $array)) {
-				$multi = true;
-				break;
+		if (!trim($prefix, '-')) {
+			//	only on single item tabs
+			$watchers = favorites::getWatchers($obj);
+			$multi = false;
+			foreach ($watchers as $key => $aux) {
+				$array = getSerializedArray($aux);
+				if (array_key_exists(1, $array)) {
+					$multi = true;
+					break;
+				}
 			}
-		}
-
-		if (!empty($watchers)) {
-			?>
-			<tr>
-				<td>
-					<?php echo gettext('Users watching:'); ?>
-				</td>
-				<td class="top">
-					<?php
-					if ($multi) {
-						?>
-						<dl class="userlist">
-							<dh>
-								<dt><em><?php echo gettext('User'); ?></em></dt>
-								<dd><em><?php echo gettext('instance'); ?></em></dd>
-							</dh>
-							<?php favorites::listWatchers($obj, array('<dt>', '</dt><dd>', '</dd>')); ?>
-						</dl>
+			if (!empty($watchers)) {
+				?>
+				<tr>
+					<td>
+						<?php echo gettext('Users watching:'); ?>
+					</td>
+					<td class="top">
 						<?php
-					} else {
+						if ($multi) {
+							?>
+							<dl class="userlist">
+								<dh>
+									<dt><em><?php echo gettext('User'); ?></em></dt>
+									<dd><em><?php echo gettext('instance'); ?></em></dd>
+								</dh>
+								<?php favorites::listWatchers($obj, array('<dt>', '</dt><dd>', '</dd>')); ?>
+							</dl>
+							<?php
+						} else {
+							?>
+							<ul class="userlist">
+								<?php favorites::listWatchers($obj, array('<li>', '', '</li>')); ?>
+							</ul>
+							<?php
+						}
 						?>
-						<ul class="userlist">
-							<?php favorites::listWatchers($obj, array('<li>', '', '</li>')); ?>
-						</ul>
-						<?php
-					}
-					?>
-				</td>
-			</tr>
-			<?php
+					</td>
+				</tr>
+				<?php
+			}
 		}
 		return $html;
 	}
