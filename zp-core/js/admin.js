@@ -286,7 +286,7 @@ function toggleWMUse(id) {
 	}
 }
 
-String.prototype.replaceAll = function(stringToFind, stringToReplace) {
+String.prototype.replaceAll = function (stringToFind, stringToReplace) {
 	var temp = this;
 	var index = temp.indexOf(stringToFind);
 	while (index != -1) {
@@ -315,6 +315,15 @@ function bin2hex(s) {
 	return o;
 }
 
+/**
+ * Used to change an additive tag posting to a set only provided tags one
+ * @param string id
+ */
+function clearOldTags(id) {
+	$('#existing_tags_' + id).html('');
+	$('#additive_' + id).val('0');
+}
+
 function addNewTag(id) {
 	var tag;
 	tag = $('#newtag_' + id).val();
@@ -327,5 +336,9 @@ function addNewTag(id) {
 		html = '<li id="' + name + '_element"><label class="displayinline"><input id="' + name + '" name="' + name +
 						'" type="checkbox" checked="checked" value="1" />' + tag + '</label></li>';
 		$('#list_' + id).prepend(html);
+		if ($('#resizable_' + id).height() < '120') {
+			$('#resizable_' + id).height('120');
+			$('#list_' + id).height('120');
+		}
 	}
 }

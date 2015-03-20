@@ -14,7 +14,7 @@
 function reconfigureAction($mandatory) {
 	list($diff, $needs) = checkSignature($mandatory);
 	$diffkeys = array_keys($diff);
-	if ($mandatory || in_array('ZENPHOTO', $diffkeys) || in_array('FOLDER', $diffkeys)) {
+	if ($mandatory || in_array('CONFIGURATION', $diffkeys) || in_array('ZENPHOTO', $diffkeys) || in_array('FOLDER', $diffkeys)) {
 		if (isset($_GET['rss']) || isset($_GET['external'])) {
 			if (isset($_GET['rss']) && file_exists(SERVERPATH . '/' . DATA_FOLDER . '/rss-closed.xml')) {
 				$xml = file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/rss-closed.xml');
@@ -39,6 +39,8 @@ function reconfigureAction($mandatory) {
 			header("Location: $location");
 			exitZP();
 		} else {
+			global $subtabs, $zenphoto_tabs, $main_tab_space, $_zp_admin_tab;
+			require_once(SERVERPATH . '/' . ZENFOLDER . '/admin-globals.php');
 			header('Last-Modified: ' . ZP_LAST_MODIFIED);
 			header('Content-Type: text/html; charset=UTF-8');
 			?>
@@ -50,8 +52,11 @@ function reconfigureAction($mandatory) {
 					<?php reconfigureCS(); ?>
 				</head>
 				<body>
+					<?php printLogoAndLinks(); ?>
 					<div id="main">
+						<?php printTabs(); ?>
 						<div id="content">
+							<h1><?php echo gettext('Setup request'); ?></h1>
 							<div class="tabbox">
 								<?php reconfigurePage($diff, $needs, $mandatory); ?>
 							</div>
@@ -83,13 +88,17 @@ function checkSignature($mandatory) {
 	if (function_exists('query_full_array') && $_zp_DB_connection) {
 		$old = @unserialize(getOption('zenphoto_install'));
 		$new = installSignature();
+		if (!is_array($old)) {
+			$new = array();
+			$old = array('CONFIGURATION' => true);
+		}
 	} else {
-		$old = NULL;
 		$new = array();
+		$old = array('CONFIGURATION' => true);
+		if (!$mandatory)
+			$mandatory = 6;
 	}
-	if (!is_array($old)) {
-		$old = array('ZENPHOTO' => gettext('an unknown release'));
-	}
+
 	$diff = array();
 	$keys = array_unique(array_merge(array_keys($new), array_keys($old)));
 	foreach ($keys as $key) {
@@ -115,6 +124,7 @@ function checkSignature($mandatory) {
 				case 2:
 				case 3:
 				case 5:
+				case 6:
 					$addl = sprintf(gettext('restored to run setup [%s]'), $mandatory);
 					break;
 				case 4:
@@ -214,6 +224,9 @@ function reconfigurePage($diff, $needs, $mandatory) {
 							break;
 						case 'FOLDER':
 							echo '<li>' . sprintf(gettext('Your installation has moved from %1$s to %2$s.'), $rslt['old'], $rslt['new']) . '</li>';
+							break;
+						case 'CONFIGURATION':
+							echo '<li>' . gettext('Your installation configuration is damaged.') . '</li>';
 							break;
 						case 'REQUESTS':
 							if (!empty($rslt)) {

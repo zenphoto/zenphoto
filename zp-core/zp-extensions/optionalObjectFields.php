@@ -48,6 +48,7 @@ class optionalObjectFields extends fieldExtender {
 						array('table' => 'albums', 'name' => 'owner', 'desc' => gettext('Owner'), 'type' => 'varchar', 'size' => 64, 'edit' => 'function', 'function' => 'optionalObjectFields::owner', 'default' => 'NULL'),
 						array('table' => 'albums', 'name' => 'date', 'desc' => gettext('Date'), 'type' => 'datetime', 'edit' => 'function', 'function' => 'optionalObjectFields::date'),
 						array('table' => 'albums', 'name' => 'location', 'desc' => gettext('Location'), 'type' => 'text', 'edit' => 'multilingual'),
+						array('table' => 'albums', 'name' => 'tags', 'desc' => gettext('Tags'), 'type' => NULL, 'edit' => 'function', 'function' => 'optionalObjectFields::tags'),
 						array('table' => 'albums', 'name' => 'codeblocks', 'desc' => gettext('Codeblocks'), 'type' => NULL, 'edit' => 'function', 'function' => 'optionalObjectFields::codeblocks'),
 						/*
 						 * image fields
@@ -107,7 +108,12 @@ class optionalObjectFields extends fieldExtender {
 	}
 
 	static function mediaItemEdit($html, $object, $i) {
-		return parent::_mediaItemEdit($html, $object, $i, self::fields());
+		if ($i) {
+			//	only tags on bulk edit tabs
+			return parent::_mediaItemEdit($html, $object, $i, array(array('table' => $object->table, 'name' => 'tags', 'desc' => gettext('Tags'), 'type' => NULL, 'edit' => 'function', 'function' => 'optionalObjectFields::tags')));
+		} else {
+			return parent::_mediaItemEdit($html, $object, $i, self::fields());
+		}
 	}
 
 	static function cmsItemSave($custom, $object) {
@@ -145,11 +151,11 @@ class optionalObjectFields extends fieldExtender {
 		}
 	}
 
-	static function thumb($image, $currentimage, $field, $type) {
+	static function thumb($image, $i, $field, $type) {
 		global $albumHeritage;
 		if ($type == 'save') {
-			if (isset($_POST[$currentimage . '-' . $field['name']])) {
-				if ($thumbnail = $_POST[$currentimage . '-' . $field['name']]) {
+			if (isset($_POST[$i . '-' . $field['name']])) {
+				if ($thumbnail = $_POST[$i . '-' . $field['name']]) {
 					$talbum = newAlbum($thumbnail);
 					if ($image->imagefolder == $thumbnail) {
 						$talbum->setThumb($image->filename);
@@ -165,7 +171,7 @@ class optionalObjectFields extends fieldExtender {
 			if ($image->album->subRights() & MANAGED_OBJECT_RIGHTS_EDIT) {
 				ob_start();
 				?>
-				<select name="<?php echo $currentimage . '-' . $field['name']; ?>" >
+				<select name="<?php echo $i . '-' . $field['name']; ?>" >
 					<option value=""></option>
 					<?php generateListFromArray(array(), $albumHeritage, false, true); ?>
 				</select>
@@ -216,17 +222,17 @@ class optionalObjectFields extends fieldExtender {
 		}
 	}
 
-	static function watermark($image, $currentimage, $field, $type) {
+	static function watermark($image, $i, $field, $type) {
 		if ($type == 'save') {
-			if (isset($_POST[$currentimage . '-' . $field['name']])) {
-				$wmt = sanitize($_POST[$currentimage . '-' . $field['name']], 3);
+			if (isset($_POST[$i . '-' . $field['name']])) {
+				$wmt = sanitize($_POST[$i . '-' . $field['name']], 3);
 				$image->setWatermark($wmt);
 				$wmuse = 0;
-				if (isset($_POST['wm_image-' . $currentimage]))
+				if (isset($_POST['wm_image-' . $i]))
 					$wmuse = $wmuse | WATERMARK_IMAGE;
-				if (isset($_POST['wm_thumb-' . $currentimage]))
+				if (isset($_POST['wm_thumb-' . $i]))
 					$wmuse = $wmuse | WATERMARK_THUMB;
-				if (isset($_POST['wm_full-' . $currentimage]))
+				if (isset($_POST['wm_full-' . $i]))
 					$wmuse = $wmuse | WATERMARK_FULL;
 				$image->setWMUse($wmuse);
 				$image->save();
@@ -238,7 +244,7 @@ class optionalObjectFields extends fieldExtender {
 				$current = $image->getWatermark();
 				ob_start();
 				?>
-				<select id="image_watermark-<?php echo $currentimage; ?>" name="<?php echo $currentimage . '-' . $field['name']; ?>" onclick="toggleWMUse(<?php echo $currentimage; ?>);">
+				<select id="image_watermark-<?php echo $i; ?>" name="<?php echo $i . '-' . $field['name']; ?>" onclick="toggleWMUse(<?php echo $i; ?>);">
 					<option value="<?php echo NO_WATERMARK; ?>" <?php if ($current == NO_WATERMARK) echo ' selected = "selected"' ?> style="background-color:LightGray"><?php echo gettext('*no watermark'); ?></option>
 					<option value="" <?php if (empty($current)) echo ' selected = "selected"' ?> style="background-color:LightGray"><?php echo gettext('*default'); ?></option>
 					<?php
@@ -252,11 +258,11 @@ class optionalObjectFields extends fieldExtender {
 				else
 					$displaystyle = 'inline';
 				?>
-				<span id="WMUSE_<?php echo $currentimage; ?>" style="display:<?php echo $displaystyle; ?>">
+				<span id="WMUSE_<?php echo $i; ?>" style="display:<?php echo $displaystyle; ?>">
 					<?php $wmuse = $image->getWMUse(); ?>
-					<label><input type="checkbox" value="1" id="wm_image-<?php echo $currentimage; ?>" name="wm_image-<?php echo $currentimage; ?>" <?php if ($wmuse & WATERMARK_IMAGE) echo 'checked="checked"'; ?> /><?php echo gettext('image'); ?></label>
-					<label><input type="checkbox" value="1" id="wm_thumb-<?php echo $currentimage; ?>" name="wm_thumb-<?php echo $currentimage; ?>" <?php if ($wmuse & WATERMARK_THUMB) echo 'checked="checked"'; ?> /><?php echo gettext('thumb'); ?></label>
-					<label><input type="checkbox" value="1" id="wm_full-<?php echo $currentimage; ?>" name="wm_full-<?php echo $currentimage; ?>" <?php if ($wmuse & WATERMARK_FULL) echo 'checked="checked"'; ?> /><?php echo gettext('full image'); ?></label>
+					<label><input type="checkbox" value="1" id="wm_image-<?php echo $i; ?>" name="wm_image-<?php echo $i; ?>" <?php if ($wmuse & WATERMARK_IMAGE) echo 'checked="checked"'; ?> /><?php echo gettext('image'); ?></label>
+					<label><input type="checkbox" value="1" id="wm_thumb-<?php echo $i; ?>" name="wm_thumb-<?php echo $i; ?>" <?php if ($wmuse & WATERMARK_THUMB) echo 'checked="checked"'; ?> /><?php echo gettext('thumb'); ?></label>
+					<label><input type="checkbox" value="1" id="wm_full-<?php echo $i; ?>" name="wm_full-<?php echo $i; ?>" <?php if ($wmuse & WATERMARK_FULL) echo 'checked="checked"'; ?> /><?php echo gettext('full image'); ?></label>
 				</span>
 				<?php
 				$item = ob_get_contents();
@@ -266,32 +272,55 @@ class optionalObjectFields extends fieldExtender {
 		}
 	}
 
-	static function tags($image, $currentimage, $field, $type) {
+	static function tags($object, $i, $field, $type) {
 		global $tagsort;
+		$i = trim($i, '-');
 		if ($type == 'save') {
-			$tagsprefix = 'tags_' . $currentimage . '-';
+			$tagsprefix = 'tags_' . $i . '-';
 			$tags = array();
 			$found = false;
 			$l = strlen($tagsprefix);
+			$found = isset($_POST['newtag_tags_' . $i . '-']);
 			foreach ($_POST as $key => $value) {
 				if (substr($key, 0, $l) == $tagsprefix) {
-					$found = true;
 					if ($value) {
 						$tags[] = sanitize(postIndexDecode(substr($key, $l)));
 					}
 				}
 			}
 			if ($found) {
+				if (isset($_POST['additive_tags_' . $i . '-']) && $_POST['additive_tags_' . $i . '-']) {
+					$tags = array_merge($tags, $object->getTags());
+				}
 				$tags = array_unique($tags);
-				$image->setTags($tags);
-				$image->save();
+				$object->setTags($tags);
+				$object->save();
 			}
 			return NULL;
 		} else {
 			ob_start();
+			if ($i) {
+				$add = 2;
+				$obj = NULL;
+				$tags = $object->getTags(false);
+				if (count($tags) == 0) {
+					echo gettext('No tags assigned');
+				} else {
+					?>
+					<span id = "existing_tags_<?php echo $i; ?>">
+						<?php echo implode(', ', $tags); ?>
+						<a onclick="clearOldTags('<?php echo $i; ?>');"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/fail.png" title="<?php echo gettext('remove tags'); ?>"></a>
+					</span>
+					<?php
+				}
+				echo '<br /><br />' . gettext('Add') . '<br />';
+			} else {
+				$add = true;
+				$obj = $object;
+			}
 			?>
 			<div class="box-edit-unpadded">
-				<?php tagSelector($image, 'tags_' . $currentimage . '-', false, $tagsort, true, 1); ?>
+				<?php tagSelector($obj, 'tags_' . $i . '-', false, $tagsort, $add, 1); ?>
 			</div>
 			<?php
 			$item = ob_get_contents();

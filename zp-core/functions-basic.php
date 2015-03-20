@@ -175,6 +175,7 @@ if (!defined('DATABASE_SOFTWARE') && (extension_loaded(strtolower($_zp_conf_vars
 } else {
 	$data = false;
 }
+
 if (!$data && OFFSET_PATH != 2) {
 	require_once(dirname(__FILE__) . '/reconfigure.php');
 	reconfigureAction(3);
@@ -1487,7 +1488,7 @@ function checkInstall() {
 		if ($i = getOption('zenphoto_install')) {
 			$install = getSerializedArray($i);
 		} else {
-			$install = array('ZENPHOTO' => '0.0.0[0000]');
+			$install = array('REQUESTS' => 'CONFIGURATION', 'ZENPHOTO' => '0.0.0[0000]');
 		}
 		preg_match('|([^-]*).*\[(.*)\]|', $install['ZENPHOTO'], $matches);
 		if (isset($install['REQUESTS']) || isset($matches[1]) && isset($matches[2]) && $matches[1] != $version[1] || $matches[2] != ZENPHOTO_RELEASE || ((time() & 7) == 0) && OFFSET_PATH != 2 && $i != serialize(installSignature())) {

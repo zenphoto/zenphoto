@@ -1148,13 +1148,13 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 * @param string $postit prefix to prepend for posting
 	 * @param bool $showCounts set to true to get tag count displayed
 	 * @param string $tagsort set true to sort alphabetically
-	 * @param bool $addnew set true enables adding tags
+	 * @param bool $addnew true enables adding tags, ==2 for "additive" tags
 	 * @param bool $resizeable set true to allow the box to be resized
 	 * @param string $class class of the selections
 	 */
 	function tagSelector($that, $postit, $showCounts = false, $tagsort = 'alpha', $addnew = true, $resizeable = false, $class = 'checkTagsAuto') {
 		global $_zp_admin_ordered_taglist, $_zp_admin_LC_taglist;
-		if (is_null($_zp_admin_ordered_taglist)) {
+		if ((int) $addnew <= 1 && is_null($_zp_admin_ordered_taglist)) {
 			switch ($tagsort) {
 				case 'language':
 					$order = '`language` DESC,`name`';
@@ -1193,6 +1193,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 			$_zp_admin_ordered_taglist = array($them, $counts, $languages, $flags);
 		} else {
 			list($them, $counts, $languages, $flags) = $_zp_admin_ordered_taglist;
+			if ((int) $addnew == 2) {
+				$them = $counts = array();
+			}
 		}
 
 		if (is_null($that)) {
@@ -1204,8 +1207,13 @@ function printAdminHeader($tab, $subtab = NULL) {
 		if (count($tags) > 0) {
 			$them = array_diff_key($them, $tags);
 		}
+		$total = count($tags) + count($them);
 		if ($resizeable) {
-			$tagclass = 'resizeable_tagchecklist';
+			if ($total > 0) {
+				$tagclass = 'resizeable_tagchecklist';
+			} else {
+				$tagclass = 'resizeable_empty_tagchecklist';
+			}
 			if (is_bool($resizeable)) {
 				$tagclass .= ' resizeable_tagchecklist_fixed_width';
 			}
@@ -1234,8 +1242,12 @@ function printAdminHeader($tab, $subtab = NULL) {
 					<input class="tagsuggest <?php echo $class; ?> " type="text" value="" name="newtag_<?php echo $postit; ?>" id="newtag_<?php echo $postit; ?>" />
 				</span>
 			</span>
-
 			<?php
+			if ((int) $addnew == 2) {
+				?>
+				<input type="hidden" value="1" name="additive_<?php echo $postit; ?>" id="tag_additive_<?php echo $postit; ?>" />
+				<?php
+			}
 		}
 		?>
 		<div id="resizable_<?php echo $postit; ?>" class="tag_div">
@@ -1311,7 +1323,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 		} else {
 			$prefix = "$index-";
 			$suffix = "_$index";
-			echo "<p><em><strong>" . $album->name . "</strong></em></p>";
+			echo '<p><em><strong><a href="' . WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit&album=' . urlencode($album->name) . '&tab=albuminfo">' . urlencode($album->name) . '</a></strong></em></p>';
 		}
 		if (isset($_GET['subpage'])) {
 			?>
@@ -1808,8 +1820,8 @@ function printAdminHeader($tab, $subtab = NULL) {
 								</td>
 							</tr>
 							<?php
-							echo $custom = zp_apply_filter('edit_album_custom_data', '', $album, $prefix);
 						}
+						echo $custom = zp_apply_filter('edit_album_custom_data', '', $album, $prefix);
 						?>
 					</table>
 				</td>
@@ -2024,12 +2036,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 						printAlbumButtons($album);
 						?>
 						<span class="clearall" ></span>
-					</div>
-					<h2 class="h2_bordered_edit"><?php echo gettext("Tags"); ?></h2>
-					<div class="box-edit-unpadded">
-						<?php
-						tagSelector($album, 'tags_' . $prefix, false, getTagOrder(), true, true);
-						?>
 					</div>
 				</td>
 			</tr>

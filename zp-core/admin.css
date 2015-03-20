@@ -1396,6 +1396,14 @@ button.positive,.buttons a.positive {
 	background-color: white;
 }
 
+.resizeable_empty_tagchecklist {
+	border: 1px solid #ccc;
+	list-style: none;
+	height: 0px;
+	overflow: auto;
+	background-color: white;
+}
+
 .resizeable_tagchecklist,.resizeable_tagchecklist li {
 	margin: 0;
 	padding: 0;
