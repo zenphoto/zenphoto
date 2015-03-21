@@ -117,6 +117,7 @@ if (isset($_GET['action'])) {
 							} else {
 								$what = 'update';
 								$userobj = Zenphoto_Authority::newAdministrator($user);
+								markUpdated();
 							}
 
 							if (isset($_POST[$i . '-admin_name'])) {
