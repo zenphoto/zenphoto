@@ -320,7 +320,8 @@ function bin2hex(s) {
  * @param string id
  */
 function clearOldTags(id) {
-	$('#existing_tags_' + id).html('');
+	$('#existing_tags_' + id).css('text-decoration', 'line-through');
+	$('#tag_clear_link_' + id).remove();
 	$('#additive_' + id).val('0');
 }
 
