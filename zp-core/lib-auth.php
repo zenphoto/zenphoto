@@ -1129,12 +1129,12 @@ class Zenphoto_Authority {
 	 *
 	 * Javascript for password change input handling
 	 */
-	static function printPasswordFormJS() {
+	static function printPasswordFormJS($all = false) {
 		?>
 		<script type="text/javascript">
 			// <!-- <![CDATA[
 		<?php
-		if (OFFSET_PATH) {
+		if (OFFSET_PATH || $all) {
 			?>
 				function passwordStrength(id) {
 					var inputa = '#pass' + id;
