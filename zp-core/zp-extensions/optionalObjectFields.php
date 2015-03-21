@@ -307,10 +307,9 @@ class optionalObjectFields extends fieldExtender {
 					echo gettext('No tags assigned');
 				} else {
 					?>
-					<span id = "existing_tags_<?php echo $i; ?>">
-						<?php echo implode(', ', $tags); ?>
-						<a onclick="clearOldTags('<?php echo $i; ?>');"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/fail.png" title="<?php echo gettext('remove tags'); ?>"></a>
-					</span>
+					<span id = "existing_tags_<?php echo $i; ?>"><?php echo trim(implode(', ', $tags)); ?></span>
+					<a id="tag_clear_link_<?php echo $i; ?>" onclick="clearOldTags('<?php echo $i; ?>');"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/fail.png" title="<?php echo gettext('remove tags'); ?>"></a>
+					<a id="tag_restore_link_<?php echo $i; ?>" onclick="restoreOldTags('<?php echo $i; ?>');" style="display:none;"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" title="<?php echo gettext('cancel'); ?>"></a>
 					<?php
 				}
 				echo '<br /><br />' . gettext('Add') . '<br />';

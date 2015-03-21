@@ -320,8 +320,16 @@ function bin2hex(s) {
  * @param string id
  */
 function clearOldTags(id) {
-	$('#existing_tags_' + id).html('');
+	$('#existing_tags_' + id).css('text-decoration', 'line-through');
+	$('#tag_clear_link_' + id).hide();
+	$('#tag_restore_link_' + id).show();
 	$('#additive_' + id).val('0');
+}
+function restoreOldTags(id) {
+	$('#existing_tags_' + id).css('text-decoration', 'none');
+	$('#tag_clear_link_' + id).show();
+	$('#tag_restore_link_' + id).hide();
+	$('#additive_' + id).val('1');
 }
 
 function addNewTag(id) {
