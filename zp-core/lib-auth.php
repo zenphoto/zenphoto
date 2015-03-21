@@ -1447,8 +1447,7 @@ class Zenphoto_Administrator extends PersistentObject {
 		$result = array();
 		foreach ($this->objects as $object) {
 			if ($object['type'] == $what) {
-				$result[$object['name']] = $object['data'];
-				break;
+				$result[get_language_string($object['name'])] = $object['data'];
 			}
 		}
 		return $result;
