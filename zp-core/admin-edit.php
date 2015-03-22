@@ -920,7 +920,7 @@ echo "\n</head>";
 								<input name="update" type="hidden" value="Save Order" />
 								<br />
 								<span class="buttons">
-									<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $parent; ?>">
+									<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $parent; ?>&filter=<?php echo $filter; ?>">
 										<img	src="images/arrow_left_blue_round.png" alt="" />
 										<strong><?php echo gettext("Back"); ?></strong>
 									</a>
@@ -992,7 +992,7 @@ echo "\n</head>";
 									for ($i = 1; $i <= $numsteps; $i++) {
 										$steps[] = $i * ADMIN_IMAGES_STEP;
 									}
-									printEditDropdown('imageinfo', $steps, $imagesTab_imageCount);
+									printEditDropdown('imageinfo', $steps, $imagesTab_imageCount, '&amp;filter=' . $filter);
 									?>
 									<br style="clear:both"/><br />
 									<?php
@@ -1059,7 +1059,7 @@ echo "\n</head>";
 									<tr>
 										<td colspan="4">
 											<p class="buttons">
-												<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $parent; ?>">
+												<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $parent; ?>&filter=<?php echo $filter; ?>">
 													<img	src="images/arrow_left_blue_round.png" alt="" />
 													<strong><?php echo gettext("Back"); ?></strong>
 												</a>
@@ -1447,7 +1447,7 @@ echo "\n</head>";
 														?>
 														<tr>
 															<td colspan="2" style="border-bottom:none;">
-																<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit&tab=imageinfo&album=' . $album->name . '&singleimage=' . $image->filename . '&subpage=' . $pagenum; ?>"><img src="images/options.png" /> <?php echo gettext('Edit all image data'); ?></a>
+																<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit&tab=imageinfo&album=' . $album->name . '&singleimage=' . $image->filename . '&subpage=' . $pagenum; ?>&filter=<?php echo $filter; ?>"><img src="images/options.png" /> <?php echo gettext('Edit all image data'); ?></a>
 															</td>
 														</tr>
 														<?php
@@ -1512,7 +1512,7 @@ echo "\n</head>";
 											?>
 											<tr>
 												<td colspan="4" class="bordered" id="imagenavb">
-													<?php adminPageNav($pagenum, $totalpages, 'admin-edit.php', '?page=edit&amp;album=' . html_encode(pathurlencode($album->name)), '&amp;tab=imageinfo'); ?>
+													<?php adminPageNav($pagenum, $totalpages, 'admin-edit.php', '?page=edit&amp;album=' . html_encode(pathurlencode($album->name)), '&amp;tab=imageinfo&amp;filter=' . $filter); ?>
 												</td>
 											</tr>
 											<?php
