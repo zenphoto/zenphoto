@@ -206,6 +206,7 @@ if (isset($_GET['action'])) {
       $image = newImage($album, $imagename);
       if ($image->remove()) {
         $nd = 1;
+				SearchEngine::clearSearchCache();
       } else {
         $nd = 2;
       }
@@ -355,6 +356,7 @@ if (isset($_GET['action'])) {
 				$album = newAlbum($folder);
 				if ($album->remove()) {
 					$nd = 3;
+					SearchEngine::clearSearchCache();
 				} else {
 					$nd = 4;
 				}
@@ -371,7 +373,6 @@ if (isset($_GET['action'])) {
 			} else {
 				$albumdir = '';
 			}
-
 			header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-edit.php?page=edit" . $albumdir . "&ndeleted=" . $nd);
 			exitZP();
 			break;

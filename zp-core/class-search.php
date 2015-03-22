@@ -1914,6 +1914,16 @@ class SearchEngine {
 		}
 		return NULL;
 	}
+	
+	/**
+	 * Clears the entire search cache table
+	 */
+	static function clearSearchCache() {
+		$check = query_single_row('SELECT id FROM ' . prefix('search_cache'). ' LIMIT 1');
+		if($check) {
+			query('TRUNCATE TABLE ' . prefix('search_cache'));
+		}
+	}
 
 }
 

@@ -68,7 +68,14 @@ if (zp_loggedin()) { /* Display the admin pages. Do action handling first. */
 					$class = 'messagebox';
 					$msg = gettext('HTML cache cleared.');
 					break;
-
+					/** clear the search cache ****************************************************** */
+				/*				 * *************************************************************************** */
+				case 'clear_search_cache':
+					XSRFdefender('ClearSearchCache');
+					SearchEngine::clearSearchCache();
+					$class = 'messagebox';
+					$msg = gettext('Search cache cleared.');
+					break;
 				/** restore the setup files ************************************************** */
 				/*				 * *************************************************************************** */
 				case 'restore_setup':
@@ -126,9 +133,12 @@ if (zp_loggedin()) { /* Display the admin pages. Do action handling first. */
 			}
 		} else {
 			$class = 'errorbox';
-			$actions = array('clear_cache'				 => gettext('purge Image cache'),
-							'clear_rss_cache'		 => gettext('purge RSS cache'),
-							'reset_hitcounters'	 => gettext('reset all hitcounters'));
+			$actions = array(
+					'clear_cache' => gettext('purge Image cache'),
+					'clear_rss_cache' => gettext('purge RSS cache'),
+					'reset_hitcounters' => gettext('reset all hitcounters'),
+					'clear_search_cache' => gettext('purge search cache')
+			);
 			if (array_key_exists($action, $actions)) {
 				$msg = $actions[$action];
 			} else {

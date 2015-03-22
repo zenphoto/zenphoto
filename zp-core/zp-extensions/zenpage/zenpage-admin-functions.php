@@ -192,6 +192,7 @@ function deletePage($titlelink) {
 			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-pages.php?deleted');
 			exitZP();
 		}
+		SearchEngine::clearSearchCache();
 		return "<p class='messagebox fade-message'>" . gettext("Page successfully deleted!") . "</p>";
 	}
 	return "<p class='errorbox fade-message'>" . gettext("Page delete failed!") . "</p>";
@@ -465,6 +466,7 @@ function deleteArticle($titlelink) {
 			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-news-articles.php?deleted');
 			exitZP();
 		}
+		SearchEngine::clearSearchCache();
 		return "<p class='messagebox fade-message'>" . gettext("Article successfully deleted!") . "</p>";
 	}
 	return "<p class='errorbox fade-message'>" . gettext("Article delete failed!") . "</p>";
@@ -953,6 +955,7 @@ function deleteCategory($titlelink) {
 	$obj = new ZenpageCategory($titlelink);
 	$result = $obj->remove();
 	if ($result) {
+		SearchEngine::clearSearchCache();
 		return "<p class='messagebox fade-message'>" . gettext("Category successfully deleted!") . "</p>";
 	}
 	return "<p class='errorbox fade-message'>" . gettext("Category  delete failed!") . "</p>";
