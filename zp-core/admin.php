@@ -68,7 +68,13 @@ if (zp_loggedin()) { /* Display the admin pages. Do action handling first. */
 					$class = 'messagebox';
 					$msg = gettext('HTML cache cleared.');
 					break;
-
+				/** clear the search cache ****************************************************** */
+				case 'clear_search_cache':
+					XSRFdefender('ClearSearchCache');
+					SearchEngine::clearSearchCache();
+					$class = 'messagebox';
+					$msg = gettext('Search cache cleared.');
+					break;
 				/** restore the setup files ************************************************** */
 				case 'restore_setup':
 					XSRFdefender('restore_setup');
@@ -133,9 +139,12 @@ if (zp_loggedin()) { /* Display the admin pages. Do action handling first. */
 			}
 		} else {
 			$class = 'errorbox';
-			$actions = array('clear_cache'				 => gettext('purge Image cache'),
+			$actions = array(
+							'clear_cache'				 => gettext('purge Image cache'),
 							'clear_rss_cache'		 => gettext('purge RSS cache'),
-							'reset_hitcounters'	 => gettext('reset all hitcounters'));
+							'reset_hitcounters'	 => gettext('reset all hitcounters'),
+							'clear_search_cache' => gettext('purge search cache')
+			);
 			if (array_key_exists($action, $actions)) {
 				$msg = $actions[$action];
 			} else {
@@ -522,7 +531,7 @@ if (!zp_loggedin()) {
 							$c = count($plugins);
 							?>
 							<h3><a onclick="toggle('plugins_hide');
-									toggle('plugins_show');" ><?php printf(ngettext("%u active plugin:", "%u active plugins:", $c), $c); ?></a></h3>
+											toggle('plugins_show');" ><?php printf(ngettext("%u active plugin:", "%u active plugins:", $c), $c); ?></a></h3>
 							<div id="plugins_hide" style="display:none">
 								<ul class="plugins">
 									<?php
@@ -570,7 +579,7 @@ if (!zp_loggedin()) {
 							$c = count($filters);
 							?>
 							<h3><a onclick="toggle('filters_hide');
-									toggle('filters_show');" ><?php printf(ngettext("%u active filter:", "%u active filters:", $c), $c); ?></a></h3>
+											toggle('filters_show');" ><?php printf(ngettext("%u active filter:", "%u active filters:", $c), $c); ?></a></h3>
 							<div id="filters_hide" style="display:none">
 								<ul class="plugins">
 									<?php

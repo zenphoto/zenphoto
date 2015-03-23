@@ -167,7 +167,7 @@ function updatePage(&$reports, $newpage = false) {
 }
 
 /**
- * Deletes a page (and also if existing its subpages) from the database
+ * Deletes an object from the database
  *
  */
 function deleteZenpageObj($obj, $redirect = false) {
