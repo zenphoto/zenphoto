@@ -1946,6 +1946,13 @@ class SearchEngine {
 		return NULL;
 	}
 
+	/**
+	 * Clears the entire search cache table
+	 */
+	static function clearSearchCache() {
+		query('TRUNCATE TABLE ' . prefix('search_cache'));
+	}
+
 }
 
 // search class end

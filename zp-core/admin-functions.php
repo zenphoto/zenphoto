@@ -1413,11 +1413,10 @@ function printAdminHeader($tab, $subtab = NULL) {
 							<tr>
 								<td align="left" valign="top" width="150"><em><?php echo get_class($album); ?></em></td>
 								<td class="noinput">
-
 									<?php
 									switch ($album->isDynamic()) {
 										case 'alb':
-											echo html_encode(urldecode($album->getSearchParams()));
+											echo html_encode(str_replace(',', ', ', urldecode($album->getSearchParams())));
 											break;
 										case'fav':
 											echo html_encode($album->owner);
@@ -1477,7 +1476,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 													 name="disclose_password<?php echo $suffix; ?>"
 													 id="disclose_password<?php echo $suffix; ?>"
 													 onclick="passwordClear('<?php echo $suffix; ?>');
-															 togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?>
+																	 togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?>
 									</label>
 								</td>
 								<td>
@@ -1834,9 +1833,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 name="<?php echo $prefix; ?>Published"
 										 value="1" <?php if ($album->getShow()) echo ' checked="checked"'; ?>
 										 onclick="$('#<?php echo $prefix; ?>publishdate').val('');
-												 $('#<?php echo $prefix; ?>expirationdate').val('');
-												 $('#<?php echo $prefix; ?>publishdate').css('color', 'black');
-												 $('.<?php echo $prefix; ?>expire').html('');"
+													 $('#<?php echo $prefix; ?>expirationdate').val('');
+													 $('#<?php echo $prefix; ?>publishdate').css('color', 'black');
+													 $('.<?php echo $prefix; ?>expire').html('');"
 										 />
 										 <?php echo gettext("Published"); ?>
 						</label>
@@ -1970,7 +1969,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 } else {
 											 ?>
 											 onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');
-													 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
+															 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
 											 <?php
 										 }
 										 ?> />
@@ -3767,7 +3766,7 @@ function printNestedAlbumsList($albums, $show_thumb, $owner) {
  * Prints the dropdown menu for the nesting level depth for the album sorting
  *
  */
-function printEditDropdown($subtab, $nestinglevels, $nesting) {
+function printEditDropdown($subtab, $nestinglevels, $nesting, $query = NULL) {
 	switch ($subtab) {
 		case '':
 			$link = '?selection=';
@@ -3794,7 +3793,7 @@ function printEditDropdown($subtab, $nestinglevels, $nesting) {
 				} else {
 					$selected = "";
 				}
-				echo '<option ' . $selected . ' value="admin-edit.php' . $link . $nestinglevel . '">';
+				echo '<option ' . $selected . ' value="admin-edit.php' . $link . $nestinglevel . $query . '">';
 				switch ($subtab) {
 					case '':
 					case 'subalbuminfo':
@@ -5052,7 +5051,7 @@ function linkPickerIcon($obj, $id = NULL, $extra = NULL) {
 	}
 	?>
 	<a onclick="<?php echo $clickid; ?>$('.pickedObject').removeClass('pickedObject');
-			$('#<?php echo $iconid; ?>').addClass('pickedObject');<?php linkPickerPick($obj, $id, $extra); ?>" title="<?php echo gettext('pick source'); ?>">
+				$('#<?php echo $iconid; ?>').addClass('pickedObject');<?php linkPickerPick($obj, $id, $extra); ?>" title="<?php echo gettext('pick source'); ?>">
 		<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" id="<?php echo $iconid; ?>">
 	</a>
 	<?php

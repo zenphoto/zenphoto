@@ -530,7 +530,7 @@ class AlbumBase extends MediaObject {
 	 */
 	function remove() {
 		$rslt = false;
-		if (PersistentObject::remove()) {
+		if (parent::remove()) {
 			query("DELETE FROM " . prefix('options') . "WHERE `ownerid`=" . $this->id);
 			query("DELETE FROM " . prefix('comments') . "WHERE `type`='albums' AND `ownerid`=" . $this->id);
 			query("DELETE FROM " . prefix('obj_to_tag') . "WHERE `type`='albums' AND `objectid`=" . $this->id);
@@ -1246,7 +1246,7 @@ class Album extends AlbumBase {
 	 */
 	function remove() {
 		$rslt = false;
-		if (PersistentObject::remove()) {
+		if (parent::remove()) {
 			foreach ($this->getImages() as $filename) {
 				$image = newImage($this, $filename, true);
 				$image->remove();
