@@ -1413,11 +1413,10 @@ function printAdminHeader($tab, $subtab = NULL) {
 							<tr>
 								<td align="left" valign="top" width="150"><em><?php echo get_class($album); ?></em></td>
 								<td class="noinput">
-
 									<?php
 									switch ($album->isDynamic()) {
 										case 'alb':
-											echo html_encode(urldecode($album->getSearchParams()));
+											echo html_encode(str_replace(',', ', ', urldecode($album->getSearchParams())));
 											break;
 										case'fav':
 											echo html_encode($album->owner);
