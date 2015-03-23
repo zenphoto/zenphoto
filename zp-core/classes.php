@@ -831,6 +831,17 @@ class ThemeObject extends PersistentObject {
 		return parent::remove();
 	}
 
+	/*
+	 * Invalidate the search cache
+	 */
+
+	function move($new_unique_set) {
+		if (class_exists('SearchEngine')) {
+			SearchEngine::clearSearchCache();
+		}
+		return parent::move($new_unique_set);
+	}
+
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
