@@ -1953,9 +1953,14 @@ class SearchEngine {
 		if (empty($obj)) {
 			query('TRUNCATE TABLE ' . prefix('search_cache'));
 		} else {
-			$criteria = serialize(array('item' => $obj->table));
+			$criteria = serialize(array('item' => $table = $obj->table));
 			preg_match('~.*{(.*)}~', $criteria, $matches);
 			$criteria = '`criteria` LIKE ' . db_quote('%' . $matches[1] . '%');
+			if ($table == 'albums') {
+				$album = serialize(array('item' => 'images'));
+				preg_match('~.*{(.*)}~', $album, $matches);
+				$criteria .= ' OR `criteria` LIKE ' . db_quote('%' . $matches[1] . '%');
+			}
 			query('DELETE FROM ' . prefix('search_cache') . ' WHERE ' . $criteria);
 		}
 	}
