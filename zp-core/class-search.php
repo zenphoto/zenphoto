@@ -1949,8 +1949,15 @@ class SearchEngine {
 	/**
 	 * Clears the entire search cache table
 	 */
-	static function clearSearchCache() {
-		query('TRUNCATE TABLE ' . prefix('search_cache'));
+	static function clearSearchCache($obj) {
+		if (empty($obj)) {
+			query('TRUNCATE TABLE ' . prefix('search_cache'));
+		} else {
+			$criteria = serialize(array('item' => $obj->table));
+			preg_match('~.*{(.*)}~', $criteria, $matches);
+			$criteria = '`criteria` LIKE ' . db_quote('%' . $matches[1] . '%');
+			query('DELETE FROM ' . prefix('search_cache') . ' WHERE ' . $criteria);
+		}
 	}
 
 }
