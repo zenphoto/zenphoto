@@ -822,13 +822,19 @@ class ThemeObject extends PersistentObject {
 
 	/**
 	 * Invalidate the search cache because something has definately changed
-	 * A bit of a sledge hammer, maybe someday this could be refined.
 	 */
 	function remove() {
 		if (class_exists('SearchEngine')) {
-			SearchEngine::clearSearchCache();
+			SearchEngine::clearSearchCache($this);
 		}
 		return parent::remove();
+	}
+
+	function move($new_unique_set) {
+		if (class_exists('SearchEngine')) {
+			SearchEngine::clearSearchCache($this);
+		}
+		return parent::move($new_unique_set);
 	}
 
 }

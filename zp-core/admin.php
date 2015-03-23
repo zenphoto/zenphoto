@@ -71,7 +71,7 @@ if (zp_loggedin()) { /* Display the admin pages. Do action handling first. */
 				/** clear the search cache ****************************************************** */
 				case 'clear_search_cache':
 					XSRFdefender('ClearSearchCache');
-					SearchEngine::clearSearchCache();
+					SearchEngine::clearSearchCache(NULL);
 					$class = 'messagebox';
 					$msg = gettext('Search cache cleared.');
 					break;
