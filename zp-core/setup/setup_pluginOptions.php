@@ -8,6 +8,9 @@
  * @package setup
  *
  */
+list($usec, $sec) = explode(" ", microtime());
+$start = (float) $usec + (float) $sec;
+
 define('OFFSET_PATH', 2);
 require_once('setup-functions.php');
 require_once(dirname(dirname(__FILE__)) . '/admin-globals.php');
@@ -59,8 +62,6 @@ if ($option_interface) {
 	$option_interface = new $option_interface;
 }
 
-setupLog(sprintf(gettext('Plugin:%s setup completed'), $extension));
-
 $iMutex->unlock();
 if ($deprecate) {
 	$img = 'pass_2.png';
@@ -69,6 +70,7 @@ if ($deprecate) {
 }
 $fp = fopen(SERVERPATH . '/' . ZENFOLDER . '/images/' . $img, 'rb');
 
+
 // send the right headers
 header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
 header("Content-Type: image/png");
@@ -76,4 +78,8 @@ header("Content-Length: " . filesize(SERVERPATH . '/' . ZENFOLDER . '/images/' .
 // dump the picture and stop the script
 fpassthru($fp);
 fclose($fp);
+
+list($usec, $sec) = explode(" ", microtime());
+$last = (float) $usec + (float) $sec;
+setupLog(sprintf(gettext('Plugin:%1$s setup completed in %2$.4f seconds'), $extension, $last - $start));
 ?>

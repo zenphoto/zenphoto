@@ -530,7 +530,7 @@ class AlbumBase extends MediaObject {
 	 */
 	function remove() {
 		$rslt = false;
-		if (PersistentObject::remove()) {
+		if (parent::remove()) {
 			query("DELETE FROM " . prefix('options') . "WHERE `ownerid`=" . $this->id);
 			query("DELETE FROM " . prefix('comments') . "WHERE `type`='albums' AND `ownerid`=" . $this->id);
 			query("DELETE FROM " . prefix('obj_to_tag') . "WHERE `type`='albums' AND `objectid`=" . $this->id);
@@ -850,7 +850,12 @@ class AlbumBase extends MediaObject {
 	 * @return string
 	 */
 	function getAlbumTheme() {
-		return $this->get('album_theme');
+		global $_zp_gallery;
+		if (in_context(ZP_SEARCH_LINKED)) {
+			return $_zp_gallery->getCurrentTheme();
+		} else {
+			return $this->get('album_theme');
+		}
 	}
 
 	/**
@@ -1122,7 +1127,7 @@ class Album extends AlbumBase {
 		if ($msg) {
 			$this->exists = false;
 			if (!$quiet) {
-				trigger_error($msg, E_USER_ERROR);
+				zp_error($msg, E_USER_ERROR);
 			}
 			return false;
 		}
@@ -1241,7 +1246,7 @@ class Album extends AlbumBase {
 	 */
 	function remove() {
 		$rslt = false;
-		if (PersistentObject::remove()) {
+		if (parent::remove()) {
 			foreach ($this->getImages() as $filename) {
 				$image = newImage($this, $filename, true);
 				$image->remove();
@@ -1440,7 +1445,7 @@ class Album extends AlbumBase {
 			} else {
 				$msg = sprintf(gettext("Error: The album named %s cannot be found."), html_encode($this->name));
 			}
-			trigger_error($msg, E_USER_NOTICE);
+			zp_error($msg, E_USER_NOTICE);
 			return array();
 		}
 
@@ -1495,7 +1500,7 @@ class dynamicAlbum extends AlbumBase {
 	function __construct($folder8, $cache = true, $quiet = false) {
 		$folder8 = trim($folder8, '/');
 		$folderFS = internalToFilesystem($folder8);
-		$localpath = ALBUM_FOLDER_SERVERPATH . $folderFS . "/";
+		$localpath = ALBUM_FOLDER_SERVERPATH . $folderFS;
 		$this->linkname = $this->name = $folder8;
 		$this->localpath = $localpath;
 		if (!$this->_albumCheck($folder8, $folderFS, $quiet))
@@ -1568,7 +1573,7 @@ class dynamicAlbum extends AlbumBase {
 		if ($msg) {
 			$this->exists = false;
 			if (!$quiet) {
-				trigger_error($msg, E_USER_ERROR);
+				zp_error($msg, E_USER_ERROR);
 			}
 			return false;
 		}

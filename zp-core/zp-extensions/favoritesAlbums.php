@@ -41,17 +41,14 @@ class favoritesAlbum extends favorites {
 
 		$folder8 = trim($folder8, '/');
 		$folderFS = internalToFilesystem($folder8);
-		$localpath = ALBUM_FOLDER_SERVERPATH . $folderFS . "/";
+		$localpath = ALBUM_FOLDER_SERVERPATH . $folderFS;
+
 		$this->linkname = $this->name = $folder8;
 		$this->localpath = $localpath;
 		if (!$this->_albumCheck($folder8, $folderFS, $quiet))
 			return;
 
-		$new = $this->instantiate('albums', array('folder' => $this->name), 'folder', $cache);
-		$title = $this->getTitle('all');
-		$desc = $this->getDesc('all');
-
-		$data = explode("\n", file_get_contents($this->localpath));
+		$data = explode("\n", file_get_contents($localpath));
 		foreach ($data as $param) {
 			$parts = explode('=', $param);
 			switch (trim($parts[0])) {
@@ -66,6 +63,10 @@ class favoritesAlbum extends favorites {
 					break;
 			}
 		}
+
+		$new = $this->instantiate('albums', array('folder' => $this->name), 'folder', $cache);
+		$title = $this->getTitle('all');
+		$desc = $this->getDesc('all');
 
 		parent::__construct($owner);
 		$this->exists = true;
@@ -104,7 +105,7 @@ class favoritesAlbum extends favorites {
 		if ($msg) {
 			$this->exists = false;
 			if (!$quiet) {
-				trigger_error($msg, E_USER_ERROR);
+				zp_error($msg, E_USER_ERROR);
 			}
 			return false;
 		}

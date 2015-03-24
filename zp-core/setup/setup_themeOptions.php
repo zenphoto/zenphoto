@@ -8,6 +8,9 @@
  * @package setup
  *
  */
+list($usec, $sec) = explode(" ", microtime());
+$start = (float) $usec + (float) $sec;
+
 define('OFFSET_PATH', 2);
 require_once('setup-functions.php');
 require_once(dirname(dirname(__FILE__)) . '/admin-functions.php');
@@ -31,8 +34,6 @@ if (!empty($requirePath)) {
 }
 /* then set any "standard" options that may not have been covered by the theme */
 standardThemeOptions($theme, NULL);
-/* and record that we finished */
-setupLog(sprintf(gettext('Theme:%s setup completed'), $theme));
 
 $iMutex->unlock();
 
@@ -49,4 +50,9 @@ header("Content-Length: " . filesize(SERVERPATH . '/' . ZENFOLDER . '/images/' .
 // dump the picture and stop the script
 fpassthru($fp);
 fclose($fp);
+
+list($usec, $sec) = explode(" ", microtime());
+$last = (float) $usec + (float) $sec;
+/* and record that we finished */
+setupLog(sprintf(gettext('Theme:%s setup completed in %2$.4f seconds'), $theme, $last - $start));
 ?>

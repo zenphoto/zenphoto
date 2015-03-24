@@ -1,0 +1,10 @@
+* Translation                                           Items                Words
+Translated                                        4103 (89 %)                25957
+Needs review (fuzzy)                                248 (5 %)                 1396
+Not translated                                      281 (6 %)
+Translations with errors                                    0
+
+ *Source Text
+Strings in source language                               4632                32094
+Needs review (fuzzy)                                                          1564
+Not translated                                                                2991

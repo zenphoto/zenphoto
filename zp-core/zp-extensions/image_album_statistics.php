@@ -504,7 +504,7 @@ function getImageStatistic($number, $option, $albumfolder = '', $collection = fa
 		if ($result) {
 			while ($row = db_fetch_assoc($result)) {
 				if (empty($albumfolder) || strpos($row['folder'], $albumfolder) === 0) {
-					$image = newImage($row, true);
+					$image = newImage($row, true, true);
 					if ($image->exists && $image->checkAccess()) {
 						$imageArray[] = $image;
 						if (count($imageArray) >= $number) { // got enough

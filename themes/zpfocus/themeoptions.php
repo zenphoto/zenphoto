@@ -83,7 +83,7 @@ class ThemeOptions {
 						gettext('Rotator Transition Effect?')	 => array('order' => 17, 'key' => 'zpfocus_rotatoreffect', 'type' => OPTION_TYPE_CUSTOM, 'desc' => gettext('Choose the transition effect, if rotator is selected above.')),
 						gettext('Rotator Speed?')							 => array('order' => 18, 'key' => 'zpfocus_rotatorspeed', 'type' => OPTION_TYPE_NUMBER, 'desc' => gettext('Choose the delay of each rotation in milliseconds.')),
 						gettext('Image Final Link Option')		 => array('order' => 19, 'key' => 'zpfocus_final_link', 'type' => OPTION_TYPE_CUSTOM, 'desc' => gettext('Select the final image link option as viewed on image.php.  Default is no link, but choose standard (or new to open in new window) if you want to take advantage of some of the core image link options (such as automatic download).')),
-						gettext('Show ZenPhoto Credit')				 => array('order' => 22, 'key' => 'zpfocus_show_credit', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Check to display the Powered by ZenPhoto20 link in the footer.')),
+						gettext('Show zenphoto Credit')				 => array('order' => 22, 'key' => 'zpfocus_show_credit', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Check to display the Powered by ZenPhoto20 link in the footer.')),
 						gettext('Custom CSS')									 => array('order' => 21, 'key' => 'zpfocus_customcss', 'type' => OPTION_TYPE_TEXTAREA, 'desc' => gettext('Enter any custom CSS, safely carries over upon theme upgrade.')),
 						gettext('Enable Zenpage News')				 => array('order' => 20, 'key' => 'zpfocus_news', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Check to enable the news function of Zenpage (default). Uncheck to use pages only (hides menu items and search results of news).'))
 		);

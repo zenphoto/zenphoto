@@ -288,27 +288,36 @@ class PersistentObject {
 	 */
 	private function load($allowCreate) {
 		$new = $entry = null;
-		// Set up the SQL query in case we need it...
-		$sql = 'SELECT * FROM ' . prefix($this->table) . getWhereClause($this->unique_set) . ' LIMIT 1;';
-		// But first, try the cache.
+		// First, try the cache.
 		if ($this->use_cache) {
 			$entry = $this->getFromCache();
 		}
 		// Check the database if: 1) not using cache, or 2) didn't get a hit.
 		if (empty($entry)) {
+			$sql = 'SELECT * FROM ' . prefix($this->table) . getWhereClause($this->unique_set) . ' LIMIT 1;';
 			$entry = query_single_row($sql, false);
 			// Save this entry into the cache so we get a hit next time.
-			if ($entry)
+			if ($entry) {
 				$this->addToCache($entry);
+			}
 		}
-
 		// If we don't have an entry yet, this is a new record. Create it.
 		if (empty($entry)) {
-			if ($this->transient) { // no don't save it in the DB!
-				$entry = array_merge($this->unique_set, $this->updates);
-				$entry['id'] = 0;
-			} else if (!$allowCreate) {
-				return NULL; // does not exist and we are not allowed to create it
+			if ($this->transient || !$allowCreate) { // no don't save it in the DB!
+				//	populate $this->data so that the set method will work correctly
+				$result = db_list_fields($this->table);
+				if ($result) {
+					foreach ($result as $row) {
+						$this->data[$row['Field']] = NULL;
+					}
+				}
+				if ($allowCreate) {
+					$entry = array_merge($this->data, $this->unique_set);
+					$entry['id'] = 0;
+					$this->addToCache($entry);
+				} else {
+					return NULL; // does not exist and we are not allowed to create it
+				}
 			} else {
 				$new = true;
 				$this->save();
@@ -809,6 +818,23 @@ class ThemeObject extends PersistentObject {
 		} else {
 			$this->set('expiredate', NULL);
 		}
+	}
+
+	/**
+	 * Invalidate the search cache because something has definately changed
+	 */
+	function remove() {
+		if (class_exists('SearchEngine')) {
+			SearchEngine::clearSearchCache($this);
+		}
+		return parent::remove();
+	}
+
+	function move($new_unique_set) {
+		if (class_exists('SearchEngine')) {
+			SearchEngine::clearSearchCache($this);
+		}
+		return parent::move($new_unique_set);
 	}
 
 }

@@ -288,13 +288,13 @@ function db_show($what, $aux = '') {
 			return query($sql, false);
 		case 'columns':
 			$sql = 'SHOW FULL COLUMNS FROM `' . $_zp_DB_details['mysql_prefix'] . $aux . '`';
-			return query($sql, true);
+			return query($sql, false);
 		case 'variables':
 			$sql = "SHOW VARIABLES LIKE '$aux'";
 			return query_full_array($sql);
 		case 'index':
 			$sql = "SHOW INDEX FROM `" . $_zp_DB_details['mysql_database'] . '`.' . $aux;
-			return query_full_array($sql);
+			return query_full_array($sql, false);
 	}
 }
 

@@ -6,7 +6,7 @@
  * Comment form plugin default light configuration
  * @author Stephen Billard (sbillard)
  */
-$MCEselector = "textarea.textarea_inputbox";
+$MCEselector = "textarea.textarea_inputbox, textarea.texteditor_comments";
 $MCEplugins = "advlist autolink lists link image charmap anchor " .
 				"searchreplace visualchars visualblocks code " .
 				"insertdatetime media contextmenu paste ";

@@ -566,7 +566,9 @@ table.noinput {
 table.noinput td {
 	font-weight: normal;
 	font-family: Arial, Helvetica, sans-serif;
-	font-size: 110%
+	font-size: 110%;
+	word-wrap: break-word;
+	word-break: keep-all;
 }
 
 table.bordered {
@@ -1396,6 +1398,14 @@ button.positive,.buttons a.positive {
 	background-color: white;
 }
 
+.resizeable_empty_tagchecklist {
+	border: 1px solid #ccc;
+	list-style: none;
+	height: 0px;
+	overflow: auto;
+	background-color: white;
+}
+
 .resizeable_tagchecklist,.resizeable_tagchecklist li {
 	margin: 0;
 	padding: 0;
@@ -1520,6 +1530,22 @@ button.positive,.buttons a.positive {
 	padding: 0;
 }
 .searchchecklist li {
+	padding-left: 0;
+	text-align: left;
+}
+
+/* metadata field checklist */
+.metadatalist {
+	border: 1px solid #ccc;
+	list-style: none;
+	height: 120px;
+	width: 390px;
+	overflow: auto;
+	background-color: white;
+	margin: 0;
+	padding: 0;
+}
+.metadatalist li {
 	padding-left: 0;
 	text-align: left;
 }
@@ -1678,7 +1704,7 @@ button.positive,.buttons a.positive {
 	list-style: none;
 	height: 8em;
 	overflow: auto;
-	width: 350px;
+	width: 400px;
 	background-color: white;
 }
 

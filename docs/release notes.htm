@@ -77,6 +77,13 @@
 		</style>
 	<body>
 <h1>ZenPhoto20 release notes</h1><p>&nbsp;</p>
+<h2>Tag handling for albums <em>mass-edit</em> and multiple image tabs</h2>
+<p>The ability to add tags to albums and images has been extended to the multiple item tabs. Previously this function was removed due to problems with some PHP installations where the amount of data "posted" when the apply button was pressed exceeded the capacity defined by the server. This resulted in not being able to save from these pages unless the number of items per page was reduced. (An option not available for the album mass-edit tab.)</p>
+<p>It is now possible to add tags to items on these pages.No list of possible tags is shown since that might cause some of the above issues. But <em>tag_suggest</em> will make suggestions from the existing tag list and you can create new tags by simply typing them in the <em>add tag</em> field. Individual tags cannot be removed. However you can elect to clear existing tags so only those you add will be present after the apply button is pressed.&nbsp;</p>
+<h2>Database storage for image metadata&nbsp;fields</h2>
+<p>ZenPhoto20 now allows for database columns for image metadata&nbsp;to be optional. You can reduce the size of image database records by marking the ones you do not need <em>do not process</em> on the<em> image options</em> tab. When <code>setup</code> is run it will add or remove fields based on this setting. There is an additional checkbox on that tab,&nbsp;<em>Mark unused fields do not process</em>, that will cause ZenPhoto20 to examine the database for metadata&nbsp;columns that have not had any data stored. These are then marked <em>do not process</em>. Before using this option you should insure that you have a representative set of images and have refreshed their metadata&nbsp;so as to not remove columns that you might want.</p>
+<p>The <em>class-video</em> and <em>xmpMetadata</em> plugins&nbsp;will create database columns for their metadata&nbsp;only if they are enabled when <code>setup</code> is run.</p>
+<p>You may see a "configuration change" notice when you change the state of these options. This will indicate that a <em>setup request</em> has been made (and by what process.) This is a reminder that the change will not take effect until you have run <code>setup</code> so data that might be stored in these fields may not be saved&nbsp;to the database.</p>
 <h2>Plugins</h2>
 <p><em>tagsFromMetadata:</em></p>
 <p>This plugin will allow you to select specific metadata items from an image and set the values of these items as tags for the image. So, for instance, you can select <em>EXIFMake</em> and all your images will be tagged with the camera manufacturer's name (provided that camera does record that metadata item.) Tags will be created in each enabled language provided there is a unique translation in that language for the item.</p>
@@ -92,6 +99,8 @@
 <p>We have now fixed the implementation to be true to the specification. Camera set rotations now will work correctly. Unfortunately the downside of this is if you have "fixed" on your images on the prior software they may now be improperly rotated. You should re-import the image metadata&nbsp;or select the correct image rotation on the image tab.</p>
 <h2>News article sort order selections</h2>
 <p>You may now select ordering by <em>Published date</em>, <em>Last change date</em>, and <em>Expiry date</em> in addition to the original <em>creation&nbsp;date</em> and <em>title </em>orders. <em>Creation date</em> (or <em>Last change date</em>) are now shown in addition to the <em>Published date</em>.</p>
+<h2>Security</h2>
+<p>This release fixes a hole whereby a hacker could cause your setup scripts to become unprotected.</p>
 <hr />
 <p>&nbsp;</p>
 <h2 style="text-align: center;">Version 1.1.0</h2>
@@ -138,7 +147,7 @@
 <p>A new function,&nbsp;<em>favorites::listWatchers()</em>, is available&nbsp;to assists&nbsp;in output of users watching an object. The plugin now&nbsp;uses a DL list to show the watchers on the administrative tabs.</p>
 <h2>Resizable language string input areas</h2>
 <p>If the <em>Multi-lingual</em> option is selected text input areas such as <em>page</em> and <em>article&nbsp;</em>content fields can be expanded by dragging on the resize handle at the lower right of the field. If tinyMCE is enabled the individual language edit boxes expand giving the ability to see multiple language translations at a time.</p>
-<h2>TinyMce language directionality</h2>
+<h2>TinyMCE language directionality</h2>
 <p>Normally TinyMCE will set the <em>language directionality</em> based on the language in effect. E.g. if the language is Persian, Arabic,&nbsp;Hebrew,&nbsp;Hindi, or&nbsp;Urdu the language direction will be <em>right-to-left</em>. Otherwise it is <em>left-to-right</em>. There is now an option to override this setting and force <em>right-to-left</em> for those cases where this selection is not appropriate. In addition the tinyMCE editor has buttons (where selected) and <em>tool</em> settings to change the text direction.</p>
 <h2>Download for dynamic albums and favoitied</h2>
 <p>The <em>downloadList</em> plugin now supports "album zips" for dynamic albums and for the user's favorites.</p>
@@ -180,6 +189,7 @@
 <p>Running the script extracts the release source scripts and then starts&nbsp;the setup process. This work flow&nbsp;is&nbsp;less prone to such things as mis-matched versions of the individual files or overwriting album files.</p>
 <h2>Suffix-less image links</h2>
 <p>If you use <em>mod_rewrite</em> with a <em>mod_rewrite suffix</em> and your image names are unique in their prefix you can select the option <em>Unique images</em>&nbsp;on the general options tab so that your image page links will not include the image suffix. For instance if your <em>mod_rewrite suffix</em> is <code>.htm</code> then&nbsp;the link to the image <code>myalbum/myimage.jpg</code>&nbsp;will have the link <code>myalbum/myimage.htm.</code></p>
+<p>&nbsp;<a id="tinyMCE:obj"></a></p>
 <h2>tinyMCE:obj plugin</h2>
 <p>This plugin replaces tinyZenpage as the preferred means for inserting ZenPhoto20 objects into tinyMCE editor windows.</p>
 <p>On the back end each object has a "pick" icon (<img src="https://cloud.githubusercontent.com/assets/2474007/3194486/59db3546-ecff-11e3-8c27-e5c44fd92f2b.png" alt="add" />) that you use to select the object. The overview lists also have a pick icon for each object, so it is not necessary to browse all the way to the object's tab.</p>

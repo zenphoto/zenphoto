@@ -540,15 +540,15 @@ function printField($context, $field, $convertBR = NULL, $override = false, $lab
 			$object = $_zp_current_zenpage_news;
 			break;
 		default:
-			trigger_error(sprintf(gettext('printField() invalid function call, context %X.'), $context), E_USER_NOTICE);
+			zp_error(sprintf(gettext('printField() invalid function call, context %X.'), $context), E_USER_NOTICE);
 			return false;
 	}
 	if (!$field) {
-		trigger_error(sprintf(gettext('printField() invalid function call, field:%s.'), $field), E_USER_NOTICE);
+		zp_error(sprintf(gettext('printField() invalid function call, field:%s.'), $field), E_USER_NOTICE);
 		return false;
 	}
 	if (!is_object($object)) {
-		trigger_error(gettext('printField() invalid function call, not an object.'), E_USER_NOTICE);
+		zp_error(gettext('printField() invalid function call, not an object.'), E_USER_NOTICE);
 		return false;
 	}
 	if ($override) {

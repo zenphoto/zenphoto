@@ -474,16 +474,16 @@ class ThemeOptions {
 
 			echo '<option value="standard"';
 			if ($currentValue == "standard") {
-				echo ' selected="selected">Standard ZenPhoto</option>\n';
+				echo ' selected="selected">Standard</option>\n';
 			} else {
-				echo '>Standard ZenPhoto</option>\n';
+				echo '>Standard</option>\n';
 			}
 
 			echo '<option value="standard-new"';
 			if ($currentValue == "standard-new") {
-				echo ' selected="selected">Standard ZenPhoto - New Window</option>\n';
+				echo ' selected="selected">New Window</option>\n';
 			} else {
-				echo '>Standard ZenPhoto - New Window</option>\n';
+				echo '>New Window</option>\n';
 			}
 
 			echo "</select>\n";

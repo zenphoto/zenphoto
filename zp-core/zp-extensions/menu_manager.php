@@ -955,9 +955,48 @@ function createMenuIfNotExists($menuitems, $menuset = 'default') {
 		$success = 0;
 	}
 	if ($success < 0) {
-		trigger_error(gettext('createMenuIfNotExists has posted processing errors to your debug log.'), E_USER_NOTICE);
+		zp_error(gettext('createMenuIfNotExists has posted processing errors to your debug log.'), E_USER_NOTICE);
 	}
 	return $success;
+}
+
+/**
+ * Gets the direct child menu items of the current menu item. Returns the array of the items or false.
+ * @param string $menuset current menu set
+ * @param bool $all Set to false (default) for the next level children, true for children of all further levels
+ * @return array|false
+ */
+function getMenuItemChildren($menuset = 'default', $all = false) {
+	$sortorder = getCurrentMenuItem($menuset);
+	$items = getMenuItems($menuset, getMenuVisibility());
+	if (count($items) > 0) {
+		if ($sortorder) {
+			$length = strlen($sortorder);
+			$level = explode('-', $sortorder);
+			$level = count($level);
+			$children = array();
+			foreach ($items as $item) {
+				$itemlevel = explode('-', $item['sort_order']);
+				$itemlevel = count($itemlevel);
+				if ($all) {
+					$is_validchild = true;
+				} else {
+					if ($itemlevel == $level + 1) {
+						$is_validchild = true;
+					} else {
+						$is_validchild = false;
+					}
+				}
+				if (substr($item['sort_order'], 0, $length) == $sortorder && $item['sort_order'] != $sortorder && $is_validchild) {
+					array_push($children, $item);
+				}
+			}
+			if (!empty($children)) {
+				return $children;
+			}
+		}
+	}
+	return false;
 }
 
 /**

@@ -399,7 +399,7 @@ class Zenphoto_Authority {
 	 */
 	function migrateAuth($to) {
 		if ($to > self::$supports_version || $to < self::$preferred_version - 1) {
-			trigger_error(sprintf(gettext('Cannot migrate rights to version %1$s (Zenphoto_Authority supports only %2$s and %3$s.)'), $to, self::$supports_version, self::$preferred_version), E_USER_NOTICE);
+			zp_error(sprintf(gettext('Cannot migrate rights to version %1$s (Zenphoto_Authority supports only %2$s and %3$s.)'), $to, self::$supports_version, self::$preferred_version), E_USER_NOTICE);
 			return false;
 		}
 		$success = true;
@@ -1129,12 +1129,12 @@ class Zenphoto_Authority {
 	 *
 	 * Javascript for password change input handling
 	 */
-	static function printPasswordFormJS() {
+	static function printPasswordFormJS($all = false) {
 		?>
 		<script type="text/javascript">
 			// <!-- <![CDATA[
 		<?php
-		if (OFFSET_PATH) {
+		if (OFFSET_PATH || $all) {
 			?>
 				function passwordStrength(id) {
 					var inputa = '#pass' + id;
@@ -1476,16 +1476,16 @@ class Zenphoto_Administrator extends PersistentObject {
 	}
 
 	/**
-	 * Returns local copy of managed objects.
+	 * Stores local copy of managed objects.
+	 * NOTE: The database is NOT updated by this, the user object MUST be saved to
+	 * cause an update
 	 */
 	function setObjects($objects) {
 		$this->objects = $objects;
 	}
 
 	/**
-	 * Saves local copy of managed objects.
-	 * NOTE: The database is NOT updated by this, the user object MUST be saved to
-	 * cause an update
+	 * Returns local copy of managed objects.
 	 */
 	function getObjects($what = NULL) {
 		if (is_null($this->objects)) {

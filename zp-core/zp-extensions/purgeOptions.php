@@ -75,7 +75,7 @@ function listOwners($owners, $nest = '') {
 					}
 				}
 				if (empty($detail)) {
-					$display = 'unknown';
+					$display = gettext('unknown');
 					$labelclass = ' empty_name';
 					$checked = ' checked="checked"';
 				} else {

@@ -3,7 +3,7 @@
 /*
  * Legacy tinyZenpage plugin
  *
- * <var>tinyZenpage</var> was replaced by <var>tinyMCE:obj</var> as the normal means to paste objects
+ * <var>tinyZenpage</var> was replaced by {@link %FULLWEBPATH%/docs/release%20notes.htm#tinyMCE:obj tinyMCE:obj} as the normal means to paste objects
  * into your <i>tinyMCE</i> enabled text fields. <var>tinyMCE:obj</var> follows conventiaonal windowed
  * application methodology rather than the convoluted menus of <i>tinyZenpage</i>. It also
  * provides full visual selection of image sizes and image cropping.
@@ -16,6 +16,7 @@
  */
 $plugin_is_filter = 5 | ADMIN_PLUGIN;
 $plugin_description = gettext('Enable legacy tinyZenpage.');
+$plugin_notice = gettext('tinyZenpage is deprecated. You should use <a href="' . WEBPATH . '/docs/release%20notes.htm#tinyMCE:obj">tinyMCE:obj</a> instead.');
 $plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'tinyZenpage';

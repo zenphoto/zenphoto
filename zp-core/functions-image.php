@@ -520,21 +520,29 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
  * fill a flipped value in the tag.
  */
 
-function getImageRotation($imgfile) {
-	$imgfile = substr(filesystemToInternal($imgfile), strlen(ALBUM_FOLDER_SERVERPATH));
-	$result = query_single_row('SELECT EXIFOrientation FROM ' . prefix('images') . ' AS i JOIN ' . prefix('albums') . ' as a ON i.albumid = a.id WHERE ' . db_quote($imgfile) . ' = CONCAT(a.folder,"/",i.filename)');
-	if (is_array($result) && array_key_exists('EXIFOrientation', $result)) {
-		switch (substr(trim($result['EXIFOrientation'], '!'), 0, 1)) {
-			case 0:
-			case 1: // none
-			case 2: return 0; // mirrored
-			case 3: // upside-down
-			case 4: return 180; // upside-down mirrored
-			case 5: // 90 CW mirrored
-			case 6: return 90; // 90 CCW
-			case 7: // 90 CCW mirrored
-			case 8: return 270; // 90 CW
+function getImageRotation($img) {
+	if (is_object($img)) {
+		$rotation = $img->get('rotation');
+	} else {
+		$imgfile = substr(filesystemToInternal($img), strlen(ALBUM_FOLDER_SERVERPATH));
+		$result = query_single_row('SELECT rotation FROM ' . prefix('images') . ' AS i JOIN ' . prefix('albums') . ' as a ON i.albumid = a.id WHERE ' . db_quote($imgfile) . ' = CONCAT(a.folder,"/",i.filename)', false);
+		$rotation = 0;
+		if (is_array($result)) {
+			if (array_key_exists('rotation', $result)) {
+				$rotation = $result['rotation'];
+			}
 		}
+	}
+	switch (substr(trim($rotation, '!'), 0, 1)) {
+		case 0:
+		case 1: // none
+		case 2: return 0; // mirrored
+		case 3: // upside-down
+		case 4: return 180; // upside-down mirrored
+		case 5: // 90 CW mirrored
+		case 6: return 90; // 90 CCW
+		case 7: // 90 CCW mirrored
+		case 8: return 270; // 90 CW
 	}
 	return 0;
 }

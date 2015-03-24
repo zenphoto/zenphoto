@@ -65,6 +65,10 @@ local.properties
 .loadpath
 .buildpath
 
+# NetBeans #
+###########
+/nbproject/
+
 # Miscellaneous files #
 #######################
 /robots.txt

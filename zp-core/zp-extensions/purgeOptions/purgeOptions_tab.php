@@ -25,7 +25,12 @@ if (isset($_POST['purge'])) {
 			$sql = 'DELETE FROM ' . prefix('options') . ' WHERE `creator` LIKE ' . db_quote('%' . basename($owner));
 			$result = query($sql);
 			if (preg_match('~^' . THEMEFOLDER . '/~', $owner)) {
-				$sql = 'DELETE FROM ' . prefix('options') . ' WHERE `creator` LIKE ' . db_quote('%' . basename($owner) . '/themeoptions.php');
+				if ($owner == THEMEFOLDER . '/') {
+					$where = ' WHERE `creator` = "' . THEMEFOLDER . '/"';
+				} else {
+					$where = ' WHERE `creator` LIKE ' . db_quote('%' . basename($owner) . '/themeoptions.php');
+				}
+				$sql = 'DELETE FROM ' . prefix('options') . $where;
 				$result = query($sql);
 			} else {
 				purgeOption('zp_plugin_' . stripSuffix(basename($owner)));

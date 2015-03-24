@@ -55,6 +55,10 @@ require_once(dirname(dirname(__FILE__)) . '/exif/exif.php');
 
 define('XMP_EXTENSION', strtolower(getOption('xmpMetadata_suffix')));
 
+if (OFFSET_PATH) {
+	zpFunctions::exifOptions('XMP Metadata', (extensionEnabled('xmpMetadata')) ? 0 : 2, xmpMetadata::getMetadataFields());
+}
+
 /**
  * Plugin option handling class
  *
@@ -605,6 +609,56 @@ class xmpMetadata {
 	}
 
 	/**
+	 * returns the database fields used by the object
+	 * @return array
+	 *
+	 * @author Stephen Billard
+	 * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+	 */
+	static function getMetadataFields() {
+// Database Field       		 => array(0:'source', 1:'Metadata Key', 2;'ZP Display Text', 3:Display?	4:size,	5:enabled, type)
+		return array(
+						'XMPAperatureValue'		 => array('XMP', '<exif:ApertureValue>', gettext('Aperature Value'), false, 52, true, 'string'),
+						'XMPArtist'						 => array('XMP', '<dc:creator>', gettext('Artist'), false, 52, true, 'string'),
+						'XMPContrast'					 => array('XMP', '<exif:Contrast>', gettext('Contrast Setting'), false, 52, true, 'string'),
+						'XMPDateTimeOriginal'	 => array('XMP', '<exif:DateTimeOriginal>', gettext('Original Time Taken'), true, 52, true, 'time'),
+						'XMPExposureBiasValue' => array('XMP', '<exif:ExposureBiasValue>', gettext('Exposure Compensation'), true, 52, true, 'string'),
+						'XMPExposureProgram'	 => array('XMP', '<exif:ExposureProgram>', gettext('Exposure program'), true, 52, true, 'string'),
+						'XMPExposureTime'			 => array('XMP', '<exif:ExposureTime>', gettext('Exposure time'), true, 52, true, 'string'),
+						'XMPFNumber'					 => array('XMP', '<exif:FNumber>', gettext('Aperture'), true, 52, true, 'number'),
+						'XMPFocalLength'			 => array('XMP', '<exif:FocalLength>', gettext('Focal Length'), true, 52, true, 'number'),
+						'XMPGPSAltitude'			 => array('XMP', '<exif:GPSAltitude>', gettext('Altitude'), false, 52, true, 'number'),
+						'XMPGPSAltitudeRef'		 => array('XMP', '<exif:GPSAltitudeRef>', gettext('Altitude Reference'), false, 52, true, 'string'),
+						'XMPGPSLatitude'			 => array('XMP', '<exif:GPSLatitude>', gettext('Latitude'), false, 52, true, 'number'),
+						'XMPGPSLongitude'			 => array('XMP', '<exif:GPSLongitude>', gettext('Longitude'), false, 52, true, 'number'),
+						'XMPISOSpeedRatings'	 => array('XMP', '<exif:ISOSpeedRatings>', gettext('ISO Sensitivity'), true, 52, true, 'number'),
+						'XMPLensInfo'					 => array('XMP', '<aux:LensInfo>', gettext('Lens Info'), false, 52, true, 'string'),
+						'XMPLensType'					 => array('XMP', '<aux:Lens>', gettext('Lens Type'), false, 52, true, 'string'),
+						'XMPMake'							 => array('XMP', '<tiff:Make>', gettext('Camera Maker'), true, 52, true, 'string'),
+						'XMPMeteringMode'			 => array('XMP', '<exif:MeteringMode>', gettext('Metering Mode'), true, 52, true, 'string'),
+						'XMPModel'						 => array('XMP', '<tiff:Model>', gettext('Camera Model'), true, 52, true, 'string'),
+						'XMPOrientation'			 => array('XMP', '<tiff:Orientation>', gettext('Orientation'), false, 52, true, 'string'),
+						'XMPSaturation'				 => array('XMP', '<exif:Saturation>', gettext('Saturation Setting'), false, 52, true, 'string'),
+						'XMPSharpness'				 => array('XMP', '<exif:Sharpness>', gettext('Sharpness Setting'), false, 52, true, 'string'),
+						'XMPShutterSpeedValue' => array('XMP', '<exif:ShutterSpeedValue>', gettext('Shutter Speed'), true, 52, true, 'string'),
+						'XMPWhiteBalance'			 => array('XMP', '<exif:WhiteBalance>', gettext('White Balance'), false, 52, true, 'string'),
+						'XMPCity'							 => array('XMP', '<photoshop:City>', gettext('City'), false, 32, true, 'string'),
+						'XMPCopyright'				 => array('XMP', '<dc:rights>', gettext('Copyright Notice'), false, 128, true, 'string'),
+						'XMPImageCaption'			 => array('XMP', '<dc:description>', gettext('Image Caption'), false, 2000, true, 'string'),
+						'XMPImageCredit'			 => array('XMP', '<photoshop:Credit>', gettext('Image Credit'), false, 32, true, 'string'),
+						'XMPImageHeadline'		 => array('XMP', '<photoshop:Headline>', gettext('Image Headline'), false, 256, true, 'string'),
+						'XMPKeywords'					 => array('XMP', '<dc:subject>', gettext('Keywords'), false, 0, true, 'string'),
+						'XMPLocationCode'			 => array('XMP', '<Iptc4xmpCore:CountryCode>', gettext('Country/Primary Location Code'), false, 3, true, 'string'),
+						'XMPLocationName'			 => array('XMP', '<photoshop:Country>', gettext('Country/Primary Location Name'), false, 64, true, 'string'),
+						'XMPObjectName'				 => array('XMP', '<dc:title>', gettext('Object Name'), false, 256, true, 'string'),
+						'XMPSource'						 => array('XMP', '<photoshop:Source>', gettext('Image Source'), false, 32, true, 'string'),
+						'XMPState'						 => array('XMP', '<photoshop:State>', gettext('Province/State'), false, 32, true, 'string'),
+						'XMPSubLocation'			 => array('XMP', '<Iptc4xmpCore:Location>', gettext('Sub-location'), false, 32, true, 'string'),
+						'rating'							 => array('XMP', '<MicrosoftPhoto:Rating>', gettext('Rating'), false, 0, true, 'string')
+		);
+	}
+
+	/**
 	 * Parses xmp metadata for interesting tags
 	 *
 	 * @param string $xmpdata
@@ -612,53 +666,17 @@ class xmpMetadata {
 	 */
 	private static function extract($xmpdata) {
 		$desiredtags = array(
-						'EXIFLensType'					 => '<aux:Lens>',
-						'EXIFLensInfo'					 => '<aux:LensInfo>',
-						'EXIFArtist'						 => '<dc:creator>',
-						'IPTCCopyright'					 => '<dc:rights>',
-						'IPTCImageCaption'			 => '<dc:description>',
-						'IPTCObjectName'				 => '<dc:title>',
-						'IPTCKeywords'					 => '<dc:subject>',
-						'EXIFExposureTime'			 => '<exif:ExposureTime>',
-						'EXIFFNumber'						 => '<exif:FNumber>',
-						'EXIFAperatureValue'		 => '<exif:ApertureValue>',
-						'EXIFExposureProgram'		 => '<exif:ExposureProgram>',
-						'EXIFISOSpeedRatings'		 => '<exif:ISOSpeedRatings>',
-						'EXIFDateTimeOriginal'	 => '<exif:DateTimeOriginal>',
-						'EXIFExposureBiasValue'	 => '<exif:ExposureBiasValue>',
-						'EXIFGPSLatitude'				 => '<exif:GPSLatitude>',
-						'EXIFGPSLongitude'			 => '<exif:GPSLongitude>',
-						'EXIFGPSAltitude'				 => '<exif:GPSAltitude>',
-						'EXIFGPSAltituedRef'		 => '<exif:GPSAltitudeRef>',
-						'EXIFMeteringMode'			 => '<exif:MeteringMode>',
-						'EXIFFocalLength'				 => '<exif:FocalLength>',
-						'EXIFContrast'					 => '<exif:Contrast>',
-						'EXIFSharpness'					 => '<exif:Sharpness>',
-						'EXIFShutterSpeedValue'	 => '<exif:ShutterSpeedValue>',
-						'EXIFSaturation'				 => '<exif:Saturation>',
-						'EXIFWhiteBalance'			 => '<exif:WhiteBalance>',
-						'IPTCLocationCode'			 => '<Iptc4xmpCore:CountryCode>',
-						'IPTCSubLocation'				 => '<Iptc4xmpCore:Location>',
-						'rating'								 => '<MicrosoftPhoto:Rating>',
-						'IPTCSource'						 => '<photoshop:Source>',
-						'IPTCCity'							 => '<photoshop:City>',
-						'IPTCState'							 => '<photoshop:State>',
-						'IPTCLocationName'			 => '<photoshop:Country>',
-						'IPTCImageHeadline'			 => '<photoshop:Headline>',
-						'IPTCImageCredit'				 => '<photoshop:Credit>',
-						'EXIFMake'							 => '<tiff:Make>',
-						'EXIFModel'							 => '<tiff:Model>',
-						'EXIFOrientation'				 => '<tiff:Orientation>',
-						'EXIFImageWidth'				 => '<tiff:ImageWidth>',
-						'EXIFImageHeight'				 => '<tiff:ImageLength>',
-						'owner'									 => '<zp:Owner>',
-						'thumb'									 => '<zp:Thumbnail>',
-						'watermark'							 => '<zp:Watermark>',
-						'watermark_use'					 => '<zp:Watermark_use>',
-						'watermark_thumb'				 => '<zp:Watermark_thumb>',
-						'custom_data'						 => '<zp:CustomData',
-						'codeblock'							 => '<zp:Codeblock>'
+						'owner'						 => '<zp:Owner>',
+						'thumb'						 => '<zp:Thumbnail>',
+						'watermark'				 => '<zp:Watermark>',
+						'watermark_use'		 => '<zp:Watermark_use>',
+						'watermark_thumb'	 => '<zp:Watermark_thumb>',
+						'custom_data'			 => '<zp:CustomData',
+						'codeblock'				 => '<zp:Codeblock>'
 		);
+		foreach (self::getMetadataFields()as $field => $item) {
+			$desiredtags[$field] = $item[1];
+		}
 		$xmp_parsed = array();
 		while (!empty($xmpdata)) {
 			$s = strpos($xmpdata, '<');
@@ -747,24 +765,28 @@ class xmpMetadata {
 				if (strtolower(getSuffix($file)) == XMP_EXTENSION) {
 					$source = file_get_contents($file);
 					$metadata = self::extract($source);
-					if (array_key_exists('IPTCImageCaption', $metadata)) {
-						$album->setDesc(self::to_string($metadata['IPTCImageCaption']));
+					if (array_key_exists('XMPImageCaption', $metadata)) {
+						$album->setDesc(self::to_string($metadata['XMPImageCaption']));
 					}
-					if (array_key_exists('IPTCImageHeadline', $metadata)) {
-						$album->setTitle(self::to_string($metadata['IPTCImageHeadline']));
+					if (array_key_exists('XMPImageHeadline', $metadata)) {
+						$data = self::to_string($metadata['XMPImageHeadline']);
+						if (getoption('transform_newlines')) {
+							$desc = nl2br($desc);
+						}
+						$album->setTitle($data);
 					}
-					if (array_key_exists('IPTCLocationName', $metadata)) {
-						$album->setLocation(self::to_string($metadata['IPTCLocationName']));
+					if (array_key_exists('XMPLocationName', $metadata)) {
+						$album->setLocation(self::to_string($metadata['XMPLocationName']));
 					}
-					if (array_key_exists('IPTCKeywords', $metadata)) {
-						$tags = $metadata['IPTCKeywords'];
+					if (array_key_exists('XMPKeywords', $metadata)) {
+						$tags = $metadata['XMPKeywords'];
 						if (!is_array($tags)) {
 							$tags = explode(',', $tags);
 						}
 						$album->setTags($tags);
 					}
-					if (array_key_exists('EXIFDateTimeOriginal', $metadata)) {
-						$album->setDateTime($metadata['EXIFDateTimeOriginal']);
+					if (array_key_exists('XMPDateTimeOriginal', $metadata)) {
+						$album->setDateTime($metadata['XMPDateTimeOriginal']);
 					}
 					if (array_key_exists('thumb', $metadata)) {
 						$album->setThumb($metadata['thumb']);
@@ -858,7 +880,6 @@ class xmpMetadata {
 	 * @return object
 	 */
 	static function new_image($image) {
-		global $_zp_exifvars;
 		$source = '';
 		$metadata_path = '';
 		$files = safe_glob(substr($image->localpath, 0, strrpos($image->localpath, '.')) . '.*');
@@ -899,108 +920,123 @@ class xmpMetadata {
 				}
 			}
 		}
+		// direct import to ZenPhoto20 fields with no processing required
+		$import = array(
+						'location'	 => 'XMPSubLocation',
+						'city'			 => 'XMPCity',
+						'city'			 => 'XMPCity',
+						'state'			 => 'XMPState',
+						'country'		 => 'XMPLocationName',
+						'copyright'	 => 'XMPCopyright',
+						'rotation'	 => 'XMPOrientation'
+		);
 		if (!empty($source)) {
 			$metadata = self::extract($source);
-			$image->set('hasMetadata', count($metadata > 0));
-			foreach ($metadata as $field => $element) {
-				$v = self::to_string($element);
-
-				switch ($field) {
-					case 'EXIFDateTimeOriginal':
-						$image->setDateTime($element);
-						break;
-					case 'IPTCImageCaption':
-						$image->setDesc($v);
-						break;
-					case 'IPTCCity':
-						$image->setCity($v);
-						break;
-					case 'IPTCState':
-						$image->setState($v);
-						break;
-					case 'IPTCLocationName':
-						$image->setCountry($v);
-						break;
-					case 'IPTCSubLocation':
-						$image->setLocation($v);
-						break;
-					case 'EXIFExposureTime':
-						$v = formatExposure(self::rationalNum($element));
-						break;
-					case 'EXIFFocalLength':
-						$v = self::rationalNum($element) . ' mm';
-						break;
-					case 'EXIFAperatureValue':
-					case 'EXIFFNumber':
-						$v = 'f/' . self::rationalNum($element);
-						break;
-					case 'EXIFExposureBiasValue':
-					case 'EXIFGPSAltitude':
-						$v = self::rationalNum($element);
-						break;
-					case 'EXIFGPSLatitude':
-					case 'EXIFGPSLongitude':
-						$ref = substr($element, -1, 1);
-						$image->set($field . 'Ref', $ref);
-						$element = substr($element, 0, -1);
-						$n = explode(',', $element);
-						if (count($n) == 3) {
-							$v = $n[0] + ($n[1] + ($n[2] / 60) / 60);
+			if (count($metadata > 0)) {
+				$exifVars = self::getMetadataFields();
+				foreach ($metadata as $field => $element) {
+					if (!array_key_exists($field, $exifVars) || $exifVars[$field][5]) {
+						$image->set('hasMetadata', 1);
+						$v = self::to_string($element);
+						if (($key = array_search($field, $import)) !== false) {
+							$image->set($key, $v);
 						} else {
-							$v = $n[0] + $n[1] / 60;
+							switch ($field) {
+								case 'XMPSource':
+									if (!isset($metadata['XMPImageCredit'])) {
+										$this->set('credit', $v);
+									}
+									break;
+								case 'XMPImageCredit':
+									$this->set('credit', $v);
+									break;
+								case 'XMPImageHeadline':
+									if (getoption('transform_newlines')) {
+										$v = nl2br($v);
+									}
+									$image->setTitle($v);
+									break;
+								case 'XMPImageCaption':
+									if (getoption('transform_newlines')) {
+										$v = nl2br(v);
+									}
+									$image->setDesc($v);
+									break;
+								case 'XMPDateTimeOriginal':
+									$image->setDateTime($element);
+									break;
+								case 'XMPExposureTime':
+									$v = formatExposure(self::rationalNum($element));
+									break;
+								case 'XMPFocalLength':
+									$v = self::rationalNum($element) . ' mm';
+									break;
+								case 'XMPAperatureValue':
+								case 'XMPFNumber':
+									$v = 'f/' . self::rationalNum($element);
+									break;
+								case 'XMPExposureBiasValue':
+								case 'XMPGPSAltitude':
+									$v = self::rationalNum($element);
+									break;
+								case 'XMPGPSLatitude':
+								case 'XMPGPSLongitude':
+									$n = explode(',', $element);
+									if (count($n) == 3) {
+										$v = $n[0] + ($n[1] + ($n[2] / 60) / 60);
+									} else {
+										$v = $n[0] + $n[1] / 60;
+									}
+									if (in_array(strtoupper(substr($element, -1, 1)), array('S', 'W'))) {
+										$v = -$v;
+									}
+									$image->set(substr($field, 3), $v);
+									break;
+								case 'XMPLensInfo':
+									preg_match_all('~(\d+/\d+)~', $v, $matches);
+									if (isset($matches[1]) && !empty($matches[1])) {
+										$lens = array();
+										foreach ($matches[1] as $i => $f) {
+											$term = explode('/', $f);
+											if ($term[0] != 0 && $term[1] != 0) {
+												$lens[$i] = convertToFraction($term[0] / $term[1]);
+											} else {
+												$lens[$i] = 0;
+											}
+										}
+										if ($lens[0] == $lens[1]) {
+											$v = sprintf('%0.0fmm', $lens[0]);
+										} else {
+											$v = sprintf('%0.0f-%0.0fmm', $lens[0], $lens[1]);
+										}
+										if ($lens[2] == $lens[3]) {
+											if ($lens[2] != 0) {
+												$v .= sprintf(' f/%0.1f', $lens[2]);
+											}
+										} else {
+											$v .= sprintf(' f/%0.1f-%0.1f', $lens[3], $lens[2]);
+										}
+									}
+									break;
+								case 'rating':
+									$v = min(getoption('rating_stars_count'), $v) * min(1, getOption('rating_split_stars'));
+									$image->set('total_value', $v);
+									$image->set('total_votes', 1);
+									break;
+								case 'XMPKeywords':
+									if (!is_array($element)) {
+										$element = explode(',', $element);
+									}
+									$element = array_unique(array_merge($image->getTags(), $element));
+									$image->setTags($element);
+									break;
+							}
 						}
-						break;
-					case 'EXIFLensInfo':
-						preg_match_all('~(\d+/\d+)~', $v, $matches);
-						if (isset($matches[1]) && !empty($matches[1])) {
-							$lens = array();
-							foreach ($matches[1] as $i => $f) {
-								$term = explode('/', $f);
-								if ($term[0] != 0 && $term[1] != 0) {
-									$lens[$i] = convertToFraction($term[0] / $term[1]);
-								} else {
-									$lens[$i] = 0;
-								}
-							}
-							if ($lens[0] == $lens[1]) {
-								$v = sprintf('%0.0fmm', $lens[0]);
-							} else {
-								$v = sprintf('%0.0f-%0.0fmm', $lens[0], $lens[1]);
-							}
-							if ($lens[2] == $lens[3]) {
-								if ($lens[2] != 0) {
-									$v.= sprintf(' f/%0.1f', $lens[2]);
-								}
-							} else {
-								$v .= sprintf(' f/%0.1f-%0.1f', $lens[3], $lens[2]);
-							}
-						}
-						break;
-					case 'rating':
-						$v = min(getoption('rating_stars_count'), $v) * min(1, getOption('rating_split_stars'));
-						$image->set('total_value', $v);
-						$image->set('total_votes', 1);
-						break;
-					case 'watermark':
-					case 'watermark_use':
-					case 'custom_data':
-					case 'codeblock':
-					case 'owner':
 						$image->set($field, $v);
-						break;
-					case 'IPTCKeywords':
-						if (!is_array($element)) {
-							$element = explode(',', $element);
-						}
-						$element = array_unique(array_merge($image->getTags(), $element));
-						$image->setTags($element);
-						break;
+					}
 				}
-				if (array_key_exists($field, $_zp_exifvars)) {
-					$image->set($field, $v);
-				}
+				$image->save();
 			}
-			$image->save();
 		}
 		return $image;
 	}

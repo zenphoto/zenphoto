@@ -25,6 +25,7 @@ class ThemeOptions {
 		setThemeOptionDefault('garland_transition', 'slide-hori');
 		setThemeOptionDefault('garland_caption_location', 'image');
 		setOptionDefault('colorbox_' . $me . '_image', 1);
+		setOptionDefault('colorbox_' . $me . '_favorites', 1);
 		setOptionDefault('colorbox_' . $me . '_album', 1);
 		setOptionDefault('colorbox_' . $me . '_search', 1);
 		setThemeOptionDefault('garland_menu', '');

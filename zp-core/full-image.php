@@ -165,7 +165,7 @@ if ($force_cache = getOption('cache_full_image')) {
 
 $process = $rotate = false;
 if (zp_imageCanRotate()) {
-	$rotate = getImageRotation($image_path);
+	$rotate = getImageRotation($imageobj);
 	$process = $rotate;
 }
 $watermark_use_image = getWatermarkParam($imageobj, WATERMARK_FULL);
