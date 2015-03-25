@@ -159,7 +159,7 @@ switch (OFFSET_PATH) {
 					$buttons[] = array(
 									'XSRFTag'			 => 'site_upgrade',
 									'category'		 => gettext('Admin'),
-									'enable'			 => true,
+									'enable'			 => 2,
 									'button_text'	 => gettext('Site » test mode'),
 									'formname'		 => 'site_upgrade',
 									'action'			 => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/site_upgrade/site_upgrade.php',
@@ -175,7 +175,7 @@ switch (OFFSET_PATH) {
 					$buttons[] = array(
 									'XSRFTag'			 => 'site_upgrade',
 									'category'		 => gettext('Admin'),
-									'enable'			 => true,
+									'enable'			 => 2,
 									'button_text'	 => gettext('Site » open'),
 									'formname'		 => 'site_upgrade',
 									'action'			 => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/site_upgrade/site_upgrade.php',

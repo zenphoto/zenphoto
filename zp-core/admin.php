@@ -285,7 +285,7 @@ if (!zp_loggedin()) {
 					$buttonlist[] = array(
 									'XSRFTag'			 => 'protect_setup',
 									'category'		 => gettext('Admin'),
-									'enable'			 => true,
+									'enable'			 => 2,
 									'button_text'	 => gettext('Setup » protect scripts'),
 									'formname'		 => 'restore_setup',
 									'action'			 => FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=protect_setup',
@@ -643,8 +643,12 @@ if (!zp_loggedin()) {
 									<?php
 									if (isset($button['XSRFTag']) && $button['XSRFTag'])
 										XSRFToken($button['XSRFTag']);
+									$color = '';
 									echo $button['hidden'];
 									if ($button['enable']) {
+										if ((int) $button['enable'] == 2) {
+											$color = ' style="color:red"';
+										}
 										$disable = '';
 									} else {
 										$disable = ' disabled="disabled"';
@@ -663,7 +667,7 @@ if (!zp_loggedin()) {
 												<img src="<?php echo $button_icon; ?>" alt="<?php echo html_encode($button['alt']); ?>" />
 												<?php
 											}
-											echo html_encode($button['button_text']);
+											echo '<span' . $color . '>' . html_encode($button['button_text']) . '</span>';
 											?>
 										</button>
 									</div><!--buttons -->
