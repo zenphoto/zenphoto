@@ -78,11 +78,10 @@ if (isset($_POST['savealbum'])) {
 				}
 			}
 		} else {
-			$searchfields = array();
-			foreach ($_POST as $key => $value) {
-				if (strpos($key, 'SEARCH_') !== false) {
-					$searchfields[] = sanitize(postIndexDecode(str_replace('SEARCH_', '', $key)));
-				}
+			if (isset($_POST['SEARCH_list'])) {
+				$searchfields = sanitize($_POST['SEARCH_list']);
+			} else {
+				$searchfields = array();
 			}
 			$words = sanitize($_POST['words']);
 		}
@@ -288,7 +287,7 @@ foreach ($subalbums as $folder) {
 						}
 					}
 				}
-				generateUnorderedListFromArray($selected_fields, $available_fields, 'SEARCH_', false, true, true);
+				generateUnorderedListFromArray($selected_fields, $available_fields, 'SEARCH_', false, true, true, true);
 				echo '</ul>';
 				?>
 			</td>

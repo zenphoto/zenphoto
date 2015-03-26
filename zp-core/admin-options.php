@@ -179,11 +179,10 @@ if (isset($_GET['action'])) {
 		if (isset($_POST['savesearchoptions'])) {
 			$fail = '';
 			$search = new SearchEngine();
-			$searchfields = array();
-			foreach ($_POST as $key => $value) {
-				if (strpos($key, 'SEARCH_') !== false) {
-					$searchfields[] = sanitize(postIndexDecode(substr($key, 7)));
-				}
+			if (isset($_POST['SEARCH_list'])) {
+				$searchfields = sanitize($_POST['SEARCH_list']);
+			} else {
+				$searchfields = array();
 			}
 			natcasesort($searchfields);
 			setOption('search_fields', implode(',', $searchfields));
@@ -1569,8 +1568,8 @@ Zenphoto_Authority::printPasswordFormJS();
 									<div id="resizable">
 										<ul class="searchchecklist" id="searchchecklist">
 											<?php
-											generateUnorderedListFromArray($set_fields, $set_fields, 'SEARCH_', false, true, true, 'search_fields');
-											generateUnorderedListFromArray(array(), $fields, 'SEARCH_', false, true, true, 'search_fields');
+											generateUnorderedListFromArray($set_fields, $set_fields, 'SEARCH_', false, true, true, 'search_fields', NULL, true);
+											generateUnorderedListFromArray(array(), $fields, 'SEARCH_', false, true, true, 'search_fields', NULL, true);
 											?>
 										</ul>
 										<div class="floatright">
