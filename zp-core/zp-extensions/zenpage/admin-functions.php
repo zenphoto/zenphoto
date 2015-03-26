@@ -27,15 +27,10 @@ function getExpiryDatePost() {
  * @param object $object the object on which the save happened
  */
 function processTags($object) {
-	$tagsprefix = 'tags_';
-	$tags = array();
-	$l = strlen($tagsprefix);
-	foreach ($_POST as $key => $value) {
-		if (substr($key, 0, $l) == $tagsprefix) {
-			if ($value) {
-				$tags[] = sanitize(postIndexDecode(substr($key, $l)));
-			}
-		}
+	if (isset($_POST['tag_list_tags_'])) {
+		$tags = sanitize($_POST['tag_list_tags_']);
+	} else {
+		$tags = array();
 	}
 	$tags = array_unique($tags);
 	$object->setTags($tags);

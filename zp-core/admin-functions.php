@@ -1245,7 +1245,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			<?php
 			if ((int) $addnew == 2) {
 				?>
-				<input type="hidden" value="1" name="additive_<?php echo $postit; ?>" id="tag_additive_<?php echo $postit; ?>" />
+				<input type="hidden" value="1" name="additive_<?php echo $postit; ?>" id="additive_<?php echo $postit; ?>" />
 				<?php
 			}
 		}
@@ -1259,7 +1259,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						?>
 						<li id="<?php echo $tag; ?>_element">
 							<label class="displayinline">
-								<input id="<?php echo $listitem; ?>" class="<?php echo $class; ?>" name="<?php echo $listitem; ?>" type="checkbox" checked="checked" value="1" />
+								<input id="<?php echo $listitem; ?>" class="<?php echo $class; ?>" name="<?php echo 'tag_list_' . $postit . '[]'; ?>" type="checkbox" checked="checked" value="<?php echo html_encode($item); ?>" />
 								<img src="<?php echo $flags[$languages[$item]]; ?>" height="10" width="16" />
 								<?php
 								if ($showCounts) {
@@ -1279,9 +1279,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 				foreach ($them as $tagLC => $item) {
 					$listitem = $postit . postIndexEncode($item);
 					?>
-					<li id="<?php echo $tagLC; ?>_element">
+					<li id="<?php echo $listitem; ?>_element">
 						<label class="displayinline">
-							<input id="<?php echo $listitem; ?>" class="<?php echo $class; ?>" name="<?php echo $listitem; ?>" type="checkbox" value="1" />
+							<input id="<?php echo $listitem; ?>" class="<?php echo $class; ?>" name="<?php echo 'tag_list_' . $postit . '[]'; ?>" type="checkbox" value="<?php echo html_encode($item); ?>" />
 							<img src="<?php echo $flags[$languages[$item]]; ?>" height="10" width="16" />
 							<?php
 							if ($showCounts) {
@@ -2415,15 +2415,10 @@ function printAdminHeader($tab, $subtab = NULL) {
 		$notify = '';
 		$album->setTitle(process_language_string_save($prefix . 'albumtitle', 2));
 		$album->setDesc(process_language_string_save($prefix . 'albumdesc', EDITOR_SANITIZE_LEVEL));
-		$tagsprefix = 'tags_' . $prefix;
-		$tags = array();
-		$l = strlen($tagsprefix);
-		foreach ($_POST as $key => $value) {
-			if (substr($key, 0, $l) == $tagsprefix) {
-				if ($value) {
-					$tags[] = sanitize(postIndexDecode(substr($key, $l)));
-				}
-			}
+		if (isset($_POST['tag_list_tags_' . $prefix])) {
+			$tags = sanitize($_POST['tag_list_tags_' . $prefix]);
+		} else {
+			$tags = array();
 		}
 		$tags = array_unique($tags);
 		$album->setTags($tags);
@@ -4034,11 +4029,10 @@ function bulkActionRedirect($action) {
  * @return array
  */
 function bulkTags() {
-	$tags = array();
-	foreach ($_POST as $key => $value) {
-		if ($value && substr($key, 0, 10) == 'mass_tags_') {
-			$tags[] = sanitize(postIndexDecode(substr($key, 10)));
-		}
+	if (isset($_POST['tag_list_mass_tags_'])) {
+		$tags = sanitize($_POST['tag_list_mass_tags_']);
+	} else {
+		$tags = array();
 	}
 	return $tags;
 }
