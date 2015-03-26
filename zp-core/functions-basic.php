@@ -136,13 +136,8 @@ if (OFFSET_PATH != 2 && empty($_zp_conf_vars['mysql_database'])) {
 
 require_once(dirname(__FILE__) . '/lib-utf8.php');
 
-if (!defined('FILESYSTEM_CHARSET')) {
-	if (isset($_zp_conf_vars['FILESYSTEM_CHARSET']) && $_zp_conf_vars['FILESYSTEM_CHARSET'] != 'unknown') {
-		define('FILESYSTEM_CHARSET', $_zp_conf_vars['FILESYSTEM_CHARSET']);
-	} else {
-		define('FILESYSTEM_CHARSET', 'UTF-8');
-	}
-}
+
+
 if (!defined('CHMOD_VALUE')) {
 	define('CHMOD_VALUE', fileperms(dirname(__FILE__)) & 0666);
 }
@@ -171,6 +166,18 @@ if (!defined('DATABASE_SOFTWARE') && extension_loaded(strtolower(@$_zp_conf_vars
 if (!$data && OFFSET_PATH != 2) {
 	require_once(dirname(__FILE__) . '/reconfigure.php');
 	reconfigureAction(3);
+}
+
+if (!defined('FILESYSTEM_CHARSET')) {
+	if (isset($_zp_conf_vars['FILESYSTEM_CHARSET']) && $_zp_conf_vars['FILESYSTEM_CHARSET'] != 'unknown') {
+		define('FILESYSTEM_CHARSET', $_zp_conf_vars['FILESYSTEM_CHARSET']);
+	} else {
+		$data = getOption('filesystem_charset');
+		if(!$data) {
+			$data = 'UTF-8';
+		}
+		define('FILESYSTEM_CHARSET', $data);
+	}
 }
 
 $data = getOption('charset');

@@ -90,6 +90,7 @@ if (isset($_GET['action'])) {
 			}
 			setOption('time_offset', $offset);
 			setOption('charset', sanitize($_POST['charset']), 3);
+			setOption('filesystem_charset', sanitize($_POST['filesystem_charset']), 3);
 			setOption('site_email', sanitize($_POST['site_email']), 3);
 			$_zp_gallery->setGallerySession((int) isset($_POST['album_session']));
 			$_zp_gallery->save();
@@ -875,6 +876,37 @@ Zenphoto_Authority::printPasswordFormJS();
 										?>
 									</td>
 								</tr>
+								<tr>
+									<td width="175"><?php echo gettext("Filesystem Charset:"); ?></td>
+									<td width="350">
+										<select id="filesystem_charset" name="filesystem_charset">
+											<?php
+											$sets = array_merge($_zp_UTF8->iconv_sets, $_zp_UTF8->mb_sets);
+											$totalsets = $_zp_UTF8->charsets;
+											asort($totalsets);
+											foreach ($totalsets as $key => $char) {
+												?>
+												<option value="<?php echo $key; ?>" <?php
+												if ($key == FILESYSTEM_CHARSET)
+													echo 'selected="selected"';
+												if (!array_key_exists($key, $sets))
+													echo 'style="color: gray"';
+												?>><?php echo $char; ?></option>
+																<?php
+															}
+															?>
+										</select>
+									</td>
+									<td>
+										<?php
+										echo gettext('The character encoding to use for the filesystem. Leave at <em>Unicode (UTF-8)</em> if you are unsure.');
+										if (!function_exists('mb_list_encodings')) {
+											echo ' ' . gettext('Character sets <span style="color:gray">shown in gray</span> have no character translation support.');
+										}
+										?>
+									</td>
+								</tr>
+																
 								<tr>
 									<td width="175"><?php echo gettext("Allowed tags:"); ?></td>
 									<td width="350">

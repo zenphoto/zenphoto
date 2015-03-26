@@ -101,6 +101,7 @@ if (isset($_POST['setUTF8URI']) && $_POST['setUTF8URI'] != 'dont') {
 }
 setOptionDefault('server_protocol', "http");
 setOptionDefault('charset', "UTF-8");
+setOptionDefault('filesystem_charset', "UTF-8");
 setOptionDefault('image_quality', 85);
 setOptionDefault('thumb_quality', 75);
 
