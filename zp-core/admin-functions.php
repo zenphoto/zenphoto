@@ -952,17 +952,19 @@ function printAdminHeader($tab, $subtab = NULL) {
 						break;
 					case 'save':
 						$customHandlers[] = array('whom' => $key, 'extension' => sanitize($_POST[$posted]));
-						continue;
-						break;
+						continue 2;
 					default:
 						if (isset($_POST[$postkey])) {
 							$value = sanitize($_POST[$postkey], 1);
 						} else if (isset($_POST[$key])) {
 							$value = sanitize($_POST[$key], 1);
 						} else {
-							$value = '';
+							$value = NULL;
 						}
-						break;
+						if (is_string($value)) {
+							break;
+						}
+						continue 2;
 				}
 				if ($themename) {
 					setThemeOption($key, $value, $themealbum, $themename);
@@ -1534,7 +1536,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						$sort[gettext('Custom')] = 'custom';
 						/*
 						 * not recommended--screws with peoples minds during pagination!
-						  $sort[gettext('Random')] = 'random';
+							$sort[gettext('Random')] = 'random';
 						 */
 						?>
 						<tr>
