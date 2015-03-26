@@ -747,9 +747,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 										if (isMac()) {
 											checkMark(-1, '', gettext('Your filesystem is Macintosh'), gettext('Macintosh file names containing diacritical marks are beyond the scope of this software. You should avoid these.'), false);
 											?>
-											<input
-												type="hidden" name="FILESYSTEM_CHARSET" value="UTF-8" />
-
+											<input type="hidden" name="FILESYSTEM_CHARSET" value="UTF-8" />
 											<?php
 										} else {
 											primeMark(gettext('Character set'));
