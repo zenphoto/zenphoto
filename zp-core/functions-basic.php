@@ -140,7 +140,7 @@ if (!defined('FILESYSTEM_CHARSET')) {
 	if (isset($_zp_conf_vars['FILESYSTEM_CHARSET']) && $_zp_conf_vars['FILESYSTEM_CHARSET'] != 'unknown') {
 		define('FILESYSTEM_CHARSET', $_zp_conf_vars['FILESYSTEM_CHARSET']);
 	} else {
-		define('FILESYSTEM_CHARSET', 'ISO-8859-1');
+		define('FILESYSTEM_CHARSET', 'UTF-8');
 	}
 }
 if (!defined('CHMOD_VALUE')) {
