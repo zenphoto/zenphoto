@@ -720,8 +720,20 @@ Zenphoto_Authority::printPasswordFormJS();
 										</p>
 										<p><?php
 											echo gettext("If you are having problems with images whose names contain characters with diacritical marks try changing the <em>UTF8 image URIs</em> setting.");
-											if (is_null(getOption('UTF8_image_URI'))) {
-												echo '<p class="notebox">' . gettext('Setup could not determine a settig that allowed the diacritical marks.'), '</p>';
+											switch (getOption('UTF8_image_URI_found')) {
+												case'unknown':
+													echo '<p class="notebox">' . gettext('Setup could not determine a settig that allowed images with diacritical marks in the name.'), '</p>';
+													break;
+												case 'internal':
+													if (!getOption('UTF8_image_URI')) {
+														echo '<p class="notebox">' . gettext('Setup detected <em>UTF-8</em image URIs.'), '</p>';
+													}
+													break;
+												case 'filesystem':
+													if (getOption('UTF8_image_URI')) {
+														echo '<p class="notebox">' . gettext('Setup detected <em>file system</em> image URIs.'), '</p>';
+													}
+													break;
 											}
 											?></p>
 										<p><?php echo gettext("If <em>mod_rewrite</em> is checked above, zenphoto will append the <em>mod_rewrite suffix</em> to the end of image URLs. (This helps search engines.) Examples: <em>.html, .php</em>, etc."); ?></p>

@@ -185,11 +185,12 @@ if (isset($_GET['mod_rewrite'])) {
 	<?php
 }
 if (isset($_POST['setUTF8URI'])) {
+	setOption('UTF8_image_URI_found', sanitize($_POST['setUTF8URI']));
 	if ($_POST['setUTF8URI'] == 'unknown') {
 		setupLog(gettext('Setup could not find a configuration that allows image URIs containing diacritical marks.'), true);
-		purgeOption('UTF8_image_URI');
+		setOptionDefault('UTF8_image_URI', 1);
 	} else {
-		setOption('UTF8_image_URI', (int) ($_POST['setUTF8URI'] == 'internal'));
+		setOptionDefault('UTF8_image_URI', (int) ($_POST['setUTF8URI'] == 'internal'));
 	}
 }
 setOptionDefault('server_protocol', "http");

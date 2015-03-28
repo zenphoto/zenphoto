@@ -758,7 +758,6 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 											}
 											$test = '';
 											if (($dir = opendir($serverpath . '/' . DATA_FOLDER . '/')) !== false) {
-												$testfiles = array();
 												while (($file = readdir($dir)) !== false) {
 													if (preg_match('/^charset([\._])t.*$/', $file, $matches)) {
 														$test = $file;
@@ -835,45 +834,48 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 											}
 											checkMark($notice, $msg, $msg1, sprintf($msg2, charsetSelector(FILESYSTEM_CHARSET)));
 											// UTF-8 URI
-											if (($notice != -1) && @copy(SERVERPATH . '/' . ZENFOLDER . '/images/pass.png', $serverpath . '/' . DATA_FOLDER . '/' . internalToFilesystem('tést.jpg'))) {
-												?>
-												<li id="internal">
-													<span>
-														<img src="<?php echo WEBPATH . '/' . DATA_FOLDER . '/' . urlencode('tést.jpg'); ?>" title="internal" />
-														<?php echo gettext('Image URIs appear to require the UTF-8 character set.') ?>
-													</span>
-												</li>
-												<li id="filesystem">
-													<span>
-														<img src="<?php echo WEBPATH . '/' . DATA_FOLDER . '/' . urlencode(internalToFilesystem('tést.jpg')); ?>" title="filesystem" />
-														<?php echo gettext('Image URIs appear require the <em>filesystem</em> character set.'); ?>
-													</span>
-												</li>
-												<li id="unknown" style="display: none;">
-													<span>
-														<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/warn.png" />
-														<?php echo gettext('Image URIs with diacritical marks appear to fail.'); ?>
-													</span>
-												</li>
-												<script type="text/javascript">
-													var failed = 0;
-													$(function () {
-														$('img').error(function () {
-															var title = $(this).attr('title');
-															failed++;
-															$(this).attr('src', '../images/fail.png');
-															$('#' + title).hide();
-															if (title == 'internal') {
-																$('#setUTF8URI').val('filesystem');
-															}
-															if (failed > 1) {
-																$('#unknown').show();
-																$('#setUTF8URI').val('unknown');
-															}
+											if ($notice != -1) {
+												$test = copy(SERVERPATH . '/' . ZENFOLDER . '/images/pass.png', $testjpg = $serverpath . '/' . DATA_FOLDER . '/' . internalToFilesystem('tést.jpg'));
+												if (file_exists($testjpg)) {
+													?>
+													<li id="internal">
+														<span>
+															<img src="<?php echo WEBPATH . '/' . DATA_FOLDER . '/' . urlencode('tést.jpg'); ?>" title="internal" />
+															<?php echo gettext('Image URIs appear to require the UTF-8 character set.') ?>
+														</span>
+													</li>
+													<li id="filesystem">
+														<span>
+															<img src="<?php echo WEBPATH . '/' . DATA_FOLDER . '/' . urlencode(internalToFilesystem('tést.jpg')); ?>" title="filesystem" />
+															<?php echo gettext('Image URIs appear require the <em>filesystem</em> character set.'); ?>
+														</span>
+													</li>
+													<li id="unknown" style="display: none;">
+														<span>
+															<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/warn.png" />
+															<?php echo gettext('Image URIs with diacritical marks appear to fail.'); ?>
+														</span>
+													</li>
+													<script type="text/javascript">
+														var failed = 0;
+														$(function () {
+															$('img').error(function () {
+																var title = $(this).attr('title');
+																failed++;
+																$(this).attr('src', '../images/fail.png');
+																$('#' + title).hide();
+																if (title == 'internal') {
+																	$('#setUTF8URI').val('filesystem');
+																}
+																if (failed > 1) {
+																	$('#unknown').show();
+																	$('#setUTF8URI').val('unknown');
+																}
+															});
 														});
-													});
-												</script>
-												<?php
+													</script>
+													<?php
+												}
 											}
 										}
 									}
