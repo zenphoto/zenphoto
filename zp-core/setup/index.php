@@ -751,7 +751,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 											<?php
 										} else {
 											primeMark(gettext('Character set'));
-											$charset_defined = str_replace('-', '&#8209;', FILESYSTEM_CHARSET);
+											$charset_defined = $_zp_UTF8->iconv_sets[FILESYSTEM_CHARSET];
 											$charset = LOCAL_CHARSET;
 											if (empty($charset)) {
 												$charset = 'UTF-8';
@@ -762,6 +762,9 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 													if (preg_match('/^charset([\._])t.*$/', $file, $matches)) {
 														$test = $file;
 														$test_internal = 'charset' . $matches[1] . 'tést';
+														if (getSuffix($file)) {
+															$test_internal .= '.' . getSuffix($file);
+														}
 														break;
 													}
 												}
@@ -812,7 +815,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 												} else {
 													if ($selectedset == 'unknown') {
 														$notice = 1;
-														$msg = gettext('The filesystem character define is ISO-8859-1 [assumed]');
+														$msg = gettext('The filesystem character define is UTF-8 [assumed]');
 														$msg1 = '';
 													} else {
 														//	active character set is not correct
@@ -840,13 +843,13 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 													?>
 													<li id="internal">
 														<span>
-															<img src="<?php echo WEBPATH . '/' . DATA_FOLDER . '/' . urlencode('tést.jpg'); ?>" title="internal" />
+															<img src="<?php echo WEBPATH . '/' . DATA_FOLDER . '/' . urlencode('tést.jpg'); ?>"  onerror="imgError('internal');"/>
 															<?php echo gettext('Image URIs appear to require the UTF-8 character set.') ?>
 														</span>
 													</li>
-													<li id="filesystem">
+													<li id="filesystem" style="display: none;">
 														<span>
-															<img src="<?php echo WEBPATH . '/' . DATA_FOLDER . '/' . urlencode(internalToFilesystem('tést.jpg')); ?>" title="filesystem" />
+															<img src="<?php echo WEBPATH . '/' . DATA_FOLDER . '/' . urlencode(internalToFilesystem('tést.jpg')); ?>" title="filesystem" onerror="imgError('filesystem');"/>
 															<?php echo gettext('Image URIs appear require the <em>filesystem</em> character set.'); ?>
 														</span>
 													</li>
@@ -858,21 +861,20 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 													</li>
 													<script type="text/javascript">
 														var failed = 0;
-														$(function () {
-															$('img').error(function () {
-																var title = $(this).attr('title');
-																failed++;
-																$(this).attr('src', '../images/fail.png');
-																$('#' + title).hide();
+														function imgError(title) {
+															failed++;
+															$(this).attr('src', '../images/fail.png');
+															$('#' + title).hide();
+															if (failed > 1) {
+																$('#unknown').show();
+																$('#setUTF8URI').val('unknown');
+															} else {
 																if (title == 'internal') {
 																	$('#setUTF8URI').val('filesystem');
+																	$('#filesystem').show();
 																}
-																if (failed > 1) {
-																	$('#unknown').show();
-																	$('#setUTF8URI').val('unknown');
-																}
-															});
-														});
+															}
+														}
 													</script>
 													<?php
 												}

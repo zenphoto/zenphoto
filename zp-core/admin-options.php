@@ -92,7 +92,16 @@ if (isset($_GET['action'])) {
 				$offset = sanitize($_POST['time_offset'], 3);
 			}
 			setOption('time_offset', $offset);
+
 			setOption('charset', sanitize($_POST['charset']), 3);
+			if (($new = sanitize($_POST['filesystem_charset'])) != FILESYSTEM_CHARSET) {
+				$_configMutex->lock();
+				$zp_cfg = @file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
+				$zp_cfg = updateConfigItem('FILESYSTEM_CHARSET', $new, $zp_cfg);
+				storeConfig($zp_cfg);
+				$_configMutex->unlock();
+			}
+
 			setOption('site_email', sanitize($_POST['site_email']), 3);
 			$_zp_gallery->setGallerySession((int) isset($_POST['album_session']));
 			$_zp_gallery->save();
@@ -907,16 +916,19 @@ Zenphoto_Authority::printPasswordFormJS();
 											$totalsets = $_zp_UTF8->charsets;
 											asort($totalsets);
 											foreach ($totalsets as $key => $char) {
+												if ($key == LOCAL_CHARSET) {
+													$selected = ' selected="selected"';
+												} else {
+													$selected = '';
+												}
+												if (!array_key_exists($key, $sets)) {
+													$selected .= ' style="color: gray"';
+												}
 												?>
-												<option value="<?php echo $key; ?>" <?php
-												if ($key == LOCAL_CHARSET)
-													echo 'selected="selected"';
-												if (!array_key_exists($key, $sets))
-													echo 'style="color: gray"';
-												?>><?php echo $char; ?></option>
-																<?php
-															}
-															?>
+												<option value="<?php echo $key; ?>" <?php echo $selected; ?>><?php echo $char; ?></option>
+												<?php
+											}
+											?>
 										</select>
 									</td>
 									<td>
@@ -928,6 +940,29 @@ Zenphoto_Authority::printPasswordFormJS();
 										?>
 									</td>
 								</tr>
+								<tr>
+									<td width="175"><?php echo gettext("Filesystem Charset:"); ?></td>
+									<td width="350">
+										<select id="filesystem_charset" name="filesystem_charset">
+											<?php
+											foreach ($totalsets as $key => $char) {
+												if ($key == FILESYSTEM_CHARSET) {
+													$selected = ' selected="selected"';
+												} else {
+													$selected = '';
+												}
+												?>
+												<option value="<?php echo $key; ?>"<?php echo $selected; ?>><?php echo $char; ?></option>
+												<?php
+											}
+											?>
+										</select>
+									</td>
+									<td>
+										<?php echo gettext('The character encoding to use for the filesystem. Leave at <em>Unicode (UTF-8)</em> if you are unsure.'); ?>
+									</td>
+								</tr>
+
 								<tr>
 									<td width="175"><?php echo gettext("Allowed tags:"); ?></td>
 									<td width="350">
