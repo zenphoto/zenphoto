@@ -844,7 +844,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 													<li id="internal">
 														<span>
 															<img src="<?php echo WEBPATH . '/' . DATA_FOLDER . '/' . urlencode('tést.jpg'); ?>"  onerror="imgError('internal');"/>
-															<?php echo gettext('Image URIs appear to require the UTF-8 character set.') ?>
+															<?php echo gettext('Image URIs appear to require the <em>UTF-8</em> character set.') ?>
 														</span>
 													</li>
 													<li id="filesystem" style="display: none;">
