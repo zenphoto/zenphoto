@@ -120,11 +120,7 @@ function checkSignature($mandatory) {
 		$found = safe_glob('*.xxx');
 		if (!empty($found) && $mandatory && (defined('ADMIN_RIGHTS') && zp_loggedin(ADMIN_RIGHTS) || !$_zp_DB_connection)) {
 			switch ($mandatory) {
-				case 1:
-				case 2:
-				case 3:
-				case 5:
-				case 6:
+				default:
 					$addl = sprintf(gettext('restored to run setup [%s]'), $mandatory);
 					break;
 				case 4:
@@ -134,8 +130,8 @@ function checkSignature($mandatory) {
 			zp_apply_filter('log_setup', true, 'restore', $addl);
 			foreach ($found as $script) {
 				chmod($script, 0777);
-				if (@rename($script, stripSuffix($script))) {
-					chmod(stripSuffix($script), FILE_MOD);
+				if (@rename($script, stripSuffix($script) . '.php')) {
+					chmod(stripSuffix($script) . '.php', FILE_MOD);
 				} else {
 					chmod($script, FILE_MOD);
 				}
