@@ -263,6 +263,9 @@ function restoreSetupScrpts($reason) {
 			break;
 	}
 	zp_apply_filter('log_setup', true, 'restore', $addl);
+	if (!defined('FILE_MOD')) {
+		define('FILE_MOD', 0666);
+	}
 	chdir(dirname(__FILE__) . '/setup/');
 	$found = safe_glob('*.xxx');
 	foreach ($found as $script) {
