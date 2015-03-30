@@ -113,6 +113,8 @@ function updatePage(&$reports, $newpage = false) {
 		$rslt = query('UPDATE ' . prefix('pages') . ' SET `titlelink`=' . db_quote($titlelink) . ' WHERE `id`=' . $id, false);
 		if (!$rslt) {
 			$titlelink = $oldtitlelink; // force old link so data gets saved
+		} else {
+			SearchEngine::clearSearchCache();
 		}
 	}
 	// update page
@@ -386,6 +388,8 @@ function updateArticle(&$reports, $newarticle = false) {
 		$rslt = query('UPDATE ' . prefix('news') . ' SET `titlelink`=' . db_quote($titlelink) . ' WHERE `id`=' . $id, false);
 		if (!$rslt) {
 			$titlelink = $oldtitlelink; // force old link so data gets saved
+		} else {
+			SearchEngine::clearSearchCache();
 		}
 	}
 	// update article
@@ -893,6 +897,8 @@ function updateCategory(&$reports, $newcategory = false) {
 		$titleok = query('UPDATE ' . prefix('news_categories') . ' SET `titlelink`=' . db_quote($titlelink) . ' WHERE `id`=' . $id, false);
 		if (!$titleok) {
 			$titlelink = $oldtitlelink; // force old link so data gets saved
+		} else {
+			SearchEngine::clearSearchCache();
 		}
 	}
 	//update category
@@ -1644,6 +1650,7 @@ function printPublishIconLink($object, $type, $linkback = '') {
 						switch ($action) {
 							case 'deleteall':
 								$obj->remove();
+								SearchEngine::clearSearchCache();
 								break;
 							case 'addtags':
 								$mytags = array_unique(array_merge($tags, $obj->getTags()));

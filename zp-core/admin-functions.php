@@ -2405,6 +2405,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 				}
 				if ($e = $album->move($dest)) {
 					$notify = "&mcrerr=" . $e;
+					SearchEngine::clearSearchCache();
 				} else {
 					$redirectto = $dest;
 				}
@@ -2548,6 +2549,7 @@ function printAdminHeader($tab, $subtab = NULL) {
       $dest = sanitize_path($_POST[$index . '-albumselect']);
       if ($dest && $dest != $folder) {
         if ($e = $image->move($dest)) {
+					SearchEngine::clearSearchCache();
           $notify = "&mcrerr=" . $e;
         }
       } else {
@@ -2568,6 +2570,7 @@ function printAdminHeader($tab, $subtab = NULL) {
     } else if ($movecopyrename_action == 'rename') {
       $renameto = sanitize_path($_POST[$index . '-renameto']);
       if ($e = $image->rename($renameto)) {
+				SearchEngine::clearSearchCache();
         $notify = "&mcrerr=" . $e;
       }
     }
@@ -3962,6 +3965,7 @@ function processAlbumBulkActions() {
 				switch ($action) {
 					case 'deleteallalbum':
 						$albumobj->remove();
+						SearchEngine::clearSearchCache();
 						break;
 					case 'showall':
 						$albumobj->setShow(1);
@@ -4047,6 +4051,7 @@ function processImageBulkActions($album) {
 				switch ($action) {
 					case 'deleteall':
 						$imageobj->remove();
+						SearchEngine::clearSearchCache();
 						break;
 					case 'showall':
 						$imageobj->set('show', 1);
@@ -4077,6 +4082,7 @@ function processImageBulkActions($album) {
 						break;
 					case 'moveimages':
 						if ($e = $imageobj->move($dest)) {
+							SearchEngine::clearSearchCache();
 							return "&mcrerr=" . $e;
 						}
 						break;
