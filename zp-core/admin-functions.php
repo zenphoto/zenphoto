@@ -952,17 +952,19 @@ function printAdminHeader($tab, $subtab = NULL) {
 						break;
 					case 'save':
 						$customHandlers[] = array('whom' => $key, 'extension' => sanitize($_POST[$posted]));
-						continue;
-						break;
+						continue 2;
 					default:
 						if (isset($_POST[$postkey])) {
 							$value = sanitize($_POST[$postkey], 1);
 						} else if (isset($_POST[$key])) {
 							$value = sanitize($_POST[$key], 1);
 						} else {
-							$value = '';
+							$value = NULL;
 						}
-						break;
+						if (is_string($value)) {
+							break;
+						}
+						continue 2;
 				}
 				if ($themename) {
 					setThemeOption($key, $value, $themealbum, $themename);
@@ -1061,7 +1063,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 * @param string $class optional class for items
 	 * @param bool $localize true if the list local key is text for the item
 	 */
-	function generateUnorderedListFromArray($currentValue, $list, $prefix, $alterrights, $sort, $localize, $class = NULL, $extra = NULL) {
+	function generateUnorderedListFromArray($currentValue, $list, $prefix, $alterrights, $sort, $localize, $class = NULL, $extra = NULL, $postArray = false) {
 		if (is_null($extra))
 			$extra = array();
 		if (!empty($class))
@@ -1083,16 +1085,21 @@ function printAdminHeader($tab, $subtab = NULL) {
 			} else {
 				$display = $item;
 			}
+			if ($postArray) {
+				$name = $prefix . 'list[]';
+			} else {
+				$name = $listitem;
+			}
+			if (isset($cv[$item])) {
+				$checked = ' checked="checked"';
+			} else {
+				$checked = '';
+			}
 			?>
 			<li id="<?php echo $listitem; ?>_element">
 				<label class="displayinline">
-					<input id="<?php echo $listitem; ?>"<?php echo $class; ?> name="<?php echo $listitem; ?>" type="checkbox"
-					<?php
-					if (isset($cv[$item])) {
-						echo ' checked="checked"';
-					}
-					?> value="1" <?php echo $alterrights; ?> />
-								 <?php echo html_encode($display); ?>
+					<input id="<?php echo $listitem; ?>"<?php echo $class; ?> name="<?php echo $name; ?>" type="checkbox"<?php echo $checked; ?> value="<?php echo $item; ?>" <?php echo $alterrights; ?> />
+					<?php echo html_encode($display); ?>
 				</label>
 				<?php
 				if (array_key_exists($item, $extra)) {
@@ -1115,10 +1122,10 @@ function printAdminHeader($tab, $subtab = NULL) {
 							<label class="displayinlineright">
 								<input type="<?php echo $type; ?>" id="<?php echo strtolower($listitem) . '_' . $box['name'] . $unique; ?>"<?php echo $class; ?> name="<?php echo $listitem . '_' . $box['name']; ?>"
 											 value="<?php echo html_encode($box['value']); ?>" <?php
-											 if ($box['checked']) {
-												 echo ' checked="checked"';
-											 }
-											 ?>
+					if ($box['checked']) {
+						echo ' checked="checked"';
+					}
+							?>
 											 <?php echo $disable; ?> /> <?php echo $box['display']; ?>
 							</label>
 							<?php
@@ -1245,7 +1252,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			<?php
 			if ((int) $addnew == 2) {
 				?>
-				<input type="hidden" value="1" name="additive_<?php echo $postit; ?>" id="tag_additive_<?php echo $postit; ?>" />
+				<input type="hidden" value="1" name="additive_<?php echo $postit; ?>" id="additive_<?php echo $postit; ?>" />
 				<?php
 			}
 		}
@@ -1259,7 +1266,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						?>
 						<li id="<?php echo $tag; ?>_element">
 							<label class="displayinline">
-								<input id="<?php echo $listitem; ?>" class="<?php echo $class; ?>" name="<?php echo $listitem; ?>" type="checkbox" checked="checked" value="1" />
+								<input id="<?php echo $listitem; ?>" class="<?php echo $class; ?>" name="<?php echo 'tag_list_' . $postit . '[]'; ?>" type="checkbox" checked="checked" value="<?php echo html_encode($item); ?>" />
 								<img src="<?php echo $flags[$languages[$item]]; ?>" height="10" width="16" />
 								<?php
 								if ($showCounts) {
@@ -1279,9 +1286,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 				foreach ($them as $tagLC => $item) {
 					$listitem = $postit . postIndexEncode($item);
 					?>
-					<li id="<?php echo $tagLC; ?>_element">
+					<li id="<?php echo $listitem; ?>_element">
 						<label class="displayinline">
-							<input id="<?php echo $listitem; ?>" class="<?php echo $class; ?>" name="<?php echo $listitem; ?>" type="checkbox" value="1" />
+							<input id="<?php echo $listitem; ?>" class="<?php echo $class; ?>" name="<?php echo 'tag_list_' . $postit . '[]'; ?>" type="checkbox" value="<?php echo html_encode($item); ?>" />
 							<img src="<?php echo $flags[$languages[$item]]; ?>" height="10" width="16" />
 							<?php
 							if ($showCounts) {
@@ -1568,9 +1575,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 									<label id="album_direction_div<?php echo $suffix; ?>" style="display:<?php echo $dsp; ?>;white-space:nowrap;">
 										<?php echo gettext("Descending"); ?>
 										<input type="checkbox" name="<?php echo $prefix; ?>album_sortdirection" value="1" <?php
-										if ($album->getSortDirection('album')) {
-											echo "CHECKED";
-										};
+									if ($album->getSortDirection('album')) {
+										echo "CHECKED";
+									};
 										?> />
 									</label>
 								</span>
@@ -1844,10 +1851,10 @@ function printAdminHeader($tab, $subtab = NULL) {
 							?>
 							<label class="checkboxlabel">
 								<input type="checkbox" name="<?php echo $prefix . 'allowcomments'; ?>" value="1" <?php
-								if ($album->getCommentsAllowed()) {
-									echo ' checked="checked"';
-								}
-								?> />
+					if ($album->getCommentsAllowed()) {
+						echo ' checked="checked"';
+					}
+							?> />
 											 <?php echo gettext("Allow Comments"); ?>
 							</label>
 							<?php
@@ -2415,15 +2422,10 @@ function printAdminHeader($tab, $subtab = NULL) {
 		$notify = '';
 		$album->setTitle(process_language_string_save($prefix . 'albumtitle', 2));
 		$album->setDesc(process_language_string_save($prefix . 'albumdesc', EDITOR_SANITIZE_LEVEL));
-		$tagsprefix = 'tags_' . $prefix;
-		$tags = array();
-		$l = strlen($tagsprefix);
-		foreach ($_POST as $key => $value) {
-			if (substr($key, 0, $l) == $tagsprefix) {
-				if ($value) {
-					$tags[] = sanitize(postIndexDecode(substr($key, $l)));
-				}
-			}
+		if (isset($_POST['tag_list_tags_' . $prefix])) {
+			$tags = sanitize($_POST['tag_list_tags_' . $prefix]);
+		} else {
+			$tags = array();
 		}
 		$tags = array_unique($tags);
 		$album->setTags($tags);
@@ -3217,10 +3219,10 @@ function printAdminHeader($tab, $subtab = NULL) {
 						?>
 						<label title="<?php echo html_encode(get_language_string($right['hint'])); ?>">
 							<input type="checkbox" name="<?php echo $id . '-' . $rightselement; ?>" id="<?php echo $rightselement . '-' . $id; ?>" class="user-<?php echo $id; ?>" value="<?php echo $right['value']; ?>"<?php
-							if ($rights & $right['value'])
-								echo ' checked="checked"';
-							echo $alterrights;
-							?> /> <?php echo $right['name']; ?>
+				if ($rights & $right['value'])
+					echo ' checked="checked"';
+				echo $alterrights;
+						?> /> <?php echo $right['name']; ?>
 						</label>
 						<?php
 					} else {
@@ -3441,7 +3443,6 @@ function processManagedObjects($i, &$rights) {
 	$albums = array();
 	$pages = array();
 	$news = array();
-
 	$l_a = strlen($prefix_a = 'managed_albums_list_' . $i . '_');
 	$l_p = strlen($prefix_p = 'managed_pages_list_' . $i . '_');
 	$l_n = strlen($prefix_n = 'managed_news_list_' . $i . '_');
@@ -4034,11 +4035,10 @@ function bulkActionRedirect($action) {
  * @return array
  */
 function bulkTags() {
-	$tags = array();
-	foreach ($_POST as $key => $value) {
-		if ($value && substr($key, 0, 10) == 'mass_tags_') {
-			$tags[] = sanitize(postIndexDecode(substr($key, 10)));
-		}
+	if (isset($_POST['tag_list_mass_tags_'])) {
+		$tags = sanitize($_POST['tag_list_mass_tags_']);
+	} else {
+		$tags = array();
 	}
 	return $tags;
 }

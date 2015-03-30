@@ -320,7 +320,7 @@ function charsetSelector($select) {
 		if ($key == $select) {
 			$selector .= ' selected="selected"';
 		}
-		$selector .= '>' . $key . '</option>';
+		$selector .= '>' . $char . '</option>';
 	}
 	$selector .= '</select>';
 	$selector .= '<span class="buttons" style="float: right"><button type="submit" alt="' . gettext('change the definition') . '"><strong>' . gettext('apply') . '</strong></button></span>';

@@ -39,17 +39,17 @@ if (count($_POST) > 0) {
 		unset($_POST['language']);
 		$action = $_POST['tag_action'];
 		unset($_POST['tag_action']);
+		if (isset($_POST['tag_list_tags_'])) {
+			$tags = sanitize($_POST['tag_list_tags_']);
+		} else {
+			$tags = array();
+		}
 
 		switch ($action) {
 			case'delete':
-				$kill = array();
-				foreach ($_POST as $key => $value) {
-					$key = postIndexDecode(str_replace('tags_', '', sanitize($key)));
-					$kill[] = $key;
-				}
-				if (count($kill) > 0) {
+				if (count($tags) > 0) {
 					$sql = "SELECT `id` FROM " . prefix('tags') . " WHERE ";
-					foreach ($kill as $tag) {
+					foreach ($tags as $tag) {
 						$sql .= "`name`=" . (db_quote($tag)) . " OR ";
 					}
 					$sql = substr($sql, 0, strlen($sql) - 4);
@@ -70,13 +70,8 @@ if (count($_POST) > 0) {
 				$action = gettext('Checked tags deleted');
 				break;
 			case'assign':
-				$assign = array();
-				foreach ($_POST as $key => $value) {
-					$key = postIndexDecode(str_replace('tags_', '', sanitize($key)));
-					$assign[] = $key;
-				}
-				if (count($assign) > 0) {
-					foreach ($assign as $tag) {
+				if (count($tags) > 0) {
+					foreach ($tags as $tag) {
 						$sql = 'UPDATE ' . prefix('tags') . ' SET `language`=' . db_quote($language) . ' WHERE `name`=' . db_quote($tag);
 						query($sql);
 					}

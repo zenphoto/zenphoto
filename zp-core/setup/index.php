@@ -747,23 +747,24 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 										if (isMac()) {
 											checkMark(-1, '', gettext('Your filesystem is Macintosh'), gettext('Macintosh file names containing diacritical marks are beyond the scope of this software. You should avoid these.'), false);
 											?>
-											<input
-												type="hidden" name="FILESYSTEM_CHARSET" value="UTF-8" />
-
+											<input type="hidden" name="FILESYSTEM_CHARSET" value="UTF-8" />
 											<?php
 										} else {
 											primeMark(gettext('Character set'));
-											$charset_defined = str_replace('-', '&#8209;', FILESYSTEM_CHARSET);
+											$charset_defined = $_zp_UTF8->iconv_sets[FILESYSTEM_CHARSET];
 											$charset = LOCAL_CHARSET;
 											if (empty($charset)) {
 												$charset = 'UTF-8';
 											}
 											$test = '';
 											if (($dir = opendir($serverpath . '/' . DATA_FOLDER . '/')) !== false) {
-												$testfiles = array();
 												while (($file = readdir($dir)) !== false) {
-													if (preg_match('/^charset[\._]t(.*)$/', $file, $matches)) {
-														$test = stripSuffix($matches[1]);
+													if (preg_match('/^charset([\._])t.*$/', $file, $matches)) {
+														$test = $file;
+														$test_internal = 'charset' . $matches[1] . 'tést';
+														if (getSuffix($file)) {
+															$test_internal .= '.' . getSuffix($file);
+														}
 														break;
 													}
 												}
@@ -806,7 +807,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 											$msg = '';
 											if ($test) {
 												//	fount the test file
-												if ((filesystemToInternal(trim($test)) == 'ést')) {
+												if (file_exists(internalToFilesystem($test_internal))) {
 													//	and the active character set define worked
 													$notice = 1;
 													$msg = sprintf(gettext('The filesystem character define is %1$s [confirmed]'), $charset_defined);
@@ -814,7 +815,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 												} else {
 													if ($selectedset == 'unknown') {
 														$notice = 1;
-														$msg = gettext('The filesystem character define is ISO-8859-1 [assumed]');
+														$msg = gettext('The filesystem character define is UTF-8 [assumed]');
 														$msg1 = '';
 													} else {
 														//	active character set is not correct
@@ -836,75 +837,47 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 											}
 											checkMark($notice, $msg, $msg1, sprintf($msg2, charsetSelector(FILESYSTEM_CHARSET)));
 											// UTF-8 URI
-											if (($notice != -1) && @copy(SERVERPATH . '/' . ZENFOLDER . '/images/pass.png', $serverpath . '/' . DATA_FOLDER . '/' . internalToFilesystem('tést.jpg'))) {
-												$test_image = WEBPATH . '/' . DATA_FOLDER . '/' . urlencode('tést.jpg');
-												$req_iso = gettext('Image URIs appear require the <em>filesystem</em> character set.');
-												$req_UTF8 = gettext('Image URIs appear to require the UTF-8 character set.');
-												?>
-												<script type="text/javascript">
-													// <!-- <![CDATA[
-													function uri(enable) {
-														var text;
-														if (enable) {
-															text = 'true';
-														} else {
-															text = 'false';
+											if ($notice != -1) {
+												$test = copy(SERVERPATH . '/' . ZENFOLDER . '/images/pass.png', $testjpg = $serverpath . '/' . DATA_FOLDER . '/' . internalToFilesystem('tést.jpg'));
+												if (file_exists($testjpg)) {
+													?>
+													<li id="internal">
+														<span>
+															<img src="<?php echo WEBPATH . '/' . DATA_FOLDER . '/' . urlencode('tést.jpg'); ?>"  onerror="imgError('internal');"/>
+															<?php echo gettext('Image URIs appear to require the <em>UTF-8</em> character set.') ?>
+														</span>
+													</li>
+													<li id="filesystem" style="display: none;">
+														<span>
+															<img src="<?php echo WEBPATH . '/' . DATA_FOLDER . '/' . urlencode(internalToFilesystem('tést.jpg')); ?>" title="filesystem" onerror="imgError('filesystem');"/>
+															<?php echo gettext('Image URIs appear require the <em>filesystem</em> character set.'); ?>
+														</span>
+													</li>
+													<li id="unknown" style="display: none;">
+														<span>
+															<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/warn.png" />
+															<?php echo gettext('Image URIs with diacritical marks appear to fail.'); ?>
+														</span>
+													</li>
+													<script type="text/javascript">
+														var failed = 0;
+														function imgError(title) {
+															failed++;
+															$(this).attr('src', '../images/fail.png');
+															$('#' + title).hide();
+															if (failed > 1) {
+																$('#unknown').show();
+																$('#setUTF8URI').val('unknown');
+															} else {
+																if (title == 'internal') {
+																	$('#setUTF8URI').val('filesystem');
+																	$('#filesystem').show();
+																}
+															}
 														}
-														$('#setUTF8URI').val(enable);
-														$('#UTF8_uri_warn').hide();
-													}
-													var loadSucceeded = true;
-													$(document).ready(function () {
-														var image = newImage();
-														image.onload = function () {
-						<?php
-						if (!(UTF8_IMAGE_URI || @$_SESSION['clone'][$cloneid]['UTF8_image_URI'])) {
-							?>
-																$('#UTF8_uri_warn').html('<?php echo addslashes(gettext('You should enable the URL option <em>UTF8 image URIs</em>.')); ?>' + ' <?php echo addslashes(gettext('<a href="javascript:uri(true)">Please do</a>')); ?>');
-																$('#UTF8_uri_warn').show();
-							<?php
-							if ($autorun) {
-								?>
-																	uri(true);
-								<?php
-							}
-						}
-						?>
-														};
-														image.onerror = function () {
-															$('#UTF8_uri_text').html('<?php echo addslashes($req_iso); ?>');
-						<?php
-						if (UTF8_IMAGE_URI) {
-							?>
-																$('#UTF8_uri').attr('class', 'warn');
-																$('#UTF8_uri_warn').html('<?php echo addslashes(gettext('You should disable the URL option <em>UTF8 image URIs</em>.')); ?>' + ' <?php echo gettext('<a href="javascript:uri(false)">Please do</a>'); ?>');
-																$('#UTF8_uri_warn').show();
-							<?php
-							if ($autorun) {
-								?>
-																	uri(false);
-								<?php
-							}
-						}
-						?>
-														};
-														image.src = '<?php echo $test_image; ?>';
-
-
-													});
-													// ]]> -->
-												</script>
-												<li id="UTF8_uri" class="pass"><span id="UTF8_uri_text">
-														<?php echo $req_UTF8; ?> </span>
-													<div id="UTF8_uri_warn" class="warning" style="display: none">
-														<h1>
-
-															<?php echo gettext('Warning!'); ?></h1>
-														<span id="UTR8_uri_warn"></span>
-													</div>
-												</li>
-
-												<?php
+													</script>
+													<?php
+												}
 											}
 										}
 									}
@@ -2628,7 +2601,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 								$task = html_encode($task);
 								?>
 								<form id="setup" action="<?php echo WEBPATH . '/' . ZENFOLDER, '/setup/index.php?checked' . $task . $mod; ?>" method="post"<?php echo $hideGoButton; ?> >
-									<input type="hidden" name="setUTF8URI" id="setUTF8URI" value="dont" />
+									<input type="hidden" name="setUTF8URI" id="setUTF8URI" value="internal" />
 									<input type="hidden" name="xsrfToken" value="<?php echo setupXSRFToken(); ?>" />
 									<?php
 									if (isset($_REQUEST['autorun'])) {

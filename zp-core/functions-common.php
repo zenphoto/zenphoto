@@ -72,6 +72,7 @@ function zpErrorHandler($errno, $errstr = '', $errfile = '', $errline = '') {
 	}
 	if ($uri)
 		$uri = "\nURI:" . urldecode(str_replace('\\', '/', $uri));
+	$uri .= "\nIP:" . getUserIP();
 	debugLogBacktrace($msg . $uri, 1);
 	return false;
 }
@@ -335,7 +336,7 @@ function zp_error($message, $fatal = E_USER_ERROR) {
 }
 
 function html_decode($string) {
-	return html_entity_decode($string, ENT_QUOTES, 'UTF-8');
+	return html_entity_decode($string, ENT_QUOTES, LOCAL_CHARSET);
 }
 
 /**

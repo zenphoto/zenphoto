@@ -92,7 +92,16 @@ if (isset($_GET['action'])) {
 				$offset = sanitize($_POST['time_offset'], 3);
 			}
 			setOption('time_offset', $offset);
+
 			setOption('charset', sanitize($_POST['charset']), 3);
+			if (($new = sanitize($_POST['filesystem_charset'])) != FILESYSTEM_CHARSET) {
+				$_configMutex->lock();
+				$zp_cfg = @file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
+				$zp_cfg = updateConfigItem('FILESYSTEM_CHARSET', $new, $zp_cfg);
+				storeConfig($zp_cfg);
+				$_configMutex->unlock();
+			}
+
 			setOption('site_email', sanitize($_POST['site_email']), 3);
 			$_zp_gallery->setGallerySession((int) isset($_POST['album_session']));
 			$_zp_gallery->save();
@@ -126,7 +135,7 @@ if (isset($_GET['action'])) {
 			if ($f == 'custom')
 				$f = sanitize($_POST['date_format'], 3);
 			setOption('date_format', $f);
-			setOption('UTF8_image_URI', (int) isset($_POST['UTF8_image_URI']));
+			setOption('UTF8_image_URI', (int) !isset($_POST['UTF8_image_URI']));
 			foreach ($_POST as $key => $value) {
 				if (preg_match('/^log_size.*_(.*)$/', $key, $matches)) {
 					setOption($matches[1] . '_log_size', $value);
@@ -179,11 +188,10 @@ if (isset($_GET['action'])) {
 		if (isset($_POST['savesearchoptions'])) {
 			$fail = '';
 			$search = new SearchEngine();
-			$searchfields = array();
-			foreach ($_POST as $key => $value) {
-				if (strpos($key, 'SEARCH_') !== false) {
-					$searchfields[] = sanitize(postIndexDecode(substr($key, 7)));
-				}
+			if (isset($_POST['SEARCH_list'])) {
+				$searchfields = sanitize($_POST['SEARCH_list']);
+			} else {
+				$searchfields = array();
 			}
 			natcasesort($searchfields);
 			setOption('search_fields', implode(',', $searchfields));
@@ -691,12 +699,18 @@ Zenphoto_Authority::printPasswordFormJS();
 												<?php echo gettext('mod rewrite'); ?>
 											</label>
 										</p>
-										<p>
-											<label>
-												<input type="checkbox" name="UTF8_image_URI" value="1"<?php checked('1', UTF8_IMAGE_URI); ?> />
-												<?php echo gettext('UTF8 image URIs'); ?>
-											</label>
-										</p>
+										<?php
+										if (FILESYSTEM_CHARSET != LOCAL_CHARSET) {
+											?>
+											<p>
+												<label>
+													<input type="checkbox" name="UTF8_image_URI" value="1"<?php checked('0', UTF8_IMAGE_URI); ?> />
+													<?php echo gettext('<em>Filesystem</em> image URIs'); ?>
+												</label>
+											</p>
+											<?php
+										}
+										?>
 										<p><?php echo gettext("mod_rewrite suffix:"); ?> <input type="text" size="10" name="mod_rewrite_image_suffix" value="<?php echo html_encode(getOption('mod_rewrite_image_suffix')); ?>" /></p>
 										<p>
 											<label>
@@ -712,14 +726,34 @@ Zenphoto_Authority::printPasswordFormJS();
 									</td>
 									<td>
 										<p>
-											<?php echo gettext("If you have Apache <em>mod rewrite</em> (or equivalent), put a checkmark on the <em>mod rewrite</em> option and you will get nice cruft-free URLs."); ?>
-											<?php echo sprintf(gettext('The <em>tokens</em> used in rewritten URIs may be altered to your taste. See the <a href="%s">plugin options</a> for <code>rewriteTokens</code>.'), WEBPATH . '/' . ZENFOLDER . '/admin-options.php?page=options&tab=plugin&single=rewriteTokens'); ?>
 											<?php
+											echo gettext("If you have Apache <em>mod rewrite</em> (or equivalent), put a checkmark on the <em>mod rewrite</em> option and you will get nice cruft-free URLs.");
+											echo sprintf(gettext('The <em>tokens</em> used in rewritten URIs may be altered to your taste. See the <a href="%s">plugin options</a> for <code>rewriteTokens</code>.'), WEBPATH . '/' . ZENFOLDER . '/admin-options.php?page=options&tab=plugin&single=rewriteTokens');
 											if (!getOption('mod_rewrite_detected'))
 												echo '<p class="notebox">' . gettext('Setup did not detect a working <em>mod_rewrite</em> facility.'), '</p>';
 											?>
 										</p>
-										<p><?php echo gettext("If you are having problems with images whose names contain characters with diacritical marks try changing the <em>UTF8 image URIs</em> setting."); ?></p>
+										<?php
+										if (FILESYSTEM_CHARSET != LOCAL_CHARSET) {
+											echo '<p>' . gettext("If you are having problems with images whose names contain characters with diacritical marks try changing the image URI setting.");
+											switch (getOption('UTF8_image_URI_found')) {
+												case'unknown':
+													echo '<p class="notebox">' . gettext('Setup could not determine a settig that allowed images with diacritical marks in the name.'), '</p>';
+													break;
+												case 'internal':
+													if (!getOption('UTF8_image_URI')) {
+														echo '<p class="notebox">' . sprintf(gettext('Setup detected <em>%s</em image URIs.'), LOCAL_CHARSET), '</p>';
+													}
+													break;
+												case 'filesystem':
+													if (getOption('UTF8_image_URI')) {
+														echo '<p class="notebox">' . gettext('Setup detected <em>file system</em> image URIs.'), '</p>';
+													}
+													break;
+											}
+											echo '</p>';
+										}
+										?>
 										<p><?php echo gettext("If <em>mod_rewrite</em> is checked above, zenphoto will append the <em>mod_rewrite suffix</em> to the end of image URLs. (This helps search engines.) Examples: <em>.html, .php</em>, etc."); ?></p>
 										<p>
 											<?php
@@ -891,16 +925,19 @@ Zenphoto_Authority::printPasswordFormJS();
 											$totalsets = $_zp_UTF8->charsets;
 											asort($totalsets);
 											foreach ($totalsets as $key => $char) {
+												if ($key == LOCAL_CHARSET) {
+													$selected = ' selected="selected"';
+												} else {
+													$selected = '';
+												}
+												if (!array_key_exists($key, $sets)) {
+													$selected .= ' style="color: gray"';
+												}
 												?>
-												<option value="<?php echo $key; ?>" <?php
-												if ($key == LOCAL_CHARSET)
-													echo 'selected="selected"';
-												if (!array_key_exists($key, $sets))
-													echo 'style="color: gray"';
-												?>><?php echo $char; ?></option>
-																<?php
-															}
-															?>
+												<option value="<?php echo $key; ?>" <?php echo $selected; ?>><?php echo $char; ?></option>
+												<?php
+											}
+											?>
 										</select>
 									</td>
 									<td>
@@ -912,6 +949,29 @@ Zenphoto_Authority::printPasswordFormJS();
 										?>
 									</td>
 								</tr>
+								<tr>
+									<td width="175"><?php echo gettext("Filesystem Charset:"); ?></td>
+									<td width="350">
+										<select id="filesystem_charset" name="filesystem_charset">
+											<?php
+											foreach ($totalsets as $key => $char) {
+												if ($key == FILESYSTEM_CHARSET) {
+													$selected = ' selected="selected"';
+												} else {
+													$selected = '';
+												}
+												?>
+												<option value="<?php echo $key; ?>"<?php echo $selected; ?>><?php echo $char; ?></option>
+												<?php
+											}
+											?>
+										</select>
+									</td>
+									<td>
+										<?php echo gettext('The character encoding to use for the filesystem. Leave at <em>Unicode (UTF-8)</em> if you are unsure.'); ?>
+									</td>
+								</tr>
+
 								<tr>
 									<td width="175"><?php echo gettext("Allowed tags:"); ?></td>
 									<td width="350">
@@ -1569,8 +1629,8 @@ Zenphoto_Authority::printPasswordFormJS();
 									<div id="resizable">
 										<ul class="searchchecklist" id="searchchecklist">
 											<?php
-											generateUnorderedListFromArray($set_fields, $set_fields, 'SEARCH_', false, true, true, 'search_fields');
-											generateUnorderedListFromArray(array(), $fields, 'SEARCH_', false, true, true, 'search_fields');
+											generateUnorderedListFromArray($set_fields, $set_fields, 'SEARCH_', false, true, true, 'search_fields', NULL, true);
+											generateUnorderedListFromArray(array(), $fields, 'SEARCH_', false, true, true, 'search_fields', NULL, true);
 											?>
 										</ul>
 										<div class="floatright">
