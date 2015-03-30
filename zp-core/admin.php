@@ -78,7 +78,7 @@ if (zp_loggedin()) { /* Display the admin pages. Do action handling first. */
 				/** restore the setup files ************************************************** */
 				case 'restore_setup':
 					XSRFdefender('restore_setup');
-					list($diff, $needs) = checkSignature(true);
+					list($diff, $needs) = checkSignature(1);
 					if (empty($needs)) {
 						$class = 'messagebox';
 						$msg = gettext('Setup files restored.');

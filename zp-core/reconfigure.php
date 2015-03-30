@@ -6,6 +6,9 @@
  *
  * @package core
  */
+if (!defined('OFFSET_PATH')) {
+	die();
+}
 
 /**
  *
@@ -119,23 +122,7 @@ function checkSignature($mandatory) {
 		chdir(dirname(__FILE__) . '/setup/');
 		$found = safe_glob('*.xxx');
 		if (!empty($found) && $mandatory && (defined('ADMIN_RIGHTS') && zp_loggedin(ADMIN_RIGHTS) || !$_zp_DB_connection)) {
-			switch ($mandatory) {
-				default:
-					$addl = sprintf(gettext('restored to run setup [%s]'), $mandatory);
-					break;
-				case 4:
-					$addl = gettext('restored by cloning');
-					break;
-			}
-			zp_apply_filter('log_setup', true, 'restore', $addl);
-			foreach ($found as $script) {
-				chmod($script, 0777);
-				if (@rename($script, stripSuffix($script) . '.php')) {
-					chmod(stripSuffix($script) . '.php', FILE_MOD);
-				} else {
-					chmod($script, FILE_MOD);
-				}
-			}
+			restoreSetupScrpts($mandatory);
 		}
 		$found = safe_glob('*.*');
 		$needs = array_diff($needs, $found);
@@ -261,5 +248,30 @@ function reconfigurePage($diff, $needs, $mandatory) {
 		</p>
 	</div>
 	<?php
+}
+
+/**
+ * control when and how setup scripts are turned back into PHP files
+ */
+function restoreSetupScrpts($reason) {
+	switch ($reason) {
+		default:
+			$addl = sprintf(gettext('restored to run setup [%s]'), $reason);
+			break;
+		case 4:
+			$addl = gettext('restored by cloning');
+			break;
+	}
+	zp_apply_filter('log_setup', true, 'restore', $addl);
+	chdir(dirname(__FILE__) . '/setup/');
+	$found = safe_glob('*.xxx');
+	foreach ($found as $script) {
+		chmod($script, 0777);
+		if (@rename($script, stripSuffix($script) . '.php')) {
+			chmod(stripSuffix($script) . '.php', FILE_MOD);
+		} else {
+			chmod($script, FILE_MOD);
+		}
+	}
 }
 ?>
