@@ -135,7 +135,7 @@ if (isset($_GET['action'])) {
 			if ($f == 'custom')
 				$f = sanitize($_POST['date_format'], 3);
 			setOption('date_format', $f);
-			setOption('UTF8_image_URI', (int) isset($_POST['UTF8_image_URI']));
+			setOption('UTF8_image_URI', (int) !isset($_POST['UTF8_image_URI']));
 			foreach ($_POST as $key => $value) {
 				if (preg_match('/^log_size.*_(.*)$/', $key, $matches)) {
 					setOption($matches[1] . '_log_size', $value);
@@ -699,12 +699,18 @@ Zenphoto_Authority::printPasswordFormJS();
 												<?php echo gettext('mod rewrite'); ?>
 											</label>
 										</p>
-										<p>
-											<label>
-												<input type="checkbox" name="UTF8_image_URI" value="1"<?php checked('1', UTF8_IMAGE_URI); ?> />
-												<?php echo gettext('UTF8 image URIs'); ?>
-											</label>
-										</p>
+										<?php
+										if (FILESYSTEM_CHARSET != LOCAL_CHARSET) {
+											?>
+											<p>
+												<label>
+													<input type="checkbox" name="UTF8_image_URI" value="1"<?php checked('0', UTF8_IMAGE_URI); ?> />
+													<?php echo gettext('<em>Filesystem</em> image URIs'); ?>
+												</label>
+											</p>
+											<?php
+										}
+										?>
 										<p><?php echo gettext("mod_rewrite suffix:"); ?> <input type="text" size="10" name="mod_rewrite_image_suffix" value="<?php echo html_encode(getOption('mod_rewrite_image_suffix')); ?>" /></p>
 										<p>
 											<label>
@@ -727,15 +733,16 @@ Zenphoto_Authority::printPasswordFormJS();
 												echo '<p class="notebox">' . gettext('Setup did not detect a working <em>mod_rewrite</em> facility.'), '</p>';
 											?>
 										</p>
-										<p><?php
-											echo gettext("If you are having problems with images whose names contain characters with diacritical marks try changing the <em>UTF8 image URIs</em> setting.");
+										<?php
+										if (FILESYSTEM_CHARSET != LOCAL_CHARSET) {
+											echo '<p>' . gettext("If you are having problems with images whose names contain characters with diacritical marks try changing the image URI setting.");
 											switch (getOption('UTF8_image_URI_found')) {
 												case'unknown':
 													echo '<p class="notebox">' . gettext('Setup could not determine a settig that allowed images with diacritical marks in the name.'), '</p>';
 													break;
 												case 'internal':
 													if (!getOption('UTF8_image_URI')) {
-														echo '<p class="notebox">' . gettext('Setup detected <em>UTF-8</em image URIs.'), '</p>';
+														echo '<p class="notebox">' . sprintf(gettext('Setup detected <em>%s</em image URIs.'), LOCAL_CHARSET), '</p>';
 													}
 													break;
 												case 'filesystem':
@@ -744,7 +751,9 @@ Zenphoto_Authority::printPasswordFormJS();
 													}
 													break;
 											}
-											?></p>
+											echo '</p>';
+										}
+										?>
 										<p><?php echo gettext("If <em>mod_rewrite</em> is checked above, zenphoto will append the <em>mod_rewrite suffix</em> to the end of image URLs. (This helps search engines.) Examples: <em>.html, .php</em>, etc."); ?></p>
 										<p>
 											<?php
