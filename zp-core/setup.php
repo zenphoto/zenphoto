@@ -15,7 +15,7 @@ if (isset($_GET['xsrfToken']) && $_GET['xsrfToken'] == getXSRFToken('setup')) {
 } else {
 	$must = 0;
 }
-list($diff, $needs) = checkSignature($must);
+list($diff, $needs, $found) = checkSignature($must);
 
 if (empty($needs)) {
 	header('Location: setup/index.php');
@@ -40,7 +40,6 @@ if (empty($needs)) {
 							<?php
 							if (zpFunctions::hasPrimaryScripts()) {
 								chdir(dirname(__FILE__) . '/setup/');
-								$found = safe_glob('*.xxx');
 								if ($found && (zp_loggedin(ADMIN_RIGHTS) || $_zp_conf_vars['db_software'] == 'NULL')) {
 									echo '<a href="' . WEBPATH . '/' . ZENFOLDER . '/setup.php?xsrfToken=' . getXSRFToken('setup') . '">' . gettext('Click to restore the setup scripts and run setup.') . '</a>';
 								} else {

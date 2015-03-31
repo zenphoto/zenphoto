@@ -113,6 +113,7 @@ function checkSignature($mandatory) {
 	$package = file_get_contents(dirname(__FILE__) . '/zenphoto.package');
 	preg_match_all('|' . ZENFOLDER . '/setup/(.*)|', $package, $matches);
 	$needs = array();
+	$restore = false;
 	foreach ($matches[1] as $need) {
 		$needs[] = rtrim(trim($need), ":*");
 	}
@@ -120,15 +121,15 @@ function checkSignature($mandatory) {
 	$_configMutex->lock();
 	if (file_exists(dirname(__FILE__) . '/setup/')) {
 		chdir(dirname(__FILE__) . '/setup/');
-		$found = safe_glob('*.xxx');
-		if (!empty($found) && $mandatory && (defined('ADMIN_RIGHTS') && zp_loggedin(ADMIN_RIGHTS) || !$_zp_DB_connection)) {
+		$restore = safe_glob('*.xxx');
+		if (!empty($restore) && $mandatory && (defined('ADMIN_RIGHTS') && zp_loggedin(ADMIN_RIGHTS) || !$_zp_DB_connection)) {
 			restoreSetupScrpts($mandatory);
 		}
 		$found = safe_glob('*.*');
 		$needs = array_diff($needs, $found);
 	}
 	$_configMutex->unlock();
-	return array($diff, $needs);
+	return array($diff, $needs, $restore);
 }
 
 /**
