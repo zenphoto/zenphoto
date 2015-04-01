@@ -236,7 +236,8 @@ function printAdminHeader($tab, $subtab = NULL) {
 		<?php
 		echo "\n<div id=\"links\">";
 		echo "\n  ";
-		if (!is_null($_zp_current_admin_obj)) {
+
+		if (is_object($_zp_current_admin_obj) && !$_zp_current_admin_obj->reset) {
 			$sec = (int) ((SERVER_PROTOCOL == 'https') & true);
 			$last = $_zp_current_admin_obj->getLastlogon();
 			if (empty($last)) {
@@ -1122,10 +1123,10 @@ function printAdminHeader($tab, $subtab = NULL) {
 							<label class="displayinlineright">
 								<input type="<?php echo $type; ?>" id="<?php echo strtolower($listitem) . '_' . $box['name'] . $unique; ?>"<?php echo $class; ?> name="<?php echo $listitem . '_' . $box['name']; ?>"
 											 value="<?php echo html_encode($box['value']); ?>" <?php
-					if ($box['checked']) {
-						echo ' checked="checked"';
-					}
-							?>
+											 if ($box['checked']) {
+												 echo ' checked="checked"';
+											 }
+											 ?>
 											 <?php echo $disable; ?> /> <?php echo $box['display']; ?>
 							</label>
 							<?php
@@ -1483,7 +1484,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 													 name="disclose_password<?php echo $suffix; ?>"
 													 id="disclose_password<?php echo $suffix; ?>"
 													 onclick="passwordClear('<?php echo $suffix; ?>');
-																	 togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?>
+															 togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?>
 									</label>
 								</td>
 								<td>
@@ -1575,9 +1576,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 									<label id="album_direction_div<?php echo $suffix; ?>" style="display:<?php echo $dsp; ?>;white-space:nowrap;">
 										<?php echo gettext("Descending"); ?>
 										<input type="checkbox" name="<?php echo $prefix; ?>album_sortdirection" value="1" <?php
-									if ($album->getSortDirection('album')) {
-										echo "CHECKED";
-									};
+										if ($album->getSortDirection('album')) {
+											echo "CHECKED";
+										};
 										?> />
 									</label>
 								</span>
@@ -1840,9 +1841,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 name="<?php echo $prefix; ?>Published"
 										 value="1" <?php if ($album->getShow()) echo ' checked="checked"'; ?>
 										 onclick="$('#<?php echo $prefix; ?>publishdate').val('');
-													 $('#<?php echo $prefix; ?>expirationdate').val('');
-													 $('#<?php echo $prefix; ?>publishdate').css('color', 'black');
-													 $('.<?php echo $prefix; ?>expire').html('');"
+												 $('#<?php echo $prefix; ?>expirationdate').val('');
+												 $('#<?php echo $prefix; ?>publishdate').css('color', 'black');
+												 $('.<?php echo $prefix; ?>expire').html('');"
 										 />
 										 <?php echo gettext("Published"); ?>
 						</label>
@@ -1851,10 +1852,10 @@ function printAdminHeader($tab, $subtab = NULL) {
 							?>
 							<label class="checkboxlabel">
 								<input type="checkbox" name="<?php echo $prefix . 'allowcomments'; ?>" value="1" <?php
-					if ($album->getCommentsAllowed()) {
-						echo ' checked="checked"';
-					}
-							?> />
+								if ($album->getCommentsAllowed()) {
+									echo ' checked="checked"';
+								}
+								?> />
 											 <?php echo gettext("Allow Comments"); ?>
 							</label>
 							<?php
@@ -1976,7 +1977,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 } else {
 											 ?>
 											 onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');
-															 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
+													 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
 											 <?php
 										 }
 										 ?> />
@@ -3219,10 +3220,10 @@ function printAdminHeader($tab, $subtab = NULL) {
 						?>
 						<label title="<?php echo html_encode(get_language_string($right['hint'])); ?>">
 							<input type="checkbox" name="<?php echo $id . '-' . $rightselement; ?>" id="<?php echo $rightselement . '-' . $id; ?>" class="user-<?php echo $id; ?>" value="<?php echo $right['value']; ?>"<?php
-				if ($rights & $right['value'])
-					echo ' checked="checked"';
-				echo $alterrights;
-						?> /> <?php echo $right['name']; ?>
+							if ($rights & $right['value'])
+								echo ' checked="checked"';
+							echo $alterrights;
+							?> /> <?php echo $right['name']; ?>
 						</label>
 						<?php
 					} else {
@@ -5051,7 +5052,7 @@ function linkPickerIcon($obj, $id = NULL, $extra = NULL) {
 	}
 	?>
 	<a onclick="<?php echo $clickid; ?>$('.pickedObject').removeClass('pickedObject');
-				$('#<?php echo $iconid; ?>').addClass('pickedObject');<?php linkPickerPick($obj, $id, $extra); ?>" title="<?php echo gettext('pick source'); ?>">
+			$('#<?php echo $iconid; ?>').addClass('pickedObject');<?php linkPickerPick($obj, $id, $extra); ?>" title="<?php echo gettext('pick source'); ?>">
 		<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" id="<?php echo $iconid; ?>">
 	</a>
 	<?php

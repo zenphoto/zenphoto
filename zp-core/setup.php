@@ -10,14 +10,12 @@ define('OFFSET_PATH', 1);
 require_once(dirname(__FILE__) . '/admin-globals.php');
 require_once(dirname(__FILE__) . '/reconfigure.php');
 
-admin_securityChecks(ADMIN_RIGHTS, $return = currentRelativeURL());
-
 if (isset($_GET['xsrfToken']) && $_GET['xsrfToken'] == getXSRFToken('setup')) {
 	$must = 5;
 } else {
 	$must = 0;
 }
-list($diff, $needs) = checkSignature($must);
+list($diff, $needs, $found) = checkSignature($must);
 
 if (empty($needs)) {
 	header('Location: setup/index.php');
@@ -35,7 +33,6 @@ if (empty($needs)) {
 		<body>
 			<?php printLogoAndLinks(); ?>
 			<div id="main">
-				<?php printTabs(); ?>
 				<div id="content">
 					<h1><?php echo gettext('Setup request'); ?></h1>
 					<div class="tabbox">
@@ -43,7 +40,6 @@ if (empty($needs)) {
 							<?php
 							if (zpFunctions::hasPrimaryScripts()) {
 								chdir(dirname(__FILE__) . '/setup/');
-								$found = safe_glob('*.xxx');
 								if ($found && (zp_loggedin(ADMIN_RIGHTS) || $_zp_conf_vars['db_software'] == 'NULL')) {
 									echo '<a href="' . WEBPATH . '/' . ZENFOLDER . '/setup.php?xsrfToken=' . getXSRFToken('setup') . '">' . gettext('Click to restore the setup scripts and run setup.') . '</a>';
 								} else {

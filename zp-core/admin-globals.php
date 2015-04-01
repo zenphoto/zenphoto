@@ -36,7 +36,7 @@ $_zp_sortby = array(
 );
 
 // setup sub-tab arrays for use in dropdown
-if ($_zp_loggedin) {
+if (@$_zp_loggedin) {
 	if ($_zp_current_admin_obj->reset) {
 		$_zp_loggedin = USER_RIGHTS;
 	} else {
