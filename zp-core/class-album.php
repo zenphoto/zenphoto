@@ -85,9 +85,12 @@ class AlbumBase extends MediaObject {
 			}
 		}
 // Set default data for a new Album (title and parent_id)
-		$parentalbum = NULL;
 		$this->set('mtime', time());
 		$title = trim($this->name);
+		if (!is_null($parentalbum = $this->getParent())) {
+			$this->set('parentid', $parentalbum->getID());
+			$title = substr($title, strrpos($title, '/') + 1);
+		}
 		$this->set('title', $title);
 		$this->setShow($_zp_gallery->getAlbumPublish());
 		return true;
@@ -1148,12 +1151,6 @@ class Album extends AlbumBase {
 		if (!$_zp_gallery->getAlbumUseImagedate()) {
 			$this->setDateTime(strftime('%Y-%m-%d %H:%M:%S', $this->get('mtime')));
 		}
-		$title = trim($this->name);
-		if (!is_null($parentalbum)) {
-			$this->set('parentid', $parentalbum->getID());
-			$title = substr($title, strrpos($title, '/') + 1);
-		}
-		$this->set('title', $title);
 		return true;
 	}
 

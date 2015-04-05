@@ -49,10 +49,7 @@ if ($MCEdirection == NULL) {
 		}
 	}
 }
-
-if (!extensionEnabled('tinyZenpage')) {
-	$MCEplugins = preg_replace('|\stinyzenpage|', '', $MCEplugins);
-}
+$MCEplugins = preg_replace('|\stinyzenpage|', '', $MCEplugins);
 ?>
 <script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER . "/" . PLUGIN_FOLDER; ?>/tinymce/tinymce.min.js"></script>
 <script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER . "/" . PLUGIN_FOLDER; ?>/tinymce/jquery.tinymce.min.js"></script>
