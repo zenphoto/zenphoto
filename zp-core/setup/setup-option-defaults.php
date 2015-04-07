@@ -184,9 +184,14 @@ if (isset($_GET['mod_rewrite'])) {
 	</p>
 	<?php
 }
-
-if (isset($_POST['setUTF8URI']) && $_POST['setUTF8URI'] != 'dont') {
-	setOption('UTF8_image_URI', (int) ($_POST['setUTF8URI'] == 'true'));
+if (isset($_POST['setUTF8URI'])) {
+	setOption('UTF8_image_URI_found', sanitize($_POST['setUTF8URI']));
+	if ($_POST['setUTF8URI'] == 'unknown') {
+		setupLog(gettext('Setup could not find a configuration that allows image URIs containing diacritical marks.'), true);
+		setOptionDefault('UTF8_image_URI', 1);
+	} else {
+		setOptionDefault('UTF8_image_URI', (int) ($_POST['setUTF8URI'] == 'internal'));
+	}
 }
 setOptionDefault('server_protocol', "http");
 setOptionDefault('charset', "UTF-8");
@@ -302,8 +307,6 @@ foreach ($_zp_exifvars as $key => $item) {
 	setOptionDefault($key, 0);
 }
 setOptionDefault('IPTC_encoding', 'ISO-8859-1');
-
-setOptionDefault('UTF8_image_URI', 0);
 
 setOptionDefault('sharpen_amount', 40);
 setOptionDefault('sharpen_radius', 0.5);

@@ -78,7 +78,7 @@ if (zp_loggedin()) { /* Display the admin pages. Do action handling first. */
 				/** restore the setup files ************************************************** */
 				case 'restore_setup':
 					XSRFdefender('restore_setup');
-					list($diff, $needs) = checkSignature(true);
+					list($diff, $needs) = checkSignature(1);
 					if (empty($needs)) {
 						$class = 'messagebox';
 						$msg = gettext('Setup files restored.');
@@ -97,8 +97,8 @@ if (zp_loggedin()) { /* Display the admin pages. Do action handling first. */
 					$rslt = array();
 					foreach ($list as $component) {
 						@chmod(SERVERPATH . '/' . ZENFOLDER . '/setup/' . $component, 0777);
-						if (@rename(SERVERPATH . '/' . ZENFOLDER . '/setup/' . $component, SERVERPATH . '/' . ZENFOLDER . '/setup/' . $component . '.xxx')) {
-							@chmod(SERVERPATH . '/' . ZENFOLDER . '/setup/' . $component . '.xxx', FILE_MOD);
+						if (@rename(SERVERPATH . '/' . ZENFOLDER . '/setup/' . $component, SERVERPATH . '/' . ZENFOLDER . '/setup/' . stripSuffix($component) . '.xxx')) {
+							@chmod(SERVERPATH . '/' . ZENFOLDER . '/setup/' . stripSuffix($component) . '.xxx', FILE_MOD);
 						} else {
 							@chmod(SERVERPATH . '/' . ZENFOLDER . '/setup/' . $component, FILE_MOD);
 							$rslt[] = $component;
@@ -256,8 +256,8 @@ if (!zp_loggedin()) {
 					unset($buttonlist[$key]);
 				}
 			}
-			list($diff, $needs) = checkSignature(0);
-			if (zpFunctions::hasPrimaryScripts()) {
+			list($diff, $needs, $present) = checkSignature(0);
+			if ($present && zpFunctions::hasPrimaryScripts()) {
 				//	button to restore setup files if needed
 				if (!empty($needs)) {
 					$buttonlist[] = array(
@@ -285,7 +285,7 @@ if (!zp_loggedin()) {
 					$buttonlist[] = array(
 									'XSRFTag'			 => 'protect_setup',
 									'category'		 => gettext('Admin'),
-									'enable'			 => true,
+									'enable'			 => 2,
 									'button_text'	 => gettext('Setup » protect scripts'),
 									'formname'		 => 'restore_setup',
 									'action'			 => FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=protect_setup',
@@ -643,8 +643,12 @@ if (!zp_loggedin()) {
 									<?php
 									if (isset($button['XSRFTag']) && $button['XSRFTag'])
 										XSRFToken($button['XSRFTag']);
+									$color = '';
 									echo $button['hidden'];
 									if ($button['enable']) {
+										if ((int) $button['enable'] == 2) {
+											$color = ' style="color:red"';
+										}
 										$disable = '';
 									} else {
 										$disable = ' disabled="disabled"';
@@ -663,7 +667,7 @@ if (!zp_loggedin()) {
 												<img src="<?php echo $button_icon; ?>" alt="<?php echo html_encode($button['alt']); ?>" />
 												<?php
 											}
-											echo html_encode($button['button_text']);
+											echo '<span' . $color . '>' . html_encode($button['button_text']) . '</span>';
 											?>
 										</button>
 									</div><!--buttons -->

@@ -276,20 +276,17 @@ class optionalObjectFields extends fieldExtender {
 		global $tagsort;
 		$i = trim($i, '-');
 		if ($type == 'save') {
-			$tagsprefix = 'tags_' . $i . '-';
-			$tags = array();
+			$tagsprefix = 'tag_list_tags_' . $i;
+			if (isset($_POST[$tagsprefix])) {
+				$tags = sanitize($_POST[$tagsprefix]);
+			} else {
+				$tags = array();
+			}
 			$found = false;
 			$l = strlen($tagsprefix);
-			$found = isset($_POST['newtag_tags_' . $i . '-']);
-			foreach ($_POST as $key => $value) {
-				if (substr($key, 0, $l) == $tagsprefix) {
-					if ($value) {
-						$tags[] = sanitize(postIndexDecode(substr($key, $l)));
-					}
-				}
-			}
+			$found = isset($_POST['newtag_tags_' . $i]);
 			if ($found) {
-				if (isset($_POST['additive_tags_' . $i . '-']) && $_POST['additive_tags_' . $i . '-']) {
+				if (isset($_POST['additive_tags_' . $i]) && $_POST['additive_tags_' . $i]) {
 					$tags = array_merge($tags, $object->getTags());
 				}
 				$tags = array_unique($tags);
@@ -308,8 +305,8 @@ class optionalObjectFields extends fieldExtender {
 				} else {
 					?>
 					<span id = "existing_tags_<?php echo $i; ?>"><?php echo trim(implode(', ', $tags)); ?></span>
-					<a id="tag_clear_link_<?php echo $i; ?>" onclick="clearOldTags('<?php echo $i; ?>');"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/fail.png" title="<?php echo gettext('remove tags'); ?>"></a>
-					<a id="tag_restore_link_<?php echo $i; ?>" onclick="restoreOldTags('<?php echo $i; ?>');" style="display:none;"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" title="<?php echo gettext('cancel'); ?>"></a>
+					<a id="tag_clear_link_tags_<?php echo $i; ?>" onclick="clearOldTags('tags_<?php echo $i; ?>');"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/fail.png" title="<?php echo gettext('remove tags'); ?>"></a>
+					<a id="tag_restore_link_tags_<?php echo $i; ?>" onclick="restoreOldTags('tags_<?php echo $i; ?>');" style="display:none;"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" title="<?php echo gettext('cancel'); ?>"></a>
 					<?php
 				}
 				echo '<br /><br />' . gettext('Add') . '<br />';
@@ -319,7 +316,7 @@ class optionalObjectFields extends fieldExtender {
 			}
 			?>
 			<div class="box-edit-unpadded">
-				<?php tagSelector($obj, 'tags_' . $i . '-', false, $tagsort, $add, 1); ?>
+				<?php tagSelector($obj, 'tags_' . $i, false, $tagsort, $add, 1); ?>
 			</div>
 			<?php
 			$item = ob_get_contents();

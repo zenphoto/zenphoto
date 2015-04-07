@@ -6,6 +6,9 @@
  *
  * @package core
  */
+if (!defined('OFFSET_PATH')) {
+	die();
+}
 
 /**
  *
@@ -110,6 +113,7 @@ function checkSignature($mandatory) {
 	$package = file_get_contents(dirname(__FILE__) . '/zenphoto.package');
 	preg_match_all('|' . ZENFOLDER . '/setup/(.*)|', $package, $matches);
 	$needs = array();
+	$restore = false;
 	foreach ($matches[1] as $need) {
 		$needs[] = rtrim(trim($need), ":*");
 	}
@@ -117,35 +121,15 @@ function checkSignature($mandatory) {
 	$_configMutex->lock();
 	if (file_exists(dirname(__FILE__) . '/setup/')) {
 		chdir(dirname(__FILE__) . '/setup/');
-		$found = safe_glob('*.xxx');
-		if (!empty($found) && $mandatory && (defined('ADMIN_RIGHTS') && zp_loggedin(ADMIN_RIGHTS) || !$_zp_DB_connection)) {
-			switch ($mandatory) {
-				case 1:
-				case 2:
-				case 3:
-				case 5:
-				case 6:
-					$addl = sprintf(gettext('restored to run setup [%s]'), $mandatory);
-					break;
-				case 4:
-					$addl = gettext('restored by cloning');
-					break;
-			}
-			zp_apply_filter('log_setup', true, 'restore', $addl);
-			foreach ($found as $script) {
-				chmod($script, 0777);
-				if (@rename($script, stripSuffix($script))) {
-					chmod(stripSuffix($script), FILE_MOD);
-				} else {
-					chmod($script, FILE_MOD);
-				}
-			}
+		$restore = safe_glob('*.xxx');
+		if (!empty($restore) && $mandatory && (defined('ADMIN_RIGHTS') && zp_loggedin(ADMIN_RIGHTS) || !$_zp_DB_connection)) {
+			restoreSetupScrpts($mandatory);
 		}
 		$found = safe_glob('*.*');
 		$needs = array_diff($needs, $found);
 	}
 	$_configMutex->unlock();
-	return array($diff, $needs);
+	return array($diff, $needs, $restore);
 }
 
 /**
@@ -265,5 +249,33 @@ function reconfigurePage($diff, $needs, $mandatory) {
 		</p>
 	</div>
 	<?php
+}
+
+/**
+ * control when and how setup scripts are turned back into PHP files
+ */
+function restoreSetupScrpts($reason) {
+	switch ($reason) {
+		default:
+			$addl = sprintf(gettext('restored to run setup [%s]'), $reason);
+			break;
+		case 4:
+			$addl = gettext('restored by cloning');
+			break;
+	}
+	zp_apply_filter('log_setup', true, 'restore', $addl);
+	if (!defined('FILE_MOD')) {
+		define('FILE_MOD', 0666);
+	}
+	chdir(dirname(__FILE__) . '/setup/');
+	$found = safe_glob('*.xxx');
+	foreach ($found as $script) {
+		chmod($script, 0777);
+		if (@rename($script, stripSuffix($script) . '.php')) {
+			chmod(stripSuffix($script) . '.php', FILE_MOD);
+		} else {
+			chmod($script, FILE_MOD);
+		}
+	}
 }
 ?>

@@ -83,15 +83,17 @@ echo "\n</head>";
 			if (is_array($searchstring)) {
 				?>
 				<script type="text/javascript">
-					function addSuggestedTag(tag) {
-						var name = 'tags_' + bin2hex(tag);
-						if ($('#' + name).length) {
-							$('#' + name + '_element').remove();
+					function addSearchTag(tag) {
+						if (tag) {
+							var name = 'tags_' + bin2hex(tag);
+							if ($('#' + name).length) {
+								$('#' + name + '_element').remove();
+							}
+							html = '<li id="' + name + '_element"><label class="displayinline"><input id="' + name + '" name="tag_list_tags_[]" type="checkbox" checked="checked" value="' + tag + '" />' + tag + '</label></li>';
+							$('#list_tags_').prepend(html);
 						}
-						html = '<li id="' + name + '_element"><label class="displayinline"><input id="' + name + '" name="' + name +
-										'" type="checkbox" checked="checked" value="1" />' + tag + '</label></li>';
-						$('#list_tags_').prepend(html);
 					}
+
 					$(document).ready(function () {
 	<?php
 	foreach ($searchstring as $key => $singlesearchstring) {
@@ -104,7 +106,7 @@ echo "\n</head>";
 				break;
 			default:
 				?>
-									addSuggestedTag('<?php echo $singlesearchstring; ?>');
+									addSearchTag('<?php echo $singlesearchstring; ?>');
 				<?php
 				break;
 		}
@@ -141,14 +143,10 @@ echo "\n</head>";
 			<?php
 			if (isset($_GET['tagitems'])) {
 				XSRFdefender('tagitems');
-
-				$tags = array();
-				foreach ($_POST as $key => $value) {
-					if (substr($key, 0, 5) == 'tags_') {
-						if ($value) {
-							$tags[] = sanitize(postIndexDecode(substr($key, 5)));
-						}
-					}
+				if (isset($_POST['tag_list_tags_'])) {
+					$tags = sanitize($_POST['tag_list_tags_']);
+				} else {
+					$tags = array();
 				}
 				$tags = array_unique($tags);
 				$totag = array();

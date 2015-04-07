@@ -50,25 +50,26 @@ class AnyFile_Options {
 		?>
 		<ul class="customchecklist">
 			<?php
-			generateUnorderedListFromArray($list, $list, 'AnyFile_file_list_', false, false, false);
+			generateUnorderedListFromArray($list, $list, 'AnyFile_file_', false, false, false, NULL, NULL, true);
 			?>
 		</ul>
 		<?php
 	}
 
 	function handleOptionSave($themename, $themealbum) {
-		$mysetoptions = array();
-		foreach ($_POST as $key => $option) {
-			if (strpos($key, 'AnyFile_file_list_') === 0) {
-				$mysetoptions[] = str_replace('AnyFile_file_list_', '', $key);
-				purgeOption($key);
-			}
+		if (isset($_POST['AnyFile_file_list'])) {
+			$mysetoptions = sanitize($_POST['AnyFile_file_list']);
+		} else {
+			$mysetoptions = array();
 		}
-		if ($_POST['AnyFile_file_new']) {
-			$mysetoptions[] = sanitize($_POST['AnyFile_file_new']);
-			$suffix = getOption('AnyFile_file_new');
-			purgeOption('AnyFile_file_new');
+
+
+		var_dump(getOption('AnyFile_file_new'));
+
+		if ($new = getOption('AnyFile_file_new')) {
+			$mysetoptions[] = $new;
 		}
+		purgeOption('AnyFile_file_new');
 		setOption('AnyFileSuffixList', serialize($mysetoptions));
 		return false;
 	}

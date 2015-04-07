@@ -27,15 +27,10 @@ function getExpiryDatePost() {
  * @param object $object the object on which the save happened
  */
 function processTags($object) {
-	$tagsprefix = 'tags_';
-	$tags = array();
-	$l = strlen($tagsprefix);
-	foreach ($_POST as $key => $value) {
-		if (substr($key, 0, $l) == $tagsprefix) {
-			if ($value) {
-				$tags[] = sanitize(postIndexDecode(substr($key, $l)));
-			}
-		}
+	if (isset($_POST['tag_list_tags_'])) {
+		$tags = sanitize($_POST['tag_list_tags_']);
+	} else {
+		$tags = array();
 	}
 	$tags = array_unique($tags);
 	$object->setTags($tags);
@@ -431,8 +426,13 @@ function updateArticle(&$reports, $newarticle = false) {
 	processTags($article);
 	$categories = array();
 	$result2 = query_full_array("SELECT * FROM " . prefix('news_categories') . " ORDER BY titlelink");
+	if (isset($_POST['addcategories'])) {
+		$cats = sanitize($_POST['addcategories']);
+	} else {
+		$cats = array();
+	}
 	foreach ($result2 as $cat) {
-		if (isset($_POST["cat" . $cat['id']])) {
+		if (isset($cats[$cat['id']])) {
 			$categories[] = $cat['titlelink'];
 		}
 	}
@@ -1047,7 +1047,7 @@ function printCategoryCheckboxListEntry($cat, $articleid, $option, $class = '') 
 		$protected = '';
 	}
 	$catid = $cat->getID();
-	echo '<label for="cat' . $catid . '"><input name="cat' . $catid . '" class="' . $class . '" id="cat' . $catid . '" type="checkbox" value="' . $catid . '"' . $selected . ' />' . $catname . ' ' . $protected . "</label>\n";
+	echo '<label for="cat' . $catid . '"><input name="addcategories[]" class="' . $class . '" id="cat' . $catid . '" type="checkbox" value="' . $catid . '"' . $selected . ' />' . $catname . ' ' . $protected . "</label>\n";
 }
 
 /* * ************************
@@ -1534,12 +1534,10 @@ function processZenpageBulkActions($type) {
 					$tags = bulkTags();
 				}
 				if ($action == 'addcats') {
-					foreach ($_POST as $key => $value) {
-						if (substr($key, 0, 3) == 'cat') {
-							if ($value) {
-								$cats[] = sanitize(postIndexDecode(substr($key, 3)));
-							}
-						}
+					if (isset($_POST['addcategories'])) {
+						$cats = sanitize($_POST['addcategories']);
+					} else {
+						$cats = array();
 					}
 				}
 				$n = 0;
