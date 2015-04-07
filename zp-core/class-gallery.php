@@ -1099,6 +1099,10 @@ class Gallery {
 		$_zp_albumHandlers[strtolower($suffix)] = $objectName;
 	}
 
+	function getData() {
+		return $this->data;
+	}
+
 }
 
 ?>
