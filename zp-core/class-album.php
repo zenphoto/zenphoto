@@ -959,10 +959,14 @@ class AlbumBase extends MediaObject {
 // manual sort is always ascending
 			$order = false;
 		} else {
-			if (!is_null($sortdirection)) {
-				$order = $sortdirection && strtolower($sortdirection) != 'asc';
-			} else {
+			if (is_null($sortdirection)) {
 				$order = $this->getSortDirection('image');
+			} else {
+				if (is_string($sortdirection)) {
+					$order = $sortdirection && strtolower($sortdirection) != 'asc';
+				} else {
+					$order = (int) $sortdirection;
+				}
 			}
 		}
 		$sql = "SELECT * FROM " . prefix("images") . " WHERE `albumid`= " . $this->getID() . ' ORDER BY ' . $sortkey;

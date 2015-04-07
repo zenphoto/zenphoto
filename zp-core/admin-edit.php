@@ -246,18 +246,22 @@ if (isset($_GET['action'])) {
 		 */
 		case "sortorder":
 			XSRFdefender('albumsortorder');
-			$oldsort = getOption('albumimagesort');
-			if (getOption('albumimagedirection'))
-				$oldsort = $oldsort . '_desc';
+			$oldsort = strtolower($_zp_gallery->getSortType('image'));
+			if ($_zp_gallery->getSortDirection('image'))
+				$oldsort = $oldsort . '_DESC';
 			$newsort = sanitize($_POST['albumimagesort'], 3);
-			if ($newsort != $oldsort && in_array(str_replace('_desc', '', $newsort), $_zp_sortby)) {
-				if (strpos($newsort, '_desc')) {
-					setOption('albumimagesort', substr($newsort, 0, -5));
-					setOption('albumimagedirection', 'DESC');
+			if ($newsort != $oldsort && in_array(str_replace('_DESC', '', $newsort), $_zp_sortby)) {
+				if (strpos($newsort, '_DESC')) {
+
+					echo "<br/>descending";
+
+					$_zp_gallery->setSortType(substr($newsort, 0, -5), 'image');
+					$_zp_gallery->setSortDirection('1', 'image');
 				} else {
-					setOption('albumimagesort', $newsort);
-					setOption('albumimagedirection', '');
+					$_zp_gallery->setSortType($newsort, 'image');
+					$_zp_gallery->setSortDirection('0', 'image');
 				}
+				$_zp_gallery->save();
 			}
 			$albumname = sanitize_path($_REQUEST['album']);
 			if (isset($_POST['subpage'])) {
@@ -273,11 +277,33 @@ if (isset($_GET['action'])) {
 			exitZP();
 			break;
 
+		case "gallery_sortorder":
+			XSRFdefender('gallery_sortorder');
+			$oldsort = strtolower($_zp_gallery->getSortType('album'));
+			if ($_zp_gallery->getSortDirection('albums'))
+				$oldsort = $oldsort . '_DESC';
+			$newsort = sanitize($_POST['gallery_sortby'], 3);
+			if ($newsort != $oldsort && in_array(str_replace('_DESC', '', $newsort), $_zp_sortby)) {
+				if (strpos($newsort, '_DESC')) {
+					$_zp_gallery->setSortType(substr($newsort, 0, -5), 'album');
+					$_zp_gallery->setSortDirection('1', 'album');
+				} else {
+					$_zp_gallery->setSortType($newsort, 'album');
+					$_zp_gallery->setSortDirection('0', 'album');
+				}
+				$_zp_gallery->save();
+			}
+			$albumname = sanitize_path($_REQUEST['album']);
+			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit');
+			exitZP();
+			break;
+
+
 		case "subalbum_sortorder":
 			XSRFdefender('subalbum_sortorder');
-			$oldsort = strtolower($album->get('subalbum_sort_type'));
+			$oldsort = strtolower($album->getSortType('album'));
 			if ($album->getSortDirection('albums'))
-				$oldsort = $oldsort . '_desc';
+				$oldsort = $oldsort . '_DESC';
 			$newsort = sanitize($_POST['subalbum_sortby'], 3);
 			if ($newsort != $oldsort && in_array(str_replace('_DESC', '', $newsort), $_zp_sortby)) {
 				if (strpos($newsort, '_DESC')) {
@@ -618,7 +644,7 @@ if (isset($_GET['album']) && (empty($subtab) || $subtab == 'albuminfo') || isset
 	//<!-- <![CDATA[
 	var deleteAlbum1 = "<?php echo gettext("Are you sure you want to delete this entire album?"); ?>";
 	var deleteAlbum2 = "<?php echo gettext("Are you Absolutely Positively sure you want to delete the album? THIS CANNOT BE UNDONE!"); ?>";
-	function newAlbum(folder, dynamic) {
+	function newAlbumJS(folder, dynamic) {
 		var album = prompt('<?php echo addslashes(gettext('New album name?')); ?>', '<?php echo gettext('album'); ?>.' + $.now());
 		if (album) {
 			if (dynamic) {
@@ -704,9 +730,8 @@ echo "\n</head>";
 				$mcr_albumlist = array();
 				genAlbumList($mcr_albumlist);
 
-				$oldalbumimagesort = getOption('albumimagesort');
-				$direction = getOption('albumimagedirection');
-				$direction = $direction && $direction != 'asc';
+				$oldalbumimagesort = $_zp_gallery->getSortType('image');
+				$direction = $_zp_gallery->getSortDirection('image');
 
 				if ($album->isDynamic()) {
 					$subalbums = array();
@@ -725,6 +750,7 @@ echo "\n</head>";
 						$sql = 'SELECT * FROM ' . prefix('images') . ' WHERE (`albumid`=' . $album->getID() . ') AND (' . $retunNull . ' `owner`="' . $requestor . '") ORDER BY `' . $oldalbumimagesort . '`';
 						if ($direction)
 							$sql .= ' DESC';
+
 						$result = query($sql);
 						if ($result) {
 							while ($row = db_fetch_assoc($result)) {
@@ -733,9 +759,10 @@ echo "\n</head>";
 							db_free_result($result);
 						}
 					} else {
-						$allimages = $album->getImages(0, 0, $oldalbumimagesort, $direction);
+						$allimages = $album->getImages(0, 0, $oldalbumimagesort, $direction ? 'desc' : 'asc');
 					}
 				}
+
 				if (isset($_GET['filter'])) {
 					$filter = sanitize($_GET['filter']);
 				} else {
@@ -911,12 +938,12 @@ echo "\n</head>";
 											<img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong>
 										</button>
 										<div class="floatright">
-											<button type="button" title="<?php echo addslashes(gettext('New subalbum')); ?>" onclick="newAlbum('<?php echo pathurlencode($album->name); ?>', false);">
+											<button type="button" title="<?php echo addslashes(gettext('New subalbum')); ?>" onclick="newAlbumJS('<?php echo pathurlencode($album->name); ?>', false);">
 												<img src="images/folder.png" alt="" />
 												<strong><?php echo gettext('New subalbum'); ?></strong>
 											</button>
 											<?php if (!$album->isDynamic()) { ?>
-												<button type="button" title="<?php echo addslashes(gettext('New dynamic subalbum')); ?>" onclick="newAlbum('<?php echo pathurlencode($album->name); ?>', true);">
+												<button type="button" title="<?php echo addslashes(gettext('New dynamic subalbum')); ?>" onclick="newAlbumJS('<?php echo pathurlencode($album->name); ?>', true);">
 													<img src="images/folder.png" alt="" />
 													<strong><?php echo gettext('New dynamic subalbum'); ?></strong>
 												</button>
@@ -976,12 +1003,12 @@ echo "\n</head>";
 										<img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong>
 									</button>
 									<div class="floatright">
-										<button type="button" title="<?php echo addslashes(gettext('New subalbum')); ?>" onclick="newAlbum('<?php echo pathurlencode($album->name); ?>', false);">
+										<button type="button" title="<?php echo addslashes(gettext('New subalbum')); ?>" onclick="newAlbumJS('<?php echo pathurlencode($album->name); ?>', false);">
 											<img src="images/folder.png" alt="" />
 											<strong><?php echo gettext('New subalbum'); ?></strong>
 										</button>
 										<?php if (!$album->isDynamic()) { ?>
-											<button type="button" title="<?php echo addslashes(gettext('New dynamic subalbum')); ?>" onclick="newAlbum('<?php echo pathurlencode($album->name); ?>', false);">
+											<button type="button" title="<?php echo addslashes(gettext('New dynamic subalbum')); ?>" onclick="newAlbumJS('<?php echo pathurlencode($album->name); ?>', false);">
 												<img src="images/folder.png" alt="" />
 												<strong><?php echo gettext('New dynamic subalbum'); ?></strong>
 											</button>
@@ -1058,12 +1085,11 @@ echo "\n</head>";
 									<?php
 									$sort = $_zp_sortby;
 									foreach ($sort as $key => $value) {
-										$sort[sprintf(gettext('%s (descending)'), $key)] = $value . '_desc';
+										$sort[sprintf(gettext('%s (descending)'), $key)] = $value . '_DESC';
 									}
 									$sort[gettext('Manual')] = 'manual';
-									ksort($sort, SORT_LOCALE_STRING);
 									if ($direction)
-										$oldalbumimagesort = $oldalbumimagesort . '_desc';
+										$oldalbumimagesort = $oldalbumimagesort . '_DESC';
 									echo gettext("Display images by:");
 									echo '<select id="albumimagesort" name="albumimagesort" onchange="this.form.submit();">';
 									generateListFromArray(array($oldalbumimagesort), $sort, false, true);
@@ -1681,25 +1707,45 @@ echo "\n</head>";
 				$albums = getNestedAlbumList(NULL, $album_nesting);
 				if (count($albums) > 0) {
 					if (zp_loggedin(ADMIN_RIGHTS) && (count($albums)) > 1) {
-						$sorttype = strtolower($_zp_gallery->getSortType());
-						if ($sorttype != 'manual') {
-							if ($_zp_gallery->getSortDirection()) {
-								$dir = gettext(' descending');
-							} else {
-								$dir = '';
-							}
-							$sortNames = array_flip($_zp_sortby);
-							$sorttype = $sortNames[$sorttype];
-						} else {
-							$dir = '';
+
+						printEditDropdown('', array('1', '2', '3', '4', '5'), $album_nesting);
+
+						$sort = $_zp_sortby;
+						foreach ($sort as $name => $action) {
+							$sort[$name . ' (' . gettext('descending') . ')'] = $action . '_DESC';
 						}
 						?>
-						<p>
-							<?php printf(gettext('Current sort: <em>%1$s%2$s</em>.'), $sorttype, $dir); ?>
-						</p>
-						<p>
-							<?php echo gettext('Drag the albums into the order you wish them displayed.'); ?>
-						</p>
+						<br clear="all"><br />
+						<?php
+						$type = strtolower($_zp_gallery->getSortType());
+						if ($type && !in_array($type, $sort)) {
+							if ($type == 'manual') {
+								$sort[gettext('Manual')] = $type;
+							} else {
+								$sort[gettext('Custom')] = $type = 'custom';
+							}
+						}
+						if ($_zp_gallery->getSortDirection()) {
+							$type .= '_DESC';
+						}
+						$cv = array($type);
+						if (($type == 'manual') || ($type == 'random') || ($type == '')) {
+							$dsp = 'none';
+						} else {
+							$dsp = 'inline';
+						}
+						echo gettext('Drag the albums into the order you wish them displayed.');
+						?>
+						<form name="gallery_sort" style="float: right;" method="post" action="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-edit.php?page=edit&action=gallery_sortorder" >
+							<?php XSRFToken('gallery_sortorder'); ?>
+							<span class="nowrap">
+								<?php echo gettext('Sort albums by:'); ?>
+								<select id="albumsortselect" name="gallery_sortby" onchange="this.form.submit();">
+									<?php generateListFromArray($cv, $sort, false, true); ?>
+								</select>
+							</span>
+						</form>
+						<br clear="all">
 						<p class="notebox">
 							<?php echo gettext('<strong>Note:</strong> Dragging an album under a different parent will move the album. You cannot move albums under a <em>dynamic</em> album.'); ?>
 						</p>
@@ -1714,7 +1760,6 @@ echo "\n</head>";
 
 					<?php
 					consolidatedEditMessages('');
-					printEditDropdown('', array('1', '2', '3', '4', '5'), $album_nesting);
 					?>
 					<form class="dirtylistening" onReset="setClean('sortableListForm');
 									$('#albumsort').sortable('cancel');" action="?page=edit&amp;action=savealbumorder" method="post" name="sortableListForm" id="sortableListForm" onsubmit="return confirmAction();" >
@@ -1731,8 +1776,8 @@ echo "\n</head>";
 							}
 							if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 								?>
-								<button type="button" onclick="newAlbum('', false);"><img src="images/folder.png" alt="" /><strong><?php echo gettext('New album'); ?></strong></button>
-								<button type="button" onclick="newAlbum('', true);"><img src="images/folder.png" alt="" /><strong><?php echo gettext('New dynamic album'); ?></strong></button>
+								<button type="button" onclick="newAlbumJS('', false);"><img src="images/folder.png" alt="" /><strong><?php echo gettext('New album'); ?></strong></button>
+								<button type="button" onclick="newAlbumJS('', true);"><img src="images/folder.png" alt="" /><strong><?php echo gettext('New dynamic album'); ?></strong></button>
 
 
 								<?php
@@ -1781,8 +1826,8 @@ echo "\n</head>";
 							}
 							if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 								?>
-								<button type="button" onclick="newAlbum('', false);"><img src="images/folder.png" alt="" /><strong><?php echo gettext('New album'); ?></strong></button>
-								<button type="button" onclick="newAlbum('', true);"><img src="images/folder.png" alt="" /><strong><?php echo gettext('New dynamic album'); ?></strong></button>
+								<button type="button" onclick="newAlbumJS('', false);"><img src="images/folder.png" alt="" /><strong><?php echo gettext('New album'); ?></strong></button>
+								<button type="button" onclick="newAlbumJS('', true);"><img src="images/folder.png" alt="" /><strong><?php echo gettext('New dynamic album'); ?></strong></button>
 								<?php
 							}
 							?>
@@ -1797,10 +1842,10 @@ echo "\n</head>";
 					if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 						?>
 						<p class="buttons">
-							<button type="button" onclick="newAlbum('', false);">
+							<button type="button" onclick="newAlbumJS('', false);">
 								<img src="images/folder.png" alt="" /><strong><?php echo gettext('New album'); ?></strong>
 							</button>
-							<button type="button" onclick="newAlbum('', true);">
+							<button type="button" onclick="newAlbumJS('', true);">
 								<img src="images/folder.png" alt="" /><strong><?php echo gettext('New dynamic album'); ?></strong>
 							</button>
 						</p>

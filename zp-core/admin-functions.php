@@ -1372,17 +1372,15 @@ function printAdminHeader($tab, $subtab = NULL) {
 					<?php
 					if (!$album->isDynamic()) {
 						?>
-						<button type="button" title="<?php echo addslashes(gettext('New subalbum')); ?>" onclick="newAlbum('<?php echo pathurlencode($album->name); ?>', true);">
+						<button type="button" title="<?php echo addslashes(gettext('New subalbum')); ?>" onclick="newAlbumJS('<?php echo pathurlencode($album->name); ?>', false);">
 							<img src="images/folder.png" alt="" />
 							<strong><?php echo gettext('New subalbum'); ?></strong>
 						</button>
-						<?php if (!$album->isDynamic()) { ?>
-							<button type="button" title="<?php echo addslashes(gettext('New dynamic subalbum')); ?>" onclick="newAlbum('<?php echo pathurlencode($album->name); ?>', true);">
-								<img src="images/folder.png" alt="" />
-								<strong><?php echo gettext('New dynamic subalbum'); ?></strong>
-							</button>
-							<?php
-						}
+						<button type="button" title="<?php echo addslashes(gettext('New dynamic subalbum')); ?>" onclick="newAlbumJS('<?php echo pathurlencode($album->name); ?>', true);">
+							<img src="images/folder.png" alt="" />
+							<strong><?php echo gettext('New dynamic subalbum'); ?></strong>
+						</button>
+						<?php
 					}
 					?>
 					<a href="<?php echo WEBPATH . "/index.php?album=" . html_encode(pathurlencode($album->getFileName())); ?>">
@@ -2071,12 +2069,12 @@ function printAdminHeader($tab, $subtab = NULL) {
 					<?php
 					if (!$album->isDynamic()) {
 						?>
-						<button type="button" title="<?php echo addslashes(gettext('New subalbum')); ?>" onclick="newAlbum('<?php echo pathurlencode($album->name); ?>', true);">
+						<button type="button" title="<?php echo addslashes(gettext('New subalbum')); ?>" onclick="newAlbumJS('<?php echo pathurlencode($album->name); ?>', false);">
 							<img src="images/folder.png" alt="" />
 							<strong><?php echo gettext('New subalbum'); ?></strong>
 						</button>
 						<?php if (!$album->isDynamic()) { ?>
-							<button type="button" title="<?php echo addslashes(gettext('New dynamic subalbum')); ?>" onclick="newAlbum('<?php echo pathurlencode($album->name); ?>', true);">
+							<button type="button" title="<?php echo addslashes(gettext('New dynamic subalbum')); ?>" onclick="newAlbumJS('<?php echo pathurlencode($album->name); ?>', true);">
 								<img src="images/folder.png" alt="" />
 								<strong><?php echo gettext('New dynamic subalbum'); ?></strong>
 							</button>
