@@ -49,6 +49,7 @@ if (isset($_GET['album'])) {
 		unset($_GET['album']);
 	}
 }
+
 if (!zp_apply_filter('admin_managed_albums_access', $allow, $return)) {
 	header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . $return);
 	exitZP();
@@ -269,6 +270,27 @@ if (isset($_GET['action'])) {
 				$filter = '&filter=' . $filter;
 
 			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit&album=' . $albumname . $pg . '&tagsort=' . $tagsort . '&tab=imageinfo' . $filter);
+			exitZP();
+			break;
+
+		case "subalbum_sortorder":
+			XSRFdefender('subalbum_sortorder');
+			$oldsort = strtolower($album->get('subalbum_sort_type'));
+			if ($album->getSortDirection('albums'))
+				$oldsort = $oldsort . '_desc';
+			$newsort = sanitize($_POST['subalbum_sortby'], 3);
+			if ($newsort != $oldsort && in_array(str_replace('_DESC', '', $newsort), $_zp_sortby)) {
+				if (strpos($newsort, '_DESC')) {
+					$album->setSortType(substr($newsort, 0, -5), 'albums');
+					$album->setSortDirection('1', 'albums');
+				} else {
+					$album->setSortType($newsort, 'albums');
+					$album->setSortDirection('0', 'albums');
+				}
+				$album->save();
+			}
+			$albumname = sanitize_path($_REQUEST['album']);
+			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit&album=' . $albumname . '&tab=subalbuminfo');
 			exitZP();
 			break;
 
@@ -814,30 +836,52 @@ echo "\n</head>";
 						<div id="tab_subalbuminfo" class="tabbox">
 							<?php
 							printEditDropdown('subalbuminfo', array('1', '2', '3', '4', '5'), $subalbum_nesting);
+							$sort = $_zp_sortby;
+							foreach ($sort as $name => $action) {
+								$sort[$name . ' (' . gettext('descending') . ')'] = $action . '_DESC';
+							}
 							?>
+							<br clear="all"><br />
+							<?php
+							if (is_null($album->getParent())) {
+								$globalsort = gettext("*gallery album sort order");
+							} else {
+								$globalsort = gettext("*parent album subalbum sort order");
+							}
+							$type = strtolower($album->get('subalbum_sort_type'));
+							if ($type && !in_array($type, $sort)) {
+								if ($type == 'manual') {
+									$sort[gettext('Manual')] = $type;
+								} else {
+									$sort[gettext('Custom')] = $type = 'custom';
+								}
+							}
+							if ($album->getSortDirection('albums')) {
+								$type .= '_DESC';
+							}
+							$cv = array($type);
+							if (($type == 'manual') || ($type == 'random') || ($type == '')) {
+								$dsp = 'none';
+							} else {
+								$dsp = 'inline';
+							}
+							echo gettext('Drag the albums into the order you wish them displayed.');
+							?>
+							<form name="subalbum_sort" style="float: right;" method="post" action="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-edit.php?page=edit&album=<?php echo pathurlencode($album->name); ?>&tab=subalbuminfo&action=subalbum_sortorder" >
+								<?php XSRFToken('subalbum_sortorder'); ?>
+								<span class="nowrap">
+									<?php echo gettext('Sort subalbums by:'); ?>
+									<select id="albumsortselect" name="subalbum_sortby" onchange="this.form.submit();">
+										<option value =''><?php echo $globalsort; ?></option>
+										<?php generateListFromArray($cv, $sort, false, true); ?>
+									</select>
+								</span>
+							</form>
+							<br clear="all">
+
 							<form class="dirtylistening" onReset="setClean('sortableListForm');
 												$('#albumsort').sortable('cancel');" action="?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>&amp;action=savesubalbumorder&amp;tab=subalbuminfo" method="post" name="sortableListForm" id="sortableListForm" onsubmit="return confirmAction();" >
 										<?php XSRFToken('savealbumorder'); ?>
-								<p>
-									<?php
-									$sorttype = strtolower($album->getSortType('album'));
-									if ($sorttype != 'manual') {
-										if ($album->getSortDirection('album')) {
-											$dir = gettext(' descending');
-										} else {
-											$dir = '';
-										}
-										$sortNames = array_flip($_zp_sortby);
-										$sorttype = $sortNames[$sorttype];
-									} else {
-										$dir = '';
-									}
-									printf(gettext('Current sort: <em>%1$s%2$s</em>. '), $sorttype, $dir);
-									?>
-								</p>
-								<p>
-									<?php echo gettext('Drag the albums into the order you wish them displayed.'); ?>
-								</p>
 								<p class="notebox">
 									<?php echo gettext('<strong>Note:</strong> Dragging an album under a different parent will move the album. You cannot move albums under a <em>dynamic</em> album.'); ?>
 								</p>
