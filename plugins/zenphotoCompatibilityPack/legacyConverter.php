@@ -35,22 +35,24 @@ $legacyReplacements = array(
  */
 function getResidentFiles($folder) {
 	global $_zp_resident_files;
-	$dirs = scandir($folder);
 	$localfiles = array();
 	$localfolders = array();
-	foreach ($dirs as $file) {
-		if ($file{0} != '.') {
-			$file = str_replace('\\', '/', $file);
-			$key = $folder . '/' . $file;
-			if (is_dir($folder . '/' . $file)) {
-				$localfolders = array_merge($localfolders, getResidentFiles($folder . '/' . $file));
-			} else {
-				if (getSuffix($key) == 'php') {
-					$localfiles[] = $key;
-				}
-			}
-		}
-	}
+  if (file_exists($folder)) {
+    $dirs = scandir($folder);
+    foreach ($dirs as $file) {
+      if ($file{0} != '.') {
+        $file = str_replace('\\', '/', $file);
+        $key = $folder . '/' . $file;
+        if (is_dir($folder . '/' . $file)) {
+          $localfolders = array_merge($localfolders, getResidentFiles($folder . '/' . $file));
+        } else {
+          if (getSuffix($key) == 'php') {
+            $localfiles[] = $key;
+          }
+        }
+      }
+    }
+  }
 	return array_merge($localfiles, $localfolders);
 }
 
