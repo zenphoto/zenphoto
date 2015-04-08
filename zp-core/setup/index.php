@@ -1785,7 +1785,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 														`mtime` int(32) default NULL,
 														`sort_type` varchar(20) default NULL,
 														`subalbum_sort_type` varchar(20) default NULL,
-														`sort_order` int(11) unsigned default NULL,
+														`sort_order` varchar(48)  NOT NULL default '',
 														`image_sortdirection` int(1) UNSIGNED default '0',
 														`album_sortdirection` int(1) UNSIGNED default '0',
 														`hitcounter` int(11) unsigned default 0,
@@ -1842,7 +1842,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 														`commentson` int(1) UNSIGNED NOT NULL default '1',
 														`show` int(1) NOT NULL default '1',
 														`date` datetime default NULL,
-														`sort_order` int(11) unsigned default NULL,
+														`sort_order` varchar(48)  NOT NULL default '',
 														`height` int(10) unsigned default NULL,
 														`width` int(10) unsigned default NULL,
 														`rotation` int(3) unsigned default 0,
@@ -1919,7 +1919,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 														`password` varchar(64) DEFAULT NULL,
 														`password_hint` text,
 														`parentid` int(11) DEFAULT NULL,
-														`sort_order` varchar(48) DEFAULT NULL,
+														`sort_order` varchar(48) NOT NULL default '',
 														`desc` text,
 														`show` int(1) unsigned NOT NULL default '1',
 														PRIMARY KEY (`id`),
@@ -2029,8 +2029,8 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 
 						// v. 1.0.0b
 						$sql_statements[] = "ALTER TABLE $tbl_albums ADD COLUMN `sort_type` varchar(20);";
-						$sql_statements[] = "ALTER TABLE $tbl_albums ADD COLUMN `sort_order` int(11);";
-						$sql_statements[] = "ALTER TABLE $tbl_images ADD COLUMN `sort_order` int(11);";
+						$sql_statements[] = "ALTER TABLE $tbl_albums ADD COLUMN `sort_order` varchar(48) NOT NULL default '';";
+						$sql_statements[] = "ALTER TABLE $tbl_images ADD COLUMN `sort_order` varchar(48) NOT NULL default '';";
 
 						// v. 1.0.3b
 						$sql_statements[] = "ALTER TABLE $tbl_images ADD COLUMN `height` INT UNSIGNED;";
@@ -2241,7 +2241,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 						//v1.4.0
 						$sql_statements[] = "ALTER TABLE $tbl_options CHANGE `value` `value` TEXT " . $collation;
 						$sql_statements[] = "ALTER TABLE $tbl_news_categories ADD COLUMN `parentid` INT(11) DEFAULT NULL";
-						$sql_statements[] = "ALTER TABLE $tbl_news_categories ADD COLUMN `sort_order` varchar(48)";
+						$sql_statements[] = "ALTER TABLE $tbl_news_categories ADD COLUMN `sort_order` varchar(48) NOT NULL default ''";
 						$sql_statements[] = "ALTER TABLE $tbl_images ADD COLUMN `user` varchar(64) default ''";
 						$sql_statements[] = 'ALTER TABLE ' . $tbl_images . ' ADD COLUMN `password` VARCHAR(64)';
 						$sql_statements[] = "ALTER TABLE $tbl_images ADD COLUMN `password_hint` text;";
@@ -2320,6 +2320,10 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 						$sql_statements[] = 'ALTER TABLE ' . $tbl_images . ' ADD COLUMN `GPSLatitude` varchar(52) default NULL';
 						$sql_statements[] = 'ALTER TABLE ' . $tbl_images . ' ADD COLUMN `GPSLongitude` varchar(52) default NULL';
 						$sql_statements[] = 'ALTER TABLE ' . $tbl_images . ' ADD COLUMN	`GPSAltitude` varchar(52) default NULL';
+						//v1.2.3.4
+						$sql_statements[] = 'ALTER TABLE ' . $tbl_albums . ' CHANGE `sort_order` `sort_order` VARCHAR(48) NOT NULL default ""';
+						$sql_statements[] = 'ALTER TABLE ' . $tbl_albums . ' CHANGE `sort_order` `sort_order` VARCHAR(48) NOT NULL default ""';
+
 
 						// do this last incase there are any field changes of like names!
 						$meta = metadataFields($_zp_exifvars, false);
