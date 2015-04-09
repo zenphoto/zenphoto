@@ -1221,7 +1221,7 @@ function getAlbumBreadcrumb($title = NULL) {
 				$title = gettext('Album Thumbnails');
 			}
 		}
-		return array('link' => $album->getLink(), 'text' => $title, 'title' => $album->getDesc());
+		return array('link' => $album->getLink(), 'text' => $title, 'title' => getBare($title));
 	}
 	return false;
 }
