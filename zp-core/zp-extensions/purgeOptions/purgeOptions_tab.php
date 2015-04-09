@@ -126,12 +126,12 @@ printAdminHeader('options', '');
 								echo gettext('Check an item to purge options associated with it.');
 								?>
 								<span class="highlighted">
-									<?php echo gettext('Items that are <span class="missing_owner">higlighed</span> appear no longer to exist.') ?>
+									<?php echo gettext('Items that are <span class="missing_owner">highlighted</span> appear to no longer to exist.') ?>
 								</span>
 							</p>
 							<ul class="highlighted">
 								<li>
-									<?php printf(gettext('<span class="missing_owner">higlighed</span>%s '), '<input type="checkbox" id="missing" checked="checked" onclick="$(\'.missing\').prop(\'checked\', $(\'#missing\').prop(\'checked\'));">');
+									<?php printf(gettext('<span class="missing_owner">highlighted</span>%s '), '<input type="checkbox" id="missing" checked="checked" onclick="$(\'.missing\').prop(\'checked\', $(\'#missing\').prop(\'checked\'));">');
 									?>
 								</li>
 							</ul>
