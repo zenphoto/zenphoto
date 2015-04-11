@@ -4,17 +4,19 @@
 	<div id="gradient"></div>
 	<div id="copy">
 		<span>&copy; <?php echo getGalleryTitle(); ?></span>
-		<span>| <?php echo gettext('Subscribe: '); ?>
-			<?php
-			if (in_context(ZP_ALBUM)) {
-				printRSSLink("Collection", "", gettext('This Album'), ", ", false, "rsslink");
-			}
-			printRSSLink("Gallery", "", (gettext('Gallery Images')), "", false, "rsslink");
-			if (extensionEnabled('zenpage') && getNumNews(true)) {
-				printRSSLink("News", '', ', ', gettext('News'), '', false);
-			}
-			?>
-		</span>
+		<?php if (extensionEnabled('rss')) { ?>
+			<span>| <?php echo gettext('Subscribe: '); ?>
+				<?php
+				if (in_context(ZP_ALBUM)) {
+					printRSSLink("Collection", "", gettext('This Album'), ", ", false, "rsslink");
+				}
+				printRSSLink("Gallery", "", (gettext('Gallery Images')), "", false, "rsslink");
+				if (extensionEnabled('zenpage') && getNumNews(true)) {
+					printRSSLink("News", '', ', ', gettext('News'), '', false);
+				}
+				?>
+			</span>
+		<?php } ?>
 		<span id="zpcredit">| <?php printZenphotoLink(); ?></span>
 		<?php if ($_zp_gallery_page == 'album.php') { ?>
 			<?php

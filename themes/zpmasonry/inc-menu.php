@@ -2,29 +2,31 @@
 <div id="menu">
 	<?php if ($_zp_gallery_page != '404.php') { ?>
 		<div id="social">
-			<?php if ($zpmas_social) { ?><div class="social"><?php printAddThis('Style1'); ?></div><?php } ?>
-			<?php if ((getOption('RSS_album_image')) || (getOption('RSS_articles')) || (getOption('RSS_article_comments')) || (getOption('RSS_comments'))) { ?>
-				<a href="javascript:toggle('subscribeextrashow');" class="rss" title="<?php echo gettext('RSS'); ?>"></a>
-				<div id="subscribeextrashow">
-					<ul>
-						<?php if (in_context(ZP_ALBUM)) { ?>
-							<?php if (getOption('RSS_album_image')) { ?><li><?php printRSSLink('Collection', '', gettext('Latest Images of this Album'), '', false); ?></li><?php } ?>
-							<?php if (getOption('RSS_comments')) { ?><li><?php printRSSLink('Comments-album', '', gettext('Latest Comments of this Album'), '', false); ?></li><?php } ?>
-						<?php } ?>
-						<?php if (in_context(ZP_IMAGE)) { ?>
-								<?php if (getOption('RSS_comments')) { ?><li><?php printRSSLink('Comments-image', '', gettext('Latest Comments of this Image'), '', false); ?></li><?php } ?>
+			<?php if (extensionEnabled('rss')) {
+				if ($zpmas_social) { ?><div class="social"><?php printAddThis('Style1'); ?></div><?php } ?>
+				<?php if ((getOption('RSS_album_image')) || (getOption('RSS_articles')) || (getOption('RSS_article_comments')) || (getOption('RSS_comments'))) { ?>
+					<a href="javascript:toggle('subscribeextrashow');" class="rss" title="<?php echo gettext('RSS'); ?>"></a>
+					<div id="subscribeextrashow">
+						<ul>
+							<?php if (in_context(ZP_ALBUM)) { ?>
+								<?php if (getOption('RSS_album_image')) { ?><li><?php printRSSLink('Collection', '', gettext('Latest Images of this Album'), '', false); ?></li><?php } ?>
+								<?php if (getOption('RSS_comments')) { ?><li><?php printRSSLink('Comments-album', '', gettext('Latest Comments of this Album'), '', false); ?></li><?php } ?>
 							<?php } ?>
-							<?php if (getOption('RSS_album_image')) { ?><li><?php printRSSLink('Gallery', '', gettext('Latest Images'), '', false); ?></li><?php } ?>
-						<?php if (getOption('RSS_album_image')) { ?><li><?php printRSSLink('AlbumsRSS', '', gettext('Latest Albums'), '', false); ?></li><?php } ?>
-						<?php if (($zenpage) && ($zpmas_usenews)) { ?>
-								<?php if (getOption('RSS_articles')) { ?><li><?php printRSSLink('News', '', '', gettext('Latest News'), '', false); ?></li><?php } ?>
-							<?php if (getOption('RSS_article_comments')) { ?><li><?php printRSSLink('Comments-all', '', '', gettext('Latest Comments'), '', false); ?></li><?php } ?>
-						<?php } else { ?>
-								<?php if (getOption('RSS_comments')) { ?><li><?php printRSSLink('Comments', '', gettext('Latest Comments'), '', false); ?></li><?php } ?>
-							<?php } ?>
-					</ul>
-				</div>
-			<?php } ?>
+							<?php if (in_context(ZP_IMAGE)) { ?>
+									<?php if (getOption('RSS_comments')) { ?><li><?php printRSSLink('Comments-image', '', gettext('Latest Comments of this Image'), '', false); ?></li><?php } ?>
+								<?php } ?>
+								<?php if (getOption('RSS_album_image')) { ?><li><?php printRSSLink('Gallery', '', gettext('Latest Images'), '', false); ?></li><?php } ?>
+							<?php if (getOption('RSS_album_image')) { ?><li><?php printRSSLink('AlbumsRSS', '', gettext('Latest Albums'), '', false); ?></li><?php } ?>
+							<?php if (($zenpage) && ($zpmas_usenews)) { ?>
+									<?php if (getOption('RSS_articles')) { ?><li><?php printRSSLink('News', '', '', gettext('Latest News'), '', false); ?></li><?php } ?>
+								<?php if (getOption('RSS_article_comments')) { ?><li><?php printRSSLink('Comments-all', '', '', gettext('Latest Comments'), '', false); ?></li><?php } ?>
+							<?php } else { ?>
+									<?php if (getOption('RSS_comments')) { ?><li><?php printRSSLink('Comments', '', gettext('Latest Comments'), '', false); ?></li><?php } ?>
+								<?php } ?>
+						</ul>
+					</div>
+				<?php }
+			} ?>
 			<?php if ((!zp_loggedin()) && (function_exists('printUserLogin_out'))) { ?>
 				<?php if (checkAccess($hint, $show)) { ?>
 					<a href="javascript:toggle('password-div');" class="pass" title="<?php echo gettext('Login'); ?>"></a>

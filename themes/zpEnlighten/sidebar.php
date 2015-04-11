@@ -78,14 +78,13 @@
 			printCustomPageURL(gettext("Site archive view"), "archive");
 			echo "</li>";
 		}
-		?>
-		<?php if (!is_null($_zp_current_album)) { ?>
-			<?php printRSSLink('Album', '<li>', gettext('Album RSS feed'), '</li>', false); ?>
-		<?php } ?>
-		<?php printRSSLink('Gallery', '<li>', 'Gallery RSS feed', '</li>', false); ?>
-		<?php if (function_exists("printRSSLink")) { ?>
-			<?php printRSSLink("News", "<li>", gettext("Notes RSS feed"), '</li>', false); ?>
-		<?php } ?>
+		if (extensionEnabled('rss')) {
+			if (!is_null($_zp_current_album)) {
+				printRSSLink('Album', '<li>', gettext('Album RSS feed'), '</li>', false);
+			}
+			printRSSLink('Gallery', '<li>', 'Gallery RSS feed', '</li>', false);
+			printRSSLink("News", "<li>", gettext("Notes RSS feed"), '</li>', false);
+		}?>
 	</ul>
 </div>
 

@@ -112,9 +112,11 @@
 		<div class="container">
 			<div class="sixteen columns">
 				<?php if (function_exists('printAlbumMenu')) { ?><div class="jump-menu"><?php printAlbumMenu('jump'); ?></div><?php } ?>
-				<ul class="taglist rss">
-					<?php if ((function_exists('printCommentForm')) && (getOption('RSS_article_comments'))) { ?><li><?php printRSSLink('Comments-news', '', '', gettext('Comments of this article'), '', false); ?></li><?php } ?>
-				</ul>
+				<?php if (extensionEnabled('rss')) { ?>
+					<ul class="taglist rss">
+						<?php if ((function_exists('printCommentForm')) && (getOption('RSS_article_comments'))) { ?><li><?php printRSSLink('Comments-news', '', '', gettext('Comments of this article'), '', false); ?></li><?php } ?>
+					</ul>
+				<?php } ?>
 			</div>
 		</div>
 	</div>

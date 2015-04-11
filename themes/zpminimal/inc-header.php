@@ -33,7 +33,7 @@ if (function_exists('printAddThis')) {
 			case 'favorites.php';
 				$zpmin_metatitle = getBareAlbumTitle() . ' | ';
 				$zpmin_metadesc = truncate_string(getBareAlbumDesc(), 150, '...');
-				printRSSHeaderLink('Album', getAlbumTitle());
+				if (extensionEnabled('rss')) printRSSHeaderLink('Album', getAlbumTitle());
 				$galleryactive = true;
 				$cbscript = true;
 				break;
@@ -114,9 +114,8 @@ if (function_exists('printAddThis')) {
 		<!--[if lt IE 8]>
 		<style type="text/css">.album-maxspace,.thumb-maxspace{zoom:1;display:inline;}#search{padding:2px 6px 6px 6px;}</style>
 		<![endif]-->
-		<?php printRSSHeaderLink('Gallery', gettext('Gallery RSS')); ?>
-		<?php
-		if (function_exists("printRSSHeaderLink")) {
+		<?php if (extensionEnabled('rss')) {
+			printRSSHeaderLink('Gallery', gettext('Gallery RSS'));
 			printRSSHeaderLink("News", "", gettext('News RSS'), "");
 		}
 		?>

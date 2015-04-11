@@ -16,7 +16,7 @@ if (!defined('WEBPATH'))
 		// ]]> -->
 	</script>
 
-	<?php printRSSHeaderLink('Album', getAlbumTitle()); ?>
+	<?php if (extensionEnabled('rss')) printRSSHeaderLink('Album', getAlbumTitle()); ?>
 </head>
 <body>
 	<?php zp_apply_filter('theme_body_open'); ?>

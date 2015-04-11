@@ -133,20 +133,21 @@
 				</div>
 				<?php
 			}
-			?>
-			<ul class="taglist rss">
-				<?php if (getOption('RSS_album_image')) { ?><li><?php printRSSLink('Collection', '', gettext('Latest Images of this Album'), '', false); ?></li>
-					<?php
-				}
-				?>
-				<?php
-				if ((function_exists('printCommentForm')) && (getOption('RSS_comments'))) {
+			if (extensionEnabled('rss')) { ?>
+				<ul class="taglist rss">
+					<?php if (getOption('RSS_album_image')) { ?><li><?php printRSSLink('Collection', '', gettext('Latest Images of this Album'), '', false); ?></li>
+						<?php
+					}
 					?>
-					<li><?php printRSSLink('Comments-album', '', gettext('Latest Comments of this Album'), '', false); ?></li>
 					<?php
-				}
-				?>
-			</ul>
+					if ((function_exists('printCommentForm')) && (getOption('RSS_comments'))) {
+						?>
+						<li><?php printRSSLink('Comments-album', '', gettext('Latest Comments of this Album'), '', false); ?></li>
+						<?php
+					}
+					?>
+				</ul>
+			<?php } ?>
 		</div>
 	</div>
 </div>

@@ -54,7 +54,7 @@ if (extensionEnabled('GoogleMap')) {
 		foreach ($images as $an_image) {
 			$image = newImage($album, $an_image);
 			$exif = $image->getMetaData();
-			if (!empty($image->get('GPSLatitude')) &&!empty($image->get('GPSLongitude']))) {
+			if (!empty($image->get('GPSLatitude')) && !empty($image->get('GPSLongitude'))) {
 				$hasAlbumGeodata = true; // at least one image has geodata
 			}
 		}

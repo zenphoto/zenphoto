@@ -44,36 +44,38 @@
 		<?php } ?>
 		<div class="sixteen columns">
 			<hr <?php echo $classfull; ?>/>
-			<ul class="taglist rss">
-				<?php if (getOption('RSS_album_image')) { ?>
-					<li><?php printRSSLink('Gallery', '', gettext('Images'), '', false); ?></li>
-					<li><?php printRSSLink('AlbumsRSS', '', gettext('Albums'), '', false); ?></li>
-				<?php } ?>
-				<?php if (($zenpage) && ($zpskel_usenews) && (getOption('RSS_articles'))) { ?>
-					<li><?php printRSSLink('News', '', gettext('News'), '', false); ?></li>
-					<?php
-					if ((function_exists('printCommentForm')) && getOption('RSS_article_comments')) {
-						?>
-						<li>
-							<?php printRSSLink('Comments-all', '', gettext('Comments'), '', false); ?>
-						</li>
+			<?php if (extensionEnabled('rss')) { ?>
+				<ul class="taglist rss">
+					<?php if (getOption('RSS_album_image')) { ?>
+						<li><?php printRSSLink('Gallery', '', gettext('Images'), '', false); ?></li>
+						<li><?php printRSSLink('AlbumsRSS', '', gettext('Albums'), '', false); ?></li>
+					<?php } ?>
+					<?php if (($zenpage) && ($zpskel_usenews) && (getOption('RSS_articles'))) { ?>
+						<li><?php printRSSLink('News', '', gettext('News'), '', false); ?></li>
 						<?php
-					}
-					?>
-					<?php
-				} else {
-					?>
-					<?php
-					if ((function_exists('printCommentForm')) && getOption('RSS_comments')) {
+						if ((function_exists('printCommentForm')) && getOption('RSS_article_comments')) {
+							?>
+							<li>
+								<?php printRSSLink('Comments-all', '', gettext('Comments'), '', false); ?>
+							</li>
+							<?php
+						}
 						?>
-						<li>
-							<?php printRSSLink('Comments', '', gettext('Comments'), '', false); ?>
-						</li>
 						<?php
-					}
-					?>
-				<?php } ?>
-			</ul>
+					} else {
+						?>
+						<?php
+						if ((function_exists('printCommentForm')) && getOption('RSS_comments')) {
+							?>
+							<li>
+								<?php printRSSLink('Comments', '', gettext('Comments'), '', false); ?>
+							</li>
+							<?php
+						}
+						?>
+					<?php } ?>
+				</ul>
+			<?php } ?>
 		</div>
 	</div>
 </div>
