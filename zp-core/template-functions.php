@@ -1231,7 +1231,7 @@ function getAlbumBreadcrumb($title = NULL) {
  *
  * @param string $before Text to place before the breadcrumb
  * @param string $after Text to place after the breadcrumb
- * @param string $title Text to be used as the URL title tag
+ * @param string $title Text to be used as the URL title attribute and text link
  */
 function printAlbumBreadcrumb($before = '', $after = '', $title = NULL) {
 	if ($breadcrumb = getAlbumBreadcrumb($title)) {
