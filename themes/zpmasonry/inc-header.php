@@ -28,11 +28,13 @@
 				}
 				$zpmas_metatitle = $metatitle . getTitleBreadcrumb() . ' | ' . getBareGalleryTitle();
 				$zpmas_metadesc = truncate_string(getBareAlbumDesc(), 150, '...');
-				if (getOption('RSS_album_image')) {
-					printRSSHeaderLink('Collection', getBareAlbumTitle() . ' - ' . gettext('Latest Images'), $lang = '') . "\n";
-				}
-				if ((function_exists('printCommentForm')) && (getOption('RSS_comments'))) {
-					printRSSHeaderLink('Comments-album', getBareAlbumTitle() . ' - ' . gettext('Latest Comments'), $lang = '') . "\n";
+				if (extensionEnabled('rss')) {
+					if (getOption('RSS_album_image')) {
+						printRSSHeaderLink('Collection', getBareAlbumTitle() . ' - ' . gettext('Latest Images'), $lang = '') . "\n";
+					}
+					if ((function_exists('printCommentForm')) && (getOption('RSS_comments'))) {
+						printRSSHeaderLink('Comments-album', getBareAlbumTitle() . ' - ' . gettext('Latest Comments'), $lang = '') . "\n";
+					}
 				}
 				break;
 			case 'image.php':
@@ -44,7 +46,7 @@
 				}
 				$zpmas_metatitle = getBareImageTitle() . ' | ' . getBareAlbumTitle() . $titlebreadcrumb . ' | ' . getBareGalleryTitle();
 				$zpmas_metadesc = truncate_string(getBareImageDesc(), 150, '...');
-				if ((function_exists('printCommentForm')) && (getOption('RSS_comments'))) {
+				if ((extensionEnabled('rss')) && (function_exists('printCommentForm')) && (getOption('RSS_comments'))) {
 					printRSSHeaderLink('Comments-image', getBareImageTitle() . ' - ' . gettext('Latest Comments'), $lang = '') . "\n";
 				}
 				break;
@@ -103,22 +105,24 @@
 				break;
 		}
 		// Finish out header RSS links for inc-header.php
-		if (getOption('RSS_album_image')) {
-			printRSSHeaderLink('Gallery', gettext('Latest Images')) . "\n";
-		}
-		if (getOption('RSS_album_image')) {
-			printRSSHeaderLink('AlbumsRSS', gettext('Latest Albums')) . "\n";
-		}
-		if (getOption('zp_plugin-zenpage') && getOption('zpmas_usenews')) {
-			if (getOption('RSS_articles')) {
-				printRSSHeaderLink('News', '', gettext('Latest News')) . "\n";
+		if (extensionEnabled('rss')) {
+			if (getOption('RSS_album_image')) {
+				printRSSHeaderLink('Gallery', gettext('Latest Images')) . "\n";
 			}
-			if ((function_exists('printCommentForm')) && (getOption('RSS_article_comments'))) {
-				printRSSHeaderLink('Comments-all', '', gettext('Latest Comments')) . "\n";
+			if (getOption('RSS_album_image')) {
+				printRSSHeaderLink('AlbumsRSS', gettext('Latest Albums')) . "\n";
 			}
-		} else {
-			if ((function_exists('printCommentForm')) && (getOption('RSS_comments'))) {
-				printRSSHeaderLink('Comments', gettext('Latest Comments')) . "\n";
+			if (getOption('zp_plugin-zenpage') && getOption('zpmas_usenews')) {
+				if (getOption('RSS_articles')) {
+					printRSSHeaderLink('News', '', gettext('Latest News')) . "\n";
+				}
+				if ((function_exists('printCommentForm')) && (getOption('RSS_article_comments'))) {
+					printRSSHeaderLink('Comments-all', '', gettext('Latest Comments')) . "\n";
+				}
+			} else {
+				if ((function_exists('printCommentForm')) && (getOption('RSS_comments'))) {
+					printRSSHeaderLink('Comments', gettext('Latest Comments')) . "\n";
+				}
 			}
 		}
 		?>

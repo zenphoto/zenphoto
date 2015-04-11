@@ -33,25 +33,26 @@
 					<li> | <a href="<?php echo getCustomPageURL('password'); ?>"><?php echo gettext('Login'); ?></a></li>
 				<?php } ?>
 			<?php } ?>
-		</ul>
-		<?php if ((getOption('RSS_items_albums')) || (getOption('RSS_zenpage_items'))) { ?>
-			<div id="rsslinks">
-				<span><?php echo gettext('Subscribe: '); ?></span>
-				<?php
-				if ((in_context(ZP_ALBUM)) && (getOption('RSS_album_image'))) {
-					printRSSLink("Collection", "", gettext('This Album'), "  |  ", false, "rsslink");
-				}
-				if (getOption('RSS_items_albums')) {
-					printRSSLink("Gallery", "", (gettext('Gallery Images')), "", false, "rsslink");
-				}
-				if (function_exists('getBarePageTitle') && getOption('RSS_zenpage_items') && getNumNews(true)) {
-					printRSSLink("News", ' | ', gettext('News'), '', false);
-				}
-				?>
-			</div>
-			<br />
-		<?php } ?>
-		<?php
+		</ul> <?php
+		if (extensionEnabled('rss')) {
+			if ((getOption('RSS_items_albums')) || (getOption('RSS_zenpage_items'))) { ?>
+				<div id="rsslinks">
+					<span><?php echo gettext('Subscribe: '); ?></span>
+					<?php
+					if ((in_context(ZP_ALBUM)) && (getOption('RSS_album_image'))) {
+						printRSSLink("Collection", "", gettext('This Album'), "  |  ", false, "rsslink");
+					}
+					if (getOption('RSS_items_albums')) {
+						printRSSLink("Gallery", "", (gettext('Gallery Images')), "", false, "rsslink");
+					}
+					if (function_exists('getBarePageTitle') && getOption('RSS_zenpage_items') && getNumNews(true)) {
+						printRSSLink("News", ' | ', gettext('News'), '', false);
+					}
+					?>
+				</div>
+				<br />
+			<?php }
+		}
 		if (function_exists('printLanguageSelector')) {
 			printLanguageSelector("langselector");
 		}

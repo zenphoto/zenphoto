@@ -38,18 +38,20 @@ $zpskel_social = function_exists('printAddThis');
 				$zpskel_metatitle = $metatitle . getTitleBreadcrumb() . ' | ' . getBareGalleryTitle();
 				$zpskel_metadesc = truncate_string(getBareAlbumDesc(), 150, '...');
 				$galleryactive = true;
-				if (getOption('RSS_album_image')) {
-					printRSSHeaderLink('Collection', getBareAlbumTitle() . ' - ' . gettext('Latest Images'), $lang = '') . "\n";
-				}
-				if ((function_exists('printCommentForm')) && (getOption('RSS_comments'))) {
-					printRSSHeaderLink('Comments-album', getBareAlbumTitle() . ' - ' . gettext('Latest Comments'), $lang = '') . "\n";
+				if (extensionEnabled('rss')) {
+					if (getOption('RSS_album_image')) {
+						printRSSHeaderLink('Collection', getBareAlbumTitle() . ' - ' . gettext('Latest Images'), $lang = '') . "\n";
+					}
+					if ((function_exists('printCommentForm')) && (getOption('RSS_comments'))) {
+						printRSSHeaderLink('Comments-album', getBareAlbumTitle() . ' - ' . gettext('Latest Comments'), $lang = '') . "\n";
+					}
 				}
 				break;
 			case 'image.php':
 				$zpskel_metatitle = getBareImageTitle() . ' | ' . getBareAlbumTitle() . getTitleBreadcrumb() . ' | ' . getBareGalleryTitle();
 				$zpskel_metadesc = truncate_string(getBareImageDesc(), 150, '...');
 				$galleryactive = true;
-				if ((function_exists('printCommentForm')) && (getOption('RSS_comments'))) {
+				if ((extensionEnabled('rss')) && (function_exists('printCommentForm')) && (getOption('RSS_comments'))) {
 					printRSSHeaderLink('Comments-image', getBareImageTitle() . ' - ' . gettext('Latest Comments'), $lang = '') . "\n";
 				}
 				break;
@@ -108,22 +110,24 @@ $zpskel_social = function_exists('printAddThis');
 				break;
 		}
 		// Finish out header RSS links for inc-header.php
-		if (getOption('RSS_album_image')) {
-			printRSSHeaderLink('Gallery', gettext('Latest Images')) . "\n";
-		}
-		if (getOption('RSS_album_image')) {
-			printRSSHeaderLink('AlbumsRSS', gettext('Latest Albums')) . "\n";
-		}
-		if ($zenpage) {
-			if (getOption('RSS_articles')) {
-				printRSSHeaderLink('News', '', gettext('Latest News')) . "\n";
+		if (extensionEnabled('rss')) {
+			if (getOption('RSS_album_image')) {
+				printRSSHeaderLink('Gallery', gettext('Latest Images')) . "\n";
 			}
-			if ((function_exists('printCommentForm')) && (getOption('RSS_article_comments'))) {
-				printRSSHeaderLink('Comments-all', '', gettext('Latest Comments')) . "\n";
+			if (getOption('RSS_album_image')) {
+				printRSSHeaderLink('AlbumsRSS', gettext('Latest Albums')) . "\n";
 			}
-		} else {
-			if ((function_exists('printCommentForm')) && (getOption('RSS_comments'))) {
-				printRSSHeaderLink('Comments', gettext('Latest Comments')) . "\n";
+			if ($zenpage) {
+				if (getOption('RSS_articles')) {
+					printRSSHeaderLink('News', '', gettext('Latest News')) . "\n";
+				}
+				if ((function_exists('printCommentForm')) && (getOption('RSS_article_comments'))) {
+					printRSSHeaderLink('Comments-all', '', gettext('Latest Comments')) . "\n";
+				}
+			} else {
+				if ((function_exists('printCommentForm')) && (getOption('RSS_comments'))) {
+					printRSSHeaderLink('Comments', gettext('Latest Comments')) . "\n";
+				}
 			}
 		}
 		?>
