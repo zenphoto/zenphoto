@@ -1263,6 +1263,23 @@ class Zenphoto_Authority {
 		# Return derived key of correct length
 		return substr($dk, 0, $kl);
 	}
+	
+	/**
+	 * Checks if the email address being set is already used by another user
+	 * 
+	 * @param string $email_to_check email address to check
+	 * @param type $current_user user id of the user trying to set this email address
+	 * @return boolean
+	 */
+	function checkUniqueMailaddress($email_to_check, $current_user) {
+		$all_users = $this->getAdministrators('users');
+		foreach ($all_users as $user) {
+			if ($user['user'] != $current_user && $user['email'] == $email_to_check) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 }
 

@@ -129,9 +129,14 @@ if (isset($_GET['action'])) {
 							}
 							if (isset($_POST[$i . '-admin_email'])) {
 								$admin_e = trim(sanitize($_POST[$i . '-admin_email']));
-								if ($admin_e != $userobj->getEmail()) {
-									markUpdated();
-									$userobj->setEmail($admin_e);
+								$mail_duplicate = $_zp_authority->checkUniqueMailaddress($admin_e, $user);
+								if($mail_duplicate) {
+									$msg = sprintf(gettext('%s email is already used by another user!'), $admin_n);
+								} else {
+									if ($admin_e != $userobj->getEmail()) {
+										markUpdated();
+										$userobj->setEmail($admin_e);
+									}
 								}
 							}
 							if (empty($pass)) {
@@ -861,8 +866,8 @@ echo $refresh;
 						//<!-- <![CDATA[
 						var admins = ["<?php echo implode('","', $alladmins); ?>"];
 						function checkNewuser() {
-							newuserid = <?php echo ($id - 1); ?>;
-							newuser = $('#adminuser' + newuserid).val().replace(/^\s+|\s+$/g, "");
+							var newuserid = <?php echo ($id - 1); ?>;
+							var newuser = $('#adminuser' + newuserid).val().replace(/^\s+|\s+$/g, "");
 							if (newuser == '')
 								return true;
 							if (newuser.indexOf('?') >= 0 || newuser.indexOf('&') >= 0 || newuser.indexOf('"') >= 0 || newuser.indexOf('\'') >= 0) {
