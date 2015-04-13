@@ -444,7 +444,7 @@ function printRegistrationForm($thanks = NULL) {
 				?>
 				<div class="errorbox fade-message">
 					<h2><?php echo gettext("Registration failed."); ?></h2>
-					<p><?php printf(gettext('A user with the e-mail <em>%s</em> is already exists.'), $admin_e); ?></p>
+					<p><?php printf(gettext('A user with the e-mail <em>%s</em> already exists.'), $admin_e); ?></p>
 				</div>
 				<?php
 				break;
