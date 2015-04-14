@@ -439,7 +439,14 @@ function printRegistrationForm($thanks = NULL) {
 				?>
 				<div class="errorbox fade-message">
 					<h2><?php echo gettext("Registration failed."); ?></h2>
-					<p><?php printf(gettext('The user ID <em>%s</em> is already in use.'), $admin_e); ?></p>
+					<?php 
+						if(getOption('register_user_email_is_id')) { 
+							$idnote = $admin_e;
+						} else {
+							$idnote = $user;
+						} 
+					?>
+					<p><?php printf(gettext('The user ID <em>%s</em> is already in use.'), $idnote); ?></p>
 				</div>
 				<?php
 				break;
