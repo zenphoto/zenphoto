@@ -190,15 +190,20 @@ class pagedThumbsNav {
 	 * @return string
 	 */
 	function getPrevThumbsLink() {
-		global $_zp_current_album, $_zp_current_image, $_zp_current_search, $_zp_gallery;
+		global $_zp_current_album;
 		$this->prevpageimage = ""; // define needed for page list
 		if ($this->totalpages > 1) {
 			$prevpageimagenr = ($this->currentpage * $this->imagesperpage) - ($this->imagesperpage + 1);
 			if ($this->currentpage > 1) {
 				if (is_array($this->images[$prevpageimagenr])) {
-					$this->prevpageimage = newImage($_zp_current_album, $this->images[$prevpageimagenr]['filename']);
+					if (in_context(ZP_SEARCH_LINKED)) {
+						$albumobj = newAlbum($this->images[$prevpageimagenr]['folder']);
+					} else {
+						$albumobj = $_zp_current_album;
+					}
+					$this->prevpageimage = newImage($albumobj, $this->images[$prevpageimagenr]['filename']);
 				} else {
-					$this->prevpageimage = newImage($_zp_current_album, $this->images[$prevpageimagenr]);
+					$this->prevpageimage = newImage($albumobj, $this->images[$prevpageimagenr]);
 				}
 				return $this->prevpageimage->getLink();
 			}
@@ -289,7 +294,7 @@ class pagedThumbsNav {
 	 * @return string
 	 */
 	function getNextThumbsLink() {
-		global $_zp_current_album, $_zp_current_image, $_zp_current_search, $_zp_gallery;
+		global $_zp_current_album;
 		if ($this->totalpages > 1) {
 			if ($this->currentpage < $this->totalpages) {
 				$nextpageimagenr = $this->currentpage * $this->imagesperpage;
