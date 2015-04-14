@@ -203,7 +203,7 @@ class pagedThumbsNav {
 					}
 					$this->prevpageimage = newImage($albumobj, $this->images[$prevpageimagenr]['filename']);
 				} else {
-					$this->prevpageimage = newImage($albumobj, $this->images[$prevpageimagenr]);
+					$this->prevpageimage = newImage($_zp_current_album, $this->images[$prevpageimagenr]);
 				}
 				return $this->prevpageimage->getLink();
 			}
