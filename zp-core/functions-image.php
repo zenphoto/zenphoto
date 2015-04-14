@@ -17,19 +17,20 @@
 function imageError($status_text, $errormessage, $errorimg = 'err-imagegeneral.png') {
 	global $newfilename, $album, $image;
 	$debug = isset($_GET['debug']);
-	$msg = '<strong>' . sprintf(gettext('Image Processing Error: %s'), $errormessage) . '</strong>'
-					. '<br />' . sprintf(gettext('Request URI: [ <code>%s</code> ]'), html_encode(getRequestURI()))
-					. '<br />PHP_SELF: [ <code>' . sanitize($_SERVER['PHP_SELF'], 3) . '</code> ]';
-	if ($newfilename) {
-		$msg .='<br />' . sprintf(gettext('Cache: [<code>%s</code>]'), '/' . CACHEFOLDER . '/' . sanitize($newfilename, 3));
-	}
-	if ($image || $album) {
-		$msg.= '<br />' . sprintf(gettext('Image: [<code>%s</code>]'), sanitize($album . '/' . $image, 3));
-	}
+	$err = '<strong>' . sprintf(gettext('Image Processing Error: %s'), $errormessage) . '</strong>';
+
 	if ($debug) {
-		echo $msg;
+		echo $err;
 	} else {
 		if (DEBUG_IMAGE) {
+			$msg = '<br />' . sprintf(gettext('Request URI: [ <code>%s</code> ]'), html_encode(getRequestURI()))
+							. '<br />PHP_SELF: [ <code>' . sanitize($_SERVER['PHP_SELF'], 3) . '</code> ]';
+			if ($newfilename) {
+				$msg .='<br />' . sprintf(gettext('Cache: [<code>%s</code>]'), '/' . CACHEFOLDER . '/' . sanitize($newfilename, 3));
+			}
+			if ($image || $album) {
+				$msg.= '<br />' . sprintf(gettext('Image: [<code>%s</code>]'), sanitize($album . '/' . $image, 3));
+			}
 			debugLog(strip_tags(str_replace('<br />', "\n\t\t", $msg)));
 		}
 		header("HTTP/1.0 $status_text");
@@ -49,7 +50,7 @@ function imageError($status_text, $errormessage, $errorimg = 'err-imagegeneral.p
  */
 function imageDebug($album, $image, $args, $imgfile) {
 	list($size, $width, $height, $cw, $ch, $cx, $cy, $quality, $thumb, $crop) = $args;
-	echo "Album: [ " . $album . " ], Image: [ " . $image . " ]<br /><br />";
+	echo "Album: [ " . html_encode($album) . " ], Image: [ " . html_encode($image) . " ]<br /><br />";
 	if (file_exists($imgfile)) {
 		echo "Image filesize: " . filesize($imgfile);
 	} else {
