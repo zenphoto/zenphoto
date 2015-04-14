@@ -1148,7 +1148,7 @@ class Album extends AlbumBase {
 	 */
 	protected function setDefaults() {
 		global $_zp_gallery;
-// Set default data for a new Album (title and parent_id)
+		// Set default data for a new Album (title and parent_id)
 		parent::setDefaults();
 		$parentalbum = $this->getParent();
 		$this->set('mtime', filemtime($this->localpath));
