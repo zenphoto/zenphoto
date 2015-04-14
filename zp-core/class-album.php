@@ -1226,7 +1226,7 @@ class Album extends AlbumBase {
 	 */
 	protected function setDefaults() {
 		global $_zp_gallery;
-// Set default data for a new Album (title and parent_id)
+		// Set default data for a new Album (title and parent_id)
 		parent::setDefaults();
 		$parentalbum = $this->getParent();
 		$this->set('mtime', filemtime($this->localpath));
@@ -1828,6 +1828,17 @@ class dynamicAlbum extends AlbumBase {
 
 	function isDynamic() {
 		return 'alb';
+	}
+	
+	/**
+	 * Sets default values for a new album
+	 *
+	 * @return bool
+	 */
+	protected function setDefaults() {
+		global $_zp_gallery;
+		parent::setDefaults();
+		return true;
 	}
 
 }
