@@ -189,6 +189,24 @@ function omsAdditions() {
 }
 
 /**
+ * converts a cordinate in string format to a float
+ * NOTE: this function presumes that there are no thousands separators!!!
+ *
+ * @param string $num
+ * @return float
+ */
+function inputConvert($num) {
+	if (is_string($num)) {
+		$parts = explode('.', str_replace(',', '.', $num));
+		$parts[] = 0; // insure that there is a decimal protion
+		$float = $parts[0] + ($parts[1] / pow(10, strlen($parts[1])));
+	} else {
+		$float = (float) $num;
+	}
+	return $float;
+}
+
+/**
  * $returns coordinate informations for an image
  * @param $image		image object
  */
@@ -199,8 +217,8 @@ function getGeoCoord($image) {
 		$lat = $_zp_current_image->get('GPSLatitude');
 		$long = $_zp_current_image->get('GPSLongitude');
 		if (!empty($lat) && !empty($long)) {
-			$lat_f = (float) $lat;
-			$long_f = (float) $long;
+			$lat_f = inputConvert($lat);
+			$long_f = inputConvert($long);
 			$thumb = '<a href="javascript:image(\'' . $_zp_current_image->albumname . '\',\'' . $_zp_current_image->filename . '\');"><img src="' . getCustomImageURL(150) . '" /></a>';
 			return array('lat' => $lat_f, 'long' => $long_f, 'title' => $_zp_current_image->getTitle(), 'desc' => $_zp_current_image->getDesc(), 'thumb' => $thumb);
 		}
