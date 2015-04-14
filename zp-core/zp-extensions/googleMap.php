@@ -199,8 +199,8 @@ function getGeoCoord($image) {
 		$lat = $_zp_current_image->get('GPSLatitude');
 		$long = $_zp_current_image->get('GPSLongitude');
 		if (!empty($lat) && !empty($long)) {
-			$lat_f = floatval($lat);
-			$long_f = floatval($long);
+			$lat_f = (float) $lat;
+			$long_f = (float) $long;
 			$thumb = '<a href="javascript:image(\'' . $_zp_current_image->albumname . '\',\'' . $_zp_current_image->filename . '\');"><img src="' . getCustomImageURL(150) . '" /></a>';
 			return array('lat' => $lat_f, 'long' => $long_f, 'title' => $_zp_current_image->getTitle(), 'desc' => $_zp_current_image->getDesc(), 'thumb' => $thumb);
 		}
