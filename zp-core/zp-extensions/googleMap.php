@@ -203,7 +203,6 @@ function inputConvert($num) {
 	} else {
 		$float = (float) $num;
 	}
-
 	return $float;
 }
 
