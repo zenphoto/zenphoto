@@ -981,7 +981,7 @@ class xmpMetadata {
 									break;
 								case 'XMPGPSLatitude':
 								case 'XMPGPSLongitude':
-									$n = explode(',', $element);
+									$n = explode(',', substr($element, 0, -1));
 									if (count($n) == 3) {
 										$v = $n[0] + ($n[1] + ($n[2] / 60) / 60);
 									} else {
@@ -990,6 +990,7 @@ class xmpMetadata {
 									if (in_array(strtoupper(substr($element, -1, 1)), array('S', 'W'))) {
 										$v = -$v;
 									}
+									$v = (float) $v;
 									$image->set(substr($field, 3), $v);
 									break;
 								case 'XMPLensInfo':

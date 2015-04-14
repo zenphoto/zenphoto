@@ -537,10 +537,20 @@ function metadataFields($list, $execute = true) {
 	foreach ($list as $key => $exifvar) {
 		if ($s = $exifvar[4]) {
 			if ($exifvar[5]) {
-				if ($s < 255) {
-					$size = "varchar($s)";
-				} else {
-					$size = 'MEDIUMTEXT';
+				switch ($exifvar[6]) {
+					case 'string':
+						if ($s < 255) {
+							$size = "VARCHAR($s)";
+						} else {
+							$size = 'MEDIUMTEXT';
+						}
+						break;
+					case 'number':
+						$size = 'DOUBLE';
+						break;
+					case 'time':
+						$size = 'DATETIME';
+						break;
 				}
 				$sql_statements[] = "ALTER TABLE $tbl_images ADD COLUMN `$key` $size default NULL";
 				$sql_statements[] = "ALTER TABLE $tbl_images CHANGE `$key` `$key` $size default NULL";
