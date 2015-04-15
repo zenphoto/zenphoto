@@ -256,24 +256,10 @@ if (!zp_loggedin()) {
 					unset($buttonlist[$key]);
 				}
 			}
-			list($diff, $needs, $present) = checkSignature(0);
+			list($diff, $needs, $found, $present) = checkSignature(0);
 			if ($present && zpFunctions::hasPrimaryScripts()) {
 				//	button to restore setup files if needed
-				if (!empty($needs)) {
-					$buttonlist[] = array(
-									'XSRFTag'			 => 'restore_setup',
-									'category'		 => gettext('Admin'),
-									'enable'			 => true,
-									'button_text'	 => gettext('Setup » restore scripts'),
-									'formname'		 => 'restore_setup',
-									'action'			 => FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=restore_setup',
-									'icon'				 => 'images/lock_open.png',
-									'alt'					 => '',
-									'title'				 => gettext('Restores setup files so setup can be run.'),
-									'hidden'			 => '<input type="hidden" name="action" value="restore_setup" />',
-									'rights'			 => ADMIN_RIGHTS
-					);
-				} else {
+				if (empty($needs)) {
 					if (zp_loggedin(ADMIN_RIGHTS)) {
 						?>
 						<div class="warningbox">
@@ -293,6 +279,20 @@ if (!zp_loggedin()) {
 									'alt'					 => '',
 									'title'				 => gettext('Protects setup files so setup cannot be run.'),
 									'hidden'			 => '<input type="hidden" name="action" value="protect_setup" />',
+									'rights'			 => ADMIN_RIGHTS
+					);
+				} else {
+					$buttonlist[] = array(
+									'XSRFTag'			 => 'restore_setup',
+									'category'		 => gettext('Admin'),
+									'enable'			 => true,
+									'button_text'	 => gettext('Setup » restore scripts'),
+									'formname'		 => 'restore_setup',
+									'action'			 => FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=restore_setup',
+									'icon'				 => 'images/lock_open.png',
+									'alt'					 => '',
+									'title'				 => gettext('Restores setup files so setup can be run.'),
+									'hidden'			 => '<input type="hidden" name="action" value="restore_setup" />',
 									'rights'			 => ADMIN_RIGHTS
 					);
 				}
