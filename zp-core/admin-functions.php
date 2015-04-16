@@ -3665,7 +3665,7 @@ function postAlbumSort($parentid) {
 				$newparent = $parentid;
 			}
 			if ($newparent == $currentalbum['parentid']) {
-				$sql = 'UPDATE ' . prefix('albums') . ' SET `sort_order`=' . db_quote($sortorder) . ' WHERE `id`=' . $item;
+				$sql = 'UPDATE ' . prefix('albums') . ' SET `sort_order`=' . db_quote(sprintf('%03u', $sortorder)) . ' WHERE `id`=' . $item;
 				query($sql);
 			} else { // have to do a move
 				$albumname = $currentalbum['folder'];
@@ -3686,7 +3686,7 @@ function postAlbumSort($parentid) {
 				if ($e = $album->move($dest)) {
 					return "&mcrerr=" . $e;
 				} else {
-					$album->setSortOrder($sortorder);
+					$album->setSortOrder(sprintf('%03u', $sortorder));
 					$album->save();
 				}
 			}
