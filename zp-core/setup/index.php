@@ -2322,7 +2322,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 						$sql_statements[] = 'ALTER TABLE ' . $tbl_images . ' ADD COLUMN	`GPSAltitude` varchar(52) default NULL';
 						//v1.2.3.4
 						$sql_statements[] = 'ALTER TABLE ' . $tbl_albums . ' CHANGE `sort_order` `sort_order` VARCHAR(48) NOT NULL default ""';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_albums . ' CHANGE `sort_order` `sort_order` VARCHAR(48) NOT NULL default ""';
+						$sql_statements[] = 'ALTER TABLE ' . $tbl_images . ' CHANGE `sort_order` `sort_order` VARCHAR(48) NOT NULL default ""';
 
 
 						// do this last incase there are any field changes of like names!
