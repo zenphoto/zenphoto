@@ -3751,7 +3751,7 @@ function getSearchURL($words, $dates, $fields, $page, $object_list = NULL) {
 			}
 			$words = implode(',', $words);
 		}
-		$words = strtr($words, array('%' => '__25__', '&' => '__26__', '#' => '__23__'));
+		$words = strtr($words, array('%' => '__25__', '&' => '__26__', '#' => '__23__', '/' => '__2F__'));
 		if ($rewrite) {
 			$url .= urlencode($words);
 		} else {
