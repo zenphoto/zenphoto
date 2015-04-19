@@ -893,7 +893,7 @@ function printPageListWithNav($prevtext, $nexttext, $_oneImagePage = false, $nex
 		$class .= ' disabled_nav';
 	}
 	?>
-	<div <?php if ($id) echo ' id="' . $id . '"'; ?> class="<?php echo $class; ?>">
+	<div <?php if ($id) echo ' id="$id"'; ?> class="<?php echo $class; ?>">
 		<ul class="<?php echo $class; ?>">
 			<?php
 			$prev = $nav['prev'];

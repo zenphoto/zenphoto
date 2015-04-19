@@ -47,21 +47,28 @@ class Article extends CMSItems {
 	 */
 	function getCategories() {
 		if (is_null($this->categories)) {
-			$this->categories = query_full_array("SELECT * FROM " . prefix('news_categories') . " as cat," . prefix('news2cat') . " as newscat WHERE newscat.cat_id = cat.id AND newscat.news_id = " . $this->getID() . " ORDER BY cat.titlelink", false, 'title');
-			if (!$this->categories) {
-				$this->categories = array();
+			$this->categories = array();
+			$result = query("SELECT * FROM " . prefix('news_categories') . " as cat," . prefix('news2cat') . " as newscat WHERE newscat.cat_id = cat.id AND newscat.news_id = " . $this->getID() . " ORDER BY cat.titlelink", false);
+			if ($result) {
+				while ($row = db_fetch_assoc($result)) {
+					$this->categories[$row['title']] = $row;
+				}
+				db_free_result($result);
 			}
 		}
 		return $this->categories;
 	}
 
 	function setCategories($categories) {
-		$result = query('DELETE FROM ' . prefix('news2cat') . ' WHERE `news_id`=' . $this->getID());
-		$result = query_full_array("SELECT * FROM " . prefix('news_categories') . " ORDER BY titlelink");
-		foreach ($result as $cat) {
-			if (in_array($cat['titlelink'], $categories)) {
-				query("INSERT INTO " . prefix('news2cat') . " (cat_id, news_id) VALUES ('" . $cat['id'] . "', '" . $this->getID() . "')");
+		query('DELETE FROM ' . prefix('news2cat') . ' WHERE `news_id`=' . $this->getID());
+		$result = query("SELECT * FROM " . prefix('news_categories') . " ORDER BY titlelink");
+		if ($result) {
+			while ($cat = db_fetch_assoc($result)) {
+				if (in_array($cat['titlelink'], $categories)) {
+					query("INSERT INTO " . prefix('news2cat') . " (cat_id, news_id) VALUES ('" . $cat['id'] . "', '" . $this->getID() . "')");
+				}
 			}
+			db_free_result($result);
 		}
 	}
 
