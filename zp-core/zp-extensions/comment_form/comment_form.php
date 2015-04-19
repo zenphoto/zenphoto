@@ -100,8 +100,8 @@
 		<p>
 			<label for="private">
 				<?php echo gettext("Private comment (do not publish)"); ?>
-				<input type="checkbox" id="private" name="private" value="1"<?php if ($stored['private']) echo ' checked="checked"'; ?> />
 			</label>
+			<input type="checkbox" id="private" name="private" value="1"<?php if ($stored['private']) echo ' checked="checked"'; ?> />
 		</p>
 		<?php
 	}
