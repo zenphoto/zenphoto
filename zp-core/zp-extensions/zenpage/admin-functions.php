@@ -428,15 +428,15 @@ function updateArticle(&$reports, $newarticle = false) {
 	if (isset($_POST['addcategories'])) {
 		$cats = sanitize($_POST['addcategories']);
 		$result2 = query_full_array("SELECT * FROM " . prefix('news_categories') . " ORDER BY titlelink", true, 'id');
-		foreach ($cats as $cat) {
-			if (isset($result2[$cat])) {
-				$categories[] = $result2[$cat]['titlelink'];
+		if ($result2) {
+			foreach ($cats as $cat) {
+				if (isset($result2[$cat])) {
+					$categories[] = $result2[$cat]['titlelink'];
+				}
 			}
 		}
-	} else {
-		$cats = array();
+		$article->setCategories($categories);
 	}
-	$article->setCategories($categories);
 	$article->setShow($show);
 	if ($newarticle) {
 		$msg = zp_apply_filter('new_article', '', $article);
