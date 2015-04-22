@@ -11,7 +11,6 @@
 define('OFFSET_PATH', 1);
 
 require_once(dirname(__FILE__) . '/admin-globals.php');
-
 admin_securityChecks(UPLOAD_RIGHTS | FILES_RIGHTS, $return = currentRelativeURL());
 
 if (isset($_GET['page'])) {
@@ -36,9 +35,9 @@ if (isset($_GET['type'])) {
 $handlers = array_keys($uploadHandlers = zp_apply_filter('upload_handlers', array()));
 if (!zp_loggedin(UPLOAD_RIGHTS) || empty($handlers)) {
 	//	redirect to the files page if present
-	if (isset($zenphoto_tabs['upload'])) {
-		header('location: ' . $zenphoto_tabs['upload']['link']);
-		exit();
+	if (isset($zenphoto_tabs['upload']['subtabs'])) {
+		header('location: ' . array_shift($zenphoto_tabs['upload']['subtabs']));
+		exitZP();
 	}
 	$handlers = array();
 }
@@ -53,7 +52,6 @@ if (count($handlers) > 0) {
 	require_once(SERVERPATH . '/' . ZENFOLDER . '/no_uploader.php');
 	exitZP();
 }
-
 printAdminHeader('upload', 'albums');
 ?>
 <script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/upload.js"></script>
