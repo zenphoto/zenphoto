@@ -500,7 +500,7 @@ class Category extends CMSRoot {
 		global $_zp_CMS;
 		if ($page > 1) {
 			$pager = $page;
-			$page = '&p=' . $page;
+			$page = '&page=' . $page;
 		} else {
 			$pager = $page = '';
 		}
