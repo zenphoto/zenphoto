@@ -1262,7 +1262,7 @@ class Zenphoto_Authority {
 			$x = '';
 		}
 		?>
-		<input type="hidden" name="passrequired<?php echo $id; ?>" id="passrequired-<?php echo $id; ?>" value="<?php echo (int) $required; ?>" />
+		<input type="hidden" name="passrequired<?php echo $id; ?>" id="passrequired-<?php echo $id; ?>" value="<?php echo (int) $required; ?>" class="inputbox"/>
 		<p>
 			<label for="pass<?php echo $id; ?>" id="strength<?php echo $id; ?>"><?php echo gettext("Password") . $flag; ?></label>
 			<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
@@ -1271,7 +1271,7 @@ class Zenphoto_Authority {
 						 onchange="$('#passrequired-<?php echo $id; ?>').val(1);"
 						 onclick="passwordClear('<?php echo $id; ?>');"
 						 onkeyup="passwordStrength('<?php echo $id; ?>');"
-						 <?php echo $disable; ?> />
+						 <?php echo $disable; ?> class="inputbox"/>
 		</p>
 		<p>
 			<label for="disclose_password<?php echo $id; ?>"><?php echo gettext('Show password'); ?></label>
@@ -1285,7 +1285,7 @@ class Zenphoto_Authority {
 						 id="pass_r<?php echo $id; ?>" disabled="disabled"
 						 onchange="$('#passrequired-<?php echo $id; ?>').val(1);"
 						 onkeydown="passwordClear('<?php echo $id; ?>');"
-						 onkeyup="passwordMatch('<?php echo $id; ?>');" />
+						 onkeyup="passwordMatch('<?php echo $id; ?>');" class="inputbox"/>
 		</p>
 		<?php
 	}
