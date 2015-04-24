@@ -968,7 +968,7 @@ Zenphoto_Authority::printPasswordFormJS();
 										</select>
 									</td>
 									<td>
-										<?php echo gettext('The character encoding to use for the filesystem. Leave at <em>Unicode (UTF-8)</em> if you are unsure.'); ?>
+										<?php echo gettext('The character encoding to use for the filesystem.'); ?>
 									</td>
 								</tr>
 

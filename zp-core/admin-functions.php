@@ -389,7 +389,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	function printSubtabs() {
 		global $zenphoto_tabs, $_zp_admin_tab, $_zp_admin_subtab;
 		$tabs = @$zenphoto_tabs[$_zp_admin_tab]['subtabs'];
-		if (array_key_exists('alert', $zenphoto_tabs[$_zp_admin_tab])) {
+		if (isset($zenphoto_tabs[$_zp_admin_tab]['alert'])) {
 			$alert = $zenphoto_tabs[$_zp_admin_tab]['alert'];
 		} else {
 			$alert = array();
@@ -4355,7 +4355,6 @@ function admin_securityChecks($rights, $return) {
 	global $_zp_current_admin_obj, $_zp_loggedin;
 	checkInstall();
 	httpsRedirect();
-
 	if ($_zp_current_admin_obj) {
 		if ($_zp_current_admin_obj->reset) {
 			$_zp_loggedin = USER_RIGHTS;
