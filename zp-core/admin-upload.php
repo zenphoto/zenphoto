@@ -18,13 +18,12 @@ if (isset($_GET['type'])) {
 	$uploadtype = zp_getcookie('uploadtype');
 	$_GET['tab'] = $uploadtype;
 }
-
 $handlers = array_keys($uploadHandlers = zp_apply_filter('upload_handlers', array()));
 if (!zp_loggedin(UPLOAD_RIGHTS) || empty($handlers)) {
 	//	redirect to the files page if present
-	if (isset($zenphoto_tabs['upload'])) {
-		header('location: ' . $zenphoto_tabs['upload']['link']);
-		exit();
+	if (isset($zenphoto_tabs['upload']['subtabs'][0])) {
+		header('location: ' . $zenphoto_tabs['upload']['subtabs'][0]);
+		exitZP();
 	}
 	$handlers = array();
 }
