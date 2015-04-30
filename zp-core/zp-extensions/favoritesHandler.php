@@ -87,14 +87,25 @@ class favoritesHandler {
 			$list[$file] = str_replace('.php', '', $file);
 		}
 		$list = array_diff($list, standardScripts());
+		$all = query_full_array('SELECT `aux` FROM ' . prefix('plugin_storage') . ' WHERE `type`="favorites"');
+		$disable = false;
+		$text = gettext('If enabled a user may have multiple (named) favorites.');
+		foreach ($all as $aux) {
+			$instance = getSerializedArray($aux['aux']);
+			if (isset($instance[1])) {
+				$disable = true;
+				$text .= '<br /><span class="warningbox">' . gettext('Named favorites are present.') . '</span>';
+			}
+		}
 
 		$options = array(gettext('Link text')			 => array('key'					 => 'favorites_linktext', 'type'				 => OPTION_TYPE_TEXTBOX,
 										'multilingual' => true,
 										'order'				 => 2,
 										'desc'				 => gettext('The text for the link to the favorites page.')),
-						gettext('Multiple sets')	 => array('key'		 => 'favorites_multi', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 6,
-										'desc'	 => gettext('If enabled a user may have multiple (named) favorites.')),
+						gettext('Multiple sets')	 => array('key'			 => 'favorites_multi', 'type'		 => OPTION_TYPE_CHECKBOX,
+										'order'		 => 6,
+										'disabled' => $disable,
+										'desc'		 => $text),
 						gettext('Add button')			 => array('key'					 => 'favorites_add_button', 'type'				 => OPTION_TYPE_TEXTBOX,
 										'multilingual' => true,
 										'order'				 => 6,
