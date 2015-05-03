@@ -4882,7 +4882,9 @@ function clonedFrom() {
  */
 function checkAlbumimagesort($val) {
   global $_zp_sortby;
-  foreach ($_zp_sortby as $sort) {
+	$sortcheck = $_zp_sortby;
+	$sortcheck[gettext('Manual')] = 'manual';
+  foreach ($sortcheck as $sort) {
     if ($val == $sort || $val == $sort . '_desc') {
       return $val;
     }
