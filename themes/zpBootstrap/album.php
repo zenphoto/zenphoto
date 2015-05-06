@@ -54,7 +54,8 @@ if (extensionEnabled('GoogleMap')) {
 		foreach ($images as $an_image) {
 			$image = newImage($album, $an_image);
 			$exif = $image->getMetaData();
-			if (!empty($image->get('GPSLatitude')) && !empty($image->get('GPSLongitude'))) {
+			$geo = $image->get('GPSLatitude') && $image->get('GPSLongitude');
+			if ($geo) {
 				$hasAlbumGeodata = true; // at least one image has geodata
 			}
 		}
@@ -68,11 +69,11 @@ if (extensionEnabled('GoogleMap')) {
 			?>
 			<div class="accordion" id="gmap_accordion">
 				<div class="accordion-heading" id="<?php echo $gmap_display; ?>">
-			<?php setOption('gmap_width', '100%', false); // override this option of Google Map plugin to make it reponsive  ?>
+					<?php setOption('gmap_width', '100%', false); // override this option of Google Map plugin to make it reponsive  ?>
 					<a class="accordion-toggle" data-toggle="collapse" data-parent="#gmap_accordion" href="#zpB_googlemap_data" title="<?php echo gettext('Display or hide the Google Map.'); ?>">
 						<i class="icon-map-marker"></i><?php echo gettext('Google Map'); ?>
 					</a>
-			<?php printGoogleMap(NULL, 'googlemap'); ?>
+					<?php printGoogleMap(NULL, 'googlemap'); ?>
 					<script type="text/javascript">
 						jQuery(document).ready(function ($) {
 							$('#zpB_googlemap_data').collapse(
