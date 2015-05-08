@@ -1391,17 +1391,11 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 									//fix the rewritebase
 									$i = strpos($oht, 'RewriteBase /zenphoto');
 									$oht = substr($oht, 0, $i) . "RewriteBase $d" . substr($oht, $i + 21);
-									if ($closed = site_closed($ht)) {
-										$oht = close_site($oht);
-									}
 									$oht = trim($oht);
 									if ($oht == $ht) { // an unmodified .htaccess file, we can just replace it
 										$ht = trim(file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/htaccess'));
 										$i = strpos($ht, 'RewriteBase /zenphoto');
 										$ht = substr($ht, 0, $i) . "RewriteBase $d" . substr($ht, $i + 21);
-										if ($closed) {
-											$ht = close_site($ht);
-										}
 										$htu = strtoupper($ht);
 										@chmod($htfile, 0777);
 										@unlink($htfile);
