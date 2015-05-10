@@ -59,6 +59,7 @@
 			'tags': null,
 			'url': null,
 			'delay': 0,
+			'quoteSpecial': false,
 			'separator': ' '
 		};
 
@@ -192,20 +193,22 @@
 						break;
 					}
 				}
-				var result = false;
 				var pat = false;
-				var testfor = ['&', '|', '!', ',', '(', ')', '"', '`', "'", ' '];
 				tag = Encoder.htmlDecode(tag);
-				for (var j in testfor) {
-					if (tag.indexOf(testfor[j]) >= 0) {
-						result = true;
-						break;
+
+				if (settings.quoteSpecial) {
+					var result = false;
+					var testfor = ['&', '|', '!', ',', '(', ')', '"', '`', "'", ' '];
+					for (var j in testfor) {
+						if (tag.indexOf(testfor[j]) >= 0) {
+							result = true;
+							break;
+						}
+					}
+					if (result) {
+						tag = '"' + addslashes(tag) + '"';
 					}
 				}
-				if (result) {
-					tag = '"' + addslashes(tag) + '"';
-				}
-
 				workingTags[i] = tag;
 				tagsElm.val(workingTags.join(settings.separator) + settings.separator);
 				tagsElm.blur().focus();

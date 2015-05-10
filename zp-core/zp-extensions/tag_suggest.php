@@ -64,7 +64,7 @@ class tag_suggest {
 			// <!-- <![CDATA[
 			var _tagList = ["<?php echo implode($tags, '","'); ?>"];
 			$(function () {
-				$('#search_input, #edit-editable_4, .tagsuggest').tagSuggest({separator: '<?php echo $tagseparator; ?>', tags: _tagList})
+				$('#search_input, #edit-editable_4, .tagsuggest').tagSuggest({separator: '<?php echo $tagseparator; ?>', tags: _tagList, quoteSpecial: <?php echo OFFSET_PATH ? 'false' : 'true'; ?>})
 			});
 			// ]]> -->
 		</script>
