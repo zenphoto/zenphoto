@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.4.7\n"
 "Report-Msgid-Bugs-To: webmaster at momo-i.org\n"
-"POT-Creation-Date: 2015-04-06 11:29+0900\n"
+"POT-Creation-Date: 2015-05-08 14:34+0900\n"
 "PO-Revision-Date: 2009-08-12 08:30+0900\n"
 "Last-Translator: momo-i <webmaster at momo-i dot org>\n"
 "Language-Team: Japanese\n"
@@ -146,8 +146,8 @@ msgstr "削除"
 #: zp-core/admin-options.php:2440 zp-core/admin-options.php:2570
 #: zp-core/admin-options.php:2837 zp-core/admin-options.php:2895
 #: zp-core/admin-options.php:3023 zp-core/admin-options.php:3050
-#: zp-core/admin-options.php:3165 zp-core/admin-users.php:453
-#: zp-core/admin-users.php:823 zp-core/admin-thumbcrop.php:266
+#: zp-core/admin-options.php:3165 zp-core/admin-users.php:458
+#: zp-core/admin-users.php:828 zp-core/admin-thumbcrop.php:266
 #: zp-core/admin-edit.php:943 zp-core/admin-edit.php:1516
 #: zp-core/admin-edit.php:1607 zp-core/admin-edit.php:1638
 #: zp-core/lib-auth.php:1023 zp-core/admin-functions.php:1201
@@ -193,7 +193,7 @@ msgid ""
 "The cache directory does not exist. Please create it and set the permissions "
 "to 0777."
 msgstr ""
-"キャッシュディレクトリは存在しません。それを作成してパーミッションを0777へ設"
+"キャッシュディレクトリは存在しません。ディレクトリを作成してパーミッションを0777へ設"
 "定してください。"
 
 #: zp-core/i.php:114
@@ -225,33 +225,33 @@ msgstr "不許可の拡張子: %s"
 msgid "Password required"
 msgstr "パスワード必須"
 
-#: zp-core/admin-upload.php:91
+#: zp-core/admin-upload.php:90
 msgid "Upload Images"
 msgstr "画像のアップロード"
 
-#: zp-core/admin-upload.php:106
+#: zp-core/admin-upload.php:105
 #, php-format
 msgid "This web-based upload accepts the file formats: %s, and %s."
 msgstr ""
 "このウェブベースのアップロードは次のファイル形式を受け付けます: %sおよび%s"
 
-#: zp-core/admin-upload.php:108
+#: zp-core/admin-upload.php:107
 #, php-format
 msgid "This web-based upload accepts the file formats: %s and %s."
 msgstr ""
 "このウェブベースのアップロードは次のファイル形式を受け付けます: %sおよび%s"
 
-#: zp-core/admin-upload.php:114
+#: zp-core/admin-upload.php:113
 msgid "<strong>Note: </strong>"
 msgstr "<strong>注: </strong>"
 
-#: zp-core/admin-upload.php:119
+#: zp-core/admin-upload.php:118
 msgid "ZIP files must contain only Zenphoto supported <em>image</em> types."
 msgstr ""
 "ZIPファイルはZenphotoでサポートされた<em>画像</em>タイプのみ含めることができ"
 "ます。"
 
-#: zp-core/admin-upload.php:129
+#: zp-core/admin-upload.php:128
 #, php-format
 msgid ""
 "The maximum size for any one file is <strong>%sB</strong> and the maximum "
@@ -264,7 +264,7 @@ msgstr ""
 "<code>upload_max_filesize</code>及び<code>post_max_size</code>で設定した"
 "<strong>%sバイト</strong>です。"
 
-#: zp-core/admin-upload.php:131
+#: zp-core/admin-upload.php:130
 #, php-format
 msgid ""
 "The maximum size for your total upload is <strong>%sB</strong> which is set "
@@ -273,7 +273,7 @@ msgstr ""
 "合計アップロードの最大サイズはPHP設定の<code>post_max_filesize</code>で設定さ"
 "れた<strong>%sバイト</strong>です。"
 
-#: zp-core/admin-upload.php:138
+#: zp-core/admin-upload.php:137
 msgid ""
 "Don’t forget, you can also use <acronym title=\"File Transfer Protocol"
 "\">FTP</acronym> to upload folders of images into the albums directory!"
@@ -282,27 +282,27 @@ msgstr ""
 "\"File Transfer Protocol\">FTP</acronym>を使用することが出来ることも忘れない"
 "でください！"
 
-#: zp-core/admin-upload.php:146
+#: zp-core/admin-upload.php:145
 msgid "Upload Error"
 msgstr "アップロードエラー"
 
-#: zp-core/admin-upload.php:147
+#: zp-core/admin-upload.php:146
 msgid "There was an error submitting the form. Please try again."
 msgstr "フォームの送信中にエラーがありました。再試行してください。"
 
-#: zp-core/admin-upload.php:154
+#: zp-core/admin-upload.php:153
 msgid "Upload complete"
 msgstr "アップロード完了"
 
-#: zp-core/admin-upload.php:155 zp-core/admin-functions.php:4717
+#: zp-core/admin-upload.php:154 zp-core/admin-functions.php:4717
 msgid "Your files have been uploaded."
 msgstr "ファイルをアップロードしました。"
 
-#: zp-core/admin-upload.php:162
+#: zp-core/admin-upload.php:161
 msgid "PHP Safe Mode Restrictions in effect!"
 msgstr "PHPのセーフモード制限がかかってます！"
 
-#: zp-core/admin-upload.php:163
+#: zp-core/admin-upload.php:162
 msgid ""
 "Zenphoto may be unable to perform uploads when PHP Safe Mode restrictions "
 "are in effect"
@@ -310,50 +310,50 @@ msgstr ""
 "ZenphotoはPHPのセーフモード制限がかかってるときアップロードを実行できないかも"
 "しれません"
 
-#: zp-core/admin-upload.php:169
+#: zp-core/admin-upload.php:168
 msgid "Upload to:"
 msgstr "アップロード先:"
 
-#: zp-core/admin-upload.php:211 zp-core/admin-upload.php:283
-#: zp-core/admin-upload.php:294 zp-core/admin-upload.php:300
-#: zp-core/admin-upload.php:329
+#: zp-core/admin-upload.php:210 zp-core/admin-upload.php:282
+#: zp-core/admin-upload.php:293 zp-core/admin-upload.php:299
+#: zp-core/admin-upload.php:328
 msgid "That name is already used."
 msgstr "その名前は既に使用されています。"
 
-#: zp-core/admin-upload.php:211 zp-core/admin-upload.php:283
-#: zp-core/admin-upload.php:294 zp-core/admin-upload.php:300
-#: zp-core/admin-upload.php:329
+#: zp-core/admin-upload.php:210 zp-core/admin-upload.php:282
+#: zp-core/admin-upload.php:293 zp-core/admin-upload.php:299
+#: zp-core/admin-upload.php:328
 msgid ""
 "This upload has to have a folder. Type a title or folder name to continue..."
 msgstr ""
 "このアップロードはフォルダを持つことが出来ます。続けるにはフォルダかタイトル"
 "の名前を入力してください。"
 
-#: zp-core/admin-upload.php:284
+#: zp-core/admin-upload.php:283
 msgid "Make a new Album"
 msgstr "新規アルバムの作成"
 
-#: zp-core/admin-upload.php:286 zp-core/setup/index.php:1091
+#: zp-core/admin-upload.php:285 zp-core/setup/index.php:1091
 msgid "and"
 msgstr "と"
 
-#: zp-core/admin-upload.php:288
+#: zp-core/admin-upload.php:287
 msgid "Publish the album so everyone can see it."
 msgstr "誰もが見れるようにアルバムを公開します。"
 
-#: zp-core/admin-upload.php:292
+#: zp-core/admin-upload.php:291
 msgid "titled:"
 msgstr "タイトル:"
 
-#: zp-core/admin-upload.php:297
+#: zp-core/admin-upload.php:296
 msgid "with the folder name:"
 msgstr "次のフォルダ名で:"
 
-#: zp-core/admin-upload.php:303
+#: zp-core/admin-upload.php:302
 msgid "Auto-generate"
 msgstr "自動生成"
 
-#: zp-core/admin-upload.php:364
+#: zp-core/admin-upload.php:363
 msgid "There are no albums to which you can upload."
 msgstr "アップロードできるアルバムがありません。"
 
@@ -812,13 +812,13 @@ msgstr "禁止タグです。"
 msgid "Your Allowed tags change did not parse successfully."
 msgstr "許可されたタグの変更は解析できませんでした。"
 
-#: zp-core/admin-options.php:518 zp-core/admin-users.php:287
+#: zp-core/admin-options.php:518 zp-core/admin-users.php:292
 #: zp-core/admin-plugins.php:119
 #: zp-core/zp-extensions/user_groups/user_groups-tab.php:145
 msgid "Error"
 msgstr "エラー"
 
-#: zp-core/admin-options.php:519 zp-core/admin-users.php:288
+#: zp-core/admin-options.php:519 zp-core/admin-users.php:293
 #: zp-core/admin-plugins.php:120
 #: zp-core/zp-extensions/user_groups/user_groups-tab.php:146
 msgid ""
@@ -844,9 +844,9 @@ msgstr ""
 msgid "You must supply a password for the <em>%s</em> guest user"
 msgstr "<em>%s</em>ゲストユーザのパスワードを設定してください"
 
-#: zp-core/admin-options.php:545 zp-core/admin-users.php:416
+#: zp-core/admin-options.php:545 zp-core/admin-users.php:421
 #: zp-core/admin-functions.php:4701
-#: zp-core/zp-extensions/register_user.php:455
+#: zp-core/zp-extensions/register_user.php:471
 msgid "Your passwords did not match."
 msgstr "パスワードが一致しませんでした。"
 
@@ -882,7 +882,7 @@ msgstr ""
 #: zp-core/admin-options.php:2568 zp-core/admin-options.php:2835
 #: zp-core/admin-options.php:2894 zp-core/admin-options.php:3022
 #: zp-core/admin-options.php:3049 zp-core/admin-options.php:3164
-#: zp-core/admin-users.php:452 zp-core/admin-users.php:822
+#: zp-core/admin-users.php:457 zp-core/admin-users.php:827
 #: zp-core/admin-thumbcrop.php:270 zp-core/admin-edit.php:759
 #: zp-core/admin-edit.php:821 zp-core/admin-edit.php:939
 #: zp-core/admin-edit.php:1512 zp-core/admin-edit.php:1604
@@ -927,7 +927,7 @@ msgstr "適用"
 #: zp-core/admin-options.php:2570 zp-core/admin-options.php:2837
 #: zp-core/admin-options.php:2895 zp-core/admin-options.php:3023
 #: zp-core/admin-options.php:3050 zp-core/admin-options.php:3165
-#: zp-core/admin-users.php:453
+#: zp-core/admin-users.php:458
 #: zp-core/zp-extensions/search_statistics/search_analysis.php:267
 msgid "reset"
 msgstr "リセット"
@@ -1029,7 +1029,7 @@ msgstr ""
 "<em>mod_rewriteの拡張子</em>(検索エンジンを手助けします)を追加するでしょう。"
 "例: <em>.html、 .php</em>、等。"
 
-#: zp-core/admin-options.php:662 zp-core/admin-users.php:737
+#: zp-core/admin-options.php:662 zp-core/admin-users.php:742
 msgid "Language:"
 msgstr "言語:"
 
@@ -1285,8 +1285,8 @@ msgid ""
 "The character encoding to use for the filesystem. Leave at <em>Unicode "
 "(UTF-8)</em> if you are unsure."
 msgstr ""
-"ファイルシステムに使用するための文字エンコーディングです。不確かな場合、<em>Unicode (UTF-8)</"
-"em>を削除してください。"
+"ファイルシステムに使用するための文字エンコーディングです。不確かな場合、"
+"<em>Unicode (UTF-8)</em>を削除してください。"
 
 #: zp-core/admin-options.php:911
 msgid "Allowed tags:"
@@ -1581,7 +1581,7 @@ msgstr "ギャラリーのソート方法:"
 #: zp-core/exif/makers/nikon.php:257 zp-core/exif/makers/panasonic.php:105
 #: zp-core/exif/makers/panasonic.php:108 zp-core/exif/makers/panasonic.php:113
 #: zp-core/exif/makers/panasonic.php:139 zp-core/admin-edit.php:908
-#: zp-core/admin-functions.php:1410
+#: zp-core/admin-functions.php:1410 zp-core/admin-functions.php:4886
 msgid "Manual"
 msgstr "マニュアル"
 
@@ -1783,7 +1783,7 @@ msgid "Fields list:"
 msgstr "フィールド一覧:"
 
 #: zp-core/admin-options.php:1582 zp-core/admin-tags.php:157
-#: zp-core/admin-users.php:472 zp-core/admin-functions.php:795
+#: zp-core/admin-users.php:477 zp-core/admin-functions.php:795
 #: zp-core/admin-functions.php:4554
 #: zp-core/zp-extensions/publishContent/publishContent.php:252
 #: zp-core/zp-extensions/publishContent/publishContent.php:510
@@ -2426,7 +2426,7 @@ msgstr "メタデータ"
 
 #: zp-core/admin-options.php:2365 zp-core/admin-options.php:2380
 #: zp-core/admin-options.php:2381 zp-core/admin-options.php:2382
-#: zp-core/admin-users.php:470 zp-core/zp-extensions/contact_form.php:78
+#: zp-core/admin-users.php:475 zp-core/zp-extensions/contact_form.php:78
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:113
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:114
 #: zp-core/zp-extensions/GoogleMap.php:85
@@ -4056,98 +4056,103 @@ msgstr ""
 msgid "Forbidden"
 msgstr "禁止"
 
-#: zp-core/admin-users.php:139
+#: zp-core/admin-users.php:134
+#, php-format
+msgid "%s email is already used by another user!"
+msgstr "%s メールは既に別のユーザによって使用されています！"
+
+#: zp-core/admin-users.php:144
 #, php-format
 msgid "%s password may not be empty!"
 msgstr "%sパスワードが空です！"
 
-#: zp-core/admin-users.php:277
+#: zp-core/admin-users.php:282
 msgid ""
 "Password reset request.<br />You may now set admin usernames and passwords."
 msgstr ""
 "パスワードリセットリクエストです。<br />管理者ユーザ名とパスワードを今すぐ設"
 "定できます。"
 
-#: zp-core/admin-users.php:293
+#: zp-core/admin-users.php:298
 #: zp-core/zp-extensions/user_groups/user_groups-tab.php:156
 msgid "Saved"
 msgstr "保存しました"
 
-#: zp-core/admin-users.php:395
+#: zp-core/admin-users.php:400
 msgid "Rights migration failed."
 msgstr "権限の統合に失敗しました。"
 
-#: zp-core/admin-users.php:400
+#: zp-core/admin-users.php:405
 msgid "User id already used."
 msgstr "ユーザIDは既に使用されています。"
 
-#: zp-core/admin-users.php:407 zp-core/admin-functions.php:4699
+#: zp-core/admin-users.php:412 zp-core/admin-functions.php:4699
 msgid "You must supply a password."
 msgstr "パスワードが必要です。"
 
-#: zp-core/admin-users.php:410
+#: zp-core/admin-users.php:415
 msgid "User name not provided"
 msgstr "ユーザ名が提供されていません"
 
-#: zp-core/admin-users.php:423
+#: zp-core/admin-users.php:428
 msgid "Your Website URL is not valid"
 msgstr "ウェブサイトのURLが無効です"
 
-#: zp-core/admin-users.php:464
+#: zp-core/admin-users.php:469
 #: zp-core/zp-extensions/user_groups/user_groups-tab.php:208
 #: zp-core/zp-extensions/user_groups/user_groups-tab.php:382
 msgid "Expand all"
 msgstr "全て拡げる"
 
-#: zp-core/admin-users.php:466
+#: zp-core/admin-users.php:471
 #: zp-core/zp-extensions/user_groups/user_groups-tab.php:210
 #: zp-core/zp-extensions/user_groups/user_groups-tab.php:384
 msgid "Collapse all"
 msgstr "全て折りたたむ"
 
-#: zp-core/admin-users.php:473 zp-core/admin-users.php:533
+#: zp-core/admin-users.php:478 zp-core/admin-users.php:538
 msgid "pending verification"
 msgstr "保留中の認証"
 
-#: zp-core/admin-users.php:477
+#: zp-core/admin-users.php:482
 msgid "no group"
 msgstr "グループ無し"
 
-#: zp-core/admin-users.php:539
+#: zp-core/admin-users.php:544
 msgid "Master"
 msgstr "マスター"
 
-#: zp-core/admin-users.php:570
+#: zp-core/admin-users.php:575
 msgid "Show details"
 msgstr "詳細を表示"
 
-#: zp-core/admin-users.php:571
+#: zp-core/admin-users.php:576
 msgid "Hide details"
 msgstr "詳細を非表示"
 
-#: zp-core/admin-users.php:573
+#: zp-core/admin-users.php:578
 #, php-format
 msgid "Show details for user %s"
 msgstr "ユーザ%sの詳細を表示"
 
-#: zp-core/admin-users.php:574
+#: zp-core/admin-users.php:579
 #, php-format
 msgid "Hide details for user %s"
 msgstr "ユーザ%sの詳細を非表示"
 
-#: zp-core/admin-users.php:584
+#: zp-core/admin-users.php:589
 msgid "New User"
 msgstr "新規ユーザ"
 
-#: zp-core/admin-users.php:610
+#: zp-core/admin-users.php:615
 msgid "Authenticate user"
 msgstr "ユーザ認証"
 
-#: zp-core/admin-users.php:622
+#: zp-core/admin-users.php:627
 msgid "Are you sure you want to delete this user?"
 msgstr "このユーザを削除してもよろしいですか？"
 
-#: zp-core/admin-users.php:624
+#: zp-core/admin-users.php:629
 msgid ""
 "This is the master user account. If you delete it another user will be "
 "promoted to master user."
@@ -4155,43 +4160,43 @@ msgstr ""
 "これはマスターユーザアカウントです。これを削除する場合、別のユーザがマスター"
 "ユーザになります。"
 
-#: zp-core/admin-users.php:630
+#: zp-core/admin-users.php:635
 msgid "Delete this user."
 msgstr "このユーザを削除します。"
 
-#: zp-core/admin-users.php:654
+#: zp-core/admin-users.php:659
 msgid ""
 "<strong>Note:</strong> You must have ADMIN rights to alter anything but your "
 "personal information."
 msgstr "<strong>注:</strong> 個人情報以外の全てを変更する管理権限が必要です。"
 
-#: zp-core/admin-users.php:689
+#: zp-core/admin-users.php:694
 msgid "Challenge phrase"
 msgstr "チャレンジフレーズ"
 
-#: zp-core/admin-users.php:693
+#: zp-core/admin-users.php:698
 msgid "Challenge response"
 msgstr "チャレンジレスポンス"
 
-#: zp-core/admin-users.php:698
+#: zp-core/admin-users.php:703
 msgid "Full name"
 msgstr "氏名"
 
-#: zp-core/admin-users.php:702
+#: zp-core/admin-users.php:707
 #: zp-core/zp-extensions/register_user/register_user_form.php:39
 msgid "Email"
 msgstr "メールアドレス"
 
-#: zp-core/admin-users.php:715
+#: zp-core/admin-users.php:720
 msgid "create primary album"
 msgstr "プライマリアルバムを作成"
 
-#: zp-core/admin-users.php:725
+#: zp-core/admin-users.php:730
 #, php-format
 msgid "delink primary album <strong>%1$s</strong>(<em>%2$s</em>)"
 msgstr "プライマリアルバム<strong>%1$s</strong>(<em>%2$s</em>)のリンクを解除"
 
-#: zp-core/admin-users.php:729
+#: zp-core/admin-users.php:734
 msgid ""
 "The primary album was created in association with the user. It will be "
 "removed if the user is deleted. Delinking the album removes this association."
@@ -4199,17 +4204,17 @@ msgstr ""
 "プライマリアルバムはユーザと関連して作成されました。ユーザが削除されるとそれ"
 "も削除されます。アルバムリンクの解除はこの関連を削除します。"
 
-#: zp-core/admin-users.php:769
+#: zp-core/admin-users.php:774
 msgid "The <em>master</em> account has full rights to all objects."
 msgstr ""
 "<em>マスター</em>アカウントは全オブジェクトへの完全な権限を持っています。"
 
-#: zp-core/admin-users.php:776 zp-core/admin-users.php:785
-#: zp-core/admin-users.php:791 zp-core/admin-functions.php:3315
+#: zp-core/admin-users.php:781 zp-core/admin-users.php:790
+#: zp-core/admin-users.php:796 zp-core/admin-functions.php:3315
 msgid "user"
 msgstr "ユーザ"
 
-#: zp-core/admin-users.php:835
+#: zp-core/admin-users.php:840
 #, php-format
 msgid ""
 "The <em>Zenphoto_Authority</em> object supports a higher version of user "
@@ -4220,11 +4225,11 @@ msgstr ""
 "限の高いバージョンをサポートします。あなたはこのバージョンが提供する新しい機"
 "能を得るためにユーザ権限を統合したいかも知れません。"
 
-#: zp-core/admin-users.php:838
+#: zp-core/admin-users.php:843
 msgid "Migrate rights"
 msgstr "権限を統合する"
 
-#: zp-core/admin-users.php:848
+#: zp-core/admin-users.php:853
 #, php-format
 msgid ""
 "You may wish to revert the <em>Zenphoto_Authority</em> user rights to "
@@ -4233,16 +4238,16 @@ msgstr ""
 "前のZenphotoのリリースとの後方互換性の為にバージョン%sへユーザ権限の"
 "<em>Zenphoto_Authority</em>を元に戻したいかもしれません。"
 
-#: zp-core/admin-users.php:851
+#: zp-core/admin-users.php:856
 msgid "Revert rights"
 msgstr "権限を元に戻す"
 
-#: zp-core/admin-users.php:869
+#: zp-core/admin-users.php:874
 msgid "User names may not contain “?”, “&\", or quotation marks."
 msgstr ""
 "ユーザ名には「?」、「&」、またはクォーテーションマークを含められません。"
 
-#: zp-core/admin-users.php:874
+#: zp-core/admin-users.php:879
 #, php-format
 msgid "The user “%s” already exists."
 msgstr "ユーザ「%s」はすでに存在します。"
@@ -12695,12 +12700,12 @@ msgid "<strong>NOTE:</strong> User’s credentials came from a Federated logon."
 msgstr "<strong>注:</strong> ユーザの資格証明は連携したログインからきます。"
 
 #: zp-core/zp-extensions/federated_logon.php:353
-#: zp-core/zp-extensions/register_user.php:367
+#: zp-core/zp-extensions/register_user.php:376
 msgid "Zenphoto Gallery registration"
 msgstr "Zenphotoギャラリー登録"
 
 #: zp-core/zp-extensions/federated_logon.php:353
-#: zp-core/zp-extensions/register_user.php:367
+#: zp-core/zp-extensions/register_user.php:376
 #, php-format
 msgid ""
 "%1$s (%2$s) has registered for the zenphoto gallery providing an e-mail "
@@ -20486,43 +20491,43 @@ msgstr ""
 "新規ユーザの初期権限です。(権限が設定されていない場合、ユーザの承認が必要にな"
 "ります。)"
 
-#: zp-core/zp-extensions/register_user.php:260
+#: zp-core/zp-extensions/register_user.php:269
 msgid "You must supply the street field."
 msgstr "住所を記入してください"
 
-#: zp-core/zp-extensions/register_user.php:264
+#: zp-core/zp-extensions/register_user.php:273
 msgid "You must supply the city field."
 msgstr "市を記入してください"
 
-#: zp-core/zp-extensions/register_user.php:268
+#: zp-core/zp-extensions/register_user.php:277
 msgid "You must supply the state field."
 msgstr "県を記入してください"
 
-#: zp-core/zp-extensions/register_user.php:272
+#: zp-core/zp-extensions/register_user.php:281
 msgid "You must supply the country field."
 msgstr "国を記入してください"
 
-#: zp-core/zp-extensions/register_user.php:276
+#: zp-core/zp-extensions/register_user.php:285
 msgid "You must supply the postal code field."
 msgstr "郵便番号を記入してください"
 
-#: zp-core/zp-extensions/register_user.php:297
+#: zp-core/zp-extensions/register_user.php:306
 msgid "Registration confirmation"
 msgstr "登録確認"
 
-#: zp-core/zp-extensions/register_user.php:394
+#: zp-core/zp-extensions/register_user.php:403
 msgid "you are already logged in."
 msgstr "あなたは既にログインしています。"
 
-#: zp-core/zp-extensions/register_user.php:406
+#: zp-core/zp-extensions/register_user.php:415
 msgid "Thank you for registering."
 msgstr "登録ありがとうございました。"
 
-#: zp-core/zp-extensions/register_user.php:410
+#: zp-core/zp-extensions/register_user.php:419
 msgid "You may now log onto the site and verify your personal information."
 msgstr "ここではサイトにログオンし、個人情報を確認することができます。"
 
-#: zp-core/zp-extensions/register_user.php:429
+#: zp-core/zp-extensions/register_user.php:438
 msgid ""
 "Your registration information has been accepted. An email has been sent to "
 "you to verify your email address."
@@ -20530,52 +20535,57 @@ msgstr ""
 "登録情報は許可されました。確認の為にあなたのメールアドレスへメールを送信しま"
 "した。"
 
-#: zp-core/zp-extensions/register_user.php:438
-#: zp-core/zp-extensions/register_user.php:446
-#: zp-core/zp-extensions/register_user.php:454
+#: zp-core/zp-extensions/register_user.php:447
 #: zp-core/zp-extensions/register_user.php:462
 #: zp-core/zp-extensions/register_user.php:470
 #: zp-core/zp-extensions/register_user.php:478
 #: zp-core/zp-extensions/register_user.php:486
+#: zp-core/zp-extensions/register_user.php:494
 #: zp-core/zp-extensions/register_user.php:502
-#: zp-core/zp-extensions/register_user.php:518
+#: zp-core/zp-extensions/register_user.php:510
+#: zp-core/zp-extensions/register_user.php:526
+#: zp-core/zp-extensions/register_user.php:542
 msgid "Registration failed."
 msgstr "登録に失敗しました。"
 
-#: zp-core/zp-extensions/register_user.php:439
+#: zp-core/zp-extensions/register_user.php:455
 #, php-format
 msgid "The user ID <em>%s</em> is already in use."
 msgstr "ユーザID<em>%s</em>は既に使用されています。"
 
-#: zp-core/zp-extensions/register_user.php:447
+#: zp-core/zp-extensions/register_user.php:463
 msgid "Passwords may not be empty."
 msgstr "パスワードが空です。"
 
-#: zp-core/zp-extensions/register_user.php:463
+#: zp-core/zp-extensions/register_user.php:479
 msgid "You have not filled in all the fields."
 msgstr "全てのフィールドに記入してください。"
 
-#: zp-core/zp-extensions/register_user.php:471
+#: zp-core/zp-extensions/register_user.php:487
 msgid "Invalid verification link."
 msgstr "確認リンクが不正です。"
 
-#: zp-core/zp-extensions/register_user.php:479
+#: zp-core/zp-extensions/register_user.php:495
 msgid "Enter a valid email address."
 msgstr "有効なメールアドレスを入力します。"
 
-#: zp-core/zp-extensions/register_user.php:487
+#: zp-core/zp-extensions/register_user.php:503
+msgid "The email address entered is already used."
+msgstr "そのメールアドレスは既に使用されています。"
+
+#: zp-core/zp-extensions/register_user.php:511
 msgid "The CAPTCHA you entered was not correct."
 msgstr "あなたの入力したCAPTCHAは正しくありません。"
 
-#: zp-core/zp-extensions/register_user.php:494
+#: zp-core/zp-extensions/register_user.php:518
 msgid "Verification failed."
 msgstr "検証に失敗しました。"
 
-#: zp-core/zp-extensions/register_user.php:495
+#: zp-core/zp-extensions/register_user.php:519
 msgid "Your registration request could not be completed."
 msgstr "登録リクエストは完了できませんでした。"
 
-#: zp-core/zp-extensions/register_user.php:508
+#: zp-core/zp-extensions/register_user.php:532
 msgid ""
 "Your registration attempt failed a <code>register_user_registered</code> "
 "filter check."
@@ -21408,17 +21418,17 @@ msgstr "ページ一覧の長さ"
 msgid "The number of links for the page list."
 msgstr "ページ一覧のリンク数です。"
 
-#: zp-core/zp-extensions/paged_thumbs_nav.php:219
-#: zp-core/zp-extensions/paged_thumbs_nav.php:371
+#: zp-core/zp-extensions/paged_thumbs_nav.php:224
+#: zp-core/zp-extensions/paged_thumbs_nav.php:376
 msgid "previous thumbs"
 msgstr "前のサムネイル"
 
-#: zp-core/zp-extensions/paged_thumbs_nav.php:321
-#: zp-core/zp-extensions/paged_thumbs_nav.php:394
+#: zp-core/zp-extensions/paged_thumbs_nav.php:326
+#: zp-core/zp-extensions/paged_thumbs_nav.php:399
 msgid "next thumbs"
 msgstr "次のサムネイル"
 
-#: zp-core/zp-extensions/paged_thumbs_nav.php:347
+#: zp-core/zp-extensions/paged_thumbs_nav.php:352
 #, php-format
 msgid "Images %1$u-%2$u of %3$u (%4$u/%5$u)"
 msgstr "画像 %3$uの%1$u-%2$u (%4$u/%5$u)"
