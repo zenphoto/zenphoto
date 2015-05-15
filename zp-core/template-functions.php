@@ -3396,7 +3396,7 @@ function printTags($option = 'links', $preText = NULL, $class = NULL, $separator
 				$separator = "";
 			}
 			if ($option === "links") {
-				$links1 = "<a href=\"" . html_encode(getSearchURL(search_quote($atag), '', 'tags', 0, array('albums' => $albumlist))) . "\" title=\"" . html_encode($atag) . "\" rel=\"nofollow\">";
+				$links1 = "<a href=\"" . html_encode(getSearchURL(search_quote($atag), '', 'tags', 0, array('albums' => $albumlist))) . "\" title=\"" . html_encode($atag) . "\">";
 				$links2 = "</a>";
 			} else {
 				$links1 = $links2 = '';
