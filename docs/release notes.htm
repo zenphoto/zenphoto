@@ -76,7 +76,8 @@
 			}
 		</style>
 	<body>
-<h1>ZenPhoto20 release notes</h1><p>&nbsp;</p>
+<h1>ZenPhoto20 release notes</h1><h2>Album sort order selection</h2>
+<p>Album and subalbum sort order may now be chosen from a selector on the album tabs.</p>
 <h2>Tag handling for albums <em>mass-edit</em> and multiple image tabs</h2>
 <p>The ability to add tags to albums and images has been extended to the multiple item tabs. Previously this function was removed due to problems with some PHP installations where the amount of data "posted" when the apply button was pressed exceeded the capacity defined by the server. This resulted in not being able to save from these pages unless the number of items per page was reduced. (An option not available for the album mass-edit tab.)</p>
 <p>It is now possible to add tags to items on these pages.No list of possible tags is shown since that might cause some of the above issues. But <em>tag_suggest</em> will make suggestions from the existing tag list and you can create new tags by simply typing them in the <em>add tag</em> field. Individual tags cannot be removed. However you can elect to clear existing tags so only those you add will be present after the apply button is pressed.&nbsp;</p>
@@ -98,7 +99,7 @@
 <p><strong>Image rotation fixes</strong></p>
 <p>The original <em>zenphoto&nbsp;</em>code that handled image rotation was confused about the meanings of each of the <em>EXIF&nbsp;orientation</em> values. This was originally mitigated by also being confused as to how the<em> GD library</em> rotations worked. These two errors offset each other. But then the <em>Imagic </em>library was implemented. It rotated images in the opposite&nbsp;direction from the <em>GD library.</em></p>
 <p>Then someone noticed that GD rotated in the opposite direction from <em>zenphoto's </em>assumptions and "fixed" the code. This broke situations where a camera recorded&nbsp;the image rotation instead of just rotating the image as is normal.</p>
-<p>We have now fixed the implementation to be true to the specification. Camera set rotations now will work correctly. Unfortunately the downside of this is if you have "fixed" on your images on the prior software they may now be improperly rotated. You should re-import the image metadata&nbsp;or select the correct image rotation on the image tab.</p>
+<p>We have now fixed the implementation to be true to the specification. Camera set rotations now will work correctly. Unfortunately the downside of this is if you have "fixed" your images on the prior software they may now be improperly rotated. You should re-import the image metadata&nbsp;or select the correct image rotation on the image tab.</p>
 <h2>News article sort order selections</h2>
 <p>You may now select ordering by <em>Published date</em>, <em>Last change date</em>, and <em>Expiry date</em> in addition to the original <em>creation&nbsp;date</em> and <em>title </em>orders. <em>Creation date</em> (or <em>Last change date</em>) are now shown in addition to the <em>Published date</em>.</p>
 <h2>Security</h2>
