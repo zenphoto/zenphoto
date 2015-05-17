@@ -886,145 +886,144 @@ function getPageNavList($_oneImagePage, $navlen, $firstlast, $current, $total) {
  * @param int $navlen Number of navigation links to show (0 for all pages). Works best if the number is odd.
  */
 function printPageListWithNav($prevtext, $nexttext, $_oneImagePage = false, $nextprev = true, $class = 'pagelist', $id = NULL, $firstlast = true, $navlen = 9) {
-	$current = getCurrentPage();
 	$total = max(1, getTotalPages($_oneImagePage));
-	$nav = getPageNavList($_oneImagePage, $navlen, $firstlast, $current, $total);
-	if (count($nav) < 4) {
-		$class .= ' disabled_nav';
-	}
-	?>
-	<div <?php if ($id) echo ' id="$id"'; ?> class="<?php echo $class; ?>">
-		<ul class="<?php echo $class; ?>">
-			<?php
-			$prev = $nav['prev'];
-			unset($nav['prev']);
-			$next = $nav['next'];
-			unset($nav['next']);
-			if ($nextprev) {
-				?>
-				<li class="prev">
-					<?php
-					if ($prev) {
-						printLinkHTML($prev, html_encode($prevtext), gettext('Previous Page'));
-					} else {
-						?>
-						<span class="disabledlink"><?php echo html_encode($prevtext); ?></span>
-						<?php
-					}
-					?>
-				</li>
+	if ($total > 1) {
+		$current = getCurrentPage();
+		$nav = getPageNavList($_oneImagePage, $navlen, $firstlast, $current, $total);
+		?>
+		<div <?php if ($id) echo ' id="$id"'; ?> class="<?php echo $class; ?>">
+			<ul class="<?php echo $class; ?>">
 				<?php
-			}
-			$last = NULL;
-			if ($firstlast) {
-				?>
-				<li class="<?php
-				if ($current == 1)
-					echo 'current';
-				else
-					echo 'first';
-				?>">
-							<?php
-							if ($current == 1) {
-								echo '1';
-							} else {
-								printLinkHTML($nav[1], 1, gettext("Page 1"));
-							}
-							?>
-				</li>
-				<?php
-				$last = 1;
-				unset($nav[1]);
-			}
-			foreach ($nav as $i => $link) {
-				$d = $i - $last;
-				if ($d > 2) {
+				$prev = $nav['prev'];
+				unset($nav['prev']);
+				$next = $nav['next'];
+				unset($nav['next']);
+				if ($nextprev) {
 					?>
-					<li>
+					<li class="prev">
 						<?php
-						$k1 = $i - (int) (($i - $last) / 2);
-						printLinkHTML(getPageNumURL($k1, $total), '...', sprintf(ngettext('Page %u', 'Page %u', $k1), $k1));
-						?>
-					</li>
-					<?php
-				} else if ($d == 2) {
-					?>
-					<li>
-						<?php
-						$k1 = $last + 1;
-						printLinkHTML(getPageNumURL($k1, $total), $k1, sprintf(ngettext('Page %u', 'Page %u', $k1), $k1));
-						?>
-					</li>
-					<?php
-				}
-				?>
-				<li<?php if ($current == $i) echo ' class="current"'; ?>>
-					<?php
-					if ($i == $current) {
-						echo $i;
-					} else {
-						$title = sprintf(ngettext('Page %1$u', 'Page %1$u', $i), $i);
-						printLinkHTML($link, $i, $title);
-					}
-					?>
-				</li>
-				<?php
-				$last = $i;
-				unset($nav[$i]);
-				if ($firstlast && count($nav) == 1) {
-					break;
-				}
-			}
-			if ($firstlast) {
-				foreach ($nav as $i => $link) {
-					$d = $i - $last;
-					if ($d > 2) {
-						$k1 = $i - (int) (($i - $last) / 2);
-						?>
-						<li>
-							<?php printLinkHTML(getPageNumURL($k1, $total), '...', sprintf(ngettext('Page %u', 'Page %u', $k1), $k1)); ?>
-						</li>
-						<?php
-					} else if ($d == 2) {
-						$k1 = $last + 1;
-						?>
-						<li>
-							<?php printLinkHTML(getPageNumURL($k1, $total), $k1, sprintf(ngettext('Page %u', 'Page %u', $k1), $k1)); ?>
-						</li>
-						<?php
-					}
-					?>
-					<li class="last<?php if ($current == $i) echo ' current'; ?>">
-						<?php
-						if ($current == $i) {
-							echo $i;
+						if ($prev) {
+							printLinkHTML($prev, html_encode($prevtext), gettext('Previous Page'));
 						} else {
-							printLinkHTML($link, $i, sprintf(ngettext('Page %u', 'Page %u', $i), $i));
+							?>
+							<span class="disabledlink"><?php echo html_encode($prevtext); ?></span>
+							<?php
 						}
 						?>
 					</li>
 					<?php
 				}
-			}
-			if ($nextprev) {
-				?>
-				<li class="next">
+				$last = NULL;
+				if ($firstlast) {
+					?>
+					<li class="<?php
+					if ($current == 1)
+						echo 'current';
+					else
+						echo 'first';
+					?>">
+								<?php
+								if ($current == 1) {
+									echo '1';
+								} else {
+									printLinkHTML($nav[1], 1, gettext("Page 1"));
+								}
+								?>
+					</li>
 					<?php
-					if ($next) {
-						printLinkHTML($next, html_encode($nexttext), gettext('Next Page'));
-					} else {
+					$last = 1;
+					unset($nav[1]);
+				}
+				foreach ($nav as $i => $link) {
+					$d = $i - $last;
+					if ($d > 2) {
 						?>
-						<span class="disabledlink"><?php echo html_encode($nexttext); ?></span>
+						<li>
+							<?php
+							$k1 = $i - (int) (($i - $last) / 2);
+							printLinkHTML(getPageNumURL($k1, $total), '...', sprintf(ngettext('Page %u', 'Page %u', $k1), $k1));
+							?>
+						</li>
+						<?php
+					} else if ($d == 2) {
+						?>
+						<li>
+							<?php
+							$k1 = $last + 1;
+							printLinkHTML(getPageNumURL($k1, $total), $k1, sprintf(ngettext('Page %u', 'Page %u', $k1), $k1));
+							?>
+						</li>
 						<?php
 					}
 					?>
-				</li>
-				<?php
-			}
-			?>
-		</ul>
-	</div>
-	<?php
+					<li<?php if ($current == $i) echo ' class="current"'; ?>>
+						<?php
+						if ($i == $current) {
+							echo $i;
+						} else {
+							$title = sprintf(ngettext('Page %1$u', 'Page %1$u', $i), $i);
+							printLinkHTML($link, $i, $title);
+						}
+						?>
+					</li>
+					<?php
+					$last = $i;
+					unset($nav[$i]);
+					if ($firstlast && count($nav) == 1) {
+						break;
+					}
+				}
+				if ($firstlast) {
+					foreach ($nav as $i => $link) {
+						$d = $i - $last;
+						if ($d > 2) {
+							$k1 = $i - (int) (($i - $last) / 2);
+							?>
+							<li>
+								<?php printLinkHTML(getPageNumURL($k1, $total), '...', sprintf(ngettext('Page %u', 'Page %u', $k1), $k1)); ?>
+							</li>
+							<?php
+						} else if ($d == 2) {
+							$k1 = $last + 1;
+							?>
+							<li>
+								<?php printLinkHTML(getPageNumURL($k1, $total), $k1, sprintf(ngettext('Page %u', 'Page %u', $k1), $k1)); ?>
+							</li>
+							<?php
+						}
+						?>
+						<li class="last<?php if ($current == $i) echo ' current'; ?>">
+							<?php
+							if ($current == $i) {
+								echo $i;
+							} else {
+								printLinkHTML($link, $i, sprintf(ngettext('Page %u', 'Page %u', $i), $i));
+							}
+							?>
+						</li>
+						<?php
+					}
+				}
+				if ($nextprev) {
+					?>
+					<li class="next">
+						<?php
+						if ($next) {
+							printLinkHTML($next, html_encode($nexttext), gettext('Next Page'));
+						} else {
+							?>
+							<span class="disabledlink"><?php echo html_encode($nexttext); ?></span>
+							<?php
+						}
+						?>
+					</li>
+					<?php
+				}
+				?>
+			</ul>
+		</div>
+		<?php
+	}
 }
 
 //*** Album Context ************************
@@ -3396,7 +3395,7 @@ function printTags($option = 'links', $preText = NULL, $class = NULL, $separator
 				$separator = "";
 			}
 			if ($option === "links") {
-				$links1 = "<a href=\"" . html_encode(getSearchURL(search_quote($atag), '', 'tags', 0, array('albums' => $albumlist))) . "\" title=\"" . html_encode($atag) . "\" rel=\"nofollow\">";
+				$links1 = "<a href=\"" . html_encode(getSearchURL(search_quote($atag), '', 'tags', 0, array('albums' => $albumlist))) . "\" title=\"" . html_encode($atag) . "\">";
 				$links2 = "</a>";
 			} else {
 				$links1 = $links2 = '';
@@ -3846,39 +3845,39 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 	<div id="<?php echo $id; ?>">
 		<!-- search form -->
 		<script type="text/javascript">
-				// <!-- <![CDATA[
-				var within = <?php echo (int) $within; ?>;
-				function search_(way) {
-					within = way;
-					if (way) {
-						$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
-					} else {
-						lastsearch = '';
-						$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
-					}
-					$('#search_input').val('');
-				}
-				$('#search_form').submit(function () {
-					if (within) {
-						var newsearch = $.trim($('#search_input').val());
-						if (newsearch.substring(newsearch.length - 1) == ',') {
-							newsearch = newsearch.substr(0, newsearch.length - 1);
-						}
-						if (newsearch.length > 0) {
-							$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
+					// <!-- <![CDATA[
+					var within = <?php echo (int) $within; ?>;
+					function search_(way) {
+						within = way;
+						if (way) {
+							$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
 						} else {
-							$('#search_input').val('<?php echo $searchwords; ?>');
+							lastsearch = '';
+							$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
 						}
+						$('#search_input').val('');
 					}
-					return true;
-				});
-				function search_all() {
-					//search all is Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}. All rights reserved
-					var check = $('#SEARCH_checkall').prop('checked');
-					$('.SEARCH_checkall').prop('checked', check);
-				}
+					$('#search_form').submit(function () {
+						if (within) {
+							var newsearch = $.trim($('#search_input').val());
+							if (newsearch.substring(newsearch.length - 1) == ',') {
+								newsearch = newsearch.substr(0, newsearch.length - 1);
+							}
+							if (newsearch.length > 0) {
+								$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
+							} else {
+								$('#search_input').val('<?php echo $searchwords; ?>');
+							}
+						}
+						return true;
+					});
+					function search_all() {
+						//search all is Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}. All rights reserved
+						var check = $('#SEARCH_checkall').prop('checked');
+						$('.SEARCH_checkall').prop('checked', check);
+					}
 
-				// ]]> -->
+					// ]]> -->
 		</script>
 		<form method="post" action="<?php echo $searchurl; ?>" id="search_form">
 			<?php echo $prevtext; ?>
