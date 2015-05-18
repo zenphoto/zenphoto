@@ -422,7 +422,8 @@ class security_logger {
 	 * @param string $txt
 	 */
 	static function security_misc($success, $requestor, $auth, $txt) {
-		security_logger::Logger((int) $success, NULL, NULL, $requestor, $auth, $txt);
+		list($user, $name) = security_logger::populate_user();
+		security_logger::Logger((int) $success, $name, NULL, $requestor, $auth, $txt);
 		return $success;
 	}
 
