@@ -508,20 +508,20 @@ function getSitemapAlbums() {
 			switch (SITEMAP_LOCALE_TYPE) {
 				case 1:
 					foreach ($sitemap_locales as $locale) {
-						$url = seo_locale::localePath(true, $locale) . '/' . pathurlencode($albumobj->name);
+						$url = seo_locale::localePath(true, $locale) . '/' . pathurlencode($albumobj->name) . '/';
 						$data .= sitemap_echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $albumchangefreq . "</changefreq>\n\t\t<priority>0.8</priority>\n");
 						$data .= sitemap_echonl("\t</url>");
 					}
 					break;
 				case 2:
 					foreach ($sitemap_locales as $locale) {
-						$url = rewrite_path(pathurlencode($albumobj->name), '?album=' . pathurlencode($albumobj->name), dynamic_locale::fullHostPath($locale));
+						$url = rewrite_path(pathurlencode($albumobj->name) . '/', '?album=' . pathurlencode($albumobj->name), dynamic_locale::fullHostPath($locale));
 						$data .= sitemap_echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $albumchangefreq . "</changefreq>\n\t\t<priority>0.8</priority>\n");
 						$data .= sitemap_echonl("\t</url>");
 					}
 					break;
 				default:
-					$url = rewrite_path(pathurlencode($albumobj->name), '?album=' . pathurlencode($albumobj->name), FULLWEBPATH);
+					$url = rewrite_path(pathurlencode($albumobj->name) . '/', '?album=' . pathurlencode($albumobj->name), FULLWEBPATH);
 					$data .= sitemap_echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $albumchangefreq . "</changefreq>\n\t\t<priority>0.8</priority>\n");
 					$data .= sitemap_echonl("\t</url>");
 					break;
@@ -532,20 +532,20 @@ function getSitemapAlbums() {
 					switch (SITEMAP_LOCALE_TYPE) {
 						case 1:
 							foreach ($sitemap_locales as $locale) {
-								$url = seo_locale::localePath(true, $locale) . '/' . pathurlencode($albumobj->name) . '/' . _PAGE_ . '/' . $x;
+								$url = seo_locale::localePath(true, $locale) . '/' . pathurlencode($albumobj->name) . '/' . _PAGE_ . '/' . $x . '/';
 								$data .= sitemap_echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $albumchangefreq . "</changefreq>\n\t\t<priority>0.8</priority>\n");
 								$data .= sitemap_echonl("\t</url>");
 							}
 							break;
 						case 2:
 							foreach ($sitemap_locales as $locale) {
-								$url = rewrite_path(pathurlencode($albumobj->name) . '/' . _PAGE_ . '/' . $x, '?album=' . pathurlencode($albumobj->name) . '&amp;page=' . $x, dynamic_locale::fullHostPath($locale));
+								$url = rewrite_path(pathurlencode($albumobj->name) . '/' . _PAGE_ . '/' . $x . '/', '?album=' . pathurlencode($albumobj->name) . '&amp;page=' . $x, dynamic_locale::fullHostPath($locale));
 								$data .= sitemap_echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $albumchangefreq . "</changefreq>\n\t\t<priority>0.8</priority>\n");
 								$data .= sitemap_echonl("\t</url>");
 							}
 							break;
 						default:
-							$url = rewrite_path(pathurlencode($albumobj->name) . '/' . _PAGE_ . '/' . $x, '?album=' . pathurlencode($albumobj->name) . '&amp;page=' . $x, FULLWEBPATH);
+							$url = rewrite_path(pathurlencode($albumobj->name) . '/' . _PAGE_ . '/' . $x . '/', '?album=' . pathurlencode($albumobj->name) . '&amp;page=' . $x, FULLWEBPATH);
 							$data .= sitemap_echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $albumchangefreq . "</changefreq>\n\t\t<priority>0.8</priority>\n");
 							$data .= sitemap_echonl("\t</url>");
 							break;
