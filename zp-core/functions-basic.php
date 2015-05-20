@@ -277,7 +277,8 @@ if ($c = getOption('zenphoto_cookie_path')) {
 }
 
 define('SAFE_MODE', preg_match('#(1|ON)#i', ini_get('safe_mode')));
-define('FULLWEBPATH', PROTOCOL . "://" . $_SERVER['HTTP_HOST'] . WEBPATH);
+define('FULLHOSTPATH', PROTOCOL . "://" . $_SERVER['HTTP_HOST']);
+define('FULLWEBPATH', FULLHOSTPATH . WEBPATH);
 define('SAFE_MODE_ALBUM_SEP', '__');
 define('SERVERCACHE', SERVERPATH . '/' . CACHEFOLDER);
 define('MOD_REWRITE', getOption('mod_rewrite'));
