@@ -20,6 +20,7 @@ if (getOption('galleryArticles_albums'))
 	zp_register_filter('new_album', 'galleryArticles::published');
 if (getOption('galleryArticles_images'))
 	zp_register_filter('new_image', 'galleryArticles::published');
+zp_register_filter('content_macro', 'galleryArticles::macro');
 
 class galleryArticles {
 
@@ -141,48 +142,53 @@ class galleryArticles {
 	 */
 	protected static function publishArticle($obj, $override = NULL) {
 		global $_zp_CMS;
-		$lanugages = generateLanguageList();
 		$galleryitem_text = array();
 		$locale = getOption('locale');
 		switch ($type = $obj->table) {
 			case 'albums':
+				$album = $obj->name;
 				$dbstring = getOption('galleryArticles_album_text');
 				$localtext = get_language_string($dbstring);
 				$galleryitem_text[$locale] = sprintf($localtext, $obj->getTitle($locale));
-				foreach ($lanugages as $key) {
+				foreach (generateLanguageList() as $key) {
 					$languagetext = get_language_string($dbstring, $key);
 					if ($localtext != $languagetext) {
 						$galleryitem_text[$key] = sprintf($languagetext, $obj->getTitle($key));
 					}
 				}
-				$title = $folder = $obj->name;
+				$ref = '"' . $album . '"';
+				$title = $folder = $album;
 				$img = $obj->getAlbumThumbImage();
 				$class = 'galleryarticles-newalbum';
 				break;
 			case 'images':
+				$album = $obj->album->name;
+				$image = $obj->filename;
 				$dbstring = unserialize(getOption('galleryArticles_image_text'));
 				$localtext = get_language_string($dbstring);
 				$galleryitem_text[$locale] = sprintf($localtext, $obj->getTitle($locale), $obj->album->getTitle($locale));
-				foreach ($lanugages as $key => $val) {
+				foreach (generateLanguageList() as $key => $val) {
 					$languagetext = get_language_string($dbstring, $key);
 					if ($localtext != $languagetext) {
 						$galleryitem_text[$key] = sprintf($localtext, $obj->getTitle($key), $obj->album->getTitle($key));
 					}
 				}
+				$ref = '"' . $album . '" "' . $image . '"';
 				$folder = $obj->imagefolder;
-				$title = $folder . '-' . $obj->filename;
+				$title = $folder . '-' . $image;
 				$img = $obj;
 				$class = 'galleryarticles-newimage';
 				break;
+			default:
+				//not a gallery object
+				return;
 		}
 		$article = newArticle(seoFriendly('galleryArticles-' . $title));
 		$article->setTitle(serialize($galleryitem_text));
 		$imglink = $img->getCustomImage(getOption('galleryArticles_size'), NULL, NULL, NULL, NULL, NULL, NULL, -1);
-		$desc = array();
-		foreach ($galleryitem_text as $key => $val) {
-			$desc[$key] = '<p><a class="' . $class . '" href="' . $obj->getLink() . '"><img src="' . $imglink . '"></a></p><p>' . $obj->getDesc($key) . '</p>';
-		}
-		$article->setContent(serialize($desc));
+		$desc = '<p><a class="' . $class . '" href="' . $obj->getLink() . '"><img src="' . $imglink . '"></a></p><p>[GALLERYARTICLEDESC ' . $ref . ']</p>';
+
+		$article->setContent($desc);
 		$date = $obj->getPublishDate();
 		if (!$date)
 			$date = date('Y-m-d H:i:s');
@@ -208,6 +214,26 @@ class galleryArticles {
 			}
 		}
 		$article->setCategories(array($cat));
+	}
+
+	static function macro($macros) {
+		$macros['GALLERYARTICLEDESC'] = array(
+						'class'	 => 'function',
+						'params' => array('string', 'string*'),
+						'value'	 => 'galleryArticles::getDesc',
+						'owner'	 => 'galleryArticles',
+						'desc'	 => gettext('Dynamicly insert the description from a gallery object--album name (%1), image name (%2).')
+		);
+		return $macros;
+	}
+
+	static function getDesc($album, $image = NULL) {
+		if ($image) {
+			$obj = newImage(array('folder' => $album, 'filename' => $image));
+		} else {
+			$obj = newAlbum($album);
+		}
+		return $obj->getDesc();
 	}
 
 }
