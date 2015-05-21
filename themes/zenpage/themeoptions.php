@@ -74,7 +74,7 @@ class ThemeOptions {
 	}
 
 	function getOptionsDisabled() {
-		return array('custom_index_page', 'image_size', 'thumb_size');
+		return array('image_size', 'thumb_size');
 	}
 
 	function handleOption($option, $currentValue) {

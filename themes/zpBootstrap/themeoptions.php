@@ -21,7 +21,6 @@ class ThemeOptions {
 		setThemeOptionDefault('thumb_crop_height', 220);
 		setThemeOptionDefault('image_size', 800, NULL);
 		setThemeOptionDefault('image_use_side', 'longest');
-		setThemeOptionDefault('custom_index_page', '');
 
 		setThemeOptionDefault('zpB_homepage', true);
 		setThemeOptionDefault('allow_search', true);
@@ -60,7 +59,7 @@ class ThemeOptions {
 	}
 
 	function getOptionsDisabled() {
-		return array('thumb_size', 'image_size', 'custom_index_page');
+		return array('thumb_size', 'image_size');
 	}
 
 	function getOptionsSupported() {

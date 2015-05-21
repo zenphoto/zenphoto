@@ -426,8 +426,6 @@ if (isset($_GET['action'])) {
 
 					if (isset($_POST['thumb_transition']))
 						setThemeOption('thumb_transition', (int) ((sanitize_numeric($_POST['thumb_transition']) - 1) && true), $table, $themename);
-					if (isset($_POST['custom_index_page']))
-						setThemeOption('custom_index_page', sanitize($_POST['custom_index_page'], 3), $table, $themename);
 					$otg = getThemeOption('thumb_gray', $table, $themename);
 					setThemeOption('thumb_gray', (int) isset($_POST['thumb_gray']), $table, $themename);
 					if ($otg = getThemeOption('thumb_gray', $table, $themename))
@@ -2886,11 +2884,6 @@ Zenphoto_Authority::printPasswordFormJS();
 									</tr>
 									<?php
 									if (is_null($album)) {
-										if (in_array('custom_index_page', $unsupportedOptions)) {
-											$disable = ' disabled="disabled"';
-										} else {
-											$disable = '';
-										}
 										?>
 										<tr>
 											<td><?php echo gettext("Theme head &lt;title&gt; tag"); ?></td>
@@ -2901,29 +2894,8 @@ Zenphoto_Authority::printPasswordFormJS();
 											</td>
 											<td><?php echo gettext('Select if you want parent breadcrumbs and if so the separator for them.'); ?></td>
 										</tr>
-										<tr>
-											<td><?php echo gettext("Gallery index page link:"); ?></td>
-											<td>
-												<select id="custom_index_page" name="custom_index_page"<?php echo $disable; ?>>
-													<option value="" style="background-color:LightGray"><?php echo gettext('none'); ?></option>
-													<?php
-													$curdir = getcwd();
-													$root = SERVERPATH . '/' . THEMEFOLDER . '/' . $themename . '/';
-													chdir($root);
-													$filelist = safe_glob('*.php');
-													$list = array();
-													foreach ($filelist as $file) {
-														$file = filesystemToInternal($file);
-														$list[$file] = str_replace('.php', '', $file);
-													}
-													$list = array_diff($list, standardScripts());
-													generateListFromArray(array(getThemeOption('custom_index_page', $album, $themename)), $list, false, true);
-													chdir($curdir);
-													?>
-												</select>
-											</td>
-											<td><?php echo gettext("If this option is not empty, the Gallery Index URL that would normally link to the theme <code>index.php</code> script will instead link to this script. This frees up the <code>index.php</code> script so that you can create a customized <em>Home page</em> script. This option applies only to the main theme for the <em>Gallery</em>."); ?></td>
-										</tr>
+
+
 										<?php
 									}
 									if (count($supportedOptions) > 0) {

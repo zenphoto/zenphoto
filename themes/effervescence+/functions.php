@@ -8,6 +8,11 @@ zp_register_filter('load_theme_script', 'fourOhFour');
 
 define('ALBUM_THMB_WIDTH', 170);
 define('ALBUM_THUMB_HEIGHT', 80);
+if (extensionEnabled('zenpage') || getOption('gallery_index')) {
+	setOption('custom_index_page', 'gallery');
+} else {
+	setOption('custom_index_page', '');
+}
 
 $cwd = getcwd();
 chdir(dirname(__FILE__));
@@ -92,7 +97,7 @@ function EF_head($ignore) {
 			if (document.getElementsByTagName) {
 				var a = document.getElementsByTagName("a");
 				for (var i = 0; i < a.length; i++) {
-					a[i].onfocus = function() {
+					a[i].onfocus = function () {
 						this.blur()
 					};
 				}

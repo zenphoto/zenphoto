@@ -59,7 +59,7 @@ class ThemeOptions {
 	}
 
 	function getOptionsDisabled() {
-		return array('thumb_size', 'image_size', 'custom_index_page');
+		return array('thumb_size', 'image_size');
 	}
 
 	function getOptionsSupported() {

@@ -21,7 +21,6 @@ class ThemeOptions {
 		setThemeOptionDefault('thumb_crop_height', 150);
 		setThemeOptionDefault('image_size', 700);
 		setThemeOptionDefault('image_use_side', 'longest');
-		setThemeOptionDefault('custom_index_page', '');
 
 		setThemeOptionDefault('use_image_logo_filename', 'banniere3.jpg');
 		setThemeOptionDefault('show_image_logo_on_image', false);
@@ -65,7 +64,7 @@ class ThemeOptions {
 	}
 
 	function getOptionsDisabled() {
-		return array('thumb_size', 'image_size', 'custom_index_page');
+		return array('thumb_size', 'image_size');
 	}
 
 	function getOptionsSupported() {

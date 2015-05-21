@@ -19,7 +19,6 @@ class ThemeOptions {
 		setThemeOption('thumb_crop', 0, null, 'zpfocus');
 		setThemeOption('image_size', 800, null, 'zpfocus'); //for sized cb target option only
 		setThemeOption('image_use_side', 'longest', null, 'zpfocus');
-		setThemeOption('custom_index_page', 'none', null, 'zpfocus');
 
 		// set core theme option defaults
 		setThemeOptionDefault('albums_per_page', 6);
@@ -90,7 +89,7 @@ class ThemeOptions {
 	}
 
 	function getOptionsDisabled() {
-		return array('custom_index_page', 'thumb_size', 'thumb_crop', 'image_size');
+		return array('thumb_size', 'thumb_crop', 'image_size');
 	}
 
 	function handleOption($option, $currentValue) {
