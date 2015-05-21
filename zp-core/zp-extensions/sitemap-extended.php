@@ -9,8 +9,8 @@
  * Album sitemaps are split into individual sitemaps per album (incl. all albums pages) and image sitemaps
  * into individual sitemaps per album.
  *
- * The sitemapindex file can be referenced via <var>www.yourdomain.com/zenphoto/index.php?sitemap</var> or
- * with modrewrite <var>www.yourdomain.com/zenphoto/?sitemap</var>.
+ * The sitemapindex file can be referenced via <var>%FULLWEBPATH%/index.php?sitemap</var> or
+ * with modrewrite <var>%FULLWEBPATH%/?sitemap</var>.
  *
  * <b>IMPORTANT:</b> A multilingual sitemap requires the <var>dynamic-locale</var> plugin and either the <var>seo_locale</var> plugin or <i>language subdomains</i>.
  *
@@ -66,11 +66,15 @@ class sitemap {
 	}
 
 	function getOptionsSupported() {
-		global $_common_locale_type;
-		$localdesc = '<p>' . gettext('If checked links to the alternative languages will be in the form <code><em>language</em>.domain</code> where <code><em>language</em></code> is the language code, e.g. <code><em>fr</em></code> for French.') . '</p>';
-		if (!$_common_locale_type) {
-			$localdesc .= '<p>' . gettext('This requires that you have created the appropriate subdomains pointing to your installation. That is <code>fr.mydomain.com/zenphoto/</code> must point to the same location as <code>mydomain.com/zenphoto/</code>. (Some providers will automatically redirect undefined subdomains to the main domain. If your provider does this, no subdomain creation is needed.)') . '</p>';
+		$host = $_SERVER['HTTP_HOST'];
+		$matches = explode('.', $host);
+		if (validateLocale($matches[0], 'Dynamic Locale')) {
+			array_shift($matches);
+			$host = implode('.', $matches);
 		}
+		$localdesc = '<p>' . gettext('If checked links to the alternative languages will be in the form <code><em>language</em>.' . $host . '</code> where <code><em>language</em></code> is the language code, e.g. <code><em>fr</em></code> for French.') . '</p>';
+		$localdesc .= '<p>' . gettext('This requires that you have created the appropriate subdomains pointing to your installation. That is <code>fr.' . $host . WEBPATH . '</code> must point to the same location as <code>' . $host . WEBPATH . '</code>. (Some providers will automatically redirect undefined subdomains to the main domain. If your provider does this, no subdomain creation is needed.)') . '</p>';
+
 		$options = array(
 						gettext('Gallery index page')													 => array('key'					 => 'sitemap_galleryindex', 'type'				 => OPTION_TYPE_TEXTBOX,
 										'order'				 => 10,
@@ -162,26 +166,20 @@ class sitemap {
 						gettext('Google - URL to image license')							 => array('key'					 => 'sitemap_license', 'type'				 => OPTION_TYPE_TEXTBOX,
 										'order'				 => 10,
 										'multilingual' => true,
-										'desc'				 => gettext('Optional. Used only if the Google extension is checked. Must be an absolute URL address of the form: http://mydomain.com/license.html')),
+										'desc'				 => gettext('Optional. Used only if the Google extension is checked. Must be an absolute URL address of the form: ' . FULLWEBPATH . '/license.html')),
 						gettext('Sitemap processing chunk')										 => array('key'		 => 'sitemap_processing_chunk', 'type'	 => OPTION_TYPE_NUMBER,
 										'order'	 => 11,
 										'desc'	 => gettext('The number of albums that will be processed for each sitemap file. Lower this value if you get script timeouts when creating the files.')),
-						gettext('Use subdomains') . '*'												 => array('key'			 => 'dynamic_locale_subdomain', 'type'		 => OPTION_TYPE_CHECKBOX,
-										'order'		 => 12,
-										'disabled' => $_common_locale_type,
-										'desc'		 => $localdesc)
+						gettext('Use subdomains') . '*'												 => array('key'		 => 'dynamic_locale_subdomain', 'type'	 => OPTION_TYPE_CHECKBOX,
+										'order'	 => 12,
+										'desc'	 => $localdesc)
 		);
-		if ($_common_locale_type) {
-			$options['note'] = array('key'		 => 'sitemap_locale_type', 'type'	 => OPTION_TYPE_NOTE,
-							'order'	 => 13,
-							'desc'	 => '<p class="notebox">' . $_common_locale_type . '</p>');
-		} else {
-			$_common_locale_type = gettext('* This option may be set via the <a href="javascript:gotoName(\'sitemap-extended\');"><em>sitemap-extended</em></a> plugin options.');
-			$options['note'] = array('key'		 => 'sitemap_locale_type',
-							'type'	 => OPTION_TYPE_NOTE,
-							'order'	 => 13,
-							'desc'	 => gettext('<p class="notebox">*<strong>Note:</strong> The setting of this option is shared with other plugins.</p>'));
-		}
+
+		$options['note'] = array('key'		 => 'sitemap_locale_type',
+						'type'	 => OPTION_TYPE_NOTE,
+						'order'	 => 13,
+						'desc'	 => gettext('<p class="notebox">*<strong>Note:</strong> The setting of this option is shared with other plugins.</p>'));
+
 		return $options;
 	}
 

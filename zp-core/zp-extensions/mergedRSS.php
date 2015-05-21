@@ -8,7 +8,7 @@
  * If you ever wanted to have a RSS that for example returns latest images for <i>album x</i>
  * but latest albums for <i>album y</i> this is the tool to use. Just enter the urls of the seperate feeds and it will return the combined feed.
  *
- * The merged feed is called by yourdomain.com/index.php?mergedrss
+ * The merged feed is called by %FULLWEBPATH%/index.php?mergedrss
  *
  * Be aware that hijacking content from sites that are not your own may be a violation of applicable laws!
  *

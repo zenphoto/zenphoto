@@ -65,11 +65,15 @@ class htmlmetatags {
 
 	// Gettext calls are removed because some terms like "noindex" are fixed terms that should not be translated so user know what setting they make.
 	function getOptionsSupported() {
-		global $_common_locale_type;
-		$localdesc = '<p>' . gettext('If checked links to the alternative languages will be in the form <code><em>language</em>.domain</code> where <code><em>language</em></code> is the language code, e.g. <code><em>fr</em></code> for French.') . '</p>';
-		if (!$_common_locale_type) {
-			$localdesc .= '<p>' . gettext('This requires that you have created the appropriate subdomains pointing to your installation. That is <code>fr.mydomain.com/zenphoto/</code> must point to the same location as <code>mydomain.com/zenphoto/</code>. (Some providers will automatically redirect undefined subdomains to the main domain. If your provider does this, no subdomain creation is needed.)') . '</p>';
+		$host = $_SERVER['HTTP_HOST'];
+		$matches = explode('.', $host);
+		if (validateLocale($matches[0], 'Dynamic Locale')) {
+			array_shift($matches);
+			$host = implode('.', $matches);
 		}
+		$localdesc = '<p>' . gettext('If checked links to the alternative languages will be in the form <code><em>language</em>.' . $host . '</code> where <code><em>language</em></code> is the language code, e.g. <code><em>fr</em></code> for French.') . '</p>';
+		$localdesc .= '<p>' . gettext('This requires that you have created the appropriate subdomains pointing to your installation. That is <code>fr.' . $host . WEBPATH . '</code> must point to the same location as <code>' . $host . WEBPATH . '</code>. (Some providers will automatically redirect undefined subdomains to the main domain. If your provider does this, no subdomain creation is needed.)') . '</p>';
+
 		$options = array(gettext('Cache control')				 => array('key'				 => 'htmlmeta_cache_control', 'type'			 => OPTION_TYPE_SELECTOR,
 										'order'			 => 0,
 										'selections' => array('no-cache' => "no-cache", 'public' => "public", 'private' => "private", 'no-store' => "no-store"),
@@ -127,22 +131,17 @@ class htmlmetatags {
 										'order'	 => 13,
 										'limits' => array('min' => 1),
 										'desc'	 => gettext('Only keywords with at least this number of uses will be shown.')),
-						gettext('Use subdomains') . '*'	 => array('key'			 => 'dynamic_locale_subdomain', 'type'		 => OPTION_TYPE_CHECKBOX,
-										'order'		 => 7,
-										'disabled' => $_common_locale_type,
-										'desc'		 => $localdesc)
+						gettext('Use subdomains') . '*'	 => array('key'		 => 'dynamic_locale_subdomain', 'type'	 => OPTION_TYPE_CHECKBOX,
+										'order'	 => 7,
+										'desc'	 => $localdesc)
 		);
-		if ($_common_locale_type) {
-			$options['note'] = array('key'		 => 'html_meta_tags_locale_type', 'type'	 => OPTION_TYPE_NOTE,
-							'order'	 => 8,
-							'desc'	 => '<p class="notebox">' . $_common_locale_type . '</p>');
-		} else {
-			$_common_locale_type = gettext('* This option may be set via the <a onclick="gotoName(\'html_meta_tags\');"><em>html_meta_tags</em></a> plugin options.');
-			$options['note'] = array('key'		 => 'html_meta_tags_locale_type',
-							'type'	 => OPTION_TYPE_NOTE,
-							'order'	 => 8,
-							'desc'	 => gettext('<p class="notebox">*<strong>Note:</strong> The setting of this option is shared with other plugins.</p>'));
-		}
+
+
+		$options['note'] = array('key'		 => 'html_meta_tags_locale_type',
+						'type'	 => OPTION_TYPE_NOTE,
+						'order'	 => 8,
+						'desc'	 => gettext('<p class="notebox">*<strong>Note:</strong> The setting of this option is shared with other plugins.</p>'));
+
 		return $options;
 	}
 
