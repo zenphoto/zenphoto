@@ -9,9 +9,9 @@ zp_register_filter('load_theme_script', 'fourOhFour');
 define('ALBUM_THMB_WIDTH', 170);
 define('ALBUM_THUMB_HEIGHT', 80);
 if (extensionEnabled('zenpage') || getOption('gallery_index')) {
-	setOption('custom_index_page', 'gallery');
+	setOption('custom_index_page', 'gallery', false);
 } else {
-	setOption('custom_index_page', '');
+	setOption('custom_index_page', '', false);
 }
 
 $cwd = getcwd();
