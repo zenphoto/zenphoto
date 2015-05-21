@@ -48,7 +48,7 @@ msgstr "Object niet gevonden"
 #: themes/effervescence_plus/search.php:86 themes/garland/sidebar.php:9
 #: themes/garland/sidebar.php:37 themes/zenpage/album.php:26
 msgid "Search within album"
-msgstr "Zoek  in het album"
+msgstr "Zoek in het album"
 
 #: themes/basic/album.php:24 themes/effervescence_plus/slideshow.php:55
 #: themes/zenpage/album.php:26 themes/zpmobile/functions.php:67
@@ -922,7 +922,7 @@ msgid ""
 "index page link</em> option set to \"gallery\". Of course the "
 "<em>menu_manager</em> plugin must also be enabled."
 msgstr ""
-"<strong>Opmerking:</strong>  Deze optie kan alleen bebruikt worden als je de "
+"<strong>Opmerking:</strong> Deze optie kan alleen bebruikt worden als je de "
 "<em>Gallery index page link</em> hebt ingesteld op “galerij”. Uiteraard moet "
 "ook de <em>menu_manager</em> plugin geactiveerd zijn."
 
@@ -964,8 +964,7 @@ msgstr "Foto van de dag"
 msgid ""
 "If checked on the heading image will change daily rather than on each page "
 "load."
-msgstr ""
-"Als dit is aangevinkt verandert  de header afbeelding één keer per dag."
+msgstr "Als dit is aangevinkt verandert de header afbeelding één keer per dag."
 
 #: themes/effervescence_plus/themeoptions.php:109
 #: themes/zenpage/slideshow.php:11
@@ -1312,7 +1311,7 @@ msgstr "Vink aan om de de volledige afbeelding weer te geven met Colorbox"
 
 #: themes/zenpage/themeoptions.php:68
 msgid "News on index page"
-msgstr "Nieuws op index  pagina"
+msgstr "Nieuws op index pagina"
 
 #: themes/zenpage/themeoptions.php:68
 msgid ""
@@ -2874,7 +2873,7 @@ msgid ""
 "Users with \"Admin\" or \"Manage all %1$s\" rights can manage all %2$s. All "
 "others may manage only those that are selected."
 msgstr ""
-"Gebruikers met “Admin” of  “Beheer alle %1$s” rechten  kunnen alle %2$s "
+"Gebruikers met “Admin” of “Beheer alle %1$s” rechten kunnen alle %2$s "
 "beheren. Anderen kunnen alleen de geselecteerde onderdelen beheren."
 
 #: zp-core/admin-functions.php:3319
@@ -3298,10 +3297,10 @@ msgid_plural ""
 "Your time zone offset is: %d hours. If your time zone is different from the "
 "servers, select the correct time zone here."
 msgstr[0] ""
-"Het tijdverschil met de server is %d uur.  Als je je in een andere tijdzone "
+"Het tijdverschil met de server is %d uur. Als je je in een andere tijdzone "
 "bevindt dan de server, selecteer hier dan de juiste tijdzone."
 msgstr[1] ""
-"Het tijdverschil met de server is %d uur.  Als je je in een andere tijdzone "
+"Het tijdverschil met de server is %d uur. Als je je in een andere tijdzone "
 "bevindt dan de server, selecteer hier dan de juiste tijdzone."
 
 #: zp-core/admin-options.php:613
@@ -3376,7 +3375,7 @@ msgid ""
 msgstr ""
 "Als <em>mod_rewrite</em> hierboven ingeschakeld is zal Zenphoto de "
 "<em>mod_rewrite toevoeging</em> toevoegen aan het eind van de afbeeldings "
-"URL  (hulpvol voor zoekmachines). Voorbeelden: <em>.html, .php</em>, etc."
+"URL (hulpvol voor zoekmachines). Voorbeelden: <em>.html, .php</em>, etc."
 
 #: zp-core/admin-options.php:662 zp-core/admin-users.php:742
 msgid "Language:"
@@ -3595,7 +3594,7 @@ msgid ""
 msgstr ""
 "Weegave van de datum. Selecteer uit de lijst of kies voor <code>Custom</"
 "code> en voer een <a href=\"http://us2.php.net/manual/en/function.strftime."
-"php\"><span class=\"nowrap\"><code>strftime()</code></span></a> formaat in,  "
+"php\"><span class=\"nowrap\"><code>strftime()</code></span></a> formaat in, "
 "in het tekstveld."
 
 #: zp-core/admin-options.php:850
@@ -4029,7 +4028,7 @@ msgid ""
 "edit tabs load too slowly, do not select this option."
 msgstr ""
 "Deze optie maakt het mogelijk om óók thumbnails te selecteren uit subalbums. "
-"Dit kan veel tijd kosten.  Als je merkt dat albumopties traag laden kan het "
+"Dit kan veel tijd kosten. Als je merkt dat albumopties traag laden kan het "
 "verstandig zijn om deze optie niet te gebruiken."
 
 #: zp-core/admin-options.php:1461 zp-core/admin-options.php:1505
@@ -4444,7 +4443,7 @@ msgid ""
 "The watermark image is scaled by to cover <em>cover percentage</em> of the "
 "image and placed relative to the upper left corner of the image."
 msgstr ""
-"De watermerkafbeelding wordt geschaald  om een <em> percentage</em> van de "
+"De watermerkafbeelding wordt geschaald om een <em> percentage</em> van de "
 "afbeelding te bedekken en wordt relatief aan de linker bovenhoek van de "
 "afbeelding geplaatst."
 
@@ -4887,7 +4886,7 @@ msgstr ""
 #: zp-core/admin-options.php:2646
 #, php-format
 msgid "For pages containing images there will be %1$u rows of thumbnails."
-msgstr "Op afbeeldingspagina’s komen er  %1$u rijen thumbnails."
+msgstr "Op afbeeldingspagina’s komen er %1$u rijen thumbnails."
 
 #: zp-core/admin-options.php:2662
 msgid "Transition:"
@@ -5084,7 +5083,7 @@ msgstr ""
 "<strong>Opmerking:</strong><br /><br />Inloggen via het front-end login-"
 "formulier is alleen veilig als <em>https</em> is geselecteerd.<br /><br /"
 ">Als je <em>https</em> of <em>beveiligde toegang tot admin</em> selecteerd "
-"<strong>MOET</strong> je server <em>https</em> ondersteunen.  Als je één van "
+"<strong>MOET</strong> je server <em>https</em> ondersteunen. Als je één van "
 "deze twee selecteerd voor een server die géén <em>https</em> ondersteund kun "
 "je de <code>admin</code> pagina’s niet bereiken om de optie te veranderen! "
 "De enige mogelijkheid om die dan te veranderen is de optie <span class="
@@ -5697,7 +5696,7 @@ msgstr "Deze web-gebaseerde upload accepteerd de bestandsformaten: %s, en %s."
 #: zp-core/admin-upload.php:107
 #, php-format
 msgid "This web-based upload accepts the file formats: %s and %s."
-msgstr "Deze web-gebaseerde upload accepteerd  bestandsformaten: %s and %s."
+msgstr "Deze web-gebaseerde upload accepteerd bestandsformaten: %s and %s."
 
 #: zp-core/admin-upload.php:113
 msgid "<strong>Note: </strong>"
@@ -5849,7 +5848,7 @@ msgstr "Je moet een gebruikersnaam opgeven"
 
 #: zp-core/admin-users.php:428
 msgid "Your Website URL is not valid"
-msgstr "De URL van de website  is niet geldig"
+msgstr "De URL van de website is niet geldig"
 
 #: zp-core/admin-users.php:469
 #: zp-core/zp-extensions/user_groups/user_groups-tab.php:208
@@ -6109,7 +6108,7 @@ msgstr "Setup » bescherm scripts"
 
 #: zp-core/admin.php:287
 msgid "Protects setup files so setup cannot be run."
-msgstr "Beschermt setup bestanden zodat  setup niet gebruikt kan worden."
+msgstr "Beschermt setup bestanden zodat setup niet gebruikt kan worden."
 
 #: zp-core/admin.php:297
 msgid "Run setup"
@@ -7669,7 +7668,7 @@ msgid ""
 "MySQL Error: MySQL returned the error %1$s when Zenphoto tried to select the "
 "database %2$s."
 msgstr ""
-"MySQL fout: MySQL gaf de foutmelding:  %1$s toen Zenphoto de database %2$s "
+"MySQL fout: MySQL gaf de foutmelding: %1$s toen Zenphoto de database %2$s "
 "probeerde te selecteren."
 
 #: zp-core/functions-db-MySQL.php:66 zp-core/functions-db-MySQLi.php:76
@@ -8813,7 +8812,7 @@ msgstr "Afbeelding niet gevonden; bestand %s bestaat niet."
 #: zp-core/i.php:169
 #, php-format
 msgid "Image processing of %s resulted in a fatal error."
-msgstr "Her verwerken van %s  resulteerde in een ernstige fout."
+msgstr "Her verwerken van %s resulteerde in een ernstige fout."
 
 #: zp-core/i.php:191
 #, php-format
@@ -8926,7 +8925,7 @@ msgid ""
 "<em>primary album</em> is created."
 msgstr ""
 "Vink aan als je wilt dat een gebruiker automatisch <em>bewerkings-rechten</"
-"em> krijgt bij het creëren van het  “eigen” album (gastalbum)."
+"em> krijgt bij het creëren van het “eigen” album (gastalbum)."
 
 #: zp-core/lib-auth.php:109
 msgid "Minimum password strength"
@@ -9037,7 +9036,7 @@ msgid ""
 "comment\" option is set, only users with this right may post comments."
 msgstr ""
 "Als de comment_form plugin wordt gebruikt en indien bij de opties daarvan "
-"“Alleen leden kunnen reageren”  is aangevinkt, kunnen alleen gebruikers met "
+"“Alleen leden kunnen reageren” is aangevinkt, kunnen alleen gebruikers met "
 "deze rechten berichten plaatsen."
 
 #: zp-core/lib-auth.php:524 zp-core/lib-auth.php:548 zp-core/lib-auth.php:574
@@ -9097,7 +9096,7 @@ msgid ""
 msgstr ""
 "Gebruikers zonder “Admin” rechten hebben normaal gesproken alleen toegang "
 "tot de toegewezen(aangevinkte) onderdelen. Dit recht staat hen toe alle "
-"Zenpage artikelen en categorieën  te beheren."
+"Zenpage artikelen en categorieën te beheren."
 
 #: zp-core/lib-auth.php:531 zp-core/lib-auth.php:556 zp-core/lib-auth.php:582
 msgid ""
@@ -9146,7 +9145,7 @@ msgstr "Gebruikers met deze rechten kunnen beschermde pagina’s bekijken."
 
 #: zp-core/lib-auth.php:541 zp-core/lib-auth.php:567
 msgid "View search"
-msgstr "Zoekpagina’s  bekijken"
+msgstr "Zoekpagina’s bekijken"
 
 #: zp-core/lib-auth.php:541 zp-core/lib-auth.php:567
 msgid "Users with this right may view search pages even if password protected."
@@ -10046,8 +10045,8 @@ msgstr ""
 "We raden je zeer sterk aan om <code>magic_quotes_gpc</code> uit te zetten. "
 "Voor meer informatie zie <em><a href=\"http://www.zenphoto.org/news/"
 "installation-problems#about-magicquotes-and-why-they-should-be-disabled\"> "
-"Wat is  magic_quotes_gpc en waarom zou ik het niet moeten gebruiken?</a></"
-"em> in de Zenphoto troubleshooting guide."
+"Wat is magic_quotes_gpc en waarom zou ik het niet moeten gebruiken?</a></em> "
+"in de Zenphoto troubleshooting guide."
 
 #: zp-core/setup/index.php:660
 msgid "PHP <code>magic_quotes_runtime</code>"
@@ -10102,7 +10101,7 @@ msgstr "PHP <code>gettext()</code> ondersteuning [is niet aanwezig]"
 msgid ""
 "Localization of Zenphoto requires native PHP <code>gettext()</code> support"
 msgstr ""
-"Localisatie van Zenphoto vereist  PHP <code>gettext()</code> ondersteuning."
+"Localisatie van Zenphoto vereist PHP <code>gettext()</code> ondersteuning."
 
 #: zp-core/setup/index.php:686
 msgid "PHP <code>flock</code> support"
@@ -10145,7 +10144,7 @@ msgid ""
 "See the <a  href=\"http://www.zenphoto.org/news/problems-with-languages"
 "\">user guide</a> on zenphoto.org for details."
 msgstr ""
-"Raadpleeg de <a  href=\"http://www.zenphoto.org/news/problems-with-languages"
+"Raadpleeg de <a href=\"http://www.zenphoto.org/news/problems-with-languages"
 "\">user guide</a> op zenphoto.org voor details."
 
 #: zp-core/setup/index.php:690
@@ -10224,7 +10223,7 @@ msgstr "Je moet GD support in je PHP installeren"
 #: zp-core/setup/index.php:736
 #, php-format
 msgid "Your PHP graphics library does not support %1$s or %2$s"
-msgstr "Je PHP “graphics library”  ondersteunt geen %1$s, of %2$s"
+msgstr "Je PHP “graphics library” ondersteunt geen %1$s, of %2$s"
 
 #: zp-core/setup/index.php:738
 #, php-format
@@ -10236,13 +10235,13 @@ msgid ""
 "To correct this you should install a graphics library with appropriate image "
 "support in your PHP"
 msgstr ""
-"Om dit op te lossen moet je een  “graphics library” installeren in je PHP "
-"met de juiste ondersteuning voor afbeeldingen"
+"Om dit op te lossen moet je een “graphics library” installeren in je PHP met "
+"de juiste ondersteuning voor afbeeldingen"
 
 #: zp-core/setup/index.php:743
 #, php-format
 msgid "Your PHP graphics library does not support %1$s, %2$s, or %3$s"
-msgstr "Your PHP  “graphics library” ondersteunt geen %1$s, %2$s, or %3$s"
+msgstr "De PHP “graphics library” ondersteunt geen %1$s, %2$s, or %3$s"
 
 #: zp-core/setup/index.php:746
 msgid ""
@@ -10303,7 +10302,7 @@ msgid ""
 "indicated in the file’s comments."
 msgstr ""
 "Setup kon dit bestand niet aanmaken. Je moet het <code>%1$s/zenphoto_cfg."
-"txt</code> bestand  kopiëren naar de <code>%2$s/%3$s</code> map en aanpassen "
+"txt</code> bestand kopiëren naar de <code>%2$s/%3$s</code> map en aanpassen "
 "zoals aangegeven in de uitleg (staat in het bestand zelf). "
 
 #: zp-core/setup/index.php:774
@@ -10373,7 +10372,7 @@ msgstr ""
 #: zp-core/setup/index.php:849
 #, php-format
 msgid "Change the filesystem character set define to %1$s"
-msgstr "Verander de systeem-karakterset naar  %1$s"
+msgstr "Verander de systeem-karakterset naar %1$s"
 
 #: zp-core/setup/index.php:863
 #, php-format
@@ -10649,7 +10648,7 @@ msgid ""
 "The database did not return a list of the database tables for <code>%s</"
 "code>."
 msgstr ""
-"De  database  heeft geen lijst van database tabellen voor <code>%s</code> "
+"De database heeft geen lijst van database tabellen voor <code>%s</code> "
 "geretourneerd."
 
 #: zp-core/setup/index.php:1147
@@ -10724,7 +10723,7 @@ msgid ""
 "The file <code>Zenphoto.package</code> is either missing, not readable, or "
 "defective. Your installation may be corrupt!"
 msgstr ""
-"Het bestand <code>Zenphoto.package</code> ontbreekt,  is niet leesbaar of is "
+"Het bestand <code>Zenphoto.package</code> ontbreekt, is niet leesbaar of is "
 "beschadigd. Je installatie kan corrupt zijn."
 
 #: zp-core/setup/index.php:1226
@@ -10813,7 +10812,7 @@ msgid ""
 "\">Troubleshooting guide</a> for details on Zenphoto permissions "
 "requirements."
 msgstr ""
-"Setup kan de geselecteerde rechten niet toekennen aan  één of meer "
+"Setup kan de geselecteerde rechten niet toekennen aan één of meer "
 "onderdelen. Je zult de rechten handmatig moeten instellen. Zie de <a href="
 "\"http://www.zenphoto.org/news/permissions-for-zenphoto-files-and-folders"
 "\">Troubleshooting guide</a> voor uitleg over Zenphoto-rechten."
@@ -11378,7 +11377,7 @@ msgstr "Stel de Zenphoto standaard opties in"
 #: zp-core/setup/setup-option-defaults.php:45
 #, php-format
 msgid "Migrating lib-auth data version %1$s => version %2$s"
-msgstr "Overzetten van  lib-auth data versie %1$s => versie %2$s"
+msgstr "Overzetten van lib-auth data versie %1$s => versie %2$s"
 
 #: zp-core/setup/setup-option-defaults.php:47
 msgid "failed"
@@ -11810,7 +11809,7 @@ msgstr "<strong>Het tonen van tabellen in de database is mislukt !</strong>"
 #: zp-core/utilities/backup_restore.php:232
 #, php-format
 msgid "backup completed using <em>%1$s(%2$s)</em> compression"
-msgstr "backup voltooid  met<em>%1$s(%2$s)</em> compressie"
+msgstr "backup voltooid met<em>%1$s(%2$s)</em> compressie"
 
 #: zp-core/utilities/backup_restore.php:234
 msgid "backup completed"
@@ -12297,7 +12296,7 @@ msgstr "Reset album thumbnails."
 
 #: zp-core/utilities/reset_albumthumbs.php:19
 msgid "Reset album thumbnails to either random or most recent"
-msgstr "Reset album thumbnails naar óf  willekeurig óf  meest recent"
+msgstr "Reset album thumbnails naar óf willekeurig óf meest recent"
 
 #: zp-core/utilities/reset_albumthumbs.php:48
 msgid "Reset your album thumbnails"
@@ -12454,8 +12453,8 @@ msgid ""
 "with data exceeding the allowed by some browsers."
 msgstr ""
 "Als dit is aangevinkt worden sessies gebruikt voor het weergeven van de map "
-"in <em>Colorbox</em>. Als dit niet is aangevinkt  kunnen sommige browsers "
-"problemen hebben  met het weergeven. Uit veiligheidsoverwegingen wordt "
+"in <em>Colorbox</em>. Als dit niet is aangevinkt kunnen sommige browsers "
+"problemen hebben met het weergeven. Uit veiligheidsoverwegingen wordt "
 "aangeraden om deze optie aan te vinken."
 
 #: zp-core/zp-extensions/GoogleMap.php:322
@@ -13176,7 +13175,7 @@ msgstr ""
 #: zp-core/zp-extensions/class-textobject.php:78
 #: zp-core/zp-extensions/class-video.php:48
 msgid "Watermark default images"
-msgstr "Watermerk  afbeeldingen"
+msgstr "Watermerk afbeeldingen"
 
 #: zp-core/zp-extensions/class-AnyFile.php:39
 #: zp-core/zp-extensions/class-WEBdocs.php:53
@@ -13247,7 +13246,7 @@ msgstr "Kies de WEB service voor het renderen van PDF bestanden."
 #, php-format
 msgid "Select <em>google</em> to use the <a href=\"%s\">GoogleDocs viewer</a>"
 msgstr ""
-"Selecteer <em>GoogleDocs</em> om de  <a href=\"%s\">GoogleDocs viewer</a> te "
+"Selecteer <em>GoogleDocs</em> om de <a href=\"%s\">GoogleDocs viewer</a> te "
 "gebruiken."
 
 #: zp-core/zp-extensions/class-WEBdocs.php:62
@@ -14069,7 +14068,7 @@ msgstr "E-mail verzenden mislukt."
 msgid "Error posting comment:"
 msgid_plural "Errors posting comment:"
 msgstr[0] "Fout bij plaatsen van reactie"
-msgstr[1] "Fouten  bij plaatsen van reactie"
+msgstr[1] "Fouten bij plaatsen van reactie"
 
 #: zp-core/zp-extensions/comment_form/functions.php:272
 msgid "You must supply an e-mail address."
@@ -14139,13 +14138,13 @@ msgid ""
 "A comment has been placed in moderation on your image “%1$s” in the album "
 "“%2$s”."
 msgstr ""
-"Er is een reactie ter goedkeuring op de afbeelding  “%1$s” in het album "
+"Er is een reactie ter goedkeuring op de afbeelding “%1$s” in het album "
 "“%2$s”."
 
 #: zp-core/zp-extensions/comment_form/functions.php:368
 #, php-format
 msgid "A comment has been posted on your image “%1$s” in the album “%2$s”."
-msgstr "Er is een reactie op de afbeelding  “%1$s” in het album “%2$s”."
+msgstr "Er is een reactie op de afbeelding “%1$s” in het album “%2$s”."
 
 #: zp-core/zp-extensions/comment_form/functions.php:374
 #, php-format
@@ -14692,7 +14691,7 @@ msgstr "Doorzoekt PHP scripts op het gebruik van verouderde functies."
 
 #: zp-core/zp-extensions/deprecated-functions.php:167
 msgid "Check for update"
-msgstr "Controleer op  updates."
+msgstr "Controleer op updates."
 
 #: zp-core/zp-extensions/deprecated-functions/admin_tab.php:24
 msgid "Deprecated Functions"
@@ -14739,7 +14738,7 @@ msgid ""
 msgstr ""
 "<strong>Opmerking:</strong> Deze functie geeft verkeerde resultaten wanneer "
 "bijvoorbeeld de functienaam voorkomt in een reactie.<br />Functies met een "
-"“*” zijn class methodes. Functies met een “+”  hebben verouderde parameters."
+"“*” zijn class methodes. Functies met een “+” hebben verouderde parameters."
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:13
 msgid "Use the instantiate method instead"
@@ -14920,7 +14919,7 @@ msgid ""
 "Use $_zp_captcha->getCaptcha($prompt). Note that you will require updating "
 "your code to the new function."
 msgstr ""
-"Gebruik $_zp_captcha->getCaptcha($prompt).  Vergeet niet je code aan te "
+"Gebruik $_zp_captcha->getCaptcha($prompt). Vergeet niet je code aan te "
 "passen voor het gebruik van de nieuwe functie!"
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:442
@@ -15346,7 +15345,7 @@ msgid ""
 "shared with other plugins.</p>"
 msgstr ""
 "<p class=\"notebox\">*<strong>Opmerking:</strong> Deze optie wordt gedeeld "
-"met andere  plugins.</p>"
+"met andere plugins.</p>"
 
 #: zp-core/zp-extensions/elFinder.php:25
 msgid ""
@@ -15438,7 +15437,7 @@ msgid ""
 "You are receiving this e-mail because a user code (%1$s) has been created "
 "for you on the Zenphoto gallery %2$s."
 msgstr ""
-"Je ontvangt deze e-mail omdat een gebruiker met de naam  %1$s is aangemaakt "
+"Je ontvangt deze e-mail omdat een gebruiker met de naam %1$s is aangemaakt "
 "voor Zenphoto galerij %2$s."
 
 #: zp-core/zp-extensions/email-newuser.php:26
@@ -17436,7 +17435,7 @@ msgid ""
 "A <em>%1$s</em> item with the link <em>%2$s</em> already exists in <em>%3$s "
 "</em>!"
 msgstr ""
-"Er bestaat al een <em>%1$s</em> onderdeel met de link <em>%2$s</em>  in <em>"
+"Er bestaat al een <em>%1$s</em> onderdeel met de link <em>%2$s</em> in <em>"
 "%3$s</em> !"
 
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:743
@@ -17945,8 +17944,7 @@ msgstr ""
 "Indien aangevinkt zal de thumbnail een gecentreerd gedeelte worden van de "
 "afbeelding met de ingevoerde breedte en hoogte na geschaald te zijn naar "
 "thumbnail grootte (vanuit de kortste zijde). Anders zal de volledige "
-"afbeelding geschaald worden naar thumbnail grootte  (vanuit de kortste "
-"zijde)."
+"afbeelding geschaald worden naar thumbnail grootte (vanuit de kortste zijde)."
 
 #: zp-core/zp-extensions/paged_thumbs_nav.php:55
 msgid "Placeholders"
@@ -18024,7 +18022,7 @@ msgid ""
 "this default."
 msgstr ""
 "De diepte van de subalbums die getoond worden met <code>printAlbumMenu</"
-"code> en <code>printAlbumMenuList</code> “List” optie. Opmerking:  thema’s "
+"code> en <code>printAlbumMenuList</code> “List” optie. Opmerking: thema’s "
 "kunnen deze instelling negeren."
 
 #: zp-core/zp-extensions/print_album_menu.php:52
@@ -18066,7 +18064,7 @@ msgstr "Publiceer content"
 
 #: zp-core/zp-extensions/publishContent.php:43
 msgid "Manage published state of content in your gallery."
-msgstr "Beheer publicatie-status  van content in de galerij"
+msgstr "Beheer publicatie-status van content in de galerij"
 
 #: zp-core/zp-extensions/publishContent/publishContent.php:112
 msgid "Manage content publication"
@@ -18702,9 +18700,9 @@ msgstr ""
 "verifcatie van de aanvraag. <p class=\"notebox\"><strong>Opmerking:</strong> "
 "Je moet <code>%1$s</code> in het bericht plaatsen, daar waar wilt dat de "
 "registratie-link <em>registratie verificatie</em> komt. Je kunt ook de "
-"<em>naam</em> (<code>%2$s</code>),  <em>gebruiker id</em> (<code>%3$s</"
-"code>) en het <em>wachtwoord</em>* (<code>%4$s</code>) van de aanvrager "
-"invoegen.<br /><br />*Uit veiligheidsoverwegingen wordt het invoegen van het "
+"<em>naam</em> (<code>%2$s</code>), <em>gebruiker id</em> (<code>%3$s</code>) "
+"en het <em>wachtwoord</em>* (<code>%4$s</code>) van de aanvrager invoegen."
+"<br /><br />*Uit veiligheidsoverwegingen wordt het invoegen van het "
 "<em>wachtwoord</em> <strong>afgeraden</strong>.</p>"
 
 #: zp-core/zp-extensions/register_user.php:97
@@ -19419,7 +19417,7 @@ msgstr "Er is een fout opgetreden #%d bij het hernoemen."
 #: zp-core/zp-extensions/seo_cleanup.php:111
 #, php-format
 msgid "<em>%1$s</em> rename to <em>%2$s</em> failed: %3$s"
-msgstr "hernoemen van <em>%1$s</em> naar <em>%2$s</em> mislukt:      %3$s"
+msgstr "hernoemen van <em>%1$s</em> naar <em>%2$s</em> mislukt: %3$s"
 
 #: zp-core/zp-extensions/seo_cleanup.php:86
 #: zp-core/zp-extensions/seo_cleanup.php:117
@@ -20479,7 +20477,7 @@ msgstr ""
 "en de standaard thema-bestanden<em> image.php, album.php</em><em> en index."
 "php</em>.<br /> Als je een pagina in z’n geheel wilt uitsluiten vul dan in: "
 "<em>pagina-naam.php</em>.<br /> Je kunt ook pagina’s met een specifieke "
-"titel, afbeeldingen of albums uitsluiten<br /> Vul dan b.v.  in : <em>pagina-"
+"titel, afbeeldingen of albums uitsluiten<br /> Vul dan b.v. in : <em>pagina-"
 "naam.php/titlelink, afbeeldings-bestandsnaam of album-naam</em>.Er kunnen "
 "meerdere uitsluitingen ingevuld worden. Deze moeten dan gescheiden worden "
 "door een <em>komma</em>."
@@ -20652,7 +20650,7 @@ msgid ""
 "Predefined crop width (%) for custom cropped thumb  images included using "
 "tinyZenpage."
 msgstr ""
-"Breedte  (%) van aangepaste thumbnail-uitsnede, gebruikt door tinyZenpage."
+"Breedte (%) van aangepaste thumbnail-uitsnede, gebruikt door tinyZenpage."
 
 #: zp-core/zp-extensions/tinymce4.php:65
 msgid "Custom thumb crop - height"
@@ -20668,7 +20666,7 @@ msgstr ""
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/js/dialog.php:80
 #, php-format
 msgid "It is not possible to a include a custom size %s."
-msgstr "Het is niet mogelijk om  %s met een aangepast formaat in te voegen."
+msgstr "Het is niet mogelijk om %s met een aangepast formaat in te voegen."
 
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/js/dialog.php:91
 #, php-format
@@ -20875,7 +20873,7 @@ msgid ""
 "Custom thumbnail: size for the longest side / (cropwidth x cropheight). You "
 "can set default sizes for this on the TinyMCE plugin options."
 msgstr ""
-"Aangespaste thumbnail:  formaat langste zijde / (uitsnede breedte x uitsnede "
+"Aangespaste thumbnail: formaat langste zijde / (uitsnede breedte x uitsnede "
 "hoogte). Je kunt hiervoor standaard waarden instellen in de TinyMCE plugin "
 "opties."
 
@@ -21664,12 +21662,12 @@ msgstr "Gebruiker %s is bij meerdere groepen ingedeeld."
 
 #: zp-core/zp-extensions/user_groups/user_groups-tab.php:424
 msgid "Group names may not contain “?”, “&”, or quotation marks."
-msgstr "Groepsnamen mogen geen  “?”, “&”, of aanhalingstekens bevatten."
+msgstr "Groepsnamen mogen geen “?”, “&”, of aanhalingstekens bevatten."
 
 #: zp-core/zp-extensions/user_groups/user_groups-tab.php:429
 #, php-format
 msgid "The group “%s” already exists."
-msgstr "De groep “%s”  bestaat al."
+msgstr "De groep “%s” bestaat al."
 
 #: zp-core/zp-extensions/user_groups/user_groups-tab.php:450
 msgid "Assign users to groups."
@@ -22012,15 +22010,15 @@ msgid ""
 "<strong>Posts (post_status published and draft only) => Zenpage articles</"
 "strong>"
 msgstr ""
-"<strong>Berichten (alleen bericht_status gepubliceerd  en concept) => "
-"Zenpage artikelen</strong>"
+"<strong>Berichten (alleen bericht_status gepubliceerd en concept) => Zenpage "
+"artikelen</strong>"
 
 #: zp-core/zp-extensions/wordpress_import.php:394
 msgid ""
 "<strong>Pages (post_status published and draft only) => Zenpage pages</"
 "strong>"
 msgstr ""
-"<strong>Pagina’s (alleen bericht_status gepubliceerd  en concept) => Zenpage "
+"<strong>Pagina’s (alleen bericht_status gepubliceerd en concept) => Zenpage "
 "pagina’s</strong>"
 
 #: zp-core/zp-extensions/wordpress_import.php:395
@@ -22128,7 +22126,7 @@ msgid ""
 "extract XMP metadata from them into the <em>image_name</em> record."
 msgstr ""
 "De plugin zoekt naar bestanden met de opgegeven extensie en haalt daar de "
-"XMP metadata uit. Dit  wordt opgeslagen in de <em>image_name</em> tabel van "
+"XMP metadata uit. Dit wordt opgeslagen in de <em>image_name</em> tabel van "
 "de database."
 
 #: zp-core/zp-extensions/xmpMetadata.php:598
@@ -22471,7 +22469,7 @@ msgid ""
 "multilingual mode)."
 msgstr ""
 "Vink <em>Bewerk Titel-link</em> aan, als je de weergave van de titel in de "
-"URL wilt wijzigen.  Anders zal de URL automatisch aangepast worden aan een "
+"URL wilt wijzigen. Anders zal de URL automatisch aangepast worden aan een "
 "eventuele verandering in de titel. Wanneer je dat niet wilt vink dan "
 "<em>Activeer permaTitel-link</em> aan en de Titel-link blijft altijd "
 "hetzelfde. (aanbevolen wanneer in Zenphoto de optie meertalig aangevinkt "
@@ -22507,7 +22505,7 @@ msgid ""
 "on the plugin option then."
 msgstr ""
 "<em>Inkorting artikel:</em> Je kunt zelf aangeven uit hoeveel karakters het "
-"ingekorte artikel moet bestaan door de editor <em>page break</em>  knop te "
+"ingekorte artikel moet bestaan door de editor <em>page break</em> knop te "
 "gebruiken. Dit heeft dan voorrang op de lengte van de inkorting zoals "
 "ingesteld bij de plugin-opties."
 
@@ -22646,7 +22644,7 @@ msgid ""
 msgstr ""
 "Een zoekmachine-vriendelijke <em>titel-link</em> (ook wel SLUG genoemd) "
 "zonder speciale karakters die gebruikt wordt in URL’s, wordt automatisch "
-"gegenereerd van de titel in de gekozen taal.  Je kunt deze later, indien "
+"gegenereerd van de titel in de gekozen taal. Je kunt deze later, indien "
 "nodig, nog wijzigen."
 
 #: zp-core/zp-extensions/zenpage/admin-edit.php:748
@@ -22884,7 +22882,7 @@ msgid ""
 "Use instead the Zenpage category global object variable: "
 "$_zp_current_category->getID()."
 msgstr ""
-"Gebruik in plaats hiervoor de Zenpage categorie global object variabele:  "
+"Gebruik in plaats hiervoor de Zenpage categorie global object variabele: "
 "$_zp_current_category->getID()."
 
 #: zp-core/zp-extensions/zenpage/deprecated-functions.php:378
@@ -22892,7 +22890,7 @@ msgid ""
 "Use instead the Zenpage category global object variable: "
 "$_zp_current_category->getParentID()."
 msgstr ""
-"Gebruik in plaats hiervoor de Zenpage categorie global object variabele:   "
+"Gebruik in plaats hiervoor de Zenpage categorie global object variabele: "
 "$_zp_current_category->getParentID()."
 
 #: zp-core/zp-extensions/zenpage/deprecated-functions.php:388
@@ -22900,7 +22898,7 @@ msgid ""
 "Use instead the Zenpage news global object variable: "
 "$_zp_current_zenpage_news->inNewsCategory($catlink)."
 msgstr ""
-"Gebruik in plaats hiervoor de Zenpage nieuws global object variabele:  "
+"Gebruik in plaats hiervoor de Zenpage nieuws global object variabele: "
 "$_zp_current_zenpage_news->inNewsCategory($catlink)."
 
 #: zp-core/zp-extensions/zenpage/deprecated-functions.php:398
@@ -22908,7 +22906,7 @@ msgid ""
 "Use instead the Zenpage news global object variable: "
 "$_zp_current_zenpage_news->inSubNewsCategoryOf($catlink)."
 msgstr ""
-"Gebruik in plaats hiervoor de Zenpage nieuws global object variabele:  "
+"Gebruik in plaats hiervoor de Zenpage nieuws global object variabele: "
 "$_zp_current_zenpage_news->inSubNewsCategoryOf($catlink)."
 
 #: zp-core/zp-extensions/zenpage/deprecated-functions.php:409
@@ -22916,7 +22914,7 @@ msgid ""
 "Use instead the Zenpage category global object variable: "
 "$_zp_current_category->isSubNewsCategoryOf($catlink)."
 msgstr ""
-"Gebruik in plaats hiervoor de Zenpage categorie global object variabele:   "
+"Gebruik in plaats hiervoor de Zenpage categorie global object variabele: "
 "$_zp_current_category->isSubNewsCategoryOf($catlink)."
 
 #: zp-core/zp-extensions/zenpage/deprecated-functions.php:418
@@ -23460,7 +23458,7 @@ msgid ""
 "The key used in hashing the CAPTCHA string. Note: this key will change with "
 "each successful CAPTCHA verification."
 msgstr ""
-"De sleutel om de CAPTCHA string te hashen. <strong>Let op:</strong>  deze "
+"De sleutel om de CAPTCHA string te hashen. <strong>Let op:</strong> deze "
 "sleutel verandert na elke succesvolle CAPTCHA verificatie."
 
 #: zp-core/zp-extensions/zpCaptcha.php:49
