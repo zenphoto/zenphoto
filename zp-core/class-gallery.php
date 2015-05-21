@@ -1103,6 +1103,16 @@ class Gallery {
 		return $this->data;
 	}
 
+	function getLink($page = NULL) {
+		$rewrite = '';
+		$plain = '/index.php';
+		if ($page > 1) {
+			$rewrite .=_PAGE_ . '/' . $page;
+			$plain .= "&page=$page";
+		}
+		return zp_apply_filter('getLink', rewrite_path($rewrite, $plain), $this, $page);
+	}
+
 }
 
 ?>

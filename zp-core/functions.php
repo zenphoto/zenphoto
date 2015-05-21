@@ -2201,6 +2201,7 @@ function reveal($content, $visible = false) {
 function applyMacros($text) {
 	$content_macros = getMacros();
 	preg_match_all('/\[(\w+)(.*?)\]/i', $text, $instances);
+
 	foreach ($instances[0] as $instance => $macro_instance) {
 		$macroname = strtoupper($instances[1][$instance]);
 		if (array_key_exists($macroname, $content_macros)) {
@@ -2216,7 +2217,7 @@ function applyMacros($text) {
 				$k = 0;
 				foreach ($l[0] as $s) {
 					if ($s != ',') {
-						$parms[$k++] = trim($s, '\'"'); //	remove any quote marks
+						$parms[$k++] = trim($s, ',\'"'); //	remove any quote marks
 					}
 				}
 			} else {
@@ -2300,7 +2301,7 @@ function applyMacros($text) {
 						if ($class == 'function') {
 							ob_start();
 							$data = call_user_func_array($macro['value'], $parameters);
-							if (empty($data)) {
+							if (is_null($data)) {
 								$data = ob_get_contents();
 							}
 							ob_end_clean();
@@ -2309,8 +2310,11 @@ function applyMacros($text) {
 							call_user_func_array($macro['value'], $parameters);
 							$data = ob_get_contents();
 							ob_end_clean();
+							if (empty($data)) {
+								$data = NULL;
+							}
 						}
-						if (empty($data)) {
+						if (is_null($data)) {
 							$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> retuned no data'), trim($macro_instance, '[]')) . '</span>';
 						} else {
 							$data = "\n<!--Begin " . $macroname . "-->\n" . $data . "\n<!--End " . $macroname . "-->\n";

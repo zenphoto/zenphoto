@@ -86,6 +86,8 @@
 <p>The <em>class-video</em> and <em>xmpMetadata</em> plugins&nbsp;will create database columns for their metadata&nbsp;only if they are enabled when <code>setup</code> is run.</p>
 <p>You may see a "configuration change" notice when you change the state of these options. This will indicate that a <em>setup request</em> has been made (and by what process.) This is a reminder that the change will not take effect until you have run <code>setup</code> so data that might be stored in these fields may not be saved&nbsp;to the database.</p>
 <h2>Plugins</h2>
+<p><em>galleryArticles:</em></p>
+<p>The body of the article created is dynamically fetched from the description of the object. Previously it was captured at the time the article was published so did not track changes to the object's description. In order to accomplish this <em>galleryArticles</em> declares a macro named GALLERYARTICLEDESC.</p>
 <p><em>tagsFromMetadata:</em></p>
 <p>This plugin will allow you to select specific metadata items from an image and set the values of these items as tags for the image. So, for instance, you can select <em>EXIFMake</em> and all your images will be tagged with the camera manufacturer's name (provided that camera does record that metadata item.) Tags will be created in each enabled language provided there is a unique translation in that language for the item.</p>
 <p><em>tagFromSearch:</em></p>

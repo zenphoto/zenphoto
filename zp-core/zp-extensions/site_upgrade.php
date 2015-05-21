@@ -134,13 +134,7 @@ switch (OFFSET_PATH) {
 
 		function site_upgrade_button($buttons) {
 			global $_zp_conf_vars;
-			$ht = @file_get_contents(SERVERPATH . '/.htaccess');
-			preg_match('|[# ][ ]*RewriteRule(.*)plugins/site_upgrade/closed|', $ht, $matches);
-			if (!$matches || strpos($matches[0], '#') === 0) {
-				$state = @$_zp_conf_vars['site_upgrade_state'];
-			} else {
-				$state = 'closed';
-			}
+			$state = @$_zp_conf_vars['site_upgrade_state'];
 			$buttons[] = array(
 							'XSRFTag'			 => 'site_upgrade_refresh',
 							'category'		 => gettext('Admin'),

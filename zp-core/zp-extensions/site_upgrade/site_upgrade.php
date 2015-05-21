@@ -10,6 +10,8 @@ switch (isset($_GET['siteState']) ? $_GET['siteState'] : NULL) {
 	case 'closed':
 		$report = '';
 		setSiteState('closed');
+		zp_apply_filter('security_misc', true, 'site_upgrade', 'zp_admin_auth', 'closed');
+
 		if (extensionEnabled('cloneZenphoto')) {
 			require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cloneZenphoto.php');
 			if (class_exists('cloneZenphoto')) {
@@ -23,6 +25,8 @@ switch (isset($_GET['siteState']) ? $_GET['siteState'] : NULL) {
 	case 'open':
 		$report = gettext('Site is viewable.');
 		setSiteState('open');
+		zp_apply_filter('security_misc', true, 'site_upgrade', 'zp_admin_auth', 'open');
+
 		if (extensionEnabled('cloneZenphoto')) {
 			require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cloneZenphoto.php');
 			if (class_exists('cloneZenphoto')) {
@@ -36,6 +40,8 @@ switch (isset($_GET['siteState']) ? $_GET['siteState'] : NULL) {
 	case 'closed_for_test':
 		$report = '';
 		setSiteState('closed_for_test');
+		zp_apply_filter('security_misc', true, 'site_upgrade', 'zp_admin_auth', 'closed_for_test');
+
 		if (extensionEnabled('cloneZenphoto')) {
 			require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cloneZenphoto.php');
 			if (class_exists('cloneZenphoto')) {

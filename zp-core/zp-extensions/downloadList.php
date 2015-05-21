@@ -11,7 +11,7 @@
  * The file names and the download path of the items are stored with the number of downloads in the database's plugin_storage table.
  *
  * The download link is something like:
- * <var>www.yourdomain.com/download.php?file=<i>id number of the download</i></var>.
+ * <var>%FULLWEBPATH%/download.php?file=<i>id number of the download</i></var>.
  *
  * So the actual download source is not public. The list itself is generated directly from the file system. However,
  * files which no longer exist are
@@ -129,7 +129,7 @@ class DownloadList {
 						 value="<?php echo $x; ?>" />
 			<label>
 				<input type="checkbox" name="disclose_password_downloadList" id="disclose_password_downloadList" onclick="passwordClear('_downloadList');
-						togglePassword('_downloadList');"><?php echo gettext('Show password'); ?>
+								togglePassword('_downloadList');"><?php echo gettext('Show password'); ?>
 			</label>
 			<br />
 			<span class="password_field__downloadList">
