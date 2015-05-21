@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Zenphoto 1.4.7\n"
+"Project-Id-Version: Zenphoto 1.4.9\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-30 10:44+0100\n"
+"POT-Creation-Date: 2015-05-21 11:51+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: fretzl\n"
 "Language-Team: \n"
@@ -14,7 +14,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: /Applications/MAMP/htdocs/ZpTranslation-Master/\n"
 "X-Poedit-Bookmarks: -1,-1,-1,-1,-1,3092,-1,-1,-1,-1\n"
-"X-Generator: Poedit 1.7.6\n"
+"X-Generator: Poedit 1.8\n"
 "X-Poedit-SearchPath-0: zp-core\n"
 "X-Poedit-SearchPath-1: themes\n"
 "X-Poedit-SearchPathExcluded-0: zp-core/zp-extensions/tinymce4/tinymce.min."
@@ -52,8 +52,8 @@ msgstr "Zoek  in het album"
 
 #: themes/basic/album.php:24 themes/effervescence_plus/slideshow.php:55
 #: themes/zenpage/album.php:26 themes/zpmobile/functions.php:67
-#: zp-core/template-functions.php:449 zp-core/template-functions.php:1290
-#: zp-core/template-functions.php:1321 zp-core/template-functions.php:3834
+#: zp-core/template-functions.php:449 zp-core/template-functions.php:1289
+#: zp-core/template-functions.php:1320 zp-core/template-functions.php:3833
 #: zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:68
 #: zp-core/zp-extensions/html_meta_tags.php:225
 #: zp-core/zp-extensions/slideshow.php:747
@@ -352,7 +352,7 @@ msgstr "Hoofdindex"
 #: themes/effervescence_plus/register.php:42
 #: themes/effervescence_plus/search.php:105
 #: themes/effervescence_plus/slideshow.php:34 themes/zpmobile/functions.php:65
-#: zp-core/template-functions.php:1424
+#: zp-core/template-functions.php:1423
 #: zp-core/zp-extensions/menu_manager.php:826
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:463
 msgid "Home"
@@ -466,7 +466,7 @@ msgid "Effervescence %1$s %2$s"
 msgstr "Effervescence %1$s %2$s"
 
 #: themes/effervescence_plus/functions.php:323
-#: zp-core/template-functions.php:1109
+#: zp-core/template-functions.php:1108
 msgid "The album is password protected."
 msgstr "Dit is album is beveiligd met een wachtwoord."
 
@@ -818,8 +818,8 @@ msgstr "Pagina’s"
 
 #: themes/effervescence_plus/sidebar.php:80
 #: themes/effervescence_plus/themeoptions.php:77 themes/zenpage/sidebar.php:56
-#: themes/zpmobile/functions.php:78 zp-core/template-functions.php:1273
-#: zp-core/template-functions.php:1328
+#: themes/zpmobile/functions.php:78 zp-core/template-functions.php:1272
+#: zp-core/template-functions.php:1327
 #: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:876
 msgid "Archive"
 msgstr "Archief"
@@ -1941,12 +1941,12 @@ msgid "%s (descending)"
 msgstr "%s aflopend"
 
 #: zp-core/admin-edit.php:908 zp-core/admin-functions.php:1410
-#: zp-core/admin-options.php:1286 zp-core/exif/exif.php:493
-#: zp-core/exif/makers/canon.php:135 zp-core/exif/makers/canon.php:198
-#: zp-core/exif/makers/canon.php:219 zp-core/exif/makers/fujifilm.php:122
-#: zp-core/exif/makers/nikon.php:257 zp-core/exif/makers/panasonic.php:105
-#: zp-core/exif/makers/panasonic.php:108 zp-core/exif/makers/panasonic.php:113
-#: zp-core/exif/makers/panasonic.php:139
+#: zp-core/admin-functions.php:4886 zp-core/admin-options.php:1286
+#: zp-core/exif/exif.php:493 zp-core/exif/makers/canon.php:135
+#: zp-core/exif/makers/canon.php:198 zp-core/exif/makers/canon.php:219
+#: zp-core/exif/makers/fujifilm.php:122 zp-core/exif/makers/nikon.php:257
+#: zp-core/exif/makers/panasonic.php:105 zp-core/exif/makers/panasonic.php:108
+#: zp-core/exif/makers/panasonic.php:113 zp-core/exif/makers/panasonic.php:139
 msgid "Manual"
 msgstr "handmatig"
 
@@ -3026,7 +3026,7 @@ msgstr "Hit-tellers zijn gereset."
 msgid "Cache has been purged."
 msgstr "Cache is gewist."
 
-#: zp-core/admin-functions.php:4717 zp-core/admin-upload.php:155
+#: zp-core/admin-functions.php:4717 zp-core/admin-upload.php:154
 msgid "Your files have been uploaded."
 msgstr "Je bestanden zijn geupload."
 
@@ -5685,31 +5685,31 @@ msgstr ""
 msgid "thumbnail preview"
 msgstr "thumbnail voorvertoning"
 
-#: zp-core/admin-upload.php:91
+#: zp-core/admin-upload.php:90
 msgid "Upload Images"
 msgstr "Upload afbeeldingen"
 
-#: zp-core/admin-upload.php:106
+#: zp-core/admin-upload.php:105
 #, php-format
 msgid "This web-based upload accepts the file formats: %s, and %s."
 msgstr "Deze web-gebaseerde upload accepteerd de bestandsformaten: %s, en %s."
 
-#: zp-core/admin-upload.php:108
+#: zp-core/admin-upload.php:107
 #, php-format
 msgid "This web-based upload accepts the file formats: %s and %s."
 msgstr "Deze web-gebaseerde upload accepteerd  bestandsformaten: %s and %s."
 
-#: zp-core/admin-upload.php:114
+#: zp-core/admin-upload.php:113
 msgid "<strong>Note: </strong>"
 msgstr "<strong>Opmerking: </strong>"
 
-#: zp-core/admin-upload.php:119
+#: zp-core/admin-upload.php:118
 msgid "ZIP files must contain only Zenphoto supported <em>image</em> types."
 msgstr ""
 "ZIP-bestanden mogen alleen bestanden bevatten die door Zenphoto ondersteund "
 "worden."
 
-#: zp-core/admin-upload.php:129
+#: zp-core/admin-upload.php:128
 #, php-format
 msgid ""
 "The maximum size for any one file is <strong>%sB</strong> and the maximum "
@@ -5722,7 +5722,7 @@ msgstr ""
 "ingesteld in de PHP-configuratie: <code>upload_max_filesize</code> en "
 "<code>post_max_size</code>."
 
-#: zp-core/admin-upload.php:131
+#: zp-core/admin-upload.php:130
 #, php-format
 msgid ""
 "The maximum size for your total upload is <strong>%sB</strong> which is set "
@@ -5731,7 +5731,7 @@ msgstr ""
 "De maximale groote voor je totale upload is <strong>%sB</strong>.<br />Dit "
 "is ingesteld in de PHP-configuratie: <code>post_max_filesize</code>."
 
-#: zp-core/admin-upload.php:138
+#: zp-core/admin-upload.php:137
 msgid ""
 "Don’t forget, you can also use <acronym title=\"File Transfer Protocol"
 "\">FTP</acronym> to upload folders of images into the albums directory!"
@@ -5740,25 +5740,25 @@ msgstr ""
 "acronym> kunt gebruiken om mappen en afbeeldingen te uploaden naar de map "
 "<em>albums</em> !"
 
-#: zp-core/admin-upload.php:146
+#: zp-core/admin-upload.php:145
 msgid "Upload Error"
 msgstr "Upload fout"
 
-#: zp-core/admin-upload.php:147
+#: zp-core/admin-upload.php:146
 msgid "There was an error submitting the form. Please try again."
 msgstr ""
 "Er was een fout tijdens het versturen van het formulier. Probeer het a.u.b "
 "opnieuw."
 
-#: zp-core/admin-upload.php:154
+#: zp-core/admin-upload.php:153
 msgid "Upload complete"
 msgstr "Upload voltooid"
 
-#: zp-core/admin-upload.php:162
+#: zp-core/admin-upload.php:161
 msgid "PHP Safe Mode Restrictions in effect!"
 msgstr "PHP Safe Mode staat aan!"
 
-#: zp-core/admin-upload.php:163
+#: zp-core/admin-upload.php:162
 msgid ""
 "Zenphoto may be unable to perform uploads when PHP Safe Mode restrictions "
 "are in effect"
@@ -5766,50 +5766,50 @@ msgstr ""
 "Het is mogelijk dat Zenphoto geen uploads kan verwerken als PHP Safe Mode "
 "aanstaat"
 
-#: zp-core/admin-upload.php:169
+#: zp-core/admin-upload.php:168
 msgid "Upload to:"
 msgstr "Upload naar:"
 
-#: zp-core/admin-upload.php:211 zp-core/admin-upload.php:283
-#: zp-core/admin-upload.php:294 zp-core/admin-upload.php:300
-#: zp-core/admin-upload.php:329
+#: zp-core/admin-upload.php:210 zp-core/admin-upload.php:282
+#: zp-core/admin-upload.php:293 zp-core/admin-upload.php:299
+#: zp-core/admin-upload.php:328
 msgid "That name is already used."
 msgstr "Die naam is al in gebruik."
 
-#: zp-core/admin-upload.php:211 zp-core/admin-upload.php:283
-#: zp-core/admin-upload.php:294 zp-core/admin-upload.php:300
-#: zp-core/admin-upload.php:329
+#: zp-core/admin-upload.php:210 zp-core/admin-upload.php:282
+#: zp-core/admin-upload.php:293 zp-core/admin-upload.php:299
+#: zp-core/admin-upload.php:328
 msgid ""
 "This upload has to have a folder. Type a title or folder name to continue..."
 msgstr ""
 "Deze upload heeft een map nodig. Vul een titel of mapnaam in om door te "
 "gaan..."
 
-#: zp-core/admin-upload.php:284
+#: zp-core/admin-upload.php:283
 msgid "Make a new Album"
 msgstr "Maak een nieuw album"
 
-#: zp-core/admin-upload.php:286 zp-core/setup/index.php:1091
+#: zp-core/admin-upload.php:285 zp-core/setup/index.php:1091
 msgid "and"
 msgstr "en"
 
-#: zp-core/admin-upload.php:288
+#: zp-core/admin-upload.php:287
 msgid "Publish the album so everyone can see it."
 msgstr "publiceer het album zodat iedereen het kan zien."
 
-#: zp-core/admin-upload.php:292
+#: zp-core/admin-upload.php:291
 msgid "titled:"
 msgstr "getiteld:"
 
-#: zp-core/admin-upload.php:297
+#: zp-core/admin-upload.php:296
 msgid "with the folder name:"
 msgstr "met de mapnaam:"
 
-#: zp-core/admin-upload.php:303
+#: zp-core/admin-upload.php:302
 msgid "Auto-generate"
 msgstr "maak automatisch aan"
 
-#: zp-core/admin-upload.php:364
+#: zp-core/admin-upload.php:363
 msgid "There are no albums to which you can upload."
 msgstr "Er zijn geen albums om naar te uploaden."
 
@@ -11638,24 +11638,24 @@ msgstr "Log uit"
 msgid "My favorites"
 msgstr "Mijn favorieten"
 
-#: zp-core/template-functions.php:846 zp-core/template-functions.php:942
+#: zp-core/template-functions.php:846 zp-core/template-functions.php:940
 #: zp-core/zp-extensions/menu_manager.php:611
 msgid "Previous Page"
 msgstr "Vorige Pagina"
 
-#: zp-core/template-functions.php:848 zp-core/template-functions.php:1048
+#: zp-core/template-functions.php:848 zp-core/template-functions.php:1046
 #: zp-core/zp-extensions/menu_manager.php:651
 msgid "Next Page"
 msgstr "Volgende Pagina"
 
-#: zp-core/template-functions.php:965
+#: zp-core/template-functions.php:963
 #: zp-core/zp-extensions/menu_manager.php:617
 msgid "Page 1"
 msgstr "pagina 1"
 
-#: zp-core/template-functions.php:980 zp-core/template-functions.php:989
-#: zp-core/template-functions.php:1019 zp-core/template-functions.php:1026
-#: zp-core/template-functions.php:1036
+#: zp-core/template-functions.php:978 zp-core/template-functions.php:987
+#: zp-core/template-functions.php:1017 zp-core/template-functions.php:1024
+#: zp-core/template-functions.php:1034
 #: zp-core/zp-extensions/menu_manager.php:622
 #: zp-core/zp-extensions/menu_manager.php:640
 #: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1048
@@ -11666,7 +11666,7 @@ msgid_plural "Page %u"
 msgstr[0] "pagina %u"
 msgstr[1] "pagina’s %u"
 
-#: zp-core/template-functions.php:1000
+#: zp-core/template-functions.php:998
 #: zp-core/zp-extensions/menu_manager.php:632
 #: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1057
 #, php-format
@@ -11675,40 +11675,40 @@ msgid_plural "Page %1$u"
 msgstr[0] "pagina %1$u"
 msgstr[1] "pagina %1$u"
 
-#: zp-core/template-functions.php:1112
+#: zp-core/template-functions.php:1111
 msgid "The album is un-published."
 msgstr "Dit album is niet gepubliceerd."
 
-#: zp-core/template-functions.php:1221
+#: zp-core/template-functions.php:1220
 msgid "Album Thumbnails"
 msgstr "Albumthumbnails"
 
-#: zp-core/template-functions.php:1321
+#: zp-core/template-functions.php:1320
 msgid "Return to search"
 msgstr "Keer terug naar <em>zoeken</em>"
 
-#: zp-core/template-functions.php:1328
+#: zp-core/template-functions.php:1327
 msgid "Return to archive"
 msgstr "Keer terug naar <em>archief</em>"
 
-#: zp-core/template-functions.php:2095
+#: zp-core/template-functions.php:2094
 msgid "The image is marked un-published."
 msgstr "Deze afbeelding is als niet-gepubliceerd gemarkeerd."
 
-#: zp-core/template-functions.php:2470
+#: zp-core/template-functions.php:2469
 msgid "Image Info"
 msgstr "Foto-informatie"
 
-#: zp-core/template-functions.php:3326
+#: zp-core/template-functions.php:3325
 #, php-format
 msgid "View image: %s"
 msgstr "Bekijk afbeelding: %s"
 
-#: zp-core/template-functions.php:3521
+#: zp-core/template-functions.php:3520
 msgid "No popular tags"
 msgstr "Geen populaire tags"
 
-#: zp-core/template-functions.php:3829
+#: zp-core/template-functions.php:3828
 msgid ""
 "printSearchForm $album_list parameter is deprecated. Pass array(\"albums"
 "\"=>array(album, album, ...)) instead."
@@ -11716,45 +11716,45 @@ msgstr ""
 "printSearchForm $album_list parameter is verouderd. Gebruik in plaats "
 "daarvan array(“albums”=>aray(album, album,...))."
 
-#: zp-core/template-functions.php:3845
+#: zp-core/template-functions.php:3844
 #, php-format
 msgid "%s within previous results"
 msgstr "%s binnen vorige resultaten"
 
-#: zp-core/template-functions.php:3926
+#: zp-core/template-functions.php:3925
 msgid "search options"
 msgstr "zoekopties"
 
-#: zp-core/template-functions.php:3926
+#: zp-core/template-functions.php:3925
 msgid "fields"
 msgstr "velden"
 
-#: zp-core/template-functions.php:3966
+#: zp-core/template-functions.php:3965
 msgid "Within"
 msgstr "binnen"
 
-#: zp-core/template-functions.php:3970
+#: zp-core/template-functions.php:3969
 #: zp-core/zp-extensions/flag_thumbnail.php:91
 msgid "New"
 msgstr "Nieuw"
 
-#: zp-core/template-functions.php:3977
+#: zp-core/template-functions.php:3976
 msgid "Check/uncheck all"
 msgstr "Selecteer/Deselecteer alle"
 
-#: zp-core/template-functions.php:4029
+#: zp-core/template-functions.php:4028
 msgid "no date"
 msgstr "geen datum"
 
-#: zp-core/template-functions.php:4259
+#: zp-core/template-functions.php:4258
 msgid "The page you are trying to view is password protected."
 msgstr "Deze pagina is beveiligd met een wachtwoord."
 
-#: zp-core/template-functions.php:4264
+#: zp-core/template-functions.php:4263
 msgid "login"
 msgstr "login"
 
-#: zp-core/template-functions.php:4281
+#: zp-core/template-functions.php:4280
 msgid ""
 "Powered by <a href=\"http://www.zenphoto.org\" title=\"A simpler web album"
 "\"><span id=\"zen-part\">zen</span><span id=\"photo-part\">PHOTO</span></a>"
@@ -11762,21 +11762,21 @@ msgstr ""
 "Powered by <a href=\"http://www.zenphoto.org\" title=\"A simpler web album"
 "\"><span id=\"zen-part\">zen</span><span id=\"photo-part\">PHOTO</span></a>"
 
-#: zp-core/template-functions.php:4445
+#: zp-core/template-functions.php:4444
 msgid "Zenphoto Error:</strong> the requested object was not found."
 msgstr "Zenphoto fout:</strong> het gevraagde object kon niet gevonden worden."
 
-#: zp-core/template-functions.php:4447
+#: zp-core/template-functions.php:4446
 #, php-format
 msgid "Album: %s"
 msgstr "Album: %s"
 
-#: zp-core/template-functions.php:4450
+#: zp-core/template-functions.php:4449
 #, php-format
 msgid "Image: %s"
 msgstr "Afbeelding: %s"
 
-#: zp-core/template-functions.php:4453
+#: zp-core/template-functions.php:4452
 #, php-format
 msgid "Page: %s"
 msgstr "Pagina: %s"
