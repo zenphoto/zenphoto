@@ -88,22 +88,20 @@ class ThemeOptions {
 			$note .= '<p class="notebox">' . sprintf(gettext('<strong>Note:</strong> The <em>%s</em> custom menu makes use of the <em>print_album_menu</em> plugin.'), $m) . '</p>';
 		}
 		$options = array(
-						gettext('Theme logo')						 => array('key' => 'Theme_logo', 'type' => OPTION_TYPE_TEXTBOX, 'multilingual' => 1, 'order' => 8, 'desc' => gettext('The text for the theme logo')),
-						gettext('Watermark head image')	 => array('key' => 'Watermark_head_image', 'type' => OPTION_TYPE_CHECKBOX, 'order' => 11, 'desc' => gettext('Check to place a watermark on the heading image. (Image watermarking must be set.)')),
-						gettext('Daily image')					 => array('key' => 'effervescence_daily_album_image', 'type' => OPTION_TYPE_CHECKBOX, 'order' => 3, 'desc' => gettext('If checked the heading image will change daily rather than on each page load.')),
-						gettext('Allow search')					 => array('key' => 'Allow_search', 'type' => OPTION_TYPE_CHECKBOX, 'order' => 3.5, 'desc' => gettext('Check to enable search form.')),
-						gettext('Slideshow')						 => array('key' => 'Slideshow', 'type' => OPTION_TYPE_CHECKBOX, 'order' => 6, 'desc' => gettext('Check to enable slideshow for the <em>Smoothgallery</em> personality.')),
-						gettext('Graphic logo')					 => array('key' => 'Graphic_logo', 'type' => OPTION_TYPE_CUSTOM, 'order' => 4, 'desc' => sprintf(gettext('Select a logo (PNG files in the <em>%s/images</em> folder) or leave empty for text logo.'), UPLOAD_FOLDER)),
-						gettext('Theme personality')		 => array('key'				 => 'effervescence_personality', 'type'			 => OPTION_TYPE_SELECTOR,
+						gettext('Separate gallery index')	 => array('key' => 'gallery_index', 'type' => OPTION_TYPE_CHECKBOX, 'order' => 1, 'desc' => gettext('Check to move the gallery index from the home page to gallery.php.') . '<p class="notebox">' . gettext('<strong>Note:</strong> this is assumed if the zenpage plugin is enabled.') . '</p>'),
+						gettext('Theme logo')							 => array('key' => 'Theme_logo', 'type' => OPTION_TYPE_TEXTBOX, 'multilingual' => 1, 'order' => 8, 'desc' => gettext('The text for the theme logo')),
+						gettext('Watermark head image')		 => array('key' => 'Watermark_head_image', 'type' => OPTION_TYPE_CHECKBOX, 'order' => 11, 'desc' => gettext('Check to place a watermark on the heading image. (Image watermarking must be set.)')),
+						gettext('Daily image')						 => array('key' => 'effervescence_daily_album_image', 'type' => OPTION_TYPE_CHECKBOX, 'order' => 3, 'desc' => gettext('If checked the heading image will change daily rather than on each page load.')),
+						gettext('Allow search')						 => array('key' => 'Allow_search', 'type' => OPTION_TYPE_CHECKBOX, 'order' => 3.5, 'desc' => gettext('Check to enable search form.')),
+						gettext('Slideshow')							 => array('key' => 'Slideshow', 'type' => OPTION_TYPE_CHECKBOX, 'order' => 6, 'desc' => gettext('Check to enable slideshow for the <em>Smoothgallery</em> personality.')),
+						gettext('Graphic logo')						 => array('key' => 'Graphic_logo', 'type' => OPTION_TYPE_CUSTOM, 'order' => 4, 'desc' => sprintf(gettext('Select a logo (PNG files in the <em>%s/images</em> folder) or leave empty for text logo.'), UPLOAD_FOLDER)),
+						gettext('Theme personality')			 => array('key'				 => 'effervescence_personality', 'type'			 => OPTION_TYPE_SELECTOR,
 										'selections' => $personalities,
 										'order'			 => 9,
 										'desc'			 => gettext('Select the theme personality')),
-						gettext('Theme colors')					 => array('key' => 'Theme_colors', 'type' => OPTION_TYPE_CUSTOM, 'order' => 7, 'desc' => gettext('Select the colors of the theme')),
-						gettext('Custom menu')					 => array('key' => 'effervescence_menu', 'type' => OPTION_TYPE_CUSTOM, 'order' => 2, 'desc' => gettext('Set this to the <em>menu_manager</em> menu you wish to use.') . $note)
+						gettext('Theme colors')						 => array('key' => 'Theme_colors', 'type' => OPTION_TYPE_CUSTOM, 'order' => 7, 'desc' => gettext('Select the colors of the theme')),
+						gettext('Custom menu')						 => array('key' => 'effervescence_menu', 'type' => OPTION_TYPE_CUSTOM, 'order' => 2, 'desc' => gettext('Set this to the <em>menu_manager</em> menu you wish to use.') . $note)
 		);
-		if (!extensionEnabled('zenpage')) {
-			$options['Separate gallery index'] = array('key' => 'gallery_index', 'type' => OPTION_TYPE_CHECKBOX, 'order' => 1, 'desc' => gettext('Check to move the gallery index from the home page to gallery.php.'));
-		}
 
 		if (getOption('effervescence_personality') == 'Image_gallery') {
 			$options[gettext('Image gallery transition')] = array('key'				 => 'effervescence_transition', 'type'			 => OPTION_TYPE_SELECTOR,

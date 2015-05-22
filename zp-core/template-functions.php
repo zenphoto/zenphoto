@@ -157,16 +157,10 @@ function adminToolbox() {
 					<?php
 				}
 
-				$gal = getOption('custom_index_page');
-				if (empty($gal) || !file_exists(SERVERPATH . '/' . THEMEFOLDER . '/' . $_zp_gallery->getCurrentTheme() . '/' . internalToFilesystem($gal) . '.php')) {
-					$gal = 'index.php';
-				} else {
-					$gal .= '.php';
-				}
 				$inImage = false;
 				switch ($_zp_gallery_page) {
 					case 'index.php':
-					case $gal:
+					case 'gallery.php':
 						// script is either index.php or the gallery index page
 						if (zp_loggedin(ADMIN_RIGHTS)) {
 							?>

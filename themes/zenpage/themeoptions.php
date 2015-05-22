@@ -34,11 +34,6 @@ class ThemeOptions {
 		setOptionDefault('colorbox_' . $me . '_favorites', 1);
 		setOptionDefault('colorbox_' . $me . '_image', 1);
 		setOptionDefault('colorbox_' . $me . '_search', 1);
-		if (extensionEnabled('zenpage')) {
-			setThemeOption('custom_index_page', 'gallery', NULL, 'zenpage', false);
-		} else {
-			setThemeOption('custom_index_page', '', NULL, 'zenpage', false);
-		}
 		if (class_exists('cacheManager')) {
 			cacheManager::deleteThemeCacheSizes($me);
 			cacheManager::addThemeCacheSize($me, NULL, 580, 580, NULL, NULL, NULL, NULL, NULL, false, NULL, true);

@@ -29,11 +29,6 @@ class ThemeOptions {
 		setOptionDefault('colorbox_' . $me . '_album', 1);
 		setOptionDefault('colorbox_' . $me . '_search', 1);
 		setThemeOptionDefault('garland_menu', '');
-		if (extensionEnabled('zenpage')) {
-			setThemeOption('custom_index_page', 'gallery', NULL, 'garland', false);
-		} else {
-			setThemeOption('custom_index_page', '', NULL, 'garland', false);
-		}
 		if (class_exists('cacheManager')) {
 			$me = basename(dirname(__FILE__));
 			cacheManager::deleteThemeCacheSizes($me);
@@ -107,7 +102,7 @@ class ThemeOptions {
 			case 'garland_menu':
 				$menusets = array($currentValue => $currentValue);
 				echo '<select id="garland_menuset" name="garland_menu"';
-				if (function_exists('printCustomMenu') && getThemeOption('custom_index_page', NULL, 'garland') === 'gallery') {
+				if (function_exists('printCustomMenu') && extensionEnabled('zenpage')) {
 					$result = query_full_array("SELECT DISTINCT menuset FROM " . prefix('menu') . " ORDER BY menuset");
 					foreach ($result as $set) {
 						$menusets[$set['menuset']] = $set['menuset'];

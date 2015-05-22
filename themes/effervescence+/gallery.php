@@ -9,7 +9,7 @@ if (!defined('WEBPATH'))
 
 		<?php
 		zp_apply_filter('theme_head');
-		if (getOption('effervescence_daily_album_image_effect') && getOption('custom_index_page') != 'gallery') {
+		if (getOption('effervescence_daily_album_image_effect') && getOption('gallery_index')) {
 			setOption('image_custom_images', getOption('effervescence_daily_album_image_effect'), false);
 		}
 		?>
@@ -41,7 +41,7 @@ if (!defined('WEBPATH'))
 				<div id="navbar">
 					<span><?php printHomeLink('', ' | '); ?>
 						<?php
-						if (getOption('custom_index_page') === 'gallery') {
+						if (getOption('gallery_index')) {
 							?>
 							<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Main Index'); ?>"><?php printGalleryTitle(); ?></a>
 							<?php

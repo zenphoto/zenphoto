@@ -30,7 +30,7 @@ if (!defined('WEBPATH'))
 					<span>
 						<?php
 						printHomeLink('', ' | ');
-						if (getOption('custom_index_page') === 'gallery') {
+						if (getOption('gallery_index')) {
 							?>
 							<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Main Index'); ?>"><?php printGalleryTitle(); ?></a>
 							<?php

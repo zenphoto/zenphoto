@@ -8,10 +8,8 @@ zp_register_filter('load_theme_script', 'fourOhFour');
 
 define('ALBUM_THMB_WIDTH', 170);
 define('ALBUM_THUMB_HEIGHT', 80);
-if (extensionEnabled('zenpage') || getOption('gallery_index')) {
-	setOption('custom_index_page', 'gallery', false);
-} else {
-	setOption('custom_index_page', '', false);
+if (extensionEnabled('zenpage')) {
+	setOption('gallery_index', 1, false);
 }
 
 $cwd = getcwd();
@@ -500,7 +498,7 @@ function my_checkPageValidity($request, $gallery_page, $page) {
 			$gallery_page = 'index.php'; //	same as an album gallery index
 			break;
 		case 'index.php':
-			if (!extensionEnabled('zenpage') || getOption('custom_index_page') == 'gallery') { // only one index page if zenpage plugin is enabled or custom index page is set
+			if (!getOption('gallery_index')) { // only one index page if zenpage plugin is enabled or gallery index page is set
 				break;
 			}
 		default:

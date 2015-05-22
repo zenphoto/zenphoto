@@ -12,7 +12,7 @@ if (!defined('WEBPATH'))
 		<?php if (zp_has_filter('theme_head', 'colorbox::css')) { ?>
 			<script type="text/javascript">
 				// <!-- <![CDATA[
-				$(document).ready(function() {
+				$(document).ready(function () {
 					$(".colorbox").colorbox({
 						inline: true,
 						href: "#imagemetadata",
@@ -86,10 +86,10 @@ if (!defined('WEBPATH'))
 							<span>
 								<?php printHomeLink('', ' | '); ?>
 								<?php
-								if (getOption('custom_index_page') === 'gallery') {
+								if (getOption('gallery_index')) {
 									?>
 									<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Main Index'); ?>"><?php printGalleryTitle(); ?></a> |
-									<a href="<?php echo html_encode(getCustomPageURL('gallery')); ?>" title="<?php echo gettext('Albums Index'); ?>"><?php echo gettext('Gallery'); ?></a> 
+									<a href="<?php echo html_encode(getCustomPageURL('gallery')); ?>" title="<?php echo gettext('Albums Index'); ?>"><?php echo gettext('Gallery'); ?></a>
 									<?php
 								} else {
 									?>
