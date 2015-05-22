@@ -546,7 +546,7 @@ function metadataFields($list, $execute = true) {
 						}
 						break;
 					case 'number':
-						$size = 'DOUBLE';
+						$size = 'VARCHAR(52)';
 						break;
 					case 'time':
 						$size = 'DATETIME';
