@@ -209,11 +209,11 @@ class Image extends MediaObject {
 						'IPTCContentLocationCode'		 => array('IPTC', 'ContentLocationCode', gettext('Content Location Code'), false, 3, true, 'string'),
 						'IPTCContentLocationName'		 => array('IPTC', 'ContentLocationName', gettext('Content Location Name'), false, 64, true, 'string'),
 						'EXIFGPSLatitude'						 => array('GPS', 'Latitude', gettext('Latitude'), false, 52, true, 'number'),
-						'EXIFGPSLatitudeRef'				 => array('GPS', 'Latitude Reference', gettext('Latitude Reference'), false, 52, true, 'string'),
+						'EXIFGPSLatitudeRef'				 => array('GPS', 'Latitude Reference', gettext('Latitude Reference'), false, 52, false, 'string'),
 						'EXIFGPSLongitude'					 => array('GPS', 'Longitude', gettext('Longitude'), false, 52, true, 'number'),
-						'EXIFGPSLongitudeRef'				 => array('GPS', 'Longitude Reference', gettext('Longitude Reference'), false, 52, true, 'string'),
+						'EXIFGPSLongitudeRef'				 => array('GPS', 'Longitude Reference', gettext('Longitude Reference'), false, 52, false, 'string'),
 						'EXIFGPSAltitude'						 => array('GPS', 'Altitude', gettext('Altitude'), false, 52, true, 'number'),
-						'EXIFGPSAltitudeRef'				 => array('GPS', 'Altitude Reference', gettext('Altitude Reference'), false, 52, true, 'string'),
+						'EXIFGPSAltitudeRef'				 => array('GPS', 'Altitude Reference', gettext('Altitude Reference'), false, 52, false, 'string'),
 						'IPTCOriginatingProgram'		 => array('IPTC', 'OriginatingProgram', gettext('Originating Program '), false, 32, true, 'string'),
 						'IPTCProgramVersion'				 => array('IPTC', 'ProgramVersion', gettext('Program Version'), false, 10, true, 'string'));
 	}
@@ -425,7 +425,7 @@ class Image extends MediaObject {
 				$iptc = iptcparse($iptcdata);
 				if ($iptc) {
 					$this->set('hasMetadata', 1);
-					$characterset = $this->getIPTCTag('1#090', $iptc);
+					$characterset = self::getIPTCTag('1#090', $iptc);
 					if (!$characterset) {
 						$characterset = getOption('IPTC_encoding');
 					} else if (substr($characterset, 0, 1) == chr(27)) { // IPTC escape encoding
@@ -441,13 +441,13 @@ class Image extends MediaObject {
 					// Extract IPTC fields of interest
 					foreach ($_zp_exifvars as $field => $exifvar) {
 						if ($exifvar[0] == 'IPTC') {
-							$datum = $this->getIPTCTag($IPTCtags[$exifvar[1]], $iptc);
+							$datum = self::getIPTCTag($IPTCtags[$exifvar[1]], $iptc);
 							$this->set($field, $this->prepIPTCString($datum, $characterset));
 						}
 					}
 					/* iptc keywords (tags) */
 					if ($_zp_exifvars['IPTCKeywords'][5]) {
-						$datum = $this->getIPTCTagArray($IPTCtags['Keywords'], $iptc);
+						$datum = self::getIPTCTagArray($IPTCtags['Keywords'], $iptc);
 						if (is_array($datum)) {
 							$tags = array();
 							$result['tags'] = array();
@@ -522,12 +522,15 @@ class Image extends MediaObject {
 		foreach (array('EXIFGPSLatitude', 'EXIFGPSLongitude') as $source) {
 			$data = self::fetchMetadata($source);
 			if (!empty($data)) {
-				if (in_array(strtoupper(self::fetchMetadata($source . 'Ref')), array('S', 'W'))) {
+				$ref = strtoupper($this->get($source . 'Ref'));
+				$this->set($source, self::toDMS($data, $ref));
+				if (in_array($ref, array('S', 'W'))) {
 					$data = -$data;
 				}
 				$this->set(substr($source, 4), $data);
 			}
 		}
+
 		$alt = self::fetchMetadata('EXIFGPSAltitude');
 		if (!empty($alt)) {
 			if (self::fetchMetadata('EXIFGPSAltitudeRef') == '-') {
@@ -584,13 +587,25 @@ class Image extends MediaObject {
 		}
 	}
 
+	static function toDMS($dec, $ref) {
+		$vars = explode(".", $dec . '.0');
+		$deg = $vars[0];
+		$tempma = "0." . $vars[1];
+
+		$tempma = $tempma * 3600;
+		$min = floor($tempma / 60);
+		$sec = $tempma - ($min * 60);
+
+		return sprintf('%d° %d\' %d" %s', $deg, $min, $sec, $ref);
+	}
+
 	/**
 	 * Fetches a single tag from IPTC data
 	 *
 	 * @param string $tag the metadata tag sought
 	 * @return string
 	 */
-	private function getIPTCTag($tag, $iptc) {
+	private static function getIPTCTag($tag, $iptc) {
 		if (isset($iptc[$tag])) {
 			$iptcTag = $iptc[$tag];
 			$r = "";
