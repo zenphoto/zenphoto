@@ -11,7 +11,7 @@
 			}
 			?>
 			<li<?php echo $lastcol; ?>>
-				<a class="album-thumb" href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo gettext('View album:') . getBareAlbumTitle(); ?>">
+				<a class="album-thumb" href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo gettext('View album:') . ' ' . getBareAlbumTitle(); ?>">
 					<?php printCustomAlbumThumbImage(getBareAlbumTitle(), NULL, getOption('personnal_thumb_width'), getOption('personnal_thumb_height'), getOption('personnal_thumb_width'), getOption('personnal_thumb_height')); ?>
 				</a>
 				<h4>

@@ -25,7 +25,7 @@ class ThemeOptions {
 	}
 
 	function getOptionsDisabled() {
-		return array('image_size', 'image_use_side', 'custom_index_page');
+		return array('image_size', 'image_use_side');
 	}
 
 	function getOptionsSupported() {

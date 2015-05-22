@@ -289,7 +289,6 @@ setOptionDefault('tagsort', 0);
 setOptionDefault('albumimagesort', 'ID');
 setOptionDefault('albumimagedirection', 'DESC');
 setOptionDefault('cache_full_image', 0);
-setOptionDefault('custom_index_page', '');
 setOptionDefault('exact_tag_match', 0);
 
 setOptionDefault('image_max_size', 3000);

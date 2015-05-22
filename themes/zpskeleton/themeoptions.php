@@ -16,7 +16,6 @@ class ThemeOptions {
 		setThemeOption('thumb_size', 220, null, 'zpskeleton');
 		setThemeOption('image_size', 630, null, 'zpskeleton');
 		setThemeOption('image_use_side', 'longest', null, 'zpskeleton');
-		setThemeOption('custom_index_page', 'none', null, 'zpskeleton');
 
 		// set core theme option defaults
 		setThemeOptionDefault('albums_per_page', 6);
@@ -82,7 +81,7 @@ class ThemeOptions {
 	}
 
 	function getOptionsDisabled() {
-		return array('thumb_size', 'image_size', 'image_use_side1', 'image_use_side2', 'image_use_side3', 'image_use_side4', 'custom_index_page');
+		return array('thumb_size', 'image_size', 'image_use_side1', 'image_use_side2', 'image_use_side3', 'image_use_side4');
 	}
 
 	function handleOption($option, $currentValue) {

@@ -16,7 +16,6 @@ class ThemeOptions {
 		setThemeOption('thumb_size', 168, null, 'zpmasonry');
 		setThemeOption('thumb_crop', 1, null, 'zpmasonry');
 		setThemeOption('image_use_side', 'longest', null, 'zpmasonry');
-		setThemeOption('custom_index_page', 'none', null, 'zpmasonry');
 
 		// set core theme option defaults
 		setThemeOptionDefault('image_size', 1200);
@@ -66,7 +65,7 @@ class ThemeOptions {
 	}
 
 	function getOptionsDisabled() {
-		return array('thumb_crop', 'thumb_size', 'image_use_side1', 'image_use_side2', 'image_use_side3', 'image_use_side4', 'custom_index_page');
+		return array('thumb_crop', 'thumb_size', 'image_use_side1', 'image_use_side2', 'image_use_side3', 'image_use_side4');
 	}
 
 	function getOptionsSupported() {

@@ -1,8 +1,8 @@
 <?php
 
 // force UTF-8 Ø
-if (($zenpage = extensionEnabled('zenpage')) || getOption('custom_index_page') == 'gallery') {
-	if ($zenpage) {
+if (getOption('gallery_index')) {
+	if ($zenpage = extensionEnabled('zenpage')) {
 		$imagereduction = 1 / 2;
 	} else {
 		$imagereduction = 1;

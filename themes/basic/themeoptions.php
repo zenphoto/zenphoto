@@ -47,7 +47,7 @@ class ThemeOptions {
 	}
 
 	function getOptionsDisabled() {
-		return array('custom_index_page');
+		return array();
 	}
 
 	function handleOption($option, $currentValue) {

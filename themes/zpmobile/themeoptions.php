@@ -19,7 +19,6 @@ class ThemeOptions {
 		setThemeOptionDefault('thumb_crop_width', 79);
 		setThemeOptionDefault('thumb_crop_height', 79);
 		setThemeOptionDefault('thumb_crop', 1);
-		setThemeOption('custom_index_page', 'gallery', NULL, 'zpmobile', false);
 		setThemeOptionDefault('albums_per_page', 6);
 		setThemeOptionDefault('albums_per_row', 1);
 		setThemeOptionDefault('images_per_page', 24);
@@ -42,7 +41,7 @@ class ThemeOptions {
 	}
 
 	function getOptionsDisabled() {
-		return array('custom_index_page', 'image_size', 'thumb_size');
+		return array('image_size', 'thumb_size');
 	}
 
 	function handleOption($option, $currentValue) {
