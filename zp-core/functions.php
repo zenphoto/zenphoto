@@ -259,17 +259,17 @@ function lookupSortKey($sorttype, $default, $table) {
 		case 'random':
 			return 'RAND()';
 		case "manual":
-			return '`sort_order`';
+			return 'sort_order';
 		case "filename":
 			switch ($table) {
 				case 'images':
-					return '`filename`';
+					return 'filename';
 				case 'albums':
-					return '`folder`';
+					return 'folder';
 			}
 		default:
 			if (empty($sorttype)) {
-				return '`' . $default . '`';
+				return $default;
 			}
 			if (substr($sorttype, 0) == '(') {
 				return $sorttype;
@@ -292,8 +292,9 @@ function lookupSortKey($sorttype, $default, $table) {
 			// Critical for preventing SQL injection: only return parts of 
 			// the custom sort that are exactly equal to database fields.
 			foreach ($list as $key => $field) {
+				$field = trim($field);
 				if (array_key_exists($field, $dbfields)) {
-					$fields[$key] = '`' . trim($dbfields[$field]) . '`';
+					$fields[$key] = trim($dbfields[$field]);
 				}
 			}
 			return implode(',', $fields);
