@@ -299,11 +299,18 @@ function html_decode($string) {
 /**
  * encodes a pre-sanitized string to be used in an HTML text-only field (value, alt, title, etc.)
  *
- * @param string $this_string
+ * @param string $str
  * @return string
  */
-function html_encode($this_string) {
-	return htmlspecialchars($this_string, ENT_FLAGS, LOCAL_CHARSET);
+function html_encode($str) {
+	return htmlspecialchars($str, ENT_FLAGS, LOCAL_CHARSET);
+}
+
+/**
+ * Shortcut for html_encode
+ */
+function h($str) {
+	return htmlspecialchars($str, ENT_FLAGS, LOCAL_CHARSET);
 }
 
 /**
