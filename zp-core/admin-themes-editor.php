@@ -25,7 +25,16 @@ function isTextFile($file, $ok_extensions = array('css', 'php', 'js', 'txt', 'in
 $message = $file_to_edit = $file_content = null;
 $themes = $_zp_gallery->getThemes();
 $theme = sanitize($_GET['theme']);
-$themedir = SERVERPATH . '/themes/' . internalToFilesystem($theme);
+$themedir = realpath(SERVERPATH . '/themes/' . internalToFilesystem($theme));
+if (isset($_GET['file']))
+	$file_to_edit = str_replace('\\', '/', SERVERPATH . '/themes/' . internalToFilesystem($theme) . '/' . sanitize($_GET['file']));
+
+// Check for validity of theme, file, and its presence within the theme
+$theme_root = SERVERPATH . '/' . THEMEFOLDER;
+if (substr($themedir, 0, strlen($theme_root)) != $theme_root or !is_dir($themedir)) {
+	zp_error(gettext('Cannot edit this file!'));
+}
+
 $themefiles = listDirectoryFiles($themedir);
 $themefiles_to_ext = array();
 foreach ($themefiles as $file) {
@@ -36,8 +45,18 @@ foreach ($themefiles as $file) {
 		unset($themefiles[$file]); // $themefile will eventually have all editable files and nothing else
 	}
 }
-if (isset($_GET['file']))
-	$file_to_edit = str_replace('\\', '/', SERVERPATH . '/themes/' . internalToFilesystem($theme) . '/' . sanitize($_GET['file']));
+
+// Check that the theme is valid to edit
+if (!themeIsEditable($theme))
+	zp_error(gettext('Cannot edit this theme!'));
+
+// If we're attempting to edit a file that's not a text file or that does not belong to the theme directory, this is an illegal attempt
+if ($file_to_edit) {
+	if (!in_array($file_to_edit, $themefiles) or ! isTextFile($file_to_edit) or filesize($file_to_edit) == 0) {
+		zp_error(gettext('Cannot edit this file!'));
+	}
+}
+
 // realpath() to take care of ../../file.php schemes, str_replace() to sanitize Win32 filenames
 // Handle POST that updates a file
 if (isset($_POST['action']) && $_POST['action'] == 'edit_file' && $file_to_edit) {
@@ -77,17 +96,6 @@ echo "\n" . '<div id="main">';
 printTabs();
 echo "\n" . '<div id="content">';
 
-
-// If we're attempting to edit a file from a bundled theme, this is an illegal attempt
-if (!themeIsEditable($theme))
-	zp_error(gettext('Cannot edit this theme!'));
-
-// If we're attempting to edit a file that's not a text file or that does not belong to the theme directory, this is an illegal attempt
-if ($file_to_edit) {
-	if (!in_array($file_to_edit, $themefiles) or ! isTextFile($file_to_edit) or filesize($file_to_edit) == 0) {
-		zp_error(gettext('Cannot edit this file!'));
-	}
-}
 ?>
 
 

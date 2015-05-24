@@ -286,9 +286,11 @@ function db_count($table, $clause = NULL, $field = "*") {
  * triggers an error
  *
  * @param string $message
- * @param bool $fatal set true to fail the script
+ * @param int $type the PHP error type to trigger; default to E_USER_ERROR
  */
 function zp_error($message, $fatal = E_USER_ERROR) {
+	// Print the error message, to be convenient.
+	printf(h($message));
 	trigger_error($message, $fatal);
 }
 
