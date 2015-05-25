@@ -258,20 +258,16 @@ function lookupSortKey($sorttype, $default, $table) {
 		case 'random':
 			return 'RAND()';
 		case "manual":
-			return '`sort_order`';
-		case "filename":
-			switch ($table) {
-				case 'images':
-					return '`filename`';
-				case 'albums':
-					return '`folder`';
-			}
+			return 'sort_order';
 		default:
 			if (empty($sorttype)) {
-				return '`' . $default . '`';
+				return $default;
 			}
 			if (substr($sorttype, 0) == '(') {
 				return $sorttype;
+			}
+			if ($table == 'albums') { // filename is synonomon for folder with albums
+				$sorttype = str_replace('filename', 'folder', $sorttype);
 			}
 			if (is_array($_zp_fieldLists) && isset($_zp_fieldLists[$table])) {
 				$dbfields = $_zp_fieldLists[$table];
@@ -290,6 +286,8 @@ function lookupSortKey($sorttype, $default, $table) {
 			foreach ($list as $key => $field) {
 				if (array_key_exists($field, $dbfields)) {
 					$list[$key] = '`' . trim($dbfields[$field]) . '`';
+				} else {
+					unset($list[$key]);
 				}
 			}
 			return implode(',', $list);
