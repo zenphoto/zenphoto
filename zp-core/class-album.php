@@ -44,7 +44,7 @@ class AlbumBase extends MediaObject {
 	var $linkname; // may have the .alb suffix stripped off
 	var $localpath; // Latin1 full server path to the album
 	var $exists = true; // Does the folder exist?
-	var $images = null; // Full images array storage.
+	var $images = array(); // Full images array storage.
 	var $parent = null; // The parent album name
 	var $parentalbum = null; // The parent album's album object (lazy)
 	var $sidecars = array(); // keeps the list of suffixes associated with this album

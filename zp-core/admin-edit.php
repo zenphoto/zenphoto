@@ -562,8 +562,8 @@ if (isset($_GET['action'])) {
 				exitZP();
 			} else {
 				$AlbumDirName = str_replace(SERVERPATH, '', $_zp_gallery->albumdir);
-				zp_error(gettext("The album couldn’t be created in the “albums” folder. This is usually a permissions problem. Try setting the permissions on the albums and cache folders to be world-writable using a shell:") . " <code>chmod 777 " . $AlbumDirName . '/' . CACHEFOLDER . '/' . "</code>, "
-								. gettext("or use your FTP program to give everyone write permissions to those folders."));
+				$errorbox[] = gettext("The album couldn’t be created in the “albums” folder. This is usually a permissions problem. Try setting the permissions on the albums and cache folders to be world-writable using a shell:") . " <code>chmod 777 " . $AlbumDirName . '/' . CACHEFOLDER . '/' . "</code>, "
+								. gettext("or use your FTP program to give everyone write permissions to those folders.");
 			}
 			break;
 	} // end of switch

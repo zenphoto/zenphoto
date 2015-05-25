@@ -1959,27 +1959,6 @@ function commentsAllowed($type) {
 }
 
 /**
- * Returns the viewer's IP address
- * Deals with transparent proxies
- *
- * @return string
- */
-function getUserIP() {
-	$pattern = '~^([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])$~';
-	if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-		$ip = sanitize($_SERVER['HTTP_X_FORWARDED_FOR']);
-		if (preg_match($pattern, $ip)) {
-			return $ip;
-		}
-	}
-	$ip = sanitize($_SERVER['REMOTE_ADDR']);
-	if (preg_match($pattern, $ip)) {
-		return $ip;
-	}
-	return NULL;
-}
-
-/**
  * Strips out and/or replaces characters from the string that are not "soe" friendly
  *
  * @param string $string
