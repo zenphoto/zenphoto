@@ -199,12 +199,12 @@ function ksesProcess($input_string, $allowed_tags) {
 	if (function_exists('kses')) {
 		return kses($input_string, $allowed_tags);
 	} else {
-		$content = preg_replace('~<script.*?/script>~is', '', $input_string);
-		$content = preg_replace('~<style.*?/style>~is', '', $input_string);
-		$content = preg_replace('~<!--.*?-->~is', '', $input_string);
+		$input_string = preg_replace('~<script.*?/script>~is', '', $input_string);
+		$input_string = preg_replace('~<style.*?/style>~is', '', $input_string);
+		$input_string = preg_replace('~<!--.*?-->~is', '', $input_string);
 		$content = strip_tags($input_string);
-		$content = str_replace('&nbsp;', ' ', $input_string);
-		$content = html_entity_decode($input_string, ENT_QUOTES, 'UTF-8');
+		$input_string = str_replace('&nbsp;', ' ', $input_string);
+		$input_string = html_decode($input_string);
 		return $input_string;
 	}
 }
