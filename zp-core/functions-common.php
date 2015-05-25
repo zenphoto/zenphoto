@@ -17,6 +17,15 @@ function dbErrorReport($sql) {
 }
 
 /**
+ * Returns a properly quoted string for DB queries
+ * @param type $string
+ * @return type
+ */
+function db_quote($string) {
+	return "'" . db_escape($string) . "'";
+}
+
+/**
  *
  * Traps errors and insures thy are logged.
  * @param int $errno
@@ -336,7 +345,14 @@ function zp_error($message, $fatal = E_USER_ERROR) {
 }
 
 function html_decode($string) {
-	return html_entity_decode($string, ENT_QUOTES, LOCAL_CHARSET);
+	$string = html_entity_decode($string, ENT_QUOTES, LOCAL_CHARSET);
+	// Replace numeric entities because html_entity_decode doesn't do it for us.
+	if (function_exists('mb_convert_encoding')) {
+		$string = preg_replace_callback("/(&#[0-9]+;)/", function($m) {
+			return mb_convert_encoding($m[1], LOCAL_CHARSET, "HTML-ENTITIES");
+		}, $string);
+	}
+	return $string;
 }
 
 /**
