@@ -640,34 +640,34 @@ echo "\n</head>";
 						if (($pagenum - 1) * $imagesTab_imageCount >= $allimagecount)
 							$pagenum--;
 					} else {
-       if(isset($_GET['nopagination'])) {
-        $pagenum = 0;
-       } else {
-        $pagenum = 1;
-       }
+						if(isset($_GET['nopagination'])) {
+							$pagenum = 0;
+						} else {
+							$pagenum = 1;
+						}
 					}
 				}
-    if($pagenum == 0) {
-      $images = $allimages;
-    } else {
-      $images = array_slice($allimages, ($pagenum - 1) * $imagesTab_imageCount, $imagesTab_imageCount);
-    }
-				$totalimages = count($images);
-    
-    if ( isset($_GET['singleimage']) ) {
-      $parent = $album->name;
-    } else {
-      $parent = dirname($album->name);
-    }
-				if (($parent == '/') || ($parent == '.') || empty($parent)) {
-      $parent = '';
+				if ($pagenum == 0 || isset($_GET['singleimage'])) {
+					$images = $allimages;
 				} else {
-      $parent = "&amp;album=" . pathurlencode($parent);
+					$images = array_slice($allimages, ($pagenum - 1) * $imagesTab_imageCount, $imagesTab_imageCount);
+				}
+				$totalimages = count($images);
+
+				if (isset($_GET['singleimage'])) {
+					$parent = $album->name;
+				} else {
+					$parent = dirname($album->name);
+				}
+				if (($parent == '/') || ($parent == '.') || empty($parent)) {
+					$parent = '';
+				} else {
+					$parent = "&amp;album=" . pathurlencode($parent);
 				}
     
-    if ( isset($_GET['singleimage']) ) {
-      $parent .= '&amp;tab=imageinfo&amp;subpage='.$pagenum;
-    } 
+				if (isset($_GET['singleimage'])) {
+					$parent .= '&amp;tab=imageinfo&amp;subpage='.$pagenum;
+				} 
     
 				if (isset($_GET['metadata_refresh'])) {
 					echo '<div class="messagebox fade-message">';
@@ -825,12 +825,12 @@ echo "\n</head>";
 											<img src="images/folder.png" alt="" />
 											<strong><?php echo gettext('New subalbum'); ?></strong>
 										</button>
-          <?php if(!$album->isDynamic()) { ?>
-            	<button type="button" title="<?php echo addslashes(gettext('New dynamic subalbum')); ?>" onclick="javascript:newDynAlbum('<?php echo pathurlencode($album->name); ?>', false);">
+											<?php if(!$album->isDynamic()) { ?>
+            									<button type="button" title="<?php echo addslashes(gettext('New dynamic subalbum')); ?>" onclick="javascript:newDynAlbum('<?php echo pathurlencode($album->name); ?>', false);">
 												<img src="images/folder.png" alt="" />
 												<strong><?php echo gettext('New dynamic subalbum'); ?></strong>
 											</button>
-           <?php } ?>
+										<?php } ?>
 									</div>
 								</span>
 							</form>
@@ -878,18 +878,18 @@ echo "\n</head>";
 							}
 						}
 						if ($allimagecount) {
-        if($singleimage) { ?>
-          <form class="dirty-check" name="albumedit2"	id="form_imageedit" action="?page=edit&amp;action=save<?php echo "&amp;album=" . html_encode(pathurlencode($album->name)); ?>&amp;singleimage=<?php html_encode($singleimage); ?>&amp;subpage=1"	method="post" autocomplete="off">
-        <?php } else {  ?>
-          <form class="dirty-check" name="albumedit2"	id="form_imageedit" action="?page=edit&amp;action=save<?php echo "&amp;album=" . html_encode(pathurlencode($album->name)); ?>"	method="post" autocomplete="off">
-        <?php } ?>
-        <?php XSRFToken('albumedit'); ?>
+					        if ($singleimage) { ?>
+								<form class="dirty-check" name="albumedit2"	id="form_imageedit" action="?page=edit&amp;action=save<?php echo "&amp;album=" . html_encode(pathurlencode($album->name)); ?>&amp;singleimage=<?php html_encode($singleimage); ?>&amp;nopagination" method="post" autocomplete="off">
+					        <?php } else {  ?>
+					          	<form class="dirty-check" name="albumedit2"	id="form_imageedit" action="?page=edit&amp;action=save<?php echo "&amp;album=" . html_encode(pathurlencode($album->name)); ?>"	method="post" autocomplete="off">
+					        	<input type="hidden" name="subpage" value="<?php echo html_encode($pagenum); ?>" />
+					        <?php } ?>
+				        		<?php XSRFToken('albumedit'); ?>
 								<input type="hidden" name="album"	value="<?php echo $album->name; ?>" />
 								<input type="hidden" name="totalimages" value="<?php echo $totalimages; ?>" />
-								<input type="hidden" name="subpage" value="<?php echo html_encode($pagenum); ?>" />
 								<input type="hidden" name="tagsort" value="<?php echo html_encode($tagsort); ?>" />
 								<input type="hidden" name="oldalbumimagesort" value="<?php echo html_encode($oldalbumimagesort); ?>" />
-        <input type="hidden" name="albumimagesort" value="" />
+        						<input type="hidden" name="albumimagesort" value="" />
 
 								<?php $totalpages = ceil(($allimagecount / $imagesTab_imageCount)); ?>
 								<table class="bordered">
