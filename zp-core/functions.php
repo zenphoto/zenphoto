@@ -258,20 +258,16 @@ function lookupSortKey($sorttype, $default, $table) {
 		case 'random':
 			return 'RAND()';
 		case "manual":
-			return '`sort_order`';
-		case "filename":
-			switch ($table) {
-				case 'images':
-					return '`filename`';
-				case 'albums':
-					return '`folder`';
-			}
+			return 'sort_order';
 		default:
 			if (empty($sorttype)) {
-				return '`' . $default . '`';
+				return $default;
 			}
 			if (substr($sorttype, 0) == '(') {
 				return $sorttype;
+			}
+			if ($table == 'albums') { // filename is synonomon for folder with albums
+				$sorttype = str_replace('filename', 'folder', $sorttype);
 			}
 			if (is_array($_zp_fieldLists) && isset($_zp_fieldLists[$table])) {
 				$dbfields = $_zp_fieldLists[$table];
@@ -290,6 +286,8 @@ function lookupSortKey($sorttype, $default, $table) {
 			foreach ($list as $key => $field) {
 				if (array_key_exists($field, $dbfields)) {
 					$list[$key] = '`' . trim($dbfields[$field]) . '`';
+				} else {
+					unset($list[$key]);
 				}
 			}
 			return implode(',', $list);
@@ -1958,27 +1956,6 @@ function getThemeOption($option, $album = NULL, $theme = NULL) {
  */
 function commentsAllowed($type) {
 	return getOption($type) && (!MEMBERS_ONLY_COMMENTS || zp_loggedin(ADMIN_RIGHTS | POST_COMMENT_RIGHTS));
-}
-
-/**
- * Returns the viewer's IP address
- * Deals with transparent proxies
- *
- * @return string
- */
-function getUserIP() {
-	$pattern = '~^([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])$~';
-	if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-		$ip = sanitize($_SERVER['HTTP_X_FORWARDED_FOR']);
-		if (preg_match($pattern, $ip)) {
-			return $ip;
-		}
-	}
-	$ip = sanitize($_SERVER['REMOTE_ADDR']);
-	if (preg_match($pattern, $ip)) {
-		return $ip;
-	}
-	return NULL;
 }
 
 /**

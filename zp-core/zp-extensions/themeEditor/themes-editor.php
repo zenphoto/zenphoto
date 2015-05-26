@@ -17,59 +17,68 @@ if (!isset($_GET['theme'])) {
 	exitZP();
 }
 
-function isTextFile($file, $ok_extensions = array('css', 'php', 'js', 'txt', 'inc')) {
-	$path_info = pathinfo($file);
-	$ext = (isset($path_info['extension']) ? strtolower($path_info['extension']) : '');
-	return (!empty($ok_extensions) && (in_array($ext, $ok_extensions) ) );
+$ok_extensions = array('css', 'php', 'js', 'txt', 'inc');
+
+function isTextFile($file) {
+	global $ok_extensions;
+	$ext = strtolower(getSuffix($file));
+	return (in_array($ext, $ok_extensions) );
 }
 
-$message = $file_to_edit = $file_content = null;
+$messages = $file_to_edit = $file_content = null;
+$what = 'edit';
 $themes = $_zp_gallery->getThemes();
-$theme = sanitize($_GET['theme']);
+$theme = basename(sanitize($_GET['theme']));
 $themedir = SERVERPATH . '/themes/' . internalToFilesystem($theme);
 $themefiles = listDirectoryFiles($themedir);
 $themefiles_to_ext = array();
-foreach ($themefiles as $file) {
-	if (isTextFile($file)) {
-		$path_info = pathinfo($file);
-		$themefiles_to_ext[$path_info['extension']][] = $file; // array(['php']=>array('file.php', 'image.php'),['css']=>array('style.css'))
-	} else {
-		unset($themefiles[$file]); // $themefile will eventually have all editable files and nothing else
-	}
-}
-if (isset($_GET['file']))
-	$file_to_edit = str_replace('\\', '/', SERVERPATH . '/themes/' . internalToFilesystem($theme) . '/' . sanitize($_GET['file']));
-// realpath() to take care of ../../file.php schemes, str_replace() to sanitize Win32 filenames
-// Handle POST that updates a file
-if (isset($_POST['action']) && $_POST['action'] == 'edit_file' && $file_to_edit) {
-	XSRFdefender('edit_theme');
-	$file_content = sanitize($_POST['newcontent'], 0);
-	$theme = urlencode($theme);
-	if (is_writeable($file_to_edit)) {
-		//is_writable() not always reliable, check return value. see comments @ http://uk.php.net/is_writable
-		$f = @fopen($file_to_edit, 'w+');
-		if ($f !== FALSE) {
-			@fwrite($f, $file_content);
-			fclose($f);
-			clearstatcache();
-			$message = gettext('File updated successfully');
+
+if (themeIsEditable($theme)) {
+
+	foreach ($themefiles as $file) {
+		if (isTextFile($file)) {
+			$themefiles_to_ext[getSuffix($file)][] = $file; // array(['php']=>array('file.php', 'image.php'),['css']=>array('style.css'))
 		} else {
-			$message = gettext('Could not write file. Please check its write permissions');
+			unset($themefiles[$file]); // $themefile will eventually have all editable files and nothing else
 		}
-	} else {
-		$message = gettext('Could not write file. Please check its write permissions');
 	}
-}
+	if (isset($_GET['file'])) {
+		if (!in_array($themedir . '/' . $_GET['file'], $themefiles)) {
+			$messages['errorbox'][] = gettext('Cannot edit this file!');
+		}
+		$file_to_edit = str_replace('\\', '/', SERVERPATH . '/themes/' . internalToFilesystem($theme) . '/' . sanitize($_GET['file']));
+	}
+// Handle POST that updates a file
+	if (isset($_POST['action']) && $_POST['action'] == 'edit_file' && $file_to_edit && !isset($messages['errorbox'])) {
+		XSRFdefender('edit_theme');
+		$file_content = sanitize($_POST['newcontent'], 0);
+		$theme = urlencode($theme);
+		if (is_writeable($file_to_edit)) {
+			//is_writable() not always reliable, check return value. see comments @ http://uk.php.net/is_writable
+			$f = @fopen($file_to_edit, 'w+');
+			if ($f !== FALSE) {
+				@fwrite($f, $file_content);
+				fclose($f);
+				clearstatcache();
+				$messages['messagebox fade-message'][] = array(gettext('File updated successfully'), 'notebox');
+				;
+			} else {
+				$messages['messagebox fade-message'][] = array(gettext('Could not write file. Please check its write permissions'), 'notebox');
+			}
+		} else {
+			$messages['errorbox'][] = gettext('Could not write file. Please check its write permissions');
+		}
+	}
 
 // Get file contents
-if ($file_to_edit) {
-	$file_content = @file_get_contents($file_to_edit);
-	$file_content = html_encode($file_content);
-	$what = 'edit»' . basename($file_to_edit);
+	if ($file_to_edit && !isset($messages['errorbox'])) {
+		$file_content = @file_get_contents($file_to_edit);
+		$file_content = html_encode($file_content);
+		$what = 'edit»' . basename($file_to_edit);
+	}
 } else {
-	$what = 'edit';
+	$messages['errorbox'][] = gettext('Cannot edit this theme!');
 }
-
 printAdminHeader('themes', $what);
 echo "\n</head>";
 echo "\n<body>";
@@ -77,28 +86,20 @@ printLogoAndLinks();
 echo "\n" . '<div id="main">';
 printTabs();
 echo "\n" . '<div id="content">';
-
-
-// If we're attempting to edit a file from a bundled theme, this is an illegal attempt
-if (!themeIsEditable($theme))
-	zp_error(gettext('Cannot edit this theme!'));
-
-// If we're attempting to edit a file that's not a text file or that does not belong to the theme directory, this is an illegal attempt
-if ($file_to_edit) {
-	if (!in_array($file_to_edit, $themefiles) or ! isTextFile($file_to_edit) or filesize($file_to_edit) == 0) {
-		zp_error(gettext('Cannot edit this file!'));
-	}
-}
 ?>
 
 
 <h1><?php echo gettext('Theme File Editor'); ?></h1>
-
+<h2><?php echo html_encode($themes[$theme]['name']); ?></h2>
 <?php
-if ($message) {
-	echo '<div class="messagebox fade-message">';
-	echo "<h2>$message</h2>";
-	echo '</div>';
+if (!empty($messages)) {
+	foreach ($messages as $type => $messageList) {
+		echo '<div class="' . $type . '">';
+		foreach ($messageList as $message) {
+			echo "<h2>$message</h2>";
+		}
+		echo '</div>';
+	}
 }
 ?>
 
@@ -143,17 +144,24 @@ if ($message) {
 	if ($file_to_edit) {
 		?>
 		<div id="editor">
-			<h2 class="h2_bordered"><?php echo sprintf(gettext('File <tt>%s</tt> from theme %s'), sanitize($_GET['file']), $themes[$theme]['name']); ?></h2>
-			<form class="dirtylistening" onReset="setClean('themeedit_form');" id="themeedit_form" method="post" action="">
-				<?php XSRFToken('edit_theme'); ?>
-				<p><textarea cols="70" rows="35" name="newcontent" id="newcontent"><?php echo $file_content ?></textarea></p>
-				<input type="hidden" name="action" value="edit_file"/>
-				<p class="buttons">
-					<button type="submit" value="<?php echo gettext('Update File') ?>" title="<?php echo gettext("Update File"); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><strong><?php echo gettext("Update File"); ?></strong></button>
-					<button type="reset" value="<?php echo gettext('Reset') ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
-				</p>
-				<br class="clearall" />
-			</form>
+			<h2 class="h2_bordered"><?php echo sprintf(gettext('File <tt>%s</tt> from theme %s'), html_encode(sanitize($_GET['file'])), html_encode($themes[$theme]['name'])); ?></h2>
+			<?php
+			if (!isset($messages['errorbox'])) {
+				?>
+
+				<form class="dirtylistening" onReset="setClean('themeedit_form');" id="themeedit_form" method="post" action="">
+					<?php XSRFToken('edit_theme'); ?>
+					<p><textarea cols="70" rows="35" name="newcontent" id="newcontent"><?php echo $file_content ?></textarea></p>
+					<input type="hidden" name="action" value="edit_file"/>
+					<p class="buttons">
+						<button type="submit" value="<?php echo gettext('Update File') ?>" title="<?php echo gettext("Update File"); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><strong><?php echo gettext("Update File"); ?></strong></button>
+						<button type="reset" value="<?php echo gettext('Reset') ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
+					</p>
+					<br class="clearall" />
+				</form>
+				<?php
+			}
+			?>
 		</div>
 
 		<?php

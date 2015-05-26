@@ -67,8 +67,8 @@ function query_full_array($sql, $errorstop = true, $key = NULL) {
  * @param string $string
  * @return string
  */
-function db_quote($string) {
-	return "'" . addslashes($string) . "'";
+function db_escape($string) {
+	return addslashes($string);
 }
 
 /*

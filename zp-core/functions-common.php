@@ -1,5 +1,4 @@
 <?php
-
 /**
  * functions common to both the core and setup's basic environment
  *
@@ -17,6 +16,46 @@ function dbErrorReport($sql) {
 }
 
 /**
+ * Returns a properly quoted string for DB queries
+ * @param type $string
+ * @return type
+ */
+function db_quote($string) {
+	return "'" . db_escape($string) . "'";
+}
+
+/**
+ * Returns the viewer's IP address
+ * Deals with transparent proxies
+ *
+ * @return string
+ */
+function getUserIP() {
+	$pattern = '~^([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])$~';
+	if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+		$ip = sanitize($_SERVER['HTTP_X_FORWARDED_FOR']);
+		if (preg_match($pattern, $ip)) {
+			return $ip;
+		}
+	}
+	$ip = sanitize($_SERVER['REMOTE_ADDR']);
+	if (preg_match($pattern, $ip)) {
+		return $ip;
+	}
+	return NULL;
+}
+
+/**
+ * triggers an error
+ *
+ * @param string $message
+ * @param bool $fatal set true to fail the script
+ */
+function zp_error($message, $fatal = E_USER_ERROR) {
+	trigger_error($message, $fatal);
+}
+
+/**
  *
  * Traps errors and insures thy are logged.
  * @param int $errno
@@ -27,8 +66,8 @@ function dbErrorReport($sql) {
  */
 function zpErrorHandler($errno, $errstr = '', $errfile = '', $errline = '') {
 	// check if function has been called by an exception
+
 	if (func_num_args() == 5) {
-		// called by zp_error()
 		list($errno, $errstr, $errfile, $errline) = func_get_args();
 	} else {
 		// caught exception
@@ -38,6 +77,7 @@ function zpErrorHandler($errno, $errstr = '', $errfile = '', $errline = '') {
 		$errfile = $exc->getFile();
 		$errline = $exc->getLine();
 	}
+
 	// if error has been supressed with an @
 	if (error_reporting() == 0 && !in_array($errno, array(E_USER_ERROR, E_USER_WARNING, E_USER_NOTICE))) {
 		return;
@@ -59,6 +99,8 @@ function zpErrorHandler($errno, $errstr = '', $errfile = '', $errline = '') {
 		$err = gettext("EXCEPTION ($errno)");
 		$errno = E_ERROR;
 	}
+
+
 	$msg = sprintf(gettext('%1$s: %2$s in %3$s on line %4$s'), $err, $errstr, $errfile, $errline);
 	if (array_key_exists('REQUEST_URI', $_SERVER)) {
 		$uri = sanitize($_SERVER['REQUEST_URI']);
@@ -72,8 +114,18 @@ function zpErrorHandler($errno, $errstr = '', $errfile = '', $errline = '') {
 	}
 	if ($uri)
 		$uri = "\nURI:" . urldecode(str_replace('\\', '/', $uri));
+
 	$uri .= "\nIP:" . getUserIP();
 	debugLogBacktrace($msg . $uri, 1);
+
+	if (!ini_get('display_errors') && ($errno == E_ERROR || $errno = E_USER_ERROR)) {
+		// out of curtesy show the error message on the WEB page since there will likely be a blank page otherwise
+		?>
+		<div style="padding: 10px 15px 10px 15px;	background-color: #FDD;	border-width: 1px 1px 2px 1px;	border-style: solid;	border-color: #FAA;	margin-bottom: 10px;	font-size: 100%;">
+			<?php echo html_encode($msg); ?>
+		</div>
+		<?php
+	}
 	return false;
 }
 
@@ -199,12 +251,12 @@ function ksesProcess($input_string, $allowed_tags) {
 	if (function_exists('kses')) {
 		return kses($input_string, $allowed_tags);
 	} else {
-		$content = preg_replace('~<script.*?/script>~is', '', $input_string);
-		$content = preg_replace('~<style.*?/style>~is', '', $input_string);
-		$content = preg_replace('~<!--.*?-->~is', '', $input_string);
+		$input_string = preg_replace('~<script.*?/script>~is', '', $input_string);
+		$input_string = preg_replace('~<style.*?/style>~is', '', $input_string);
+		$input_string = preg_replace('~<!--.*?-->~is', '', $input_string);
 		$content = strip_tags($input_string);
-		$content = str_replace('&nbsp;', ' ', $input_string);
-		$content = html_entity_decode($input_string, ENT_QUOTES, 'UTF-8');
+		$input_string = str_replace('&nbsp;', ' ', $input_string);
+		$input_string = html_decode($input_string);
 		return $input_string;
 	}
 }
@@ -325,18 +377,15 @@ function db_count($table, $clause = NULL, $field = "*") {
 	}
 }
 
-/**
- * triggers an error
- *
- * @param string $message
- * @param bool $fatal set true to fail the script
- */
-function zp_error($message, $fatal = E_USER_ERROR) {
-	trigger_error($message, $fatal);
-}
-
 function html_decode($string) {
-	return html_entity_decode($string, ENT_QUOTES, LOCAL_CHARSET);
+	$string = html_entity_decode($string, ENT_QUOTES, LOCAL_CHARSET);
+	// Replace numeric entities because html_entity_decode doesn't do it for us.
+	if (function_exists('mb_convert_encoding')) {
+		$string = preg_replace_callback("/(&#[0-9]+;)/", function($m) {
+			return mb_convert_encoding($m[1], LOCAL_CHARSET, "HTML-ENTITIES");
+		}, $string);
+	}
+	return $string;
 }
 
 /**

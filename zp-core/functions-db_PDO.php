@@ -80,17 +80,17 @@ function query_full_array($sql, $errorstop = true, $key = NULL) {
 }
 
 /**
- * sqlite_real_escape_string standin that insures the DB connection is passed.
+ * PDO real_escape_string standin that insures the DB connection is passed.
  *
  * @param string $string
  * @return string
  */
-function db_quote($string) {
+function db_escape($string) {
 	global $_zp_DB_connection;
 	if ($_zp_DB_connection) {
 		return $_zp_DB_connection->quote($string);
 	} else {
-		return "" . addslashes($string) . "";
+		return addslashes($string);
 	}
 }
 

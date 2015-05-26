@@ -4611,7 +4611,11 @@ function getLogTabs() {
 	$localizer = array('setup' => gettext('setup'), 'security' => gettext('security'), 'debug' => gettext('debug'), 'deprecated' => gettext('deprecated'));
 	$filelist = safe_glob(SERVERPATH . "/" . DATA_FOLDER . '/*.log');
 	if (count($filelist) > 0) {
-		$tab = sanitize(@$_GET['tab'], 3);
+		if (isset($_GET['tab'])) {
+			$tab = sanitize($_GET['tab'], 3);
+		} else {
+			$tab = false;
+		}
 		foreach ($filelist as $logfile) {
 			$log = substr(basename($logfile), 0, -4);
 			if (filemtime($logfile) > getOption('logviewed_' . $log)) {
@@ -4815,7 +4819,7 @@ function processCredentials($object, $suffix = '') {
 
 function consolidatedEditMessages($subtab) {
 	zp_apply_filter('admin_note', 'albums', $subtab);
-	$messagebox = $errorbox = $notebox = array();
+	global $messagebox, $errorbox, $notebox;
 	if (isset($_GET['ndeleted'])) {
 		$ntdel = sanitize_numeric($_GET['ndeleted']);
 		if ($ntdel <= 2) {

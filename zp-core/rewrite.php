@@ -129,7 +129,7 @@ function getRules() {
 
 $_definitions = array();
 foreach ($_zp_conf_vars['special_pages'] as $definition) {
-	if (@$definition['define']) {
+	if (isset($definition['define']) && $definition['define']) {
 		define($definition['define'], strtr($definition['rewrite'], $_definitions));
 		eval('$_definitions[$definition[\'define\']]=' . $definition['define'] . ';');
 	}

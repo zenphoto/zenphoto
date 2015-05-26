@@ -776,7 +776,7 @@ class Gallery {
 			}
 			$order = $sortdirection && strtolower($sortdirection) != 'asc';
 		}
-		$sql = 'SELECT * FROM ' . prefix("albums") . ' WHERE `parentid`' . $albumid . ' ORDER BY ' . $sortkey;
+		$sql = 'SELECT * FROM ' . prefix("albums") . ' WHERE `parentid`' . $albumid . ' ORDER BY ' . db_escape($sortkey);
 		if ($order)
 			$sql .= ' DESC';
 		$result = query($sql);

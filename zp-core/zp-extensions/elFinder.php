@@ -65,7 +65,9 @@ class elFinder_options {
 
 if (getOption('elFinder_files') && zp_loggedin(FILES_RIGHTS)) {
 	zp_register_filter('admin_tabs', 'elFinder_admin_tabs', 50);
-	zp_register_filter('theme_editor', 'elFinderThemeEdit');
+	if (!extensionEnabled('themes-editor')) {
+		zp_register_filter('themeEditor', 'elFinderThemeEdit');
+	}
 }
 if (getOption('elFinder_tinymce')) {
 	zp_register_filter('tinymce_config', 'elFinder_tinymce');

@@ -137,12 +137,12 @@ function query_full_array($sql, $errorstop = true, $key = NULL) {
  * @param string $string
  * @return string
  */
-function db_quote($string) {
+function db_escape($string) {
 	global $_zp_DB_connection;
 	if ($_zp_DB_connection) {
-		return "'" . $_zp_DB_connection->real_escape_string($string) . "'";
+		return $_zp_DB_connection->real_escape_string($string);
 	} else {
-		return "" . addslashes($string) . "";
+		return addslashes($string);
 	}
 }
 

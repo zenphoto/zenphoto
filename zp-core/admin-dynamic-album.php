@@ -44,65 +44,66 @@ if (isset($_POST['savealbum'])) {
 		} else {
 			$allow = zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS);
 		}
-		if (!$allow) {
-			if (!zp_apply_filter('admin_managed_albums_access', false, $return)) {
-				zp_error(gettext("You do not have edit rights on this album."));
-			}
-		}
-		if ($_POST['create_tagged'] == 'static') {
-			$unpublished = isset($_POST['return_unpublished']);
-			$_POST['return_unpublished'] = true; //	state is frozen at this point, so unpublishing should not impact
-			$words = sanitize($_POST['album_tag']);
-			$searchfields[] = 'tags_exact';
-			// now tag each element
-			if (isset($_POST['return_albums'])) {
-				$subalbums = $search->getAlbums(0);
-				foreach ($subalbums as $analbum) {
-					$albumobj = newAlbum($analbum);
-					if ($unpublished || $albumobj->getShow()) {
-						$tags = array_unique(array_merge($albumobj->getTags(false), array($words)));
-						$albumobj->setTags($tags);
-						$albumobj->save();
-					}
-				}
-			}
-			if (isset($_POST['return_images'])) {
-				$images = $search->getImages();
-				foreach ($images as $animage) {
-					$image = newImage(newAlbum($animage['folder']), $animage['filename']);
-					if ($unpublished || $image->getShow()) {
-						$tags = array_unique(array_merge($image->getTags(false), array($words)));
-						$image->setTags($tags);
-						$image->save();
-					}
-				}
-			}
-		} else {
-			if (isset($_POST['SEARCH_list'])) {
-				$searchfields = sanitize($_POST['SEARCH_list']);
-			} else {
-				$searchfields = array();
-			}
-			$words = sanitize($_POST['words']);
-		}
-		if (isset($_POST['thumb'])) {
-			$thumb = sanitize($_POST['thumb']);
-		} else {
-			$thumb = '';
-		}
-		$constraints = "\nCONSTRAINTS=" . 'inalbums=' . ((int) (isset($_POST['return_albums']))) . '&inimages=' . ((int) (isset($_POST['return_images']))) . '&unpublished=' . ((int) (isset($_POST['return_unpublished'])));
-		$redirect = $album . '/' . $albumname . '.alb';
+		$allow = zp_apply_filter('admin_managed_albums_access', $allow, $return);
 
-		if (!empty($albumname)) {
-			$f = fopen(internalToFilesystem(ALBUM_FOLDER_SERVERPATH . $redirect), 'w');
-			if ($f !== false) {
-				fwrite($f, "WORDS=$words\nTHUMB=$thumb\nFIELDS=" . implode(',', $searchfields) . $constraints . "\n");
-				fclose($f);
-				clearstatcache();
-				// redirct to edit of this album
-				header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-edit.php?page=edit&album=" . pathurlencode($redirect));
-				exitZP();
+		if ($allow) {
+			if ($_POST['create_tagged'] == 'static') {
+				$unpublished = isset($_POST['return_unpublished']);
+				$_POST['return_unpublished'] = true; //	state is frozen at this point, so unpublishing should not impact
+				$words = sanitize($_POST['album_tag']);
+				$searchfields[] = 'tags_exact';
+// now tag each element
+				if (isset($_POST['return_albums'])) {
+					$subalbums = $search->getAlbums(0);
+					foreach ($subalbums as $analbum) {
+						$albumobj = newAlbum($analbum);
+						if ($unpublished || $albumobj->getShow()) {
+							$tags = array_unique(array_merge($albumobj->getTags(false), array($words)));
+							$albumobj->setTags($tags);
+							$albumobj->save();
+						}
+					}
+				}
+				if (isset($_POST['return_images'])) {
+					$images = $search->getImages();
+					foreach ($images as $animage) {
+						$image = newImage(newAlbum($animage['folder']), $animage['filename']);
+						if ($unpublished || $image->getShow()) {
+							$tags = array_unique(array_merge($image->getTags(false), array($words)));
+							$image->setTags($tags);
+							$image->save();
+						}
+					}
+				}
+			} else {
+				if (isset($_POST['SEARCH_list'])) {
+					$searchfields = sanitize($_POST['SEARCH_list']);
+				} else {
+					$searchfields = array();
+				}
+				$words = sanitize($_POST['words']);
 			}
+			if (isset($_POST['thumb'])) {
+				$thumb = sanitize($_POST['thumb']);
+			} else {
+				$thumb = '';
+			}
+			$constraints = "\nCONSTRAINTS=" . 'inalbums=' . ((int) (isset($_POST['return_albums']))) . '&inimages=' . ((int) (isset($_POST['return_images']))) . '&unpublished=' . ((int) (isset($_POST['return_unpublished'])));
+			$redirect = $album . '/' . $albumname . '.alb';
+
+			if (!empty($albumname)) {
+				$f = fopen(internalToFilesystem(ALBUM_FOLDER_SERVERPATH . $redirect), 'w');
+				if ($f !== false) {
+					fwrite($f, "WORDS=$words\nTHUMB=$thumb\nFIELDS=" . implode(',', $searchfields) . $constraints . "\n");
+					fclose($f);
+					clearstatcache();
+// redirct to edit of this album
+					header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-edit.php?page=edit&album=" . pathurlencode($redirect));
+					exitZP();
+				}
+			}
+		} else {
+			$msg = gettext("You do not have edit rights on this album.");
 		}
 	} else {
 		$msg = gettext('Your search criteria is empty.');
