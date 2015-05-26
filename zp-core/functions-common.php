@@ -309,13 +309,6 @@ function html_encode($str) {
 }
 
 /**
- * Shortcut for html_encode
- */
-function h($str) {
-	return htmlspecialchars($str, ENT_FLAGS, LOCAL_CHARSET);
-}
-
-/**
  * HTML encodes the non-metatag part of the string.
  *
  * @param string $original string to be encoded
