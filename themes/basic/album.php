@@ -46,10 +46,11 @@ if (!defined('WEBPATH'))
 								<small><?php printAlbumDate(""); ?></small>
 								<div><?php printAlbumDesc(); ?></div>
 							</div>
-							<p style="clear: both; "></p>
+
 						</div>
 					<?php endwhile; ?>
 				</div>
+				<p style="clear: both; "></p>
 				<div id="images">
 					<?php while (next_image()): ?>
 						<div class="image">
@@ -71,7 +72,6 @@ if (!defined('WEBPATH'))
     @call_user_func('printCommentForm');
     ?>
 			</div>
-			<p style="clear: both; "></p>
 		</div>
 		<div id="credit">
 			<?php
