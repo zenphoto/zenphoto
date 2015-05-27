@@ -665,10 +665,6 @@ echo "\n</head>";
 					$parent = "&amp;album=" . pathurlencode($parent);
 				}
     
-				if (isset($_GET['singleimage'])) {
-					$parent .= '&amp;tab=imageinfo&amp;subpage='.$pagenum;
-				} 
-    
 				if (isset($_GET['metadata_refresh'])) {
 					echo '<div class="messagebox fade-message">';
 					echo "<h2>" . gettext("Image metadata refreshed.") . "</h2>";
@@ -844,6 +840,11 @@ echo "\n</head>";
 					$singleimage = NULL;
 					if (isset($_GET['singleimage'])) {
 						$simage = sanitize($_GET['singleimage']);
+						$imageno = array_search($simage, $images);
+						if ($imageno !== false) {
+							$pagenum = ceil(($imageno + 1) / $imagesTab_imageCount);
+						}
+						$parent .= '&amp;tab=imageinfo&amp;subpage='.$pagenum.'&amp;image='.html_encode($simage).'#IT';
 						if (array_search($simage, $images) !== false) {
 							$allimagecount = 1;
 							$singleimage = $simage;
