@@ -918,6 +918,8 @@ themes/zpskeleton/js/jquery.prettyPhoto.js
 themes/zpskeleton/js/zpskeleton.js
 themes/zpskeleton/register_user
 themes/zpskeleton/register_user/register_user_form.php
+themes/zpskeleton/themeSwitcher
+themes/zpskeleton/themeSwitcher/themeSwitcher.css
 plugins
 plugins/cacheHeader.php
 plugins/cookieInvalidator.php
@@ -2034,6 +2036,9 @@ zp-core/zp-extensions/tagFromSearch
 zp-core/zp-extensions/tagFromSearch/tag.php
 zp-core/zp-extensions/themeEditor
 zp-core/zp-extensions/themeEditor/themes-editor.php
+zp-core/zp-extensions/themeSwitcher
+zp-core/zp-extensions/themeSwitcher/menu-black.png
+zp-core/zp-extensions/themeSwitcher/themeSwitcher.css
 zp-core/zp-extensions/tinymce
 zp-core/zp-extensions/tinymce/jquery.tinymce.min.js
 zp-core/zp-extensions/tinymce/license.txt
@@ -2302,4 +2307,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-2304
+2309

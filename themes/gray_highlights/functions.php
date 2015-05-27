@@ -1,5 +1,4 @@
 <?php
-setOption('themeSwitcher_css', preg_replace('~top:\s.*px;~', 'top: 40px;', getOption('themeSwitcher_css')), false);
 
 /**
  * Prints out the menu of the theme
