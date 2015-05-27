@@ -40,10 +40,10 @@ if (class_exists('favorites')) {
 									<div><?php printAlbumDesc(); ?></div>
 									<?php printAddToFavorites($_zp_current_album, '', gettext('Remove')); ?>
 								</div>
-								<p style="clear: both; "></p>
 							</div>
 						<?php endwhile; ?>
 					</div>
+					<p style="clear: both; "></p>
 					<div id="images">
 						<?php
 						while (next_image()) {
