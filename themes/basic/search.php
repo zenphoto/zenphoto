@@ -60,12 +60,12 @@ if (!defined('WEBPATH'))
 								<p><?php printAlbumDesc(); ?></p>
 								<small><?php printAlbumDate(gettext("Date:") . ' '); ?> </small>
 							</div>
-							<p style="clear: both; "></p>
 						</div>
 						<?php
 					}
 					?>
 				</div>
+				<p style="clear: both; "></p>
 				<div id="images">
 					<?php
 					while (next_image()) {
