@@ -410,26 +410,15 @@ input#search_submit {
 .bottom .navbar-inner {
 	padding: 8px 10px;
 }
+
+
 #admin_data {
 	padding: 10px 15px 15px;
+	background-color: lightgray;
+	color: white;
 }
-#f_admin_data {
-	border: 1px solid #ccc;
-	padding-left: 10px;
-	-moz-border-radius: 5px;
-	-khtml-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	border-radius: 5px;
-}
-#zen-part {
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-	font-size: 15px;
-}
-#photo-part {
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-	font-size: 11px;
-	font-weight: bold;
-}
+
+
 .resize {
 	position: fixed;
 	bottom: 0;
@@ -438,18 +427,6 @@ input#search_submit {
 	width: 80px;
 	background: url(../images/resize.png);
 	z-index: 10000;
-}
-
-.admin{
-	position: fixed;
-	right: 0px;
-	top: 0px;
-	z-index: 2;
-	width: 23px;
-	height: 23px;
-	text-align: center;
-	padding-top: 5px;
-	padding-left: 5px;
 }
 
 

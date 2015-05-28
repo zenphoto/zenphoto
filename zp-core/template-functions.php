@@ -46,6 +46,8 @@ function printThemeHeadItems() {
 	<?php
 	if (zp_loggedin()) {
 		?>
+		<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/toolbox.css" type="text/css" />
+
 		<script type="text/javascript">
 			// <!-- <![CDATA[
 			var deleteAlbum1 = "<?php echo gettext("Are you sure you want to delete this entire album?"); ?>";
@@ -4208,6 +4210,7 @@ function printZenphotoLink($mod = null) {
 	if (!$image = getPlugin('images/zen-logo' . $mod . '.png', true, true)) {
 		$image = getPlugin('images/zen-logo.png', true, true);
 	}
+
 	printf(gettext('<span class="zen-logo"><a href="https://%1$s" title="' . '">Powered by <img src="%2$s" /></a></span>'), GITHUB, $image);
 }
 

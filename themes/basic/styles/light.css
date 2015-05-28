@@ -445,30 +445,7 @@ label:hover {
 
 /* Admin Toolbox
 ------------------------------ */
-#admin{
-	position: fixed;
-	right: 0px;
-	top: 0px;
-	z-index: 2;
-	width: 23px;
-	height: 23px;
-	text-align: center;
-	padding-top: 5px;
-	padding-left: 5px;
-}
-#admin_data{
-	position: fixed;
-	top: 0px;
-	right: 0px;
-	padding-top: 20px;
-	padding-left: 5px;
-	padding-right: 15px;
-	padding-bottom: 5px;
-	width: 130px;
-	z-index: 1;
-	line-height: 1.6em;
-	text-align: left;
-}
+
 #admin h3 {
 	font-weight: normal;
 	color: #999;

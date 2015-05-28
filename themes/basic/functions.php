@@ -35,6 +35,17 @@ function css_head($ignore) {
 	return $ignore;
 }
 
+function iconColor($icon) {
+	global $themeColor;
+	if (!$themeColor) {
+		$themeColor = getOption('Theme_colors');
+	}
+	if (strpos($themeColor, 'dark') !== false) {
+		$icon = stripSuffix($icon) . '-white.png';
+	}
+	return($icon);
+}
+
 function printSoftwareLink() {
 	global $themeColor;
 	switch ($themeColor) {
@@ -75,17 +86,6 @@ function switcher_head($ignore) {
 	</script>
 	<?php
 	return $ignore;
-}
-
-function iconColor($icon) {
-	global $themeColor;
-	if (!$themeColor) {
-		$themeColor = getOption('Theme_colors');
-	}
-	if (strpos($themeColor, 'dark') !== false) {
-		$icon = stripSuffix($icon) . '-white.png';
-	}
-	return($icon);
 }
 
 function switcher_controllink($ignore) {

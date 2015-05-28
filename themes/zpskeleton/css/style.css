@@ -536,25 +536,10 @@ p.readmorelink a:hover{border-color:#aaa;}
 /* Admin Toolbox
 ------------------------------ */
 #admin{
-	position: fixed;
-	right: 0px;
-	top: 60px;
-	z-index: 2;
-	width: 23px;
-	height: 23px;
-	text-align: center;
-	padding-top: 5px;
-	padding-left: 5px;
+	top: 55px;
 }
 #admin_data{
-	position: fixed;
 	top: 85px;
-	right: 0px;
-	width: 130px;
-	line-height: 1.6em;
-	padding:20px 10px 0 10px;
-	z-index: 1000;
-	text-align: left;
 }
 #admin h3 {
 

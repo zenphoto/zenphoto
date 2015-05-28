@@ -24,10 +24,11 @@ Default admin toolbox css
 	padding-left: 5px;
 	padding-right: 15px;
 	padding-bottom: 5px;
-	width: 130px;
+	width: 150px;
 	z-index: 1000;
 	line-height: 1.6em;
 	text-align: left;
+	font-size: 16px;
 }
 
 #admin h3 {
@@ -36,7 +37,7 @@ Default admin toolbox css
 	margin: 0;
 	padding: 0;
 	text-align: center;
-	font-size: 15px;
+	font-size: 16px;
 }
 
 #admin h3:hover {
