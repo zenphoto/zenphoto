@@ -49,6 +49,7 @@ if (!defined('WEBPATH'))
 						</div>
 					<?php endwhile; ?>
 				</div>
+				<br class="clearfloat">
 				<div id="images">
 					<?php while (next_image()): ?>
 						<div class="image">
@@ -60,6 +61,7 @@ if (!defined('WEBPATH'))
 						</div>
 					<?php endwhile; ?>
 				</div>
+				<br class="clearfloat">
 				<?php
 				printPageListWithNav("« " . gettext("prev"), gettext("next") . " »");
 				if (function_exists('printAddToFavorites'))

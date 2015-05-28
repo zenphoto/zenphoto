@@ -16,6 +16,7 @@ body {
 
 }
 #main {
+	display: inline-block;
 	text-align: left;
 	margin: 40px auto 5px auto;
 	padding-bottom: 15px;

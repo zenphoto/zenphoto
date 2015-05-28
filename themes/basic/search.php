@@ -63,7 +63,7 @@ if (!defined('WEBPATH'))
 					}
 					?>
 				</div>
-				<p style="clear: both; "></p>
+				<br class="clearall">
 				<div id="images">
 					<?php
 					while (next_image()) {
@@ -78,7 +78,7 @@ if (!defined('WEBPATH'))
 					}
 					?>
 				</div>
-				<br class="clearall" />
+				<br class="clearall">
 				<?php
 				@call_user_func('printSlideShowLink');
 				if ($c == 0) {

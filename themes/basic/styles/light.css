@@ -20,6 +20,7 @@ body {
 	text-align: center;
 }
 #main {
+	display: inline-block;
 	text-align: left;
 	margin: 20px auto;
 	width: 685px;
