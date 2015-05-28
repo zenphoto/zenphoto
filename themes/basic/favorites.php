@@ -43,7 +43,7 @@ if (class_exists('favorites')) {
 							</div>
 						<?php endwhile; ?>
 					</div>
-					<p style="clear: both; "></p>
+					<br class="clearall">
 					<div id="images">
 						<?php
 						while (next_image()) {
@@ -60,6 +60,7 @@ if (class_exists('favorites')) {
 						}
 						?>
 					</div>
+					<br class="clearall">
 					<?php
      @call_user_func('printSlideShowLink');
      printPageListWithNav("« " . gettext("prev"), gettext("next") . " »");
