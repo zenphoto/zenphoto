@@ -78,13 +78,13 @@ function adminToolbox() {
 		$id = 'admin';
 		$dataid = 'admin_data';
 		$page = getCurrentPage();
-
+		$icon = zp_apply_filter('iconColor', getPlugin('images/gear.png', true, true));
 		ob_start();
 		?>
 		<div id="<?php echo $id; ?>">
 			<h3>
-				<a onclick="toggle('<?php echo $dataid; ?>');" title="<?php echo $_zp_current_admin_obj->getUser(); ?>">
-					<?php echo gettext('Admin Toolbox'); ?>
+				<a onclick="toggle('<?php echo $dataid; ?>');" title="<?php echo gettext('Admin') . ' ' . $_zp_current_admin_obj->getUser(); ?>">
+					<img src="<?php echo $icon; ?>" />
 				</a>
 			</h3>
 		</div>

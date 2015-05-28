@@ -446,28 +446,36 @@ label:hover {
 
 /* Admin Toolbox
 ------------------------------ */
-#admin, #admin_data{
+#admin{
 	position: fixed;
 	right: 0px;
 	top: 0px;
-	width: 130px;
-	border-bottom: 1px solid #444;
-	border-left: 1px solid #444;
-	background: #222;
-	z-index: 2; 	text-align: left;
+	z-index: 2;
+	width: 23px;
+	height: 23px;
+	text-align: center;
+	padding-top: 5px;
+	padding-left: 5px;
 }
 #admin_data{
+	position: fixed;
 	top: 0px;
+	right: 0px;
 	padding-top: 20px;
+	padding-left: 5px;
+	padding-right: 15px;
+	padding-bottom: 5px;
+	width: 130px;
 	z-index: 1;
 	line-height: 1.6em;
+	text-align: left;
 }
 #admin h3 {
 	font-weight: normal;
 	color: #aaa;
 	margin:0;
 	padding:0;
-	text-align: center;
+	text-align: left;
 }
 #admin h3:hover { color: #86a1b6; }
 

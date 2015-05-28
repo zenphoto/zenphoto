@@ -121,11 +121,15 @@ themes/garland/images/bg-content-right.png
 themes/garland/images/bg-content.png
 themes/garland/images/bg-navigation.png
 themes/garland/images/body.png
+themes/garland/images/gear.png
 themes/garland/images/menu-album.png
 themes/garland/images/menu-sub.png
 themes/garland/images/search.png
 themes/garland/images/search_bg.png
 themes/garland/images/zen-logo.png
+themes/garland/themeSwitcher
+themes/garland/themeSwitcher/menu.png
+themes/garland/themeSwitcher/themeSwitcher.css
 themes/gray_highlights
 themes/gray_highlights/album.php
 themes/gray_highlights/archive.php
@@ -146,7 +150,11 @@ themes/gray_highlights/css/reset.css
 themes/gray_highlights/css/text.css
 themes/gray_highlights/css/theme.css
 themes/gray_highlights/images
+themes/gray_highlights/images/gear.png
 themes/gray_highlights/images/zen-logo.png
+themes/gray_highlights/themeSwitcher
+themes/gray_highlights/themeSwitcher/menu.png
+themes/gray_highlights/themeSwitcher/themeSwitcher.css
 themes/zenpage
 themes/zenpage/404.php
 themes/zenpage/album.php
@@ -179,12 +187,15 @@ themes/zenpage/images/arrow_right.gif
 themes/zenpage/images/body.jpg
 themes/zenpage/images/breadcrumb-back.jpg
 themes/zenpage/images/footer.jpg
+themes/zenpage/images/gear.png
 themes/zenpage/images/header.jpg
 themes/zenpage/images/img-bg.gif
 themes/zenpage/images/jcarousel_loading.gif
 themes/zenpage/images/jcarousel_next.png
 themes/zenpage/images/jcarousel_prev.png
 themes/zenpage/images/tag.png
+themes/zenpage/themeSwitcher
+themes/zenpage/themeSwitcher/menu.png
 themes/zpArdoise
 themes/zpArdoise/404.php
 themes/zpArdoise/album.php
@@ -305,6 +316,7 @@ themes/zpBootstrap/images/controls.png
 themes/zpBootstrap/images/err-passwordprotected.png
 themes/zpBootstrap/images/favicon.ico
 themes/zpBootstrap/images/feed_icon.png
+themes/zpBootstrap/images/gear.png
 themes/zpBootstrap/images/glyphicons-halflings-white.png
 themes/zpBootstrap/images/glyphicons-halflings.png
 themes/zpBootstrap/images/imageDefault.png
@@ -318,6 +330,8 @@ themes/zpBootstrap/js/jquery.flexslider-min.js
 themes/zpBootstrap/js/zpBootstrap.js
 themes/zpBootstrap/register_user
 themes/zpBootstrap/register_user/register_user_form.php
+themes/zpBootstrap/themeSwitcher
+themes/zpBootstrap/themeSwitcher/menu.png
 themes/zpEnlighten
 themes/zpEnlighten/404.php
 themes/zpEnlighten/album.php
@@ -644,6 +658,7 @@ themes/zpmobile/theme_description.php
 themes/zpmobile/themeoptions.php
 themes/zpmobile/images
 themes/zpmobile/images/admin-buttonback.jpg
+themes/zpmobile/images/gear.png
 themes/zpmobile/images/rss.png
 themes/zpmobile/images/zen-logo.png
 themes/zpmobile/jquerymobile
@@ -854,6 +869,8 @@ themes/zpmobile/jquerymobile/images/icons-svg/user-black.svg
 themes/zpmobile/jquerymobile/images/icons-svg/user-white.svg
 themes/zpmobile/jquerymobile/images/icons-svg/video-black.svg
 themes/zpmobile/jquerymobile/images/icons-svg/video-white.svg
+themes/zpmobile/themeSwitcher
+themes/zpmobile/themeSwitcher/menu.png
 themes/zpskeleton
 themes/zpskeleton/404.php
 themes/zpskeleton/album.php
@@ -1842,6 +1859,9 @@ zp-core/zp-extensions/image_effects/sepia.js
 zp-core/zp-extensions/image_effects/slided.txt
 zp-core/zp-extensions/image_effects/sphere.txt
 zp-core/zp-extensions/images
+zp-core/zp-extensions/images/gear-gray.png
+zp-core/zp-extensions/images/gear-white.png
+zp-core/zp-extensions/images/gear.png
 zp-core/zp-extensions/images/zen-logo-light.png
 zp-core/zp-extensions/images/zen-logo.png
 zp-core/zp-extensions/jcarousel_thumb_nav
@@ -2037,7 +2057,9 @@ zp-core/zp-extensions/tagFromSearch/tag.php
 zp-core/zp-extensions/themeEditor
 zp-core/zp-extensions/themeEditor/themes-editor.php
 zp-core/zp-extensions/themeSwitcher
-zp-core/zp-extensions/themeSwitcher/menu-black.png
+zp-core/zp-extensions/themeSwitcher/menu-gray.png
+zp-core/zp-extensions/themeSwitcher/menu-white.png
+zp-core/zp-extensions/themeSwitcher/menu.png
 zp-core/zp-extensions/themeSwitcher/themeSwitcher.css
 zp-core/zp-extensions/tinymce
 zp-core/zp-extensions/tinymce/jquery.tinymce.min.js
@@ -2307,4 +2329,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-2309
+2331

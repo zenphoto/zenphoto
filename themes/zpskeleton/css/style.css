@@ -535,26 +535,27 @@ p.readmorelink a:hover{border-color:#aaa;}
 
 /* Admin Toolbox
 ------------------------------ */
-#admin,#admin_data {
-	font-weight: normal;
-	font-size:12px;
+#admin{
 	position: fixed;
-	right: 15px;
+	right: 0px;
 	top: 60px;
-	width: 100px;
-	border: 1px solid #E6E6DF;
-	-moz-border-radius:3px;-webkit-border-radius:3px;border-radius:3px;
-	-moz-box-shadow:0 1px 2px rgba(0, 0, 0, 0.6);-webkit-box-shadow:0 1px 2px rgba(0, 0, 0, 0.6);box-shadow:0 1px 2px rgba(0, 0, 0, 0.6);
-
-	background: #fff;
-	padding: 0 10px;
-	z-index: 1001;
-	text-align: center;}
-#admin_data {
+	z-index: 2;
+	width: 23px;
+	height: 23px;
+	text-align: center;
+	padding-top: 5px;
+	padding-left: 5px;
+}
+#admin_data{
+	position: fixed;
 	top: 85px;
+	right: 0px;
+	width: 130px;
+	line-height: 1.6em;
 	padding:20px 10px 0 10px;
 	z-index: 1000;
-	text-align: center;}
+	text-align: left;
+}
 #admin h3 {
 
 	font-weight: normal;

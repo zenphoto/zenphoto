@@ -1113,19 +1113,27 @@ div#jump-search select option {
 /*------------------------------------------------------------------------------
 									admin
 ------------------------------------------------------------------------------ */
-#admin, #admin_data {
-	border: 1px solid #4a4a4a;
-	background: #292929;
+#admin{
 	position: fixed;
-	right: 0;
-	top: 0;
-	width: 140px;
-	z-index: 99;
-	padding: 2px;
+	right: 0px;
+	top: 0px;
+	z-index: 2;
+	width: 23px;
+	height: 23px;
+	text-align: center;
+	padding-top: 5px;
+	padding-left: 5px;
 }
-#admin_data {
-	top: 20px;
-	z-index: 98;
+#admin_data{
+	position: fixed;
+	top: 0px;
+	right: 0px;
+	padding-top: 20px;
+	padding-left: 5px;
+	padding-right: 15px;
+	padding-bottom: 5px;
+	width: 130px;
+	z-index: 1;
 	line-height: 1.6em;
 	text-align: left;
 }
