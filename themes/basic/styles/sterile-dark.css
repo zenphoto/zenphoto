@@ -16,6 +16,7 @@ body {
 
 }
 #main {
+	display: inline-block;
 	text-align: left;
 	margin: 40px auto 5px auto;
 	padding-bottom: 15px;
@@ -659,7 +660,7 @@ clear: both;
 #commentform label,
 #mailform label {
 width: 30% !important;
-float: left; 
+float: left;
 display: block;
 }
 #registration_form input[type="text"],
@@ -674,7 +675,7 @@ padding: 5px 8px 5px 8px!important;
 margin: 5px 0 0 0;
 }
 
-#mailform textarea, 
+#mailform textarea,
 #commentform textarea#comment {
 clear: both;
 width: 95% !important;
@@ -690,7 +691,7 @@ border: 0;
 font-size: 12px;
 }
 
-a.slideshowlink { 
+a.slideshowlink {
 padding: 5px 6px 3px 6px;
 margin-top: 10px !important;
 text-decoration: none;
