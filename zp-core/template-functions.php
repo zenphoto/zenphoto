@@ -82,10 +82,13 @@ function adminToolbox() {
 		$page = getCurrentPage();
 		$icon = zp_apply_filter('iconColor', getPlugin('images/gear.png', true, true));
 		ob_start();
+		if (!$name = $_zp_current_admin_obj->getName()) {
+			$name = $_zp_current_admin_obj->getUser();
+		}
 		?>
 		<div id="<?php echo $id; ?>">
 			<h3>
-				<a onclick="toggle('<?php echo $dataid; ?>');" title="<?php echo gettext('Admin') . ' ' . $_zp_current_admin_obj->getUser(); ?>">
+				<a onclick="toggle('<?php echo $dataid; ?>');" title="<?php echo gettext('Admin') . ' ' . $name; ?>">
 					<img src="<?php echo $icon; ?>" />
 				</a>
 			</h3>
