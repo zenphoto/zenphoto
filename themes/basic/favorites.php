@@ -40,10 +40,10 @@ if (class_exists('favorites')) {
 									<div><?php printAlbumDesc(); ?></div>
 									<?php printAddToFavorites($_zp_current_album, '', gettext('Remove')); ?>
 								</div>
-								<p style="clear: both; "></p>
 							</div>
 						<?php endwhile; ?>
 					</div>
+					<br class="clearall">
 					<div id="images">
 						<?php
 						while (next_image()) {
@@ -60,6 +60,7 @@ if (class_exists('favorites')) {
 						}
 						?>
 					</div>
+					<br class="clearall">
 					<?php
 					@call_user_func('printSlideShowLink');
 					printPageListWithNav("« " . gettext("prev"), gettext("next") . " »");

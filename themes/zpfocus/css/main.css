@@ -317,29 +317,17 @@ html[xmlns] .clearfix {display: block;}
 .addthis_toolbox.addthis_default_style{min-width:140px;}
 
 /* Admin Toolbox */
-#admin,#admin_data {
-	font-weight: normal;
-	font-size:12px;
-	position: fixed;
-	right: 5px;
-	top: 5px;
-	width: 100px;
-	border: 1px solid #E6E6DF;
-	background: #fff;
-	padding:10px;
-	z-index: 1001;
-	text-align: center;}
+
 #admin_data {
-	top: 35px;
-	padding:10px;
-	z-index: 1000;
-	text-align: center;}
+	top: 40px;
+}
 #admin h3 {
 	font-weight: normal;
 	font-size:12px;
 	margin: 0;
 	padding: 0;
-	text-align: center;}
+	text-align: center;
+}
 #admin h3:hover {
 	color: #036;}
 

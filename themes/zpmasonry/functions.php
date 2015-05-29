@@ -222,6 +222,14 @@ if ($zpmas_ss) {
 			break;
 	}
 }
+zp_register_filter('iconColor', 'iconColor');
+
+function iconColor($icon) {
+	if (getOption('zpmas_css') == 'dark') {
+		$icon = stripSuffix($icon) . '-white.png';
+	}
+	return($icon);
+}
 
 // Sets expanded titles (breadcrumbs) for Title meta
 function getTitleBreadcrumb($before = ' ( ', $between = ' | ', $after = ' ) ') {

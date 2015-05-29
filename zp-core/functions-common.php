@@ -65,8 +65,8 @@ function zp_error($message, $fatal = E_USER_ERROR) {
  * @return void|boolean
  */
 function zpErrorHandler($errno, $errstr = '', $errfile = '', $errline = '') {
+	global $_zp_current_admin_obj, $_index_theme;
 	// check if function has been called by an exception
-
 	if (func_num_args() == 5) {
 		list($errno, $errstr, $errfile, $errline) = func_get_args();
 	} else {
@@ -112,10 +112,16 @@ function zpErrorHandler($errno, $errstr = '', $errfile = '', $errline = '') {
 	} else {
 		$uri = sanitize(@$_SERVER['SCRIPT_NAME']);
 	}
-	if ($uri)
-		$uri = "\nURI:" . urldecode(str_replace('\\', '/', $uri));
-
-	$uri .= "\nIP:" . getUserIP();
+	if ($uri) {
+		$uri = "\n URI:" . urldecode(str_replace('\\', '/', $uri));
+	}
+	$uri .= "\n IP:" . getUserIP();
+	if (is_object($_zp_current_admin_obj)) {
+		$uri .= "\n " . gettext('user') . ':' . $_zp_current_admin_obj->getUser();
+	}
+	if ($_index_theme) {
+		$uri .= "\n " . gettext('theme') . ':' . $_index_theme;
+	}
 	debugLogBacktrace($msg . $uri, 1);
 
 	if (!ini_get('display_errors') && ($errno == E_ERROR || $errno = E_USER_ERROR)) {

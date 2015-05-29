@@ -1,0 +1,32 @@
+/*
+    Created on : May 27, 2015, 9:55:20 AM
+    Author     : Stephen
+*/
+.themeSwitcherControlLink {
+	color: black;
+	padding-top: 5px;
+	padding-left: 5px;
+	padding-bottom: 5px;
+	background-color: #f5f5f5;
+	width: 50%;
+	border: 1px solid darkgray;
+	position: fixed;
+	z-index: 90000;
+	left: 0px;
+	top: 0px;
+}
+
+.themeSwitcherMenu {
+	width: 23px;
+	height: 23px;
+	position: center;
+}
+
+.themeSwitcherMenuMain {
+	position: fixed;
+	z-index: 90000;
+	left: 0px;
+	top: 17px;
+	padding-top: 5px;
+	padding-left: 5px;
+}

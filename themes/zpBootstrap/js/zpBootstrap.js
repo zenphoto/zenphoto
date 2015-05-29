@@ -1,25 +1,25 @@
-jQuery(document).ready(function($) {
+jQuery(document).ready(function ($) {
 	/* responsive pictures */
-	$('img.remove-attributes').each(function(){
+	$('img.remove-attributes').each(function () {
 		$(this).removeAttr('width');
 		$(this).removeAttr('height');
 	});
 
 	/* errorbox */
 	$('.errorbox').addClass('alert alert-error');
-	$('.errorbox h2').replaceWith('<h4>'+$('.errorbox h2').html()+'</h4>');
+	$('.errorbox h2').replaceWith('<h4>' + $('.errorbox h2').html() + '</h4>');
 
 	/* navigation */
 	$('.navbar .nav li > a.active')
-		.removeClass('active')
-		.parent().addClass('active');
+					.removeClass('active')
+					.parent().addClass('active');
 	$('div.pagination ul.pagination').removeClass('pagination');
 	$('div.pagination span.disabledlink')
-		.wrap('<a href="#"></a>')
-		.parent().addClass('disabled');
+					.wrap('<a href="#"></a>')
+					.parent().addClass('disabled');
 	$('div.pagination li.current')
-		.wrapInner('<a href="#"></a>')
-		.addClass('active');
+					.wrapInner('<a href="#"></a>')
+					.addClass('active');
 
 	/* favorites button */
 	$('.favorites input[type="submit"]').addClass('btn btn-inverse');
@@ -45,16 +45,16 @@ jQuery(document).ready(function($) {
 
 	/* password & connexion & admin */
 	$('.post #passwordform')
-		.removeAttr('id')
-		.attr('id', 'zpB_passwordform')
-		.addClass('modal');
+					.removeAttr('id')
+					.attr('id', 'zpB_passwordform')
+					.addClass('modal');
 	$('#loginform form').addClass('form-horizontal');
 	$('#loginform .buttons button').addClass('btn btn-inverse');
 	$('#logon_box .textfield').addClass('input-large');
 
 	$('#passwordform')
-		.removeAttr('id')
-		.attr('id', 'zpB_login_passwordform');
+					.removeAttr('id')
+					.attr('id', 'zpB_login_passwordform');
 	if ($('#zpB_login_passwordform .errorbox').length) {
 		$('#zpB_login_passwordform').addClass('modal');
 		$('#zpB_login_passwordform').modal({show: true});
@@ -62,62 +62,50 @@ jQuery(document).ready(function($) {
 		$('#zpB_login_passwordform').addClass('modal hide');
 	}
 
-	$('#admin h3 a')
-		.removeAttr('href')
-		.attr('href', '#admin_data')
-		.attr('data-toggle', 'modal')
-		.addClass('admin')
-		.unwrap()
-		.unwrap();
-	$('#admin_data ul')
-		.removeAttr('style')
-		.attr('style', 'margin: 15px 25px;')
-		.parent().removeAttr('style').addClass('modal hide')
-		.wrapInner('<fieldset id="f_admin_data">');
 
 	/* register */
 	$('#registration_form label#strength, #registration_form input#pass')
-		.unwrap()
-		.wrapAll('<div class="control-group"></div>');
+					.unwrap()
+					.wrapAll('<div class="control-group"></div>');
 	$('#registration_form label#strength').addClass('control-label');
 	$('#registration_form input#pass')
-		.wrap('<div class="controls"></div>')
-		.addClass('input-large');
+					.wrap('<div class="controls"></div>')
+					.addClass('input-large');
 	$('#registration_form label[for="disclose_password"], #registration_form input#disclose_password')
-		.unwrap()
-		.wrapAll('<div class="control-group"></div>');
+					.unwrap()
+					.wrapAll('<div class="control-group"></div>');
 	$('#registration_form label[for="disclose_password"]').addClass('control-label');
 	$('#registration_form input#disclose_password')
-		.wrap('<div class="controls"></div>');
+					.wrap('<div class="controls"></div>');
 	$('#registration_form label#match, #registration_form input#pass_r')
-		.unwrap()
-		.wrapAll('<div class="control-group password_field_"></div>');
+					.unwrap()
+					.wrapAll('<div class="control-group password_field_"></div>');
 	$('#registration_form label#match').addClass('control-label');
 	$('#registration_form input#pass_r')
-		.wrap('<div class="controls"></div>')
-		.addClass('input-large');
+					.wrap('<div class="controls"></div>')
+					.addClass('input-large');
 
 	/* search form */
 	$('#search_form').addClass('navbar-search');
 	$('#search_input').addClass('search-query input-medium');
 	$('#search_form input[type="submit"]')
-		.addClass('btn btn-inverse');
+					.addClass('btn btn-inverse');
 	$('#search').addClass('pull-right');
 	$('#searchfields_icon').replaceWith('<i class="icon-list icon-white" title="options de recherche"></i>');
 
 	/* google map */
 	$('#googlemap_toggle').remove();
 	$('.google_map')
-		.addClass('accordion-toggle')
-		.prepend('<i class="icon-map-marker"></i>');
+					.addClass('accordion-toggle')
+					.prepend('<i class="icon-map-marker"></i>');
 	$('#googlemap_data')
-		.removeAttr('id')
-		.attr('id', 'zpB_googlemap_data')
-		.removeClass('hidden_map');
-	if ($('#gmap_accordion #zB_show').length){
+					.removeAttr('id')
+					.attr('id', 'zpB_googlemap_data')
+					.removeClass('hidden_map');
+	if ($('#gmap_accordion #zB_show').length) {
 		$('#zpB_googlemap_data').collapse('show');
 	}
-	if ($('#gmap_accordion #zB_hide').length){
+	if ($('#gmap_accordion #zB_hide').length) {
 		$('#zpB_googlemap_data').collapse('hide');
 	}
 
@@ -127,7 +115,7 @@ jQuery(document).ready(function($) {
 	$('#commentcontent').addClass('row');
 	$('#commentcontent #comments').addClass('span6');
 	$('#commentcontent #commententry').addClass('span6');
-	if ($('#commentform .errorbox').length){
+	if ($('#commentform .errorbox').length) {
 		$('#comment').collapse('show');
 	}
 

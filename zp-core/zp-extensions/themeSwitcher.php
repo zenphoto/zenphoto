@@ -9,14 +9,13 @@
  *
  * No theme participation is needed for this plugin. But to accomplish this independence the
  * plugin will load a small css block in the theme head. The actual styling is an option to the plugin.
- * A theme may replace this css via the <var>themeSwitcher_css</var> filter.
  *
  * Themes and plugins may use the <var>themeSwitcher_head</var> and <var>themeSwitcher_controllink</var> filters to add (or remove)
  * switcher controls. The <i><var>active()</var></i> method may be called to see if <i>themeSwitcher</i> will display
  * the control links.
  *
  * @author Stephen Billard (sbillard)
- * 
+ *
  * @package plugins
  * @subpackage development
  */
@@ -36,18 +35,6 @@ class themeSwitcher {
 			$themelist[$key] = getOption('themeSwitcher_theme_' . $key);
 		}
 		setOptionDefault('themeSwitcher_timeout', 60 * 2);
-		setOptionDefault('themeSwitcher_css', ".themeSwitcherControlLink {\n" .
-						" position: fixed;\n" .
-						" z-index: 10000;\n" .
-						" left: 0px;\n" .
-						" top: 0px;\n" .
-						" border-bottom: 1px solid #444;\n" .
-						" border-left: 1px solid #444;\n" .
-						" color: black;\n" .
-						" padding: 2px;\n" .
-						" background-color: #f5f5f5;\n" .
-						"}\n"
-		);
 		setOptionDefault('themeSwitcher_adminOnly', 1);
 	}
 
@@ -60,9 +47,6 @@ class themeSwitcher {
 		}
 		$options = array(gettext('Cookie duration') => array('key'	 => 'themeSwitcher_timeout', 'type' => OPTION_TYPE_NUMBER,
 										'desc' => gettext('The time in minutes that the theme switcher cookie lasts.')),
-						gettext('Selector CSS')		 => array('key'					 => 'themeSwitcher_css', 'type'				 => OPTION_TYPE_TEXTAREA,
-										'multilingual' => false,
-										'desc'				 => gettext('Change this box if you wish to style the theme switcher selector for your themes.')),
 						gettext('Private')				 => array('key'	 => 'themeSwitcher_adminOnly', 'type' => OPTION_TYPE_CHECKBOX,
 										'desc' => gettext('Only users with <em>Themes</em> rights will see the selector if this is checked.')),
 						gettext('Theme list')			 => array('key'				 => 'themeSwitcher_list', 'type'			 => OPTION_TYPE_CHECKBOX_UL,
@@ -94,14 +78,9 @@ class themeSwitcher {
 
 	static function head($css) {
 		global $_themeSwitcherThemelist;
-		if (getOption('themeSwitcher_css')) {
-			?>
-			<style type="text/css">
-			<?php echo zp_apply_filter('themeSwitcher_css', getOption('themeSwitcher_css')); ?>
-			</style>
-			<?php
-		}
+		$css = getPlugin('themeSwitcher/themeSwitcher.css', true, true);
 		?>
+		<link type="text/css" rel="stylesheet" href="<?php echo pathurlencode($css); ?>" />
 		<script type="text/javascript">
 			// <!-- <![CDATA[
 			function switchTheme(reloc) {
@@ -141,16 +120,22 @@ class themeSwitcher {
 				$reloc .= '?themeSwitcher=%t';
 			}
 			$theme = $_zp_gallery->getCurrentTheme();
+			$icon = zp_apply_filter('iconColor', getPlugin('themeswitcher/menu.png', true, true));
 			?>
-			<span class="themeSwitcherControlLink">
-				<span title="<?php echo gettext("Themes will not show in this list if selecting them would result in a “not found” error."); ?>">
-					<?php echo $text; ?>
-					<select name="themeSwitcher" id="themeSwitcher" onchange="switchTheme('<?php echo html_encode($reloc); ?>')">
-						<?php generateListFromArray(array($theme), $themes, false, true); ?>
-					</select>
-				</span>
+			<div class="themeSwitcherMenuMain themeSwitcherMenu themeSwitcherControl">
+				<img src="<?php echo $icon; ?>" onclick="$('.themeSwitcherControl').toggle();" title="<?php echo gettext('Switch themes'); ?>" />
+				<br clear="all">
+			</div>
+			<div class="themeSwitcherControlLink themeSwitcherControl" style="display:none;">
+				<div class="themeSwitcherMenu">
+					<img src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/themeswitcher/menu.png" onclick="$('.themeSwitcherControl').toggle();" title="<?php echo gettext('Switch themes'); ?>" />
+				</div>
+				<?php echo $text; ?>
+				<select name="themeSwitcher" id="themeSwitcher" onchange="switchTheme('<?php echo html_encode($reloc); ?>')" title="<?php echo gettext("Themes will not show in this list if selecting them would result in a “not found” error."); ?>">
+					<?php generateListFromArray(array($theme), $themes, false, true); ?>
+				</select>
 				<?php zp_apply_filter('themeSwitcher_Controllink', $theme); ?>
-			</span>
+			</div>
 			<?php
 		}
 		return $textIn;

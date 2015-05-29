@@ -46,6 +46,8 @@ function printThemeHeadItems() {
 	<?php
 	if (zp_loggedin()) {
 		?>
+		<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/toolbox.css" type="text/css" />
+
 		<script type="text/javascript">
 			// <!-- <![CDATA[
 			var deleteAlbum1 = "<?php echo gettext("Are you sure you want to delete this entire album?"); ?>";
@@ -78,13 +80,16 @@ function adminToolbox() {
 		$id = 'admin';
 		$dataid = 'admin_data';
 		$page = getCurrentPage();
-
+		$icon = zp_apply_filter('iconColor', getPlugin('images/gear.png', true, true));
 		ob_start();
+		if (!$name = $_zp_current_admin_obj->getName()) {
+			$name = $_zp_current_admin_obj->getUser();
+		}
 		?>
 		<div id="<?php echo $id; ?>">
 			<h3>
-				<a onclick="toggle('<?php echo $dataid; ?>');" title="<?php echo $_zp_current_admin_obj->getUser(); ?>">
-					<?php echo gettext('Admin Toolbox'); ?>
+				<a onclick="toggle('<?php echo $dataid; ?>');" title="<?php echo gettext('Admin') . ' ' . $name; ?>">
+					<img src="<?php echo $icon; ?>" />
 				</a>
 			</h3>
 		</div>
@@ -4208,6 +4213,7 @@ function printZenphotoLink($mod = null) {
 	if (!$image = getPlugin('images/zen-logo' . $mod . '.png', true, true)) {
 		$image = getPlugin('images/zen-logo.png', true, true);
 	}
+
 	printf(gettext('<span class="zen-logo"><a href="https://%1$s" title="' . '">Powered by <img src="%2$s" /></a></span>'), GITHUB, $image);
 }
 

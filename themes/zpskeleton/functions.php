@@ -1,6 +1,4 @@
 <?php
-setOption('themeSwitcher_css', preg_replace('~top:\s.*px;~', 'top: 40px;', getOption('themeSwitcher_css')), false);
-
 // Check some settings
 
 $zenpage = getOption('zp_plugin_zenpage');

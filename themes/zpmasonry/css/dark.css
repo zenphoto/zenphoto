@@ -65,10 +65,10 @@ input,textarea,select,
 {border-color:#282828;}
 
 #sidebar-inner,
-.newsarticlecredit 
+.newsarticlecredit
 {border-top-color:#202020;}
 
-#sidebar-inner.fixed 
+#sidebar-inner.fixed
 {border-top-color:#121212;}
 
 body
@@ -94,6 +94,7 @@ a:hover{color:#7ccc0cb;}
 .tags{background-image:url(../images/tag-inv.png);}
 .counts{background-image:url(../images/star-inv.png);}
 #backtotop{background-image:url(../images/arrow-alt-up-inv.png);}
+#admin_data {top:40px;}
 #admin h3 a{background-image: url(../images/tools-inv.png);}
 .pass{background-image: url(../images/padlock-closed-inv.png);}
 

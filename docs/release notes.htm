@@ -76,7 +76,11 @@
 			}
 		</style>
 	<body>
-<h1>ZenPhoto20 release notes</h1><h2>Album sort order selection</h2>
+<h1>ZenPhoto20 release notes</h1><h2>Theme appearance&nbsp;improvements</h2>
+<p>The link that exposes the <em>admin toolbox</em> has been changed to a <em>gear</em> icon to minimize its presence on theme pages. Likewise the <em>themeSwitcher</em> plugin&nbsp;now shows a <em>menu</em> icon rather than the full selector. Clicking on the <em>menu</em> icon exposes the theme switching selections.</p>
+<p>Third party themes which style the <em>admin toolbox</em> may need to change their styles for the main link to take full advantage of this appearance improvement. If the theme is relatively "standard" all that is needed is to delete the <code>#admin</code> and <code>#admin_data</code> styles from the theme&nbsp;CSS&nbsp;as ZenPhoto20 will load a default CSS&nbsp;for the toolbox.</p>
+<p>As with other theme oriented files, themes can place custom versions of <code>images/gear.png</code> and <code>themeSwitcher/menu.png</code>&nbsp;in the theme folder to customize the icons shown. There is also a new filter--<code>iconColor</code>-- to allow selection of different colored menu and gear icons if the theme has configurable background colors. An example of this filter can be found in the <code>basic</code> theme and the <code>effervescence+</code> theme.</p>
+<h2>Album sort order selection</h2>
 <p>Album and subalbum sort order may now be chosen from a selector on the album tabs.</p>
 <h2>Tag handling for albums <em>mass-edit</em> and multiple image tabs</h2>
 <p>The ability to add tags to albums and images has been extended to the multiple item tabs. Previously this function was removed due to problems with some PHP installations where the amount of data "posted" when the apply button was pressed exceeded the capacity defined by the server. This resulted in not being able to save from these pages unless the number of items per page was reduced. (An option not available for the album mass-edit tab.)</p>

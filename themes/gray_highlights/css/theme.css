@@ -489,24 +489,19 @@ h2{
 
 /* Admin Toolbox
 ------------------------------ */
-#admin,#admin_data {
-	position: fixed;
-	right: 0px;
-	top: 0px;
-	width: 130px;
-	border-bottom: 1px solid #E6E6DF;
-	border-left: 1px solid #E6E6DF;
-	background: #cecece;
-	z-index: 1001;
-	text-align: left;
-	font-size: 13px;
+#admin{
+	top: 17px;
+	background-color: transparent;
 }
-
-#admin_data {
-	margin-top: 30px;
+#admin_data{
+	top: 17px;
+	background-color: lightgray;
 }
-
-#admin a, #admin_data li a {
+#admin a:hover{
+	text-shadow: none !important;
+	background-color: transparent !important;
+}
+#admin_data li a {
 	display: block;
 	color: #333;
 	text-decoration: none;

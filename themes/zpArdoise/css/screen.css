@@ -1113,22 +1113,7 @@ div#jump-search select option {
 /*------------------------------------------------------------------------------
 									admin
 ------------------------------------------------------------------------------ */
-#admin, #admin_data {
-	border: 1px solid #4a4a4a;
-	background: #292929;
-	position: fixed;
-	right: 0;
-	top: 0;
-	width: 140px;
-	z-index: 99;
-	padding: 2px;
-}
-#admin_data {
-	top: 20px;
-	z-index: 98;
-	line-height: 1.6em;
-	text-align: left;
-}
+
 #admin_data ul {
 	padding: 5px 0 0 10px;
 }

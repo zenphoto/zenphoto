@@ -1,5 +1,7 @@
 <?php
 
+zp_register_filter('iconColor', 'iconColor');
+
 if (!OFFSET_PATH) {
 	if ((getOption('use_galleriffic')) && !(($_zp_gallery_page == 'image.php') || ($_zp_gallery_page == 'search.php'))) {
 		setOption('image_size', '525', false);
@@ -17,6 +19,14 @@ if (!OFFSET_PATH) {
 	setOption('tinymce_comments', null, false); // force this option to disable tinyMCE for comment form
 
 	$_zenpage_enabled = extensionEnabled('zenpage');
+}
+
+function iconColor($icon) {
+	global $themeColor;
+	if (getOption('css_style') == 'dark') {
+		$icon = stripSuffix($icon) . '-white.png';
+	}
+	return($icon);
 }
 
 /* zpArdoise_printRandomImages

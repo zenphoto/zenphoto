@@ -1,6 +1,5 @@
 <?php
 $_zp_page_check = 'my_checkPageValidity';
-setOption('themeSwitcher_css', preg_replace('~top:\s.*px;~', 'top: 40px;', getOption('themeSwitcher_css')), false);
 
 setOption('zp_plugin_colorbox', false, false);
 $zenpage = getOption('zp_plugin_zenpage');

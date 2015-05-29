@@ -58,12 +58,12 @@ if (!defined('WEBPATH'))
 								<p><?php printAlbumDesc(); ?></p>
 								<small><?php printAlbumDate(gettext("Date:") . ' '); ?> </small>
 							</div>
-							<p style="clear: both; "></p>
 						</div>
 						<?php
 					}
 					?>
 				</div>
+				<br class="clearall">
 				<div id="images">
 					<?php
 					while (next_image()) {
@@ -78,7 +78,7 @@ if (!defined('WEBPATH'))
 					}
 					?>
 				</div>
-				<br class="clearall" />
+				<br class="clearall">
 				<?php
 				@call_user_func('printSlideShowLink');
 				if ($c == 0) {

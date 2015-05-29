@@ -3,6 +3,7 @@
 
 zp_register_filter('themeSwitcher_head', 'switcher_head');
 zp_register_filter('themeSwitcher_Controllink', 'switcher_controllink');
+zp_register_filter('iconColor', 'iconColor');
 zp_register_filter('theme_head', 'EF_head', 0);
 zp_register_filter('load_theme_script', 'fourOhFour');
 
@@ -107,6 +108,20 @@ function EF_head($ignore) {
 	return $ignore;
 }
 
+function iconColor($icon) {
+	global $themeColor;
+	if (!$themeColor) {
+		list($personality, $themeColor) = getPersonality();
+	}
+	switch ($themeColor) {
+		case 'rainbow':
+		case 'effervescence':
+			return($icon);
+		default:
+			return (stripSuffix($icon) . '-gray.png');
+	}
+}
+
 function switcher_head($ignore) {
 	?>
 	<script type="text/javascript">
@@ -126,17 +141,17 @@ function switcher_head($ignore) {
 }
 
 function switcher_controllink($ignore) {
-	global $personalities, $themecolors, $_zp_gallery_page;
-	$color = getOption('themeSwitcher_effervescence_color');
-	if (!$color) {
-		list($personality, $color) = getPersonality();
+	global $personalities, $themecolors, $_zp_gallery_page, $themeColor;
+	$themeColor = getOption('themeSwitcher_effervescence_color');
+	if (!$themeColor) {
+		list($personality, $themeColor) = getPersonality();
 	}
 	?>
 	<span id="themeSwitcher_effervescence">
 		<span title="<?php echo gettext("Effervescence color scheme."); ?>">
 			<?php echo gettext('Theme Color'); ?>
 			<select name="themeColor" id="themeColor" onchange="switchColors();">
-				<?php generateListFromArray(array($color), $themecolors, false, false); ?>
+				<?php generateListFromArray(array($themeColor), $themecolors, false, false); ?>
 			</select>
 		</span>
 		<?php
