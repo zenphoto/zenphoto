@@ -561,7 +561,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>setupTheme</strong></span>(<em>theme</em>)</p>
 					<!-- description(Miscellaneous.Miscellaneous)-setupTheme --><p>Allows a plugin to override the <em>theme</em> that will be used to display WEB pages.</p><!--e-->
-					<p class="handlers">For example see <em>plugin</em>/themeSwitcher.php</p>
+					<p class="handlers">For example see <em>plugin</em>/mobileTheme.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">functions.php</li>
@@ -591,7 +591,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>themeSwitcher_Controllink</strong></span>(<em>theme</em>)</p>
 					<!-- description(Miscellaneous.Miscellaneous)-themeSwitcher_Controllink --><p>Invoked by themeSwitcher's theme_body_open filter. Allows themes to add to the selectors for theme related choices such as personality or color scheme.</p><!--e-->
-					<p class="handlers">For example see <em>theme</em>/download_demo/functions.php</p>
+					<p class="handlers">For example see <em>theme</em>/basic/functions.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list"><em>plugin</em>/themeSwitcher.php</li>
@@ -600,7 +600,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>themeSwitcher_head</strong></span>(<em>_themeSwitcherThemelist</em>)</p>
 					<!-- description(Miscellaneous.Miscellaneous)-themeSwitcher_head --><p>Invoded by themeSwitcher's theme_head filter. Allows themes to add to the HTML placed in the theme head when themeSwitcher is active. The parameter passed is a array of theme=>enabled values. If enabled is false the theme will not be included in the selector. Filters can change this value to control if specific themes may be chosen.</p><!--e-->
-					<p class="handlers">For example see <em>theme</em>/download_demo/functions.php</p>
+					<p class="handlers">For example see <em>theme</em>/basic/functions.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list"><em>plugin</em>/themeSwitcher.php</li>
@@ -938,6 +938,16 @@
 						<li class="call_list"><em>plugin</em>/paged_thumbs_nav.php</li>
 						<li class="call_list"><em>theme</em>/effervescence+/functions.php</li>
 						<li>...</li>
+					</ul><!-- calls -->
+				</li><!-- filterdetail -->
+				<li class="filterdetail">
+					<p class="filterdef"><span class="inlinecode"><strong>iconColor</strong></span>(<em>string, bool, bool</em>)</p>
+					<!-- description(Template.Miscellaneous)-iconColor --><p>Use this filter to customize the menu and gear icons used by adminToolbox and the themeSwitcher theme.</p><!--e-->
+					<p class="handlers">For example see <em>theme</em>/zpgalleriffic/functions.php</p>
+					<p class="calls">Invoked from:</p>
+					<ul><!-- calls -->
+						<li class="call_list">template-functions.php</li>
+						<li class="call_list"><em>plugin</em>/themeSwitcher.php</li>
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
