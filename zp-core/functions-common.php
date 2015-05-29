@@ -101,7 +101,7 @@ function zpErrorHandler($errno, $errstr = '', $errfile = '', $errline = '') {
 	}
 
 
-	$msg = sprintf(gettext('%1$s: %2$s in %3$s on line %4$s'), $err, $errstr, $errfile, $errline);
+	$msg = sprintf(gettext('%1$s: "%2$s" in %3$s on line %4$s'), $err, $errstr, $errfile, $errline);
 	if (array_key_exists('REQUEST_URI', $_SERVER)) {
 		$uri = sanitize($_SERVER['REQUEST_URI']);
 		preg_match('|^(http[s]*\://[a-zA-Z0-9\-\.]+/?)*(.*)$|xis', $uri, $matches);
