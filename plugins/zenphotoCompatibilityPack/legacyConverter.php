@@ -25,7 +25,9 @@ $legacyReplacements = array(
 				'ZP_PAGES_ENABLED'									 => 'TRUE/*TODO:ZP_PAGES_ENABLED is redundant*/',
 				'getAllTagsCount\(.*\);'						 => 'getAllTagsUnique(NULL, 1, true);',
 				'printHeadTitle\(.*\);'							 => '/*TODO:replaced printHeadTitle();*/',
-				'class_exists\([\'"]Zenpage[\'"]\)'	 => 'class_exists("CMS")'
+				'class_exists\([\'"]Zenpage[\'"]\)'	 => 'class_exists("CMS")',
+				'$_zp_current_zenpage_article'			 => '$_zp_current_article',
+				'$_zp_current_zenpage_page'					 => '$_zp_current_page',
 );
 
 /**
@@ -37,22 +39,22 @@ function getResidentFiles($folder) {
 	global $_zp_resident_files;
 	$localfiles = array();
 	$localfolders = array();
-  if (file_exists($folder)) {
-    $dirs = scandir($folder);
-    foreach ($dirs as $file) {
-      if ($file{0} != '.') {
-        $file = str_replace('\\', '/', $file);
-        $key = $folder . '/' . $file;
-        if (is_dir($folder . '/' . $file)) {
-          $localfolders = array_merge($localfolders, getResidentFiles($folder . '/' . $file));
-        } else {
-          if (getSuffix($key) == 'php') {
-            $localfiles[] = $key;
-          }
-        }
-      }
-    }
-  }
+	if (file_exists($folder)) {
+		$dirs = scandir($folder);
+		foreach ($dirs as $file) {
+			if ($file{0} != '.') {
+				$file = str_replace('\\', '/', $file);
+				$key = $folder . '/' . $file;
+				if (is_dir($folder . '/' . $file)) {
+					$localfolders = array_merge($localfolders, getResidentFiles($folder . '/' . $file));
+				} else {
+					if (getSuffix($key) == 'php') {
+						$localfiles[] = $key;
+					}
+				}
+			}
+		}
+	}
 	return array_merge($localfiles, $localfolders);
 }
 
