@@ -880,7 +880,35 @@ class SearchEngine {
 	protected static function compressedIDList($idlist) {
 		$idlist = array_unique($idlist);
 		asort($idlist);
-		return '`id` IN (' . implode(',', $idlist) . ')';
+		$clause = '';
+		$orphans = array();
+		$build = array($last = (int) array_shift($idlist));
+		while (!empty($idlist)) {
+			$cur = (int) array_shift($idlist);
+			if ($cur == $last + 1) {
+				$build[] = $cur;
+			} else {
+				if (count($build) > 2) {
+					$clause .= '(`id`>=' . array_shift($build) . ' AND `id`<=' . array_pop($build) . ') OR ';
+				} else {
+					$orphans = array_merge($build, $orphans);
+				}
+				$build = array($cur);
+			}
+			$last = $cur;
+		}
+		if (count($build) > 2) {
+			$clause .= '(`id`>=' . array_shift($build) . ' AND `id`<=' . array_pop($build) . ') OR ';
+		} else {
+			$orphans = array_merge($build, $orphans);
+		}
+		if (empty($orphans)) {
+			$clause = substr($clause, 0, -4);
+		} else {
+			$orpahns = asort($orphans);
+			$clause .= '`id` IN (' . implode(',', $orphans) . ')';
+		}
+		return $clause;
 	}
 
 	/**
