@@ -283,14 +283,13 @@ function lookupSortKey($sorttype, $default, $table) {
 			}
 			$sorttype = strtolower($sorttype);
 			$list = explode(',', $sorttype);
+			$rslt = array();
 			foreach ($list as $key => $field) {
-				if (array_key_exists($field, $dbfields)) {
-					$list[$key] = '`' . trim($dbfields[$field]) . '`';
-				} else {
-					unset($list[$key]);
+				if (array_key_exists($field = trim($field, '`'), $dbfields)) {
+					$rslt[] = '`' . trim($dbfields[$field]) . '`';
 				}
 			}
-			return implode(',', $list);
+			return implode(',', $rslt);
 	}
 }
 
