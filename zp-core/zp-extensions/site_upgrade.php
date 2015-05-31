@@ -43,13 +43,11 @@ switch (OFFSET_PATH) {
 	case 0:
 
 		function site_upgrade_notice($html) {
-			$text = gettext('Site is avaiable for testing only.');
-			$w = round(round(mb_strwidth($text) * 7.5) / 11.5);
 			?>
 			<div style="width: 100%; position: fixed; top: 0px; left: 0px; z-index: 1000;" >
 				<p style="text-align: center;">
-					<strong style="background-color: #FFEFB7; color:black;">
-			<?php echo $text; ?>
+					<strong style="background-color: #FFEFB7; color:black; padding: 5px;">
+						<?php echo gettext('Site is avaiable for testing only.'); ?>
 					</strong>
 				</p>
 			</div>
@@ -115,21 +113,21 @@ switch (OFFSET_PATH) {
 				case 'closed':
 					?>
 					<li>
-					<?php echo gettext('Site status:'); ?> <span style="color:RED"><strong><?php echo gettext('The site is closed!'); ?></strong></span>
+						<?php echo gettext('Site status:'); ?> <span style="color:RED"><strong><?php echo gettext('The site is closed!'); ?></strong></span>
 					</li>
 					<?php
 					break;
 				case 'closed_for_test';
 					?>
 					<li>
-					<?php echo gettext('Site status:'); ?> <span style="color:RED"><strong><?php echo gettext('The site is in test mode!'); ?></strong></span>
+						<?php echo gettext('Site status:'); ?> <span style="color:RED"><strong><?php echo gettext('The site is in test mode!'); ?></strong></span>
 					</li>
 					<?php
 					break;
 				default:
 					?>
 					<li>
-					<?php echo gettext('Site status:'); ?> <strong><?php echo gettext('The site is opened'); ?></strong>
+						<?php echo gettext('Site status:'); ?> <strong><?php echo gettext('The site is opened'); ?></strong>
 					</li>
 					<?php
 					break;
