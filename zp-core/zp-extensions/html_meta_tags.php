@@ -198,7 +198,7 @@ class htmlmetatags {
 				$canonicalurl = $host . getAlbumURL();
 				if (getOption('htmlmeta_og-image') || getOption('htmlmeta_twittercard')) {
 					$thumbimg = $_zp_current_album->getAlbumThumbImage();
-					getMaxSpaceContainer(&$ogimage_width, &$ogimage_height, $thumbimg, false);
+					getMaxSpaceContainer($ogimage_width, $ogimage_height, $thumbimg, false);
 					$thumb = $host . html_encode(pathurlencode($thumbimg->getCustomImage(NULL, $ogimage_width, $ogimage_height, NULL, NULL, NULL, NULL, false, NULL)));
 				}
 				break;
