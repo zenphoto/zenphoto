@@ -60,6 +60,8 @@ class htmlmetatags {
 		setOptionDefault('htmlmeta_sitelogo', '');
 		setOptionDefault('htmlmeta_twittercard', '');
 		setOptionDefault('htmlmeta_twittername', '');
+		setOptionDefault('htmlmeta_ogimage_width', 1280);
+		setOptionDefault('htmlmeta_ogimage_height', 900);
 	}
 
 	// Gettext calls are removed because some terms like "noindex" are fixed terms that should not be translated so user know what setting they make.
@@ -90,6 +92,10 @@ class htmlmetatags {
 										'desc' => gettext("Enter the full url to a specific site logo image. Facebook, Google+ and others will use that as the thumb shown in link previews within posts. For image or album pages the default size album or image thumb is used automatically.")),
 						gettext('Twitter name')					 => array('key'	 => 'htmlmeta_twittername', 'type' => OPTION_TYPE_TEXTBOX,
 										'desc' => gettext("If you enabled Twitter card meta tags, you need to enter your Twitter user name here.")),
+						gettext('Open graph image - width')							 => array('key'	 => 'htmlmeta_ogimage_width', 'type' => OPTION_TYPE_TEXTBOX,
+										'desc' => gettext("Max width of the open graph image used for sharing to social networks if enabled.")),
+						gettext('Open graph image - height')							 => array('key'	 => 'htmlmeta_ogimage_height', 'type' => OPTION_TYPE_TEXTBOX,
+										'desc' => gettext("Max height of the open graph image used for sharing to social networks if enabled.")),
 						gettext('HTML meta tags')				 => array('key'				 => 'htmlmeta_tags', 'type'			 => OPTION_TYPE_CHECKBOX_UL,
 										"checkboxes" => array(
 														"http-equiv='cache-control'"					 => "htmlmeta_http-equiv-cache-control",
@@ -168,6 +174,16 @@ class htmlmetatags {
 		if (getOption('htmlmeta_sitelogo')) {
 			$thumb = getOption('htmlmeta_sitelogo');
 		}
+		if (getOption('htmlmeta_og-image') || getOption('htmlmeta_twittercard')) {
+			$ogimage_width = getOption('htmlmeta_ogimage_width');
+			$ogimage_height = getOption('htmlmeta_ogimage_height');
+			if (empty($ogimage_width)) {
+				$ogimage_width = 1280;
+			}
+			if (empty($ogimage_height)) {
+				$ogimage_height = 900;
+			}
+		}
 		$type = 'article';
 		switch ($_zp_gallery_page) {
 			case 'index.php':
@@ -181,7 +197,9 @@ class htmlmetatags {
 				$desc = getBareAlbumDesc();
 				$canonicalurl = $host . getAlbumURL();
 				if (getOption('htmlmeta_og-image') || getOption('htmlmeta_twittercard')) {
-					$thumb = $host . getAlbumThumb();
+					$thumbimg = $_zp_current_album->getAlbumThumbImage();
+					getMaxSpaceContainer(&$ogimage_width, &$ogimage_height, $thumbimg, false);
+					$thumb = $host . html_encode(pathurlencode($thumbimg->getCustomImage(NULL, $ogimage_width, $ogimage_height, NULL, NULL, NULL, NULL, false, NULL)));
 				}
 				break;
 			case 'image.php':
@@ -190,7 +208,7 @@ class htmlmetatags {
 				$desc = getBareImageDesc();
 				$canonicalurl = $host . getImageURL();
 				if (getOption('htmlmeta_og-image') || getOption('htmlmeta_twittercard')) {
-					$thumb = $host . getImageThumb();
+					$thumb = $host . html_encode(pathurlencode(getCustomSizedImageMaxSpace($ogimage_width, $ogimage_height)));
 				}
 				break;
 			case 'news.php':
@@ -282,10 +300,10 @@ class htmlmetatags {
 			$meta .= '<meta name="revisit-after" content="' . getOption("htmlmeta_revisit_after") . '">' . "\n";
 		}
 		if (getOption('htmlmeta_name-expires')) {
-				$expires = getOption("htmlmeta_expires");
-				if ($expires == (int) $expires)
-					$expires = preg_replace('|\s\-\d+|', '', date('r', time() + $expires)) . ' GMT';
-				$meta .= '<meta name="expires" content="' . $expires . '">' . "\n";
+			$expires = getOption("htmlmeta_expires");
+			if ($expires == (int) $expires)
+				$expires = preg_replace('|\s\-\d+|', '', date('r', time() + $expires)) . ' GMT';
+			$meta .= '<meta name="expires" content="' . $expires . '">' . "\n";
 		}
 
 		// OpenGraph meta
@@ -469,5 +487,4 @@ class htmlmetatags {
 	}
 
 }
-
 ?>
