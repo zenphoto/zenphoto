@@ -170,8 +170,7 @@ class ExternalFeed extends feed {
 		$_zp_gallery_page = 'externalFeed.php';
 		if (empty($options))
 			self::feed404();
-
-		$this->feedtype = $options['external'];
+		$this->feedtype = $options['externalfeed'];
 		$this->key = @$options['accesskey'];
 		parent::__construct($options);
 
@@ -182,7 +181,7 @@ class ExternalFeed extends feed {
 				$this->key = NULL;
 			}
 		}
-		if (!$this->key && $this->feedtype != 'site_closed')
+		if (!$this->key && $this->feedtype != 'null')
 			self::feed404();
 // general feed setup
 		$channeltitlemode = getOption('externalFeed_title');
@@ -483,9 +482,11 @@ class ExternalFeed extends feed {
 	 * Prints the feed xml
 	 *
 	 */
-	public function printFeed() {
+	public function printFeed($feeditems = NULL) {
 		global $_zp_gallery;
-		$feeditems = $this->getitems();
+		if (is_null($feeditems)) {
+			$feeditems = $this->getitems();
+		}
 		if (is_array($feeditems)) {
 			header('Content-Type: application/xml');
 			?>
@@ -559,14 +560,19 @@ class ExternalFeed extends feed {
 }
 
 // feed calls before anything else
-if (!OFFSET_PATH && isset($_GET['external'])) {
-	if (!$_GET['external']) {
-		$_GET['external'] = 'gallery';
+if (!OFFSET_PATH) {
+	if (isset($_GET['external'])) {
+		$_GET['externalfeed'] = $_GET['external']; // backward compatibility
 	}
+	if (isset($_GET['externalfeed'])) {
+		if (!$_GET['externalfeed']) {
+			$_GET['externalfeed'] = 'gallery';
+		}
 //	load the theme plugins just incase
-	$_zp_gallery_page = 'rss.php';
-	$e = new ExternalFeed(sanitize($_GET));
-	$e->printFeed();
-	exitZP();
+		$_zp_gallery_page = 'rss.php';
+		$e = new ExternalFeed(sanitize($_GET));
+		$e->printFeed();
+		exitZP();
+	}
 }
 ?>
