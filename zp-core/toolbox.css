@@ -10,11 +10,11 @@ Default admin toolbox css
 	right: 0px;
 	top: 0px;
 	z-index: 2000;
-	width: 23px;
-	height: 23px;
-	text-align: center;
-	padding-top: 5px;
-	padding-left: 5px;
+	width: 23px !important;
+	height: 23px !important;
+	text-align: center !important;
+	padding-top: 5px !important;
+	padding-left: 5px !important;
 }
 #admin_data{
 	position: fixed;
