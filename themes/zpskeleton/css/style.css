@@ -840,3 +840,10 @@ or wrap each row of columns in a <div class="row"> */
 .zen-logo img {
 	vertical-align: sub;
 }
+
+.themeSwitcherControlLink {
+	top: 60px;
+}
+.themeSwitcherMenuMain {
+	top: 60px;
+}

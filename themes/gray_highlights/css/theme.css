@@ -527,3 +527,10 @@ h2{
 	text-align: center;
 	font-size: 15px;
 }
+
+.themeSwitcherControlLink {
+	top: 17px;
+}
+.themeSwitcherMenuMain {
+	top: 17px;
+}

@@ -124,11 +124,10 @@ class themeSwitcher {
 			?>
 			<div class="themeSwitcherMenuMain themeSwitcherMenu themeSwitcherControl">
 				<img src="<?php echo $icon; ?>" onclick="$('.themeSwitcherControl').toggle();" title="<?php echo gettext('Switch themes'); ?>" />
-				<br clear="all">
 			</div>
 			<div class="themeSwitcherControlLink themeSwitcherControl" style="display:none;">
 				<div class="themeSwitcherMenu">
-					<img src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/themeSwitcher/menu.png" onclick="$('.themeSwitcherControl').toggle();" title="<?php echo gettext('Switch themes'); ?>" />
+					<img src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/themeSwitcher/menu.png" onclick="$('.themeSwitcherControl').toggle();" title="<?php echo gettext('Close'); ?>" />
 				</div>
 				<?php echo $text; ?>
 				<select name="themeSwitcher" id="themeSwitcher" onchange="switchTheme('<?php echo html_encode($reloc); ?>')" title="<?php echo gettext("Themes will not show in this list if selecting them would result in a “not found” error."); ?>">
