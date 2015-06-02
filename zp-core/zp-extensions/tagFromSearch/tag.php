@@ -69,7 +69,7 @@ echo "\n</head>";
 			if (isset($_GET['tagitems'])) {
 				?>
 				<div class="messagebox fade-message">
-					<?php printf(ngettext('%d search item taggec', '%d search items tagged', $count), $count); ?>
+					<?php printf(ngettext('%d search item tagged', '%d search items tagged', $count), $count); ?>
 				</div>
 				<?php
 			}

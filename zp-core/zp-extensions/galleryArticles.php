@@ -222,7 +222,7 @@ class galleryArticles {
 						'params' => array('string', 'string*'),
 						'value'	 => 'galleryArticles::getDesc',
 						'owner'	 => 'galleryArticles',
-						'desc'	 => gettext('Dynamicly insert the description from a gallery object--album name (%1), image name (%2).')
+						'desc'	 => gettext('Dynamically insert the description from a gallery object--album name (%1), image name (%2).')
 		);
 		return $macros;
 	}
