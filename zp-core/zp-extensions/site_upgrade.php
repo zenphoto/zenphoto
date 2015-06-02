@@ -74,6 +74,14 @@ switch (OFFSET_PATH) {
 		zp_register_filter('installation_information', 'site_upgrade_status');
 		zp_register_filter('admin_note', 'site_upgrade_note');
 
+		$_site_filelist = array(
+						'closed.htm'							 => '+', // copy and update
+						'closed.php'							 => '*', // just copy
+						// "feed" plugins. The convention is that the file name is plugin prefix-closed.xml
+						'rss-closed.xml'					 => 'RSS', // create from RSS class
+						'externalFeed-closed.xml'	 => 'externalFeed' // create from externamFeed class
+		);
+
 		function site_upgrade_note($where) {
 			global $_zp_conf_vars;
 			switch (@$_zp_conf_vars['site_upgrade_state']) {
@@ -135,21 +143,31 @@ switch (OFFSET_PATH) {
 		}
 
 		function site_upgrade_button($buttons) {
-			global $_zp_conf_vars;
+			global $_zp_conf_vars, $_site_filelist;
 			$state = @$_zp_conf_vars['site_upgrade_state'];
-			$buttons[] = array(
-							'XSRFTag'			 => 'site_upgrade_refresh',
-							'category'		 => gettext('Admin'),
-							'enable'			 => true,
-							'button_text'	 => gettext('Restore site_upgrade files'),
-							'formname'		 => 'refreshHTML',
-							'action'			 => FULLWEBPATH . '/' . ZENFOLDER . '/admin.php',
-							'icon'				 => 'images/refresh.png',
-							'title'				 => gettext('Restores the files in the "plugins/site_upgrade" folder to their default state. Note: this will overwrite any custom edits you may have made.'),
-							'alt'					 => '',
-							'hidden'			 => '<input type="hidden" name="refreshHTML" value="1" />',
-							'rights'			 => ADMIN_RIGHTS
-			);
+
+			$hash = '';
+			foreach ($_site_filelist as $name => $source) {
+				if (file_exists(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/' . $name)) {
+					$hash .= md5(file_get_contents(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/' . $name));
+				}
+			}
+
+			if ($hash !== getOption('site_upgrade_hash')) {
+				$buttons[] = array(
+								'XSRFTag'			 => 'site_upgrade_refresh',
+								'category'		 => gettext('Admin'),
+								'enable'			 => true,
+								'button_text'	 => gettext('Restore site_upgrade files'),
+								'formname'		 => 'refreshHTML',
+								'action'			 => FULLWEBPATH . '/' . ZENFOLDER . '/admin.php',
+								'icon'				 => 'images/refresh.png',
+								'title'				 => gettext('Restores the files in the "plugins/site_upgrade" folder to their default state. Note: this will overwrite any custom edits you may have made.'),
+								'alt'					 => '',
+								'hidden'			 => '<input type="hidden" name="refreshHTML" value="1" />',
+								'rights'			 => ADMIN_RIGHTS
+				);
+			}
 			switch ($state) {
 				case 'closed':
 					$buttons[] = array(
@@ -221,84 +239,49 @@ switch (OFFSET_PATH) {
 			break;
 		}
 	case 2:
+
 		mkdir_recursive(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/', FOLDER_MOD);
-		copy(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/site_upgrade/closed.php', SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/closed.php');
-		if (isset($_REQUEST['refreshHTML']) || !file_exists(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/closed.htm')) {
-			$html = file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/site_upgrade/closed.htm');
-			$html = sprintf($html, sprintf(gettext('%s upgrade'), $_zp_gallery->getTitle()), FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/site_upgrade/closed.png', sprintf(gettext('<strong><em>%s</em></strong> is undergoing an upgrade'), $_zp_gallery->getTitle()), '<a href="' . FULLWEBPATH . '/index.php">' . gettext('Please return later') . '</a>', FULLWEBPATH . '/index.php');
-			file_put_contents(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/closed.htm', $html);
-		}
-		if (isset($_REQUEST['refreshHTML']) || !file_exists(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/rss_closed.xml')) {
-			require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/rss.php');
 
-			class setupRSS extends RSS {
-
-				public function getitems() {
-					$this->feedtype = 'setup';
-					$items = array();
-					$items[] = array('title'						 => gettext('RSS suspended'),
-									'link'						 => '',
-									'enclosure'				 => '',
-									'category'				 => '',
-									'media_content'		 => '',
-									'media_thumbnail'	 => '',
-									'pubdate'					 => date("r", time()),
-									'desc'						 => gettext('The RSS feed is currently not available.'));
-					return $items;
+		$hash = '';
+		foreach ($_site_filelist as $name => $source) {
+			if (isset($_REQUEST['refreshHTML']) || !file_exists(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/' . $name)) {
+				switch ($source) {
+					case '+':
+					case '*':
+						$data = file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/site_upgrade/' . $name);
+						if ($source != '*') {
+							$data = sprintf($data, sprintf(gettext('%s upgrade'), $_zp_gallery->getTitle()), FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/site_upgrade/closed.png', sprintf(gettext('<strong><em>%s</em></strong> is undergoing an upgrade'), $_zp_gallery->getTitle()), '<a href="' . FULLWEBPATH . '/index.php">' . gettext('Please return later') . '</a>', FULLWEBPATH . '/index.php');
+						}
+						break;
+					default:
+						// Feed plugin
+						$plugin = substr($name, 0, strpos($name, '-')) . '.php';
+						$items = array(
+										array(
+														'title'						 => sprintf(gettext('%s suspended'), $source),
+														'link'						 => '',
+														'enclosure'				 => '',
+														'category'				 => '',
+														'media_content'		 => '',
+														'media_thumbnail'	 => '',
+														'pubdate'					 => date("r", time()),
+														'desc'						 => sprintf(gettext('The %s feed is currently not available.'), $source)
+										)
+						);
+						require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/' . $plugin);
+						$obj = new $source(array(strtolower($source) => 'null'));
+						ob_start();
+						$obj->printFeed($items);
+						$data = ob_get_contents();
+						ob_end_clean();
+						break;
 				}
-
-				protected function startCache() {
-
-				}
-
-				protected function endCache() {
-
-				}
-
+				file_put_contents(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/' . $name, $data);
+				$hash .= md5(file_get_contents(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/' . $name));
 			}
-
-			$obj = new setupRSS(array('rss' => 'site_closed'));
-			ob_start();
-			$obj->printFeed();
-			$xml = ob_get_contents();
-			ob_end_clean();
-			file_put_contents(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/rss-closed.xml', $xml);
 		}
-		if (isset($_REQUEST['refreshHTML']) || !file_exists(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/externalFeed_closed.xml')) {
-			require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/externalFeed.php');
-
-			class setupexternalFeed extends externalFeed {
-
-				public function getitems() {
-					$this->feedtype = 'setup';
-					$items = array();
-					$items[] = array('title'						 => gettext('externalFeed suspended'),
-									'link'						 => '',
-									'enclosure'				 => '',
-									'category'				 => '',
-									'media_content'		 => '',
-									'media_thumbnail'	 => '',
-									'pubdate'					 => date("r", time()),
-									'desc'						 => gettext('The external feed is currently not available.'));
-					return $items;
-				}
-
-				protected function startCache() {
-
-				}
-
-				protected function endCache() {
-
-				}
-
-			}
-
-			$obj = new setupexternalFeed(array('external' => 'site_closed'));
-			ob_start();
-			$obj->printFeed();
-			$xml = ob_get_contents();
-			ob_end_clean();
-			file_put_contents(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/externalFeed-closed.xml', $xml);
+		if ($hash) {
+			setOption('site_upgrade_hash', $hash);
 		}
 		break;
 }

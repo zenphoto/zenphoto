@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * DO NOT MODIFY THIS FILE.
+ * If you wish to change the appearance or behavior of
+ * the site when closed you may edit the .htm and .xmp files
+ */
 $glob = array();
 if (($dir = opendir(dirname(__FILE__))) !== false) {
 	while (($file = readdir($dir)) !== false) {

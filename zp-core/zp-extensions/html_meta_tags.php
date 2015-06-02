@@ -73,39 +73,39 @@ class htmlmetatags {
 			array_shift($matches);
 			$host = implode('.', $matches);
 		}
-		$localdesc = '<p>' . gettext('If checked links to the alternative languages will be in the form <code><em>language</em>.' . $host . '</code> where <code><em>language</em></code> is the language code, e.g. <code><em>fr</em></code> for French.') . '</p>';
-		$localdesc .= '<p>' . gettext('This requires that you have created the appropriate subdomains pointing to your installation. That is <code>fr.' . $host . WEBPATH . '</code> must point to the same location as <code>' . $host . WEBPATH . '</code>. (Some providers will automatically redirect undefined subdomains to the main domain. If your provider does this, no subdomain creation is needed.)') . '</p>';
+		$localdesc = '<p>' . sprintf(gettext('If checked links to the alternative languages will be in the form <code><em>language</em>.' . $host . '</code> where <code><em>language</em></code> is the language code, e.g. <code><em>fr</em></code> for French.'), $host . WEBPATH) . '</p>';
+		$localdesc .= '<p>' . sprintf(gettext('This requires that you have created the appropriate subdomains pointing to your installation. That is <code>fr.%1$s</code> must point to the same location as <code>%1$s</code>. (Some providers will automatically redirect undefined subdomains to the main domain. If your provider does this, no subdomain creation is needed.)'), $host . WEBPATH) . '</p>';
 
-		$options = array(gettext('Cache control')				 => array('key'				 => 'htmlmeta_cache_control', 'type'			 => OPTION_TYPE_SELECTOR,
+		$options = array(gettext('Cache control')						 => array('key'				 => 'htmlmeta_cache_control', 'type'			 => OPTION_TYPE_SELECTOR,
 										'order'			 => 0,
 										'selections' => array('no-cache' => "no-cache", 'public' => "public", 'private' => "private", 'no-store' => "no-store"),
 										'desc'			 => gettext("If the browser cache should be used.")),
-						gettext('Pragma')								 => array('key'				 => 'htmlmeta_pragma', 'type'			 => OPTION_TYPE_SELECTOR,
+						gettext('Pragma')										 => array('key'				 => 'htmlmeta_pragma', 'type'			 => OPTION_TYPE_SELECTOR,
 										'order'			 => 2,
 										'selections' => array('no-cache' => "no-cache", 'cache' => "cache"),
 										'desc'			 => gettext("If the pages should be allowed to be cached on proxy servers.")),
-						gettext('Robots')								 => array('key'				 => 'htmlmeta_robots', 'type'			 => OPTION_TYPE_SELECTOR,
+						gettext('Robots')										 => array('key'				 => 'htmlmeta_robots', 'type'			 => OPTION_TYPE_SELECTOR,
 										'order'			 => 3,
 										'selections' => array('noindex' => "noindex", 'index' => "index", 'nofollow' => "nofollow", 'noindex,nofollow' => "noindex,nofollow", 'noindex,follow' => "noindex,follow", 'index,nofollow' => "index,nofollow", 'none' => "none"),
 										'desc'			 => gettext("If and how robots are allowed to visit the site. Default is “index”. Note that you also should use a robot.txt file.")),
-						gettext('Revisit after')				 => array('key'		 => 'htmlmeta_revisit_after', 'type'	 => OPTION_TYPE_NUMBER,
+						gettext('Revisit after')						 => array('key'		 => 'htmlmeta_revisit_after', 'type'	 => OPTION_TYPE_NUMBER,
 										'order'	 => 4,
 										'desc'	 => gettext("Request the crawler to revisit the page after x days.")),
-						gettext('Expires')							 => array('key'		 => 'htmlmeta_expires', 'type'	 => OPTION_TYPE_NUMBER,
+						gettext('Expires')									 => array('key'		 => 'htmlmeta_expires', 'type'	 => OPTION_TYPE_NUMBER,
 										'order'	 => 5,
 										'desc'	 => gettext("When the page should be loaded directly from the server and not from any cache. You can either set a date/time in international date format <em>Sat, 15 Dec 2001 12:00:00 GMT (example)</em> or a number. A number then means seconds, the default value <em>43200</em> means 12 hours.")),
-						gettext('Canonical URL link')		 => array('key'		 => 'htmlmeta_canonical-url', 'type'	 => OPTION_TYPE_CHECKBOX,
+						gettext('Canonical URL link')				 => array('key'		 => 'htmlmeta_canonical-url', 'type'	 => OPTION_TYPE_CHECKBOX,
 										'order'	 => 6,
 										'desc'	 => gettext('This adds a link element to the head of each page with a <em>canonical url</em>. If the <code>seo_locale</code> plugin is enabled or <code>use subdomains</code> is checked it also generates alternate links for other languages (<code>&lt;link&nbsp;rel="alternate" hreflang="</code>...<code>" href="</code>...<code>" /&gt;</code>).')),
-						gettext('Site logo')						 => array('key'	 => 'htmlmeta_sitelogo', 'type' => OPTION_TYPE_TEXTBOX,
+						gettext('Site logo')								 => array('key'	 => 'htmlmeta_sitelogo', 'type' => OPTION_TYPE_TEXTBOX,
 										'desc' => gettext("Enter the full url to a specific site logo image. Facebook, Google+ and others will use that as the thumb shown in link previews within posts. For image or album pages the default size album or image thumb is used automatically.")),
-						gettext('Twitter name')					 => array('key'	 => 'htmlmeta_twittername', 'type' => OPTION_TYPE_TEXTBOX,
+						gettext('Twitter name')							 => array('key'	 => 'htmlmeta_twittername', 'type' => OPTION_TYPE_TEXTBOX,
 										'desc' => gettext("If you enabled Twitter card meta tags, you need to enter your Twitter user name here.")),
-						gettext('Open graph image - width')							 => array('key'	 => 'htmlmeta_ogimage_width', 'type' => OPTION_TYPE_TEXTBOX,
+						gettext('Open graph image - width')	 => array('key'	 => 'htmlmeta_ogimage_width', 'type' => OPTION_TYPE_TEXTBOX,
 										'desc' => gettext("Max width of the open graph image used for sharing to social networks if enabled.")),
-						gettext('Open graph image - height')							 => array('key'	 => 'htmlmeta_ogimage_height', 'type' => OPTION_TYPE_TEXTBOX,
+						gettext('Open graph image - height') => array('key'	 => 'htmlmeta_ogimage_height', 'type' => OPTION_TYPE_TEXTBOX,
 										'desc' => gettext("Max height of the open graph image used for sharing to social networks if enabled.")),
-						gettext('HTML meta tags')				 => array('key'				 => 'htmlmeta_tags', 'type'			 => OPTION_TYPE_CHECKBOX_UL,
+						gettext('HTML meta tags')						 => array('key'				 => 'htmlmeta_tags', 'type'			 => OPTION_TYPE_CHECKBOX_UL,
 										'order'			 => 12,
 										"checkboxes" => array(
 														"http-equiv='cache-control'"			 => "htmlmeta_http-equiv-cache-control",
@@ -133,11 +133,11 @@ class htmlmetatags {
 														"twitter:card"										 => "htmlmeta_twittercard"
 										),
 										"desc"			 => gettext("Which of the HTML meta tags should be used. For info about these in detail please refer to the net.")),
-						gettext('Keyword threshold')		 => array('key'		 => 'htmlmeta_tags_threshold', 'type'	 => OPTION_TYPE_NUMBER,
+						gettext('Keyword threshold')				 => array('key'		 => 'htmlmeta_tags_threshold', 'type'	 => OPTION_TYPE_NUMBER,
 										'order'	 => 13,
 										'limits' => array('min' => 1),
 										'desc'	 => gettext('Only keywords with at least this number of uses will be shown.')),
-						gettext('Use subdomains') . '*'	 => array('key'		 => 'dynamic_locale_subdomain', 'type'	 => OPTION_TYPE_CHECKBOX,
+						gettext('Use subdomains') . '*'			 => array('key'		 => 'dynamic_locale_subdomain', 'type'	 => OPTION_TYPE_CHECKBOX,
 										'order'	 => 7,
 										'desc'	 => $localdesc)
 		);
@@ -498,4 +498,5 @@ class htmlmetatags {
 	}
 
 }
+
 ?>

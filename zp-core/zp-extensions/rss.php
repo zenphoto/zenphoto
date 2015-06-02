@@ -663,9 +663,11 @@ class RSS extends feed {
 	 * Prints the RSS feed xml
 	 *
 	 */
-	public function printFeed() {
+	public function printFeed($feeditems = NULL) {
 		global $_zp_gallery;
-		$feeditems = $this->getitems();
+		if (is_null($feeditems)) {
+			$feeditems = $this->getitems();
+		}
 		//NOTE: feeditems are complete HTML so necessarily must have been properly endoded by the server function!
 		if (is_array($feeditems)) {
 			header('Content-Type: application/xml');
