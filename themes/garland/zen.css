@@ -1148,3 +1148,9 @@ input.button {
 .zen-logo img {
 	vertical-align: sub;
 }
+.themeSwitcherControlLink {
+	top: 17px;
+}
+.themeSwitcherMenuMain {
+	top: 17px;
+}
