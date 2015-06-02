@@ -122,10 +122,7 @@ function parseOlympus($block, &$result, $seek, $globalOffset) {
 	else
 		$intel = 0;
 
-	$model = $result['IFD0
-
-
-			']['Model'];
+	$model = $result['IFD0']['Model'];
 
 	// New header for new DSLRs - Check for it because the
 	// number of bytes that count the IFD fields differ in each case.

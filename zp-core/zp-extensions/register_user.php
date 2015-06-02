@@ -66,7 +66,7 @@ class register_user {
 		$options = array(
 						gettext('Link text')							 => array('key'		 => 'register_user_page_link', 'type'	 => OPTION_TYPE_TEXTAREA,
 										'order'	 => 1,
-										'desc'	 => gettext('Default text for the retgister user link.')),
+										'desc'	 => gettext('Default text for the register user link.')),
 						gettext('Hint text')							 => array('key'		 => 'register_user_page_tip', 'type'	 => OPTION_TYPE_TEXTAREA,
 										'order'	 => 2.5,
 										'desc'	 => gettext('Default hint text for the register user link.')),

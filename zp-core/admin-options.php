@@ -736,11 +736,11 @@ Zenphoto_Authority::printPasswordFormJS();
 											echo '<p>' . gettext("If you are having problems with images whose names contain characters with diacritical marks try changing the image URI setting.");
 											switch (getOption('UTF8_image_URI_found')) {
 												case'unknown':
-													echo '<p class="notebox">' . gettext('Setup could not determine a settig that allowed images with diacritical marks in the name.'), '</p>';
+													echo '<p class="notebox">' . gettext('Setup could not determine a setting that allowed images with diacritical marks in the name.'), '</p>';
 													break;
 												case 'internal':
 													if (!getOption('UTF8_image_URI')) {
-														echo '<p class="notebox">' . sprintf(gettext('Setup detected <em>%s</em image URIs.'), LOCAL_CHARSET), '</p>';
+														echo '<p class="notebox">' . sprintf(gettext('Setup detected <em>%s</em> image URIs.'), LOCAL_CHARSET), '</p>';
 													}
 													break;
 												case 'filesystem':
