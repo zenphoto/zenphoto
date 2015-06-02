@@ -20,14 +20,14 @@ $legacyReplacements = array(
 				'new ZenpagePage'										 => 'newPage',
 				'new ZenpageNews'										 => 'newArticle',
 				'new ZenpageCategory'								 => 'newCategory',
-				'$_zp_zenpage'											 => '$_zp_CMS',
-				'ZP_NEWS_ENABLED'										 => 'TRUE/*TODO:ZP_NEWS_ENABLED is redundant*/',
-				'ZP_PAGES_ENABLED'									 => 'TRUE/*TODO:ZP_PAGES_ENABLED is redundant*/',
+				'\$_zp_zenpage'											 => '$_zp_CMS',
+				'ZP_NEWS_ENABLED'										 => 'TRUE/*TODO:replaced ZP_NEWS_ENABLED */',
+				'ZP_PAGES_ENABLED'									 => 'TRUE/*TODO:replaced ZP_PAGES_ENABLED */',
 				'getAllTagsCount\(.*\);'						 => 'getAllTagsUnique(NULL, 1, true);',
-				'printHeadTitle\(.*\);'							 => '/*TODO:replaced printHeadTitle();*/',
+				'printHeadTitle\(.*\);'							 => '/*TODO:replaced printHeadTitle(); */',
 				'class_exists\([\'"]Zenpage[\'"]\)'	 => 'class_exists("CMS")',
-				'$_zp_current_zenpage_article'			 => '$_zp_current_article',
-				'$_zp_current_zenpage_page'					 => '$_zp_current_page',
+				'\$_zp_current_zenpage_article'			 => '$_zp_current_article',
+				'\$_zp_current_zenpage_page'				 => '$_zp_current_page'
 );
 
 /**
@@ -73,17 +73,16 @@ if (isset($_GET['action'])) {
 			$files = array_merge($files, $pluginFiles);
 		}
 	}
-
 	$counter = 0;
 	foreach ($files as $file) {
 		$counter++;
-		$body = file_get_contents($file);
+		$source = $body = file_get_contents($file);
 		foreach ($legacyReplacements as $match => $replace) {
-			$body = preg_replace('~' . $match . '~i', $replace, $body);
+			$body = preg_replace('~' . $match . '~im', $replace, $body);
 		}
-
-
-		file_put_contents($file, $body);
+		if ($source != $body) {
+			file_put_contents($file, $body);
+		}
 	}
 }
 
