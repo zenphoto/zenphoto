@@ -44,7 +44,7 @@ class AlbumBase extends MediaObject {
 	var $linkname; // may have the .alb suffix stripped off
 	var $localpath; // Latin1 full server path to the album
 	var $exists = true; // Does the folder exist?
-	var $images = array(); // Full images array storage.
+	var $images = NULL; // Full images array storage.
 	var $parent = null; // The parent album name
 	var $parentalbum = null; // The parent album's album object (lazy)
 	var $sidecars = array(); // keeps the list of suffixes associated with this album
@@ -84,7 +84,8 @@ class AlbumBase extends MediaObject {
 				zp_error(gettext('An album object was instantiated without using the newAlbum() function.'), E_USER_WARNING);
 			}
 		}
-// Set default data for a new Album (title and parent_id)
+
+		// Set default data for a new Album (title and parent_id)
 		$this->set('mtime', time());
 		$title = trim($this->name);
 		if (!is_null($parentalbum = $this->getParent())) {
@@ -93,6 +94,12 @@ class AlbumBase extends MediaObject {
 		}
 		$this->set('title', $title);
 		$this->setShow($_zp_gallery->getAlbumPublish());
+
+		//	load images
+		if (is_null($this->getImages())) {
+			$this->images = array();
+		}
+
 		return true;
 	}
 
@@ -1150,7 +1157,6 @@ class Album extends AlbumBase {
 		global $_zp_gallery;
 		// Set default data for a new Album (title and parent_id)
 		parent::setDefaults();
-		$parentalbum = $this->getParent();
 		$this->set('mtime', filemtime($this->localpath));
 		if (!$_zp_gallery->getAlbumUseImagedate()) {
 			$this->setDateTime(strftime('%Y-%m-%d %H:%M:%S', $this->get('mtime')));
