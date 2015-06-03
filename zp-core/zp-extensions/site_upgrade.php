@@ -39,6 +39,16 @@ $plugin_description = gettext('Utility to divert access to the gallery to a scre
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_notice = (MOD_REWRITE) ? false : gettext('<em>mod_rewrite</em> is not enabled. This plugin may not work without rewrite redirection if the upgrade is significantly different than the running release.');
 
+if (OFFSET_PATH) {
+	$_site_filelist = array(
+					'closed.htm'							 => '+', // copy and update
+					'closed.php'							 => '*', // just copy
+					// "feed" plugins. The convention is that the file name is plugin prefix-closed.xml
+					'rss-closed.xml'					 => 'RSS', // create from RSS class
+					'externalFeed-closed.xml'	 => 'externalFeed' // create from externamFeed class
+	);
+}
+
 switch (OFFSET_PATH) {
 	case 0:
 
@@ -73,14 +83,6 @@ switch (OFFSET_PATH) {
 		zp_register_filter('admin_utilities_buttons', 'site_upgrade_button');
 		zp_register_filter('installation_information', 'site_upgrade_status');
 		zp_register_filter('admin_note', 'site_upgrade_note');
-
-		$_site_filelist = array(
-						'closed.htm'							 => '+', // copy and update
-						'closed.php'							 => '*', // just copy
-						// "feed" plugins. The convention is that the file name is plugin prefix-closed.xml
-						'rss-closed.xml'					 => 'RSS', // create from RSS class
-						'externalFeed-closed.xml'	 => 'externalFeed' // create from externamFeed class
-		);
 
 		function site_upgrade_note($where) {
 			global $_zp_conf_vars;
