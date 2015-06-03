@@ -781,7 +781,7 @@ Zenphoto_Authority::printPasswordFormJS();
 											foreach ($locales as $language => $dirname) {
 												$languageAlt = $language;
 												if (empty($dirname) || $dirname == 'en_US') {
-													$languageP = '';
+													$languageP = ' <small>[100%]</small>';
 												} else {
 													$stat = explode("\n", file_get_contents(SERVERPATH . "/" . ZENFOLDER . "/locale/" . $dirname . '/LC_MESSAGES/statistics.txt'));
 													preg_match_all('~([\d]+)~', $stat[1], $matches);
