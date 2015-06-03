@@ -190,6 +190,7 @@ $data = getOption('charset');
 if (!$data) {
 	$data = 'UTF-8';
 }
+@ini_set('default_charset', $data);
 define('LOCAL_CHARSET', $data);
 
 $data = getOption('gallery_data');
