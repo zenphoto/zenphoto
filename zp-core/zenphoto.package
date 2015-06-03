@@ -129,7 +129,6 @@ themes/garland/images/search_bg.png
 themes/garland/images/zen-logo.png
 themes/garland/themeSwitcher
 themes/garland/themeSwitcher/menu.png
-themes/garland/themeSwitcher/themeSwitcher.css
 themes/gray_highlights
 themes/gray_highlights/album.php
 themes/gray_highlights/archive.php
@@ -154,7 +153,6 @@ themes/gray_highlights/images/gear.png
 themes/gray_highlights/images/zen-logo.png
 themes/gray_highlights/themeSwitcher
 themes/gray_highlights/themeSwitcher/menu.png
-themes/gray_highlights/themeSwitcher/themeSwitcher.css
 themes/zenpage
 themes/zenpage/404.php
 themes/zenpage/album.php
@@ -935,8 +933,6 @@ themes/zpskeleton/js/jquery.prettyPhoto.js
 themes/zpskeleton/js/zpskeleton.js
 themes/zpskeleton/register_user
 themes/zpskeleton/register_user/register_user_form.php
-themes/zpskeleton/themeSwitcher
-themes/zpskeleton/themeSwitcher/themeSwitcher.css
 plugins
 plugins/cacheHeader.php
 plugins/cookieInvalidator.php
@@ -2329,4 +2325,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-2331
+2327
