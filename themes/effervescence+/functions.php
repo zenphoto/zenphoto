@@ -73,19 +73,21 @@ if (!OFFSET_PATH) {
 	$_oneImagePage = $handler->onePage();
 	$_zp_page_check = 'my_checkPageValidity';
 }
+define('_IMAGE_PATH', WEBPATH . '/' . THEMEFOLDER . '/effervescence+/images/');
 
 function EF_head($ignore) {
 	global $themeColor;
 	if (!$themeColor) {
 		$themeColor = getThemeOption('Theme_colors');
 	}
-	if (!file_exists(SERVERPATH . '/' . DATA_FOLDER . '/effervescence+/styles/' . $themeColor . '.css') || filemtime(SERVERPATH . '/' . DATA_FOLDER . '/effervescence+/styles/' . $themeColor . '.css') < filemtime(SERVERPATH . '/' . THEMEFOLDER . '/effervescence+/styles/' . $themeColor . '.txt')) {
+	$csfile = SERVERPATH . '/' . DATA_FOLDER . '/effervescence+/styles/' . $themeColor . '.css';
+	if (!file_exists($csfile) || ($mtime = filemtime($csfile) < filemtime(SERVERPATH . '/' . THEMEFOLDER . '/effervescence+/styles/' . $themeColor . '.txt')) || $mtime < filemtime(SERVERPATH . '/' . THEMEFOLDER . '/effervescence+/base.css')) {
 		eval(file_get_contents(SERVERPATH . '/' . THEMEFOLDER . '/effervescence+/styles/' . $themeColor . '.txt'));
 		$css = file_get_contents(SERVERPATH . '/' . THEMEFOLDER . '/effervescence+/base.css');
 		$css = strtr($css, $tr);
 		$css = preg_replace('|\.\./images/|', WEBPATH . '/' . THEMEFOLDER . '/effervescence+/images/', $css);
 		mkdir_recursive(SERVERPATH . '/' . DATA_FOLDER . '/effervescence+/styles/', FOLDER_MOD);
-		file_put_contents(SERVERPATH . '/' . DATA_FOLDER . '/effervescence+/styles/' . $themeColor . '.css', $css);
+		file_put_contents($csfile, $css);
 	}
 	?>
 	<link rel="stylesheet" href="<?php echo WEBPATH . '/' . DATA_FOLDER; ?>/effervescence+/styles/<?php echo $themeColor; ?>.css" type="text/css" />

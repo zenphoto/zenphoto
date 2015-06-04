@@ -104,7 +104,7 @@ if (function_exists('printCustomMenu') && ($menu = getOption('effervescence_menu
 	</div>
 
 	<?php
-	if (getOption('RSS_album_image') || getOption('RSS_articles')) {
+	if (class_exists('RSS') && (getOption('RSS_album_image') || getOption('RSS_articles'))) {
 		?>
 		<div class="menu">
 			<h3><?php echo gettext("RSS"); ?></h3>

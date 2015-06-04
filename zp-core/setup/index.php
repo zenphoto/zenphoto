@@ -88,7 +88,7 @@ if (file_exists($oldconfig = SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE))
 	}
 	$newconfig = false;
 } else if (file_exists($oldconfig = dirname(dirname(dirname(__FILE__))) . '/' . ZENFOLDER . '/zp-config.php')) {
-	//migrate old root configuration file.
+//migrate old root configuration file.
 	$zpconfig = file_get_contents($oldconfig);
 	$i = strpos($zpconfig, '/** Do not edit above this line. **/');
 	$zpconfig = "<?php\nglobal \$_zp_conf_vars;\n\$conf = array()\n" . substr($zpconfig, $i);
@@ -121,7 +121,11 @@ if (isset($_GET['mod_rewrite'])) {
 $zp_cfg = @file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
 
 $updatezp_config = false;
-
+if (strpos($zp_cfg, "\$conf['charset']") === false) {
+	$k = strpos($zp_cfg, "\$conf['UTF-8'] = true;");
+	$zp_cfg = substr($zp_cfg, 0, $k) . "\$conf['charset'] = 'UTF-8';\n" . substr($zp_cfg, $k);
+	$updatezp_config = true;
+}
 if (strpos($zp_cfg, "\$conf['special_pages']") === false) {
 	$template = file_get_contents(dirname(dirname(__FILE__)) . '/zenphoto_cfg.txt');
 	$i = strpos($template, "\$conf['special_pages']");
@@ -215,6 +219,7 @@ if (isset($_REQUEST['FILESYSTEM_CHARSET'])) {
 	$zp_cfg = updateConfigItem('FILESYSTEM_CHARSET', $fileset, $zp_cfg);
 	$updatezp_config = true;
 }
+
 if ($updatezp_config) {
 	storeConfig($zp_cfg);
 	$updatezp_config = false;
@@ -275,7 +280,7 @@ if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
 			require_once(dirname(dirname(__FILE__)) . '/functions-db-NULL.php');
 		}
 	} else {
-		// There is a problem with the configuration file
+// There is a problem with the configuration file
 		?>
 		<div style="background-color: red;font-size: xx-large;">
 			<p>
@@ -306,7 +311,7 @@ if ($selected_database) {
 		if ($result) {
 			if (db_num_rows($result) > 0) {
 				$upgrade = gettext("upgrade");
-				// apply some critical updates to the database for migration issues
+// apply some critical updates to the database for migration issues
 				query('ALTER TABLE ' . $_zp_conf_vars['mysql_prefix'] . 'administrators' . ' ADD COLUMN `valid` int(1) default 1', false);
 				query('ALTER TABLE ' . $_zp_conf_vars['mysql_prefix'] . 'administrators' . ' CHANGE `password` `pass` varchar(64)', false);
 				query('ALTER TABLE ' . $_zp_conf_vars['mysql_prefix'] . 'administrators' . ' ADD COLUMN `loggedin` datetime', false);

@@ -827,8 +827,7 @@ label:hover {
 /* Admin Toolbox
 ------------------------------ */
 #admin_data{
-	font-size: 15px;
-	width: 200px;
+	background-color: lightgray;
 }
 
 #admin h3 {

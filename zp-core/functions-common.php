@@ -384,11 +384,16 @@ function db_count($table, $clause = NULL, $field = "*") {
 }
 
 function html_decode($string) {
-	$string = html_entity_decode($string, ENT_QUOTES, LOCAL_CHARSET);
+	$string = html_entity_decode($string, ENT_QUOTES);
 	// Replace numeric entities because html_entity_decode doesn't do it for us.
 	if (function_exists('mb_convert_encoding')) {
+		if (defined('LOCAL_CHARSET')) {
+			$set = LOCAL_CHARSET;
+		} else {
+			$set = 'UTF-8';
+		}
 		$string = preg_replace_callback("/(&#[0-9]+;)/", function($m) {
-			return mb_convert_encoding($m[1], LOCAL_CHARSET, "HTML-ENTITIES");
+			return mb_convert_encoding($m[1], $set, "HTML-ENTITIES");
 		}, $string);
 	}
 	return $string;

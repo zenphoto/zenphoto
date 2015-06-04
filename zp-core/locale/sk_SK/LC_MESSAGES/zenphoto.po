@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: ZenPhoto20 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-07-08 09:50-0800\n"
-"PO-Revision-Date: 2015-03-16 09:45-0800\n"
+"PO-Revision-Date: 2015-06-03 14:13-0800\n"
 "Last-Translator: Stephen <stephen@sbillard.org>\n"
 "Language-Team: Jakub Meisner <jakub@jlfoto.sk>\n"
 "Language: sk_SK\n"
@@ -14,7 +14,7 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Poedit-KeywordsList: gettext_theme\n"
-"X-Generator: Poedit 1.7.3\n"
+"X-Generator: Poedit 1.8.1\n"
 "X-Poedit-SearchPath-0: D:\\github\\ZenPhoto20/themes\n"
 "X-Poedit-SearchPath-1: D:\\github\\ZenPhoto20/zp-core\n"
 
@@ -3478,8 +3478,7 @@ msgid "General Thumb Sizes"
 msgstr "Veľkosť miniatúr:"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:79
-msgid ""
-"Toggle large or small thumbnails.  This theme does not allow you to set the thumb sizes above for layout reasons.\n"
+msgid "Toggle large or small thumbnails.  This theme does not allow you to set the thumb sizes above for layout reasons.\n"
 "\t\t\t\tFor advanced users, these are set in the functions.php file."
 msgstr ""
 
@@ -3512,8 +3511,7 @@ msgid "Fix the sidebar's position?"
 msgstr ""
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:92
-msgid ""
-"Check to fix the sidebar and make it always visible as user scrolls.  If sidebar is too tall for the users\n"
+msgid "Check to fix the sidebar and make it always visible as user scrolls.  If sidebar is too tall for the users\n"
 "\t\t\t\tviewport, it will revert to static position."
 msgstr ""
 
@@ -3524,8 +3522,7 @@ msgid "Logo Image"
 msgstr "%u Obrázok"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:96
-msgid ""
-"Enter an image file located in the themes image directory, including extension, to use as an image logo. Or leave\n"
+msgid "Enter an image file located in the themes image directory, including extension, to use as an image logo. Or leave\n"
 "\t\t\t\tblank to use a text representation of your Gallery name.  As an example there is a logo.gif image in the images directory with a\n"
 "\t\t\t\theight of 83 (must enter height of image as well!)."
 msgstr ""
@@ -3546,8 +3543,7 @@ msgid "Final Image Link Option"
 msgstr "Úryvok obrázku"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:104
-msgid ""
-"Choose the option for the final image link on image.php.  Can either link to full image using standard zenphoto\n"
+msgid "Choose the option for the final image link on image.php.  Can either link to full image using standard zenphoto\n"
 "\t\t\t\tprocess (with core options), colorbox (if plugin enabled), or no link (default)."
 msgstr ""
 
@@ -3567,8 +3563,7 @@ msgid "ZenPage Search Results"
 msgstr ""
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:113
-msgid ""
-"If using Zenpage, enter the number of search results to display for each news and pages.  Default is 2 (4 total\n"
+msgid "If using Zenpage, enter the number of search results to display for each news and pages.  Default is 2 (4 total\n"
 "\t\t\t\tpossible)."
 msgstr ""
 
@@ -3577,8 +3572,7 @@ msgid "Colorbox Target Sized Image in Galleriffic"
 msgstr ""
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:126
-msgid ""
-"Click to enable colorbox targeting the sized image setting in the top options, instead of the full original image.\n"
+msgid "Click to enable colorbox targeting the sized image setting in the top options, instead of the full original image.\n"
 "\t\t\t\tThis is usefull if you upload large images as you can set Colorbox to target a smaller, resized version based on your setting\n"
 "\t\t\t\tabove."
 msgstr ""
@@ -15182,15 +15176,13 @@ msgstr "Nový komentár pre obázok “%1$s” v albume “%2$s”."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/comment_form/functions.php:374
 #, php-format
-msgid ""
-"Author: %1$s\n"
+msgid "Author: %1$s\n"
 "Email: %2$s\n"
 "Website: %3$s\n"
 "Comment:\n"
 "\n"
 "%4$s"
-msgstr ""
-"Autor: %1$s\n"
+msgstr "Autor: %1$s\n"
 "E-Mail: %2$s\n"
 "Webstránka: %3$s\n"
 "Komentár:\n"
@@ -15199,20 +15191,16 @@ msgstr ""
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/comment_form/functions.php:375
 #, php-format
-msgid ""
-"You can view all comments about this item here:\n"
+msgid "You can view all comments about this item here:\n"
 "%1$s"
-msgstr ""
-"Všetky komentáre k tejto položke si môžete prezrieť tu:\n"
+msgstr "Všetky komentáre k tejto položke si môžete prezrieť tu:\n"
 "%1$s"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/comment_form/functions.php:376
 #, php-format
-msgid ""
-"You can edit the comment here:\n"
+msgid "You can edit the comment here:\n"
 "%1$s"
-msgstr ""
-"Komentár môžete upraviť tu:\n"
+msgstr "Komentár môžete upraviť tu:\n"
 "%1$s"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/comment_form/functions.php:405
@@ -18925,11 +18913,9 @@ msgstr "Poskytuje možnosť zobraziť na stránkach šablóny formulár na regis
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/register_user.php:52
 #, php-format
-msgid ""
-"You have received this email because you registered with the user id %3$s on this site.\n"
+msgid "You have received this email because you registered with the user id %3$s on this site.\n"
 "To complete your registration visit %1$s."
-msgstr ""
-"Tento mail ste dostali, pretože ste sa zaregistrovali na tejto stránke podpoužívateľským ID %3$s.\n"
+msgstr "Tento mail ste dostali, pretože ste sa zaregistrovali na tejto stránke podpoužívateľským ID %3$s.\n"
 "Pre dokončenie registrácie navštívte %1$s."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/register_user.php:54
@@ -19536,7 +19522,9 @@ msgstr "Kontrola autorizačných cookie"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/security-logger.php:180
 msgid "date\trequestor’s IP\ttype\tuser ID\tuser name\toutcome\tauthority\tadditional information\n"
+""
 msgstr "date\trequestor's IP\ttype\tuser ID\tuser name\toutcome\tauthority\tadditional information\n"
+""
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/security-logger.php:189
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/security-logger.php:218
