@@ -61,11 +61,11 @@ blockquote {
 	color:__C_1__;
 }
 #imagemetadata {
-  text-align: center;
-  color: __C_2__;
+	text-align: center;
+	color: __C_2__;
 }
 #imgmetadata_data a {
-  color: __C_3__;
+	color: __C_3__;
 }
 #imagemetadata_data a:hover {
 	text-decoration: none;
@@ -73,16 +73,16 @@ blockquote {
 }
 
 #imagemetadata table {
-  text-align: left;
-  line-height: 1em;
-  top: 2em;
-  right: 0px;
-  background-color: __C_5__;
+	text-align: left;
+	line-height: 1em;
+	top: 2em;
+	right: 0px;
+	background-color: __C_5__;
 }
 
 #imagemetadata table td {
-  background-color: __C_6__;
-  padding: 2px 5px;
+	background-color: __C_6__;
+	padding: 2px 5px;
 }
 
 /* Text Styles
@@ -221,7 +221,7 @@ h4 a:hover {
 	background: __B_1__; /*color around the main div in index.*/
 	width: 650px;
 	margin: 0 auto;
-  color: __C_21__; /*textbox labels*/
+	color: __C_21__; /*textbox labels*/
 	font-size: 12px;
 	padding: 10px;
 }
@@ -788,18 +788,12 @@ ul.pagelist li.next {
 	background-image:url(../images/25percent.png);
 	border: 1px solid __A_27__;
 }
-#admin, #admin_data ul {
-	text-align: left;
-}
+
 #admin, #admin_data a {
 	text-decoration:none;
 }
 #admin h3 {
-	font: 100% Arial, "Helvetica Neue", Helvetica, sans-serif;
-	font-weight: bold;
 	color: __C_64__;
-	margin:0;
-	padding:0;
 }
 #admin h3 a {
 	text-decoration:none;
@@ -815,8 +809,8 @@ ul.pagelist li.next {
 	_margin-top: 24px; /* IE Only */
 }
 #search input.button {
-  padding: 1px;
-  font-size: 80%;
+	padding: 1px;
+	font-size: 80%;
 }
 #search a {
 	text-decoration: none;
@@ -854,8 +848,8 @@ ul.pagelist li.next {
 }
 
 .clear {
-  clear:both;
-  height:10px;
+	clear:both;
+	height:10px;
 }
 /* Archive View
 ---------------------------- */
