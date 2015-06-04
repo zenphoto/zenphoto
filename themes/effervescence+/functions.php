@@ -73,6 +73,7 @@ if (!OFFSET_PATH) {
 	$_oneImagePage = $handler->onePage();
 	$_zp_page_check = 'my_checkPageValidity';
 }
+define('_IMAGE_PATH', WEBPATH . '/' . THEMEFOLDER . '/effervescence+/images/');
 
 function EF_head($ignore) {
 	global $themeColor;

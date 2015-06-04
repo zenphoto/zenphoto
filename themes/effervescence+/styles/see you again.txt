@@ -33,7 +33,7 @@ define('_C31',	'#fbefdb');
 define('_C32',	'#fff');
 define('_C33',	'#ffffff');
 define('_C34',	'black');
-define('_arrow', WEBPATH.'/'.THEMEFOLDER.'/effervescence+/images/arrow_right.png');
+define('_arrow', _IMAGE_PATH.'arrow_right.png');
 $tr = array(
 	'__arrow_right__'	=>	_arrow,
 	'__A_0__'	=>	_C15,
