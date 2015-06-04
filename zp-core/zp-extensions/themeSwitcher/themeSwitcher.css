@@ -19,7 +19,9 @@
 	width: auto;
 	display: inline;
 	white-space: nowrap;
-	font: normal 1em Arial, "Helvetica Neue", Helvetica, sans-serif;
+	font: Arial, "Helvetica Neue", Helvetica, sans-serif !important;
+	font-size: 1em !important;
+	font-weight: normal !important;
 }
 .themeSwitcherControlLink select{
 	background-color: #f5f5f5 !important;

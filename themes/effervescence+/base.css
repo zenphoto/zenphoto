@@ -782,41 +782,17 @@ ul.pagelist li.next {
 
 /* Admin Toolbox
 ------------------------------ */
-#admin{
-	position: fixed;
-	right: 0px;
-	top: 0px;
-	z-index: 2000;
-	width: 23px;
-	height: 23px;
-	text-align: center;
-	padding-top: 5px;
-	padding-left: 5px;
-}
+
 #admin_data{
-	position: fixed;
-	top: 0px;
-	right: 0px;
 	padding-top: 20px;
-	padding-left: 5px;
-	padding-right: 15px;
-	padding-bottom: 5px;
-	z-index: 1000;
-	line-height: 1.6em;
-	text-align: left;
-	border-left: 1px solid __A_27__;
-	border-bottom: 1px solid __A_28__;
-	width: 10em;
+	background-image:url(../images/25percent.png);
+	border: 1px solid __A_27__;
 }
 #admin, #admin_data ul {
 	text-align: left;
 }
 #admin, #admin_data a {
 	text-decoration:none;
-}
-#admin_data{
-	top: 2em;
-	background-image:url(../images/25percent.png);
 }
 #admin h3 {
 	font: 100% Arial, "Helvetica Neue", Helvetica, sans-serif;
