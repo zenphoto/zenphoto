@@ -69,7 +69,6 @@ if (!defined('WEBPATH')) {
 unset($const_webpath);
 unset($const_serverpath);
 
-
 // Contexts (Bitwise and combinable)
 define("ZP_INDEX", 1);
 define("ZP_ALBUM", 2);
@@ -112,12 +111,24 @@ if (TEST_RELEASE) {
 	error_reporting(E_ALL | E_STRICT);
 	@ini_set('display_errors', 1);
 }
+
 set_error_handler("zpErrorHandler");
 set_exception_handler("zpErrorHandler");
 $_configMutex = new Mutex('cF');
-if (OFFSET_PATH != 2 && !file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
-	require_once(dirname(__FILE__) . '/reconfigure.php');
-	reconfigureAction(1);
+$_zp_mutex = new Mutex();
+
+$_zp_conf_vars = array('db_software' => 'NULL', 'mysql_prefix' => '_', 'charset' => 'UTF-8');
+// Including the config file more than once is OK, and avoids $conf missing.
+if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
+	@eval('?>' . file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE));
+	define('DATA_MOD', fileperms(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE) & 0777);
+} else {
+	define('DATA_MOD', 0777);
+}
+define('DATABASE_PREFIX', $_zp_conf_vars['mysql_prefix']);
+define('LOCAL_CHARSET', $_zp_conf_vars['charset']);
+if (!isset($_zp_conf_vars['special_pages'])) {
+	$_zp_conf_vars['special_pages'] = array();
 }
 
 if (!defined('CHMOD_VALUE')) {
@@ -126,25 +137,12 @@ if (!defined('CHMOD_VALUE')) {
 define('FOLDER_MOD', CHMOD_VALUE | 0311);
 define('FILE_MOD', CHMOD_VALUE & 0666);
 
-$_zp_conf_vars = array('db_software' => 'NULL', 'mysql_prefix' => '_');
-// Including the config file more than once is OK, and avoids $conf missing.
-if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
-	@eval('?>' . file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE));
-	define('DATA_MOD', fileperms(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE) & 0777);
-} else {
-	define('DATA_MOD', 0777);
-}
-if (!isset($_zp_conf_vars['special_pages'])) {
-	$_zp_conf_vars['special_pages'] = array();
-}
-
-define('DATABASE_PREFIX', $_zp_conf_vars['mysql_prefix']);
-
-$_zp_mutex = new Mutex();
-
-if (OFFSET_PATH != 2 && empty($_zp_conf_vars['mysql_database'])) {
-	require_once(dirname(__FILE__) . '/reconfigure.php');
-	reconfigureAction(2);
+if (OFFSET_PATH != 2) {
+	if (!file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
+		_setup(1);
+	} else if (empty($_zp_conf_vars['mysql_database'])) {
+		_setup(2);
+	}
 }
 
 require_once(dirname(__FILE__) . '/lib-utf8.php');
@@ -181,17 +179,10 @@ if (!defined('DATABASE_SOFTWARE') && (extension_loaded(strtolower($_zp_conf_vars
 }
 
 if (!$data && OFFSET_PATH != 2) {
-	require_once(dirname(__FILE__) . '/reconfigure.php');
-	reconfigureAction(3);
+	_setup(3);
 }
 
 primeOptions();
-$data = getOption('charset');
-if (!$data) {
-	$data = 'UTF-8';
-}
-@ini_set('default_charset', $data);
-define('LOCAL_CHARSET', $data);
 
 $data = getOption('gallery_data');
 if ($data) {
@@ -1498,8 +1489,7 @@ function checkInstall() {
 		}
 		preg_match('|([^-]*).*\[(.*)\]|', $install['ZENPHOTO'], $matches);
 		if (isset($install['REQUESTS']) || isset($matches[1]) && isset($matches[2]) && $matches[1] != $version[1] || $matches[2] != ZENPHOTO_RELEASE || ((time() & 7) == 0) && OFFSET_PATH != 2 && $i != serialize(installSignature())) {
-			require_once(dirname(__FILE__) . '/reconfigure.php');
-			reconfigureAction(0);
+			_setup(0);
 		}
 	}
 }
@@ -1515,6 +1505,19 @@ function requestSetup($whom) {
 	$sig = getSerializedArray(getOption('zenphoto_install'));
 	$sig['REQUESTS'][$whom] = $whom;
 	setOption('zenphoto_install', serialize($sig));
+}
+
+/**
+ * Force a setup to get the configuration right
+ *
+ * @param int $action if positive the setup is mandatory
+ *
+ * @author Stephen Billard
+ * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+ */
+function _setup($action) {
+	require_once(dirname(__FILE__) . '/reconfigure.php');
+	reconfigureAction($action);
 }
 
 /**
