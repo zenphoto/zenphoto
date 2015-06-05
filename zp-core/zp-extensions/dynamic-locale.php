@@ -167,7 +167,7 @@ function printLanguageSelector($flags = NULL) {
 							array_shift($matches);
 							$host = implode('.', $matches);
 						}
-						$localdesc = '<p>' . sprintf(gettext('If checked links to the alternative languages will be in the form <code><em>language</em>%s</code> where <code><em>language</em></code> is the language code, e.g. <code><em>fr</em></code> for French.'), $host) . '</p>';
+						$localdesc = '<p>' . sprintf(gettext('If checked links to the alternative languages will be in the form <code><em>language</em>.%s</code> where <code><em>language</em></code> is the language code, e.g. <code><em>fr</em></code> for French.'), $host) . '</p>';
 						$localdesc .= '<p>' . sprintf(gettext('This requires that you have created the appropriate subdomains pointing to your installation. That is <code>fr.%1$s</code> must point to the same location as <code>%1$s</code>. (Some providers will automatically redirect undefined subdomains to the main domain. If your provider does this, no subdomain creation is needed.)'), $host . WEBPATH) . '</p>';
 
 						$options = array(gettext('Use flags')						 => array('key'		 => 'dynamic_locale_visual', 'type'	 => OPTION_TYPE_CHECKBOX,
