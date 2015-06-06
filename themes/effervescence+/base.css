@@ -8,9 +8,6 @@ CSS template for Effervescence +
 pallets are from http://www.colourlovers.com/
 */
 
-
-
-
 /* Main Stuff
 ------------------------------ */
 html {
@@ -784,19 +781,11 @@ ul.pagelist li.next {
 ------------------------------ */
 
 #admin_data{
-	padding-top: 20px;
-	background-image:url(../images/25percent.png);
 	border: 1px solid __A_27__;
 }
 
-#admin, #admin_data a {
-	text-decoration:none;
-}
 #admin h3 {
 	color: __C_64__;
-}
-#admin h3 a {
-	text-decoration:none;
 }
 
 /* Search Box

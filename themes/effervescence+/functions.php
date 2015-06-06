@@ -80,18 +80,19 @@ function EF_head($ignore) {
 	if (!$themeColor) {
 		$themeColor = getThemeOption('Theme_colors');
 	}
-	$csfile = SERVERPATH . '/' . DATA_FOLDER . '/effervescence+/styles/' . $themeColor . '.css';
-	if (!file_exists($csfile) || ($mtime = filemtime($csfile) < filemtime(SERVERPATH . '/' . THEMEFOLDER . '/effervescence+/styles/' . $themeColor . '.txt')) || $mtime < filemtime(SERVERPATH . '/' . THEMEFOLDER . '/effervescence+/base.css')) {
-		eval(file_get_contents(SERVERPATH . '/' . THEMEFOLDER . '/effervescence+/styles/' . $themeColor . '.txt'));
-		$css = file_get_contents(SERVERPATH . '/' . THEMEFOLDER . '/effervescence+/base.css');
+	$basePath = SERVERPATH . '/' . THEMEFOLDER . '/effervescence+/';
+	$csfile = $basePath . 'data/styles/' . $themeColor . '.css';
+	if (!file_exists($csfile) || ($mtime = filemtime($csfile) < filemtime($basePath . 'styles/' . $themeColor . '.txt')) || $mtime < filemtime($basePath . '/base.css')) {
+		eval(file_get_contents($basePath . 'styles/' . $themeColor . '.txt'));
+		$css = file_get_contents($basePath . '/base.css');
 		$css = strtr($css, $tr);
 		$css = preg_replace('|\.\./images/|', WEBPATH . '/' . THEMEFOLDER . '/effervescence+/images/', $css);
-		mkdir_recursive(SERVERPATH . '/' . DATA_FOLDER . '/effervescence+/styles/', FOLDER_MOD);
+		mkdir_recursive($basePath . '/data/styles', FOLDER_MOD);
 		file_put_contents($csfile, $css);
 	}
 	?>
-	<link rel="stylesheet" href="<?php echo WEBPATH . '/' . DATA_FOLDER; ?>/effervescence+/styles/<?php echo $themeColor; ?>.css" type="text/css" />
 	<link rel="stylesheet" href="<?php echo WEBPATH . '/' . THEMEFOLDER; ?>/effervescence+/common.css" type="text/css" />
+	<link rel="stylesheet" href="<?php echo WEBPATH . '/' . THEMEFOLDER; ?>/effervescence+/data/styles/<?php echo $themeColor; ?>.css" type="text/css" />
 	<script type="text/javascript">
 		// <!-- <![CDATA[
 		function blurAnchors() {

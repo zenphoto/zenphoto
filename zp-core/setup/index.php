@@ -1119,9 +1119,11 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 
 							primeMark(gettext('ZenPhoto20 files'));
 							@set_time_limit(120);
+							$stdExclude = Array('Thumbs.db', 'readme.md', 'data');
+
 							$lcFilesystem = file_exists(strtoupper(__FILE__));
 							$base = $serverpath . '/';
-							getResidentZPFiles(SERVERPATH . '/' . ZENFOLDER, $lcFilesystem);
+							getResidentZPFiles(SERVERPATH . '/' . ZENFOLDER, $lcFilesystem, $stdExclude);
 							if ($lcFilesystem) {
 								$res = array_search(strtolower($base . ZENFOLDER . '/zenphoto.package'), $_zp_resident_files);
 								$base = strtolower($base);
@@ -1185,7 +1187,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 										$folders[$component] = $component;
 										unset($installed_files[$key]);
 										if (dirname($value) == THEMEFOLDER) {
-											getResidentZPFiles($base . $value, $lcFilesystem);
+											getResidentZPFiles($base . $value, $lcFilesystem, $stdExclude);
 										}
 									} else {
 										if ($updatechmod) {

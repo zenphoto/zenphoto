@@ -30,15 +30,15 @@ require_once(dirname(dirname(__FILE__)) . '/functions-config.php');
  * enumerates the files in folder(s)
  * @param $folder
  */
-function getResidentZPFiles($folder, $lcFilesystem = false) {
+function getResidentZPFiles($folder, $lcFilesystem, $exclude) {
 	global $_zp_resident_files;
 	$dir = opendir($folder);
 	while (($file = readdir($dir)) !== false) {
 		$file = str_replace('\\', '/', $file);
-		if ($file != '.' && $file != '..') {
+		if ($file != '.' && $file != '..' && !in_array($file, $exclude)) {
 			if (is_dir($folder . '/' . $file)) {
 				if ($file != 'session') {
-					getResidentZPFiles($folder . '/' . $file, $lcFilesystem);
+					getResidentZPFiles($folder . '/' . $file, $lcFilesystem, $exclude);
 					$entry = $folder . '/' . $file;
 					if ($lcFilesystem)
 						$entry = strtolower($entry);
