@@ -304,13 +304,12 @@ function zpFormattedDate($format, $dt) {
 	global $_zp_UTF8;
 	$fdate = strftime($format, $dt);
 	$charset = 'ISO-8859-1';
-	$outputset = LOCAL_CHARSET;
 	if (function_exists('mb_internal_encoding')) {
-		if (($charset = mb_internal_encoding()) == $outputset) {
+		if (($charset = mb_internal_encoding()) == LOCAL_CHARSET) {
 			return $fdate;
 		}
 	}
-	return $_zp_UTF8->convert($fdate, $charset, $outputset);
+	return $_zp_UTF8->convert($fdate, $charset, LOCAL_CHARSET);
 }
 
 /**
@@ -437,13 +436,13 @@ function zp_mail($subject, $message, $email_list = NULL, $cc_addresses = NULL, $
 			$from_mail = getOption('site_email');
 			$from_name = get_language_string(getOption('site_email_name'));
 
-// Convert to UTF-8
+			// Convert to UTF-8
 			if (LOCAL_CHARSET != 'UTF-8') {
 				$subject = $_zp_UTF8->convert($subject, LOCAL_CHARSET);
 				$message = $_zp_UTF8->convert($message, LOCAL_CHARSET);
 			}
 
-//	we do not support rich text
+			//	we do not support rich text
 			$message = preg_replace('~<p[^>]*>~', "\n", $message); // Replace the start <p> or <p attr="">
 			$message = preg_replace('~</p>~', "\n", $message); // Replace the end
 			$message = preg_replace('~<br[^>]*>~', "\n", $message); // Replace <br> or <br ...>

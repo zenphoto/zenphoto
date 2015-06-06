@@ -249,15 +249,14 @@ function ngettext_pl($msgid1, $msgid2, $n, $plugin) {
  */
 function i18nSetLocale($locale) {
 	global $_zp_RTL_css;
-	$en1 = LOCAL_CHARSET;
-	$en2 = str_replace('ISO-', 'ISO', $en1);
+	$en2 = str_replace('ISO-', 'ISO', LOCAL_CHARSET);
 	$locale_hyphen = str_replace('_', '-', $locale);
 	$simple = explode('-', $locale_hyphen);
 	$try[$locale . '.UTF8'] = $locale . '.UTF8';
 	$try[$locale . '.UTF-8'] = $locale . '.UTF-8';
 	$try[$locale . '.@euro'] = $locale . '.@euro';
 	$try[$locale . '.' . $en2] = $locale . '.' . $en2;
-	$try[$locale . '.' . $en1] = $locale . '.' . $en1;
+	$try[$locale . '.' . LOCAL_CHARSET] = $locale . '.' . LOCAL_CHARSET;
 	$try[$locale] = $locale;
 	$try[$simple[0]] = $simple[0];
 	$try['NULL'] = NULL;
