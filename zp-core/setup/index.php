@@ -2434,13 +2434,13 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 									if (extensionEnabled('cloneZenphoto')) {
 										require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cloneZenphoto.php');
 										if (class_exists('cloneZenphoto'))
-											$clones = cloneZenphoto::setup();
+											$clones = cloneZenphoto::clones();
 									}
 									$link = sprintf(gettext('You can now <a href="%1$s">administer your gallery.</a>'), WEBPATH . '/' . ZENFOLDER . '/admin.php');
 									foreach ($clones as $clone => $url) {
 										$autorun = false;
 										?>
-										<p class="delayshow" style="display:none;"><?php echo sprintf(gettext('Setup <a href="%1$s" target="_blank">%2$s</a>'), $url, $clone); ?></p>
+										<p class="delayshow" style="display:none;"><?php echo sprintf(gettext('Setup <a href="%1$s" target="_blank">%2$s</a>'), $url . ZENFOLDER . '/setup/index.php?autorun', $clone); ?></p>
 										<?php
 									}
 								}
