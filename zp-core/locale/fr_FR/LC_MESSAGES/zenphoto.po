@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZenPhoto20 1.1.8\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-04 21:14-0500\n"
-"PO-Revision-Date: 2015-06-04 22:14-0500\n"
+"POT-Creation-Date: 2015-06-06 09:31-0500\n"
+"PO-Revision-Date: 2015-06-06 09:33-0500\n"
 "Last-Translator: Stephen <stephen@sbillard.org>\n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon <michel@mgagnon.net>\n"
 "Language: fr_FR\n"
@@ -8612,7 +8612,7 @@ msgstr "Sensibilité normale de sortie et indice d’exposition recommandé"
 #: zp-core/exif/exifTranslations.php:215
 #, fuzzy
 msgid "Standard Output Sensitivity; Recommended Exposure Index and ISO Speed"
-msgstr "Sensibilité au signal de sortie (sensibilité de la sortie), indice d’exposition recommandé et sensibilité ISO"
+msgstr "Sensibilité normale de sortie, indice d’exposition recommandé et sensibilité ISO"
 
 #: zp-core/exif/exifTranslations.php:216
 msgid "Sunny"
@@ -14524,10 +14524,10 @@ msgstr "Permet aux visiteurs de voir ce site dans la langue de leur choix."
 #: zp-core/zp-extensions/dynamic-locale.php:170
 #, php-format
 msgid ""
-"If checked links to the alternative languages will be in the form <code><em>language</em>%s</code> where <code><em>language</em></code> is the language code, e.g. <code><em>fr</em></code> "
-"for French."
+"If checked links to the alternative languages will be in the form <code><em>language</em>.%s</code> where <code><em>language</em></code> is the language code, e.g. <code><em>fr</em></"
+"code> for French."
 msgstr ""
-"Si coché, les liens vers les langues disponibles prendront la forme <code><em>langue</em>%s</code>, où <code><em>langue</em></code> est le code de langue (ex.: <code><em>fr</em></code> "
+"Si coché, les liens vers les langues disponibles prendront la forme <code><em>langue</em>.%s</code>, où <code><em>langue</em></code> est le code de langue (ex.: <code><em>fr</em></code> "
 "pour le français)."
 
 #: zp-core/zp-extensions/dynamic-locale.php:171 zp-core/zp-extensions/html_meta_tags.php:77 zp-core/zp-extensions/sitemap-extended.php:76
@@ -15515,11 +15515,13 @@ msgid "A plugin to print the most common HTML meta tags to the head of your site
 msgstr "Inscrit dans l’en-tête (section Head) des pages de votre site les métabalises les plus courantes."
 
 #: zp-core/zp-extensions/html_meta_tags.php:76 zp-core/zp-extensions/sitemap-extended.php:75
-#, fuzzy, php-format
-msgid "If checked links to the alternative languages will be in the form <code><em>language</em>."
+#, php-format
+msgid ""
+"If checked links to the alternative languages will be in the form <code><em>language</em>.%1$s</code> where <code><em>language</em></code> is the language code, e.g. <code><em>fr</em></"
+"code> for French."
 msgstr ""
-"Si coché, les liens vers les langues disponibles prendront la forme <code><em>langue</em>.domaine</code>, où <code><em>langue</em></code> est le code de langue (ex.: <code><em>fr</em></"
-"code> pour le français)."
+"Si coché, les liens vers les langues disponibles prendront la forme <code><em>langue</em>.%1$s</code>, où <code><em>langue</em></code> est le code de langue (ex.: <code><em>fr</em></code> "
+"pour le français)."
 
 #: zp-core/zp-extensions/html_meta_tags.php:79
 msgid "Cache control"
@@ -18553,13 +18555,13 @@ msgid "Zenpage CMS items (if the plugin is enabled)"
 msgstr "Éléments du CMS Zenpage (si l’extension est activée)."
 
 #: zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:127
-#, fuzzy
+#, php-format
 msgid ""
 "Additionally a sitemapindex file is created that points to the separate ones above. You can reference this sitemapindex file in your robots.txt file or submit its url to services like "
-"Google via <code>"
+"Google via <code>%1$s/index.php?sitemap</code>"
 msgstr ""
 "De plus, un fichier sitemapindex a été créé ; il pointe vers les fichiers sus-mentionnés. Vous pouvez référencer ce fichier sitemapindex dans votre fichier robots.txt ou soumettre son "
-"adresse à des services comme Google via <code>www.yourdomain.com/zenphoto/index.php?sitemap</code>."
+"adresse à des services comme Google via <code>%1$s/index.php?sitemap</code>."
 
 #: zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:128
 #, php-format
@@ -21028,6 +21030,12 @@ msgstr "blockquote"
 #: zp-core/zp-extensions/tinymce/tinymce.min.js:6
 msgid "p"
 msgstr "p"
+
+#, fuzzy
+#~ msgid "If checked links to the alternative languages will be in the form <code><em>language</em>."
+#~ msgstr ""
+#~ "Si coché, les liens vers les langues disponibles prendront la forme <code><em>langue</em>.domaine</code>, où <code><em>langue</em></code> est le code de langue (ex.: <code><em>fr</em></"
+#~ "code> pour le français)."
 
 #~ msgid "This requires that you have created the appropriate subdomains pointing to your installation. That is <code>fr."
 #~ msgstr "Cela nécessite que vous créez d’abord les sous-domaines appropriés qui pointent vers votre installation. Par exemple, <code>fr."
