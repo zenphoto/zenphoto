@@ -76,7 +76,9 @@
 			}
 		</style>
 	<body>
-<h1>ZenPhoto20 release notes</h1><h2>Theme appearance&nbsp;improvements</h2>
+<h1>ZenPhoto20 release notes</h1><h2>Display Character Set</h2>
+<p>Websites will now use the UTF-8 character set exclusively. This simplifies a number of things and keeps users from "getting in trouble" if they attempt to change the <em>characterset</em> option setting. If it is really necessary for a site to display with a character set other than UTF-8 you may define the display character set in the configuration file.</p>
+<h2>Theme appearance&nbsp;improvements</h2>
 <p>The link that exposes the <em>admin toolbox</em> has been changed to a <em>gear</em> icon to minimize its presence on theme pages. Likewise the <em>themeSwitcher</em> plugin&nbsp;now shows a <em>menu</em> icon rather than the full selector. Clicking on the <em>menu</em> icon exposes the theme switching selections.</p>
 <p>Third party themes which style the <em>admin toolbox</em> may need to change their styles for the main link to take full advantage of this appearance improvement. If the theme is relatively "standard" all that is needed is to delete the <code>#admin</code> and <code>#admin_data</code> styles from the theme&nbsp;CSS&nbsp;as ZenPhoto20 will load a default CSS&nbsp;for the toolbox.</p>
 <p>As with other theme oriented files, themes can place custom versions of <code>images/gear.png</code> and <code>themeSwitcher/menu.png</code>&nbsp;in the theme folder to customize the icons shown. There is also a new filter--<code>iconColor</code>-- to allow selection of different colored menu and gear icons if the theme has configurable background colors. An example of this filter can be found in the <code>basic</code> theme and the <code>effervescence+</code> theme.</p>
@@ -90,6 +92,8 @@
 <p>The <em>class-video</em> and <em>xmpMetadata</em> plugins&nbsp;will create database columns for their metadata&nbsp;only if they are enabled when <code>setup</code> is run.</p>
 <p>You may see a "configuration change" notice when you change the state of these options. This will indicate that a <em>setup request</em> has been made (and by what process.) This is a reminder that the change will not take effect until you have run <code>setup</code> so data that might be stored in these fields may not be saved&nbsp;to the database.</p>
 <h2>Plugins</h2>
+<p><em>cloneZenphoto:</em></p>
+<p>This plugin&nbsp;is now presented by an administrative tab rather than a Utilities button. The tab will list links to existing site clones for easy reference.</p>
 <p><em>galleryArticles:</em></p>
 <p>The body of the article created is dynamically fetched from the description of the object. Previously it was captured at the time the article was published so did not track changes to the object's description. In order to accomplish this <em>galleryArticles</em> declares a macro named GALLERYARTICLEDESC.</p>
 <p><em>tagsFromMetadata:</em></p>
