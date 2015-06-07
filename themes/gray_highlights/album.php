@@ -18,17 +18,17 @@
 					echo '</div>';
 				}
 				?>
-<?php printLoginZone(); ?>
+				<?php printLoginZone(); ?>
 				<h1><?php echo getBareGalleryTitle(); ?></h1>
 			</div>
 			<div class="clear"></div>
 			<div id="menu">
 				<div id="m_bread" class="grid_8">
 					<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo getGalleryTitle(); ?>"><?php echo getGalleryTitle(); ?></a>
-				<?php printParentBreadcrumb('', '', ''); ?>
+					<?php printParentBreadcrumb('', '', ''); ?>
 					<span class="current"><?php echo getAlbumTitle(); ?></span>
 				</div>
-<?php printMenu(); ?>
+				<?php printMenu(); ?>
 			</div>
 			<div class="clear"></div>
 			<div id="content">
@@ -39,40 +39,44 @@
 				</div>
 				<div class="suffix_5">
 					<ul class="gallery">
-								<?php while (next_album()): ?>
+						<?php while (next_album()): ?>
 							<li class="grid_5">
 								<a href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo getAnnotatedAlbumTitle(); ?>">
 									<?php printCustomAlbumThumbImage(getAnnotatedAlbumTitle(), NULL, 376, 140, 376, 140, NULL, null, NULL, NULL); ?>
 								</a>
 								<span class="title">
-	<?php echo getAnnotatedAlbumTitle(); ?>
+									<?php echo getAnnotatedAlbumTitle(); ?>
 									<span class="italic">
 										[<?php printf(ngettext('%u image', '%u images', getNumImages()), getNumImages()); ?>]
-									</span><br />
-							<?php echo getAlbumDate("(%d/%m/%Y)"); ?>
+									</span>
+									<br />
+									<?php echo getAlbumDate("(%d/%m/%Y)"); ?>
 								</span>
 							</li>
-<?php endwhile; ?>
+						<?php endwhile; ?>
 					</ul>
 					<div class="l_clear"></div>
 					<ul class="album">
-								<?php while (next_image()): ?>
+						<?php while (next_image()): ?>
 							<li class="grid_5">
 								<a href="<?php echo html_encode(getImageURL()); ?>" title="<?php echo getAnnotatedImageTitle(); ?>">
-	<?php printCustomSizedImage(getAnnotatedImageTitle(), NULL, 376, 140, 376, 140, NULL, NULL, NULL, NULL, true, NULL); ?>
+									<?php printCustomSizedImage(getAnnotatedImageTitle(), NULL, 376, 140, 376, 140, NULL, NULL, NULL, NULL, true, NULL); ?>
 								</a>
-								<span><?php echo getAnnotatedImageTitle(); ?></span>
+								<span class="title">
+									<?php echo getAnnotatedImageTitle(); ?>
+								</span>
+
 							</li>
-<?php endwhile; ?>
+						<?php endwhile; ?>
 					</ul>
 				</div>
 				<div class="clear"></div>
 				<?php printPageListWithNav("« " . gettext("prev"), gettext("next") . " »", false, true, 'pagelist', null, true, 5); ?>
 			</div>
 			<div id="footer" class="grid_15">
-		<?php printFooter(); ?>
+				<?php printFooter(); ?>
 			</div>
 		</div>
-<?php zp_apply_filter('theme_body_close'); ?>
+		<?php zp_apply_filter('theme_body_close'); ?>
 	</body>
 </html>
