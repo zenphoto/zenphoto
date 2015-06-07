@@ -188,7 +188,7 @@ h2{
 	font-weight: bold;
 }
 
-#content .gallery li.grid_5:hover .title, #content .album li.grid_5:hover span{
+#content .gallery li.grid_5:hover .title, #content .album li.grid_5:hover .title{
 	display: block;
 	position: relative;
 	padding-left: 10px;
@@ -205,7 +205,7 @@ h2{
 	line-height:22px;
 }
 
-#content .album li.grid_5:hover span{
+#content .album li.grid_5:hover .title{
 	top: -25px;
 	height: 25px;
 	line-height: 25px;
