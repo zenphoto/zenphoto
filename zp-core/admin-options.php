@@ -914,45 +914,13 @@ Zenphoto_Authority::printPasswordFormJS();
 									</td>
 									<td><?php echo gettext('Format for dates. Select from the list or set to <code>custom</code> and provide a <a href="http://us2.php.net/manual/en/function.strftime.php"><span class="nowrap"><code>strftime()</code></span></a> format string in the text box.'); ?></td>
 								</tr>
-								<tr>
-									<td width="175"><?php echo gettext("Charset:"); ?></td>
-									<td width="350">
-										<select id="charset" name="charset">
-											<?php
-											$sets = array_merge($_zp_UTF8->iconv_sets, $_zp_UTF8->mb_sets);
-											$totalsets = $_zp_UTF8->charsets;
-											asort($totalsets);
-											foreach ($totalsets as $key => $char) {
-												if ($key == LOCAL_CHARSET) {
-													$selected = ' selected="selected"';
-												} else {
-													$selected = '';
-												}
-												if (!array_key_exists($key, $sets)) {
-													$selected .= ' style="color: gray"';
-												}
-												?>
-												<option value="<?php echo $key; ?>" <?php echo $selected; ?>><?php echo $char; ?></option>
-												<?php
-											}
-											?>
-										</select>
-									</td>
-									<td>
-										<?php
-										echo gettext('The character encoding to use internally. Leave at <em>Unicode (UTF-8)</em> if you are unsure.');
-										if (!function_exists('mb_list_encodings')) {
-											echo ' ' . gettext('Character sets <span style="color:gray">shown in gray</span> have no character translation support.');
-										}
-										?>
-									</td>
-								</tr>
+
 								<tr>
 									<td width="175"><?php echo gettext("Filesystem Charset:"); ?></td>
 									<td width="350">
 										<select id="filesystem_charset" name="filesystem_charset">
 											<?php
-											foreach ($totalsets as $key => $char) {
+											foreach ($_zp_UTF8->charsets as $key => $char) {
 												if ($key == FILESYSTEM_CHARSET) {
 													$selected = ' selected="selected"';
 												} else {
@@ -1344,7 +1312,7 @@ Zenphoto_Authority::printPasswordFormJS();
 										/*
 										 * not recommended--screws with peoples minds during pagination!
 
-										  $sort[gettext('Random')] = 'random';
+											$sort[gettext('Random')] = 'random';
 										 */
 										$cvt = $cv = strtolower($_zp_gallery->getSortType());
 										ksort($sort, SORT_LOCALE_STRING);
@@ -2006,7 +1974,7 @@ Zenphoto_Authority::printPasswordFormJS();
 
 										/*
 										 * not recommended--screws with peoples minds during pagination!
-										  $sort[gettext('Random')] = 'random';
+											$sort[gettext('Random')] = 'random';
 										 */
 										$flip = array_flip($sort);
 										if (isset($flip[$cv])) {

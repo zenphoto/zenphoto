@@ -11,8 +11,7 @@ require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 
 admin_securityChecks(NULL, currentRelativeURL());
 
-$zenphoto_tabs['overview']['subtabs'] = array(gettext('Clone') => '');
-printAdminHeader('overview', 'clone');
+printAdminHeader('clone');
 ?>
 <script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/sprintf.js"></script>
 </head>
@@ -23,7 +22,22 @@ printAdminHeader('overview', 'clone');
 		<div id="content">
 			<?php printSubtabs(); ?>
 			<div class="tabbox">
-				<h1><?php echo (gettext('Create a new install with symbolic links to the current installation scripts.')); ?></h1>
+				<h1><?php echo gettext('Site clones'); ?></h1>
+				<?php
+				$clones = cloneZenphoto::clones();
+				if (isset($folder)) {
+					unset($clones[rtrim($folder, '/')]);
+				}
+
+
+				foreach ($clones as $clone => $url) {
+					?>
+					<p><?php echo sprintf(gettext('<a href="%1$s" target="_blank">%2$s</a>'), $url, $clone); ?></p>
+					<?php
+				}
+				?>
+				<br />
+				<h2><?php echo gettext('Create a new install with symbolic links to the current installation scripts.'); ?></h2>
 				<?php zp_apply_filter('admin_note', 'clone', ''); ?>
 				<?php
 				if (isset($success)) {
@@ -50,7 +64,6 @@ printAdminHeader('overview', 'clone');
 						<?php echo gettext('<strong>Note:</strong> Existing Site scripts will be removed from the target if they exist.') ?>
 					</p>
 
-					<br />
 					<br />
 					<?php
 					$current = $folderlist = array();

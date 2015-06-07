@@ -163,8 +163,7 @@ echo "\n</head>";
 									$a = array();
 									foreach ($lang[2] as $lang_code) {
 										$loc = setlocale(LC_ALL, $lang_code);
-										$loc = $_zp_UTF8->convert($loc, FILESYSTEM_CHARSET, LOCAL_CHARSET);
-										$a [] = $lang_code . ' ' . ( false === $loc ? '✖' : '✔ - ' . $loc );
+										$a[] = $lang_code . ' ' . ( false === $loc ? '✖' : '✔ - ' . $_zp_UTF8->convert($loc, FILESYSTEM_CHARSET, LOCAL_CHARSET) );
 									}
 									echo '  <td>' . implode('<br />', $a) . '</td>' . "\n";
 									echo '</tr>' . "\n";

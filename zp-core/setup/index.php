@@ -644,13 +644,13 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 							primeMark(gettext('mb_strings'));
 							if (function_exists('mb_internal_encoding')) {
 								@mb_internal_encoding('UTF-8');
-								if (($charset = mb_internal_encoding()) == 'UTF-8') {
+								if (($mbcharset = mb_internal_encoding()) == 'UTF-8') {
 									$mb = 1;
 								} else {
 									$mb = -1;
 								}
 								$m2 = gettext('Setting <em>mbstring.internal_encoding</em> to <strong>UTF-8</strong> in your <em>php.ini</em> file is recommended to insure accented and multi-byte characters function properly.');
-								checkMark($mb, gettext("PHP <code>mbstring</code> package"), sprintf(gettext('PHP <code>mbstring</code> package [Your internal character set is <strong>%s</strong>]'), $charset), $m2);
+								checkMark($mb, gettext("PHP <code>mbstring</code> package"), sprintf(gettext('PHP <code>mbstring</code> package [Your internal character set is <strong>%s</strong>]'), $mbcharset), $m2);
 							} else {
 								$test = $_zp_UTF8->convert('test', 'ISO-8859-1', 'UTF-8');
 								if (empty($test)) {
@@ -762,10 +762,6 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 										} else {
 											primeMark(gettext('Character set'));
 											$charset_defined = $_zp_UTF8->iconv_sets[FILESYSTEM_CHARSET];
-											$charset = LOCAL_CHARSET;
-											if (empty($charset)) {
-												$charset = 'UTF-8';
-											}
 											$test = '';
 											if (($dir = opendir($serverpath . '/' . DATA_FOLDER . '/')) !== false) {
 												while (($file = readdir($dir)) !== false) {
@@ -1123,9 +1119,11 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 
 							primeMark(gettext('ZenPhoto20 files'));
 							@set_time_limit(120);
+							$stdExclude = Array('Thumbs.db', 'readme.md', 'data');
+
 							$lcFilesystem = file_exists(strtoupper(__FILE__));
 							$base = $serverpath . '/';
-							getResidentZPFiles(SERVERPATH . '/' . ZENFOLDER, $lcFilesystem);
+							getResidentZPFiles(SERVERPATH . '/' . ZENFOLDER, $lcFilesystem, $stdExclude);
 							if ($lcFilesystem) {
 								$res = array_search(strtolower($base . ZENFOLDER . '/zenphoto.package'), $_zp_resident_files);
 								$base = strtolower($base);
@@ -1189,7 +1187,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 										$folders[$component] = $component;
 										unset($installed_files[$key]);
 										if (dirname($value) == THEMEFOLDER) {
-											getResidentZPFiles($base . $value, $lcFilesystem);
+											getResidentZPFiles($base . $value, $lcFilesystem, $stdExclude);
 										}
 									} else {
 										if ($updatechmod) {
@@ -2438,13 +2436,13 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 									if (extensionEnabled('cloneZenphoto')) {
 										require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cloneZenphoto.php');
 										if (class_exists('cloneZenphoto'))
-											$clones = cloneZenphoto::setup();
+											$clones = cloneZenphoto::clones();
 									}
 									$link = sprintf(gettext('You can now <a href="%1$s">administer your gallery.</a>'), WEBPATH . '/' . ZENFOLDER . '/admin.php');
 									foreach ($clones as $clone => $url) {
 										$autorun = false;
 										?>
-										<p class="delayshow" style="display:none;"><?php echo sprintf(gettext('Setup <a href="%1$s" target="_blank">%2$s</a>'), $url, $clone); ?></p>
+										<p class="delayshow" style="display:none;"><?php echo sprintf(gettext('Setup <a href="%1$s" target="_blank">%2$s</a>'), $url . ZENFOLDER . '/setup/index.php?autorun', $clone); ?></p>
 										<?php
 									}
 								}

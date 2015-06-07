@@ -389,3 +389,20 @@ input#code {
 .zen-logo img {
 	vertical-align: sub;
 }
+
+
+#admin_data{
+	padding-top: 20px;
+	background-image:url(../images/25percent.png);
+	border: 1px solid gray;
+}
+
+#admin, #admin_data a {
+	text-decoration:none;
+}
+#admin h3 {
+	color: black;
+}
+#admin h3 a {
+	text-decoration:none;
+}

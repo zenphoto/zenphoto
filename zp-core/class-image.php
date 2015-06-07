@@ -648,10 +648,9 @@ class Image extends MediaObject {
 		if (substr($iptcstring, -1) === 0x0) {
 			$iptcstring = substr($iptcstring, 0, -1);
 		}
-		$outputset = LOCAL_CHARSET;
-		if ($characterset == $outputset)
-			return $iptcstring;
-		$iptcstring = $_zp_UTF8->convert($iptcstring, $characterset, $outputset);
+		if ($characterset != LOCAL_CHARSET) {
+			$iptcstring = $_zp_UTF8->convert($iptcstring, $characterset, LOCAL_CHARSET);
+		}
 		return trim(sanitize($iptcstring, 1));
 	}
 
