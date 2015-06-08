@@ -815,6 +815,10 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 												//	fount the test file
 												if (file_exists(internalToFilesystem($test_internal))) {
 													//	and the active character set define worked
+													if (!isset($_zp_conf_vars['FILESYSTEM_CHARSET'])) {
+														$zp_cfg = updateConfigItem('FILESYSTEM_CHARSET', FILESYSTEM_CHARSET, $zp_cfg);
+														storeConfig($zp_cfg);
+													}
 													$notice = 1;
 													$msg = sprintf(gettext('The filesystem character define is %1$s [confirmed]'), $charset_defined);
 													$msg1 = '';
