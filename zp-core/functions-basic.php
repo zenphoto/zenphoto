@@ -151,11 +151,10 @@ if (!defined('FILESYSTEM_CHARSET')) {
 	if (isset($_zp_conf_vars['FILESYSTEM_CHARSET']) && $_zp_conf_vars['FILESYSTEM_CHARSET'] != 'unknown') {
 		define('FILESYSTEM_CHARSET', $_zp_conf_vars['FILESYSTEM_CHARSET']);
 	} else {
-		if (strtoupper(PHP_OS) == 'DARWIN') {
-			// Apple OS
-			define('FILESYSTEM_CHARSET', 'UTF-8');
-		} else {
+		if (strtoupper(substr(PHP_OS, 0, 3)) == 'WIN') {
 			define('FILESYSTEM_CHARSET', 'ISO-8859-1');
+		} else {
+			define('FILESYSTEM_CHARSET', 'UTF-8');
 		}
 	}
 }

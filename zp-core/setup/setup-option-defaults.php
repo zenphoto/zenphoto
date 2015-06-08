@@ -16,10 +16,6 @@ if (isset($_GET['debug'])) {
 }
 
 require(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
-$testFile = SERVERPATH . '/' . DATA_FOLDER . '/' . internalToFilesystem('charset_tést');
-if (!file_exists($testFile)) {
-	file_put_contents($testFile, '');
-}
 
 /* fix for NULL theme name */
 Query('UPDATE ' . prefix('options') . ' SET `theme`="" WHERE `theme` IS NULL');
