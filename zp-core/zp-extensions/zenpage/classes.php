@@ -339,7 +339,6 @@ class CMS {
 				}
 			}
 			$sql .= $order;
-
 			$resource = query($sql);
 			$result = array();
 			if ($resource) {
@@ -354,6 +353,7 @@ class CMS {
 					if ($getUnpublished //	override published
 									|| ($article->getShow() && (($incurrent || $article->categoryIsVisible()) || $subrights)) //	published in "visible" or managed category
 									|| ($subrights & MANAGED_OBJECT_RIGHTS_VIEW) //	he is allowed to see unpublished articles in one of the article's categories
+									|| $article->isMyItem(ZENPAGE_NEWS_RIGHTS)
 					) {
 						$result[] = $item;
 					}
