@@ -93,7 +93,6 @@ if (isset($_GET['action'])) {
 			}
 			setOption('time_offset', $offset);
 
-			setOption('charset', sanitize($_POST['charset']), 3);
 			if (($new = sanitize($_POST['filesystem_charset'])) != FILESYSTEM_CHARSET) {
 				$_configMutex->lock();
 				$zp_cfg = @file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
@@ -1312,7 +1311,7 @@ Zenphoto_Authority::printPasswordFormJS();
 										/*
 										 * not recommended--screws with peoples minds during pagination!
 
-											$sort[gettext('Random')] = 'random';
+										  $sort[gettext('Random')] = 'random';
 										 */
 										$cvt = $cv = strtolower($_zp_gallery->getSortType());
 										ksort($sort, SORT_LOCALE_STRING);
@@ -1974,7 +1973,7 @@ Zenphoto_Authority::printPasswordFormJS();
 
 										/*
 										 * not recommended--screws with peoples minds during pagination!
-											$sort[gettext('Random')] = 'random';
+										  $sort[gettext('Random')] = 'random';
 										 */
 										$flip = array_flip($sort);
 										if (isset($flip[$cv])) {
