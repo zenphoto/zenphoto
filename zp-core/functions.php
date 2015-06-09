@@ -868,6 +868,10 @@ function populateManagedObjectsList($type, $id, $rights = false) {
 			}
 			db_free_result($currentvalues);
 		}
+		$item = query_single_row('SELECT `edit` FROM ' . prefix('admin_to_object') . "WHERE adminid=$id AND objectid=0 AND type='news'", false);
+		if ($item) {
+			$cv[] = array('data' => '`', 'name' => '"' . gettext('un-categorized') . '"', 'type' => 'news', 'edit' => (int) $item['edit']);
+		}
 	}
 	return $cv;
 }

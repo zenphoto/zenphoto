@@ -341,6 +341,7 @@ function printPagesListTable($page, $flag) {
  * @return object
  */
 function updateArticle(&$reports, $newarticle = false) {
+	global $_zp_current_admin_obj;
 	$date = date('Y-m-d_H-i-s');
 	$title = process_language_string_save("title", 2);
 	$author = sanitize($_POST['author']);
@@ -425,6 +426,8 @@ function updateArticle(&$reports, $newarticle = false) {
 	$article->setTruncation(getcheckboxState('truncation'));
 	processTags($article);
 	$categories = array();
+	$myCategories = array_flip($_zp_current_admin_obj->getObjects('news'));
+
 	if (isset($_POST['addcategories'])) {
 		$cats = sanitize($_POST['addcategories']);
 		$result2 = query_full_array("SELECT * FROM " . prefix('news_categories') . " ORDER BY titlelink", true, 'id');
@@ -435,28 +438,47 @@ function updateArticle(&$reports, $newarticle = false) {
 				}
 			}
 		}
-		$article->setCategories($categories);
+		if (!zp_loggedin(MANAGE_ALL_NEWS_RIGHTS)) {
+			foreach ($categories as $key => $cat) {
+				if (!isset($myCategories[$cat])) {
+					unset($categories[$key]);
+				}
+			}
+		}
 	}
+	$article->setCategories($categories);
 	$article->setShow($show);
+
+	if (!zp_loggedin(MANAGE_ALL_NEWS_RIGHTS) && empty($categories)) {
+		//	check if he is allowed to make un-categorized articles
+		if (!isset($myCategories['`'])) {
+			$reports[] = "<p class='errorbox fade-message'>" . sprintf(gettext("Article <em>%s</em> may not be un-categorized."), $titlelink) . '</p>';
+			unset($myCategories['`']);
+			$cagegories[] = array_shift($myCategories);
+		}
+	}
+
+
 	if ($newarticle) {
 		$msg = zp_apply_filter('new_article', '', $article);
 		if (empty($title)) {
-			$reports[] = "<p class='errorbox fade-message'>" . sprintf(gettext("Article <em>%s</em> added but you need to give it a <strong>title</strong> before publishing!"), get_language_string($titlelink)) . '</p>';
+			$reports['success'] = "<p class='errorbox fade-message'>" . sprintf(gettext("Article <em>%s</em> added but you need to give it a <strong>title</strong> before publishing!"), get_language_string($titlelink)) . '</p>';
 		} else {
-			$reports[] = "<p class='messagebox fade-message'>" . sprintf(gettext("Article <em>%s</em> added"), $titlelink) . '</p>';
+			$reports['success'] = "<p class='messagebox fade-message'>" . sprintf(gettext("Article <em>%s</em> added"), $titlelink) . '</p>';
 		}
 	} else {
 		$msg = zp_apply_filter('update_article', '', $article, $oldtitlelink);
 		if (!$rslt) {
 			$reports[] = "<p class='errorbox fade-message'>" . sprintf(gettext("An article with the title/titlelink <em>%s</em> already exists!"), $titlelink) . '</p>';
 		} else if (empty($title)) {
-			$reports[] = "<p class='errorbox fade-message'>" . sprintf(gettext("Article <em>%s</em> updated but you need to give it a <strong>title</strong> before publishing!"), get_language_string($titlelink)) . '</p>';
+			$reports['success'] = "<p class='errorbox fade-message'>" . sprintf(gettext("Article <em>%s</em> updated but you need to give it a <strong>title</strong> before publishing!"), get_language_string($titlelink)) . '</p>';
 		} else {
-			$reports[] = "<p class='messagebox fade-message'>" . sprintf(gettext("Article <em>%s</em> updated"), $titlelink) . '</p>';
+			$reports['success'] = "<p class='messagebox fade-message'>" . sprintf(gettext("Article <em>%s</em> updated"), $titlelink) . '</p>';
 		}
 	}
 	zp_apply_filter('save_article_custom_data', NULL, $article);
 	$article->save();
+
 	$msg = zp_apply_filter('edit_error', $msg);
 
 	if ($msg) {
@@ -751,6 +773,13 @@ function printCategoryDropdown() {
 			<select name="ListBoxURL" size="1" onchange="gotoLink(this.form)">
 				<?php
 				echo "<option $selected value='admin-news.php" . getNewsAdminOptionPath($option) . "'>" . gettext("All categories") . "</option>\n";
+				if ($category == '`') {
+					$selected = "selected='selected'";
+				} else {
+					$selected = "";
+				}
+				echo "<option $selected value='admin-news.php" . getNewsAdminOptionPath(array_merge(array(
+								'category' => '`'), $option)) . "'>" . gettext("Un-categorized") . "</option>\n";
 
 				foreach ($result as $cat) {
 					$catobj = newCategory($cat['titlelink']);

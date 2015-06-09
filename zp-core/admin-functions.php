@@ -3518,6 +3518,7 @@ function processManagedObjects($i, &$rights) {
 			}
 		}
 	}
+
 	foreach ($albums as $key => $analbum) {
 		unset($albums[$key]);
 		$albums[] = $analbum;

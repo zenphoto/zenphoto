@@ -202,7 +202,7 @@ class CMS {
 			}
 		}
 		$now = date('Y-m-d H:i:s');
-		if ($category) {
+		if ($category && $category->exists) {
 			$sortObj = $category;
 		} else {
 			$sortObj = $this;
@@ -221,30 +221,43 @@ class CMS {
 			}
 		}
 		$newsCacheIndex = "$sortorder-$sortdirection-$published-" . (int) $sticky;
-		if ($category) {
+		if ($category && $category->exists) {
 			$newsCacheIndex .= '-' . $category->getTitlelink();
 		}
 
 		if (isset($_zp_newsCache[$newsCacheIndex])) {
 			$result = $_zp_newsCache[$newsCacheIndex];
 		} else {
-			$show = $currentCat = false;
+			$cat = $show = $currentCat = false;
 			if ($category) {
-				if (is_object($_zp_current_category)) {
-					$currentCat = $_zp_current_category->getTitlelink();
-				}
-				// new code to get nested cats
-				$catid = $category->getID();
-				$subcats = $category->getSubCategories();
-				if ($subcats) {
-					$cat = " (cat.cat_id = '" . $catid . "'";
-					foreach ($subcats as $subcat) {
-						$subcatobj = newCategory($subcat);
-						$cat .= "OR cat.cat_id = '" . $subcatobj->getID() . "' ";
+				if ($category->exists) {
+					if (is_object($_zp_current_category)) {
+						$currentCat = $_zp_current_category->getTitlelink();
 					}
-					$cat .= ") AND cat.news_id = news.id";
+					// new code to get nested cats
+					$catid = $category->getID();
+					$subcats = $category->getSubCategories();
+					if ($subcats) {
+						$cat = " (cat.cat_id = '" . $catid . "'";
+						foreach ($subcats as $subcat) {
+							$subcatobj = newCategory($subcat);
+							$cat .= " OR cat.cat_id = '" . $subcatobj->getID() . "' ";
+						}
+						$cat .= ") AND cat.news_id = news.id";
+					} else {
+						$cat = " cat.cat_id = '" . $catid . "' AND cat.news_id = news.id";
+					}
 				} else {
-					$cat = " cat.cat_id = '" . $catid . "' AND cat.news_id = news.id";
+					$category = NULL;
+					$cat = '(`id` NOT IN (';
+					$rslt = query_full_array('SELECT DISTINCT `news_id` FROM ' . prefix('news2cat'));
+					if (!empty($rslt)) {
+						$cat = ' `id` NOT IN (';
+						foreach ($rslt as $row) {
+							$cat .= $row['news_id'] . ',';
+						}
+						$cat = substr($cat, 0, -1) . ')';
+					}
 				}
 			}
 
@@ -334,16 +347,25 @@ class CMS {
 				}
 			} else {
 				$sql = "SELECT * FROM " . prefix('news');
+				if ($cat) {
+					$sql .= ' WHERE ' . $cat;
+				}
 				if ($show || $datesearch) {
-					$sql .= ' WHERE ' . $show . $datesearch;
+					if ($cat) {
+						$sql .= ' AND ';
+					} else {
+						$sql .= ' WHERE ';
+					}
+					$sql .= $show . $datesearch;
 				}
 			}
 			$sql .= $order;
 			$resource = query($sql);
 			$result = array();
 			if ($resource) {
-				if (zp_loggedin(VIEW_UNPUBLISHED_NEWS_RIGHTS))
+				if (zp_loggedin(VIEW_UNPUBLISHED_NEWS_RIGHTS)) {
 					$getUnpublished = true;
+				}
 				while ($item = db_fetch_assoc($resource)) {
 					$article = newArticle($item['titlelink']);
 					if ($incurrent = $currentCat) {
