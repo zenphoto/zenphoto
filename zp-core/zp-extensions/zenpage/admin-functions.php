@@ -504,39 +504,6 @@ function printNewsCategories($obj) {
 	}
 }
 
-/**
- * Prints the checkboxes to select and/or show the category of an news article on the edit or add page
- *
- * @param int $id ID of the news article if the categories an existing articles is assigned to shall be shown, empty if this is a new article to be added.
- * @param string $option "all" to show all categories if creating a new article without categories assigned, empty if editing an existing article that already has categories assigned.
- */
-function printCategorySelection($id = '', $option = '') {
-	global $_zp_CMS;
-
-	$selected = '';
-	echo "<ul class='zenpagechecklist'>\n";
-	$all_cats = $_zp_CMS->getAllCategories(false);
-	foreach ($all_cats as $cats) {
-		$catobj = newCategory($cats['titlelink']);
-		if ($option != "all") {
-			$cat2news = query_single_row("SELECT cat_id FROM " . prefix('news2cat') . " WHERE news_id = " . $id . " AND cat_id = " . $catobj->getID());
-			if ($cat2news['cat_id'] != "") {
-				$selected = "checked ='checked'";
-			}
-		}
-		$catname = $catobj->getTitle();
-		$catlink = $catobj->getTitlelink();
-		if ($catobj->getPassword()) {
-			$protected = '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/lock.png" alt="' . gettext('password protected') . '" />';
-		} else {
-			$protected = '';
-		}
-		$catid = $catobj->getID();
-		echo "<li class=\"hasimage\" ><label for='cat" . $catid . "'><input name='cat" . $catid . "' id='cat" . $catid . "' type='checkbox' value='" . $catid . "' " . $selected . " />" . $catname . " " . $protected . "</label></li>\n";
-	}
-	echo "</ul>\n";
-}
-
 function printAuthorDropdown() {
 	$rslt = query_full_array('SELECT DISTINCT `author` FROM ' . prefix('news'));
 	if (count($rslt) > 1) {
@@ -1095,46 +1062,45 @@ function printCategoryCheckboxListEntry($cat, $articleid, $option, $class = '') 
  */
 function printNestedItemsList($listtype = 'cats-sortablelist', $articleid = '', $option = '', $class = 'nestedItem') {
 	global $_zp_CMS;
+
 	switch ($listtype) {
 		case 'cats-checkboxlist':
-		default:
+			$items = $_zp_CMS->getAllCategories(false);
+			$classInstantiator = 'newCategory';
+			$rights = LIST_RIGHTS;
 			$ulclass = "";
 			break;
 		case 'cats-sortablelist':
-		case 'pages-sortablelist':
-			$ulclass = " class=\"page-list\"";
-			break;
-	}
-	switch ($listtype) {
-		case 'cats-checkboxlist':
-		case 'cats-sortablelist':
 			$items = $_zp_CMS->getAllCategories(false);
+			$classInstantiator = 'newCategory';
+			$rights = ZENPAGE_NEWS_RIGHTS;
+			$ulclass = " class=\"page-list\"";
 			break;
 		case 'pages-sortablelist':
 			$items = $_zp_CMS->getPages(false);
+			$classInstantiator = 'newPage';
+			$rights = ZENPAGE_PAGES_RIGHTS;
+			$ulclass = " class=\"page-list\"";
 			break;
 		default:
 			$items = array();
+			$ulclass = "";
 			break;
 	}
 	$indent = 1;
 	$open = array(1 => 0);
 	$rslt = false;
 	foreach ($items as $item) {
-		switch ($listtype) {
-			case 'cats-checkboxlist':
-			case 'cats-sortablelist':
-				$itemobj = newCategory($item['titlelink']);
-				$ismypage = $itemobj->isMyItem(ZENPAGE_NEWS_RIGHTS);
-				break;
-			case 'pages-sortablelist':
-				$itemobj = newPage($item['titlelink']);
-				$ismypage = $itemobj->isMyItem(ZENPAGE_PAGES_RIGHTS);
-				break;
+		$itemobj = $classInstantiator($item['titlelink']);
+		if ($rights == LIST_RIGHTS) {
+			//	list the catagory if the user has it as a maanaged object
+			$ismine = $itemobj->subRights();
+		} else {
+			$ismine = $itemobj->isMyItem($rights);
 		}
-		$itemsortorder = $itemobj->getSortOrder();
-		$itemid = $itemobj->getID();
-		if ($ismypage) {
+		if ($ismine) {
+			$itemsortorder = $itemobj->getSortOrder();
+			$itemid = $itemobj->getID();
 			$order = explode('-', $itemsortorder);
 			$level = max(1, count($order));
 			if ($toodeep = $level > 1 && $order[$level - 1] === '') {
