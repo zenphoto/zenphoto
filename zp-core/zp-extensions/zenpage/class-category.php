@@ -242,16 +242,18 @@ class Category extends CMSRoot {
 	 */
 	function getSubCategories($visible = true, $sorttype = NULL, $sortdirection = NULL) {
 		global $_zp_CMS;
-		$subcategories = array();
-		$sortorder = $this->getSortOrder();
-		foreach ($_zp_CMS->getAllCategories($visible, $sorttype, $sortdirection) as $cat) {
-			$catobj = newCategory($cat['titlelink']);
-			if ($catobj->getParentID() == $this->getID() && $catobj->getSortOrder() != $sortorder) { // exclude the category itself!
-				array_push($subcategories, $catobj->getTitlelink());
+		if ($this->exists) {
+			$subcategories = array();
+			$sortorder = $this->getSortOrder();
+			foreach ($_zp_CMS->getAllCategories($visible, $sorttype, $sortdirection) as $cat) {
+				$catobj = newCategory($cat['titlelink']);
+				if ($catobj->getParentID() == $this->getID() && $catobj->getSortOrder() != $sortorder) { // exclude the category itself!
+					array_push($subcategories, $catobj->getTitlelink());
+				}
 			}
-		}
-		if (count($subcategories) != 0) {
-			return $subcategories;
+			if (count($subcategories) != 0) {
+				return $subcategories;
+			}
 		}
 		return FALSE;
 	}

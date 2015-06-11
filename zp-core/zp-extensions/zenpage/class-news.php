@@ -232,20 +232,19 @@ class Article extends CMSItems {
 				return $this->subrights;
 			}
 
+			$objects = $_zp_current_admin_obj->getObjects();
 			$categories = $this->getCategories();
-			if (!empty($categories)) {
-				$objects = $_zp_current_admin_obj->getObjects();
-				$possible = array();
-				foreach ($objects as $object) {
-					if ($object['type'] == 'news') {
-						$possible[$object['data']] = $object;
-					}
+			$categories['`'] = array('type' => 'news', 'titlelink' => '`');
+			$possible = array();
+			foreach ($objects as $object) {
+				if ($object['type'] == 'news') {
+					$possible[$object['data']] = $object;
 				}
-				if (!empty($possible)) {
-					foreach ($categories as $category) {
-						if (array_key_exists($category['titlelink'], $possible)) {
-							$this->subrights = $this->subRights() | $possible[$category['titlelink']]['edit'] | MANAGED_OBJECT_MEMBER;
-						}
+			}
+			if (!empty($possible)) {
+				foreach ($categories as $category) {
+					if (array_key_exists($category['titlelink'], $possible)) {
+						$this->subrights = $this->subRights() | $possible[$category['titlelink']]['edit'] | MANAGED_OBJECT_MEMBER;
 					}
 				}
 			}
@@ -271,12 +270,27 @@ class Article extends CMSItems {
 			if ($_zp_current_admin_obj->getUser() == $this->getAuthor()) {
 				return true; //	he is the author
 			}
-			$mycategories = $_zp_current_admin_obj->getObjects('news');
-			if (!empty($mycategories)) {
-				foreach ($this->getCategories() as $category) {
-					$cat = newCategory($category['titlelink']);
-					if ($cat->isMyItem($action)) {
-						return true;
+			$myObjects = $_zp_current_admin_obj->getObjects('news', true);
+			if (!empty($myObjects)) {
+				$thisCats = $this->getCategories();
+				if (empty($thisCats) && isset($myObjects['`'])) {
+					// un-categorized
+					$subRights = $myObjects['`']['edit'];
+					if ($subRights) {
+						$rights = LIST_RIGHTS;
+						if ($subRights & MANAGED_OBJECT_RIGHTS_EDIT) {
+							$rights = $rights | ZENPAGE_NEWS_RIGHTS;
+						}
+						if ($action & $rights) {
+							return true;
+						}
+					}
+				} else {
+					foreach ($thisCats as $category) {
+						$cat = newCategory($category['titlelink']);
+						if ($cat->isMyItem($action)) {
+							return true;
+						}
 					}
 				}
 			}

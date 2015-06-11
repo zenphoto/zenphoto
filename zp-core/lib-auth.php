@@ -1487,7 +1487,7 @@ class Zenphoto_Administrator extends PersistentObject {
 	/**
 	 * Returns local copy of managed objects.
 	 */
-	function getObjects($what = NULL) {
+	function getObjects($what = NULL, $full = NULL) {
 		if (is_null($this->objects)) {
 			if ($this->transient) {
 				$this->objects = array();
@@ -1501,7 +1501,11 @@ class Zenphoto_Administrator extends PersistentObject {
 		$result = array();
 		foreach ($this->objects as $object) {
 			if ($object['type'] == $what) {
-				$result[$object['name']] = $object['data'];
+				if ($full) {
+					$result[$object['data']] = $object;
+				} else {
+					$result[$object['name']] = $object['data'];
+				}
 			}
 		}
 		return $result;
@@ -1632,8 +1636,12 @@ class Zenphoto_Administrator extends PersistentObject {
 						}
 						break;
 					case 'news':
-						$sql = 'SELECT * FROM ' . prefix('news_categories') . ' WHERE `titlelink`=' . db_quote($object['data']);
-						$result = query_single_row($sql);
+						if ($object['data'] == '`') {
+							$result = array('id' => 0);
+						} else {
+							$sql = 'SELECT * FROM ' . prefix('news_categories') . ' WHERE `titlelink`=' . db_quote($object['data']);
+							$result = query_single_row($sql);
+						}
 						if (is_array($result)) {
 							$objectid = $result['id'];
 							$sql = "INSERT INTO " . prefix('admin_to_object') . " (adminid, objectid, type, edit) VALUES ($id, $objectid, 'news', $edit)";
