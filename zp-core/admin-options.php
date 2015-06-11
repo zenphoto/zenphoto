@@ -906,7 +906,7 @@ Zenphoto_Authority::printPasswordFormJS();
 										?>
 									</td>
 								</tr>
-																
+
 								<tr>
 									<td width="175"><?php echo gettext("Allowed tags:"); ?></td>
 									<td width="350">
@@ -1089,19 +1089,19 @@ Zenphoto_Authority::printPasswordFormJS();
 								<tr>
 									<td width="175"><?php echo gettext("Gallery title:"); ?></td>
 									<td width="350">
-										<?php print_language_string_list($_zp_gallery->getTitle('all'), 'gallery_title') ?>
+										<?php print_language_string_list($_zp_gallery->getTitle('all'), 'gallery_title'); ?>
 									</td>
 									<td><?php echo gettext("What you want to call your Zenphoto site."); ?></td>
 								</tr>
 								<tr>
 									<td width="175"><?php echo gettext("Gallery description:"); ?></td>
 									<td width="350">
-										<?php print_language_string_list($_zp_gallery->getDesc('all'), 'Gallery_description', true, NULL, 'texteditor') ?>
+										<?php print_language_string_list($_zp_gallery->getDesc('all'), 'Gallery_description', true, NULL, 'texteditor'); ?>
 									</td>
 									<td><?php echo gettext("A brief description of your gallery. Some themes may display this text."); ?></td>
 								</tr>
 								<tr>
-									<td><?php echo gettext('Gallery type') ?></td>
+									<td><?php echo gettext('Gallery type'); ?></td>
 									<td>
 										<label><input type="radio" name="gallery_security" value="public" alt="<?php echo gettext('public'); ?>"<?php if (GALLERY_SECURITY == 'public') echo ' checked="checked"' ?> onclick="javascript:$('.public_gallery').show();" /><?php echo gettext('public'); ?></label>
 										<label><input type="radio" name="gallery_security" value="private" alt="<?php echo gettext('private'); ?>"<?php if (GALLERY_SECURITY != 'public') echo 'checked="checked"' ?> onclick="javascript:$('.public_gallery').hide();" /><?php echo gettext('private'); ?></label>
@@ -1207,7 +1207,7 @@ Zenphoto_Authority::printPasswordFormJS();
 											<?php echo gettext("Gallery password hint:"); ?>
 										</td>
 										<td>
-											<?php print_language_string_list($_zp_gallery->getPasswordHint('all'), 'hint', false, NULL, 'hint') ?>
+											<?php print_language_string_list($_zp_gallery->getPasswordHint('all'), 'hint', false, NULL, 'hint'); ?>
 										</td>
 										<td>
 											<?php echo gettext("A reminder hint for the password."); ?>
@@ -1251,7 +1251,7 @@ Zenphoto_Authority::printPasswordFormJS();
 								<tr>
 									<td><?php echo gettext("Website title:"); ?></td>
 									<td>
-										<?php print_language_string_list($_zp_gallery->getWebsiteTitle('all'), 'website_title') ?>
+										<?php print_language_string_list($_zp_gallery->getWebsiteTitle('all'), 'website_title'); ?>
 									</td>
 									<td><?php echo gettext("Your web site title."); ?></td>
 								</tr>
@@ -1540,7 +1540,7 @@ Zenphoto_Authority::printPasswordFormJS();
 											<?php echo gettext("Search password hint:"); ?>
 										</td>
 										<td>
-											<?php print_language_string_list(getOption('search_hint'), 'hint', false, NULL, 'hint') ?>
+											<?php print_language_string_list(getOption('search_hint'), 'hint', false, NULL, 'hint'); ?>
 										</td>
 										<td>
 											<?php echo gettext("A reminder hint for the password."); ?>
@@ -2294,7 +2294,7 @@ Zenphoto_Authority::printPasswordFormJS();
 														<?php echo gettext("hint:"); ?>
 													</td>
 													<td style="margin:0; padding:0">
-														<?php print_language_string_list(getOption('protected_image_hint'), 'hint', false, NULL, 'hint') ?>
+														<?php print_language_string_list(getOption('protected_image_hint'), 'hint', false, NULL, 'hint'); ?>
 													</td>
 												</tr>
 											</table>
