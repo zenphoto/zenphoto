@@ -290,7 +290,7 @@ function db_count($table, $clause = NULL, $field = "*") {
  */
 function zp_error($message, $fatal = E_USER_ERROR) {
 	// Print the error message, to be convenient.
-	printf(h($message));
+	printf(html_encode($message));
 	trigger_error($message, $fatal);
 }
 
