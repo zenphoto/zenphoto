@@ -185,14 +185,14 @@ class Gallery {
 	 */
 	function getAlbums($page = 0, $sorttype = null, $direction = null, $care = true, $mine = NULL) {
 
-// Have the albums been loaded yet?
+		// Have the albums been loaded yet?
 		if ($mine || is_null($this->albums) || $care && $sorttype . $direction !== $this->lastalbumsort) {
 
 			$albumnames = $this->loadAlbumNames();
 			$key = $this->getAlbumSortKey($sorttype);
 			$albums = $this->sortAlbumArray(NULL, $albumnames, $key, $direction, $mine);
 
-// Store the values
+			// Store the values
 			$this->albums = $albums;
 			$this->lastalbumsort = $sorttype . $direction;
 		}
@@ -731,14 +731,14 @@ class Gallery {
 	 *
 	 * Returns an array with the albums in the desired sort order
 	 *
-	 * @param  array $albums array of album names
-	 * @param  string $sortkey the sorting scheme
+	 * @param array $albums array of album names
+	 * @param string $sortkey the sorting scheme
 	 * @param string $sortdirection
 	 * @param bool $mine set true/false to override ownership
 	 * @return array
 	 *
 	 * @author Todd Papaioannou (lucky@luckyspin.org)
-	 * @since  1.0.0
+	 * @since 1.0.0
 	 */
 	function sortAlbumArray($parentalbum, $albums, $sortkey = '`sort_order`', $sortdirection = NULL, $mine = NULL) {
 		if (count($albums) == 0) {
@@ -766,10 +766,11 @@ class Gallery {
 				$order = $obj->getSortDirection('album');
 			}
 		}
+		$sortkey = db_quote($sortkey, false);
 		$sql = 'SELECT * FROM ' . prefix("albums") . ' WHERE `parentid`' . $albumid . ' ORDER BY ' . $sortkey . ' ' . $sortdirection;
 		$result = query($sql);
 		$results = array();
-//	check database aganist file system
+		//	check database aganist file system
 		while ($row = db_fetch_assoc($result)) {
 			$folder = $row['folder'];
 			if (($key = array_search($folder, $albums)) !== false) { // album exists in filesystem
@@ -790,9 +791,9 @@ class Gallery {
 				$results[$folder] = $albumobj->getData();
 			}
 		}
-//	now put the results in the right order
+		//	now put the results in the right order
 		$results = sortByKey($results, $sortkey, $order);
-//	albums are now in the correct order
+		//	albums are now in the correct order
 		$albums_ordered = array();
 		foreach ($results as $row) { // check for visible
 			$folder = $row['folder'];

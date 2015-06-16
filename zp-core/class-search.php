@@ -1622,7 +1622,7 @@ class SearchEngine {
 			if (empty($this->images)) {
 				return array();
 			}
-// Only return $firstPageCount images if we are on the first page and $firstPageCount > 0
+			// Only return $firstPageCount images if we are on the first page and $firstPageCount > 0
 			if (($page == 1) && ($firstPageCount > 0)) {
 				$pageStart = 0;
 				$images_per_page = $firstPageCount;

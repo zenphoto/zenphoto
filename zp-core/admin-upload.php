@@ -143,7 +143,7 @@ foreach ($albumlist as $key => $value) {
 				?>
 				<div class="errorbox fade-message">
 					<h2><?php echo gettext("Upload Error"); ?></h2>
-					<?php echo (empty($errormsg) ? gettext("There was an error submitting the form. Please try again.") : $errormsg); ?>
+					<?php echo (empty($errormsg) ? gettext("There was an error submitting the form. Please try again.") : html_encode($errormsg)); ?>
 				</div>
 				<?php
 			}

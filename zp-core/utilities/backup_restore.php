@@ -482,7 +482,7 @@ if (isset($_GET['compression'])) {
 	if ($compression_handler == 'no') {
 		$messages .= (gettext('Restore completed'));
 	} else {
-		$messages .= sprintf(gettext('Restore completed using %s compression'), $compression_handler);
+		$messages .= sprintf(gettext('Restore completed using %s compression'), html_encode($compression_handler));
 	}
 	$messages .= '
 		</h2>
