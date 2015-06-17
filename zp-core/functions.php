@@ -1550,7 +1550,7 @@ function getNotViewableImages() {
     }
   }
   if (is_null($_zp_not_viewable_image_list)) {
-    $sql = 'SELECT `id` FROM ' . prefix('images') . ' WHERE `show`= 0' . $where;
+    $sql = 'SELECT DISTINCT `id` FROM (SELECT `id` FROM ' . prefix('images') . ' WHERE `show`= 0 UNION SELECT `id` FROM ' . prefix('images') . ' WHERE (`show` = 1 ' . $where . ')) as tbl';
     $result = query($sql);
     if ($result) {
       $_zp_not_viewable_image_list = array();
