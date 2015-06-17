@@ -1142,7 +1142,6 @@ function getAllTagsCount($exclude_unassigned = false, $checkaccess = false) {
       if($checkaccess) {
         $count = getTagCountByAccess($tag);
         if($count != 0) {
-          echo $tag['name']." included<br>";
           $_zp_count_tags[$tag['name']] = $count;
         }
       } else {
