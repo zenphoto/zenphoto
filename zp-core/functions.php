@@ -1548,7 +1548,7 @@ function getNotViewableImages() {
     $where = implode(',', $hidealbums);
   }
   if (is_null($_zp_not_viewable_image_list)) {
-    $sql = 'SELECT DISTINCT `id` FROM ' . prefix('images') . ' WHERE `show` = 0 OR `albumId` in (' . $where . ')';
+    $sql = 'SELECT DISTINCT `id` FROM ' . prefix('images') . ' WHERE `show` = 0 OR `albumid` in (' . $where . ')';
     $result = query($sql);
     if ($result) {
       $_zp_not_viewable_image_list = array();
