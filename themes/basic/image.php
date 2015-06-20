@@ -52,9 +52,7 @@ if (!defined('WEBPATH'))
 				</div>
 				<h2>
 					<span>
-						<?php printHomeLink('', ' | '); ?>
-						<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Albums Index'); ?>"><?php printGalleryTitle(); ?></a> |
-						<?php
+						<?php printHomeLink('', ' | '); printGalleryIndexURL(' | ', getGalleryTitle()); 
 						printParentBreadcrumb("", " | ", " | ");
 						printAlbumBreadcrumb("", " | ");
 						?>

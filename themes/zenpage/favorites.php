@@ -30,7 +30,7 @@ if (class_exists('favorites')) {
 				<div id="content">
 
 					<div id="breadcrumb">
-						<h2><a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Index'); ?>"><?php echo gettext("Index"); ?></a> » <?php printAlbumTitle(); ?></strong></h2>
+						<h2><?php printGalleryIndexURL(' » '); printAlbumTitle(); ?></strong></h2>
 					</div>
 
 					<div id="content-left">

@@ -84,21 +84,7 @@ if (!defined('WEBPATH'))
 					<div id="wrapnav">
 						<div id="navbar">
 							<span>
-								<?php printHomeLink('', ' | '); ?>
-								<?php
-								if (getOption('custom_index_page') === 'gallery') {
-									?>
-									<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Main Index'); ?>"><?php echo gettext('Home'); ?></a> |
-									<a href="<?php echo html_encode(getCustomPageURL('gallery')); ?>" title="<?php echo gettext('Albums Index'); ?>"><?php printGalleryTitle(); ?></a> |
-									<?php
-								} else {
-									?>
-									<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Albums Index'); ?>"><?php printGalleryTitle(); ?></a> |
-									<?php
-								}
-								printGalleryTitle();
-								?></a> |
-								<?php printParentBreadcrumb();
+								<?php printHomeLink('', ' | '); printGalleryIndexURL(' | '); printParentBreadcrumb();
 								printAlbumBreadcrumb("", " | ");
 								?>
 							</span>

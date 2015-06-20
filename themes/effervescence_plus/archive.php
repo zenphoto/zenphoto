@@ -27,19 +27,7 @@ if (!defined('WEBPATH'))
 			<!-- Crumb Trail Navigation -->
 			<div id="wrapnav">
 				<div id="navbar">
-					<span><?php printHomeLink('', ' | '); ?>
-						<?php
-						if (getOption('custom_index_page') === 'gallery') {
-							?>
-							<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Main Index'); ?>"><?php echo gettext('Home'); ?></a> |
-							<?php
-						} else {
-							?>
-							<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Albums Index'); ?>"><?php printGalleryTitle(); ?></a> |
-							<?php
-						}
-						printGalleryTitle();
-						?></a></span>  | <?php echo gettext('Archive View'); ?>
+					<span><?php printHomeLink('', ' | '); printGalleryIndexURL(' | '); ?></span>  | <?php echo gettext('Archive View'); ?>
 				</div>
 			</div> <!-- wrapnav -->
 

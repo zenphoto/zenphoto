@@ -62,7 +62,7 @@ function jqm_printMainHeaderNav() {
 	?>
 	<div data-role="header" data-position="inline" data-theme="b">
 		<h1><?php printGalleryTitle(); ?></h1>
-		<a href="<?php echo WEBPATH; ?>/" data-icon="home" data-iconpos="notext"><?php echo gettext('Home'); ?></a>
+		<a href="<?php echo html_encode(getSiteHomeURL()); ?>" data-icon="home" data-iconpos="notext"><?php echo gettext('Home'); ?></a>
 		<?php if (getOption('Allow_search')) { ?>
 			<a href="<?php echo getCustomPageURL('search'); ?>" data-icon="search" data-iconpos="notext"><?php echo gettext('Search'); ?></a>
 		<?php } ?>

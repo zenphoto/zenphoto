@@ -19,8 +19,7 @@ if (!defined('WEBPATH'))
 			<div id="gallerytitle">
 				<h2>
 					<span>
-						<?php printHomeLink('', ' | '); ?><a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php printGalleryTitle(); ?></a>
-					</span> | <?php echo gettext("Object not found"); ?>
+						<?php printHomeLink('', ' | '); printGalleryIndexURL(' | ', getGalleryTitle()); echo gettext("Object not found"); ?>
 				</h2>
 			</div>
 			<div id="padbox">

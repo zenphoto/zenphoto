@@ -19,8 +19,7 @@ if (function_exists('printContactForm')) {
 			<div id="main">
 				<div id="gallerytitle">
 					<h2>
-						<?php printHomeLink('', ' | '); ?>
-						<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo gettext('Gallery Index'); ?></a> |
+						<?php printHomeLink('', ' | '); printGalleryIndexURL(' | ', getGalleryTitle()); ?>
 						<em><?php echo gettext('Contact us'); ?></em>
 					</h2>
 				</div>

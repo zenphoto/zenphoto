@@ -20,7 +20,7 @@ if (class_exists('Zenpage') && ZP_NEWS_ENABLED) {
 					<div id="header">
 						<div id="logo-floater">
 							<div>
-								<h1 class="title"><a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a></h1>
+								<h1 class="title"><?php printGalleryIndexURL(); ?></h1>
 							</div>
 						</div>
 					</div>
@@ -38,10 +38,9 @@ if (class_exists('Zenpage') && ZP_NEWS_ENABLED) {
 									<!-- begin content -->
 									<div class="main section" id="main">
 										<h2 id="gallerytitle">
-											<?php printHomeLink('', ' » '); ?>
-											<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a>
-											<?php
-											printNewsIndexURL(NULL, ' » ');
+											<?php printHomeLink('', ' » '); 
+											printGalleryIndexURL(' » ');
+											printNewsIndexURL(NULL);
 											printZenpageItemsBreadcrumb(' » ', '');
 											printCurrentNewsCategory(" » ");
 											printNewsTitle(" » ");

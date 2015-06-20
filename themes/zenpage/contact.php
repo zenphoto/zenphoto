@@ -26,7 +26,7 @@ if (function_exists('printContactForm')) {
 				<div id="content">
 
 					<div id="breadcrumb">
-						<h2><a href="<?php echo getGalleryIndexURL(); ?>"><strong><?php echo gettext("Index"); ?></strong></a>
+						<h2><?php printGalleryIndexURL(); ?>
 						</h2>
 					</div>
 

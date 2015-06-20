@@ -38,8 +38,9 @@ if (class_exists('Zenpage') && ZP_NEWS_ENABLED) {
 
 					<div id="breadcrumb">
 						<h2>
-							<a href="<?php echo getGalleryIndexURL(); ?>"><?php echo gettext("Index"); ?></a>
-							<?php printNewsIndexURL(NULL, ' » '); ?><strong><?php
+							<?php 
+								printGalleryIndexURL(' » ');
+								printNewsIndexURL(NULL, ' » '); ?><strong><?php
 								printZenpageItemsBreadcrumb(' » ', '');
 								printCurrentNewsCategory(" » ");
 								?><?php

@@ -50,7 +50,7 @@ if (!defined('WEBPATH'))
 			<div id="content">
 
 				<div id="breadcrumb">
-					<h2><a href="<?php echo getGalleryIndexURL(); ?>" title="<?php gettext('Index'); ?>"><?php echo gettext("Index"); ?></a> » <?php printParentBreadcrumb("", " » ", " » ");
+					<h2><?php printGalleryIndexURL(' » '); printParentBreadcrumb("", " » ", " » ");
 					printAlbumBreadcrumb("  ", " » ");
 					?>
 						<strong><?php printImageTitle(); ?></strong> (<?php echo imageNumber() . "/" . getNumImages(); ?>)

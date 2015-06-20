@@ -19,7 +19,7 @@ if (!defined('WEBPATH'))
 				<div id="header">
 					<div id="logo-floater">
 						<div>
-							<h1 class="title"><a href="<?php echo getGalleryIndexURL(); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php printGalleryTitle(); ?></a></h1>
+							<h1 class="title"><?php printGalleryIndexURL(); ?></h1>
 						</div>
 					</div>
 				</div>
@@ -35,9 +35,7 @@ if (!defined('WEBPATH'))
 								<!-- begin content -->
 								<div class="main section" id="main">
 									<h2 id="gallerytitle">
-										<?php printHomeLink('', ' » '); ?>
-										<a href="<?php echo getGalleryIndexURL(); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php printGalleryTitle(); ?></a> »
-<?php echo "<em>" . gettext('Password required') . "</em>"; ?>
+										<?php printHomeLink('', ' » ');  printGalleryIndexURL(' » '); echo "<em>" . gettext('Password required') . "</em>"; ?>
 									</h2>
 									<h3><?php echo gettext('A password is required to access this page.') ?></h3>
 									<?php printPasswordForm('', true, false); ?>

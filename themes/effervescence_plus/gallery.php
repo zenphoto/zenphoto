@@ -39,16 +39,7 @@ if (!defined('WEBPATH'))
 			<!-- Crumb Trail Navigation -->
 			<div id="wrapnav">
 				<div id="navbar">
-					<span><?php printHomeLink('', ' | '); ?>
-						<?php
-						if (getOption('custom_index_page') === 'gallery') {
-							?>
-							<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Main Index'); ?>"><?php echo gettext('Home'); ?></a> |
-							<?php
-						}
-						printGalleryTitle();
-						?>
-					</span>
+					<span><?php printHomeLink('', ' | '); printGalleryIndexURL(' | '); ?></span>
 				</div>
 			</div> <!-- wrapnav -->
 		</div> <!-- header -->

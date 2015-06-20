@@ -31,7 +31,7 @@ if (!defined('WEBPATH'))
 			<div id="content">
 
 				<div id="breadcrumb">
-					<h2><a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Index'); ?>"><?php echo gettext("Index"); ?></a><?php printParentBreadcrumb(" » ", " » ", ""); ?> » <strong><?php printAlbumTitle(); ?></strong></h2>
+					<h2><?php printGalleryIndexURL(' » '); printParentBreadcrumb("", " » ", " » "); ?><strong><?php printAlbumTitle(); ?></strong></h2>
 				</div>
 
 				<div id="content-left">

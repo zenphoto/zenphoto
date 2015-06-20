@@ -27,9 +27,7 @@ if (!defined('WEBPATH'))
 			<!-- Crumb Trail Navigation -->
 			<div id="wrapnav">
 				<div id="navbar">
-					<?php printHomeLink('', ' | '); ?>
-					<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Index'); ?>"><?php printGalleryTitle(); ?></a></span>  |
-					<?php echo gettext('A password is required for the page you requested'); ?>
+					<?php printHomeLink('', ' | '); printGalleryIndexURL(' | '); echo gettext('A password is required for the page you requested'); ?>
 				</div>
 			</div>
 

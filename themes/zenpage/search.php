@@ -53,7 +53,7 @@ if (!defined('WEBPATH'))
 			</div>
 
 			<div id="breadcrumb">
-				<h2><a href="<?php echo getGalleryIndexURL(); ?>" title="<?php echo gettext('Index'); ?>"><?php echo gettext('Index'); ?> » </a><?php printSearchBreadcrumb(" » "); ?>
+				<h2><?php printGalleryIndexURL(' » '); printSearchBreadcrumb(" » "); ?>
 				</h2>
 			</div>
 

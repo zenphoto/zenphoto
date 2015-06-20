@@ -30,7 +30,7 @@ if (class_exists('Zenpage') && ZP_PAGES_ENABLED) {
 
 				<div id="content">
 					<div id="breadcrumb">
-						<h2><a href="<?php echo getGalleryIndexURL(); ?>"><?php echo gettext("Index"); ?></a><?php
+						<h2><?php printGalleryIndexURL(' » ');
 							if (!isset($ishomepage)) {
 								printZenpageItemsBreadcrumb(" » ", "");
 							}

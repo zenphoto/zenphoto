@@ -19,7 +19,7 @@ if (function_exists('printContactForm')) {
 					<div id="header">
 						<div id="logo-floater">
 							<div>
-								<h1 class="title"><a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a></h1>
+								<h1 class="title"><?php printGalleryIndexURL(); ?></h1>
 							</div>
 						</div>
 					</div>
@@ -37,9 +37,7 @@ if (function_exists('printContactForm')) {
 									<!-- begin content -->
 									<div class="main section" id="main">
 										<h2 id="gallerytitle">
-											<?php printHomeLink('', ' » '); ?>
-											<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a> »
-											<?php echo gettext('Contact us'); ?>
+											<?php printHomeLink('', ' » '); printGalleryIndexURL(' » '); gettext('Contact us'); ?>
 										</h2>
 										<em><?php printContactForm(); ?></em>
 										<?php footer(); ?>
