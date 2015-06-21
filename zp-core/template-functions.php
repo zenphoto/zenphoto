@@ -3513,7 +3513,7 @@ function printTags($option = 'links', $preText = NULL, $class = NULL, $separator
  * Beware that this may cause overhead on large sites. Usage of the static_html_cache is strongely recommended then.
  * @since 1.1
  */
-function printAllTagsAs($option, $class = '', $sort = NULL, $counter = FALSE, $links = TRUE, $maxfontsize = 2, $maxcount = 50, $mincount = 10, $limit = NULL, $minfontsize = 0.8, $exclude_unassigned = true, $checkaccess = false) {
+function printAllTagsAs($option, $class = '', $sort = NULL, $counter = FALSE, $links = TRUE, $maxfontsize = 2, $maxcount = 50, $mincount = 1, $limit = NULL, $minfontsize = 0.8, $exclude_unassigned = true, $checkaccess = false) {
 	global $_zp_current_search;
 	$option = strtolower($option);
 	if ($class != "") {
