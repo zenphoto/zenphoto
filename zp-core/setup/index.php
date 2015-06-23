@@ -24,8 +24,11 @@ define('OFFSET_PATH', 2);
 if (version_compare(PHP_VERSION, '5.0.0', '<')) {
 	die(sprintf(gettext('ZenPhoto20 requires PHP version %s or greater'), PHP_MIN_VERSION));
 }
+$chmod = fileperms(dirname(dirname(__FILE__))) & 0666;
+
 require_once(dirname(dirname(__FILE__)) . '/global-definitions.php');
 require_once(dirname(dirname(__FILE__)) . '/functions-common.php');
+
 
 $session_path = session_save_path();
 if (!file_exists($session_path) || !is_writable($session_path)) {
@@ -63,8 +66,6 @@ if (isset($_REQUEST['autorun'])) {
 } else {
 	$autorun = false;
 }
-
-$chmod = fileperms(dirname(dirname(__FILE__))) & 0666;
 
 $en_US = dirname(dirname(__FILE__)) . '/locale/en_US/';
 if (!file_exists($en_US)) {
