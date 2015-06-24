@@ -105,7 +105,7 @@ if (TEST_RELEASE) {
 }
 set_error_handler("zpErrorHandler");
 set_exception_handler("zpErrorHandler");
-$_configMutex = new Mutex('cF');
+$_configMutex = new zpMutex('cF');
 if (OFFSET_PATH != 2 && !file_exists($const_serverpath . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
 	require_once(dirname(__FILE__) . '/reconfigure.php');
 	reconfigureAction(1);
@@ -127,7 +127,7 @@ if (!defined('SERVERPATH')) {
 	define('SERVERPATH', $const_serverpath);
 }
 unset($const_serverpath);
-$_zp_mutex = new Mutex();
+$_zp_mutex = new zpMutex();
 
 if (OFFSET_PATH != 2 && empty($_zp_conf_vars['mysql_database'])) {
 	require_once(dirname(__FILE__) . '/reconfigure.php');
@@ -1578,7 +1578,7 @@ function zp_session_start() {
  * @author Stephen
  *
  */
-class Mutex {
+class zpMutex {
 
 	private $locked = NULL;
 	private $ignoreUseAbort = NULL;

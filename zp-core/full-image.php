@@ -216,7 +216,7 @@ if (is_null($cache_path) || !file_exists($cache_path)) { //process the image
 		}
 	} else {
 		//	have to create the image
-		$iMutex = new Mutex('i', getOption('imageProcessorConcurrency'));
+		$iMutex = new zpMutex('i', getOption('imageProcessorConcurrency'));
 		$iMutex->lock();
 		$newim = zp_imageGet($image_path);
 		if ($rotate) {
