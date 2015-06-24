@@ -658,7 +658,7 @@ function getSerializedArray($string) {
  * @author Stephen
  *
  */
-class Mutex {
+class zpMutex {
 
 	private $locked = NULL;
 	private $ignoreUseAbort = NULL;
@@ -666,12 +666,12 @@ class Mutex {
 	private $lock = NULL;
 
 	function __construct($lock = 'zP', $concurrent = NULL, $folder = NULL) {
-		if (is_null($folder)) {
-			$folder = SERVERPATH . '/';
-		}
 
 // if any of the construction fails, run in free mode (lock = NULL)
 		if (function_exists('flock') && defined('SERVERPATH')) {
+			if (is_null($folder)) {
+				$folder = SERVERPATH . '/';
+			}
 			if ($concurrent) {
 				If ($subLock = self::which_lock($lock, $concurrent, $folder)) {
 					$this->lock = $folder . DATA_FOLDER . '/' . MUTEX_FOLDER . '/' . $lock . '_' . $subLock;
