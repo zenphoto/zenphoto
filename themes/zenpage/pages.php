@@ -30,7 +30,7 @@ if (class_exists('Zenpage') && ZP_PAGES_ENABLED) {
 
 				<div id="content">
 					<div id="breadcrumb">
-						<h2><?php printGalleryIndexURL(' » ');
+						<h2><?php printGalleryIndexURL('');
 							if (!isset($ishomepage)) {
 								printZenpageItemsBreadcrumb(" » ", "");
 							}
@@ -51,8 +51,8 @@ if (class_exists('Zenpage') && ZP_PAGES_ENABLED) {
 						} printTags('links', '', 'taglist', ', ');
 						?>
 						<br style="clear:both;" /><br />
-						<?php 
-      @call_user_func('printRating'); 
+						<?php
+      @call_user_func('printRating');
       @call_user_func('printCommentForm');
       ?>
 					</div><!-- content left-->

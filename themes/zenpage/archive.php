@@ -28,8 +28,7 @@ if (!defined('WEBPATH'))
 
 
 			<div id="breadcrumb">
-				<h2><?php printGalleryIndexURL(' » '); ?><strong><?php echo gettext("Archive View"); ?></strong>
-				</h2>
+				<h2><?php printGalleryIndexURL(' » '); ?><strong><?php echo gettext("Archive View"); ?></strong></h2>
 			</div>
 
 			<div id="content">

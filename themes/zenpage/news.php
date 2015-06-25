@@ -38,7 +38,7 @@ if (class_exists('Zenpage') && ZP_NEWS_ENABLED) {
 
 					<div id="breadcrumb">
 						<h2>
-							<?php 
+							<?php
 								printGalleryIndexURL(' » ');
 								printNewsIndexURL(NULL, ' » '); ?><strong><?php
 								printZenpageItemsBreadcrumb(' » ', '');
@@ -56,9 +56,9 @@ if (class_exists('Zenpage') && ZP_NEWS_ENABLED) {
 						<?php
 // single news article
 						if (is_NewsArticle()) {
-							if (getPrevNewsURL()) { ?><div class="singlenews_prev"><?php printPrevNewsLink(); ?></div><?php } 
-       if (getNextNewsURL()) { ?><div class="singlenews_next"><?php printNextNewsLink(); ?></div><?php } 
-       if (getPrevNewsURL() OR getNextNewsURL()) { ?><br style="clear:both" /><?php } 
+							if (getPrevNewsURL()) { ?><div class="singlenews_prev"><?php printPrevNewsLink(); ?></div><?php }
+       if (getNextNewsURL()) { ?><div class="singlenews_next"><?php printNextNewsLink(); ?></div><?php }
+       if (getPrevNewsURL() OR getNextNewsURL()) { ?><br style="clear:both" /><?php }
        ?>
 							<h3><?php printNewsTitle(); ?></h3>
 							<div class="newsarticlecredit"><span class="newsarticlecredit-left"><?php printNewsDate(); ?> | <?php
@@ -102,9 +102,9 @@ if (class_exists('Zenpage') && ZP_NEWS_ENABLED) {
 										printNewsCategories(", ", gettext("Categories: "), "newscategories");
 										?>
 									</div>
-									<?php 
-         printNewsContent(); 
-         printCodeblock(1); 
+									<?php
+         printNewsContent();
+         printCodeblock(1);
 									if (getTags()) {
 										echo gettext('<strong>Tags:</strong>');
 									} printTags('links', '', 'taglist', ', ');

@@ -21,8 +21,9 @@ if (class_exists('favorites')) {
 						<div id="logo-floater">
 							<div>
 								<h1 class="title">
-									<?php printGalleryIndexURL(); ?>
+									<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a>
 								</h1>
+								<span id="galleryDescription"><?php printGalleryDesc(); ?></span>
 							</div>
 						</div>
 					</div><!-- header -->
@@ -37,7 +38,7 @@ if (class_exists('favorites')) {
 								<div class="left-corner"><!-- begin content -->
 									<div class="main section" id="main">
 										<h2 id="gallerytitle">
-											<?php printHomeLink('', ' » '); 
+											<?php printHomeLink('', ' » ');
 											printGalleryIndexURL(' » '); printParentBreadcrumb("", " » ", " » "); echo html_encode(getAlbumTitle()); ?>
 										</h2>
 										<?php printAlbumDesc(); ?>

@@ -19,7 +19,9 @@ if (!defined('WEBPATH'))
 		<div id="main">
 
 			<div id="header">
-				<h1><?php printGalleryTitle(); ?></h1>
+				<h1 class="title">
+					<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a>
+				</h1>
 			</div>
 
 			<div id="content">

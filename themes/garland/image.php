@@ -45,7 +45,10 @@ if (!defined('WEBPATH'))
 				<div id="header">
 					<div id="logo-floater">
 						<div>
-							<h1 class="title"><?php printGalleryIndexURL(); ?></h1>
+							<h1 class="title">
+								<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a>
+							</h1>
+							<span id="galleryDescription"><?php printGalleryDesc(); ?></span>
 						</div>
 					</div>
 				</div>
@@ -63,7 +66,7 @@ if (!defined('WEBPATH'))
 								<!-- begin content -->
 								<div class="main section" id="main">
 									<h2 id="gallerytitle">
-										<?php printHomeLink('', ' » '); 
+										<?php printHomeLink('', ' » ');
 										printGalleryIndexURL(' » ');
 										printParentBreadcrumb("", " » ", " » ");
 										printAlbumBreadcrumb("  ", " » ");
