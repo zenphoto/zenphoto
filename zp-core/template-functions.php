@@ -534,6 +534,17 @@ function getGalleryIndexURL() {
 }
 
 /**
+ * Prints the above. Included for legacy compatibility
+ * @global type $_zp_gallery_page
+ * @param type $after
+ * @param type $text
+ */
+function printGalleryIndexURL($after = NULL, $text = NULL) {
+	printLinkHTML(getGalleryIndexURL(), $text, $text, 'galleryindexurl');
+	echo $after;
+}
+
+/**
  * Returns the number of albums.
  *
  * @return int
