@@ -266,9 +266,12 @@ function getIPSizedImage($size, $image) {
 							<?php
 						}
 					} elseif (isImageVideo($obj)) {
-						?>
-						<label class="nowrap"><input type="radio" name="link" value="player" id="link_image_none" onchange="zenchange();" /><?php echo gettext('Mediaplayer macro'); ?></label>
-						<?php
+						$content_macros = getMacros();
+						if (array_key_exists('MEDIAPLAYER', $content_macros)) {
+							?>
+							<label class="nowrap"><input type="radio" name="link" value="player" id="link_image_none" onchange="zenchange();" /><?php echo gettext('Mediaplayer macro'); ?></label>
+							<?php
+						}
 					}
 					?>
 

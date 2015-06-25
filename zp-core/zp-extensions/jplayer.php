@@ -57,7 +57,7 @@
  * Example:
  * [MEDIAPLAYER album1 video.mp4]
  *
- * If you are using more than one player on a page you need to pass a 2nd parameter with for example an unique number:<br>
+ * If you are using more than one player on a page you need to pass a 3rd parameter with for example an unique number:<br>
  * [MEDIAPLAYER album1 video1.mp4 <var>1</var>]<br>
  * [MEDIAPLAYER album2 video2.mp4 <var>2</var>]
  *
