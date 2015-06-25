@@ -132,7 +132,7 @@ function getIPSizedImage($size, $image) {
 							}
 							break;
 						case'player':
-							$('#content').html('[MEDIAPLAYER <?php echo $obj->album->name . ' ' . $obj->filename . ' ' . $obj->getID(); ?>]');
+							$('#content').html('[MEDIAPLAYER \'<?php echo$obj->album->name . "\' \'" . $obj->filename . "\' " . $obj->getID(); ?>]');
 							break;
 						case 'title':
 							if (image) {
