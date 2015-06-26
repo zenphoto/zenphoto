@@ -20,7 +20,7 @@ if (function_exists('printContactForm')) {
 						<div id="logo-floater">
 							<div>
 								<h1 class="title">
-									<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a>
+									<a href="<?php echo html_encode(getSiteHomeURL()); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a>
 								</h1>
 								<span id="galleryDescription"><?php printGalleryDesc(); ?></span>
 							</div>
