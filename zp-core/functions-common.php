@@ -340,11 +340,11 @@ function html_encodeTagged($original, $allowScript = true) {
 		$str = str_replace($tag, '%' . $key . '$s', $str);
 	}
 	//entities
-	preg_match_all('/(&[a-z#]+;)/i', $str, $matches);
+	preg_match_all('/(&[a-z0-9#]+;)/i', $str, $matches);
 	foreach (array_unique($matches[0]) as $key => $entity) {
 		$tags[3]['%' . $key . '$e'] = $entity;
 		$str = str_replace($entity, '%' . $key . '$e', $str);
-	}
+	} 
 	$str = htmlspecialchars($str, ENT_FLAGS, LOCAL_CHARSET);
 	foreach (array_reverse($tags, true) as $taglist) {
 		$str = strtr($str, $taglist);
