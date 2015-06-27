@@ -16,7 +16,7 @@ require_once('setup-functions.php');
 require_once(dirname(dirname(__FILE__)) . '/admin-functions.php');
 $debug = TEST_RELEASE || isset($_GET['debug']);
 
-$iMutex = new Mutex('i', getOption('imageProcessorConcurrency'));
+$iMutex = new zpMutex('i', getOption('imageProcessorConcurrency'));
 $iMutex->lock();
 
 $theme = sanitize($_REQUEST['theme']);

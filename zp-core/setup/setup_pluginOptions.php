@@ -17,7 +17,7 @@ require_once(dirname(dirname(__FILE__)) . '/admin-globals.php');
 require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cacheManager.php');
 $debug = TEST_RELEASE || isset($_GET['debug']);
 
-$iMutex = new Mutex('i', getOption('imageProcessorConcurrency'));
+$iMutex = new zpMutex('i', getOption('imageProcessorConcurrency'));
 $iMutex->lock();
 
 $extension = sanitize($_REQUEST['plugin']);

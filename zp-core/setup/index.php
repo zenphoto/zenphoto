@@ -41,7 +41,7 @@ session_cache_limiter('nocache');
 
 require_once(dirname(__FILE__) . '/setup-functions.php');
 //allow only one setup to run
-$setupMutex = new Mutex('sP');
+$setupMutex = new zpMutex('sP');
 $setupMutex->lock();
 
 if ($debug = isset($_REQUEST['debug'])) {

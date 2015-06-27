@@ -114,8 +114,8 @@ if (TEST_RELEASE) {
 
 set_error_handler("zpErrorHandler");
 set_exception_handler("zpErrorHandler");
-$_configMutex = new Mutex('cF');
-$_zp_mutex = new Mutex();
+$_configMutex = new zpMutex('cF');
+$_zp_mutex = new zpMutex();
 
 $_zp_conf_vars = array('db_software' => 'NULL', 'mysql_prefix' => '_', 'charset' => 'UTF-8');
 // Including the config file more than once is OK, and avoids $conf missing.

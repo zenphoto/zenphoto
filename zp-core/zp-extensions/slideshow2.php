@@ -410,7 +410,7 @@ class cycle {
 						'class'	 => 'function',
 						'params' => array('string', 'bool*', 'int*', 'int*'),
 						'value'	 => 'cycle::getSlideshowPlayer',
-						'owner'	 => 'cycle',
+						'owner'	 => 'slideshow2',
 						'desc'	 => gettext('provide the album name as %1 and (optionally) <code>true</code> (or <code>false</code>) as %2 to show (hide) controls. Hiding the controls is the default. Width(%3) and height(%4) may also be specified to override the defaults.')
 		);
 		return $macros;
@@ -575,7 +575,7 @@ if (extensionEnabled('slideshow2')) {
 					$count = '';
 					?>
 					<script type="text/javascript">
-						$(document).ready(function() {
+						$(document).ready(function () {
 							$("a[rel='slideshow']").colorbox({
 								slideshow: true,
 								loop: true,

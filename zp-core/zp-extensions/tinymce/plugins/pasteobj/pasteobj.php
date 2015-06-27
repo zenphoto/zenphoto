@@ -54,7 +54,7 @@ function getIPSizedImage($size, $image) {
 						$imageb = preg_replace('~&check=(.*)~', '', getIPSizedImage($size, $obj));
 					}
 				} else {
-					$imagef = NULL;
+					$args['image'] = $imagef = NULL;
 					$obj = newAlbum($args['album']);
 					$title = gettext('<em>album</em>: %s');
 					$token = gettext('%s with link to album');
@@ -69,7 +69,7 @@ function getIPSizedImage($size, $image) {
 				// an image type object
 			} else {
 				// a simple link
-				$imagef = $imageb = $image = $alt1 = $title1 = NULL;
+				$args['album'] = $args['image'] = $imagef = $imageb = $image = $alt1 = $title1 = NULL;
 				if (isset($args['news'])) {
 					$obj = newArticle($args['news']);
 					$title = gettext('<em>news article</em>: %s');
@@ -131,6 +131,12 @@ function getIPSizedImage($size, $image) {
 								$('#content').html(imageb);
 							}
 							break;
+						case'player':
+							$('#content').html('[MEDIAPLAYER \'<?php echo html_encode($args['album']) . "\' \'" . html_encode($args['image']) . "\' " . $obj->getID(); ?>]');
+							break;
+						case'show':
+							$('#content').html('[SLIDESHOW \'<?php echo html_encode($args['album']) . "\'"; ?>]');
+							break;
 						case 'title':
 							if (image) {
 								$('#content').html('<a href="" class="tinyMCE_OBJ">' + title + '</a>');
@@ -176,7 +182,6 @@ function getIPSizedImage($size, $image) {
 								$('#content').html('<a href="' + imagef + '" title="' + title + '" class="tinyMCE_OBJ_full">' + image + '</a>');
 							}
 							break;
-
 						case 'link2':
 							if ($('#addcaption').prop('checked')) {
 								$('#content').html('<figure class="imageFigure"><a href="' + link2 + '" title="' + title + '" class="tinyMCE_OBJ_image">' + imageb + '</a>' + '<figcaption><a href="' + link2 + '" title="' + title + '" class="tinyMCE_OBJ">' + title + '</a></figcaption>' + '</figure>');
@@ -224,9 +229,11 @@ function getIPSizedImage($size, $image) {
 						</label>
 						<?php
 						if ($imagef) {
-							?>
-							<label class="nowrap"><input type="radio" name="link" value="thumblinkfull" id="link_thumb_full" onchange="zenchange();" /><?php echo gettext('thumb with link to full-sized image'); ?></label>
-							<?php
+							if (isImagePhoto($obj)) {
+								?>
+								<label class="nowrap"><input type="radio" name="link" value="thumblinkfull" id="link_thumb_full" onchange="zenchange();" /><?php echo gettext('thumb with link to full-sized image'); ?></label>
+								<?php
+							}
 						}
 						if ($link2) {
 							?>
@@ -240,27 +247,44 @@ function getIPSizedImage($size, $image) {
 						<br />
 						<?php
 					}
-					?>
-					<label class="nowrap"><input type="radio" name="link" value="image" id="link_image_none" onchange="zenchange();" /><?php echo gettext('image only'); ?></label>
-					<label class="nowrap"><input type="radio" name="link" value="imagelink" id="link_image_image"<?php if ($picture) echo 'checked="checked"'; ?> onchange="zenchange();" /><?php printf($token, 'image'); ?>
-					</label>
-					<?php
-					if ($imagef) {
+					if (isImagePhoto($obj)) {
 						?>
-						<label class="nowrap"><input type="radio" name="link" value="imagelinkfull" id="link_image_full" onchange="zenchange();" /><?php echo gettext('image with link to full-sized image'); ?></label>
-						<?php
-					}
-					?>
-					<?php
-					if ($link2) {
-						?>
-						<label class="nowrap">
-							<input type="radio" name="link" value="link2" id="link_image_album" onchange="zenchange();" />
-							<?php echo gettext('image with link to album'); ?>
+						<label class="nowrap"><input type="radio" name="link" value="image" id="link_image_none" onchange="zenchange();" /><?php echo gettext('image only'); ?></label>
+						<label class="nowrap"><input type="radio" name="link" value="imagelink" id="link_image_image"<?php if ($picture) echo 'checked="checked"'; ?> onchange="zenchange();" /><?php printf($token, 'image'); ?>
 						</label>
 						<?php
+						if ($imagef) {
+							?>
+							<label class="nowrap"><input type="radio" name="link" value="imagelinkfull" id="link_image_full" onchange="zenchange();" /><?php echo gettext('image with link to full-sized image'); ?></label>
+							<?php
+						}
+						?>
+						<?php
+						if ($link2) {
+							?>
+							<label class="nowrap">
+								<input type="radio" name="link" value="link2" id="link_image_album" onchange="zenchange();" />
+								<?php echo gettext('image with link to album'); ?>
+							</label>
+							<?php
+						}
+					} elseif (isImageVideo($obj)) {
+						$content_macros = getMacros();
+						if (array_key_exists('MEDIAPLAYER', $content_macros)) {
+							?>
+							<label class="nowrap"><input type="radio" name="link" value="player" id="link_image_none" onchange="zenchange();" /><?php echo gettext('Mediaplayer macro'); ?></label>
+							<?php
+						}
+					} else if (!$imagef) {
+						$content_macros = getMacros();
+						if (array_key_exists('SLIDESHOW', $content_macros)) {
+							?>
+							<label class="nowrap"><input type="radio" name="link" value="show" id="link_image_none" onchange="zenchange();" /><?php echo gettext('Slideshow macro'); ?></label>
+							<?php
+						}
 					}
 					?>
+
 					<br />
 					<?php
 					if ($picture) {
@@ -287,7 +311,7 @@ function getIPSizedImage($size, $image) {
 
 			<div id="content"></div>
 			<?php
-			if ($image && !$picture) {
+			if ($image && !$picture && isImagePhoto($obj)) {
 				?>
 				<a href="javascript:launchScript('<?php echo WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/crop_image.php',['a=<?php echo str_replace('%27', "\'", pathurlencode($args['album'])); ?>','i=<?php echo str_replace('%27', "\'", urlencode($args['image'])); ?>','performcrop=pasteobj','size='+$('#imagesize').val()]);" title="<?php echo gettext('Click to bring up the custom cropping page.'); ?>">
 					<img src="<?php echo WEBPATH . "/" . ZENFOLDER . '/'; ?>images/shape_handles.png" alt="" /><?php echo gettext("Custom crop"); ?></a>
