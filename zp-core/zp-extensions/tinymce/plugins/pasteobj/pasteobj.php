@@ -54,7 +54,7 @@ function getIPSizedImage($size, $image) {
 						$imageb = preg_replace('~&check=(.*)~', '', getIPSizedImage($size, $obj));
 					}
 				} else {
-					$imagef = NULL;
+					$args['image'] = $imagef = NULL;
 					$obj = newAlbum($args['album']);
 					$title = gettext('<em>album</em>: %s');
 					$token = gettext('%s with link to album');
@@ -69,7 +69,7 @@ function getIPSizedImage($size, $image) {
 				// an image type object
 			} else {
 				// a simple link
-				$imagef = $imageb = $image = $alt1 = $title1 = NULL;
+				$args['album'] = $args['image'] = $imagef = $imageb = $image = $alt1 = $title1 = NULL;
 				if (isset($args['news'])) {
 					$obj = newArticle($args['news']);
 					$title = gettext('<em>news article</em>: %s');
@@ -132,7 +132,10 @@ function getIPSizedImage($size, $image) {
 							}
 							break;
 						case'player':
-							$('#content').html('[MEDIAPLAYER \'<?php echo$obj->album->name . "\' \'" . $obj->filename . "\' " . $obj->getID(); ?>]');
+							$('#content').html('[MEDIAPLAYER \'<?php echo html_encode($args['album']) . "\' \'" . html_encode($args['image']) . "\' " . $obj->getID(); ?>]');
+							break;
+						case'show':
+							$('#content').html('[SLIDESHOW \'<?php echo html_encode($args['album']) . "\'"; ?>]');
 							break;
 						case 'title':
 							if (image) {
@@ -270,6 +273,13 @@ function getIPSizedImage($size, $image) {
 						if (array_key_exists('MEDIAPLAYER', $content_macros)) {
 							?>
 							<label class="nowrap"><input type="radio" name="link" value="player" id="link_image_none" onchange="zenchange();" /><?php echo gettext('Mediaplayer macro'); ?></label>
+							<?php
+						}
+					} else if (!$imagef) {
+						$content_macros = getMacros();
+						if (array_key_exists('SLIDESHOW', $content_macros)) {
+							?>
+							<label class="nowrap"><input type="radio" name="link" value="show" id="link_image_none" onchange="zenchange();" /><?php echo gettext('Slideshow macro'); ?></label>
 							<?php
 						}
 					}
