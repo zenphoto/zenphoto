@@ -76,49 +76,49 @@
 			}
 		</style>
 	<body>
-<h1>ZenPhoto20 release notes</h1><h2>tinyMCE:obj&nbsp;insertions</h2>
-<p>The object insertion mechanism has been extended to add inserting <em><strong>MEDIAPLAYER </strong></em>and <em><strong>SLIDESHOW&nbsp;</strong></em>macros. <strong><em>MEDIAPLAYER&nbsp;</em></strong>macro insertion is available for video type images. <em><strong>SLIDESHOW&nbsp;</strong></em>macro can be inserted from album selections.</p>
+<h1>ZenPhoto20 release notes</h1><h2>tinyMCE:obj insertions</h2>
+<p>The object insertion mechanism has been extended to add inserting <em><strong>MEDIAPLAYER </strong></em>and <em><strong>SLIDESHO</strong></em> macros. <strong><em>MEDIAPLAYER</em></strong> macro insertion is available for video type images. <em><strong>SLIDESHOW</strong></em> macro can be inserted from album selections.</p>
 <h2>News articles</h2>
-<p>The state of being not categorized is really also a category. ZenPhoto20 now recognizes this in the category selection drop down&nbsp;on the news tab. Selecting <em>Un-categorized</em> will show all articles that do not have a category assigned. <em>Un-categorized</em> is now also a managed news category.</p>
-<p>Restrictions have been added to prevent users without appropriate management rights from&nbsp;createing news articles in a category they do not have management&nbsp;rights to. This includes the <em>un-categorized</em> category.</p>
+<p>The state of being not categorized is really also a category. ZenPhoto20 now recognizes this in the category selection drop down on the news tab. Selecting <em>Un-categorized</em> will show all articles that do not have a category assigned. <em>Un-categorized</em> is now also a managed news category.</p>
+<p>Restrictions have been added to prevent users without appropriate management rights from creating news articles in a category they do not have management rights to. This includes the <em>un-categorized</em> category.</p>
 <h2>Display Character Set</h2>
 <p>Websites will now use the UTF-8 character set exclusively. This simplifies a number of things and keeps users from "getting in trouble" if they attempt to change the <em>characterset</em> option setting. If it is really necessary for a site to display with a character set other than UTF-8 you may define the display character set in the configuration file.</p>
-<h2>Theme appearance&nbsp;improvements</h2>
-<p>The link that exposes the <em>admin toolbox</em> has been changed to a <em>gear</em> icon to minimize its presence on theme pages. Likewise the <em>themeSwitcher</em> plugin&nbsp;now shows a <em>menu</em> icon rather than the full selector. Clicking on the <em>menu</em> icon exposes the theme switching selections.</p>
-<p>Third party themes which style the <em>admin toolbox</em> may need to change their styles for the main link to take full advantage of this appearance improvement. If the theme is relatively "standard" all that is needed is to delete the <code>#admin</code> and <code>#admin_data</code> styles from the theme&nbsp;CSS&nbsp;as ZenPhoto20 will load a default CSS&nbsp;for the toolbox.</p>
-<p>As with other theme oriented files, themes can place custom versions of <code>images/gear.png</code> and <code>themeSwitcher/menu.png</code>&nbsp;in the theme folder to customize the icons shown. There is also a new filter--<code>iconColor</code>-- to allow selection of different colored menu and gear icons if the theme has configurable background colors. An example of this filter can be found in the <code>basic</code> theme and the <code>effervescence+</code> theme.</p>
+<h2>Theme appearance improvements</h2>
+<p>The link that exposes the <em>admin toolbox</em> has been changed to a <em>gear</em> icon to minimize its presence on theme pages. Likewise the <em>themeSwitcher</em> plugin now shows a <em>menu</em> icon rather than the full selector. Clicking on the <em>menu</em> icon exposes the theme switching selections.</p>
+<p>Third party themes which style the <em>admin toolbox</em> may need to change their styles for the main link to take full advantage of this appearance improvement. If the theme is relatively "standard" all that is needed is to delete the <code>#admin</code> and <code>#admin_data</code> styles from the theme CSS as ZenPhoto20 will load a default CSS for the toolbox.</p>
+<p>As with other theme oriented files, themes can place custom versions of <code>images/gear.png</code> and <code>themeSwitcher/menu.png</code> in the theme folder to customize the icons shown. There is also a new filter--<code>iconColor</code>-- to allow selection of different colored menu and gear icons if the theme has configurable background colors. An example of this filter can be found in the <code>basic</code> theme and the <code>effervescence+</code> theme.</p>
 <h2>Album sort order selection</h2>
 <p>Album and subalbum sort order may now be chosen from a selector on the album tabs.</p>
 <h2>Tag handling for albums <em>mass-edit</em> and multiple image tabs</h2>
 <p>The ability to add tags to albums and images has been extended to the multiple item tabs. Previously this function was removed due to problems with some PHP installations where the amount of data "posted" when the apply button was pressed exceeded the capacity defined by the server. This resulted in not being able to save from these pages unless the number of items per page was reduced. (An option not available for the album mass-edit tab.)</p>
-<p>It is now possible to add tags to items on these pages.No list of possible tags is shown since that might cause some of the above issues. But <em>tag_suggest</em> will make suggestions from the existing tag list and you can create new tags by simply typing them in the <em>add tag</em> field. Individual tags cannot be removed. However you can elect to clear existing tags so only those you add will be present after the apply button is pressed.&nbsp;</p>
-<h2>Database storage for image metadata&nbsp;fields</h2>
-<p>ZenPhoto20 now allows for database columns for image metadata&nbsp;to be optional. You can reduce the size of image database records by marking the ones you do not need <em>do not process</em> on the<em> image options</em> tab. When <code>setup</code> is run it will add or remove fields based on this setting. There is an additional checkbox on that tab,&nbsp;<em>Mark unused fields do not process</em>, that will cause ZenPhoto20 to examine the database for metadata&nbsp;columns that have not had any data stored. These are then marked <em>do not process</em>. Before using this option you should insure that you have a representative set of images and have refreshed their metadata&nbsp;so as to not remove columns that you might want.</p>
-<p>The <em>class-video</em> and <em>xmpMetadata</em> plugins&nbsp;will create database columns for their metadata&nbsp;only if they are enabled when <code>setup</code> is run.</p>
-<p>You may see a "configuration change" notice when you change the state of these options. This will indicate that a <em>setup request</em> has been made (and by what process.) This is a reminder that the change will not take effect until you have run <code>setup</code> so data that might be stored in these fields may not be saved&nbsp;to the database.</p>
+<p>It is now possible to add tags to items on these pages.No list of possible tags is shown since that might cause some of the above issues. But <em>tag_suggest</em> will make suggestions from the existing tag list and you can create new tags by simply typing them in the <em>add tag</em> field. Individual tags cannot be removed. However you can elect to clear existing tags so only those you add will be present after the apply button is pressed.</p>
+<h2>Database storage for image metadata fields</h2>
+<p>ZenPhoto20 now allows for database columns for image metadata to be optional. You can reduce the size of image database records by marking the ones you do not need <em>do not process</em> on the<em> image options</em> tab. When <code>setup</code> is run it will add or remove fields based on this setting. There is an additional checkbox on that tab, <em>Mark unused fields do not process</em>, that will cause ZenPhoto20 to examine the database for metadata columns that have not had any data stored. These are then marked <em>do not process</em>. Before using this option you should insure that you have a representative set of images and have refreshed their metadata so as to not remove columns that you might want.</p>
+<p>The <em>class-video</em> and <em>xmpMetadata</em> plugins will create database columns for their metadata only if they are enabled when <code>setup</code> is run.</p>
+<p>You may see a "configuration change" notice when you change the state of these options. This will indicate that a <em>setup request</em> has been made (and by what process.) This is a reminder that the change will not take effect until you have run <code>setup</code> so data that might be stored in these fields may not be saved to the database.</p>
 <h2>Plugins</h2>
 <p><em>cloneZenphoto:</em></p>
-<p>This plugin&nbsp;is now presented by an administrative tab rather than a Utilities button. The tab will list links to existing site clones for easy reference.</p>
+<p>This plugin is now presented by an administrative tab rather than a Utilities button. The tab will list links to existing site clones for easy reference.</p>
 <p><em>galleryArticles:</em></p>
 <p>The body of the article created is dynamically fetched from the description of the object. Previously it was captured at the time the article was published so did not track changes to the object's description. In order to accomplish this <em>galleryArticles</em> declares a macro named GALLERYARTICLEDESC.</p>
 <p><em>tagsFromMetadata:</em></p>
 <p>This plugin will allow you to select specific metadata items from an image and set the values of these items as tags for the image. So, for instance, you can select <em>EXIFMake</em> and all your images will be tagged with the camera manufacturer's name (provided that camera does record that metadata item.) Tags will be created in each enabled language provided there is a unique translation in that language for the item.</p>
 <p><em>tagFromSearch:</em></p>
-<p>This plugin provides a means to tag objects found by a search. In addition, it (optionally) forces searches&nbsp;by visitors and users without <em>Tags</em>&nbsp;rights to be limited to the&nbsp;tags field.<br /><br />Thus you can apply a unique tag to results of a search so that they are "related" to&nbsp;each other. If you have selected the optional <em>Tags only</em>&nbsp;search <em>normal&nbsp;</em>viewers are limited&nbsp;to searching for defined tags.</p>
+<p>This plugin provides a means to tag objects found by a search. In addition, it (optionally) forces searches by visitors and users without <em>Tags</em> rights to be limited to the tags field.<br /><br />Thus you can apply a unique tag to results of a search so that they are "related" to each other. If you have selected the optional <em>Tags only</em> search <em>normal </em>viewers are limited to searching for defined tags.</p>
 <p><em>debug:<br />markRelease:</em></p>
-<p>The <em>markRelease</em>&nbsp;plugin&nbsp;has been consolidated&nbsp;into the&nbsp;<em>debug</em> plugin.&nbsp;In addition the functionality of the <code>Mark release</code> button is extended by plugin&nbsp;options to allow you to refine the debugging options that are set.</p>
+<p>The <em>markRelease</em> plugin has been consolidated into the <em>debug</em> plugin. In addition the functionality of the <code>Mark release</code> button is extended by plugin options to allow you to refine the debugging options that are set.</p>
 <p><em>ipBlocker:</em></p>
-<p>The plugin&nbsp;has been extensively rewritten to improve both performance and reporting of its actions. A new capability is added to monitor 404 errors and suspend ip address that generate them too quickly.</p>
+<p>The plugin has been extensively rewritten to improve both performance and reporting of its actions. A new capability is added to monitor 404 errors and suspend ip address that generate them too quickly.</p>
 <p><em>tinyZenpage:</em></p>
-<p>Thisplugin&nbsp;is permanently&nbsp;removed. Its functionality was replaced by the&nbsp;tinyMCE:obj plugin.</p>
+<p>This plugin is permanently removed. Its functionality was replaced by the tinyMCE:obj plugin.</p>
 <p><strong>Image rotation fixes</strong></p>
-<p>The original <em>zenphoto&nbsp;</em>code that handled image rotation was confused about the meanings of each of the <em>EXIF&nbsp;orientation</em> values. This was originally mitigated by also being confused as to how the<em> GD library</em> rotations worked. These two errors offset each other. But then the <em>Imagic </em>library was implemented. It rotated images in the opposite&nbsp;direction from the <em>GD library.</em></p>
-<p>Then someone noticed that GD rotated in the opposite direction from <em>zenphoto's </em>assumptions and "fixed" the code. This broke situations where a camera recorded&nbsp;the image rotation instead of just rotating the image as is normal.</p>
-<p>We have now fixed the implementation to be true to the specification. Camera set rotations now will work correctly. Unfortunately the downside of this is if you have "fixed" your images on the prior software they may now be improperly rotated. You should re-import the image metadata&nbsp;or select the correct image rotation on the image tab.</p>
+<p>The original <em>zenphoto </em>code that handled image rotation was confused about the meanings of each of the <em>EXIF orientation</em> values. This was originally mitigated by also being confused as to how the<em> GD library</em> rotations worked. These two errors offset each other. But then the <em>Imagic </em>library was implemented. It rotated images in the opposite direction from the <em>GD library.</em></p>
+<p>Then someone noticed that GD rotated in the opposite direction from <em>zenphoto's </em>assumptions and "fixed" the code. This broke situations where a camera recorded the image rotation instead of just rotating the image as is normal.</p>
+<p>We have now fixed the implementation to be true to the specification. Camera set rotations now will work correctly. Unfortunately the downside of this is if you have "fixed" your images on the prior software they may now be improperly rotated. You should re-import the image metadata or select the correct image rotation on the image tab.</p>
 <h2>News article sort order selections</h2>
-<p>You may now select ordering by <em>Published date</em>, <em>Last change date</em>, and <em>Expiry date</em> in addition to the original <em>creation&nbsp;date</em> and <em>title </em>orders. <em>Creation date</em> (or <em>Last change date</em>) are now shown in addition to the <em>Published date</em>.</p>
+<p>You may now select ordering by <em>Published date</em>, <em>Last change date</em>, and <em>Expiry date</em> in addition to the original <em>creation date</em> and <em>title </em>orders. <em>Creation date</em> (or <em>Last change date</em>) are now shown in addition to the <em>Published date</em>.</p>
 <h2>Security</h2>
-<p>Tightened up the PHP&nbsp;theme editor so that it is restricted to editing only files within the theme.</p>
+<p>Tightened up the PHP theme editor so that it is restricted to editing only files within the theme.</p>
 <p>Fixes a hole whereby a hacker could cause your setup scripts to become unprotected.</p>
 <p>Fixes VN: JVN#68452022 / TN: JPCERT#95351432</p>
 <p>&nbsp;</p>
@@ -126,113 +126,113 @@
 <p>&nbsp;</p>
 <h2 style="text-align: center;">Version 1.1.0</h2>
 <h2>New theme</h2>
-<p><a href="http://www.vincentbourganel.fr/news/zpbootstrap-a-responsive-theme-zenphoto-zenpage">zpBootstrap</a>&mdash;a responsive theme by Vincent Bourganel&nbsp;has been added to the distributed themes set.&nbsp;</p>
+<p><a href="http://www.vincentbourganel.fr/news/zpbootstrap-a-responsive-theme-zenphoto-zenpage">zpBootstrap</a>&mdash;a responsive theme by Vincent Bourganel has been added to the distributed themes set.</p>
 <h2>Tag lists will reflect published state of the object</h2>
-<p>Tag suggestion lists and <code>html_meta_tags</code> keywords will not be gated by the published state of objects. Specifically, if the site viewer is not logged-in then tags associated with objects marked <em>unpublished</em> will not be included in the counts. This means, for instance, that if a tag is associated only with unpublished objects it will not be included in these lists. Note: object hierarchy&nbsp;is not applied in this for performance reasons. Thus for instance tags of <em>published</em> images in an <em>unpublished</em> album will be included.</p>
+<p>Tag suggestion lists and <code>html_meta_tags</code> keywords will not be gated by the published state of objects. Specifically, if the site viewer is not logged-in then tags associated with objects marked <em>unpublished</em> will not be included in the counts. This means, for instance, that if a tag is associated only with unpublished objects it will not be included in these lists. Note: object hierarchy is not applied in this for performance reasons. Thus for instance tags of <em>published</em> images in an <em>unpublished</em> album will be included.</p>
 <h2>Rationalization of published states</h2>
 <p><em>The <code>show()</code> method of all objects now correctly reflects if the object is currently published. The <code>show()</code> method for objects which have a future publishing date will return false until the publishing date has occurred. At that time true will be returned. For objects that have expiry dates, once that date has passed the object will become unpublished and the <code>show()</code> method will return false.</em></p>
 <p>If you explicitly publish an object that has expired or whose publish date is in the future then the expiry and publish dates will be cancelled.</p>
 <p>This means that the database <code>show</code> column is the sole arbitrator of whether an object should be visible to the general public.</p>
 <h2>Dynamically translatable image metadata strings</h2>
 <p>Prior to this change, when metadata was imported from an image, text strings describing the data were translated in the language of whomever was viewing the image when it was first discovered. This data was then stored into the database for future display. The result of this defect was that these strings were often in the "wrong" language for the current viewer.</p>
-<p>The string translation is now delayed&nbsp;until the data is about to be displayed. This insures that the current language will be used for the translation.</p>
-<p>Please note that metadata&nbsp;collected before this change will have been statically translated and cannot be re-translated. You should perform a "Refresh Metadata" operation&nbsp;to get existing metadata&nbsp;updated to the dynamically translatable form.</p>
+<p>The string translation is now delayed until the data is about to be displayed. This insures that the current language will be used for the translation.</p>
+<p>Please note that metadata collected before this change will have been statically translated and cannot be re-translated. You should perform a "Refresh Metadata" operation to get existing metadata updated to the dynamically translatable form.</p>
 <h2>Tag handling improvements</h2>
-<p>Stored tags no longer are quoted if they contain special characters. This allows them to be suggested by typing the fist character. The database is automatically updated during setup and metdata&nbsp;importation will insure that tags are not quoted.</p>
-<p>The <em>tag_suggest</em>&nbsp;target tag selection algorithm has been re-written for performance improvements. You would see these as browser slow-downs when you type in the textbox of the search form or the tags textbox on the admin pages.</p>
-<p>There is also an option for tag suggestions on theme pages. This option allows you do filter tags so that only frequently used ones are suggested. You set the option to the threshold usage&nbsp;count and only tags used at least that number of times will be offered as suggestions.</p>
+<p>Stored tags no longer are quoted if they contain special characters. This allows them to be suggested by typing the fist character. The database is automatically updated during setup and metdata importation will insure that tags are not quoted.</p>
+<p>The <em>tag_suggest</em> target tag selection algorithm has been re-written for performance improvements. You would see these as browser slow-downs when you type in the textbox of the search form or the tags textbox on the admin pages.</p>
+<p>There is also an option for tag suggestions on theme pages. This option allows you do filter tags so that only frequently used ones are suggested. You set the option to the threshold usage count and only tags used at least that number of times will be offered as suggestions.</p>
 <h2>Spelling correction in <em>tinyMCE</em></h2>
-<p>A plugin is provided to enable use of <em>nanospell</em> with any <em>tinyMCE</em> editor window. <strong>NOTE</strong>: <em>nanospell</em> is NOT included with ZenPhoto20. Use of <em>nanospell</em> requires a specific <a href="http://tinymcespellcheck.com/license">license</a>&nbsp;for use so you must select the appropriate license/download. Instructions for installing <em>nanospell</em> are included with the plugin documentation.</p>
-<h2>Search&nbsp;tag selection</h2>
+<p>A plugin is provided to enable use of <em>nanospell</em> with any <em>tinyMCE</em> editor window. <strong>NOTE</strong>: <em>nanospell</em> is NOT included with ZenPhoto20. Use of <em>nanospell</em> requires a specific <a href="http://tinymcespellcheck.com/license">license</a> for use so you must select the appropriate license/download. Instructions for installing <em>nanospell</em> are included with the plugin documentation.</p>
+<h2>Search tag selection</h2>
 <p>An "all" checkbox has been added to the search form to more conveniently select a small number of fields from a larger list.</p>
 <h2>ZipArchive</h2>
 <p>ZipArchive is a PHP module for processing Zip files. If this module is configured in a sites PHP build ZenPhoto20 will use it rather than loading third party Zip file handlers.</p>
-<h2>Extended security&nbsp;question foils</h2>
+<h2>Extended security question foils</h2>
 <p>Security question foils (those questions asked that were not supplied by the user) are an important security feature. If only valid security questions are presented then hackers can tell if they have successfully guessed a user id and will know that there is an answer to the question. Thus it is only a matter of guessing the answer which can often be done by examining publicly available information about the user.</p>
 <p>There are two enhancements to security questions implemented now. First, the administrator may create as many foils as he wishes to increase the work a hacker must do to try to hack an answer. Second, security questions provided by other users may be presented, again increasing the work of hackers.</p>
-<h2>Checkbox toggle for search&nbsp;fields</h2>
+<h2>Checkbox toggle for search fields</h2>
 <p>The search form now has a toggle to check/un-check all search fields. This makes it easier to search on a limited number of the possible fields.</p>
 <h2>Mouse click minimization</h2>
 <p>When you "apply" changes on admin edit tabs you will now be returned to the page that launched the edit. That is if you use the front-end admin toolbox to edit an image the apply button will return you to the image page. If you got there from the "Edit all image data" link you will return to the page of images. This behavior is cancelled if any errors occur.</p>
 <p><strong>Performance enhancements</strong></p>
-<p>Code optimizations have been applied as indicated by the&nbsp;XDebug profiler.</p>
-<h2>New &nbsp;dropdown selector on the news articles page</h2>
+<p>Code optimizations have been applied as indicated by the XDebug profiler.</p>
+<h2>New dropdown selector on the news articles page</h2>
 <p>There is now a drop-down selector to allow showing articles of a specific author. In addition, the "data" selector has been fixed to work when a category is also selected.</p>
 <h2>Added support for tablets</h2>
-<p>The <em>touchPunch</em>&nbsp;plugin is now available to enable touch drag and drop for&nbsp;image, album, and page sorting.</p>
+<p>The <em>touchPunch</em> plugin is now available to enable touch drag and drop for image, album, and page sorting.</p>
 <h2>Dynamic album enhancement</h2>
 <p>There is now a facility to manually create a dynamic album. In this case an administrator directly enters the search criteria rather than capturing it from a search.</p>
 <h2>Wireless Application Protocol Bitmap support (GD library)</h2>
-<p>The GD library will now recognize&nbsp;<em>wbmp</em> (<em>wbm</em>) files. This change removes <em>bmp</em> (which the library&nbsp;does not support) from its list.</p>
+<p>The GD library will now recognize <em>wbmp</em> (<em>wbm</em>) files. This change removes <em>bmp</em> (which the library does not support) from its list.</p>
 <h2>Favorites plugin enhancements</h2>
-<p>A new function,&nbsp;<em>favorites::listWatchers()</em>, is available&nbsp;to assists&nbsp;in output of users watching an object. The plugin now&nbsp;uses a DL list to show the watchers on the administrative tabs.</p>
+<p>A new function, <em>favorites::listWatchers()</em>, is available to assists in output of users watching an object. The plugin now uses a DL list to show the watchers on the administrative tabs.</p>
 <h2>Resizable language string input areas</h2>
-<p>If the <em>Multi-lingual</em> option is selected text input areas such as <em>page</em> and <em>article&nbsp;</em>content fields can be expanded by dragging on the resize handle at the lower right of the field. If tinyMCE is enabled the individual language edit boxes expand giving the ability to see multiple language translations at a time.</p>
+<p>If the <em>Multi-lingual</em> option is selected text input areas such as <em>page</em> and <em>article </em>content fields can be expanded by dragging on the resize handle at the lower right of the field. If tinyMCE is enabled the individual language edit boxes expand giving the ability to see multiple language translations at a time.</p>
 <h2>TinyMCE language directionality</h2>
-<p>Normally TinyMCE will set the <em>language directionality</em> based on the language in effect. E.g. if the language is Persian, Arabic,&nbsp;Hebrew,&nbsp;Hindi, or&nbsp;Urdu the language direction will be <em>right-to-left</em>. Otherwise it is <em>left-to-right</em>. There is now an option to override this setting and force <em>right-to-left</em> for those cases where this selection is not appropriate. In addition the tinyMCE editor has buttons (where selected) and <em>tool</em> settings to change the text direction.</p>
+<p>Normally TinyMCE will set the <em>language directionality</em> based on the language in effect. E.g. if the language is Persian, Arabic, Hebrew, Hindi, or Urdu the language direction will be <em>right-to-left</em>. Otherwise it is <em>left-to-right</em>. There is now an option to override this setting and force <em>right-to-left</em> for those cases where this selection is not appropriate. In addition the tinyMCE editor has buttons (where selected) and <em>tool</em> settings to change the text direction.</p>
 <h2>Download for dynamic albums and favoitied</h2>
 <p>The <em>downloadList</em> plugin now supports "album zips" for dynamic albums and for the user's favorites.</p>
 <h2>Sub-rights for pages and news categories</h2>
-<p>Users may now be given "view-only" rights to pages and news categories by un-checking the <em>edit</em> sub-right of the object in the managed objects list. You can also allow users to view un-published items that are members of a category or offspring of a page by checking the <em>view unpublished</em> checkbox (either for the managed&nbsp;object or the global setting.)</p>
+<p>Users may now be given "view-only" rights to pages and news categories by un-checking the <em>edit</em> sub-right of the object in the managed objects list. You can also allow users to view un-published items that are members of a category or offspring of a page by checking the <em>view unpublished</em> checkbox (either for the managed object or the global setting.)</p>
 <h2>Optional Object Fields</h2>
 <p>Many of the fields associated with album, image, article, and page objects are now optional. The standard configuration is provided by the <code>optionalObjectFields</code> plugin. If you want none of these fields, simply disable the plugin. If you want your own subset of the fields you can make a copy of the <code>optionalObjectFields</code> plugin in the plugins folder. Edit the array in the <code>fields()</code> method to remove the elements of the fields you do not want supported. Run setup and the fields will be gone.</p>
 <h2>Multi-llingual custom field extensions</h2>
 <p>The custom field extension feature now supports multi-lingual fields. It also allows you to provide custom formatting on the admin tab and custom processing of the "saves" data.</p>
 <h2>User management improvements</h2>
-<p>User and group lists are now sorted via a&nbsp;case insensitive natural&nbsp;sort. In cases where there are check boxes, those &nbsp;users with the box checked are shown at the top of the list.</p>
+<p>User and group lists are now sorted via a case insensitive natural sort. In cases where there are check boxes, those users with the box checked are shown at the top of the list.</p>
 <h2>Cloning improvements</h2>
-<p>When you clone an installation ZenPhoto20 will automatically&nbsp;setup the configuration and initial user of the clone. The initial user will be the user who executed the clone operation. He his logon to the clone install will be identical to the his logon to the master when the clone was created.</p>
-<p>If setup is run on the master it will provide a set of links to allow&nbsp;setup to be run on the clones as well. Thus the setup of a site is better automated. (We did try automatically running setup on the clones but ran into several browser issues such as pop-up blockers that were not circumventable.)</p>
+<p>When you clone an installation ZenPhoto20 will automatically setup the configuration and initial user of the clone. The initial user will be the user who executed the clone operation. He his logon to the clone install will be identical to the his logon to the master when the clone was created.</p>
+<p>If setup is run on the master it will provide a set of links to allow setup to be run on the clones as well. Thus the setup of a site is better automated. (We did try automatically running setup on the clones but ran into several browser issues such as pop-up blockers that were not circumventable.)</p>
 <p>When you change the site state of the master site (close, close for test, open) the change will be applied to the clone sites as well.</p>
 <h2>Canonical URLs</h2>
-<p>ZenPhoto20 _rewrite_ processing will now cause a "301 permanently&nbsp;moved" redirect if it receives a link that does not conform to the Canonical standard it implements. Basically this means that links that "look" like indexes to sub-items (albums and the News index, for instance) will end with a trailing slash. Items which are interpreted as "final destinations" (An image or single news item, for instance) will not have a trailing slash.</p>
+<p>ZenPhoto20 _rewrite_ processing will now cause a "301 permanently moved" redirect if it receives a link that does not conform to the Canonical standard it implements. Basically this means that links that "look" like indexes to sub-items (albums and the News index, for instance) will end with a trailing slash. Items which are interpreted as "final destinations" (An image or single news item, for instance) will not have a trailing slash.</p>
 <h2>New plugins</h2>
 <ul>
-<li><em>overrideEXIFDesc: pprovides</em>&nbsp;a means to compensate for software or cameras which place the image description in the<em> EXIF desc</em> field which by standard is used for the image title.</li>
-<li>optionalObjectFields: extends the use of&nbsp;<em>customFieldExtender </em>to allow&nbsp;certain object fields to be omitted. The distributed version of the plugin supports all the "standard" object fields. You can customize it to add/remove fields of your choice.</li>
+<li><em>overrideEXIFDesc: pprovides</em> a means to compensate for software or cameras which place the image description in the<em> EXIF desc</em> field which by standard is used for the image title.</li>
+<li>optionalObjectFields: extends the use of <em>customFieldExtender </em>to allow certain object fields to be omitted. The distributed version of the plugin supports all the "standard" object fields. You can customize it to add/remove fields of your choice.</li>
 </ul>
 <h2>Bug Fixes</h2>
 <p>As usual, I have fixed bugs found while implementing these features and ones reported on the Zenphoto.org forum that were applicable to ZenPhoto20.</p>
 <p>&nbsp;</p>
 <hr />
-<p>&nbsp;&nbsp;</p>
+<p>&nbsp;</p>
 <h1 style="text-align: center;">Version 1.0.0</h1>
 <h2>Fresh start</h2>
-<p>ZenPhoto20 has been forked from the Zenphoto.org 1.4.6 release. Some cleanup of code and fixes have been applied and some small new features added. Themes and plugins that are compliant with Zehphoto 1.4.6 (without use of the deprecated-functions plugin) will&nbsp;work with this software.&nbsp;</p>
-<p><strong>Note:</strong> part of this cleanup was to purge the deprecated functions for a fresh start. Lingering calls to these functions will now result in a PHP fault.&nbsp;If you have a custom theme it is recommended you first use the <em>check deprecated use</em> button&nbsp;in the Zenphoto 1.4.6 admin utilities to be sure that you are not using one of the functions which is no longer available.</p>
+<p>ZenPhoto20 has been forked from the Zenphoto.org 1.4.6 release. Some cleanup of code and fixes have been applied and some small new features added. Themes and plugins that are compliant with Zehphoto 1.4.6 (without use of the deprecated-functions plugin) will work with this software.</p>
+<p><strong>Note:</strong> part of this cleanup was to purge the deprecated functions for a fresh start. Lingering calls to these functions will now result in a PHP fault. If you have a custom theme it is recommended you first use the <em>check deprecated use</em> button in the Zenphoto 1.4.6 admin utilities to be sure that you are not using one of the functions which is no longer available.</p>
 <h2>Eliminate the concept of "supported" unsupported themes and plugins</h2>
-<p>Instead of having a repository for "unsupported" scripts and themes we will include then in the package. Example&nbsp;plugins will reside in the <code>plugins</code> folder. New themes will, of course, be found in the <code>themes</code> folder.</p>
-<p>Newly included&nbsp;themes: gray_highlights (an albums only theme), zpArdoise, zpEnlighten, zpfocus, zpminimal, zpmasonry, and zpskelleton.</p>
+<p>Instead of having a repository for "unsupported" scripts and themes we will include then in the package. Example plugins will reside in the <code>plugins</code> folder. New themes will, of course, be found in the <code>themes</code> folder.</p>
+<p>Newly included themes: gray_highlights (an albums only theme), zpArdoise, zpEnlighten, zpfocus, zpminimal, zpmasonry, and zpskelleton.</p>
 <p>Newly included example plugins: cacheHeader, cookieInvalidator, create_album, customFieldExtender, disableAction, disableWatermark, filter-fileSearches, galleryToken, headConsolidator, no_show, pluginEnabler, showNoUserRights, single_album, and text_watermark.</p>
 <p>Inclusion of other themes and plugins will be considered by request.</p>
 <h2>New release packaging</h2>
 <p>Each "tagged" release includes a zip file containing a self-extracting installation script. This file is about one third the size of the individual source files (of which there are about 2000.) So uploading a new release is considerably faster.</p>
-<p>Running the script extracts the release source scripts and then starts&nbsp;the setup process. This work flow&nbsp;is&nbsp;less prone to such things as mis-matched versions of the individual files or overwriting album files.</p>
+<p>Running the script extracts the release source scripts and then starts the setup process. This work flow is less prone to such things as mis-matched versions of the individual files or overwriting album files.</p>
 <h2>Suffix-less image links</h2>
-<p>If you use <em>mod_rewrite</em> with a <em>mod_rewrite suffix</em> and your image names are unique in their prefix you can select the option <em>Unique images</em>&nbsp;on the general options tab so that your image page links will not include the image suffix. For instance if your <em>mod_rewrite suffix</em> is <code>.htm</code> then&nbsp;the link to the image <code>myalbum/myimage.jpg</code>&nbsp;will have the link <code>myalbum/myimage.htm.</code></p>
-<p>&nbsp;<a id="tinyMCE:obj"></a></p>
+<p>If you use <em>mod_rewrite</em> with a <em>mod_rewrite suffix</em> and your image names are unique in their prefix you can select the option <em>Unique images</em> on the general options tab so that your image page links will not include the image suffix. For instance if your <em>mod_rewrite suffix</em> is <code>.htm</code> then the link to the image <code>myalbum/myimage.jpg</code> will have the link <code>myalbum/myimage.htm.</code></p>
+<p>&nbsp;</p>
 <h2>tinyMCE:obj plugin</h2>
 <p>This plugin replaces tinyZenpage as the preferred means for inserting ZenPhoto20 objects into tinyMCE editor windows.</p>
 <p>On the back end each object has a "pick" icon (<img src="https://cloud.githubusercontent.com/assets/2474007/3194486/59db3546-ecff-11e3-8c27-e5c44fd92f2b.png" alt="add" />) that you use to select the object. The overview lists also have a pick icon for each object, so it is not necessary to browse all the way to the object's tab.</p>
-<p>Click on the icon to select the object for pasting. Then go to your tinyMCE editor window, place the cursor where you want the insertion, and select either the tinyMCE:obj paste button on the toolbar&nbsp;or the tinyMCE:obj dropdown from the <em>Insert</em>&nbsp;menu item. This will bring up the tinyMCE:obj handler. Select any options you wish and press the&nbsp;<code>paste</code>&nbsp;button.</p>
+<p>Click on the icon to select the object for pasting. Then go to your tinyMCE editor window, place the cursor where you want the insertion, and select either the tinyMCE:obj paste button on the toolbar or the tinyMCE:obj dropdown from the <em>Insert</em> menu item. This will bring up the tinyMCE:obj handler. Select any options you wish and press the <code>paste</code> button.</p>
 <p>You can even paste custom sized/cropped images. When you have selected an image object a link is included that takes you to a "cropping" page. Set up the image crop as pleases you, click on the "Done" button and you will be back in the tinyMCE:obj window with your custom cropped image ready to insert.</p>
 <h2>Copy-able object links for all objects</h2>
-<p>A side benefit of the tinyMCE:obj implementation is that you can also use your clipboard to copy&nbsp;and paste links to spots other than tinyMCE editors.</p>
-<p>The administrative tabs for <em>Page</em>, <em>News articles</em>, category,&nbsp;<em>Image</em>, and <em>Album</em> objects now provide link text that can be copied to the clipboard and pasted wherever desired. (For instance into the content of a&nbsp;<em>News article</em>.) In the case of Images, the <em>crop image</em> function will give a link that will produce the cropped version of the image. These latter are easily inserted into your <em>News article</em> and <em>Page</em> contend by the <em>tinyMCE:obj</em>&nbsp;insert image feature.</p>
+<p>A side benefit of the tinyMCE:obj implementation is that you can also use your clipboard to copy and paste links to spots other than tinyMCE editors.</p>
+<p>The administrative tabs for <em>Page</em>, <em>News articles</em>, category, <em>Image</em>, and <em>Album</em> objects now provide link text that can be copied to the clipboard and pasted wherever desired. (For instance into the content of a <em>News article</em>.) In the case of Images, the <em>crop image</em> function will give a link that will produce the cropped version of the image. These latter are easily inserted into your <em>News article</em> and <em>Page</em> contend by the <em>tinyMCE:obj</em> insert image feature.</p>
 <h2>Purge option for theme and plugin options</h2>
-<p>This feature provides a convenient means to remove options of deleted and forgotten themes and plugins. Of course&nbsp;it also allows you to "start from scratch" on current ones.</p>
+<p>This feature provides a convenient means to remove options of deleted and forgotten themes and plugins. Of course it also allows you to "start from scratch" on current ones.</p>
 <h2>Custom option handler NUMERIC type option.</h2>
 <p>Allows themes and plugins to specify that an option be numeric. This allows a shorter input field. Also the data is validated as numeric when updated.</p>
 <h2>Favorites albums</h2>
-<p>Create albums from your favorites that can be viewed by others. Favorites albums are essentially "dynamic" albums with the criteria being the selected favorites&nbsp;instance.</p>
+<p>Create albums from your favorites that can be viewed by others. Favorites albums are essentially "dynamic" albums with the criteria being the selected favorites instance.</p>
 <h2>Improved deprecated function handling</h2>
 <p>Use of deprecated functions is now logged rather than indicated by a PHP notice. This of course presumes that the deprecated functions plugin is enabled.</p>
 <p>These errors are logged in a new <code>deprecated</code> log to separate them from other issues and make them easily findable. Only one instance of any particular use of a deprecated function is logged, so the log is not cluttered.</p>
 <h2>Improved "dirty form" handling</h2>
-<p>We have switched the JavaScript&nbsp;that detects form changes and warns if you leave the page. This script better integrates with the <em>tinyMCE</em> editor. This implementation also recognizes "clean" links--that is links that do not actually leave the page. You will not be warned unnecessarily when clicking these links.</p>
+<p>We have switched the JavaScript that detects form changes and warns if you leave the page. This script better integrates with the <em>tinyMCE</em> editor. This implementation also recognizes "clean" links--that is links that do not actually leave the page. You will not be warned unnecessarily when clicking these links.</p>
 <h2>elFinder Theme editor</h2>
 <p>If enabled elFinder will be used to edit themes.</p>
-<h2>Image metadata transformation&nbsp;option</h2>
+<h2>Image metadata transformation option</h2>
 <p>There is now an option to allow newlines in image metadata to be converted to <code>&lt;br /&gt;</code> tags. This option applies to any metadata destined to the ZenPhoto20 <em>description</em> or <em>title</em> database fields. The raw metadata is left unchanged. This transformation occurs when a new image is discovered or if medadata is refreshed.</p>
 <h2>Plugin tabs</h2>
 <p>The tab categories of plugins have been reorganized and simplified. In addition, a new tab "enabled" has been created to list all enabled plugins regardless of their category.</p>
@@ -242,7 +242,7 @@
 <h2>General unification of objects and names</h2>
 <p>There was considerable inconsistency in both the naming and the methods used in zenphoto objects. We have made progress in making things more uniform. But don't fret. If you have custom plugins or themes from zenphoto version 1.4.6 or later there is a <code>zenphotoCompatibilityPack</code> plugin that will keep them running just fine.</p>
 <h2>General bug fixes</h2>
-<p>I have fixed multiple&nbsp;bugs discovered either in my efforts to provide the above or from discussions on Zenphoto forums and tickets.</p>
+<p>I have fixed multiple bugs discovered either in my efforts to provide the above or from discussions on Zenphoto forums and tickets.</p>
 <h2>New plugins</h2>
 <ul>
 <li><em>debug</em>: provides tools for debugging your site such as <em>PHPinfo</em>, <em>locale</em> information, etc.</li>
