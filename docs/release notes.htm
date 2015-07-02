@@ -118,6 +118,7 @@
 <h2>News article sort order selections</h2>
 <p>You may now select ordering by <em>Published date</em>, <em>Last change date</em>, and <em>Expiry date</em> in addition to the original <em>creation date</em> and <em>title </em>orders. <em>Creation date</em> (or <em>Last change date</em>) are now shown in addition to the <em>Published date</em>.</p>
 <h2>Security</h2>
+<p>Plugins&nbsp;are now required to register functions they wish to be called via the admin utility button action. The function name must be stored in the <code>$_zp_button_actions</code> array. Actions not registered will be ignored.</p>
 <p>Tightened up the PHP theme editor so that it is restricted to editing only files within the theme.</p>
 <p>Fixes a hole whereby a hacker could cause your setup scripts to become unprotected.</p>
 <p>Fixes VN: JVN#68452022 / TN: JPCERT#95351432</p>
