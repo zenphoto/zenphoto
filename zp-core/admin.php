@@ -124,12 +124,6 @@ if (zp_loggedin()) { /* Display the admin pages. Do action handling first. */
 						$msg = '';
 					}
 					break;
-
-				/** default ****************************************************************** */
-				/*				 * *************************************************************************** */
-				default:
-					call_user_func($action);
-					break;
 			}
 		} else {
 			$class = 'errorbox';
