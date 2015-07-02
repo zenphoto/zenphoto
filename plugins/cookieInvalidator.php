@@ -22,6 +22,7 @@ $plugin_description = gettext('Invalidates all cookies that were created earlier
 $plugin_author = "Stephen Billard (sbillard)";
 
 zp_register_filter('admin_utilities_buttons', 'cookieInvalidator::button');
+$_zp_button_actions[] = 'cookieInvalidator::setBase';
 
 class cookieInvalidator {
 

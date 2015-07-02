@@ -12,13 +12,14 @@
 define('UPLOAD_ERR_QUOTA', -1);
 define('UPLOAD_ERR_BLOCKED', -2);
 
+$_zp_button_actions = $zenphoto_tabs = array();
 require_once(dirname(__FILE__) . '/functions-basic.php');
 
 zp_session_start();
 require_once(SERVERPATH . '/' . ZENFOLDER . '/admin-functions.php');
 httpsRedirect();
+
 $_SESSION['adminRequest'] = @$_COOKIE['zp_user_auth']; //	Allow "unprotected" i.php if the request came from an admin session
-$zenphoto_tabs = array();
 
 require_once(SERVERPATH . "/" . ZENFOLDER . '/rewrite.php');
 if (OFFSET_PATH != 2 && !getOption('license_accepted') && !isset($_zp_invisible_execute)) {

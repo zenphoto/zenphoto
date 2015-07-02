@@ -134,7 +134,10 @@ if (zp_loggedin()) { /* Display the admin pages. Do action handling first. */
 
 				/** default ****************************************************************** */
 				default:
-					call_user_func($action);
+					$func = preg_replace('~\(.*\);*~', '', $action);
+					if (in_array($func, $_zp_button_actions)) {
+						call_user_func($action);
+					}
 					break;
 			}
 		} else {
@@ -531,7 +534,7 @@ if (!zp_loggedin()) {
 							$c = count($plugins);
 							?>
 							<h3><a onclick="toggle('plugins_hide');
-											toggle('plugins_show');" ><?php printf(ngettext("%u active plugin:", "%u active plugins:", $c), $c); ?></a></h3>
+									toggle('plugins_show');" ><?php printf(ngettext("%u active plugin:", "%u active plugins:", $c), $c); ?></a></h3>
 							<div id="plugins_hide" style="display:none">
 								<ul class="plugins">
 									<?php
@@ -579,7 +582,7 @@ if (!zp_loggedin()) {
 							$c = count($filters);
 							?>
 							<h3><a onclick="toggle('filters_hide');
-											toggle('filters_show');" ><?php printf(ngettext("%u active filter:", "%u active filters:", $c), $c); ?></a></h3>
+									toggle('filters_show');" ><?php printf(ngettext("%u active filter:", "%u active filters:", $c), $c); ?></a></h3>
 							<div id="filters_hide" style="display:none">
 								<ul class="plugins">
 									<?php
