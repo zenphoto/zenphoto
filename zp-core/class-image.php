@@ -1022,8 +1022,8 @@ class Image extends MediaObject {
 			$matches = array_keys($this->albumnamealbum->imageNames, $image);
 			if (count($matches) > 1) {
 				if ($c = array_search($this->album->name . '/' . $image, $matches)) {
-					$addl = '?u=' . $c;
-					$addl_plain = '&u=' . $c;
+					$addl = '/' . _PAGE_ . '/' . $c;
+					$addl_plain = '&page=' . $c;
 				}
 			}
 		}
@@ -1031,7 +1031,8 @@ class Image extends MediaObject {
 		if (UNIQUE_IMAGE) {
 			$image = stripSuffix($image);
 		}
-		return zp_apply_filter('getLink', rewrite_path(pathurlencode($album) . '/' . urlencode($image) . IM_SUFFIX . $addl, '/index.php?album=' . pathurlencode($albumq) . '&image=' . urlencode($image)) . $addl_plain, $this, NULL);
+
+		return zp_apply_filter('getLink', rewrite_path(pathurlencode($album) . '/' . urlencode($image) . IM_SUFFIX . $addl, '/index.php?album=' . pathurlencode($albumq) . '&image=' . urlencode($image) . $addl_plain), $this, NULL);
 	}
 
 	/**
