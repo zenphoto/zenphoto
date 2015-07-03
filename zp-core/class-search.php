@@ -1302,7 +1302,7 @@ class SearchEngine {
 					} else {
 						$show = "`show` = 1 AND ";
 					}
-					$sql .= "`folder` ";
+					$sql .= "`folder`, `title` ";
 					if (is_null($sorttype)) {
 						if (empty($this->album)) {
 							list($key, $sortdirection) = $this->sortKey($_zp_gallery->getSortType(), $sortdirection, 'title', 'albums');
@@ -1328,7 +1328,7 @@ class SearchEngine {
 					} else {
 						$show = "`show` = 1 AND ";
 					}
-					$sql .= "`albumid`, `filename` ";
+					$sql .= "`albumid`, `filename`, `title` ";
 					if (is_null($sorttype)) {
 						if (empty($this->album)) {
 							list($key, $sortdirection) = $this->sortKey($sorttype, $sortdirection, 'title', 'images');
@@ -1406,7 +1406,7 @@ class SearchEngine {
 								}
 								if ($mine || (is_null($mine) && $album->isMyItem(LIST_RIGHTS)) || (checkAlbumPassword($albumname) && ($row['show'] || $viewUnpublished))) {
 									if (empty($this->album_list) || in_array($albumname, $this->album_list)) {
-										$result[] = array('name' => $albumname, 'weight' => $weights[$row['id']]);
+										$result[] = array('title' => $row['title'], 'name' => $albumname, 'weight' => $weights[$row['id']]);
 									}
 								}
 							}
@@ -1415,6 +1415,9 @@ class SearchEngine {
 					db_free_result($search_result);
 					if (is_null($sorttype)) {
 						$result = sortMultiArray($result, 'weight', true, true, false, false, array('weight'));
+					}
+					if ($sorttype == 'title') {
+						$result = sortByMultilingual($result, 'title', $sortdirection);
 					}
 					foreach ($result as $album) {
 						$albums[] = $album['name'];
@@ -1544,6 +1547,7 @@ class SearchEngine {
 			} else {
 				$search_result = query($search_query);
 			}
+			
 			$albums_seen = $images = array();
 			if ($search_result) {
 				while ($row = db_fetch_assoc($search_result)) {
@@ -1577,9 +1581,8 @@ class SearchEngine {
 						}
 					}
 					if ($albumrow['allow'] && ($row['show'] || $albumrow['viewUnpublished'])) {
-						if (file_exists($albumrow['localpath'] . internalToFilesystem($row['filename']))) {
-//	still exists
-							$data = array('filename' => $row['filename'], 'folder' => $albumrow['folder']);
+						if (file_exists($albumrow['localpath'] . internalToFilesystem($row['filename']))) { //	still exists
+							$data = array('title' => $row['title'], 'filename' => $row['filename'], 'folder' => $albumrow['folder']);
 							if (isset($weights)) {
 								$data['weight'] = $weights[$row['id']];
 							}
@@ -1591,8 +1594,10 @@ class SearchEngine {
 				if (is_null($sorttype) && isset($weights)) {
 					$images = sortMultiArray($images, 'weight', true, true, false, false, array('weight'));
 				}
+				if ($sorttype == 'title') {
+					$images = sortByMultilingual($images, 'title', $sortdirection);
+				}
 			}
-
 			if (empty($searchdate)) {
 				zp_apply_filter('search_statistics', $searchstring, 'images', !empty($images), $this->dynalbumname, $this->iteration++);
 			}
