@@ -1021,7 +1021,6 @@ class Image extends MediaObject {
 		if ($this->albumnamealbum->isDynamic()) {
 			$matches = array_keys($this->albumnamealbum->imageNames, $image);
 			if (count($matches) > 1) {
-				sort($matches);
 				if ($c = array_search($this->album->name . '/' . $image, $matches)) {
 					$addl = '?u=' . $c;
 					$addl_plain = '&u=' . $c;

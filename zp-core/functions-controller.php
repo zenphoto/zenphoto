@@ -271,7 +271,6 @@ function zp_load_image($folder, $filename) {
 	if ($album->isDynamic() && isset($_GET['u'])) {
 		$album->getImages();
 		$matches = array_keys($album->imageNames, $filename);
-		sort($matches);
 		$albumName = @$matches[sanitize_numeric($_GET['u'])];
 		if ($albumName) {
 			$filename = array('folder' => dirname($albumName), 'filename' => $filename);
