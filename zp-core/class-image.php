@@ -31,13 +31,10 @@ function newImage($album, $filename = NULL, $quiet = false) {
 	} else {
 		if ($album->isDynamic()) {
 			$dyn = true;
-			$xalbum = NULL;
-			foreach ($album->getImages() as $image) {
-				if ($filename == $image['filename']) {
-					$xalbum = newAlbum($image['folder']);
-					break;
-				}
-			}
+			$album->getImages();
+			$xalbum = array_keys($album->imageNames, $filename);
+			$xalbum = array_shift($xalbum);
+			$xalbum = newAlbum(dirname($xalbum));
 		} else {
 			$xalbum = $album;
 			$dyn = false;
@@ -1020,10 +1017,22 @@ class Image extends MediaObject {
 			$albumq = $this->albumnamealbum->name;
 			$image = $this->filename;
 		}
+		$addl = $addl_plain = NULL;
+		if ($this->albumnamealbum->isDynamic()) {
+			$matches = array_keys($this->albumnamealbum->imageNames, $image);
+			if (count($matches) > 1) {
+				sort($matches);
+				if ($c = array_search($this->album->name . '/' . $image, $matches)) {
+					$addl = '?u=' . $c;
+					$addl_plain = '&u=' . $c;
+				}
+			}
+		}
+
 		if (UNIQUE_IMAGE) {
 			$image = stripSuffix($image);
 		}
-		return zp_apply_filter('getLink', rewrite_path(pathurlencode($album) . '/' . urlencode($image) . IM_SUFFIX, '/index.php?album=' . pathurlencode($albumq) . '&image=' . urlencode($image)), $this, NULL);
+		return zp_apply_filter('getLink', rewrite_path(pathurlencode($album) . '/' . urlencode($image) . IM_SUFFIX . $addl, '/index.php?album=' . pathurlencode($albumq) . '&image=' . urlencode($image)) . $addl_plain, $this, NULL);
 	}
 
 	/**

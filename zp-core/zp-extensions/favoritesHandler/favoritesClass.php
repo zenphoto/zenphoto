@@ -14,6 +14,7 @@ class favorites extends AlbumBase {
 	var $owner;
 	var $instance = '';
 	var $multi;
+	var $imageNames; // list of images for handling duplicate file names
 
 	function __construct($user) {
 		$this->table = 'albums';
@@ -248,6 +249,7 @@ class favorites extends AlbumBase {
 				$this->images = array();
 				foreach ($images as $data) {
 					$this->images[] = array('folder' => $data['folder'], 'filename' => $data['filename']);
+					$this->imageNames[$data['folder'] . '/' . $data['filename']] = $data['filename'];
 				}
 				$this->lastimagesort = $sorttype . $sortdirection;
 			}

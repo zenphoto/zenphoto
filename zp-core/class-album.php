@@ -1503,6 +1503,7 @@ class Album extends AlbumBase {
 class dynamicAlbum extends AlbumBase {
 
 	var $searchengine; // cache the search engine for dynamic albums
+	var $imageNames; // list of images for handling duplicate file names
 
 	function __construct($folder8, $cache = true, $quiet = false) {
 		$folder8 = trim($folder8, '/');
@@ -1646,7 +1647,6 @@ class dynamicAlbum extends AlbumBase {
 			return $this->searchengine;
 		$this->searchengine = new SearchEngine(true);
 		$params = $this->get('search_params');
-		$params .= '&albumname=' . $this->name;
 		$this->searchengine->setSearchParams($params);
 		return $this->searchengine;
 	}
@@ -1679,6 +1679,9 @@ class dynamicAlbum extends AlbumBase {
 			$searchengine = $this->getSearchEngine();
 			$this->images = $searchengine->getImages(0, 0, $sorttype, $sortdirection, $care, $mine);
 			$this->lastimagesort = $sorttype . $sortdirection;
+			foreach ($this->images as $image) {
+				$this->imageNames[$image['folder'] . '/' . $image['filename']] = $image['filename'];
+			}
 		}
 		return parent::getImages($page, $firstPageCount);
 	}
