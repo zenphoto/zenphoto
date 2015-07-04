@@ -44,8 +44,8 @@ class favoritesAlbum extends favorites {
 		$localpath = ALBUM_FOLDER_SERVERPATH . $folderFS;
 
 		$this->linkname = $this->name = $folder8;
-		$this->localpath = $localpath;
-		if (!$this->_albumCheck($folder8, $folderFS, $quiet))
+		$this->localpath = rtrim($localpath, '/');
+		if (!AlbumBase::albumCheck($folder8, $folderFS, $quiet, !file_exists($this->localpath) || is_dir($this->localpath)))
 			return;
 
 		$data = explode("\n", file_get_contents($localpath));
@@ -83,33 +83,6 @@ class favoritesAlbum extends favorites {
 			zp_apply_filter('new_album', $this);
 		}
 		zp_apply_filter('album_instantiate', $this);
-	}
-
-	/**
-	 * album validity check
-	 * @param type $folder8
-	 * @return boolean
-	 */
-	protected function _albumCheck($folder8, $folderFS, $quiet) {
-		$this->localpath = rtrim($this->localpath, '/');
-
-		$msg = false;
-		if (empty($folder8)) {
-			$msg = gettext('Invalid album instantiation: No album name');
-		} else if (filesystemToInternal($folderFS) != $folder8) {
-// an attempt to spoof the album name.
-			$msg = sprintf(gettext('Invalid album instantiation: %1$s!=%2$s'), html_encode(filesystemToInternal($folderFS)), html_encode($folder8));
-		} else if (!file_exists($this->localpath) || is_dir($this->localpath)) {
-			$msg = sprintf(gettext('Invalid album instantiation: %s does not exist.'), html_encode($folder8));
-		}
-		if ($msg) {
-			$this->exists = false;
-			if (!$quiet) {
-				zp_error($msg, E_USER_ERROR);
-			}
-			return false;
-		}
-		return true;
 	}
 
 	/**
