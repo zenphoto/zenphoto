@@ -925,6 +925,27 @@ class SearchEngine {
 	}
 
 	/**
+	 * sort search results
+	 *
+	 * @param string $sorttype
+	 * @param string $sortdirection
+	 * @param array $result
+	 * @param bool $weights
+	 * @return array
+	 */
+	protected static function sortResults($sorttype, $sortdirection, $result, $weights) {
+		$sorttype = trim($sorttype, '`');
+		if ($weights) {
+			$result = sortMultiArray($result, 'weight', true, true, false, false, array('weight'));
+		}
+		switch ($sorttype) {
+			case 'title':
+				$result = sortByMultilingual($result, $sorttype, $sortdirection == 'DESC');
+		}
+		return $result;
+	}
+
+	/**
 	 * get connical sort key and direction parameters.
 	 * @param type $sorttype sort field desired
 	 * @param bool $sortdirection DESC or ASC
@@ -1341,7 +1362,7 @@ class SearchEngine {
 		if (count($idlist) > 0) {
 			$weights = array_count_values($idlist);
 			arsort($weights, SORT_NUMERIC);
-			$sql = 'SELECT DISTINCT `id`,`show`,';
+			$sql = 'SELECT DISTINCT `id`,`show`,`title`,';
 
 			switch ($tbl) {
 				case 'news':
@@ -1483,16 +1504,14 @@ class SearchEngine {
 								$viewUnpublished = ($this->search_unpublished || zp_loggedin() && $uralbum->subRights() & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW));
 								if ($mine || (is_null($mine) && $album->isMyItem(LIST_RIGHTS)) || (checkAlbumPassword($albumname) && ($row['show'] || $viewUnpublished))) {
 									if (empty($this->album_list) || in_array($albumname, $this->album_list)) {
-										$result[] = array('name' => $albumname, 'weight' => $weights[$row['id']]);
+										$result[] = array_merge($row, array('name' => $albumname, 'weight' => $weights[$row['id']]));
 									}
 								}
 							}
 						}
 					}
 					db_free_result($search_result);
-					if (is_null($sorttype)) {
-						$result = sortMultiArray($result, 'weight', true, true, false, false, array('weight'));
-					}
+					$result = self::sortResults($sorttype, $sortdirection, $result, true);
 					foreach ($result as $album) {
 						$albums[] = $album['name'];
 					}
@@ -1620,7 +1639,7 @@ class SearchEngine {
 			} else {
 				$search_result = query($search_query);
 			}
-			$albums_seen = $images = array();
+			$albums_seen = $result = array();
 			if ($search_result) {
 				while ($row = db_fetch_assoc($search_result)) {
 					$albumid = $row['albumid'];
@@ -1647,27 +1666,25 @@ class SearchEngine {
 					if ($albumrow['allow'] && ($row['show'] || $albumrow['viewUnpublished'])) {
 						if (file_exists($albumrow['localpath'] . internalToFilesystem($row['filename']))) {
 //	still exists
-							$data = array('filename' => $row['filename'], 'folder' => $albumrow['folder']);
+							$row['folder'] = $albumrow['folder'];
 							if (isset($weights)) {
-								$data['weight'] = $weights[$row['id']];
+								$row['weight'] = $weights[$row['id']];
 							}
-							$images[] = $data;
+							$result[] = $row;
 						}
 					}
 				}
 				db_free_result($search_result);
-				if (is_null($sorttype) && isset($weights)) {
-					$images = sortMultiArray($images, 'weight', true, true, false, false, array('weight'));
-				}
+				$result = self::sortResults($sorttype, $sortdirection, $result, isset($weights));
 			}
 
 			if (empty($searchdate)) {
-				zp_apply_filter('search_statistics', $searchstring, 'images', !empty($images), $this->dynalbumname, $this->iteration++);
+				zp_apply_filter('search_statistics', $searchstring, 'images', !empty($result), $this->dynalbumname, $this->iteration++);
 			}
-			$this->cacheSearch($criteria, $images);
+			$this->cacheSearch($criteria, $result);
 		}
 		$this->searches['images'] = $criteria;
-		return $images;
+		return $result;
 	}
 
 	/**
@@ -1821,14 +1838,14 @@ class SearchEngine {
 			}
 			if ($search_result) {
 				while ($row = db_fetch_assoc($search_result)) {
-					$data = array('titlelink' => $row['titlelink']);
 					if (isset($weights)) {
-						$data['weight'] = $weights[$row['id']];
+						$row['weight'] = $weights[$row['id']];
 					}
-					$result[] = $data;
+					$result[] = $row;
 				}
 				db_free_result($search_result);
 			}
+			$result = self::sortResults($sorttype, $sortdirection, $result, isset($weights));
 			if (isset($weights)) {
 				$result = sortMultiArray($result, 'weight', true, true, false, false, array('weight'));
 			}
@@ -1905,17 +1922,14 @@ class SearchEngine {
 			zp_apply_filter('search_statistics', $searchstring, 'news', !empty($search_result), false, $this->iteration++);
 			if ($search_result) {
 				while ($row = db_fetch_assoc($search_result)) {
-					$data = array('titlelink' => $row['titlelink']);
 					if (isset($weights)) {
-						$data['weight'] = $weights[$row['id']];
+						$row['weight'] = $weights[$row['id']];
 					}
-					$result[] = $data;
+					$result[] = $row;
 				}
 				db_free_result($search_result);
 			}
-			if (isset($weights)) {
-				$result = sortMultiArray($result, 'weight', true, true, false, false, array('weight'));
-			}
+			$result = self::sortResults($sorttype, $sortdirection, $result, isset($weights));
 			$this->cacheSearch($criteria, $result);
 		}
 		$this->articles = $result;
