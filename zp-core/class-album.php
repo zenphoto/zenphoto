@@ -109,7 +109,7 @@ class AlbumBase extends MediaObject {
 	 * @param string $folder8
 	 * @param string $folderFS
 	 * @param bool $quiet
-	 * @param bool $valid
+	 * @param bool $valid class specific check
 	 * @return boolean
 	 */
 	static protected function albumCheck($folder8, $folderFS, $quiet, $invalid) {
@@ -125,7 +125,6 @@ class AlbumBase extends MediaObject {
 			$msg = false;
 		}
 		if ($msg) {
-			$this->exists = false;
 			if (!$quiet) {
 				zp_error($msg, E_USER_ERROR);
 			}
@@ -1145,7 +1144,7 @@ class Album extends AlbumBase {
 		$localpath = ALBUM_FOLDER_SERVERPATH . $folderFS . "/";
 		$this->linkname = $this->name = $folder8;
 		$this->localpath = $localpath;
-		if (!AlbumBase::albumCheck($folder8, $folderFS, $quiet, !file_exists($this->localpath) || !(is_dir($this->localpath)) || $folder8{0} == '.' || preg_match('~/\.*/~', $folder8))) {
+		if (!$this->exists = AlbumBase::albumCheck($folder8, $folderFS, $quiet, !file_exists($this->localpath) || !(is_dir($this->localpath)) || $folder8{0} == '.' || preg_match('~/\.*/~', $folder8))) {
 			return;
 		}
 		$new = $this->instantiate('albums', array('folder' => $this->name), 'folder', $cache, empty($folder8));
@@ -1519,7 +1518,7 @@ class dynamicAlbum extends AlbumBase {
 		$localpath = ALBUM_FOLDER_SERVERPATH . $folderFS;
 		$this->linkname = $this->name = $folder8;
 		$this->localpath = rtrim($localpath, '/');
-		if (!AlbumBase::albumCheck($folder8, $folderFS, $quiet, !file_exists($this->localpath) || is_dir($this->localpath))) {
+		if (!$this->exists = AlbumBase::albumCheck($folder8, $folderFS, $quiet, !file_exists($this->localpath) || is_dir($this->localpath))) {
 			return;
 		}
 		$new = $this->instantiate('albums', array('folder' => $this->name), 'folder', $cache, empty($folder8));

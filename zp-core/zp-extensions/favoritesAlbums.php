@@ -45,9 +45,9 @@ class favoritesAlbum extends favorites {
 
 		$this->linkname = $this->name = $folder8;
 		$this->localpath = rtrim($localpath, '/');
-		if (!AlbumBase::albumCheck($folder8, $folderFS, $quiet, !file_exists($this->localpath) || is_dir($this->localpath)))
+		if (!$this->exists = AlbumBase::albumCheck($folder8, $folderFS, $quiet, !file_exists($this->localpath) || is_dir($this->localpath))) {
 			return;
-
+		}
 		$data = explode("\n", file_get_contents($localpath));
 		foreach ($data as $param) {
 			$parts = explode('=', $param);
