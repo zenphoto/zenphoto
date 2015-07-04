@@ -994,6 +994,7 @@ zp-core/admin.php
 zp-core/auth_zp.php
 zp-core/cacheprotect
 zp-core/class-album.php
+zp-core/class-auth.php
 zp-core/class-feed.php
 zp-core/class-gallery.php
 zp-core/class-image.php
@@ -2325,4 +2326,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-2327
+2328

@@ -268,10 +268,10 @@ function zp_load_image($folder, $filename) {
 			}
 		}
 	}
-	if ($album->isDynamic() && isset($_GET['page'])) {
+	if ($album->isDynamic() && $_zp_page) {
 		$album->getImages();
 		$matches = array_keys($album->imageNames, $filename);
-		$albumName = @$matches[$_zp_page];
+		$albumName = @$matches[$_zp_page - 1];
 		if ($albumName) {
 			$filename = array('folder' => dirname($albumName), 'filename' => $filename);
 		}

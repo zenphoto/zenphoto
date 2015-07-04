@@ -28,17 +28,15 @@ function newImage($album, $filename = NULL, $quiet = false) {
 		$xalbum = newAlbum($filename['folder'], true, true);
 		$filename = $filename['filename'];
 		$dyn = is_object($album) && $album->isDynamic();
+	} else if (is_object($album) && $album->isDynamic()) {
+		$dyn = true;
+		$album->getImages();
+		$xalbum = array_keys($album->imageNames, $filename);
+		$xalbum = array_shift($xalbum);
+		$xalbum = newAlbum(dirname($xalbum), true, true);
 	} else {
-		if ($album->isDynamic()) {
-			$dyn = true;
-			$album->getImages();
-			$xalbum = array_keys($album->imageNames, $filename);
-			$xalbum = array_shift($xalbum);
-			$xalbum = newAlbum(dirname($xalbum));
-		} else {
-			$xalbum = $album;
-			$dyn = false;
-		}
+		$xalbum = $album;
+		$dyn = false;
 	}
 	if (!is_object($xalbum) || !$xalbum->exists || !isAlbumClass($xalbum)) {
 		$msg = sprintf(gettext('Bad album object parameter to newImage(%s)'), $filename);
@@ -1022,6 +1020,7 @@ class Image extends MediaObject {
 			$matches = array_keys($this->albumnamealbum->imageNames, $image);
 			if (count($matches) > 1) {
 				if ($c = array_search($this->album->name . '/' . $image, $matches)) {
+					$c++;
 					$addl = '/' . _PAGE_ . '/' . $c;
 					$addl_plain = '&page=' . $c;
 				}

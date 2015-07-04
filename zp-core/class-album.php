@@ -104,6 +104,36 @@ class AlbumBase extends MediaObject {
 	}
 
 	/**
+	 * album validity check
+	 *
+	 * @param string $folder8
+	 * @param string $folderFS
+	 * @param bool $quiet
+	 * @param bool $valid class specific check
+	 * @return boolean
+	 */
+	static protected function albumCheck($folder8, $folderFS, $quiet, $invalid) {
+		if (empty($folder8)) {
+			$msg = gettext('Invalid album instantiation: No album name');
+		} else if (filesystemToInternal($folderFS) != $folder8) {
+			// an attempt to spoof the album name.
+			$msg = sprintf(gettext('Invalid album instantiation: %1$s!=%2$s'), html_encode(filesystemToInternal($folderFS)), $folder8);
+		} else if ($invalid) {
+			//	class specific validity test
+			$msg = sprintf(gettext('Invalid album instantiation: %s does not exist.'), $folder8);
+		} else {
+			$msg = false;
+		}
+		if ($msg) {
+			if (!$quiet) {
+				zp_error($msg, E_USER_ERROR);
+			}
+			return false;
+		}
+		return true;
+	}
+
+	/**
 	 * Returns the folder on the filesystem
 	 *
 	 * @return string
@@ -1114,38 +1144,15 @@ class Album extends AlbumBase {
 		$localpath = ALBUM_FOLDER_SERVERPATH . $folderFS . "/";
 		$this->linkname = $this->name = $folder8;
 		$this->localpath = $localpath;
-		if (!$this->_albumCheck($folder8, $folderFS, $quiet))
+		if (!$this->exists = AlbumBase::albumCheck($folder8, $folderFS, $quiet, !file_exists($this->localpath) || !(is_dir($this->localpath)) || $folder8{0} == '.' || preg_match('~/\.*/~', $folder8))) {
 			return;
+		}
 		$new = $this->instantiate('albums', array('folder' => $this->name), 'folder', $cache, empty($folder8));
 		if ($new) {
 			$this->save();
 			zp_apply_filter('new_album', $this);
 		}
 		zp_apply_filter('album_instantiate', $this);
-	}
-
-	/**
-	 * album validity check
-	 * @return boolean
-	 */
-	protected function _albumCheck($folder8, $folderFS, $quiet) {
-		$msg = false;
-		if (empty($folder8)) {
-			$msg = gettext('Invalid album instantiation: No album name');
-		} else if (filesystemToInternal($folderFS) != $folder8) {
-// an attempt to spoof the album name.
-			$msg = sprintf(gettext('Invalid album instantiation: %1$s!=%2$s'), html_encode(filesystemToInternal($folderFS)), $folder8);
-		} else if (!file_exists($this->localpath) || !(is_dir($this->localpath)) || $folder8{0} == '.' || preg_match('~/\.*/~', $folder8)) {
-			$msg = sprintf(gettext('Invalid album instantiation: %s does not exist.'), $folder8);
-		}
-		if ($msg) {
-			$this->exists = false;
-			if (!$quiet) {
-				zp_error($msg, E_USER_ERROR);
-			}
-			return false;
-		}
-		return true;
 	}
 
 	/**
@@ -1510,9 +1517,10 @@ class dynamicAlbum extends AlbumBase {
 		$folderFS = internalToFilesystem($folder8);
 		$localpath = ALBUM_FOLDER_SERVERPATH . $folderFS;
 		$this->linkname = $this->name = $folder8;
-		$this->localpath = $localpath;
-		if (!$this->_albumCheck($folder8, $folderFS, $quiet))
+		$this->localpath = rtrim($localpath, '/');
+		if (!$this->exists = AlbumBase::albumCheck($folder8, $folderFS, $quiet, !file_exists($this->localpath) || is_dir($this->localpath))) {
 			return;
+		}
 		$new = $this->instantiate('albums', array('folder' => $this->name), 'folder', $cache, empty($folder8));
 		$this->exists = true;
 		if (!is_dir(stripSuffix($this->localpath))) {
@@ -1559,33 +1567,6 @@ class dynamicAlbum extends AlbumBase {
 			}
 		}
 		zp_apply_filter('album_instantiate', $this);
-	}
-
-	/**
-	 * album validity check
-	 * @param type $folder8
-	 * @return boolean
-	 */
-	protected function _albumCheck($folder8, $folderFS, $quiet) {
-		$this->localpath = rtrim($this->localpath, '/');
-
-		$msg = false;
-		if (empty($folder8)) {
-			$msg = gettext('Invalid album instantiation: No album name');
-		} else if (filesystemToInternal($folderFS) != $folder8) {
-// an attempt to spoof the album name.
-			$msg = sprintf(gettext('Invalid album instantiation: %1$s!=%2$s'), html_encode(filesystemToInternal($folderFS)), html_encode($folder8));
-		} else if (!file_exists($this->localpath) || is_dir($this->localpath)) {
-			$msg = sprintf(gettext('Invalid album instantiation: %s does not exist.'), $folder8);
-		}
-		if ($msg) {
-			$this->exists = false;
-			if (!$quiet) {
-				zp_error($msg, E_USER_ERROR);
-			}
-			return false;
-		}
-		return true;
 	}
 
 	/**

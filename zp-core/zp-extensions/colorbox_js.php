@@ -3,7 +3,7 @@
  * Loads Colorbox JS and CSS scripts for selected theme page scripts.
  *
  * Note that this plugin does not attach Colorbox to any element because there are so many different options and usages.
- * You need to do this in your theme yourself. Visit the {@link http://http://www.jacklmoore.com/colorbox/ colorbox} site for information.
+ * You need to do this in your theme yourself. Visit the {@link http://www.jacklmoore.com/colorbox/ colorbox} site for information.
  *
  * The plugin has built in support for 5 example Colorbox themes shown below:
  *
