@@ -249,7 +249,7 @@ function zp_load_album($folder, $force_nocache = false) {
  * @return the loaded album object on success, or (===false) on failure.
  */
 function zp_load_image($folder, $filename) {
-	global $_zp_current_image, $_zp_current_album, $_zp_current_search;
+	global $_zp_current_image, $_zp_current_album, $_zp_current_search, $_zp_page;
 	if (!is_object($_zp_current_album) || $_zp_current_album->name != $folder) {
 		$album = zp_load_album($folder, true);
 	} else {
@@ -268,7 +268,17 @@ function zp_load_image($folder, $filename) {
 			}
 		}
 	}
+	if ($album->isDynamic() && isset($_GET['page'])) {
+		$album->getImages();
+		$matches = array_keys($album->imageNames, $filename);
+		$albumName = @$matches[$_zp_page];
+		if ($albumName) {
+			$filename = array('folder' => dirname($albumName), 'filename' => $filename);
+		}
+		$_zp_page = NULL;
+	}
 	$_zp_current_image = newImage($album, $filename, true);
+
 	if (is_null($_zp_current_image) || !$_zp_current_image->exists) {
 		return false;
 	}
