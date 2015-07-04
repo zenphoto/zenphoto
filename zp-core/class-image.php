@@ -1022,6 +1022,7 @@ class Image extends MediaObject {
 			$matches = array_keys($this->albumnamealbum->imageNames, $image);
 			if (count($matches) > 1) {
 				if ($c = array_search($this->album->name . '/' . $image, $matches)) {
+					$c++;
 					$addl = '/' . _PAGE_ . '/' . $c;
 					$addl_plain = '&page=' . $c;
 				}
