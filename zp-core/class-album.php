@@ -1648,6 +1648,7 @@ class dynamicAlbum extends AlbumBase {
 		$this->searchengine = new SearchEngine(true);
 		$params = $this->get('search_params');
 		$this->searchengine->setSearchParams($params);
+		$this->searchengine->setAlbum($this);
 		return $this->searchengine;
 	}
 

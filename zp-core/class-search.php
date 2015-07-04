@@ -519,6 +519,19 @@ class SearchEngine {
 		}
 	}
 
+	/**
+	 * stores the dynamic album in the albums search engine
+	 * @param object $alb
+	 */
+	function setAlbum($alb) {
+		$this->album = $alb;
+		$this->dynalbumname = $alb->name;
+		$this->setSortType($this->album->getSortType('album'), 'albums');
+		$this->setSortDirection($this->album->getSortDirection('album'), 'albums');
+		$this->setSortType($this->album->getSortType(), 'images');
+		$this->setSortDirection($this->album->getSortDirection('image'), 'images');
+	}
+
 // call to always return unpublished items
 	function setSearchUnpublished() {
 		$this->search_unpublished = true;
