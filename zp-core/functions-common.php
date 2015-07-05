@@ -435,7 +435,7 @@ function html_encodeTagged($original, $allowScript = true) {
 		$tags[2]['%' . $key . '$s'] = $tag;
 		$str = str_replace($tag, '%' . $key . '$s', $str);
 	}
-	$str = html_entity_decode($str);
+	$str = html_entity_decode($str, ENT_FLAGS, LOCAL_CHARSET);
 	$str = htmlentities($str, ENT_FLAGS, LOCAL_CHARSET);
 	foreach (array_reverse($tags, true) as $taglist) {
 		$str = strtr($str, $taglist);
