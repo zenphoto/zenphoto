@@ -384,7 +384,7 @@ function db_count($table, $clause = NULL, $field = "*") {
 }
 
 function html_decode($string) {
-	$string = html_entity_decode($string, ENT_QUOTES);
+	$string = html_entity_decode($string, ENT_QUOTES, LOCAL_CHARSET);
 	// Replace numeric entities because html_entity_decode doesn't do it for us.
 	if (function_exists('mb_convert_encoding')) {
 		$string = preg_replace_callback("/(&#[0-9]+;)/", function($m) {
@@ -435,7 +435,7 @@ function html_encodeTagged($original, $allowScript = true) {
 		$tags[2]['%' . $key . '$s'] = $tag;
 		$str = str_replace($tag, '%' . $key . '$s', $str);
 	}
-	$str = html_entity_decode($str, ENT_FLAGS, LOCAL_CHARSET);
+	$str = html_decode($str);
 	$str = htmlentities($str, ENT_FLAGS, LOCAL_CHARSET);
 	foreach (array_reverse($tags, true) as $taglist) {
 		$str = strtr($str, $taglist);
