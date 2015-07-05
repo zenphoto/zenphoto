@@ -644,13 +644,12 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 							}
 							primeMark(gettext('mb_strings'));
 							if (function_exists('mb_internal_encoding')) {
-								@mb_internal_encoding('UTF-8');
-								if (($mbcharset = mb_internal_encoding()) == 'UTF-8') {
+								if (($mbcharset = mb_internal_encoding()) == LOCAL_CHARSET) {
 									$mb = 1;
 								} else {
 									$mb = -1;
 								}
-								$m2 = gettext('Setting <em>mbstring.internal_encoding</em> to <strong>UTF-8</strong> in your <em>php.ini</em> file is recommended to insure accented and multi-byte characters function properly.');
+								$m2 = sprintf(gettext('Setting <em>mbstring.internal_encoding</em> to <strong>%s</strong> in your <em>php.ini</em> file is recommended to insure accented and multi-byte characters function properly.'), LOCAL_CHARSET);
 								checkMark($mb, gettext("PHP <code>mbstring</code> package"), sprintf(gettext('PHP <code>mbstring</code> package [Your internal character set is <strong>%s</strong>]'), $mbcharset), $m2);
 							} else {
 								$test = $_zp_UTF8->convert('test', 'ISO-8859-1', 'UTF-8');
@@ -662,6 +661,12 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 									checkMark(-1, '', gettext("PHP <code>mbstring</code> package [is not present]"), $m2);
 								}
 							}
+							if (($mbcharset = ini_get('default_charset')) == LOCAL_CHARSET) {
+								$mb = 1;
+							} else {
+								$mb = -1;
+							}
+							checkMark($mb, gettext("PHP <code>default_charset</code>"), sprintf(gettext('PHP <code>default_charset</code> [Your default character set is <strong>%s</strong>]'), ini_get('default_charset')), sprintf(gettext('Setting <em>default_charset</em> to <strong>%s</strong> in your <em>php.ini</em> file is recommended to insure accented and multi-byte characters function properly.'), LOCAL_CHARSET));
 
 							if ($environ) {
 								/* Check for graphic library and image type support. */
