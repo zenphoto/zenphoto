@@ -652,7 +652,12 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 								$m2 = sprintf(gettext('Setting <em>mbstring.internal_encoding</em> to <strong>%s</strong> in your <em>php.ini</em> file is recommended to insure accented and multi-byte characters function properly.'), LOCAL_CHARSET);
 								checkMark($mb, gettext("PHP <code>mbstring</code> package"), sprintf(gettext('PHP <code>mbstring</code> package [Your internal character set is <strong>%s</strong>]'), $mbcharset), $m2);
 							} else {
-								$test = $_zp_UTF8->convert('test', 'ISO-8859-1', 'UTF-8');
+								if (LOCAL_CHARSET == 'ISO-8859-1') {
+									$set = 'UTF-8';
+								} else {
+									$set = 'ISO-8859-1';
+								}
+								$test = $_zp_UTF8->convert('test', $set, LOCAL_CHARSET);
 								if (empty($test)) {
 									$m2 = gettext("You need to install the <code>mbstring</code> package or correct the issue with <code>iconv()</code>");
 									checkMark(0, '', gettext("PHP <code>mbstring</code> package [is not present and <code>iconv()</code> is not working]"), $m2);
