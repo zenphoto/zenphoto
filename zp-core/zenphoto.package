@@ -962,14 +962,7 @@ plugins/text_watermark/createwatermark.php
 plugins/text_watermark/text_watermark.htm
 plugins/text_watermark.php
 plugins/zenphotoCompatibilityPack/
-plugins/zenphotoCompatibilityPack/core-deprecated-functions.php
-plugins/zenphotoCompatibilityPack/download-deprecated-functions.php
-plugins/zenphotoCompatibilityPack/favorites-deprecated-functions.php
-plugins/zenphotoCompatibilityPack/jcarosuel--deprecated-functions.php
 plugins/zenphotoCompatibilityPack/legacyConverter.php
-plugins/zenphotoCompatibilityPack/rating-deprecated-functions.php
-plugins/zenphotoCompatibilityPack/slideshow-deprecated-functions.php
-plugins/zenphotoCompatibilityPack/zenpage-deprecated-functions.php
 plugins/zenphotoCompatibilityPack.php
 zp-core
 zp-core/404.php
@@ -2326,4 +2319,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-2328
+2321
