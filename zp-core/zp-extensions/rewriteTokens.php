@@ -5,7 +5,7 @@
  * @author Stephen Billard (sbillard)
  *
  * @package plugins
- * @subpackage admin
+ * @subpackage development
  */
 $plugin_is_filter = defaultExtension(950 | ADMIN_PLUGIN);
 $plugin_description = gettext('Utility to alter the rewrite token substitutions array in the configuration file.');

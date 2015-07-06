@@ -3,7 +3,7 @@
 /*
  * List the site rewrite rules
  *
- * This plugin creates an admin tab that lists the rewrite rules as "active". That is the rules will
+ * This plugin creates an development tab that lists the rewrite rules as "active". That is the rules will
  * have had all definitions replaced with the definition value so that the rule\
  * is shown in the state in which it is applied.
  *
@@ -14,7 +14,7 @@
  */
 
 $plugin_is_filter = 5 | ADMIN_PLUGIN;
-$plugin_description = gettext("Site rewrite rules tab.");
+$plugin_description = gettext("Site rewrite rules subtab.");
 $plugin_author = "Stephen Billard (sbillard)";
 
 zp_register_filter('admin_tabs', 'rewriteRules::tabs');
