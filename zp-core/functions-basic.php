@@ -210,6 +210,7 @@ if (ini_get('memory_limit') && parse_size(ini_get('memory_limit')) < 100663296) 
 }
 
 // Set the internal encoding
+@ini_set('default_charset', LOCAL_CHARSET);
 if (function_exists('mb_internal_encoding')) {
 	@mb_internal_encoding(LOCAL_CHARSET);
 }

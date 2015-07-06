@@ -29,7 +29,7 @@
  * @subpackage development
  */
 
-$plugin_is_filter = 5 | ADMIN_PLUGIN;
+$plugin_is_filter = 10 | ADMIN_PLUGIN;
 $plugin_description = gettext("Debugging aids.");
 $plugin_author = "Stephen Billard (sbillard)";
 $option_interface = 'debug';
@@ -138,21 +138,21 @@ class debug {
 
 	static function tabs($tabs) {
 		if (zp_loggedin(DEBUG_RIGHTS)) {
-			if (!isset($tabs['debug'])) {
-				$tabs['debug'] = array('text'	 => gettext("debug"),
+			if (!isset($tabs['development'])) {
+				$tabs['debug'] = array('text'	 => gettext("development"),
 								'link'	 => WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/debug/admin_tab.php',
 								'rights' => DEBUG_RIGHTS);
 			}
 			if (zp_loggedin(ADMIN_RIGHTS)) {
-				$tabs['debug']['default'] = 'phpinfo';
-				$tabs['debug']['subtabs'][gettext("phpinfo")] = PLUGIN_FOLDER . '/debug/admin_tab.php?page=debug&tab=phpinfo';
-				$tabs['debug']['subtabs'][gettext("Locales")] = PLUGIN_FOLDER . '/debug/admin_tab.php?page=debug&tab=locale';
-				$tabs['debug']['subtabs'][gettext("Session")] = PLUGIN_FOLDER . '/debug/admin_tab.php?page=debug&tab=session';
+				$tabs['development']['default'] = 'phpinfo';
+				$tabs['development']['subtabs'][gettext("phpinfo")] = PLUGIN_FOLDER . '/debug/admin_tab.php?page=debug&tab=phpinfo';
+				$tabs['development']['subtabs'][gettext("Locales")] = PLUGIN_FOLDER . '/debug/admin_tab.php?page=debug&tab=locale';
+				$tabs['development']['subtabs'][gettext("Session")] = PLUGIN_FOLDER . '/debug/admin_tab.php?page=debug&tab=session';
 			} else {
-				$tabs['debug']['default'] = 'cookie';
+				$tabs['development']['default'] = 'cookie';
 			}
-			$tabs['debug']['subtabs'][gettext("HTTP accept")] = PLUGIN_FOLDER . '/debug/admin_tab.php?page=debug&tab=http';
-			$tabs['debug']['subtabs'][gettext("Cookies")] = PLUGIN_FOLDER . '/debug/admin_tab.php?page=debug&tab=cookie';
+			$tabs['development']['subtabs'][gettext("HTTP accept")] = PLUGIN_FOLDER . '/debug/admin_tab.php?page=debug&tab=http';
+			$tabs['development']['subtabs'][gettext("Cookies")] = PLUGIN_FOLDER . '/debug/admin_tab.php?page=debug&tab=cookie';
 		}
 		return $tabs;
 	}
