@@ -139,7 +139,7 @@ class debug {
 	static function tabs($tabs) {
 		if (zp_loggedin(DEBUG_RIGHTS)) {
 			if (!isset($tabs['development'])) {
-				$tabs['debug'] = array('text'	 => gettext("development"),
+				$tabs['development'] = array('text'	 => gettext("development"),
 								'link'	 => WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/debug/admin_tab.php',
 								'rights' => DEBUG_RIGHTS);
 			}
