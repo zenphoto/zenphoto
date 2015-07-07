@@ -2211,13 +2211,16 @@ Zenphoto_Authority::printPasswordFormJS();
 								<tr>
 									<td><?php echo gettext("Caching concurrency:"); ?></td>
 									<td>
-										<div id="slider-workers"></div>
-										<input type="hidden" id="cache-workers" name="imageProcessorConcurrency" value="<?php echo getOption('imageProcessorConcurrency'); ?>" />
+										<p>
+											<?php echo gettext('Limit'); ?>
+											<input id = "cache-workers" name = "imageProcessorConcurrency" value = "<?php echo getOption('imageProcessorConcurrency'); ?>" size = "2" />
+										</p>
+										<div id = "slider-workers"></div>
+
 									</td>
 									<td>
 										<?php
-										printf(gettext('Cache processing worker limit: %s.'), '<span id="cache_processes">' . getOption('imageProcessorConcurrency') . '</span>') .
-														'<p class="notebox">' . gettext('More workers will get the job done faster so long as your server does not get swamped or run out of memory.') . '</p>';
+										echo gettext('Cache processing worker limit.') . '<p class="notebox">' . gettext('More workers will get the job done faster so long as your server does not get swamped or run out of memory.') . '</p>';
 										?>
 									</td>
 								</tr>
