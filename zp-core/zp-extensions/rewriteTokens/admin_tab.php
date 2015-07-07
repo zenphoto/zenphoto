@@ -3,7 +3,7 @@
  * This is the "tokens" upload tab
  *
  * @package plugins
- * @subpackage admin
+ * @subpackage development
  */
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions.php');

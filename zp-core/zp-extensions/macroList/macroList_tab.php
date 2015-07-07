@@ -3,7 +3,7 @@
  * This is the "files" upload tab
  *
  * @package plugins
- * @subpackage admin
+ * @subpackage development
  */
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 admin_securityChecks(NULL, $return = currentRelativeURL());
