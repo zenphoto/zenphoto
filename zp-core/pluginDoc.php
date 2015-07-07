@@ -49,7 +49,6 @@ if (!defined('OFFSET_PATH')) {
 	} else {
 		$pluginToBeDocPath = SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/' . $extension . '.php';
 	}
-
 	$plugin_description = '';
 	$plugin_notice = '';
 	$plugin_disable = '';
@@ -60,7 +59,7 @@ if (!defined('OFFSET_PATH')) {
 	$option_interface = '';
 	$doclink = '';
 
-	@require_once($pluginToBeDocPath);
+	require_once($pluginToBeDocPath);
 
 	$macro_params = array($plugin_description, $plugin_notice, $plugin_disable, $plugin_author, $plugin_version, $plugin_is_filter, $plugin_URL, $option_interface, $doclink);
 
@@ -87,6 +86,7 @@ if (!defined('OFFSET_PATH')) {
 	$i = strpos($pluginStream, '/*');
 	$j = strpos($pluginStream, '*/');
 	$links = array();
+
 	if ($i !== false && $j !== false) {
 		$commentBlock = substr($pluginStream, $i + 2, $j - $i - 2);
 		$sublink = $subpackage = false;
@@ -190,17 +190,16 @@ if (!defined('OFFSET_PATH')) {
 					dt,dd {
 						vertical-align: top;
 						display: inline-block;
-						width: 35%;
+						width: 90%;
 						margin: 0;
-						padding: 5px;
 					}
 
 					dt {
 						font-weight: bold;
 					}
 					dd {
-						width: 60%;
-						margin-left: -10px;
+						width: 90%;
+						margin-left: 3em;
 					}
 
 
@@ -397,6 +396,7 @@ if (!defined('OFFSET_PATH')) {
 								if (!empty($content_macros)) {
 									echo ngettext('Macro defined:', 'Macros defined:', count($content_macros));
 									foreach ($content_macros as $macro => $detail) {
+										unset($detail['owner']);
 										macroList_show($macro, $detail);
 									}
 									?>

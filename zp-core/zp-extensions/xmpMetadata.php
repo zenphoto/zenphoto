@@ -55,7 +55,7 @@ require_once(dirname(dirname(__FILE__)) . '/exif/exif.php');
 
 define('XMP_EXTENSION', strtolower(getOption('xmpMetadata_suffix')));
 
-if (OFFSET_PATH) {
+if (OFFSET_PATH && OFFSET_PATH != 2) {
 	zpFunctions::exifOptions('XMP Metadata', (extensionEnabled('xmpMetadata')) ? 0 : 2, xmpMetadata::getMetadataFields());
 }
 

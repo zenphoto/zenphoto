@@ -159,7 +159,7 @@ function macroList_show($macro, $detail) {
 			$params .= "<em>}</em>";
 		echo $params;
 	}
-	echo ']</code> <em>(' . @$detail['owner'] . ')</em></dt><dd class="top">' . $detail['desc'] . '</dd>';
+	echo ']</code> <em>' . @$detail['owner'] . '</em></dt><dd class="top">' . $detail['desc'] . '</dd>';
 	if (count($warn)) {
 		echo '<div class="notebox"><strong>Warning:</strong>';
 		foreach ($warn as $warning) {

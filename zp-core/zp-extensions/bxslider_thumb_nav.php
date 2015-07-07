@@ -34,8 +34,10 @@ class bxslider {
 			setOptionDefault('bxslider_speed', '500');
 			setOptionDefault('bxslider_fullimagelink', '');
 			setOptionDefault('bxslider_mode', 'horizontal');
-			cacheManager::deleteThemeCacheSizes('bxslider_thumb_nav');
-			cacheManager::addThemeCacheSize('bxslider_thumb_nav', NULL, getOption('bxslider_width'), getOption('bxslider_height'), getOption('bxslider_cropw'), getOption('bxslider_croph'), NULL, NULL, true, NULL, NULL, NULL);
+			if (class_exists('cacheManager')) {
+				cacheManager::deleteThemeCacheSizes('bxslider_thumb_nav');
+				cacheManager::addThemeCacheSize('bxslider_thumb_nav', NULL, getOption('bxslider_width'), getOption('bxslider_height'), getOption('bxslider_cropw'), getOption('bxslider_croph'), NULL, NULL, true, NULL, NULL, NULL);
+			}
 		}
 	}
 
