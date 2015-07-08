@@ -30,8 +30,10 @@ class jcarousel {
 			setOptionDefault('jcarousel_cropw', '50');
 			setOptionDefault('jcarousel_fullimagelink', '');
 			setOptionDefault('jcarousel_vertical', 0);
-			cacheManager::deleteThemeCacheSizes('jcarousel_thumb_nav');
-			cacheManager::addThemeCacheSize('jcarousel_thumb_nav', NULL, getOption('jcarousel_width'), getOption('jcarousel_height'), getOption('jcarousel_cropw'), getOption('jcarousel_croph'), NULL, NULL, true, NULL, NULL, NULL);
+			if (class_exists('cacheManager')) {
+				cacheManager::deleteThemeCacheSizes('jcarousel_thumb_nav');
+				cacheManager::addThemeCacheSize('jcarousel_thumb_nav', NULL, getOption('jcarousel_width'), getOption('jcarousel_height'), getOption('jcarousel_cropw'), getOption('jcarousel_croph'), NULL, NULL, true, NULL, NULL, NULL);
+			}
 		}
 	}
 

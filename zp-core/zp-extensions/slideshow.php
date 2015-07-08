@@ -75,8 +75,10 @@ class slideshow {
 			// incase the flowplayer has not been enabled!!!
 			setOptionDefault('slideshow_colorbox_imagetype', 'sizedimage');
 			setOptionDefault('slideshow_colorbox_imagetitle', 1);
-			cacheManager::deleteThemeCacheSizes('slideshow');
-			cacheManager::addThemeCacheSize('slideshow', NULL, getOption('slideshow_width'), getOption('slideshow_height'), NULL, NULL, NULL, NULL, NULL, NULL, NULL, true);
+			if (class_exists('cacheManager')) {
+				cacheManager::deleteThemeCacheSizes('slideshow');
+				cacheManager::addThemeCacheSize('slideshow', NULL, getOption('slideshow_width'), getOption('slideshow_height'), NULL, NULL, NULL, NULL, NULL, NULL, NULL, true);
+			}
 		}
 	}
 
@@ -578,7 +580,7 @@ if (extensionEnabled('slideshow')) {
 					$count = '';
 					?>
 					<script type="text/javascript">
-						$(document).ready(function() {
+						$(document).ready(function () {
 							$("a[rel='slideshow']").colorbox({
 								slideshow: true,
 								loop: true,

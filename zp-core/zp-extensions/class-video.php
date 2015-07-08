@@ -28,7 +28,7 @@ $option_interface = 'VideoObject_Options';
 define('GETID3_INCLUDEPATH', SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/class-video/getid3/');
 require_once(dirname(__FILE__) . '/class-video/getid3/getid3.php');
 
-if (OFFSET_PATH) {
+if (OFFSET_PATH & OFFSET_PATH != 2) {
 	zpFunctions::exifOptions('Video Metadata', (extensionEnabled('class-video')) ? 0 : 2, Video::getMetadataFields());
 }
 

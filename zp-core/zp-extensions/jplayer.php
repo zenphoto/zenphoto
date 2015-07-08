@@ -107,8 +107,10 @@ class jplayer_options {
 			setOptionDefault('jplayer_counterparts', 0);
 			/* TODO: what are these sizes?
 			  $player = new jPlayer();
+			 * if (class_exists('cacheManager')) {
 			  cacheManager::deleteThemeCacheSizes('jplayer');
 			  cacheManager::addThemeCacheSize('jplayer', NULL, $player->width, $player->height, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+			 * }
 			 */
 		}
 	}

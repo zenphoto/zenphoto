@@ -591,6 +591,8 @@ function getAllTranslations($text) {
 	$entry_locale = getUserLocale();
 	$result = array('en_US' => $text);
 	$languages = generateLanguageList();
+	$key = array_search('en_US', $languages);
+	unset($languages[$key]);
 	foreach ($languages as $language) {
 		setupCurrentLocale($language);
 		$xlated = gettext($text);
@@ -599,9 +601,6 @@ function getAllTranslations($text) {
 		}
 	}
 	setupCurrentLocale($entry_locale);
-	if (count($result) == 1) {
-		return $text;
-	}
 	return serialize($result);
 }
 

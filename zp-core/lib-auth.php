@@ -221,7 +221,7 @@ class _Authority {
 			}
 		}
 		$sql = 'SELECT * FROM ' . prefix('administrators') . ' WHERE ' . implode(' AND ', $selector) . ' LIMIT 1';
-		$admin = query_single_row($sql, false);
+		$admin = query_single_row($sql);
 		if ($admin) {
 			return self::newAdministrator($admin['user'], $admin['valid']);
 		} else {
@@ -244,7 +244,6 @@ class _Authority {
 			debugLogBacktrace("checkAuthorization($authCode, $id)");
 		}
 
-
 		$admins = $this->getAdministrators();
 		if (count($admins) == 0) {
 			if (DEBUG_LOGIN) {
@@ -262,18 +261,14 @@ class _Authority {
 			return $_zp_current_admin_obj->getRights();
 		}
 
-
 		$_zp_current_admin_obj = NULL;
-		if (empty($authCode))
+		if (empty($authCode) || empty($id))
 			return 0; //  so we don't "match" with an empty password
 		if (DEBUG_LOGIN) {
 			debugLogVar("checkAuthorization: admins", $admins);
 		}
 		$rights = 0;
-		$criteria = array('`pass`=' => $authCode, '`valid`=' => 1);
-		if (!empty($id)) {
-			$criteria['`id`='] = $id;
-		}
+		$criteria = array('`pass`=' => $authCode, '`id`=' => (int) $id, '`valid`=' => 1);
 		$user = self::getAnAdmin($criteria);
 		if (is_object($user)) {
 			$_zp_current_admin_obj = $user;
