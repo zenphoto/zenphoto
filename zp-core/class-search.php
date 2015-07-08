@@ -1639,7 +1639,7 @@ class SearchEngine {
 			} else {
 				$search_result = query($search_query);
 			}
-			$albums_seen = $result = array();
+			$albums_seen = $images = $result = array();
 			if ($search_result) {
 				while ($row = db_fetch_assoc($search_result)) {
 					$albumid = $row['albumid'];
@@ -1675,16 +1675,16 @@ class SearchEngine {
 					}
 				}
 				db_free_result($search_result);
-				$result = self::sortResults($sorttype, $sortdirection, $result, isset($weights));
+				$images = self::sortResults($sorttype, $sortdirection, $result, isset($weights));
 			}
 
 			if (empty($searchdate)) {
-				zp_apply_filter('search_statistics', $searchstring, 'images', !empty($result), $this->dynalbumname, $this->iteration++);
+				zp_apply_filter('search_statistics', $searchstring, 'images', !empty($images), $this->dynalbumname, $this->iteration++);
 			}
-			$this->cacheSearch($criteria, $result);
+			$this->cacheSearch($criteria, $images);
 		}
 		$this->searches['images'] = $criteria;
-		return $result;
+		return $images;
 	}
 
 	/**
