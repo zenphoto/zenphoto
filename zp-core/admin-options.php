@@ -2909,22 +2909,24 @@ Zenphoto_Authority::printPasswordFormJS();
 					$_zp_plugin_count = 0;
 
 					$plugins = array();
+					$list = array_keys(getEnabledPlugins());
+					natcasesort($list);
+					foreach ($list as $extension) {
+						$option_interface = NULL;
+						$path = getPlugin($extension . '.php');
+						$pluginStream = file_get_contents($path);
+						$str = isolate('$option_interface', $pluginStream);
+						if (false !== $str) {
+							$plugins[] = $extension;
+						}
+					}
+
 					if (isset($_GET['single'])) {
 						$single = sanitize($_GET['single']);
+						$list = $plugins;
 						$plugins = array($showExtension);
 					} else {
 						$single = false;
-						$list = array_keys(getEnabledPlugins());
-						foreach ($list as $extension) {
-							$option_interface = NULL;
-							$path = getPlugin($extension . '.php');
-							$pluginStream = file_get_contents($path);
-							$str = isolate('$option_interface', $pluginStream);
-							if (false !== $str) {
-								$plugins[] = $extension;
-							}
-						}
-						natcasesort($plugins);
 					}
 					$rangeset = getPageSelector($plugins, PLUGINS_PER_PAGE);
 					$plugins = array_slice($plugins, $subpage * PLUGINS_PER_PAGE, PLUGINS_PER_PAGE);
@@ -3046,6 +3048,27 @@ Zenphoto_Authority::printPasswordFormJS();
 														if (count($supportedOptions) > 0) {
 															customOptions($option_interface, '', NULL, false, $supportedOptions, NULL, NULL, $extension);
 														}
+														$key = array_search($extension, $list);
+														if ($key > 0) {
+															$prev = $list[$key - 1];
+														} else {
+															$prev = NULL;
+														}
+														if ($key >= count($list)) {
+															$next = NULL;
+														} else {
+															$next = $list[$key + 1];
+														}
+														?>
+														<tr>
+															<th colspan="3" style="padding-left:3em; padding-right: 3em;">
+																<a href="?page=options&tab=plugin&single=<?php echo $prev; ?>"><?php echo $prev; ?></a>
+																<span class="floatright" >
+																	<a href="?page=options&tab=plugin&single=<?php echo $next; ?>"><?php echo $next; ?></a>
+																</span>
+															</th>
+														</tr>
+														<?php
 													}
 													?>
 												</table>
