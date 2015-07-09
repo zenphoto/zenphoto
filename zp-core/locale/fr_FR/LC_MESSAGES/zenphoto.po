@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: zenphoto 1.4.9\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-06-01 20:33-0500\n"
-"PO-Revision-Date: 2015-06-01 20:44-0500\n"
+"PO-Revision-Date: 2015-07-08 22:09-0400\n"
 "Last-Translator: \n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon & Vincent Bourganel <michel@mgagnon.net>\n"
 "Language: fr_FR\n"
@@ -11,10 +11,10 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-Basepath: ..\\..\\..\\..\\\n"
+"X-Poedit-Basepath: ../../../..\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Poedit-Bookmarks: 1740,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
-"X-Generator: Poedit 1.8.1\n"
+"X-Generator: Poedit 1.8.2\n"
 "X-Poedit-SearchPath-0: .\n"
 
 #: themes/basic/404.php:22 themes/basic/archive.php:29 themes/basic/contact.php:23 themes/basic/password.php:23 themes/basic/register.php:23 themes/garland/404.php:22
@@ -13690,19 +13690,19 @@ msgstr "Si vous autorisez les meta tags Twitter, vous devez entrer votre identif
 
 #: zp-core/zp-extensions/html_meta_tags.php:95
 msgid "Open graph image - width"
-msgstr ""
+msgstr "Image Open Graph – largeur"
 
 #: zp-core/zp-extensions/html_meta_tags.php:96
 msgid "Max width of the open graph image used for sharing to social networks if enabled."
-msgstr ""
+msgstr "Largeur maximale de l’image Open Graph utilisée pour le partage sur les réseaux sociaux (si activée)."
 
 #: zp-core/zp-extensions/html_meta_tags.php:97
 msgid "Open graph image - height"
-msgstr ""
+msgstr "Image Open Graph – hauteur"
 
 #: zp-core/zp-extensions/html_meta_tags.php:98
 msgid "Max height of the open graph image used for sharing to social networks if enabled."
-msgstr ""
+msgstr "Hauteur maximale de l’image Open Graph utilisée pour le partage sur les réseaux sociaux (si activée)."
 
 #: zp-core/zp-extensions/html_meta_tags.php:99
 msgid "HTML meta tags"
