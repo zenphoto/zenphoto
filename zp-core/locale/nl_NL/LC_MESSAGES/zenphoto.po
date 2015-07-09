@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.4.9\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-01 11:30+0100\n"
+"POT-Creation-Date: 2015-07-09 10:04+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: fretzl\n"
 "Language-Team: \n"
@@ -21,26 +21,8 @@ msgstr ""
 "js\n"
 "X-Poedit-SearchPathExcluded-1: plugins\n"
 
-#: themes/basic/404.php:22 themes/basic/archive.php:29
-#: themes/basic/contact.php:23 themes/basic/password.php:23
-#: themes/basic/register.php:23 themes/garland/404.php:22
-#: themes/garland/404.php:40 themes/garland/album.php:28
-#: themes/garland/album.php:45 themes/garland/archive.php:22
-#: themes/garland/archive.php:41 themes/garland/contact.php:22
-#: themes/garland/contact.php:41 themes/garland/favorites.php:24
-#: themes/garland/favorites.php:41 themes/garland/gallery.php:22
-#: themes/garland/gallery.php:37 themes/garland/image.php:48
-#: themes/garland/image.php:67 themes/garland/main.php:22
-#: themes/garland/news.php:23 themes/garland/news.php:42
-#: themes/garland/pages.php:23 themes/garland/pages.php:45
-#: themes/garland/password.php:22 themes/garland/password.php:39
-#: themes/garland/register.php:23 themes/garland/register.php:41
-#: themes/garland/search.php:65 themes/garland/search.php:83
-msgid "Gallery Index"
-msgstr "Galerij Index"
-
-#: themes/basic/404.php:23 themes/zenpage/404.php:27
-#: themes/zpmobile/404.php:26 zp-core/template-functions.php:445
+#: themes/basic/404.php:22 themes/zpmobile/404.php:26
+#: zp-core/template-functions.php:445
 msgid "Object not found"
 msgstr "Object niet gevonden"
 
@@ -52,8 +34,8 @@ msgstr "Zoek in het album"
 
 #: themes/basic/album.php:24 themes/effervescence_plus/slideshow.php:55
 #: themes/zenpage/album.php:26 themes/zpmobile/functions.php:67
-#: zp-core/template-functions.php:449 zp-core/template-functions.php:1289
-#: zp-core/template-functions.php:1320 zp-core/template-functions.php:3833
+#: zp-core/template-functions.php:449 zp-core/template-functions.php:1354
+#: zp-core/template-functions.php:1385 zp-core/template-functions.php:3898
 #: zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:68
 #: zp-core/zp-extensions/html_meta_tags.php:243
 #: zp-core/zp-extensions/slideshow.php:747
@@ -61,54 +43,34 @@ msgstr "Zoek in het album"
 msgid "Search"
 msgstr "Zoeken"
 
-#: themes/basic/album.php:30 themes/basic/favorites.php:23
-#: themes/basic/image.php:56 themes/effervescence_plus/404.php:39
-#: themes/effervescence_plus/album.php:74
-#: themes/effervescence_plus/album.php:78
-#: themes/effervescence_plus/archive.php:38
-#: themes/effervescence_plus/contact.php:47
-#: themes/effervescence_plus/favorites.php:75
-#: themes/effervescence_plus/image.php:92
-#: themes/effervescence_plus/image.php:96
-#: themes/effervescence_plus/indexpage.php:76
-#: themes/effervescence_plus/indexpage.php:89
-#: themes/effervescence_plus/news.php:50
-#: themes/effervescence_plus/pages.php:40
-#: themes/effervescence_plus/register.php:46
-#: themes/effervescence_plus/search.php:109
-#: themes/effervescence_plus/slideshow.php:35
-#: themes/effervescence_plus/slideshow.php:39
-msgid "Albums Index"
-msgstr "Albumindex"
-
-#: themes/basic/album.php:42 themes/basic/album.php:45
-#: themes/basic/favorites.php:35 themes/basic/favorites.php:38
+#: themes/basic/album.php:40 themes/basic/album.php:43
+#: themes/basic/favorites.php:33 themes/basic/favorites.php:36
 #: themes/basic/index.php:37 themes/basic/index.php:40
-#: themes/basic/search.php:56 themes/basic/search.php:59
+#: themes/basic/search.php:55 themes/basic/search.php:58
 #: themes/zenpage/album.php:46 themes/zenpage/album.php:49
 #: themes/zenpage/favorites.php:45 themes/zenpage/favorites.php:48
-#: themes/zenpage/gallery.php:47 themes/zenpage/gallery.php:50
+#: themes/zenpage/gallery.php:46 themes/zenpage/gallery.php:49
 #: themes/zenpage/search.php:146 themes/zenpage/search.php:149
 #: themes/zpmobile/album.php:33 themes/zpmobile/favorites.php:34
 #: themes/zpmobile/gallery.php:31 themes/zpmobile/search.php:139
 msgid "View album:"
 msgstr "Bekijk album:"
 
-#: themes/basic/album.php:67 themes/basic/favorites.php:66
+#: themes/basic/album.php:65 themes/basic/favorites.php:64
 #: themes/basic/image.php:44 themes/basic/index.php:49
-#: themes/basic/search.php:87 themes/effervescence_plus/album.php:32
+#: themes/basic/search.php:86 themes/effervescence_plus/album.php:32
 #: themes/effervescence_plus/album.php:35
-#: themes/effervescence_plus/album.php:176
+#: themes/effervescence_plus/album.php:164
 #: themes/effervescence_plus/favorites.php:31
 #: themes/effervescence_plus/favorites.php:34
-#: themes/effervescence_plus/favorites.php:209
-#: themes/effervescence_plus/gallery.php:94
+#: themes/effervescence_plus/favorites.php:197
+#: themes/effervescence_plus/gallery.php:85
 #: themes/effervescence_plus/image.php:59
 #: themes/effervescence_plus/image.php:61
-#: themes/effervescence_plus/search.php:305 themes/zenpage/album.php:41
+#: themes/effervescence_plus/search.php:293 themes/zenpage/album.php:41
 #: themes/zenpage/album.php:74 themes/zenpage/favorites.php:40
-#: themes/zenpage/favorites.php:72 themes/zenpage/gallery.php:42
-#: themes/zenpage/gallery.php:58 themes/zenpage/image.php:43
+#: themes/zenpage/favorites.php:72 themes/zenpage/gallery.php:41
+#: themes/zenpage/gallery.php:57 themes/zenpage/image.php:43
 #: themes/zenpage/search.php:173 themes/zpmobile/album.php:29
 #: themes/zpmobile/album.php:70 themes/zpmobile/favorites.php:30
 #: themes/zpmobile/favorites.php:57 themes/zpmobile/gallery.php:27
@@ -122,21 +84,21 @@ msgstr "Bekijk album:"
 msgid "prev"
 msgstr "vorige"
 
-#: themes/basic/album.php:67 themes/basic/favorites.php:66
+#: themes/basic/album.php:65 themes/basic/favorites.php:64
 #: themes/basic/image.php:48 themes/basic/index.php:49
-#: themes/basic/search.php:87 themes/effervescence_plus/album.php:43
+#: themes/basic/search.php:86 themes/effervescence_plus/album.php:43
 #: themes/effervescence_plus/album.php:46
-#: themes/effervescence_plus/album.php:176
+#: themes/effervescence_plus/album.php:164
 #: themes/effervescence_plus/favorites.php:42
 #: themes/effervescence_plus/favorites.php:45
-#: themes/effervescence_plus/favorites.php:209
-#: themes/effervescence_plus/gallery.php:94
+#: themes/effervescence_plus/favorites.php:197
+#: themes/effervescence_plus/gallery.php:85
 #: themes/effervescence_plus/image.php:69
 #: themes/effervescence_plus/image.php:71
-#: themes/effervescence_plus/search.php:305 themes/zenpage/album.php:41
+#: themes/effervescence_plus/search.php:293 themes/zenpage/album.php:41
 #: themes/zenpage/album.php:74 themes/zenpage/favorites.php:40
-#: themes/zenpage/favorites.php:72 themes/zenpage/gallery.php:42
-#: themes/zenpage/gallery.php:58 themes/zenpage/image.php:45
+#: themes/zenpage/favorites.php:72 themes/zenpage/gallery.php:41
+#: themes/zenpage/gallery.php:57 themes/zenpage/image.php:45
 #: themes/zenpage/search.php:173 themes/zpmobile/album.php:29
 #: themes/zpmobile/album.php:70 themes/zpmobile/favorites.php:30
 #: themes/zpmobile/favorites.php:57 themes/zpmobile/gallery.php:27
@@ -151,22 +113,22 @@ msgstr "vorige"
 msgid "next"
 msgstr "volgende"
 
-#: themes/basic/album.php:69 themes/basic/image.php:110
+#: themes/basic/album.php:67 themes/basic/image.php:108
 #: themes/zenpage/album.php:75 themes/zenpage/favorites.php:73
-#: themes/zenpage/gallery.php:82 themes/zenpage/image.php:102
-#: themes/zenpage/news.php:71 themes/zenpage/news.php:108
+#: themes/zenpage/gallery.php:81 themes/zenpage/image.php:102
+#: themes/zenpage/news.php:72 themes/zenpage/news.php:109
 #: themes/zenpage/pages.php:50 themes/zpmobile/news.php:44
 #: themes/zpmobile/pages.php:57
 msgid "<strong>Tags:</strong>"
 msgstr "<strong>Tags:</strong>"
 
-#: themes/basic/album.php:84 themes/zenpage/sidebar.php:83
+#: themes/basic/album.php:82 themes/zenpage/sidebar.php:83
 msgid "Album RSS"
 msgstr "Album RSS"
 
-#: themes/basic/album.php:85 themes/basic/archive.php:31
-#: themes/basic/image.php:129 themes/basic/index.php:60
-#: themes/basic/search.php:98 themes/effervescence_plus/archive.php:42
+#: themes/basic/album.php:83 themes/basic/archive.php:30
+#: themes/basic/image.php:127 themes/basic/index.php:60
+#: themes/basic/search.php:97 themes/effervescence_plus/archive.php:30
 #: themes/garland/archive.php:41 themes/garland/functions.php:122
 #: themes/zenpage/archive.php:31
 msgid "Archive View"
@@ -174,7 +136,7 @@ msgstr "Archief"
 
 #: themes/basic/archive.php:15 themes/basic/image.php:34
 #: themes/basic/index.php:15 themes/basic/search.php:14
-#: themes/basic/search.php:97 themes/garland/404.php:12
+#: themes/basic/search.php:96 themes/garland/404.php:12
 #: themes/garland/archive.php:12 themes/garland/gallery.php:12
 #: themes/garland/image.php:38 themes/garland/main.php:12
 #: themes/garland/pages.php:13 themes/garland/password.php:12
@@ -184,26 +146,26 @@ msgstr "Archief"
 msgid "Gallery RSS"
 msgstr "Galerij RSS"
 
-#: themes/basic/archive.php:37 themes/effervescence_plus/archive.php:74
-#: themes/zenpage/archive.php:47 themes/zpmobile/archive.php:38
+#: themes/basic/archive.php:36 themes/effervescence_plus/archive.php:62
+#: themes/zenpage/archive.php:46 themes/zpmobile/archive.php:38
 msgid "Popular Tags"
 msgstr "Populaire tags"
 
-#: themes/basic/contact.php:24 themes/basic/index.php:63
-#: themes/effervescence_plus/functions.php:407 themes/garland/contact.php:42
-#: themes/garland/functions.php:128 themes/zenpage/contact.php:34
+#: themes/basic/contact.php:23 themes/basic/index.php:63
+#: themes/effervescence_plus/functions.php:407 themes/garland/contact.php:43
+#: themes/garland/functions.php:128 themes/zenpage/contact.php:33
 #: themes/zenpage/sidebar.php:110 themes/zenpage/sidebar.php:112
 msgid "Contact us"
 msgstr "Contact"
 
-#: themes/basic/contact.php:27 themes/effervescence_plus/contact.php:63
+#: themes/basic/contact.php:26 themes/effervescence_plus/contact.php:52
 msgid "Contact us."
 msgstr "Contact"
 
-#: themes/basic/favorites.php:41 themes/basic/favorites.php:56
-#: themes/effervescence_plus/favorites.php:124
-#: themes/effervescence_plus/favorites.php:176 themes/garland/favorites.php:61
-#: themes/garland/favorites.php:79 themes/zenpage/favorites.php:52
+#: themes/basic/favorites.php:39 themes/basic/favorites.php:54
+#: themes/effervescence_plus/favorites.php:112
+#: themes/effervescence_plus/favorites.php:164 themes/garland/favorites.php:62
+#: themes/garland/favorites.php:80 themes/zenpage/favorites.php:52
 #: themes/zenpage/favorites.php:63 themes/zpmobile/favorites.php:40
 #: themes/zpmobile/favorites.php:52
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:199
@@ -245,7 +207,7 @@ msgstr "Vorige afbeelding"
 msgid "Next Image"
 msgstr "Volgende afbeelding"
 
-#: themes/basic/index.php:68 themes/basic/password.php:36
+#: themes/basic/index.php:68 themes/basic/password.php:35
 #: themes/effervescence_plus/functions.php:413
 #: themes/garland/functions.php:134 themes/zenpage/password.php:38
 #: themes/zenpage/sidebar.php:129 themes/zenpage/sidebar.php:131
@@ -253,35 +215,35 @@ msgstr "Volgende afbeelding"
 msgid "Register for this site"
 msgstr "Registreer je voor deze site."
 
-#: themes/basic/password.php:25 themes/effervescence_plus/password.php:32
+#: themes/basic/password.php:24 themes/effervescence_plus/password.php:30
 #: themes/zenpage/password.php:27 themes/zpmobile/password.php:26
 msgid "A password is required for the page you requested"
 msgstr "Een wachtwoord is nodig om de opgevraagde pagina te bekijken."
 
-#: themes/basic/register.php:24 themes/effervescence_plus/register.php:52
-#: themes/garland/register.php:42 zp-core/template-functions.php:449
+#: themes/basic/register.php:23 themes/effervescence_plus/register.php:40
+#: themes/garland/register.php:43 zp-core/template-functions.php:449
 #: zp-core/zp-extensions/html_meta_tags.php:243
 #: zp-core/zp-extensions/register_user.php:55
 msgid "Register"
 msgstr "Registreren"
 
-#: themes/basic/register.php:27 themes/effervescence_plus/register.php:63
-#: themes/garland/register.php:44 themes/zenpage/register.php:34
+#: themes/basic/register.php:26 themes/effervescence_plus/register.php:51
+#: themes/garland/register.php:45 themes/zenpage/register.php:33
 #: themes/zpmobile/register.php:27
 msgid "User Registration"
 msgstr "Gebruikers registratiepagina"
 
-#: themes/basic/search.php:45
+#: themes/basic/search.php:44
 #, php-format
 msgid "Total matches for <em>%1$s</em>: %2$u"
 msgstr "Totaal aantal resultaten voor <em>%1$s</em>: %2$u"
 
-#: themes/basic/search.php:61 zp-core/admin-edit.php:1313
+#: themes/basic/search.php:60 zp-core/admin-edit.php:1313
 #: zp-core/admin-functions.php:1372
 msgid "Date:"
 msgstr "Datum:"
 
-#: themes/basic/search.php:85
+#: themes/basic/search.php:84
 msgid "Sorry, no image matches found. Try refining your search."
 msgstr "Sorry, geen foto’s gevonden. Probeer de zoekopdracht te herformuleren."
 
@@ -326,58 +288,26 @@ msgstr "Themakleuren"
 msgid "Select the colors of the theme"
 msgstr "Selecteer de kleuren van het thema."
 
-#: themes/effervescence_plus/404.php:35 themes/effervescence_plus/album.php:73
-#: themes/effervescence_plus/archive.php:34
-#: themes/effervescence_plus/contact.php:43
-#: themes/effervescence_plus/favorites.php:71
-#: themes/effervescence_plus/gallery.php:46
-#: themes/effervescence_plus/image.php:91
-#: themes/effervescence_plus/news.php:46
-#: themes/effervescence_plus/pages.php:36
-#: themes/effervescence_plus/register.php:42
-#: themes/effervescence_plus/search.php:105
-#: themes/effervescence_plus/slideshow.php:34
-msgid "Main Index"
-msgstr "Hoofdindex"
-
-#: themes/effervescence_plus/404.php:35 themes/effervescence_plus/album.php:73
-#: themes/effervescence_plus/archive.php:34
-#: themes/effervescence_plus/contact.php:43
-#: themes/effervescence_plus/favorites.php:71
-#: themes/effervescence_plus/gallery.php:46
-#: themes/effervescence_plus/image.php:91
-#: themes/effervescence_plus/indexpage.php:43
-#: themes/effervescence_plus/news.php:46
-#: themes/effervescence_plus/pages.php:36
-#: themes/effervescence_plus/register.php:42
-#: themes/effervescence_plus/search.php:105
-#: themes/effervescence_plus/slideshow.php:34 themes/zpmobile/functions.php:65
-#: zp-core/template-functions.php:1423
-#: zp-core/zp-extensions/menu_manager.php:826
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:463
-msgid "Home"
-msgstr "Home"
-
-#: themes/effervescence_plus/404.php:45 themes/garland/404.php:41
-#: themes/garland/404.php:43
+#: themes/effervescence_plus/404.php:33 themes/garland/404.php:44
+#: themes/garland/404.php:46
 msgid "Page not found"
 msgstr "Pagina niet gevonden"
 
-#: themes/effervescence_plus/album.php:157
-#: themes/effervescence_plus/favorites.php:197
+#: themes/effervescence_plus/album.php:145
+#: themes/effervescence_plus/favorites.php:185
 msgid "Album is empty"
 msgstr "Album is leeg"
 
-#: themes/effervescence_plus/archive.php:64 themes/garland/archive.php:45
+#: themes/effervescence_plus/archive.php:52 themes/garland/archive.php:45
 msgid "Images By Date"
 msgstr "Foto’s op datum"
 
-#: themes/effervescence_plus/archive.php:69 themes/garland/archive.php:50
-#: themes/zenpage/archive.php:42 themes/zpmobile/archive.php:33
+#: themes/effervescence_plus/archive.php:57 themes/garland/archive.php:50
+#: themes/zenpage/archive.php:41 themes/zpmobile/archive.php:33
 msgid "News archive"
 msgstr "Nieuwsarchief"
 
-#: themes/effervescence_plus/contact.php:53 zp-core/functions.php:2588
+#: themes/effervescence_plus/contact.php:42 zp-core/functions.php:2589
 #: zp-core/template-functions.php:449
 #: zp-core/zp-extensions/html_meta_tags.php:243
 msgid "Contact"
@@ -466,7 +396,7 @@ msgid "Effervescence %1$s %2$s"
 msgstr "Effervescence %1$s %2$s"
 
 #: themes/effervescence_plus/functions.php:323
-#: zp-core/template-functions.php:1108
+#: zp-core/template-functions.php:1173
 msgid "The album is password protected."
 msgstr "Dit is album is beveiligd met een wachtwoord."
 
@@ -536,7 +466,7 @@ msgstr "album"
 #: themes/effervescence_plus/functions.php:426
 #: themes/garland/functions.php:149 zp-core/admin-edit.php:1359
 #: zp-core/admin-globals.php:110 zp-core/admin-options.php:2734
-#: zp-core/zp-extensions/image_album_statistics.php:263
+#: zp-core/zp-extensions/image_album_statistics.php:264
 msgid "image"
 msgstr "afbeelding"
 
@@ -548,7 +478,7 @@ msgstr "video"
 #: themes/effervescence_plus/functions.php:426
 #: themes/effervescence_plus/functions.php:428
 #: themes/garland/functions.php:149 themes/garland/functions.php:151
-#: themes/zenpage/gallery.php:67 zp-core/admin-globals.php:76
+#: themes/zenpage/gallery.php:66 zp-core/admin-globals.php:76
 #: zp-core/zp-extensions/tinyURL.php:81
 #: zp-core/zp-extensions/tweet_news.php:406
 msgid "news"
@@ -563,35 +493,35 @@ msgid "sticky"
 msgstr "Sticky (vastprikken)"
 
 #: themes/effervescence_plus/functions.php:443
-#: themes/effervescence_plus/news.php:91 themes/garland/functions.php:166
-#: themes/garland/news.php:62
+#: themes/effervescence_plus/news.php:79 themes/garland/functions.php:166
+#: themes/garland/news.php:64
 #, php-format
 msgid "Comments: %d"
 msgstr "Reacties: %d"
 
 #: themes/effervescence_plus/functions.php:450
-#: themes/effervescence_plus/news.php:100 themes/garland/functions.php:173
-#: themes/garland/news.php:107 themes/zenpage/gallery.php:76
-#: themes/zenpage/news.php:66 themes/zenpage/news.php:101
+#: themes/effervescence_plus/news.php:88 themes/garland/functions.php:173
+#: themes/garland/news.php:109 themes/zenpage/gallery.php:75
+#: themes/zenpage/news.php:67 themes/zenpage/news.php:102
 #: themes/zpmobile/news.php:43
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/zoom.php:61
 msgid "Categories: "
 msgstr "Categorieën:"
 
 #: themes/effervescence_plus/functions.php:462 themes/garland/album.php:77
-#: themes/garland/favorites.php:90 themes/garland/functions.php:186
-#: themes/garland/gallery.php:61 themes/garland/search.php:223
-#: themes/zenpage/gallery.php:62 themes/zenpage/gallery.php:87
-#: themes/zenpage/news.php:78 themes/zenpage/news.php:115
+#: themes/garland/favorites.php:91 themes/garland/functions.php:186
+#: themes/garland/gallery.php:63 themes/garland/search.php:225
+#: themes/zenpage/gallery.php:61 themes/zenpage/gallery.php:86
+#: themes/zenpage/news.php:79 themes/zenpage/news.php:116
 #: themes/zpmobile/news.php:64 themes/zpmobile/news.php:79
 msgid "next »"
 msgstr "volgende »"
 
 #: themes/effervescence_plus/functions.php:462 themes/garland/album.php:77
-#: themes/garland/favorites.php:90 themes/garland/functions.php:186
-#: themes/garland/gallery.php:61 themes/garland/search.php:223
-#: themes/zenpage/gallery.php:62 themes/zenpage/gallery.php:87
-#: themes/zenpage/news.php:78 themes/zenpage/news.php:115
+#: themes/garland/favorites.php:91 themes/garland/functions.php:186
+#: themes/garland/gallery.php:63 themes/garland/search.php:225
+#: themes/zenpage/gallery.php:61 themes/zenpage/gallery.php:86
+#: themes/zenpage/news.php:79 themes/zenpage/news.php:116
 #: themes/zpmobile/news.php:64 themes/zpmobile/news.php:79
 msgid "« prev"
 msgstr "« vorige"
@@ -615,9 +545,24 @@ msgstr "Start"
 msgid "Stop"
 msgstr "Stop"
 
+#: themes/effervescence_plus/indexpage.php:43
+#: themes/effervescence_plus/slideshow.php:34 themes/zpmobile/functions.php:65
+#: zp-core/template-functions.php:609 zp-core/template-functions.php:1488
+#: zp-core/zp-extensions/menu_manager.php:826
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:463
+msgid "Home"
+msgstr "Home"
+
 #: themes/effervescence_plus/indexpage.php:66
 msgid "Picture of the day"
 msgstr "Foto van de dag"
+
+#: themes/effervescence_plus/indexpage.php:76
+#: themes/effervescence_plus/indexpage.php:89
+#: themes/effervescence_plus/slideshow.php:35
+#: themes/effervescence_plus/slideshow.php:39
+msgid "Albums Index"
+msgstr "Albumindex"
 
 #: themes/effervescence_plus/indexpage.php:77
 #: themes/effervescence_plus/indexpage.php:89
@@ -634,31 +579,21 @@ msgstr "Zoek in categorie"
 msgid "Search news"
 msgstr "Zoek in nieuws"
 
-#: themes/effervescence_plus/password.php:31 themes/zenpage/album.php:34
-#: themes/zenpage/archive.php:31 themes/zenpage/contact.php:29
-#: themes/zenpage/favorites.php:33 themes/zenpage/gallery.php:34
-#: themes/zenpage/image.php:53 themes/zenpage/news.php:41
-#: themes/zenpage/pages.php:33 themes/zenpage/register.php:29
-#: themes/zenpage/search.php:56 zp-core/404.php:56
-#: zp-core/setup/index.php:1083
-msgid "Index"
-msgstr "Index"
-
-#: themes/effervescence_plus/search.php:116
+#: themes/effervescence_plus/search.php:104
 #, php-format
 msgid "Search album: %s"
 msgid_plural "Search albums: %s"
 msgstr[0] "Zoek in album: %s"
 msgstr[1] "Zoek in albums: %s"
 
-#: themes/effervescence_plus/search.php:119
+#: themes/effervescence_plus/search.php:107
 #, php-format
 msgid "Search category: %s"
 msgid_plural "Search categories: %s"
 msgstr[0] "Zoek in categorie: %s"
 msgstr[1] "Zoek in categorieën: %s"
 
-#: themes/effervescence_plus/search.php:139 themes/garland/search.php:91
+#: themes/effervescence_plus/search.php:127 themes/garland/search.php:93
 #: themes/zenpage/search.php:75 themes/zpmobile/search.php:69
 #, php-format
 msgid "%1$u Hit for <em>%2$s</em>"
@@ -666,55 +601,55 @@ msgid_plural "%1$u Hits for <em>%2$s</em>"
 msgstr[0] "%1$u Hit voor <em>%2$s</em>"
 msgstr[1] "%1$u Hits voor <em>%2$s</em>"
 
-#: themes/effervescence_plus/search.php:150 themes/garland/search.php:110
+#: themes/effervescence_plus/search.php:138 themes/garland/search.php:112
 #: themes/zenpage/search.php:86 themes/zpmobile/search.php:80
 #, php-format
 msgid "Pages (%s)"
 msgstr "Pagina’s (%s)"
 
-#: themes/effervescence_plus/search.php:154
-#: themes/effervescence_plus/search.php:187 themes/garland/search.php:114
-#: themes/garland/search.php:147 themes/zenpage/functions.php:46
+#: themes/effervescence_plus/search.php:142
+#: themes/effervescence_plus/search.php:175 themes/garland/search.php:116
+#: themes/garland/search.php:149 themes/zenpage/functions.php:46
 #: themes/zpmobile/functions.php:257
 msgid "Show more results"
 msgstr "Toon meer resultaten"
 
-#: themes/effervescence_plus/search.php:155
-#: themes/effervescence_plus/search.php:188 themes/garland/search.php:115
-#: themes/garland/search.php:148 themes/zenpage/functions.php:47
+#: themes/effervescence_plus/search.php:143
+#: themes/effervescence_plus/search.php:176 themes/garland/search.php:117
+#: themes/garland/search.php:150 themes/zenpage/functions.php:47
 #: themes/zpmobile/functions.php:258
 msgid "Show fewer results"
 msgstr "Toon minder resultaten"
 
-#: themes/effervescence_plus/search.php:183 themes/garland/search.php:143
+#: themes/effervescence_plus/search.php:171 themes/garland/search.php:145
 #: themes/zenpage/search.php:106 themes/zpmobile/search.php:100
 #, php-format
 msgid "Articles (%s)"
 msgstr "Artikelen (%s)"
 
-#: themes/effervescence_plus/search.php:219 themes/garland/search.php:180
+#: themes/effervescence_plus/search.php:207 themes/garland/search.php:182
 #: themes/zenpage/search.php:128 themes/zpmobile/search.php:122
 #, php-format
 msgid "Images (%s)"
 msgstr "Afbeeldingen (%s)"
 
-#: themes/effervescence_plus/search.php:223 themes/garland/search.php:184
+#: themes/effervescence_plus/search.php:211 themes/garland/search.php:186
 #: themes/zenpage/search.php:133 themes/zpmobile/search.php:127
 #, php-format
 msgid "Albums (%s)"
 msgstr "Albums (%s)"
 
-#: themes/effervescence_plus/search.php:225 themes/garland/search.php:186
+#: themes/effervescence_plus/search.php:213 themes/garland/search.php:188
 #: themes/zenpage/search.php:136 themes/zpmobile/search.php:130
 #, php-format
 msgid "Albums (%1$s) &amp; Images (%2$s)"
 msgstr "Albums (%1$s) &amp; Afbeeldingen (%2$s)"
 
-#: themes/effervescence_plus/search.php:288
+#: themes/effervescence_plus/search.php:276
 msgid "Enter your search criteria."
 msgstr "Voor de zoekcriteria in."
 
-#: themes/effervescence_plus/search.php:290
+#: themes/effervescence_plus/search.php:278
 #, php-format
 msgid "Sorry, no matches for <em>%s</em>. Try refining your search."
 msgstr ""
@@ -734,9 +669,8 @@ msgid "All news"
 msgstr "nieuws"
 
 #: themes/effervescence_plus/sidebar.php:36
-#: themes/effervescence_plus/sidebar.php:56 themes/garland/gallery.php:37
-#: themes/garland/sidebar.php:90 themes/garland/sidebar.php:110
-#: themes/zenpage/sidebar.php:27
+#: themes/effervescence_plus/sidebar.php:56 themes/garland/sidebar.php:90
+#: themes/garland/sidebar.php:110 themes/zenpage/sidebar.php:27
 msgid "Album index"
 msgstr "Albumindex"
 
@@ -765,6 +699,7 @@ msgstr "Albumindex"
 #: zp-core/lib-auth.php:584 zp-core/lib-auth.php:585
 #: zp-core/setup/setup-option-defaults.php:390
 #: zp-core/setup/setup-option-defaults.php:391
+#: zp-core/template-functions.php:569
 #: zp-core/zp-extensions/cacheManager/cacheImages.php:150
 #: zp-core/zp-extensions/defaultCodeblocks.php:34
 #: zp-core/zp-extensions/externalFeed.php:69 zp-core/zp-extensions/rss.php:77
@@ -818,8 +753,8 @@ msgstr "Pagina’s"
 
 #: themes/effervescence_plus/sidebar.php:80
 #: themes/effervescence_plus/themeoptions.php:77 themes/zenpage/sidebar.php:56
-#: themes/zpmobile/functions.php:78 zp-core/template-functions.php:1272
-#: zp-core/template-functions.php:1327
+#: themes/zpmobile/functions.php:78 zp-core/template-functions.php:1337
+#: zp-core/template-functions.php:1392
 #: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:876
 msgid "Archive"
 msgstr "Archief"
@@ -859,6 +794,10 @@ msgstr "RSS"
 #: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:883
 msgid "News"
 msgstr "Nieuws"
+
+#: themes/effervescence_plus/slideshow.php:34
+msgid "Main Index"
+msgstr "Hoofdindex"
 
 #: themes/effervescence_plus/theme_description.php:7
 msgid ""
@@ -1128,36 +1067,46 @@ msgstr "*geen logo geselecteerd"
 msgid "Effervescence"
 msgstr "Effervescence"
 
+#: themes/garland/404.php:23 themes/garland/album.php:28
+#: themes/garland/archive.php:22 themes/garland/contact.php:23
+#: themes/garland/favorites.php:24 themes/garland/gallery.php:23
+#: themes/garland/image.php:49 themes/garland/main.php:23
+#: themes/garland/news.php:24 themes/garland/pages.php:24
+#: themes/garland/password.php:23 themes/garland/register.php:24
+#: themes/garland/search.php:66 themes/zenpage/404.php:23
+msgid "Gallery Index"
+msgstr "Galerij Index"
+
 #: themes/garland/album.php:54 themes/garland/album.php:59
-#: themes/garland/favorites.php:50 themes/garland/favorites.php:55
-#: themes/garland/gallery.php:45 themes/garland/gallery.php:50
-#: themes/garland/search.php:201 themes/garland/search.php:206
+#: themes/garland/favorites.php:51 themes/garland/favorites.php:56
+#: themes/garland/gallery.php:47 themes/garland/gallery.php:52
+#: themes/garland/search.php:203 themes/garland/search.php:208
 #, php-format
 msgid "View album:  %s"
 msgstr "Bekijk album: %s"
 
-#: themes/garland/album.php:100 themes/garland/favorites.php:111
+#: themes/garland/album.php:100 themes/garland/favorites.php:112
 msgid "Album Navigation"
 msgstr "Album navigatie:"
 
-#: themes/garland/album.php:105 themes/garland/favorites.php:116
+#: themes/garland/album.php:105 themes/garland/favorites.php:117
 msgid "Next album"
 msgstr "volgend album"
 
-#: themes/garland/album.php:105 themes/garland/favorites.php:116
+#: themes/garland/album.php:105 themes/garland/favorites.php:117
 msgid "Next album »"
 msgstr "volgend album »"
 
-#: themes/garland/album.php:113 themes/garland/favorites.php:124
+#: themes/garland/album.php:113 themes/garland/favorites.php:125
 msgid "Prev Album"
 msgstr "vorig album"
 
-#: themes/garland/album.php:113 themes/garland/favorites.php:124
+#: themes/garland/album.php:113 themes/garland/favorites.php:125
 msgid "« Prev Album"
 msgstr "« vorig album"
 
-#: themes/garland/album.php:119 themes/garland/image.php:135
-#: themes/garland/news.php:112 themes/garland/pages.php:69
+#: themes/garland/album.php:119 themes/garland/image.php:137
+#: themes/garland/news.php:114 themes/garland/pages.php:67
 msgid "Tags: "
 msgstr "Tags:"
 
@@ -1170,37 +1119,37 @@ msgstr "Laatste afbeeldingen voor %s"
 msgid "Garland image display handling."
 msgstr "Garland functie voor het tonen van afbeeldingen."
 
-#: themes/garland/gallery.php:79 themes/garland/main.php:54
+#: themes/garland/gallery.php:81 themes/garland/main.php:56
 msgid "Latest Images"
 msgstr "Laatste afbeeldingen"
 
-#: themes/garland/image.php:116
+#: themes/garland/image.php:118
 msgid "Next image"
 msgstr "Volgende afbeelding"
 
-#: themes/garland/image.php:117
+#: themes/garland/image.php:119
 msgid "Next »"
 msgstr "Volgende »"
 
-#: themes/garland/image.php:126
+#: themes/garland/image.php:128
 msgid "Previous image"
 msgstr "vorige afbeelding"
 
-#: themes/garland/image.php:127
+#: themes/garland/image.php:129
 msgid "« Previous"
 msgstr "« Vorige"
 
-#: themes/garland/password.php:40 zp-core/password.php:6
+#: themes/garland/password.php:41 zp-core/password.php:6
 #: zp-core/template-functions.php:449
 #: zp-core/zp-extensions/html_meta_tags.php:243
 msgid "Password required"
 msgstr "Wachtwoord vereist"
 
-#: themes/garland/password.php:42
+#: themes/garland/password.php:43
 msgid "A password is required to access this page."
 msgstr "Een wachtwoord is nodig om de pagina te bekijken."
 
-#: themes/garland/search.php:96
+#: themes/garland/search.php:98
 msgid "Sorry, no matches for your search."
 msgstr "Sorry, geen resultaten."
 
@@ -1245,7 +1194,7 @@ msgstr ""
 "Selecteer de title-link van de pagina voor de homepage. Alleen niet-"
 "gepubliceerde pagina’s kunnen geselecteerd worden."
 
-#: themes/zenpage/archive.php:38 themes/zpmobile/archive.php:29
+#: themes/zenpage/archive.php:37 themes/zpmobile/archive.php:29
 msgid "Gallery archive"
 msgstr "Archief"
 
@@ -1256,8 +1205,8 @@ msgstr ""
 "Zenpage thema ontworpen door <a href=\"http://www.maltem.de\">Malte Müller</"
 "a>"
 
-#: themes/zenpage/gallery.php:71 themes/zenpage/news.php:65
-#: themes/zenpage/news.php:93
+#: themes/zenpage/gallery.php:70 themes/zenpage/news.php:66
+#: themes/zenpage/news.php:94
 msgid "Comments:"
 msgstr "Reacties:"
 
@@ -1473,6 +1422,10 @@ msgstr ""
 "de afbeeldings-pagina. Dit voor het geval de speler niet ondersteund wordt "
 "door het apparaat maar het bestandstype wel."
 
+#: zp-core/404.php:56 zp-core/setup/index.php:1083
+msgid "Index"
+msgstr "Index"
+
 #: zp-core/404.php:56
 #, php-format
 msgid "Return to %s"
@@ -1632,7 +1585,7 @@ msgstr "Er is niets veranderd"
 #: zp-core/admin-edit.php:936 zp-core/admin-edit.php:1509
 #: zp-core/admin-edit.php:1602 zp-core/admin-edit.php:1632
 #: zp-core/admin-functions.php:1193 zp-core/admin-functions.php:1953
-#: zp-core/admin-refresh-metadata.php:154 zp-core/admin-themes-editor.php:107
+#: zp-core/admin-refresh-metadata.php:154 zp-core/admin-themes-editor.php:115
 #: zp-core/admin-thumbcrop.php:272 zp-core/admin-thumbcrop.php:274
 #: zp-core/zp-extensions/cacheManager/cacheDBImages.php:181
 #: zp-core/zp-extensions/cacheManager/cacheImages.php:390
@@ -1964,7 +1917,7 @@ msgstr "Toon afbeeldingen op:"
 #: zp-core/admin-options.php:2837 zp-core/admin-options.php:2895
 #: zp-core/admin-options.php:3023 zp-core/admin-options.php:3050
 #: zp-core/admin-options.php:3165 zp-core/admin-plugins.php:141
-#: zp-core/admin-plugins.php:394 zp-core/admin-themes-editor.php:150
+#: zp-core/admin-plugins.php:394 zp-core/admin-themes-editor.php:158
 #: zp-core/admin-thumbcrop.php:266 zp-core/admin-users.php:458
 #: zp-core/admin-users.php:828 zp-core/lib-auth.php:1023
 #: zp-core/zp-extensions/contact_form/form.php:135
@@ -2643,7 +2596,7 @@ msgid "Edit this album: %s"
 msgstr "Bewerk dit album: %s"
 
 #: zp-core/admin-functions.php:2113 zp-core/admin-functions.php:2116
-#: zp-core/zp-extensions/image_album_statistics.php:265
+#: zp-core/zp-extensions/image_album_statistics.php:266
 #: zp-core/zp-extensions/tinyURL.php:77
 #: zp-core/zp-extensions/tweet_news.php:431
 #: zp-core/zp-extensions/uploader_http.php:30
@@ -5450,61 +5403,61 @@ msgstr ""
 "<em>Nieuwe tags</em> lijst te zetten. Druk daarna op de knop <em>Bewaar "
 "nieuwe tags</em>."
 
-#: zp-core/admin-themes-editor.php:54
+#: zp-core/admin-themes-editor.php:35 zp-core/admin-themes-editor.php:56
+msgid "Cannot edit this file!"
+msgstr "Dit bestand kan niet bewerkt worden!"
+
+#: zp-core/admin-themes-editor.php:51
+msgid "Cannot edit this theme!"
+msgstr "Dit thema kan niet bewerkt worden!"
+
+#: zp-core/admin-themes-editor.php:73
 msgid "File updated successfully"
 msgstr "Bestand met succes ge-update"
 
-#: zp-core/admin-themes-editor.php:56 zp-core/admin-themes-editor.php:59
+#: zp-core/admin-themes-editor.php:75 zp-core/admin-themes-editor.php:78
 msgid "Could not write file. Please check its write permissions"
 msgstr ""
 "Kan niet naar het bestand schrijven. Controleer a.u.b. de toegangsrechten."
 
-#: zp-core/admin-themes-editor.php:83
-msgid "Cannot edit this theme!"
-msgstr "Dit thema kan niet bewerkt worden!"
-
-#: zp-core/admin-themes-editor.php:88
-msgid "Cannot edit this file!"
-msgstr "Dit bestand kan niet bewerkt worden!"
-
-#: zp-core/admin-themes-editor.php:94
+#: zp-core/admin-themes-editor.php:102
 msgid "Theme File Editor"
 msgstr "Theme File Editor"
 
-#: zp-core/admin-themes-editor.php:105
+#: zp-core/admin-themes-editor.php:113
 msgid "Back to the theme list"
 msgstr "Terug naar de themalijst"
 
-#: zp-core/admin-themes-editor.php:119
+#: zp-core/admin-themes-editor.php:127
 msgid "Theme template files (.php)"
 msgstr "Thema sjabloon-bestanden (.php)"
 
-#: zp-core/admin-themes-editor.php:122
+#: zp-core/admin-themes-editor.php:130
 msgid "JavaScript files (.js)"
 msgstr "JavaScript bestanden (.js)"
 
-#: zp-core/admin-themes-editor.php:125
+#: zp-core/admin-themes-editor.php:133
 msgid "Style sheets (.css)"
 msgstr "Stylesheets (.css)"
 
-#: zp-core/admin-themes-editor.php:128
+#: zp-core/admin-themes-editor.php:136
 msgid "Other text files"
 msgstr "Andere tekstbestanden"
 
-#: zp-core/admin-themes-editor.php:133
+#: zp-core/admin-themes-editor.php:141
 msgid "Edit this file"
 msgstr "Bewerk dit bestand"
 
-#: zp-core/admin-themes-editor.php:143
+#: zp-core/admin-themes-editor.php:151
 #, php-format
 msgid "File <tt>%s</tt> from theme %s"
 msgstr "Bestand <tt>%s</tt> van thema %s"
 
-#: zp-core/admin-themes-editor.php:149
+#: zp-core/admin-themes-editor.php:157
 msgid "Update File"
 msgstr "Update bestand"
 
-#: zp-core/admin-themes-editor.php:158
+#: zp-core/admin-themes-editor.php:166
 msgid ""
 "Select a file to edit from the list on your right hand. Keep in mind that "
 "you can <strong>break everything</strong> if you are not careful when "
@@ -6036,37 +5989,37 @@ msgstr "beschermd"
 msgid "Setup files protected."
 msgstr "Setup-bestanden beschermd."
 
-#: zp-core/admin.php:137
+#: zp-core/admin.php:131
 msgid "purge Image cache"
 msgstr "Leeg afbeeldingen-cache"
 
-#: zp-core/admin.php:138
+#: zp-core/admin.php:132
 msgid "purge RSS cache"
 msgstr "Leeg RSS-cache"
 
-#: zp-core/admin.php:139
+#: zp-core/admin.php:133
 msgid "reset all hitcounters"
 msgstr "reset alle hit-tellers"
 
-#: zp-core/admin.php:140
+#: zp-core/admin.php:134
 msgid "purge search cache"
 msgstr "Maak zoek-cache leeg"
 
-#: zp-core/admin.php:147
+#: zp-core/admin.php:141
 #, php-format
 msgid "You do not have proper rights to %s."
 msgstr "Je hebt niet de juiste rechten om %s."
 
-#: zp-core/admin.php:152
+#: zp-core/admin.php:146
 #, php-format
 msgid "You do not have proper rights to access %s."
 msgstr "Je hebt niet de juiste rechten om toegang te krijgen tot %s."
 
-#: zp-core/admin.php:246
+#: zp-core/admin.php:240
 msgid "Misc"
 msgstr "Diverse"
 
-#: zp-core/admin.php:258 zp-core/admin.php:280 zp-core/admin.php:295
+#: zp-core/admin.php:252 zp-core/admin.php:274 zp-core/admin.php:289
 #: zp-core/lib-auth.php:516 zp-core/lib-auth.php:535 zp-core/lib-auth.php:560
 #: zp-core/lib-auth.php:587 zp-core/utilities/backup_restore.php:22
 #: zp-core/zp-extensions/cloneZenphoto.php:37
@@ -6080,19 +6033,19 @@ msgstr "Diverse"
 msgid "Admin"
 msgstr "Admin"
 
-#: zp-core/admin.php:260
+#: zp-core/admin.php:254
 msgid "Setup » restore scripts"
 msgstr "Setup » herstel scripts"
 
-#: zp-core/admin.php:265
+#: zp-core/admin.php:259
 msgid "Restores setup files so setup can be run."
 msgstr "Hertelt setup bestanden zodat setup weer gebruikt kan worden."
 
-#: zp-core/admin.php:273
+#: zp-core/admin.php:267
 msgid "Your Setup scripts are not protected."
 msgstr "Je setup-scripts zijn niet beschermd."
 
-#: zp-core/admin.php:274
+#: zp-core/admin.php:268
 msgid ""
 "The Setup environment is not totally secure, you should protect the scripts "
 "to thwart hackers. Use the <strong>Setup » protect scripts</strong> button "
@@ -6102,91 +6055,91 @@ msgstr ""
 "beveiligen om hackers te dwarbomen. Gebruik hiervoor de <strong>Setup » "
 "bescherm scripts</strong> knop op de <em>overzicht</em> pagina. "
 
-#: zp-core/admin.php:282
+#: zp-core/admin.php:276
 msgid "Setup » protect scripts"
 msgstr "Setup » bescherm scripts"
 
-#: zp-core/admin.php:287
+#: zp-core/admin.php:281
 msgid "Protects setup files so setup cannot be run."
 msgstr "Beschermt setup bestanden zodat setup niet gebruikt kan worden."
 
-#: zp-core/admin.php:297
+#: zp-core/admin.php:291
 msgid "Run setup"
 msgstr "Voer setup uit"
 
-#: zp-core/admin.php:302
+#: zp-core/admin.php:296
 msgid "Run the setup script."
 msgstr "Voer setup uit."
 
-#: zp-core/admin.php:318
+#: zp-core/admin.php:312
 msgid "Installation information"
 msgstr "Installatie informatie"
 
-#: zp-core/admin.php:322
+#: zp-core/admin.php:316
 msgid "<em>Debug build</em>"
 msgstr "<em>Debug versie</em>"
 
-#: zp-core/admin.php:324
+#: zp-core/admin.php:318
 msgid "Official build"
 msgstr "Officiële versie"
 
-#: zp-core/admin.php:330 zp-core/functions-basic.php:1235
+#: zp-core/admin.php:324 zp-core/functions-basic.php:1235
 #: zp-core/setup/index.php:405 zp-core/zp-extensions/security-logger.php:132
 msgid "clone"
 msgstr "kloon:"
 
-#: zp-core/admin.php:339
+#: zp-core/admin.php:333
 #, php-format
 msgid "source: %s"
 msgstr "bron: %s"
 
-#: zp-core/admin.php:346
+#: zp-core/admin.php:340
 #, php-format
 msgid "Zenphoto version <strong>%1$s [%2$s] (%3$s)</strong>"
 msgstr "Zenphoto versie <strong>%1$s [%2$s] (%3$s)</strong>"
 
-#: zp-core/admin.php:362
+#: zp-core/admin.php:356
 #, php-format
 msgid "Preview the release notes for Zenphoto %s"
 msgstr "Bekijk de release notes voor Zenphoto %s"
 
-#: zp-core/admin.php:375
+#: zp-core/admin.php:369
 #, php-format
 msgid "Current locale setting: <strong>%1$s</strong>"
 msgstr "Huidig locale instelling: <strong>%1$s</strong>"
 
-#: zp-core/admin.php:377
+#: zp-core/admin.php:371
 msgid "<strong>Locale setting has failed</strong>"
 msgstr "<strong>Locale (taal) instelling mislukt</strong>"
 
-#: zp-core/admin.php:382
+#: zp-core/admin.php:376
 msgid "Server path:"
 msgstr "Server pad:"
 
-#: zp-core/admin.php:385
+#: zp-core/admin.php:379
 msgid "WEB path:"
 msgstr "WEB pad:"
 
-#: zp-core/admin.php:388
+#: zp-core/admin.php:382
 msgid "PHP Session path:"
 msgstr "PHP Sessie pad:"
 
-#: zp-core/admin.php:397
+#: zp-core/admin.php:391
 #, php-format
 msgid "Current gallery theme: <strong>%1$s</strong>"
 msgstr "Huidig thema: <strong>%1$s</strong>"
 
-#: zp-core/admin.php:400
+#: zp-core/admin.php:394
 #, php-format
 msgid "PHP version: <strong>%1$s</strong>"
 msgstr "PHP versie: <strong>%1$s</strong>"
 
-#: zp-core/admin.php:449
+#: zp-core/admin.php:443
 #, php-format
 msgid "PHP Error reporting: <strong>%s</strong>"
 msgstr "PHP Foutmelding: <strong>%s</strong>"
 
-#: zp-core/admin.php:455
+#: zp-core/admin.php:449
 msgid ""
 "PHP error messages may be displayed on WEB pages. This may disclose site "
 "sensitive information."
@@ -6194,25 +6147,25 @@ msgstr ""
 "PHP fouten kunnen worden getoond op web-pagina’s en daarmee gevoelige "
 "informatie vrijgeven."
 
-#: zp-core/admin.php:455
+#: zp-core/admin.php:449
 msgid "<em>display_errors</em> is <strong>On</strong>"
 msgstr "<em>display_errors</em> staat <strong>Aan</strong>"
 
-#: zp-core/admin.php:459
+#: zp-core/admin.php:453
 msgid "<em>display_errors</em> is <strong>Off</strong>"
 msgstr "<em>display_errors</em> staat <strong>Uit</strong>"
 
-#: zp-core/admin.php:465
+#: zp-core/admin.php:459
 #, php-format
 msgid "Graphics support: <strong>%s</strong>"
 msgstr "Grafische ondersteuning: <code>%s</code>"
 
-#: zp-core/admin.php:475
+#: zp-core/admin.php:469
 #, php-format
 msgid "supporting: %s"
 msgstr "Ondersteunt: %s"
 
-#: zp-core/admin.php:478
+#: zp-core/admin.php:472
 #, php-format
 msgid ""
 "PHP memory limit: <strong>%1$s</strong> (Note: Your server might allocate "
@@ -6220,143 +6173,143 @@ msgid ""
 msgstr ""
 "PHP geheugenlimiet: <strong>%1$s</strong> (De server kan minder toewijzen!)"
 
-#: zp-core/admin.php:482 zp-core/utilities/database_reference.php:102
+#: zp-core/admin.php:476 zp-core/utilities/database_reference.php:102
 #, php-format
 msgid "%1$s version: <strong>%2$s</strong>"
 msgstr "%1$s versie: <strong>%2$s</strong>"
 
-#: zp-core/admin.php:486 zp-core/utilities/database_reference.php:105
+#: zp-core/admin.php:480 zp-core/utilities/database_reference.php:105
 #, php-format
 msgid "Database name: <strong>%1$s</strong>"
 msgstr "Database naam <strong>%s</strong>"
 
-#: zp-core/admin.php:491 zp-core/utilities/database_reference.php:111
+#: zp-core/admin.php:485 zp-core/utilities/database_reference.php:111
 #, php-format
 msgid "Table prefix: <strong>%1$s</strong>"
 msgstr "Tabelnamen worden voorafgegaan door <strong>%s</strong>"
 
-#: zp-core/admin.php:500
+#: zp-core/admin.php:494
 msgid "No spam filter configured"
 msgstr "Er is geen spamfilter ingesteld"
 
-#: zp-core/admin.php:502
+#: zp-core/admin.php:496
 #, php-format
 msgid "Spam filter: <strong>%s</strong>"
 msgstr "Spam filter: <strong>%s</strong>"
 
-#: zp-core/admin.php:508
+#: zp-core/admin.php:502
 #, php-format
 msgid "CAPTCHA generator: <strong>%s</strong>"
 msgstr "CAPTCHA generator: <strong>%s</strong>"
 
-#: zp-core/admin.php:514
+#: zp-core/admin.php:508
 msgid "There is no mail handler configured!"
 msgstr "Er is geen mail-script geconfigureerd!"
 
-#: zp-core/admin.php:526
+#: zp-core/admin.php:520
 #, php-format
 msgid "%u active plugin:"
 msgid_plural "%u active plugins:"
 msgstr[0] "%u actieve plugin:"
 msgstr[1] "%u actieve plugins:"
 
-#: zp-core/admin.php:562 zp-core/admin.php:600
+#: zp-core/admin.php:556 zp-core/admin.php:594
 msgid "<em>none</em>"
 msgstr "<em>geen</em>"
 
-#: zp-core/admin.php:573
+#: zp-core/admin.php:567
 #, php-format
 msgid "%u active filter:"
 msgid_plural "%u active filters:"
 msgstr[0] "%u actief filter:"
 msgstr[1] "%u actieve filters:"
 
-#: zp-core/admin.php:615
+#: zp-core/admin.php:609
 msgid "Utility functions"
 msgstr "Extra functies"
 
-#: zp-core/admin.php:660
+#: zp-core/admin.php:654
 msgid "Gallery Stats"
 msgstr "Galerij statistieken"
 
-#: zp-core/admin.php:667
+#: zp-core/admin.php:661
 #, php-format
 msgid "<strong>%1$u</strong> Image (%2$u un-published)"
 msgid_plural "<strong>%1$u</strong> Images (%2$u un-published)"
 msgstr[0] "<strong>%1$u</strong>afbeelding (%2$u niet gepubliceerd)"
 msgstr[1] "<strong>%1$u</strong> afbeeldingen (%2$u niet gepubliceerd)"
 
-#: zp-core/admin.php:669
+#: zp-core/admin.php:663
 #, php-format
 msgid "<strong>%u</strong> Image"
 msgid_plural "<strong>%u</strong> Images"
 msgstr[0] "<strong>%u</strong> afbeelding"
 msgstr[1] "<strong>%u</strong> afbeeldingen"
 
-#: zp-core/admin.php:678
+#: zp-core/admin.php:672
 #, php-format
 msgid "<strong>%1$u</strong> Album (%2$u un-published)"
 msgid_plural "<strong>%1$u</strong> Albums (%2$u un-published)"
 msgstr[0] "<strong>%1$u</strong> album (%2$u niet gepubliceerd)"
 msgstr[1] "<strong>%1$u</strong> albums (%2$u niet gepubliceerd)"
 
-#: zp-core/admin.php:680
+#: zp-core/admin.php:674
 #, php-format
 msgid "<strong>%u</strong> Album"
 msgid_plural "<strong>%u</strong> Albums"
 msgstr[0] "<strong>%u</strong> album"
 msgstr[1] "<strong>%u</strong> albums"
 
-#: zp-core/admin.php:689
+#: zp-core/admin.php:683
 #, php-format
 msgid "<strong>%1$u</strong> Comment (%2$u in moderation)"
 msgid_plural "<strong>%1$u</strong> Comments (%2$u in moderation)"
 msgstr[0] "<strong>%1$u</strong> Reactie (%2$u voor goedkeuring)"
 msgstr[1] "<strong>%1$u</strong> Reacties (%2$u voor goedkeuring)"
 
-#: zp-core/admin.php:691
+#: zp-core/admin.php:685
 #, php-format
 msgid "<strong>%u</strong> Comment"
 msgid_plural "<strong>%u</strong> Comments"
 msgstr[0] "<strong>%u</strong> reactie"
 msgstr[1] "<strong>%u</strong> reacties"
 
-#: zp-core/admin.php:702
+#: zp-core/admin.php:696
 #, php-format
 msgid "<strong>%1$u</strong> Page"
 msgid_plural "<strong>%1$u</strong> Pages"
 msgstr[0] "<strong>%1$u</strong> pagina"
 msgstr[1] "<strong>%1$u</strong> pagina’s"
 
-#: zp-core/admin.php:704
+#: zp-core/admin.php:698
 #, php-format
 msgid "<strong>%1$u</strong> Page (%2$u un-published)"
 msgid_plural "<strong>%1$u</strong> Pages (%2$u un-published)"
 msgstr[0] "<strong>%1$u</strong> Pagina (%2$u niet gepubliceerd)"
 msgstr[1] "<strong>%1$u</strong> Pagina’s (%2$u niet gepubliceerd)"
 
-#: zp-core/admin.php:712
+#: zp-core/admin.php:706
 #, php-format
 msgid "<strong>%1$u</strong> News"
 msgid_plural "<strong>%1$u</strong> News"
 msgstr[0] "<strong>%1$u</strong> artikel"
 msgstr[1] "<strong>%1$u</strong> artikelen"
 
-#: zp-core/admin.php:714
+#: zp-core/admin.php:708
 #, php-format
 msgid "<strong>%1$u</strong> News (%2$u un-published)"
 msgid_plural "<strong>%1$u</strong> News (%2$u un-published)"
 msgstr[0] "<strong>%1$u</strong> Artikel (%2$u niet gepubliceerd)"
 msgstr[1] "<strong>%1$u</strong> Artikelen (%2$u niet gepubliceerd)"
 
-#: zp-core/admin.php:721
+#: zp-core/admin.php:715
 #, php-format
 msgid "<strong>%1$u</strong> Category"
 msgid_plural "<strong>%1$u</strong> Categories"
 msgstr[0] "<strong>%1$u</strong> categorie"
 msgstr[1] "<strong>%1$u</strong> categorieën"
 
-#: zp-core/admin.php:741
+#: zp-core/admin.php:735
 msgid "Your user rights do not allow access to administrative functions."
 msgstr ""
 "Je gebruikersrechten staan toegang tot administratieve functies niet toe."
@@ -6528,7 +6481,7 @@ msgstr "Custom data"
 msgid "Location/Place"
 msgstr "Locatie/Plaats"
 
-#: zp-core/class-search.php:105 zp-core/functions.php:2611
+#: zp-core/class-search.php:105 zp-core/functions.php:2612
 #: zp-core/zp-extensions/contact_form.php:117
 #: zp-core/zp-extensions/contact_form.php:119
 #: zp-core/zp-extensions/userAddressFields.php:51
@@ -7196,7 +7149,7 @@ msgstr "Auto-DEP"
 msgid "Flash Did Not Fire"
 msgstr "Geen Flits"
 
-#: zp-core/exif/makers/canon.php:236 zp-core/functions.php:2597
+#: zp-core/exif/makers/canon.php:236 zp-core/functions.php:2598
 msgid "Flash Fired"
 msgstr "Flits"
 
@@ -7687,7 +7640,7 @@ msgstr "DB"
 msgid "%1$s Error: ( %2$s ) failed. %1$s returned the error %3$s"
 msgstr "%1$s Fout: (%2$s) mislukt. %1$s gaf de foutmelding: %3$s."
 
-#: zp-core/functions-db-MySQL.php:160 zp-core/functions-db-MySQLi.php:173
+#: zp-core/functions-db-MySQL.php:165 zp-core/functions-db-MySQLi.php:178
 #: zp-core/functions-db_PDO.php:119
 #, php-format
 msgid "%s not connected"
@@ -7715,7 +7668,7 @@ msgstr ""
 "MySQL fout: Zenphoto kreeg de foutmelding %s bij het verbinden met de "
 "database."
 
-#: zp-core/functions-db_NULL.php:95
+#: zp-core/functions-db_NULL.php:99
 msgid "No supported databases"
 msgstr "Geen ondersteunde databases"
 
@@ -8361,45 +8314,45 @@ msgstr "meest bekeken"
 msgid "missing"
 msgstr "ontbreekt"
 
-#: zp-core/functions.php:383 zp-core/functions.php:395
-#: zp-core/functions.php:406 zp-core/functions.php:415
-#: zp-core/functions.php:428 zp-core/functions.php:473
+#: zp-core/functions.php:387 zp-core/functions.php:399
+#: zp-core/functions.php:410 zp-core/functions.php:419
+#: zp-core/functions.php:432 zp-core/functions.php:477
 msgid "Mail send failed."
 msgstr "E-mail verzenden mislukt."
 
-#: zp-core/functions.php:385
+#: zp-core/functions.php:389
 #, php-format
 msgid "Invalid “reply-to” mail address %s."
 msgstr "Ongeldig “antwoord-aan” e-mailadres %s."
 
-#: zp-core/functions.php:397
+#: zp-core/functions.php:401
 #, php-format
 msgid "Invalid “to” mail address %s."
 msgstr "Ongeldig “aan” e-mailadres %s."
 
-#: zp-core/functions.php:408
+#: zp-core/functions.php:412
 msgid "“cc” list provided without “to” address list."
 msgstr "“cc” lijst opgegeven zonder “to” adreslijst."
 
-#: zp-core/functions.php:417
+#: zp-core/functions.php:421
 #, php-format
 msgid "Invalid “cc” mail address %s."
 msgstr "Ongeldig “cc” e-mailadres %s."
 
-#: zp-core/functions.php:430
+#: zp-core/functions.php:434
 #, php-format
 msgid "Invalid “bcc” mail address %s."
 msgstr "Ongeldig “bcc” e-mailadres %s."
 
-#: zp-core/functions.php:469
+#: zp-core/functions.php:473
 msgid "Mail send failed. There is no mail handler configured."
 msgstr "Verzenden van mail mislukt. Er is geen mail script geconfigureerd!"
 
-#: zp-core/functions.php:475
+#: zp-core/functions.php:479
 msgid "No “to” address list provided."
 msgstr "Geen “to” adreslijst opgegeven."
 
-#: zp-core/functions.php:1057
+#: zp-core/functions.php:1061
 #, php-format
 msgid ""
 "Zenphoto found no theme scripts. Please check the <em>%s</em> folder of your "
@@ -8408,35 +8361,35 @@ msgstr ""
 "Zenphoto heeft geen themascripts gevonden. Controleer a.u.b. de <em>%s</em> "
 "map van de installatie."
 
-#: zp-core/functions.php:1676
+#: zp-core/functions.php:1677
 msgid "0 Bytes"
 msgstr "0 Bytes"
 
-#: zp-core/functions.php:2109
+#: zp-core/functions.php:2110
 #, php-format
 msgid "Zenphoto processed a 404 error on %s. See the debug log for details."
 msgstr ""
 "Zenphoto heeft een 404 fout verwerkt in %s. Zie het debug log voor details."
 
-#: zp-core/functions.php:2282
+#: zp-core/functions.php:2283
 msgid "Click to show content"
 msgstr "Klik om inhoud te tonen"
 
-#: zp-core/functions.php:2287
+#: zp-core/functions.php:2288
 msgid "Click to hide content"
 msgstr "Klik om inhoud te verbergen"
 
-#: zp-core/functions.php:2337
+#: zp-core/functions.php:2338
 #, php-format
 msgid "<em>[%1$s]</em> parameter %2$d should be a number."
 msgstr "<em>[%1$s]</em> parameter %2$d moet een getal zijn."
 
-#: zp-core/functions.php:2345
+#: zp-core/functions.php:2346
 #, php-format
 msgid "<em>[%1$s]</em> parameter %2$d should be a string."
 msgstr "<em>[%1$s]</em> parameter %2$d moet een string zijn."
 
-#: zp-core/functions.php:2358
+#: zp-core/functions.php:2359
 #, php-format
 msgid ""
 "<em>[%1$s]</em> parameter %2$d should be <code>true</code> or <code>false</"
@@ -8445,339 +8398,339 @@ msgstr ""
 "<em>[%1$s]</em> parameter %2$d moet <code>true</code> of <code>false</code> "
 "zijn."
 
-#: zp-core/functions.php:2377
+#: zp-core/functions.php:2378
 #, php-format
 msgid "<em>[%1$s]</em> parameter %2$d is incorrectly defined."
 msgstr "<em>[%1$s]</em> parameter %2$d is niet goed gedefinieërd."
 
-#: zp-core/functions.php:2383
+#: zp-core/functions.php:2384
 #, php-format
 msgid "<em>[%1$s]</em> parameter %2$d is missing."
 msgstr "<em>[%1$s]</em> parameter %2$d ontbreekt."
 
-#: zp-core/functions.php:2392
+#: zp-core/functions.php:2393
 #, php-format
 msgid "<em>[%1$s]</em> macro does not take parameters"
 msgstr "<em>[%1$s]</em> macro mag geen parameters hebben."
 
-#: zp-core/functions.php:2415 zp-core/functions.php:2442
+#: zp-core/functions.php:2416 zp-core/functions.php:2443
 #, php-format
 msgid "<em>[%1$s]</em> retuned no data"
 msgstr "<em>[%1$s]</em> kan niks weergeven."
 
-#: zp-core/functions.php:2420
+#: zp-core/functions.php:2421
 #, php-format
 msgid "<em>[%1$s]</em> <code>%2$s</code> is not callable"
 msgstr "<em>[%1$s]</em> <code>%2$s</code> kan niet aangeroepen worden."
 
-#: zp-core/functions.php:2447
+#: zp-core/functions.php:2448
 #, php-format
 msgid "<em>[%1$s]</em> takes %2$d parameter"
 msgid_plural "<em>[%1$s]</em> takes %2$d parameters"
 msgstr[0] "<em>[%1$s]</em> moet %2$d parameter hebben."
 msgstr[1] "<em>[%1$s]</em> moet %2$d parameters hebben."
 
-#: zp-core/functions.php:2569
+#: zp-core/functions.php:2570
 msgid "Camera Maker"
 msgstr "Cameraproducent"
 
-#: zp-core/functions.php:2570
+#: zp-core/functions.php:2571
 msgid "Camera Model"
 msgstr "Cameramodel"
 
-#: zp-core/functions.php:2571
+#: zp-core/functions.php:2572
 msgid "Image Title"
 msgstr "Titel van de foto"
 
-#: zp-core/functions.php:2572
+#: zp-core/functions.php:2573
 msgid "Object Name"
 msgstr "Objectnaam"
 
-#: zp-core/functions.php:2573
+#: zp-core/functions.php:2574
 msgid "Image Headline"
 msgstr "Kopregel"
 
-#: zp-core/functions.php:2574
+#: zp-core/functions.php:2575
 msgid "Image Caption"
 msgstr "Beschrijving"
 
-#: zp-core/functions.php:2575
+#: zp-core/functions.php:2576
 msgid "Image Caption Writer"
 msgstr "Auteur van beschrijving"
 
-#: zp-core/functions.php:2576
+#: zp-core/functions.php:2577
 msgid "Time Taken"
 msgstr "Datum/tijd"
 
-#: zp-core/functions.php:2577
+#: zp-core/functions.php:2578
 msgid "Original Time Taken"
 msgstr "Oorspronkelijke datum/tijd"
 
-#: zp-core/functions.php:2578
+#: zp-core/functions.php:2579
 msgid "Time Digitized"
 msgstr "Gedigitaliseerde datum/tijd"
 
-#: zp-core/functions.php:2579
+#: zp-core/functions.php:2580
 msgid "Date Created"
 msgstr "Datum van de foto"
 
-#: zp-core/functions.php:2580
+#: zp-core/functions.php:2581
 msgid "Time Created"
 msgstr "Tijd van de foto"
 
-#: zp-core/functions.php:2581
+#: zp-core/functions.php:2582
 msgid "Digital Creation Date"
 msgstr "Digitale datum van de foto"
 
-#: zp-core/functions.php:2582
+#: zp-core/functions.php:2583
 msgid "Digital Creation Time"
 msgstr "Digitale tijd van de foto"
 
-#: zp-core/functions.php:2583
+#: zp-core/functions.php:2584
 msgid "Artist"
 msgstr "Auteur"
 
-#: zp-core/functions.php:2584
+#: zp-core/functions.php:2585
 msgid "Image Credit"
 msgstr "Auteur afbeelding"
 
-#: zp-core/functions.php:2585
+#: zp-core/functions.php:2586
 msgid "Byline"
 msgstr "Bijschrift"
 
-#: zp-core/functions.php:2586
+#: zp-core/functions.php:2587
 msgid "Byline Title"
 msgstr "Titel bijschrift"
 
-#: zp-core/functions.php:2587
+#: zp-core/functions.php:2588
 msgid "Image Source"
 msgstr "Bron"
 
-#: zp-core/functions.php:2589
+#: zp-core/functions.php:2590
 msgid "Copyright Holder"
 msgstr "Copyright houder"
 
-#: zp-core/functions.php:2590
+#: zp-core/functions.php:2591
 msgid "Copyright Notice"
 msgstr "Copyright vermelding"
 
-#: zp-core/functions.php:2591
+#: zp-core/functions.php:2592
 msgid "Keywords"
 msgstr "Trefwoorden"
 
-#: zp-core/functions.php:2592
+#: zp-core/functions.php:2593
 msgid "Shutter Speed"
 msgstr "Sluitertijd"
 
-#: zp-core/functions.php:2593
+#: zp-core/functions.php:2594
 msgid "Aperture"
 msgstr "Diafragma"
 
-#: zp-core/functions.php:2594
+#: zp-core/functions.php:2595
 msgid "ISO Sensitivity"
 msgstr "ISO gevoeligheid"
 
-#: zp-core/functions.php:2595
+#: zp-core/functions.php:2596
 msgid "Exposure Compensation"
 msgstr "Belichtingscompensatie"
 
-#: zp-core/functions.php:2596
+#: zp-core/functions.php:2597
 msgid "Metering Mode"
 msgstr "Methode lichtmeting"
 
-#: zp-core/functions.php:2598
+#: zp-core/functions.php:2599
 msgid "Original Width"
 msgstr "Originele breedte"
 
-#: zp-core/functions.php:2599
+#: zp-core/functions.php:2600
 msgid "Original Height"
 msgstr "Originele hoogte"
 
-#: zp-core/functions.php:2600
+#: zp-core/functions.php:2601
 msgid "Orientation"
 msgstr "Oriëntatie"
 
-#: zp-core/functions.php:2601
+#: zp-core/functions.php:2602
 msgid "Software"
 msgstr "Software"
 
-#: zp-core/functions.php:2602
+#: zp-core/functions.php:2603
 msgid "Contrast Setting"
 msgstr "Contrast"
 
-#: zp-core/functions.php:2603
+#: zp-core/functions.php:2604
 msgid "Sharpness Setting"
 msgstr "Scherpte"
 
-#: zp-core/functions.php:2604
+#: zp-core/functions.php:2605
 msgid "Saturation Setting"
 msgstr "Verzadiging"
 
-#: zp-core/functions.php:2605
+#: zp-core/functions.php:2606
 msgid "White Balance"
 msgstr "Witbalans"
 
-#: zp-core/functions.php:2606
+#: zp-core/functions.php:2607
 msgid "Subject Distance"
 msgstr "Onderwerpsafstand"
 
-#: zp-core/functions.php:2607
+#: zp-core/functions.php:2608
 msgid "Focal Length"
 msgstr "Brandpuntsafstand"
 
-#: zp-core/functions.php:2608
+#: zp-core/functions.php:2609
 msgid "Lens Type"
 msgstr "Lenstype"
 
-#: zp-core/functions.php:2609
+#: zp-core/functions.php:2610
 msgid "Lens Info"
 msgstr "Lensinformatie"
 
-#: zp-core/functions.php:2610
+#: zp-core/functions.php:2611
 msgid "35mm Focal Length Equivalent"
 msgstr "Brandpuntsafstand equivalent voor 35mm film"
 
-#: zp-core/functions.php:2612
+#: zp-core/functions.php:2613
 msgid "Sub-location"
 msgstr "Sublocatie"
 
-#: zp-core/functions.php:2613
+#: zp-core/functions.php:2614
 msgid "Province/State"
 msgstr "Provincie/Staat"
 
-#: zp-core/functions.php:2614
+#: zp-core/functions.php:2615
 msgid "Country/Primary Location Code"
 msgstr "Land/locatiecode"
 
-#: zp-core/functions.php:2615
+#: zp-core/functions.php:2616
 msgid "Country/Primary Location Name"
 msgstr "Land/ locatienaam"
 
-#: zp-core/functions.php:2616
+#: zp-core/functions.php:2617
 msgid "Content Location Code"
 msgstr "Content locatiecode"
 
-#: zp-core/functions.php:2617
+#: zp-core/functions.php:2618
 msgid "Content Location Name"
 msgstr "Content locatienaam"
 
-#: zp-core/functions.php:2618
+#: zp-core/functions.php:2619
 msgid "Latitude"
 msgstr "Breedtegraad"
 
-#: zp-core/functions.php:2619
+#: zp-core/functions.php:2620
 msgid "Latitude Reference"
 msgstr "Breedtegraad verwijzing"
 
-#: zp-core/functions.php:2620
+#: zp-core/functions.php:2621
 msgid "Longitude"
 msgstr "Lengtegraad"
 
-#: zp-core/functions.php:2621
+#: zp-core/functions.php:2622
 msgid "Longitude Reference"
 msgstr "Lengtegraad verwijzing"
 
-#: zp-core/functions.php:2622
+#: zp-core/functions.php:2623
 msgid "Altitude"
 msgstr "Hoogtegraad"
 
-#: zp-core/functions.php:2623
+#: zp-core/functions.php:2624
 msgid "Altitude Reference"
 msgstr "Hoogtegraad verwijzing"
 
-#: zp-core/functions.php:2624
+#: zp-core/functions.php:2625
 msgid "Originating Program "
 msgstr "Gebruikt programma"
 
-#: zp-core/functions.php:2625
+#: zp-core/functions.php:2626
 msgid "Program Version"
 msgstr "Programmaversie"
 
-#: zp-core/functions.php:2626
+#: zp-core/functions.php:2627
 msgid "Video File Format"
 msgstr "Video format"
 
-#: zp-core/functions.php:2627
+#: zp-core/functions.php:2628
 msgid "Video File Size"
 msgstr "Video bestandsgrootte"
 
-#: zp-core/functions.php:2628
+#: zp-core/functions.php:2629
 msgid "Video Artist"
 msgstr "Video artiest"
 
-#: zp-core/functions.php:2629
+#: zp-core/functions.php:2630
 msgid "Video Title"
 msgstr "Video titel"
 
-#: zp-core/functions.php:2630
+#: zp-core/functions.php:2631
 msgid "Bitrate"
 msgstr "Bitrate"
 
-#: zp-core/functions.php:2631
+#: zp-core/functions.php:2632
 msgid "Bitrate_Mode"
 msgstr "Bitrate type"
 
-#: zp-core/functions.php:2632
+#: zp-core/functions.php:2633
 msgid "Bits per sample"
 msgstr "Bits per sample"
 
-#: zp-core/functions.php:2633
+#: zp-core/functions.php:2634
 msgid "Codec"
 msgstr "Codec"
 
-#: zp-core/functions.php:2634
+#: zp-core/functions.php:2635
 msgid "Compression Ratio"
 msgstr "Compressieverhouding"
 
-#: zp-core/functions.php:2635
+#: zp-core/functions.php:2636
 msgid "Video Dataformat"
 msgstr "Video type"
 
-#: zp-core/functions.php:2636
+#: zp-core/functions.php:2637
 msgid "File Encoder"
 msgstr "Encoder"
 
-#: zp-core/functions.php:2637
+#: zp-core/functions.php:2638
 msgid "Sample rate"
 msgstr "Sample rate"
 
-#: zp-core/functions.php:2638
+#: zp-core/functions.php:2639
 msgid "Channel mode"
 msgstr "Channel mode"
 
-#: zp-core/functions.php:2639
+#: zp-core/functions.php:2640
 msgid "Format"
 msgstr "Type"
 
-#: zp-core/functions.php:2640
+#: zp-core/functions.php:2641
 msgid "Channels"
 msgstr "Channels"
 
-#: zp-core/functions.php:2641
+#: zp-core/functions.php:2642
 msgid "Frame rate"
 msgstr "Frame rate"
 
-#: zp-core/functions.php:2642
+#: zp-core/functions.php:2643
 msgid "X Resolution"
 msgstr "X resolutie"
 
-#: zp-core/functions.php:2643
+#: zp-core/functions.php:2644
 msgid "Y Resolution"
 msgstr "Y resolutie"
 
-#: zp-core/functions.php:2644
+#: zp-core/functions.php:2645
 msgid "Aspect ratio"
 msgstr "Verhouding lengte/breedte"
 
-#: zp-core/functions.php:2645
+#: zp-core/functions.php:2646
 msgid "Play Time"
 msgstr "Speeltijd"
 
-#: zp-core/functions.php:2646
+#: zp-core/functions.php:2647
 msgid "XMP Rating"
 msgstr "XMP waardering"
 
-#: zp-core/functions.php:2833 zp-core/zp-extensions/comment_form.php:105
+#: zp-core/functions.php:2834 zp-core/zp-extensions/comment_form.php:105
 #: zp-core/zp-extensions/contact_form.php:137
 #: zp-core/zp-extensions/register_user.php:91
 msgid "No captcha handler is enabled."
@@ -11637,24 +11590,24 @@ msgstr "Log uit"
 msgid "My favorites"
 msgstr "Mijn favorieten"
 
-#: zp-core/template-functions.php:846 zp-core/template-functions.php:940
+#: zp-core/template-functions.php:911 zp-core/template-functions.php:1005
 #: zp-core/zp-extensions/menu_manager.php:611
 msgid "Previous Page"
 msgstr "Vorige Pagina"
 
-#: zp-core/template-functions.php:848 zp-core/template-functions.php:1046
+#: zp-core/template-functions.php:913 zp-core/template-functions.php:1111
 #: zp-core/zp-extensions/menu_manager.php:651
 msgid "Next Page"
 msgstr "Volgende Pagina"
 
-#: zp-core/template-functions.php:963
+#: zp-core/template-functions.php:1028
 #: zp-core/zp-extensions/menu_manager.php:617
 msgid "Page 1"
 msgstr "pagina 1"
 
-#: zp-core/template-functions.php:978 zp-core/template-functions.php:987
-#: zp-core/template-functions.php:1017 zp-core/template-functions.php:1024
-#: zp-core/template-functions.php:1034
+#: zp-core/template-functions.php:1043 zp-core/template-functions.php:1052
+#: zp-core/template-functions.php:1082 zp-core/template-functions.php:1089
+#: zp-core/template-functions.php:1099
 #: zp-core/zp-extensions/menu_manager.php:622
 #: zp-core/zp-extensions/menu_manager.php:640
 #: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1048
@@ -11665,7 +11618,7 @@ msgid_plural "Page %u"
 msgstr[0] "pagina %u"
 msgstr[1] "pagina’s %u"
 
-#: zp-core/template-functions.php:998
+#: zp-core/template-functions.php:1063
 #: zp-core/zp-extensions/menu_manager.php:632
 #: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1057
 #, php-format
@@ -11674,40 +11627,40 @@ msgid_plural "Page %1$u"
 msgstr[0] "pagina %1$u"
 msgstr[1] "pagina %1$u"
 
-#: zp-core/template-functions.php:1111
+#: zp-core/template-functions.php:1176
 msgid "The album is un-published."
 msgstr "Dit album is niet gepubliceerd."
 
-#: zp-core/template-functions.php:1220
+#: zp-core/template-functions.php:1285
 msgid "Album Thumbnails"
 msgstr "Albumthumbnails"
 
-#: zp-core/template-functions.php:1320
+#: zp-core/template-functions.php:1385
 msgid "Return to search"
 msgstr "Keer terug naar <em>zoeken</em>"
 
-#: zp-core/template-functions.php:1327
+#: zp-core/template-functions.php:1392
 msgid "Return to archive"
 msgstr "Keer terug naar <em>archief</em>"
 
-#: zp-core/template-functions.php:2094
+#: zp-core/template-functions.php:2159
 msgid "The image is marked un-published."
 msgstr "Deze afbeelding is als niet-gepubliceerd gemarkeerd."
 
-#: zp-core/template-functions.php:2469
+#: zp-core/template-functions.php:2534
 msgid "Image Info"
 msgstr "Foto-informatie"
 
-#: zp-core/template-functions.php:3325
+#: zp-core/template-functions.php:3390
 #, php-format
 msgid "View image: %s"
 msgstr "Bekijk afbeelding: %s"
 
-#: zp-core/template-functions.php:3520
+#: zp-core/template-functions.php:3585
 msgid "No popular tags"
 msgstr "Geen populaire tags"
 
-#: zp-core/template-functions.php:3828
+#: zp-core/template-functions.php:3893
 msgid ""
 "printSearchForm $album_list parameter is deprecated. Pass array(\"albums"
 "\"=>array(album, album, ...)) instead."
@@ -11715,45 +11668,45 @@ msgstr ""
 "printSearchForm $album_list parameter is verouderd. Gebruik in plaats "
 "daarvan array(“albums”=>aray(album, album,...))."
 
-#: zp-core/template-functions.php:3844
+#: zp-core/template-functions.php:3909
 #, php-format
 msgid "%s within previous results"
 msgstr "%s binnen vorige resultaten"
 
-#: zp-core/template-functions.php:3925
+#: zp-core/template-functions.php:3990
 msgid "search options"
 msgstr "zoekopties"
 
-#: zp-core/template-functions.php:3925
+#: zp-core/template-functions.php:3990
 msgid "fields"
 msgstr "velden"
 
-#: zp-core/template-functions.php:3965
+#: zp-core/template-functions.php:4030
 msgid "Within"
 msgstr "binnen"
 
-#: zp-core/template-functions.php:3969
+#: zp-core/template-functions.php:4034
 #: zp-core/zp-extensions/flag_thumbnail.php:91
 msgid "New"
 msgstr "Nieuw"
 
-#: zp-core/template-functions.php:3976
+#: zp-core/template-functions.php:4041
 msgid "Check/uncheck all"
 msgstr "Selecteer/Deselecteer alle"
 
-#: zp-core/template-functions.php:4028
+#: zp-core/template-functions.php:4093
 msgid "no date"
 msgstr "geen datum"
 
-#: zp-core/template-functions.php:4258
+#: zp-core/template-functions.php:4323
 msgid "The page you are trying to view is password protected."
 msgstr "Deze pagina is beveiligd met een wachtwoord."
 
-#: zp-core/template-functions.php:4263
+#: zp-core/template-functions.php:4328
 msgid "login"
 msgstr "login"
 
-#: zp-core/template-functions.php:4280
+#: zp-core/template-functions.php:4345
 msgid ""
 "Powered by <a href=\"http://www.zenphoto.org\" title=\"A simpler web album"
 "\"><span id=\"zen-part\">zen</span><span id=\"photo-part\">PHOTO</span></a>"
@@ -11761,21 +11714,21 @@ msgstr ""
 "Powered by <a href=\"http://www.zenphoto.org\" title=\"A simpler web album"
 "\"><span id=\"zen-part\">zen</span><span id=\"photo-part\">PHOTO</span></a>"
 
-#: zp-core/template-functions.php:4444
+#: zp-core/template-functions.php:4509
 msgid "Zenphoto Error:</strong> the requested object was not found."
 msgstr "Zenphoto fout:</strong> het gevraagde object kon niet gevonden worden."
 
-#: zp-core/template-functions.php:4446
+#: zp-core/template-functions.php:4511
 #, php-format
 msgid "Album: %s"
 msgstr "Album: %s"
 
-#: zp-core/template-functions.php:4449
+#: zp-core/template-functions.php:4514
 #, php-format
 msgid "Image: %s"
 msgstr "Afbeelding: %s"
 
-#: zp-core/template-functions.php:4452
+#: zp-core/template-functions.php:4517
 #, php-format
 msgid "Page: %s"
 msgstr "Pagina: %s"
@@ -16500,25 +16453,25 @@ msgstr ""
 "Functies die diverse statistieken over afbeeldingen en albums in de galerij "
 "leveren."
 
-#: zp-core/zp-extensions/image_album_statistics.php:261
+#: zp-core/zp-extensions/image_album_statistics.php:259
 #: zp-core/zp-extensions/rss.php:605
 #, php-format
 msgid "Last update: %s"
 msgstr "Laatste update: %s"
 
-#: zp-core/zp-extensions/image_album_statistics.php:267
+#: zp-core/zp-extensions/image_album_statistics.php:268
 #, php-format
 msgid "%1$u new %2$s"
 msgstr "%1$u nieuw %2$s"
 
-#: zp-core/zp-extensions/image_album_statistics.php:278
-#: zp-core/zp-extensions/image_album_statistics.php:600
+#: zp-core/zp-extensions/image_album_statistics.php:280
+#: zp-core/zp-extensions/image_album_statistics.php:602
 #, php-format
 msgid "Rating: %1$u (Votes: %2$u)"
 msgstr "waardering: %1$u (Stemmen: %2$u )"
 
-#: zp-core/zp-extensions/image_album_statistics.php:285
-#: zp-core/zp-extensions/image_album_statistics.php:607
+#: zp-core/zp-extensions/image_album_statistics.php:287
+#: zp-core/zp-extensions/image_album_statistics.php:609
 #, php-format
 msgid "Views: %u"
 msgstr "Bekeken: %u"
@@ -20656,7 +20609,7 @@ msgstr ""
 
 #: zp-core/zp-extensions/tinymce4.php:59
 msgid "Custom thumb crop - size"
-msgstr "Thmbnail uitsnede grootte"
+msgstr "Thumbnail uitsnede grootte"
 
 #: zp-core/zp-extensions/tinymce4.php:61
 msgid ""
@@ -22089,7 +22042,7 @@ msgid ""
 msgstr ""
 "<strong>Opmerking:</strong> <em>geneste Wordpress pagina’s en categorieën</"
 "em> worden niet overgenomen maar kunnen makkelijk hersteld worden door "
-"middel van <em>drag en drop</em> sortering."
+"middel van <em>drag and drop</em> sortering."
 
 #: zp-core/zp-extensions/wordpress_import.php:406
 msgid ""
