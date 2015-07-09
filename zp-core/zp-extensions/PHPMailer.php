@@ -86,7 +86,7 @@ class zp_PHPMailer {
 
 }
 
-function zenphoto_PHPMailer($msg, $email_list, $subject, $message, $from_mail, $from_name, $cc_addresses, $replyTo) {
+function zenphoto_PHPMailer($msg, $email_list, $subject, $message, $from_mail, $from_name, $cc_addresses, $replyTo, $html = false) {
 	require_once(dirname(__FILE__) . '/PHPMailer/class.phpmailer.php');
 	switch (getOption('PHPMailer_mail_protocol')) {
 		case 'pop3':
@@ -119,7 +119,7 @@ function zenphoto_PHPMailer($msg, $email_list, $subject, $message, $from_mail, $
 	$mail->Subject = $subject;
 	$mail->Body = $message;
 	$mail->AltBody = '';
-	$mail->IsHTML(false);
+	$mail->IsHTML($html);
 
 	foreach ($email_list as $to_name => $to_mail) {
 		if (is_numeric($to_name)) {

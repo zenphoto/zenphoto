@@ -470,19 +470,21 @@ class utf8 {
 	 * Send mail
 	 * Replacement for mb_send_mail(), an UTF-8 friendly replacement for mail()
 	 */
-	static function send_mail($to, $subject, $message, $additional_headers = '', $additional_parameter = '') {
+	static function send_mail($to, $subject, $message, $additional_headers = '', $additional_parameter = '', $html) {
 		$subject = UTF8::encode_mimeheader($subject);
 		$message = chunk_split(base64_encode($message));
 
 		$additional_headers = trim($additional_headers);
-
 		if ($additional_headers != '')
 			$additional_headers .= "\n";
-
 		$additional_headers .=
 						"Mime-Version: 1.0\n" .
-						"Content-Type: text/plain; charset=UTF-8\n" .
-						"Content-Transfer-Encoding: base64";
+						"Content-Transfer-Encoding: base64\n";
+		if ($html) {
+			$additional_headers .= "Content-Type: text/html; charset=" . LOCAL_CHARSET;
+		} else {
+			$additional_headers .= "Content-Type: text/plain; charset=" . LOCAL_CHARSET;
+		}
 
 		if (SAFE_MODE) {
 			return @mail($to, $subject, $message, $additional_headers);
