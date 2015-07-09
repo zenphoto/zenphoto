@@ -11,6 +11,7 @@
 define('OFFSET_PATH', 1);
 require_once(dirname(__FILE__) . '/admin-globals.php');
 require_once(SERVERPATH . '/' . ZENFOLDER . '/functions-config.php');
+require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/tag_suggest.php');
 
 admin_securityChecks(OPTIONS_RIGHTS, currentRelativeURL());
 define('PLUGINS_PER_PAGE', max(1, getOption('plugins_per_page')));
