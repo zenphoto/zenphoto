@@ -1661,6 +1661,7 @@ class dynamicAlbum extends AlbumBase {
 			$searchengine = $this->getSearchEngine();
 			$this->images = $searchengine->getImages(0, 0, $sorttype, $sortdirection, $care, $mine);
 			$this->lastimagesort = $sorttype . $sortdirection;
+			$this->imageNames = array();
 			foreach ($this->images as $image) {
 				$this->imageNames[$image['folder'] . '/' . $image['filename']] = $image['filename'];
 			}
