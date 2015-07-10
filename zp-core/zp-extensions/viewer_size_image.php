@@ -40,12 +40,14 @@ class viewer_size_image_options {
 			setOptionDefault('viewer_size_image_sizes', '$s=' . ($default - 200) . '; $s=' . ($default - 100) . '; $s=' . ($default) . '; $s=' . ($default + 100) . '; $s=' . ($default + 200) . ';');
 			setOptionDefault('viewer_size_image_default', '$s=' . $default);
 			setOptionDefault('viewer_size_image_radio', 2);
-			cacheManager::deleteThemeCacheSizes('viewer_size_image');
-			cacheManager::addThemeCacheSize('viewer_size_image', $default - 200, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-			cacheManager::addThemeCacheSize('viewer_size_image', $default - 100, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-			cacheManager::addThemeCacheSize('viewer_size_image', $default, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-			cacheManager::addThemeCacheSize('viewer_size_image', $default + 100, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-			cacheManager::addThemeCacheSize('viewer_size_image', $default + 200, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+			if (class_exists('cacheManager')) {
+				cacheManager::deleteThemeCacheSizes('viewer_size_image');
+				cacheManager::addThemeCacheSize('viewer_size_image', $default - 200, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+				cacheManager::addThemeCacheSize('viewer_size_image', $default - 100, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+				cacheManager::addThemeCacheSize('viewer_size_image', $default, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+				cacheManager::addThemeCacheSize('viewer_size_image', $default + 100, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+				cacheManager::addThemeCacheSize('viewer_size_image', $default + 200, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+			}
 		}
 	}
 

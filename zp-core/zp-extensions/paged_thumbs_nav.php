@@ -32,8 +32,10 @@ class pagedthumbsOptions {
 			setOptionDefault('pagedthumbs_pagelist', '');
 			setOptionDefault('pagedthumbs_pagelistprevnext', '');
 			setOptionDefault('pagedthumbs_pagelistlength', '6');
-			cacheManager::deleteThemeCacheSizes('paged_thumbs_nav');
-			cacheManager::addThemeCacheSize('paged_thumbs_nav', NULL, getOption('pagedthumbs_width'), getOption('pagedthumbs_height'), NULL, NULL, NULL, NULL, true, NULL, NULL, NULL);
+			if (class_exists('cacheManager')) {
+				cacheManager::deleteThemeCacheSizes('paged_thumbs_nav');
+				cacheManager::addThemeCacheSize('paged_thumbs_nav', NULL, getOption('pagedthumbs_width'), getOption('pagedthumbs_height'), NULL, NULL, NULL, NULL, true, NULL, NULL, NULL);
+			}
 		}
 	}
 
