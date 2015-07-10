@@ -288,7 +288,7 @@ function lookupSortKey($sorttype, $default, $table) {
 			}
 			$sorttype = strtolower($sorttype);
 			$list = explode(',', $sorttype);
-			$fields = [];
+			$fields = array();
 			// Critical for preventing SQL injection: only return parts of 
 			// the custom sort that are exactly equal to database fields.
 			foreach ($list as $key => $field) {
