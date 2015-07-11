@@ -1,95 +1,75 @@
 <?php
 /**
- * Provide JavaScript tag "suggestions" based on Remy Sharp's {@link http://remysharp.com/2007/12/28/jquery-tag-suggestion/ jQuery Tag Suggestion} plugin.
+ * Provide javaScript tag "suggestions"
+ * Based on Remy Sharp's {@link http://remysharp.com/2007/12/28/jquery-tag-suggestion/ jQuery Tag Suggestion}
+ * plugin as modified for ZenPhoto20 to enhance performance.
  *
- * Activate the plugin and the feature is available on the theme's search field.
+ * This plugin provides suggestions for tag fields such as the search form. It is
+ * automatically enabled for administration fields. The plugin must be enabled for
+ * the suggestions to appear on theme pages.
  *
- * @author Malte Müller (acrylian), Stephen Billard (sbillard) - an adaption of Remy Sharp's jQuery Tag Suggestion
+ * Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+ *
+ * @author Stephen Billard (sbillard)
  * @package plugins
+ * @subpackage theme
  */
-$plugin_is_filter = 9 | THEME_PLUGIN;
+$plugin_is_filter = defaultExtension(9 | THEME_PLUGIN);
 $plugin_description = gettext("Enables jQuery tag suggestions on the search field.");
-$plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
-$option_interface = 'tagsuggest';
-zp_register_filter('theme_head', 'tagSuggestJS_frontend');
-zp_register_filter('admin_head', 'tagSuggestJS_admin');
+$plugin_author = "Stephen Billard";
 
-class tagsuggest {
+$option_interface = 'tag_suggest';
 
-  function __construct() {
-    setOptionDefault('tagsuggest_excludeunassigned', 1);
-    setOptionDefault('tagsuggest_checkaccess', 0);
-  }
+zp_register_filter('theme_head', 'tag_suggest::JS');
+zp_register_filter('admin_head', 'tag_suggest::JS');
 
-  function getOptionsSupported() {
-    	$options = array(
-         gettext('Exclude unassigned')
-          => array(
-              'key'	 => 'tagsuggest_excludeunassigned',
-              'type' => OPTION_TYPE_CHECKBOX,
-              'desc' => gettext("Check if you wish to exclude tags are not assigned to any item.")),
-         gettext('Check tag access')
-          => array(
-              'key'	 => 'tagsuggest_checkaccess',
-              'type' => OPTION_TYPE_CHECKBOX,
-              'desc' => gettext("Check if you wish to exclude tags that are assigned to items (or are not assigned at all) the visitor is not allowed to see. This overrides the exlude unassigned option. <p class='notebox'><strong>Note:</strong> Beware that this may cause overhead on larger sites. The usage of the static_html_cache plugin is recommended.</p>"))
-         );
-     return $options;
-  }
-}
+class tag_suggest {
 
-function tagSuggestJS_admin() {
-  tagSuggestJS(false);
-}
+	function __construct() {
+		setOptionDefault('tag_suggest_threshold', 1);
+	}
 
-function tagSuggestJS_frontend() {
-  $exclude_unassigned = getOption('tagsuggest_excludeunassigned');
-  $checkaccess = getOption('tagsuggest_checkaccess');
-  tagSuggestJS($exclude_unassigned,$checkaccess);
-}
+	function getOptionsSupported() {
+		$options = array(gettext('threshold') => array('key'		 => 'tag_suggest_threshold', 'type'	 => OPTION_TYPE_NUMBER,
+										'order'	 => 1,
+										'limits' => array('min' => 1),
+										'desc'	 => gettext('Only tags with at least this number of uses will be suggested.'))
+		);
+		return $options;
+	}
 
-function tagSuggestJS($exclude_unassigned = false, $checkaccess = false) {
-	// the scripts needed
-	?>
-	<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/encoder.js"></script>
-	<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/tag.js"></script>
-	<?php
-	$css = getPlugin('tag_suggest/tag.css', true, true);
-	?>
-	<link type="text/css" rel="stylesheet" href="<?php echo pathurlencode($css); ?>" />
-	<?php
-  if ($checkaccess) {
-     $taglist = getAllTagsUnique(true);
-   } else {
-     if ($exclude_unassigned) {
-       $taglist = getAllTagsCount(true);
-       $taglist = array_keys($taglist);
-     } else {
-       $taglist = getAllTagsUnique(false);
-     }
-   }
-   $c = 0;
-   $list = '';
-   foreach ($taglist AS $tag) {
-     if ($c > 0)
-       $list .= ',';
-     $c++;
-     $list .= '"' . addslashes($tag) . '"';
-   }
-   if (OFFSET_PATH || getOption('search_space_is') == 'OR') {
-     $tagseparator = ' ';
-   } else {
-     $tagseparator = ',';
-   }
-   ?>
-	<script type="text/javascript">
-		// <!-- <![CDATA[
-		var _tagList = [<?php echo $list; ?>];
-		$(function() {
-			$('#search_input, #edit-editable_4, .tagsuggest').tagSuggest({separator: '<?php echo $tagseparator; ?>', tags: _tagList})
-		});
-		// ]]> -->
-	</script>
-	<?php
+	static function JS() {
+		// the scripts needed
+		?>
+		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/tag_suggest/encoder.js"></script>
+		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/tag_suggest/tag.js"></script>
+		<?php
+		$css = getPlugin('tag_suggest/tag.css', true, true);
+		?>
+		<link type="text/css" rel="stylesheet" href="<?php echo pathurlencode($css); ?>" />
+		<?php
+		$taglist = getAllTagsUnique(OFFSET_PATH ? false : NULL, OFFSET_PATH ? 0 : getOption('tag_suggest_threshold'));
+		$tags = array();
+		foreach ($taglist as $tag) {
+			$tags[] = addslashes($tag);
+		}
+
+		if (OFFSET_PATH || getOption('search_space_is') == 'OR') {
+			$tagseparator = ' ';
+		} else {
+			$tagseparator = ',';
+		}
+		?>
+		<script type="text/javascript">
+			// <!-- <![CDATA[
+			var _tagList = ["<?php echo implode($tags, '","'); ?>"];
+			$(function () {
+				$('#search_input, #edit-editable_4, .tagsuggest').tagSuggest({separator: '<?php echo $tagseparator; ?>', tags: _tagList, quoteSpecial: <?php echo OFFSET_PATH ? 'false' : 'true'; ?>})
+			});
+			// ]]> -->
+		</script>
+		<?php
+	}
+
 }
 ?>

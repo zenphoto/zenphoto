@@ -1,6 +1,6 @@
 <?php
 /**
- * Supports showing slideshows of images.
+ * Supports showing slideshows of images in an album.
  * 	<ul>
  * 		<li>Plugin Option 'slideshow_size' -- Size of the images</li>
  * 		<li>Plugin Option 'slideshow_mode' -- The player to be used</li>
@@ -11,12 +11,13 @@
  * 	</ul>
  *
  * For the jQuery Cycle mode, the theme file <var>slideshow.php</var> must reside in the theme
- * folder. If you are creating a custom theme, copy this file from an included theme of the Zenphoto
- * distribution. A custom theme css file <var>slideshow.css</var> will be loaded from the theme
+ * folder. If you are creating a custom theme, copy this file from one of the
+ * distributed themes.
+ * A custom theme css file <var>slideshow.css</var> will be loaded from the theme
  * folder, if not present, a default css file in the plugin folder will be loaded.
  *
- * Note that the Colorbox mode does not require these files as it is called on your theme's <i>image.php</i>, <i>album.php</i>,
- * <i>search.php</i>, and <i>favorites.php</i> (if enabled) directly via the slideshow button. The Colorbox plugin must be enabled and setup for these pages.
+ * The Colorbox mode does not require these files as it is called on your theme's image.php, album.php,
+ * search.php, and favorites.php (if enabled) directly via the slideshow button. The Colorbox plugin must be enabled and setup for these pages.
  *
  * <b>NOTE:</b> The jQuery Cycle and the jQuery Colorbox modes do not support movie and audio files.
  * In Colorbox mode there will be no slideshow button on the image page if that current image is a movie/audio file.
@@ -86,7 +87,7 @@ class slideshow {
 										'order'			 => 0,
 										'selections' => array(gettext("jQuery Cycle") => "jQuery", gettext("jQuery Colorbox") => "colorbox"),
 										'desc'			 => gettext('<em>jQuery Cycle</em> for slideshow using the jQuery Cycle plugin<br /><em>jQuery Colorbox</em> for slideshow using Colorbox (Colorbox plugin required).<br />NOTE: The jQuery Colorbox mode is attached to the link the printSlideShowLink() function prints and can neither be called directly nor used on the slideshow.php theme page.')),
-						gettext('Speed') => array('key'		 => 'slideshow_speed', 'type'	 => OPTION_TYPE_TEXTBOX,
+						gettext('Speed') => array('key'		 => 'slideshow_speed', 'type'	 => OPTION_TYPE_NUMBER,
 										'order'	 => 1,
 										'desc'	 => gettext("Speed of the transition in milliseconds."))
 		);
@@ -104,17 +105,17 @@ class slideshow {
 
 		switch (getOption('slideshow_mode')) {
 			case 'jQuery':
-				$options = array_merge($options, array(gettext('Slide width')	 => array('key'		 => 'slideshow_width', 'type'	 => OPTION_TYPE_TEXTBOX,
+				$options = array_merge($options, array(gettext('Slide width')	 => array('key'		 => 'slideshow_width', 'type'	 => OPTION_TYPE_NUMBER,
 												'order'	 => 5,
 												'desc'	 => gettext("Width of the images in the slideshow.")),
-								gettext('Slide height')	 => array('key'		 => 'slideshow_height', 'type'	 => OPTION_TYPE_TEXTBOX,
+								gettext('Slide height')	 => array('key'		 => 'slideshow_height', 'type'	 => OPTION_TYPE_NUMBER,
 												'order'	 => 6,
 												'desc'	 => gettext("Height of the images in the slideshow.")),
 								gettext('Cycle Effect')	 => array('key'				 => 'slideshow_effect', 'type'			 => OPTION_TYPE_SELECTOR,
 												'order'			 => 2,
 												'selections' => array(gettext('fade') => "fade", gettext('shuffle') => "shuffle", gettext('zoom') => "zoom", gettext('slide X') => "slideX", gettext('slide Y') => "slideY", gettext('scroll up') => "scrollUp", gettext('scroll down') => "scrollDown", gettext('scroll left') => "scrollLeft", gettext('scroll right') => "scrollRight"),
 												'desc'			 => gettext("The cycle slide effect to be used.")),
-								gettext('Timeout')			 => array('key'		 => 'slideshow_timeout', 'type'	 => OPTION_TYPE_TEXTBOX,
+								gettext('Timeout')			 => array('key'		 => 'slideshow_timeout', 'type'	 => OPTION_TYPE_NUMBER,
 												'order'	 => 3,
 												'desc'	 => gettext("Milliseconds between slide transitions (0 to disable auto advance.)")),
 								gettext('Description')	 => array('key'		 => 'slideshow_showdesc', 'type'	 => OPTION_TYPE_CHECKBOX,
@@ -136,7 +137,7 @@ class slideshow {
 												'desc'	 => gettext("If the image title should be shown at the bottom of the Colorbox."))
 				));
 				if (getOption('slideshow_colorbox_imagetype') == 'sizedimage') {
-					$options = array_merge($options, array(gettext('Slide width') => array('key'		 => 'slideshow_width', 'type'	 => OPTION_TYPE_TEXTBOX,
+					$options = array_merge($options, array(gettext('Slide width') => array('key'		 => 'slideshow_width', 'type'	 => OPTION_TYPE_NUMBER,
 													'order'	 => 3.5,
 													'desc'	 => gettext("Width of the images in the slideshow."))
 					));
@@ -461,8 +462,8 @@ class slideshow {
 			$css = WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/slideshow/slideshow.css';
 		}
 		?>
-		<script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/slideshow/jquery.cycle.all.js" type="text/javascript"></script>
-		<link rel="stylesheet" type="text/css" href="<?php echo $css; ?>" />
+		<script type="text/javascript"	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/slideshow/jquery.cycle.all.js"></script>
+		<link type="text/css" rel="stylesheet" href="<?php echo $css; ?>" />
 		<?php
 	}
 
@@ -513,12 +514,12 @@ if (extensionEnabled('slideshow')) {
 			$pagenr = sanitize_numeric($_GET['page']);
 		}
 		$slideshowhidden = '';
+		$slideshowlink = rewrite_path(_PAGE_ . '/slideshow', "index.php?p=slideshow");
 		$numberofimages = 0;
 		if (in_context(ZP_SEARCH)) {
 			$imagenumber = '';
 			$imagefile = '';
 			$albumnr = 0;
-			$slideshowlink = rewrite_path(_PAGE_ . '/slideshow', "index.php?p=slideshow");
 			$slideshowhidden = '<input type="hidden" name="preserve_search_params" value="' . html_encode($_zp_current_search->getSearchParams()) . '" />';
 		} else {
 			if (in_context(ZP_IMAGE)) {
@@ -534,10 +535,7 @@ if (extensionEnabled('slideshow')) {
 			} else {
 				$albumnr = $_zp_current_album->getID();
 			}
-			if ($albumnr) {
-				$slideshowlink = rewrite_path(pathurlencode($_zp_current_album->getFileName()) . '/' . _PAGE_ . '/slideshow', "index.php?p=slideshow&amp;album=" . urlencode($_zp_current_album->getFileName()));
-			} else {
-				$slideshowlink = rewrite_path(_PAGE_ . '/slideshow', "index.php?p=slideshow");
+			if (!$albumnr) {
 				$slideshowhidden = '<input type="hidden" name="favorites_page" value="1" />' . "\n" . '<input type="hidden" name="title" value="' . $_myFavorites->instance . '" />';
 			}
 		}
@@ -582,7 +580,7 @@ if (extensionEnabled('slideshow')) {
 					$count = '';
 					?>
 					<script type="text/javascript">
-						$(document).ready(function() {
+						$(document).ready(function () {
 							$("a[rel='slideshow']").colorbox({
 								slideshow: true,
 								loop: true,

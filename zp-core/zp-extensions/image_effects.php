@@ -24,9 +24,9 @@
  *
  * The following tokens are available to represent paths:
  * 	<ul>
- * 		<li><var>%WEBPATH%</v> to represent the WEB path to the Zenphoto installation.</li>
- * 		<li><var>%SERVERPATH%</var> to represent the server path to the Zenphoto installation.</li>
- * 		<li><var>%PLUGIN_FOLDER%</var> to represent the Zenphoto "extensions" folder.</li>
+ * 		<li><var>%WEBPATH%</v> to represent the WEB path to the zenphoto installation.</li>
+ * 		<li><var>%SERVERPATH%</var> to represent the server path to the zenphoto installation.</li>
+ * 		<li><var>%PLUGIN_FOLDER%</var> to represent the zenphoto "extensions" folder.</li>
  * 		<li><var>%USER_PLUGIN_FOLDER%</var> to represent the root "plugin" folder.</li>
  * 		<li><var>%ZENFOLDER%</var> to represent the zp-core folder.</li>
  * </ul>
@@ -53,6 +53,7 @@
  *
  *
  * @author Stephen Billard (sbillard)
+ * 
  * @package plugins
  * @subpackage media
  */

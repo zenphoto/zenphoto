@@ -15,18 +15,18 @@ class ThemeOptions {
 		$me = basename(dirname(__FILE__));
 		setThemeOptionDefault('Allow_search', true);
 		setThemeOptionDefault('thumb_transition', 1);
-		setOptionDefault('colorbox_default_album', 1);
-		setOptionDefault('colorbox_default_image', 1);
-		setOptionDefault('colorbox_default_search', 1);
 		setThemeOption('thumb_size', 79, NULL, 'zpmobile');
 		setThemeOptionDefault('thumb_crop_width', 79);
 		setThemeOptionDefault('thumb_crop_height', 79);
 		setThemeOptionDefault('thumb_crop', 1);
-		setThemeOption('custom_index_page', 'gallery', NULL, 'zpmobile', false);
 		setThemeOptionDefault('albums_per_page', 6);
 		setThemeOptionDefault('albums_per_row', 1);
 		setThemeOptionDefault('images_per_page', 24);
 		setThemeOptionDefault('images_per_row', 6);
+		setOptionDefault('colorbox_zpmobile_album', 1);
+		setOptionDefault('colorbox_zpmobile_favorites', 1);
+		setOptionDefault('colorbox_zpmobile_image', 1);
+		setOptionDefault('colorbox_zpmobilet_search', 1);
 		if (class_exists('cacheManager')) {
 			cacheManager::deleteThemeCacheSizes('zpMobile');
 			cacheManager::addThemeCacheSize('zpMobile', NULL, 79, 79, 79, 79, NULL, NULL, true, NULL, NULL, NULL);
@@ -41,7 +41,7 @@ class ThemeOptions {
 	}
 
 	function getOptionsDisabled() {
-		return array('custom_index_page', 'image_size', 'thumb_size');
+		return array('image_size', 'thumb_size');
 	}
 
 	function handleOption($option, $currentValue) {

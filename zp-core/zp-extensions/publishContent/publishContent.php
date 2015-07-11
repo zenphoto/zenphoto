@@ -33,7 +33,7 @@ if (isset($_POST['set_defaults'])) {
 		case 'albums':
 			unset($_POST['checkAllAuto']);
 			foreach ($_POST as $key => $albumid) {
-				$album = newAlbum(postIndexDecode($key));
+				$album = newAlbum(sanitize(postIndexDecode($key)));
 				$album->setShow(1);
 				$album->save();
 			}
@@ -62,7 +62,7 @@ if (isset($_POST['set_defaults'])) {
 		case 'categories':
 			$report = 'categories';
 			foreach ($_POST as $key => $titlelink) {
-				$obj = new ZenpageCategory($titlelink);
+				$obj = newCategory($titlelink);
 				$obj->setShow(1);
 				$obj->save();
 			}
@@ -70,14 +70,14 @@ if (isset($_POST['set_defaults'])) {
 		case 'news':
 			$report = 'news';
 			foreach ($_POST as $key => $titlelink) {
-				$obj = new ZenpageNews($titlelink);
+				$obj = newArticle($titlelink);
 				$obj->setShow(1);
 				$obj->save();
 			}
 			break;
 		case 'pages':
 			foreach ($_POST as $key => $titlelink) {
-				$obj = new ZenpagePage($titlelink);
+				$obj = newPage($titlelink);
 				$obj->setShow(1);
 				$obj->save();
 			}
@@ -93,6 +93,14 @@ if ($report) {
 		$report = sanitize($_GET['report']);
 	}
 }
+$tables = array('albums', 'images');
+if (extensionEnabled('zenpage')) {
+	$tables = array_merge($tables, array('news', 'pages'));
+}
+foreach ($tables as $table) {
+	updatePublished($table);
+}
+
 $zenphoto_tabs['overview']['subtabs'] = array(gettext('Content') => '');
 printAdminHeader('overview', gettext('Content'));
 datepickerJS();
@@ -177,7 +185,6 @@ echo '</head>';
 					ksort($publish_images_list, SORT_LOCALE_STRING);
 				}
 
-
 				if (zp_loggedin(ADMIN_RIGHTS)) { //only admin should be allowed to do this
 					?>
 					<fieldset class="smallbox">
@@ -192,7 +199,7 @@ echo '</head>';
 								<?php
 							}
 							?>
-							<form class="dirty-check" name="set_publication" action="" method="post">
+							<form class="dirtylistening" onReset="setClean('set_publication_form');" id="set_publication_form" name="set_publication" action="" method="post">
 								<?php XSRFToken('publishContent'); ?>
 								<input type="hidden" name="set_defaults" value="true" />
 								<label><input type="checkbox" name="album_default"	value="1"<?php if ($albpublish) echo ' checked="checked"'; ?> /> <?php echo gettext("Publish albums by default"); ?></label>
@@ -246,7 +253,7 @@ echo '</head>';
 						}
 						if ($c > 0) {
 							?>
-							<form class="dirty-check" name="publish_albums" action="" method="post"><?php echo gettext('Albums:'); ?>
+							<form class="dirtylistening" onReset="setClean('publish_albums_form');" id="publish_albums_form" name="publish_albums" action="" method="post"><?php echo gettext('Albums:'); ?>
 								<label id="autocheck">
 									<input type="checkbox" name="checkAllAuto" id="checkAllAuto" onclick="$('.checkAuto').prop('checked', $('#checkAllAuto').prop('checked'));"/>
 									<span id="autotext"><?php echo gettext('all'); ?></span>
@@ -267,6 +274,7 @@ echo '</head>';
 												<?php echo $album->name; ?>
 											</label>
 											<a href="<?php echo $album->getLink(); ?>" title="<?php echo gettext('view'); ?>"> (<?php echo gettext('view'); ?>)</a>
+											<a href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-edit.php?page=edit&album=<?php echo html_encode($album->name); ?>" title="<?php echo gettext('Edit'); ?>"> (<?php echo gettext('Edit'); ?>)</a>
 										</li>
 										<?php
 									}
@@ -303,7 +311,7 @@ echo '</head>';
 
 				<script type="text/javascript">
 					//<!-- <![CDATA[
-					$(function() {
+					$(function () {
 						$("#publish_date").datepicker({
 							dateFormat: 'yy-mm-dd',
 							showOn: 'button',
@@ -371,7 +379,7 @@ echo '</head>';
 								}
 								// ]]> -->
 							</script>
-							<form class="dirty-check" name="publish_images" action="" method="post"><?php echo gettext('Images:'); ?>
+							<form class="dirtylistening" onReset="setClean('publish_images_form');" id="publish_images_form" name="publish_images" action="" method="post"><?php echo gettext('Images:'); ?>
 
 								<?php XSRFToken('publishContent'); ?>
 								<input type="hidden" name="publish" value="images" />
@@ -386,13 +394,13 @@ echo '</head>';
 										?>
 										<li>
 											<p class="scheduleimagechecklisthead">
-												<a href="javascript:publishAll(<?php echo $albumid; ?>,'p');" title="<?php echo gettext('Set all to be published'); ?>">
+												<a onclick="publishAll(<?php echo $albumid; ?>, 'p');" title="<?php echo gettext('Set all to be published'); ?>">
 													<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" style="border: 0px;" alt="publish all" />
 												</a>
-												<a href="javascript:publishAll(<?php echo $albumid; ?>,'u');" title="<?php echo gettext('Set all to be un-published'); ?>">
+												<a onclick="publishAll(<?php echo $albumid; ?>, 'u');" title="<?php echo gettext('Set all to be un-published'); ?>">
 													<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" style="border: 0px;" alt="unpublish all" />
 												</a>
-												<a href="javascript:publishAll(<?php echo $albumid; ?>,'d');" title="<?php echo gettext('Set all to be deleted'); ?>">
+												<a onclick="publishAll(<?php echo $albumid; ?>, 'd');" title="<?php echo gettext('Set all to be deleted'); ?>">
 													<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/fail.png" style="border: 0px;" alt="delete all" />
 												</a>
 												&nbsp;&nbsp;&nbsp;&nbsp;<strong><?php echo $key; ?></strong>
@@ -423,12 +431,11 @@ echo '</head>';
 																</td>
 																<td>
 																	<?php $image = newImage($album, $display); ?>
-																	<img src="<?php echo html_encode(pathurlencode(getAdminThumb($image, 'large'))); ?>" alt="<?php echo $image->filename; ?>"/>
+																	<img src="<?php echo html_encode(pathurlencode(getAdminThumb($image, 'medium'))); ?>" alt="<?php echo $image->filename; ?>"/>
 																</td>
 																<td>
-																	<?php printf(gettext('%s'), $display); ?><a href="<?php echo html_encode($image->getLink()); ?>" title="<?php echo html_encode($image->getTitle()); ?>"> (<?php echo gettext('View'); ?>)</a>
+																	<?php echo $display; ?> <a href="<?php echo html_encode($image->getLink()); ?>" title="<?php echo html_encode($image->getTitle()); ?>">(<?php echo gettext('View'); ?>) </a><a href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-edit.php?page=edit&tab=imageinfo&album=<?php echo html_encode($image->album->name); ?>&singleimage=<?php echo html_encode($image->getFilename()); ?>&subpage=1">(<?php echo gettext('Edit'); ?>)</a>
 																</td>
-
 															</tr>
 														</table>
 													</li>
@@ -442,10 +449,10 @@ echo '</head>';
 									?>
 								</ul>
 								<p class="scheduleimagechecklisthead">
-									<a href="javascript:publishAll('','p');" title="<?php echo gettext('Set all to be published'); ?>">
+									<a onclick="publishAll('', 'p');" title="<?php echo gettext('Set all to be published'); ?>">
 										<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" style="border: 0px;" alt="publish all" />
 									</a>
-									<a href="javascript:publishAll('','u');" title="<?php echo gettext('Set all to be un-published'); ?>">
+									<a onclick="publishAll('', 'u');" title="<?php echo gettext('Set all to be un-published'); ?>">
 										<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" style="border: 0px;" alt="unpublish all" />
 									</a>
 									&nbsp;&nbsp;&nbsp;&nbsp;<strong><?php echo gettext('all images'); ?></strong>
@@ -471,16 +478,20 @@ echo '</head>';
 					?>
 				</fieldset>
 				<?php
-				if (class_exists('Zenpage')) {
+				if (class_exists('CMS')) {
 					$visible = $report == 'categories';
-					$items = $_zp_zenpage->getAllCategories(false);
+					$items = $_zp_CMS->getAllCategories(false);
 					$output = '';
 					$c = 0;
 					foreach ($items as $key => $item) {
-						$itemobj = new ZenpageCategory($item['titlelink']);
+						$itemobj = newCategory($item['titlelink']);
 						if (!$itemobj->getShow()) {
 							$c++;
-							$output .= '<li><label><input type="checkbox" name="' . $item['titlelink'] . '" value="' . $item['titlelink'] . '" class="catcheck" />' . $itemobj->getTitle() . '</label><a href="' . html_encode($itemobj->getLink()) . '" title="' . html_encode($itemobj->getTitle()) . '"> (' . gettext('View') . ')</a></li>';
+							$output .= '<li><label><input type="checkbox" name="' . $item['titlelink'] . '" value="' . $item['titlelink'] . '" class="catcheck" />' . $itemobj->getTitle() . '</label>';
+							if ($desc = shortenContent($itemobj->getDesc(), 50, '...')) {
+								$output .= ' "' . strip_tags($desc) . '"';
+							}
+							$output .= ' <a href="' . html_encode($itemobj->getLink()) . '" title="' . html_encode($itemobj->getTitle()) . '">(' . gettext('View') . ')</a> <a href="' . WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-edit.php?newscategory&titlelink=' . html_encode($itemobj->getTitlelink()) . '">(' . gettext('Edit') . ')</a></li>';
 						}
 					}
 					?>
@@ -504,7 +515,7 @@ echo '</head>';
 									<?php
 								}
 								?>
-								<form class="dirty-check" name="publish_cat" action="" method="post"><?php echo gettext('Categories:'); ?>
+								<form class="dirtylistening" onReset="setClean('publish_cat_form');" id="publish_cat_form" name="publish_cat" action="" method="post"><?php echo gettext('Categories:'); ?>
 									<label id="autocheck_cat">
 										<input type="checkbox" id="checkAllcat" name="checkAllcat" onclick="$('.catcheck').prop('checked', $('#checkAllcat').prop('checked'));" />
 										<span id="autotext_cat"><?php echo gettext('all'); ?></span>
@@ -532,14 +543,18 @@ echo '</head>';
 					<br class="clearall" />
 					<?php
 					$visible = $report == 'news';
-					$items = $_zp_zenpage->getArticles(0, false);
+					$items = $_zp_CMS->getArticles(0, false);
 					$output = '';
 					$c = 0;
 					foreach ($items as $key => $item) {
-						$itemobj = new ZenpageNews($item['titlelink']);
+						$itemobj = newArticle($item['titlelink']);
 						if (!$itemobj->getShow()) {
 							$c++;
-							$output .= '<li><label><input type="checkbox" name="' . $item['titlelink'] . '" value="' . $item['titlelink'] . '" class="artcheck" />' . $itemobj->getTitle() . '</label><a href="' . html_encode($itemobj->getLink()) . '" title="' . html_encode($itemobj->getTitle()) . '"> (' . gettext('View') . ')</a></li>';
+							$output .= '<li><label><input type="checkbox" name="' . $item['titlelink'] . '" value="' . $item['titlelink'] . '" class="catcheck" />' . $itemobj->getTitle() . '</label>';
+							if ($desc = shortenContent($itemobj->getContent(), 50, '...')) {
+								$output .= ' "' . strip_tags($desc) . '"';
+							}
+							$output .= ' <a href="' . html_encode($itemobj->getLink()) . '" title="' . html_encode($itemobj->getTitle()) . '">(' . gettext('View') . ') </a><a href="' . WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-edit.php?newscategory&titlelink=' . html_encode($itemobj->getTitlelink()) . '">(' . gettext('Edit') . ')</a></li>';
 						}
 					}
 					?>
@@ -562,7 +577,7 @@ echo '</head>';
 									<?php
 								}
 								?>
-								<form class="dirty-check" name="publish_articles" action="" method="post"><?php echo gettext('Articles:'); ?>
+								<form class="dirtylistening" onReset="setClean('publish_articles_form');" id="publish_articles_form" name="publish_articles" action="" method="post"><?php echo gettext('Articles:'); ?>
 									<label id="autocheck_art">
 										<input type="checkbox" name="checkAllcat" onclick="$('.artcheck').prop('checked', checked)" />
 										<span id="autotext_art"><?php echo gettext('all'); ?></span>
@@ -588,14 +603,18 @@ echo '</head>';
 					</fieldset>
 					<?php
 					$visible = $report == 'pages';
-					$items = $_zp_zenpage->getPages(false);
+					$items = $_zp_CMS->getPages(false);
 					$output = '';
 					$c = 0;
 					foreach ($items as $key => $item) {
-						$itemobj = new ZenpagePage($item['titlelink']);
+						$itemobj = newPage($item['titlelink']);
 						if (!$itemobj->getShow()) {
 							$c++;
-							$output .= '<li><label><input type="checkbox" name="' . $item['titlelink'] . '" value="' . $item['titlelink'] . '" class="pagecheck" />' . $itemobj->getTitle() . '</label><a href="' . html_encode($itemobj->getLink()) . '" title="' . html_encode($itemobj->getTitle()) . '"> (' . gettext('View') . ')</a></li>';
+							$output .= '<li><label><input type="checkbox" name="' . $item['titlelink'] . '" value="' . $item['titlelink'] . '" class="catcheck" />' . $itemobj->getTitle() . '</label>';
+							if ($desc = shortenContent($itemobj->getContent(), 50, '...')) {
+								$output .= ' "' . strip_tags($desc) . '"';
+							}
+							$output .= ' <a href="' . html_encode($itemobj->getLink()) . '" title="' . html_encode($itemobj->getTitle()) . '">(' . gettext('View') . ')</a> <a href="' . WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-edit.php?newscategory&titlelink=' . html_encode($itemobj->getTitlelink()) . '" title="' . html_encode($itemobj->getTitle()) . '">(' . gettext('Edit') . ')</a></li>';
 						}
 					}
 					?>
@@ -617,7 +636,7 @@ echo '</head>';
 							echo sprintf(ngettext('%u unpublished page', '%u unpublished pages', $c), $c);
 							?>
 							<div id="pagebox"<?php if (!$visible) echo ' style="display:none"' ?>>
-								<form class="dirty-check" name="publish_pages" action="" method="post"><?php echo gettext('Pages:'); ?>
+								<form class="dirtylistening" onReset="setClean('publish_pages_form');" id="publish_pages_form" name="publish_pages" action="" method="post"><?php echo gettext('Pages:'); ?>
 									<label id="autocheck_page">
 										<input type="checkbox" name="checkAllpage" onclick="$('.pagecheck').prop('checked', checked);" />
 										<span id="autotext_page"><?php echo gettext('all'); ?></span>

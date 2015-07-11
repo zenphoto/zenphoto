@@ -22,14 +22,7 @@ if (isset($_GET['subpage'])) {
 
 $admins = $_zp_authority->getAdministrators('all');
 
-$ordered = array();
-foreach ($admins as $key => $admin) {
-	$ordered[$key] = $admin['user'];
-}
-asort($ordered);
-$adminordered = array();
-foreach ($ordered as $key => $user)
-	$adminordered[] = $admins[$key];
+$adminordered = sortMultiArray($admins, 'user');
 
 if (isset($_GET['action'])) {
 	$action = sanitize($_GET['action']);
@@ -86,9 +79,9 @@ if (isset($_GET['action'])) {
 							//then add the ones marked
 							$target = 'user_' . $i . '-';
 							foreach ($_POST as $item => $username) {
-								$item = sanitize(postIndexDecode($item));
 								if (strpos($item, $target) !== false) {
-									$username = substr($item, strlen($target));
+									$username = postIndexDecode(substr(sanitize($item), strlen($target)));
+									//$username = substr($item, strlen($target));
 									$user = Zenphoto_Authority::getAnAdmin(array('`user`=' => $username, '`valid`>=' => 1));
 									$user->setRights($group->getRights());
 									$user->setObjects($group->getObjects());
@@ -192,11 +185,11 @@ echo '</head>' . "\n";
 							echo gettext("Set group rights and select one or more albums for the users in the group to manage. Users with <em>User admin</em> or <em>Manage all albums</em> rights can manage all albums. All others may manage only those that are selected.");
 							?>
 						</p>
-						<form class="dirty-check" action="?action=savegroups&amp;tab=groups" method="post" autocomplete="off" onsubmit="return checkSubmit()" >
+						<form class="dirtylistening" onReset="setClean('savegroups_form');" id="savegroups_form" action="?action=savegroups&amp;tab=groups" method="post" autocomplete="off" onsubmit="return checkSubmit()" >
 							<?php XSRFToken('savegroups'); ?>
 							<p class="buttons">
-								<button type="submit"><img src="../../images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
-								<button type="reset"><img src="../../images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
+								<button type="submit"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
+								<button type="reset"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
 							</p>
 							<br class="clearall" /><br />
 							<input type="hidden" name="savegroups" value="yes" />
@@ -205,9 +198,9 @@ echo '</head>' . "\n";
 								<tr>
 									<th>
 										<span style="font-weight: normal">
-											<a href="javascript:toggleExtraInfo('','user',true);"><?php echo gettext('Expand all'); ?></a>
+											<a onclick="toggleExtraInfo('', 'user', true);"><?php echo gettext('Expand all'); ?></a>
 											|
-											<a href="javascript:toggleExtraInfo('','user',false);"><?php echo gettext('Collapse all'); ?></a>
+											<a onclick="toggleExtraInfo('', 'user', false);"><?php echo gettext('Collapse all'); ?></a>
 										</span>
 									</th>
 									<th>
@@ -245,9 +238,9 @@ echo '</head>' . "\n";
 												?>
 												<em>
 													<label><input type="radio" name="<?php echo $id; ?>-type" value="group" checked="checked" onclick="javascrpt:toggle('users<?php echo $id; ?>');
-															toggleExtraInfo('<?php echo $id; ?>', 'user', true);" /><?php echo gettext('group'); ?></label>
+																			toggleExtraInfo('<?php echo $id; ?>', 'user', true);" /><?php echo gettext('group'); ?></label>
 													<label><input type="radio" name="<?php echo $id; ?>-type" value="template" onclick="javascrpt:toggle('users<?php echo $id; ?>');
-															toggleExtraInfo('<?php echo $id; ?>', 'user', true);" /><?php echo gettext('template'); ?></label>
+																			toggleExtraInfo('<?php echo $id; ?>', 'user', true);" /><?php echo gettext('template'); ?></label>
 												</em>
 												<br />
 												<input type="text" size="35" id="group-<?php echo $id ?>" name="<?php echo $id ?>-group" value=""
@@ -257,13 +250,13 @@ echo '</head>' . "\n";
 															 ?>
 												<span class="userextrashow">
 													<em><?php echo $kind; ?></em>:
-													<a href="javascript:toggleExtraInfo('<?php echo $id; ?>','user',true);" title="<?php echo $groupname; ?>" >
+													<a onclick="toggleExtraInfo('<?php echo $id; ?>', 'user', true);" title="<?php echo $groupname; ?>" >
 														<strong><?php echo $groupname; ?></strong>
 													</a>
 												</span>
 												<span style="display:none;" class="userextrahide">
 													<em><?php echo $kind; ?></em>:
-													<a href="javascript:toggleExtraInfo('<?php echo $id; ?>','user',false);" title="<?php echo $groupname; ?>" >
+													<a onclick="toggleExtraInfo('<?php echo $id; ?>', 'user', false);" title="<?php echo $groupname; ?>" >
 														<strong><?php echo $groupname; ?></strong>
 													</a>
 												</span>
@@ -332,7 +325,8 @@ echo '</head>' . "\n";
 														}
 														?>
 														<ul class="shortchecklist">
-															<?php generateUnorderedListFromArray($members, $users, 'user_' . $id . '-', false, true, false); ?>
+															<?php generateUnorderedListFromArray($members, $members, 'user_' . $id . '-', false, true, false); ?>
+															<?php generateUnorderedListFromArray(array(), array_diff($users, $members), 'user_' . $id . '-', false, true, false); ?>
 														</ul>
 													</div>
 												</div>
@@ -340,7 +334,7 @@ echo '</head>' . "\n";
 												printManagedObjects('albums', $albumlist, '', $groupobj, $id, $kind, array());
 												if (extensionEnabled('zenpage')) {
 													$pagelist = array();
-													$pages = $_zp_zenpage->getPages(false);
+													$pages = $_zp_CMS->getPages(false);
 													foreach ($pages as $page) {
 														if (!$page['parentid']) {
 															$pagelist[get_language_string($page['title'])] = $page['titlelink'];
@@ -348,7 +342,7 @@ echo '</head>' . "\n";
 													}
 													printManagedObjects('pages', $pagelist, '', $groupobj, $id, $kind, NULL);
 													$newslist = array();
-													$categories = $_zp_zenpage->getAllCategories(false);
+													$categories = $_zp_CMS->getAllCategories(false);
 													foreach ($categories as $category) {
 														$newslist[get_language_string($category['title'])] = $category['titlelink'];
 													}
@@ -364,7 +358,7 @@ echo '</head>' . "\n";
 												?>
 												<a href="javascript:if(confirm(<?php echo "'" . $msg . "'"; ?>)) { launchScript('',['action=deletegroup','group=<?php echo addslashes($groupname); ?>','XSRFToken=<?php echo getXSRFToken('deletegroup') ?>']); }"
 													 title="<?php echo gettext('Delete this group.'); ?>" style="color: #c33;">
-													<img src="../../images/fail.png" style="border: 0px;" alt="Delete" />
+													<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/fail.png" style="border: 0px;" alt="Delete" />
 												</a>
 												<?php
 											}
@@ -379,9 +373,9 @@ echo '</head>' . "\n";
 								<tr>
 									<th>
 										<span style="font-weight: normal">
-											<a href="javascript:toggleExtraInfo('','user',true);"><?php echo gettext('Expand all'); ?></a>
+											<a onclick="toggleExtraInfo('', 'user', true);"><?php echo gettext('Expand all'); ?></a>
 											|
-											<a href="javascript:toggleExtraInfo('','user',false);"><?php echo gettext('Collapse all'); ?></a>
+											<a onclick="toggleExtraInfo('', 'user', false);"><?php echo gettext('Collapse all'); ?></a>
 										</span>
 									</th>
 									<th>
@@ -391,8 +385,8 @@ echo '</head>' . "\n";
 								</tr>
 							</table>
 							<p class="buttons">
-								<button type="submit"><img src="../../images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
-								<button type="reset"><img src="../../images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
+								<button type="submit"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
+								<button type="reset"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
 							</p>
 							<input type="hidden" name="totalgroups" value="<?php echo $id; ?>" />
 							<input type="hidden" name="checkForPostTruncation" value="1" />
@@ -450,11 +444,11 @@ echo '</head>' . "\n";
 							echo gettext("Assign users to groups.");
 							?>
 						</p>
-						<form class="dirty-check" action="?action=saveauserassignments" method="post" autocomplete="off" >
+						<form class="dirtylistening" onReset="setClean('saveAssignments_form');" id="saveAssignments_form" action="?action=saveauserassignments" method="post" autocomplete="off" >
 							<?php XSRFToken('saveauserassignments'); ?>
 							<p class="buttons">
-								<button type="submit"><img src="../../images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
-								<button type="reset"><img src="../../images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
+								<button type="submit"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
+								<button type="reset"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
 							</p>
 							<br class="clearall" /><br /><br />
 							<div class="notebox">
@@ -466,9 +460,7 @@ echo '</head>' . "\n";
 								$id = 0;
 								foreach ($adminordered as $user) {
 									if ($user['valid']) {
-
 										$userobj = new Zenphoto_Administrator($user['user'], $user['valid']);
-
 										$group = $user['group'];
 										?>
 										<tr>
@@ -488,8 +480,8 @@ echo '</head>' . "\n";
 							</table>
 							<br />
 							<p class="buttons">
-								<button type="submit"><img src="../../images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
-								<button type="reset"><img src="../../images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
+								<button type="submit"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
+								<button type="reset"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
 							</p>
 							<input type="hidden" name="totalusers" value="<?php echo $id; ?>" />
 							<input type="hidden" name="checkForPostTruncation" value="1" />
@@ -504,4 +496,5 @@ echo '</head>' . "\n";
 		</div>
 	</div>
 </body>
+
 </html>

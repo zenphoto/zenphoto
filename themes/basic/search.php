@@ -7,8 +7,6 @@ if (!defined('WEBPATH'))
 <html>
 	<head>
 		<?php zp_apply_filter('theme_head'); ?>
-		<?php printHeadTitle(); ?>
-		<meta charset="<?php echo LOCAL_CHARSET; ?>">
 		<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
 		<link rel="stylesheet" href="<?php echo pathurlencode(dirname(dirname($zenCSS))); ?>/common.css" type="text/css" />
 		<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery', gettext('Gallery RSS')); ?>
@@ -28,7 +26,8 @@ if (!defined('WEBPATH'))
 				?>
 				<h2>
 					<span>
-						<?php printHomeLink('', ' | '); printGalleryIndexURL(' | ', getGalleryTitle()); ?></a>
+						<?php printHomeLink('', ' | '); ?>
+						<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo ('Gallery Index'); ?>"><?php printGalleryTitle(); ?></a>
 					</span> |
 					<?php printSearchBreadcrumb(' | '); ?>
 				</h2>
@@ -71,7 +70,9 @@ if (!defined('WEBPATH'))
 						$c++;
 						?>
 						<div class="image">
-							<div class="imagethumb"><a href="<?php echo html_encode(getImageURL()); ?>" title="<?php printBareImageTitle(); ?>"><?php printImageThumb(getAnnotatedImageTitle()); ?></a></div>
+							<div class="imagethumb">
+								<a href="<?php echo html_encode(getImageURL()); ?>" title="<?php printBareImageTitle(); ?>"><?php printImageThumb(getAnnotatedImageTitle()); ?></a>
+							</div>
 						</div>
 						<?php
 					}
@@ -95,7 +96,7 @@ if (!defined('WEBPATH'))
 			?>
 			<?php if (class_exists('RSS')) printRSSLink('Gallery', '', gettext('Gallery RSS'), ' | '); ?>
 			<?php printCustomPageURL(gettext("Archive View"), "archive"); ?> |
-			<?php printZenphotoLink(); ?>
+			<?php printSoftwareLink(); ?>
 			<?php @call_user_func('printUserLogin_out', " | "); ?>
 		</div>
 		<?php

@@ -19,10 +19,12 @@
  * NOTE: These apply ONLY to the plugin's document block. Normal string use (e.g. plugin_notices, etc.).
  * should use standard markup.
  *
- * The Zenphoto definitions for folder names and paths are represented by <var>%define%</var> (e.g. <var>%WEBPATH%</var>). The
+ * The definitions for folder names and paths are represented by <var>%define%</var> (e.g. <var>%WEBPATH%</var>). The
  * document processor will substitute the actual value for these tags when it renders the document.
- * Image URIs are also processed. Use the appropriate Zenphoto definition tokens to cause the URI to point
+ * Image URIs are also processed. Use the appropriate definition tokens to cause the URI to point
  * to the actual image. E.g. <var><img src="%WEBPATH%/%ZENFOLDER%/images/action.png" /></var>
+ *
+ * @author Stephen Billard (sbillard)
  *
  * @package admin
  * @subpackage development
@@ -40,14 +42,13 @@ if (!defined('OFFSET_PATH')) {
 	$real_locale = getUserLocale();
 
 	$extension = sanitize($_GET['extension']);
-	$thirdparty = isset($_GET['thirdparty']);
+	$pluginType = @$_GET['type'];
 
-	if ($thirdparty) {
+	if ($pluginType) {
 		$pluginToBeDocPath = SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/' . $extension . '.php';
 	} else {
 		$pluginToBeDocPath = SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/' . $extension . '.php';
 	}
-
 	$plugin_description = '';
 	$plugin_notice = '';
 	$plugin_disable = '';
@@ -58,7 +59,7 @@ if (!defined('OFFSET_PATH')) {
 	$option_interface = '';
 	$doclink = '';
 
-	@require_once($pluginToBeDocPath);
+	require_once($pluginToBeDocPath);
 
 	$macro_params = array($plugin_description, $plugin_notice, $plugin_disable, $plugin_author, $plugin_version, $plugin_is_filter, $plugin_URL, $option_interface, $doclink);
 
@@ -66,7 +67,7 @@ if (!defined('OFFSET_PATH')) {
 	foreach ($buttonlist as $key => $button) {
 		$buttonlist[$key]['enable'] = false;
 	}
-	$imagebuttons = preg_replace('/<a href=[^>]*/i', '<a', zp_apply_filter('edit_image_utilities', '', $_zp_missing_image, 0, '', ''));
+	$imagebuttons = preg_replace('/<a href=[^>]*/i', '<a', zp_apply_filter('edit_image_utilities', '', $_zp_missing_image, 0, '', '', ''));
 	$albumbuttons = preg_replace('/<a href=[^>]*/i', '<a', zp_apply_filter('edit_album_utilities', '', $_zp_missing_album, ''));
 
 	require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/macroList.php');
@@ -85,25 +86,35 @@ if (!defined('OFFSET_PATH')) {
 	$i = strpos($pluginStream, '/*');
 	$j = strpos($pluginStream, '*/');
 	$links = array();
+
 	if ($i !== false && $j !== false) {
 		$commentBlock = substr($pluginStream, $i + 2, $j - $i - 2);
 		$sublink = $subpackage = false;
-		$body = processCommentBlock($commentBlock, $thirdparty);
-
-		if ($thirdparty) {
-			$whose = 'third party plugin';
-			$path = stripSuffix($pluginToBeDocPath) . '/logo.png';
-			if (file_exists($path)) {
-				$ico = str_replace(SERVERPATH, WEBPATH, $path);
-			} else {
-				$ico = 'images/place_holder_icon.png';
-			}
-		} else {
-			if ($subpackage) {
-				$sublink = $subpackage . '/';
-			}
-			$whose = 'Zenphoto official plugin';
-			$ico = 'images/zp_gold.png';
+		$body = processCommentBlock($commentBlock);
+		switch ($pluginType) {
+			case 'thirdparty':
+				$whose = 'Third party plugin';
+				$path = stripSuffix($pluginToBeDocPath) . '/logo.png';
+				if (file_exists($path)) {
+					$ico = str_replace(SERVERPATH, WEBPATH, $path);
+				} else {
+					$ico = 'images/place_holder_icon.png';
+				}
+				break;
+			case 'supplemental':
+				if ($subpackage) {
+					$sublink = $subpackage . '/';
+				}
+				$whose = 'Supplemental plugin';
+				$ico = 'images/zp.png';
+				break;
+			default:
+				if ($subpackage) {
+					$sublink = $subpackage . '/';
+				}
+				$whose = 'Official plugin';
+				$ico = 'images/zp_gold.png';
+				break;
 		}
 
 		if ($real_locale == 'en_US') {
@@ -111,17 +122,12 @@ if (!defined('OFFSET_PATH')) {
 		} else {
 			$translatetext = '<br />' .
 							'<a href="http://www.google.com/translate_c?langpair=en|' . strtolower(substr($real_locale, 0, 2)) . '&u=' . FULLWEBPATH . '/' . ZENFOLDER . '/pluginDoc.php?extension=' . $extension . '"' .
-							'title="' . gettext('This document is generated from the plugin comment block and other items that are in English and outside of the Zenphoto translation system. This link will send the URL to the Google translation WEB to present the page in your language.') . '">' .
+							'title="' . gettext('This document is generated from the plugin comment block and other items that are in English and outside of the <em>Gettext()</em> translation system. This link will send the URL to the Google translation WEB to present the page in your language.') . '">' .
 							gettext('Translate this page.') .
 							'</a>';
 		}
-		if ($thirdparty) {
-			if ($plugin_URL) {
-				$doclink = sprintf('See also the <a href="%1$s">%2$s</a>', $plugin_URL, $extension);
-			}
-		} else {
-			$plugin_URL = 'http://www.zenphoto.org/documentation/plugins/' . $sublink . '_' . PLUGIN_FOLDER . '---' . $extension . '.php.html';
-			$doclink = sprintf(gettext('See also the Zenphoto online documentation: <a href="%1$s">%2$s</a>'), $plugin_URL, $extension);
+		if ($plugin_URL) {
+			$doclink = sprintf('See also the <a href="%1$s">%2$s</a>', $plugin_URL, $extension);
 		}
 		$pluginusage = gettext('Plugin usage information');
 		$pagetitle = sprintf(gettext('%1$s %2$s: %3$s'), html_encode($_zp_gallery->getTitle()), gettext('admin'), html_encode($extension));
@@ -130,9 +136,9 @@ if (!defined('OFFSET_PATH')) {
 		<!DOCTYPE html>
 		<html xmlns="http://www.w3.org/1999/xhtml">
 			<head>
-				<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.css" type="text/css" />
-				<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
+				<?php printStandardMeta(); ?>
 				<title><?php echo $pagetitle; ?></title>
+				<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.css" type="text/css" />
 				<style>
 					.doc_box_field {
 						padding-left: 0px;
@@ -174,6 +180,37 @@ if (!defined('OFFSET_PATH')) {
 					.buttons .tip {
 						text-align: left;
 					}
+
+					dl {
+						display: block;
+						clear: both;
+						width: 100%;
+					}
+
+					dt,dd {
+						vertical-align: top;
+						display: inline-block;
+						width: 90%;
+						margin: 0;
+					}
+
+					dt {
+						font-weight: bold;
+					}
+					dd {
+						width: 90%;
+						margin-left: 3em;
+					}
+
+
+					ul, ol {
+						list-style: none;
+						padding: 0;
+					}
+					li {
+						margin-left: 1.5em;
+						padding-bottom: 0.5em;
+					}
 					ul.options  {
 						list-style: none;
 						margin-left: 0;
@@ -181,14 +218,6 @@ if (!defined('OFFSET_PATH')) {
 					}
 					ul.options li {
 						list-style: none;
-						margin-left: 1.5em;
-						padding-bottom: 0.5em;
-					}
-					ol {
-						list-style: none;
-						padding: 0;
-					}
-					ol li {
 						margin-left: 1.5em;
 						padding-bottom: 0.5em;
 					}
@@ -208,7 +237,7 @@ if (!defined('OFFSET_PATH')) {
 							<?php echo $plugin_description; ?>
 						</div>
 						<?php
-						if ($thirdparty) {
+						if ($pluginType == 'thirdparty') {
 							?>
 							<h3><?php printf('Version: %s', $plugin_version); ?></h3>
 							<?php
@@ -367,6 +396,7 @@ if (!defined('OFFSET_PATH')) {
 								if (!empty($content_macros)) {
 									echo ngettext('Macro defined:', 'Macros defined:', count($content_macros));
 									foreach ($content_macros as $macro => $detail) {
+										unset($detail['owner']);
 										macroList_show($macro, $detail);
 									}
 									?>
@@ -376,7 +406,6 @@ if (!defined('OFFSET_PATH')) {
 								?>
 						</div>
 					</div>
-					<?php echo $doclink; ?>
 				</div>
 			</body>
 			<?php
@@ -399,6 +428,12 @@ if (!defined('OFFSET_PATH')) {
 						'&lt;/ol&gt;'		 => '</ol>',
 						'&lt;li&gt;'		 => '<li>',
 						'&lt;/li&gt;'		 => '</li>',
+						'&lt;dl&gt;'		 => '<dl>',
+						'&lt;/dl&gt;'		 => '</dl>',
+						'&lt;dt&gt;'		 => '<dt>',
+						'&lt;/dt&gt;'		 => '</dt>',
+						'&lt;dd&gt;'		 => '<dd>',
+						'&lt;/dd&gt;'		 => '</dd>',
 						'&lt;pre&gt;'		 => '<pre>',
 						'&lt;/pre&gt;'	 => '</pre>',
 						'&lt;br&gt;'		 => '<br />',

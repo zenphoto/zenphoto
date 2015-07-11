@@ -8,7 +8,7 @@
  */
 define("OFFSET_PATH", 4);
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
-require_once("zenpage-admin-functions.php");
+require_once("admin-functions.php");
 require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/tag_suggest.php');
 
 if (is_AdminEditPage('page')) {
@@ -17,109 +17,77 @@ if (is_AdminEditPage('page')) {
 	$rights = ZENPAGE_NEWS_RIGHTS;
 }
 admin_securityChecks($rights, currentRelativeURL());
+updatePublished('news');
+updatePublished('pages');
 
 $saveitem = '';
 $reports = array();
-if (is_AdminEditPage('page')) {
-	$tab = 'pages';
-	if (isset($_GET['titlelink'])) {
-		$result = new ZenpagePage(urldecode(sanitize($_GET['titlelink'])));
-	} else if (isset($_GET['update'])) {
-		XSRFdefender('update');
-		$result = updatePage($reports);
-		if (getCheckboxState('copy_delete_object')) {
-			switch (sanitize($_POST['copy_delete_object'])) {
-				case 'copy':
-					$as = trim(sanitize($_POST['copy_object_as']));
-					if (empty($as)) {
-						$as = sprintf(gettext('copy of %s'), $result->getTitle());
-					}
-					$as = seoFriendly($as);
-					$result->copy($as);
-					$result = new ZenpagePage($as);
-					$_GET['titlelink'] = $as;
-					break;
-				case 'delete':
-					$reports[] = deletePage($result);
-					break;
-			}
-		}
-	} else {
-		$result = new ZenpagePage('');
-		$result->setPermalink(1);
-		$result->setDateTime(date('Y-m-d H:i:s'));
-	}
-	if (isset($_GET['save'])) {
-		XSRFdefender('save');
-		$result = updatePage($reports, true);
-	}
-	if (isset($_GET['delete'])) {
-		XSRFdefender('delete');
-		$msg = deletePage(sanitize($_GET['delete']));
-		if (!empty($msg)) {
-			$reports[] = $msg;
-		}
-	}
-}
 
-if (is_AdminEditPage('newsarticle')) {
-	$tab = 'news';
-	if (isset($_GET['titlelink'])) {
-		$result = new ZenpageNews(urldecode(sanitize($_GET['titlelink'])));
-	} else if (isset($_GET['update'])) {
-		XSRFdefender('update');
-		$result = updateArticle($reports);
-		if (getCheckboxState('copy_delete_object')) {
-			switch (sanitize($_POST['copy_delete_object'])) {
-				case 'copy':
-					$as = trim(sanitize($_POST['copy_object_as']));
-					if (empty($as)) {
-						$as = sprintf(gettext('copy of %s'), $result->getTitle());
-					}
-					$as = seoFriendly($as);
-					$result->copy($as);
-					$result = new ZenpageNews($as);
-					$_GET['titlelink'] = $as;
-					break;
-				case 'delete':
-					$reports[] = deleteArticle($result);
-					break;
-			}
-		}
-	} else {
-		$result = new ZenpageNews('');
-		$result->setPermalink(1);
-		$result->setDateTime(date('Y-m-d H:i:s'));
-	}
-	if (isset($_GET['save'])) {
-		XSRFdefender('save');
-		$result = updateArticle($reports, true);
-	}
-	if (isset($_GET['delete'])) {
-		XSRFdefender('delete');
-		$msg = deleteArticle(sanitize($_GET['delete']));
-		if (!empty($msg)) {
-			$reports[] = $msg;
-		}
-	}
-}
-if (is_AdminEditPage('newscategory')) {
+if (is_AdminEditPage('page')) {
+	$_GET['tab'] = $tab = 'pages';
+	$new = 'newPage';
+	$update = 'updatePage';
+} else if (is_AdminEditPage('newsarticle')) {
+	$_GET['tab'] = $tab = 'news';
+	$new = 'newArticle';
+	$update = 'updateArticle';
+} else if (is_AdminEditPage('newscategory')) {
 	$tab = 'news';
 	$_GET['tab'] = 'categories';
-	if (isset($_GET['save'])) {
-		XSRFdefender('save');
-		updateCategory($reports, true);
+	$new = 'newCategory';
+	$update = 'updateCategory';
+}
+
+
+
+if (isset($_GET['titlelink'])) {
+	$result = $new(urldecode(sanitize($_GET['titlelink'])));
+} else if (isset($_GET['update'])) {
+	XSRFdefender('update');
+	$result = $update($reports);
+	if (getCheckboxState('copy_delete_object')) {
+		switch (sanitize($_POST['copy_delete_object'])) {
+			case 'copy':
+				$as = trim(sanitize($_POST['copy_object_as']));
+				if (empty($as)) {
+					$as = sprintf(gettext('copy of %s'), $result->getTitle());
+				}
+				$as = seoFriendly($as);
+				$result->copy($as);
+				$result = $new($as);
+				$_GET['titlelink'] = $as;
+				break;
+			case 'delete':
+				$reports[] = deleteZenpageObj($result, 'admin-' . $_GET['tab'] . '.php');
+				unset($_POST['subpage']);
+				break;
+		}
 	}
-	if (isset($_GET['titlelink'])) {
-		$result = new ZenpageCategory(urldecode(sanitize($_GET['titlelink'])));
-	} else if (isset($_GET['update'])) {
-		XSRFdefender('update');
-		$result = updateCategory($reports);
-	} else {
-		$result = new ZenpageCategory('');
-		$result->setShow(1);
+	if (isset($_POST['subpage']) && $_POST['subpage'] == 'object' && count($reports) <= 1) {
+		header('Location: ' . $result->getLink());
+		exitZP();
+	}
+} else {
+	$result = $new('');
+}
+if (isset($_GET['save'])) {
+	XSRFdefender('save');
+	$result = $update($reports, true);
+}
+if (isset($_GET['delete'])) {
+	XSRFdefender('delete');
+	$msg = deleteZenpageObj('new' . $new(sanitize($_GET['delete']), 'admin-pages.php'));
+	if (!empty($msg)) {
+		$reports[] = $msg;
 	}
 }
+/*
+ * Here we should restart if any action processing has occurred to be sure that everything is
+ * in its proper state. But that would require significant rewrite of the handling and
+ * reporting code so is impractical. Instead we will presume that all that needs to be restarted
+ * is the CMS object.
+ */
+$_zp_CMS = new CMS();
 
 printAdminHeader($tab, ($result->transient) ? gettext('add') : gettext('edit'));
 zp_apply_filter('texteditor_config', 'zenpage');
@@ -132,37 +100,38 @@ codeblocktabsJS();
 	var deleteArticle = "<?php echo gettext("Are you sure you want to delete this article? THIS CANNOT BE UNDONE!"); ?>";
 	var deletePage = "<?php echo gettext("Are you sure you want to delete this page? THIS CANNOT BE UNDONE!"); ?>";
 	var deleteCategory = "<?php echo gettext("Are you sure you want to delete this category? THIS CANNOT BE UNDONE!"); ?>";
-<?php
-if (!isset($_GET['add'])) { // prevent showing the message when adding page or article
-	?>
-		function checkFutureExpiry() {
-			var expiry = $('#expiredate').datepicker('getDate');
-			var today = new Date();
-			if (expiry.getTime() > today.getTime()) {
-				$(".expire").html('');
-			} else {
-				$(".expire").html('<?php echo addslashes(gettext('This is not a future date!')); ?>');
-			}
+
+	function checkFutureExpiry() {
+		var expiry = $('#expiredate').datepicker('getDate');
+		var today = new Date();
+		if (expiry.getTime() > today.getTime()) {
+			$(".expire").html('');
+		} else {
+			$(".expire").html('<?php echo addslashes(gettext('This is not a future date!')); ?>');
 		}
-		function checkFuturePub() {
-			var today = new Date();
-			var pub = $('#date').datepicker('getDate');
-			if (pub.getTime() > today.getTime()) {
-				$(".scheduledpublishing").html('<?php echo addslashes(gettext('Future publishing date:')); ?>');
-			} else {
-				$(".scheduledpublishing").html('');
-			}
+	}
+	function checkFuturePub() {
+		var today = new Date();
+		var pub = $('#pubdate').datepicker('getDate');
+		if (pub.getTime() > today.getTime()) {
+			$('#show').removeAttr('checked');
+			$("#pubdate").css("color", "blue");
+		} else {
+			$('#show').attr('checked', 'checked');
+			$("#pubdate").css("color", "black");
+
 		}
-		function toggleTitlelink() {
-			if (jQuery('#edittitlelink:checked').val() == 1) {
-				$('#titlelink').removeAttr("disabled");
-			} else {
-				$('#titlelink').attr("disabled", true);
-			}
+	}
+	function toggleTitlelink() {
+		if (jQuery('#edittitlelink:checked').val() == 1) {
+			$('#titlelinkrow').show();
+			$('#titlelink').removeAttr("disabled");
+		} else {
+			$('#titlelink').attr("disabled", true);
+			$('#titlelinkrow').hide();
 		}
-	<?php
-}
-?>
+	}
+
 	// ]]> -->
 </script>
 <?php Zenphoto_Authority::printPasswordFormJS(); ?>
@@ -183,6 +152,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 				$page = '&amp;subpage=' . sanitize_numeric($_GET['subpage']);
 			}
 			$saveitem = $updateitem = gettext('Apply');
+
 			if (is_AdminEditPage('newsarticle')) {
 				if (!empty($page)) {
 					$zenphoto_tabs['news']['subtabs'][gettext('articles')] .= $page;
@@ -195,6 +165,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 					$additem = gettext('New Article');
 					$deleteitem = gettext('Article');
 					$themepage = 'news';
+					$locked = !checkIfLocked($result);
 				}
 
 				if (is_AdminEditPage('newscategory')) {
@@ -204,12 +175,13 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 						<?php
 						$admintype = 'newscategory';
 						IF (zp_loggedin(MANAGE_ALL_NEWS_RIGHTS)) {
-							$additem = gettext('New Category');
+							$additem = gettext('newCategory');
 						} else {
 							$additem = '';
 						}
 						$deleteitem = gettext('Category');
 						$themepage = 'news';
+						$locked = false;
 					}
 
 					if (is_AdminEditPage('page')) {
@@ -218,7 +190,10 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 						$additem = gettext('New Page');
 						$deleteitem = gettext('Page');
 						$themepage = 'pages';
+						$locked = !checkIfLocked($result);
 					}
+					if (!$result->isMyItem($result->manage_some_rights))
+						$locked = true;
 
 					if ($result->transient) {
 						if (is_AdminEditPage('newsarticle')) {
@@ -263,11 +238,8 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 							?>
 							<h1><?php echo gettext('Edit Article:'); ?> <em><?php checkForEmptyTitle($result->getTitle(), 'news', false); ?></em></h1>
 							<?php
-							if ($result->getDatetime() >= date('Y-m-d H:i:s')) {
+							if ($result->getPublishDate() >= date('Y-m-d H:i:s')) {
 								echo '<small><strong id="scheduldedpublishing">' . gettext('(Article scheduled for publishing)') . '</strong></small>';
-								if ($result->getShow() != 1) {
-									echo '<p class="scheduledate"><small>' . gettext('<strong>Note:</strong> Scheduled publishing is not active unless the article is also set to <em>published</em>') . '</small></p>';
-								}
 							}
 							if ($result->inProtectedCategory()) {
 								echo '<p class="notebox">' . gettext('<strong>Note:</strong> This article belongs to a password protected category.') . '</p>';
@@ -282,11 +254,8 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 							?>
 							<h1><?php echo gettext('Edit Page:'); ?> <em><?php checkForEmptyTitle($result->getTitle(), 'page', false); ?></em></h1>
 							<?php
-							if ($result->getDatetime() >= date('Y-m-d H:i:s')) {
+							if ($result->getPublishDate() >= date('Y-m-d H:i:s')) {
 								echo ' <small><strong id="scheduldedpublishing">' . gettext('(Page scheduled for publishing)') . '</strong></small>';
-								if ($result->getShow() != 1) {
-									echo '<p class="scheduledate"><small>' . gettext('Note: Scheduled publishing is not active unless the page is also set to <em>published</em>') . '</small></p>';
-								}
 							}
 							if ($result->getPassword()) {
 								echo '<p class="notebox">' . gettext('<strong>Note:</strong> This page is password protected.') . '</p>';
@@ -296,14 +265,31 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 					if ($result->loaded || $result->transient) {
 						if ($result->transient) {
 							?>
-							<form class="dirty-check" method="post" name="addnews" action="admin-edit.php?<?php echo $admintype; ?>&amp;save">
+							<form class="dirtylistening" onReset="setClean('addnews_form');" id="addnews_form" method="post" name="addnews" action="admin-edit.php?<?php echo $admintype; ?>&amp;save">
 								<?php
 								XSRFToken('save');
 							} else {
+								if ($locked) {
+									?>
+									<script type="text/javascript">
+										window.addEventListener('load', function () {
+											$('#form_cmsItemEdit :input').prop('disabled', true);
+											$('input[type="submit"]').attr('disabled', 'disabled');
+											$('input[type="reset"]').attr('disabled', 'disabled');
+										}, false);
+									</script>
+									<?php
+								}
 								?>
-								<form class="dirty-check" method="post" name="update" id="form_zenpageitemedit" action="admin-edit.php?<?php echo $admintype; ?>&amp;update<?php echo $page; ?>">
+								<form class="dirtylistening" onReset="setClean('form_cmsItemEdit');" method="post" name="update" id="form_cmsItemEdit" action="admin-edit.php?<?php echo $admintype; ?>&amp;update<?php echo $page; ?>">
 									<?php
 									XSRFToken('update');
+								}
+								if (isset($_GET['subpage'])) {
+									?>
+									<input type="hidden" name="subpage" id="subpage" value="<?php echo html_encode(sanitize($_GET['subpage'])); ?>" />
+
+									<?php
 								}
 								?>
 								<input type="hidden" name="id" value="<?php echo $result->getID(); ?>" />
@@ -314,7 +300,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 
 								<?php
 								if (is_AdminEditPage("newsarticle")) {
-									$backurl = 'admin-news-articles.php?' . $page;
+									$backurl = 'admin-news.php?' . $page;
 									if (isset($_GET['category']))
 										$backurl .= '&amp;category=' . html_encode(sanitize($_GET['category']));
 									if (isset($_GET['date']))
@@ -345,34 +331,34 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 								}
 								?>
 								<span class="buttons">
-									<strong><a href="<?php echo $backurl; ?>"><img	src="../../images/arrow_left_blue_round.png" alt="" /><?php echo gettext("Back"); ?></a></strong>
-									<button type="submit" title="<?php echo $updateitem; ?>"><img src="../../images/pass.png" alt="" /><strong><?php
+									<strong><a href="<?php echo $backurl; ?>"><img	src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/arrow_left_blue_round.png" alt="" /><?php echo gettext("Back"); ?></a></strong>
+									<button type="submit" title="<?php echo $updateitem; ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><strong><?php
 											if ($result->transient) {
 												echo $saveitem;
 											} else {
 												echo $updateitem;
 											}
 											?></strong></button>
-									<button type="reset" onclick="javascript:$('.copydelete').hide();" >
-										<img src="../../images/reset.png" alt="" />
+									<button type="reset" onclick="$('.copydelete').hide();" >
+										<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" />
 										<strong><?php echo gettext("Reset"); ?></strong>
 									</button>
 									<div class="floatright">
 										<?php
 										if ($additem) {
 											?>
-											<strong><a href="admin-edit.php?<?php echo $admintype; ?>&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add') ?>" title="<?php echo $additem; ?>"><img src="images/add.png" alt="" /> <?php echo $additem; ?></a></strong>
+											<strong><a href="admin-edit.php?<?php echo $admintype; ?>&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add') ?>" title="<?php echo $additem; ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" /> <?php echo $additem; ?></a></strong>
 											<?php
 										}
 										?>
-										<span id="tip"><a href="#"><img src="images/info.png" alt="" /><?php echo gettext("Usage tips"); ?></a></span>
+										<span id="tip"><a href="#"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png" alt="" /><?php echo gettext("Usage tips"); ?></a></span>
 										<?php
 										if (!$result->transient) {
 											if (is_AdminEditPage("newscategory")) {
 												?>
-												<a href="../../../index.php?p=<?php echo $themepage; ?>&amp;category=<?php echo $result->getTitlelink(); ?>" title="<?php echo gettext("View"); ?>"><img src="images/view.png" alt="" /><?php echo gettext("View"); ?></a>
+												<a href="../../../index.php?p=<?php echo $themepage; ?>&amp;category=<?php echo $result->getTitlelink(); ?>" title="<?php echo gettext("View"); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/view.png" alt="" /><?php echo gettext("View"); ?></a>
 											<?php } else { ?>
-												<a href="../../../index.php?p=<?php echo $themepage; ?>&amp;title=<?php echo $result->getTitlelink(); ?>" title="<?php echo gettext("View"); ?>"><img src="images/view.png" alt="" /><?php echo gettext("View"); ?></a>
+												<a href="../../../index.php?p=<?php echo $themepage; ?>&amp;title=<?php echo $result->getTitlelink(); ?>" title="<?php echo gettext("View"); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/view.png" alt="" /><?php echo gettext("View"); ?></a>
 												<?php
 											}
 										}
@@ -384,9 +370,9 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 								<div id="tips" style="display:none">
 									<br />
 									<h2><?php echo gettext("Usage tips"); ?></h2>
-									<p><?php echo gettext("Check <em>Edit Titlelink</em> if you need to customize how the title appears in URLs. Otherwise it will be automatically updated to any changes made to the title. If you want to prevent this check <em>Enable permaTitlelink</em> and the titlelink stays always the same (recommended if you use Zenphoto’s multilingual mode)."); ?></p>
+									<p><?php echo gettext("Check <em>Edit Titlelink</em> if you need to customize how the title appears in URLs. Otherwise it will be automatically updated to any changes made to the title. If you want to prevent this check <em>Enable permaTitlelink</em> and the titlelink stays always the same (recommended if you use multilingual mode)."); ?></p>
 									<p class="notebox"><?php echo gettext("<strong>Note:</strong> Edit titlelink overrides the permalink setting."); ?></p>
-									<p class="notebox"><?php echo gettext("<strong>Important:</strong> If you are using Zenphoto’s multi-lingual mode the Titlelink is generated from the Title of the currently selected language."); ?></p>
+									<p class="notebox"><?php echo gettext("<strong>Important:</strong> If you are using multi-lingual mode the Titlelink is generated from the Title of the currently selected language."); ?></p>
 									<p><?php echo gettext("If you lock an article only the current active author/user or any user with full admin rights will be able to edit it later again!"); ?></p>
 									<?php
 									if (is_AdminEditPage("newsarticle")) {
@@ -400,7 +386,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 									<p><?php echo gettext("<em>ExtraContent:</em> Here you can enter extra content for example to be printed on the sidebar"); ?></p>
 									<p>
 										<?php
-										echo gettext("<em>Codeblocks:</em> Use these fields if you need to enter php code (for example Zenphoto functions) or JavaScript code.");
+										echo gettext("<em>Codeblocks:</em> Use these fields if you need to enter php code (for example zenphoto functions) or JavaScript code.");
 										echo gettext("You also can use the codeblock fields as custom fields.");
 										echo gettext("Note that your theme must be setup to use the codeblock functions. Note also that codeblock fields are not multi-lingual.");
 										?>
@@ -424,6 +410,20 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 														<p><?php echo gettext("Author:"); ?> <?php authorSelector($result->getAuthor()); ?></p>
 														<?php
 													}
+													?>
+													<p class="checkbox">
+														<input name="show"
+																	 type="checkbox"
+																	 id="show"
+																	 value="1" <?php checkIfChecked($result->getShow()); ?>
+																	 onclick="$('#pubdate').val('');
+																				 $('#expiredate').val('');
+																				 $('#pubdate').css('color', 'black');
+																				 $('.expire').html('');"
+																	 />
+														<label for="show"><?php echo gettext("Published"); ?></label>
+													</p>
+													<?php
 													if (!$result->transient) {
 														?>
 														<p class="checkbox">
@@ -434,14 +434,21 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 													}
 													?>
 													<p class="checkbox">
-														<input name="permalink" type="checkbox" id="permalink" value="1" <?php checkIfChecked($result->getPermalink()); ?> />
+														<input name="permalink"
+																	 type="checkbox" id="permalink"
+																	 value="1" <?php checkIfChecked($result->getPermalink()); ?>
+																	 />
 														<label for="permalink"><?php echo gettext("Enable permaTitlelink"); ?></label>
 													</p>
-													<p class="checkbox">
-														<input name="show" type="checkbox" id="show" value="1" <?php checkIfChecked($result->getShow()); ?> />
-														<label for="show"><?php echo gettext("Published"); ?></label>
-													</p>
 													<?php
+													if (!is_AdminEditPage("newscategory")) {
+														?>
+														<p class="checkbox">
+															<input name="locked" type="checkbox" id="locked" value="1" <?php checkIfChecked($result->getLocked()); ?> />
+															<label for="locked"><?php echo gettext("Locked for changes"); ?></label>
+														</p>
+														<?php
+													}
 													if (is_AdminEditPage('newsarticle')) {
 														$sticky = $result->get('sticky');
 														?>
@@ -458,17 +465,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 														</p>
 														<?php
 													}
-													?>
-													<?php
-													if (!is_AdminEditPage("newscategory")) {
-														?>
-														<p class="checkbox">
-															<input name="locked" type="checkbox" id="locked" value="1" <?php checkIfChecked($result->getLocked()); ?> />
-															<label for="locked"><?php echo gettext("Locked for changes"); ?></label>
-														</p>
-														<?php
-													}
-													if (get_class($result) == 'ZenpagePage' || get_class($result) == 'ZenpageCategory') {
+													if (get_class($result) == 'Page' || get_class($result) == 'Category') {
 														$hint = $result->getPasswordHint('all');
 														$user = $result->getUser();
 														$x = $result->getPassword();
@@ -477,62 +474,65 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 													}
 													if (is_AdminEditPage('page') || is_AdminEditPage('newscategory')) {
 														?>
-														<br />
 														<p class="passwordextrashow" <?php if (GALLERY_SECURITY != 'public') echo 'style="display:none"'; ?>>
 															<input	type="hidden" name="password_enabled" id="password_enabled" value="0" />
 															<?php
 															if (GALLERY_SECURITY == 'public') {
 																?>
-																<a href="javascript:toggle_passwords('',true);">
+																<a onclick="toggle_passwords('', true);">
 																	<?php echo gettext("Password:"); ?>
 																</a>
 																<?php
 																if (empty($x)) {
 																	?>
-																	<img src="../../images/lock_open.png" alt="" class="icon-postiion-top8" />
+																	<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock_open.png" alt="" class="icon-postiion-top8" />
 																	<?php
 																} else {
 																	$x = '          ';
 																	?>
-																	<a onclick="resetPass('');" title="<?php echo gettext('clear password'); ?>"><img src="../../images/lock.png"  alt="" class="icon-postiion-top8" /></a>
+																	<a onclick="resetPass('');" title="<?php echo gettext('clear password'); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock.png"  alt="" class="icon-postiion-top8" /></a>
 																	<?php
 																}
 																?>
 															</p>
 															<div class="passwordextrahide" style="display:none">
-																<a href="javascript:toggle_passwords('',false);">
+																<a onclick="toggle_passwords('', false);">
 																	<?php echo gettext("Guest user:"); ?>
 																</a>
-																<input type="text" size="27" id="user_name" name="user"
+																<input type="text"
+																			 class="passignore ignoredirty" autocomplete="off"
+																			 size="27"
+																			 id="user_name"
+																			 name="user"
 																			 onkeydown="passwordClear('');"
 																			 value="<?php echo html_encode($user); ?>" />
 																<span id="strength"><?php echo gettext("Password:"); ?></span>
 																<br />
-																<?php
-																// Autofill honeypot hack (hidden password input),
-																// needed to prevent "Are you sure?" from tiggering when autofill is enabled in browsers
-																// http://benjaminjshore.info/2014/05/chrome-auto-fill-honey-pot-hack.html
-																?>
-																<input class="ays-ignore" type="password" name="pass" style="display:none;" />
-																<input type="password" size="27"
+																<input type="password"
+																			 class="passignore ignoredirty" autocomplete="off"
+																			 size="27"
 																			 id="pass" name="pass"
 																			 onkeydown="passwordClear('');"
 																			 onkeyup="passwordStrength('');"
 																			 value="<?php echo $x; ?>" />
 																<br />
+																<label>
+																	<input type="checkbox" name="disclose_password" id="disclose_password" onclick="passwordClear('');
+																						togglePassword('');"><?php echo gettext('Show password'); ?>
+																</label>
+																<br />
 																<span class="password_field_">
 																	<span id="match"><?php echo gettext("(repeat)"); ?></span>
 																	<br />
-																	<input type="password" size="27"
+																	<input type="password"
+																				 class="passignore ignoredirty" autocomplete="off"
+																				 size="27"
 																				 id="pass_r" name="pass_r" disabled="disabled"
 																				 onkeydown="passwordClear('');"
 																				 onkeyup="passwordMatch('');"
 																				 value="<?php echo $x; ?>" />
 																	<br />
 																</span>
-																<label><input type="checkbox" name="disclose_password" id="disclose_password" onclick="passwordClear('');
-																					togglePassword('');"><?php echo gettext('Show password'); ?></label>
-																<br /><br />
 																<?php echo gettext("Password hint:"); ?>
 																<br />
 																<?php print_language_string_list($hint, 'hint', false, NULL, 'hint', 27); ?>
@@ -540,11 +540,11 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 															<?php
 														}
 													}
-													if (!$result->transient && !is_AdminEditPage('newscategory')) {
+													if (!$result->transient) {
 														?>
 														<label class="checkboxlabel">
 															<input type="radio" id="copy_object" name="copy_delete_object" value="copy"
-																		 onclick="javascript:$('#copyfield').show();
+																		 onclick="$('#copyfield').show();
 																						 $('#deletemsg').hide();" />
 																		 <?php echo gettext("Copy"); ?>
 														</label>
@@ -580,14 +580,13 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 													<h2 class="h2_bordered_edit"><?php echo gettext("Date"); ?></h2>
 													<div class="box-edit">
 														<p>
-
 															<script type="text/javascript">
 																// <!-- <![CDATA[
-																$(function() {
+																$(function () {
 																	$("#date").datepicker({
 																		dateFormat: 'yy-mm-dd',
 																		showOn: 'button',
-																		buttonImage: '../../images/calendar.png',
+																		buttonImage: '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/calendar.png',
 																		buttonText: '<?php echo gettext('calendar'); ?>',
 																		buttonImageOnly: true
 																	});
@@ -597,25 +596,37 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 															<?php
 															$date = $result->getDatetime();
 															?>
-															<input name="date" type="text" id="date" value="<?php echo $date; ?>" onchange="checkFuturePub();" />
-															<br />
-															<strong class='scheduledpublishing'>
-																<?php
-																if ($date > date('Y-m-d H:i:s')) {
-																	echo addslashes(gettext('Future publishing date:'));
-																}
-																?>
-															</strong>
+															<input name="date" type="text" id="date" value="<?php echo $date; ?>" />
 														</p>
 														<hr />
 														<p>
 															<script type="text/javascript">
 																// <!-- <![CDATA[
-																$(function() {
+																$(function () {
+																	$("#pubdate").datepicker({
+																		dateFormat: 'yy-mm-dd',
+																		showOn: 'button',
+																		buttonImage: '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/calendar.png',
+																		buttonText: '<?php echo gettext('calendar'); ?>',
+																		buttonImageOnly: true
+																	});
+																});
+																// ]]> -->
+															</script>
+															<?php
+															echo gettext('Publish date (YYYY-MM-DD) ');
+															$date = $result->getPublishDate();
+															?>
+															<input name="pubdate" type="text" id="pubdate" value="<?php echo $date; ?>" onchange="checkFuturePub();" <?php if ($date > date('Y-m-d H:i:s')) echo 'style="color:blue"'; ?> />
+														</p>
+														<p>
+															<script type="text/javascript">
+																// <!-- <![CDATA[
+																$(function () {
 																	$("#expiredate").datepicker({
 																		dateFormat: 'yy-mm-dd',
 																		showOn: 'button',
-																		buttonImage: '../../images/calendar.png',
+																		buttonImage: '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/calendar.png',
 																		buttonText: '<?php echo gettext('calendar'); ?>',
 																		buttonImageOnly: true
 																	});
@@ -624,7 +635,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 															</script>
 
 															<?php
-															echo gettext("Expiration date:");
+															echo gettext("Expiration date (YYYY-MM-DD)");
 															$date = $result->getExpireDate();
 															?>
 															<br />
@@ -650,12 +661,15 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 
 													<h2 class="h2_bordered_edit"><?php echo gettext("General"); ?></h2>
 													<div class="box-edit">
-
-														<p class="checkbox">
-															<input name="commentson" type="checkbox" id="commentson" value="1" <?php checkIfChecked($result->getCommentsAllowed()); ?> />
-															<label for="commentson"> <?php echo gettext("Comments on"); ?></label>
-														</p>
 														<?php
+														if (extensionEnabled('comment_form')) {
+															?>
+															<p class="checkbox">
+																<input name="commentson" type="checkbox" id="commentson" value="1" <?php checkIfChecked($result->getCommentsAllowed()); ?> />
+																<label for="commentson"> <?php echo gettext("Comments on"); ?></label>
+															</p>
+															<?php
+														}
 														if (!$result->transient && extensionEnabled('hitcounter')) {
 															$hc = $result->getHitcounter();
 															?>
@@ -730,7 +744,23 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 												?>
 											</td>
 										</tr>
-										<tr>
+
+										<?php
+										if (!$result->transient) {
+											?>
+											<tr>
+												<td>
+													<?php echo linkPickerIcon($result, 'pick_link') ?>
+												</td>
+												<td class="middlecolumn">
+													<?php echo linkPickerItem($result, 'pick_link'); ?>
+												</td>
+											</tr>
+											<?php
+										}
+										?>
+
+										<tr id="titlelinkrow" style="display:none">
 											<td><?php echo gettext("TitleLink:"); ?></td>
 											<td class="middlecolumn">
 												<?php
@@ -749,28 +779,14 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 											<td class="middlecolumn">
 												<?php
 												if (is_AdminEditPage("newscategory")) {
-													print_language_string_list($result->getDesc('all'), 'desc', true, NULL, 'desc', '100%', 'zenpage_language_string_list', 20);
+													print_language_string_list($result->getDesc('all'), 'desc', true, NULL, 'desc', '100%', 'zenpage_language_string_list', 10);
 												} else {
-													print_language_string_list($result->getContent('all'), 'content', true, NULL, 'content', '100%', 'zenpage_language_string_list', 35);
+													print_language_string_list($result->getContent('all'), 'content', true, NULL, 'content', '100%', 'zenpage_language_string_list', 13);
 												}
 												?>
 											</td>
 										</tr>
 										<?php
-										if (!is_AdminEditPage("newscategory")) {
-											?>
-											<tr>
-												<td class="topalign-padding"><?php echo gettext("ExtraContent:"); ?></td>
-												<td class="middlecolumn">
-													<?php
-													print_language_string_list($result->getExtraContent('all'), 'extracontent', true, NULL, 'extracontent', '100%', 'zenpage_language_string_list', 10);
-													?>
-												</td>
-											</tr>
-											<?php
-										}
-
-
 										if (is_AdminEditPage("newsarticle")) {
 											$custom = zp_apply_filter('edit_article_custom_data', '', $result);
 										}
@@ -780,56 +796,33 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 										if (is_AdminEditPage("page")) {
 											$custom = zp_apply_filter('edit_page_custom_data', '', $result);
 										}
-										if (empty($custom)) {
-											?>
-											<tr>
-												<td class="topalign-nopadding"><br /><?php echo gettext("Custom:"); ?></td>
-												<td class="middlecolumn">
-													<?php
-													print_language_string_list($result->getCustomData('all'), 'custom_data', true, NULL, 'custom_data', '100%', 'zenpage_language_string_list', 10);
-													?>
-												</td>
-											</tr>
-											<?php
-										} else {
-											echo $custom;
-										}
-										if (!is_AdminEditPage("newscategory")) {
-											?>
-											<tr>
-												<td class="topalign-nopadding"><br /><?php echo gettext("Codeblocks:"); ?></td>
-												<td class="topalign-nopadding middlecolumn">
-													<?php printCodeblockEdit($result, 0); ?>
-												</td>
-											</tr>
-											<?php
-										}
+										echo $custom;
 										?>
 									</table>
 									<span class="buttons">
-										<strong><a href="<?php echo $backurl; ?>"><img	src="../../images/arrow_left_blue_round.png" alt="" /><?php echo gettext("Back"); ?></a></strong>
-										<button type="submit" title="<?php echo $updateitem; ?>"><img src="../../images/pass.png" alt="" /><strong><?php
+										<strong><a href="<?php echo $backurl; ?>"><img	src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/arrow_left_blue_round.png" alt="" /><?php echo gettext("Back"); ?></a></strong>
+										<button type="submit" title="<?php echo $updateitem; ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><strong><?php
 												if ($result->transient) {
 													echo $saveitem;
 												} else {
 													echo $updateitem;
 												}
 												?></strong></button>
-										<button type="reset" onclick="javascript:$('.copydelete').hide();">
-											<img src="../../images/reset.png" alt="" />
+										<button type="reset" onclick="$('.copydelete').hide();">
+											<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" />
 											<strong><?php echo gettext("Reset"); ?></strong>
 										</button>
 										<div class="floatright">
-											<strong><a href="admin-edit.php?<?php echo $admintype; ?>&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add') ?>" title="<?php echo $additem; ?>"><img src="images/add.png" alt="" /> <?php echo $additem; ?></a></strong>
+											<strong><a href="admin-edit.php?<?php echo $admintype; ?>&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add') ?>" title="<?php echo $additem; ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" /> <?php echo $additem; ?></a></strong>
 											<?php
 											if (!$result->transient) {
 												if (is_AdminEditPage("newscategory")) {
 													?>
-													<a href="../../../index.php?p=<?php echo $themepage; ?>&amp;category=<?php echo $result->getTitlelink(); ?>" title="<?php echo gettext("View"); ?>"><img src="images/view.png" alt="" /><?php echo gettext("View"); ?></a>
+													<a href="../../../index.php?p=<?php echo $themepage; ?>&amp;category=<?php echo $result->getTitlelink(); ?>" title="<?php echo gettext("View"); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/view.png" alt="" /><?php echo gettext("View"); ?></a>
 													<?php
 												} else {
 													?>
-													<a href="../../../index.php?p=<?php echo $themepage; ?>&amp;title=<?php echo $result->getTitlelink(); ?>" title="<?php echo gettext("View"); ?>"><img src="images/view.png" alt="" /><?php echo gettext("View"); ?></a>
+													<a href="../../../index.php?p=<?php echo $themepage; ?>&amp;title=<?php echo $result->getTitlelink(); ?>" title="<?php echo gettext("View"); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/view.png" alt="" /><?php echo gettext("View"); ?></a>
 													<?php
 												}
 											}

@@ -1,9 +1,9 @@
 <?php
 /**
  *
- * This plugin is the centralized Cache manager for Zenphoto.
- *
- * It provides:
+ * This plugin is the centralized Cache manager for Zenphoto20.
+
+ It provides:
  * <ul>
  * 		<li>Options to purge the HTML and RSS caches on publish state changes of:
  * 			<ul>
@@ -21,14 +21,14 @@
  * already been cached. Your browser will then request these images causing the caching process to be
  * executed.
  *
- * The Zenphoto distributed themes have created <i>Caching</i> size options
+ * The <i>distributed</i> themes have created <i>Caching</i> size options
  * for the images sizes they use.
  *
  *
  * <b>Notes:</b>
  * <ul>
  * 		<li>
- * 			Setting theme options or installing a new version of Zenphoto will re-create these caching sizes.
+ * 			Setting theme options or installing a new version of ZenPhoto20 will re-create these caching sizes.
  * 			Use a different <i>theme name</i> for custom versions that you create. If you set image options that
  * 			impact the default caching you will need to re-create these caching sizes by one of the above methods.
  * 		</li>
@@ -76,12 +76,12 @@
  * 		</li>
  * </ul>
  *
+ * @author Stephen Billard (sbillard)
  *
  * @package plugins
  * @subpackage admin
- * @author Stephen Billard (sbillard)
  */
-$plugin_is_filter = 5 | ADMIN_PLUGIN;
+$plugin_is_filter = defaultExtension(5 | ADMIN_PLUGIN);
 $plugin_description = gettext("Provides cache management utilities for Image, HTML, and RSS caches.");
 $plugin_author = "Stephen Billard (sbillard)";
 
@@ -117,8 +117,9 @@ class cacheManager {
 
 	function __construct() {
 		self::deleteThemeCacheSizes('admin');
-		self::addThemeCacheSize('admin', 40, NULL, NULL, 40, 40, NULL, NULL, -1);
-		self::addThemeCacheSize('admin', 80, NULL, NULL, 80, 80, NULL, NULL, -1);
+		self::addThemeCacheSize('admin', ADMIN_THUMB_LARGE, NULL, NULL, ADMIN_THUMB_LARGE, ADMIN_THUMB_LARGE, NULL, NULL, -1);
+		self::addThemeCacheSize('admin', ADMIN_THUMB_MEDIUM, NULL, NULL, ADMIN_THUMB_MEDIUM, ADMIN_THUMB_MEDIUM, NULL, NULL, -1);
+		self::addThemeCacheSize('admin', ADMIN_THUMB_SMALL, NULL, NULL, ADMIN_THUMB_SMALL, ADMIN_THUMB_SMALL, NULL, NULL, -1);
 	}
 
 	/**
@@ -126,7 +127,6 @@ class cacheManager {
 	 * supported options
 	 */
 	function getOptionsSupported() {
-		global $_zp_zenpage;
 		$options = array(gettext('Image caching sizes') => array('key'		 => 'cropImage_list', 'type'	 => OPTION_TYPE_CUSTOM,
 										'order'	 => 1,
 										'desc'	 => '<p>' .
@@ -217,7 +217,7 @@ class cacheManager {
 					echo '<br />' . gettext('add');
 				}
 				?>
-				<a href="javascript:showTheme('<?php echo $theme; ?>');" title="<?php echo gettext('Show'); ?>">
+				<a onclick="showTheme('<?php echo $theme; ?>');" title="<?php echo gettext('Show'); ?>">
 					<img class="icon-position-top4" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/images/arrow_down.png'; ?>" alt="" />
 				</a>
 			</span>
@@ -353,7 +353,7 @@ class cacheManager {
 						'enable'			 => $enable,
 						'button_text'	 => gettext('Cache manager'),
 						'formname'		 => 'cacheManager_button',
-						'action'			 => WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cacheManager/cacheImages.php?page=overview&tab=images',
+						'action'			 => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cacheManager/cacheImages.php?page=overview&tab=images',
 						'icon'				 => 'images/cache.png',
 						'alt'					 => '',
 						'hidden'			 => '',
@@ -367,7 +367,7 @@ class cacheManager {
 							'enable'			 => true,
 							'button_text'	 => gettext('Purge RSS cache'),
 							'formname'		 => 'purge_rss_cache.php',
-							'action'			 => WEBPATH . '/' . ZENFOLDER . '/admin.php?action=clear_rss_cache',
+							'action'			 => FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=clear_rss_cache',
 							'icon'				 => 'images/edit-delete.png',
 							'alt'					 => '',
 							'title'				 => gettext('Delete all files from the RSS cache'),
@@ -381,7 +381,7 @@ class cacheManager {
 						'enable'			 => true,
 						'button_text'	 => gettext('Purge Image cache'),
 						'formname'		 => 'purge_image_cache.php',
-						'action'			 => WEBPATH . '/' . ZENFOLDER . '/admin.php?action=action=clear_cache',
+						'action'			 => FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=action=clear_cache',
 						'icon'				 => 'images/edit-delete.png',
 						'alt'					 => '',
 						'title'				 => gettext('Delete all files from the Image cache'),
@@ -393,7 +393,7 @@ class cacheManager {
 						'enable'			 => true,
 						'button_text'	 => gettext('Purge HTML cache'),
 						'formname'		 => 'clearcache_button',
-						'action'			 => WEBPATH . '/' . ZENFOLDER . '/admin.php?action=clear_html_cache',
+						'action'			 => FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=clear_html_cache',
 						'icon'				 => 'images/edit-delete.png',
 						'title'				 => gettext('Clear the static HTML cache. HTML pages will be re-cached as they are viewed.'),
 						'alt'					 => '',

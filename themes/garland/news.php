@@ -1,14 +1,12 @@
 <?php
 if (!defined('WEBPATH'))
 	die();
-if (class_exists('Zenpage') && ZP_NEWS_ENABLED) {
+if (class_exists('CMS')) {
 	?>
 	<!DOCTYPE html>
 	<html>
 		<head>
 			<?php zp_apply_filter('theme_head'); ?>
-			<?php printHeadTitle(); ?>
-			<meta charset="<?php echo LOCAL_CHARSET; ?>">
 			<link rel="stylesheet" href="<?php echo $_zp_themeroot ?>/zen.css" type="text/css" />
 			<?php if (class_exists('RSS')) printRSSHeaderLink("News", "Zenpage news", ""); ?>
 		</head>
@@ -20,9 +18,7 @@ if (class_exists('Zenpage') && ZP_NEWS_ENABLED) {
 					<div id="header">
 						<div id="logo-floater">
 							<div>
-								<h1 class="title">
-									<a href="<?php echo html_encode(getSiteHomeURL()); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a>
-								</h1>
+								<h1 class="title"><a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a></h1>
 								<span id="galleryDescription"><?php printGalleryDesc(); ?></span>
 							</div>
 						</div>
@@ -41,9 +37,10 @@ if (class_exists('Zenpage') && ZP_NEWS_ENABLED) {
 									<!-- begin content -->
 									<div class="main section" id="main">
 										<h2 id="gallerytitle">
-											<?php printHomeLink('', ' » ');
-											printGalleryIndexURL(' » ');
-											printNewsIndexURL(NULL);
+											<?php printHomeLink('', ' » '); ?>
+											<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a>
+											<?php
+											printNewsIndexURL(NULL, ' » ');
 											printZenpageItemsBreadcrumb(' » ', '');
 											printCurrentNewsCategory(" » ");
 											printNewsTitle(" » ");

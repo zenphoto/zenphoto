@@ -114,7 +114,7 @@ class lib_Imagick_Options {
 }
 
 /**
- * Zenphoto image manipulation functions using the Imagick library
+ * Image manipulation functions using the Imagick library
  */
 if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd'))) {
 	$_lib_Imagick_info = array();
@@ -164,7 +164,7 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 				$image->setOption('jpeg:size', $maxWidth . 'x' . $maxHeight);
 			}
 
-			$image->readImage(filesystemToInternal($imgfile));
+			$image->readImage(imgSrcURI($imgfile));
 
 			return $image;
 		}
@@ -228,7 +228,7 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 			return print $im->getImagesBlob();
 		}
 
-		return $im->writeImages(filesystemToInternal($filename), true);
+		return $im->writeImages(imgSrcURI($filename), true);
 	}
 
 	/**
@@ -394,7 +394,7 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	 * @return Imagick
 	 */
 	function zp_rotateImage($im, $rotate) {
-		$im->rotateImage('none', 360 - $rotate);
+		$im->rotateImage('none', $rotate);
 		return $im;
 	}
 
@@ -408,7 +408,7 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	function zp_imageDims($filename) {
 		$ping = new Imagick();
 
-		if ($ping->pingImage(filesystemToInternal($filename))) {
+		if ($ping->pingImage(imgSrcURI($filename))) {
 			return array('width' => $ping->getImageWidth(), 'height' => $ping->getImageHeight());
 		}
 
@@ -424,7 +424,7 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	function zp_imageIPTC($filename) {
 		$ping = new Imagick();
 
-		if ($ping->pingImage(filesystemToInternal($filename))) {
+		if ($ping->pingImage(imgSrcURI($filename))) {
 			try {
 				return $ping->getImageProfile('iptc');
 			} catch (ImagickException $e) {

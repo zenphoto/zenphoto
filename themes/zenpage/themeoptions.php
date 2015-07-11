@@ -31,13 +31,9 @@ class ThemeOptions {
 		setThemeOptionDefault('thumb_crop', 1);
 		setThemeOptionDefault('thumb_transition', 1);
 		setOptionDefault('colorbox_' . $me . '_album', 1);
+		setOptionDefault('colorbox_' . $me . '_favorites', 1);
 		setOptionDefault('colorbox_' . $me . '_image', 1);
 		setOptionDefault('colorbox_' . $me . '_search', 1);
-		if (extensionEnabled('zenpage')) {
-			setThemeOption('custom_index_page', 'gallery', NULL, 'zenpage', false);
-		} else {
-			setThemeOption('custom_index_page', '', NULL, 'zenpage', false);
-		}
 		if (class_exists('cacheManager')) {
 			cacheManager::deleteThemeCacheSizes($me);
 			cacheManager::addThemeCacheSize($me, NULL, 580, 580, NULL, NULL, NULL, NULL, NULL, false, NULL, true);
@@ -73,7 +69,7 @@ class ThemeOptions {
 	}
 
 	function getOptionsDisabled() {
-		return array('custom_index_page', 'image_size', 'thumb_size');
+		return array('image_size', 'thumb_size');
 	}
 
 	function handleOption($option, $currentValue) {

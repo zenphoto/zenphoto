@@ -89,7 +89,7 @@ if (isset($_GET['action'])) {
 
 
 printAdminHeader('comments');
-zp_apply_filter('texteditor_config', 'comments');
+zp_apply_filter('texteditor_config', 'admin_comments');
 ?>
 <script type="text/javascript">
 	//<!-- <![CDATA[
@@ -103,7 +103,6 @@ zp_apply_filter('texteditor_config', 'comments');
 	// ]]> -->
 </script>
 <?php
-zp_apply_filter('texteditor_config', 'zenphoto');
 echo "\n</head>";
 echo "\n<body>";
 printLogoAndLinks();
@@ -123,7 +122,7 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 			extract($commentarr);
 			$commentarr = array_merge($commentarr, getSerializedArray($commentarr['custom_data']));
 			?>
-			<form class="dirty-check" id="form_editcomment" action="?action=savecomment" method="post">
+			<form class="dirtylistening" onReset="setClean('form_editcomment');" id="form_editcomment" action="?action=savecomment" method="post">
 				<?php XSRFToken('savecomment'); ?>
 				<input	type="hidden" name="id" value="<?php echo $id; ?>" />
 				<span class="buttons">
@@ -319,7 +318,7 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 	}
 	?>
 
-	<form class="dirty-check" name="comments" id="form_commentlist" action="?action=applycomments" method="post"	onsubmit="return confirmAction();">
+	<form class="dirtylistening" onReset="setClean('form_commentlist');"  name="comments" id="form_commentlist" action="?action=applycomments" method="post"	onsubmit="return confirmAction();">
 		<?php XSRFToken('applycomments'); ?>
 		<input type="hidden" name="subpage" value="<?php echo html_encode($pagenum) ?>" />
 		<p class="buttons"><button type="submit"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button></p>
@@ -371,22 +370,19 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 				$author = $comment['name'];
 				$email = $comment['email'];
 				$link = '<a title="' . gettext('The item upon which this comment was posted no longer exists.') . '">' . gettext('<strong>Missing Object</strong> ') . '</a>'; // in case of such
-				$image = '';
-				$albumtitle = '';
-
 				// ZENPAGE: switch added for zenpage comment support
 				switch ($comment['type']) {
 					case "albums":
 						$obj = getItemByID('albums', $comment['ownerid']);
 						if ($obj) {
-							$link = '<a href = "' . $obj->getLink() . '#zp_comment_id_' . $id . '">' . $obj->getTitle() . '</a>';
+							$link = '<a href = "' . $obj->getLink() . '#zp_comment_id_' . $id . '">[' . gettext('album') . '] ' . $obj->getTitle() . '</a>';
 						}
 						break;
 					case "news": // ZENPAGE: if plugin is installed
 						if (extensionEnabled('zenpage')) {
 							$obj = getItemByID('news', $comment['ownerid']);
 							if ($obj) {
-								$link = '<a href = "' . $obj->getLink() . '#zp_comment_id_' . $id . '">' . gettext("[news]") . ' ' . $obj->getTitle() . "</a> ";
+								$link = '<a href = "' . $obj->getLink() . '#zp_comment_id_' . $id . '">[' . gettext("article") . '] ' . $obj->getTitle() . "</a> ";
 							}
 						}
 						break;
@@ -394,14 +390,14 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 						if (extensionEnabled('zenpage')) {
 							$obj = getItemByID('pages', $comment['ownerid']);
 							if ($obj) {
-								$link = "<a href=\"" . $obj->getLink() . '#zp_comment_id_' . $id . '">' . gettext("[page]") . ' ' . $obj->getTitle() . "</a>";
+								$link = "<a href=\"" . $obj->getLink() . '#zp_comment_id_' . $id . '">[' . gettext("page") . '] ' . $obj->getTitle() . "</a>";
 							}
 						}
 						break;
 					default : // all the image types
 						$obj = getItemByID('images', $comment['ownerid']);
 						if ($obj) {
-							$link = "<a href=\"" . $obj->getLink() . '#zp_comment_id_' . $id . '">' . $obj->getTitle() . "</a>";
+							$link = "<a href=\"" . $obj->getLink() . '#zp_comment_id_' . $id . '">[' . gettext('image') . '] ' . $obj->getTitle() . "</a>";
 						}
 						break;
 				}
@@ -412,7 +408,6 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 				$inmoderation = $comment['inmoderation'];
 				$private = $comment['private'];
 				$anon = $comment['anon'];
-    
 				?>
 				<tr class="newstr">
 					<td><?php echo ($fulltext) ? $fullcomment : $shortcomment; ?></td>
@@ -450,7 +445,11 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 					<td class="page-list_icon"><a href="?page=editcomment&amp;id=<?php echo $id; ?>" title="<?php echo gettext('Edit this comment.'); ?>">
 							<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pencil.png" style="border: 0px;" alt="<?php echo gettext('Edit'); ?>" /></a></td>
 					<td class="page-list_icon">
-						<a href="mailto:<?php echo $email; ?>?body=<?php echo commentReply($obj, $author, $fullcomment); ?>" title="<?php echo gettext('Reply:') . ' ' . $email; ?>">
+						<?php
+						preg_match('/.*?>(.*)</', $link, $matches);
+						$str = sprintf(gettext('%1$s commented on %2$s:'), $author, $matches[1]) . '%0D%0A%0D%0A' . implode('%0D%0A', explode('\n', wordwrap(getBare($fullcomment), 75, '\n')));
+						?>
+						<a href="mailto:<?php echo $email; ?>?body=<?php echo html_encode($str); ?>" title="<?php echo gettext('Reply:') . ' ' . $email; ?>">
 							<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/icon_mail.png" style="border: 0px;" alt="<?php echo gettext('Reply'); ?>" /></a>
 					</td>
 					<td class="page-list_icon">

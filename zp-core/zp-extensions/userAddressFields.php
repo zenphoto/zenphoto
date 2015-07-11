@@ -9,11 +9,12 @@
  * contained in the fields will be discarded.
  *
  * @author Stephen Billard (sbillard)
+ *
  * @package plugins
  * @subpackage users
  *
  */
-$plugin_is_filter = 5 | CLASS_PLUGIN;
+$plugin_is_filter = defaultExtension(5 | CLASS_PLUGIN);
 $plugin_description = gettext('Adds user address fields');
 $plugin_author = "Stephen Billard (sbillard)";
 
@@ -29,17 +30,30 @@ class userAddressFields extends fieldExtender {
 			$result = query('SELECT * FROM ' . prefix('administrators') . ' WHERE `valid`!=0');
 			if ($result) {
 				while ($row = db_fetch_assoc($result)) {
-					$custom = getSerializedArray($row['custom_data']);
-					if (!empty($custom)) {
-						$sql = 'UPDATE ' . prefix('administrators') . ' SET ';
-						foreach ($custom as $field => $val) {
-							$sql.= '`' . $field . '`=' . db_quote($val) . ',';
+					if (array_key_exists('custom_data', $row)) {
+						$custom = getSerializedArray($row['custom_data']);
+						if (!empty($custom)) {
+							$sql = 'UPDATE ' . prefix('administrators') . ' SET ';
+							foreach ($custom as $field => $val) {
+								$sql.= '`' . $field . '`=' . db_quote($val) . ',';
+							}
+							$sql .= '`custom_data`=NULL WHERE `id`=' . $row['id'];
+							query($sql);
 						}
-						$sql .= '`custom_data`=NULL WHERE `id`=' . $row['id'];
-						query($sql);
 					}
 				}
 				db_free_result($result);
+			}
+		}
+		$cloneid = bin2hex(FULLWEBPATH);
+		if (OFFSET_PATH == 2 && isset($_SESSION['admin'][$cloneid])) {
+			$user = unserialize($_SESSION['admin'][$cloneid]);
+			$user2 = Zenphoto_Authority::getAnAdmin(array('`user`=' => $user->getUser(), '`pass`=' => $user->getPass(), '`valid`=' => 1));
+			if ($user2) {
+				foreach (userAddressFields::fields() as $field) {
+					$user2->set($field['name'], $user->get($field['name']));
+				}
+				$user2->save();
 			}
 		}
 	}
@@ -60,7 +74,7 @@ class userAddressFields extends fieldExtender {
 	}
 
 	static function adminSave($updated, $userobj, $i, $alter) {
-		parent::_adminSave($updated, $userobj, $i, $alter, self::fields());
+		return parent::_adminSave($updated, $userobj, $i, $alter, self::fields());
 	}
 
 	static function adminEdit($html, $userobj, $i, $background, $current) {
@@ -76,19 +90,15 @@ class userAddressFields extends fieldExtender {
 	}
 
 	static function zenpageItemSave($custom, $object) {
-		return parent::_zenpageItemSave($custom, $object, self::fields());
+		return parent::_cmsItemSave($custom, $object, self::fields());
 	}
 
 	static function zenpageItemEdit($html, $object) {
-		return parent::_zenpageItemEdit($html, $object, self::fields());
+		return parent::_cmsItemEdit($html, $object, self::fields());
 	}
 
 	static function register() {
 		parent::_register('userAddressFields', self::fields());
-	}
-
-	static function adminNotice($tab, $subtab) {
-		parent::_adminNotice($tab, $subtab, 'userAddressFields');
 	}
 
 	static function getCustomData($obj) {
@@ -102,7 +112,6 @@ class userAddressFields extends fieldExtender {
 }
 
 if (OFFSET_PATH == 2) { // setup call: add the fields into the database
-	setOptionDefault('zp_plugin_userAddressFields', $plugin_is_filter);
 	new userAddressFields;
 } else {
 	userAddressFields::register();

@@ -8,7 +8,7 @@
  */
 define("OFFSET_PATH", 4);
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
-require_once("zenpage-admin-functions.php");
+require_once("admin-functions.php");
 
 admin_securityChecks(ZENPAGE_PAGES_RIGHTS, currentRelativeURL());
 
@@ -35,7 +35,7 @@ if (isset($_POST['update'])) {
 // remove the page from the database
 if (isset($_GET['delete'])) {
 	XSRFdefender('delete');
-	$msg = deletePage(sanitize($_GET['delete']));
+	$msg = deleteZenpageObj(newPage(sanitize($_GET['delete']), 'admin-pages.php'));
 	if (!empty($msg)) {
 		$reports[] = $msg;
 	}
@@ -43,30 +43,36 @@ if (isset($_GET['delete'])) {
 // publish or un-publish page by click
 if (isset($_GET['publish'])) {
 	XSRFdefender('update');
-	$obj = new ZenpagePage(sanitize($_GET['titlelink']));
-	zenpagePublish($obj, sanitize_numeric($_GET['publish']));
+	$obj = newPage(sanitize($_GET['titlelink']));
+	$obj->setShow(sanitize_numeric($_GET['publish']));
+	$obj->save();
 }
-if (isset($_GET['skipscheduling'])) {
-	XSRFdefender('update');
-	$obj = new ZenpagePage($result['titlelink']);
-	skipScheduledPublishing($obj);
-}
+
 if (isset($_GET['commentson'])) {
 	XSRFdefender('update');
-	$obj = new ZenpagePage(sanitize($_GET['titlelink']));
+	$obj = newPage(sanitize($_GET['titlelink']));
 	$obj->setCommentsAllowed(sanitize_numeric($_GET['commentson']));
 	$obj->save();
 }
 if (isset($_GET['hitcounter'])) {
 	XSRFdefender('hitcounter');
-	$obj = new ZenpagePage(sanitize($_GET['titlelink']));
+	$obj = newPage(sanitize($_GET['titlelink']));
 	$obj->set('hitcounter', 0);
 	$obj->save();
 	$reports[] = '<p class="messagebox fade-message">' . gettext("Hitcounter reset") . '</p>';
 }
+/*
+ * Here we should restart if any action processing has occurred to be sure that everything is
+ * in its proper state. But that would require significant rewrite of the handling and
+ * reporting code so is impractical. Instead we will presume that all that needs to be restarted
+ * is the CMS object.
+ */
+$_zp_CMS = new CMS();
+
 printAdminHeader('pages');
 printSortableHead();
 zenpageJSCSS();
+updatePublished('pages');
 ?>
 <script type="text/javascript">
 	//<!-- <![CDATA[
@@ -103,7 +109,7 @@ zenpageJSCSS();
 	}
 	?>
 	<h1><?php echo gettext('Pages'); ?><span class="zenpagestats"><?php printPagesStatistic(); ?></span></h1>
-	<form class="dirty-check" action="admin-pages.php" method="post" name="update" id="form_zenpageitemlist" onsubmit="return confirmAction();">
+	<form class="dirtylistening" onReset="setClean('form_zenpageitemlist');" action="admin-pages.php" method="post" name="update" id="form_zenpageitemlist" onsubmit="return confirmAction();">
 		<?php XSRFToken('update'); ?>
 
 		<div>
@@ -117,7 +123,7 @@ zenpageJSCSS();
 			?>
 			<p class="buttons">
 				<button class="serialize" type="submit">
-					<img src="../../images/pass.png" alt="" />
+					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" />
 					<strong><?php echo gettext("Apply"); ?></strong>
 				</button>
 				<?php
@@ -126,7 +132,7 @@ zenpageJSCSS();
 					<span class="floatright">
 						<strong>
 							<a href="admin-edit.php?page&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add') ?>">
-								<img src="images/add.png" alt="" /> <?php echo gettext('New Page'); ?></a>
+								<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" /> <?php echo gettext('New Page'); ?></a>
 						</strong>
 					</span>
 					<?php
@@ -175,7 +181,7 @@ zenpageJSCSS();
 		<input name="update" type="hidden" value="Save Order" />
 		<p class="buttons">
 			<button class="serialize" type="submit" title="<?php echo gettext('Apply'); ?>">
-				<img src="../../images/pass.png" alt="" />
+				<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" />
 				<strong><?php echo gettext('Apply'); ?></strong>
 			</button>
 		</p>

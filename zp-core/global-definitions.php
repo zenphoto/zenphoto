@@ -2,6 +2,7 @@
 
 if (!isset($_SERVER['HTTP_HOST']))
 	die();
+define('GITHUB', 'github.com/ZenPhoto20/ZenPhoto20');
 define('ZP_LAST_MODIFIED', gmdate('D, d M Y H:i:s') . ' GMT');
 require_once(dirname(__FILE__) . '/version.php'); // Include the version info.
 if (!function_exists("gettext")) {
@@ -11,6 +12,8 @@ if (!defined('SORT_FLAG_CASE'))
 	define('SORT_FLAG_CASE', 0);
 if (!defined('SORT_NATURAL'))
 	define('SORT_NATURAL', 0);
+if (!defined('SORT_LOCALE_STRING'))
+	define('SORT_LOCALE_STRING', 0);
 
 define('ZENFOLDER', 'zp-core');
 define('PLUGIN_FOLDER', 'zp-extensions');
@@ -37,18 +40,18 @@ define('PLUGIN_PRIORITY', 1023);
 define('SYMLINK', function_exists('symlink') && strpos(@ini_get("suhosin.executor.func.blacklist"), 'symlink') === false);
 define('CASE_INSENSITIVE', file_exists(strtoupper(__FILE__)));
 
-define('TEST_RELEASE', preg_match('~-[^RC]~', ZENPHOTO_VERSION));
-
-define('DEBUG_LOGIN', false); // set to true to log admin saves and login attempts
-define('DEBUG_ERROR', TEST_RELEASE); // set to true to supplies the calling sequence with zp_error messages
-define('DEBUG_IMAGE', false); // set to true to log image processing debug information.
-define('DEBUG_IMAGE_ERR', TEST_RELEASE); // set to true to flag image processing errors.
-define('DEBUG_404', TEST_RELEASE); // set to true to log 404 error processing debug information.
-define('DEBUG_EXIF', false); // set to true to log start/finish of exif processing. Useful to find problematic images.
-define('DEBUG_PLUGINS', false); // set to true to log plugin load sequence.
-define('DEBUG_FILTERS', false); // set to true to log filter application sequence.
-define('EXPLAIN_SELECTS', false); //	set to true to log the "EXPLAIN" of SELECT queries in the debug log
-define('DEBUG_LOCALE', false); // used for examining language selection problems
+$_debug = explode('-', preg_replace('~-RC\d+~', '', ZENPHOTO_VERSION) . '-');
+$_debug = $_debug[1];
+define('TEST_RELEASE', !empty($_debug));
+define('DEBUG_LOGIN', strpos($_debug, 'LOGIN')); // set to true to log admin saves and login attempts
+define('DEBUG_IMAGE', strpos($_debug, 'IMAGE')); // set to true to log image processing debug information.
+define('DEBUG_404', strpos($_debug, '404')); // set to true to log 404 error processing debug information.
+define('DEBUG_EXIF', strpos($_debug, 'EXIF')); // set to true to log start/finish of exif processing. Useful to find problematic images.
+define('DEBUG_PLUGINS', strpos($_debug, 'PLUGINS')); // set to true to log plugin load sequence.
+define('DEBUG_FILTERS', strpos($_debug, 'FILTERS')); // set to true to log filter application sequence.
+define('EXPLAIN_SELECTS', strpos($_debug, 'EXPLAIN')); //	set to true to log the "EXPLAIN" of SELECT queries in the debug log
+define('DEBUG_LOCALE', strpos($_debug, 'LOCALE')); // used for examining language selection problems
+unset($_debug);
 
 define('DB_NOT_CONNECTED', serialize(array('mysql_host' => gettext('not connected'), 'mysql_database' => gettext('not connected'), 'mysql_prefix' => gettext('not connected'), 'mysql_user' => '', 'mysql_pass' => '')));
 $_zp_DB_details = unserialize(DB_NOT_CONNECTED);

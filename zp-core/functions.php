@@ -10,17 +10,16 @@
 global $_zp_current_context_stack, $_zp_HTML_cache;
 
 if (!function_exists("json_encode")) {
-	// load the drop-in replacement library
+// load the drop-in replacement library
 	require_once(dirname(__FILE__) . '/lib-json.php');
 }
 
-require_once(dirname(__FILE__) . '/functions-basic.php');
 require_once(dirname(__FILE__) . '/functions-filter.php');
-require_once(SERVERPATH . '/' . ZENFOLDER . '/lib-kses.php');
+require_once(dirname(__FILE__) . '/lib-kses.php');
+require_once(dirname(__FILE__) . '/functions-basic.php');
 
 $_zp_captcha = new _zp_captcha(); // this will be overridden by the plugin if enabled.
 $_zp_HTML_cache = new _zp_HTML_cache(); // this will be overridden by the plugin if enabled.
-//setup session before checking for logon cookie
 require_once(dirname(__FILE__) . '/functions-i18n.php');
 
 if (GALLERY_SESSION) {
@@ -53,23 +52,23 @@ $_zp_missing_image = new Transientimage($_zp_missing_album, SERVERPATH . '/' . Z
  * */
 function parseAllowedTags(&$source) {
 	$source = trim($source);
-	if (substr($source, 0, 1) != "(") {
+	if (@$source{0} != "(") {
 		return false;
 	}
 	$source = substr($source, 1); //strip off the open paren
 	$a = array();
-	while ((strlen($source) > 1) && (substr($source, 0, 1) != ")")) {
+	while (strlen($source) > 1 && $source{0} != ")") {
 		$i = strpos($source, '=>');
 		if ($i === false) {
 			return false;
 		}
 		$tag = trim(substr($source, 0, $i));
-		//strip forbidden tags from list
+//strip forbidden tags from list
 		if ($tag == 'script') {
 			return 0;
 		}
 		$source = trim(substr($source, $i + 2));
-		if (substr($source, 0, 1) != "(") {
+		if (@$source{0} != "(") {
 			return false;
 		}
 		$x = parseAllowedTags($source);
@@ -78,7 +77,7 @@ function parseAllowedTags(&$source) {
 		}
 		$a[$tag] = $x;
 	}
-	if (substr($source, 0, 1) != ')') {
+	if (@$source{0} != ')') {
 		return false;
 	}
 	$source = trim(substr($source, 1)); //strip the close paren
@@ -170,9 +169,9 @@ function shortenContent($articlecontent, $shorten, $shortenindicator, $forceindi
 	global $_user_tags;
 	if ($shorten && ($forceindicator || (mb_strlen($articlecontent) > $shorten))) {
 		$allowed_tags = getAllowedTags('allowed_tags');
-		//remove script to be replaced later
+//remove script to be replaced later
 		$articlecontent = preg_replace('~<script.*?/script>~is', '', $articlecontent);
-		//remove HTML comments
+//remove HTML comments
 		$articlecontent = preg_replace('~<!--.*?-->~is', '', $articlecontent);
 		$short = mb_substr($articlecontent, 0, $shorten);
 		$short2 = kses($short . '</p>', $allowed_tags);
@@ -200,7 +199,7 @@ function shortenContent($articlecontent, $shorten, $shortenindicator, $forceindi
 		}
 		$short = truncate_string($articlecontent, $shorten, '');
 		if ($short != $articlecontent) { //	we actually did remove some stuff
-			// drop open tag strings
+// drop open tag strings
 			$open = mb_strrpos($short, '<');
 			if ($open > mb_strrpos($short, '>')) {
 				$short = mb_substr($short, 0, $open);
@@ -217,7 +216,7 @@ function shortenContent($articlecontent, $shorten, $shortenindicator, $forceindi
 		$articlecontent = $short;
 	}
 	if (isset($matches)) {
-		//replace the script text
+//replace the script text
 		foreach ($matches[0] as $script) {
 			$articlecontent = $script . $articlecontent;
 		}
@@ -260,19 +259,15 @@ function lookupSortKey($sorttype, $default, $table) {
 			return 'RAND()';
 		case "manual":
 			return 'sort_order';
-		case "filename":
-			switch ($table) {
-				case 'images':
-					return 'filename';
-				case 'albums':
-					return 'folder';
-			}
 		default:
 			if (empty($sorttype)) {
 				return $default;
 			}
 			if (substr($sorttype, 0) == '(') {
 				return $sorttype;
+			}
+			if ($table == 'albums') { // filename is synonomon for folder with albums
+				$sorttype = str_replace('filename', 'folder', $sorttype);
 			}
 			if (is_array($_zp_fieldLists) && isset($_zp_fieldLists[$table])) {
 				$dbfields = $_zp_fieldLists[$table];
@@ -288,16 +283,13 @@ function lookupSortKey($sorttype, $default, $table) {
 			}
 			$sorttype = strtolower($sorttype);
 			$list = explode(',', $sorttype);
-			$fields = array();
-			// Critical for preventing SQL injection: only return parts of 
-			// the custom sort that are exactly equal to database fields.
+			$rslt = array();
 			foreach ($list as $key => $field) {
-				$field = trim($field);
-				if (array_key_exists($field, $dbfields)) {
-					$fields[$key] = trim($dbfields[$field]);
+				if (array_key_exists($field = trim($field, '`'), $dbfields)) {
+					$rslt[] = '`' . trim($dbfields[$field]) . '`';
 				}
 			}
-			return implode(',', $fields);
+			return implode(',', $rslt);
 	}
 }
 
@@ -312,13 +304,12 @@ function zpFormattedDate($format, $dt) {
 	global $_zp_UTF8;
 	$fdate = strftime($format, $dt);
 	$charset = 'ISO-8859-1';
-	$outputset = LOCAL_CHARSET;
 	if (function_exists('mb_internal_encoding')) {
-		if (($charset = mb_internal_encoding()) == $outputset) {
+		if (($charset = mb_internal_encoding()) == LOCAL_CHARSET) {
 			return $fdate;
 		}
 	}
-	return $_zp_UTF8->convert($fdate, $charset, $outputset);
+	return $_zp_UTF8->convert($fdate, $charset, LOCAL_CHARSET);
 }
 
 /**
@@ -390,7 +381,11 @@ function zp_mail($subject, $message, $email_list = NULL, $cc_addresses = NULL, $
 		}
 	}
 	if (is_null($email_list)) {
-		$email_list = $_zp_authority->getAdminEmail();
+		if ($_zp_authority) {
+			$email_list = $_zp_authority->getAdminEmail();
+		} else {
+			return gettext('Mail send failed.');
+		}
 	} else {
 		foreach ($email_list as $key => $email) {
 			if (!is_valid_email_zp($email)) {
@@ -460,7 +455,7 @@ function zp_mail($subject, $message, $email_list = NULL, $cc_addresses = NULL, $
 			$message = getBare($message);
 			$message = preg_replace('~\n\n\n+~', "\n\n", $message);
 
-			// Send the mail
+// Send the mail
 			if (count($email_list) > 0) {
 				$result = zp_apply_filter('sendmail', '', $email_list, $subject, $message, $from_mail, $from_name, $cc_addresses, $replyTo); // will be true if all mailers succeeded
 			}
@@ -543,7 +538,7 @@ function checkAlbumPassword($album, &$hint = NULL) {
 			}
 			$album = $album->getParent();
 		}
-		// revert all tlhe way to the gallery
+// revert all tlhe way to the gallery
 		$hash = $_zp_gallery->getPassword();
 		$authType = 'zp_gallery_auth';
 		$saved_auth = zp_getCookie($authType);
@@ -581,28 +576,20 @@ function getPluginFiles($pattern, $folder = '', $stripsuffix = true) {
 		$folder .= '/';
 	$list = array();
 	$curdir = getcwd();
-	$basepath = SERVERPATH . "/" . USER_PLUGIN_FOLDER . '/' . $folder;
-	if (is_dir($basepath)) {
-		chdir($basepath);
-		$filelist = safe_glob($pattern);
-		foreach ($filelist as $file) {
-			$key = filesystemToInternal($file);
-			if ($stripsuffix) {
-				$key = stripSuffix($key);
+	$sources = array(SERVERPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/' . $folder, SERVERPATH . "/" . USER_PLUGIN_FOLDER . '/' . $folder);
+	foreach ($sources as $basepath) {
+		if (is_dir($basepath)) {
+			chdir($basepath);
+			$filelist = safe_glob($pattern);
+			foreach ($filelist as $file) {
+				$key = filesystemToInternal($file);
+				if ($stripsuffix) {
+					$key = stripSuffix($key);
+				}
+				if (realpath($basepath . $file)) { //	sometimes you just can't get there from here!
+					$list[$key] = $basepath . $file;
+				}
 			}
-			$list[$key] = $basepath . $file;
-		}
-	}
-	$basepath = SERVERPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/' . $folder;
-	if (file_exists($basepath)) {
-		chdir($basepath);
-		$filelist = safe_glob($pattern);
-		foreach ($filelist as $file) {
-			$key = filesystemToInternal($file);
-			if ($stripsuffix) {
-				$key = stripSuffix($key);
-			}
-			$list[$key] = $basepath . $file;
 		}
 	}
 	chdir($curdir);
@@ -629,31 +616,26 @@ function getPluginFiles($pattern, $folder = '', $stripsuffix = true) {
 function getPlugin($plugin, $inTheme = false, $webpath = false) {
 	global $_zp_gallery;
 	$pluginFile = NULL;
+	$sources = array('/' . USER_PLUGIN_FOLDER . '/' . internalToFilesystem($plugin), '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/' . internalToFilesystem($plugin));
 	if ($inTheme === true) {
 		$inTheme = $_zp_gallery->getCurrentTheme();
 	}
 	if ($inTheme) {
-		$pluginFile = '/' . THEMEFOLDER . '/' . internalToFilesystem($inTheme . '/' . $plugin);
-		if (!file_exists(SERVERPATH . $pluginFile)) {
-			$pluginFile = false;
+		array_unshift($sources, '/' . THEMEFOLDER . '/' . internalToFilesystem($inTheme . '/' . $plugin));
+	}
+
+	foreach ($sources as $file) {
+		if (file_exists(SERVERPATH . $file)) {
+			$pluginFile = $file;
+			break;
 		}
 	}
-	if (!$pluginFile) {
-		$pluginFile = '/' . USER_PLUGIN_FOLDER . '/' . internalToFilesystem($plugin);
-		if (!file_exists(SERVERPATH . $pluginFile)) {
-			$pluginFile = '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/' . internalToFilesystem($plugin);
-			if (!file_exists(SERVERPATH . $pluginFile)) {
-				$pluginFile = false;
-			}
-		}
-	}
+
 	if ($pluginFile) {
 		if ($webpath) {
-			if (is_string($webpath)) {
-				return $webpath . filesystemToInternal($pluginFile);
-			} else {
-				return WEBPATH . filesystemToInternal($pluginFile);
-			}
+			if (!is_string($webpath))
+				$webpath = WEBPATH;
+			return $webpath . filesystemToInternal($pluginFile);
 		} else {
 			return SERVERPATH . $pluginFile;
 		}
@@ -700,6 +682,18 @@ function extensionEnabled($extension) {
  */
 function enableExtension($extension, $priority, $persistent = true) {
 	setOption('zp_plugin_' . $extension, $priority, $persistent);
+}
+
+/**
+ * call this if the extension should be enabled by default
+ */
+function defaultExtension($priority) {
+	if (OFFSET_PATH == 2) {
+		$bt = debug_backtrace();
+		$b = array_shift($bt);
+		setOptionDefault('zp_plugin_' . stripSuffix(basename($b['file'])), $priority);
+	}
+	return $priority;
 }
 
 /**
@@ -841,30 +835,28 @@ function populateManagedObjectsList($type, $id, $rights = false) {
 				if ($type && !$rights) {
 					$cv[$name] = $folder;
 				} else {
-					$cv[] = array('data' => $folder, 'name' => $name, 'type' => 'album', 'edit' => $albumitem['edit'] + 0);
+					$cv[] = array('data' => $folder, 'name' => $name, 'type' => 'album', 'edit' => (int) $albumitem['edit']);
 				}
 			}
 			db_free_result($currentvalues);
 		}
 	}
 	if (empty($type) || $type == 'pages') {
-		$sql = 'SELECT ' . prefix('pages') . '.`title`,' . prefix('pages') . '.`titlelink` FROM ' . prefix('pages') . ', ' .
-						prefix('admin_to_object') . " WHERE " . prefix('admin_to_object') . ".adminid=" . $id .
-						" AND " . prefix('pages') . ".id=" . prefix('admin_to_object') . ".objectid AND " . prefix('admin_to_object') . ".type='pages'";
-		$currentvalues = query($sql, false);
+		$sql = 'SELECT ' . prefix('pages') . '.`title`,' . prefix('pages') . '.`titlelink`, ' . prefix('admin_to_object') . '.`edit` FROM ' . prefix('pages') . ', ' . prefix('admin_to_object') . " WHERE " . prefix('admin_to_object') . ".adminid=" . $id . " AND " . prefix('pages') . ".id=" . prefix('admin_to_object') . ".objectid AND " . prefix('admin_to_object') . ".type='pages'";
+		$currentvalues = query($sql, true);
 		if ($currentvalues) {
 			while ($item = db_fetch_assoc($currentvalues)) {
 				if ($type) {
 					$cv[get_language_string($item['title'])] = $item['titlelink'];
 				} else {
-					$cv[] = array('data' => $item['titlelink'], 'name' => $item['title'], 'type' => 'pages');
+					$cv[] = array('data' => $item['titlelink'], 'name' => get_language_string($item['title']), 'type' => 'pages', 'edit' => (int) $item['edit']);
 				}
 			}
 			db_free_result($currentvalues);
 		}
 	}
 	if (empty($type) || $type == 'news') {
-		$sql = 'SELECT ' . prefix('news_categories') . '.`titlelink`,' . prefix('news_categories') . '.`title` FROM ' . prefix('news_categories') . ', ' .
+		$sql = 'SELECT ' . prefix('news_categories') . '.`titlelink`,' . prefix('news_categories') . '.`title`, ' . prefix('admin_to_object') . '.`edit` FROM ' . prefix('news_categories') . ', ' .
 						prefix('admin_to_object') . " WHERE " . prefix('admin_to_object') . ".adminid=" . $id .
 						" AND " . prefix('news_categories') . ".id=" . prefix('admin_to_object') . ".objectid AND " . prefix('admin_to_object') . ".type='news'";
 		$currentvalues = query($sql, false);
@@ -873,10 +865,14 @@ function populateManagedObjectsList($type, $id, $rights = false) {
 				if ($type) {
 					$cv[get_language_string($item['title'])] = $item['titlelink'];
 				} else {
-					$cv[] = array('data' => $item['titlelink'], 'name' => $item['title'], 'type' => 'news');
+					$cv[] = array('data' => $item['titlelink'], 'name' => get_language_string($item['title']), 'type' => 'news', 'edit' => (int) $item['edit']);
 				}
 			}
 			db_free_result($currentvalues);
+		}
+		$item = query_single_row('SELECT `edit` FROM ' . prefix('admin_to_object') . "WHERE adminid=$id AND objectid=0 AND type='news'", false);
+		if ($item) {
+			$cv[] = array('data' => '`', 'name' => '"' . gettext('un-categorized') . '"', 'type' => 'news', 'edit' => (int) $item['edit']);
 		}
 	}
 	return $cv;
@@ -910,7 +906,7 @@ function getAllSubAlbumIDs($albumfolder = '') {
  */
 function handleSearchParms($what, $album = NULL, $image = NULL) {
 	global $_zp_current_search, $zp_request, $_zp_last_album, $_zp_current_album,
-	$_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_gallery, $_zp_loggedin;
+	$_zp_current_article, $_zp_current_page, $_zp_gallery, $_zp_loggedin;
 	$_zp_last_album = zp_getCookie('zenphoto_last_album');
 	if (is_object($zp_request) && get_class($zp_request) == 'SearchEngine') { //	we are are on a search
 		return $zp_request->getAlbumList();
@@ -920,7 +916,7 @@ function handleSearchParms($what, $album = NULL, $image = NULL) {
 		$context = get_context();
 		$_zp_current_search = new SearchEngine();
 		$_zp_current_search->setSearchParams($params);
-		// check to see if we are still "in the search context"
+// check to see if we are still "in the search context"
 		if (!is_null($image)) {
 			$dynamic_album = $_zp_current_search->getDynamicAlbum();
 			if ($_zp_current_search->getImageIndex($album->name, $image->filename) !== false) {
@@ -936,7 +932,7 @@ function handleSearchParms($what, $album = NULL, $image = NULL) {
 			if (hasDynamicAlbumSuffix($albumname) && !is_dir(ALBUM_FOLDER_SERVERPATH . $albumname)) {
 				$albumname = stripSuffix($albumname); // strip off the suffix as it will not be reflected in the search path
 			}
-			//	see if the album is within the search context. NB for these purposes we need to look at all albums!
+//	see if the album is within the search context. NB for these purposes we need to look at all albums!
 			$save_logon = $_zp_loggedin;
 			$_zp_loggedin = $_zp_loggedin | VIEW_ALL_RIGHTS;
 			$search_album_list = $_zp_current_search->getAlbums(0);
@@ -950,24 +946,24 @@ function handleSearchParms($what, $album = NULL, $image = NULL) {
 		} else {
 			zp_clearCookie('zenphoto_last_album');
 		}
-		if (!is_null($_zp_current_zenpage_page)) {
+		if (!is_null($_zp_current_page)) {
 			$pages = $_zp_current_search->getPages();
 			if (!empty($pages)) {
-				$tltlelink = $_zp_current_zenpage_page->getTitlelink();
+				$titlelink = $_zp_current_page->getTitlelink();
 				foreach ($pages as $apage) {
-					if ($apage == $tltlelink) {
+					if ($apage == $titlelink) {
 						$context = $context | ZP_SEARCH_LINKED;
 						break;
 					}
 				}
 			}
 		}
-		if (!is_null($_zp_current_zenpage_news)) {
+		if (!is_null($_zp_current_article)) {
 			$news = $_zp_current_search->getArticles(0, NULL, true);
 			if (!empty($news)) {
-				$tltlelink = $_zp_current_zenpage_news->getTitlelink();
+				$titlelink = $_zp_current_article->getTitlelink();
 				foreach ($news as $anews) {
-					if ($anews['titlelink'] == $tltlelink) {
+					if ($anews['titlelink'] == $titlelink) {
 						$context = $context | ZP_SEARCH_LINKED;
 						break;
 					}
@@ -987,23 +983,31 @@ function handleSearchParms($what, $album = NULL, $image = NULL) {
 }
 
 /**
+ * Updates published status based on publishdate and expiredate
  *
- * checks if the item has expired
- * @param array $row database row of the object
+ * @param string $table the database table
  */
-function checkPublishDates($row) {
-	if (@$row['show']) {
-		if (isset($row['expiredate']) && $row['expiredate'] && $row['expiredate'] != '0000-00-00 00:00:00') {
-			if ($row['expiredate'] <= date('Y-m-d H:i:s')) {
-				return 1;
-			}
+function updatePublished($table) {
+//publish items that have matured
+	$sql = 'SELECT * FROM ' . prefix($table) . ' WHERE `show`=0 AND `publishdate`!="0000-00-00 00:00:00" AND `publishdate`<=' . db_quote(date('Y-m-d H:i:s'));
+	$result = query($sql);
+	if ($result) {
+		while ($row = db_fetch_assoc($result)) {
+			$obj = getItemByID($table, $row['id']);
+			$obj->setShow(1);
+			$obj->save();
 		}
-		if (isset($row['publishdate']) && $row['publishdate'] && $row['publishdate'] != '0000-00-00 00:00:00') {
-			if ($row['publishdate'] >= date('Y-m-d H:i:s')) {
-				return 2;
-			}
+	}
+
+//unpublish items that have expired or are not published yet
+	$sql = 'SELECT * FROM ' . prefix($table) . ' WHERE `show`=1 AND (`expiredate`!="0000-00-00 00:00:00" AND `expiredate`<' . db_quote(date('Y-m-d H:i:s')) . ') OR `publishdate`>' . db_quote(date('Y-m-d H:i:s'));
+	$result = query($sql);
+	if ($result) {
+		while ($row = db_fetch_assoc($result)) {
+			$obj = getItemByID($table, $row['id']);
+			$obj->setShow(0);
+			$obj->save();
 		}
-		return null;
 	}
 }
 
@@ -1042,8 +1046,10 @@ function setupTheme($album = NULL) {
 		$parent = getUrAlbum($album);
 		$albumtheme = $parent->getAlbumTheme();
 		if (!empty($albumtheme)) {
-			$theme = $albumtheme;
-			$id = $parent->getID();
+			if (is_dir(SERVERPATH . "/" . THEMEFOLDER . "/$albumtheme")) {
+				$theme = $albumtheme;
+				$id = $parent->getID();
+			}
 		}
 	}
 	$theme = zp_apply_filter('setupTheme', $theme);
@@ -1058,7 +1064,7 @@ function setupTheme($album = NULL) {
 			<head>
 			</head>
 			<body>
-				<strong><?php printf(gettext('Zenphoto found no theme scripts. Please check the <em>%s</em> folder of your installation.'), THEMEFOLDER); ?></strong>
+				<strong><?php printf(gettext('No theme scripts found. Please check the <em>%s</em> folder of your installation.'), THEMEFOLDER); ?></strong>
 			</body>
 		</html>
 		<?php
@@ -1070,164 +1076,110 @@ function setupTheme($album = NULL) {
 	return $theme;
 }
 
+define('SELECT_IMAGES', 1);
+define('SELECT_ALBUMS', 2);
+define('SELECT_PAGES', 4);
+define('SELECT_ARTICLES', 8);
+
 /**
  * Returns an array of unique tag names
  *
- * @param bool $checkaccess Set to true if you wish to exclude tags that are assigned to items (or are not assigned at all) the visitor is not allowed to see
- * Beware that this may cause overhead on large sites. Usage of the static_html_cache plugin is strongely recommended.
- * @return array
- */
-function getAllTagsUnique($checkaccess = false) {
-  global $_zp_unique_tags, $_zp_unique_tags_excluded;
-  if(zp_loggedin(VIEW_ALL_RIGHTS)) {
-    $checkaccess = false;
-  }
-  //need to cache all and filtered tags indiviually
-  if ($checkaccess) {
-    if (!is_null($_zp_unique_tags_excluded)) {
-      return $_zp_unique_tags_excluded; // cache them.
-    }
-  } else {
-    if (!is_null($_zp_unique_tags)) {
-      return $_zp_unique_tags; // cache them.
-    }
-  }
-  $all_unique_tags = array();
-  $sql = "SELECT DISTINCT `name`, `id` FROM " . prefix('tags') . ' ORDER BY `name`';
-  $unique_tags = query($sql);
-  if ($unique_tags) {
-    while ($tagrow = db_fetch_assoc($unique_tags)) {
-      if ($checkaccess) {
-        if (getTagCountByAccess($tagrow) != 0) {
-          $all_unique_tags[] = $tagrow['name'];
-        }
-      } else {
-        $all_unique_tags[] = $tagrow['name'];
-      }
-    }
-    db_free_result($unique_tags);
-  }
-  if ($checkaccess) {
-    $_zp_unique_tags_excluded = $all_unique_tags;
-    return $_zp_unique_tags_excluded;
-  } else {
-    $_zp_unique_tags = $all_unique_tags;
-    return $_zp_unique_tags;
-  }
-}
-
-/**
- * Returns an array indexed by 'tag' with the element value the count of the tag
+ * Tags are shown only if their occurance count is greater or equal to the threshold
+ * value passed.
  *
- * @param bool $exclude_unassigned Set to true if you wish to exclude tags that are not assigne to any item
- * @param bool $checkaccess Set to true if you wish to exclude tags that are assigned to items (or are not assigned at all) the visitor is not allowed to see
- * If set to true it overrides the $exclude_unassigned parameter.
- * Beware that this may cause overhead on large sites. Usage of the static_html_cache plugin is strongely recommended.
- * @return array
- */
-function getAllTagsCount($exclude_unassigned = false, $checkaccess = false) {
-  global $_zp_count_tags;
-  if (!is_null($_zp_count_tags)) {
-    return $_zp_count_tags;
-  }
-  if(zp_loggedin(VIEW_ALL_RIGHTS)) {
-    $exclude_unassigned = false;
-    $checkaccess = false;
-  }
-  $_zp_count_tags = array();
-  $sql = "SELECT DISTINCT tags.name, tags.id, (SELECT COUNT(*) FROM " . prefix('obj_to_tag') . " as object WHERE object.tagid = tags.id) AS count FROM " . prefix('tags') . " as tags ORDER BY `name`";
-  $tagresult = query($sql);
-  if ($tagresult) {
-    while ($tag = db_fetch_assoc($tagresult)) {
-      if($checkaccess) {
-        $count = getTagCountByAccess($tag);
-        if($count != 0) {
-          $_zp_count_tags[$tag['name']] = $count;
-        }
-      } else {
-        if($exclude_unassigned) {
-          if($tag['count'] != 0) {
-            $_zp_count_tags[$tag['name']] = $tag['count'];
-          }
-        } else {
-          $_zp_count_tags[$tag['name']] = $tag['count'];
-        }
-      }
-    }
-    db_free_result($tagresult);
-  }
-  return $_zp_count_tags;
-}
-
-/**
- * Checks if a tag is assigned at all and if it can be viewed by the current visitor and returns the corrected count
- * Helper function used optionally within getAllTagsCount() and getAllTagsUnique()
+ * If the site visitor is not logged in this function returns only tags associated
+ * with "published" objects. However, the publish state is limited to the `show` column
+ * of the object. This is not totally "correct", however the computatioal intensity
+ * of returning only that might link to "visible" objects is prohibitive.
  *
- * @global obj $_zp_zenpage
- * @param array $tag Array representing a tag containing at least its name and id
- * @return int
+ * Logged-in users will see all tags subject to the threshold limits
+ *
+ * @param $language string exclude language tags other than this string
+ * @param $count int threshold occurance count
+ * @param $returnCount bool set to true to return the tag counts
+ * @return array
+ *
+ * @author Stephen Billard
+ * @Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
  */
-function getTagCountByAccess($tag) {
-  global $_zp_zenpage, $_zp_object_to_tags;
-  if (array_key_exists('count', $tag) && $tag['count'] == 0) {
-    return $tag['count'];
-  }
-  $hidealbums = getNotViewableAlbums();
-  $hideimages = getNotViewableImages();
-  $hidenews = array();
-  $hidepages = array();
-  if (extensionEnabled('Zenpage')) {
-    $hidenews = $_zp_zenpage->getNotViewableNews();
-    $hidepages = $_zp_zenpage->getNotViewablePages();
-  }
-  //skip checks if there are no unviewable items at all
-  if (empty($hidealbums) && empty($hideimages) && empty($hidenews) && empty($hidepages)) {
-    if (array_key_exists('count', $tag)) {
-      return $tag['count'];
-    }
-    return 0;
-  } 
-  if (is_null($_zp_object_to_tags)) {
-    $sql = "SELECT tagid, type, objectid FROM " . prefix('obj_to_tag') . " ORDER BY tagid";
-    $_zp_object_to_tags = query_full_array($sql); 
-  }
-  $count = '';
-  if ($_zp_object_to_tags) {
-    foreach($_zp_object_to_tags as $tagcheck) {
-      if ($tagcheck['tagid'] == $tag['id']) {
-        switch ($tagcheck['type']) {
-          case 'albums':
-            if (!in_array($tagcheck['objectid'], $hidealbums)) {
-              $count++;
-            }
-            break;
-          case 'images':
-            if (!in_array($tagcheck['objectid'], $hideimages)) {
-              $count++;
-            }
-            break;
-          case 'news':
-            if (extensionEnabled('Zenpage') && ZP_NEWS_ENABLED) {
-              if (!in_array($tagcheck['objectid'], $hidenews)) {
-                $count++;
-              }
-            }
-            break;
-          case 'pages':
-            if (extensionEnabled('Zenpage') && ZP_PAGES_ENABLED) {
-              if (!in_array($tagcheck['objectid'], $hidepages)) {
-                $count++;
-              }
-            }
-            break;
-        }
-      }
-    }
-  }
-  if (empty($count)) {
-    $count = 0;
-  }
-  return $count;
+function getAllTagsUnique($language = NULL, $count = 1, $returnCount = NULL) {
+	global $_zp_unique_tags, $_zp_count_tags, $_zp_current_locale, $_zp_loggedin;
+	if (is_null($returnCount)) {
+		$list = &$_zp_unique_tags;
+	} else {
+		$list = &$_zp_count_tags;
+	}
+	if (is_null($language)) {
+		switch (getOption('languageTagSearch')) {
+			case 1:
+				$language = substr($_zp_current_locale, 0, 2);
+				break;
+			case 2:
+				$language = $_zp_current_locale;
+				break;
+			default:
+				$language = 0;
+				break;
+		}
+	}
+
+	if (!isset($list[$language][$count])) {
+		$list[$language][$count] = array();
+
+		if (($_zp_loggedin & TAGS_RIGHTS) || ($_zp_loggedin & VIEW_UNPUBLISHED_PAGE_RIGHTS & VIEW_UNPUBLISHED_NEWS_RIGHTS & VIEW_UNPUBLISHED_RIGHTS == VIEW_UNPUBLISHED_PAGE_RIGHTS & VIEW_UNPUBLISHED_NEWS_RIGHTS & VIEW_UNPUBLISHED_RIGHTS)) {
+			$source = prefix('obj_to_tag');
+		} else {
+			// create a table of only "published" tag assignments
+			$source = 'taglist';
+			query('CREATE TEMPORARY TABLE IF NOT EXISTS taglist (
+														`tagid` int(11) UNSIGNED NOT NULL,
+														`type` tinytext,
+														`objectid` int(11) UNSIGNED NOT NULL,
+														KEY (tagid),
+														KEY (objectid)
+														) CHARACTER SET utf8 COLLATE utf8_unicode_ci');
+			$tables = array('images' => VIEW_UNPUBLISHED_RIGHTS, 'albums' => VIEW_UNPUBLISHED_RIGHTS);
+			if (extensionEnabled('zenpage')) {
+				$tables = array_merge($tables, array('pages' => VIEW_UNPUBLISHED_PAGE_RIGHTS, 'news' => VIEW_UNPUBLISHED_NEWS_RIGHTS));
+			}
+			foreach ($tables as $table => $rights) {
+				if ($_zp_loggedin & $rights) {
+					$show = '';
+				} else {
+					$show = ' AND tag.objectid=object.id AND object.show=1';
+				}
+				$sql = 'INSERT INTO taglist SELECT tag.tagid, tag.type, tag.objectid FROM ' . prefix('obj_to_tag') . ' tag, ' . prefix($table) . ' object WHERE tag.type="' . $table . '"' . $show;
+				query($sql);
+			}
+		}
+
+		if (empty($language)) {
+			$lang = '';
+		} else {
+			$lang = ' AND (tag.language="" OR tag.language LIKE ' . db_quote(db_LIKE_escape($language) . '%') . ')';
+		}
+
+		$sql = 'SELECT tag.name, count(DISTINCT tag.name,obj.type,obj.objectid) as count FROM ' . prefix('tags') . ' tag, ' . $source . ' obj WHERE (tag.id=obj.tagid) ' . $lang . ' GROUP BY tag.name';
+		$unique_tags = query($sql);
+
+		if ($unique_tags) {
+			while ($tagrow = db_fetch_assoc($unique_tags)) {
+				if ($tagrow['count'] >= $count) {
+					if ($returnCount) {
+						$list[$language][$count][$tagrow['name']] = $tagrow['count'];
+					} else {
+						$list[$language][$count][mb_strtolower($tagrow['name'])] = $tagrow['name'];
+					}
+				}
+			}
+		}
+		db_free_result($unique_tags);
+
+		if (!zp_loggedin()) {
+			query('DROP TEMPORARY TABLE taglist');
+		}
+	}
+	return $list[$language][$count];
 }
 
 /**
@@ -1241,7 +1193,7 @@ function storeTags($tags, $id, $tbl) {
 	if ($id) {
 		$tagsLC = array();
 		foreach ($tags as $key => $tag) {
-			$tag = trim($tag);
+			$tag = trim($tag, '\'"');
 			if (!empty($tag)) {
 				$lc_tag = mb_strtolower($tag);
 				if (!in_array($lc_tag, $tagsLC)) {
@@ -1268,7 +1220,7 @@ function storeTags($tags, $id, $tbl) {
 		foreach ($tags as $key => $tag) {
 			$dbtag = query_single_row("SELECT `id` FROM " . prefix('tags') . " WHERE `name`=" . db_quote($key));
 			if (!is_array($dbtag)) { // tag does not exist
-				query("INSERT INTO " . prefix('tags') . " (name) VALUES (" . db_quote($key) . ")", false);
+				query('INSERT INTO ' . prefix('tags') . ' (name) VALUES (' . db_quote($key) . ')', false);
 				$dbtag = array('id' => db_insert_id());
 			}
 			query("INSERT INTO " . prefix('obj_to_tag') . "(`objectid`, `tagid`, `type`) VALUES (" . $id . "," . $dbtag['id'] . ",'" . $tbl . "')");
@@ -1284,15 +1236,33 @@ function storeTags($tags, $id, $tbl) {
  * @param string $tbl 'albums' or 'images', etc.
  * @return unknown
  */
-function readTags($id, $tbl) {
+function readTags($id, $tbl, $language) {
+	global $_zp_current_locale;
+	if (is_null($language)) {
+		switch (getOption('languageTagSearch')) {
+			case 1:
+				$language = substr($_zp_current_locale, 0, 2);
+				break;
+			case 2:
+				$language = $_zp_current_locale;
+				break;
+			default:
+				$langage = '';
+				break;
+		}
+	}
+
 	$tags = array();
-	$result = query("SELECT `tagid` FROM " . prefix('obj_to_tag') . " WHERE `type`='" . $tbl . "' AND `objectid`='" . $id . "'");
+
+	$sql = 'SELECT * FROM ' . prefix('tags') . ' AS tags, ' . prefix('obj_to_tag') . ' AS objects WHERE `type`="' . $tbl . '" AND `objectid`="' . $id . '" AND tagid=tags.id';
+
+	if ($language) {
+		$sql .= ' AND (tags.language="" OR tags.language LIKE ' . db_quote(db_LIKE_escape($language) . '%') . ')';
+	}
+	$result = query($sql);
 	if ($result) {
 		while ($row = db_fetch_assoc($result)) {
-			$dbtag = query_single_row("SELECT `name` FROM" . prefix('tags') . " WHERE `id`='" . $row['tagid'] . "'");
-			if ($dbtag) {
-				$tags[] = $dbtag['name'];
-			}
+			$tags[mb_strtolower($row['name'])] = $row['name'];
 		}
 		db_free_result($result);
 	}
@@ -1387,6 +1357,17 @@ function printLinkHTML($url, $text, $title = NULL, $class = NULL, $id = NULL) {
 }
 
 /**
+ * Central place for meta header handling
+ */
+function printStandardMeta() {
+	$lang = substr(getUserLocale(), 0, 2);
+	echo '<meta http-equiv="content-type" content="text/html; charset=' . LOCAL_CHARSET . '"';
+	if ($lang)
+		echo ' lang="' . $lang . '"';
+	echo ">\n";
+}
+
+/**
  * shuffles an array maintaining the keys
  *
  * @param array $array
@@ -1425,7 +1406,7 @@ function sortByKey($results, $sortkey, $order) {
 			shuffle($results);
 			return $results;
 		default:
-			if (preg_match('`[\/\(\)\*\+\-!\^\%\<\>\=\&\|]`', $sortkey)) {
+			if (preg_match('`[\/\(\)\*\+\-!\^\%\<\>\ = \&\|]`', $sortkey)) {
 				return $results; //	We cannot deal with expressions
 			}
 	}
@@ -1457,38 +1438,45 @@ function sortMultiArray($array, $index, $descending = false, $natsort = true, $c
 			$indicies = array($index);
 		}
 		if ($descending) {
-			$separator = '~~';
+			$pad = '~';
 		} else {
-			$separator = '  ';
+			$pad = ' ';
 		}
-		foreach ($array as $key => $row) {
-			$temp[$key] = '';
-			foreach ($indicies as $index) {
-				if (is_array($row) && array_key_exists($index, $row)) {
-					$temp[$key] .= get_language_string($row[$index]) . $separator;
+		$size = 0;
+		foreach ($indicies as $index) {
+			$prev = $size;
+			$size = 0;
+			$c = 0;
+			foreach ($array as $key => $row) {
+				$c++;
+				if (is_array($row)) {
+					if (array_key_exists($index, $row)) {
+						$word = get_language_string($row[$index]);
+						if (!$case_sensitive) {
+							$word = mb_strtolower($word);
+						}
+					} else {
+						$word = $c;
+					}
+					$size = max($size, strlen($word));
+					if (isset($temp[$key])) {
+						$temp[$key] = str_pad($temp[$key], $prev, $pad) . $word;
+					} else {
+						$temp[$key] = $word;
+					}
 					if (in_array($index, $remove_criteria)) {
 						unset($array[$key][$index]);
 					}
 				}
 			}
-			$temp[$key] .= $key;
 		}
-		if ($natsort) {
-			if ($case_sensitive) {
-				natsort($temp);
-			} else {
-				natcasesort($temp);
-			}
-			if ($descending) {
-				$temp = array_reverse($temp, TRUE);
-			}
+
+		if ($descending) {
+			arsort($temp, SORT_LOCALE_STRING | SORT_NATURAL);
 		} else {
-			if ($descending) {
-				arsort($temp);
-			} else {
-				asort($temp);
-			}
+			asort($temp, SORT_LOCALE_STRING | SORT_NATURAL);
 		}
+
 		foreach (array_keys($temp) as $key) {
 			if (!$preservekeys && is_numeric($key)) {
 				$sorted[] = $array[$key];
@@ -1511,17 +1499,13 @@ function getNotViewableAlbums() {
 	if (zp_loggedin(ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS))
 		return array(); //admins can see all
 	if (is_null($_zp_not_viewable_album_list)) {
-		$sql = 'SELECT `folder`, `id`, `password`, `show` FROM ' . prefix('albums') . ' WHERE `show`=0 OR `password`!=""';
+		$sql = 'SELECT `folder`, `id` FROM ' . prefix('albums');
 		$result = query($sql);
 		if ($result) {
 			$_zp_not_viewable_album_list = array();
 			while ($row = db_fetch_assoc($result)) {
-				if (checkAlbumPassword($row['folder'])) {
-					$album = newAlbum($row['folder']);
-					if (!($row['show'] || $album->isMyItem(LIST_RIGHTS))) {
-						$_zp_not_viewable_album_list[] = $row['id'];
-					}
-				} else {
+				$album = newAlbum($row['folder']);
+				if (!$album->checkAccess()) {
 					$_zp_not_viewable_album_list[] = $row['id'];
 				}
 			}
@@ -1532,34 +1516,6 @@ function getNotViewableAlbums() {
 }
 
 /**
- * Returns a list of image IDs that the current viewer is not allowed to see
- *
- * @return array
- */
-function getNotViewableImages() {
-  global $_zp_not_viewable_image_list;
-  if (zp_loggedin(ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS)) {
-    return array(); //admins can see all
-  }
-  $hidealbums = getNotViewableAlbums();
-  $where = '';
-  if (!is_null($hidealbums)) {
-    $where = implode(',', $hidealbums);
-  }
-  if (is_null($_zp_not_viewable_image_list)) {
-    $sql = 'SELECT DISTINCT `id` FROM ' . prefix('images') . ' WHERE `show` = 0 OR `albumid` in (' . $where . ')';
-    $result = query($sql);
-    if ($result) {
-      $_zp_not_viewable_image_list = array();
-      while ($row = db_fetch_assoc($result)) {
-        $_zp_not_viewable_image_list[] = $row['id'];
-      }
-    }
-  }
-  return $_zp_not_viewable_image_list;
-}
-
-  /**
  * Checks to see if a URL is valid
  *
  * @param string $url the URL being checked
@@ -1587,9 +1543,9 @@ function safe_fnmatch($pattern, $string) {
  * @return string
  */
 function zp_image_types($quote) {
-	global $_zp_extra_filetypes;
-	$typelist = $quote . 'images' . $quote . ',' . $quote . '_images' . $quote . ',';
-	$types = array_unique($_zp_extra_filetypes);
+	global $_zp_images_classes;
+	$types = array_unique($_zp_images_classes);
+	$typelist = '';
 	foreach ($types as $type) {
 		$typelist .= $quote . strtolower($type) . 's' . $quote . ',';
 	}
@@ -1689,7 +1645,7 @@ function byteConvert($bytes) {
  * @return mixed
  */
 function dateTimeConvert($datetime, $raw = false) {
-	// Convert 'yyyy:mm:dd hh:mm:ss' to 'yyyy-mm-dd hh:mm:ss' for Windows' strtotime compatibility
+// Convert 'yyyy:mm:dd hh:mm:ss' to 'yyyy-mm-dd hh:mm:ss' for Windows' strtotime compatibility
 	$datetime = preg_replace('/(\d{4}):(\d{2}):(\d{2})/', ' \1-\2-\3', $datetime);
 	$time = strtotime($datetime);
 	if ($time == -1 || $time === false)
@@ -1773,12 +1729,14 @@ function sanitizeRedirect($redirectTo, $forceHost = false) {
 }
 
 /**
- * checks password posting
+ * checks password posting or existing password cookie
  *
  * @param string $authType override of athorization type
+ *
+ * @return bool true if authorized
  */
 function zp_handle_password($authType = NULL, $check_auth = NULL, $check_user = NULL) {
-	global $_zp_loggedin, $_zp_login_error, $_zp_current_album, $_zp_current_zenpage_page, $_zp_gallery;
+	global $_zp_loggedin, $_zp_login_error, $_zp_current_album, $_zp_current_page, $_zp_gallery;
 	if (empty($authType)) { // not supplied by caller
 		$check_auth = '';
 		if (isset($_GET['z']) && @$_GET['p'] == 'full-image' || isset($_GET['p']) && $_GET['p'] == '*full-image') {
@@ -1806,18 +1764,18 @@ function zp_handle_password($authType = NULL, $check_auth = NULL, $check_user = 
 				}
 			}
 		} else if (in_context(ZP_ZENPAGE_PAGE)) {
-			$authType = "zp_page_auth_" . $_zp_current_zenpage_page->getID();
-			$check_auth = $_zp_current_zenpage_page->getPassword();
-			$check_user = $_zp_current_zenpage_page->getUser();
+			$authType = "zp_page_auth_" . $_zp_current_page->getID();
+			$check_auth = $_zp_current_page->getPassword();
+			$check_user = $_zp_current_page->getUser();
 			if (empty($check_auth)) {
-				$pageobj = $_zp_current_zenpage_page;
+				$pageobj = $_zp_current_page;
 				while (empty($check_auth)) {
 					$parentID = $pageobj->getParentID();
 					if ($parentID == 0)
 						break;
 					$sql = 'SELECT `titlelink` FROM ' . prefix('pages') . ' WHERE `id`=' . $parentID;
 					$result = query_single_row($sql);
-					$pageobj = new ZenpagePage($result['titlelink']);
+					$pageobj = new Page($result['titlelink']);
 					$authType = "zp_page_auth_" . $pageobj->getID();
 					$check_auth = $pageobj->getPassword();
 					$check_user = $pageobj->getUser();
@@ -1830,17 +1788,16 @@ function zp_handle_password($authType = NULL, $check_auth = NULL, $check_user = 
 			$check_user = $_zp_gallery->getUser();
 		}
 	}
-	// Handle the login form.
+// Handle the login form.
 	if (DEBUG_LOGIN)
 		debugLog("zp_handle_password: \$authType=$authType; \$check_auth=$check_auth; \$check_user=$check_user; ");
-
 	if (isset($_POST['password']) && isset($_POST['pass'])) { // process login form
 		if (isset($_POST['user'])) {
-			$post_user = sanitize($_POST['user']);
+			$post_user = sanitize($_POST['user'], 0);
 		} else {
 			$post_user = '';
 		}
-		$post_pass = $_POST['pass']; // We should not sanitize the password
+		$post_pass = sanitize($_POST['pass'], 0);
 
 		foreach (Zenphoto_Authority::$hashList as $hash => $hi) {
 			$auth = Zenphoto_Authority::passwordHash($post_user, $post_pass, $hi);
@@ -1853,7 +1810,7 @@ function zp_handle_password($authType = NULL, $check_auth = NULL, $check_user = 
 		}
 		$success = zp_apply_filter('guest_login_attempt', $success, $post_user, $post_pass, $authType);
 		if ($success) {
-			// Correct auth info. Set the cookie.
+// Correct auth info. Set the cookie.
 			if (DEBUG_LOGIN)
 				debugLog("zp_handle_password: valid credentials");
 			zp_setCookie($authType, $auth);
@@ -1865,29 +1822,30 @@ function zp_handle_password($authType = NULL, $check_auth = NULL, $check_user = 
 				}
 			}
 		} else {
-			// Clear the cookie, just in case
+// Clear the cookie, just in case
 			if (DEBUG_LOGIN)
 				debugLog("zp_handle_password: invalid credentials");
 			zp_clearCookie($authType);
 			$_zp_login_error = true;
 		}
-		return;
+		return $success;
 	}
 	if (empty($check_auth)) { //no password on record or admin logged in
-		return;
+		return true;
 	}
 	if (($saved_auth = zp_getCookie($authType)) != '') {
 		if ($saved_auth == $check_auth) {
 			if (DEBUG_LOGIN)
 				debugLog("zp_handle_password: valid cookie");
-			return;
+			return true;
 		} else {
-			// Clear the cookie
+// Clear the cookie
 			if (DEBUG_LOGIN)
 				debugLog("zp_handle_password: invalid cookie");
 			zp_clearCookie($authType);
 		}
 	}
+	return false;
 }
 
 /**
@@ -1911,7 +1869,7 @@ function getOptionFromDB($key) {
  * @param bool $default set to true for setting default theme options (does not set the option if it already exists)
  */
 function setThemeOption($key, $value, $album, $theme, $default = false) {
-	global $_zp_gallery;
+	global $_zp_options;
 	if (is_null($album)) {
 		$id = 0;
 	} else {
@@ -1930,8 +1888,12 @@ function setThemeOption($key, $value, $album, $theme, $default = false) {
 		$sqlu .= db_quote($value);
 	}
 	$sql .= ') ';
-	if (!$default) {
+	if ($default) {
+		if (!isset($_zp_options[$key = strtolower($key)]))
+			$_zp_options[$key] = $value;
+	} else {
 		$sql .= $sqlu;
+		$_zp_options[strtolower($key)] = $value;
 	}
 	$result = query($sql, false);
 }
@@ -1971,16 +1933,15 @@ function getThemeOption($option, $album = NULL, $theme = NULL) {
 	if (empty($theme)) {
 		$theme = $_zp_gallery->getCurrentTheme();
 	}
-
-	// album-theme
+// album-theme
 	$sql = "SELECT `value` FROM " . prefix('options') . " WHERE `name`=" . db_quote($option) . " AND `ownerid`=" . $id . " AND `theme`=" . db_quote($theme);
 	$db = query_single_row($sql);
 	if (!$db) {
-		// raw theme option
+// raw theme option
 		$sql = "SELECT `value` FROM " . prefix('options') . " WHERE `name`=" . db_quote($option) . " AND `ownerid`=0 AND `theme`=" . db_quote($theme);
 		$db = query_single_row($sql);
 		if (!$db) {
-			// raw album option
+// raw album option
 			$sql = "SELECT `value` FROM " . prefix('options') . " WHERE `name`=" . db_quote($option) . " AND `ownerid`=" . $id . " AND `theme`=NULL";
 			$db = query_single_row($sql);
 			if (!$db) {
@@ -1999,27 +1960,6 @@ function getThemeOption($option, $album = NULL, $theme = NULL) {
  */
 function commentsAllowed($type) {
 	return getOption($type) && (!MEMBERS_ONLY_COMMENTS || zp_loggedin(ADMIN_RIGHTS | POST_COMMENT_RIGHTS));
-}
-
-/**
- * Returns the viewer's IP address
- * Deals with transparent proxies
- *
- * @return string
- */
-function getUserIP() {
-	$pattern = '~^([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])$~';
-	if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-		$ip = sanitize($_SERVER['HTTP_X_FORWARDED_FOR']);
-		if (preg_match($pattern, $ip)) {
-			return $ip;
-		}
-	}
-	$ip = sanitize($_SERVER['REMOTE_ADDR']);
-	if (preg_match($pattern, $ip)) {
-		return $ip;
-	}
-	return NULL;
 }
 
 /**
@@ -2063,68 +2003,6 @@ function seoFriendlyJS() {
 }
 
 /**
- * Returns true if there is an internet connection
- *
- * @param string $host optional host name to test
- *
- * @return bool
- */
-function is_connected($host = 'www.zenphoto.org') {
-	$err_no = $err_str = false;
-	$connected = @fsockopen($host, 80, $errno, $errstr, 0.5);
-	if ($connected) {
-		fclose($connected);
-		return true;
-	}
-	return false;
-}
-
-/**
- * produce debugging information on 404 errors
- * @param string $album
- * @param string $image
- * @param string $theme
- */
-function debug404($album, $image, $theme) {
-	if (DEBUG_404) {
-		$list = explode('/', $album);
-		if (array_shift($list) == 'cache') {
-			return;
-		}
-		$ignore = array('/favicon.ico', '/zp-data/tést.jpg');
-		$target = getRequestURI();
-		foreach ($ignore as $uri) {
-			if ($target == $uri)
-				return;
-		}
-		$server = array();
-		foreach (array('REQUEST_URI', 'HTTP_REFERER', 'REMOTE_ADDR', 'REDIRECT_STATUS') as $key) {
-			$server[$key] = @$_SERVER[$key];
-		}
-		$request = $_REQUEST;
-		$request['theme'] = $theme;
-		if (!empty($image)) {
-			$request['image'] = $image;
-		}
-
-		trigger_error(sprintf(gettext('Zenphoto processed a 404 error on %s. See the debug log for details.'), $target), E_USER_NOTICE);
-		ob_start();
-		var_dump($server);
-		$server = preg_replace('~array\s*\(.*\)\s*~', '', html_decode(getBare(ob_get_contents())));
-		ob_end_clean();
-		ob_start();
-		var_dump($request);
-		$request['theme'] = $theme;
-		if (!empty($image)) {
-			$request['image'] = $image;
-		}
-		$request = preg_replace('~array\s*\(.*\)\s*~', '', html_decode(getBare(ob_get_contents())));
-		ob_end_clean();
-		debugLog("404 error details\n" . $server . $request);
-	}
-}
-
-/**
  * returns an XSRF token
  * @param striong $action
  */
@@ -2152,38 +2030,39 @@ function XSRFToken($action) {
 function cron_starter($script, $params, $offsetPath, $inline = false) {
 	global $_zp_authority, $_zp_loggedin, $_zp_current_admin_obj, $_zp_HTML_cache;
 	$admin = $_zp_authority->getMasterUser();
-
-	if ($inline) {
-		$_zp_current_admin_obj = $admin;
-		$_zp_loggedin = $_zp_current_admin_obj->getRights();
-		foreach ($params as $key => $value) {
-			if ($key == 'XSRFTag') {
-				$key = 'XSRFToken';
-				$value = getXSRFToken($value);
+	if ($admin) {
+		if ($inline) {
+			$_zp_current_admin_obj = $admin;
+			$_zp_loggedin = $_zp_current_admin_obj->getRights();
+			foreach ($params as $key => $value) {
+				if ($key == 'XSRFTag') {
+					$key = 'XSRFToken';
+					$value = getXSRFToken($value);
+				}
+				$_POST[$key] = $_GET[$key] = $_REQUEST[$key] = $value;
 			}
-			$_POST[$key] = $_GET[$key] = $_REQUEST[$key] = $value;
+			require_once($script);
+		} else {
+			$auth = sha1($script . serialize($admin));
+			$paramlist = 'link=' . $script;
+			foreach ($params as $key => $value) {
+				$paramlist .= '&' . $key . '=' . $value;
+			}
+			$paramlist .= '&auth=' . $auth . '&offsetPath=' . $offsetPath;
+			$_zp_HTML_cache->abortHTMLCache(true);
+			?>
+			<script type="text/javascript">
+				// <!-- <![CDATA[
+				$.ajax({
+					type: 'POST',
+					cache: false,
+					data: '<?php echo $paramlist; ?>',
+					url: '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/cron_runner.php'
+				});
+				// ]]> -->
+			</script>
+			<?php
 		}
-		require_once($script);
-	} else {
-		$auth = sha1($script . serialize($admin));
-		$paramlist = 'link=' . $script;
-		foreach ($params as $key => $value) {
-			$paramlist .= '&' . $key . '=' . $value;
-		}
-		$paramlist .= '&auth=' . $auth . '&offsetPath=' . $offsetPath;
-		$_zp_HTML_cache->abortHTMLCache();
-		?>
-		<script type="text/javascript">
-			// <!-- <![CDATA[
-			$.ajax({
-				type: 'POST',
-				cache: false,
-				data: '<?php echo $paramlist; ?>',
-				url: '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/cron_runner.php'
-			});
-			// ]]> -->
-		</script>
-		<?php
 	}
 }
 
@@ -2261,11 +2140,11 @@ function getItemByID($table, $id) {
 			case 'albums':
 				return newAlbum($result['folder'], false, true);
 			case 'news':
-				return new ZenpageNews($result['titlelink']);
+				return newArticle($result['titlelink']);
 			case 'pages':
-				return new ZenpagePage($result['titlelink']);
+				return newPage($result['titlelink']);
 			case 'news_categories':
-				return new ZenpageCategory($result['titlelink']);
+				return new Category($result['titlelink']);
 		}
 	}
 	return NULL;
@@ -2280,13 +2159,13 @@ function getItemByID($table, $id) {
 function reveal($content, $visible = false) {
 	?>
 	<span id="<?php echo $content; ?>_reveal"<?php if ($visible) echo 'style="display:none;"'; ?> class="icons">
-		<a href="javascript:reveal('<?php echo $content; ?>')" title="<?php echo gettext('Click to show content'); ?>">
-			<img src="../../images/arrow_down.png" alt="" class="icon-position-top4" />
+		<a onclick="reveal('<?php echo $content; ?>')" title="<?php echo gettext('Click to show content'); ?>">
+			<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/arrow_down.png" alt="" class="icon-position-top4" />
 		</a>
 	</span>
 	<span id="<?php echo $content; ?>_hide"<?php if (!$visible) echo 'style="display:none;"'; ?> class="icons">
-		<a href="javascript:reveal('<?php echo $content; ?>')" title="<?php echo gettext('Click to hide content'); ?>">
-			<img src="../../images/arrow_up.png" alt="" class="icon-position-top4" />
+		<a onclick="reveal('<?php echo $content; ?>')" title="<?php echo gettext('Click to hide content'); ?>">
+			<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/arrow_up.png" alt="" class="icon-position-top4" />
 		</a>
 	</span>
 	<?php
@@ -2303,6 +2182,7 @@ function reveal($content, $visible = false) {
 function applyMacros($text) {
 	$content_macros = getMacros();
 	preg_match_all('/\[(\w+)(.*?)\]/i', $text, $instances);
+
 	foreach ($instances[0] as $instance => $macro_instance) {
 		$macroname = strtoupper($instances[1][$instance]);
 		if (array_key_exists($macroname, $content_macros)) {
@@ -2318,7 +2198,7 @@ function applyMacros($text) {
 				$k = 0;
 				foreach ($l[0] as $s) {
 					if ($s != ',') {
-						$parms[$k++] = trim($s, '\'"'); //	remove any quote marks
+						$parms[$k++] = trim($s, ',\'"'); //	remove any quote marks
 					}
 				}
 			} else {
@@ -2402,7 +2282,7 @@ function applyMacros($text) {
 						if ($class == 'function') {
 							ob_start();
 							$data = call_user_func_array($macro['value'], $parameters);
-							if (empty($data)) {
+							if (is_null($data)) {
 								$data = ob_get_contents();
 							}
 							ob_end_clean();
@@ -2411,8 +2291,11 @@ function applyMacros($text) {
 							call_user_func_array($macro['value'], $parameters);
 							$data = ob_get_contents();
 							ob_end_clean();
+							if (empty($data)) {
+								$data = NULL;
+							}
 						}
-						if (empty($data)) {
+						if (is_null($data)) {
 							$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> retuned no data'), trim($macro_instance, '[]')) . '</span>';
 						} else {
 							$data = "\n<!--Begin " . $macroname . "-->\n" . $data . "\n<!--End " . $macroname . "-->\n";
@@ -2471,12 +2354,16 @@ function getMacros() {
  *
  * @param $subalbum root level album (NULL is the gallery)
  * @param $levels how far to nest
- * @param $checkalbumrights TRUE (Default) for album rights for backend usage, FALSE to skip for frontend usage 
  * @param $level internal for keeping the sort order elements
  * @return array
  */
-function getNestedAlbumList($subalbum, $levels, $checkalbumrights = true, $level = array()) {
+function getNestedAlbumList($subalbum, $levels, $level = array()) {
 	global $_zp_gallery;
+	if (OFFSET_PATH) {
+		$rights = ALBUM_RIGHTS;
+	} else {
+		$rights = LIST_RIGHTS;
+	}
 	$cur = count($level);
 	$levels--; // make it 0 relative to sync with $cur
 	if (is_null($subalbum)) {
@@ -2487,15 +2374,11 @@ function getNestedAlbumList($subalbum, $levels, $checkalbumrights = true, $level
 	$list = array();
 	foreach ($albums as $analbum) {
 		$albumobj = newAlbum($analbum);
-  $accessallowed = true;
-  if($checkalbumrights) {
-    $accessallowed = $albumobj->isMyItem(ALBUM_RIGHTS);
-  } 
-		if (!is_null($subalbum) || $accessallowed) {
+		if (!is_null($subalbum) || $albumobj->isMyItem($rights)) {
 			$level[$cur] = sprintf('%03u', $albumobj->getSortOrder());
 			$list[] = array('name' => $analbum, 'sort_order' => $level);
 			if ($cur < $levels && ($albumobj->getNumAlbums()) && !$albumobj->isDynamic()) {
-				$list = array_merge($list, getNestedAlbumList($albumobj, $levels + 1, $checkalbumrights, $level));
+				$list = array_merge($list, getNestedAlbumList($albumobj, $levels + 1, $level));
 			}
 		}
 	}
@@ -2555,9 +2438,12 @@ class zpFunctions {
 	/**
 	 * initializes the $_zp_exifvars array display state
 	 *
+	 * @author Stephen Billard
+	 * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
 	 */
-	static function setexifvars() {
-		global $_zp_exifvars;
+	static function exifvars($default = false) {
+		global $_zp_images_classes;
+
 		/*
 		 * Note: If fields are added or deleted, setup should be run or the new data won't be stored
 		 * (but existing fields will still work; nothing breaks).
@@ -2565,92 +2451,55 @@ class zpFunctions {
 		 * This array should be ordered by logical associations as it will be the order that EXIF information
 		 * is displayed
 		 */
-		$_zp_exifvars = array(
-						// Database Field       		 => array('source', 'Metadata Key', 'ZP Display Text', Display?	size,	enabled, type)
-						'EXIFMake'									 => array('IFD0', 'Make', gettext('Camera Maker'), true, 52, true, 'string'),
-						'EXIFModel'									 => array('IFD0', 'Model', gettext('Camera Model'), true, 52, true, 'string'),
-						'EXIFDescription'						 => array('IFD0', 'ImageDescription', gettext('Image Title'), false, 52, true, 'string'),
-						'IPTCObjectName'						 => array('IPTC', 'ObjectName', gettext('Object Name'), false, 256, true, 'string'),
-						'IPTCImageHeadline'					 => array('IPTC', 'ImageHeadline', gettext('Image Headline'), false, 256, true, 'string'),
-						'IPTCImageCaption'					 => array('IPTC', 'ImageCaption', gettext('Image Caption'), false, 2000, true, 'string'),
-						'IPTCImageCaptionWriter'		 => array('IPTC', 'ImageCaptionWriter', gettext('Image Caption Writer'), false, 32, true, 'string'),
-						'EXIFDateTime'							 => array('SubIFD', 'DateTime', gettext('Time Taken'), true, 52, true, 'time'),
-						'EXIFDateTimeOriginal'			 => array('SubIFD', 'DateTimeOriginal', gettext('Original Time Taken'), true, 52, true, 'time'),
-						'EXIFDateTimeDigitized'			 => array('SubIFD', 'DateTimeDigitized', gettext('Time Digitized'), true, 52, true, 'time'),
-						'IPTCDateCreated'						 => array('IPTC', 'DateCreated', gettext('Date Created'), false, 8, true, 'time'),
-						'IPTCTimeCreated'						 => array('IPTC', 'TimeCreated', gettext('Time Created'), false, 11, true, 'time'),
-						'IPTCDigitizeDate'					 => array('IPTC', 'DigitizeDate', gettext('Digital Creation Date'), false, 8, true, 'time'),
-						'IPTCDigitizeTime'					 => array('IPTC', 'DigitizeTime', gettext('Digital Creation Time'), false, 11, true, 'time'),
-						'EXIFArtist'								 => array('IFD0', 'Artist', gettext('Artist'), false, 52, true, 'string'),
-						'IPTCImageCredit'						 => array('IPTC', 'ImageCredit', gettext('Image Credit'), false, 32, true, 'string'),
-						'IPTCByLine'								 => array('IPTC', 'ByLine', gettext('Byline'), false, 32, true, 'string'),
-						'IPTCByLineTitle'						 => array('IPTC', 'ByLineTitle', gettext('Byline Title'), false, 32, true, 'string'),
-						'IPTCSource'								 => array('IPTC', 'Source', gettext('Image Source'), false, 32, true, 'string'),
-						'IPTCContact'								 => array('IPTC', 'Contact', gettext('Contact'), false, 128, true, 'string'),
-						'EXIFCopyright'							 => array('IFD0', 'Copyright', gettext('Copyright Holder'), false, 128, true, 'string'),
-						'IPTCCopyright'							 => array('IPTC', 'Copyright', gettext('Copyright Notice'), false, 128, true, 'string'),
-						'IPTCKeywords'							 => array('IPTC', 'Keywords', gettext('Keywords'), false, 0, true, 'string'),
-						'EXIFExposureTime'					 => array('SubIFD', 'ExposureTime', gettext('Shutter Speed'), true, 52, true, 'string'),
-						'EXIFFNumber'								 => array('SubIFD', 'FNumber', gettext('Aperture'), true, 52, true, 'number'),
-						'EXIFISOSpeedRatings'				 => array('SubIFD', 'ISOSpeedRatings', gettext('ISO Sensitivity'), true, 52, true, 'number'),
-						'EXIFExposureBiasValue'			 => array('SubIFD', 'ExposureBiasValue', gettext('Exposure Compensation'), true, 52, true, 'string'),
-						'EXIFMeteringMode'					 => array('SubIFD', 'MeteringMode', gettext('Metering Mode'), true, 52, true, 'string'),
-						'EXIFFlash'									 => array('SubIFD', 'Flash', gettext('Flash Fired'), true, 52, true, 'string'),
-						'EXIFImageWidth'						 => array('SubIFD', 'ExifImageWidth', gettext('Original Width'), false, 52, true, 'number'),
-						'EXIFImageHeight'						 => array('SubIFD', 'ExifImageHeight', gettext('Original Height'), false, 52, true, 'number'),
-						'EXIFOrientation'						 => array('IFD0', 'Orientation', gettext('Orientation'), false, 52, true, 'string'),
-						'EXIFSoftware'							 => array('IFD0', 'Software', gettext('Software'), false, 999, true, 'string'),
-						'EXIFContrast'							 => array('SubIFD', 'Contrast', gettext('Contrast Setting'), false, 52, true, 'string'),
-						'EXIFSharpness'							 => array('SubIFD', 'Sharpness', gettext('Sharpness Setting'), false, 52, true, 'string'),
-						'EXIFSaturation'						 => array('SubIFD', 'Saturation', gettext('Saturation Setting'), false, 52, true, 'string'),
-						'EXIFWhiteBalance'					 => array('SubIFD', 'WhiteBalance', gettext('White Balance'), false, 52, true, 'string'),
-						'EXIFSubjectDistance'				 => array('SubIFD', 'SubjectDistance', gettext('Subject Distance'), false, 52, true, 'number'),
-						'EXIFFocalLength'						 => array('SubIFD', 'FocalLength', gettext('Focal Length'), true, 52, true, 'number'),
-						'EXIFLensType'							 => array('SubIFD', 'LensType', gettext('Lens Type'), false, 52, true, 'string'),
-						'EXIFLensInfo'							 => array('SubIFD', 'LensInfo', gettext('Lens Info'), false, 52, true, 'string'),
-						'EXIFFocalLengthIn35mmFilm'	 => array('SubIFD', 'FocalLengthIn35mmFilm', gettext('35mm Focal Length Equivalent'), false, 52, true, 'string'),
-						'IPTCCity'									 => array('IPTC', 'City', gettext('City'), false, 32, true, 'string'),
-						'IPTCSubLocation'						 => array('IPTC', 'SubLocation', gettext('Sub-location'), false, 32, true, 'string'),
-						'IPTCState'									 => array('IPTC', 'State', gettext('Province/State'), false, 32, true, 'string'),
-						'IPTCLocationCode'					 => array('IPTC', 'LocationCode', gettext('Country/Primary Location Code'), false, 3, true, 'string'),
-						'IPTCLocationName'					 => array('IPTC', 'LocationName', gettext('Country/Primary Location Name'), false, 64, true, 'string'),
-						'IPTCContentLocationCode'		 => array('IPTC', 'ContentLocationCode', gettext('Content Location Code'), false, 3, true, 'string'),
-						'IPTCContentLocationName'		 => array('IPTC', 'ContentLocationName', gettext('Content Location Name'), false, 64, true, 'string'),
-						'EXIFGPSLatitude'						 => array('GPS', 'Latitude', gettext('Latitude'), false, 52, true, 'number'),
-						'EXIFGPSLatitudeRef'				 => array('GPS', 'Latitude Reference', gettext('Latitude Reference'), false, 52, true, 'string'),
-						'EXIFGPSLongitude'					 => array('GPS', 'Longitude', gettext('Longitude'), false, 52, true, 'number'),
-						'EXIFGPSLongitudeRef'				 => array('GPS', 'Longitude Reference', gettext('Longitude Reference'), false, 52, true, 'string'),
-						'EXIFGPSAltitude'						 => array('GPS', 'Altitude', gettext('Altitude'), false, 52, true, 'number'),
-						'EXIFGPSAltitudeRef'				 => array('GPS', 'Altitude Reference', gettext('Altitude Reference'), false, 52, true, 'string'),
-						'IPTCOriginatingProgram'		 => array('IPTC', 'OriginatingProgram', gettext('Originating Program '), false, 32, true, 'string'),
-						'IPTCProgramVersion'				 => array('IPTC', 'ProgramVersion', gettext('Program Version'), false, 10, true, 'string'),
-						'VideoFormat'								 => array('VIDEO', 'fileformat', gettext('Video File Format'), false, 32, true, 'string'),
-						'VideoSize'									 => array('VIDEO', 'filesize', gettext('Video File Size'), false, 32, true, 'number'),
-						'VideoArtist'								 => array('VIDEO', 'artist', gettext('Video Artist'), false, 256, true, 'string'),
-						'VideoTitle'								 => array('VIDEO', 'title', gettext('Video Title'), false, 256, true, 'string'),
-						'VideoBitrate'							 => array('VIDEO', 'bitrate', gettext('Bitrate'), false, 32, true, 'number'),
-						'VideoBitrate_mode'					 => array('VIDEO', 'bitrate_mode', gettext('Bitrate_Mode'), false, 32, true, 'string'),
-						'VideoBits_per_sample'			 => array('VIDEO', 'bits_per_sample', gettext('Bits per sample'), false, 32, true, 'number'),
-						'VideoCodec'								 => array('VIDEO', 'codec', gettext('Codec'), false, 32, true, 'string'),
-						'VideoCompression_ratio'		 => array('VIDEO', 'compression_ratio', gettext('Compression Ratio'), false, 32, true, 'number'),
-						'VideoDataformat'						 => array('VIDEO', 'dataformat', gettext('Video Dataformat'), false, 32, true, 'string'),
-						'VideoEncoder'							 => array('VIDEO', 'encoder', gettext('File Encoder'), false, 10, true, 'string'),
-						'VideoSamplerate'						 => array('VIDEO', 'Samplerate', gettext('Sample rate'), false, 32, true, 'number'),
-						'VideoChannelmode'					 => array('VIDEO', 'channelmode', gettext('Channel mode'), false, 32, true, 'string'),
-						'VideoFormat'								 => array('VIDEO', 'format', gettext('Format'), false, 10, true, 'string'),
-						'VideoChannels'							 => array('VIDEO', 'channels', gettext('Channels'), false, 10, true, 'number'),
-						'VideoFramerate'						 => array('VIDEO', 'framerate', gettext('Frame rate'), false, 32, true, 'number'),
-						'VideoResolution_x'					 => array('VIDEO', 'resolution_x', gettext('X Resolution'), false, 32, true, 'number'),
-						'VideoResolution_y'					 => array('VIDEO', 'resolution_y', gettext('Y Resolution'), false, 32, true, 'number'),
-						'VideoAspect_ratio'					 => array('VIDEO', 'pixel_aspect_ratio', gettext('Aspect ratio'), false, 32, true, 'number'),
-						'VideoPlaytime'							 => array('VIDEO', 'playtime_string', gettext('Play Time'), false, 10, true, 'number'),
-						'XMPrating'									 => array('XMP', 'rating', gettext('XMP Rating'), false, 10, true, 'string'),
-		);
-		foreach ($_zp_exifvars as $key => $item) {
-			if (!is_null($disable = getOption($key . '-disabled'))) {
-				$_zp_exifvars[$key][5] = !$disable;
+		$exifvars = array();
+		$handlers = array_unique($_zp_images_classes);
+		$handlers[] = 'xmpMetadata';
+		foreach ($handlers as $handler) {
+			if (class_exists($handler)) {
+				$exifvars = array_merge($exifvars, $handler::getMetadataFields());
 			}
-			$_zp_exifvars[$key][3] = getOption($key);
+		}
+		$exifvars = sortMultiArray($exifvars, 2);
+		if ($default) {
+			return $exifvars;
+		}
+
+		foreach ($exifvars as $key => $item) {
+			if (!is_null($disable = getOption($key . '-disabled'))) {
+				$exifvars[$key][5] = !($disable & true);
+			}
+			if (!is_null($display = getOption($key . '-display'))) {
+				$exifvars[$key][3] = $display;
+			}
+		}
+		return $exifvars;
+	}
+
+	/**
+	 * handler for "image" plugin metadata enable/disable
+	 * @param string $whom
+	 * @param int $disable
+	 * @param array $list
+	 *
+	 * @author Stephen Billard
+	 * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+	 */
+	static function exifOptions($whom, $disable, $list) {
+		$reenable = false;
+		foreach ($list as $key => $exifvar) {
+			$v = $exifvar[5] = getOption($key . '_disabled');
+			if ($exifvar[4] && $v != $disable) {
+				$reenable = true;
+			}
+			setOption($key . '_disabled', $disable | ($v & 1));
+			$list[$key][5] = $disable == 0;
+		}
+		if (OFFSET_PATH == 2) {
+			metadataFields($list);
+		} else {
+			if ($reenable) {
+				requestSetup($whom);
+			}
 		}
 	}
 
@@ -2661,7 +2510,7 @@ class zpFunctions {
 	static function hasPrimaryScripts() {
 		if (!defined('PRIMARY_INSTALLATION')) {
 			if (function_exists('readlink') && ($zen = str_replace('\\', '/', @readlink(SERVERPATH . '/' . ZENFOLDER)))) {
-				// no error reading the link info
+// no error reading the link info
 				$os = strtoupper(PHP_OS);
 				$sp = SERVERPATH;
 				if (substr($os, 0, 3) == 'WIN' || $os == 'DARWIN') { // canse insensitive file systems
@@ -2821,6 +2670,23 @@ class zpFunctions {
 		debugLog(sprintf('    ' . $extension . '(%s:%u)=>%.4fs', implode('|', $class), $priority & PLUGIN_PRIORITY, $end - $start));
 	}
 
+	/**
+	 * handles compound plugin disable criteria
+	 * @param array $criteria
+	 * @return boolean
+	 *
+	 * @author Stephen Billard
+	 * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+	 */
+	static function pluginDisable($criteria) {
+		foreach ($criteria as $try) {
+			if ($try[0]) {
+				return $try[1];
+			}
+		}
+		return false;
+	}
+
 }
 
 /**
@@ -2830,7 +2696,7 @@ class _zp_captcha {
 
 	var $name = NULL; // "captcha" name if no captcha plugin loaded
 
-	function getCaptcha($prompt) {
+	function getCaptcha($prompt = NULL) {
 		return array('input' => NULL, 'html' => '<p class="errorbox">' . gettext('No captcha handler is enabled.') . '</p>', 'hidden' => '');
 	}
 
@@ -2853,7 +2719,7 @@ class _zp_HTML_cache {
 
 	}
 
-	function abortHTMLCache() {
+	function abortHTMLCache($flush) {
 
 	}
 
@@ -2867,6 +2733,6 @@ class _zp_HTML_cache {
 
 }
 
-zpFunctions::setexifvars();
+$_zp_exifvars = zpFunctions::exifvars();
 $_locale_Subdomains = zpFunctions::LanguageSubdomains();
 ?>

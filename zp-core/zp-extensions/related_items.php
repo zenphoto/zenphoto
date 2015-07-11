@@ -4,12 +4,13 @@
  * the assigned to the current object.
  *
  * @package plugins
+ * @subpackage theme
  */
 $plugin_description = gettext('Provides functionality to get the related items to an item based on a tag search.');
 $plugin_author = "Malte Müller (acrylian)";
 
 function getRelatedItems($type = 'news', $album = NULL) {
-	global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_page, $_zp_current_zenpage_news, $_zp_gallery_page;
+	global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_gallery_page;
 	$tags = getTags();
 	if (!empty($tags)) { // if there are tags at all
 		$searchstring = '';
@@ -91,7 +92,7 @@ function getRelatedItems($type = 'news', $album = NULL) {
  * @param string $type "albums", "images", "news", "pages"
  */
 function createRelatedItemsResultArray($result, $type) {
-	global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_page, $_zp_current_zenpage_news, $_zp_gallery_page;
+	global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_current_page, $_zp_current_article, $_zp_gallery_page;
 	switch ($_zp_gallery_page) {
 		case 'album.php':
 			$current = $_zp_current_album;
@@ -100,10 +101,10 @@ function createRelatedItemsResultArray($result, $type) {
 			$current = $_zp_current_image;
 			break;
 		case 'news.php':
-			$current = $_zp_current_zenpage_news;
+			$current = $_zp_current_article;
 			break;
 		case 'pages.php':
-			$current = $_zp_current_zenpage_page;
+			$current = $_zp_current_page;
 			break;
 	}
 	$results = array();
@@ -120,7 +121,7 @@ function createRelatedItemsResultArray($result, $type) {
 				}
 				break;
 			case 'news':
-				if (get_class($current) != 'ZenpageNews' || $current->getTitlelink() != $item['titlelink']) {
+				if (get_class($current) != 'News' || $current->getTitlelink() != $item['titlelink']) {
 
 					if (!isset($item['weight']))
 						$item['weight'] = 13; //	there are circumstances where weights are not generated.
@@ -129,7 +130,7 @@ function createRelatedItemsResultArray($result, $type) {
 				}
 				break;
 			case 'pages':
-				if (get_class($current) != 'ZenpagePage' || $current->getTitlelink() != $item) {
+				if (get_class($current) != 'Page' || $current->getTitlelink() != $item) {
 					array_push($results, array('name' => $item, 'album' => '', 'type' => $type, 'weight' => '13')); // doesn't have weight so we just add one for sorting later
 				}
 				break;
@@ -148,7 +149,7 @@ function createRelatedItemsResultArray($result, $type) {
  * @param bool $thumb For $type = 'albums' or 'images' if a thumb should be shown (default size as set on the options)
  */
 function printRelatedItems($number = 5, $type = 'news', $specific = NULL, $excerpt = NULL, $thumb = false, $date = false) {
-	global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_page, $_zp_current_zenpage_news;
+	global $_zp_gallery, $_zp_current_album, $_zp_current_image;
 	$label = array('albums' => gettext('Albums'), 'images' => gettext('Images'), 'news' => gettext('News'), 'pages' => gettext('Pages'));
 	$result = getRelatedItems($type, $specific);
 	$resultcount = count($result);
@@ -181,13 +182,13 @@ function printRelatedItems($number = 5, $type = 'news', $specific = NULL, $excer
 							$category = gettext('Image');
 							break;
 						case 'news':
-							$obj = new ZenpageNews($item['name']);
+							$obj = newArticle($item['name']);
 							$url = $obj->getLink();
 							$text = $obj->getContent();
 							$category = gettext('News');
 							break;
 						case 'pages':
-							$obj = new ZenpagePage($item['name']);
+							$obj = newPage($item['name']);
 							$url = $obj->getLink();
 							$text = $obj->getContent();
 							$category = gettext('Page');
@@ -217,19 +218,9 @@ function printRelatedItems($number = 5, $type = 'news', $specific = NULL, $excer
 					<h4><a href="<?php echo html_encode(pathurlencode($url)); ?>" title="<?php echo html_encode($obj->getTitle()); ?>"><?php echo html_encode($obj->getTitle()); ?></a>
 						<?php
 						if ($date) {
-							switch ($item['type']) {
-								case 'albums':
-								case 'images':
-									$d = $obj->getDateTime();
-									break;
-								case 'news':
-								case 'pages':
-									$d = $obj->getDateTime();
-									break;
-							}
 							?>
 							<span class="relateditems_date">
-								<?php echo zpFormattedDate(DATE_FORMAT, strtotime($d)); ?>
+								<?php echo zpFormattedDate(DATE_FORMAT, strtotime($obj->getDateTime())); ?>
 							</span>
 							<?php
 						}

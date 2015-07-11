@@ -97,9 +97,9 @@ class colorbox {
 		}
 		$css = getPlugin($themepath, $inTheme, true);
 		?>
-		<link rel="stylesheet" href="<?php echo $css; ?>" type="text/css" />
+		<link type="text/css" rel="stylesheet" href="<?php echo $css; ?>" />
 		<script type="text/javascript" src="<?php echo FULLWEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/colorbox_js/jquery.colorbox-min.js"></script>
-		<script>
+		<script type="text/javascript">
 			/* Colorbox resize function */
 			var resizeTimer;
 			function resizeColorBox()

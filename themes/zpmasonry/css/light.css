@@ -1,0 +1,106 @@
+@import url('reset.css');
+@import url('main.css');
+
+/* Color Style */
+body,
+#menu,
+.side-menu li a,
+.image-nav,
+#copy,
+input[type="submit"]:hover,input[type="reset"]:hover,
+#search_input,
+#searchextrashow,
+.news-truncate .newsarticlecredit span,
+#slideshowlink a:hover,
+#password-div  input
+{background-color:#fff;}
+
+#sidebar-inner,
+#pagination,
+.box,
+#infscr-loading,
+#breadcrumbs,
+#subscribeextrashow,
+#admin_data,
+#password-div,
+input,textarea,select,
+.newsarticlecredit span
+{background-color:#F1F1F1;}
+
+#footer-inner,
+#header-inner,
+#nav li.active a,
+#nav li a.active,
+#nav li a:hover,
+.box.album,
+.side-menu li a:hover,
+.side-menu li a.active,
+.overlay,
+#slideshowlink a,
+.jcarousel-list li,
+.image-block,
+.jcarousel-item-placeholder,
+#cycle li h3,
+#ss-title,
+#cycle
+{background-color:#E2E2E2;}
+
+#sidebar-inner,
+#pagination,
+.box,
+#infscr-loading,
+#breadcrumbs,
+#subscribeextrashow,
+#admin_data,
+#password-div,
+input,textarea,select,
+.newsarticlecredit span,
+#search_input,
+#searchextrashow,
+#slideshowlink a:hover
+{border-color:#E2E2E2;}
+
+.news-truncate .newsarticlecredit,
+#slideshowlink a
+{border-color:#fff;}
+
+#sidebar-inner,
+.newsarticlecredit 
+{border-top-color:#F1F1F1;}
+
+#sidebar-inner.fixed 
+{border-top-color:#E2E2E2;}
+
+body
+{color:#444;}
+
+h1#logo a,
+h1,h2,h3,
+#nav li.active a,
+.date,.counts,.tags,
+#copy,
+input,textarea,select,
+.side-menu li a,
+#cycle li h3 a,
+#ss-title
+{color:#111;}
+
+a:link,a:active,a:visited{color:#2494DB;}
+a:hover{color:#287aba;}
+
+#breadcrumbs{background-image:url(../images/home.png);}
+#search_input{background-image:url(../images/search.png);}
+.date{background-image:url(../images/calendar.png);}
+.tags{background-image:url(../images/tag.png);}
+.counts{background-image:url(../images/star.png);}
+#backtotop{background-image:url(../images/arrow-alt-up.png);}
+#admin h3 a{background-image: url(../images/tools.png);}
+.pass{background-image: url(../images/padlock-closed.png);}
+
+#slideshowlink a{background-image: url(../images/cinema.png);}
+
+.jcarousel-list li,.image-block,.jcarousel-item-placeholder
+{background-image:url(../images/loading-light.gif);}
+
+img.activecarouselimage
+{border-color:#000!important;}

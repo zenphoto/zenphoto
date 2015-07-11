@@ -1,6 +1,9 @@
 <?php
 /**
  * provides the Upload tab of admin
+ *
+ * @author Stephen Billard (sbillard)
+ *
  * @package admin
  */
 // force UTF-8 Ø
@@ -8,8 +11,19 @@
 define('OFFSET_PATH', 1);
 
 require_once(dirname(__FILE__) . '/admin-globals.php');
-
 admin_securityChecks(UPLOAD_RIGHTS | FILES_RIGHTS, $return = currentRelativeURL());
+
+if (isset($_GET['page'])) {
+	$page = sanitize($_GET['page']);
+} else {
+	$link = $zenphoto_tabs['upload']['link'];
+	if (strpos($link, 'admin-upload.php') == false) {
+		header('location: ' . $link);
+		exitZP();
+	}
+	$page = "upload";
+	$_GET['page'] = 'upload';
+}
 
 if (isset($_GET['type'])) {
 	$uploadtype = sanitize($_GET['tab']);
@@ -21,8 +35,8 @@ if (isset($_GET['type'])) {
 $handlers = array_keys($uploadHandlers = zp_apply_filter('upload_handlers', array()));
 if (!zp_loggedin(UPLOAD_RIGHTS) || empty($handlers)) {
 	//	redirect to the files page if present
-	if (isset($zenphoto_tabs['upload']['subtabs'][0])) {
-		header('location: ' . $zenphoto_tabs['upload']['subtabs'][0]);
+	if (isset($zenphoto_tabs['upload']['subtabs'])) {
+		header('location: ' . array_shift($zenphoto_tabs['upload']['subtabs']));
 		exitZP();
 	}
 	$handlers = array();
@@ -38,10 +52,6 @@ if (count($handlers) > 0) {
 	require_once(SERVERPATH . '/' . ZENFOLDER . '/no_uploader.php');
 	exitZP();
 }
-
-$page = "upload";
-$_GET['page'] = 'upload';
-
 printAdminHeader('upload', 'albums');
 ?>
 <script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/upload.js"></script>
@@ -91,8 +101,7 @@ foreach ($albumlist as $key => $value) {
 			<p>
 				<?php
 				natcasesort($_zp_supported_images);
-				$types = array_keys($_zp_extra_filetypes);
-				$types = array_merge($_zp_supported_images, $types);
+				$types = array_keys($_zp_images_classes);
 				$types[] = 'ZIP';
 				$types = zp_apply_filter('upload_filetypes', $types);
 				natcasesort($types);
@@ -115,7 +124,7 @@ foreach ($albumlist as $key => $value) {
 				<br />
 				<?php
 				if ($last == 'ZIP') {
-					echo gettext('ZIP files must contain only Zenphoto supported <em>image</em> types.');
+					echo gettext('ZIP files must contain only supported <em>image</em> types.');
 					?>
 					<br />
 					<?php
@@ -159,7 +168,7 @@ foreach ($albumlist as $key => $value) {
 				?>
 				<div class="warningbox fade-message">
 					<h2><?php echo gettext("PHP Safe Mode Restrictions in effect!"); ?></h2>
-					<p><?php echo gettext("Zenphoto may be unable to perform uploads when PHP Safe Mode restrictions are in effect"); ?></p>
+					<p><?php echo gettext("These restrictions may prevent PHP scripts from uploading files."); ?></p>
 				</div>
 				<?php
 			}
@@ -177,32 +186,16 @@ foreach ($albumlist as $key => $value) {
 	<?php seoFriendlyJS(); ?>
 					function buttonstate(good) {
 						$('#albumtitleslot').val($('#albumtitle').val());
-
-						var publishalbumchecked;
-						if ($('#publishalbum').prop('checked')) {
-							publishalbumchecked = 1 ;
-						} else {
-							publishalbumchecked = 0;
-						}
-						$('#publishalbumslot').val(publishalbumchecked);
-
+						$('#publishalbumslot').val($('#publishalbum').prop('checked'));
 						if (good) {
 							$('#fileUploadbuttons').show();
 						} else {
 							$('#fileUploadbuttons').hide();
 						}
 					}
-
 					function publishCheck() {
-						var publishalbumchecked;
-						if ($('#publishalbum').prop('checked')) {
-							publishalbumchecked = 1 ;
-						} else {
-							publishalbumchecked = 0;
-						}
-						$('#publishalbumslot').val(publishalbumchecked);
+						$('#publishalbumslot').val($('#publishalbum').prop('checked'));
 					}
-
 					function albumSelect() {
 						var sel = document.getElementById('albumselectmenu');
 						var selected = sel.options[sel.selectedIndex].value;
@@ -268,8 +261,8 @@ foreach ($albumlist as $key => $value) {
 						if (empty($passedalbum)) {
 							$modified_rights = MANAGED_OBJECT_RIGHTS_EDIT;
 						} else {
-							$rightsalbum = newAlbum($passedalbum);
-							$modified_rights = $rightsalbum->albumSubRights();
+							$rightsalbum = $rightsalbum = newAlbum($passedalbum);
+							$modified_rights = $rightsalbum->subRights();
 						}
 						if ($modified_rights & MANAGED_OBJECT_RIGHTS_EDIT) { //	he has edit rights, allow new album creation
 							$display = '';
@@ -283,7 +276,7 @@ foreach ($albumlist as $key => $value) {
 								<label for="newalbumcheckbox"><?php echo gettext("Make a new Album"); ?></label>
 							</div>
 							<div id="publishtext"><?php echo gettext("and"); ?>
-								<input type="checkbox" name="publishalbum" id="publishalbum" value="1" <?php echo $publishchecked; ?> onchange="publishCheck();" />
+								<input type="checkbox" name="publishalbum" id="publishalbum" value="true" <?php echo $publishchecked; ?> onchange="publishCheck();" />
 								<label for="publishalbum"><?php echo gettext("Publish the album so everyone can see it."); ?></label>
 							</div>
 						</div>

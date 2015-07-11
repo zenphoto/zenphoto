@@ -6,11 +6,9 @@ $map = function_exists('printGoogleMap');
 <!DOCTYPE html>
 <html>
 	<head>
-		<?php
-		zp_apply_filter('theme_head');
-		?>
-		<?php printHeadTitle(); ?>
-		<meta charset="<?php echo LOCAL_CHARSET; ?>">
+		
+		<?php zp_apply_filter('theme_head'); ?>
+		
 		<?php $handler->theme_head($_zp_themeroot); ?>
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot ?>/zen.css" type="text/css" />
 		<?php if (class_exists('RSS')) printRSSHeaderLink('Album', getAlbumTitle()); ?>
@@ -25,9 +23,8 @@ $map = function_exists('printGoogleMap');
 					<div id="logo-floater">
 						<div>
 							<h1 class="title">
-								<a href="<?php echo html_encode(getSiteHomeURL()); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a>
+								<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo getGalleryTitle(); ?></a>
 							</h1>
-							<span id="galleryDescription"><?php printGalleryDesc(); ?></span>
 						</div>
 					</div>
 				</div><!-- header -->
@@ -42,7 +39,8 @@ $map = function_exists('printGoogleMap');
 							<div class="left-corner"><!-- begin content -->
 								<div class="main section" id="main">
 									<h2 id="gallerytitle">
-										<?php printHomeLink('', ' » '); printGalleryIndexURL(' » '); printParentBreadcrumb("", " » ", " » "); echo html_encode(getAlbumTitle()); ?>
+										<?php printHomeLink('', ' » '); ?>
+										<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php printGalleryTitle(); ?></a> » <?php printParentBreadcrumb("", " » ", " » "); ?><?php echo html_encode(getAlbumTitle()); ?>
 									</h2>
 									<?php printAlbumDesc(); ?>
 									<?php printCodeblock(1); ?>

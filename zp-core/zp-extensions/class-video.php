@@ -8,22 +8,29 @@
  * according to the player enabled.
  *
  * @author Stephen Billard (sbillard)
+ *
  * @package classes
  * @subpackage media
  */
 // force UTF-8 Ø
 
-$plugin_is_filter = 990 | CLASS_PLUGIN;
-$plugin_description = gettext('The Zenphoto <em>audio-video</em> handler.');
-$plugin_notice = gettext('This plugin must always be enabled to use multimedia content. Note that you should also enable a multimedia player. See the info of the player you use to see how it is configured.');
+$plugin_is_filter = defaultExtension(990 | CLASS_PLUGIN);
+$plugin_description = gettext('The <em>audio-video</em> handler.');
+$plugin_notice = gettext('This plugin handles <code>3gp</code> and <code>mov</code> multi-media files. <strong>Note:</strong> you should also enable a multimedia player plugin to handle other media files.');
 $plugin_author = "Stephen Billard (sbillard)";
 
-Gallery::addImageHandler('3gp', 'Video');
-Gallery::addImageHandler('mov', 'Video');
+if (extensionEnabled('class-video')) {
+	Gallery::addImageHandler('3gp', 'Video');
+	Gallery::addImageHandler('mov', 'Video');
+}
 $option_interface = 'VideoObject_Options';
 
 define('GETID3_INCLUDEPATH', SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/class-video/getid3/');
 require_once(dirname(__FILE__) . '/class-video/getid3/getid3.php');
+
+if (OFFSET_PATH & OFFSET_PATH != 2) {
+	zpFunctions::exifOptions('Video Metadata', (extensionEnabled('class-video')) ? 0 : 2, Video::getMetadataFields());
+}
 
 /**
  * Option class for video objects
@@ -48,16 +55,16 @@ class VideoObject_Options {
 		return array(gettext('Watermark default images')	 => array('key'		 => 'video_watermark_default_images', 'type'	 => OPTION_TYPE_CHECKBOX,
 										'order'	 => 0,
 										'desc'	 => gettext('Check to place watermark image on default thumbnail images.')),
-						gettext('Quicktime video width')		 => array('key'		 => 'class-video_mov_w', 'type'	 => OPTION_TYPE_TEXTBOX,
+						gettext('Quicktime video width')		 => array('key'		 => 'class-video_mov_w', 'type'	 => OPTION_TYPE_NUMBER,
 										'order'	 => 2,
 										'desc'	 => ''),
-						gettext('Quicktime video height')		 => array('key'		 => 'class-video_mov_h', 'type'	 => OPTION_TYPE_TEXTBOX,
+						gettext('Quicktime video height')		 => array('key'		 => 'class-video_mov_h', 'type'	 => OPTION_TYPE_NUMBER,
 										'order'	 => 2,
 										'desc'	 => ''),
-						gettext('3gp video width')					 => array('key'		 => 'class-video_3gp_w', 'type'	 => OPTION_TYPE_TEXTBOX,
+						gettext('3gp video width')					 => array('key'		 => 'class-video_3gp_w', 'type'	 => OPTION_TYPE_NUMBER,
 										'order'	 => 2,
 										'desc'	 => ''),
-						gettext('3gp video height')					 => array('key'		 => 'class-video_3gp_h', 'type'	 => OPTION_TYPE_TEXTBOX,
+						gettext('3gp video height')					 => array('key'		 => 'class-video_3gp_h', 'type'	 => OPTION_TYPE_NUMBER,
 										'order'	 => 2,
 										'desc'	 => ''),
 						gettext('High quality alternate')		 => array('key'		 => 'class-video_videoalt', 'type'	 => OPTION_TYPE_TEXTBOX,
@@ -81,6 +88,7 @@ class Video extends Image {
 	 */
 	function __construct($album, $filename, $quiet = false) {
 		global $_zp_supported_images;
+
 		$msg = false;
 		if (!is_object($album) || !$album->exists) {
 			$msg = gettext('Invalid video instantiation: Album does not exist');
@@ -90,7 +98,7 @@ class Video extends Image {
 		if ($msg) {
 			$this->exists = false;
 			if (!$quiet) {
-				trigger_error($msg, E_USER_ERROR);
+				zp_error($msg, E_USER_ERROR);
 			}
 			return;
 		}
@@ -116,6 +124,37 @@ class Video extends Image {
 			if ($new)
 				zp_apply_filter('new_image', $this);
 		}
+	}
+
+	/**
+	 * returns the database fields used by the object
+	 * @return array
+	 *
+	 * @author Stephen Billard
+	 * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+	 */
+	static function getMetadataFields() {
+// Database Field       		 => array(0:'source', 1:'Metadata Key', 2;'ZP Display Text', 3:Display?	4:size,	5:enabled, type)
+		return array('VideoFormat'						 => array('VIDEO', 'fileformat', gettext('Video File Format'), false, 32, true, 'string'),
+						'VideoSize'							 => array('VIDEO', 'filesize', gettext('Video File Size'), false, 32, true, 'number'),
+						'VideoArtist'						 => array('VIDEO', 'artist', gettext('Video Artist'), false, 256, true, 'string'),
+						'VideoTitle'						 => array('VIDEO', 'title', gettext('Video Title'), false, 256, true, 'string'),
+						'VideoBitrate'					 => array('VIDEO', 'bitrate', gettext('Bitrate'), false, 32, true, 'number'),
+						'VideoBitrate_mode'			 => array('VIDEO', 'bitrate_mode', gettext('Bitrate_Mode'), false, 32, true, 'string'),
+						'VideoBits_per_sample'	 => array('VIDEO', 'bits_per_sample', gettext('Bits per sample'), false, 32, true, 'number'),
+						'VideoCodec'						 => array('VIDEO', 'codec', gettext('Codec'), false, 32, true, 'string'),
+						'VideoCompression_ratio' => array('VIDEO', 'compression_ratio', gettext('Compression Ratio'), false, 32, true, 'number'),
+						'VideoDataformat'				 => array('VIDEO', 'dataformat', gettext('Video Dataformat'), false, 32, true, 'string'),
+						'VideoEncoder'					 => array('VIDEO', 'encoder', gettext('File Encoder'), false, 10, true, 'string'),
+						'VideoSamplerate'				 => array('VIDEO', 'Samplerate', gettext('Sample rate'), false, 32, true, 'number'),
+						'VideoChannelmode'			 => array('VIDEO', 'channelmode', gettext('Channel mode'), false, 32, true, 'string'),
+						'VideoFormat'						 => array('VIDEO', 'format', gettext('Format'), false, 10, true, 'string'),
+						'VideoChannels'					 => array('VIDEO', 'channels', gettext('Channels'), false, 10, true, 'number'),
+						'VideoFramerate'				 => array('VIDEO', 'framerate', gettext('Frame rate'), false, 32, true, 'number'),
+						'VideoResolution_x'			 => array('VIDEO', 'resolution_x', gettext('X Resolution'), false, 32, true, 'number'),
+						'VideoResolution_y'			 => array('VIDEO', 'resolution_y', gettext('Y Resolution'), false, 32, true, 'number'),
+						'VideoAspect_ratio'			 => array('VIDEO', 'pixel_aspect_ratio', gettext('Aspect ratio'), false, 32, true, 'number'),
+						'VideoPlaytime'					 => array('VIDEO', 'playtime_string', gettext('Play Time'), false, 10, true, 'string'));
 	}
 
 	/**
@@ -187,7 +226,7 @@ class Video extends Image {
 			$imgfile = $path . '/' . THEMEFOLDER . '/' . internalToFilesystem($_zp_gallery->getCurrentTheme()) . '/images' . $img;
 			if (!file_exists($imgfile)) { // first check if the theme has adefault image
 				$imgfile = $path . '/' . THEMEFOLDER . '/' . internalToFilesystem($_zp_gallery->getCurrentTheme()) . '/images/multimediaDefault.png';
-				if (!file_exists($imgfile)) { // if theme has a generic default image use it otherwise use the Zenphoto image
+				if (!file_exists($imgfile)) { // if theme has a generic default image use it otherwise use the standard image
 					$imgfile = $path . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/' . substr(basename(__FILE__), 0, -4) . $img;
 				}
 			}
@@ -202,15 +241,16 @@ class Video extends Image {
 	 *
 	 * @return string
 	 */
-	function getThumb($type = 'image') {
+	function getThumb($type = 'image', $wmt = NULL) {
 		$ts = getOption('thumb_size');
 		$sw = getOption('thumb_crop_width');
 		$sh = getOption('thumb_crop_height');
 		list($custom, $cw, $ch, $cx, $cy) = $this->getThumbCropping($ts, $sw, $sh);
-		$wmt = getOption('Video_watermark');
-		if (empty($wmt)) {
+		if (empty($wmt))
+			$wmt = getOption('Video_watermark');
+		if (empty($wmt))
 			$wmt = getWatermarkParam($this, WATERMARK_THUMB);
-		}
+
 		if ($this->objectsThumb == NULL) {
 			$mtime = $cx = $cy = NULL;
 			$filename = makeSpecialImageName($this->getThumbImageFile());
@@ -309,11 +349,6 @@ class Video extends Image {
 			}
 		}
 		return $vid;
-	}
-
-	function getBody($w = NULL, $h = NULL) {
-		Video_deprecated_functions::getBody();
-		$this->getContent($w, $h);
 	}
 
 	/**
@@ -431,6 +466,19 @@ class Video extends Image {
 				}
 			}
 		}
+	}
+
+	/**
+	 * returns the class of the active multi-media handler
+	 * @global pseudoPlayer $_zp_multimedia_extension
+	 * @return string
+	 *
+	 * @author Stephen Billard
+	 * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+	 */
+	static function multimediaExtension() {
+		global $_zp_multimedia_extension;
+		return get_class($_zp_multimedia_extension);
 	}
 
 }

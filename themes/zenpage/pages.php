@@ -2,13 +2,12 @@
 // force UTF-8 Ø
 if (!defined('WEBPATH'))
 	die();
-if (class_exists('Zenpage') && ZP_PAGES_ENABLED) {
+if (class_exists('CMS')) {
 	?>
 	<!DOCTYPE html>
 	<html>
 		<head>
-			<?php printHeadTitle(); ?>
-			<meta charset="<?php echo LOCAL_CHARSET; ?>">
+
 			<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" type="text/css" />
 			<?php if (class_exists('RSS')) printRSSHeaderLink("News", "Zenpage news", ""); ?>
 			<?php zp_apply_filter('theme_head'); ?>
@@ -30,7 +29,7 @@ if (class_exists('Zenpage') && ZP_PAGES_ENABLED) {
 
 				<div id="content">
 					<div id="breadcrumb">
-						<h2><?php printGalleryIndexURL('');
+						<h2><a href="<?php echo getGalleryIndexURL(); ?>"><?php echo gettext("Index"); ?></a><?php
 							if (!isset($ishomepage)) {
 								printZenpageItemsBreadcrumb(" » ", "");
 							}
@@ -52,9 +51,9 @@ if (class_exists('Zenpage') && ZP_PAGES_ENABLED) {
 						?>
 						<br style="clear:both;" /><br />
 						<?php
-      @call_user_func('printRating');
-      @call_user_func('printCommentForm');
-      ?>
+						@call_user_func('printRating');
+						@call_user_func('printCommentForm');
+						?>
 					</div><!-- content left-->
 
 

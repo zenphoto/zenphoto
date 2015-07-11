@@ -1,0 +1,24 @@
+Changelog
+--------------------
+TO DO:
+Search for Zenpage news categories [sbillard] - REVIEW SEARCH FOR ALL CONTEXTS
+Review Combinews support
+check random strip issues when protected
+registration form: http://gjr-web.com/forum/discussion/54/registration-form#Item_3
+
+
+1.4.3
+	fixed next/prev checks for news pagination (thanks acrylian)
+	added custom css block in theme options so you can carry over css customizations when upgrading.
+	General compatability fixes.
+	Theme options page update, improvement, addition of new features in Zenphoto.
+	Pre-caching plugin support in theme options for album thumbs, image thumbs (uncropped), bottom image strip, slideshow image, full image, and full image mobile.
+	Adjusted search function to match new "Within" and "New" options in search box, adjusted css styles.
+	synchronized RSS options to RSS links displayed (always showed before).
+	encoding with print functions (> < and the like) - changed all files to UTF-8 without BOM
+	Added printCodeBlock() to news, pages, albums, and images.
+	Page number added to titles for paginated content for SEO reasons
+	
+1.4.2.2
+	Removed built in theme social tools, replaced with support for AddThis plugin
+	Fixed low security risk of not encoding searchwords output in search.php

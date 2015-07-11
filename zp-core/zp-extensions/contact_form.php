@@ -1,6 +1,6 @@
 <?php
 /**
- * Prints an e-mail contact form that uses Zenphoto's internal validation functions for <i>e-mail</i> and <i>URL</i>.
+ * Prints an e-mail contact form that uses internal validation functions for <i>e-mail</i> and <i>URL</i>.
  * <i>Name</i>, <i>e-mail address</i>, <i>subject</i> and <i>message</i> are required fields by default.
  * You need to set a custom mail address to be used for the messages destination.
  *
@@ -11,9 +11,11 @@
  * version of the form in a similar folder in your theme if you wish something different from the standard form.
  *
  * @author Malte Müller (acrylian), Stephen Billard (sbillard)
+ *
  * @package plugins
+ * @subpackage theme
  */
-$plugin_is_filter = 5 | FEATURE_PLUGIN;
+$plugin_is_filter = defaultExtension(5 | FEATURE_PLUGIN);
 $plugin_description = gettext("Prints an e-mail contact so that visitors may e-mail the site administrator.");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 
@@ -32,9 +34,6 @@ class contactformOptions {
 	function contactformOptions() {
 		global $_zp_authority;
 
-		if (OFFSET_PATH == 2 && !getOption('contactform_mailaddress')) {
-			purgeOption('contactform_mailaddress');
-		}
 		setOptionDefault('contactform_rewrite', '_PAGE_/contact');
 		gettext($str = '<p>Fields with <strong>*</strong> are required. HTML or any other code is not allowed.</p>');
 		setOptionDefault('contactform_introtext', getAllTranslations($str));
@@ -164,12 +163,12 @@ function getField($field, $level = 3) {
 	if (isset($_POST[$field])) {
 		return sanitize($_POST[$field], $level);
 	} else {
-		return '';
+		return false;
 	}
 }
 
 /**
- * Prints the mail contact form, handles checks and the mail sending. It uses Zenphoto's check for valid e-mail address and website URL and also supports CAPTCHA.
+ * Prints the mail contact form, handles checks and the mail sending. It uses zenphoto's check for valid e-mail address and website URL and also supports CAPTCHA.
  * The contact form itself is a separate file and is located within the /contact_form/form.php so that it can be style as needed.
  *
  * @param string $subject_override set to override the subject.
@@ -243,8 +242,8 @@ function printContactForm($subject_override = '') {
 
 		// CAPTCHA start
 		if (getOption("contactform_captcha")) {
-			$code_ok = trim(sanitize(isset($_POST['code_h']) ? $_POST['code_h'] : NULL));
-			$code = trim(sanitize(isset($_POST['code']) ? $_POST['code'] : NULL));
+			$code_ok = trim(isset($_POST['code_h']) ? sanitize($_POST['code_h']) : NULL);
+			$code = trim(isset($_POST['code']) ? sanitize($_POST['code']) : NULL);
 			if (!$_zp_captcha->checkCaptcha($code, $code_ok)) {
 				$error[5] = gettext("the correct CAPTCHA verification code");
 			} // no ticket
@@ -320,9 +319,8 @@ function printContactForm($subject_override = '') {
 
 			if (getOption('contactform_confirm')) {
 				echo get_language_string(getOption("contactform_confirmtext"));
-				if (getOption('contactform_sendcopy')) {
-      echo get_language_string(getOption("contactform_sendcopy_text"));
-    }
+				if (getOption('contactform_sendcopy'))
+					echo get_language_string(getOption("contactform_sendcopy_text"));
 				?>
 				<div>
 					<?PHP
@@ -335,7 +333,7 @@ function printContactForm($subject_override = '') {
 						<input type="hidden" id="subject" name="subject"	value="<?php echo html_encode($subject); ?>" />
 						<input type="hidden" id="message"	name="message" value="<?php echo html_encode($message); ?>" />
 						<input type="hidden" id="mailaddress" name="mailaddress" value="<?php echo html_encode($mailaddress); ?>" />
-      <input type="text" id="username" name="username" value="<?php echo html_encode($mailcontent['honeypot']); ?>" style="display: none" />
+						<input type="hidden" id="username"	name="username" value="<?php echo html_encode($mailcontent['honeypot']); ?>" />
 						<input type="submit" value="<?php echo gettext("Confirm"); ?>" />
 					</form>
 					<form id="discard" action="<?php echo html_encode(getRequestURI()); ?>" method="post" accept-charset="UTF-8">
@@ -352,26 +350,28 @@ function printContactForm($subject_override = '') {
 				$_POST['message'] = $message;
 				$_POST['mailaddress'] = $mailaddress;
 				$_POST['name'] = $name;
+				$_POST['username'] = $mailcontent['honeypot'];
 			}
 		}
 	}
 	if (isset($_POST['confirm'])) {
-		$subject = sanitize($_POST['subject']);
-		$message = sanitize($_POST['message'], 1);
-		$mailaddress = sanitize($_POST['mailaddress']);
-  $honeypot = sanitize($_POST['username']);
-		$name = sanitize($_POST['name']);
+		$subject = getField('subject');
+		$message = getField('message', 1);
+		$mailaddress = getField('mailaddress');
+		$name = getField('name');
 		$mailinglist = explode(';', getOption("contactform_mailaddress"));
 		if (getOption('contactform_sendcopy')) {
 			$sendcopy = array($name => $mailaddress);
 		} else {
 			$sendcopy = NULL;
 		}
-		// If honeypot was triggered, silently don't send the message
-		$err_msg = false;
-		if (empty($honeypot)) {
+
+		if (getField('username')) {
+			$err_msg = false; // If honeypot was triggered, silently don't send the message
+		} else {
 			$err_msg = zp_mail($subject, $message, $mailinglist, $sendcopy, NULL, array($name => $mailaddress));
 		}
+
 		if ($err_msg) {
 			$msgs = explode('.', $err_msg);
 			unset($msgs[0]); //	the "mail send failed" text

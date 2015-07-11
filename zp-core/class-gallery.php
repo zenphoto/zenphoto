@@ -152,21 +152,36 @@ class Gallery {
 		return lookupSortKey($sorttype, 'sort_order', 'albums');
 	}
 
-	function getSortDirection() {
-		return $this->get('sort_direction');
+	function getSortDirection($what = 'album') {
+		if ($what == 'image') {
+			return $this->get('image_sortdirection');
+		} else {
+			return $this->get('sort_direction');
+		}
 	}
 
-	function setSortDirection($value) {
-		$this->set('sort_direction', (int) ($value && true));
+	function setSortDirection($value, $what = 'album') {
+		if ($what == 'image') {
+			$this->set('image_sortdirection', (int) ($value && true));
+		} else {
+			$this->set('sort_direction', (int) ($value && true));
+		}
 	}
 
-	function getSortType() {
-		$type = $this->get('gallery_sorttype');
-		return $type;
+	function getSortType($what = 'album') {
+		if ($what == 'image') {
+			return $this->get('image_sorttype');
+		} else {
+			return $this->get('gallery_sorttype');
+		}
 	}
 
-	function setSortType($value) {
-		$this->set('gallery_sorttype', $value);
+	function setSortType($value, $what = 'album') {
+		if ($what == 'image') {
+			$this->set('image_sorttype', $value);
+		} else {
+			$this->set('gallery_sorttype', $value);
+		}
 	}
 
 	/**
@@ -185,14 +200,14 @@ class Gallery {
 	 */
 	function getAlbums($page = 0, $sorttype = null, $direction = null, $care = true, $mine = NULL) {
 
-		// Have the albums been loaded yet?
+// Have the albums been loaded yet?
 		if ($mine || is_null($this->albums) || $care && $sorttype . $direction !== $this->lastalbumsort) {
 
 			$albumnames = $this->loadAlbumNames();
 			$key = $this->getAlbumSortKey($sorttype);
 			$albums = $this->sortAlbumArray(NULL, $albumnames, $key, $direction, $mine);
 
-			// Store the values
+// Store the values
 			$this->albums = $albums;
 			$this->lastalbumsort = $sorttype . $direction;
 		}
@@ -277,24 +292,21 @@ class Gallery {
 	function getThemes() {
 		if (empty($this->themes)) {
 			$themedir = SERVERPATH . "/themes";
-			$themes = array();
 			if ($dp = @opendir($themedir)) {
 				while (false !== ($dir = readdir($dp))) {
 					if (substr($dir, 0, 1) != "." && is_dir("$themedir/$dir")) {
 						$themefile = $themedir . "/$dir/theme_description.php";
 						$dir8 = filesystemToInternal($dir);
+						$this->themes[$dir8] = array('name' => gettext('Unknown'), 'author' => gettext('Unknown'), 'version' => gettext('Unknown'), 'desc' => gettext('<strong>Missing theme info file!</strong>'), 'date' => gettext('Unknown'));
 						if (file_exists($themefile)) {
 							$theme_description = array();
 							require($themefile);
-							$themes[$dir8] = $theme_description;
-						} else {
-							$themes[$dir8] = array('name' => gettext('Unknown'), 'author' => gettext('Unknown'), 'version' => gettext('Unknown'), 'desc' => gettext('<strong>Missing theme info file!</strong>'), 'date' => gettext('Unknown'));
+							$this->themes[$dir8] = $theme_description;
 						}
 					}
 				}
-				ksort($themes, SORT_LOCALE_STRING);
+				ksort($this->themes, SORT_LOCALE_STRING);
 			}
-			$this->themes = $themes;
 		}
 		return $this->themes;
 	}
@@ -627,12 +639,11 @@ class Gallery {
 								if (count($images) > 0) {
 									$image = newImage($album, array_shift($images));
 									$album->setDateTime($image->getDateTime());
+									$album->save();
 								}
 							}
 							$album->garbageCollect(true);
-							$album->preLoad();
 						}
-						$album->save();
 						zp_apply_filter('album_refresh', $album);
 					}
 				}
@@ -731,14 +742,14 @@ class Gallery {
 	 *
 	 * Returns an array with the albums in the desired sort order
 	 *
-	 * @param array $albums array of album names
-	 * @param string $sortkey the sorting scheme
+	 * @param  array $albums array of album names
+	 * @param  string $sortkey the sorting scheme
 	 * @param string $sortdirection
 	 * @param bool $mine set true/false to override ownership
 	 * @return array
 	 *
 	 * @author Todd Papaioannou (lucky@luckyspin.org)
-	 * @since 1.0.0
+	 * @since  1.0.0
 	 */
 	function sortAlbumArray($parentalbum, $albums, $sortkey = '`sort_order`', $sortdirection = NULL, $mine = NULL) {
 		if (count($albums) == 0) {
@@ -754,20 +765,20 @@ class Gallery {
 		} else {
 			$albumid = '=' . $parentalbum->getID();
 			$obj = $parentalbum;
-			$viewUnpublished = (zp_loggedin() && $obj->albumSubRights() & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW));
+			$viewUnpublished = (zp_loggedin() && $obj->subRights() & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW));
 		}
 
 		if (($sortkey == '`sort_order`') || ($sortkey == 'RAND()')) { // manual sort is always ascending
 			$order = false;
 		} else {
-			if (!is_null($sortdirection)) {
-				$order = strtoupper($sortdirection) == 'DESC';
-			} else {
-				$order = $obj->getSortDirection('album');
+			if (is_null($sortdirection)) {
+				$sortdirection = $this->getSortDirection('album');
 			}
+			$order = $sortdirection && strtolower($sortdirection) != 'asc';
 		}
-		$sortkey = db_quote($sortkey, false);
-		$sql = 'SELECT * FROM ' . prefix("albums") . ' WHERE `parentid`' . $albumid . ' ORDER BY ' . $sortkey . ' ' . $sortdirection;
+		$sql = 'SELECT * FROM ' . prefix("albums") . ' WHERE `parentid`' . $albumid . ' ORDER BY ' . db_escape($sortkey);
+		if ($order)
+			$sql .= ' DESC';
 		$result = query($sql);
 		$results = array();
 		//	check database aganist file system
@@ -791,22 +802,20 @@ class Gallery {
 				$results[$folder] = $albumobj->getData();
 			}
 		}
-		//	now put the results in the right order
+//	now put the results in the right order
 		$results = sortByKey($results, $sortkey, $order);
-		//	albums are now in the correct order
+//	albums are now in the correct order
 		$albums_ordered = array();
 		foreach ($results as $row) { // check for visible
 			$folder = $row['folder'];
 			$album = newAlbum($folder);
-			switch (checkPublishDates($row)) {
-				case 1:
-					$album->setShow(0);
-					$album->save();
-				case 2:
-					$row['show'] = 0;
-			}
+			$subrights = $album->subrights();
 
-			if ($mine || $row['show'] || (($list = $album->isMyItem(LIST_RIGHTS)) && is_null($album->getParent())) || (is_null($mine) && $list && $viewUnpublished)) {
+			if ($mine ||
+							($row['show'] || $viewUnpublished) // published or overridden by parameter
+							|| $subrights && is_null($album->getParent()) // is the user's managed album
+							|| $subrights && ($subrights & MANAGED_OBJECT_RIGHTS_VIEW ) //	managed subalbum and  user has unpublished rights
+			) {
 				$albums_ordered[] = $folder;
 			}
 		}
@@ -831,7 +840,7 @@ class Gallery {
 	}
 
 	/**
-	 * Title to be used for the home (not Zenphoto gallery) WEBsite
+	 * Title to be used for the home (not gallery) WEBsite
 	 */
 	function getWebsiteTitle($locale = NULL) {
 		$text = $this->get('website_title');
@@ -847,7 +856,7 @@ class Gallery {
 	}
 
 	/**
-	 * The URL of the home (not Zenphoto gallery) WEBsite
+	 * The URL of the home (not gallery) WEBsite
 	 */
 	function getWebsiteURL() {
 		return $this->get('website_url');
@@ -1029,13 +1038,26 @@ class Gallery {
 
 	/**
 	 * registers object handlers for image varients
-	 * @global array $_zp_extra_filetypes
 	 * @param type $suffix
 	 * @param type $objectName
 	 */
 	static function addImageHandler($suffix, $objectName) {
-		global $_zp_extra_filetypes;
-		$_zp_extra_filetypes[strtolower($suffix)] = $objectName;
+		global $_zp_images_classes;
+		$_zp_images_classes[strtolower($suffix)] = $objectName;
+	}
+
+	/**
+	 * Returns the object class based in the filename suffix
+	 * @param string $filename
+	 * @return string
+	 */
+	static function imageObjectClass($filename) {
+		global $_zp_images_classes;
+		if (isset($_zp_images_classes[$suffix = getSuffix($filename)])) {
+			return $_zp_images_classes[$suffix];
+		} else {
+			return false;
+		}
 	}
 
 	/**
@@ -1043,6 +1065,8 @@ class Gallery {
 	 *
 	 * @param string $filename the name of the target
 	 * @return bool
+	 *
+	 * @deprecated probably no real use any more
 	 */
 	static function validImage($filename) {
 		global $_zp_supported_images;
@@ -1054,10 +1078,14 @@ class Gallery {
 	 *
 	 * @param string $filename
 	 * @return bool
+	 *
+	 * @deprecated probably no real use any more
 	 */
 	static function validImageAlt($filename) {
-		global $_zp_extra_filetypes;
-		return @$_zp_extra_filetypes[getSuffix($filename)];
+		$obj = self::imageObjectClass($filename);
+		if ($obj == 'Image')
+			$obj = NULL;
+		return $obj;
 	}
 
 	/**
@@ -1069,6 +1097,20 @@ class Gallery {
 	static function addAlbumHandler($suffix, $objectName) {
 		global $_zp_albumHandlers;
 		$_zp_albumHandlers[strtolower($suffix)] = $objectName;
+	}
+
+	function getData() {
+		return $this->data;
+	}
+
+	function getLink($page = NULL) {
+		$rewrite = '';
+		$plain = '/index.php';
+		if ($page > 1) {
+			$rewrite .=_PAGE_ . '/' . $page;
+			$plain .= "&page=$page";
+		}
+		return zp_apply_filter('getLink', rewrite_path($rewrite, $plain), $this, $page);
 	}
 
 }

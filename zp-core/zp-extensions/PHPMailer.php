@@ -4,11 +4,13 @@
  *
  * Configure the plugin options as necessary for your e-mail server.
  *
+ * @author Stephen Billard (sbillard)
+ *
  * @package plugins
  * @subpackage mail
  */
 $plugin_is_filter = 800 | CLASS_PLUGIN;
-$plugin_description = gettext("Zenphoto outgoing mail handler based on the <em>PHPMailer</em> class mailing facility.");
+$plugin_description = gettext("Outgoing mail handler based on the <em>PHPMailer</em> class mailing facility.");
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_disable = (zp_has_filter('sendmail') && !extensionEnabled('PHPMailer')) ? sprintf(gettext('Only one Email handler plugin may be enabled. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'), stripSuffix(get_filterScript('sendmail'))) : '';
 
@@ -84,7 +86,7 @@ class zp_PHPMailer {
 
 }
 
-function zenphoto_PHPMailer($msg, $email_list, $subject, $message, $from_mail, $from_name, $cc_addresses, $replyTo) {
+function zenphoto_PHPMailer($msg, $email_list, $subject, $message, $from_mail, $from_name, $cc_addresses, $replyTo, $html = false) {
 	require_once(dirname(__FILE__) . '/PHPMailer/class.phpmailer.php');
 	switch (getOption('PHPMailer_mail_protocol')) {
 		case 'pop3':
@@ -117,7 +119,7 @@ function zenphoto_PHPMailer($msg, $email_list, $subject, $message, $from_mail, $
 	$mail->Subject = $subject;
 	$mail->Body = $message;
 	$mail->AltBody = '';
-	$mail->IsHTML(false);
+	$mail->IsHTML($html);
 
 	foreach ($email_list as $to_name => $to_mail) {
 		if (is_numeric($to_name)) {

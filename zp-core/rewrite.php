@@ -1,7 +1,7 @@
 <?php
 
 /**
- * "Rewrite" handling for Zenphoto
+ * "Rewrite" handling for zenphoto
  *
  * The basic rules are found in the zenphoto-rewrite.txt file. Additional rules can be provided by plugins. But
  * for the plugin to load in time for the rules to be seen it must be either a CLASS_PLUGIN or a FEATURE_PLUGIN.
@@ -9,7 +9,7 @@
  * of three elements: <var>define</var>, <var>rewrite</var>, and (optionally) <var>rule</rule>.
  *
  * Elemments which have a <var>define</var> and no <var>rule</rule> are processed by rewrite rules in the
- * zenphoto-rewrite.txt file and the <var>define</var> is used internally to Zenphoto to reference
+ * zenphoto-rewrite.txt file and the <var>define</var> is used internally to zenphoto to reference
  * the rewrite text when building links.
  *
  * Elements with a <var>rule</rule> defined are processed after Search, Pages, and News rewrite rules and before
@@ -21,6 +21,8 @@
  * At present all rules are presumed to to stop processing the rule set. Historically that is what all our rules have done, but I suppose
  * we could change that. The "R" flag may be used to cause a <var>header</var> status to be sent. However, we do not redirect
  * back to index.php, so the "R" flag is only useful if the target is a different script.
+ *
+ * @author Stephen Billard (sbillard)
  *
  * @package admin
  */
@@ -121,13 +123,13 @@ function getRules() {
 	}
 
 	$rules = explode("_SPECIAL_", trim($rules));
-	$rules = array_merge(explode("\n", $rules[0]), $specialPageRules, explode("\n", $rules[1]), array("\t#### Catch-all", "\t" . 'RewriteRule ^(.*)/?$	index.php?album=$1 [L,QSA]'));
+	$rules = array_merge(explode("\n", $rules[0]), $specialPageRules, explode("\n", $rules[1]), array("\t#### Catch-all", "\t" . 'RewriteRule ^(.*?)/*$	index.php?album=$1 [L,QSA]'));
 	return array($definitions, $rules);
 }
 
 $_definitions = array();
 foreach ($_zp_conf_vars['special_pages'] as $definition) {
-	if (@$definition['define']) {
+	if (isset($definition['define']) && $definition['define']) {
 		define($definition['define'], strtr($definition['rewrite'], $_definitions));
 		eval('$_definitions[$definition[\'define\']]=' . $definition['define'] . ';');
 	}

@@ -7,9 +7,9 @@ if (!defined('WEBPATH'))
 <!DOCTYPE html>
 <html>
 	<head>
+
 		<?php zp_apply_filter('theme_head'); ?>
-		<?php printHeadTitle(); ?>
-		<meta charset="<?php echo LOCAL_CHARSET; ?>">
+
 		<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
 		<link rel="stylesheet" href="<?php echo pathurlencode(dirname(dirname($zenCSS))); ?>/common.css" type="text/css" />
 	</head>
@@ -19,15 +19,16 @@ if (!defined('WEBPATH'))
 			<div id="gallerytitle">
 				<h2>
 					<span>
-						<?php printHomeLink('', ' | '); printGalleryIndexURL(' | ', getGalleryTitle()); echo gettext("Object not found"); ?>
+						<?php printHomeLink('', ' | '); ?><a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php printGalleryTitle(); ?></a>
+					</span> | <?php echo gettext("Object not found"); ?>
 				</h2>
 			</div>
 			<div id="padbox">
-				<?php print404status(isset($album) ? $album : NULL, isset($image) ? $image : NULL, $obj); ?>
+				<?php print404status(); ?>
 			</div>
 		</div>
 		<div id="credit">
-			<?php printZenphotoLink(); ?>
+			<?php printSoftwareLink(); ?>
 		</div>
 		<?php
 		zp_apply_filter('theme_body_close');

@@ -7,19 +7,20 @@ if (!defined('WEBPATH'))
 <html>
 	<head>
 		<?php zp_apply_filter('theme_head'); ?>
-<?php printHeadTitle(); ?>
-		<meta charset="<?php echo LOCAL_CHARSET; ?>">
+
+
+
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" />
-<?php jqm_loadScripts(); ?>
+		<?php jqm_loadScripts(); ?>
 	</head>
 
 	<body>
-<?php zp_apply_filter('theme_body_open'); ?>
+		<?php zp_apply_filter('theme_body_open'); ?>
 
 		<div data-role="page" id="mainpage">
 
-<?php jqm_printMainHeaderNav(); ?>
+			<?php jqm_printMainHeaderNav(); ?>
 
 			<div class="ui-content" role="main">
 				<div class="content-primary">
@@ -27,7 +28,7 @@ if (!defined('WEBPATH'))
 
 					<div id="content-error">
 						<div class="errorbox">
-						<?php printPasswordForm('', true, false); ?>
+							<?php printPasswordForm($hint, $show, false); ?>
 						</div>
 						<?php
 						if (!zp_loggedin() && function_exists('printRegisterURL') && $_zp_gallery->isUnprotectedPage('register')) {
@@ -41,7 +42,7 @@ if (!defined('WEBPATH'))
 
 			</div><!-- /content -->
 			<?php jqm_printBacktoTopLink(); ?>
-<?php jqm_printFooterNav(); ?>
+			<?php jqm_printFooterNav(); ?>
 		</div><!-- /page -->
 
 		<?php zp_apply_filter('theme_body_close');

@@ -157,7 +157,7 @@ code {
 ------------------------------ */
 
 /**
- * Horizontal CSS Drop-Down Menu Module - adaption acrylian for Zenphoto
+ * Horizontal CSS Drop-Down Menu Module
  *
  * @file		dropdown.css
  * @package		Dropdown
@@ -272,6 +272,21 @@ ul.nav li.currentsubtab a {
 	top: -3px;
 	_top: 1px; /* IE Only */
 }
+ul.nav li.alert a {
+	border-top: 1px solid #CBCBCB;
+	border-left: 1px solid #CBCBCB;
+	border-right: 1px solid #CBCBCB;
+	color: black;
+	background: none;
+	background-color: yellow;
+	background-repeat: repeat-x;
+	cursor: default;
+	height: 21px;
+	_height: 24px;
+	position: relative;
+	top: -3px;
+	_top: 1px; /* IE Only */
+}
 
 ul.nav ul {
 	visibility: hidden;
@@ -302,6 +317,16 @@ ul.nav ul.subdropdown li a {
 	height: auto;
 	background: #F8F8F8;
 	font-size: 14px;
+}
+
+ul.nav ul.subdropdown li.subdropdownalert a {
+	border: 1px solid #CBCBCB;
+	margin: 0;
+	padding: 5px;
+	top: 0;
+	background: none;
+	background-color:yellow;
+	background-repeat: repeat-x;
 }
 
 ul.nav ul.subdropdown li a:hover {
@@ -387,19 +412,20 @@ ul.nav li:hover > ul {
 	_top: 1px; /* IE Only */
 }
 
-.subnav li a:hover {
+.subnav li.alertsubtab a {
 	border-top: 1px solid #CBCBCB;
 	border-left: 1px solid #CBCBCB;
 	border-right: 1px solid #CBCBCB;
-	color: #000;
-	background-color: #F7F8F9;
+	color: #4D646F;
+	background: none;
+	background-color: yellow;
+	cursor: default;
 	height: 21px;
 	_height: 24px;
 	position: relative;
 	top: -3px;
 	_top: 1px; /* IE Only */
 }
-
 
 /* Messages
 ------------------------------ */
@@ -540,7 +566,9 @@ table.noinput {
 table.noinput td {
 	font-weight: normal;
 	font-family: Arial, Helvetica, sans-serif;
-	font-size: 110%
+	font-size: 110%;
+	word-wrap: break-word;
+	word-break: keep-all;
 }
 
 table.bordered {
@@ -994,6 +1022,7 @@ input.tags {
 }
 
 #theme-editor #files {
+	min-height: 500px;
 	float: right;
 	border: 1px solid #BAC9CF;
 	background: #ECF1F2;
@@ -1007,6 +1036,7 @@ input.tags {
 }
 
 #theme-editor #editor {
+	min-height: 500px;
 	margin-right: 210px;
 	background: #ECF1F2;
 	background: #F7F8F9;
@@ -1356,10 +1386,22 @@ button.positive,.buttons a.positive {
 	margin-bottom: 0px;
 }
 
+.resizeable_tagchecklist_fixed_width {
+	width: 250px;
+}
+
 .resizeable_tagchecklist {
 	border: 1px solid #ccc;
 	list-style: none;
 	height: 120px;
+	overflow: auto;
+	background-color: white;
+}
+
+.resizeable_empty_tagchecklist {
+	border: 1px solid #ccc;
+	list-style: none;
+	height: 0px;
 	overflow: auto;
 	background-color: white;
 }
@@ -1492,6 +1534,22 @@ button.positive,.buttons a.positive {
 	text-align: left;
 }
 
+/* metadata field checklist */
+.metadatalist {
+	border: 1px solid #ccc;
+	list-style: none;
+	height: 120px;
+	width: 390px;
+	overflow: auto;
+	background-color: white;
+	margin: 0;
+	padding: 0;
+}
+.metadatalist li {
+	padding-left: 0;
+	text-align: left;
+}
+
 /* scrollable checklists
 -----------------------------*/
 /* Undo some styles from the master stylesheet */
@@ -1535,6 +1593,10 @@ button.positive,.buttons a.positive {
 	overflow: auto;
 	width: 20em;
 	background-color: white;
+}
+
+.scrollable_list {
+	height:8em !important;
 }
 
 .customchecklist li {
@@ -1642,7 +1704,7 @@ button.positive,.buttons a.positive {
 	list-style: none;
 	height: 8em;
 	overflow: auto;
-	width: 350px;
+	width: 400px;
 	background-color: white;
 }
 
@@ -1814,8 +1876,7 @@ ul.pagelist li.current {
 #administration {
 	float: left;
 	text-align: left;
-	font-size: 2em;
-	text-decoration: none;
+	vertical-align: sub;
 }
 
 span.tagMatches {
@@ -2385,6 +2446,10 @@ ul.page-list {
 	background-color: #cfcfcf;
 }
 
+.customhide {
+	background-color:#F1F2F3;
+}
+
 .ui-nestedSortable-error {
 	background: red; /*#fbe3e4;*/
 	color: #8a1f11;
@@ -2542,58 +2607,6 @@ tr.highlightselection td {
 	clear: right !important;
 }
 
-/*
-Tooltip styling
-************************************/
-.ui-tooltip, .arrow:after {
-	background: #f5f5f5;
-  border: 2px solid #4D4D4D;
-}
-.ui-tooltip {
-  padding: 10px 20px;
-  color: black;
-  border-radius: 20px;
-  font: 14px "Helvetica Neue", Sans-Serif;
-  box-shadow: 0 0 7px black;
-  text-align:left;
-	background: #f5f5f5;
-}
-.arrow {
-  width: 70px;
-  height: 16px;
-  overflow: hidden;
-  position: absolute;
-  left: 50%;
-  margin-left: -35px;
-  bottom: -16px;
-}
-.arrow.top {
-  top: -16px;
-  bottom: auto;
-}
-.arrow.left {
-  left: 20%;
-}
-.arrow:after {
-  content: "";
-  position: absolute;
-  left: 20px;
-  top: -20px;
-  width: 25px;
-  height: 25px;
-  box-shadow: 6px 5px 9px -9px black;
-  -webkit-transform: rotate(45deg);
-  -moz-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  -o-transform: rotate(45deg);
-  tranform: rotate(45deg);
-}
-.arrow.top:after {
-  bottom: -20px;
-  top: auto;
-}
-
-
 #form_editcomment label {
 	width: 30% !important;
 	float: left;
@@ -2622,7 +2635,7 @@ Tooltip styling
 	float:right;
 }
 
-/* prevent jumping toolbar buttons of TinyMCE4 in some browsers */
+/* prevent jumping toolbar buttons of tinymce in some browsers */
 .mce-container .mce-toolbar button {
 	border: 0 !Important;
 	-webkit-box-sizing: border-box;
@@ -2670,27 +2683,29 @@ dt,dd {
 dt {
 	font-weight: bold;
 }
-
-.bar {
-	background: #f0f0f0;
-}
-
 dd {
 	width: 60%;
 	margin-left: -10px;
+}
+
+.bar {
+	background: #f0f0f0;
 }
 
 .top {
 	vertical-align: top;
 }
 
-ul.userlist {
+ul.userlist, dl.userlist, ol.userlist {
 	clear: both;
 	padding: 0;
 	margin: 0px;
 	list-style-type: none;
 }
 
+dl.userlist dt {
+	font-weight:normal;
+}
 
 form.dirty button[type=submit],
 form.dirty input[type=submit] {
@@ -2706,6 +2721,29 @@ form.dirty input[type=submit]:active{
 	background: #eff6d5;
 }
 
+form.tinyDirty button[type=submit],
+form.tinyDirty input[type=submit] {
+	border: 1px solid #74b341 !important;
+	background: #d7e5a6;
+}
+
+form.tinyDirty button[type=submit]:hover,
+form.tinyDirty button[type=submit]:active,
+form.tinyDirty input[type=submit]:hover,
+form.tinyDirty input[type=submit]:active{
+	border: 1px solid green !important;
+	background: #eff6d5;
+}
+
 .mce-tinymce.mce-container .mce-toolbar {
 	float: left;
+}
+
+.zenlogo img {
+	text-decoration: none !important;
+	vertical-align: sub;
+}
+
+.pickedObject {
+	border: 1px dotted green;
 }

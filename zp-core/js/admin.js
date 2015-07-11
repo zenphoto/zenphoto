@@ -1,4 +1,4 @@
-/* Zenphoto administration javascript. */
+/* administration javascript. */
 
 function albumSwitch(sel, unchecknewalbum, msg1, msg2) {
 	var selected = sel.options[sel.selectedIndex];
@@ -251,10 +251,20 @@ function showfield(obj, fld) {
 // password field hide/disable
 function toggle_passwords(id, pwd_enable) {
 	toggleExtraInfo('', 'password' + id, pwd_enable);
+	jQuery('#user_name' + id).val('');
+	jQuery('#pass' + id).val('');
+	jQuery('#pass_r' + id).val('');
 	if (pwd_enable) {
 		jQuery('#password_enabled' + id).val('1');
+		jQuery('#user_name' + id).removeClass('ignoredirty');
+		jQuery('#pass' + id).removeClass('ignoredirty');
+		jQuery('#pass_r' + id).removeClass('ignoredirty');
 	} else {
 		jQuery('#password_enabled' + id).val('0');
+		jQuery('#user_name' + id).dirtyForms('setClean');
+		jQuery('#pass' + id).dirtyForms('setClean');
+		jQuery('#pass_r' + id).val('').dirtyForms('setClean');
+
 	}
 }
 
@@ -276,7 +286,7 @@ function toggleWMUse(id) {
 	}
 }
 
-String.prototype.replaceAll = function(stringToFind, stringToReplace) {
+String.prototype.replaceAll = function (stringToFind, stringToReplace) {
 	var temp = this;
 	var index = temp.indexOf(stringToFind);
 	while (index != -1) {
@@ -286,30 +296,56 @@ String.prototype.replaceAll = function(stringToFind, stringToReplace) {
 	return temp;
 }
 
+function bin2hex(s) {
+	//  discuss at: http://phpjs.org/functions/bin2hex/
+	// original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+	// bugfixed by: Onno Marsman
+	// bugfixed by: Linuxworld
+	// improved by: ntoniazzi (http://phpjs.org/functions/bin2hex:361#comment_177616)
+	//   example 1: bin2hex('Kev');
+	//   returns 1: '4b6576'
+	//   example 2: bin2hex(String.fromCharCode(0x00));
+	//   returns 2: '00'
+	var i, l, o = '', n;
+	s += '';
+	for (i = 0, l = s.length; i < l; i++) {
+		n = s.charCodeAt(i).toString(16);
+		o += n.length < 2 ? '0' + n : n;
+	}
+	return o;
+}
+
+/**
+ * Used to change an additive tag posting to a set only provided tags one
+ * @param string id
+ */
+function clearOldTags(id) {
+	$('#existing_' + id).css('text-decoration', 'line-through');
+	$('#tag_clear_link_' + id).hide();
+	$('#tag_restore_link_' + id).show();
+	$('#additive_' + id).val('0');
+}
+function restoreOldTags(id) {
+	$('#existing_' + id).css('text-decoration', 'none');
+	$('#tag_clear_link_' + id).show();
+	$('#tag_restore_link_' + id).hide();
+	$('#additive_' + id).val('1');
+}
 
 function addNewTag(id) {
 	var tag;
 	tag = $('#newtag_' + id).val();
 	if (tag) {
 		$('#newtag_' + id).val('');
-		var name = id + tag;
-		//htmlentities
-		name = encodeURI(name);
-		name = name.replaceAll('%20', '__20__');
-		name = name.replaceAll("'", '__27__');
-		name = name.replaceAll('.', '__2E__');
-		name = name.replaceAll('+', '__20__');
-		name = name.replaceAll('%', '__25__');
-		name = name.replaceAll('&', '__26__');
-		name = name.replaceAll('(', '__28__');
-		name = name.replaceAll(')', '__29__');
-		var lcname = name.toLowerCase();
-		var exists = $('#' + lcname).length;
-		if (exists) {
-			$('#' + lcname + '_element').remove();
+		var name = id + bin2hex(tag);
+		if ($('#' + name).length) {
+			$('#' + name + '_element').remove();
 		}
-		html = '<li id="' + lcname + '_element"><label class="displayinline"><input id="' + lcname + '" name="' + name +
-						'" type="checkbox" checked="checked" value="1" />' + tag + '</label></li>';
+		html = '<li id="' + name + '_element"><label class="displayinline"><input id="' + name + '" name="tag_list_' + id + '[]" type="checkbox" checked="checked" value="' + tag + '" />' + tag + '</label></li>';
 		$('#list_' + id).prepend(html);
+		if ($('#resizable_' + id).height() < '120') {
+			$('#resizable_' + id).height('120');
+			$('#list_' + id).height('120');
+		}
 	}
 }

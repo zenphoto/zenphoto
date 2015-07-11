@@ -6,8 +6,8 @@ if (!defined('WEBPATH'))
 <html>
 	<head>
 		<?php zp_apply_filter('theme_head'); ?>
-		<?php printHeadTitle(); ?>
-		<meta charset="<?php echo LOCAL_CHARSET; ?>">
+		
+		
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot ?>/zen.css" type="text/css" />
 <?php if (class_exists('RSS')) printRSSHeaderLink('Gallery', gettext('Gallery RSS')); ?>
 	</head>
@@ -19,10 +19,7 @@ if (!defined('WEBPATH'))
 				<div id="header">
 					<div id="logo-floater">
 						<div>
-							<h1 class="title">
-								<a href="<?php echo html_encode(getSiteHomeURL()); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a>
-							</h1>
-							<span id="galleryDescription"><?php printGalleryDesc(); ?></span>
+							<h1 class="title"><a href="<?php echo getGalleryIndexURL(); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php printGalleryTitle(); ?></a></h1>
 						</div>
 					</div>
 				</div>
@@ -38,10 +35,12 @@ if (!defined('WEBPATH'))
 								<!-- begin content -->
 								<div class="main section" id="main">
 									<h2 id="gallerytitle">
-										<?php printHomeLink('', ' » ');  printGalleryIndexURL(' » '); echo "<em>" . gettext('Password required') . "</em>"; ?>
+										<?php printHomeLink('', ' » '); ?>
+										<a href="<?php echo getGalleryIndexURL(); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php printGalleryTitle(); ?></a> »
+<?php echo "<em>" . gettext('Password required') . "</em>"; ?>
 									</h2>
 									<h3><?php echo gettext('A password is required to access this page.') ?></h3>
-									<?php printPasswordForm('', true, false); ?>
+									<?php printPasswordForm($hint, $show, false); ?>
 <?php footer(); ?>
 									<p style="clear: both;"></p>
 								</div>

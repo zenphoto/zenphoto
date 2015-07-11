@@ -3,10 +3,10 @@
  * Interface to federated login handlers
  *
  * The plugin will use a federated login such as Google Accounts as a logon server.
- * If the logon succeeds it will log that user onto Zenphoto. An attempt will be
- * made to match the user to an existing Zenphoto user. If such is found, then the
- * user is logged in as that Zenphoto user. If not, a Zenphoto user will be created
- * and logged in.
+ * If the logon succeeds it will log that user onto zenphoto. An attempt will be
+ * made to match the user to an existing zenphoto user. If such is found, then the
+ * user is logged in as that zenphoto user. If not, a zenphoto user will be created
+ * and the user logged in as him.
  *
  * The default priviledges for a created user are obtained from the <i>viewers</i> group.
  * (The user will belong to that group.) This will be the case whether or not the
@@ -28,9 +28,9 @@
  *
  * See also the Janrain Readme.txt file.
  *
- * Zenphoto provides handlers for <var>Google</var>, <var>Yahoo</var>, <var>Verisign</var>, and <var>MyOpenid</var>.
+ * ZenPhoto20 provides handlers for <var>Google</var>, <var>Yahoo</var>, <var>Verisign</var>, and <var>MyOpenid</var>.
  * Other handlers can be created and placed in the <var>plugins/federated_logon</var> folder.
- * Integration with Zenphoto is fairly simple. The logon handler script should be
+ * Integration with zenphoto is fairly simple. The logon handler script should be
  * named ending in <var>_logon.php</var>. The plugin will use the name up to that point as the
  * selector on the logon form.
  *
@@ -42,6 +42,7 @@
  *
  *
  * @author Stephen Billard (sbillard)
+ *
  * @package plugins
  * @subpackage users
  */
@@ -183,7 +184,7 @@ class federated_logon {
 	 * Will log the user on if he exists. Otherwise it will create a user accoung and log
 	 * on that account.
 	 *
-	 * Redirects into Zenphoto on success presuming there is a redirect link.
+	 * Redirects into zenphoto on success presuming there is a redirect link.
 	 *
 	 * @param $user
 	 * @param $email
@@ -350,7 +351,7 @@ class federated_logon {
 					}
 					zp_apply_filter('register_user_verified', $userobj);
 					if (getOption('register_logon_user_notify')) {
-						zp_mail(gettext('Zenphoto Gallery registration'), sprintf(gettext('%1$s (%2$s) has registered for the zenphoto gallery providing an e-mail address of %3$s.'), $userobj->getName(), $userobj->getUser(), $userobj->getEmail()));
+						zp_mail(gettext('ZenPhoto20 Gallery registration'), sprintf(gettext('%1$s (%2$s) has registered for the zenphoto gallery providing an e-mail address of %3$s.'), $userobj->getName(), $userobj->getUser(), $userobj->getEmail()));
 					}
 					Zenphoto_Authority::logUser($userobj);
 					header("Location: " . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');

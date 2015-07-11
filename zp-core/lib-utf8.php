@@ -108,6 +108,7 @@ class utf8 {
 		$this->iconv_sets = array();
 		$this->mb_sets = array();
 		if (function_exists('mb_convert_encoding')) {
+			@mb_substitute_character('none');
 			if (function_exists('mb_list_encodings')) {
 				$list = mb_list_encodings();
 			} else {
@@ -217,7 +218,6 @@ class utf8 {
 			$encode_mb = array_key_exists($encoding, $this->mb_sets);
 			$dest_mb = array_key_exists($destination, $this->mb_sets);
 			if ($encode_mb && $dest_mb) {
-				@mb_substitute_character('none');
 				return mb_convert_encoding($string, $destination, $encoding);
 			}
 		} else {
@@ -230,7 +230,6 @@ class utf8 {
 			return @iconv($encoding, $destination . '//IGNORE', $string);
 		}
 		// must use mixed conversion
-		@mb_substitute_character('none');
 		if ($encode_mb) {
 			$instring = mb_convert_encoding($string, 'UTF-8', $encoding);
 		} else if ($encode_iconv) {
@@ -352,7 +351,7 @@ class utf8 {
 	static function strwidth($str) {
 		$double = preg_match_all('/[\xE2-\xEF][\x80-\xBF][\x80-\xBF]/', $str, $arr) - // U+2000 - U+FFFF = double width
 						preg_match_all('/\xEF\xBD[\xA1-\xBF]|\xEF\xBE[\x80-\x9F]/', $str, $arr); // U+FF61 - U+FF9F = single width
-		$null = preg_match_all('/[\x00-\x19]/', $str, $arr);	 // U+0000 - U+0019 = no width
+		$null = preg_match_all('/[\x00-\x19]/', $str, $arr); // U+0000 - U+0019 = no width
 
 		return UTF8::strlen($str) - $null + $double;
 	}
@@ -381,8 +380,7 @@ class utf8 {
 						$count++;
 					else
 						$count = $count + 2;
-				}
-				else
+				} else
 					$count++;
 			}
 
@@ -472,19 +470,21 @@ class utf8 {
 	 * Send mail
 	 * Replacement for mb_send_mail(), an UTF-8 friendly replacement for mail()
 	 */
-	static function send_mail($to, $subject, $message, $additional_headers = '', $additional_parameter = '') {
+	static function send_mail($to, $subject, $message, $additional_headers = '', $additional_parameter = '', $html) {
 		$subject = UTF8::encode_mimeheader($subject);
 		$message = chunk_split(base64_encode($message));
 
 		$additional_headers = trim($additional_headers);
-
 		if ($additional_headers != '')
 			$additional_headers .= "\n";
-
 		$additional_headers .=
 						"Mime-Version: 1.0\n" .
-						"Content-Type: text/plain; charset=UTF-8\n" .
-						"Content-Transfer-Encoding: base64";
+						"Content-Transfer-Encoding: base64\n";
+		if ($html) {
+			$additional_headers .= "Content-Type: text/html; charset=" . LOCAL_CHARSET;
+		} else {
+			$additional_headers .= "Content-Type: text/plain; charset=" . LOCAL_CHARSET;
+		}
 
 		if (SAFE_MODE) {
 			return @mail($to, $subject, $message, $additional_headers);

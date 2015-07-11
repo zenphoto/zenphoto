@@ -6,8 +6,8 @@
  */
 // force UTF-8 Ø
 
-define('IMAGE_SORT_DIRECTION', getOption('image_sortdirection'));
-define('IMAGE_SORT_TYPE', getOption('image_sorttype'));
+define('IMAGE_SORT_DIRECTION', $_zp_gallery->getSortDirection('image'));
+define('IMAGE_SORT_TYPE', $_zp_gallery->getSortType('image'));
 
 Gallery::addAlbumHandler('alb', 'dynamicAlbum');
 
@@ -34,13 +34,7 @@ function newAlbum($folder8, $cache = true, $quiet = false) {
  * @param object $album
  * @return bool
  */
-function isAlbumClass($album = NULL) {
-	global $_zp_current_album;
-	if (is_null($album)) {
-		if (!in_context(ZP_ALBUM))
-			return false;
-		$album = $_zp_current_album;
-	}
+function isAlbumClass($album) {
 	return is_object($album) && ($album->table == 'albums');
 }
 
@@ -50,19 +44,19 @@ class AlbumBase extends MediaObject {
 	var $linkname; // may have the .alb suffix stripped off
 	var $localpath; // Latin1 full server path to the album
 	var $exists = true; // Does the folder exist?
-	var $images = null; // Full images array storage.
+	var $images = NULL; // Full images array storage.
 	var $parent = null; // The parent album name
 	var $parentalbum = null; // The parent album's album object (lazy)
 	var $sidecars = array(); // keeps the list of suffixes associated with this album
 	var $manage_rights = MANAGE_ALL_ALBUM_RIGHTS;
 	var $manage_some_rights = ALBUM_RIGHTS;
-	var $view_rights = ALL_ALBUMS_RIGHTS;
+	var $access_rights = ALL_ALBUMS_RIGHTS;
 	protected $subalbums = null; // Full album array storage.
 	protected $index;
 	protected $lastimagesort = NULL; // remember the order for the last album/image sorts
 	protected $lastsubalbumsort = NULL;
 	protected $albumthumbnail = NULL; // remember the album thumb for the duration of the script
-	protected $subrights = NULL; //	cache for album subrights
+	protected $subrights = NULL; //	cache for subrights
 
 	function __construct($folder8, $cache = true) {
 		$this->linkname = $this->name = $folder8;
@@ -90,12 +84,52 @@ class AlbumBase extends MediaObject {
 				zp_error(gettext('An album object was instantiated without using the newAlbum() function.'), E_USER_WARNING);
 			}
 		}
-// Set default data for a new Album (title and parent_id)
-		$parentalbum = NULL;
-		$this->setShow($_zp_gallery->getAlbumPublish());
+
+		// Set default data for a new Album (title and parent_id)
 		$this->set('mtime', time());
 		$title = trim($this->name);
-		$this->set('title', sanitize($title, 2));
+		if (!is_null($parentalbum = $this->getParent())) {
+			$this->set('parentid', $parentalbum->getID());
+			$title = substr($title, strrpos($title, '/') + 1);
+		}
+		$this->set('title', $title);
+		$this->setShow($_zp_gallery->getAlbumPublish());
+
+		//	load images
+		if (is_null($this->getImages())) {
+			$this->images = array();
+		}
+
+		return true;
+	}
+
+	/**
+	 * album validity check
+	 *
+	 * @param string $folder8
+	 * @param string $folderFS
+	 * @param bool $quiet
+	 * @param bool $valid class specific check
+	 * @return boolean
+	 */
+	static protected function albumCheck($folder8, $folderFS, $quiet, $invalid) {
+		if (empty($folder8)) {
+			$msg = gettext('Invalid album instantiation: No album name');
+		} else if (filesystemToInternal($folderFS) != $folder8) {
+			// an attempt to spoof the album name.
+			$msg = sprintf(gettext('Invalid album instantiation: %1$s!=%2$s'), html_encode(filesystemToInternal($folderFS)), $folder8);
+		} else if ($invalid) {
+			//	class specific validity test
+			$msg = sprintf(gettext('Invalid album instantiation: %s does not exist.'), $folder8);
+		} else {
+			$msg = false;
+		}
+		if ($msg) {
+			if (!$quiet) {
+				zp_error($msg, E_USER_ERROR);
+			}
+			return false;
+		}
 		return true;
 	}
 
@@ -105,15 +139,6 @@ class AlbumBase extends MediaObject {
 	 * @return string
 	 */
 	function getFileName() {
-		return $this->name;
-	}
-
-	/**
-	 * Returns the folder on the filesystem
-	 *
-	 * @return string
-	 */
-	function getFolder() {
 		return $this->name;
 	}
 
@@ -199,6 +224,21 @@ class AlbumBase extends MediaObject {
 	}
 
 	/**
+	 * sets sort directions
+	 *
+	 * @param bool $val the direction
+	 * @param string $what 'images' if you want the image direction,
+	 *        'albums' if you want it for the album
+	 */
+	function setSortDirection($val, $what = 'images') {
+		if ($what == 'images') {
+			$this->set('image_sortdirection', (int) ($val && true));
+		} else {
+			$this->set('album_sortdirection', (int) ($val && true));
+		}
+	}
+
+	/**
 	 * Returns the sort type of the album images
 	 * Will return a parent sort type if the sort type for this album is empty
 	 *
@@ -227,27 +267,6 @@ class AlbumBase extends MediaObject {
 	}
 
 	/**
-	 * sets sort directions for the album
-	 *
-	 * @param bool $val the direction
-	 * @param string $what 'image_sortdirection' if you want the image direction,
-	 *        'album_sortdirection' if you want it for the album
-	 */
-	function setSortDirection($val, $what = 'image') {
-		if (is_string($val)) {
-			internal_deprecations::setSortDirection();
-			$t = $val;
-			$val = $what;
-			$what = $t;
-		}
-		if ($what == 'image') {
-			$this->set('image_sortdirection', (int) ($val && true));
-		} else {
-			$this->set('album_sortdirection', (int) ($val && true));
-		}
-	}
-
-	/**
 	 * Stores the sort type for the album
 	 *
 	 * @param string $sorttype the album sort type
@@ -259,30 +278,6 @@ class AlbumBase extends MediaObject {
 		} else {
 			$this->set('subalbum_sort_type', $sorttype);
 		}
-	}
-
-	/**
-	 * Returns the sort type for subalbums in this album.
-	 *
-	 * Will return a parent sort type if the sort type for this album is empty.
-	 *
-	 * @return string
-	 * @deprecated since version 1.4.5
-	 */
-	function getAlbumSortType() {
-		internal_deprecations::getAlbumSortType();
-		return $this->getSortType('album');
-	}
-
-	/**
-	 * Stores the subalbum sort type for this abum
-	 *
-	 * @param string $sorttype the subalbum sort type
-	 * @deprecated since version 1.4.5
-	 */
-	function setSubalbumSortType($sorttype) {
-		internal_deprecations::setAlbumSortType();
-		$this->setSortType($sorttype, 'album');
 	}
 
 	/**
@@ -316,7 +311,7 @@ class AlbumBase extends MediaObject {
 	 *
 	 * @param string $page  Which page of subalbums to display.
 	 * @param string $sorttype The sort strategy
-	 * @param string $sortdirection The direction of the sort
+	 * @param bool $sortdirection The direction of the sort
 	 * @param bool $care set to false if the order does not matter
 	 * @param bool $mine set true/false to override ownership
 	 * @return array
@@ -347,7 +342,7 @@ class AlbumBase extends MediaObject {
 	 * @param string $page  Which page of images should be returned. If zero, all images are returned.
 	 * @param int $firstPageCount count of images that go on the album/image transition page
 	 * @param string $sorttype optional sort type
-	 * @param string $sortdirection optional sort direction
+	 * @param bool $sortdirection optional sort direction
 	 * @param bool $care set to false if the order of the images does not matter
 	 * @param bool $mine set true/false to override ownership
 	 *
@@ -538,45 +533,12 @@ class AlbumBase extends MediaObject {
 	}
 
 	/**
-	 * Gets the thumbnail URL for the album thumbnail image as returned by $this->getAlbumThumbImage();
-	 * @return string
-	 * @deprecated since version 1.4.6
-	 */
-	function getAlbumThumb() {
-		internal_deprecations::getAlbumThumb();
-		return $this->getThumb();
-	}
-
-	/**
 	 * Stores the thumbnail path for an album thumg
 	 *
 	 * @param string $filename thumbnail path
 	 */
 	function setThumb($filename) {
 		$this->set('thumb', $filename);
-	}
-
-	/**
-	 * Stores the thumbnail path for an album thumg
-	 *
-	 * @param string $filename thumbnail path
-	 * @deprecated since version 1.4.6
-	 */
-	function setAlbumThumb($filename) {
-		internal_deprecations::setAlbumThumb();
-		$this->setThumb($filename);
-	}
-
-	/**
-	 * Returns an URL to the album, including the current page number
-	 *
-	 * @param string $page if not null, apppend as page #
-	 * @return string
-	 * @deprecated since version 1.4.6
-	 */
-	function getAlbumLink($page = NULL) {
-		internal_deprecations::getAlbumLink();
-		return $this->getLink();
 	}
 
 	/**
@@ -594,7 +556,7 @@ class AlbumBase extends MediaObject {
 		$rewrite = pathurlencode($this->linkname) . '/';
 		$plain = '/index.php?album=' . pathurlencode($this->name);
 		if ($page > 1) {
-			$rewrite .=_PAGE_ . '/' . $page . '/';
+			$rewrite .=_PAGE_ . '/' . $page;
 			$plain .= "&page=$page";
 		}
 		return zp_apply_filter('getLink', rewrite_path($rewrite, $plain), $this, $page);
@@ -608,7 +570,7 @@ class AlbumBase extends MediaObject {
 	 */
 	function remove() {
 		$rslt = false;
-		if (PersistentObject::remove()) {
+		if (parent::remove()) {
 			query("DELETE FROM " . prefix('options') . "WHERE `ownerid`=" . $this->id);
 			query("DELETE FROM " . prefix('comments') . "WHERE `type`='albums' AND `ownerid`=" . $this->id);
 			query("DELETE FROM " . prefix('obj_to_tag') . "WHERE `type`='albums' AND `objectid`=" . $this->id);
@@ -622,6 +584,18 @@ class AlbumBase extends MediaObject {
 			}
 		}
 		return $rslt;
+	}
+
+	protected function _removeCache($folder) {
+		$folder = trim($folder, '/');
+		$success = true;
+		$filestoremove = safe_glob(SERVERCACHE . '/' . $folder . '/*');
+		foreach ($filestoremove as $file) {
+			@chmod($file, 0777);
+			$success = $success && @unlink($file);
+		}
+		@rmdir(SERVERCACHE . '/' . $folder);
+		return $success;
 	}
 
 	/**
@@ -654,13 +628,15 @@ class AlbumBase extends MediaObject {
 				return 4;
 			}
 		}
-  $filemask = substr($this->localpath, 0, -1) . '.*';
+		$filemask = substr($this->localpath, 0, -1) . '.*';
 		$perms = FOLDER_MOD;
+
 		@chmod($this->localpath, 0777);
 		$success = @rename(rtrim($this->localpath, '/'), $dest);
 		@chmod($dest, $perms);
-
 		if ($success) {
+			//purge the cache
+			$success = $success && $this->_removeCache(substr($this->localpath, strlen(ALBUM_FOLDER_SERVERPATH)));
 			$this->localpath = $dest . "/";
 			$filestomove = safe_glob($filemask);
 			foreach ($filestomove as $file) {
@@ -746,7 +722,7 @@ class AlbumBase extends MediaObject {
 			$newID = parent::copy($uniqueset);
 			if ($newID) {
 //	replicate the tags
-				storeTags(readTags($this->getID(), 'albums'), $newID, 'albums');
+				storeTags(readTags($this->getID(), 'albums', ''), $newID, 'albums');
 //	copy the sidecar files
 				$filestocopy = safe_glob($filemask);
 				foreach ($filestocopy as $file) {
@@ -827,27 +803,25 @@ class AlbumBase extends MediaObject {
 	 * returns true of access is allowed
 	 */
 	function isMyItem($action) {
-		global $_zp_loggedin;
+		global $_zp_current_admin_obj;
 		if ($parent = parent::isMyItem($action)) {
 			return $parent;
 		}
+		if ($_zp_current_admin_obj && $_zp_current_admin_obj->getUser() == $this->getOwner()) {
+			return true;
+		}
 		if (zp_loggedin($action)) {
-			$subRights = $this->albumSubRights();
-			if (is_null($subRights)) {
-// no direct rights, but if this is a private gallery and the album is published he should be allowed to see it
-				if (GALLERY_SECURITY != 'public' && $this->getShow() && $action == LIST_RIGHTS) {
-					return LIST_RIGHTS;
-				}
-			} else {
-				$albumrights = LIST_RIGHTS;
+			$subRights = $this->subRights();
+			if ($subRights) {
+				$rights = LIST_RIGHTS;
 				if ($subRights & (MANAGED_OBJECT_RIGHTS_EDIT)) {
-					$albumrights = $albumrights | ALBUM_RIGHTS;
+					$rights = $rights | ALBUM_RIGHTS;
 				}
 				if ($subRights & MANAGED_OBJECT_RIGHTS_UPLOAD) {
-					$albumrights = $albumrights | UPLOAD_RIGHTS;
+					$rights = $rights | UPLOAD_RIGHTS;
 				}
-				if ($action & $albumrights) {
-					return ($_zp_loggedin ^ (ALBUM_RIGHTS | UPLOAD_RIGHTS)) | $albumrights;
+				if ($action & $rights) {
+					return true;
 				} else {
 					return false;
 				}
@@ -971,42 +945,31 @@ class AlbumBase extends MediaObject {
 	 * returns the mitigated album rights.
 	 * returns NULL if not a managed album
 	 */
-	function albumSubRights() {
+	function subRights() {
+		global $_zp_admin_album_list;
 		if (!is_null($this->subrights)) {
 			return $this->subrights;
 		}
-		global $_zp_admin_album_list;
-		if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
-			$this->subrights = MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_UPLOAD | MANAGED_OBJECT_RIGHTS_VIEW;
-			return $this->subrights;
-		}
-		if (zp_loggedin(VIEW_UNPUBLISHED_RIGHTS)) {
-			$base = MANAGED_OBJECT_RIGHTS_VIEW;
-		} else {
-			$base = NULL;
-		}
-		getManagedAlbumList();
-		if (count($_zp_admin_album_list) > 0) {
-			$desired_folders = explode('/', $this->name);
-			foreach ($_zp_admin_album_list as $adminalbum => $rights) {
-// see if it is one of the managed folders or a subfolder there of
-				$admin_folders = explode('/', $adminalbum);
-				$level = 0;
-				$ok = true;
-				foreach ($admin_folders as $folder) {
-					if ($level >= count($desired_folders) || $folder != $desired_folders[$level]) {
-						$ok = false;
-						break;
+		$this->subrights = 0;
+		if (zp_loggedin()) {
+			if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
+				$this->subrights = MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_UPLOAD | MANAGED_OBJECT_RIGHTS_VIEW;
+				return $this->subrights;
+			}
+			getManagedAlbumList();
+			if (count($_zp_admin_album_list) > 0) {
+				$uralbum = getUrAlbum($this);
+				if ($uralbum->name == $this->name) {
+					if (isset($_zp_admin_album_list[$uralbum->name])) {
+						$this->subrights = $_zp_admin_album_list[$uralbum->name] | MANAGED_OBJECT_MEMBER;
+						if (zp_loggedin(VIEW_UNPUBLISHED_RIGHTS))
+							$this->subrights = $this->subrights | MANAGED_OBJECT_RIGHTS_VIEW;
 					}
-					$level++;
-				}
-				if ($ok) {
-					$this->subrights = $rights | $base;
-					return $this->subrights;
+				} else {
+					$this->subrights = $uralbum->subRights();
 				}
 			}
 		}
-		$this->subrights = $base;
 		return $this->subrights;
 	}
 
@@ -1016,7 +979,7 @@ class AlbumBase extends MediaObject {
 	 *
 	 * @param array $images The array of filenames to be sorted.
 	 * @param  string $sorttype optional sort type
-	 * @param  string $sortdirection optional sort direction
+	 * @param  bool $sortdirection optional sort direction
 	 * @param bool $mine set to true/false to override ownership clause
 	 * @return array
 	 */
@@ -1026,20 +989,27 @@ class AlbumBase extends MediaObject {
 		}
 		if ($mine && !($mine & (MANAGE_ALL_ALBUM_RIGHTS))) {
 //	check for managed album view unpublished image rights
-			$mine = $this->albumSubRights() & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW);
+			$mine = $this->subRights() & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW);
 		}
 		$sortkey = $this->getImageSortKey($sorttype);
 		if (($sortkey == '`sort_order`') || ($sortkey == 'RAND()')) {
 // manual sort is always ascending
 			$order = false;
 		} else {
-			if (!is_null($sortdirection)) {
-				$order = strtoupper($sortdirection) == 'DESC';
-			} else {
+			if (is_null($sortdirection)) {
 				$order = $this->getSortDirection('image');
+			} else {
+				if (is_string($sortdirection)) {
+					$order = $sortdirection && strtolower($sortdirection) != 'asc';
+				} else {
+					$order = (int) $sortdirection;
+				}
 			}
 		}
-		$result = query($sql = "SELECT * FROM " . prefix("images") . " WHERE `albumid`= " . $this->getID() . ' ORDER BY ' . $sortkey . ' ' . $sortdirection);
+		$sql = "SELECT * FROM " . prefix("images") . " WHERE `albumid`= " . $this->getID() . ' ORDER BY ' . $sortkey;
+		if ($order)
+			$sql .= ' DESC';
+		$result = query($sql);
 		$results = array();
 		while ($row = db_fetch_assoc($result)) {
 			$filename = $row['filename'];
@@ -1065,15 +1035,6 @@ class AlbumBase extends MediaObject {
 		$images_ordered = array();
 		foreach ($results as $key => $row) {
 // check for visible
-			switch (checkPublishDates($row)) {
-				case 1:
-					$imageobj = newImage($this, $row['filename']);
-					$imageobj->setShow(0);
-					$imageobj->save();
-				case 2:
-					$row['show'] = 0;
-					break;
-			}
 			if ($row['show'] || $mine) {
 // don't display it
 				$images_ordered[] = $row['filename'];
@@ -1106,6 +1067,8 @@ class AlbumBase extends MediaObject {
 	 * load accurate values into the database.
 	 */
 	function preLoad() {
+		if ($this->isDynamic())
+			return;
 		$images = $this->getImages(0);
 		$subalbums = $this->getAlbums(0);
 		foreach ($subalbums as $dir) {
@@ -1171,52 +1134,25 @@ class Album extends AlbumBase {
 	/**
 	 * Constructor for albums
 	 *
-	 * @param object $gallery The parent gallery: deprecated
 	 * @param string $folder8 folder name (UTF8) of the album
 	 * @param bool $cache load from cache if present
 	 * @return Album
 	 */
 	function __construct($folder8, $cache = true, $quiet = false) {
-
 		$folder8 = trim($folder8, '/');
 		$folderFS = internalToFilesystem($folder8);
 		$localpath = ALBUM_FOLDER_SERVERPATH . $folderFS . "/";
 		$this->linkname = $this->name = $folder8;
 		$this->localpath = $localpath;
-		if (!$this->_albumCheck($folder8, $folderFS, $quiet))
+		if (!$this->exists = AlbumBase::albumCheck($folder8, $folderFS, $quiet, !file_exists($this->localpath) || !(is_dir($this->localpath)) || $folder8{0} == '.' || preg_match('~/\.*/~', $folder8))) {
 			return;
-
+		}
 		$new = $this->instantiate('albums', array('folder' => $this->name), 'folder', $cache, empty($folder8));
-
 		if ($new) {
 			$this->save();
 			zp_apply_filter('new_album', $this);
 		}
 		zp_apply_filter('album_instantiate', $this);
-	}
-
-	/**
-	 * album validity check
-	 * @return boolean
-	 */
-	protected function _albumCheck($folder8, $folderFS, $quiet) {
-		$msg = false;
-		if (empty($folder8)) {
-			$msg = gettext('Invalid album instantiation: No album name');
-		} else if (filesystemToInternal($folderFS) != $folder8) {
-// an attempt to spoof the album name.
-			$msg = sprintf(gettext('Invalid album instantiation: %1$s!=%2$s'), html_encode(filesystemToInternal($folderFS)), html_encode($folder8));
-		} else if (!file_exists($this->localpath) || !(is_dir($this->localpath)) || $folder8{0} == '.' || preg_match('~/\.*/~', $folder8)) {
-			$msg = sprintf(gettext('Invalid album instantiation: %s does not exist.'), html_encode($folder8));
-		}
-		if ($msg) {
-			$this->exists = false;
-			if (!$quiet) {
-				trigger_error($msg, E_USER_ERROR);
-			}
-			return false;
-		}
-		return true;
 	}
 
 	/**
@@ -1228,17 +1164,10 @@ class Album extends AlbumBase {
 		global $_zp_gallery;
 		// Set default data for a new Album (title and parent_id)
 		parent::setDefaults();
-		$parentalbum = $this->getParent();
 		$this->set('mtime', filemtime($this->localpath));
 		if (!$_zp_gallery->getAlbumUseImagedate()) {
 			$this->setDateTime(strftime('%Y-%m-%d %H:%M:%S', $this->get('mtime')));
 		}
-		$title = trim($this->name);
-		if (!is_null($parentalbum)) {
-			$this->set('parentid', $parentalbum->getID());
-			$title = substr($title, strrpos($title, '/') + 1);
-		}
-		$this->set('title', sanitize($title, 2));
 		return true;
 	}
 
@@ -1261,7 +1190,7 @@ class Album extends AlbumBase {
 	 *
 	 * @param string $page  Which page of subalbums to display.
 	 * @param string $sorttype The sort strategy
-	 * @param string $sortdirection The direction of the sort
+	 * @param bool $sortdirection The direction of the sort
 	 * @param bool $care set to false if the order does not matter
 	 * @param bool $mine set true/false to override ownership
 	 * @return array
@@ -1275,12 +1204,9 @@ class Album extends AlbumBase {
 				$sorttype = $this->getSortType('album');
 			}
 			if (is_null($sortdirection)) {
-				if ($this->getSortDirection('album')) {
-					$sortdirection = 'DESC';
-				} else {
-					$sortdirection = '';
-				}
+				$sortdirection = $this->getSortDirection('album');
 			}
+			$sortdirection = $sortdirection && strtolower($sortdirection) != 'asc';
 			$dirs = $this->loadFileNames(true);
 			$subalbums = array();
 			foreach ($dirs as $dir) {
@@ -1302,7 +1228,7 @@ class Album extends AlbumBase {
 	 * @param int $page  Which page of images should be returned. If zero, all images are returned.
 	 * @param int $firstPageCount count of images that go on the album/image transition page
 	 * @param string $sorttype optional sort type
-	 * @param string $sortdirection optional sort direction
+	 * @param bool $sortdirection optional sort direction
 	 * @param bool $care set to false if the order of the images does not matter
 	 * @param bool $mine set true/false to override ownership
 	 *
@@ -1311,15 +1237,14 @@ class Album extends AlbumBase {
 	function getImages($page = 0, $firstPageCount = 0, $sorttype = null, $sortdirection = null, $care = true, $mine = NULL) {
 		if (!$this->exists)
 			return array();
+		if (is_null($sorttype)) {
+			$sorttype = $this->getSortType();
+		}
+		if (is_null($sortdirection)) {
+			$sortdirection = $this->getSortDirection('image');
+		}
+		$sortdirection = $sortdirection && strtolower($sortdirection) != 'asc';
 		if ($mine || is_null($this->images) || $care && $sorttype . $sortdirection !== $this->lastimagesort) {
-			if (is_null($sorttype)) {
-				$sorttype = $this->getSortType();
-			}
-			if (is_null($sortdirection)) {
-				if ($this->getSortDirection('image')) {
-					$sortdirection = 'DESC';
-				}
-			}
 			$images = $this->loadFileNames();
 			$this->images = $this->sortImageArray($images, $sorttype, $sortdirection, $mine);
 			$this->lastimagesort = $sorttype . $sortdirection;
@@ -1335,13 +1260,13 @@ class Album extends AlbumBase {
 	 */
 	function remove() {
 		$rslt = false;
-		if (PersistentObject::remove()) {
+		if (parent::remove()) {
 			foreach ($this->getImages() as $filename) {
-				$image = newImage($this, $filename);
+				$image = newImage($this, $filename, true);
 				$image->remove();
 			}
 			foreach ($this->getAlbums() as $folder) {
-				$subalbum = newAlbum($folder);
+				$subalbum = newAlbum($folder, true, true);
 				$subalbum->remove();
 			}
 			$curdir = getcwd();
@@ -1366,11 +1291,9 @@ class Album extends AlbumBase {
 					$success = $success && unlink($file);
 				}
 			}
+			$success = $success && $this->_removeCache(substr($this->localpath, strlen(ALBUM_FOLDER_SERVERPATH)));
 			@chmod($this->localpath, 0777);
 			$rslt = @rmdir($this->localpath) && $success;
-   $cachepath = SERVERCACHE.'/'.pathurlencode($this->name).'/';
-   @chmod($cachepath, 0777);
-   @rmdir($cachepath);
 		}
 		clearstatcache();
 		return $rslt;
@@ -1384,18 +1307,17 @@ class Album extends AlbumBase {
 	 *
 	 */
 	function move($newfolder) {
-  $oldfolder = $this->name;
+		$oldfolder = $this->name;
 		$rslt = $this->_move($newfolder);
 		if (!$rslt) {
-			// Then: go through the db and change the album (and subalbum) paths. No ID changes are necessary for a move.
-			// Get the subalbums.
-			$sql = "SELECT id, folder FROM " . prefix('albums') . " WHERE folder LIKE " . db_quote(db_LIKE_escape($oldfolder) . '/%');
+// Then: go through the db and change the album (and subalbum) paths. No ID changes are necessary for a move.
+// Get the subalbums.
+			$sql = "SELECT id, folder FROM " . prefix('albums') . " WHERE folder LIKE " . db_quote(db_LIKE_escape($oldfolder) . '%');
 			$result = query($sql);
 			if ($result) {
+				$len = strlen($oldfolder);
 				while ($subrow = db_fetch_assoc($result)) {
-					$newsubfolder = $subrow['folder'];
-					$newsubfolder = $newfolder . substr($newsubfolder, strlen($oldfolder));
-					$sql = "UPDATE " . prefix('albums') . " SET folder=" . db_quote($newsubfolder) . " WHERE id=" . $subrow['id'];
+					$sql = "UPDATE " . prefix('albums') . " SET folder=" . db_quote($newfolder . substr($subrow['folder'], $len)) . " WHERE id=" . $subrow['id'];
 					query($sql);
 				}
 			}
@@ -1537,7 +1459,7 @@ class Album extends AlbumBase {
 			} else {
 				$msg = sprintf(gettext("Error: The album named %s cannot be found."), html_encode($this->name));
 			}
-			trigger_error($msg, E_USER_NOTICE);
+			zp_error($msg, E_USER_NOTICE);
 			return array();
 		}
 
@@ -1550,11 +1472,11 @@ class Album extends AlbumBase {
 				if ($dirs && (is_dir($albumdir . $file) || hasDynamicAlbumSuffix($file))) {
 					$files[] = $file8;
 				} else if (!$dirs && is_file($albumdir . $file)) {
-					if (Gallery::validImageAlt($file)) {
+					if ($handler = Gallery::imageObjectClass($file)) {
 						$files[] = $file8;
-						$others[] = $file8;
-					} else if (Gallery::validImage($file)) {
-						$files[] = $file8;
+						if ($handler !== 'Image') {
+							$others[] = $file8;
+						}
 					}
 				}
 			}
@@ -1567,7 +1489,7 @@ class Album extends AlbumBase {
 				foreach ($files as $image) {
 					if ($image != $other) {
 						$image_root = substr($image, 0, strrpos($image, "."));
-						if ($image_root == $others_root && Gallery::validImage($image)) {
+						if ($image_root == $others_root && Gallery::imageObjectClass($image) == 'Image') {
 							$others_thumbs[] = $image;
 						}
 					}
@@ -1588,21 +1510,22 @@ class Album extends AlbumBase {
 class dynamicAlbum extends AlbumBase {
 
 	var $searchengine; // cache the search engine for dynamic albums
+	var $imageNames; // list of images for handling duplicate file names
 
 	function __construct($folder8, $cache = true, $quiet = false) {
 		$folder8 = trim($folder8, '/');
 		$folderFS = internalToFilesystem($folder8);
-		$localpath = ALBUM_FOLDER_SERVERPATH . $folderFS . "/";
+		$localpath = ALBUM_FOLDER_SERVERPATH . $folderFS;
 		$this->linkname = $this->name = $folder8;
-		$this->localpath = $localpath;
-		if (!$this->_albumCheck($folder8, $folderFS, $quiet))
+		$this->localpath = rtrim($localpath, '/');
+		if (!$this->exists = AlbumBase::albumCheck($folder8, $folderFS, $quiet, !file_exists($this->localpath) || is_dir($this->localpath))) {
 			return;
-		$this->instantiate('albums', array('folder' => $this->name), 'folder', $cache, empty($folder8));
+		}
+		$new = $this->instantiate('albums', array('folder' => $this->name), 'folder', $cache, empty($folder8));
 		$this->exists = true;
 		if (!is_dir(stripSuffix($this->localpath))) {
 			$this->linkname = stripSuffix($folder8);
 		}
-		$new = !$this->get('search_params');
 		if ($new || (filemtime($this->localpath) > $this->get('mtime'))) {
 			$constraints = '';
 			$data = file_get_contents($this->localpath);
@@ -1647,38 +1570,11 @@ class dynamicAlbum extends AlbumBase {
 	}
 
 	/**
-	 * album validity check
-	 * @param type $folder8
-	 * @return boolean
-	 */
-	protected function _albumCheck($folder8, $folderFS, $quiet) {
-		$this->localpath = rtrim($this->localpath, '/');
-
-		$msg = false;
-		if (empty($folder8)) {
-			$msg = gettext('Invalid album instantiation: No album name');
-		} else if (filesystemToInternal($folderFS) != $folder8) {
-// an attempt to spoof the album name.
-			$msg = sprintf(gettext('Invalid album instantiation: %1$s!=%2$s'), html_encode(filesystemToInternal($folderFS)), html_encode($folder8));
-		} else if (!file_exists($this->localpath) || is_dir($this->localpath)) {
-			$msg = sprintf(gettext('Invalid album instantiation: %s does not exist.'), html_encode($folder8));
-		}
-		if ($msg) {
-			$this->exists = false;
-			if (!$quiet) {
-				trigger_error($msg, E_USER_ERROR);
-			}
-			return false;
-		}
-		return true;
-	}
-
-	/**
 	 * Returns all folder names for all the subdirectories.
 	 *
 	 * @param string $page  Which page of subalbums to display.
 	 * @param string $sorttype The sort strategy
-	 * @param string $sortdirection The direction of the sort
+	 * @param bool $sortdirection The direction of the sort
 	 * @param bool $care set to false if the order does not matter
 	 * @param bool $mine set true/false to override ownership
 	 * @return array
@@ -1687,17 +1583,14 @@ class dynamicAlbum extends AlbumBase {
 		global $_zp_gallery;
 		if (!$this->exists)
 			return array();
+		if (is_null($sorttype)) {
+			$sorttype = $this->getSortType('album');
+		}
+		if (is_null($sortdirection)) {
+			$sortdirection = $this->getSortDirection('album');
+		}
+		$sortdirection = $sortdirection && strtolower($sortdirection) != 'asc';
 		if ($mine || is_null($this->subalbums) || $care && $sorttype . $sortdirection !== $this->lastsubalbumsort) {
-			if (is_null($sorttype)) {
-				$sorttype = $this->getSortType('album');
-			}
-			if (is_null($sortdirection)) {
-				if ($this->getSortDirection('album')) {
-					$sortdirection = 'DESC';
-				} else {
-					$sortdirection = '';
-				}
-			}
 			$searchengine = $this->getSearchEngine();
 			$subalbums = $searchengine->getAlbums(0, $sorttype, $sortdirection, $care, $mine);
 			$key = $this->getAlbumSortKey($sorttype);
@@ -1735,8 +1628,8 @@ class dynamicAlbum extends AlbumBase {
 			return $this->searchengine;
 		$this->searchengine = new SearchEngine(true);
 		$params = $this->get('search_params');
-		$params .= '&albumname=' . $this->name;
 		$this->searchengine->setSearchParams($params);
+		$this->searchengine->setAlbum($this);
 		return $this->searchengine;
 	}
 
@@ -1748,7 +1641,7 @@ class dynamicAlbum extends AlbumBase {
 	 * @param int $page  Which page of images should be returned. If zero, all images are returned.
 	 * @param int $firstPageCount count of images that go on the album/image transition page
 	 * @param string $sorttype optional sort type
-	 * @param string $sortdirection optional sort direction
+	 * @param bol $sortdirection optional sort direction
 	 * @param bool $care set to false if the order of the images does not matter
 	 * @param bool $mine set true/false to override ownership
 	 *
@@ -1757,18 +1650,22 @@ class dynamicAlbum extends AlbumBase {
 	function getImages($page = 0, $firstPageCount = 0, $sorttype = null, $sortdirection = null, $care = true, $mine = NULL) {
 		if (!$this->exists)
 			return array();
+		if (is_null($sorttype)) {
+			$sorttype = $this->getSortType();
+		}
+		if (is_null($sortdirection)) {
+			$sortdirection = $this->getSortDirection('image');
+		}
+		$sortdirection = $sortdirection && strtolower($sortdirection) != 'asc';
 		if ($mine || is_null($this->images) || $care && $sorttype . $sortdirection !== $this->lastimagesort) {
-			if (is_null($sorttype)) {
-				$sorttype = $this->getSortType();
-			}
-			if (is_null($sortdirection)) {
-				if ($this->getSortDirection('image')) {
-					$sortdirection = 'DESC';
-				}
-			}
 			$searchengine = $this->getSearchEngine();
 			$this->images = $searchengine->getImages(0, 0, $sorttype, $sortdirection, $care, $mine);
 			$this->lastimagesort = $sorttype . $sortdirection;
+			$this->imageNames = array();
+			foreach ($this->images as $image) {
+				$this->imageNames[$image['folder'] . '/' . $image['filename']] = $image['filename'];
+			}
+			ksort($this->imageNames);
 		}
 		return parent::getImages($page, $firstPageCount);
 	}
@@ -1784,6 +1681,7 @@ class dynamicAlbum extends AlbumBase {
 			@chmod($this->localpath, 0777);
 			$rslt = @unlink($this->localpath);
 			clearstatcache();
+			$rslt = $rslt && $this->_removeCache(substr($this->localpath, strlen(ALBUM_FOLDER_SERVERPATH)));
 		}
 		return $rslt;
 	}
@@ -1795,7 +1693,7 @@ class dynamicAlbum extends AlbumBase {
 	 * @return int 0 on success and error indicator on failure.
 	 *
 	 */
-	function move($newfolder,$oldfolder="") {
+	function move($newfolder) {
 		return $this->_move($newfolder);
 	}
 
@@ -1828,17 +1726,6 @@ class dynamicAlbum extends AlbumBase {
 
 	function isDynamic() {
 		return 'alb';
-	}
-	
-	/**
-	 * Sets default values for a new album
-	 *
-	 * @return bool
-	 */
-	protected function setDefaults() {
-		global $_zp_gallery;
-		parent::setDefaults();
-		return true;
 	}
 
 }

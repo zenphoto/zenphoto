@@ -2,6 +2,9 @@
 
 /**
  * handles the watermarking and protecting of the full image link
+ *
+ * @author Stephen Billard (sbillard)
+ *
  * @package core
  */
 // force UTF-8 Ø
@@ -37,8 +40,8 @@ if (getOption('hotlink_protection') && isset($_SERVER['HTTP_REFERER'])) {
 	}
 }
 
-$albumobj = newAlbum($album8);
-$imageobj = newImage($albumobj, $image8);
+$albumobj = newAlbum($album8, true, true);
+$imageobj = newImage($albumobj, $image8, true);
 $args = getImageArgs($_GET);
 $args[0] = 'FULL';
 $adminrequest = $args[12];
@@ -86,9 +89,18 @@ if (($hash || !$albumobj->checkAccess()) && !zp_loggedin(VIEW_FULLIMAGE_RIGHTS))
 	}
 
 	if (empty($hash) || (!empty($hash) && zp_getCookie($authType) != $hash)) {
+		require_once(SERVERPATH . "/" . ZENFOLDER . '/rewrite.php');
 		require_once(dirname(__FILE__) . "/template-functions.php");
 		require_once(SERVERPATH . "/" . ZENFOLDER . '/functions-controller.php');
 		zp_load_gallery();
+
+		foreach (getEnabledPlugins() as $extension => $plugin) {
+			if ($plugin['priority'] & THEME_PLUGIN) {
+				require_once($plugin['path']);
+				$_zp_loaded_plugins[$extension] = $extension;
+			}
+		}
+
 		$theme = setupTheme($albumobj);
 		$custom = $_zp_themeroot . '/functions.php';
 		if (file_exists($custom)) {
@@ -113,6 +125,7 @@ $image_path = $imageobj->localpath;
 $suffix = getSuffix($image_path);
 
 switch ($suffix) {
+	case 'wbm':
 	case 'wbmp':
 		$suffix = 'wbmp';
 		break;
@@ -152,7 +165,7 @@ if ($force_cache = getOption('cache_full_image')) {
 
 $process = $rotate = false;
 if (zp_imageCanRotate()) {
-	$rotate = getImageRotation($image_path);
+	$rotate = getImageRotation($imageobj);
 	$process = $rotate;
 }
 $watermark_use_image = getWatermarkParam($imageobj, WATERMARK_FULL);

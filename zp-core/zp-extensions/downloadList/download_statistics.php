@@ -18,8 +18,6 @@ if (!zp_loggedin(OVERVIEW_RIGHTS)) { // prevent nefarious access to this page.
 	exitZP();
 }
 
-$webpath = WEBPATH . '/' . ZENFOLDER . '/';
-
 $zenphoto_tabs['overview']['subtabs'] = array(gettext('Download') => '');
 printAdminHeader('overview', 'download');
 ?>

@@ -20,6 +20,13 @@ h1 {
 	font-size: 24px;
 }
 
+h1.img {
+	vertical-align:bottom;
+}
+h1 span {
+	position: relative;
+	bottom: 14px;
+}
 h1,h2,h3,h4,h5 {
 	padding: 0px;
 	margin: 0px;
@@ -27,10 +34,7 @@ h1,h2,h3,h4,h5 {
 	color: #69777d;
 }
 
-h1 span {
-	position: relative;
-	bottom: 6px;
-}
+
 
 h3 span {
 	margin-bottom: 5px;
@@ -319,3 +323,6 @@ li {
 	text-align: right;
 }
 
+.zen-logo img {
+	vertical-align: sub;
+}

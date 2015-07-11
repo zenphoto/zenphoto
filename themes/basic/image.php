@@ -7,9 +7,9 @@ if (!defined('WEBPATH'))
 <!DOCTYPE html>
 <html>
 	<head>
+
 		<?php zp_apply_filter('theme_head'); ?>
-		<?php printHeadTitle(); ?>
-		<meta charset="<?php echo LOCAL_CHARSET; ?>">
+
 		<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
 		<link rel="stylesheet" href="<?php echo pathurlencode(dirname(dirname($zenCSS))); ?>/common.css" type="text/css" />
 		<?php if (zp_has_filter('theme_head', 'colorbox::css')) { ?>
@@ -52,7 +52,9 @@ if (!defined('WEBPATH'))
 				</div>
 				<h2>
 					<span>
-						<?php printHomeLink('', ' | '); printGalleryIndexURL(' | ', getGalleryTitle()); 
+						<?php printHomeLink('', ' | '); ?>
+						<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Albums Index'); ?>"><?php printGalleryTitle(); ?></a> |
+						<?php
 						printParentBreadcrumb("", " | ", " | ");
 						printAlbumBreadcrumb("", " | ");
 						?>
@@ -108,12 +110,11 @@ if (!defined('WEBPATH'))
 				printTags('links', gettext('<strong>Tags:</strong>') . ' ', 'taglist', '');
 				?>
 				<br class="clearall" />
-
-				<?php 
-    @call_user_func('printGoogleMap'); 
-    @call_user_func('printRating'); 
-    @call_user_func('printCommentForm'); 
-    ?>
+				<?php
+				@call_user_func('printGoogleMap');
+				@call_user_func('printRating');
+				@call_user_func('printCommentForm');
+				?>
 			</div>
 		</div>
 		<div id="credit">
@@ -122,12 +123,9 @@ if (!defined('WEBPATH'))
 				printFavoritesURL(NULL, '', ' | ', '<br />');
 			}
 			?>
-			<?php 
-   if (class_exists('RSS')) printRSSLink('Gallery', '', 'RSS', ' | '); 
-   printCustomPageURL(gettext("Archive View"), "archive"); ?> |
-			<?php printZenphotoLink(); 
-   @call_user_func('printUserLogin_out', " | "); 
-   ?>
+			<?php if (class_exists('RSS')) printRSSLink('Gallery', '', 'RSS', ' | '); ?>
+			<?php printCustomPageURL(gettext("Archive View"), "archive"); ?> | <?php printSoftwareLink(); ?>
+			<?php @call_user_func('printUserLogin_out', " | "); ?>
 		</div>
 		<?php
 		zp_apply_filter('theme_body_close');

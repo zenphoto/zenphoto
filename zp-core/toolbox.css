@@ -1,0 +1,46 @@
+/*
+Default admin toolbox css
+*/
+/*
+    Created on : Jan 7, 2015, 9:11:28 AM
+    Author     : Stephen
+*/
+#admin{
+	position: fixed;
+	right: 0px;
+	top: 0px;
+	z-index: 2000;
+	width: 23px !important;
+	height: 23px !important;
+	text-align: center !important;
+	padding-top: 5px !important;
+	padding-left: 5px !important;
+}
+#admin_data{
+	position: fixed;
+	top: 0px;
+	right: 0px;
+	padding-top: 20px;
+	padding-left: 5px;
+	padding-right: 15px;
+	padding-bottom: 5px;
+	width: 150px;
+	z-index: 1000;
+	line-height: 1.6em;
+	text-align: left;
+	font-size: 16px;
+	font: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+#admin h3 {
+	font-weight: normal;
+	color: #999;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	font-size: 16px;
+}
+
+#admin h3:hover {
+	color: #036;
+}

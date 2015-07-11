@@ -1,10 +1,59 @@
 <?php
-
 /**
- * functions common to both the Zenphoto core and setup's basic environment
+ * functions common to both the core and setup's basic environment
+ *
+ * @author Stephen Billard (sbillard)
  *
  * @package core
  */
+
+/**
+ * Common error reporting for query errors
+ * @param type $sql
+ */
+function dbErrorReport($sql) {
+	zp_error(sprintf(gettext('%1$s Error: ( %2$s ) failed. %1$s returned the error %3$s'), DATABASE_SOFTWARE, $sql, db_error()), E_USER_ERROR);
+}
+
+/**
+ * Returns a properly quoted string for DB queries
+ * @param type $string
+ * @return type
+ */
+function db_quote($string) {
+	return "'" . db_escape($string) . "'";
+}
+
+/**
+ * Returns the viewer's IP address
+ * Deals with transparent proxies
+ *
+ * @return string
+ */
+function getUserIP() {
+	$pattern = '~^([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])$~';
+	if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+		$ip = sanitize($_SERVER['HTTP_X_FORWARDED_FOR']);
+		if (preg_match($pattern, $ip)) {
+			return $ip;
+		}
+	}
+	$ip = sanitize($_SERVER['REMOTE_ADDR']);
+	if (preg_match($pattern, $ip)) {
+		return $ip;
+	}
+	return NULL;
+}
+
+/**
+ * triggers an error
+ *
+ * @param string $message
+ * @param bool $fatal set true to fail the script
+ */
+function zp_error($message, $fatal = E_USER_ERROR) {
+	trigger_error($message, $fatal);
+}
 
 /**
  *
@@ -16,9 +65,9 @@
  * @return void|boolean
  */
 function zpErrorHandler($errno, $errstr = '', $errfile = '', $errline = '') {
+	global $_zp_current_admin_obj, $_index_theme;
 	// check if function has been called by an exception
 	if (func_num_args() == 5) {
-		// called by trigger_error()
 		list($errno, $errstr, $errfile, $errline) = func_get_args();
 	} else {
 		// caught exception
@@ -28,6 +77,7 @@ function zpErrorHandler($errno, $errstr = '', $errfile = '', $errline = '') {
 		$errfile = $exc->getFile();
 		$errline = $exc->getLine();
 	}
+
 	// if error has been supressed with an @
 	if (error_reporting() == 0 && !in_array($errno, array(E_USER_ERROR, E_USER_WARNING, E_USER_NOTICE))) {
 		return;
@@ -49,8 +99,39 @@ function zpErrorHandler($errno, $errstr = '', $errfile = '', $errline = '') {
 		$err = gettext("EXCEPTION ($errno)");
 		$errno = E_ERROR;
 	}
-	$msg = sprintf(gettext('%1$s: %2$s in %3$s on line %4$s'), $err, $errstr, $errfile, $errline);
-	debugLogBacktrace($msg, 1);
+
+
+	$msg = sprintf(gettext('%1$s: "%2$s" in %3$s on line %4$s'), $err, $errstr, $errfile, $errline);
+	if (array_key_exists('REQUEST_URI', $_SERVER)) {
+		$uri = sanitize($_SERVER['REQUEST_URI']);
+		preg_match('|^(http[s]*\://[a-zA-Z0-9\-\.]+/?)*(.*)$|xis', $uri, $matches);
+		$uri = $matches[2];
+		if (!empty($matches[1])) {
+			$uri = '/' . $uri;
+		}
+	} else {
+		$uri = sanitize(@$_SERVER['SCRIPT_NAME']);
+	}
+	if ($uri) {
+		$uri = "\n URI:" . urldecode(str_replace('\\', '/', $uri));
+	}
+	$uri .= "\n IP:" . getUserIP();
+	if (is_object($_zp_current_admin_obj)) {
+		$uri .= "\n " . gettext('user') . ':' . $_zp_current_admin_obj->getUser();
+	}
+	if ($_index_theme) {
+		$uri .= "\n " . gettext('theme') . ':' . $_index_theme;
+	}
+	debugLogBacktrace($msg . $uri, 1);
+
+	if (!ini_get('display_errors') && ($errno == E_ERROR || $errno = E_USER_ERROR)) {
+		// out of curtesy show the error message on the WEB page since there will likely be a blank page otherwise
+		?>
+		<div style="padding: 10px 15px 10px 15px;	background-color: #FDD;	border-width: 1px 1px 2px 1px;	border-style: solid;	border-color: #FAA;	margin-bottom: 10px;	font-size: 100%;">
+			<?php echo html_encode($msg); ?>
+		</div>
+		<?php
+	}
 	return false;
 }
 
@@ -66,7 +147,7 @@ function filesystemToInternal($filename) {
 }
 
 /**
- * Converts a Zenphoto Internal filename string to one compatible with the file system
+ * Converts an Internal filename string to one compatible with the file system
  *
  * @param string $filename the file name to convert
  * @return string
@@ -74,6 +155,26 @@ function filesystemToInternal($filename) {
 function internalToFilesystem($filename) {
 	global $_zp_UTF8;
 	return $_zp_UTF8->convert($filename, LOCAL_CHARSET, FILESYSTEM_CHARSET);
+}
+
+/**
+ * Returns the suffix of a file name
+ *
+ * @param string $filename
+ * @return string
+ */
+function getSuffix($filename) {
+	return strtolower(substr(strrchr($filename, "."), 1));
+}
+
+/**
+ * returns a file name sans the suffix
+ *
+ * @param unknown_type $filename
+ * @return unknown
+ */
+function stripSuffix($filename) {
+	return str_replace(strrchr($filename, "."), '', $filename);
 }
 
 /**
@@ -156,7 +257,13 @@ function ksesProcess($input_string, $allowed_tags) {
 	if (function_exists('kses')) {
 		return kses($input_string, $allowed_tags);
 	} else {
-		return getBare($input_string);
+		$input_string = preg_replace('~<script.*?/script>~is', '', $input_string);
+		$input_string = preg_replace('~<style.*?/style>~is', '', $input_string);
+		$input_string = preg_replace('~<!--.*?-->~is', '', $input_string);
+		$content = strip_tags($input_string);
+		$input_string = str_replace('&nbsp;', ' ', $input_string);
+		$input_string = html_decode($input_string);
+		return $input_string;
 	}
 }
 
@@ -166,12 +273,7 @@ function ksesProcess($input_string, $allowed_tags) {
  * @return type
  */
 function getBare($content) {
-  $content = preg_replace('~<script.*?/script>~is', '', $content);
-  $content = preg_replace('~<style.*?/style>~is', '', $content);
-  $content = preg_replace('~<!--.*?-->~is', '', $content);
-  $content = strip_tags($content);
-  $content = str_replace('&nbsp;', ' ', $content);
-  return $content;
+	return ksesProcess($content, array());
 }
 
 /** returns a sanitized string for the sanitize function
@@ -195,8 +297,7 @@ function sanitize_string($input, $sanitize_level) {
 				return ksesProcess($input, getAllowedTags('style_tags'));
 			case 3:
 				// Full sanitation.  Strips all code.
-				return getBare($input);
- 
+				return ksesProcess($input, array());
 			case 1:
 				// Text formatting sanititation.
 				$input = sanitize_script($input);
@@ -282,30 +383,25 @@ function db_count($table, $clause = NULL, $field = "*") {
 	}
 }
 
-/**
- * triggers an error
- *
- * @param string $message
- * @param int $type the PHP error type to trigger; default to E_USER_ERROR
- */
-function zp_error($message, $fatal = E_USER_ERROR) {
-	// Print the error message, to be convenient.
-	printf(html_encode($message));
-	trigger_error($message, $fatal);
-}
-
 function html_decode($string) {
-	return html_entity_decode($string, ENT_QUOTES, 'UTF-8');
+	$string = html_entity_decode($string, ENT_QUOTES, LOCAL_CHARSET);
+	// Replace numeric entities because html_entity_decode doesn't do it for us.
+	if (function_exists('mb_convert_encoding')) {
+		$string = preg_replace_callback("/(&#[0-9]+;)/", function($m) {
+			return mb_convert_encoding($m[1], LOCAL_CHARSET, "HTML-ENTITIES");
+		}, $string);
+	}
+	return $string;
 }
 
 /**
  * encodes a pre-sanitized string to be used in an HTML text-only field (value, alt, title, etc.)
  *
- * @param string $str
+ * @param string $this_string
  * @return string
  */
-function html_encode($str) {
-	return htmlspecialchars($str, ENT_FLAGS, LOCAL_CHARSET);
+function html_encode($this_string) {
+	return htmlspecialchars($this_string, ENT_FLAGS, LOCAL_CHARSET);
 }
 
 /**
@@ -339,21 +435,16 @@ function html_encodeTagged($original, $allowScript = true) {
 		$tags[2]['%' . $key . '$s'] = $tag;
 		$str = str_replace($tag, '%' . $key . '$s', $str);
 	}
-	//entities
-	preg_match_all('/(&[a-z0-9#]+;)/i', $str, $matches);
-	foreach (array_unique($matches[0]) as $key => $entity) {
-		$tags[3]['%' . $key . '$e'] = $entity;
-		$str = str_replace($entity, '%' . $key . '$e', $str);
-	} 
-	$str = htmlspecialchars($str, ENT_FLAGS, LOCAL_CHARSET);
+	$str = html_decode($str);
+	$str = htmlentities($str, ENT_FLAGS, LOCAL_CHARSET);
 	foreach (array_reverse($tags, true) as $taglist) {
 		$str = strtr($str, $taglist);
 	}
 	if (class_exists('tidy') && $str != $original) {
 		$tidy = new tidy();
-		$tidy->parseString($str, array('show-body-only' => true), 'utf8');
+		$tidy->parseString($str, array('show-body-only' => 1, 'quote-marks' => 1, 'quote-ampersand' => 1, 'preserve-entities' => true), 'utf8');
 		$tidy->cleanRepair();
-		$str = $tidy;
+		$str = $tidy->value;
 	}
 	return $str;
 }
@@ -376,8 +467,10 @@ function mkdir_recursive($pathname, $mode) {
  * Logs the calling stack
  *
  * @param string $message Message to prefix the backtrace
+ * @param int $omit count of "callers" to remove from backtrace
+ * @param string $log alternative log file
  */
-function debugLogBacktrace($message, $omit = 0) {
+function debugLogBacktrace($message, $omit = 0, $log = 'debug') {
 	$output = trim($message) . "\n";
 	// Get a backtrace.
 	$bt = debug_backtrace();
@@ -406,7 +499,7 @@ function debugLogBacktrace($message, $omit = 0) {
 	if (!empty($line)) {
 		$output .= 'from ' . $line;
 	}
-	debugLog($output);
+	debugLog($output, false, $log);
 }
 
 /**
@@ -414,6 +507,7 @@ function debugLogBacktrace($message, $omit = 0) {
  *
  * @param string $message message to insert in log [optional]
  * @param mixed $var the variable to record
+ * @param string $log alternative log file
  */
 function debugLogVar($message) {
 	$args = func_get_args();
@@ -424,11 +518,16 @@ function debugLogVar($message) {
 		$message .= ' ';
 		$var = $args[1];
 	}
+	if (count($args) == 3) {
+		$log = $args[2];
+	} else {
+		$log = 'debug';
+	}
 	ob_start();
 	var_dump($var);
 	$str = ob_get_contents();
 	ob_end_clean();
-	debugLog(trim($message) . "\r" . html_decode(getBare($str)));
+	debugLog(trim($message) . "\r" . html_decode(getBare($str)), false, $log);
 }
 
 /**
@@ -437,26 +536,26 @@ function debugLogVar($message) {
  * @param string $name the name of the cookie
  */
 function zp_getCookie($name) {
-  if (isset($_COOKIE[$name])) {
-    $cookiev = sanitize($_COOKIE[$name]);
-  } else {
-    $cookiev = '';
-  }
-  if (DEBUG_LOGIN) {
-    if (isset($_SESSION[$name])) {
-      $sessionv = sanitize($_SESSION[$name]);
-    } else {
-      $sessionv = '';
-    }
-    debugLog(zp_getCookie($name) . '=::' . 'album_session=' . GALLERY_SESSION . "; SESSION[" . session_id() . "]=" . sanitize($sessionv) . ", COOKIE=" . sanitize($cookiev));
-  }
-  if (!empty($cookiev) && (defined('GALLERY_SESSION') && !GALLERY_SESSION)) {
-    return zp_cookieEncode($cookiev);
-  }
-  if (isset($_SESSION[$name])) {
-    return sanitize($_SESSION[$name]);
-  }
-  return NULL;
+	if (isset($_COOKIE[$name])) {
+		$cookiev = $_COOKIE[$name];
+	} else {
+		$cookiev = '';
+	}
+	if (DEBUG_LOGIN) {
+		if (isset($_SESSION[$name])) {
+			$sessionv = $_SESSION[$name];
+		} else {
+			$sessionv = '';
+		}
+		debugLog("zp_getCookie($name)::" . 'album_session=' . GALLERY_SESSION . "; SESSION[" . session_id() . "]=" . $sessionv . ", COOKIE=" . $cookiev);
+	}
+	if (!empty($cookiev) && (defined('GALLERY_SESSION') && !GALLERY_SESSION)) {
+		return zp_cookieEncode($cookiev);
+	}
+	if (isset($_SESSION[$name])) {
+		return $_SESSION[$name];
+	}
+	return NULL;
 }
 
 /**
@@ -482,34 +581,34 @@ function zp_cookieEncode($value) {
  * @param bool $secure true if secure cookie
  */
 function zp_setCookie($name, $value, $time = NULL, $path = NULL, $secure = false) {
-  if (empty($value)) {
-    $cookiev = '';
-  } else {
-    $cookiev = zp_cookieEncode(sanitize($value));
-  }
-  if (is_null($time)) {
-    $time = COOKIE_PESISTENCE;
-  }
-  if (is_null($path)) {
-    $path = WEBPATH;
-  }
-  if (substr($path, -1, 1) != '/')
-    $path .= '/';
-  if (DEBUG_LOGIN) {
-    debugLog("zp_setCookie($name, $value, $time, $path)::album_session=" . GALLERY_SESSION . "; SESSION=" . session_id());
-  }
-  if (($time < 0) || !GALLERY_SESSION) {
-    setcookie($name, $cookiev, time() + $time, $path, "", $secure);
-  }
-  if ($time < 0) {
-    if (isset($_SESSION))
-      unset($_SESSION[$name]);
-    if (isset($_COOKIE))
-      unset($_COOKIE[$name]);
-  } else {
-    $_SESSION[$name] = sanitize($value);
-    $_COOKIE[$name] = sanitize($cookiev);
-  }
+	if (empty($value)) {
+		$cookiev = '';
+	} else {
+		$cookiev = zp_cookieEncode($value);
+	}
+	if (is_null($time)) {
+		$time = COOKIE_PESISTENCE;
+	}
+	if (is_null($path)) {
+		$path = WEBPATH;
+	}
+	if (substr($path, -1, 1) != '/')
+		$path .= '/';
+	if (DEBUG_LOGIN) {
+		debugLog("zp_setCookie($name, $value, $time, $path)::album_session=" . GALLERY_SESSION . "; SESSION=" . session_id());
+	}
+	if (($time < 0) || !GALLERY_SESSION) {
+		setcookie($name, $cookiev, time() + $time, $path, "", $secure);
+	}
+	if ($time < 0) {
+		if (isset($_SESSION))
+			unset($_SESSION[$name]);
+		if (isset($_COOKIE))
+			unset($_COOKIE[$name]);
+	} else {
+		$_SESSION[$name] = $value;
+		$_COOKIE[$name] = $cookiev;
+	}
 }
 
 /**
@@ -534,6 +633,9 @@ function getSerializedArray($string) {
 	if (is_array($string)) {
 		return $string;
 	}
+	if (is_null($string) || $string === '') {
+		return array();
+	}
 	if (preg_match('/^a:[0-9]+:{/', $string)) {
 		$r = @unserialize($string);
 		if ($r) {
@@ -541,11 +643,107 @@ function getSerializedArray($string) {
 		} else {
 			return array();
 		}
-	} else if (strlen($string) == 0 && !is_bool($string)) {
-		return array();
 	} else {
 		return array($string);
 	}
 }
 
+/**
+ * Mutex class
+ * @author Stephen
+ *
+ */
+class zpMutex {
+
+	private $locked = NULL;
+	private $ignoreUseAbort = NULL;
+	private $mutex = NULL;
+	private $lock = NULL;
+
+	function __construct($lock = 'zP', $concurrent = NULL, $folder = NULL) {
+
+// if any of the construction fails, run in free mode (lock = NULL)
+		if (function_exists('flock') && defined('SERVERPATH')) {
+			if (is_null($folder)) {
+				$folder = SERVERPATH . '/';
+			}
+			if ($concurrent) {
+				If ($subLock = self::which_lock($lock, $concurrent, $folder)) {
+					$this->lock = $folder . DATA_FOLDER . '/' . MUTEX_FOLDER . '/' . $lock . '_' . $subLock;
+				}
+			} else {
+				$this->lock = $folder . DATA_FOLDER . '/' . MUTEX_FOLDER . '/' . $lock;
+			}
+		}
+		return $this->lock;
+	}
+
+// returns the integer id of the lock to be obtained
+// rotates locks sequentially mod $concurrent
+	private static function which_lock($lock, $concurrent, $folder) {
+		global $_zp_mutex;
+		$counter_file = $folder . DATA_FOLDER . '/' . MUTEX_FOLDER . '/' . $lock . '_counter';
+		$_zp_mutex->lock();
+// increment the lock id:
+		if (@file_put_contents($counter_file, $count = (((int) @file_get_contents($counter_file)) + 1) % $concurrent)) {
+			$count++;
+		} else {
+			$count = false;
+		}
+		$_zp_mutex->unlock();
+		return $count;
+	}
+
+	function __destruct() {
+		if ($this->locked) {
+			$this->unlock();
+		}
+	}
+
+	public function lock() {
+//if "flock" is not supported run un-serialized
+//Only lock an unlocked mutex, we don't support recursive mutex'es
+		if (!$this->locked && $this->lock) {
+			if ($this->mutex = @fopen($this->lock, 'wb')) {
+				if (flock($this->mutex, LOCK_EX)) {
+					$this->locked = true;
+//We are entering a critical section so we need to change the ignore_user_abort setting so that the
+//script doesn't stop in the critical section.
+					$this->ignoreUserAbort = ignore_user_abort(true);
+				}
+			}
+		}
+		return $this->locked;
+	}
+
+	/**
+	 * 	Unlock the mutex.
+	 */
+	public function unlock() {
+		if ($this->locked) {
+//Only unlock a locked mutex.
+			$this->locked = false;
+			ignore_user_abort($this->ignoreUserAbort); //Restore the ignore_user_abort setting.
+			flock($this->mutex, LOCK_UN);
+			fclose($this->mutex);
+			return true;
+		}
+		return false;
+	}
+
+}
+
+if (!function_exists('hex2bin')) {
+
+	function hex2bin($h) {
+		if (!is_string($h))
+			return null;
+		$r = '';
+		for ($a = 0; $a < strlen($h); $a+=2) {
+			$r .= chr(hexdec($h{$a} . $h{($a + 1)}));
+		}
+		return $r;
+	}
+
+}
 ?>

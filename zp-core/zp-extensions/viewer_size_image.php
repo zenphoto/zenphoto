@@ -9,17 +9,18 @@
  * a cookie and used as the default for future image viewing.
  *
  * Sizes as used for the default size and the allowed size list are strings with the
- * The form is <var>$s=<i>size</i></var> or <var>$h=<i>heigh</i>; $w=<i>width</i>;</var>.... See <i>printCustomSizedImage()</i> for
+ * The form is <var>$s=<i>size</i></var> or <var>$h=<i>heigh</i>; $w=<i>width</i>;</var>.... See printCustomSizedImage() for
  * information about how these values are used.
  *
- * If <var>$s</var> is present, the plugin will use <i>printCustomSizedImage()</i> to display the image. Otherwise
- * both <var>$w</var> and <var>$h</var> must be present. Then <i>printCustomSizedImageMaxSpace()</i> is used for
+ * If <var>$s</var> is present, the plugin will use printCustomSizedImage() to display the image. Otherwise
+ * both <var>$w</var> and <var>$h</var> must be present. Then printCustomSizedImageMaxSpace() is used for
  * displaying the image.
  *
  * You must place calls on <var>printUserSizeSelector()</var> and <var>printUserSizeImage()</var> at appropriate
- * places in your theme's image.php to activate these features.
+ * places in your theme's image.php script to activate these features.
  *
  * @author Stephen Billard (sbillard)
+ *
  * @package plugins
  * @subpackage media
  */
@@ -105,7 +106,7 @@ function printUserSizeSelector($text = '', $default = NULL, $usersizes = NULL) {
 					$size = str_replace(',', ';', $size) . ';';
 					$s = $w = $h = NULL;
 					if (false === eval($size)) {
-						trigger_error(gettext('There is a format error in your <em>viewer_size_image_sizes</em> option string.'), E_USER_NOTICE);
+						zp_error(gettext('There is a format error in your <em>viewer_size_image_sizes</em> option string.'), E_USER_NOTICE);
 					}
 					if (!empty($s)) {
 						$key = $s;
@@ -122,7 +123,7 @@ function printUserSizeSelector($text = '', $default = NULL, $usersizes = NULL) {
 				$size = str_replace(',', ';', $size) . ';';
 				$s = $w = $h = NULL;
 				if (false === eval($size)) {
-					trigger_error(gettext('There is a format error in your $usersizes string.'), E_USER_NOTICE);
+					zp_error(gettext('There is a format error in your $usersizes string.'), E_USER_NOTICE);
 				}
 				if (!empty($s)) {
 					$key = $s;
@@ -268,7 +269,7 @@ function getViewerImageSize($default, &$size, &$width, &$height) {
 		}
 	}
 	if (empty($size) && empty($width) && empty($height)) {
-		trigger_error($msg, E_USER_NOTICE);
+		zp_error($msg, E_USER_NOTICE);
 	}
 }
 

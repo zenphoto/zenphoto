@@ -14,7 +14,12 @@ $path = '';
 $selected = 0;
 if (isset($_GET['action'])) {
 	XSRFdefender('deprecated');
-	$zplist = getSerializedArray(getOption('Zenphoto_theme_list'));
+	$zplist = array();
+	foreach ($_zp_gallery->getThemes() as $theme => $data) {
+		if (protectedTheme($theme)) {
+			$zplist[] = $theme;
+		}
+	}
 	$deprecated = new deprecated_functions();
 	$list = array();
 	foreach ($deprecated->listed_functions as $details) {
@@ -54,7 +59,7 @@ echo '</head>' . "\n";
 						if (TEST_RELEASE) {
 							?>
 							<option value=3<?php if ($selected == 3) echo ' selected="selected"'; ?>>
-								<?php echo gettext('In Zenphoto code'); ?>
+								<?php echo gettext('In ZenPhoto20 code'); ?>
 							</option>
 							<?php
 						}
@@ -65,7 +70,7 @@ echo '</head>' . "\n";
 					</select>
 					<br class="clearall" /><br />
 					<span class="buttons">
-						<button type="submit" title="<?php echo gettext("Search"); ?>" onclick="$('#outerbox').html('');" ><img src="../../images/magnify.png" alt="" /><strong><?php echo gettext("Search"); ?></strong></button>
+						<button type="submit" title="<?php echo gettext("Search"); ?>" onclick="$('#outerbox').html('');" ><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/magnify.png" alt="" /><strong><?php echo gettext("Search"); ?></strong></button>
 					</span>
 					<span id="progress"></span>
 				</form>

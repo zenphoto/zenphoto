@@ -2,19 +2,20 @@
 /*
  * This plugin implements <i>tiny URLs</i> such as used by the tweet_news plugin
  *
- * <i>Tiny URLs</i> are short unique to Zenphoto. They are short digital strings that
- * allow Zenphoto to locate the object referenced. They are prefixed by <var>tiny/<var>
+ * <i>Tiny URLs</i> are short unique to zenphoto. They are short digital strings that
+ * allow zenphoto to locate the object referenced. They are prefixed by <var>tiny/<var>
  * if <i>mod_rewrite</i> is active otherwise they have the form <var>index.php?p=ddddd&t</var> .
  *
  * These can be useful if you want to minimize the length of URLs or if you want to
  * obscure the information that they might convey.
  *
  * @author Stephen Billard (sbillard)
+ *
  * @package plugins
  * @subpackage admin
  */
-$plugin_is_filter = 5 | CLASS_PLUGIN;
-$plugin_description = gettext('Provides short URLs to Zenphoto objects.');
+$plugin_is_filter = defaultExtension(5 | CLASS_PLUGIN);
+$plugin_description = gettext('Provides short URLs to zenphoto objects.');
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_disable = (MOD_REWRITE) ? '' : gettext('Shortened URLs require the <code>mod_rewrite</code> option be enabled.');
 
@@ -30,7 +31,6 @@ switch (OFFSET_PATH) {
 		}
 		break;
 	case 2:
-		setOptionDefault('zp_plugin_tinyURL', $plugin_is_filter);
 		setOptionDefault('tinyURL_agressive', 0);
 		setOptionDefault('tinyURL_text', 'tiny');
 		break;
@@ -39,9 +39,9 @@ switch (OFFSET_PATH) {
 }
 $_zp_conf_vars['special_pages']['tiny'] = array('define'	 => '_TINY_', 'rewrite'	 => getOption('tinyURL_text'),
 				'option'	 => 'tinyURL_text', 'default'	 => 'tiny/');
-$_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%TINY%([0-9]+)/?$',
+$_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%TINY%([0-9]+)/*$',
 				'rule'		 => '%REWRITE% index.php?p=$1&t [L,QSA]');
-$_zp_conf_vars['special_pages'][] = array('define' => false, 'rewrite' => '^%TINY%([0-9]+)/([0-9]+)/?$', 'rule' => '%REWRITE% index.php?p=$1&page=$2&t [L,QSA]');
+$_zp_conf_vars['special_pages'][] = array('define' => false, 'rewrite' => '^%TINY%([0-9]+)/([0-9]+)/*$', 'rule' => '%REWRITE% index.php?p=$1&page=$2&t [L,QSA]');
 $_zp_conf_vars['special_pages'][] = array('definition' => '%TINY%', 'rewrite' => '_TINY_');
 
 class tinyURL {
@@ -105,7 +105,7 @@ class tinyURL {
 
 	/**
 	 *
-	 * Returns a Zenphoto tiny URL to the object
+	 * Returns a tiny URL to the object
 	 * @param $obj object
 	 */
 	static function getURL($obj, $page = NULL) {
@@ -135,7 +135,7 @@ class tinyURL {
 	}
 
 	static function parse($success) {
-		if (isset($_GET['p']) && isset($_GET['t'])) { //	Zenphoto tiny url
+		if (isset($_GET['p']) && isset($_GET['t'])) { //	zenphoto tiny url
 			unset($_GET['t']);
 			$tiny = sanitize_numeric($_GET['p']);
 			$tbl = $tiny & 7;

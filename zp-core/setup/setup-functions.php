@@ -1,6 +1,9 @@
 <?php
 /**
  * setup support functions
+ *
+ * @author Stephen Billard (sbillard)
+ *
  * @package setup
  */
 // force UTF-8 Ø
@@ -27,15 +30,15 @@ require_once(dirname(dirname(__FILE__)) . '/functions-config.php');
  * enumerates the files in folder(s)
  * @param $folder
  */
-function getResidentZPFiles($folder, $lcFilesystem = false) {
+function getResidentZPFiles($folder, $lcFilesystem, $exclude) {
 	global $_zp_resident_files;
 	$dir = opendir($folder);
 	while (($file = readdir($dir)) !== false) {
 		$file = str_replace('\\', '/', $file);
-		if ($file != '.' && $file != '..') {
+		if ($file != '.' && $file != '..' && !in_array($file, $exclude)) {
 			if (is_dir($folder . '/' . $file)) {
 				if ($file != 'session') {
-					getResidentZPFiles($folder . '/' . $file, $lcFilesystem);
+					getResidentZPFiles($folder . '/' . $file, $lcFilesystem, $exclude);
 					$entry = $folder . '/' . $file;
 					if ($lcFilesystem)
 						$entry = strtolower($entry);
@@ -131,7 +134,7 @@ function checkMark($check, $text, $text2, $msg, $stopAutorun = true) {
 						<?php
 						if ($check == -3) {
 							?>
-							<a href="javascript:toggle_visibility('more<?php echo $moreid; ?>');">
+							<a onclick="toggle_visibility('more<?php echo $moreid; ?>');">
 								<?php echo gettext('<strong>Warning!</strong> click for details'); ?>
 							</a>
 							<div class="warning" id="more<?php echo $moreid; ?>" style="display: none">
@@ -139,7 +142,7 @@ function checkMark($check, $text, $text2, $msg, $stopAutorun = true) {
 								<?php
 							} else {
 								?>
-								<a href="javascript:toggle_visibility('more<?php echo $moreid; ?>');">
+								<a onclick="toggle_visibility('more<?php echo $moreid; ?>');">
 									<?php echo gettext('<strong>Notice!</strong> click for details'); ?>
 								</a>
 								<div class="notice" id="more<?php echo $moreid; ?>" style="display: none">
@@ -229,7 +232,7 @@ function folderCheck($which, $path, $class, $subfolders, $recurse, $chmod, $upda
 					} else {
 						$chmod_class = gettext('unknown');
 					}
-					return checkMark(-1, '', sprintf(gettext('<em>%1$s</em> folder%2$s [permissions failure]'), $which, $f), sprintf(gettext('Setup could not change the file permissions from <em>%1$s</em> (<code>0%2$o</code>) to <em>%3$s</em> (<code>0%4$o</code>). You will have to set the permissions manually. See the <a href="http://www.zenphoto.org/news/troubleshooting-zenphoto#29">Troubleshooting guide</a> for details on Zenphoto permissions requirements.'), $perms_class, $perms, $chmod_class, $chmod));
+					return checkMark(-1, '', sprintf(gettext('<em>%1$s</em> folder%2$s [permissions failure]'), $which, $f), sprintf(gettext('Setup could not change the file permissions from <em>%1$s</em> (<code>0%2$o</code>) to <em>%3$s</em> (<code>0%4$o</code>). You will have to set the permissions manually.'), $perms_class, $perms, $chmod_class, $chmod));
 				} else {
 					if ($recurse) {
 						?>
@@ -303,57 +306,6 @@ function versionCheck($required, $desired, $found) {
 
 /**
  *
- * file lister for setup
- * @param $pattern
- * @param $flags
- */
-function setup_glob($pattern, $flags = 0) {
-	$split = explode('/', $pattern);
-	$match = array_pop($split);
-	$path_return = $path = implode('/', $split);
-	if (empty($path)) {
-		$path = '.';
-	} else {
-		$path_return = $path_return . '/';
-	}
-
-	if (($dir = opendir($path)) !== false) {
-		$glob = array();
-		while (($file = readdir($dir)) !== false) {
-			if (fnmatch($match, $file)) {
-				if ((is_dir("$path/$file")) || (!($flags & GLOB_ONLYDIR))) {
-					if ($flags & GLOB_MARK)
-						$file.='/';
-					$glob[] = $path_return . $file;
-				}
-			}
-		}
-		closedir($dir);
-		if (!($flags & GLOB_NOSORT))
-			sort($glob);
-		return $glob;
-	} else {
-		return array();
-	}
-}
-
-if (!function_exists('fnmatch')) {
-
-	/**
-	 * pattern match function in case it is not included in PHP
-	 *
-	 * @param string $pattern pattern
-	 * @param string $string haystack
-	 * @return bool
-	 */
-	function fnmatch($pattern, $string) {
-		return @preg_match('/^' . strtr(addcslashes($pattern, '\\.+^$(){}=!<>|'), array('*' => '.*', '?' => '.?')) . '$/i', $string);
-	}
-
-}
-
-/**
- *
  * drop-down for character set selection
  * @param $select
  */
@@ -368,7 +320,7 @@ function charsetSelector($select) {
 		if ($key == $select) {
 			$selector .= ' selected="selected"';
 		}
-		$selector .= '>' . $key . '</option>';
+		$selector .= '>' . $char . '</option>';
 	}
 	$selector .= '</select>';
 	$selector .= '<span class="buttons" style="float: right"><button type="submit" alt="' . gettext('change the definition') . '"><strong>' . gettext('apply') . '</strong></button></span>';
@@ -406,6 +358,7 @@ function setupLog($message, $anyway = false, $reset = false) {
 		if ($f) {
 			fwrite($f, strip_tags($message) . "\n");
 			fclose($f);
+			chmod(SETUPLOG, DATA_MOD);
 			clearstatcache();
 		}
 		if (is_object($_zp_mutex))
@@ -414,7 +367,6 @@ function setupLog($message, $anyway = false, $reset = false) {
 }
 
 function setupLanguageSelector() {
-	global $xsrftoken;
 	$languages = generateLanguageList();
 	if (isset($_REQUEST['locale'])) {
 		$locale = sanitize($_REQUEST['locale']);
@@ -425,7 +377,7 @@ function setupLanguageSelector() {
 					<?php printf(gettext('<em>%s</em> is not available.'), html_encode($languages[$locale])); ?>
 					<?php printf(gettext('The locale %s is not supported on your server.'), html_encode($locale)); ?>
 					<br />
-					<?php echo gettext('See the <a href="http://www.zenphoto.org/news/troubleshooting-zenphoto#24">troubleshooting guide</a> on zenphoto.org for details.'); ?>
+					<?php echo gettext('You can use the <em>debug</em> plugin to see which locales your server supports.'); ?>
 				</h2>
 			</div>
 			<?php
@@ -438,7 +390,7 @@ function setupLanguageSelector() {
 		krsort($_languages, SORT_LOCALE_STRING);
 		$currentValue = getOption('locale');
 		foreach ($_languages as $text => $lang) {
-			if (setupLocale($lang)) {
+			if (i18nSetLocale($lang)) {
 				?>
 				<li<?php if ($lang == $currentValue) echo ' class="currentLanguage"'; ?>>
 					<?php
@@ -470,8 +422,8 @@ function setupLanguageSelector() {
 	<?php
 }
 
-function setupXSRFDefender() {
-	global $xsrftoken;
+function setupXSRFDefender($where) {
+	$xsrftoken = setupXSRFToken();
 	if (!isset($_REQUEST['xsrfToken']) || $xsrftoken != $_REQUEST['xsrfToken']) {
 		?>
 		<p class="errorbox" >
@@ -482,27 +434,13 @@ function setupXSRFDefender() {
 	}
 }
 
-function setup_sanitize($input_string, $sanitize_level = 3) {
-	if (is_array($input_string)) {
-		foreach ($input_string as $output_key => $output_value) {
-			$output_string[$output_key] = setup_sanitize_string($output_value, $sanitize_level);
-		}
-		unset($output_key, $output_value);
+function setupXSRFToken() {
+	if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
+		$zp_cfg = file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
+		return sha1(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE . $zp_cfg . session_id());
 	} else {
-		$output_string = setup_sanitize_string($input_string, $sanitize_level);
+		return false;
 	}
-	return $output_string;
-}
-
-function setup_sanitize_string($input_string, $sanitize_level) {
-	if (get_magic_quotes_gpc())
-		$input_string = stripslashes($input_string);
-	if ($sanitize_level === 0) {
-		$input_string = str_replace(chr(0), " ", $input_string);
-	} else {
-		$input_string = strip_tags($input_string);
-	}
-	return $input_string;
 }
 
 /**
@@ -529,39 +467,15 @@ function checkPermissions($actual, $expected) {
 	}
 }
 
-/*
- * check if site is closed for proper update of .htaccess
- */
-
-function site_closed($ht) {
-	if (empty($ht)) {
-		return false;
-	} else {
-		preg_match('|[# ][ ]*RewriteRule(.*)plugins/site_upgrade/closed|', $ht, $matches);
-		return !(empty($matches)) && strpos($matches[0], '#') === false;
-	}
-}
-
-/**
- * if site was closed, keep it that way....
- */
-function close_site($nht) {
-	preg_match_all('|[# ][ ]*RewriteRule(.*)plugins/site_upgrade/closed|', $nht, $matches);
-	foreach ($matches[0] as $match) {
-		$nht = str_replace($match, ' ' . substr($match, 1), $nht);
-	}
-	return $nht;
-}
-
 function acknowledge($value) {
-	global $xsrftoken, $_zp_conf_vars;
-	$link = WEBPATH . '/' . ZENFOLDER . '/setup/index.php?security_ack=' . ((isset($_zp_conf_vars['security_ack']) ? $_zp_conf_vars['security_ack'] : NULL) | $value) . '&amp;xsrfToken=' . $xsrftoken;
+	global $_zp_conf_vars;
+	$link = WEBPATH . '/' . ZENFOLDER . '/setup/index.php?security_ack=' . ((isset($_zp_conf_vars['security_ack']) ? $_zp_conf_vars['security_ack'] : NULL) | $value) . '&amp;xsrfToken=' . setupXSRFToken();
 	return sprintf(gettext('Click <a href="%s">here</a> to acknowledge that you wish to ignore this issue. It will then become a warning.'), $link);
 }
 
 function configMod() {
 	$mod = 0600;
-	$str = '';
+	$str = NULL;
 	while (empty($str)) {
 		@chmod(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE, $mod);
 		$str = @file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
@@ -570,13 +484,12 @@ function configMod() {
 		}
 		$mod = $mod | $mod >> 3;
 	}
-	return $str;
 }
 
 function printSetupFooter() {
 	echo "<div id=\"footer\">";
-	echo "\n  <a href=\"http://www.zenphoto.org\" title=\"" . gettext('The simpler media website CMS') . "\">zen<strong>photo</strong></a>";
-	echo " | <a href=\"http://www.zenphoto.org/support/\" title=\"" . gettext('Forum') . '">' . gettext('Forum') . "</a> | <a href=\"https://github.com/zenphoto/zenphoto/issues\" title=\"Bugtracker\">Bugtracker </a> | <a href=\"http://www.zenphoto.org/news/category/changelog\" title=\"" . gettext('View Change log') . "\">" . gettext('Change log') . "</a>\n</div>";
+	echo gettext('<span class="zen-logo"><a href="https://' . GITHUB . ' title="' . gettext('A simpler media content management system') . '"><img src="' . WEBPATH . '/' . ZENFOLDER . '/' . '/images/zen-logo-light.png" /></a></span> ');
+	echo ' | <a href="https://' . GITHUB . '/issues" title="Support">' . gettext('Support') . '</a> | <a href="https://' . GITHUB . '/commits/master" title="' . gettext('View Change log') . '">' . gettext('Change log') . "</a>\n</div>";
 }
 
 function setupUserAuthorized() {
@@ -585,29 +498,6 @@ function setupUserAuthorized() {
 	} else {
 		return true; //	in a primitive environment
 	}
-}
-
-function updateConfigfile($zp_cfg) {
-	global $xsrftoken;
-	$mod1 = fileperms(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE) & 0777;
-	$mod2 = fileperms(SERVERPATH . '/' . DATA_FOLDER) & 0777;
-
-	@chmod(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE, 0777);
-	if (is_writeable(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
-		rename(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE, $backkup = SERVERPATH . '/' . DATA_FOLDER . '/' . str_replace(strrchr(CONFIGFILE, "."), '', CONFIGFILE) . '.bak.php');
-		chmod($backkup, $mod1);
-		if ($handle = fopen(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE, 'w')) {
-			if (fwrite($handle, $zp_cfg)) {
-				setupLog(gettext("Updated configuration file"));
-				$base = true;
-			}
-		}
-		fclose($handle);
-		clearstatcache();
-	}
-	@chmod(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE, $mod2);
-	$str = configMod();
-	$xsrftoken = sha1(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE . $str . session_id());
 }
 
 function checkUnique($table, $unique) {
@@ -624,100 +514,57 @@ function checkUnique($table, $unique) {
 		?>
 		<p class="notebox">
 			<?php
-			printf(gettext('<strong>Warning:</strong> the <code>%s</code> table appears not to have a proper <em>UNIQUE</em> key. There are probably duplicate entries in the table which can cause unpredictable behavior. This can normally be corrected by creating a Zenphoto backup, dropping the table, running setup to restore the table, and then restoring from the backup. Note, however, that the duplicate entries will be lost.'), trim($table, '`'));
+			printf(gettext('<strong>Warning:</strong> the <code>%s</code> table appears not to have a proper <em>UNIQUE</em> key. There are probably duplicate entries in the table which can cause unpredictable behavior. This can normally be corrected by creating a ZenPhoto20 backup, dropping the table, running setup to restore the table, and then restoring from the backup. Note, however, that the duplicate entries will be lost.'), trim($table, '`'));
 			?>
 		</p>
 		<?php
 	}
 }
 
-function mkdir_r($pathname, $mode) {
-	if (!is_dir(dirname($pathname))) {
-		mkdir_r(dirname($pathname), $mode);
-	}
-	return is_dir($pathname) || @mkdir($pathname, $mode);
-}
-
-function setupLocale($locale) {
-	global $_zp_RTL_css;
-	$en1 = LOCAL_CHARSET;
-	$en2 = str_replace('ISO-', 'ISO', $en1);
-	$simple = str_replace('_', '-', $locale);
-	$simple = explode('-', $simple);
-	$try[$locale . '.UTF8'] = $locale . '.UTF8';
-	$try[$locale . '.UTF-8'] = $locale . '.UTF-8';
-	$try[$locale . '.@euro'] = $locale . '.@euro';
-	$try[$locale . '.' . $en2] = $locale . '.' . $en2;
-	$try[$locale . '.' . $en1] = $locale . '.' . $en1;
-	$try[$locale] = $locale;
-	$try[$simple[0]] = $simple[0];
-	$try['NULL'] = NULL;
-	$rslt = setlocale(LC_ALL, $try);
-	$_zp_RTL_css = in_array(substr($rslt, 0, 2), array('fa', 'ar', 'he', 'hi', 'ur'));
-	return $rslt;
-}
-
 /**
- * Zenphoto Mutex class
- * @author Stephen
+ * Handles setting up or destroying metadata fields
+ * @param array $list
+ * @param bool $execute
+ * @return array (optional based on $execute)
  *
+ * @author Stephen Billard
+ * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
  */
-class setupMutex {
-
-	private $locked = NULL;
-	private $ignoreUseAbort = NULL;
-	private $mutex = NULL;
-	private $lock = NULL;
-	private $lockfolder;
-
-	function __construct() {
-		// if any of the construction fails, run in free mode (lock = NULL)
-		if (function_exists('flock')) {
-			$this->lockfolder = dirname(dirname(dirname(__FILE__))) . '/' . DATA_FOLDER . '/' . MUTEX_FOLDER;
-			if (!file_exists($this->lockfolder))
-				mkdir_r($this->lockfolder, 0777);
-			if (file_exists($this->lockfolder))
-				$this->lock = 'sP';
-		}
-		return $this->lock;
-	}
-
-	function __destruct() {
-		if ($this->locked) {
-			$this->unlock();
-		}
-	}
-
-	public function lock() {
-		//if "flock" is not supported run un-serialized
-		//Only lock an unlocked mutex, we don't support recursive mutex'es
-		if (!$this->locked && $this->lock) {
-			if ($this->mutex = @fopen($this->lockfolder . '/' . $this->lock, 'wb')) {
-				if (flock($this->mutex, LOCK_EX)) {
-					$this->locked = true;
-					//We are entering a critical section so we need to change the ignore_user_abort setting so that the
-					//script doesn't stop in the critical section.
-					$this->ignoreUserAbort = ignore_user_abort(true);
+function metadataFields($list, $execute = true) {
+	$sql_statements = array();
+	$tbl_images = prefix('images');
+	ksort($list);
+	foreach ($list as $key => $exifvar) {
+		if ($s = $exifvar[4]) {
+			if ($exifvar[5]) {
+				switch ($exifvar[6]) {
+					case 'string':
+						if ($s < 255) {
+							$size = "VARCHAR($s)";
+						} else {
+							$size = 'MEDIUMTEXT';
+						}
+						break;
+					case 'number':
+						$size = 'VARCHAR(52)';
+						break;
+					case 'time':
+						$size = 'DATETIME';
+						break;
 				}
+				$sql_statements[] = "ALTER TABLE $tbl_images ADD COLUMN `$key` $size default NULL";
+				$sql_statements[] = "ALTER TABLE $tbl_images CHANGE `$key` `$key` $size default NULL";
+			} else {
+				$sql_statements[] = "ALTER TABLE $tbl_images DROP COLUMN `$key`";
 			}
 		}
-		return $this->locked;
 	}
-
-	/**
-	 * 	Unlock the mutex.
-	 */
-	public function unlock() {
-		if ($this->locked) {
-			//Only unlock a locked mutex.
-			$this->locked = false;
-			ignore_user_abort($this->ignoreUserAbort); //Restore the ignore_user_abort setting.
-			flock($this->mutex, LOCK_UN);
-			fclose($this->mutex);
-			return true;
+	if ($execute) {
+		foreach ($sql_statements as $sql) {
+			db_table_update($sql);
 		}
-		return false;
+	} else {
+		return $sql_statements;
 	}
-
 }
 ?>

@@ -5,7 +5,7 @@ $conf = array();
 /** Do not edit above this line. **/
 /**********************************/
 
-/*//////////   zenPHOTO Configuration Variables   ///////////////////////////////
+/*//////////   ZenPhoto20 Configuration Variables   ///////////////////////////////
 
 For most installations Setup will copy this source and make the necessary changes to it.
 Unless this fails you most likely have no need even to read this file.
@@ -29,14 +29,14 @@ $conf['db_software'] = 'MySQLi';		// preferred database
 $conf['mysql_user'] = '';           // Supply your Database user id.
 $conf['mysql_pass'] = '';           // Supply your Database password.
 $conf['mysql_host'] = 'localhost';  // Supply the name of your Database server.
-$conf['mysql_database'] = '';       // Supply the name of Zenphoto's database
+$conf['mysql_database'] = '';       // Supply the name of zenphoto's database
 // If you're sharing the database with other tables, use a prefix to be safe.
 $conf['mysql_prefix'] = ".";
 
 // If you are having problems with displaying some characters you may have to change
 // the following:
+$conf['charset'] = 'UTF-8';
 $conf['UTF-8'] = true;
-
 ////////////////////////////////////////////////////////////////////////////////
 // Required options
 ////////////////////////////////////////////////////////////////////////////////
@@ -65,7 +65,7 @@ $conf['server_protocol'] = "http";
 // Otherwise you should leave it at "http"
 //
 ////////////////////////////////////////////////////////////////////////////////
-// Zenphoto special URL rule definitions
+// Special URL rule definitions
 //
 // for further documentation see the rewrite.php doc block
 //
@@ -81,7 +81,7 @@ $conf['special_pages'] = array(
 ////////////////////////////////////////////////////////////////////////////////
 // Uncomment the following two lines ONLY IF YOU'RE HAVING PROBLEMS,
 // like "file not found" or "not readable" errors.
-// These allow you to override Zenphoto's detection of the correct paths
+// These allow you to override zenphoto's detection of the correct paths
 // on your server, which might work better on some setups.
 ////////////////////////////////////////////////////////////////////////////////
 

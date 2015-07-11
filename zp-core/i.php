@@ -1,7 +1,7 @@
 <?php
 
 /**
- * i.php: Zenphoto image processor
+ * i.php: zenphoto image processor
  * All *uncached* image requests go through this file
  * (As of 1.0.8 images are requested directly from the cache if they exist)
  * ******************************************************************************
@@ -39,10 +39,6 @@ $debug = isset($_GET['debug']);
 
 // Check for minimum parameters.
 if (!isset($_GET['a']) || !isset($_GET['i'])) {
-	if (TEST_RELEASE) {
-		debugLogVar('i.php too few arguments _GET', $_GET);
-		debugLogVar('i.php too few arguments _SERVER', $_SERVER);
-	}
 	imageError('404 Not Found', gettext("Too few arguments! Image not found."), 'err-imagenotfound.png');
 }
 
@@ -125,7 +121,7 @@ if (!file_exists($imgfile)) {
 	if (!file_exists($imgfile)) {
 		if (DEBUG_IMAGE)
 			debugLogVar('image not found', $args);
-		imageError('404 Not Found', sprintf(gettext("Image not found; file %s does not exist."), filesystemToInternal($image)), 'err-imagenotfound.png');
+		imageError('404 Not Found', sprintf(gettext("Image not found; file %s does not exist."), html_encode(filesystemToInternal($album . '/' . $image))), 'err-imagenotfound.png');
 	}
 }
 
@@ -177,6 +173,7 @@ if (!$debug) {
 	// ... and redirect the browser to it.
 	$suffix = getSuffix($newfilename);
 	switch ($suffix) {
+		case 'wbm':
 		case 'wbmp':
 			$suffix = 'wbmp';
 			break;

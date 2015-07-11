@@ -56,6 +56,7 @@
  * 	</li>
  * </ul>
  *
+ * @author Stephen Billard (sbillard)
  *
  * @package classes
  */
@@ -222,7 +223,7 @@ class feed {
 
 				if (isset($this->options['category'])) {
 					$this->catlink = $this->options['category'];
-					$catobj = new ZenpageCategory($this->catlink);
+					$catobj = new Category($this->catlink);
 					$this->cattitle = $catobj->getTitle();
 					$this->newsoption = 'category';
 				} else {
@@ -313,11 +314,11 @@ class feed {
 	 * @return array
 	 */
 	public function getitems() {
-		global $_zp_zenpage;
+		global $_zp_CMS;
 		switch ($this->feedtype) {
 			case 'gallery':
 				if ($this->mode == "albums") {
-					$items = getAlbumStatistic($this->itemnumber, $this->sortorder, $this->albumfolder, $this->sortdirection);
+					$items = getAlbumStatistic($this->itemnumber, $this->sortorder, $this->albumfolder, 0, $this->sortdirection);
 				} else {
 					$items = getImageStatistic($this->itemnumber, $this->sortorder, $this->albumfolder, $this->collection, 0, $this->sortdirection);
 				}
@@ -346,7 +347,7 @@ class feed {
 				if ($this->sortorder) {
 					$items = getZenpageStatistic($this->itemnumber, 'pages', $this->sortorder, $this->sortdirection);
 				} else {
-					$items = $_zp_zenpage->getPages(NULL, false, $this->itemnumber);
+					$items = $_zp_CMS->getPages(NULL, false, $this->itemnumber);
 				}
 				break;
 			case 'comments':
@@ -385,7 +386,7 @@ class feed {
 			return $items;
 		}
 		if (TEST_RELEASE) {
-			trigger_error(gettext('Bad ' . $this->feed . ' feed:' . $this->feedtype), E_USER_WARNING);
+			zp_error(gettext('Bad ' . $this->feed . ' feed:' . $this->feedtype), E_USER_WARNING);
 		}
 		return NULL;
 	}
@@ -397,7 +398,7 @@ class feed {
 	 * @return array
 	 */
 	protected function getitemPages($item, $len) {
-		$obj = new ZenpagePage($item['titlelink']);
+		$obj = newPage($item['titlelink']);
 		$feeditem['title'] = $feeditem['title'] = get_language_string($obj->getTitle('all'), $this->locale);
 		$feeditem['link'] = $obj->getLink();
 		$desc = $obj->getContent($this->locale);
@@ -408,7 +409,7 @@ class feed {
 		$feeditem['category'] = '';
 		$feeditem['media_content'] = '';
 		$feeditem['media_thumbnail'] = '';
-		$feeditem['pubdate'] = date("r", strtotime($obj->getDatetime()));
+		$feeditem['pubdate'] = date("r", strtotime($obj->getPublishDate()));
 		return $feeditem;
 	}
 
@@ -428,7 +429,7 @@ class feed {
 		switch ($item['type']) {
 			case 'images':
 				$title = get_language_string($item['title']);
-				$obj = newImage(NULL, array('folder' => $item['folder'], 'filename' => $item['filename']));
+				$obj = newImage(array('folder' => $item['folder'], 'filename' => $item['filename']));
 				$link = $obj->getlink();
 				$feeditem['pubdate'] = date("r", strtotime($item['date']));
 				$category = $item['albumtitle'];
@@ -453,7 +454,11 @@ class feed {
 					$title = get_language_string($item['title']);
 					$titlelink = $item['titlelink'];
 					$website = $item['website'];
-					$obj = new $item['type']($titlelink);
+					if ($item['type'] == 'news') {
+						$obj = newArticle($titlelink);
+					} else {
+						$obj = newPage($titlelink);
+					}
 					$commentpath = PROTOCOL . '://' . $this->host . html_encode($obj->getLink()) . "#" . $item['id'];
 				} else {
 					$commentpath = '';
@@ -468,8 +473,6 @@ class feed {
 	}
 
 	static protected function feed404() {
-		header("HTTP/1.0 404 Not Found");
-		header("Status: 404 Not Found");
 		include(SERVERPATH . '/' . ZENFOLDER . '/404.php');
 		exitZP();
 	}

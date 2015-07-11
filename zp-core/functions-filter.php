@@ -46,8 +46,8 @@ function zp_register_filter($hook, $function_name, $priority = NULL) {
 	if (is_array($bt)) {
 		$b = array_shift($bt);
 		$base = basename($b['file']);
-		if (is_null($priority) && isset($_EnabledPlugins[stripSuffix($base)])) {
-			$priority = $_EnabledPlugins[stripSuffix($base)]['priority'] & PLUGIN_PRIORITY;
+		if (is_null($priority) && isset($_EnabledPlugins[$b = stripSuffix($base)])) {
+			$priority = $_EnabledPlugins[$b]['priority'] & PLUGIN_PRIORITY;
 		}
 	} else {
 		$base = 'unknown';
@@ -128,7 +128,7 @@ function zp_filter_unique_id($hook, $function, $priority) {
  * @param mixed $value the value of the element before filtering
  * @return mixed
  */
-function zp_apply_filter($hook, $value = '') {
+function zp_apply_filter($hook, $value = NULL) {
 	global $_zp_filters;
 	if (!isset($_zp_filters[$hook])) {
 		return $value;

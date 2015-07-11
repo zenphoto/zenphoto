@@ -6,6 +6,7 @@
  *
  * @author Malte Müller (acrylian)
  * @package plugins
+ * @subpackage theme
  */
 $plugin_description = gettext("Prints a paged thumbs navigation on image.php, independent of the album.php’s thumbs.");
 $plugin_author = "Malte Müller (acrylian)";
@@ -40,7 +41,7 @@ class pagedthumbsOptions {
 	}
 
 	function getOptionsSupported() {
-		return array(gettext('Thumbs per page')								 => array('key'	 => 'pagedthumbs_imagesperpage', 'type' => OPTION_TYPE_TEXTBOX,
+		return array(gettext('Thumbs per page')								 => array('key'	 => 'pagedthumbs_imagesperpage', 'type' => OPTION_TYPE_NUMBER,
 										'desc' => gettext("Controls the number of images on a page. You might need to change this after switching themes to make it look better.")),
 						gettext('Counter')												 => array('key'	 => 'pagedthumbs_counter', 'type' => OPTION_TYPE_CHECKBOX,
 										'desc' => gettext("If you want to show the counter “x - y of z images”.")),
@@ -48,9 +49,9 @@ class pagedthumbsOptions {
 										'desc'				 => gettext("The text for the previous thumbs."), 'multilingual' => 1),
 						gettext('Nexttext')												 => array('key'					 => 'pagedthumbs_nexttext', 'type'				 => OPTION_TYPE_TEXTBOX,
 										'desc'				 => gettext("The text for the next thumbs."), 'multilingual' => 1),
-						gettext('Crop width')											 => array('key'	 => 'pagedthumbs_width', 'type' => OPTION_TYPE_TEXTBOX,
+						gettext('Crop width')											 => array('key'	 => 'pagedthumbs_width', 'type' => OPTION_TYPE_NUMBER,
 										'desc' => gettext("The thumb crop width is the maximum width when height is the shortest side")),
-						gettext('Crop height')										 => array('key'	 => 'pagedthumbs_height', 'type' => OPTION_TYPE_TEXTBOX,
+						gettext('Crop height')										 => array('key'	 => 'pagedthumbs_height', 'type' => OPTION_TYPE_NUMBER,
 										'desc' => gettext("The thumb crop height is the maximum height when width is the shortest side")),
 						gettext('Crop')														 => array('key'	 => 'pagedthumbs_crop', 'type' => OPTION_TYPE_CHECKBOX,
 										'desc' => gettext("If checked the thumbnail will be a centered portion of the image with the given width and height after being resized to thumb size (by shortest side). Otherwise, it will be the full image resized to thumb size (by shortest side).")),
@@ -197,16 +198,7 @@ class pagedThumbsNav {
 		if ($this->totalpages > 1) {
 			$prevpageimagenr = ($this->currentpage * $this->imagesperpage) - ($this->imagesperpage + 1);
 			if ($this->currentpage > 1) {
-				if (is_array($this->images[$prevpageimagenr])) {
-					if (in_context(ZP_SEARCH_LINKED)) {
-						$albumobj = newAlbum($this->images[$prevpageimagenr]['folder']);
-					} else {
-						$albumobj = $_zp_current_album;
-					}
-					$this->prevpageimage = newImage($albumobj, $this->images[$prevpageimagenr]['filename']);
-				} else {
-					$this->prevpageimage = newImage($_zp_current_album, $this->images[$prevpageimagenr]);
-				}
+				$this->prevpageimage = newImage($_zp_current_album, $this->images[$prevpageimagenr]);
 				return $this->prevpageimage->getLink();
 			}
 		}
@@ -236,16 +228,7 @@ class pagedThumbsNav {
 		$curimages = array_slice($this->images, $this->currentfloor, $this->imagesperpage);
 		$thumbs = array();
 		foreach ($curimages as $item) {
-			if (is_array($item)) {
-				if (in_context(ZP_SEARCH_LINKED)) {
-					$albumobj = newAlbum($item['folder']);
-				} else {
-					$albumobj = $_zp_current_album;
-				}
-				$thumbs[] = newImage($albumobj, $item['filename']);
-			} else {
-				$thumbs[] = newImage($_zp_current_album, $item);
-			}
+			$thumbs[] = newImage($_zp_current_album, $item);
 		}
 		return $thumbs;
 	}
@@ -300,16 +283,7 @@ class pagedThumbsNav {
 		if ($this->totalpages > 1) {
 			if ($this->currentpage < $this->totalpages) {
 				$nextpageimagenr = $this->currentpage * $this->imagesperpage;
-				if (is_array($this->images[$nextpageimagenr])) {
-					if (in_context(ZP_SEARCH_LINKED)) {
-						$albumobj = newAlbum($this->images[$nextpageimagenr]['folder']);
-					} else {
-						$albumobj = $_zp_current_album;
-					}
-					$this->nextpageimage = newImage($albumobj, $this->images[$nextpageimagenr]['filename']);
-				} else {
-					$this->nextpageimage = newImage($_zp_current_album, $this->images[$nextpageimagenr]);
-				}
+				$this->nextpageimage = newImage($_zp_current_album, $this->images[$nextpageimagenr]);
 				return $this->nextpageimage->getLink();
 			}
 		}
@@ -419,12 +393,7 @@ class pagedThumbsNav {
 		$i = $i;
 		$linktex = $linktext;
 		$imagenr = ($i * $this->imagesperpage) - ($this->imagesperpage);
-		if (is_array($this->images[$imagenr])) {
-			$albumobj = newAlbum($this->images[$imagenr]['folder']);
-			$pageimage = newImage($_zp_current_album, $this->images[$imagenr]['filename']);
-		} else {
-			$pageimage = newImage($_zp_current_album, $this->images[$imagenr]);
-		}
+		$pageimage = newImage($_zp_current_album, $this->images[$imagenr]);
 		if ($this->currentpage == $i) {
 			echo "<li class=\"pagedthumbsnav-pagelistactive\">" . html_encode($linktext) . "</a>\n";
 		} else {
@@ -483,7 +452,7 @@ class pagedThumbsNav {
  *
  */
 function printPagedThumbsNav($imagesperpage = '', $counter = false, $prev = '', $next = '', $width = NULL, $height = NULL, $crop = NULL, $placeholders = NULL, $showpagelist = false, $pagelistprevnext = false, $pagelistlength = 6) {
-	$pagedthumbsobj = new pagedThumbsNav($imagesperpage, $counter, $prev, $next, $width, $height, $crop, $placeholders, $showpagelist, $pagelistprevnext, $pagelistlength);
+	$pagedthumbsobj = new PagedThumbsNav($imagesperpage, $counter, $prev, $next, $width, $height, $crop, $placeholders, $showpagelist, $pagelistprevnext, $pagelistlength);
 	echo "<div id=\"pagedthumbsnav\">\n";
 	//$thumbs = $pagedthumbsobj->getThumbs();
 	//echo "<pre>"; print_r($thumbs); echo "</pre>";

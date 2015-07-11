@@ -18,6 +18,7 @@
  * Additional icons can be used by placing them in the <var>%USER_PLUGIN_FOLDER%/flag_thumbnail</var> folder.
  *
  * @author Stephen Billard (sbillard) and Malte Müller (acrylian)
+ *
  * @package plugins
  * @subpackage media
  */
@@ -127,6 +128,16 @@ class flag_thumbnail {
 		);
 	}
 
+	private static function image($html, $which, $where) {
+		$img = getPlugin('flag_thumbnail/' . $which);
+		$size = zp_imageDims($img);
+		$wide = $size['width'];
+		$high = $size['height'];
+		$img = str_replace(SERVERPATH, WEBPATH, $img);
+		$html .= '<img src="' . $img . '" class="imageasflag" width="' . $wide . 'px" height="' . $high . 'px" alt="" style="max-width:' . $wide . 'px; position: ' . $where . '" />' . "\n";
+		return $html;
+	}
+
 	private static function insert_class($html) {
 		global $_zp_current_album, $_zp_current_image;
 		if (getOption('flag_thumbnail_flag_new')) {
@@ -148,11 +159,9 @@ class flag_thumbnail {
 			$age = (time() - $imagedatestamp);
 			if ($age <= $not_older_as) {
 				if (getOption('flag_thumbnail_use_text')) {
-					$text = getOption('flag_thumbnail_new_text');
-					$html .= '<span class="textasnewflag" style="position: absolute;top: 10px;right: 6px;">' . $text . "</span>\n";
+					$html .= '<span class="textasnewflag" style="position: absolute;top: 10px;right: 6px;">' . getOption('flag_thumbnail_new_text') . "</span>\n";
 				} else {
-					$img = getPlugin('flag_thumbnail/' . getOption('flag_thumbnail_new_icon'), false, true);
-					$html .= '<img src="' . $img . '" class="imageasflag" alt="" style="position: absolute;top: 4px;right: 4px;"/>' . "\n";
+					$html = self::image($html, getOption('flag_thumbnail_new_icon'), 'absolute;top: 4px;right: 4px;');
 				}
 			}
 		}
@@ -161,14 +170,11 @@ class flag_thumbnail {
 				$obj = $obj->getAlbumThumbImage();
 			}
 			if (is_object($obj) && get_class($obj) == 'Image') {
-				$exif = $obj->getMetaData();
-				if (!empty($exif['EXIFGPSLatitude']) && !empty($exif['EXIFGPSLongitude'])) {
+				if ($obj->get('GPSLatitude') && $obj->get('GPSLongitude')) {
 					if (getOption('flag_thumbnail_use_text')) {
-						$text = getOption('flag_thumbnail_geodata_text');
-						$html .= '<span class="textasnewflag" style="position: absolute;bottom: 10px;right: 6px;">' . $text . "</span>\n";
+						$html .= '<span class="textasnewflag" style="position: absolute;bottom: 10px;right: 6px;">' . getOption('flag_thumbnail_use_text') . "</span>\n";
 					} else {
-						$img = getPlugin('flag_thumbnail/' . getOption('flag_thumbnail_geodata_icon'), false, true);
-						$html .= '<img src="' . $img . '" class="imageasflag" alt="" style="position: absolute;bottom: 4px;right: 4px;"/>' . "\n";
+						$html = self::image($html, getOption('flag_thumbnail_geodata_icon'), 'absolute;bottom: 4px;right: 4px;');
 					}
 				}
 			}
@@ -180,20 +186,16 @@ class flag_thumbnail {
 
 			if ($locked && getOption('flag_thumbnail_flag_locked')) {
 				if (getOption('flag_thumbnail_use_text')) {
-					$text = getOption('flag_thumbnail_locked_text');
-					$html .= '<span class="textasnewflag" style="position: absolute;bottom: 10px;left: 4px;">' . $text . "</span>\n";
+					$html .= '<span class="textasnewflag" style="position: absolute;bottom: 10px;left: 4px;">' . getOption('flag_thumbnail_locked_text') . "</span>\n";
 				} else {
-					$img = getPlugin('flag_thumbnail/' . getOption('flag_thumbnail_locked_icon'), false, true);
-					$html .= '<img src="' . $img . '" class="imageasflag" alt="" style="position: absolute;bottom: 4px;left: 4px;"/>' . "\n";
+					$html = self::image($html, getOption('flag_thumbnail_locked_icon'), 'absolute;bottom: 4px;left: 4px;');
 				}
 			}
 			if ($unpublished && getOption('flag_thumbnail_flag_unpublished')) {
 				if (getOption('flag_thumbnail_use_text')) {
-					$text = getOption('flag_thumbnail_unpublished_text');
-					$html .= '<span class="textasnewflag" style="position: absolute;top: 10px;left: 4px;">' . $text . "</span>\n";
+					$html .= '<span class="textasnewflag" style="position: absolute;top: 10px;left: 4px;">' . getOption('flag_thumbnail_unpublished_text') . "</span>\n";
 				} else {
-					$img = getPlugin('flag_thumbnail/' . getOption('flag_thumbnail_unpublished_icon'), false, true);
-					$html .= '<img src="' . $img . '" class="imageasflag" alt="" style="position: absolute;top: 4px;left: 4px;"/>' . "\n";
+					$html = self::image($html, getOption('flag_thumbnail_unpublished_icon'), 'absolute;top: 4px;left: 4px;');
 				}
 			}
 		}

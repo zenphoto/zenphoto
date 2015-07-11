@@ -8,8 +8,6 @@ if (!defined('WEBPATH'))
 <html>
 	<head>
 		<?php zp_apply_filter('theme_head'); ?>
-		<?php printHeadTitle(); ?>
-		<meta charset="<?php echo LOCAL_CHARSET; ?>">
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" type="text/css" />
 		<?php if (class_exists('RSS')) printRSSHeaderLink('Album', getAlbumTitle()); ?>
 	</head>
@@ -31,7 +29,7 @@ if (!defined('WEBPATH'))
 			<div id="content">
 
 				<div id="breadcrumb">
-					<h2><?php printGalleryIndexURL(' » '); printParentBreadcrumb("", " » ", " » "); ?><strong><?php printAlbumTitle(); ?></strong></h2>
+					<h2><a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Index'); ?>"><?php echo gettext("Index"); ?></a><?php printParentBreadcrumb(" » ", " » ", ""); ?> » <strong><?php printAlbumTitle(); ?></strong></h2>
 				</div>
 
 				<div id="content-left">
@@ -71,9 +69,9 @@ if (!defined('WEBPATH'))
 					</div>
 					<p style="clear: both; "></p>
 					<?php
-      printPageListWithNav("« " . gettext("prev"), gettext("next") . " »");
-      printTags('links', gettext('<strong>Tags:</strong>') . ' ', 'taglist', ', ');
-     ?>
+					printPageListWithNav("« " . gettext("prev"), gettext("next") . " »");
+					printTags('links', gettext('<strong>Tags:</strong>') . ' ', 'taglist', ', ');
+					?>
 					<br style="clear:both;" /><br />
 					<?php
 					if (function_exists('printGoogleMap')) {
@@ -91,18 +89,23 @@ if (!defined('WEBPATH'))
 					?>
 					<br style="clear:both;" />
 					<?php
-      if (function_exists('printAddToFavorites')) printAddToFavorites($_zp_current_album);
-      @call_user_func('printRating');
-      @call_user_func('printCommentForm');
-     ?>
+					if (function_exists('printAddToFavorites'))
+						printAddToFavorites($_zp_current_album);
+					@call_user_func('printRating');
+					@call_user_func('printCommentForm');
+					?>
 				</div><!-- content left-->
 
+
+
 				<div id="sidebar">
-					<?php include("sidebar.php"); ?>
+<?php include("sidebar.php"); ?>
 				</div><!-- sidebar -->
 
+
+
 				<div id="footer">
-					<?php include("footer.php"); ?>
+<?php include("footer.php"); ?>
 				</div>
 
 			</div><!-- content -->

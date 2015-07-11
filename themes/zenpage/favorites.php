@@ -9,8 +9,9 @@ if (class_exists('favorites')) {
 	<html>
 		<head>
 			<?php zp_apply_filter('theme_head'); ?>
-			<?php printHeadTitle(); ?>
-			<meta charset="<?php echo LOCAL_CHARSET; ?>">
+
+
+
 			<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" type="text/css" />
 		</head>
 		<body>
@@ -30,7 +31,7 @@ if (class_exists('favorites')) {
 				<div id="content">
 
 					<div id="breadcrumb">
-						<h2><?php printGalleryIndexURL(' » '); printAlbumTitle(); ?></strong></h2>
+						<h2><a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Index'); ?>"><?php echo gettext("Index"); ?></a> » <?php printAlbumTitle(); ?></strong></h2>
 					</div>
 
 					<div id="content-left">
@@ -67,16 +68,16 @@ if (class_exists('favorites')) {
 
 						</div>
 						<p style="clear: both; "></p>
-						<?php 
-      @call_user_func('printSlideShowLink'); 
-      printPageListWithNav("« " . gettext("prev"), gettext("next") . " »"); 
-      printTags('links', gettext('<strong>Tags:</strong>') . ' ', 'taglist', ', '); 
-      ?>
+						<?php
+						@call_user_func('printSlideShowLink');
+						printPageListWithNav("« " . gettext("prev"), gettext("next") . " »");
+						printTags('links', gettext('<strong>Tags:</strong>') . ' ', 'taglist', ', ');
+						?>
 						<br style="clear:both;" /><br />
-						<?php 
-      @call_user_func('printRating'); 
-      @call_user_func('printCommentForm');
-      ?>
+						<?php
+						@call_user_func('printRating');
+						@call_user_func('printCommentForm');
+						?>
 					</div><!-- content left-->
 
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * Allows registered users to select and manage "favorite" Zenphoto objects.
+ * Allows registered users to select and manage "favorite" objects.
  * Currently just images & albums are supported.
  *
  * <b>Note:</b>
@@ -40,6 +40,7 @@
  * </ul>
  *
  * @author Stephen Billard (sbillard)
+ *
  * @package plugins
  * @subpackage media
  */
@@ -47,11 +48,11 @@ $plugin_is_filter = 5 | FEATURE_PLUGIN;
 $plugin_description = gettext('Support for <em>favorites</em> handling.');
 $plugin_author = "Stephen Billard (sbillard)";
 
-$option_interface = 'favoritesOptions';
+$option_interface = 'favoritesHandler';
 
 require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/favoritesHandler/favoritesClass.php');
 
-class favoritesOptions {
+class favoritesHandler {
 
 	function __construct() {
 		if (OFFSET_PATH == 2) {
@@ -86,14 +87,25 @@ class favoritesOptions {
 			$list[$file] = str_replace('.php', '', $file);
 		}
 		$list = array_diff($list, standardScripts());
+		$all = query_full_array('SELECT `aux` FROM ' . prefix('plugin_storage') . ' WHERE `type`="favorites"');
+		$disable = false;
+		$text = gettext('If enabled a user may have multiple (named) favorites.');
+		foreach ($all as $aux) {
+			$instance = getSerializedArray($aux['aux']);
+			if (isset($instance[1])) {
+				$disable = true;
+				$text .= '<br /><span class="warningbox">' . gettext('Named favorites are present.') . '</span>';
+			}
+		}
 
 		$options = array(gettext('Link text')			 => array('key'					 => 'favorites_linktext', 'type'				 => OPTION_TYPE_TEXTBOX,
 										'multilingual' => true,
 										'order'				 => 2,
 										'desc'				 => gettext('The text for the link to the favorites page.')),
-						gettext('Multiple sets')	 => array('key'		 => 'favorites_multi', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 6,
-										'desc'	 => gettext('If enabled a user may have multiple (named) favorites.')),
+						gettext('Multiple sets')	 => array('key'			 => 'favorites_multi', 'type'		 => OPTION_TYPE_CHECKBOX,
+										'order'		 => 6,
+										'disabled' => $disable,
+										'desc'		 => $text),
 						gettext('Add button')			 => array('key'					 => 'favorites_add_button', 'type'				 => OPTION_TYPE_TEXTBOX,
 										'multilingual' => true,
 										'order'				 => 6,
@@ -239,27 +251,78 @@ class favoritesOptions {
 		return false;
 	}
 
+	static function showWatchers($html, $obj, $prefix) {
+		if (!trim($prefix, '-')) {
+			//	only on single item tabs
+			$watchers = favorites::getWatchers($obj);
+			$multi = false;
+			foreach ($watchers as $key => $aux) {
+				$array = getSerializedArray($aux);
+				if (array_key_exists(1, $array)) {
+					$multi = true;
+					break;
+				}
+			}
+			if (!empty($watchers)) {
+				?>
+				<tr>
+					<td>
+						<?php echo gettext('Users watching:'); ?>
+					</td>
+					<td class="top">
+						<?php
+						if ($multi) {
+							?>
+							<dl class="userlist">
+								<dh>
+									<dt><em><?php echo gettext('User'); ?></em></dt>
+									<dd><em><?php echo gettext('instance'); ?></em></dd>
+								</dh>
+								<?php favorites::listWatchers($obj, array('<dt>', '</dt><dd>', '</dd>')); ?>
+							</dl>
+							<?php
+						} else {
+							?>
+							<ul class="userlist">
+								<?php favorites::listWatchers($obj, array('<li>', '', '</li>')); ?>
+							</ul>
+							<?php
+						}
+						?>
+					</td>
+				</tr>
+				<?php
+			}
+		}
+		return $html;
+	}
+
+	static function toolbox($zf) {
+		printFavoritesURL(gettext('Favorites'), '<li>', '</li><li>', '</li>');
+		return $zf;
+	}
+
 }
 
 $_zp_conf_vars['special_pages']['favorites'] = array('define'	 => '_FAVORITES_', 'rewrite'	 => getOption('favorites_link'),
 				'option'	 => 'favorites_link', 'default'	 => '_PAGE_/favorites');
 $_zp_conf_vars['special_pages'][] = array('definition' => '%FAVORITES%', 'rewrite' => '_FAVORITES_');
-$_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%FAVORITES%/(.+)/([0-9]+)/?$',
+$_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%FAVORITES%/(.+)/([0-9]+)/*$',
 				'rule'		 => '%REWRITE% index.php?p=favorites&instance=$1&page=$2 [L,QSA]');
-$_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%FAVORITES%/([0-9]+)/?$',
+$_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%FAVORITES%/([0-9]+)/*$',
 				'rule'		 => '%REWRITE% index.php?p=favorites&page=$1 [L,QSA]');
-$_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%FAVORITES%/(.+)/?$',
+$_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%FAVORITES%/(.+)/*$',
 				'rule'		 => '%REWRITE% index.php?p=favorites&instance=$1 [L,QSA]');
 $_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%FAVORITES%/*$',
 				'rule'		 => '%REWRITE% index.php?p=favorites [L,QSA]');
 
 if (OFFSET_PATH) {
-	zp_register_filter('edit_album_custom_data', 'favorites::showWatchers');
-	zp_register_filter('edit_image_custom_data', 'favorites::showWatchers');
+	zp_register_filter('edit_album_custom_data', 'favoritesHandler::showWatchers');
+	zp_register_filter('edit_image_custom_data', 'favoritesHandler::showWatchers');
 } else {
 	zp_register_filter('load_theme_script', 'favorites::loadScript');
 	zp_register_filter('checkPageValidity', 'favorites::pageCount');
-	zp_register_filter('admin_toolbox_global', 'favorites::toolbox', 21);
+	zp_register_filter('admin_toolbox_global', 'favoritesHandler::toolbox', 21);
 	if (zp_loggedin()) {
 		if (isset($_POST['addToFavorites'])) {
 			$___Favorites = new favorites($_zp_current_admin_obj->getUser());
@@ -270,7 +333,7 @@ if (OFFSET_PATH) {
 			$id = sanitize($_POST['id']);
 			switch ($_POST['type']) {
 				case 'images':
-					$img = newImage(NULL, array('folder' => dirname($id), 'filename' => basename($id)));
+					$img = newImage(array('folder' => dirname($id), 'filename' => basename($id)));
 					if ($_POST['addToFavorites']) {
 						if ($img->loaded) {
 							$___Favorites->addImage($img);
@@ -315,11 +378,11 @@ if (OFFSET_PATH) {
 			$table = $obj->table;
 			$target = array('type' => $table);
 			if ($_zp_gallery_page == 'favorites.php') {
-				//	 only need one remove button since we know the instance
+//	 only need one remove button since we know the instance
 				$multi = false;
 				$list = array($_myFavorites->instance);
 			} else {
-				if ($multi = getOption('favorites_multi')) {
+				if ($multi = $_myFavorites->multi) {
 					$list = $_myFavorites->list;
 				} else {
 					$list = array('');
@@ -331,7 +394,7 @@ if (OFFSET_PATH) {
 					<script type="text/javascript">
 						// <!-- <![CDATA[
 						var _favList = ['<?php echo implode("','", $favList); ?>'];
-						$(function() {
+						$(function () {
 							$('.favorite_instance').tagSuggest({tags: _favList})
 						});
 						// ]]> -->
@@ -393,25 +456,32 @@ if (OFFSET_PATH) {
 		 * @param type $text
 		 */
 		function printFavoritesURL($text = NULL, $before = NULL, $between = NULL, $after = NULL) {
-			global $_myFavorites;
+			global $_myFavorites, $_zp_gallery_page;
 			if (zp_loggedin()) {
 				if (is_null($text)) {
 					$text = get_language_string(getOption('favorites_linktext'));
 				}
-				$list = $_myFavorites->getList();
+				if ($_zp_gallery_page == 'favorites.php') {
+					$current = $_myFavorites->instance;
+				} else {
+					$current = NULL;
+				}
+
 				$betwixt = NULL;
 				echo $before;
-				foreach ($_myFavorites->getList()as $instance) {
-					$link = $_myFavorites->getLink(NULL, $instance);
-					$display = $text;
-					if ($instance) {
-						$display .= '[' . $instance . ']';
+				foreach ($_myFavorites->getList() as $instance) {
+					if ($instance !== $current) {
+						$link = $_myFavorites->getLink(NULL, $instance);
+						$display = $text;
+						if ($instance) {
+							$display .= '[' . $instance . ']';
+						}
+						echo $betwixt;
+						$betwixt = $between;
+						?>
+						<a href="<?php echo $link; ?>" class="favorite_link"><?php echo html_encode($display); ?> </a>
+						<?php
 					}
-					echo $betwixt;
-					$betwixt = $between;
-					?>
-					<a href="<?php echo $link; ?>" class="favorite_link"><?php echo html_encode($display); ?> </a>
-					<?php
 				}
 				echo $after;
 			}

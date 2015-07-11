@@ -3,6 +3,5 @@
 	IndexIgnore *
 </IfModule>
 <FilesMatch "\.(htaccess|cfg|log|php)$">
-  Order Allow,Deny
   Deny from all
-	</FilesMatch>
+</FilesMatch>

@@ -3,12 +3,13 @@
 /**
  *
  * Provides functionality to select different templates for the standard theme pages <i>album.php</i>, <i>image.php</i>
- * and for Zenpage <i>pages.php</i> and <i>news.php</i>.
+ * and for zenpage <i>pages.php</i> and <i>news.php</i>.
  *
  * The additional template files have to be clones of the standard theme pages which must be kept as default ones.
  * The file names of these additional template files must match these patterns and should not include special characters or characters with diacritical marks:
  *
- * Zenphoto gallery items:
+ * Gallery items:
+ * <hr>
  * <ul>
  * <li>For albums: album<var>customname</var>.php</li>
  * <li>For images : image<var>customname</var>.php</li>
@@ -37,6 +38,7 @@
  *
  * @author Malte Müller (acrylian), Stephen Billard (sbillard)
  * @package plugins
+ * @subpackage theme
  */
 $plugin_is_filter = 5 | FEATURE_PLUGIN;
 $plugin_description = gettext("Multiple <em>Theme</em> layouts");
@@ -109,8 +111,8 @@ class multipleLayoutOptions {
  * Gets the selected layout page for this item. Returns false if nothing is selected.
  *
  * @param object $obj the object being selected
- * @param string $type For Zenphoto gallery items "multiple_layouts_albums", "multiple_layouts_images"
- * 										 For Zenpage CMS items , "multiple_layouts_pages", , "multiple_layouts_news" , "multiple_layouts_news_categories"
+ * @param string $type For Gallery items "multiple_layouts_albums", "multiple_layouts_images"
+ * 										 For zenpage items "multiple_layouts_pages", , "multiple_layouts_news" , "multiple_layouts_news_categories"
  * @return result
  */
 function getSelectedLayout($obj, $type) {
@@ -128,8 +130,8 @@ function getSelectedLayout($obj, $type) {
  * Checks if there is a layout inherited from a parent items (album, page or category) and returns it. Returns false otherwise.
  *
  * @param object $obj the object being selected
- * @param string $type For Zenphoto gallery items "multiple_layouts_albums"
- * 										 For Zenpage CMS items , "multiple_layouts_pages", , "multiple_layouts_news" , "multiple_layouts_news_categories"
+ * @param string $type For gallery items "multiple_layouts_albums"
+ * 										 For zenpage items , "multiple_layouts_pages", , "multiple_layouts_news" , "multiple_layouts_news_categories"
  * @return result
  */
 function checkParentLayouts($obj, $type) {
@@ -161,9 +163,9 @@ function checkParentLayouts($obj, $type) {
 				$parents = array_reverse($parents); //reverse so we can check the direct parent first.
 				foreach ($parents as $parent) {
 					if ($type === 'multiple_layouts_pages') {
-						$parentobj = new ZenpagePage($parent);
+						$parentobj = newPage($parent);
 					} else {
-						$parentobj = new ZenpageCategory($parent);
+						$parentobj = newCategory($parent);
 					}
 					$parentlayouts = query_single_row('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `aux`=' . $parentobj->getID() . ' AND `type` = "' . $type . '"');
 					if ($parentlayouts && $parentlayouts['data']) {
@@ -281,7 +283,7 @@ function getLayoutSelector($obj, $type, $text, $prefix = '', $secondary = false)
 			$categories = $obj->getCategories();
 			if ($categories) {
 				foreach ($categories as $cat) {
-					$cat = new ZenpageCategory($cat['titlelink']);
+					$cat = newCategory($cat['titlelink']);
 					$getlayout = getSelectedLayout($cat, 'multiple_layouts_news_categories');
 					if ($getlayout && $getlayout['data']) { //	in at least one news category with an alternate page
 						$defaulttext = gettext('inherited');
@@ -354,7 +356,7 @@ function getLayoutSelector($obj, $type, $text, $prefix = '', $secondary = false)
  * @return string
  */
 function getLayout($path) {
-	global $_zp_gallery, $_zp_gallery_page, $_zp_current_image, $_zp_current_album, $_zp_current_zenpage_page, $_zp_current_zenpage_news, $_zp_current_category, $_zp_current_search;
+	global $_zp_gallery, $_zp_gallery_page, $_zp_current_image, $_zp_current_album, $_zp_current_page, $_zp_current_article, $_zp_current_category, $_zp_current_search;
 	if ($path) {
 		$themepath = THEMEFOLDER . '/' . $_zp_gallery->getCurrentTheme() . '/';
 		$getlayout = false;
@@ -382,14 +384,14 @@ function getLayout($path) {
 				break;
 			case 'pages.php':
 				if (getOption('multiple_layouts_pages')) {
-					$getlayout = getSelectedLayout($_zp_current_zenpage_page, 'multiple_layouts_pages');
+					$getlayout = getSelectedLayout($_zp_current_page, 'multiple_layouts_pages');
 				}
 				break;
 			case 'news.php':
 				if (getOption('multiple_layouts_news_categories') && in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
 					$getlayout = getSelectedLayout($_zp_current_category, 'multiple_layouts_news_categories');
 				} elseif (getOption('multiple_layouts_news') && in_context(ZP_ZENPAGE_SINGLE)) {
-					$getlayout = getSelectedLayout($_zp_current_zenpage_news, 'multiple_layouts_news');
+					$getlayout = getSelectedLayout($_zp_current_article, 'multiple_layouts_news');
 				}
 				break;
 		}

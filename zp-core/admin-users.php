@@ -1,6 +1,9 @@
 <?php
 /**
  * provides the Options tab of admin
+ *
+ * @author Stephen Billard (sbillard)
+ *
  * @package admin
  */
 // force UTF-8 Ø
@@ -95,7 +98,7 @@ if (isset($_GET['action'])) {
 						$updated = false;
 						$error = false;
 						$userobj = NULL;
-						$pass = trim(sanitize($_POST['pass' . $i]));
+						$pass = trim(sanitize($_POST['pass' . $i], 0));
 						$user = trim(sanitize($_POST['adminuser' . $i]));
 						if (empty($user) && !empty($pass)) {
 							$notify = '?mismatch=nothing';
@@ -117,7 +120,6 @@ if (isset($_GET['action'])) {
 							} else {
 								$what = 'update';
 								$userobj = Zenphoto_Authority::newAdministrator($user);
-								markUpdated();
 							}
 
 							if (isset($_POST[$i . '-admin_name'])) {
@@ -129,14 +131,9 @@ if (isset($_GET['action'])) {
 							}
 							if (isset($_POST[$i . '-admin_email'])) {
 								$admin_e = trim(sanitize($_POST[$i . '-admin_email']));
-								$mail_duplicate = $_zp_authority->checkUniqueMailaddress($admin_e, $user);
-								if($mail_duplicate) {
-									$msg = sprintf(gettext('%s email is already used by another user!'), $admin_n);
-								} else {
-									if ($admin_e != $userobj->getEmail()) {
-										markUpdated();
-										$userobj->setEmail($admin_e);
-									}
+								if ($admin_e != $userobj->getEmail()) {
+									markUpdated();
+									$userobj->setEmail($admin_e);
 								}
 							}
 							if (empty($pass)) {
@@ -147,7 +144,7 @@ if (isset($_GET['action'])) {
 								if (isset($_POST['disclose_password' . $i]) && $_POST['disclose_password' . $i] == 'on') {
 									$pass2 = $pass;
 								} else {
-									$pass2 = trim(sanitize(@$_POST['pass_r' . $i]));
+									$pass2 = trim(sanitize(@$_POST['pass_r' . $i], 0));
 								}
 								if ($pass == $pass2) {
 									$pass2 = $userobj->getPass($pass);
@@ -178,13 +175,21 @@ if (isset($_GET['action'])) {
 							}
 							$rights = 0;
 							if ($alter) {
-								$oldrights = $userobj->getRights() & ~(ALBUM_RIGHTS | ZENPAGE_PAGES_RIGHTS | ZENPAGE_NEWS_RIGHTS);
-								$rights = processRights($i);
-								if (($rights & ~(ALBUM_RIGHTS | ZENPAGE_PAGES_RIGHTS | ZENPAGE_NEWS_RIGHTS)) != $oldrights) {
-									$userobj->setRights($rights | NO_RIGHTS);
-									markUpdated();
+								if (isset($_POST[$i . '-rightsenabled'])) {
+									$oldrights = $userobj->getRights() & ~(ALBUM_RIGHTS | ZENPAGE_PAGES_RIGHTS | ZENPAGE_NEWS_RIGHTS);
+									$rights = processRights($i);
+									if (($rights & ~(ALBUM_RIGHTS | ZENPAGE_PAGES_RIGHTS | ZENPAGE_NEWS_RIGHTS)) != $oldrights) {
+										$userobj->setRights($rights | NO_RIGHTS);
+										markUpdated();
+									}
 								}
-								$oldobjects = sortMultiArray($userobj->getObjects(), 'data');
+								$oldobjects = $userobj->getObjects();
+								foreach ($oldobjects as $key => $oldobj) {
+									if ($oldobj['type'] != 'album') {
+										unset($oldobjects[$key]['name']);
+									}
+								}
+								$oldobjects = sortMultiArray($oldobjects, 'data');
 								$objects = sortMultiArray(processManagedObjects($i, $rights), 'data');
 								if ($objects != $oldobjects) {
 									$userobj->setObjects($objects);
@@ -279,7 +284,7 @@ echo $refresh;
 			<?php
 			if ($_zp_current_admin_obj->reset && !$refresh) {
 				echo "<div class=\"errorbox space\">";
-				echo "<h2>" . gettext("Password reset request.<br />You may now set admin usernames and passwords.") . "</h2>";
+				echo "<h2>" . gettext("Password reset request.") . "</h2>";
 				echo "</div>";
 			}
 
@@ -442,7 +447,7 @@ echo $refresh;
 							}
 						}
 					</script>
-					<form class="dirty-check" action="?action=saveoptions<?php echo str_replace('&', '&amp;', $ticket); ?>" method="post" autocomplete="off" onsubmit="return checkNewuser();" >
+					<form class="dirtylistening" onReset="setClean('user_form');" id="user_form" action="?action=saveoptions<?php echo str_replace('&', '&amp;', $ticket); ?>" method="post" autocomplete="off" onsubmit="return checkNewuser();" >
 						<?php XSRFToken('saveadmin'); ?>
 						<input type="hidden" name="saveadminoptions" value="yes" />
 						<input type="hidden" name="subpage" value="<?php echo $subpage; ?>" />
@@ -466,14 +471,14 @@ echo $refresh;
 									?>
 									<th>
 										<span style="font-weight: normal">
-											<a href="javascript:toggleExtraInfo('','user',true);"><?php echo gettext('Expand all'); ?></a>
+											<a onclick="toggleExtraInfo('', 'user', true);"><?php echo gettext('Expand all'); ?></a>
 											|
-											<a href="javascript:toggleExtraInfo('','user',false);"><?php echo gettext('Collapse all'); ?></a>
+											<a onclick="toggleExtraInfo('', 'user', false);"><?php echo gettext('Collapse all'); ?></a>
 										</span>
 									</th>
 									<th>
 										<?php echo gettext('show'); ?>
-										<select name="showgroup" id="showgroup" class="ays-ignore" onchange="launchScript('<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-users.php', ['showgroup=' + $('#showgroup').val()]);" >
+										<select name="showgroup" id="showgroup" class="ignoredirty" onchange="launchScript('<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-users.php', ['showgroup=' + $('#showgroup').val()]);" >
 											<option value=""<?php if (!$showgroup) echo ' selected="selected"'; ?>><?php echo gettext('all'); ?></option>
 											<option value="*"<?php if ($showgroup == '*') echo ' selected="selected"'; ?>><?php echo gettext('pending verification'); ?></option>
 											<?php
@@ -579,8 +584,9 @@ echo $refresh;
 														$hidetitle = sprintf(gettext('Hide details for user %s'), $userid);
 													}
 													?>
-													<a id="toggle_<?php echo $id; ?>" href="javascript:visible=getVisible('<?php echo $id; ?>','user', '<?php echo $displaytitle; ?>', '<?php echo $hidetitle; ?>');
-														 $('#show_<?php echo $id; ?>').val(visible);toggleExtraInfo('<?php echo $id; ?>','user',visible);" title="<?php echo $displaytitle; ?>" >
+													<a id="toggle_<?php echo $id; ?>" onclick="visible = getVisible('<?php echo $id; ?>', 'user', '<?php echo $displaytitle; ?>', '<?php echo $hidetitle; ?>');
+																$('#show_<?php echo $id; ?>').val(visible);
+																toggleExtraInfo('<?php echo $id; ?>', 'user', visible);" title="<?php echo $displaytitle; ?>" >
 															 <?php
 															 if (empty($userid)) {
 																 ?>
@@ -748,7 +754,7 @@ echo $refresh;
 														foreach ($_languages as $text => $lang) {
 															?>
 															<li id="<?php echo $lang . '_' . $id; ?>"<?php if ($lang == $currentValue) echo ' class="currentLanguage"'; ?>>
-																<a onclick="javascript:languageChange('<?php echo $id; ?>', '<?php echo $lang; ?>');" >
+																<a onclick="languageChange('<?php echo $id; ?>', '<?php echo $lang; ?>');" >
 																	<img src="<?php echo getLanguageFlag($lang); ?>" alt="<?php echo $text; ?>" title="<?php echo $text; ?>" />
 																</a>
 															</li>
@@ -781,19 +787,19 @@ echo $refresh;
 														printManagedObjects('albums', $albumlist, $album_alter_rights, $userobj, $id, gettext('user'), $flag);
 														if (extensionEnabled('zenpage')) {
 															$pagelist = array();
-															$pages = $_zp_zenpage->getPages(false);
+															$pages = $_zp_CMS->getPages(false);
 															foreach ($pages as $page) {
 																if (!$page['parentid']) {
 																	$pagelist[get_language_string($page['title'])] = $page['titlelink'];
 																}
 															}
-															printManagedObjects('pages', $pagelist, $album_alter_rights, $userobj, $id, gettext('user'), NULL);
-															$newslist = array();
-															$categories = $_zp_zenpage->getAllCategories(false);
+															$newslist = array('"' . gettext('un-categorized') . '"' => '`');
+															$categories = $_zp_CMS->getAllCategories(false);
 															foreach ($categories as $category) {
 																$newslist[get_language_string($category['title'])] = $category['titlelink'];
 															}
 															printManagedObjects('news', $newslist, $album_alter_rights, $userobj, $id, gettext('user'), NULL);
+															printManagedObjects('pages', $pagelist, $album_alter_rights, $userobj, $id, gettext('user'), NULL);
 														}
 													}
 													?>
@@ -850,7 +856,7 @@ echo $refresh;
 							?>
 							<br class="clearall" />
 							<p class="notebox">
-								<?php printf(gettext('You may wish to revert the <em>Zenphoto_Authority</em> user rights to version %s for backwards compatibility with prior Zenphoto releases.'), Zenphoto_Authority::getVersion() - 1); ?>
+								<?php printf(gettext('You may wish to revert the <em>Zenphoto_Authority</em> user rights to version %s for backwards compatibility with prior releases.'), Zenphoto_Authority::getVersion() - 1); ?>
 								<br class="clearall" />
 								<span class="buttons">
 									<a onclick="launchScript('', ['action=migrate_rights', 'revert=true', 'XSRFToken=<?php echo getXSRFToken('migrate_rights') ?>']);"><?php echo gettext('Revert rights'); ?></a>
@@ -866,8 +872,8 @@ echo $refresh;
 						//<!-- <![CDATA[
 						var admins = ["<?php echo implode('","', $alladmins); ?>"];
 						function checkNewuser() {
-							var newuserid = <?php echo ($id - 1); ?>;
-							var newuser = $('#adminuser' + newuserid).val().replace(/^\s+|\s+$/g, "");
+							newuserid = <?php echo ($id - 1); ?>;
+							newuser = $('#adminuser' + newuserid).val().replace(/^\s+|\s+$/g, "");
 							if (newuser == '')
 								return true;
 							if (newuser.indexOf('?') >= 0 || newuser.indexOf('&') >= 0 || newuser.indexOf('"') >= 0 || newuser.indexOf('\'') >= 0) {

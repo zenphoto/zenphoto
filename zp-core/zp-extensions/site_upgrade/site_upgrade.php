@@ -8,16 +8,49 @@ admin_securityChecks(ALBUM_RIGHTS, currentRelativeURL());
 
 switch (isset($_GET['siteState']) ? $_GET['siteState'] : NULL) {
 	case 'closed':
-		$report = gettext('Site is now marked in upgrade.');
+		$report = '';
 		setSiteState('closed');
+		zp_apply_filter('security_misc', true, 'site_upgrade', 'zp_admin_auth', 'closed');
+
+		if (extensionEnabled('cloneZenphoto')) {
+			require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cloneZenphoto.php');
+			if (class_exists('cloneZenphoto')) {
+				$clones = cloneZenphoto::clones();
+				foreach ($clones as $clone => $url) {
+					setSiteState('closed', $clone . '/');
+				}
+			}
+		}
 		break;
 	case 'open':
 		$report = gettext('Site is viewable.');
 		setSiteState('open');
+		zp_apply_filter('security_misc', true, 'site_upgrade', 'zp_admin_auth', 'open');
+
+		if (extensionEnabled('cloneZenphoto')) {
+			require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cloneZenphoto.php');
+			if (class_exists('cloneZenphoto')) {
+				$clones = cloneZenphoto::clones();
+				foreach ($clones as $clone => $url) {
+					setSiteState('open', $clone . '/');
+				}
+			}
+		}
 		break;
 	case 'closed_for_test':
-		$report = gettext('Site is avaiable for testing only.');
+		$report = '';
 		setSiteState('closed_for_test');
+		zp_apply_filter('security_misc', true, 'site_upgrade', 'zp_admin_auth', 'closed_for_test');
+
+		if (extensionEnabled('cloneZenphoto')) {
+			require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cloneZenphoto.php');
+			if (class_exists('cloneZenphoto')) {
+				$clones = cloneZenphoto::clones();
+				foreach ($clones as $clone => $url) {
+					setSiteState('closed_for_test', $clone . '/');
+				}
+			}
+		}
 		break;
 }
 
@@ -28,12 +61,15 @@ exitZP();
  * updates the site status
  * @param string $state
  */
-function setSiteState($state) {
-	global $_configMutex;
+function setSiteState($state, $folder = NULL) {
+	if (is_null($folder)) {
+		$folder = SERVERPATH . '/';
+	}
+	$_configMutex = new zpMutex('cF', NULL, $folder);
 	$_configMutex->lock();
-	$zp_cfg = @file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
+	$zp_cfg = @file_get_contents($folder . DATA_FOLDER . '/' . CONFIGFILE);
 	$zp_cfg = updateConfigItem('site_upgrade_state', $state, $zp_cfg);
-	storeConfig($zp_cfg);
+	storeConfig($zp_cfg, $folder);
 	$_configMutex->unlock();
 }
 

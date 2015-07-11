@@ -2,6 +2,9 @@
 
 /**
  * database core functions for PDO implementations
+ *
+ * @author Stephen Billard (sbillard)
+ *
  * @package core
  */
 // force UTF-8 Ø
@@ -16,15 +19,15 @@
 function query($sql, $errorstop = true) {
 	global $_zp_DB_connection, $_zp_DB_last_result, $_zp_DB_details;
 	$_zp_DB_last_result = false;
-	try {
-		$_zp_DB_last_result = $_zp_DB_connection->query($sql);
-	} catch (PDOException $e) {
-		$_zp_DB_last_result = false;
+	if ($_zp_DB_connection) {
+		try {
+			$_zp_DB_last_result = $_zp_DB_connection->query($sql);
+		} catch (PDOException $e) {
+			$_zp_DB_last_result = false;
+		}
 	}
 	if (!$_zp_DB_last_result && $errorstop) {
-		$sql = str_replace('`' . $_zp_DB_details['mysql_prefix'], '`[' . gettext('prefix') . ']', $sql);
-		$sql = str_replace($_zp_DB_details['mysql_database'], '[' . gettext('DB') . ']', $sql);
-		trigger_error(sprintf(gettext('%1$s Error: ( %2$s ) failed. %1$s returned the error %3$s'), DATABASE_SOFTWARE, $sql, db_error()), E_USER_ERROR);
+		dbErrorReport($sql);
 	}
 	return $_zp_DB_last_result;
 }
@@ -77,14 +80,18 @@ function query_full_array($sql, $errorstop = true, $key = NULL) {
 }
 
 /**
- * sqlite_real_escape_string standin that insures the DB connection is passed.
+ * PDO real_escape_string standin that insures the DB connection is passed.
  *
  * @param string $string
  * @return string
  */
-function db_quote($string) {
+function db_escape($string) {
 	global $_zp_DB_connection;
-	return $_zp_DB_connection->quote($string);
+	if ($_zp_DB_connection) {
+		return $_zp_DB_connection->quote($string);
+	} else {
+		return addslashes($string);
+	}
 }
 
 /*

@@ -31,14 +31,23 @@ include_once SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/elFinder/php
  * @return bool|null
  * */
 function access($attr, $path, $data, $volume) {
-	return strpos(basename($path), '.') === 0	// if file/folder begins with '.' (dot)
+	return strpos(basename($path), '.') === 0 // if file/folder begins with '.' (dot)
 					? !($attr == 'read' || $attr == 'write') // set read+write to false, other (locked+hidden) set to true
-					: null;				 // else elFinder decide it itself
+					: null; // else elFinder decide it itself
 }
 
 function accessImage($attr, $path, $data, $volume) {
 	//	allow only images
-	if (access($attr, $path, $data, $volume) || (!is_dir($path) && !Gallery::validImage($path))) {
+	if (access($attr, $path, $data, $volume) || (!is_dir($path) && !exif_imagetype($path))) {
+		return !($attr == 'read' || $attr == 'write');
+	}
+	return NULL;
+}
+
+function accessMedia($attr, $path, $data, $volume) {
+	//allow only tinyMCE recognized media suffixes
+	$valid = array("mp3", "wav", "mp4", "webm", "ogg", "swf");
+	if (access($attr, $path, $data, $volume) || (!is_dir($path) && !in_array(getSuffix($path), $valid))) {
 		return !($attr == 'read' || $attr == 'write');
 	}
 	return NULL;
@@ -56,10 +65,25 @@ function accessAlbums($attr, $path, $data, $volume) {
 }
 
 $opts = array();
+$rights = zp_loggedin();
 
 if ($_REQUEST['origin'] == 'upload') {
+	$themeAlias = sprintf(gettext('Themes (%s)'), THEMEFOLDER);
+	if (isset($_REQUEST['themeEdit'])) {
+		$rights = 0;
+		$themeRequest = sanitize($_REQUEST['themeEdit']);
+		if (zp_loggedin(THEMES_RIGHTS) && file_exists(SERVERPATH . '/' . THEMEFOLDER . '/' . $themeRequest)) {
+			if (!protectedTheme($themeRequest)) {
+				$themeAlias = sprintf(gettext('%s'), $themeRequest);
+				$themeRequest .= '/';
+				$rights = THEMES_RIGHTS;
+			}
+		}
+	} else {
+		$themeRequest = '';
+	}
 
-	if (zp_loggedin(FILES_RIGHTS)) {
+	if ($rights & FILES_RIGHTS) {
 		$opts['roots'][0] = array(
 						'driver'				 => 'LocalFileSystem',
 						'startPath'			 => SERVERPATH . '/' . UPLOAD_FOLDER . '/',
@@ -76,14 +100,19 @@ if ($_REQUEST['origin'] == 'upload') {
 		);
 	}
 
-	if (zp_loggedin(THEMES_RIGHTS)) {
-		$zplist = getSerializedArray(getOption('Zenphoto_theme_list'));
+	if ($rights & THEMES_RIGHTS) {
+		$zplist = array();
+		foreach ($_zp_gallery->getThemes() as $theme => $data) {
+			if (protectedTheme($theme)) {
+				$zplist[] = preg_quote($theme);
+			}
+		}
 		$opts['roots'][1] = array(
 						'driver'				 => 'LocalFileSystem',
-						'startPath'			 => SERVERPATH . '/' . THEMEFOLDER . '/',
-						'path'					 => SERVERPATH . '/' . THEMEFOLDER . '/',
-						'URL'						 => WEBPATH . '/' . THEMEFOLDER . '/',
-						'alias'					 => sprintf(gettext('Zenphoto themes (%s)'), THEMEFOLDER),
+						'startPath'			 => SERVERPATH . '/' . THEMEFOLDER . '/' . $themeRequest,
+						'path'					 => SERVERPATH . '/' . THEMEFOLDER . '/' . $themeRequest,
+						'URL'						 => WEBPATH . '/' . THEMEFOLDER . '/' . $themeRequest,
+						'alias'					 => $themeAlias,
 						'mimeDetect'		 => 'internal',
 						'tmbPath'				 => '.tmb',
 						'utf8fix'				 => true,
@@ -108,7 +137,7 @@ if ($_REQUEST['origin'] == 'upload') {
 		);
 	}
 
-	if (zp_loggedin(UPLOAD_RIGHTS)) {
+	if ($rights & UPLOAD_RIGHTS) {
 		$opts['roots'][2] = array(
 						'driver'			 => 'LocalFileSystem',
 						'startPath'		 => getAlbumFolder(SERVERPATH),
@@ -123,7 +152,7 @@ if ($_REQUEST['origin'] == 'upload') {
 						'uploadAllow'	 => array('image'),
 						'acceptedName' => '/^[^\.].*$/'
 		);
-		if (zp_loggedin(ADMIN_RIGHTS)) {
+		if ($rights & ADMIN_RIGHTS) {
 			$opts['roots'][2]['accessControl'] = 'access';
 		} else {
 			$opts['roots'][2]['accessControl'] = 'accessAlbums';
@@ -141,16 +170,16 @@ if ($_REQUEST['origin'] == 'upload') {
 
 			foreach ($_managed_folders as $key => $folder) {
 				$rightsalbum = newAlbum($folder);
-				$modified_rights = $rightsalbum->albumSubRights();
+				$modified_rights = $rightsalbum->subRights();
 				if ($uploadlimit <= 0) {
 					$modified_rights = $modified_rights & ~MANAGED_OBJECT_RIGHTS_UPLOAD;
 				}
 				$_not_edit[$key] = $_not_upload[$key] = $folder = preg_quote($folder);
 				switch ($modified_rights & (MANAGED_OBJECT_RIGHTS_UPLOAD | MANAGED_OBJECT_RIGHTS_EDIT)) {
-					case MANAGED_OBJECT_RIGHTS_UPLOAD:		// upload but not edit
+					case MANAGED_OBJECT_RIGHTS_UPLOAD: // upload but not edit
 						unset($_not_upload[$key]);
 						break;
-					case MANAGED_OBJECT_RIGHTS_EDIT:		// edit but not upload
+					case MANAGED_OBJECT_RIGHTS_EDIT: // edit but not upload
 						unset($_not_edit[$key]);
 						break;
 					case MANAGED_OBJECT_RIGHTS_UPLOAD | MANAGED_OBJECT_RIGHTS_EDIT: // edit and upload
@@ -210,7 +239,7 @@ if ($_REQUEST['origin'] == 'upload') {
 		}
 	}
 
-	if (zp_loggedin(ADMIN_RIGHTS)) {
+	if ($rights & ADMIN_RIGHTS) {
 		$opts['roots'][3] = array(
 						'driver'				 => 'LocalFileSystem',
 						'startPath'			 => SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/',
@@ -230,7 +259,7 @@ if ($_REQUEST['origin'] == 'upload') {
 						'startPath'			 => SERVERPATH . '/' . DATA_FOLDER . '/',
 						'path'					 => SERVERPATH . '/' . DATA_FOLDER . '/',
 						'URL'						 => WEBPATH . '/' . DATA_FOLDER . '/',
-						'alias'					 => sprintf(gettext('Zenphoto data (%s)'), DATA_FOLDER),
+						'alias'					 => sprintf(gettext('Data (%s)'), DATA_FOLDER),
 						'mimeDetect'		 => 'internal',
 						'tmbPath'				 => '.tmb',
 						'utf8fix'				 => true,
@@ -255,7 +284,7 @@ if ($_REQUEST['origin'] == 'upload') {
 		);
 	}
 } else { //	origin == 'tinyMCE
-	if (zp_loggedin(FILES_RIGHTS)) {
+	if ($rights & FILES_RIGHTS) {
 		$opts['roots'][0] = array(
 						'driver'				 => 'LocalFileSystem',
 						'startPath'			 => SERVERPATH . '/' . UPLOAD_FOLDER . '/',
@@ -268,9 +297,20 @@ if ($_REQUEST['origin'] == 'upload') {
 						'tmbCrop'				 => false,
 						'tmbBgColor'		 => 'transparent',
 						'uploadAllow'		 => array('image'),
-						'accessControl'	 => 'access',
+						'accessControl'	 => 'accessImage',
 						'acceptedName'	 => '/^[^\.].*$/'
 		);
+		switch (@$_GET['type']) {
+			case 'media':
+				$opts['roots'][0]['accessControl'] = 'accessMedia';
+				break;
+			case 'image':
+				$opts['roots'][0]['accessControl'] = 'accessImage';
+				break;
+			default:
+				$opts['roots'][0]['accessControl'] = 'access';
+				break;
+		}
 	}
 }
 

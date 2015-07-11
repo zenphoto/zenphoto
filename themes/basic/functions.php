@@ -1,5 +1,6 @@
 <?php
 zp_register_filter('themeSwitcher_head', 'switcher_head');
+zp_register_filter('iconColor', 'iconColor');
 zp_register_filter('themeSwitcher_Controllink', 'switcher_controllink');
 zp_register_filter('theme_head', 'css_head', 500);
 enableExtension('zenpage', 0, false); //	we do not support it
@@ -19,9 +20,10 @@ function css_head($ignore) {
 		$themeColor = getThemeOption('Theme_colors');
 	}
 
-	if ($editorConfig = getOption('tinymce4_comments')) {
+	if ($editorConfig = getOption('tinymce_comments')) {
 		if (strpos($themeColor, 'dark') !== false) {
-			setOption('tinymce4_comments', 'dark_' . $editorConfig, false);
+			$editorConfig = str_replace('_dark', '', stripSuffix($editorConfig)) . '_dark.php';
+			setOption('tinymce_comments', $editorConfig, false);
 		}
 	}
 
@@ -31,6 +33,33 @@ function css_head($ignore) {
 		$zenCSS = $_zp_themeroot . "/styles/light.css";
 	}
 	return $ignore;
+}
+
+function iconColor($icon) {
+	global $themeColor;
+	if (!$themeColor) {
+		$themeColor = getOption('Theme_colors');
+	}
+	if (strpos($themeColor, 'dark') !== false) {
+		$icon = stripSuffix($icon) . '-white.png';
+	}
+	return($icon);
+}
+
+function printSoftwareLink() {
+	global $themeColor;
+	switch ($themeColor) {
+		case 'dark':
+			$logo = 'blue';
+			break;
+		case'light':
+			$logo = 'light';
+			break;
+		default:
+			$logo = 'sterile';
+			break;
+	}
+	printZenphotoLink($logo);
 }
 
 function switcher_head($ignore) {
@@ -46,9 +75,6 @@ function switcher_head($ignore) {
 	?>
 	<script type="text/javascript">
 		// <!-- <![CDATA[
-		window.onload = function() {
-			$('#themeSwitcher_zenpage').html('');
-		}
 		function switchColors() {
 			personality = $('#themeColor').val();
 			window.location = '?themeColor=' + personality;

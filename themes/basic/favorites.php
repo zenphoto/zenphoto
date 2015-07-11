@@ -7,9 +7,9 @@ if (class_exists('favorites')) {
 	<!DOCTYPE html>
 	<html>
 		<head>
+
 			<?php zp_apply_filter('theme_head'); ?>
-			<?php printHeadTitle(); ?>
-			<meta charset="<?php echo LOCAL_CHARSET; ?>">
+
 			<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
 			<link rel="stylesheet" href="<?php echo pathurlencode(dirname(dirname($zenCSS))); ?>/common.css" type="text/css" />
 		</head>
@@ -19,7 +19,9 @@ if (class_exists('favorites')) {
 				<div id="gallerytitle">
 					<h2>
 						<span>
-							<?php printHomeLink('', ' | '); printGalleryIndexURL(' | ', getGalleryTitle()); printParentBreadcrumb(); ?>
+							<?php printHomeLink('', ' | '); ?>
+							<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Albums Index'); ?>"><?php printGalleryTitle(); ?></a> |
+							<?php printParentBreadcrumb(); ?>
 						</span>
 						<?php printAlbumTitle(); ?>
 					</h2>
@@ -60,16 +62,16 @@ if (class_exists('favorites')) {
 					</div>
 					<br class="clearall">
 					<?php
-     @call_user_func('printSlideShowLink');
-     printPageListWithNav("« " . gettext("prev"), gettext("next") . " »");
-     ?>
+					@call_user_func('printSlideShowLink');
+					printPageListWithNav("« " . gettext("prev"), gettext("next") . " »");
+					?>
 				</div>
 			</div>
 			<div id="credit">
 				<?php
-    printZenphotoLink();
-    @call_user_func('printUserLogin_out', " | ");
-    ?>
+				printSoftwareLink();
+				@call_user_func('printUserLogin_out', " | ");
+				?>
 			</div>
 			<?php
 			zp_apply_filter('theme_body_close');

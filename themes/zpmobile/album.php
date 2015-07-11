@@ -7,8 +7,9 @@ if (!defined('WEBPATH')) die(); ?>
 <html>
 <head>
 	<?php zp_apply_filter('theme_head'); ?>
-	<?php printHeadTitle(); ?>
-	<meta charset="<?php echo LOCAL_CHARSET; ?>">
+
+
+
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" />
 	<?php jqm_loadScripts(); ?>
@@ -20,7 +21,7 @@ if (!defined('WEBPATH')) die(); ?>
 
 <div data-role="page" id="mainpage">
 
-  <?php jqm_printMainHeaderNav(); ?>
+	<?php jqm_printMainHeaderNav(); ?>
 
 	<div class="ui-content" role="main">
 		<div class="content-primary">
@@ -40,9 +41,9 @@ if (!defined('WEBPATH')) die(); ?>
 			<?php endwhile; ?>
 		</ul>
 		<div class="ui-grid-c">
-			<?php 
+			<?php
 			$count = '';
-			while (next_image()): 
+			while (next_image()):
 				$count++;
 				switch($count) {
 					case 1:
@@ -66,9 +67,9 @@ if (!defined('WEBPATH')) die(); ?>
 			<?php endwhile; ?>
 		</div>
 		<br class="clearall" />
-		<?php 
-			if(hasPrevPage() || hasNextPage()) printPageListWithNav(gettext("prev"), gettext("next"),false,true,'pagelist',NULL,true,7); 
-		  if (function_exists('printSlideShowLink')) {
+		<?php
+			if(hasPrevPage() || hasNextPage()) printPageListWithNav(gettext("prev"), gettext("next"),false,true,'pagelist',NULL,true,7);
+			if (function_exists('printSlideShowLink')) {
 				echo '<span id="slideshowlink">';
 				printSlideShowLink();
 				echo '</span>';
@@ -78,8 +79,8 @@ if (!defined('WEBPATH')) die(); ?>
 				printAddToFavorites($_zp_current_album);
 			}
 			if (function_exists('printCommentForm')) {
-		  	printCommentForm();
-			}	
+				printCommentForm();
+			}
 		?>
 		</div>
 		 <div class="content-secondary">

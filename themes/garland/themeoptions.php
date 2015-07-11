@@ -25,14 +25,10 @@ class ThemeOptions {
 		setThemeOptionDefault('garland_transition', 'slide-hori');
 		setThemeOptionDefault('garland_caption_location', 'image');
 		setOptionDefault('colorbox_' . $me . '_image', 1);
+		setOptionDefault('colorbox_' . $me . '_favorites', 1);
 		setOptionDefault('colorbox_' . $me . '_album', 1);
 		setOptionDefault('colorbox_' . $me . '_search', 1);
 		setThemeOptionDefault('garland_menu', '');
-		if (extensionEnabled('zenpage')) {
-			setThemeOption('custom_index_page', 'gallery', NULL, 'garland', false);
-		} else {
-			setThemeOption('custom_index_page', '', NULL, 'garland', false);
-		}
 		if (class_exists('cacheManager')) {
 			$me = basename(dirname(__FILE__));
 			cacheManager::deleteThemeCacheSizes($me);
@@ -58,7 +54,7 @@ class ThemeOptions {
 	}
 
 	function getOptionsDisabled() {
-		return array('thumb_size', 'image_size', 'custom_index_page');
+		return array('thumb_size', 'image_size');
 	}
 
 	function getOptionsSupported() {
@@ -77,8 +73,8 @@ class ThemeOptions {
 						gettext('Custom menu')			 => array('key' => 'garland_menu', 'type' => OPTION_TYPE_CUSTOM, 'desc' => gettext('Set this to the <em>menu_manager</em> menu you wish to use.') . $note)
 		);
 		if (extensionEnabled('zenpage')) {
-			global $_zp_zenpage;
-			$pages = $_zp_zenpage->getPages(false);
+			global $_zp_CMS;
+			$pages = $_zp_CMS->getPages(false);
 			$list = array();
 			foreach ($pages as $page) {
 				$list[getBare($page['title'])] = $page['titlelink'];
@@ -104,9 +100,9 @@ class ThemeOptions {
 	function handleOption($option, $currentValue) {
 		switch ($option) {
 			case 'garland_menu':
-				$menusets = array();
+				$menusets = array($currentValue => $currentValue);
 				echo '<select id="garland_menuset" name="garland_menu"';
-				if (function_exists('printCustomMenu') && getThemeOption('custom_index_page', NULL, 'garland') === 'gallery') {
+				if (function_exists('printCustomMenu') && extensionEnabled('zenpage')) {
 					$result = query_full_array("SELECT DISTINCT menuset FROM " . prefix('menu') . " ORDER BY menuset");
 					foreach ($result as $set) {
 						$menusets[$set['menuset']] = $set['menuset'];

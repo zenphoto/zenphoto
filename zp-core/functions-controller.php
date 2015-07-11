@@ -21,17 +21,17 @@ function zpRewriteURL($query) {
 			case 'news':
 				$redirectURL = _NEWS_;
 				if (isset($query['category'])) {
-					$obj = new ZenpageCategory($query['category'], false);
+					$obj = newCategory(rtrim($query['category'], '/'), false);
 					if (!$obj->loaded)
 						return '';
 					$redirectURL = $obj->getLink();
 					unset($query['category']);
 				} else if (isset($query['date'])) {
-					$redirectURL = _NEWS_ARCHIVE_ . '/' . $query['date'];
+					$redirectURL = _NEWS_ARCHIVE_ . '/' . rtrim($query['date'], '/') . '/';
 					unset($query['date']);
 				}
 				if (isset($query['title'])) {
-					$obj = new ZenpageNews($query['title'], false);
+					$obj = newArticle(rtrim($query['title'], '/'), false);
 					if (!$obj->loaded)
 						return '';
 					$redirectURL = $obj->getLink();
@@ -39,9 +39,8 @@ function zpRewriteURL($query) {
 				}
 				break;
 			case 'pages':
-				$redirectURL = _PAGES_;
 				if (isset($query['title'])) {
-					$obj = new ZenpagePage($query['title'], false);
+					$obj = newPage(rtrim($query['title'], '/'), false);
 					if (!$obj->loaded)
 						return '';
 					$redirectURL = $obj->getLink();
@@ -51,45 +50,48 @@ function zpRewriteURL($query) {
 			case'search':
 				$redirectURL = _SEARCH_;
 				if (isset($query['date'])) {
-					$redirectURL = _ARCHIVE_ . '/' . $query['date'];
+					$redirectURL = _ARCHIVE_ . '/' . rtrim($query['date'], '/') . '/';
 					unset($query['date']);
 				} else if (isset($query['searchfields']) && $query['searchfields'] == 'tags') {
 					$redirectURL = _TAGS_;
 					unset($query['searchfields']);
 				}
 				if (isset($query['words'])) {
-					$redirectURL .= '/' . $query['words'];
+					$redirectURL .= '/' . SearchEngine::encode($query['words']) . '/';
 					unset($query['words']);
 				}
 				break;
 			default:
-				$redirectURL = getCustomPageURL($query['p']);
+				$redirectURL = getCustomPageURL(rtrim($query['p'], '/'));
 				break;
 		}
 		unset($query['p']);
-		$redirectURL = preg_replace('~^' . WEBPATH . '/~', '', $redirectURL);
 		if (isset($query['page'])) {
-			$redirectURL.='/' . $query['page'];
+			$redirectURL = rtrim($redirectURL, '/') . '/' . rtrim($query['page'], '/');
 			unset($query['page']);
 		}
-		$q = http_build_query($query);
-		if ($q)
-			$redirectURL .= '?' . $q;
 	} else if (isset($query['album'])) {
 		if (isset($query['image'])) {
-			$obj = newImage(NULL, array('folder' => $query['album'], 'filename' => $query['image']), true);
+			$obj = newImage(array('folder' => $query['album'], 'filename' => $query['image']), NULL, true);
 			unset($query['image']);
 		} else {
 			$obj = newAlbum($query['album'], NULL, true);
 		}
-		unset($query['album']);
 		if (!$obj->exists)
 			return '';
-		$redirectURL = preg_replace('~^' . WEBPATH . '/~', '', $obj->getLink());
-		$q = http_build_query($query);
-		if ($q)
-			$redirectURL .= '?' . $q;
+
+		unset($query['album']);
+		$redirectURL = preg_replace('~^' . WEBPATH . '/~', '', $obj->getLink(@$query['page']));
+		unset($query['page']);
+	} else if (isset($query['page'])) { //index page
+		$redirectURL = _PAGE_ . '/' . rtrim($query['page'], '/');
+		unset($query['page']);
 	}
+
+	if ($redirectURL && !empty($query)) {
+		$redirectURL .= '?' . http_build_query($query);
+	}
+
 	return $redirectURL;
 }
 
@@ -101,13 +103,72 @@ function fix_path_redirect() {
 	if (MOD_REWRITE) {
 		$request_uri = getRequestURI();
 		$parts = parse_url($request_uri);
+		$redirectURL = NULL;
+
 		if (isset($parts['query'])) {
 			parse_str($parts['query'], $query);
 			$redirectURL = zpRewriteURL($query);
-			if ($redirectURL) {
+		} else {
+			$query = array();
+		}
+
+		if (isset($_GET['album'])) {
+			if (isset($_GET['image'])) {
+				//image URLs should not end in a slash
+				if (substr($parts['path'], -1, 1) == '/') {
+					$redirectURL = zpRewriteURL($_GET);
+				}
+			} else {
+				//album URLs should end in a slash for consistency
+				if (substr($parts['path'], -1, 1) != '/') {
+					$redirectURL = zpRewriteURL($_GET);
+				}
+			}
+		}
+
+		if (isset($_GET['p'])) {
+			switch ($_GET['p']) {
+				case 'news':
+					if (isset($_GET['title'])) {
+						//article URLs should not end in slash
+						if (substr($parts['path'], -1, 1) == '/') {
+							$redirectURL = zpRewriteURL($_GET);
+						}
+					} else {
+						//should be news/
+						if (substr($parts['path'], -1, 1) != '/') {
+							$redirectURL = zpRewriteURL($_GET);
+						}
+					}
+					break;
+				case 'search':
+					if (isset($_GET['date'])) {
+						if (substr($parts['path'], -1, 1) != '/') {
+							$redirectURL = zpRewriteURL($_GET);
+						}
+					}
+					break;
+			}
+		}
+		//page numbers do not have trailing slash
+		if (isset($_GET['page'])) {
+			if (substr($parts['path'], -1, 1) == '/') {
+				$redirectURL = zpRewriteURL($_GET);
+			}
+		}
+
+		if ($redirectURL) {
+			$parts2 = parse_url($redirectURL);
+			if (isset($parts2['query'])) {
+				parse_str($parts2['query'], $query2);
+			} else {
+				$query2 = array();
+			}
+
+			if ($query != $query2 || preg_replace('~^' . WEBPATH . '/~', '', $parts['path']) != preg_replace('~^' . WEBPATH . '/~', '', html_encode($parts['path']))) {
 				header("HTTP/1.0 301 Moved Permanently");
 				header("Status: 301 Moved Permanently");
-				header('Location: ' . FULLWEBPATH . '/' . $redirectURL);
+				header('Location: ' . FULLWEBPATH . '/' . preg_replace('~^' . WEBPATH . '/~', '', $redirectURL));
 				exitZP();
 			}
 		}
@@ -130,7 +191,7 @@ function zp_load_gallery() {
 	global $_zp_current_album, $_zp_current_album_restore, $_zp_albums,
 	$_zp_current_image, $_zp_current_image_restore, $_zp_images, $_zp_current_comment,
 	$_zp_comments, $_zp_current_context, $_zp_current_search, $_zp_current_zenpage_new,
-	$_zp_current_zenpage_page, $_zp_current_category, $_zp_post_date, $_zp_pre_authorization;
+	$_zp_current_page, $_zp_current_category, $_zp_post_date, $_zp_pre_authorization;
 	$_zp_current_album = NULL;
 	$_zp_current_album_restore = NULL;
 	$_zp_albums = NULL;
@@ -141,8 +202,8 @@ function zp_load_gallery() {
 	$_zp_comments = NULL;
 	$_zp_current_context = 0;
 	$_zp_current_search = NULL;
-	$_zp_current_zenpage_news = NULL;
-	$_zp_current_zenpage_page = NULL;
+	$_zp_current_article = NULL;
+	$_zp_current_page = NULL;
 	$_zp_current_category = NULL;
 	$_zp_post_date = NULL;
 	$_zp_pre_authorization = array();
@@ -188,7 +249,7 @@ function zp_load_album($folder, $force_nocache = false) {
  * @return the loaded album object on success, or (===false) on failure.
  */
 function zp_load_image($folder, $filename) {
-	global $_zp_current_image, $_zp_current_album, $_zp_current_search;
+	global $_zp_current_image, $_zp_current_album, $_zp_current_search, $_zp_page;
 	if (!is_object($_zp_current_album) || $_zp_current_album->name != $folder) {
 		$album = zp_load_album($folder, true);
 	} else {
@@ -196,7 +257,28 @@ function zp_load_image($folder, $filename) {
 	}
 	if (!is_object($album) || !$album->exists)
 		return false;
+	if (!getSuffix($filename)) { //	still some work to do
+		foreach ($album->getImages() as $image) {
+			if (is_array($image)) {
+				$image = $image['filename'];
+			}
+			if (stripSuffix($image) == $filename) {
+				$filename = $image;
+				break;
+			}
+		}
+	}
+	if ($album->isDynamic() && $_zp_page) {
+		$album->getImages();
+		$matches = array_keys($album->imageNames, $filename);
+		$albumName = @$matches[$_zp_page - 1];
+		if ($albumName) {
+			$filename = array('folder' => dirname($albumName), 'filename' => $filename);
+		}
+		$_zp_page = NULL;
+	}
 	$_zp_current_image = newImage($album, $filename, true);
+
 	if (is_null($_zp_current_image) || !$_zp_current_image->exists) {
 		return false;
 	}
@@ -206,27 +288,27 @@ function zp_load_image($folder, $filename) {
 
 /**
  * Loads a zenpage pages page
- * Sets up $_zp_current_zenpage_page and returns it as the function result.
+ * Sets up $_zp_current_page and returns it as the function result.
  * @param $titlelink the titlelink of a zenpage page to setup a page object directly. Used for custom
  * page scripts based on a zenpage page.
  *
  * @return object
  */
 function load_zenpage_pages($titlelink) {
-	global $_zp_current_zenpage_page;
-	$_zp_current_zenpage_page = new ZenpagePage($titlelink);
-	if ($_zp_current_zenpage_page->loaded) {
+	global $_zp_current_page;
+	$_zp_current_page = newPage($titlelink);
+	if ($_zp_current_page->loaded) {
 		add_context(ZP_ZENPAGE_PAGE | ZP_ZENPAGE_SINGLE);
 	} else {
 		$_GET['p'] = 'PAGES:' . $titlelink;
 		return NULL;
 	}
-	return $_zp_current_zenpage_page;
+	return $_zp_current_page;
 }
 
 /**
  * Loads a zenpage news article
- * Sets up $_zp_current_zenpage_news and returns it as the function result.
+ * Sets up $_zp_current_article and returns it as the function result.
  *
  * @param array $request an array with one member: the key is "date", "category", or "title" and specifies
  * what you want loaded. The value is the date or title of the article wanted
@@ -234,14 +316,14 @@ function load_zenpage_pages($titlelink) {
  * @return object
  */
 function load_zenpage_news($request) {
-	global $_zp_current_zenpage_news, $_zp_current_category, $_zp_post_date;
+	global $_zp_current_article, $_zp_current_category, $_zp_post_date;
 	if (isset($request['date'])) {
 		add_context(ZP_ZENPAGE_NEWS_DATE);
-		$_zp_post_date = sanitize($request['date']);
+		$_zp_post_date = sanitize(rtrim($request['date'], '/'));
 	}
 	if (isset($request['category'])) {
 		$titlelink = sanitize(rtrim($request['category'], '/'));
-		$_zp_current_category = new ZenpageCategory($titlelink);
+		$_zp_current_category = new Category($titlelink);
 		if ($_zp_current_category->loaded) {
 			add_context(ZP_ZENPAGE_NEWS_CATEGORY);
 		} else {
@@ -256,11 +338,11 @@ function load_zenpage_news($request) {
 		$result = query_single_row($sql);
 		if (is_array($result)) {
 			add_context(ZP_ZENPAGE_NEWS_ARTICLE | ZP_ZENPAGE_SINGLE);
-			$_zp_current_zenpage_news = new ZenpageNews($titlelink);
+			$_zp_current_article = newArticle($titlelink);
 		} else {
 			$_GET['p'] = 'NEWS:' . $titlelink;
 		}
-		return $_zp_current_zenpage_news;
+		return $_zp_current_article;
 	}
 	return true;
 }
@@ -367,6 +449,7 @@ function prepareCustomPage() {
 		$_zp_script = ZENFOLDER . '/' . $subfolder . $page . '.php';
 	} else {
 		$_zp_gallery_page = $page . '.php';
+
 		switch ($_zp_gallery_page) {
 			case 'search.php':
 				if (!empty($searchalbums)) { //	we are within a search of a specific album(s)

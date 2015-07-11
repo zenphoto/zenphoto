@@ -8,8 +8,9 @@ if (!defined('WEBPATH'))
 <html>
 	<head>
 		<?php zp_apply_filter('theme_head'); ?>
-		<?php printHeadTitle(); ?>
-		<meta charset="<?php echo LOCAL_CHARSET; ?>">
+
+
+
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" type="text/css" />
 	</head>
 
@@ -24,13 +25,13 @@ if (!defined('WEBPATH'))
 
 			<div id="content">
 				<div id="breadcrumb">
-					<h2><?php printGalleryIndexURL(' » '); echo gettext("A password is required for the page you requested"); ?></strong></h2>
+					<h2><a href="<?php echo getGalleryIndexURL(); ?>">Index</a> » <strong><?php echo gettext("A password is required for the page you requested"); ?></strong></h2>
 				</div>
 
 				<div id="content-error">
 
 					<div class="errorbox">
-						<?php printPasswordForm('', true, false); ?>
+						<?php printPasswordForm($hint, $show, false); ?>
 					</div>
 
 					<?php

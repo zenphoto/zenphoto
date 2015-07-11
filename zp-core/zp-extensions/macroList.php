@@ -60,6 +60,7 @@
  * <b>Note</b> the <var>spaces<var> after the <var>[<var> and before the <var>]<var> square brackets. They are used in these examples to prevent the code from actually executing. They should not be present in your real code.
  *
  * @author Stephen Billard (sbillard)
+ *
  * @package plugins
  * @subpackage development
  */
@@ -83,15 +84,22 @@ if (OFFSET_PATH != 2 && zp_loggedin(ZENPAGE_PAGES_RIGHTS | ZENPAGE_NEWS_RIGHTS |
 }
 
 function macro_admin_tabs($tabs) {
-	if (!isset($tabs['development'])) {
-		$tabs['development'] = array('text'		 => gettext("development"),
-						'subtabs'	 => NULL);
+	if (zp_loggedin(ADMIN_RIGHTS)) {
+		if (!isset($tabs['development'])) {
+			$tabs['development'] = array('text'		 => gettext("development"),
+							'subtabs'	 => NULL);
+		}
+		$tabs['development']['subtabs'][gettext("macros")] = PLUGIN_FOLDER . '/macroList/macroList_tab.php?page=development&tab=' . gettext('macros');
+		$named = array_flip($tabs['development']['subtabs']);
+		natcasesort($named);
+		$tabs['development']['subtabs'] = $named = array_flip($named);
+		$link = array_shift($named);
+		if (strpos($link, '/') !== 0) { // zp_core relative
+			$tabs['development']['link'] = WEBPATH . '/' . ZENFOLDER . '/' . $link;
+		} else {
+			$tabs['development']['link'] = WEBPATH . $link;
+		}
 	}
-	$tabs['development']['subtabs'][gettext("macros")] = PLUGIN_FOLDER . '/macroList/macroList_tab.php?page=macros&tab=' . gettext('macros');
-	$named = array_flip($tabs['development']['subtabs']);
-	natcasesort($named);
-	$tabs['development']['subtabs'] = $named = array_flip($named);
-	$tabs['development']['link'] = array_shift($named);
 	return $tabs;
 }
 
@@ -151,7 +159,7 @@ function macroList_show($macro, $detail) {
 			$params .= "<em>}</em>";
 		echo $params;
 	}
-	echo ']</code> <em>(' . @$detail['owner'] . ')</em></dt><dd class="top">' . $detail['desc'] . '</dd>';
+	echo ']</code> <em>' . @$detail['owner'] . '</em></dt><dd class="top">' . $detail['desc'] . '</dd>';
 	if (count($warn)) {
 		echo '<div class="notebox"><strong>Warning:</strong>';
 		foreach ($warn as $warning) {

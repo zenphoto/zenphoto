@@ -5,6 +5,7 @@
  * Place a call on <var>printUserLogin_out()</var> where you want the link or form to appear.
  *
  * @author Stephen Billard (sbillard)
+ *
  * @package plugins
  * @subpackage users
  */
@@ -56,10 +57,10 @@ if (in_context(ZP_INDEX)) {
 					$__redirect['image'] = $_zp_current_image->filename;
 				}
 				if (in_context(ZP_ZENPAGE_PAGE)) {
-					$__redirect['title'] = $_zp_current_zenpage_page->getTitlelink();
+					$__redirect['title'] = $_zp_current_page->getTitlelink();
 				}
 				if (in_context(ZP_ZENPAGE_NEWS_ARTICLE)) {
-					$__redirect['title'] = $_zp_current_zenpage_news->getTitlelink();
+					$__redirect['title'] = $_zp_current_article->getTitlelink();
 				}
 				if (in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
 					$__redirect['category'] = $_zp_current_category->getTitlelink();
@@ -104,9 +105,9 @@ if (in_context(ZP_INDEX)) {
  * @param string $before before text
  * @param string $after after text
  * @param int $showLoginForm to display a login form
- * 				to not display a login form, but just a login link, set to 0
- * 				to display a login form set to 1
- * 				to display a link to a login form in colorbox, set to 2, but you must have colorbox enabled for the theme pages where this link appears.)
+ * 				0: to not display a login form, but just a login link
+ * 				1: to display a login form
+ * 				2: to display a link to a login form which will display in colorbox if the colorbox_js plugin is enabled.
  * @param string $logouttext optional replacement text for "Logout"
  */
 function printUserLogin_out($before = '', $after = '', $showLoginForm = NULL, $logouttext = NULL) {
@@ -124,11 +125,12 @@ function printUserLogin_out($before = '', $after = '', $showLoginForm = NULL, $l
 	if (is_null($showLoginForm)) {
 		$showLoginForm = getOption('user_logout_login_form');
 	}
+
 	if (is_object($_zp_current_admin_obj)) {
 		if (!$_zp_current_admin_obj->logout_link) {
 			return;
 		}
-	} 
+	}
 	$cookies = Zenphoto_Authority::getAuthCookies();
 	if (empty($cookies) || !zp_loggedin()) {
 		if (!in_array($_zp_gallery_page, $excludedPages)) {
@@ -141,44 +143,66 @@ function printUserLogin_out($before = '', $after = '', $showLoginForm = NULL, $l
 					<?php
 					break;
 				case 2:
-					if ((getOption('colorbox_' . $_zp_gallery->getCurrentTheme() . '_' . stripSuffix($_zp_gallery_page))) && (zp_has_filter('theme_head', 'colorbox::css'))) { ?>
-					<script type="text/javascript">
-						// <!-- <![CDATA[
-						$(document).ready(function() {
-							$(".logonlink").colorbox({
-								inline: true,
-								innerWidth: "400px",
-								href: "#passwordform",
-								close: '<?php echo gettext("close"); ?>',
-								open: $('#passwordform_enclosure .errorbox').length
+					if (extensionEnabled('colorbox_js')) {
+						if (!zp_has_filter('theme_head', 'colorbox::css')) {
+							colorbox::css();
+						}
+						?>
+						<script type="text/javascript">
+							// <!-- <![CDATA[
+							$(document).ready(function() {
+								$(".logonlink").colorbox({
+									inline: true,
+									innerWidth: "400px",
+									href: "#passwordform",
+									close: '<?php echo gettext("close"); ?>',
+									open: $('#passwordform_enclosure .errorbox').length
+								});
 							});
-						});
-						// ]]> -->
-					</script>
-					<?php if ($before) { echo '<span class="beforetext">' . html_encodeTagged($before) . '</span>'; } ?>
-					<a href="#" class="logonlink" title="<?php echo $logintext; ?>"><?php echo $logintext; ?></a>
-					<span id="passwordform_enclosure" style="display:none">
-					<div class="passwordform">
-						<?php printPasswordForm('', true, false); ?>
-					</div>
-					</span>
-					<?php if ($after) { echo '<span class="aftertext">' . html_encodeTagged($after) . '</span>'; }
+							// ]]> -->
+						</script>
+						<?php
+						if ($before) {
+							echo '<span class="beforetext">' . html_encodeTagged($before) . '</span>';
+						}
+						?>
+						<a href="#" class="logonlink" title="<?php echo $logintext; ?>"><?php echo $logintext; ?></a>
+						<span id="passwordform_enclosure" style="display:none">
+							<div class="passwordform">
+								<?php printPasswordForm('', true, false); ?>
+							</div>
+						</span>
+						<?php
+						if ($after) {
+							echo '<span class="aftertext">' . html_encodeTagged($after) . '</span>';
+						}
+						break;
 					}
-					break;
 				default:
-					if ($loginlink = zp_apply_filter('login_link',getCustomPageURL('password'))) {
-						if ($before) { echo '<span class="beforetext">' . html_encodeTagged($before) . '</span>'; } ?>
+					if ($loginlink = zp_apply_filter('login_link', getCustomPageURL('password'))) {
+						if ($before) {
+							echo '<span class="beforetext">' . html_encodeTagged($before) . '</span>';
+						}
+						?>
 						<a href="<?php echo $loginlink; ?>" title="<?php echo $logintext; ?>"><?php echo $logintext; ?></a>
-						<?php if ($after) { echo '<span class="aftertext">' . html_encodeTagged($after) . '</span>'; }
+						<?php
+						if ($after) {
+							echo '<span class="aftertext">' . html_encodeTagged($after) . '</span>';
+						}
 					}
 			}
 		}
 	} else {
-		if ($before) { echo '<span class="beforetext">' . html_encodeTagged($before) . '</span>'; }
+		if ($before) {
+			echo '<span class="beforetext">' . html_encodeTagged($before) . '</span>';
+		}
 		$logoutlink = "javascript:launchScript('" . FULLWEBPATH . "/',[" . implode(',', $params) . "]);";
 		?>
 		<a href="<?php echo $logoutlink; ?>" title="<?php echo $logouttext; ?>"><?php echo $logouttext; ?></a>
-		<?php if ($after) { echo '<span class="aftertext">' . html_encodeTagged($after) . '</span>'; }
+		<?php
+		if ($after) {
+			echo '<span class="aftertext">' . html_encodeTagged($after) . '</span>';
+		}
 	}
 }
 ?>

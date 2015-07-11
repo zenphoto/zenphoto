@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This  is the root class for use by plugins to extend the Zenphoto database
+ * This  is the root class for use by plugins to extend the database
  * table fields. The administrative tabs for the objects will have input items
  * for these new fields. They will be placed in the proximate location of the
  * "custom data" field on the page.
@@ -10,7 +10,7 @@
  * fields. They will be enabled in the list by default. The standard search
  * form allows a visitor to choose to disable the field for a particular search.
  *
- * Since the Zenphoto objects are not directly aware of these new fields, themes
+ * Since the objects are not directly aware of these new fields, themes
  * must use the "get()" methods to retrieve the content for display. E.g.
  * <code>echo $_zp_current_album->get('new_field');</code>
  *
@@ -20,9 +20,17 @@
  *
  * "table" is the database table name (without prefix) of the object to which the field is to be added.
  * "name" is the MySQL field name for the new field
- * "desc" is the "display name" of the field
- * "type" is the database field type: int, varchar, tinytext, text, mediumtext, and longtext.
+ * "desc" is the "display name" of the field. If the value is NULL no edit field will show on the admin tab.
+ * "type" is the database field type: int, varchar, tinytext, text, mediumtext, etc.
  * "size" is the byte size of the varchar or int field (it is not needed for other types)
+ * "edit" is is how the content is show on the edit tab. Values: multilingual, normal, function. If the value is NULL
+ * there will be direct save of the result to the object
+ * "function" is the function to call if the edit type is a function
+ * "attribute" is the attribute(s) of the field, e.g. NOT NULL, UNSIGNED, etc.
+ * "default" is the database "default" value
+ *
+ * The <i>editor function</i> will be passed three parameters: the object, the $_POST instance, the field array,
+ * and the action: "edit" or "save". The function must return an array of the the processed data to be displayed and a format indicator or  the data to be saved.
  *
  * Database fields names must conform to
  * {@link http://dev.mysql.com/doc/refman/5.0/en/identifiers.html MySQL field naming rules}.
@@ -38,6 +46,7 @@
  * @package plugins
  * @subpackage admin
  *
+ * Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
  */
 
 class fieldExtender {
@@ -56,20 +65,31 @@ class fieldExtender {
 		$current = $fields = array();
 		if (extensionEnabled($me)) { //need to update the database tables.
 			foreach ($newfields as $newfield) {
-				$current[$newfield['table']][$newfield['name']] = true;
-				unset($previous[$newfield['table']][$newfield['name']]);
-				switch (strtolower($newfield['type'])) {
-					default:
-						$dbType = strtoupper($newfield['type']);
-						break;
-					case 'int':
-					case 'varchar':
-						$dbType = strtoupper($newfield['type']) . '(' . min(255, $newfield['size']) . ')';
-						break;
+				if (!is_null($newfield['type'])) {
+					switch (strtolower($newfield['type'])) {
+						default:
+							$dbType = strtoupper($newfield['type']);
+							break;
+						case 'int':
+						case 'varchar':
+							$dbType = strtoupper($newfield['type']) . '(' . min(255, $newfield['size']) . ')';
+							break;
+					}
+					if (isset($previous[$newfield['table']][$newfield['name']])) {
+						$cmd = ' CHANGE `' . $newfield['name'] . '`';
+					} else {
+						$cmd = ' ADD COLUMN';
+					}
+					$sql = 'ALTER TABLE ' . prefix($newfield['table']) . $cmd . ' `' . $newfield['name'] . '` ' . $dbType;
+					if (isset($newfield['attribute']))
+						$sql.= ' ' . $newfield['attribute'];
+					if (isset($newfield['default']))
+						$sql.= ' DEFAULT ' . $newfield['default'];
+					if (query($sql, false) && in_array($newfield['table'], array('albums', 'images', 'news', 'news_categories', 'pages')))
+						$fields[] = strtolower($newfield['name']);
+					$current[$newfield['table']][$newfield['name']] = $dbType;
+					unset($previous[$newfield['table']][$newfield['name']]);
 				}
-				$sql = 'ALTER TABLE ' . prefix($newfield['table']) . ' ADD COLUMN `' . $newfield['name'] . '` ' . $dbType;
-				if (query($sql, false) && in_array($newfield['table'], array('albums', 'images', 'news', 'news_categories', 'pages')))
-					$fields[] = strtolower($newfield['name']);
 			}
 			setOption(get_class($this) . '_addedFields', serialize($current));
 		} else {
@@ -77,11 +97,13 @@ class fieldExtender {
 		}
 
 		$set_fields = array_flip(explode(',', getOption('search_fields')));
-		foreach ($previous as $table => $orpahed) { //drop fields no longer defined
-			foreach ($orpahed as $field => $v) {
-				unset($set_fields[$field]);
-				$sql = 'ALTER TABLE ' . prefix($table) . ' DROP `' . $field . '`';
-				query($sql, false);
+		foreach ($previous as $table => $orphaned) { //drop fields no longer defined
+			if ($orphaned) {
+				foreach ($orphaned as $field => $v) {
+					unset($set_fields[$field]);
+					$sql = 'ALTER TABLE ' . prefix($table) . ' DROP `' . $field . '`';
+					query($sql, false);
+				}
 			}
 		}
 		$set_fields = array_unique(array_merge($fields, array_flip($set_fields)));
@@ -103,6 +125,86 @@ class fieldExtender {
 	}
 
 	/**
+	 * The generic field element save handler
+	 * @param type $obj
+	 * @param type $instance
+	 * @param type $fields
+	 */
+	static protected function _saveHandler($obj, $instance, $field) {
+		if (array_key_exists('edit', $field)) {
+			$action = $field['edit'];
+			if (is_null($action)) {
+				return NULL;
+			}
+		} else {
+			$action = 'default';
+		}
+
+		switch ($action) {
+			case'multilingual':
+				$newdata = process_language_string_save($instance . '-' . $field['name']);
+				break;
+			case'function':
+				$newdata = call_user_func($field['function'], $obj, $instance, $field, 'save');
+				break;
+			default:
+				if (!is_null($instance)) {
+					$instance = '_' . $instance;
+				}
+				if (isset($_POST[$field['name'] . $instance])) {
+					$newdata = sanitize($_POST[$field['name'] . $instance]);
+				} else {
+					$newdata = NULL;
+				}
+		}
+
+		return $newdata;
+	}
+
+	/**
+	 * generic handler for the edit fields
+	 * @param $obj
+	 * @param $instance
+	 * @param type $field
+	 * @return type
+	 */
+	static protected function _editHandler($obj, $field, $instance) {
+		if (array_key_exists('edit', $field)) {
+			$action = $field['edit'];
+			if (is_null($action)) {
+				return array(NULL, NULL);
+			}
+		} else {
+			$action = 'default';
+		}
+
+		switch ($action) {
+			case 'multilingual':
+				ob_start();
+				print_language_string_list($obj->get($field['name']), $instance . '-' . $field['name']);
+				$item = ob_get_contents();
+				ob_end_clean();
+				$formatted = true;
+				break;
+			case'function':
+				$item = call_user_func($field['function'], $obj, $instance, $field, 'edit');
+				if (is_null($item)) {
+					$formatted = NULL;
+				} else {
+					$formatted = true;
+				}
+				break;
+			default:
+				if ($instance)
+					$instance = '_' . $instance;
+				$item = html_encode($obj->get($field['name']));
+				$formatted = false;
+				break;
+		}
+		return array($item, $formatted);
+	}
+
+	/**
 	 * Process the save of user object type elements
 	 *
 	 * @param boolean $updated
@@ -114,18 +216,18 @@ class fieldExtender {
 	static function _adminSave($updated, $userobj, $i, $alter, $fields) {
 		if ($userobj->getValid()) {
 			foreach ($fields as $field) {
-				if (isset($_POST[$field['name'] . '_' . $i])) {
-					if ($field['table'] == 'administrators') {
-						$olddata = $userobj->get($field['name']);
-						$userobj->set($field['name'], $newdata = $_POST[$field['name'] . '_' . $i]);
-						if ($olddata != $newdata) {
-							$updated = true;
-						}
+				if ($field['table'] == 'administrators') {
+					$olddata = $userobj->get($field['name']);
+					$newdata = fieldExtender::_saveHandler($userobj, $i, $field);
+					if (!is_null($newdata))
+						$userobj->set($field['name'], $newdata);
+					if ($olddata != $newdata) {
+						$updated = true;
 					}
 				}
 			}
+			return $updated;
 		}
-		return $updated;
 	}
 
 	/**
@@ -142,16 +244,22 @@ class fieldExtender {
 		$list = array();
 		foreach ($fields as $field) {
 			if ($field['table'] == 'administrators') {
-				$input = '<fieldset>' .
-								'<legend>' . $field['desc'] . '</legend>';
-				if (in_array(strtolower($field['type']), array('varchar', 'int', 'tinytext'))) {
-					$input .= '<input name = "' . $field['name'] . '_' . $i . '" type = "text" size = "' . TEXT_INPUT_SIZE . '" value = "' . html_encode($userobj->get($field['name'])) . '" />';
-				} else {
-					$input .= '<textarea name = "' . $field['name'] . '_' . $i . '" cols = "' . TEXTAREA_COLUMNS . '"rows = "1">' . html_encode($userobj->get($field['name'])) . '</textarea>';
+				list($item, $formatted) = fieldExtender::_editHandler($userobj, $field, $i);
+				if (!is_null($formatted)) {
+					$input = '<fieldset>' .
+									'<legend>' . $field['desc'] . '</legend>';
+					if ($formatted) {
+						$html .= $item;
+					} else {
+						if (in_array(strtolower($field['type']), array('varchar', 'int', 'tinytext'))) {
+							$input .= '<input name = "' . $field['name'] . '_' . $i . '" type = "text" size = "' . TEXT_INPUT_SIZE . '" value = "' . $item . '" />';
+						} else {
+							$input .= '<textarea name = "' . $field['name'] . '_' . $i . '" cols = "' . TEXTAREA_COLUMNS . '"rows = "1">' . $item . '</textarea>';
+						}
+					}
+					$input .='</fieldset>';
+					$list[] = $input;
 				}
-
-				$input .='</fieldset>';
-				$list[] = $input;
 			}
 		}
 		if (($count = count($list)) % 2) {
@@ -182,13 +290,13 @@ class fieldExtender {
 	static function _mediaItemSave($object, $i, $fields) {
 		foreach ($fields as $field) {
 			if ($field['table'] == $object->table) {
-				$olddata = $object->get($field['name']);
-				$object->set($field['name'], $newdata = $_POST[$field['name'] . '_' . $i]);
-				if ($olddata != $newdata) {
-					$updated = true;
+				$newdata = fieldExtender::_saveHandler($object, $i, $field);
+				if (!is_null($newdata)) {
+					$object->set($field['name'], $newdata);
 				}
 			}
 		}
+		return $object;
 	}
 
 	/**
@@ -202,16 +310,23 @@ class fieldExtender {
 	static function _mediaItemEdit($html, $object, $i, $fields) {
 		foreach ($fields as $field) {
 			if ($field['table'] == $object->table) {
-				$html .= '<tr><td>' . $field['desc'] . '</td><td>';
-				if (in_array(strtolower($field['type']), array('varchar', 'int', 'tinytext'))) {
-					$html .= '<input name = "' . $field['name'] . '_' . $i . '" type = "text" style = "width:100%;" value = "' . html_encode($object->get($field['name'])) . '" />';
-				} else {
-					$html .= '<textarea name = "' . $field['name'] . '_' . $i . '" style = "width:100%;" rows = "6">' . html_encode($object->get($field['name'])) . '</textarea>';
+				list($item, $formatted) = fieldExtender::_editHandler($object, $field, $i);
+				if (!is_null($formatted)) {
+					$html .= '<tr>' . "\n" . '<td><span class="nowrap">' . $field['desc'] . "</span></td>\n<td>";
+					if ($formatted) {
+						$html .= $item;
+					} else {
+						if (in_array(strtolower($field['type']), array('varchar', 'int', 'tinytext'))) {
+							$html .= '<input name="' . $field['name'] . '_' . $i . '" type = "text" style = "width:100%;" value = "' . $item . '" />';
+						} else {
+							$html .= '<textarea name="' . $field['name'] . '_' . $i . '" style = "width:100%;" rows = "6">' . $item . '</textarea>';
+						}
+					}
+					$html .="</td>\n</tr>\n";
 				}
-
-				$html .='</td></tr>';
 			}
 		}
+
 		return $html;
 	}
 
@@ -222,14 +337,12 @@ class fieldExtender {
 	 * @param object $object
 	 * @return string
 	 */
-	static function _zenpageItemSave($custom, $object, $fields) {
+	static function _cmsItemSave($custom, $object, $fields) {
 		foreach ($fields as $field) {
 			if ($field['table'] == $object->table) {
-				$olddata = $object->get($field['name']);
-				$object->set($field['name'], $newdata = $_POST[$field['name']]);
-				if ($olddata != $newdata) {
-					$updated = true;
-				}
+				$newdata = fieldExtender::_saveHandler($object, NULL, $field);
+				if (!is_null($newdata))
+					$object->set($field['name'], $newdata);
 			}
 		}
 		return $custom;
@@ -242,15 +355,22 @@ class fieldExtender {
 	 * @param object $object
 	 * @return string
 	 */
-	static function _zenpageItemEdit($html, $object, $fields) {
+	static function _cmsItemEdit($html, $object, $fields) {
 		foreach ($fields as $field) {
 			if ($field['table'] == $object->table) {
-				$html .= '<tr><td>' . $field['desc'] . '</td><td>';
-				if (in_array(strtolower($field['type']), array('varchar', 'int', 'tinytext'))) {
-					$html .= '<input name="' . $field['name'] . '" type="text" style = "width:97%;"
-value="' . html_encode($object->get($field['name'])) . '" />';
-				} else {
-					$html .= '<textarea name = "' . $field['name'] . '" style = "width:97%;" "rows="6">' . html_encode($object->get($field['name'])) . '</textarea>';
+				list($item, $formatted) = fieldExtender::_editHandler($object, $field, NULL);
+				if (!is_null($formatted)) {
+					$html .= '<tr>' . "\n" . '<td><span class="topalign-padding nowrap">' . $field['desc'] . "</td>\n" . '<td class="middlecolumn">' . "\n";
+					if ($formatted) {
+						$html .= $item;
+					} else {
+						if (in_array(strtolower($field['type']), array('varchar', 'int', 'tinytext'))) {
+							$html .= '<input name="' . $field['name'] . '" type="text" style = "width:97%;"
+value="' . $item . '" />';
+						} else {
+							$html .= '<textarea name = "' . $field['name'] . '" style = "width:97%;" "rows="6">' . $item . '</textarea>';
+						}
+					}
 				}
 			}
 		}
@@ -279,32 +399,20 @@ value="' . html_encode($object->get($field['name'])) . '" />';
 			zp_register_filter("edit_admin_custom_data", "$me::adminEdit");
 		}
 		if (isset($items['news'])) {
-			zp_register_filter("save_article_custom_data", "$me::zenpageItemSave");
-			zp_register_filter("edit_article_custom_data", "$me::zenpageItemEdit");
+			zp_register_filter("save_article_custom_data", "$me::cmsItemSave");
+			zp_register_filter("edit_article_custom_data", "$me::cmsItemEdit");
 		}
 		if (isset($items['news_categories'])) {
-			zp_register_filter("save_category_custom_data", "$me::zenpageItemSave");
-			zp_register_filter("edit_category_custom_data", "$me::zenpageItemEdit");
+			zp_register_filter("save_category_custom_data", "$me::cmsItemSave");
+			zp_register_filter("edit_category_custom_data", "$me::cmsItemEdit");
 		}
 		if (isset($items['pages'])) {
-			zp_register_filter("save_page_custom_data", "$me::zenpageItemSave");
-			zp_register_filter("edit_page_custom_data", "$me::zenpageItemEdit");
+			zp_register_filter("save_page_custom_data", "$me::cmsItemSave");
+			zp_register_filter("edit_page_custom_data", "$me::cmsItemEdit");
 		}
 		if (OFFSET_PATH && !getOption($me . "_addedFields")) {
-			zp_register_filter('admin_note', "$me::adminNotice");
+			setupRequest($me);
 		}
-	}
-
-	/**
-	 * Notification of need to run setup
-	 * @param type $tab
-	 * @param type $subtab
-	 * @param type $me
-	 * @return type
-	 */
-	static function _adminNotice($tab, $subtab, $me) {
-		echo '<p class="notebox">' . sprintf(gettext('You will need to run <a href="%1$s">setup</a> to update the database with the custom fields defined by the <em>%2$s</em> plugin.'), FULLWEBPATH . '/' . ZENFOLDER . '/setup.php', $me) . '</p>';
-		return $tab;
 	}
 
 	/**
@@ -326,6 +434,47 @@ value="' . html_encode($object->get($field['name'])) . '" />';
 	static function _setCustomData($obj, $values) {
 		foreach ($values as $field => $value) {
 			$obj->set($field, $value);
+		}
+	}
+
+	static function getField($field, $object = NULL, &$detail = NULL, $fields) {
+		global $_zp_current_admin_obj, $_zp_current_album, $_zp_current_image
+		, $_zp_current_article, $_zp_current_page, $_zp_current_category;
+		$objects = $tables = array();
+		if (is_null($object)) {
+			if (in_context(ZP_IMAGE)) {
+				$object = $_zp_current_image;
+				$objects[$tables[] = 'albums'] = $_zp_current_album;
+			} else if (in_context(ZP_ALBUM)) {
+				$object = $_zp_current_album;
+			} else if (in_context(ZP_ZENPAGE_NEWS_ARTICLE)) {
+				$object = $_zp_current_article;
+				if ($_zp_current_category)
+					$objects[$tables[] = 'news_categories'] = $_zp_current_category;
+			} else if (in_context(ZP_ZENPAGE_PAGE)) {
+				$object = $_zp_current_page;
+			} else if (in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
+				$object = $_zp_current_category;
+			} else {
+				zp_error(gettext('There is no defined context, you must pass a comment object.'));
+			}
+		}
+
+		$tables[] = $object->table;
+		$objects[$object->table] = $object;
+		$field = strtolower($field);
+
+		foreach ($fields as $try) {
+			if ($field == strtolower($try['name']) && in_array($try['table'], $tables)) {
+				$detail = $try;
+				$object = $objects[$try['table']];
+				break;
+			}
+		}
+		if (isset($detail)) {
+			return get_language_string($object->get($detail['name']));
+		} else {
+			zp_error(gettext('Field not defined.'));
 		}
 	}
 

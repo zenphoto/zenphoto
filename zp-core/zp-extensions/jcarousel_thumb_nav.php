@@ -7,7 +7,7 @@
  *
  * @author Malte Müller (acrylian)
  * @package plugins
- * @subpackage media
+ * @subpackage theme
  */
 $plugin_description = gettext("jQuery jCarousel thumb nav plugin with dynamic loading of thumbs on request via JavaScript.");
 $plugin_author = "Malte Müller (acrylian) based on a jCarousel example";
@@ -39,15 +39,15 @@ class jcarousel {
 
 	function getOptionsSupported() {
 		global $_zp_gallery;
-		$options = array(gettext('Thumbs number')	 => array('key'	 => 'jcarousel_scroll', 'type' => OPTION_TYPE_TEXTBOX,
+		$options = array(gettext('Thumbs number')	 => array('key'	 => 'jcarousel_scroll', 'type' => OPTION_TYPE_NUMBER,
 										'desc' => gettext("The number of thumbs to scroll by. Note that the CSS might need to be adjusted.")),
-						gettext('width')					 => array('key'	 => 'jcarousel_width', 'type' => OPTION_TYPE_TEXTBOX,
+						gettext('width')					 => array('key'	 => 'jcarousel_width', 'type' => OPTION_TYPE_NUMBER,
 										'desc' => gettext("Width of the carousel. Note that the CSS might need to be adjusted.")),
-						gettext('height')					 => array('key'	 => 'jcarousel_height', 'type' => OPTION_TYPE_TEXTBOX,
+						gettext('height')					 => array('key'	 => 'jcarousel_height', 'type' => OPTION_TYPE_NUMBER,
 										'desc' => gettext("Height of the carousel. Note that the CSS might need to be adjusted.")),
-						gettext('Crop width')			 => array('key'	 => 'jcarousel_cropw', 'type' => OPTION_TYPE_TEXTBOX,
+						gettext('Crop width')			 => array('key'	 => 'jcarousel_cropw', 'type' => OPTION_TYPE_NUMBER,
 										'desc' => ""),
-						gettext('Crop height')		 => array('key'	 => 'jcarousel_croph', 'type' => OPTION_TYPE_TEXTBOX,
+						gettext('Crop height')		 => array('key'	 => 'jcarousel_croph', 'type' => OPTION_TYPE_NUMBER,
 										'desc' => ""),
 						gettext('Full image link') => array('key'	 => 'jcarousel_fullimagelink', 'type' => OPTION_TYPE_CHECKBOX,
 										'desc' => gettext("If checked the thumbs link to the full image instead of the image page.")),
@@ -77,7 +77,7 @@ class jcarousel {
 		}
 		?>
 		<script>
-			(function($) {
+			(function ($) {
 				var userAgent = navigator.userAgent.toLowerCase();
 
 				$.browser = {
@@ -147,13 +147,9 @@ if (!$plugin_disable && !OFFSET_PATH && getOption('jcarousel_' . $_zp_gallery->g
 			}
 			if (is_null($fullimagelink)) {
 				$fullimagelink = getOption('jcarousel_fullimagelink');
-			} else {
-				$fullimagelink = sanitize($fullimagelink);
 			}
 			if (is_null($vertical)) {
 				$vertical = getOption('jcarousel_vertical');
-			} else {
-				$vertical = sanitize($vertical);
 			}
 			if ($vertical) {
 				$vertical = 'true';
@@ -217,7 +213,7 @@ if (!$plugin_disable && !OFFSET_PATH && getOption('jcarousel_' . $_zp_gallery->g
 			}
 			?>
 			<script type="text/javascript">
-				// <!-- <![CDATA[
+			// <!-- <![CDATA[
 				var mycarousel_itemList = [
 			<?php echo $items; ?>
 				];
@@ -243,7 +239,7 @@ if (!$plugin_disable && !OFFSET_PATH && getOption('jcarousel_' . $_zp_gallery->g
 					return html;
 				}
 
-				jQuery(document).ready(function() {
+				jQuery(document).ready(function () {
 					jQuery("#mycarousel").jcarousel({
 						vertical: <?php echo $vertical; ?>,
 						size: mycarousel_itemList.length,
@@ -252,7 +248,7 @@ if (!$plugin_disable && !OFFSET_PATH && getOption('jcarousel_' . $_zp_gallery->g
 						itemLoadCallback: {onBeforeAnimation: mycarousel_itemLoadCallback}
 					});
 				});
-				// ]]> -->
+			// ]]> -->
 			</script>
 			<ul id="mycarousel">
 				<!-- The content will be dynamically loaded in here -->

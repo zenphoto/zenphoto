@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This plugin provides a facility to periodically run the Zenphoto backup utility. Use it to
+ * This plugin provides a facility to periodically run the backup utility. Use it to
  * insure that database backups are done on a regular basis.
  *
  * <b>NOTE:</b> The website must be visited and live pages must be served for this
@@ -14,18 +14,23 @@
  * Backups are run under the master administrator authority.
  *
  * @author Stephen Billard (sbillard)
+ *
  * @package plugins
  * @subpackage admin
  */
-$plugin_is_filter = 2 | ADMIN_PLUGIN | THEME_PLUGIN;
-$plugin_description = gettext("Periodically backup the Zenphoto database.");
+$plugin_is_filter = defaultExtension(2 | ADMIN_PLUGIN | THEME_PLUGIN);
+$plugin_description = gettext("Periodically backup the database.");
 $plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'auto_backup';
-if ((getOption('last_backup_run') + getOption('backup_interval') * 86400) < time()) { // register if it is time for a backup
-	require_once(dirname(dirname(__FILE__)) . '/admin-functions.php');
-	zp_register_filter('admin_head', 'auto_backup::timer_handler');
-	zp_register_filter('theme_head', 'auto_backup::timer_handler');
+if (OFFSET_PATH == 2) {
+	setOption('last_backup_run', 0); // for sure things have changed
+} else {
+	if ((getOption('last_backup_run') + getOption('backup_interval') * 86400) < time()) { // register if it is time for a backup
+		require_once(dirname(dirname(__FILE__)) . '/admin-functions.php');
+		zp_register_filter('admin_head', 'auto_backup::timer_handler');
+		zp_register_filter('theme_head', 'auto_backup::timer_handler');
+	}
 }
 
 /**
@@ -49,11 +54,13 @@ class auto_backup {
 	 * @return array
 	 */
 	function getOptionsSupported() {
-		$options = array(gettext('Run interval')		 => array('key'		 => 'backup_interval', 'type'	 => OPTION_TYPE_TEXTBOX,
+		$options = array(gettext('Run interval')		 => array('key'		 => 'backup_interval', 'type'	 => OPTION_TYPE_NUMBER,
 										'order'	 => 1,
+										'limits' => array('min' => 1),
 										'desc'	 => gettext('The run interval (in days) for auto backup.')),
-						gettext('Backups to keep') => array('key'		 => 'backups_to_keep', 'type'	 => OPTION_TYPE_TEXTBOX,
+						gettext('Backups to keep') => array('key'		 => 'backups_to_keep', 'type'	 => OPTION_TYPE_NUMBER,
 										'order'	 => 0,
+										'limits' => array('min' => 1),
 										'desc'	 => gettext('Auto backup will keep only this many backup sets. Older sets will be removed.'))
 		);
 		if ($d = getOption('last_backup_run')) {
@@ -88,13 +95,12 @@ class auto_backup {
 		asort($list);
 		$list = array_flip($list);
 		$keep = getOption('backups_to_keep');
-		while (count($list) >= $keep) {
+		while (!empty($list) && count($list) >= $keep) {
 			$file = array_shift($list);
 			@chmod(SERVERPATH . "/" . BACKUPFOLDER . '/' . $file, 0777);
 			unlink(SERVERPATH . "/" . BACKUPFOLDER . '/' . $file);
 		}
-		cron_starter(SERVERPATH . '/' . ZENFOLDER . '/' . UTILITIES_FOLDER . '/backup_restore.php', array('backup' => 1, 'autobackup' => 1, 'compress' => sprintf('%u', getOption('backup_compression')), 'XSRFTag' => 'backup'), 3
-		);
+		cron_starter(SERVERPATH . '/' . ZENFOLDER . '/' . UTILITIES_FOLDER . '/backup_restore.php', array('backup' => 1, 'autobackup' => 1, 'compress' => sprintf('%u', getOption('backup_compression')), 'XSRFTag' => 'backup'), 3);
 		return $discard;
 	}
 

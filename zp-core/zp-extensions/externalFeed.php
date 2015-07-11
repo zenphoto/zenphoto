@@ -38,13 +38,14 @@
  * </ul>
  *
  * @author Stephen Billard (sbillard)
+ *
  * @package plugins
- * @subpackage feed
+ * @subpackage admin
  */
 // force UTF-8 Ø
 
 $plugin_is_filter = 900 | FEATURE_PLUGIN | ADMIN_PLUGIN;
-$plugin_description = gettext('The Zenphoto <em>externalFeed</em> handler.');
+$plugin_description = gettext('The <em>externalFeed</em> handler.');
 
 $plugin_author = "Stephen Billard (sbillard)";
 
@@ -73,10 +74,10 @@ class externalFeed_options {
 														gettext('News/Page Comments')	 => 'externalFeed_article_comments'
 										),
 										'desc'			 => gettext('Check each feeds you wish to activate.')),
-						gettext('Image feed items:')					 => array('key'		 => 'externalFeed_items', 'type'	 => OPTION_TYPE_TEXTBOX,
+						gettext('Image feed items:')					 => array('key'		 => 'externalFeed_items', 'type'	 => OPTION_TYPE_NUMBER,
 										'order'	 => 1,
 										'desc'	 => gettext("The number of new images and comments you want to appear in your site’s feed")),
-						gettext('Image size')									 => array('key'		 => 'externalFeed_imagesize', 'type'	 => OPTION_TYPE_TEXTBOX,
+						gettext('Image size')									 => array('key'		 => 'externalFeed_imagesize', 'type'	 => OPTION_TYPE_NUMBER,
 										'order'	 => 3,
 										'desc'	 => gettext('Size of image feed images:')),
 						gettext('Image feed sort order:')			 => array('key'				 => 'externalFeed_sortorder', 'type'			 => OPTION_TYPE_SELECTOR,
@@ -104,10 +105,10 @@ class externalFeed_options {
 										'desc'	 => gettext("Check the box to remove a site."))
 		);
 		if (extensionEnabled('zenpage')) {
-			$options[gettext('Feed text length')] = array('key'		 => 'externalFeed_truncate_length', 'type'	 => OPTION_TYPE_TEXTBOX,
+			$options[gettext('Feed text length')] = array('key'		 => 'externalFeed_truncate_length', 'type'	 => OPTION_TYPE_NUMBER,
 							'order'	 => 6,
 							'desc'	 => gettext("The text length of the Zenpage feed items. No value for full length."));
-			$options[gettext('News feed items')] = array('key'		 => 'externalFeed_zenpage_items', 'type'	 => OPTION_TYPE_TEXTBOX,
+			$options[gettext('News feed items')] = array('key'		 => 'externalFeed_zenpage_items', 'type'	 => OPTION_TYPE_NUMBER,
 							'order'	 => 5,
 							'desc'	 => gettext("The number of news articles you want to appear in your site’s News feed."));
 		}
@@ -165,11 +166,11 @@ class ExternalFeed extends feed {
 	 *
 	 */
 	function __construct($options = NULL) {
-		global $_zp_gallery, $_zp_current_admin_obj, $_zp_loggedin;
+		global $_zp_gallery, $_zp_current_admin_obj, $_zp_loggedin, $_zp_gallery_page;
+		$_zp_gallery_page = 'externalFeed.php';
 		if (empty($options))
 			self::feed404();
-
-		$this->feedtype = $options['external'];
+		$this->feedtype = $options['externalfeed'];
 		$this->key = @$options['accesskey'];
 		parent::__construct($options);
 
@@ -180,7 +181,7 @@ class ExternalFeed extends feed {
 				$this->key = NULL;
 			}
 		}
-		if (!$this->key && $this->feedtype != 'site_closed')
+		if (!$this->key && $this->feedtype != 'null')
 			self::feed404();
 // general feed setup
 		$channeltitlemode = getOption('externalFeed_title');
@@ -256,7 +257,7 @@ class ExternalFeed extends feed {
 				$this->imagesize = $this->getImageSize();
 				$this->itemnumber = getOption("externalFeed_zenpage_items"); // # of Items displayed on the feed
 				require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/image_album_statistics.php');
-				require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/zenpage-template-functions.php');
+				require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/template-functions.php');
 
 				break;
 			case 'pages': //Zenpage News
@@ -281,7 +282,7 @@ class ExternalFeed extends feed {
 						break;
 				}
 				$this->channel_title = html_encode($this->channel_title . $titleappendix);
-				require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/zenpage-template-functions.php');
+				require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/template-functions.php');
 				break;
 
 			case 'comments': //Comments
@@ -318,7 +319,7 @@ class ExternalFeed extends feed {
 				}
 				$this->channel_title = html_encode($this->channel_title . $title . gettext(' (latest comments)'));
 				if (extensionEnabled('zenpage')) {
-					require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/zenpage-template-functions.php');
+					require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/template-functions.php');
 				}
 				break;
 			case 'null': //we just want the class instantiated
@@ -356,7 +357,7 @@ class ExternalFeed extends feed {
 			$feeditem['desc'] = $albumobj->getDesc($this->locale);
 
 			$feeditem['title'] = $imagenumber;
-			$feeditem['pubdate'] = date("r", strtotime($albumobj->getDateTime()));
+			$feeditem['pubdate'] = date("r", strtotime($albumobj->getPublishDate()));
 		} else {
 			if (isAlbumClass($item)) {
 				$albumobj = $item;
@@ -370,7 +371,7 @@ class ExternalFeed extends feed {
 
 			$feeditem['desc'] = $item->getDesc($this->locale);
 			$feeditem['title'] = sprintf('%1$s (%2$s)', $item->getTitle($this->locale), $albumobj->getTitle($this->locale));
-			$feeditem['pubdate'] = date("r", strtotime($item->getDateTime()));
+			$feeditem['pubdate'] = date("r", strtotime($item->getPublishDate()));
 		}
 
 //link
@@ -396,14 +397,14 @@ class ExternalFeed extends feed {
 	protected function getItemNews($item) {
 		$categories = '';
 		$feeditem['enclosure'] = '';
-		$obj = new ZenpageNews($item['titlelink']);
+		$obj = newArticle($item['titlelink']);
 		$title = $feeditem['title'] = get_language_string($obj->getTitle('all'), $this->locale);
 		$link = $obj->getLink();
 		$count2 = 0;
 		$plaincategories = $obj->getCategories();
 		$categories = '';
 		foreach ($plaincategories as $cat) {
-			$catobj = new ZenpageCategory($cat['titlelink']);
+			$catobj = newCategory($cat['titlelink']);
 			$categories .= get_language_string($catobj->getTitle('all'), $this->locale) . ', ';
 		}
 		$categories = rtrim($categories, ', ');
@@ -418,7 +419,7 @@ class ExternalFeed extends feed {
 		$feeditem['link'] = $link;
 		$feeditem['media_content'] = '';
 		$feeditem['media_thumbnail'] = '';
-		$feeditem['pubdate'] = date("r", strtotime($obj->getDateTime()));
+		$feeditem['pubdate'] = date("r", strtotime($obj->getPublishDate()));
 
 		return $feeditem;
 	}
@@ -431,7 +432,7 @@ class ExternalFeed extends feed {
 					$image = array($image);
 				}
 				foreach ($image as $filename) {
-					$obj = newImage(NULL, array('folder' => $album, 'filename' => $filename), true);
+					$obj = newImage(array('folder' => $album, 'filename' => $filename), true, true);
 					if ($obj->exists) {
 						$items[] = $obj;
 					}
@@ -455,7 +456,7 @@ class ExternalFeed extends feed {
 				$news = array($news);
 			}
 			foreach ($news as $article) {
-				$obj = new ZenpageNews($article, false);
+				$obj = newArticle($article, false);
 				if ($obj->loaded) {
 					$items[] = array('titlelink' => $article);
 				}
@@ -467,7 +468,7 @@ class ExternalFeed extends feed {
 				$pages = array($pages);
 			}
 			foreach ($pages as $page) {
-				$obj = new ZenpagePage($page, false);
+				$obj = newPage($page, false);
 				if ($obj->loaded) {
 					$items[] = array('titlelink' => $page);
 				}
@@ -481,9 +482,11 @@ class ExternalFeed extends feed {
 	 * Prints the feed xml
 	 *
 	 */
-	public function printFeed() {
+	public function printFeed($feeditems = NULL) {
 		global $_zp_gallery;
-		$feeditems = $this->getitems();
+		if (is_null($feeditems)) {
+			$feeditems = $this->getitems();
+		}
 		if (is_array($feeditems)) {
 			header('Content-Type: application/xml');
 			?>
@@ -557,14 +560,19 @@ class ExternalFeed extends feed {
 }
 
 // feed calls before anything else
-if (!OFFSET_PATH && isset($_GET['external'])) {
-	if (!$_GET['external']) {
-		$_GET['external'] = 'gallery';
+if (!OFFSET_PATH) {
+	if (isset($_GET['external'])) {
+		$_GET['externalfeed'] = $_GET['external']; // backward compatibility
 	}
+	if (isset($_GET['externalfeed'])) {
+		if (!$_GET['externalfeed']) {
+			$_GET['externalfeed'] = 'gallery';
+		}
 //	load the theme plugins just incase
-	$_zp_gallery_page = 'rss.php';
-	$e = new ExternalFeed(sanitize($_GET));
-	$e->printFeed();
-	exitZP();
+		$_zp_gallery_page = 'rss.php';
+		$e = new ExternalFeed(sanitize($_GET));
+		$e->printFeed();
+		exitZP();
+	}
 }
 ?>

@@ -4,10 +4,14 @@
  * basic functions used by zenphoto i.php
  * Keep this file to the minimum to allow the largest available memory for processing images!
  * Headers not sent yet!
+ *
+ * @author Stephen Billard (sbillard)
+ *
  * @package functions
  *
  */
 // force UTF-8 Ø
+$_zp_options = array();
 require_once(dirname(__FILE__) . '/global-definitions.php');
 require_once(dirname(__FILE__) . '/functions-common.php');
 
@@ -56,10 +60,14 @@ if ($const_webpath == '/' || $const_webpath == '.') {
 	$const_webpath = '';
 }
 
-if (defined('SERVERPATH')) {
-	$const_serverpath = SERVERPATH;
+if (!defined('SERVERPATH')) {
+	define('SERVERPATH', $const_serverpath);
 }
-
+if (!defined('WEBPATH')) {
+	define('WEBPATH', $const_webpath);
+}
+unset($const_webpath);
+unset($const_serverpath);
 
 // Contexts (Bitwise and combinable)
 define("ZP_INDEX", 1);
@@ -103,47 +111,53 @@ if (TEST_RELEASE) {
 	error_reporting(E_ALL | E_STRICT);
 	@ini_set('display_errors', 1);
 }
+
 set_error_handler("zpErrorHandler");
 set_exception_handler("zpErrorHandler");
 $_configMutex = new zpMutex('cF');
-if (OFFSET_PATH != 2 && !file_exists($const_serverpath . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
-	require_once(dirname(__FILE__) . '/reconfigure.php');
-	reconfigureAction(1);
-}
+$_zp_mutex = new zpMutex();
+
+$_zp_conf_vars = array('db_software' => 'NULL', 'mysql_prefix' => '_', 'charset' => 'UTF-8');
 // Including the config file more than once is OK, and avoids $conf missing.
-eval('?>' . file_get_contents($const_serverpath . '/' . DATA_FOLDER . '/' . CONFIGFILE));
+if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
+	@eval('?>' . file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE));
+	define('DATA_MOD', fileperms(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE) & 0777);
+} else {
+	define('DATA_MOD', 0777);
+}
+define('DATABASE_PREFIX', $_zp_conf_vars['mysql_prefix']);
+define('LOCAL_CHARSET', $_zp_conf_vars['charset']);
 if (!isset($_zp_conf_vars['special_pages'])) {
 	$_zp_conf_vars['special_pages'] = array();
 }
-
-define('DATABASE_PREFIX', $_zp_conf_vars['mysql_prefix']);
-
-if (!defined('WEBPATH')) {
-	define('WEBPATH', $const_webpath);
-}
-unset($const_webpath);
-
-if (!defined('SERVERPATH')) {
-	define('SERVERPATH', $const_serverpath);
-}
-unset($const_serverpath);
-$_zp_mutex = new zpMutex();
-
-if (OFFSET_PATH != 2 && empty($_zp_conf_vars['mysql_database'])) {
-	require_once(dirname(__FILE__) . '/reconfigure.php');
-	reconfigureAction(2);
-}
-
-require_once(dirname(__FILE__) . '/lib-utf8.php');
-
-
 
 if (!defined('CHMOD_VALUE')) {
 	define('CHMOD_VALUE', fileperms(dirname(__FILE__)) & 0666);
 }
 define('FOLDER_MOD', CHMOD_VALUE | 0311);
 define('FILE_MOD', CHMOD_VALUE & 0666);
-define('DATA_MOD', fileperms(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE) & 0777);
+
+if (OFFSET_PATH != 2) {
+	if (!file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
+		_setup(1);
+	} else if (empty($_zp_conf_vars['mysql_database'])) {
+		_setup(2);
+	}
+}
+
+require_once(dirname(__FILE__) . '/lib-utf8.php');
+
+if (!defined('FILESYSTEM_CHARSET')) {
+	if (isset($_zp_conf_vars['FILESYSTEM_CHARSET']) && $_zp_conf_vars['FILESYSTEM_CHARSET'] != 'unknown') {
+		define('FILESYSTEM_CHARSET', $_zp_conf_vars['FILESYSTEM_CHARSET']);
+	} else {
+		if (strtoupper(substr(PHP_OS, 0, 3)) == 'WIN') {
+			define('FILESYSTEM_CHARSET', 'ISO-8859-1');
+		} else {
+			define('FILESYSTEM_CHARSET', 'UTF-8');
+		}
+	}
+}
 
 $_session_path = session_save_path();
 if (!file_exists($_session_path) || !is_writable($_session_path)) {
@@ -157,34 +171,18 @@ if (!isset($_zp_conf_vars['server_protocol'])) {
 	$_zp_conf_vars['server_protocol'] = 'http';
 }
 
-if (!defined('DATABASE_SOFTWARE') && extension_loaded(strtolower(@$_zp_conf_vars['db_software']))) {
+if (!defined('DATABASE_SOFTWARE') && (extension_loaded(strtolower($_zp_conf_vars['db_software'])) || $_zp_conf_vars['db_software'] == 'NULL')) {
 	require_once(dirname(__FILE__) . '/functions-db-' . $_zp_conf_vars['db_software'] . '.php');
 	$data = db_connect(array_intersect_key($_zp_conf_vars, array('db_software' => '', 'mysql_user' => '', 'mysql_pass' => '', 'mysql_host' => '', 'mysql_database' => '', 'mysql_prefix' => '', 'UTF-8' => '')), false);
 } else {
 	$data = false;
 }
+
 if (!$data && OFFSET_PATH != 2) {
-	require_once(dirname(__FILE__) . '/reconfigure.php');
-	reconfigureAction(3);
+	_setup(3);
 }
 
-if (!defined('FILESYSTEM_CHARSET')) {
-	if (isset($_zp_conf_vars['FILESYSTEM_CHARSET']) && $_zp_conf_vars['FILESYSTEM_CHARSET'] != 'unknown') {
-		define('FILESYSTEM_CHARSET', $_zp_conf_vars['FILESYSTEM_CHARSET']);
-	} else {
-		$data = getOption('filesystem_charset');
-		if(!$data) {
-			$data = 'UTF-8';
-		}
-		define('FILESYSTEM_CHARSET', $data);
-	}
-}
-
-$data = getOption('charset');
-if (!$data) {
-	$data = 'UTF-8';
-}
-define('LOCAL_CHARSET', $data);
+primeOptions();
 
 $data = getOption('gallery_data');
 if ($data) {
@@ -212,6 +210,7 @@ if (ini_get('memory_limit') && parse_size(ini_get('memory_limit')) < 100663296) 
 }
 
 // Set the internal encoding
+@ini_set('default_charset', LOCAL_CHARSET);
 if (function_exists('mb_internal_encoding')) {
 	@mb_internal_encoding(LOCAL_CHARSET);
 }
@@ -233,10 +232,10 @@ $_zp_cachefileSuffix = zp_graphicsLibInfo();
 define('GRAPHICS_LIBRARY', $_zp_cachefileSuffix['Library']);
 unset($_zp_cachefileSuffix['Library']);
 unset($_zp_cachefileSuffix['Library_desc']);
-$_zp_supported_images = array();
+$_zp_supported_images = $_zp_images_classes = array();
 foreach ($_zp_cachefileSuffix as $key => $type) {
 	if ($type) {
-		$_zp_supported_images[] = strtolower($key);
+		$_zp_images_classes[$_zp_supported_images[] = strtolower($key)] = 'Image';
 	}
 }
 
@@ -271,7 +270,8 @@ if ($c = getOption('zenphoto_cookie_path')) {
 }
 
 define('SAFE_MODE', preg_match('#(1|ON)#i', ini_get('safe_mode')));
-define('FULLWEBPATH', PROTOCOL . "://" . $_SERVER['HTTP_HOST'] . WEBPATH);
+define('FULLHOSTPATH', PROTOCOL . "://" . $_SERVER['HTTP_HOST']);
+define('FULLWEBPATH', FULLHOSTPATH . WEBPATH);
 define('SAFE_MODE_ALBUM_SEP', '__');
 define('SERVERCACHE', SERVERPATH . '/' . CACHEFOLDER);
 define('MOD_REWRITE', getOption('mod_rewrite'));
@@ -291,6 +291,7 @@ define('IMAGE_CACHE_SUFFIX', getOption('image_cache_suffix'));
 define('DATE_FORMAT', getOption('date_format'));
 
 define('IM_SUFFIX', getOption('mod_rewrite_image_suffix'));
+define('UNIQUE_IMAGE', getOption('unique_image_prefix') && IM_SUFFIX && MOD_REWRITE);
 define('UTF8_IMAGE_URI', getOption('UTF8_image_URI'));
 define('MEMBERS_ONLY_COMMENTS', getOption('comment_form_members_only'));
 
@@ -317,26 +318,28 @@ function js_encode($this_string) {
 	return $this_string;
 }
 
+function primeOptions() {
+	global $_zp_options;
+	if (function_exists('query_full_array')) { //	incase we are in primitive mode
+		$sql = "SELECT LCASE(`name`) as name, `value` FROM " . prefix('options') . ' WHERE (`theme`="" OR `theme` IS NULL) AND `ownerid`=0';
+		$optionlist = query_full_array($sql, false);
+		if ($optionlist !== false) {
+			$_zp_options = array();
+			foreach ($optionlist as $option) {
+				$_zp_options[$option['name']] = $option['value'];
+			}
+		}
+	}
+}
+
 /**
  * Get a option stored in the database.
  * This function reads the options only once, in order to improve performance.
  * @param string $key the name of the option.
  */
 function getOption($key) {
-	global $_zp_conf_vars, $_zp_options;
-	$key = strtolower($key);
-	if (is_null($_zp_options) && function_exists('query_full_array')) { // may be too early to use database!
-		// option table not yet loaded, load it (but not the theme options!)
-		$sql = "SELECT `name`, `value` FROM " . prefix('options') . ' WHERE (`theme`="" OR `theme` IS NULL) AND `ownerid`=0';
-		$optionlist = query_full_array($sql, false);
-		if ($optionlist !== false) {
-			$_zp_options = array();
-			foreach ($optionlist as $option) {
-				$_zp_options[strtolower($option['name'])] = $option['value'];
-			}
-		}
-	}
-	if (isset($_zp_options[$key])) {
+	global $_zp_options;
+	if (isset($_zp_options[$key = strtolower($key)])) {
 		return $_zp_options[$key];
 	} else {
 		return NULL;
@@ -344,18 +347,35 @@ function getOption($key) {
 }
 
 /**
+ * Returns a list of options that start with $pattern
+ * @global array $_zp_options
+ * @param string $pattern
+ * @return array
+ */
+function getOptionsLike($pattern) {
+	global $_zp_options;
+	$result = array();
+	$pattern = strtolower($pattern);
+	foreach ($_zp_options as $option => $value) {
+		if (strpos($option, $pattern) === 0) {
+			$result[$option] = $value;
+		}
+	}
+	return $result;
+}
+
+/**
  * Stores an option value.
  *
  * @param string $key name of the option.
  * @param mixed $value new value of the option.
- * @param bool $persistent set to false if the option is stored in memory only. Otherwise it is preserved in the database
- * @param string $creator name of the creator the option belongs to. Normally NULL for backend core options. 
- *               "zp-core/zp-extensions/<plugin>.php" for official plugin and /plugins/<plugin>.php for user plugin options
+ * @param bool $persistent set to false if the option is stored in memory only
+ * otherwise it is preserved in the database
  */
-function setOption($key, $value, $persistent = true, $creator = NULL) {
+function setOption($key, $value, $persistent = true) {
 	global $_zp_options;
 	if ($persistent) {
-		$sql = 'INSERT INTO ' . prefix('options') . ' (`name`,`ownerid`,`theme`,`value`,`creator`) VALUES (' . db_quote($key) . ',0,"",';
+		$sql = 'INSERT INTO ' . prefix('options') . ' (`name`,`ownerid`,`theme`,`value`) VALUES (' . db_quote($key) . ',0,"",';
 		$sqlu = ' ON DUPLICATE KEY UPDATE `value`=';
 		if (is_null($value)) {
 			$sql .= 'NULL';
@@ -364,13 +384,6 @@ function setOption($key, $value, $persistent = true, $creator = NULL) {
 			$sql .= db_quote($value);
 			$sqlu .= db_quote($value);
 		}
-  
-  if (is_null($creator)) {
-			$sql .= ',NULL';
-		} else {
-			$sql .= ','.db_quote($creator);
-		}
-  
 		$sql .= ') ' . $sqlu;
 		$result = query($sql, false);
 	} else {
@@ -394,34 +407,37 @@ function setOption($key, $value, $persistent = true, $creator = NULL) {
  */
 function setOptionDefault($key, $default) {
 	global $_zp_options;
-	if (!is_null($default)) {
-		$bt = debug_backtrace();
-		$b = array_shift($bt);
+	$bt = debug_backtrace();
+	$b = array_shift($bt);
 
-		$serverpath = str_replace('\\', '/', dirname($b['file']));
-		if (!preg_match('~(.*)/(' . ZENFOLDER . ')~', $serverpath, $matches)) {
-			preg_match('~(.*)/(' . USER_PLUGIN_FOLDER . '|' . THEMEFOLDER . ')~', $serverpath, $matches);
-		}
-		if ($matches) {
-			$creator = str_replace($matches[1] . '/', '', str_replace('\\', '/', $b['file']));
-		} else {
-			$creator = NULL;
-		}
+	$serverpath = str_replace('\\', '/', dirname($b['file']));
+	if (!preg_match('~(.*)/(' . ZENFOLDER . ')~', $serverpath, $matches)) {
+		preg_match('~(.*)/(' . USER_PLUGIN_FOLDER . '|' . THEMEFOLDER . ')~', $serverpath, $matches);
+	}
+	if ($matches) {
+		$creator = str_replace($matches[1] . '/', '', str_replace('\\', '/', $b['file']));
+	} else {
+		$creator = NULL;
+	}
 
-		$sql = 'INSERT INTO ' . prefix('options') . ' (`name`, `value`, `ownerid`, `theme`, `creator`) VALUES (' . db_quote($key) . ',';
-		if (is_null($default)) {
-			$sql .= 'NULL';
-		} else {
-			$sql .= db_quote($default);
-		}
-		$sql .= ',0,"",';
-		if (is_null($creator)) {
-			$sql .= 'NULL);';
-		} else {
-			$sql .= db_quote($creator) . ');';
-		}
-		if (query($sql, false)) {
-			$_zp_options[strtolower($key)] = $default;
+	$sql = 'INSERT INTO ' . prefix('options') . ' (`name`, `value`, `ownerid`, `theme`, `creator`) VALUES (' . db_quote($key) . ',';
+	if (is_null($default)) {
+		$sql .= 'NULL';
+	} else {
+		$sql .= db_quote($default);
+	}
+	$sql .= ',0,"",';
+	if (is_null($creator)) {
+		$sql .= 'NULL);';
+	} else {
+		$sql .= db_quote($creator) . ');';
+	}
+	if (query($sql, false)) {
+		$_zp_options[strtolower($key)] = $default;
+	} else {
+		if (!is_null($creator)) {
+			$sql = 'UPDATE ' . prefix('options') . 'SET `creator`=' . db_quote($creator) . ' WHERE `name`=' . db_quote($key) . ' AND `ownerid`=0 AND `theme`=""';
+			query($sql, false);
 		}
 	}
 }
@@ -434,21 +450,21 @@ function setOptionDefault($key, $default) {
  */
 function loadLocalOptions($albumid, $theme) {
 	global $_zp_options;
-	//raw theme options
-	$sql = "SELECT `name`, `value` FROM " . prefix('options') . ' WHERE `theme`=' . db_quote($theme) . ' AND `ownerid`=0';
+//raw theme options
+	$sql = "SELECT LCASE(`name`) as name, `value` FROM " . prefix('options') . ' WHERE `theme`=' . db_quote($theme) . ' AND `ownerid`=0';
 	$optionlist = query_full_array($sql, false);
 	if ($optionlist !== false) {
 		foreach ($optionlist as $option) {
-			$_zp_options[strtolower($option['name'])] = $option['value'];
+			$_zp_options[$option['name']] = $option['value'];
 		}
 	}
 	if ($albumid) {
-		//album-theme options
-		$sql = "SELECT `name`, `value` FROM " . prefix('options') . ' WHERE `theme`=' . db_quote($theme) . ' AND `ownerid`=' . $albumid;
+//album-theme options
+		$sql = "SELECT LCASE(`name`) as name, `value` FROM " . prefix('options') . ' WHERE `theme`=' . db_quote($theme) . ' AND `ownerid`=' . $albumid;
 		$optionlist = query_full_array($sql, false);
 		if ($optionlist !== false) {
 			foreach ($optionlist as $option) {
-				$_zp_options[strtolower($option['name'])] = $option['value'];
+				$_zp_options[$option['name']] = $option['value'];
 			}
 		}
 	}
@@ -468,9 +484,6 @@ function purgeOption($key) {
  */
 function getOptionList() {
 	global $_zp_options;
-	if (NULL == $_zp_options) {
-		getOption('nil'); // pre-load from the database
-	}
 	return $_zp_options;
 }
 
@@ -496,7 +509,7 @@ function isHandledAlbum($path) {
 	global $_zp_albumHandlers;
 	foreach (array_keys($_zp_albumHandlers) as $suffix) {
 		if (file_exists($path . '.' . $suffix)) {
-			//	it is a handled album sans suffix
+//	it is a handled album sans suffix
 			return $suffix;
 		}
 	} return NULL;
@@ -516,19 +529,19 @@ function rewrite_get_album_image($albumvar, $imagevar) {
 	global $_zp_rewritten, $_zp_albumHandlers;
 	$ralbum = isset($_GET[$albumvar]) ? trim(sanitize_path($_GET[$albumvar]), '/') : NULL;
 	$rimage = isset($_GET[$imagevar]) ? sanitize($_GET[$imagevar]) : NULL;
-	//	we assume that everything is correct if rewrite rules were not applied
+//	we assume that everything is correct if rewrite rules were not applied
 	if ($_zp_rewritten) {
 		if (!empty($ralbum) && empty($rimage)) { //	rewrite rules never set the image part!
 			$path = internalToFilesystem(getAlbumFolder(SERVERPATH) . $ralbum);
 			if (IM_SUFFIX) { // require the rewrite have the suffix as well
 				if (preg_match('|^(.*)' . preg_quote(IM_SUFFIX) . '$|', $ralbum, $matches)) {
-					//has an IM_SUFFIX attached
+//has an IM_SUFFIX attached
 					$rimage = basename($matches[1]);
 					$ralbum = trim(dirname($matches[1]), '/');
 					$path = internalToFilesystem(getAlbumFolder(SERVERPATH) . $ralbum);
 				}
 			} else { //	have to figure it out
-				if (Gallery::validImage($ralbum) || Gallery::validImageAlt($ralbum)) { //	it is an image request
+				if (Gallery::imageObjectClass($ralbum)) { //	it is an image request
 					$rimage = basename($ralbum);
 					$ralbum = trim(dirname($ralbum), '/');
 					$path = internalToFilesystem(getAlbumFolder(SERVERPATH) . $ralbum);
@@ -565,7 +578,7 @@ function rewrite_get_album_image($albumvar, $imagevar) {
  */
 function getImageCacheFilename($album8, $image8, $args) {
 	global $_zp_supported_images, $_zp_cachefileSuffix;
-	// this function works in FILESYSTEM_CHARSET, so convert the file names
+// this function works in FILESYSTEM_CHARSET, so convert the file names
 	$album = internalToFilesystem($album8);
 	if (is_array($image8)) {
 		$image8 = $image8['name'];
@@ -584,7 +597,7 @@ function getImageCacheFilename($album8, $image8, $args) {
 		$image = stripSuffix(internalToFilesystem($image8));
 	}
 
-	// Set default variable values.
+// Set default variable values.
 	$postfix = getImageCachePostfix($args);
 	if (empty($album)) {
 		$albumsep = '';
@@ -696,10 +709,9 @@ function getImageParameters($args, $album = NULL) {
 	$thumb_size = getOption('thumb_size');
 	$thumb_crop_width = getOption('thumb_crop_width');
 	$thumb_crop_height = getOption('thumb_crop_height');
-	$thumb_quality = getOption('thumb_quality');
 	$image_default_size = getOption('image_size');
 	$quality = getOption('image_quality');
-	// Set up the parameters
+// Set up the parameters
 	$thumb = $crop = false;
 	@list($size, $width, $height, $cw, $ch, $cx, $cy, $quality, $thumb, $crop, $thumbstandin, $WM, $adminrequest, $effects) = $args;
 	$thumb = $thumbstandin;
@@ -708,10 +720,10 @@ function getImageParameters($args, $album = NULL) {
 		case 'thumb':
 			$thumb = true;
 			if ($thumb_crop) {
-				$cw = $thumb_crop_width;
-				$ch = $thumb_crop_height;
+				$cw = (int) $thumb_crop_width;
+				$ch = (int) $thumb_crop_height;
 			}
-			$size = round($thumb_size);
+			$size = (int) round($thumb_size);
 			break;
 		case 'default':
 			$size = $image_default_size;
@@ -721,19 +733,52 @@ function getImageParameters($args, $album = NULL) {
 			if (empty($size) || !is_numeric($size)) {
 				$size = false; // 0 isn't a valid size anyway, so this is OK.
 			} else {
-				$size = round($size);
+				$size = (int) round($size);
 			}
 			break;
 	}
 
-	// Round each numeric variable, or set it to false if not a number.
-	list($width, $height, $cw, $ch, $quality) = array_map('sanitize_numeric', array($width, $height, $cw, $ch, $quality));
+	if (is_numeric($width)) {
+		$width = (int) round($width);
+	} else {
+		$width = false;
+	}
+	if (is_numeric($height)) {
+		$height = (int) round($height);
+	} else {
+		$height = false;
+	}
+	if (is_numeric($cw)) {
+		$cw = (int) round($cw);
+	} else {
+		$cw = false;
+	}
+	if (is_numeric($ch)) {
+		$ch = (int) round($ch);
+	} else {
+		$ch = false;
+	}
+	if (is_numeric($quality)) {
+		$quality = (int) round($quality);
+	} else {
+		$quality = false;
+	}
+	if (empty($quality)) {
+		if ($thumb) {
+			$quality = (int) round(getOption('thumb_quality'));
+		} else {
+			$quality = (int) round(getOption('image_quality'));
+		}
+	}
+
+
 	if (!is_null($cx)) {
-		$cx = sanitize_numeric($cx);
+		$cx = (int) round($cx);
 	}
 	if (!is_null($cy)) {
-		$cy = sanitize_numeric($cy);
+		$cy = (int) round($cy);
 	}
+
 	if (!empty($cw) || !empty($ch)) {
 		$crop = true;
 	}
@@ -748,13 +793,6 @@ function getImageParameters($args, $album = NULL) {
 			}
 		}
 	}
-	if (empty($quality)) {
-		if ($thumb) {
-			$quality = round($thumb_quality);
-		} else {
-			$quality = getOption('image_quality');
-		}
-	}
 	if (empty($WM)) {
 		if (!$thumb) {
 			if (!empty($album)) {
@@ -765,7 +803,7 @@ function getImageParameters($args, $album = NULL) {
 			}
 		}
 	}
-	// Return an array of parameters used in image conversion.
+// Return an array of parameters used in image conversion.
 	$args = array($size, $width, $height, $cw, $ch, $cx, $cy, $quality, $thumb, $crop, $thumbstandin, $WM, $adminrequest, $effects);
 	return $args;
 }
@@ -1027,7 +1065,7 @@ function rewrite_path($rewrite, $plain, $webpath = NULL) {
 	} else {
 		$path = $plain;
 	}
-	if ($path{0} == "/") {
+	if ($path && $path{0} == "/") {
 		$path = substr($path, 1);
 	}
 	return $webpath . "/" . $path;
@@ -1049,19 +1087,6 @@ function parse_query($str) {
 		}
 	}
 	return $params;
-}
-
-/**
- * createsa query string from the array passed
- * @param array $parts
- * @return string
- */
-function build_query($parts) {
-	$q = '';
-	foreach ($parts as $name => $value) {
-		$q .= $name . '=' . $value . '&';
-	}
-	return substr($q, 0, -1);
 }
 
 /**
@@ -1105,37 +1130,12 @@ function build_url($parts) {
 function pathurlencode($path) {
 	$parts = parse_url($path);
 	if (isset($parts['query'])) {
-		//	some kind of query link
+//	some kind of query link
 		$pairs = parse_query($parts['query']);
-		if (preg_match('/^a=.*\&i=?/i', $parts['query'])) { //image URI, handle & in file/folder names
-			$index = 'a';
-			foreach ($pairs as $p => $q) {
-				switch ($p) {
-					case 'i':
-						$index = 'i';
-					case 'a':
-						break;
-					default:
-						if (is_null($q)) {
-							$pairs[$index] .= '&' . $p;
-						} else if (in_array($p, array('s', 'w', 'h', 'cw', 'ch', 'cx', 'cy', 'q', 'c', 't', 'wmk', 'admin', 'effects', 'z'))) { // image processor parameters
-							break 2;
-						} else {
-							$pairs[$index] .= '&' . $p . '=' . $q;
-						}
-						unset($pairs[$p]);
-						break;
-				}
-			}
-		}
-		foreach ($pairs as $name => $value) {
-			if ($value) {
-				$pairs[$name] = implode("/", array_map("rawurlencode", explode("/", $value)));
-			}
-		}
-		$parts['query'] = build_query($pairs);
+		$parts['query'] = http_build_query($pairs);
 	}
-	$parts['path'] = implode("/", array_map("rawurlencode", explode("/", $parts['path'])));
+	if (array_key_exists('path', $parts))
+		$parts['path'] = implode("/", array_map("rawurlencode", explode("/", $parts['path'])));
 	return build_url($parts);
 }
 
@@ -1215,11 +1215,12 @@ function switchLog($log) {
  *
  * @param string $message the debug information
  * @param bool $reset set to true to reset the log to zero before writing the message
+ * @param string $log alternative log file
  */
-function debugLog($message, $reset = false) {
+function debugLog($message, $reset = false, $log = 'debug') {
 	if (defined('SERVERPATH')) {
 		global $_zp_mutex;
-		$path = SERVERPATH . '/' . DATA_FOLDER . '/debug.log';
+		$path = SERVERPATH . '/' . DATA_FOLDER . '/' . $log . '.log';
 		$me = getmypid();
 		if (is_object($_zp_mutex))
 			$_zp_mutex->lock();
@@ -1234,7 +1235,7 @@ function debugLog($message, $reset = false) {
 				} else {
 					$clone = ' ' . gettext('clone');
 				}
-				fwrite($f, '{' . $me . ':' . gmdate('D, d M Y H:i:s') . " GMT} Zenphoto v" . ZENPHOTO_VERSION . '[' . ZENPHOTO_FULL_RELEASE . ']' . $clone . "\n");
+				fwrite($f, '{' . $me . ':' . gmdate('D, d M Y H:i:s') . " GMT} ZenPhoto20 v" . ZENPHOTO_VERSION . $clone . "\n");
 			}
 		} else {
 			$f = fopen($path, 'a');
@@ -1322,26 +1323,6 @@ function imgSrcURI($uri) {
 }
 
 /**
- * Returns the suffix of a file name
- *
- * @param string $filename
- * @return string
- */
-function getSuffix($filename) {
-	return strtolower(substr(strrchr($filename, "."), 1));
-}
-
-/**
- * returns a file name sans the suffix
- *
- * @param unknown_type $filename
- * @return unknown
- */
-function stripSuffix($filename) {
-	return str_replace(strrchr($filename, "."), '', $filename);
-}
-
-/**
  * returns the non-empty value of $field from the album or one of its parents
  *
  * @param string $folder the album name
@@ -1353,7 +1334,7 @@ function getAlbumInherited($folder, $field, &$id) {
 	$folders = explode('/', filesystemToInternal($folder));
 	$album = array_shift($folders);
 	$like = ' LIKE ' . db_quote(db_LIKE_escape($album));
-	while (count($folders) > 0) {
+	while (!empty($folders)) {
 		$album .= '/' . array_shift($folders);
 		$like .= ' OR `folder` LIKE ' . db_quote(db_LIKE_escape($album));
 	}
@@ -1380,7 +1361,7 @@ function getAlbumInherited($folder, $field, &$id) {
  * @return string
  */
 function themeSetup($album) {
-	// we need to conserve memory in i.php so loading the classes is out of the question.
+// we need to conserve memory in i.php so loading the classes is out of the question.
 	$id = NULL;
 	$theme = getAlbumInherited(filesystemToInternal($album), 'album_theme', $id);
 	if (empty($theme)) {
@@ -1500,17 +1481,81 @@ function safe_glob($pattern, $flags = 0) {
  * Check to see if the setup script needs to be run
  */
 function checkInstall() {
-	preg_match('|([^-]*)|', ZENPHOTO_VERSION, $version);
-	if ($i = getOption('zenphoto_install')) {
-		$install = getSerializedArray($i);
+	if (OFFSET_PATH != 2) {
+		preg_match('|([^-]*)|', ZENPHOTO_VERSION, $version);
+		if ($i = getOption('zenphoto_install')) {
+			$install = getSerializedArray($i);
+		} else {
+			$install = array('REQUESTS' => 'CONFIGURATION', 'ZENPHOTO' => '0.0.0[0000]');
+		}
+		preg_match('|([^-]*).*\[(.*)\]|', $install['ZENPHOTO'], $matches);
+		if (isset($install['REQUESTS']) || isset($matches[1]) && isset($matches[2]) && $matches[1] != $version[1] || $matches[2] != ZENPHOTO_RELEASE || ((time() & 7) == 0) && OFFSET_PATH != 2 && $i != serialize(installSignature())) {
+			_setup(0);
+		}
+	}
+}
+
+/**
+ * registers a request to have setup run
+ * @param string $whom the requestor
+ *
+ * @author Stephen Billard
+ * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+ */
+function requestSetup($whom) {
+	$sig = getSerializedArray(getOption('zenphoto_install'));
+	$sig['REQUESTS'][$whom] = $whom;
+	setOption('zenphoto_install', serialize($sig));
+}
+
+/**
+ * Force a setup to get the configuration right
+ *
+ * @param int $action if positive the setup is mandatory
+ *
+ * @author Stephen Billard
+ * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+ */
+function _setup($action) {
+	require_once(dirname(__FILE__) . '/reconfigure.php');
+	reconfigureAction($action);
+}
+
+/**
+ *
+ * Computes the "installation signature" of the zenphoto install
+ * @return string
+ */
+function installSignature() {
+	$folder = dirname(__FILE__);
+	$testFiles = array(
+					'template-functions.php'	 => filesize($folder . '/template-functions.php'),
+					'functions-filter.php'		 => filesize($folder . '/functions-filter.php'),
+					'lib-auth.php'						 => filesize($folder . '/lib-auth.php'),
+					'lib-utf8.php'						 => filesize($folder . '/lib-utf8.php'),
+					'functions.php'						 => filesize($folder . '/functions.php'),
+					'functions-basic.php'			 => filesize($folder . '/functions-basic.php'),
+					'functions-controller.php' => filesize($folder . '/functions-controller.php'),
+					'functions-image.php'			 => filesize($folder . '/functions-image.php')
+	);
+
+	if (isset($_SERVER['SERVER_SOFTWARE'])) {
+		$s = $_SERVER['SERVER_SOFTWARE'];
 	} else {
-		$install = array('ZENPHOTO' => '0.0.0[0000]');
+		$s = 'software unknown';
 	}
-	preg_match('|([^-]*).*\[(.*)\]|', $install['ZENPHOTO'], $matches);
-	if (isset($matches[1]) && isset($matches[2]) && $matches[1] != $version[1] || $matches[2] != ZENPHOTO_RELEASE || ((time() & 7) == 0) && OFFSET_PATH != 2 && $i != serialize(installSignature())) {
-		require_once(dirname(__FILE__) . '/reconfigure.php');
-		reconfigureAction(0);
+	$dbs = db_software();
+	$version = ZENPHOTO_VERSION;
+	$i = strpos($version, '-');
+	if ($i !== false) {
+		$version = substr($version, 0, $i);
 	}
+	return array_merge($testFiles, array('SERVER_SOFTWARE'	 => $s,
+					'ZENPHOTO'				 => $version . '[' . ZENPHOTO_RELEASE . ']',
+					'FOLDER'					 => dirname(dirname(__FILE__)),
+					'DATABASE'				 => $dbs['application'] . ' ' . $dbs['version']
+					)
+	);
 }
 
 /**
@@ -1526,132 +1571,17 @@ function exitZP() {
 
 /**
  *
- * Computes the "installation signature" of the Zenphoto install
- * @return string
- */
-function installSignature() {
-	$testFiles = array('template-functions.php'	 => filesize(SERVERPATH . '/' . ZENFOLDER . '/template-functions.php'),
-					'functions-filter.php'		 => filesize(SERVERPATH . '/' . ZENFOLDER . '/functions-filter.php'),
-					'lib-auth.php'						 => filesize(SERVERPATH . '/' . ZENFOLDER . '/lib-auth.php'),
-					'lib-utf8.php'						 => filesize(SERVERPATH . '/' . ZENFOLDER . '/lib-utf8.php'),
-					'functions.php'						 => filesize(SERVERPATH . '/' . ZENFOLDER . '/functions.php'),
-					'functions-basic.php'			 => filesize(SERVERPATH . '/' . ZENFOLDER . '/functions-basic.php'),
-					'functions-controller.php' => filesize(SERVERPATH . '/' . ZENFOLDER . '/functions-controller.php'),
-					'functions-image.php'			 => filesize(SERVERPATH . '/' . ZENFOLDER . '/functions-image.php'));
-
-	if (isset($_SERVER['SERVER_SOFTWARE'])) {
-		$s = $_SERVER['SERVER_SOFTWARE'];
-	} else {
-		$s = 'software unknown';
-	}
-	$dbs = db_software();
-	$version = ZENPHOTO_VERSION;
-	$i = strpos($version, '-');
-	if ($i !== false) {
-		$version = substr($version, 0, $i);
-	}
-	return array_merge($testFiles, array('SERVER_SOFTWARE'	 => $s,
-					'ZENPHOTO'				 => $version . '[' . ZENPHOTO_RELEASE . ']',
-					'FOLDER'					 => dirname(SERVERPATH . '/' . ZENFOLDER),
-					'DATABASE'				 => $dbs['application'] . ' ' . $dbs['version']
-					)
-	);
-}
-
-/**
- *
  * Starts a zenphoto session (perhaps a secure one)
  */
 function zp_session_start() {
 	if (session_id() == '') {
-		// force session cookie to be secure when in https
+// force session cookie to be secure when in https
 		if (secureServer()) {
 			$CookieInfo = session_get_cookie_params();
 			session_set_cookie_params($CookieInfo['lifetime'], $CookieInfo['path'], $CookieInfo['domain'], TRUE);
 		}
 		session_start();
 	}
-}
-
-/**
- * Zenphoto Mutex class
- * @author Stephen
- *
- */
-class zpMutex {
-
-	private $locked = NULL;
-	private $ignoreUseAbort = NULL;
-	private $mutex = NULL;
-	private $lock = NULL;
-
-	function __construct($lock = 'zP', $concurrent = NULL) {
-		// if any of the construction fails, run in free mode (lock = NULL)
-		if (function_exists('flock') && defined('SERVERPATH')) {
-			if ($concurrent) {
-				If ($subLock = self::which_lock($lock, $concurrent)) {
-					$this->lock = $lock . '_' . $subLock;
-				}
-			} else {
-				$this->lock = $lock;
-			}
-		}
-		return $this->lock;
-	}
-
-	// returns the integer id of the lock to be obtained
-	// rotates locks sequentially mod $concurrent
-	private static function which_lock($lock, $concurrent) {
-		global $_zp_mutex;
-		$counter_file = SERVERPATH . '/' . DATA_FOLDER . '/' . MUTEX_FOLDER . '/' . $lock . '_counter';
-		$_zp_mutex->lock();
-		// increment the lock id:
-		if (@file_put_contents($counter_file, $count = (((int) @file_get_contents($counter_file)) + 1) % $concurrent)) {
-			$count++;
-		} else {
-			$count = false;
-		}
-		$_zp_mutex->unlock();
-		return $count;
-	}
-
-	function __destruct() {
-		if ($this->locked) {
-			$this->unlock();
-		}
-	}
-
-	public function lock() {
-		//if "flock" is not supported run un-serialized
-		//Only lock an unlocked mutex, we don't support recursive mutex'es
-		if (!$this->locked && $this->lock) {
-			if ($this->mutex = @fopen(SERVERPATH . '/' . DATA_FOLDER . '/' . MUTEX_FOLDER . '/' . $this->lock, 'wb')) {
-				if (flock($this->mutex, LOCK_EX)) {
-					$this->locked = true;
-					//We are entering a critical section so we need to change the ignore_user_abort setting so that the
-					//script doesn't stop in the critical section.
-					$this->ignoreUserAbort = ignore_user_abort(true);
-				}
-			}
-		}
-		return $this->locked;
-	}
-
-	/**
-	 * 	Unlock the mutex.
-	 */
-	public function unlock() {
-		if ($this->locked) {
-			//Only unlock a locked mutex.
-			$this->locked = false;
-			ignore_user_abort($this->ignoreUserAbort); //Restore the ignore_user_abort setting.
-			flock($this->mutex, LOCK_UN);
-			fclose($this->mutex);
-			return true;
-		}
-		return false;
-	}
-
 }
 
 ?>

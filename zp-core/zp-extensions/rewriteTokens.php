@@ -2,21 +2,18 @@
 /**
  * This plugin will edit the tokens in the <var>%DATA_FOLDER%/zenphoto.cfg</var> file
  *
- *
  * @author Stephen Billard (sbillard)
+ *
  * @package plugins
- * @subpackage admin
+ * @subpackage development
  */
-$plugin_is_filter = 950 | ADMIN_PLUGIN;
+$plugin_is_filter = defaultExtension(950 | ADMIN_PLUGIN);
 $plugin_description = gettext('Utility to alter the rewrite token substitutions array in the configuration file.');
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_disable = (MOD_REWRITE) ? '' : gettext('Rewrite Tokens are not useful unless the <code>mod_rewrite</code> option is enabled.');
 
 $option_interface = 'rewriteTokens';
 
-if (OFFSET_PATH == 2) {
-	setOptionDefault('zp_plugin_rewriteTokens', $plugin_is_filter);
-}
 zp_register_filter('admin_tabs', 'rewriteTokens::tabs');
 
 require_once(SERVERPATH . '/' . ZENFOLDER . '/functions-config.php');
@@ -39,7 +36,7 @@ class rewriteTokens {
 			$this->conf_vars = $conf['special_pages'];
 			$i = strpos($zp_cfg, '/** Do not edit below this line. **/');
 			if ($i === false) {
-				zp_error(gettext('The Zenphoto configuration file is corrupt. You will need to restore it from a backup.'));
+				zp_error(gettext('The Configuration file is corrupt. You will need to restore it from a backup.'));
 			}
 			$this->zp_cfg_a = substr($zp_cfg, 0, $i);
 			$this->zp_cfg_b = "//\n" . substr($zp_cfg, $i);
@@ -189,11 +186,16 @@ class rewriteTokens {
 				$tabs['development'] = array('text'		 => gettext("development"),
 								'subtabs'	 => NULL);
 			}
-			$tabs['development']['subtabs'][gettext("tokens")] = PLUGIN_FOLDER . '/rewriteTokens/admin_tab.php?page=tokens&tab=' . gettext('tokens');
+			$tabs['development']['subtabs'][gettext("tokens")] = PLUGIN_FOLDER . '/rewriteTokens/admin_tab.php?page=development&tab=' . gettext('tokens');
 			$named = array_flip($tabs['development']['subtabs']);
 			natcasesort($named);
 			$tabs['development']['subtabs'] = $named = array_flip($named);
-			$tabs['development']['link'] = array_shift($named);
+			$link = array_shift($named);
+			if (strpos($link, '/') !== 0) { // zp_core relative
+				$tabs['development']['link'] = WEBPATH . '/' . ZENFOLDER . '/' . $link;
+			} else {
+				$tabs['development']['link'] = WEBPATH . $link;
+			}
 		}
 		return $tabs;
 	}

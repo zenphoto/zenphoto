@@ -61,7 +61,6 @@ if (isset($_POST['processed'])) {
 			@chmod($targetPath, FOLDER_MOD);
 			$album = newAlbum($folder);
 			if ($album->exists) {
-				$album->setShow((int) !empty($_POST['publishalbum']));
 				$title = sanitize($_POST['albumtitle'], 2);
 				if (!empty($title) && $newAlbum) {
 					$album->setTitle($title);
@@ -69,6 +68,7 @@ if (isset($_POST['processed'])) {
 				if ($new) {
 					$album->setOwner($_zp_current_admin_obj->getUser());
 				}
+				$album->setShow((int) ($_POST['publishalbum'] == 'true'));
 				$album->save();
 			} else {
 				$AlbumDirName = str_replace(SERVERPATH, '', $_zp_gallery->albumdir);
@@ -84,7 +84,7 @@ if (isset($_POST['processed'])) {
 					$soename = seoFriendly($name);
 					$error = zp_apply_filter('check_upload_quota', UPLOAD_ERR_OK, $tmp_name);
 					if (!$error) {
-						if (Gallery::validImage($name) || Gallery::validImageAlt($name)) {
+						if (Gallery::imageObjectClass($name)) {
 							if (strrpos($soename, '.') === 0)
 								$soename = md5($name) . $soename; // soe stripped out all the name.
 							if (!$error) {
@@ -115,7 +115,7 @@ if (isset($_POST['processed'])) {
 				}
 			}
 			if ($error == UPLOAD_ERR_OK && ($filecount || isset($_POST['newalbum']))) {
-				if ($album->albumSubRights() & MANAGED_OBJECT_RIGHTS_EDIT) {
+				if ($album->subRights() & MANAGED_OBJECT_RIGHTS_EDIT) {
 //	he has edit rights, allow new album creation
 					header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit&album=' . pathurlencode($folder) . '&uploaded&subpage=1&tab=imageinfo&albumimagesort=id_desc');
 				} else {
@@ -139,7 +139,7 @@ if (!isset($_POST['processed'])) {
 			$errormsg = gettext('You have attempted to upload to an album for which you do not have upload rights');
 			break;
 		case UPLOAD_ERR_EXTENSION:
-			$errormsg = gettext('You have attempted to upload one or more files which are not Zenphoto supported file types');
+			$errormsg = gettext('You have attempted to upload one or more files which are not supported file types');
 			break;
 		case UPLOAD_ERR_CANT_WRITE:
 			$errormsg = gettext('The uploader could not write the file.');

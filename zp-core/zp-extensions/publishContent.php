@@ -21,6 +21,8 @@
  * the images <i>visible</i> fields. (These are the same options provided in the <i>Gallery behavior</i> section of
  * the gallery options tab.)
  *
+ * @author Stephen Billard (sbillard)
+ * 
  * @package plugins
  * @subpackage admin
  */
@@ -38,7 +40,7 @@ class publishContent {
 						'enable'			 => true,
 						'button_text'	 => gettext('Publish content'),
 						'formname'		 => 'publishContent_button',
-						'action'			 => WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/publishContent/publishContent.php',
+						'action'			 => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/publishContent/publishContent.php',
 						'icon'				 => 'images/calendar.png',
 						'title'				 => gettext('Manage published state of content in your gallery.'),
 						'alt'					 => '',

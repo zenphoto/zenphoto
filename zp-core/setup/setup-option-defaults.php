@@ -3,24 +3,27 @@
 
 /**
  * stores all the default values for options
+ *
+ * @author Stephen Billard (sbillard)
+ *
  * @package setup
  */
-setupLog(gettext('Set Zenphoto default options'), true);
+setupLog(gettext('Set default options'), true);
+if (isset($_GET['debug'])) {
+	$debug = '&debug';
+} else {
+	$debug = '';
+}
 
 require(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
-require_once(dirname(dirname(__FILE__)) . '/' . PLUGIN_FOLDER . '/security-logger.php');
-zp_apply_filter('log_setup', true, 'install', '');
+$testFile = SERVERPATH . '/' . DATA_FOLDER . '/' . internalToFilesystem('charset_tést');
+if (!file_exists($testFile)) {
+	file_put_contents($testFile, '');
+}
 
 /* fix for NULL theme name */
-$active = getOptionList();
-$sql = "SELECT * FROM " . prefix('options') . ' WHERE `theme` IS NULL';
-$optionlist = query_full_array($sql);
-if ($optionlist) {
-	foreach ($optionlist as $option) {
-		query('DELETE FROM ' . prefix('options') . ' WHERE `id`=' . $option['id']);
-		setOption($option['name'], $active[$option['name']]);
-	}
-}
+Query('UPDATE ' . prefix('options') . ' SET `theme`="" WHERE `theme` IS NULL');
+
 $lib_auth_extratext = "";
 $salt = 'abcdefghijklmnopqursuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789~!@#$%^&*()_+-={}[]|;,.<>?/';
 $list = range(0, strlen($salt) - 1);
@@ -29,36 +32,126 @@ for ($i = 0; $i < 30; $i++) {
 	$lib_auth_extratext = $lib_auth_extratext . $salt{$list[$i]};
 }
 
-
-purgeOption('zenphoto_release');
-purgeOption('zenphoto_version');
-purgeOption('zenphoto_install');
-setOption('zenphoto_install', serialize(installSignature()));
-
-if (Zenphoto_Authority::$preferred_version > ($oldv = getOption('libauth_version'))) {
-	if (empty($oldv)) {
-		//	The password hash of these old versions did not have the extra text.
-		//	Note: if the administrators table is empty we will re-do this option with the good stuff.
-		purgeOption('extra_auth_hash_text');
-		setOptionDefault('extra_auth_hash_text', '');
+//clean up tag list quoted strings
+$sql = 'SELECT * FROM ' . prefix('tags') . ' WHERE `name` LIKE \'"%\' OR `name` LIKE "\'%"';
+$result = query($sql);
+if ($result) {
+	while ($row = db_fetch_assoc($result)) {
+		$sql = 'UPDATE ' . prefix('tags') . ' SET `name`=' . db_quote(trim($row['name'], '"\'')) . ' WHERE `id`=' . $row['id'];
+		if (!query($sql, false)) {
+			$oldtag = $row['id'];
+			$sql = 'DELETE FROM ' . prefix('tags') . ' WHERE `id`=' . $oldtag;
+			query($sql);
+			$sql = 'SELECT * FROM ' . prefix('tags') . ' WHERE `name`=' . db_quote(trim($row['name'], '"\''));
+			$row = query_single_row($sql);
+			if (!empty($row)) {
+				$sql = 'UPDATE ' . prefix('obj_to_tag') . ' SET `tagid`=' . $row['id'] . ' WHERE `tagid`=' . $oldtag;
+			}
+		}
 	}
-	$msg = sprintf(gettext('Migrating lib-auth data version %1$s => version %2$s'), $oldv, Zenphoto_Authority::$preferred_version);
-	if (!$_zp_authority->migrateAuth(Zenphoto_Authority::$preferred_version)) {
-		$msg .= ': ' . gettext('failed');
-	}
-	echo $msg;
-	setupLog($msg, true);
 }
+
+//migrate CMS "publish" dates
+foreach (array('news', 'pages') as $table) {
+	$sql = 'UPDATE ' . prefix($table) . ' SET `publishdate`=`date` WHERE `publishdate` IS NULL';
+	query($sql);
+	$sql = 'UPDATE ' . prefix($table) . ' SET `lastchange`=`date` WHERE `lastchange` IS NULL';
+	query($sql);
+}
+
+//migrate rotation and GPS data
+$result = db_list_fields('images');
+$where = '';
+if (isset($result['EXIFOrientation'])) {
+	$where = '(`rotation` IS NULL AND `EXIFOrientation`!="")';
+}
+if (isset($result['EXIFGPSLatitude'])) {
+	$where .= ' OR (`GPSLatitude` IS NULL AND NOT `EXIFGPSLatitude` IS NULL)';
+} else if (isset($result['EXIFGPSLongitude'])) {
+	$where .= ' OR (`GPSLongitude` IS NULL AND NOT `EXIFGPSLongitude` IS NULL)';
+} else if (isset($result['EXIFGPSAltitude'])) {
+	$where .= ' OR (`GPSAltitude` IS NULL AND NOT `EXIFGPSAltitude` IS NULL)';
+}
+if (!empty($where)) {
+	$sql = 'SELECT `id` FROM ' . prefix('images') . ' WHERE ' . $where;
+	$result = query($sql);
+	while ($row = db_fetch_assoc($result)) {
+		$img = getItemByID('images', $row['id']);
+		foreach (array('EXIFGPSLatitude', 'EXIFGPSLongitude') as $source) {
+			$data = $img->get($source);
+			if (!empty($data)) {
+				if (in_array(strtoupper($img->get($source . 'Ref')), array('S', 'W'))) {
+					$data = -$data;
+				}
+				$img->set(substr($source, 4), $data);
+			}
+		}
+		$alt = $img->get('EXIFGPSAltitude');
+		if (!empty($alt)) {
+			if ($img->get('EXIFGPSAltitudeRef') == '-') {
+				$alt = -$alt;
+			}
+			$img->set('GPSAltitude', $alt);
+		}
+		$img->set('rotation', substr(trim($img->get('EXIFOrientation'), '!'), 0, 1));
+		$img->save();
+	}
+	db_free_result($result);
+}
+
+setOption('zenphoto_install', serialize(installSignature()));
 $admins = $_zp_authority->getAdministrators('all');
+
+$str = gettext("What is your father’s middle name?");
+$questions[] = getSerializedArray(getAllTranslations($str));
+$str = gettext("What street did your Grandmother live on?");
+$questions[] = getSerializedArray(getAllTranslations($str));
+$str = gettext("Who was your favorite singer?");
+$questions[] = getSerializedArray(getAllTranslations($str));
+$str = gettext("When did you first get a computer?");
+$questions[] = getSerializedArray(getAllTranslations($str));
+$str = gettext("How much wood could a woodchuck chuck if a woodchuck could chuck wood?");
+$questions[] = getSerializedArray(getAllTranslations($str));
+$str = gettext("What is the date of the Ides of March?");
+$questions[] = getSerializedArray(getAllTranslations($str));
+setOptionDefault('challenge_foils', serialize($questions));
 
 if (empty($admins)) { //	empty administrators table
 	$groupsdefined = NULL;
-	if (function_exists('hash')) {
-		setOption('strong_hash', 3);
+	if (isset($_SESSION['clone'][$cloneid])) { //replicate the user who cloned the install
+		$clone = $_SESSION['clone'][$cloneid];
+		setOption('UTF8_image_URI', $clone['UTF8_image_URI']);
+		setOption('strong_hash', $clone['strong_hash']);
+		setOption('extra_auth_hash_text', $clone['hash']);
+		if ($clone['mod_rewrite'])
+			$_GET['mod_rewrite'] = true;
+		$_zp_current_admin_obj = unserialize($_SESSION['admin'][$cloneid]);
+		$_zp_current_admin_obj->clearID();
+		$_zp_current_admin_obj->save();
+		$_zp_loggedin = ALL_RIGHTS;
+		setOption('license_accepted', ZENPHOTO_VERSION . '[' . ZENPHOTO_RELEASE . ']');
+		unset($_SESSION['clone'][$cloneid]);
 	} else {
-		setOption('strong_hash', 1);
+		if (Zenphoto_Authority::$preferred_version > ($oldv = getOption('libauth_version'))) {
+			if (empty($oldv)) {
+//	The password hash of these old versions did not have the extra text.
+//	Note: if the administrators table is empty we will re-do this option with the good stuff.
+				purgeOption('extra_auth_hash_text');
+				setOptionDefault('extra_auth_hash_text', '');
+			}
+			$msg = sprintf(gettext('Migrating lib-auth data version %1$s => version %2$s'), $oldv, Zenphoto_Authority::$preferred_version);
+			if (!$_zp_authority->migrateAuth(Zenphoto_Authority::$preferred_version)) {
+				$msg .= ': ' . gettext('failed');
+			}
+			echo $msg;
+			setupLog($msg, true);
+		} if (function_exists('hash')) {
+			setOption('strong_hash', 3);
+		} else {
+			setOption('strong_hash', 1);
+		}
+		purgeOption('extra_auth_hash_text');
 	}
-	purgeOption('extra_auth_hash_text');
 } else {
 	if (function_exists('hash') && getOption('strong_hash') == 2) {
 		setOption('strong_hash', 3);
@@ -77,11 +170,11 @@ setOption('mod_rewrite_detected', 0);
 if (isset($_GET['mod_rewrite'])) {
 	?>
 	<script type="text/javascript">
-		$(function() {
-			$('img').error(function() {
+		$(function () {
+			$('img').error(function () {
 				var link = $(this).attr('src');
 				var title = $(this).attr('title');
-				$(this).parent().html('<a href="' + link + '"><img src="../images/fail.png" title="' + title + '"></a>');
+				$(this).parent().html('<a href="' + link + '" target="_blank"><img src="../images/fail.png" title="' + title + '"></a>');
 				imageErr = true;
 			});
 		});
@@ -95,13 +188,17 @@ if (isset($_GET['mod_rewrite'])) {
 	</p>
 	<?php
 }
-
-if (isset($_POST['setUTF8URI']) && $_POST['setUTF8URI'] != 'dont') {
-	setOption('UTF8_image_URI', (int) ($_POST['setUTF8URI'] == 'true'));
+if (isset($_POST['setUTF8URI'])) {
+	setOption('UTF8_image_URI_found', sanitize($_POST['setUTF8URI']));
+	if ($_POST['setUTF8URI'] == 'unknown') {
+		setupLog(gettext('Setup could not find a configuration that allows image URIs containing diacritical marks.'), true);
+		setOptionDefault('UTF8_image_URI', 1);
+	} else {
+		setOptionDefault('UTF8_image_URI', (int) ($_POST['setUTF8URI'] == 'internal'));
+	}
 }
 setOptionDefault('server_protocol', "http");
 setOptionDefault('charset', "UTF-8");
-setOptionDefault('filesystem_charset', "UTF-8");
 setOptionDefault('image_quality', 85);
 setOptionDefault('thumb_quality', 75);
 
@@ -124,8 +221,6 @@ if (getOption('perform_video_watermark')) {
 	setoptionDefault('Video_watermark', $v);
 }
 
-setOptionDefault('image_sorttype', 'Filename');
-setOptionDefault('image_sortdirection', '0');
 setOptionDefault('hotlink_protection', '1');
 
 setOptionDefault('search_fields', 'title,desc,tags,file,location,city,state,country,content,author');
@@ -198,8 +293,6 @@ setOptionDefault('tagsort', 0);
 setOptionDefault('albumimagesort', 'ID');
 setOptionDefault('albumimagedirection', 'DESC');
 setOptionDefault('cache_full_image', 0);
-setOptionDefault('custom_index_page', '');
-setOptionDefault('picture_of_the_day', serialize(array('day' => NULL, 'folder' => NULL, 'filename' => NULL)));
 setOptionDefault('exact_tag_match', 0);
 
 setOptionDefault('image_max_size', 3000);
@@ -217,9 +310,6 @@ foreach ($_zp_exifvars as $key => $item) {
 	setOptionDefault($key, 0);
 }
 setOptionDefault('IPTC_encoding', 'ISO-8859-1');
-setOptionDefault('IPTC_convert_linebreaks', 0);
-
-setOptionDefault('UTF8_image_URI', 0);
 
 setOptionDefault('sharpen_amount', 40);
 setOptionDefault('sharpen_radius', 0.5);
@@ -227,15 +317,6 @@ setOptionDefault('sharpen_threshold', 3);
 
 setOptionDefault('search_space_is_or', 0);
 setOptionDefault('search_no_albums', 0);
-
-//	 update group descriptions location
-$admins = $_zp_authority->getAdministrators('groups');
-foreach ($admins as $group) {
-	if (is_null($group['other_credentials'])) {
-		$sql = 'UPDATE ' . prefix('administrators') . ' SET `custom_data` = NULL, `other_credentials`=' . db_quote($group['custom_data']) . ' WHERE `id`=' . $group['id'];
-		query($sql);
-	}
-}
 
 // default groups
 if (!is_array($groupsdefined)) {
@@ -304,30 +385,39 @@ setOptionDefault('RSS_pages', 1);
 setOptionDefault('RSS_article_comments', 1);
 
 setOptionDefault('AlbumThumbSelect', 1);
-purgeOption('AlbumThumbSelectField');
-purgeOption('AlbumThumbSelectDirection');
 
 setOptionDefault('site_email', "zenphoto@" . $_SERVER['SERVER_NAME']);
-setOptionDefault('site_email_name', 'Zenphoto');
+setOptionDefault('site_email_name', 'ZenPhoto20');
 
-if (file_exists(SERVERPATH . '/' . ZENFOLDER . '/Zenphoto.package')) {
-	$package = file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/Zenphoto.package');
-	if (!empty($package)) {
-		preg_match_all('|[^/]themes/([^/\r\n]*)|', $package, $matches);
-		$themes = array_unique($matches[1]);
-		setOption('Zenphoto_theme_list', serialize($themes));
+//effervescence_plus migration
+if (file_exists(SERVERPATH . '/' . THEMEFOLDER . '/effervescence_plus')) {
+	if ($_zp_gallery->getCurrentTheme() == 'effervescence_plus') {
+		$_zp_gallery->setCurrentTheme('effervescence+');
+		$_zp_gallery->save();
 	}
+	$options = query_full_array('SELECT LCASE(`name`) as name, `value` FROM ' . prefix('options') . ' WHERE `theme`="effervescence_plus"');
+	foreach ($options as $option) {
+		setThemeOption($option['name'], $option['value'], NULL, 'effervescence+', true);
+	}
+	zpFunctions::removeDir(SERVERPATH . '/' . THEMEFOLDER . '/effervescence_plus');
 }
 ?>
 <p>
 	<?php
+	$deprecate = false;
+	$themes = array_keys($_zp_gallery->getThemes());
 	natcasesort($themes);
 	echo gettext('Theme setup:') . '<br />';
-	foreach (array_keys($_zp_gallery->getThemes()) as $theme) {
+	foreach ($themes as $key => $theme) {
+		if (protectedTheme($theme)) {
+			unset($themes[$key]);
+		} else {
+			$deprecate = true;
+		}
 		?>
 		<span>
-			<img src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/setup/setup_themeOptions.php?theme=' . $theme; ?>" title="<?php echo $theme; ?>" alt="<?php echo $theme; ?>" height="16px" width="16px" />
-		</span
+			<img src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/setup/setup_themeOptions.php?theme=' . urlencode($theme) . $debug; ?>" title="<?php echo $theme; ?>" alt="<?php echo $theme; ?>" height="16px" width="16px" />
+		</span>
 		<?php
 	}
 	?>
@@ -342,6 +432,14 @@ query('DELETE FROM ' . prefix('options') . ' WHERE `name`="search_space_is_OR"',
 
 if (!file_exists(SERVERPATH . '/favicon.ico')) {
 	@copy(SERVERPATH . '/' . ZENFOLDER . '/images/favicon.ico', SERVERPATH . '/favicon.ico');
+} else {
+	$zp_ico = "0000010001001010000001000800680500001600000028000000100000002000000001000800000000004005000000000000000000000001000000010000ffffff00eaeaea00cccccc0000000000d1d1d100f0f0f000b4b4b400d7d7d7009797970000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010101010101010101000000000000010202020202020201010100000000000102030303030303030101010000000001020304010101020301010101010000010102030501010203030306010100000001010203010102030002030101000000000101020301010303030701010000000000010102030101010101010100000001010101010203010101000000000001020202020202080301010000000000010103030303030303010100000000000101010101010101010101000000000000010101010101010101000000000000000000000000000000000000000000000000000000000000000000000000000000ffff0000ffff0000ffff0000ffff0000ffff0000ffff0000ffff0000ffff0000ffff0000ffff0000ffff0000ffff0000ffff0000ffff0000ffff0000ffff";
+	$ico = bin2hex(file_get_contents(SERVERPATH . '/favicon.ico'));
+
+	if ($zp_ico == $ico) {
+		unlink(SERVERPATH . '/favicon.ico');
+		@copy(SERVERPATH . '/' . ZENFOLDER . '/images/favicon.ico', SERVERPATH . '/favicon.ico');
+	}
 }
 
 setOptionDefault('default_copyright', sprintf(gettext('Copyright %1$u: %2$s'), date('Y'), $_SERVER["HTTP_HOST"]));
@@ -436,9 +534,12 @@ if ($data['unprotected_pages']) {
 	setOptionDefault('gallery_page_unprotected_contact', 1);
 	$unprotected = array();
 }
-$_zp_options = NULL; // get a fresh start
+
+primeOptions(); // get a fresh start
 $optionlist = getOptionList();
+
 foreach ($optionlist as $key => $option) {
+
 	if ($option && strpos($key, 'gallery_page_unprotected_') === 0) {
 		$unprotected[] = str_replace('gallery_page_unprotected_', '', $key);
 	}
@@ -456,118 +557,52 @@ if (!isset($data['image_publish'])) {
 	$data['image_publish'] = $set;
 }
 $data['unprotected_pages'] = $unprotected;
+if (!isset($data['image_sorttype'])) {
+	$set = getOption('image_sorttype');
+	if (is_null($set))
+		$set = 'Filename';
+	$data['image_sorttype'] = $set;
+}
+if (!isset($data['image_sortdirection'])) {
+	$set = getOption('image_sortdirection');
+	if (is_null($set))
+		$set = 0;
+	$data['image_sorttype'] = $set;
+}
+
 setOption('gallery_data', serialize($data));
+// purge the old versions of these
+foreach ($data as $key => $value) {
+	purgeOption($key);
+}
 
 $_zp_gallery = new Gallery(); // insure we have the proper options instantiated
-
-/* TODO:enable on the 1.4.7 release
- *
-  The following options have been relocated to methods of the gallery object. They will be purged form installations
-  on the Zenphoto 1.5 release.
-
-  gallery_page_unprotected_xxx
-  gallery_sortdirection
-  gallery_sorttype
-  gallery_title
-  Gallery_description
-  gallery_password
-  gallery_user
-  gallery_hint
-  current_theme
-  website_title
-  website_url
-  gallery_security
-  login_user_field
-  album_use_new_image_date
-  thumb_select_images
-  album_default
-  image_default
-
- * these may have been used in third party themes. Themes should cease using these options and instead use the
-  appropriate gallery methods.
- */
-if (TEST_RELEASE) {
-	foreach ($data as $key => $option) {
-		purgeOption($key);
-	}
-	foreach ($optionlist as $key => $option) {
-		if (strpos($key, 'gallery_page_unprotected_') === 0) {
-			purgeOption($key);
-		}
-	}
-}
-
-//	cleanup options for missing elements
-$sql = 'SELECT DISTINCT `creator` FROM ' . prefix('options') . ' WHERE `creator` IS NOT NULL';
-$result = query_full_array($sql);
-if (is_array($result)) {
-	foreach ($result as $row) {
-		$filename = $row['creator'];
-		if (!file_exists(SERVERPATH . '/' . $filename)) {
-			$sql = 'DELETE FROM ' . prefix('options') . ' WHERE `creator`=' . db_quote($filename);
-			query($sql);
-			if (strpos($filename, PLUGIN_FOLDER) !== false || strpos($filename, USER_PLUGIN_FOLDER) !== false) {
-				purgeOption('zp_plugin_' . stripSuffix(basename($filename)));
-			}
-		}
-	}
-}
-// missing themes
-$sql = 'SELECT DISTINCT `theme` FROM ' . prefix('options') . ' WHERE `theme` IS NOT NULL';
-$result = query_full_array($sql);
-if (is_array($result)) {
-	foreach ($result as $row) {
-		$filename = THEMEFOLDER . '/' . $row['theme'];
-		if ($filename && !file_exists(SERVERPATH . '/' . $filename)) {
-			$sql = 'DELETE FROM ' . prefix('options') . ' WHERE `theme`=' . db_quote($row['theme']);
-			query($sql);
-		}
-	}
-}
 
 setOptionDefault('search_cache_duration', 30);
 setOptionDefault('search_within', 1);
 setOption('last_update_check', 30);
 
-$autoRotate = getOption('auto_rotate');
-if (!is_null($autoRotate)) {
-	if (!$autoRotate) {
-		query('UPDATE ' . prefix('images') . ' SET `EXIFOrientation`=NULL');
-		setOption('EXIFOrientation', 0);
-		setOption('EXIFOrientation-disabled', 1);
-	}
-	purgeOption('auto_rotate');
-}
-
-purgeOption('zp_plugin_failed_access_blocker');
-setOptionDefault('plugins_per_page', 20);
-setOptionDefault('plugins_per_page_options', 10);
+setOptionDefault('plugins_per_page', 25);
 setOptionDefault('users_per_page', 10);
 setOptionDefault('articles_per_page', 15);
 setOptionDefault('debug_log_size', 5000000);
 setOptionDefault('imageProcessorConcurrency', 30);
-switch (getOption('spam_filter')) {
-	case 'none':
-		setOptionDefault('zp_plugin_trivialSpam', 5 | CLASS_PLUGIN);
-		break;
-	case 'simple':
-		setOptionDefault('zp_plugin_simpleSpam', 5 | CLASS_PLUGIN);
-		break;
-	default:
-		setOptionDefault('zp_plugin_legacySpam', 5 | CLASS_PLUGIN);
-		break;
-}
 setOptionDefault('search_album_sort_type', 'title');
 setOptionDefault('search_image_sort_type', 'title');
 setOptionDefault('search_album_sort_direction', '');
 setOptionDefault('search_image_sort_direction', '');
-purgeOption('zp_plugin_releaseUpdater');
 
 query('UPDATE ' . prefix('administrators') . ' SET `passhash`=' . ((int) getOption('strong_hash')) . ' WHERE `valid`>=1 AND `passhash` IS NULL');
 query('UPDATE ' . prefix('administrators') . ' SET `passupdate`=' . db_quote(date('Y-m-d H:i:s')) . ' WHERE `valid`>=1 AND `passupdate` IS NULL');
 setOptionDefault('image_processor_flooding_protection', 1);
 setOptionDefault('codeblock_first_tab', 1);
 setOptionDefault('GD_FreeType_Path', SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/gd_fonts');
+
+setOptionDefault('theme_head_listparents', 0);
+setOptionDefault('theme_head_separator', ' | ');
+
+setOptionDefault('tagsort', 'alpha');
+setOptionDefault('languageTagSearch', 1);
 
 $vers = explode('-', ZENPHOTO_VERSION);
 $vers = explode('.', $vers[0]);
@@ -595,7 +630,7 @@ foreach ($_languages as $language => $dirname) {
 		if (is_null(getOption('disallow_' . $dirname)) && $version < $zpversion) {
 			setOptionDefault('disallow_' . $dirname, 1);
 		}
-		if (setupLocale($dirname)) {
+		if (i18nSetLocale($dirname)) {
 			purgeOption('unsupported_' . $dirname);
 		} else {
 			setOption('unsupported_' . $dirname, 1);
@@ -612,21 +647,46 @@ $plugins = getPluginFiles('*.php');
 	$plugins = array_keys($plugins);
 	natcasesort($plugins);
 	echo gettext('Plugin setup:') . '<br />';
-	foreach ($plugins as $extension) {
+	foreach ($plugins as $key => $extension) {
+		$path = getPlugin($extension . '.php');
+		if (strpos($path, SERVERPATH . '/' . USER_PLUGIN_FOLDER) === 0) {
+			$pluginStream = file_get_contents($path);
+			if ($str = isolate('@category', $pluginStream)) {
+				preg_match('|@category\s+(.*)\s|', $str, $matches);
+				if (!isset($matches[1]) || $matches[1] != 'package') {
+					$deprecate = true;
+				}
+			} else {
+				$deprecate = true;
+			}
+		}
 		?>
 		<span>
-			<img src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/setup/setup_pluginOptions.php?plugin=' . $extension; ?>" title="<?php echo $extension; ?>" alt="<?php echo $extension; ?>" height="16px" width="16px" />
+			<img src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/setup/setup_pluginOptions.php?plugin=' . $extension . $debug; ?>" title="<?php echo $extension; ?>" alt="<?php echo $extension; ?>" height="16px" width="16px" />
 		</span>
 		<?php
+		if (!$deprecate) {
+			unset($plugins[$key]);
+		}
 	}
 	?>
 </p>
 
 <?php
-$_zp_gallery->garbageCollect();
-if (extensionEnabled('auto_backup')) {
-	//Run the backup since for sure things have changed.
-	require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/auto_backup.php');
-	auto_backup::timer_handler('');
+if ($deprecate) {
+	require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions.php');
+	$deprecated = new deprecated_functions();
+	$listed = sha1(serialize($deprecated->listed_functions));
+	if ($listed != getOption('deprecated_functions_signature')) {
+		setOption('deprecated_functions_signature', $listed);
+		enableExtension('deprecated-functions', 900 | CLASS_PLUGIN);
+		setupLog(gettext('There has been a change in function deprecation. The deprecated-functions plugin has been enabled.'), true);
+	}
+	$compatibility = sha1(serialize($themes)) . sha1(serialize($plugins));
+	if ($compatibility != getOption('zenphotoCompatibilityPack_signature')) {
+		setOption('zenphotoCompatibilityPack_signature', $compatibility);
+		enableExtension('zenphotoCompatibilityPack', 1 | CLASS_PLUGIN);
+		setupLog(gettext('There has been a change of themes or plugins. The zenphotoCompatibilityPack plugin has been enabled.'), true);
+	}
 }
 ?>
