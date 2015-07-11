@@ -350,8 +350,12 @@ class PersistentObject {
 			// filter aborted the save
 			return false;
 		}
+
 		if (!$this->id) {
+			//	prevent recursive save form default processing
+			$this->transient = true;
 			$this->setDefaults();
+			$this->transient = false;
 			$insert_data = array_merge($this->unique_set, $this->updates);
 			if (empty($insert_data)) {
 				return true;

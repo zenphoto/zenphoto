@@ -781,7 +781,7 @@ class Gallery {
 			$sql .= ' DESC';
 		$result = query($sql);
 		$results = array();
-//	check database aganist file system
+		//	check database aganist file system
 		while ($row = db_fetch_assoc($result)) {
 			$folder = $row['folder'];
 			if (($key = array_search($folder, $albums)) !== false) { // album exists in filesystem

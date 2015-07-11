@@ -97,120 +97,117 @@ function printLanguageSelector($flags = NULL) {
 				?>
 				<li<?php if ($lang == $localeOption) echo ' class="currentLanguage"'; ?>>
 					<?php
+					switch (LOCALE_TYPE) {
+						case 2:
+							$path = dynamic_locale::fullHostPath($lang) . html_encode($uri);
+							break;
+						case 1:
+							$path = seo_locale::localePath(false, $lang) . str_replace(WEBPATH, '', html_encode($uri));
+							break;
+						default:
+							$path = $uri . $separator . 'locale=' . $lang;
+							break;
+					}
+					$flag = getLanguageFlag($lang);
 					if ($lang != $localeOption) {
-						switch (LOCALE_TYPE) {
-							case 2:
-								?>
-								<a href="<?php echo dynamic_locale::fullHostPath($lang) . html_encode($uri); ?>" >
-									<?php
-									break;
-								case 1:
-									?>
-									<a href="<?php echo str_replace(WEBPATH, seo_locale::localePath(false, $lang), html_encode($uri)); ?>" >
-										<?php
-										break;
-									default:
-										?>
-										<a href="<?php echo $uri . $separator; ?>locale=<?php echo $lang; ?>" >
-											<?php
-											break;
-									}
-								}
-								$flag = getLanguageFlag($lang);
-								?>
-								<img src="<?php echo $flag; ?>" alt="<?php echo $text; ?>" title="<?php echo $text; ?>" />
-								<?php
-								if ($lang != $localeOption) {
-									?>
-								</a>
-								<?php
-							}
-							?>
-							</li>
+						?>
+						<a href="<?php echo $path; ?>" >
 							<?php
 						}
 						?>
-						</ul>
+						<img src="<?php echo $flag; ?>" alt="<?php echo $text; ?>" title="<?php echo $text; ?>" />
 						<?php
-					} else {
-						?>
-						<form action="#" method="post">
-							<input type="hidden" name="oldlocale" value="<?php echo getOption('locale'); ?>" />
-							<select id="dynamic-locale" class="languageselect" name="locale" onchange="this.form.submit()">
-								<?php
-								foreach ($languages as $key => $item) {
-									echo '<option class="languageoption" value="' . html_encode($item) . '"';
-									if ($item == $localeOption) {
-										echo ' selected="selected"';
-									}
-									echo ' >';
-									echo html_encode($key) . "</option>\n";
-								}
-								?>
-							</select>
-						</form>
+						if ($lang != $localeOption) {
+							?>
+						</a>
 						<?php
 					}
-				}
-
-				class dynamic_locale {
-
-					function __construct() {
-						setOptionDefault('dynamic_locale_visual', 0);
-						setOptionDefault('dynamic_locale_subdomain', 0);
+					?>
+				</li>
+				<?php
+			}
+			?>
+		</ul>
+		<?php
+	} else {
+		?>
+		<form action="#" method="post">
+			<input type="hidden" name="oldlocale" value="<?php echo getOption('locale'); ?>" />
+			<select id="dynamic-locale" class="languageselect" name="locale" onchange="this.form.submit()">
+				<?php
+				foreach ($languages as $key => $item) {
+					echo '<option class="languageoption" value="' . html_encode($item) . '"';
+					if ($item == $localeOption) {
+						echo ' selected="selected"';
 					}
-
-					function getOptionsSupported() {
-						$host = $_SERVER['HTTP_HOST'];
-						$matches = explode('.', $host);
-						if (validateLocale($matches[0], 'Dynamic Locale')) {
-							array_shift($matches);
-							$host = implode('.', $matches);
-						}
-						$localdesc = '<p>' . sprintf(gettext('If checked links to the alternative languages will be in the form <code><em>language</em>.%s</code> where <code><em>language</em></code> is the language code, e.g. <code><em>fr</em></code> for French.'), $host) . '</p>';
-						$localdesc .= '<p>' . sprintf(gettext('This requires that you have created the appropriate subdomains pointing to your installation. That is <code>fr.%1$s</code> must point to the same location as <code>%1$s</code>. (Some providers will automatically redirect undefined subdomains to the main domain. If your provider does this, no subdomain creation is needed.)'), $host . WEBPATH) . '</p>';
-
-						$options = array(gettext('Use flags')						 => array('key'		 => 'dynamic_locale_visual', 'type'	 => OPTION_TYPE_CHECKBOX,
-														'order'	 => 0,
-														'desc'	 => gettext('Checked produces an array of flags. Not checked produces a selector.')),
-										gettext('Use subdomains') . '*'	 => array('key'		 => 'dynamic_locale_subdomain', 'type'	 => OPTION_TYPE_CHECKBOX,
-														'order'	 => 1,
-														'desc'	 => $localdesc)
-						);
-
-
-						$options['note'] = array('key'		 => 'dynamic_locale_type',
-										'type'	 => OPTION_TYPE_NOTE,
-										'order'	 => 2,
-										'desc'	 => gettext('<p class="notebox">*<strong>Note:</strong> The setting of this option is shared with other plugins.</p>'));
-
-						return $options;
-					}
-
-					static function dynamic_localeJS() {
-						?>
-						<link type="text/css" rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/dynamic-locale/locale.css" />
-						<?php
-					}
-
-					static function fullHostPath($lang) {
-						global $_locale_Subdomains;
-						$host = $_SERVER['HTTP_HOST'];
-						$matches = explode('.', $host);
-						if (validateLocale($matches[0], 'Dynamic Locale')) {
-							array_shift($matches);
-							$host = implode('.', $matches);
-						}
-						if ($l = $_locale_Subdomains[$lang]) {
-							$host = $l . '.' . $host;
-						}
-						if (SERVER_PROTOCOL == 'https') {
-							$host = 'https://' . $host;
-						} else {
-							$host = 'http://' . $host;
-						}
-						return $host;
-					}
-
+					echo ' >';
+					echo html_encode($key) . "</option>\n";
 				}
 				?>
+			</select>
+		</form>
+		<?php
+	}
+}
+
+class dynamic_locale {
+
+	function __construct() {
+		setOptionDefault('dynamic_locale_visual', 0);
+		setOptionDefault('dynamic_locale_subdomain', 0);
+	}
+
+	function getOptionsSupported() {
+		$host = $_SERVER['HTTP_HOST'];
+		$matches = explode('.', $host);
+		if (validateLocale($matches[0], 'Dynamic Locale')) {
+			array_shift($matches);
+			$host = implode('.', $matches);
+		}
+		$localdesc = '<p>' . sprintf(gettext('If checked links to the alternative languages will be in the form <code><em>language</em>.%s</code> where <code><em>language</em></code> is the language code, e.g. <code><em>fr</em></code> for French.'), $host) . '</p>';
+		$localdesc .= '<p>' . sprintf(gettext('This requires that you have created the appropriate subdomains pointing to your installation. That is <code>fr.%1$s</code> must point to the same location as <code>%1$s</code>. (Some providers will automatically redirect undefined subdomains to the main domain. If your provider does this, no subdomain creation is needed.)'), $host . WEBPATH) . '</p>';
+
+		$options = array(gettext('Use flags')						 => array('key'		 => 'dynamic_locale_visual', 'type'	 => OPTION_TYPE_CHECKBOX,
+										'order'	 => 0,
+										'desc'	 => gettext('Checked produces an array of flags. Not checked produces a selector.')),
+						gettext('Use subdomains') . '*'	 => array('key'		 => 'dynamic_locale_subdomain', 'type'	 => OPTION_TYPE_CHECKBOX,
+										'order'	 => 1,
+										'desc'	 => $localdesc)
+		);
+
+
+		$options['note'] = array('key'		 => 'dynamic_locale_type',
+						'type'	 => OPTION_TYPE_NOTE,
+						'order'	 => 2,
+						'desc'	 => gettext('<p class="notebox">*<strong>Note:</strong> The setting of this option is shared with other plugins.</p>'));
+
+		return $options;
+	}
+
+	static function dynamic_localeJS() {
+		?>
+		<link type="text/css" rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/dynamic-locale/locale.css" />
+		<?php
+	}
+
+	static function fullHostPath($lang) {
+		global $_locale_Subdomains;
+		$host = $_SERVER['HTTP_HOST'];
+		$matches = explode('.', $host);
+		if (validateLocale($matches[0], 'Dynamic Locale')) {
+			array_shift($matches);
+			$host = implode('.', $matches);
+		}
+		if ($l = $_locale_Subdomains[$lang]) {
+			$host = $l . '.' . $host;
+		}
+		if (SERVER_PROTOCOL == 'https') {
+			$host = 'https://' . $host;
+		} else {
+			$host = 'http://' . $host;
+		}
+		return $host;
+	}
+
+}
+?>
