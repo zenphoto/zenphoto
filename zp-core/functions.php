@@ -586,7 +586,9 @@ function getPluginFiles($pattern, $folder = '', $stripsuffix = true) {
 				if ($stripsuffix) {
 					$key = stripSuffix($key);
 				}
-				$list[$key] = $basepath . $file;
+				if (realpath($basepath . $file)) { //	sometimes you just can't get there from here!
+					$list[$key] = $basepath . $file;
+				}
 			}
 		}
 	}
