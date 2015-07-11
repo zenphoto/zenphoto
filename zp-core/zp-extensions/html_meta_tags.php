@@ -369,6 +369,7 @@ class htmlmetatags {
 							}
 							switch ($_zp_gallery_page) {
 								case 'index.php':
+									$altlink .= '/';
 									break;
 								case 'album.php':
 								case 'favorites.php';
