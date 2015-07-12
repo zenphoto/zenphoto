@@ -470,7 +470,7 @@ class utf8 {
 	 * Send mail
 	 * Replacement for mb_send_mail(), an UTF-8 friendly replacement for mail()
 	 */
-	static function send_mail($to, $subject, $message, $additional_headers = '', $additional_parameter = '', $html) {
+	static function send_mail($to, $subject, $message, $additional_headers = '', $additional_parameter = '', $html = false) {
 		$subject = UTF8::encode_mimeheader($subject);
 		$message = chunk_split(base64_encode($message));
 
