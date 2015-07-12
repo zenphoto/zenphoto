@@ -33,7 +33,7 @@ function zenphoto_sendmail($msg, $email_list, $subject, $message, $from_mail, $f
 	}
 	$result = true;
 	foreach ($email_list as $to_mail) {
-		$result = $result && utf8::send_mail($to_mail, $subject, $message, $headers, $html);
+		$result = $result && utf8::send_mail($to_mail, $subject, $message, $headers, '', $html);
 	}
 	if (!$result) {
 		if (!empty($msg))
