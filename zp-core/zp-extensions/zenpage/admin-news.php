@@ -200,7 +200,8 @@ updatePublished('news');
 						$rangeset = $options = array();
 					}
 					?>
-					<span class="zenpagestats"><?php printNewsStatistic($articles, count($resultU)); ?></span></h1>
+					<span class="zenpagestats"><?php printNewsStatistic($articles, count($resultU)); ?></span>
+				</h1>
 				<div class="floatright">
 					<?php
 					printAuthorDropdown();
