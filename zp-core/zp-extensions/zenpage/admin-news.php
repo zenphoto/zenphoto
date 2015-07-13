@@ -194,7 +194,7 @@ updatePublished('news');
 						} else {
 							$rangeset = getPageSelector($list, $articles_page, 'dateDiff');
 						}
-						$options = array_merge(array('page' => 'news', 'tab' => 'articles'), getNewsAdminOption(array('author' => 0, 'category' => 0, 'date' => 0, 'published' => 0, 'sortorder' => 0, 'articles_page' => 1)));
+						$options = array_merge(array('page' => 'news', 'tab' => 'articles'), getNewsAdminOption(NULL));
 						$result = array_slice($result, $offset, $articles_page);
 					} else {
 						$rangeset = $options = array();
@@ -216,7 +216,7 @@ updatePublished('news');
 					<br style="clear: both" />
 				</div>
 				<?php
-				$option = getNewsAdminOptionPath(getNewsAdminOption(array('author' => 0, 'category' => 0, 'date' => 0, 'published' => 0, 'sortorder' => 0, 'articles_page' => 1, 'subpage' => 1), '?'));
+				$option = getNewsAdminOptionPath(getNewsAdminOption(NULL));
 				?>
 				<form class="dirtylistening" onReset="setClean('form_zenpageitemlist');" action="admin-news.php<?php echo $option; ?>" method="post" name="checkeditems" id="form_zenpageitemlist" onsubmit="return confirmAction();">
 					<?php XSRFToken('checkeditems'); ?>
@@ -297,7 +297,7 @@ updatePublished('news');
 									}
 
 
-									echo '<a href="admin-edit.php' . getNewsAdminOptionPath(array_merge(array('newsarticle' => NULL, 'titlelink' => urlencode($article->getTitlelink())), getNewsAdminOption(array('category' => 0, 'date' => 0, 'published' => 0, 'sortorder' => 0, 'articles_page' => 1, 'subpage' => 1)))) . '">';
+									echo '<a href="admin-edit.php' . getNewsAdminOptionPath(array_merge(array('newsarticle' => NULL, 'titlelink' => urlencode($article->getTitlelink())), getNewsAdminOption(NULL))) . '">';
 									checkForEmptyTitle($article->getTitle(), "news");
 									echo '</a>' . checkHitcounterDisplay($article->getHitcounter()) . $sticky;
 									?>
@@ -333,7 +333,7 @@ updatePublished('news');
 								</td>
 								<td><?php echo linkPickerIcon($article); ?></td>
 								<?php
-								$option = getNewsAdminOptionPath(getNewsAdminOption(array('author' => 0, 'category' => 0, 'date' => 0, 'published' => 0, 'sortorder' => 0, 'articles_page' => 1, 'subpage' => 1)));
+								$option = getNewsAdminOptionPath(getNewsAdminOption(NULL));
 								if (empty($option)) {
 									$divider = '?';
 								} else {
@@ -342,7 +342,7 @@ updatePublished('news');
 								if (checkIfLocked($article)) {
 									?>
 									<td class="page-list_icon">
-										<?php printPublishIconLink($article, 'news'); ?>
+										<?php printPublishIconLink($article, $option); ?>
 									</td>
 									<td class="page-list_icon">
 										<?php
