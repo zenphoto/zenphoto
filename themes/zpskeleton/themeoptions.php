@@ -91,7 +91,7 @@ class ThemeOptions {
 				echo gettext("No unpublished pages available");
 				// clear option if no unpublished pages are available or have been published meanwhile
 				// so that the normal gallery index appears and no page is accidentally set if set to unpublished again.
-				setOption("zenpage_homepage", "none", false);
+				setThemeOption('zenpage_homepage', 'none', NULL, 'zpskelton');
 			} else {
 				echo '<input type="hidden" name="' . CUSTOM_OPTION_PREFIX . 'selector-zenpage_homepage" value="0" />' . "\n";
 				echo '<select id="' . $option . '" name="zenpage_homepage">' . "\n";

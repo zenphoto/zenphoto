@@ -1,5 +1,6 @@
 <?php
-// force UTF-8 Ø
+
+// force UTF-8 Å
 
 if (!OFFSET_PATH) {
 	define('TEXT_INPUT_SIZE', 50);
@@ -7,13 +8,18 @@ if (!OFFSET_PATH) {
 	setOption('personnal_thumb_width', '360', false);
 	setOption('personnal_thumb_height', '180', false);
 
-	setOption('comment_form_toggle', false, true);		// override this option of comment_form, to avoid JS conflits
-	setOption('comment_form_pagination', false, true);	// override this option of comment_form, to avoid JS conflits
-	setOption('tinymce4_comments', null, true);			// force this option to disable tinyMCE for comment form
+	setOption('comment_form_toggle', false, false); // override this option of comment_form, to avoid JS conflits
+	setOption('comment_form_pagination', false, false); // override this option of comment_form, to avoid JS conflits
+
+	setOption('colorbox_theme', 'example3', false);
+	setOption('slideshow_mode', 'colorbox', false);
+	setOption('cycle-slideshow_mode', 'colorbox', false);
+
+	setOption('gmap_display', 'hide', false);
 
 	/* override this option called by user_login-out plugin, to avoid colorbox conflict */
 	if (getOption('user_logout_login_form') == 2) {
-		setOption('user_logout_login_form', 1);
+		setOption('user_logout_login_form', 1, false);
 	}
 
 	// Check for mobile and tablets, set some options if so...
@@ -27,9 +33,9 @@ if (!OFFSET_PATH) {
 	if (($detect->isMobile()) && (!$detect->isTablet())) {
 		$isMobile = true;
 	} else {
-	$isMobile = false;
+		$isMobile = false;
 	}
-	if ($isMobile) { 
+	if ($isMobile) {
 		// setOption('personnal_thumb_width', '360', false);
 		// setOption('personnal_thumb_height', '180', false);
 		// setOption('image_size', 400, false);
@@ -40,9 +46,10 @@ if (!OFFSET_PATH) {
 }
 
 function my_checkPageValidity($request, $gallery_page, $page) {
-	if (($gallery_page == 'gallery.php') || ($gallery_page == 'home.php')){
+	if (($gallery_page == 'gallery.php') || ($gallery_page == 'home.php')) {
 		$gallery_page = 'index.php';
 	}
 	return checkPageValidity($request, $gallery_page, $page);
 }
+
 ?>

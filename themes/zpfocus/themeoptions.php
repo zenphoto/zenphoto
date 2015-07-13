@@ -447,7 +447,7 @@ class ThemeOptions {
 				echo gettext("No unpublished pages available");
 				// clear option if no unpublished pages are available or have been published meanwhile
 				// so that the normal gallery index appears and no page is accidentally set if set to unpublished again.
-				setOption("zpfocus_homepage", "none", true);
+				setOption("zpfocus_homepage", "none");
 			} else {
 				echo '<input type="hidden" name="' . CUSTOM_OPTION_PREFIX . 'selector-zpfocus_homepage" value="0" />' . "\n";
 				echo '<select id="' . $option . '" name="zpfocus_homepage">' . "\n";
