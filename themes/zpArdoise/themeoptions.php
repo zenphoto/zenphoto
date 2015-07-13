@@ -37,7 +37,6 @@ class ThemeOptions {
 		setThemeOptionDefault('use_colorbox_image', false);
 		setThemeOptionDefault('show_exif', true);
 
-		setOption('zp_plugin_colorbox_js', 9 | THEME_PLUGIN);
 		setOption('colorbox_zpArdoise_album', 1);
 		setOption('colorbox_zpArdoise_archive', 1);
 		setOption('colorbox_zpArdoise_contact', 1);

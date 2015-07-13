@@ -249,7 +249,7 @@ function printPagesListTable($page, $flag) {
 			if (checkIfLocked($page)) {
 				?>
 				<div class="page-list_icon">
-					<?php printPublishIconLink($page, "page"); ?>
+					<?php printPublishIconLink($page, NULL); ?>
 				</div>
 				<div class="page-list_icon">
 					<?php
@@ -517,7 +517,7 @@ function printAuthorDropdown() {
 		} else {
 			$selected = $cur_author = NULL;
 		}
-		$option = getNewsAdminOption(array('category' => 0, 'date' => 0, 'published' => 0, 'sortorder' => 0, 'articles_page' => 1));
+		$option = getNewsAdminOption('author');
 		?>
 		<form name="AutoListBox0" id="articleauthordropdown" style="float:left; margin:5px;" action="#" >
 			<select name="ListBoxURL" size="1" onchange="gotoLink(this.form)">
@@ -548,7 +548,7 @@ function printNewsDatesDropdown() {
 	$datecount = $_zp_CMS->getAllArticleDates();
 	$lastyear = "";
 	$nr = "";
-	$option = getNewsAdminOption(array('author' => 0, 'category' => 0, 'published' => 0, 'sortorder' => 0, 'articles_page' => 1));
+	$option = getNewsAdminOption('date');
 	if (!isset($_GET['date'])) {
 		$selected = 'selected = "selected"';
 	} else {
@@ -592,10 +592,14 @@ function printNewsDatesDropdown() {
 /**
  *
  * Compiles an option parameter list
- * @param array $test array of parameter=>type elements. type=0:string type=1:numeric
+ * @param string $test parameter to exclude. e.g. because it is the drop-down for that irem
  * @return array
  */
-function getNewsAdminOption($test) {
+function getNewsAdminOption($exclude) {
+	$test = array('author' => 0, 'category' => 0, 'date' => 0, 'published' => 0, 'sortorder' => 0, 'articles_page' => 1);
+	if ($exclude) {
+		unset($test[$exclude]);
+	}
 	$list = array();
 	foreach ($test as $item => $type) {
 		if (isset($_GET[$item])) {
@@ -658,7 +662,7 @@ function printUnpublishedDropdown() {
 			} else {
 				$all = "selected='selected'";
 			}
-			$option = getNewsAdminOption(array('author' => 0, 'category' => 0, 'date' => 0, 'sortorder' => 0, 'articles_page' => 1));
+			$option = getNewsAdminOption('published');
 			echo "<option $all value='admin-news.php" . getNewsAdminOptionPath($option) . "'>" . gettext("All articles") . "</option>\n";
 			echo "<option $published value='admin-news.php" . getNewsAdminOptionPath(array_merge(array('published' => 'yes'), $option)) . "'>" . gettext("Published") . "</option>\n";
 			echo "<option $unpublished value='admin-news.php" . getNewsAdminOptionPath(array_merge(array('published' => 'no'), $option)) . "'>" . gettext("Un-published") . "</option>\n";
@@ -687,7 +691,7 @@ function printSortOrderDropdown() {
 			} else {
 				$selected = 'publishdate-desc';
 			}
-			$option = getNewsAdminOption(array('author' => 0, 'category' => 0, 'date' => 0, 'published' => 0, 'articles_page' => 1));
+			$option = getNewsAdminOption('sortorder');
 			$selections = array(
 							'date-desc'				 => gettext("Order by creation date descending"),
 							'date-asc'				 => gettext("Order by creation date ascending"),
@@ -734,7 +738,7 @@ function printCategoryDropdown() {
 			$selected = "selected='selected'";
 			$category = "";
 		}
-		$option = getNewsAdminOption(array('author' => 0, 'date' => 0, 'published' => 0, 'sortorder' => 0, 'articles_page' => 1));
+		$option = getNewsAdminOption('category');
 		?>
 		<form name ="AutoListBox2" id="categorydropdown" style="float:left; margin:5px;" action="#" >
 			<select name="ListBoxURL" size="1" onchange="gotoLink(this.form)">
@@ -786,7 +790,7 @@ function printCategoryDropdown() {
  */
 function printArticlesPerPageDropdown($subpage) {
 	global $_zp_CMS, $articles_page;
-	$option = getNewsAdminOption(array('author' => 0, 'category' => 0, 'date' => 0, 'published' => 0, 'sortorder' => 0));
+	$option = getNewsAdminOption('articles_page');
 	?>
 	<form name="AutoListBox5" id="articlesperpagedropdown" method="POST" style="float:left; margin:5px;"	action="#">
 		<select name="ListBoxURL" size="1"	onchange="gotoLink(this.form)">
@@ -1427,26 +1431,10 @@ function printExpired($object) {
  * @param string $object Object of the page or news article to check
  * @return string
  */
-function printPublishIconLink($object, $type, $linkback = '') {
-	$urladd = '';
-	if ($type == "news") {
-		if (isset($_GET['subpage'])) {
-			$urladd .= "&amp;subpage=" . sanitize($_GET['subpage']);
-		}
-		if (isset($_GET['date'])) {
-			$urladd .= "&amp;date=" . sanitize($_GET['date']);
-		}
-		if (isset($_GET['category'])) {
-			$urladd .= "&amp;category=" . sanitize($_GET['category']);
-		}
-		if (isset($_GET['sortorder'])) {
-			$urladd .= "&amp;sortorder=" . sanitize($_GET['sortorder']);
-		}
-		if (isset($_GET['articles_page'])) {
-			$urladd .= "&amp;articles_page=" . sanitize_numeric($_GET['articles_page']);
-		}
+function printPublishIconLink($object, $urladd) {
+	if ($urladd) {
+		$urladd = '&amp;' . ltrim($urladd, '?');
 	}
-
 	if ($object->getShow()) {
 		$title = gettext("Un-publish");
 		?>
