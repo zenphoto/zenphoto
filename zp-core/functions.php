@@ -2545,6 +2545,10 @@ class zpFunctions {
 			$text = @$_locale_Subdomains[zp_getCookie('dynamic_locale')];
 		} else {
 			$text = @$_locale_Subdomains[$loc];
+			//en_US always is always empty here so so urls in dynamic locale or html_meta_tags are wrong (Quickfix)
+			if(empty($text)) {
+				$text = $loc; 
+			}
 		}
 		if (!is_null($separator)) {
 			$text = str_replace('_', $separator, $text);

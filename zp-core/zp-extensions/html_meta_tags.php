@@ -158,7 +158,7 @@ class htmlmetatags {
 	static function getHTMLMetaData() {
 		global $_zp_gallery, $_zp_galley_page, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_news,
 		$_zp_current_zenpage_page, $_zp_gallery_page, $_zp_current_category, $_zp_authority, $_zp_conf_vars, $_myFavorites,
-		$htmlmetatags_need_cache;
+		$htmlmetatags_need_cache, $_zp_page;
 		zp_register_filter('image_processor_uri', 'htmlmetatags::ipURI');
 		$host = sanitize("http://" . $_SERVER['HTTP_HOST']);
 		$url = $host . getRequestURI();
@@ -188,14 +188,15 @@ class htmlmetatags {
 		switch ($_zp_gallery_page) {
 			case 'index.php':
 				$desc = getBareGalleryDesc();
-				$canonicalurl = $host . getGalleryIndexURL();
+				//$canonicalurl = $host . getGalleryIndexURL();
+				$canonicalurl = $host . getPageNumURL($_zp_page);
 				$type = 'website';
 				break;
 			case 'album.php':
 				$pagetitle = getBareAlbumTitle() . " - ";
 				$date = getAlbumDate();
 				$desc = getBareAlbumDesc();
-				$canonicalurl = $host . getAlbumURL();
+				$canonicalurl = $host . getPageNumURL($_zp_page);
 				if (getOption('htmlmeta_og-image') || getOption('htmlmeta_twittercard')) {
 					$thumbimg = $_zp_current_album->getAlbumThumbImage();
 					getMaxSpaceContainer($ogimage_width, $ogimage_height, $thumbimg, false);
@@ -230,6 +231,9 @@ class htmlmetatags {
 						$canonicalurl = $host . getNewsIndexURL();
 						$type = 'website';
 					}
+					if ($_zp_page != 1) {
+						$canonicalurl .= '/' . $_zp_page;
+					}
 				}
 				break;
 			case 'pages.php':
@@ -251,7 +255,11 @@ class htmlmetatags {
 				}
 				$desc = '';
 				$canonicalurl = $host . getCustomPageURL($custompage);
+				if ($_zp_page != 1) {
+					$canonicalurl .= '/'. $_zp_page;
+				}
 				break;
+				
 		}
 		// shorten desc to the allowed 200 characters if necesssary.
 		$desc = html_encode(trim(substr(getBare($desc), 0, 160)));
@@ -359,9 +367,13 @@ class htmlmetatags {
 							}
 							switch ($_zp_gallery_page) {
 								case 'index.php':
+									$altlink .= '/';
+									break;
+								case 'gallery.php':
+									$altlink .= '/'. _PAGE_ . '/gallery';
 									break;
 								case 'album.php':
-									$altlink .= '/' . html_encode($_zp_current_album->name);
+									$altlink .= '/' . html_encode($_zp_current_album->name) . '/';
 									break;
 								case 'image.php':
 									$altlink .= '/' . html_encode($_zp_current_album->name) . '/' . html_encode($_zp_current_image->filename) . IM_SUFFIX;
@@ -381,10 +393,10 @@ class htmlmetatags {
 									$altlink .= '/' . _PAGES_ . '/' . html_encode($_zp_current_zenpage_page->getTitlelink());
 									break;
 								case 'archive.php':
-									$altlink .= '/' . $_zp_conf_vars['special_pages']['archive']['rewrite'] . '/';
+									$altlink .= '/' . _ARCHIVE_ ;
 									break;
 								case 'search.php':
-									$altlink .= '/' . $_zp_conf_vars['special_pages']['search']['rewrite'] . '/';
+									$altlink .= '/' . _SEARCH_ . '/';
 									break;
 								case 'contact.php':
 									$altlink .= '/' . _PAGE_ . '/contact';
@@ -393,11 +405,31 @@ class htmlmetatags {
 									$altlink .= '/' . _PAGE_ . '/' . html_encode($pagetitle);
 									break;
 							} // switch
+							
+							//append page number if needed
+							switch ($_zp_gallery_page) {
+								case 'index.php':
+								case 'album.php':
+									if ($_zp_page != 1) {
+										$altlink .= _PAGE_ . '/' . $_zp_page . '/';
+									}
+									break;
+								case 'gallery.php':
+								case 'news.php':
+									if ($_zp_page != 1) {
+										$altlink .= '/' . $_zp_page;
+									}
+									break;
+							}
 							$meta .= '<link rel="alternate" hreflang="' . $langcheck . '" href="' . $altlink . '">' . "\n";
 						} // if lang
 					} // foreach
 				} // if count
 			} // if option
+				
+		
+			
+			
 		} // if canonical
 		if (!empty($htmlmetatags_need_cache)) {
 			$meta .= '<script type="text/javascript">' . "\n";

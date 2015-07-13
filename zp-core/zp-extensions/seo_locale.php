@@ -85,13 +85,14 @@ class seo_locale {
 	}
 
 	static function localePath($full = false, $loc = NULL) {
+		global $_zp_page, $_zp_gallery_page;
 		if ($full) {
 			$path = FULLWEBPATH;
 		} else {
 			$path = WEBPATH;
 		}
 		if ($locale = zpFunctions::getLanguageText($loc)) {
-			$path .= '/' . $locale . '/';
+			$path .= '/' . $locale;
 		}
 		return $path;
 	}

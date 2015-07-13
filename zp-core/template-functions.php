@@ -388,7 +388,7 @@ function getHeadTitle($separator = ' | ', $listparentalbums = true, $listparentp
 	}
 	switch ($_zp_gallery_page) {
 		case 'index.php':
-			return $gallerytitle . $mainsitetitle;
+			return $gallerytitle . $mainsitetitle . $pagenumber;
 			break;
 		case 'album.php':
 		case 'image.php':
