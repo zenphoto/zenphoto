@@ -86,12 +86,17 @@ class seo_locale {
 	}
 
 	static function localePath($full = false, $loc = NULL) {
+		global $_zp_page, $_zp_gallery_page;
 		if ($full) {
 			$path = FULLWEBPATH;
 		} else {
 			$path = WEBPATH;
 		}
+<<<<<<< HEAD
 		if ($loc != SITE_LOCALE && $locale = zpFunctions::getLanguageText($loc)) {
+=======
+		if ($locale = zpFunctions::getLanguageText($loc)) {
+>>>>>>> 20150714132324915000420/master
 			$path .= '/' . $locale;
 		}
 		return $path;
