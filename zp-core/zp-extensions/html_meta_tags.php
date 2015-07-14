@@ -165,7 +165,7 @@ class htmlmetatags {
 	 *
 	 */
 	static function getHTMLMetaData() {
-		global $_zp_gallery, $_zp_galley_page, $_zp_current_album, $_zp_current_image, $_zp_current_article,
+		global $_zp_gallery, $_zp_page, $_zp_current_album, $_zp_current_image, $_zp_current_search, $_zp_current_article,
 		$_zp_current_page, $_zp_gallery_page, $_zp_current_category, $_zp_authority, $_zp_conf_vars, $_myFavorites,
 		$htmlmetatags_need_cache;
 		zp_register_filter('image_processor_uri', 'htmlmetatags::ipURI');
@@ -173,7 +173,8 @@ class htmlmetatags {
 		$url = $host . getRequestURI();
 
 		// Convert locale shorttag to allowed html meta format
-		$locale = str_replace("_", "-", getUserLocale());
+		$locale_ = getUserLocale();
+		$locale = zpFunctions::getLanguageText($locale_, '-');
 		$canonicalurl = '';
 		// generate page title, get date
 		$pagetitle = ""; // for gallery index setup below switch
@@ -197,7 +198,7 @@ class htmlmetatags {
 		switch ($_zp_gallery_page) {
 			case 'index.php':
 				$desc = getBareGalleryDesc();
-				$canonicalurl = $host . getGalleryIndexURL();
+				$canonicalurl = $host . $_zp_gallery->getLink($_zp_page);
 				$type = 'website';
 				break;
 			case 'album.php':
@@ -205,7 +206,7 @@ class htmlmetatags {
 				$pagetitle = getBareAlbumTitle() . " - ";
 				$date = getAlbumDate();
 				$desc = getBareAlbumDesc();
-				$canonicalurl = $host . getAlbumURL();
+				$canonicalurl = $host . $_zp_current_album->getLink($_zp_page);
 				if (getOption('htmlmeta_og-image') || getOption('htmlmeta_twittercard')) {
 					$thumbimg = $_zp_current_album->getAlbumThumbImage();
 					getMaxSpaceContainer($ogimage_width, $ogimage_height, $thumbimg, false);
@@ -216,7 +217,7 @@ class htmlmetatags {
 				$pagetitle = getBareImageTitle() . " (" . getBareAlbumTitle() . ") - ";
 				$date = getImageDate();
 				$desc = getBareImageDesc();
-				$canonicalurl = $host . getImageURL();
+				$canonicalurl = $host . $_zp_current_image->getLink();
 				if (getOption('htmlmeta_og-image') || getOption('htmlmeta_twittercard')) {
 					$thumb = $host . html_encode(pathurlencode(getCustomSizedImageMaxSpace($ogimage_width, $ogimage_height)));
 				}
@@ -232,12 +233,12 @@ class htmlmetatags {
 						$pagetitle = $_zp_current_category->getTitlelink() . " - ";
 						$date = strftime(DATE_FORMAT);
 						$desc = trim(getBare($_zp_current_category->getDesc()));
-						$canonicalurl = $host . $_zp_current_category->getLink();
+						$canonicalurl = $host . $_zp_current_category->getLink($_zp_page);
 						$type = 'category';
 					} else {
 						$pagetitle = gettext('News') . " - ";
 						$desc = '';
-						$canonicalurl = $host . getNewsIndexURL();
+						$canonicalurl = $host . getNewsPathNav($_zp_page);
 						$type = 'website';
 					}
 				}
@@ -356,56 +357,64 @@ class htmlmetatags {
 			if (METATAG_LOCALE_TYPE) {
 				$langs = generateLanguageList();
 				if (count($langs) != 1) {
+
+					if (METATAG_LOCALE_TYPE == 1) {
+						$locallink = seo_locale::localePath(false, $locale_);
+					} else {
+						$locallink = '';
+					}
 					foreach ($langs as $text => $lang) {
 						$langcheck = zpFunctions::getLanguageText($lang, '-'); //	for hreflang we need en-US
 						if ($langcheck != $locale) {
-							switch (METATAG_LOCALE_TYPE) {
-								case 1:
-									$altlink = seo_locale::localePath(true, $lang);
-									break;
-								case 2:
-									$altlink = dynamic_locale::fullHostPath($lang);
-									break;
+
+							if (METATAG_LOCALE_TYPE == 1) {
+								$altlink = seo_locale::localePath(true, $lang);
+							} else {
+								$altlink = dynamic_locale::fullHostPath($lang);
 							}
 							switch ($_zp_gallery_page) {
 								case 'index.php':
-									$altlink .= '/';
+									$altlink .= str_replace($locallink, '', $_zp_gallery->getLink($_zp_page));
 									break;
 								case 'album.php':
 								case 'favorites.php';
-									$altlink .= '/' . html_encode($_zp_current_album->name);
+									$altlink .= str_replace($locallink, '', $_zp_current_album->getLink($_zp_page));
 									break;
 								case 'image.php':
-									$altlink .= '/' . html_encode($_zp_current_album->name) . '/' . html_encode($_zp_current_image->filename) . IM_SUFFIX;
+									$altlink .= str_replace($locallink, '', $_zp_current_image->getLink());
 									break;
 								case 'news.php':
 									if (function_exists("is_NewsArticle")) {
 										if (is_NewsArticle()) {
-											$altlink .= '/' . _NEWS_ . '/' . html_encode($_zp_current_article->getTitlelink());
+											$altlink .= str_replace($locallink, '', $_zp_current_article->getLink());
 										} else if (is_NewsCategory()) {
-											$altlink .= '/' . _NEWS_ . '/' . html_encode($_zp_current_category->getTitlelink());
+											$altlink .= str_replace($locallink, '', $_zp_current_category->getLink($_zp_page));
 										} else {
-											$altlink .= '/' . _NEWS_;
+											$altlink .= getNewsPathNav($_zp_page);
 										}
 									}
 									break;
 								case 'pages.php':
-									$altlink .= '/' . _PAGES_ . '/' . html_encode($_zp_current_page->getTitlelink());
+									$altlink .= str_replace($locallink, '', $_zp_current_page->getLink());
 									break;
 								case 'archive.php':
-									$altlink .= '/' . $_zp_conf_vars['special_pages']['archive']['rewrite'] . '/';
+									$altlink .= getCustomPageURL('archive');
 									break;
 								case 'search.php':
-									$altlink .= '/' . $_zp_conf_vars['special_pages']['search']['rewrite'] . '/';
+									$searchwords = $_zp_current_search->codifySearchString();
+									$searchdate = $_zp_current_search->getSearchDate();
+									$searchfields = $_zp_current_search->getSearchFields(true);
+									$searchpagepath = getSearchURL($searchwords, $searchdate, $searchfields, $_zp_page, array('albums' => $_zp_current_search->getAlbumList()));
+									$altlink .= $searchpagepath;
 									break;
 								case 'contact.php':
-									$altlink .= '/' . _PAGE_ . '/contact';
+									$altlink .= getCustomPageURL('contact');
 									break;
 								default: // for all other possible none standard custom pages
-									$altlink .= '/' . _PAGE_ . '/' . html_encode($pagetitle);
+									$altlink .= getCustomPageURL($pagetitle);
 									break;
 							} // switch
-							$meta .= '<link rel="alternate" hreflang="' . $langcheck . '" href="' . $altlink . '">' . "\n";
+							$meta .= '<link rel="alternate" hreflang="' . $langcheck . '" href="' . html_encode($altlink) . '">' . "\n";
 						} // if lang
 					} // foreach
 				} // if count

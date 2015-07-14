@@ -283,7 +283,7 @@ if ($protection) {
 	setOptionDefault('protect_full_image', 'Protected view');
 }
 
-setOptionDefault('locale', '');
+setOptionDefault('locale', 'en_US');
 setOptionDefault('date_format', '%x');
 
 setOptionDefault('use_lock_image', 1);
