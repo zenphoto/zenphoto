@@ -92,11 +92,8 @@ class seo_locale {
 		} else {
 			$path = WEBPATH;
 		}
-<<<<<<< HEAD
+
 		if ($loc != SITE_LOCALE && $locale = zpFunctions::getLanguageText($loc)) {
-=======
-		if ($locale = zpFunctions::getLanguageText($loc)) {
->>>>>>> 20150714132324915000420/master
 			$path .= '/' . $locale;
 		}
 		return $path;
