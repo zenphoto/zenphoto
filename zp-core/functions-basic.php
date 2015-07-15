@@ -1054,7 +1054,7 @@ function getAllowedTags($which) {
  */
 function rewrite_path($rewrite, $plain, $webpath = NULL) {
 	if (is_null($webpath)) {
-		if (class_exists('seo_locale')) {
+		if (defined('LOCALE_TYPE') && LOCALE_TYPE == 1) {
 			$webpath = seo_locale::localePath();
 		} else {
 			$webpath = WEBPATH;

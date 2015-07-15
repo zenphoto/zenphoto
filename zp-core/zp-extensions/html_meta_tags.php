@@ -96,7 +96,7 @@ class htmlmetatags {
 										'desc'	 => gettext("When the page should be loaded directly from the server and not from any cache. You can either set a date/time in international date format <em>Sat, 15 Dec 2001 12:00:00 GMT (example)</em> or a number. A number then means seconds, the default value <em>43200</em> means 12 hours.")),
 						gettext('Canonical URL link')				 => array('key'		 => 'htmlmeta_canonical-url', 'type'	 => OPTION_TYPE_CHECKBOX,
 										'order'	 => 6,
-										'desc'	 => gettext('This adds a link element to the head of each page with a <em>canonical url</em>. If the <code>seo_locale</code> plugin is enabled or <code>use subdomains</code> is checked it also generates alternate links for other languages (<code>&lt;link&nbsp;rel="alternate" hreflang="</code>...<code>" href="</code>...<code>" /&gt;</code>).')),
+										'desc'	 => gettext('This adds a link element to the head of each page with a <em>canonical url</em>. If <code>Language links</code> from the <em>dynamic-locale</em> plugin is enabled it also generates alternate links for other languages (<code>&lt;link&nbsp;rel="alternate" hreflang="</code>...<code>" href="</code>...<code>" /&gt;</code>).')),
 						gettext('Site logo')								 => array('key'	 => 'htmlmeta_sitelogo', 'type' => OPTION_TYPE_TEXTBOX,
 										'desc' => gettext("Enter the full url to a specific site logo image. Facebook, Google+ and others will use that as the thumb shown in link previews within posts. For image or album pages the default size album or image thumb is used automatically.")),
 						gettext('Twitter name')							 => array('key'	 => 'htmlmeta_twittername', 'type' => OPTION_TYPE_TEXTBOX,
@@ -136,17 +136,8 @@ class htmlmetatags {
 						gettext('Keyword threshold')				 => array('key'		 => 'htmlmeta_tags_threshold', 'type'	 => OPTION_TYPE_NUMBER,
 										'order'	 => 13,
 										'limits' => array('min' => 1),
-										'desc'	 => gettext('Only keywords with at least this number of uses will be shown.')),
-						gettext('Use subdomains') . '*'			 => array('key'		 => 'dynamic_locale_subdomain', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 7,
-										'desc'	 => $localdesc)
+										'desc'	 => gettext('Only keywords with at least this number of uses will be shown.'))
 		);
-
-
-		$options['note'] = array('key'		 => 'html_meta_tags_locale_type',
-						'type'	 => OPTION_TYPE_NOTE,
-						'order'	 => 8,
-						'desc'	 => gettext('<p class="notebox">*<strong>Note:</strong> The setting of this option is shared with other plugins.</p>'));
 
 		return $options;
 	}
@@ -366,7 +357,6 @@ class htmlmetatags {
 					foreach ($langs as $text => $lang) {
 						$langcheck = zpFunctions::getLanguageText($lang, '-'); //	for hreflang we need en-US
 						if ($langcheck != $locale) {
-
 							if (METATAG_LOCALE_TYPE == 1) {
 								$altlink = seo_locale::localePath(true, $lang);
 							} else {

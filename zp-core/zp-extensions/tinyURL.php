@@ -52,7 +52,7 @@ class tinyURL {
 	const news_categories = 8;
 	const pages = 16;
 
-	static $DBassoc = array('albums' => self::albums, 'images' => self::images, 'news' => self::news, 'news_categories' => self::news_categories, 'pages' => self::pages);
+	static $DBassoc = array('gallery' => 0, 'albums' => self::albums, 'images' => self::images, 'news' => self::news, 'news_categories' => self::news_categories, 'pages' => self::pages);
 	static $tableAsoc = array('1' => 'albums', '2' => 'images', '3' => 'news', '4' => 'pages', '5' => 'comments', '6' => 'news_categories');
 
 	function __construct() {

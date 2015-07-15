@@ -14,10 +14,34 @@
  * Locale selection may occur in several ways:
  * <ul>
  * 	<li>A cookie stored when the user chooses his language</li>
- * 	<li>The URI language selection provided by the <i>seo_locale</i> plugin</li>
- * 	<li>The <i>subdomain locales</i> option</li>
+ * 	<li>The URI language selection provided by the <i>URI</i> selection</li>
+ * 	<li>The subdomain provided by the <i>subdomain</i> selection</li>
  * </ul>
  *
+ * The URL format is:
+ * <dl>
+ * 	<dt><var>mod_rewrite</var></dt>
+ * 	<dd>/ <i>language-id</i> / <i>standard url</i></dd>
+ * 	<dt><var>else</var><br></dt>
+ * 	<dd><i>standard url</i>?locale=<i>language-id</i></dd>
+ * </dl>
+ * Where <i>language-id</i> is the local identifier (e.g. en, en_US, fr_FR, etc.)
+ *
+ * The subdomain format is:
+ * <dl>
+ * 	<dd><i>language-id</i>.<code>host name</code></dd>
+ * </dl>
+ *
+ * This requires that you have created the appropriate subdomains pointing to your installation.
+ * That is <code>fr.host name</code> must point to the same location as <code>host name</code>.
+ * (Some providers will automatically redirect
+ * undefined subdomains to the main domain. If your provider does this, no subdomain creation is needed.)
+ *
+ * <b>NOTE:</b> the implementation of URIs requires that zenphoto parse the URI, save the
+ * language request to a cookie, then redirect to the "native" URI. This means that there is an extra
+ * redirect for <b>EACH</b> page request!
+ *
+ * The implementation of language domains requires that
  * This plugiin applies only to the theme pages--not Admin. The <em>language cookie</i>, if set, will
  * carry over to the admin pages. As will using <i>subdomains</i>.
  *
@@ -32,17 +56,18 @@ $plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'dynamic_locale';
 
-zp_register_filter('theme_head', 'dynamic_locale::dynamic_localeJS');
-
-if (getOption('dynamic_locale_subdomain')) {
-	define('LOCALE_TYPE', 2);
-} else if (extensionEnabled('seo_locale') && MOD_REWRITE) {
-	define('LOCALE_TYPE', 1);
-} else {
-	define('LOCALE_TYPE', 0);
+if (OFFSET_PATH != 2) {
+	define('LOCALE_TYPE', getOption('dynamic_locale_subdomain'));
+	define('BASE_LOCALE', getOption('dynamic_locale_base'));
+	zp_register_filter('theme_head', 'dynamic_locale::dynamic_localeJS');
+	if (LOCALE_TYPE && extensionEnabled('dynamic-locale')) {
+		if (LOCALE_TYPE == 1) {
+			zp_register_filter('load_request', 'seo_locale::load_request');
+			define('SEO_WEBPATH', seo_locale::localePath());
+			define('SEO_FULLWEBPATH', seo_locale::localePath(true));
+		}
+	}
 }
-if (!defined('BASE_LOCALE'))
-	define('BASE_LOCALE', getOption('locale_base'));
 
 /**
  * prints a form for selecting a locale
@@ -155,9 +180,10 @@ function printLanguageSelector($flags = NULL) {
 class dynamic_locale {
 
 	function __construct() {
+		$seo_locale = extensionEnabled('seo_locale') && getOption('dynamic_locale_subdomain') != 2;
 		setOptionDefault('dynamic_locale_visual', 0);
-		setOptionDefault('dynamic_locale_subdomain', 0);
-		setOptionDefault('locale_base', getUserLocale());
+		setOptionDefault('dynamic_locale_subdomain', (int) $seo_locale);
+		setOptionDefault('dynamic_locale_base', getUserLocale());
 	}
 
 	function getOptionsSupported() {
@@ -167,27 +193,21 @@ class dynamic_locale {
 			array_shift($matches);
 			$host = implode('.', $matches);
 		}
-		$localdesc = '<p>' . sprintf(gettext('If checked links to the alternative languages will be in the form <code><em>language</em>.%s</code> where <code><em>language</em></code> is the language code, e.g. <code><em>fr</em></code> for French.'), $host) . '</p>';
-		$localdesc .= '<p>' . sprintf(gettext('This requires that you have created the appropriate subdomains pointing to your installation. That is <code>fr.%1$s</code> must point to the same location as <code>%1$s</code>. (Some providers will automatically redirect undefined subdomains to the main domain. If your provider does this, no subdomain creation is needed.)'), $host . WEBPATH) . '</p>';
+		$localdesc = '<p>' . sprintf(gettext('Select <em>Use subdomains</em> and links will be in the form <code><em>language</em>.%s</code> where <code><em>language</em></code> is the language code, e.g. <code><em>fr</em></code> for French.'), $host) . '</p>';
+		$localdesc .= '<p>' . sprintf(gettext('Select <em>URL</em> and links paths will have the language selector prependedin the form <code>%1$s/<em>language</em>/...'), $host) . '</p>';
 		$locales = generateLanguageList();
-		$options = array(gettext('Use flags')						 => array('key'		 => 'dynamic_locale_visual', 'type'	 => OPTION_TYPE_CHECKBOX,
+		$options = array(gettext('Use flags')			 => array('key'		 => 'dynamic_locale_visual', 'type'	 => OPTION_TYPE_CHECKBOX,
 										'order'	 => 0,
 										'desc'	 => gettext('Checked produces an array of flags. Not checked produces a selector.')),
-						gettext('Use subdomains') . '*'	 => array('key'		 => 'dynamic_locale_subdomain', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 1,
-										'desc'	 => $localdesc),
-						gettext('Site language')				 => array('key'			 => 'locale_base', 'type'		 => OPTION_TYPE_RADIO,
+						gettext('Language links')	 => array('key'			 => 'dynamic_locale_subdomain', 'type'		 => OPTION_TYPE_RADIO,
+										'order'		 => 1,
+										'buttons'	 => array(gettext('subdomain') => 2, gettext('URL') => 1, gettext('disabled') => 0),
+										'desc'		 => $localdesc),
+						gettext('Site language')	 => array('key'			 => 'dynamic_locale_base', 'type'		 => OPTION_TYPE_RADIO,
 										'order'		 => 2,
 										'buttons'	 => $locales,
 										'desc'		 => gettext('Set the primary language for your site.'))
 		);
-
-
-		$options['note'] = array('key'		 => 'dynamic_locale_type',
-						'type'	 => OPTION_TYPE_NOTE,
-						'order'	 => 9,
-						'desc'	 => gettext('<p class="notebox">*<strong>Note:</strong> The setting of this option is shared with other plugins.</p>'));
-
 
 		return $options;
 	}
@@ -215,6 +235,63 @@ class dynamic_locale {
 			$host = 'http://' . $host;
 		}
 		return $host;
+	}
+
+}
+
+class seo_locale {
+
+	static function load_request($allow) {
+		$uri = getRequestURI();
+		$parts = explode('?', $uri);
+		$uri = $parts[0];
+		$path = ltrim(substr($uri, strlen(WEBPATH) + 1), '/');
+		if (empty($path)) {
+			return $allow;
+		} else {
+			$rest = strpos($path, '/');
+			if ($rest === false) {
+				if (strpos($path, '?') === 0) {
+					// only a parameter string
+					return $allow;
+				}
+				$l = $path;
+			} else {
+				$l = substr($path, 0, $rest);
+			}
+		}
+		$locale = validateLocale($l, 'seo_locale');
+		if ($locale) {
+			// set the language cookie and redirect to the "base" url
+			zp_setCookie('dynamic_locale', $locale);
+			$uri = pathurlencode(preg_replace('|/' . $l . '[/$]|', '/', $uri));
+			if (isset($parts[1])) {
+				$uri .= '?' . $parts[1];
+			}
+			header("HTTP/1.0 302 Found");
+			header("Status: 302 Found");
+			header('Location: ' . $uri);
+			exitZP();
+		}
+		return $allow;
+	}
+
+	static function localePath($full = false, $loc = NULL) {
+		global $_zp_page, $_zp_gallery_page;
+		if ($full) {
+			$path = FULLWEBPATH;
+		} else {
+			$path = WEBPATH;
+		}
+		if (is_null($loc)) {
+			$loc = zp_getCookie('dynamic_locale');
+		}
+		if ($loc != BASE_LOCALE) {
+			if ($locale = zpFunctions::getLanguageText($loc)) {
+				$path .= '/' . $locale;
+			}
+		}
+		return $path;
 	}
 
 }
