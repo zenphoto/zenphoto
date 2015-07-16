@@ -18,30 +18,32 @@
  * 	<li>The subdomain provided by the <i>subdomain</i> selection</li>
  * </ul>
  *
- * The URL format is:
+ * <b>URL format</b>
  * <dl>
- * 	<dt><var>mod_rewrite</var></dt>
  * 	<dd>/ <i>language-id</i> / <i>standard url</i></dd>
- * 	<dt><var>else</var><br></dt>
- * 	<dd><i>standard url</i>?locale=<i>language-id</i></dd>
  * </dl>
- * Where <i>language-id</i> is the local identifier (e.g. en, en_US, fr_FR, etc.)
+ * Where <i>language-id</i> is the local identifier (e.g. en, en_US, fr_FR, etc.) URL format
+ * requires <i>mod_rewrite</i> be enabled.
  *
- * The subdomain format is:
+ * <b>subdomain format</b>
  * <dl>
  * 	<dd><i>language-id</i>.<code>host name</code></dd>
  * </dl>
  *
- * This requires that you have created the appropriate subdomains pointing to your installation.
- * That is <code>fr.host name</code> must point to the same location as <code>host name</code>.
- * (Some providers will automatically redirect
- * undefined subdomains to the main domain. If your provider does this, no subdomain creation is needed.)
+ * If neither <b>subdomain format</b> nor <b>URL format</b> is enabled then the format will be
+ * <dl>
+ * 	<dd><i>standard url</i>?locale=<i>language-id</i></dd>
+ * </dl>
  *
- * <b>NOTE:</b> the implementation of URIs requires that zenphoto parse the URI, save the
- * language request to a cookie, then redirect to the "native" URI. This means that there is an extra
+ * Subdomain format requires that you have created the appropriate subdomains pointing to your installation.
+ * That is <code>fr.host name</code> must point to the same location as <code>host name</code>.
+ * (Some providers will automatically redirect undefined subdomains to the main domain. If your
+ * provider does this, no subdomain creation is needed.)
+ *
+ * <b>NOTE:</b> the implementation of URLs requires that zenphoto parse the URL, save the
+ * language request to a cookie, then redirect to the "native" URL. This means that there is an extra
  * redirect for <b>EACH</b> page request!
  *
- * The implementation of language domains requires that
  * This plugiin applies only to the theme pages--not Admin. The <em>language cookie</i>, if set, will
  * carry over to the admin pages. As will using <i>subdomains</i>.
  *
@@ -56,9 +58,10 @@ $plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'dynamic_locale';
 
+define('LOCALE_TYPE', getOption('dynamic_locale_subdomain'));
+define('BASE_LOCALE', getOption('dynamic_locale_base'));
+
 if (OFFSET_PATH != 2) {
-	define('LOCALE_TYPE', getOption('dynamic_locale_subdomain'));
-	define('BASE_LOCALE', getOption('dynamic_locale_base'));
 	zp_register_filter('theme_head', 'dynamic_locale::dynamic_localeJS');
 	if (LOCALE_TYPE && extensionEnabled('dynamic-locale')) {
 		if (LOCALE_TYPE == 1) {
@@ -194,14 +197,24 @@ class dynamic_locale {
 			$host = implode('.', $matches);
 		}
 		$localdesc = '<p>' . sprintf(gettext('Select <em>Use subdomains</em> and links will be in the form <code><em>language</em>.%s</code> where <code><em>language</em></code> is the language code, e.g. <code><em>fr</em></code> for French.'), $host) . '</p>';
-		$localdesc .= '<p>' . sprintf(gettext('Select <em>URL</em> and links paths will have the language selector prependedin the form <code>%1$s/<em>language</em>/...'), $host) . '</p>';
+
 		$locales = generateLanguageList();
+		$buttons = array(gettext('subdomain') => 2, gettext('URL') => 1, gettext('disabled') => 0);
+		if (MOD_REWRITE) {
+			$buttons[gettext('URL')] = 1;
+			$localdesc .= '<p>' . sprintf(gettext('Select <em>URL</em> and links paths will have the language selector prependedin the form <code>%1$s/<em>language</em>/...'), $host) . '</p>';
+		} else {
+			unset($buttons[gettext('URL')]);
+			if (getOption('dynamic_locale_subdomain') == 1) {
+				setOption('dynamic_locale_subdomain', 0);
+			}
+		}
 		$options = array(gettext('Use flags')			 => array('key'		 => 'dynamic_locale_visual', 'type'	 => OPTION_TYPE_CHECKBOX,
 										'order'	 => 0,
 										'desc'	 => gettext('Checked produces an array of flags. Not checked produces a selector.')),
 						gettext('Language links')	 => array('key'			 => 'dynamic_locale_subdomain', 'type'		 => OPTION_TYPE_RADIO,
 										'order'		 => 1,
-										'buttons'	 => array(gettext('subdomain') => 2, gettext('URL') => 1, gettext('disabled') => 0),
+										'buttons'	 => $buttons,
 										'desc'		 => $localdesc),
 						gettext('Site language')	 => array('key'			 => 'dynamic_locale_base', 'type'		 => OPTION_TYPE_RADIO,
 										'order'		 => 2,

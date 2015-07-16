@@ -476,8 +476,13 @@ function setMainDomain() {
 	if (empty($_zp_current_locale)) {
 // return "default" language, English if allowed, otherwise whatever is the "first" allowed language
 		$languageSupport = generateLanguageList();
-		if (empty($languageSupport) || in_array('en_US', $languageSupport)) {
-			$_zp_current_locale = 'en_US';
+		if (defined('BASE_LOCALE')) {
+			$loc = BASE_LOCALE;
+		} else {
+			$loc = 'en_US';
+		}
+		if (empty($languageSupport) || in_array($loc, $languageSupport)) {
+			$_zp_current_locale = $loc;
 		} else {
 			$_zp_current_locale = array_shift($languageSupport);
 		}
@@ -488,7 +493,6 @@ function setMainDomain() {
 	}
 	if (DEBUG_LOCALE)
 		debugLog("getUserLocale Returning locale: " . $_zp_current_locale);
-
 	return setupCurrentLocale($_zp_current_locale);
 }
 
