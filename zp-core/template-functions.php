@@ -1920,7 +1920,7 @@ function isImagePage() {
  */
 function isAlbumPage() {
 	global $_zp_page;
-	$pageCount = Ceil(getNumAlbums() / max(1, getOption('albums_per_page')));
+	$pageCount = Ceil(max(1, getNumAlbums()) / max(1, getOption('albums_per_page')));
 	return ($_zp_page <= $pageCount);
 }
 
@@ -3211,57 +3211,21 @@ function getRandomImagesAlbum($rootAlbum = NULL, $daily = false) {
 		if (date('Y-m-d', $potd['day']) == date('Y-m-d')) {
 			$rndalbum = newAlbum($potd['folder']);
 			$image = newImage($rndalbum, $potd['filename']);
-			if ($image->exists)
+			if ($image->exists) {
 				return $image;
-		}
-	}
-	$image = NULL;
-	if ($album->isDynamic()) {
-		$images = $album->getImages(0);
-		shuffle($images);
-		while (count($images) > 0) {
-			$result = array_pop($images);
-			if (Gallery::imageObjectClass($result['filename']) == 'Image') {
-				$image = newImage(newAlbum($result['folder']), $result['filename']);
 			}
 		}
-	} else {
-		$albumfolder = $album->getFileName();
-		if ($album->isMyItem(LIST_RIGHTS)) {
-			$imageWhere = '';
-			$albumInWhere = '';
-		} else {
-			$imageWhere = " AND " . prefix('images') . ".show=1";
-			$albumInWhere = prefix('albums') . ".show=1";
-		}
-
-		$query = "SELECT id FROM " . prefix('albums') . " WHERE ";
-		if ($albumInWhere)
-			$query .= $albumInWhere . ' AND ';
-		$query .= "folder LIKE " . db_quote(db_LIKE_escape($albumfolder) . '%');
-		$result = query($query);
-		if ($result) {
-			$albumInWhere = prefix('albums') . ".id IN (";
-			while ($row = db_fetch_assoc($result)) {
-				$albumInWhere = $albumInWhere . $row['id'] . ", ";
-			}
-			db_free_result($result);
-			$albumInWhere = ' AND ' . substr($albumInWhere, 0, -2) . ')';
-			$sql = 'SELECT `folder`, `filename` ' .
-							' FROM ' . prefix('images') . ', ' . prefix('albums') .
-							' WHERE ' . prefix('albums') . '.folder!="" AND ' . prefix('images') . '.albumid = ' .
-							prefix('albums') . '.id ' . $albumInWhere . $imageWhere . ' ORDER BY RAND()';
-			$result = query($sql);
-			$image = filterImageQuery($result, $album->name);
-		}
 	}
-	if ($image) {
+	$album->setSortType('random');
+	$image = $album->getImage(0);
+	if ($image && $image->exists) {
 		if ($daily) {
 			$potd = array('day' => time(), 'folder' => $image->getAlbumName(), 'filename' => $image->getFileName());
 			setThemeOption('picture_of_the_day:' . $album->name, serialize($potd), NULL, $_zp_gallery->getCurrentTheme());
 		}
+		return $image;
 	}
-	return $image;
+	return NULL;
 }
 
 /**

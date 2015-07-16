@@ -1454,7 +1454,6 @@ class SearchEngine {
 					}
 					break;
 			}
-
 			$sql .= "FROM " . prefix($tbl) . " WHERE " . $show;
 			$sql .= '(' . self::compressedIDList($idlist) . ')';
 			$sql .= " ORDER BY " . $key;
@@ -1466,22 +1465,22 @@ class SearchEngine {
 	/**
 	 * Returns an array of albums found in the search
 	 * @param string $sorttype what to sort on
-	 * @param string $sortdirection what direction
+	 * @param string $direction what direction
 	 * @param bool $mine set true/false to override ownership
 	 *
 	 * @return array
 	 */
-	private function getSearchAlbums($sorttype, $sortdirection, $mine = NULL) {
+	private function getSearchAlbums($sorttype, $direction, $mine = NULL) {
 		if (getOption('search_no_albums') || $this->search_no_albums) {
 			return array();
 		}
-		list($sorttype, $sortdirection) = $this->sortKey($sorttype, $sortdirection, 'title', 'albums');
+		list($sortkey, $sortdirection) = $this->sortKey($sorttype, $direction, 'title', 'albums');
 		$albums = array();
 		$searchstring = $this->getSearchString();
 		if (empty($searchstring)) {
 			return array();
 		} // nothing to find
-		$criteria = $this->getCacheTag('albums', serialize($searchstring), $sorttype . '_' . $sortdirection . '_' . (int) $mine);
+		$criteria = $this->getCacheTag('albums', serialize($searchstring), $sortkey . '_' . $sortdirection . '_' . (int) $mine);
 		if ($this->albums && $criteria == $this->searches['albums']) {
 			return $this->albums;
 		}
@@ -1491,7 +1490,7 @@ class SearchEngine {
 				$mine = true;
 			}
 			$result = $albums = array();
-			list ($search_query, $weights) = $this->searchFieldsAndTags($searchstring, 'albums', $sorttype, $sortdirection);
+			list ($search_query, $weights) = $this->searchFieldsAndTags($searchstring, 'albums', $sorttype, $direction);
 			if (!empty($search_query)) {
 				$search_result = query($search_query);
 				if ($search_result) {
@@ -1511,7 +1510,7 @@ class SearchEngine {
 						}
 					}
 					db_free_result($search_result);
-					$result = self::sortResults($sorttype, $sortdirection, $result, true);
+					$result = self::sortResults($sortkey, $sortdirection, $result, true);
 					foreach ($result as $album) {
 						$albums[] = $album['name'];
 					}
@@ -1610,11 +1609,11 @@ class SearchEngine {
 	 * @param bool $mine set true/false to overried ownership
 	 * @return array
 	 */
-	private function getSearchImages($sorttype, $sortdirection, $mine = NULL) {
+	private function getSearchImages($sorttype, $direction, $mine = NULL) {
 		if (getOption('search_no_images') || $this->search_no_images) {
 			return array();
 		}
-		list($sorttype, $sortdirection) = $this->sortKey($sorttype, $sortdirection, 'title', 'images');
+		list($sortkey, $sortdirection) = $this->sortKey($sorttype, $direction, 'title', 'images');
 		if (is_null($mine) && zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 			$mine = true;
 		}
@@ -1623,16 +1622,16 @@ class SearchEngine {
 		if (empty($searchstring) && empty($searchdate)) {
 			return array(); // nothing to find
 		}
-		$criteria = $this->getCacheTag('images', serialize($searchstring) . '_' . $searchdate, $sorttype . '_' . $sortdirection . '_' . (int) $mine);
+		$criteria = $this->getCacheTag('images', serialize($searchstring) . '_' . $searchdate, $sortkey . '_' . $sortdirection . '_' . (int) $mine);
 		if ($criteria == $this->searches['images']) {
 			return $this->images;
 		}
 		$images = $this->getCachedSearch($criteria);
 		if (is_null($images)) {
 			if (empty($searchdate)) {
-				list ($search_query, $weights) = $this->searchFieldsAndTags($searchstring, 'images', $sorttype, $sortdirection);
+				list ($search_query, $weights) = $this->searchFieldsAndTags($searchstring, 'images', $sorttype, $direction);
 			} else {
-				$search_query = $this->searchDate($searchstring, $searchdate, 'images', $sorttype, $sortdirection);
+				$search_query = $this->searchDate($searchstring, $searchdate, 'images', $sorttype, $direction);
 			}
 			if (empty($search_query)) {
 				$search_result = false;
@@ -1675,7 +1674,7 @@ class SearchEngine {
 					}
 				}
 				db_free_result($search_result);
-				$images = self::sortResults($sorttype, $sortdirection, $result, isset($weights));
+				$images = self::sortResults($sortkey, $sortdirection, $result, isset($weights));
 			}
 
 			if (empty($searchdate)) {
@@ -1805,27 +1804,27 @@ class SearchEngine {
 	 * Returns a list of Pages Titlelinks found in the search
 	 *
 	 * @parm string $sorttype optional sort field
-	 * @param bool $sortdirection optional ordering
+	 * @param bool $direction optional ordering
 	 *
 	 * @return array
 	 */
 	private function getSearchPages($sorttype, $sortdirection) {
 		if (!extensionEnabled('zenpage') || getOption('search_no_pages') || $this->search_no_pages)
 			return array();
-		list($sorttype, $sortdirection) = $this->sortKey($sorttype, $sortdirection, 'title', 'pages');
+		list($sortkey, $sortdirection) = $this->sortKey($sorttype, $direction, 'title', 'pages');
 		$searchstring = $this->getSearchString();
 		$searchdate = $this->dates;
 		if (empty($searchstring) && empty($searchdate)) {
 			return array();
 		} // nothing to find
-		$criteria = $this->getCacheTag('news', serialize($searchstring), $sorttype . '_' . $sortdirection);
+		$criteria = $this->getCacheTag('news', serialize($searchstring), $sortkey . '_' . $sortdirection);
 		if ($this->pages && $criteria == $this->searches['pages']) {
 			return $this->pages;
 		}
 		if (is_null($this->pages)) {
 			$pages = $result = array();
 			if (empty($searchdate)) {
-				list ($search_query, $weights) = $this->searchFieldsAndTags($searchstring, 'pages', $sorttype, $sortdirection);
+				list ($search_query, $weights) = $this->searchFieldsAndTags($searchstring, 'pages', $sorttype, $direction);
 				if (empty($search_query)) {
 					$search_result = false;
 				} else {
@@ -1845,7 +1844,7 @@ class SearchEngine {
 				}
 				db_free_result($search_result);
 			}
-			$result = self::sortResults($sorttype, $sortdirection, $result, isset($weights));
+			$result = self::sortResults($sortkey, $sortdirection, $result, isset($weights));
 			if (isset($weights)) {
 				$result = sortMultiArray($result, 'weight', true, true, false, false, array('weight'));
 			}
@@ -1888,21 +1887,21 @@ class SearchEngine {
 	 * Returns a list of News Titlelinks found in the search
 	 *
 	 * @param string $sorttype field to sort on
-	 * @param bool $sortdirection sort order
+	 * @param bool $direction sort order
 	 *
 	 * @return array
 	 */
-	private function getSearchArticles($sorttype, $sortdirection) {
+	private function getSearchArticles($sorttype, $direction) {
 		if (!extensionEnabled('zenpage') || getOption('search_no_news') || $this->search_no_news) {
 			return array();
 		}
-		list($sorttype, $sortdirection) = $this->sortKey($sorttype, $sortdirection, 'title', 'news');
+		list($sortkey, $sortdirection) = $this->sortKey($sorttype, $direction, 'title', 'news');
 		$searchstring = $this->getSearchString();
 		$searchdate = $this->dates;
 		if (empty($searchstring) && empty($searchdate)) {
 			return array();
 		} // nothing to find
-		$criteria = $this->getCacheTag('news', serialize($searchstring), $sorttype . '_' . $sortdirection);
+		$criteria = $this->getCacheTag('news', serialize($searchstring), $sortkey . '_' . $sortdirection);
 		if ($this->articles && $criteria == $this->searches['news']) {
 			return $this->articles;
 		}
@@ -1910,9 +1909,9 @@ class SearchEngine {
 		if (is_null($result)) {
 			$result = array();
 			if (empty($searchdate)) {
-				list ($search_query, $weights) = $this->searchFieldsAndTags($searchstring, 'news', $sorttype, $sortdirection);
+				list ($search_query, $weights) = $this->searchFieldsAndTags($searchstring, 'news', $sorttype, $direction);
 			} else {
-				$search_query = $this->searchDate($searchstring, $searchdate, 'news', $sorttype, $sortdirection, $this->whichdates);
+				$search_query = $this->searchDate($searchstring, $searchdate, 'news', $sorttype, $direction, $this->whichdates);
 			}
 			if (empty($search_query)) {
 				$search_result = false;
@@ -1929,7 +1928,7 @@ class SearchEngine {
 				}
 				db_free_result($search_result);
 			}
-			$result = self::sortResults($sorttype, $sortdirection, $result, isset($weights));
+			$result = self::sortResults($sortkey, $sortdirection, $result, isset($weights));
 			$this->cacheSearch($criteria, $result);
 		}
 		$this->articles = $result;
