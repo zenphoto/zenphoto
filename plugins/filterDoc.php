@@ -106,9 +106,11 @@ function processFilters() {
 		}
 	}
 
+	$stdExclude = Array('Thumbs.db', 'readme.md', 'data');
+	$lcFilesystem = file_exists(strtoupper(__FILE__));
 
-	getResidentZPFiles(SERVERPATH . '/' . ZENFOLDER);
-	getResidentZPFiles(SERVERPATH . '/' . THEMEFOLDER);
+	getResidentZPFiles(SERVERPATH . '/' . ZENFOLDER, $lcFilesystem, $stdExclude);
+	getResidentZPFiles(SERVERPATH . '/' . THEMEFOLDER, $lcFilesystem, $stdExclude);
 	$key = array_search(SERVERPATH . '/' . ZENFOLDER . '/functions-filter.php', $_zp_resident_files);
 	unset($_zp_resident_files[$key]);
 	$key = array_search(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions.php', $_zp_resident_files);
