@@ -522,10 +522,13 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 
 function getImageRotation($img) {
 	if (is_object($img)) {
-		$rotation = $img->get('rotation');
+		debugLogVar('rotation from object', $rotation);
 	} else {
 		$imgfile = substr(filesystemToInternal($img), strlen(ALBUM_FOLDER_SERVERPATH));
-		$result = query_single_row('SELECT rotation FROM ' . prefix('images') . ' AS i JOIN ' . prefix('albums') . ' as a ON i.albumid = a.id WHERE ' . db_quote($imgfile) . ' = CONCAT(a.folder,"/",i.filename)', false);
+		$album = trim(dirname($imgfile), '/');
+		$image = basename($imgfile);
+		$a = query_single_row($sql = 'SELECT `id` FROM ' . prefix('albums') . ' WHERE `folder`=' . db_quote($album));
+		$result = query_single_row($sql = 'SELECT rotation FROM ' . prefix('images') . '  WHERE `albumid`=' . $a['id'] . ' AND `filename`=' . db_quote($image));
 		$rotation = 0;
 		if (is_array($result)) {
 			if (array_key_exists('rotation', $result)) {
