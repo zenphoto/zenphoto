@@ -897,7 +897,7 @@ function getImageProcessorURI($args, $album, $image) {
 
 	$uri .= '&check=' . sha1(HASH_SEED . serialize($args));
 
-	$uri = zp_apply_filter('image_processor_uri', $uri);
+	$uri = zp_apply_filter('image_processor_uri', $uri, $args, $album, $image);
 
 	return $uri;
 }

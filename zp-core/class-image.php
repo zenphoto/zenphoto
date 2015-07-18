@@ -132,8 +132,9 @@ class Image extends MediaObject {
 		$album_name = $album->name;
 		$new = $this->instantiate('images', array('filename' => $filename, 'albumid' => $this->album->getID()), 'filename', false, empty($album_name));
 		if ($new || $this->filemtime != $this->get('mtime')) {
-			if ($new)
+			if ($new) {
 				$this->setTitle($this->displayname);
+			}
 			$this->updateMetaData(); // extract info from image
 			$this->updateDimensions(); // deal with rotation issues
 			$this->set('mtime', $this->filemtime);
@@ -336,248 +337,250 @@ class Image extends MediaObject {
 	 */
 	function updateMetaData() {
 		global $_zp_exifvars, $_zp_gallery;
-		require_once(dirname(__FILE__) . '/exif/exif.php');
-		$IPTCtags = array(
-						'SKIP'								 => '2#000', //	Record Version										Size:64
-						'ObjectType'					 => '2#003', //	Object Type	Ref										Size:67
-						'ObjectAttr'					 => '2#004', //	Object Attribute Ref							Size:67
-						'ObjectName'					 => '2#005', //	Object name												Size:64
-						'EditStatus'					 => '2#007', //	Edit Status												Size:64
-						'EditorialUpdate'			 => '2#008', //	Editorial Update									Size:2
-						'Urgency'							 => '2#010', //	Urgency														Size:1
-						'SubRef'							 => '2#012', //	Subject	Reference									Size:236
-						'Category'						 => '2#015', //	Category 													Size:3
-						'SuppCategory'				 => '2#020', //	Supplemental category							Size:32
-						'FixtureID'						 => '2#022', //	Fixture	ID 												Size:32
-						'Keywords'						 => '2#025', //	Keywords 													Size:64
-						'ContentLocationCode'	 => '2#026', //	Content	Location Code							Size:3
-						'ContentLocationName'	 => '2#027', //	Content	Location Name							Size:64
-						'ReleaseDate'					 => '2#030', //	Release	Date 											Size:8
-						'ReleaseTime'					 => '2#035', //	Release	Time											Size:11
-						'ExpireDate'					 => '2#037', //	Expiration Date										Size:8
-						'ExpireTime'					 => '2#038', //	Expiration Time										Size:11
-						'SpecialInstru'				 => '2#040', //	Special Instructions							Size:256
-						'ActionAdvised'				 => '2#042', //	Action Advised										Size:2
-						'RefService'					 => '2#045', //	Reference Service									Size:10
-						'RefDate'							 => '2#047', //	Reference Date										Size:8
-						'RefNumber'						 => '2#050', //	Reference Number									Size:8
-						'DateCreated'					 => '2#055', //	Date created											Size:8
-						'TimeCreated'					 => '2#060', //	Time created											Size:11
-						'DigitizeDate'				 => '2#062', //	Digital Creation Date							Size:8
-						'DigitizeTime'				 => '2#063', //	Digital Creation Time							Size:11
-						'OriginatingProgram'	 => '2#065', //	Originating Program								Size:32
-						'ProgramVersion'			 => '2#070', //	Program version										Size:10
-						'ObjectCycle'					 => '2#075', //	Object Cycle											Size:1
-						'ByLine'							 => '2#080', //	ByLine 														Size:32
-						'ByLineTitle'					 => '2#085', //	ByLine Title											Size:32
-						'City'								 => '2#090', //	City															Size:32
-						'SubLocation'					 => '2#092', //	Sublocation												Size:32
-						'State'								 => '2#095', //	Province/State										Size:32
-						'LocationCode'				 => '2#100', //	Country/Primary	Location Code			Size:3
-						'LocationName'				 => '2#101', //	Country/Primary	Location Name			Size:64
-						'TransmissionRef'			 => '2#103', //	Original Transmission Reference		Size:32
-						'ImageHeadline'				 => '2#105', //	Image headline										Size:256
-						'ImageCredit'					 => '2#110', //	Image credit											Size:32
-						'Source'							 => '2#115', //	Source														Size:32
-						'Copyright'						 => '2#116', //	Copyright Notice									Size:128
-						'Contact'							 => '2#118', //	Contact														Size:128
-						'ImageCaption'				 => '2#120', //	Image caption											Size:2000
-						'ImageCaptionWriter'	 => '2#122', //	Image caption writer							Size:32
-						'ImageType'						 => '2#130', //	Image type												Size:2
-						'Orientation'					 => '2#131', //	Image	orientation									Size:1
-						'LangID'							 => '2#135', //	Language ID												Size:3
-						'Subfile'							 => '8#010' //	Subfile														Size:2
-		);
-		$this->set('hasMetadata', 0);
-		foreach ($_zp_exifvars as $field => $exifvar) {
-			$this->set($field, NULL);
-		}
-
-		$result = array();
-		if (get_class($this) == 'Image') {
-			$localpath = $this->localpath;
-		} else {
-			$localpath = $this->getThumbImageFile();
-		}
-
-		if (!empty($localpath)) { // there is some kind of image to get metadata from
-			$exifraw = read_exif_data_protected($localpath);
-			if (isset($exifraw['ValidEXIFData'])) {
-				$this->set('hasMetadata', 1);
-				foreach ($_zp_exifvars as $field => $exifvar) {
-					$exif = NULL;
-					if (isset($exifraw[$exifvar[0]][$exifvar[1]])) {
-						$exif = trim(sanitize($exifraw[$exifvar[0]][$exifvar[1]], 1));
-					} else if (isset($exifraw[$exifvar[0]]['MakerNote'][$exifvar[1]])) {
-						$exif = trim(sanitize($exifraw[$exifvar[0]]['MakerNote'][$exifvar[1]], 1));
-					}
-					$this->set($field, $exif);
-				}
+		if ($_zp_exifvars) {
+			require_once(dirname(__FILE__) . '/exif/exif.php');
+			$IPTCtags = array(
+							'SKIP'								 => '2#000', //	Record Version										Size:64
+							'ObjectType'					 => '2#003', //	Object Type	Ref										Size:67
+							'ObjectAttr'					 => '2#004', //	Object Attribute Ref							Size:67
+							'ObjectName'					 => '2#005', //	Object name												Size:64
+							'EditStatus'					 => '2#007', //	Edit Status												Size:64
+							'EditorialUpdate'			 => '2#008', //	Editorial Update									Size:2
+							'Urgency'							 => '2#010', //	Urgency														Size:1
+							'SubRef'							 => '2#012', //	Subject	Reference									Size:236
+							'Category'						 => '2#015', //	Category 													Size:3
+							'SuppCategory'				 => '2#020', //	Supplemental category							Size:32
+							'FixtureID'						 => '2#022', //	Fixture	ID 												Size:32
+							'Keywords'						 => '2#025', //	Keywords 													Size:64
+							'ContentLocationCode'	 => '2#026', //	Content	Location Code							Size:3
+							'ContentLocationName'	 => '2#027', //	Content	Location Name							Size:64
+							'ReleaseDate'					 => '2#030', //	Release	Date 											Size:8
+							'ReleaseTime'					 => '2#035', //	Release	Time											Size:11
+							'ExpireDate'					 => '2#037', //	Expiration Date										Size:8
+							'ExpireTime'					 => '2#038', //	Expiration Time										Size:11
+							'SpecialInstru'				 => '2#040', //	Special Instructions							Size:256
+							'ActionAdvised'				 => '2#042', //	Action Advised										Size:2
+							'RefService'					 => '2#045', //	Reference Service									Size:10
+							'RefDate'							 => '2#047', //	Reference Date										Size:8
+							'RefNumber'						 => '2#050', //	Reference Number									Size:8
+							'DateCreated'					 => '2#055', //	Date created											Size:8
+							'TimeCreated'					 => '2#060', //	Time created											Size:11
+							'DigitizeDate'				 => '2#062', //	Digital Creation Date							Size:8
+							'DigitizeTime'				 => '2#063', //	Digital Creation Time							Size:11
+							'OriginatingProgram'	 => '2#065', //	Originating Program								Size:32
+							'ProgramVersion'			 => '2#070', //	Program version										Size:10
+							'ObjectCycle'					 => '2#075', //	Object Cycle											Size:1
+							'ByLine'							 => '2#080', //	ByLine 														Size:32
+							'ByLineTitle'					 => '2#085', //	ByLine Title											Size:32
+							'City'								 => '2#090', //	City															Size:32
+							'SubLocation'					 => '2#092', //	Sublocation												Size:32
+							'State'								 => '2#095', //	Province/State										Size:32
+							'LocationCode'				 => '2#100', //	Country/Primary	Location Code			Size:3
+							'LocationName'				 => '2#101', //	Country/Primary	Location Name			Size:64
+							'TransmissionRef'			 => '2#103', //	Original Transmission Reference		Size:32
+							'ImageHeadline'				 => '2#105', //	Image headline										Size:256
+							'ImageCredit'					 => '2#110', //	Image credit											Size:32
+							'Source'							 => '2#115', //	Source														Size:32
+							'Copyright'						 => '2#116', //	Copyright Notice									Size:128
+							'Contact'							 => '2#118', //	Contact														Size:128
+							'ImageCaption'				 => '2#120', //	Image caption											Size:2000
+							'ImageCaptionWriter'	 => '2#122', //	Image caption writer							Size:32
+							'ImageType'						 => '2#130', //	Image type												Size:2
+							'Orientation'					 => '2#131', //	Image	orientation									Size:1
+							'LangID'							 => '2#135', //	Language ID												Size:3
+							'Subfile'							 => '8#010' //	Subfile														Size:2
+			);
+			$this->set('hasMetadata', 0);
+			foreach ($_zp_exifvars as $field => $exifvar) {
+				$this->set($field, NULL);
 			}
-			/* check IPTC data */
-			$iptcdata = zp_imageIPTC($localpath);
-			if (!empty($iptcdata)) {
-				$iptc = iptcparse($iptcdata);
-				if ($iptc) {
-					$this->set('hasMetadata', 1);
-					$characterset = self::getIPTCTag('1#090', $iptc);
-					if (!$characterset) {
-						$characterset = getOption('IPTC_encoding');
-					} else if (substr($characterset, 0, 1) == chr(27)) { // IPTC escape encoding
-						$characterset = substr($characterset, 1);
-						if ($characterset == '%G') {
-							$characterset = 'UTF-8';
-						} else { // we don't know, need to understand the IPTC standard here. In the mean time, default it.
-							$characterset = getOption('IPTC_encoding');
-						}
-					} else if ($characterset == 'UTF8') {
-						$characterset = 'UTF-8';
-					}
-					// Extract IPTC fields of interest
-					foreach ($_zp_exifvars as $field => $exifvar) {
-						if ($exifvar[0] == 'IPTC') {
-							$datum = self::getIPTCTag($IPTCtags[$exifvar[1]], $iptc);
-							$this->set($field, $this->prepIPTCString($datum, $characterset));
-						}
-					}
-					/* iptc keywords (tags) */
-					if ($_zp_exifvars['IPTCKeywords'][5]) {
-						$datum = self::getIPTCTagArray($IPTCtags['Keywords'], $iptc);
-						if (is_array($datum)) {
-							$tags = array();
-							$result['tags'] = array();
-							foreach ($datum as $item) {
-								$tags[] = $this->prepIPTCString(sanitize($item, 3), $characterset);
-							}
-							$this->setTags($tags);
-						}
-					}
-				}
-			}
-		}
-		/* "import" metadata into database fields as makes sense */
 
-		/* ZenPhoto20 Image Rotation */
-		$this->set('rotation', substr(trim(self::fetchMetadata('EXIFOrientation'), '!'), 0, 1));
-
-		/* ZenPhoto20 "date" field population */
-		if ($date = self::fetchMetadata('IPTCDateCreated')) {
-			if (strlen($date) > 8) {
-				$time = substr($date, 8);
+			$result = array();
+			if (get_class($this) == 'Image') {
+				$localpath = $this->localpath;
 			} else {
-				/* got date from IPTC, now must get time */
-				$time = $this->get('IPTCTimeCreated');
+				$localpath = $this->getThumbImageFile();
 			}
-			$date = substr($date, 0, 4) . '-' . substr($date, 4, 2) . '-' . substr($date, 6, 2);
-			if (!empty($time)) {
-				$date = $date . ' ' . substr($time, 0, 2) . ':' . substr($time, 2, 2) . ':' . substr($time, 4, 2);
-			}
-		}
-		if (empty($date)) {
-			$date = self::fetchMetadata('EXIFDateTime');
-		}
-		if (empty($date)) {
-			$date = self::fetchMetadata('EXIFDateTimeOriginal');
-		}
-		if (empty($date)) {
-			$date = self::fetchMetadata('EXIFDateTimeDigitized');
-		}
-		if (empty($date)) {
-			$this->setDateTime(strftime('%Y-%m-%d %H:%M:%S', $this->filemtime));
-		} else {
-			$this->setDateTime($date);
-		}
 
-		/* ZenPhoto20 "title" field population */
-		$title = self::fetchMetadata('IPTCObjectName');
-		if (empty($title)) {
-			$title = self::fetchMetadata('IPTCImageHeadline');
-		}
-		if (empty($title)) {
-			$title = self::fetchMetadata('EXIFDescription'); //EXIF title [sic]
-		}
-
-		if (!empty($title)) {
-			if (getoption('transform_newlines')) {
-				$title = nl2br($title);
-			}
-			$this->setTitle($title);
-		}
-
-		/* ZenPhoto20 "description" field population */
-		$desc = self::fetchMetadata('IPTCImageCaption');
-		if (!empty($desc)) {
-			if (getoption('transform_newlines')) {
-				$desc = nl2br($desc);
-			}
-			$this->setDesc($desc);
-		}
-
-		//	ZenPhoyo20 GPS data
-		foreach (array('EXIFGPSLatitude', 'EXIFGPSLongitude') as $source) {
-			$data = self::fetchMetadata($source);
-			if (!empty($data)) {
-				$ref = strtoupper($this->get($source . 'Ref'));
-				$this->set($source, self::toDMS($data, $ref));
-				if (in_array($ref, array('S', 'W'))) {
-					$data = -$data;
+			if (!empty($localpath)) { // there is some kind of image to get metadata from
+				$exifraw = read_exif_data_protected($localpath);
+				if (isset($exifraw['ValidEXIFData'])) {
+					$this->set('hasMetadata', 1);
+					foreach ($_zp_exifvars as $field => $exifvar) {
+						$exif = NULL;
+						if (isset($exifraw[$exifvar[0]][$exifvar[1]])) {
+							$exif = trim(sanitize($exifraw[$exifvar[0]][$exifvar[1]], 1));
+						} else if (isset($exifraw[$exifvar[0]]['MakerNote'][$exifvar[1]])) {
+							$exif = trim(sanitize($exifraw[$exifvar[0]]['MakerNote'][$exifvar[1]], 1));
+						}
+						$this->set($field, $exif);
+					}
 				}
-				$this->set(substr($source, 4), $data);
+				/* check IPTC data */
+				$iptcdata = zp_imageIPTC($localpath);
+				if (!empty($iptcdata)) {
+					$iptc = iptcparse($iptcdata);
+					if ($iptc) {
+						$this->set('hasMetadata', 1);
+						$characterset = self::getIPTCTag('1#090', $iptc);
+						if (!$characterset) {
+							$characterset = getOption('IPTC_encoding');
+						} else if (substr($characterset, 0, 1) == chr(27)) { // IPTC escape encoding
+							$characterset = substr($characterset, 1);
+							if ($characterset == '%G') {
+								$characterset = 'UTF-8';
+							} else { // we don't know, need to understand the IPTC standard here. In the mean time, default it.
+								$characterset = getOption('IPTC_encoding');
+							}
+						} else if ($characterset == 'UTF8') {
+							$characterset = 'UTF-8';
+						}
+						// Extract IPTC fields of interest
+						foreach ($_zp_exifvars as $field => $exifvar) {
+							if ($exifvar[0] == 'IPTC') {
+								$datum = self::getIPTCTag($IPTCtags[$exifvar[1]], $iptc);
+								$this->set($field, $this->prepIPTCString($datum, $characterset));
+							}
+						}
+						/* iptc keywords (tags) */
+						if ($_zp_exifvars['IPTCKeywords'][5]) {
+							$datum = self::getIPTCTagArray($IPTCtags['Keywords'], $iptc);
+							if (is_array($datum)) {
+								$tags = array();
+								$result['tags'] = array();
+								foreach ($datum as $item) {
+									$tags[] = $this->prepIPTCString(sanitize($item, 3), $characterset);
+								}
+								$this->setTags($tags);
+							}
+						}
+					}
+				}
 			}
-		}
+			/* "import" metadata into database fields as makes sense */
 
-		$alt = self::fetchMetadata('EXIFGPSAltitude');
-		if (!empty($alt)) {
-			if (self::fetchMetadata('EXIFGPSAltitudeRef') == '-') {
-				$alt = -$alt;
+			/* ZenPhoto20 Image Rotation */
+			$this->set('rotation', substr(trim(self::fetchMetadata('EXIFOrientation'), '!'), 0, 1));
+
+			/* ZenPhoto20 "date" field population */
+			if ($date = self::fetchMetadata('IPTCDateCreated')) {
+				if (strlen($date) > 8) {
+					$time = substr($date, 8);
+				} else {
+					/* got date from IPTC, now must get time */
+					$time = $this->get('IPTCTimeCreated');
+				}
+				$date = substr($date, 0, 4) . '-' . substr($date, 4, 2) . '-' . substr($date, 6, 2);
+				if (!empty($time)) {
+					$date = $date . ' ' . substr($time, 0, 2) . ':' . substr($time, 2, 2) . ':' . substr($time, 4, 2);
+				}
 			}
-			$this->set('GPSAltitude', $alt);
-		}
-
-		//	simple field imports
-		$import = array(
-						'location'	 => 'IPTCSubLocation',
-						'city'			 => 'IPTCCity',
-						'city'			 => 'IPTCCity',
-						'state'			 => 'IPTCState',
-						'country'		 => 'IPTCLocationName',
-						'copyright'	 => 'IPTCCopyright'
-		);
-		foreach ($import as $key => $source) {
-			$data = self::fetchMetadata($source);
-			$this->set($key, $data);
-		}
-
-		/* ZenPhoto20 "credit" field population */
-		$credit = self::fetchMetadata('IPTCByLine');
-		if (empty($credit)) {
-			$credit = self::fetchMetadata('IPTCImageCredit');
-		}
-		if (empty($credit)) {
-			$credit = self::fetchMetadata('IPTCSource');
-		}
-		if (!empty($credit)) {
-			$this->setCredit($credit);
-		}
-
-		zp_apply_filter('image_metadata', $this);
-
-		$alb = $this->album;
-		if (is_object($alb)) {
-			if (!$this->get('owner')) {
-				$this->setOwner($alb->getOwner());
+			if (empty($date)) {
+				$date = self::fetchMetadata('EXIFDateTime');
 			}
-			$save = false;
-			if (strtotime($alb->getUpdatedDate()) < strtotime($this->getDateTime())) {
-				$alb->setUpdatedDate($this->getDateTime());
-				$save = true;
+			if (empty($date)) {
+				$date = self::fetchMetadata('EXIFDateTimeOriginal');
 			}
-			if (is_null($albdate = $alb->getDateTime()) || ($_zp_gallery->getAlbumUseImagedate() && strtotime($albdate) < strtotime($this->getDateTime()))) {
-				$alb->setDateTime($this->getDateTime()); //  not necessarily the right one, but will do. Can be changed in Admin
-				$save = true;
+			if (empty($date)) {
+				$date = self::fetchMetadata('EXIFDateTimeDigitized');
 			}
-			if ($save) {
-				$alb->save();
+			if (empty($date)) {
+				$this->setDateTime(strftime('%Y-%m-%d %H:%M:%S', $this->filemtime));
+			} else {
+				$this->setDateTime($date);
+			}
+
+			/* ZenPhoto20 "title" field population */
+			$title = self::fetchMetadata('IPTCObjectName');
+			if (empty($title)) {
+				$title = self::fetchMetadata('IPTCImageHeadline');
+			}
+			if (empty($title)) {
+				$title = self::fetchMetadata('EXIFDescription'); //EXIF title [sic]
+			}
+
+			if (!empty($title)) {
+				if (getoption('transform_newlines')) {
+					$title = nl2br($title);
+				}
+				$this->setTitle($title);
+			}
+
+			/* ZenPhoto20 "description" field population */
+			$desc = self::fetchMetadata('IPTCImageCaption');
+			if (!empty($desc)) {
+				if (getoption('transform_newlines')) {
+					$desc = nl2br($desc);
+				}
+				$this->setDesc($desc);
+			}
+
+			//	ZenPhoyo20 GPS data
+			foreach (array('EXIFGPSLatitude', 'EXIFGPSLongitude') as $source) {
+				$data = self::fetchMetadata($source);
+				if (!empty($data)) {
+					$ref = strtoupper($this->get($source . 'Ref'));
+					$this->set($source, self::toDMS($data, $ref));
+					if (in_array($ref, array('S', 'W'))) {
+						$data = -$data;
+					}
+					$this->set(substr($source, 4), $data);
+				}
+			}
+
+			$alt = self::fetchMetadata('EXIFGPSAltitude');
+			if (!empty($alt)) {
+				if (self::fetchMetadata('EXIFGPSAltitudeRef') == '-') {
+					$alt = -$alt;
+				}
+				$this->set('GPSAltitude', $alt);
+			}
+
+			//	simple field imports
+			$import = array(
+							'location'	 => 'IPTCSubLocation',
+							'city'			 => 'IPTCCity',
+							'city'			 => 'IPTCCity',
+							'state'			 => 'IPTCState',
+							'country'		 => 'IPTCLocationName',
+							'copyright'	 => 'IPTCCopyright'
+			);
+			foreach ($import as $key => $source) {
+				$data = self::fetchMetadata($source);
+				$this->set($key, $data);
+			}
+
+			/* ZenPhoto20 "credit" field population */
+			$credit = self::fetchMetadata('IPTCByLine');
+			if (empty($credit)) {
+				$credit = self::fetchMetadata('IPTCImageCredit');
+			}
+			if (empty($credit)) {
+				$credit = self::fetchMetadata('IPTCSource');
+			}
+			if (!empty($credit)) {
+				$this->setCredit($credit);
+			}
+
+			zp_apply_filter('image_metadata', $this);
+
+			$alb = $this->album;
+			if (is_object($alb)) {
+				if (!$this->get('owner')) {
+					$this->setOwner($alb->getOwner());
+				}
+				$save = false;
+				if (strtotime($alb->getUpdatedDate()) < strtotime($this->getDateTime())) {
+					$alb->setUpdatedDate($this->getDateTime());
+					$save = true;
+				}
+				if (is_null($albdate = $alb->getDateTime()) || ($_zp_gallery->getAlbumUseImagedate() && strtotime($albdate) < strtotime($this->getDateTime()))) {
+					$alb->setDateTime($this->getDateTime()); //  not necessarily the right one, but will do. Can be changed in Admin
+					$save = true;
+				}
+				if ($save) {
+					$alb->save();
+				}
 			}
 		}
 	}

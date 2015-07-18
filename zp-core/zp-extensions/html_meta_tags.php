@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The plugin creates:
  * <ul>
@@ -40,7 +39,7 @@ class htmlmetatags {
 		setOptionDefault('htmlmeta_expires', '43200');
 		setOptionDefault('htmlmeta_tags', '');
 
-		// the html meta tag selector prechecked ones
+// the html meta tag selector prechecked ones
 		setOptionDefault('htmlmeta_htmlmeta_tags', '1');
 		setOptionDefault('htmlmeta_tags_threshold', 1);
 		setOptionDefault('htmlmeta_http-equiv-cache-control', '1');
@@ -65,7 +64,7 @@ class htmlmetatags {
 		setOptionDefault('htmlmeta_ogimage_height', 900);
 	}
 
-	// Gettext calls are removed because some terms like "noindex" are fixed terms that should not be translated so user know what setting they make.
+// Gettext calls are removed because some terms like "noindex" are fixed terms that should not be translated so user know what setting they make.
 	function getOptionsSupported() {
 		$host = $_SERVER['HTTP_HOST'];
 		$matches = explode('.', $host);
@@ -145,10 +144,17 @@ class htmlmetatags {
 	/**
 	 * Traps imageProcessorURIs for causing them to be cached.
 	 * @param string $uri
+	 * returns the cachfile link even though the image is not yet cached.
 	 */
-	static function ipURI($uri) {
+	static function ipURI($uri, $args, $album, $image) {
 		global $htmlmetatags_need_cache;
 		$htmlmetatags_need_cache[] = $uri;
+		if (OPEN_IMAGE_CACHE) {
+			$cachefilename = getImageCacheFilename($album, $image, $args);
+			return WEBPATH . '/' . CACHEFOLDER . imgSrcURI($cachefilename);
+		} else {
+			return $uri;
+		}
 	}
 
 	/**
@@ -159,15 +165,16 @@ class htmlmetatags {
 		global $_zp_gallery, $_zp_page, $_zp_current_album, $_zp_current_image, $_zp_current_search, $_zp_current_article,
 		$_zp_current_page, $_zp_gallery_page, $_zp_current_category, $_zp_authority, $_zp_conf_vars, $_myFavorites,
 		$htmlmetatags_need_cache;
+
 		zp_register_filter('image_processor_uri', 'htmlmetatags::ipURI');
 		$host = sanitize("http://" . $_SERVER['HTTP_HOST']);
 		$url = $host . getRequestURI();
 
-		// Convert locale shorttag to allowed html meta format
+// Convert locale shorttag to allowed html meta format
 		$locale_ = getUserLocale();
 		$locale = zpFunctions::getLanguageText($locale_, '-');
 		$canonicalurl = '';
-		// generate page title, get date
+// generate page title, get date
 		$pagetitle = ""; // for gallery index setup below switch
 		$date = strftime(DATE_FORMAT); // if we don't have a item date use current date
 		$desc = getBareGalleryDesc();
@@ -255,10 +262,10 @@ class htmlmetatags {
 				$canonicalurl = $host . getCustomPageURL($custompage);
 				break;
 		}
-		// shorten desc to the allowed 200 characters if necesssary.
+// shorten desc to the allowed 200 characters if necesssary.
 		$desc = html_encode(trim(substr(getBare($desc), 0, 160)));
 		$pagetitle = $pagetitle . getBareGalleryTitle();
-		// get master admin
+// get master admin
 		$admin = $_zp_authority->getMasterUser();
 		$author = $admin->getName();
 		$meta = '';
@@ -308,7 +315,7 @@ class htmlmetatags {
 			$meta .= '<meta name="expires" content="' . $expires . '">' . "\n";
 		}
 
-		// OpenGraph meta
+// OpenGraph meta
 		if (getOption('htmlmeta_og-title')) {
 			$meta .= '<meta property="og:title" content="' . $pagetitle . '">' . "\n";
 		}
@@ -325,11 +332,11 @@ class htmlmetatags {
 			$meta .= '<meta property="og:type" content="' . $type . '">' . "\n";
 		}
 
-		// Social network extras
+// Social network extras
 		if (getOption('htmlmeta_name-pinterest')) {
 			$meta .= '<meta name="pinterest" content="nopin">' . "\n";
 		} // dissalow users to pin images on Pinterest
-		// Twitter card
+// Twitter card
 		$twittername = getOption('htmlmeta_twittername');
 		if (getOption('htmlmeta_twittercard') || !empty($twittername)) {
 			$meta .= '<meta property="twitter:creator" content="' . $twittername . '">' . "\n";
@@ -342,7 +349,7 @@ class htmlmetatags {
 			}
 		}
 
-		// Canonical url
+// Canonical url
 		if (getOption('htmlmeta_canonical-url')) {
 			$meta .= '<link rel="canonical" href="' . $canonicalurl . '">' . "\n";
 			if (METATAG_LOCALE_TYPE) {
@@ -410,25 +417,24 @@ class htmlmetatags {
 				} // if count
 			} // if option
 		} // if canonical
-		if (!empty($htmlmetatags_need_cache)) {
-			$meta .= '<script type="text/javascript">' . "\n";
-			$meta .= 'var caches = ["' . implode('","', $htmlmetatags_need_cache) . '"];' . "\n";
-			$meta .= '
-					window.addEventListener(\'load\',  function() {
-						var index,value;
-						for (index in caches) {
-								value = caches[index];
-								$.ajax({
-									cache: false,
-									type: "GET",
-									url: value
-								});
-						}
-					}, false);
-					';
-			$meta .= '</script>' . "\n";
-		}
 		zp_remove_filter('image_processor_uri', 'htmlmetatags::ipURI');
+		if (!empty($htmlmetatags_need_cache)) {
+			?>
+			<script type="text/javascript">
+				var needsCache = ["<?php echo implode('","', $htmlmetatags_need_cache); ?>"];
+				var i, value;
+				for (i in needsCache) {
+					value = needsCache[i];
+					$.ajax({
+						cache: false,
+						type: "GET",
+						url: value
+					});
+				}
+
+			</script>
+			<?php
+		}
 		echo $meta;
 	}
 
@@ -452,7 +458,7 @@ class htmlmetatags {
 				$tags = getNewsCategories(getNewsID());
 				$words .= htmlmetatags::getMetaAlbumAndImageTags($tags, "zenpage");
 				$tags = getTags();
-				$words = $words . "," . htmlmetatags::getMetaAlbumAndImageTags($tags, "gallery");
+				$words = $words . ", " . htmlmetatags::getMetaAlbumAndImageTags($tags, "gallery");
 			} else if (is_Pages()) {
 				$tags = getTags();
 				$words = htmlmetatags::getMetaAlbumAndImageTags($tags, "gallery");
@@ -498,5 +504,4 @@ class htmlmetatags {
 	}
 
 }
-
 ?>
