@@ -522,7 +522,7 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 
 function getImageRotation($img) {
 	if (is_object($img)) {
-		debugLogVar('rotation from object', $rotation);
+		$rotation = $img->get('rotation');
 	} else {
 		$imgfile = substr(filesystemToInternal($img), strlen(ALBUM_FOLDER_SERVERPATH));
 		$album = trim(dirname($imgfile), '/');
