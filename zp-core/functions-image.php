@@ -522,30 +522,33 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 
 function getImageRotation($img) {
 	if (is_object($img)) {
-		$rotation = $img->get('rotation');
+		return $img->get('rotation');
 	} else {
 		$imgfile = substr(filesystemToInternal($img), strlen(ALBUM_FOLDER_SERVERPATH));
 		$album = trim(dirname($imgfile), '/');
 		$image = basename($imgfile);
 		$a = query_single_row($sql = 'SELECT `id` FROM ' . prefix('albums') . ' WHERE `folder`=' . db_quote($album));
-		$result = query_single_row($sql = 'SELECT rotation FROM ' . prefix('images') . '  WHERE `albumid`=' . $a['id'] . ' AND `filename`=' . db_quote($image));
-		$rotation = 0;
-		if (is_array($result)) {
-			if (array_key_exists('rotation', $result)) {
-				$rotation = $result['rotation'];
+		if ($a) {
+			$result = query_single_row($sql = 'SELECT rotation FROM ' . prefix('images') . '  WHERE `albumid`=' . $a['id'] . ' AND `filename`=' . db_quote($image));
+			$rotation = 0;
+			if (is_array($result)) {
+				if (array_key_exists('rotation', $result)) {
+					$rotation = $result['rotation'];
+				}
+			}
+
+			switch (substr(trim($rotation, '!'), 0, 1)) {
+				case 0:
+				case 1: // none
+				case 2: return 0; // mirrored
+				case 3: // upside-down
+				case 4: return 180; // upside-down mirrored
+				case 5: // 90 CW mirrored
+				case 6: return 90; // 90 CCW
+				case 7: // 90 CCW mirrored
+				case 8: return 270; // 90 CW
 			}
 		}
-	}
-	switch (substr(trim($rotation, '!'), 0, 1)) {
-		case 0:
-		case 1: // none
-		case 2: return 0; // mirrored
-		case 3: // upside-down
-		case 4: return 180; // upside-down mirrored
-		case 5: // 90 CW mirrored
-		case 6: return 90; // 90 CCW
-		case 7: // 90 CCW mirrored
-		case 8: return 270; // 90 CW
 	}
 	return 0;
 }

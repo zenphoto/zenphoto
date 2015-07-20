@@ -1808,7 +1808,7 @@ class SearchEngine {
 	 *
 	 * @return array
 	 */
-	private function getSearchPages($sorttype, $sortdirection) {
+	private function getSearchPages($sorttype, $direction) {
 		if (!extensionEnabled('zenpage') || getOption('search_no_pages') || $this->search_no_pages)
 			return array();
 		list($sortkey, $sortdirection) = $this->sortKey($sorttype, $direction, 'title', 'pages');
