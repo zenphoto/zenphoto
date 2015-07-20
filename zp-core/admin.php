@@ -534,7 +534,7 @@ if (!zp_loggedin()) {
 							$c = count($plugins);
 							?>
 							<h3><a onclick="toggle('plugins_hide');
-									toggle('plugins_show');" ><?php printf(ngettext("%u active plugin:", "%u active plugins:", $c), $c); ?></a></h3>
+											toggle('plugins_show');" ><?php printf(ngettext("%u active plugin:", "%u active plugins:", $c), $c); ?></a></h3>
 							<div id="plugins_hide" style="display:none">
 								<ul class="plugins">
 									<?php
@@ -582,7 +582,7 @@ if (!zp_loggedin()) {
 							$c = count($filters);
 							?>
 							<h3><a onclick="toggle('filters_hide');
-									toggle('filters_show');" ><?php printf(ngettext("%u active filter:", "%u active filters:", $c), $c); ?></a></h3>
+											toggle('filters_show');" ><?php printf(ngettext("%u active filter:", "%u active filters:", $c), $c); ?></a></h3>
 							<div id="filters_hide" style="display:none">
 								<ul class="plugins">
 									<?php
@@ -630,6 +630,14 @@ if (!zp_loggedin()) {
 						foreach ($buttonlist as $button) {
 							$button_category = $button['category'];
 							$button_icon = $button['icon'];
+							if ($button['enable']) {
+								if ((int) $button['enable'] == 2) {
+									$color = ' style="color:red"';
+								}
+								$disable = '';
+							} else {
+								$disable = ' disabled="disabled"';
+							}
 							if ($category != $button_category) {
 								if ($category) {
 									?>
@@ -648,14 +656,6 @@ if (!zp_loggedin()) {
 										XSRFToken($button['XSRFTag']);
 									$color = '';
 									echo $button['hidden'];
-									if ($button['enable']) {
-										if ((int) $button['enable'] == 2) {
-											$color = ' style="color:red"';
-										}
-										$disable = '';
-									} else {
-										$disable = ' disabled="disabled"';
-									}
 									if (isset($button['onclick'])) {
 										$type = 'type="button" onclick="' . $button['onclick'] . '"';
 									} else {
@@ -663,7 +663,7 @@ if (!zp_loggedin()) {
 									}
 									?>
 									<div class="buttons tooltip" title="<?php echo html_encode($button['title']); ?>">
-										<button class="fixedwidth" <?php echo $type . $disable; ?>>
+										<button class="fixedwidth<?php if ($disable) echo ' disabled_button'; ?>" <?php echo $type . $disable; ?>>
 											<?php
 											if (!empty($button_icon)) {
 												?>
