@@ -29,7 +29,7 @@ if (!defined('WEBPATH'))
 				<h2>
 					<span>
 						<?php printHomeLink('', ' | '); printGalleryIndexURL(' | ', getGalleryTitle()); ?></a>
-					</span> |
+					</span>
 					<?php printSearchBreadcrumb(' | '); ?>
 				</h2>
 			</div>
