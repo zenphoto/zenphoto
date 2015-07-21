@@ -418,7 +418,7 @@ class Gallery {
 	 * @return bool
 	 */
 	function garbageCollect($cascade = true, $complete = false, $restart = '') {
-		global $_zp_gallery;
+		global $_zp_gallery, $_zp_authority;
 		if (empty($restart)) {
 			setOption('last_garbage_collect', time());
 			/* purge old search cache items */
@@ -459,8 +459,7 @@ class Gallery {
 			$result = query("SELECT * FROM " . prefix('admin_to_object'));
 			if ($result) {
 				while ($row = db_fetch_assoc($result)) {
-					$dbtag = query_single_row("SELECT * FROM " . prefix('administrators') . " WHERE `id`='" . $row['adminid'] . "'", false);
-					if (!$dbtag) {
+					if (!$_zp_authority->validUserID($row['adminid'])) {
 						$dead[] = $row['id'];
 					}
 					$tbl = $row['type'];
