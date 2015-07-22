@@ -461,14 +461,14 @@ function printAdminHeader($tab, $subtab = NULL) {
 		$subrights = $album->subRights();
 
 		if (!$album->isDynamic()) {
-			if ($album->getNumImages()) {
+			if ($c = $album->getNumImages()) {
 				if ($subrights & (MANAGED_OBJECT_RIGHTS_UPLOAD || MANAGED_OBJECT_RIGHTS_EDIT)) {
 					$zenphoto_tabs['edit']['subtabs'] = array_merge(
 									array(gettext('Images') => 'admin-edit.php' . $albumlink . '&tab=imageinfo'), $zenphoto_tabs['edit']['subtabs']
 					);
 					$default = 'imageinfo';
 				}
-				if ($subrights & MANAGED_OBJECT_RIGHTS_EDIT) {
+				if ($c > 1 && $subrights & MANAGED_OBJECT_RIGHTS_EDIT) {
 					$zenphoto_tabs['edit']['subtabs'] = array_merge(
 									array(gettext('Image order') => 'admin-albumsort.php' . $albumlink . '&tab=sort'), $zenphoto_tabs['edit']['subtabs']
 					);
@@ -1554,7 +1554,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						$sort[gettext('Custom')] = 'custom';
 						/*
 						 * not recommended--screws with peoples minds during pagination!
-							$sort[gettext('Random')] = 'random';
+						  $sort[gettext('Random')] = 'random';
 						 */
 						?>
 						<tr>

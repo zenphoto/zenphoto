@@ -2408,9 +2408,6 @@ class zpFunctions {
 				$langs[$full[0]] = $simple;
 			}
 		}
-		if (isset($langs[SITE_LOCALE])) {
-			$langs[SITE_LOCALE] = '';
-		}
 		return $langs;
 	}
 

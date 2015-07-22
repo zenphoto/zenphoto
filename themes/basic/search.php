@@ -28,7 +28,7 @@ if (!defined('WEBPATH'))
 					<span>
 						<?php printHomeLink('', ' | '); ?>
 						<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo ('Gallery Index'); ?>"><?php printGalleryTitle(); ?></a>
-					</span> |
+					</span>
 					<?php printSearchBreadcrumb(' | '); ?>
 				</h2>
 			</div>

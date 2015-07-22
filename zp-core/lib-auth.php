@@ -58,6 +58,10 @@ class _Authority {
 		return $user == $this->master_user;
 	}
 
+	function validUserID($id) {
+		return array_key_exists($id, $this->admin_users);
+	}
+
 	/**
 	 * Declares options used by lib-auth
 	 *

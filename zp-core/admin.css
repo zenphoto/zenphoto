@@ -1273,7 +1273,7 @@ button:hover,.buttons a:hover {
 .buttons a:active {
 	text-decoration: none;
 	background-color: #6299c5;
-	border: 1px solid #6299c5;
+	border: 1px solid #dedede;
 	color: #fff;
 }
 
@@ -1322,6 +1322,17 @@ button.positive,.buttons a.positive {
 	width: 17em;
 }
 
+/* disabled buttons */
+button:hover:disabled,.buttons a:hover:disabled {
+	text-decoration: none;
+	background-color: #f5f5f5;
+	border: 1px solid #dedede;
+	border-top: 1px solid #eee;
+	border-left: 1px solid #eee;
+}
+.buttons .disabled_button {
+	color: #c2c2c2;
+}
 
 /*sidebar vertical buttons */
 .box-edit .buttons a,

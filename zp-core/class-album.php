@@ -391,7 +391,7 @@ class AlbumBase extends MediaObject {
 	function getImage($index) {
 		$images = $this->getImages();
 		if ($index >= 0 && $index < count($images)) {
-			return newImage($this, $this->images[$index]);
+			return newImage($this, $images[$index]);
 		}
 		return false;
 	}

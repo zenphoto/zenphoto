@@ -246,7 +246,7 @@ class favorites extends AlbumBase {
 					}
 				}
 				$images = sortByKey($images, $sortkey, $order);
-				$this->images = array();
+				$this->imageNames = $this->images = array();
 				foreach ($images as $data) {
 					$this->images[] = array('folder' => $data['folder'], 'filename' => $data['filename']);
 					$this->imageNames[$data['folder'] . '/' . $data['filename']] = $data['filename'];
