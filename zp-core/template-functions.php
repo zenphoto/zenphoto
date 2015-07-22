@@ -3017,7 +3017,7 @@ function printCustomSizedImage($alt, $size, $width = NULL, $height = NULL, $crop
 		if ($dims[0])
 			$sizing = ' width="' . $dims[0] . '"';
 		if ($dims[1])
-			$sizing .= '"height="' . $dims[1] . '"';
+			$sizing .= ' height="' . $dims[1] . '"';
 	} else {
 		if ($width)
 			$sizing .= ' width="' . $width . '"';
