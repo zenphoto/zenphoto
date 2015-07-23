@@ -2004,7 +2004,7 @@ function seoFriendlyJS() {
 
 /**
  * returns an XSRF token
- * @param striong $action
+ * @param string $action
  */
 function getXSRFToken($action) {
 	global $_zp_current_admin_obj;
