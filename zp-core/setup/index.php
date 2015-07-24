@@ -9,6 +9,8 @@
 // force UTF-8 Ø
 Define('PHP_MIN_VERSION', '5.2');
 Define('PHP_DESIRED_VERSION', '5.4');
+define('HTACCESS_VERSION', '1.4.5'); // be sure to change this the one in .htaccess when the .htaccess file is updated.
+define('OFFSET_PATH', 2);
 
 // leave this as the first executable statement to avoid problems with PHP not having gettext support.
 if (!function_exists("gettext")) {
@@ -17,26 +19,22 @@ if (!function_exists("gettext")) {
 } else {
 	$noxlate = 1;
 }
-define('HTACCESS_VERSION', '1.4.5'); // be sure to change this the one in .htaccess when the .htaccess file is updated.
-
-define('OFFSET_PATH', 2);
-
 if (version_compare(PHP_VERSION, '5.0.0', '<')) {
 	die(sprintf(gettext('ZenPhoto20 requires PHP version %s or greater'), PHP_MIN_VERSION));
 }
+
 $chmod = fileperms(dirname(dirname(__FILE__))) & 0666;
+$_initial_session_path = session_save_path();
 
 require_once(dirname(dirname(__FILE__)) . '/global-definitions.php');
 require_once(dirname(dirname(__FILE__)) . '/functions-common.php');
 
-
-$session_path = session_save_path();
-if (!file_exists($session_path) || !is_writable($session_path)) {
-	@mkdir(dirname(dirname(dirname(__FILE__))) . '/' . DATA_FOLDER . '/PHP_sessions', $chmod | 0311);
-	session_save_path(dirname(dirname(dirname(__FILE__))) . '/' . DATA_FOLDER . '/PHP_sessions');
+if (file_exists(dirname(dirname(dirname(__FILE__))) . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
+	require(dirname(dirname(dirname(__FILE__))) . '/' . DATA_FOLDER . '/' . CONFIGFILE);
+	require_once(dirname(dirname(__FILE__)) . '/functions.php');
 }
 
-$session = session_start();
+$session = zp_session_start();
 session_cache_limiter('nocache');
 
 require_once(dirname(__FILE__) . '/setup-functions.php');
@@ -548,10 +546,10 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 							$err = versionCheck(PHP_MIN_VERSION, PHP_DESIRED_VERSION, PHP_VERSION);
 							$good = checkMark($err, sprintf(gettext("PHP version %s"), PHP_VERSION), "", sprintf(gettext('PHP Version %1$s or greater is required. Version %2$s or greater is strongly recommended. Use earlier versions at your own risk.'), PHP_MIN_VERSION, PHP_DESIRED_VERSION), false) && $good;
 
-							if ($session && session_id() && $session_path == session_save_path()) {
+							if ($session && session_id() && $_initial_session_path == session_save_path()) {
 								checkmark(true, gettext('PHP <code>Sessions</code>.'), gettext('PHP <code>Sessions</code> [appear to not be working].'), '', true);
 							} else {
-								if ($session && session_id() && $session_path != session_save_path()) {
+								if ($session && session_id() && $_initial_session_path != session_save_path()) {
 									checkmark(-1, '', gettext('PHP <code>Sessions</code> [problems with <em>save_save_path</em>].'), sprintf(gettext('The configured PHP session path could not be used. ZenPhoto20 has set the path to the %s folder.'), DATA_FOLDER), true);
 								} else {
 									checkmark(0, '', gettext('PHP <code>Sessions</code> [appear to not be working].'), gettext('PHP Sessions are required for administrative functions.'), true);
@@ -1700,8 +1698,8 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 
 						/*
 						 * ********************************************************************************
-						  Add new fields in the upgrade section. This section should remain static except for new
-						  tables. This tactic keeps all changes in one place so that noting gets accidentaly omitted.
+							Add new fields in the upgrade section. This section should remain static except for new
+							tables. This tactic keeps all changes in one place so that noting gets accidentaly omitted.
 						 * ********************************************************************************** */
 
 						//v1.2

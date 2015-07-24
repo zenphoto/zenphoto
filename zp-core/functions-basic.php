@@ -159,13 +159,6 @@ if (!defined('FILESYSTEM_CHARSET')) {
 	}
 }
 
-$_session_path = session_save_path();
-if (!file_exists($_session_path) || !is_writable($_session_path)) {
-	mkdir_recursive(SERVERPATH . '/' . DATA_FOLDER . '/PHP_sessions', FOLDER_MOD);
-	session_save_path(SERVERPATH . '/' . DATA_FOLDER . '/PHP_sessions');
-}
-unset($_session_path);
-
 // If the server protocol is not set, set it to the default.
 if (!isset($_zp_conf_vars['server_protocol'])) {
 	$_zp_conf_vars['server_protocol'] = 'http';
@@ -1564,8 +1557,9 @@ function installSignature() {
  * Closes the database to be sure that we do not build up outstanding connections
  */
 function exitZP() {
-	IF (function_exists('db_close'))
+	IF (function_exists('db_close')) {
 		db_close();
+	}
 	exit();
 }
 
@@ -1574,14 +1568,26 @@ function exitZP() {
  * Starts a zenphoto session (perhaps a secure one)
  */
 function zp_session_start() {
+	global $_zp_conf_vars;
 	if (session_id() == '') {
-// force session cookie to be secure when in https
+		//	insure that the session data has a place to be saved
+		if (isset($_zp_conf_vars['session_save_path'])) {
+			session_save_path($_zp_conf_vars['session_save_path']);
+		} else {
+			$_session_path = session_save_path();
+			if (!file_exists($_session_path) || !is_writable($_session_path)) {
+				mkdir_recursive(SERVERPATH . '/' . DATA_FOLDER . '/PHP_sessions', FOLDER_MOD);
+				session_save_path(SERVERPATH . '/' . DATA_FOLDER . '/PHP_sessions');
+			}
+		}
 		if (secureServer()) {
+			// force session cookie to be secure when in https
 			$CookieInfo = session_get_cookie_params();
 			session_set_cookie_params($CookieInfo['lifetime'], $CookieInfo['path'], $CookieInfo['domain'], TRUE);
 		}
-		session_start();
+		return session_start();
 	}
+	return NULL;
 }
 
 ?>
