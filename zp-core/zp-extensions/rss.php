@@ -711,10 +711,10 @@ class RSS extends feed {
 			?>
 			<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
 				<channel>
-					<title><?php echo $this->channel_title; ?></title>
+					<title><![CDATA[<?php echo $this->channel_title; ?>]]></title>
 					<link><?php echo PROTOCOL . '://' . $this->host . WEBPATH; ?></link>
 					<atom:link href="<?php echo PROTOCOL; ?>://<?php echo $this->host; ?><?php echo html_encode(getRequestURI()); ?>" rel="self"	type="application/rss+xml" />
-					<description><?php echo getBare($_zp_gallery->getDesc($this->locale)); ?></description>
+					<description><![CDATA[<?php echo getBare($_zp_gallery->getDesc($this->locale)); ?>]]></description>
 					<language><?php echo $this->locale_xml; ?></language>
 					<pubDate><?php echo date("r", time()); ?></pubDate>
 					<lastBuildDate><?php echo date("r", time()); ?></lastBuildDate>
