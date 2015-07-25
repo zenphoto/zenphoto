@@ -51,7 +51,7 @@ class _Authority {
 	}
 
 	function addOtherUser($adminObj) {
-		$this->admin_users[$adminObj->getID()] = $adminObj;
+		$this->admin_users[$adminObj->getID()] = $adminObj->getData();
 	}
 
 	function getMasterUser() {
@@ -475,8 +475,8 @@ class _Authority {
 	 * @param $valid
 	 * @return object
 	 */
-	static function newAdministrator($name, $valid = 1) {
-		$user = new Zenphoto_Administrator($name, $valid);
+	static function newAdministrator($name, $valid = 1, $allowCreate = true) {
+		$user = new Zenphoto_Administrator($name, $valid, $allowCreate);
 		return $user;
 	}
 
@@ -1311,10 +1311,10 @@ class _Administrator extends PersistentObject {
 	 * @return Administrator
 	 */
 
-	function __construct($user, $valid) {
+	function __construct($user, $valid, $create = true) {
 		global $_zp_authority;
 		$this->passhash = (int) getOption('strong_hash');
-		$this->instantiate('administrators', array('user' => $user, 'valid' => $valid), NULL, false, empty($user));
+		$this->instantiate('administrators', array('user' => $user, 'valid' => $valid), NULL, false, empty($user), $create);
 		if (empty($user)) {
 			$this->set('id', -1);
 		}
@@ -1390,7 +1390,7 @@ class _Administrator extends PersistentObject {
 		$this->set('pass', $pwd);
 		$this->set('passupdate', date('Y-m-d H:i:s'));
 		$this->set('passhash', $hash_type);
-		return $this->get('pass');
+		return $pwd;
 	}
 
 	/**

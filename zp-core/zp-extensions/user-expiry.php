@@ -171,7 +171,7 @@ class user_expiry {
 	static function checkPasswordRenew() {
 		global $_zp_current_admin_obj;
 		$threshold = getOption('user_expiry_password_cycle') * 86400;
-		if ($threshold && is_object($_zp_current_admin_obj) && !($_zp_current_admin_obj->getRights() & ADMIN_RIGHTS)) {
+		if ($threshold && is_object($_zp_current_admin_obj) && !$_zp_current_admin_obj->transient && !($_zp_current_admin_obj->getRights() & ADMIN_RIGHTS)) {
 			if (strtotime($_zp_current_admin_obj->get('passupdate')) + $threshold < time()) {
 				return true;
 			}

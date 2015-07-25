@@ -46,20 +46,22 @@ class user_groups {
 				$group = new Zenphoto_Administrator('', 0);
 				$group->setName('template');
 			} else {
-				$group = Zenphoto_Authority::newAdministrator($groupname, 0);
+				$group = Zenphoto_Authority::newAdministrator($groupname, 0, false);
 			}
-			if ($group->getName() == 'template') {
-				unset($groups[$key]);
-				if ($userobj->getID() > 0 && !$templates) {
-					//	fetch the existing rights and objects
-					$templates = true; //	but only once!
-					$rights = $userobj->getRights();
-					$objects = $userobj->getObjects();
+			if ($group->loaded) {
+				if ($group->getName() == 'template') {
+					unset($groups[$key]);
+					if ($userobj->getID() > 0 && !$templates) {
+						//	fetch the existing rights and objects
+						$templates = true; //	but only once!
+						$rights = $userobj->getRights();
+						$objects = $userobj->getObjects();
+					}
 				}
+				$rights = $group->getRights() | $rights;
+				$objects = array_merge($group->getObjects(), $objects);
+				$custom[] = $group->getCustomData();
 			}
-			$rights = $group->getRights() | $rights;
-			$objects = array_merge($group->getObjects(), $objects);
-			$custom[] = $group->getCustomData();
 		}
 
 		$userobj->setCustomData(array_shift($custom)); //	for now it is first come, first served.

@@ -254,13 +254,14 @@ class PersistentObject {
 	}
 
 	/**
-	 *
 	 * returns the database record of the object
-	 * NOTE: if you want to be sure that the data is merged, save the object before invoking this function
-	 *
+	 * 
 	 * @return array
 	 */
 	function getData() {
+		foreach ($this->updates as $key => $value) {
+			$this->data[$key] = $value;
+		}
 		return $this->data;
 	}
 
