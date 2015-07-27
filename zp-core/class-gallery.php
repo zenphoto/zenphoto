@@ -459,7 +459,7 @@ class Gallery {
 			$result = query("SELECT * FROM " . prefix('admin_to_object'));
 			if ($result) {
 				while ($row = db_fetch_assoc($result)) {
-					if (!$_zp_authority->validUserID($row['adminid'])) {
+					if (!$_zp_authority->validID($row['adminid'])) {
 						$dead[] = $row['id'];
 					}
 					$tbl = $row['type'];

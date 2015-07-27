@@ -62,8 +62,8 @@ class _Authority {
 		return $user == $this->master_user;
 	}
 
-	function validUserID($id) {
-		return array_key_exists($id, $this->admin_users);
+	function validID($id) {
+		return array_key_exists($id, $this->admin_all);
 	}
 
 	/**
