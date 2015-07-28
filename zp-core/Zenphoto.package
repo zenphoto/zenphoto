@@ -135,6 +135,8 @@ themes/zenpage/404.php
 themes/zenpage/album.php
 themes/zenpage/archive.php
 themes/zenpage/contact.php
+themes/zenpage/contact_form
+themes/zenpage/contact_form/form.php
 themes/zenpage/favorites.php
 themes/zenpage/footer.php
 themes/zenpage/functions.php
@@ -165,6 +167,7 @@ themes/zenpage/slideshow-controls.png
 themes/zenpage/slideshow.css
 themes/zenpage/slideshow.php
 themes/zenpage/style.css
+themes/zenpage/test.php
 themes/zenpage/theme.png
 themes/zenpage/theme_description.php
 themes/zenpage/themeoptions.php
@@ -1509,6 +1512,8 @@ zp-core/zp-extensions/tinymce4/plugins/hr
 zp-core/zp-extensions/tinymce4/plugins/hr/plugin.min.js
 zp-core/zp-extensions/tinymce4/plugins/image
 zp-core/zp-extensions/tinymce4/plugins/image/plugin.min.js
+zp-core/zp-extensions/tinymce4/plugins/imagetools
+zp-core/zp-extensions/tinymce4/plugins/imagetools/plugin.min.js
 zp-core/zp-extensions/tinymce4/plugins/importcss
 zp-core/zp-extensions/tinymce4/plugins/importcss/plugin.min.js
 zp-core/zp-extensions/tinymce4/plugins/insertdatetime
@@ -1706,4 +1711,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1708
+1713
