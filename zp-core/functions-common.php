@@ -684,7 +684,7 @@ class zpMutex {
 		global $_zp_mutex;
 		$counter_file = $folder . DATA_FOLDER . '/' . MUTEX_FOLDER . '/' . $lock . '_counter';
 		$_zp_mutex->lock();
-// increment the lock id:
+		// increment the lock id:
 		if (@file_put_contents($counter_file, $count = (((int) @file_get_contents($counter_file)) + 1) % $concurrent)) {
 			$count++;
 		} else {
@@ -701,14 +701,14 @@ class zpMutex {
 	}
 
 	public function lock() {
-//if "flock" is not supported run un-serialized
-//Only lock an unlocked mutex, we don't support recursive mutex'es
+		//if "flock" is not supported run un-serialized
+		//Only lock an unlocked mutex, we don't support recursive mutex'es
 		if (!$this->locked && $this->lock) {
 			if ($this->mutex = @fopen($this->lock, 'wb')) {
 				if (flock($this->mutex, LOCK_EX)) {
 					$this->locked = true;
-//We are entering a critical section so we need to change the ignore_user_abort setting so that the
-//script doesn't stop in the critical section.
+					//We are entering a critical section so we need to change the ignore_user_abort setting so that the
+					//script doesn't stop in the critical section.
 					$this->ignoreUserAbort = ignore_user_abort(true);
 				}
 			}
