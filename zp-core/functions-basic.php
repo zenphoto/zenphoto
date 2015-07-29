@@ -1201,55 +1201,6 @@ function switchLog($log) {
 }
 
 /**
- * Write output to the debug log
- * Use this for debugging when echo statements would come before headers are sent
- * or would create havoc in the HTML.
- * Creates (or adds to) a file named debug.log which is located in the zenphoto core folder
- *
- * @param string $message the debug information
- * @param bool $reset set to true to reset the log to zero before writing the message
- * @param string $log alternative log file
- */
-function debugLog($message, $reset = false, $log = 'debug') {
-	if (defined('SERVERPATH')) {
-		global $_zp_mutex;
-		$path = SERVERPATH . '/' . DATA_FOLDER . '/' . $log . '.log';
-		$me = getmypid();
-		if (is_object($_zp_mutex))
-			$_zp_mutex->lock();
-		if ($reset || ($size = @filesize($path)) == 0 || (defined('DEBUG_LOG_SIZE') && DEBUG_LOG_SIZE && $size > DEBUG_LOG_SIZE)) {
-			if (!$reset && $size > 0) {
-				switchLog('debug');
-			}
-			$f = fopen($path, 'w');
-			if ($f) {
-				if (!class_exists('zpFunctions') || zpFunctions::hasPrimaryScripts()) {
-					$clone = '';
-				} else {
-					$clone = ' ' . gettext('clone');
-				}
-				fwrite($f, '{' . $me . ':' . gmdate('D, d M Y H:i:s') . " GMT} ZenPhoto20 v" . ZENPHOTO_VERSION . $clone . "\n");
-			}
-		} else {
-			$f = fopen($path, 'a');
-			if ($f) {
-				fwrite($f, '{' . $me . ':' . gmdate('D, d M Y H:i:s') . " GMT}\n");
-			}
-		}
-		if ($f) {
-			fwrite($f, "  " . $message . "\n");
-			fclose($f);
-			clearstatcache();
-			if (defined('DATA_MOD')) {
-				@chmod($path, DATA_MOD);
-			}
-		}
-		if (is_object($_zp_mutex))
-			$_zp_mutex->unlock();
-	}
-}
-
-/**
  * Tool to log execution times of script bits
  *
  * @param string $point location identifier
