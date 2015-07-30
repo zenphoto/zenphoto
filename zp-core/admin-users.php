@@ -785,6 +785,28 @@ echo $refresh;
 														} else {
 															$flag = array();
 														}
+														// Prevent groups settings from removing prime albums from managed list
+														if (is_object($primeAlbum)) {
+															$primealbum_name = $primeAlbum->name;
+															$userobjects = $userobj->getObjects();
+															$primealbum_managed = false;
+															foreach ($userobjects as $key => $val) {
+																if ($val['type'] == 'album' && $val['name'] == $primealbum_name) {
+																	$primealbum_managed = true;
+																	break;
+																}
+															}
+															if (!$primealbum_managed) {
+																$userobjects[] = array(
+																		'data' => $primealbum_name,
+																		'name' => $primealbum_name,
+																		'type' => 'album',
+																		'edit' => 32765
+																);
+															}
+															$userobj->setObjects($userobjects);
+															$userobj->save(); // in case we don't hit apply
+														}
 														printManagedObjects('albums', $albumlist, $album_alter_rights, $userobj, $id, gettext('user'), $flag);
 														if (extensionEnabled('zenpage')) {
 															$pagelist = array();
