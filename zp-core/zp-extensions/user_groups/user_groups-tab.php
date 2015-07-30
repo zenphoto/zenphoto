@@ -69,7 +69,7 @@ if (isset($_GET['action'])) {
 									$hisgroups = explode(',', $admin['group']);
 									if (in_array($groupname, $hisgroups)) {
 										$user = Zenphoto_Authority::newAdministrator($admin['user'], $admin['valid']);
-										user_groups::merge_rights($user, $hisgroups);
+										user_groups::merge_rights($user, $hisgroups, user_groups::getPrimeGroup($user));
 										$user->save();
 									}
 								}
@@ -83,10 +83,7 @@ if (isset($_GET['action'])) {
 									$username = postIndexDecode(substr(sanitize($item), strlen($target)));
 									//$username = substr($item, strlen($target));
 									$user = Zenphoto_Authority::getAnAdmin(array('`user`=' => $username, '`valid`>=' => 1));
-									$user->setRights($group->getRights());
-									$user->setObjects($group->getObjects());
-									$user->setGroup($groupname);
-									$user->setCustomData($group->getCustomData());
+									user_groups::merge_rights($user, $hisgroups, user_groups::getPrimeGroup($user));
 									$user->save();
 								}
 							}
@@ -106,7 +103,7 @@ if (isset($_GET['action'])) {
 						$newgroups = sanitize($_POST[$i . 'group']);
 						$username = trim(sanitize($_POST[$i . '-user'], 3));
 						$userobj = Zenphoto_Authority::getAnAdmin(array('`user`=' => $username, '`valid`>=' => 1));
-						user_groups::merge_rights($userobj, $newgroups);
+						user_groups::merge_rights($userobj, $newgroups, user_groups::getPrimeGroup($userobj));
 						$userobj->save();
 					}
 				}

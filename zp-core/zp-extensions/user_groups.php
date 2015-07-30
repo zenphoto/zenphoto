@@ -31,15 +31,15 @@ class user_groups {
 	 * @param object $userobj
 	 * @param array $groups
 	 */
-	static function merge_rights($userobj, $groups) {
+	static function merge_rights($userobj, $groups, $primeObjects) {
 		global $_zp_authority;
 		$templates = false;
-		$custom = $objects = array();
+		$objects = $primeObjects;
+		$custom = array();
 		$oldgroups = $userobj->getGroup();
 		$oldrights = $userobj->getRights();
 		$oldobjects = $userobj->getObjects();
 		$rights = 0;
-
 		foreach ($groups as $key => $groupname) {
 			if (empty($groupname)) {
 				//	force the first template to happen
@@ -105,7 +105,7 @@ class user_groups {
 		if ($alter && $userobj->getValid()) {
 			if (isset($_POST[$i . 'group'])) {
 				$newgroups = sanitize($_POST[$i . 'group']);
-				$updated = self::merge_rights($userobj, $newgroups) || $updated;
+				$updated = self::merge_rights($userobj, $newgroups, self::getPrimeGroup($userobj)) || $updated;
 			}
 		}
 		return $updated;
@@ -166,7 +166,14 @@ class user_groups {
 		$grouppart .= "</ul>\n";
 		$grouppart .= '
 		<script type="text/javascript">
-			// <!-- <![CDATA[
+			// <!-- <![CDATA[' . "\n";
+		if ($primealbum = $userobj->getAlbum()) {
+			//	allow editing of primary album management
+			$grouppart .= '
+			$(\'#managed_albums_list_' . $i . '_' . postIndexEncode($primealbum->name) . '_element\').find(\'input\').removeAttr(\'class\');
+				$(\'#managed_albums_list_' . $i . '_' . postIndexEncode($primealbum->name) . '_element\').find(\'input\').removeAttr(\'disabled\');	' . "\n";
+		}
+		$grouppart .= '
 			function groupchange' . $i . '(type) {
 				switch (type) {
 				case 0:	//	none
@@ -258,6 +265,21 @@ class user_groups {
 			}
 		}
 		return $alterrights;
+	}
+
+	static function getPrimeGroup($user) {
+		if ($primeAlbum = $user->getAlbum()) {
+			$saveobjects = $user->getObjects();
+			$prime = $primeAlbum->name;
+			foreach ($saveobjects as $key => $oldobj) {
+				if ($oldobj['type'] != 'album' || $oldobj['name'] != $prime) {
+					unset($saveobjects[$key]);
+				}
+			}
+		} else {
+			$saveobjects = array();
+		}
+		return $saveobjects;
 	}
 
 }
