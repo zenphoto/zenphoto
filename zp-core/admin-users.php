@@ -198,7 +198,6 @@ if (isset($_GET['action'])) {
 							} else {
 								$oldobjects = $userobj->setObjects(NULL); // indicates no change
 							}
-							$updated = zp_apply_filter('save_admin_custom_data', $updated, $userobj, $i, $alter);
 							if (isset($_POST['delinkAlbum_' . $i])) {
 								$userobj->setAlbum(NULL);
 								markUpdated();
@@ -207,6 +206,7 @@ if (isset($_GET['action'])) {
 								$userobj->createPrimealbum();
 								markUpdated();
 							}
+							$updated = zp_apply_filter('save_admin_custom_data', $updated, $userobj, $i, $alter);
 							if ($updated) {
 								$returntab .= '&show[]=' . $user;
 								$msg = zp_apply_filter('save_user', $msg, $userobj, $what);
@@ -588,8 +588,8 @@ echo $refresh;
 													}
 													?>
 													<a id="toggle_<?php echo $id; ?>" onclick="visible = getVisible('<?php echo $id; ?>', 'user', '<?php echo $displaytitle; ?>', '<?php echo $hidetitle; ?>');
-															$('#show_<?php echo $id; ?>').val(visible);
-															toggleExtraInfo('<?php echo $id; ?>', 'user', visible);" title="<?php echo $displaytitle; ?>" >
+																$('#show_<?php echo $id; ?>').val(visible);
+																toggleExtraInfo('<?php echo $id; ?>', 'user', visible);" title="<?php echo $displaytitle; ?>" >
 															 <?php
 															 if (empty($userid)) {
 																 ?>
@@ -598,7 +598,7 @@ echo $refresh;
 															<em><?php echo gettext("New User"); ?></em>
 															<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="adminuser<?php echo $id; ?>" name="adminuser<?php echo $id; ?>" value=""
 																		 onclick="toggleExtraInfo('<?php echo $id; ?>', 'user', visible);
-																				 $('#adminuser<?php echo $id; ?>').focus();" />
+																						 $('#adminuser<?php echo $id; ?>').focus();" />
 
 															<?php
 														} else {
