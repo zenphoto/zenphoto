@@ -177,6 +177,19 @@ if (isset($_GET['action'])) {
 								markUpdated();
 							}
 							$rights = 0;
+							$oldobjects = sortMultiArray($userobj->getObjects(), 'data');
+							$objects = sortMultiArray(processManagedObjects($i, $rights), 'data');
+							if (isset($_POST['delinkAlbum_' . $i])) {
+								$delink_primealbum = $userobj->getAlbum()->name;
+								foreach($objects as $key => $val) {
+									if($val['type'] == 'album' && $val['name'] == $delink_primealbum) {
+										unset($objects[$key]);
+									}
+								}
+								$userobj->setAlbum(NULL);
+								markUpdated();
+								$alter = true;
+							}
 							if ($alter) {
 								$oldrights = $userobj->getRights() & ~(ALBUM_RIGHTS | ZENPAGE_PAGES_RIGHTS | ZENPAGE_NEWS_RIGHTS);
 								$rights = processRights($i);
@@ -184,8 +197,6 @@ if (isset($_GET['action'])) {
 									$userobj->setRights($rights | NO_RIGHTS);
 									markUpdated();
 								}
-								$oldobjects = sortMultiArray($userobj->getObjects(), 'data');
-								$objects = sortMultiArray(processManagedObjects($i, $rights), 'data');
 								if ($objects != $oldobjects) {
 									$userobj->setObjects($objects);
 									markUpdated();
@@ -194,10 +205,6 @@ if (isset($_GET['action'])) {
 								$oldobjects = $userobj->setObjects(NULL); // indicates no change
 							}
 							$updated = zp_apply_filter('save_admin_custom_data', $updated, $userobj, $i, $alter);
-							if (isset($_POST['delinkAlbum_' . $i])) {
-								$userobj->setAlbum(NULL);
-								markUpdated();
-							}
 							if (isset($_POST['createAlbum_' . $i])) {
 								$userobj->createPrimealbum();
 								markUpdated();
