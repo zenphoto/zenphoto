@@ -4314,6 +4314,9 @@ function printPasswordForm($_password_hint, $_password_showuser = NULL, $_passwo
 
 	if (is_null($_password_redirect))
 		$_password_redirect = getPageRedirect();
+		
+	if (is_null($_password_showuser))	
+		$_password_showuser = $_zp_gallery->getUserLogonField();
 	?>
 	<div id="passwordform">
 		<?php
