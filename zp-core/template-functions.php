@@ -3989,7 +3989,7 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 				<?php if (count($fields) > 1 || $searchwords) { ?>
 					<a href="javascript:toggle('searchextrashow');" ><img src="<?php echo $iconsource; ?>" title="<?php echo gettext('search options'); ?>" alt="<?php echo gettext('fields'); ?>" id="searchfields_icon" /></a>
 				<?php } ?>
-				<input type="<?php echo $type; ?>" <?php echo $button; ?> class="button buttons" id="search_submit" <?php echo $buttonSource; ?> />
+				<input type="<?php echo $type; ?>" <?php echo $button; ?> class="button buttons" id="search_submit" <?php echo $buttonSource; ?> data-role="none" />
 				<?php
 				if (is_array($object_list)) {
 					foreach ($object_list as $key => $list) {
