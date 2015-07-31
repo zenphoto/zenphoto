@@ -806,7 +806,6 @@ echo $refresh;
 														}
 													}
 													?>
-
 												</td>
 											</tr>
 											<?php echo $custom_row; ?>
