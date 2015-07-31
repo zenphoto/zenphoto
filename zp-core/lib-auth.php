@@ -1348,6 +1348,9 @@ class Zenphoto_Administrator extends PersistentObject {
 					}
 				}
 			}
+			if($this->getGroup()) {
+				$this->preservePrimeAlbum();
+			}
 			if ($new_rights) {
 				$this->setRights($rights | $new_rights);
 			}
@@ -1725,6 +1728,33 @@ class Zenphoto_Administrator extends PersistentObject {
 	 */
 	function getLastLogon() {
 		return $this->get('lastloggedin');
+	}
+	
+	/**
+	 * Preserves the user's prime album as managed album even if he is in a group the album is actually set as managed
+	 */
+	function preservePrimeAlbum() {
+		$primeAlbum = $this->getAlbum();
+		if (is_object($primeAlbum)) {
+			$primealbum_name = $primeAlbum->name;
+			$objects = $this->getObjects();
+			$primealbum_managed = false;
+			foreach ($objects as $key => $val) {
+				if ($val['type'] == 'album' && $val['name'] == $primealbum_name) {
+					$primealbum_managed = true;
+					break;
+				}
+			}
+			if (!$primealbum_managed) {
+				$objects[] = array(
+						'data' => $primealbum_name,
+						'name' => $primealbum_name,
+						'type' => 'album',
+						'edit' => 32765
+				);
+			}
+			$this->setObjects($objects);
+		}
 	}
 
 }
