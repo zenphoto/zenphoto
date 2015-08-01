@@ -1,4 +1,5 @@
 <?php
+
 /////////////////////////////////////////////////////////////////
 /// getID3() by James Heinrich <info@getid3.org>               //
 //  available at http://getid3.sourceforge.net                 //
@@ -13,20 +14,19 @@
 //                                                            ///
 /////////////////////////////////////////////////////////////////
 
-getid3_lib::IncludeDependency(GETID3_INCLUDEPATH.'module.audio.mp3.php', __FILE__, true);
+getid3_lib::IncludeDependency(GETID3_INCLUDEPATH . 'module.audio.mp3.php', __FILE__, true);
 
 class getid3_mpeg extends getid3_handler {
 
-	const START_CODE_BASE       = "\x00\x00\x01";
-	const VIDEO_PICTURE_START   = "\x00\x00\x01\x00";
+	const START_CODE_BASE = "\x00\x00\x01";
+	const VIDEO_PICTURE_START = "\x00\x00\x01\x00";
 	const VIDEO_USER_DATA_START = "\x00\x00\x01\xB2";
 	const VIDEO_SEQUENCE_HEADER = "\x00\x00\x01\xB3";
-	const VIDEO_SEQUENCE_ERROR  = "\x00\x00\x01\xB4";
+	const VIDEO_SEQUENCE_ERROR = "\x00\x00\x01\xB4";
 	const VIDEO_EXTENSION_START = "\x00\x00\x01\xB5";
-	const VIDEO_SEQUENCE_END    = "\x00\x00\x01\xB7";
-	const VIDEO_GROUP_START     = "\x00\x00\x01\xB8";
-	const AUDIO_START           = "\x00\x00\x01\xC0";
-
+	const VIDEO_SEQUENCE_END = "\x00\x00\x01\xB7";
+	const VIDEO_GROUP_START = "\x00\x00\x01\xB8";
+	const AUDIO_START = "\x00\x00\x01\xC0";
 
 	public function Analyze() {
 		$info = &$this->getid3->info;
@@ -38,7 +38,7 @@ class getid3_mpeg extends getid3_handler {
 		$MPEGstreamBaseOffset = 0; // how far are we from the beginning of the file data ($info['avdataoffset'])
 		$MPEGstreamDataOffset = 0; // how far are we from the beginning of the buffer data (~32kB)
 
-		$StartCodeValue     = false;
+		$StartCodeValue = false;
 		$prevStartCodeValue = false;
 
 		$GOPcounter = -1;
@@ -54,7 +54,7 @@ class getid3_mpeg extends getid3_handler {
 				if (strlen($MPEGstreamData) > $this->getid3->option_fread_buffer_size) {
 					$MPEGstreamData = substr($MPEGstreamData, $MPEGstreamDataOffset);
 					$MPEGstreamBaseOffset += $MPEGstreamDataOffset;
-					$MPEGstreamDataOffset  = 0;
+					$MPEGstreamDataOffset = 0;
 				}
 			}
 			if (($StartCodeOffset = strpos($MPEGstreamData, self::START_CODE_BASE, $MPEGstreamDataOffset)) === false) {
@@ -76,9 +76,9 @@ class getid3_mpeg extends getid3_handler {
 
 						$PictureHeader = array();
 
-						$PictureHeader['temporal_reference']  = self::readBitsFromStream($bitstream, $bitstreamoffset, 10); // 10-bit unsigned integer associated with each input picture. It is incremented by one, modulo 1024, for each input frame. When a frame is coded as two fields the temporal reference in the picture header of both fields is the same. Following a group start header the temporal reference of the earliest picture (in display order) shall be reset to zero.
-						$PictureHeader['picture_coding_type'] = self::readBitsFromStream($bitstream, $bitstreamoffset,  3); //  3 bits for picture_coding_type
-						$PictureHeader['vbv_delay']           = self::readBitsFromStream($bitstream, $bitstreamoffset, 16); // 16 bits for vbv_delay
+						$PictureHeader['temporal_reference'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 10); // 10-bit unsigned integer associated with each input picture. It is incremented by one, modulo 1024, for each input frame. When a frame is coded as two fields the temporal reference in the picture header of both fields is the same. Following a group start header the temporal reference of the earliest picture (in display order) shall be reset to zero.
+						$PictureHeader['picture_coding_type'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 3); //  3 bits for picture_coding_type
+						$PictureHeader['vbv_delay'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 16); // 16 bits for vbv_delay
 						//... etc
 
 						$FramesByGOP[$GOPcounter][] = $PictureHeader;
@@ -87,58 +87,58 @@ class getid3_mpeg extends getid3_handler {
 
 				case 0xB3: // sequence_header_code
 					/*
-					Note: purposely doing the less-pretty (and probably a bit slower) method of using string of bits rather than bitwise operations.
-					      Mostly because PHP 32-bit doesn't handle unsigned integers well for bitwise operation.
-					      Also the MPEG stream is designed as a bitstream and often doesn't align nicely with byte boundaries.
-					*/
+					  Note: purposely doing the less-pretty (and probably a bit slower) method of using string of bits rather than bitwise operations.
+					  Mostly because PHP 32-bit doesn't handle unsigned integers well for bitwise operation.
+					  Also the MPEG stream is designed as a bitstream and often doesn't align nicely with byte boundaries.
+					 */
 					$info['video']['codec'] = 'MPEG-1'; // will be updated if extension_start_code found
 
 					$bitstream = getid3_lib::BigEndian2Bin(substr($MPEGstreamData, $StartCodeOffset + 4, 8));
 					$bitstreamoffset = 0;
 
-					$info['mpeg']['video']['raw']['horizontal_size_value']       = self::readBitsFromStream($bitstream, $bitstreamoffset, 12); // 12 bits for horizontal frame size. Note: horizontal_size_extension, if present, will add 2 most-significant bits to this value
-					$info['mpeg']['video']['raw']['vertical_size_value']         = self::readBitsFromStream($bitstream, $bitstreamoffset, 12); // 12 bits for vertical frame size.   Note: vertical_size_extension,   if present, will add 2 most-significant bits to this value
-					$info['mpeg']['video']['raw']['aspect_ratio_information']    = self::readBitsFromStream($bitstream, $bitstreamoffset,  4); //  4 bits for aspect_ratio_information
-					$info['mpeg']['video']['raw']['frame_rate_code']             = self::readBitsFromStream($bitstream, $bitstreamoffset,  4); //  4 bits for Frame Rate id code
-					$info['mpeg']['video']['raw']['bitrate']                     = self::readBitsFromStream($bitstream, $bitstreamoffset, 18); // 18 bits for bit_rate_value (18 set bits = VBR, otherwise bitrate = this value * 400)
-					$marker_bit                                                  = self::readBitsFromStream($bitstream, $bitstreamoffset,  1); // The term "marker_bit" indicates a one bit field in which the value zero is forbidden. These marker bits are introduced at several points in the syntax to avoid start code emulation.
-					$info['mpeg']['video']['raw']['vbv_buffer_size']             = self::readBitsFromStream($bitstream, $bitstreamoffset, 10); // 10 bits vbv_buffer_size_value
-					$info['mpeg']['video']['raw']['constrained_param_flag']      = self::readBitsFromStream($bitstream, $bitstreamoffset,  1); //  1 bit flag: constrained_param_flag
-					$info['mpeg']['video']['raw']['load_intra_quantiser_matrix'] = self::readBitsFromStream($bitstream, $bitstreamoffset,  1); //  1 bit flag: load_intra_quantiser_matrix
+					$info['mpeg']['video']['raw']['horizontal_size_value'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 12); // 12 bits for horizontal frame size. Note: horizontal_size_extension, if present, will add 2 most-significant bits to this value
+					$info['mpeg']['video']['raw']['vertical_size_value'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 12); // 12 bits for vertical frame size.   Note: vertical_size_extension,   if present, will add 2 most-significant bits to this value
+					$info['mpeg']['video']['raw']['aspect_ratio_information'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 4); //  4 bits for aspect_ratio_information
+					$info['mpeg']['video']['raw']['frame_rate_code'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 4); //  4 bits for Frame Rate id code
+					$info['mpeg']['video']['raw']['bitrate'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 18); // 18 bits for bit_rate_value (18 set bits = VBR, otherwise bitrate = this value * 400)
+					$marker_bit = self::readBitsFromStream($bitstream, $bitstreamoffset, 1); // The term "marker_bit" indicates a one bit field in which the value zero is forbidden. These marker bits are introduced at several points in the syntax to avoid start code emulation.
+					$info['mpeg']['video']['raw']['vbv_buffer_size'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 10); // 10 bits vbv_buffer_size_value
+					$info['mpeg']['video']['raw']['constrained_param_flag'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 1); //  1 bit flag: constrained_param_flag
+					$info['mpeg']['video']['raw']['load_intra_quantiser_matrix'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 1); //  1 bit flag: load_intra_quantiser_matrix
 
 					if ($info['mpeg']['video']['raw']['load_intra_quantiser_matrix']) {
 						$bitstream .= getid3_lib::BigEndian2Bin(substr($MPEGstreamData, $StartCodeOffset + 12, 64));
 						for ($i = 0; $i < 64; $i++) {
-							$info['mpeg']['video']['raw']['intra_quantiser_matrix'][$i] = self::readBitsFromStream($bitstream, $bitstreamoffset,  8);
+							$info['mpeg']['video']['raw']['intra_quantiser_matrix'][$i] = self::readBitsFromStream($bitstream, $bitstreamoffset, 8);
 						}
 					}
-					$info['mpeg']['video']['raw']['load_non_intra_quantiser_matrix'] = self::readBitsFromStream($bitstream, $bitstreamoffset,  1);
+					$info['mpeg']['video']['raw']['load_non_intra_quantiser_matrix'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 1);
 
 					if ($info['mpeg']['video']['raw']['load_non_intra_quantiser_matrix']) {
 						$bitstream .= getid3_lib::BigEndian2Bin(substr($MPEGstreamData, $StartCodeOffset + 12 + ($info['mpeg']['video']['raw']['load_intra_quantiser_matrix'] ? 64 : 0), 64));
 						for ($i = 0; $i < 64; $i++) {
-							$info['mpeg']['video']['raw']['non_intra_quantiser_matrix'][$i] = self::readBitsFromStream($bitstream, $bitstreamoffset,  8);
+							$info['mpeg']['video']['raw']['non_intra_quantiser_matrix'][$i] = self::readBitsFromStream($bitstream, $bitstreamoffset, 8);
 						}
 					}
 
-					$info['mpeg']['video']['pixel_aspect_ratio']      =     self::videoAspectRatioLookup($info['mpeg']['video']['raw']['aspect_ratio_information']);
+					$info['mpeg']['video']['pixel_aspect_ratio'] = self::videoAspectRatioLookup($info['mpeg']['video']['raw']['aspect_ratio_information']);
 					$info['mpeg']['video']['pixel_aspect_ratio_text'] = self::videoAspectRatioTextLookup($info['mpeg']['video']['raw']['aspect_ratio_information']);
-					$info['mpeg']['video']['frame_rate']              =       self::videoFramerateLookup($info['mpeg']['video']['raw']['frame_rate_code']);
+					$info['mpeg']['video']['frame_rate'] = self::videoFramerateLookup($info['mpeg']['video']['raw']['frame_rate_code']);
 					if ($info['mpeg']['video']['raw']['bitrate'] == 0x3FFFF) { // 18 set bits = VBR
 						//$this->warning('This version of getID3() ['.$this->getid3->version().'] cannot determine average bitrate of VBR MPEG video files');
 						$info['mpeg']['video']['bitrate_mode'] = 'vbr';
 					} else {
-						$info['mpeg']['video']['bitrate']      = $info['mpeg']['video']['raw']['bitrate'] * 400;
+						$info['mpeg']['video']['bitrate'] = $info['mpeg']['video']['raw']['bitrate'] * 400;
 						$info['mpeg']['video']['bitrate_mode'] = 'cbr';
-						$info['video']['bitrate']              = $info['mpeg']['video']['bitrate'];
+						$info['video']['bitrate'] = $info['mpeg']['video']['bitrate'];
 					}
-					$info['video']['resolution_x']       = $info['mpeg']['video']['raw']['horizontal_size_value'];
-					$info['video']['resolution_y']       = $info['mpeg']['video']['raw']['vertical_size_value'];
-					$info['video']['frame_rate']         = $info['mpeg']['video']['frame_rate'];
-					$info['video']['bitrate_mode']       = $info['mpeg']['video']['bitrate_mode'];
+					$info['video']['resolution_x'] = $info['mpeg']['video']['raw']['horizontal_size_value'];
+					$info['video']['resolution_y'] = $info['mpeg']['video']['raw']['vertical_size_value'];
+					$info['video']['frame_rate'] = $info['mpeg']['video']['frame_rate'];
+					$info['video']['bitrate_mode'] = $info['mpeg']['video']['bitrate_mode'];
 					$info['video']['pixel_aspect_ratio'] = $info['mpeg']['video']['pixel_aspect_ratio'];
-					$info['video']['lossless']           = false;
-					$info['video']['bits_per_sample']    = 24;
+					$info['video']['lossless'] = false;
+					$info['video']['bits_per_sample'] = 24;
 					break;
 
 				case 0xB5: // extension_start_code
@@ -147,109 +147,109 @@ class getid3_mpeg extends getid3_handler {
 					$bitstream = getid3_lib::BigEndian2Bin(substr($MPEGstreamData, $StartCodeOffset + 4, 8)); // 48 bits for Sequence Extension ID; 61 bits for Sequence Display Extension ID; 59 bits for Sequence Scalable Extension ID
 					$bitstreamoffset = 0;
 
-					$info['mpeg']['video']['raw']['extension_start_code_identifier'] = self::readBitsFromStream($bitstream, $bitstreamoffset,  4); //  4 bits for extension_start_code_identifier
+					$info['mpeg']['video']['raw']['extension_start_code_identifier'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 4); //  4 bits for extension_start_code_identifier
 //echo $info['mpeg']['video']['raw']['extension_start_code_identifier'].'<br>';
 					switch ($info['mpeg']['video']['raw']['extension_start_code_identifier']) {
-						case  1: // 0001 Sequence Extension ID
-							$info['mpeg']['video']['raw']['profile_and_level_indication']    = self::readBitsFromStream($bitstream, $bitstreamoffset,  8); //  8 bits for profile_and_level_indication
-							$info['mpeg']['video']['raw']['progressive_sequence']            = self::readBitsFromStream($bitstream, $bitstreamoffset,  1); //  1 bit flag: progressive_sequence
-							$info['mpeg']['video']['raw']['chroma_format']                   = self::readBitsFromStream($bitstream, $bitstreamoffset,  2); //  2 bits for chroma_format
-							$info['mpeg']['video']['raw']['horizontal_size_extension']       = self::readBitsFromStream($bitstream, $bitstreamoffset,  2); //  2 bits for horizontal_size_extension
-							$info['mpeg']['video']['raw']['vertical_size_extension']         = self::readBitsFromStream($bitstream, $bitstreamoffset,  2); //  2 bits for vertical_size_extension
-							$info['mpeg']['video']['raw']['bit_rate_extension']              = self::readBitsFromStream($bitstream, $bitstreamoffset, 12); // 12 bits for bit_rate_extension
-							$marker_bit                                                      = self::readBitsFromStream($bitstream, $bitstreamoffset,  1); // The term "marker_bit" indicates a one bit field in which the value zero is forbidden. These marker bits are introduced at several points in the syntax to avoid start code emulation.
-							$info['mpeg']['video']['raw']['vbv_buffer_size_extension']       = self::readBitsFromStream($bitstream, $bitstreamoffset,  8); //  8 bits for vbv_buffer_size_extension
-							$info['mpeg']['video']['raw']['low_delay']                       = self::readBitsFromStream($bitstream, $bitstreamoffset,  1); //  1 bit flag: low_delay
-							$info['mpeg']['video']['raw']['frame_rate_extension_n']          = self::readBitsFromStream($bitstream, $bitstreamoffset,  2); //  2 bits for frame_rate_extension_n
-							$info['mpeg']['video']['raw']['frame_rate_extension_d']          = self::readBitsFromStream($bitstream, $bitstreamoffset,  5); //  5 bits for frame_rate_extension_d
+						case 1: // 0001 Sequence Extension ID
+							$info['mpeg']['video']['raw']['profile_and_level_indication'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 8); //  8 bits for profile_and_level_indication
+							$info['mpeg']['video']['raw']['progressive_sequence'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 1); //  1 bit flag: progressive_sequence
+							$info['mpeg']['video']['raw']['chroma_format'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 2); //  2 bits for chroma_format
+							$info['mpeg']['video']['raw']['horizontal_size_extension'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 2); //  2 bits for horizontal_size_extension
+							$info['mpeg']['video']['raw']['vertical_size_extension'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 2); //  2 bits for vertical_size_extension
+							$info['mpeg']['video']['raw']['bit_rate_extension'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 12); // 12 bits for bit_rate_extension
+							$marker_bit = self::readBitsFromStream($bitstream, $bitstreamoffset, 1); // The term "marker_bit" indicates a one bit field in which the value zero is forbidden. These marker bits are introduced at several points in the syntax to avoid start code emulation.
+							$info['mpeg']['video']['raw']['vbv_buffer_size_extension'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 8); //  8 bits for vbv_buffer_size_extension
+							$info['mpeg']['video']['raw']['low_delay'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 1); //  1 bit flag: low_delay
+							$info['mpeg']['video']['raw']['frame_rate_extension_n'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 2); //  2 bits for frame_rate_extension_n
+							$info['mpeg']['video']['raw']['frame_rate_extension_d'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 5); //  5 bits for frame_rate_extension_d
 
-							$info['video']['resolution_x']          = ($info['mpeg']['video']['raw']['horizontal_size_extension'] << 12) | $info['mpeg']['video']['raw']['horizontal_size_value'];
-							$info['video']['resolution_y']          = ($info['mpeg']['video']['raw']['vertical_size_extension']   << 12) | $info['mpeg']['video']['raw']['vertical_size_value'];
-							$info['video']['interlaced']            = !$info['mpeg']['video']['raw']['progressive_sequence'];
-							$info['mpeg']['video']['interlaced']    = !$info['mpeg']['video']['raw']['progressive_sequence'];
+							$info['video']['resolution_x'] = ($info['mpeg']['video']['raw']['horizontal_size_extension'] << 12) | $info['mpeg']['video']['raw']['horizontal_size_value'];
+							$info['video']['resolution_y'] = ($info['mpeg']['video']['raw']['vertical_size_extension'] << 12) | $info['mpeg']['video']['raw']['vertical_size_value'];
+							$info['video']['interlaced'] = !$info['mpeg']['video']['raw']['progressive_sequence'];
+							$info['mpeg']['video']['interlaced'] = !$info['mpeg']['video']['raw']['progressive_sequence'];
 							$info['mpeg']['video']['chroma_format'] = self::chromaFormatTextLookup($info['mpeg']['video']['raw']['chroma_format']);
 							break;
 
-						case  2: // 0010 Sequence Display Extension ID
-							$info['mpeg']['video']['raw']['video_format']                    = self::readBitsFromStream($bitstream, $bitstreamoffset,  3); //  3 bits for video_format
-							$info['mpeg']['video']['raw']['colour_description']              = self::readBitsFromStream($bitstream, $bitstreamoffset,  1); //  1 bit flag: colour_description
+						case 2: // 0010 Sequence Display Extension ID
+							$info['mpeg']['video']['raw']['video_format'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 3); //  3 bits for video_format
+							$info['mpeg']['video']['raw']['colour_description'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 1); //  1 bit flag: colour_description
 							if ($info['mpeg']['video']['raw']['colour_description']) {
-								$info['mpeg']['video']['raw']['colour_primaries']            = self::readBitsFromStream($bitstream, $bitstreamoffset,  8); //  8 bits for colour_primaries
-								$info['mpeg']['video']['raw']['transfer_characteristics']    = self::readBitsFromStream($bitstream, $bitstreamoffset,  8); //  8 bits for transfer_characteristics
-								$info['mpeg']['video']['raw']['matrix_coefficients']         = self::readBitsFromStream($bitstream, $bitstreamoffset,  8); //  8 bits for matrix_coefficients
+								$info['mpeg']['video']['raw']['colour_primaries'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 8); //  8 bits for colour_primaries
+								$info['mpeg']['video']['raw']['transfer_characteristics'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 8); //  8 bits for transfer_characteristics
+								$info['mpeg']['video']['raw']['matrix_coefficients'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 8); //  8 bits for matrix_coefficients
 							}
-							$info['mpeg']['video']['raw']['display_horizontal_size']         = self::readBitsFromStream($bitstream, $bitstreamoffset, 14); // 14 bits for display_horizontal_size
-							$marker_bit                                                      = self::readBitsFromStream($bitstream, $bitstreamoffset,  1); // The term "marker_bit" indicates a one bit field in which the value zero is forbidden. These marker bits are introduced at several points in the syntax to avoid start code emulation.
-							$info['mpeg']['video']['raw']['display_vertical_size']           = self::readBitsFromStream($bitstream, $bitstreamoffset, 14); // 14 bits for display_vertical_size
+							$info['mpeg']['video']['raw']['display_horizontal_size'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 14); // 14 bits for display_horizontal_size
+							$marker_bit = self::readBitsFromStream($bitstream, $bitstreamoffset, 1); // The term "marker_bit" indicates a one bit field in which the value zero is forbidden. These marker bits are introduced at several points in the syntax to avoid start code emulation.
+							$info['mpeg']['video']['raw']['display_vertical_size'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 14); // 14 bits for display_vertical_size
 
 							$info['mpeg']['video']['video_format'] = self::videoFormatTextLookup($info['mpeg']['video']['raw']['video_format']);
 							break;
 
-						case  3: // 0011 Quant Matrix Extension ID
+						case 3: // 0011 Quant Matrix Extension ID
 							break;
 
-						case  5: // 0101 Sequence Scalable Extension ID
-							$info['mpeg']['video']['raw']['scalable_mode']                              = self::readBitsFromStream($bitstream, $bitstreamoffset,  2); //  2 bits for scalable_mode
-							$info['mpeg']['video']['raw']['layer_id']                                   = self::readBitsFromStream($bitstream, $bitstreamoffset,  4); //  4 bits for layer_id
+						case 5: // 0101 Sequence Scalable Extension ID
+							$info['mpeg']['video']['raw']['scalable_mode'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 2); //  2 bits for scalable_mode
+							$info['mpeg']['video']['raw']['layer_id'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 4); //  4 bits for layer_id
 							if ($info['mpeg']['video']['raw']['scalable_mode'] == 1) { // "spatial scalability"
 								$info['mpeg']['video']['raw']['lower_layer_prediction_horizontal_size'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 14); // 14 bits for lower_layer_prediction_horizontal_size
-								$marker_bit                                                             = self::readBitsFromStream($bitstream, $bitstreamoffset,  1); // The term "marker_bit" indicates a one bit field in which the value zero is forbidden. These marker bits are introduced at several points in the syntax to avoid start code emulation.
-								$info['mpeg']['video']['raw']['lower_layer_prediction_vertical_size']   = self::readBitsFromStream($bitstream, $bitstreamoffset, 14); // 14 bits for lower_layer_prediction_vertical_size
-								$info['mpeg']['video']['raw']['horizontal_subsampling_factor_m']        = self::readBitsFromStream($bitstream, $bitstreamoffset,  5); //  5 bits for horizontal_subsampling_factor_m
-								$info['mpeg']['video']['raw']['horizontal_subsampling_factor_n']        = self::readBitsFromStream($bitstream, $bitstreamoffset,  5); //  5 bits for horizontal_subsampling_factor_n
-								$info['mpeg']['video']['raw']['vertical_subsampling_factor_m']          = self::readBitsFromStream($bitstream, $bitstreamoffset,  5); //  5 bits for vertical_subsampling_factor_m
-								$info['mpeg']['video']['raw']['vertical_subsampling_factor_n']          = self::readBitsFromStream($bitstream, $bitstreamoffset,  5); //  5 bits for vertical_subsampling_factor_n
+								$marker_bit = self::readBitsFromStream($bitstream, $bitstreamoffset, 1); // The term "marker_bit" indicates a one bit field in which the value zero is forbidden. These marker bits are introduced at several points in the syntax to avoid start code emulation.
+								$info['mpeg']['video']['raw']['lower_layer_prediction_vertical_size'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 14); // 14 bits for lower_layer_prediction_vertical_size
+								$info['mpeg']['video']['raw']['horizontal_subsampling_factor_m'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 5); //  5 bits for horizontal_subsampling_factor_m
+								$info['mpeg']['video']['raw']['horizontal_subsampling_factor_n'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 5); //  5 bits for horizontal_subsampling_factor_n
+								$info['mpeg']['video']['raw']['vertical_subsampling_factor_m'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 5); //  5 bits for vertical_subsampling_factor_m
+								$info['mpeg']['video']['raw']['vertical_subsampling_factor_n'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 5); //  5 bits for vertical_subsampling_factor_n
 							} elseif ($info['mpeg']['video']['raw']['scalable_mode'] == 3) { // "temporal scalability"
-								$info['mpeg']['video']['raw']['picture_mux_enable']                     = self::readBitsFromStream($bitstream, $bitstreamoffset,  1); //  1 bit flag: picture_mux_enable
+								$info['mpeg']['video']['raw']['picture_mux_enable'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 1); //  1 bit flag: picture_mux_enable
 								if ($info['mpeg']['video']['raw']['picture_mux_enable']) {
-									$info['mpeg']['video']['raw']['mux_to_progressive_sequence']        = self::readBitsFromStream($bitstream, $bitstreamoffset,  1); //  1 bit flag: mux_to_progressive_sequence
+									$info['mpeg']['video']['raw']['mux_to_progressive_sequence'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 1); //  1 bit flag: mux_to_progressive_sequence
 								}
-								$info['mpeg']['video']['raw']['picture_mux_order']                      = self::readBitsFromStream($bitstream, $bitstreamoffset,  3); //  3 bits for picture_mux_order
-								$info['mpeg']['video']['raw']['picture_mux_factor']                     = self::readBitsFromStream($bitstream, $bitstreamoffset,  3); //  3 bits for picture_mux_factor
+								$info['mpeg']['video']['raw']['picture_mux_order'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 3); //  3 bits for picture_mux_order
+								$info['mpeg']['video']['raw']['picture_mux_factor'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 3); //  3 bits for picture_mux_factor
 							}
 
 							$info['mpeg']['video']['scalable_mode'] = self::scalableModeTextLookup($info['mpeg']['video']['raw']['scalable_mode']);
 							break;
 
-						case  7: // 0111 Picture Display Extension ID
+						case 7: // 0111 Picture Display Extension ID
 							break;
 
-						case  8: // 1000 Picture Coding Extension ID
-							$info['mpeg']['video']['raw']['f_code_00']                       = self::readBitsFromStream($bitstream, $bitstreamoffset,  4); // 4 bits for f_code[0][0] (forward horizontal)
-							$info['mpeg']['video']['raw']['f_code_01']                       = self::readBitsFromStream($bitstream, $bitstreamoffset,  4); // 4 bits for f_code[0][1] (forward vertical)
-							$info['mpeg']['video']['raw']['f_code_10']                       = self::readBitsFromStream($bitstream, $bitstreamoffset,  4); // 4 bits for f_code[1][0] (backward horizontal)
-							$info['mpeg']['video']['raw']['f_code_11']                       = self::readBitsFromStream($bitstream, $bitstreamoffset,  4); // 4 bits for f_code[1][1] (backward vertical)
-							$info['mpeg']['video']['raw']['intra_dc_precision']              = self::readBitsFromStream($bitstream, $bitstreamoffset,  2); // 2 bits for intra_dc_precision
-							$info['mpeg']['video']['raw']['picture_structure']               = self::readBitsFromStream($bitstream, $bitstreamoffset,  2); // 2 bits for picture_structure
-							$info['mpeg']['video']['raw']['top_field_first']                 = self::readBitsFromStream($bitstream, $bitstreamoffset,  1); // 1 bit flag: top_field_first
-							$info['mpeg']['video']['raw']['frame_pred_frame_dct']            = self::readBitsFromStream($bitstream, $bitstreamoffset,  1); // 1 bit flag: frame_pred_frame_dct
-							$info['mpeg']['video']['raw']['concealment_motion_vectors']      = self::readBitsFromStream($bitstream, $bitstreamoffset,  1); // 1 bit flag: concealment_motion_vectors
-							$info['mpeg']['video']['raw']['q_scale_type']                    = self::readBitsFromStream($bitstream, $bitstreamoffset,  1); // 1 bit flag: q_scale_type
-							$info['mpeg']['video']['raw']['intra_vlc_format']                = self::readBitsFromStream($bitstream, $bitstreamoffset,  1); // 1 bit flag: intra_vlc_format
-							$info['mpeg']['video']['raw']['alternate_scan']                  = self::readBitsFromStream($bitstream, $bitstreamoffset,  1); // 1 bit flag: alternate_scan
-							$info['mpeg']['video']['raw']['repeat_first_field']              = self::readBitsFromStream($bitstream, $bitstreamoffset,  1); // 1 bit flag: repeat_first_field
-							$info['mpeg']['video']['raw']['chroma_420_type']                 = self::readBitsFromStream($bitstream, $bitstreamoffset,  1); // 1 bit flag: chroma_420_type
-							$info['mpeg']['video']['raw']['progressive_frame']               = self::readBitsFromStream($bitstream, $bitstreamoffset,  1); // 1 bit flag: progressive_frame
-							$info['mpeg']['video']['raw']['composite_display_flag']          = self::readBitsFromStream($bitstream, $bitstreamoffset,  1); // 1 bit flag: composite_display_flag
+						case 8: // 1000 Picture Coding Extension ID
+							$info['mpeg']['video']['raw']['f_code_00'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 4); // 4 bits for f_code[0][0] (forward horizontal)
+							$info['mpeg']['video']['raw']['f_code_01'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 4); // 4 bits for f_code[0][1] (forward vertical)
+							$info['mpeg']['video']['raw']['f_code_10'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 4); // 4 bits for f_code[1][0] (backward horizontal)
+							$info['mpeg']['video']['raw']['f_code_11'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 4); // 4 bits for f_code[1][1] (backward vertical)
+							$info['mpeg']['video']['raw']['intra_dc_precision'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 2); // 2 bits for intra_dc_precision
+							$info['mpeg']['video']['raw']['picture_structure'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 2); // 2 bits for picture_structure
+							$info['mpeg']['video']['raw']['top_field_first'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 1); // 1 bit flag: top_field_first
+							$info['mpeg']['video']['raw']['frame_pred_frame_dct'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 1); // 1 bit flag: frame_pred_frame_dct
+							$info['mpeg']['video']['raw']['concealment_motion_vectors'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 1); // 1 bit flag: concealment_motion_vectors
+							$info['mpeg']['video']['raw']['q_scale_type'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 1); // 1 bit flag: q_scale_type
+							$info['mpeg']['video']['raw']['intra_vlc_format'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 1); // 1 bit flag: intra_vlc_format
+							$info['mpeg']['video']['raw']['alternate_scan'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 1); // 1 bit flag: alternate_scan
+							$info['mpeg']['video']['raw']['repeat_first_field'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 1); // 1 bit flag: repeat_first_field
+							$info['mpeg']['video']['raw']['chroma_420_type'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 1); // 1 bit flag: chroma_420_type
+							$info['mpeg']['video']['raw']['progressive_frame'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 1); // 1 bit flag: progressive_frame
+							$info['mpeg']['video']['raw']['composite_display_flag'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 1); // 1 bit flag: composite_display_flag
 							if ($info['mpeg']['video']['raw']['composite_display_flag']) {
-								$info['mpeg']['video']['raw']['v_axis']                      = self::readBitsFromStream($bitstream, $bitstreamoffset,  1); // 1 bit flag: v_axis
-								$info['mpeg']['video']['raw']['field_sequence']              = self::readBitsFromStream($bitstream, $bitstreamoffset,  3); // 3 bits for field_sequence
-								$info['mpeg']['video']['raw']['sub_carrier']                 = self::readBitsFromStream($bitstream, $bitstreamoffset,  1); // 1 bit flag: sub_carrier
-								$info['mpeg']['video']['raw']['burst_amplitude']             = self::readBitsFromStream($bitstream, $bitstreamoffset,  7); // 7 bits for burst_amplitude
-								$info['mpeg']['video']['raw']['sub_carrier_phase']           = self::readBitsFromStream($bitstream, $bitstreamoffset,  8); // 8 bits for sub_carrier_phase
+								$info['mpeg']['video']['raw']['v_axis'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 1); // 1 bit flag: v_axis
+								$info['mpeg']['video']['raw']['field_sequence'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 3); // 3 bits for field_sequence
+								$info['mpeg']['video']['raw']['sub_carrier'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 1); // 1 bit flag: sub_carrier
+								$info['mpeg']['video']['raw']['burst_amplitude'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 7); // 7 bits for burst_amplitude
+								$info['mpeg']['video']['raw']['sub_carrier_phase'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 8); // 8 bits for sub_carrier_phase
 							}
 
 							$info['mpeg']['video']['intra_dc_precision_bits'] = $info['mpeg']['video']['raw']['intra_dc_precision'] + 8;
 							$info['mpeg']['video']['picture_structure'] = self::pictureStructureTextLookup($info['mpeg']['video']['raw']['picture_structure']);
 							break;
 
-						case  9: // 1001 Picture Spatial Scalable Extension ID
+						case 9: // 1001 Picture Spatial Scalable Extension ID
 							break;
 						case 10: // 1010 Picture Temporal Scalable Extension ID
 							break;
 
 						default:
-							$this->warning('Unexpected $info[mpeg][video][raw][extension_start_code_identifier] value of '.$info['mpeg']['video']['raw']['extension_start_code_identifier']);
+							$this->warning('Unexpected $info[mpeg][video][raw][extension_start_code_identifier] value of ' . $info['mpeg']['video']['raw']['extension_start_code_identifier']);
 							break;
 					}
 					break;
@@ -264,17 +264,17 @@ class getid3_mpeg extends getid3_handler {
 						$GOPheader = array();
 
 						$GOPheader['byte_offset'] = $MPEGstreamBaseOffset + $StartCodeOffset;
-						$GOPheader['drop_frame_flag']    = self::readBitsFromStream($bitstream, $bitstreamoffset,  1); //  1 bit flag: drop_frame_flag
-						$GOPheader['time_code_hours']    = self::readBitsFromStream($bitstream, $bitstreamoffset,  5); //  5 bits for time_code_hours
-						$GOPheader['time_code_minutes']  = self::readBitsFromStream($bitstream, $bitstreamoffset,  6); //  6 bits for time_code_minutes
-						$marker_bit                      = self::readBitsFromStream($bitstream, $bitstreamoffset,  1); // The term "marker_bit" indicates a one bit field in which the value zero is forbidden. These marker bits are introduced at several points in the syntax to avoid start code emulation.
-						$GOPheader['time_code_seconds']  = self::readBitsFromStream($bitstream, $bitstreamoffset,  6); //  6 bits for time_code_seconds
-						$GOPheader['time_code_pictures'] = self::readBitsFromStream($bitstream, $bitstreamoffset,  6); //  6 bits for time_code_pictures
-						$GOPheader['closed_gop']         = self::readBitsFromStream($bitstream, $bitstreamoffset,  1); //  1 bit flag: closed_gop
-						$GOPheader['broken_link']        = self::readBitsFromStream($bitstream, $bitstreamoffset,  1); //  1 bit flag: broken_link
+						$GOPheader['drop_frame_flag'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 1); //  1 bit flag: drop_frame_flag
+						$GOPheader['time_code_hours'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 5); //  5 bits for time_code_hours
+						$GOPheader['time_code_minutes'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 6); //  6 bits for time_code_minutes
+						$marker_bit = self::readBitsFromStream($bitstream, $bitstreamoffset, 1); // The term "marker_bit" indicates a one bit field in which the value zero is forbidden. These marker bits are introduced at several points in the syntax to avoid start code emulation.
+						$GOPheader['time_code_seconds'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 6); //  6 bits for time_code_seconds
+						$GOPheader['time_code_pictures'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 6); //  6 bits for time_code_pictures
+						$GOPheader['closed_gop'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 1); //  1 bit flag: closed_gop
+						$GOPheader['broken_link'] = self::readBitsFromStream($bitstream, $bitstreamoffset, 1); //  1 bit flag: broken_link
 
-						$time_code_separator = ($GOPheader['drop_frame_flag'] ? ';' : ':'); // While non-drop time code is displayed with colons separating the digit pairs—"HH:MM:SS:FF"—drop frame is usually represented with a semi-colon (;) or period (.) as the divider between all the digit pairs—"HH;MM;SS;FF", "HH.MM.SS.FF"
-						$GOPheader['time_code'] = sprintf('%02d'.$time_code_separator.'%02d'.$time_code_separator.'%02d'.$time_code_separator.'%02d', $GOPheader['time_code_hours'], $GOPheader['time_code_minutes'], $GOPheader['time_code_seconds'], $GOPheader['time_code_pictures']);
+						$time_code_separator = ($GOPheader['drop_frame_flag'] ? ';' : ':'); // While non-drop time code is displayed with colons separating the digit pairsï¿½"HH:MM:SS:FF"ï¿½drop frame is usually represented with a semi-colon (;) or period (.) as the divider between all the digit pairsï¿½"HH;MM;SS;FF", "HH.MM.SS.FF"
+						$GOPheader['time_code'] = sprintf('%02d' . $time_code_separator . '%02d' . $time_code_separator . '%02d' . $time_code_separator . '%02d', $GOPheader['time_code_hours'], $GOPheader['time_code_minutes'], $GOPheader['time_code_seconds'], $GOPheader['time_code_pictures']);
 
 						$info['mpeg']['group_of_pictures'][] = $GOPheader;
 					}
@@ -312,72 +312,72 @@ class getid3_mpeg extends getid3_handler {
 				case 0xDD: // audio stream
 				case 0xDE: // audio stream
 				case 0xDF: // audio stream
-				//case 0xE0: // video stream
-				//case 0xE1: // video stream
-				//case 0xE2: // video stream
-				//case 0xE3: // video stream
-				//case 0xE4: // video stream
-				//case 0xE5: // video stream
-				//case 0xE6: // video stream
-				//case 0xE7: // video stream
-				//case 0xE8: // video stream
-				//case 0xE9: // video stream
-				//case 0xEA: // video stream
-				//case 0xEB: // video stream
-				//case 0xEC: // video stream
-				//case 0xED: // video stream
-				//case 0xEE: // video stream
-				//case 0xEF: // video stream
+					//case 0xE0: // video stream
+					//case 0xE1: // video stream
+					//case 0xE2: // video stream
+					//case 0xE3: // video stream
+					//case 0xE4: // video stream
+					//case 0xE5: // video stream
+					//case 0xE6: // video stream
+					//case 0xE7: // video stream
+					//case 0xE8: // video stream
+					//case 0xE9: // video stream
+					//case 0xEA: // video stream
+					//case 0xEB: // video stream
+					//case 0xEC: // video stream
+					//case 0xED: // video stream
+					//case 0xEE: // video stream
+					//case 0xEF: // video stream
 					if (isset($ParsedAVchannels[$StartCodeValue])) {
 						break;
 					}
 					$ParsedAVchannels[$StartCodeValue] = $StartCodeValue;
 					// http://en.wikipedia.org/wiki/Packetized_elementary_stream
 					// http://dvd.sourceforge.net/dvdinfo/pes-hdr.html
-/*
-					$PackedElementaryStream = array();
-					if ($StartCodeValue >= 0xE0) {
-						$PackedElementaryStream['stream_type'] = 'video';
-						$PackedElementaryStream['stream_id']   = $StartCodeValue - 0xE0;
-					} else {
-						$PackedElementaryStream['stream_type'] = 'audio';
-						$PackedElementaryStream['stream_id']   = $StartCodeValue - 0xC0;
-					}
-					$PackedElementaryStream['packet_length'] = getid3_lib::BigEndian2Int(substr($MPEGstreamData, $StartCodeOffset + 4, 2));
+					/*
+					  $PackedElementaryStream = array();
+					  if ($StartCodeValue >= 0xE0) {
+					  $PackedElementaryStream['stream_type'] = 'video';
+					  $PackedElementaryStream['stream_id']   = $StartCodeValue - 0xE0;
+					  } else {
+					  $PackedElementaryStream['stream_type'] = 'audio';
+					  $PackedElementaryStream['stream_id']   = $StartCodeValue - 0xC0;
+					  }
+					  $PackedElementaryStream['packet_length'] = getid3_lib::BigEndian2Int(substr($MPEGstreamData, $StartCodeOffset + 4, 2));
 
-					$bitstream = getid3_lib::BigEndian2Bin(substr($MPEGstreamData, $StartCodeOffset + 6, 3)); // more may be needed below
-					$bitstreamoffset = 0;
+					  $bitstream = getid3_lib::BigEndian2Bin(substr($MPEGstreamData, $StartCodeOffset + 6, 3)); // more may be needed below
+					  $bitstreamoffset = 0;
 
-					$PackedElementaryStream['marker_bits']               = self::readBitsFromStream($bitstream, $bitstreamoffset,  2); //  2 bits for marker_bits -- should be "10" = 2
-echo 'marker_bits = '.$PackedElementaryStream['marker_bits'].'<br>';
-					$PackedElementaryStream['scrambling_control']        = self::readBitsFromStream($bitstream, $bitstreamoffset,  2); //  2 bits for scrambling_control -- 00 implies not scrambled
-					$PackedElementaryStream['priority']                  = self::readBitsFromStream($bitstream, $bitstreamoffset,  1); //  1 bit flag: priority
-					$PackedElementaryStream['data_alignment_indicator']  = self::readBitsFromStream($bitstream, $bitstreamoffset,  1); //  1 bit flag: data_alignment_indicator -- 1 indicates that the PES packet header is immediately followed by the video start code or audio syncword
-					$PackedElementaryStream['copyright']                 = self::readBitsFromStream($bitstream, $bitstreamoffset,  1); //  1 bit flag: copyright -- 1 implies copyrighted
-					$PackedElementaryStream['original_or_copy']          = self::readBitsFromStream($bitstream, $bitstreamoffset,  1); //  1 bit flag: original_or_copy -- 1 implies original
-					$PackedElementaryStream['pts_flag']                  = self::readBitsFromStream($bitstream, $bitstreamoffset,  1); //  1 bit flag: pts_flag -- Presentation Time Stamp
-					$PackedElementaryStream['dts_flag']                  = self::readBitsFromStream($bitstream, $bitstreamoffset,  1); //  1 bit flag: dts_flag -- Decode Time Stamp
-					$PackedElementaryStream['escr_flag']                 = self::readBitsFromStream($bitstream, $bitstreamoffset,  1); //  1 bit flag: escr_flag -- Elementary Stream Clock Reference
-					$PackedElementaryStream['es_rate_flag']              = self::readBitsFromStream($bitstream, $bitstreamoffset,  1); //  1 bit flag: es_rate_flag -- Elementary Stream [data] Rate
-					$PackedElementaryStream['dsm_trick_mode_flag']       = self::readBitsFromStream($bitstream, $bitstreamoffset,  1); //  1 bit flag: dsm_trick_mode_flag -- DSM trick mode - not used by DVD
-					$PackedElementaryStream['additional_copy_info_flag'] = self::readBitsFromStream($bitstream, $bitstreamoffset,  1); //  1 bit flag: additional_copy_info_flag
-					$PackedElementaryStream['crc_flag']                  = self::readBitsFromStream($bitstream, $bitstreamoffset,  1); //  1 bit flag: crc_flag
-					$PackedElementaryStream['extension_flag']            = self::readBitsFromStream($bitstream, $bitstreamoffset,  1); //  1 bit flag: extension_flag
-					$PackedElementaryStream['pes_remain_header_length']  = self::readBitsFromStream($bitstream, $bitstreamoffset,  8); //  1 bit flag: priority
+					  $PackedElementaryStream['marker_bits']               = self::readBitsFromStream($bitstream, $bitstreamoffset,  2); //  2 bits for marker_bits -- should be "10" = 2
+					  echo 'marker_bits = '.$PackedElementaryStream['marker_bits'].'<br>';
+					  $PackedElementaryStream['scrambling_control']        = self::readBitsFromStream($bitstream, $bitstreamoffset,  2); //  2 bits for scrambling_control -- 00 implies not scrambled
+					  $PackedElementaryStream['priority']                  = self::readBitsFromStream($bitstream, $bitstreamoffset,  1); //  1 bit flag: priority
+					  $PackedElementaryStream['data_alignment_indicator']  = self::readBitsFromStream($bitstream, $bitstreamoffset,  1); //  1 bit flag: data_alignment_indicator -- 1 indicates that the PES packet header is immediately followed by the video start code or audio syncword
+					  $PackedElementaryStream['copyright']                 = self::readBitsFromStream($bitstream, $bitstreamoffset,  1); //  1 bit flag: copyright -- 1 implies copyrighted
+					  $PackedElementaryStream['original_or_copy']          = self::readBitsFromStream($bitstream, $bitstreamoffset,  1); //  1 bit flag: original_or_copy -- 1 implies original
+					  $PackedElementaryStream['pts_flag']                  = self::readBitsFromStream($bitstream, $bitstreamoffset,  1); //  1 bit flag: pts_flag -- Presentation Time Stamp
+					  $PackedElementaryStream['dts_flag']                  = self::readBitsFromStream($bitstream, $bitstreamoffset,  1); //  1 bit flag: dts_flag -- Decode Time Stamp
+					  $PackedElementaryStream['escr_flag']                 = self::readBitsFromStream($bitstream, $bitstreamoffset,  1); //  1 bit flag: escr_flag -- Elementary Stream Clock Reference
+					  $PackedElementaryStream['es_rate_flag']              = self::readBitsFromStream($bitstream, $bitstreamoffset,  1); //  1 bit flag: es_rate_flag -- Elementary Stream [data] Rate
+					  $PackedElementaryStream['dsm_trick_mode_flag']       = self::readBitsFromStream($bitstream, $bitstreamoffset,  1); //  1 bit flag: dsm_trick_mode_flag -- DSM trick mode - not used by DVD
+					  $PackedElementaryStream['additional_copy_info_flag'] = self::readBitsFromStream($bitstream, $bitstreamoffset,  1); //  1 bit flag: additional_copy_info_flag
+					  $PackedElementaryStream['crc_flag']                  = self::readBitsFromStream($bitstream, $bitstreamoffset,  1); //  1 bit flag: crc_flag
+					  $PackedElementaryStream['extension_flag']            = self::readBitsFromStream($bitstream, $bitstreamoffset,  1); //  1 bit flag: extension_flag
+					  $PackedElementaryStream['pes_remain_header_length']  = self::readBitsFromStream($bitstream, $bitstreamoffset,  8); //  1 bit flag: priority
 
-					$additional_header_bytes = 0;
-					$additional_header_bytes += ($PackedElementaryStream['pts_flag']                  ? 5 : 0);
-					$additional_header_bytes += ($PackedElementaryStream['dts_flag']                  ? 5 : 0);
-					$additional_header_bytes += ($PackedElementaryStream['escr_flag']                 ? 6 : 0);
-					$additional_header_bytes += ($PackedElementaryStream['es_rate_flag']              ? 3 : 0);
-					$additional_header_bytes += ($PackedElementaryStream['additional_copy_info_flag'] ? 1 : 0);
-					$additional_header_bytes += ($PackedElementaryStream['crc_flag']                  ? 2 : 0);
-					$additional_header_bytes += ($PackedElementaryStream['extension_flag']            ? 1 : 0);
-$PackedElementaryStream['additional_header_bytes'] = $additional_header_bytes;
-					$bitstream .= getid3_lib::BigEndian2Bin(substr($MPEGstreamData, $StartCodeOffset + 9, $additional_header_bytes));
+					  $additional_header_bytes = 0;
+					  $additional_header_bytes += ($PackedElementaryStream['pts_flag']                  ? 5 : 0);
+					  $additional_header_bytes += ($PackedElementaryStream['dts_flag']                  ? 5 : 0);
+					  $additional_header_bytes += ($PackedElementaryStream['escr_flag']                 ? 6 : 0);
+					  $additional_header_bytes += ($PackedElementaryStream['es_rate_flag']              ? 3 : 0);
+					  $additional_header_bytes += ($PackedElementaryStream['additional_copy_info_flag'] ? 1 : 0);
+					  $additional_header_bytes += ($PackedElementaryStream['crc_flag']                  ? 2 : 0);
+					  $additional_header_bytes += ($PackedElementaryStream['extension_flag']            ? 1 : 0);
+					  $PackedElementaryStream['additional_header_bytes'] = $additional_header_bytes;
+					  $bitstream .= getid3_lib::BigEndian2Bin(substr($MPEGstreamData, $StartCodeOffset + 9, $additional_header_bytes));
 
-					$info['mpeg']['packed_elementary_streams'][$PackedElementaryStream['stream_type']][$PackedElementaryStream['stream_id']][] = $PackedElementaryStream;
-*/
+					  $info['mpeg']['packed_elementary_streams'][$PackedElementaryStream['stream_type']][$PackedElementaryStream['stream_id']][] = $PackedElementaryStream;
+					 */
 					$getid3_temp = new getID3();
 					$getid3_temp->openfile($this->getid3->filename);
 					$getid3_temp->info = $info;
@@ -392,7 +392,7 @@ $PackedElementaryStream['additional_header_bytes'] = $additional_header_bytes;
 //echo 'yes!<br>';
 							$info = $getid3_temp->info;
 							$info['audio']['bitrate_mode'] = 'cbr';
-							$info['audio']['lossless']     = false;
+							$info['audio']['lossless'] = false;
 							break;
 						}
 					}
@@ -464,27 +464,27 @@ $PackedElementaryStream['additional_header_bytes'] = $additional_header_bytes;
 //			}
 //		}
 //
-/*
-$time_prev = 0;
-$byte_prev = 0;
-$vbr_bitrates = array();
-foreach ($info['mpeg']['group_of_pictures'] as $gopkey => $gopdata) {
-	$time_this = ($gopdata['time_code_hours'] * 3600) + ($gopdata['time_code_minutes'] * 60) + $gopdata['time_code_seconds'] + ($gopdata['time_code_seconds'] / 30);
-	$byte_this = $gopdata['byte_offset'];
-	if ($gopkey > 0) {
-		if ($time_this > $time_prev) {
-			$bytedelta = $byte_this - $byte_prev;
-			$timedelta = $time_this - $time_prev;
-			$this_bitrate = ($bytedelta * 8) / $timedelta;
-echo $gopkey.': ('.number_format($time_prev, 2).'-'.number_format($time_this, 2).') '.number_format($bytedelta).' bytes over '.number_format($timedelta, 3).' seconds = '.number_format($this_bitrate / 1000, 2).'kbps<br>';
-			$time_prev = $time_this;
-			$byte_prev = $byte_this;
-			$vbr_bitrates[] = $this_bitrate;
-		}
-	}
-}
-echo 'average_File_bitrate = '.number_format(array_sum($vbr_bitrates) / count($vbr_bitrates), 1).'<br>';
-*/
+		/*
+		  $time_prev = 0;
+		  $byte_prev = 0;
+		  $vbr_bitrates = array();
+		  foreach ($info['mpeg']['group_of_pictures'] as $gopkey => $gopdata) {
+		  $time_this = ($gopdata['time_code_hours'] * 3600) + ($gopdata['time_code_minutes'] * 60) + $gopdata['time_code_seconds'] + ($gopdata['time_code_seconds'] / 30);
+		  $byte_this = $gopdata['byte_offset'];
+		  if ($gopkey > 0) {
+		  if ($time_this > $time_prev) {
+		  $bytedelta = $byte_this - $byte_prev;
+		  $timedelta = $time_this - $time_prev;
+		  $this_bitrate = ($bytedelta * 8) / $timedelta;
+		  echo $gopkey.': ('.number_format($time_prev, 2).'-'.number_format($time_this, 2).') '.number_format($bytedelta).' bytes over '.number_format($timedelta, 3).' seconds = '.number_format($this_bitrate / 1000, 2).'kbps<br>';
+		  $time_prev = $time_this;
+		  $byte_prev = $byte_this;
+		  $vbr_bitrates[] = $this_bitrate;
+		  }
+		  }
+		  }
+		  echo 'average_File_bitrate = '.number_format(array_sum($vbr_bitrates) / count($vbr_bitrates), 1).'<br>';
+		 */
 //echo '<pre>'.print_r($FramesByGOP, true).'</pre>';
 		if ($info['mpeg']['video']['bitrate_mode'] == 'vbr') {
 			$last_GOP_id = max(array_keys($FramesByGOP));
@@ -501,7 +501,7 @@ echo 'average_File_bitrate = '.number_format(array_sum($vbr_bitrates) / count($v
 		return true;
 	}
 
-	private function readBitsFromStream(&$bitstream, &$bitstreamoffset, $bits_to_read, $return_singlebit_as_boolean=true) {
+	private function readBitsFromStream(&$bitstream, &$bitstreamoffset, $bits_to_read, $return_singlebit_as_boolean = true) {
 		$return = bindec(substr($bitstream, $bitstreamoffset, $bits_to_read));
 		$bitstreamoffset += $bits_to_read;
 		if (($bits_to_read == 1) && $return_singlebit_as_boolean) {
@@ -510,20 +510,17 @@ echo 'average_File_bitrate = '.number_format(array_sum($vbr_bitrates) / count($v
 		return $return;
 	}
 
-
 	public static function systemNonOverheadPercentage($VideoBitrate, $AudioBitrate) {
 		$OverheadPercentage = 0;
 
-		$AudioBitrate = max(min($AudioBitrate / 1000,   384), 32); // limit to range of 32kbps - 384kbps (should be only legal bitrates, but maybe VBR?)
+		$AudioBitrate = max(min($AudioBitrate / 1000, 384), 32); // limit to range of 32kbps - 384kbps (should be only legal bitrates, but maybe VBR?)
 		$VideoBitrate = max(min($VideoBitrate / 1000, 10000), 10); // limit to range of 10kbps -  10Mbps (beyond that curves flatten anyways, no big loss)
-
-
 		//OMBB[audiobitrate]              = array(video-10kbps,       video-100kbps,      video-1000kbps,     video-10000kbps)
-		$OverheadMultiplierByBitrate[32]  = array(0, 0.9676287944368530, 0.9802276264360310, 0.9844916183244460, 0.9852821845179940);
-		$OverheadMultiplierByBitrate[48]  = array(0, 0.9779100089209830, 0.9787770035359320, 0.9846738664076130, 0.9852683013799960);
-		$OverheadMultiplierByBitrate[56]  = array(0, 0.9731249855367600, 0.9776624308938040, 0.9832606361852130, 0.9843922606633340);
-		$OverheadMultiplierByBitrate[64]  = array(0, 0.9755642683275760, 0.9795256705493390, 0.9836573009193170, 0.9851122539404470);
-		$OverheadMultiplierByBitrate[96]  = array(0, 0.9788025247497290, 0.9798553314148700, 0.9822956869792560, 0.9834815119124690);
+		$OverheadMultiplierByBitrate[32] = array(0, 0.9676287944368530, 0.9802276264360310, 0.9844916183244460, 0.9852821845179940);
+		$OverheadMultiplierByBitrate[48] = array(0, 0.9779100089209830, 0.9787770035359320, 0.9846738664076130, 0.9852683013799960);
+		$OverheadMultiplierByBitrate[56] = array(0, 0.9731249855367600, 0.9776624308938040, 0.9832606361852130, 0.9843922606633340);
+		$OverheadMultiplierByBitrate[64] = array(0, 0.9755642683275760, 0.9795256705493390, 0.9836573009193170, 0.9851122539404470);
+		$OverheadMultiplierByBitrate[96] = array(0, 0.9788025247497290, 0.9798553314148700, 0.9822956869792560, 0.9834815119124690);
 		$OverheadMultiplierByBitrate[128] = array(0, 0.9816940050925480, 0.9821675936072120, 0.9829756927470870, 0.9839763420152050);
 		$OverheadMultiplierByBitrate[160] = array(0, 0.9825894094561180, 0.9820913399073960, 0.9823907143253970, 0.9832821783651570);
 		$OverheadMultiplierByBitrate[192] = array(0, 0.9832038474336260, 0.9825731694317960, 0.9821028622712400, 0.9828262076447620);
@@ -554,14 +551,13 @@ echo 'average_File_bitrate = '.number_format(array_sum($vbr_bitrates) / count($v
 		$VideoFactorMax2 = $OverheadMultiplierByBitrate[$BitrateToUseMax][ceil($VideoBitrateLog10)];
 		$FactorV = $VideoBitrateLog10 - floor($VideoBitrateLog10);
 
-		$OverheadPercentage  = $VideoFactorMin1 *      $FactorA  *      $FactorV;
-		$OverheadPercentage += $VideoFactorMin2 * (1 - $FactorA) *      $FactorV;
-		$OverheadPercentage += $VideoFactorMax1 *      $FactorA  * (1 - $FactorV);
+		$OverheadPercentage = $VideoFactorMin1 * $FactorA * $FactorV;
+		$OverheadPercentage += $VideoFactorMin2 * (1 - $FactorA) * $FactorV;
+		$OverheadPercentage += $VideoFactorMax1 * $FactorA * (1 - $FactorV);
 		$OverheadPercentage += $VideoFactorMax2 * (1 - $FactorA) * (1 - $FactorV);
 
 		return $OverheadPercentage;
 	}
-
 
 	public static function videoFramerateLookup($rawframerate) {
 		$lookup = array(0, 23.976, 24, 25, 29.97, 30, 50, 59.94, 60);

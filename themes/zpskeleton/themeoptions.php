@@ -1,6 +1,6 @@
 <?php
 
-// force UTF-8
+// force UTF-8 Ø
 /* Plug-in for theme option handling
  * The Admin Options page tests for the presence of this file in a theme folder
  * If it is present it is linked to with a require_once call.
