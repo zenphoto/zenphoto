@@ -105,7 +105,7 @@ class user_groups {
 		if ($alter && $userobj->getValid()) {
 			if (isset($_POST[$i . 'group'])) {
 				$newgroups = sanitize($_POST[$i . 'group']);
-				$updated = self::merge_rights($userobj, $newgroups, self::getPrimeGroup($userobj)) || $updated;
+				$updated = self::merge_rights($userobj, $newgroups, self::getPrimeObjects($userobj)) || $updated;
 			}
 		}
 		return $updated;
@@ -267,7 +267,7 @@ class user_groups {
 		return $alterrights;
 	}
 
-	static function getPrimeGroup($user) {
+	static function getPrimeObjects($user) {
 		if ($primeAlbum = $user->getAlbum()) {
 			$saveobjects = $user->getObjects();
 			$prime = $primeAlbum->name;
