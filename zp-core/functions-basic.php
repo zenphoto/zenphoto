@@ -159,13 +159,6 @@ if (!defined('FILESYSTEM_CHARSET')) {
 	}
 }
 
-$_session_path = session_save_path();
-if (!file_exists($_session_path) || !is_writable($_session_path)) {
-	mkdir_recursive(SERVERPATH . '/' . DATA_FOLDER . '/PHP_sessions', FOLDER_MOD);
-	session_save_path(SERVERPATH . '/' . DATA_FOLDER . '/PHP_sessions');
-}
-unset($_session_path);
-
 // If the server protocol is not set, set it to the default.
 if (!isset($_zp_conf_vars['server_protocol'])) {
 	$_zp_conf_vars['server_protocol'] = 'http';
@@ -1208,55 +1201,6 @@ function switchLog($log) {
 }
 
 /**
- * Write output to the debug log
- * Use this for debugging when echo statements would come before headers are sent
- * or would create havoc in the HTML.
- * Creates (or adds to) a file named debug.log which is located in the zenphoto core folder
- *
- * @param string $message the debug information
- * @param bool $reset set to true to reset the log to zero before writing the message
- * @param string $log alternative log file
- */
-function debugLog($message, $reset = false, $log = 'debug') {
-	if (defined('SERVERPATH')) {
-		global $_zp_mutex;
-		$path = SERVERPATH . '/' . DATA_FOLDER . '/' . $log . '.log';
-		$me = getmypid();
-		if (is_object($_zp_mutex))
-			$_zp_mutex->lock();
-		if ($reset || ($size = @filesize($path)) == 0 || (defined('DEBUG_LOG_SIZE') && DEBUG_LOG_SIZE && $size > DEBUG_LOG_SIZE)) {
-			if (!$reset && $size > 0) {
-				switchLog('debug');
-			}
-			$f = fopen($path, 'w');
-			if ($f) {
-				if (!class_exists('zpFunctions') || zpFunctions::hasPrimaryScripts()) {
-					$clone = '';
-				} else {
-					$clone = ' ' . gettext('clone');
-				}
-				fwrite($f, '{' . $me . ':' . gmdate('D, d M Y H:i:s') . " GMT} ZenPhoto20 v" . ZENPHOTO_VERSION . $clone . "\n");
-			}
-		} else {
-			$f = fopen($path, 'a');
-			if ($f) {
-				fwrite($f, '{' . $me . ':' . gmdate('D, d M Y H:i:s') . " GMT}\n");
-			}
-		}
-		if ($f) {
-			fwrite($f, "  " . $message . "\n");
-			fclose($f);
-			clearstatcache();
-			if (defined('DATA_MOD')) {
-				@chmod($path, DATA_MOD);
-			}
-		}
-		if (is_object($_zp_mutex))
-			$_zp_mutex->unlock();
-	}
-}
-
-/**
  * Tool to log execution times of script bits
  *
  * @param string $point location identifier
@@ -1564,8 +1508,9 @@ function installSignature() {
  * Closes the database to be sure that we do not build up outstanding connections
  */
 function exitZP() {
-	IF (function_exists('db_close'))
+	IF (function_exists('db_close')) {
 		db_close();
+	}
 	exit();
 }
 
@@ -1574,14 +1519,26 @@ function exitZP() {
  * Starts a zenphoto session (perhaps a secure one)
  */
 function zp_session_start() {
+	global $_zp_conf_vars;
 	if (session_id() == '') {
-// force session cookie to be secure when in https
+		//	insure that the session data has a place to be saved
+		if (isset($_zp_conf_vars['session_save_path'])) {
+			session_save_path($_zp_conf_vars['session_save_path']);
+		} else {
+			$_session_path = session_save_path();
+			if (!file_exists($_session_path) || !is_writable($_session_path)) {
+				mkdir_recursive(SERVERPATH . '/' . DATA_FOLDER . '/PHP_sessions', FOLDER_MOD);
+				session_save_path(SERVERPATH . '/' . DATA_FOLDER . '/PHP_sessions');
+			}
+		}
 		if (secureServer()) {
+			// force session cookie to be secure when in https
 			$CookieInfo = session_get_cookie_params();
 			session_set_cookie_params($CookieInfo['lifetime'], $CookieInfo['path'], $CookieInfo['domain'], TRUE);
 		}
-		session_start();
+		return session_start();
 	}
+	return NULL;
 }
 
 ?>

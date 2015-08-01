@@ -15,11 +15,7 @@
  *
  * (You can include the <code>lib-auth.php</code> script and extend/overwrite class methods if that suits your needs.)
  *
- * The global $_zp_current_admin_obj represents the current admin with.
- * The library must instantiate its authority class and store the object in the global $_zp_authority
- * (Note, this library does instantiate the object as described. This is so its classes can
- * be used as parent classes for lib-auth implementations. If auth_zp.php decides to use this
- * library it will instantiate the class and store it into $_zp_authority.
+ * The global $_zp_current_admin_obj represents the current admin.
  *
  * The following elements need to be present in any alternate implementation in the
  * array returned by getAdministrators().

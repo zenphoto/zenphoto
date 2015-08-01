@@ -198,7 +198,6 @@ if (isset($_GET['action'])) {
 							} else {
 								$oldobjects = $userobj->setObjects(NULL); // indicates no change
 							}
-							$updated = zp_apply_filter('save_admin_custom_data', $updated, $userobj, $i, $alter);
 							if (isset($_POST['delinkAlbum_' . $i])) {
 								$userobj->setAlbum(NULL);
 								markUpdated();
@@ -207,6 +206,7 @@ if (isset($_GET['action'])) {
 								$userobj->createPrimealbum();
 								markUpdated();
 							}
+							$updated = zp_apply_filter('save_admin_custom_data', $updated, $userobj, $i, $alter);
 							if ($updated) {
 								$returntab .= '&show[]=' . $user;
 								$msg = zp_apply_filter('save_user', $msg, $userobj, $what);
@@ -531,7 +531,10 @@ echo $refresh;
 								if ($userid == $_zp_current_admin_obj->getuser()) {
 									$userobj = $_zp_current_admin_obj;
 								} else {
-									$userobj = Zenphoto_Authority::newAdministrator($userid);
+									$userobj = Zenphoto_Authority::newAdministrator($userid, 1, false);
+								}
+								if ($userid && $userobj->transient) {
+									continue;
 								}
 								if (empty($userid)) {
 									$userobj->setGroup($user['group']);
@@ -803,7 +806,6 @@ echo $refresh;
 														}
 													}
 													?>
-
 												</td>
 											</tr>
 											<?php echo $custom_row; ?>

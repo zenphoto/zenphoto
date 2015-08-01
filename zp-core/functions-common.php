@@ -464,6 +464,55 @@ function mkdir_recursive($pathname, $mode) {
 }
 
 /**
+ * Write output to the debug log
+ * Use this for debugging when echo statements would come before headers are sent
+ * or would create havoc in the HTML.
+ * Creates (or adds to) a file named debug.log which is located in the zenphoto core folder
+ *
+ * @param string $message the debug information
+ * @param bool $reset set to true to reset the log to zero before writing the message
+ * @param string $log alternative log file
+ */
+function debugLog($message, $reset = false, $log = 'debug') {
+	if (defined('SERVERPATH')) {
+		global $_zp_mutex;
+		$path = SERVERPATH . '/' . DATA_FOLDER . '/' . $log . '.log';
+		$me = getmypid();
+		if (is_object($_zp_mutex))
+			$_zp_mutex->lock();
+		if ($reset || ($size = @filesize($path)) == 0 || (defined('DEBUG_LOG_SIZE') && DEBUG_LOG_SIZE && $size > DEBUG_LOG_SIZE)) {
+			if (!$reset && $size > 0) {
+				switchLog('debug');
+			}
+			$f = fopen($path, 'w');
+			if ($f) {
+				if (!class_exists('zpFunctions') || zpFunctions::hasPrimaryScripts()) {
+					$clone = '';
+				} else {
+					$clone = ' ' . gettext('clone');
+				}
+				fwrite($f, '{' . $me . ':' . gmdate('D, d M Y H:i:s') . " GMT} ZenPhoto20 v" . ZENPHOTO_VERSION . $clone . "\n");
+			}
+		} else {
+			$f = fopen($path, 'a');
+			if ($f) {
+				fwrite($f, '{' . $me . ':' . gmdate('D, d M Y H:i:s') . " GMT}\n");
+			}
+		}
+		if ($f) {
+			fwrite($f, "  " . $message . "\n");
+			fclose($f);
+			clearstatcache();
+			if (defined('DATA_MOD')) {
+				@chmod($path, DATA_MOD);
+			}
+		}
+		if (is_object($_zp_mutex))
+			$_zp_mutex->unlock();
+	}
+}
+
+/**
  * Logs the calling stack
  *
  * @param string $message Message to prefix the backtrace
@@ -684,7 +733,7 @@ class zpMutex {
 		global $_zp_mutex;
 		$counter_file = $folder . DATA_FOLDER . '/' . MUTEX_FOLDER . '/' . $lock . '_counter';
 		$_zp_mutex->lock();
-// increment the lock id:
+		// increment the lock id:
 		if (@file_put_contents($counter_file, $count = (((int) @file_get_contents($counter_file)) + 1) % $concurrent)) {
 			$count++;
 		} else {
@@ -701,14 +750,14 @@ class zpMutex {
 	}
 
 	public function lock() {
-//if "flock" is not supported run un-serialized
-//Only lock an unlocked mutex, we don't support recursive mutex'es
+		//if "flock" is not supported run un-serialized
+		//Only lock an unlocked mutex, we don't support recursive mutex'es
 		if (!$this->locked && $this->lock) {
 			if ($this->mutex = @fopen($this->lock, 'wb')) {
 				if (flock($this->mutex, LOCK_EX)) {
 					$this->locked = true;
-//We are entering a critical section so we need to change the ignore_user_abort setting so that the
-//script doesn't stop in the critical section.
+					//We are entering a critical section so we need to change the ignore_user_abort setting so that the
+					//script doesn't stop in the critical section.
 					$this->ignoreUserAbort = ignore_user_abort(true);
 				}
 			}

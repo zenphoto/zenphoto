@@ -102,7 +102,7 @@ function menu_admin_toolbox_global($zf) {
  * @return unknown
  */
 function menu_tabs($tabs) {
-	if (zp_loggedin()) {
+	if (zp_loggedin(ADMIN_RIGHTS)) {
 		$newtabs = array();
 		foreach ($tabs as $key => $tab) {
 			if ($key == 'tags') {

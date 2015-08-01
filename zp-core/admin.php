@@ -260,17 +260,28 @@ if (!zp_loggedin()) {
 				}
 			}
 			list($diff, $needs, $found, $present) = checkSignature(0);
-			if ($present && zpFunctions::hasPrimaryScripts()) {
+			if (zp_loggedin(ADMIN_RIGHTS) && $present && zpFunctions::hasPrimaryScripts()) {
 				//	button to restore setup files if needed
 				if (empty($needs)) {
-					if (zp_loggedin(ADMIN_RIGHTS)) {
-						?>
-						<div class="warningbox">
-							<h2><?php echo gettext('Your Setup scripts are not protected.'); ?></h2>
-							<?php echo gettext('The Setup environment is not totally secure, you should protect the scripts to thwart hackers. Use the <strong>Setup » protect scripts</strong> button in the <em>Admin</em> section of the <em>Utility functions</em>. '); ?>
-						</div>
-						<?php
-					}
+					?>
+					<div class="warningbox">
+						<h2><?php echo gettext('Your Setup scripts are not protected.'); ?></h2>
+						<?php echo gettext('The Setup environment is not totally secure, you should protect the scripts to thwart hackers. Use the <strong>Setup » protect scripts</strong> button in the <em>Admin</em> section of the <em>Utility functions</em>. '); ?>
+					</div>
+					<?php
+					$buttonlist[] = array(
+									'category'		 => gettext('Admin'),
+									'enable'			 => true,
+									'button_text'	 => gettext('Run setup'),
+									'formname'		 => 'run_setup',
+									'action'			 => FULLWEBPATH . '/' . ZENFOLDER . '/setup.php',
+									'icon'				 => 'images/zp.png',
+									'alt'					 => '',
+									'title'				 => gettext('Run the setup script.'),
+									'hidden'			 => '',
+									'rights'			 => ADMIN_RIGHTS
+					);
+
 					$buttonlist[] = array(
 									'XSRFTag'			 => 'protect_setup',
 									'category'		 => gettext('Admin'),
@@ -299,20 +310,6 @@ if (!zp_loggedin()) {
 									'rights'			 => ADMIN_RIGHTS
 					);
 				}
-			}
-			if (empty($needs)) {
-				$buttonlist[] = array(
-								'category'		 => gettext('Admin'),
-								'enable'			 => true,
-								'button_text'	 => gettext('Run setup'),
-								'formname'		 => 'run_setup',
-								'action'			 => FULLWEBPATH . '/' . ZENFOLDER . '/setup.php',
-								'icon'				 => 'images/zp.png',
-								'alt'					 => '',
-								'title'				 => gettext('Run the setup script.'),
-								'hidden'			 => '',
-								'rights'			 => ADMIN_RIGHTS
-				);
 			}
 
 			$buttonlist = sortMultiArray($buttonlist, array('category', 'button_text'));
@@ -622,69 +619,72 @@ if (!zp_loggedin()) {
 						</div><!-- overview-info -->
 						<?php
 					}
-					?>
-					<div class="box overview-utility">
-						<h2 class="h2_bordered"><?php echo gettext("Utility functions"); ?></h2>
-						<?php
-						$category = '';
-						foreach ($buttonlist as $button) {
-							$button_category = $button['category'];
-							$button_icon = $button['icon'];
-							if ($button['enable']) {
-								if ((int) $button['enable'] == 2) {
-									$color = ' style="color:red"';
+					if (!empty($buttonlist)) {
+						?>
+						<div class="box overview-utility">
+							<h2 class="h2_bordered"><?php echo gettext("Utility functions"); ?></h2>
+							<?php
+							$category = '';
+							foreach ($buttonlist as $button) {
+								$button_category = $button['category'];
+								$button_icon = $button['icon'];
+								if ($button['enable']) {
+									if ((int) $button['enable'] == 2) {
+										$color = ' style="color:red"';
+									}
+									$disable = '';
+								} else {
+									$disable = ' disabled="disabled"';
 								}
-								$disable = '';
-							} else {
-								$disable = ' disabled="disabled"';
-							}
-							if ($category != $button_category) {
-								if ($category) {
+								if ($category != $button_category) {
+									if ($category) {
+										?>
+										</fieldset>
+										<?php
+									}
+									$category = $button_category;
 									?>
-									</fieldset>
-									<?php
-								}
-								$category = $button_category;
-								?>
-								<fieldset class="utility_buttons_field"><legend><?php echo $category; ?></legend>
-									<?php
-								}
-								?>
-								<form name="<?php echo $button['formname']; ?>"	id="<?php echo $button['formname']; ?>" action="<?php echo $button['action']; ?>" class="overview_utility_buttons">
-									<?php
-									if (isset($button['XSRFTag']) && $button['XSRFTag'])
-										XSRFToken($button['XSRFTag']);
-									$color = '';
-									echo $button['hidden'];
-									if (isset($button['onclick'])) {
-										$type = 'type="button" onclick="' . $button['onclick'] . '"';
-									} else {
-										$type = 'type="submit"';
+									<fieldset class="utility_buttons_field"><legend><?php echo $category; ?></legend>
+										<?php
 									}
 									?>
-									<div class="buttons tooltip" title="<?php echo html_encode($button['title']); ?>">
-										<button class="fixedwidth<?php if ($disable) echo ' disabled_button'; ?>" <?php echo $type . $disable; ?>>
-											<?php
-											if (!empty($button_icon)) {
-												?>
-												<img src="<?php echo $button_icon; ?>" alt="<?php echo html_encode($button['alt']); ?>" />
+									<form name="<?php echo $button['formname']; ?>"	id="<?php echo $button['formname']; ?>" action="<?php echo $button['action']; ?>" class="overview_utility_buttons">
+										<?php
+										if (isset($button['XSRFTag']) && $button['XSRFTag'])
+											XSRFToken($button['XSRFTag']);
+										$color = '';
+										echo $button['hidden'];
+										if (isset($button['onclick'])) {
+											$type = 'type="button" onclick="' . $button['onclick'] . '"';
+										} else {
+											$type = 'type="submit"';
+										}
+										?>
+										<div class="buttons tooltip" title="<?php echo html_encode($button['title']); ?>">
+											<button class="fixedwidth<?php if ($disable) echo ' disabled_button'; ?>" <?php echo $type . $disable; ?>>
 												<?php
-											}
-											echo '<span' . $color . '>' . html_encode($button['button_text']) . '</span>';
-											?>
-										</button>
-									</div><!--buttons -->
-								</form>
+												if (!empty($button_icon)) {
+													?>
+													<img src="<?php echo $button_icon; ?>" alt="<?php echo html_encode($button['alt']); ?>" />
+													<?php
+												}
+												echo '<span' . $color . '>' . html_encode($button['button_text']) . '</span>';
+												?>
+											</button>
+										</div><!--buttons -->
+									</form>
+									<?php
+								}
+								if ($category) {
+									?>
+								</fieldset>
 								<?php
 							}
-							if ($category) {
-								?>
-							</fieldset>
-							<?php
-						}
-						?>
-					</div><!-- overview-utility -->
-
+							?>
+						</div><!-- overview-utility -->
+						<?php
+					}
+					?>
 					<div class="box overview-utility overiew-gallery-stats">
 						<h2 class="h2_bordered"><?php echo gettext("Gallery Stats"); ?></h2>
 						<ul>

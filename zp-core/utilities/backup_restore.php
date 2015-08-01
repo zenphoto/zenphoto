@@ -223,9 +223,7 @@ if (isset($_REQUEST['backup'])) {
 		$writeresult = false;
 	}
 	if ($writeresult) {
-		if (isset($_REQUEST['autobackup'])) {
-			setOption('last_backup_run', time());
-		}
+		setOption('last_backup_run', time());
 		$messages = '
 		<div class="messagebox fade-message">
 		<h2>
