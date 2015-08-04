@@ -25,9 +25,17 @@ body {
 .image img {
 	padding: 0;
 	height: auto;
-	width: 98%;
+	width: 100%;
 	border: 1px solid gray;
 
+}
+
+.gallery-thumb {
+	position:static;
+	float:left;
+	margin-right: 10px;
+	max-width:79px;
+	max-height:79px;
 }
 
 ul.pagelist {
@@ -204,12 +212,7 @@ ul.jp-toggles {
 	z-index: 1000;
 }
 
-ul.ui-listview li a img {
-	display: block;
-	float: left;
-	padding: 0;
-	margin-right: 10px;
-}
+
 
 ul.ui-listview li a div.albumdesc {
 	margin: 8px 0 8px 0;
