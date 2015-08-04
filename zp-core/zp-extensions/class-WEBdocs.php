@@ -163,7 +163,7 @@ class WEBdocs extends TextObject {
 			case 'pps':
 			case 'pdf':
 				$provider = 'WEBdocs_' . $suffix . '_provider';
-				return sprintf($providers[getOption($provider)], html_encode($this->getFullImage(FULLWEBPATH)));
+				return sprintf($providers[getOption($provider)], html_encode($this->getFullImageURL(FULLWEBPATH)));
 			default: // just in case we extend and are lazy...
 				return '<img src="' . html_encode(pathurlencode($this->getThumb())) . '">';
 		}

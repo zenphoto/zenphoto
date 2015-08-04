@@ -332,9 +332,9 @@ class Video extends Image {
 	 *
 	 * @param unknown_type $path
 	 */
-	function getFullImageURL() {
+	function getFullImageURL($path = WEBPATH) {
 		// Search for a high quality version of the video
-		if ($vid = parent::getFullImageURL()) {
+		if ($vid = parent::getFullImageURL($path)) {
 			$folder = ALBUM_FOLDER_SERVERPATH . internalToFilesystem($this->album->getFileName());
 			$video = stripSuffix($this->filename);
 			$curdir = getcwd();
@@ -348,6 +348,7 @@ class Video extends Image {
 				}
 			}
 		}
+		return zp_apply_filter('getLink', $vid, 'full-image.php', NULL);
 		return $vid;
 	}
 
@@ -364,7 +365,7 @@ class Video extends Image {
 			$w = $this->getWidth();
 		if (is_null($h))
 			$h = $this->getHeight();
-		$ext = getSuffix($this->getFullImage());
+		$ext = getSuffix($this->getFullImageURL());
 		switch ($ext) {
 			default:
 				return $_zp_multimedia_extension->getPlayerConfig($this, NULL, NULL, $w, $h);
@@ -373,11 +374,11 @@ class Video extends Image {
 			case 'mov':
 				return '</a>
 					<object classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" width="' . $w . '" height="' . $h . '" codebase="http://www.apple.com/qtactivex/qtplugin.cab">
-					<param name="src" value="' . pathurlencode($this->getFullImage()) . '"/>
+					<param name="src" value="' . pathurlencode($this->getFullImageURL()) . '"/>
 					<param name="autoplay" value="false" />
 					<param name="type" value="video/quicktime" />
 					<param name="controller" value="true" />
-					<embed src="' . pathurlencode($this->getFullImage()) . '" width="' . $w . '" height="' . $h . '" scale="aspect" autoplay="false" controller"true" type="video/quicktime"
+					<embed src="' . pathurlencode($this->getFullImageURL()) . '" width="' . $w . '" height="' . $h . '" scale="aspect" autoplay="false" controller"true" type="video/quicktime"
 						pluginspage="http://www.apple.com/quicktime/download/" cache="true"></embed>
 					</object><a>';
 				break;

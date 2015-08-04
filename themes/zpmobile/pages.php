@@ -23,50 +23,36 @@ if (class_exists('CMS')) {
 				<?php jqm_printMainHeaderNav(); ?>
 				<div class="ui-content" role="main">
 					<div class="content-primary">
-						<?php if (empty($_GET['title'])) { ?>
+						<h2 class="breadcrumb"><a href="<?php echo getPagesLink(); ?>"><?php echo gettext('Pages'); ?></a> <?php
+							printZenpageItemsBreadcrumb('', '  ');
+							printPageTitle('');
+							?></strong></h2>
 
-
-							<h2><?php echo gettext('Pages'); ?></h2>
-							<br />
+						<?php
+						printPageContent();
+						printCodeblock(1);
+						$subpages = $_zp_current_page->getPages();
+						if ($subpages) {
+							?>
 							<ul data-role="listview" data-inset="true" data-theme="a" class="ui-listview ui-group-theme-a">
-								<?php printPageMenu("list-top", "", "menu-active", "submenu", "menu-active", NULL, true, false, NULL); ?>
-							</ul>
-						<?php } else { ?>
-							<h2 class="breadcrumb"><a href="<?php echo getPagesLink(); ?>"><?php echo gettext('Pages'); ?></a> <?php
-								printZenpageItemsBreadcrumb('', '  ');
-								printPageTitle('');
-								?></strong></h2>
-
-							<?php
-							printPageContent();
-							printCodeblock(1);
-							$subpages = $_zp_current_page->getPages();
-							if ($subpages) {
-								?>
-								<ul data-role="listview" data-inset="true" data-theme="a" class="ui-listview ui-group-theme-a">
-									<?php
-									foreach ($subpages as $subpage) {
-										$obj = new Page($subpage['titlelink']);
-										?>
-										<li><a href="<?php echo html_encode($obj->getLink()); ?>" title="<?php echo html_encode($obj->getTitle()); ?>"><?php echo html_encode($obj->getTitle()); ?></a></li>
-										<?php
-									}
-									?>
-								</ul>
 								<?php
-							}
-							printTags('links', gettext('<strong>Tags:</strong>') . ' ', 'taglist', ', ');
-							?>
+								foreach ($subpages as $subpage) {
+									$obj = new Page($subpage['titlelink']);
+									?>
+									<li><a href="<?php echo html_encode($obj->getLink()); ?>" title="<?php echo html_encode($obj->getTitle()); ?>"><?php echo html_encode($obj->getTitle()); ?></a></li>
+									<?php
+								}
+								?>
+							</ul>
 							<?php
-							if (function_exists('printCommentForm')) {
-								printCommentForm();
-							}
-							?>
-
-
-
-						<?php } ?>
-
+						}
+						printTags('links', gettext('<strong>Tags:</strong>') . ' ', 'taglist', ', ');
+						?>
+						<?php
+						if (function_exists('printCommentForm')) {
+							printCommentForm();
+						}
+						?>
 					</div>
 					<div class="content-secondary">
 						<?php jqm_printMenusLinks(); ?>
