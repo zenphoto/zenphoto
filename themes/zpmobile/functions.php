@@ -77,7 +77,7 @@ function jqm_printMainHeaderNav() {
 				}
 				if (extensionEnabled('zenpage') && getNumPages(true)) {
 					?>
-					<li><a href="<?php echo getPagesLink(); ?>"><?php echo gettext('Pages'); ?></a></li>
+					<li><a href="<?php echo getCustomPageURL('pagelist'); ?>"><?php echo gettext('Pages'); ?></a></li>
 					<?php
 				}
 				?>
