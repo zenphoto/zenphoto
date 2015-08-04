@@ -245,8 +245,8 @@ class cmsFilters {
 		global $_zp_gallery_page, $_zp_current_page, $_zp_current_article, $_zp_current_category;
 		switch ($_zp_gallery_page) {
 			case 'pages.php':
-				if ($_zp_current_page->isMyItem(LIST_RIGHTS)) {
-					return true;
+				if (is_object($_zp_current_page)) {
+					return $_zp_current_page->isMyItem(LIST_RIGHTS);
 				}
 				return false;
 			case 'news.php':

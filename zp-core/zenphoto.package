@@ -645,6 +645,7 @@ themes/zpmobile/gallery.php
 themes/zpmobile/image.php
 themes/zpmobile/index.php
 themes/zpmobile/news.php
+themes/zpmobile/pagelist.php
 themes/zpmobile/pages.php
 themes/zpmobile/password.php
 themes/zpmobile/register.php
@@ -2318,4 +2319,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-2320
+2321

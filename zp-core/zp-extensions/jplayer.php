@@ -276,7 +276,7 @@ class jPlayer {
 	 *
 	 */
 	function getPlayerConfig($movie, $movietitle = NULL, $count = NULL) {
-		$moviepath = $movie->getFullImage(FULLWEBPATH);
+		$moviepath = $movie->getFullImageURL(FULLWEBPATH);
 		if (is_null($movietitle)) {
 			$movietitle = $movie->getTitle();
 		}
@@ -677,7 +677,7 @@ class jPlayer {
 					<?php if (getOption('jplayer_download')) { ?>
 							free:true,
 					<?php } ?>
-					<?php echo $this->supplied; ?>:"<?php echo html_encode(pathurlencode($url = $video->getFullImage(FULLWEBPATH))); ?>"
+					<?php echo $this->supplied; ?>:"<?php echo html_encode(pathurlencode($url = $video->getFullImageURL(FULLWEBPATH))); ?>"
 					<?php echo $this->getCounterpartFiles($url, $ext); ?>
 					<?php echo $videoThumb; ?>
 						}

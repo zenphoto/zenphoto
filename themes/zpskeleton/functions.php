@@ -184,7 +184,7 @@ function printPPSlideShowLink($linktext = '', $linkstyle = '') {
 				if ($zpskel_pptarget == 'sized') {
 					$imagelink = $imgobj->getSizedImage(630);
 				} else {
-					$imagelink = $imgobj->getFullImage();
+					$imagelink = $imgobj->getFullImageURL();
 				}
 				$imagedetaillink = $imgobj->getLink();
 				?>
