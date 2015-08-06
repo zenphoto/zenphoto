@@ -158,10 +158,6 @@ if (empty($admins)) { //	empty administrators table
 	}
 	$groupsdefined = @unserialize(getOption('defined_groups'));
 }
-setOptionDefault('extra_auth_hash_text', $lib_auth_extratext);
-setOptionDefault('password_strength', 10);
-setOptionDefault('min_password_lenght', 6);
-setOptionDefault('user_album_edit_default', 1);
 
 // old configuration opitons. preserve them
 $conf = $_zp_conf_vars;

@@ -25,6 +25,12 @@ class _Authority {
 	 * @return lib_auth_options
 	 */
 	function __construct() {
+		if (OFFSET_PATH == 2) {
+			setOptionDefault('extra_auth_hash_text', $lib_auth_extratext);
+			setOptionDefault('password_strength', 10);
+			setOptionDefault('min_password_lenght', 6);
+			setOptionDefault('user_album_edit_default', 1);
+		}
 		$this->admin_all = $this->admin_groups = $this->admin_users = $this->admin_other = array();
 
 		$sql = 'SELECT * FROM ' . prefix('administrators') . ' ORDER BY `rights` DESC, `id`';
@@ -575,10 +581,10 @@ class _Authority {
 								'MANAGE_ALL_NEWS_RIGHTS'			 => array('value' => pow(2, 21), 'name' => gettext('Manage all'), 'set' => gettext('News'), 'display' => true, 'hint' => gettext('Users who do not have “Admin” rights normally are restricted to manage only objects to which they have been assigned. This right allows them to manage any Zenpage news article or category.')),
 								'MANAGE_ALL_PAGES_RIGHTS'			 => array('value' => pow(2, 22), 'name' => gettext('Manage all'), 'set' => gettext('Pages'), 'display' => true, 'hint' => gettext('Users who do not have “Admin” rights normally are restricted to manage only objects to which they have been assigned. This right allows them to manage any Zenpage page.')),
 								'MANAGE_ALL_ALBUM_RIGHTS'			 => array('value' => pow(2, 23), 'name' => gettext('Manage all'), 'set' => gettext('Albums'), 'display' => true, 'hint' => gettext('Users who do not have “Admin” rights normally are restricted to manage only objects to which they have been assigned. This right allows them to manage any album in the gallery.')),
-//2**24
+								//2**24
 								'CODEBLOCK_RIGHTS'						 => array('value' => pow(2, 25), 'name' => gettext('Codeblock'), 'set' => gettext('General'), 'display' => true, 'hint' => gettext('Users with this right may edit Codeblocks.')),
 								'THEMES_RIGHTS'								 => array('value' => pow(2, 26), 'name' => gettext('Themes'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('Users with this right may make themes related changes. These are limited to the themes associated with albums checked in their managed albums list.')),
-//2*27
+								//2*27
 								'TAGS_RIGHTS'									 => array('value' => pow(2, 28), 'name' => gettext('Tags'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('Users with this right may make additions and changes to the set of tags.')),
 								'OPTIONS_RIGHTS'							 => array('value' => pow(2, 29), 'name' => gettext('Options'), 'set' => gettext('General'), 'display' => true, 'hint' => gettext('Users with this right may make changes on the options tabs.')),
 								'ADMIN_RIGHTS'								 => array('value' => pow(2, 30), 'name' => gettext('Admin'), 'set' => gettext('General'), 'display' => true, 'hint' => gettext('The master privilege. A user with "Admin" can do anything. (No matter what his other rights might indicate!)')));
