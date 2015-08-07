@@ -2151,27 +2151,6 @@ function getItemByID($table, $id) {
 }
 
 /**
- * uses down and up arrow links to show and hide sections of HTML
- *
- * @param string $content the id of the html section to be revealed
- * @param bool $visible true if the content is initially visible
- */
-function reveal($content, $visible = false) {
-	?>
-	<span id="<?php echo $content; ?>_reveal"<?php if ($visible) echo 'style="display:none;"'; ?> class="icons">
-		<a onclick="reveal('<?php echo $content; ?>')" title="<?php echo gettext('Click to show content'); ?>">
-			<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/arrow_down.png" alt="" class="icon-position-top4" />
-		</a>
-	</span>
-	<span id="<?php echo $content; ?>_hide"<?php if (!$visible) echo 'style="display:none;"'; ?> class="icons">
-		<a onclick="reveal('<?php echo $content; ?>')" title="<?php echo gettext('Click to hide content'); ?>">
-			<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/arrow_up.png" alt="" class="icon-position-top4" />
-		</a>
-	</span>
-	<?php
-}
-
-/**
  * Deals with the [macro parameters] substitutions
  *
  * See the macroList plugin for details

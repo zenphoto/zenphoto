@@ -21,16 +21,18 @@ if (!file_exists($testFile)) {
 	file_put_contents($testFile, '');
 }
 
-/* fix for NULL theme name */
-Query('UPDATE ' . prefix('options') . ' SET `theme`="" WHERE `theme` IS NULL');
-
-$lib_auth_extratext = "";
+// setup a hash seed
+$auth_extratext = "";
 $salt = 'abcdefghijklmnopqursuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789~!@#$%^&*()_+-={}[]|;,.<>?/';
 $list = range(0, strlen($salt) - 1);
 shuffle($list);
 for ($i = 0; $i < 30; $i++) {
-	$lib_auth_extratext = $lib_auth_extratext . $salt{$list[$i]};
+	$auth_extratext = $auth_extratext . $salt{$list[$i]};
 }
+setOptionDefault('extra_auth_hash_text', $auth_extratext);
+
+/* fix for NULL theme name */
+Query('UPDATE ' . prefix('options') . ' SET `theme`="" WHERE `theme` IS NULL');
 
 //clean up tag list quoted strings
 $sql = 'SELECT * FROM ' . prefix('tags') . ' WHERE `name` LIKE \'"%\' OR `name` LIKE "\'%"';

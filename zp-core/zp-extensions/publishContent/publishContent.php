@@ -15,6 +15,27 @@ function unpublishSubalbums($album) {
 	}
 }
 
+/**
+ * uses down and up arrow links to show and hide sections of HTML
+ *
+ * @param string $content the id of the html section to be revealed
+ * @param bool $visible true if the content is initially visible
+ */
+function reveal($content, $visible = false) {
+	?>
+	<span id="<?php echo $content; ?>_reveal"<?php if ($visible) echo 'style="display:none;"'; ?> class="icons">
+		<a onclick="reveal('<?php echo $content; ?>')" title="<?php echo gettext('Click to show content'); ?>">
+			<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/arrow_down.png" alt="" class="icon-position-top4" />
+		</a>
+	</span>
+	<span id="<?php echo $content; ?>_hide"<?php if (!$visible) echo 'style="display:none;"'; ?> class="icons">
+		<a onclick="reveal('<?php echo $content; ?>')" title="<?php echo gettext('Click to hide content'); ?>">
+			<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/arrow_up.png" alt="" class="icon-position-top4" />
+		</a>
+	</span>
+	<?php
+}
+
 $report = false;
 $publish_albums_list = array();
 $publish_images_list = array();
@@ -105,6 +126,14 @@ $zenphoto_tabs['overview']['subtabs'] = array(gettext('Content') => '');
 printAdminHeader('overview', gettext('Content'));
 datepickerJS();
 ?>
+<script type="text/javascript">
+//used in conjunction with the "reveal" php function
+	function reveal(id) {
+		jQuery('#' + id + '_reveal').toggle();
+		jQuery('#' + id + '_hide').toggle();
+		jQuery('#' + id).toggle();
+	}
+</script>
 <link rel="stylesheet" href="publishContent.css" type="text/css" media="screen" />
 <?php
 echo '</head>';
@@ -222,14 +251,18 @@ echo '</head>';
 				}
 				?>
 
-				<?php $visible = $report == 'albums' || $report == 'propagate'; ?>
+				<?php
+				$visible = $report == 'albums' || $report == 'propagate';
+				$c = count($publish_albums_list)
+				?>
 				<fieldset class="smallbox">
 					<legend><?php
-						reveal('albumbox', $visible);
+						if ($c > 0)
+							reveal('albumbox', $visible);
 						echo gettext('Albums not published');
 						?></legend>
 					<?php
-					if (($c = count($publish_albums_list)) > 0) {
+					if ($c > 0) {
 						echo sprintf(ngettext('%u unpublished album', '%u unpublished albums', $c), $c);
 					}
 					?>
@@ -322,10 +355,14 @@ echo '</head>';
 					});
 					// ]]> -->
 				</script>
-				<?php $visible = $report == 'images'; ?>
+				<?php
+				$visible = $report == 'images';
+				$c = count($publish_images_list);
+				?>
 				<fieldset class="smallbox">
 					<legend><?php
-						reveal('imagebox', $visible);
+						if ($c > 0)
+							reveal('imagebox', $visible);
 						echo gettext('Images not published');
 						?></legend>
 					<div id="imagebox"<?php if (!$visible) echo ' style="display:none"' ?>>
@@ -343,10 +380,6 @@ echo '</head>';
 						</form>
 						<br class="clearall" />
 						<br class="clearall" />
-						<?php
-						$c = count($publish_images_list);
-						?>
-
 						<?php
 						if ($report == 'images') {
 							?>
@@ -498,7 +531,8 @@ echo '</head>';
 					<br class="clearall" />
 					<fieldset class="smallbox">
 						<legend><?php
-							reveal('catbox', $visible);
+							if ($c > 0)
+								reveal('catbox', $visible);
 							echo gettext('Categories not published');
 							?></legend>
 						<?php
@@ -560,7 +594,8 @@ echo '</head>';
 					?>
 					<fieldset class="smallbox">
 						<legend><?php
-							reveal('newsbox', $visible);
+							if ($c > 0)
+								reveal('newsbox', $visible);
 							echo gettext('News articles not published');
 							?></legend>
 						<?php
@@ -621,7 +656,8 @@ echo '</head>';
 					<br class="clearall" />
 					<fieldset class="smallbox">
 						<legend><?php
-							reveal('pagebox', $visible);
+							if ($c > 0)
+								reveal('pagebox', $visible);
 							echo gettext('Pages not published');
 							?></legend>
 						<?php
