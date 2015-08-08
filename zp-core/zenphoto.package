@@ -2015,7 +2015,6 @@ zp-core/zp-extensions/slideshow/slideshow-controls.png
 zp-core/zp-extensions/slideshow/slideshow-counter.php
 zp-core/zp-extensions/slideshow/slideshow.css
 zp-core/zp-extensions/slideshow2
-zp-core/zp-extensions/slideshow2/cycle.css
 zp-core/zp-extensions/slideshow2/ios6fix.js
 zp-core/zp-extensions/slideshow2/jquery.cycle2.caption2.min.js
 zp-core/zp-extensions/slideshow2/jquery.cycle2.carousel.min.js
@@ -2030,6 +2029,7 @@ zp-core/zp-extensions/slideshow2/jquery.cycle2.swipe.min.js
 zp-core/zp-extensions/slideshow2/jquery.cycle2.tile.min.js
 zp-core/zp-extensions/slideshow2/jquery.cycle2.video.min.js
 zp-core/zp-extensions/slideshow2/slideshow-counter.php
+zp-core/zp-extensions/slideshow2/slideshow2.css
 zp-core/zp-extensions/slideshow2/fonts
 zp-core/zp-extensions/slideshow2/fonts/cycle2-icons.eot
 zp-core/zp-extensions/slideshow2/fonts/cycle2-icons.svg

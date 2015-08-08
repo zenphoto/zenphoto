@@ -1,7 +1,7 @@
 <?php
 
 /**
- * processes the authorization (or login) of admin users
+ * processes the authorization (or login) of users
  *
  * @author Stephen Billard (sbillard)
  *
