@@ -449,10 +449,16 @@ class cycle {
 		<?php if (getOption('cycle-slideshow_swipe')) { ?>
 			<script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/slideshow2/jquery.cycle2.swipe.min.js" type="text/javascript"></script>
 			<script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/slideshow2/ios6fix.js" type="text/javascript"></script>
-		<?php } ?>
-
-		<link rel="stylesheet" type="text/css" href="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/slideshow2/fonts/style.css" />
-		<link rel="stylesheet" type="text/css" href="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/slideshow2/cycle.css" />
+		<?php }
+		$theme = getCurrentTheme();
+		$css = SERVERPATH . '/' . THEMEFOLDER . '/' . internalToFilesystem($theme) . '/slideshow2.css';
+		if (file_exists($css)) {
+			$css = WEBPATH . '/' . THEMEFOLDER . '/' . $theme . '/slideshow2.css';
+		} else {
+			$css = WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/slideshow2/slideshow2.css';
+		}	
+		?>				
+		<link rel="stylesheet" type="text/css" href="<?php echo $css ?>" />
 		<!--[if lte IE 7]>
 			<link rel="stylesheet" type="text/css" href="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/slideshow2/fonts/ie7.css" />
 			<script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/slideshow2/fonts/ie7.js" type="text/javascript"></script>
