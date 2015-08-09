@@ -1349,15 +1349,6 @@ function getWatermarkPath($wm) {
 }
 
 /**
- * Checks to see if access was through a secure protocol
- *
- * @return bool
- */
-function secureServer() {
-	return isset($_SERVER['HTTPS']) && strpos(strtolower($_SERVER['HTTPS']), 'on') === 0;
-}
-
-/**
  *
  * Returns the script requesting URI.
  * 	Uses $_SERVER[REQUEST_URI] if it exists, otherwise it concocts the URI from
@@ -1512,33 +1503,6 @@ function exitZP() {
 		db_close();
 	}
 	exit();
-}
-
-/**
- *
- * Starts a zenphoto session (perhaps a secure one)
- */
-function zp_session_start() {
-	global $_zp_conf_vars;
-	if (session_id() == '') {
-		//	insure that the session data has a place to be saved
-		if (isset($_zp_conf_vars['session_save_path'])) {
-			session_save_path($_zp_conf_vars['session_save_path']);
-		} else {
-			$_session_path = session_save_path();
-			if (!file_exists($_session_path) || !is_writable($_session_path)) {
-				mkdir_recursive(SERVERPATH . '/' . DATA_FOLDER . '/PHP_sessions', FOLDER_MOD);
-				session_save_path(SERVERPATH . '/' . DATA_FOLDER . '/PHP_sessions');
-			}
-		}
-		if (secureServer()) {
-			// force session cookie to be secure when in https
-			$CookieInfo = session_get_cookie_params();
-			session_set_cookie_params($CookieInfo['lifetime'], $CookieInfo['path'], $CookieInfo['domain'], TRUE);
-		}
-		return session_start();
-	}
-	return NULL;
 }
 
 ?>
