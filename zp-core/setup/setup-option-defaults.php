@@ -136,17 +136,18 @@ if (empty($admins)) { //	empty administrators table
 	} else {
 		if (Zenphoto_Authority::$preferred_version > ($oldv = getOption('libauth_version'))) {
 			if (empty($oldv)) {
-//	The password hash of these old versions did not have the extra text.
-//	Note: if the administrators table is empty we will re-do this option with the good stuff.
+				//	The password hash of these old versions did not have the extra text.
+				//	Note: if the administrators table is empty we will re-do this option with the good stuff.
 				purgeOption('extra_auth_hash_text');
 				setOptionDefault('extra_auth_hash_text', '');
+			} else {
+				$msg = sprintf(gettext('Migrating lib-auth data version %1$s => version %2$s'), $oldv, Zenphoto_Authority::$preferred_version);
+				if (!$_zp_authority->migrateAuth(Zenphoto_Authority::$preferred_version)) {
+					$msg .= ': ' . gettext('failed');
+				}
+				echo $msg;
+				setupLog($msg, true);
 			}
-			$msg = sprintf(gettext('Migrating lib-auth data version %1$s => version %2$s'), $oldv, Zenphoto_Authority::$preferred_version);
-			if (!$_zp_authority->migrateAuth(Zenphoto_Authority::$preferred_version)) {
-				$msg .= ': ' . gettext('failed');
-			}
-			echo $msg;
-			setupLog($msg, true);
 		} if (function_exists('hash')) {
 			setOption('strong_hash', 3);
 		} else {

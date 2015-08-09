@@ -799,15 +799,12 @@ class _Authority {
 	 */
 	function checkCookieCredentials() {
 		list($auth, $id) = explode('.', zp_getCookie('zp_user_auth') . '.');
-		if ($auth) {
-			$loggedin = $this->checkAuthorization($auth, $id);
-			$loggedin = zp_apply_filter('authorization_cookie', $loggedin, $auth, $id);
-			if ($loggedin) {
-				return $loggedin;
-			} else {
-				zp_clearCookie("zp_user_auth");
-			}
+		$loggedin = $this->checkAuthorization($auth, $id);
+		$loggedin = zp_apply_filter('authorization_cookie', $loggedin, $auth, $id);
+		if ($loggedin) {
+			return $loggedin;
 		}
+		zp_clearCookie("zp_user_auth");
 		return NULL;
 	}
 
@@ -1250,7 +1247,7 @@ class _Authority {
 		<p>
 			<label for="disclose_password<?php echo $id; ?>"><?php echo gettext('Show password'); ?></label>
 			<input type="checkbox" name="disclose_password<?php echo $id; ?>" id="disclose_password<?php echo $id; ?>" onclick="passwordClear('<?php echo $id; ?>');
-							togglePassword('<?php echo $id; ?>');">
+					togglePassword('<?php echo $id; ?>');">
 		</p>
 		<p class="password_field_<?php echo $id; ?>">
 			<label for="pass_r<?php echo $id; ?>" id="match<?php echo $id; ?>"><?php echo gettext("Repeat password") . $flag; ?></label>
