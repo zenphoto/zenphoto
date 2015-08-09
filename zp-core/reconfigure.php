@@ -17,7 +17,7 @@ if (!defined('OFFSET_PATH')) {
 function reconfigureAction($mandatory) {
 	list($diff, $needs) = checkSignature($mandatory);
 	$diffkeys = array_keys($diff);
-	if ($mandatory || in_array('CONFIGURATION', $diffkeys) || in_array('ZENPHOTO', $diffkeys) || in_array('FOLDER', $diffkeys)) {
+	if ($mandatory) {
 		if (isset($_GET['rss']) || isset($_GET['external'])) {
 			if (isset($_GET['rss']) && file_exists(SERVERPATH . '/' . DATA_FOLDER . '/rss-closed.xml')) {
 				$xml = file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/rss-closed.xml');
@@ -239,7 +239,7 @@ function reconfigurePage($diff, $needs, $mandatory) {
 			}
 			$l1 = '<a href="' . WEBPATH . '/' . ZENFOLDER . '/setup.php?autorun=' . $where . '&amp;xsrfToken=' . @getXSRFToken('setup') . '">';
 			$l2 = '</a>';
-			if (array_key_exists('ZENPHOTO', $diff) || array_key_exists('FOLDER', $diff)) {
+			if ($mandatory) {
 				printf(gettext('The change detected is critical. You <strong>must</strong> run %1$ssetup%2$s for your site to function.'), $l1, $l2);
 			} else {
 				printf(gettext('The change detected may not be critical but you should run %1$ssetup%2$s at your earliest convenience.'), $l1, $l2);

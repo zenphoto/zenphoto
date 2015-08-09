@@ -1424,8 +1424,9 @@ function checkInstall() {
 			$install = array('REQUESTS' => 'CONFIGURATION', 'ZENPHOTO' => '0.0.0[0000]');
 		}
 		preg_match('|([^-]*).*\[(.*)\]|', $install['ZENPHOTO'], $matches);
-		if (isset($install['REQUESTS']) || isset($matches[1]) && isset($matches[2]) && $matches[1] != $version[1] || $matches[2] != ZENPHOTO_RELEASE || ((time() & 7) == 0) && OFFSET_PATH != 2 && $i != serialize(installSignature())) {
-			_setup(0);
+		$mandatory = isset($install['REQUESTS']) || isset($matches[1]) && isset($matches[2]) && $matches[1] != $version[1] || $matches[2] != ZENPHOTO_RELEASE;
+		if ($mandatory || ((time() & 7) == 0) && OFFSET_PATH != 2 && $i != serialize(installSignature())) {
+			_setup((int) $mandatory);
 		}
 	}
 }
@@ -1485,7 +1486,8 @@ function installSignature() {
 	if ($i !== false) {
 		$version = substr($version, 0, $i);
 	}
-	return array_merge($testFiles, array('SERVER_SOFTWARE'	 => $s,
+	return array_merge($testFiles, array(
+					'SERVER_SOFTWARE'	 => $s,
 					'ZENPHOTO'				 => $version . '[' . ZENPHOTO_RELEASE . ']',
 					'FOLDER'					 => dirname(dirname(__FILE__)),
 					'DATABASE'				 => $dbs['application'] . ' ' . $dbs['version']

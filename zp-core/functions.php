@@ -1175,7 +1175,7 @@ function getAllTagsUnique($language = NULL, $count = 1, $returnCount = NULL) {
 		}
 		db_free_result($unique_tags);
 
-		if (!zp_loggedin()) {
+		if ($source == 'taglist') {
 			query('DROP TEMPORARY TABLE taglist');
 		}
 	}
