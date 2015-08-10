@@ -210,14 +210,12 @@ if (isset($_GET['action'])) {
 							if ($updated) {
 								$returntab .= '&show[]=' . $user;
 								$msg = zp_apply_filter('save_user', $msg, $userobj, $what);
-								if (empty($msg)) {
-									if (!$notify)
-										$userobj->transient = false;
-									$userobj->save();
-								} else {
+								if (!empty($msg)) {
 									$notify = '?mismatch=format&error=' . urlencode($msg);
 									$error = true;
 								}
+								$userobj->transient = false;
+								$userobj->save();
 							}
 						}
 					}
@@ -588,8 +586,8 @@ echo $refresh;
 													}
 													?>
 													<a id="toggle_<?php echo $id; ?>" onclick="visible = getVisible('<?php echo $id; ?>', 'user', '<?php echo $displaytitle; ?>', '<?php echo $hidetitle; ?>');
-															$('#show_<?php echo $id; ?>').val(visible);
-															toggleExtraInfo('<?php echo $id; ?>', 'user', visible);" title="<?php echo $displaytitle; ?>" >
+																$('#show_<?php echo $id; ?>').val(visible);
+																toggleExtraInfo('<?php echo $id; ?>', 'user', visible);" title="<?php echo $displaytitle; ?>" >
 															 <?php
 															 if (empty($userid)) {
 																 ?>
@@ -598,7 +596,7 @@ echo $refresh;
 															<em><?php echo gettext("New User"); ?></em>
 															<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="adminuser<?php echo $id; ?>" name="adminuser<?php echo $id; ?>" value=""
 																		 onclick="toggleExtraInfo('<?php echo $id; ?>', 'user', visible);
-																				 $('#adminuser<?php echo $id; ?>').focus();" />
+																						 $('#adminuser<?php echo $id; ?>').focus();" />
 
 															<?php
 														} else {
@@ -677,13 +675,13 @@ echo $refresh;
 													<p>
 														<?php
 														$pad = false;
+														$pwd = $userobj->getPass();
 														if (!empty($userid) && !$clearPass) {
-															$x = $userobj->getPass();
-															if (!empty($x)) {
+															if (!empty($pwd)) {
 																$pad = true;
 															}
 														}
-														if (in_array('password', $no_change)) {
+														if (!empty($pwd) && in_array('password', $no_change)) {
 															$password_disable = ' disabled="disabled"';
 														} else {
 															$password_disable = '';
