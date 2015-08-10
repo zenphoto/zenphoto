@@ -11,10 +11,7 @@
 
 global $_zp_current_admin_obj, $_zp_loggedin, $_zp_authority;
 $_zp_current_admin_obj = null;
-if (file_exists(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/alt/class-auth.php')) {
-	// load a custom authroization package if it is present
-	require_once(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/alt/class-auth.php');
-} else {
+if (!class_exists('Zenphoto_Authority')) {
 	require_once(dirname(__FILE__) . '/class-auth.php');
 }
 $_zp_authority = new Zenphoto_Authority();

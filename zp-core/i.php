@@ -49,7 +49,7 @@ list($ralbum, $rimage) = rewrite_get_album_image('a', 'i');
 $ralbum = internalToFilesystem($ralbum);
 $rimage = internalToFilesystem($rimage);
 $album = sanitize_path($ralbum);
-$image = sanitize_path($rimage);
+$image = sanitize($rimage);
 $theme = themeSetup(filesystemToInternal($album)); // loads the theme based image options.
 if (getOption('secure_image_processor')) {
 	require_once(dirname(__FILE__) . '/functions.php');

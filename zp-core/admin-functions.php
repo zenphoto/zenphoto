@@ -4801,7 +4801,7 @@ function processCredentials($object, $suffix = '') {
 			}
 			if (empty($pwd)) {
 				if (strlen($_POST['pass' . $suffix]) == 0) {
-// clear the  password
+					// clear the  password
 					if (is_object($object)) {
 						$object->setPassword(NULL);
 					} else {
