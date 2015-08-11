@@ -3,9 +3,10 @@
 /**
  * USER credentials handlers
  *
- * An alternate authorization script may be provided to override this script. To do so, make a script that
- * implements the classes declared below. Place the new script inthe <ZENFOLDER>/plugins/alt/ folder. ZenPhoto20
- * will then will be automatically loaded the alternate script in place of this one.
+ * Class Plugins may override the stand class-auth authentication library. ZenPhoto20 supplies
+ * LDAP_auth, an authentication plugin that authenticates via an LDAP server. It
+ * also provides a good example of how to implement alternative Authorities.
+ *
  *
  * Replacement libraries must implement two classes:
  * 		"Zenphoto_Authority" class: Provides the methods used for user authorization and management

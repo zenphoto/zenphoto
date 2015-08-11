@@ -3153,6 +3153,15 @@ Zenphoto_Authority::printPasswordFormJS();
 									<input type="hidden" name="login_user_field" id="login_user_field"	value="<?php echo $_zp_gallery->getUserLogonField(); ?>" />
 									<?php
 								}
+								$authority = new ReflectionClass('Zenphoto_Authority');
+								$file = basename($authority->getFileName());
+								if ($file != 'class-auth.php') {
+									?>
+									<tr>
+										<td colspan="3"><?php printf(gettext('Authentication authority: <strong>%s</strong>'), stripSuffix($file)); ?></td>
+									</tr>
+									<?php
+								}
 								$supportedOptions = $_zp_authority->getOptionsSupported();
 								if (count($supportedOptions) > 0) {
 									?>
