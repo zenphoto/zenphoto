@@ -970,6 +970,9 @@ class SearchEngine {
 				$sortdirection = $this->extraparams['sortdirection'];
 			}
 		}
+		if ($sortdirection && strtoupper($sortdirection) != 'ASC') {
+			$sortdirection = 'DESC';
+		}
 		return array($sorttype, $sortdirection);
 	}
 
@@ -1382,6 +1385,9 @@ class SearchEngine {
 					if (empty($sorttype)) {
 						$key = '`date` DESC';
 					} else {
+						if ($sortdirection && strtoupper($sortdirection) != 'ASC') {
+							$sortdirection = 'DESC';
+						}
 						$key = trim($sorttype . ' ' . $sortdirection);
 					}
 					if ($show) {
