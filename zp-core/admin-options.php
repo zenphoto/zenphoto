@@ -1104,7 +1104,8 @@ Zenphoto_Authority::printPasswordFormJS();
 					?>
 					<div id="tab_gallery" class="tabbox">
 						<?php zp_apply_filter('admin_note', 'options', $subtab); ?>
-						<form class="dirtylistening" onReset="setClean('form_options');" id="form_options" action="?action=saveoptions" method="post" autocomplete="off" >
+						<form class="dirtylistening" onReset="toggle_passwords('', false);
+									setClean('form_options');" id="form_options" action="?action=saveoptions" method="post" autocomplete="off" >
 							<?php XSRFToken('saveoptions'); ?>
 							<input	type="hidden" name="savegalleryoptions" value="yes" />
 							<input	type="hidden" name="password_enabled" id="password_enabled" value="0" />
@@ -1463,7 +1464,8 @@ Zenphoto_Authority::printPasswordFormJS();
 					?>
 					<div id="tab_search" class="tabbox">
 						<?php zp_apply_filter('admin_note', 'options', $subtab); ?>
-						<form class="dirtylistening" onReset="setClean('form_options');" id="form_options" action="?action=saveoptions" method="post" autocomplete="off" >
+						<form class="dirtylistening" onReset="toggle_passwords('', false);
+									setClean('form_options');" id="form_options" action="?action=saveoptions" method="post" autocomplete="off" >
 							<?php XSRFToken('saveoptions'); ?>
 							<input	type="hidden" name="savesearchoptions" value="yes" />
 							<input	type="hidden" name="password_enabled" id="password_enabled" value="0" />

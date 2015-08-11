@@ -444,9 +444,18 @@ echo $refresh;
 								$('#admin_language_' + id).val(lang);
 							}
 						}
+						function closePasswords() {
+							$('.disclose_password').each(function () {
+								if ($(this).prop('checked')) {
+									id = $(this).attr('id').replace('disclose_password', '');
+									togglePassword(id);
+								}
+							});
+						}
 					</script>
-					<form class="dirtylistening" onReset="setClean('user_form');" id="user_form" action="?action=saveoptions<?php echo str_replace('&', '&amp;', $ticket); ?>" method="post" autocomplete="off" onsubmit="return checkNewuser();" >
-						<?php XSRFToken('saveadmin'); ?>
+					<form class="dirtylistening" onReset="closePasswords();
+							setClean('user_form');" id="user_form" action="?action=saveoptions<?php echo str_replace('&', '&amp;', $ticket); ?>" method="post" autocomplete="off" onsubmit="return checkNewuser();" >
+								<?php XSRFToken('saveadmin'); ?>
 						<input type="hidden" name="saveadminoptions" value="yes" />
 						<input type="hidden" name="subpage" value="<?php echo $subpage; ?>" />
 						<?php
