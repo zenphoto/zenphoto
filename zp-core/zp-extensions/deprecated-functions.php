@@ -9,9 +9,9 @@
  * Convention is that the deprecated functions script will have a class defined indicataing the following:
  *
  * <dl>
- * <dt><var>public static</var></dt><dd>general functions with parameters which have been deprecated.</dd>
- * <dt><var>static</var></dt><dd>class methods that have been deprecated.</dd>
- * <dt><var>final static</var></dt><dd>class methods with parameters which have been deprecated.</dd>
+ * 	<dt><var>public static</var></dt><dd>general functions with parameters which have been deprecated.</dd>
+ * 	<dt><var>static</var></dt><dd>class methods that have been deprecated.</dd>
+ * 	<dt><var>final static</var></dt><dd>class methods with parameters which have been deprecated.</dd>
  * </dl>
  *
  * The default settings cause an <var>E_USER_NOTICE</var> error to be generated when the function is used.

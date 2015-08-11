@@ -1246,14 +1246,15 @@ class _Authority {
 		</p>
 		<p>
 			<label for="disclose_password<?php echo $id; ?>"><?php echo gettext('Show password'); ?></label>
-			<input type="checkbox" name="disclose_password<?php echo $id; ?>" id="disclose_password<?php echo $id; ?>" onclick="passwordClear('<?php echo $id; ?>');
+			<input type="checkbox" name="disclose_password<?php echo $id; ?>" class="disclose_password" id="disclose_password<?php echo $id; ?>" onclick="passwordClear('<?php echo $id; ?>');
 							togglePassword('<?php echo $id; ?>');">
 		</p>
-		<p class="password_field_<?php echo $id; ?>">
+		<p class="password_field password_field_<?php echo $id; ?>">
 			<label for="pass_r<?php echo $id; ?>" id="match<?php echo $id; ?>"><?php echo gettext("Repeat password") . $flag; ?></label>
 			<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
 						 name="pass_r<?php echo $id ?>" value="<?php echo $x; ?>"
-						 id="pass_r<?php echo $id; ?>" disabled="disabled"
+						 id="pass_r<?php echo $id; ?>"
+						 disabled="disabled"
 						 onchange="$('#passrequired-<?php echo $id; ?>').val(1);"
 						 onkeydown="passwordClear('<?php echo $id; ?>');"
 						 onkeyup="passwordMatch('<?php echo $id; ?>');" class="inputbox"/>
