@@ -1353,6 +1353,8 @@ function printAdminHeader($tab, $subtab = NULL) {
 			<?php
 		}
 		?>
+
+
 		<input type="hidden" name="<?php echo $prefix; ?>folder" value="<?php echo $album->name; ?>" />
 		<input type="hidden" name="tagsort" value="<?php echo html_encode($tagsort); ?>" />
 		<input type="hidden" name="password_enabled<?php echo $suffix; ?>" id="password_enabled<?php echo $suffix; ?>" value="0" />
@@ -1472,16 +1474,12 @@ function printAdminHeader($tab, $subtab = NULL) {
 									$x = $album->getPassword();
 									if (empty($x)) {
 										?>
-										<a onclick="toggle_passwords('<?php echo $suffix; ?>', true);">
-											<img src="images/lock_open.png" /> <?php echo gettext('No album password is currently set. Click to set one.'); ?>
-										</a>
+										<img src="images/lock_open.png" />
 										<?php
 									} else {
 										$x = '          ';
 										?>
-										<a onclick="resetPass('<?php echo $suffix; ?>');" title="<?php echo addslashes(gettext('clear password')); ?>">
-											<img src="images/lock.png" /> <?php echo gettext('An album password is currently set. Click to clear or change the password.'); ?>
-										</a>
+										<a onclick="resetPass('<?php echo $suffix; ?>');" title="<?php echo addslashes(gettext('clear password')); ?>"><img src="images/lock.png" /></a>
 										<?php
 									}
 									?>
