@@ -17,7 +17,7 @@ if (isset($_POST['id']) && isset($_POST['table'])) {
 	if (isset($_POST['star_rating-value' . $unique])) {
 		$rating = ceil(sanitize_numeric($_POST['star_rating-value' . $unique]) / max(1, getOption('rating_split_stars')));
 
-// Make sure the incoming rating isn't higher than what is allowed
+		// Make sure the incoming rating isn't higher than what is allowed
 		if ($rating > getOption('rating_stars_count')) {
 			$rating = getOption('rating_stars_count');
 		}

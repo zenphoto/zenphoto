@@ -183,11 +183,11 @@ class ExternalFeed extends feed {
 		}
 		if (!$this->key && $this->feedtype != 'null')
 			self::feed404();
-// general feed setup
+		// general feed setup
 		$channeltitlemode = getOption('externalFeed_title');
 		$this->host = html_encode($_SERVER["HTTP_HOST"]);
 
-//channeltitle general
+		//channeltitle general
 		switch ($channeltitlemode) {
 			case 'gallery':
 				$this->channel_title = $_zp_gallery->getBareTitle($this->locale);
@@ -204,7 +204,7 @@ class ExternalFeed extends feed {
 				break;
 		}
 
-// individual feedtype setup
+		// individual feedtype setup
 		switch ($this->feedtype) {
 
 			case 'gallery':
@@ -374,13 +374,13 @@ class ExternalFeed extends feed {
 			$feeditem['pubdate'] = date("r", strtotime($item->getPublishDate()));
 		}
 
-//link
+		//link
 		$feeditem['link'] = $itemlink;
 
-//category
+		//category
 		$feeditem['category'] = html_encode($albumobj->getTitle($this->locale));
 
-//media content
+		//media content
 
 		$feeditem['media_content'] = '<image url="' . PROTOCOL . '://' . html_encode($thumb->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE)) . '" />';
 		$feeditem['media_thumbnail'] = '<thumbnail url="' . PROTOCOL . '://' . html_encode($thumb->getThumb()) . '" />';
@@ -568,7 +568,7 @@ if (!OFFSET_PATH) {
 		if (!$_GET['externalfeed']) {
 			$_GET['externalfeed'] = 'gallery';
 		}
-//	load the theme plugins just incase
+		//	load the theme plugins just incase
 		$_zp_gallery_page = 'rss.php';
 		$e = new ExternalFeed(sanitize($_GET));
 		$e->printFeed();

@@ -89,7 +89,6 @@ printAdminHeader('overview', 'Database');
 						$tables[] = array_shift($row);
 					}
 				}
-//echo "<pre>"; print_r($tables); echo "</pre>";
 				?>
 				<hr />
 				<ul>

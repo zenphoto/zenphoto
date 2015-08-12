@@ -303,7 +303,7 @@ if ($selected_database) {
 		if ($result) {
 			if (db_num_rows($result) > 0) {
 				$upgrade = gettext("upgrade");
-// apply some critical updates to the database for migration issues
+				// apply some critical updates to the database for migration issues
 				query('ALTER TABLE ' . $_zp_conf_vars['mysql_prefix'] . 'administrators' . ' ADD COLUMN `valid` int(1) default 1', false);
 				query('ALTER TABLE ' . $_zp_conf_vars['mysql_prefix'] . 'administrators' . ' CHANGE `password` `pass` varchar(64)', false);
 				query('ALTER TABLE ' . $_zp_conf_vars['mysql_prefix'] . 'administrators' . ' ADD COLUMN `loggedin` datetime', false);

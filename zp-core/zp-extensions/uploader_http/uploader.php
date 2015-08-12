@@ -15,12 +15,12 @@ admin_securityChecks(UPLOAD_RIGHTS, $return = currentRelativeURL());
 /* handle posts */
 $error = false;
 if (isset($_POST['processed'])) {
-// sometimes things just go terribly wrong!
-// Check for files.
+	// sometimes things just go terribly wrong!
+	// Check for files.
 	if (isset($_FILES['files'])) {
 		foreach ($_FILES['files']['name'] as $key => $name) {
 			if (empty($name)) {
-// purge empty slots
+				// purge empty slots
 				unset($_FILES['files']['name'][$key]);
 				unset($_FILES['files']['type'][$key]);
 				unset($_FILES['files']['tmp_name'][$key]);
@@ -32,7 +32,7 @@ if (isset($_POST['processed'])) {
 	$filecount = 0;
 
 	$newAlbum = ((isset($_POST['existingfolder']) && $_POST['existingfolder'] == 'false') || isset($_POST['newalbum']));
-// Make sure the folder exists. If not, create it.
+	// Make sure the folder exists. If not, create it.
 	if (isset($_POST['processed']) && !empty($_POST['folder'])) {
 		$folder = zp_apply_filter('admin_upload_process', sanitize_path($_POST['folder']));
 		$targetPath = ALBUM_FOLDER_SERVERPATH . internalToFilesystem($folder);
@@ -116,7 +116,7 @@ if (isset($_POST['processed'])) {
 			}
 			if ($error == UPLOAD_ERR_OK && ($filecount || isset($_POST['newalbum']))) {
 				if ($album->subRights() & MANAGED_OBJECT_RIGHTS_EDIT) {
-//	he has edit rights, allow new album creation
+					//	he has edit rights, allow new album creation
 					header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit&album=' . pathurlencode($folder) . '&uploaded&subpage=1&tab=imageinfo&albumimagesort=id_desc');
 				} else {
 					header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-upload.php?uploaded=1');

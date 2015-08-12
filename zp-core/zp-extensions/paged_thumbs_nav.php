@@ -186,7 +186,7 @@ class pagedThumbsNav {
 		$this->currentfloor = $this->currentciel - $this->imagesperpage + 1;
 	}
 
-// constructor end
+	// constructor end
 
 	/**
 	 * Gets the link to the previous thumbnail page

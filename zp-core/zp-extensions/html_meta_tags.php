@@ -39,7 +39,7 @@ class htmlmetatags {
 		setOptionDefault('htmlmeta_expires', '43200');
 		setOptionDefault('htmlmeta_tags', '');
 
-// the html meta tag selector prechecked ones
+		// the html meta tag selector prechecked ones
 		setOptionDefault('htmlmeta_htmlmeta_tags', '1');
 		setOptionDefault('htmlmeta_tags_threshold', 1);
 		setOptionDefault('htmlmeta_http-equiv-cache-control', '1');
@@ -64,7 +64,7 @@ class htmlmetatags {
 		setOptionDefault('htmlmeta_ogimage_height', 900);
 	}
 
-// Gettext calls are removed because some terms like "noindex" are fixed terms that should not be translated so user know what setting they make.
+	// Gettext calls are removed because some terms like "noindex" are fixed terms that should not be translated so user know what setting they make.
 	function getOptionsSupported() {
 		$host = $_SERVER['HTTP_HOST'];
 		$matches = explode('.', $host);
@@ -170,11 +170,11 @@ class htmlmetatags {
 		$host = sanitize("http://" . $_SERVER['HTTP_HOST']);
 		$url = $host . getRequestURI();
 
-// Convert locale shorttag to allowed html meta format
+		// Convert locale shorttag to allowed html meta format
 		$locale_ = getUserLocale();
 		$locale = zpFunctions::getLanguageText($locale_, '-');
 		$canonicalurl = '';
-// generate page title, get date
+		// generate page title, get date
 		$pagetitle = ""; // for gallery index setup below switch
 		$date = strftime(DATE_FORMAT); // if we don't have a item date use current date
 		$desc = getBareGalleryDesc();
@@ -262,10 +262,10 @@ class htmlmetatags {
 				$canonicalurl = $host . getCustomPageURL($custompage);
 				break;
 		}
-// shorten desc to the allowed 200 characters if necesssary.
+		// shorten desc to the allowed 200 characters if necesssary.
 		$desc = html_encode(trim(substr(getBare($desc), 0, 160)));
 		$pagetitle = $pagetitle . getBareGalleryTitle();
-// get master admin
+		// get master admin
 		$admin = $_zp_authority->getMasterUser();
 		$author = $admin->getName();
 		$meta = '';
@@ -315,7 +315,7 @@ class htmlmetatags {
 			$meta .= '<meta name="expires" content="' . $expires . '">' . "\n";
 		}
 
-// OpenGraph meta
+		// OpenGraph meta
 		if (getOption('htmlmeta_og-title')) {
 			$meta .= '<meta property="og:title" content="' . $pagetitle . '">' . "\n";
 		}
@@ -332,11 +332,11 @@ class htmlmetatags {
 			$meta .= '<meta property="og:type" content="' . $type . '">' . "\n";
 		}
 
-// Social network extras
+		// Social network extras
 		if (getOption('htmlmeta_name-pinterest')) {
 			$meta .= '<meta name="pinterest" content="nopin">' . "\n";
 		} // dissalow users to pin images on Pinterest
-// Twitter card
+		// Twitter card
 		$twittername = getOption('htmlmeta_twittername');
 		if (getOption('htmlmeta_twittercard') || !empty($twittername)) {
 			$meta .= '<meta property="twitter:creator" content="' . $twittername . '">' . "\n";
@@ -349,7 +349,7 @@ class htmlmetatags {
 			}
 		}
 
-// Canonical url
+		// Canonical url
 		if (getOption('htmlmeta_canonical-url')) {
 			$meta .= '<link rel="canonical" href="' . $canonicalurl . '">' . "\n";
 			if (METATAG_LOCALE_TYPE) {

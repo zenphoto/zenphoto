@@ -114,7 +114,7 @@ if (isset($_GET['action'])) {
 					if ($p == '//') {
 						$p = '/';
 					}
-//	save a cookie to see if change works
+					//	save a cookie to see if change works
 					$returntab .= '&cookiepath';
 					zp_setCookie('zenphoto_cookie_path', $p, NULL, $p);
 				}
@@ -354,7 +354,7 @@ if (isset($_GET['action'])) {
 			$returntab = "&tab=theme";
 			if ($themename)
 				$returntab .= '&optiontheme=' . urlencode($themename);
-// all theme specific options are custom options, handled below
+			// all theme specific options are custom options, handled below
 			if (!isset($_POST['themealbum']) || empty($_POST['themealbum'])) {
 				$themeswitch = urldecode(sanitize_path($_POST['old_themealbum'])) != '';
 			} else {
@@ -445,7 +445,7 @@ if (isset($_GET['action'])) {
 		/*		 * * Plugin Options ** */
 		if (isset($_POST['savepluginoptions'])) {
 			if (isset($_POST['checkForPostTruncation'])) {
-// all plugin options are handled by the custom option code.
+				// all plugin options are handled by the custom option code.
 				if (isset($_GET['single'])) {
 					$returntab = "&tab=plugin&single=" . sanitize($_GET['single']);
 				} else {
@@ -459,7 +459,7 @@ if (isset($_GET['action'])) {
 		if (isset($_POST['savesecurityoptions'])) {
 			$protocol = sanitize($_POST['server_protocol'], 3);
 			if ($protocol != SERVER_PROTOCOL) {
-// force https if required to be sure it works, otherwise the "save" will be the last thing we do
+				// force https if required to be sure it works, otherwise the "save" will be the last thing we do
 				httpsRedirect();
 			}
 			if (getOption('server_protocol') != $protocol) {
@@ -1106,7 +1106,7 @@ Zenphoto_Authority::printPasswordFormJS();
 						<?php zp_apply_filter('admin_note', 'options', $subtab); ?>
 						<form class="dirtylistening" onReset="toggle_passwords('', false);
 									setClean('form_options');" id="form_options" action="?action=saveoptions" method="post" autocomplete="off" >
-							<?php XSRFToken('saveoptions'); ?>
+									<?php XSRFToken('saveoptions'); ?>
 							<input	type="hidden" name="savegalleryoptions" value="yes" />
 							<input	type="hidden" name="password_enabled" id="password_enabled" value="0" />
 							<table class="options">
@@ -1466,7 +1466,7 @@ Zenphoto_Authority::printPasswordFormJS();
 						<?php zp_apply_filter('admin_note', 'options', $subtab); ?>
 						<form class="dirtylistening" onReset="toggle_passwords('', false);
 									setClean('form_options');" id="form_options" action="?action=saveoptions" method="post" autocomplete="off" >
-							<?php XSRFToken('saveoptions'); ?>
+									<?php XSRFToken('saveoptions'); ?>
 							<input	type="hidden" name="savesearchoptions" value="yes" />
 							<input	type="hidden" name="password_enabled" id="password_enabled" value="0" />
 							<table class="options">

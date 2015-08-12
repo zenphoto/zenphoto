@@ -10,7 +10,7 @@
 global $_zp_current_context_stack, $_zp_HTML_cache;
 
 if (!function_exists("json_encode")) {
-// load the drop-in replacement library
+	// load the drop-in replacement library
 	require_once(dirname(__FILE__) . '/lib-json.php');
 }
 
@@ -63,7 +63,7 @@ function parseAllowedTags(&$source) {
 			return false;
 		}
 		$tag = trim(substr($source, 0, $i));
-//strip forbidden tags from list
+		//strip forbidden tags from list
 		if ($tag == 'script') {
 			return 0;
 		}
@@ -169,9 +169,9 @@ function shortenContent($articlecontent, $shorten, $shortenindicator, $forceindi
 	global $_user_tags;
 	if ($shorten && ($forceindicator || (mb_strlen($articlecontent) > $shorten))) {
 		$allowed_tags = getAllowedTags('allowed_tags');
-//remove script to be replaced later
+		//remove script to be replaced later
 		$articlecontent = preg_replace('~<script.*?/script>~is', '', $articlecontent);
-//remove HTML comments
+		//remove HTML comments
 		$articlecontent = preg_replace('~<!--.*?-->~is', '', $articlecontent);
 		$short = mb_substr($articlecontent, 0, $shorten);
 		$short2 = kses($short . '</p>', $allowed_tags);
@@ -199,7 +199,7 @@ function shortenContent($articlecontent, $shorten, $shortenindicator, $forceindi
 		}
 		$short = truncate_string($articlecontent, $shorten, '');
 		if ($short != $articlecontent) { //	we actually did remove some stuff
-// drop open tag strings
+			// drop open tag strings
 			$open = mb_strrpos($short, '<');
 			if ($open > mb_strrpos($short, '>')) {
 				$short = mb_substr($short, 0, $open);
@@ -216,7 +216,7 @@ function shortenContent($articlecontent, $shorten, $shortenindicator, $forceindi
 		$articlecontent = $short;
 	}
 	if (isset($matches)) {
-//replace the script text
+		//replace the script text
 		foreach ($matches[0] as $script) {
 			$articlecontent = $script . $articlecontent;
 		}
@@ -455,7 +455,7 @@ function zp_mail($subject, $message, $email_list = NULL, $cc_addresses = NULL, $
 			$message = getBare($message);
 			$message = preg_replace('~\n\n\n+~', "\n\n", $message);
 
-// Send the mail
+			// Send the mail
 			if (count($email_list) > 0) {
 				$result = zp_apply_filter('sendmail', '', $email_list, $subject, $message, $from_mail, $from_name, $cc_addresses, $replyTo); // will be true if all mailers succeeded
 			}
@@ -538,7 +538,7 @@ function checkAlbumPassword($album, &$hint = NULL) {
 			}
 			$album = $album->getParent();
 		}
-// revert all tlhe way to the gallery
+		// revert all tlhe way to the gallery
 		$hash = $_zp_gallery->getPassword();
 		$authType = 'zp_gallery_auth';
 		$saved_auth = zp_getCookie($authType);
@@ -916,7 +916,7 @@ function handleSearchParms($what, $album = NULL, $image = NULL) {
 		$context = get_context();
 		$_zp_current_search = new SearchEngine();
 		$_zp_current_search->setSearchParams($params);
-// check to see if we are still "in the search context"
+		// check to see if we are still "in the search context"
 		if (!is_null($image)) {
 			$dynamic_album = $_zp_current_search->getDynamicAlbum();
 			if ($_zp_current_search->getImageIndex($album->name, $image->filename) !== false) {
@@ -932,7 +932,7 @@ function handleSearchParms($what, $album = NULL, $image = NULL) {
 			if (hasDynamicAlbumSuffix($albumname) && !is_dir(ALBUM_FOLDER_SERVERPATH . $albumname)) {
 				$albumname = stripSuffix($albumname); // strip off the suffix as it will not be reflected in the search path
 			}
-//	see if the album is within the search context. NB for these purposes we need to look at all albums!
+			//	see if the album is within the search context. NB for these purposes we need to look at all albums!
 			$save_logon = $_zp_loggedin;
 			$_zp_loggedin = $_zp_loggedin | VIEW_ALL_RIGHTS;
 			$search_album_list = $_zp_current_search->getAlbums(0);
@@ -988,7 +988,7 @@ function handleSearchParms($what, $album = NULL, $image = NULL) {
  * @param string $table the database table
  */
 function updatePublished($table) {
-//publish items that have matured
+	//publish items that have matured
 	$sql = 'SELECT * FROM ' . prefix($table) . ' WHERE `show`=0 AND `publishdate`!="0000-00-00 00:00:00" AND `publishdate`<=' . db_quote(date('Y-m-d H:i:s'));
 	$result = query($sql);
 	if ($result) {
@@ -999,7 +999,7 @@ function updatePublished($table) {
 		}
 	}
 
-//unpublish items that have expired or are not published yet
+	//unpublish items that have expired or are not published yet
 	$sql = 'SELECT * FROM ' . prefix($table) . ' WHERE `show`=1 AND (`expiredate`!="0000-00-00 00:00:00" AND `expiredate`<' . db_quote(date('Y-m-d H:i:s')) . ') OR `publishdate`>' . db_quote(date('Y-m-d H:i:s'));
 	$result = query($sql);
 	if ($result) {
@@ -1645,7 +1645,7 @@ function byteConvert($bytes) {
  * @return mixed
  */
 function dateTimeConvert($datetime, $raw = false) {
-// Convert 'yyyy:mm:dd hh:mm:ss' to 'yyyy-mm-dd hh:mm:ss' for Windows' strtotime compatibility
+	// Convert 'yyyy:mm:dd hh:mm:ss' to 'yyyy-mm-dd hh:mm:ss' for Windows' strtotime compatibility
 	$datetime = preg_replace('/(\d{4}):(\d{2}):(\d{2})/', ' \1-\2-\3', $datetime);
 	$time = strtotime($datetime);
 	if ($time == -1 || $time === false)
@@ -1788,7 +1788,7 @@ function zp_handle_password($authType = NULL, $check_auth = NULL, $check_user = 
 			$check_user = $_zp_gallery->getUser();
 		}
 	}
-// Handle the login form.
+	// Handle the login form.
 	if (DEBUG_LOGIN)
 		debugLog("zp_handle_password: \$authType=$authType; \$check_auth=$check_auth; \$check_user=$check_user; ");
 	if (isset($_POST['password']) && isset($_POST['pass'])) { // process login form
@@ -1810,7 +1810,7 @@ function zp_handle_password($authType = NULL, $check_auth = NULL, $check_user = 
 		}
 		$success = zp_apply_filter('guest_login_attempt', $success, $post_user, $post_pass, $authType);
 		if ($success) {
-// Correct auth info. Set the cookie.
+			// Correct auth info. Set the cookie.
 			if (DEBUG_LOGIN)
 				debugLog("zp_handle_password: valid credentials");
 			zp_setCookie($authType, $auth);
@@ -1822,7 +1822,7 @@ function zp_handle_password($authType = NULL, $check_auth = NULL, $check_user = 
 				}
 			}
 		} else {
-// Clear the cookie, just in case
+			// Clear the cookie, just in case
 			if (DEBUG_LOGIN)
 				debugLog("zp_handle_password: invalid credentials");
 			zp_clearCookie($authType);
@@ -1839,7 +1839,7 @@ function zp_handle_password($authType = NULL, $check_auth = NULL, $check_user = 
 				debugLog("zp_handle_password: valid cookie");
 			return true;
 		} else {
-// Clear the cookie
+			// Clear the cookie
 			if (DEBUG_LOGIN)
 				debugLog("zp_handle_password: invalid cookie");
 			zp_clearCookie($authType);
@@ -1933,15 +1933,15 @@ function getThemeOption($option, $album = NULL, $theme = NULL) {
 	if (empty($theme)) {
 		$theme = $_zp_gallery->getCurrentTheme();
 	}
-// album-theme
+	// album-theme
 	$sql = "SELECT `value` FROM " . prefix('options') . " WHERE `name`=" . db_quote($option) . " AND `ownerid`=" . $id . " AND `theme`=" . db_quote($theme);
 	$db = query_single_row($sql);
 	if (!$db) {
-// raw theme option
+		// raw theme option
 		$sql = "SELECT `value` FROM " . prefix('options') . " WHERE `name`=" . db_quote($option) . " AND `ownerid`=0 AND `theme`=" . db_quote($theme);
 		$db = query_single_row($sql);
 		if (!$db) {
-// raw album option
+			// raw album option
 			$sql = "SELECT `value` FROM " . prefix('options') . " WHERE `name`=" . db_quote($option) . " AND `ownerid`=" . $id . " AND `theme`=NULL";
 			$db = query_single_row($sql);
 			if (!$db) {
@@ -2486,7 +2486,7 @@ class zpFunctions {
 	static function hasPrimaryScripts() {
 		if (!defined('PRIMARY_INSTALLATION')) {
 			if (function_exists('readlink') && ($zen = str_replace('\\', '/', @readlink(SERVERPATH . '/' . ZENFOLDER)))) {
-// no error reading the link info
+				// no error reading the link info
 				$os = strtoupper(PHP_OS);
 				$sp = SERVERPATH;
 				if (substr($os, 0, 3) == 'WIN' || $os == 'DARWIN') { // canse insensitive file systems

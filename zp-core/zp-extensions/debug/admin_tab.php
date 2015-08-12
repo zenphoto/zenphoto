@@ -104,8 +104,8 @@ echo "\n</head>";
 							<strong><?php echo gettext('Supported locales:'); ?></strong>
 							<?php
 							if (strtoupper(substr(PHP_OS, 0, 3)) == 'WIN') {
-// source of the list:
-// http://msdn.microsoft.com/en-us/library/39cwe7zf(v=vs.90).aspx
+								// source of the list:
+								// http://msdn.microsoft.com/en-us/library/39cwe7zf(v=vs.90).aspx
 								$langs = array(
 												// language, sublanguage, codes
 												array('Chinese', 'Chinese', array('chinese')),

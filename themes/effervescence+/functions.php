@@ -498,8 +498,6 @@ function commonComment() {
 				$style = NULL;
 				$head = '';
 			} else {
-//TODO: if the following line is used as intended the comment textarea is hidden to start with and when shown is not full width.
-//				$style = ' class="comment" style="display:none;"';
 				$style = ' class="commentx" style="display:block;"';
 				$head = "<div$style><h3>" . gettext('Add a comment') . '</h3></div>';
 			}

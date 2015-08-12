@@ -475,7 +475,7 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 
 
 
-// getting the counts
+		// getting the counts
 		$albumcount = $_zp_gallery->getNumAlbums(true);
 		$albumscount_unpub = $albumcount - $_zp_gallery->getNumAlbums(true, true);
 		$imagecount = $_zp_gallery->getNumImages();
@@ -713,7 +713,7 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 							<?php
 						}
 
-// If a single list is requested
+						// If a single list is requested
 						if (isset($_GET['type'])) {
 							if (!isset($_GET['from_number'])) {
 								$from_number = 0;

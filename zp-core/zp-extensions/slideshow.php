@@ -50,10 +50,6 @@ if ($_zp_gallery_page == 'slideshow.php' || getOption('slideshow_' . $_zp_galler
 }
 zp_register_filter('content_macro', 'slideshow::macro');
 
-
-//if (!OFFSET_PATH) {
-//}
-
 /**
  * slideshow
  *

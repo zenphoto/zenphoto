@@ -127,7 +127,7 @@ printAdminHeader('overview', gettext('Content'));
 datepickerJS();
 ?>
 <script type="text/javascript">
-//used in conjunction with the "reveal" php function
+	//used in conjunction with the "reveal" php function
 	function reveal(id) {
 		jQuery('#' + id + '_reveal').toggle();
 		jQuery('#' + id + '_hide').toggle();

@@ -82,13 +82,13 @@ class optionalObjectFields extends fieldExtender {
 	function __construct() {
 		$protected = array('date', 'owner');
 		$fields = self::fields();
-//do not add/remove some critical DB fields
+		//do not add/remove some critical DB fields
 		foreach ($fields as $key => $field) {
 			if (in_array($field['name'], $protected))
 				unset($fields[$key]);
 		}
 		parent::constructor('optionalObjectFields', $fields);
-//  for translations need to define the display names
+		//  for translations need to define the display names
 	}
 
 	static function addToSearch($list) {

@@ -728,7 +728,7 @@ function getPageNumURL($page, $total = null) {
 			return NULL;
 		}
 	} else {
-// handle custom page
+		// handle custom page
 		$pg = stripSuffix($_zp_gallery_page);
 		$pagination1 = '/' . _PAGE_ . '/' . $pg . '/';
 		$pagination2 = 'index.php?p=' . $pg;
@@ -1309,7 +1309,7 @@ function getParentBreadcrumb() {
 				array_push($parents, $album);
 			}
 		}
-// remove parent links that are not in the search path
+		// remove parent links that are not in the search path
 		foreach ($parents as $key => $analbum) {
 			$target = $analbum->name;
 			if ($target !== $dynamic_album && !in_array($target, $search_album_list)) {
@@ -2566,11 +2566,11 @@ function getSizeCustomImage($size, $width = NULL, $height = NULL, $cw = NULL, $c
 			$newh = $h;
 		}
 	} else if (($size && ($side == 'longest' && $h > $w) || ($side == 'height') || ($side == 'shortest' && $h < $w)) || $height) {
-// Scale the height
+		// Scale the height
 		$newh = $dim;
 		$neww = $wprop;
 	} else {
-// Scale the width
+		// Scale the width
 		$neww = $dim;
 		$newh = $hprop;
 	}

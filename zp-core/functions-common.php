@@ -747,7 +747,7 @@ class zpMutex {
 
 	function __construct($lock = 'zP', $concurrent = NULL, $folder = NULL) {
 
-// if any of the construction fails, run in free mode (lock = NULL)
+		// if any of the construction fails, run in free mode (lock = NULL)
 		if (function_exists('flock') && defined('SERVERPATH')) {
 			if (is_null($folder)) {
 				$folder = SERVERPATH . '/';
@@ -763,8 +763,8 @@ class zpMutex {
 		return $this->lock;
 	}
 
-// returns the integer id of the lock to be obtained
-// rotates locks sequentially mod $concurrent
+	// returns the integer id of the lock to be obtained
+	// rotates locks sequentially mod $concurrent
 	private static function which_lock($lock, $concurrent, $folder) {
 		global $_zp_mutex;
 		$counter_file = $folder . DATA_FOLDER . '/' . MUTEX_FOLDER . '/' . $lock . '_counter';
@@ -806,7 +806,7 @@ class zpMutex {
 	 */
 	public function unlock() {
 		if ($this->locked) {
-//Only unlock a locked mutex.
+			//Only unlock a locked mutex.
 			$this->locked = false;
 			ignore_user_abort($this->ignoreUserAbort); //Restore the ignore_user_abort setting.
 			flock($this->mutex, LOCK_UN);

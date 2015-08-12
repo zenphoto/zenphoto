@@ -378,7 +378,7 @@ if (OFFSET_PATH) {
 			$table = $obj->table;
 			$target = array('type' => $table);
 			if ($_zp_gallery_page == 'favorites.php') {
-//	 only need one remove button since we know the instance
+				//	 only need one remove button since we know the instance
 				$multi = false;
 				$list = array($_myFavorites->instance);
 			} else {
@@ -439,7 +439,7 @@ if (OFFSET_PATH) {
 						favorites::ad_removeButton($obj, $id, 1, $add, NULL, $multi);
 					break;
 				default:
-//We do not handle these.
+					//We do not handle these.
 					return;
 			}
 		}

@@ -36,7 +36,7 @@ if (!defined('WEBPATH'))
 
 				<?php printNewsPageListWithNav(gettext('next »'), gettext('« prev')); ?>
 				<?php
-// single news article
+				// single news article
 				if (is_NewsArticle()) {
 					?>
 
@@ -56,7 +56,7 @@ if (!defined('WEBPATH'))
 					}
 					?>
 					<?php
-// COMMENTS TEST
+					// COMMENTS TEST
 					if (function_exists('printCommentForm')) {
 						?>
 						<div id="comments">
@@ -66,7 +66,7 @@ if (!defined('WEBPATH'))
 					} // comments allowed - end
 				} else {
 					/* echo "<hr />";	 */
-// news article loop
+					// news article loop
 					echo '<div class="newsarticlewrapper">';
 					$u = 0;
 					while (next_news()):;

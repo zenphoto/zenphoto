@@ -393,7 +393,7 @@ if (isset($_GET['action'])) {
 											zp_apply_filter('save_image_utilities_data', $image, $i);
 											$image->save();
 
-// Process move/copy/rename
+											// Process move/copy/rename
 											if ($movecopyrename_action == 'move') {
 												unset($single);
 												$dest = sanitize_path($_POST[$i . '-albumselect']);
@@ -402,7 +402,7 @@ if (isset($_GET['action'])) {
 														$notify = "&mcrerr=" . $e;
 													}
 												} else {
-// Cannot move image to same album.
+													// Cannot move image to same album.
 													$notify = "&mcrerr=2";
 												}
 											} else if ($movecopyrename_action == 'copy') {
@@ -412,8 +412,8 @@ if (isset($_GET['action'])) {
 														$notify = "&mcrerr=" . $e;
 													}
 												} else {
-// Cannot copy image to existing album.
-// Or, copy with rename?
+													// Cannot copy image to existing album.
+													// Or, copy with rename?
 													$notify = "&mcrerr=2";
 												}
 											} else if ($movecopyrename_action == 'rename') {
@@ -462,7 +462,7 @@ if (isset($_GET['action'])) {
 				}
 			}
 
-// Redirect to the same album we saved.
+			// Redirect to the same album we saved.
 			if (isset($folder) && !empty($folder)) {
 				$qs_albumsuffix .= '&album=' . pathurlencode($folder);
 			}
