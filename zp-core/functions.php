@@ -500,7 +500,7 @@ function sortByMultilingual($dbresult, $field, $descending) {
 	}
 	$result = array();
 	foreach ($temp as $key => $v) {
-		$result[$key] = $dbresult[$key];
+		$result[] = $dbresult[$key];
 	}
 	return $result;
 }
