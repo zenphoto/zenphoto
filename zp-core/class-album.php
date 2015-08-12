@@ -1562,6 +1562,7 @@ class dynamicAlbum extends AlbumBase {
 			if ($new) {
 				$title = $this->get('title');
 				$this->set('title', stripSuffix($title)); // Strip the suffix
+				$this->setDateTime(strftime('%Y-%m-%d %H:%M:%S', $this->get('mtime')));
 				$this->save();
 				zp_apply_filter('new_album', $this);
 			}

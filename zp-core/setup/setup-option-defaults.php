@@ -53,16 +53,13 @@ if ($result) {
 	}
 }
 
-//migrate CMS "publish" dates
-foreach (array('news', 'pages') as $table) {
+//migrate "publish" dates
+foreach (array('albums', 'images', 'news', 'pages') as $table) {
 	$sql = 'UPDATE ' . prefix($table) . ' SET `publishdate`=`date` WHERE `publishdate` IS NULL AND `show`="1"';
 	query($sql);
-	$sql = 'UPDATE ' . prefix($table) . ' SET `lastchange`=`date` WHERE `lastchange` IS NULL';
-	query($sql);
 }
-// Handle published albums/images that have no publish date
-foreach (array('albums' => 'mtime', 'images' => 'date') as $table => $source) {
-	$sql = 'UPDATE ' . prefix($table) . ' SET `publishdate`=`' . $source . '` WHERE `publishdate` IS NULL AND `show`="1"';
+foreach (array('news', 'pages') as $table) {
+	$sql = 'UPDATE ' . prefix($table) . ' SET `lastchange`=`date` WHERE `lastchange` IS NULL';
 	query($sql);
 }
 //migrate rotation and GPS data
@@ -183,7 +180,7 @@ if (isset($_GET['mod_rewrite'])) {
 		});
 	</script>
 	<p>
-	<?php echo gettext('Mod_Rewrite check:'); ?>
+		<?php echo gettext('Mod_Rewrite check:'); ?>
 		<br />
 		<span>
 			<img src="<?php echo FULLWEBPATH . '/' . $_zp_conf_vars['special_pages']['page']['rewrite']; ?>/setup_set-mod_rewrite?z=setup" title="<?php echo gettext('Mod_rewrite'); ?>" alt="<?php echo gettext('Mod_rewrite'); ?>" height="16px" width="16px" />
@@ -406,24 +403,24 @@ if (file_exists(SERVERPATH . '/' . THEMEFOLDER . '/effervescence_plus')) {
 }
 ?>
 <p>
-<?php
-$deprecate = false;
-$themes = array_keys($_zp_gallery->getThemes());
-natcasesort($themes);
-echo gettext('Theme setup:') . '<br />';
-foreach ($themes as $key => $theme) {
-	if (protectedTheme($theme)) {
-		unset($themes[$key]);
-	} else {
-		$deprecate = true;
-	}
-	?>
+	<?php
+	$deprecate = false;
+	$themes = array_keys($_zp_gallery->getThemes());
+	natcasesort($themes);
+	echo gettext('Theme setup:') . '<br />';
+	foreach ($themes as $key => $theme) {
+		if (protectedTheme($theme)) {
+			unset($themes[$key]);
+		} else {
+			$deprecate = true;
+		}
+		?>
 		<span>
 			<img src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/setup/setup_themeOptions.php?theme=' . urlencode($theme) . $debug; ?>" title="<?php echo $theme; ?>" alt="<?php echo $theme; ?>" height="16px" width="16px" />
 		</span>
-	<?php
-}
-?>
+		<?php
+	}
+	?>
 </p>
 
 <?php
@@ -646,24 +643,24 @@ foreach ($_languages as $language => $dirname) {
 $plugins = getPluginFiles('*.php');
 ?>
 <p>
-<?php
-$plugins = array_keys($plugins);
-natcasesort($plugins);
-echo gettext('Plugin setup:') . '<br />';
-foreach ($plugins as $key => $extension) {
-	$path = getPlugin($extension . '.php');
-	if (strpos($path, SERVERPATH . '/' . USER_PLUGIN_FOLDER) === 0) {
-		$pluginStream = file_get_contents($path);
-		if ($str = isolate('@category', $pluginStream)) {
-			preg_match('|@category\s+(.*)\s|', $str, $matches);
-			if (!isset($matches[1]) || $matches[1] != 'package') {
+	<?php
+	$plugins = array_keys($plugins);
+	natcasesort($plugins);
+	echo gettext('Plugin setup:') . '<br />';
+	foreach ($plugins as $key => $extension) {
+		$path = getPlugin($extension . '.php');
+		if (strpos($path, SERVERPATH . '/' . USER_PLUGIN_FOLDER) === 0) {
+			$pluginStream = file_get_contents($path);
+			if ($str = isolate('@category', $pluginStream)) {
+				preg_match('|@category\s+(.*)\s|', $str, $matches);
+				if (!isset($matches[1]) || $matches[1] != 'package') {
+					$deprecate = true;
+				}
+			} else {
 				$deprecate = true;
 			}
-		} else {
-			$deprecate = true;
 		}
-	}
-	?>
+		?>
 		<span>
 			<img src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/setup/setup_pluginOptions.php?plugin=' . $extension . $debug; ?>" title="<?php echo $extension; ?>" alt="<?php echo $extension; ?>" height="16px" width="16px" />
 		</span>
@@ -675,21 +672,21 @@ foreach ($plugins as $key => $extension) {
 	?>
 </p>
 
-	<?php
-	if ($deprecate) {
-		require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions.php');
-		$deprecated = new deprecated_functions();
-		$listed = sha1(serialize($deprecated->listed_functions));
-		if ($listed != getOption('deprecated_functions_signature')) {
-			setOption('deprecated_functions_signature', $listed);
-			enableExtension('deprecated-functions', 900 | CLASS_PLUGIN);
-			setupLog(gettext('There has been a change in function deprecation. The deprecated-functions plugin has been enabled.'), true);
-		}
-		$compatibility = sha1(serialize($themes)) . sha1(serialize($plugins));
-		if ($compatibility != getOption('zenphotoCompatibilityPack_signature')) {
-			setOption('zenphotoCompatibilityPack_signature', $compatibility);
-			enableExtension('zenphotoCompatibilityPack', 1 | CLASS_PLUGIN);
-			setupLog(gettext('There has been a change of themes or plugins. The zenphotoCompatibilityPack plugin has been enabled.'), true);
-		}
+<?php
+if ($deprecate) {
+	require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions.php');
+	$deprecated = new deprecated_functions();
+	$listed = sha1(serialize($deprecated->listed_functions));
+	if ($listed != getOption('deprecated_functions_signature')) {
+		setOption('deprecated_functions_signature', $listed);
+		enableExtension('deprecated-functions', 900 | CLASS_PLUGIN);
+		setupLog(gettext('There has been a change in function deprecation. The deprecated-functions plugin has been enabled.'), true);
 	}
-	?>
+	$compatibility = sha1(serialize($themes)) . sha1(serialize($plugins));
+	if ($compatibility != getOption('zenphotoCompatibilityPack_signature')) {
+		setOption('zenphotoCompatibilityPack_signature', $compatibility);
+		enableExtension('zenphotoCompatibilityPack', 1 | CLASS_PLUGIN);
+		setupLog(gettext('There has been a change of themes or plugins. The zenphotoCompatibilityPack plugin has been enabled.'), true);
+	}
+}
+?>
