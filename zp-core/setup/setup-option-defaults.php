@@ -62,6 +62,15 @@ foreach (array('news', 'pages') as $table) {
 	$sql = 'UPDATE ' . prefix($table) . ' SET `lastchange`=`date` WHERE `lastchange` IS NULL';
 	query($sql);
 }
+// published albums where both the `publishdate` and the `date` were NULL
+$sql = 'SELECT `mtime`,`id` FROM ' . prefix('albums') . ' WHERE `publishdate` IS NULL AND `show`="1"';
+$result = query($sql);
+if ($result) {
+	while ($row = db_fetch_assoc($result)) {
+		$sql = 'UPDATE ' . prefix('albums') . ' SET `publishdate`=' . db_quote(date('Y-m-d H:i:s', $row['mtime'])) . ' WHERE `id`=' . $row['id'];
+		query($sql);
+	}
+}
 //migrate rotation and GPS data
 $result = db_list_fields('images');
 $where = '';
