@@ -1705,7 +1705,7 @@ class SearchEngine {
 	 * @return array
 	 */
 	function getImages($page = 0, $firstPageCount = 0, $sorttype = NULL, $sortdirection = NULL, $care = true, $mine = NULL) {
-		$this->images = $this->getSearchImages($sorttype, $sortdirection, $mine);
+		$this->images = array_values($this->getSearchImages($sorttype, $sortdirection, $mine));
 		if ($page == 0) {
 			return $this->images;
 		} else {

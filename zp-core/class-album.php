@@ -1246,7 +1246,7 @@ class Album extends AlbumBase {
 		$sortdirection = $sortdirection && strtolower($sortdirection) != 'asc';
 		if ($mine || is_null($this->images) || $care && $sorttype . $sortdirection !== $this->lastimagesort) {
 			$images = $this->loadFileNames();
-			$this->images = $this->sortImageArray($images, $sorttype, $sortdirection, $mine);
+			$this->images = array_values($this->sortImageArray($images, $sorttype, $sortdirection, $mine));
 			$this->lastimagesort = $sorttype . $sortdirection;
 		}
 		return parent::getImages($page, $firstPageCount);
