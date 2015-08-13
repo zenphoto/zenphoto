@@ -232,14 +232,14 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 			<br class="clearall" />
 		</div> <!-- div box end -->
 		<?php
-// end of $page == "editcomment"
+		// end of $page == "editcomment"
 	} else {
 		?>
 		<p class="errorbox"><?php echo gettext('Comment does not exist'); ?></p>
 		<?php
 	}
 } else {
-// Set up some view option variables.
+	// Set up some view option variables.
 	if (isset($_GET['fulltext']) && $_GET['fulltext']) {
 		$fulltext = true;
 		$fulltexturl = '?fulltext = 1';

@@ -52,7 +52,7 @@ if (isset($_POST['savealbum'])) {
 				$_POST['return_unpublished'] = true; //	state is frozen at this point, so unpublishing should not impact
 				$words = sanitize($_POST['album_tag']);
 				$searchfields[] = 'tags_exact';
-// now tag each element
+				// now tag each element
 				if (isset($_POST['return_albums'])) {
 					$subalbums = $search->getAlbums(0);
 					foreach ($subalbums as $analbum) {
@@ -97,7 +97,7 @@ if (isset($_POST['savealbum'])) {
 					fwrite($f, "WORDS=$words\nTHUMB=$thumb\nFIELDS=" . implode(',', $searchfields) . $constraints . "\n");
 					fclose($f);
 					clearstatcache();
-// redirct to edit of this album
+					// redirct to edit of this album
 					header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-edit.php?page=edit&album=" . pathurlencode($redirect));
 					exitZP();
 				}

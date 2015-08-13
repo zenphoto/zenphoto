@@ -493,8 +493,9 @@ function printSetupFooter() {
 }
 
 function setupUserAuthorized() {
-	if (function_exists('zp_loggedin')) {
-		return zp_loggedin(ADMIN_RIGHTS);
+	global $_zp_authority, $_zp_loggedin;
+	if ($_zp_authority && $_zp_authority->getAdministrators()) {
+		return $_zp_loggedin & ADMIN_RIGHTS;
 	} else {
 		return true; //	in a primitive environment
 	}

@@ -288,12 +288,12 @@ function setupDomain($domain = NULL, $type = NULL) {
 			break;
 	}
 	bindtextdomain($domain, $domainpath);
-// function only since php 4.2.0
+	// function only since php 4.2.0
 	if (function_exists('bind_textdomain_codeset')) {
 		bind_textdomain_codeset($domain, 'UTF-8');
 	}
 	textdomain($domain);
-//invalidate because the locale was not setup until now
+	//invalidate because the locale was not setup until now
 	$_zp_active_languages = $_zp_all_languages = NULL;
 }
 
@@ -319,7 +319,7 @@ function setupCurrentLocale($override = NULL) {
 			$locale = array_shift($languages);
 		}
 	}
-// gettext setup
+	// gettext setup
 	@putenv("LANG=$locale"); // Windows ???
 	@putenv("LANGUAGE=$locale"); // Windows ???
 	$result = i18nSetLocale($locale);
@@ -349,7 +349,7 @@ function setupCurrentLocale($override = NULL) {
  * @return array
  */
 function parseHttpAcceptLanguage($str = NULL) {
-// getting http instruction if not provided
+	// getting http instruction if not provided
 	if (!$str) {
 		$str = @$_SERVER['HTTP_ACCEPT_LANGUAGE'];
 	}
@@ -357,29 +357,29 @@ function parseHttpAcceptLanguage($str = NULL) {
 		return array();
 	}
 	$langs = explode(',', $str);
-// creating output list
+	// creating output list
 	$accepted = array();
 	foreach ($langs as $lang) {
-// parsing language preference instructions
-// 2_digit_code[-longer_code][;q=coefficient]
+		// parsing language preference instructions
+		// 2_digit_code[-longer_code][;q=coefficient]
 		if (preg_match('/([A-Za-z]{1,2})(-([A-Za-z0-9]+))?(;q=([0-9\.]+))?/', $lang, $found)) {
-// 2 digit lang code
+			// 2 digit lang code
 			$code = $found[1];
-// lang code complement
+			// lang code complement
 			$morecode = array_key_exists(3, $found) ? $found[3] : false;
-// full lang code
+			// full lang code
 			$fullcode = $morecode ? $code . '_' . $morecode : $code;
-// coefficient (preference value, will be used in sorting the list)
+			// coefficient (preference value, will be used in sorting the list)
 			$coef = sprintf('%3.1f', array_key_exists(5, $found) ? $found[5] : '1');
-// for sorting by coefficient
+			// for sorting by coefficient
 			if ($coef) { //	q=0 means do not supply this language
-// adding
+				// adding
 				$accepted[$coef . '-' . $code] = array('code' => $code, 'coef' => $coef, 'morecode' => $morecode, 'fullcode' => $fullcode);
 			}
 		}
 	}
 
-// sorting the list by coefficient desc
+	// sorting the list by coefficient desc
 	krsort($accepted);
 	if (DEBUG_LOCALE) {
 		debugLog("parseHttpAcceptLanguage($str)");
@@ -474,7 +474,7 @@ function setMainDomain() {
 	}
 
 	if (empty($_zp_current_locale)) {
-// return "default" language, English if allowed, otherwise whatever is the "first" allowed language
+		// return "default" language, English if allowed, otherwise whatever is the "first" allowed language
 		$languageSupport = generateLanguageList();
 		if (defined('BASE_LOCALE')) {
 			$loc = BASE_LOCALE;
@@ -550,10 +550,10 @@ function getTimezones() {
 				}
 			}
 		}
-// Only keep one city (the first and also most important) for each set of possibilities.
+		// Only keep one city (the first and also most important) for each set of possibilities.
 		$cities = array_unique($cities);
 
-// Sort by area/city name.
+		// Sort by area/city name.
 		ksort($cities, SORT_LOCALE_STRING);
 	}
 	return $cities;

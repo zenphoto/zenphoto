@@ -36,11 +36,11 @@ $_definitions = array();
 								echo $element['define'];
 								?>
 								</dt>
-								<dt>
-								<?php
-								echo strtr($element['rewrite'], $_definitions);
-								?>
-								</dt>
+								<dd>
+									<?php
+									echo strtr($element['rewrite'], $_definitions);
+									?>
+								</dd>
 								<?php
 							}
 						}

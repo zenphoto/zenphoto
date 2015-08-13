@@ -51,10 +51,10 @@ $_zp_page_check = 'checkPageValidity';
 // Display an arbitrary theme-included PHP page
 if (isset($_GET['p'])) {
 	$_index_theme = prepareCustomPage();
-// Display an Image page.
+	// Display an Image page.
 } else if (in_context(ZP_IMAGE)) {
 	$_index_theme = prepareImagePage();
-// Display an Album page.
+	// Display an Album page.
 } else if (in_context(ZP_ALBUM)) {
 	$_index_theme = prepareAlbumPage();
 	// Display the Index page.

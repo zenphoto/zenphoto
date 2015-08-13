@@ -3,7 +3,7 @@
  *
  * This plugin is the centralized Cache manager for Zenphoto20.
 
- It provides:
+  It provides:
  * <ul>
  * 		<li>Options to purge the HTML and RSS caches on publish state changes of:
  * 			<ul>
@@ -97,7 +97,7 @@ $_zp_cached_feeds = array('RSS'); //	Add to this array any feed classes that nee
 
 class cacheManagerFeed extends feed {
 
-//fake feed descendent class so we can use the feed::clearCache()
+	//fake feed descendent class so we can use the feed::clearCache()
 
 	protected $feed = NULL;
 
@@ -401,7 +401,7 @@ class cacheManager {
 						'rights'			 => ADMIN_RIGHTS,
 						'XSRFTag'			 => 'ClearHTMLCache'
 		);
-		
+
 		$buttons[] = array(
 						'category'		 => gettext('Cache'),
 						'enable'			 => true,

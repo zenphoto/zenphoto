@@ -349,7 +349,7 @@ class RSS extends feed {
 		parent::__construct($options);
 
 		if (isset($options['token'])) {
-//	The link camed from a logged in user, see if it is valid
+			//	The link camed from a logged in user, see if it is valid
 			$link = $options;
 			unset($link['token']);
 			$token = Zenphoto_Authority::passwordHash(serialize($link), '');
@@ -361,11 +361,11 @@ class RSS extends feed {
 				}
 			}
 		}
-// general feed setup
+		// general feed setup
 		$channeltitlemode = getOption('RSS_title');
 		$this->host = html_encode($_SERVER["HTTP_HOST"]);
 
-//channeltitle general
+		//channeltitle general
 		switch ($channeltitlemode) {
 			case 'gallery':
 				$this->channel_title = $_zp_gallery->getBareTitle($this->locale);
@@ -382,7 +382,7 @@ class RSS extends feed {
 				break;
 		}
 
-// individual feedtype setup
+		// individual feedtype setup
 		switch ($this->feedtype) {
 
 			case 'gallery':
@@ -589,34 +589,34 @@ class RSS extends feed {
 				$feeditem['desc'] = '<a title="' . html_encode($title) . ' in ' . html_encode($albumobj->getTitle($this->locale)) . '" href="' . PROTOCOL . '://' . $itemlink . '"><img src="' . PROTOCOL . '://' . $this->host . html_encode(pathurlencode($item->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE))) . '" alt="' . html_encode($title) . '" /></a>' . $item->getDesc($this->locale) . $datecontent;
 			}
 		}
-// title
+		// title
 		if ($this->mode != "albums") {
 			$feeditem['title'] = sprintf('%1$s (%2$s)', $item->getTitle($this->locale), $albumobj->getTitle($this->locale));
 		} else {
 			$feeditem['title'] = $imagenumber;
 		}
-//link
+		//link
 		$feeditem['link'] = PROTOCOL . '://' . $itemlink;
 
-// enclosure
+		// enclosure
 		$feeditem['enclosure'] = '';
 		if (getOption("RSS_enclosure") AND $this->mode != "albums") {
 			$feeditem['enclosure'] = '<enclosure url="' . PROTOCOL . '://' . $fullimagelink . '" type="' . getMimeString($ext) . '" length="' . filesize($item->localpath) . '" />';
 		}
-//category
+		//category
 		if ($this->mode != "albums") {
 			$feeditem['category'] = html_encode($albumobj->getTitle($this->locale));
 		} else {
 			$feeditem['category'] = html_encode($albumobj->getTitle($this->locale));
 		}
-//media content
+		//media content
 		$feeditem['media_content'] = '';
 		$feeditem['media_thumbnail'] = '';
 		if (getOption("RSS_mediarss") AND $this->mode != "albums") {
 			$feeditem['media_content'] = '<media:content url="' . PROTOCOL . '://' . $fullimagelink . '" type="image/jpeg" />';
 			$feeditem['media_thumbnail'] = '<media:thumbnail url="' . PROTOCOL . '://' . $fullimagelink . '" width="' . $this->imagesize . '"	height="' . $this->imagesize . '" />';
 		}
-//date
+		//date
 		if ($this->mode != "albums") {
 			$feeditem['pubdate'] = date("r", strtotime($item->getPublishDate()));
 		} else {

@@ -276,7 +276,7 @@ class cmsFilters {
 	static function admin_toolbox_global($zf) {
 		global $_zp_CMS;
 		if (zp_loggedin(ZENPAGE_NEWS_RIGHTS) && $_zp_CMS && $_zp_CMS->news_enabled) {
-// admin has zenpage rights, provide link to the Zenpage admin tab
+			// admin has zenpage rights, provide link to the Zenpage admin tab
 			echo "<li><a href=\"" . $zf . '/' . PLUGIN_FOLDER . "/zenpage/admin-news.php\">" . gettext("News") . "</a></li>";
 		}
 		if (zp_loggedin(ZENPAGE_PAGES_RIGHTS) && $_zp_CMS && $_zp_CMS->pages_enabled) {
@@ -288,10 +288,10 @@ class cmsFilters {
 	static function admin_toolbox_pages($redirect, $zf) {
 		global $_zp_CMS;
 		if (zp_loggedin(ZENPAGE_PAGES_RIGHTS) && $_zp_CMS && $_zp_CMS->pages_enabled) {
-// page is zenpage page--provide edit, delete, and add links
+			// page is zenpage page--provide edit, delete, and add links
 			echo "<li><a href=\"" . $zf . '/' . PLUGIN_FOLDER . "/zenpage/admin-edit.php?page&amp;edit&amp;titlelink=" . urlencode(getPageTitlelink()) . "&amp;subpage=object\">" . gettext("Edit Page") . "</a></li>";
 			if (GALLERY_SESSION) {
-// XSRF defense requires sessions
+				// XSRF defense requires sessions
 				?>
 				<li><a href="javascript:confirmDelete('<?php echo $zf . '/' . PLUGIN_FOLDER; ?>/zenpage/page-admin.php?del=<?php echo getPageID(); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete'); ?>',deletePage)"
 							 title="<?php echo gettext("Delete page"); ?>"><?php echo gettext("Delete Page"); ?>
@@ -307,10 +307,10 @@ class cmsFilters {
 		global $_zp_CMS, $_zp_current_category, $_zp_current_article;
 		if (is_NewsArticle()) {
 			if (zp_loggedin(ZENPAGE_NEWS_RIGHTS) && $_zp_CMS && $_zp_CMS->news_enabled) {
-// page is a NewsArticle--provide zenpage edit, delete, and Add links
+				// page is a NewsArticle--provide zenpage edit, delete, and Add links
 				echo "<li><a href=\"" . $zf . '/' . PLUGIN_FOLDER . "/zenpage/admin-edit.php?newsarticle&amp;edit&amp;titlelink=" . html_encode($_zp_current_article->getTitleLink()) . "&amp;subpage=object\">" . gettext("Edit Article") . "</a></li>";
 				if (GALLERY_SESSION) {
-// XSRF defense requires sessions
+					// XSRF defense requires sessions
 					?>
 					<li>
 						<a href="javascript:confirmDelete('<?php echo $zf . '/' . PLUGIN_FOLDER; ?>/zenpage/admin-news.php?del=<?php echo getNewsID(); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete'); ?>',deleteArticle)"

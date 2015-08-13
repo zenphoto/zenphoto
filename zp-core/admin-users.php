@@ -13,7 +13,7 @@ define('OFFSET_PATH', 1);
 function markUpdated() {
 	global $updated;
 	$updated = true;
-//for finding out who did it!	debugLogBacktrace('updated');
+	//for finding out who did it!	debugLogBacktrace('updated');
 }
 
 require_once(dirname(__FILE__) . '/admin-globals.php');
@@ -210,14 +210,12 @@ if (isset($_GET['action'])) {
 							if ($updated) {
 								$returntab .= '&show[]=' . $user;
 								$msg = zp_apply_filter('save_user', $msg, $userobj, $what);
-								if (empty($msg)) {
-									if (!$notify)
-										$userobj->transient = false;
-									$userobj->save();
-								} else {
+								if (!empty($msg)) {
 									$notify = '?mismatch=format&error=' . urlencode($msg);
 									$error = true;
 								}
+								$userobj->transient = false;
+								$userobj->save();
 							}
 						}
 					}
@@ -282,7 +280,7 @@ echo $refresh;
 		<?php printTabs(); ?>
 		<div id="content">
 			<?php
-			if ($_zp_current_admin_obj->reset && !$refresh) {
+			if ($_zp_current_admin_obj->exists && $_zp_current_admin_obj->reset && !$refresh) {
 				echo "<div class=\"errorbox space\">";
 				echo "<h2>" . gettext("Password reset request.") . "</h2>";
 				echo "</div>";
@@ -446,9 +444,18 @@ echo $refresh;
 								$('#admin_language_' + id).val(lang);
 							}
 						}
+						function closePasswords() {
+							$('.disclose_password').each(function () {
+								if ($(this).prop('checked')) {
+									id = $(this).attr('id').replace('disclose_password', '');
+									togglePassword(id);
+								}
+							});
+						}
 					</script>
-					<form class="dirtylistening" onReset="setClean('user_form');" id="user_form" action="?action=saveoptions<?php echo str_replace('&', '&amp;', $ticket); ?>" method="post" autocomplete="off" onsubmit="return checkNewuser();" >
-						<?php XSRFToken('saveadmin'); ?>
+					<form class="dirtylistening" onReset="closePasswords();
+							setClean('user_form');" id="user_form" action="?action=saveoptions<?php echo str_replace('&', '&amp;', $ticket); ?>" method="post" autocomplete="off" onsubmit="return checkNewuser();" >
+								<?php XSRFToken('saveadmin'); ?>
 						<input type="hidden" name="saveadminoptions" value="yes" />
 						<input type="hidden" name="subpage" value="<?php echo $subpage; ?>" />
 						<?php
@@ -677,13 +684,13 @@ echo $refresh;
 													<p>
 														<?php
 														$pad = false;
+														$pwd = $userobj->getPass();
 														if (!empty($userid) && !$clearPass) {
-															$x = $userobj->getPass();
-															if (!empty($x)) {
+															if (!empty($pwd)) {
 																$pad = true;
 															}
 														}
-														if (in_array('password', $no_change)) {
+														if (!empty($pwd) && in_array('password', $no_change)) {
 															$password_disable = ' disabled="disabled"';
 														} else {
 															$password_disable = '';

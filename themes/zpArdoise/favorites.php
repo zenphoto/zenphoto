@@ -40,7 +40,7 @@ if (extensionEnabled('favoritesHandler')) {
 	?>
 
 	<?php
-//by definition an "album page"
+	//by definition an "album page"
 	include('inc_print_album_thumb.php');
 
 	if (getNumImages() > 0) {

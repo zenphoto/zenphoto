@@ -28,16 +28,11 @@ $_initial_session_path = session_save_path();
 
 require_once(dirname(dirname(__FILE__)) . '/global-definitions.php');
 require_once(dirname(dirname(__FILE__)) . '/functions-common.php');
-
-if (file_exists(dirname(dirname(dirname(__FILE__))) . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
-	require(dirname(dirname(dirname(__FILE__))) . '/' . DATA_FOLDER . '/' . CONFIGFILE);
-	require_once(dirname(dirname(__FILE__)) . '/functions.php');
-}
+require_once(dirname(__FILE__) . '/setup-functions.php');
 
 $session = zp_session_start();
 session_cache_limiter('nocache');
 
-require_once(dirname(__FILE__) . '/setup-functions.php');
 //allow only one setup to run
 $setupMutex = new zpMutex('sP');
 $setupMutex->lock();
@@ -87,7 +82,7 @@ if (file_exists($oldconfig = SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE))
 	}
 	$newconfig = false;
 } else if (file_exists($oldconfig = dirname(dirname(dirname(__FILE__))) . '/' . ZENFOLDER . '/zp-config.php')) {
-//migrate old root configuration file.
+	//migrate old root configuration file.
 	$zpconfig = file_get_contents($oldconfig);
 	$i = strpos($zpconfig, '/** Do not edit above this line. **/');
 	$zpconfig = "<?php\nglobal \$_zp_conf_vars;\n\$conf = array()\n" . substr($zpconfig, $i);
@@ -258,7 +253,7 @@ if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
 				$confDB = NULL;
 			}
 			if (extension_loaded(strtolower($confDB)) && file_exists(dirname(dirname(__FILE__)) . '/functions-db-' . $confDB . '.php')) {
-				$selected_database = $_zp_conf_vars['db_software'];
+				$selected_database = $confDB;
 			} else {
 				$selected_database = $preferred;
 				if ($preferred) {
@@ -273,13 +268,11 @@ if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
 			$updatezp_config = true;
 			$confDB = NULL;
 		}
-		if ($selected_database) {
-			require_once(dirname(dirname(__FILE__)) . '/functions-db-' . $selected_database . '.php');
-		} else {
+		if (!@$_zp_conf_vars['mysql_database']) {
 			require_once(dirname(dirname(__FILE__)) . '/functions-db-NULL.php');
 		}
 	} else {
-// There is a problem with the configuration file
+		// There is a problem with the configuration file
 		?>
 		<div style="background-color: red;font-size: xx-large;">
 			<p>
@@ -289,12 +282,12 @@ if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
 		<?php
 		exit();
 	}
+	require_once(dirname(dirname(__FILE__)) . '/functions.php');
 }
 
 if ($updatezp_config) {
 	storeConfig($zp_cfg);
 }
-
 $result = true;
 $environ = false;
 $DBcreated = false;
@@ -310,7 +303,7 @@ if ($selected_database) {
 		if ($result) {
 			if (db_num_rows($result) > 0) {
 				$upgrade = gettext("upgrade");
-// apply some critical updates to the database for migration issues
+				// apply some critical updates to the database for migration issues
 				query('ALTER TABLE ' . $_zp_conf_vars['mysql_prefix'] . 'administrators' . ' ADD COLUMN `valid` int(1) default 1', false);
 				query('ALTER TABLE ' . $_zp_conf_vars['mysql_prefix'] . 'administrators' . ' CHANGE `password` `pass` varchar(64)', false);
 				query('ALTER TABLE ' . $_zp_conf_vars['mysql_prefix'] . 'administrators' . ' ADD COLUMN `loggedin` datetime', false);
@@ -421,6 +414,7 @@ if ($setup_checked) {
 		}
 		setupLog(sprintf(gettext('ZenPhoto20 Setup v%1$s%2$s: %3$s'), ZENPHOTO_VERSION, $clone, date('r')), true, true); // initialize the log file
 	}
+
 	if ($environ) {
 		setupLog(gettext("Full environment"));
 	} else {
@@ -490,8 +484,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 				if ($connection && empty($_zp_options)) {
 					primeOptions();
 				}
-
-				if (!$setup_checked && (($upgrade && $autorun) || setupUserAuthorized())) {
+				if (!$connection || !$setup_checked && (($upgrade && $autorun) || setupUserAuthorized())) {
 					if ($blindInstall = ($upgrade && $autorun) && !setupUserAuthorized()) {
 						ob_start(); //	hide output for auto-upgrade
 					}
@@ -510,7 +503,6 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 					 */
 					global $_zp_conf_vars;
 					$good = true;
-
 					if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 						if (TEST_RELEASE) {
 							?>
@@ -1610,7 +1602,6 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 					if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
 
 						require(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
-						require_once(dirname(dirname(__FILE__)) . '/functions.php');
 						$task = '';
 						if (isset($_GET['create'])) {
 							$task = 'create';
@@ -1620,7 +1611,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 							$task = 'update';
 						}
 
-						if (db_connect($_zp_conf_vars) && empty($task)) {
+						if (db_connect($_zp_conf_vars, false) && empty($task)) {
 							$result = db_show('tables');
 							$tables = array();
 							$prefix = $_zp_conf_vars['mysql_prefix'];
@@ -1698,8 +1689,8 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 
 						/*
 						 * ********************************************************************************
-							Add new fields in the upgrade section. This section should remain static except for new
-							tables. This tactic keeps all changes in one place so that noting gets accidentaly omitted.
+						  Add new fields in the upgrade section. This section should remain static except for new
+						  tables. This tactic keeps all changes in one place so that noting gets accidentaly omitted.
 						 * ********************************************************************************** */
 
 						//v1.2
@@ -2353,7 +2344,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 						 * *************************************************************************************
 						 */
 						$createTables = true;
-						if (isset($_GET['create']) || isset($_GET['update']) || isset($_GET['protect_files']) && db_connect($_zp_conf_vars)) {
+						if (isset($_GET['create']) || isset($_GET['update']) || isset($_GET['protect_files']) && db_connect($_zp_conf_vars, false)) {
 							if (!isset($_GET['protect_files'])) {
 								if ($taskDisplay[substr($task, 0, 8)] == 'create') {
 									echo "<h3>" . gettext("About to create tables") . "...</h3>";
@@ -2493,7 +2484,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 								</script>
 								<?php
 							}
-						} else if (db_connect($_zp_conf_vars)) {
+						} else if (db_connect($_zp_conf_vars, false)) {
 							$task = '';
 							if (setupUserAuthorized() || $blindInstall) {
 								if (!empty($dbmsg)) {
@@ -2652,7 +2643,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 							<div class="error">
 								<h3><?php echo gettext("database did not connect"); ?></h3>
 								<p>
-									<?php echo gettext("If you haven not created the database yet, now would be a good time."); ?>
+									<?php echo gettext("If you have not created the database yet, now would be a good time."); ?>
 								</p>
 							</div>
 							<?php

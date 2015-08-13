@@ -236,7 +236,7 @@ class favorites extends AlbumBase {
 				}
 				$sortkey = str_replace('` ', ' ', $this->getImageSortKey($sorttype));
 				if (($sortkey == 'sort_order') || ($sortkey == 'RAND()')) {
-// manual sort is always ascending
+					// manual sort is always ascending
 					$order = false;
 				} else {
 					if (!is_null($sortdirection)) {
@@ -294,7 +294,7 @@ class favorites extends AlbumBase {
 			$images_per_page = max(1, getOption('images_per_page'));
 			$count = ($pageCount + (int) ceil(($imageCount - $_firstPageImages) / $images_per_page));
 			if ($count < $page && isset($_POST['addToFavorites']) && !$_POST['addToFavorites']) {
-//We've deleted last item on page, need a place to land when we return
+				//We've deleted last item on page, need a place to land when we return
 				global $_zp_page;
 				header('location: ' . FULLWEBPATH . '/' . $this->getLink($_zp_page - 1));
 				exitZP();

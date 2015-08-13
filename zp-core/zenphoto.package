@@ -1461,6 +1461,7 @@ zp-core/zp-extensions/image_effects.php
 zp-core/zp-extensions/ipBlocker.php
 zp-core/zp-extensions/jcarousel_thumb_nav.php
 zp-core/zp-extensions/jplayer.php
+zp-core/zp-extensions/LDAP_auth.php
 zp-core/zp-extensions/macroList.php
 zp-core/zp-extensions/menu_manager.php
 zp-core/zp-extensions/mergedRSS.php
@@ -1905,6 +1906,8 @@ zp-core/zp-extensions/jplayer/skin/zenphotolight/jplayer.zenphoto.play.png
 zp-core/zp-extensions/jplayer/skin/zenphotolight/jplayer.zenphoto.png
 zp-core/zp-extensions/jplayer/skin/zenphotolight/jplayer.zenphoto.seeking.gif
 zp-core/zp-extensions/jplayer/skin/zenphotolight/jplayer.zenphotolight.css
+zp-core/zp-extensions/LDAP_auth
+zp-core/zp-extensions/LDAP_auth/LDAP auth.php
 zp-core/zp-extensions/macroList
 zp-core/zp-extensions/macroList/macroList_tab.php
 zp-core/zp-extensions/menu_manager
@@ -2015,7 +2018,6 @@ zp-core/zp-extensions/slideshow/slideshow-controls.png
 zp-core/zp-extensions/slideshow/slideshow-counter.php
 zp-core/zp-extensions/slideshow/slideshow.css
 zp-core/zp-extensions/slideshow2
-zp-core/zp-extensions/slideshow2/cycle.css
 zp-core/zp-extensions/slideshow2/ios6fix.js
 zp-core/zp-extensions/slideshow2/jquery.cycle2.caption2.min.js
 zp-core/zp-extensions/slideshow2/jquery.cycle2.carousel.min.js
@@ -2030,6 +2032,7 @@ zp-core/zp-extensions/slideshow2/jquery.cycle2.swipe.min.js
 zp-core/zp-extensions/slideshow2/jquery.cycle2.tile.min.js
 zp-core/zp-extensions/slideshow2/jquery.cycle2.video.min.js
 zp-core/zp-extensions/slideshow2/slideshow-counter.php
+zp-core/zp-extensions/slideshow2/slideshow2.css
 zp-core/zp-extensions/slideshow2/fonts
 zp-core/zp-extensions/slideshow2/fonts/cycle2-icons.eot
 zp-core/zp-extensions/slideshow2/fonts/cycle2-icons.svg
@@ -2319,4 +2322,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-2321
+2324

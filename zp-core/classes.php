@@ -773,12 +773,7 @@ class ThemeObject extends PersistentObject {
 	 * @return string
 	 */
 	function getPublishDate() {
-		$dt = $this->get("publishdate");
-		if ($dt == '0000-00-00 00:00:00' || is_null($dt)) {
-			return $this->getDateTime();
-		} else {
-			return $dt;
-		}
+		return $this->get("publishdate");
 	}
 
 	/**

@@ -636,7 +636,7 @@ if (isset($_GET['download'])) {
 	}
 	$hash = getOption('downloadList_password');
 	if (GALLERY_SECURITY != 'public' || $hash) {
-//	credentials required to download
+		//	credentials required to download
 		if (!zp_loggedin((getOption('downloadList_rights')) ? FILES_RIGHTS : ALL_RIGHTS)) {
 			$user = getOption('downloadList_user');
 			if (!zp_handle_password('download_auth', $hash, $user)) {

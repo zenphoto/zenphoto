@@ -443,7 +443,7 @@ function setOptionDefault($key, $default) {
  */
 function loadLocalOptions($albumid, $theme) {
 	global $_zp_options;
-//raw theme options
+	//raw theme options
 	$sql = "SELECT LCASE(`name`) as name, `value` FROM " . prefix('options') . ' WHERE `theme`=' . db_quote($theme) . ' AND `ownerid`=0';
 	$optionlist = query_full_array($sql, false);
 	if ($optionlist !== false) {
@@ -452,7 +452,7 @@ function loadLocalOptions($albumid, $theme) {
 		}
 	}
 	if ($albumid) {
-//album-theme options
+		//album-theme options
 		$sql = "SELECT LCASE(`name`) as name, `value` FROM " . prefix('options') . ' WHERE `theme`=' . db_quote($theme) . ' AND `ownerid`=' . $albumid;
 		$optionlist = query_full_array($sql, false);
 		if ($optionlist !== false) {
@@ -502,7 +502,7 @@ function isHandledAlbum($path) {
 	global $_zp_albumHandlers;
 	foreach (array_keys($_zp_albumHandlers) as $suffix) {
 		if (file_exists($path . '.' . $suffix)) {
-//	it is a handled album sans suffix
+			//	it is a handled album sans suffix
 			return $suffix;
 		}
 	} return NULL;
@@ -522,13 +522,13 @@ function rewrite_get_album_image($albumvar, $imagevar) {
 	global $_zp_rewritten, $_zp_albumHandlers;
 	$ralbum = isset($_GET[$albumvar]) ? trim(sanitize_path($_GET[$albumvar]), '/') : NULL;
 	$rimage = isset($_GET[$imagevar]) ? sanitize($_GET[$imagevar]) : NULL;
-//	we assume that everything is correct if rewrite rules were not applied
+	//	we assume that everything is correct if rewrite rules were not applied
 	if ($_zp_rewritten) {
 		if (!empty($ralbum) && empty($rimage)) { //	rewrite rules never set the image part!
 			$path = internalToFilesystem(getAlbumFolder(SERVERPATH) . $ralbum);
 			if (IM_SUFFIX) { // require the rewrite have the suffix as well
 				if (preg_match('|^(.*)' . preg_quote(IM_SUFFIX) . '$|', $ralbum, $matches)) {
-//has an IM_SUFFIX attached
+					//has an IM_SUFFIX attached
 					$rimage = basename($matches[1]);
 					$ralbum = trim(dirname($matches[1]), '/');
 					$path = internalToFilesystem(getAlbumFolder(SERVERPATH) . $ralbum);
@@ -571,7 +571,7 @@ function rewrite_get_album_image($albumvar, $imagevar) {
  */
 function getImageCacheFilename($album8, $image8, $args) {
 	global $_zp_supported_images, $_zp_cachefileSuffix;
-// this function works in FILESYSTEM_CHARSET, so convert the file names
+	// this function works in FILESYSTEM_CHARSET, so convert the file names
 	$album = internalToFilesystem($album8);
 	if (is_array($image8)) {
 		$image8 = $image8['name'];
@@ -590,7 +590,7 @@ function getImageCacheFilename($album8, $image8, $args) {
 		$image = stripSuffix(internalToFilesystem($image8));
 	}
 
-// Set default variable values.
+	// Set default variable values.
 	$postfix = getImageCachePostfix($args);
 	if (empty($album)) {
 		$albumsep = '';
@@ -704,7 +704,7 @@ function getImageParameters($args, $album = NULL) {
 	$thumb_crop_height = getOption('thumb_crop_height');
 	$image_default_size = getOption('image_size');
 	$quality = getOption('image_quality');
-// Set up the parameters
+	// Set up the parameters
 	$thumb = $crop = false;
 	@list($size, $width, $height, $cw, $ch, $cx, $cy, $quality, $thumb, $crop, $thumbstandin, $WM, $adminrequest, $effects) = $args;
 	$thumb = $thumbstandin;
@@ -796,7 +796,7 @@ function getImageParameters($args, $album = NULL) {
 			}
 		}
 	}
-// Return an array of parameters used in image conversion.
+	// Return an array of parameters used in image conversion.
 	$args = array($size, $width, $height, $cw, $ch, $cx, $cy, $quality, $thumb, $crop, $thumbstandin, $WM, $adminrequest, $effects);
 	return $args;
 }
@@ -1123,7 +1123,7 @@ function build_url($parts) {
 function pathurlencode($path) {
 	$parts = parse_url($path);
 	if (isset($parts['query'])) {
-//	some kind of query link
+		//	some kind of query link
 		$pairs = parse_query($parts['query']);
 		$parts['query'] = http_build_query($pairs);
 	}
@@ -1305,7 +1305,7 @@ function getAlbumInherited($folder, $field, &$id) {
  * @return string
  */
 function themeSetup($album) {
-// we need to conserve memory in i.php so loading the classes is out of the question.
+	// we need to conserve memory in i.php so loading the classes is out of the question.
 	$id = NULL;
 	$theme = getAlbumInherited(filesystemToInternal($album), 'album_theme', $id);
 	if (empty($theme)) {
@@ -1346,15 +1346,6 @@ function getWatermarkPath($wm) {
 		$path = SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/watermarks/' . internalToFilesystem($wm) . '.png';
 	}
 	return $path;
-}
-
-/**
- * Checks to see if access was through a secure protocol
- *
- * @return bool
- */
-function secureServer() {
-	return isset($_SERVER['HTTPS']) && strpos(strtolower($_SERVER['HTTPS']), 'on') === 0;
 }
 
 /**
@@ -1433,8 +1424,9 @@ function checkInstall() {
 			$install = array('REQUESTS' => 'CONFIGURATION', 'ZENPHOTO' => '0.0.0[0000]');
 		}
 		preg_match('|([^-]*).*\[(.*)\]|', $install['ZENPHOTO'], $matches);
-		if (isset($install['REQUESTS']) || isset($matches[1]) && isset($matches[2]) && $matches[1] != $version[1] || $matches[2] != ZENPHOTO_RELEASE || ((time() & 7) == 0) && OFFSET_PATH != 2 && $i != serialize(installSignature())) {
-			_setup(0);
+		$mandatory = isset($install['REQUESTS']) || isset($matches[1]) && isset($matches[2]) && $matches[1] != $version[1] || $matches[2] != ZENPHOTO_RELEASE;
+		if ($mandatory || ((time() & 7) == 0) && OFFSET_PATH != 2 && $i != serialize(installSignature())) {
+			_setup((int) $mandatory);
 		}
 	}
 }
@@ -1494,7 +1486,8 @@ function installSignature() {
 	if ($i !== false) {
 		$version = substr($version, 0, $i);
 	}
-	return array_merge($testFiles, array('SERVER_SOFTWARE'	 => $s,
+	return array_merge($testFiles, array(
+					'SERVER_SOFTWARE'	 => $s,
 					'ZENPHOTO'				 => $version . '[' . ZENPHOTO_RELEASE . ']',
 					'FOLDER'					 => dirname(dirname(__FILE__)),
 					'DATABASE'				 => $dbs['application'] . ' ' . $dbs['version']
@@ -1512,33 +1505,6 @@ function exitZP() {
 		db_close();
 	}
 	exit();
-}
-
-/**
- *
- * Starts a zenphoto session (perhaps a secure one)
- */
-function zp_session_start() {
-	global $_zp_conf_vars;
-	if (session_id() == '') {
-		//	insure that the session data has a place to be saved
-		if (isset($_zp_conf_vars['session_save_path'])) {
-			session_save_path($_zp_conf_vars['session_save_path']);
-		} else {
-			$_session_path = session_save_path();
-			if (!file_exists($_session_path) || !is_writable($_session_path)) {
-				mkdir_recursive(SERVERPATH . '/' . DATA_FOLDER . '/PHP_sessions', FOLDER_MOD);
-				session_save_path(SERVERPATH . '/' . DATA_FOLDER . '/PHP_sessions');
-			}
-		}
-		if (secureServer()) {
-			// force session cookie to be secure when in https
-			$CookieInfo = session_get_cookie_params();
-			session_set_cookie_params($CookieInfo['lifetime'], $CookieInfo['path'], $CookieInfo['domain'], TRUE);
-		}
-		return session_start();
-	}
-	return NULL;
 }
 
 ?>

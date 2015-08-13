@@ -79,6 +79,7 @@ class favoritesAlbum extends favorites {
 		if ($new) {
 			$title = $this->get('title');
 			$this->set('title', stripSuffix($title)); // Strip the suffix
+			$this->setDateTime(strftime('%Y-%m-%d %H:%M:%S', $this->get('mtime')));
 			$this->save();
 			zp_apply_filter('new_album', $this);
 		}
@@ -92,7 +93,7 @@ class favoritesAlbum extends favorites {
 	 */
 	protected function setDefaults() {
 		global $_zp_gallery;
-// Set default data for a new Album (title and parent_id)
+		// Set default data for a new Album (title and parent_id)
 		parent::setDefaults();
 		$parentalbum = $this->getParent();
 		$this->set('mtime', filemtime($this->localpath));

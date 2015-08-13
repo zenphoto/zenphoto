@@ -21,16 +21,18 @@ if (!file_exists($testFile)) {
 	file_put_contents($testFile, '');
 }
 
-/* fix for NULL theme name */
-Query('UPDATE ' . prefix('options') . ' SET `theme`="" WHERE `theme` IS NULL');
-
-$lib_auth_extratext = "";
+// setup a hash seed
+$auth_extratext = "";
 $salt = 'abcdefghijklmnopqursuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789~!@#$%^&*()_+-={}[]|;,.<>?/';
 $list = range(0, strlen($salt) - 1);
 shuffle($list);
 for ($i = 0; $i < 30; $i++) {
-	$lib_auth_extratext = $lib_auth_extratext . $salt{$list[$i]};
+	$auth_extratext = $auth_extratext . $salt{$list[$i]};
 }
+setOptionDefault('extra_auth_hash_text', $auth_extratext);
+
+/* fix for NULL theme name */
+Query('UPDATE ' . prefix('options') . ' SET `theme`="" WHERE `theme` IS NULL');
 
 //clean up tag list quoted strings
 $sql = 'SELECT * FROM ' . prefix('tags') . ' WHERE `name` LIKE \'"%\' OR `name` LIKE "\'%"';
@@ -51,14 +53,24 @@ if ($result) {
 	}
 }
 
-//migrate CMS "publish" dates
-foreach (array('news', 'pages') as $table) {
-	$sql = 'UPDATE ' . prefix($table) . ' SET `publishdate`=`date` WHERE `publishdate` IS NULL';
+//migrate "publish" dates
+foreach (array('albums', 'images', 'news', 'pages') as $table) {
+	$sql = 'UPDATE ' . prefix($table) . ' SET `publishdate`=`date` WHERE `publishdate` IS NULL AND `show`="1"';
 	query($sql);
+}
+foreach (array('news', 'pages') as $table) {
 	$sql = 'UPDATE ' . prefix($table) . ' SET `lastchange`=`date` WHERE `lastchange` IS NULL';
 	query($sql);
 }
-
+// published albums where both the `publishdate` and the `date` were NULL
+$sql = 'SELECT `mtime`,`id` FROM ' . prefix('albums') . ' WHERE `publishdate` IS NULL AND `show`="1"';
+$result = query($sql);
+if ($result) {
+	while ($row = db_fetch_assoc($result)) {
+		$sql = 'UPDATE ' . prefix('albums') . ' SET `publishdate`=' . db_quote(date('Y-m-d H:i:s', $row['mtime'])) . ' WHERE `id`=' . $row['id'];
+		query($sql);
+	}
+}
 //migrate rotation and GPS data
 $result = db_list_fields('images');
 $where = '';
@@ -105,7 +117,7 @@ $admins = $_zp_authority->getAdministrators('all');
 $str = gettext("What is your father’s middle name?");
 $questions[] = getSerializedArray(getAllTranslations($str));
 $str = gettext("What street did your Grandmother live on?");
-$questions[] = getSerializedArray(getAllTranslations($str));
+$questions [] = getSerializedArray(getAllTranslations($str));
 $str = gettext("Who was your favorite singer?");
 $questions[] = getSerializedArray(getAllTranslations($str));
 $str = gettext("When did you first get a computer?");
@@ -134,17 +146,18 @@ if (empty($admins)) { //	empty administrators table
 	} else {
 		if (Zenphoto_Authority::$preferred_version > ($oldv = getOption('libauth_version'))) {
 			if (empty($oldv)) {
-//	The password hash of these old versions did not have the extra text.
-//	Note: if the administrators table is empty we will re-do this option with the good stuff.
+				//	The password hash of these old versions did not have the extra text.
+				//	Note: if the administrators table is empty we will re-do this option with the good stuff.
 				purgeOption('extra_auth_hash_text');
 				setOptionDefault('extra_auth_hash_text', '');
+			} else {
+				$msg = sprintf(gettext('Migrating lib-auth data version %1$s => version %2$s '), $oldv, Zenphoto_Authority::$preferred_version);
+				if (!$_zp_authority->migrateAuth(Zenphoto_Authority::$preferred_version)) {
+					$msg .= ': ' . gettext('failed');
+				}
+				echo $msg;
+				setupLog($msg, true);
 			}
-			$msg = sprintf(gettext('Migrating lib-auth data version %1$s => version %2$s'), $oldv, Zenphoto_Authority::$preferred_version);
-			if (!$_zp_authority->migrateAuth(Zenphoto_Authority::$preferred_version)) {
-				$msg .= ': ' . gettext('failed');
-			}
-			echo $msg;
-			setupLog($msg, true);
 		} if (function_exists('hash')) {
 			setOption('strong_hash', 3);
 		} else {
@@ -158,10 +171,6 @@ if (empty($admins)) { //	empty administrators table
 	}
 	$groupsdefined = @unserialize(getOption('defined_groups'));
 }
-setOptionDefault('extra_auth_hash_text', $lib_auth_extratext);
-setOptionDefault('password_strength', 10);
-setOptionDefault('min_password_lenght', 6);
-setOptionDefault('user_album_edit_default', 1);
 
 // old configuration opitons. preserve them
 $conf = $_zp_conf_vars;
@@ -194,7 +203,7 @@ if (isset($_POST['setUTF8URI'])) {
 		setupLog(gettext('Setup could not find a configuration that allows image URIs containing diacritical marks.'), true);
 		setOptionDefault('UTF8_image_URI', 1);
 	} else {
-		setOptionDefault('UTF8_image_URI', (int) ($_POST['setUTF8URI'] == 'internal'));
+		setOptionDefault('UTF8_image_URI', (int) ( $_POST['setUTF8URI'] == 'internal'));
 	}
 }
 setOptionDefault('server_protocol', "http");
@@ -428,7 +437,7 @@ if (file_exists(SERVERPATH . '/' . THEMEFOLDER . '/effervescence_plus')) {
 if (getOption('search_space_is_OR')) {
 	setOption('search_space_is', '|');
 }
-query('DELETE FROM ' . prefix('options') . ' WHERE `name`="search_space_is_OR"', false);
+query('DELETE FROM ' . prefix('options') . ' WHERE  `name` ="search_space_is_OR"', false);
 
 if (!file_exists(SERVERPATH . '/favicon.ico')) {
 	@copy(SERVERPATH . '/' . ZENFOLDER . '/images/favicon.ico', SERVERPATH . '/favicon.ico');
@@ -442,7 +451,7 @@ if (!file_exists(SERVERPATH . '/favicon.ico')) {
 	}
 }
 
-setOptionDefault('default_copyright', sprintf(gettext('Copyright %1$u: %2$s'), date('Y'), $_SERVER["HTTP_HOST"]));
+setOptionDefault('default_copyright', sprintf(gettext('Copyright %1$u  : %2$s '), date('Y'), $_SERVER["HTTP_HOST"]));
 
 if (getOption('comment_name_required') == 1) {
 	setOption('comment_name_required', 'required');
@@ -592,7 +601,7 @@ setOptionDefault('search_image_sort_type', 'title');
 setOptionDefault('search_album_sort_direction', '');
 setOptionDefault('search_image_sort_direction', '');
 
-query('UPDATE ' . prefix('administrators') . ' SET `passhash`=' . ((int) getOption('strong_hash')) . ' WHERE `valid`>=1 AND `passhash` IS NULL');
+query('UPDATE ' . prefix('administrators') . ' SET             `passhash`=' . ((int) getOption('strong_hash')) . ' WHERE `valid`>=1 AND `passhash` IS NULL');
 query('UPDATE ' . prefix('administrators') . ' SET `passupdate`=' . db_quote(date('Y-m-d H:i:s')) . ' WHERE `valid`>=1 AND `passupdate` IS NULL');
 setOptionDefault('image_processor_flooding_protection', 1);
 setOptionDefault('codeblock_first_tab', 1);

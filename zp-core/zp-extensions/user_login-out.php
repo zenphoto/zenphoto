@@ -150,7 +150,7 @@ function printUserLogin_out($before = '', $after = '', $showLoginForm = NULL, $l
 						?>
 						<script type="text/javascript">
 							// <!-- <![CDATA[
-							$(document).ready(function() {
+							$(document).ready(function () {
 								$(".logonlink").colorbox({
 									inline: true,
 									innerWidth: "400px",
@@ -179,7 +179,7 @@ function printUserLogin_out($before = '', $after = '', $showLoginForm = NULL, $l
 						break;
 					}
 				default:
-					if ($loginlink = zp_apply_filter('login_link', getCustomPageURL('password'))) {
+					if ($loginlink = zp_apply_filter('login_link', PROTOCOL . '://' . $_SERVER['HTTP_HOST'] . WEBPATH . "/" . ZENFOLDER . '/admin.php')) {
 						if ($before) {
 							echo '<span class="beforetext">' . html_encodeTagged($before) . '</span>';
 						}

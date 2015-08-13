@@ -25,6 +25,11 @@ class _Authority {
 	 * @return lib_auth_options
 	 */
 	function __construct() {
+		if (OFFSET_PATH == 2) {
+			setOptionDefault('password_strength', 10);
+			setOptionDefault('min_password_lenght', 6);
+			setOptionDefault('user_album_edit_default', 1);
+		}
 		$this->admin_all = $this->admin_groups = $this->admin_users = $this->admin_other = array();
 
 		$sql = 'SELECT * FROM ' . prefix('administrators') . ' ORDER BY `rights` DESC, `id`';
@@ -575,10 +580,10 @@ class _Authority {
 								'MANAGE_ALL_NEWS_RIGHTS'			 => array('value' => pow(2, 21), 'name' => gettext('Manage all'), 'set' => gettext('News'), 'display' => true, 'hint' => gettext('Users who do not have “Admin” rights normally are restricted to manage only objects to which they have been assigned. This right allows them to manage any Zenpage news article or category.')),
 								'MANAGE_ALL_PAGES_RIGHTS'			 => array('value' => pow(2, 22), 'name' => gettext('Manage all'), 'set' => gettext('Pages'), 'display' => true, 'hint' => gettext('Users who do not have “Admin” rights normally are restricted to manage only objects to which they have been assigned. This right allows them to manage any Zenpage page.')),
 								'MANAGE_ALL_ALBUM_RIGHTS'			 => array('value' => pow(2, 23), 'name' => gettext('Manage all'), 'set' => gettext('Albums'), 'display' => true, 'hint' => gettext('Users who do not have “Admin” rights normally are restricted to manage only objects to which they have been assigned. This right allows them to manage any album in the gallery.')),
-//2**24
+								//2**24
 								'CODEBLOCK_RIGHTS'						 => array('value' => pow(2, 25), 'name' => gettext('Codeblock'), 'set' => gettext('General'), 'display' => true, 'hint' => gettext('Users with this right may edit Codeblocks.')),
 								'THEMES_RIGHTS'								 => array('value' => pow(2, 26), 'name' => gettext('Themes'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('Users with this right may make themes related changes. These are limited to the themes associated with albums checked in their managed albums list.')),
-//2*27
+								//2*27
 								'TAGS_RIGHTS'									 => array('value' => pow(2, 28), 'name' => gettext('Tags'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('Users with this right may make additions and changes to the set of tags.')),
 								'OPTIONS_RIGHTS'							 => array('value' => pow(2, 29), 'name' => gettext('Options'), 'set' => gettext('General'), 'display' => true, 'hint' => gettext('Users with this right may make changes on the options tabs.')),
 								'ADMIN_RIGHTS'								 => array('value' => pow(2, 30), 'name' => gettext('Admin'), 'set' => gettext('General'), 'display' => true, 'hint' => gettext('The master privilege. A user with "Admin" can do anything. (No matter what his other rights might indicate!)')));
@@ -794,15 +799,12 @@ class _Authority {
 	 */
 	function checkCookieCredentials() {
 		list($auth, $id) = explode('.', zp_getCookie('zp_user_auth') . '.');
-		if ($auth) {
-			$loggedin = $this->checkAuthorization($auth, $id);
-			$loggedin = zp_apply_filter('authorization_cookie', $loggedin, $auth, $id);
-			if ($loggedin) {
-				return $loggedin;
-			} else {
-				zp_clearCookie("zp_user_auth");
-			}
+		$loggedin = $this->checkAuthorization($auth, (int) $id);
+		$loggedin = zp_apply_filter('authorization_cookie', $loggedin, $auth, $id);
+		if ($loggedin) {
+			return $loggedin;
 		}
+		zp_clearCookie("zp_user_auth");
 		return NULL;
 	}
 
@@ -1244,14 +1246,15 @@ class _Authority {
 		</p>
 		<p>
 			<label for="disclose_password<?php echo $id; ?>"><?php echo gettext('Show password'); ?></label>
-			<input type="checkbox" name="disclose_password<?php echo $id; ?>" id="disclose_password<?php echo $id; ?>" onclick="passwordClear('<?php echo $id; ?>');
-					togglePassword('<?php echo $id; ?>');">
+			<input type="checkbox" name="disclose_password<?php echo $id; ?>" class="disclose_password" id="disclose_password<?php echo $id; ?>" onclick="passwordClear('<?php echo $id; ?>');
+							togglePassword('<?php echo $id; ?>');">
 		</p>
-		<p class="password_field_<?php echo $id; ?>">
+		<p class="password_field password_field_<?php echo $id; ?>">
 			<label for="pass_r<?php echo $id; ?>" id="match<?php echo $id; ?>"><?php echo gettext("Repeat password") . $flag; ?></label>
 			<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
 						 name="pass_r<?php echo $id ?>" value="<?php echo $x; ?>"
-						 id="pass_r<?php echo $id; ?>" disabled="disabled"
+						 id="pass_r<?php echo $id; ?>"
+						 disabled="disabled"
 						 onchange="$('#passrequired-<?php echo $id; ?>').val(1);"
 						 onkeydown="passwordClear('<?php echo $id; ?>');"
 						 onkeyup="passwordMatch('<?php echo $id; ?>');" class="inputbox"/>

@@ -134,8 +134,9 @@ class Video extends Image {
 	 * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
 	 */
 	static function getMetadataFields() {
-// Database Field       		 => array(0:'source', 1:'Metadata Key', 2;'ZP Display Text', 3:Display?	4:size,	5:enabled, type)
-		return array('VideoFormat'						 => array('VIDEO', 'fileformat', gettext('Video File Format'), false, 32, true, 'string'),
+		return array(
+						// Database Field     	 => array(0:'source', 1:'Metadata Key', 2;'ZP Display Text', 3:Display?	4:size,	5:enabled, type)
+						'VideoFormat'						 => array('VIDEO', 'fileformat', gettext('Video File Format'), false, 32, true, 'string'),
 						'VideoSize'							 => array('VIDEO', 'filesize', gettext('Video File Size'), false, 32, true, 'number'),
 						'VideoArtist'						 => array('VIDEO', 'artist', gettext('Video Artist'), false, 256, true, 'string'),
 						'VideoTitle'						 => array('VIDEO', 'title', gettext('Video Title'), false, 256, true, 'string'),

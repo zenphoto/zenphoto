@@ -13,7 +13,7 @@ require_once(dirname(__FILE__) . '/functions-image.php');
 admin_securityChecks(ALBUM_RIGHTS, $return = currentRelativeURL());
 
 $albumname = sanitize_path($_REQUEST['a']);
-$imagename = sanitize_path($_REQUEST['i']);
+$imagename = sanitize($_REQUEST['i']);
 
 $albumobj = newAlbum($albumname);
 
@@ -235,17 +235,17 @@ printAdminHeader('edit', 'thumbcrop');
 </script>
 </head>
 <body>
-<?php printLogoAndLinks(); ?>
+	<?php printLogoAndLinks(); ?>
 
 	<div id="main">
-<?php printTabs(); ?>
+		<?php printTabs(); ?>
 		<div id="content">
 			<h1><?php echo gettext("Custom thumbnail cropping") . ": <em>" . $albumobj->name . " (" . $albumobj->getTitle() . ") /" . $imageobj->filename . " (" . $imageobj->getTitle() . ")</em>"; ?></h1>
 			<p><?php echo gettext("You can change the portion of your image which is shown in thumbnails by cropping it here."); ?></p>
 			<div style="display:block">
 				<div style="float: left; width:<?php echo $thumbcropwidth; ?>px; text-align: center;margin-right: 18px;  margin-bottom: 10px;">
 					<img src="<?php echo html_encode(pathurlencode($currentthumbimage)); ?>" style="width:<?php echo $thumbcropwidth; ?>px;height:<?php echo $thumbcropheight; ?>px; border: 4px solid gray; float: left"/>
-<?php echo gettext("current thumbnail"); ?>
+					<?php echo gettext("current thumbnail"); ?>
 				</div>
 
 				<div style="text-align:left; float: left;">
@@ -261,7 +261,7 @@ printAdminHeader('edit', 'thumbcrop');
 					<div style="width:<?php echo $cropwidth; ?>px;height:<?php echo $cropheight; ?>px; overflow:hidden; border: 4px solid green; float: left">
 						<img src="<?php echo html_encode(pathurlencode($imageurl)); ?>" id="preview" />
 					</div>
-<?php echo gettext("thumbnail preview"); ?>
+					<?php echo gettext("thumbnail preview"); ?>
 				</div>
 				<br clear="all">
 				<!-- This is the form that our event handler fills -->
@@ -329,7 +329,7 @@ printAdminHeader('edit', 'thumbcrop');
 
 		</div><!-- content -->
 
-<?php printAdminFooter(); ?>
+		<?php printAdminFooter(); ?>
 	</div><!-- main -->
 </body>
 

@@ -36,7 +36,7 @@ function comment_form_PaginationJS() {
 				});
 			}
 		}
-		$(document).ready(function() {
+		$(document).ready(function () {
 			current_comment_N = $('.comment h4').index($(addrBar_hash)) + 1;
 			initPagination();
 			if (Comm_ID_found) {
@@ -45,7 +45,7 @@ function comment_form_PaginationJS() {
 		});
 		var current_comment_N, addrBar_hash = window.location.hash, Comm_ID_found = !addrBar_hash.search(/#zp_comment_id_/);
 		jQuery.fn.extend({
-			scrollToMe: function() {
+			scrollToMe: function () {
 				var x = jQuery(this).offset().top - 10;
 				jQuery('html,body').animate({scrollTop: x}, 400);
 			}});
@@ -241,8 +241,8 @@ function comment_form_addComment($name, $email, $website, $comment, $code, $code
 	$name = trim($name);
 	$email = trim($email);
 	$website = trim($website);
-// Let the comment have trailing line breaks and space? Nah...
-// Also (in)validate HTML here, and in $name.
+	// Let the comment have trailing line breaks and space? Nah...
+	// Also (in)validate HTML here, and in $name.
 	$comment = trim($comment);
 	$receiverid = $receiver->getID();
 	$goodMessage = 2;
@@ -881,7 +881,7 @@ function getCommentCount() {
  */
 function next_comment($desc = false) {
 	global $_zp_current_image, $_zp_current_album, $_zp_current_comment, $_zp_comments, $_zp_current_page, $_zp_current_article;
-//ZENPAGE: comments support
+	//ZENPAGE: comments support
 	if (is_null($_zp_current_comment)) {
 		if (in_context(ZP_IMAGE) AND in_context(ZP_ALBUM)) {
 			if (is_null($_zp_current_image))

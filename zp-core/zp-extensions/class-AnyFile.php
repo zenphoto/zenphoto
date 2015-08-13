@@ -62,10 +62,6 @@ class AnyFile_Options {
 		} else {
 			$mysetoptions = array();
 		}
-
-
-		var_dump(getOption('AnyFile_file_new'));
-
 		if ($new = getOption('AnyFile_file_new')) {
 			$mysetoptions[] = $new;
 		}

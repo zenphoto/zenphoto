@@ -2691,9 +2691,6 @@ dt,dd {
 	padding: 5px;
 }
 
-dt {
-	font-weight: bold;
-}
 dd {
 	width: 60%;
 	margin-left: -10px;

@@ -70,7 +70,7 @@ class crop_image {
 }
 
 $albumname = sanitize_path($_REQUEST['a']);
-$imagename = sanitize_path($_REQUEST['i']);
+$imagename = sanitize($_REQUEST['i']);
 $album = newAlbum($albumname);
 if (!$album->isMyItem(ALBUM_RIGHTS)) { // prevent nefarious access to this page.
 	if (!zp_apply_filter('admin_managed_albums_access', false, $return)) {

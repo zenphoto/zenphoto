@@ -580,6 +580,42 @@ function debugLogVar($message) {
 }
 
 /**
+ * Checks to see if access was through a secure protocol
+ *
+ * @return bool
+ */
+function secureServer() {
+	return isset($_SERVER['HTTPS']) && strpos(strtolower($_SERVER['HTTPS']), 'on') === 0;
+}
+
+/**
+ *
+ * Starts a zenphoto session (perhaps a secure one)
+ */
+function zp_session_start() {
+	global $_zp_conf_vars;
+	if (session_id() == '') {
+		//	insure that the session data has a place to be saved
+		if (isset($_zp_conf_vars['session_save_path'])) {
+			session_save_path($_zp_conf_vars['session_save_path']);
+		} else {
+			$_session_path = session_save_path();
+			if (!file_exists($_session_path) || !is_writable($_session_path)) {
+				mkdir_recursive(SERVERPATH . '/' . DATA_FOLDER . '/PHP_sessions', FOLDER_MOD);
+				session_save_path(SERVERPATH . '/' . DATA_FOLDER . '/PHP_sessions');
+			}
+		}
+		if (secureServer()) {
+			// force session cookie to be secure when in https
+			$CookieInfo = session_get_cookie_params();
+			session_set_cookie_params($CookieInfo['lifetime'], $CookieInfo['path'], $CookieInfo['domain'], TRUE);
+		}
+		return session_start();
+	}
+	return NULL;
+}
+
+/**
  * Returns the value of a cookie from either the cookies or from $_SESSION[]
  *
  * @param string $name the name of the cookie
@@ -711,7 +747,7 @@ class zpMutex {
 
 	function __construct($lock = 'zP', $concurrent = NULL, $folder = NULL) {
 
-// if any of the construction fails, run in free mode (lock = NULL)
+		// if any of the construction fails, run in free mode (lock = NULL)
 		if (function_exists('flock') && defined('SERVERPATH')) {
 			if (is_null($folder)) {
 				$folder = SERVERPATH . '/';
@@ -727,8 +763,8 @@ class zpMutex {
 		return $this->lock;
 	}
 
-// returns the integer id of the lock to be obtained
-// rotates locks sequentially mod $concurrent
+	// returns the integer id of the lock to be obtained
+	// rotates locks sequentially mod $concurrent
 	private static function which_lock($lock, $concurrent, $folder) {
 		global $_zp_mutex;
 		$counter_file = $folder . DATA_FOLDER . '/' . MUTEX_FOLDER . '/' . $lock . '_counter';
@@ -770,7 +806,7 @@ class zpMutex {
 	 */
 	public function unlock() {
 		if ($this->locked) {
-//Only unlock a locked mutex.
+			//Only unlock a locked mutex.
 			$this->locked = false;
 			ignore_user_abort($this->ignoreUserAbort); //Restore the ignore_user_abort setting.
 			flock($this->mutex, LOCK_UN);

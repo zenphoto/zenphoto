@@ -48,7 +48,7 @@ if (themeIsEditable($theme)) {
 		}
 		$file_to_edit = str_replace('\\', '/', SERVERPATH . '/themes/' . internalToFilesystem($theme) . '/' . sanitize($_GET['file']));
 	}
-// Handle POST that updates a file
+	// Handle POST that updates a file
 	if (isset($_POST['action']) && $_POST['action'] == 'edit_file' && $file_to_edit && !isset($messages['errorbox'])) {
 		XSRFdefender('edit_theme');
 		$file_content = sanitize($_POST['newcontent'], 0);
@@ -70,7 +70,7 @@ if (themeIsEditable($theme)) {
 		}
 	}
 
-// Get file contents
+	// Get file contents
 	if ($file_to_edit && !isset($messages['errorbox'])) {
 		$file_content = @file_get_contents($file_to_edit);
 		$file_content = html_encode($file_content);

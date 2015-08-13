@@ -424,7 +424,7 @@ function prepareImagePage() {
 	handleSearchParms('image', $_zp_current_album, $_zp_current_image);
 	$theme = setupTheme();
 	$_zp_gallery_page = basename($_zp_script = THEMEFOLDER . "/$theme/image.php");
-// re-initialize video dimensions if needed
+	// re-initialize video dimensions if needed
 	if (isImageVideo()) {
 		$_zp_current_image->updateDimensions();
 	}
@@ -475,7 +475,7 @@ function prepareCustomPage() {
 //force license page if not acknowledged
 if (!getOption('license_accepted')) {
 	if (isset($_GET['z']) && $_GET['z'] != 'setup') {
-// License needs agreement
+		// License needs agreement
 		$_GET['p'] = 'license';
 		$_GET['z'] = '';
 	}
