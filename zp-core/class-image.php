@@ -1239,25 +1239,17 @@ class Image extends MediaObject {
 			if (!is_null($_zp_current_search) && !in_context(ZP_ALBUM_LINKED) || $album->isDynamic()) {
 				if ($album->isDynamic()) {
 					$images = $album->getImages();
-					for ($i = 0; $i < count($images); $i++) {
-						$image = $images[$i];
-						if ($this->filename == $image['filename']) {
-							$this->index = $i;
-							break;
-						}
-					}
 				} else {
-					$this->index = $_zp_current_search->getImageIndex($this->imagefolder, $this->filename);
+					$images = $_zp_current_search->getImages(0);
 				}
+				$this->index = @array_keys(array_filter($images, function($item) {
+													return $item['filename'] == $this->filename && $item['folder'] == $this->imagefolder;
+												}))[0];
 			} else {
 				$images = $this->album->getImages(0);
-				for ($i = 0; $i < count($images); $i++) {
-					$image = $images[$i];
-					if ($this->filename == $image) {
-						$this->index = $i;
-						break;
-					}
-				}
+				$this->index = @array_keys(array_filter($images, function($item) {
+													return $item == $this->filename;
+												}))[0];
 			}
 		}
 		return $this->index;

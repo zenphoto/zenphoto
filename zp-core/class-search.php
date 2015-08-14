@@ -45,6 +45,9 @@ class SearchEngine {
 	protected $category_list = NULL; // list of categories for a news search
 	protected $searches = NULL; // remember the criteria for past searches
 	protected $extraparams = array(); // allow plugins to add to search parameters
+	// used by getImageIndex()
+	protected $tAlbum;
+	protected $tFilename;
 	// mimic album object
 	var $loaded = false;
 	var $table = 'albums';
@@ -1739,14 +1742,11 @@ class SearchEngine {
 	 */
 	function getImageIndex($album, $filename) {
 		$images = $this->getImages();
-		$c = 0;
-		foreach ($images as $image) {
-			if (($album == $image['folder']) && ($filename == $image['filename'])) {
-				return $c;
-			}
-			$c++;
-		}
-		return false;
+		$this->tAlbum = $album;
+		$this->tFilename = $filename;
+		return @array_keys(array_filter($images, function($item) {
+											return $item['filename'] == $this->tFilename && $item['folder'] == $this->tAlbum;
+										}))[0];
 	}
 
 	/**
