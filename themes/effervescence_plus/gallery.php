@@ -6,6 +6,7 @@ if (!defined('WEBPATH'))
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta charset="<?php echo LOCAL_CHARSET; ?>">
 		<?php
 		zp_apply_filter('theme_head');
 		if (getOption('effervescence_daily_album_image_effect') && getOption('custom_index_page') != 'gallery') {
@@ -13,7 +14,6 @@ if (!defined('WEBPATH'))
 		}
 		?>
 		<?php printHeadTitle(); ?>
-		<meta charset="<?php echo LOCAL_CHARSET; ?>">
 		<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery', 'Gallery RSS'); ?>
 	</head>
 

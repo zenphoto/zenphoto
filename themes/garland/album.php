@@ -6,11 +6,11 @@ $map = function_exists('printGoogleMap');
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta charset="<?php echo LOCAL_CHARSET; ?>">
 		<?php
 		zp_apply_filter('theme_head');
 		?>
 		<?php printHeadTitle(); ?>
-		<meta charset="<?php echo LOCAL_CHARSET; ?>">
 		<?php $handler->theme_head($_zp_themeroot); ?>
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot ?>/zen.css" type="text/css" />
 		<?php if (class_exists('RSS')) printRSSHeaderLink('Album', getAlbumTitle()); ?>

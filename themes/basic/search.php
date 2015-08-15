@@ -6,9 +6,9 @@ if (!defined('WEBPATH'))
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta charset="<?php echo LOCAL_CHARSET; ?>">
 		<?php zp_apply_filter('theme_head'); ?>
 		<?php printHeadTitle(); ?>
-		<meta charset="<?php echo LOCAL_CHARSET; ?>">
 		<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
 		<link rel="stylesheet" href="<?php echo pathurlencode(dirname(dirname($zenCSS))); ?>/common.css" type="text/css" />
 		<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery', gettext('Gallery RSS')); ?>

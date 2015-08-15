@@ -5,9 +5,9 @@ if (!defined('WEBPATH'))
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta charset="<?php echo LOCAL_CHARSET; ?>">
 		<?php zp_apply_filter('theme_head'); ?>
 		<?php printHeadTitle(); ?>
-		<meta charset="<?php echo LOCAL_CHARSET; ?>">
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot ?>/zen.css" type="text/css" />
 		<?php if (zp_has_filter('theme_head', 'colorbox::css')) { ?>
 			<script type="text/javascript">
