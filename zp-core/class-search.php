@@ -1739,9 +1739,10 @@ class SearchEngine {
 	 */
 	function getImageIndex($album, $filename) {
 		$images = $this->getImages();
-		return @array_keys(array_filter($images, function($item) use($album, $filename) {
-											return $item['filename'] == $filename && $item['folder'] == $album;
-										}))[0];
+		$target = array_keys(array_filter($images, function($item) {
+							return $item['filename'] == $this->filename && $item['folder'] == $this->imagefolder;
+						}));
+		return@$target[0];
 	}
 
 	/**

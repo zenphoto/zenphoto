@@ -1242,14 +1242,16 @@ class Image extends MediaObject {
 				} else {
 					$images = $_zp_current_search->getImages(0);
 				}
-				$this->index = @array_keys(array_filter($images, function($item) {
-													return $item['filename'] == $this->filename && $item['folder'] == $this->imagefolder;
-												}))[0];
+				$target = array_keys(array_filter($images, function($item) {
+									return $item['filename'] == $this->filename && $item['folder'] == $this->imagefolder;
+								}));
+				$this->index = @$target[0];
 			} else {
 				$images = $this->album->getImages(0);
-				$this->index = @array_keys(array_filter($images, function($item) {
-													return $item == $this->filename;
-												}))[0];
+				$target = array_keys(array_filter($images, function($item) {
+									return $item == $this->filename;
+								}));
+				$this->index = @$target[0];
 			}
 		}
 		return $this->index;
