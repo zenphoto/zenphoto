@@ -1244,7 +1244,7 @@ class Image extends MediaObject {
 				} else {
 					$images = $_zp_current_search->getImages(0);
 				}
-				$target = array_keys(array_filter($images, function($item) use($fioename, $imagefolder) {
+				$target = array_keys(array_filter($images, function($item) use($filename, $imagefolder) {
 									return $item['filename'] == $filename && $item['folder'] == $imagefolder;
 								}));
 				$this->index = @$target[0];
