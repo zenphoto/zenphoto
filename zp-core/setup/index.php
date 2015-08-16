@@ -727,9 +727,13 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 							$good = checkMark($cfg, sprintf(gettext('<em>%1$s</em> file'), CONFIGFILE), sprintf(gettext('<em>%1$s</em> file [does not exist]'), CONFIGFILE), sprintf(gettext('Setup was not able to create this file. You will need to copy the <code>%1$s/zenphoto_cfg.txt</code> file to <code>%2$s/%3$s</code> then edit it as indicated in the file’s comments.'), ZENFOLDER, DATA_FOLDER, CONFIGFILE)) && $good;
 							if ($cfg) {
 								primeMark(gettext('File permissions'));
-								$chmodselector = '<form action="#"><input type="hidden" name="xsrfToken" value="' . setupXSRFToken() . '" />' .
-												'<p>' . sprintf(gettext('Set File permissions to %s.'), permissionsSelector($permission_names, $chmod)) .
-												'</p></form>';
+								if ($environ) {
+									$chmodselector = '<form action="#"><input type="hidden" name="xsrfToken" value="' . setupXSRFToken() . '" />' .
+													'<p>' . sprintf(gettext('Set File permissions to %s.'), permissionsSelector($permission_names, $chmod)) .
+													'</p></form>';
+								} else {
+									$chmodselector = '';
+								}
 								if (array_key_exists($chmod | 4, $permission_names)) {
 									$value = sprintf(gettext('<em>%1$s</em> (<code>0%2$o</code>)'), $permission_names[$chmod | 4], $chmod);
 								} else {

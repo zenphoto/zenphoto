@@ -1705,7 +1705,7 @@ class SearchEngine {
 	 * @return array
 	 */
 	function getImages($page = 0, $firstPageCount = 0, $sorttype = NULL, $sortdirection = NULL, $care = true, $mine = NULL) {
-		$this->images = $this->getSearchImages($sorttype, $sortdirection, $mine);
+		$this->images = array_values($this->getSearchImages($sorttype, $sortdirection, $mine));
 		if ($page == 0) {
 			return $this->images;
 		} else {
@@ -1739,14 +1739,10 @@ class SearchEngine {
 	 */
 	function getImageIndex($album, $filename) {
 		$images = $this->getImages();
-		$c = 0;
-		foreach ($images as $image) {
-			if (($album == $image['folder']) && ($filename == $image['filename'])) {
-				return $c;
-			}
-			$c++;
-		}
-		return false;
+		$target = array_keys(array_filter($images, function($item) use($album, $filename) {
+							return $item['filename'] == $filename && $item['folder'] == $album;
+						}));
+		return @$target[0];
 	}
 
 	/**

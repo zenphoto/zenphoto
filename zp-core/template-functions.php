@@ -1555,23 +1555,20 @@ function printAlbumData($field, $label = '') {
  */
 function getAlbumPage($album = NULL) {
 	global $_zp_current_album, $_zp_current_image, $_zp_current_search, $_firstPageImages;
-	if (is_null($album))
+	if (is_null($album)) {
 		$album = $_zp_current_album;
-	$page = 0;
+	}
 	if (in_context(ZP_IMAGE) && !in_context(ZP_SEARCH)) {
-		if ($_zp_current_album->isDynamic()) {
-			$search = $_zp_current_album->getSearchEngine();
-			$imageindex = $search->getImageIndex($_zp_current_album->name, $_zp_current_image->filename);
-			$numalbums = $search->getNumAlbums();
-		} else {
-			$imageindex = $_zp_current_image->getIndex();
-			$numalbums = $album->getNumAlbums();
-		}
+		$imageindex = $_zp_current_image->getIndex();
+		$numalbums = $album->getNumAlbums();
 		$imagepage = floor(($imageindex - $_firstPageImages) / max(1, getOption('images_per_page'))) + 1;
 		$albumpages = ceil($numalbums / max(1, getOption('albums_per_page')));
-		if ($albumpages == 0 && $_firstPageImages > 0)
+		if ($albumpages == 0 && $_firstPageImages > 0) {
 			$imagepage++;
+		}
 		$page = $albumpages + $imagepage;
+	} else {
+		$page = 0;
 	}
 	return $page;
 }
@@ -3819,39 +3816,39 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 	<div id="<?php echo $id; ?>">
 		<!-- search form -->
 		<script type="text/javascript">
-					// <!-- <![CDATA[
-					var within = <?php echo (int) $within; ?>;
-					function search_(way) {
-						within = way;
-						if (way) {
-							$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
+				// <!-- <![CDATA[
+				var within = <?php echo (int) $within; ?>;
+				function search_(way) {
+					within = way;
+					if (way) {
+						$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
+					} else {
+						lastsearch = '';
+						$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
+					}
+					$('#search_input').val('');
+				}
+				$('#search_form').submit(function () {
+					if (within) {
+						var newsearch = $.trim($('#search_input').val());
+						if (newsearch.substring(newsearch.length - 1) == ',') {
+							newsearch = newsearch.substr(0, newsearch.length - 1);
+						}
+						if (newsearch.length > 0) {
+							$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
 						} else {
-							lastsearch = '';
-							$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
+							$('#search_input').val('<?php echo $searchwords; ?>');
 						}
-						$('#search_input').val('');
 					}
-					$('#search_form').submit(function () {
-						if (within) {
-							var newsearch = $.trim($('#search_input').val());
-							if (newsearch.substring(newsearch.length - 1) == ',') {
-								newsearch = newsearch.substr(0, newsearch.length - 1);
-							}
-							if (newsearch.length > 0) {
-								$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
-							} else {
-								$('#search_input').val('<?php echo $searchwords; ?>');
-							}
-						}
-						return true;
-					});
-					function search_all() {
-						//search all is Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}. All rights reserved
-						var check = $('#SEARCH_checkall').prop('checked');
-						$('.SEARCH_checkall').prop('checked', check);
-					}
+					return true;
+				});
+				function search_all() {
+					//search all is Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}. All rights reserved
+					var check = $('#SEARCH_checkall').prop('checked');
+					$('.SEARCH_checkall').prop('checked', check);
+				}
 
-					// ]]> -->
+				// ]]> -->
 		</script>
 		<form method="post" action="<?php echo $searchurl; ?>" id="search_form">
 			<?php echo $prevtext; ?>

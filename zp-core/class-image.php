@@ -1236,28 +1236,24 @@ class Image extends MediaObject {
 		global $_zp_current_search, $_zp_current_album;
 		if ($this->index == NULL) {
 			$album = $this->albumnamealbum;
+			$filename = $this->filename;
 			if (!is_null($_zp_current_search) && !in_context(ZP_ALBUM_LINKED) || $album->isDynamic()) {
+				$imagefolder = $this->imagefolder;
 				if ($album->isDynamic()) {
 					$images = $album->getImages();
-					for ($i = 0; $i < count($images); $i++) {
-						$image = $images[$i];
-						if ($this->filename == $image['filename']) {
-							$this->index = $i;
-							break;
-						}
-					}
 				} else {
-					$this->index = $_zp_current_search->getImageIndex($this->imagefolder, $this->filename);
+					$images = $_zp_current_search->getImages(0);
 				}
+				$target = array_keys(array_filter($images, function($item) use($filename, $imagefolder) {
+									return $item['filename'] == $filename && $item['folder'] == $imagefolder;
+								}));
+				$this->index = @$target[0];
 			} else {
 				$images = $this->album->getImages(0);
-				for ($i = 0; $i < count($images); $i++) {
-					$image = $images[$i];
-					if ($this->filename == $image) {
-						$this->index = $i;
-						break;
-					}
-				}
+				$target = array_keys(array_filter($images, function($item) use ($filename) {
+									return $item == $filename;
+								}));
+				$this->index = @$target[0];
 			}
 		}
 		return $this->index;
