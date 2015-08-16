@@ -2705,7 +2705,3 @@ form.dirty input[type=submit]:active{
 	border: 1px solid green !important;
 	background: #eff6d5;
 }
-
-.mce-tinymce.mce-container .mce-toolbar {
-	float: left;
-}
