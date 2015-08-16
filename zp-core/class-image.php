@@ -1236,20 +1236,22 @@ class Image extends MediaObject {
 		global $_zp_current_search, $_zp_current_album;
 		if ($this->index == NULL) {
 			$album = $this->albumnamealbum;
+			$filename = $this->filename;
 			if (!is_null($_zp_current_search) && !in_context(ZP_ALBUM_LINKED) || $album->isDynamic()) {
+				$imagefolder = $this->imagefolder;
 				if ($album->isDynamic()) {
 					$images = $album->getImages();
 				} else {
 					$images = $_zp_current_search->getImages(0);
 				}
-				$target = array_keys(array_filter($images, function($item) {
-									return $item['filename'] == $this->filename && $item['folder'] == $this->imagefolder;
+				$target = array_keys(array_filter($images, function($item) use($fioename, $imagefolder) {
+									return $item['filename'] == $filename && $item['folder'] == $imagefolder;
 								}));
 				$this->index = @$target[0];
 			} else {
 				$images = $this->album->getImages(0);
-				$target = array_keys(array_filter($images, function($item) {
-									return $item == $this->filename;
+				$target = array_keys(array_filter($images, function($item) use ($filename) {
+									return $item == $filename;
 								}));
 				$this->index = @$target[0];
 			}
