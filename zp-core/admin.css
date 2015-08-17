@@ -2743,10 +2743,6 @@ form.tinyDirty input[type=submit]:active{
 	background: #eff6d5;
 }
 
-.mce-tinymce.mce-container .mce-toolbar {
-	float: left;
-}
-
 .zenlogo img {
 	text-decoration: none !important;
 	vertical-align: sub;
