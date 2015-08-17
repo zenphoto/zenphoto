@@ -38,8 +38,10 @@ zp_register_filter('admin_tabs', 'debug::tabs');
 zp_register_filter('admin_utilities_buttons', 'debug::button');
 
 if (OFFSET_PATH == 2) {
-	$version = getOption('markRelease_state');
-	debug::updateVersion($version);
+	if (strpos(getOption('markRelease_state'), '-DEBUG') !== false) {
+		$version = debug::version(false);
+		debug::updateVersion($version);
+	}
 } else if (isset($_REQUEST['markRelease'])) {
 	XSRFdefender('markRelease');
 	$version = debug::version($_REQUEST['markRelease'] == 'released');
