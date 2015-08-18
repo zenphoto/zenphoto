@@ -733,7 +733,7 @@ Zenphoto_Authority::printPasswordFormJS();
 										</p>
 										<?php
 										if (FILESYSTEM_CHARSET != LOCAL_CHARSET) {
-											echo '<p>' . gettext("If you are having problems with images whose names contain characters with diacritical marks try changing the image URI setting.");
+											echo '<p>' . gettext("If you are having problems with images whose names contain characters with diacritical marks try changing the <em>image URI</em> setting.");
 											switch (getOption('UTF8_image_URI_found')) {
 												case'unknown':
 													echo '<p class="notebox">' . gettext('Setup could not determine a setting that allowed images with diacritical marks in the name.'), '</p>';
@@ -755,9 +755,10 @@ Zenphoto_Authority::printPasswordFormJS();
 										<p><?php echo gettext("If <em>mod_rewrite</em> is checked above, zenphoto will append the <em>mod_rewrite suffix</em> to the end of image URLs. (This helps search engines.) Examples: <em>.html, .php</em>, etc."); ?></p>
 										<p>
 											<?php
-											printf(gettext('If Unique images is checked, image links will omit the image suffix. E.g. a link to the image page for myalbum/myphoto.jpg will appear as myalbum/myphoto%s'), IM_SUFFIX);
-											echo "<br />";
+											printf(gettext('If <em>Unique images</em> is checked, image links will omit the image suffix. E.g. a link to the image page for <code>myalbum/myphoto.jpg</code> will appear as <code>myalbum/myphoto%s</code>'), IM_SUFFIX);
+											echo '<p class="notebox">';
 											echo gettext('<strong>Note:</strong> This option requires <em>mod rewrite</em> and <em>mod_rewrite suffix</em> both be set and the image prefixes must be unique within an album!');
+											echo '</p>';
 											?>
 										</p>
 									</td>
@@ -1105,7 +1106,7 @@ Zenphoto_Authority::printPasswordFormJS();
 					<div id="tab_gallery" class="tabbox">
 						<?php zp_apply_filter('admin_note', 'options', $subtab); ?>
 						<form class="dirtylistening" onReset="toggle_passwords('', false);
-									setClean('form_options');" id="form_options" action="?action=saveoptions" method="post" autocomplete="off" >
+								setClean('form_options');" id="form_options" action="?action=saveoptions" method="post" autocomplete="off" >
 									<?php XSRFToken('saveoptions'); ?>
 							<input	type="hidden" name="savegalleryoptions" value="yes" />
 							<input	type="hidden" name="password_enabled" id="password_enabled" value="0" />
@@ -1189,7 +1190,7 @@ Zenphoto_Authority::printPasswordFormJS();
 														 value="<?php echo html_encode($_zp_gallery->getUser()); ?>" />
 											<br />
 											<label><input type="checkbox" name="disclose_password" id="disclose_password" onclick="passwordClear('');
-															togglePassword('');" /><?php echo gettext('Show password'); ?></label>
+													togglePassword('');" /><?php echo gettext('Show password'); ?></label>
 										</td>
 										<td>
 											<?php echo gettext("User ID for the gallery guest user") ?>
@@ -1465,7 +1466,7 @@ Zenphoto_Authority::printPasswordFormJS();
 					<div id="tab_search" class="tabbox">
 						<?php zp_apply_filter('admin_note', 'options', $subtab); ?>
 						<form class="dirtylistening" onReset="toggle_passwords('', false);
-									setClean('form_options');" id="form_options" action="?action=saveoptions" method="post" autocomplete="off" >
+								setClean('form_options');" id="form_options" action="?action=saveoptions" method="post" autocomplete="off" >
 									<?php XSRFToken('saveoptions'); ?>
 							<input	type="hidden" name="savesearchoptions" value="yes" />
 							<input	type="hidden" name="password_enabled" id="password_enabled" value="0" />
@@ -1523,7 +1524,7 @@ Zenphoto_Authority::printPasswordFormJS();
 														 value="<?php echo html_encode(getOption('search_user')); ?>" />
 											<br />
 											<label><input type="checkbox" name="disclose_password" id="disclose_password" onclick="passwordClear('');
-															togglePassword('');" /><?php echo gettext('Show password'); ?></label>
+													togglePassword('');" /><?php echo gettext('Show password'); ?></label>
 										</td>
 										<td>
 											<?php echo gettext("User ID for the search guest user") ?>
@@ -2235,7 +2236,7 @@ Zenphoto_Authority::printPasswordFormJS();
 																	 value="<?php echo html_encode(getOption('protected_image_user')); ?>" />
 														<br />
 														<label><input type="checkbox" name="disclose_password" id="disclose_password" onclick="passwordClear('');
-																		togglePassword('');" /><?php echo gettext('Show password'); ?></label>
+																togglePassword('');" /><?php echo gettext('Show password'); ?></label>
 													</td>
 												</tr>
 												<tr class="passwordextrahide" style="display:none" >
@@ -2553,7 +2554,7 @@ Zenphoto_Authority::printPasswordFormJS();
 											<p class="buttons">
 												<button type="submit" value="<?php echo gettext('Apply') ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 												<button type="button" value="<?php echo gettext('Revert to default') ?>" onclick="$('#savethemeoptions').val('reset');
-																$('#themeoptionsform').submit();"><img src="images/refresh.png" alt="" /><strong><?php echo gettext("Revert to default"); ?></strong></button>
+														$('#themeoptionsform').submit();"><img src="images/refresh.png" alt="" /><strong><?php echo gettext("Revert to default"); ?></strong></button>
 												<button type="reset" value="<?php echo gettext('reset') ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
 											</p>
 										</td>
@@ -2804,7 +2805,7 @@ Zenphoto_Authority::printPasswordFormJS();
 											<p class="buttons">
 												<button type="submit" value="<?php echo gettext('Apply') ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 												<button type="button" value="<?php echo gettext('Revert to default') ?>" onclick="$('#savethemeoptions').val('reset');
-																$('#themeoptionsform').submit();"><img src="images/refresh.png" alt="" /><strong><?php echo gettext("Revert to default"); ?></strong></button>
+														$('#themeoptionsform').submit();"><img src="images/refresh.png" alt="" /><strong><?php echo gettext("Revert to default"); ?></strong></button>
 												<button type="reset" value="<?php echo gettext('reset') ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
 											</p>
 										</td>
