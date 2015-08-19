@@ -18,9 +18,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Zenphoto 1.4.9\n"
+"Project-Id-Version: Zenphoto 1.4.10\n"
 "Report-Msgid-Bugs-To: webmaster at momo-i.org\n"
-"POT-Creation-Date: 2015-08-13 15:30+0900\n"
+"POT-Creation-Date: 2015-08-19 13:06+0900\n"
 "PO-Revision-Date: 2009-08-12 08:30+0900\n"
 "Last-Translator: momo-i <webmaster at momo-i dot org>\n"
 "Language-Team: Japanese\n"
@@ -6683,9 +6683,9 @@ msgstr "「%s」クロスサイトリクエストフォージェリをブロッ�
 #: themes/zenpage/album.php:74 themes/basic/favorites.php:64
 #: themes/basic/image.php:44 themes/basic/index.php:49
 #: themes/basic/search.php:86 themes/basic/album.php:65
-#: themes/effervescence_plus/favorites.php:31
-#: themes/effervescence_plus/favorites.php:34
-#: themes/effervescence_plus/favorites.php:197
+#: themes/effervescence_plus/favorites.php:30
+#: themes/effervescence_plus/favorites.php:33
+#: themes/effervescence_plus/favorites.php:196
 #: themes/effervescence_plus/image.php:59
 #: themes/effervescence_plus/image.php:61
 #: themes/effervescence_plus/gallery.php:85
@@ -6711,9 +6711,9 @@ msgstr "前へ"
 #: themes/zenpage/album.php:74 themes/basic/favorites.php:64
 #: themes/basic/image.php:48 themes/basic/index.php:49
 #: themes/basic/search.php:86 themes/basic/album.php:65
-#: themes/effervescence_plus/favorites.php:42
-#: themes/effervescence_plus/favorites.php:45
-#: themes/effervescence_plus/favorites.php:197
+#: themes/effervescence_plus/favorites.php:41
+#: themes/effervescence_plus/favorites.php:44
+#: themes/effervescence_plus/favorites.php:196
 #: themes/effervescence_plus/image.php:69
 #: themes/effervescence_plus/image.php:71
 #: themes/effervescence_plus/gallery.php:85
@@ -12345,8 +12345,8 @@ msgid ""
 "An importer for <strong>Wordpress 3.x or newer</strong> to the Zenpage CMS "
 "plugin that imports the following:"
 msgstr ""
-"Zenpage CMS プラグインへインポートするための<strong>Wordpress 3.x 以上</strong>"
-"用のインポーターは次の通りです:"
+"Zenpage CMS プラグインへインポートするための<strong>Wordpress 3.x 以上</"
+"strong>用のインポーターは次の通りです:"
 
 #: zp-core/zp-extensions/wordpress_import.php:396
 msgid ""
@@ -12388,7 +12388,9 @@ msgstr ""
 msgid ""
 "<strong>IMPORTANT: </strong>MySQLi must be selected as the database handler "
 "on the Zenphoto options (generally the default)."
-msgstr "<strong>重要: </strong>MySQLiはZenphotoのオプション(通常はデフォルト)で取り扱うデータベースとして選択されなければなりません。"
+msgstr ""
+"<strong>重要: </strong>MySQLiはZenphotoのオプション(通常はデフォルト)で取り扱"
+"うデータベースとして選択されなければなりません。"
 
 #: zp-core/zp-extensions/wordpress_import.php:406
 msgid ""
@@ -20227,8 +20229,8 @@ msgstr "%1$s <strong>%2$s</strong> (%3$s最終ログオン:%4$s)"
 #: themes/zenpage/favorites.php:52 themes/zenpage/favorites.php:63
 #: themes/basic/favorites.php:39 themes/basic/favorites.php:54
 #: themes/garland/favorites.php:62 themes/garland/favorites.php:80
-#: themes/effervescence_plus/favorites.php:112
-#: themes/effervescence_plus/favorites.php:164
+#: themes/effervescence_plus/favorites.php:111
+#: themes/effervescence_plus/favorites.php:163
 #: themes/zpmobile/favorites.php:40 themes/zpmobile/favorites.php:52
 msgid "Remove"
 msgstr "削除"
@@ -22307,7 +22309,7 @@ msgstr "Bad"
 #: themes/zenpage/favorites.php:25 themes/zenpage/archive.php:25
 #: themes/zenpage/pages.php:26 themes/zenpage/gallery.php:26
 #: themes/zenpage/search.php:48 themes/garland/sidebar.php:40
-#: themes/garland/sidebar.php:46 themes/effervescence_plus/favorites.php:51
+#: themes/garland/sidebar.php:46 themes/effervescence_plus/favorites.php:50
 #: themes/effervescence_plus/search.php:88
 #: themes/effervescence_plus/indexpage.php:31 themes/zpmobile/search.php:53
 msgid "Search gallery"
@@ -22430,7 +22432,7 @@ msgstr "次の画像"
 msgid "User Registration"
 msgstr "ユーザ登録"
 
-#: themes/zenpage/slideshow.php:11
+#: themes/zenpage/slideshow.php:12
 #: themes/effervescence_plus/themeoptions.php:109
 msgid "Slideshow"
 msgstr "スライドショー"
@@ -22936,7 +22938,7 @@ msgstr "ページ検索"
 msgid "Search within category"
 msgstr "カテゴリ内検索"
 
-#: themes/effervescence_plus/favorites.php:185
+#: themes/effervescence_plus/favorites.php:184
 #: themes/effervescence_plus/album.php:145
 msgid "Album is empty"
 msgstr "アルバムは空です"
