@@ -99,7 +99,7 @@ if (defined('OFFSET_PATH')) {
 	}
 
 	function checkFolder($album, $album_cleaned) {
-		global $count, $_albumcount;
+		global $count, $albumcount;
 		$subalbums = $album->getAlbums(0);
 		foreach ($subalbums as $subalbum) {
 			$obj = newAlbum($subalbum);
