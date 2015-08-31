@@ -164,6 +164,9 @@ if (defined('OFFSET_PATH')) {
 					}
 					if ($albumcount || $count) {
 						Gallery::clearCache();
+						if (extensionEnabled('static_html_cache')) {
+							Gallery::clearCache(SERVERPATH . '/' . STATIC_CACHE_FOLDER);
+						}
 						?>
 						<div class="notebox">
 							<p>
