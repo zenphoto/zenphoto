@@ -144,7 +144,7 @@ if (isset($_GET['action'])) {
 			} else {
 				$album = sanitize_path($_POST['album']);
 			}
-			Gallery::clearCache(SERVERCACHE . '/' . $album);
+			Gallery::clearCache($album);
 			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit&cleared&album=' . $album);
 			exitZP();
 			break;
@@ -379,7 +379,7 @@ if (isset($_GET['action'])) {
 													$image->set('rotation', $rotation);
 													$image->updateDimensions();
 													$album = $image->getAlbum();
-													Gallery::clearCache(SERVERCACHE . '/' . $album->name);
+													Gallery::clearCache($album->name);
 												}
 											}
 											$image->setCommentsAllowed(isset($_POST["$i-allowcomments"]));
