@@ -69,8 +69,11 @@ if (defined('OFFSET_PATH')) {
 		$subalbum = $obj->name;
 		$file = basename($subalbum);
 		$seoname = seoFriendly($file);
-		$count = 0;
-
+		if (!$obj->isDynamic()) {
+			$count = checkFolder($obj);
+		} else {
+			$count = 0;
+		}
 		if ($seoname != $file) {
 			$newname = dirname($subalbum);
 			if (empty($newname) || $newname == '.') {
@@ -91,8 +94,8 @@ if (defined('OFFSET_PATH')) {
 				$obj = newAlbum($newname);
 			}
 		}
-		if (!$obj->isDynamic()) {
-			$count = checkFolder($obj);
+		if ($count || $seoname != $file) {
+			Gallery::clearCache($subalbum);
 		}
 		return $count;
 	}
@@ -163,7 +166,6 @@ if (defined('OFFSET_PATH')) {
 						$count = $count + cleanAlbum($obj);
 					}
 					if ($albumcount || $count) {
-						Gallery::clearCache();
 						zpFunctions::removeDir(SERVERPATH . '/' . STATIC_CACHE_FOLDER, true);
 						?>
 						<div class="notebox">
