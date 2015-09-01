@@ -629,14 +629,14 @@ class AlbumBase extends MediaObject {
 			}
 		}
 		$filemask = substr($this->localpath, 0, -1) . '.*';
-		$perms = FOLDER_MOD;
 
 		@chmod($this->localpath, 0777);
 		$success = @rename(rtrim($this->localpath, '/'), $dest);
-		@chmod($dest, $perms);
+		@chmod($dest, FOLDER_MOD);
 		if ($success) {
 			//purge the cache
 			$success = $success && $this->_removeCache(substr($this->localpath, strlen(ALBUM_FOLDER_SERVERPATH)));
+			$this->name = $newfolder;
 			$this->localpath = $dest . "/";
 			$filestomove = safe_glob($filemask);
 			foreach ($filestomove as $file) {

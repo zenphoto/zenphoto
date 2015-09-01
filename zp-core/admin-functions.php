@@ -2426,7 +2426,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 * @return string error flag if passwords don't match
 	 * @since 1.1.3
 	 */
-	function processAlbumEdit($index, $album, &$redirectto) {
+	function processAlbumEdit($index, &$album, &$redirectto) {
 		$redirectto = NULL; // no redirection required
 		if ($index == 0) {
 			$prefix = $suffix = '';
