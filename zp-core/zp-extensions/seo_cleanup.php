@@ -164,9 +164,7 @@ if (defined('OFFSET_PATH')) {
 					}
 					if ($albumcount || $count) {
 						Gallery::clearCache();
-						if (extensionEnabled('static_html_cache')) {
-							zpFunctions::removeDir(SERVERPATH . '/' . STATIC_CACHE_FOLDER, true);
-						}
+						zpFunctions::removeDir(SERVERPATH . '/' . STATIC_CACHE_FOLDER, true);
 						?>
 						<div class="notebox">
 							<p>
