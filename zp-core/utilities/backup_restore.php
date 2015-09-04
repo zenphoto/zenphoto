@@ -563,8 +563,17 @@ if (isset($_GET['compression'])) {
 							<?php generateListFromFiles('', SERVERPATH . "/" . BACKUPFOLDER, '.zdb', true); ?>
 						</select>
 						<input type="hidden" name="restore" value="true" />
+						<script>
+							$( document ).ready(function() {
+								$( "#restore_button" ).click(function() {
+									if(!confirm('<?php echo gettext('Do you really want to restore the database? Restoring the wrong backup might result in data loss!'); ?>')) {
+										return false;
+									};
+								});
+							});
+						</script>
 						<div class="buttons pad_button" id="dbrestore">
-							<button class="fixedwidth tooltip" type="submit" title="<?php echo gettext("Restore the tables in your database from a previous backup."); ?>">
+							<button id="restore_button" class="fixedwidth tooltip" type="submit" title="<?php echo gettext("Restore the tables in your database from a previous backup."); ?>">
 								<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/redo.png" alt="" /> <?php echo gettext("Restore the Database"); ?>
 							</button>
 						</div>
