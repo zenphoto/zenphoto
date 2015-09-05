@@ -598,13 +598,13 @@ function zp_session_start() {
 		//	insure that the session data has a place to be saved
 		if (isset($_zp_conf_vars['session_save_path'])) {
 			session_save_path($_zp_conf_vars['session_save_path']);
-		} else {
-			$_session_path = session_save_path();
-			if (!file_exists($_session_path) || !is_writable($_session_path)) {
-				mkdir_recursive(SERVERPATH . '/' . DATA_FOLDER . '/PHP_sessions', FOLDER_MOD);
-				session_save_path(SERVERPATH . '/' . DATA_FOLDER . '/PHP_sessions');
-			}
 		}
+		$_session_path = session_save_path();
+		if (ini_get('session.save_handler') == 'files' && !file_exists($_session_path) || !is_writable($_session_path)) {
+			mkdir_recursive(SERVERPATH . '/' . DATA_FOLDER . '/PHP_sessions', FOLDER_MOD);
+			session_save_path(SERVERPATH . '/' . DATA_FOLDER . '/PHP_sessions');
+		}
+
 		if (secureServer()) {
 			// force session cookie to be secure when in https
 			$CookieInfo = session_get_cookie_params();

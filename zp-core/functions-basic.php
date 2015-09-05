@@ -520,7 +520,7 @@ function isHandledAlbum($path) {
  */
 function rewrite_get_album_image($albumvar, $imagevar) {
 	global $_zp_rewritten, $_zp_albumHandlers;
-	$ralbum = isset($_GET[$albumvar]) ? trim(sanitize_path($_GET[$albumvar]), '/') : NULL;
+	$ralbum = isset($_GET[$albumvar]) ? trim(sanitize($_GET[$albumvar]), '/') : NULL;
 	$rimage = isset($_GET[$imagevar]) ? sanitize($_GET[$imagevar]) : NULL;
 	//	we assume that everything is correct if rewrite rules were not applied
 	if ($_zp_rewritten) {

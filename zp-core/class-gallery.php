@@ -732,10 +732,7 @@ class Gallery {
 	 * @param string $cachefolder the sub-folder to clean
 	 */
 	static function clearCache($cachefolder = NULL) {
-		if (is_null($cachefolder)) {
-			$cachefolder = SERVERCACHE;
-		}
-		zpFunctions::removeDir($cachefolder, true);
+		zpFunctions::removeDir(SERVERCACHE . '/' . $cachefolder, true);
 	}
 
 	/**

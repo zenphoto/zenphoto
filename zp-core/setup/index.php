@@ -30,9 +30,6 @@ require_once(dirname(dirname(__FILE__)) . '/global-definitions.php');
 require_once(dirname(dirname(__FILE__)) . '/functions-common.php');
 require_once(dirname(__FILE__) . '/setup-functions.php');
 
-$session = zp_session_start();
-session_cache_limiter('nocache');
-
 //allow only one setup to run
 $setupMutex = new zpMutex('sP');
 $setupMutex->lock();
@@ -43,7 +40,6 @@ if ($debug = isset($_REQUEST['debug'])) {
 	}
 }
 
-$setup_checked = isset($_GET['checked']);
 $upgrade = false;
 
 require_once(dirname(dirname(__FILE__)) . '/lib-utf8.php');
@@ -283,6 +279,22 @@ if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
 		exit();
 	}
 	require_once(dirname(dirname(__FILE__)) . '/functions.php');
+}
+
+$session = zp_session_start();
+session_cache_limiter('nocache');
+
+$setup_checked = false;
+if (empty($_REQUEST)) {
+	$_SESSION['save_session_path'] = $_initial_session_path;
+} else {
+	if (isset($_SESSION['save_session_path'])) {
+		$setup_checked = isset($_GET['checked']);
+	} else {
+		$_initial_session_path = false;
+		unset($_REQUEST['update']);
+		unset($_REQUEST['checked']);
+	}
 }
 
 if ($updatezp_config) {
@@ -538,15 +550,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 							$err = versionCheck(PHP_MIN_VERSION, PHP_DESIRED_VERSION, PHP_VERSION);
 							$good = checkMark($err, sprintf(gettext("PHP version %s"), PHP_VERSION), "", sprintf(gettext('PHP Version %1$s or greater is required. Version %2$s or greater is strongly recommended. Use earlier versions at your own risk.'), PHP_MIN_VERSION, PHP_DESIRED_VERSION), false) && $good;
 
-							if ($session && session_id() && $_initial_session_path == session_save_path()) {
-								checkmark(true, gettext('PHP <code>Sessions</code>.'), gettext('PHP <code>Sessions</code> [appear to not be working].'), '', true);
-							} else {
-								if ($session && session_id() && $_initial_session_path != session_save_path()) {
-									checkmark(-1, '', gettext('PHP <code>Sessions</code> [problems with <em>save_save_path</em>].'), sprintf(gettext('The configured PHP session path could not be used. ZenPhoto20 has set the path to the %s folder.'), DATA_FOLDER), true);
-								} else {
-									checkmark(0, '', gettext('PHP <code>Sessions</code> [appear to not be working].'), gettext('PHP Sessions are required for administrative functions.'), true);
-								}
-							}
+							checkmark($session && session_id() && $_initial_session_path !== false, gettext('PHP <code>Sessions</code>.'), gettext('PHP <code>Sessions</code> [appear to not be working].'), sprintf(gettext('PHP Sessions are required for administrative functions. Check your <code>session.save_path</code> (<code>%1$s</code>) and the  PHP configuration <code>[session]</code>settings'), session_save_path()), true);
 
 							if (preg_match('#(1|ON)#i', @ini_get('register_globals'))) {
 								if ((isset($_zp_conf_vars['security_ack']) ? $_zp_conf_vars['security_ack'] : NULL) & ACK_REGISTER_GLOBALS) {
@@ -1609,9 +1613,9 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 						$task = '';
 						if (isset($_GET['create'])) {
 							$task = 'create';
-							$create = array_flip(explode(',', sanitize($_GET['create'])));
+							$create = array_flip(explode(',', sanitize($_R['create'])));
 						}
-						if (isset($_GET['update'])) {
+						if (isset($_REQUEST['update'])) {
 							$task = 'update';
 						}
 
@@ -2348,7 +2352,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 						 * *************************************************************************************
 						 */
 						$createTables = true;
-						if (isset($_GET['create']) || isset($_GET['update']) || isset($_GET['protect_files']) && db_connect($_zp_conf_vars, false)) {
+						if (isset($_GET['create']) || isset($_REQUEST['update']) || isset($_GET['protect_files']) && db_connect($_zp_conf_vars, false)) {
 							if (!isset($_GET['protect_files'])) {
 								if ($taskDisplay[substr($task, 0, 8)] == 'create') {
 									echo "<h3>" . gettext("About to create tables") . "...</h3>";
