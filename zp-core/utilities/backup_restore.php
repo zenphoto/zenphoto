@@ -554,17 +554,27 @@ if (isset($_GET['compression'])) {
 				if (count($filelist) <= 0) {
 					echo gettext('You have not yet created a backup set.');
 				} else {
+					$curdir = getcwd();
+					chdir(SERVERPATH . "/" . BACKUPFOLDER);
+					$filelist = safe_glob('*.zdb');
+					$list = array('' => NULL);
+					foreach ($filelist as $file) {
+						$file = str_replace('.zdb', '', $file);
+						$list[] = filesystemToInternal($file);
+					}
+					chdir($curdir);
 					?>
 					<form name="restore_gallery" action="">
 						<?php XSRFToken('backup'); ?>
 						<?php echo gettext('Select the database restore file:'); ?>
 						<br />
-						<select id="backupfile" name="backupfile">
-							<?php generateListFromFiles('', SERVERPATH . "/" . BACKUPFOLDER, '.zdb', true); ?>
+						<select id="backupfile" name="backupfile" onchange="$('#restore_button').removeAttr('disabled')">
+							<?php generateListFromArray(array(''), $list, true, false);
+							?>
 						</select>
 						<input type="hidden" name="restore" value="true" />
 						<div class="buttons pad_button" id="dbrestore">
-							<button class="fixedwidth tooltip" type="submit" title="<?php echo gettext("Restore the tables in your database from a previous backup."); ?>">
+							<button id="restore_button" class="fixedwidth tooltip" type="submit" title="<?php echo gettext("Restore the tables in your database from a previous backup."); ?>" disabled="disabled">
 								<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/redo.png" alt="" /> <?php echo gettext("Restore the Database"); ?>
 							</button>
 						</div>
