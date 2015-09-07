@@ -58,6 +58,24 @@ if (isset($_REQUEST['autorun'])) {
 	$autorun = false;
 }
 
+$session = zp_session_start();
+session_cache_limiter('nocache');
+
+$setup_checked = false;
+
+if (empty($_REQUEST)) {
+	$_SESSION['save_session_path'] = $_initial_session_path;
+} else {
+	if (isset($_SESSION['save_session_path'])) {
+		$setup_checked = isset($_GET['checked']);
+		$_initial_session_path = $_SESSION['save_session_path'];
+	} else {
+		$_initial_session_path = false;
+		unset($_REQUEST['update']);
+		unset($_REQUEST['checked']);
+	}
+}
+
 $en_US = dirname(dirname(__FILE__)) . '/locale/en_US/';
 if (!file_exists($en_US)) {
 	@mkdir(dirname(dirname(__FILE__)) . '/locale/', $chmod | 0311);
@@ -281,24 +299,6 @@ if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
 		exit();
 	}
 	require_once(dirname(dirname(__FILE__)) . '/functions.php');
-}
-
-$session = zp_session_start();
-session_cache_limiter('nocache');
-
-$setup_checked = false;
-
-if (empty($_REQUEST)) {
-	$_SESSION['save_session_path'] = $_initial_session_path;
-} else {
-	if (isset($_SESSION['save_session_path'])) {
-		$setup_checked = isset($_GET['checked']);
-		$_initial_session_path = $_SESSION['save_session_path'];
-	} else {
-		$_initial_session_path = false;
-		unset($_REQUEST['update']);
-		unset($_REQUEST['checked']);
-	}
 }
 
 if ($updatezp_config) {
