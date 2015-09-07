@@ -38,6 +38,7 @@ if ($debug = isset($_REQUEST['debug'])) {
 	if (!$debug = $_REQUEST['debug']) {
 		$debug = true;
 	}
+	unset($_REQUEST['debug']);
 }
 
 $upgrade = false;
@@ -52,6 +53,7 @@ if (isset($_REQUEST['autorun'])) {
 	}
 	unset($_GET['autorun']);
 	unset($_POST['autorun']);
+	unset($_REQUEST['autorun']);
 } else {
 	$autorun = false;
 }
@@ -2623,14 +2625,9 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 									<input type="hidden" name="setUTF8URI" id="setUTF8URI" value="internal" />
 									<input type="hidden" name="xsrfToken" value="<?php echo setupXSRFToken(); ?>" />
 									<?php
-									if (isset($_REQUEST['autorun'])) {
-										if (!empty($_REQUEST['autorun'])) {
-											$auto = strip_tags($_REQUEST['autorun']);
-										} else {
-											$auto = 'admin';
-										}
+									if ($autorun) {
 										?>
-										<input type="hidden" id="autorun" name="autorun" value="<?php echo html_encode($auto); ?>" />
+										<input type="hidden" id="autorun" name="autorun" value="<?php echo html_encode($autorun); ?>" />
 										<?php
 									}
 									?>
