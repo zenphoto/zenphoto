@@ -2863,6 +2863,7 @@ function getProtectedImageURL($image = NULL, $disposal = NULL) {
 			return false;
 		$image = $_zp_current_image;
 	}
+
 	$album = $image->getAlbum();
 	$watermark_use_image = getWatermarkParam($image, WATERMARK_FULL);
 	if (!empty($watermark_use_image)) {
@@ -2874,7 +2875,7 @@ function getProtectedImageURL($image = NULL, $disposal = NULL) {
 	$cache_file = getImageCacheFilename($album->name, $image->filename, $args);
 	$cache_path = SERVERCACHE . $cache_file;
 	if ($disposal != 'Download' && OPEN_IMAGE_CACHE && file_exists($cache_path)) {
-		return WEBPATH . '/' . CACHEFOLDER . pathurlencode(imgSrcURI($cache_file));
+		return WEBPATH . '/' . CACHEFOLDER . imgSrcURI($cache_file);
 	} else if ($disposal == 'Unprotected') {
 		return getImageURI($args, $album->name, $image->filename, $image->filemtime);
 	} else {
