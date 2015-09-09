@@ -207,23 +207,23 @@ class flag_thumbnail {
 
 	static function custom_images($html, $thumbstandin) {
 		if ($thumbstandin) {
-			$html = self::insert_class($html);
+			$html = static::insert_class($html);
 		}
 		return $html;
 	}
 
 	static function std_image_thumbs($html) {
-		$html = self::insert_class($html);
+		$html = static::insert_class($html);
 		return $html;
 	}
 
 	static function std_album_thumbs($html) {
-		$html = self::insert_class($html);
+		$html = static::insert_class($html);
 		return $html;
 	}
 
 	static function custom_album_thumbs($html) {
-		$html = self::insert_class($html);
+		$html = static::insert_class($html);
 		return $html;
 	}
 
