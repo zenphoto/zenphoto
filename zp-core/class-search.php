@@ -1319,7 +1319,7 @@ class SearchEngine {
 						}
 					} else {
 						list($key, $sortdirection) = $this->sortKey($sorttype, $sortdirection, 'title', 'albums');
-						$key = trim($key . ' ' . $sortdirection);
+						$key = trim('`'.$key . '` ' . $sortdirection);
 					}
 					break;
 				default: // images
@@ -1345,11 +1345,10 @@ class SearchEngine {
 						}
 					} else {
 						list($key, $sortdirection) = $this->sortKey($sorttype, $sortdirection, 'title', 'images');
-						$key = trim($key . ' ' . $sortdirection);
+						$key = trim('`'.$key . '` ' . $sortdirection);
 					}
 					break;
 			}
-
 			$sql .= "FROM " . prefix($tbl) . " WHERE " . $show;
 			$sql .= '(' . self::compressedIDList($idlist) . ')';
 			$sql .= " ORDER BY " . $key;
