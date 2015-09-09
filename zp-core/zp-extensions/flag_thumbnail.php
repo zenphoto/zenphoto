@@ -128,8 +128,8 @@ class flag_thumbnail {
 		);
 	}
 
-	private static function image($html, $which, $where) {
-		$img = getPlugin('flag_thumbnail/' . $which);
+	protected static function image($html, $which, $where) {
+		$img = getPlugin($which);
 		$size = zp_imageDims($img);
 		$wide = $size['width'];
 		$high = $size['height'];
@@ -138,15 +138,16 @@ class flag_thumbnail {
 		return $html;
 	}
 
-	private static function insert_class($html) {
+	protected static function insert_class($html_original) {
 		global $_zp_current_album, $_zp_current_image;
+
+		$html = $html_original;
 		if (getOption('flag_thumbnail_flag_new')) {
 			if (isset($_zp_current_image)) {
 				$obj = $_zp_current_image;
 			} else {
 				$obj = $_zp_current_album;
 			}
-			$html = '<span class="flag_thumbnail" style="position:relative; display:block;">' . "\n" . $html . "\n";
 			switch (getOption('flag_thumbnail_date')) {
 				case "date":
 					$imagedatestamp = strtotime($obj->getDateTime());
@@ -161,7 +162,7 @@ class flag_thumbnail {
 				if (getOption('flag_thumbnail_use_text')) {
 					$html .= '<span class="textasnewflag" style="position: absolute;top: 10px;right: 6px;">' . getOption('flag_thumbnail_new_text') . "</span>\n";
 				} else {
-					$html = self::image($html, getOption('flag_thumbnail_new_icon'), 'absolute;top: 4px;right: 4px;');
+					$html = self::image($html, get_class() . '/' . getOption('flag_thumbnail_new_icon'), 'absolute;top: 4px;right: 4px;');
 				}
 			}
 		}
@@ -174,7 +175,7 @@ class flag_thumbnail {
 					if (getOption('flag_thumbnail_use_text')) {
 						$html .= '<span class="textasnewflag" style="position: absolute;bottom: 10px;right: 6px;">' . getOption('flag_thumbnail_use_text') . "</span>\n";
 					} else {
-						$html = self::image($html, getOption('flag_thumbnail_geodata_icon'), 'absolute;bottom: 4px;right: 4px;');
+						$html = self::image($html, get_class() . '/' . getOption('flag_thumbnail_geodata_icon'), 'absolute;bottom: 4px;right: 4px;');
 					}
 				}
 			}
@@ -195,33 +196,34 @@ class flag_thumbnail {
 				if (getOption('flag_thumbnail_use_text')) {
 					$html .= '<span class="textasnewflag" style="position: absolute;top: 10px;left: 4px;">' . getOption('flag_thumbnail_unpublished_text') . "</span>\n";
 				} else {
-					$html = self::image($html, getOption('flag_thumbnail_unpublished_icon'), 'absolute;top: 4px;left: 4px;');
+					$html = self::image($html, get_class() . '/' . getOption('flag_thumbnail_unpublished_icon'), 'absolute;top: 4px;left: 4px;');
 				}
 			}
 		}
-		$html .= "</span>\n";
+		$html = '<span class="flag_thumbnail" style="position:relative; display:block;">' . "\n" . trim($html) . "\n</span>\n";
+
 		return $html;
 	}
 
 	static function custom_images($html, $thumbstandin) {
 		if ($thumbstandin) {
-			$html = flag_thumbnail::insert_class($html);
+			$html = self::insert_class($html);
 		}
 		return $html;
 	}
 
 	static function std_image_thumbs($html) {
-		$html = flag_thumbnail::insert_class($html);
+		$html = self::insert_class($html);
 		return $html;
 	}
 
 	static function std_album_thumbs($html) {
-		$html = flag_thumbnail::insert_class($html);
+		$html = self::insert_class($html);
 		return $html;
 	}
 
 	static function custom_album_thumbs($html) {
-		$html = flag_thumbnail::insert_class($html);
+		$html = self::insert_class($html);
 		return $html;
 	}
 
