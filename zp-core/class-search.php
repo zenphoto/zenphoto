@@ -935,7 +935,7 @@ class SearchEngine {
 				if (empty($sorttype)) {
 					$key = '`date` DESC';
 				} else {
-					$key = trim('`'.$sorttype . '` ' . $sortdirection);
+					$key = trim($sorttype . ' ' . $sortdirection);
 				}
 				break;
 			case 'pages':
@@ -960,7 +960,7 @@ class SearchEngine {
 					}
 				} else {
 					list($key, $sortdirection) = $this->sortKey($sorttype, $sortdirection, 'title', 'albums');
-					$key = trim('`' . $key . '` ' . $sortdirection);
+					$key = trim($key . ' ' . $sortdirection);
 				}
 				break;
 			default:
@@ -988,7 +988,7 @@ class SearchEngine {
 					}
 				} else {
 					list($key, $sortdirection) = $this->sortKey($sorttype, $sortdirection, 'title', 'images');
-					$key = trim('`'. $key . '` ' . $sortdirection);
+					$key = trim($key . ' ' . $sortdirection);
 				}
 				break;
 		}
@@ -1278,7 +1278,7 @@ class SearchEngine {
 					if (empty($sorttype)) {
 						$key = '`date` DESC';
 					} else {
-						$key = trim('`'.$sorttype . '` ' . $sortdirection);
+						$key = trim($sorttype . $sortdirection);
 					}
 					if ($show) {
 						$show .= '`date`<=' . db_quote(date('Y-m-d H:i:s')) . ' AND ';
@@ -1319,7 +1319,7 @@ class SearchEngine {
 						}
 					} else {
 						list($key, $sortdirection) = $this->sortKey($sorttype, $sortdirection, 'title', 'albums');
-						$key = trim('`'.$key . '` ' . $sortdirection);
+						$key = trim($key . ' ' . $sortdirection);
 					}
 					break;
 				default: // images
@@ -1345,7 +1345,7 @@ class SearchEngine {
 						}
 					} else {
 						list($key, $sortdirection) = $this->sortKey($sorttype, $sortdirection, 'title', 'images');
-						$key = trim('`'.$key . '` ' . $sortdirection);
+						$key = trim($key . ' ' . $sortdirection);
 					}
 					break;
 			}

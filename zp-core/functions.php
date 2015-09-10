@@ -269,7 +269,7 @@ function lookupSortKey($sorttype, $default, $table) {
 			}
 		default:
 			if (empty($sorttype)) {
-				return $default;
+				return '`' . $default . '`';
 			}
 			if (substr($sorttype, 0) == '(') {
 				return $sorttype;
@@ -288,16 +288,12 @@ function lookupSortKey($sorttype, $default, $table) {
 			}
 			$sorttype = strtolower($sorttype);
 			$list = explode(',', $sorttype);
-			$fields = array();
-			// Critical for preventing SQL injection: only return parts of 
-			// the custom sort that are exactly equal to database fields.
 			foreach ($list as $key => $field) {
-				$field = trim($field);
 				if (array_key_exists($field, $dbfields)) {
-					$fields[$key] = trim($dbfields[$field]);
-				}
+					$list[$key] = '`' . trim($dbfields[$field]) . '`';
+				} 
 			}
-			return implode(',', $fields);
+			return implode(',', $list);
 	}
 }
 
