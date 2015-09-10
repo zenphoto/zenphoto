@@ -189,7 +189,7 @@ class flag_thumbnail {
 				if (getOption('flag_thumbnail_use_text')) {
 					$html .= '<span class="textasnewflag" style="position: absolute;bottom: 10px;left: 4px;">' . getOption('flag_thumbnail_locked_text') . "</span>\n";
 				} else {
-					$html = self::image($html, getOption('flag_thumbnail_locked_icon'), 'absolute;bottom: 4px;left: 4px;');
+					$html = self::image($html, get_class() . '/' . getOption('flag_thumbnail_locked_icon'), 'absolute;bottom: 4px;left: 4px;');
 				}
 			}
 			if ($unpublished && getOption('flag_thumbnail_flag_unpublished')) {
