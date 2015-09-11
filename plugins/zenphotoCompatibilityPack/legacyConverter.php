@@ -30,7 +30,7 @@ $legacyReplacements = array(
 				'class_exists\([\'"]Zenpage[\'"]\)'	 => 'class_exists("CMS")',
 				'\$_zp_current_zenpage_article'			 => '$_zp_current_article',
 				'\$_zp_current_zenpage_page'				 => '$_zp_current_page',
-				'->getFullImage\('									 => '->getFullImageURL\('
+				'->getFullImage\('									 => '->getFullImageURL('
 );
 
 /**
