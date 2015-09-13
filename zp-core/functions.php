@@ -265,7 +265,7 @@ function lookupSortKey($sorttype, $default, $table) {
 				case 'images':
 					return '`filename`';
 				case 'albums':
-					return '`nfolder`';
+					return '`folder`';
 			}
 		default:
 			if (empty($sorttype)) {
@@ -291,7 +291,7 @@ function lookupSortKey($sorttype, $default, $table) {
 			foreach ($list as $key => $field) {
 				if (array_key_exists($field, $dbfields)) {
 					$list[$key] = '`' . trim($dbfields[$field]) . '`';
-				} 
+				}
 			}
 			return implode(',', $list);
 	}
@@ -1182,10 +1182,10 @@ function getTagCountByAccess($tag) {
       return $tag['count'];
     }
     return 0;
-  } 
+  }
   if (is_null($_zp_object_to_tags)) {
     $sql = "SELECT tagid, type, objectid FROM " . prefix('obj_to_tag') . " ORDER BY tagid";
-    $_zp_object_to_tags = query_full_array($sql); 
+    $_zp_object_to_tags = query_full_array($sql);
   }
   $count = '';
   if ($_zp_object_to_tags) {
@@ -2467,7 +2467,7 @@ function getMacros() {
  *
  * @param $subalbum root level album (NULL is the gallery)
  * @param $levels how far to nest
- * @param $checkalbumrights TRUE (Default) for album rights for backend usage, FALSE to skip for frontend usage 
+ * @param $checkalbumrights TRUE (Default) for album rights for backend usage, FALSE to skip for frontend usage
  * @param $level internal for keeping the sort order elements
  * @return array
  */
@@ -2486,7 +2486,7 @@ function getNestedAlbumList($subalbum, $levels, $checkalbumrights = true, $level
   $accessallowed = true;
   if($checkalbumrights) {
     $accessallowed = $albumobj->isMyItem(ALBUM_RIGHTS);
-  } 
+  }
 		if (!is_null($subalbum) || $accessallowed) {
 			$level[$cur] = sprintf('%03u', $albumobj->getSortOrder());
 			$list[] = array('name' => $analbum, 'sort_order' => $level);
@@ -2543,7 +2543,7 @@ class zpFunctions {
 			$text = @$_locale_Subdomains[$loc];
 			//en_US always is always empty here so so urls in dynamic locale or html_meta_tags are wrong (Quickfix)
 			if(empty($text)) {
-				$text = $loc; 
+				$text = $loc;
 			}
 		}
 		if (!is_null($separator)) {
