@@ -101,10 +101,10 @@ $backgroundImagePath = "";
 					<span><?php printHomeLink('', ' | '); printGalleryIndexURL(' | '); ?></span>
 					<?php
 					if (is_array($albumlist)) {
-						echo "<em>" . sprintf(ngettext('Search album: %s', 'Search: %s', count($albumlist)), implode(',', $albumlist)) . "</em>";
+						echo "<em>" . sprintf(ngettext('Search album: %s', 'Search albums: %s', count($albumlist)), implode(',', $albumlist)) . "</em>";
 					} else {
 						if (is_array($categorylist)) {
-							echo "<em>" . sprintf(ngettext('Search category: %s', 'Search: %s', count($categorylist)), implode(',', $categorylist)) . "</em>";
+							echo "<em>" . sprintf(ngettext('Search category: %s', 'Search categories: %s', count($categorylist)), implode(',', $categorylist)) . "</em>";
 						} else {
 							printSearchBreadcrumb();
 						}
