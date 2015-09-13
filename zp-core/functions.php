@@ -259,13 +259,13 @@ function lookupSortKey($sorttype, $default, $table) {
 		case 'random':
 			return 'RAND()';
 		case "manual":
-			return 'sort_order';
+			return '`sort_order`';
 		case "filename":
 			switch ($table) {
 				case 'images':
-					return 'filename';
+					return '`filename`';
 				case 'albums':
-					return 'folder';
+					return '`nfolder`';
 			}
 		default:
 			if (empty($sorttype)) {
