@@ -28,7 +28,7 @@ if (!defined('WEBPATH')) die();
 			<div id="logo">
 				<?php
 				if (getOption('Allow_search')) {
-					printSearchForm(NULL,'search',$_zp_themeroot.'/images/search.png',gettext('Search gallery'));
+					printSearchForm(NULL,'search',$_zp_themeroot.'/images/search.png',gettext('Search'));
 				}
 				printLogo();
 				?>

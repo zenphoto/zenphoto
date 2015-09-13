@@ -22,7 +22,7 @@ if (class_exists('favorites')) {
 					<h1><?php printGalleryTitle(); ?></h1>
 					<?php
 					if (getOption('Allow_search')) {
-						printSearchForm(NULL, 'search', NULL, gettext('Search gallery'));
+						printSearchForm(NULL, 'search', NULL, gettext('Search'));
 					}
 					?>
 				</div>
@@ -67,14 +67,14 @@ if (class_exists('favorites')) {
 
 						</div>
 						<p style="clear: both; "></p>
-						<?php 
-      @call_user_func('printSlideShowLink'); 
-      printPageListWithNav("« " . gettext("prev"), gettext("next") . " »"); 
-      printTags('links', gettext('<strong>Tags:</strong>') . ' ', 'taglist', ', '); 
+						<?php
+      @call_user_func('printSlideShowLink');
+      printPageListWithNav("« " . gettext("prev"), gettext("next") . " »");
+      printTags('links', gettext('<strong>Tags:</strong>') . ' ', 'taglist', ', ');
       ?>
 						<br style="clear:both;" /><br />
-						<?php 
-      @call_user_func('printRating'); 
+						<?php
+      @call_user_func('printRating');
       @call_user_func('printCommentForm');
       ?>
 					</div><!-- content left-->

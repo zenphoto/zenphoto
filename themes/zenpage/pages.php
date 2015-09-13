@@ -23,7 +23,7 @@ if (class_exists('Zenpage') && ZP_PAGES_ENABLED) {
 					<h1><?php printGalleryTitle(); ?></h1>
 					<?php
 					if (getOption('Allow_search')) {
-						printSearchForm("", "search", "", gettext("Search gallery"));
+						printSearchForm("", "search", "", gettext("Search"));
 					}
 					?>
 				</div>

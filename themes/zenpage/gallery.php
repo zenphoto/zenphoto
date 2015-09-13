@@ -23,7 +23,7 @@ if (!defined('WEBPATH'))
 				<h1><?php printGalleryTitle(); ?></h1>
 				<?php
 				if (getOption('Allow_search')) {
-					printSearchForm("", "search", "", gettext("Search gallery"));
+					printSearchForm("", "search", "", gettext("Search"));
 				}
 				?>
 			</div>

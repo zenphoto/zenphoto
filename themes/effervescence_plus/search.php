@@ -78,14 +78,14 @@ $backgroundImagePath = "";
 						$categorylist = $_zp_current_search->getCategoryList();
 						if (is_array($categorylist)) {
 							$catlist = array('news' => $categorylist, 'albums' => '0', 'images' => '0', 'pages' => '0');
-							printSearchForm(NULL, 'search', $_zp_themeroot . '/images/search.png', gettext('Search within category'), NULL, NULL, $catlist);
+							printSearchForm(NULL, 'search', $_zp_themeroot . '/images/search.png', gettext('Search'), NULL, NULL, $catlist);
 						} else {
 							$albumlist = $_zp_current_search->getAlbumList();
 							if (is_array($albumlist)) {
 								$album_list = array('albums' => $albumlist, 'pages' => '0', 'news' => '0');
-								printSearchForm(NULL, 'search', $_zp_themeroot . '/images/search.png', gettext('Search within album'), NULL, NULL, $album_list);
+								printSearchForm(NULL, 'search', $_zp_themeroot . '/images/search.png', gettext('Search'), NULL, NULL, $album_list);
 							} else {
-								printSearchForm(NULL, 'search', $_zp_themeroot . '/images/search.png', gettext('Search gallery'));
+								printSearchForm(NULL, 'search', $_zp_themeroot . '/images/search.png', gettext('Search'));
 							}
 						}
 					}
@@ -101,10 +101,10 @@ $backgroundImagePath = "";
 					<span><?php printHomeLink('', ' | '); printGalleryIndexURL(' | '); ?></span>
 					<?php
 					if (is_array($albumlist)) {
-						echo "<em>" . sprintf(ngettext('Search album: %s', 'Search albums: %s', count($albumlist)), implode(',', $albumlist)) . "</em>";
+						echo "<em>" . sprintf(ngettext('Search album: %s', 'Search: %s', count($albumlist)), implode(',', $albumlist)) . "</em>";
 					} else {
 						if (is_array($categorylist)) {
-							echo "<em>" . sprintf(ngettext('Search category: %s', 'Search categories: %s', count($categorylist)), implode(',', $categorylist)) . "</em>";
+							echo "<em>" . sprintf(ngettext('Search category: %s', 'Search: %s', count($categorylist)), implode(',', $categorylist)) . "</em>";
 						} else {
 							printSearchBreadcrumb();
 						}

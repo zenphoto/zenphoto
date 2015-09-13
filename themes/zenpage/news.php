@@ -25,10 +25,10 @@ if (class_exists('Zenpage') && ZP_NEWS_ENABLED) {
 					if (getOption('Allow_search')) {
 						if (is_NewsCategory()) {
 							$catlist = array('news' => array($_zp_current_category->getTitlelink()), 'albums' => '0', 'images' => '0', 'pages' => '0');
-							printSearchForm(NULL, 'search', NULL, gettext('Search category'), NULL, NULL, $catlist);
+							printSearchForm(NULL, 'search', NULL, gettext('Search'), NULL, NULL, $catlist);
 						} else {
 							$catlist = array('news' => '1', 'albums' => '0', 'images' => '0', 'pages' => '0');
-							printSearchForm(NULL, "search", "", gettext("Search news"), NULL, NULL, $catlist);
+							printSearchForm(NULL, "search", "", gettext("Search"), NULL, NULL, $catlist);
 						}
 					}
 					?>
