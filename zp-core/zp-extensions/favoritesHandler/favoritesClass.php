@@ -183,7 +183,7 @@ class favorites extends AlbumBase {
 					}
 				}
 				$sortkey = $this->getAlbumSortKey($sorttype);
-				if (($sortkey == '`sort_order`') || ($sortkey == 'RAND()')) { // manual sort is always ascending
+				if ((trim($sortkey . '`') != 'sort_order') || ($sortkey == 'RAND()')) { // manual sort is always ascending
 					$order = false;
 				} else {
 					if (!is_null($sortdirection)) {
@@ -235,7 +235,7 @@ class favorites extends AlbumBase {
 					$sorttype = $this->getSortType();
 				}
 				$sortkey = str_replace('` ', ' ', $this->getImageSortKey($sorttype));
-				if (($sortkey == 'sort_order') || ($sortkey == 'RAND()')) {
+				if ((trim($sortkey . '`') != 'sort_order') || ($sortkey == 'RAND()')) {
 					// manual sort is always ascending
 					$order = false;
 				} else {

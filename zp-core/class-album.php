@@ -1006,7 +1006,7 @@ class AlbumBase extends MediaObject {
 			$mine = $this->subRights() & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW);
 		}
 		$sortkey = $this->getImageSortKey($sorttype);
-		if (($sortkey == '`sort_order`') || ($sortkey == 'RAND()')) {
+		if ((trim($sortkey . '`') != 'sort_order') || ($sortkey == 'RAND()')) {
 			// manual sort is always ascending
 			$order = false;
 		} else {

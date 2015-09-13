@@ -1042,20 +1042,20 @@ class SearchEngine {
 				}
 				break;
 			case 'pages':
-				$key = '`sort_order`';
+				$key = 'sort_order';
 				break;
 			case 'albums':
 				if (is_null($sorttype)) {
 					if (empty($this->album)) {
 						list($key, $sortdirection) = $this->sortKey($_zp_gallery->getSortType(), $sortdirection, 'title', 'albums');
-						if ($key != '`sort_order`') {
+						if (trim($key . '`') != 'sort_order') {
 							if ($_zp_gallery->getSortDirection()) {
 								$key .= " DESC";
 							}
 						}
 					} else {
 						$key = $this->album->getAlbumSortKey();
-						if ($key != '`sort_order`' && $key != 'RAND()') {
+						if (trim($key . '`') != 'sort_order' && $key != 'RAND()') {
 							if ($this->album->getSortDirection('album')) {
 								$key .= " DESC";
 							}
@@ -1074,14 +1074,14 @@ class SearchEngine {
 				if (is_null($sorttype)) {
 					if (empty($this->album)) {
 						list($key, $sortdirection) = $this->sortKey(IMAGE_SORT_TYPE, $sortdirection, 'title', 'images');
-						if ($key != '`sort_order`') {
+						if (trim($key . '`') != 'sort_order') {
 							if (IMAGE_SORT_DIRECTION) {
 								$key .= " DESC";
 							}
 						}
 					} else {
 						$key = $thie->album->getImageSortKey();
-						if ($key != '`sort_order`' && $key != 'RAND()') {
+						if (trim($key . '`') != 'sort_order' && $key != 'RAND()') {
 							if ($this->album->getSortDirection('image')) {
 								$key .= " DESC";
 							}
@@ -1404,7 +1404,7 @@ class SearchEngine {
 					if ($show) {
 						$show .= '`date`<=' . db_quote(date('Y-m-d H:i:s')) . ' AND ';
 					}
-					$key = '`sort_order`';
+					$key = 'sort_order';
 					break;
 				case 'albums':
 					if ($this->search_unpublished || zp_loggedin()) {
@@ -1421,7 +1421,7 @@ class SearchEngine {
 							}
 						} else {
 							$key = $this->album->getAlbumSortKey();
-							if ($key != '`sort_order`' && $key != 'RAND()') {
+							if (trim($key . '`') != 'sort_order' && $key != 'RAND()') {
 								if ($this->album->getSortDirection('album')) {
 									$key .= " DESC";
 								}
@@ -1447,7 +1447,7 @@ class SearchEngine {
 							}
 						} else {
 							$key = $this->album->getImageSortKey();
-							if ($key != '`sort_order`') {
+							if (trim($key . '`') != 'sort_order') {
 								if ($this->album->getSortDirection('image')) {
 									$key .= " DESC";
 								}
