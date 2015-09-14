@@ -28,8 +28,7 @@ if (!defined('WEBPATH'))
 				<div id="logo">
 					<?php
 					if (getOption('Allow_search')) {
-						$album_list = array('albums' => '1', 'pages' => '0', 'news' => '0');
-						printSearchForm(NULL, 'search', $_zp_themeroot . '/images/search.png', gettext('Search'), NULL, NULL, $album_list);
+						printSearchForm(NULL, 'search', $_zp_themeroot . '/images/search.png', gettext('Search'));
 					}
 					printLogo();
 					?>

@@ -20,6 +20,11 @@ if (!defined('WEBPATH'))
 
 			<div id="header">
 				<h1><?php printGalleryTitle(); ?></h1>
+				<?php
+				if (getOption('Allow_search')) {
+					printSearchForm("", "search", "", gettext("Search"));
+				}
+				?>
 			</div>
 
 			<div id="content">

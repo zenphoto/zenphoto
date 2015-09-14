@@ -17,6 +17,11 @@ if (!defined('WEBPATH'))
 		<?php zp_apply_filter('theme_body_open'); ?>
 		<div id="main">
 			<div id="gallerytitle">
+				<?php
+				if (getOption('Allow_search')) {
+					printSearchForm();
+				}
+				?>
 				<h2>
 					<span>
 						<?php printHomeLink('', ' | '); printGalleryIndexURL(' | ', getGalleryTitle()); echo gettext("Object not found"); ?>

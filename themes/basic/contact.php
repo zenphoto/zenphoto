@@ -18,6 +18,11 @@ if (function_exists('printContactForm')) {
 			<?php zp_apply_filter('theme_body_open'); ?>
 			<div id="main">
 				<div id="gallerytitle">
+					<?php
+					if (getOption('Allow_search')) {
+						printSearchForm();
+					}
+					?>
 					<h2>
 						<?php printHomeLink('', ' | '); printGalleryIndexURL(' | ', getGalleryTitle()); ?>
 						<em><?php echo gettext('Contact us'); ?></em>

@@ -49,8 +49,7 @@ $map = function_exists('printGoogleMap');
 					</div><!-- albnext -->
 					<?php
 					if (getOption('Allow_search')) {
-						$album_list = array('albums' => array($_zp_current_album->name), 'pages' => '0', 'news' => '0');
-						printSearchForm(NULL, 'search', $_zp_themeroot . '/images/search.png', gettext('Search'), NULL, NULL, $album_list);
+						printSearchForm(NULL, 'search', $_zp_themeroot . '/images/search.png', gettext('Search'));
 					}
 					?>
 				</div> <!-- header -->

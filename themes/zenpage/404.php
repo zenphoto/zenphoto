@@ -22,6 +22,11 @@ if (!defined('WEBPATH'))
 				<h1 class="title">
 					<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a>
 				</h1>
+				<?php
+				if (getOption('Allow_search')) {
+					printSearchForm("", "search", "", gettext("Search"));
+				}
+				?>
 			</div>
 
 			<div id="content">
