@@ -1616,7 +1616,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 						$task = '';
 						if (isset($_GET['create'])) {
 							$task = 'create';
-							$create = array_flip(explode(',', sanitize($_R['create'])));
+							$create = array_flip(explode(',', sanitize($_REQUEST['create'])));
 						}
 						if (isset($_REQUEST['update'])) {
 							$task = 'update';

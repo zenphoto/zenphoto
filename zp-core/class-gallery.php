@@ -750,7 +750,7 @@ class Gallery {
 	 * @author Todd Papaioannou (lucky@luckyspin.org)
 	 * @since  1.0.0
 	 */
-	function sortAlbumArray($parentalbum, $albums, $sortkey = '`sort_order`', $sortdirection = NULL, $mine = NULL) {
+	function sortAlbumArray($parentalbum, $albums, $sortkey = 'sort_order', $sortdirection = NULL, $mine = NULL) {
 		if (count($albums) == 0) {
 			return array();
 		}
@@ -767,7 +767,7 @@ class Gallery {
 			$viewUnpublished = (zp_loggedin() && $obj->subRights() & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW));
 		}
 
-		if (($sortkey == '`sort_order`') || ($sortkey == 'RAND()')) { // manual sort is always ascending
+		if ((trim($sortkey . '`') != 'sort_order') || ($sortkey == 'RAND()')) { // manual sort is always ascending
 			$order = false;
 		} else {
 			if (is_null($sortdirection)) {

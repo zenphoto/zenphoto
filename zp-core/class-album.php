@@ -325,6 +325,20 @@ class AlbumBase extends MediaObject {
 		}
 	}
 
+	function getOffspring() {
+		$list = $this->subalbums;
+		$mine = array();
+		if (is_array($list)) {
+			foreach ($list as $subalbum) {
+				$obj = newAlbum($subalbum);
+				$mine = array_merge($mine, $obj->getOffspring());
+			}
+			return(array_merge($list, $mine));
+		} else {
+			return array();
+		}
+	}
+
 	/**
 	 * Returns the count of subalbums
 	 *
@@ -992,7 +1006,7 @@ class AlbumBase extends MediaObject {
 			$mine = $this->subRights() & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW);
 		}
 		$sortkey = $this->getImageSortKey($sorttype);
-		if (($sortkey == '`sort_order`') || ($sortkey == 'RAND()')) {
+		if ((trim($sortkey . '`') != 'sort_order') || ($sortkey == 'RAND()')) {
 			// manual sort is always ascending
 			$order = false;
 		} else {

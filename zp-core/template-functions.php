@@ -3759,7 +3759,7 @@ function getSearchURL($words, $dates, $fields, $page, $object_list = NULL) {
  * @since 1.1.3
  */
 function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL, $buttontext = '', $iconsource = NULL, $query_fields = NULL, $object_list = NULL, $within = NULL) {
-	global $_zp_adminJS_loaded, $_zp_current_search;
+	global $_zp_adminJS_loaded, $_zp_current_search, $_zp_current_album;
 	$engine = new SearchEngine();
 	if (!is_null($_zp_current_search) && !$_zp_current_search->getSearchWords()) {
 		$engine->clearSearchWords();
@@ -3864,17 +3864,19 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 				<?php
 				if (is_array($object_list)) {
 					foreach ($object_list as $key => $list) {
+						if (is_array($list)) {
+							if ($key == 'albums' && count($list) == 1 && $_zp_current_album && $_zp_current_album->name == end($list)) {
+								// special case for current album, search its offspring
+								$list = array_merge($list, $_zp_current_album->getOffspring());
+							}
+							$list = implode(',', $list);
+						}
 						?>
-						<input type="hidden" name="in<?php echo $key ?>" value="<?php
-						if (is_array($list))
-							echo html_encode(implode(',', $list));
-						else
-							echo html_encode($list);
-						?>" />
-									 <?php
-								 }
-							 }
-							 ?>
+						<input type="hidden" name="in<?php echo $key ?>" value="<?php echo html_encode($list); ?>" />
+						<?php
+					}
+				}
+				?>
 				<br />
 				<?php
 				if (count($fields) > 1 || $searchwords) {
