@@ -399,7 +399,7 @@ class htmlmetatags {
 									$altlink .= '/' . _SEARCH_ . '/';
 									break;
 								case 'contact.php':
-									$altlink .= '/' . _PAGE_ . '/contact';
+									$altlink .= '/' . _CONTACT_ . '/';
 									break;
 								default: // for all other possible none standard custom pages
 									$altlink .= '/' . _PAGE_ . '/' . html_encode($pagetitle);
