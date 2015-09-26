@@ -79,11 +79,12 @@ if (!defined('WEBPATH'))
 			if (function_exists('printFavoritesURL')) {
 				printFavoritesURL(NULL, '', ' | ', '<br />');
 			}
+			if (class_exists('RSS'))
+				printRSSLink('Album', '', gettext('Album RSS'), ' | ');
+			printCustomPageURL(gettext("Archive View"), "archive", '', '', ' | ');
+			printSoftwareLink();
+			@call_user_func('printUserLogin_out', " | ");
 			?>
-			<?php if (class_exists('RSS')) printRSSLink('Album', '', gettext('Album RSS'), ' | '); ?>
-			<?php printCustomPageURL(gettext("Archive View"), "archive"); ?> |
-			<?php printSoftwareLink(); ?>
-			<?php @call_user_func('printUserLogin_out', " | "); ?>
 		</div>
 		<?php
 		zp_apply_filter('theme_body_close');
