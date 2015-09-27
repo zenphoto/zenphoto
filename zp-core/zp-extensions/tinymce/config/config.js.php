@@ -63,7 +63,8 @@ if (OFFSET_PATH) {
 <script type="text/javascript">
 // <!-- <![CDATA[
 					tinymce.init({
-					selector: "<?php echo $MCEselector; ?>",
+					entity_encoding : "raw",
+									selector: "<?php echo $MCEselector; ?>",
 									language: "<?php echo $locale; ?>",
 									relative_urls: false,
 <?php
