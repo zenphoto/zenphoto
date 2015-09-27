@@ -284,7 +284,7 @@ function getItemTitleAndURL($item) {
 			$array = array("title" => get_language_string($item['title']), "url" => NULL, 'name' => $item['title'], 'protected' => false, 'theme' => $themename);
 			break;
 		default:
-			$array = array("title" => $item['title'], "url" => $item['link'], "name" => $item['link'], 'protected' => false, 'theme' => $themename);
+			$array = array("title" => get_language_string($item['title']), "url" => $item['link'], "name" => $item['link'], 'protected' => false, 'theme' => $themename);
 			break;
 	}
 	$limit = MENU_TRUNCATE_STRING;
