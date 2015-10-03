@@ -1248,7 +1248,7 @@ function printSearchBreadcrumb($between = NULL, $class = NULL, $search = NULL, $
 			$text = gettext('Archive');
 			$textdecoration = true;
 		} else {
-			$text = getBare(html_encode($archive));
+			$text = html_encode(getBare($archive));
 			$textdecoration = false;
 		}
 		echo "<a href=\"" . html_encode(getCustomPageURL('archive', NULL)) . "\"$class title=\"" . $text . "\">";
@@ -1265,7 +1265,7 @@ function printSearchBreadcrumb($between = NULL, $class = NULL, $search = NULL, $
 			$text = gettext('Search');
 			$textdecoration = true;
 		} else {
-			$text = getBare(html_encode($search));
+			$text = html_encode(getBare($search));
 			$textdecoration = false;
 		}
 		printf('%s' . $text . '%s', $textdecoration ? '<em>' : '', $textdecoration ? '</em>' : '');

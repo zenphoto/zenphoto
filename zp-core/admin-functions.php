@@ -2226,7 +2226,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					<a href="?page=edit&amp;album=<?php echo html_encode(pathurlencode($album->name)); ?>" title="<?php echo sprintf(gettext('Edit this album: %s'), $album->name); ?>">
 						<?php
 					}
-					echo getBare($album->getTitle());
+					echo html_encode(getBare($album->getTitle()));
 					if ($enableEdit) {
 						?>
 					</a>
