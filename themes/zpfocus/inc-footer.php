@@ -3,7 +3,7 @@
 	<?php if (getOption('zpfocus_center_site')) echo "<div class=\"center\">"; ?>
 	<div class="left">
 		<div id="copyright">
-			<p>&copy; <?php echo getBareGalleryTitle(); ?>, <?php echo gettext('all rights reserved'); ?></p>
+			<p>&copy; <?php echo html_encode(getBareGalleryTitle()); ?>, <?php echo gettext('all rights reserved'); ?></p>
 		</div>
 		<div id="zpcredit">
 			<?php
@@ -35,7 +35,8 @@
 			<?php } ?>
 		</ul> <?php
 		if (extensionEnabled('rss')) {
-			if ((getOption('RSS_items_albums')) || (getOption('RSS_zenpage_items'))) { ?>
+			if ((getOption('RSS_items_albums')) || (getOption('RSS_zenpage_items'))) {
+				?>
 				<div id="rsslinks">
 					<span><?php echo gettext('Subscribe: '); ?></span>
 					<?php
@@ -51,7 +52,8 @@
 					?>
 				</div>
 				<br />
-			<?php }
+			<?php
+			}
 		}
 		if (function_exists('printLanguageSelector')) {
 			printLanguageSelector("langselector");

@@ -44,8 +44,8 @@ if (class_exists('favorites')) {
 			while (next_album()):
 				?>
 				<div class="one-third column album">
-					<h4><?php echo getBareAlbumTitle(); ?></h4>
-					<a href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo gettext('View album:'); ?> <?php echo getBareAlbumTitle(); ?>">
+					<h4><?php echo html_encode(getBareAlbumTitle()); ?></h4>
+					<a href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo gettext('View album:'); ?> <?php echo html_encode(getBareAlbumTitle()); ?>">
 						<?php printCustomAlbumThumbImage(getBareAlbumTitle(), null, 420, 200, 420, 200, null, null, 'remove-attributes'); ?>
 					</a>
 					<div class="album-meta">
@@ -92,7 +92,7 @@ if (class_exists('favorites')) {
 			while (next_image()):
 				?>
 				<div class="<?php echo $colclass; ?> columns image imagegrid">
-					<a href="<?php echo html_encode(getImageURL()); ?>" title="<?php echo getBareImageTitle(); ?>">
+					<a href="<?php echo html_encode(getImageURL()); ?>" title="<?php echo html_encode(getBareImageTitle()); ?>">
 						<?php
 						if ($thumbcrop) {
 							printCustomSizedImage(getBareImageTitle(), null, $imagesize, $imagesize, $imagesize, $imagesize, null, null, 'remove-attributes', null, true);

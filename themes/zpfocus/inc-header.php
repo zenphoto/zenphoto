@@ -121,7 +121,7 @@
 		}
 		?>
 
-		<meta name="description" content="<?php echo $zpfocus_metadesc; ?>" />
+		<meta name="description" content="<?php echo html_encode($zpfocus_metadesc); ?>" />
 
 		<?php require_once(SERVERPATH . '/' . ZENFOLDER . "/zp-extensions/print_album_menu.php"); ?>
 
@@ -136,7 +136,7 @@
 		<link rel="shortcut icon" href="<?php echo $_zp_themeroot; ?>/images/favicon.ico" />
 		<script type="text/javascript" src="<?php echo $_zp_themeroot; ?>/js/superfish.js"></script>
 		<script type="text/javascript">
-			jQuery(function() {
+			jQuery(function () {
 				jQuery('ul.sf-menu').superfish();
 			});
 <?php if (getOption('zp_plugin_reCaptcha')) { ?>
@@ -151,7 +151,7 @@
 		<script src="<?php echo FULLWEBPATH . "/" . ZENFOLDER ?>/zp-extensions/colorbox_js/jquery.colorbox-min.js" type="text/javascript"></script>
 		<link rel="stylesheet" href="<?php echo FULLWEBPATH . "/" . ZENFOLDER ?>/zp-extensions/colorbox_js/themes/<?php echo $zpfocus_cbstyle; ?>/colorbox.css" type="text/css" media="screen"/>
 		<script type="text/javascript">
-			$(document).ready(function() {
+			$(document).ready(function () {
 				$("a[rel='zoom']").colorbox({
 					slideshow: false,
 					slideshowStart: '<?php echo gettext('start slideshow'); ?>',

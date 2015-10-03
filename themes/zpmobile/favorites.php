@@ -8,9 +8,9 @@ if (class_exists('favorites')) {
 	<html>
 		<head>
 			<?php zp_apply_filter('theme_head'); ?>
-			
-			
-			 
+
+
+
 			<meta name="viewport" content="width=device-width, initial-scale=1">
 			<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" />
 			<?php jqm_loadScripts(); ?>
@@ -35,7 +35,7 @@ if (class_exists('favorites')) {
 									<a href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo gettext('View album:'); ?>">
 										<?php printCustomAlbumThumbImage(getAnnotatedAlbumTitle(), null, 79, 79, 79, 79, NULL, null, NULL, NULL); ?>
 										<?php printAlbumTitle(); ?><small> (<?php printAlbumDate(''); ?>)</small>
-										<div class="albumdesc"><?php echo shortenContent(getAlbumDesc(), 100, '(...)', false); ?></div>
+										<div class="albumdesc"><?php echo html_encode(shortenContent(getAlbumDesc(), 100, '(...)', false)); ?></div>
 										<small class="ui-li-count"><?php jqm_printImageAlbumCount() ?></small>
 									</a>
 									<?php printAddToFavorites($_zp_current_album, '', gettext('Remove')); ?>
@@ -63,14 +63,14 @@ if (class_exists('favorites')) {
 						?>
 					</div>
 					<div class="content-secondary">
-	<?php jqm_printMenusLinks(); ?>
+						<?php jqm_printMenusLinks(); ?>
 					</div>
 				</div><!-- /content -->
 				<?php jqm_printBacktoTopLink(); ?>
-	<?php jqm_printFooterNav(); ?>
+				<?php jqm_printFooterNav(); ?>
 			</div><!-- /page -->
 
-	<?php zp_apply_filter('theme_body_close'); ?>
+			<?php zp_apply_filter('theme_body_close'); ?>
 
 		</body>
 	</html>

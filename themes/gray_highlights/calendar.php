@@ -11,13 +11,15 @@
 		<?php zp_apply_filter('theme_body_open'); ?>
 		<div class="container_15">
 			<div id="header" class="grid_15">
-				<?php if (function_exists('printLanguageSelector')) {
+				<?php
+				if (function_exists('printLanguageSelector')) {
 					echo '<div class="languages grid_5">';
 					printLanguageSelector(true);
 					echo '</div>';
-				} ?>
+				}
+				?>
 <?php printLoginZone(); ?>
-				<h1><?php echo getBareGalleryTitle(); ?></h1>
+				<h1><?php echo html_encode(getBareGalleryTitle()); ?></h1>
 			</div>
 			<div class="clear"></div>
 			<div id="menu">
@@ -25,16 +27,16 @@
 					<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo getGalleryTitle(); ?>"><?php echo getGalleryTitle(); ?></a>
 					<span class="current"><?php echo gettext('Archive View'); ?></span>
 				</div>
-					<?php printMenu(); ?>
+<?php printMenu(); ?>
 			</div>
 			<div class="clear"></div>
 			<div id="content">
 				<div id="archive">
-				<?php printCalendar('calendar', array('month' => 'month grid_14', 'weekday' => 'weekday grid_2', 'day' => 'day grid_2')); ?>
+<?php printCalendar('calendar', array('month' => 'month grid_14', 'weekday' => 'weekday grid_2', 'day' => 'day grid_2')); ?>
 				</div>
 			</div>
 			<div id="footer" class="grid_15">
-<?php printFooter(); ?>
+		<?php printFooter(); ?>
 			</div>
 		</div>
 <?php zp_apply_filter('theme_body_close'); ?>

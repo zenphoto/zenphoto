@@ -7,19 +7,19 @@ if (!defined('WEBPATH'))
 	<head>
 		<?php zp_apply_filter('theme_head'); ?>
 
-		
-		 
+
+
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" />
 		<?php jqm_loadScripts(); ?>
-<?php printZDSearchToggleJS(); ?>
+		<?php printZDSearchToggleJS(); ?>
 	</head>
 
 	<body>
-<?php zp_apply_filter('theme_body_open'); ?>
+		<?php zp_apply_filter('theme_body_open'); ?>
 		<div data-role="page" id="mainpage">
 
-<?php jqm_printMainHeaderNav(); ?>
+			<?php jqm_printMainHeaderNav(); ?>
 
 			<div class="ui-content" role="main">
 				<div class="content-primary">
@@ -86,7 +86,7 @@ if (!defined('WEBPATH'))
 									?>
 									<li<?php printZDToggleClass('pages', $c, $number_to_show); ?>>
 										<h4><?php printPageURL(); ?></h4>
-										<p class="zenpageexcerpt"><?php echo shortenContent(getBare(getPageContent()), 80, getOption("zenpage_textshorten_indicator")); ?></p>
+										<p class="zenpageexcerpt"><?php echo html_encode(shortenContent(getBare(getPageContent()), 80, getOption("zenpage_textshorten_indicator"))); ?></p>
 									</li>
 									<?php
 								}
@@ -106,7 +106,7 @@ if (!defined('WEBPATH'))
 									?>
 									<li<?php printZDToggleClass('news', $c, $number_to_show); ?>>
 										<h4><?php printNewsURL(); ?></h4>
-										<p class="zenpageexcerpt"><?php echo shortenContent(getBare(getNewsContent()), 80, getOption("zenpage_textshorten_indicator")); ?></p>
+										<p class="zenpageexcerpt"><?php echo html_encode(shortenContent(getBare(getNewsContent()), 80, getOption("zenpage_textshorten_indicator"))); ?></p>
 									</li>
 									<?php
 								}
@@ -133,46 +133,46 @@ if (!defined('WEBPATH'))
 						}
 						?>
 					</h3>
-						<?php if (getNumAlbums() != 0) { ?>
+					<?php if (getNumAlbums() != 0) { ?>
 						<ul data-role="listview" data-inset="true">
-	<?php while (next_album()): ?>
-							<li>
-								<a href="<?php echo html_encode(getAlbumURL());?>" title="<?php echo gettext('View album:'); ?>">
-									<?php printCustomAlbumThumbImage(getAnnotatedAlbumTitle(), null, 79, 79, 79, 79, NULL, null, NULL,NULL); ?>
-									<h3><?php printAlbumTitle(); ?><small> (<?php printAlbumDate(''); ?>)</small></h3>
-									<div class="albumdesc"><?php echo shortenContent(getAlbumDesc(), 100,'(...)',false); ?></div>
-									<small class="ui-li-aside ui-li-count"><?php jqm_printImageAlbumCount()?></small>
-								</a>
-							</li>
-						<?php endwhile; ?>
+							<?php while (next_album()): ?>
+								<li>
+									<a href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo gettext('View album:'); ?>">
+										<?php printCustomAlbumThumbImage(getAnnotatedAlbumTitle(), null, 79, 79, 79, 79, NULL, null, NULL, NULL); ?>
+										<h3><?php printAlbumTitle(); ?><small> (<?php printAlbumDate(''); ?>)</small></h3>
+										<div class="albumdesc"><?php echo html_encode(shortenContent(getAlbumDesc(), 100, '(...)', false)); ?></div>
+										<small class="ui-li-aside ui-li-count"><?php jqm_printImageAlbumCount() ?></small>
+									</a>
+								</li>
+							<?php endwhile; ?>
 						</ul>
 					<?php } ?>
-						<?php if (getNumImages() > 0) { ?>
+					<?php if (getNumImages() > 0) { ?>
 						<div class="ui-grid-c">
-	<?php 
-	$count = '';
-	while (next_image()) { 
-		$count++;
-				switch($count) {
-					case 1:
-						$imgclass = ' ui-block-a';
-						break;
-					case 2:
-						$imgclass = ' ui-block-b';
-						break;
-					case 3:
-						$imgclass = ' ui-block-c';
-						break;
-					case 4:
-						$imgclass = ' ui-block-d';
-						$count = ''; // reset to start with a again;
-						break;
-				}
-	?>
-				<a class="image<?php echo $imgclass; ?>" href="<?php echo html_encode(getImageURL());?>" title="<?php printBareImageTitle();?>">
-					<?php printCustomSizedImage(getAnnotatedImageTitle(), NULL,230, 230, 230, 230, NULL, NULL, NULL, NULL, true, NULL); ?>
-				</a>
-	<?php } ?>
+							<?php
+							$count = '';
+							while (next_image()) {
+								$count++;
+								switch ($count) {
+									case 1:
+										$imgclass = ' ui-block-a';
+										break;
+									case 2:
+										$imgclass = ' ui-block-b';
+										break;
+									case 3:
+										$imgclass = ' ui-block-c';
+										break;
+									case 4:
+										$imgclass = ' ui-block-d';
+										$count = ''; // reset to start with a again;
+										break;
+								}
+								?>
+								<a class="image<?php echo $imgclass; ?>" href="<?php echo html_encode(getImageURL()); ?>" title="<?php printBareImageTitle(); ?>">
+									<?php printCustomSizedImage(getAnnotatedImageTitle(), NULL, 230, 230, 230, 230, NULL, NULL, NULL, NULL, true, NULL); ?>
+								</a>
+							<?php } ?>
 						</div>
 						<br class="clearall" />
 					<?php } ?>
@@ -188,12 +188,12 @@ if (!defined('WEBPATH'))
 
 				</div>
 				<div class="content-secondary">
-<?php jqm_printMenusLinks(); ?>
+					<?php jqm_printMenusLinks(); ?>
 				</div>
 			</div><!-- /content -->
 			<?php jqm_printBacktoTopLink(); ?>
-		<?php jqm_printFooterNav(); ?>
+			<?php jqm_printFooterNav(); ?>
 		</div><!-- /page -->
-<?php zp_apply_filter('theme_body_close'); ?>
+		<?php zp_apply_filter('theme_body_close'); ?>
 	</body>
 </html>

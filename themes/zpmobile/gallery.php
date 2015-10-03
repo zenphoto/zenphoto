@@ -35,7 +35,7 @@ if (!defined('WEBPATH'))
 										<?php printCustomAlbumThumbImage(getAnnotatedAlbumTitle(), null, 79, 79, 79, 79, NULL, null, NULL, NULL); ?>
 									</div>
 									<h3><?php printAlbumTitle(); ?><small> (<?php printAlbumDate(''); ?>)</small></h3>
-									<div class="albumdesc"><?php echo shortenContent(getAlbumDesc(), 100, '(...)', false); ?></div>
+									<div class="albumdesc"><?php echo html_encode(shortenContent(getAlbumDesc(), 100, '(...)', false)); ?></div>
 									<small class="ui-li-aside ui-li-count"><?php jqm_printImageAlbumCount() ?></small>
 								</a>
 							</li>

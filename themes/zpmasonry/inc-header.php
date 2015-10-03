@@ -126,7 +126,7 @@
 			}
 		}
 		?>
-		<title><?php echo $zpmas_metatitle; ?></title>
+		<title><?php echo html_encode($zpmas_metatitle); ?></title>
 		<meta name="description" content="<?php echo $zpmas_metadesc; ?>" />
 
 		<script src="<?php echo FULLWEBPATH . "/" . ZENFOLDER ?>/zp-extensions/colorbox_js/jquery.colorbox-min.js" type="text/javascript"></script>
@@ -135,7 +135,7 @@
 		<?php } ?>
 		<link rel="stylesheet" href="<?php echo FULLWEBPATH . "/" . ZENFOLDER ?>/zp-extensions/colorbox_js/themes/<?php echo $zpmas_cbstyle; ?>/colorbox.css" type="text/css" media="screen"/>
 		<script type="text/javascript">
-			$(document).ready(function() {
+			$(document).ready(function () {
 				$('#page_nav').css('display', 'none');
 				$("a.zpmas-cb").colorbox({
 					slideshow: false,
@@ -170,7 +170,7 @@
 					var top = $('#sidebar-inner').offset().top - parseFloat($('#sidebar-inner').css('marginTop').replace(/auto/, 0));
 					var sidenavHeight = $("#sidebar-inner").height(); //Get height of sidebar
 					var winHeight = $(window).height(); //Get height of viewport
-					$(window).scroll(function(event) {
+					$(window).scroll(function (event) {
 						// what the y position of the scroll is
 						var y = $(this).scrollTop();
 						// whether that's below
@@ -218,8 +218,8 @@
 			#cycle li {width:<?php echo $zpmas_ss_size_w; ?>px;height:<?php echo $zpmas_ss_size_h; ?>px;}
 		</style>
 		<script type="text/javascript">
-			jQuery(document).ready(function($) {
-				$('#full-image img').each(function() {
+			jQuery(document).ready(function ($) {
+				$('#full-image img').each(function () {
 					$(this).removeAttr('width')
 					$(this).removeAttr('height');
 				});

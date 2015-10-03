@@ -62,11 +62,11 @@ if (class_exists('favorites')) {
 							</li>
 							<?php if ((strlen(getAlbumDate()) > 0) || (zp_loggedin())) { ?><li class="date"><?php printAlbumDate(''); ?></li><?php } ?>
 							<?php if ((strlen(getAlbumDesc()) > 0) || (zp_loggedin())) { ?><li class="desc"><?php printAlbumDesc(); ?></li><?php } ?>
-	<?php if ((strlen($tagstring) > 0) || (zp_loggedin())) { ?><li class="tags"><?php printTags('links', ' ', 'taglist', ', '); ?></li><?php } ?>
+							<?php if ((strlen($tagstring) > 0) || (zp_loggedin())) { ?><li class="tags"><?php printTags('links', ' ', 'taglist', ', '); ?></li><?php } ?>
 						</ul>
 					</div>
 
-						<?php if (getNumImages() > 0) { ?>
+					<?php if (getNumImages() > 0) { ?>
 						<div id="slideshowlink" class="sidebar-divide">
 							<?php if ($useGslideshow) { ?>
 								<div class="gslideshowlink"><?php printSlideShowLink(gettext('Slideshow')); ?></div>
@@ -88,30 +88,30 @@ if (class_exists('favorites')) {
 										} else {
 											echo htmlspecialchars(getUnprotectedImageURL());
 										}
-										?>" title="<?php echo getBareImageTitle(); ?>"><?php echo gettext('Play Slideshow'); ?></a>
+										?>" title="<?php echo html_encode(getBareImageTitle()); ?>"><?php echo gettext('Play Slideshow'); ?></a>
 											 <?php
 											 $x = $x + 1;
 										 } else {
 											 $x = $x;
 										 }
 										 ?>
-								<?php endwhile; ?>
+									 <?php endwhile; ?>
 
-						<?php } ?>
+							<?php } ?>
 						</div>
 					<?php } ?>
-	<?php include ("inc-copy.php"); ?>
+					<?php include ("inc-copy.php"); ?>
 				</div>
 			</div>
 		</div>
 
 		<div id="mason">
-	<?php while (next_album()): ?>
+			<?php while (next_album()): ?>
 				<div class="box <?php echo $zpmas_col_album; ?> album">
 					<h3><?php echo getAlbumTitle(); ?></h3>
 					<div class="image-block" style="width:<?php echo $zpmas_album_size_w; ?>px;height:<?php echo $zpmas_album_size_h; ?>px;">
 						<a class="thumb-link" href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo getAnnotatedAlbumTitle(); ?>">
-		<?php printCustomAlbumThumbImage(getAnnotatedAlbumTitle(), null, $zpmas_album_size_w, $zpmas_album_size_h, $zpmas_album_size_w, $zpmas_album_size_h); ?>
+							<?php printCustomAlbumThumbImage(getAnnotatedAlbumTitle(), null, $zpmas_album_size_w, $zpmas_album_size_h, $zpmas_album_size_w, $zpmas_album_size_h); ?>
 						</a>
 					</div>
 					<?php
@@ -132,21 +132,21 @@ if (class_exists('favorites')) {
 							?>
 						</li>
 						<?php if (strlen(getAlbumDate()) > 0) { ?><li class="date"><?php printAlbumDate(''); ?></li><?php } ?>
-					<?php if (strlen(getAlbumDesc()) > 0) { ?><li class="desc"><?php echo shortenContent(getAlbumDesc(), 150, '...'); ?></li><?php } ?>
-					<?php if (strlen($tagstring) > 0) { ?><li class="tags"><?php printTags('links', ' ', 'taglist', ', '); ?></li><?php } ?>
+						<?php if (strlen(getAlbumDesc()) > 0) { ?><li class="desc"><?php echo html_encode(shortenContent(getAlbumDesc(), 150, '...')); ?></li><?php } ?>
+						<?php if (strlen($tagstring) > 0) { ?><li class="tags"><?php printTags('links', ' ', 'taglist', ', '); ?></li><?php } ?>
 					</ul>
-				<?php printAddToFavorites($_zp_current_album, '', gettext('Remove')); ?>
+					<?php printAddToFavorites($_zp_current_album, '', gettext('Remove')); ?>
 
 				</div>
-				<?php endwhile; ?>
-				<?php while (next_image()): ?>
+			<?php endwhile; ?>
+			<?php while (next_image()): ?>
 				<div class="box <?php echo $zpmas_col_image; ?>">
-		<?php if ($zpmas_imagetitle) echo '<h3>' . getImageTitle() . '</h3>'; ?>
+					<?php if ($zpmas_imagetitle) echo '<h3>' . getImageTitle() . '</h3>'; ?>
 					<div class="image-block" style="width:<?php echo $zpmas_image_size; ?>px;height:<?php echo $zpmas_image_size; ?>px;">
 						<div class="back">
-							<a class="thumb-link" href="<?php echo html_encode(getImageURL()); ?>" title="<?php echo getBareImageTitle(); ?>"><?php printCustomSizedImage(getAnnotatedImageTitle(), null, $zpmas_image_size, $zpmas_image_size, $zpmas_image_size, $zpmas_image_size, null, null, null, null, true); ?></a>
+							<a class="thumb-link" href="<?php echo html_encode(getImageURL()); ?>" title="<?php echo html_encode(getBareImageTitle()); ?>"><?php printCustomSizedImage(getAnnotatedImageTitle(), null, $zpmas_image_size, $zpmas_image_size, $zpmas_image_size, $zpmas_image_size, null, null, null, null, true); ?></a>
 						</div>
-							<?php if (!isImageVideo()) { ?>
+						<?php if (!isImageVideo()) { ?>
 							<div class="overlay">
 								<a class="zpmas-cb" href="<?php
 								if ($zpmas_cbtarget) {
@@ -154,33 +154,33 @@ if (class_exists('favorites')) {
 								} else {
 									echo htmlspecialchars(getUnprotectedImageURL());
 								}
-								?>" title="<?php echo getBareImageTitle(); ?>"><img src="<?php echo $_zp_themeroot; ?>/images/full-screen<?php if ($zpmas_css == 'dark') echo "-inv"; ?>.png" alt="<?php echo gettext('Preview'); ?>" /></a>
+								?>" title="<?php echo html_encode(getBareImageTitle()); ?>"><img src="<?php echo $_zp_themeroot; ?>/images/full-screen<?php if ($zpmas_css == 'dark') echo "-inv"; ?>.png" alt="<?php echo gettext('Preview'); ?>" /></a>
 							</div>
-					<?php } ?>
+						<?php } ?>
 					</div>
-				<?php printAddToFavorites($_zp_current_image, '', gettext('Remove')); ?>
+					<?php printAddToFavorites($_zp_current_image, '', gettext('Remove')); ?>
 
 				</div>
-		<?php endwhile; ?>
+			<?php endwhile; ?>
 		</div>
-			<?php if ($zpmas_infscroll) { ?>
+		<?php if ($zpmas_infscroll) { ?>
 			<div id="page_nav">
-			<?php if (getNextPageURL()) { ?><a href="<?php echo getNextPageURL(); ?>">Next Page</a> <?php } ?>
+				<?php if (getNextPageURL()) { ?><a href="<?php echo getNextPageURL(); ?>">Next Page</a> <?php } ?>
 			</div>
 			<?php
 		} else {
 			if ((hasPrevPage()) || (hasNextPage())) {
 				?>
 				<div id="pagination">
-				<?php printPageListWithNav("« " . gettext("prev"), gettext("next") . " »"); ?>
+					<?php printPageListWithNav("« " . gettext("prev"), gettext("next") . " »"); ?>
 				</div>
-				<?php } ?>
 			<?php } ?>
+		<?php } ?>
 		<div id="page">
 			<?php printCodeblock(); ?>
 			<?php if (function_exists('printGoogleMap')) { ?><div class="post"><?php printGoogleMap(); ?></div><?php } ?>
-	<?php if (function_exists('printRating')) { ?><div class="post"><?php printRating(); ?></div><?php } ?>
-	<?php if (function_exists('printCommentForm')) { ?><div class="post"><?php printCommentForm(); ?></div><?php } ?>
+			<?php if (function_exists('printRating')) { ?><div class="post"><?php printRating(); ?></div><?php } ?>
+			<?php if (function_exists('printCommentForm')) { ?><div class="post"><?php printCommentForm(); ?></div><?php } ?>
 		</div>
 	</div>
 

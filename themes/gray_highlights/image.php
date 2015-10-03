@@ -11,19 +11,21 @@
 		<?php zp_apply_filter('theme_body_open'); ?>
 		<div class="container_15">
 			<div id="header" class="grid_15">
-				<?php if (function_exists('printLanguageSelector')) {
+				<?php
+				if (function_exists('printLanguageSelector')) {
 					echo '<div class="languages grid_5">';
 					printLanguageSelector(true);
 					echo '</div>';
-				} ?>
+				}
+				?>
 <?php printLoginZone(); ?>
-				<h1><?php echo getBareGalleryTitle(); ?></h1>
+				<h1><?php echo html_encode(getBareGalleryTitle(); ?></h1>
 			</div>
 			<div class="clear"></div>
 			<div id="menu">
 				<div id="m_bread" class="grid_8">
 					<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo getGalleryTitle(); ?>"><?php echo getGalleryTitle(); ?></a>
-				<?php printParentBreadcrumb('', '', ''); ?>
+<?php printParentBreadcrumb('', '', ''); ?>
 					<a href="<?php echo html_encode(getAlbumURL()); ?>"><?php echo getAlbumTitle(); ?></a>
 					<span class="current"><?php echo getImageTitle(); ?></span>
 				</div>
@@ -34,19 +36,21 @@
 				<div class="desc grid_5">
 					<h2 class="suffix_1"><?php echo getImageTitle(); ?></h2>
 					<div class="date"><?php echo getImageDate('%d/%d/%Y'); ?></div>
-						<?php if (function_exists('printRating')) {
-							echo '<div id="star_rating_images">';
-							printRating();
-							echo '</div>';
-						} ?>
+					<?php
+					if (function_exists('printRating')) {
+						echo '<div id="star_rating_images">';
+						printRating();
+						echo '</div>';
+					}
+					?>
 					<div class="comment"><?php echo getImageDesc(); ?></div>
 					<div class="data">
-<?php if (getImageCustomData()) { ?><div><label><?php echo gettext('Custom data:'); ?> </label><?php echo getImageCustomData(); ?></div><?php } ?>
-<?php if (getImageLocation()) { ?><div><label><?php echo gettext('Location:'); ?> </label><?php echo getImageLocation(); ?></div><?php } ?>
-					<?php if (getImageCity()) { ?><div><label><?php echo gettext('City:'); ?> </label><?php echo getImageCity(); ?></div><?php } ?>
-					<?php if (getImageState()) { ?><div><label><?php echo gettext('State:'); ?> </label><?php echo getImageState(); ?></div><?php } ?>
-					<?php if (getImageCountry()) { ?><div><label><?php echo gettext('Country:'); ?> </label><?php echo getImageCountry(); ?></div><?php } ?>
-					<?php if (getImageData('credit')) { ?><div><label><?php echo gettext('Credit:'); ?> </label><?php echo getImageData('credit'); ?></div><?php } ?>
+						<?php if (getImageCustomData()) { ?><div><label><?php echo gettext('Custom data:'); ?> </label><?php echo getImageCustomData(); ?></div><?php } ?>
+						<?php if (getImageLocation()) { ?><div><label><?php echo gettext('Location:'); ?> </label><?php echo getImageLocation(); ?></div><?php } ?>
+						<?php if (getImageCity()) { ?><div><label><?php echo gettext('City:'); ?> </label><?php echo getImageCity(); ?></div><?php } ?>
+						<?php if (getImageState()) { ?><div><label><?php echo gettext('State:'); ?> </label><?php echo getImageState(); ?></div><?php } ?>
+<?php if (getImageCountry()) { ?><div><label><?php echo gettext('Country:'); ?> </label><?php echo getImageCountry(); ?></div><?php } ?>
+<?php if (getImageData('credit')) { ?><div><label><?php echo gettext('Credit:'); ?> </label><?php echo getImageData('credit'); ?></div><?php } ?>
 					<?php if (getImageData('copyright')) { ?><div><label><?php echo gettext('Copyright:'); ?> </label><?php echo getImageData('copyright'); ?></div><?php } ?>
 					<?php printImageMetaData(); ?>
 					</div>
@@ -78,9 +82,9 @@
 					if (hasPrevImage()) {
 						?>
 						<div class="imgprevious"><a href="<?php echo html_encode(getPrevImageURL()); ?>" title="<?php echo gettext("Previous Image"); ?>">« <?php echo gettext("prev"); ?></a></div>
-	<?php
-} if (hasNextImage()) {
-	?>
+						<?php
+					} if (hasNextImage()) {
+						?>
 						<div class="imgnext"><a href="<?php echo html_encode(getNextImageURL()); ?>" title="<?php echo gettext("Next Image"); ?>"><?php echo gettext("next"); ?> »</a></div>
 	<?php
 }

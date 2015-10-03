@@ -164,7 +164,7 @@ function zpArdoise_printImageStatistic($number, $option, $albumfolder = '', $sho
 			echo "<p>" . sprintf(gettext("Views: %u"), $hitcounter) . "</p>";
 		}
 		if ($showdesc) {
-			echo shortenContent($image->getDesc(), $desclength, ' (...)');
+			echo html_encode(shortenContent($image->getDesc(), $desclength, ' (...)'));
 		}
 		echo "</li>";
 	}

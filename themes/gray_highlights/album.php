@@ -19,7 +19,7 @@
 				}
 				?>
 				<?php printLoginZone(); ?>
-				<h1><?php echo getBareGalleryTitle(); ?></h1>
+				<h1><?php echo html_encode(getBareGalleryTitle()); ?></h1>
 			</div>
 			<div class="clear"></div>
 			<div id="menu">

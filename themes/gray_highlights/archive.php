@@ -18,8 +18,8 @@
 					echo '</div>';
 				}
 				?>
-<?php printLoginZone(); ?>
-				<h1><?php echo getBareGalleryTitle(); ?></h1>
+				<?php printLoginZone(); ?>
+				<h1><?php echo html_encode(getBareGalleryTitle()); ?></h1>
 			</div>
 			<div class="clear"></div>
 			<div id="menu">
@@ -27,18 +27,18 @@
 					<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo getGalleryTitle(); ?>"><?php echo getGalleryTitle(); ?></a>
 					<span class="current"><?php echo gettext('Archive View'); ?></span>
 				</div>
-<?php printMenu(); ?>
+				<?php printMenu(); ?>
 			</div>
 			<div class="clear"></div>
 			<div id="content">
 				<div id="archive">
-<?php printAllDates('archive', 'year grid_3', 'month'); ?>
+					<?php printAllDates('archive', 'year grid_3', 'month'); ?>
 				</div>
 			</div>
 			<div id="footer" class="grid_15">
-		<?php printFooter(); ?>
+				<?php printFooter(); ?>
 			</div>
 		</div>
-<?php zp_apply_filter('theme_body_close'); ?>
+		<?php zp_apply_filter('theme_body_close'); ?>
 	</body>
 </html>
