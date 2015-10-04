@@ -53,7 +53,7 @@ class image_page {
 								}
 								$annotate = annotateImage();
 								echo '<a href="' . html_encode(getImageURL()) . '"';
-								echo " title=\"" . $annotate . "\">\n";
+								echo " title=\"" . html_encode($annotate) . "\">\n";
 								printImageThumb($annotate);
 								echo "</a>";
 								?>
@@ -72,18 +72,18 @@ class image_page {
 						}
 						?>
 						<div id="map_link">
-						<?php printGoogleMap(NULL, NULL, NULL, 'album_page', 'map_callback'); ?>
+							<?php printGoogleMap(NULL, NULL, NULL, 'album_page', 'map_callback'); ?>
 						</div>
 						<?php
 					}
 					@call_user_func('printSlideShowLink', NULL, 'text-align:center;');
 					?>
 				</div><!-- images -->
-			<?php if (function_exists('printAddToFavorites')) printAddToFavorites($_zp_current_album); ?>
-			<?php @call_user_func('printRating'); ?>
+				<?php if (function_exists('printAddToFavorites')) printAddToFavorites($_zp_current_album); ?>
+				<?php @call_user_func('printRating'); ?>
 			</div> <!-- main -->
 			<div class="clearage"></div>
-		<?php if (isset($firstImage)) printNofM('Photo', $firstImage, $lastImage, getNumImages()); ?>
+			<?php if (isset($firstImage)) printNofM('Photo', $firstImage, $lastImage, getNumImages()); ?>
 		</div> <!-- content -->
 		<?php
 	}

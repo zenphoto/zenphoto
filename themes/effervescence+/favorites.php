@@ -168,7 +168,7 @@ if (class_exists('favorites')) {
 											}
 											$annotate = annotateImage();
 											echo '<a href="' . html_encode(getImageURL()) . '"';
-											echo " title=\"" . $annotate . "\">\n";
+											echo " title=\"" . html_encode($annotate) . "\">\n";
 											printImageThumb($annotate);
 											echo "</a>";
 											printAddToFavorites($_zp_current_image, '', gettext('Remove'));

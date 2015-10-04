@@ -346,7 +346,7 @@ function annotateAlbum() {
 	if (!$_zp_current_album->getShow()) {
 		$tagit .= "\n" . gettext('The album is not published.');
 	}
-	return sprintf(gettext('View the Album: %s'), html_encode(getBareAlbumTitle())) . getImage_AlbumCount() . $tagit;
+	return sprintf(gettext('View the Album: %s'), getBareAlbumTitle()) . getImage_AlbumCount() . $tagit;
 }
 
 function annotateImage() {
@@ -357,7 +357,7 @@ function annotateImage() {
 		} else {
 			$tagit = '';
 		}
-		return sprintf(gettext('View the image: %s'), html_encode(GetBareImageTitle())) . $tagit;
+		return sprintf(gettext('View the image: %s'), GetBareImageTitle()) . $tagit;
 	}
 }
 
