@@ -61,7 +61,7 @@
 							?>
 							<li<?php printZDToggleClass('pages', $c, $number_to_show); ?>>
 								<h6><?php printPageTitlelink(); ?></h6>
-								<p class="zenpageexcerpt"><?php echo html_encode(shortenContent(strip_tags(getPageContent()), 80, getOption("zenpage_textshorten_indicator"))); ?></p>
+								<p class="zenpageexcerpt"><?php echo html_encodeTagged(shortenContent(strip_tags(getPageContent()), 80, getOption("zenpage_textshorten_indicator"))); ?></p>
 							</li>
 		<?php } ?>
 					</ul>
@@ -82,7 +82,7 @@
 							?>
 							<li<?php printZDToggleClass('news', $c, $number_to_show); ?>>
 								<h6><?php printNewsURL(); ?></h6>
-								<p class="zenpageexcerpt"><?php echo html_encode(shortenContent(strip_tags(getNewsContent()), 80, getOption("zenpage_textshorten_indicator"))); ?></p>
+								<p class="zenpageexcerpt"><?php echo html_encodeTagged(shortenContent(strip_tags(getNewsContent()), 80, getOption("zenpage_textshorten_indicator"))); ?></p>
 							</li>
 					<?php } ?>
 					</ul>

@@ -20,7 +20,7 @@ if (class_exists('favorites')) {
 								printCustomAlbumThumbImage(getAnnotatedAlbumTitle(), $zpmin_album_thumb_size);
 							}
 							?>
-							<span class="album-title"><?php echo html_encode(shortenContent(getBareAlbumTitle(), 25, '...')); ?></span>
+							<span class="album-title"><?php echo html_encodeTagged(shortenContent(getBareAlbumTitle(), 25, '...')); ?></span>
 						</a>
 					</div>
 					<?php printAddToFavorites($_zp_current_album, '', gettext('Remove')); ?>

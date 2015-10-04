@@ -19,13 +19,13 @@ include('inc_header.php');
 		<?php if (getPrevNewsURL()) { ?>
 				<li class="previous span6">
 					<a href="<?php $article_url = getPrevNewsURL();
-			echo $article_url['link']; ?>" title="<?php echo $article_url['title']; ?>"> &larr; <?php echo html_encode(shortenContent($article_url['title'], 30, '(...)')); ?></a>
+			echo $article_url['link']; ?>" title="<?php echo $article_url['title']; ?>"> &larr; <?php echo html_encodeTagged(shortenContent($article_url['title'], 30, '(...)')); ?></a>
 				</li>
 		<?php } ?>
 			<?php if (getNextNewsURL()) { ?>
 				<li class="next span6 pull-right">
 					<a href="<?php $article_url = getNextNewsURL();
-				echo $article_url['link']; ?>" title="<?php echo $article_url['title']; ?>"><?php echo html_encode(shortenContent($article_url['title'], 30, '(...)')); ?> &rarr; </a>
+				echo $article_url['link']; ?>" title="<?php echo $article_url['title']; ?>"><?php echo html_encodeTagged(shortenContent($article_url['title'], 30, '(...)')); ?> &rarr; </a>
 				</li>
 		<?php } ?>
 		</ul>

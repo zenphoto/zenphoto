@@ -230,7 +230,7 @@ function printRelatedItems($number = 5, $type = 'news', $specific = NULL, $excer
 					</h4>
 					<?php
 					if ($excerpt) {
-						echo html_encode(shortenContent($text, $excerpt, '...', true));
+						echo html_encodeTagged(shortenContent($text, $excerpt, '...', true));
 					}
 					?>
 				</li>

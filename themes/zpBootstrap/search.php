@@ -95,7 +95,7 @@
 				<div class="news-truncate clearfix">
 					<h3 class="search-title"><?php printNewsURL(); ?></h3>
 					<div class="search-content clearfix">
-				<?php echo html_encode(shortenContent(strip_tags(getNewsContent()), 120, getOption("zenpage_textshorten_indicator"))); ?>
+				<?php echo html_encodeTagged(shortenContent(strip_tags(getNewsContent()), 120, getOption("zenpage_textshorten_indicator"))); ?>
 					</div>
 				</div>
 				<?php
@@ -110,7 +110,7 @@
 				<div class="news-truncate clearfix">
 					<h3 class="search-title"><?php printPageTitlelink(); ?></h3>
 					<div class="search-content clearfix">
-				<?php echo html_encode(shortenContent(strip_tags(getPageContent()), 120, getOption("zenpage_textshorten_indicator"))); ?>
+				<?php echo html_encodeTagged(shortenContent(strip_tags(getPageContent()), 120, getOption("zenpage_textshorten_indicator"))); ?>
 					</div>
 				</div>
 			<?php

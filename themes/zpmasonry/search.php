@@ -83,7 +83,7 @@ if (!empty($searchdate)) {
 			<div class="box <?php echo $zpmas_col_album; ?> album">
 				<h3><?php echo getAlbumTitle(); ?></h3>
 				<div class="image-block" style="width:<?php echo $zpmas_album_size_w; ?>px;height:<?php echo $zpmas_album_size_h; ?>px;">
-					<a class="thumb-link" href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo getAnnotatedAlbumTitle(); ?>">
+					<a class="thumb-link" href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo html_encodeTagged(getAnnotatedAlbumTitle()) ?>">
 						<?php printCustomAlbumThumbImage(getAnnotatedAlbumTitle(), null, $zpmas_album_size_w, $zpmas_album_size_h, $zpmas_album_size_w, $zpmas_album_size_h); ?>
 					</a>
 				</div>
@@ -104,7 +104,7 @@ if (!empty($searchdate)) {
 			?>
 					</li>
 	<?php if (strlen(getAlbumDate()) > 0) { ?><li class="date"><?php printAlbumDate(''); ?></li><?php } ?>
-					<?php if (strlen(getAlbumDesc()) > 0) { ?><li class="desc"><?php echo html_encode(shortenContent(getAlbumDesc(), 150, '...')); ?></li><?php } ?>
+					<?php if (strlen(getAlbumDesc()) > 0) { ?><li class="desc"><?php echo html_encodeTagged(shortenContent(getAlbumDesc(), 150, '...')); ?></li><?php } ?>
 					<?php if (strlen($tagstring) > 0) { ?><li class="tags"><?php printTags('links', ' ', 'taglist', ', '); ?></li><?php } ?>
 				</ul>
 			</div>
@@ -141,7 +141,7 @@ if (!empty($searchdate)) {
 					?>
 					<div class="news-truncate <?php echo $zpmas_col_album; ?> box">
 						<h2><?php printPageTitlelink(); ?></h2>
-						<p><?php echo html_encode(shortenContent(strip_tags(getPageContent()), 200, getOption("zenpage_textshorten_indicator"))); ?></p>
+						<p><?php echo html_encodeTagged(shortenContent(strip_tags(getPageContent()), 200, getOption("zenpage_textshorten_indicator"))); ?></p>
 					</div>
 			<?php
 		}
@@ -157,7 +157,7 @@ if (!empty($searchdate)) {
 						<div class="newsarticlecredit">
 							<span><?php printNewsDate(); ?></span><span><?php printNewsCategories(", ", gettext("Categories: "), "taglist"); ?></span><?php if (function_exists('printCommentForm')) { ?><span><?php echo gettext("Comments:"); ?> <?php echo getCommentCount(); ?></span><?php } ?>
 						</div>
-						<p><?php echo html_encode(shortenContent(strip_tags(getNewsContent()), 200, getOption("zenpage_textshorten_indicator"))); ?></p>
+						<p><?php echo html_encodeTagged(shortenContent(strip_tags(getNewsContent()), 200, getOption("zenpage_textshorten_indicator"))); ?></p>
 					</div>
 				<?php
 			}

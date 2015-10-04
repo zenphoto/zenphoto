@@ -41,11 +41,11 @@
 					<ul class="gallery">
 						<?php while (next_album()): ?>
 							<li class="grid_5">
-								<a href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo getAnnotatedAlbumTitle(); ?>">
+								<a href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo html_encodeTagged(getAnnotatedAlbumTitle()) ?>">
 									<?php printCustomAlbumThumbImage(getAnnotatedAlbumTitle(), NULL, 376, 140, 376, 140, NULL, null, NULL, NULL); ?>
 								</a>
 								<span class="title">
-									<?php echo getAnnotatedAlbumTitle(); ?>
+									<?php echo html_encodeTagged(getAnnotatedAlbumTitle()) ?>
 									<span class="italic">
 										[<?php printf(ngettext('%u image', '%u images', getNumImages()), getNumImages()); ?>]
 									</span>
@@ -59,7 +59,7 @@
 					<ul class="album">
 						<?php while (next_image()): ?>
 							<li class="grid_5">
-								<a href="<?php echo html_encode(getImageURL()); ?>" title="<?php echo getAnnotatedImageTitle(); ?>">
+								<a href="<?php echo html_encode(getImageURL()); ?>" title="<?php echo html_encode(getBareImageTitle()); ?>">
 									<?php printCustomSizedImage(getAnnotatedImageTitle(), NULL, 376, 140, 376, 140, NULL, NULL, NULL, NULL, true, NULL); ?>
 								</a>
 								<span class="title">

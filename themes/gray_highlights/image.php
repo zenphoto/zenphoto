@@ -18,18 +18,18 @@
 					echo '</div>';
 				}
 				?>
-<?php printLoginZone(); ?>
-				<h1><?php echo html_encode(getBareGalleryTitle(); ?></h1>
+				<?php printLoginZone(); ?>
+				<h1><?php echo html_encode(getBareGalleryTitle()); ?></h1>
 			</div>
 			<div class="clear"></div>
 			<div id="menu">
 				<div id="m_bread" class="grid_8">
 					<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo getGalleryTitle(); ?>"><?php echo getGalleryTitle(); ?></a>
-<?php printParentBreadcrumb('', '', ''); ?>
+					<?php printParentBreadcrumb('', '', ''); ?>
 					<a href="<?php echo html_encode(getAlbumURL()); ?>"><?php echo getAlbumTitle(); ?></a>
 					<span class="current"><?php echo getImageTitle(); ?></span>
 				</div>
-<?php printMenu(); ?>
+				<?php printMenu(); ?>
 			</div>
 			<div class="clear"></div>
 			<div id="content">
@@ -49,10 +49,10 @@
 						<?php if (getImageLocation()) { ?><div><label><?php echo gettext('Location:'); ?> </label><?php echo getImageLocation(); ?></div><?php } ?>
 						<?php if (getImageCity()) { ?><div><label><?php echo gettext('City:'); ?> </label><?php echo getImageCity(); ?></div><?php } ?>
 						<?php if (getImageState()) { ?><div><label><?php echo gettext('State:'); ?> </label><?php echo getImageState(); ?></div><?php } ?>
-<?php if (getImageCountry()) { ?><div><label><?php echo gettext('Country:'); ?> </label><?php echo getImageCountry(); ?></div><?php } ?>
-<?php if (getImageData('credit')) { ?><div><label><?php echo gettext('Credit:'); ?> </label><?php echo getImageData('credit'); ?></div><?php } ?>
-					<?php if (getImageData('copyright')) { ?><div><label><?php echo gettext('Copyright:'); ?> </label><?php echo getImageData('copyright'); ?></div><?php } ?>
-					<?php printImageMetaData(); ?>
+						<?php if (getImageCountry()) { ?><div><label><?php echo gettext('Country:'); ?> </label><?php echo getImageCountry(); ?></div><?php } ?>
+						<?php if (getImageData('credit')) { ?><div><label><?php echo gettext('Credit:'); ?> </label><?php echo getImageData('credit'); ?></div><?php } ?>
+						<?php if (getImageData('copyright')) { ?><div><label><?php echo gettext('Copyright:'); ?> </label><?php echo getImageData('copyright'); ?></div><?php } ?>
+						<?php printImageMetaData(); ?>
 					</div>
 				</div>
 				<div class="image suffix_5">
@@ -86,16 +86,16 @@
 					} if (hasNextImage()) {
 						?>
 						<div class="imgnext"><a href="<?php echo html_encode(getNextImageURL()); ?>" title="<?php echo gettext("Next Image"); ?>"><?php echo gettext("next"); ?> »</a></div>
-	<?php
-}
-?>
+						<?php
+					}
+					?>
 				</div>
 				<div class="clear"></div>
 			</div>
 			<div id="footer" class="grid_15">
-<?php printFooter(); ?>
+				<?php printFooter(); ?>
 			</div>
 		</div>
-<?php zp_apply_filter('theme_body_close'); ?>
+		<?php zp_apply_filter('theme_body_close'); ?>
 	</body>
 </html>

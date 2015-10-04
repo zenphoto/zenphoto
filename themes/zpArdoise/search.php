@@ -101,7 +101,7 @@ if (!empty($searchdate)) {
 				<div class="news-truncate clearfix">
 					<h3 class="search-title"><?php printNewsURL(); ?></h3>
 					<div class="search-content clearfix">
-			<?php echo html_encode(shortenContent(getBare(getNewsContent()), 100, getOption("zenpage_textshorten_indicator"))); ?>
+			<?php echo html_encodeTagged(shortenContent(getBare(getNewsContent()), 100, getOption("zenpage_textshorten_indicator"))); ?>
 					</div>
 				</div>
 			<?php } ?>
@@ -117,7 +117,7 @@ if (!empty($searchdate)) {
 				<div class="news-truncate clearfix">
 					<h3 class="search-title"><?php printPageURL(); ?></h3>
 					<div class="search-content clearfix">
-			<?php echo html_encode(shortenContent(getBare(getPageContent()), 100, getOption("zenpage_textshorten_indicator"))); ?>
+			<?php echo html_encodeTagged(shortenContent(getBare(getPageContent()), 100, getOption("zenpage_textshorten_indicator"))); ?>
 					</div>
 				</div>
 		<?php } ?>

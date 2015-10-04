@@ -33,11 +33,11 @@
 				<ul class="gallery">
 							<?php while (next_album()): ?>
 						<li class="grid_5">
-							<a href="<?php echo getAlbumURL(); ?>" title="<?php echo getAnnotatedAlbumTitle(); ?>">
+							<a href="<?php echo getAlbumURL(); ?>" title="<?php echo html_encodeTagged(getAnnotatedAlbumTitle()) ?>">
 								<?php printCustomAlbumThumbImage(getAnnotatedAlbumTitle(), NULL, 376, 140, 376, 140, NULL, null, NULL, NULL); ?>
 							</a>
 							<span class="title">
-	<?php echo getAnnotatedAlbumTitle(); ?>
+	<?php echo html_encodeTagged(getAnnotatedAlbumTitle()) ?>
 								<span class="italic">
 									[<?php printf(ngettext('%u image', '%u images', getNumImages()), getNumImages()); ?>]
 								</span><br />

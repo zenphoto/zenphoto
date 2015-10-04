@@ -44,7 +44,7 @@ if (!empty($searchdate)) {
 							printCustomAlbumThumbImage(getAnnotatedAlbumTitle(), $zpmin_album_thumb_size);
 						}
 						?>
-						<span class="album-title"><?php echo html_encode(shortenContent(getBareAlbumTitle(), 25, '...')); ?></span>
+						<span class="album-title"><?php echo html_encodeTagged(shortenContent(getBareAlbumTitle(), 25, '...')); ?></span>
 					</a>
 				</div>
 <?php endwhile; ?>
@@ -81,7 +81,7 @@ if (!empty($searchdate)) {
 					?>
 					<div class="news-truncate">
 						<h2><?php printPageTitlelink(); ?></h2>
-						<p><?php echo html_encode(shortenContent(strip_tags(getPageContent()), 200, getOption("zenpage_textshorten_indicator"))); ?></p>
+						<p><?php echo html_encodeTagged(shortenContent(strip_tags(getPageContent()), 200, getOption("zenpage_textshorten_indicator"))); ?></p>
 					</div>
 					<?php
 				}
@@ -97,7 +97,7 @@ if (!empty($searchdate)) {
 						<div class="newsarticlecredit">
 							<span><?php printNewsDate(); ?> &sdot; <?php printNewsCategories(", ", gettext("Categories: "), "taglist"); ?><?php if (function_exists('printCommentForm')) { ?> &sdot; <?php echo gettext("Comments:"); ?> <?php echo getCommentCount(); ?> <?php } ?></span>
 						</div>
-						<p><?php echo html_encode(shortenContent(strip_tags(getNewsContent()), 200, getOption("zenpage_textshorten_indicator"))); ?></p>
+						<p><?php echo html_encodeTagged(shortenContent(strip_tags(getNewsContent()), 200, getOption("zenpage_textshorten_indicator"))); ?></p>
 					</div>
 					<?php
 				}

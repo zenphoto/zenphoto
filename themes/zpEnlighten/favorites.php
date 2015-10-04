@@ -50,7 +50,7 @@ if (class_exists('favorites')) {
 									<h3 class="date">
 										<?php printAddToFavorites($_zp_current_album, '', gettext('Remove')); ?>
 									</h3>
-								<!-- p><?php echo html_encode(truncate_string(getAlbumDesc(), 45)); ?></p --></h3>
+								<!-- p><?php echo html_encodeTagged(truncate_string(getAlbumDesc(), 45)); ?></p --></h3>
 								</div>
 								<p style="clear: both; "></p>
 							</div>

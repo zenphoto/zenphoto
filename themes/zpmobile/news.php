@@ -69,7 +69,7 @@ if (class_exists('CMS')) {
 									<li>
 										<a href="<?php echo html_encode(jqm_getLink()); ?>" title="<?php printBareNewsTitle(); ?>">
 											<?php printNewsTitle(); ?> <small>(<?php printNewsDate(); ?>)</small>
-											<div class="albumdesc"><?php echo html_encode(shortenContent(getBare(getNewsContent()), 57, '(...)', false)); ?></div>
+											<div class="albumdesc"><?php echo html_encodeTagged(shortenContent(getBare(getNewsContent()), 57, '(...)', false)); ?></div>
 										</a>
 									</li>
 									<?php

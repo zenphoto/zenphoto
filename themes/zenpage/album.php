@@ -46,7 +46,7 @@ if (!defined('WEBPATH'))
 								<div class="albumdesc">
 									<h3><a href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo gettext('View album:'); ?> <?php printBareAlbumTitle(); ?>"><?php printAlbumTitle(); ?></a></h3>
 									<?php printAlbumDate(""); ?>
-									<div><?php echo html_encode(shortenContent(getAlbumDesc(), 45, '...')); ?></div>
+									<div><?php echo html_encodeTagged(shortenContent(getAlbumDesc(), 45, '...')); ?></div>
 									<?php
 									if (function_exists('printAddToFavorites')) {
 										echo "<br />";

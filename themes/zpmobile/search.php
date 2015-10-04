@@ -86,7 +86,7 @@ if (!defined('WEBPATH'))
 									?>
 									<li<?php printZDToggleClass('pages', $c, $number_to_show); ?>>
 										<h4><?php printPageURL(); ?></h4>
-										<p class="zenpageexcerpt"><?php echo html_encode(shortenContent(getBare(getPageContent()), 80, getOption("zenpage_textshorten_indicator"))); ?></p>
+										<p class="zenpageexcerpt"><?php echo html_encodeTagged(shortenContent(getBare(getPageContent()), 80, getOption("zenpage_textshorten_indicator"))); ?></p>
 									</li>
 									<?php
 								}
@@ -106,7 +106,7 @@ if (!defined('WEBPATH'))
 									?>
 									<li<?php printZDToggleClass('news', $c, $number_to_show); ?>>
 										<h4><?php printNewsURL(); ?></h4>
-										<p class="zenpageexcerpt"><?php echo html_encode(shortenContent(getBare(getNewsContent()), 80, getOption("zenpage_textshorten_indicator"))); ?></p>
+										<p class="zenpageexcerpt"><?php echo html_encodeTagged(shortenContent(getBare(getNewsContent()), 80, getOption("zenpage_textshorten_indicator"))); ?></p>
 									</li>
 									<?php
 								}
@@ -137,17 +137,18 @@ if (!defined('WEBPATH'))
 						<ul data-role="listview" data-inset="true">
 							<?php while (next_album()): ?>
 								<li>
-									<a href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo gettext('View album:'); ?>">
-										<?php printCustomAlbumThumbImage(getAnnotatedAlbumTitle(), null, 79, 79, 79, 79, NULL, null, NULL, NULL); ?>
+									<a href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo gettext('View album:');
+						printAnnotatedAlbumTitle(); ?>">
+		<?php printCustomAlbumThumbImage(getAnnotatedAlbumTitle(), null, 79, 79, 79, 79, NULL, null, NULL, NULL); ?>
 										<h3><?php printAlbumTitle(); ?><small> (<?php printAlbumDate(''); ?>)</small></h3>
-										<div class="albumdesc"><?php echo html_encode(shortenContent(getAlbumDesc(), 100, '(...)', false)); ?></div>
+										<div class="albumdesc"><?php echo html_encodeTagged(shortenContent(getAlbumDesc(), 100, '(...)', false)); ?></div>
 										<small class="ui-li-aside ui-li-count"><?php jqm_printImageAlbumCount() ?></small>
 									</a>
 								</li>
-							<?php endwhile; ?>
+						<?php endwhile; ?>
 						</ul>
 					<?php } ?>
-					<?php if (getNumImages() > 0) { ?>
+						<?php if (getNumImages() > 0) { ?>
 						<div class="ui-grid-c">
 							<?php
 							$count = '';
@@ -170,9 +171,9 @@ if (!defined('WEBPATH'))
 								}
 								?>
 								<a class="image<?php echo $imgclass; ?>" href="<?php echo html_encode(getImageURL()); ?>" title="<?php printBareImageTitle(); ?>">
-									<?php printCustomSizedImage(getAnnotatedImageTitle(), NULL, 230, 230, 230, 230, NULL, NULL, NULL, NULL, true, NULL); ?>
+								<?php printCustomSizedImage(getAnnotatedImageTitle(), NULL, 230, 230, 230, 230, NULL, NULL, NULL, NULL, true, NULL); ?>
 								</a>
-							<?php } ?>
+	<?php } ?>
 						</div>
 						<br class="clearall" />
 					<?php } ?>
@@ -188,12 +189,12 @@ if (!defined('WEBPATH'))
 
 				</div>
 				<div class="content-secondary">
-					<?php jqm_printMenusLinks(); ?>
+<?php jqm_printMenusLinks(); ?>
 				</div>
 			</div><!-- /content -->
 			<?php jqm_printBacktoTopLink(); ?>
-			<?php jqm_printFooterNav(); ?>
+		<?php jqm_printFooterNav(); ?>
 		</div><!-- /page -->
-		<?php zp_apply_filter('theme_body_close'); ?>
+<?php zp_apply_filter('theme_body_close'); ?>
 	</body>
 </html>
