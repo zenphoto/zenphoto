@@ -202,7 +202,7 @@ if (!defined('WEBPATH'))
 												</a>
 												<div class="albumdesc">
 													<h3>
-														<a href="<?php echo getAlbumURL(); ?>" title="<?php printf(gettext('View album:  %s'), getBareAlbumTitle()); ?>">
+														<a href="<?php echo getAlbumURL(); ?>" title="<?php printf(gettext('View album:  %s'), html_encode(getBareAlbumTitle())); ?>">
 															<?php printAlbumTitle(); ?>
 														</a>
 													</h3>

@@ -8,9 +8,9 @@ if (class_exists('favorites')) {
 	<html>
 		<head>
 			<?php zp_apply_filter('theme_head'); ?>
-			
-			
-			 
+
+
+
 			<meta name="viewport" content="width=device-width, initial-scale=1">
 			<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" />
 			<?php jqm_loadScripts(); ?>
@@ -32,27 +32,29 @@ if (class_exists('favorites')) {
 						<ul data-role="listview" data-inset="true" data-theme="a" class="ui-listview ui-group-theme-a">
 							<?php while (next_album()): ?>
 								<li>
-									<a href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo gettext('View album:'); ?>">
+									<a href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo gettext('View album:');
+						printAnnotatedAlbumTitle();
+								?>">
 										<?php printCustomAlbumThumbImage(getAnnotatedAlbumTitle(), null, 79, 79, 79, 79, NULL, null, NULL, NULL); ?>
-										<?php printAlbumTitle(); ?><small> (<?php printAlbumDate(''); ?>)</small>
-										<div class="albumdesc"><?php echo shortenContent(getAlbumDesc(), 100, '(...)', false); ?></div>
+		<?php printAlbumTitle(); ?><small> (<?php printAlbumDate(''); ?>)</small>
+										<div class="albumdesc"><?php echo html_encodeTagged(shortenContent(getAlbumDesc(), 100, '(...)', false)); ?></div>
 										<small class="ui-li-count"><?php jqm_printImageAlbumCount() ?></small>
 									</a>
-									<?php printAddToFavorites($_zp_current_album, '', gettext('Remove')); ?>
+								<?php printAddToFavorites($_zp_current_album, '', gettext('Remove')); ?>
 								</li>
-							<?php endwhile; ?>
+	<?php endwhile; ?>
 						</ul>
 						<ul data-role="listview" data-inset="true" data-theme="a" class="ui-listview ui-group-theme-a">
-							<?php while (next_image()): ?>
+	<?php while (next_image()): ?>
 								<li>
 									<a href="<?php echo html_encode(getImageURL()); ?>" title="<?php printBareImageTitle(); ?>">
 										<?php printCustomSizedImage(getAnnotatedImageTitle(), NULL, 79, 79, 79, 79, NULL, NULL, NULL, NULL, true, NULL); ?>
-										<?php printImageTitle(); ?><small> (<?php printImageDate(''); ?>)</small>
+		<?php printImageTitle(); ?><small> (<?php printImageDate(''); ?>)</small>
 										<div class="albumdesc"><?php echo $_zp_current_image->getAlbum()->getTitle(); ?></div>
 									</a>
-									<?php printAddToFavorites($_zp_current_image, '', gettext('Remove')); ?>
+								<?php printAddToFavorites($_zp_current_image, '', gettext('Remove')); ?>
 								</li>
-							<?php endwhile; ?>
+	<?php endwhile; ?>
 						</ul>
 						<br class="clearall" />
 						<?php if (hasPrevPage() || hasNextPage()) printPageListWithNav(gettext("prev"), gettext("next"), false, true, 'pagelist', NULL, true, 7); ?>

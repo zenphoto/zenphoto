@@ -24,7 +24,7 @@ class ga_colorbox {
 		?>
 		<script type="text/javascript">
 			// <!-- <![CDATA[
-			$(document).ready(function() {
+			$(document).ready(function () {
 				$("a.thickbox").colorbox({
 					maxWidth: "98%",
 					maxHeight: "98%",
@@ -66,7 +66,7 @@ class ga_colorbox {
 							$link = html_encode(getImageURL()) . '"';
 						}
 						?>
-						<a href="<?php echo $link; ?>" title="<?php echo getBareImageTitle(); ?>">
+						<a href="<?php echo $link; ?>" title="<?php echo html_encode(getBareImageTitle()); ?>">
 							<?php printImageThumb(getImageTitle()); ?>
 						</a></div>
 				</div>

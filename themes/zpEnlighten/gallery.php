@@ -35,12 +35,12 @@ if (!defined('WEBPATH'))
 						<?php while (next_album()): $u++; ?>
 							<div class="album">
 								<div class="thumb">
-									<a href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo gettext('View album:'); ?> <?php echo getBareAlbumTitle(); ?>"><?php printCustomAlbumThumbImage(getBareAlbumTitle(), NULL, 255, 75, 255, 75); ?></a>
+									<a href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo gettext('View album:'); ?> <?php echo html_encode(getBareAlbumTitle()); ?>"><?php printCustomAlbumThumbImage(getBareAlbumTitle(), NULL, 255, 75, 255, 75); ?></a>
 								</div>
 								<div class="albumdesc">
-									<h3><a href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo gettext('View album:'); ?> <?php echo getBareAlbumTitle(); ?>"><?php printAlbumTitle(); ?></a></h3>
+									<h3><a href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo gettext('View album:'); ?> <?php echo html_encode(getBareAlbumTitle()); ?>"><?php printAlbumTitle(); ?></a></h3>
 									<h3 class="date"><?php printAlbumDate("", "", "%B %Y"); ?></h3>
-								<!-- p><?php echo truncate_string(getAlbumDesc(), 45); ?></p --></h3>
+								<!-- p><?php echo html_encodeTagged(truncate_string(getAlbumDesc(), 45)); ?></p --></h3>
 								</div>
 								<p style="clear: both; "></p>
 							</div>

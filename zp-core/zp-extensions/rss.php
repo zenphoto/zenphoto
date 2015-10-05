@@ -680,7 +680,7 @@ class RSS extends feed {
 					<title><![CDATA[<?php echo $this->channel_title; ?>]]></title>
 					<link><?php echo PROTOCOL . '://' . $this->host . WEBPATH; ?></link>
 					<atom:link href="<?php echo PROTOCOL; ?>://<?php echo $this->host; ?><?php echo html_encode(getRequestURI()); ?>" rel="self"	type="application/rss+xml" />
-					<description><![CDATA[<?php echo getBare($_zp_gallery->getDesc($this->locale)); ?>]]></description>
+					<description><![CDATA[<?php echo html_encode(getBare($_zp_gallery->getDesc($this->locale))); ?>]]></description>
 					<language><?php echo $this->locale_xml; ?></language>
 					<pubDate><?php echo date("r", time()); ?></pubDate>
 					<lastBuildDate><?php echo date("r", time()); ?></lastBuildDate>

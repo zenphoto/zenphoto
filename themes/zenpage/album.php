@@ -41,12 +41,12 @@ if (!defined('WEBPATH'))
 						<?php while (next_album()): ?>
 							<div class="album">
 								<div class="thumb">
-									<a href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo gettext('View album:'); ?> <?php getBareAlbumTitle(); ?>"><?php printCustomAlbumThumbImage(getBareAlbumTitle(), NULL, 95, 95, 95, 95); ?></a>
+									<a href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo gettext('View album:'); ?> <?php printBareAlbumTitle(); ?>"><?php printCustomAlbumThumbImage(getBareAlbumTitle(), NULL, 95, 95, 95, 95); ?></a>
 								</div>
 								<div class="albumdesc">
 									<h3><a href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo gettext('View album:'); ?> <?php printBareAlbumTitle(); ?>"><?php printAlbumTitle(); ?></a></h3>
 									<?php printAlbumDate(""); ?>
-									<div><?php echo shortenContent(getAlbumDesc(), 45, '...'); ?></div>
+									<div><?php echo html_encodeTagged(shortenContent(getAlbumDesc(), 45, '...')); ?></div>
 									<?php
 									if (function_exists('printAddToFavorites')) {
 										echo "<br />";
@@ -99,13 +99,13 @@ if (!defined('WEBPATH'))
 
 
 				<div id="sidebar">
-<?php include("sidebar.php"); ?>
+					<?php include("sidebar.php"); ?>
 				</div><!-- sidebar -->
 
 
 
 				<div id="footer">
-<?php include("footer.php"); ?>
+					<?php include("footer.php"); ?>
 				</div>
 
 			</div><!-- content -->

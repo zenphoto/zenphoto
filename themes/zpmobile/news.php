@@ -8,9 +8,9 @@ if (class_exists('CMS')) {
 	<html>
 		<head>
 			<?php zp_apply_filter('theme_head'); ?>
-			
-			
-			 
+
+
+
 			<meta name="viewport" content="width=device-width, initial-scale=1">
 			<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" />
 			<?php jqm_loadScripts(); ?>
@@ -60,38 +60,38 @@ if (class_exists('CMS')) {
 							<?php if (getPrevNewsURL() || getNextNewsURL()) { ?><?php } ?>
 
 
-								<?php
-							} else {
-								printNewsPageListWithNav(gettext('next »'), gettext('« prev'), true, 'pagelist', true, 7);
-								?>
+							<?php
+						} else {
+							printNewsPageListWithNav(gettext('next »'), gettext('« prev'), true, 'pagelist', true, 7);
+							?>
 							<ul data-role="listview" data-inset="true" data-theme="a" class="ui-listview ui-group-theme-a">
-		<?php while (next_news()): ?>
+								<?php while (next_news()): ?>
 									<li>
 										<a href="<?php echo html_encode(jqm_getLink()); ?>" title="<?php printBareNewsTitle(); ?>">
-									<?php printNewsTitle(); ?> <small>(<?php printNewsDate(); ?>)</small>
-											<div class="albumdesc"><?php echo shortenContent(getBare(getNewsContent()), 57, '(...)', false); ?></div>
+											<?php printNewsTitle(); ?> <small>(<?php printNewsDate(); ?>)</small>
+											<div class="albumdesc"><?php echo html_encodeTagged(shortenContent(getBare(getNewsContent()), 57, '(...)', false)); ?></div>
 										</a>
 									</li>
-								<?php
-							endwhile;
-							?>
+									<?php
+								endwhile;
+								?>
 							</ul>
-		<?php
-		printNewsPageListWithNav(gettext('next »'), gettext('« prev'), true, 'pagelist', true, 7);
-	}
-	?>
+							<?php
+							printNewsPageListWithNav(gettext('next »'), gettext('« prev'), true, 'pagelist', true, 7);
+						}
+						?>
 
 					</div>
 					<div class="content-secondary">
-				<?php jqm_printMenusLinks(); ?>
+						<?php jqm_printMenusLinks(); ?>
 					</div>
 				</div><!-- /content -->
-			<?php jqm_printBacktoTopLink(); ?>
-			<?php jqm_printFooterNav(); ?>
+				<?php jqm_printBacktoTopLink(); ?>
+				<?php jqm_printFooterNav(); ?>
 			</div><!-- /page -->
 
-	<?php zp_apply_filter('theme_body_close');
-	?>
+			<?php zp_apply_filter('theme_body_close');
+			?>
 		</body>
 	</html>
 	<?php

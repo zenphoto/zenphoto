@@ -47,12 +47,12 @@ if (class_exists('favorites')) {
 											while (next_album()) {
 												?>
 												<div class="album">
-													<a class="albumthumb" href="<?php echo getAlbumURL(); ?>" title="<?php printf(gettext('View album:  %s'), getBareAlbumTitle()); ?>">
+													<a class="albumthumb" href="<?php echo getAlbumURL(); ?>" title="<?php printf(gettext('View album:  %s'), html_encode(getBareAlbumTitle())); ?>">
 														<?php printCustomAlbumThumbImage(getAlbumTitle(), 85, NULL, NULL, 85, 85); ?>
 													</a>
 													<div class="albumdesc">
 														<h3>
-															<a href="<?php echo getAlbumURL(); ?>" title="<?php printf(gettext('View album:  %s'), getBareAlbumTitle()); ?>">
+															<a href="<?php echo getAlbumURL(); ?>" title="<?php printf(gettext('View album:  %s'), html_encode(getBareAlbumTitle())); ?>">
 																<?php printAlbumTitle(); ?>
 															</a>
 														</h3>
@@ -75,7 +75,7 @@ if (class_exists('favorites')) {
 												?>
 												<div class="image">
 													<div class="imagethumb">
-														<a href="<?php echo html_encode(getImageURL()); ?>" title="<?php echo getBareImageTitle(); ?>"><?php printImageThumb(getImageTitle()); ?></a>
+														<a href="<?php echo html_encode(getImageURL()); ?>" title="<?php echo html_encode(getBareImageTitle()); ?>"><?php printImageThumb(getImageTitle()); ?></a>
 														<?php printAddToFavorites($_zp_current_image, '', gettext('Remove')); ?>
 													</div>
 												</div>

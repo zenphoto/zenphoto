@@ -12,9 +12,9 @@ if (class_exists('favorites')) {
 			?></h1>
 
 		<?php if ($zpfocus_logotype) { ?>
-			<a style="display:block;" href="<?php echo getGalleryIndexURL(); ?>"><img src="<?php echo $_zp_themeroot; ?>/images/<?php echo $zpfocus_logofile; ?>" alt="<?php echo getBareGalleryTitle(); ?>" /></a>
+			<a style="display:block;" href="<?php echo html_encode(getGalleryIndexURL()); ?>"><img src="<?php echo $_zp_themeroot; ?>/images/<?php echo $zpfocus_logofile; ?>" alt="<?php echo html_encode(getBareGalleryTitle()); ?>" /></a>
 		<?php } else { ?>
-			<h2 id="logo"><a href="<?php echo getGalleryIndexURL(); ?>"><?php echo getBareGalleryTitle(); ?></a></h2>
+			<h2 id="logo"><a href="<?php echo html_encode(getGalleryIndexURL()); ?>"><?php echo html_encode(getBareGalleryTitle()); ?></a></h2>
 		<?php } ?>
 
 		<div class="album-details">
@@ -35,8 +35,8 @@ if (class_exists('favorites')) {
 					}
 					?>
 					<li class="<?php echo $css; ?>">
-						<h4><a href="<?php echo htmlspecialchars(getAlbumURL()); ?>" title="<?php echo gettext('View SubAlbum:'); ?> <?php echo getBareAlbumTitle(); ?>"><?php echo truncate_string(getBareAlbumTitle(), 20, '...'); ?></a></h4>
-						<a class="thumb" href="<?php echo htmlspecialchars(getAlbumURL()); ?>" title="<?php echo gettext('View SubAlbum:'); ?> <?php echo getBareAlbumTitle(); ?>">
+						<h4><a href="<?php echo htmlspecialchars(getAlbumURL()); ?>" title="<?php echo gettext('View SubAlbum:'); ?> <?php echo html_encode(getBareAlbumTitle()); ?>"><?php echo html_encodeTagged(truncate_string(getBareAlbumTitle(), 20, '...')); ?></a></h4>
+						<a class="thumb" href="<?php echo htmlspecialchars(getAlbumURL()); ?>" title="<?php echo gettext('View SubAlbum:'); ?> <?php echo html_encode(getBareAlbumTitle()); ?>">
 							<?php
 							if (isLandscape()) {
 								printCustomAlbumThumbImage(getBareAlbumTitle(), null, 160, 120, 160, 120);
@@ -47,8 +47,8 @@ if (class_exists('favorites')) {
 						</a>
 						<span class="front-date"><?php printAlbumDate(); ?></span>
 						<p class="front-desc">
-							<?php echo truncate_string(getAlbumDesc(), 175); ?>
-							<a href="<?php echo htmlspecialchars(getAlbumURL()); ?>" title="<?php echo gettext('View SubAlbum:'); ?> <?php echo getBareAlbumTitle(); ?>">&raquo;</a>
+							<?php echo html_encodeTagged(truncate_string(getAlbumDesc(), 175)); ?>
+							<a href="<?php echo htmlspecialchars(getAlbumURL()); ?>" title="<?php echo gettext('View SubAlbum:'); ?> <?php echo html_encode(getBareAlbumTitle()); ?>">&raquo;</a>
 							<?php printAddToFavorites($_zp_current_album, '', gettext('Remove')); ?>
 						</p>
 					</li>
@@ -82,7 +82,7 @@ if (class_exists('favorites')) {
 							} else {
 								echo htmlspecialchars(getUnprotectedImageURL());
 							}
-							?>" title="<?php echo getBareImageTitle(); ?>"><?php echo gettext('Play Slideshow'); ?></a>
+							?>" title="<?php echo html_encode(getBareImageTitle()); ?>"><?php echo gettext('Play Slideshow'); ?></a>
 								 <?php
 								 $x = $x + 1;
 							 }
@@ -91,7 +91,7 @@ if (class_exists('favorites')) {
 					 <?php } ?>
 				<span><?php
 					echo gettext('Images in ');
-					echo getBareAlbumTitle();
+					echo html_encode(getBareAlbumTitle());
 					?> (<?php echo getNumImages(); ?>)</span>
 			</h4>
 
@@ -107,12 +107,12 @@ if (class_exists('favorites')) {
 										} else {
 											echo htmlspecialchars(getUnprotectedImageURL());
 										}
-										?>" title="<?php echo getBareImageTitle(); ?>"><img src="<?php echo $_zp_themeroot; ?>/images/search.png" alt="Zoom Image" /></a><?php } ?>
+										?>" title="<?php echo html_encode(getBareImageTitle()); ?>"><img src="<?php echo $_zp_themeroot; ?>/images/search.png" alt="Zoom Image" /></a><?php } ?>
 										 <?php if ((getCommentCount()) > 0) { ?>
 										<a class="album-tool" href="<?php echo htmlspecialchars(getImageURL()); ?>" title="<?php echo getCommentCount(); ?> Comments"><img src="<?php echo $_zp_themeroot; ?>/images/shout.png" alt="Comments" /></a>
 									<?php } ?>
 								</div>
-								<a class="thumb" href="<?php echo htmlspecialchars(getImageURL()); ?>" title="<?php echo getBareImageTitle(); ?>">
+								<a class="thumb" href="<?php echo htmlspecialchars(getImageURL()); ?>" title="<?php echo html_encode(getBareImageTitle()); ?>">
 									<?php printCustomSizedImage(getBareImageTitle(), null, 160, 120, 160, 120, null, null, 'thumb', null, true); ?>
 								</a>
 							<?php } else { ?>
@@ -124,12 +124,12 @@ if (class_exists('favorites')) {
 										} else {
 											echo htmlspecialchars(getUnprotectedImageURL());
 										}
-										?>" title="<?php echo getBareImageTitle(); ?>"><img src="<?php echo $_zp_themeroot; ?>/images/search.png" alt="Zoom Image" /></a><?php } ?>
+										?>" title="<?php echo html_encode(getBareImageTitle()); ?>"><img src="<?php echo $_zp_themeroot; ?>/images/search.png" alt="Zoom Image" /></a><?php } ?>
 										 <?php if ((getCommentCount()) > 0) { ?>
 										<a class="album-tool" href="<?php echo htmlspecialchars(getImageURL()); ?>" title="<?php echo getCommentCount(); ?> Comments"><img src="<?php echo $_zp_themeroot; ?>/images/shout.png" alt="Comments" /></a>
 									<?php } ?>
 								</div>
-								<a class="thumb" href="<?php echo htmlspecialchars(getImageURL()); ?>" title="<?php echo getBareImageTitle(); ?>">
+								<a class="thumb" href="<?php echo htmlspecialchars(getImageURL()); ?>" title="<?php echo html_encode(getBareImageTitle()); ?>">
 									<?php printCustomSizedImage(getBareImageTitle(), null, 120, 160, 120, 160, null, null, 'thumb', null, true); ?>
 								</a>
 							<?php } ?>

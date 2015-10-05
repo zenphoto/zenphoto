@@ -54,7 +54,7 @@
 									$html = "<img src=\"" . html_encode($randomImage->getCustomImage(null, $zpmas_ss_size_w, $zpmas_ss_size_h, $zpmas_ss_size_w, $zpmas_ss_size_h, null, null, true)) . "\" alt=\"" . html_encode($randomImage->getTitle()) . "\" />\n";
 									echo zp_apply_filter('custom_image_html', $html, false);
 									echo "</a>";
-									echo '<h3><a href="' . $randomImageURL . '" title="' . sprintf(gettext('View image: %s'), html_encode($randomImage->getTitle())) . '">' . html_encode($randomImage->getTitle()) . '</a></h3>';
+									echo '<h3><a href="' . $randomImageURL . '" title="' . sprintf(gettext('View image: %s'), html_encode($randomImage->getTitle())) . '">' . html_encodeTagged($randomImage->getTitle()) . '</a></h3>';
 									echo "</li>";
 								}
 							} else {
@@ -63,50 +63,57 @@
 						}
 						?>
 					</ul>
-			<?php } ?>
+				<?php } ?>
 				<h2 id="ss-title"><?php echo $zpmas_sstitle; ?></h2>
 			</div>
-				<?php } ?>
+		<?php } ?>
 
-			<?php echo $zpmas_sscount; ?>
+		<?php echo $zpmas_sscount; ?>
 
-<?php while (next_album()): ?>
+		<?php while (next_album()): ?>
 			<div class="box <?php echo $zpmas_col_album; ?> album">
 				<h3><?php echo getAlbumTitle(); ?></h3>
-				<a class="thumb-link" href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo getAnnotatedAlbumTitle(); ?>">
+				<a class="thumb-link" href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo html_encode(getAnnotatedAlbumTitle()); ?>">
 					<?php printCustomAlbumThumbImage(getAnnotatedAlbumTitle(), null, $zpmas_album_size_w, $zpmas_album_size_h, $zpmas_album_size_w, $zpmas_album_size_h); ?>
 				</a>
-					<?php $singletag = getTags();
-					$tagstring = implode(', ', $singletag); ?>
+				<?php
+				$singletag = getTags();
+				$tagstring = implode(', ', $singletag);
+				?>
 				<ul class="album-info">
 					<li class="counts <?php if (($zpmas_thumbsize == 'small') && (getNumAlbums() > 0)) echo 'smallthumbs'; ?>">
-			<?php if (getNumAlbums() > 0) {
-				echo getNumAlbums() . ' ' . gettext('subalbums');
-			} ?>
-			<?php if (getNumImages() > 0) {
-				echo getNumImages() . ' ' . gettext('images');
-			} ?>
+						<?php
+						if (getNumAlbums() > 0) {
+							echo getNumAlbums() . ' ' . gettext('subalbums');
+						}
+						?>
+						<?php
+						if (getNumImages() > 0) {
+							echo getNumImages() . ' ' . gettext('images');
+						}
+						?>
 					</li>
-		<?php if (strlen(getAlbumDate()) > 0) { ?><li class="date"><?php printAlbumDate(''); ?></li><?php } ?>
-			<?php if (strlen(getAlbumDesc()) > 0) { ?><li class="desc"><?php echo shortenContent(getAlbumDesc(), 150, '...'); ?></li><?php } ?>
-			<?php if (strlen($tagstring) > 0) { ?><li class="tags"><?php printTags('links', ' ', 'taglist', ', '); ?></li><?php } ?>
+					<?php if (strlen(getAlbumDate()) > 0) { ?><li class="date"><?php printAlbumDate(''); ?></li><?php } ?>
+					<?php if (strlen(getAlbumDesc()) > 0) { ?><li class="desc"><?php echo html_encodeTagged(shortenContent(getAlbumDesc(), 150, '...')); ?></li><?php } ?>
+					<?php if (strlen($tagstring) > 0) { ?><li class="tags"><?php printTags('links', ' ', 'taglist', ', '); ?></li><?php } ?>
 				</ul>
 			</div>
-	<?php endwhile; ?>
+		<?php endwhile; ?>
 	</div>
-<?php if ($zpmas_infscroll) { ?>
+	<?php if ($zpmas_infscroll) { ?>
 		<div id="page_nav">
-	<?php if (getNextPageURL()) { ?><a href="<?php echo getNextPageURL(); ?>"><?php echo gettext('Next Page'); ?></a> <?php } ?>
+			<?php if (getNextPageURL()) { ?><a href="<?php echo getNextPageURL(); ?>"><?php echo gettext('Next Page'); ?></a> <?php } ?>
 		</div>
-<?php } else {
-	if ((hasPrevPage()) || (hasNextPage())) {
-		?>
+		<?php
+	} else {
+		if ((hasPrevPage()) || (hasNextPage())) {
+			?>
 			<div id="pagination">
-		<?php printPageListWithNav("« " . gettext("prev"), gettext("next") . " »"); ?>
+				<?php printPageListWithNav("« " . gettext("prev"), gettext("next") . " »"); ?>
 			</div>
+		<?php } ?>
 	<?php } ?>
-<?php } ?>
-<?php printCodeblock(); ?>
+	<?php printCodeblock(); ?>
 </div>
 
 <?php include ("inc-footer.php"); ?>

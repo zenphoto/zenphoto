@@ -40,12 +40,12 @@ if (!defined('WEBPATH'))
 						}
 						?> >
 							<div class="thumb">
-								<a href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo gettext('View album:'); ?> <?php getBareAlbumTitle(); ?>"><?php printCustomAlbumThumbImage(getBareAlbumTitle(), NULL, 255, 75, 255, 75); ?></a>
+								<a href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo gettext('View album:'); ?> <?php printBareAlbumTitle(); ?>"><?php printCustomAlbumThumbImage(getBareAlbumTitle(), NULL, 255, 75, 255, 75); ?></a>
 							</div>
 							<div class="albumdesc">
-								<h3><a href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo gettext('View album:'); ?> <?php echo getBareAlbumTitle(); ?>"><?php printAlbumTitle(); ?></a></h3>
+								<h3><a href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo gettext('View album:'); ?> <?php printBareAlbumTitle(); ?>"><?php printAlbumTitle(); ?></a></h3>
 								<h3 class="date"><?php printAlbumDate(""); ?></h3>
-							<!-- p><?php echo truncate_string(getAlbumDesc(), 45); ?></p --></h3>
+							<!-- p><?php echo html_encodeTagged(truncate_string(getAlbumDesc(), 45)); ?></p --></h3>
 							</div>
 							<p style="clear: both; "></p>
 						</div>
@@ -65,7 +65,7 @@ if (!defined('WEBPATH'))
 					<?php $u = 0; ?>
 					<?php while (next_image()): $u++; ?>
 						<div class="image">
-							<div class="imagethumb"><a href="<?php echo htmlspecialchars(getImageURL()); ?>" title="<?php echo getBareImageTitle(); ?>"><?php printImageThumb(getBareImageTitle()); ?></a></div>
+							<div class="imagethumb"><a href="<?php echo htmlspecialchars(getImageURL()); ?>" title="<?php echo html_encode(getBareImageTitle()); ?>"><?php printImageThumb(getBareImageTitle()); ?></a></div>
 						</div>
 					<?php endwhile; ?>
 					<?php while ($u % 5 != 0) : $u++; ?>

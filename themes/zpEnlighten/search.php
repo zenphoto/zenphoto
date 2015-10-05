@@ -8,12 +8,12 @@ if (!defined('WEBPATH'))
 	<?php zp_apply_filter('theme_head'); ?>
 	<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" type="text/css" />
 	<?php printRSSHeaderLink('Gallery', gettext('Gallery RSS')); ?>
-<?php printZDSearchToggleJS(); ?>
+	<?php printZDSearchToggleJS(); ?>
 </head>
 <body>
-		<?php zp_apply_filter('theme_body_open'); ?>
+	<?php zp_apply_filter('theme_body_open'); ?>
 	<div id="main">
-<?php include("header.php"); ?>
+		<?php include("header.php"); ?>
 
 		<div id="breadcrumb">
 			<?php
@@ -35,7 +35,7 @@ if (!defined('WEBPATH'))
 				<?php } else { ?>
 					<a href="<?php echo htmlspecialchars(getCustomPageURl('gallery')); ?>" title="<?php echo gettext('Gallery'); ?>"><?php echo gettext("Gallery") . " » "; ?></a>
 				<?php } ?>
-<?php echo gettext("Search"); ?> » <strong><?php echo getSearchWords(); ?></strong> (<?php echo $total; ?> results)
+				<?php echo gettext("Search"); ?> » <strong><?php echo getSearchWords(); ?></strong> (<?php echo $total; ?> results)
 			</h2>
 		</div>
 
@@ -69,7 +69,7 @@ if (!defined('WEBPATH'))
 								?>
 								<li<?php printZDToggleClass('pages', $c, $number_to_show); ?>>
 									<h4><?php printPageTitlelink(); ?></h4>
-									<p class="zenpageexcerpt"><?php echo shortenContent(strip_tags(getPageContent()), 80, getOption("zenpage_textshorten_indicator")); ?></p>
+									<p class="zenpageexcerpt"><?php echo html_encodeTagged(shortenContent(strip_tags(getPageContent()), 80, getOption("zenpage_textshorten_indicator"))); ?></p>
 								</li>
 								<?php
 							}
@@ -94,7 +94,7 @@ if (!defined('WEBPATH'))
 								?>
 								<li<?php printZDToggleClass('news', $c, $number_to_show); ?>>
 									<h4><?php printNewsURL(); ?></h4>
-									<p class="zenpageexcerpt"><?php echo shortenContent(strip_tags(getNewsContent()), 80, getOption("zenpage_textshorten_indicator")); ?></p>
+									<p class="zenpageexcerpt"><?php echo html_encodeTagged(shortenContent(strip_tags(getNewsContent()), 80, getOption("zenpage_textshorten_indicator"))); ?></p>
 								</li>
 								<?php
 							}
@@ -127,31 +127,31 @@ if (!defined('WEBPATH'))
 					}
 					?>
 				</h3>
-					<?php if (getNumAlbums() != 0) { ?>
+				<?php if (getNumAlbums() != 0) { ?>
 					<div id="albums">
-	<?php while (next_album()): ?>
+						<?php while (next_album()): ?>
 							<div class="album">
 								<div class="thumb">
-									<a href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo gettext('View album:'); ?> <?php echo getBareAlbumTitle(); ?>"><?php printCustomAlbumThumbImage(getBareAlbumTitle(), NULL, 255, 75, 255, 75); ?></a>
+									<a href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo gettext('View album:'); ?> <?php echo html_encode(getBareAlbumTitle()); ?>"><?php printCustomAlbumThumbImage(getBareAlbumTitle(), NULL, 255, 75, 255, 75); ?></a>
 								</div>
 								<div class="albumdesc">
-									<h3><a href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo gettext('View album:'); ?> <?php echo getBareAlbumTitle(); ?>"><?php printAlbumTitle(); ?></a></h3>
+									<h3><a href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo gettext('View album:'); ?> <?php echo html_encode(getBareAlbumTitle()); ?>"><?php printAlbumTitle(); ?></a></h3>
 									<h3 class="date"><?php printAlbumDate(""); ?></h3>
-								<!-- p><?php echo truncate_string(getAlbumDesc(), 45); ?></p --></h3>
+								<!-- p><?php echo html_encodeTagged(truncate_string(getAlbumDesc(), 45)); ?></p --></h3>
 								</div>
 								<p style="clear: both; "></p>
 							</div>
-	<?php endwhile; ?>
+						<?php endwhile; ?>
 
 					</div>
 				<?php } ?>
-					<?php if (getNumImages() > 0) { ?>
+				<?php if (getNumImages() > 0) { ?>
 					<div id="images">
-	<?php while (next_image()): ?>
+						<?php while (next_image()): ?>
 							<div class="image">
-								<div class="imagethumb"><a href="<?php echo html_encode(getImageURL()); ?>" title="<?php echo getBareImageTitle(); ?>"><?php printImageThumb(getBareImageTitle()); ?></a></div>
+								<div class="imagethumb"><a href="<?php echo html_encode(getImageURL()); ?>" title="<?php echo html_encode(getBareImageTitle()); ?>"><?php printImageThumb(getBareImageTitle()); ?></a></div>
 							</div>
-	<?php endwhile; ?>
+						<?php endwhile; ?>
 					</div>
 					<br clear="all" />
 				<?php } ?>
@@ -173,17 +173,17 @@ if (!defined('WEBPATH'))
 
 
 			<div id="sidebar">
-<?php include("sidebar.php"); ?>
+				<?php include("sidebar.php"); ?>
 			</div><!-- sidebar -->
 
 
 
 			<div id="footer">
-<?php include("footer.php"); ?>
+				<?php include("footer.php"); ?>
 			</div>
 		</div><!-- content -->
 
 	</div><!-- main -->
-<?php zp_apply_filter('theme_body_close'); ?>
+	<?php zp_apply_filter('theme_body_close'); ?>
 </body>
 </html>

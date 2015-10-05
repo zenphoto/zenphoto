@@ -10,11 +10,11 @@
 	<?php
 	if ($zpfocus_logotype) {
 		?>
-		<a style="display:block;" href="<?php echo getGalleryIndexURL(); ?>"><img src="<?php echo $_zp_themeroot; ?>/images/<?php echo $zpfocus_logofile; ?>" alt="<?php echo getBareGalleryTitle(); ?>" /></a>
+		<a style="display:block;" href="<?php echo getGalleryIndexURL(); ?>"><img src="<?php echo $_zp_themeroot; ?>/images/<?php echo $zpfocus_logofile; ?>" alt="<?php echo html_encode(getBareGalleryTitle()); ?>" /></a>
 		<?php
 	} else {
 		?>
-		<h2 id="logo"><a href="<?php echo getGalleryIndexURL(); ?>"><?php echo getBareGalleryTitle(); ?></a></h2>
+		<h2 id="logo"><a href="<?php echo html_encode(getGalleryIndexURL()); ?>"><?php echo html_encode(getBareGalleryTitle()); ?></a></h2>
 		<?php
 	}
 	?>
@@ -48,14 +48,14 @@
 				} else {
 					echo htmlspecialchars(getUnprotectedImageURL());
 				}
-				?>" title="<?php echo getBareImageTitle(); ?>"><?php printCustomSizedImageMaxSpace(getImageTitle(), 600, 900); ?></a><?php } ?>
+				?>" title="<?php echo html_encode(getBareImageTitle()); ?>"><?php printCustomSizedImageMaxSpace(getImageTitle(), 600, 900); ?></a><?php } ?>
 				 <?php
 				 if (($zpfocus_final_link) == 'nolink') {
 					 printCustomSizedImageMaxSpace(getImageTitle(), 600, 900);
 				 }
 				 ?>
-				 <?php if (($zpfocus_final_link) == 'standard') { ?><a href="<?php echo htmlspecialchars(getFullImageURL()); ?>" title="<?php echo getBareImageTitle(); ?>"><?php printCustomSizedImageMaxSpace(getImageTitle(), 600, 900); ?></a><?php } ?>
-			<?php if (($zpfocus_final_link) == 'standard-new') { ?><a target="_blank" href="<?php echo htmlspecialchars(getFullImageURL()); ?>" title="<?php echo getBareImageTitle(); ?>"><?php printCustomSizedImageMaxSpace(getImageTitle(), 600, 900); ?></a><?php } ?>
+			<?php if (($zpfocus_final_link) == 'standard') { ?><a href="<?php echo htmlspecialchars(getFullImageURL()); ?>" title="<?php echo html_encode(getBareImageTitle()); ?>"><?php printCustomSizedImageMaxSpace(getImageTitle(), 600, 900); ?></a><?php } ?>
+			<?php if (($zpfocus_final_link) == 'standard-new') { ?><a target="_blank" href="<?php echo htmlspecialchars(getFullImageURL()); ?>" title="<?php echo html_encode(getBareImageTitle()); ?>"><?php printCustomSizedImageMaxSpace(getImageTitle(), 600, 900); ?></a><?php } ?>
 		</div>
 	</div>
 	<?php

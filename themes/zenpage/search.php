@@ -8,9 +8,9 @@ if (!defined('WEBPATH'))
 <html>
 	<head>
 		<?php zp_apply_filter('theme_head'); ?>
-		
-		
-		 
+
+
+
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" type="text/css" />
 		<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery', gettext('Gallery RSS')); ?>
 		<?php printZDSearchToggleJS(); ?>
@@ -92,7 +92,7 @@ if (!defined('WEBPATH'))
 									?>
 									<li<?php printZDToggleClass('pages', $c, $number_to_show); ?>>
 										<h4><?php printPageURL(); ?></h4>
-										<p class="zenpageexcerpt"><?php echo shortenContent(getBare(getPageContent()), 80, getOption("zenpage_textshorten_indicator")); ?></p>
+										<p class="zenpageexcerpt"><?php echo html_encodeTagged(shortenContent(getBare(getPageContent()), 80, getOption("zenpage_textshorten_indicator"))); ?></p>
 									</li>
 									<?php
 								}
@@ -112,7 +112,7 @@ if (!defined('WEBPATH'))
 									?>
 									<li<?php printZDToggleClass('news', $c, $number_to_show); ?>>
 										<h4><?php printNewsURL(); ?></h4>
-										<p class="zenpageexcerpt"><?php echo shortenContent(getBare(getNewsContent()), 80, getOption("zenpage_textshorten_indicator")); ?></p>
+										<p class="zenpageexcerpt"><?php echo html_encodeTagged(shortenContent(getBare(getNewsContent()), 80, getOption("zenpage_textshorten_indicator"))); ?></p>
 									</li>
 									<?php
 								}
@@ -149,7 +149,7 @@ if (!defined('WEBPATH'))
 									<div class="albumdesc">
 										<h3><a href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo gettext('View album:'); ?> <?php printBareAlbumTitle(); ?>"><?php printAlbumTitle(); ?></a></h3>
 										<?php printAlbumDate(""); ?>
-										<p><?php echo truncate_string(getAlbumDesc(), 45); ?></p>
+										<p><?php echo html_encodeTagged(truncate_string(getAlbumDesc(), 45)); ?></p>
 									</div>
 								</div>
 							<?php endwhile; ?>

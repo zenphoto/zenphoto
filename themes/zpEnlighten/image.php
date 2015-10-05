@@ -9,7 +9,7 @@ if (!defined('WEBPATH'))
 	<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" type="text/css" />
 	<script type="text/javascript">
 		// <!-- <![CDATA[
-		$(document).ready(function() {
+		$(document).ready(function () {
 			$(".colorbox").colorbox({inline: true, href: "#imagemetadata"});
 			$("a.thickbox").colorbox({maxWidth: "98%", maxHeight: "98%", photo: true, });
 		});
@@ -78,7 +78,7 @@ if (!defined('WEBPATH'))
 					}
 					if (!empty($tburl)) {
 						?>
-						<a href="<?php echo htmlspecialchars($tburl); ?>"<?php echo $boxclass; ?> title="<?php echo getBareImageTitle(); ?>">
+						<a href="<?php echo htmlspecialchars($tburl); ?>"<?php echo $boxclass; ?> title="<?php echo html_encode(getBareImageTitle()); ?>">
 							<?php
 						}
 						printCustomSizedImageMaxSpace(getBareImageTitle(), 580, 580);

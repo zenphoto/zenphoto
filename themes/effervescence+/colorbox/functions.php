@@ -24,7 +24,7 @@ class ef_colorbox {
 		?>
 		<script type="text/javascript">
 			// <!-- <![CDATA[
-			$(document).ready(function() {
+			$(document).ready(function () {
 				$("a.thickbox").colorbox({
 					maxWidth: "98%",
 					maxHeight: "98%",
@@ -77,7 +77,7 @@ class ef_colorbox {
 								} else {
 									echo '<a href="' . html_encode(getImageURL()) . '"';
 								}
-								echo " title=\"" . $annotate . "\">\n";
+								echo " title=\"" . html_encode($annotate) . "\">\n";
 								printImageThumb($annotate);
 								echo "</a>";
 								?>
@@ -96,17 +96,17 @@ class ef_colorbox {
 						}
 						?>
 						<div id="map_link">
-						<?php printGoogleMap(NULL, NULL, NULL, 'album_page', 'map_callback'); ?>
+							<?php printGoogleMap(NULL, NULL, NULL, 'album_page', 'map_callback'); ?>
 						</div>
 						<?php
 					}
 					@call_user_func('printSlideShowLink', NULL, 'text-align:center;');
 					?>
 				</div><!-- images -->
-			<?php @call_user_func('printRating'); ?>
+				<?php @call_user_func('printRating'); ?>
 			</div><!-- main -->
 			<div class="clearage"></div>
-		<?php if (isset($firstImage)) printNofM('Photo', $firstImage, $lastImage, getNumImages()); ?>
+			<?php if (isset($firstImage)) printNofM('Photo', $firstImage, $lastImage, getNumImages()); ?>
 		</div><!-- content -->
 		<?php
 	}

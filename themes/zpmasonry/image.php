@@ -14,7 +14,7 @@
 		printAlbumBreadcrumb('', ' » ');
 	}
 	?>
-<?php printImageTitle(true); ?>
+	<?php printImageTitle(true); ?>
 </div>
 <div id="wrapper">
 	<div id="sidebar">
@@ -22,18 +22,19 @@
 			<div id="sidebar-padding">
 				<div class="image-nav">
 					<?php if (hasPrevImage()) { ?><a class="image-prev" href="<?php echo html_encode(getPrevImageURL()); ?>" title="<?php echo gettext("Previous Image"); ?>">&larr; <?php echo gettext("prev"); ?></a><?php } ?>
-<?php if (hasNextImage()) { ?><a class="image-next" href="<?php echo html_encode(getNextImageURL()); ?>" title="<?php echo gettext("Next Image"); ?>"><?php echo gettext("next"); ?> &rarr;</a><?php } ?>
+					<?php if (hasNextImage()) { ?><a class="image-next" href="<?php echo html_encode(getNextImageURL()); ?>" title="<?php echo gettext("Next Image"); ?>"><?php echo gettext("next"); ?> &rarr;</a><?php } ?>
 					<span title="<?php echo gettext('Image Number/Total images'); ?>"><?php echo imageNumber() . '/' . getNumImages(); ?></span>
 				</div>
 				<div class="sidebar-divide">
 					<h2><?php printImageTitle(true); ?></h2>
-					<?php $singletag = getTags();
+					<?php
+					$singletag = getTags();
 					$tagstring = implode(', ', $singletag);
 					?>
 					<ul class="image-info">
 						<?php if ((strlen(getImageDate()) > 0) || (zp_loggedin())) { ?><li class="date"><?php printImageDate(''); ?></li><?php } ?>
-<?php if ((strlen(getImageDesc()) > 0) || (zp_loggedin())) { ?><li class="desc"><?php printImageDesc(); ?></li><?php } ?>
-				<?php if ((strlen($tagstring) > 0) || (zp_loggedin())) { ?><li class="tags"><?php printTags('links', ' ', 'taglist', ', '); ?></li><?php } ?>
+						<?php if ((strlen(getImageDesc()) > 0) || (zp_loggedin())) { ?><li class="desc"><?php printImageDesc(); ?></li><?php } ?>
+<?php if ((strlen($tagstring) > 0) || (zp_loggedin())) { ?><li class="tags"><?php printTags('links', ' ', 'taglist', ', '); ?></li><?php } ?>
 					</ul>
 				</div>
 				<?php if ($useGslideshow) { ?>
@@ -42,7 +43,7 @@
 
 				<?php if (!$zpmas_disablemeta) { ?>
 					<?php if ((getImageMetaData()) || (zp_loggedin())) { ?><div class="sidebar-divide"><?php printImageMetadata('', false, null, 'full-image-meta', true); ?></div><?php } ?>
-<?php } ?>
+				<?php } ?>
 <?php include ("inc-copy.php"); ?>
 			</div>
 		</div>
@@ -56,14 +57,14 @@
 					} else {
 						echo htmlspecialchars(getUnprotectedImageURL());
 					}
-					?>" title="<?php echo getBareImageTitle(); ?>"><?php printDefaultSizedImage(getAnnotatedImageTitle()); ?></a><?php } ?>
-				<?php
-				if (($zpmas_finallink) == 'nolink') {
-					printDefaultSizedImage(getAnnotatedImageTitle());
-				}
-				?>
-		<?php if (($zpmas_finallink) == 'standard') { ?><a href="<?php echo html_encode(getFullImageURL()); ?>" title="<?php echo getBareImageTitle(); ?>"><?php printDefaultSizedImage(getAnnotatedImageTitle()); ?></a><?php } ?>
-		<?php if (($zpmas_finallink) == 'standard-new') { ?><a target="_blank" href="<?php echo html_encode(getFullImageURL()); ?>" title="<?php echo getBareImageTitle(); ?>"><?php printDefaultSizedImage(getAnnotatedImageTitle()); ?></a><?php } ?>
+					?>" title="<?php echo html_encode(getBareImageTitle()); ?>"><?php printDefaultSizedImage(getAnnotatedImageTitle()); ?></a><?php } ?>
+					 <?php
+					 if (($zpmas_finallink) == 'nolink') {
+						 printDefaultSizedImage(getAnnotatedImageTitle());
+					 }
+					 ?>
+				<?php if (($zpmas_finallink) == 'standard') { ?><a href="<?php echo html_encode(getFullImageURL()); ?>" title="<?php echo html_encode(getBareImageTitle()); ?>"><?php printDefaultSizedImage(getAnnotatedImageTitle()); ?></a><?php } ?>
+<?php if (($zpmas_finallink) == 'standard-new') { ?><a target="_blank" href="<?php echo html_encode(getFullImageURL()); ?>" title="<?php echo html_encode(getBareImageTitle()); ?>"><?php printDefaultSizedImage(getAnnotatedImageTitle()); ?></a><?php } ?>
 			</div>
 		</div>
 		<?php if (function_exists('printThumbNav')) { ?>
@@ -73,11 +74,11 @@
 		<?php } ?>
 		<?php printCodeblock(); ?>
 		<?php if (function_exists('printGoogleMap')) { ?><div class="post"><?php printGoogleMap(); ?></div><?php } ?>
-<?php
-if (function_exists('printAddToFavorites'))
-	printAddToFavorites($_zp_current_image);
-?>
-<?php if (function_exists('printRating')) { ?><div class="post"><?php printRating(); ?></div><?php } ?>
+		<?php
+		if (function_exists('printAddToFavorites'))
+			printAddToFavorites($_zp_current_image);
+		?>
+		<?php if (function_exists('printRating')) { ?><div class="post"><?php printRating(); ?></div><?php } ?>
 <?php if (function_exists('printCommentForm')) { ?><div class="post"><?php printCommentForm(); ?></div><?php } ?>
 	</div>
 </div>

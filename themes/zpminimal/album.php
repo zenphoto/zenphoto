@@ -17,7 +17,7 @@
 							printCustomAlbumThumbImage(getAnnotatedAlbumTitle(), $zpmin_album_thumb_size);
 						}
 						?>
-						<span class="album-title"><?php echo shortenContent(getBareAlbumTitle(), 25, '...'); ?></span>
+						<span class="album-title"><?php echo html_encodeTagged(shortenContent(getBareAlbumTitle(), 25, '...')); ?></span>
 					</a>
 				</div>
 			<?php endwhile; ?>
@@ -25,11 +25,11 @@
 		<div id="thumbs-wrap">
 			<?php while (next_image()): ?>
 				<div class="thumb-maxspace">
-					<a class="thumb-link" href="<?php echo html_encode(getImageURL()); ?>" title="<?php echo getBareImageTitle(); ?>"><?php printImageThumb(getAnnotatedImageTitle()); ?></a>
+					<a class="thumb-link" href="<?php echo html_encode(getImageURL()); ?>" title="<?php echo html_encode(getBareImageTitle()); ?>"><?php printImageThumb(getAnnotatedImageTitle()); ?></a>
 					<?php if (($zpmin_colorbox) && (!isImageVideo())) { ?>
 						<div class="cblinks">
-							<a class="thickbox" href="<?php echo html_encode(getUnprotectedImageURL()); ?>" title="<?php echo getBareImageTitle(); ?>"><img src="<?php echo $_zp_themeroot; ?>/images/zoom.png" /></a>
-							<a href="<?php echo html_encode(getImageURL()); ?>" title="<?php echo getBareImageTitle(); ?>"><img src="<?php echo $_zp_themeroot; ?>/images/details.png" /></a>
+							<a class="thickbox" href="<?php echo html_encode(getUnprotectedImageURL()); ?>" title="<?php echo html_encode(getBareImageTitle()); ?>"><img src="<?php echo $_zp_themeroot; ?>/images/zoom.png" /></a>
+							<a href="<?php echo html_encode(getImageURL()); ?>" title="<?php echo html_encode(getBareImageTitle()); ?>"><img src="<?php echo $_zp_themeroot; ?>/images/details.png" /></a>
 						</div>
 					<?php } ?>
 				</div>

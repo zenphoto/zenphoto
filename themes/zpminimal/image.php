@@ -13,14 +13,14 @@
 		?>
 		<div id="image-wrap">
 			<div id="full-image">
-				<?php if (($zpmin_finallink) == 'colorbox') { ?><a class="thickbox" href="<?php echo html_encode(getUnprotectedImageURL()); ?>" title="<?php echo getBareImageTitle(); ?>"><?php printCustomSizedImage(getAnnotatedImageTitle(), 550); ?></a><?php } ?>
+				<?php if (($zpmin_finallink) == 'colorbox') { ?><a class="thickbox" href="<?php echo html_encode(getUnprotectedImageURL()); ?>" title="<?php echo html_encode(getBareImageTitle()); ?>"><?php printCustomSizedImage(getAnnotatedImageTitle(), 550); ?></a><?php } ?>
 				<?php
 				if (($zpmin_finallink) == 'nolink') {
 					printCustomSizedImage(getAnnotatedImageTitle(), 550);
 				}
 				?>
-				<?php if (($zpmin_finallink) == 'standard') { ?><a href="<?php echo html_encode(getFullImageURL()); ?>" title="<?php echo getBareImageTitle(); ?>"><?php printCustomSizedImage(getAnnotatedImageTitle(), 550); ?></a><?php } ?>
-				<?php if (($zpmin_finallink) == 'standard-new') { ?><a target="_blank" href="<?php echo html_encode(getFullImageURL()); ?>" title="<?php echo getBareImageTitle(); ?>"><?php printCustomSizedImage(getAnnotatedImageTitle(), 550); ?></a><?php } ?>
+				<?php if (($zpmin_finallink) == 'standard') { ?><a href="<?php echo html_encode(getFullImageURL()); ?>" title="<?php echo html_encode(getBareImageTitle()); ?>"><?php printCustomSizedImage(getAnnotatedImageTitle(), 550); ?></a><?php } ?>
+				<?php if (($zpmin_finallink) == 'standard-new') { ?><a target="_blank" href="<?php echo html_encode(getFullImageURL()); ?>" title="<?php echo html_encode(getBareImageTitle()); ?>"><?php printCustomSizedImage(getAnnotatedImageTitle(), 550); ?></a><?php } ?>
 			</div>
 		</div>
 		<?php

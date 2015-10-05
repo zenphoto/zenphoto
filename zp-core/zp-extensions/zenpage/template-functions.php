@@ -350,7 +350,7 @@ function printNewsURL($before = '') {
 		if ($before) {
 			$before = '<span class="beforetext">' . html_encode($before) . '</span>';
 		}
-		echo "<a href=\"" . html_encode(getNewsURL()) . "\" title=\"" . getBareNewsTitle() . "\">" . $before . html_encodeTagged(getNewsTitle()) . "</a>";
+		echo "<a href=\"" . html_encode(getNewsURL()) . "\" title=\"" . html_encode(getBareNewsTitle()) . "\">" . $before . html_encodeTagged(getNewsTitle()) . "</a>";
 	}
 }
 
@@ -834,15 +834,13 @@ function printNewsIndexURL($name = NULL, $before = '', $archive = NULL) {
 	if (!in_context(ZP_SEARCH_LINKED)) {
 		if (is_null($name)) {
 			$name = gettext('News');
-		} else {
-			$name = getBare(html_encode($name));
 		}
 		$link = getNewsIndexURL();
 
 		if ($before) {
 			echo '<span class="beforetext">' . html_encode($before) . '</span>';
 		}
-		echo "<a href=\"" . html_encode($link) . "\" title=\"" . getBare($name) . "\">" . $name . "</a>";
+		echo "<a href=\"" . html_encode($link) . "\" title=\"" . html_encode(getBare($name)) . "\">" . html_encode(getbare($name)) . "</a>";
 	}
 }
 
@@ -2082,7 +2080,7 @@ function printSubPagesExcerpts($excerptlength = NULL, $readmore = NULL, $shorten
 				$pagecontent = '<p><em>' . gettext('This page is password protected') . '</em></p>';
 			}
 			echo '<div class="pageexcerpt">';
-			echo '<h4><a href="' . html_encode($pageobj->getLink()) . '" title="' . getBare($pagetitle) . '">' . $pagetitle . '</a></h4>';
+			echo '<h4><a href="' . html_encode($pageobj->getLink()) . '" title="' . html_encode(getBare($pagetitle)) . '">' . $pagetitle . '</a></h4>';
 			echo $pagecontent;
 			echo '</div>';
 		}
