@@ -84,7 +84,7 @@ if (!defined('WEBPATH'))
 					<div id="wrapnav">
 						<div id="navbar">
 							<span>
-								<?php printHomeLink('', ' | '); printGalleryIndexURL(' | '); printParentBreadcrumb();
+								<?php printHomeLink('', ' | '); printGalleryIndexURL(' | ', getGalleryTitle()); printParentBreadcrumb();
 								printAlbumBreadcrumb("", " | ");
 								?>
 							</span>

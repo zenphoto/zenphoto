@@ -36,7 +36,7 @@ if (function_exists('printContactForm')) {
 
 				<div id="wrapnav">
 					<div id="navbar">
-						<span><?php printHomeLink('', ' | '); printGalleryIndexURL(' | ');
+						<span><?php printHomeLink('', ' | '); printGalleryIndexURL(' | ', getGalleryTitle());
 							?></span> |
 						<?php
 						echo "<em>" . gettext('Contact') . "</em>";

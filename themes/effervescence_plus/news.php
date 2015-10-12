@@ -33,7 +33,7 @@ if (class_exists('Zenpage') && ZP_NEWS_ENABLED) {
 				<!-- Crumb Trail Navigation -->
 				<div id="wrapnav">
 					<div id="navbar">
-						<span><?php printHomeLink('', ' | '); printGalleryIndexURL(' | ');	?></span>
+						<span><?php printHomeLink('', ' | '); printGalleryIndexURL(' | ', getGalleryTitle());	?></span>
 						<?php
 						printNewsIndexURL(NULL, ' | ');
 						printZenpageItemsBreadcrumb(' | ', '');

@@ -65,7 +65,7 @@ $map = function_exists('printGoogleMap');
 			<!-- Crumb Trail Navigation -->
 			<div id="wrapnav">
 				<div id="navbar">
-					<span><?php printHomeLink('', ' | '); printGalleryIndexURL(' | '); printParentBreadcrumb();
+					<span><?php printHomeLink('', ' | '); printGalleryIndexURL(' | ', getGalleryTitle()); printParentBreadcrumb();
 						?></span>
 					<?php printAlbumTitle(); ?>
 				</div>

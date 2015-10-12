@@ -35,7 +35,7 @@ if (function_exists('printRegistrationForm')) {
 
 				<div id="wrapnav">
 					<div id="navbar">
-						<span><?php printHomeLink('', ' | '); printGalleryIndexURL(' | ');	?></span>
+						<span><?php printHomeLink('', ' | '); printGalleryIndexURL(' | ', getGalleryTitle());	?></span>
 						<?php
 						echo "<em>" . gettext('Register') . "</em>";
 						?>

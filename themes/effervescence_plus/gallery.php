@@ -38,7 +38,7 @@ if (!defined('WEBPATH'))
 			<!-- Crumb Trail Navigation -->
 			<div id="wrapnav">
 				<div id="navbar">
-					<span><?php printHomeLink('', ' | '); printGalleryIndexURL(' | '); ?></span>
+					<span><?php printHomeLink('', ' | '); printGalleryIndexURL(' | ', getGalleryTitle()); ?></span>
 				</div>
 			</div> <!-- wrapnav -->
 		</div> <!-- header -->

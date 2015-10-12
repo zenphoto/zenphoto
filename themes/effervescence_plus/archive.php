@@ -27,7 +27,7 @@ if (!defined('WEBPATH'))
 			<!-- Crumb Trail Navigation -->
 			<div id="wrapnav">
 				<div id="navbar">
-					<span><?php printHomeLink('', ' | '); printGalleryIndexURL(' | '); ?></span>  | <?php echo gettext('Archive View'); ?>
+					<span><?php printHomeLink('', ' | '); printGalleryIndexURL(' | ', getGalleryTitle()); ?></span>  | <?php echo gettext('Archive View'); ?>
 				</div>
 			</div> <!-- wrapnav -->
 

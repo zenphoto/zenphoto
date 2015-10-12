@@ -63,7 +63,7 @@ if (class_exists('favorites')) {
 				<!-- Crumb Trail Navigation -->
 				<div id="wrapnav">
 					<div id="navbar">
-						<span><?php printHomeLink('', ' | '); printGalleryIndexURL(' | '); ?>
+						<span><?php printHomeLink('', ' | '); printGalleryIndexURL(' | ', getGalleryTitle()); ?>
 							<?php printParentBreadcrumb(); ?></span>
 						<?php printAlbumTitle(); ?>
 					</div>

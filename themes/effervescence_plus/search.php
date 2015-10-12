@@ -98,7 +98,7 @@ $backgroundImagePath = "";
 
 			<div id="wrapnav">
 				<div id="navbar">
-					<span><?php printHomeLink('', ' | '); printGalleryIndexURL(' | '); ?></span>
+					<span><?php printHomeLink('', ' | '); printGalleryIndexURL(' | ', getGalleryTitle()); ?></span>
 					<?php
 					if (is_array($albumlist)) {
 						echo "<em>" . sprintf(ngettext('Search album: %s', 'Search albums: %s', count($albumlist)), implode(',', $albumlist)) . "</em>";

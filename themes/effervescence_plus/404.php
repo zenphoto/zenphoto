@@ -28,7 +28,7 @@ if (!defined('WEBPATH'))
 			<div id="wrapnav">
 				<div id="navbar">
 					<span>
-						<?php printHomeLink('', ' | '); printGalleryIndexURL(' | '); ?>
+						<?php printHomeLink('', ' | '); printGalleryIndexURL(' | ', getGalleryTitle()); ?>
 					</span>  |
 					<?php echo "<em>" . gettext('Page not found') . "</em>"; ?>
 				</div>
