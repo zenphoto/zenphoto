@@ -269,7 +269,7 @@ class security_logger {
 				$name = $admin->getName();
 			}
 		}
-		security_logger::Logger((int) ($success && true), $user, $name, 'Back-end', $auth, $pass);
+		security_logger::Logger((int) ($success && true), $user, $name, 'Back-end', $auth, null);
 		return $success;
 	}
 
@@ -317,7 +317,7 @@ class security_logger {
 				$name = $admin->getName();
 			}
 		}
-		security_logger::Logger((int) ($success && true), $user, $name, 'Front-end', $athority, $pass);
+		security_logger::Logger((int) ($success && true), $user, $name, 'Front-end', $athority, null);
 		return $success;
 	}
 
