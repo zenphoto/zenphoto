@@ -38,7 +38,7 @@ if (OFFSET_PATH & OFFSET_PATH != 2) {
  */
 class VideoObject_Options {
 
-	function VideoObject_Options() {
+	function __construct() {
 		setOptionDefault('class-video_mov_w', 520);
 		setOptionDefault('class-video_mov_h', 390);
 		setOptionDefault('class-video_3gp_w', 520);

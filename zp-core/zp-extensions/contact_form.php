@@ -31,7 +31,7 @@ $_zp_conf_vars['special_pages'][] = array('define' => false, 'rewrite' => '%CONT
  */
 class contactformOptions {
 
-	function contactformOptions() {
+	function __construct() {
 		global $_zp_authority;
 
 		setOptionDefault('contactform_rewrite', '_PAGE_/contact');

@@ -48,7 +48,7 @@ class comment_form {
 	 * class instantiation function
 	 *
 	 */
-	function comment_form() {
+	function __construct() {
 		if (OFFSET_PATH == 2) {
 			$old = getOption('tinymce_comments');
 			if (strpos($old, '.js.php') !== false)
