@@ -1278,21 +1278,24 @@ function readTags($id, $tbl, $language) {
  * @param bool $descending set true for a reverse order sort
  */
 function generateListFromArray($currentValue, $list, $descending, $localize) {
-	if ($localize) {
-		$list = array_flip($list);
-		if ($descending) {
-			arsort($list);
+	if (!is_null($descending)) {
+		if ($localize) {
+			$list = array_flip($list);
+			if ($descending) {
+				arsort($list);
+			} else {
+				natcasesort($list);
+			}
+			$list = array_flip($list);
 		} else {
-			natcasesort($list);
-		}
-		$list = array_flip($list);
-	} else {
-		if ($descending) {
-			rsort($list);
-		} else {
-			natcasesort($list);
+			if ($descending) {
+				rsort($list);
+			} else {
+				natcasesort($list);
+			}
 		}
 	}
+
 	foreach ($list as $key => $item) {
 		echo '<option value="' . html_encode($item) . '"';
 		if (in_array($item, $currentValue)) {
