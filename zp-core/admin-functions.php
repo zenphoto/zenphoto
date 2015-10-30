@@ -637,7 +637,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 				<?php
 			}
 			foreach ($options as $option) {
-				$decending = NULL;
+				$descending = NULL;
 				$row = $supportedOptions[$option];
 				if (false !== $i = stripos($option, chr(0))) {
 					$option = substr($option, 0, $i);
@@ -791,7 +791,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 							<?php
 							break;
 						case OPTION_TYPE_SELECTOR:
-							$decending = false;
+							$descending = false;
 						case OPTION_TYPE_ORDERED_SELECTOR:
 							?>
 							<td width="350">
@@ -807,7 +807,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 									foreach ($row['selections'] as $rowkey => $rowvalue) {
 										$list[$rowkey] = $rowvalue;
 									}
-									generateListFromArray(array($v), $list, $decending, true);
+									generateListFromArray(array($v), $list, $descending, true);
 									?>
 								</select>
 							</td>
