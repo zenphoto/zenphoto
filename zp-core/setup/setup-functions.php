@@ -73,6 +73,7 @@ function checkMark($check, $text, $text2, $msg, $stopAutorun = true) {
 		$("#prime<?php echo $primeid; ?>").remove();
 	</script>
 	<?php
+	$check = (int) $check;
 	$anyway = 0;
 	$dsp = '';
 	if ($check > 0) {
