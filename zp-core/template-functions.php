@@ -3186,7 +3186,9 @@ function getRandomImages($daily = false) {
 }
 
 /**
- * Returns  a randomly selected image from the album or its subalbums. (May be NULL if none exists)
+ * Returns  a randomly selected image from the album or one of its subalbums
+ * if the album has no images.
+ * (May return NULL if no images found)
  *
  * @param mixed $rootAlbum optional album object/folder from which to get the image.
  * @param bool $daily set to true to change picture only once a day.
@@ -3216,6 +3218,14 @@ function getRandomImagesAlbum($rootAlbum = NULL, $daily = false) {
 	}
 	$album->setSortType('random');
 	$image = $album->getImage(0);
+
+	if (!$image) {
+		$album->setSortType('random', 'album');
+		foreach ($album->getAlbums() as $subalbum) {
+			if ($image = getRandomImagesAlbum($subalbum))
+				break;
+		}
+	}
 	if ($image && $image->exists) {
 		if ($daily) {
 			$potd = array('day' => time(), 'folder' => $image->getAlbumName(), 'filename' => $image->getFileName());
