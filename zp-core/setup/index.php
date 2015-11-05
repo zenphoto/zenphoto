@@ -64,12 +64,6 @@ if (isset($_REQUEST['xsrfToken']) || isset($_REQUEST['update']) || isset($_REQUE
 		$setup_checked = isset($_GET['checked']);
 		$_initial_session_path = $_SESSION['save_session_path'];
 	} else {
-		//debug code
-		debugLogVar('save session path failed', $_REQUEST);
-		debugLogVar('$_SESSION', $_SESSION);
-		debugLogVar('$session', $session);
-		debuglogVar('Session ID', session_id());
-
 		$_initial_session_path = false;
 		unset($_REQUEST['update']);
 		unset($_REQUEST['checked']);
