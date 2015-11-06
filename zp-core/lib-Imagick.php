@@ -75,17 +75,30 @@ class lib_Imagick_Options {
 
 		if (!$disabled) {
 			$imagickOptions += array(
-							gettext('Max height')	 => array(
+							gettext('Max height')			 => array(
 											'key'		 => 'magick_max_height',
 											'type'	 => OPTION_TYPE_TEXTBOX,
 											'order'	 => 1,
 											'desc'	 => sprintf(gettext('The maximum height used by the site for processed images. Set to %d for unconstrained. Default is <strong>%d</strong>'), self::$ignore_size, self::$ignore_size)
 							),
-							gettext('Max width')	 => array(
+							gettext('Max width')			 => array(
 											'key'		 => 'magick_max_width',
 											'type'	 => OPTION_TYPE_TEXTBOX,
 											'order'	 => 2,
 											'desc'	 => sprintf(gettext('The maximum width used by the site for processed images. Set to %d for unconstrained. Default is <strong>%d</strong>.'), self::$ignore_size, self::$ignore_size)
+							),
+							gettext('Chroma sampling') => array(
+											'key'						 => 'magick_sampling_factor',
+											'type'					 => OPTION_TYPE_ORDERED_SELECTOR,
+											'null_selection' => '',
+											'selections'		 => array(
+															gettext('no sampling')												 => '1x1 1x1 1x1',
+															gettext('horizontally halved')								 => '4x1 2x1 2x1',
+															gettext('vertically halved')									 => '1x4 1x2 1x2',
+															gettext('horizontally and vertically halved')	 => '4x4 2x2 2x2'
+											),
+											'order'					 => 3,
+											'desc'					 => gettext('Select a Chroma sampling pattern. Leave empty for the image default.')
 							)
 			);
 		}
@@ -131,11 +144,19 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 
 	$_imagick = new Imagick();
 	$_imagick_formats = $_imagick->queryFormats();
+
 	foreach ($_imagick_formats as $format) {
 		if (array_key_exists($format, $_imagick_format_whitelist)) {
 			$_lib_Imagick_info[$format] = $_imagick_format_whitelist[$format];
 		}
 	}
+	// set chroma sampling from option if exists
+	$_chromaSampling = getOption('magick_sampling_factor');
+	if (!empty($_chromaSampling)) {
+		$_imagick->setSamplingFactors(explode(' ', $_chromaSampling));
+	}
+
+	unset($_chromaSampling);
 	unset($_imagick_format_whitelist);
 	unset($_imagick_formats);
 	unset($_imagick);
