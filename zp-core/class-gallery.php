@@ -263,17 +263,6 @@ class Gallery {
 			$sql = '';
 			if ($publishedOnly) {
 				$sql = 'WHERE `show`=1';
-				$rows = query("SELECT `id` FROM " . prefix('albums') . " WHERE `show`=0");
-				$idlist = array();
-				if ($rows) {
-					while ($row = db_fetch_assoc($rows)) {
-						$idlist[] = $row['id'];
-					}
-					if (!empty($idlist)) {
-						$sql .= ' AND (`parentid` NOT IN (' . implode(',', $idlist) . ') OR `parentid` IS NULL)';
-					}
-					db_free_result($rows);
-				}
 			}
 			$count = db_count('albums', $sql);
 		}
