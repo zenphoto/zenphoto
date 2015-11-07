@@ -1327,34 +1327,28 @@ function getNewsPagesStatistic($option) {
 			break;
 		case "categories":
 			$type = gettext("Categories");
-			$cats = $_zp_zenpage->getAllCategories(false);
-			$total = count($cats);
-			$unpub = 0;
+			$items = $_zp_zenpage->getAllCategories(false);
 			break;
 	}
-	if ($option == "news" OR $option == "pages") {
-		$total = count($items);
-		$pub = 0;
-		foreach ($items as $item) {
-			switch ($option) {
-				case "news":
-					$itemobj = new ZenpageNews($item['titlelink']);
-					break;
-				case "pages":
-					$itemobj = new ZenpagePage($item['titlelink']);
-					break;
-				case "categories":
-					$itemobj = new ZenpageCategory($item['titlelink']);
-					break;
-			}
-			$show = $itemobj->getShow();
-			if ($show == 1) {
-				$pub++;
-			}
+	$total = count($items);
+	$pub = 0;
+	foreach ($items as $item) {
+		switch ($option) {
+			case "news":
+				$itemobj = new ZenpageNews($item['titlelink']);
+				break;
+			case "pages":
+				$itemobj = new ZenpagePage($item['titlelink']);
+				break;
+			case "categories":
+				$itemobj = new ZenpageCategory($item['titlelink']);
+				break;
 		}
-		//echo " (un-published: ";
-		$unpub = $total - $pub;
+		if ($itemobj->getShow() == 1) {
+			$pub++;
+		}
 	}
+	$unpub = $total - $pub;
 	return array($total, $type, $unpub);
 }
 
@@ -1367,7 +1361,8 @@ function printPagesStatistic() {
 	}
 }
 
-function printNewsStatistic($total, $unpub) {
+function printNewsStatistic() {
+	list($total, $type, $unpub) = getNewsPagesStatistic("news");
 	if (empty($unpub)) {
 		printf(ngettext('(<strong>%1$u</strong> news)', '(<strong>%1$u</strong> news)', $total), $total);
 	} else {
@@ -1377,7 +1372,11 @@ function printNewsStatistic($total, $unpub) {
 
 function printCategoriesStatistic() {
 	list($total, $type, $unpub) = getNewsPagesStatistic("categories");
-	printf(ngettext('(<strong>%1$u</strong> category)', '(<strong>%1$u</strong> categories)', $total), $total);
+	if (empty($unpub)) {
+		printf(ngettext('(<strong>%1$u</strong> category)', '(<strong>%1$u</strong> categories)', $total), $total);
+	} else {
+		printf(ngettext('(<strong>%1$u</strong> category, <strong>%2$u</strong> un-published)', '(<strong>%1$u</strong> categories, <strong>%2$u</strong> un-published)', $total), $total, $unpub);
+	}
 }
 
 /**
