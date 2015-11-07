@@ -348,7 +348,7 @@ class Gallery {
 						$idlist[] = $row['id'];
 					}
 					if (!empty($idlist)) {
-						$exclude .= ' AND `id` NOT IN (' . implode(',', $idlist) . ')';
+						$exclude .= ' AND `albumid` NOT IN (' . implode(',', $idlist) . ')';
 					}
 					db_free_result($rows);
 				}
