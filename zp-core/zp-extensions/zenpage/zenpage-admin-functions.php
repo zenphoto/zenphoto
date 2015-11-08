@@ -1355,27 +1355,27 @@ function getNewsPagesStatistic($option) {
 function printPagesStatistic() {
 	list($total, $type, $unpub) = getNewsPagesStatistic("pages");
 	if (empty($unpub)) {
-		printf(ngettext('(<strong>%1$u</strong> page)', '(<strong>%1$u</strong> pages)', $total), $total);
+		printf(ngettext('<strong>%1$u</strong> page', '<strong>%1$u</strong> pages', $total), $total);
 	} else {
-		printf(ngettext('(<strong>%1$u</strong> page, <strong>%2$u</strong> un-published)', '(<strong>%1$u</strong> pages, <strong>%2$u</strong> un-published)', $total), $total, $unpub);
+		printf(ngettext('<strong>%1$u</strong> page (<strong>%2$u</strong> un-published)', '<strong>%1$u</strong> pages (<strong>%2$u</strong> un-published)', $total), $total, $unpub);
 	}
 }
 
 function printNewsStatistic() {
 	list($total, $type, $unpub) = getNewsPagesStatistic("news");
 	if (empty($unpub)) {
-		printf(ngettext('(<strong>%1$u</strong> news)', '(<strong>%1$u</strong> news)', $total), $total);
+		printf(ngettext('<strong>%1$u</strong> article', '<strong>%1$u</strong> articles', $total), $total);
 	} else {
-		printf(ngettext('(<strong>%1$u</strong> news, <strong>%2$u</strong> un-published)', '(<strong>%1$u</strong> news, <strong>%2$u</strong> un-published)', $total), $total, $unpub);
+		printf(ngettext('<strong>%1$u</strong> article (<strong>%2$u</strong> un-published)', '<strong>%1$u</strong> articles (<strong>%2$u</strong> un-published)', $total), $total, $unpub);
 	}
 }
 
 function printCategoriesStatistic() {
 	list($total, $type, $unpub) = getNewsPagesStatistic("categories");
 	if (empty($unpub)) {
-		printf(ngettext('(<strong>%1$u</strong> category)', '(<strong>%1$u</strong> categories)', $total), $total);
+		printf(ngettext('<strong>%1$u</strong> category', '<strong>%1$u</strong> categories', $total), $total);
 	} else {
-		printf(ngettext('(<strong>%1$u</strong> category, <strong>%2$u</strong> un-published)', '(<strong>%1$u</strong> categories, <strong>%2$u</strong> un-published)', $total), $total, $unpub);
+		printf(ngettext('<strong>%1$u</strong> category (<strong>%2$u</strong> un-published)', '<strong>%1$u</strong> categories (<strong>%2$u</strong> un-published)', $total), $total, $unpub);
 	}
 }
 
