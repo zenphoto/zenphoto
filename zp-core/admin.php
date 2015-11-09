@@ -725,30 +725,13 @@ if (!zp_loggedin()) {
 							if (extensionEnabled('zenpage')) {
 								?>
 								<li>
-									<?php
-									list($total, $type, $unpub) = getNewsPagesStatistic("pages");
-									if (empty($unpub)) {
-										printf(ngettext('<strong>%1$u</strong> Page', '<strong>%1$u</strong> Pages', $total), $total, $type);
-									} else {
-										printf(ngettext('<strong>%1$u</strong> Page (%2$u un-published)', '<strong>%1$u</strong> Pages (%2$u un-published)', $total), $total, $unpub);
-									}
-									?>
+									<?php printPagesStatistic(); ?>
 								</li>
 								<li>
-									<?php
-									list($total, $type, $unpub) = getNewsPagesStatistic("news");
-									if (empty($unpub)) {
-										printf(ngettext('<strong>%1$u</strong> News', '<strong>%1$u</strong> News', $total), $total);
-									} else {
-										printf(ngettext('<strong>%1$u</strong> News (%2$u un-published)', '<strong>%1$u</strong> News (%2$u un-published)', $total), $total, $unpub);
-									}
-									?>
+									<?php printNewsStatistic(); ?>
 								</li>
 								<li>
-									<?php
-									list($total, $type, $unpub) = getNewsPagesStatistic("categories");
-									printf(ngettext('<strong>%1$u</strong> Category', '<strong>%1$u</strong> Categories', $total), $total);
-									?>
+									<?php printCategoriesStatistic(); ?>
 								</li>
 								<?php
 							}
