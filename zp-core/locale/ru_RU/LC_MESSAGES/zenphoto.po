@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-27 16:00+0300\n"
 "PO-Revision-Date: \n"
-"Last-Translator: \n"
+"Last-Translator: Laconic Team <info@laconic.website>\n"
 "Language-Team: http://laconic.website <info@laconic.website>\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Poedit-Bookmarks: 910,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
-"X-Generator: Poedit 1.8.4\n"
+"X-Generator: Poedit 1.8.6\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: locale\n"
 "X-Poedit-SearchPathExcluded-1: gd_fonts\n"
@@ -1008,9 +1008,8 @@ msgid "clear password"
 msgstr "сбросить пароль"
 
 #: admin-functions.php:1300
-#, fuzzy
 msgid "Album guest user:"
-msgstr "Имя пользователя (посетителя альбома):"
+msgstr "Гостевой пользователя альбома:"
 
 #: admin-functions.php:1320
 msgid "Repeat password:"
@@ -1499,7 +1498,7 @@ msgstr "добавить блок кода"
 
 #: admin-functions.php:4219
 msgid "Codeblock 0 is deprecated."
-msgstr ""
+msgstr "Блок кода  0 устарел."
 
 #: admin-functions.php:4303
 #, php-format
@@ -1543,7 +1542,7 @@ msgstr "разработка"
 
 #: admin-functions.php:4558
 msgid "feed"
-msgstr ""
+msgstr "Канал RSS"
 
 #: admin-functions.php:4559
 msgid "mail"
@@ -1563,7 +1562,7 @@ msgstr "спам"
 
 #: admin-functions.php:4563
 msgid "seo"
-msgstr ""
+msgstr "seo"
 
 #: admin-functions.php:4564
 msgid "uploader"
@@ -1650,7 +1649,6 @@ msgstr ""
 "Невозможно переместить, скопировать или переименовать в динамический альбом."
 
 #: admin-functions.php:4782 zp-extensions/seo_cleanup.php:58
-#, fuzzy
 msgid "Cannot rename an image to a different suffix"
 msgstr "Невозможно переименовать изображение и изменить суффикс."
 
@@ -1800,7 +1798,6 @@ msgid "Forbidden tag."
 msgstr "Запрещенная метка"
 
 #: admin-options.php:511
-#, fuzzy
 msgid "Your Allowed tags change did not parse successfully."
 msgstr "Изменение Разрешенных меток не прошло анализ"
 
@@ -1815,6 +1812,8 @@ msgid ""
 "The form submission is incomplete. Perhaps the form size exceeds configured "
 "server or browser limits."
 msgstr ""
+"Отправка формы не завершена. Возможно размер формы превышает установленные "
+"лимиты сервера или браузера."
 
 #: admin-options.php:524 admin-plugins.php:106
 msgid "Applied"
@@ -1824,6 +1823,8 @@ msgstr "Применено"
 msgid ""
 "Your browser did not post all the fields. Some options may not have been set."
 msgstr ""
+"Ваш браузер не отправил все поля. Некоторые опции могли остаться не "
+"установленными."
 
 #: admin-options.php:542
 #, php-format
@@ -1835,6 +1836,8 @@ msgid ""
 "The path you selected resulted in cookies not being retrievable. It has been "
 "reset."
 msgstr ""
+"Путь который Вы выбрали, привёл к тому, что куки (cookies) оказались не "
+"извлекаемы. Путь сброшен."
 
 #: admin-options.php:570 setup/setup-functions.php:425
 #: zp-extensions/dynamic-locale.php:57
@@ -1858,9 +1861,8 @@ msgstr "Для деталей смотрите гид по поиску несп
 #: admin-options.php:2837 admin-options.php:2895 admin-options.php:3023
 #: admin-options.php:3050 admin-options.php:3165 admin-users.php:465
 #: zp-extensions/search_statistics/search_analysis.php:267
-#, fuzzy
 msgid "reset"
-msgstr "Сбросить"
+msgstr "сброс"
 
 #: admin-options.php:595
 msgid "Time zone:"
@@ -1918,7 +1920,6 @@ msgid "UTF8 image URIs"
 msgstr ""
 
 #: admin-options.php:646
-#, fuzzy
 msgid "mod_rewrite suffix:"
 msgstr "mod_rewrite suffix:"
 
@@ -2240,11 +2241,11 @@ msgstr ""
 
 #: admin-options.php:957
 msgid "Path"
-msgstr ""
+msgstr "Путь"
 
 #: admin-options.php:962
 msgid "Duration"
-msgstr ""
+msgstr "Длительность"
 
 #: admin-options.php:972
 msgid "enable gallery sessions"
@@ -2710,7 +2711,6 @@ msgid "<code>exact</code>: match the target with the whole field"
 msgstr "<code>exact</code>: точное совпадение со всем полем"
 
 #: admin-options.php:1653
-#, fuzzy
 msgid "<code>word</code>: match the target with whole words in the field"
 msgstr "<code>word</code>:  совпадение со словами целиком в поле"
 
@@ -2866,13 +2866,15 @@ msgstr ""
 
 #: admin-options.php:1976
 msgid "Allow upscale:"
-msgstr "Увеличивать масштаб:"
+msgstr "Разрешить увеличение"
 
 #: admin-options.php:1978
 msgid ""
 "Allow images to be scaled up to the requested size. This could result in "
 "loss of quality, so it is off by default."
 msgstr ""
+"Разрешить масштабировать изображения до требуемого размера. Это может "
+"привести к потере качества, поэтому по умолчанию отключено."
 
 #: admin-options.php:1981
 msgid "Sharpen:"
@@ -3380,9 +3382,8 @@ msgid "For pages containing images there will be %1$u rows of thumbnails."
 msgstr ""
 
 #: admin-options.php:2662
-#, fuzzy
 msgid "Transition:"
-msgstr "Расположение:"
+msgstr "Смена кадра:"
 
 #: admin-options.php:2678
 msgid "separate"
@@ -3526,7 +3527,7 @@ msgstr "Изменить настройки плагина %s"
 
 #: admin-options.php:2968
 msgid "warning"
-msgstr ""
+msgstr "ВНИМАНИЕ!"
 
 #: admin-options.php:3005
 msgid "There are no plugin options to administer."
@@ -3692,9 +3693,8 @@ msgid "<strong>Error parsing <em>plugin_description</em> string!</strong>."
 msgstr "<strong>Ошибка при обработке <em>plugin_description</em>!</strong>."
 
 #: admin-plugins.php:173
-#, fuzzy
 msgid "<strong>Error parsing <em>plugin_notice</em> string!</strong>."
-msgstr "<strong>Ошибка анализа строки <em>plugin_disable</em>!</strong>."
+msgstr "<strong>Ошибка разбора строки <em>plugin_notice</em>!</strong>."
 
 #: admin-plugins.php:181
 msgid "<strong>Error parsing <em>plugin_author</em> string!</strong>."
@@ -3723,7 +3723,7 @@ msgstr ""
 
 #: admin-plugins.php:285
 msgid "admin plugin"
-msgstr ""
+msgstr "Плагин администратора"
 
 #: admin-plugins.php:304
 msgid "This plugin is disabled. Click for details."
@@ -4052,9 +4052,8 @@ msgstr ""
 "папку <code>/themes</code> для последующего редактирования."
 
 #: admin-themes.php:191
-#, fuzzy
 msgid "Installed themes"
-msgstr "Установленные темы оформления"
+msgstr "Доступные темы оформления"
 
 #: admin-themes.php:192 zp-extensions/ipBlocker.php:85
 #: zp-extensions/trivialSpam.php:61
@@ -4457,7 +4456,7 @@ msgstr ""
 
 #: admin.php:84
 msgid "enabled"
-msgstr ""
+msgstr "включено"
 
 #: admin.php:86
 msgid "Setup files restored."
@@ -4499,7 +4498,7 @@ msgstr "Вы не имеете достаточно прав редактиро�
 
 #: admin.php:240
 msgid "Misc"
-msgstr ""
+msgstr "Разное"
 
 #: admin.php:252 admin.php:274 admin.php:289 lib-auth.php:516 lib-auth.php:535
 #: lib-auth.php:560 lib-auth.php:587 utilities/backup_restore.php:22
@@ -4632,7 +4631,7 @@ msgid "<em>display_errors</em> is <strong>Off</strong>"
 msgstr "<em>отображение ошибок</em> <strong>Выключено</strong>"
 
 #: admin.php:459
-#, fuzzy, php-format
+#, php-format
 msgid "Graphics support: <strong>%s</strong>"
 msgstr "Счетчик посещений: <strong>%s</strong>"
 
@@ -4873,7 +4872,7 @@ msgstr "Случайные изображения"
 
 #: class-feed.php:388
 msgid "Bad "
-msgstr ""
+msgstr "Плохо"
 
 #: class-feed.php:425 zp-extensions/comment_form/functions.php:808
 msgid "by"
@@ -4931,7 +4930,7 @@ msgstr ""
 
 #: class-gallery.php:501
 msgid "fixed"
-msgstr ""
+msgstr "закрепленный"
 
 #: class-gallery.php:501
 msgid "discarded"
@@ -4989,13 +4988,12 @@ msgid "Country"
 msgstr "Страна"
 
 #: class-search.php:108
-#, fuzzy
 msgid "Copyright"
-msgstr "Авторское право:"
+msgstr "Копирайт"
 
 #: class-search.php:110
 msgid "Credit"
-msgstr ""
+msgstr "Кредит"
 
 #: class-search.php:113 zp-extensions/publishContent/publishContent.php:96
 #: zp-extensions/publishContent/publishContent.php:97
@@ -5076,7 +5074,7 @@ msgstr "Дюйм"
 
 #: exif/exif.php:482
 msgid "Centimeter"
-msgstr ""
+msgstr "Сантиметр"
 
 #: exif/exif.php:487
 msgid "Center of Pixel Array"
@@ -5145,7 +5143,7 @@ msgstr ""
 
 #: exif/exif.php:518
 msgid "Average"
-msgstr ""
+msgstr "Средне"
 
 #: exif/exif.php:519
 msgid "Center Weighted Average"
@@ -5165,7 +5163,7 @@ msgstr "Матричный"
 
 #: exif/exif.php:523 exif/makers/canon.php:192
 msgid "Partial"
-msgstr ""
+msgstr "Частично"
 
 #: exif/exif.php:524 exif/exif.php:550
 msgid "Other"
@@ -5178,11 +5176,11 @@ msgstr "Дневной свет"
 
 #: exif/exif.php:531 exif/makers/canon.php:273
 msgid "Fluorescent"
-msgstr ""
+msgstr "Флуоресценция"
 
 #: exif/exif.php:532 exif/makers/canon.php:272
 msgid "Tungsten"
-msgstr ""
+msgstr "Вольфрам"
 
 #: exif/exif.php:535 exif/exif.php:564 exif/makers/canon.php:274
 #: exif/makers/panasonic.php:106
@@ -5303,7 +5301,7 @@ msgstr ""
 
 #: exif/exif.php:591
 msgid "pixels"
-msgstr ""
+msgstr "px"
 
 #: exif/exif.php:595
 msgid "No Compression"
@@ -5315,7 +5313,7 @@ msgstr "Jpeg компрессия"
 
 #: exif/exif.php:602
 msgid "Not defined"
-msgstr ""
+msgstr "Не определено"
 
 #: exif/exif.php:603
 msgid "One Chip Color Area Sensor"
@@ -5343,7 +5341,7 @@ msgstr ""
 
 #: exif/exif.php:614 exif/makers/nikon.php:176
 msgid "Monochrome"
-msgstr ""
+msgstr "Монохроматическая волна"
 
 #: exif/exif.php:615
 msgid "RGB"
@@ -5367,7 +5365,7 @@ msgstr ""
 
 #: exif/exif.php:698
 msgid "Bulb"
-msgstr ""
+msgstr "Пузырь"
 
 #: exif/exif.php:834
 msgid "The file could not be found."
@@ -5399,7 +5397,7 @@ msgstr ""
 
 #: exif/makers/canon.php:77 exif/makers/panasonic.php:138
 msgid "Macro"
-msgstr ""
+msgstr "Macro"
 
 #: exif/makers/canon.php:78 exif/makers/canon.php:88 exif/makers/canon.php:158
 #: exif/makers/canon.php:165 exif/makers/canon.php:172
@@ -5407,7 +5405,7 @@ msgstr ""
 #: exif/makers/panasonic.php:130 exif/makers/panasonic.php:203
 #: exif/makers/sanyo.php:63 exif/makers/sanyo.php:71
 msgid "Normal"
-msgstr ""
+msgstr "Нормально"
 
 #: exif/makers/canon.php:83 exif/makers/canon.php:95
 #: exif/makers/fujifilm.php:111 exif/makers/fujifilm.php:116
@@ -5416,7 +5414,7 @@ msgstr ""
 #: exif/makers/panasonic.php:165 exif/makers/panasonic.php:173
 #: exif/makers/panasonic.php:191
 msgid "Off"
-msgstr ""
+msgstr "Выкл"
 
 #: exif/makers/canon.php:84
 msgid "/10s"
@@ -5424,7 +5422,7 @@ msgstr "/10сек"
 
 #: exif/makers/canon.php:89
 msgid "Fine"
-msgstr ""
+msgstr "Штраф"
 
 #: exif/makers/canon.php:90
 msgid "Superfine"
@@ -5442,7 +5440,7 @@ msgstr "Авто"
 #: exif/makers/fujifilm.php:117 exif/makers/fujifilm.php:127
 #: exif/makers/fujifilm.php:144 exif/makers/panasonic.php:125
 msgid "On"
-msgstr ""
+msgstr "Вкл"
 
 #: exif/makers/canon.php:98
 msgid "Red Eye Reduction"
@@ -5471,7 +5469,7 @@ msgstr ""
 #: exif/makers/canon.php:108 exif/makers/canon.php:119
 #: exif/makers/canon.php:253
 msgid "Continuous"
-msgstr ""
+msgstr "Непрерывно"
 
 #: exif/makers/canon.php:114
 msgid "One-Shot"
@@ -5492,19 +5490,19 @@ msgstr "Ручной фокус"
 
 #: exif/makers/canon.php:118 exif/makers/canon.php:252
 msgid "Single"
-msgstr ""
+msgstr "Одиночный"
 
 #: exif/makers/canon.php:127 zp-extensions/GoogleMap.php:100
 msgid "Large"
-msgstr ""
+msgstr "Большой"
 
 #: exif/makers/canon.php:128
 msgid "Medium"
-msgstr ""
+msgstr "Средний"
 
 #: exif/makers/canon.php:129 zp-extensions/GoogleMap.php:98
 msgid "Small"
-msgstr ""
+msgstr "Маленький"
 
 #: exif/makers/canon.php:134
 msgid "Full Auto"
@@ -5520,15 +5518,15 @@ msgstr ""
 
 #: exif/makers/canon.php:139 exif/makers/fujifilm.php:135
 msgid "Night"
-msgstr ""
+msgstr "Сутки"
 
 #: exif/makers/canon.php:140
 msgid "Black & White"
-msgstr ""
+msgstr "Черный и белый"
 
 #: exif/makers/canon.php:141 exif/makers/panasonic.php:169
 msgid "Sepia"
-msgstr ""
+msgstr "Sepia"
 
 #: exif/makers/canon.php:143
 msgid "Sport"
@@ -5560,13 +5558,13 @@ msgstr "4x"
 #: exif/makers/panasonic.php:181 exif/makers/panasonic.php:187
 #: exif/makers/sanyo.php:67
 msgid "High"
-msgstr ""
+msgstr "Высокий"
 
 #: exif/makers/canon.php:160 exif/makers/canon.php:167
 #: exif/makers/canon.php:174 exif/makers/panasonic.php:180
 #: exif/makers/panasonic.php:186
 msgid "Low"
-msgstr ""
+msgstr "Низкий"
 
 #: exif/makers/canon.php:183
 msgid "50"
@@ -5611,9 +5609,8 @@ msgstr "Справа"
 
 #: exif/makers/canon.php:209 exif/makers/canon.php:287
 #: exif/makers/nikon.php:236
-#, fuzzy
 msgid "Center"
-msgstr "Центр"
+msgstr "По центру"
 
 #: exif/makers/canon.php:210 exif/makers/canon.php:288
 #: zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:158
@@ -5666,7 +5663,7 @@ msgstr ""
 
 #: exif/makers/canon.php:270
 msgid "Sunny"
-msgstr ""
+msgstr "Солнечно"
 
 #: exif/makers/canon.php:271 exif/makers/fujifilm.php:88
 #: exif/makers/nikon.php:212 exif/makers/panasonic.php:103
@@ -5691,11 +5688,11 @@ msgstr "15"
 
 #: exif/makers/fujifilm.php:78 exif/makers/fujifilm.php:79
 msgid "Soft"
-msgstr ""
+msgstr "Смягчить"
 
 #: exif/makers/fujifilm.php:81 exif/makers/fujifilm.php:82
 msgid "Hard"
-msgstr ""
+msgstr "Сложно"
 
 #: exif/makers/fujifilm.php:89
 msgid "DaylightColor-fluorescence"
@@ -5711,7 +5708,7 @@ msgstr ""
 
 #: exif/makers/fujifilm.php:92 exif/makers/nikon.php:210
 msgid "Incandescence"
-msgstr ""
+msgstr "Цвета каления"
 
 #: exif/makers/fujifilm.php:97
 msgid "Chroma Saturation Normal(STD)"
@@ -5772,7 +5769,7 @@ msgstr ""
 
 #: exif/makers/fujifilm.php:149
 msgid "Warning"
-msgstr ""
+msgstr "Предупреждение"
 
 #: exif/makers/fujifilm.php:153
 msgid "Auto Focus Good"
@@ -5792,7 +5789,7 @@ msgstr ""
 
 #: exif/makers/nikon.php:45
 msgid "Converter"
-msgstr ""
+msgstr "Преобразователь"
 
 #: exif/makers/nikon.php:162
 msgid "VGA Basic"
@@ -5840,11 +5837,11 @@ msgstr "Контраст-"
 
 #: exif/makers/nikon.php:208
 msgid "Preset"
-msgstr ""
+msgstr "Пресет"
 
 #: exif/makers/nikon.php:211
 msgid "Fluorescence"
-msgstr ""
+msgstr "Флуоресценция"
 
 #: exif/makers/nikon.php:213
 msgid "SpeedLight"
@@ -5864,7 +5861,7 @@ msgstr ""
 
 #: exif/makers/nikon.php:271
 msgid "External"
-msgstr ""
+msgstr "Внешний"
 
 #: exif/makers/nikon.php:272
 msgid "On Camera"
@@ -5889,7 +5886,7 @@ msgstr ""
 #: exif/makers/panasonic.php:95 exif/makers/panasonic.php:179
 #: exif/makers/panasonic.php:185
 msgid "Standard"
-msgstr ""
+msgstr "Стандартный"
 
 #: exif/makers/panasonic.php:96
 msgid "Very High"
@@ -5901,11 +5898,11 @@ msgstr "RAW"
 
 #: exif/makers/panasonic.php:104
 msgid "Halogen"
-msgstr ""
+msgstr "Галогены"
 
 #: exif/makers/panasonic.php:107 exif/makers/panasonic.php:168
 msgid "Black and White"
-msgstr ""
+msgstr "Черно-белый"
 
 #: exif/makers/panasonic.php:114
 msgid "Auto, Focus button"
@@ -5933,11 +5930,11 @@ msgstr "Ночной портрет"
 
 #: exif/makers/panasonic.php:140
 msgid "Panning"
-msgstr ""
+msgstr "Пан"
 
 #: exif/makers/panasonic.php:141
 msgid "Simple"
-msgstr ""
+msgstr "Простой"
 
 #: exif/makers/panasonic.php:142
 msgid "Fireworks"
@@ -5961,7 +5958,7 @@ msgstr "Еда"
 
 #: exif/makers/panasonic.php:147
 msgid "Baby"
-msgstr ""
+msgstr "Ребенок"
 
 #: exif/makers/panasonic.php:148
 msgid "High Sensitivity"
@@ -5973,7 +5970,7 @@ msgstr ""
 
 #: exif/makers/panasonic.php:150
 msgid "Pet"
-msgstr ""
+msgstr "Домашнее животное"
 
 #: exif/makers/panasonic.php:154
 msgid "Yes"
@@ -5989,7 +5986,7 @@ msgstr ""
 
 #: exif/makers/panasonic.php:167
 msgid "Cool"
-msgstr ""
+msgstr "Охлаждение"
 
 #: exif/makers/panasonic.php:174
 msgid "Low/High Quality"
@@ -5997,7 +5994,7 @@ msgstr ""
 
 #: exif/makers/panasonic.php:175
 msgid "Infinite"
-msgstr ""
+msgstr "Infinite"
 
 #: exif/makers/panasonic.php:192
 msgid "10s"
@@ -6459,9 +6456,8 @@ msgid "Malagasy"
 msgstr "Malagasy"
 
 #: functions-i18n.php:85
-#, fuzzy
 msgid "Norwegian (Bokmål)"
-msgstr "Norwegian (Bokml)"
+msgstr "Норвежский (букмол)"
 
 #: functions-i18n.php:86
 msgid "Norwegian"
@@ -6504,9 +6500,8 @@ msgid "Sinhala"
 msgstr "Sinhala"
 
 #: functions-i18n.php:96
-#, fuzzy
 msgid "Slovak"
-msgstr "Slovaka"
+msgstr "Словацкий"
 
 #: functions-i18n.php:97
 msgid "Slovenian"
@@ -6924,13 +6919,12 @@ msgid "Camera Model"
 msgstr "Модель камеры"
 
 #: functions.php:2576
-#, fuzzy
 msgid "Image Title"
-msgstr "Страница изображения"
+msgstr "Название изображения"
 
 #: functions.php:2577
 msgid "Object Name"
-msgstr ""
+msgstr "Название объекта"
 
 #: functions.php:2578
 #, fuzzy
@@ -6987,7 +6981,7 @@ msgstr "Страница изображения"
 
 #: functions.php:2590
 msgid "Byline"
-msgstr ""
+msgstr "Должность"
 
 #: functions.php:2591
 #, fuzzy
@@ -7050,9 +7044,8 @@ msgid "Orientation"
 msgstr "Ориентация"
 
 #: functions.php:2606
-#, fuzzy
 msgid "Software"
-msgstr "Старт"
+msgstr "Программное обеспечение"
 
 #: functions.php:2607
 msgid "Contrast Setting"
@@ -7164,9 +7157,8 @@ msgid "Video Title"
 msgstr "Видео: название"
 
 #: functions.php:2635
-#, fuzzy
 msgid "Bitrate"
-msgstr "Область"
+msgstr "Битрейт"
 
 #: functions.php:2636
 msgid "Bitrate_Mode"
@@ -7194,9 +7186,8 @@ msgid "File Encoder"
 msgstr "Менеджер файлов"
 
 #: functions.php:2642
-#, fuzzy
 msgid "Sample rate"
-msgstr "модерировать"
+msgstr "Частота дискретизации"
 
 #: functions.php:2643
 #, fuzzy
@@ -7209,7 +7200,7 @@ msgstr "Формат"
 
 #: functions.php:2645
 msgid "Channels"
-msgstr ""
+msgstr "Каналы"
 
 #: functions.php:2646
 msgid "Frame rate"
@@ -7636,9 +7627,8 @@ msgid "Users with this right may edit Codeblocks."
 msgstr ""
 
 #: lib-auth.php:594
-#, fuzzy
 msgid "All rights"
-msgstr "Права"
+msgstr "Все права"
 
 #: lib-auth.php:595 zp-extensions/register_user.php:143
 msgid "Default rights"
@@ -8197,9 +8187,8 @@ msgid "readonly"
 msgstr ""
 
 #: setup/index.php:187
-#, fuzzy
 msgid "strict"
-msgstr "Описание"
+msgstr "строгий"
 
 #: setup/index.php:188
 #, fuzzy
@@ -8207,9 +8196,8 @@ msgid "relaxed"
 msgstr "Формат даты:"
 
 #: setup/index.php:189
-#, fuzzy
 msgid "loose"
-msgstr "закрыт для голосования"
+msgstr "свободный"
 
 #: setup/index.php:288
 msgid ""
@@ -8218,9 +8206,8 @@ msgid ""
 msgstr ""
 
 #: setup/index.php:315
-#, fuzzy
 msgid "upgrade"
-msgstr "Обновление"
+msgstr "Про-обновление"
 
 #: setup/index.php:379
 msgid "Completed system check"
@@ -8687,9 +8674,8 @@ msgid ""
 msgstr ""
 
 #: setup/index.php:774
-#, fuzzy
 msgid "File permissions"
-msgstr "Имя файла/папки"
+msgstr "Права доступа"
 
 #: setup/index.php:776
 #, fuzzy, php-format
@@ -8730,9 +8716,8 @@ msgid ""
 msgstr ""
 
 #: setup/index.php:806
-#, fuzzy
 msgid "Character set"
-msgstr "Кодировка:"
+msgstr "Кодировка"
 
 #: setup/index.php:847
 #, fuzzy, php-format
@@ -8946,33 +8931,28 @@ msgid "<code>SQL mode</code> [SET SESSION failed]"
 msgstr ""
 
 #: setup/index.php:1082
-#, fuzzy
 msgid "Select"
-msgstr "Select"
+msgstr "Выбрать"
 
 #: setup/index.php:1082
-#, fuzzy
 msgid "Create"
-msgstr "Создан в:"
+msgstr "Создать"
 
 #: setup/index.php:1082
-#, fuzzy
 msgid "Drop"
-msgstr "Drop"
+msgstr "Падающая метка"
 
 #: setup/index.php:1082
-#, fuzzy
 msgid "Insert"
-msgstr "Insert"
+msgstr "Вставить"
 
 #: setup/index.php:1083
 msgid "Update"
 msgstr "Обновить"
 
 #: setup/index.php:1083
-#, fuzzy
 msgid "Alter"
-msgstr "Файл"
+msgstr "Изменить"
 
 #: setup/index.php:1093
 msgid "Grants found:"
@@ -9334,7 +9314,7 @@ msgstr "Не могу создать файл <em>robots.txt</em>."
 
 #: setup/index.php:1566
 msgid "albums [<code>$conf['external_album_folder']</code> is deprecated]"
-msgstr ""
+msgstr "альбомы [<code>$conf['external_album_folder']</code> устарел]"
 
 #: setup/index.php:1566 setup/index.php:1590
 #, php-format
@@ -9344,7 +9324,6 @@ msgid ""
 msgstr ""
 
 #: setup/index.php:1590
-#, fuzzy
 msgid "<em>albums</em> folder"
 msgstr "директория <em>albums</em>"
 
@@ -9578,7 +9557,7 @@ msgstr "Установщик не смог создать следующие п�
 #: setup/setup-functions.php:225 setup/setup-functions.php:230
 #: zp-extensions/deprecated-functions.php:144
 msgid "unknown"
-msgstr ""
+msgstr "неизвестна"
 
 #: setup/setup-functions.php:232
 #, php-format
@@ -9701,9 +9680,8 @@ msgid "Migrating lib-auth data version %1$s => version %2$s"
 msgstr ""
 
 #: setup/setup-option-defaults.php:47
-#, fuzzy
 msgid "failed"
-msgstr "[Неудача]"
+msgstr "ошибка"
 
 #: setup/setup-option-defaults.php:90
 msgid "Mod_Rewrite check:"
@@ -10024,7 +10002,7 @@ msgstr "Альбом не опубликован."
 
 #: template-functions.php:1285
 msgid "Album Thumbnails"
-msgstr ""
+msgstr "Миниатюры альбома"
 
 #: template-functions.php:1337 template-functions.php:1392
 #: zp-extensions/zenpage/zenpage-template-functions.php:876
@@ -10100,9 +10078,8 @@ msgid "The page you are trying to view is password protected."
 msgstr "Страница, которую вы пытаетесь посмотреть, защищена паролем."
 
 #: template-functions.php:4331
-#, fuzzy
 msgid "login"
-msgstr "Вход"
+msgstr "вход"
 
 #: template-functions.php:4348
 #, fuzzy
@@ -10352,11 +10329,11 @@ msgstr ""
 
 #: utilities/database_reference.php:211
 msgid "Key"
-msgstr ""
+msgstr "Клавиша"
 
 #: utilities/database_reference.php:214
 msgid "Column"
-msgstr ""
+msgstr "Столбец"
 
 #: utilities/gallery_statistics.php:21 utilities/gallery_statistics.php:486
 msgid "Gallery Statistics"
@@ -10529,7 +10506,7 @@ msgstr "Разделов: <strong>%1$u</strong>"
 #: utilities/gallery_statistics.php:554
 #, php-format
 msgid "Albums folder size: <strong>%s</strong>"
-msgstr "Каталог Альбомы (albums): <strong>%s</strong>"
+msgstr "Размер каталога Альбомы (albums): <strong>%s</strong>"
 
 #: utilities/gallery_statistics.php:555
 #, php-format
@@ -10670,7 +10647,7 @@ msgstr ""
 
 #: zp-extensions/GoogleMap.php:56 zp-extensions/GoogleMap.php:74
 msgid "Hybrid"
-msgstr ""
+msgstr "Гибрид"
 
 #: zp-extensions/GoogleMap.php:58 zp-extensions/GoogleMap.php:75
 msgid "Map"
@@ -10678,16 +10655,15 @@ msgstr "Карта"
 
 #: zp-extensions/GoogleMap.php:60 zp-extensions/GoogleMap.php:76
 msgid "Satellite"
-msgstr ""
+msgstr "Спутник"
 
 #: zp-extensions/GoogleMap.php:62 zp-extensions/GoogleMap.php:77
 msgid "Terrain"
-msgstr ""
+msgstr "Ландшафт"
 
 #: zp-extensions/GoogleMap.php:72
-#, fuzzy
 msgid "Allowed maps"
-msgstr "Разрешить комментарии"
+msgstr "Разрешенные карты"
 
 #: zp-extensions/GoogleMap.php:78
 msgid "Select the map types that are allowed."
@@ -10703,7 +10679,7 @@ msgstr ""
 
 #: zp-extensions/GoogleMap.php:83
 msgid "Map display"
-msgstr ""
+msgstr "Отображение карты"
 
 #: zp-extensions/GoogleMap.php:87
 msgid "colorbox"
@@ -10722,15 +10698,15 @@ msgstr ""
 
 #: zp-extensions/GoogleMap.php:92 zp-extensions/GoogleMap.php:99
 msgid "Default"
-msgstr ""
+msgstr "По умолчанию"
 
 #: zp-extensions/GoogleMap.php:93
 msgid "Dropdown"
-msgstr ""
+msgstr "Список выбора"
 
 #: zp-extensions/GoogleMap.php:94 zp-extensions/bxslider_thumb_nav.php:73
 msgid "Horizontal"
-msgstr ""
+msgstr "Горизонтально"
 
 #: zp-extensions/GoogleMap.php:95
 msgid "Display options for the Map type control."
@@ -10738,7 +10714,7 @@ msgstr ""
 
 #: zp-extensions/GoogleMap.php:96
 msgid "Zoom controls"
-msgstr ""
+msgstr "Управления масштабированием размера"
 
 #: zp-extensions/GoogleMap.php:101
 msgid "Display options for the Zoom control."
@@ -10869,7 +10845,6 @@ msgid "Secure mail"
 msgstr "Безопасная почта"
 
 #: zp-extensions/PHPMailer.php:58
-#, fuzzy
 msgid "no"
 msgstr "нет"
 
@@ -10993,7 +10968,7 @@ msgstr ""
 
 #: zp-extensions/bxslider_thumb_nav.php:50
 msgid "Maximum items"
-msgstr ""
+msgstr "Максимальное количество"
 
 #: zp-extensions/bxslider_thumb_nav.php:51
 msgid ""
@@ -11050,7 +11025,7 @@ msgstr ""
 
 #: zp-extensions/bxslider_thumb_nav.php:71 zp-extensions/slideshow.php:85
 msgid "Mode"
-msgstr ""
+msgstr "Режим"
 
 #: zp-extensions/bxslider_thumb_nav.php:74
 #: zp-extensions/jcarousel_thumb_nav.php:54 zp-extensions/slideshow2.php:117
@@ -11059,7 +11034,7 @@ msgstr "Вертикальный"
 
 #: zp-extensions/bxslider_thumb_nav.php:75
 msgid "Fade"
-msgstr ""
+msgstr "Появление"
 
 #: zp-extensions/bxslider_thumb_nav.php:76
 msgid "The mode of the thumb nav. Note this might require theme changes."
@@ -11170,9 +11145,8 @@ msgid "add"
 msgstr "добавить"
 
 #: zp-extensions/cacheManager.php:257 zp-extensions/galleryArticles.php:79
-#, fuzzy
 msgid "Size"
-msgstr "Полный размер"
+msgstr "Размер"
 
 #: zp-extensions/cacheManager.php:258
 msgid "Crop X axis"
@@ -11352,7 +11326,7 @@ msgstr "Обновление кэша для %s"
 
 #: zp-extensions/cacheManager/cacheImages.php:250
 msgid "Full Image"
-msgstr ""
+msgstr "Изображение в полном размере"
 
 #: zp-extensions/cacheManager/cacheImages.php:286
 msgid "invalid_MaxSpace"
@@ -11414,7 +11388,7 @@ msgstr "%1$s: изображение %2$s"
 #: zp-extensions/cacheManager/functions.php:62
 #, php-format
 msgid "album %s"
-msgstr ""
+msgstr "альбом %s"
 
 #: zp-extensions/cacheManager/functions.php:66
 #, php-format
@@ -11464,7 +11438,7 @@ msgstr "Расширения файлов, которые будет обраб�
 
 #: zp-extensions/class-AnyFile.php:42
 msgid "Add file suffix"
-msgstr ""
+msgstr "Добавить суффикс файла"
 
 #: zp-extensions/class-AnyFile.php:43
 msgid "Add a file suffix to be handled by the plugin"
@@ -11587,7 +11561,6 @@ msgid "High quality alternate"
 msgstr ""
 
 #: zp-extensions/class-video.php:65
-#, fuzzy
 msgid ""
 "<code>getFullImageURL()</code> returns a URL to a file with one of these "
 "high quality video alternate suffixes if present."
@@ -11637,9 +11610,8 @@ msgstr ""
 
 #: zp-extensions/cloneZenphoto.php:44
 #: zp-extensions/cloneZenphoto/cloneTab.php:14
-#, fuzzy
 msgid "Clone"
-msgstr "копировать:"
+msgstr "Клонировать"
 
 #: zp-extensions/cloneZenphoto/clone.php:21
 msgid "You attempted to clone to the master install."
@@ -12015,7 +11987,7 @@ msgstr "скрыть комментарии"
 
 #: zp-extensions/comment_form.php:287
 msgid "on"
-msgstr ""
+msgstr "от"
 
 #: zp-extensions/comment_form.php:310
 msgid "Only registered users may post comments."
@@ -12062,7 +12034,7 @@ msgstr "IP:"
 
 #: zp-extensions/comment_form/admin-comments.php:178
 msgid "Street:"
-msgstr ""
+msgstr "Улица:"
 
 #: zp-extensions/comment_form/admin-comments.php:186
 msgid "Postal code:"
@@ -12755,7 +12727,7 @@ msgstr ""
 #: zp-extensions/contact_form/form.php:93
 #, php-format
 msgid "Website%s"
-msgstr ""
+msgstr "Сайт%s"
 
 #: zp-extensions/contact_form/form.php:101
 #, php-format
@@ -12839,7 +12811,7 @@ msgstr ""
 
 #: zp-extensions/defaultCodeblocks.php:36
 msgid "News category"
-msgstr ""
+msgstr "Категория новостей"
 
 #: zp-extensions/defaultCodeblocks.php:36
 #: zp-extensions/menu_manager/menu_tab_edit.php:101
@@ -12852,7 +12824,7 @@ msgstr "Страница"
 
 #: zp-extensions/defaultCodeblocks.php:38
 msgid "Objects"
-msgstr ""
+msgstr "Объект"
 
 #: zp-extensions/defaultCodeblocks.php:41
 msgid "Default codeblocks will be applied for the checked objects."
@@ -13441,7 +13413,7 @@ msgstr ""
 
 #: zp-extensions/downloadList/download_statistics.php:122
 msgid "All download file entries cleared from the database"
-msgstr ""
+msgstr "Все записи о скачиваниях файлов удалены из базы данных"
 
 #: zp-extensions/downloadList/download_statistics.php:125
 msgid "Download Statistics"
@@ -13583,7 +13555,7 @@ msgstr ""
 #: zp-extensions/elFinder/php/connector_zp.php:117
 #, php-format
 msgid "Albums folder (%s)"
-msgstr ""
+msgstr "Каталог альбомов (%s)"
 
 #: zp-extensions/elFinder/php/connector_zp.php:219
 #, php-format
@@ -13630,7 +13602,7 @@ msgstr ""
 
 #: zp-extensions/exampleMacros.php:10
 msgid "Adds example macros."
-msgstr ""
+msgstr "Добавляет примеры макросов."
 
 #: zp-extensions/exampleMacros.php:23
 msgid ""
@@ -13741,7 +13713,7 @@ msgstr ""
 
 #: zp-extensions/externalFeed.php:90 zp-extensions/rss.php:104
 msgid "Album feed sort order:"
-msgstr ""
+msgstr "Порядок сортировки элементов ленты альбома:"
 
 #: zp-extensions/externalFeed.php:98
 msgid "In addition to the above you may select latest updated."
@@ -13878,9 +13850,8 @@ msgid "If enabled a user may have multiple (named) favorites."
 msgstr ""
 
 #: zp-extensions/favoritesHandler.php:97
-#, fuzzy
 msgid "Add button"
-msgstr "Радиус"
+msgstr "Добавить кнопку"
 
 #: zp-extensions/favoritesHandler.php:100
 msgid "Default text for the <em>add to favorites</em> button."
@@ -13921,7 +13892,6 @@ msgid "Users watching:"
 msgstr ""
 
 #: zp-extensions/favoritesHandler/favoritesClass.php:288
-#, fuzzy
 msgid "Favorites"
 msgstr "Избранное"
 
@@ -14075,7 +14045,7 @@ msgstr ""
 #: zp-extensions/federated_logon/OpenID_logon.php:54
 #: zp-extensions/federated_logon/Verisign_logon.php:53
 msgid "Verify"
-msgstr ""
+msgstr "Проверить"
 
 #: zp-extensions/federated_logon/OpenID_logon.php:60
 #: zp-extensions/federated_logon/Verisign_logon.php:59
@@ -14453,7 +14423,7 @@ msgstr ""
 
 #: zp-extensions/html_meta_tags.php:81
 msgid "Robots"
-msgstr ""
+msgstr "Роботы"
 
 #: zp-extensions/html_meta_tags.php:83
 msgid ""
@@ -14471,7 +14441,7 @@ msgstr ""
 
 #: zp-extensions/html_meta_tags.php:86
 msgid "Expires"
-msgstr ""
+msgstr "Истекает"
 
 #: zp-extensions/html_meta_tags.php:87
 msgid ""
@@ -14566,7 +14536,7 @@ msgstr "Регистрация нового пользователя"
 
 #: zp-extensions/http_auth.php:74
 msgid "verify"
-msgstr ""
+msgstr "проверить"
 
 #: zp-extensions/http_auth.php:74
 #, fuzzy
@@ -14631,7 +14601,7 @@ msgstr ""
 
 #: zp-extensions/image_effects.php:113
 msgid "No effects"
-msgstr ""
+msgstr "Нет эффектов"
 
 #: zp-extensions/image_effects.php:119
 #, php-format
@@ -14669,9 +14639,8 @@ msgid ""
 msgstr ""
 
 #: zp-extensions/image_effects.php:134
-#, fuzzy
 msgid "Album thumbnails (standard)"
-msgstr "Пользовательские данные:"
+msgstr "Миниатюры альбома (стандартные)"
 
 #: zp-extensions/image_effects.php:137
 msgid ""
@@ -14691,9 +14660,8 @@ msgid ""
 msgstr ""
 
 #: zp-extensions/image_effects.php:142
-#, fuzzy
 msgid "Album thumbnails  (custom)"
-msgstr "Пользовательские данные:"
+msgstr "Миниатюры альбома (пользовательские)"
 
 #: zp-extensions/image_effects.php:145
 msgid ""
@@ -14710,9 +14678,8 @@ msgid "Pool of effects for the <em>random</em> effect selection."
 msgstr ""
 
 #: zp-extensions/image_effects.php:155
-#, fuzzy
 msgid "Acknowledgments"
-msgstr "комментарии"
+msgstr "Подтверждения"
 
 #: zp-extensions/image_effects.php:171
 msgid "No image effects found."
@@ -14890,7 +14857,7 @@ msgstr ""
 
 #: zp-extensions/jplayer.php:132
 msgid "Autoplay"
-msgstr ""
+msgstr "Автозапуск"
 
 #: zp-extensions/jplayer.php:133
 msgid "Disabled automatically if several players on one page"
@@ -15027,20 +14994,18 @@ msgstr ""
 
 #: zp-extensions/jplayer.php:365 zp-extensions/jplayer.php:474
 #: zp-extensions/jplayer.php:743 zp-extensions/slideshow2.php:272
-#, fuzzy
 msgid "play"
-msgstr "Воспроизведение"
+msgstr "Играть"
 
 #: zp-extensions/jplayer.php:379 zp-extensions/jplayer.php:416
 #: zp-extensions/jplayer.php:756 zp-extensions/jplayer.php:792
-#, fuzzy
 msgid "mute"
-msgstr "Эффект"
+msgstr "тишина"
 
 #: zp-extensions/jplayer.php:380 zp-extensions/jplayer.php:417
 #: zp-extensions/jplayer.php:757 zp-extensions/jplayer.php:793
 msgid "max volume"
-msgstr ""
+msgstr "Макс. громкость"
 
 #: zp-extensions/jplayer.php:472
 msgid "previous"
@@ -15407,9 +15372,9 @@ msgid "You forgot to select an album."
 msgstr "Вы забыли выбрать альбом."
 
 #: zp-extensions/menu_manager/menu_manager-admin-functions.php:491
-#, fuzzy, php-format
+#, php-format
 msgid "Album menu item <em>%s</em> added"
-msgstr " <em>%s</em> папка"
+msgstr "Элемент меню альбома <em>%s</em> добавлен"
 
 #: zp-extensions/menu_manager/menu_manager-admin-functions.php:497
 #: zp-extensions/menu_manager/menu_manager-admin-functions.php:515
@@ -15622,9 +15587,8 @@ msgstr "URL"
 
 #: zp-extensions/menu_manager/menu_tab_edit.php:63
 #: zp-extensions/menu_manager/menu_tab_edit.php:243
-#, fuzzy
 msgid "All menu items"
-msgstr "Разрешить комментарии"
+msgstr "Все элементы меню"
 
 #: zp-extensions/menu_manager/menu_tab_edit.php:64
 msgid ""
@@ -15731,7 +15695,7 @@ msgstr ""
 #: zp-extensions/menu_manager/menu_tab_edit.php:148
 #: zp-extensions/menu_manager/menu_tab_edit.php:260
 msgid "Label"
-msgstr ""
+msgstr "Метка"
 
 #: zp-extensions/menu_manager/menu_tab_edit.php:149
 msgid "Creates a <em>label</em> to use in menu structures)."
@@ -15770,9 +15734,8 @@ msgid "*Select the type of the menus item you wish to add*"
 msgstr "*Выберите пункт меню для добавления*"
 
 #: zp-extensions/menu_manager/menu_tab_edit.php:253
-#, fuzzy
 msgid "All Zenpage news categories"
-msgstr "Все галереи"
+msgstr "Все категории новостей Zenpage"
 
 #: zp-extensions/menu_manager/menu_tab_edit.php:258
 #, fuzzy
@@ -15919,9 +15882,8 @@ msgid "Reset individual image layouts"
 msgstr ""
 
 #: zp-extensions/multiple_layouts.php:257
-#, fuzzy
 msgid "default"
-msgstr "*по умолчанию"
+msgstr "по умолчанию"
 
 #: zp-extensions/multiple_layouts.php:266
 #: zp-extensions/multiple_layouts.php:277
@@ -15931,9 +15893,8 @@ msgid "inherited"
 msgstr ""
 
 #: zp-extensions/multiple_layouts.php:272
-#, fuzzy
 msgid "album default"
-msgstr "Публиковать альбомы по умолчанию"
+msgstr "Альбом по умолчанию"
 
 #: zp-extensions/multiple_layouts.php:288
 #, fuzzy
@@ -15977,7 +15938,7 @@ msgstr ""
 
 #: zp-extensions/paged_thumbs_nav.php:45
 msgid "Counter"
-msgstr ""
+msgstr "Счётчик"
 
 #: zp-extensions/paged_thumbs_nav.php:46
 msgid "If you want to show the counter “x - y of z images”."
@@ -16011,7 +15972,7 @@ msgstr ""
 
 #: zp-extensions/paged_thumbs_nav.php:55
 msgid "Crop"
-msgstr ""
+msgstr "Обрезка"
 
 #: zp-extensions/paged_thumbs_nav.php:56
 msgid ""
@@ -16022,9 +15983,8 @@ msgid ""
 msgstr ""
 
 #: zp-extensions/paged_thumbs_nav.php:57
-#, fuzzy
 msgid "Placeholders"
-msgstr "Плайеры"
+msgstr "Placeholders"
 
 #: zp-extensions/paged_thumbs_nav.php:58
 msgid ""
@@ -16167,9 +16127,8 @@ msgstr[1] "%u неопубликованных альбома"
 msgstr[2] "%u неопубликованных альбомов"
 
 #: zp-extensions/publishContent/publishContent.php:235
-#, fuzzy
 msgid "Album changes applied"
-msgstr "Изменения сохранены"
+msgstr "Изменения в альбоме сохранены"
 
 #: zp-extensions/publishContent/publishContent.php:242
 msgid "Unpublished state propagated"
@@ -16529,7 +16488,7 @@ msgstr ""
 
 #: zp-extensions/rating.php:106
 msgid "Show rating"
-msgstr ""
+msgstr "Показать рейтинг"
 
 #: zp-extensions/rating.php:106
 msgid "Show previous vote"
@@ -16541,6 +16500,9 @@ msgid ""
 "will reflect the last vote of the viewer. Otherwise they will reflect the "
 "current rating."
 msgstr ""
+"Разрешить пользователям менять свой выбор при голосовании. Если выбрано "
+"Показывать предыдущую оценку, звездочки будут отражать последний выбор "
+"пользователя. Если нет, то отражается текущий рейтинг."
 
 #: zp-extensions/rating.php:108
 msgid "Disguise IP"
@@ -16618,19 +16580,19 @@ msgstr ""
 
 #: zp-extensions/reCaptcha.php:56
 msgid "Red"
-msgstr ""
+msgstr "Красный"
 
 #: zp-extensions/reCaptcha.php:56
 msgid "White"
-msgstr ""
+msgstr "Белый"
 
 #: zp-extensions/reCaptcha.php:56
 msgid "Black Glass"
-msgstr ""
+msgstr "Чёрное стекло"
 
 #: zp-extensions/reCaptcha.php:56
 msgid "Clean"
-msgstr ""
+msgstr "Очистить"
 
 #: zp-extensions/reCaptcha.php:65
 msgid "Public key"
@@ -16653,9 +16615,8 @@ msgid "Enter your <em>reCaptcha</em> private key."
 msgstr "Введите ваш приватный ключ <em>reCaptcha</em>."
 
 #: zp-extensions/reCaptcha.php:71 zp-extensions/themeSwitcher.php:133
-#, fuzzy
 msgid "Theme"
-msgstr "Темы"
+msgstr "Тема"
 
 #: zp-extensions/reCaptcha.php:74
 msgid "Select the <em>reCaptcha</em> theme."
@@ -16696,7 +16657,7 @@ msgstr ""
 
 #: zp-extensions/reCaptcha.php:125
 msgid "Incorrect please try again"
-msgstr ""
+msgstr "Неправильно, пожалуйста, попробуйте еще раз"
 
 #: zp-extensions/register_user.php:26
 msgid ""
@@ -16820,9 +16781,8 @@ msgid "You must supply the postal code field."
 msgstr "Необходимо указать Индекс."
 
 #: zp-extensions/register_user.php:306
-#, fuzzy
 msgid "Registration confirmation"
-msgstr "пользователи"
+msgstr "Подтверждение регистрации"
 
 #: zp-extensions/register_user.php:403
 msgid "you are already logged in."
@@ -16906,9 +16866,8 @@ msgid "Email<strong>*</strong> (this will be your user id)"
 msgstr ""
 
 #: zp-extensions/register_user/register_user_form.php:24
-#, fuzzy
 msgid "User ID"
-msgstr "Имя пользователя"
+msgstr "ID Пользователя"
 
 #: zp-extensions/register_user/register_user_form.php:107
 msgid "<strong>*</strong>Required"
@@ -16925,9 +16884,9 @@ msgid ""
 msgstr ""
 
 #: zp-extensions/related_items.php:158
-#, fuzzy, php-format
+#, php-format
 msgid "Related %s"
-msgstr "Удалить %s"
+msgstr "Похожие %s"
 
 #: zp-extensions/rewriteRules.php:15
 msgid "Site rewrite rules tab."
@@ -16940,7 +16899,7 @@ msgstr ""
 
 #: zp-extensions/rewriteRules/admin_tab.php:26
 msgid "Rewrite Rules"
-msgstr ""
+msgstr "Правила переименования"
 
 #: zp-extensions/rewriteRules/functions.php:35
 msgid "Error processing rewrite rule:"
@@ -17025,13 +16984,12 @@ msgid "RSS feeds enabled:"
 msgstr "RSS потоки:"
 
 #: zp-extensions/rss.php:79
-#, fuzzy
 msgid "All News"
-msgstr "All News"
+msgstr "Все новости"
 
 #: zp-extensions/rss.php:80
 msgid "All Pages"
-msgstr ""
+msgstr "Все страницы"
 
 #: zp-extensions/rss.php:83
 msgid "Check each RSS feed you wish to activate."
@@ -17045,7 +17003,7 @@ msgstr ""
 
 #: zp-extensions/rss.php:87
 msgid "Album feed items:"
-msgstr ""
+msgstr "Элементы ленты альбома:"
 
 #: zp-extensions/rss.php:92
 msgid "Size of RSS image feed images:"
@@ -17053,7 +17011,7 @@ msgstr ""
 
 #: zp-extensions/rss.php:93
 msgid "Album image size"
-msgstr ""
+msgstr "Размер изображений альбома"
 
 #: zp-extensions/rss.php:95
 msgid "Size of RSS album feed images :"
@@ -17228,9 +17186,8 @@ msgid "Analyze searches"
 msgstr "Анализ и статистика поисковых запросов"
 
 #: zp-extensions/search_statistics/search_analysis.php:21
-#, fuzzy
 msgid "Analysis"
-msgstr "Анализ поисковых запросов"
+msgstr "Анализ"
 
 #: zp-extensions/search_statistics/search_analysis.php:126
 msgid "Search analysis"
@@ -17377,14 +17334,12 @@ msgid "Cross Site Reference"
 msgstr ""
 
 #: zp-extensions/security-logger.php:151
-#, fuzzy
 msgid "Album access"
-msgstr "Имя альбома:"
+msgstr "Доступ к альбому"
 
 #: zp-extensions/security-logger.php:154
-#, fuzzy
 msgid "Admin access"
-msgstr "Нет доступа"
+msgstr "Административный доступ"
 
 #: zp-extensions/security-logger.php:157
 #, fuzzy
@@ -17392,9 +17347,8 @@ msgid "Guest login"
 msgstr "Пользовательский"
 
 #: zp-extensions/security-logger.php:160
-#, fuzzy
 msgid "Admin login"
-msgstr "Инструментарий"
+msgstr "Логин администратора"
 
 #: zp-extensions/security-logger.php:163
 msgid "Authorization cookie check"
@@ -17415,9 +17369,8 @@ msgid "Success"
 msgstr "Успех"
 
 #: zp-extensions/security-logger.php:196
-#, fuzzy
 msgid "Blocked"
-msgstr "редактировать альбом"
+msgstr "Заблокировано "
 
 #: zp-extensions/security-logger.php:218
 #, fuzzy
@@ -17498,7 +17451,7 @@ msgstr ""
 
 #: zp-extensions/seo_locale.php:35
 msgid "Allows setting language locale through the URI."
-msgstr ""
+msgstr "Разрешить устанавливать язык сайта через URI."
 
 #: zp-extensions/seo_locale.php:36
 msgid ""
@@ -17759,9 +17712,8 @@ msgid ""
 msgstr ""
 
 #: zp-extensions/sitemap-extended.php:79
-#, fuzzy
 msgid "Album date"
-msgstr "Имя альбома:"
+msgstr "Дата альбома"
 
 #: zp-extensions/sitemap-extended.php:83
 msgid "Field to use for the last modification date of albums."
@@ -17786,9 +17738,8 @@ msgstr ""
 #: zp-extensions/sitemap-extended.php:131
 #: zp-extensions/sitemap-extended.php:141
 #: zp-extensions/sitemap-extended.php:151
-#, fuzzy
 msgid "always"
-msgstr "Malay"
+msgstr "всегда"
 
 #: zp-extensions/sitemap-extended.php:92 zp-extensions/sitemap-extended.php:102
 #: zp-extensions/sitemap-extended.php:112
@@ -17806,9 +17757,8 @@ msgstr "Страна"
 #: zp-extensions/sitemap-extended.php:133
 #: zp-extensions/sitemap-extended.php:143
 #: zp-extensions/sitemap-extended.php:153
-#, fuzzy
 msgid "daily"
-msgstr "E-Mail"
+msgstr "ежедневно"
 
 #: zp-extensions/sitemap-extended.php:94 zp-extensions/sitemap-extended.php:104
 #: zp-extensions/sitemap-extended.php:114
@@ -17825,9 +17775,8 @@ msgstr ""
 #: zp-extensions/sitemap-extended.php:135
 #: zp-extensions/sitemap-extended.php:145
 #: zp-extensions/sitemap-extended.php:155
-#, fuzzy
 msgid "monthly"
-msgstr "Эффект"
+msgstr "жемесячно"
 
 #: zp-extensions/sitemap-extended.php:96 zp-extensions/sitemap-extended.php:106
 #: zp-extensions/sitemap-extended.php:116
@@ -17931,9 +17880,8 @@ msgid "Generate or purge sitemap cache files."
 msgstr "Очистить кэш"
 
 #: zp-extensions/sitemap-extended/sitemap-extended-admin.php:27
-#, fuzzy
 msgid "Sitemap"
-msgstr "E-mail сайта:"
+msgstr "Карта сайта"
 
 #: zp-extensions/sitemap-extended/sitemap-extended-admin.php:77
 msgid "Available sitemap files:"
@@ -18068,11 +18016,11 @@ msgstr ""
 #: zp-extensions/slideshow.php:115 zp-extensions/slideshow.php:128
 #: zp-extensions/slideshow2.php:103 zp-extensions/slideshow2.php:139
 msgid "fade"
-msgstr ""
+msgstr "исчезать"
 
 #: zp-extensions/slideshow.php:115
 msgid "zoom"
-msgstr ""
+msgstr "Смотреть"
 
 #: zp-extensions/slideshow.php:115
 #, fuzzy
@@ -18106,7 +18054,7 @@ msgstr ""
 
 #: zp-extensions/slideshow.php:117
 msgid "Timeout"
-msgstr ""
+msgstr "Тайм-аут"
 
 #: zp-extensions/slideshow.php:119 zp-extensions/slideshow2.php:121
 msgid "Milliseconds between slide transitions (0 to disable auto advance.)"
@@ -18270,7 +18218,7 @@ msgstr ""
 
 #: zp-extensions/slideshow2.php:104
 msgid "fadeOut"
-msgstr ""
+msgstr "fadeOut"
 
 #: zp-extensions/slideshow2.php:106
 msgid "Scroll horizontal"
@@ -18282,11 +18230,11 @@ msgstr ""
 
 #: zp-extensions/slideshow2.php:108
 msgid "Flip horizontal"
-msgstr ""
+msgstr "Отразить по горизонтали"
 
 #: zp-extensions/slideshow2.php:109
 msgid "Flip vertical"
-msgstr ""
+msgstr "Отразить по вертикали"
 
 #: zp-extensions/slideshow2.php:110
 msgid "Tile slide"
@@ -18465,9 +18413,8 @@ msgid ""
 msgstr ""
 
 #: zp-extensions/themeSwitcher.php:64
-#, fuzzy
 msgid "Private"
-msgstr "частная"
+msgstr "Личное"
 
 #: zp-extensions/themeSwitcher.php:65
 msgid ""
@@ -18890,7 +18837,7 @@ msgstr ""
 
 #: zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:248
 msgid "Album link: <em>zenpage_albumlink</em>"
-msgstr ""
+msgstr "Ссылка на альбом: <em>zenpage_albumlink</em>"
 
 #: zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:249
 msgid "Custom link: <em>zenpage_customlink</em>"
@@ -18941,7 +18888,7 @@ msgstr ""
 
 #: zp-extensions/tweet_news.php:73
 msgid "Consumer key"
-msgstr ""
+msgstr "Пользовательский ключ"
 
 #: zp-extensions/tweet_news.php:75
 msgid ""
@@ -18956,9 +18903,8 @@ msgid ""
 msgstr ""
 
 #: zp-extensions/tweet_news.php:76
-#, fuzzy
 msgid "Secret"
-msgstr "Формат даты:"
+msgstr "Тайна"
 
 #: zp-extensions/tweet_news.php:78
 msgid "The <em>secret</em> associated with your <em>consumer key</em>."
@@ -18966,7 +18912,7 @@ msgstr ""
 
 #: zp-extensions/tweet_news.php:79
 msgid "Access token"
-msgstr ""
+msgstr "Маркер доступа"
 
 #: zp-extensions/tweet_news.php:81
 msgid "The application <em>oauth_token</em> token."
@@ -18974,7 +18920,7 @@ msgstr ""
 
 #: zp-extensions/tweet_news.php:82
 msgid "Access token secret"
-msgstr ""
+msgstr "Маркер доступа с секретным кодом"
 
 #: zp-extensions/tweet_news.php:84
 msgid "The application <em>oauth_token</em> secret."
@@ -19009,9 +18955,8 @@ msgstr ""
 "этот список в соответсвии с текущим состоянием расписания твитов."
 
 #: zp-extensions/tweet_news.php:104
-#, fuzzy
 msgid "Tweet"
-msgstr "далее"
+msgstr "Твитнуть"
 
 #: zp-extensions/tweet_news.php:107
 msgid ""
@@ -19216,20 +19161,19 @@ msgstr "Ваши файлы загружены."
 
 #: zp-extensions/uploader_jQuery/upload_form.php:157
 msgid "Missing a temporary folder"
-msgstr ""
+msgstr "Отсутствует временная папка"
 
 #: zp-extensions/uploader_jQuery/upload_form.php:158
-#, fuzzy
 msgid "Failed to write file to disk"
-msgstr "не могу удалить %s."
+msgstr "Невозможно записать файл на диск"
 
 #: zp-extensions/uploader_jQuery/upload_form.php:159
 msgid "File upload stopped by extension"
-msgstr ""
+msgstr "Загрузка файла остановлена расширением"
 
 #: zp-extensions/uploader_jQuery/upload_form.php:164
 msgid "Uploaded bytes exceed file size"
-msgstr ""
+msgstr "Загруженные байты превышает размер файла"
 
 #: zp-extensions/uploader_jQuery/upload_form.php:165
 msgid "Empty file upload result"
@@ -19284,7 +19228,7 @@ msgstr ""
 
 #: zp-extensions/user-expiry.php:105
 msgid "expiry"
-msgstr ""
+msgstr "смерть"
 
 #: zp-extensions/user-expiry.php:152
 #, php-format
@@ -19334,9 +19278,8 @@ msgid "%s renewal required"
 msgstr "%s требуется возобновление"
 
 #: zp-extensions/user-expiry/user-expiry-tab.php:99
-#, fuzzy
 msgid "Processed"
-msgstr "сохранить изменения"
+msgstr "Обработанный"
 
 #: zp-extensions/user-expiry/user-expiry-tab.php:114
 msgid "Manage user expiry."
@@ -19400,9 +19343,8 @@ msgid "Enable"
 msgstr "Включить пользователя"
 
 #: zp-extensions/user-expiry/user-expiry-tab.php:210
-#, fuzzy
 msgid "Renew"
-msgstr "новости"
+msgstr "Возобновить"
 
 #: zp-extensions/user-expiry/user-expiry-tab.php:211
 msgid "Email renewal link"
@@ -19468,9 +19410,8 @@ msgid "groups"
 msgstr "группы"
 
 #: zp-extensions/user_groups/user_groups-tab.php:151
-#, fuzzy
 msgid "Deleted"
-msgstr "Удалить"
+msgstr "Удалено"
 
 #: zp-extensions/user_groups/user_groups-tab.php:192
 #, fuzzy
@@ -19536,14 +19477,12 @@ msgid "Provides a means for users to login/out from your theme pages."
 msgstr ""
 
 #: zp-extensions/user_login-out.php:35
-#, fuzzy
 msgid "Login form"
-msgstr "Вход"
+msgstr "Форма входа на сайт"
 
 #: zp-extensions/user_login-out.php:36
-#, fuzzy
 msgid "Form"
-msgstr "Форум"
+msgstr "Форма"
 
 #: zp-extensions/user_login-out.php:36
 msgid "Colorbox"
@@ -19587,9 +19526,8 @@ msgstr ""
 "сообщили свой  e-mail адрес."
 
 #: zp-extensions/user_mailing_list.php:59
-#, fuzzy
 msgid "Mailing"
-msgstr "E-Mail"
+msgstr "Рассылка почтовых сообщений"
 
 #: zp-extensions/user_mailing_list.php:73
 msgid ""
@@ -19738,9 +19676,8 @@ msgid "Please try again"
 msgstr "Пожалуйста, попробуйте снова"
 
 #: zp-extensions/wordpress_import.php:87
-#, fuzzy
 msgid "Missing"
-msgstr "Назначить"
+msgstr "Утеряно"
 
 #: zp-extensions/wordpress_import.php:99
 #, fuzzy
@@ -19752,12 +19689,16 @@ msgid ""
 "<strong>ERROR:</strong> Could not connect to the Wordpress database - Query "
 "failed : "
 msgstr ""
+"<strong>Ошибка:</strong> Не удалось соединиться с базой данных Wordpress - "
+"Запрос завершился неудачно : "
 
 #: zp-extensions/wordpress_import.php:118
 msgid ""
 "<strong>ERROR:</strong> Wordpress database could not be selected - Query "
 "failed : "
 msgstr ""
+"<strong>Ошибка:</strong> Не удалось выбрать базу данных Wordpress - Запрос "
+"завершился неудачно : "
 
 #: zp-extensions/wordpress_import.php:141
 #: zp-extensions/zenpage/zenpage-admin-functions.php:931
@@ -19893,6 +19834,8 @@ msgid ""
 "<strong>IMPORTANT: </strong>MySQLi must be selected as the database handler "
 "on the Zenphoto options (generally the default)."
 msgstr ""
+"<strong>ВАЖНО: </strong> MySQLi должно быть выбрано в качестве обработчика "
+"базы данных в настройках  Zenphoto (обычно это так по умолчанию) "
 
 #: zp-extensions/wordpress_import.php:406
 msgid ""
@@ -19901,6 +19844,11 @@ msgid ""
 "running this importer. Make also sure that both databases use the same "
 "encoding so you do not get messed up character display."
 msgstr ""
+"<strong>ВАЖНО: </strong>Если Вы не используете свежую инсталляцию Zenphoto, "
+"то  <strong>настоятельно рекомендуется выполнить резервирование Вашей базы "
+"данных</strong> перед запуском этого импорта. Также убедитесь, что обе базы "
+"используют одинаковую кодировку, чтобы не столкнуться с путанницей при "
+"отображении букв. "
 
 #: zp-extensions/wordpress_import.php:409
 msgid ""
@@ -20419,7 +20367,7 @@ msgstr "обычное"
 #: zp-extensions/zenpage/admin-news-articles.php:263
 #: zp-extensions/zenpage/admin-news-articles.php:266
 msgid "sticky"
-msgstr ""
+msgstr "клейкий"
 
 #: zp-extensions/zenpage/admin-edit.php:456
 msgid "Stick to top"
@@ -20516,7 +20464,7 @@ msgstr "Удалить разделы"
 #: zp-extensions/zenpage/zenpage-admin-functions.php:311
 #: zp-extensions/zenpage/zenpage-admin-functions.php:1027
 msgid "locked"
-msgstr ""
+msgstr "заблокирован"
 
 #: zp-extensions/zenpage/admin-news-articles.php:352
 #: zp-extensions/zenpage/admin-news-articles.php:353
@@ -20914,9 +20862,8 @@ msgstr "Удалить статью НЕ удалось!"
 
 #: zp-extensions/zenpage/zenpage-admin-functions.php:536
 #: zp-extensions/zenpage/zenpage-admin-functions.php:1081
-#, fuzzy
 msgid "password protected"
-msgstr "Защищенный паролем"
+msgstr "Защищено паролем"
 
 #: zp-extensions/zenpage/zenpage-admin-functions.php:565
 msgid "View all months"
@@ -20928,7 +20875,7 @@ msgstr "Все статьи"
 
 #: zp-extensions/zenpage/zenpage-admin-functions.php:676
 msgid "Sticky"
-msgstr ""
+msgstr "Закреплено"
 
 #: zp-extensions/zenpage/zenpage-admin-functions.php:724
 msgid "Order by date descending"
@@ -21155,7 +21102,7 @@ msgstr "Посмотреть альбом %s"
 #: zp-extensions/zenpage/zenpage-template-functions.php:2301
 #, php-format
 msgid "View %s"
-msgstr ""
+msgstr "Просмотр %s"
 
 #: zp-extensions/zenpage/zenpage-template-functions.php:2309
 #, php-format
@@ -21247,7 +21194,7 @@ msgstr ""
 
 #: zp-extensions/zpCaptcha.php:49
 msgid "Allowed characters"
-msgstr "Использовать знаки"
+msgstr "Разрешенные знаки"
 
 #: zp-extensions/zpCaptcha.php:51
 msgid "The characters which may appear in the CAPTCHA string."
