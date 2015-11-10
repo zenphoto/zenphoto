@@ -136,7 +136,7 @@ if (zp_loggedin()) { /* Display the admin pages. Do action handling first. */
 			if (array_key_exists($action, $actions)) {
 				$msg = $actions[$action];
 			} else {
-				$msg = '<em>' . $action . '</em>';
+				$msg = '<em>' . html_encode($action) . '</em>';
 			}
 			$msg = sprintf(gettext('You do not have proper rights to %s.'), $msg);
 		}
@@ -210,7 +210,7 @@ if (!zp_loggedin()) {
 			/*			 * ********************************************************************************* */
 			if (!empty($msg)) {
 				?>
-				<div class="<?php echo $class; ?> fade-message">
+				<div class="<?php echo html_encode($class); ?> fade-message">
 					<h2><?php echo html_encode($msg); ?></h2>
 				</div>
 				<?php
