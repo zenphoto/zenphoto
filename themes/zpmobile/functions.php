@@ -96,7 +96,7 @@ function jqm_printFooterNav() {
 	?>
 	<div id="footer" data-role="footer">
 		<?php
-		@call_user_func('printLanguageSelector', "langselector");
+		@call_user_func('printLanguageSelector');
 		?>
 		<ul id="footerlist">
 			<li><?php printZenphotoLink(); ?> and <a href="http://jquerymobile.com">jQueryMobile</a></li>
