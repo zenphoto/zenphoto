@@ -153,4 +153,4 @@ if ((function_exists("printUserLogin_out") ) || !zp_loggedin() && function_exist
 	<?php
 }
 ?>
-<?php @call_user_func('printLanguageSelector', "langselector"); ?>
+<?php @call_user_func('printLanguageSelector'); ?>

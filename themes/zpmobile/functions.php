@@ -90,7 +90,7 @@ function jqm_printFooterNav() {
 	?>
 	<div id="footer" data-role="footer">
 		<?php
-		@call_user_func('printLanguageSelector', "langselector");
+		@call_user_func('printLanguageSelector');
 		?>
 		<ul id="footerlist">
 			<li><?php echo gettext('Powered by'); ?> <a href="http://www.zenphoto.org">Zenphoto</a> and <a href="http://jquerymobile.com">jQueryMobile</a></li>
@@ -103,7 +103,7 @@ function jqm_printFooterNav() {
 			if ($_zp_gallery_page != 'register.php') {
 				$_linktext = get_language_string(getOption('register_user_page_link'));
 				$adminlink = '<li><a rel="external" href="' . html_encode(register_user::getLink()) . '">' . $_linktext . '</a></li>';
-			} 
+			}
 		}
 		if (function_exists('printFavoritesURL')) {
 			$favoriteslink = '<li><a rel="external" href="' . html_encode(getFavoritesURL()) . '">' . gettext('Favorites') . '</a></li>';
@@ -112,8 +112,8 @@ function jqm_printFooterNav() {
 			?>
 			<div data-role="navbar">
 				<ul id="footernav">
-					<?php 
-					echo $adminlink . $favoriteslink; 
+					<?php
+					echo $adminlink . $favoriteslink;
 					if (function_exists("printUserLogin_out")) {
 						echo "<li>"; printUserLogin_out("", "", 0); echo "</li>";
 					}
