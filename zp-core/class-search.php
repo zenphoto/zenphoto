@@ -1415,7 +1415,7 @@ class SearchEngine {
 					if (is_null($sorttype)) {
 						$result = sortMultiArray($result, 'weight', true, true, false, false, array('weight'));
 					}
-					if ($sorttype == 'title') {
+					if ($sorttype == '`title`') {
 						$result = sortByMultilingual($result, 'title', $sortdirection);
 					}
 					foreach ($result as $album) {
@@ -1428,6 +1428,7 @@ class SearchEngine {
 		}
 		$this->albums = $albums;
 		$this->searches['albums'] = $criteria;
+		
 		return $albums;
 	}
 
@@ -1517,6 +1518,7 @@ class SearchEngine {
 	 * @return array
 	 */
 	private function getSearchImages($sorttype, $sortdirection, $mine = NULL) {
+		
 		if (getOption('search_no_images') || $this->search_no_images) {
 			return array();
 		}
@@ -1592,7 +1594,7 @@ class SearchEngine {
 				if (is_null($sorttype) && isset($weights)) {
 					$images = sortMultiArray($images, 'weight', true, true, false, false, array('weight'));
 				}
-				if ($sorttype == 'title') {
+				if ($sorttype == '`title`') {
 					$images = sortByMultilingual($images, 'title', $sortdirection);
 				}
 			}
