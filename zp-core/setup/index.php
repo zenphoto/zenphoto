@@ -2569,7 +2569,6 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 								$hideGoButton = ' style="display:none"';
 								$autorun = false;
 								?>
-								</script>
 								<div class="warning" id="dbrestructure">
 									<p><?php echo gettext('<strong>Warning!</strong> This upgrade makes structural changes to the database which are not easily reversed. Be sure you have a database backup before proceeding.'); ?></p>
 									<form>
