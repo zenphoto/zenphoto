@@ -1249,19 +1249,19 @@ function checkHitcounterDisplay($item) {
  * @param string $option What the statistic should be shown of: "news", "pages", "categories"
  */
 function getNewsPagesStatistic($option) {
-	global $_zp_zenpage;
+	global $_zp_CMS;
 	switch ($option) {
 		case "news":
-			$items = $_zp_zenpage->getArticles();
+			$items = $_zp_CMS->getArticles();
 			$type = gettext("Articles");
 			break;
 		case "pages":
-			$items = $_zp_zenpage->getPages(false);
+			$items = $_zp_CMS->getPages(false);
 			$type = gettext("Pages");
 			break;
 		case "categories":
 			$type = gettext("Categories");
-			$items = $_zp_zenpage->getAllCategories(false);
+			$items = $_zp_CMS->getAllCategories(false);
 			break;
 	}
 	$total = count($items);
