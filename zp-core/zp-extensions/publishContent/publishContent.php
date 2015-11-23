@@ -255,6 +255,7 @@ echo '</head>';
 				$visible = $report == 'albums' || $report == 'propagate';
 				$c = count($publish_albums_list)
 				?>
+				<p class="notebox smallbox"><?php echo gettext('<strong>Note:</strong> Items not published by inheritance are not included.'); ?></p>
 				<fieldset class="smallbox">
 					<legend><?php
 						if ($c > 0)
