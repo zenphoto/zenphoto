@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.4.10\n"
 "Report-Msgid-Bugs-To: webmaster at momo-i.org\n"
-"POT-Creation-Date: 2015-09-28 11:23+0900\n"
+"POT-Creation-Date: 2015-11-27 08:32+0900\n"
 "PO-Revision-Date: 2009-08-12 08:30+0900\n"
 "Last-Translator: momo-i <webmaster at momo-i dot org>\n"
 "Language-Team: Japanese\n"
@@ -129,7 +129,7 @@ msgstr "ログの閲覧:"
 #: zp-core/zp-extensions/zenpage/admin-categories.php:150
 #: zp-core/zp-extensions/zenpage/admin-news-articles.php:231
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1051
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1424
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1423
 #: zp-core/zp-extensions/comment_form/admin-comments.php:132
 #: zp-core/zp-extensions/comment_form/admin-comments.php:133
 #: zp-core/zp-extensions/comment_form/admin-comments.php:351
@@ -457,8 +457,7 @@ msgstr "アップロード"
 #: zp-core/lib-auth.php:556 zp-core/lib-auth.php:568 zp-core/lib-auth.php:571
 #: zp-core/lib-auth.php:572 zp-core/lib-auth.php:575 zp-core/lib-auth.php:579
 #: zp-core/lib-auth.php:582 zp-core/admin-functions.php:2027
-#: zp-core/admin-functions.php:3282
-#: zp-core/utilities/gallery_statistics.php:72
+#: zp-core/admin-functions.php:3282 zp-core/utilities/gallery_statistics.php:72
 #: zp-core/utilities/gallery_statistics.php:575
 #: zp-core/zp-extensions/related_items.php:152
 #: zp-core/zp-extensions/galleryArticles.php:65
@@ -472,8 +471,7 @@ msgstr "アルバム"
 
 #: zp-core/template-functions.php:120 zp-core/lib-auth.php:514
 #: zp-core/lib-auth.php:533 zp-core/lib-auth.php:558 zp-core/lib-auth.php:585
-#: zp-core/admin-functions.php:1917
-#: zp-core/utilities/gallery_statistics.php:92
+#: zp-core/admin-functions.php:1917 zp-core/utilities/gallery_statistics.php:92
 #: zp-core/utilities/gallery_statistics.php:586 zp-core/class-search.php:99
 #: zp-core/zp-extensions/wordpress_import.php:470
 #: zp-core/zp-extensions/zenpage/admin-edit.php:724
@@ -571,8 +569,7 @@ msgstr "ログアウト"
 #: zp-core/lib-auth.php:530 zp-core/lib-auth.php:543 zp-core/lib-auth.php:550
 #: zp-core/lib-auth.php:554 zp-core/lib-auth.php:569 zp-core/lib-auth.php:576
 #: zp-core/lib-auth.php:580 zp-core/admin-functions.php:3173
-#: zp-core/admin-functions.php:3295
-#: zp-core/zp-extensions/related_items.php:152
+#: zp-core/admin-functions.php:3295 zp-core/zp-extensions/related_items.php:152
 #: zp-core/zp-extensions/related_items.php:187
 #: zp-core/zp-extensions/zenpage.php:287
 #: zp-core/zp-extensions/html_meta_tags.php:233
@@ -880,8 +877,7 @@ msgid "You must supply a password for the <em>%s</em> guest user"
 msgstr "<em>%s</em>ゲストユーザのパスワードを設定してください"
 
 #: zp-core/admin-options.php:545 zp-core/admin-users.php:428
-#: zp-core/admin-functions.php:4701
-#: zp-core/zp-extensions/register_user.php:471
+#: zp-core/admin-functions.php:4701 zp-core/zp-extensions/register_user.php:471
 msgid "Your passwords did not match."
 msgstr "パスワードが一致しませんでした。"
 
@@ -2106,8 +2102,7 @@ msgstr "シャープにする:"
 
 #: zp-core/admin-options.php:1986 zp-core/admin-options.php:2038
 #: zp-core/admin-functions.php:447 zp-core/admin-functions.php:1579
-#: zp-core/admin-functions.php:2028
-#: zp-core/utilities/gallery_statistics.php:76
+#: zp-core/admin-functions.php:2028 zp-core/utilities/gallery_statistics.php:76
 #: zp-core/utilities/gallery_statistics.php:566
 #: zp-core/zp-extensions/related_items.php:152
 #: zp-core/zp-extensions/galleryArticles.php:65
@@ -2733,8 +2728,7 @@ msgstr "グレイスケール変換:"
 #: zp-core/admin-options.php:2734 zp-core/admin-globals.php:110
 #: zp-core/admin-edit.php:1359
 #: zp-core/zp-extensions/image_album_statistics.php:264
-#: themes/garland/functions.php:149
-#: themes/effervescence_plus/functions.php:426
+#: themes/garland/functions.php:149 themes/effervescence_plus/functions.php:426
 msgid "image"
 msgstr "画像"
 
@@ -4684,8 +4678,9 @@ msgstr "ギャラリー統計"
 #: zp-core/admin.php:661
 #, php-format
 msgid "<strong>%1$u</strong> Image (%2$u un-published)"
-msgid_plural "<strong>%1$u</strong> Images (%2$u un-published)"
-msgstr[0] "<strong>%1$u</strong>個の画像 (内%2$u件は非表示)"
+msgid_plural ""
+"<strong>%1$u</strong> Images (<strong>%2$u</strong> un-published)"
+msgstr[0] "<strong>%1$u</strong>個の画像 (内<strong>%2$u</strong>件は非公開)"
 
 #: zp-core/admin.php:663
 #, php-format
@@ -4696,8 +4691,9 @@ msgstr[0] "<strong>%u</strong>件の画像"
 #: zp-core/admin.php:672
 #, php-format
 msgid "<strong>%1$u</strong> Album (%2$u un-published)"
-msgid_plural "<strong>%1$u</strong> Albums (%2$u un-published)"
-msgstr[0] "<strong>%1$u</strong>個のアルバム (内%2$u件は非公開)"
+msgid_plural ""
+"<strong>%1$u</strong> Albums (<strong>%2$u</strong> un-published)"
+msgstr[0] "<strong>%1$u</strong>個のアルバム (内<strong>%2$u</strong>件は非公開)"
 
 #: zp-core/admin.php:674
 #, php-format
@@ -4708,8 +4704,9 @@ msgstr[0] "<strong>%u</strong>個のアルバム"
 #: zp-core/admin.php:683
 #, php-format
 msgid "<strong>%1$u</strong> Comment (%2$u in moderation)"
-msgid_plural "<strong>%1$u</strong> Comments (%2$u in moderation)"
-msgstr[0] "<strong>%1$u</strong>件のコメント (内%2$u件がモデレート中)"
+msgid_plural ""
+"<strong>%1$u</strong> Comments (<strong>%2$u</strong> in moderation)"
+msgstr[0] "<strong>%1$u</strong>件のコメント (内<strong>%2$u</strong>件がモデレート中)"
 
 #: zp-core/admin.php:685
 #, php-format
@@ -4717,37 +4714,7 @@ msgid "<strong>%u</strong> Comment"
 msgid_plural "<strong>%u</strong> Comments"
 msgstr[0] "<strong>%u</strong>件のコメント"
 
-#: zp-core/admin.php:696
-#, php-format
-msgid "<strong>%1$u</strong> Page"
-msgid_plural "<strong>%1$u</strong> Pages"
-msgstr[0] "<strong>%u</strong>件のページ"
-
-#: zp-core/admin.php:698
-#, php-format
-msgid "<strong>%1$u</strong> Page (%2$u un-published)"
-msgid_plural "<strong>%1$u</strong> Pages (%2$u un-published)"
-msgstr[0] "<strong>%1$u</strong>個のページ (内%2$u件は非表示)"
-
-#: zp-core/admin.php:706
-#, php-format
-msgid "<strong>%1$u</strong> News"
-msgid_plural "<strong>%1$u</strong> News"
-msgstr[0] "<strong>%1$u</strong>件のニュース"
-
-#: zp-core/admin.php:708
-#, php-format
-msgid "<strong>%1$u</strong> News (%2$u un-published)"
-msgid_plural "<strong>%1$u</strong> News (%2$u un-published)"
-msgstr[0] "<strong>%1$u</strong>件のニュース (内%2$u件は非表示)"
-
-#: zp-core/admin.php:715
-#, php-format
-msgid "<strong>%1$u</strong> Category"
-msgid_plural "<strong>%1$u</strong> Categories"
-msgstr[0] "<strong>%u</strong>個のカテゴリ"
-
-#: zp-core/admin.php:735
+#: zp-core/admin.php:718
 msgid "Your user rights do not allow access to administrative functions."
 msgstr "あなたのユーザー権限は管理機能にアクセスをする許可がありません。"
 
@@ -5005,7 +4972,7 @@ msgstr "所有者"
 #: zp-core/admin-globals.php:31 zp-core/admin-edit.php:1036
 #: zp-core/admin-functions.php:1716 zp-core/admin-functions.php:2155
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:674
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1538
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1537
 #: zp-core/zp-extensions/zenpage/admin-edit.php:442
 #: zp-core/zp-extensions/favoritesHandler.php:140
 msgid "Published"
@@ -5311,7 +5278,7 @@ msgstr "ズーム"
 #: zp-core/utilities/gallery_statistics.php:449
 #: zp-core/zp-extensions/menu_manager/menu_tab.php:243
 #: zp-core/zp-extensions/zenpage/admin-categories.php:191
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1416
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1415
 #: zp-core/zp-extensions/zenpage/admin-edit.php:373
 #: zp-core/zp-extensions/zenpage/admin-edit.php:375
 #: zp-core/zp-extensions/zenpage/admin-edit.php:828
@@ -5360,8 +5327,7 @@ msgstr "全般"
 msgid "Allow Comments"
 msgstr "コメントの許可"
 
-#: zp-core/admin-edit.php:1055
-#: zp-core/zp-extensions/zenpage/admin-edit.php:664
+#: zp-core/admin-edit.php:1055 zp-core/zp-extensions/zenpage/admin-edit.php:664
 #, php-format
 msgid "Reset hitcounter (%u hit)"
 msgid_plural "Reset hitcounter (%u hits)"
@@ -5693,8 +5659,7 @@ msgid "Comments"
 msgstr "コメント"
 
 #: zp-core/lib-auth.php:510 zp-core/admin-functions.php:465
-#: zp-core/admin-functions.php:4688
-#: zp-core/zp-extensions/related_items.php:174
+#: zp-core/admin-functions.php:4688 zp-core/zp-extensions/related_items.php:174
 #: zp-core/zp-extensions/defaultCodeblocks.php:34
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:81
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:85
@@ -5771,10 +5736,9 @@ msgstr ""
 #: zp-core/zp-extensions/zenpage/admin-pages.php:105
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1326
 #: zp-core/zp-extensions/comment_form.php:82
-#: zp-core/zp-extensions/externalFeed.php:72
-#: themes/zenpage/themeoptions.php:53 themes/zenpage/sidebar.php:47
-#: themes/garland/themeoptions.php:52 themes/garland/sidebar.php:80
-#: themes/effervescence_plus/themeoptions.php:74
+#: zp-core/zp-extensions/externalFeed.php:72 themes/zenpage/themeoptions.php:53
+#: themes/zenpage/sidebar.php:47 themes/garland/themeoptions.php:52
+#: themes/garland/sidebar.php:80 themes/effervescence_plus/themeoptions.php:74
 #: themes/effervescence_plus/sidebar.php:70 themes/zpmobile/pages.php:28
 #: themes/zpmobile/pages.php:34 themes/zpmobile/functions.php:75
 #: themes/zpmobile/functions.php:173
@@ -6387,7 +6351,7 @@ msgstr "画像 (動的)"
 
 #: zp-core/admin-functions.php:2036
 #: zp-core/zp-extensions/zenpage/admin-categories.php:187
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1411
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1410
 msgid "Has Password"
 msgstr "パスワード有り"
 
@@ -6396,7 +6360,7 @@ msgid "Published/Un-published"
 msgstr "公開/未公開"
 
 #: zp-core/admin-functions.php:2041
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1415
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1414
 msgid "Comments on/off"
 msgstr "コメントオン/オフ"
 
@@ -6750,8 +6714,7 @@ msgstr "セットアップ"
 msgid "demo"
 msgstr "デモ"
 
-#: zp-core/admin-functions.php:4557
-#: zp-core/zp-extensions/rewriteTokens.php:189
+#: zp-core/admin-functions.php:4557 zp-core/zp-extensions/rewriteTokens.php:189
 #: zp-core/zp-extensions/deprecated-functions.php:106
 #: zp-core/zp-extensions/rewriteRules.php:24
 #: zp-core/zp-extensions/macroList.php:87
@@ -6786,8 +6749,7 @@ msgstr "SEO"
 msgid "uploader"
 msgstr "アップローダー"
 
-#: zp-core/admin-functions.php:4686
-#: zp-core/zp-extensions/related_items.php:181
+#: zp-core/admin-functions.php:4686 zp-core/zp-extensions/related_items.php:181
 #: zp-core/zp-extensions/defaultCodeblocks.php:34
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:101
 msgid "Image"
@@ -6833,41 +6795,41 @@ msgstr "変更を適用しました"
 #: zp-core/admin-functions.php:4726 zp-core/admin-albumsort.php:169
 #: zp-core/zp-extensions/menu_manager/menu_tab.php:36
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:12
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1759
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1758
 msgid "Nothing changed"
 msgstr "変更なし"
 
 #: zp-core/admin-functions.php:4733 zp-core/admin-albumsort.php:135
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:933
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1723
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1722
 #: zp-core/zp-extensions/comment_form/admin-comments.php:270
 msgid "Selected items deleted"
 msgstr "選択したアイテムを削除しました"
 
 #: zp-core/admin-functions.php:4736 zp-core/admin-albumsort.php:138
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:937
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1726
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1725
 msgid "Selected items published"
 msgstr "選択したアイテムを公開しました"
 
 #: zp-core/admin-functions.php:4739 zp-core/admin-albumsort.php:141
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:941
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1729
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1728
 msgid "Selected items unpublished"
 msgstr "選択したアイテムを非公開にしました"
 
 #: zp-core/admin-functions.php:4742 zp-core/admin-albumsort.php:144
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1732
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1731
 msgid "Comments enabled for selected items"
 msgstr "選択したアイテムのコメントを有効化"
 
 #: zp-core/admin-functions.php:4745 zp-core/admin-albumsort.php:147
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1735
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1734
 msgid "Comments disabled for selected items"
 msgstr "選択したアイテムのコメントを無効化"
 
 #: zp-core/admin-functions.php:4748 zp-core/admin-albumsort.php:150
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1738
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1737
 msgid "Hitcounter for selected items"
 msgstr "選択したアイテムのヒットカウンター"
 
@@ -8979,11 +8941,11 @@ msgstr ""
 msgid "Setup failed."
 msgstr "セットアップフィールドです。"
 
-#: zp-core/setup/index.php:1625 zp-core/setup/index.php:2651
+#: zp-core/setup/index.php:1625 zp-core/setup/index.php:2650
 msgid "You need <em>USER ADMIN</em> rights to run setup."
 msgstr "セットアップを動作するには<em>USER ADMIN</em>権限が必要です。"
 
-#: zp-core/setup/index.php:1627 zp-core/setup/index.php:2653
+#: zp-core/setup/index.php:1627 zp-core/setup/index.php:2652
 msgid "You must be logged in to run setup."
 msgstr "セットアップを実行するにはログインが必要です。"
 
@@ -9077,7 +9039,7 @@ msgstr "作成するデータベーステーブル: %s"
 msgid "Database tables to update: %s"
 msgstr "更新するデータベーステーブル: %s"
 
-#: zp-core/setup/index.php:2620
+#: zp-core/setup/index.php:2619
 msgid ""
 "<strong>Warning!</strong> This upgrade makes structural changes to the "
 "database which are not easily reversed. Be sure you have a database backup "
@@ -9087,28 +9049,28 @@ msgstr ""
 "スに構造的な変更を行ないます。先に進む前に、データベースのバックアップがある"
 "ことを確認してください。"
 
-#: zp-core/setup/index.php:2623
+#: zp-core/setup/index.php:2622
 #, php-format
 msgid "%s I acknowledge that proceeding will restructure my database."
 msgstr "%s 自分のデータベースが再構築されますのでご了承ください。"
 
-#: zp-core/setup/index.php:2683
+#: zp-core/setup/index.php:2682
 msgid "run setup"
 msgstr "セットアップの実行"
 
-#: zp-core/setup/index.php:2683
+#: zp-core/setup/index.php:2682
 msgid "Go"
 msgstr "実行"
 
-#: zp-core/setup/index.php:2699
+#: zp-core/setup/index.php:2698
 msgid "database did not connect"
 msgstr "データベースは接続しませんでした"
 
-#: zp-core/setup/index.php:2701
+#: zp-core/setup/index.php:2700
 msgid "If you haven not created the database yet, now would be a good time."
 msgstr "データベースの作成がまだなら、今すぐ実行してください。"
 
-#: zp-core/setup/index.php:2710
+#: zp-core/setup/index.php:2709
 #, php-format
 msgid "The %1$s file does not exist."
 msgstr "%1$s ファイルは存在しません。"
@@ -10097,8 +10059,7 @@ msgstr ""
 "MySQLエラー: データベースに接続しましたが、Zenphotoはデータベース%2$sを選択し"
 "ようとした時にMySQLがエラー %1$s を返しました。"
 
-#: zp-core/utilities/phpInfo.php:12
-#: zp-core/utilities/database_reference.php:13
+#: zp-core/utilities/phpInfo.php:12 zp-core/utilities/database_reference.php:13
 #: zp-core/utilities/gallery_statistics.php:19
 #: zp-core/zp-extensions/downloadList.php:250
 #: zp-core/zp-extensions/search_statistics.php:79
@@ -10297,7 +10258,9 @@ msgstr "データベースリストアファイルを選択:"
 msgid ""
 "Do you really want to restore the database? Restoring the wrong backup might "
 "result in data loss!"
-msgstr "本当にデータベースをリストアしてもよろしいですか？誤ったバックアップをリストアすることはデータ損失に繋がる恐れがあります！"
+msgstr ""
+"本当にデータベースをリストアしてもよろしいですか？誤ったバックアップをリスト"
+"アすることはデータ損失に繋がる恐れがあります！"
 
 #: zp-core/utilities/backup_restore.php:576
 msgid "Restore the tables in your database from a previous backup."
@@ -13983,8 +13946,7 @@ msgstr ""
 #: zp-core/zp-extensions/cacheManager.php:366
 #: zp-core/zp-extensions/cacheManager.php:380
 #: zp-core/zp-extensions/cacheManager.php:392
-#: zp-core/zp-extensions/cacheManager.php:406
-#: zp-core/zp-extensions/rss.php:119
+#: zp-core/zp-extensions/cacheManager.php:406 zp-core/zp-extensions/rss.php:119
 msgid "Cache"
 msgstr "キャッシュ"
 
@@ -16547,7 +16509,7 @@ msgstr ""
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:291
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1041
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1043
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1420
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1419
 msgid "Reset hitcounter"
 msgstr "ヒットカウンターリセット"
 
@@ -16576,8 +16538,7 @@ msgstr "カテゴリのクリア"
 #: zp-core/zp-extensions/zenpage/admin-news-articles.php:263
 #: zp-core/zp-extensions/zenpage/admin-news-articles.php:266
 #: zp-core/zp-extensions/zenpage/admin-edit.php:455
-#: themes/garland/functions.php:153
-#: themes/effervescence_plus/functions.php:430
+#: themes/garland/functions.php:153 themes/effervescence_plus/functions.php:430
 msgid "sticky"
 msgstr "固定"
 
@@ -17013,8 +16974,8 @@ msgstr "全ニュース記事"
 
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:675
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1020
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1530
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1554
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1529
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1553
 #: zp-core/zp-extensions/flag_thumbnail.php:85
 msgid "Un-published"
 msgstr "未公開"
@@ -17088,17 +17049,17 @@ msgid "Edit this category"
 msgstr "このカテゴリを編集"
 
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1011
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1535
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1534
 msgid "Un-publish"
 msgstr "未公開"
 
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1014
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1524
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1523
 msgid "Scheduled for published"
 msgstr "公開スケジュール"
 
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1017
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1543
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1542
 #: zp-core/zp-extensions/zenpage/admin-edit.php:419
 #: zp-core/zp-extensions/publishContent/publishContent.php:411
 msgid "Publish"
@@ -17133,75 +17094,81 @@ msgstr "ヒット"
 msgid "hits"
 msgstr "ヒット"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1364
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1358
 #, php-format
-msgid "(<strong>%1$u</strong> page)"
-msgid_plural "(<strong>%1$u</strong> pages)"
-msgstr[0] "(<strong>%1$u</strong>件のページ)"
+msgid "<strong>%1$u</strong> page"
+msgid_plural "<strong>%1$u</strong> pages"
+msgstr[0] "<strong>%1$u</strong>件のページ"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1366
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1360
 #, php-format
-msgid "(<strong>%1$u</strong> page, <strong>%2$u</strong> un-published)"
+msgid "<strong>%1$u</strong> page (<strong>%2$u</strong> un-published)"
+msgid_plural "<strong>%1$u</strong> pages (<strong>%2$u</strong> un-published)"
+msgstr[0] "<strong>%1$u</strong>件のページ (内<srong>%2$u</strong>件が未公開)"
+
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1367
+#, php-format
+msgid "<strong>%1$u</strong> article"
+msgid_plural "<strong>%1$u</strong> articles"
+msgstr[0] "<strong>%1$u</strong>件のニュース記事"
+
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1369
+#, php-format
+msgid "<strong>%1$u</strong> article (<strong>%2$u</strong> un-published)"
 msgid_plural ""
-"(<strong>%1$u</strong> pages, <strong>%2$u</strong> un-published)"
-msgstr[0] "(<strong>%1$u</strong>件のページ、%2$u件が未公開)"
+"<strong>%1$u</strong> articles (<strong>%2$u</strong> un-published)"
+msgstr[0] "<strong>%1$u</strong>件の記事 (内<strong>%2$u</strong>件が未公開)"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1372
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1376
 #, php-format
-msgid "(<strong>%1$u</strong> news)"
-msgid_plural "(<strong>%1$u</strong> news)"
-msgstr[0] "(<strong>%u</strong>件のニュース)"
+msgid "<strong>%1$u</strong> category"
+msgid_plural "<strong>%1$u</strong> categories"
+msgstr[0] "<strong>%1$u</strong>件のカテゴリ"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1374
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1378
 #, php-format
-msgid "(<strong>%1$u</strong> news, <strong>%2$u</strong> un-published)"
-msgid_plural "(<strong>%1$u</strong> news, <strong>%2$u</strong> un-published)"
-msgstr[0] ""
-"(<strong>%1$u</strong>件のニュース、<strong>%2$u</strong>件が未公開)"
+msgid "<strong>%1$u</strong> category (<strong>%2$u</strong> un-published)"
+msgid_plural ""
+"<strong>%1$u</strong> categories (<strong>%2$u</strong> un-published)"
+msgstr[0] "<strong>%1$u</strong>件のカテゴリ (内<strong>%2$u</strong>件が未公開)"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1380
-#, php-format
-msgid "(<strong>%1$u</strong> category)"
-msgid_plural "(<strong>%1$u</strong> categories)"
-msgstr[0] "(<strong>%1$u</strong>件のカテゴリ)"
-
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1411
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1410
 msgid "Published/Not published/Scheduled for publishing"
 msgstr "公開済み/未公開/公開スケジュール"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1521
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1520
 msgid "Publish immediately (skip scheduling)"
 msgstr "すぐに公開(スケジュールをスキップ)"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1527
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1526
 msgid "Enable scheduled publishing"
 msgstr "公開スケジュールを有効化"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1548
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1547
 msgid "Publish (override expiration)"
 msgstr "公開(期限を上書き)"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1741
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1740
 msgid "Tags added to selected items"
 msgstr "選択したアイテムにタグを追加しました"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1744
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1743
 msgid "Tags cleared from selected items"
 msgstr "選択したアイテムからタグをクリアしました"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1747
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1746
 msgid "Tags added to articles of selected items"
 msgstr "選択したアイテムの記事にタグを追加しました"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1750
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1749
 msgid "Tags cleared from articles of selected items"
 msgstr "選択したアイテムの記事からタグをクリアしました"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1753
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1752
 msgid "Categories added to selected items"
 msgstr "選択したアイテムにカテゴリを追加しました"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1756
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1755
 msgid "Categories cleared from selected items"
 msgstr "選択したアイテムからカテゴリをクリアしました"
 
@@ -18968,8 +18935,7 @@ msgstr "登録済みサイト:"
 msgid "Check the box to remove a site."
 msgstr "サイトを削除するにはボックスにチェックをします。"
 
-#: zp-core/zp-extensions/externalFeed.php:107
-#: zp-core/zp-extensions/rss.php:137
+#: zp-core/zp-extensions/externalFeed.php:107 zp-core/zp-extensions/rss.php:137
 msgid "Feed text length"
 msgstr "フィードテキストの長さ"
 
@@ -18997,63 +18963,52 @@ msgstr "<em><strong>%1$s</strong></em> key=%2$s"
 msgid "No sites registered"
 msgstr "登録済みサイトはありません"
 
-#: zp-core/zp-extensions/externalFeed.php:239
-#: zp-core/zp-extensions/rss.php:453
+#: zp-core/zp-extensions/externalFeed.php:239 zp-core/zp-extensions/rss.php:453
 msgid " (Latest news)"
 msgstr " (新着ニュース)"
 
-#: zp-core/zp-extensions/externalFeed.php:243
-#: zp-core/zp-extensions/rss.php:470
+#: zp-core/zp-extensions/externalFeed.php:243 zp-core/zp-extensions/rss.php:470
 msgid " (Most popular news)"
 msgstr " (最も人気のニュース)"
 
-#: zp-core/zp-extensions/externalFeed.php:246
-#: zp-core/zp-extensions/rss.php:473
+#: zp-core/zp-extensions/externalFeed.php:246 zp-core/zp-extensions/rss.php:473
 msgid " (Most rated news)"
 msgstr " (最も人気のニュース)"
 
-#: zp-core/zp-extensions/externalFeed.php:249
-#: zp-core/zp-extensions/rss.php:476
+#: zp-core/zp-extensions/externalFeed.php:249 zp-core/zp-extensions/rss.php:476
 msgid " (Top rated news)"
 msgstr " (人気のニュース)"
 
-#: zp-core/zp-extensions/externalFeed.php:252
-#: zp-core/zp-extensions/rss.php:479
+#: zp-core/zp-extensions/externalFeed.php:252 zp-core/zp-extensions/rss.php:479
 msgid " (Random news)"
 msgstr " (ランダムニュース)"
 
-#: zp-core/zp-extensions/externalFeed.php:268
-#: zp-core/zp-extensions/rss.php:497
+#: zp-core/zp-extensions/externalFeed.php:268 zp-core/zp-extensions/rss.php:497
 msgid " (Most popular pages)"
 msgstr " (最も人気のページ)"
 
-#: zp-core/zp-extensions/externalFeed.php:271
-#: zp-core/zp-extensions/rss.php:500
+#: zp-core/zp-extensions/externalFeed.php:271 zp-core/zp-extensions/rss.php:500
 msgid " (Most rated pages)"
 msgstr " (最も人気のページ)"
 
-#: zp-core/zp-extensions/externalFeed.php:274
-#: zp-core/zp-extensions/rss.php:503
+#: zp-core/zp-extensions/externalFeed.php:274 zp-core/zp-extensions/rss.php:503
 msgid " (Top rated pages)"
 msgstr " (人気のページ)"
 
-#: zp-core/zp-extensions/externalFeed.php:277
-#: zp-core/zp-extensions/rss.php:506
+#: zp-core/zp-extensions/externalFeed.php:277 zp-core/zp-extensions/rss.php:506
 msgid " (Random pages)"
 msgstr " (ランダムページ)"
 
-#: zp-core/zp-extensions/externalFeed.php:280
-#: zp-core/zp-extensions/rss.php:509
+#: zp-core/zp-extensions/externalFeed.php:280 zp-core/zp-extensions/rss.php:509
 msgid " (Latest pages)"
 msgstr " (新着ページ)"
 
-#: zp-core/zp-extensions/externalFeed.php:319
-#: zp-core/zp-extensions/rss.php:548
+#: zp-core/zp-extensions/externalFeed.php:319 zp-core/zp-extensions/rss.php:548
 msgid " (latest comments)"
 msgstr " (新着コメント)"
 
-#: zp-core/zp-extensions/externalFeed.php:352
-#: zp-core/zp-extensions/rss.php:600 zp-core/zp-extensions/rss.php:608
+#: zp-core/zp-extensions/externalFeed.php:352 zp-core/zp-extensions/rss.php:600
+#: zp-core/zp-extensions/rss.php:608
 #, php-format
 msgid "%s (%u image)"
 msgid_plural "%s (%u images)"
@@ -20092,7 +20047,9 @@ msgstr "グーグル画像/ビデオ拡張を有効にする: 完全な画像を
 msgid ""
 "If checked, the original full image is referenced instead of the sized "
 "images in the cache. For image formats only."
-msgstr "チェックした場合、元の完全な画像はキャッシュ内の大きい画像の代わりに参照されます。画像フォーマットのみです。"
+msgstr ""
+"チェックした場合、元の完全な画像はキャッシュ内の大きい画像の代わりに参照され"
+"ます。画像フォーマットのみです。"
 
 #: zp-core/zp-extensions/sitemap-extended.php:167
 msgid "Google - URL to image license"
@@ -20260,8 +20217,8 @@ msgstr "%1$s <strong>%2$s</strong> (%3$s最終ログオン:%4$s)"
 #: themes/basic/favorites.php:44 themes/basic/favorites.php:59
 #: themes/garland/favorites.php:62 themes/garland/favorites.php:80
 #: themes/effervescence_plus/favorites.php:111
-#: themes/effervescence_plus/favorites.php:163
-#: themes/zpmobile/favorites.php:40 themes/zpmobile/favorites.php:52
+#: themes/effervescence_plus/favorites.php:163 themes/zpmobile/favorites.php:40
+#: themes/zpmobile/favorites.php:52
 msgid "Remove"
 msgstr "削除"
 
@@ -21849,6 +21806,14 @@ msgstr "デフォルトを適用しました"
 msgid "Set defaults for album publishing and image visibility."
 msgstr "アルバムの公開と画像の可視性のデフォルト値を設定します。"
 
+#: zp-core/zp-extensions/publishContent/publishContent.php:217
+msgid ""
+"The number of un-published items does <strong>not</strong> include items "
+"that are un-published by <a href=\"http://www.zenphoto.org/news/an-overview-"
+"of-zenphoto-users#rules-of-protection-andvisibility-for-zenphoto-obj"
+"\">inheritance</a>."
+msgstr "非公開のアイテム数は<a href=\"http://www.zenphoto.org/news/an-overview-of-zenphoto-users#rules-of-protection-andvisibility-for-zenphoto-obj\">継承</a>による非公開アイテムは<strong>含まれません</strong>。"
+
 #: zp-core/zp-extensions/publishContent/publishContent.php:222
 msgid "Albums not published"
 msgstr "アルバムは公開されていません"
@@ -22778,13 +22743,11 @@ msgstr "ガーランド(花飾り)画像の表示処理です。"
 msgid "Personality"
 msgstr "パーソナリティ"
 
-#: themes/garland/functions.php:149
-#: themes/effervescence_plus/functions.php:426
+#: themes/garland/functions.php:149 themes/effervescence_plus/functions.php:426
 msgid "album"
 msgstr "アルバム"
 
-#: themes/garland/functions.php:149
-#: themes/effervescence_plus/functions.php:426
+#: themes/garland/functions.php:149 themes/effervescence_plus/functions.php:426
 msgid "video"
 msgstr "動画"
 
@@ -23244,6 +23207,36 @@ msgstr ""
 #: themes/zpmobile/404.php:31
 msgid "The Zenphoto object you are requesting cannot be found."
 msgstr "Zenphotoのオブジェクトは要求されたものを見つけられませんでした。"
+
+#~ msgid "<strong>%1$u</strong> Page"
+#~ msgid_plural "<strong>%1$u</strong> Pages"
+#~ msgstr[0] "<strong>%u</strong>件のページ"
+
+#~ msgid "<strong>%1$u</strong> Page (%2$u un-published)"
+#~ msgid_plural "<strong>%1$u</strong> Pages (%2$u un-published)"
+#~ msgstr[0] "<strong>%1$u</strong>個のページ (内%2$u件は非表示)"
+
+#~ msgid "<strong>%1$u</strong> News"
+#~ msgid_plural "<strong>%1$u</strong> News"
+#~ msgstr[0] "<strong>%1$u</strong>件のニュース"
+
+#~ msgid "<strong>%1$u</strong> News (%2$u un-published)"
+#~ msgid_plural "<strong>%1$u</strong> News (%2$u un-published)"
+#~ msgstr[0] "<strong>%1$u</strong>件のニュース (内%2$u件は非表示)"
+
+#~ msgid "<strong>%1$u</strong> Category"
+#~ msgid_plural "<strong>%1$u</strong> Categories"
+#~ msgstr[0] "<strong>%u</strong>個のカテゴリ"
+
+#~ msgid "(<strong>%1$u</strong> news)"
+#~ msgid_plural "(<strong>%1$u</strong> news)"
+#~ msgstr[0] "(<strong>%u</strong>件のニュース)"
+
+#~ msgid "(<strong>%1$u</strong> news, <strong>%2$u</strong> un-published)"
+#~ msgid_plural ""
+#~ "(<strong>%1$u</strong> news, <strong>%2$u</strong> un-published)"
+#~ msgstr[0] ""
+#~ "(<strong>%1$u</strong>件のニュース、<strong>%2$u</strong>件が未公開)"
 
 #~ msgid "Search category"
 #~ msgstr "カテゴリ検索"
