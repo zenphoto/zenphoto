@@ -314,7 +314,7 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 		$imgCanvas = $imgCanvas->coalesceImages();
 
 		foreach ($imgCanvas as $frame) {
-			$result &= $imgCanvas->compositeImage($img, Imagick::COMPOSITE_OVER, $dest_x, $dest_y);
+			$result &= $frame->compositeImage($img, Imagick::COMPOSITE_OVER, $dest_x, $dest_y);
 		}
 
 		return $result;
