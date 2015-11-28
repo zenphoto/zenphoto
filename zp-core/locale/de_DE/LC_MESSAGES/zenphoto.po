@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.4.11\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-04 10:10+0200\n"
-"PO-Revision-Date: 2015-10-04 10:12+0200\n"
+"POT-Creation-Date: 2015-11-28 16:42+0100\n"
+"PO-Revision-Date: 2015-11-28 16:46+0100\n"
 "Last-Translator: Malte Müller (acrylian) <wartgart@gmx.net>\n"
 "Language-Team: Malte Müller (acrylian)\n"
 "Language: de_DE\n"
@@ -14,7 +14,7 @@ msgstr ""
 "X-Poedit-Basepath: /Users/maltemuller/Grafik/htdocs\n"
 "Plural-Forms: nplurals=2; plural=n !=1;\n"
 "X-Poedit-KeywordsList: \n"
-"X-Generator: Poedit 1.8.5\n"
+"X-Generator: Poedit 1.8.6\n"
 "X-Poedit-SearchPath-0: zenphoto-dev/themes\n"
 "X-Poedit-SearchPath-1: zenphoto-dev/zp-core\n"
 
@@ -1660,7 +1660,7 @@ msgstr "*Sammelaktionen*"
 #: zenphoto-dev/zp-core/zp-extensions/zenpage/admin-news-articles.php:231
 #: zenphoto-dev/zp-core/zp-extensions/zenpage/admin-pages.php:143
 #: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1051
-#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1424
+#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1423
 msgid "Delete"
 msgstr "Löschen"
 
@@ -1739,39 +1739,39 @@ msgstr "Bildreihenfolge gesichert"
 #: zenphoto-dev/zp-core/admin-functions.php:4733
 #: zenphoto-dev/zp-core/zp-extensions/comment_form/admin-comments.php:270
 #: zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:933
-#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1723
+#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1722
 msgid "Selected items deleted"
 msgstr "Ausgewählte Einträge gelöscht"
 
 #: zenphoto-dev/zp-core/admin-albumsort.php:138
 #: zenphoto-dev/zp-core/admin-functions.php:4736
 #: zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:937
-#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1726
+#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1725
 msgid "Selected items published"
 msgstr "Ausgewählte Einträge veröffentlicht"
 
 #: zenphoto-dev/zp-core/admin-albumsort.php:141
 #: zenphoto-dev/zp-core/admin-functions.php:4739
 #: zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:941
-#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1729
+#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1728
 msgid "Selected items unpublished"
 msgstr "Ausgewählte Einträge nicht veröffentlicht"
 
 #: zenphoto-dev/zp-core/admin-albumsort.php:144
 #: zenphoto-dev/zp-core/admin-functions.php:4742
-#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1732
+#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1731
 msgid "Comments enabled for selected items"
 msgstr "Kommentare für die ausgewählten Einträge aktiviert"
 
 #: zenphoto-dev/zp-core/admin-albumsort.php:147
 #: zenphoto-dev/zp-core/admin-functions.php:4745
-#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1735
+#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1734
 msgid "Comments disabled for selected items"
 msgstr "Kommentare sind für die ausgewählten Einträge deaktiviert"
 
 #: zenphoto-dev/zp-core/admin-albumsort.php:150
 #: zenphoto-dev/zp-core/admin-functions.php:4748
-#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1738
+#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1737
 msgid "Hitcounter for selected items"
 msgstr "Besucherzähler für ausgewählte Einträge"
 
@@ -1799,7 +1799,7 @@ msgstr "Schlagwörter der ausgewählten Einträge gelöscht"
 #: zenphoto-dev/zp-core/admin-functions.php:4726
 #: zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:12
 #: zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_tab.php:36
-#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1759
+#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1758
 msgid "Nothing changed"
 msgstr "Nichts hat sich geändert"
 
@@ -2252,7 +2252,7 @@ msgstr "Zoom"
 #: zenphoto-dev/zp-core/zp-extensions/zenpage/admin-edit.php:375
 #: zenphoto-dev/zp-core/zp-extensions/zenpage/admin-edit.php:828
 #: zenphoto-dev/zp-core/zp-extensions/zenpage/admin-edit.php:832
-#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1416
+#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1415
 msgid "View"
 msgstr "Ansehen"
 
@@ -2299,7 +2299,7 @@ msgstr "Allgemein"
 #: zenphoto-dev/zp-core/zp-extensions/favoritesHandler.php:140
 #: zenphoto-dev/zp-core/zp-extensions/zenpage/admin-edit.php:442
 #: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:674
-#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1538
+#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1537
 msgid "Published"
 msgstr "Veröffentlicht"
 
@@ -2923,7 +2923,7 @@ msgstr "Bilder (dynamisch)"
 
 #: zenphoto-dev/zp-core/admin-functions.php:2036
 #: zenphoto-dev/zp-core/zp-extensions/zenpage/admin-categories.php:187
-#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1411
+#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1410
 msgid "Has Password"
 msgstr "hat Passwort"
 
@@ -2932,7 +2932,7 @@ msgid "Published/Un-published"
 msgstr "Veröffentlicht/Unveröffentlicht"
 
 #: zenphoto-dev/zp-core/admin-functions.php:2041
-#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1415
+#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1414
 msgid "Comments on/off"
 msgstr "Kommentare an/aus"
 
@@ -6726,9 +6726,11 @@ msgstr "Galeriestatistik"
 #: zenphoto-dev/zp-core/admin.php:661
 #, php-format
 msgid "<strong>%1$u</strong> Image (%2$u un-published)"
-msgid_plural "<strong>%1$u</strong> Images (%2$u un-published)"
+msgid_plural ""
+"<strong>%1$u</strong> Images (<strong>%2$u</strong> un-published)"
 msgstr[0] "<strong>%1$u</strong> Bild (%2$u nicht veröffentlicht)"
-msgstr[1] "<strong>%1$u</strong> Bilder (%2$u nicht veröffentlicht)"
+msgstr[1] ""
+"<strong>%1$u</strong> Bilder (<strong>%2$u</strong> nicht veröffentlicht)"
 
 #: zenphoto-dev/zp-core/admin.php:663
 #, php-format
@@ -6740,9 +6742,11 @@ msgstr[1] "<strong>%u</strong> Bilder"
 #: zenphoto-dev/zp-core/admin.php:672
 #, php-format
 msgid "<strong>%1$u</strong> Album (%2$u un-published)"
-msgid_plural "<strong>%1$u</strong> Albums (%2$u un-published)"
+msgid_plural ""
+"<strong>%1$u</strong> Albums (<strong>%2$u</strong> un-published)"
 msgstr[0] "<strong>%1$u</strong> Album (%2$u nicht veröffentlicht)"
-msgstr[1] "<strong>%1$u</strong> Alben (%2$u nicht veröffentlicht)"
+msgstr[1] ""
+"<strong>%1$u</strong> Alben (<strong>%2$u</strong> nicht veröffentlicht)"
 
 #: zenphoto-dev/zp-core/admin.php:674
 #, php-format
@@ -6754,9 +6758,11 @@ msgstr[1] "<strong>%u</strong> Alben"
 #: zenphoto-dev/zp-core/admin.php:683
 #, php-format
 msgid "<strong>%1$u</strong> Comment (%2$u in moderation)"
-msgid_plural "<strong>%1$u</strong> Comments (%2$u in moderation)"
+msgid_plural ""
+"<strong>%1$u</strong> Comments (<strong>%2$u</strong> in moderation)"
 msgstr[0] "<strong>%1$u</strong> Kommentar (%2$u zu moderieren)"
-msgstr[1] "<strong>%1$u</strong> Kommentare (%2$u zu moderieren)"
+msgstr[1] ""
+"<strong>%1$u</strong> Kommentare (<strong>%2$u</strong> zu moderieren)"
 
 #: zenphoto-dev/zp-core/admin.php:685
 #, php-format
@@ -6765,42 +6771,7 @@ msgid_plural "<strong>%u</strong> Comments"
 msgstr[0] "<strong>%u</strong> Kommentar"
 msgstr[1] "<strong>%u</strong> Kommentare"
 
-#: zenphoto-dev/zp-core/admin.php:696
-#, php-format
-msgid "<strong>%1$u</strong> Page"
-msgid_plural "<strong>%1$u</strong> Pages"
-msgstr[0] "<strong>%1$u</strong> Seite"
-msgstr[1] "<strong>%1$u</strong> Seiten"
-
-#: zenphoto-dev/zp-core/admin.php:698
-#, php-format
-msgid "<strong>%1$u</strong> Page (%2$u un-published)"
-msgid_plural "<strong>%1$u</strong> Pages (%2$u un-published)"
-msgstr[0] "<strong>%1$u</strong> Album (%2$u nicht veröffentlicht)"
-msgstr[1] "<strong>%1$u</strong> Alben (%2$u nicht veröffentlicht)"
-
-#: zenphoto-dev/zp-core/admin.php:706
-#, php-format
-msgid "<strong>%1$u</strong> News"
-msgid_plural "<strong>%1$u</strong> News"
-msgstr[0] "<strong>%1$u</strong> Artikel"
-msgstr[1] "<strong>%1$u</strong> Artikel"
-
-#: zenphoto-dev/zp-core/admin.php:708
-#, php-format
-msgid "<strong>%1$u</strong> News (%2$u un-published)"
-msgid_plural "<strong>%1$u</strong> News (%2$u un-published)"
-msgstr[0] "<strong>%1$u</strong> Artikel (%2$u nicht veröffentlicht)"
-msgstr[1] "<strong>%1$u</strong> Artikel (%2$u nicht veröffentlicht)"
-
-#: zenphoto-dev/zp-core/admin.php:715
-#, php-format
-msgid "<strong>%1$u</strong> Category"
-msgid_plural "<strong>%1$u</strong> Categories"
-msgstr[0] "<strong>%1$u</strong> Kategorie"
-msgstr[1] "<strong>%1$u</strong> Kategorien"
-
-#: zenphoto-dev/zp-core/admin.php:735
+#: zenphoto-dev/zp-core/admin.php:718
 msgid "Your user rights do not allow access to administrative functions."
 msgstr ""
 "Ihre Benutzerrechte erlauben keinen Zugriff auf administrative Funktionen."
@@ -11691,14 +11662,14 @@ msgid "Setup failed."
 msgstr "Installation fehlgeschlagen."
 
 #: zenphoto-dev/zp-core/setup/index.php:1625
-#: zenphoto-dev/zp-core/setup/index.php:2651
+#: zenphoto-dev/zp-core/setup/index.php:2650
 msgid "You need <em>USER ADMIN</em> rights to run setup."
 msgstr ""
 "Sie müssen über<em>Benutzerverwaltungsrechte</em> verfügen, um setup "
 "ausführen zu können."
 
 #: zenphoto-dev/zp-core/setup/index.php:1627
-#: zenphoto-dev/zp-core/setup/index.php:2653
+#: zenphoto-dev/zp-core/setup/index.php:2652
 msgid "You must be logged in to run setup."
 msgstr "Sie müssen angemeldet sein, um die Installation durchführen zu können."
 
@@ -11796,7 +11767,7 @@ msgstr "Datenbanktabelle zu erstellen: %s"
 msgid "Database tables to update: %s"
 msgstr "Datenbanktabelle zu aktualisieren:  %s"
 
-#: zenphoto-dev/zp-core/setup/index.php:2620
+#: zenphoto-dev/zp-core/setup/index.php:2619
 msgid ""
 "<strong>Warning!</strong> This upgrade makes structural changes to the "
 "database which are not easily reversed. Be sure you have a database backup "
@@ -11806,32 +11777,32 @@ msgstr ""
 "an der Datenbank aus, die nicht leicht zurückzusetzen sind. Stellen Sie "
 "sicher, dass Sie ein Backup erstellt haben, bevor Sie fortfahren. "
 
-#: zenphoto-dev/zp-core/setup/index.php:2623
+#: zenphoto-dev/zp-core/setup/index.php:2622
 #, php-format
 msgid "%s I acknowledge that proceeding will restructure my database."
 msgstr ""
 "%s Ich nehme zur Kenntnis, dass Fortfahren meine Datenbank umstrukturieren "
 "wird."
 
-#: zenphoto-dev/zp-core/setup/index.php:2683
+#: zenphoto-dev/zp-core/setup/index.php:2682
 msgid "run setup"
 msgstr "Installation aufrufen"
 
-#: zenphoto-dev/zp-core/setup/index.php:2683
+#: zenphoto-dev/zp-core/setup/index.php:2682
 msgid "Go"
 msgstr "Los"
 
-#: zenphoto-dev/zp-core/setup/index.php:2699
+#: zenphoto-dev/zp-core/setup/index.php:2698
 msgid "database did not connect"
 msgstr "Die Datenbank konnte keine Verbindung herstellen"
 
-#: zenphoto-dev/zp-core/setup/index.php:2701
+#: zenphoto-dev/zp-core/setup/index.php:2700
 msgid "If you haven not created the database yet, now would be a good time."
 msgstr ""
 "Wenn Sie die Datenbank noch nicht erstellt haben, wäre jetzt der richtige "
 "Zeitpunkt."
 
-#: zenphoto-dev/zp-core/setup/index.php:2710
+#: zenphoto-dev/zp-core/setup/index.php:2709
 #, php-format
 msgid "The %1$s file does not exist."
 msgstr "Die Datei %1$s existiert nicht."
@@ -16756,8 +16727,8 @@ msgstr ""
 #: zenphoto-dev/zp-core/zp-extensions/flag_thumbnail.php:85
 #: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:675
 #: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1020
-#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1530
-#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1554
+#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1529
+#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1553
 msgid "Un-published"
 msgstr "Unveröffentlicht"
 
@@ -18849,6 +18820,18 @@ msgstr "Standardeinstellungen angewendet"
 msgid "Set defaults for album publishing and image visibility."
 msgstr "Standard für Albumveröffentlichung und Bildsichtbarkeit setzen."
 
+#: zenphoto-dev/zp-core/zp-extensions/publishContent/publishContent.php:217
+msgid ""
+"The number of un-published items does <strong>not</strong> include items "
+"that are un-published by <a href=\"http://www.zenphoto.org/news/an-overview-"
+"of-zenphoto-users#rules-of-protection-andvisibility-for-zenphoto-obj"
+"\">inheritance</a>."
+msgstr ""
+"Die Anzahl der unveröffentlichten Einträge enthält <strong>nicht</strong> "
+"keine, die durch die  <a href=„http://www.zenphoto.org/news/an-overview-of-"
+"zenphoto-users#rules-of-protection-andvisibility-for-zenphoto-"
+"obj“>Vererbung</a> unveröffentlicht sind."
+
 #: zenphoto-dev/zp-core/zp-extensions/publishContent/publishContent.php:222
 msgid "Albums not published"
 msgstr "Unveröffentlichte Alben"
@@ -18927,7 +18910,7 @@ msgstr "Alle auf Löschen setzen"
 #: zenphoto-dev/zp-core/zp-extensions/publishContent/publishContent.php:411
 #: zenphoto-dev/zp-core/zp-extensions/zenpage/admin-edit.php:419
 #: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1017
-#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1543
+#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1542
 msgid "Publish"
 msgstr "Veröffentlichen"
 
@@ -23183,7 +23166,7 @@ msgstr ""
 #: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:291
 #: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1041
 #: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1043
-#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1420
+#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1419
 msgid "Reset hitcounter"
 msgstr "Besucherzähler zurücksetzen"
 
@@ -24067,12 +24050,12 @@ msgid "Edit this category"
 msgstr "Diese Kategorie bearbeiten"
 
 #: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1011
-#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1535
+#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1534
 msgid "Un-publish"
 msgstr "auf unveröffentlicht stellen"
 
 #: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1014
-#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1524
+#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1523
 msgid "Scheduled for published"
 msgstr "Zeitgesteuerte Veröffentlichung"
 
@@ -24105,83 +24088,92 @@ msgstr "Besucher"
 msgid "hits"
 msgstr "Besucher"
 
-#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1364
+#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1358
 #, php-format
-msgid "(<strong>%1$u</strong> page)"
-msgid_plural "(<strong>%1$u</strong> pages)"
-msgstr[0] "(<strong>%1$u</strong> Seite)"
-msgstr[1] "(<strong>%1$u</strong> Seiten)"
+msgid "<strong>%1$u</strong> page"
+msgid_plural "<strong>%1$u</strong> pages"
+msgstr[0] "<strong>%1$u</strong> Seite"
+msgstr[1] "<strong>%1$u</strong> Seiten"
 
-#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1366
+#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1360
 #, php-format
-msgid "(<strong>%1$u</strong> page, <strong>%2$u</strong> un-published)"
+msgid "<strong>%1$u</strong> page (<strong>%2$u</strong> un-published)"
+msgid_plural "<strong>%1$u</strong> pages (<strong>%2$u</strong> un-published)"
+msgstr[0] "<strong>%1$u</strong> Seite, <strong>%2$u</strong> unveröffentlicht"
+msgstr[1] ""
+"<strong>%1$u</strong> Seiten, <strong>%2$u</strong> unveröffentlicht"
+
+#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1367
+#, php-format
+msgid "<strong>%1$u</strong> article"
+msgid_plural "<strong>%1$u</strong> articles"
+msgstr[0] "<strong>%1$u</strong> Artikel"
+msgstr[1] "<strong>%1$u</strong> Artikel"
+
+#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1369
+#, php-format
+msgid "<strong>%1$u</strong> article (<strong>%2$u</strong> un-published)"
 msgid_plural ""
-"(<strong>%1$u</strong> pages, <strong>%2$u</strong> un-published)"
+"<strong>%1$u</strong> articles (<strong>%2$u</strong> un-published)"
 msgstr[0] ""
-"(<strong>%1$u</strong> Seite, <strong>%2$u</strong> unveröffentlicht)"
+"<strong>%1$u</strong> Seite (<strong>%2$u</strong> unveröffentlicht)"
 msgstr[1] ""
-"(<strong>%1$u</strong> Seiten, <strong>%2$u</strong> unveröffentlicht)"
+"<strong>%1$u</strong> Seiten (<strong>%2$u</strong> unveröffentlicht)"
 
-#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1372
+#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1376
 #, php-format
-msgid "(<strong>%1$u</strong> news)"
-msgid_plural "(<strong>%1$u</strong> news)"
-msgstr[0] "(<strong>%1$u</strong> Artikel)"
-msgstr[1] "<strong>%1$u</strong> Artikel)"
+msgid "<strong>%1$u</strong> category"
+msgid_plural "<strong>%1$u</strong> categories"
+msgstr[0] "<strong>%1$u</strong> Kategorie"
+msgstr[1] "<strong>%1$u</strong> Kategorien"
 
-#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1374
+#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1378
 #, php-format
-msgid "(<strong>%1$u</strong> news, <strong>%2$u</strong> un-published)"
-msgid_plural "(<strong>%1$u</strong> news, <strong>%2$u</strong> un-published)"
+msgid "<strong>%1$u</strong> category (<strong>%2$u</strong> un-published)"
+msgid_plural ""
+"<strong>%1$u</strong> categories (<strong>%2$u</strong> un-published)"
 msgstr[0] ""
-"(<strong>%1$u</strong> Artikel, <strong>%2$u</strong> unveröffentlicht)"
+"<strong>%1$u</strong> Seite (<strong>%2$u</strong> unveröffentlicht)"
 msgstr[1] ""
-"(<strong>%1$u</strong> Artikel, <strong>%2$u</strong> unveröffentlicht)"
+"<strong>%1$u</strong> Seiten (<strong>%2$u</strong> unveröffentlicht)"
 
-#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1380
-#, php-format
-msgid "(<strong>%1$u</strong> category)"
-msgid_plural "(<strong>%1$u</strong> categories)"
-msgstr[0] "(<strong>%1$u</strong> Kategorie)"
-msgstr[1] "(<strong>%1$u</strong> Kategorien)"
-
-#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1411
+#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1410
 msgid "Published/Not published/Scheduled for publishing"
 msgstr "Veröffentlicht/unveröffentlicht/Zeitgesteuerte Veröffentlichung"
 
-#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1521
+#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1520
 msgid "Publish immediately (skip scheduling)"
 msgstr "Sofort veröffentlichen (Zeitsteuerung abbrechen)"
 
-#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1527
+#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1526
 msgid "Enable scheduled publishing"
 msgstr "Zeitgesteuerte Veröffentlichung aktivieren"
 
-#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1548
+#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1547
 msgid "Publish (override expiration)"
 msgstr "Veröffentlichen (Ungültigkeitsdatum übergehen)"
 
-#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1741
+#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1740
 msgid "Tags added to selected items"
 msgstr "Schlagwörter den ausgewählten Einträgen hinzugefügt"
 
-#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1744
+#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1743
 msgid "Tags cleared from selected items"
 msgstr "Schlagwörter von den ausgewählten Einträgen gelöscht"
 
-#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1747
+#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1746
 msgid "Tags added to articles of selected items"
 msgstr "Schlagwörter den ausgewählten Artikel hinzugefügt"
 
-#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1750
+#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1749
 msgid "Tags cleared from articles of selected items"
 msgstr "Schlagwörter der ausgewählten Artikel gelöscht"
 
-#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1753
+#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1752
 msgid "Categories added to selected items"
 msgstr "Kategorien wurden den ausgewählten Einträgen hinzugefügt"
 
-#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1756
+#: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1755
 msgid "Categories cleared from selected items"
 msgstr "Kategorien von den ausgewählten Einträgen gelöscht"
 
@@ -24364,6 +24356,44 @@ msgid ""
 msgstr ""
 "Die zuverwendende Größe, wenn der Font skalierbar ist (<em>TTF</em>- und "
 "<em>Imagick</em>-Schriften.)"
+
+#~ msgid "<strong>%1$u</strong> Page"
+#~ msgid_plural "<strong>%1$u</strong> Pages"
+#~ msgstr[0] "<strong>%1$u</strong> Seite"
+#~ msgstr[1] "<strong>%1$u</strong> Seiten"
+
+#~ msgid "<strong>%1$u</strong> Page (%2$u un-published)"
+#~ msgid_plural "<strong>%1$u</strong> Pages (%2$u un-published)"
+#~ msgstr[0] "<strong>%1$u</strong> Album (%2$u nicht veröffentlicht)"
+#~ msgstr[1] "<strong>%1$u</strong> Alben (%2$u nicht veröffentlicht)"
+
+#~ msgid "<strong>%1$u</strong> News"
+#~ msgid_plural "<strong>%1$u</strong> News"
+#~ msgstr[0] "<strong>%1$u</strong> Artikel"
+#~ msgstr[1] "<strong>%1$u</strong> Artikel"
+
+#~ msgid "<strong>%1$u</strong> News (%2$u un-published)"
+#~ msgid_plural "<strong>%1$u</strong> News (%2$u un-published)"
+#~ msgstr[0] "<strong>%1$u</strong> Artikel (%2$u nicht veröffentlicht)"
+#~ msgstr[1] "<strong>%1$u</strong> Artikel (%2$u nicht veröffentlicht)"
+
+#~ msgid "<strong>%1$u</strong> Category"
+#~ msgid_plural "<strong>%1$u</strong> Categories"
+#~ msgstr[0] "<strong>%1$u</strong> Kategorie"
+#~ msgstr[1] "<strong>%1$u</strong> Kategorien"
+
+#~ msgid "(<strong>%1$u</strong> news)"
+#~ msgid_plural "(<strong>%1$u</strong> news)"
+#~ msgstr[0] "(<strong>%1$u</strong> Artikel)"
+#~ msgstr[1] "<strong>%1$u</strong> Artikel)"
+
+#~ msgid "(<strong>%1$u</strong> news, <strong>%2$u</strong> un-published)"
+#~ msgid_plural ""
+#~ "(<strong>%1$u</strong> news, <strong>%2$u</strong> un-published)"
+#~ msgstr[0] ""
+#~ "(<strong>%1$u</strong> Artikel, <strong>%2$u</strong> unveröffentlicht)"
+#~ msgstr[1] ""
+#~ "(<strong>%1$u</strong> Artikel, <strong>%2$u</strong> unveröffentlicht)"
 
 #~ msgid "Search within album"
 #~ msgstr "Innerhalb des Albums suchen"
@@ -28563,14 +28593,6 @@ msgstr ""
 #~ "<strong>%1$u</strong> Comments (<strong>%2$u</strong> in moderation)"
 #~ msgstr[0] "<strong>%1$u</strong> Kommentar (%2$u zu moderieren)"
 #~ msgstr[1] "<strong>%1$u</strong> Kommentare (%2$u zu moderieren)"
-
-#~ msgid "<strong>%1$u</strong> Page (<strong>%2$u</strong> unpublished)"
-#~ msgid_plural ""
-#~ "<strong>%1$u</strong> Pages (<strong>%2$u</strong> unpublished)"
-#~ msgstr[0] ""
-#~ "<strong>%1$u</strong> Seite (<strong>%2$u</strong> unveröffentlicht)"
-#~ msgstr[1] ""
-#~ "<strong>%1$u</strong> Seiten (<strong>%2$u</strong> unveröffentlicht)"
 
 #~ msgid "<strong>%1$u</strong> News (<strong>%2$u</strong> unpublished)"
 #~ msgid_plural ""
