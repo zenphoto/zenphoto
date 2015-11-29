@@ -204,7 +204,7 @@ datepickerJS();
 				<?php
 				$option = getNewsAdminOptionPath(getNewsAdminOption(array('category' => 0, 'date' => 0, 'published' => 0, 'sortorder' => 0, 'articles_page' => 1, 'subpage' => 1), '?'));
 				?>
-        <form class="dirty-check" action="admin-news-articles.php<?php echo $option; ?>" method="post" name="checkeditems" id="form_zenpageitemlist" onsubmit="return confirmAction();">
+        <form class="dirty-check" action="admin-news-articles.php<?php echo $option; ?>" method="post" name="checkeditems" id="form_zenpageitemlist" onsubmit="return confirmAction();" autocomplete="off">
 					<?php XSRFToken('checkeditems'); ?>
           <div class="buttons">
             <button type="submit" title="<?php echo gettext('Apply'); ?>"><img src="../../images/pass.png" alt="" /><strong><?php echo gettext('Apply'); ?></strong>
@@ -314,9 +314,9 @@ datepickerJS();
 									</td>
 									<td class="page-list_icon">
 										<?php
-           
+
 										if ($article->getCommentsAllowed()) {
-           
+
 											?>
 											<a href="<?php echo $option.$divider; ?>commentson=0&amp;titlelink=<?php
 											echo html_encode($article->getTitlelink());

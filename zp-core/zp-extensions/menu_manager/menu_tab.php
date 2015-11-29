@@ -136,7 +136,7 @@ printSortableHead();
 				echo "</small>";
 				?></h1>
 
-			<form class="dirty-check" action="menu_tab.php?menuset=<?php echo $menuset; ?>" method="post" name="update" onsubmit="return confirmAction();">
+			<form class="dirty-check" action="menu_tab.php?menuset=<?php echo $menuset; ?>" method="post" name="update" onsubmit="return confirmAction();" autocomplete="off">
 				<?php XSRFToken('update_menu'); ?>
 				<p>
 					<?php echo gettext("Drag the items into the order and nesting you wish displayed. Place the menu on your theme pages by calling printCustomMenu()."); ?>

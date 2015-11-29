@@ -192,7 +192,7 @@ echo '</head>';
 								<?php
 							}
 							?>
-							<form class="dirty-check" name="set_publication" action="" method="post">
+							<form class="dirty-check" name="set_publication" action="" method="post" autocomplete="off">
 								<?php XSRFToken('publishContent'); ?>
 								<input type="hidden" name="set_defaults" value="true" />
 								<label><input type="checkbox" name="album_default"	value="1"<?php if ($albpublish) echo ' checked="checked"'; ?> /> <?php echo gettext("Publish albums by default"); ?></label>
@@ -246,7 +246,7 @@ echo '</head>';
 						}
 						if ($c > 0) {
 							?>
-							<form class="dirty-check" name="publish_albums" action="" method="post"><?php echo gettext('Albums:'); ?>
+							<form class="dirty-check" name="publish_albums" action="" method="post" autocomplete="off"><?php echo gettext('Albums:'); ?>
 								<label id="autocheck">
 									<input type="checkbox" name="checkAllAuto" id="checkAllAuto" onclick="$('.checkAuto').prop('checked', $('#checkAllAuto').prop('checked'));"/>
 									<span id="autotext"><?php echo gettext('all'); ?></span>
@@ -371,7 +371,7 @@ echo '</head>';
 								}
 								// ]]> -->
 							</script>
-							<form class="dirty-check" name="publish_images" action="" method="post"><?php echo gettext('Images:'); ?>
+							<form class="dirty-check" name="publish_images" action="" method="post" autocomplete="off"><?php echo gettext('Images:'); ?>
 
 								<?php XSRFToken('publishContent'); ?>
 								<input type="hidden" name="publish" value="images" />
@@ -504,7 +504,7 @@ echo '</head>';
 									<?php
 								}
 								?>
-								<form class="dirty-check" name="publish_cat" action="" method="post"><?php echo gettext('Categories:'); ?>
+								<form class="dirty-check" name="publish_cat" action="" method="post" autocomplete="off"><?php echo gettext('Categories:'); ?>
 									<label id="autocheck_cat">
 										<input type="checkbox" id="checkAllcat" name="checkAllcat" onclick="$('.catcheck').prop('checked', $('#checkAllcat').prop('checked'));" />
 										<span id="autotext_cat"><?php echo gettext('all'); ?></span>
@@ -562,7 +562,7 @@ echo '</head>';
 									<?php
 								}
 								?>
-								<form class="dirty-check" name="publish_articles" action="" method="post"><?php echo gettext('Articles:'); ?>
+								<form class="dirty-check" name="publish_articles" action="" method="post" autocomplete="off"><?php echo gettext('Articles:'); ?>
 									<label id="autocheck_art">
 										<input type="checkbox" name="checkAllcat" onclick="$('.artcheck').prop('checked', checked)" />
 										<span id="autotext_art"><?php echo gettext('all'); ?></span>
@@ -617,7 +617,7 @@ echo '</head>';
 							echo sprintf(ngettext('%u unpublished page', '%u unpublished pages', $c), $c);
 							?>
 							<div id="pagebox"<?php if (!$visible) echo ' style="display:none"' ?>>
-								<form class="dirty-check" name="publish_pages" action="" method="post"><?php echo gettext('Pages:'); ?>
+								<form class="dirty-check" name="publish_pages" action="" method="post" autocomplete="off"><?php echo gettext('Pages:'); ?>
 									<label id="autocheck_page">
 										<input type="checkbox" name="checkAllpage" onclick="$('.pagecheck').prop('checked', checked);" />
 										<span id="autotext_page"><?php echo gettext('all'); ?></span>

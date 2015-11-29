@@ -123,7 +123,7 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 			extract($commentarr);
 			$commentarr = array_merge($commentarr, getSerializedArray($commentarr['custom_data']));
 			?>
-			<form class="dirty-check" id="form_editcomment" action="?action=savecomment" method="post">
+			<form class="dirty-check" id="form_editcomment" action="?action=savecomment" method="post" autocomplete="off">
 				<?php XSRFToken('savecomment'); ?>
 				<input	type="hidden" name="id" value="<?php echo $id; ?>" />
 				<span class="buttons">
@@ -319,7 +319,7 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 	}
 	?>
 
-	<form class="dirty-check" name="comments" id="form_commentlist" action="?action=applycomments" method="post"	onsubmit="return confirmAction();">
+	<form class="dirty-check" name="comments" id="form_commentlist" action="?action=applycomments" method="post" onsubmit="return confirmAction();" autocomplete="off">
 		<?php XSRFToken('applycomments'); ?>
 		<input type="hidden" name="subpage" value="<?php echo html_encode($pagenum) ?>" />
 		<p class="buttons"><button type="submit"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button></p>
@@ -412,7 +412,7 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 				$inmoderation = $comment['inmoderation'];
 				$private = $comment['private'];
 				$anon = $comment['anon'];
-    
+
 				?>
 				<tr class="newstr">
 					<td><?php echo ($fulltext) ? $fullcomment : $shortcomment; ?></td>

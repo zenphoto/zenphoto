@@ -176,7 +176,7 @@ echo "\n</head>";
 						}
 					}
 					?>
-					<form class="dirty-check" action="?page=edit&amp;album=<?php echo $album->getFileName(); ?>&amp;saved&amp;tab=sort" method="post" name="sortableListForm" id="sortableListForm">
+					<form class="dirty-check" action="?page=edit&amp;album=<?php echo $album->getFileName(); ?>&amp;saved&amp;tab=sort" method="post" name="sortableListForm" id="sortableListForm" autocomplete="off">
 						<?php XSRFToken('save_sort'); ?>
 						<?php printBulkActions($checkarray_images, true); ?>
 						<script type="text/javascript">

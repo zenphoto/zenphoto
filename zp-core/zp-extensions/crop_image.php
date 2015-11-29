@@ -325,7 +325,7 @@ printAdminHeader('edit', gettext('crop image'));
 					?>
 
 					<!-- This is the form that our event handler fills -->
-					<form class="dirty-check" name="crop" id="crop" action="?crop" onsubmit="return checkCoords();">
+					<form class="dirty-check" name="crop" id="crop" action="?crop" onsubmit="return checkCoords();" autocomplete="off">
 						<?php XSRFToken('crop'); ?>
 						<input type="hidden" size="4" id="x" name="x" value="<?php echo $iX ?>" />
 						<input type="hidden" size="4" id="y" name="y" value="<?php echo $iY ?>" />

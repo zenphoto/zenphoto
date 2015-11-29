@@ -149,7 +149,7 @@ if ($message) {
 	<?php if ($file_to_edit) { ?>
 		<div id="editor">
 			<h2 class="h2_bordered"><?php echo sprintf(gettext('File <tt>%s</tt> from theme %s'), sanitize($_GET['file']), $themes[$theme]['name']); ?></h2>
-			<form class="dirty-check" method="post" action="">
+			<form class="dirty-check" method="post" action="" autocomplete="off">
 				<?php XSRFToken('edit_theme'); ?>
 				<p><textarea cols="70" rows="35" name="newcontent" id="newcontent"><?php echo $file_content ?></textarea></p>
 				<input type="hidden" name="action" value="edit_file"/>

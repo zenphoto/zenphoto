@@ -79,7 +79,7 @@ if (isset($_POST['savealbum'])) {
 			}
 		}
 		$words = sanitize($_POST['words']);
-  
+
 	}
 	if (isset($_POST['thumb'])) {
 		$thumb = sanitize($_POST['thumb']);
@@ -141,7 +141,7 @@ while ($old != $albumname) {
 	$albumname = str_replace('--', '-', $albumname);
 }
 ?>
-<form class="dirty-check" action="?savealbum" method="post">
+<form class="dirty-check" action="?savealbum" method="post" autocomplete="off">
 	<?php XSRFToken('savealbum'); ?>
 	<input type="hidden" name="savealbum" value="yes" />
 	<table>
