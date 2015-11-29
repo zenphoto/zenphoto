@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.4.11\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-10 15:53+0100\n"
+"POT-Creation-Date: 2015-11-29 13:17+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: fretzl\n"
 "Language-Team: \n"
@@ -10944,11 +10944,11 @@ msgstr ""
 msgid "Setup failed."
 msgstr "Setup mislukt."
 
-#: zp-core/setup/index.php:1625 zp-core/setup/index.php:2651
+#: zp-core/setup/index.php:1625 zp-core/setup/index.php:2650
 msgid "You need <em>USER ADMIN</em> rights to run setup."
 msgstr "Je hebt <em>GEBRUIKERSADMIN</em> rechten nodig om setup uit te voeren."
 
-#: zp-core/setup/index.php:1627 zp-core/setup/index.php:2653
+#: zp-core/setup/index.php:1627 zp-core/setup/index.php:2652
 msgid "You must be logged in to run setup."
 msgstr "Je moet ingelogd zijn om setup te starten."
 
@@ -11043,7 +11043,7 @@ msgstr "Databasetabellen die worden aangemaakt: %s"
 msgid "Database tables to update: %s"
 msgstr "Database tabellen die worden ge-update: %s"
 
-#: zp-core/setup/index.php:2620
+#: zp-core/setup/index.php:2619
 msgid ""
 "<strong>Warning!</strong> This upgrade makes structural changes to the "
 "database which are not easily reversed. Be sure you have a database backup "
@@ -11053,31 +11053,31 @@ msgstr ""
 "in de database. Dit kan niet eenvoudig ongedaan gemaakt worden.<br />Zorg "
 "ervoor dat je een backup van de database hebt voordat je verder gaat."
 
-#: zp-core/setup/index.php:2623
+#: zp-core/setup/index.php:2622
 #, php-format
 msgid "%s I acknowledge that proceeding will restructure my database."
 msgstr ""
 "%s Ik begrijp dat m’n database ingrijpend veranderd wordt als ik doorga."
 
-#: zp-core/setup/index.php:2683
+#: zp-core/setup/index.php:2682
 msgid "run setup"
 msgstr "Voer setup uit"
 
-#: zp-core/setup/index.php:2683
+#: zp-core/setup/index.php:2682
 msgid "Go"
 msgstr "Gaan!"
 
-#: zp-core/setup/index.php:2699
+#: zp-core/setup/index.php:2698
 msgid "database did not connect"
 msgstr "database is niet verbonden"
 
-#: zp-core/setup/index.php:2701
+#: zp-core/setup/index.php:2700
 msgid "If you haven not created the database yet, now would be a good time."
 msgstr ""
 "Als je de database nog niet aangemaakt hebt is het daar nu een goed moment "
 "voor."
 
-#: zp-core/setup/index.php:2710
+#: zp-core/setup/index.php:2709
 #, php-format
 msgid "The %1$s file does not exist."
 msgstr "Het <em>%1$s</em> bestand bestaat niet."
@@ -11809,6 +11809,8 @@ msgid ""
 "Do you really want to restore the database? Restoring the wrong backup might "
 "result in data loss!"
 msgstr ""
+"Weet je zeker dat je de database wilt herstellen? Hertstellen met de "
+"verkeerde backup kan resulteren in het verlies van data."
 
 #: zp-core/utilities/backup_restore.php:576
 msgid "Restore the tables in your database from a previous backup."
