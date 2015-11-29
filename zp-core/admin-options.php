@@ -2883,7 +2883,7 @@ Zenphoto_Authority::printPasswordFormJS();
 																							var optionholder = new Array();
 																							// ]]> -->
 						</script>
-						<form class="dirty-check" id="form_options" action="?action=saveoptions<?php if (isset($_GET['single'])) echo '&amp;single=' . $showExtension; ?>" method="post" autocomplete="off">
+						<form class="dirty-check" id="form_options" action="?action=saveoptions<?php if (isset($_GET['single'])) echo '&amp;single=' . html_encode($showExtension); ?>" method="post" autocomplete="off">
 							<?php XSRFToken('saveoptions'); ?>
 							<input type="hidden" name="savepluginoptions" value="yes" />
 							<input type="hidden" name="subpage" value="<?php echo $subpage; ?>" />
@@ -2952,9 +2952,9 @@ Zenphoto_Authority::printPasswordFormJS();
 															<span id="<?php echo $extension; ?>" ></span>
 															<?php
 															if (!$showExtension) {
-																$optionlink = FULLWEBPATH . '/' . ZENFOLDER . '/admin-options.php?page=options&amp;tab=plugin&amp;single=' . $extension;
+																$optionlink = FULLWEBPATH . '/' . ZENFOLDER . '/admin-options.php?page=options&amp;tab=plugin&amp;single=' . html_encode($extension);
 																?>
-																<span class="icons"><a href="<?php echo $optionlink; ?>" title="<?php printf(gettext("Change %s options"), $extension); ?>"><img class="icon-position-top3" src="images/options.png" alt="" />
+																<span class="icons"><a href="<?php echo $optionlink; ?>" title="<?php printf(gettext("Change %s options"), html_encode($extension)); ?>"><img class="icon-position-top3" src="images/options.png" alt="" />
 																		<?php
 																	}
 																	echo $extension;

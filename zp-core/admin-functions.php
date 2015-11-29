@@ -4431,8 +4431,8 @@ function printPageSelector($subpage, $rangeset, $script, $queryParams) {
 	$pages = count($rangeset);
 	$jump = $query = '';
 	foreach ($queryParams as $param => $value) {
-		$query .= $param . '=' . $value . '&amp;';
-		$jump .= "'" . $param . "=" . $value . "',";
+		$query .= html_encode($param) . '=' . html_encode($value) . '&amp;';
+		$jump .= "'" . html_encode($param) . "=" . html_encode($value) . "',";
 	}
 	$query = '?' . $query;
 	if ($subpage > 0) {

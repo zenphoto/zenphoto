@@ -57,7 +57,7 @@ if (isset($_GET['action'])) {
 		} else {
 			$notify = '&post_error';
 		}
-		header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-plugins.php?page=plugins&tab=" . $subtab . "&subpage=" . $subpage . $notify);
+		header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-plugins.php?page=plugins&tab=" . html_encode($subtab) . "&subpage=" . html_encode($subpage) . $notify);
 		exitZP();
 	}
 }
@@ -86,7 +86,7 @@ $filelist = array_slice($pluginlist, $subpage * PLUGINS_PER_PAGE, PLUGINS_PER_PA
 	var pluginsToPage = ['<?php echo implode("','", $pluginlist); ?>'];
 	function gotoPlugin(plugin) {
 		i = Math.floor(jQuery.inArray(plugin, pluginsToPage) / <?php echo PLUGINS_PER_PAGE; ?>);
-		window.location = '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-plugins.php?page=plugins&tab=<?php echo $subtab; ?>&subpage=' + i + '&show=' + plugin + '#' + plugin;
+		window.location = '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-plugins.php?page=plugins&tab=<?php echo html_encode($subtab); ?>&subpage=' + i + '&show=' + plugin + '#' + plugin;
 	}
 //-->
 </script>
