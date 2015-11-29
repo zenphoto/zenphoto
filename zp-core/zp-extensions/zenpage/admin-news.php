@@ -219,7 +219,7 @@ updatePublished('news');
 				<?php
 				$option = getNewsAdminOptionPath(getNewsAdminOption(NULL));
 				?>
-				<form class="dirtylistening" onReset="setClean('form_zenpageitemlist');" action="admin-news.php<?php echo $option; ?>" method="post" name="checkeditems" id="form_zenpageitemlist" onsubmit="return confirmAction();">
+				<form class="dirtylistening" onReset="setClean('form_zenpageitemlist');" action="admin-news.php<?php echo $option; ?>" method="post" name="checkeditems" id="form_zenpageitemlist" onsubmit="return confirmAction();" autocomplete="off">
 					<?php XSRFToken('checkeditems'); ?>
 					<div class="buttons">
 						<button type="submit" title="<?php echo gettext('Apply'); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><strong><?php echo gettext('Apply'); ?></strong>

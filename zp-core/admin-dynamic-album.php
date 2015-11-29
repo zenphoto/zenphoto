@@ -153,7 +153,7 @@ foreach ($subalbums as $folder) {
 	getSubalbumImages($folder);
 }
 ?>
-<form class="dirtylistening" onReset="setClean('savealbun_form');" id="savealbun_form" action="?savealbum" method="post" >
+<form class="dirtylistening" onReset="setClean('savealbun_form');" id="savealbun_form" action="?savealbum" method="post" autocomplete="off" >
 	<?php XSRFToken('savealbum'); ?>
 	<input type="hidden" name="savealbum" value="yes" />
 	<table>

@@ -121,7 +121,7 @@ zenpageJSCSS();
 				?>
 				<h1>
 					<?php echo gettext('Categories'); ?><span class="zenpagestats"><?php printCategoriesStatistic(); ?></span></h1>
-				<form class="dirtylistening" onReset="setClean('checkeditems');" action="admin-categories.php?page=news&amp;tab=categories" method="post" id="checkeditems" name="checkeditems" onsubmit="return confirmAction();">
+				<form class="dirtylistening" onReset="setClean('checkeditems');" action="admin-categories.php?page=news&amp;tab=categories" method="post" id="checkeditems" name="checkeditems" onsubmit="return confirmAction();" autocomplete="off">
 					<?php XSRFToken('checkeditems'); ?>
 					<input	type="hidden" name="action" id="action" value="update" />
 					<p class="buttons">

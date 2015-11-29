@@ -2165,9 +2165,9 @@ Zenphoto_Authority::printPasswordFormJS();
 													 <?php checked('1', getOption('protected_image_cache')); ?> />
 									</td>
 									<td><?php
-										echo gettext('If checked all image URIs will link to the image processor and the image cache will be disabled to browsers via an <em>.htaccess</em> file. Images are still cached but the image processor is used to serve the image rather than allowing the browser to fetch the file.') .
-										'<p class="notebox">' . gettext('<strong>WARNING	:</strong> This option adds significant overhead to <strong>each and every</strong> image reference! Some <em>JavaScript</em> and <em>Flash</em> based image handlers will not work with an image processor URI and are incompatible with this option.') . '</p>';
-										?></td>
+													 echo gettext('If checked all image URIs will link to the image processor and the image cache will be disabled to browsers via an <em>.htaccess</em> file. Images are still cached but the image processor is used to serve the image rather than allowing the browser to fetch the file.') .
+													 '<p class="notebox">' . gettext('<strong>WARNING	:</strong> This option adds significant overhead to <strong>each and every</strong> image reference! Some <em>JavaScript</em> and <em>Flash</em> based image handlers will not work with an image processor URI and are incompatible with this option.') . '</p>';
+													 ?></td>
 								</tr>
 								<tr>
 									<td><?php echo gettext("Secure image processor"); ?></td>
@@ -2176,9 +2176,9 @@ Zenphoto_Authority::printPasswordFormJS();
 													 <?php checked('1', getOption('secure_image_processor')); ?> />
 									</td>
 									<td><?php
-										echo gettext('When enabled, the image processor will check album access credentials.') .
-										'<p class="notebox">' . gettext('<strong>WARNING	:</strong> This option adds memory overhead to image caching! You may be unable to cache some images depending on your server memory availability.') . '</p>';
-										?></td>
+													 echo gettext('When enabled, the image processor will check album access credentials.') .
+													 '<p class="notebox">' . gettext('<strong>WARNING	:</strong> This option adds memory overhead to image caching! You may be unable to cache some images depending on your server memory availability.') . '</p>';
+													 ?></td>
 								</tr>
 								<tr>
 									<td><?php echo gettext("Full image protection:"); ?></td>
@@ -2312,9 +2312,9 @@ Zenphoto_Authority::printPasswordFormJS();
 
 								<tr>
 									<td><?php
-										echo gettext("Metadata");
-										$exifstuff = sortMultiArray($_zp_exifvars, array(2, 0));
-										?></td>
+													 echo gettext("Metadata");
+													 $exifstuff = sortMultiArray($_zp_exifvars, array(2, 0));
+													 ?></td>
 									<td>
 										<div id="resizable">
 											<ul id="metadatalist" class="metadatalist">
@@ -2932,9 +2932,9 @@ Zenphoto_Authority::printPasswordFormJS();
 															<span id="<?php echo $extension; ?>" ></span>
 															<?php
 															if (!$showExtension) {
-																$optionlink = FULLWEBPATH . '/' . ZENFOLDER . '/admin-options.php?page=options&amp;tab=plugin&amp;single=' . $extension;
+																$optionlink = FULLWEBPATH . '/' . ZENFOLDER . '/admin-options.php?page=options&amp;tab=plugin&amp;single=' . html_encode($extension);
 																?>
-																<span class="icons"><a href="<?php echo $optionlink; ?>" title="<?php printf(gettext("Change %s options"), $extension); ?>"><img class="icon-position-top3" src="images/options.png" alt="" />
+																<span class="icons"><a href="<?php echo $optionlink; ?>" title="<?php printf(gettext("Change %s options"), html_encode($extension)); ?>"><img class="icon-position-top3" src="images/options.png" alt="" />
 																		<?php
 																	}
 																	echo $extension;
@@ -3070,12 +3070,12 @@ Zenphoto_Authority::printPasswordFormJS();
 									<td>
 										<p><?php echo gettext("Normally this option should be set to <em>http</em>. If you are running a secure server, change this to <em>https</em>. Select <em>secure admin</em> if you need only to insure secure access to <code>admin</code> pages."); ?></p>
 										<p class="notebox"><?php
-											echo gettext("<strong>Note:</strong>" .
-															"<br /><br />Login from the front-end user login form is secure only if <em>https</em> is selected." .
-															"<br /><br />If you select <em>https</em> or <em>secure admin</em> your server <strong>MUST</strong> support <em>https</em>.  " .
-															"If you set either of these on a server which does not support <em>https</em> you will not be able to access the <code>admin</code> pages to reset the option! " .
-															'Your only possibility then is to change the option named <span class="inlinecode">server_protocol</span> in the <em>options</em> table of your database.');
-											?>
+							echo gettext("<strong>Note:</strong>" .
+											"<br /><br />Login from the front-end user login form is secure only if <em>https</em> is selected." .
+											"<br /><br />If you select <em>https</em> or <em>secure admin</em> your server <strong>MUST</strong> support <em>https</em>.  " .
+											"If you set either of these on a server which does not support <em>https</em> you will not be able to access the <code>admin</code> pages to reset the option! " .
+											'Your only possibility then is to change the option named <span class="inlinecode">server_protocol</span> in the <em>options</em> table of your database.');
+							?>
 										</p>
 									</td>
 								</tr>

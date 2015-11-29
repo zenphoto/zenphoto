@@ -265,7 +265,7 @@ codeblocktabsJS();
 					if ($result->loaded || $result->transient) {
 						if ($result->transient) {
 							?>
-							<form class="dirtylistening" onReset="setClean('addnews_form');" id="addnews_form" method="post" name="addnews" action="admin-edit.php?<?php echo $admintype; ?>&amp;save">
+							<form class="dirtylistening" onReset="setClean('addnews_form');" id="addnews_form" method="post" name="addnews" action="admin-edit.php?<?php echo $admintype; ?>&amp;save" autocomplete="off">
 								<?php
 								XSRFToken('save');
 							} else {
@@ -281,7 +281,7 @@ codeblocktabsJS();
 									<?php
 								}
 								?>
-								<form class="dirtylistening" onReset="setClean('form_cmsItemEdit');" method="post" name="update" id="form_cmsItemEdit" action="admin-edit.php?<?php echo $admintype; ?>&amp;update<?php echo $page; ?>">
+								<form class="dirtylistening" onReset="setClean('form_cmsItemEdit');" method="post" name="update" id="form_cmsItemEdit" action="admin-edit.php?<?php echo $admintype; ?>&amp;update<?php echo $page; ?>" autocomplete="off">
 									<?php
 									XSRFToken('update');
 								}
