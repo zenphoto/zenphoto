@@ -109,7 +109,7 @@ updatePublished('pages');
 	}
 	?>
 	<h1><?php echo gettext('Pages'); ?><span class="zenpagestats"><?php printPagesStatistic(); ?></span></h1>
-	<form class="dirtylistening" onReset="setClean('form_zenpageitemlist');" action="admin-pages.php" method="post" name="update" id="form_zenpageitemlist" onsubmit="return confirmAction();">
+	<form class="dirtylistening" onReset="setClean('form_zenpageitemlist');" action="admin-pages.php" method="post" name="update" id="form_zenpageitemlist" onsubmit="return confirmAction();" autocomplete="off">
 		<?php XSRFToken('update'); ?>
 
 		<div>

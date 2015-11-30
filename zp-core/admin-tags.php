@@ -156,7 +156,7 @@ printAdminHeader('tags');
 								<span id="autotext"><?php echo gettext('all'); ?></span>
 							</label>
 						</h2>
-						<form class="dirtylistening" onReset="setClean('tag_action_form');" name="tag_action_form" id="tag_action_form" action="?action=true&amp;tagsort=<?php echo html_encode($tagsort); ?>" method="post" >
+						<form class="dirtylistening" onReset="setClean('tag_action_form');" name="tag_action_form" id="tag_action_form" action="?action=true&amp;tagsort=<?php echo html_encode($tagsort); ?>" method="post" autocomplete="off" >
 							<?php XSRFToken('tag_action'); ?>
 							<input type="hidden" name="tag_action" id="tag_action" value="delete" />
 							<div class="box-tags-unpadded">
@@ -203,7 +203,7 @@ printAdminHeader('tags');
 
 					<td valign='top'>
 						<h2 class="h2_bordered_edit"><?php echo gettext("Rename tags"); ?></h2>
-						<form class="dirtylistening" onReset="setClean('form_tagrename');" name="tag_rename" id="form_tagrename" action="?rename=true&amp;tagsort=<?php echo html_encode($tagsort); ?>" method="post" >
+						<form class="dirtylistening" onReset="setClean('form_tagrename');" name="tag_rename" id="form_tagrename" action="?rename=true&amp;tagsort=<?php echo html_encode($tagsort); ?>" method="post" autocomplete="off" >
 							<?php XSRFToken('tag_rename'); ?>
 							<div class="box-tags-unpadded">
 								<ul class="tagrenamelist">
@@ -240,7 +240,7 @@ printAdminHeader('tags');
 
 					<td valign='top'>
 						<h2 class="h2_bordered_edit"><?php echo gettext("New tags"); ?></h2>
-						<form class="dirtylistening" onReset="setClean('form_newtags');"  name="new_tags" id="form_newtags" action="?newtags=true&amp;tagsort=<?php echo html_encode($tagsort); ?>" method="post">
+						<form class="dirtylistening" onReset="setClean('form_newtags');"  name="new_tags" id="form_newtags" action="?newtags=true&amp;tagsort=<?php echo html_encode($tagsort); ?>" method="post" autocomplete="off" >
 							<?php XSRFToken('new_tags'); ?>
 							<div class="box-tags-unpadded">
 								<ul class="tagnewlist">

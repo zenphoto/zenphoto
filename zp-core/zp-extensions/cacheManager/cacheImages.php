@@ -222,7 +222,7 @@ echo "\n" . '<div id = "content">';
 		}
 		//]]> -->
 	</script>
-	<form class="dirtylistening" onReset="setClean('size_selections');" id="size_selections" name="size_selections" action="?select&album=<?php echo $alb; ?>" method="post">
+	<form class="dirtylistening" onReset="setClean('size_selections');" id="size_selections" name="size_selections" action="?select&album=<?php echo $alb; ?>" method="post" autocomplete="off">
 		<?php XSRFToken('cacheImages') ?>
 		<ol class="no_bullets">
 			<?php

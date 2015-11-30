@@ -36,12 +36,16 @@ if (!defined('OFFSET_PATH')) {
 	require_once(dirname(__FILE__) . '/admin-globals.php');
 	require_once(SERVERPATH . '/' . ZENFOLDER . '/template-functions.php');
 
+	$extension = sanitize($_GET['extension']);
+	if (!in_array($extension, array_keys(getPluginFiles('*.php')))) {
+		exit();
+	}
+
 	header('Last-Modified: ' . ZP_LAST_MODIFIED);
 	header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 
 	$real_locale = getUserLocale();
 
-	$extension = sanitize($_GET['extension']);
 	$pluginType = @$_GET['type'];
 
 	if ($pluginType) {
