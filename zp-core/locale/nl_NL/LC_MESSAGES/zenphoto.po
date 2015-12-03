@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Zenphoto 1.4.11\n"
+"Project-Id-Version: Zenphoto 1.4.12\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-29 13:17+0100\n"
+"POT-Creation-Date: 2015-12-03 15:16+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: fretzl\n"
 "Language-Team: \n"
@@ -2265,7 +2265,7 @@ msgid "%1$s %2$s: %3$s%4$s"
 msgstr "%1$s %2$s: %3$s%4$s"
 
 #: zp-core/admin-functions.php:122 zp-core/admin-functions.php:4555
-#: zp-core/pluginDoc.php:127 zp-core/zp-extensions/user-expiry.php:106
+#: zp-core/pluginDoc.php:133 zp-core/zp-extensions/user-expiry.php:106
 #: zp-core/zp-extensions/user_groups.php:217
 msgid "admin"
 msgstr "admin"
@@ -9537,7 +9537,7 @@ msgstr "Ik ga accoord met deze voorwaarden."
 msgid "There are no upload handlers enabled that can service your request."
 msgstr "Er zijn geen uploaders geactiveerd om je verzoek uit te voeren."
 
-#: zp-core/pluginDoc.php:114
+#: zp-core/pluginDoc.php:120
 msgid ""
 "This document is generated from the plugin comment block and other items "
 "that are in English and outside of the Zenphoto translation system. This "
@@ -9548,31 +9548,31 @@ msgstr ""
 "link stuurt de URL naar Google vertalingen om de pagina te presenteren in je "
 "eigen taal."
 
-#: zp-core/pluginDoc.php:115
+#: zp-core/pluginDoc.php:121
 msgid "Translate this page."
 msgstr "Vertaal deze pagina"
 
-#: zp-core/pluginDoc.php:124
+#: zp-core/pluginDoc.php:130
 #, php-format
 msgid "See also the Zenphoto online documentation: <a href=\"%1$s\">%2$s</a>"
 msgstr "Zie ook de online Zenphoto documentatie: <a href=\"%1$s\">%2$s</a>"
 
-#: zp-core/pluginDoc.php:126
+#: zp-core/pluginDoc.php:132
 msgid "Plugin usage information"
 msgstr "Plugin gebruiksinformatie"
 
-#: zp-core/pluginDoc.php:127
+#: zp-core/pluginDoc.php:133
 #, php-format
 msgid "%1$s %2$s: %3$s"
 msgstr "%1$s %2$s: %3$s"
 
-#: zp-core/pluginDoc.php:263
+#: zp-core/pluginDoc.php:269
 msgid "Option:"
 msgid_plural "Options:"
 msgstr[0] "Optie:"
 msgstr[1] "Opties:"
 
-#: zp-core/pluginDoc.php:368
+#: zp-core/pluginDoc.php:374
 msgid "Macro defined:"
 msgid_plural "Macros defined:"
 msgstr[0] "Gedefiniëerde macro:"
