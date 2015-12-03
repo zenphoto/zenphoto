@@ -154,7 +154,7 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	function zp_imageGet($imgfile) {
 		global $_lib_Imagick_info;
 
-		if (in_array(getSuffix($imgfile), $_lib_Imagick_info)) {
+		if (array_key_exists(strtoupper(getSuffix($imgfile)), $_lib_Imagick_info)) {
 			$image = new Imagick();
 
 			$maxHeight = getOption('magick_max_height');
@@ -165,6 +165,11 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 			}
 
 			$image->readImage(filesystemToInternal($imgfile));
+
+			//Generic CMYK to RGB conversion
+			if ($image->getImageColorspace() == Imagick::COLORSPACE_CMYK) {
+				$image->transformimagecolorspace(Imagick::COLORSPACE_SRGB);
+			}
 
 			return $image;
 		}
