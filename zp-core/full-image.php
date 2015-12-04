@@ -30,7 +30,11 @@ $image = internalToFilesystem($image8);
 /* Prevent hotlinking to the full image from other domains. */
 if (getOption('hotlink_protection') && isset($_SERVER['HTTP_REFERER'])) {
 	preg_match('|(.*)//([^/]*)|', $_SERVER['HTTP_REFERER'], $matches);
-	if (preg_replace('/^www\./', '', strtolower($_SERVER['SERVER_NAME'])) != preg_replace('/^www\./', '', strtolower($matches[2]))) {
+	$checkstring = preg_replace('/^www./', '', strtolower($matches[2])); 
+	if (strpos($checkstring,":")) {
+		$checkstring = substr($checkstring,0,strpos($checkstring,":"));
+	};
+	if (preg_replace('/^www./', '', strtolower($_SERVER['SERVER_NAME'])) != $checkstring) { 
 		/* It seems they are directly requesting the full image. */
 		header('Location: ' . FULLWEBPATH . '/index.php?album=' . $album8 . '&image=' . $image8);
 		exitZP();
