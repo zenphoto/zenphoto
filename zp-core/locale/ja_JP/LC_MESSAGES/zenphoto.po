@@ -18,9 +18,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Zenphoto 1.4.10\n"
+"Project-Id-Version: Zenphoto 1.4.11\n"
 "Report-Msgid-Bugs-To: webmaster at momo-i.org\n"
-"POT-Creation-Date: 2015-11-27 08:32+0900\n"
+"POT-Creation-Date: 2015-12-09 13:12+0900\n"
 "PO-Revision-Date: 2009-08-12 08:30+0900\n"
 "Last-Translator: momo-i <webmaster at momo-i dot org>\n"
 "Language-Team: Japanese\n"
@@ -206,7 +206,7 @@ msgstr ""
 msgid "Image not found; file %s does not exist."
 msgstr "画像が見つかりませんでした。ファイル%sは存在しません。"
 
-#: zp-core/i.php:160 zp-core/full-image.php:204
+#: zp-core/i.php:160 zp-core/full-image.php:208
 msgid "Forbidden(2)"
 msgstr "禁止(2)"
 
@@ -890,18 +890,18 @@ msgstr ""
 "た。"
 
 #: zp-core/admin-options.php:570 zp-core/setup/setup-functions.php:425
-#: zp-core/zp-extensions/dynamic-locale.php:57
+#: zp-core/zp-extensions/dynamic-locale.php:58
 #, php-format
 msgid "<em>%s</em> is not available."
 msgstr "<em>%s</em>は利用不可です。"
 
 #: zp-core/admin-options.php:571 zp-core/setup/setup-functions.php:426
-#: zp-core/zp-extensions/dynamic-locale.php:58
+#: zp-core/zp-extensions/dynamic-locale.php:59
 #, php-format
 msgid "The locale %s is not supported on your server."
 msgstr "言語%sはサーバで未対応です。"
 
-#: zp-core/admin-options.php:572 zp-core/zp-extensions/dynamic-locale.php:60
+#: zp-core/admin-options.php:572 zp-core/zp-extensions/dynamic-locale.php:61
 msgid "See the troubleshooting guide on zenphoto.org for details."
 msgstr ""
 "詳細についてはzenphoto.orgのトラブルシューティングガイドを見てください。"
@@ -4693,7 +4693,8 @@ msgstr[0] "<strong>%u</strong>件の画像"
 msgid "<strong>%1$u</strong> Album (%2$u un-published)"
 msgid_plural ""
 "<strong>%1$u</strong> Albums (<strong>%2$u</strong> un-published)"
-msgstr[0] "<strong>%1$u</strong>個のアルバム (内<strong>%2$u</strong>件は非公開)"
+msgstr[0] ""
+"<strong>%1$u</strong>個のアルバム (内<strong>%2$u</strong>件は非公開)"
 
 #: zp-core/admin.php:674
 #, php-format
@@ -4706,7 +4707,8 @@ msgstr[0] "<strong>%u</strong>個のアルバム"
 msgid "<strong>%1$u</strong> Comment (%2$u in moderation)"
 msgid_plural ""
 "<strong>%1$u</strong> Comments (<strong>%2$u</strong> in moderation)"
-msgstr[0] "<strong>%1$u</strong>件のコメント (内<strong>%2$u</strong>件がモデレート中)"
+msgstr[0] ""
+"<strong>%1$u</strong>件のコメント (内<strong>%2$u</strong>件がモデレート中)"
 
 #: zp-core/admin.php:685
 #, php-format
@@ -6149,7 +6151,7 @@ msgid "%1$s %2$s: %3$s%4$s"
 msgstr "%1$s %2$s: %3$s%4$s"
 
 #: zp-core/admin-functions.php:122 zp-core/admin-functions.php:4555
-#: zp-core/pluginDoc.php:127 zp-core/zp-extensions/user_groups.php:217
+#: zp-core/pluginDoc.php:133 zp-core/zp-extensions/user_groups.php:217
 #: zp-core/zp-extensions/user-expiry.php:106
 msgid "admin"
 msgstr "管理者"
@@ -10811,7 +10813,7 @@ msgstr "カテゴリ数"
 msgid "Return to %s"
 msgstr "%sへ戻る"
 
-#: zp-core/pluginDoc.php:114
+#: zp-core/pluginDoc.php:120
 msgid ""
 "This document is generated from the plugin comment block and other items "
 "that are in English and outside of the Zenphoto translation system. This "
@@ -10822,31 +10824,31 @@ msgstr ""
 "の外にある他のアイテムから生成されます。このリンクはあなたの言語でページを表"
 "示するためにGoogleの翻訳WEBのURLを送信します。"
 
-#: zp-core/pluginDoc.php:115
+#: zp-core/pluginDoc.php:121
 msgid "Translate this page."
 msgstr "このページを翻訳します。"
 
-#: zp-core/pluginDoc.php:124
+#: zp-core/pluginDoc.php:130
 #, php-format
 msgid "See also the Zenphoto online documentation: <a href=\"%1$s\">%2$s</a>"
 msgstr ""
 "Zenphotoオンラインドキュメントもご覧ください: <a href=\"%1$s\">%2$s</a>"
 
-#: zp-core/pluginDoc.php:126
+#: zp-core/pluginDoc.php:132
 msgid "Plugin usage information"
 msgstr "プラグインの使用方法の情報"
 
-#: zp-core/pluginDoc.php:127
+#: zp-core/pluginDoc.php:133
 #, php-format
 msgid "%1$s %2$s: %3$s"
 msgstr "%1$s %2$s: %3$s"
 
-#: zp-core/pluginDoc.php:263
+#: zp-core/pluginDoc.php:269
 msgid "Option:"
 msgid_plural "Options:"
 msgstr[0] "オプション:"
 
-#: zp-core/pluginDoc.php:368
+#: zp-core/pluginDoc.php:374
 msgid "Macro defined:"
 msgid_plural "Macros defined:"
 msgstr[0] "定義済みマクロ:"
@@ -12636,7 +12638,7 @@ msgstr ""
 "ません。"
 
 #: zp-core/zp-extensions/federated_logon.php:134
-#: zp-core/zp-extensions/dynamic-locale.php:186
+#: zp-core/zp-extensions/dynamic-locale.php:182
 #: zp-core/zp-extensions/html_meta_tags.php:144
 #: zp-core/zp-extensions/sitemap-extended.php:188
 #: zp-core/zp-extensions/register_user.php:108
@@ -13418,7 +13420,7 @@ msgid ""
 msgstr ""
 "あなたのサイトを見る人が自分で選択した言語の翻訳を選択することができます。"
 
-#: zp-core/zp-extensions/dynamic-locale.php:165
+#: zp-core/zp-extensions/dynamic-locale.php:161
 #: zp-core/zp-extensions/html_meta_tags.php:74
 #: zp-core/zp-extensions/sitemap-extended.php:72
 msgid ""
@@ -13430,7 +13432,7 @@ msgstr ""
 "<code><em>language</em></code>は言語コードである形式になります、例としてフラ"
 "ンス語の場合は<code><em>fr</em></code>。"
 
-#: zp-core/zp-extensions/dynamic-locale.php:167
+#: zp-core/zp-extensions/dynamic-locale.php:163
 #: zp-core/zp-extensions/html_meta_tags.php:76
 #: zp-core/zp-extensions/sitemap-extended.php:74
 msgid ""
@@ -13446,28 +13448,28 @@ msgstr ""
 "自動的にメインドメインに未定義のサブドメインをリダイレクトします。あなたのプ"
 "ロバイダがこれを行う場合、サブドメインの作成は必要ありません。)"
 
-#: zp-core/zp-extensions/dynamic-locale.php:169
+#: zp-core/zp-extensions/dynamic-locale.php:165
 msgid "Use flags"
 msgstr "国旗を使用する"
 
-#: zp-core/zp-extensions/dynamic-locale.php:171
+#: zp-core/zp-extensions/dynamic-locale.php:167
 msgid "Checked produces an array of flags. Not checked produces a selector."
 msgstr ""
 "国旗の配列を生成するチェックをしました。セレクタを生成するチェックをしません"
 "でした。"
 
-#: zp-core/zp-extensions/dynamic-locale.php:172
+#: zp-core/zp-extensions/dynamic-locale.php:168
 #: zp-core/zp-extensions/html_meta_tags.php:130
 #: zp-core/zp-extensions/sitemap-extended.php:174
 msgid "Use subdomains"
 msgstr "サブドメインを使用"
 
-#: zp-core/zp-extensions/dynamic-locale.php:182
+#: zp-core/zp-extensions/dynamic-locale.php:178
 msgid ""
-"* This option may be set via the <a href=\"javascript:gotoName('dynamic-"
-"locale');\"><em>dynamic-locale</em></a> plugin options."
+"* This option may be set via the <a onclick=\"gotoName('dynamic-locale');"
+"\"><em>dynamic-locale</em></a> plugin options."
 msgstr ""
-"* オプションは<a href=\"javascript:gotoName('dynamic-locale');\"><em>dynamic-"
+"* このオプションは<a onclick=\"gotoName('dynamic-locale');\"><em>dynamic-"
 "locale</em></a>プラグインオプションを経由して設定されるかも知れません。"
 
 #: zp-core/zp-extensions/html_meta_tags.php:19
@@ -17130,7 +17132,8 @@ msgstr[0] "<strong>%1$u</strong>件のカテゴリ"
 msgid "<strong>%1$u</strong> category (<strong>%2$u</strong> un-published)"
 msgid_plural ""
 "<strong>%1$u</strong> categories (<strong>%2$u</strong> un-published)"
-msgstr[0] "<strong>%1$u</strong>件のカテゴリ (内<strong>%2$u</strong>件が未公開)"
+msgstr[0] ""
+"<strong>%1$u</strong>件のカテゴリ (内<strong>%2$u</strong>件が未公開)"
 
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1410
 msgid "Published/Not published/Scheduled for publishing"
@@ -21812,7 +21815,10 @@ msgid ""
 "that are un-published by <a href=\"http://www.zenphoto.org/news/an-overview-"
 "of-zenphoto-users#rules-of-protection-andvisibility-for-zenphoto-obj"
 "\">inheritance</a>."
-msgstr "非公開のアイテム数は<a href=\"http://www.zenphoto.org/news/an-overview-of-zenphoto-users#rules-of-protection-andvisibility-for-zenphoto-obj\">継承</a>による非公開アイテムは<strong>含まれません</strong>。"
+msgstr ""
+"非公開のアイテム数は<a href=\"http://www.zenphoto.org/news/an-overview-of-"
+"zenphoto-users#rules-of-protection-andvisibility-for-zenphoto-obj\">継承</a>"
+"による非公開アイテムは<strong>含まれません</strong>。"
 
 #: zp-core/zp-extensions/publishContent/publishContent.php:222
 msgid "Albums not published"
