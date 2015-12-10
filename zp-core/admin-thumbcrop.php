@@ -7,6 +7,8 @@ admin_securityChecks(ALBUM_RIGHTS, $return = currentRelativeURL());
 
 $albumname = sanitize_path($_REQUEST['a']);
 $imagename = sanitize_path($_REQUEST['i']);
+$subpage = sanitize($_REQUEST['subpage']);
+$tagsort = sanitize($_REQUEST['tagsort']);
 
 $albumobj = newAlbum($albumname);
 if (!$albumobj->isMyItem(ALBUM_RIGHTS)) { // prevent nefarious access to this page.
@@ -152,11 +154,8 @@ if (isset($_REQUEST['crop'])) {
 	header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . $return);
 	exitZP();
 }
-$subpage = sanitize($_REQUEST['subpage']);
-$tagsort = sanitize($_REQUEST['tagsort']);
 printAdminHeader('edit', 'thumbcrop');
 ?>
-
 <script src="js/jquery.Jcrop.js" type="text/javascript"></script>
 <link rel="stylesheet" href="js/jquery.Jcrop.css" type="text/css" />
 <script type="text/javascript" >
