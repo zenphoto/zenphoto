@@ -172,7 +172,7 @@ function printAlbumMenuList($option, $showcount = NULL, $css_id = '', $css_class
 	
 	$startlist = $startlist && !($option == 'omit-top' || $option == 'list-sub');
 	if ($startlist)
-		echo "<ul" . $css_id . ">\n"; // top level list
+		echo '<ul id="'. $css_id . '">'."\n"; // top level list
 		/*		 * ** Top level start with Index link  *** */
 	if ($option === "list" OR $option === "list-top") {
 		if (!empty($indexname)) {
