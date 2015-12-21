@@ -1557,7 +1557,7 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 				$itemtitlelink = $pageobj->getTitlelink();
 				$itemurl = $pageobj->getLink();
 				$count = '';
-				if (!$pageobj->checkAccess()) {
+				if ($pageobj->isProtected()) {
 					$password_class = ' has_password';
 				}
 				break;
@@ -1576,7 +1576,7 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 				} else {
 					$count = '';
 				}
-				if (!$catobj->checkAccess()) {
+				if ($catobj->isProtected()) {
 					$password_class = ' has_password';
 				}
 				break;

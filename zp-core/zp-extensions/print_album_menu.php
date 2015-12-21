@@ -240,7 +240,7 @@ function printAlbumMenuListAlbum($albums, $folder, $option, $showcount, $showsub
 		$topalbum = '';
 		$albumobj = newAlbum($album, true);
 		$has_password = '';
-		if(!$albumobj->checkAccess()) {
+		if($albumobj->isProtected()) {
 			$has_password = ' has_password';
 		}
 		if ($level > 1 || ($option != 'omit-top')) { // listing current level album
