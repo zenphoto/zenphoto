@@ -1438,17 +1438,25 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 	if (is_null($limit)) {
 		$limit = MENU_TRUNCATE_STRING;
 	}
-	if ($css_id != "") {
-		$css_id = " id='" . $css_id . "'";
+	if (is_null($css_id)) {
+		switch ($mode) {
+			case 'pages':
+				$css_id = 'menu_pages';
+				break;
+			case 'categories':
+			case 'allcategories':
+				$css_id = 'menu_categories';
+				break;
+		}
 	}
-	if ($css_class_topactive != "") {
-		$css_class_topactive = " class='" . $css_class_topactive . "'";
+	if (is_null($css_class_topactive)) {
+		$css_class_topactive = 'menu_topactive';
 	}
-	if ($css_class != "") {
-		$css_class = " class='" . $css_class . "'";
+	if (is_null($css_class)) {
+		$css_class = 'submenu';
 	}
-	if ($css_class_active != "") {
-		$css_class_active = " class='" . $css_class_active . "'";
+	if (is_null($css_class_active)) {
+		$css_class_active = 'menu-active';
 	}
 	if ($showsubs === true)
 		$showsubs = 9999999999;
@@ -1488,7 +1496,7 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 		return; // nothing to do
 	$startlist = $startlist && !($option == 'omit-top' || $option == 'list-sub');
 	if ($startlist)
-		echo "<ul$css_id>";
+		echo '<ul id="' . $css_id . '">';
 	// if index link and if if with count
 	if (!empty($indexname)) {
 		if ($limit) {
@@ -1499,7 +1507,7 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 		switch ($mode) {
 			case 'pages':
 				if ($_zp_gallery_page == "index.php") {
-					echo "<li $css_class_topactive>" . html_encode($display) . "</li>";
+					echo '<li class="' . $css_class_topactive . '">' . html_encode($display) . '</li>';
 				} else {
 					echo "<li><a href='" . html_encode(getGalleryIndexURL()) . "' title='" . html_encode($indexname) . "'>" . html_encode($display) . "</a></li>";
 				}
@@ -1507,7 +1515,7 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 			case 'categories':
 			case 'allcategories':
 				if (($_zp_gallery_page == "news.php") && !is_NewsCategory() && !is_NewsArchive() && !is_NewsArticle()) {
-					echo "<li $css_class_topactive>" . html_encode($display);
+					echo '<li class="' . $css_class_topactive . '">' . html_encode($display);
 				} else {
 					echo "<li><a href=\"" . html_encode(getNewsIndexURL()) . "\" title=\"" . html_encode($indexname) . "\">" . html_encode($display) . "</a>";
 				}
@@ -1537,6 +1545,7 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 		$parents[$c] = NULL;
 	}
 	foreach ($items as $item) {
+		$password_class = '';
 		switch ($mode) {
 			case 'pages':
 				$catcount = 1; //	so page items all show.
@@ -1548,6 +1557,9 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 				$itemtitlelink = $pageobj->getTitlelink();
 				$itemurl = $pageobj->getLink();
 				$count = '';
+				if (!$pageobj->checkAccess()) {
+					$password_class = ' has_password';
+				}
 				break;
 			case 'categories':
 			case 'allcategories':
@@ -1563,6 +1575,9 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 					$count = ' <span style="white-space:nowrap;"><small>(' . sprintf(ngettext('%u article', '%u articles', $catcount), $catcount) . ')</small></span>';
 				} else {
 					$count = '';
+				}
+				if (!$catobj->checkAccess()) {
+					$password_class = ' has_password';
 				}
 				break;
 		}
@@ -1581,7 +1596,7 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 
 			if ($process) {
 				if ($level > $indent) {
-					echo "\n" . str_pad("\t", $indent, "\t") . "<ul$css_class>\n";
+					echo "\n" . str_pad("\t", $indent, "\t") . '<ul class="' . $css_class . '">'."\n";
 					$indent++;
 					$parents[$indent] = NULL;
 					$open[$indent] = 0;
@@ -1611,9 +1626,9 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 				$open[$indent] ++;
 				$parents[$indent] = $itemid;
 				if ($level == 1) { // top level
-					$class = $css_class_topactive;
+					$class = $css_class_topactive . $password_class;
 				} else {
-					$class = $css_class_active;
+					$class = $css_class_active . $password_class;
 				}
 				if (!is_null($_zp_current_zenpage_page)) {
 					$gettitle = $_zp_current_zenpage_page->getTitle();
@@ -1641,10 +1656,13 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 							break;
 					}
 				}
+				if(empty($current)) {
+					$current =  trim($password_class);
+				}
 				if ($limit) {
 					$itemtitle = shortenContent($itemtitle, $limit, MENU_TRUNCATE_INDICATOR);
 				}
-				echo "<li><a $current href=\"" . html_encode($itemurl) . "\" title=\"" . html_encode(getBare($itemtitle)) . "\">" . html_encode($itemtitle) . "</a>" . $count;
+				echo '<li><a class="' . $current. '" href="' . html_encode($itemurl) . '" title="' . html_encode(getBare($itemtitle)) . '">' . html_encode($itemtitle) . '</a>' . $count;
 			}
 		}
 	}
