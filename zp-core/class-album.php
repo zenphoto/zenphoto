@@ -126,7 +126,7 @@ class AlbumBase extends MediaObject {
 		}
 		if ($msg) {
 			if (!$quiet) {
-				zp_error($msg, E_USER_ERROR);
+				zp_error($msg, E_USER_WARNING);
 			}
 			return false;
 		}
