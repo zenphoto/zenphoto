@@ -389,7 +389,7 @@ function inventMenuItem($menuset, $visibility) {
 			}
 			if (!empty($currentkey)) {
 				if (is_NewsArticle()) {
-					$item = array('id'				 => 9999, 'sort_order' => $currentkey, 'parentid'	 => $item['id'], 'type'			 => 'zenpagenews',
+					$item = array('id'				 => 9999, 'sort_order' => $currentkey, 'parentid'	 => $item['id'], 'type'			 => 'article',
 									'include_li' => true, 'title'			 => $_zp_current_article->getTitle(),
 									'show'			 => 1, 'link'			 => '', 'menuset'		 => $menuset);
 				} else {
@@ -403,7 +403,7 @@ function inventMenuItem($menuset, $visibility) {
 					if ($item['type'] == 'custompage' && $item['link'] == 'search') {
 						$insertpoint = $item['sort_order'];
 						$currentkey = $insertpoint . '-9999';
-						$item = array('id'				 => 9999, 'sort_order' => $currentkey, 'parentid'	 => $item['id'], 'type'			 => 'Page',
+						$item = array('id'				 => 9999, 'sort_order' => $currentkey, 'parentid'	 => $item['id'], 'type'			 => 'page',
 										'include_li' => true, 'title'			 => $_zp_current_page->getTitle(),
 										'show'			 => 1, 'link'			 => '', 'menuset'		 => $menuset);
 						break;
