@@ -1269,13 +1269,13 @@ function getNewsPagesStatistic($option) {
 	foreach ($items as $item) {
 		switch ($option) {
 			case "news":
-				$itemobj = new ZenpageNews($item['titlelink']);
+				$itemobj = newArticle($item['titlelink']);
 				break;
 			case "pages":
-				$itemobj = new ZenpagePage($item['titlelink']);
+				$itemobj = newPage($item['titlelink']);
 				break;
 			case "categories":
-				$itemobj = new ZenpageCategory($item['titlelink']);
+				$itemobj = newCategory($item['titlelink']);
 				break;
 		}
 		if ($itemobj->getShow() == 1) {
