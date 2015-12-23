@@ -1473,7 +1473,7 @@ class Album extends AlbumBase {
 			} else {
 				$msg = sprintf(gettext("Error: The album named %s cannot be found."), html_encode($this->name));
 			}
-			zp_error($msg, E_USER_NOTICE);
+			zp_error($msg, E_USER_WARNING);
 			return array();
 		}
 

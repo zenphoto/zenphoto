@@ -57,7 +57,7 @@ function newImage($album, $filename = NULL, $quiet = false) {
 		$msg = sprintf(gettext('Bad filename suffix in newImage(%s)'), $filename);
 	}
 	if (!$quiet) {
-		zp_error($msg, E_USER_NOTICE);
+		zp_error($msg, E_USER_WARNING);
 	}
 	return $_zp_missing_image;
 }
