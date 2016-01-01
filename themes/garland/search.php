@@ -197,7 +197,7 @@ if (!defined('WEBPATH'))
 										while (next_album()) {
 											?>
 											<div class="album">
-												<a class="albumthumb" href="<?php echo getAlbumURL(); ?>" title="<?php printf(gettext('View album:  %s'), getBareAlbumTitle()); ?>">
+												<a class="albumthumb" href="<?php echo getAlbumURL(); ?>" title="<?php printf(gettext('View album:  %s'), html_encode(getBareAlbumTitle())); ?>">
 													<?php printCustomAlbumThumbImage(getAlbumTitle(), 85, NULL, NULL, 85, 85); ?>
 												</a>
 												<div class="albumdesc">
