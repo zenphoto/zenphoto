@@ -2111,6 +2111,10 @@ zp-core/zp-extensions/tinymce/plugins/charmap
 zp-core/zp-extensions/tinymce/plugins/charmap/plugin.min.js
 zp-core/zp-extensions/tinymce/plugins/code
 zp-core/zp-extensions/tinymce/plugins/code/plugin.min.js
+zp-core/zp-extensions/tinymce/plugins/codesample
+zp-core/zp-extensions/tinymce/plugins/codesample/plugin.min.js
+zp-core/zp-extensions/tinymce/plugins/codesample/css
+zp-core/zp-extensions/tinymce/plugins/codesample/css/prism.css
 zp-core/zp-extensions/tinymce/plugins/colorpicker
 zp-core/zp-extensions/tinymce/plugins/colorpicker/plugin.min.js
 zp-core/zp-extensions/tinymce/plugins/compat3x
@@ -2168,6 +2172,8 @@ zp-core/zp-extensions/tinymce/plugins/hr
 zp-core/zp-extensions/tinymce/plugins/hr/plugin.min.js
 zp-core/zp-extensions/tinymce/plugins/image
 zp-core/zp-extensions/tinymce/plugins/image/plugin.min.js
+zp-core/zp-extensions/tinymce/plugins/imagetools
+zp-core/zp-extensions/tinymce/plugins/imagetools/plugin.min.js
 zp-core/zp-extensions/tinymce/plugins/importcss
 zp-core/zp-extensions/tinymce/plugins/importcss/plugin.min.js
 zp-core/zp-extensions/tinymce/plugins/insertdatetime
@@ -2322,4 +2328,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-2324
+2330

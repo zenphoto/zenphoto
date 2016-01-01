@@ -338,7 +338,17 @@ class cmsFilters {
  * @return string
  */
 function getNewsIndexURL() {
-	return zp_apply_filter('getLink', rewrite_path(_NEWS_ . '/', "/index.php?p=news"), 'news.php', NULL);
+	global $_zp_current_article;
+	$p_rewrite = $p = '';
+	if (in_context(ZP_ZENPAGE_NEWS_ARTICLE) && in_context(ZP_ZENPAGE_SINGLE)) {
+		$pos = floor(($_zp_current_article->getIndex() / ZP_ARTICLES_PER_PAGE) + 1);
+		if ($pos > 1) {
+			$p_rewrite = $pos;
+			$p = '&page=' . $pos;
+		}
+	}
+
+	return zp_apply_filter('getLink', rewrite_path(_NEWS_ . '/' . $p_rewrite, "/index.php?p=news" . $p), 'news.php', NULL);
 }
 
 /**

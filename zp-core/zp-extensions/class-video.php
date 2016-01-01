@@ -98,7 +98,7 @@ class Video extends Image {
 		if ($msg) {
 			$this->exists = false;
 			if (!$quiet) {
-				zp_error($msg, E_USER_ERROR);
+				zp_error($msg, E_USER_WARNING);
 			}
 			return;
 		}

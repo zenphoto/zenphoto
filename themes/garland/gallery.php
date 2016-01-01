@@ -38,7 +38,6 @@ if (!defined('WEBPATH'))
 									<?php printCodeblock(1); ?>
 									<div id="albums">
 										<?php
-										setOption('albums_per_page', 12, false);
 										while (next_album()) {
 											?>
 											<div class="album">
