@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZenPhoto20 1.2.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-01 15:16-0500\n"
-"PO-Revision-Date: 2016-01-01 15:59-0500\n"
+"POT-Creation-Date: 2016-01-02 12:23-0500\n"
+"PO-Revision-Date: 2016-01-02 12:24-0500\n"
 "Last-Translator: Stephen <stephen@sbillard.org>\n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon <michel@mgagnon.net>\n"
 "Language: fr_FR\n"
@@ -2340,7 +2340,7 @@ msgstr "arrêter le diaporama"
 #: themes/zpminimal/search.php:29 themes/zpmobile/functions.php:65
 #: themes/zpskeleton/inc-header.php:173 zp-core/template-functions.php:1399
 #: zp-core/zp-extensions/menu_manager.php:837
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:454
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:457
 msgid "Home"
 msgstr "Accueil"
 
@@ -4355,19 +4355,19 @@ msgstr "Ordre des images sauvegardé"
 
 #: zp-core/admin-albumsort.php:144 zp-core/admin-functions.php:4933
 #: zp-core/zp-extensions/comment_form/admin-comments.php:269
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:922
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:925
 #: zp-core/zp-extensions/zenpage/admin-functions.php:1601
 msgid "Selected items deleted"
 msgstr "Les éléments sélectionnés ont été supprimés"
 
 #: zp-core/admin-albumsort.php:147 zp-core/admin-functions.php:4936
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:926
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:929
 #: zp-core/zp-extensions/zenpage/admin-functions.php:1604
 msgid "Selected items published"
 msgstr "Les éléments sélectionnés sont publiés"
 
 #: zp-core/admin-albumsort.php:150 zp-core/admin-functions.php:4939
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:930
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:933
 #: zp-core/zp-extensions/zenpage/admin-functions.php:1607
 msgid "Selected items unpublished"
 msgstr "Les éléments sélectionnés ne sont plus publiés"
@@ -7428,15 +7428,15 @@ msgstr "Métadonnées"
 #: zp-core/admin-options.php:2374 zp-core/admin-users.php:487
 #: zp-core/zp-extensions/contact_form.php:77
 #: zp-core/zp-extensions/googleMap.php:86
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:104
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:105
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:107
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:108
 msgid "show"
 msgstr "afficher"
 
 #: zp-core/admin-options.php:2343 zp-core/admin-options.php:2356
 #: zp-core/zp-extensions/googleMap.php:87
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:98
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:99
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:101
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:102
 msgid "hide"
 msgstr "masquer"
 
@@ -12378,7 +12378,7 @@ msgstr "La sécurité de <em>%s</em> est compromise"
 #, php-format
 msgid ""
 "ZenPhoto20 suggests you make the sensitive files in the %1$s folder "
-"accessable by <em>owner</em> only (permissions = 0600). The file permissions "
+"accessible by <em>owner</em> only (permissions = 0600). The file permissions "
 "for <em>%2$s</em> are %3$04o which may allow unauthorized access."
 msgstr ""
 "ZenPhoto20 recommande que vous définissiez les droits d’accès des fichiers "
@@ -17442,7 +17442,7 @@ msgstr "URL :"
 #, php-format
 msgid ""
 "Select <em>URL</em> and links paths will have the language selector "
-"prepended in the form <code>%1$s/<em>language</em>/...</code> "
+"prepended in the form <code>%1$s/<em>language</em>/...</code>"
 msgstr ""
 "Choisir <em>URL</em> ; alors les liens verront le sélecteur de langue ajouté "
 "sous la forme <code>%1$s/<em>language</em>/...</code> "
@@ -19564,7 +19564,7 @@ msgstr[0] "page {%u}"
 msgstr[1] "page {%u}"
 
 #: zp-core/zp-extensions/menu_manager.php:842
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:458
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:461
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:258
 #: zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:120
 msgid "News index"
@@ -19618,169 +19618,169 @@ msgstr ""
 msgid "Sort order saved."
 msgstr "Ordre de tri sauvegardé."
 
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:62
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:65
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:375
 #, php-format
 msgid "Target does not exist in <em>%1$s</em> theme"
 msgstr "La cible n’existe pas dans le thème <em>%1$s</em>"
 
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:64
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:67
 msgid "Target does not exist"
 msgstr "La cible n’existe pas"
 
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:85
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:88
 msgid "The object of this menu is under password protection"
 msgstr "L’objet de ce menu est protégé par un mot de passe."
 
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:89
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:92
 msgid "under password protection"
 msgstr "protégé par mot de passe"
 
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:118
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:121
 #: zp-core/zp-extensions/publishContent/publishContent.php:310
 #: zp-core/zp-extensions/zenpage/admin-functions.php:286
 msgid "view"
 msgstr "Voir"
 
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:134
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:137
 #, php-format
 msgid "Ok to delete %s? This cannot be undone."
 msgstr ""
 "Voulez-vous réellement effacer %s ?  Cette opération est IRRÉVERSIBLE !"
 
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:135
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:138
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:182
 #: zp-core/zp-extensions/zenpage/admin-edit.php:555
 #: zp-core/zp-extensions/zenpage/admin-functions.php:303
 msgid "delete"
 msgstr "Supprimer"
 
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:241
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:244
 msgid "Hidden and visible items"
 msgstr "Éléments visibles et masqués"
 
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:242
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:245
 msgid "Visible items"
 msgstr "Éléments visibles"
 
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:243
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:246
 msgid "hidden items"
 msgstr "Éléments masqués"
 
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:462
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:465
 msgid "Menu items for all objects added."
 msgstr "Les éléments de menu pour tous les objets ajoutés."
 
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:466
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:469
 msgid "Menu items for all albums added."
 msgstr "Les éléments de menu pour tous les albums ont été ajoutés."
 
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:471
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:628
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:474
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:631
 msgid "You forgot to select an album."
 msgstr "Vous avez oublié de selectionner un album."
 
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:474
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:477
 #, php-format
 msgid "Album menu item <em>%s</em> added"
 msgstr "L’élement de menu d’album <em>%s</em> a été ajouté"
 
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:480
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:506
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:524
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:532
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:546
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:554
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:567
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:636
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:652
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:668
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:675
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:689
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:696
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:708
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:730
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:483
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:509
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:527
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:535
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:549
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:557
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:570
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:639
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:655
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:671
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:678
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:692
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:699
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:711
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:733
 msgid "You forgot to give your menu item a <strong>title</strong>!"
 msgstr ""
 "Vous avez oublié de donner un <strong>titre</strong> à votre élément de "
 "menu !"
 
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:483
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:486
 #, php-format
 msgid "Gallery index menu item <em>%s</em> added"
 msgstr "L’élément de menu de l’index de la galerie <em>%s</em> a été ajouté"
 
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:487
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:490
 msgid "Menu items for all Zenpage pages added."
 msgstr "Les éléments de menu pour tous les pages Zenpage ont été ajoutés."
 
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:491
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:494
 msgid "Menu items for all Zenpage categories added."
 msgstr "Les éléments de menu pour tous les catégories Zenpage ont été ajoutés."
 
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:497
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:515
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:644
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:660
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:732
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:500
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:518
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:647
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:663
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:735
 msgid "You forgot to give your menu item a <strong>link</strong>!"
 msgstr ""
 "Vous avez oublié de donner un <strong>lien</strong> à votre élément de menu !"
 
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:500
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:503
 #, php-format
 msgid "Zenpage page menu item <em>%s</em> added"
 msgstr "L’élément de menu de la page Zenpage <em>%s</em> a été ajouté"
 
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:509
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:512
 #, php-format
 msgid "Zenpage news index menu item <em>%s</em> added"
 msgstr ""
 "L’élément de menu de la page d’accueil des actualités Zenpage <em>%s</em> a "
 "été ajouté"
 
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:518
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:521
 #, php-format
 msgid "Zenpage news category menu item <em>%s</em> added"
 msgstr ""
 "L’élément de menu de la catégorie d’actualités Zenpage <em>%s</em> a été "
 "ajouté"
 
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:527
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:540
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:530
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:543
 #, php-format
 msgid "Custom page menu item <em>%s</em> added"
 msgstr "L’élément de menu de la page personnalisée <em>%s</em> a été ajouté"
 
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:537
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:559
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:572
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:680
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:701
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:713
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:540
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:562
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:575
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:683
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:704
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:716
 msgid "You forgot to provide a <strong>function</strong>!"
 msgstr ""
 "Vous avez oublié de donner une <strong>fonction</strong> à votre page !"
 
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:549
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:552
 msgid "Custom label added"
 msgstr "Le libellé personnalisé a été ajouté"
 
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:562
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:565
 #, php-format
 msgid "Function menu item <em>%s</em> added"
 msgstr "Function menu item <em>%s</em> added"
 
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:575
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:578
 msgid "<em>HTML</em> added"
 msgstr "<em>HTML</em> ajouté"
 
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:597
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:600
 #, php-format
 msgid "A <em>%1$s</em> item already exists in <em>%2$s </em>!"
 msgstr "Un élément <em>%1$s</em> existe déjà dans <em>%2$s</em> !"
 
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:599
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:602
 #, php-format
 msgid ""
 "A <em>%1$s</em> item with the link <em>%2$s</em> already exists in <em>%3$s "
@@ -19789,11 +19789,11 @@ msgstr ""
 "A <em>%1$s</em> item with the link <em>%2$s</em> already exists in <em>%3$s "
 "</em>!"
 
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:734
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:737
 msgid "Menu item updated!"
 msgstr "L’élément de menu a été mis à jour !"
 
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:750
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:753
 msgid "Custom menu item successfully deleted!"
 msgstr "L’élément de menu personnalisé a été supprimé !"
 
