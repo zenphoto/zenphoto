@@ -425,7 +425,7 @@ function printLatestUpdatedAlbums($number = 5, $showtitle = false, $showdate = f
  * @param mixed $sortdirection "asc" for ascending order otherwise order is descending
  * @return array
  */
-function getImageStatistic($number, $option, $albumfolder = '', $collection = false, $threshold = 0, $sortdirection = 'desc') {
+function getImageStatistic($number, $option, $albumfolder = NULL, $collection = false, $threshold = 0, $sortdirection = 'desc') {
 	global $_zp_gallery;
 	$where = '';
 	if ($albumfolder) {
@@ -441,8 +441,6 @@ function getImageStatistic($number, $option, $albumfolder = '', $collection = fa
 				$where = ' AND albums.id IN (' . $getids . ')';
 			}
 		}
-	} else {
-		$obj = $_zp_gallery;
 	}
 
 	switch (strtolower($sortdirection)) {
@@ -454,11 +452,10 @@ function getImageStatistic($number, $option, $albumfolder = '', $collection = fa
 			$sortdir = 'DESC';
 			break;
 	}
-	$opt = '';
 	switch ($option) {
 		case "popular":
 			$sortorder = "images.hitcounter";
-			$opt = 'images.hitcounter >= ' . $threshold;
+			$where .= 'AND images.hitcounter >= ' . $threshold;
 			break;
 		case "latest-date":
 			$sortorder = "images.date";
@@ -478,16 +475,13 @@ function getImageStatistic($number, $option, $albumfolder = '', $collection = fa
 			break;
 		case "toprated":
 			$sortorder = "(images.total_value/images.total_votes) DESC, images.total_value";
-			$opt = 'images.total_votes >= ' . $threshold;
+			$where .= 'AND images.total_votes >= ' . $threshold;
 			break;
 		case "random":
 			$sortorder = "RAND()";
 			break;
 	}
 
-	if ($opt) {
-		$where .= ' AND ' . $opt;
-	}
 	$imageArray = array();
 	if (!empty($albumfolder) && $obj->isDynamic()) {
 		$sorttype = str_replace('images.', '', $sortorder);
@@ -505,13 +499,11 @@ function getImageStatistic($number, $option, $albumfolder = '', $collection = fa
 		$result = query("SELECT images.filename AS filename, albums.folder AS folder FROM " . prefix('images') . " AS images, " . prefix('albums') . " AS albums " . "WHERE (images.albumid = albums.id) " . $where . " ORDER BY " . $sortorder . " " . $sortdir);
 		if ($result) {
 			while ($row = db_fetch_assoc($result)) {
-				if (empty($albumfolder) || strpos($row['folder'], $albumfolder) === 0) {
-					$image = newImage($row, true, true);
-					if ($image->exists && $image->checkAccess()) {
-						$imageArray[] = $image;
-						if (count($imageArray) >= $number) { // got enough
-							break;
-						}
+				$image = newImage($row, true, true);
+				if ($image->exists && $image->checkAccess()) {
+					$imageArray[] = $image;
+					if (count($imageArray) >= $number) { // got enough
+						break;
 					}
 				}
 			}
@@ -551,7 +543,7 @@ function getImageStatistic($number, $option, $albumfolder = '', $collection = fa
  * @param bool $fullimagelink 'false' (default) for the image page link , 'true' for the unprotected full image link (to use Colorbox for example)
  * @param integer $threshold the minimum number of ratings (for rating options) or hits (for popular option) an image must have to be included in the list. (Default 0)
  */
-function printImageStatistic($number, $option, $albumfolder = '', $showtitle = false, $showdate = false, $showdesc = false, $desclength = 40, $showstatistic = '', $width = NULL, $height = NULL, $crop = NULL, $collection = false, $fullimagelink = false, $threshold = 0) {
+function printImageStatistic($number, $option, $albumfolder = NULL, $showtitle = false, $showdate = false, $showdesc = false, $desclength = 40, $showstatistic = '', $width = NULL, $height = NULL, $crop = NULL, $collection = false, $fullimagelink = false, $threshold = 0) {
 	$images = getImageStatistic($number, $option, $albumfolder, $collection, $threshold);
 	if (is_null($crop) && is_null($width) && is_null($height)) {
 		$crop = 2;
