@@ -53,6 +53,9 @@ function printItemsListTable($item, $flag) {
 			case 'menulabel':
 				$link = '';
 				break;
+			case 'html':
+				$link = html_encode(truncate_string($item['link'], 40, '...'));
+				break;
 			default:
 				$link = html_encodeTagged(truncate_string($item['link'], 40, '...'));
 				break;
@@ -756,7 +759,7 @@ $reports) {
  *
  * @param string $current
 
-	set to the album name selected (if any)
+  set to the album name selected (if any)
  *
  * @return string
  */
@@ -826,7 +829,7 @@ function printPagesSelector($current) {
  *
  * @param string $current
 
-	set to category selected (if any)
+  set to category selected (if any)
  *
  * @return string
  */
