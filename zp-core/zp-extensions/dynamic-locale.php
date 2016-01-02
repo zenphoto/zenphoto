@@ -202,7 +202,7 @@ class dynamic_locale {
 		$buttons = array(gettext('subdomain') => 2, gettext('URL') => 1, gettext('disabled') => 0);
 		if (MOD_REWRITE) {
 			$buttons[gettext('URL')] = 1;
-			$localdesc .= '<p>' . sprintf(gettext('Select <em>URL</em> and links paths will have the language selector prepended in the form <code>%1$s/<em>language</em>/...'), $host) . '</p>';
+			$localdesc .= '<p>' . sprintf(gettext('Select <em>URL</em> and links paths will have the language selector prepended in the form <code>%1$s/<em>language</em>/...</code> '), $host) . '</p>';
 		} else {
 			unset($buttons[gettext('URL')]);
 			if (getOption('dynamic_locale_subdomain') == 1) {
