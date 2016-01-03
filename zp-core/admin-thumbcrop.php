@@ -299,7 +299,7 @@ printAdminHeader('edit', 'thumbcrop');
 								<img src="images/pass.png" alt="" />
 								<strong><?php echo gettext("Apply"); ?></strong>
 							</button>
-							<button type="reset" value="<?php echo gettext('Back') ?>" onclick="window.location = 'admin-edit.php?page=edit&album=<?php echo html_encode(pathurlencode($albumname)); ?>&subpage=<?php echo html_encode($subpage) . ($singleimage) ? '&singleimage=' . html_encode($singleimage) : ''; ?>&tagsort=<?php echo html_encode($tagsort); ?>&tab=imageinfo'">
+							<button type="reset" value="<?php echo gettext('Back') ?>" onclick="window.location = 'admin-edit.php?page=edit&album=<?php echo html_encode(pathurlencode($albumname)); ?>&subpage=<?php echo html_encode($subpage) ?><?php if ($singleimage) echo '&singleimage=' . html_encode($singleimage); ?>&tagsort=<?php echo html_encode($tagsort); ?>&tab=imageinfo'">
 								<img src="images/arrow_left_blue_round.png" alt="" />
 								<strong><?php echo gettext("Back"); ?></strong>
 							</button>
