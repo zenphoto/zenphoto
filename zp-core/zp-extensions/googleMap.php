@@ -197,9 +197,8 @@ function omsAdditions() {
  */
 function inputConvert($num) {
 	if (is_string($num)) {
-		$parts = explode('.', str_replace(',', '.', $num));
-		$parts[] = 0; // insure that there is a decimal protion
-		$float = $parts[0] + ($parts[1] / pow(10, strlen($parts[1])));
+		$d = preg_split('/[,\.]/', $num . '.0');
+		$float = $d[0] + $d[1] * pow(10, -strlen($d[1]));
 	} else {
 		$float = (float) $num;
 	}
