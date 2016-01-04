@@ -2420,6 +2420,9 @@ function getImageMetaData($image = NULL, $displayonly = true) {
 	$data = $image->getMetaData();
 
 	foreach ($data as $field => $value) { //	remove the empty or not selected to display
+		if ($_zp_exifvars[$field][6] == 'time' && $value = '0000-00-00 00:00:00') {
+			$value = ''; // really it is empty
+		}
 		if ($displayonly && (!$value || !$_zp_exifvars[$field][3])) {
 			unset($data[$field]);
 		} else {
@@ -2479,7 +2482,7 @@ function printImageMetadata($title = NULL, $toggle = true, $id = 'imagemetadata'
 				<?php
 				foreach ($exif as $field => $value) {
 					$label = $_zp_exifvars[$field][2];
-					echo "<tr><td class=\"label\">$label:</td><td class=\"value\">";
+					echo "<tr><td class=\"label " . html_encode($field) . "\">$label:</td><td class=\"value\">";
 					switch ($_zp_exifvars[$field][6]) {
 						case 'time':
 							echo zpFormattedDate(DATE_FORMAT, strtotime($value));

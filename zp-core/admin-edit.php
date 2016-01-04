@@ -1486,11 +1486,11 @@ echo "\n</head>";
 																$exif = $image->getMetaData();
 																if (false !== $exif) {
 																	foreach ($exif as $field => $value) {
-																		if (!empty($value)) {
+																		if (!(empty($value) || $_zp_exifvars[$field][6] == 'time' && $value = '0000-00-00 00:00:00')) {
 																			$display = $_zp_exifvars[$field][3];
 																			if ($display) {
 																				$label = $_zp_exifvars[$field][2];
-																				$data .= "<tr><td class=\"medtadata_tag\">$label: </td> <td>" . html_encode(exifTranslate($value)) . "</td></tr>\n";
+																				$data .= "<tr><td class=\"medtadata_tag " . html_encode($field) . "\">$label: </td> <td>" . html_encode(exifTranslate($value)) . "</td></tr>\n";
 																			}
 																		}
 																	}
