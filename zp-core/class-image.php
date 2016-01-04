@@ -587,7 +587,7 @@ class Image extends MediaObject {
 
 	static function toDMS($dec, $ref) {
 		// strange things happen with locales, so best to be "separator blind"
-		$d = preg_split('/[,\.]/', $dec . '.0');
+		$d = preg_split('/[,\.]/', str_replace('-', '', $dec) . '.0');
 		$tempma = $d[1] * pow(10, -strlen($d[1]));
 		$tempma = $tempma * 3600;
 		$min = floor($tempma / 60);
