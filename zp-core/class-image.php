@@ -522,7 +522,7 @@ class Image extends MediaObject {
 					$ref = strtoupper($this->get($source . 'Ref'));
 					$this->set($source, self::toDMS($data, $ref));
 					if (in_array($ref, array('S', 'W'))) {
-						$data = -$data;
+						$data = '-' . $data;
 					}
 					$this->set(substr($source, 4), $data);
 				}
@@ -586,15 +586,13 @@ class Image extends MediaObject {
 	}
 
 	static function toDMS($dec, $ref) {
-		$vars = explode(".", $dec . '.0');
-		$deg = $vars[0];
-		$tempma = "0." . $vars[1];
-
+		// strange things happen with locales, so best to be "separator blind"
+		$d = preg_split('/[,\.]/', $dec . '.0');
+		$tempma = $d[1] * pow(10, -strlen($d[1]));
 		$tempma = $tempma * 3600;
 		$min = floor($tempma / 60);
 		$sec = $tempma - ($min * 60);
-
-		return sprintf('%d° %d\' %d" %s', $deg, $min, $sec, $ref);
+		return sprintf('%d° %d\' %d" %s', $d[0], $min, $sec, $ref);
 	}
 
 	/**

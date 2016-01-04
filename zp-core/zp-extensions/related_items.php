@@ -117,15 +117,15 @@ function createRelatedItemsResultArray($result, $type) {
 				break;
 			case 'images':
 				if (!isImageClass($current) || $current->filename != $item['filename']) {
+					if (!isset($item['weight']))
+						$item['weight'] = 13; //	there are circumstances where weights are not generated.
 					array_push($results, array('name' => $item['filename'], 'album' => $item['folder'], 'type' => $type, 'weight' => $item['weight']));
 				}
 				break;
 			case 'news':
 				if (get_class($current) != 'News' || $current->getTitlelink() != $item['titlelink']) {
-
 					if (!isset($item['weight']))
 						$item['weight'] = 13; //	there are circumstances where weights are not generated.
-
 					array_push($results, array('name' => $item['titlelink'], 'album' => '', 'type' => $type, 'weight' => $item['weight']));
 				}
 				break;

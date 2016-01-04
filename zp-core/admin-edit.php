@@ -1024,7 +1024,7 @@ echo "\n</head>";
 					require_once(SERVERPATH . '/' . ZENFOLDER . '/exif/exifTranslations.php');
 					$singleimagelink = $singleimage = NULL;
 					$showfilter = true;
-					if (isset($_GET['singleimage']) || $totalimages == 1) {
+					if (isset($_GET['singleimage']) && $_GET['singleimage'] || $totalimages == 1) {
 						$showfilter = !isset($_GET['singleimage']);
 						if ($totalimages == 1) {
 							$_GET['singleimage'] = array_shift($images);
@@ -1764,7 +1764,7 @@ echo "\n</head>";
 								</label>
 								<label style="float: right">
 									<?php echo gettext("Check All"); ?> <input type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this
-																				 .checked);" />
+																	.checked);" />
 								</label>
 							</div>
 
