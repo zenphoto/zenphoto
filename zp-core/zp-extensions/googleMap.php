@@ -198,7 +198,10 @@ function omsAdditions() {
 function inputConvert($num) {
 	if (is_string($num)) {
 		$d = preg_split('/[,\.]/', $num . '.0');
-		$float = $d[0] + $d[1] * pow(10, -strlen($d[1]));
+		$float = abs($d[0]) + $d[1] * pow(10, -strlen($d[1]));
+		if (strpos($num, '-') !== FALSE) {
+			$float = - $float;
+		}
 	} else {
 		$float = (float) $num;
 	}
