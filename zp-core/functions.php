@@ -906,7 +906,7 @@ function getAllSubAlbumIDs($albumfolder = '') {
  */
 function handleSearchParms($what, $album = NULL, $image = NULL) {
 	global $_zp_current_search, $zp_request, $_zp_last_album, $_zp_current_album,
-	$_zp_current_article, $_zp_current_page, $_zp_gallery, $_zp_loggedin;
+	$_zp_current_article, $_zp_current_page, $_zp_gallery, $_zp_loggedin, $_zp_HTML_cache;
 	$_zp_last_album = zp_getCookie('zenphoto_last_album');
 	if (is_object($zp_request) && get_class($zp_request) == 'SearchEngine') { //	we are are on a search
 		return $zp_request->getAlbumList();
@@ -972,6 +972,7 @@ function handleSearchParms($what, $album = NULL, $image = NULL) {
 		}
 		if (($context & ZP_SEARCH_LINKED)) {
 			set_context($context);
+			$_zp_HTML_cache->abortHTMLCache(true);
 		} else { // not an object in the current search path
 			$_zp_current_search = null;
 			rem_context(ZP_SEARCH);
