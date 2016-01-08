@@ -66,12 +66,6 @@ if (isset($_GET['p'])) {
 //$_zp_script_timer['theme setup'] = microtime();
 $_zp_script = zp_apply_filter('load_theme_script', $_zp_script, $zp_request);
 
-//	HTML caching?
-if ($zp_request) {
-	$_zp_HTML_cache->startHTMLCache();
-}
-
-setThemeColumns();
 $custom = SERVERPATH . '/' . THEMEFOLDER . '/' . internalToFilesystem($_index_theme) . '/functions.php';
 if (file_exists($custom)) {
 	require_once($custom);
@@ -100,6 +94,13 @@ if (!preg_match('~' . ZENFOLDER . '~', $_zp_script)) {
 		}
 	}
 }
+
+//	HTML caching?
+if ($zp_request) {
+	$_zp_HTML_cache->startHTMLCache();
+}
+
+setThemeColumns();
 
 //check for valid page number (may be theme dependent!)
 if ($_zp_page < 0) {
