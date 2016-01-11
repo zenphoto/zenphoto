@@ -990,7 +990,7 @@ function printPageListWithNav($prevtext, $nexttext, $_oneImagePage = false, $nex
 	$nav = getPageNavList($_oneImagePage, $navlen, $firstlast, $current, $total);
 	if ($total > 1) {
 		?>
-		<div <?php if ($id) echo ' id="$id"'; ?> class="<?php echo $class; ?>">
+		<div <?php if ($id) echo ' id="'.$id.'"'; ?> class="<?php echo $class; ?>">
 			<ul class="<?php echo $class; ?>">
 				<?php
 				$prev = $nav['prev'];
