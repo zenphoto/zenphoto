@@ -212,6 +212,7 @@ class static_html_cache {
 	 *
 	 */
 	function abortHTMLCache($flush) {
+		$_zp_HTML_cache->enabled = false;
 		if (!empty($this->pageCachePath)) {
 			$this->pageCachePath = NULL;
 			if ($flush) {
