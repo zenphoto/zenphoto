@@ -1018,6 +1018,7 @@ class Image extends MediaObject {
 		}
 		$addl = $addl_plain = NULL;
 		if ($this->albumnamealbum->isDynamic()) {
+			$this->albumnamealbum->getImages();
 			$matches = array_keys($this->albumnamealbum->imageNames, $image);
 			if (count($matches) > 1) {
 				if ($c = array_search($this->album->name . '/' . $image, $matches)) {
