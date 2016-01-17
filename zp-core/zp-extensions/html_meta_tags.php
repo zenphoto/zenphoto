@@ -187,6 +187,7 @@ class htmlmetatags {
 			if (empty($ogimage_height)) {
 				$ogimage_height = 900;
 			}
+			$twittercard_type = 'summary';
 		}
 		$type = 'article';
 		switch ($_zp_gallery_page) {
@@ -205,6 +206,7 @@ class htmlmetatags {
 					$thumbimg = $_zp_current_album->getAlbumThumbImage();
 					getMaxSpaceContainer($ogimage_width, $ogimage_height, $thumbimg, false);
 					$thumb = $host . html_encode(pathurlencode($thumbimg->getCustomImage(NULL, $ogimage_width, $ogimage_height, NULL, NULL, NULL, NULL, false, NULL)));
+					$twittercard_type = 'summary_large_image';
 				}
 				break;
 			case 'image.php':
@@ -214,6 +216,7 @@ class htmlmetatags {
 				$canonicalurl = $host . getImageURL();
 				if (getOption('htmlmeta_og-image') || getOption('htmlmeta_twittercard')) {
 					$thumb = $host . html_encode(pathurlencode(getCustomSizedImageMaxSpace($ogimage_width, $ogimage_height)));
+					$twittercard_type = 'summary_large_image';
 				}
 				break;
 			case 'news.php':
@@ -342,13 +345,13 @@ class htmlmetatags {
 		// Twitter card
 		$twittername = getOption('htmlmeta_twittername');
 		if (getOption('htmlmeta_twittercard') || !empty($twittername)) {
-			$meta .= '<meta property="twitter:creator" content="' . $twittername . '">' . "\n";
-			$meta .= '<meta property="twitter:site" content="' . $twittername . '">' . "\n";
-			$meta .= '<meta property="twitter:card" content="summary">' . "\n";
-			$meta .= '<meta property="twitter:title" content="' . $pagetitle . '">' . "\n";
-			$meta .= '<meta property="twitter:description" content="' . $desc . '">' . "\n";
+			$meta .= '<meta name="twitter:creator" content="' . $twittername . '">' . "\n";
+			$meta .= '<meta name="twitter:site" content="' . $twittername . '">' . "\n";
+			$meta .= '<meta name="twitter:card" content="' . $twittercard_type . '">' . "\n";
+			$meta .= '<meta name="twitter:title" content="' . $pagetitle . '">' . "\n";
+			$meta .= '<meta name="twitter:description" content="' . $desc . '">' . "\n";
 			if (!empty($thumb)) {
-				$meta .= '<meta property="twitter:image" content="' . $thumb . '">' . "\n";
+				$meta .= '<meta name="twitter:image" content="' . $thumb . '">' . "\n";
 			}
 		}
 
