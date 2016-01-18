@@ -864,12 +864,14 @@ function printNewsCategoryURL($before = '', $catlink = '') {
 }
 
 /**
- * Prints the full link of the news index page (news page 1)
+ * Prints the full link of the news index page (news page 1 by default)
  *
  * @param string $name The linktext
  * @param string $before The text to appear before the link text
+ * @param string $archive Name to print for the news date archive link
+ * @param int $page Page number to append
  */
-function printNewsIndexURL($name = NULL, $before = '', $archive = NULL) {
+function printNewsIndexURL($name = NULL, $before = '', $archive = NULL, $page = '') {
 	global $_zp_post_date;
 	if ($_zp_post_date) {
 		if (is_null($archive)) {
@@ -884,7 +886,7 @@ function printNewsIndexURL($name = NULL, $before = '', $archive = NULL) {
 		} else {
 			$name = getBare(html_encode($name));
 		}
-		$link = getNewsIndexURL();
+		$link = getNewsIndexURL($page);
 	}
 	if ($before) {
 		echo '<span class="beforetext">' . html_encode($before) . '</span>';
@@ -1692,33 +1694,40 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
  * @param string $after Text to place after the breadcrumb item
  */
 function printZenpageItemsBreadcrumb($before = NULL, $after = NULL) {
-	global $_zp_current_zenpage_page, $_zp_current_category;
-	$parentitems = array();
-	if (is_Pages()) {
-		//$parentid = $_zp_current_zenpage_page->getParentID();
-		$parentitems = $_zp_current_zenpage_page->getParents();
+	global $_zp_current_zenpage_page, $_zp_current_zenpage_news, $_zp_current_category;
+	if (is_NewsPage()) {
+		$page = '';
+		if (is_NewsArticle()) {
+			$page = $_zp_current_zenpage_news->getNewsLoopPage();
+		}
+		printNewsIndexURL(NULL, '', '', $page);
 	}
-	if (is_NewsCategory()) {
-		//$parentid = $_zp_current_category->getParentID();
-		$parentitems = $_zp_current_category->getParents();
-	}
-	foreach ($parentitems as $item) {
+	if (is_Pages() || is_NewsCategory()) {
+		$parentitems = array();
 		if (is_Pages()) {
-			$pageobj = new ZenpagePage($item);
-			$parentitemurl = html_encode($pageobj->getLink());
-			$parentitemtitle = $pageobj->getTitle();
+			$parentitems = $_zp_current_zenpage_page->getParents();
 		}
 		if (is_NewsCategory()) {
-			$catobj = new ZenpageCategory($item);
-			$parentitemurl = $catobj->getLink();
-			$parentitemtitle = $catobj->getTitle();
+			$parentitems = $_zp_current_category->getParents();
 		}
-		if ($before) {
-			echo '<span class="beforetext">' . html_encode($before) . '</span>';
-		}
-		echo"<a href='" . $parentitemurl . "'>" . html_encode($parentitemtitle) . "</a>";
-		if ($after) {
-			echo '<span class="aftertext">' . html_encode($after) . '</span>';
+		foreach ($parentitems as $item) {
+			if (is_Pages()) {
+				$pageobj = new ZenpagePage($item);
+				$parentitemurl = html_encode($pageobj->getLink());
+				$parentitemtitle = $pageobj->getTitle();
+			}
+			if (is_NewsCategory()) {
+				$catobj = new ZenpageCategory($item);
+				$parentitemurl = $catobj->getLink();
+				$parentitemtitle = $catobj->getTitle();
+			}
+			if ($before) {
+				echo '<span class="beforetext">' . html_encode($before) . '</span>';
+			}
+			echo"<a href='" . $parentitemurl . "'>" . html_encode($parentitemtitle) . "</a>";
+			if ($after) {
+				echo '<span class="aftertext">' . html_encode($after) . '</span>';
+			}
 		}
 	}
 }
