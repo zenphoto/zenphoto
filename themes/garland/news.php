@@ -43,7 +43,6 @@ if (class_exists('Zenpage') && ZP_NEWS_ENABLED) {
 										<h2 id="gallerytitle">
 											<?php printHomeLink('', ' » ');
 											printGalleryIndexURL(' » ');
-											printNewsIndexURL(NULL);
 											printZenpageItemsBreadcrumb(' » ', '');
 											printCurrentNewsCategory(" » ");
 											printNewsTitle(" » ");

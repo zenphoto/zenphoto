@@ -35,7 +35,6 @@ if (class_exists('Zenpage') && ZP_NEWS_ENABLED) {
 					<div id="navbar">
 						<span><?php printHomeLink('', ' | '); printGalleryIndexURL(' | ', getGalleryTitle());	?></span>
 						<?php
-						printNewsIndexURL(NULL, ' | ');
 						printZenpageItemsBreadcrumb(' | ', '');
 						printCurrentNewsCategory(" | ");
 						printNewsTitle(" | ");

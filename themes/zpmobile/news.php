@@ -25,12 +25,14 @@ if (class_exists('Zenpage') && ZP_NEWS_ENABLED) {
 
 				<div class="ui-content" role="main">
 					<div class="content-primary">
-						<h2 class="breadcrumb"><?php printNewsIndexURL(); ?><strong><?php
+						<h2 class="breadcrumb">
+							<?php
 								printZenpageItemsBreadcrumb(' ', '');
 								printCurrentNewsCategory(" ");
 								printNewsTitle(" ");
 								printCurrentNewsArchive(" | ");
-								?></strong></h2>
+							?>
+						</h2>
 						<?php
 // single news article
 						if (is_NewsArticle()) {

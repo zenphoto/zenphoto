@@ -29,7 +29,7 @@ if (class_exists('Zenpage') && ZP_PAGES_ENABLED) {
 				<!-- Crumb Trail Navigation -->
 				<div id="wrapnav">
 					<div id="navbar">
-						<span><?php printHomeLink('', ' | '); printGalleryIndexURL(' | ', getGalleryTitle());
+						<span><?php printHomeLink('', ' | '); printGalleryIndexURL(' ', getGalleryTitle());
 							?></span>
 						<?php printZenpageItemsBreadcrumb(" | ", ""); ?><?php printPageTitle(" | "); ?>
 					</div>
