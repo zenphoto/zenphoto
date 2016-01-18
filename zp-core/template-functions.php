@@ -1411,7 +1411,8 @@ function getParentBreadcrumb() {
 	$n = count($parents);
 	if ($n > 0) {
 		foreach ($parents as $parent) {
-			$url = $parent->getLink();
+			$page = $_zp_current_album->getGalleryPage();
+			$url = $parent->getLink($page);
 //cleanup things in description for use as attribute tag
 			$desc = getBare(preg_replace('|</p\s*>|i', '</p> ', preg_replace('|<br\s*/>|i', ' ', $parent->getDesc())));
 			$output[] = array('link' => html_encode($url), 'title' => $desc, 'text' => $parent->getTitle());

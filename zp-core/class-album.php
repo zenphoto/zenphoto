@@ -1153,14 +1153,20 @@ class AlbumBase extends MediaObject {
 	}
 
 	/**
-	 * Returns the page number in the gallery of this album
+	 * Returns the page number in the gallery or the parent album of this album 
 	 *
 	 * @return int
 	 */
 	function getGalleryPage() {
 		global $_zp_gallery;
-		if ($this->index == null)
-			$this->index = array_search($this->name, $_zp_gallery->getAlbums(0));
+		if ($this->index == null) {
+			if (is_null($parent = $this->getParent())) {
+				$albums = $_zp_gallery->getAlbums(0);
+			} else {
+				$albums = $parent->getAlbums(0);
+			}
+			$this->index = array_search($this->name, $albums);
+		}
 		return floor(($this->index / galleryAlbumsPerPage()) + 1);
 	}
 
