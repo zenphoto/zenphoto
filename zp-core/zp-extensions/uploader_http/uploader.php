@@ -61,12 +61,12 @@ if (isset($_POST['processed'])) {
 			@chmod($targetPath, FOLDER_MOD);
 			$album = newAlbum($folder);
 			if ($album->exists) {
-				$album->setShow((int) !empty($_POST['publishalbum']));
 				$title = sanitize($_POST['albumtitle'], 2);
 				if (!empty($title) && $newAlbum) {
 					$album->setTitle($title);
 				}
 				if ($new) {
+					$album->setShow((int) !empty($_POST['publishalbum']));
 					$album->setOwner($_zp_current_admin_obj->getUser());
 				}
 				$album->save();
