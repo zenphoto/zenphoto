@@ -334,10 +334,9 @@ class cmsFilters {
 
 /**
  * Returns the full path of the news index page
- * @param int $page Page number to append, default empty (page 1)
+ *
  * @return string
  */
-<<<<<<< HEAD
 function getNewsIndexURL() {
 	global $_zp_current_article;
 	$p_rewrite = $p = '';
@@ -350,16 +349,6 @@ function getNewsIndexURL() {
 	}
 
 	return zp_apply_filter('getLink', rewrite_path(_NEWS_ . '/' . $p_rewrite, "/index.php?p=news" . $p), 'news.php', NULL);
-=======
-function getNewsIndexURL($page = '') {
-	$rewrite = _NEWS_;
-	$plain = '/index.php?p=news';
-	if ($page > 1) {
-		$rewrite .= '/' . $page . '/';
-		$plain .= '&page=' . $page;
-	}
-	return zp_apply_filter('getLink', rewrite_path($rewrite, $plain), 'news.php', $page);
->>>>>>> 20160120165828761000480/master
 }
 
 /**
