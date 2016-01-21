@@ -1529,7 +1529,7 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 
 			if ($process) {
 				if ($level > $indent) {
-					echo "\n" . str_pad("\t", $indent, "\t") . '<ul class="' . $css_class . '">'."\n";
+					echo "\n" . str_pad("\t", $indent, "\t") . '<ul class="' . $css_class . '">' . "\n";
 					$indent++;
 					$parents[$indent] = NULL;
 					$open[$indent] = 0;
@@ -1589,13 +1589,13 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 							break;
 					}
 				}
-				if(empty($current)) {
-					$current =  trim($password_class);
+				if (empty($current)) {
+					$current = trim($password_class);
 				}
 				if ($limit) {
 					$itemtitle = shortenContent($itemtitle, $limit, MENU_TRUNCATE_INDICATOR);
 				}
-				echo '<li><a class="' . $current. '" href="' . html_encode($itemurl) . '" title="' . html_encode(getBare($itemtitle)) . '">' . html_encode($itemtitle) . '</a>' . $count;
+				echo '<li><a class="' . $current . '" href="' . html_encode($itemurl) . '" title="' . html_encode(getBare($itemtitle)) . '">' . html_encode($itemtitle) . '</a>' . $count;
 			}
 		}
 	}
