@@ -48,6 +48,10 @@ class GoogleMap {
 			setOptionDefault('gmap_display', 'hide');
 		}
 		setOptionDefault('gmap_display', 'show');
+		if (class_exists('cacheManager')) {
+			cacheManager::deleteThemeCacheSizes('GoogleMap');
+			cacheManager::addThemeCacheSize('GoogleMap', 150, NULL, NULL, NULL, NULL, NULL, NULL, true, NULL, NULL, NULL);
+		}
 	}
 
 	function getOptionsSupported() {
