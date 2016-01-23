@@ -157,9 +157,44 @@ class mobileTheme {
 			if ($before) {
 				echo '<span class="beforetext">'.html_encode($before).'</span>';
 			}
-			?>
+			if (MOD_REWRITE) {
+				$link = '?mobileTheme=' . $enable;
+			} else {
+				global $_zp_gallery_page, $_zp_current_images, $_zp_current_album, $_zp_current_zenpage_news, $_zp_current_category, $_zp_current_zenpage_page;
+				switch ($_zp_gallery_page) {
+					case 'index.php':
+						$link = 'index.php?mobileTheme=' . $enable;
+						break;
+					case 'gallery.php':
+						$link = 'index.php?p=gallery&amp;mobileTheme=' . $enable;
+						break;
+					case 'album.php':
+						$link = pathurlencode($_zp_current_album->getLink(null)) . '&amp;mobileTheme=' . $enable;
+						break;
+					case 'image.php':
+						$link = pathurlencode($_zp_current_image->getLink(null)) . '&amp;mobileTheme=' . $enable;
+						break;
+					case 'news.php':
+						if (is_NewsArticle()) {
+							$link = html_encode($_zp_current_zenpage_news->getLink(null)) . '&amp;mobileTheme=' . $enable;
+						} else if (is_NewsCategory()) {
+							$link = html_encode($_zp_current_category->getLink(null)) . '&amp;mobileTheme=' . $enable;
+						} else {
+							$link = html_encode(getNewsIndexURL()) . '&amp;mobileTheme=' . $enable;
+						}
+						break;
+					case 'pages.php':
+						$link = html_encode($_zp_current_zenpage_page->getLink()) . '&amp;mobileTheme=' . $enable;
+						break;
+					default:
+						$link = html_encode($_zp_gallery_page) . '?mobileTheme=' . $enable;
+						break;
+				}
+			}
+?>
 			<span class="mobileThemeControlLink">
-				<a href="?mobileTheme=<?php echo $enable; ?>" rel="external">
+				
+				<a href="<?php echo $link; ?>" rel="external">
 					<?php echo html_encode($text); ?>
 				</a>
 			</span>
