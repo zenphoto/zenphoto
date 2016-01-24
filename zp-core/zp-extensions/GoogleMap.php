@@ -215,7 +215,7 @@ function getGeoCoord($image) {
 				$long_f = -$long_f;
 			}
 
-			$thumb = '<a href="javascript:image(\'' . $_zp_current_image->albumname . '\',\'' . $_zp_current_image->filename . '\');"><img src="' . getCustomImageURL(150) . '" /></a>';
+			$thumb = '<a href="javascript:image(\'' . $_zp_current_image->albumname . '\',\'' . $_zp_current_image->filename . '\');"><img src="' . getCustomImageURL(150, NULL, NULL, NULL, NULL, NULL, NULL, true) . '" /></a>';
 
 			$result = array('lat' => $lat_f, 'long' => $long_f, 'title' => $_zp_current_image->getTitle(), 'desc' => $_zp_current_image->getDesc(), 'thumb' => $thumb);
 		}
