@@ -1,14 +1,7 @@
 /**
- * elFinder translation template
- * use this file to create new translation
- * submit new translation via https://github.com/Studio-42/elFinder/issues
- * or make a pull request
- */
- 
-/**
  * Greek translation
- * @author yawd <info@yawd.eu>
- * @version 2012-09-12
+ * @author yawd <info@yawd.eu>, Romanos
+ * @version 2014-12-19
  */
 if (elFinder && elFinder.prototype && typeof(elFinder.prototype.i18) == 'object') {
 	elFinder.prototype.i18.el = {
@@ -35,7 +28,7 @@ if (elFinder && elFinder.prototype && typeof(elFinder.prototype.i18) == 'object'
 			'errConf'              : 'Μη έγκυρες ρυθμίσεις για το backend.',
 			'errJSON'              : 'Το PHP JSON module δεν είναι εγκατεστημένο.',
 			'errNoVolumes'         : 'Δεν βρέθηκαν αναγνώσιμα volumes.',
-			'errCmdParams'         : 'Μη εέγκυρες παράμετροι για την εντολή "$1".',
+			'errCmdParams'         : 'Μη έγκυρες παράμετροι για την εντολή "$1".',
 			'errDataNotJSON'       : 'Τα δεδομένα δεν είναι JSON.',
 			'errDataEmpty'         : 'Τα δεδομένα είναι άδεια.',
 			'errCmdReq'            : 'Το Backend request χρειάζεται όνομα εντολής.',
@@ -50,25 +43,28 @@ if (elFinder && elFinder.prototype && typeof(elFinder.prototype.i18) == 'object'
 			'errInvName'           : 'Μη έγκυρο όνομα αρχείου.',
 			'errFolderNotFound'    : 'Ο φάκελος δε βρέθηκε.',
 			'errFileNotFound'      : 'Το αρχείο δε βρέθηκε.',
-			'errTrgFolderNotFound' : 'Ο φάκελος "$1" δε βρεέθηκε.',
-			'errPopup'             : 'Το πρόγραμμα πλήγησης αμπόδισε το άνοιγμα αναδυόμενου παραθύρου. Για ανοίξετε το αρχείο ενεργοποιήστε το στις επιλογές του περιηγητή.',
+			'errTrgFolderNotFound' : 'Ο φάκελος "$1" δε βρέθηκε.',
+			'errPopup'             : 'Το πρόγραμμα πλήγησης εμπόδισε το άνοιγμα αναδυόμενου παραθύρου. Για ανοίξετε το αρχείο ενεργοποιήστε το στις επιλογές του περιηγητή.',
 			'errMkdir'             : 'Η δυμιουργία του φακέλου "$1" δεν ήταν δυνατή.',
 			'errMkfile'            : 'Η δημιουργία του αρχείου "$1" δεν ήταν δυνατή.',
 			'errRename'            : 'Η μετονομασία του αρχείου "$1" δεν ήταν δυνατή.',
 			'errCopyFrom'          : 'Δεν επιτρέπεται η αντιγραφή αρχείων από το volume "$1".',
 			'errCopyTo'            : 'Δεν επιτρέπεται η αντιγραφή αρχείων στο volume "$1".',
-			'errUploadCommon'      : 'Πρόβλημα κατά το upload.',
-			'errUpload'            : 'Το αρχείο "$1" δεν μπόρεσε να γίνει upload.',
+			'errUpload'            : 'Πρόβλημα κατά το upload.',
+			'errUploadFile'        : 'Το αρχείο "$1" δεν μπόρεσε να γίνει upload.',
 			'errUploadNoFiles'     : 'Δεν βρέθηκαν αρχεία για upload.',
-			'errMaxSize'           : 'Τα δεδομένα υπερβαίνουν το επιτρεπόμενο μέγιστο μέγεθος δεδομένων.',
-			'errFileMaxSize'       : 'Το αρχείο υπερβαίνει το επιτρεπόμενο μέγιστο μέγεθος.',
+			'errUploadTotalSize'   : 'Τα δεδομένα υπερβαίνουν το επιτρεπόμενο μέγιστο μέγεθος δεδομένων.',
+			'errUploadFileSize'    : 'Το αρχείο υπερβαίνει το επιτρεπόμενο μέγιστο μέγεθος.',
 			'errUploadMime'        : 'Ο τύπος αρχείου δεν επιτρέπεται.',
-			'errUploadTransfer'    : 'Πρόβλημα μεταφοράς για το "$1".', 
+			'errUploadTransfer'    : 'Πρόβλημα μεταφοράς για το "$1".',
+			'errNotReplace'        : 'Object "$1" already exists at this location and can not be replaced by object with another type.',
+			'errReplace'           : 'Unable to replace "$1".',
 			'errSave'              : 'Το "$1" δεν ήταν δυνατόν να αποθηκευτεί.',
 			'errCopy'              : 'Δεν ήταν δυνατή η αντιγραφή του "$1".',
 			'errMove'              : 'Δεν ήταν δυνατή η μετακίνηση του "$1".',
 			'errCopyInItself'      : 'Δεν είναι δυνατή η αντιγραφή του "$1" στον εαυτό του.',
 			'errRm'                : 'Δεν ήταν δυνατή η αφαίρεση του "$1".',
+			'errRmSrc'             : 'Unable remove source file(s).',
 			'errExtract'           : 'Δεν ήταν δυνατή η ανάγνωση των αρχείων από "$1".',
 			'errArchive'           : 'Δεν ήταν δυνατή η δημιουργία του αρχείου.',
 			'errArcType'           : 'Ο τύπος αρχείου δεν υποστηρίζεται.',
@@ -78,12 +74,24 @@ if (elFinder && elFinder.prototype && typeof(elFinder.prototype.i18) == 'object'
 			'errArcSymlinks'       : 'Για λόγους ασφαλείας δεν είναι δυνατόν να διαβαστούν αρχεία που περιέχουν symlinks orη αρχεία με μη επιτρεπτά ονόματα.', // edited 24.06.2012
 			'errArcMaxSize'        : 'Το μέγεθος του αρχείου υπερβαίνει το μέγιστο επιτρεπτό όριο.',
 			'errResize'            : 'Δεν ήταν δυνατή η αλλαγή μεγέθους του "$1".',
+			'errResizeDegree'      : 'Invalid rotate degree.',
+			'errResizeRotate'      : 'Unable to rotate image.',
+			'errResizeSize'        : 'Invalid image size.',
+			'errResizeNoChange'    : 'Image size not changed.',
 			'errUsupportType'      : 'Ο τύπος αρχείου δεν υποστηρίζεται.',
 			'errNotUTF8Content'    : 'Το αρχείο "$1" δεν είναι UTF-8 και δεν μπορεί να επεξεργασθεί.',  // added 9.11.2011
 			'errNetMount'          : 'Δεν ήταν δυνατή η φόρτωση του "$1".',     // added 17.04.2012
 			'errNetMountNoDriver'  : 'Μη υποστηριζόμενο πρωτόκολο.',     // added 17.04.2012
 			'errNetMountFailed'    : 'Η φόρτωση απέτυχε.',             // added 17.04.2012
 			'errNetMountHostReq'   : 'Απαιτείται host εξυπηρετητής.', // added 18.04.2012
+			'errSessionExpires'    : 'Your session has expired due to inactivity.',
+			'errCreatingTempDir'   : 'Unable to create temporary directory: "$1"',
+			'errFtpDownloadFile'   : 'Unable to download file from FTP: "$1"',
+			'errFtpUploadFile'     : 'Unable to upload file to FTP: "$1"',
+			'errFtpMkdir'          : 'Unable to create remote directory on FTP: "$1"',
+			'errArchiveExec'       : 'Error while archiving files: "$1"',
+			'errExtractExec'       : 'Error while extracting files: "$1"',
+			
 			/******************************* commands names ********************************/
 			'cmdarchive'   : 'Δημιουργία archive αρχείου',
 			'cmdback'      : 'Πίσω',
@@ -112,6 +120,7 @@ if (elFinder && elFinder.prototype && typeof(elFinder.prototype.i18) == 'object'
 			'cmdview'      : 'Προβολή',
 			'cmdresize'    : 'Αλλαγή μεγέθους εικόνας',
 			'cmdsort'      : 'Ταξινόμηση',
+			'cmdnetmount'  : 'Mount network volume',
 			
 			/*********************************** buttons ***********************************/ 
 			'btnClose'  : 'Κλείσιμο',
@@ -121,6 +130,7 @@ if (elFinder && elFinder.prototype && typeof(elFinder.prototype.i18) == 'object'
 			'btnCancel' : 'Ακύρωση',
 			'btnNo'     : 'Όχι',
 			'btnYes'    : 'Ναι',
+			'btnMount'  : 'Mount',
 			
 			/******************************** notifications ********************************/
 			'ntfopen'     : 'Άνοιγμα φακέλου',
@@ -139,26 +149,28 @@ if (elFinder && elFinder.prototype && typeof(elFinder.prototype.i18) == 'object'
 			'ntfarchive'  : 'Δημιουργία αρχείου',
 			'ntfextract'  : 'Εξαγωγή αρχείων από το archive',
 			'ntfsearch'   : 'Αναζήτηση αρχείων',
+			'ntfresize'   : 'Resizing images',
 			'ntfsmth'     : 'Σύστημα απασχολημένο>_<',
 			'ntfloadimg'  : 'Φόρτωση εικόνας',
 			'ntfnetmount' : 'Φόρτωση δικτυακού δίσκου', // added 18.04.2012
+			'ntfdim'      : 'Acquiring image dimension',
 			
 			/************************************ dates **********************************/
 			'dateUnknown' : 'άγνωστο',
 			'Today'       : 'Σήμερα',
-			'Yesterday'   : 'Εχθές',
-			'Jan'         : 'Ιαν',
-			'Feb'         : 'Φεβ',
-			'Mar'         : 'Μαρ',
-			'Apr'         : 'Απρ',
-			'May'         : 'Μαϊ',
-			'Jun'         : 'Ιουν',
-			'Jul'         : 'Ιουλ',
-			'Aug'         : 'Αυγ',
-			'Sep'         : 'Σεπ',
-			'Oct'         : 'Οκτ',
-			'Nov'         : 'Νοεμ',
-			'Dec'         : 'Δεκ',
+			'Yesterday'   : 'Χθές',
+			'msJan'       : 'Ιαν',
+			'msFeb'       : 'Φεβ',
+			'msMar'       : 'Μαρ',
+			'msApr'       : 'Απρ',
+			'msMay'       : 'Μαϊ',
+			'msJun'       : 'Ιουν',
+			'msJul'       : 'Ιουλ',
+			'msAug'       : 'Αυγ',
+			'msSep'       : 'Σεπ',
+			'msOct'       : 'Οκτ',
+			'msNov'       : 'Νοεμ',
+			'msDec'       : 'Δεκ',
 			'January'     : 'Ιανουάριος',
 			'February'    : 'Φεβρουάριος',
 			'March'       : 'Μάρτιος',
@@ -185,6 +197,7 @@ if (elFinder && elFinder.prototype && typeof(elFinder.prototype.i18) == 'object'
 			'Thu'         : 'Πεμ', 
 			'Fri'         : 'Παρ', 
 			'Sat'         : 'Σαβ',
+			
 			/******************************** sort variants ********************************/
 			'sortname'          : 'κατά όνομα', 
 			'sortkind'          : 'κατά είδος', 
@@ -196,7 +209,7 @@ if (elFinder && elFinder.prototype && typeof(elFinder.prototype.i18) == 'object'
 			'confirmReq'      : 'Απαιτείται επιβεβαίωση',
 			'confirmRm'       : 'Είστε σίγουροι πως θέλετε να διαγράψετε τα αρχεία?<br/>Οι αλλαγές θα είναι μόνιμες!',
 			'confirmRepl'     : 'Αντικατάσταση του παλιού αρχείου με το νέο?',
-			'apllyAll'        : 'Εφαρμογή σε όλλα',
+			'apllyAll'        : 'Εφαρμογή σε όλα',
 			'name'            : 'Όνομα',
 			'size'            : 'Μέγεθος',
 			'perms'           : 'Δικαιώματα',
@@ -221,17 +234,17 @@ if (elFinder && elFinder.prototype && typeof(elFinder.prototype.i18) == 'object'
 			'dim'             : 'Διαστάσεις',
 			'files'           : 'Αρχεία',
 			'folders'         : 'Φάκελοι',
-			'items'           : 'Ατικείμενα',
+			'items'           : 'Αντικείμενα',
 			'yes'             : 'ναι',
 			'no'              : 'όχι',
-			'link'            : 'Σλυνδεσμος',
+			'link'            : 'Σύνδεσμος',
 			'searcresult'     : 'Αποτελέσματα αναζήτησης',  
 			'selected'        : 'επιλεγμένα αντικείμενα',
 			'about'           : 'Σχετικά',
-			'shortcuts'       : 'Συντομέυσεις',
+			'shortcuts'       : 'Συντομεύσεις',
 			'help'            : 'Βοήθεια',
-			'webfm'           : 'εργαλέιο διαχείρισης αρχείων από το web',
-			'ver'             : 'ΈΚδοση',
+			'webfm'           : 'εργαλείο διαχείρισης αρχείων από το web',
+			'ver'             : 'Έκδοση',
 			'protocolver'     : 'έκδοση πρωτοκόλλου',
 			'homepage'        : 'Σελίδα του project',
 			'docs'            : 'Τεκμηρίωση (documentation)',
@@ -240,8 +253,8 @@ if (elFinder && elFinder.prototype && typeof(elFinder.prototype.i18) == 'object'
 			'facebook'        : 'Βρείτε μας στο facebook',
 			'team'            : 'Ομάδα',
 			'chiefdev'        : 'κύριος προγραμματιστής',
-			'developer'       : 'προγραμματισής',
-			'contributor'     : 'συνισφορά',
+			'developer'       : 'προγραμματιστής',
+			'contributor'     : 'συνεισφορά',
 			'maintainer'      : 'συντηρητής',
 			'translator'      : 'μεταφραστής',
 			'icons'           : 'Εικονίδια',
@@ -253,13 +266,10 @@ if (elFinder && elFinder.prototype && typeof(elFinder.prototype.i18) == 'object'
 			'moveFiles'       : 'Μετακίνηση αρχείων',
 			'copyFiles'       : 'Αντιγραφή αρχείων',
 			'rmFromPlaces'    : 'Αντιγραφή από τοποθεσίες',
-			'untitled folder' : 'untitled folder',
-			'untitled file.txt' : 'untitled file.txt',
 			'aspectRatio'     : 'Αναλογία διαστάσεων',
 			'scale'           : 'Κλίμακα',
 			'width'           : 'Πλάτος',
 			'height'          : 'Ύψος',
-			'mode'            : 'Κατάσταση',
 			'resize'          : 'Αλλαγή μεγέθους',
 			'crop'            : 'Crop',
 			'rotate'          : 'Περιστροφή',
@@ -272,13 +282,14 @@ if (elFinder && elFinder.prototype && typeof(elFinder.prototype.i18) == 'object'
 			'port'                : 'Port', // added 18.04.2012
 			'user'                : 'Χρήστης', // added 18.04.2012
 			'pass'                : 'Κωδικός', // added 18.04.2012
+			
 			/********************************** mimetypes **********************************/
 			'kindUnknown'     : 'Άγνωστο',
 			'kindFolder'      : 'Φάκελος',
 			'kindAlias'       : 'Ψευδώνυμο (alias)',
 			'kindAliasBroken' : 'Μη έγκυρο ψευδώνυμο',
 			// applications
-			'kindApp'         : 'Εφαρμοφή',
+			'kindApp'         : 'Εφαρμογή',
 			'kindPostscript'  : 'Έγγραφο Postscript',
 			'kindMsOffice'    : 'Έγγραφο Microsoft Office',
 			'kindMsWord'      : 'Έγγραφο Microsoft Word',
@@ -292,6 +303,7 @@ if (elFinder && elFinder.prototype && typeof(elFinder.prototype.i18) == 'object'
 			'kindTAR'         : 'Αρχείο TAR',
 			'kindGZIP'        : 'Αρχείο GZIP',
 			'kindBZIP'        : 'Αρχείο BZIP',
+			'kindXZ'          : 'Αρχείο XZ',
 			'kindZIP'         : 'Αρχείο ZIP',
 			'kindRAR'         : 'Αρχείο RAR',
 			'kindJAR'         : 'Αρχείο Java JAR',
@@ -350,6 +362,5 @@ if (elFinder && elFinder.prototype && typeof(elFinder.prototype.i18) == 'object'
 			'kindVideoMKV'    : 'Ταινία matroska',
 			'kindVideoOGG'    : 'Ταινία ogg'
 		}
-	}
+	};
 }
-
