@@ -104,7 +104,7 @@ $_zp_zenpage = new Zenpage();
 
 class zenpagecms {
 
-	function zenpagecms() {
+	function __construct() {
 		if (OFFSET_PATH == 2) {
 
 			setOptionDefault('zenpage_articles_per_page', '10');

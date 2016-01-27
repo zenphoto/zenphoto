@@ -59,7 +59,7 @@ zp_register_filter('content_macro', 'slideshow::macro');
  */
 class slideshow {
 
-	function slideshow() {
+	function __construct() {
 		global $_zp_gallery;
 		if (OFFSET_PATH == 2) {
 			//setOptionDefault('slideshow_size', '595');

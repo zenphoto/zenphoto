@@ -43,7 +43,7 @@ class menu_manager {
 	 *
 	 * class instantiator
 	 */
-	function menu_manager() {
+	function __construct() {
 		setOptionDefault('menu_truncate_string', 0);
 		setOptionDefault('menu_truncate_indicator', '');
 	}

@@ -46,7 +46,7 @@ class comment_form {
 	 * class instantiation function
 	 *
 	 */
-	function comment_form() {
+	function __construct() {
 		setOptionDefault('email_new_comments', 1);
 		setOptionDefault('comment_name_required', 'required');
 		setOptionDefault('comment_email_required', 'required');

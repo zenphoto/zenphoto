@@ -51,7 +51,7 @@ class sitemap {
 	var $startmtime;
 	var $disable = false; // manual disable caching a page
 
-	function sitemap() {
+	function __construct() {
 		setOptionDefault('sitemap_changefreq_index', 'daily');
 		setOptionDefault('sitemap_changefreq_albums', 'daily');
 		setOptionDefault('sitemap_changefreq_images', 'daily');

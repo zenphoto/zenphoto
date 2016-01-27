@@ -28,7 +28,7 @@ zp_register_filter('texteditor_config', 'tinymce4ConfigJS');
  */
 class tinymce4Options {
 
-	function tinymce4Options() {
+	function __construct() {
 		setOptionDefault('tinymce4_zenphoto', 'zenphoto-ribbon.js.php');
 		setOptionDefault('tinymce4_zenpage', 'zenpage-slim.js.php');
 		if (getOption('zp_plugin_tiny_mce')) {

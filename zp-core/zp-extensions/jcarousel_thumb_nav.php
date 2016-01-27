@@ -21,7 +21,7 @@ $option_interface = 'jcarousel';
  */
 class jcarousel {
 
-	function jcarouselOptions() {
+	function __construct() {
 		if (OFFSET_PATH == 2) {
 			setOptionDefault('jcarousel_scroll', '3');
 			setOptionDefault('jcarousel_width', '50');

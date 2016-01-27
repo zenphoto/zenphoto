@@ -34,7 +34,7 @@ $option_interface = 'viewer_size_image_options';
  */
 class viewer_size_image_options {
 
-	function viewer_size_image_options() {
+	function __construct() {
 		if (OFFSET_PATH == 2) {
 			$default = getOption('image_size');
 			setOptionDefault('viewer_size_image_sizes', '$s=' . ($default - 200) . '; $s=' . ($default - 100) . '; $s=' . ($default) . '; $s=' . ($default + 100) . '; $s=' . ($default + 200) . ';');

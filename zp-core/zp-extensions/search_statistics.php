@@ -41,7 +41,7 @@ class search_statistics {
 	 *
 	 * @return jquery_rating
 	 */
-	function search_statistics() {
+	function __construct() {
 		setOptionDefault('search_statistics_threshold', 25);
 		setOptionDefault('search_statistics_terms_threshold', 25);
 		setOptionDefault('search_statistics_failed_threshold', 10);

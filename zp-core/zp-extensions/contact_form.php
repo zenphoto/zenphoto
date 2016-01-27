@@ -29,7 +29,7 @@ $_zp_conf_vars['special_pages'][] = array('define' => false, 'rewrite' => '%CONT
  */
 class contactformOptions {
 
-	function contactformOptions() {
+	function __construct() {
 		global $_zp_authority;
 
 		if (OFFSET_PATH == 2 && !getOption('contactform_mailaddress')) {
