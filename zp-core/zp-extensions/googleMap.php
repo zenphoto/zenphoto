@@ -48,6 +48,10 @@ class GoogleMap {
 			setOptionDefault('gmap_display', 'hide');
 		}
 		setOptionDefault('gmap_display', 'show');
+		if (class_exists('cacheManager')) {
+			cacheManager::deleteThemeCacheSizes('GoogleMap');
+			cacheManager::addThemeCacheSize('GoogleMap', 150, NULL, NULL, NULL, NULL, NULL, NULL, true, NULL, NULL, NULL);
+		}
 	}
 
 	function getOptionsSupported() {
@@ -221,7 +225,7 @@ function getGeoCoord($image) {
 		if (!empty($lat) && !empty($long)) {
 			$lat_f = inputConvert($lat);
 			$long_f = inputConvert($long);
-			$thumb = '<a href="javascript:image(\'' . $_zp_current_image->albumname . '\',\'' . $_zp_current_image->filename . '\');"><img src="' . getCustomImageURL(150) . '" /></a>';
+			$thumb = '<a href="javascript:image(\'' . $_zp_current_image->albumname . '\',\'' . $_zp_current_image->filename . '\');"><img src="' . getCustomImageURL(150, NULL, NULL, NULL, NULL, NULL, NULL, true) . '" /></a>';
 			return array('lat' => $lat_f, 'long' => $long_f, 'title' => $_zp_current_image->getTitle(), 'desc' => $_zp_current_image->getDesc(), 'thumb' => $thumb);
 		}
 	} else {

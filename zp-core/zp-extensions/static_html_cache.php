@@ -230,7 +230,7 @@ class static_html_cache {
 	 */
 	function createCacheFilepath($accessType) {
 		global $_zp_current_image, $_zp_current_album, $_zp_gallery_page, $_zp_authority,
-		$_zp_current_article, $_zp_current_category, $_zp_current_page, $_zp_gallery, $_zp_page;
+		$_zp_current_article, $_zp_current_category, $_zp_current_page, $_zp_gallery, $_zp_page, $_zp_current_search;
 		// just make sure these are really empty
 		$cachefilepath = $_zp_gallery->getCurrentTheme() . '_' . str_replace('zp_', '', $accessType) . '_';
 		$album = "";
@@ -259,6 +259,9 @@ class static_html_cache {
 					$image = "-" . $_zp_current_image->filename;
 				}
 				$cachefilepath .= $album . $image;
+				if (in_context(ZP_SEARCH_LINKED)) {
+					$cachefilepath .= '_search_' . stripcslashes($_zp_current_search->codifySearchString());
+				} 
 				break;
 			case 'pages.php':
 				$cachesubfolder = "pages";

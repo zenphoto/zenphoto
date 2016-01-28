@@ -9,7 +9,7 @@
  *  	The search results used for Dynamic album processing are ignored.
  *
  * 		Analysis presumes that the Theme does a "uniform" set of object retrievals. That
- *		is, the <var>search.php</var> script will always request albums, images, pages, and/or news
+ * 		is, the <var>search.php</var> script will always request albums, images, pages, and/or news
  * 		consistently. Data collection happens for each of these objects so to "normalize"
  * 		the data the analysis will divide the data by the number of objects searched.
  *
@@ -45,7 +45,7 @@ class search_statistics {
 	 *
 	 * @return jquery_rating
 	 */
-	function search_statistics() {
+	function __construct() {
 		setOptionDefault('search_statistics_threshold', 25);
 		setOptionDefault('search_statistics_terms_threshold', 25);
 		setOptionDefault('search_statistics_failed_threshold', 10);

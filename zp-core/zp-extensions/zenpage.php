@@ -333,7 +333,7 @@ class cmsFilters {
 }
 
 /**
- * Returns the full path of the news index page (news page 1)
+ * Returns the full path of the news index page
  *
  * @return string
  */
