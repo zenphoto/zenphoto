@@ -61,7 +61,7 @@ class http_auth {
 	 *
 	 * @return http_auth
 	 */
-	function http_auth() {
+	function __construct() {
 		setOptionDefault('http_auth_trust', 0);
 	}
 
