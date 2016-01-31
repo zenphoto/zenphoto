@@ -263,6 +263,8 @@ class AlbumBase extends MediaObject {
 				$type = $parentalbum->getSortType($what);
 			}
 		}
+		if (empty($type))
+			$type = 'id';
 		return $type;
 	}
 
@@ -1130,7 +1132,7 @@ class AlbumBase extends MediaObject {
 	}
 
 	/**
-	 * Returns the page number in the gallery or the parent album of this album 
+	 * Returns the page number in the gallery or the parent album of this album
 	 *
 	 * @return int
 	 */

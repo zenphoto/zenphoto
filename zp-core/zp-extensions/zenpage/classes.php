@@ -640,10 +640,13 @@ class CMS {
 
 	function getSortType($what = 'news') {
 		if ($what == 'pages') {
-			return $this->page_sortorder;
+			$type = $this->page_sortorder;
 		} else {
-			return $this->sortorder;
+			$type = $this->sortorder;
 		}
+		if (empty($type))
+			$type = 'id';
+		return $type;
 	}
 
 	function setSortType($value, $what = 'news') {
