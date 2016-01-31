@@ -39,6 +39,16 @@ class htmlmetatags {
 		setOptionDefault('htmlmeta_revisit_after', '10 Days');
 		setOptionDefault('htmlmeta_expires', '43200');
 		setOptionDefault('htmlmeta_tags', '');
+		
+		if(getOption('htmlmeta_og-title')) { // assume this will be set
+			setOptionDefault('htmlmeta_opengraph', 1);
+		}
+		//remove obsolete old options
+		purgeOption('htmlmeta_og-title');
+		purgeOption('htmlmeta_og-image');
+		purgeOption('htmlmeta_og-description');
+		purgeOption('htmlmeta_og-url');
+		purgeOption('htmlmeta_og-type');
 
 		// the html meta tag selector prechecked ones
 		setOptionDefault('htmlmeta_htmlmeta_tags', '1');
@@ -123,6 +133,7 @@ class htmlmetatags {
 														"property='og:description'"						 => "htmlmeta_og-description",
 														"property='og:url'"										 => "htmlmeta_og-url",
 														"property='og:type'"									 => "htmlmeta_og-type",
+														"OpenGraph (og:)"											 => "htmlmeta_opengraph",
 														"name='pinterest' content='nopin'"		 => "htmlmeta_name-pinterest",
 														"twitter:card"												 => "htmlmeta_twittercard"
 										),
@@ -322,19 +333,13 @@ class htmlmetatags {
 		}
 
 		// OpenGraph meta
-		if (getOption('htmlmeta_og-title')) {
+		if (getOption('htmlmeta_opengraph')) {
 			$meta .= '<meta property="og:title" content="' . $pagetitle . '">' . "\n";
-		}
-		if (getOption('htmlmeta_og-image') && !empty($thumb)) {
-			$meta .= '<meta property="og:image" content="' . $thumb . '">' . "\n";
-		}
-		if (getOption('htmlmeta_og-description')) {
+			if (!empty($thumb)) {
+				$meta .= '<meta property="og:image" content="' . $thumb . '">' . "\n";
+			}
 			$meta .= '<meta property="og:description" content="' . $desc . '">' . "\n";
-		}
-		if (getOption('htmlmeta_og-url')) {
 			$meta .= '<meta property="og:url" content="' . html_encode($url) . '">' . "\n";
-		}
-		if (getOption('htmlmeta_og-type')) {
 			$meta .= '<meta property="og:type" content="' . $type . '">' . "\n";
 		}
 
