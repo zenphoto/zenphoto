@@ -1354,20 +1354,24 @@ function getWatermarkPath($wm) {
  * 	Uses $_SERVER[REQUEST_URI] if it exists, otherwise it concocts the URI from
  * 	$_SERVER[SCRIPT_NAME] and $_SERVER[QUERY_STRING]
  *
+ * @param bool $decode Set true to urldecode the uri
  * @return string
  */
-function getRequestURI() {
+function getRequestURI($decode = true) {
 	if (array_key_exists('REQUEST_URI', $_SERVER)) {
-		$uri = sanitize($_SERVER['REQUEST_URI']);
+		$uri = sanitize(str_replace('\\', '/', $_SERVER['REQUEST_URI']));
 		preg_match('|^(http[s]*\://[a-zA-Z0-9\-\.]+/?)*(.*)$|xis', $uri, $matches);
 		$uri = $matches[2];
 		if (!empty($matches[1])) {
 			$uri = '/' . $uri;
 		}
 	} else {
-		$uri = sanitize(@$_SERVER['SCRIPT_NAME']);
+		$uri = sanitize(str_replace('\\', '/', @$_SERVER['SCRIPT_NAME']));
 	}
-	return urldecode(str_replace('\\', '/', $uri));
+	if ($decode) {
+		$uri = urldecode($uri);
+	}
+	return $uri;
 }
 
 /**
