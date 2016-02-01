@@ -212,7 +212,7 @@ class static_html_cache {
 	 *
 	 */
 	function abortHTMLCache($flush) {
-		$_zp_HTML_cache->enabled = false;
+		$this->enabled = false;
 		if (!empty($this->pageCachePath)) {
 			$this->pageCachePath = NULL;
 			if ($flush) {
@@ -261,7 +261,7 @@ class static_html_cache {
 				$cachefilepath .= $album . $image;
 				if (in_context(ZP_SEARCH_LINKED)) {
 					$cachefilepath .= '_search_' . stripcslashes($_zp_current_search->codifySearchString());
-				} 
+				}
 				break;
 			case 'pages.php':
 				$cachesubfolder = "pages";
