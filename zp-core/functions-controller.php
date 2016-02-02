@@ -57,7 +57,10 @@ function zpRewriteURL($query) {
 					unset($query['searchfields']);
 				}
 				if (isset($query['words'])) {
-					$redirectURL .= '/' . SearchEngine::encode($query['words']) . '/';
+					if (!preg_match('/^[0-9A-F]+\.[0-9A-F]+$/i', $query['words'])) {
+						$query['words'] = SearchEngine::encode($query['words']);
+					}
+					$redirectURL .= '/' . $query['words'] . '/';
 					unset($query['words']);
 				}
 				break;
@@ -101,7 +104,7 @@ function zpRewriteURL($query) {
  */
 function fix_path_redirect() {
 	if (MOD_REWRITE) {
-		$request_uri = getRequestURI();
+		$request_uri = getRequestURI(false);
 		$parts = parse_url($request_uri);
 		$redirectURL = NULL;
 

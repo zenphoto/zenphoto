@@ -39,6 +39,16 @@ class htmlmetatags {
 		setOptionDefault('htmlmeta_expires', '43200');
 		setOptionDefault('htmlmeta_tags', '');
 
+		if (getOption('htmlmeta_og-title')) { // assume this will be set
+			setOptionDefault('htmlmeta_opengraph', 1);
+		}
+		//remove obsolete old options
+		purgeOption('htmlmeta_og-title');
+		purgeOption('htmlmeta_og-image');
+		purgeOption('htmlmeta_og-description');
+		purgeOption('htmlmeta_og-url');
+		purgeOption('htmlmeta_og-type');
+
 		// the html meta tag selector prechecked ones
 		setOptionDefault('htmlmeta_htmlmeta_tags', '1');
 		setOptionDefault('htmlmeta_tags_threshold', 1);
@@ -123,7 +133,7 @@ class htmlmetatags {
 														"name='author'"										 => "htmlmeta_name-author",
 														"name='copyright'"								 => "htmlmeta_name-copyright",
 														"name='rights'"										 => "htmlmeta_name-rights",
-														"name='generator' ('Zenphoto')"		 => "htmlmeta_name-generator",
+														"name='generator' ('ZenPhoto20')"	 => "htmlmeta_name-generator",
 														"name='revisit-after'"						 => "htmlmeta_name-revisit-after",
 														"name='expires'"									 => "htmlmeta_name-expires",
 														"name='date'"											 => "htmlmeta_name-date",
@@ -323,19 +333,13 @@ class htmlmetatags {
 		}
 
 		// OpenGraph meta
-		if (getOption('htmlmeta_og-title')) {
+		if (getOption('htmlmeta_opengraph')) {
 			$meta .= '<meta property="og:title" content="' . $pagetitle . '">' . "\n";
-		}
-		if (getOption('htmlmeta_og-image') && !empty($thumb)) {
-			$meta .= '<meta property="og:image" content="' . $thumb . '">' . "\n";
-		}
-		if (getOption('htmlmeta_og-description')) {
+			if (!empty($thumb)) {
+				$meta .= '<meta property="og:image" content="' . $thumb . '">' . "\n";
+			}
 			$meta .= '<meta property="og:description" content="' . $desc . '">' . "\n";
-		}
-		if (getOption('htmlmeta_og-url')) {
 			$meta .= '<meta property="og:url" content="' . html_encode($url) . '">' . "\n";
-		}
-		if (getOption('htmlmeta_og-type')) {
 			$meta .= '<meta property="og:type" content="' . $type . '">' . "\n";
 		}
 

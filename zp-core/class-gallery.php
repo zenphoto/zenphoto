@@ -170,10 +170,13 @@ class Gallery {
 
 	function getSortType($what = 'album') {
 		if ($what == 'image') {
-			return $this->get('image_sorttype');
+			$type = $this->get('image_sorttype');
 		} else {
-			return $this->get('gallery_sorttype');
+			$type = $this->get('gallery_sorttype');
 		}
+		if (empty($type))
+			$type = 'id';
+		return $type;
 	}
 
 	function setSortType($value, $what = 'album') {

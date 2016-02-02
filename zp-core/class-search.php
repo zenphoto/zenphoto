@@ -1647,11 +1647,11 @@ class SearchEngine {
 			$albums_seen = $images = $result = array();
 			if ($search_result) {
 				while ($row = db_fetch_assoc($search_result)) {
-					$albumid = $row['albumid'];
+					$albumid = (int) $row['albumid'];
 					if (array_key_exists($albumid, $albums_seen)) {
 						$albumrow = $albums_seen[$albumid];
 					} else {
-						$query = "SELECT folder, `show` FROM " . prefix('albums') . " WHERE id = $albumid";
+						$query = "SELECT folder, `show` FROM " . prefix('albums') . " WHERE id=$albumid";
 						$row2 = query_single_row($query); // id is unique
 						if ($row2) {
 							$albumname = $row2['folder'];
