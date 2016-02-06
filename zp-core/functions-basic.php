@@ -1428,7 +1428,13 @@ function checkInstall() {
 			$install = array('REQUESTS' => 'CONFIGURATION', 'ZENPHOTO' => '0.0.0[0000]');
 		}
 		preg_match('|([^-]*).*\[(.*)\]|', $install['ZENPHOTO'], $matches);
-		$mandatory = 14 * (int) (isset($install['REQUESTS']) || isset($matches[1]) && isset($matches[2]) && $matches[1] != $version[1] || $matches[2] != ZENPHOTO_RELEASE);
+		if (isset($install['REQUESTS'])) {
+			$mandatory = 14;
+		} else if (isset($matches[1]) && isset($matches[2]) && $matches[1] != $version[1] || $matches[2] != ZENPHOTO_RELEASE) {
+			$mandatory = 15;
+		} else {
+			$mandatory = 0;
+		}
 		if ($mandatory || ((time() & 7) == 0) && OFFSET_PATH != 2 && $i != serialize(installSignature())) {
 			_setup($mandatory);
 		}
