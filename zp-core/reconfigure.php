@@ -269,6 +269,9 @@ function restoreSetupScrpts($reason) {
 		default:
 			$addl = sprintf(gettext('restored to run setup [%s]'), $reason);
 			break;
+		case 2:
+			$addl = gettext('restored by Admin request');
+			break;
 		case 4:
 			$addl = gettext('restored by cloning');
 			break;
