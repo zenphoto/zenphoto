@@ -174,8 +174,6 @@ class Gallery {
 		} else {
 			$type = $this->get('gallery_sorttype');
 		}
-		if (empty($type))
-			$type = 'id';
 		return $type;
 	}
 

@@ -130,8 +130,6 @@ class Category extends CMSRoot {
 
 	function getSortType() {
 		$type = $this->sortorder;
-		if (empty($type))
-			$type = 'id';
 		return $type;
 	}
 

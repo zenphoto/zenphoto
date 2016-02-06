@@ -644,8 +644,6 @@ class CMS {
 		} else {
 			$type = $this->sortorder;
 		}
-		if (empty($type))
-			$type = 'id';
 		return $type;
 	}
 

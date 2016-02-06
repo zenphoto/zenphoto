@@ -263,8 +263,6 @@ class AlbumBase extends MediaObject {
 				$type = $parentalbum->getSortType($what);
 			}
 		}
-		if (empty($type))
-			$type = 'id';
 		return $type;
 	}
 
