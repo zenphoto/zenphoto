@@ -139,9 +139,9 @@ define('FILE_MOD', CHMOD_VALUE & 0666);
 
 if (OFFSET_PATH != 2) {
 	if (!file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
-		_setup(1);
+		_setup(11);
 	} else if (empty($_zp_conf_vars['mysql_database'])) {
-		_setup(2);
+		_setup(12);
 	}
 }
 
@@ -172,7 +172,7 @@ if (!defined('DATABASE_SOFTWARE') && (extension_loaded(strtolower($_zp_conf_vars
 }
 
 if (!$data && OFFSET_PATH != 2) {
-	_setup(3);
+	_setup(13);
 }
 
 primeOptions();
@@ -1428,9 +1428,9 @@ function checkInstall() {
 			$install = array('REQUESTS' => 'CONFIGURATION', 'ZENPHOTO' => '0.0.0[0000]');
 		}
 		preg_match('|([^-]*).*\[(.*)\]|', $install['ZENPHOTO'], $matches);
-		$mandatory = isset($install['REQUESTS']) || isset($matches[1]) && isset($matches[2]) && $matches[1] != $version[1] || $matches[2] != ZENPHOTO_RELEASE;
+		$mandatory = 14 * (int) (isset($install['REQUESTS']) || isset($matches[1]) && isset($matches[2]) && $matches[1] != $version[1] || $matches[2] != ZENPHOTO_RELEASE);
 		if ($mandatory || ((time() & 7) == 0) && OFFSET_PATH != 2 && $i != serialize(installSignature())) {
-			_setup((int) $mandatory);
+			_setup($mandatory);
 		}
 	}
 }

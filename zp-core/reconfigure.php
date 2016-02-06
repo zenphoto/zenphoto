@@ -252,6 +252,15 @@ function reconfigurePage($diff, $needs, $mandatory) {
 
 /**
  * control when and how setup scripts are turned back into PHP files
+ * @param int reason
+ * 						 2	restore setup files button
+ * 						 4	Clone request
+ * 						 5	Setup run with proper XSRF token
+ * 						 6	checkSignature and no prior signagure
+ * 						11	No config file
+ * 						12	No database specified
+ * 						13	No DB connection
+ * 						14	checkInstall decided it is needed
  */
 function restoreSetupScrpts($reason) {
 	//log setup file restore no matter what!
