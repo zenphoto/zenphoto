@@ -16,6 +16,7 @@
  * @package plugins
  * @subpackage seo
  */
+$plugin_is_filter = 5 | THEME_PLUGIN;
 $plugin_description = gettext("A plugin to print the most common HTML meta tags to the head of your site’s pages.");
 $plugin_author = "Malte Müller (acrylian)";
 
