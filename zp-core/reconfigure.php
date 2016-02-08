@@ -256,38 +256,42 @@ function reconfigurePage($diff, $needs, $mandatory) {
  * 						 2	restore setup files button
  * 						 4	Clone request
  * 						 5	Setup run with proper XSRF token
- * 						 6	checkSignature and no prior signagure
+ * 						 6	checkSignature and no prior signature
  * 						11	No config file
  * 						12	No database specified
  * 						13	No DB connection
- * 						14	checkInstall decided it is needed
+ * 						14	checkInstall setup request
+ * 						15	checkInstall Version has changed
  */
 function restoreSetupScrpts($reason) {
 	//log setup file restore no matter what!
 	require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/security-logger.php');
 	switch ($reason) {
 		default:
-			$addl = sprintf(gettext('restored to run setup [%s]'), $reason);
+			$addl = sprintf(gettext('to run setup [%s]'), $reason);
 			break;
 		case 2:
-			$addl = gettext('restored by Admin request');
+			$addl = gettext('by Admin request');
 			break;
 		case 4:
-			$addl = gettext('restored by cloning');
+			$addl = gettext('by cloning');
 			break;
 	}
-	security_logger::log_setup(true, 'restore', $addl);
-	if (!defined('FILE_MOD')) {
-		define('FILE_MOD', 0666);
-	}
-	chdir(dirname(__FILE__) . '/setup/');
-	$found = safe_glob('*.xxx');
-	foreach ($found as $script) {
-		chmod($script, 0777);
-		if (@rename($script, stripSuffix($script) . '.php')) {
-			chmod(stripSuffix($script) . '.php', FILE_MOD);
-		} else {
-			chmod($script, FILE_MOD);
+	$allowed = !defined('ADMIN_RIGHTS') || zp_loggedin(ADMIN_RIGHTS);
+	security_logger::log_setup($allowed, 'restore', $addl);
+	if ($allowed) {
+		if (!defined('FILE_MOD')) {
+			define('FILE_MOD', 0666);
+		}
+		chdir(dirname(__FILE__) . '/setup/');
+		$found = safe_glob('*.xxx');
+		foreach ($found as $script) {
+			chmod($script, 0777);
+			if (@rename($script, stripSuffix($script) . '.php')) {
+				chmod(stripSuffix($script) . '.php', FILE_MOD);
+			} else {
+				chmod($script, FILE_MOD);
+			}
 		}
 	}
 }
