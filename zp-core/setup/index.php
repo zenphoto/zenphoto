@@ -4,8 +4,8 @@
  * @package setup
  */
 // force UTF-8 Ø
-Define('PHP_MIN_VERSION', '5.2');
-Define('PHP_DESIRED_VERSION', '5.4');
+Define('PHP_MIN_VERSION', '5.2.0');
+Define('PHP_DESIRED_VERSION', '5.4.0');
 
 // leave this as the first executable statement to avoid problems with PHP not having gettext support.
 if (!function_exists("gettext")) {
@@ -18,7 +18,7 @@ define('HTACCESS_VERSION', '1.4.5'); // be sure to change this the one in .htacc
 
 define('OFFSET_PATH', 2);
 
-if (version_compare(PHP_VERSION, '5.2.0', '<')) {
+if (version_compare(PHP_VERSION, PHP_MIN_VERSION, '<')) {
 	die(sprintf(gettext('Zenphoto requires PHP version %s or greater'), PHP_MIN_VERSION));
 }
 require_once(dirname(dirname(__FILE__)) . '/global-definitions.php');
