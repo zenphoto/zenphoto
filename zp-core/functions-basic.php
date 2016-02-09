@@ -1425,11 +1425,11 @@ function checkInstall() {
 		if ($i = getOption('zenphoto_install')) {
 			$install = getSerializedArray($i);
 		} else {
-			$install = array('REQUESTS' => 'CONFIGURATION', 'ZENPHOTO' => '0.0.0[0000]');
+			$install = array();
 		}
 		preg_match('|([^-]*).*\[(.*)\]|', $install['ZENPHOTO'], $matches);
 		if (isset($install['REQUESTS'])) {
-			_setup(14);
+			_setup('14:' . implode(',', $install['REQUESTS']));
 		} else if (isset($matches[1]) && isset($matches[2]) && $matches[1] != $version[1] || $matches[2] != ZENPHOTO_RELEASE) {
 			_setup(15);
 		} else if (((time() & 7) == 0) && $i != serialize(installSignature())) {
