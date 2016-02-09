@@ -411,7 +411,7 @@ value="' . $item . '" />';
 			zp_register_filter("edit_page_custom_data", "$me::cmsItemEdit");
 		}
 		if (OFFSET_PATH && !getOption($me . "_addedFields")) {
-			setupRequest($me);
+			requestSetup($me);
 		}
 	}
 
