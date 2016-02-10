@@ -1428,11 +1428,9 @@ function checkInstall() {
 			$install = array();
 		}
 		preg_match('|([^-]*).*\[(.*)\]|', $install['ZENPHOTO'], $matches);
-		if (isset($install['REQUESTS'])) {
-			_setup('14:' . implode(',', $install['REQUESTS']));
-		} else if (isset($matches[1]) && isset($matches[2]) && $matches[1] != $version[1] || $matches[2] != ZENPHOTO_RELEASE) {
-			_setup(15);
-		} else if (((time() & 7) == 0) && $i != serialize(installSignature())) {
+		if (isset($matches[1]) && isset($matches[2]) && $matches[1] != $version[1] || $matches[2] != ZENPHOTO_RELEASE) {
+			_setup(14);
+		} else if ($i != serialize(installSignature())) {
 			_setup(0);
 		}
 	}

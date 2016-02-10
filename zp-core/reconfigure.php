@@ -152,7 +152,8 @@ function reconfigureCS() {
 	?>
 	<style type="text/css">
 		.reconfigbox {
-			padding: 5px 10px 5px 10px;
+			text-align: left;
+			padding: 10px;
 			background-color: #FFEFB7;
 			border-width: 1px 1px 2px 1px;
 			border-color: #FFDEB5;
@@ -164,9 +165,9 @@ function reconfigureCS() {
 			-webkit-border-radius: 5px;
 			border-radius: 5px;
 		}
-		.reconfigbox h2,.notebox strong {
+		.reconfigbox h1,.notebox strong {
 			color: #663300;
-			font-size: 100%;
+			font-size: 120%;
 			font-weight: bold;
 			margin-bottom: 1em;
 		}
@@ -213,12 +214,13 @@ function reconfigurePage($diff, $needs, $mandatory) {
 							break;
 						case 'REQUESTS':
 							if (!empty($rslt)) {
+								echo '<li><div id="files">';
 								echo gettext('setup has been requested by:');
 								echo '<ul>';
 								foreach ($rslt['old'] as $request) {
 									echo '<li>' . $request . '</li>';
 								}
-								echo '</ul>';
+								echo '</ul></div></li>';
 							}
 							break;
 						default:
@@ -260,8 +262,7 @@ function reconfigurePage($diff, $needs, $mandatory) {
  * 						11	No config file
  * 						12	No database specified
  * 						13	No DB connection
- * 						14	checkInstall setup request
- * 						15	checkInstall Version has changed
+ * 						14	checkInstall Version has changed
  */
 function restoreSetupScrpts($reason) {
 	//log setup file restore no matter what!
