@@ -19,7 +19,7 @@ if (!function_exists("gettext")) {
 } else {
 	$noxlate = 1;
 }
-if (version_compare(PHP_VERSION, '5.0.0', '<')) {
+if (version_compare(PHP_MIN_VERSION, PHP_MIN_VERSION, '<')) {
 	die(sprintf(gettext('ZenPhoto20 requires PHP version %s or greater'), PHP_MIN_VERSION));
 }
 
@@ -845,7 +845,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 											} else {
 												//	no test file
 												$msg1 = sprintf(gettext('The filesystem character define is %1$s [no test performed]'), $charset_defined);
-												$msg2 = '<p>' . sprintf(gettext('Setup did not perform a test of the filesystem character set. You can cause setup to test for a proper definition by creating a file in your <code>%1$s</code> folder named <strong><code>%2$s</code></strong> and re-running setup.'), DATA_FOLDER, 'charset_tést') . '</p>' . $msg2;
+												$msg2 = '<p>' . sprintf(gettext('Setup did not perform a test of the filesystem character set. You can cause setup to test for a proper definition by creating a file in your <code>%1$s</code> folder named <strong><code>charset_tést</code></strong> and re-running setup.'), DATA_FOLDER) . '</p>' . $msg2;
 												if (isset($_zp_conf_vars['FILESYSTEM_CHARSET'])) {
 													//	but we have a define value
 													$notice = -3;

@@ -78,7 +78,7 @@ if (zp_loggedin()) { /* Display the admin pages. Do action handling first. */
 				/** restore the setup files ************************************************** */
 				case 'restore_setup':
 					XSRFdefender('restore_setup');
-					list($diff, $needs) = checkSignature(1);
+					list($diff, $needs) = checkSignature(2);
 					if (empty($needs)) {
 						$class = 'messagebox';
 						$msg = gettext('Setup files restored.');
@@ -260,13 +260,17 @@ if (!zp_loggedin()) {
 				}
 			}
 			list($diff, $needs, $found, $present) = checkSignature(0);
-			if (zp_loggedin(ADMIN_RIGHTS) && $present && zpFunctions::hasPrimaryScripts()) {
+			if (zp_loggedin(ADMIN_RIGHTS) && $present && (zpFunctions::hasPrimaryScripts() || empty($needs))) {
 				//	button to restore setup files if needed
 				if (empty($needs)) {
 					?>
 					<div class="warningbox">
 						<h2><?php echo gettext('Your Setup scripts are not protected.'); ?></h2>
-						<?php echo gettext('The Setup environment is not totally secure, you should protect the scripts to thwart hackers. Use the <strong>Setup » protect scripts</strong> button in the <em>Admin</em> section of the <em>Utility functions</em>. '); ?>
+						<?php
+						if (zpFunctions::hasPrimaryScripts()) {
+							echo gettext('The Setup environment is not totally secure, you should protect the scripts to thwart hackers. Use the <strong>Setup » protect scripts</strong> button in the <em>Admin</em> section of the <em>Utility functions</em>. ');
+						}
+						?>
 					</div>
 					<?php
 					$buttonlist[] = array(
@@ -281,20 +285,21 @@ if (!zp_loggedin()) {
 									'hidden'			 => '',
 									'rights'			 => ADMIN_RIGHTS
 					);
-
-					$buttonlist[] = array(
-									'XSRFTag'			 => 'protect_setup',
-									'category'		 => gettext('Admin'),
-									'enable'			 => 2,
-									'button_text'	 => gettext('Setup » protect scripts'),
-									'formname'		 => 'restore_setup',
-									'action'			 => FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=protect_setup',
-									'icon'				 => 'images/lock_2.png',
-									'alt'					 => '',
-									'title'				 => gettext('Protects setup files so setup cannot be run.'),
-									'hidden'			 => '<input type="hidden" name="action" value="protect_setup" />',
-									'rights'			 => ADMIN_RIGHTS
-					);
+					if (zpFunctions::hasPrimaryScripts()) {
+						$buttonlist[] = array(
+										'XSRFTag'			 => 'protect_setup',
+										'category'		 => gettext('Admin'),
+										'enable'			 => 2,
+										'button_text'	 => gettext('Setup » protect scripts'),
+										'formname'		 => 'restore_setup',
+										'action'			 => FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=protect_setup',
+										'icon'				 => 'images/lock_2.png',
+										'alt'					 => '',
+										'title'				 => gettext('Protects setup files so setup cannot be run.'),
+										'hidden'			 => '<input type="hidden" name="action" value="protect_setup" />',
+										'rights'			 => ADMIN_RIGHTS
+						);
+					}
 				} else {
 					$buttonlist[] = array(
 									'XSRFTag'			 => 'restore_setup',
@@ -531,7 +536,7 @@ if (!zp_loggedin()) {
 							$c = count($plugins);
 							?>
 							<h3><a onclick="toggle('plugins_hide');
-											toggle('plugins_show');" ><?php printf(ngettext("%u active plugin:", "%u active plugins:", $c), $c); ?></a></h3>
+									toggle('plugins_show');" ><?php printf(ngettext("%u active plugin:", "%u active plugins:", $c), $c); ?></a></h3>
 							<div id="plugins_hide" style="display:none">
 								<ul class="plugins">
 									<?php
@@ -579,7 +584,7 @@ if (!zp_loggedin()) {
 							$c = count($filters);
 							?>
 							<h3><a onclick="toggle('filters_hide');
-											toggle('filters_show');" ><?php printf(ngettext("%u active filter:", "%u active filters:", $c), $c); ?></a></h3>
+									toggle('filters_show');" ><?php printf(ngettext("%u active filter:", "%u active filters:", $c), $c); ?></a></h3>
 							<div id="filters_hide" style="display:none">
 								<ul class="plugins">
 									<?php
@@ -731,7 +736,7 @@ if (!zp_loggedin()) {
 									<?php printNewsStatistic(); ?>
 								</li>
 								<li>
-									<?php printCategoriesStatistic(); ?>
+								<?php printCategoriesStatistic(); ?>
 								</li>
 								<?php
 							}
@@ -750,7 +755,7 @@ if (!zp_loggedin()) {
 		} else {
 			?>
 			<div class="errorbox">
-				<?php echo gettext('Your user rights do not allow access to administrative functions.'); ?>
+			<?php echo gettext('Your user rights do not allow access to administrative functions.'); ?>
 			</div>
 			<?php
 		}

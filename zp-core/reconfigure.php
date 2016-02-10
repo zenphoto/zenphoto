@@ -152,7 +152,8 @@ function reconfigureCS() {
 	?>
 	<style type="text/css">
 		.reconfigbox {
-			padding: 5px 10px 5px 10px;
+			text-align: left;
+			padding: 10px;
 			background-color: #FFEFB7;
 			border-width: 1px 1px 2px 1px;
 			border-color: #FFDEB5;
@@ -164,9 +165,9 @@ function reconfigureCS() {
 			-webkit-border-radius: 5px;
 			border-radius: 5px;
 		}
-		.reconfigbox h2,.notebox strong {
+		.reconfigbox h1,.notebox strong {
 			color: #663300;
-			font-size: 100%;
+			font-size: 120%;
 			font-weight: bold;
 			margin-bottom: 1em;
 		}
@@ -213,12 +214,13 @@ function reconfigurePage($diff, $needs, $mandatory) {
 							break;
 						case 'REQUESTS':
 							if (!empty($rslt)) {
+								echo '<li><div id="files">';
 								echo gettext('setup has been requested by:');
 								echo '<ul>';
 								foreach ($rslt['old'] as $request) {
 									echo '<li>' . $request . '</li>';
 								}
-								echo '</ul>';
+								echo '</ul></div></li>';
 							}
 							break;
 						default:
@@ -252,30 +254,45 @@ function reconfigurePage($diff, $needs, $mandatory) {
 
 /**
  * control when and how setup scripts are turned back into PHP files
+ * @param int reason
+ * 						 2	restore setup files button
+ * 						 4	Clone request
+ * 						 5	Setup run with proper XSRF token
+ * 						 6	checkSignature and no prior signature
+ * 						11	No config file
+ * 						12	No database specified
+ * 						13	No DB connection
+ * 						14	checkInstall Version has changed
  */
 function restoreSetupScrpts($reason) {
 	//log setup file restore no matter what!
 	require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/security-logger.php');
 	switch ($reason) {
 		default:
-			$addl = sprintf(gettext('restored to run setup [%s]'), $reason);
+			$addl = sprintf(gettext('to run setup [%s]'), $reason);
+			break;
+		case 2:
+			$addl = gettext('by Admin request');
 			break;
 		case 4:
-			$addl = gettext('restored by cloning');
+			$addl = gettext('by cloning');
 			break;
 	}
-	security_logger::log_setup(true, 'restore', $addl);
-	if (!defined('FILE_MOD')) {
-		define('FILE_MOD', 0666);
-	}
-	chdir(dirname(__FILE__) . '/setup/');
-	$found = safe_glob('*.xxx');
-	foreach ($found as $script) {
-		chmod($script, 0777);
-		if (@rename($script, stripSuffix($script) . '.php')) {
-			chmod(stripSuffix($script) . '.php', FILE_MOD);
-		} else {
-			chmod($script, FILE_MOD);
+	$allowed = !defined('ADMIN_RIGHTS') || zp_loggedin(ADMIN_RIGHTS);
+	security_logger::log_setup($allowed, 'restore', $addl);
+	if ($allowed) {
+		if (!defined('FILE_MOD')) {
+			define('FILE_MOD', 0666);
+		}
+		chdir(dirname(__FILE__) . '/setup/');
+		$found = safe_glob('*.xxx');
+		foreach ($found as $script) {
+			chmod($script, 0777);
+			if (@rename($script, stripSuffix($script) . '.php')) {
+				chmod(stripSuffix($script) . '.php', FILE_MOD);
+			} else {
+				chmod($script, FILE_MOD);
+			}
 		}
 	}
 }

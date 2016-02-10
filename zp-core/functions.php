@@ -261,6 +261,9 @@ function lookupSortKey($sorttype, $default, $table) {
 			return 'sort_order';
 		default:
 			if (empty($sorttype)) {
+				if (empty($default)) {
+					return 'id';
+				}
 				return $default;
 			}
 			if (substr($sorttype, 0) == '(') {
@@ -288,6 +291,9 @@ function lookupSortKey($sorttype, $default, $table) {
 				if (array_key_exists($field = trim($field, '`'), $dbfields)) {
 					$rslt[] = '`' . trim($dbfields[$field]) . '`';
 				}
+			}
+			if (empty($rslt)) {
+				return 'id';
 			}
 			return implode(',', $rslt);
 	}
