@@ -348,7 +348,7 @@ class zenpagecms {
  * @return string
  */
 function getNewsIndexURL($page = '') {
-	$rewrite = _NEWS_;
+	$rewrite = _NEWS_ . '/';
 	$plain = '/index.php?p=news';
 	if ($page > 1) {
 		$rewrite .= '/' . $page . '/';
