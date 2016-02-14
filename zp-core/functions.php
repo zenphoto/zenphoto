@@ -2126,7 +2126,7 @@ function debug404($album, $image, $theme) {
  */
 function getXSRFToken($action) {
 	global $_zp_current_admin_obj;
-	return sha1($action . prefix(getUserIP()) . serialize($_zp_current_admin_obj) . session_id());
+	return sha1($action . prefix(ZENPHOTO_RELEASE) . serialize($_zp_current_admin_obj) . session_id());
 }
 
 /**
