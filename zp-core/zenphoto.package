@@ -1193,8 +1193,8 @@ zp-core/js/toggleElements.css
 zp-core/js/upload.js
 zp-core/js/zenphoto.js
 zp-core/js/dirtyforms
-zp-core/js/dirtyforms/jquery.dirtyforms.js
-zp-core/js/dirtyforms/tinymce.js
+zp-core/js/dirtyforms/jquery.dirtyforms.helpers.tinymce.min.js
+zp-core/js/dirtyforms/jquery.dirtyforms.min.js
 zp-core/js/facebox
 zp-core/js/facebox/closelabel.png
 zp-core/js/facebox/facebox.css
