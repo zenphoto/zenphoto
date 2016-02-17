@@ -121,7 +121,7 @@ function checkSignature($mandatory) {
 	if (file_exists(dirname(__FILE__) . '/setup/')) {
 		chdir(dirname(__FILE__) . '/setup/');
 		$restore = safe_glob('*.xxx');
-		if (!empty($restore) && $mandatory && (defined('ADMIN_RIGHTS') && zp_loggedin(ADMIN_RIGHTS) || !$_zp_DB_connection)) {
+		if (!empty($restore) && $mandatory && defined('ADMIN_RIGHTS') && zp_loggedin(ADMIN_RIGHTS)) {
 			restoreSetupScrpts($mandatory);
 		}
 		$found = safe_glob('*.*');
@@ -278,7 +278,7 @@ function restoreSetupScrpts($reason) {
 			$addl = gettext('by cloning');
 			break;
 	}
-	$allowed = !defined('ADMIN_RIGHTS') || zp_loggedin(ADMIN_RIGHTS);
+	$allowed = defined('ADMIN_RIGHTS') && zp_loggedin(ADMIN_RIGHTS);
 	security_logger::log_setup($allowed, 'restore', $addl);
 	if ($allowed) {
 		if (!defined('FILE_MOD')) {
