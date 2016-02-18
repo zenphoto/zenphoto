@@ -160,6 +160,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 		<?php
 	}
 	?>
+					$.DirtyForms.ignoreClass = 'ignoredirty';
 					$.DirtyForms.message = '<?php echo gettext('You have unsaved changes!'); ?>';
 					$.DirtyForms.title = '<?php echo gettext('Are you sure you want to leave this page?'); ?>';
 					$.DirtyForms.continueText = '<?php echo gettext('Leave'); ?>';
