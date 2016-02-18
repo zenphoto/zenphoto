@@ -40,6 +40,7 @@ $backgroundImagePath = "";
 	<body onload="blurAnchors()">
 		<?php
 		zp_apply_filter('theme_body_open');
+		$handler->theme_bodyopen($_zp_themeroot);
 		$numimages = getNumImages();
 		$numalbums = getNumAlbums();
 		$total = $numimages + $numalbums;
