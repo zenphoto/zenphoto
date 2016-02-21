@@ -226,7 +226,12 @@ printAdminHeader('overview', 'Database');
 										?>
 									</td>
 									<td<?php echo $class; ?>>
-										<?php echo $key['Column_name']; ?>
+										<?php
+										echo $key['Column_name'];
+										if ($key['Sub_part']) {
+											echo ' (' . $key['Sub_part'] . ')';
+										}
+										?>
 									</td>
 									<td<?php echo $class; ?>>
 										<?php echo $key['Index_comment']; ?>
