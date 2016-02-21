@@ -207,6 +207,9 @@ printAdminHeader('overview', 'Database');
 								<th<?php echo $class; ?>>
 									<?php echo gettext('Column'); ?>
 								</th>
+								<th<?php echo $class; ?>>
+									<?php echo gettext('Comment'); ?>
+								</th>
 							</tr>
 							<?php
 							foreach ($result as $key) {
@@ -224,6 +227,9 @@ printAdminHeader('overview', 'Database');
 									</td>
 									<td<?php echo $class; ?>>
 										<?php echo $key['Column_name']; ?>
+									</td>
+									<td<?php echo $class; ?>>
+										<?php echo $key['Index_comment']; ?>
 									</td>
 								</tr>
 								<?php
