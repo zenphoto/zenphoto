@@ -85,6 +85,7 @@ class fieldExtender {
 						$sql.= ' ' . $newfield['attribute'];
 					if (isset($newfield['default']))
 						$sql.= ' DEFAULT ' . $newfield['default'];
+					$sql .= " COMMENT 'optional_$me'";
 					if (query($sql, false) && in_array($newfield['table'], array('albums', 'images', 'news', 'news_categories', 'pages')))
 						$fields[] = strtolower($newfield['name']);
 					$current[$newfield['table']][$newfield['name']] = $dbType;

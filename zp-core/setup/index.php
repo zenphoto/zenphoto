@@ -437,12 +437,6 @@ if ($setup_checked) {
 	}
 	setcookie('setup_test_cookie', ZENPHOTO_RELEASE, time() + 3600, '/');
 }
-//cleanup from misspelling.
-@unlink(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/zenpotoCompatibilityPack.php');
-@unlink(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpotoCompatibilityPack.php');
-if (is_dir(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/zenpotoCompatibilityPack')) {
-	zpFunctions::removeDir(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/zenpotoCompatibilityPack');
-}
 
 if (!isset($_zp_setupCurrentLocale_result) || empty($_zp_setupCurrentLocale_result)) {
 	if (DEBUG_LOCALE)
@@ -1618,7 +1612,6 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 						if (isset($_REQUEST['update'])) {
 							$task = 'update';
 						}
-
 						if (db_connect($_zp_conf_vars, false) && empty($task)) {
 							$result = db_show('tables');
 							$tables = array();
@@ -1644,34 +1637,12 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 											$_zp_conf_vars['mysql_prefix'] . 'search_cache'
 							);
 
-							// v1.3.2 handle zenpage table name change transition:
-							//				if the old table exists it gets updated instead of a new one being created
-							if (isset($tables[$_zp_conf_vars['mysql_prefix'] . 'zenpage_pages'])) {
-								unset($expected_tables[array_search($_zp_conf_vars['mysql_prefix'] . 'pages', $expected_tables)]);
-								$expected_tables[] = $_zp_conf_vars['mysql_prefix'] . 'zenpage_pages';
-							}
-							if (isset($tables[$_zp_conf_vars['mysql_prefix'] . 'zenpage_news'])) {
-								unset($expected_tables[array_search($_zp_conf_vars['mysql_prefix'] . 'news', $expected_tables)]);
-								$expected_tables[] = $_zp_conf_vars['mysql_prefix'] . 'zenpage_zenpage_pages';
-							}
-							if (isset($tables[$_zp_conf_vars['mysql_prefix'] . 'zenpage_news2cat'])) {
-								unset($expected_tables[array_search($_zp_conf_vars['mysql_prefix'] . 'news2cat', $expected_tables)]);
-								$expected_tables[] = $_zp_conf_vars['mysql_prefix'] . 'zenpage_news';
-							}
-							if (isset($tables[$_zp_conf_vars['mysql_prefix'] . 'zenpage_news_categories'])) {
-								unset($expected_tables[array_search($_zp_conf_vars['mysql_prefix'] . 'news_categories', $expected_tables)]);
-								$expected_tables[] = $_zp_conf_vars['mysql_prefix'] . 'zenpage_news_categories';
-							}
 							foreach ($expected_tables as $needed) {
 								if (!isset($tables[$needed])) {
 									$tables[$needed] = 'create';
 								}
 							}
-							if (isset($tables[$_zp_conf_vars['mysql_prefix'] . 'admintoalbum'])) {
-								$tables[$_zp_conf_vars['mysql_prefix'] . 'admin_to_object'] = 'update';
-							}
 						}
-
 						// Prefix the table names. These already have `backticks` around them!
 						$tbl_albums = prefix('albums');
 						$tbl_comments = prefix('comments');
@@ -1689,718 +1660,21 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 						$tbl_menu_manager = prefix('menu');
 						$tbl_plugin_storage = prefix('plugin_storage');
 						$tbl_searches = prefix('search_cache');
-
-						// Prefix the constraint names:
-						$db_schema = array();
-						$sql_statements = array();
-						$collation = db_collation();
-
-						/*
-						 * ********************************************************************************
-						  Add new fields in the upgrade section. This section should remain static except for new
-						  tables. This tactic keeps all changes in one place so that noting gets accidentaly omitted.
-						 * ********************************************************************************** */
-
-						//v1.2
-						if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'captcha'])) {
-							$db_schema[] = "CREATE TABLE IF NOT EXISTS $tbl_captcha (
-														`id` int(11) UNSIGNED NOT NULL auto_increment,
-														`ptime` int(32) UNSIGNED NOT NULL,
-														`hash` varchar(255) NOT NULL,
-														PRIMARY KEY (`id`)
-														)	$collation;";
-						}
-						//v1.1.7
-						if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'options'])) {
-							$db_schema[] = "CREATE TABLE IF NOT EXISTS $tbl_options (
-														`id` int(11) UNSIGNED NOT NULL auto_increment,
-														`ownerid` int(11) UNSIGNED NOT NULL DEFAULT 0,
-														`name` varchar(191) NOT NULL,
-														`value` text,
-														`theme` varchar (127) NOT NULL,
-														`creator` varchar (255) DEFAULT NULL,
-														PRIMARY KEY (`id`),
-														UNIQUE (`name`, `ownerid`, `theme`)
-														)	$collation;";
-						}
-						if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'tags'])) {
-							$db_schema[] = "CREATE TABLE IF NOT EXISTS $tbl_tags (
-															`id` int(11) UNSIGNED NOT NULL auto_increment,
-															`name` varchar(255) NOT NULL,
-															`language` varchar(5) NOT NULL default '',
-															PRIMARY KEY (`id`),
-															UNIQUE (`name`)
-															)	$collation;";
-						}
-						if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'obj_to_tag'])) {
-							$db_schema[] = "CREATE TABLE IF NOT EXISTS $tbl_obj_to_tag (
-														`id` int(11) UNSIGNED NOT NULL auto_increment,
-														`tagid` int(11) UNSIGNED NOT NULL,
-														`type` tinytext,
-														`objectid` int(11) UNSIGNED NOT NULL,
-														PRIMARY KEY (`id`),
-														KEY (tagid),
-														KEY (objectid)
-														)	$collation;";
-						}
-
-						// v. 1.1.5
-						if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'administrators'])) {
-							$db_schema[] = "CREATE TABLE IF NOT EXISTS $tbl_administrators (
-														`id` int(11) UNSIGNED NOT NULL auto_increment,
-														`user` varchar(64) NOT NULL,
-														`pass` varchar(64) NOT NULL,
-														`passhash` int (1),
-														`passupdate` datetime,
-														`name` text,
-														`email` text,
-														`rights` int,
-														`valid` int(1) NOT NULL DEFAULT 1,
-														`group` varchar(64) DEFAULT NULL,
-														`date` datetime,
-														`loggedin` datetime,
-														`lastloggedin` datetime,
-														`quota` int(11) DEFAULT NULL,
-														`language` varchar(5) DEFAULT NULL,
-														`prime_album` varchar(255) DEFAULT NULL,
-														`other_credentials` TEXT,
-														`challenge_phrase` TEXT,
-														PRIMARY KEY (`id`),
-														UNIQUE (`user`,`valid`)
-														)	$collation;";
-						}
-						if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'admin_to_object'])) {
-							$db_schema[] = "CREATE TABLE IF NOT EXISTS $tbl_admin_to_object (
-														`id` int(11) UNSIGNED NOT NULL auto_increment,
-														`adminid` int(11) UNSIGNED NOT NULL,
-														`objectid` int(11) UNSIGNED NOT NULL,
-														`type` varchar(32) DEFAULT 'album',
-														`edit` int(11) DEFAULT 32767,
-														PRIMARY KEY (`id`)
-														)	$collation;";
-						}
-
-
-						// base implementation
-						if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'albums'])) {
-							$db_schema[] = "CREATE TABLE IF NOT EXISTS $tbl_albums (
-														`id` int(11) UNSIGNED NOT NULL auto_increment,
-														`parentid` int(11) unsigned default NULL,
-														`folder` varchar(255) NOT NULL default '',
-														`title` text,
-														`desc` text,
-														`date` datetime default NULL,
-														`updateddate` datetime default NULL,
-														`location` text,
-														`show` int(1) unsigned NOT NULL default '1',
-														`closecomments` int(1) unsigned NOT NULL default '0',
-														`commentson` int(1) UNSIGNED NOT NULL default '1',
-														`thumb` varchar(255) default NULL,
-														`mtime` int(32) default NULL,
-														`sort_type` varchar(20) default NULL,
-														`subalbum_sort_type` varchar(20) default NULL,
-														`sort_order` varchar(48)  NOT NULL default '',
-														`image_sortdirection` int(1) UNSIGNED default '0',
-														`album_sortdirection` int(1) UNSIGNED default '0',
-														`hitcounter` int(11) unsigned default 0,
-														`password` varchar(255) NOT NULL DEFAULT '',
-														`password_hint` text,
-														`publishdate` datetime default NULL,
-														`expiredate` datetime default NULL,
-														`total_value` int(11) DEFAULT 0,
-														`total_votes` int(11) DEFAULT 0,
-														`used_ips` longtext,
-														`dynamic` int(1) DEFAULT 0,
-														`search_params` text,
-														`album_theme` varchar(127),
-														`user` varchar(64),
-														`rating` float,
-														`rating_status` int(1) DEFAULT 3,
-														`watermark` varchar(255),
-														`watermark_thumb` varchar(255),
-														`owner` varchar(64) DEFAULT NULL,
-														PRIMARY KEY (`id`),
-														KEY (`publishdate`),
-														KEY (`expiredate`),
-														UNIQUE `folder` (`folder`)
-														)	$collation;";
-						}
-
-						if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'comments'])) {
-							$db_schema[] = "CREATE TABLE IF NOT EXISTS $tbl_comments (
-														`id` int(11) UNSIGNED NOT NULL auto_increment,
-														`ownerid` int(11) unsigned NOT NULL default '0',
-														`name` varchar(255) NOT NULL default '',
-														`email` varchar(255) NOT NULL default '',
-														`website` varchar(255) default NULL,
-														`date` datetime default NULL,
-														`comment` text,
-														`inmoderation` int(1) unsigned NOT NULL default '0',
-														`type` varchar(52) DEFAULT 'images',
-														`IP` text,
-														`private` int(1) DEFAULT 0,
-														`anon` int(1) DEFAULT 0,
-														`custom_data` text,
-														PRIMARY KEY (`id`),
-														KEY `ownerid` (`ownerid`)
-														)	$collation;";
-						}
-
-						if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'images'])) {
-							$db_schema[] = "CREATE TABLE IF NOT EXISTS $tbl_images (
-														`id` int(11) UNSIGNED NOT NULL auto_increment,
-																`albumid` int(11) unsigned NOT NULL default '0',
-														`filename` varchar(255) NOT NULL default '',
-														`title` text,
-														`desc` text,
-														`commentson` int(1) UNSIGNED NOT NULL default '1',
-														`show` int(1) NOT NULL default '1',
-														`date` datetime default NULL,
-														`sort_order` varchar(48)  NOT NULL default '',
-														`height` int(10) unsigned default NULL,
-														`width` int(10) unsigned default NULL,
-														`rotation` int(3) unsigned default 0,
-														`GPSLatitude` varchar(52) default NULL,
-														`GPSLongitude` varchar(52) default NULL,
-														`GPSAltitude` varchar(52) default NULL,
-														`thumbX` int(10) unsigned default NULL,
-														`thumbY` int(10) unsigned default NULL,
-														`thumbW` int(10) unsigned default NULL,
-														`thumbH` int(10) unsigned default NULL,
-														`mtime` int(32) default NULL,
-														`publishdate` datetime default NULL,
-														`expiredate` datetime default NULL,
-														`hitcounter` int(11) unsigned default 0,
-														`total_value` int(11) unsigned default '0',
-														`total_votes` int(11) unsigned default '0',
-														`used_ips` longtext,
-														`rating` float,
-														`rating_status` int(1) DEFAULT 3,
-														`hasMetadata` int(1) DEFAULT 0,
-														`owner` varchar(64) DEFAULT NULL,
-														`filesize` int(11),
-														`user` varchar(64) DEFAULT NULL,
-														`password` varchar(64) DEFAULT NULL,
-														`password_hint` text,
-														PRIMARY KEY (`id`),
-														KEY (`albumid`),
-														KEY (`publishdate`),
-														KEY (`expiredate`),
-														UNIQUE `filename` (`filename`,`albumid`)
-														)	$collation;";
-						}
-
-						//v1.2.4
-						if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'news'])) {
-							$db_schema[] = "CREATE TABLE IF NOT EXISTS " . prefix('news') . " (
-														`id` int(11) UNSIGNED NOT NULL auto_increment,
-														`title` text,
-														`content` longtext,
-														`show` int(1) unsigned NOT NULL default '1',
-														`date` datetime,
-														`titlelink` varchar(255) NOT NULL,
-														`commentson` int(1) UNSIGNED NOT NULL,
-														`author` varchar(64) NOT NULL,
-														`lastchange` datetime default NULL,
-														`lastchangeauthor` varchar(64) NOT NULL,
-														`hitcounter` int(11) unsigned default 0,
-														`permalink` int(1) unsigned NOT NULL default 0,
-														`locked` int(1) unsigned NOT NULL default 0,
-														`publishdate` datetime default NULL,
-														`expiredate` datetime default NULL,
-														`total_value` int(11) unsigned default '0',
-														`total_votes` int(11) unsigned default '0',
-														`used_ips` longtext,
-														`rating` float,
-														`rating_status` int(1) DEFAULT 3,
-														`sticky` int(1) DEFAULT 0,
-														`truncation` int(1) unsigned default 0,
-														PRIMARY KEY (`id`),
-														KEY (`publishdate`),
-														KEY (`expiredate`),
-														UNIQUE (`titlelink`)
-														) $collation;";
-						}
-
-						if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'news_categories'])) {
-							$db_schema[] = "CREATE TABLE IF NOT EXISTS " . prefix('news_categories') . " (
-														`id` int(11) UNSIGNED NOT NULL auto_increment,
-														`title` text,
-														`titlelink` varchar(255) NOT NULL,
-														`permalink` int(1) UNSIGNED NOT NULL default 0,
-														`hitcounter` int(11) unsigned default 0,
-														`user` varchar(64) DEFAULT NULL,
-														`password` varchar(64) DEFAULT NULL,
-														`password_hint` text,
-														`parentid` int(11) DEFAULT NULL,
-														`sort_order` varchar(48) NOT NULL default '',
-														`desc` text,
-														`show` int(1) unsigned NOT NULL default '1',
-														PRIMARY KEY (`id`),
-														UNIQUE (`titlelink`)
-														) $collation;";
-						}
-
-						if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'news2cat'])) {
-							$db_schema[] = "CREATE TABLE IF NOT EXISTS " . prefix('news2cat') . " (
-														`id` int(11) UNSIGNED NOT NULL auto_increment,
-														`cat_id` int(11) unsigned NOT NULL,
-														`news_id` int(11) unsigned NOT NULL,
-														PRIMARY KEY (`id`)
-														) $collation;";
-						}
-
-						if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'pages'])) {
-							$db_schema[] = "CREATE TABLE IF NOT EXISTS " . prefix('pages') . " (
-														`id` int(11) UNSIGNED NOT NULL auto_increment,
-														`parentid` int(11) unsigned default NULL,
-														`title` text,
-														`content` longtext,
-														`sort_order`varchar(48) NOT NULL default '',
-														`show` int(1) unsigned NOT NULL default '1',
-														`titlelink` varchar(255) NOT NULL,
-														`commentson` int(1) unsigned NOT NULL,
-														`author` varchar(64) NOT NULL,
-														`date` datetime default NULL,
-														`lastchange` datetime default NULL,
-														`lastchangeauthor` varchar(64) NOT NULL,
-														`hitcounter` int(11) unsigned default 0,
-														`permalink` int(1) unsigned NOT NULL default 0,
-														`locked` int(1) unsigned NOT NULL default 0,
-														`publishdate` datetime default NULL,
-														`expiredate` datetime default NULL,
-														`total_value` int(11) unsigned default '0',
-														`total_votes` int(11) unsigned default '0',
-														`used_ips` longtext,
-														`rating` float,
-														`rating_status` int(1) DEFAULT 3,
-														`user` varchar(64) DEFAULT NULL,
-														`password` varchar(64) DEFAULT NULL,
-														`password_hint` text,
-														`truncation` int(1) unsigned default 0,
-														PRIMARY KEY (`id`),
-														KEY (`publishdate`),
-														KEY (`expiredate`),
-														UNIQUE (`titlelink`)
-														) $collation;";
-						}
-
-						if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'menu'])) {
-							$db_schema[] = "CREATE TABLE IF NOT EXISTS " . prefix('menu') . " (
-														`id` int(11) UNSIGNED NOT NULL auto_increment,
-														`parentid` int(11) unsigned default NULL,
-														`title` text,
-														`link` varchar(255) NOT NULL,
-														`include_li` int(1) unsigned default 1,
-														`type` varchar(16) NOT NULL,
-														`sort_order`varchar(48) NOT NULL default '',
-														`show` int(1) unsigned NOT NULL default '1',
-														`menuset` varchar(32) NOT NULL,
-														`span_class` varchar(32) default NULL,
-														`span_id` varchar(32) default NULL,
-														PRIMARY KEY (`id`)
-														) $collation;";
-						}
-						// v 1.3.2
-						if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'plugin_storage'])) {
-							$db_schema[] = "CREATE TABLE IF NOT EXISTS " . prefix('plugin_storage') . " (
-														`id` int(11) UNSIGNED NOT NULL auto_increment,
-														`type` varchar(32) NOT NULL,
-														`aux` varchar(255),
-														`data` longtext,
-														PRIMARY KEY (`id`),
-														KEY `type` (`type`),
-														KEY `aux` (`aux`)
-														) $collation;";
-						}
-						// v 1.4.2
-						if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'search_cache'])) {
-							$db_schema[] = "CREATE TABLE IF NOT EXISTS " . prefix('search_cache') . " (
-														`id` int(11) UNSIGNED NOT NULL auto_increment,
-														`criteria` TEXT,
-														`date` datetime default NULL,
-														`data` longtext,
-														KEY (`criteria`(255)),
-														PRIMARY KEY (`id`)
-														) $collation;";
-						}
-
-
-						/*
-						 * *************************************************************************************
-						 * *****                             UPGRADE SECTION                              ******
-						 * *****                                                                          ******
-						 * *****                          Add all new fields below                        ******
-						 * *****                                                                          ******
-						 * **************************************************************************************
-						 */
-
-						//v1.3.2
-						$sql_statements[] = "RENAME TABLE " . prefix('zenpage_news') . " TO $tbl_news," .
-										prefix('zenpage_news2cat') . " TO $tbl_news2cat," .
-										prefix('zenpage_news_categories') . " TO $tbl_news_categories," .
-										prefix('zenpage_pages') . " TO $tbl_pages";
-
-						// v. 1.0.0b
-						$sql_statements[] = "ALTER TABLE $tbl_albums ADD COLUMN `sort_type` varchar(20);";
-						$sql_statements[] = "ALTER TABLE $tbl_albums ADD COLUMN `sort_order` varchar(48) NOT NULL default '';";
-						$sql_statements[] = "ALTER TABLE $tbl_images ADD COLUMN `sort_order` varchar(48) NOT NULL default '';";
-
-						// v. 1.0.3b
-						$sql_statements[] = "ALTER TABLE $tbl_images ADD COLUMN `height` INT UNSIGNED;";
-						$sql_statements[] = "ALTER TABLE $tbl_images ADD COLUMN `width` INT UNSIGNED;";
-
-						// v. 1.0.4b
-						$sql_statements[] = "ALTER TABLE $tbl_albums ADD COLUMN `parentid` int(11) unsigned default NULL;";
-
-						// v. 1.0.9
-						$sql_statements[] = "ALTER TABLE $tbl_images ADD COLUMN `mtime` int(32) default NULL;";
-						$sql_statements[] = "ALTER TABLE $tbl_albums ADD COLUMN `mtime` int(32) default NULL;";
-
-						//v. 1.1
-						$sql_statements[] = "ALTER TABLE $tbl_options DROP `bool`, DROP `description`;";
-						$sql_statements[] = "ALTER TABLE $tbl_options CHANGE `value` `value` text;";
-//v1.1.7 omits	$sql_statements[] = "ALTER TABLE $tbl_options DROP INDEX `name`;";
-//v1.1.7 omits	$sql_statements[] = "ALTER TABLE $tbl_options ADD UNIQUE (`name`);";
-						$sql_statements[] = "ALTER TABLE $tbl_albums ADD COLUMN `commentson` int(1) UNSIGNED NOT NULL default '1';";
-						$sql_statements[] = "ALTER TABLE $tbl_albums ADD COLUMN `subalbum_sort_type` varchar(20) default NULL;";
-//v1.1.7 omits	$sql_statements[] = "ALTER TABLE $tbl_albums ADD COLUMN `tags` text;";
-						$sql_statements[] = "ALTER TABLE $tbl_images ADD COLUMN `date` datetime default NULL;";
-//v1.1.7 omits	$sql_statements[] = "ALTER TABLE $tbl_images ADD COLUMN `tags` text;";
-//v1.2.7 omits	$sql_statements[] = "ALTER TABLE $tbl_images ADD COLUMN `EXIFValid` int(1) UNSIGNED default NULL;";
-						$sql_statements[] = "ALTER TABLE $tbl_images ADD COLUMN `hitcounter` int(11) UNSIGNED default 0;";
-
-						//v1.1.1
-						$sql_statements[] = "ALTER TABLE $tbl_albums ADD COLUMN `image_sortdirection` int(1) UNSIGNED default '0';";
-						$sql_statements[] = "ALTER TABLE $tbl_albums ADD COLUMN `album_sortdirection` int(1) UNSIGNED default '0';";
-
-						//v1.1.3
-						$sql_statements[] = "ALTER TABLE $tbl_images ADD COLUMN `total_value` int(11) UNSIGNED default '0';";
-						$sql_statements[] = "ALTER TABLE $tbl_images ADD COLUMN `total_votes` int(11) UNSIGNED default '0';";
-						$sql_statements[] = "ALTER TABLE $tbl_images ADD COLUMN `used_ips` longtext;";
-						$sql_statements[] = "ALTER TABLE $tbl_albums ADD COLUMN `password` varchar(255) NOT NULL default '';";
-						$sql_statements[] = "ALTER TABLE $tbl_albums ADD COLUMN `password_hint` text;";
-						$sql_statements[] = "ALTER TABLE $tbl_albums ADD COLUMN `hitcounter` int(11) UNSIGNED default 0;";
-
-						//v1.1.4
-						$sql_statements[] = "ALTER TABLE $tbl_comments ADD COLUMN `type` varchar(52) NOT NULL default 'images';";
-						$sql_statements[] = "ALTER TABLE $tbl_albums ADD COLUMN `total_value` int(11) UNSIGNED default '0';";
-						$sql_statements[] = "ALTER TABLE $tbl_albums ADD COLUMN `total_votes` int(11) UNSIGNED default '0';";
-						$sql_statements[] = "ALTER TABLE $tbl_albums ADD COLUMN `used_ips` longtext;";
-						$sql_statements[] = "ALTER TABLE $tbl_albums CHANGE `password` `password` varchar(255) NOT NULL DEFAULT ''";
-
-						//v1.1.5
-						$sql_statements[] = " ALTER TABLE $tbl_comments DROP FOREIGN KEY `comments_ibfk1`";
-						$sql_statements[] = "ALTER TABLE $tbl_comments CHANGE `imageid` `ownerid` int(11) UNSIGNED NOT NULL default '0';";
-						//	$sql_statements[] = "ALTER TABLE $tbl_comments DROP INDEX `imageid`;";
-						$sql = "SHOW INDEX FROM `" . $_zp_conf_vars['mysql_prefix'] . "comments`";
-						$result = query($sql, false);
-						$hasownerid = false;
-						if ($result) {
-							while ($row = db_fetch_row($result)) {
-								if ($row[2] == 'ownerid') {
-									$hasownerid = true;
-								} else {
-									if ($row[2] != 'PRIMARY') {
-										$sql_statements[] = "ALTER TABLE $tbl_comments DROP INDEX `" . $row[2] . "`;";
-									}
-								}
-							}
-							db_free_result($result);
-						}
-						if (!$hasownerid) {
-							$sql_statements[] = "ALTER TABLE $tbl_comments ADD INDEX (`ownerid`);";
-						}
-						$sql_statements[] = "ALTER TABLE $tbl_albums ADD COLUMN `dynamic` int(1) UNSIGNED default '0'";
-						$sql_statements[] = "ALTER TABLE $tbl_albums ADD COLUMN `search_params` text";
-
-						//v1.1.6
-						$sql_statements[] = "ALTER TABLE $tbl_albums ADD COLUMN `album_theme` text";
-						$sql_statements[] = "ALTER TABLE $tbl_comments ADD COLUMN `IP` text";
-
-						//v1.1.7
-						$sql_statements[] = "ALTER TABLE $tbl_comments ADD COLUMN `private` int(1) UNSIGNED default 0";
-						$sql_statements[] = "ALTER TABLE $tbl_comments ADD COLUMN `anon` int(1) UNSIGNED default 0";
-						$sql_statements[] = "ALTER TABLE $tbl_albums ADD COLUMN `user` varchar(64) default ''";
-						$sql_statements[] = "ALTER TABLE $tbl_tags " . $collation;
-						$sql_statements[] = "ALTER TABLE $tbl_tags CHANGE `name` `name` varchar(255) " . $collation;
-						$sql_statements[] = "ALTER TABLE $tbl_administrators " . $collation;
-						$sql_statements[] = "ALTER TABLE $tbl_administrators CHANGE `name` `name` TEXT " . $collation;
-						$sql_statements[] = "ALTER TABLE $tbl_options ADD COLUMN `ownerid` int(11) UNSIGNED NOT NULL DEFAULT 0";
-						$sql_statements[] = "ALTER TABLE $tbl_options DROP INDEX `name`";
-//v1.2.7 omits	$sql_statements[] = "ALTER TABLE $tbl_options ADD UNIQUE `unique_option` (`name`, `ownerid`)";
-						//v1.2
-						$sql_statements[] = "ALTER TABLE $tbl_options CHANGE `ownerid` `ownerid` int(11) UNSIGNED NOT NULL DEFAULT 0";
-						$sql_statements[] = "ALTER TABLE $tbl_obj_to_tag " . $collation;
-						$sql_statements[] = "ALTER TABLE $tbl_options CHANGE `name` `name` varchar(255) " . $collation;
-						$hastagidindex = false;
-						$sql = "SHOW INDEX FROM `" . $_zp_conf_vars['mysql_prefix'] . "obj_to_tag`";
-						$result = query($sql, false);
-						if ($result) {
-							while ($row = db_fetch_row($result)) {
-								if ($row[2] == 'tagid') {
-									$hastagidindex = true;
-								}
-							}
-							db_free_result($result);
-						}
-						if (!$hastagidindex) {
-							$sql_statements[] = "ALTER TABLE $tbl_obj_to_tag ADD INDEX (`tagid`)";
-							$sql_statements[] = "ALTER TABLE $tbl_obj_to_tag ADD INDEX (`objectid`)";
-						}
-
-						//v1.2.1
-						$sql_statements[] = "ALTER TABLE $tbl_albums CHANGE `title` `title` TEXT";
-						$sql_statements[] = "ALTER TABLE $tbl_images CHANGE `title` `title` TEXT";
-						$sql_statements[] = "ALTER TABLE $tbl_images CHANGE `credit` `credit` TEXT";
-						$sql_statements[] = "ALTER TABLE $tbl_images CHANGE `copyright` `copyright` TEXT";
-						//v1.2.2
-						$sql_statements[] = "ALTER TABLE $tbl_images ADD COLUMN `thumbX` int(10) UNSIGNED default NULL;";
-						$sql_statements[] = "ALTER TABLE $tbl_images ADD COLUMN `thumbY` int(10) UNSIGNED default NULL;";
-						$sql_statements[] = "ALTER TABLE $tbl_images ADD COLUMN `thumbW` int(10) UNSIGNED default NULL;";
-						$sql_statements[] = "ALTER TABLE $tbl_images ADD COLUMN `thumbH` int(10) UNSIGNED default NULL;";
-
-						//v1.2.4
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_news_categories . ' DROP INDEX `titlelink`;';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_news_categories . ' ADD UNIQUE (`titlelink`);';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_news . ' DROP INDEX `titlelink`;';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_news . ' ADD UNIQUE (`titlelink`);';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_pages . ' DROP INDEX `titlelink`;';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_pages . ' ADD UNIQUE (`titlelink`);';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_comments . ' CHANGE `comment` `comment` TEXT;';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_news . ' CHANGE `title` `title` TEXT;';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_news_categories . ' CHANGE `titlelink` `titlelink` varchar(255);';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_pages . ' CHANGE `title` `title` TEXT;';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_comments . ' ADD COLUMN `custom_data` TEXT;';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_news . ' ADD COLUMN `expiredate` datetime default NULL';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_pages . ' ADD COLUMN `expiredate` datetime default NULL';
-						$sql_statements[] = 'UPDATE ' . $tbl_pages . ' SET `parentid`=NULL WHERE `parentid`=0';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_pages . ' CHANGE `sort_order` `sort_order` VARCHAR(48) NOT NULL default ""';
-						//v1.2.5
-						$sql_statements[] = "ALTER TABLE $tbl_albums CHANGE `parentid` `parentid` int(11) unsigned default NULL;";
-						$sql_statements[] = "ALTER TABLE $tbl_images CHANGE `albumid` `albumid` int(11) unsigned default NULL";
-						$sql_statements[] = 'UPDATE ' . $tbl_albums . ' SET `parentid`=NULL WHERE `parentid`=0';
-						$sql_statements[] = 'UPDATE ' . $tbl_images . ' SET `albumid`=NULL WHERE `albumid`=0';
-						$sql_statements[] = 'DELETE FROM ' . $tbl_pages . ' WHERE `titlelink`=""'; // cleanup for bad records
-
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_albums . ' ADD COLUMN `rating` FLOAT  NOT NULL DEFAULT 0';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_albums . ' ADD COLUMN `rating_status` int(1) UNSIGNED default 3';
-						$sql_statements[] = 'UPDATE ' . $tbl_albums . ' SET rating=total_value / total_votes WHERE total_votes > 0';
-
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_images . ' ADD COLUMN `rating` FLOAT  NOT NULL DEFAULT 0';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_images . ' ADD COLUMN `rating_status` int(1) UNSIGNED default 3';
-						$sql_statements[] = 'UPDATE ' . $tbl_images . ' SET rating=total_value / total_votes WHERE total_votes > 0';
-
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_pages . ' ADD COLUMN `total_votes` int(11) UNSIGNED default 0';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_pages . ' ADD COLUMN `total_value` int(11) UNSIGNED default 0';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_pages . ' ADD COLUMN `rating` FLOAT  NOT NULL DEFAULT 0';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_pages . ' ADD COLUMN `used_ips` longtext';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_pages . ' ADD COLUMN `rating_status` int(1) UNSIGNED default 3';
-
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_news . ' ADD COLUMN `total_votes` int(11) UNSIGNED default 0';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_news . ' ADD COLUMN `total_value` int(11) UNSIGNED default 0';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_news . ' ADD COLUMN `rating` FLOAT  NOT NULL DEFAULT 0';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_news . ' ADD COLUMN `used_ips` longtext';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_news . ' ADD COLUMN `rating_status` int(1) UNSIGNED default 3';
-						//v1.2.6
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_administrators . ' CHANGE `password` `pass` varchar(64)';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_administrators . ' ADD COLUMN `valid` int(1) NOT NULL DEFAULT 1';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_administrators . ' ADD COLUMN `group` varchar(64)';
-						$sql = 'SHOW INDEX FROM ' . $tbl_administrators;
-						$result = query($sql, false);
-						if ($result) {
-							while ($row = db_fetch_row($result)) {
-								if ($row[2] == 'user') {
-									$sql_statements[] = "ALTER TABLE $tbl_administrators DROP INDEX `user`";
-									$sql_statements[] = "ALTER TABLE $tbl_administrators ADD UNIQUE (`valid`, `user`)";
-									break;
-								}
-							}
-							db_free_result($result);
-						}
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_albums . ' ADD COLUMN `watermark` varchar(255) DEFAULT NULL';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_pages . ' CHANGE `commentson` `commentson` int(1) UNSIGNED default 0';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_news . ' CHANGE `commentson` `commentson` int(1) UNSIGNED default 0';
-						//v1.2.7
-						$sql_statements[] = "ALTER TABLE $tbl_albums CHANGE `album_theme` `album_theme` varchar(127) DEFAULT NULL";
-						$sql_statements[] = "ALTER TABLE $tbl_options ADD COLUMN `theme` varchar(127) NOT NULL";
-						$sql_statements[] = "ALTER TABLE $tbl_options CHANGE `name` `name` varchar(191) DEFAULT NULL";
-						$sql_statements[] = "ALTER TABLE $tbl_options DROP INDEX `unique_option`";
-						$sql_statements[] = "ALTER TABLE $tbl_options ADD UNIQUE `unique_option` (`name`, `ownerid`, `theme`)";
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_images . ' DROP `EXIFValid`';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_images . ' ADD COLUMN `hasMetadata` int(1) default 0';
-						$sql_statements[] = 'UPDATE ' . $tbl_images . ' SET `date`=NULL WHERE `date`="0000-00-00 00:00:00"'; // empty dates should be NULL
-						$sql_statements[] = 'UPDATE ' . $tbl_albums . ' SET `date`=NULL WHERE `date`="0000-00-00 00:00:00"'; // force metadata refresh
-						//v1.2.8
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_albums . ' CHANGE `place` `location` TEXT';
-						//v1.3
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_images . ' ADD COLUMN `owner` varchar(64) DEFAULT NULL';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_images . ' ADD COLUMN `filesize` INT';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_administrators . ' ADD COLUMN `quota` INT';
-						$sql_statements[] = "ALTER TABLE $tbl_pages ADD COLUMN `user` varchar(64) default ''";
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_pages . ' ADD COLUMN `password` VARCHAR(64)';
-						$sql_statements[] = "ALTER TABLE $tbl_pages ADD COLUMN `password_hint` text;";
-						$sql_statements[] = "ALTER TABLE $tbl_news_categories ADD COLUMN `user` varchar(64) default ''";
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_news_categories . ' ADD COLUMN `password` VARCHAR(64)';
-						$sql_statements[] = "ALTER TABLE $tbl_news_categories ADD COLUMN `password_hint` text;";
-
-						//v1.3.1
-						$sql_statements[] = 'RENAME TABLE ' . prefix('admintoalbum') . ' TO ' . $tbl_admin_to_object;
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_admin_to_object . ' ADD COLUMN `type` varchar(32) DEFAULT "album";';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_admin_to_object . ' CHANGE `albumid` `objectid` int(11) UNSIGNED NOT NULL';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_administrators . ' CHANGE `albums` `objects` varchar(64)';
-						$sql_statements[] = "ALTER TABLE $tbl_news ADD COLUMN `sticky` int(1) default 0";
-						$sql_statements[] = "ALTER TABLE $tbl_admin_to_object ADD COLUMN `edit` int default 32767";
-
-						//v1.4.0
-						$sql_statements[] = "ALTER TABLE $tbl_options CHANGE `value` `value` TEXT " . $collation;
-						$sql_statements[] = "ALTER TABLE $tbl_news_categories ADD COLUMN `parentid` INT(11) DEFAULT NULL";
-						$sql_statements[] = "ALTER TABLE $tbl_news_categories ADD COLUMN `sort_order` varchar(48) NOT NULL default ''";
-						$sql_statements[] = "ALTER TABLE $tbl_images ADD COLUMN `user` varchar(64) default ''";
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_images . ' ADD COLUMN `password` VARCHAR(64)';
-						$sql_statements[] = "ALTER TABLE $tbl_images ADD COLUMN `password_hint` text;";
-						$sql_statements[] = "ALTER TABLE $tbl_news_categories CHANGE `cat_name` `title` TEXT";
-						$sql_statements[] = "ALTER TABLE $tbl_news_categories CHANGE `cat_link` `titlelink` varchar(255) NOT NULL";
-						$sql_statements[] = 'UPDATE ' . $tbl_obj_to_tag . ' SET `type`="news" WHERE `type`="zenpage_news"';
-						$sql_statements[] = 'UPDATE ' . $tbl_obj_to_tag . ' SET `type`="pages" WHERE `type`="zenpage_pages"';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_administrators . ' ADD COLUMN `language` VARCHAR(5)';
-						$sql_statements[] = "ALTER TABLE $tbl_news_categories ADD COLUMN `desc` text;";
-						$sql_statements[] = "ALTER TABLE $tbl_images DROP FOREIGN KEY `images_ibfk1`";
-						$sql_statements[] = "ALTER TABLE $tbl_menu_manager ADD COLUMN `span_id` varchar(43) default NULL";
-						$sql_statements[] = "ALTER TABLE $tbl_menu_manager ADD COLUMN `span_class` varchar(43) default NULL";
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_albums . ' ADD COLUMN `watermark_thumb` varchar(255) DEFAULT NULL';
-						//v1.4.1
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_administrators . ' ADD COLUMN `prime_album` varchar(255) DEFAULT NULL';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_administrators . ' ADD COLUMN `other_credentials` TEXT';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_administrators . ' ADD COLUMN `date` datetime';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_administrators . ' ADD COLUMN `loggedin` datetime';
-						$sql_statements[] = 'UPDATE ' . $tbl_administrators . ' SET `date`="' . date('Y-m-d H:i:s', $zptime) . '" WHERE `date` IS NULL';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_albums . ' ADD COLUMN `owner` varchar(64) DEFAULT NULL';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_albums . ' CHANGE `owner` `owner` varchar(64) DEFAULT NULL';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_options . ' ADD COLUMN `creator` varchar(255) DEFAULT NULL';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_albums . ' ADD COLUMN `updateddate` datetime DEFAULT NULL';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_news_categories . ' DROP INDEX `title`';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_news_categories . ' CHANGE `titlelink` `titlelink` VARCHAR(255) NOT NULL';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_news_categories . ' CHANGE `title` `title` TEXT';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_news_categories . ' ADD UNIQUE `titlelink` (`titlelink`)';
-						$sql_statements[] = "ALTER TABLE $tbl_news_categories ADD COLUMN `show` int(1) unsigned NOT NULL default '1'";
-						//v1.4.2
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_administrators . ' ADD COLUMN `challenge_phrase` TEXT';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_albums . ' ADD COLUMN `publishdate` datetime default NULL';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_albums . ' ADD COLUMN `expiredate` datetime default NULL';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_images . ' ADD COLUMN `publishdate` datetime default NULL';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_images . ' ADD COLUMN `expiredate` datetime default NULL';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_administrators . ' ADD COLUMN `lastloggedin` datetime';
-						//v1.4.3
-						$sql_statements[] = "ALTER TABLE $tbl_options CHANGE `theme` `theme` varchar(127) NOT NULL";
-						$sql_statements[] = "ALTER TABLE $tbl_options CHANGE `name` `name` varchar(191) NOT NULL";
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_administrators . ' ADD COLUMN `valid` int(1) NOT NULL DEFAULT 1';
-						$sql_statements[] = "ALTER TABLE $tbl_tags CHANGE `name` `name` varchar(255) NOT NULL";
-						$sql_statements[] = "ALTER TABLE $tbl_images DROP FOREIGN KEY `" . trim($tbl_images, '`') . "_ibfk1`";
-						$sql_statements[] = "ALTER TABLE $tbl_comments DROP FOREIGN KEY `" . trim($tbl_comments, '`') . "_ibfk1`";
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_administrators . ' CHANGE `pass` `pass` varchar(64)';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_administrators . ' ADD COLUMN `passhash` int (1)';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_administrators . ' ADD COLUMN `passupdate` datetime';
-						//v1.4.4
-						$sql_statements[] = "ALTER TABLE $tbl_searches CHANGE `data` `data` LONGTEXT";
-						$sql_statements[] = "ALTER TABLE $tbl_plugin_storage CHANGE `data` `data` LONGTEXT";
-						$sql_statements[] = "ALTER TABLE $tbl_news CHANGE `content` `content` LONGTEXT";
-						$sql_statements[] = "ALTER TABLE $tbl_pages CHANGE `content` `content` LONGTEXT";
-						//v1.4.5
-						$sql_statements[] = "ALTER TABLE $tbl_news ADD COLUMN `truncation` int(1) unsigned NOT NULL default '0'";
-						$sql_statements[] = "ALTER TABLE $tbl_pages ADD COLUMN `truncation` int(1) unsigned NOT NULL default '0'";
-						$sql_statements[] = "CREATE INDEX `albumid` ON $tbl_images (`albumid`)";
-						$sql_statements[] = "ALTER TABLE $tbl_albums DROP INDEX `folder`";
-						$sql_statements[] = "ALTER TABLE $tbl_albums ADD UNIQUE `folder` (`folder`)";
-						$sql_statements[] = "ALTER TABLE $tbl_images DROP INDEX `filename`";
-						$sql_statements[] = "ALTER TABLE $tbl_images ADD UNIQUE `filename` (`filename`, `albumid`)";
-
-						//ZenPhoto20
-						//v1.0.0
-						$sql_statements[] = "ALTER TABLE $tbl_tags ADD COLUMN `language` varchar(5) NOT NULL default '';";
-						//v1.0.2
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_news . ' ADD COLUMN `publishdate` datetime default NULL';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_pages . ' ADD COLUMN `publishdate` datetime default NULL';
-						$sql_statements[] = "ALTER TABLE $tbl_albums ADD INDEX expiredate (`expiredate`);";
-						$sql_statements[] = "ALTER TABLE $tbl_albums ADD INDEX publishdate (`publishdate`);";
-						$sql_statements[] = "ALTER TABLE $tbl_images ADD INDEX expiredate (`expiredate`);";
-						$sql_statements[] = "ALTER TABLE $tbl_images ADD INDEX publishdate (`publishdate`);";
-						$sql_statements[] = "ALTER TABLE $tbl_news ADD INDEX expiredate (`expiredate`);";
-						$sql_statements[] = "ALTER TABLE $tbl_news ADD INDEX publishdate (`publishdate`);";
-						$sql_statements[] = "ALTER TABLE $tbl_pages ADD INDEX expiredate (`expiredate`);";
-						$sql_statements[] = "ALTER TABLE $tbl_pages ADD INDEX publishdate (`publishdate`);";
-						//v1.1.2.8
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_images . ' ADD COLUMN `rotation` int(3) default 0';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_images . ' ADD COLUMN `GPSLatitude` varchar(52) default NULL';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_images . ' ADD COLUMN `GPSLongitude` varchar(52) default NULL';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_images . ' ADD COLUMN	`GPSAltitude` varchar(52) default NULL';
-						//v1.2.3.4
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_albums . ' CHANGE `sort_order` `sort_order` VARCHAR(48) NOT NULL default ""';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_images . ' CHANGE `sort_order` `sort_order` VARCHAR(48) NOT NULL default ""';
-
-
-						// do this last incase there are any field changes of like names!
-						$meta = metadataFields($_zp_exifvars, false);
-						$sql_statements = array_merge($sql_statements, $meta);
-
-						/**
-						 * ************************************************************************************
-						 * *****                            END of UPGRADE SECTION
-						 * *****
-						 * *****                           Add all new fields above
-						 * *****
-						 * *************************************************************************************
-						 */
-						$createTables = true;
+						$updateErrors = false;
 						if (isset($_GET['create']) || isset($_REQUEST['update']) || isset($_GET['protect_files']) && db_connect($_zp_conf_vars, false)) {
 							if (!isset($_GET['protect_files'])) {
-								if ($taskDisplay[substr($task, 0, 8)] == 'create') {
-									echo "<h3>" . gettext("About to create tables") . "...</h3>";
-								} else {
-									echo "<h3>" . gettext("About to update tables") . "...</h3>";
-								}
-								setupLog(gettext("Begin table creation"));
-								foreach ($db_schema as $sql) {
-									@set_time_limit(60);
-									$result = db_create_table($sql);
-									echo ' '; // keep alive
-									if (!$result) {
-										$createTables = false;
-										setupLog(sprintf(gettext('Query %1$s Failed. Error: %2$s'), $sql, db_error()));
-										echo '<div class="error">';
-										echo sprintf(gettext('Table creation failure:<br />Query: %1$s<br />Error: %2$s'), $sql, db_error());
-										echo '</div>';
-									} else {
-										setupLog(sprintf(gettext('Query ( %s ) Success.'), $sql));
-									}
-								}
-								// always run the update queries to insure the tables are up to current level
-								setupLog(gettext("Begin table updates"));
-								foreach ($sql_statements as $sql) {
-									@set_time_limit(60);
-									echo ' '; // keep alive
-									$result = db_table_update($sql);
-									if (!$result) {
-										$error = db_error();
-										setupLog(sprintf(gettext('Query %1$s Failed. Error: %2$s'), $sql, $error), strpos($error, 'syntax') !== false);
-									} else {
-										setupLog(sprintf(gettext('Query ( %s ) Success.'), $sql));
-									}
-								}
+
+								echo "<h3>" . gettext("About to update tables") . "....</h3>";
+								setupLog(gettext("Begin database creation and update"), true);
+
+								require_once(SERVERPATH . '/' . ZENFOLDER . '/setup/database.php');
 
 								echo "<h3>";
-								if ($taskDisplay[substr($task, 0, 8)] == 'create') {
-									if ($createTables) {
-										echo gettext('Done with table create!');
-									} else {
-										echo gettext('Done with table create with errors!');
-									}
+								if ($updateErrors) {
+									$autorun = false;
+									echo gettext('Done with table update with errors. See the <code>setup</code> log for details.');
 								} else {
-									if ($createTables) {
-										echo gettext('Done with table update');
-									} else {
-										echo gettext('Done with table update with errors');
-									}
+									echo gettext('Done with table update.');
 								}
 								echo "</h3>";
 
@@ -2413,8 +1687,9 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 								checkUnique($tbl_pages, array('titlelink' => 0));
 								checkUnique($tbl_tags, array('name' => 0));
 
+								setupLog(gettext("Done with database creation and update"), true);
+
 								// set defaults on any options that need it
-								setupLog(gettext("Done with database creation and update"));
 								if ($prevRel = getOption('zenphoto_release')) {
 									setupLog(sprintf(gettext("Previous Release was %s"), $prevRel), true);
 								}
@@ -2429,69 +1704,68 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 								}
 							}
 
-							if ($createTables) {
-								zp_apply_filter('log_setup', true, 'install', gettext('Completed'));
-								$clones = array();
 
-								if ($_zp_loggedin == ADMIN_RIGHTS) {
-									$filelist = safe_glob(SERVERPATH . "/" . BACKUPFOLDER . '/*.zdb');
-									if (count($filelist) > 0) {
-										$link = sprintf(gettext('You may <a href="%1$s">set your admin user and password</a> or <a href="%2$s">run backup-restore</a>'), WEBPATH . '/' . ZENFOLDER . '/admin-users.php?page=users', WEBPATH . '/' . ZENFOLDER . '/' . UTILITIES_FOLDER . '/backup_restore.php');
-										$autorun = false;
-									} else {
-										$link = sprintf(gettext('You need to <a href="%1$s">set your admin user and password</a>'), WEBPATH . '/' . ZENFOLDER . '/admin-users.php?page=users');
-										if ($autorun == 'admin' || $autorun == 'gallery') {
-											$autorun = WEBPATH . '/' . ZENFOLDER . '/admin-users.php?page=users';
-										}
-									}
+							zp_apply_filter('log_setup', $updateErrors, 'install', gettext('Completed'));
+							$clones = array();
+
+							if ($_zp_loggedin == ADMIN_RIGHTS) {
+								$filelist = safe_glob(SERVERPATH . "/" . BACKUPFOLDER . '/*.zdb');
+								if (count($filelist) > 0) {
+									$link = sprintf(gettext('You may <a href="%1$s">set your admin user and password</a> or <a href="%2$s">run backup-restore</a>'), WEBPATH . '/' . ZENFOLDER . '/admin-users.php?page=users', WEBPATH . '/' . ZENFOLDER . '/' . UTILITIES_FOLDER . '/backup_restore.php');
+									$autorun = false;
 								} else {
-									if (extensionEnabled('cloneZenphoto')) {
-										require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cloneZenphoto.php');
-										if (class_exists('cloneZenphoto'))
-											$clones = cloneZenphoto::clones();
-									}
-									$link = sprintf(gettext('You can now <a href="%1$s">administer your gallery.</a>'), WEBPATH . '/' . ZENFOLDER . '/admin.php');
-									foreach ($clones as $clone => $url) {
-										$autorun = false;
-										?>
-										<p class="delayshow" style="display:none;"><?php echo sprintf(gettext('Setup <a href="%1$s" target="_blank">%2$s</a>'), $url . ZENFOLDER . '/setup/index.php?autorun', $clone); ?></p>
-										<?php
+									$link = sprintf(gettext('You need to <a href="%1$s">set your admin user and password</a>'), WEBPATH . '/' . ZENFOLDER . '/admin-users.php?page=users');
+									if ($autorun == 'admin' || $autorun == 'gallery') {
+										$autorun = WEBPATH . '/' . ZENFOLDER . '/admin-users.php?page=users';
 									}
 								}
-								?>
-								<p id="golink" class="delayshow" style="display:none;"><?php echo $link; ?></p>
-								<?php
-								switch ($autorun) {
-									case false:
-										break;
-									case 'gallery':
-									case 'admin':
-										$autorun = WEBPATH . '/' . ZENFOLDER . '/admin.php';
-										break;
-									default:
-										break;
+							} else {
+								if (extensionEnabled('cloneZenphoto')) {
+									require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cloneZenphoto.php');
+									if (class_exists('cloneZenphoto'))
+										$clones = cloneZenphoto::clones();
 								}
-								?>
-								<script type="text/javascript">
-									function launchAdmin() {
-										window.location = '<?php echo WEBPATH . '/' . ZENFOLDER . '/admin.php'; ?>';
-									}
-									window.onload = function () {
-										$('.delayshow').show();
-			<?php
-			if ($autorun) {
-				?>
-											if (!imageErr) {
-												$('#golink').hide();
-												launchAdmin();
-											}
-				<?php
-			}
-			?>
-									}
-								</script>
-								<?php
+								$link = sprintf(gettext('You can now <a href="%1$s">administer your gallery.</a>'), WEBPATH . '/' . ZENFOLDER . '/admin.php');
+								foreach ($clones as $clone => $url) {
+									$autorun = false;
+									?>
+									<p class="delayshow" style="display:none;"><?php echo sprintf(gettext('Setup <a href="%1$s" target="_blank">%2$s</a>'), $url . ZENFOLDER . '/setup/index.php?autorun', $clone); ?></p>
+									<?php
+								}
 							}
+							?>
+							<p id="golink" class="delayshow" style="display:none;"><?php echo $link; ?></p>
+							<?php
+							switch ($autorun) {
+								case false:
+									break;
+								case 'gallery':
+								case 'admin':
+									$autorun = WEBPATH . '/' . ZENFOLDER . '/admin.php';
+									break;
+								default:
+									break;
+							}
+							?>
+							<script type="text/javascript">
+								function launchAdmin() {
+									window.location = '<?php echo WEBPATH . '/' . ZENFOLDER . '/admin.php'; ?>';
+								}
+								window.onload = function () {
+									$('.delayshow').show();
+		<?php
+		if ($autorun) {
+			?>
+										if (!imageErr) {
+											$('#golink').hide();
+											launchAdmin();
+										}
+			<?php
+		}
+		?>
+								}
+							</script>
+							<?php
 						} else if (db_connect($_zp_conf_vars, false)) {
 							$task = '';
 							if (setupUserAuthorized() || $blindInstall) {
@@ -2500,64 +1774,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 									<h2><?php echo $dbmsg; ?></h2>
 									<?php
 								}
-								?>
-								<div class="dbwindow">
-									<ul>
-										<?php
-										$db_list = '';
-										$create = array();
-										foreach ($expected_tables as $table) {
-											if ($tables[$table] == 'create') {
-												$create[] = $table;
-												if (!empty($db_list)) {
-													$db_list .= ', ';
-												}
-												$db_list .= "<code>$table</code>";
-											}
-										}
-										if (($nc = count($create)) > 0) {
-											?>
-											<li class="createdb">
-												<?php
-												printf(gettext("Database tables to create: %s"), $db_list);
-												?>
-											</li>
-											<?php
-										}
-										$db_list = '';
-										$update = array();
-										foreach ($expected_tables as $table) {
-											if ($tables[$table] == 'update') {
-												$update[] = $table;
-												if (!empty($db_list)) {
-													$db_list .= ', ';
-												}
-												$db_list .= "<code>$table</code>";
-											}
-										}
-										if (($nu = count($update)) > 0) {
-											?>
-											<li class="updatedb">
-												<?php
-												printf(gettext("Database tables to update: %s"), $db_list);
-												?>
-											</li>
-											<?php
-										}
-										?>
-									</ul>
-								</div>
-								<?php
-								if ($nc > 0) {
-									$task = "create=" . implode(',', $create);
-								}
-								if ($nu > 0) {
-									if (empty($task)) {
-										$task = "update";
-									} else {
-										$task .= "&update";
-									}
-								}
+								$task = "update";
 								if ($debug) {
 									$task .= '&debug=' . $debug;
 								}
@@ -2671,7 +1888,9 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 					<br class="clearall" />
 			</div><!-- content -->
 		</div><!-- main -->
-		<?php printSetupFooter(); ?>
+		<?php
+		printSetupFooter();
+		?>
 	</body>
 </html>
 <?php

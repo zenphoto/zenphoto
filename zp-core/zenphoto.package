@@ -997,6 +997,7 @@ zp-core/classes.php
 zp-core/controller.php
 zp-core/cron_runner.php
 zp-core/dataaccess
+zp-core/databaseTemplate
 zp-core/example_robots.txt
 zp-core/external_auth.php
 zp-core/full-image.php
@@ -2352,6 +2353,7 @@ zp-core/zp-extensions/zpCaptcha
 zp-core/zp-extensions/zpCaptcha/c.php
 zp-core/version.php:*
 zp-core/setup:*
+zp-core/setup/database.php:*
 zp-core/setup/index.php:*
 zp-core/setup/setup-functions.php:*
 zp-core/setup/setup-option-defaults.php:*
@@ -2361,4 +2363,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-2363
+2365
