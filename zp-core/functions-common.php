@@ -31,18 +31,10 @@ function db_quote($string) {
  * @return string
  */
 function getUserIP() {
-	$pattern = '~^([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])$~';
 	if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-		$ip = sanitize($_SERVER['HTTP_X_FORWARDED_FOR']);
-		if (preg_match($pattern, $ip)) {
-			return $ip;
-		}
+		return sanitize($_SERVER['HTTP_X_FORWARDED_FOR']);
 	}
-	$ip = sanitize($_SERVER['REMOTE_ADDR']);
-	if (preg_match($pattern, $ip)) {
-		return $ip;
-	}
-	return NULL;
+	return sanitize($_SERVER['REMOTE_ADDR']);
 }
 
 /**
@@ -115,7 +107,7 @@ function zpErrorHandler($errno, $errstr = '', $errfile = '', $errline = '') {
 	if ($uri) {
 		$uri = "\n URI:" . urldecode(str_replace('\\', '/', $uri));
 	}
-	$uri .= "\n IP:" . getUserIP();
+	$uri .= "\n IP `" . getUserIP() . '`';
 	if (is_object($_zp_current_admin_obj)) {
 		$uri .= "\n " . gettext('user') . ':' . $_zp_current_admin_obj->getUser();
 	}
