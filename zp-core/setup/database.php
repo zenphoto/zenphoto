@@ -78,7 +78,6 @@ $collation = db_collation();
 $template = unserialize(file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/databaseTemplate'));
 
 //Add in the enabled image metadata fields
-
 foreach (getEnabledPlugins() as $extension => $plugin) {
 	$priority = $plugin['priority'];
 	if ($priority & CLASS_PLUGIN) {
@@ -217,7 +216,7 @@ foreach ($template as $tablename => $table) {
 		setupQuery($create);
 	} else {
 		//handle surplus fields
-		if (!empty(@$database[$tablename]['keys'])) {
+		if (array_key_exists('keys', $database[$tablename]) && !empty($database[$tablename]['keys'])) {
 			foreach ($database[$tablename]['keys'] as $index) {
 				$key = $index['Key_name'];
 				if ($index['Index_comment'] === 'zp20' || ($key == 'valid' && $index['Column_name'] === '`valid`,`user`') || ($key == 'filename' && $index['Column_name'] === '`filename`,`albumid`')) {
