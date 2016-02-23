@@ -125,11 +125,11 @@ class SearchEngine {
 		}
 		$this->search_structure = zp_apply_filter('searchable_fields', $this->search_structure);
 		if (isset($_REQUEST['words'])) {
-			$this->words = strtr(sanitize($_REQUEST['words'], 4), array('__23__' => '#', '__25__' => '%', '__26__' => '&', '__2F__' => '/'));
+			$this->words = zpFunctions::removeTrailingSlash(strtr(sanitize($_REQUEST['words'], 4), array('__23__' => '#', '__25__' => '%', '__26__' => '&', '__2F__' => '/')));
 		} else {
 			$this->words = NULL;
 			if (isset($_REQUEST['date'])) { // words & dates are mutually exclusive
-				$this->dates = sanitize($_REQUEST['date'], 3);
+				$this->dates = zpFunctions::removeTrailingSlash(sanitize($_REQUEST['date'], 3));
 				if (isset($_REQUEST['whichdate'])) {
 					$this->whichdates = sanitize($_REQUEST['whichdate']);
 				}

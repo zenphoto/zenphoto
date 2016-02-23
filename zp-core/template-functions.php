@@ -3818,7 +3818,7 @@ function getSearchURL($words, $dates, $fields, $page, $object_list = NULL) {
 		}
 		$words = strtr($words, array('%' => '__25__', '&' => '__26__', '#' => '__23__', '/' => '__2F__'));
 		if ($rewrite) {
-			$url .= urlencode($words);
+			$url .= urlencode($words) . '/';
 		} else {
 			$url .= "&words=" . urlencode($words);
 		}
@@ -3828,14 +3828,14 @@ function getSearchURL($words, $dates, $fields, $page, $object_list = NULL) {
 			$dates = implode(',', $dates);
 		}
 		if ($rewrite) {
-			$url .= $dates;
+			$url .= $dates . '/';
 		} else {
 			$url .= "&date=$dates";
 		}
 	}
 	if ($page > 1) {
 		if ($rewrite) {
-			$url .= "/$page";
+			$url .= "$page/";
 		} else {
 			if ($urls) {
 				$urls .= '&';

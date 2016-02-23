@@ -2820,6 +2820,21 @@ class zpFunctions {
 			$class[] = 'theme';
 		debugLog(sprintf('    ' . $extension . '(%s:%u)=>%.4fs', implode('|', $class), $priority & PLUGIN_PRIORITY, $end - $start));
 	}
+	
+	/**
+	 * Removes a trailing slash from a string if one exists, otherwise just returns the string
+	 * Used primarily within date and tag searches and news date archive results
+	 * 
+	 * @param string $string
+	 * @return string
+	 */
+	static function removeTrailingSlash($string) {
+		if (substr($string, -1) == '/') {
+			$length = strlen($string) - 1;
+			return substr($string, 0, $length);
+		}
+		return $string;
+	}
 
 }
 
