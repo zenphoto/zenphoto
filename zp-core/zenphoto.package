@@ -1424,6 +1424,7 @@ zp-core/watermarks/watermark-text.png
 zp-core/watermarks/watermark-video.png
 zp-core/watermarks/watermark.png
 zp-core/zp-extensions
+zp-core/zp-extensions/accessThreshold.php
 zp-core/zp-extensions/admin-approval.php
 zp-core/zp-extensions/auto_backup.php
 zp-core/zp-extensions/bxslider_thumb_nav.php
@@ -2363,4 +2364,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-2365
+2366
