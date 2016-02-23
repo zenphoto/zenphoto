@@ -51,7 +51,7 @@ if (isset($_GET['action'])) {
 				}
 				break;
 			case 'download_log':
-				$zipname = sanitize($_GET['tab'], 3) . '.zip';
+				$zipname = html_encode(sanitize($_GET['tab'], 3)) . '.zip'; 
 				if (class_exists('ZipArchive')) {
 					$zip = new ZipArchive;
 					$zip->open($zipname, ZipArchive::CREATE);
