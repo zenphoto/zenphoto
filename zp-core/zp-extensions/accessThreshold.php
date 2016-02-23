@@ -29,7 +29,7 @@ if (!OFFSET_PATH) {
 	define('SENSITIVITY', 3);
 
 	$recentIP = getSerializedArray(@file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/recentIP'));
-	$x = explode(':', getUserIP());
+	$x = explode('.', getUserIP());
 	$x = array_slice($x, 0, SENSITIVITY);
 	$ip = implode(":", $x);
 
