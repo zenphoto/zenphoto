@@ -35,13 +35,8 @@ if (OFFSET_PATH) {
 				setOptionDefault('accessThreshold_IP_THRESHOLD', 5000);
 				setOptionDefault('accessThreshold_IP_ACCESS_WINDOW', 600);
 				setOptionDefault('accessThreshold_SENSITIVITY', 3);
-				$recentIP = array(
-								'accessThreshold_IP_RETENTION'		 => getOption('accessThreshold_IP_RETENTION'),
-								'accessThreshold_IP_THRESHOLD'		 => getOption('accessThreshold_IP_THRESHOLD'),
-								'accessThreshold_IP_ACCESS_WINDOW' => getOption('accessThreshold_IP_ACCESS_WINDOW'),
-								'accessThreshold_SENSITIVITY'			 => getOption('accessThreshold_SENSITIVITY'),
-				);
-				file_put_contents(SERVERPATH . '/' . DATA_FOLDER . '/recentIP', serialize($recentIP));
+				//clear out the recentIP array
+				self::handleOptionSave(NULL, NULL);
 			}
 		}
 
@@ -64,12 +59,6 @@ if (OFFSET_PATH) {
 		}
 
 		static function handleOptionSave($themename, $themealbum) {
-
-			var_dump(getOption('accessThreshold_IP_RETENTION'));
-			var_dump(getOption('accessThreshold_IP_THRESHOLD'));
-			var_dump(getOption('accessThreshold_IP_ACCESS_WINDOW'));
-			var_dump(getOption('accessThreshold_SENSITIVITY'));
-
 			$x = getOption('accessThreshold_SENSITIVITY');
 			$sensitivity = 0;
 			foreach (explode('.', $x) as $v) {
