@@ -34,7 +34,7 @@ if (OFFSET_PATH) {
 				setOptionDefault('accessThreshold_IP_RETENTION', 500);
 				setOptionDefault('accessThreshold_IP_THRESHOLD', 5000);
 				setOptionDefault('accessThreshold_IP_ACCESS_WINDOW', 600);
-				setOptionDefault('accessThreshold_SENSITIVITY', 3);
+				setOptionDefault('accessThreshold_SENSITIVITY', '255.255.255.0.0');
 				//clear out the recentIP array
 				self::handleOptionSave(NULL, NULL);
 			}
