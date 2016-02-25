@@ -1520,6 +1520,8 @@ zp-core/zp-extensions/xmpMetadata.php
 zp-core/zp-extensions/zenpage.php
 zp-core/zp-extensions/zenphoto_sendmail.php
 zp-core/zp-extensions/zpCaptcha.php
+zp-core/zp-extensions/accessThreshold
+zp-core/zp-extensions/accessThreshold/admin_tab.php
 zp-core/zp-extensions/bxslider_thumb_nav
 zp-core/zp-extensions/bxslider_thumb_nav/jquery.bxslider.css
 zp-core/zp-extensions/bxslider_thumb_nav/jquery.bxslider.js
@@ -2364,4 +2366,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-2366
+2368
