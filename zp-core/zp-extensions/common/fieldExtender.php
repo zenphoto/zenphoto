@@ -76,7 +76,11 @@ class fieldExtender {
 							break;
 					}
 					if (isset($previous[$newfield['table']][$newfield['name']])) {
-						$cmd = ' CHANGE `' . $newfield['name'] . '`';
+						if ($previous[$newfield['table']][$newfield['name']] != $dbType) {
+							$cmd = ' CHANGE `' . $newfield['name'] . '`';
+						} else {
+							$cmd = NULL;
+						}
 					} else {
 						$cmd = ' ADD COLUMN';
 					}
@@ -86,8 +90,9 @@ class fieldExtender {
 					if (isset($newfield['default']))
 						$sql.= ' DEFAULT ' . $newfield['default'];
 					$sql .= " COMMENT 'optional_$me'";
-					if (query($sql, false) && in_array($newfield['table'], array('albums', 'images', 'news', 'news_categories', 'pages')))
+					if ((!$cmd || setupQuery($sql)) && in_array($newfield['table'], array('albums', 'images', 'news', 'news_categories', 'pages'))) {
 						$fields[] = strtolower($newfield['name']);
+					}
 					$current[$newfield['table']][$newfield['name']] = $dbType;
 					unset($previous[$newfield['table']][$newfield['name']]);
 				}
@@ -103,7 +108,7 @@ class fieldExtender {
 				foreach ($orphaned as $field => $v) {
 					unset($set_fields[$field]);
 					$sql = 'ALTER TABLE ' . prefix($table) . ' DROP `' . $field . '`';
-					query($sql, false);
+					setupQuery($sql);
 				}
 			}
 		}

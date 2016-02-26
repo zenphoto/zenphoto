@@ -540,5 +540,6 @@ function setupQuery($sql) {
 		$error = db_error();
 		setupLog(sprintf(gettext('Query Failed: %1$s ' . "\n" . ' Error: %2$s'), $sql, $error), true);
 	}
+	return $result;
 }
 ?>

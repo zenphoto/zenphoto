@@ -78,14 +78,12 @@ $collation = db_collation();
 $template = unserialize(file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/databaseTemplate'));
 
 //Add in the enabled image metadata fields
+$metadataProviders = array('class-video', 'xmpMetadata');
 foreach (getEnabledPlugins() as $extension => $plugin) {
 	$priority = $plugin['priority'];
-	if ($priority & CLASS_PLUGIN) {
+	if (in_array($extension, $metadataProviders)) {
 		require_once($plugin['path']);
 		$_zp_loaded_plugins[$extension] = $extension;
-		if (DEBUG_PLUGINS) {
-			zpFunctions::pluginDebug($extension, $priority, $start);
-		}
 	}
 }
 

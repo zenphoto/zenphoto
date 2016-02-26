@@ -76,29 +76,29 @@ class customData {
 			setOptionDefault('customDataCategories', $rslt);
 
 			if (getOption('customDataAlbums')) {
-				query('ALTER TABLE ' . prefix('albums') . " ADD COLUMN `custom_data` TEXT COMMENT 'optional_customData'", false);
+				setupQuery('ALTER TABLE ' . prefix('albums') . " ADD COLUMN `custom_data` TEXT COMMENT 'optional_customData'");
 			} else {
-				query('ALTER TABLE ' . prefix('albums') . ' DROP `custom_data`', false);
+				setupQuery('ALTER TABLE ' . prefix('albums') . ' DROP `custom_data`');
 			}
 			if (getOption('customDataImages')) {
-				query('ALTER TABLE ' . prefix('images') . " ADD COLUMN `custom_data` TEXT COMMENT 'optional_customData'", false);
+				setupQuery('ALTER TABLE ' . prefix('images') . " ADD COLUMN `custom_data` TEXT COMMENT 'optional_customData'");
 			} else {
-				query('ALTER TABLE ' . prefix('images') . ' DROP `custom_data`', false);
+				setupQuery('ALTER TABLE ' . prefix('images') . ' DROP `custom_data`');
 			}
 			if (getOption('customDataNews')) {
-				query('ALTER TABLE ' . prefix('news') . " ADD COLUMN `custom_data` TEXT COMMENT 'optional_customData'", false);
+				setupQuery('ALTER TABLE ' . prefix('news') . " ADD COLUMN `custom_data` TEXT COMMENT 'optional_customData'");
 			} else {
-				query('ALTER TABLE ' . prefix('news') . ' DROP `custom_data`', false);
+				setupQuery('ALTER TABLE ' . prefix('news') . ' DROP `custom_data`');
 			}
 			if (getOption('customDataPages')) {
-				query('ALTER TABLE ' . prefix('pages') . " ADD COLUMN `custom_data` TEXT COMMENT 'optional_customData'", false);
+				setupQuery('ALTER TABLE ' . prefix('pages') . " ADD COLUMN `custom_data` TEXT COMMENT 'optional_customData'");
 			} else {
-				query('ALTER TABLE ' . prefix('pages') . ' DROP `custom_data`', false);
+				setupQuery('ALTER TABLE ' . prefix('pages') . ' DROP `custom_data`');
 			}
 			if (getOption('customDataCategories')) {
-				query('ALTER TABLE ' . prefix('news_categories') . " ADD COLUMN `custom_data` TEXT COMMENT 'optional_customData'", false);
+				setupQuery('ALTER TABLE ' . prefix('news_categories') . " ADD COLUMN `custom_data` TEXT COMMENT 'optional_customData'");
 			} else {
-				query('ALTER TABLE ' . prefix('news_categories') . ' DROP `custom_data`', false);
+				setupQuery('ALTER TABLE ' . prefix('news_categories') . ' DROP `custom_data`');
 			}
 		}
 	}
