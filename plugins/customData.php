@@ -59,21 +59,29 @@ class customData {
 	function __construct() {
 
 		if (OFFSET_PATH == 2) {
-			$rslt = query('SELECT `custom_data` FROM ' . prefix('albums') . ' LIMIT 1', false);
-			$rslt = (int) empty($rslt);
-			setOptionDefault('customDataAlbums', $rslt);
-			$rslt = query('SELECT `custom_data` FROM ' . prefix('images') . ' LIMIT 1', false);
-			$rslt = (int) empty($rslt);
-			setOptionDefault('customDataImages', $rslt);
-			$rslt = query('SELECT `custom_data` FROM ' . prefix('news') . ' LIMIT 1', false);
-			$rslt = (int) empty($rslt);
-			setOptionDefault('customDataNews', $rslt);
-			$rslt = query('SELECT `custom_data` FROM ' . prefix('pages') . ' LIMIT 1', false);
-			$rslt = (int) empty($rslt);
-			setOptionDefault('customDataPages', $rslt);
-			$rslt = query('SELECT `custom_data` FROM ' . prefix('news_categories') . ' LIMIT 1', false);
-			$rslt = (int) empty($rslt);
-			setOptionDefault('customDataCategories', $rslt);
+			if (extensionEnabled('customdata')) {
+				$rslt = query('SELECT `custom_data` FROM ' . prefix('albums') . ' LIMIT 1', false);
+				$rslt = (int) empty($rslt);
+				setOptionDefault('customDataAlbums', $rslt);
+				$rslt = query('SELECT `custom_data` FROM ' . prefix('images') . ' LIMIT 1', false);
+				$rslt = (int) empty($rslt);
+				setOptionDefault('customDataImages', $rslt);
+				$rslt = query('SELECT `custom_data` FROM ' . prefix('news') . ' LIMIT 1', false);
+				$rslt = (int) empty($rslt);
+				setOptionDefault('customDataNews', $rslt);
+				$rslt = query('SELECT `custom_data` FROM ' . prefix('pages') . ' LIMIT 1', false);
+				$rslt = (int) empty($rslt);
+				setOptionDefault('customDataPages', $rslt);
+				$rslt = query('SELECT `custom_data` FROM ' . prefix('news_categories') . ' LIMIT 1', false);
+				$rslt = (int) empty($rslt);
+				setOptionDefault('customDataCategories', $rslt);
+			} else {
+				purgeOption('customDataAlbums');
+				purgeOption('customDataImages');
+				purgeOption('customDataNews');
+				purgeOption('customDataPages');
+				purgeOption('customDataCategories');
+			}
 
 			if (getOption('customDataAlbums')) {
 				setupQuery('ALTER TABLE ' . prefix('albums') . " ADD COLUMN `custom_data` TEXT COMMENT 'optional_customData'");
