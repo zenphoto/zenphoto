@@ -76,19 +76,27 @@
 			}
 		</style>
 	<body>
-<h1>ZenPhoto20 release notes</h1><h2>Plugins</h2>
+<h1>ZenPhoto20 release notes</h1><h2>Setup</h2>
+<p>The mechanism for migrating database changes had been improved to speed up the <em>setup</em> process. The ZenPhoto20 package now includes a template of how the database should look. Previously whenever a change was made to the database the code in <em>setup</em> had to be manually changed to reflect the changes both to fresh installations and to updates. Over time the list of SQL statements <em>setup</em> needed to execute to insure that the database was correct had become excessive. The queries were executed each time <em>setup</em> was run but in general did nothing since the database structure has been stable for several releases.</p>
+<p>Now when updating an installation there will not be any SQL statements issued unless there truly has been a change to the database structure in the new version of the software. </p>
+<p>There are now comments set for any database field used by ZenPhoto20. For a "normal" site all the database fields will have comments. It is possible that your database contains fields used by previous instances of the software. If that is the case, these fields will have not have a comment. You can safely drop any such field that you did not specifically create. (If you did create such a field manually you should consider using the <em>customFieldExtender </em>mechanism to implement the additions so that they conform to the new paradigm.)</p>
+<h2>Plugins</h2>
+<p><em>accessThreshold:</em></p>
+<p>If you are experiencing denial of service attacks from specific networks this plugin may help mitigate the problem. The plugin monitors front-end page requests and tallies them by IP address (or sub portion thereof.) If the request threshold is exceeded script loading will stop without sending a response.</p>
+<p><em>customData:</em></p>
+<p>This plugin has been moved to the <em>User Plugins</em> folder and is no longer actively supported as a ZenPhoto20 plugin. If you have need of custom fields in your database you should create a clone of the <em>optionalObjectFields </em>introduced in Version 1.1 to define unique fields for your use.</p>
 <p><em>seo_locale:</em></p>
 <p>This plugin is now merged with the dynamic-locale plugin. This consolidates language selecting link options in one location for easier management.</p>
 <p><em>LDAP_auth:</em></p>
-<p>Implements logon to ZenPhoto20 using an LDAP server. Options allow mapping of LDAP&nbsp;posix style groups to ZenPhoto20 groups.</p>
+<p>Implements logon to ZenPhoto20 using an LDAP server. Options allow mapping of LDAP posix style groups to ZenPhoto20 groups.</p>
 <p><strong>NOTE:</strong> plugin based authentication scripts are not enabled during <em>Setup</em> processing. You will need to define and maintain a ZenPhoto20 master user to install ZenPhoto20.</p>
 <hr />
-<p>&nbsp;</p>
+<p> </p>
 <h2 style="text-align: center;">Version 1.2.0</h2>
 <h2>Plugin option edit tab</h2>
 <p>There is now a link to the next and previous plugins (alphabetically) at the bottom of the plugin option page.</p>
 <h2>Admin tab consolidation</h2>
-<p>The <em>Debug</em> plugin subtabs have been consolidated with the <em>Development</em> subtabs to reduce the number of administration tabs. In addition, the plugin&nbsp;categories have been revisited. <em>MacroList</em>, <em>rewriteRules</em>, and <em>rewriteTokens&nbsp;</em>have been moved to the <em>development</em> category.</p>
+<p>The <em>Debug</em> plugin subtabs have been consolidated with the <em>Development</em> subtabs to reduce the number of administration tabs. In addition, the plugin categories have been revisited. <em>MacroList</em>, <em>rewriteRules</em>, and <em>rewriteTokens </em>have been moved to the <em>development</em> category.</p>
 <h2>tinyMCE:obj insertions</h2>
 <p>The object insertion mechanism has been extended to add inserting <em><strong>MEDIAPLAYER </strong></em>and <em><strong>SLIDESHO</strong></em> macros. <strong><em>MEDIAPLAYER</em></strong> macro insertion is available for video type images. <em><strong>SLIDESHOW</strong></em> macro can be inserted from album selections.</p>
 <h2>News articles</h2>
@@ -131,17 +139,17 @@
 <h2>News article sort order selections</h2>
 <p>You may now select ordering by <em>Published date</em>, <em>Last change date</em>, and <em>Expiry date</em> in addition to the original <em>creation date</em> and <em>title </em>orders. <em>Creation date</em> (or <em>Last change date</em>) are now shown in addition to the <em>Published date</em>.</p>
 <h2>Security</h2>
-<p>Plugins&nbsp;are now required to register functions they wish to be called via the admin utility button action. The function name must be stored in the <code>$_zp_button_actions</code> array. Actions not registered will be ignored.</p>
+<p>Plugins are now required to register functions they wish to be called via the admin utility button action. The function name must be stored in the <code>$_zp_button_actions</code> array. Actions not registered will be ignored.</p>
 <p>Tightened up the PHP theme editor so that it is restricted to editing only files within the theme.</p>
 <p>Fixes a hole whereby a hacker could cause your setup scripts to become unprotected.</p>
 <p>Fixes VN: JVN#68452022 / TN: JPCERT#95351432</p>
 <p>Fixes some strings that were not encoded before display.</p>
-<p>&nbsp;</p>
+<p> </p>
 <hr />
-<p>&nbsp;</p>
+<p> </p>
 <h2 style="text-align: center;">Version 1.1.0</h2>
 <h2>New theme</h2>
-<p><a href="http://www.vincentbourganel.fr/news/zpbootstrap-a-responsive-theme-zenphoto-zenpage">zpBootstrap</a>&mdash;a responsive theme by Vincent Bourganel has been added to the distributed themes set.</p>
+<p><a href="http://www.vincentbourganel.fr/news/zpbootstrap-a-responsive-theme-zenphoto-zenpage">zpBootstrap</a>—a responsive theme by Vincent Bourganel has been added to the distributed themes set.</p>
 <h2>Tag lists will reflect published state of the object</h2>
 <p>Tag suggestion lists and <code>html_meta_tags</code> keywords will not be gated by the published state of objects. Specifically, if the site viewer is not logged-in then tags associated with objects marked <em>unpublished</em> will not be included in the counts. This means, for instance, that if a tag is associated only with unpublished objects it will not be included in these lists. Note: object hierarchy is not applied in this for performance reasons. Thus for instance tags of <em>published</em> images in an <em>unpublished</em> album will be included.</p>
 <h2>Rationalization of published states</h2>
@@ -208,9 +216,9 @@
 </ul>
 <h2>Bug Fixes</h2>
 <p>As usual, I have fixed bugs found while implementing these features and ones reported on the Zenphoto.org forum that were applicable to ZenPhoto20.</p>
-<p>&nbsp;</p>
+<p> </p>
 <hr />
-<p>&nbsp;</p>
+<p> </p>
 <h1 style="text-align: center;">Version 1.0.0</h1>
 <h2>Fresh start</h2>
 <p>ZenPhoto20 has been forked from the Zenphoto.org 1.4.6 release. Some cleanup of code and fixes have been applied and some small new features added. Themes and plugins that are compliant with Zehphoto 1.4.6 (without use of the deprecated-functions plugin) will work with this software.</p>
@@ -225,7 +233,7 @@
 <p>Running the script extracts the release source scripts and then starts the setup process. This work flow is less prone to such things as mis-matched versions of the individual files or overwriting album files.</p>
 <h2>Suffix-less image links</h2>
 <p>If you use <em>mod_rewrite</em> with a <em>mod_rewrite suffix</em> and your image names are unique in their prefix you can select the option <em>Unique images</em> on the general options tab so that your image page links will not include the image suffix. For instance if your <em>mod_rewrite suffix</em> is <code>.htm</code> then the link to the image <code>myalbum/myimage.jpg</code> will have the link <code>myalbum/myimage.htm.</code></p>
-<p>&nbsp;</p>
+<p> </p>
 <h2>tinyMCE:obj plugin</h2>
 <p>This plugin replaces tinyZenpage as the preferred means for inserting ZenPhoto20 objects into tinyMCE editor windows.</p>
 <p>On the back end each object has a "pick" icon (<img src="https://cloud.githubusercontent.com/assets/2474007/3194486/59db3546-ecff-11e3-8c27-e5c44fd92f2b.png" alt="add" />) that you use to select the object. The overview lists also have a pick icon for each object, so it is not necessary to browse all the way to the object's tab.</p>
