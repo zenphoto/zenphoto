@@ -167,7 +167,8 @@ foreach ($template as $tablename => $table) {
 	if ($exists) {
 		//handle surplus fields
 		foreach ($database[$tablename]['fields'] as $key => $field) {
-			if (strpos($field['Comment'], 'optional_') === false || $field['Comment'] === 'optional_metadata') {
+			// drop fields no longer used
+			if ($field['Comment'] === 'zp20' || $field['Comment'] === 'optional_metadata') {
 				$dropString = "ALTER TABLE " . prefix($tablename) . " DROP `" . $field['Field'] . "`;";
 				setupQuery($dropString, false);
 			}
