@@ -206,10 +206,7 @@ function shortenContent($articlecontent, $shorten, $shortenindicator, $forceindi
 				$short = mb_substr($short, 0, $open);
 			}
 			if (class_exists('tidy')) {
-				$tidy = new tidy();
-				$tidy->parseString($short . $shortenindicator, array('show-body-only' => true), 'utf8');
-				$tidy->cleanRepair();
-				$short = trim($tidy);
+				$short = zpFunctions::tidyHTML($short . $shortenindicator);
 			} else {
 				$short = trim(cleanHTML($short . $shortenindicator));
 			}
@@ -2827,6 +2824,7 @@ class zpFunctions {
 	 * 
 	 * @param string $string
 	 * @return string
+	 * @since 1.4.12
 	 */
 	static function removeTrailingSlash($string) {
 		if (substr($string, -1) == '/') {
@@ -2834,6 +2832,31 @@ class zpFunctions {
 			return substr($string, 0, $length);
 		}
 		return $string;
+	}
+	
+	/**
+	 * Wrapper for the native PHP tidy() to balance out invalid html if existing on the server
+	 * Covers newer HTML5 elements
+	 * 
+	 * @param string $html The html to tidy, typical from a description or content field of items
+	 * @param string $shortenindicator If you are using this on truncated text
+	 * @return string
+	 * @since 1.4.12
+	 */
+	static function tidyHTML($html) {
+		if (class_exists('tidy')) {
+			$options = array(
+					'new-blocklevel-tags' => 'article aside audio bdi canvas details dialog figcaption figure footer header main nav section source summary template track video',
+					'new-empty-tags' => 'command embed keygen source track wbr',
+					'new-inline-tags' => 'audio command datalist embed keygen mark menuitem meter output progress source time video wbr',
+					'show-body-only' => true
+			);
+			$tidy = new tidy();
+			$tidy->parseString($html, $options, 'utf8');
+			$tidy->cleanRepair();
+			return trim($tidy);
+		}
+		return $html;
 	}
 
 }

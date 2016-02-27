@@ -349,11 +349,8 @@ function html_encodeTagged($original, $allowScript = true) {
 	foreach (array_reverse($tags, true) as $taglist) {
 		$str = strtr($str, $taglist);
 	}
-	if (class_exists('tidy') && $str != $original) {
-		$tidy = new tidy();
-		$tidy->parseString($str, array('show-body-only' => true), 'utf8');
-		$tidy->cleanRepair();
-		$str = $tidy;
+	if ($str != $original) {
+		$str = zpFunctions::tidyHTML($str);
 	}
 	return $str;
 }
