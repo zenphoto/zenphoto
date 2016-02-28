@@ -14,7 +14,7 @@ if (!function_exists("gettext")) {
 } else {
 	$noxlate = 1;
 }
-define('HTACCESS_VERSION', '1.4.5'); // be sure to change this the one in .htaccess when the .htaccess file is updated.
+define('HTACCESS_VERSION', '1.4.12'); // be sure to change this the one in .htaccess when the .htaccess file is updated.
 
 define('OFFSET_PATH', 2);
 
