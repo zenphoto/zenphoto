@@ -171,6 +171,10 @@ foreach ($template as $tablename => $table) {
 			if ($field['Comment'] === 'zp20' || $field['Comment'] === 'optional_metadata') {
 				$dropString = "ALTER TABLE " . prefix($tablename) . " DROP `" . $field['Field'] . "`;";
 				setupQuery($dropString, false);
+			} else {
+				if (strpos($field['Comment'], 'optional_') === false) {
+					setupLog(sprintf(gettext('Setup found the field "%1$s" in the "%2$s" table. This field is not native to ZenPhoto20.'), $key, $tablename), true);
+				}
 			}
 		}
 	}
@@ -186,6 +190,7 @@ foreach ($template as $tablename => $table) {
 				$string .="UNIQUE ";
 				$u = "UNIQUE `$key`";
 			}
+
 			$k = $index['Column_name'];
 			if (!empty($index['Sub_part'])) {
 				$k .=" (" . $index['Sub_part'] . ")";
@@ -218,9 +223,25 @@ foreach ($template as $tablename => $table) {
 		if (array_key_exists('keys', $database[$tablename]) && !empty($database[$tablename]['keys'])) {
 			foreach ($database[$tablename]['keys'] as $index) {
 				$key = $index['Key_name'];
-				if ($index['Index_comment'] === 'zp20' || ($key == 'valid' && $index['Column_name'] === '`valid`,`user`') || ($key == 'filename' && $index['Column_name'] === '`filename`,`albumid`')) {
+
+				switch ($key) {
+					case 'valid':
+						if ($tablename == 'administrators' && $index['Column_name'] === '`valid`,`user`') {
+							$index['Index_comment'] = 'zp20';
+						}
+						break;
+					case 'filename':
+						if ($tablename == 'images' && $index['Column_name'] === '`filename`,`albumid`') {
+							$index['Index_comment'] = 'zp20';
+						}
+						break;
+				}
+
+				if ($index['Index_comment'] === 'zp20') {
 					$dropString = "ALTER TABLE " . prefix($tablename) . " DROP INDEX `" . $key . "`;";
 					setupQuery($dropString);
+				} else {
+					setupLog(sprintf(gettext('Setup found the key "%1$s" in the "%2$s" table. This index is not native to ZenPhoto20.'), $key, $tablename), true);
 				}
 			}
 		}
