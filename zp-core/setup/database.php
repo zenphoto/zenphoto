@@ -68,6 +68,19 @@ foreach ($tables as $table) {
 		unset($index['Cardinality']);
 		unset($index['Comment']);
 
+		switch ($keyname) {
+			case 'valid':
+				if ($table == 'administrators' && $index['Column_name'] === '`valid`,`user`') {
+					$index['Index_comment'] = 'zp20';
+				}
+				break;
+			case 'filename':
+				if ($table == 'images' && $index['Column_name'] === '`filename`,`albumid`') {
+					$index['Index_comment'] = 'zp20';
+				}
+				break;
+		}
+
 		$database[$table]['keys'][$keyname] = $index;
 	}
 }
@@ -223,20 +236,6 @@ foreach ($template as $tablename => $table) {
 		if (array_key_exists('keys', $database[$tablename]) && !empty($database[$tablename]['keys'])) {
 			foreach ($database[$tablename]['keys'] as $index) {
 				$key = $index['Key_name'];
-
-				switch ($key) {
-					case 'valid':
-						if ($tablename == 'administrators' && $index['Column_name'] === '`valid`,`user`') {
-							$index['Index_comment'] = 'zp20';
-						}
-						break;
-					case 'filename':
-						if ($tablename == 'images' && $index['Column_name'] === '`filename`,`albumid`') {
-							$index['Index_comment'] = 'zp20';
-						}
-						break;
-				}
-
 				if ($index['Index_comment'] === 'zp20') {
 					$dropString = "ALTER TABLE " . prefix($tablename) . " DROP INDEX `" . $key . "`;";
 					setupQuery($dropString);
