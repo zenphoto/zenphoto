@@ -35,6 +35,7 @@ if (OFFSET_PATH) {
 				setOptionDefault('accessThreshold_IP_THRESHOLD', 5000);
 				setOptionDefault('accessThreshold_IP_ACCESS_WINDOW', 600);
 				setOptionDefault('accessThreshold_SENSITIVITY', '255.255.255.0');
+				setOptionDefault('accessThreshold_NOISE', 10);
 				//clear out the recentIP array
 				self::handleOptionSave(NULL, NULL);
 			}
@@ -53,7 +54,10 @@ if (OFFSET_PATH) {
 											'desc'	 => gettext('The access counter is reset if the last access is beyond this window.')),
 							gettext('Mask')			 => array('key'		 => 'accessThreshold_SENSITIVITY', 'type'	 => OPTION_TYPE_TEXTBOX,
 											'order'	 => 4,
-											'desc'	 => gettext('IP mask to determine the IP elements sensitivity'))
+											'desc'	 => gettext('IP mask to determine the IP elements sensitivity')),
+							gettext('Noise')		 => array('key'		 => 'accessThreshold_NOISE', 'type'	 => OPTION_TYPE_NUMBER,
+											'order'	 => 5,
+											'desc'	 => gettext('Access counts below this value will not be listed on the admin tab.'))
 			);
 			return $options;
 		}

@@ -18,12 +18,12 @@ printAdminHeader('overview', $subtab);
 
 $recentIP = getSerializedArray(@file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/recentIP'));
 unset($recentIP['config']);
-
+$recentIP = sortMultiArray($recentIP, 'counter', true);
+$noise = getOption('accessThreshold_NOISE');
 echo "\n</head>";
 ?>
 
 <body>
-
 	<?php printLogoAndLinks(); ?>
 	<div id="main">
 		<?php printTabs(); ?>
@@ -33,27 +33,25 @@ echo "\n</head>";
 				echo gettext("No entries");
 			}
 			?>
-			<div id="container">
 
-				<table style="width:100%">
-					<?php
-					$col = 0;
-					foreach ($recentIP as $entity => $data) {
-						if ($col == 0) {
-							echo "<tr>\n";
-						}
-						echo "<td>" . $entity . '&nbsp;&nbsp;&nbsp;' . date('Y-m-d H:i:s', $data['accessTime']) . '&nbsp;&nbsp;&nbsp;' . $data['counter'] . "</td>\n";
+			<?php
+			$c = 0;
+			foreach ($recentIP as $entity => $data) {
+				if ($data['counter'] < $noise)
+					break;
+				echo '<span style="width:25%;float:left">';
+				echo '<span style="width:40%;float:left">' . $entity . '</span>';
+				echo '<span style="width:48%;float:left">' . date('Y-m-d H:i:s', $data['accessTime']) . '</span>';
+				echo '<span style="width:3%;float:left">' . $data['counter'] . '</span>';
+				echo "</span>\n";
+				$c++;
+				if ($c > 3) {
+					$c = 0;
+					echo '<br clear="both">';
+				}
+			}
+			?>
 
-						if ($col == 4) {
-							echo "</tr>\n";
-							$col = 0;
-						} else {
-							$col++;
-						}
-					}
-					?>
-				</table>
-			</div>
 		</div>
 	</div>
 	<br class = "clearall" />
