@@ -20,6 +20,7 @@ $recentIP = getSerializedArray(@file_get_contents(SERVERPATH . '/' . DATA_FOLDER
 unset($recentIP['config']);
 $recentIP = sortMultiArray($recentIP, 'counter', true);
 $noise = getOption('accessThreshold_NOISE');
+
 echo "\n</head>";
 ?>
 
@@ -29,13 +30,7 @@ echo "\n</head>";
 		<?php printTabs(); ?>
 		<div id="content">
 			<?php
-			if (empty($recentIP)) {
-				echo gettext("No entries");
-			}
-			?>
-
-			<?php
-			$c = 0;
+			$ct = 0;
 			foreach ($recentIP as $entity => $data) {
 				if ($data['counter'] < $noise)
 					break;
@@ -44,11 +39,13 @@ echo "\n</head>";
 				echo '<span style="width:48%;float:left">' . date('Y-m-d H:i:s', $data['accessTime']) . '</span>';
 				echo '<span style="width:3%;float:left">' . $data['counter'] . '</span>';
 				echo "</span>\n";
-				$c++;
-				if ($c > 3) {
-					$c = 0;
+				$ct++;
+				if ($ct % 4 == 0) {
 					echo '<br clear="both">';
 				}
+			}
+			if (empty($ct)) {
+				echo gettext("No entries excede the noise level");
 			}
 			?>
 
