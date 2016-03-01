@@ -1432,7 +1432,7 @@ function checkInstall() {
 			}
 		}
 		if ($i != serialize(installSignature())) {
-			_setup(0);
+			_setup((int) ($i === NULL));
 		}
 	}
 }
