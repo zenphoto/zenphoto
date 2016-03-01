@@ -11,7 +11,7 @@ require_once(SERVERPATH . "/" . ZENFOLDER . "/admin-functions.php");
 
 class ThemeOptions {
 
-	function ThemeOptions() {
+	function __construct() {
 		setOptionDefault('zpmin_homeoption', '');
 		setOptionDefault('zpmin_album_thumb_size', 158);
 		setOptionDefault('zpmin_switch', false);

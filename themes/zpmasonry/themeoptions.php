@@ -11,7 +11,7 @@
 
 class ThemeOptions {
 
-	function ThemeOptions() {
+	function __construct() {
 		// force core theme options for this theme
 		setThemeOption('thumb_size', 168, null, 'zpmasonry');
 		setThemeOption('thumb_crop', 1, null, 'zpmasonry');
