@@ -255,6 +255,7 @@ function reconfigurePage($diff, $needs, $mandatory) {
 /**
  * control when and how setup scripts are turned back into PHP files
  * @param int reason
+ * 						 1	No prior install signature
  * 						 2	restore setup files button
  * 						 4	Clone request
  * 						 5	Setup run with proper XSRF token
