@@ -43,21 +43,24 @@ if (OFFSET_PATH) {
 
 		function getOptionsSupported() {
 			$options = array(
-							gettext('Memory')		 => array('key'		 => 'accessThreshold_IP_RETENTION', 'type'	 => OPTION_TYPE_NUMBER,
+							gettext('Memory')			 => array('key'		 => 'accessThreshold_IP_RETENTION', 'type'	 => OPTION_TYPE_NUMBER,
 											'order'	 => 1,
 											'desc'	 => gettext('The number unique access attempts to keep.')),
-							gettext('Threshold') => array('key'		 => 'accessThreshold_IP_THRESHOLD', 'type'	 => OPTION_TYPE_NUMBER,
+							gettext('Threshold')	 => array('key'		 => 'accessThreshold_IP_THRESHOLD', 'type'	 => OPTION_TYPE_NUMBER,
 											'order'	 => 2,
 											'desc'	 => gettext('Attempts will be blocked once the count reaches this level.')),
-							gettext('Window')		 => array('key'		 => 'accessThreshold_IP_ACCESS_WINDOW', 'type'	 => OPTION_TYPE_NUMBER,
+							gettext('Window')			 => array('key'		 => 'accessThreshold_IP_ACCESS_WINDOW', 'type'	 => OPTION_TYPE_NUMBER,
 											'order'	 => 3,
 											'desc'	 => gettext('The access counter is reset if the last access is beyond this window.')),
-							gettext('Mask')			 => array('key'		 => 'accessThreshold_SENSITIVITY', 'type'	 => OPTION_TYPE_TEXTBOX,
+							gettext('Mask')				 => array('key'		 => 'accessThreshold_SENSITIVITY', 'type'	 => OPTION_TYPE_TEXTBOX,
 											'order'	 => 4,
 											'desc'	 => gettext('IP mask to determine the IP elements sensitivity')),
-							gettext('Noise')		 => array('key'		 => 'accessThreshold_NOISE', 'type'	 => OPTION_TYPE_NUMBER,
+							gettext('Noise')			 => array('key'		 => 'accessThreshold_NOISE', 'type'	 => OPTION_TYPE_NUMBER,
 											'order'	 => 5,
-											'desc'	 => gettext('Access counts below this value will not be listed on the admin tab.'))
+											'desc'	 => gettext('Access counts below this value will not be listed on the admin tab.')),
+							gettext('Clear list')	 => array('key'		 => 'accessThreshold_CLEAR', 'type'	 => OPTION_TYPE_CHECKBOX,
+											'order'	 => 6,
+											'desc'	 => gettext('Clear the access list.'))
 			);
 			return $options;
 		}
@@ -72,14 +75,17 @@ if (OFFSET_PATH) {
 					break;
 				}
 			}
-
-			$recentIP = array(
-							'config' => array(
-											'accessThreshold_IP_RETENTION'		 => getOption('accessThreshold_IP_RETENTION'),
-											'accessThreshold_IP_THRESHOLD'		 => getOption('accessThreshold_IP_THRESHOLD'),
-											'accessThreshold_IP_ACCESS_WINDOW' => getOption('accessThreshold_IP_ACCESS_WINDOW'),
-											'accessThreshold_SENSITIVITY'			 => $sensitivity
-							)
+			if (getOption('accessThreshold_CLEAR')) {
+				$recentIP = array();
+				setOption('accessThreshold_CLEAR', 0);
+			} else {
+				$recentIP = getSerializedArray(@file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/recentIP'));
+			}
+			$recentIP['config'] = array(
+							'accessThreshold_IP_RETENTION'		 => getOption('accessThreshold_IP_RETENTION'),
+							'accessThreshold_IP_THRESHOLD'		 => getOption('accessThreshold_IP_THRESHOLD'),
+							'accessThreshold_IP_ACCESS_WINDOW' => getOption('accessThreshold_IP_ACCESS_WINDOW'),
+							'accessThreshold_SENSITIVITY'			 => $sensitivity
 			);
 			file_put_contents(SERVERPATH . '/' . DATA_FOLDER . '/recentIP', serialize($recentIP));
 		}
