@@ -66,7 +66,7 @@ if (OFFSET_PATH) {
 		}
 
 		static function handleOptionSave($themename, $themealbum) {
-			$x = getOption('accessThreshold_SENSITIVITY');
+			$x = str_replace(':', '.', getOption('accessThreshold_SENSITIVITY'));
 			$sensitivity = 0;
 			foreach (explode('.', $x) as $v) {
 				if ($v) {
@@ -120,9 +120,15 @@ if (OFFSET_PATH) {
 		$accessThreshold_IP_ACCESS_WINDOW = $recentIP['config']['accessThreshold_IP_ACCESS_WINDOW'];
 		$accessThreshold_SENSITIVITY = $recentIP['config']['accessThreshold_SENSITIVITY'];
 
-		$x = explode('.', getUserIP());
+		$ip = getUserIP();
+		if (strpos($ip, '.') === false) {
+			$separator = ':';
+		} else {
+			$separator = '.';
+		}
+		$x = explode($separator, $ip);
 		$x = array_slice($x, 0, $accessThreshold_SENSITIVITY);
-		$ip = implode(".", $x);
+		$ip = implode($separator, $x);
 
 		if (array_key_exists($ip, $recentIP) && $recentIP[$ip]['accessTime'] > time() - $accessThreshold_IP_ACCESS_WINDOW) {
 			$recentIP[$ip]['counter'] ++;
