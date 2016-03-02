@@ -64,7 +64,7 @@ class customData {
 				$tablecols = db_list_fields($table);
 				foreach ($tablecols as $key => $datum) {
 					if ($datum['Field'] == 'custom_data') {
-						$present[$table] = 1;
+						$present[$table] = 1 + (int) !empty($datum['Comment']);
 					}
 				}
 			}
