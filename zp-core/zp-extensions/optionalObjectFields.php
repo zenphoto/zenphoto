@@ -49,7 +49,7 @@ class optionalObjectFields extends fieldExtender {
 						array('table' => 'albums', 'name' => 'date', 'desc' => gettext('Date'), 'type' => 'datetime', 'edit' => 'function', 'function' => 'optionalObjectFields::date'),
 						array('table' => 'albums', 'name' => 'location', 'desc' => gettext('Location'), 'type' => 'text', 'edit' => 'multilingual'),
 						array('table' => 'albums', 'name' => 'tags', 'desc' => gettext('Tags'), 'type' => NULL, 'edit' => 'function', 'function' => 'optionalObjectFields::tags'),
-						array('table' => 'albums', 'name' => 'codeblocks', 'desc' => gettext('Codeblocks'), 'type' => NULL, 'edit' => 'function', 'function' => 'optionalObjectFields::codeblocks'),
+						array('table' => 'albums', 'name' => 'codeblock', 'desc' => gettext('Codeblocks'), 'type' => NULL, 'edit' => 'function', 'function' => 'optionalObjectFields::codeblocks'),
 						/*
 						 * image fields
 						 */

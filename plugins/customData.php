@@ -59,7 +59,7 @@ class customData {
 	function __construct() {
 
 		if (OFFSET_PATH == 2) {
-			$present = array('albums' => 0, 'images' => 0, 'news' => 0, 'pages' => 0, 'news_categories' => 0);
+			$present = array('albums' => 0, 'images' => 0, 'news' => 0, 'pages' => 0, 'news_categories' => 0, 'administrators' => 0);
 			foreach ($present as $table => $v) {
 				$tablecols = db_list_fields($table);
 				foreach ($tablecols as $key => $datum) {
