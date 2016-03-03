@@ -91,7 +91,7 @@ $collation = db_collation();
 $template = unserialize(file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/databaseTemplate'));
 
 //Add in the enabled image metadata fields
-$metadataProviders = array('class-video', 'xmpMetadata');
+$metadataProviders = array(zpFunctions::exifvars(), 'class-video' => 'Video', 'xmpMetadata' => 'xmpMetadata');
 foreach (getEnabledPlugins() as $extension => $plugin) {
 	$priority = $plugin['priority'];
 	if (in_array($extension, $metadataProviders)) {
@@ -99,10 +99,28 @@ foreach (getEnabledPlugins() as $extension => $plugin) {
 		$_zp_loaded_plugins[$extension] = $extension;
 	}
 }
+foreach ($metadataProviders as $source => $handler) {
+	if (is_array($handler)) {
+		$enabled = true;
+		$exifvars = $handler;
+	} else {
+		$enabled = extensionEnabled($source);
+		$plugin = getPlugin($source . '.php');
+		require_once($plugin);
+		$exifvars = $handler::getMetadataFields();
+		foreach ($exifvars as $key => $item) {
+			if (!is_null($disable = getOption($key . '-disabled'))) {
+				$exifvars[$key][5] = !($disable & true);
+			}
+			if (!is_null($display = getOption($key . '-display'))) {
+				$exifvars[$key][3] = $display;
+			}
+		}
+	}
 
-foreach (zpFunctions::exifvars() as $key => $exifvar) {
-	if ($s = $exifvar[4]) {
-		if ($exifvar[5]) {
+	foreach ($exifvars as $key => $exifvar) {
+		$s = $exifvar[4];
+		if ($exifvar[5] && $enabled) {
 			switch ($exifvar[6]) {
 				case 'string':
 					if ($s < 255) {
@@ -127,6 +145,10 @@ foreach (zpFunctions::exifvars() as $key => $exifvar) {
 			);
 
 			$template['images']['fields'][$key] = $field;
+		} else {
+			if (isset($database[$table]['fields'][$key])) {
+				$database[$table]['fields'][$key]['Comment'] = 'optional_metadata';
+			}
 		}
 	}
 }
@@ -186,7 +208,7 @@ foreach ($template as $tablename => $table) {
 				setupQuery($dropString, false);
 			} else {
 				if (strpos($field['Comment'], 'optional_') === false) {
-					setupLog(sprintf(gettext('Setup found the field "%1$s" in the "%2$s" table. This field is not native to ZenPhoto20.'), $key, $tablename), true);
+					setupLog(sprintf(gettext('Setup found the field "%1$s" in the "%2$s" table. This field is not in use by ZenPhoto20.'), $key, $tablename), true);
 				}
 			}
 		}
@@ -240,7 +262,7 @@ foreach ($template as $tablename => $table) {
 					$dropString = "ALTER TABLE " . prefix($tablename) . " DROP INDEX `" . $key . "`;";
 					setupQuery($dropString);
 				} else {
-					setupLog(sprintf(gettext('Setup found the key "%1$s" in the "%2$s" table. This index is not native to ZenPhoto20.'), $key, $tablename), true);
+					setupLog(sprintf(gettext('Setup found the key "%1$s" in the "%2$s" table. This index is not in use by ZenPhoto20.'), $key, $tablename), true);
 				}
 			}
 		}
