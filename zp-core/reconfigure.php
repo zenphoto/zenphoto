@@ -121,7 +121,7 @@ function checkSignature($mandatory) {
 	if (file_exists(dirname(__FILE__) . '/setup/')) {
 		chdir(dirname(__FILE__) . '/setup/');
 		$restore = safe_glob('*.xxx');
-		if (!empty($restore) && $mandatory && defined('ADMIN_RIGHTS') && zp_loggedin(ADMIN_RIGHTS)) {
+		if (!empty($restore) && $mandatory && defined('ADMIN_RIGHTS') && zp_loggedin(ADMIN_RIGHTS) && $mandatory > 1) {
 			restoreSetupScrpts($mandatory);
 		}
 		$found = safe_glob('*.*');
