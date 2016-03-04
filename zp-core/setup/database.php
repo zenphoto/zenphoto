@@ -27,7 +27,7 @@ if (is_array($result)) {
 		$tables[] = array_shift($row);
 	}
 }
-$database = array();
+$database = $orphans = array();
 $i = 0;
 foreach ($tables as $table) {
 	$table = substr($table, strlen($prefix));
@@ -84,8 +84,6 @@ foreach ($tables as $table) {
 		$database[$table]['keys'][$keyname] = $index;
 	}
 }
-
-
 
 $collation = db_collation();
 $template = unserialize(file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/databaseTemplate'));
@@ -201,7 +199,7 @@ foreach ($template as $tablename => $table) {
 				setupQuery($dropString, false);
 			} else {
 				if (strpos($field['Comment'], 'optional_') === false) {
-					setupLog(sprintf(gettext('Setup found the field "%1$s" in the "%2$s" table. This field is not in use by ZenPhoto20.'), $key, $tablename), true);
+					$orphans[] = sprintf(gettext('Setup found the field "%1$s" in the "%2$s" table. This field is not in use by ZenPhoto20.'), $key, $tablename);
 				}
 			}
 		}
@@ -255,10 +253,13 @@ foreach ($template as $tablename => $table) {
 					$dropString = "ALTER TABLE " . prefix($tablename) . " DROP INDEX `" . $key . "`;";
 					setupQuery($dropString);
 				} else {
-					setupLog(sprintf(gettext('Setup found the key "%1$s" in the "%2$s" table. This index is not in use by ZenPhoto20.'), $key, $tablename), true);
+					$orpahns = sprintf(gettext('Setup found the key "%1$s" in the "%2$s" table. This index is not in use by ZenPhoto20.'), $key, $tablename);
 				}
 			}
 		}
 	}
+}
+foreach ($orphans as $message) {
+	setupLog($message, true);
 }
 ?>
