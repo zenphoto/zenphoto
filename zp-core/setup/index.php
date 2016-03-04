@@ -19,7 +19,7 @@ if (!function_exists("gettext")) {
 } else {
 	$noxlate = 1;
 }
-if (version_compare(phpversion(), PHP_MIN_VERSION, '<')) {
+if (version_compare(PHP_VERSION, PHP_MIN_VERSION, '<')) {
 	die(sprintf(gettext('ZenPhoto20 requires PHP version %s or greater'), PHP_MIN_VERSION));
 }
 
