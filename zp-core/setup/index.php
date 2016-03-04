@@ -19,7 +19,7 @@ if (!function_exists("gettext")) {
 } else {
 	$noxlate = 1;
 }
-if (version_compare(PHP_MIN_VERSION, PHP_MIN_VERSION, '<')) {
+if (version_compare(phpversion(), PHP_MIN_VERSION, '<')) {
 	die(sprintf(gettext('ZenPhoto20 requires PHP version %s or greater'), PHP_MIN_VERSION));
 }
 
@@ -1393,7 +1393,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 									$vr = trim(substr($htu, $i + 7, $j - $i - 7));
 								}
 
-								$ch = !empty($vr) && ($vr == HTACCESS_VERSION);
+								$ch = !empty($vr) && version_compare($vr, HTACCESS_VERSION, '>=');
 								$d = str_replace('\\', '/', dirname(dirname(dirname($_SERVER['SCRIPT_NAME']))));
 								$d = str_replace(' ', '%20', $d); //	apache appears to trip out if there is a space in the rewrite base
 								if (!$ch) { // wrong version
