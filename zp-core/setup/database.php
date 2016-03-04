@@ -92,13 +92,6 @@ $template = unserialize(file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/datab
 
 //Add in the enabled image metadata fields
 $metadataProviders = array(zpFunctions::exifvars(), 'class-video' => 'Video', 'xmpMetadata' => 'xmpMetadata');
-foreach (getEnabledPlugins() as $extension => $plugin) {
-	$priority = $plugin['priority'];
-	if (in_array($extension, $metadataProviders)) {
-		require_once($plugin['path']);
-		$_zp_loaded_plugins[$extension] = $extension;
-	}
-}
 foreach ($metadataProviders as $source => $handler) {
 	if (is_array($handler)) {
 		$enabled = true;
@@ -146,8 +139,8 @@ foreach ($metadataProviders as $source => $handler) {
 
 			$template['images']['fields'][$key] = $field;
 		} else {
-			if (isset($database[$table]['fields'][$key])) {
-				$database[$table]['fields'][$key]['Comment'] = 'optional_metadata';
+			if (isset($database['images']['fields'][$key])) {
+				$database['images']['fields'][$key]['Comment'] = 'optional_metadata';
 			}
 		}
 	}
