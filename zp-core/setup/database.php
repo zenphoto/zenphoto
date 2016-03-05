@@ -134,8 +134,9 @@ foreach ($metadataProviders as $source => $handler) {
 							'Default'	 => null,
 							'Comment'	 => 'optional_metadata'
 			);
-
-			$template['images']['fields'][$key] = $field;
+			if ($s != 'varchar(0)') {
+				$template['images']['fields'][$key] = $field;
+			}
 		} else {
 			if (isset($database['images']['fields'][$key])) {
 				$database['images']['fields'][$key]['Comment'] = 'optional_metadata';
