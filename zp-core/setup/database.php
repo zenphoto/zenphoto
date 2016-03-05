@@ -79,6 +79,11 @@ foreach ($tables as $table) {
 					$index['Index_comment'] = 'zp20';
 				}
 				break;
+			case 'folder':
+				if ($table == 'albums' && $index['Column_name'] === '`folder`') {
+					$index['Index_comment'] = 'zp20';
+				}
+				break;
 		}
 
 		$database[$table]['keys'][$keyname] = $index;
