@@ -1321,8 +1321,9 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 								if ($package_file_count) { //	no point in this if the package list was damaged!
 									if (!empty($systemlist)) {
 										if (isset($_GET['delete_extra'])) {
-											foreach ($systemlist as $key => $file8) {
-												$file = $base . $_zp_UTF8->convert($file8, FILESYSTEM_CHARSET, 'UTF-8');
+											foreach ($systemlist as $key => $file_s) {
+												$file8 = $_zp_UTF8->convert($file_s, FILESYSTEM_CHARSET, 'UTF-8');
+												$file = $base . $file_s;
 												if (!is_dir($file)) {
 													@chmod($file, 0777);
 													if (@unlink($file) || !file_exists($file)) {
@@ -1333,16 +1334,15 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 												}
 											}
 											rsort($systemlist);
-											foreach ($systemlist as $key => $file8) {
-												$file = $base . $_zp_UTF8->convert($file8, FILESYSTEM_CHARSET, 'UTF-8');
+											foreach ($systemlist as $key => $file_s) {
+												$file8 = $_zp_UTF8->convert($file, FILESYSTEM_CHARSET, 'UTF-8');
+												$file = $base . $file_s;
 												@chmod($file, 0777);
 												if (is_dir($file)) {
 													$offspring = safe_glob($file . '/*.*');
 													foreach ($offspring as $child) {
-														if (@unlink($child) || !file_exists($child)) {
-															unset($systemlist[$key]);
-														} else {
-															$filelist[] = $child;
+														if (!(@unlink($child) || !file_exists($child))) {
+															$filelist[] = $file8 . '/' . $_zp_UTF8->convert($file_s, FILESYSTEM_CHARSET, 'UTF-8');
 														}
 													}
 													if (!@rmdir($file) || is_dir($file)) {
@@ -1360,7 +1360,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 												checkmark(-1, '', gettext('ZenPhoto20 core folders [Some unknown files were found]'), gettext('The following files could not be deleted.') . '<br /><code>' . implode('<br />', $filelist) . '<code>');
 											}
 										} else {
-											checkMark(-1, '', gettext('ZenPhoto20 core folders [Some unknown files were found]'), gettext('You should remove the following files: ') . '<br /><code>' . implode('<br />', $systemlist) .
+											checkMark(-1, '', gettext('ZenPhoto20 core folders [Some unknown files were found]'), gettext('You should remove the following files: ') . '<br /><code>' . $_zp_UTF8->convert(implode('<br />', $systemlist), FILESYSTEM_CHARSET, 'UTF-8') .
 															'</code><p class="buttons"><a href="?delete_extra' . ($debug ? '&amp;debug' : '') . '">' . gettext("Delete extra files") . '</a></p><br class="clearall" /><br class="clearall" />');
 										}
 									}
