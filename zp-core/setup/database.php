@@ -181,7 +181,7 @@ foreach ($template as $tablename => $table) {
 						setupQuery($changeString);
 					}
 				} else {
-					setupQuery($addString, false);
+					setupQuery($addString);
 				}
 			} else {
 				$x = preg_split('/%s /', $string);
@@ -196,7 +196,7 @@ foreach ($template as $tablename => $table) {
 			// drop fields no longer used
 			if ($field['Comment'] === 'zp20' || $field['Comment'] === 'optional_metadata') {
 				$dropString = "ALTER TABLE " . prefix($tablename) . " DROP `" . $field['Field'] . "`;";
-				setupQuery($dropString, false);
+				setupQuery($dropString);
 			} else {
 				if (strpos($field['Comment'], 'optional_') === false) {
 					$orphans[] = sprintf(gettext('Setup found the field "%1$s" in the "%2$s" table. This field is not in use by ZenPhoto20.'), $key, $tablename);
@@ -230,7 +230,7 @@ foreach ($template as $tablename => $table) {
 						setupQuery($alterString);
 					}
 				} else {
-					setupQuery($alterString, false);
+					setupQuery($alterString);
 				}
 			} else {
 				$tableString = "  $u ($k) COMMENT 'zp20',";

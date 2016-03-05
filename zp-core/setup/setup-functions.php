@@ -534,7 +534,7 @@ function setupQuery($sql) {
 	global $updateErrors;
 	$result = db_table_update($sql);
 	if ($result) {
-		setupLog(sprintf(gettext('Query Success: %s'), $sql), TEST_RELEASE);
+		setupLog(sprintf(gettext('Query Success: %s'), $sql), true);
 	} else {
 		$updateErrors = true;
 		$error = db_error();
