@@ -1424,14 +1424,15 @@ function checkInstall() {
 		preg_match('|([^-]*)|', ZENPHOTO_VERSION, $version);
 		if ($i = getOption('zenphoto_install')) {
 			$install = getSerializedArray($i);
-		} else {
-			$install = array();
+			if (isset($install['ZENPHOTO'])) {
+				preg_match('|([^-]*).*\[(.*)\]|', $install['ZENPHOTO'], $matches);
+				if (isset($matches[1]) && isset($matches[2]) && $matches[1] != $version[1] || $matches[2] != ZENPHOTO_RELEASE) {
+					_setup(14);
+				}
+			}
 		}
-		preg_match('|([^-]*).*\[(.*)\]|', $install['ZENPHOTO'], $matches);
-		if (isset($matches[1]) && isset($matches[2]) && $matches[1] != $version[1] || $matches[2] != ZENPHOTO_RELEASE) {
-			_setup(14);
-		} else if ($i != serialize(installSignature())) {
-			_setup(0);
+		if ($i != serialize(installSignature())) {
+			_setup((int) ($i === NULL));
 		}
 	}
 }

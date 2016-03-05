@@ -106,14 +106,14 @@ class customFieldExtender extends fieldExtender {
 
 	static function custom_option($obj, $instance, $field, $type) {
 		if ($type == 'save') {
-			return sanitize($instance . '-' . $_POST[$field['name']]);
+			return sanitize($_POST[$instance . '-' . $field['name']]);
 		} else {
-			$item = NULL;
+			$item = $obj->get($field['name']);
 			if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 				ob_start();
 				?>
 				<select name="<?php echo $instance . '-' . $field['name']; ?>">
-					<?php echo admin_album_list($obj->getOwner()); ?>
+					<?php echo admin_album_list($item); ?>
 				</select>
 				<?php
 				$item = ob_get_contents();

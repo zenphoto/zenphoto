@@ -654,7 +654,7 @@ class xmpMetadata {
 						'XMPSource'						 => array('XMP', '<photoshop:Source>', gettext('Image Source'), false, 32, true, 'string'),
 						'XMPState'						 => array('XMP', '<photoshop:State>', gettext('Province/State'), false, 32, true, 'string'),
 						'XMPSubLocation'			 => array('XMP', '<Iptc4xmpCore:Location>', gettext('Sub-location'), false, 32, true, 'string'),
-						'rating'							 => array('XMP', '<MicrosoftPhoto:Rating>', gettext('Rating'), false, 0, true, 'string')
+						'XMPrating'						 => array('XMP', '<MicrosoftPhoto:Rating>', gettext('Rating'), false, 32, true, 'string')
 		);
 	}
 

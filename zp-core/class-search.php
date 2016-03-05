@@ -109,13 +109,6 @@ class SearchEngine {
 		$this->search_structure['tags_exact'] = ''; //	internal use only field
 		$this->search_structure['filename'] = gettext('File/Folder name');
 		$this->search_structure['date'] = gettext('Date');
-		$this->search_structure['location'] = gettext('Location/Place');
-		$this->search_structure['city'] = gettext('City');
-		$this->search_structure['state'] = gettext('State');
-		$this->search_structure['country'] = gettext('Country');
-		$this->search_structure['copyright'] = gettext('Copyright');
-		$this->search_structure['owner'] = gettext('Owner');
-		$this->search_structure['credit'] = gettext('Credit');
 		if (extensionEnabled('zenpage') && !$dynamic_album) {
 			//zenpage fields
 			$this->search_structure['content'] = gettext('Content');

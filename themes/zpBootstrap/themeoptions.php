@@ -10,7 +10,7 @@ require_once(SERVERPATH . '/' . ZENFOLDER . '/admin-functions.php');
 
 class ThemeOptions {
 
-	function ThemeOptions() {
+	function __construct() {
 		setThemeOptionDefault('albums_per_row', 3);
 		setThemeOptionDefault('albums_per_page', 9);
 		setThemeOptionDefault('images_per_row', 4);

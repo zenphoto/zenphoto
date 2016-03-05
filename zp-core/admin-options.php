@@ -1585,7 +1585,7 @@ Zenphoto_Authority::printPasswordFormJS();
 									$set_fields = $engine->allowedSearchFields();
 									$fields = array_diff($fields, $set_fields);
 									?>
-								<script>
+								<script type="text/javascript">
 									$(function () {
 										$("#resizable").resizable({
 											minHeight: 120,
@@ -1594,7 +1594,8 @@ Zenphoto_Authority::printPasswordFormJS();
 												$('#searchchecklist').height($('#resizable').height());
 											}
 										});
-									});</script>
+									});
+								</script>
 								<td>
 									<?php echo gettext('Fields list:'); ?>
 									<div id="resizable">

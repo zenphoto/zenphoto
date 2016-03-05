@@ -61,53 +61,70 @@ class fieldExtender {
 	 * @param array $newfields
 	 */
 	function constructor($me, $newfields) {
-		$previous = getSerializedArray(getOption(get_class($this) . '_addedFields'));
+		$database = array();
+
 		$current = $fields = array();
 		if (extensionEnabled($me)) { //need to update the database tables.
 			foreach ($newfields as $newfield) {
+				$table = $newfield['table'];
+				$name = $newfield['name'];
+				if (!array_key_exists($table, $database)) {
+					$tablecols = db_list_fields($table);
+					foreach ($tablecols as $key => $datum) {
+						$database[$table][$datum['Field']] = $datum;
+					}
+				}
 				if (!is_null($newfield['type'])) {
 					switch (strtolower($newfield['type'])) {
 						default:
 							$dbType = strtoupper($newfield['type']);
 							break;
 						case 'int':
+							$dbType = strtoupper($newfield['type']) . '(' . min(255, $newfield['size']) . ')';
+							if (isset($newfield['attribute'])) {
+								$dbType.=' ' . $newfield['attribute'];
+								unset($newfield['attribute']);
+							}
+							break;
 						case 'varchar':
 							$dbType = strtoupper($newfield['type']) . '(' . min(255, $newfield['size']) . ')';
 							break;
 					}
-					if (isset($previous[$newfield['table']][$newfield['name']])) {
-						$cmd = ' CHANGE `' . $newfield['name'] . '`';
+					if (isset($database[$table][$name])) {
+						if (strtoupper($database[$table][$name]['Type']) != $dbType || empty($database[$table][$name]['Comment'])) {
+							$cmd = ' CHANGE `' . $name . '`';
+						} else {
+							$cmd = NULL;
+						}
+						unset($database[$table][$name]);
 					} else {
 						$cmd = ' ADD COLUMN';
 					}
-					$sql = 'ALTER TABLE ' . prefix($newfield['table']) . $cmd . ' `' . $newfield['name'] . '` ' . $dbType;
+					$sql = 'ALTER TABLE ' . prefix($newfield['table']) . $cmd . ' `' . $name . '` ' . $dbType;
 					if (isset($newfield['attribute']))
 						$sql.= ' ' . $newfield['attribute'];
 					if (isset($newfield['default']))
 						$sql.= ' DEFAULT ' . $newfield['default'];
-					if (query($sql, false) && in_array($newfield['table'], array('albums', 'images', 'news', 'news_categories', 'pages')))
+					$sql .= " COMMENT 'optional_$me'";
+					if ((!$cmd || setupQuery($sql)) && in_array($newfield['table'], array('albums', 'images', 'news', 'news_categories', 'pages'))) {
 						$fields[] = strtolower($newfield['name']);
+					}
 					$current[$newfield['table']][$newfield['name']] = $dbType;
-					unset($previous[$newfield['table']][$newfield['name']]);
 				}
 			}
 			setOption(get_class($this) . '_addedFields', serialize($current));
 		} else {
 			purgeOption(get_class($this) . '_addedFields');
 		}
-
 		$set_fields = array_flip(explode(',', getOption('search_fields')));
-		foreach ($previous as $table => $orphaned) { //drop fields no longer defined
-			if ($orphaned) {
-				foreach ($orphaned as $field => $v) {
-					unset($set_fields[$field]);
+		foreach ($database as $table => $fields) { //drop fields no longer defined
+			foreach ($fields as $field => $orphaned) {
+				if ($orphaned['Comment'] == "optional_$me") {
 					$sql = 'ALTER TABLE ' . prefix($table) . ' DROP `' . $field . '`';
-					query($sql, false);
+					setupQuery($sql);
 				}
 			}
 		}
-		$set_fields = array_unique(array_merge($fields, array_flip($set_fields)));
-		setOption('search_fields', implode(',', $set_fields));
 	}
 
 	/**

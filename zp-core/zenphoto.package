@@ -997,6 +997,7 @@ zp-core/classes.php
 zp-core/controller.php
 zp-core/cron_runner.php
 zp-core/dataaccess
+zp-core/databaseTemplate
 zp-core/example_robots.txt
 zp-core/external_auth.php
 zp-core/full-image.php
@@ -1193,8 +1194,8 @@ zp-core/js/toggleElements.css
 zp-core/js/upload.js
 zp-core/js/zenphoto.js
 zp-core/js/dirtyforms
-zp-core/js/dirtyforms/jquery.dirtyforms.js
-zp-core/js/dirtyforms/tinymce.js
+zp-core/js/dirtyforms/jquery.dirtyforms.helpers.tinymce.min.js
+zp-core/js/dirtyforms/jquery.dirtyforms.min.js
 zp-core/js/facebox
 zp-core/js/facebox/closelabel.png
 zp-core/js/facebox/facebox.css
@@ -1423,6 +1424,7 @@ zp-core/watermarks/watermark-text.png
 zp-core/watermarks/watermark-video.png
 zp-core/watermarks/watermark.png
 zp-core/zp-extensions
+zp-core/zp-extensions/accessThreshold.php
 zp-core/zp-extensions/admin-approval.php
 zp-core/zp-extensions/auto_backup.php
 zp-core/zp-extensions/bxslider_thumb_nav.php
@@ -1436,7 +1438,6 @@ zp-core/zp-extensions/colorbox_js.php
 zp-core/zp-extensions/comment_form.php
 zp-core/zp-extensions/contact_form.php
 zp-core/zp-extensions/crop_image.php
-zp-core/zp-extensions/customData.php
 zp-core/zp-extensions/debug.php
 zp-core/zp-extensions/defaultCodeblocks.php
 zp-core/zp-extensions/deprecated-functions.php
@@ -1518,6 +1519,8 @@ zp-core/zp-extensions/xmpMetadata.php
 zp-core/zp-extensions/zenpage.php
 zp-core/zp-extensions/zenphoto_sendmail.php
 zp-core/zp-extensions/zpCaptcha.php
+zp-core/zp-extensions/accessThreshold
+zp-core/zp-extensions/accessThreshold/admin_tab.php
 zp-core/zp-extensions/bxslider_thumb_nav
 zp-core/zp-extensions/bxslider_thumb_nav/jquery.bxslider.css
 zp-core/zp-extensions/bxslider_thumb_nav/jquery.bxslider.js
@@ -2352,6 +2355,7 @@ zp-core/zp-extensions/zpCaptcha
 zp-core/zp-extensions/zpCaptcha/c.php
 zp-core/version.php:*
 zp-core/setup:*
+zp-core/setup/database.php:*
 zp-core/setup/index.php:*
 zp-core/setup/setup-functions.php:*
 zp-core/setup/setup-option-defaults.php:*
@@ -2361,4 +2365,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-2363
+2367

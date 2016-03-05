@@ -489,7 +489,7 @@ function configMod() {
 
 function printSetupFooter() {
 	echo "<div id=\"footer\">";
-	echo gettext('<span class="zen-logo"><a href="https://' . GITHUB . ' title="' . gettext('A simpler media content management system') . '"><img src="' . WEBPATH . '/' . ZENFOLDER . '/' . '/images/zen-logo-light.png" /></a></span> ');
+	echo gettext('<span class="zen-logo"><a href="https://' . GITHUB . ' title="' . gettext('A simpler media content management system') . '"><img src="' . WEBPATH . '/' . ZENFOLDER . '/images/zen-logo-light.png" /></a></span> ');
 	echo ' | <a href="https://' . GITHUB . '/issues" title="Support">' . gettext('Support') . '</a> | <a href="https://' . GITHUB . '/commits/master" title="' . gettext('View Change log') . '">' . gettext('Change log') . "</a>\n</div>";
 }
 
@@ -524,49 +524,22 @@ function checkUnique($table, $unique) {
 }
 
 /**
- * Handles setting up or destroying metadata fields
- * @param array $list
- * @param bool $execute
- * @return array (optional based on $execute)
+ * Executes and logs database update queries
+ * @param string $sql
  *
  * @author Stephen Billard
  * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
  */
-function metadataFields($list, $execute = true) {
-	$sql_statements = array();
-	$tbl_images = prefix('images');
-	ksort($list);
-	foreach ($list as $key => $exifvar) {
-		if ($s = $exifvar[4]) {
-			if ($exifvar[5]) {
-				switch ($exifvar[6]) {
-					case 'string':
-						if ($s < 255) {
-							$size = "VARCHAR($s)";
-						} else {
-							$size = 'MEDIUMTEXT';
-						}
-						break;
-					case 'number':
-						$size = 'VARCHAR(52)';
-						break;
-					case 'time':
-						$size = 'DATETIME';
-						break;
-				}
-				$sql_statements[] = "ALTER TABLE $tbl_images ADD COLUMN `$key` $size default NULL";
-				$sql_statements[] = "ALTER TABLE $tbl_images CHANGE `$key` `$key` $size default NULL";
-			} else {
-				$sql_statements[] = "ALTER TABLE $tbl_images DROP COLUMN `$key`";
-			}
-		}
-	}
-	if ($execute) {
-		foreach ($sql_statements as $sql) {
-			db_table_update($sql);
-		}
+function setupQuery($sql) {
+	global $updateErrors;
+	$result = db_table_update($sql);
+	if ($result) {
+		setupLog(sprintf(gettext('Query Success: %s'), $sql), true);
 	} else {
-		return $sql_statements;
+		$updateErrors = true;
+		$error = db_error();
+		setupLog(sprintf(gettext('Query Failed: %1$s ' . "\n" . ' Error: %2$s'), $sql, $error), true);
 	}
+	return $result;
 }
 ?>

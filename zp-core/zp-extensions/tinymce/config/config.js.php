@@ -56,7 +56,7 @@ $MCEplugins = preg_replace('|\stinyzenpage|', '', $MCEplugins);
 <?php
 if (OFFSET_PATH) {
 	?>
-	<script src="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/js/dirtyforms/tinymce.js" type="text/javascript"></script>
+	<script src="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/js/dirtyforms/jquery.dirtyforms.helpers.tinymce.min.js" type="text/javascript"></script>
 	<?php
 }
 ?>

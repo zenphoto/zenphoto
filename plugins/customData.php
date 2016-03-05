@@ -59,46 +59,63 @@ class customData {
 	function __construct() {
 
 		if (OFFSET_PATH == 2) {
-			$rslt = query('SELECT `custom_data` FROM ' . prefix('albums') . ' LIMIT 1', false);
-			$rslt = (int) empty($rslt);
-			setOptionDefault('customDataAlbums', $rslt);
-			$rslt = query('SELECT `custom_data` FROM ' . prefix('images') . ' LIMIT 1', false);
-			$rslt = (int) empty($rslt);
-			setOptionDefault('customDataImages', $rslt);
-			$rslt = query('SELECT `custom_data` FROM ' . prefix('news') . ' LIMIT 1', false);
-			$rslt = (int) empty($rslt);
-			setOptionDefault('customDataNews', $rslt);
-			$rslt = query('SELECT `custom_data` FROM ' . prefix('pages') . ' LIMIT 1', false);
-			$rslt = (int) empty($rslt);
-			setOptionDefault('customDataPages', $rslt);
-			$rslt = query('SELECT `custom_data` FROM ' . prefix('news_categories') . ' LIMIT 1', false);
-			$rslt = (int) empty($rslt);
-			setOptionDefault('customDataCategories', $rslt);
+			$present = array('albums' => 0, 'images' => 0, 'news' => 0, 'pages' => 0, 'news_categories' => 0);
+			foreach ($present as $table => $v) {
+				$tablecols = db_list_fields($table);
+				foreach ($tablecols as $key => $datum) {
+					if ($datum['Field'] == 'custom_data') {
+						$present[$table] = 1 + (int) !empty($datum['Comment']);
+					}
+				}
+			}
+			if (extensionEnabled('customdata')) {
+				setOptionDefault('customDataAlbums', $present['albums']);
+				setOptionDefault('customDataImages', $present['images']);
+				setOptionDefault('customDataNews', $present['news']);
+				setOptionDefault('customDataPages', $present['pages']);
+				setOptionDefault('customDataCategories', $present['news_categories']);
+			} else {
+				purgeOption('customDataAlbums');
+				purgeOption('customDataImages');
+				purgeOption('customDataNews');
+				purgeOption('customDataPages');
+				purgeOption('customDataCategories');
+			}
 
 			if (getOption('customDataAlbums')) {
-				query('ALTER TABLE ' . prefix('albums') . ' ADD COLUMN `custom_data` TEXT', false);
+				if (!$present['albums'])
+					setupQuery('ALTER TABLE ' . prefix('albums') . " ADD COLUMN `custom_data` TEXT COMMENT 'optional_customData'");
 			} else {
-				query('ALTER TABLE ' . prefix('albums') . ' DROP `custom_data`', false);
+				if ($present['albums'])
+					setupQuery('ALTER TABLE ' . prefix('albums') . ' DROP `custom_data`');
 			}
 			if (getOption('customDataImages')) {
-				query('ALTER TABLE ' . prefix('images') . ' ADD COLUMN `custom_data` TEXT', false);
+				if (!$present['images'])
+					setupQuery('ALTER TABLE ' . prefix('images') . " ADD COLUMN `custom_data` TEXT COMMENT 'optional_customData'");
 			} else {
-				query('ALTER TABLE ' . prefix('images') . ' DROP `custom_data`', false);
+				if ($present['images'])
+					setupQuery('ALTER TABLE ' . prefix('images') . ' DROP `custom_data`');
 			}
 			if (getOption('customDataNews')) {
-				query('ALTER TABLE ' . prefix('news') . ' ADD COLUMN `custom_data` TEXT', false);
+				if (!$present['news'])
+					setupQuery('ALTER TABLE ' . prefix('news') . " ADD COLUMN `custom_data` TEXT COMMENT 'optional_customData'");
 			} else {
-				query('ALTER TABLE ' . prefix('news') . ' DROP `custom_data`', false);
+				if ($present['news'])
+					setupQuery('ALTER TABLE ' . prefix('news') . ' DROP `custom_data`');
 			}
 			if (getOption('customDataPages')) {
-				query('ALTER TABLE ' . prefix('pages') . ' ADD COLUMN `custom_data` TEXT', false);
+				if (!$present['pages'])
+					setupQuery('ALTER TABLE ' . prefix('pages') . " ADD COLUMN `custom_data` TEXT COMMENT 'optional_customData'");
 			} else {
-				query('ALTER TABLE ' . prefix('pages') . ' DROP `custom_data`', false);
+				if ($present['pages'])
+					setupQuery('ALTER TABLE ' . prefix('pages') . ' DROP `custom_data`');
 			}
 			if (getOption('customDataCategories')) {
-				query('ALTER TABLE ' . prefix('news_categories') . ' ADD COLUMN `custom_data` TEXT', false);
+				if (!$present['news_categories'])
+					setupQuery('ALTER TABLE ' . prefix('news_categories') . " ADD COLUMN `custom_data` TEXT COMMENT 'optional_customData'");
 			} else {
-				query('ALTER TABLE ' . prefix('news_categories') . ' DROP `custom_data`', false);
+				if ($present['news_categories'])
+					setupQuery('ALTER TABLE ' . prefix('news_categories') . ' DROP `custom_data`');
 			}
 		}
 	}
