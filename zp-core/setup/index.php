@@ -1336,8 +1336,24 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 											foreach ($systemlist as $key => $file8) {
 												$file = $base . $_zp_UTF8->convert($file8, FILESYSTEM_CHARSET, 'UTF-8');
 												@chmod($file, 0777);
-												if (!@rmdir($file) || is_dir($file)) {
-													$filelist[] = $file8;
+												if (is_dir($file)) {
+													$offspring = safe_glob($file . '/*.*');
+													foreach ($offspring as $child) {
+														if (@unlink($child) || !file_exists($child)) {
+															unset($systemlist[$key]);
+														} else {
+															$filelist[] = $child;
+														}
+													}
+													if (!@rmdir($file) || is_dir($file)) {
+														$filelist[] = $file8;
+													}
+												} else {
+													if (@unlink($file) || !file_exists($file)) {
+														unset($systemlist[$key]);
+													} else {
+														$filelist[] = $file8;
+													}
 												}
 											}
 											if (!empty($filelist)) {
