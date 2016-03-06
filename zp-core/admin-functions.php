@@ -125,27 +125,26 @@ function printAdminHeader($tab, $subtab = NULL) {
 			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/zenphoto.js" type="text/javascript" ></script>
 			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/admin.js" type="text/javascript" ></script>
 			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.scrollTo.js" type="text/javascript"></script>
-			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.are-you-sure.js" type="text/javascript"></script>
+			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.dirtyforms.min.js" type="text/javascript"></script>
 			<script type="text/javascript">
 				// <!-- <![CDATA[
 
 				$(document).ready(function() {
-	<?php
-	if (zp_has_filter('admin_head', 'colorbox::css')) {
-		?>
-						$("a.colorbox").colorbox({
-							maxWidth: "98%",
-							maxHeight: "98%",
-							close: '<?php echo addslashes(gettext("close")); ?>'
-						});
+				<?php
+				if (zp_has_filter('admin_head', 'colorbox::css')) {
+					?>
+									$("a.colorbox").colorbox({
+										maxWidth: "98%",
+										maxHeight: "98%",
+										close: '<?php echo addslashes(gettext("close")); ?>'
+									});
 
-		<?php
-	}
-	?>
-					$('form.dirty-check').areYouSure({
-						'message': '<?php echo addslashes(gettext('You have unsaved changes!')); ?>',
-						'addRemoveFieldsMarksDirty':false
-					});
+					<?php
+				}
+				?>
+				$('form.dirty-check').dirtyForms({ 
+					message: '<?php echo addslashes(gettext('You have unsaved changes!')); ?>' 
+				});
 				});
 				$(function() {
 					$(".tooltip ").tooltip({
