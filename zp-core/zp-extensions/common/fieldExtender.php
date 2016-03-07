@@ -114,9 +114,14 @@ class fieldExtender {
 			}
 			setOption(get_class($this) . '_addedFields', serialize($current));
 		} else {
+			foreach (getDBTables() as $table) {
+				$tablecols = db_list_fields($table);
+				foreach ($tablecols as $key => $datum) {
+					$database[$table][$datum['Field']] = $datum;
+				}
+			}
 			purgeOption(get_class($this) . '_addedFields');
 		}
-		$set_fields = array_flip(explode(',', getOption('search_fields')));
 		foreach ($database as $table => $fields) { //drop fields no longer defined
 			foreach ($fields as $field => $orphaned) {
 				if ($orphaned['Comment'] == "optional_$me") {

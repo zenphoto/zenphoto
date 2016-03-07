@@ -8,30 +8,8 @@
  * @Copyright 2016 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
  *
  */
-
-$database_name = db_name();
-$prefix = trim(prefix(), '`');
-$resource = db_show('tables');
-if ($resource) {
-	$result = array();
-	while ($row = db_fetch_assoc($resource)) {
-		$result[] = $row;
-	}
-	db_free_result($resource);
-} else {
-	$result = false;
-}
-$tables = array();
-if (is_array($result)) {
-	foreach ($result as $row) {
-		$tables[] = array_shift($row);
-	}
-}
 $database = $orphans = array();
-$i = 0;
-foreach ($tables as $table) {
-	$table = substr($table, strlen($prefix));
-
+foreach (getDBTables() as $table) {
 	$tablecols = db_list_fields($table);
 	foreach ($tablecols as $key => $datum) {
 		//remove don't care fields
