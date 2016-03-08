@@ -78,135 +78,138 @@ echo "\n</head>";
 		printTabs();
 		?>
 		<div id="content">
-			<?php
-			if ($default) {
-				$logfiletext = str_replace('_', ' ', $default);
-				$logfiletext = strtoupper(substr($logfiletext, 0, 1)) . substr($logfiletext, 1);
-				$logfile = SERVERPATH . "/" . DATA_FOLDER . '/' . $default . '.log';
-				if (file_exists($logfile) && filesize($logfile) > 0) {
-					$logtext = explode("\n", file_get_contents($logfile));
-				} else {
-					$logtext = array();
-				}
-				?>
-				<h1><?php echo gettext("View logs:"); ?></h1>
+			<h1><?php echo gettext("View logs:"); ?></h1>
 
+			<div id="container">
 				<?php
-				$subtab = printSubtabs();
-				setOption('logviewed_' . $subtab, time());
-				?>
-
-				<!-- A log -->
-				<div id="theme-editor" class="tabbox">
-					<?php zp_apply_filter('admin_note', 'logs', $subtab); ?>
-					<?php
-					if (isset($result)) {
-						?>
-						<div class="<?php echo $class; ?> fade-message">
-							<h2><?php echo $result; ?></h2>
-						</div>
-						<?php
+				zp_apply_filter('admin_note', 'logs', $default);
+				if ($default) {
+					$logfiletext = str_replace('_', ' ', $default);
+					$logfiletext = strtoupper(substr($logfiletext, 0, 1)) . substr($logfiletext, 1);
+					$logfile = SERVERPATH . "/" . DATA_FOLDER . '/' . $default . '.log';
+					if (file_exists($logfile) && filesize($logfile) > 0) {
+						$logtext = explode("\n", file_get_contents($logfile));
+					} else {
+						$logtext = array();
 					}
 					?>
-					<form method="post" action="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-logs.php'; ?>?action=change_size&amp;page=logs&amp;tab=<?php echo html_encode($subtab) . '&amp;filename=' . html_encode($subtab); ?>" >
-						<span class="button buttons">
-							<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-logs.php?action=delete_log&amp;page=logs&amp;tab=' . html_encode($subtab) . '&amp;filename=' . html_encode($subtab); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete_log'); ?>">
-								<img src="images/edit-delete.png" /><?php echo gettext('Delete'); ?></a>
-						</span>
+
+					<?php
+					$subtab = printSubtabs();
+					setOption('logviewed_' . $subtab, time());
+					?>
+
+					<!-- A log -->
+					<div id="theme-editor" class="tabbox">
 						<?php
-						if (!empty($logtext)) {
+						if (isset($result)) {
 							?>
-							<span class="button buttons">
-								<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-logs.php?action=clear_log&amp;page=logs&amp;tab=' . html_encode($subtab) . '&amp;filename=' . html_encode($subtab); ?>&amp;XSRFToken=<?php echo getXSRFToken('clear_log'); ?>">
-									<img src="images/refresh.png" /><?php echo gettext('Reset'); ?></a>
-							</span>
-							<span class="button buttons">
-								<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-logs.php?action=download_log&amp;page=logs&amp;tab=' . html_encode($subtab) . '&amp;filename=' . html_encode($subtab); ?>&amp;XSRFToken=<?php echo getXSRFToken('download_log'); ?>">
-									<img src="images/arrow_down.png" /><?php echo gettext('Download'); ?></a>
-							</span>
+							<div class="<?php echo $class; ?> fade-message">
+								<h2><?php echo $result; ?></h2>
+							</div>
 							<?php
 						}
 						?>
-					</form>
-					<br class="clearall" />
-					<br />
-					<blockquote class="logtext">
-						<?php
-						if (!empty($logtext)) {
-							$header = array_shift($logtext);
-							$fields = explode("\t", $header);
-							if (count($fields) > 1) { // there is a header row, display in a table
+						<form method="post" action="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-logs.php'; ?>?action=change_size&amp;page=logs&amp;tab=<?php echo html_encode($subtab) . '&amp;filename=' . html_encode($subtab); ?>" >
+							<span class="button buttons">
+								<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-logs.php?action=delete_log&amp;page=logs&amp;tab=' . html_encode($subtab) . '&amp;filename=' . html_encode($subtab); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete_log'); ?>">
+									<img src="images/edit-delete.png" /><?php echo gettext('Delete'); ?></a>
+							</span>
+							<?php
+							if (!empty($logtext)) {
 								?>
-								<table id="log_table">
-									<?php
-									if (!empty($header)) {
-										?>
-										<tr>
-											<?php
-											foreach ($fields as $field) {
-												?>
-												<th>
-													<span class="nowrap"><?php echo $field; ?></span>
-												</th>
-												<?php
-											}
-											?>
-										</tr>
-										<?php
-									}
-									foreach ($logtext as $line) {
-										?>
-										<tr>
-											<?php
-											$fields = explode("\t", trim($line));
-											foreach ($fields as $key => $field) {
-												?>
-												<td>
-													<?php
-													if ($field) {
-														?>
-														<span class="nowrap"><?php echo html_encode($field); ?></span>
-														<?php
-													}
-													?>
-												</td>
-												<?php
-											}
-											?>
-										</tr>
-										<?php
-									}
-									?>
-								</table>
+								<span class="button buttons">
+									<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-logs.php?action=clear_log&amp;page=logs&amp;tab=' . html_encode($subtab) . '&amp;filename=' . html_encode($subtab); ?>&amp;XSRFToken=<?php echo getXSRFToken('clear_log'); ?>">
+										<img src="images/refresh.png" /><?php echo gettext('Reset'); ?></a>
+								</span>
+								<span class="button buttons">
+									<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-logs.php?action=download_log&amp;page=logs&amp;tab=' . html_encode($subtab) . '&amp;filename=' . html_encode($subtab); ?>&amp;XSRFToken=<?php echo getXSRFToken('download_log'); ?>">
+										<img src="images/arrow_down.png" /><?php echo gettext('Download'); ?></a>
+								</span>
 								<?php
-							} else {
-								array_unshift($logtext, $header);
-								foreach ($logtext as $line) {
-									if ($line) {
-										$line = str_replace("\t", '  ', $line);
-										?>
-										<p>
-											<span class="nowrap">
-												<?php
-												echo str_replace(' ', '&nbsp;', html_encode($line));
-												?>
-											</span>
-										</p>
+							}
+							?>
+						</form>
+						<br class="clearall" />
+						<br />
+						<blockquote class="logtext">
+							<?php
+							if (!empty($logtext)) {
+								$header = array_shift($logtext);
+								$fields = explode("\t", $header);
+								if (count($fields) > 1) { // there is a header row, display in a table
+									?>
+									<table id="log_table">
 										<?php
+										if (!empty($header)) {
+											?>
+											<tr>
+												<?php
+												foreach ($fields as $field) {
+													?>
+													<th>
+														<span class="nowrap"><?php echo $field; ?></span>
+													</th>
+													<?php
+												}
+												?>
+											</tr>
+											<?php
+										}
+										foreach ($logtext as $line) {
+											?>
+											<tr>
+												<?php
+												$fields = explode("\t", trim($line));
+												foreach ($fields as $key => $field) {
+													?>
+													<td>
+														<?php
+														if ($field) {
+															?>
+															<span class="nowrap"><?php echo html_encode($field); ?></span>
+															<?php
+														}
+														?>
+													</td>
+													<?php
+												}
+												?>
+											</tr>
+											<?php
+										}
+										?>
+									</table>
+									<?php
+								} else {
+									array_unshift($logtext, $header);
+									foreach ($logtext as $line) {
+										if ($line) {
+											$line = str_replace("\t", '  ', $line);
+											?>
+											<p>
+												<span class="nowrap">
+													<?php
+													echo str_replace(' ', '&nbsp;', html_encode($line));
+													?>
+												</span>
+											</p>
+											<?php
+										}
 									}
 								}
 							}
-						}
-						?>
-					</blockquote>
-				</div>
-				<?php
-			} else {
+							?>
+						</blockquote>
+					</div>
+					<?php
+				} else {
+					?>
+					<h2><?php echo gettext("There are no logs to view."); ?></h2>
+					<?php
+				}
 				?>
-				<h2><?php echo gettext("There are no logs to view."); ?></h2>
-				<?php
-			}
-			?>
+			</div>
 		</div>
 	</div>
 	<?php printAdminFooter(); ?>

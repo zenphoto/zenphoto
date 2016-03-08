@@ -16,7 +16,7 @@ if (isset($_POST['delete_cookie'])) {
 	foreach ($_POST['delete_cookie']as $cookie => $v) {
 		zp_clearCookie(postIndexDecode($cookie));
 	}
-	header('location: ?page=debug&tab=cookie');
+	header('location: ?page=develpment&tab=cookie');
 	exitZP();
 }
 
@@ -32,6 +32,7 @@ echo "\n</head>";
 	<div id="main">
 		<?php printTabs(); ?>
 		<div id="content">
+			<?php zp_apply_filter('admin_note', 'development', ''); ?>
 			<div id="container">
 				<?php
 				$subtab = printSubtabs();
@@ -192,7 +193,7 @@ echo "\n</head>";
 						?>
 						<div class="tabbox">
 							<h1><?php echo gettext('Site browser cookies found.'); ?></h1>
-							<form name="cookie_form" class="dirtychyeck" method="post" action="?page=debug&amp;tab=cookie">
+							<form name="cookie_form" class="dirtychyeck" method="post" action="?page=develpment&amp;tab=cookie">
 								<table class="compact">
 									<?php
 									foreach ($_COOKIE as $cookie => $cookiev) {

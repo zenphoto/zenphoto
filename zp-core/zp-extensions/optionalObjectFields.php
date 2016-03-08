@@ -358,6 +358,10 @@ class optionalObjectFields extends fieldExtender {
 
 }
 
+function optionalObjectFields_disabled() {
+	requestSetup('optionalObjectFields');
+}
+
 if (OFFSET_PATH == 2) { // setup call: add the fields into the database
 	new optionalObjectFields;
 } else {
