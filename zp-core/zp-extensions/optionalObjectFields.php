@@ -358,8 +358,9 @@ class optionalObjectFields extends fieldExtender {
 
 }
 
-function optionalObjectFields_disabled() {
-	requestSetup('optionalObjectFields');
+function optionalObjectFields_enable($enabled) {
+	if (!$enabled)
+		requestSetup('optionalObjectFields');
 }
 
 if (OFFSET_PATH == 2) { // setup call: add the fields into the database

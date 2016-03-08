@@ -89,16 +89,22 @@ if (isset($_GET['pluginsEnable'])) {
 					if ($option_interface && is_string($option_interface)) {
 						$if = new $option_interface; //	prime the default options
 					}
+					if (function_exists($f = str_replace('-', ' _ ', $extension . '_enable'))) {
+						$f(true);
+					}
 				}
 				setOption($opt, $plugin_is_filter);
 			} else {
-				if (function_exists($f = str_replace('-', ' _ ', $extension . '_disabled'))) {
-					$f();
+				if (getOption($opt)) {
+					require_once($paths[$extension]);
+					if (function_exists($f = str_replace('-', ' _ ', $extension . '_enable'))) {
+						$f(false);
+					}
 				}
 				setOption($opt, 0);
 			}
 		}
 	}
 }
-header('Location :  ' . FULLWEBPATH . '/    ' . ZENFOLDER . ' / admin.php?report = ' . $report);
+header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?report=' . $report);
 ?>

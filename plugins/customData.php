@@ -184,3 +184,7 @@ class customData {
 	}
 
 }
+
+function customData_enable($enabled) {
+	requestSetup('customData');
+}

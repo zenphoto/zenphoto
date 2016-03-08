@@ -505,8 +505,9 @@ class pseudoPlayer {
 
 }
 
-function class_video_disabled() {
-	requestSetup('Video Metadata');
+function class_video_enable($enabled) {
+	if (!$enabled)
+		requestSetup('Video Metadata');
 }
 
 $_zp_multimedia_extension = new pseudoPlayer();

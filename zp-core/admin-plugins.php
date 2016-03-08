@@ -50,13 +50,19 @@ if (isset($_GET['action'])) {
 						if ($option_interface && is_string($option_interface)) {
 							$if = new $option_interface; //	prime the default options
 						}
+						if (function_exists($f = str_replace('-', '_', $extension . '_enable'))) {
+							$f(false);
+						}
 					}
 					setOption($opt, $value);
 				} else {
-					if (function_exists($f = str_replace('-', '_', $extension . '_disabled'))) {
-						$f();
+					if (getOption($opt)) {
+						require_once(getPlugin($extension . '.php'));
+						if (function_exists($f = str_replace('-', '_', $extension . '_enable'))) {
+							$f(true);
+						}
+						setOption($opt, 0);
 					}
-					setOption($opt, 0);
 				}
 			}
 			$notify = '&saved';
