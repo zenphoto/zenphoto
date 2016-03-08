@@ -32,7 +32,6 @@ echo "\n</head>";
 	<div id="main">
 		<?php printTabs(); ?>
 		<div id="content">
-			<?php zp_apply_filter('admin_note', 'development', ''); ?>
 			<div id="container">
 				<?php
 				$subtab = printSubtabs();
@@ -40,7 +39,10 @@ echo "\n</head>";
 					case 'phpinfo':
 						?>
 						<div class="tabbox">
-							<h1><?php echo gettext('Your PHP configuration information.'); ?></h1>
+							<?php
+							zp_apply_filter('admin_note', 'development', '');
+							echo gettext('Your PHP configuration information.');
+							?>
 							<br />
 							<br />
 							<?php phpinfo(); ?>
@@ -50,8 +52,8 @@ echo "\n</head>";
 					case'session':
 						?>
 						<div class="tabbox">
-							<h1><?php echo gettext('_SESSION array'); ?></h1>
-							<?php
+							<?php zp_apply_filter('admin_note', 'development', ''); ?>
+							echo gettext('_SESSION array');
 							$session = preg_replace('/^Array\n/', '<pre>', print_r($_SESSION, true)) . '</pre>';
 							echo $session;
 							?>
@@ -65,7 +67,10 @@ echo "\n</head>";
 							$accept = array_shift($accept);
 							?>
 							<div class="tabbox">
-								<strong><?php echo ('Http Accept Languages:'); ?></strong>
+								<?php
+								zp_apply_filter('admin_note', 'development', '');
+								echo ('Http Accept Languages:');
+								?>
 								<br />
 								<table>
 									<tr>
@@ -102,8 +107,9 @@ echo "\n</head>";
 					case 'locale':
 						?>
 						<div class="tabbox">
-							<strong><?php echo gettext('Supported locales:'); ?></strong>
 							<?php
+							zp_apply_filter('admin_note', 'development', '');
+							echo gettext('Supported locales:');
 							if (strtoupper(substr(PHP_OS, 0, 3)) == 'WIN') {
 								// source of the list:
 								// http://msdn.microsoft.com/en-us/library/39cwe7zf(v=vs.90).aspx
@@ -192,7 +198,10 @@ echo "\n</head>";
 					case 'cookie':
 						?>
 						<div class="tabbox">
-							<h1><?php echo gettext('Site browser cookies found.'); ?></h1>
+							<?php
+							zp_apply_filter('admin_note', 'development', '');
+							echo gettext('Site browser cookies found.');
+							?>
 							<form name="cookie_form" class="dirtychyeck" method="post" action="?page=develpment&amp;tab=cookie">
 								<table class="compact">
 									<?php

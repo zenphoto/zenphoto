@@ -42,12 +42,6 @@ $menuset = checkChosenMenuset();
 		printTabs();
 		?>
 		<div id="content">
-			<?php
-			zp_apply_filter('admin_note', 'menu', 'edit');
-			foreach ($reports as $report) {
-				echo $report;
-			}
-			?>
 			<script type="text/javascript">
 				// <!-- <![CDATA[
 				function handleSelectorChange(type) {
@@ -213,6 +207,10 @@ if (is_array($result)) {
 				?>
 			</h1>
 			<?php
+			zp_apply_filter('admin_note', 'menu', 'edit');
+			foreach ($reports as $report) {
+				echo $report;
+			}
 			if (isset($_GET['save']) && !isset($_GET['add'])) {
 				?>
 				<div class="messagebox fade-message">
@@ -273,10 +271,10 @@ if (is_array($result)) {
 				}
 				?>
 				<form class="dirtylistening" onReset="setClean('add');" autocomplete="off"  method="post" id="add" name="add" action="menu_tab_edit.php?save<?php
-							echo $add;
-							if ($menuset)
-								echo '&amp;menuset=' . $menuset;
-							?>" style="display: none">
+				echo $add;
+				if ($menuset)
+					echo '&amp;menuset=' . $menuset;
+				?>" style="display: none">
 							<?php XSRFToken('update_menu'); ?>
 					<input type="hidden" name="update" id="update" value="<?php echo html_encode($action); ?>" />
 					<input type="hidden" name="id" id="id" value="<?php echo $id; ?>" />

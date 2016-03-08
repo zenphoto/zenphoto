@@ -21,12 +21,12 @@ echo "\n</head>";
 	<div id="main">
 		<?php printTabs(); ?>
 		<div id="content">
-			<?php zp_apply_filter('admin_note', 'development', ''); ?>
 			<div id="container">
 				<?php printSubtabs(); ?>
 				<div class="tabbox">
-					<h1><?php echo gettext('Deprecated Functions'); ?></h1>
 					<?php
+					zp_apply_filter('admin_note', 'development', '');
+					echo gettext('Deprecated Functions');
 					$list = array();
 					$deprecated = new deprecated_functions();
 					$listed = $deprecated->listed_functions;

@@ -20,11 +20,13 @@ echo "\n</head>";
 	<div id="main">
 		<?php printTabs(); ?>
 		<div id="content">
-			<?php zp_apply_filter('admin_note', 'development', ''); ?>
 			<div id="container">
 				<?php printSubtabs(); ?>
 				<div class="tabbox">
-					<h1><?php echo gettext('Rewrite Rules'); ?></h1>
+					<?php
+					zp_apply_filter('admin_note', 'development', '');
+					echo gettext('Rewrite Rules');
+					?>
 					<dl class="code">
 						<?php
 						$c = 0;
