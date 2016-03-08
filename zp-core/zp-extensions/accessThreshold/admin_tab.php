@@ -29,13 +29,13 @@ echo "\n</head>";
 	<div id="main">
 		<?php printTabs(); ?>
 		<div id="content">
-			<?php zp_apply_filter('admin_note', 'database', ''); ?>
 			<div id="container">
 				<?php
 				$subtab = printSubtabs();
 				?>
 				<div class="tabbox">
 					<?php
+					zp_apply_filter('admin_note', 'database', '');
 					$ct = 0;
 					foreach ($recentIP as $entity => $data) {
 						if ($data['counter'] < $noise)
