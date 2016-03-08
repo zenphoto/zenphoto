@@ -31,7 +31,6 @@ if (isset($_GET['action'])) {
 	$report = array();
 	$selected = sanitize_numeric($_POST['target']);
 }
-
 $zenphoto_tabs['overview']['subtabs'] = array(gettext('Deprecated') => '');
 printAdminHeader('overview', 'deprecated');
 ?>
@@ -46,6 +45,7 @@ echo '</head>' . "\n";
 			<?php printSubtabs(); ?>
 			<div id="tab_deprecated" class="tabbox">
 				<h1><?php echo gettext("Locate calls on deprecated functions."); ?></h1>
+				<?php zp_apply_filter('admin_note', 'development', ''); ?>
 				<form action="?action=search" method="post">
 					<?php XSRFToken('deprecated'); ?>
 					<select name="target">
@@ -88,15 +88,55 @@ echo '</head>' . "\n";
 								listUses(getPHPFiles($path, $zplist), $path, $pattern);
 								break;
 							case '2':
+								$zplist = array();
+								$paths = getPluginFiles('*.php');
+								foreach ($paths as $plugin => $path) {
+									if (strpos($path, USER_PLUGIN_FOLDER) !== false) {
+										$p = file_get_contents($path);
+										$i = strpos($p, '* @category');
+										if (($key = $i) !== false) {
+											$key = strtolower(trim(substr($p, $i + 11, strpos($p, "\n", $i) - $i - 11)));
+											if ($key == 'package') {
+												$zplist[] = stripSuffix(str_replace(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/', '', $path));
+											}
+										}
+									}
+								}
 								$path = SERVERPATH . '/' . USER_PLUGIN_FOLDER;
-								listUses(getPHPFiles($path, array()), $path, $pattern);
+								listUses(getPHPFiles($path, $zplist), $path, $pattern);
 								break;
 							case '3':
+								$paths = getPluginFiles('*.php');
+								foreach ($paths as $plugin => $path) {
+									if (strpos($path, USER_PLUGIN_FOLDER) == false) {
+										unset($paths[$plugin]);
+									} else {
+										$p = file_get_contents($path);
+										$i = strpos($p, '* @category');
+										if (($key = $i) !== false) {
+											$key = strtolower(trim(substr($p, $i + 11, strpos($p, "\n", $i) - $i - 11)));
+											if ($key == 'package') {
+												unset($paths[$plugin]);
+											}
+										}
+									}
+								}
+								$userfiles = array();
+								foreach ($paths as $path) {
+									$userfiles[] = stripSuffix(basename($path));
+								}
+
 								$path = SERVERPATH . '/' . ZENFOLDER;
+								echo "<em>" . ZENFOLDER . "</em><br />\n";
 								listUses(getPHPFiles($path, array()), $path, $pattern);
+								$path = SERVERPATH . '/' . USER_PLUGIN_FOLDER;
+								echo "<em>" . USER_PLUGIN_FOLDER . "</em><br />\n";
+								listUses(getPHPFiles($path, $userfiles), $path, $pattern);
+								echo "<em>" . THEMEFOLDER . "</em><br /><br />\n";
 								foreach ($zplist as $theme) {
 									$path = SERVERPATH . '/' . THEMEFOLDER . '/' . $theme;
-									$output || listUses(getPHPFiles($path, array()), SERVERPATH, $pattern);
+									echo "<em>" . $theme . "</em><br />\n";
+									listUses(getPHPFiles($path, array()), $path, $pattern);
 								}
 								break;
 							case 4:
