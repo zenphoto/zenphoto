@@ -118,6 +118,10 @@ class userAddressFields extends fieldExtender {
 
 }
 
+function userAddressFields_disabled() {
+	requestSetup('userAddressFields');
+}
+
 if (OFFSET_PATH == 2) { // setup call: add the fields into the database
 	new userAddressFields;
 } else {

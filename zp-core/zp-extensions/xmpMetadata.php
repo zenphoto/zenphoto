@@ -1166,4 +1166,8 @@ class xmpMetadata {
 
 }
 
+function xmpMetadata_disabled() {
+	requestSetup('XMP Metadata');
+}
+
 ?>

@@ -53,6 +53,9 @@ if (isset($_GET['action'])) {
 					}
 					setOption($opt, $value);
 				} else {
+					if (function_exists($f = str_replace('-', '_', $extension . '_disabled'))) {
+						$f();
+					}
 					setOption($opt, 0);
 				}
 			}
