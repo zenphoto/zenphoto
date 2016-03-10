@@ -129,6 +129,7 @@ printAdminHeader('tags');
 
 
 			echo "<h1>" . gettext("Tag Management") . "</h1>";
+			zp_apply_filter('admin_note', 'tags', '');
 			?>
 			<?php echo gettext('Order by'); ?>
 

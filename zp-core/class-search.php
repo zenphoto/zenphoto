@@ -991,7 +991,7 @@ class SearchEngine {
 				$sql .= ",`desc`,`folder` ";
 				break;
 			default:
-				$sql .= ",`desc`,`albumid`,`filename`,`location`,`city`,`state`,`country` ";
+				$sql .= ",`desc`,`albumid`,`filename` ";
 				break;
 		}
 		$sql .= "FROM " . prefix($tbl) . " WHERE ";

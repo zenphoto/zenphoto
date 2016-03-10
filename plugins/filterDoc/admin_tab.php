@@ -7,6 +7,8 @@
  */
 define('OFFSET_PATH', 3);
 require_once(dirname(dirname(dirname($_SERVER['SCRIPT_FILENAME']))) . "/zp-core/admin-globals.php");
+admin_securityChecks(DEBUG_RIGHTS, $return = currentRelativeURL());
+
 printAdminHeader('development', gettext('rewriteTokens'));
 ?>
 </head>
@@ -18,6 +20,7 @@ printAdminHeader('development', gettext('rewriteTokens'));
 		<div id="main">
 			<?php printTabs(); ?>
 		<div id="content">
+			<?php zp_apply_filter('admin_note', 'development', ''); ?>
 			<div id="container">
 				<?php printSubtabs(); ?>
 				<div class="tabbox">

@@ -1166,4 +1166,9 @@ class xmpMetadata {
 
 }
 
+function xmpMetadata_enable($enabled) {
+	if (!$enabled)
+		requestSetup('XMP Metadata');
+}
+
 ?>

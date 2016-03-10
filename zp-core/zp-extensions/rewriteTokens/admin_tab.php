@@ -24,7 +24,10 @@ $_definitions = array();
 			<div id="container">
 				<?php printSubtabs(); ?>
 				<div class="tabbox">
-					<h1><?php echo gettext('Rewrite Tokens'); ?></h1>
+					<?php
+					zp_apply_filter('admin_note', 'development', '');
+					echo gettext('Rewrite Tokens');
+					?>
 					<dl class="code">
 						<?php
 						foreach ($_zp_conf_vars['special_pages'] as $page => $element) {

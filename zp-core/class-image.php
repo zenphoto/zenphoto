@@ -540,7 +540,6 @@ class Image extends MediaObject {
 			$import = array(
 							'location'	 => 'IPTCSubLocation',
 							'city'			 => 'IPTCCity',
-							'city'			 => 'IPTCCity',
 							'state'			 => 'IPTCState',
 							'country'		 => 'IPTCLocationName',
 							'copyright'	 => 'IPTCCopyright'

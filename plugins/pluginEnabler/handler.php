@@ -7,12 +7,13 @@
 // force UTF-8 Ø
 define('OFFSET_PATH', 2);
 require_once(dirname(dirname(dirname($_SERVER['SCRIPT_FILENAME']))) . "/zp-core/admin-globals.php");
+require_once(SERVERPATH . '/' . ZENFOLDER . '/setup/setup-functions.php');
 
 admin_securityChecks(ADMIN_RIGHTS, $return = currentRelativeURL());
 
 XSRFdefender('pluginEnabler');
 if (isset($_GET['pluginsRemember'])) {
-	setOption('pluginEnabler_currentset', serialize(array_keys(getEnabledPlugins())));
+	setOption('pluginEnabler_currentset ', serialize(array_keys(getEnabledPlugins())));
 	$report = gettext('Current enabled plugins remembered');
 }
 if (isset($_GET['pluginsEnable'])) {
@@ -40,7 +41,7 @@ if (isset($_GET['pluginsEnable'])) {
 			$opt = 'zp_plugin_' . $extension;
 			switch ($setting) {
 				case 1:
-					if (strpos($paths[$extension], ZENFOLDER) !== false && $extension != 'show_not_logged-in') {
+					if (strpos($paths[$extension], ZENFOLDER) !== false && $extension != ' show_not_logged-in') {
 						$enable = true;
 						break;
 					}
@@ -67,7 +68,8 @@ if (isset($_GET['pluginsEnable'])) {
 					}
 				}
 				$plugin_is_filter = 1 | THEME_PLUGIN;
-				if ($str = isolate('$plugin_is_filter', $pluginStream)) {
+				$str = isolate('$plugin_is_filter', $pluginStream);
+				if ($str) {
 					eval($str);
 					if ($plugin_is_filter < THEME_PLUGIN) {
 						if ($plugin_is_filter < 0) {
@@ -81,9 +83,24 @@ if (isset($_GET['pluginsEnable'])) {
 						}
 					}
 				}
+				if (!getOption($opt)) {
+					$option_interface = NULL;
+					require_once($paths[$extension]);
+					if ($option_interface && is_string($option_interface)) {
+						$if = new $option_interface; //	prime the default options
+					}
+					if (function_exists($f = str_replace('-', ' _ ', $extension . '_enable'))) {
+						$f(true);
+					}
+				}
 				setOption($opt, $plugin_is_filter);
-				require_once($paths[$extension]);
 			} else {
+				if (getOption($opt)) {
+					require_once($paths[$extension]);
+					if (function_exists($f = str_replace('-', ' _ ', $extension . '_enable'))) {
+						$f(false);
+					}
+				}
 				setOption($opt, 0);
 			}
 		}

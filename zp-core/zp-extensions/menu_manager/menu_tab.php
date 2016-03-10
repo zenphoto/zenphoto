@@ -93,8 +93,6 @@ printSortableHead();
 		?>
 		<div id="content">
 			<?php
-			zp_apply_filter('admin_note', 'menu', '');
-
 			$count = db_count('menu', NULL, 'DISTINCT `menuset`');
 			?>
 			<script type="text/javascript">
@@ -135,7 +133,9 @@ printSortableHead();
 				printf(gettext(" (Menu: %s)"), html_encode($menuset));
 				echo "</small>";
 				?></h1>
-
+			<?php
+			zp_apply_filter('admin_note', 'menu', '');
+			?>
 			<form class="dirtylistening" onReset="setClean('update_form');" id="update_form" action="menu_tab.php?menuset=<?php echo $menuset; ?>" method="post" name="update" onsubmit="return confirmAction();" autocomplete="off">
 				<?php XSRFToken('update_menu'); ?>
 				<p>

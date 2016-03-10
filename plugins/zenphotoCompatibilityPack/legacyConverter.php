@@ -96,6 +96,8 @@ printLogoAndLinks();
 echo "\n" . '<div id="main">';
 printTabs();
 echo "\n" . '<div id="content">';
+zp_apply_filter('admin_note', 'development', '');
+echo "\n" . '<div id="container">';
 printSubtabs();
 ?>
 <div class="tabbox">
@@ -188,6 +190,7 @@ printSubtabs();
 </div>
 <?php
 echo "\n" . '</div>'; //content
+echo "\n" . '</div>'; //container
 echo "\n" . '</div>'; //main
 
 printAdminFooter();

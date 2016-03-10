@@ -62,18 +62,18 @@ class fieldExtender {
 	 */
 	function constructor($me, $newfields) {
 		$database = array();
+		foreach (getDBTables() as $table) {
+			$tablecols = db_list_fields($table);
+			foreach ($tablecols as $key => $datum) {
+				$database[$table][$datum['Field']] = $datum;
+			}
+		}
 
 		$current = $fields = array();
 		if (extensionEnabled($me)) { //need to update the database tables.
 			foreach ($newfields as $newfield) {
 				$table = $newfield['table'];
 				$name = $newfield['name'];
-				if (!array_key_exists($table, $database)) {
-					$tablecols = db_list_fields($table);
-					foreach ($tablecols as $key => $datum) {
-						$database[$table][$datum['Field']] = $datum;
-					}
-				}
 				if (!is_null($newfield['type'])) {
 					switch (strtolower($newfield['type'])) {
 						default:
@@ -116,7 +116,6 @@ class fieldExtender {
 		} else {
 			purgeOption(get_class($this) . '_addedFields');
 		}
-		$set_fields = array_flip(explode(',', getOption('search_fields')));
 		foreach ($database as $table => $fields) { //drop fields no longer defined
 			foreach ($fields as $field => $orphaned) {
 				if ($orphaned['Comment'] == "optional_$me") {

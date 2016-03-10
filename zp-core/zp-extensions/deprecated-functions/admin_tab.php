@@ -7,7 +7,10 @@
  */
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions.php');
-printAdminHeader('development', gettext('deprecated'));
+
+admin_securityChecks(DEBUG_RIGHTS, $return = currentRelativeURL());
+$subtab = getSubtabs();
+printAdminHeader('development', $subtab);
 
 echo "\n</head>";
 ?>
@@ -21,8 +24,9 @@ echo "\n</head>";
 			<div id="container">
 				<?php printSubtabs(); ?>
 				<div class="tabbox">
-					<h1><?php echo gettext('Deprecated Functions'); ?></h1>
 					<?php
+					zp_apply_filter('admin_note', 'development', '');
+					echo gettext('Deprecated Functions');
 					$list = array();
 					$deprecated = new deprecated_functions();
 					$listed = $deprecated->listed_functions;

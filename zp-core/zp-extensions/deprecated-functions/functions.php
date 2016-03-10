@@ -1,13 +1,12 @@
 <?php
 
-function getPHPFiles($folder, $exclude) {
-	global $files;
+function getPHPFiles($folder, $exclude, &$files = array()) {
 	$dir = opendir($folder);
 	while (($file = readdir($dir)) !== false) {
 		$file = str_replace('\\', '/', $file);
-		if ($file != '.' && $file != '..') {
+		if (strpos($file, '.') !== 0) {
 			if (is_dir($folder . '/' . $file) && !in_array($file, $exclude)) {
-				getPHPFiles($folder . '/' . $file, $exclude);
+				getPHPFiles($folder . '/' . $file, $exclude, $files);
 			} else {
 				if (getSuffix($file) == 'php') {
 					$entry = $folder . '/' . $file;
@@ -20,10 +19,10 @@ function getPHPFiles($folder, $exclude) {
 	return $files;
 }
 
-function formatList($title, $subject, $pattern) {
+function formatList($title, $subject, $pattern, $started) {
 	global $deprecated;
+	$emitted = false;
 	preg_match_all($pattern, $subject, $matches);
-	$started = false;
 	if ($matches && !empty($matches[0])) {
 		foreach (array_unique($matches[2]) as $key => $match) {
 			$details = $deprecated->unique_functions[strtolower($match)];
@@ -60,15 +59,16 @@ function formatList($title, $subject, $pattern) {
 			}
 			if (!$started) {
 				$started = true;
+				echo "<ul>\n";
 				echo '<li class="warningbox nobullet"> ' . $title;
-				echo '<ul>';
+				echo "\n<ul>\n";
 			}
-			echo '<li>' . $match . $class . '</li>';
+			echo '<li>' . $match . $class . "</li>\n";
+			$emitted = true;
 		}
 	}
-	if ($started)
-		echo '</ul></li>';
-
+	if ($started && $emitted)
+		echo "</ul>\n</li>\n";
 	return $started;
 }
 
@@ -79,29 +79,36 @@ function listUses($files, $base, $pattern) {
 		if (basename($file) != 'deprecated-functions.php') {
 			@set_time_limit(120);
 			$subject = file_get_contents($file);
-			$location = str_replace($base . '/', '', dirname($file));
+			$location = ltrim(str_replace($base, '', dirname($file)), '/');
 			$folders = explode('/', $location);
 			if ($folders[0] != $oldLocation) {
 				$oldLocation = $folders[0];
-				echo '<br /><strong>' . $location . '</strong>';
-			}
-			if ($open) {
-				echo '</ul>';
+				if ($location) {
+					if ($open) {
+						echo "</ul>\n";
+						$open = false;
+					} else {
+						echo '<br />';
+					}
+					echo '<strong>' . $location . "</strong>\n";
+				}
 			}
 			$script_location = $base . '/' . $location . '/';
 			$script = str_replace($script_location, '', $file);
-			$open = $output = formatList($script, $subject, $pattern);
+			$open = formatList($script, $subject, $pattern, $open);
+			if ($open) {
+				$output = true;
+			}
 		}
 	}
 	if ($open) {
-		echo '</ul>';
+		echo "</ul>\n";
 	}
-	if ($output) {
+	if (!$output) {
 		?>
 		<p class="messagebox"><?php echo gettext('No calls on deprecated functions were found.'); ?></p>
 		<?php
 	}
-	return $output;
 }
 
 function listDBUses($pattern) {

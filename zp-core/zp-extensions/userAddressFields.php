@@ -24,26 +24,33 @@ class userAddressFields extends fieldExtender {
 
 	function __construct() {
 		global $_userAddressFields;
-		$firstTime = extensionEnabled('userAddressFields') && is_null(getOption('userAddressFields_addedFields'));
+		$firstTime = false;
+		$tablecols = db_list_fields('administrators');
+		foreach ($tablecols as $key => $datum) {
+			if ($datum['Field'] == 'custom_data') {
+				$firstTime = true;
+				enableExtension('userAddressFields', true);
+				break;
+			}
+		}
+
 		parent::constructor('userAddressFields', self::fields());
 		if ($firstTime) { //	migrate the custom data user data
 			$result = query('SELECT * FROM ' . prefix('administrators') . ' WHERE `valid`!=0');
 			if ($result) {
 				while ($row = db_fetch_assoc($result)) {
-					if (array_key_exists('custom_data', $row)) {
-						$custom = getSerializedArray($row['custom_data']);
-						if (!empty($custom)) {
-							$sql = 'UPDATE ' . prefix('administrators') . ' SET ';
-							foreach ($custom as $field => $val) {
-								$sql.= '`' . $field . '`=' . db_quote($val) . ',';
-							}
-							$sql .= '`custom_data`=NULL WHERE `id`=' . $row['id'];
-							query($sql);
+					$custom = getSerializedArray($row['custom_data']);
+					if (!empty($custom)) {
+						$sql = 'UPDATE ' . prefix('administrators') . ' SET ';
+						foreach ($custom as $field => $val) {
+							$sql.= '`' . $field . '`=' . db_quote($val) . ',';
 						}
+						setupQuery($sql);
 					}
 				}
 				db_free_result($result);
 			}
+			setupQuery('ALTER TABLE ' . prefix('administrators') . ' DROP `custom_data`');
 		}
 		$cloneid = bin2hex(FULLWEBPATH);
 		if (OFFSET_PATH == 2 && isset($_SESSION['admin'][$cloneid])) {
@@ -109,6 +116,11 @@ class userAddressFields extends fieldExtender {
 		parent::_setCustomData($obj, $values);
 	}
 
+}
+
+function userAddressFields_enable($enabled) {
+	if (!$enabled)
+		requestSetup('userAddressFields');
 }
 
 if (OFFSET_PATH == 2) { // setup call: add the fields into the database
