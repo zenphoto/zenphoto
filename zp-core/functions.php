@@ -1439,6 +1439,9 @@ function sortByKey($results, $sortkey, $order) {
  * @param bool $preserveKeys			if set false the array will be re-indexed
  * @param array $removeCriteria		Fields to be removed from the array
  * @return array									The sorted array
+ *
+ * Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+ * 
  */
 function sortMultiArray($data, $field, $desc = false, $nat = true, $case = false, $preserveKeys = true, $removeCriteria = array()) {
 	if (!is_array($field)) {
@@ -1489,113 +1492,6 @@ function sortMultiArray($data, $field, $desc = false, $nat = true, $case = false
 		}
 	}
 	return $data;
-}
-
-/**
- * multidimensional array column sort
- *
- * @param array $array The multidimensional array to be sorted
- * @param mixed $index Which key(s) should be sorted by
- * @param string $order true for descending sorts
- * @param bool $natsort If natural order should be used
- * @param bool $case_sensitive If the sort should be case sensitive
- * @return array
- *
- * @deprecated
- *
- * @author redoc (http://codingforums.com/showthread.php?t=71904)
- */
-function __sortMultiArray($array, $index, $descending = false, $natsort = true, $case_sensitive = true, $preservekeys = true, $remove_criteria = array()) {
-	if (is_array($array) && count($array) > 0) {
-		if (is_array($index)) {
-			$indicies = $index;
-		} else {
-			$indicies = array($index);
-		}
-
-		$_data = sortMultiArray($array, $index, $descending, $natsort, $case_sensitive, $preservekeys, $remove_criteria);
-
-		if ($descending) {
-			$pad = '~';
-		} else {
-			$pad = ' ';
-		}
-		$size = 0;
-		foreach ($indicies as $index) {
-			$prev = $size;
-			$size = 0;
-			$c = 0;
-			foreach ($array as $key => $row) {
-				$c++;
-				if (is_array($row)) {
-					if (array_key_exists($index, $row)) {
-						$word = get_language_string($row[$index]);
-						if (!$case_sensitive) {
-							$word = mb_strtolower($word);
-						}
-					} else {
-						$word = $c;
-					}
-					$size = max($size, strlen($word));
-					if (isset($temp[$key])) {
-						$temp[$key] = str_pad($temp[$key], $prev, $pad) . $word;
-					} else {
-						$temp[$key] = $word;
-					}
-					if (in_array($index, $remove_criteria)) {
-						unset($array[$key][$index]);
-					}
-				}
-			}
-		}
-
-		if ($descending) {
-			arsort($temp, SORT_LOCALE_STRING | SORT_NATURAL);
-		} else {
-			asort($temp, SORT_LOCALE_STRING | SORT_NATURAL);
-		}
-
-		foreach (array_keys($temp) as $key) {
-			if (!$preservekeys && is_numeric($key)) {
-				$sorted[] = $array[$key];
-			} else {
-				$sorted[$key] = $array[$key];
-			}
-		}
-
-		$s = $_s = array();
-
-		foreach ($_data as $k => $v) {
-			foreach ($indicies as $i) {
-				if (array_key_exists($i, $v))
-					$_s[$k][$i] = $v[$i];
-			}
-		}
-		foreach ($sorted as $k => $v) {
-			foreach ($indicies as $i) {
-				if (array_key_exists($i, $v))
-					$s[$k][$i] = $v[$i];
-			}
-		}
-		if ($_s != $s) {
-
-
-			var_dump($indicies, '$descending=' . $descending, '$natsort=' . $natsort, '$case_sensitive=' . $case_sensitive, '$preservekeys=' . $preservekeys, $remove_criteria);
-			foreach ($s as $k => $d) {
-				$_d = $_s[$k];
-				if ($d != $_d) {
-					echo $k;
-					var_dump($d);
-					var_dump($_d);
-				}
-			}
-
-			zp_error('sort does not match');
-		}
-
-		return $sorted;
-	}
-	return $array;
 }
 
 /**
