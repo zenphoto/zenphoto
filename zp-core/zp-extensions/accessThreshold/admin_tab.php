@@ -18,8 +18,8 @@ printAdminHeader('development', $subtab);
 
 $recentIP = getSerializedArray(@file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/recentIP'));
 unset($recentIP['config']);
-$recentIP = sortMultiArray($recentIP, 'counter', true);
-$noise = getOption('accessThreshold_NOISE');
+$recentIP = sortMultiArray($recentIP, array('counter'), true, true, false, true);
+$recentIP = array_slice($recentIP, 0, getOption('accessThreshold_LIMIT'));
 
 echo "\n</head>";
 ?>
@@ -38,8 +38,6 @@ echo "\n</head>";
 					zp_apply_filter('admin_note', 'database', '');
 					$ct = 0;
 					foreach ($recentIP as $entity => $data) {
-						if ($data['counter'] < $noise)
-							break;
 						echo '<span style="width:25%;float:left">';
 						echo '<span style="width:40%;float:left">' . $entity . '</span>';
 						echo '<span style="width:48%;float:left">' . date('Y-m-d H:i:s', $data['accessTime']) . '</span>';
@@ -52,6 +50,8 @@ echo "\n</head>";
 					}
 					if (empty($ct)) {
 						echo gettext("No entries excede the noise level");
+					} else {
+						echo '<br clear="both">';
 					}
 					?>
 				</div>

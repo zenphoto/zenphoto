@@ -317,7 +317,7 @@ if (!zp_loggedin()) {
 				}
 			}
 
-			$buttonlist = sortMultiArray($buttonlist, array('category', 'button_text'));
+			$buttonlist = sortMultiArray($buttonlist, array('category', 'button_text'), false, true, true);
 
 			if (zp_loggedin(OVERVIEW_RIGHTS)) {
 				?>
@@ -736,7 +736,7 @@ if (!zp_loggedin()) {
 									<?php printNewsStatistic(); ?>
 								</li>
 								<li>
-								<?php printCategoriesStatistic(); ?>
+									<?php printCategoriesStatistic(); ?>
 								</li>
 								<?php
 							}
@@ -755,7 +755,7 @@ if (!zp_loggedin()) {
 		} else {
 			?>
 			<div class="errorbox">
-			<?php echo gettext('Your user rights do not allow access to administrative functions.'); ?>
+				<?php echo gettext('Your user rights do not allow access to administrative functions.'); ?>
 			</div>
 			<?php
 		}

@@ -702,8 +702,7 @@ function getParentMenuItems($menuset = 'default') {
 				}
 			}
 			if (!empty($parents)) {
-				sortMultiArray($parents, 'sort_order', $descending = false, $natsort = false, $case_sensitive = false);
-				return $parents;
+				return sortMultiArray($parents, 'sort_order', $descending = false, $natsort = false, $case_sensitive = false);
 			}
 		}
 	}

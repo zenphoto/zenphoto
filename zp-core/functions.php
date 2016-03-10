@@ -667,7 +667,7 @@ function getEnabledPlugins() {
 			$_EnabledPlugins[$extension] = array('priority' => $option, 'path' => $path);
 		}
 	}
-	$_EnabledPlugins = sortMultiArray($_EnabledPlugins, 'priority', true);
+	$_EnabledPlugins = sortMultiArray($_EnabledPlugins, 'priority', true, true, false, true);
 	return $_EnabledPlugins;
 }
 
@@ -1429,6 +1429,69 @@ function sortByKey($results, $sortkey, $order) {
 }
 
 /**
+ * Sorts an array by column(s)
+ *
+ * @param array $data							input array
+ * @param array $field						column(s) to sort by
+ * @param bool $desc							sort descending
+ * @param bool $nat								"Natural" comparisons
+ * @param bool $case							case insensitive comparisons
+ * @param bool $preserveKeys			if set false the array will be re-indexed
+ * @param array $removeCriteria		Fields to be removed from the array
+ * @return array									The sorted array
+ */
+function sortMultiArray($data, $field, $desc = false, $nat = true, $case = false, $preserveKeys = true, $removeCriteria = array()) {
+	if (!is_array($field)) {
+		$field = array($field);
+	}
+	//create the comparator function
+	$comp = 'str';
+	if ($nat) {
+		$comp .='nat';
+	}
+	if ($case) {
+		$comp .='case';
+	}
+	$comp .='cmp';
+	if ($desc) {
+		uasort($data, function($b, $a) use($field, $comp) {
+			$retval = 0;
+			foreach ($field as $fieldname) {
+				if ($retval == 0) {
+					$retval = $comp(@$a[$fieldname], @$b[$fieldname]);
+				} else {
+					break;
+				}
+			}
+			return $retval;
+		});
+	} else {
+		uasort($data, function($a, $b) use($field, $comp) {
+			$retval = 0;
+			foreach ($field as $fieldname) {
+				if ($retval == 0) {
+					$retval = $comp(@$a[$fieldname], @$b[$fieldname]);
+				} else {
+					break;
+				}
+			}
+			return $retval;
+		});
+	}
+	if (!$preserveKeys) {
+		$data = array_values($data);
+	}
+	if (!empty($removeCriteria)) {
+		foreach ($data as $key => $datum) {
+			foreach ($removeCriteria as $column) {
+				unset($data[$key][$column]);
+			}
+		}
+	}
+	return $data;
+}
+
+/**
  * multidimensional array column sort
  *
  * @param array $array The multidimensional array to be sorted
@@ -1438,15 +1501,20 @@ function sortByKey($results, $sortkey, $order) {
  * @param bool $case_sensitive If the sort should be case sensitive
  * @return array
  *
+ * @deprecated
+ *
  * @author redoc (http://codingforums.com/showthread.php?t=71904)
  */
-function sortMultiArray($array, $index, $descending = false, $natsort = true, $case_sensitive = false, $preservekeys = false, $remove_criteria = array()) {
+function __sortMultiArray($array, $index, $descending = false, $natsort = true, $case_sensitive = true, $preservekeys = true, $remove_criteria = array()) {
 	if (is_array($array) && count($array) > 0) {
 		if (is_array($index)) {
 			$indicies = $index;
 		} else {
 			$indicies = array($index);
 		}
+
+		$_data = sortMultiArray($array, $index, $descending, $natsort, $case_sensitive, $preservekeys, $remove_criteria);
+
 		if ($descending) {
 			$pad = '~';
 		} else {
@@ -1494,6 +1562,37 @@ function sortMultiArray($array, $index, $descending = false, $natsort = true, $c
 				$sorted[$key] = $array[$key];
 			}
 		}
+
+		$s = $_s = array();
+
+		foreach ($_data as $k => $v) {
+			foreach ($indicies as $i) {
+				if (array_key_exists($i, $v))
+					$_s[$k][$i] = $v[$i];
+			}
+		}
+		foreach ($sorted as $k => $v) {
+			foreach ($indicies as $i) {
+				if (array_key_exists($i, $v))
+					$s[$k][$i] = $v[$i];
+			}
+		}
+		if ($_s != $s) {
+
+
+			var_dump($indicies, '$descending=' . $descending, '$natsort=' . $natsort, '$case_sensitive=' . $case_sensitive, '$preservekeys=' . $preservekeys, $remove_criteria);
+			foreach ($s as $k => $d) {
+				$_d = $_s[$k];
+				if ($d != $_d) {
+					echo $k;
+					var_dump($d);
+					var_dump($_d);
+				}
+			}
+
+			zp_error('sort does not match');
+		}
+
 		return $sorted;
 	}
 	return $array;
@@ -2445,7 +2544,7 @@ class zpFunctions {
 				$exifvars = array_merge($exifvars, $handler::getMetadataFields());
 			}
 		}
-		$exifvars = sortMultiArray($exifvars, 2);
+		$exifvars = sortMultiArray($exifvars, 2, false, true, false, true);
 		if ($default) {
 			return $exifvars;
 		}
