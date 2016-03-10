@@ -13,7 +13,7 @@
  * flooding attacks it to excede the query limit of the database.
  *
  * @author Stephen Billard (sbillard)
- * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+ * @Copyright 2016 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
  *
  * @package plugins
  * @subpackage development

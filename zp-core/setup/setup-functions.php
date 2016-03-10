@@ -528,7 +528,7 @@ function checkUnique($table, $unique) {
  * @param string $sql
  *
  * @author Stephen Billard
- * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+ * @Copyright 2016 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
  */
 function setupQuery($sql) {
 	global $updateErrors;
