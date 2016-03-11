@@ -602,7 +602,7 @@ class _Authority {
 							$rightsset['ALL_PAGES_RIGHTS']['value'] | $rightsset['ALL_NEWS_RIGHTS']['value'] |
 							$rightsset['VIEW_SEARCH_RIGHTS']['value'] | $rightsset['VIEW_GALLERY_RIGHTS']['value'];
 		}
-		$rightsset = sortMultiArray($rightsset, 'value', true, false, false);
+		$rightsset = sortMultiArray($rightsset, 'value', false, true, false, true);
 		return $rightsset;
 	}
 

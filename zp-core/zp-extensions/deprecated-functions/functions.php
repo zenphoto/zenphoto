@@ -57,18 +57,21 @@ function formatList($title, $subject, $pattern, $started) {
 						break;
 					}
 			}
-			if (!$started) {
+			if ($started) {
+				echo "</ul>\n";
+			} else {
 				$started = true;
-				echo "<ul>\n";
-				echo '<li class="warningbox nobullet"> ' . $title;
+				echo '<ul class="warningbox nobullet">' . "\n";
+			}
+			if (!$emitted) {
+				echo '<li>' . $title;
 				echo "\n<ul>\n";
 			}
 			echo '<li>' . $match . $class . "</li>\n";
 			$emitted = true;
 		}
 	}
-	if ($started && $emitted)
-		echo "</ul>\n</li>\n";
+
 	return $started;
 }
 
@@ -85,10 +88,10 @@ function listUses($files, $base, $pattern) {
 				$oldLocation = $folders[0];
 				if ($location) {
 					if ($open) {
-						echo "</ul>\n";
 						$open = false;
+						echo "</ul>\n</li>\n</ul>\n";
 					} else {
-						echo '<br />';
+						echo "<br/>\n";
 					}
 					echo '<strong>' . $location . "</strong>\n";
 				}
@@ -102,7 +105,7 @@ function listUses($files, $base, $pattern) {
 		}
 	}
 	if ($open) {
-		echo "</ul>\n";
+		echo "</ul>\n</li>\n</ul>\n";
 	}
 	if (!$output) {
 		?>

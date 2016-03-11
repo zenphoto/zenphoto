@@ -71,6 +71,7 @@ echo "\n</head>";
 										<?php
 										ksort($plugins, SORT_NATURAL | SORT_FLAG_CASE);
 										foreach ($plugins as $plugin => $functions) {
+											natcasesort($functions);
 											if (empty($plugin))
 												$plugin = "<em>zp-core</em>";
 											?>
@@ -78,7 +79,6 @@ echo "\n</head>";
 												<h2><?php echo $plugin; ?></h2>
 												<ul style="list-style-type: none;">
 													<?php
-													natcasesort($functions);
 													foreach ($functions as $function) {
 														?>
 														<li>

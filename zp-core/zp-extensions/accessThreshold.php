@@ -13,7 +13,7 @@
  * flooding attacks it to excede the query limit of the database.
  *
  * @author Stephen Billard (sbillard)
- * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+ * @Copyright 2016 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
  *
  * @package plugins
  * @subpackage development
@@ -35,7 +35,7 @@ if (OFFSET_PATH) {
 				setOptionDefault('accessThreshold_IP_THRESHOLD', 5000);
 				setOptionDefault('accessThreshold_IP_ACCESS_WINDOW', 600);
 				setOptionDefault('accessThreshold_SENSITIVITY', '255.255.255.0');
-				setOptionDefault('accessThreshold_NOISE', 10);
+				setOptionDefault('accessThreshold_LIMIT', 100);
 				//clear out the recentIP array
 				self::handleOptionSave(NULL, NULL);
 			}
@@ -55,9 +55,9 @@ if (OFFSET_PATH) {
 							gettext('Mask')				 => array('key'		 => 'accessThreshold_SENSITIVITY', 'type'	 => OPTION_TYPE_TEXTBOX,
 											'order'	 => 4,
 											'desc'	 => gettext('IP mask to determine the IP elements sensitivity')),
-							gettext('Noise')			 => array('key'		 => 'accessThreshold_NOISE', 'type'	 => OPTION_TYPE_NUMBER,
+							gettext('Limit')			 => array('key'		 => 'accessThreshold_LIMIT', 'type'	 => OPTION_TYPE_NUMBER,
 											'order'	 => 5,
-											'desc'	 => gettext('Access counts below this value will not be listed on the admin tab.')),
+											'desc'	 => sprintf(gettext('The list will be limited to the top %d accesses.'), getOption('accessThreshold_LIMIT'))),
 							gettext('Clear list')	 => array('key'		 => 'accessThreshold_CLEAR', 'type'	 => OPTION_TYPE_CHECKBOX,
 											'order'	 => 6,
 											'desc'	 => gettext('Clear the access list.'))

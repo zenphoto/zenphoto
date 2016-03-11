@@ -667,7 +667,7 @@ function getEnabledPlugins() {
 			$_EnabledPlugins[$extension] = array('priority' => $option, 'path' => $path);
 		}
 	}
-	$_EnabledPlugins = sortMultiArray($_EnabledPlugins, 'priority', true);
+	$_EnabledPlugins = sortMultiArray($_EnabledPlugins, 'priority', true, true, false, true);
 	return $_EnabledPlugins;
 }
 
@@ -1429,74 +1429,69 @@ function sortByKey($results, $sortkey, $order) {
 }
 
 /**
- * multidimensional array column sort
+ * Sorts an array by column(s)
  *
- * @param array $array The multidimensional array to be sorted
- * @param mixed $index Which key(s) should be sorted by
- * @param string $order true for descending sorts
- * @param bool $natsort If natural order should be used
- * @param bool $case_sensitive If the sort should be case sensitive
- * @return array
+ * @param array $data							input array
+ * @param array $field						column(s) to sort by
+ * @param bool $desc							sort descending
+ * @param bool $nat								"Natural" comparisons
+ * @param bool $case							case insensitive comparisons
+ * @param bool $preserveKeys			if set false the array will be re-indexed
+ * @param array $removeCriteria		Fields to be removed from the array
+ * @return array									The sorted array
  *
- * @author redoc (http://codingforums.com/showthread.php?t=71904)
+ * Copyright 2016 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+ *
  */
-function sortMultiArray($array, $index, $descending = false, $natsort = true, $case_sensitive = false, $preservekeys = false, $remove_criteria = array()) {
-	if (is_array($array) && count($array) > 0) {
-		if (is_array($index)) {
-			$indicies = $index;
-		} else {
-			$indicies = array($index);
-		}
-		if ($descending) {
-			$pad = '~';
-		} else {
-			$pad = ' ';
-		}
-		$size = 0;
-		foreach ($indicies as $index) {
-			$prev = $size;
-			$size = 0;
-			$c = 0;
-			foreach ($array as $key => $row) {
-				$c++;
-				if (is_array($row)) {
-					if (array_key_exists($index, $row)) {
-						$word = get_language_string($row[$index]);
-						if (!$case_sensitive) {
-							$word = mb_strtolower($word);
-						}
-					} else {
-						$word = $c;
-					}
-					$size = max($size, strlen($word));
-					if (isset($temp[$key])) {
-						$temp[$key] = str_pad($temp[$key], $prev, $pad) . $word;
-					} else {
-						$temp[$key] = $word;
-					}
-					if (in_array($index, $remove_criteria)) {
-						unset($array[$key][$index]);
-					}
+function sortMultiArray($data, $field, $desc = false, $nat = true, $case = false, $preserveKeys = true, $removeCriteria = array()) {
+	if (!is_array($field)) {
+		$field = array($field);
+	}
+	//create the comparator function
+	$comp = 'str';
+	if ($nat) {
+		$comp .='nat';
+	}
+	if ($case) {
+		$comp .='case';
+	}
+	$comp .='cmp';
+	if ($desc) {
+		uasort($data, function($b, $a) use($field, $comp) {
+			$retval = 0;
+			foreach ($field as $fieldname) {
+				if ($retval == 0) {
+					$retval = $comp(@$a[$fieldname], @$b[$fieldname]);
+				} else {
+					break;
 				}
 			}
-		}
-
-		if ($descending) {
-			arsort($temp, SORT_LOCALE_STRING | SORT_NATURAL);
-		} else {
-			asort($temp, SORT_LOCALE_STRING | SORT_NATURAL);
-		}
-
-		foreach (array_keys($temp) as $key) {
-			if (!$preservekeys && is_numeric($key)) {
-				$sorted[] = $array[$key];
-			} else {
-				$sorted[$key] = $array[$key];
+			return $retval;
+		});
+	} else {
+		uasort($data, function($a, $b) use($field, $comp) {
+			$retval = 0;
+			foreach ($field as $fieldname) {
+				if ($retval == 0) {
+					$retval = $comp(@$a[$fieldname], @$b[$fieldname]);
+				} else {
+					break;
+				}
+			}
+			return $retval;
+		});
+	}
+	if (!$preserveKeys) {
+		$data = array_values($data);
+	}
+	if (!empty($removeCriteria)) {
+		foreach ($data as $key => $datum) {
+			foreach ($removeCriteria as $column) {
+				unset($data[$key][$column]);
 			}
 		}
-		return $sorted;
 	}
-	return $array;
+	return $data;
 }
 
 /**
@@ -2445,7 +2440,7 @@ class zpFunctions {
 				$exifvars = array_merge($exifvars, $handler::getMetadataFields());
 			}
 		}
-		$exifvars = sortMultiArray($exifvars, 2);
+		$exifvars = sortMultiArray($exifvars, 2, false, true, false, true);
 		if ($default) {
 			return $exifvars;
 		}
