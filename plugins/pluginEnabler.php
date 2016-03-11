@@ -30,7 +30,7 @@ class pluginEnabler {
 		$buttons[] = array(
 						'category'		 => gettext('Development'),
 						'enable'			 => true,
-						'button_text'	 => gettext('Plugins » Standard'),
+						'button_text'	 => gettext('Plugins » standard'),
 						'formname'		 => 'enablebutton',
 						'action'			 => FULLWEBPATH . '/plugins/pluginEnabler/handler.php',
 						'icon'				 => 'images/zp.png',
