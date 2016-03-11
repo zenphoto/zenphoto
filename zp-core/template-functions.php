@@ -537,22 +537,22 @@ function getGalleryIndexURL() {
     internal_deprecations::getGalleryIndexURL();
   }
 	$custom_index = getOption('custom_index_page');
-	if($custom_index) {
-		$link = rewrite_path( '/' . _PAGE_ . '/' . $custom_index, "/index.php?p=" .$custom_index);
+	if ($custom_index) {
+		$link = rewrite_path('/' . _PAGE_ . '/' . $custom_index . '/', "/index.php?p=" . $custom_index);
 	} else {
 		$link = WEBPATH . "/";
 	}
-  if (in_context(ZP_ALBUM) && $_zp_gallery_page != 'index.php') {
-    $album = getUrAlbum($_zp_current_album);
-    if (($page = $album->getGalleryPage()) > 1) {
-			if($custom_index) {
-				$link = rewrite_path( '/' . _PAGE_ . '/' . $custom_index. '/' . $page, "/index.php?p=" .$custom_index. "&amp;page=" . $page);
+	if (in_context(ZP_ALBUM) && $_zp_gallery_page != 'index.php') {
+		$album = getUrAlbum($_zp_current_album);
+		if (($page = $album->getGalleryPage()) > 1) {
+			if ($custom_index) {
+				$link = rewrite_path('/' . _PAGE_ . '/' . $custom_index . '/' . $page . '/', "/index.php?p=" . $custom_index . "&amp;page=" . $page);
 			} else {
-				$link = rewrite_path('/' . _PAGE_  . '/' . $page, "/index.php?" . "page=" . $page);
+				$link = rewrite_path('/' . _PAGE_ . '/' . $page . '/', "/index.php?" . "page=" . $page);
 			}
-    }
-  }
-  return zp_apply_filter('getLink', $link, 'index.php', NULL);
+		}
+	}
+	return zp_apply_filter('getLink', $link, 'index.php', NULL);
 }
 
 /**

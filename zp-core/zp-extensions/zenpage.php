@@ -351,7 +351,7 @@ function getNewsIndexURL($page = '') {
 	$rewrite = _NEWS_ . '/';
 	$plain = '/index.php?p=news';
 	if ($page > 1) {
-		$rewrite .= '/' . $page . '/';
+		$rewrite .= $page . '/';
 		$plain .= '&page=' . $page;
 	}
 	return zp_apply_filter('getLink', rewrite_path($rewrite, $plain), 'news.php', $page);
