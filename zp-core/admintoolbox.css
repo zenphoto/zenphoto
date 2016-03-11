@@ -1,76 +1,138 @@
 /* Clear Outer Styles */
-		#zp__admin_module * {
-			font-family: Helvetica, Arial, sans-serif !important;
-			font-size: 12px !important;
-			line-height: 15px !important;
-			font-weight: normal;
-		}
-		#zp__admin_module {
-			text-align: left;
-			position: fixed;
-			right: 4px;
-			top: 4px;
 
-			border: 1px solid rgba(0,0,0,0.15);
-			border-radius: 2px;
-			background: rgba(255,255,255,0.9);
-			z-index: 100001;
+body {
+	margin-top: 32px !important;
+}
+#zp__admin_module * {
+	font-family: Helvetica, Arial, sans-serif !important;
+	font-size: 15px !important;
+	line-height: 15px !important;
+	font-weight: normal;
+}
 
-			box-shadow: 0 1px 0 rgba(0,0,0,0.1);
-			min-width: 100px;
-		}
-		#zp__admin_link {
-			position: relative;
-			padding: 4px 8px;
-		}
-		#zp__admin_link {
-			display: block;
-			text-decoration: none;
-			white-space: nowrap;
-		}
-		#zp__admin_link > span {
-			border-right: 1px solid rgba(0,0,0,0.1);
-			padding-right: 7px;
-			margin-right: 5px;
-			display: inline-block;
-			color: rgba(0,0,0,0.4) !important;
-		}
-		#zp__admin_link:hover {
-			background-color: white;
-			border-color: rgba(0,0,0, 0.2);
-		}
-		#zp__admin_link:hover h3 {
-			color: #0CF !important;
-		}
-		#zp__admin_data {
-			z-index: 10000;
-			line-height: 16px;
-		}
-		#zp__admin_data ul, #zp__admin_data li {
-			padding: 0;
-			margin: 0;
-		}
-		#zp__admin_data a {
-			text-decoration: none;
-			color: #09C;
-			display: block;
-			padding: 2px 8px;
-		}
-		#zp__admin_data a:hover {
-			color: #0CF;
-			background-color: white;
-		}
-		#zp__admin_link h3 {
-			font-weight: bold;
-			color: #999;
-			margin: 0;
-			padding: 0;
-			font-size: 15px !important;
-			display: inline;
-		}
-		/* Transitions */
-		#zp__admin_link h3, #zp__admin_link a {
-			transition: all 0.1s ease-out;
-			-moz-transition: all 0.1s ease-out;
-			-webkit-transition: all 0.1s ease-out;
-		}
+#zp__admin_module {
+	text-align: left;
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	border: 0px solid rgba(0,0,0,0.15);
+	border-radius: 3px;
+	background: rgba(255,255,255,0.9);
+	height: 30px;
+	z-index: 100001;
+	box-shadow: 0 1px 0 rgba(0,0,0,0.1);
+	width: 100%;
+}
+
+#zp__admin_info {
+	position: absolute;
+	left: 0;
+	top: 0;
+	background: transparent;
+	display: block;
+}
+
+#zp__admin_info .zp_logo {
+	color: white !important;
+	float: left;
+	display: inline-block;
+	background:gray;
+	padding: 8px 4px 2px 4px;
+	width: 20px;
+	height: 20px;
+	text-align: center;
+	font-size: 13px !important;
+}
+
+#zp__admin_info .zp_user {
+	float: left;
+	display: inline-block;
+	padding: 7px 0 0 6px;
+	font-size: 15px !important;
+	white-space: nowrap;
+	font-weight: normal;
+	color: slategrey;
+}
+
+#zp__admin_link {
+	font-weight: bold;
+	color: #999;
+	font-size: 15px !important;
+	position: relative;
+	position: absolute;
+	right: 0;
+	top: 0;
+	padding: 4px 8px;
+	background: rgba(255,255,255,0.9);
+	border: 1px solid rgba(0,0,0,0.15);
+	display: block;
+	text-decoration: none;
+	white-space: nowrap;
+}
+
+#zp__admin_link:hover {
+	background-color: white;
+	border-color: rgba(0,0,0, 0.2);
+	cursor: pointer;
+}
+
+#zp__admin_link:hover {
+	color: #0CF !important;
+}
+
+#zp__admin_data {
+	z-index: 10000;
+	background: rgba(255,255,255,0.95);
+	line-height: 16px;
+	width: 260px !important;
+	padding-top: 30px;
+	float: right;
+}
+
+
+#zp__admin_data ul, 
+#zp__admin_data li {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+#zp__admin_data li {
+ border-top: 1px solid lightgray;
+}
+
+#zp__admin_data li ul {
+	border-top: 1px solid lightgray;
+	border-bottom: 1px solid lightgray;
+}
+
+#zp__admin_data a {
+	text-decoration: none;
+	color: #09C;
+	display: block;
+	padding: 8px;
+}
+
+#zp__admin_data a:hover {
+	color: #0CF;
+	background-color: #E3E6E9;
+}
+
+/* Transitions */
+#zp__admin_link a {
+	transition: all 0.1s ease-out;
+	-moz-transition: all 0.1s ease-out;
+	-webkit-transition: all 0.1s ease-out;
+}
+
+@media only screen and (max-width: 767px) {
+	#zp__admin_data {
+		
+	}
+}
+
+@media only screen and (max-width: 479px) {
+	#zp__admin_data {
+		width: 100% !important;
+	}
+}

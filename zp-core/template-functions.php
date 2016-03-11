@@ -64,7 +64,7 @@ function printZenJavascripts() {
 function adminToolbox() {
 	global $_zp_current_album, $_zp_current_image, $_zp_current_search, $_zp_gallery_page, $_zp_gallery, $_zp_current_admin_obj, $_zp_loggedin;
 	if (zp_loggedin()) {
-		$zf = PROTOCOL . '://' . $_SERVER['HTTP_HOST'] . WEBPATH . "/" . ZENFOLDER;
+		$zf = FULLWEBPATH . "/" . ZENFOLDER;
 		$page = getCurrentPage();
 		ob_start();
 		?>
@@ -79,13 +79,16 @@ function adminToolbox() {
 			// ]]> -->
 		</script>
 		<div id="zp__admin_module">
-			<a id="zp__admin_link" href="javascript:toggle('zp__admin_data');">
-				<span>ZP</span>
-				<h3><?php echo $_zp_current_admin_obj->getUser(); ?></h3>
-			</a>
+			<div id="zp__admin_info">
+				<span class="zp_logo">ZP</span>
+				<span class="zp_user"> <?php echo $_zp_current_admin_obj->getUser(); ?></span>
+			</div>
+			<button type="button" id="zp__admin_link" onclick="javascript:toggle('zp__admin_data');">
+				<?php echo gettext('Admin'); ?>
+			</button>
 			<div id="zp__admin_data" style="display: none;">
 
-				<ul style="list-style-type: none;" >
+				<ul>
 				<?php
 				$outputA = ob_get_contents();
 				ob_end_clean();
