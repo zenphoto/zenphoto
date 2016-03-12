@@ -48,26 +48,31 @@ foreach (getDBTables() as $table) {
 		unset($index['Collation']);
 		unset($index['Cardinality']);
 		unset($index['Comment']);
-		if ($indexComments) {
-			switch ($keyname) {
-				case 'valid':
-					if ($table == 'administrators' && $index['Column_name'] === '`valid`,`user`') {
-						$index['Index_comment'] = 'zp20';
-					}
-					break;
-				case 'filename':
-					if ($table == 'images' && $index['Column_name'] === '`filename`,`albumid`') {
-						$index['Index_comment'] = 'zp20';
-					}
-					break;
-				case 'folder':
-					if ($table == 'albums' && $index['Column_name'] === '`folder`') {
-						$index['Index_comment'] = 'zp20';
-					}
-					break;
-			}
-		} else {
+		if (!$indexComments) {
 			unset($index['Index_comment']);
+		}
+
+		switch ($keyname) {
+			case 'valid':
+			case 'user':
+				$keys = explode(',', $index['Column_name']);
+				sort($keys);
+				if ($table == 'administrators' && implode(',', $keys) === '`user`,`valid`') {
+					$index['Index_comment'] = 'zp20';
+				}
+				break;
+			case 'filename':
+				$keys = explode(',', $index['Column_name']);
+				sort($keys);
+				if ($table == 'images' && implode(',', $keys) === '`albumid`,`filename`') {
+					$index['Index_comment'] = 'zp20';
+				}
+				break;
+			case 'folder':
+				if ($table == 'albums' && $index['Column_name'] === '`folder`') {
+					$index['Index_comment'] = 'zp20';
+				}
+				break;
 		}
 		$database[$table]['keys'][$keyname] = $index;
 	}
