@@ -8,6 +8,9 @@
  * @Copyright 2016 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
  *
  */
+$dbSoftware = db_software();
+$indexComments = version_compare($dbSoftware['version'], '5.5.0') >= 0;
+
 $database = $orphans = array();
 foreach (getDBTables() as $table) {
 	$tablecols = db_list_fields($table);
@@ -45,25 +48,27 @@ foreach (getDBTables() as $table) {
 		unset($index['Collation']);
 		unset($index['Cardinality']);
 		unset($index['Comment']);
-
-		switch ($keyname) {
-			case 'valid':
-				if ($table == 'administrators' && $index['Column_name'] === '`valid`,`user`') {
-					$index['Index_comment'] = 'zp20';
-				}
-				break;
-			case 'filename':
-				if ($table == 'images' && $index['Column_name'] === '`filename`,`albumid`') {
-					$index['Index_comment'] = 'zp20';
-				}
-				break;
-			case 'folder':
-				if ($table == 'albums' && $index['Column_name'] === '`folder`') {
-					$index['Index_comment'] = 'zp20';
-				}
-				break;
+		if ($indexComments) {
+			switch ($keyname) {
+				case 'valid':
+					if ($table == 'administrators' && $index['Column_name'] === '`valid`,`user`') {
+						$index['Index_comment'] = 'zp20';
+					}
+					break;
+				case 'filename':
+					if ($table == 'images' && $index['Column_name'] === '`filename`,`albumid`') {
+						$index['Index_comment'] = 'zp20';
+					}
+					break;
+				case 'folder':
+					if ($table == 'albums' && $index['Column_name'] === '`folder`') {
+						$index['Index_comment'] = 'zp20';
+					}
+					break;
+			}
+		} else {
+			unset($index['Index_comment']);
 		}
-
 		$database[$table]['keys'][$keyname] = $index;
 	}
 }
@@ -82,6 +87,7 @@ foreach ($metadataProviders as $source => $handler) {
 		$plugin = getPlugin($source . '.php');
 		require_once($plugin);
 		$exifvars = $handler::getMetadataFields();
+
 		foreach ($exifvars as $key => $item) {
 			if (!is_null($disable = getOption($key . '-disabled'))) {
 				$exifvars[$key][5] = !($disable & true);
@@ -129,7 +135,6 @@ foreach ($metadataProviders as $source => $handler) {
 }
 
 foreach ($template as $tablename => $table) {
-
 	$exists = array_key_exists($tablename, $database);
 	if (!$exists) {
 		$create = array();
@@ -138,7 +143,6 @@ foreach ($template as $tablename => $table) {
 	}
 	foreach ($table['fields'] as $key => $field) {
 		if ($key != 'id') {
-
 			$string = "ALTER TABLE " . prefix($tablename) . " %s `" . $field['Field'] . "` " . $field['Type'];
 			if ($field['Null'] === 'NO')
 				$string .= " NOT NULL";
@@ -158,7 +162,6 @@ foreach ($template as $tablename => $table) {
 			}
 			$addString = sprintf($string, 'ADD COLUMN') . $comment . ';';
 			$changeString = sprintf($string, "CHANGE `" . $field['Field'] . "`") . $comment . ';';
-
 			if ($exists) {
 				if (array_key_exists($key, $database[$tablename]['fields'])) {
 					if ($field != $database[$tablename]['fields'][$key]) {
@@ -189,7 +192,6 @@ foreach ($template as $tablename => $table) {
 		}
 	}
 
-
 	if (isset($table['keys'])) {
 		foreach ($table['keys'] as $key => $index) {
 			$string = "ALTER TABLE " . prefix($tablename) . ' ADD ';
@@ -205,7 +207,12 @@ foreach ($template as $tablename => $table) {
 			if (!empty($index['Sub_part'])) {
 				$k .=" (" . $index['Sub_part'] . ")";
 			}
-			$alterString = "$string`$key` ($k) COMMENT 'zp20';";
+			$alterString = "$string`$key` ($k)";
+			if ($indexComments) {
+				$alterString.=" COMMENT 'zp20';";
+			} else {
+				unset($index['Index_comment']);
+			}
 			if ($exists) {
 				if (array_key_exists($key, $database[$tablename]['keys'])) {
 					if ($index != $database[$tablename]['keys'][$key]) {
@@ -217,8 +224,11 @@ foreach ($template as $tablename => $table) {
 					setupQuery($alterString);
 				}
 			} else {
-				$tableString = "  $u ($k) COMMENT 'zp20',";
-				$create[] = $tableString;
+				$tableString = "  $u ($k)";
+				if ($indexComments) {
+					$tableString .= "  COMMENT 'zp20',";
+				}
+				$create[] = $tableString . ',';
 			}
 			unset($database[$tablename]['keys'][$key]);
 		}
@@ -233,7 +243,7 @@ foreach ($template as $tablename => $table) {
 		if (array_key_exists('keys', $database[$tablename]) && !empty($database[$tablename]['keys'])) {
 			foreach ($database[$tablename]['keys'] as $index) {
 				$key = $index['Key_name'];
-				if ($index['Index_comment'] === 'zp20') {
+				if (isset($index['Index_comment']) && $index['Index_comment'] === 'zp20') {
 					$dropString = "ALTER TABLE " . prefix($tablename) . " DROP INDEX `" . $key . "`;";
 					setupQuery($dropString);
 				} else {
