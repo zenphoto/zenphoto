@@ -95,6 +95,7 @@ class favoritesHandler {
 			if (isset($instance[1])) {
 				$disable = true;
 				$text .= '<br /><span class="warningbox">' . gettext('Named favorites are present.') . '</span>';
+				break;
 			}
 		}
 
