@@ -595,7 +595,7 @@ setOptionDefault('plugins_per_page', 25);
 setOptionDefault('users_per_page', 10);
 setOptionDefault('articles_per_page', 15);
 setOptionDefault('debug_log_size', 5000000);
-setOptionDefault('imageProcessorConcurrency', 30);
+setOptionDefault('imageProcessorConcurrency', 15);
 setOptionDefault('search_album_sort_type', 'title');
 setOptionDefault('search_image_sort_type', 'title');
 setOptionDefault('search_album_sort_direction', '');
