@@ -57,7 +57,7 @@ switch (OFFSET_PATH) {
 			<div style="width: 100%; position: fixed; top: 0px; left: 0px; z-index: 1000;" >
 				<p style="text-align: center;">
 					<strong style="background-color: #FFEFB7; color:black; padding: 5px;">
-						<?php echo gettext('Site is avaiable for testing only.'); ?>
+						<?php echo gettext('Site is available for testing only.'); ?>
 					</strong>
 				</p>
 			</div>
@@ -109,7 +109,7 @@ switch (OFFSET_PATH) {
 				case 'closed_for_test';
 					?>
 					<p class="notebox">
-						<strong><?php echo gettext('Site is avaiable for testing only.');
+						<strong><?php echo gettext('Site is available for testing only.');
 					?></strong>
 					</p>
 					<?php

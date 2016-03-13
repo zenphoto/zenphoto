@@ -527,7 +527,7 @@ function getSitemapAlbums() {
 					$data .= sitemap_echonl("\t</url>");
 					break;
 			}
-			// print album pages if avaiable
+			// print album pages if available
 			if ($pageCount > 1) {
 				for ($x = 2; $x <= $pageCount; $x++) {
 					$base = $albumobj->getLink($x);
