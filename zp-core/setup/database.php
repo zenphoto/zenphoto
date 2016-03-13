@@ -231,7 +231,7 @@ foreach ($template as $tablename => $table) {
 			} else {
 				$tableString = "  $u ($k)";
 				if ($indexComments) {
-					$tableString .= "  COMMENT 'zp20',";
+					$tableString .= "  COMMENT 'zp20'";
 				}
 				$create[] = $tableString . ',';
 			}
