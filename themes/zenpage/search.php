@@ -7,9 +7,9 @@ if (!defined('WEBPATH'))
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta charset="<?php echo LOCAL_CHARSET; ?>">
 		<?php zp_apply_filter('theme_head'); ?>
 		<?php printHeadTitle(); ?>
-		<meta charset="<?php echo LOCAL_CHARSET; ?>">
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" type="text/css" />
 		<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery', gettext('Gallery RSS')); ?>
 		<?php printZDSearchToggleJS(); ?>
@@ -38,14 +38,14 @@ if (!defined('WEBPATH'))
 					$categorylist = $_zp_current_search->getCategoryList();
 					if (is_array($categorylist)) {
 						$catlist = array('news' => $categorylist, 'albums' => '0', 'images' => '0', 'pages' => '0');
-						printSearchForm(NULL, 'search', NULL, gettext('Search category'), NULL, NULL, $catlist);
+						printSearchForm(NULL, 'search', NULL, gettext('Search'), NULL, NULL, $catlist);
 					} else {
 						$albumlist = $_zp_current_search->getAlbumList();
 						if (is_array($albumlist)) {
 							$album_list = array('albums' => $albumlist, 'pages' => '0', 'news' => '0');
-							printSearchForm(NULL, 'search', NULL, gettext('Search album'), NULL, NULL, $album_list);
+							printSearchForm(NULL, 'search', NULL, gettext('Search'), NULL, NULL, $album_list);
 						} else {
-							printSearchForm("", "search", "", gettext("Search gallery"));
+							printSearchForm("", "search", "", gettext("Search"));
 						}
 					}
 				}
@@ -53,7 +53,7 @@ if (!defined('WEBPATH'))
 			</div>
 
 			<div id="breadcrumb">
-				<h2><a href="<?php echo getGalleryIndexURL(); ?>" title="<?php echo gettext('Index'); ?>"><?php echo gettext('Index'); ?> » </a><?php printSearchBreadcrumb(" » "); ?>
+				<h2><?php printGalleryIndexURL(' » '); printSearchBreadcrumb(" » "); ?>
 				</h2>
 			</div>
 

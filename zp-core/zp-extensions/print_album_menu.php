@@ -156,23 +156,23 @@ function printAlbumMenuList($option, $showcount = NULL, $css_id = '', $css_class
 	} else {
 		$currentfolder = $_zp_current_album->name;
 	}
-
-	// check if css parameters are used
-	if ($css_id != "") {
-		$css_id = " id='" . $css_id . "'";
+	
+	if (is_null($css_id)) {
+		$css_id = 'menu_albums';
 	}
-	if ($css_class_topactive != "") {
-		$css_class_topactive = " class='" . $css_class_topactive . "'";
+	if (is_null($css_class_topactive)) {
+		$css_class_topactive = 'menu_topactive';
 	}
-	if ($css_class != "") {
-		$css_class = " class='" . $css_class . "'";
+	if (is_null($css_class)) {
+		$css_class = 'submenu';
 	}
-	if ($css_class_active != "") {
-		$css_class_active = " class='" . $css_class_active . "'";
+	if (is_null($css_class_active)) {
+		$css_class_active = 'menu-active';
 	}
+	
 	$startlist = $startlist && !($option == 'omit-top' || $option == 'list-sub');
 	if ($startlist)
-		echo "<ul" . $css_id . ">\n"; // top level list
+		echo '<ul id="'. $css_id . '">'."\n"; // top level list
 		/*		 * ** Top level start with Index link  *** */
 	if ($option === "list" OR $option === "list-top") {
 		if (!empty($indexname)) {
@@ -237,12 +237,17 @@ function printAlbumMenuListAlbum($albums, $folder, $option, $showcount, $showsub
 			if (in_array($album, $_recursion_limiter))
 				$process = false; // skip already seen dynamic albums
 		}
-		$topalbum = newAlbum($album, true);
+		$topalbum = '';
+		$albumobj = newAlbum($album, true);
+		$has_password = '';
+		if($albumobj->isProtected()) {
+			$has_password = ' has_password';
+		}
 		if ($level > 1 || ($option != 'omit-top')) { // listing current level album
 			if ($level == 1) {
-				$css_class_t = $css_class_topactive;
+				$css_class_t = $css_class_topactive . $has_password;
 			} else {
-				$css_class_t = $css_class_active;
+				$css_class_t = $css_class_active . $has_password;
 			}
 			if ($keeptopactive) {
 				if (isset($_zp_current_album) && is_object($_zp_current_album)) {
@@ -252,9 +257,9 @@ function printAlbumMenuListAlbum($albums, $folder, $option, $showcount, $showsub
 			}
 			$count = "";
 			if ($showcount) {
-				$toplevelsubalbums = $topalbum->getAlbums();
+				$toplevelsubalbums = $albumobj->getAlbums();
 				$toplevelsubalbums = count($toplevelsubalbums);
-				$topalbumnumimages = $topalbum->getNumImages();
+				$topalbumnumimages = $albumobj->getNumImages();
 				if ($topalbumnumimages + $toplevelsubalbums > 0) {
 					$count = ' <span style="white-space:nowrap;"><small>(';
 					if ($toplevelsubalbums > 0) {
@@ -270,30 +275,30 @@ function printAlbumMenuListAlbum($albums, $folder, $option, $showcount, $showsub
 				}
 			}
 
-			if ((in_context(ZP_ALBUM) && !in_context(ZP_SEARCH_LINKED) && (@$_zp_current_album->getID() == $topalbum->getID() ||
-							$topalbum->name == $currenturalbumname)) ||
-							(in_context(ZP_SEARCH_LINKED)) && ($a = $_zp_current_search->getDynamicAlbum()) && $a->name == $topalbum->name) {
-				$current = $css_class_t . ' ';
+			if ((in_context(ZP_ALBUM) && !in_context(ZP_SEARCH_LINKED) && (@$_zp_current_album->getID() == $albumobj->getID() ||
+							$albumobj->name == $currenturalbumname)) ||
+							(in_context(ZP_SEARCH_LINKED)) && ($a = $_zp_current_search->getDynamicAlbum()) && $a->name == $albumobj->name) {
+				$current = $css_class_t;
 			} else {
 				$current = "";
 			}
-			$title = $topalbum->getTitle();
+			$title = $albumobj->getTitle();
 			if ($limit) {
 				$display = shortenContent($title, $limit, MENU_TRUNCATE_INDICATOR);
 			} else {
 				$display = $title;
 			}
-			if ($firstimagelink && $topalbum->getNumImages() != 0) {
-				$link = "<li><a " . $current . "href='" . html_encode($topalbum->getImage(0)->getLink()) . "' title='" . html_encode($title) . "'>" . html_encode($display) . "</a>" . $count;
+			if ($firstimagelink && $albumobj->getNumImages() != 0) {
+				$link = '<li><a class="' . $current . '" href="' . html_encode($albumobj->getImage(0)->getLink()) . '" title="' . html_encode($title) . '">' . html_encode($display) . '</a>' . $count;
 			} else {
-				$link = "<li><a " . $current . "href='" . html_encode($topalbum->getLink(1)) . "' title='" . html_encode($title) . "'>" . html_encode($display) . "</a>" . $count;
+				$link = '<li><a class="' . $current . '" href="' . html_encode($albumobj->getLink(1)) . '" title="' . html_encode($title) . '">' . html_encode($display) . '</a>' . $count;
 			}
 			echo $link;
 		}
 		if ($process) { // listing subalbums
-			$subalbums = $topalbum->getAlbums();
+			$subalbums = $albumobj->getAlbums();
 			if (!empty($subalbums)) {
-				echo "\n<ul" . $css_class . ">\n";
+				echo "\n".'<ul class="' . $css_class . '">'."\n";
 				array_push($_recursion_limiter, $album);
 				printAlbumMenuListAlbum($subalbums, $folder, $option, $showcount, $showsubs, $css_class, $css_class_topactive, $css_class_active, $firstimagelink, false, $limit);
 				array_pop($_recursion_limiter);

@@ -125,11 +125,11 @@ class SearchEngine {
 		}
 		$this->search_structure = zp_apply_filter('searchable_fields', $this->search_structure);
 		if (isset($_REQUEST['words'])) {
-			$this->words = strtr(sanitize($_REQUEST['words'], 4), array('__23__' => '#', '__25__' => '%', '__26__' => '&'));
+			$this->words = zpFunctions::removeTrailingSlash(strtr(sanitize($_REQUEST['words'], 4), array('__23__' => '#', '__25__' => '%', '__26__' => '&', '__2F__' => '/')));
 		} else {
 			$this->words = NULL;
 			if (isset($_REQUEST['date'])) { // words & dates are mutually exclusive
-				$this->dates = sanitize($_REQUEST['date'], 3);
+				$this->dates = zpFunctions::removeTrailingSlash(sanitize($_REQUEST['date'], 3));
 				if (isset($_REQUEST['whichdate'])) {
 					$this->whichdates = sanitize($_REQUEST['whichdate']);
 				}
@@ -1302,7 +1302,7 @@ class SearchEngine {
 					} else {
 						$show = "`show` = 1 AND ";
 					}
-					$sql .= "`folder` ";
+					$sql .= "`folder`, `title` ";
 					if (is_null($sorttype)) {
 						if (empty($this->album)) {
 							list($key, $sortdirection) = $this->sortKey($_zp_gallery->getSortType(), $sortdirection, 'title', 'albums');
@@ -1328,7 +1328,7 @@ class SearchEngine {
 					} else {
 						$show = "`show` = 1 AND ";
 					}
-					$sql .= "`albumid`, `filename` ";
+					$sql .= "`albumid`, `filename`, `title` ";
 					if (is_null($sorttype)) {
 						if (empty($this->album)) {
 							list($key, $sortdirection) = $this->sortKey($sorttype, $sortdirection, 'title', 'images');
@@ -1349,7 +1349,6 @@ class SearchEngine {
 					}
 					break;
 			}
-
 			$sql .= "FROM " . prefix($tbl) . " WHERE " . $show;
 			$sql .= '(' . self::compressedIDList($idlist) . ')';
 			$sql .= " ORDER BY " . $key;
@@ -1406,7 +1405,7 @@ class SearchEngine {
 								}
 								if ($mine || (is_null($mine) && $album->isMyItem(LIST_RIGHTS)) || (checkAlbumPassword($albumname) && ($row['show'] || $viewUnpublished))) {
 									if (empty($this->album_list) || in_array($albumname, $this->album_list)) {
-										$result[] = array('name' => $albumname, 'weight' => $weights[$row['id']]);
+										$result[] = array('title' => $row['title'], 'name' => $albumname, 'weight' => $weights[$row['id']]);
 									}
 								}
 							}
@@ -1415,6 +1414,9 @@ class SearchEngine {
 					db_free_result($search_result);
 					if (is_null($sorttype)) {
 						$result = sortMultiArray($result, 'weight', true, true, false, false, array('weight'));
+					}
+					if ($sorttype == '`title`') {
+						$result = sortByMultilingual($result, 'title', $sortdirection);
 					}
 					foreach ($result as $album) {
 						$albums[] = $album['name'];
@@ -1426,6 +1428,7 @@ class SearchEngine {
 		}
 		$this->albums = $albums;
 		$this->searches['albums'] = $criteria;
+		
 		return $albums;
 	}
 
@@ -1515,6 +1518,7 @@ class SearchEngine {
 	 * @return array
 	 */
 	private function getSearchImages($sorttype, $sortdirection, $mine = NULL) {
+		
 		if (getOption('search_no_images') || $this->search_no_images) {
 			return array();
 		}
@@ -1577,9 +1581,8 @@ class SearchEngine {
 						}
 					}
 					if ($albumrow['allow'] && ($row['show'] || $albumrow['viewUnpublished'])) {
-						if (file_exists($albumrow['localpath'] . internalToFilesystem($row['filename']))) {
-//	still exists
-							$data = array('filename' => $row['filename'], 'folder' => $albumrow['folder']);
+						if (file_exists($albumrow['localpath'] . internalToFilesystem($row['filename']))) { //	still exists
+							$data = array('title' => $row['title'], 'filename' => $row['filename'], 'folder' => $albumrow['folder']);
 							if (isset($weights)) {
 								$data['weight'] = $weights[$row['id']];
 							}
@@ -1591,8 +1594,10 @@ class SearchEngine {
 				if (is_null($sorttype) && isset($weights)) {
 					$images = sortMultiArray($images, 'weight', true, true, false, false, array('weight'));
 				}
+				if ($sorttype == '`title`') {
+					$images = sortByMultilingual($images, 'title', $sortdirection);
+				}
 			}
-
 			if (empty($searchdate)) {
 				zp_apply_filter('search_statistics', $searchstring, 'images', !empty($images), $this->dynalbumname, $this->iteration++);
 			}
@@ -1622,7 +1627,7 @@ class SearchEngine {
 			if (empty($this->images)) {
 				return array();
 			}
-// Only return $firstPageCount images if we are on the first page and $firstPageCount > 0
+			// Only return $firstPageCount images if we are on the first page and $firstPageCount > 0
 			if (($page == 1) && ($firstPageCount > 0)) {
 				$pageStart = 0;
 				$images_per_page = $firstPageCount;
@@ -1913,6 +1918,16 @@ class SearchEngine {
 			}
 		}
 		return NULL;
+	}
+
+	/**
+	 * Clears the entire search cache table
+	 */
+	static function clearSearchCache() {
+		$check = query_single_row('SELECT id FROM ' . prefix('search_cache'). ' LIMIT 1');
+		if($check) {
+			query('TRUNCATE TABLE ' . prefix('search_cache'));
+		}
 	}
 
 }

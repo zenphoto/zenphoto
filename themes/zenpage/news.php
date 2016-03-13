@@ -7,8 +7,8 @@ if (class_exists('Zenpage') && ZP_NEWS_ENABLED) {
 	<!DOCTYPE html>
 	<html>
 		<head>
-			<?php printHeadTitle(); ?>
 			<meta charset="<?php echo LOCAL_CHARSET; ?>">
+			<?php printHeadTitle(); ?>
 			<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" type="text/css" />
 			<?php if (class_exists('RSS')) printRSSHeaderLink("News", "Zenpage news", ""); ?>
 			<?php zp_apply_filter('theme_head'); ?>
@@ -23,13 +23,7 @@ if (class_exists('Zenpage') && ZP_NEWS_ENABLED) {
 					<h1><?php printGalleryTitle(); ?></h1>
 					<?php
 					if (getOption('Allow_search')) {
-						if (is_NewsCategory()) {
-							$catlist = array('news' => array($_zp_current_category->getTitlelink()), 'albums' => '0', 'images' => '0', 'pages' => '0');
-							printSearchForm(NULL, 'search', NULL, gettext('Search category'), NULL, NULL, $catlist);
-						} else {
-							$catlist = array('news' => '1', 'albums' => '0', 'images' => '0', 'pages' => '0');
-							printSearchForm(NULL, "search", "", gettext("Search news"), NULL, NULL, $catlist);
-						}
+						printSearchForm("", "search", "", gettext("Search"));
 					}
 					?>
 				</div>
@@ -38,14 +32,13 @@ if (class_exists('Zenpage') && ZP_NEWS_ENABLED) {
 
 					<div id="breadcrumb">
 						<h2>
-							<a href="<?php echo getGalleryIndexURL(); ?>"><?php echo gettext("Index"); ?></a>
-							<?php printNewsIndexURL(NULL, ' » '); ?><strong><?php
+							<?php
+								printGalleryIndexURL(' » ');
 								printZenpageItemsBreadcrumb(' » ', '');
 								printCurrentNewsCategory(" » ");
-								?><?php
 								printNewsTitle(" » ");
 								printCurrentNewsArchive(" » ");
-								?></strong>
+								?>
 						</h2>
 					</div>
 
@@ -55,9 +48,9 @@ if (class_exists('Zenpage') && ZP_NEWS_ENABLED) {
 						<?php
 // single news article
 						if (is_NewsArticle()) {
-							if (getPrevNewsURL()) { ?><div class="singlenews_prev"><?php printPrevNewsLink(); ?></div><?php } 
-       if (getNextNewsURL()) { ?><div class="singlenews_next"><?php printNextNewsLink(); ?></div><?php } 
-       if (getPrevNewsURL() OR getNextNewsURL()) { ?><br style="clear:both" /><?php } 
+							if (getPrevNewsURL()) { ?><div class="singlenews_prev"><?php printPrevNewsLink(); ?></div><?php }
+       if (getNextNewsURL()) { ?><div class="singlenews_next"><?php printNextNewsLink(); ?></div><?php }
+       if (getPrevNewsURL() OR getNextNewsURL()) { ?><br style="clear:both" /><?php }
        ?>
 							<h3><?php printNewsTitle(); ?></h3>
 							<div class="newsarticlecredit"><span class="newsarticlecredit-left"><?php printNewsDate(); ?> | <?php
@@ -101,9 +94,9 @@ if (class_exists('Zenpage') && ZP_NEWS_ENABLED) {
 										printNewsCategories(", ", gettext("Categories: "), "newscategories");
 										?>
 									</div>
-									<?php 
-         printNewsContent(); 
-         printCodeblock(1); 
+									<?php
+         printNewsContent();
+         printCodeblock(1);
 									if (getTags()) {
 										echo gettext('<strong>Tags:</strong>');
 									} printTags('links', '', 'taglist', ', ');

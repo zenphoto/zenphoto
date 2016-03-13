@@ -105,7 +105,7 @@ if (TEST_RELEASE) {
 }
 set_error_handler("zpErrorHandler");
 set_exception_handler("zpErrorHandler");
-$_configMutex = new Mutex('cF');
+$_configMutex = new zpMutex('cF');
 if (OFFSET_PATH != 2 && !file_exists($const_serverpath . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
 	require_once(dirname(__FILE__) . '/reconfigure.php');
 	reconfigureAction(1);
@@ -127,7 +127,7 @@ if (!defined('SERVERPATH')) {
 	define('SERVERPATH', $const_serverpath);
 }
 unset($const_serverpath);
-$_zp_mutex = new Mutex();
+$_zp_mutex = new zpMutex();
 
 if (OFFSET_PATH != 2 && empty($_zp_conf_vars['mysql_database'])) {
 	require_once(dirname(__FILE__) . '/reconfigure.php');
@@ -136,26 +136,14 @@ if (OFFSET_PATH != 2 && empty($_zp_conf_vars['mysql_database'])) {
 
 require_once(dirname(__FILE__) . '/lib-utf8.php');
 
-if (!defined('FILESYSTEM_CHARSET')) {
-	if (isset($_zp_conf_vars['FILESYSTEM_CHARSET']) && $_zp_conf_vars['FILESYSTEM_CHARSET'] != 'unknown') {
-		define('FILESYSTEM_CHARSET', $_zp_conf_vars['FILESYSTEM_CHARSET']);
-	} else {
-		define('FILESYSTEM_CHARSET', 'ISO-8859-1');
-	}
-}
+
+
 if (!defined('CHMOD_VALUE')) {
 	define('CHMOD_VALUE', fileperms(dirname(__FILE__)) & 0666);
 }
 define('FOLDER_MOD', CHMOD_VALUE | 0311);
 define('FILE_MOD', CHMOD_VALUE & 0666);
 define('DATA_MOD', fileperms(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE) & 0777);
-
-$_session_path = session_save_path();
-if (!file_exists($_session_path) || !is_writable($_session_path)) {
-	mkdir_recursive(SERVERPATH . '/' . DATA_FOLDER . '/PHP_sessions', FOLDER_MOD);
-	session_save_path(SERVERPATH . '/' . DATA_FOLDER . '/PHP_sessions');
-}
-unset($_session_path);
 
 // If the server protocol is not set, set it to the default.
 if (!isset($_zp_conf_vars['server_protocol'])) {
@@ -171,6 +159,18 @@ if (!defined('DATABASE_SOFTWARE') && extension_loaded(strtolower(@$_zp_conf_vars
 if (!$data && OFFSET_PATH != 2) {
 	require_once(dirname(__FILE__) . '/reconfigure.php');
 	reconfigureAction(3);
+}
+
+if (!defined('FILESYSTEM_CHARSET')) {
+	if (isset($_zp_conf_vars['FILESYSTEM_CHARSET']) && $_zp_conf_vars['FILESYSTEM_CHARSET'] != 'unknown') {
+		define('FILESYSTEM_CHARSET', $_zp_conf_vars['FILESYSTEM_CHARSET']);
+	} else {
+		$data = getOption('filesystem_charset');
+		if(!$data) {
+			$data = 'UTF-8';
+		}
+		define('FILESYSTEM_CHARSET', $data);
+	}
 }
 
 $data = getOption('charset');
@@ -1571,7 +1571,7 @@ function zp_session_start() {
  * @author Stephen
  *
  */
-class Mutex {
+class zpMutex {
 
 	private $locked = NULL;
 	private $ignoreUseAbort = NULL;

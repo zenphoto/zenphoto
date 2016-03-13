@@ -51,7 +51,7 @@ class sitemap {
 	var $startmtime;
 	var $disable = false; // manual disable caching a page
 
-	function sitemap() {
+	function __construct() {
 		setOptionDefault('sitemap_changefreq_index', 'daily');
 		setOptionDefault('sitemap_changefreq_albums', 'daily');
 		setOptionDefault('sitemap_changefreq_images', 'daily');
@@ -63,6 +63,8 @@ class sitemap {
 		setOptionDefault('sitemap_lastmod_images', 'mtime');
 		setOptionDefault('sitemap_processing_chunk', 25);
 		setOptionDefault('sitemap_galleryindex', '');
+		setOptionDefault('sitemap_google', 0);
+		setOptionDefault('sitemap_google_fullimage', 0);
 	}
 
 	function getOptionsSupported() {
@@ -73,7 +75,7 @@ class sitemap {
 		}
 		$options = array(
 						gettext('Gallery index page')													 => array('key'					 => 'sitemap_galleryindex', 'type'				 => OPTION_TYPE_TEXTBOX,
-										'order'				 => 10,
+										'order'				 => 11,
 										'multilingual' => false,
 										'desc'				 => gettext('If your theme does not use the theme index.php page as the gallery index, enter the name of the page here. In the Zenpage theme for example this could be gallery.php. In that case you enter "gallery". If this is not empty the index.php sitemap is not generated.')),
 						gettext('Album date')																	 => array('key'				 => 'sitemap_lastmod_albums', 'type'			 => OPTION_TYPE_SELECTOR,
@@ -159,27 +161,30 @@ class sitemap {
 						gettext('Enable Google image and video extension')		 => array('key'		 => 'sitemap_google', 'type'	 => OPTION_TYPE_CHECKBOX,
 										'order'	 => 9,
 										'desc'	 => gettext('If checked, the XML output file will be formatted using the Google XML image and video extensions where applicable.') . '<p class="notebox">' . gettext('<strong>Note:</strong> Other search engines (Yahoo, Bing) might not be able to read your sitemap. Also the Google extensions cover only image and video formats. If you use custom file types that are not covered by Zenphoto standard plugins or types like .mp3, .txt and .html you should probably not use this or modify the plugin. Also, if your site is really huge think about if you really need this setting as the creation may cause extra workload of your server and result in timeouts') . '</p>'),
+						gettext('Google image and video extension: Link full image ')		 => array('key'		 => 'sitemap_google_fullimage', 'type'	 => OPTION_TYPE_CHECKBOX,
+										'order'	 => 10,
+										'desc'	 => gettext('If checked, the original full image is referenced instead of the sized images in the cache. For image formats only.')),
 						gettext('Google - URL to image license')							 => array('key'					 => 'sitemap_license', 'type'				 => OPTION_TYPE_TEXTBOX,
-										'order'				 => 10,
+										'order'				 => 12,
 										'multilingual' => true,
 										'desc'				 => gettext('Optional. Used only if the Google extension is checked. Must be an absolute URL address of the form: http://mydomain.com/license.html')),
 						gettext('Sitemap processing chunk')										 => array('key'		 => 'sitemap_processing_chunk', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 11,
+										'order'	 => 13,
 										'desc'	 => gettext('The number of albums that will be processed for each sitemap file. Lower this value if you get script timeouts when creating the files.')),
 						gettext('Use subdomains') . '*'												 => array('key'			 => 'dynamic_locale_subdomain', 'type'		 => OPTION_TYPE_CHECKBOX,
-										'order'		 => 12,
+										'order'		 => 14,
 										'disabled' => $_common_locale_type,
 										'desc'		 => $localdesc)
 		);
 		if ($_common_locale_type) {
 			$options['note'] = array('key'		 => 'sitemap_locale_type', 'type'	 => OPTION_TYPE_NOTE,
-							'order'	 => 13,
+							'order'	 => 15,
 							'desc'	 => '<p class="notebox">' . $_common_locale_type . '</p>');
 		} else {
 			$_common_locale_type = gettext('* This option may be set via the <a href="javascript:gotoName(\'sitemap-extended\');"><em>sitemap-extended</em></a> plugin options.');
 			$options['note'] = array('key'		 => 'sitemap_locale_type',
 							'type'	 => OPTION_TYPE_NOTE,
-							'order'	 => 13,
+							'order'	 => 16,
 							'desc'	 => gettext('<p class="notebox">*<strong>Note:</strong> The setting of this option is shared with other plugins.</p>'));
 		}
 		return $options;
@@ -508,20 +513,20 @@ function getSitemapAlbums() {
 			switch (SITEMAP_LOCALE_TYPE) {
 				case 1:
 					foreach ($sitemap_locales as $locale) {
-						$url = seo_locale::localePath(true, $locale) . '/' . pathurlencode($albumobj->name);
+						$url = seo_locale::localePath(true, $locale) . '/' . pathurlencode($albumobj->name) . '/';
 						$data .= sitemap_echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $albumchangefreq . "</changefreq>\n\t\t<priority>0.8</priority>\n");
 						$data .= sitemap_echonl("\t</url>");
 					}
 					break;
 				case 2:
 					foreach ($sitemap_locales as $locale) {
-						$url = rewrite_path(pathurlencode($albumobj->name), '?album=' . pathurlencode($albumobj->name), dynamic_locale::fullHostPath($locale));
+						$url = rewrite_path(pathurlencode($albumobj->name) . '/', '?album=' . pathurlencode($albumobj->name), dynamic_locale::fullHostPath($locale));
 						$data .= sitemap_echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $albumchangefreq . "</changefreq>\n\t\t<priority>0.8</priority>\n");
 						$data .= sitemap_echonl("\t</url>");
 					}
 					break;
 				default:
-					$url = rewrite_path(pathurlencode($albumobj->name), '?album=' . pathurlencode($albumobj->name), FULLWEBPATH);
+					$url = rewrite_path(pathurlencode($albumobj->name) . '/', '?album=' . pathurlencode($albumobj->name), FULLWEBPATH);
 					$data .= sitemap_echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $albumchangefreq . "</changefreq>\n\t\t<priority>0.8</priority>\n");
 					$data .= sitemap_echonl("\t</url>");
 					break;
@@ -532,20 +537,20 @@ function getSitemapAlbums() {
 					switch (SITEMAP_LOCALE_TYPE) {
 						case 1:
 							foreach ($sitemap_locales as $locale) {
-								$url = seo_locale::localePath(true, $locale) . '/' . pathurlencode($albumobj->name) . '/' . _PAGE_ . '/' . $x;
+								$url = seo_locale::localePath(true, $locale) . '/' . pathurlencode($albumobj->name) . '/' . _PAGE_ . '/' . $x . '/';
 								$data .= sitemap_echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $albumchangefreq . "</changefreq>\n\t\t<priority>0.8</priority>\n");
 								$data .= sitemap_echonl("\t</url>");
 							}
 							break;
 						case 2:
 							foreach ($sitemap_locales as $locale) {
-								$url = rewrite_path(pathurlencode($albumobj->name) . '/' . _PAGE_ . '/' . $x, '?album=' . pathurlencode($albumobj->name) . '&amp;page=' . $x, dynamic_locale::fullHostPath($locale));
+								$url = rewrite_path(pathurlencode($albumobj->name) . '/' . _PAGE_ . '/' . $x . '/', '?album=' . pathurlencode($albumobj->name) . '&amp;page=' . $x, dynamic_locale::fullHostPath($locale));
 								$data .= sitemap_echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $albumchangefreq . "</changefreq>\n\t\t<priority>0.8</priority>\n");
 								$data .= sitemap_echonl("\t</url>");
 							}
 							break;
 						default:
-							$url = rewrite_path(pathurlencode($albumobj->name) . '/' . _PAGE_ . '/' . $x, '?album=' . pathurlencode($albumobj->name) . '&amp;page=' . $x, FULLWEBPATH);
+							$url = rewrite_path(pathurlencode($albumobj->name) . '/' . _PAGE_ . '/' . $x . '/', '?album=' . pathurlencode($albumobj->name) . '&amp;page=' . $x, FULLWEBPATH);
 							$data .= sitemap_echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $albumchangefreq . "</changefreq>\n\t\t<priority>0.8</priority>\n");
 							$data .= sitemap_echonl("\t</url>");
 							break;
@@ -682,7 +687,12 @@ function getSitemapGoogleImageVideoExtras($albumobj, $imageobj, $locale) {
 		$data .= sitemap_echonl("\t\t\t<video:content_loc>" . $host . pathurlencode($imageobj->getFullImageURL()) . "</video:content_loc>");
 		$data .= sitemap_echonl("\t\t</video:video>");
 	} else if (in_array($ext, array('.jpg', '.jpeg', '.gif', '.png'))) { // this might need to be extended!
-		$data .= sitemap_echonl("\t\t<image:image>\n\t\t\t<image:loc>" . $host . html_encode($imageobj->getSizedImage(getOption('image_size'))) . "</image:loc>\n");
+		if(getOption('sitemap_google_fullimage')) {
+			$imagelocation = $host . pathurlencode($imageobj->getFullImageURL());
+		} else {
+			$imagelocation = $host . html_encode($imageobj->getSizedImage(getOption('image_size')));
+		}
+		$data .= sitemap_echonl("\t\t<image:image>\n\t\t\t<image:loc>" . $imagelocation . "</image:loc>\n");
 		// disabled for the multilingual reasons above
 		$data .= sitemap_echonl("\t\t\t<image:title>" . html_encode($imageobj->getTitle($locale)) . "</image:title>");
 		if ($imageobj->getDesc()) {

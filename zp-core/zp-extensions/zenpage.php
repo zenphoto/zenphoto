@@ -104,7 +104,7 @@ $_zp_zenpage = new Zenpage();
 
 class zenpagecms {
 
-	function zenpagecms() {
+	function __construct() {
 		if (OFFSET_PATH == 2) {
 
 			setOptionDefault('zenpage_articles_per_page', '10');
@@ -343,12 +343,18 @@ class zenpagecms {
 }
 
 /**
- * Returns the full path of the news index page (news page 1)
- *
+ * Returns the full path of the news index page
+ * @param int $page Page number to append, default empty (page 1)
  * @return string
  */
-function getNewsIndexURL() {
-	return zp_apply_filter('getLink', rewrite_path(_NEWS_, "/index.php?p=news"), 'news.php', NULL);
+function getNewsIndexURL($page = '') {
+	$rewrite = _NEWS_ . '/';
+	$plain = '/index.php?p=news';
+	if ($page > 1) {
+		$rewrite .= $page . '/';
+		$plain .= '&page=' . $page;
+	}
+	return zp_apply_filter('getLink', rewrite_path($rewrite, $plain), 'news.php', $page);
 }
 
 /**

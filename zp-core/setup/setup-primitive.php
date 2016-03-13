@@ -26,7 +26,7 @@ if (empty($matches)) {
 if (!defined('WEBPATH')) { define('WEBPATH', $const_webpath); }
 if (!defined('SERVERPATH')) { define('SERVERPATH', $serverpath); }
 define('LOCAL_CHARSET','UTF-8');
-define('FILESYSTEM_CHARSET', 'ISO-8859-1');
+define('FILESYSTEM_CHARSET', 'UTF-8');
 define('ADMIN_RIGHTS',1);
 define('PROTOCOL', 'http');
 

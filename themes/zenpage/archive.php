@@ -7,9 +7,9 @@ if (!defined('WEBPATH'))
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta charset="<?php echo LOCAL_CHARSET; ?>">
 		<?php zp_apply_filter('theme_head'); ?>
 		<?php printHeadTitle(); ?>
-		<meta charset="<?php echo LOCAL_CHARSET; ?>">
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" type="text/css" />
 		<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery', gettext('Gallery RSS')); ?>
 	</head>
@@ -21,15 +21,16 @@ if (!defined('WEBPATH'))
 
 			<div id="header">
 				<h1><?php printGalleryTitle(); ?></h1>
-				<?php if (getOption('Allow_search')) {
-					printSearchForm("", "search", "", gettext("Search gallery"));
-				} ?>
+				<?php
+				if (getOption('Allow_search')) {
+					printSearchForm("", "search", "", gettext("Search"));
+				}
+				?>
 			</div>
 
 
 			<div id="breadcrumb">
-				<h2><a href="<?php echo getGalleryIndexURL(); ?>" title="<?php gettext('Index'); ?>"><?php echo gettext("Index"); ?></a> » <strong><?php echo gettext("Archive View"); ?></strong>
-				</h2>
+				<h2><?php printGalleryIndexURL(' » '); ?><strong><?php echo gettext("Archive View"); ?></strong></h2>
 			</div>
 
 			<div id="content">

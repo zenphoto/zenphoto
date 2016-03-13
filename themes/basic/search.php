@@ -6,9 +6,9 @@ if (!defined('WEBPATH'))
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta charset="<?php echo LOCAL_CHARSET; ?>">
 		<?php zp_apply_filter('theme_head'); ?>
 		<?php printHeadTitle(); ?>
-		<meta charset="<?php echo LOCAL_CHARSET; ?>">
 		<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
 		<link rel="stylesheet" href="<?php echo pathurlencode(dirname(dirname($zenCSS))); ?>/common.css" type="text/css" />
 		<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery', gettext('Gallery RSS')); ?>
@@ -28,9 +28,8 @@ if (!defined('WEBPATH'))
 				?>
 				<h2>
 					<span>
-						<?php printHomeLink('', ' | '); ?>
-						<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo ('Gallery Index'); ?>"><?php printGalleryTitle(); ?></a>
-					</span> |
+						<?php printHomeLink('', ' | '); printGalleryIndexURL(' | ', getGalleryTitle()); ?></a>
+					</span>
 					<?php printSearchBreadcrumb(' | '); ?>
 				</h2>
 			</div>
@@ -60,12 +59,12 @@ if (!defined('WEBPATH'))
 								<p><?php printAlbumDesc(); ?></p>
 								<small><?php printAlbumDate(gettext("Date:") . ' '); ?> </small>
 							</div>
-							<p style="clear: both; "></p>
 						</div>
 						<?php
 					}
 					?>
 				</div>
+				<br class="clearall">
 				<div id="images">
 					<?php
 					while (next_image()) {
@@ -78,7 +77,7 @@ if (!defined('WEBPATH'))
 					}
 					?>
 				</div>
-				<br class="clearall" />
+				<br class="clearall">
 				<?php
 				@call_user_func('printSlideShowLink');
 				if ($c == 0) {

@@ -121,7 +121,7 @@ if (defined('OFFSET_PATH')) {
 					} else {
 						?>
 						<h2><?php echo gettext('Please enter the message you want to send.'); ?></h2>
-						<form class="dirty-check" id="massmail" action="?sendmail" method="post" accept-charset="UTF-8">
+						<form class="dirty-check" id="massmail" action="?sendmail" method="post" accept-charset="UTF-8" autocomplete="off">
 							<?php XSRFToken('mailing_list'); ?>
 							<table>
 								<tr>

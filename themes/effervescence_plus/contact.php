@@ -12,9 +12,9 @@ if (function_exists('printContactForm')) {
 	<!DOCTYPE html>
 	<html>
 		<head>
+			<meta charset="<?php echo LOCAL_CHARSET; ?>">
 			<?php zp_apply_filter('theme_head'); ?>
 			<?php printHeadTitle(); ?>
-			<meta charset="<?php echo LOCAL_CHARSET; ?>">
 		</head>
 
 		<body onload="blurAnchors()">
@@ -36,19 +36,8 @@ if (function_exists('printContactForm')) {
 
 				<div id="wrapnav">
 					<div id="navbar">
-						<span><?php printHomeLink('', ' | '); ?>
-							<?php
-							if (getOption('custom_index_page') === 'gallery') {
-								?>
-								<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Main Index'); ?>"><?php echo gettext('Home'); ?></a> |
-								<?php
-							} else {
-								?>
-								<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Albums Index'); ?>"><?php printGalleryTitle(); ?></a> |
-								<?php
-							}
-							printGalleryTitle();
-							?></a></span> |
+						<span><?php printHomeLink('', ' | '); printGalleryIndexURL(' | ', getGalleryTitle());
+							?></span> |
 						<?php
 						echo "<em>" . gettext('Contact') . "</em>";
 						?>

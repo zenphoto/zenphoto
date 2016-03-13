@@ -206,10 +206,7 @@ function shortenContent($articlecontent, $shorten, $shortenindicator, $forceindi
 				$short = mb_substr($short, 0, $open);
 			}
 			if (class_exists('tidy')) {
-				$tidy = new tidy();
-				$tidy->parseString($short . $shortenindicator, array('show-body-only' => true), 'utf8');
-				$tidy->cleanRepair();
-				$short = trim($tidy);
+				$short = zpFunctions::tidyHTML($short . $shortenindicator);
 			} else {
 				$short = trim(cleanHTML($short . $shortenindicator));
 			}
@@ -496,7 +493,7 @@ function sortByMultilingual($dbresult, $field, $descending) {
 	}
 	$result = array();
 	foreach ($temp as $key => $v) {
-		$result[$key] = $dbresult[$key];
+		$result[] = $dbresult[$key];
 	}
 	return $result;
 }
@@ -1138,7 +1135,6 @@ function getAllTagsCount($exclude_unassigned = false, $checkaccess = false) {
       if($checkaccess) {
         $count = getTagCountByAccess($tag);
         if($count != 0) {
-          echo $tag['name']." included<br>";
           $_zp_count_tags[$tag['name']] = $count;
         }
       } else {
@@ -1183,10 +1179,10 @@ function getTagCountByAccess($tag) {
       return $tag['count'];
     }
     return 0;
-  } 
+  }
   if (is_null($_zp_object_to_tags)) {
     $sql = "SELECT tagid, type, objectid FROM " . prefix('obj_to_tag') . " ORDER BY tagid";
-    $_zp_object_to_tags = query_full_array($sql); 
+    $_zp_object_to_tags = query_full_array($sql);
   }
   $count = '';
   if ($_zp_object_to_tags) {
@@ -1541,12 +1537,10 @@ function getNotViewableImages() {
   $hidealbums = getNotViewableAlbums();
   $where = '';
   if (!is_null($hidealbums)) {
-    foreach ($hidealbums as $id) {
-      $where .= ' AND `albumid` = ' . $id;
-    }
+    $where = implode(',', $hidealbums);
   }
   if (is_null($_zp_not_viewable_image_list)) {
-    $sql = 'SELECT `id` FROM ' . prefix('images') . ' WHERE `show`= 0' . $where;
+    $sql = 'SELECT DISTINCT `id` FROM ' . prefix('images') . ' WHERE `show` = 0 OR `albumid` in (' . $where . ')';
     $result = query($sql);
     if ($result) {
       $_zp_not_viewable_image_list = array();
@@ -2129,7 +2123,7 @@ function debug404($album, $image, $theme) {
  */
 function getXSRFToken($action) {
 	global $_zp_current_admin_obj;
-	return sha1($action . prefix(getUserIP()) . serialize($_zp_current_admin_obj) . session_id());
+	return sha1($action . prefix(ZENPHOTO_RELEASE) . serialize($_zp_current_admin_obj) . session_id());
 }
 
 /**
@@ -2470,7 +2464,7 @@ function getMacros() {
  *
  * @param $subalbum root level album (NULL is the gallery)
  * @param $levels how far to nest
- * @param $checkalbumrights TRUE (Default) for album rights for backend usage, FALSE to skip for frontend usage 
+ * @param $checkalbumrights TRUE (Default) for album rights for backend usage, FALSE to skip for frontend usage
  * @param $level internal for keeping the sort order elements
  * @return array
  */
@@ -2489,7 +2483,7 @@ function getNestedAlbumList($subalbum, $levels, $checkalbumrights = true, $level
   $accessallowed = true;
   if($checkalbumrights) {
     $accessallowed = $albumobj->isMyItem(ALBUM_RIGHTS);
-  } 
+  }
 		if (!is_null($subalbum) || $accessallowed) {
 			$level[$cur] = sprintf('%03u', $albumobj->getSortOrder());
 			$list[] = array('name' => $analbum, 'sort_order' => $level);
@@ -2544,6 +2538,10 @@ class zpFunctions {
 			$text = @$_locale_Subdomains[zp_getCookie('dynamic_locale')];
 		} else {
 			$text = @$_locale_Subdomains[$loc];
+			//en_US always is always empty here so so urls in dynamic locale or html_meta_tags are wrong (Quickfix)
+			if(empty($text)) {
+				$text = $loc;
+			}
 		}
 		if (!is_null($separator)) {
 			$text = str_replace('_', $separator, $text);
@@ -2818,6 +2816,47 @@ class zpFunctions {
 		if (empty($class))
 			$class[] = 'theme';
 		debugLog(sprintf('    ' . $extension . '(%s:%u)=>%.4fs', implode('|', $class), $priority & PLUGIN_PRIORITY, $end - $start));
+	}
+	
+	/**
+	 * Removes a trailing slash from a string if one exists, otherwise just returns the string
+	 * Used primarily within date and tag searches and news date archive results
+	 * 
+	 * @param string $string
+	 * @return string
+	 * @since 1.4.12
+	 */
+	static function removeTrailingSlash($string) {
+		if (substr($string, -1) == '/') {
+			$length = strlen($string) - 1;
+			return substr($string, 0, $length);
+		}
+		return $string;
+	}
+	
+	/**
+	 * Wrapper for the native PHP tidy() to balance out invalid html if existing on the server
+	 * Covers newer HTML5 elements
+	 * 
+	 * @param string $html The html to tidy, typical from a description or content field of items
+	 * @param string $shortenindicator If you are using this on truncated text
+	 * @return string
+	 * @since 1.4.12
+	 */
+	static function tidyHTML($html) {
+		if (class_exists('tidy')) {
+			$options = array(
+					'new-blocklevel-tags' => 'article aside audio bdi canvas details dialog figcaption figure footer header main nav section source summary template track video',
+					'new-empty-tags' => 'command embed keygen source track wbr',
+					'new-inline-tags' => 'audio command datalist embed keygen mark menuitem meter output progress source time video wbr',
+					'show-body-only' => true
+			);
+			$tidy = new tidy();
+			$tidy->parseString($html, $options, 'utf8');
+			$tidy->cleanRepair();
+			return trim($tidy);
+		}
+		return $html;
 	}
 
 }

@@ -6,6 +6,7 @@ if (!defined('WEBPATH'))
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta charset="<?php echo LOCAL_CHARSET; ?>">
 		<?php
 		zp_apply_filter('theme_head');
 		if (getOption('effervescence_daily_album_image_effect') && getOption('custom_index_page') != 'gallery') {
@@ -13,7 +14,6 @@ if (!defined('WEBPATH'))
 		}
 		?>
 		<?php printHeadTitle(); ?>
-		<meta charset="<?php echo LOCAL_CHARSET; ?>">
 		<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery', 'Gallery RSS'); ?>
 	</head>
 
@@ -28,8 +28,7 @@ if (!defined('WEBPATH'))
 				<div id="logo">
 					<?php
 					if (getOption('Allow_search')) {
-						$album_list = array('albums' => '1', 'pages' => '0', 'news' => '0');
-						printSearchForm(NULL, 'search', $_zp_themeroot . '/images/search.png', gettext('Search albums'), NULL, NULL, $album_list);
+						printSearchForm(NULL, 'search', $_zp_themeroot . '/images/search.png', gettext('Search'));
 					}
 					printLogo();
 					?>
@@ -39,16 +38,7 @@ if (!defined('WEBPATH'))
 			<!-- Crumb Trail Navigation -->
 			<div id="wrapnav">
 				<div id="navbar">
-					<span><?php printHomeLink('', ' | '); ?>
-						<?php
-						if (getOption('custom_index_page') === 'gallery') {
-							?>
-							<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Main Index'); ?>"><?php echo gettext('Home'); ?></a> |
-							<?php
-						}
-						printGalleryTitle();
-						?>
-					</span>
+					<span><?php printHomeLink('', ' | '); printGalleryIndexURL(' | ', getGalleryTitle()); ?></span>
 				</div>
 			</div> <!-- wrapnav -->
 		</div> <!-- header -->

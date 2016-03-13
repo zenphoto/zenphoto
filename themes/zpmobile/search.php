@@ -5,9 +5,9 @@ if (!defined('WEBPATH'))
 <!DOCTYPE html>
 <html>
 	<head>
-		<?php zp_apply_filter('theme_head'); ?>
-<?php printHeadTitle(); ?>
 		<meta charset="<?php echo LOCAL_CHARSET; ?>">
+		<?php zp_apply_filter('theme_head'); ?>
+		<?php printHeadTitle(); ?>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" />
 		<?php jqm_loadScripts(); ?>
@@ -43,14 +43,14 @@ if (!defined('WEBPATH'))
 						$categorylist = $_zp_current_search->getCategoryList();
 						if (is_array($categorylist)) {
 							$catlist = array('news' => $categorylist, 'albums' => '0', 'images' => '0', 'pages' => '0');
-							printSearchForm(NULL, 'search', NULL, gettext('Search category'), NULL, NULL, $catlist);
+							printSearchForm(NULL, 'search', NULL, gettext('Search'), NULL, NULL, $catlist);
 						} else {
 							$albumlist = $_zp_current_search->getAlbumList();
 							if (is_array($albumlist)) {
 								$album_list = array('albums' => $albumlist, 'pages' => '0', 'news' => '0');
-								printSearchForm(NULL, 'search', NULL, gettext('Search album'), NULL, NULL, $album_list);
+								printSearchForm(NULL, 'search', NULL, gettext('Search'), NULL, NULL, $album_list);
 							} else {
-								printSearchForm("", "search", NULL, gettext("Search gallery"));
+								printSearchForm("", "search", NULL, gettext("Search"));
 							}
 						}
 					}
@@ -148,9 +148,9 @@ if (!defined('WEBPATH'))
 					<?php } ?>
 						<?php if (getNumImages() > 0) { ?>
 						<div class="ui-grid-c">
-	<?php 
+	<?php
 	$count = '';
-	while (next_image()) { 
+	while (next_image()) {
 		$count++;
 				switch($count) {
 					case 1:

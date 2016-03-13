@@ -68,7 +68,7 @@ if (defined('OFFSET_PATH')) {
 		$subalbum = $obj->name;
 		$file = basename($subalbum);
 		$seoname = seoFriendly($file);
-
+		$album_cleaned = false;
 		if ($seoname != $file) {
 			$newname = dirname($subalbum);
 			if (empty($newname) || $newname == '.') {
@@ -87,13 +87,18 @@ if (defined('OFFSET_PATH')) {
 				echo "<br />\n";
 				$albumcount++;
 				$obj = newAlbum($newname);
+				zpFunctions::removeDir(SERVERCACHE . '/' . $subalbum);
+				if (extensionEnabled('static_html_cache')) {
+					Gallery::clearCache(SERVERPATH . '/' . STATIC_CACHE_FOLDER);
+				}
+				$album_cleaned = true;
 			}
 		}
 		if (!$obj->isDynamic())
-			checkFolder($obj);
+			checkFolder($obj, $album_cleaned);
 	}
 
-	function checkFolder($album) {
+	function checkFolder($album, $album_cleaned) {
 		global $count, $albumcount;
 		$subalbums = $album->getAlbums(0);
 		foreach ($subalbums as $subalbum) {
@@ -117,9 +122,16 @@ if (defined('OFFSET_PATH')) {
 					printf(gettext('<em>%1$s</em> renamed to <em>%2$s</em>'), $folder . $filename, $seoname);
 					echo "<br />\n";
 					$count++;
+					if(!$album_cleaned) { 
+						Gallery::clearCache(SERVERCACHE . '/' . $album->name);
+						if(extensionEnabled('static_html_cache')) {
+							Gallery::clearCache(SERVERPATH . '/' . STATIC_CACHE_FOLDER);
+						}
+					} 
 				}
 			}
 		}
+		
 	}
 
 	$_zp_gallery->garbageCollect();

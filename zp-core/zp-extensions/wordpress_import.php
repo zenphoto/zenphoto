@@ -2,6 +2,8 @@
 /**
  *
  * This imports Wordpress pages, posts, categories and comments to Zenpage
+ * 
+ * NOTE: Requires MySQLi enabled as the database handler.
  *
  * @author Malte Müller (acrylian)
  * @package plugins
@@ -51,10 +53,10 @@ if (defined('OFFSET_PATH')) {
 
 	// some extra functions
 	function wp_query_full_array($sql, $wpconnection) {
-		$result = mysql_query($sql, $wpconnection) or die(gettext("Query failed : ") . mysql_error());
+		$result = mysqli_query($wpconnection, $sql) or die(gettext("Query failed : ") . mysqli_error($wpconnection));
 		if ($result) {
 			$allrows = array();
-			while ($row = mysql_fetch_assoc($result))
+			while ($row = mysqli_fetch_assoc($result))
 				$allrows[] = $row;
 			return $allrows;
 		} else {
@@ -106,14 +108,14 @@ if (defined('OFFSET_PATH')) {
 		if (empty($wp_dbname) || empty($wp_dbbuser) || empty($wp_dbpassword) || empty($wp_dbhost)) {
 			$dbinfo_incomplete = wpimport_TryAgainError($message);
 		}
-		$wpdbconnection = @mysql_connect($wp_dbhost, $wp_dbbuser, $wp_dbpassword, true); // open 2nd connection to Wordpress additionally to the existing Zenphoto connection
-		mysql_query("SET NAMES 'utf8'");
-		@mysql_query('SET SESSION sql_mode="";');
+		$wpdbconnection = @mysqli_connect($wp_dbhost, $wp_dbbuser, $wp_dbpassword, $wp_dbname); // open 2nd connection to Wordpress additionally to the existing Zenphoto connection
+		mysqli_query($wpdbconnection, "SET NAMES 'utf8'");
+		@mysqli_query($wpdbconnection, 'SET SESSION sql_mode="";');
 		if (!$wpdbconnection) {
-			$db_noconnection = wpimport_TryAgainError(gettext('<strong>ERROR:</strong> Could not connect to the Wordpress database - Query failed : ') . mysql_error());
+			$db_noconnection = wpimport_TryAgainError(gettext('<strong>ERROR:</strong> Could not connect to the Wordpress database - Query failed : ') . mysqli_error($wpdbconnection));
 		}
-		if (!@mysql_select_db($wp_dbname, $wpdbconnection)) {
-			$db_notselected = wpimport_TryAgainError(gettext('<strong>ERROR:</strong> Wordpress database could not be selected - Query failed : ') . mysql_error());
+		if (!@mysqli_select_db($wpdbconnection, $wp_dbname)) {
+			$db_notselected = wpimport_TryAgainError(gettext('<strong>ERROR:</strong> Wordpress database could not be selected - Query failed : ') . mysqli_error($wpdbconnection));
 		}
 
 		/*		 * *********************************
@@ -131,6 +133,7 @@ if (defined('OFFSET_PATH')) {
 					$cattitlelink = $cat['slug'];
 					$cattitle = $_zp_UTF8->convert($cat['name']);
 					//$catdesc = $_zp_UTF8->convert($cat['description']);
+					$catdesc = $cat['description'];
 					if (getcheckboxState('convertlinefeeds')) {
 						$catdesc = nl2br($catdesc);
 					}
@@ -177,14 +180,14 @@ if (defined('OFFSET_PATH')) {
 		/*		 * *********************************
 		 * get wp posts and pages
 		 * ********************************** */
-		$posttotal = mysql_query("
+		$posttotal = mysqli_query($wpdbconnection, "
 			SELECT COUNT(*)
 			FROM " . wp_prefix('posts', $wp_prefix) . "
 			WHERE (post_type = 'post' OR post_type = 'page') AND (post_status = 'publish' OR post_status = 'draft')
-		", $wpdbconnection);
+		");
 		$row = db_fetch_row($posttotal);
 		$posttotalcount = $row[0];
-
+		
 		$posts = wp_query_full_array("
 		SELECT
 		id,
@@ -388,7 +391,7 @@ if (defined('OFFSET_PATH')) {
 					<?php zp_apply_filter('admin_note', 'wordpress', ''); ?>
 					<h1><?php echo (gettext('Wordpress Importer')); ?></h1>
 					<?php if (!isset($_REQUEST['dbname']) && !isset($_REQUEST['dbuser']) && !isset($_REQUEST['dbpass']) && !isset($_REQUEST['dbhost']) && !isset($_GET['refresh'])) { ?>
-						<p><?php echo gettext("An importer for <strong>Wordpress 3.x</strong> to the Zenpage CMS plugin that imports the following:"); ?></p>
+						<p><?php echo gettext("An importer for <strong>Wordpress 3.x or newer</strong> to the Zenpage CMS plugin that imports the following:"); ?></p>
 						<ul>
 							<li><?php echo gettext("<strong>Posts (post_status published and draft only) => Zenpage articles</strong>"); ?></li>
 							<li><?php echo gettext("<strong>Pages (post_status published and draft only) => Zenpage pages</strong>"); ?></li>
@@ -396,6 +399,9 @@ if (defined('OFFSET_PATH')) {
 							<li><?php echo gettext("<strong>Post tags => Zenphoto tags including assignment to their article</strong>"); ?></li>
 							<li><?php echo gettext("<strong>Post and page comments => Zenphoto comments including assignment to their article</strong>"); ?></li>
 						</ul>
+							<p class="notebox">
+							<?php echo gettext("<strong>IMPORTANT: </strong>MySQLi must be selected as the database handler on the Zenphoto options (generally the default)."); ?>
+						</p
 						<p class="notebox">
 							<?php echo gettext("<strong>IMPORTANT: </strong>If you are not using an fresh Zenphoto install it is <strong>strongly recommended to backup your database</strong> before running this importer. Make also sure that both databases use the same encoding so you do not get messed up character display."); ?>
 						</p>

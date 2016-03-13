@@ -274,7 +274,7 @@ function printAllTags($tags, $mode, $separator = '', $class = '', $showcounter =
 			}
 			if ($loopcount == $tagcount)
 				$separator = '';
-			echo "<li><a class=\"tagLink\" href=\"" . html_encode(getSearchURL($tname, '', 'tags', 0)) . "\"" . $style . " rel=\"nofollow\">" . $tname . $counter . "</a>" . $separator . "</li>\n";
+			echo "<li><a class=\"tagLink\" href=\"" . html_encode(getSearchURL($tname, '', 'tags', 0)) . "\"" . $style . ">" . $tname . $counter . "</a>" . $separator . "</li>\n";
 		}
 	}
 	echo "</ul>\n";

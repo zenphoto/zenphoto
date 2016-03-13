@@ -125,27 +125,26 @@ function printAdminHeader($tab, $subtab = NULL) {
 			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/zenphoto.js" type="text/javascript" ></script>
 			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/admin.js" type="text/javascript" ></script>
 			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.scrollTo.js" type="text/javascript"></script>
-			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.are-you-sure.js" type="text/javascript"></script>
+			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.dirtyforms.min.js" type="text/javascript"></script>
 			<script type="text/javascript">
 				// <!-- <![CDATA[
 
 				$(document).ready(function() {
-	<?php
-	if (zp_has_filter('admin_head', 'colorbox::css')) {
-		?>
-						$("a.colorbox").colorbox({
-							maxWidth: "98%",
-							maxHeight: "98%",
-							close: '<?php echo addslashes(gettext("close")); ?>'
-						});
+				<?php
+				if (zp_has_filter('admin_head', 'colorbox::css')) {
+					?>
+									$("a.colorbox").colorbox({
+										maxWidth: "98%",
+										maxHeight: "98%",
+										close: '<?php echo addslashes(gettext("close")); ?>'
+									});
 
-		<?php
-	}
-	?>
-					$('form.dirty-check').areYouSure({
-						'message': '<?php echo addslashes(gettext('You have unsaved changes!')); ?>',
-						'addRemoveFieldsMarksDirty':false
-					});
+					<?php
+				}
+				?>
+				$('form.dirty-check').dirtyForms({ 
+					message: '<?php echo addslashes(gettext('You have unsaved changes!')); ?>' 
+				});
 				});
 				$(function() {
 					$(".tooltip ").tooltip({
@@ -1115,7 +1114,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 				<a href="javascript:addNewTag('<?php echo $postit; ?>');" title="<?php echo gettext('add tag'); ?>">
 					<img src="images/add.png" title="<?php echo gettext('add tag'); ?>"/>
 				</a>
-				<input class="tagsuggest <?php echo $class; ?> " type="text" value="" name="newtag_<?php echo $postit; ?>" id="newtag_<?php echo $postit; ?>" />
+				<span class="tagSuggestContainer">
+					<input class="tagsuggest <?php echo $class; ?> " type="text" value="" name="newtag_<?php echo $postit; ?>" id="newtag_<?php echo $postit; ?>" />
+				</span>
 			</span>
 
 			<?php
@@ -1461,7 +1462,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 								<span id="album_custom_div<?php echo $suffix; ?>" class="customText" style="display:<?php echo $dsp; ?>;white-space:nowrap;">
 									<br />
 									<?php echo gettext('custom fields:') ?>
-									<input id="customalbumsort<?php echo $suffix; ?>" class="customalbumsort" name="<?php echo $prefix; ?>customalbumsort" type="text" value="<?php echo html_encode($cvt); ?>" />
+									<span class="tagSuggestContainer">
+										<input id="customalbumsort<?php echo $suffix; ?>" class="customalbumsort" name="<?php echo $prefix; ?>customalbumsort" type="text" value="<?php echo html_encode($cvt); ?>" />
+									</span>
 								</span>
 							</td>
 						</tr>
@@ -1517,7 +1520,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 								<span id="image_custom_div<?php echo $suffix; ?>" class="customText" style="display:<?php echo $dsp; ?>;white-space:nowrap;">
 									<br />
 									<?php echo gettext('custom fields:') ?>
-									<input id="customimagesort<?php echo $suffix; ?>" class="customimagesort" name="<?php echo $prefix; ?>customimagesort" type="text" value="<?php echo html_encode($cvt); ?>" />
+									<span class="tagSuggestContainer">
+										<input id="customimagesort<?php echo $suffix; ?>" class="customimagesort" name="<?php echo $prefix; ?>customimagesort" type="text" value="<?php echo html_encode($cvt); ?>" />
+									</span>
 								</span>
 							</td>
 						</tr>
@@ -2399,6 +2404,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 				}
 				if ($e = $album->move($dest)) {
 					$notify = "&mcrerr=" . $e;
+					SearchEngine::clearSearchCache();
 				} else {
 					$redirectto = $dest;
 				}
@@ -2542,6 +2548,7 @@ function printAdminHeader($tab, $subtab = NULL) {
       $dest = sanitize_path($_POST[$index . '-albumselect']);
       if ($dest && $dest != $folder) {
         if ($e = $image->move($dest)) {
+					SearchEngine::clearSearchCache();
           $notify = "&mcrerr=" . $e;
         }
       } else {
@@ -2562,6 +2569,7 @@ function printAdminHeader($tab, $subtab = NULL) {
     } else if ($movecopyrename_action == 'rename') {
       $renameto = sanitize_path($_POST[$index . '-renameto']);
       if ($e = $image->rename($renameto)) {
+				SearchEngine::clearSearchCache();
         $notify = "&mcrerr=" . $e;
       }
     }
@@ -3956,6 +3964,7 @@ function processAlbumBulkActions() {
 				switch ($action) {
 					case 'deleteallalbum':
 						$albumobj->remove();
+						SearchEngine::clearSearchCache();
 						break;
 					case 'showall':
 						$albumobj->setShow(1);
@@ -4041,6 +4050,7 @@ function processImageBulkActions($album) {
 				switch ($action) {
 					case 'deleteall':
 						$imageobj->remove();
+						SearchEngine::clearSearchCache();
 						break;
 					case 'showall':
 						$imageobj->set('show', 1);
@@ -4071,6 +4081,7 @@ function processImageBulkActions($album) {
 						break;
 					case 'moveimages':
 						if ($e = $imageobj->move($dest)) {
+							SearchEngine::clearSearchCache();
 							return "&mcrerr=" . $e;
 						}
 						break;
@@ -4419,8 +4430,8 @@ function printPageSelector($subpage, $rangeset, $script, $queryParams) {
 	$pages = count($rangeset);
 	$jump = $query = '';
 	foreach ($queryParams as $param => $value) {
-		$query .= $param . '=' . $value . '&amp;';
-		$jump .= "'" . $param . "=" . $value . "',";
+		$query .= html_encode($param) . '=' . html_encode($value) . '&amp;';
+		$jump .= "'" . html_encode($param) . "=" . html_encode($value) . "',";
 	}
 	$query = '?' . $query;
 	if ($subpage > 0) {
@@ -4870,7 +4881,9 @@ function clonedFrom() {
  */
 function checkAlbumimagesort($val) {
   global $_zp_sortby;
-  foreach ($_zp_sortby as $sort) {
+	$sortcheck = $_zp_sortby;
+	$sortcheck[gettext('Manual')] = 'manual';
+  foreach ($sortcheck as $sort) {
     if ($val == $sort || $val == $sort . '_desc') {
       return $val;
     }

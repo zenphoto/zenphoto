@@ -1,7 +1,7 @@
-# htaccess file version 1.4.5;
+# htaccess file version 1.4.12;
 #	Rewrite rules are now handled by PHP code
 # See the file "zenphoto-rewrite.txt" for the actual rules
-# 
+#
 # These rules redirect everything not directly accessing a file to the Zenphoto index.php script
 #
 <IfModule mod_autoindex.c>
@@ -9,13 +9,16 @@
 </IfModule>
 <IfModule mod_rewrite.c>
   RewriteEngine On
-  
+
   RewriteBase /zenphoto
-  
+
+  RewriteCond %{REQUEST_URI} !(/$|\.)
+  RewriteRule (.*) %{REQUEST_URI}/ [R=301,L]
+
   RewriteCond %{REQUEST_FILENAME} -f [OR]
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule ^.*$ - [L]
 
   RewriteRule ^.*/?$                        index.php [L,QSA]
-  
+
 </IfModule>

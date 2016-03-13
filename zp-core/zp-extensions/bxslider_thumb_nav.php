@@ -34,8 +34,10 @@ class bxslider {
 			setOptionDefault('bxslider_speed', '500');
 			setOptionDefault('bxslider_fullimagelink', '');
 			setOptionDefault('bxslider_mode', 'horizontal');
-			cacheManager::deleteThemeCacheSizes('bxslider_thumb_nav');
-			cacheManager::addThemeCacheSize('bxslider_thumb_nav', NULL, getOption('bxslider_width'), getOption('bxslider_height'), getOption('bxslider_cropw'), getOption('bxslider_croph'), NULL, NULL, true, NULL, NULL, NULL);
+			if (class_exists('cacheManager')) {
+				cacheManager::deleteThemeCacheSizes('bxslider_thumb_nav');
+				cacheManager::addThemeCacheSize('bxslider_thumb_nav', NULL, getOption('bxslider_width'), getOption('bxslider_height'), getOption('bxslider_cropw'), getOption('bxslider_croph'), NULL, NULL, true, NULL, NULL, NULL);
+			}
 		}
 	}
 
@@ -190,7 +192,12 @@ if (!$plugin_disable && !OFFSET_PATH && getOption('bxslider_' . $_zp_gallery->ge
 			if (count($bxslider_items) >= 2) {
 				foreach ($bxslider_items as $item) {
 					if (is_array($item)) {
-						$imgobj = newImage($_zp_current_album, $item['filename']);
+						if (in_context(ZP_SEARCH_LINKED)) {
+							$albumobj = newAlbum($item['folder']);
+						} else {
+							$albumobj = $_zp_current_album;
+						}
+						$imgobj = newImage($albumobj, $item['filename']);
 					} else {
 						$imgobj = newImage($_zp_current_album, $item);
 					}

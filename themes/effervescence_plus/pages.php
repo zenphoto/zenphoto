@@ -7,9 +7,9 @@ if (class_exists('Zenpage') && ZP_PAGES_ENABLED) {
 	<!DOCTYPE html>
 	<html>
 		<head>
+			<meta charset="<?php echo LOCAL_CHARSET; ?>">
 			<?php zp_apply_filter('theme_head'); ?>
 			<?php printHeadTitle(); ?>
-			<meta charset="<?php echo LOCAL_CHARSET; ?>">
 			<?php if (class_exists('RSS')) printRSSHeaderLink("Pages", "Zenpage news", ""); ?>
 		</head>
 
@@ -29,19 +29,8 @@ if (class_exists('Zenpage') && ZP_PAGES_ENABLED) {
 				<!-- Crumb Trail Navigation -->
 				<div id="wrapnav">
 					<div id="navbar">
-						<span><?php printHomeLink('', ' | '); ?>
-							<?php
-							if (getOption('custom_index_page') === 'gallery') {
-								?>
-								<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Main Index'); ?>"><?php echo gettext('Home'); ?></a> |
-								<?php
-							} else {
-								?>
-								<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Albums Index'); ?>"><?php printGalleryTitle(); ?></a> |
-								<?php
-							}
-							printGalleryTitle();
-							?></a></span>
+						<span><?php printHomeLink('', ' | '); printGalleryIndexURL(' ', getGalleryTitle());
+							?></span>
 						<?php printZenpageItemsBreadcrumb(" | ", ""); ?><?php printPageTitle(" | "); ?>
 					</div>
 				</div> <!-- wrapnav -->

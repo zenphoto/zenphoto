@@ -113,6 +113,8 @@ function updatePage(&$reports, $newpage = false) {
 		$rslt = query('UPDATE ' . prefix('pages') . ' SET `titlelink`=' . db_quote($titlelink) . ' WHERE `id`=' . $id, false);
 		if (!$rslt) {
 			$titlelink = $oldtitlelink; // force old link so data gets saved
+		} else {
+			SearchEngine::clearSearchCache();
 		}
 	}
 	// update page
@@ -192,6 +194,7 @@ function deletePage($titlelink) {
 			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-pages.php?deleted');
 			exitZP();
 		}
+		SearchEngine::clearSearchCache();
 		return "<p class='messagebox fade-message'>" . gettext("Page successfully deleted!") . "</p>";
 	}
 	return "<p class='errorbox fade-message'>" . gettext("Page delete failed!") . "</p>";
@@ -385,6 +388,8 @@ function updateArticle(&$reports, $newarticle = false) {
 		$rslt = query('UPDATE ' . prefix('news') . ' SET `titlelink`=' . db_quote($titlelink) . ' WHERE `id`=' . $id, false);
 		if (!$rslt) {
 			$titlelink = $oldtitlelink; // force old link so data gets saved
+		} else {
+			SearchEngine::clearSearchCache();
 		}
 	}
 	// update article
@@ -465,6 +470,7 @@ function deleteArticle($titlelink) {
 			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-news-articles.php?deleted');
 			exitZP();
 		}
+		SearchEngine::clearSearchCache();
 		return "<p class='messagebox fade-message'>" . gettext("Article successfully deleted!") . "</p>";
 	}
 	return "<p class='errorbox fade-message'>" . gettext("Article delete failed!") . "</p>";
@@ -891,6 +897,8 @@ function updateCategory(&$reports, $newcategory = false) {
 		$titleok = query('UPDATE ' . prefix('news_categories') . ' SET `titlelink`=' . db_quote($titlelink) . ' WHERE `id`=' . $id, false);
 		if (!$titleok) {
 			$titlelink = $oldtitlelink; // force old link so data gets saved
+		} else {
+			SearchEngine::clearSearchCache();
 		}
 	}
 	//update category
@@ -953,6 +961,7 @@ function deleteCategory($titlelink) {
 	$obj = new ZenpageCategory($titlelink);
 	$result = $obj->remove();
 	if ($result) {
+		SearchEngine::clearSearchCache();
 		return "<p class='messagebox fade-message'>" . gettext("Category successfully deleted!") . "</p>";
 	}
 	return "<p class='errorbox fade-message'>" . gettext("Category  delete failed!") . "</p>";
@@ -1318,57 +1327,56 @@ function getNewsPagesStatistic($option) {
 			break;
 		case "categories":
 			$type = gettext("Categories");
-			$cats = $_zp_zenpage->getAllCategories(false);
-			$total = count($cats);
-			$unpub = 0;
+			$items = $_zp_zenpage->getAllCategories(false);
 			break;
 	}
-	if ($option == "news" OR $option == "pages") {
-		$total = count($items);
-		$pub = 0;
-		foreach ($items as $item) {
-			switch ($option) {
-				case "news":
-					$itemobj = new ZenpageNews($item['titlelink']);
-					break;
-				case "pages":
-					$itemobj = new ZenpagePage($item['titlelink']);
-					break;
-				case "categories":
-					$itemobj = new ZenpageCategory($item['titlelink']);
-					break;
-			}
-			$show = $itemobj->getShow();
-			if ($show == 1) {
-				$pub++;
-			}
+	$total = count($items);
+	$pub = 0;
+	foreach ($items as $item) {
+		switch ($option) {
+			case "news":
+				$itemobj = new ZenpageNews($item['titlelink']);
+				break;
+			case "pages":
+				$itemobj = new ZenpagePage($item['titlelink']);
+				break;
+			case "categories":
+				$itemobj = new ZenpageCategory($item['titlelink']);
+				break;
 		}
-		//echo " (un-published: ";
-		$unpub = $total - $pub;
+		if ($itemobj->getShow() == 1) {
+			$pub++;
+		}
 	}
+	$unpub = $total - $pub;
 	return array($total, $type, $unpub);
 }
 
 function printPagesStatistic() {
 	list($total, $type, $unpub) = getNewsPagesStatistic("pages");
 	if (empty($unpub)) {
-		printf(ngettext('(<strong>%1$u</strong> page)', '(<strong>%1$u</strong> pages)', $total), $total);
+		printf(ngettext('<strong>%1$u</strong> page', '<strong>%1$u</strong> pages', $total), $total);
 	} else {
-		printf(ngettext('(<strong>%1$u</strong> page, <strong>%2$u</strong> un-published)', '(<strong>%1$u</strong> pages, <strong>%2$u</strong> un-published)', $total), $total, $unpub);
+		printf(ngettext('<strong>%1$u</strong> page (<strong>%2$u</strong> un-published)', '<strong>%1$u</strong> pages (<strong>%2$u</strong> un-published)', $total), $total, $unpub);
 	}
 }
 
-function printNewsStatistic($total, $unpub) {
+function printNewsStatistic() {
+	list($total, $type, $unpub) = getNewsPagesStatistic("news");
 	if (empty($unpub)) {
-		printf(ngettext('(<strong>%1$u</strong> news)', '(<strong>%1$u</strong> news)', $total), $total);
+		printf(ngettext('<strong>%1$u</strong> article', '<strong>%1$u</strong> articles', $total), $total);
 	} else {
-		printf(ngettext('(<strong>%1$u</strong> news, <strong>%2$u</strong> un-published)', '(<strong>%1$u</strong> news, <strong>%2$u</strong> un-published)', $total), $total, $unpub);
+		printf(ngettext('<strong>%1$u</strong> article (<strong>%2$u</strong> un-published)', '<strong>%1$u</strong> articles (<strong>%2$u</strong> un-published)', $total), $total, $unpub);
 	}
 }
 
 function printCategoriesStatistic() {
 	list($total, $type, $unpub) = getNewsPagesStatistic("categories");
-	printf(ngettext('(<strong>%1$u</strong> category)', '(<strong>%1$u</strong> categories)', $total), $total);
+	if (empty($unpub)) {
+		printf(ngettext('<strong>%1$u</strong> category', '<strong>%1$u</strong> categories', $total), $total);
+	} else {
+		printf(ngettext('<strong>%1$u</strong> category (<strong>%2$u</strong> un-published)', '<strong>%1$u</strong> categories (<strong>%2$u</strong> un-published)', $total), $total, $unpub);
+	}
 }
 
 /**
@@ -1641,6 +1649,7 @@ function printPublishIconLink($object, $type, $linkback = '') {
 						switch ($action) {
 							case 'deleteall':
 								$obj->remove();
+								SearchEngine::clearSearchCache();
 								break;
 							case 'addtags':
 								$mytags = array_unique(array_merge($tags, $obj->getTags()));

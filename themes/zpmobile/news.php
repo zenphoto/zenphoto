@@ -7,9 +7,9 @@ if (class_exists('Zenpage') && ZP_NEWS_ENABLED) {
 	<!DOCTYPE html>
 	<html>
 		<head>
+			<meta charset="<?php echo LOCAL_CHARSET; ?>">
 			<?php zp_apply_filter('theme_head'); ?>
 			<?php printHeadTitle(); ?>
-			<meta charset="<?php echo LOCAL_CHARSET; ?>">
 			<meta name="viewport" content="width=device-width, initial-scale=1">
 			<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" />
 			<?php jqm_loadScripts(); ?>
@@ -25,12 +25,14 @@ if (class_exists('Zenpage') && ZP_NEWS_ENABLED) {
 
 				<div class="ui-content" role="main">
 					<div class="content-primary">
-						<h2 class="breadcrumb"><?php printNewsIndexURL(); ?><strong><?php
+						<h2 class="breadcrumb">
+							<?php
 								printZenpageItemsBreadcrumb(' ', '');
 								printCurrentNewsCategory(" ");
 								printNewsTitle(" ");
 								printCurrentNewsArchive(" | ");
-								?></strong></h2>
+							?>
+						</h2>
 						<?php
 // single news article
 						if (is_NewsArticle()) {

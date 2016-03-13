@@ -327,7 +327,9 @@ class favorites extends AlbumBase {
 			if ($v) {
 				if ($multi) {
 					?>
-					<input type="text" name="instance" class="favorite_instance" value="" />
+					<span class="tagSuggestContainer">
+						<input type="text" name="instance" class="favorite_instance" value="" />
+					</span>
 					<?php
 				}
 			} else {

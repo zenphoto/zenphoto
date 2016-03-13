@@ -2,51 +2,7 @@
 // force UTF-8 Ø
 
 if (getOption('Allow_search')) {
-	switch ($_zp_gallery_page) {
-		case 'album.php':
-		case 'image.php':
-			$list = array('albums' => array($_zp_current_album->name), 'pages' => '0', 'news' => '0');
-			$text = gettext('Search within album');
-			break;
-		case 'gallery.php':
-			$list = array('albums' => '1', 'pages' => '0', 'news' => '0');
-			$text = gettext('Search albums');
-			break;
-		case 'pages.php':
-			$list = array('albums' => '0', 'pages' => '1', 'news' => '0');
-			$text = gettext('Search pages');
-			break;
-		case 'news.php':
-			if (is_NewsCategory()) {
-				$list = array('news' => array($_zp_current_category->getTitlelink()), 'albums' => '0', 'images' => '0', 'pages' => '0');
-				$text = gettext('Search category');
-			} else {
-				$list = array('news' => '1', 'albums' => '0', 'images' => '0', 'pages' => '0');
-				$text = gettext("Search news");
-			}
-			break;
-		case 'search.php':
-			$categorylist = $_zp_current_search->getCategoryList();
-			if (is_array($categorylist)) {
-				$list = array('news' => $categorylist, 'albums' => '0', 'images' => '0', 'pages' => '0');
-				$text = gettext('Search within category');
-			} else {
-				$albumlist = $_zp_current_search->getAlbumList();
-				if (is_array($albumlist)) {
-					$list = array('albums' => $albumlist, 'pages' => '0', 'news' => '0');
-					$text = gettext('Search within album');
-				} else {
-					$list = NULL;
-					$text = gettext('Search gallery');
-				}
-			}
-			break;
-		default:
-			$list = NULL;
-			$text = gettext('Search gallery');
-			break;
-	}
-	printSearchForm(NULL, 'search', $_zp_themeroot . '/images/search.png', $text, NULL, NULL, $list);
+	printSearchForm(NULL, 'search', $_zp_themeroot . '/images/search.png');
 	?>
 	<br class="clearall" />
 	<?php

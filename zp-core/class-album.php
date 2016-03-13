@@ -916,7 +916,12 @@ class AlbumBase extends MediaObject {
 	 * @return string
 	 */
 	function getAlbumTheme() {
-		return $this->get('album_theme');
+		global $_zp_gallery;
+		if (in_context(ZP_SEARCH_LINKED)) {
+			return $_zp_gallery->getCurrentTheme();
+		} else {
+			return $this->get('album_theme');
+		}
 	}
 
 	/**
@@ -1148,14 +1153,20 @@ class AlbumBase extends MediaObject {
 	}
 
 	/**
-	 * Returns the page number in the gallery of this album
+	 * Returns the page number in the gallery or the parent album of this album 
 	 *
 	 * @return int
 	 */
 	function getGalleryPage() {
 		global $_zp_gallery;
-		if ($this->index == null)
-			$this->index = array_search($this->name, $_zp_gallery->getAlbums(0));
+		if ($this->index == null) {
+			if (is_null($parent = $this->getParent())) {
+				$albums = $_zp_gallery->getAlbums(0);
+			} else {
+				$albums = $parent->getAlbums(0);
+			}
+			$this->index = array_search($this->name, $albums);
+		}
 		return floor(($this->index / galleryAlbumsPerPage()) + 1);
 	}
 
@@ -1221,7 +1232,7 @@ class Album extends AlbumBase {
 	 */
 	protected function setDefaults() {
 		global $_zp_gallery;
-// Set default data for a new Album (title and parent_id)
+		// Set default data for a new Album (title and parent_id)
 		parent::setDefaults();
 		$parentalbum = $this->getParent();
 		$this->set('mtime', filemtime($this->localpath));
@@ -1823,6 +1834,29 @@ class dynamicAlbum extends AlbumBase {
 
 	function isDynamic() {
 		return 'alb';
+	}
+	
+	/**
+	 * Sets default values for a new album
+	 *
+	 * @return bool
+	 */
+	protected function setDefaults() {
+		global $_zp_gallery;
+		// Set default data for a new Album (title and parent_id)
+		parent::setDefaults();
+		$parentalbum = $this->getParent();
+		$this->set('mtime', filemtime($this->localpath));
+		if (!$_zp_gallery->getAlbumUseImagedate()) {
+			$this->setDateTime(strftime('%Y-%m-%d %H:%M:%S', $this->get('mtime')));
+		}
+		$title = trim($this->name);
+		if (!is_null($parentalbum)) {
+			$this->set('parentid', $parentalbum->getID());
+			$title = substr($title, strrpos($title, '/') + 1);
+		}
+		$this->set('title', sanitize($title, 2));
+		return true;
 	}
 
 }

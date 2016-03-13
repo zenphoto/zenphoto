@@ -123,9 +123,14 @@ function query_full_array($sql, $errorstop = true, $key = NULL) {
  * @param string $string
  * @return string
  */
-function db_quote($string) {
+function db_quote($string, $addquotes = true) {
 	global $_zp_DB_connection;
-	return "'" . mysql_real_escape_string($string, $_zp_DB_connection) . "'";
+	$escaped = mysql_real_escape_string($string, $_zp_DB_connection);
+	if ($addquotes) {
+		return "'" . $escaped . "'";
+	} else {
+		return $escaped;
+	}
 }
 
 /*

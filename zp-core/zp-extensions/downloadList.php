@@ -572,7 +572,7 @@ function printDownloadAlbumZipURL($linktext = NULL, $albumobj = NULL, $fromcache
 		if (!empty($linktext)) {
 			$file = $linktext;
 		}
-		$query['download'] = pathurlencode($albumobj->name);
+		$query['download'] = $albumobj->name;
 		$query['albumzip'] = 'true';
 		if ($fromcache) {
 			$query['fromcache'] = 'true';

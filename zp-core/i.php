@@ -160,7 +160,7 @@ if ($process) { // If the file hasn't been cached yet, create it.
 		imageError('403 Forbidden', gettext("Forbidden(2)"));
 	}
 
-	$iMutex = new Mutex('i', getOption('imageProcessorConcurrency'));
+	$iMutex = new zpMutex('i', getOption('imageProcessorConcurrency'));
 	$iMutex->lock();
 	$result = cacheImage($newfilename, $imgfile, $args, $allowWatermark, $theme, $album);
 	$iMutex->unlock();

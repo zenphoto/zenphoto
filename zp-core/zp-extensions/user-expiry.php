@@ -54,7 +54,7 @@ class user_expiry {
 	 * class instantiation function
 	 *
 	 */
-	function user_expiry() {
+	function __construct() {
 		setOptionDefault('user_expiry_interval', 365);
 		setOptionDefault('user_expiry_warn_interval', 7);
 		setOptionDefault('user_expiry_auto_renew', 0);

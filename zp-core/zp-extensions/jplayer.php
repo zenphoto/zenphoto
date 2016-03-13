@@ -100,7 +100,7 @@ class jplayer_options {
 
 	public $name = 'jPlayer';
 
-	function jplayer_options() {
+	function __construct() {
 		if (OFFSET_PATH == 2) {
 			setOptionDefault('jplayer_autoplay', '');
 			setOptionDefault('jplayer_poster', 1);

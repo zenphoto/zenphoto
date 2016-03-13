@@ -443,7 +443,7 @@ class ZenpageCategory extends ZenpageRoot {
 		global $_zp_zenpage;
 		if ($page > 1) {
 			$pager = $page . '/';
-			$page = '&p=' . $page;
+			$page = '&page=' . $page;
 		} else {
 			$pager = $page = '';
 		}

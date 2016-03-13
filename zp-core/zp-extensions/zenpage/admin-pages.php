@@ -103,7 +103,7 @@ zenpageJSCSS();
 	}
 	?>
 	<h1><?php echo gettext('Pages'); ?><span class="zenpagestats"><?php printPagesStatistic(); ?></span></h1>
-	<form class="dirty-check" action="admin-pages.php" method="post" name="update" id="form_zenpageitemlist" onsubmit="return confirmAction();">
+	<form class="dirty-check" action="admin-pages.php" method="post" name="update" id="form_zenpageitemlist" onsubmit="return confirmAction();" autocomplete="off">
 		<?php XSRFToken('update'); ?>
 
 		<div>

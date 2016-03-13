@@ -76,7 +76,7 @@ div.jp-video-1080p {
 
 div.jp-video-full {
 	/* Rules for IE6 (full-screen) */
-	width:480px;
+	max-width:480px;
 	height:270px;
 	/* Rules for IE7 (full-screen) - Otherwise the relative container causes other page items that are not position:static (default) to appear over the video/gui. */
 	position:static !important; position:relative
@@ -94,7 +94,7 @@ div.jp-video-full div.jp-gui {
 	position: fixed !important; position: static; /* Rules for IE6 (full-screen) */
 	top: 0;
 	left: 0;
-	width:100%;
+	max-width:100%;
 	height:100%;
 	z-index:1000;
 }
@@ -109,7 +109,7 @@ div.jp-video-full div.jp-interface {
 div.jp-interface {
 	position: relative;
 	background-color:#eee;
-	width:100%;
+	max-width:100%;
 }
 
 div.jp-interface button {
@@ -134,7 +134,7 @@ div.jp-video div.jp-interface {
 
 div.jp-controls-holder {
 	clear: both;
-	width:440px;
+	max-width:440px;
 	margin:0 auto;
 	position: relative;
 	overflow:hidden;
@@ -155,19 +155,19 @@ div.jp-interface div.jp-controls {
 }
 
 div.jp-audio div.jp-controls {
-	width: 420px;
+	max-width: 420px;
 	padding:0px 0px 0 5px;
 
 }
 
 div.jp-video div.jp-type-single div.jp-controls {
-	width: 78px;
+	max-width: 78px;
 	margin-left: 200px;
 	margin-top:0px;
 }
 
 div.jp-video div.jp-type-playlist div.jp-controls {
-	width: 134px;
+	max-width: 134px;
 	margin-left: 172px;
 	margin-top: 0;
 }
@@ -666,6 +666,7 @@ button.jp-repeat:hover {
 	background: url("jplayer.zenphoto.png") -279px -61px no-repeat;
 }
 
+
 button.jp-shuffle {
 	background: url("jplayer.zenphoto.png") -245px 0px no-repeat;
 	margin-left: 5px;
@@ -675,13 +676,18 @@ button.jp-shuffle:hover {
 	background: url("jplayer.zenphoto.png") -245px -31px no-repeat;
 }
 
+.jp-type-playlist .jp-toggles .jp-repeat,
+.jp-type-playlist .jp-toggles .jp-shuffle {
+display: none !important;
+}
+
 /* @end */
 
 /* @group NO SOLUTION error feedback */
 
 .jp-no-solution {
 	position:absolute;
-	width:390px;
+	max-width:390px;
 	margin-left:-202px;
 	left:50%;
 	top: 10px;

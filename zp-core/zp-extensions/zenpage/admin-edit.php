@@ -296,12 +296,12 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 					if ($result->loaded || $result->transient) {
 						if ($result->transient) {
 							?>
-							<form class="dirty-check" method="post" name="addnews" action="admin-edit.php?<?php echo $admintype; ?>&amp;save">
+							<form class="dirty-check" method="post" name="addnews" action="admin-edit.php?<?php echo $admintype; ?>&amp;save" autocomplete="off">
 								<?php
 								XSRFToken('save');
 							} else {
 								?>
-								<form class="dirty-check" method="post" name="update" id="form_zenpageitemedit" action="admin-edit.php?<?php echo $admintype; ?>&amp;update<?php echo $page; ?>">
+								<form class="dirty-check" method="post" name="update" id="form_zenpageitemedit" action="admin-edit.php?<?php echo $admintype; ?>&amp;update<?php echo $page; ?>" autocomplete="off">
 									<?php
 									XSRFToken('update');
 								}

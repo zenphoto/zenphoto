@@ -7,9 +7,9 @@ if (!defined('WEBPATH'))
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta charset="<?php echo LOCAL_CHARSET; ?>">
 		<?php zp_apply_filter('theme_head'); ?>
 		<?php printHeadTitle(); ?>
-		<meta charset="<?php echo LOCAL_CHARSET; ?>">
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" type="text/css" />
 		<?php if (class_exists('RSS')) printRSSHeaderLink('Album', getAlbumTitle()); ?>
 	</head>
@@ -22,8 +22,7 @@ if (!defined('WEBPATH'))
 				<h1><?php printGalleryTitle(); ?></h1>
 				<?php
 				if (getOption('Allow_search')) {
-					$album_list = array('albums' => array($_zp_current_album->name), 'pages' => '0', 'news' => '0');
-					printSearchForm(NULL, 'search', gettext('Search within album'), gettext('Search'), NULL, NULL, $album_list);
+					printSearchForm("", "search", "", gettext("Search"));
 				}
 				?>
 			</div>
@@ -31,7 +30,7 @@ if (!defined('WEBPATH'))
 			<div id="content">
 
 				<div id="breadcrumb">
-					<h2><a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Index'); ?>"><?php echo gettext("Index"); ?></a><?php printParentBreadcrumb(" » ", " » ", ""); ?> » <strong><?php printAlbumTitle(); ?></strong></h2>
+					<h2><?php printGalleryIndexURL(' » '); printParentBreadcrumb("", " » ", " » "); ?><strong><?php printAlbumTitle(); ?></strong></h2>
 				</div>
 
 				<div id="content-left">
@@ -70,9 +69,9 @@ if (!defined('WEBPATH'))
 
 					</div>
 					<p style="clear: both; "></p>
-					<?php 
-      printPageListWithNav("« " . gettext("prev"), gettext("next") . " »"); 
-      printTags('links', gettext('<strong>Tags:</strong>') . ' ', 'taglist', ', '); 
+					<?php
+      printPageListWithNav("« " . gettext("prev"), gettext("next") . " »");
+      printTags('links', gettext('<strong>Tags:</strong>') . ' ', 'taglist', ', ');
      ?>
 					<br style="clear:both;" /><br />
 					<?php
@@ -90,10 +89,10 @@ if (!defined('WEBPATH'))
 					}
 					?>
 					<br style="clear:both;" />
-					<?php 
-      if (function_exists('printAddToFavorites')) printAddToFavorites($_zp_current_album); 
-      @call_user_func('printRating'); 
-      @call_user_func('printCommentForm'); 
+					<?php
+      if (function_exists('printAddToFavorites')) printAddToFavorites($_zp_current_album);
+      @call_user_func('printRating');
+      @call_user_func('printCommentForm');
      ?>
 				</div><!-- content left-->
 

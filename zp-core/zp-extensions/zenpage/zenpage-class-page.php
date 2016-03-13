@@ -297,7 +297,7 @@ class ZenpagePage extends ZenpageItems {
 	 * @return string
 	 */
 	function getLink() {
-		return zp_apply_filter('getLink', rewrite_path(_PAGES_ . '/' . $this->getTitlelink(), '/index.php?p=pages&title=' . $this->getTitlelink()), $this, NULL);
+		return zp_apply_filter('getLink', rewrite_path(_PAGES_ . '/' . $this->getTitlelink() . '/', '/index.php?p=pages&title=' . $this->getTitlelink()), $this, NULL);
 	}
 
 	/**

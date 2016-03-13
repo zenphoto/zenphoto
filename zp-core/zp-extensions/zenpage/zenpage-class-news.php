@@ -293,7 +293,7 @@ class ZenpageNews extends ZenpageItems {
 	 * @return string
 	 */
 	function getLink() {
-		return zp_apply_filter('getLink', rewrite_path(_NEWS_ . '/' . $this->getTitlelink(), '/index.php?p=news&title=' . $this->getTitlelink()), $this, NULL);
+		return zp_apply_filter('getLink', rewrite_path(_NEWS_ . '/' . $this->getTitlelink() . '/', '/index.php?p=news&title=' . $this->getTitlelink()), $this, NULL);
 	}
 
 	/**
@@ -310,17 +310,17 @@ class ZenpageNews extends ZenpageItems {
 
 	/**
 	 * Get the index of this article
-  *
+	 *
 	 * @param string $sortorder
 	 * @param bool $sortdirection TRUE for ascending, FALSE for descending
-  * @param bool $sticky If sticky article should come first
+	 * @param bool $sticky If sticky article should come first
 	 * @return int
 	 */
 	function getIndex() {
 		global $_zp_zenpage, $_zp_current_zenpage_news;
-  if (func_num_args() != 0) {
-    Zenpage_internal_deprecations::getIndex();
-  }
+		if (func_num_args() != 0) {
+			Zenpage_internal_deprecations::getIndex();
+		}
 		if ($this->index == NULL) {
 			$articles = $_zp_zenpage->getArticles(0, NULL, true);
 			for ($i = 0; $i < count($articles); $i++) {
@@ -336,16 +336,14 @@ class ZenpageNews extends ZenpageItems {
 
 	/**
 	 * Return the previous article
-  *
+	 *
 	 * @return object
 	 */
-
-
 	function getPrevArticle() {
 		global $_zp_zenpage, $_zp_current_zenpage_news;
-  if (func_num_args() != 0) {
-    Zenpage_internal_deprecations::getPrevArticle();
-  }
+		if (func_num_args() != 0) {
+			Zenpage_internal_deprecations::getPrevArticle();
+		}
 		$index = $this->getIndex();
 		$article = $_zp_zenpage->getArticle($index - 1);
 		return $article;
@@ -353,17 +351,27 @@ class ZenpageNews extends ZenpageItems {
 
 	/**
 	 * Returns the next article.
-  *
+	 *
 	 * @return object
 	 */
 	function getNextArticle() {
 		global $_zp_zenpage, $_zp_current_zenpage_news;
-  if (func_num_args() != 0) {
-    Zenpage_internal_deprecations::getNextArticle();
-  }
+		if (func_num_args() != 0) {
+			Zenpage_internal_deprecations::getNextArticle();
+		}
 		$index = $this->getIndex();
 		$article = $_zp_zenpage->getArticle($index + 1);
 		return $article;
+	}
+
+	/**
+	 * Returns the page number in the news loop
+	 *
+	 * @return int
+	 */
+	function getNewsLoopPage() {
+		$index = $this->getIndex();
+		return floor(($index / ZP_ARTICLES_PER_PAGE) + 1);
 	}
 
 }

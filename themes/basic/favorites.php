@@ -7,9 +7,9 @@ if (class_exists('favorites')) {
 	<!DOCTYPE html>
 	<html>
 		<head>
+			<meta charset="<?php echo LOCAL_CHARSET; ?>">
 			<?php zp_apply_filter('theme_head'); ?>
 			<?php printHeadTitle(); ?>
-			<meta charset="<?php echo LOCAL_CHARSET; ?>">
 			<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
 			<link rel="stylesheet" href="<?php echo pathurlencode(dirname(dirname($zenCSS))); ?>/common.css" type="text/css" />
 		</head>
@@ -17,11 +17,14 @@ if (class_exists('favorites')) {
 			<?php zp_apply_filter('theme_body_open'); ?>
 			<div id="main">
 				<div id="gallerytitle">
+					<?php
+					if (getOption('Allow_search')) {
+						printSearchForm();
+					}
+					?>
 					<h2>
 						<span>
-							<?php printHomeLink('', ' | '); ?>
-							<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Albums Index'); ?>"><?php printGalleryTitle(); ?></a> |
-							<?php printParentBreadcrumb(); ?>
+							<?php printHomeLink('', ' | '); printGalleryIndexURL(' | ', getGalleryTitle()); printParentBreadcrumb(); ?>
 						</span>
 						<?php printAlbumTitle(); ?>
 					</h2>
@@ -40,10 +43,10 @@ if (class_exists('favorites')) {
 									<div><?php printAlbumDesc(); ?></div>
 									<?php printAddToFavorites($_zp_current_album, '', gettext('Remove')); ?>
 								</div>
-								<p style="clear: both; "></p>
 							</div>
 						<?php endwhile; ?>
 					</div>
+					<br class="clearall">
 					<div id="images">
 						<?php
 						while (next_image()) {
@@ -60,16 +63,17 @@ if (class_exists('favorites')) {
 						}
 						?>
 					</div>
-					<?php 
-     @call_user_func('printSlideShowLink'); 
-     printPageListWithNav("« " . gettext("prev"), gettext("next") . " »"); 
+					<br class="clearall">
+					<?php
+     @call_user_func('printSlideShowLink');
+     printPageListWithNav("« " . gettext("prev"), gettext("next") . " »");
      ?>
 				</div>
 			</div>
 			<div id="credit">
-				<?php 
-    printZenphotoLink(); 
-    @call_user_func('printUserLogin_out', " | "); 
+				<?php
+    printZenphotoLink();
+    @call_user_func('printUserLogin_out', " | ");
     ?>
 			</div>
 			<?php

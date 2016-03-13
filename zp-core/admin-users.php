@@ -117,6 +117,7 @@ if (isset($_GET['action'])) {
 							} else {
 								$what = 'update';
 								$userobj = Zenphoto_Authority::newAdministrator($user);
+								markUpdated();
 							}
 
 							if (isset($_POST[$i . '-admin_name'])) {
@@ -128,9 +129,14 @@ if (isset($_GET['action'])) {
 							}
 							if (isset($_POST[$i . '-admin_email'])) {
 								$admin_e = trim(sanitize($_POST[$i . '-admin_email']));
-								if ($admin_e != $userobj->getEmail()) {
-									markUpdated();
-									$userobj->setEmail($admin_e);
+								$mail_duplicate = $_zp_authority->checkUniqueMailaddress($admin_e, $user);
+								if($mail_duplicate) {
+									$msg = sprintf(gettext('%s email is already used by another user!'), $admin_n);
+								} else {
+									if ($admin_e != $userobj->getEmail()) {
+										markUpdated();
+										$userobj->setEmail($admin_e);
+									}
 								}
 							}
 							if (empty($pass)) {
@@ -171,6 +177,19 @@ if (isset($_GET['action'])) {
 								markUpdated();
 							}
 							$rights = 0;
+							$oldobjects = sortMultiArray($userobj->getObjects(), 'data');
+							$objects = sortMultiArray(processManagedObjects($i, $rights), 'data');
+							if (isset($_POST['delinkAlbum_' . $i])) {
+								$delink_primealbum = $userobj->getAlbum()->name;
+								foreach($objects as $key => $val) {
+									if($val['type'] == 'album' && $val['name'] == $delink_primealbum) {
+										unset($objects[$key]);
+									}
+								}
+								$userobj->setAlbum(NULL);
+								markUpdated();
+								$alter = true;
+							}
 							if ($alter) {
 								$oldrights = $userobj->getRights() & ~(ALBUM_RIGHTS | ZENPAGE_PAGES_RIGHTS | ZENPAGE_NEWS_RIGHTS);
 								$rights = processRights($i);
@@ -178,8 +197,6 @@ if (isset($_GET['action'])) {
 									$userobj->setRights($rights | NO_RIGHTS);
 									markUpdated();
 								}
-								$oldobjects = sortMultiArray($userobj->getObjects(), 'data');
-								$objects = sortMultiArray(processManagedObjects($i, $rights), 'data');
 								if ($objects != $oldobjects) {
 									$userobj->setObjects($objects);
 									markUpdated();
@@ -188,10 +205,6 @@ if (isset($_GET['action'])) {
 								$oldobjects = $userobj->setObjects(NULL); // indicates no change
 							}
 							$updated = zp_apply_filter('save_admin_custom_data', $updated, $userobj, $i, $alter);
-							if (isset($_POST['delinkAlbum_' . $i])) {
-								$userobj->setAlbum(NULL);
-								markUpdated();
-							}
 							if (isset($_POST['createAlbum_' . $i])) {
 								$userobj->createPrimealbum();
 								markUpdated();
@@ -436,7 +449,7 @@ echo $refresh;
 							}
 						}
 					</script>
-					<form class="dirty-check" action="?action=saveoptions<?php echo str_replace('&', '&amp;', $ticket); ?>" method="post" autocomplete="off" onsubmit="return checkNewuser();" >
+					<form class="dirty-check" action="?action=saveoptions<?php echo str_replace('&', '&amp;', $ticket); ?>" method="post" autocomplete="off" onsubmit="return checkNewuser();">
 						<?php XSRFToken('saveadmin'); ?>
 						<input type="hidden" name="saveadminoptions" value="yes" />
 						<input type="hidden" name="subpage" value="<?php echo $subpage; ?>" />
@@ -791,7 +804,6 @@ echo $refresh;
 														}
 													}
 													?>
-
 												</td>
 											</tr>
 											<?php echo $custom_row; ?>
@@ -860,8 +872,8 @@ echo $refresh;
 						//<!-- <![CDATA[
 						var admins = ["<?php echo implode('","', $alladmins); ?>"];
 						function checkNewuser() {
-							newuserid = <?php echo ($id - 1); ?>;
-							newuser = $('#adminuser' + newuserid).val().replace(/^\s+|\s+$/g, "");
+							var newuserid = <?php echo ($id - 1); ?>;
+							var newuser = $('#adminuser' + newuserid).val().replace(/^\s+|\s+$/g, "");
 							if (newuser == '')
 								return true;
 							if (newuser.indexOf('?') >= 0 || newuser.indexOf('&') >= 0 || newuser.indexOf('"') >= 0 || newuser.indexOf('\'') >= 0) {

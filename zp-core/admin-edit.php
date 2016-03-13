@@ -206,6 +206,7 @@ if (isset($_GET['action'])) {
       $image = newImage($album, $imagename);
       if ($image->remove()) {
         $nd = 1;
+				SearchEngine::clearSearchCache();
       } else {
         $nd = 2;
       }
@@ -355,6 +356,7 @@ if (isset($_GET['action'])) {
 				$album = newAlbum($folder);
 				if ($album->remove()) {
 					$nd = 3;
+					SearchEngine::clearSearchCache();
 				} else {
 					$nd = 4;
 				}
@@ -371,7 +373,6 @@ if (isset($_GET['action'])) {
 			} else {
 				$albumdir = '';
 			}
-
 			header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-edit.php?page=edit" . $albumdir . "&ndeleted=" . $nd);
 			exitZP();
 			break;
@@ -639,26 +640,31 @@ echo "\n</head>";
 						if (($pagenum - 1) * $imagesTab_imageCount >= $allimagecount)
 							$pagenum--;
 					} else {
-       if(isset($_GET['nopagination'])) {
-        $pagenum = 0;
-       } else {
-        $pagenum = 1;
-       }
+						if(isset($_GET['nopagination'])) {
+							$pagenum = 0;
+						} else {
+							$pagenum = 1;
+						}
 					}
 				}
-    if($pagenum == 0) {
-      $images = $allimages;
-    } else {
-      $images = array_slice($allimages, ($pagenum - 1) * $imagesTab_imageCount, $imagesTab_imageCount);
-    }
+				if ($pagenum == 0 || isset($_GET['singleimage'])) {
+					$images = $allimages;
+				} else {
+					$images = array_slice($allimages, ($pagenum - 1) * $imagesTab_imageCount, $imagesTab_imageCount);
+				}
 				$totalimages = count($images);
 
-				$parent = dirname($album->name);
+				if (isset($_GET['singleimage'])) {
+					$parent = $album->name;
+				} else {
+					$parent = dirname($album->name);
+				}
 				if (($parent == '/') || ($parent == '.') || empty($parent)) {
 					$parent = '';
 				} else {
 					$parent = "&amp;album=" . pathurlencode($parent);
 				}
+
 				if (isset($_GET['metadata_refresh'])) {
 					echo '<div class="messagebox fade-message">';
 					echo "<h2>" . gettext("Image metadata refreshed.") . "</h2>";
@@ -680,7 +686,7 @@ echo "\n</head>";
 					<!-- Album info box -->
 					<div id="tab_albuminfo" class="tabbox">
 						<?php consolidatedEditMessages('albuminfo'); ?>
-						<form class="dirty-check" name="albumedit1" id="form_albumedit" autocomplete="off" action="?page=edit&amp;action=save<?php echo "&amp;album=" . pathurlencode($album->name); ?>"	method="post">
+						<form class="dirty-check" name="albumedit1" id="form_albumedit" autocomplete="off" action="?page=edit&amp;action=save<?php echo "&amp;album=" . pathurlencode($album->name); ?>" method="post">
 							<?php XSRFToken('albumedit'); ?>
 							<input type="hidden" name="album"	value="<?php echo $album->name; ?>" />
 							<input type="hidden"	name="savealbuminfo" value="1" />
@@ -701,7 +707,7 @@ echo "\n</head>";
 							<?php
 							printEditDropdown('subalbuminfo', array('1', '2', '3', '4', '5'), $subalbum_nesting);
 							?>
-							<form class="dirty-check" action="?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>&amp;action=savesubalbumorder&amp;tab=subalbuminfo" method="post" name="sortableListForm" id="sortableListForm" onsubmit="return confirmAction();">
+							<form class="dirty-check" action="?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>&amp;action=savesubalbumorder&amp;tab=subalbuminfo" method="post" name="sortableListForm" id="sortableListForm" onsubmit="return confirmAction();" autocomplete="off">
 								<?php XSRFToken('savealbumorder'); ?>
 								<p>
 									<?php
@@ -815,12 +821,12 @@ echo "\n</head>";
 											<img src="images/folder.png" alt="" />
 											<strong><?php echo gettext('New subalbum'); ?></strong>
 										</button>
-          <?php if(!$album->isDynamic()) { ?>
-            	<button type="button" title="<?php echo addslashes(gettext('New dynamic subalbum')); ?>" onclick="javascript:newDynAlbum('<?php echo pathurlencode($album->name); ?>', false);">
+											<?php if(!$album->isDynamic()) { ?>
+            									<button type="button" title="<?php echo addslashes(gettext('New dynamic subalbum')); ?>" onclick="javascript:newDynAlbum('<?php echo pathurlencode($album->name); ?>', false);">
 												<img src="images/folder.png" alt="" />
 												<strong><?php echo gettext('New dynamic subalbum'); ?></strong>
 											</button>
-           <?php } ?>
+										<?php } ?>
 									</div>
 								</span>
 							</form>
@@ -834,6 +840,11 @@ echo "\n</head>";
 					$singleimage = NULL;
 					if (isset($_GET['singleimage'])) {
 						$simage = sanitize($_GET['singleimage']);
+						$imageno = array_search($simage, $images);
+						if ($imageno !== false) {
+							$pagenum = ceil(($imageno + 1) / $imagesTab_imageCount);
+						}
+						$parent .= '&amp;tab=imageinfo&amp;subpage='.$pagenum.'&amp;image='.html_encode($simage).'#IT';
 						if (array_search($simage, $images) !== false) {
 							$allimagecount = 1;
 							$singleimage = $simage;
@@ -868,18 +879,18 @@ echo "\n</head>";
 							}
 						}
 						if ($allimagecount) {
-        if($singleimage) { ?>
-          <form class="dirty-check" name="albumedit2"	id="form_imageedit" action="?page=edit&amp;action=save<?php echo "&amp;album=" . html_encode(pathurlencode($album->name)); ?>&amp;singleimage=<?php html_encode($singleimage); ?>&amp;subpage=1"	method="post" autocomplete="off">
-        <?php } else {  ?>
-          <form class="dirty-check" name="albumedit2"	id="form_imageedit" action="?page=edit&amp;action=save<?php echo "&amp;album=" . html_encode(pathurlencode($album->name)); ?>"	method="post" autocomplete="off">
-        <?php } ?>
-        <?php XSRFToken('albumedit'); ?>
+					        if ($singleimage) { ?>
+								<form class="dirty-check" name="albumedit2"	id="form_imageedit" action="?page=edit&amp;action=save<?php echo "&amp;album=" . html_encode(pathurlencode($album->name)); ?>&amp;singleimage=<?php html_encode($singleimage); ?>&amp;nopagination" method="post" autocomplete="off">
+					        <?php } else {  ?>
+					          	<form class="dirty-check" name="albumedit2"	id="form_imageedit" action="?page=edit&amp;action=save<?php echo "&amp;album=" . html_encode(pathurlencode($album->name)); ?>" method="post" autocomplete="off">
+					        	<input type="hidden" name="subpage" value="<?php echo html_encode($pagenum); ?>" />
+					        <?php } ?>
+				        		<?php XSRFToken('albumedit'); ?>
 								<input type="hidden" name="album"	value="<?php echo $album->name; ?>" />
 								<input type="hidden" name="totalimages" value="<?php echo $totalimages; ?>" />
-								<input type="hidden" name="subpage" value="<?php echo html_encode($pagenum); ?>" />
 								<input type="hidden" name="tagsort" value="<?php echo html_encode($tagsort); ?>" />
 								<input type="hidden" name="oldalbumimagesort" value="<?php echo html_encode($oldalbumimagesort); ?>" />
-        <input type="hidden" name="albumimagesort" value="" />
+        						<input type="hidden" name="albumimagesort" value="" />
 
 								<?php $totalpages = ceil(($allimagecount / $imagesTab_imageCount)); ?>
 								<table class="bordered">
@@ -1673,7 +1684,7 @@ echo "\n</head>";
 					consolidatedEditMessages('');
 					printEditDropdown('', array('1', '2', '3', '4', '5'), $album_nesting);
 					?>
-					<form class="dirty-check" action="?page=edit&amp;action=savealbumorder" method="post" name="sortableListForm" id="sortableListForm" onsubmit="return confirmAction();">
+					<form class="dirty-check" action="?page=edit&amp;action=savealbumorder" method="post" name="sortableListForm" id="sortableListForm" onsubmit="return confirmAction();" autocomplete="off">
 									<?php XSRFToken('savealbumorder'); ?>
 						<p class="buttons">
 							<?php

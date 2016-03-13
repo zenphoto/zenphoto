@@ -161,3 +161,6 @@ button.positive,.buttons a.positive {
 	text-align:center;
 }
 
+#commentcontent {
+	clear: both;
+}

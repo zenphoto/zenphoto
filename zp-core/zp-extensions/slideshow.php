@@ -59,7 +59,7 @@ zp_register_filter('content_macro', 'slideshow::macro');
  */
 class slideshow {
 
-	function slideshow() {
+	function __construct() {
 		global $_zp_gallery;
 		if (OFFSET_PATH == 2) {
 			//setOptionDefault('slideshow_size', '595');
@@ -74,8 +74,10 @@ class slideshow {
 			// incase the flowplayer has not been enabled!!!
 			setOptionDefault('slideshow_colorbox_imagetype', 'sizedimage');
 			setOptionDefault('slideshow_colorbox_imagetitle', 1);
-			cacheManager::deleteThemeCacheSizes('slideshow');
-			cacheManager::addThemeCacheSize('slideshow', NULL, getOption('slideshow_width'), getOption('slideshow_height'), NULL, NULL, NULL, NULL, NULL, NULL, NULL, true);
+			if (class_exists('cacheManager')) {
+				cacheManager::deleteThemeCacheSizes('slideshow');
+				cacheManager::addThemeCacheSize('slideshow', NULL, getOption('slideshow_width'), getOption('slideshow_height'), NULL, NULL, NULL, NULL, NULL, NULL, NULL, true);
+			}
 		}
 	}
 

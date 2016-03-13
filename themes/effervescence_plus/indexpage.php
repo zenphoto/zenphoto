@@ -7,6 +7,7 @@ if (!defined('WEBPATH')) die();
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="<?php echo LOCAL_CHARSET; ?>">
 	<?php
 	zp_apply_filter('theme_head');
 	if (getOption('effervescence_daily_album_image_effect')) {
@@ -14,7 +15,6 @@ if (!defined('WEBPATH')) die();
 	}
 	?>
 	<?php printHeadTitle(); ?>
-	<meta charset="<?php echo LOCAL_CHARSET; ?>">
 </head>
 
 <body onload="blurAnchors()">
@@ -28,7 +28,7 @@ if (!defined('WEBPATH')) die();
 			<div id="logo">
 				<?php
 				if (getOption('Allow_search')) {
-					printSearchForm(NULL,'search',$_zp_themeroot.'/images/search.png',gettext('Search gallery'));
+					printSearchForm(NULL,'search',$_zp_themeroot.'/images/search.png',gettext('Search'));
 				}
 				printLogo();
 				?>

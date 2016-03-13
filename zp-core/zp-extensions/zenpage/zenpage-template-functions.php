@@ -864,12 +864,14 @@ function printNewsCategoryURL($before = '', $catlink = '') {
 }
 
 /**
- * Prints the full link of the news index page (news page 1)
+ * Prints the full link of the news index page (news page 1 by default)
  *
  * @param string $name The linktext
  * @param string $before The text to appear before the link text
+ * @param string $archive Name to print for the news date archive link
+ * @param int $page Page number to append
  */
-function printNewsIndexURL($name = NULL, $before = '', $archive = NULL) {
+function printNewsIndexURL($name = NULL, $before = '', $archive = NULL, $page = '') {
 	global $_zp_post_date;
 	if ($_zp_post_date) {
 		if (is_null($archive)) {
@@ -884,7 +886,7 @@ function printNewsIndexURL($name = NULL, $before = '', $archive = NULL) {
 		} else {
 			$name = getBare(html_encode($name));
 		}
-		$link = getNewsIndexURL();
+		$link = getNewsIndexURL($page);
 	}
 	if ($before) {
 		echo '<span class="beforetext">' . html_encode($before) . '</span>';
@@ -898,10 +900,10 @@ function printNewsIndexURL($name = NULL, $before = '', $archive = NULL) {
  * @return string
  */
 function getNewsArchivePath($date, $page) {
-	$rewrite = '/' . _NEWS_ARCHIVE_ . '/' . $date;
+	$rewrite = '/' . _NEWS_ARCHIVE_ . '/' . $date . '/';
 	$plain = "/index.php?p=news&date=$date";
 	if ($page > 1) {
-		$rewrite .= '/' . $page;
+		$rewrite .=  $page . '/';
 		$plain .= "&page=$page";
 	}
 	return zp_apply_filter('getLink', rewrite_path($rewrite, $plain), 'archive.php', $page);
@@ -922,7 +924,7 @@ function getNewsPathNav($page) {
 	$rewrite = '/' . _NEWS_ . '/';
 	$plain = 'index.php?p=news';
 	if ($page > 1) {
-		$rewrite .= $page;
+		$rewrite .= $page . '/';
 		$plain .= '&page=' . $page;
 	}
 	return zp_apply_filter('getLink', rewrite_path($rewrite, $plain), 'news.php', $page);
@@ -1438,17 +1440,25 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 	if (is_null($limit)) {
 		$limit = MENU_TRUNCATE_STRING;
 	}
-	if ($css_id != "") {
-		$css_id = " id='" . $css_id . "'";
+	if (is_null($css_id)) {
+		switch ($mode) {
+			case 'pages':
+				$css_id = 'menu_pages';
+				break;
+			case 'categories':
+			case 'allcategories':
+				$css_id = 'menu_categories';
+				break;
+		}
 	}
-	if ($css_class_topactive != "") {
-		$css_class_topactive = " class='" . $css_class_topactive . "'";
+	if (is_null($css_class_topactive)) {
+		$css_class_topactive = 'menu_topactive';
 	}
-	if ($css_class != "") {
-		$css_class = " class='" . $css_class . "'";
+	if (is_null($css_class)) {
+		$css_class = 'submenu';
 	}
-	if ($css_class_active != "") {
-		$css_class_active = " class='" . $css_class_active . "'";
+	if (is_null($css_class_active)) {
+		$css_class_active = 'menu-active';
 	}
 	if ($showsubs === true)
 		$showsubs = 9999999999;
@@ -1488,7 +1498,7 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 		return; // nothing to do
 	$startlist = $startlist && !($option == 'omit-top' || $option == 'list-sub');
 	if ($startlist)
-		echo "<ul$css_id>";
+		echo '<ul id="' . $css_id . '">';
 	// if index link and if if with count
 	if (!empty($indexname)) {
 		if ($limit) {
@@ -1499,7 +1509,7 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 		switch ($mode) {
 			case 'pages':
 				if ($_zp_gallery_page == "index.php") {
-					echo "<li $css_class_topactive>" . html_encode($display) . "</li>";
+					echo '<li class="' . $css_class_topactive . '">' . html_encode($display) . '</li>';
 				} else {
 					echo "<li><a href='" . html_encode(getGalleryIndexURL()) . "' title='" . html_encode($indexname) . "'>" . html_encode($display) . "</a></li>";
 				}
@@ -1507,7 +1517,7 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 			case 'categories':
 			case 'allcategories':
 				if (($_zp_gallery_page == "news.php") && !is_NewsCategory() && !is_NewsArchive() && !is_NewsArticle()) {
-					echo "<li $css_class_topactive>" . html_encode($display);
+					echo '<li class="' . $css_class_topactive . '">' . html_encode($display);
 				} else {
 					echo "<li><a href=\"" . html_encode(getNewsIndexURL()) . "\" title=\"" . html_encode($indexname) . "\">" . html_encode($display) . "</a>";
 				}
@@ -1537,6 +1547,7 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 		$parents[$c] = NULL;
 	}
 	foreach ($items as $item) {
+		$password_class = '';
 		switch ($mode) {
 			case 'pages':
 				$catcount = 1; //	so page items all show.
@@ -1548,6 +1559,9 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 				$itemtitlelink = $pageobj->getTitlelink();
 				$itemurl = $pageobj->getLink();
 				$count = '';
+				if ($pageobj->isProtected()) {
+					$password_class = ' has_password';
+				}
 				break;
 			case 'categories':
 			case 'allcategories':
@@ -1563,6 +1577,9 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 					$count = ' <span style="white-space:nowrap;"><small>(' . sprintf(ngettext('%u article', '%u articles', $catcount), $catcount) . ')</small></span>';
 				} else {
 					$count = '';
+				}
+				if ($catobj->isProtected()) {
+					$password_class = ' has_password';
 				}
 				break;
 		}
@@ -1581,7 +1598,7 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 
 			if ($process) {
 				if ($level > $indent) {
-					echo "\n" . str_pad("\t", $indent, "\t") . "<ul$css_class>\n";
+					echo "\n" . str_pad("\t", $indent, "\t") . '<ul class="' . $css_class . '">'."\n";
 					$indent++;
 					$parents[$indent] = NULL;
 					$open[$indent] = 0;
@@ -1611,9 +1628,9 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 				$open[$indent] ++;
 				$parents[$indent] = $itemid;
 				if ($level == 1) { // top level
-					$class = $css_class_topactive;
+					$class = $css_class_topactive . $password_class;
 				} else {
-					$class = $css_class_active;
+					$class = $css_class_active . $password_class;
 				}
 				if (!is_null($_zp_current_zenpage_page)) {
 					$gettitle = $_zp_current_zenpage_page->getTitle();
@@ -1641,10 +1658,13 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 							break;
 					}
 				}
+				if(empty($current)) {
+					$current =  trim($password_class);
+				}
 				if ($limit) {
 					$itemtitle = shortenContent($itemtitle, $limit, MENU_TRUNCATE_INDICATOR);
 				}
-				echo "<li><a $current href=\"" . html_encode($itemurl) . "\" title=\"" . html_encode(getBare($itemtitle)) . "\">" . html_encode($itemtitle) . "</a>" . $count;
+				echo '<li><a class="' . $current. '" href="' . html_encode($itemurl) . '" title="' . html_encode(getBare($itemtitle)) . '">' . html_encode($itemtitle) . '</a>' . $count;
 			}
 		}
 	}
@@ -1674,33 +1694,40 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
  * @param string $after Text to place after the breadcrumb item
  */
 function printZenpageItemsBreadcrumb($before = NULL, $after = NULL) {
-	global $_zp_current_zenpage_page, $_zp_current_category;
-	$parentitems = array();
-	if (is_Pages()) {
-		//$parentid = $_zp_current_zenpage_page->getParentID();
-		$parentitems = $_zp_current_zenpage_page->getParents();
+	global $_zp_current_zenpage_page, $_zp_current_zenpage_news, $_zp_current_category;
+	if (is_NewsPage()) {
+		$page = '';
+		if (is_NewsArticle()) {
+			$page = $_zp_current_zenpage_news->getNewsLoopPage();
+		}
+		printNewsIndexURL(NULL, '', '', $page);
 	}
-	if (is_NewsCategory()) {
-		//$parentid = $_zp_current_category->getParentID();
-		$parentitems = $_zp_current_category->getParents();
-	}
-	foreach ($parentitems as $item) {
+	if (is_Pages() || is_NewsCategory()) {
+		$parentitems = array();
 		if (is_Pages()) {
-			$pageobj = new ZenpagePage($item);
-			$parentitemurl = html_encode($pageobj->getLink());
-			$parentitemtitle = $pageobj->getTitle();
+			$parentitems = $_zp_current_zenpage_page->getParents();
 		}
 		if (is_NewsCategory()) {
-			$catobj = new ZenpageCategory($item);
-			$parentitemurl = $catobj->getLink();
-			$parentitemtitle = $catobj->getTitle();
+			$parentitems = $_zp_current_category->getParents();
 		}
-		if ($before) {
-			echo '<span class="beforetext">' . html_encode($before) . '</span>';
-		}
-		echo"<a href='" . $parentitemurl . "'>" . html_encode($parentitemtitle) . "</a>";
-		if ($after) {
-			echo '<span class="aftertext">' . html_encode($after) . '</span>';
+		foreach ($parentitems as $item) {
+			if (is_Pages()) {
+				$pageobj = new ZenpagePage($item);
+				$parentitemurl = html_encode($pageobj->getLink());
+				$parentitemtitle = $pageobj->getTitle();
+			}
+			if (is_NewsCategory()) {
+				$catobj = new ZenpageCategory($item);
+				$parentitemurl = $catobj->getLink();
+				$parentitemtitle = $catobj->getTitle();
+			}
+			if ($before) {
+				echo '<span class="beforetext">' . html_encode($before) . '</span>';
+			}
+			echo"<a href='" . $parentitemurl . "'>" . html_encode($parentitemtitle) . "</a>";
+			if ($after) {
+				echo '<span class="aftertext">' . html_encode($after) . '</span>';
+			}
 		}
 	}
 }

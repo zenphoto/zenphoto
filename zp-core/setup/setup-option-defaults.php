@@ -101,6 +101,7 @@ if (isset($_POST['setUTF8URI']) && $_POST['setUTF8URI'] != 'dont') {
 }
 setOptionDefault('server_protocol', "http");
 setOptionDefault('charset', "UTF-8");
+setOptionDefault('filesystem_charset', "UTF-8");
 setOptionDefault('image_quality', 85);
 setOptionDefault('thumb_quality', 75);
 
@@ -326,7 +327,7 @@ if (file_exists(SERVERPATH . '/' . ZENFOLDER . '/Zenphoto.package')) {
 		?>
 		<span>
 			<img src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/setup/setup_themeOptions.php?theme=' . $theme; ?>" title="<?php echo $theme; ?>" alt="<?php echo $theme; ?>" height="16px" width="16px" />
-		</span
+		</span>
 		<?php
 	}
 	?>

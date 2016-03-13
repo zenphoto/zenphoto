@@ -45,7 +45,7 @@ class utf8 {
 	var $mb_sets;
 	var $iconv_sets;
 
-	function utf8() {
+	function __construct() {
 		$this->charsets = array("ASMO-708"			 => gettext("Arabic"),
 						"BIG5"					 => gettext("Chinese Traditional"),
 						"CP1026"				 => gettext("IBM EBCDIC (Turkish Latin-5)"),

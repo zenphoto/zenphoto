@@ -237,7 +237,7 @@ function load_zenpage_news($request) {
 	global $_zp_current_zenpage_news, $_zp_current_category, $_zp_post_date;
 	if (isset($request['date'])) {
 		add_context(ZP_ZENPAGE_NEWS_DATE);
-		$_zp_post_date = sanitize($request['date']);
+		$_zp_post_date = zpFunctions::removeTrailingSlash(sanitize($request['date']));
 	}
 	if (isset($request['category'])) {
 		$titlelink = sanitize(rtrim($request['category'], '/'));

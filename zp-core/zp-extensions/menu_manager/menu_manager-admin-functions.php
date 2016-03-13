@@ -34,7 +34,7 @@ function updateItemsSortorder() {
  */
 function printItemsListTable($item, $flag) {
 	global $_zp_gallery;
-
+	$link = '';
 	$array = getItemTitleAndURL($item);
 	if ($array['valid']) {
 		switch ($item['type']) {

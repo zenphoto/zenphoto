@@ -38,8 +38,14 @@ if (!defined('OFFSET_PATH')) {
 	header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 
 	$real_locale = getUserLocale();
+	
+	$extensions = getPluginFiles('*.php');
+	$extensions = array_keys($extensions);
 
 	$extension = sanitize($_GET['extension']);
+	if(!in_array($extension, $extensions)) {
+		exit();
+	}
 	$thirdparty = isset($_GET['thirdparty']);
 
 	if ($thirdparty) {

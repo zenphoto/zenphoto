@@ -32,8 +32,10 @@ class pagedthumbsOptions {
 			setOptionDefault('pagedthumbs_pagelist', '');
 			setOptionDefault('pagedthumbs_pagelistprevnext', '');
 			setOptionDefault('pagedthumbs_pagelistlength', '6');
-			cacheManager::deleteThemeCacheSizes('paged_thumbs_nav');
-			cacheManager::addThemeCacheSize('paged_thumbs_nav', NULL, getOption('pagedthumbs_width'), getOption('pagedthumbs_height'), NULL, NULL, NULL, NULL, true, NULL, NULL, NULL);
+			if (class_exists('cacheManager')) {
+				cacheManager::deleteThemeCacheSizes('paged_thumbs_nav');
+				cacheManager::addThemeCacheSize('paged_thumbs_nav', NULL, getOption('pagedthumbs_width'), getOption('pagedthumbs_height'), NULL, NULL, NULL, NULL, true, NULL, NULL, NULL);
+			}
 		}
 	}
 
@@ -190,13 +192,18 @@ class pagedThumbsNav {
 	 * @return string
 	 */
 	function getPrevThumbsLink() {
-		global $_zp_current_album, $_zp_current_image, $_zp_current_search, $_zp_gallery;
+		global $_zp_current_album;
 		$this->prevpageimage = ""; // define needed for page list
 		if ($this->totalpages > 1) {
 			$prevpageimagenr = ($this->currentpage * $this->imagesperpage) - ($this->imagesperpage + 1);
 			if ($this->currentpage > 1) {
 				if (is_array($this->images[$prevpageimagenr])) {
-					$this->prevpageimage = newImage($_zp_current_album, $this->images[$prevpageimagenr]['filename']);
+					if (in_context(ZP_SEARCH_LINKED)) {
+						$albumobj = newAlbum($this->images[$prevpageimagenr]['folder']);
+					} else {
+						$albumobj = $_zp_current_album;
+					}
+					$this->prevpageimage = newImage($albumobj, $this->images[$prevpageimagenr]['filename']);
 				} else {
 					$this->prevpageimage = newImage($_zp_current_album, $this->images[$prevpageimagenr]);
 				}
@@ -230,7 +237,12 @@ class pagedThumbsNav {
 		$thumbs = array();
 		foreach ($curimages as $item) {
 			if (is_array($item)) {
-				$thumbs[] = newImage($_zp_current_album, $item['filename']);
+				if (in_context(ZP_SEARCH_LINKED)) {
+					$albumobj = newAlbum($item['folder']);
+				} else {
+					$albumobj = $_zp_current_album;
+				}
+				$thumbs[] = newImage($albumobj, $item['filename']);
 			} else {
 				$thumbs[] = newImage($_zp_current_album, $item);
 			}
@@ -284,13 +296,17 @@ class pagedThumbsNav {
 	 * @return string
 	 */
 	function getNextThumbsLink() {
-		global $_zp_current_album, $_zp_current_image, $_zp_current_search, $_zp_gallery;
+		global $_zp_current_album;
 		if ($this->totalpages > 1) {
 			if ($this->currentpage < $this->totalpages) {
 				$nextpageimagenr = $this->currentpage * $this->imagesperpage;
 				if (is_array($this->images[$nextpageimagenr])) {
-					//$albumobj = newAlbum($this->images[$nextpageimagenr]['folder']);
-					$this->nextpageimage = newImage($_zp_current_album, $this->images[$nextpageimagenr]['filename']);
+					if (in_context(ZP_SEARCH_LINKED)) {
+						$albumobj = newAlbum($this->images[$nextpageimagenr]['folder']);
+					} else {
+						$albumobj = $_zp_current_album;
+					}
+					$this->nextpageimage = newImage($albumobj, $this->images[$nextpageimagenr]['filename']);
 				} else {
 					$this->nextpageimage = newImage($_zp_current_album, $this->images[$nextpageimagenr]);
 				}

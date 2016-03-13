@@ -4,8 +4,8 @@
  * @package setup
  */
 // force UTF-8 Ø
-Define('PHP_MIN_VERSION', '5.2');
-Define('PHP_DESIRED_VERSION', '5.4');
+Define('PHP_MIN_VERSION', '5.2.0');
+Define('PHP_DESIRED_VERSION', '5.4.0');
 
 // leave this as the first executable statement to avoid problems with PHP not having gettext support.
 if (!function_exists("gettext")) {
@@ -14,20 +14,14 @@ if (!function_exists("gettext")) {
 } else {
 	$noxlate = 1;
 }
-define('HTACCESS_VERSION', '1.4.5'); // be sure to change this the one in .htaccess when the .htaccess file is updated.
+define('HTACCESS_VERSION', '1.4.12'); // be sure to change this the one in .htaccess when the .htaccess file is updated.
 
 define('OFFSET_PATH', 2);
 
-if (version_compare(PHP_VERSION, '5.0.0', '<')) {
+if (version_compare(PHP_VERSION, PHP_MIN_VERSION, '<')) {
 	die(sprintf(gettext('Zenphoto requires PHP version %s or greater'), PHP_MIN_VERSION));
 }
 require_once(dirname(dirname(__FILE__)) . '/global-definitions.php');
-
-$session_path = session_save_path();
-if (!file_exists($session_path) || !is_writable($session_path)) {
-	@mkdir(dirname(dirname(dirname(__FILE__))) . '/' . DATA_FOLDER . '/PHP_sessions', $chmod | 0311);
-	session_save_path(dirname(dirname(dirname(__FILE__))) . '/' . DATA_FOLDER . '/PHP_sessions');
-}
 
 $session = session_start();
 session_cache_limiter('nocache');
@@ -594,14 +588,10 @@ if ($c <= 0) {
 							$err = versionCheck(PHP_MIN_VERSION, PHP_DESIRED_VERSION, PHP_VERSION);
 							$good = checkMark($err, sprintf(gettext("PHP version %s"), PHP_VERSION), "", sprintf(gettext('PHP Version %1$s or greater is required. Version %2$s or greater is strongly recommended. Use earlier versions at your own risk.'), PHP_MIN_VERSION, PHP_DESIRED_VERSION), false) && $good;
 
-							if ($session && session_id() && $session_path == session_save_path()) {
+							if ($session && session_id()) {
 								checkmark(true, gettext('PHP <code>Sessions</code>.'), gettext('PHP <code>Sessions</code> [appear to not be working].'), '', true);
 							} else {
-								if ($session && session_id() && $session_path != session_save_path()) {
-									checkmark(-1, '', gettext('PHP <code>Sessions</code> [problems with <em>save_save_path</em>].'), sprintf(gettext('The configured PHP session path could not be used. Zenphoto has set the path to the %s folder.'), DATA_FOLDER), true);
-								} else {
-									checkmark(0, '', gettext('PHP <code>Sessions</code> [appear to not be working].'), gettext('PHP Sessions are required for Zenphoto administrative functions.'), true);
-								}
+								checkmark(0, '', gettext('PHP <code>Sessions</code> [appear to not be working].'), gettext('PHP Sessions are required for Zenphoto administrative functions.'), true);
 							}
 
 							if (preg_match('#(1|ON)#i', @ini_get('register_globals'))) {
@@ -2615,7 +2605,6 @@ if ($c <= 0) {
 								$hideGoButton = ' style="display:none"';
 								$autorun = false;
 								?>
-								</script>
 								<div class="warning" id="dbrestructure">
 									<p><?php echo gettext('<strong>Warning!</strong> This upgrade makes structural changes to the database which are not easily reversed. Be sure you have a database backup before proceeding.'); ?></p>
 									<form>

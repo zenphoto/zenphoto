@@ -219,17 +219,26 @@ class register_user {
 		if (empty($admin_n)) {
 			$_notify = 'incomplete';
 		}
+		$user = trim(sanitize($_POST['user']));
+		if (getOption('register_user_email_is_id')) {
+			$mail_duplicate = $_zp_authority->checkUniqueMailaddress($user, $user);
+			if ($mail_duplicate) {
+				$_notify = 'exists';
+			}
+		} 
 		if (isset($_POST['admin_email'])) {
 			$admin_e = trim(sanitize($_POST['admin_email']));
+			$mail_duplicate = $_zp_authority->checkUniqueMailaddress($admin_e, $user);
+			if($mail_duplicate) {
+				$_notify = 'duplicateemail';
+			}
 		} else {
-			$admin_e = trim(sanitize($_POST['user']));
+			$admin_e = $user;
 		}
 		if (!is_valid_email_zp($admin_e)) {
 			$_notify = 'invalidemail';
 		}
-
 		$pass = trim(sanitize($_POST['pass']));
-		$user = trim(sanitize($_POST['user']));
 		if (empty($pass)) {
 			$_notify = 'empty';
 		} else if (!empty($user) && !(empty($admin_n)) && !empty($admin_e)) {
@@ -436,7 +445,14 @@ function printRegistrationForm($thanks = NULL) {
 				?>
 				<div class="errorbox fade-message">
 					<h2><?php echo gettext("Registration failed."); ?></h2>
-					<p><?php printf(gettext('The user ID <em>%s</em> is already in use.'), $admin_e); ?></p>
+					<?php 
+						if(getOption('register_user_email_is_id')) { 
+							$idnote = $admin_e;
+						} else {
+							$idnote = $user;
+						} 
+					?>
+					<p><?php printf(gettext('The user ID <em>%s</em> is already in use.'), $idnote); ?></p>
 				</div>
 				<?php
 				break;
@@ -477,6 +493,14 @@ function printRegistrationForm($thanks = NULL) {
 				<div class="errorbox fade-message">
 					<h2><?php echo gettext("Registration failed."); ?></h2>
 					<p><?php echo gettext('Enter a valid email address.'); ?></p>
+				</div>
+				<?php
+				break;
+			case 'duplicateemail':
+				?>
+				<div class="errorbox fade-message">
+					<h2><?php echo gettext("Registration failed."); ?></h2>
+					<p><?php echo gettext('The email address entered is already used.'); ?></p>
 				</div>
 				<?php
 				break;

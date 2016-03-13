@@ -138,7 +138,7 @@ if ((function_exists("printUserLogin_out") ) || !zp_loggedin() && function_exist
 				printFavoritesURL(NULL, '<li>', '</li><li>', '</li>');
 			}
 			if (function_exists("printUserLogin_out")) {
-				printUserLogin_out("<li>", "</li>", 0);
+				printUserLogin_out("<li>", "</li>");
 			}
 			if (class_exists('mobileTheme')) {
 				?>
@@ -153,4 +153,4 @@ if ((function_exists("printUserLogin_out") ) || !zp_loggedin() && function_exist
 	<?php
 }
 ?>
-<?php @call_user_func('printLanguageSelector', "langselector"); ?>
+<?php @call_user_func('printLanguageSelector'); ?>

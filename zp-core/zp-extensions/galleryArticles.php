@@ -42,8 +42,10 @@ class galleryArticles {
 			setOptionDefault('galleryArticles_image_text', getAllTranslations($text));
 			setOptionDefault('galleryArticles_size', 80);
 			setOptionDefault('galleryArticles_protected', 0);
-			cacheManager::deleteThemeCacheSizes('galleryArticles');
-			cacheManager::addThemeCacheSize('galleryArticles', getOption('galleryArticles_size'), NULL, NULL, NULL, NULL, NULL, NULL, false, NULL, NULL, NULL);
+			if (class_exists('cacheManager')) {
+				cacheManager::deleteThemeCacheSizes('galleryArticles');
+				cacheManager::addThemeCacheSize('galleryArticles', getOption('galleryArticles_size'), NULL, NULL, NULL, NULL, NULL, NULL, false, NULL, NULL, NULL);
+			}
 		}
 	}
 
@@ -175,12 +177,13 @@ class galleryArticles {
    */
   private static function publishArticle($obj, $override = NULL) {
     global $_zp_zenpage;
+    $galleryitem_text = array();
     switch ($type = $obj->table) {
       case 'albums':
         if (getOption('multi_lingual')) {
           $option_text = unserialize(getOption('galleryArticles_album_text'));
           foreach ($option_text as $key => $val) {
-            $galleryitem_text[$key] = sprintf($galleryitem_text[$key], $obj->getTitle($key));
+            $galleryitem_text[$key] = sprintf($option_text[$key], $obj->getTitle($key));
           }
           $text = serialize($galleryitem_text);
         } else {
@@ -194,7 +197,7 @@ class galleryArticles {
         if (getOption('multi_lingual')) {
           $option_text = unserialize(getOption('galleryArticles_image_text'));
           foreach ($option_text as $key => $val) {
-            $galleryitem_text[$key] = sprintf($galleryitem_text[$key], $obj->getTitle($key), $obj->album->getTitle($key));
+            $galleryitem_text[$key] = sprintf($option_text[$key], $obj->getTitle($key), $obj->album->getTitle($key));
           }
           $text = serialize($galleryitem_text);
         } else {

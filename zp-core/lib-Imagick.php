@@ -154,7 +154,7 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	function zp_imageGet($imgfile) {
 		global $_lib_Imagick_info;
 
-		if (in_array(getSuffix($imgfile), $_lib_Imagick_info)) {
+		if (array_key_exists(strtoupper(getSuffix($imgfile)), $_lib_Imagick_info)) {
 			$image = new Imagick();
 
 			$maxHeight = getOption('magick_max_height');
@@ -165,6 +165,11 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 			}
 
 			$image->readImage(filesystemToInternal($imgfile));
+
+			//Generic CMYK to RGB conversion
+			if ($image->getImageColorspace() == Imagick::COLORSPACE_CMYK) {
+				$image->transformimagecolorspace(Imagick::COLORSPACE_SRGB);
+			}
 
 			return $image;
 		}
@@ -287,15 +292,10 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	 */
 	function zp_copyCanvas($imgCanvas, $img, $dest_x, $dest_y, $src_x, $src_y, $w, $h) {
 		$img->cropImage($w, $h, $src_x, $src_y);
-
 		$result = true;
-
-		$imgCanvas = $imgCanvas->coalesceImages();
-
 		foreach ($imgCanvas as $frame) {
-			$result &= $imgCanvas->compositeImage($img, Imagick::COMPOSITE_OVER, $dest_x, $dest_y);
+			$result &= $frame->compositeImage($img, Imagick::COMPOSITE_OVER, $dest_x, $dest_y);
 		}
-
 		return $result;
 	}
 
@@ -318,19 +318,11 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 		foreach ($src_image->getImageProfiles() as $name => $profile) {
 			$dst_image->profileImage($name, $profile);
 		}
-
 		$result = true;
-
 		$src_image = $src_image->coalesceImages();
-
 		foreach ($src_image as $frame) {
 			$frame->cropImage($src_w, $src_h, $src_x, $src_y);
 			$frame->setImagePage(0, 0, 0, 0);
-		}
-
-		$src_image = $src_image->coalesceImages();
-
-		foreach ($src_image as $frame) {
 			$frame->resizeImage($dst_w, $dst_h, Imagick::FILTER_LANCZOS, 1);
 
 			$dst_image->setImageDelay($frame->getImageDelay());
@@ -339,12 +331,10 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 			if ($dst_image->getNumberImages() < $src_image->getNumberImages()) {
 				$result &= $dst_image->addImage(zp_createImage($dst_image->getImageWidth(), $dst_image->getImageHeight()));
 			}
-
 			if (!$result) {
 				break;
 			}
 		}
-
 		return $result;
 	}
 
