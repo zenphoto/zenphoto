@@ -219,7 +219,7 @@ foreach ($template as $tablename => $table) {
 				unset($index['Index_comment']);
 			}
 			if ($exists) {
-				if (array_key_exists($key, $database[$tablename]['keys'])) {
+				if (isset($database[$tablename]['keys'][$key])) {
 					if ($index != $database[$tablename]['keys'][$key]) {
 						$dropString = "ALTER TABLE " . prefix($tablename) . " DROP INDEX `" . $index['Key_name'] . "`;";
 						setupQuery($dropString);
