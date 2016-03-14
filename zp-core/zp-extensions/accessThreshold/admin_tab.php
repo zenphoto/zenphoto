@@ -18,7 +18,33 @@ printAdminHeader('development', $subtab);
 
 $recentIP = getSerializedArray(@file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/recentIP'));
 unset($recentIP['config']);
-$recentIP = sortMultiArray($recentIP, array('counter'), true, true, false, true);
+
+switch (@$_POST['data_sortby']) {
+	case 'date':
+		$sort = 'accessTime';
+		break;
+	case 'ip':
+		$sort = 'ip';
+		uksort($recentIP, function($a, $b) {
+			$retval = 0;
+			$_a = explode('.', str_replace(':', '.', $a));
+			$_b = explode('.', str_replace(':', '.', $b));
+			foreach ($_a as $key => $va) {
+				if ($retval == 0) {
+					$retval = strnatcmp($va, @$_b[$key]);
+				} else {
+					break;
+				}
+			}
+			return $retval;
+		});
+		break;
+	default:
+		$sort = 'counter';
+		$recentIP = sortMultiArray($recentIP, array('counter'), true, true, false, true);
+		break;
+}
+
 $recentIP = array_slice($recentIP, 0, getOption('accessThreshold_LIMIT'));
 
 echo "\n</head>";
@@ -33,7 +59,20 @@ echo "\n</head>";
 				<?php
 				$subtab = printSubtabs();
 				?>
+
 				<div class="tabbox">
+					<form name="data_sort" style="float: right;" method="post" action="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/accessThreshold/admin_tab.php?action=data_sortorder" >
+						<span class="nowrap">
+							<?php echo gettext('Sort by:'); ?>
+							<select id="sortselect" name="data_sortby" onchange="this.form.submit();">
+								<option value="<?php echo gettext('counter'); ?>" <?php if ($sort == 'counter') echo 'selected="selected"'; ?>><?php echo gettext('count'); ?></option>
+								<option value="<?php echo gettext('date'); ?>" <?php if ($sort == 'accessTime') echo 'selected="selected"'; ?>><?php echo gettext('date'); ?></option>
+								<option value="<?php echo gettext('ip'); ?>" <?php if ($sort == 'ip') echo 'selected="selected"'; ?>><?php echo gettext('IP'); ?></option>
+							</select>
+						</span>
+					</form>
+					<br clear="all">
+					<br />
 					<?php
 					zp_apply_filter('admin_note', 'database', '');
 					$ct = 0;
