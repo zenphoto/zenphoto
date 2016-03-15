@@ -1344,15 +1344,19 @@ class _Administrator extends PersistentObject {
 				foreach ($this->objects as $object) {
 					switch ($object['type']) {
 						case 'album':
-							if ($object['edit'] && MANAGED_OBJECT_RIGHTS_EDIT) {
+							if ($object['edit'] & MANAGED_OBJECT_RIGHTS_EDIT) {
 								$new_rights = $new_rights | ALBUM_RIGHTS;
 							}
 							break;
 						case 'pages':
-							$new_rights = $new_rights | ZENPAGE_PAGES_RIGHTS;
+							if ($object['edit'] & MANAGED_OBJECT_RIGHTS_EDIT) {
+								$new_rights = $new_rights | ZENPAGE_PAGES_RIGHTS;
+							}
 							break;
 						case 'news':
-							$new_rights = $new_rights | ZENPAGE_NEWS_RIGHTS;
+							if ($object['edit'] & MANAGED_OBJECT_RIGHTS_EDIT) {
+								$new_rights = $new_rights | ZENPAGE_NEWS_RIGHTS;
+							}
 							break;
 					}
 				}

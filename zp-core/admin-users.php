@@ -189,10 +189,12 @@ if (isset($_GET['action'])) {
 										unset($oldobjects[$key]['name']);
 									}
 								}
+								$oldrights = $rights;
 								$oldobjects = sortMultiArray($oldobjects, 'data');
 								$objects = sortMultiArray(processManagedObjects($i, $rights), 'data');
-								if ($objects != $oldobjects) {
+								if ($rights != $oldrights || $objects != $oldobjects) {
 									$userobj->setObjects($objects);
+									$userobj->setRights($rights | NO_RIGHTS);
 									markUpdated();
 								}
 							} else {
@@ -778,9 +780,8 @@ echo $refresh;
 												</td>
 
 												<td <?php if (!empty($background)) echo " style=\"$background\""; ?>>
-													<?php printAdminRightsTable($id, $background, $local_alterrights, $userobj->getRights()); ?>
-
 													<?php
+													printAdminRightsTable($id, $background, $local_alterrights, $userobj->getRights());
 													if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 														$album_alter_rights = $local_alterrights;
 													} else {
