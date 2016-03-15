@@ -96,7 +96,7 @@ if (OFFSET_PATH) {
 					$tabs['development'] = array('text'		 => gettext("development"),
 									'subtabs'	 => NULL);
 				}
-				$tabs['development']['subtabs'][gettext("accessThreshold")] = PLUGIN_FOLDER . '/accessThreshold/admin_tab.php?page=development&tab=' . gettext('accessThreshold');
+				$tabs['development']['subtabs'][gettext("accessThreshold")] = PLUGIN_FOLDER . '/accessThreshold/admin_tab.php?page=development&tab=accessThreshold';
 				$named = array_flip($tabs['development']['subtabs']);
 				natcasesort($named);
 				$tabs['development']['subtabs'] = $named = array_flip($named);
