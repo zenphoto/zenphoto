@@ -43,7 +43,19 @@ class themeSwitcher {
 						" border-left: 1px solid #444;\n" .
 						" color: black;\n" .
 						" padding: 2px;\n" .
-						" background-color: #f5f5f5;\n" .
+						" background-color: #f5f5f5 !important;\n" .
+						"}\n"
+		);
+		setOptionDefault('themeSwitcher_css_loggedin', ".themeSwitcherControlLink {\n" .
+						" position: fixed;\n" .
+						" z-index: 10000;\n" .
+						" left: 0px;\n" .
+						" top: 30px;\n" .
+						" border-bottom: 1px solid #444;\n" .
+						" border-left: 1px solid #444;\n" .
+						" color: black;\n" .
+						" padding: 2px;\n" .
+						" background-color: #f5f5f5 !important;\n" .
 						"}\n"
 		);
 		setOptionDefault('themeSwitcher_adminOnly', 1);
@@ -61,6 +73,9 @@ class themeSwitcher {
 						gettext('Selector CSS')		 => array('key'					 => 'themeSwitcher_css', 'type'				 => OPTION_TYPE_TEXTAREA,
 										'multilingual' => false,
 										'desc'				 => gettext('Change this box if you wish to style the theme switcher selector for your themes.')),
+						gettext('Selector CSS Loggedin')		 => array('key'					 => 'themeSwitcher_css_loggedin', 'type'				 => OPTION_TYPE_TEXTAREA,
+										'multilingual' => false,
+										'desc'				 => gettext('Change this box if you wish to style the theme switcher selector for your themes. Only if loggedin to cover the admin toolbox.')),
 						gettext('Private')				 => array('key'	 => 'themeSwitcher_adminOnly', 'type' => OPTION_TYPE_CHECKBOX,
 										'desc' => gettext('Only users with <em>Themes</em> rights will see the selector if this is checked.')),
 						gettext('Theme list')			 => array('key'				 => 'themeSwitcher_list', 'type'			 => OPTION_TYPE_CHECKBOX_UL,
@@ -95,7 +110,13 @@ class themeSwitcher {
 		if (getOption('themeSwitcher_css')) {
 			?>
 			<style type="text/css">
-			<?php echo zp_apply_filter('themeSwitcher_css', getOption('themeSwitcher_css')); ?>
+			<?php 
+			if(zp_loggedin()) {
+				echo zp_apply_filter('themeSwitcher_css', getOption('themeSwitcher_css_loggedin')); 
+			} else {
+				echo zp_apply_filter('themeSwitcher_css', getOption('themeSwitcher_css')); 
+			}
+			?>
 			</style>
 			<?php
 		}
