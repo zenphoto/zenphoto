@@ -44,7 +44,33 @@ switch (@$_POST['data_sortby']) {
 		break;
 }
 
-$recentIP = array_slice($recentIP, 0, getOption('accessThreshold_LIMIT'));
+$recentIP = array_slice($recentIP, 0, ($rows = ceil(getOption('accessThreshold_LIMIT') / 4)) * 4);
+$output = array();
+
+$ct = 0;
+foreach ($recentIP as $entity => $data) {
+	$row = $ct % $rows;
+	$out = '<span style="width:23%;float:left;';
+	if ($even = floor($ct / $rows) % 2) {
+		$out .= 'background-color:lightgray;';
+	}
+	$out .='">' . "\n";
+	$out .= '  <span style="width:40%;float:left"><span style="float:right">' . $entity . '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span>' . "\n";
+	$out .= '  <span style="width:48%;float:left">' . date('Y-m-d H:i:s', $data['accessTime']) . '</span>' . "\n";
+	$out .= '  <span style="width:3%;float:left"><span style="float:right">' . $data['counter'] . '</span></span>' . "\n";
+	$out .= "</span>\n";
+//	$out .= '<span style="width:2%;float:left;">&nbsp;&nbsp;</span>' . "\n";
+
+	if (isset($output[$row])) {
+		$output[$row] .= $out;
+	} else {
+		$output[$row] = $out;
+	}
+	$ct++;
+}
+if (empty($output)) {
+	$output[] = gettext("No entries excede the noise level");
+}
 
 echo "\n</head>";
 ?>
@@ -70,26 +96,12 @@ echo "\n</head>";
 							</select>
 						</span>
 					</form>
-					<br clear="all">
+					<br style="clearall">
 					<br />
 					<?php
 					zp_apply_filter('admin_note', 'database', '');
-					$ct = 0;
-					foreach ($recentIP as $entity => $data) {
-						echo '<span style="width:25%;float:left">';
-						echo '<span style="width:40%;float:left">' . $entity . '</span>';
-						echo '<span style="width:48%;float:left">' . date('Y-m-d H:i:s', $data['accessTime']) . '</span>';
-						echo '<span style="width:3%;float:left">' . $data['counter'] . '</span>';
-						echo "</span>\n";
-						$ct++;
-						if ($ct % 4 == 0) {
-							echo '<br clear="both">';
-						}
-					}
-					if (empty($ct)) {
-						echo gettext("No entries excede the noise level");
-					} else {
-						echo '<br clear="both">';
+					foreach ($output as $row) {
+						echo $row . '<br style="clearall">' . "\n";
 					}
 					?>
 				</div>
