@@ -1326,19 +1326,19 @@ function printAdminHeader($tab, $subtab = NULL) {
 										// needed to prevent "Are you sure?" from tiggering when autofill is enabled in browsers
 										// http://benjaminjshore.info/2014/05/chrome-auto-fill-honey-pot-hack.html
 										?>
-										<input class="ays-ignore" type="password" name="pass" style="display:none;" />
+										<input class="dirtyignore" type="password" name="pass" style="display:none;" />
 										<input type="password"
 													 id="pass<?php echo $suffix; ?>" name="pass<?php echo $suffix; ?>"
 													 onkeydown="passwordClearZ('<?php echo $suffix; ?>');"
 													 onkeyup="passwordStrength('<?php echo $suffix; ?>');"
 													 value="<?php echo $x; ?>" />
-										<label><input class="ays-ignore" type="checkbox" name="disclose_password<?php echo $suffix; ?>"
+										<label><input class="dirtyignore" type="checkbox" name="disclose_password<?php echo $suffix; ?>"
 																id="disclose_password<?php echo $suffix; ?>"
 																onclick="passwordClear('<?php echo $suffix; ?>');
 																		togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?></label>
 										<br />
 										<span class="password_field_<?php echo $suffix; ?>">
-											<input class="ays-ignore" type="password"
+											<input class="dirtyignore" type="password"
 														 id="pass_r<?php echo $suffix; ?>" name="pass_r<?php echo $suffix; ?>" disabled="disabled"
 														 onkeydown="passwordClear('<?php echo $suffix; ?>');"
 														 onkeyup="passwordMatch('<?php echo $suffix; ?>');"
@@ -3822,7 +3822,7 @@ function printBulkActions($checkarray, $checkAll = false) {
 	}
 	?>
 	<span style="float:right">
-		<select class="ays-ignore" name="checkallaction" id="checkallaction" size="1" onchange="checkFor(this);" >
+		<select class="dirtyignore" name="checkallaction" id="checkallaction" size="1" onchange="checkFor(this);" >
 			<?php generateListFromArray(array('noaction'), $checkarray, false, true); ?>
 		</select>
 		<?php
@@ -3832,7 +3832,7 @@ function printBulkActions($checkarray, $checkAll = false) {
 			<?php
 			echo gettext("Check All");
 			?>
-			<input class="ays-ignore" type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this.checked);" />
+			<input class="dirtyignore" type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this.checked);" />
 			<?php
 		}
 		?>
@@ -3843,7 +3843,7 @@ function printBulkActions($checkarray, $checkAll = false) {
 		<div id="mass_tags" style="display:none;">
 			<div id="mass_tags_data">
 				<?php
-				tagSelector(NULL, 'mass_tags_', false, false, true, false, 'checkTagsAuto ays-ignore');
+				tagSelector(NULL, 'mass_tags_', false, false, true, false, 'checkTagsAuto dirtyignore');
 				?>
 			</div>
 		</div>
@@ -3854,7 +3854,7 @@ function printBulkActions($checkarray, $checkAll = false) {
 		<div id="mass_cats" style="display:none;">
 			<ul id="mass_cats_data">
 				<?php
-				printNestedItemsList('cats-checkboxlist', '', 'all', 'ays-ignore');
+				printNestedItemsList('cats-checkboxlist', '', 'all', 'dirtyignore');
 				?>
 			</ul>
 		</div>
@@ -3864,7 +3864,7 @@ function printBulkActions($checkarray, $checkAll = false) {
 		?>
 		<div id="mass_owner" style="display:none;">
 			<ul id="mass_owner_data">
-				<select class="ays-ignore" id="massownermenu" name="massownerselect" onchange="">
+				<select class="dirtyignore" id="massownermenu" name="massownerselect" onchange="">
 					<?php
 					echo admin_album_list(NULL);
 					?>
@@ -3882,7 +3882,7 @@ function printBulkActions($checkarray, $checkAll = false) {
 				<?php
 				echo gettext('Destination');
 				?>
-				<select class="ays-ignore" id="massalbumselectmenu" name="massalbumselect" onchange="">
+				<select class="dirtyignore" id="massalbumselectmenu" name="massalbumselect" onchange="">
 					<?php
 					foreach ($mcr_albumlist as $fullfolder => $albumtitle) {
 						$singlefolder = $fullfolder;
@@ -4446,7 +4446,7 @@ function printPageSelector($subpage, $rangeset, $script, $queryParams) {
 			<?php
 		}
 		?>
-		<select name="subpage" class="ays-ignore" id="subpage<?php echo $instances; ?>" onchange="launchScript('<?php echo WEBPATH . '/' . ZENFOLDER . '/' . $script; ?>',
+		<select name="subpage" class="dirtyignore" id="subpage<?php echo $instances; ?>" onchange="launchScript('<?php echo WEBPATH . '/' . ZENFOLDER . '/' . $script; ?>',
 								[<?php echo $jump; ?>'subpage=' + $('#subpage<?php echo $instances; ?>').val()]);" >
 							<?php
 							foreach ($rangeset as $page => $range) {
