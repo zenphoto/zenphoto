@@ -1530,11 +1530,10 @@ function printAdminHeader($tab, $subtab = NULL) {
 								</td>
 								<td>
 									<p>
-										<input class="ignoredirty" type="password" style="display:none;" />
 										<input type="password"
 													 class="passignore<?php echo $suffix; ?> ignoredirty" autocomplete="off"
 													 id="pass<?php echo $suffix; ?>" name="pass<?php echo $suffix; ?>"
-													 onkeydown="passwordClearZ('<?php echo $suffix; ?>');"
+													 onkeydown="passwordClear('<?php echo $suffix; ?>');"
 													 onkeyup="passwordStrength('<?php echo $suffix; ?>');"
 													 value="<?php echo $x; ?>" />
 										<br />
