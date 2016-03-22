@@ -80,7 +80,7 @@ function zpRewriteURL($query) {
 		} else {
 			$obj = newAlbum($query['album'], NULL, true);
 		}
-		if (!$obj->exists)
+		if (is_object($obj) && !$obj->exists)
 			return '';
 
 		unset($query['album']);
@@ -223,7 +223,7 @@ function zp_load_search() {
 		$_zp_current_search = new SearchEngine();
 	}
 	add_context(ZP_SEARCH);
-	$params = $_zp_current_search->getSearchParams();
+	$params = urldecode($_zp_current_search->getSearchParams());
 	zp_setCookie("zenphoto_search_params", $params, SEARCH_DURATION);
 	return $_zp_current_search;
 }
@@ -458,8 +458,11 @@ function prepareCustomPage() {
 				if (!empty($searchalbums)) { //	we are within a search of a specific album(s)
 					$albums = array();
 					foreach ($searchalbums as $analbum) {
-						$parent = getUrAlbum(newAlbum($analbum));
-						$albums[$parent->getID()] = $parent;
+						$album = newAlbum($analbum, true, true);
+						if (is_object($album) && $album->exists) {
+							$parent = getUrAlbum($album);
+							$albums[$parent->getID()] = $parent;
+						}
 					}
 					if (count($albums) == 1) { // there is only one parent album for the search
 						$album = array_shift($albums);

@@ -331,7 +331,7 @@ class SearchEngine {
 					$r .= '&inalbums=0';
 				}
 			} else {
-				$r .= '&inalbums=' . implode(',', $this->album_list);
+				$r .= '&inalbums=' . implode(',', array_map("urlencode", $this->album_list));
 			}
 			if ($this->search_no_images) {
 				$r .= '&inimages=0';
@@ -344,7 +344,7 @@ class SearchEngine {
 					$r .= '&innews=0';
 				}
 			} else {
-				$r .= '&innews=' . implode(',', $this->categories);
+				$r .= '&innews=' . implode(',', array_map("urlencode", $this->categories));
 			}
 			if ($_zp_page > 1) {
 				$this->page = $_zp_page;
