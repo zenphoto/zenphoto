@@ -520,7 +520,7 @@ if (extensionEnabled('slideshow2')) {
 			$imagenumber = '';
 			$imagefile = '';
 			$albumnr = 0;
-			$slideshowlink = rewrite_path(_PAGE_ . '/slideshow', "index.php?p=slideshow");
+			$slideshowlink = rewrite_path(_PAGE_ . '/slideshow/', "index.php?p=slideshow");
 			$slideshowhidden = '<input type="hidden" name="preserve_search_params" value="' . html_encode($_zp_current_search->getSearchParams()) . '" />';
 		} else {
 			if (in_context(ZP_IMAGE)) {
@@ -537,7 +537,7 @@ if (extensionEnabled('slideshow2')) {
 				$albumnr = $_zp_current_album->getID();
 			}
 			if ($albumnr) {
-				$slideshowlink = rewrite_path(pathurlencode($_zp_current_album->getFolder()) . '/' . _PAGE_ . '/slideshow', "index.php?p=slideshow&amp;album=" . urlencode($_zp_current_album->getFolder()));
+				$slideshowlink = rewrite_path(pathurlencode($_zp_current_album->getFolder()) . '/' . _PAGE_ . '/slideshow/', "index.php?p=slideshow&amp;album=" . urlencode($_zp_current_album->getFolder()));
 			} else {
 				$slideshowlink = rewrite_path(_PAGE_ . '/slideshow', "index.php?p=slideshow");
 				$slideshowhidden = '<input type="hidden" name="favorites_page" value="1" />' . "\n" . '<input type="hidden" name="title" value="' . $_myFavorites->instance . '" />';
