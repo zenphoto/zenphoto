@@ -117,6 +117,7 @@ class DownloadList {
 			</a>
 			<br />
 			<input type="text" size="27" id="user_name_downloadList" name="user_downloadList"
+						 class="passignore ignoredirty" autocomplete="off"
 						 onkeydown="passwordClear('_downloadList');"
 						 value="<?php echo html_encode($user); ?>" />
 			<br />
@@ -124,12 +125,16 @@ class DownloadList {
 			<br />
 			<input type="password" size="27"
 						 id="pass_downloadList" name="pass_downloadList"
+						 class="passignore ignoredirty" autocomplete="off"
 						 onkeydown="passwordClear('_downloadList');"
 						 onkeyup="passwordStrength('_downloadList');"
 						 value="<?php echo $x; ?>" />
 			<label>
-				<input type="checkbox" name="disclose_password_downloadList" id="disclose_password_downloadList" onclick="passwordClear('_downloadList');
-								togglePassword('_downloadList');"><?php echo gettext('Show password'); ?>
+				<input type="checkbox"
+							 name="disclose_password_downloadList"
+							 id="disclose_password_downloadList"
+							 onclick="passwordClear('_downloadList');
+									 togglePassword('_downloadList');"><?php echo gettext('Show password'); ?>
 			</label>
 			<br />
 			<span class="password_field__downloadList">
@@ -137,6 +142,7 @@ class DownloadList {
 				<br />
 				<input type="password" size="27"
 							 id="pass_r_downloadList" name="pass_r_downloadList" disabled="disabled"
+							 class="passignore ignoredirty" autocomplete="off"
 							 onkeydown="passwordClear('_downloadList');"
 							 onkeyup="passwordMatch('_downloadList');"
 							 value="<?php echo $x; ?>" />

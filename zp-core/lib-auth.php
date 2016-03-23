@@ -1194,8 +1194,6 @@ class _Authority {
 				function passwordClear(id) {
 					var inputa = '#pass' + id;
 					var inputb = '#pass_r' + id;
-					$(inputa).removeClass('ignoredirty');
-					$(inputb).removeClass('ignoredirty');
 					if ($(inputa).val().trim() === '') {
 						$(inputa).val('');
 					}
@@ -1248,8 +1246,12 @@ class _Authority {
 		</p>
 		<p>
 			<label for="disclose_password<?php echo $id; ?>"><?php echo gettext('Show password'); ?></label>
-			<input type="checkbox" name="disclose_password<?php echo $id; ?>" class="disclose_password" id="disclose_password<?php echo $id; ?>" onclick="passwordClear('<?php echo $id; ?>');
-					togglePassword('<?php echo $id; ?>');">
+			<input type="checkbox"
+						 name="disclose_password<?php echo $id; ?>"
+						 class="disclose_password"
+						 id="disclose_password<?php echo $id; ?>"
+						 onclick="passwordClear('<?php echo $id; ?>');
+								 togglePassword('<?php echo $id; ?>');">
 		</p>
 		<p class="password_field password_field_<?php echo $id; ?>">
 			<label for="pass_r<?php echo $id; ?>" id="match<?php echo $id; ?>"><?php echo gettext("Repeat password") . $flag; ?></label>
