@@ -75,9 +75,13 @@ class ThemeOptions {
 		if (extensionEnabled('zenpage')) {
 			global $_zp_CMS;
 			$pages = $_zp_CMS->getPages(false);
+
 			$list = array();
 			foreach ($pages as $page) {
-				$list[getBare($page['title'])] = $page['titlelink'];
+				$pageObj = newPage($page['titlelink']);
+				if (!$pageObj->getShow()) {
+					$list[getBare(get_language_string($page['title']))] = $page['titlelink'];
+				}
 			}
 			$options[gettext('Custom Homepage')] = array('key'						 => 'garland_customHome', 'type'					 => OPTION_TYPE_SELECTOR,
 							'selections'		 => $list,
