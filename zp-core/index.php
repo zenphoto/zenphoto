@@ -126,9 +126,9 @@ if ($zp_request && $_zp_script && file_exists($_zp_script = SERVERPATH . "/" . i
 		}
 	}
 
-	//update publish state, but only on PUBLISH_CHECK_INTERVAL
+	//update publish state, but only on static cache expiry intervals
 	$lastupdate = (int) @file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/lastPublishCheck');
-	if (time() - $lastupdate > min(7200, (int) @$_zp_conf_vars['publishCheckInterval'])) {
+	if (time() - $lastupdate > getOption('static_cache_expire')) {
 		$tables = array('albums', 'images');
 		if (extensionEnabled('zenpage')) {
 			$tables = array_merge($tables, array('news', 'pages'));

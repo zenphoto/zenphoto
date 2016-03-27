@@ -132,11 +132,7 @@ if (strpos($zp_cfg, "\$conf['charset']") === false) {
 	$zp_cfg = substr($zp_cfg, 0, $k) . "\$conf['charset'] = 'UTF-8';\n" . substr($zp_cfg, $k);
 	$updatezp_config = true;
 }
-if (strpos($zp_cfg, "\$conf['publishCheckInterval']") === false) {
-	$k = strpos($zp_cfg, "// Server Protocol");
-	$zp_cfg = substr($zp_cfg, 0, $k) . "\$conf['publishCheckInterval'] = '7200';\n\n" . substr($zp_cfg, $k);
-	$updatezp_config = true;
-}
+
 if (strpos($zp_cfg, "\$conf['special_pages']") === false) {
 	$template = file_get_contents(dirname(dirname(__FILE__)) . '/zenphoto_cfg.txt');
 	$i = strpos($template, "\$conf['special_pages']");
