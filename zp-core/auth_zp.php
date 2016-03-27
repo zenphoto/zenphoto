@@ -74,7 +74,7 @@ if (isset($_POST['login'])) { //	Handle the login form.
 		$cloneid = bin2hex(FULLWEBPATH);
 		if (!$_zp_loggedin && isset($_SESSION['admin'][$cloneid])) { //	"passed" login
 			$user = unserialize($_SESSION['admin'][$cloneid]);
-			$user2 = Zenphoto_Authority::getAnAdmin(array('`user`=' => $user->getUser(), '`valid`=' => 1));
+			$user2 = $_zp_authority->getAnAdmin(array('`user`=' => $user->getUser(), '`valid`=' => 1));
 			if ($user2 && $user->getPass() == $user2->getPass()) {
 				Zenphoto_Authority::logUser($user2);
 				$_zp_current_admin_obj = $user2;

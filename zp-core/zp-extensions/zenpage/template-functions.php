@@ -94,7 +94,7 @@ function stickyNews($newsobj = NULL) {
  * @return string
  */
 function getAuthor($fullname = false) {
-	global $_zp_current_page, $_zp_current_article;
+	global $_zp_current_page, $_zp_current_article, $_zp_authority;
 
 	if (is_Pages()) {
 		$obj = $_zp_current_page;
@@ -105,7 +105,7 @@ function getAuthor($fullname = false) {
 	}
 	if ($obj) {
 		if ($fullname) {
-			$admin = Zenphoto_Authority::getAnAdmin(array('`user`=' => $obj->getAuthor(), '`valid`=' => 1));
+			$admin = $_zp_authority->getAnAdmin(array('`user`=' => $obj->getAuthor(), '`valid`=' => 1));
 			if (is_object($admin) && $admin->getName()) {
 				return $admin->getName();
 			}
@@ -238,7 +238,6 @@ function getNumNews($total = false) {
  */
 function next_news() {
 	global $_zp_CMS, $_zp_current_article, $_zp_current_article_restore, $_zp_CMS_articles, $_zp_current_category, $_zp_gallery, $_zp_current_search;
-
 	if ($_zp_CMS->news_enabled && is_null($_zp_CMS_articles)) {
 		if (in_context(ZP_SEARCH)) {
 			//note: we do not know how to paginate the search page, so for now we will return all news articles

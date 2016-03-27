@@ -42,7 +42,7 @@
  *
  *
  * @author Stephen Billard (sbillard)
- * 
+ *
  * @package plugins
  * @subpackage users
  */
@@ -81,7 +81,7 @@ class http_auth {
 	}
 
 	static function check($authorized) {
-		global $_zp_current_admin_obj;
+		global $_zp_authority, $_zp_current_admin_obj;
 		if (!$authorized) {
 			// not logged in via normal zenphoto handling
 			// PHP-CGI auth fixd
@@ -102,7 +102,7 @@ class http_auth {
 				$user = $_SERVER['PHP_AUTH_USER'];
 				$pass = $_SERVER['PHP_AUTH_PW'];
 				if (getOption('http_auth_trust')) {
-					$userobj = Zenphoto_Authority::getAnAdmin(array('`user`=' => $user, '`valid`=' => 1));
+					$userobj = $_zp_authority->getAnAdmin(array('`user`=' => $user, '`valid`=' => 1));
 				} else {
 					$userobj = Zenphoto_Authority::checkLogon($user, $pass);
 				}

@@ -107,7 +107,7 @@ if (isset($_GET['action'])) {
 							$nouser = false;
 							if (isset($_POST[$i . '-newuser'])) {
 								$newuser = $user;
-								$userobj = Zenphoto_Authority::getAnAdmin(array('`user`=' => $user, '`valid`>' => 0));
+								$userobj = $_zp_authority->getAnAdmin(array('`user`=' => $user, '`valid`>' => 0));
 								if (is_object($userobj)) {
 									$notify = '?exists';
 									break;

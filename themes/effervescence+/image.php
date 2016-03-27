@@ -109,9 +109,10 @@ if (!defined('WEBPATH'))
 
 				<!-- The Image -->
 				<?php
-				$s = getDefaultWidth() + 22;
+				$size_a = getSizeDefaultImage();
+				$s = $size_a[0] + 22;
 				$wide = " style=\"width:" . $s . "px;";
-				$s = getDefaultHeight() + 22;
+				$s = $size_a[1] + 72;
 				$high = " height:" . $s . "px;\"";
 				?>
 				<div id="image" <?php echo $wide . $high; ?>>

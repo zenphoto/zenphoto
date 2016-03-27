@@ -80,9 +80,12 @@ class defaultCodeblocks {
 }
 
 function defaultCodeblocks_codebox($current, $object, $number) {
+	global $_defaultCodeBlocks;
 	if (empty($current) && getOption('defaultCodeblocks_object_' . $object->table)) {
-		$defaultCodeBlocks = new defaultCodeblocks();
-		$blocks = getSerializedArray($defaultCodeBlocks->getCodeblock());
+		if (!$_defaultCodeBlocks) {
+			$_defaultCodeBlocks = new defaultCodeblocks();
+		}
+		$blocks = getSerializedArray($_defaultCodeBlocks->getCodeblock());
 		if (isset($blocks[$number])) {
 			$current = $blocks[$number];
 		}

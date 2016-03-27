@@ -176,6 +176,7 @@ if (!$data && OFFSET_PATH != 2) {
 }
 
 primeOptions();
+define('SITE_LOCALE', getOption('locale'));
 
 $data = getOption('gallery_data');
 if ($data) {
@@ -442,7 +443,7 @@ function setOptionDefault($key, $default) {
  * @param string $theme
  */
 function loadLocalOptions($albumid, $theme) {
-	global $_zp_options;
+	global $_zp_options, $_loaded_local;
 	//raw theme options
 	$sql = "SELECT LCASE(`name`) as name, `value` FROM " . prefix('options') . ' WHERE `theme`=' . db_quote($theme) . ' AND `ownerid`=0';
 	$optionlist = query_full_array($sql, false);
@@ -1304,7 +1305,7 @@ function getAlbumInherited($folder, $field, &$id) {
  * @param string $album
  * @return string
  */
-function themeSetup($album) {
+function imageThemeSetup($album) {
 	// we need to conserve memory in i.php so loading the classes is out of the question.
 	$id = NULL;
 	$theme = getAlbumInherited(filesystemToInternal($album), 'album_theme', $id);

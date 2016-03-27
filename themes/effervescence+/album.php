@@ -87,7 +87,7 @@ $map = function_exists('printGoogleMap');
 			<!-- Random Image -->
 			<?php
 			if (isAlbumPage()) {
-				printHeadingImage(getRandomImagesAlbum(NULL, getThemeOption('effervescence_daily_album_image')));
+				printHeadingImage(getRandomImagesAlbum(NULL, getOption('effervescence_daily_album_image')));
 			}
 			?>
 		</div> <!-- header -->

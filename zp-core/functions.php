@@ -27,7 +27,6 @@ if (GALLERY_SESSION) {
 }
 
 define('ZENPHOTO_LOCALE', setMainDomain());
-define('SITE_LOCALE', getOptionFromDB('locale'));
 
 require_once(dirname(__FILE__) . '/load_objectClasses.php');
 

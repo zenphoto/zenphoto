@@ -15,6 +15,7 @@ class _Authority {
 	var $admin_all = NULL;
 	var $rightsset = NULL;
 	protected $master_user = NULL;
+	protected $master_userObj = NULL;
 	static $preferred_version = 4;
 	static $supports_version = 4;
 	static $hashList = array('pbkdf2' => 3, 'pbkdf2*' => 2, 'sha1' => 1, 'md5' => 0);
@@ -60,7 +61,10 @@ class _Authority {
 	}
 
 	function getMasterUser() {
-		return new Zenphoto_Administrator($this->master_user, 1);
+		if (!is_object($this->master_userObj)) {
+			$this->master_userObj = new Zenphoto_Administrator($this->master_user, 1);
+		}
+		return $this->master_userObj;
 	}
 
 	function isMasterUser($user) {
@@ -224,17 +228,42 @@ class _Authority {
 	 * @param array $criteria [ match => criteria ]
 	 * @return Zenphoto_Administrator
 	 */
-	static function getAnAdmin($criteria) {
-		$selector = array();
+	function getAnAdmin($criteria) {
+		$find = array();
 		foreach ($criteria as $match => $value) {
-			if (is_numeric($value)) {
-				$selector[] = $match . $value;
-			} else {
-				$selector[] = $match . db_quote($value);
+			preg_match('/(.*)([<>=!])/', $match, $detail);
+			$find[trim($detail[1], '`')] = array('field' => trim($detail[1]), 'op' => trim($detail[2]), 'value' => $value);
+		}
+		if (isset($find['id'])) {
+			$id = $find['id']['value'];
+			if (isset($this->admin_all[$id])) {
+				$admin = $this->admin_all[$id];
+				foreach ($find as $field => $select) {
+					if ($r = strcmp($admin[$field], $select['value']) == 0) {
+						$ops = array('=', '>=', '<=');
+					} else if ($r > 0) {
+						$ops = array('>', '>=', '!=');
+					} else {
+						$ops = array('<', '<=', '!=');
+					}
+					if (!in_array($select['op'], $ops)) {
+						unset($admin);
+						break;
+					}
+				}
 			}
 		}
-		$sql = 'SELECT * FROM ' . prefix('administrators') . ' WHERE ' . implode(' AND ', $selector) . ' LIMIT 1';
-		$admin = query_single_row($sql);
+		if (!isset($admin)) {
+			$selector = array();
+			foreach ($find as $field => $select) {
+				if (!is_numeric($value = $select['value'])) {
+					$value = db_quote($value);
+				}
+				$selector[] = $select['field'] . $select['op'] . $value;
+			}
+			$sql = 'SELECT * FROM ' . prefix('administrators') . ' WHERE ' . implode(' AND ', $selector) . ' LIMIT 1';
+			$admin = query_single_row($sql);
+		}
 		if ($admin) {
 			return self::newAdministrator($admin['user'], $admin['valid']);
 		} else {
@@ -282,7 +311,7 @@ class _Authority {
 		}
 		$rights = 0;
 		$criteria = array('`pass`=' => $authCode, '`id`=' => (int) $id, '`valid`=' => 1);
-		$user = self::getAnAdmin($criteria);
+		$user = $this->getAnAdmin($criteria);
 		if (is_object($user)) {
 			$_zp_current_admin_obj = $user;
 			$rights = $user->getRights();
@@ -308,7 +337,7 @@ class _Authority {
 	 * @return object
 	 */
 	function checkLogon($user, $pass) {
-		$userobj = self::getAnAdmin(array('`user`=' => $user, '`valid`=' => 1));
+		$userobj = $this->getAnAdmin(array('`user`=' => $user, '`valid`=' => 1));
 		if ($userobj) {
 			$hash = self::passwordHash($user, $pass, $userobj->get('passhash'));
 			if ($hash != $userobj->getPass()) {
@@ -673,7 +702,7 @@ class _Authority {
 					}
 					break;
 				case 'challenge':
-					$user = self::getAnAdmin(array('`user`=' => $post_user, '`valid`=' => 1));
+					$user = $this->getAnAdmin(array('`user`=' => $post_user, '`valid`=' => 1));
 					if (is_object($user)) {
 						$info = $user->getChallengePhraseInfo();
 						if ($post_pass && $info['response'] == $post_pass) {
@@ -843,7 +872,7 @@ class _Authority {
 		$mails = array();
 		$info = array('challenge' => '', 'response' => '');
 		if (!empty($requestor)) {
-			if ($admin = self::getAnAdmin(array('`user`=' => $requestor, '`valid`=' => 1))) {
+			if ($admin = $this->getAnAdmin(array('`user`=' => $requestor, '`valid`=' => 1))) {
 				$info = $admin->getChallengePhraseInfo();
 			} else {
 				$info = array('challenge' => '');

@@ -5,7 +5,7 @@
  * Root class for external authorizaton plugins
  *
  * @author Stephen Billard (sbillard)
- * 
+ *
  * @package core
  */
 class external_auth {
@@ -48,12 +48,12 @@ class external_auth {
 	 * @param BIT $authorized
 	 */
 	function check($authorized) {
-		global $_zp_current_admin_obj;
+		global $_zp_authority, $_zp_current_admin_obj;
 		if (!$authorized) { // not logged in via normal zenphoto handling
 			if ($result = $this->user()) {
 				$user = $result['user'];
 				$searchfor = array('`user`=' => $user, '`valid`=' => 1);
-				$userobj = Zenphoto_Authority::getAnAdmin($searchfor);
+				$userobj = $_zp_authority->getAnAdmin($searchfor);
 				if (!$userobj) {
 					unset($result['id']);
 					unset($result['user']);
@@ -80,7 +80,7 @@ class external_auth {
 								$objects = array();
 								$groups = $value;
 								foreach ($groups as $key => $group) {
-									$groupobj = Zenphoto_Authority::getAnAdmin(array('`user`=' => $group, '`valid`=' => 0));
+									$groupobj = $_zp_authority->getAnAdmin(array('`user`=' => $group, '`valid`=' => 0));
 									if ($groupobj) {
 										$member = true;
 										$rights = $groupobj->getRights() | $rights;
@@ -102,7 +102,7 @@ class external_auth {
 								if (!$member && isset($result['defaultgroup'])) {
 									//	No zenphoto group, use the default group
 									$group = $result['defaultgroup'];
-									$groupobj = Zenphoto_Authority::getAnAdmin(array('`user`=' => $group, '`valid`=' => 0));
+									$groupobj = $_zp_authority->getAnAdmin(array('`user`=' => $group, '`valid`=' => 0));
 									if ($groupobj) {
 										$rights = $groupobj->getRights();
 										$objects = $groupobj->getObjects();

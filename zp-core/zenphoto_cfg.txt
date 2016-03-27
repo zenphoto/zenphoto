@@ -57,10 +57,11 @@ $conf['UTF-8'] = true;
 $conf['album_folder'] = '/albums/';
 $conf['album_folder_class'] = 'std';
 
+//frequency to check for publish state transitions
+$conf['publishCheckInterval'] = 3600;
+
 // Server Protocol
-
 $conf['server_protocol'] = "http";
-
 // Change this to "https" if you use an HTTPS server (a "https://..." url)
 // Otherwise you should leave it at "http"
 //

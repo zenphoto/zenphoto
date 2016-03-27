@@ -48,7 +48,7 @@ if (!OFFSET_PATH) {
 			}
 		}
 		if (!$themeColor) {
-			$themeColor = getThemeOption('Theme_colors');
+			$themeColor = getOption('Theme_colors');
 		}
 
 		$personality = getOption('themeSwitcher_effervescence_personality');
@@ -78,7 +78,7 @@ define('_IMAGE_PATH', WEBPATH . '/' . THEMEFOLDER . '/effervescence+/images/');
 function EF_head($ignore) {
 	global $themeColor;
 	if (!$themeColor) {
-		$themeColor = getThemeOption('Theme_colors');
+		$themeColor = getOption('Theme_colors');
 	}
 	$basePath = SERVERPATH . '/' . THEMEFOLDER . '/effervescence+/';
 	$csfile = $basePath . 'data/styles/' . $themeColor . '.css';

@@ -1255,21 +1255,23 @@ class Album extends AlbumBase {
 	 * @return array
 	 */
 	function getImages($page = 0, $firstPageCount = 0, $sorttype = null, $sortdirection = null, $care = true, $mine = NULL) {
-		if (!$this->exists)
+		if ($this->exists && $this->getID()) {
+			if (is_null($sorttype)) {
+				$sorttype = $this->getSortType();
+			}
+			if (is_null($sortdirection)) {
+				$sortdirection = $this->getSortDirection('image');
+			}
+			$sortdirection = $sortdirection && strtolower($sortdirection) != 'asc';
+			if ($mine || is_null($this->images) || $care && $sorttype . $sortdirection !== $this->lastimagesort) {
+				$images = $this->loadFileNames();
+				$this->images = array_values($this->sortImageArray($images, $sorttype, $sortdirection, $mine));
+				$this->lastimagesort = $sorttype . $sortdirection;
+			}
+			return parent::getImages($page, $firstPageCount);
+		} else {
 			return array();
-		if (is_null($sorttype)) {
-			$sorttype = $this->getSortType();
 		}
-		if (is_null($sortdirection)) {
-			$sortdirection = $this->getSortDirection('image');
-		}
-		$sortdirection = $sortdirection && strtolower($sortdirection) != 'asc';
-		if ($mine || is_null($this->images) || $care && $sorttype . $sortdirection !== $this->lastimagesort) {
-			$images = $this->loadFileNames();
-			$this->images = array_values($this->sortImageArray($images, $sorttype, $sortdirection, $mine));
-			$this->lastimagesort = $sorttype . $sortdirection;
-		}
-		return parent::getImages($page, $firstPageCount);
 	}
 
 	/**

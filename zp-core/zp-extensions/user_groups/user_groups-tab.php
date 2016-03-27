@@ -82,7 +82,7 @@ if (isset($_GET['action'])) {
 								if (strpos($item, $target) !== false) {
 									$username = postIndexDecode(substr(sanitize($item), strlen($target)));
 									//$username = substr($item, strlen($target));
-									$user = Zenphoto_Authority::getAnAdmin(array('`user`=' => $username, '`valid`>=' => 1));
+									$user = $_zp_authority->getAnAdmin(array('`user`=' => $username, '`valid`>=' => 1));
 									user_groups::merge_rights($user, $hisgroups, user_groups::getPrimeObjects($user));
 									$user->save();
 								}
@@ -102,7 +102,7 @@ if (isset($_GET['action'])) {
 					if (isset($_POST[$i . 'group'])) {
 						$newgroups = sanitize($_POST[$i . 'group']);
 						$username = trim(sanitize($_POST[$i . '-user'], 3));
-						$userobj = Zenphoto_Authority::getAnAdmin(array('`user`=' => $username, '`valid`>=' => 1));
+						$userobj = $_zp_authority->getAnAdmin(array('`user`=' => $username, '`valid`>=' => 1));
 						user_groups::merge_rights($userobj, $newgroups, user_groups::getPrimeObjects($userobj));
 						$userobj->save();
 					}
@@ -235,9 +235,9 @@ echo '</head>' . "\n";
 												?>
 												<em>
 													<label><input type="radio" name="<?php echo $id; ?>-type" value="group" checked="checked" onclick="javascrpt:toggle('users<?php echo $id; ?>');
-																			toggleExtraInfo('<?php echo $id; ?>', 'user', true);" /><?php echo gettext('group'); ?></label>
+															toggleExtraInfo('<?php echo $id; ?>', 'user', true);" /><?php echo gettext('group'); ?></label>
 													<label><input type="radio" name="<?php echo $id; ?>-type" value="template" onclick="javascrpt:toggle('users<?php echo $id; ?>');
-																			toggleExtraInfo('<?php echo $id; ?>', 'user', true);" /><?php echo gettext('template'); ?></label>
+															toggleExtraInfo('<?php echo $id; ?>', 'user', true);" /><?php echo gettext('template'); ?></label>
 												</em>
 												<br />
 												<input type="text" size="35" id="group-<?php echo $id ?>" name="<?php echo $id ?>-group" value=""

@@ -240,6 +240,7 @@ class security_logger {
 	 * @return int
 	 */
 	static function adminLoginLogger($success, $user, $pass, $auth = 'zp_admin_auth') {
+		global $_zp_authority;
 		switch (getOption('logger_log_type')) {
 			case 'all':
 				break;
@@ -254,7 +255,7 @@ class security_logger {
 		}
 		$name = '';
 		if ($success) {
-			$admin = Zenphoto_Authority::getAnAdmin(array('`user`=' => $user, '`valid`=' => 1));
+			$admin = $_zp_authority->getAnAdmin(array('`user`=' => $user, '`valid`=' => 1));
 			$pass = ''; // mask it from display
 			if (is_object($admin)) {
 				$name = $admin->getName();
@@ -288,6 +289,7 @@ class security_logger {
 	 * @return bool
 	 */
 	static function guestLoginLogger($success, $user, $pass, $athority) {
+		global $_zp_authority;
 		switch (getOption('logger_log_type')) {
 			case 'all':
 				break;
@@ -302,7 +304,7 @@ class security_logger {
 		}
 		$name = '';
 		if ($success) {
-			$admin = Zenphoto_Authority::getAnAdmin(array('`user`=' => $user, '`valid`=' => 1));
+			$admin = $_zp_authority->getAnAdmin(array('`user`=' => $user, '`valid`=' => 1));
 			$pass = ''; // mask it from display
 			if (is_object($admin)) {
 				$name = $admin->getName();
