@@ -175,7 +175,7 @@ echo '</head>' . "\n";
 								if ($hits > 1) {
 									$checked_delete = ' checked="chedked"';
 									$checked_disable = ' disabled="disabled"';
-									$expires_display = ' <span style="color:red">' . gettext('User id has been preempted') . '</span>';
+									$expires_display = ' <span style="color:red">' . gettext('User id has been preempted') . '</span> ';
 								}
 							}
 							$id = postIndexEncode($user['id']);
