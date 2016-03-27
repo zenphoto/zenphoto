@@ -68,14 +68,16 @@ class fieldExtender {
 				$database[$table][$datum['Field']] = $datum;
 			}
 		}
-
 		$current = $fields = array();
 		if (extensionEnabled($me)) { //need to update the database tables.
 			foreach ($newfields as $newfield) {
 				$table = $newfield['table'];
 				$name = $newfield['name'];
-
-				if (!is_null($newfield['type'])) {
+				if (is_null($newfield['type'])) {
+					if ($name == 'tags') {
+						setOption('adminTagsTab', 1);
+					}
+				} else {
 					switch (strtolower($newfield['type'])) {
 						default:
 							$dbType = strtoupper($newfield['type']);
@@ -117,6 +119,7 @@ class fieldExtender {
 		} else {
 			purgeOption(get_class($this) . '_addedFields');
 		}
+
 		foreach ($database as $table => $fields) { //drop fields no longer defined
 			foreach ($fields as $field => $orphaned) {
 				if ($orphaned['Comment'] == "optional_$me") {

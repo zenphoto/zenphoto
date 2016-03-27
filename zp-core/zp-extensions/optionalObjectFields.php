@@ -37,7 +37,7 @@
  * 			<dd>extracontent</dd> <dd>tags</dd> <dd>codeblock</dd>
  * 	</dl>
  *
- * You should copy this script to the user plugin folder if you wish to customize it.
+ * You should copy this script to the user plugin folder if you wish to customize which fields are provided.
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
@@ -48,7 +48,7 @@
  */
 $plugin_is_filter = defaultExtension(1 | CLASS_PLUGIN); //	we want this done last so the codeblocks go at the end
 $plugin_description = gettext('Handles the "optional" object fields');
-
+$plugin_notice = (extensionEnabled('optionalObjectFields')) ? '' : gettext('<strong>IMPORTANT</strong>: This plugin enables the "tags" database fields. If disabled the admin <em>tags</em> tab will not be present. Click on the <em>More information</em> icon for details.');
 $plugin_author = "Stephen Billard (sbillard)";
 
 require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/common/fieldExtender.php');

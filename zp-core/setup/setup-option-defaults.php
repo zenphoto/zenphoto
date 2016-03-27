@@ -30,6 +30,7 @@ for ($i = 0; $i < 30; $i++) {
 	$auth_extratext = $auth_extratext . $salt{$list[$i]};
 }
 setOptionDefault('extra_auth_hash_text', $auth_extratext);
+setOption('adminTagsTab', 0);
 
 /* fix for NULL theme name */
 Query('UPDATE ' . prefix('options') . ' SET `theme`="" WHERE `theme` IS NULL');
