@@ -94,6 +94,7 @@ zp_apply_filter('texteditor_config', 'zenpage');
 zenpageJSCSS();
 datepickerJS();
 codeblocktabsJS();
+$tagsort = getTagOrder();
 ?>
 <script type="text/javascript">
 	//<!-- <![CDATA[
@@ -736,14 +737,6 @@ codeblocktabsJS();
 														<?php
 													} // if article for categories
 												} // if !category end
-												if (!is_AdminEditPage("newscategory")) {
-													?>
-													<h2 class="h2_bordered_edit"><?php echo gettext("Tags"); ?></h2>
-													<div class="box-edit-unpadded">
-														<?php tagSelector($result, 'tags_', false, getTagOrder()); ?>
-													</div>
-													<?php
-												}
 												?>
 											</td>
 										</tr>

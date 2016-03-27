@@ -74,6 +74,7 @@ class fieldExtender {
 			foreach ($newfields as $newfield) {
 				$table = $newfield['table'];
 				$name = $newfield['name'];
+
 				if (!is_null($newfield['type'])) {
 					switch (strtolower($newfield['type'])) {
 						default:
@@ -376,7 +377,9 @@ class fieldExtender {
 			if ($field['table'] == $object->table) {
 				list($item, $formatted) = fieldExtender::_editHandler($object, $field, NULL);
 				if (!is_null($formatted)) {
-					$html .= '<tr>' . "\n" . '<td><span class="topalign-padding nowrap">' . $field['desc'] . "</td>\n" . '<td class="middlecolumn">' . "\n";
+					$html .= "<tr>\n" .
+									'<td><span class="topalign-padding nowrap">' . $field['desc'] . "</span></td>\n" .
+									'<td>' . "\n";
 					if ($formatted) {
 						$html .= $item;
 					} else {
@@ -387,6 +390,8 @@ value="' . $item . '" />';
 							$html .= '<textarea name = "' . $field['name'] . '" style = "width:97%;" "rows="6">' . $item . '</textarea>';
 						}
 					}
+					$html .= "</td>\n" .
+									"</tr>\n";
 				}
 			}
 		}
