@@ -415,9 +415,10 @@ class AlbumBase extends MediaObject {
 	 * otherwise, finds the first image in the album or sub-album and returns it
 	 * as an Image object.
 	 *
+	 * $recures	array recursion loop prevention
 	 * @return Image
 	 */
-	function getAlbumThumbImage() {
+	function getAlbumThumbImage($recurse = array()) {
 		global $_zp_albumthumb_selector, $_zp_gallery;
 
 		if (!is_null($this->albumthumbnail)) {
@@ -504,10 +505,14 @@ class AlbumBase extends MediaObject {
 			}
 			while (count($subalbums) > 0) {
 				$folder = array_pop($subalbums);
+				if (in_array($folder, $recurse)) {
+					break;
+				}
+				$recurse[] = $folder;
 				$subalbum = newAlbum($folder);
 				$pwd = $subalbum->getPassword();
 				if (($subalbum->getShow() && empty($pwd)) || $subalbum->isMyItem(LIST_RIGHTS)) {
-					$thumb = $subalbum->getAlbumThumbImage();
+					$thumb = $subalbum->getAlbumThumbImage($recurse);
 					if (strtolower(get_class($thumb)) !== 'transientimage' && $thumb->exists) {
 						$this->albumthumbnail = $thumb;
 						return $thumb;
