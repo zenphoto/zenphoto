@@ -506,7 +506,7 @@ class AlbumBase extends MediaObject {
 			while (count($subalbums) > 0) {
 				$folder = array_pop($subalbums);
 				if (in_array($folder, $recurse)) {
-					break;
+					continue;
 				}
 				$recurse[] = $folder;
 				$subalbum = newAlbum($folder);
