@@ -34,7 +34,9 @@ class zenphoto_seo {
 	 * @return zenphoto_seo
 	 */
 	function __construct() {
-		setOptionDefault('zenphoto_seo_lowercase', 1);
+		if (OFFSET_PATH == 2) {
+			setOptionDefault('zenphoto_seo_lowercase', 1);
+		}
 	}
 
 	/**

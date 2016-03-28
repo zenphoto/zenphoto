@@ -30,12 +30,14 @@ unset($_cacheHeader_side);
 class cacheHeader_options {
 
 	function __construct() {
-		setOptionDefault('cacheHeader_store', 1);
-		setOptionDefault('cacheHeader_cache', 1);
-		setOptionDefault('cacheHeader_pre-check', 0);
-		setOptionDefault('cacheHeader_post-check', 0);
-		setOptionDefault('cacheHeader_max-age', 0);
-		setOptionDefault('cacheHeader_sides', 'all');
+		if (OFFSET_PATH == 2) {
+			setOptionDefault('cacheHeader_store', 1);
+			setOptionDefault('cacheHeader_cache', 1);
+			setOptionDefault('cacheHeader_pre-check', 0);
+			setOptionDefault('cacheHeader_post-check', 0);
+			setOptionDefault('cacheHeader_max-age', 0);
+			setOptionDefault('cacheHeader_sides', 'all');
+		}
 	}
 
 	function getOptionsSupported() {

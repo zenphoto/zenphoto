@@ -49,14 +49,16 @@ zp_register_filter('admin_utilities_buttons', 'DownloadList::button');
 class DownloadList {
 
 	function __construct() {
-		setOptionDefault('downloadList_directory', UPLOAD_FOLDER);
-		setOptionDefault('downloadList_showfilesize', 1);
-		setOptionDefault('downloadList_showdownloadcounter', 1);
-		setOptionDefault('downloadList_user', NULL);
-		setOptionDefault('downloadList_password', getOption('downloadList_pass'));
-		setOptionDefault('downloadList_hint', NULL);
-		setOptionDefault('downloadList_rights', NULL);
-		setOptionDefault('downloadList_zipFromCache', 0);
+		if (OFFSET_PATH == 2) {
+			setOptionDefault('downloadList_directory', UPLOAD_FOLDER);
+			setOptionDefault('downloadList_showfilesize', 1);
+			setOptionDefault('downloadList_showdownloadcounter', 1);
+			setOptionDefault('downloadList_user', NULL);
+			setOptionDefault('downloadList_password', getOption('downloadList_pass'));
+			setOptionDefault('downloadList_hint', NULL);
+			setOptionDefault('downloadList_rights', NULL);
+			setOptionDefault('downloadList_zipFromCache', 0);
+		}
 	}
 
 	function getOptionsSupported() {
@@ -134,7 +136,7 @@ class DownloadList {
 							 name="disclose_password_downloadList"
 							 id="disclose_password_downloadList"
 							 onclick="passwordClear('_downloadList');
-									 togglePassword('_downloadList');"><?php echo gettext('Show password'); ?>
+											 togglePassword('_downloadList');"><?php echo gettext('Show password'); ?>
 			</label>
 			<br />
 			<span class="password_field__downloadList">

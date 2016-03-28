@@ -54,7 +54,9 @@ if (OFFSET_PATH == 2) {
 class debug {
 
 	function __construct() {
-		setOptionDefault('debug_mark_404', true);
+		if (OFFSET_PATH == 2) {
+			setOptionDefault('debug_mark_404', true);
+		}
 	}
 
 	function getOptionsSupported() {

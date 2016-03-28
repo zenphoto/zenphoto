@@ -55,11 +55,13 @@ class ipBlocker {
 	 * @return security_logger
 	 */
 	function __construct() {
-		setOptionDefault('ipBlocker_list', serialize(array()));
-		setOptionDefault('ipBlocker_type', 'block');
-		setOptionDefault('ipBlocker_threshold', 10);
-		setOptionDefault('ipBlocker_404_threshold', 10);
-		setOptionDefault('ipBlocker_timeout', 60);
+		if (OFFSET_PATH == 2) {
+			setOptionDefault('ipBlocker_list', serialize(array()));
+			setOptionDefault('ipBlocker_type', 'block');
+			setOptionDefault('ipBlocker_threshold', 10);
+			setOptionDefault('ipBlocker_404_threshold', 10);
+			setOptionDefault('ipBlocker_timeout', 60);
+		}
 	}
 
 	/**

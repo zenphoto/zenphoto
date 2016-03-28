@@ -49,17 +49,19 @@ if ($plugin_disable) {
 class tweet {
 
 	function __construct() {
-		setOptionDefault('tweet_news_consumer', NULL);
-		setOptionDefault('tweet_news_consumer_secret', NULL);
-		setOptionDefault('tweet_news_oauth_token', NULL);
-		setOptionDefault('tweet_news_oauth_token_secret', NULL);
-		setOptionDefault('tweet_news_categories_none', NULL);
-		setOptionDefault('tweet_news_images', NULL);
-		setOptionDefault('tweet_news_albums', NULL);
-		setOptionDefault('tweet_news_news', 1);
-		setOptionDefault('tweet_news_protected', NULL);
-		setOptionDefault('tweet_news_pages', 0);
-		setOptionDefault('tweet_language', NULL);
+		if (OFFSET_PATH == 2) {
+			setOptionDefault('tweet_news_consumer', NULL);
+			setOptionDefault('tweet_news_consumer_secret', NULL);
+			setOptionDefault('tweet_news_oauth_token', NULL);
+			setOptionDefault('tweet_news_oauth_token_secret', NULL);
+			setOptionDefault('tweet_news_categories_none', NULL);
+			setOptionDefault('tweet_news_images', NULL);
+			setOptionDefault('tweet_news_albums', NULL);
+			setOptionDefault('tweet_news_news', 1);
+			setOptionDefault('tweet_news_protected', NULL);
+			setOptionDefault('tweet_news_pages', 0);
+			setOptionDefault('tweet_language', NULL);
+		}
 	}
 
 	/**

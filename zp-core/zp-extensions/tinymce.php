@@ -33,15 +33,9 @@ class tinymceOptions {
 
 	function __construct() {
 		if (OFFSET_PATH == 2) {
-			$old = getOption('tinymce_zenphoto');
-			if (strpos($old, '.js.php') !== false)
-				setOption('tinymce_zenphoto', str_replace('.js.php', '.php', $old));
-			$old = getOption('tinymce_zenpage');
-			if (strpos($old, '.js.php') !== false)
-				setOption('tinymce_zenpage', str_replace('.js.php', '.php', $old));
+			setOptionDefault('tinymce_zenphoto', 'zenphoto-ribbon.php');
+			setOptionDefault('tinymce_zenpage', 'zenpage-ribbon.php');
 		}
-		setOptionDefault('tinymce_zenphoto', 'zenphoto-ribbon.php');
-		setOptionDefault('tinymce_zenpage', 'zenpage-ribbon.php');
 	}
 
 	function getOptionsSupported() {

@@ -29,7 +29,9 @@ if (isset($_zp_gallery_page) && getOption('user_logout_login_form') > 1) {
 class user_logout_options {
 
 	function __construct() {
-		setOptionDefault('user_logout_login_form', 0);
+		if (OFFSET_PATH == 2) {
+			setOptionDefault('user_logout_login_form', 0);
+		}
 	}
 
 	function getOptionsSupported() {

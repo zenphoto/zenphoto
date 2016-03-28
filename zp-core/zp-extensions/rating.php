@@ -78,11 +78,13 @@ class jquery_rating {
 	 * @return jquery_rating
 	 */
 	function __construct() {
-		setOptionDefault('rating_recast', 1);
-		setOptionDefault('rating_stars_count', 5);
-		setOptionDefault('rating_split_stars', 2);
-		setOptionDefault('rating_status', 3);
-		setOptionDefault('rating_image_individual_control', 0);
+		if (OFFSET_PATH == 2) {
+			setOptionDefault('rating_recast', 1);
+			setOptionDefault('rating_stars_count', 5);
+			setOptionDefault('rating_split_stars', 2);
+			setOptionDefault('rating_status', 3);
+			setOptionDefault('rating_image_individual_control', 0);
+		}
 		$this->ratingstate = array(gettext('open') => 3, gettext('members &amp; guests') => 2, gettext('members only') => 1, gettext('closed') => 0);
 	}
 
@@ -356,7 +358,7 @@ function printRating($vote = 3, $object = NULL, $text = true) {
 	<script type="text/javascript">
 		// <!-- <![CDATA[
 		var recast<?php echo $unique; ?> = <?php printf('%u', $recast && $oldrating); ?>;
-		$(document).ready(function() {
+		$(document).ready(function () {
 			$('#star_rating<?php echo $unique; ?> :radio.star').rating('select', '<?php echo $starselector; ?>');
 	<?php
 	if ($disable) {

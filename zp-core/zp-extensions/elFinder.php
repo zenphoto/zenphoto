@@ -39,8 +39,10 @@ class elFinder_options {
 	 *
 	 */
 	function __construct() {
-		setOptionDefault('elFinder_files', 1);
-		setOptionDefault('elFinder_tinymce', 0);
+		if (OFFSET_PATH == 2) {
+			setOptionDefault('elFinder_files', 1);
+			setOptionDefault('elFinder_tinymce', 0);
+		}
 	}
 
 	/**

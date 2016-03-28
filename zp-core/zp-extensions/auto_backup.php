@@ -45,8 +45,10 @@ class auto_backup {
 	 *
 	 */
 	function __construct() {
-		setOptionDefault('backup_interval', 7);
-		setOptionDefault('backups_to_keep', 5);
+		if (OFFSET_PATH == 2) {
+			setOptionDefault('backup_interval', 7);
+			setOptionDefault('backups_to_keep', 5);
+		}
 	}
 
 	/**

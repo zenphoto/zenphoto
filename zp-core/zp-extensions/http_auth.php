@@ -62,7 +62,9 @@ class http_auth {
 	 * @return http_auth
 	 */
 	function __construct() {
-		setOptionDefault('http_auth_trust', 0);
+		if (OFFSET_PATH == 2) {
+			setOptionDefault('http_auth_trust', 0);
+		}
 	}
 
 	/**

@@ -76,7 +76,10 @@
 			}
 		</style>
 	<body>
-<h1>ZenPhoto20 release notes</h1><h2>Setup</h2>
+<h1>ZenPhoto20 release notes</h1><h2>Performance</h2>
+<p>The number of SQL requests executed on a front-end page load have been significantly reduced. Frequently executed query have been cached so that the results are delivered without re-executing the query. <em>Default</em> options are set only when <em>setup</em> is executed. Checking for scheduled object <em>publish</em> state changes now happens on the <em>cache-expiry</em> frequency.</p>
+<p>If a page is loaded from the cache there will be only the hand full of queries needed to establish the page context.</p>
+<h2>Setup</h2>
 <p>The mechanism for migrating database changes had been improved to speed up the <em>setup</em> process. The ZenPhoto20 package now includes a template of how the database should look. Previously whenever a change was made to the database the code in <em>setup</em> had to be manually changed to reflect the changes both to fresh installations and to updates. Over time the list of SQL statements <em>setup</em> needed to execute to insure that the database was correct had become excessive. The queries were executed each time <em>setup</em> was run but in general did nothing since the database structure has been stable for several releases.</p>
 <p>Now when updating an installation there will not be any SQL statements issued unless there truly has been a change to the database structure in the new version of the software. </p>
 <p>There are now comments set for any database field used by ZenPhoto20. For a "normal" site all the database fields will have comments. It is possible that your database contains fields used by previous instances of the software. If that is the case, these fields will have not have a comment. You can safely drop any such field that you did not specifically create. (If you did create such a field manually you should consider using the <em>customFieldExtender </em>mechanism to implement the additions so that they conform to the new paradigm.)</p>

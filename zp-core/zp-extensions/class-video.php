@@ -39,11 +39,13 @@ if (OFFSET_PATH & OFFSET_PATH != 2) {
 class VideoObject_Options {
 
 	function __construct() {
-		setOptionDefault('class-video_mov_w', 520);
-		setOptionDefault('class-video_mov_h', 390);
-		setOptionDefault('class-video_3gp_w', 520);
-		setOptionDefault('class-video_3gp_h', 390);
-		setOptionDefault('class-video_videoalt', 'ogg, avi, wmv');
+		if (OFFSET_PATH == 2) {
+			setOptionDefault('class-video_mov_w', 520);
+			setOptionDefault('class-video_mov_h', 390);
+			setOptionDefault('class-video_3gp_w', 520);
+			setOptionDefault('class-video_3gp_h', 390);
+			setOptionDefault('class-video_videoalt', 'ogg, avi, wmv');
+		}
 	}
 
 	/**

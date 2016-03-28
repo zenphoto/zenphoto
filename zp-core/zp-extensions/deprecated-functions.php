@@ -43,39 +43,40 @@ class deprecated_functions {
 	var $unique_functions = array();
 
 	function __construct() {
-		global $_internalFunctions;
-		foreach (getPluginFiles('*.php') as $extension => $plugin) {
-			$deprecated = stripSuffix($plugin) . '/deprecated-functions.php';
-			if (file_exists($deprecated)) {
-				$plugin = basename(dirname($deprecated));
-				$content = preg_replace('~#.*function~', '', file_get_contents($deprecated)); //	remove the comments!
-				preg_match_all('~@deprecated\s+.*since\s+.*(\d+\.\d+\.\d+)~', $content, $versions);
-				preg_match_all('/([public static|static]*)\s*function\s+(.*)\s?\(.*\)\s?\{/', $content, $functions);
-				if ($plugin == 'deprecated-functions') {
-					$plugin = 'core';
-					$suffix = '';
-				} else {
-					$suffix = ' (' . $plugin . ')';
-				}
-				foreach ($functions[2] as $key => $function) {
-
-					if ($functions[1][$key]) {
-						$flag = '_method';
-						$star = '*';
+		if (OFFSET_PATH == 2) {
+			foreach (getPluginFiles('*.php') as $extension => $plugin) {
+				$deprecated = stripSuffix($plugin) . '/deprecated-functions.php';
+				if (file_exists($deprecated)) {
+					$plugin = basename(dirname($deprecated));
+					$content = preg_replace('~#.*function~', '', file_get_contents($deprecated)); //	remove the comments!
+					preg_match_all('~@deprecated\s+.*since\s+.*(\d+\.\d+\.\d+)~', $content, $versions);
+					preg_match_all('/([public static|static]*)\s*function\s+(.*)\s?\(.*\)\s?\{/', $content, $functions);
+					if ($plugin == 'deprecated-functions') {
+						$plugin = 'core';
+						$suffix = '';
 					} else {
-						$star = $flag = '';
+						$suffix = ' (' . $plugin . ')';
 					}
-					$name = $function . $star . $suffix;
-					$option = 'deprecated_' . $plugin . '_' . $function . $flag;
+					foreach ($functions[2] as $key => $function) {
 
-					setOptionDefault($option, 1);
-					$this->unique_functions[strtolower($function)] = $this->listed_functions[$name] = array(
-									'plugin'	 => $plugin,
-									'function' => $function,
-									'class'		 => trim($functions[1][$key]),
-									'since'		 => @$versions[1][$key],
-									'option'	 => $option,
-									'multiple' => array_key_exists($function, $this->unique_functions));
+						if ($functions[1][$key]) {
+							$flag = '_method';
+							$star = '*';
+						} else {
+							$star = $flag = '';
+						}
+						$name = $function . $star . $suffix;
+						$option = 'deprecated_' . $plugin . '_' . $function . $flag;
+
+						setOptionDefault($option, 1);
+						$this->unique_functions[strtolower($function)] = $this->listed_functions[$name] = array(
+										'plugin'	 => $plugin,
+										'function' => $function,
+										'class'		 => trim($functions[1][$key]),
+										'since'		 => @$versions[1][$key],
+										'option'	 => $option,
+										'multiple' => array_key_exists($function, $this->unique_functions));
+					}
 				}
 			}
 		}

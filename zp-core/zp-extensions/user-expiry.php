@@ -56,10 +56,12 @@ class user_expiry {
 	 *
 	 */
 	function __construct() {
-		setOptionDefault('user_expiry_interval', 365);
-		setOptionDefault('user_expiry_warn_interval', 7);
-		setOptionDefault('user_expiry_auto_renew', 0);
-		setOptionDefault('user_expiry_password_cycle', 0);
+		if (OFFSET_PATH == 2) {
+			setOptionDefault('user_expiry_interval', 365);
+			setOptionDefault('user_expiry_warn_interval', 7);
+			setOptionDefault('user_expiry_auto_renew', 0);
+			setOptionDefault('user_expiry_password_cycle', 0);
+		}
 	}
 
 	/**

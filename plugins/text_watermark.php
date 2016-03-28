@@ -3,7 +3,7 @@
  * Utility to create simple text watermarks
  *
  * @author Stephen Billard (sbillard)
- * 
+ *
  * @package plugins
  * @subpackage example
  * @category package
@@ -20,11 +20,13 @@ $option_interface = 'text_watermark';
 class text_watermark {
 
 	function __construct() {
-		$fonts = zp_getFonts();
-		$fon = array_shift($fonts);
-		setOptionDefault('text_watermark_color', '#FFFFFF');
-		setOptionDefault('text_watermark_font', $fon);
-		setOptionDefault('text_watermark_text', '');
+		if (OFFSET_PATH == 2) {
+			$fonts = zp_getFonts();
+			$fon = array_shift($fonts);
+			setOptionDefault('text_watermark_color', '#FFFFFF');
+			setOptionDefault('text_watermark_font', $fon);
+			setOptionDefault('text_watermark_text', '');
+		}
 	}
 
 	function getOptionsSupported() {
@@ -56,17 +58,17 @@ class text_watermark {
 		?>
 		<script type="text/javascript">
 			// <!-- <![CDATA[
-			$(document).ready(function() {
-				$('#text_watermark_font').change(function() {
+			$(document).ready(function () {
+				$('#text_watermark_font').change(function () {
 					updatewm();
 				});
-				$('#text_watermark_color').change(function() {
+				$('#text_watermark_color').change(function () {
 					updatewm();
 				});
-				$('#text_watermark_color_colorpicker').change(function() {
+				$('#text_watermark_color_colorpicker').change(function () {
 					updatewm();
 				});
-				$('#text_watermark_text').change(function() {
+				$('#text_watermark_text').change(function () {
 					updatewm();
 				});
 			});

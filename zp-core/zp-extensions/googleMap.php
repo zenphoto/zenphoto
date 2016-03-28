@@ -33,24 +33,25 @@ if (isset($_zp_gallery_page) && $_zp_gallery_page != 'index.php') {
 class GoogleMap {
 
 	function __construct() {
-		setOptionDefault('gmap_width', 595);
-		setOptionDefault('gmap_height', 300);
-		setOptionDefault('gmap_map_roadmap', 1);
-		setOptionDefault('gmap_map_hybrid', 1);
-		setOptionDefault('gmap_map_satellite', 1);
-		setOptionDefault('gmap_map_terrain', 1);
-		setOptionDefault('gmap_starting_map', 'HYBRID');
-		setOptionDefault('gmap_control_type', 'HORIZONTAL_BAR');
-		setOptionDefault('gmap_zoom_size', 'LARGE');
-		setOptionDefault('gmap_cluster_max_zoom', 13);
-		setOptionDefault('gmap_sessions', 1);
 		if (OFFSET_PATH == 2) {
+			setOptionDefault('gmap_width', 595);
+			setOptionDefault('gmap_height', 300);
+			setOptionDefault('gmap_map_roadmap', 1);
+			setOptionDefault('gmap_map_hybrid', 1);
+			setOptionDefault('gmap_map_satellite', 1);
+			setOptionDefault('gmap_map_terrain', 1);
+			setOptionDefault('gmap_starting_map', 'HYBRID');
+			setOptionDefault('gmap_control_type', 'HORIZONTAL_BAR');
+			setOptionDefault('gmap_zoom_size', 'LARGE');
+			setOptionDefault('gmap_cluster_max_zoom', 13);
+			setOptionDefault('gmap_sessions', 1);
 			setOptionDefault('gmap_display', 'hide');
-		}
-		setOptionDefault('gmap_display', 'show');
-		if (class_exists('cacheManager')) {
-			cacheManager::deleteThemeCacheSizes('GoogleMap');
-			cacheManager::addThemeCacheSize('GoogleMap', 150, NULL, NULL, NULL, NULL, NULL, NULL, true, NULL, NULL, NULL);
+			setOptionDefault('gmap_display', 'show');
+
+			if (class_exists('cacheManager')) {
+				cacheManager::deleteThemeCacheSizes('GoogleMap');
+				cacheManager::addThemeCacheSize('GoogleMap', 150, NULL, NULL, NULL, NULL, NULL, NULL, true, NULL, NULL, NULL);
+			}
 		}
 	}
 
@@ -447,7 +448,7 @@ function printGoogleMap($text = NULL, $id = NULL, $hide = NULL, $obj = NULL, $ca
 				//]]>
 			</script>
 			<div id="<?php echo $id_data; ?>">
-				<?php echo $map->output_html; ?>
+			<?php echo $map->output_html; ?>
 			</div>
 			<?php
 			break;
@@ -475,10 +476,10 @@ function printGoogleMap($text = NULL, $id = NULL, $hide = NULL, $obj = NULL, $ca
 				//]]>
 			</script>
 			<a id="<?php echo $id_toggle; ?>" href="javascript:toggle_<?php echo $id_data; ?>();" title="<?php echo gettext('Display or hide the Google Map.'); ?>">
-				<?php echo $text; ?>
+			<?php echo $text; ?>
 			</a>
 			<div id="<?php echo $id_data; ?>" class="hidden_map">
-				<?php echo $map->output_html; ?>
+			<?php echo $map->output_html; ?>
 			</div>
 			<?php
 			break;
@@ -502,7 +503,7 @@ function printGoogleMap($text = NULL, $id = NULL, $hide = NULL, $obj = NULL, $ca
 				}
 				?>
 				<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/googleMap/map.php' . $param ?>" title="<?php echo $text; ?>" class="google_map">
-					<?php echo $text; ?>
+				<?php echo $text; ?>
 				</a>
 				<script type="text/javascript">
 					//<![CDATA[

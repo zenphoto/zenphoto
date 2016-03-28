@@ -33,32 +33,33 @@ class contactformOptions {
 
 	function __construct() {
 		global $_zp_authority;
-
-		setOptionDefault('contactform_rewrite', '_PAGE_/contact');
-		gettext($str = '<p>Fields with <strong>*</strong> are required. HTML or any other code is not allowed.</p>');
-		setOptionDefault('contactform_introtext', getAllTranslations($str));
-		gettext($str = '<p>Please confirm that you really want to send this email. Thanks.</p>');
-		setOptionDefault('contactform_confirmtext', getAllTranslations($str));
-		gettext($str = '<p>Thanks for your message.</p>');
-		setOptionDefault('contactform_thankstext', getAllTranslations($str));
-		gettext($str = 'Send another message.');
-		setOptionDefault('contactform_newmessagelink', getAllTranslations($str));
-		setOptionDefault('contactform_title', "show");
-		setOptionDefault('contactform_name', "required");
-		setOptionDefault('contactform_company', "show");
-		setOptionDefault('contactform_street', "show");
-		setOptionDefault('contactform_city', "show");
-		setOptionDefault('contactform_state', "show");
-		setOptionDefault('contactform_postal', "show");
-		setOptionDefault('contactform_country', "show");
-		setOptionDefault('contactform_email', "required");
-		setOptionDefault('contactform_website', "show");
-		setOptionDefault('contactform_phone', "show");
-		setOptionDefault('contactform_captcha', 0);
-		setOptionDefault('contactform_confirm', 1);
-		setOptionDefault('contactform_sendcopy', 0);
-		gettext($str = '<p>A copy of your e-mail will automatically be sent to the address you provided for your own records.</p>');
-		setOptionDefault('contactform_sendcopy_text', getAllTranslations($str));
+		if (OFFSET_PATH == 2) {
+			setOptionDefault('contactform_rewrite', '_PAGE_/contact');
+			gettext($str = '<p>Fields with <strong>*</strong> are required. HTML or any other code is not allowed.</p>');
+			setOptionDefault('contactform_introtext', getAllTranslations($str));
+			gettext($str = '<p>Please confirm that you really want to send this email. Thanks.</p>');
+			setOptionDefault('contactform_confirmtext', getAllTranslations($str));
+			gettext($str = '<p>Thanks for your message.</p>');
+			setOptionDefault('contactform_thankstext', getAllTranslations($str));
+			gettext($str = 'Send another message.');
+			setOptionDefault('contactform_newmessagelink', getAllTranslations($str));
+			setOptionDefault('contactform_title', "show");
+			setOptionDefault('contactform_name', "required");
+			setOptionDefault('contactform_company', "show");
+			setOptionDefault('contactform_street', "show");
+			setOptionDefault('contactform_city', "show");
+			setOptionDefault('contactform_state', "show");
+			setOptionDefault('contactform_postal', "show");
+			setOptionDefault('contactform_country', "show");
+			setOptionDefault('contactform_email', "required");
+			setOptionDefault('contactform_website', "show");
+			setOptionDefault('contactform_phone', "show");
+			setOptionDefault('contactform_captcha', 0);
+			setOptionDefault('contactform_confirm', 1);
+			setOptionDefault('contactform_sendcopy', 0);
+			gettext($str = '<p>A copy of your e-mail will automatically be sent to the address you provided for your own records.</p>');
+			setOptionDefault('contactform_sendcopy_text', getAllTranslations($str));
+		}
 		$mailings = $_zp_authority->getAdminEmail();
 		$email_list = '';
 		foreach ($mailings as $email) {

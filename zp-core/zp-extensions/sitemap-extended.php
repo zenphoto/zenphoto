@@ -52,19 +52,21 @@ class sitemap {
 	var $disable = false; // manual disable caching a page
 
 	function __construct() {
-		setOptionDefault('sitemap_changefreq_index', 'daily');
-		setOptionDefault('sitemap_changefreq_albums', 'daily');
-		setOptionDefault('sitemap_changefreq_images', 'daily');
-		setOptionDefault('sitemap_changefreq_pages', 'weekly');
-		setOptionDefault('sitemap_changefreq_newsindex', 'daily');
-		setOptionDefault('sitemap_changefreq_news', 'daily');
-		setOptionDefault('sitemap_changefreq_newscats', 'weekly');
-		setOptionDefault('sitemap_lastmod_albums', 'mtime');
-		setOptionDefault('sitemap_lastmod_images', 'mtime');
-		setOptionDefault('sitemap_processing_chunk', 25);
-		setOptionDefault('sitemap_galleryindex', '');
-		setOptionDefault('sitemap_google', 0);
-		setOptionDefault('sitemap_google_fullimage', 0);
+		if (OFFSET_PATH == 2) {
+			setOptionDefault('sitemap_changefreq_index', 'daily');
+			setOptionDefault('sitemap_changefreq_albums', 'daily');
+			setOptionDefault('sitemap_changefreq_images', 'daily');
+			setOptionDefault('sitemap_changefreq_pages', 'weekly');
+			setOptionDefault('sitemap_changefreq_newsindex', 'daily');
+			setOptionDefault('sitemap_changefreq_news', 'daily');
+			setOptionDefault('sitemap_changefreq_newscats', 'weekly');
+			setOptionDefault('sitemap_lastmod_albums', 'mtime');
+			setOptionDefault('sitemap_lastmod_images', 'mtime');
+			setOptionDefault('sitemap_processing_chunk', 25);
+			setOptionDefault('sitemap_galleryindex', '');
+			setOptionDefault('sitemap_google', 0);
+			setOptionDefault('sitemap_google_fullimage', 0);
+		}
 	}
 
 	function getOptionsSupported() {

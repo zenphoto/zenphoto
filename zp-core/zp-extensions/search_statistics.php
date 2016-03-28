@@ -46,10 +46,12 @@ class search_statistics {
 	 * @return jquery_rating
 	 */
 	function __construct() {
-		setOptionDefault('search_statistics_threshold', 25);
-		setOptionDefault('search_statistics_terms_threshold', 25);
-		setOptionDefault('search_statistics_failed_threshold', 10);
-		setOptionDefault('search_statistics_ip_threshold', 10);
+		if (OFFSET_PATH == 2) {
+			setOptionDefault('search_statistics_threshold', 25);
+			setOptionDefault('search_statistics_terms_threshold', 25);
+			setOptionDefault('search_statistics_failed_threshold', 10);
+			setOptionDefault('search_statistics_ip_threshold', 10);
+		}
 	}
 
 	/**

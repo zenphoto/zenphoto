@@ -183,10 +183,12 @@ function printLanguageSelector($flags = NULL) {
 class dynamic_locale {
 
 	function __construct() {
-		$seo_locale = extensionEnabled('seo_locale') && getOption('dynamic_locale_subdomain') != 2;
-		setOptionDefault('dynamic_locale_visual', 0);
-		setOptionDefault('dynamic_locale_subdomain', (int) $seo_locale);
-		setOptionDefault('dynamic_locale_base', getUserLocale());
+		if (OFFSET_PATH == 2) {
+			$seo_locale = extensionEnabled('seo_locale') && getOption('dynamic_locale_subdomain') != 2;
+			setOptionDefault('dynamic_locale_visual', 0);
+			setOptionDefault('dynamic_locale_subdomain', (int) $seo_locale);
+			setOptionDefault('dynamic_locale_base', getUserLocale());
+		}
 	}
 
 	function getOptionsSupported() {

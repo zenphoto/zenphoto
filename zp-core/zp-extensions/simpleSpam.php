@@ -5,7 +5,7 @@
  * It uses a word black list and checks for excessive URLs
  *
  * @author Stephen Billard (sbillard)
- * 
+ *
  * @package plugins
  * @subpackage admin
  */
@@ -39,11 +39,13 @@ class zpSimpleSpam {
 	 * @return SpamFilter
 	 */
 	function __construct() {
-		setOptionDefault('Words_to_die_on', implode(',', $this->wordsToDieOn));
-		setOptionDefault('Patterns_to_die_on', implode(' ', $this->patternsToDieOn));
-		setOptionDefault('Excessive_URL_count', $this->excessiveURLCount);
-		setOptionDefault('Forgiving', 0);
-		setOptionDefault('Banned_IP_list', serialize(array()));
+		if (OFFSET_PATH == 2) {
+			setOptionDefault('Words_to_die_on', implode(',', $this->wordsToDieOn));
+			setOptionDefault('Patterns_to_die_on', implode(' ', $this->patternsToDieOn));
+			setOptionDefault('Excessive_URL_count', $this->excessiveURLCount);
+			setOptionDefault('Forgiving', 0);
+			setOptionDefault('Banned_IP_list', serialize(array()));
+		}
 	}
 
 	function displayName() {

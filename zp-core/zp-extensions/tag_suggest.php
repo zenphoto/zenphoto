@@ -26,7 +26,9 @@ zp_register_filter('admin_head', 'tag_suggest::JS');
 class tag_suggest {
 
 	function __construct() {
-		setOptionDefault('tag_suggest_threshold', 1);
+		if (OFFSET_PATH == 2) {
+			setOptionDefault('tag_suggest_threshold', 1);
+		}
 	}
 
 	function getOptionsSupported() {

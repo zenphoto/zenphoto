@@ -1758,4 +1758,13 @@ class dynamicAlbum extends AlbumBase {
 
 }
 
+class TransientAlbum extends AlbumBase {
+
+	function __construct($folder8, $cache = true) {
+		$this->instantiate('albums', array('folder' => $this->name), 'folder', true, true);
+		$this->exists = false;
+	}
+
+}
+
 ?>
