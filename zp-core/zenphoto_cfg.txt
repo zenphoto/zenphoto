@@ -58,9 +58,7 @@ $conf['album_folder'] = '/albums/';
 $conf['album_folder_class'] = 'std';
 
 // Server Protocol
-
 $conf['server_protocol'] = "http";
-
 // Change this to "https" if you use an HTTPS server (a "https://..." url)
 // Otherwise you should leave it at "http"
 //

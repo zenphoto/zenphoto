@@ -36,15 +36,17 @@ class create_album {
 	 * class instantiation function
 	 */
 	function __construct() {
-		setOptionDefault('create_album_default', 1);
-		$default = getOption('create_album_default');
-		global $_zp_authority;
-		$admins = $_zp_authority->getAdministrators();
-		foreach ($admins as $admin) {
-			$rights = $admin['rights'];
-			if (($rights & (ALBUM_RIGHTS | UPLOAD_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS | ADMIN_RIGHTS)) == (ALBUM_RIGHTS | UPLOAD_RIGHTS)) {
-				$this->admins[$admin['user']] = 'create_album_admin_' . $admin['user'];
-				setOptionDefault('create_album_admin_' . $admin['user'], $default);
+		if (OFFSET_PATH == 2) {
+			setOptionDefault('create_album_default', 1);
+			$default = getOption('create_album_default');
+			global $_zp_authority;
+			$admins = $_zp_authority->getAdministrators();
+			foreach ($admins as $admin) {
+				$rights = $admin['rights'];
+				if (($rights & (ALBUM_RIGHTS | UPLOAD_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS | ADMIN_RIGHTS)) == (ALBUM_RIGHTS | UPLOAD_RIGHTS)) {
+					$this->admins[$admin['user']] = 'create_album_admin_' . $admin['user'];
+					setOptionDefault('create_album_admin_' . $admin['user'], $default);
+				}
 			}
 		}
 	}

@@ -82,11 +82,13 @@ if (extensionEnabled('zenpage')) {
 class multipleLayoutOptions {
 
 	function __construct() {
-		setOptionDefault('multiple_layouts_images', 0);
-		setOptionDefault('multiple_layouts_albums', 0);
-		setOptionDefault('multiple_layouts_pages', 1);
-		setOptionDefault('multiple_layouts_news', 1);
-		setOptionDefault('multiple_layouts_news_categories', 1);
+		if (OFFSET_PATH == 2) {
+			setOptionDefault('multiple_layouts_images', 0);
+			setOptionDefault('multiple_layouts_albums', 0);
+			setOptionDefault('multiple_layouts_pages', 1);
+			setOptionDefault('multiple_layouts_news', 1);
+			setOptionDefault('multiple_layouts_news_categories', 1);
+		}
 	}
 
 	function getOptionsSupported() {

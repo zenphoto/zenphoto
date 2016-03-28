@@ -39,10 +39,12 @@ $_zp_albums_visited_albumMenu = array();
 class print_album_menu {
 
 	function __construct() {
-		setOptionDefault('print_album_menu_showsubs', 0);
-		setOptionDefault('print_album_menu_count', 1);
-		setOptionDefault('menu_truncate_string', 0);
-		setOptionDefault('menu_truncate_indicator', '');
+		if (OFFSET_PATH == 2) {
+			setOptionDefault('print_album_menu_showsubs', 0);
+			setOptionDefault('print_album_menu_count', 1);
+			setOptionDefault('menu_truncate_string', 0);
+			setOptionDefault('menu_truncate_indicator', '');
+		}
 	}
 
 	function getOptionsSupported() {

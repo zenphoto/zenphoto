@@ -88,7 +88,7 @@ if (@$_zp_loggedin) {
 		}
 	}
 
-	if ($_zp_loggedin & TAGS_RIGHTS) {
+	if (($_zp_loggedin & TAGS_RIGHTS) && getOption('adminTagsTab')) {
 		$zenphoto_tabs['tags'] = array('text'		 => gettext("tags"),
 						'link'		 => WEBPATH . "/" . ZENFOLDER . '/admin-tags.php',
 						'subtabs'	 => NULL);
@@ -99,7 +99,6 @@ if (@$_zp_loggedin) {
 						'link'		 => WEBPATH . "/" . ZENFOLDER . '/admin-users.php?page=users',
 						'subtabs'	 => NULL);
 	}
-
 
 	$subtabs = array();
 	$optiondefault = '';

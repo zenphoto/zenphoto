@@ -23,7 +23,7 @@
  * to users with upload limits.
  *
  * @author Stephen Billard (sbillard)
- * 
+ *
  * @package plugins
  * @subpackage users
  */
@@ -61,8 +61,10 @@ class quota_manager {
 	 * @return filter_zenphoto_seo
 	 */
 	function __construct() {
-		setOptionDefault('quota_default', 250000);
-		setOptionDefault('quota_allowZIP', 1);
+		if (OFFSET_PATH == 2) {
+			setOptionDefault('quota_default', 250000);
+			setOptionDefault('quota_allowZIP', 1);
+		}
 	}
 
 	/**

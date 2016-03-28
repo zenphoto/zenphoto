@@ -33,49 +33,52 @@ if (in_context(ZP_INDEX)) {
 class htmlmetatags {
 
 	function __construct() {
-		setOptionDefault('htmlmeta_cache_control', 'no-cache');
-		setOptionDefault('htmlmeta_pragma', 'no-cache');
-		setOptionDefault('htmlmeta_robots', 'index');
-		setOptionDefault('htmlmeta_revisit_after', '10');
-		setOptionDefault('htmlmeta_expires', '43200');
-		setOptionDefault('htmlmeta_tags', '');
+		if (OFFSET_PATH == 2) {
+			setOptionDefault('htmlmeta_cache_control', 'no-cache');
+			setOptionDefault('htmlmeta_pragma', 'no-cache');
+			setOptionDefault('htmlmeta_robots', 'index');
+			setOptionDefault('htmlmeta_revisit_after', '10');
+			setOptionDefault('htmlmeta_expires', '43200');
+			setOptionDefault('htmlmeta_tags', '');
 
-		if (getOption('htmlmeta_og-title')) { // assume this will be set
-			setOptionDefault('htmlmeta_opengraph', 1);
-		}
-		//remove obsolete old options
-		purgeOption('htmlmeta_og-title');
-		purgeOption('htmlmeta_og-image');
-		purgeOption('htmlmeta_og-description');
-		purgeOption('htmlmeta_og-url');
-		purgeOption('htmlmeta_og-type');
+			if (getOption('htmlmeta_og-title')) { // assume this will be set
+				setOptionDefault('htmlmeta_opengraph', 1);
+			}
+			//remove obsolete old options
+			purgeOption('htmlmeta_og-title');
+			purgeOption('htmlmeta_og-image');
+			purgeOption('htmlmeta_og-description');
+			purgeOption('htmlmeta_og-url');
+			purgeOption('htmlmeta_og-type');
 
-		// the html meta tag selector prechecked ones
-		setOptionDefault('htmlmeta_htmlmeta_tags', '1');
-		setOptionDefault('htmlmeta_tags_threshold', 1);
-		setOptionDefault('htmlmeta_http-equiv-cache-control', '1');
-		setOptionDefault('htmlmeta_http-equiv-pragma', '1');
-		setOptionDefault('htmlmeta_name=keywords', '1');
-		setOptionDefault('htmlmeta_name-description', '1');
-		setOptionDefault('htmlmeta_name-robot', '1');
-		setOptionDefault('htmlmeta_name-publisher', '1');
-		setOptionDefault('htmlmeta_name-creator', '1');
-		setOptionDefault('htmlmeta_name-author', '1');
-		setOptionDefault('htmlmeta_name-copyright', '1');
-		setOptionDefault('htmlmeta_name-generator', '1');
-		setOptionDefault('htmlmeta_name-revisit-after', '1');
-		setOptionDefault('htmlmeta_name-expires', '1');
-		setOptionDefault('htmlmeta_name-generator', '1');
-		setOptionDefault('htmlmeta_name-date', '1');
-		setOptionDefault('htmlmeta_canonical-url', '0');
-		setOptionDefault('htmlmeta_sitelogo', '');
-		setOptionDefault('htmlmeta_twittercard', '');
-		setOptionDefault('htmlmeta_twittername', '');
-		setOptionDefault('htmlmeta_ogimage_width', 1280);
-		setOptionDefault('htmlmeta_ogimage_height', 900);
-		if (class_exists('cacheManager')) {
-			cacheManager::deleteThemeCacheSizes('html_meta_tags');
-			cacheManager::addThemeCacheSize('html_meta_tags', NULL, getOption('htmlmeta_ogimage_width'), getOption('htmlmeta_ogimage_height'), NULL, NULL, NULL, NULL, NULL, NULL, NULL, true);
+			// the html meta tag selector prechecked ones
+			setOptionDefault('htmlmeta_htmlmeta_tags', '1');
+			setOptionDefault('htmlmeta_tags_threshold', 1);
+			setOptionDefault('htmlmeta_http-equiv-cache-control', '1');
+			setOptionDefault('htmlmeta_http-equiv-pragma', '1');
+			setOptionDefault('htmlmeta_name=keywords', '1');
+			setOptionDefault('htmlmeta_name-description', '1');
+			setOptionDefault('htmlmeta_name-robot', '1');
+			setOptionDefault('htmlmeta_name-publisher', '1');
+			setOptionDefault('htmlmeta_name-creator', '1');
+			setOptionDefault('htmlmeta_name-author', '1');
+			setOptionDefault('htmlmeta_name-copyright', '1');
+			setOptionDefault('htmlmeta_name-generator', '1');
+			setOptionDefault('htmlmeta_name-revisit-after', '1');
+			setOptionDefault('htmlmeta_name-expires', '1');
+			setOptionDefault('htmlmeta_name-generator', '1');
+			setOptionDefault('htmlmeta_name-date', '1');
+			setOptionDefault('htmlmeta_canonical-url', '0');
+			setOptionDefault('htmlmeta_sitelogo', '');
+			setOptionDefault('htmlmeta_twittercard', '');
+			setOptionDefault('htmlmeta_twittername', '');
+			setOptionDefault('htmlmeta_ogimage_width', 1280);
+			setOptionDefault('htmlmeta_ogimage_height', 900);
+
+			if (class_exists('cacheManager')) {
+				cacheManager::deleteThemeCacheSizes('html_meta_tags');
+				cacheManager::addThemeCacheSize('html_meta_tags', NULL, getOption('htmlmeta_ogimage_width'), getOption('htmlmeta_ogimage_height'), NULL, NULL, NULL, NULL, NULL, NULL, NULL, true);
+			}
 		}
 	}
 

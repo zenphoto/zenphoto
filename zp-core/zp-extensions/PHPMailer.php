@@ -34,13 +34,15 @@ class zp_PHPMailer {
 	 * @return zp_PHPMailer
 	 */
 	function __construct() {
-		setOptionDefault('PHPMailer_mail_protocol', 'sendmail');
-		setOptionDefault('PHPMailer_server', '');
-		setOptionDefault('PHPMailer_pop_port', '110');
-		setOptionDefault('PHPMailer_smtp_port', '25');
-		setOptionDefault('PHPMailer_user', '');
-		setOptionDefault('PHPMailer_password', '');
-		setOptionDefault('PHPMailer_secure', 0);
+		if (OFFSET_PATH == 2) {
+			setOptionDefault('PHPMailer_mail_protocol', 'sendmail');
+			setOptionDefault('PHPMailer_server', '');
+			setOptionDefault('PHPMailer_pop_port', '110');
+			setOptionDefault('PHPMailer_smtp_port', '25');
+			setOptionDefault('PHPMailer_user', '');
+			setOptionDefault('PHPMailer_password', '');
+			setOptionDefault('PHPMailer_secure', 0);
+		}
 		if (getOption('PHPMailer_secure') == 1)
 			setOption('PHPMailer_secure', 'ssl');
 	}

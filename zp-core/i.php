@@ -50,7 +50,7 @@ $ralbum = internalToFilesystem($ralbum);
 $rimage = internalToFilesystem($rimage);
 $album = sanitize_path($ralbum);
 $image = sanitize($rimage);
-$theme = themeSetup(filesystemToInternal($album)); // loads the theme based image options.
+$theme = imageThemeSetup(filesystemToInternal($album)); // loads the theme based image options.
 if (getOption('secure_image_processor')) {
 	require_once(dirname(__FILE__) . '/functions.php');
 	$albumobj = newAlbum(filesystemToInternal($album));

@@ -46,7 +46,7 @@ if (class_exists('CMS')) {
 				</div> <!-- wrapnav -->
 
 				<!-- Random Image -->
-				<?php printHeadingImage(getRandomImages(getThemeOption('effervescence_daily_album_image'))); ?>
+				<?php printHeadingImage(getRandomImages(getOption('effervescence_daily_album_image'))); ?>
 			</div> <!-- header -->
 
 			<!-- Wrap Main Body -->

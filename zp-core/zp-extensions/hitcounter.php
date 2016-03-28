@@ -51,10 +51,12 @@ class hitcounter {
 	var $defaultbots = 'Teoma, alexa, froogle, Gigabot,inktomi, looksmart, URL_Spider_SQL, Firefly, NationalDirectory, Ask Jeeves, TECNOSEEK, InfoSeek, WebFindBot, girafabot, crawler, www.galaxy.com, Googlebot, Scooter, Slurp, msnbot, appie, FAST, WebBug, Spade, ZyBorg, rabaz ,Baiduspider, Feedfetcher-Google, TechnoratiSnoop, Rankivabot, Mediapartners-Google, Sogou web spider, WebAlta Crawler';
 
 	function __construct() {
-		setOptionDefault('hitcounter_ignoreIPList_enable', 0);
-		setOptionDefault('hitcounter_ignoreSearchCrawlers_enable', 0);
-		setOptionDefault('hitcounter_ignoreIPList', '');
-		setOptionDefault('hitcounter_searchCrawlerList', $this->defaultbots);
+		if (OFFSET_PATH == 2) {
+			setOptionDefault('hitcounter_ignoreIPList_enable', 0);
+			setOptionDefault('hitcounter_ignoreSearchCrawlers_enable', 0);
+			setOptionDefault('hitcounter_ignoreIPList', '');
+			setOptionDefault('hitcounter_searchCrawlerList', $this->defaultbots);
+		}
 	}
 
 	function getOptionsSupported() {
@@ -124,7 +126,7 @@ class hitcounter {
 						}
 						$('#hitcounter_ip_button').attr('disabled', 'disabled');
 					}
-					jQuery(window).load(function() {
+					jQuery(window).load(function () {
 						var current = $('#hitcounter_ignoreIPList').val();
 						if (current.indexOf('<?php echo getUserIP(); ?>') < 0) {
 							$('#hitcounter_ip_button').removeAttr('disabled');

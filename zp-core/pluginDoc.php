@@ -35,6 +35,7 @@ if (!defined('OFFSET_PATH')) {
 	define('OFFSET_PATH', 2);
 	require_once(dirname(__FILE__) . '/admin-globals.php');
 	require_once(SERVERPATH . '/' . ZENFOLDER . '/template-functions.php');
+	require_once(SERVERPATH . '/' . ZENFOLDER . '/setup/setup-functions.php');
 
 	$extension = sanitize($_GET['extension']);
 	if (!in_array($extension, array_keys(getPluginFiles('*.php')))) {
@@ -89,6 +90,7 @@ if (!defined('OFFSET_PATH')) {
 	$pluginStream = @file_get_contents($pluginToBeDocPath);
 	$i = strpos($pluginStream, '/*');
 	$j = strpos($pluginStream, '*/');
+
 	$links = array();
 
 	if ($i !== false && $j !== false) {

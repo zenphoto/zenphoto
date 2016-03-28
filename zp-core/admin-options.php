@@ -1189,8 +1189,13 @@ Zenphoto_Authority::printPasswordFormJS();
 														 id="user_name"  name="user"
 														 value="<?php echo html_encode($_zp_gallery->getUser()); ?>" />
 											<br />
-											<label><input type="checkbox" name="disclose_password" id="disclose_password" onclick="passwordClear('');
-													togglePassword('');" /><?php echo gettext('Show password'); ?></label>
+											<label>
+												<input type="checkbox"
+															 name="disclose_password"
+															 id="disclose_password"
+															 onclick="passwordClear('');
+																	 togglePassword('');" /><?php echo gettext('Show password'); ?>
+											</label>
 										</td>
 										<td>
 											<?php echo gettext("User ID for the gallery guest user") ?>
@@ -1523,8 +1528,13 @@ Zenphoto_Authority::printPasswordFormJS();
 														 id="user_name"  name="user"
 														 value="<?php echo html_encode(getOption('search_user')); ?>" />
 											<br />
-											<label><input type="checkbox" name="disclose_password" id="disclose_password" onclick="passwordClear('');
-													togglePassword('');" /><?php echo gettext('Show password'); ?></label>
+											<label>
+												<input type="checkbox"
+															 name="disclose_password"
+															 id="disclose_password"
+															 onclick="passwordClear('');
+																	 togglePassword('');" /><?php echo gettext('Show password'); ?>
+											</label>
 										</td>
 										<td>
 											<?php echo gettext("User ID for the search guest user") ?>
@@ -2232,12 +2242,18 @@ Zenphoto_Authority::printPasswordFormJS();
 													</td>
 													<td style="margin:0; padding:0">
 														<input type="text" size="30"
+																	 class="passignore ignoredirty" autocomplete="off"
 																	 onkeydown="passwordClear('');"
 																	 id="user_name"  name="user"
 																	 value="<?php echo html_encode(getOption('protected_image_user')); ?>" />
 														<br />
-														<label><input type="checkbox" name="disclose_password" id="disclose_password" onclick="passwordClear('');
-																togglePassword('');" /><?php echo gettext('Show password'); ?></label>
+														<label>
+															<input type="checkbox"
+																		 name="disclose_password"
+																		 id="disclose_password"
+																		 onclick="passwordClear('');
+																				 togglePassword('');" /><?php echo gettext('Show password'); ?>
+														</label>
 													</td>
 												</tr>
 												<tr class="passwordextrahide" style="display:none" >

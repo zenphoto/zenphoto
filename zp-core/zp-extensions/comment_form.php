@@ -51,31 +51,28 @@ class comment_form {
 	function __construct() {
 		if (OFFSET_PATH == 2) {
 			$old = getOption('tinymce_comments');
-			if (strpos($old, '.js.php') !== false)
-				setOption('tinymce_comments', str_replace('.js.php', '.php', $old));
+			setOptionDefault('email_new_comments', 1);
+			setOptionDefault('comment_name_required', 'required');
+			setOptionDefault('comment_email_required', 'required');
+			setOptionDefault('comment_web_required', 'show');
+			setOptionDefault('Use_Captcha', false);
+			setOptionDefault('comment_form_addresses', 0);
+			setOptionDefault('comment_form_require_addresses', 0);
+			setOptionDefault('comment_form_members_only', 0);
+			setOptionDefault('comment_form_albums', 1);
+			setOptionDefault('comment_form_images', 1);
+			setOptionDefault('comment_form_articles', 1);
+			setOptionDefault('comment_form_pages', 1);
+			setOptionDefault('comment_form_rss', 1);
+			setOptionDefault('comment_form_private', 1);
+			setOptionDefault('comment_form_anon', 1);
+			setOptionDefault('comment_form_showURL', 1);
+			setOptionDefault('comment_form_comments_per_page', 10);
+			setOptionDefault('comment_form_pagination', true);
+			setOptionDefault('comment_form_toggle', 1);
+			setOptionDefault('tinymce_comments', 'comment-ribbon.php');
+			setOptionDefault('tinymce_admin_comments', 'comment-ribbon.php');
 		}
-
-		setOptionDefault('email_new_comments', 1);
-		setOptionDefault('comment_name_required', 'required');
-		setOptionDefault('comment_email_required', 'required');
-		setOptionDefault('comment_web_required', 'show');
-		setOptionDefault('Use_Captcha', false);
-		setOptionDefault('comment_form_addresses', 0);
-		setOptionDefault('comment_form_require_addresses', 0);
-		setOptionDefault('comment_form_members_only', 0);
-		setOptionDefault('comment_form_albums', 1);
-		setOptionDefault('comment_form_images', 1);
-		setOptionDefault('comment_form_articles', 1);
-		setOptionDefault('comment_form_pages', 1);
-		setOptionDefault('comment_form_rss', 1);
-		setOptionDefault('comment_form_private', 1);
-		setOptionDefault('comment_form_anon', 1);
-		setOptionDefault('comment_form_showURL', 1);
-		setOptionDefault('comment_form_comments_per_page', 10);
-		setOptionDefault('comment_form_pagination', true);
-		setOptionDefault('comment_form_toggle', 1);
-		setOptionDefault('tinymce_comments', 'comment-ribbon.php');
-		setOptionDefault('tinymce_admin_comments', 'comment-ribbon.php');
 	}
 
 	/**

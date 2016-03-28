@@ -43,21 +43,22 @@ class register_user {
 
 	function __construct() {
 		global $_zp_authority;
-		setOptionDefault('register_user_link', '_PAGE_/register');
-		gettext($str = 'You have received this email because you registered with the user id %3$s on this site.' . "\n" . 'To complete your registration visit %1$s.');
-		setOptionDefault('register_user_text', getAllTranslations($str));
-		gettext($str = 'Click here to register for this site.');
-		setOptionDefault('register_user_page_tip', getAllTranslations($str));
-		gettext($str = 'Register');
-		setOptionDefault('register_user_page_link', getAllTranslations($str));
-		setOptionDefault('register_user_captcha', 0);
-		setOptionDefault('register_user_email_is_id', 1);
-		setOptionDefault('register_user_create_album', 0);
+		if (OFFSET_PATH == 2) {
+			setOptionDefault('register_user_link', '_PAGE_/register');
+			gettext($str = 'You have received this email because you registered with the user id %3$s on this site.' . "\n" . 'To complete your registration visit %1$s.');
+			setOptionDefault('register_user_text', getAllTranslations($str));
+			gettext($str = 'Click here to register for this site.');
+			setOptionDefault('register_user_page_tip', getAllTranslations($str));
+			gettext($str = 'Register');
+			setOptionDefault('register_user_page_link', getAllTranslations($str));
+			setOptionDefault('register_user_captcha', 0);
+			setOptionDefault('register_user_email_is_id', 1);
+			setOptionDefault('register_user_create_album', 0);
+			setOptionDefault('register_user_notify', 1);
+		}
 		$mailinglist = $_zp_authority->getAdminEmail(ADMIN_RIGHTS);
 		if (count($mailinglist) == 0) { //	no one to send the notice to!
 			setOption('register_user_notify', 0);
-		} else {
-			setOptionDefault('register_user_notify', 1);
 		}
 	}
 
@@ -230,16 +231,16 @@ class register_user {
 			$_notify = 'empty';
 		} else if (!empty($user) && !(empty($admin_n)) && !empty($admin_e)) {
 			if (isset($_POST['disclose_password']) || $pass == trim(sanitize($_POST['pass_r']))) {
-				$currentadmin = Zenphoto_Authority::getAnAdmin(array('`user`=' => $user, '`valid`>' => 0));
+				$currentadmin = $_zp_authority->getAnAdmin(array('`user`=' => $user, '`valid`>' => 0));
 				if (is_object($currentadmin)) {
 					$_notify = 'exists';
 				} else {
-					if (Zenphoto_Authority::getAnAdmin(array('`email`=' => $admin_e, '`valid`=' => '1'))) {
+					if ($_zp_authority->getAnAdmin(array('`email`=' => $admin_e, '`valid`=' => '1'))) {
 						$_notify = 'dup_email';
 					}
 				}
 				if (empty($_notify)) {
-					$userobj = Zenphoto_Authority::newAdministrator('');
+					$userobj = $_zp_authority->newAdministrator('');
 					$userobj->transient = false;
 					$userobj->setUser($user);
 					$userobj->setPass($pass);
@@ -342,14 +343,14 @@ function printRegistrationForm($thanks = NULL) {
 			$_SERVER['REQUEST_URI'] .= '?' . implode('&', $p);
 		}
 
-		$userobj = Zenphoto_Authority::getAnAdmin(array('`user`=' => $params['user'], '`valid`=' => 1));
+		$userobj = $_zp_authority->getAnAdmin(array('`user`=' => $params['user'], '`valid`=' => 1));
 		if ($userobj && $userobj->getEmail() == $params['email']) {
 			if (!$userobj->getRights()) {
 				$userobj->setCredentials(array('registered', 'user', 'email'));
 				$rights = getOption('register_user_user_rights');
 				$group = NULL;
 				if (!is_numeric($rights)) { //  a group or template
-					$admin = Zenphoto_Authority::getAnAdmin(array('`user`=' => $rights, '`valid`=' => 0));
+					$admin = $_zp_authority->getAnAdmin(array('`user`=' => $rights, '`valid`=' => 0));
 					if ($admin) {
 						$userobj->setObjects($admin->getObjects());
 						if ($admin->getName() != 'template') {
@@ -509,13 +510,13 @@ function printRegistrationForm($thanks = NULL) {
 				<div class="errorbox fade-message">
 					<h2><?php echo gettext("Registration failed."); ?></h2>
 					<p>
-						<?php
-						if (is_object($userobj) && !empty($userobj->msg)) {
-							echo $userobj->msg;
-						} else {
-							echo gettext('Your registration attempt failed a <code>register_user_registered</code> filter check.');
-						}
-						?>
+				<?php
+				if (is_object($userobj) && !empty($userobj->msg)) {
+					echo $userobj->msg;
+				} else {
+					echo gettext('Your registration attempt failed a <code>register_user_registered</code> filter check.');
+				}
+				?>
 					</p>
 				</div>
 				<?php

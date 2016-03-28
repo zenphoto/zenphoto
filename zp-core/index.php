@@ -8,9 +8,13 @@
 // force UTF-8 Ø
 if (!defined('OFFSET_PATH'))
 	die(); //	no direct linking
+
 $_zp_script_timer['start'] = microtime();
 require_once(dirname(__FILE__) . '/global-definitions.php');
 require_once(dirname(__FILE__) . '/functions.php');
+
+
+
 
 zp_apply_filter('feature_plugin_load');
 if (DEBUG_PLUGINS) {
@@ -121,13 +125,20 @@ if ($zp_request && $_zp_script && file_exists($_zp_script = SERVERPATH . "/" . i
 			$_zp_script = SERVERPATH . '/' . ZENFOLDER . '/password.php';
 		}
 	}
-	$tables = array('albums', 'images');
-	if (extensionEnabled('zenpage')) {
-		$tables = array_merge($tables, array('news', 'pages'));
+
+	//update publish state, but only on static cache expiry intervals
+	$lastupdate = (int) @file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/lastPublishCheck');
+	if (time() - $lastupdate > getOption('static_cache_expire')) {
+		$tables = array('albums', 'images');
+		if (extensionEnabled('zenpage')) {
+			$tables = array_merge($tables, array('news', 'pages'));
+		}
+		foreach ($tables as $table) {
+			updatePublished($table);
+		}
+		file_put_contents(SERVERPATH . '/' . DATA_FOLDER . '/lastPublishCheck', time());
 	}
-	foreach ($tables as $table) {
-		updatePublished($table);
-	}
+
 	// Include the appropriate page for the requested object, and a 200 OK header.
 	header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 	header("HTTP/1.0 200 OK");

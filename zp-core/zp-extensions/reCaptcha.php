@@ -46,7 +46,9 @@ class reCaptcha extends _zp_captcha {
 	 * @return captcha
 	 */
 	function __construct() {
-		setOptionDefault('reCaptcha_theme', 'red');
+		if (OFFSET_PATH == 2) {
+			setOptionDefault('reCaptcha_theme', 'red');
+		}
 	}
 
 	/**

@@ -29,13 +29,15 @@ class themeSwitcher {
 
 	function __construct() {
 		global $_zp_gallery;
-		$themes = $_zp_gallery->getThemes();
-		foreach ($themes as $key => $theme) {
-			setOptionDefault('themeSwitcher_theme_' . $key, 1);
-			$themelist[$key] = getOption('themeSwitcher_theme_' . $key);
+		if (OFFSET_PATH == 2) {
+			$themes = $_zp_gallery->getThemes();
+			foreach ($themes as $key => $theme) {
+				setOptionDefault('themeSwitcher_theme_' . $key, 1);
+				$themelist[$key] = getOption('themeSwitcher_theme_' . $key);
+			}
+			setOptionDefault('themeSwitcher_timeout', 60 * 2);
+			setOptionDefault('themeSwitcher_adminOnly', 1);
 		}
-		setOptionDefault('themeSwitcher_timeout', 60 * 2);
-		setOptionDefault('themeSwitcher_adminOnly', 1);
 	}
 
 	function getOptionsSupported() {
@@ -129,11 +131,11 @@ class themeSwitcher {
 				<div class="themeSwitcherMenu">
 					<img src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/themeSwitcher/menu.png" onclick="$('.themeSwitcherControl').toggle();" title="<?php echo gettext('Close'); ?>" />
 				</div>
-				<?php echo $text; ?>
+					<?php echo $text; ?>
 				<select name="themeSwitcher" id="themeSwitcher" onchange="switchTheme('<?php echo html_encode($reloc); ?>')" title="<?php echo gettext("Themes will not show in this list if selecting them would result in a “not found” error."); ?>">
-					<?php generateListFromArray(array($theme), $themes, false, true); ?>
+				<?php generateListFromArray(array($theme), $themes, false, true); ?>
 				</select>
-				<?php zp_apply_filter('themeSwitcher_Controllink', $theme); ?>
+			<?php zp_apply_filter('themeSwitcher_Controllink', $theme); ?>
 			</div>
 			<?php
 		}

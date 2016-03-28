@@ -39,21 +39,23 @@ zp_register_filter('custom_image_html', 'flag_thumbnail::custom_images', 99);
 class flag_thumbnail {
 
 	function __construct() {
-		setOptionDefault('flag_thumbnail_date', 'date');
-		setOptionDefault('flag_thumbnail_range', '3');
-		setOptionDefault('flag_thumbnail_new_text', 'NEW');
-		setOptionDefault('flag_thumbnail_unpublished_text', 'unpub');
-		setOptionDefault('flag_thumbnail_locked_text', 'locked');
-		setOptionDefault('flag_thumbnail_geodata_text', 'GPS');
-		setOptionDefault('flag_thumbnail_use_text', '');
-		setOptionDefault('flag_thumbnail_flag_new', 1);
-		setOptionDefault('flag_thumbnail_flag_locked', 1);
-		setOptionDefault('flag_thumbnail_flag_unpublished', 1);
-		setOptionDefault('flag_thumbnail_flag_geodata', 1);
-		setOptionDefault('flag_thumbnail_new_icon', 'new.png');
-		setOptionDefault('flag_thumbnail_unpublished_icon', 'action.png');
-		setOptionDefault('flag_thumbnail_locked_icon', 'lock.png');
-		setOptionDefault('flag_thumbnail_geodata_icon', 'GPS.png');
+		if (OFFSET_PATH == 2) {
+			setOptionDefault('flag_thumbnail_date', 'date');
+			setOptionDefault('flag_thumbnail_range', '3');
+			setOptionDefault('flag_thumbnail_new_text', 'NEW');
+			setOptionDefault('flag_thumbnail_unpublished_text', 'unpub');
+			setOptionDefault('flag_thumbnail_locked_text', 'locked');
+			setOptionDefault('flag_thumbnail_geodata_text', 'GPS');
+			setOptionDefault('flag_thumbnail_use_text', '');
+			setOptionDefault('flag_thumbnail_flag_new', 1);
+			setOptionDefault('flag_thumbnail_flag_locked', 1);
+			setOptionDefault('flag_thumbnail_flag_unpublished', 1);
+			setOptionDefault('flag_thumbnail_flag_geodata', 1);
+			setOptionDefault('flag_thumbnail_new_icon', 'new.png');
+			setOptionDefault('flag_thumbnail_unpublished_icon', 'action.png');
+			setOptionDefault('flag_thumbnail_locked_icon', 'lock.png');
+			setOptionDefault('flag_thumbnail_geodata_icon', 'GPS.png');
+		}
 	}
 
 	function getOptionsSupported() {

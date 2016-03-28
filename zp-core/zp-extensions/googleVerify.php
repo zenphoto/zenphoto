@@ -4,7 +4,7 @@
  * Use to insert the {@link http://www.google.com/webmasters/tools Google Webmaster Tools} verification meta tag into your site pages.
  *
  * @author Stephen Billard (sbillard)
- * 
+ *
  * @package plugins
  * @subpackage admin
  */
@@ -29,7 +29,9 @@ class googleVerifyOptions {
 	 * @return security_logger
 	 */
 	function __construct() {
-		setOptionDefault('google-site-verification', '');
+		if (OFFSET_PATH == 2) {
+			setOptionDefault('google-site-verification', '');
+		}
 	}
 
 	/**

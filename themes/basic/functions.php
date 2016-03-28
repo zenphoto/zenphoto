@@ -17,7 +17,7 @@ chdir($curdir);
 function css_head($ignore) {
 	global $themecolors, $zenCSS, $themeColor, $_zp_themeroot;
 	if (!$themeColor) {
-		$themeColor = getThemeOption('Theme_colors');
+		$themeColor = getOption('Theme_colors');
 	}
 
 	if ($editorConfig = getOption('tinymce_comments')) {

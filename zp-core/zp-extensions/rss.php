@@ -340,7 +340,7 @@ class RSS extends feed {
 	 *
 	 */
 	function __construct($options = NULL) {
-		global $_zp_gallery, $_zp_current_admin_obj, $_zp_loggedin, $_zp_gallery_page;
+		global $_zp_gallery, $_zp_authority, $_zp_current_admin_obj, $_zp_loggedin, $_zp_gallery_page;
 		$_zp_gallery_page = 'RSS.php';
 		if (empty($options))
 			self::feed404();
@@ -354,7 +354,7 @@ class RSS extends feed {
 			unset($link['token']);
 			$token = Zenphoto_Authority::passwordHash(serialize($link), '');
 			if ($token == $options['token']) {
-				$adminobj = Zenphoto_Authority::getAnAdmin(array('`id`=' => (int) $link['user']));
+				$adminobj = $_zp_authority->getAnAdmin(array('`id`=' => (int) $link['user']));
 				if ($adminobj) {
 					$_zp_current_admin_obj = $adminobj;
 					$_zp_loggedin = $_zp_current_admin_obj->getRights();

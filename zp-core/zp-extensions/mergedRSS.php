@@ -55,7 +55,9 @@ if (isset($_GET['mergedrss'])) {
 class MergedRSSOptions {
 
 	function __construct() {
-		setOptionDefault('mergedrss_items', 10);
+		if (OFFSET_PATH == 2) {
+			setOptionDefault('mergedrss_items', 10);
+		}
 	}
 
 	function getOptionsSupported() {

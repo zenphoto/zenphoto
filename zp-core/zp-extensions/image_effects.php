@@ -53,7 +53,7 @@
  *
  *
  * @author Stephen Billard (sbillard)
- * 
+ *
  * @package plugins
  * @subpackage media
  */
@@ -77,9 +77,11 @@ class image_effects {
 	var $effects = NULL;
 
 	function __construct() {
-		$effect = getPluginFiles('*.txt', 'image_effects');
-		foreach ($this->effects = array_keys($effect) as $suffix) {
-			setOptionDefault('image_effects_random_' . $suffix, 1);
+		if (OFFSET_PATH == 2) {
+			$effect = getPluginFiles('*.txt', 'image_effects');
+			foreach ($this->effects = array_keys($effect) as $suffix) {
+				setOptionDefault('image_effects_random_' . $suffix, 1);
+			}
 		}
 	}
 

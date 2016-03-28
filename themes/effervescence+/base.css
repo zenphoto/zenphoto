@@ -992,7 +992,7 @@ ul.archive .month {
 }
 .menu ul li.menu-active {
 	color: __C_70__;
-	background-image: url(images/dark-bullet.png);
+	background-image: url(../images/dark-bullet.png);
 }
 
 .menu h3 a {

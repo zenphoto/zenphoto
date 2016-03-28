@@ -94,6 +94,7 @@ zp_apply_filter('texteditor_config', 'zenpage');
 zenpageJSCSS();
 datepickerJS();
 codeblocktabsJS();
+$tagsort = getTagOrder();
 ?>
 <script type="text/javascript">
 	//<!-- <![CDATA[
@@ -417,9 +418,9 @@ codeblocktabsJS();
 																	 id="show"
 																	 value="1" <?php checkIfChecked($result->getShow()); ?>
 																	 onclick="$('#pubdate').val('');
-																				 $('#expiredate').val('');
-																				 $('#pubdate').css('color', 'black');
-																				 $('.expire').html('');"
+																			 $('#expiredate').val('');
+																			 $('#pubdate').css('color', 'black');
+																			 $('.expire').html('');"
 																	 />
 														<label for="show"><?php echo gettext("Published"); ?></label>
 													</p>
@@ -517,8 +518,11 @@ codeblocktabsJS();
 																			 value="<?php echo $x; ?>" />
 																<br />
 																<label>
-																	<input type="checkbox" name="disclose_password" id="disclose_password" onclick="passwordClear('');
-																						togglePassword('');"><?php echo gettext('Show password'); ?>
+																	<input type="checkbox"
+																				 name="disclose_password"
+																				 id="disclose_password"
+																				 onclick="passwordClear('');
+																						 togglePassword('');"><?php echo gettext('Show password'); ?>
 																</label>
 																<br />
 																<span class="password_field_">
@@ -545,13 +549,13 @@ codeblocktabsJS();
 														<label class="checkboxlabel">
 															<input type="radio" id="copy_object" name="copy_delete_object" value="copy"
 																		 onclick="$('#copyfield').show();
-																						 $('#deletemsg').hide();" />
+																				 $('#deletemsg').hide();" />
 																		 <?php echo gettext("Copy"); ?>
 														</label>
 														<label class="checkboxlabel">
 															<input type="radio" id="delete_object" name="copy_delete_object" value="delete"
 																		 onclick="deleteConfirm('delete_object', '', '<?php addslashes(printf(gettext('Are you sure you want to delete this %s?'), $deleteitem)); ?>');
-																						 $('#copyfield').hide();" />
+																				 $('#copyfield').hide();" />
 																		 <?php echo gettext('delete'); ?>
 														</label>
 														<br class="clearall" />
@@ -733,14 +737,6 @@ codeblocktabsJS();
 														<?php
 													} // if article for categories
 												} // if !category end
-												if (!is_AdminEditPage("newscategory")) {
-													?>
-													<h2 class="h2_bordered_edit"><?php echo gettext("Tags"); ?></h2>
-													<div class="box-edit-unpadded">
-														<?php tagSelector($result, 'tags_', false, getTagOrder()); ?>
-													</div>
-													<?php
-												}
 												?>
 											</td>
 										</tr>

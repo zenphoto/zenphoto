@@ -56,10 +56,12 @@ class user_expiry {
 	 *
 	 */
 	function __construct() {
-		setOptionDefault('user_expiry_interval', 365);
-		setOptionDefault('user_expiry_warn_interval', 7);
-		setOptionDefault('user_expiry_auto_renew', 0);
-		setOptionDefault('user_expiry_password_cycle', 0);
+		if (OFFSET_PATH == 2) {
+			setOptionDefault('user_expiry_interval', 365);
+			setOptionDefault('user_expiry_warn_interval', 7);
+			setOptionDefault('user_expiry_auto_renew', 0);
+			setOptionDefault('user_expiry_password_cycle', 0);
+		}
 	}
 
 	/**
@@ -220,9 +222,10 @@ class user_expiry {
 	}
 
 	static function checklogon($loggedin, $user) {
+		global $_zp_authority;
 		if ($loggedin) {
 			if (!($loggedin & ADMIN_RIGHTS)) {
-				if ($userobj = Zenphoto_Authority::getAnAdmin(array('`user`=' => $user, '`valid`=' => 1))) {
+				if ($userobj = $_zp_authority->getAnAdmin(array('`user`=' => $user, '`valid`=' => 1))) {
 					$loggedin = user_expiry::checkexpires($loggedin, $userobj);
 				}
 			}
@@ -236,11 +239,12 @@ class user_expiry {
 	 * @return string
 	 */
 	static function reverify($path) {
+		global $_zp_authority;
 		//process any verifications posted
 		if (isset($_GET['user_expiry_reverify'])) {
 			$params = unserialize(pack("H*", trim(sanitize($_GET['user_expiry_reverify']), '.')));
 			if ((time() - $params['date']) < 2592000) {
-				$userobj = Zenphoto_Authority::getAnAdmin(array('`user`=' => $params['user'], '`email`=' => $params['email'], '`valid`>' => 0));
+				$userobj = $_zp_authority->getAnAdmin(array('`user`=' => $params['user'], '`email`=' => $params['email'], '`valid`>' => 0));
 				if ($userobj) {
 					$credentials = $userobj->getCredentials();
 					$credentials[] = 'expiry';
@@ -289,11 +293,12 @@ class user_expiry {
 	}
 
 	static function notify($tab, $subtab) {
+		global $_zp_authority;
 		if ($tab == 'users' && $subtab = 'users') {
 			if (user_expiry::checkPasswordRenew()) {
 				echo '<p class="errorbox">' . gettext('You must change your password.'), '</p>';
 			} else {
-				if (Zenphoto_Authority::getAnAdmin(array('`valid`>' => 1))) {
+				if ($_zp_authority->getAnAdmin(array('`valid`>' => 1))) {
 					echo '<p class="notebox">' . gettext('You have users whose credentials have expired.'), '</p>';
 				}
 			}

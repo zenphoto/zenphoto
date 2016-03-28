@@ -40,8 +40,10 @@ if (OFFSET_PATH) {
 class colorbox {
 
 	function __construct() {
-		//	These are best set by the theme itself!
-		setOptionDefault('colorbox_theme', 'example1');
+		if (OFFSET_PATH == 2) {
+			//	These are best set by the theme itself!
+			setOptionDefault('colorbox_theme', 'example1');
+		}
 	}
 
 	function getOptionsSupported() {
@@ -106,7 +108,7 @@ class colorbox {
 			{
 				if (resizeTimer)
 					clearTimeout(resizeTimer);
-				resizeTimer = setTimeout(function() {
+				resizeTimer = setTimeout(function () {
 					if (jQuery('#cboxOverlay').is(':visible')) {
 						jQuery.colorbox.resize({width: '90%', maxHeight: '90%'});
 						jQuery('#cboxLoadedContent img').css('max-width', '100%').css('height', 'auto');

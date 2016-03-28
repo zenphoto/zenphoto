@@ -570,7 +570,9 @@ class xmpMetadata {
 	 * @return xmpMetadata_options
 	 */
 	function __construct() {
-		setOptionDefault('xmpMetadata_suffix', 'xmp');
+		if (OFFSET_PATH == 2) {
+			setOptionDefault('xmpMetadata_suffix', 'xmp');
+		}
 	}
 
 	/**

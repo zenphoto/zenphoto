@@ -48,13 +48,14 @@ if (!defined('WEBPATH'))
 		</div> <!-- header -->
 		<!-- The Image -->
 		<?php
-		$randomImage = getRandomImages($imageofday = getThemeOption('effervescence_daily_album_image'));
+		$randomImage = getRandomImages($imageofday = getOption('effervescence_daily_album_image'));
 		if ($randomImage) {
 			makeImageCurrent($randomImage);
 			$size = floor(getOption('image_size') * $imagereduction);
-			$s = getDefaultWidth($size) + 22;
+			$size_a = getSizeDefaultImage($size);
+			$s = $size_a[0] + 22;
 			$wide = " style=\"width:" . $s . "px;";
-			$s = getDefaultHeight($size) + 72;
+			$s = $size_a[1] + 72;
 			$high = " height:" . $s . "px;\"";
 		} else {
 			$wide = " style=\"width:332px;";

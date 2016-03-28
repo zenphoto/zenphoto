@@ -27,7 +27,6 @@ if (GALLERY_SESSION) {
 }
 
 define('ZENPHOTO_LOCALE', setMainDomain());
-define('SITE_LOCALE', getOptionFromDB('locale'));
 
 require_once(dirname(__FILE__) . '/load_objectClasses.php');
 
@@ -40,7 +39,7 @@ $_zp_albumthumb_selector = array(array('field' => '', 'direction' => '', 'desc' 
 				array('field' => 'hitcounter', 'direction' => 'DESC', 'desc' => gettext('most viewed'))
 );
 
-$_zp_missing_album = new AlbumBase(gettext('missing'), false);
+$_zp_missing_album = new TransientAlbum(gettext('missing'));
 $_zp_missing_image = new Transientimage($_zp_missing_album, SERVERPATH . '/' . ZENFOLDER . '/images/err-imagenotfound.png');
 
 /**

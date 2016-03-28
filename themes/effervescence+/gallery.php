@@ -53,7 +53,7 @@ if (!defined('WEBPATH'))
 		</div> <!-- header -->
 		<!-- Random Image -->
 		<?php
-		printHeadingImage(getRandomImages(getThemeOption('effervescence_daily_album_image')));
+		printHeadingImage(getRandomImages(getOption('effervescence_daily_album_image')));
 		?>
 
 		<!-- Wrap Main Body -->

@@ -294,7 +294,7 @@ class PersistentObject {
 			$entry = $this->getFromCache();
 		}
 		// Check the database if: 1) not using cache, or 2) didn't get a hit.
-		if (empty($entry)) {
+		if (empty($entry) && !$this->transient) {
 			$sql = 'SELECT * FROM ' . prefix($this->table) . getWhereClause($this->unique_set) . ' LIMIT 1;';
 			$entry = query_single_row($sql, false);
 			// Save this entry into the cache so we get a hit next time.

@@ -105,8 +105,6 @@ class SearchEngine {
 		//image/album fields
 		$this->search_structure['title'] = gettext('Title');
 		$this->search_structure['desc'] = gettext('Description');
-		$this->search_structure['tags'] = gettext('Tags');
-		$this->search_structure['tags_exact'] = ''; //	internal use only field
 		$this->search_structure['filename'] = gettext('File/Folder name');
 		$this->search_structure['date'] = gettext('Date');
 		if (extensionEnabled('zenpage') && !$dynamic_album) {
@@ -125,6 +123,10 @@ class SearchEngine {
 		}
 
 		$this->search_structure = zp_apply_filter('searchable_fields', $this->search_structure);
+		if (isset($this->search_structure['tags'])) {
+			// if tag searches exist then allow exact tags as well
+			$this->search_structure['tags_exact'] = ''; //	internal use only field
+		}
 		asort($this->search_structure, SORT_LOCALE_STRING);
 
 		if (isset($_REQUEST['words'])) {

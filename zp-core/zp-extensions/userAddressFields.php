@@ -23,7 +23,7 @@ require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/common/field
 class userAddressFields extends fieldExtender {
 
 	function __construct() {
-		global $_userAddressFields;
+		global $_zp_authority, $_userAddressFields;
 		$firstTime = false;
 		$tablecols = db_list_fields('administrators');
 		foreach ($tablecols as $key => $datum) {
@@ -55,7 +55,7 @@ class userAddressFields extends fieldExtender {
 		$cloneid = bin2hex(FULLWEBPATH);
 		if (OFFSET_PATH == 2 && isset($_SESSION['admin'][$cloneid])) {
 			$user = unserialize($_SESSION['admin'][$cloneid]);
-			$user2 = Zenphoto_Authority::getAnAdmin(array('`user`=' => $user->getUser(), '`pass`=' => $user->getPass(), '`valid`=' => 1));
+			$user2 = $_zp_authority->getAnAdmin(array('`user`=' => $user->getUser(), '`pass`=' => $user->getPass(), '`valid`=' => 1));
 			if ($user2) {
 				foreach (userAddressFields::fields() as $field) {
 					$user2->set($field['name'], $user->get($field['name']));

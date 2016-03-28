@@ -1,14 +1,14 @@
 <?php
-/*
+/**
  * This plugin is used to provide for <i>object</i> optional database table fields. The
- * administrative tabs for the objects will have input items for these  fields.
+ * administrative tabs for the objects will have input items for these fields.
  * They will be placed in the proximate location of the "custom data" field on the page.
  *
  * Fields added to searchable objects will be included in the list of selectable search
  * fields. They will be enabled in the list by default. The standard search
  * form allows a visitor to choose to disable the field for a particular search.
  *
- * Note that the image and album objects will still have the methods for getting and
+ * The zenPhoto20 objects will still have the methods for getting and
  * setting these fields. But if this plugin is not enabled, these fields will <b>NOT</b> be preserved
  * in the database.
  *
@@ -19,7 +19,25 @@
  * If you disable the plugin and run setup, fields defined will be removed
  * from the database.
  *
- * You should copy this script to the user plugin folder if you wish to customize it.
+ * This plugin provides for the following fields:
+ *
+ * 	<dl>
+ * 		<dt><b>albums table</b></dt>
+ * 			<dd>owner</dd> <dd>date</dd> <dd>location</dd> <dd>tags</dd> <dd>codeblock</dd>
+ *
+ * 		<dt><b>images table</b></dt>
+ * 			<dd>owner</dd> <dd>date</dd> <dd>location</dd> <dd>album_thumb</dd> <dd>watermark</dd>
+ * 			<dd>watermark_use</dd> <dd>location</dd> <dd>city</dd> <dd>state</dd> <dd>country</dd>
+ * 			<dd>credit</dd> <dd>copyright</dd> <dd>tags</dd> <dd>codeblock</dd>
+ *
+ * 		<dt><b>pages table</b></dt>
+ * 			<dd>extracontent</dd> <dd>tags</dd> <dd>codeblock</dd>
+ *
+ *    <dt><b>news table</b></dt>
+ * 			<dd>extracontent</dd> <dd>tags</dd> <dd>codeblock</dd>
+ * 	</dl>
+ *
+ * You should copy this script to the user plugin folder if you wish to customize which fields are provided.
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
@@ -30,7 +48,7 @@
  */
 $plugin_is_filter = defaultExtension(1 | CLASS_PLUGIN); //	we want this done last so the codeblocks go at the end
 $plugin_description = gettext('Handles the "optional" object fields');
-
+$plugin_notice = (extensionEnabled('optionalObjectFields')) ? '' : gettext('<strong>IMPORTANT</strong>: This plugin enables the "tags" database fields. If disabled the admin <em>tags</em> tab will not be present. Click on the <em>More information</em> icon for details.');
 $plugin_author = "Stephen Billard (sbillard)";
 
 require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/common/fieldExtender.php');
@@ -71,11 +89,13 @@ class optionalObjectFields extends fieldExtender {
 						 */
 						array('table' => 'pages', 'name' => 'extracontent', 'desc' => gettext('Extra Content'), 'type' => 'text', 'edit' => 'function', 'function' => 'optionalObjectFields::extracontent'),
 						array('table' => 'pages', 'name' => 'codeblock', 'desc' => gettext('Codeblocks'), 'type' => 'text', 'edit' => 'function', 'function' => 'optionalObjectFields::codeblocks'),
+						array('table' => 'pages', 'name' => 'tags', 'desc' => gettext('Tags'), 'type' => NULL, 'edit' => 'function', 'function' => 'optionalObjectFields::tags'),
 						/*
 						 * news article fields
 						 */
 						array('table' => 'news', 'name' => 'extracontent', 'desc' => gettext('Extra Content'), 'type' => 'text', 'edit' => 'function', 'function' => 'optionalObjectFields::extracontent'),
-						array('table' => 'news', 'name' => 'codeblock', 'desc' => gettext('Codeblocks'), 'type' => 'text', 'edit' => 'function', 'function' => 'optionalObjectFields::codeblocks')
+						array('table' => 'news', 'name' => 'codeblock', 'desc' => gettext('Codeblocks'), 'type' => 'text', 'edit' => 'function', 'function' => 'optionalObjectFields::codeblocks'),
+						array('table' => 'news', 'name' => 'tags', 'desc' => gettext('Tags'), 'type' => NULL, 'edit' => 'function', 'function' => 'optionalObjectFields::tags')
 		);
 	}
 

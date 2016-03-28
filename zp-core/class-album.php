@@ -415,9 +415,10 @@ class AlbumBase extends MediaObject {
 	 * otherwise, finds the first image in the album or sub-album and returns it
 	 * as an Image object.
 	 *
+	 * $recures	array recursion loop prevention
 	 * @return Image
 	 */
-	function getAlbumThumbImage() {
+	function getAlbumThumbImage($recurse = array()) {
 		global $_zp_albumthumb_selector, $_zp_gallery;
 
 		if (!is_null($this->albumthumbnail)) {
@@ -504,10 +505,14 @@ class AlbumBase extends MediaObject {
 			}
 			while (count($subalbums) > 0) {
 				$folder = array_pop($subalbums);
+				if (in_array($folder, $recurse)) {
+					continue;
+				}
+				$recurse[] = $folder;
 				$subalbum = newAlbum($folder);
 				$pwd = $subalbum->getPassword();
 				if (($subalbum->getShow() && empty($pwd)) || $subalbum->isMyItem(LIST_RIGHTS)) {
-					$thumb = $subalbum->getAlbumThumbImage();
+					$thumb = $subalbum->getAlbumThumbImage($recurse);
 					if (strtolower(get_class($thumb)) !== 'transientimage' && $thumb->exists) {
 						$this->albumthumbnail = $thumb;
 						return $thumb;
@@ -1255,21 +1260,23 @@ class Album extends AlbumBase {
 	 * @return array
 	 */
 	function getImages($page = 0, $firstPageCount = 0, $sorttype = null, $sortdirection = null, $care = true, $mine = NULL) {
-		if (!$this->exists)
+		if ($this->exists && $this->getID()) {
+			if (is_null($sorttype)) {
+				$sorttype = $this->getSortType();
+			}
+			if (is_null($sortdirection)) {
+				$sortdirection = $this->getSortDirection('image');
+			}
+			$sortdirection = $sortdirection && strtolower($sortdirection) != 'asc';
+			if ($mine || is_null($this->images) || $care && $sorttype . $sortdirection !== $this->lastimagesort) {
+				$images = $this->loadFileNames();
+				$this->images = array_values($this->sortImageArray($images, $sorttype, $sortdirection, $mine));
+				$this->lastimagesort = $sorttype . $sortdirection;
+			}
+			return parent::getImages($page, $firstPageCount);
+		} else {
 			return array();
-		if (is_null($sorttype)) {
-			$sorttype = $this->getSortType();
 		}
-		if (is_null($sortdirection)) {
-			$sortdirection = $this->getSortDirection('image');
-		}
-		$sortdirection = $sortdirection && strtolower($sortdirection) != 'asc';
-		if ($mine || is_null($this->images) || $care && $sorttype . $sortdirection !== $this->lastimagesort) {
-			$images = $this->loadFileNames();
-			$this->images = array_values($this->sortImageArray($images, $sorttype, $sortdirection, $mine));
-			$this->lastimagesort = $sorttype . $sortdirection;
-		}
-		return parent::getImages($page, $firstPageCount);
 	}
 
 	/**
@@ -1747,6 +1754,15 @@ class dynamicAlbum extends AlbumBase {
 
 	function isDynamic() {
 		return 'alb';
+	}
+
+}
+
+class TransientAlbum extends AlbumBase {
+
+	function __construct($folder8, $cache = true) {
+		$this->instantiate('albums', array('folder' => $this->name), 'folder', true, true);
+		$this->exists = false;
 	}
 
 }
