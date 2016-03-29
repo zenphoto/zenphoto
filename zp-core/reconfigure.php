@@ -42,7 +42,8 @@ function reconfigureAction($mandatory) {
 			header("Location: $location");
 			exitZP();
 		} else {
-			global $subtabs, $zenphoto_tabs, $main_tab_space, $_zp_admin_tab;
+			global $subtabs, $zenphoto_tabs, $main_tab_space, $_zp_admin_tab, $_zp_invisible_execute, $_zp_gallery;
+			$_zp_invisible_execute = 1;
 			require_once(SERVERPATH . '/' . ZENFOLDER . '/admin-globals.php');
 			header('Last-Modified: ' . ZP_LAST_MODIFIED);
 			header('Content-Type: text/html; charset=UTF-8');
@@ -55,9 +56,9 @@ function reconfigureAction($mandatory) {
 					<?php reconfigureCS(); ?>
 				</head>
 				<body>
-					<?php printLogoAndLinks(); ?>
+					<?php if ($_zp_gallery) printLogoAndLinks(); ?>
 					<div id="main">
-						<?php printTabs(); ?>
+						<?php if ($_zp_gallery) printTabs(); ?>
 						<div id="content">
 							<h1><?php echo gettext('Setup request'); ?></h1>
 							<div class="tabbox">
