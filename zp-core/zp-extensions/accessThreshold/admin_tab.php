@@ -21,6 +21,7 @@ unset($recentIP['config']);
 switch (@$_POST['data_sortby']) {
 	case 'date':
 		$sort = 'accessTime';
+		$recentIP = sortMultiArray($recentIP, array('accessTime'), true, true, false, true);
 		break;
 	case 'ip':
 		$sort = 'ip';
