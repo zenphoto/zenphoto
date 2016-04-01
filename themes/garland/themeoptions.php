@@ -77,11 +77,10 @@ class ThemeOptions {
 						gettext('Custom menu')			 => array('key' => 'garland_menu', 'type' => OPTION_TYPE_CUSTOM, 'desc' => gettext('Set this to the <em>menu_manager</em> menu you wish to use.') . $note)
 		);
 		if (extensionEnabled('zenpage')) {
-			global $_zp_zenpage;
-			$pages = $_zp_zenpage->getPages(false);
+			$unpublishedpages = query_full_array("SELECT title,titlelink FROM " . prefix('pages') . " WHERE `show` != 1 ORDER by `sort_order`");
 			$list = array();
-			foreach ($pages as $page) {
-				$list[getBare($page['title'])] = $page['titlelink'];
+			foreach ($unpublishedpages as $page) {
+				$list[get_language_string($page['title'])] = $page['titlelink'];
 			}
 			$options[gettext('Custom Homepage')] = array('key'						 => 'garland_customHome', 'type'					 => OPTION_TYPE_SELECTOR,
 							'selections'		 => $list,

@@ -1,41 +1,46 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 	<head>
 		<meta http-equiv="refresh" content="600;url=%5$s">
-			<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+			<meta charset="UTF-8" />
 			<title>%1$s</title>
 			<style>
-				#closed {
-					border-top: 5px solid #996600;
-					border-left: 5px solid #996600;
-					border-right: 5px solid #996600;
-					border-bottom: 5px solid #996600;
-					border-radius: 10px 10px 10px 10px;
-					width: 600px;
-					height: 400px;
-					background-image: url(%2$s);
-					margin-top: 0px;
-					padding-top: 0px;
-				}
 				#outer {
-					height: 500px;
-					width: 700px;
+					width: 100%;
 					padding-top: 20px;
 					margin-top: 20px;
-					margin-left: auto;
-					margin-right: auto;
+				}
+				#closed {
+					padding: 30px 20px 20px 20px;
+					max-width: 500px;
+					border: 1px solid lightgray;
+					-webkit-border-radius: 10px;
+					-moz-border-radius: 10px;
+					-o-border-radius: 10px;
+					border-radius: 10px;
+					margin: 0 auto;
 				}
 				#closed p {
-					font-size: xx-large;
+					font-size: 16px;
+					font-family: "Helvetica", sans-serif;
 					text-align: center;
+				}
+				#closed img {
+					display: block;
+					margin: 0 auto;
+				}
+				
+				#closed a {
+					color: #4D76CF;
 				}
 			</style>
 	</head>
 	<body>
 		<div id="outer">
 			<div id="closed">
-				<p>%4$s</p>
+				<img src="%2$s" alt="">
 				<p>%3$s</p>
+				<p>%4$s</p>
 			</div>
 		</div>
 	</body>

@@ -234,7 +234,7 @@ function printItemStatusDropdown() {
 	$status = checkChosenItemStatus();
 	$menuset = checkChosenMenuset();
 	?>
-	<select name="ListBoxURL" id="ListBoxURL" class="ays-ignore" size="1" onchange="window.location = '?menuset=<?php echo urlencode($menuset); ?>&amp;visible=' + $('#ListBoxURL').val()">
+	<select name="ListBoxURL" id="ListBoxURL" class="dirtyignore" size="1" onchange="window.location = '?menuset=<?php echo urlencode($menuset); ?>&amp;visible=' + $('#ListBoxURL').val()">
 		<?php
 		switch ($status) {
 			case "hidden":
@@ -274,7 +274,7 @@ function getMenuSetSelector($active) {
 	}
 
 	if ($active) {
-		$selector = '<select name="menuset" id="menuset" class="ays-ignore" size="1" onchange="window.location=\'?menuset=\'+encodeURIComponent($(\'#menuset\').val())">' . "\n";
+		$selector = '<select name="menuset" id="menuset" class="dirtyignore" size="1" onchange="window.location=\'?menuset=\'+encodeURIComponent($(\'#menuset\').val())">' . "\n";
 	} else {
 		$selector = '<select name="menuset" size="1">' . "\n";
 	}

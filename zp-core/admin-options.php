@@ -1181,7 +1181,7 @@ Zenphoto_Authority::printPasswordFormJS();
 											// needed to prevent "Are you sure?" from tiggering when autofill is enabled in browsers
 											// http://benjaminjshore.info/2014/05/chrome-auto-fill-honey-pot-hack.html
 											?>
-											<input class="ays-ignore" type="password" name="pass" style="display:none;" />
+											<input class="dirtyignore" type="password" name="pass" style="display:none;" />
 											<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
 														 id="pass" name="pass"
 														 onkeydown="passwordClear('');"
@@ -1515,7 +1515,7 @@ Zenphoto_Authority::printPasswordFormJS();
 											// needed to prevent "Are you sure?" from tiggering when autofill is enabled in browsers
 											// http://benjaminjshore.info/2014/05/chrome-auto-fill-honey-pot-hack.html
 											?>
-											<input class="ays-ignore" type="password" name="pass" style="display:none;" />
+											<input class="dirtyignore" type="password" name="pass" style="display:none;" />
 											<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
 														 id="pass" name="pass"
 														 onkeydown="passwordClear('');"
@@ -2271,7 +2271,7 @@ Zenphoto_Authority::printPasswordFormJS();
 														// needed to prevent "Are you sure?" from tiggering when autofill is enabled in browsers
 														// http://benjaminjshore.info/2014/05/chrome-auto-fill-honey-pot-hack.html
 														?>
-														<input class="ays-ignore" type="password" name="pass" style="display:none;" />
+														<input class="dirtyignore" type="password" name="pass" style="display:none;" />
 														<input type="password" size="30"
 																	 id="pass" name="pass"
 																	 onkeydown="passwordClear('');"
