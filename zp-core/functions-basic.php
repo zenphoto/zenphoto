@@ -140,7 +140,7 @@ define('FILE_MOD', CHMOD_VALUE & 0666);
 if (OFFSET_PATH != 2) {
 	if (!file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
 		_setup(11);
-	} else if (empty($_zp_conf_vars['mysql_database'])) {
+	} else if (!file_exists(dirname(__FILE__) . '/functions-db-' . $_zp_conf_vars['db_software'] . '.php')) {
 		_setup(12);
 	}
 }
