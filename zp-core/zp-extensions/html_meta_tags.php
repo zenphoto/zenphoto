@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The plugin creates:
  * <ul>
@@ -93,86 +94,70 @@ class htmlmetatags {
 		$localdesc = '<p>' . sprintf(gettext('If checked links to the alternative languages will be in the form <code><em>language</em>.%1$s</code> where <code><em>language</em></code> is the language code, e.g. <code><em>fr</em></code> for French.'), $host) . '</p>';
 		$localdesc .= '<p>' . sprintf(gettext('This requires that you have created the appropriate subdomains pointing to your installation. That is <code>fr.%1$s</code> must point to the same location as <code>%1$s</code>. (Some providers will automatically redirect undefined subdomains to the main domain. If your provider does this, no subdomain creation is needed.)'), $host . WEBPATH) . '</p>';
 
-		$options = array(gettext('Cache control')						 => array('key'				 => 'htmlmeta_cache_control', 'type'			 => OPTION_TYPE_SELECTOR,
-										'order'			 => 0,
-										'selections' => array('no-cache' => "no-cache", 'public' => "public", 'private' => "private", 'no-store' => "no-store"),
-										'desc'			 => gettext("If the browser cache should be used.")),
-						gettext('Pragma')										 => array('key'				 => 'htmlmeta_pragma', 'type'			 => OPTION_TYPE_SELECTOR,
-										'order'			 => 2,
-										'selections' => array('no-cache' => "no-cache", 'cache' => "cache"),
-										'desc'			 => gettext("If the pages should be allowed to be cached on proxy servers.")),
-						gettext('Robots')										 => array('key'				 => 'htmlmeta_robots', 'type'			 => OPTION_TYPE_SELECTOR,
-										'order'			 => 3,
-										'selections' => array('noindex' => "noindex", 'index' => "index", 'nofollow' => "nofollow", 'noindex,nofollow' => "noindex,nofollow", 'noindex,follow' => "noindex,follow", 'index,nofollow' => "index,nofollow", 'none' => "none"),
-										'desc'			 => gettext("If and how robots are allowed to visit the site. Default is “index”. Note that you also should use a robot.txt file.")),
-						gettext('Revisit after')						 => array('key'		 => 'htmlmeta_revisit_after', 'type'	 => OPTION_TYPE_NUMBER,
-										'order'	 => 4,
-										'desc'	 => gettext("Request the crawler to revisit the page after x days.")),
-						gettext('Expires')									 => array('key'		 => 'htmlmeta_expires', 'type'	 => OPTION_TYPE_NUMBER,
-										'order'	 => 5,
-										'desc'	 => gettext("When the page should be loaded directly from the server and not from any cache. You can either set a date/time in international date format <em>Sat, 15 Dec 2001 12:00:00 GMT (example)</em> or a number. A number then means seconds, the default value <em>43200</em> means 12 hours.")),
-						gettext('Canonical URL link')				 => array('key'		 => 'htmlmeta_canonical-url', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 6,
-										'desc'	 => gettext('This adds a link element to the head of each page with a <em>canonical url</em>. If <code>Language links</code> from the <em>dynamic-locale</em> plugin is enabled it also generates alternate links for other languages (<code>&lt;link&nbsp;rel="alternate" hreflang="</code>...<code>" href="</code>...<code>" /&gt;</code>).')),
-						gettext('Site logo')								 => array('key'	 => 'htmlmeta_sitelogo', 'type' => OPTION_TYPE_TEXTBOX,
-										'desc' => gettext("Enter the full url to a specific site logo image. Facebook, Google+ and others will use that as the thumb shown in link previews within posts. For image or album pages the default size album or image thumb is used automatically.")),
-						gettext('Twitter name')							 => array('key'	 => 'htmlmeta_twittername', 'type' => OPTION_TYPE_TEXTBOX,
-										'desc' => gettext("If you enabled Twitter card meta tags, you need to enter your Twitter user name here.")),
-						gettext('Open graph image - width')	 => array('key'	 => 'htmlmeta_ogimage_width', 'type' => OPTION_TYPE_TEXTBOX,
-										'desc' => gettext("Max width of the open graph image used for sharing to social networks if enabled.")),
-						gettext('Open graph image - height') => array('key'	 => 'htmlmeta_ogimage_height', 'type' => OPTION_TYPE_TEXTBOX,
-										'desc' => gettext("Max height of the open graph image used for sharing to social networks if enabled.")),
-						gettext('HTML meta tags')						 => array('key'				 => 'htmlmeta_tags', 'type'			 => OPTION_TYPE_CHECKBOX_UL,
-										'order'			 => 12,
-										"checkboxes" => array(
-														"http-equiv='cache-control'"			 => "htmlmeta_http-equiv-cache-control",
-														"http-equiv='pragma'"							 => "htmlmeta_http-equiv-pragma",
-														"http-equiv='content-style-type'"	 => "htmlmeta_http-equiv-content-style-type",
-														"name='keywords'"									 => "htmlmeta_name-keywords",
-														"name='description'"							 => "htmlmeta_name-description",
-														"name='page-topic'"								 => "htmlmeta_name-page-topic",
-														"name='robots'"										 => "htmlmeta_name-robots",
-														"name='publisher'"								 => "htmlmeta_name-publisher",
-														"name='creator'"									 => "htmlmeta_name-creator",
-														"name='author'"										 => "htmlmeta_name-author",
-														"name='copyright'"								 => "htmlmeta_name-copyright",
-														"name='rights'"										 => "htmlmeta_name-rights",
-														"name='generator' ('ZenPhoto20')"	 => "htmlmeta_name-generator",
-														"name='revisit-after'"						 => "htmlmeta_name-revisit-after",
-														"name='expires'"									 => "htmlmeta_name-expires",
-														"name='date'"											 => "htmlmeta_name-date",
-														"property='og:title'"							 => "htmlmeta_og-title",
-														"property='og:image'"							 => "htmlmeta_og-image",
-														"property='og:description'"				 => "htmlmeta_og-description",
-														"property='og:url'"								 => "htmlmeta_og-url",
-														"property='og:type'"							 => "htmlmeta_og-type",
-														"name='pinterest' content='nopin'" => "htmlmeta_name-pinterest",
-														"twitter:card"										 => "htmlmeta_twittercard"
-										),
-										"desc"			 => gettext("Which of the HTML meta tags should be used. For info about these in detail please refer to the net.")),
-						gettext('Keyword threshold')				 => array('key'		 => 'htmlmeta_tags_threshold', 'type'	 => OPTION_TYPE_NUMBER,
-										'order'	 => 13,
-										'limits' => array('min' => 1),
-										'desc'	 => gettext('Only keywords with at least this number of uses will be shown.'))
+		$options = array(gettext('Cache control') => array('key' => 'htmlmeta_cache_control', 'type' => OPTION_TYPE_SELECTOR,
+						'order' => 0,
+						'selections' => array('no-cache' => "no-cache", 'public' => "public", 'private' => "private", 'no-store' => "no-store"),
+						'desc' => gettext("If the browser cache should be used.")),
+				gettext('Pragma') => array('key' => 'htmlmeta_pragma', 'type' => OPTION_TYPE_SELECTOR,
+						'order' => 2,
+						'selections' => array('no-cache' => "no-cache", 'cache' => "cache"),
+						'desc' => gettext("If the pages should be allowed to be cached on proxy servers.")),
+				gettext('Robots') => array('key' => 'htmlmeta_robots', 'type' => OPTION_TYPE_SELECTOR,
+						'order' => 3,
+						'selections' => array('noindex' => "noindex", 'index' => "index", 'nofollow' => "nofollow", 'noindex,nofollow' => "noindex,nofollow", 'noindex,follow' => "noindex,follow", 'index,nofollow' => "index,nofollow", 'none' => "none"),
+						'desc' => gettext("If and how robots are allowed to visit the site. Default is “index”. Note that you also should use a robot.txt file.")),
+				gettext('Revisit after') => array('key' => 'htmlmeta_revisit_after', 'type' => OPTION_TYPE_NUMBER,
+						'order' => 4,
+						'desc' => gettext("Request the crawler to revisit the page after x days.")),
+				gettext('Expires') => array('key' => 'htmlmeta_expires', 'type' => OPTION_TYPE_NUMBER,
+						'order' => 5,
+						'desc' => gettext("When the page should be loaded directly from the server and not from any cache. You can either set a date/time in international date format <em>Sat, 15 Dec 2001 12:00:00 GMT (example)</em> or a number. A number then means seconds, the default value <em>43200</em> means 12 hours.")),
+				gettext('Canonical URL link') => array('key' => 'htmlmeta_canonical-url', 'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 6,
+						'desc' => gettext('This adds a link element to the head of each page with a <em>canonical url</em>. If <code>Language links</code> from the <em>dynamic-locale</em> plugin is enabled it also generates alternate links for other languages (<code>&lt;link&nbsp;rel="alternate" hreflang="</code>...<code>" href="</code>...<code>" /&gt;</code>).')),
+				gettext('Site logo') => array('key' => 'htmlmeta_sitelogo', 'type' => OPTION_TYPE_TEXTBOX,
+						'desc' => gettext("Enter the full url to a specific site logo image. Facebook, Google+ and others will use that as the thumb shown in link previews within posts. For image or album pages the default size album or image thumb is used automatically.")),
+				gettext('Twitter name') => array('key' => 'htmlmeta_twittername', 'type' => OPTION_TYPE_TEXTBOX,
+						'desc' => gettext("If you enabled Twitter card meta tags, you need to enter your Twitter user name here.")),
+				gettext('Open graph image - width') => array('key' => 'htmlmeta_ogimage_width', 'type' => OPTION_TYPE_TEXTBOX,
+						'desc' => gettext("Max width of the open graph image used for sharing to social networks if enabled.")),
+				gettext('Open graph image - height') => array('key' => 'htmlmeta_ogimage_height', 'type' => OPTION_TYPE_TEXTBOX,
+						'desc' => gettext("Max height of the open graph image used for sharing to social networks if enabled.")),
+				gettext('HTML meta tags') => array('key' => 'htmlmeta_tags', 'type' => OPTION_TYPE_CHECKBOX_UL,
+						'order' => 12,
+						"checkboxes" => array(
+								"http-equiv='cache-control'" => "htmlmeta_http-equiv-cache-control",
+								"http-equiv='pragma'" => "htmlmeta_http-equiv-pragma",
+								"http-equiv='content-style-type'" => "htmlmeta_http-equiv-content-style-type",
+								"name='keywords'" => "htmlmeta_name-keywords",
+								"name='description'" => "htmlmeta_name-description",
+								"name='page-topic'" => "htmlmeta_name-page-topic",
+								"name='robots'" => "htmlmeta_name-robots",
+								"name='publisher'" => "htmlmeta_name-publisher",
+								"name='creator'" => "htmlmeta_name-creator",
+								"name='author'" => "htmlmeta_name-author",
+								"name='copyright'" => "htmlmeta_name-copyright",
+								"name='rights'" => "htmlmeta_name-rights",
+								"name='generator' ('ZenPhoto20')" => "htmlmeta_name-generator",
+								"name='revisit-after'" => "htmlmeta_name-revisit-after",
+								"name='expires'" => "htmlmeta_name-expires",
+								"name='date'" => "htmlmeta_name-date",
+								"property='og:title'" => "htmlmeta_og-title",
+								"property='og:image'" => "htmlmeta_og-image",
+								"property='og:description'" => "htmlmeta_og-description",
+								"property='og:url'" => "htmlmeta_og-url",
+								"property='og:type'" => "htmlmeta_og-type",
+								"name='pinterest' content='nopin'" => "htmlmeta_name-pinterest",
+								"twitter:card" => "htmlmeta_twittercard"
+						),
+						"desc" => gettext("Which of the HTML meta tags should be used. For info about these in detail please refer to the net.")),
+				gettext('Keyword threshold') => array('key' => 'htmlmeta_tags_threshold', 'type' => OPTION_TYPE_NUMBER,
+						'order' => 13,
+						'limits' => array('min' => 1),
+						'desc' => gettext('Only keywords with at least this number of uses will be shown.'))
 		);
 
 		return $options;
-	}
-
-	/**
-	 * Traps imageProcessorURIs for causing them to be cached.
-	 * @param string $uri
-	 * returns the cachfile link even though the image is not yet cached.
-	 */
-	static function ipURI($uri, $args, $album, $image) {
-		global $htmlmetatags_need_cache;
-		$htmlmetatags_need_cache[] = $uri;
-		if (OPEN_IMAGE_CACHE) {
-			$cachefilename = getImageCacheFilename($album, $image, $args);
-			return WEBPATH . '/' . CACHEFOLDER . imgSrcURI($cachefilename);
-		} else {
-			return $uri;
-		}
 	}
 
 	/**
@@ -181,10 +166,8 @@ class htmlmetatags {
 	 */
 	static function getHTMLMetaData() {
 		global $_zp_gallery, $_zp_page, $_zp_current_album, $_zp_current_image, $_zp_current_search, $_zp_current_article,
-		$_zp_current_page, $_zp_gallery_page, $_zp_current_category, $_zp_authority, $_zp_conf_vars, $_myFavorites,
-		$htmlmetatags_need_cache;
+		$_zp_current_page, $_zp_gallery_page, $_zp_current_category, $_zp_authority, $_zp_conf_vars, $_myFavorites;
 
-		zp_register_filter('image_processor_uri', 'htmlmetatags::ipURI');
 		$host = sanitize("http://" . $_SERVER['HTTP_HOST']);
 		$url = $host . getRequestURI();
 
@@ -432,24 +415,7 @@ class htmlmetatags {
 				} // if count
 			} // if option
 		} // if canonical
-		zp_remove_filter('image_processor_uri', 'htmlmetatags::ipURI');
-		if (!empty($htmlmetatags_need_cache)) {
-			?>
-			<script type="text/javascript">
-				var needsCache = ["<?php echo implode('","', $htmlmetatags_need_cache); ?>"];
-				var i, value;
-				for (i in needsCache) {
-					value = needsCache[i];
-					$.ajax({
-						cache: false,
-						type: "GET",
-						url: value
-					});
-				}
 
-			</script>
-			<?php
-		}
 		echo $meta;
 	}
 
@@ -519,4 +485,5 @@ class htmlmetatags {
 	}
 
 }
+
 ?>

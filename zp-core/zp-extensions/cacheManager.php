@@ -116,10 +116,12 @@ class cacheManagerFeed extends feed {
 class cacheManager {
 
 	function __construct() {
-		self::deleteThemeCacheSizes('admin');
-		self::addThemeCacheSize('admin', ADMIN_THUMB_LARGE, NULL, NULL, ADMIN_THUMB_LARGE, ADMIN_THUMB_LARGE, NULL, NULL, -1);
-		self::addThemeCacheSize('admin', ADMIN_THUMB_MEDIUM, NULL, NULL, ADMIN_THUMB_MEDIUM, ADMIN_THUMB_MEDIUM, NULL, NULL, -1);
-		self::addThemeCacheSize('admin', ADMIN_THUMB_SMALL, NULL, NULL, ADMIN_THUMB_SMALL, ADMIN_THUMB_SMALL, NULL, NULL, -1);
+		if (OFFSET_PATH == 2) {
+			query('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `type`="cacheManager"');
+			self::addThemeCacheSize('admin', ADMIN_THUMB_LARGE, NULL, NULL, ADMIN_THUMB_LARGE, ADMIN_THUMB_LARGE, NULL, NULL, -1);
+			self::addThemeCacheSize('admin', ADMIN_THUMB_MEDIUM, NULL, NULL, ADMIN_THUMB_MEDIUM, ADMIN_THUMB_MEDIUM, NULL, NULL, -1);
+			self::addThemeCacheSize('admin', ADMIN_THUMB_SMALL, NULL, NULL, ADMIN_THUMB_SMALL, ADMIN_THUMB_SMALL, NULL, NULL, -1);
+		}
 	}
 
 	/**
@@ -127,26 +129,26 @@ class cacheManager {
 	 * supported options
 	 */
 	function getOptionsSupported() {
-		$options = array(gettext('Image caching sizes') => array('key'		 => 'cropImage_list', 'type'	 => OPTION_TYPE_CUSTOM,
-										'order'	 => 1,
-										'desc'	 => '<p>' .
-										gettext('Cropped images will be made in these parameters if the <em>Create image</em> box is checked. Un-check to box to remove the settings.' .
-														'You can determine the values for these fields by examining your cached images. The file names will look something like these:') .
-										'<ul>' .
-										'<li>' . gettext('<code>photo_595.jpg</code>: sized to 595 pixels') . '</li>' .
-										'<li>' . gettext('<code>photo_w180_cw180_ch80_thumb.jpg</code>: a size of 180px wide and 80px high and it is a thumbnail (<code>thumb</code>)') . '</li>' .
-										'<li>' . gettext('<code>photo_85_cw72_ch72_thumb_copyright_gray.jpg</code>: sized 85px cropped at about 7.6% (one half of 72/85) from the horizontal and vertical sides with a watermark (<code>copyright</code>) and rendered in grayscale (<code>gray</code>).') . '</li>' .
-										'<li>' . gettext('<code>photo_w85_h85_cw350_ch350_cx43_cy169_thumb_copyright.jpg</code>: a custom cropped 85px thumbnail with watermark.') . '</li>' .
-										'</ul>' .
-										'</p>' .
-										'<p>' .
-										gettext('If a field is not represented in the cached name, leave the field blank. Custom crops (those with cx and cy) really cannot be cached easily since each image has unique values. ' .
-														'See the <em>template-functions</em>::<code>getCustomImageURL()</code> comment block for details on these fields.') .
-										'</p>' .
-										'<p>' .
-										gettext('Some themes use <em>MaxSpace</em> image functions. To cache images referenced by these functions set the <em>width</em> and <em>height</em> parameters to the <em>MaxSpace</em> container size and check the <code>MaxSpace</code> checkbox.') .
-										'</p>'
-						)
+		$options = array(gettext('Image caching sizes') => array('key' => 'cropImage_list', 'type' => OPTION_TYPE_CUSTOM,
+						'order' => 1,
+						'desc' => '<p>' .
+						gettext('Cropped images will be made in these parameters if the <em>Create image</em> box is checked. Un-check to box to remove the settings.' .
+										'You can determine the values for these fields by examining your cached images. The file names will look something like these:') .
+						'<ul>' .
+						'<li>' . gettext('<code>photo_595.jpg</code>: sized to 595 pixels') . '</li>' .
+						'<li>' . gettext('<code>photo_w180_cw180_ch80_thumb.jpg</code>: a size of 180px wide and 80px high and it is a thumbnail (<code>thumb</code>)') . '</li>' .
+						'<li>' . gettext('<code>photo_85_cw72_ch72_thumb_copyright_gray.jpg</code>: sized 85px cropped at about 7.6% (one half of 72/85) from the horizontal and vertical sides with a watermark (<code>copyright</code>) and rendered in grayscale (<code>gray</code>).') . '</li>' .
+						'<li>' . gettext('<code>photo_w85_h85_cw350_ch350_cx43_cy169_thumb_copyright.jpg</code>: a custom cropped 85px thumbnail with watermark.') . '</li>' .
+						'</ul>' .
+						'</p>' .
+						'<p>' .
+						gettext('If a field is not represented in the cached name, leave the field blank. Custom crops (those with cx and cy) really cannot be cached easily since each image has unique values. ' .
+										'See the <em>template-functions</em>::<code>getCustomImageURL()</code> comment block for details on these fields.') .
+						'</p>' .
+						'<p>' .
+						gettext('Some themes use <em>MaxSpace</em> image functions. To cache images referenced by these functions set the <em>width</em> and <em>height</em> parameters to the <em>MaxSpace</em> container size and check the <code>MaxSpace</code> checkbox.') .
+						'</p>'
+				)
 		);
 		$list = array('<em>' . gettext('Albums') . '</em>' => 'cacheManager_albums', '<em>' . gettext('Images') . '</em>' => 'cacheManager_images');
 		if (extensionEnabled('zenpage')) {
@@ -156,11 +158,11 @@ class cacheManager {
 			setOption('cacheManager_news', 0);
 			setOption('cacheManager_pages', 0);
 		}
-		$options[gettext('Purge cache files')] = array('key'				 => 'cacheManager_items', 'type'			 => OPTION_TYPE_CHECKBOX_ARRAY,
-						'order'			 => 0,
-						'checkboxes' => $list,
-						'desc'			 => gettext('If a <em>type</em> is checked, the HTML and RSS caches for the item will be purged when the published state of an item of <em>type</em> changes.') .
-						'<div class="notebox">' . gettext('<strong>NOTE:</strong> The entire cache is cleared since there is no way to ascertain if a gallery page contains dependencies on the item.') . '</div>'
+		$options[gettext('Purge cache files')] = array('key' => 'cacheManager_items', 'type' => OPTION_TYPE_CHECKBOX_ARRAY,
+				'order' => 0,
+				'checkboxes' => $list,
+				'desc' => gettext('If a <em>type</em> is checked, the HTML and RSS caches for the item will be purged when the published state of an item of <em>type</em> changes.') .
+				'<div class="notebox">' . gettext('<strong>NOTE:</strong> The entire cache is cleared since there is no way to ascertain if a gallery page contains dependencies on the item.') . '</div>'
 		);
 		return $options;
 	}
@@ -254,9 +256,9 @@ class cacheManager {
 							?>
 							<br />
 							<?php
-							foreach (array('image_size'	 => gettext('Size'), 'image_width'	 => gettext('Width'), 'image_height' => gettext('Height'),
-							'crop_width'	 => gettext('Crop width'), 'crop_height'	 => gettext('Crop height'), 'crop_x'			 => gettext('Crop X axis'),
-							'crop_y'			 => gettext('Crop Y axis')) as $what => $display) {
+							foreach (array('image_size' => gettext('Size'), 'image_width' => gettext('Width'), 'image_height' => gettext('Height'),
+					'crop_width' => gettext('Crop width'), 'crop_height' => gettext('Crop height'), 'crop_x' => gettext('Crop X axis'),
+					'crop_y' => gettext('Crop Y axis')) as $what => $display) {
 								if (isset($cache[$what])) {
 									$v = $cache[$what];
 								} else {
@@ -315,8 +317,8 @@ class cacheManager {
 	}
 
 	static function addThemeCacheSize($theme, $size, $width, $height, $cw, $ch, $cx, $cy, $thumb, $watermark = NULL, $effects = NULL, $maxspace = NULL) {
-		$cacheSize = serialize(array('theme'				 => $theme, 'apply'				 => false, 'image_size'	 => $size, 'image_width'	 => $width, 'image_height' => $height,
-						'crop_width'	 => $cw, 'crop_height'	 => $ch, 'crop_x'			 => $cx, 'crop_y'			 => $cy, 'thumb'				 => $thumb, 'wmk'					 => $watermark, 'gray'				 => $effects, 'maxspace'		 => $maxspace, 'valid'				 => 1));
+		$cacheSize = serialize(array('theme' => $theme, 'apply' => false, 'image_size' => $size, 'image_width' => $width, 'image_height' => $height,
+				'crop_width' => $cw, 'crop_height' => $ch, 'crop_x' => $cx, 'crop_y' => $cy, 'thumb' => $thumb, 'wmk' => $watermark, 'gray' => $effects, 'maxspace' => $maxspace, 'valid' => 1));
 		$sql = 'INSERT INTO ' . prefix('plugin_storage') . ' (`type`, `aux`,`data`) VALUES ("cacheManager",' . db_quote($theme) . ',' . db_quote($cacheSize) . ')';
 		query($sql);
 	}
@@ -349,71 +351,71 @@ class cacheManager {
 		}
 
 		$buttons[] = array(
-						'category'		 => gettext('Cache'),
-						'enable'			 => $enable,
-						'button_text'	 => gettext('Cache manager'),
-						'formname'		 => 'cacheManager_button',
-						'action'			 => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cacheManager/cacheImages.php?page=overview&tab=images',
-						'icon'				 => 'images/cache.png',
-						'alt'					 => '',
-						'hidden'			 => '',
-						'rights'			 => ADMIN_RIGHTS,
-						'title'				 => $title
+				'category' => gettext('Cache'),
+				'enable' => $enable,
+				'button_text' => gettext('Cache manager'),
+				'formname' => 'cacheManager_button',
+				'action' => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cacheManager/cacheImages.php?page=overview&tab=images',
+				'icon' => 'images/cache.png',
+				'alt' => '',
+				'hidden' => '',
+				'rights' => ADMIN_RIGHTS,
+				'title' => $title
 		);
 		if (class_exists('RSS')) {
 			$buttons[] = array(
-							'XSRFTag'			 => 'clear_cache',
-							'category'		 => gettext('Cache'),
-							'enable'			 => true,
-							'button_text'	 => gettext('Purge RSS cache'),
-							'formname'		 => 'purge_rss_cache.php',
-							'action'			 => FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=clear_rss_cache',
-							'icon'				 => 'images/edit-delete.png',
-							'alt'					 => '',
-							'title'				 => gettext('Delete all files from the RSS cache'),
-							'hidden'			 => '<input type="hidden" name="action" value="clear_rss_cache" />',
-							'rights'			 => ADMIN_RIGHTS
+					'XSRFTag' => 'clear_cache',
+					'category' => gettext('Cache'),
+					'enable' => true,
+					'button_text' => gettext('Purge RSS cache'),
+					'formname' => 'purge_rss_cache.php',
+					'action' => FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=clear_rss_cache',
+					'icon' => 'images/edit-delete.png',
+					'alt' => '',
+					'title' => gettext('Delete all files from the RSS cache'),
+					'hidden' => '<input type="hidden" name="action" value="clear_rss_cache" />',
+					'rights' => ADMIN_RIGHTS
 			);
 		}
 		$buttons[] = array(
-						'XSRFTag'			 => 'clear_cache',
-						'category'		 => gettext('Cache'),
-						'enable'			 => true,
-						'button_text'	 => gettext('Purge Image cache'),
-						'formname'		 => 'purge_image_cache.php',
-						'action'			 => FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=action=clear_cache',
-						'icon'				 => 'images/edit-delete.png',
-						'alt'					 => '',
-						'title'				 => gettext('Delete all files from the Image cache'),
-						'hidden'			 => '<input type="hidden" name="action" value="clear_cache" />',
-						'rights'			 => ADMIN_RIGHTS
+				'XSRFTag' => 'clear_cache',
+				'category' => gettext('Cache'),
+				'enable' => true,
+				'button_text' => gettext('Purge Image cache'),
+				'formname' => 'purge_image_cache.php',
+				'action' => FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=action=clear_cache',
+				'icon' => 'images/edit-delete.png',
+				'alt' => '',
+				'title' => gettext('Delete all files from the Image cache'),
+				'hidden' => '<input type="hidden" name="action" value="clear_cache" />',
+				'rights' => ADMIN_RIGHTS
 		);
 		$buttons[] = array(
-						'category'		 => gettext('Cache'),
-						'enable'			 => true,
-						'button_text'	 => gettext('Purge HTML cache'),
-						'formname'		 => 'clearcache_button',
-						'action'			 => FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=clear_html_cache',
-						'icon'				 => 'images/edit-delete.png',
-						'title'				 => gettext('Clear the static HTML cache. HTML pages will be re-cached as they are viewed.'),
-						'alt'					 => '',
-						'hidden'			 => '<input type="hidden" name="action" value="clear_html_cache">',
-						'rights'			 => ADMIN_RIGHTS,
-						'XSRFTag'			 => 'ClearHTMLCache'
+				'category' => gettext('Cache'),
+				'enable' => true,
+				'button_text' => gettext('Purge HTML cache'),
+				'formname' => 'clearcache_button',
+				'action' => FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=clear_html_cache',
+				'icon' => 'images/edit-delete.png',
+				'title' => gettext('Clear the static HTML cache. HTML pages will be re-cached as they are viewed.'),
+				'alt' => '',
+				'hidden' => '<input type="hidden" name="action" value="clear_html_cache">',
+				'rights' => ADMIN_RIGHTS,
+				'XSRFTag' => 'ClearHTMLCache'
 		);
 
 		$buttons[] = array(
-						'category'		 => gettext('Cache'),
-						'enable'			 => true,
-						'button_text'	 => gettext('Purge search cache'),
-						'formname'		 => 'clearcache_button',
-						'action'			 => WEBPATH . '/' . ZENFOLDER . '/admin.php?action=clear_search_cache',
-						'icon'				 => 'images/edit-delete.png',
-						'title'				 => gettext('Clear the static search cache.'),
-						'alt'					 => '',
-						'hidden'			 => '<input type="hidden" name="action" value="clear_search_cache">',
-						'rights'			 => ADMIN_RIGHTS,
-						'XSRFTag'			 => 'ClearSearchCache'
+				'category' => gettext('Cache'),
+				'enable' => true,
+				'button_text' => gettext('Purge search cache'),
+				'formname' => 'clearcache_button',
+				'action' => WEBPATH . '/' . ZENFOLDER . '/admin.php?action=clear_search_cache',
+				'icon' => 'images/edit-delete.png',
+				'title' => gettext('Clear the static search cache.'),
+				'alt' => '',
+				'hidden' => '<input type="hidden" name="action" value="clear_search_cache">',
+				'rights' => ADMIN_RIGHTS,
+				'XSRFTag' => 'ClearSearchCache'
 		);
 		return $buttons;
 	}

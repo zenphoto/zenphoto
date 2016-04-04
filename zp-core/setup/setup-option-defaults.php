@@ -655,6 +655,25 @@ $plugins = getPluginFiles('*.php');
 <p>
 	<?php
 	$plugins = array_keys($plugins);
+	//clean up cacheManager storage
+	$key = array_search('cacheManager', $plugins);
+	if ($key !== false) {
+		unset($plugins[$key]);
+		list($usec, $sec) = explode(" ", microtime());
+		$start = (float) $usec + (float) $sec;
+		setupLog(sprintf(gettext('Plugin:%s setup started'), 'cacheManager'), TEST_RELEASE);
+		require_once(SERVERPATH . '/' . ZENFOLDER . '/admin-globals.php');
+		require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cacheManager.php');
+		$priority = $plugin_is_filter & PLUGIN_PRIORITY . ' | CLASS_PLUGIN';
+		setupLog(sprintf(gettext('Plugin:%s enabled (%2$s)'), 'cacheManager', $priority), TEST_RELEASE);
+		new cacheManager;
+		setupLog(sprintf(gettext('Plugin:%1$s option interface instantiated (%2$s)'), 'cacheManager', $option_interface), TEST_RELEASE);
+		list($usec, $sec) = explode(" ", microtime());
+		$last = (float) $usec + (float) $sec;
+		setupLog(sprintf(gettext('Plugin:%1$s setup completed in %2$.4f seconds'), 'cacheManager', $last - $start));
+	}
+
+
 	natcasesort($plugins);
 	echo gettext('Plugin setup:') . '<br />';
 	foreach ($plugins as $key => $extension) {
