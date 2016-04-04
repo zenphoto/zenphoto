@@ -282,7 +282,7 @@ if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
 			$confDB = NULL;
 		}
 
-		if (!@$_zp_conf_vars['mysql_database']) {
+		if (!$selected_database) {
 			require_once(dirname(dirname(__FILE__)) . '/functions-db-NULL.php');
 		}
 	} else {

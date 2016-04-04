@@ -9,7 +9,7 @@
  */
 // force UTF-8 Ø
 
-define('DATABASE_SOFTWARE', 'NULL');
+define('DATABASE_SOFTWARE', 'NULL_db');
 Define('DATABASE_MIN_VERSION', '0.0.0');
 Define('DATABASE_DESIRED_VERSION', '0.0.0');
 
@@ -92,7 +92,7 @@ function db_fetch_assoc($resource) {
  */
 
 function db_error() {
-	return gettext('No supported databases');
+	return gettext('No supported PHP database extensions are enabled.');
 }
 
 /*
