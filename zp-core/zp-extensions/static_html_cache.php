@@ -1,5 +1,4 @@
 <?php
-
 /**
  *
  * Used to cache Theme pages (i.e. those pages launched by the index.php script.)
@@ -152,7 +151,6 @@ class static_html_cache {
 					$lastmodified = filemtime($cachefilepath);
 					// don't use cache if comment is posted or cache has expired
 					if (time() - $lastmodified < getOption("static_cache_expire")) {
-
 						//send the headers!
 						header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 						header("HTTP/1.0 200 OK");
@@ -188,7 +186,7 @@ class static_html_cache {
 	 *
 	 */
 	function endHTMLCache() {
-		global $_zp_script_timer;
+		global $_zp_script_timer, $_image_need_cache;
 		$cachefilepath = $this->pageCachePath;
 		if (!empty($cachefilepath)) {
 			$pagecontent = ob_get_contents();
@@ -200,6 +198,25 @@ class static_html_cache {
 			}
 			$this->pageCachePath = NULL;
 			echo $pagecontent;
+
+			//Handle processing uncached images found
+			if (!empty($_image_need_cache)) {
+				?>
+				<script type="text/javascript">
+					var needsCache = ["<?php echo implode('","', array_unique($_image_need_cache)); ?>"];
+					var i, value;
+					for (i in needsCache) {
+						value = needsCache[i];
+						$.ajax({
+							cache: false,
+							type: "GET",
+							url: value
+						});
+					}
+				</script>
+				<?php
+				$_image_need_cache = array();
+			}
 		}
 	}
 
@@ -336,10 +353,10 @@ class static_html_cache {
 	}
 
 	function getOptionsSupported() {
-		return array(gettext('Static HTML cache expire')	 => array('key'	 => 'static_cache_expire', 'type' => OPTION_TYPE_NUMBER,
-										'desc' => gettext("When the cache should expire in seconds. Default is 86400 seconds (1 day  = 24 hrs * 60 min * 60 sec).")),
-						gettext('Excluded pages')						 => array('key'	 => 'static_cache_excludedpages', 'type' => OPTION_TYPE_TEXTAREA,
-										'desc' => gettext("The list of pages to be excluded from cache generation. Pages that can be excluded are custom theme pages including Zenpage pages (these optionally more specific by titlelink) and the standard theme files image.php (optionally by image file name), album.php (optionally by album folder name) or index.php.<br /> If you want to exclude a page completely enter <em>page-filename.php/</em>. <br />If you want to exclude a page by a specific title, image filename, or album folder name enter <em>pagefilename.php/titlelink or image filename or album folder</em>. Separate several entries by comma.")),
+		return array(gettext('Static HTML cache expire') => array('key' => 'static_cache_expire', 'type' => OPTION_TYPE_NUMBER,
+						'desc' => gettext("When the cache should expire in seconds. Default is 86400 seconds (1 day  = 24 hrs * 60 min * 60 sec).")),
+				gettext('Excluded pages') => array('key' => 'static_cache_excludedpages', 'type' => OPTION_TYPE_TEXTAREA,
+						'desc' => gettext("The list of pages to be excluded from cache generation. Pages that can be excluded are custom theme pages including Zenpage pages (these optionally more specific by titlelink) and the standard theme files image.php (optionally by image file name), album.php (optionally by album folder name) or index.php.<br /> If you want to exclude a page completely enter <em>page-filename.php/</em>. <br />If you want to exclude a page by a specific title, image filename, or album folder name enter <em>pagefilename.php/titlelink or image filename or album folder</em>. Separate several entries by comma.")),
 		);
 	}
 
@@ -352,12 +369,33 @@ class static_html_cache {
 	 * @param string $uri
 	 * @return string
 	 */
-	static function _disable($uri) {
-		global $_zp_HTML_cache;
+	static function _disable($uri, $args, $album, $image) {
+		global $_zp_HTML_cache, $_image_need_cache;
 		$_zp_HTML_cache->disable();
+		$_image_need_cache[] = $uri;
 		return $uri;
 	}
 
-}
+	static function process_ipURIs() {
+		global $_image_need_cache;
+		if (!empty($_image_need_cache)) {
+			?>
+			<script type="text/javascript">
+				var needsCache = ["<?php echo implode('","', $_image_need_cache); ?>"];
+				var i, value;
+				for (i in needsCache) {
+					value = needsCache[i];
+					$.ajax({
+						cache: false,
+						type: "GET",
+						url: value
+					});
+				}
 
+			</script>
+			<?php
+		}
+	}
+
+}
 ?>

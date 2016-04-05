@@ -22,6 +22,7 @@
  * "name" is the MySQL field name for the new field
  * "desc" is the "display name" of the field. If the value is NULL no edit field will show on the admin tab.
  * "type" is the database field type: int, varchar, tinytext, text, mediumtext, etc.
+ * "searchDefault" determines if the field is "checked" in the <em>search behavior settings</em> <var>field list</var>.
  * "size" is the byte size of the varchar or int field (it is not needed for other types)
  * "edit" is is how the content is show on the edit tab. Values: multilingual, normal, function. If the value is NULL
  * there will be direct save of the result to the object
@@ -68,11 +69,16 @@ class fieldExtender {
 				$database[$table][$datum['Field']] = $datum;
 			}
 		}
-		$current = $fields = array();
+		$current = $fields = $searchDefault = array();
 		if (extensionEnabled($me)) { //need to update the database tables.
 			foreach ($newfields as $newfield) {
 				$table = $newfield['table'];
 				$name = $newfield['name'];
+				if (!$existng = isset($database[$table][$name])) {
+					if (isset($newfield['searchDefault']) && $newfield['searchDefault']) {
+						$searchDefault[] = $name;
+					}
+				}
 				if (is_null($newfield['type'])) {
 					if ($name == 'tags') {
 						setOption('adminTagsTab', 1);
@@ -93,7 +99,7 @@ class fieldExtender {
 							$dbType = strtoupper($newfield['type']) . '(' . min(255, $newfield['size']) . ')';
 							break;
 					}
-					if (isset($database[$table][$name])) {
+					if ($existng) {
 						if (strtoupper($database[$table][$name]['Type']) != $dbType || empty($database[$table][$name]['Comment'])) {
 							$cmd = ' CHANGE `' . $name . '`';
 						} else {
@@ -116,6 +122,15 @@ class fieldExtender {
 				}
 			}
 			setOption(get_class($this) . '_addedFields', serialize($current));
+			if (!empty($searchDefault)) {
+				$fieldExtenderMutex = new zpMutex('fE');
+				$fieldExtenderMutex->lock();
+				$engine = new SearchEngine();
+				$set_fields = $engine->allowedSearchFields();
+				$set_fields = array_unique(array_merge($set_fields, $searchDefault));
+				setOption('search_fields', implode(',', $set_fields));
+				$fieldExtenderMutex->unlock();
+			}
 		} else {
 			purgeOption(get_class($this) . '_addedFields');
 		}

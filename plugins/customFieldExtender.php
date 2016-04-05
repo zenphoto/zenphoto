@@ -63,7 +63,7 @@ class customFieldExtender extends fieldExtender {
 	static $fields = array(
 					array('table' => 'albums', 'name' => 'Finish_Disc', 'desc' => 'Finish Disc', 'type' => 'varchar', 'size' => 50, 'edit' => 'multilingual'),
 					array('table' => 'news', 'name' => 'Finish_Lip', 'desc' => 'Finish Lip', 'type' => 'varchar', 'size' => 50),
-					array('table' => 'images', 'name' => 'custom_option', 'desc' => 'Custom option', 'type' => 'varchar', 'size' => 75, 'edit' => 'function', 'function' => 'customFieldExtender::custom_option'),
+					array('table' => 'images', 'name' => 'custom_option', 'desc' => 'Custom option', 'type' => 'varchar', 'searchDefault' => 1, 'size' => 75, 'edit' => 'function', 'function' => 'customFieldExtender::custom_option'),
 					array('table' => 'news_categories', 'name' => 'Rear_Size', 'desc' => 'Front Size', 'type' => 'varchar', 'size' => 50),
 					array('table' => 'pages', 'name' => 'Rear_Size', 'desc' => 'Rear Size', 'type' => 'varchar', 'size' => 50)
 	);

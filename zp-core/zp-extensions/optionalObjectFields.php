@@ -65,8 +65,8 @@ class optionalObjectFields extends fieldExtender {
 						 */
 						array('table' => 'albums', 'name' => 'owner', 'desc' => gettext('Owner'), 'type' => 'varchar', 'size' => 64, 'edit' => 'function', 'function' => 'optionalObjectFields::owner', 'default' => 'NULL'),
 						array('table' => 'albums', 'name' => 'date', 'desc' => gettext('Date'), 'type' => 'datetime', 'edit' => 'function', 'function' => 'optionalObjectFields::date'),
-						array('table' => 'albums', 'name' => 'location', 'desc' => gettext('Location'), 'type' => 'text', 'edit' => 'multilingual'),
-						array('table' => 'albums', 'name' => 'tags', 'desc' => gettext('Tags'), 'type' => NULL, 'edit' => 'function', 'function' => 'optionalObjectFields::tags'),
+						array('table' => 'albums', 'name' => 'location', 'desc' => gettext('Location'), 'type' => 'text', 'searchDefault' => 1, 'edit' => 'multilingual'),
+						array('table' => 'albums', 'name' => 'tags', 'desc' => gettext('Tags'), 'type' => NULL, 'searchDefault' => 1, 'edit' => 'function', 'function' => 'optionalObjectFields::tags'),
 						array('table' => 'albums', 'name' => 'codeblock', 'desc' => gettext('Codeblocks'), 'type' => 'text', 'edit' => 'function', 'function' => 'optionalObjectFields::codeblocks'),
 						/*
 						 * image fields
@@ -76,26 +76,26 @@ class optionalObjectFields extends fieldExtender {
 						array('table' => 'images', 'name' => 'date', 'desc' => gettext('Date'), 'type' => 'datetime', 'edit' => 'function', 'function' => 'optionalObjectFields::date'),
 						array('table' => 'images', 'name' => 'watermark', 'desc' => gettext('Image watermark'), 'type' => 'varchar', 'size' => 255, 'edit' => 'function', 'function' => 'optionalObjectFields::watermark', 'default' => NULL),
 						array('table' => 'images', 'name' => 'watermark_use', 'desc' => NULL, 'type' => 'int', 'size' => 1, 'edit' => NULL, 'attribute' => 'UNSIGNED', 'default' => 7),
-						array('table' => 'images', 'name' => 'location', 'desc' => gettext('Location'), 'type' => 'text', 'edit' => 'multilingual'),
-						array('table' => 'images', 'name' => 'city', 'desc' => gettext('City'), 'type' => 'tinytext', 'size' => 50, 'edit' => 'multilingual'),
-						array('table' => 'images', 'name' => 'state', 'desc' => gettext('State'), 'type' => 'tinytext', 'size' => 50, 'edit' => 'multilingual'),
-						array('table' => 'images', 'name' => 'country', 'desc' => gettext('Country'), 'type' => 'tinytext', 'size' => 50, 'edit' => 'multilingual'),
+						array('table' => 'images', 'name' => 'location', 'desc' => gettext('Location'), 'type' => 'text', 'searchDefault' => 1, 'edit' => 'multilingual'),
+						array('table' => 'images', 'name' => 'city', 'desc' => gettext('City'), 'type' => 'tinytext', 'searchDefault' => 1, 'size' => 50, 'edit' => 'multilingual'),
+						array('table' => 'images', 'name' => 'state', 'desc' => gettext('State'), 'type' => 'tinytext', 'searchDefault' => 1, 'size' => 50, 'edit' => 'multilingual'),
+						array('table' => 'images', 'name' => 'country', 'desc' => gettext('Country'), 'type' => 'tinytext', 'searchDefault' => 1, 'size' => 50, 'edit' => 'multilingual'),
 						array('table' => 'images', 'name' => 'credit', 'desc' => gettext('Credit'), 'type' => 'text', 'edit' => 'multilingual'),
 						array('table' => 'images', 'name' => 'copyright', 'desc' => gettext('Copyright'), 'type' => 'text', 'edit' => 'multilingual'),
-						array('table' => 'images', 'name' => 'tags', 'desc' => gettext('Tags'), 'type' => NULL, 'edit' => 'function', 'function' => 'optionalObjectFields::tags'),
+						array('table' => 'images', 'name' => 'tags', 'desc' => gettext('Tags'), 'type' => NULL, 'searchDefault' => 1, 'edit' => 'function', 'function' => 'optionalObjectFields::tags'),
 						array('table' => 'images', 'name' => 'codeblock', 'desc' => gettext('Codeblocks'), 'type' => 'text', 'edit' => 'function', 'function' => 'optionalObjectFields::codeblocks'),
 						/*
 						 * page fields
 						 */
 						array('table' => 'pages', 'name' => 'extracontent', 'desc' => gettext('Extra Content'), 'type' => 'text', 'edit' => 'function', 'function' => 'optionalObjectFields::extracontent'),
 						array('table' => 'pages', 'name' => 'codeblock', 'desc' => gettext('Codeblocks'), 'type' => 'text', 'edit' => 'function', 'function' => 'optionalObjectFields::codeblocks'),
-						array('table' => 'pages', 'name' => 'tags', 'desc' => gettext('Tags'), 'type' => NULL, 'edit' => 'function', 'function' => 'optionalObjectFields::tags'),
+						array('table' => 'pages', 'name' => 'tags', 'desc' => gettext('Tags'), 'type' => NULL, 'searchDefault' => 1, 'edit' => 'function', 'function' => 'optionalObjectFields::tags'),
 						/*
 						 * news article fields
 						 */
 						array('table' => 'news', 'name' => 'extracontent', 'desc' => gettext('Extra Content'), 'type' => 'text', 'edit' => 'function', 'function' => 'optionalObjectFields::extracontent'),
 						array('table' => 'news', 'name' => 'codeblock', 'desc' => gettext('Codeblocks'), 'type' => 'text', 'edit' => 'function', 'function' => 'optionalObjectFields::codeblocks'),
-						array('table' => 'news', 'name' => 'tags', 'desc' => gettext('Tags'), 'type' => NULL, 'edit' => 'function', 'function' => 'optionalObjectFields::tags')
+						array('table' => 'news', 'name' => 'tags', 'desc' => gettext('Tags'), 'type' => NULL, 'searchDefault' => 1, 'edit' => 'function', 'function' => 'optionalObjectFields::tags')
 		);
 	}
 

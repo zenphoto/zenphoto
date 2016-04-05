@@ -88,7 +88,7 @@ function query_full_array($sql, $errorstop = true, $key = NULL) {
 function db_escape($string) {
 	global $_zp_DB_connection;
 	if ($_zp_DB_connection) {
-		return $_zp_DB_connection->quote($string);
+		return trim($_zp_DB_connection->quote($string), "'" . '"');
 	} else {
 		return addslashes($string);
 	}

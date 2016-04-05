@@ -281,7 +281,8 @@ if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
 			$updatezp_config = true;
 			$confDB = NULL;
 		}
-		if (!@$_zp_conf_vars['mysql_database']) {
+
+		if (!$selected_database) {
 			require_once(dirname(dirname(__FILE__)) . '/functions-db-NULL.php');
 		}
 	} else {
@@ -294,6 +295,10 @@ if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
 		</div>
 		<?php
 		exit();
+	}
+	if ($updatezp_config) {
+		storeConfig($zp_cfg);
+		$updatezp_config = false;
 	}
 	require_once(dirname(dirname(__FILE__)) . '/functions.php');
 }

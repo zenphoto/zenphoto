@@ -73,7 +73,7 @@ function reconfigureAction($mandatory) {
 		}
 	} else if (!empty($diff)) {
 		if (function_exists('zp_register_filter') && zp_loggedin(ADMIN_RIGHTS)) {
-			//	no point in telling someone who can't do anything about it
+//	no point in telling someone who can't do anything about it
 			zp_register_filter('admin_note', 'signatureChange');
 			zp_register_filter('admin_head', 'reconfigureCS');
 			zp_register_filter('theme_head', 'reconfigureCS');
@@ -88,16 +88,29 @@ function reconfigureAction($mandatory) {
  */
 function checkSignature($mandatory) {
 	global $_configMutex, $_zp_DB_connection, $_reconfigureMutex;
+	$old = NULL;
 	if (function_exists('query_full_array') && $_zp_DB_connection) {
 		$old = @unserialize(getOption('zenphoto_install'));
 		$new = installSignature();
-		if (!is_array($old)) {
-			$new = array();
-			$old = array('CONFIGURATION' => true);
-		}
-	} else {
+	}
+	if (!is_array($old)) {
 		$new = array();
-		$old = array('CONFIGURATION' => true);
+		switch ($mandatory) {
+			case 11:
+				$reason = gettext('The configuration file is missing.');
+				break;
+			case 12:
+				$reason = gettext('The <code>db_software</code> specification is not valid.');
+				break;
+			case 13:
+				$reason = gettext('The database connection failed.');
+				break;
+			default:
+				$reason = '';
+				break;
+		}
+		$old = array('CONFIGURATION' => $reason);
+
 		if (!$mandatory)
 			$mandatory = 6;
 	}
@@ -117,7 +130,7 @@ function checkSignature($mandatory) {
 	foreach ($matches[1] as $need) {
 		$needs[] = rtrim(trim($need), ":*");
 	}
-	// serialize the following
+// serialize the following
 	$_configMutex->lock();
 	if (file_exists(dirname(__FILE__) . '/setup/')) {
 		chdir(dirname(__FILE__) . '/setup/');
@@ -187,6 +200,18 @@ function reconfigureCS() {
  * HTML for the configuration change notification
  */
 function reconfigurePage($diff, $needs, $mandatory) {
+	if (OFFSET_PATH) {
+		$where = 'admin';
+	} else {
+		$where = 'gallery';
+	}
+	if (function_exists('getXSRFToken')) {
+		$token = '&amp;xsrfToken=' . getXSRFToken('setup');
+	} else {
+		$token = '';
+	}
+	$l1 = '<a href="' . WEBPATH . '/' . ZENFOLDER . '/setup.php?autorun=' . $where . $token . '">';
+	$l2 = '</a>';
 	?>
 	<div class="reconfigbox">
 		<h1>
@@ -211,7 +236,8 @@ function reconfigurePage($diff, $needs, $mandatory) {
 							echo '<li>' . sprintf(gettext('Your installation has moved from %1$s to %2$s.'), $rslt['old'], $rslt['new']) . '</li>';
 							break;
 						case 'CONFIGURATION':
-							echo '<li>' . gettext('Your installation configuration is damaged.') . '</li>';
+							echo '<li>' . gettext('Your installation configuration is damaged.') . ' ' . $rslt['old'] . '</li>';
+							$l1 = '';
 							break;
 						case 'REQUESTS':
 							if (!empty($rslt)) {
@@ -235,13 +261,6 @@ function reconfigurePage($diff, $needs, $mandatory) {
 		</div>
 		<p>
 			<?php
-			if (OFFSET_PATH) {
-				$where = 'admin';
-			} else {
-				$where = 'gallery';
-			}
-			$l1 = '<a href="' . WEBPATH . '/' . ZENFOLDER . '/setup.php?autorun=' . $where . '&amp;xsrfToken=' . @getXSRFToken('setup') . '">';
-			$l2 = '</a>';
 			if ($mandatory) {
 				printf(gettext('The change detected is critical. You <strong>must</strong> run %1$ssetup%2$s for your site to function.'), $l1, $l2);
 			} else {
@@ -267,7 +286,7 @@ function reconfigurePage($diff, $needs, $mandatory) {
  * 						14	checkInstall Version has changed
  */
 function restoreSetupScrpts($reason) {
-	//log setup file restore no matter what!
+//log setup file restore no matter what!
 	require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/security-logger.php');
 	switch ($reason) {
 		default:
