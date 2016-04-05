@@ -76,9 +76,11 @@
 			}
 		</style>
 	<body>
-<h1>ZenPhoto20 release notes</h1><h2>Performance</h2>
+<h1>ZenPhoto20 release notes</h1><h2 style="text-align: center;">Version 1.3.0</h2>
+<h2>Performance</h2>
 <p>The number of SQL requests executed on a front-end page load have been significantly reduced. Frequently executed query have been cached so that the results are delivered without re-executing the query. <em>Default</em> options are set only when <em>setup</em> is executed. Checking for scheduled object <em>publish</em> state changes now happens on the <em>cache-expiry</em> frequency.</p>
 <p>If a page is loaded from the cache there will be only the hand full of queries needed to establish the page context.</p>
+<p>As part of this implementation a new mechanism is provided to force image processing on any un-cached image link that is found during cache processing of a page. When the page is next loaded it will be "clean" and therefore a cache image will be created.</p>
 <h2>Setup</h2>
 <p>The mechanism for migrating database changes had been improved to speed up the <em>setup</em> process. The ZenPhoto20 package now includes a template of how the database should look. Previously whenever a change was made to the database the code in <em>setup</em> had to be manually changed to reflect the changes both to fresh installations and to updates. Over time the list of SQL statements <em>setup</em> needed to execute to insure that the database was correct had become excessive. The queries were executed each time <em>setup</em> was run but in general did nothing since the database structure has been stable for several releases.</p>
 <p>Now when updating an installation there will not be any SQL statements issued unless there truly has been a change to the database structure in the new version of the software. </p>
@@ -87,7 +89,7 @@
 <p><em>accessThreshold:</em></p>
 <p>If you are experiencing denial of service attacks from specific networks this plugin may help mitigate the problem. The plugin monitors front-end page requests and tallies them by IP address (or sub portion thereof.) If the request threshold is exceeded script loading will stop without sending a response.</p>
 <p><em>customData:</em></p>
-<p>This plugin has been moved to the <em>User Plugins</em> folder and is no longer actively supported as a ZenPhoto20 plugin. If you have need of custom fields in your database you should create a clone of the <em>optionalObjectFields </em>introduced in Version 1.1 to define unique fields for your use.</p>
+<p>This plugin has been moved to the <em>User Plugins</em> folder and is no longer actively supported as a ZenPhoto20 plugin. If you have need of custom fields in your database you should create a version of the <em>customFieldExtender </em>plugin to define unique fields for your use.</p>
 <p><em>seo_locale:</em></p>
 <p>This plugin is now merged with the dynamic-locale plugin. This consolidates language selecting link options in one location for easier management.</p>
 <p><em>LDAP_auth:</em></p>
@@ -156,7 +158,7 @@
 <h2>Tag lists will reflect published state of the object</h2>
 <p>Tag suggestion lists and <code>html_meta_tags</code> keywords will not be gated by the published state of objects. Specifically, if the site viewer is not logged-in then tags associated with objects marked <em>unpublished</em> will not be included in the counts. This means, for instance, that if a tag is associated only with unpublished objects it will not be included in these lists. Note: object hierarchy is not applied in this for performance reasons. Thus for instance tags of <em>published</em> images in an <em>unpublished</em> album will be included.</p>
 <h2>Rationalization of published states</h2>
-<p><em>The <code>show()</code> method of all objects now correctly reflects if the object is currently published. The <code>show()</code> method for objects which have a future publishing date will return false until the publishing date has occurred. At that time true will be returned. For objects that have expiry dates, once that date has passed the object will become unpublished and the <code>show()</code> method will return false.</em></p>
+<p>The show() method of all objects now correctly reflects if the object is currently published. The show() method for objects which have a future publishing date will return false until the publishing date has occurred. At that time true will be returned. For objects that have expiry dates, once that date has passed the object will become unpublished and the <code>show()</code> method will return false.</p>
 <p>If you explicitly publish an object that has expired or whose publish date is in the future then the expiry and publish dates will be cancelled.</p>
 <p>This means that the database <code>show</code> column is the sole arbitrator of whether an object should be visible to the general public.</p>
 <h2>Dynamically translatable image metadata strings</h2>
