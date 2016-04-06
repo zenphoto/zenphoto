@@ -662,7 +662,7 @@ $plugins = getPluginFiles('*.php');
 		list($usec, $sec) = explode(" ", microtime());
 		$start = (float) $usec + (float) $sec;
 		setupLog(sprintf(gettext('Plugin:%s setup started'), 'cacheManager'), TEST_RELEASE);
-		require_once(SERVERPATH . '/' . ZENFOLDER . '/admin-globals.php');
+		require_once(SERVERPATH . '/' . ZENFOLDER . '/admin-functions.php');
 		require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cacheManager.php');
 		$priority = $plugin_is_filter & PLUGIN_PRIORITY . ' | CLASS_PLUGIN';
 		setupLog(sprintf(gettext('Plugin:%s enabled (%2$s)'), 'cacheManager', $priority), TEST_RELEASE);

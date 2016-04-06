@@ -17,6 +17,13 @@ define('TEXT_INPUT_SIZE_SHORT', 30);
 if (!defined('EDITOR_SANITIZE_LEVEL'))
 	define('EDITOR_SANITIZE_LEVEL', 1);
 
+define('ADMIN_THUMB_LARGE', 160);
+define('ADMIN_THUMB_MEDIUM', 80);
+define('ADMIN_THUMB_SMALL', 40);
+
+define('UPLOAD_ERR_QUOTA', -1);
+define('UPLOAD_ERR_BLOCKED', -2);
+
 /**
  * Print the footer <div> for the bottom of all admin pages.
  *
@@ -4716,20 +4723,20 @@ function getPluginTabs() {
 	$paths = getPluginFiles('*.php');
 
 	$classXlate = array(
-					'all'					 => gettext('all'),
-					'thirdparty'	 => gettext('3rd party'),
-					'enabled'			 => gettext('enabled'),
-					'admin'				 => gettext('admin'),
-					'demo'				 => gettext('demo'),
-					'development'	 => gettext('development'),
-					'feed'				 => gettext('feed'),
-					'mail'				 => gettext('mail'),
-					'media'				 => gettext('media'),
-					'misc'				 => gettext('misc'),
-					'spam'				 => gettext('spam'),
-					'seo'					 => gettext('seo'),
-					'uploader'		 => gettext('uploader'),
-					'users'				 => gettext('users')
+			'all' => gettext('all'),
+			'thirdparty' => gettext('3rd party'),
+			'enabled' => gettext('enabled'),
+			'admin' => gettext('admin'),
+			'demo' => gettext('demo'),
+			'development' => gettext('development'),
+			'feed' => gettext('feed'),
+			'mail' => gettext('mail'),
+			'media' => gettext('media'),
+			'misc' => gettext('misc'),
+			'spam' => gettext('spam'),
+			'seo' => gettext('seo'),
+			'uploader' => gettext('uploader'),
+			'users' => gettext('users')
 	);
 	zp_apply_filter('plugin_tabs', $classXlate);
 
