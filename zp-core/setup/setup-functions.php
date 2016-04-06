@@ -542,20 +542,4 @@ function setupQuery($sql) {
 	}
 	return $result;
 }
-
-function getDBTables() {
-	$tables = array();
-	$prefix = trim(prefix(), '`');
-	$resource = db_show('tables');
-	if ($resource) {
-		$result = array();
-		while ($row = db_fetch_assoc($resource)) {
-			$table = array_shift($row);
-			$table = substr($table, strlen($prefix));
-			$tables[] = $table;
-		}
-		db_free_result($resource);
-	}
-	return $tables;
-}
 ?>
