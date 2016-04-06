@@ -35,7 +35,6 @@ if (!defined('OFFSET_PATH')) {
 	define('OFFSET_PATH', 2);
 	require_once(dirname(__FILE__) . '/admin-globals.php');
 	require_once(SERVERPATH . '/' . ZENFOLDER . '/template-functions.php');
-	require_once(SERVERPATH . '/' . ZENFOLDER . '/setup/setup-functions.php');
 
 	$extension = sanitize($_GET['extension']);
 	if (!in_array($extension, array_keys(getPluginFiles('*.php')))) {
@@ -421,44 +420,44 @@ if (!defined('OFFSET_PATH')) {
 	function processCommentBlock($commentBlock) {
 		global $plugin_author, $subpackage;
 		$markup = array(
-						'&lt;i&gt;'			 => '<em>',
-						'&lt;/i&gt;'		 => '</em>',
-						'&lt;b&gt;'			 => '<strong>',
-						'&lt;/b&gt;'		 => '</strong>',
-						'&lt;code&gt;'	 => '<span class="inlinecode">',
-						'&lt;/code&gt;'	 => '</span>',
-						'&lt;hr&gt;'		 => '<hr />',
-						'&lt;ul&gt;'		 => '<ul>',
-						'&lt;/ul&gt;'		 => '</ul>',
-						'&lt;ol&gt;'		 => '<ol>',
-						'&lt;/ol&gt;'		 => '</ol>',
-						'&lt;li&gt;'		 => '<li>',
-						'&lt;/li&gt;'		 => '</li>',
-						'&lt;dl&gt;'		 => '<dl>',
-						'&lt;/dl&gt;'		 => '</dl>',
-						'&lt;dt&gt;'		 => '<dt><strong>',
-						'&lt;/dt&gt;'		 => '</strong></dt>',
-						'&lt;dd&gt;'		 => '<dd>',
-						'&lt;/dd&gt;'		 => '</dd>',
-						'&lt;pre&gt;'		 => '<pre>',
-						'&lt;/pre&gt;'	 => '</pre>',
-						'&lt;br&gt;'		 => '<br />',
-						'&lt;var&gt;'		 => '<span class="inlinecode">',
-						'&lt;/var&gt;'	 => '</span>'
+				'&lt;i&gt;' => '<em>',
+				'&lt;/i&gt;' => '</em>',
+				'&lt;b&gt;' => '<strong>',
+				'&lt;/b&gt;' => '</strong>',
+				'&lt;code&gt;' => '<span class="inlinecode">',
+				'&lt;/code&gt;' => '</span>',
+				'&lt;hr&gt;' => '<hr />',
+				'&lt;ul&gt;' => '<ul>',
+				'&lt;/ul&gt;' => '</ul>',
+				'&lt;ol&gt;' => '<ol>',
+				'&lt;/ol&gt;' => '</ol>',
+				'&lt;li&gt;' => '<li>',
+				'&lt;/li&gt;' => '</li>',
+				'&lt;dl&gt;' => '<dl>',
+				'&lt;/dl&gt;' => '</dl>',
+				'&lt;dt&gt;' => '<dt><strong>',
+				'&lt;/dt&gt;' => '</strong></dt>',
+				'&lt;dd&gt;' => '<dd>',
+				'&lt;/dd&gt;' => '</dd>',
+				'&lt;pre&gt;' => '<pre>',
+				'&lt;/pre&gt;' => '</pre>',
+				'&lt;br&gt;' => '<br />',
+				'&lt;var&gt;' => '<span class="inlinecode">',
+				'&lt;/var&gt;' => '</span>'
 		);
-		$const_tr = array('%ZENFOLDER%'						 => ZENFOLDER,
-						'%PLUGIN_FOLDER%'				 => PLUGIN_FOLDER,
-						'%USER_PLUGIN_FOLDER%'	 => USER_PLUGIN_FOLDER,
-						'%ALBUMFOLDER%'					 => ALBUMFOLDER,
-						'%THEMEFOLDER%'					 => THEMEFOLDER,
-						'%BACKUPFOLDER%'				 => BACKUPFOLDER,
-						'%UTILITIES_FOLDER%'		 => UTILITIES_FOLDER,
-						'%DATA_FOLDER%'					 => DATA_FOLDER,
-						'%CACHEFOLDER%'					 => CACHEFOLDER,
-						'%UPLOAD_FOLDER%'				 => UPLOAD_FOLDER,
-						'%STATIC_CACHE_FOLDER%'	 => STATIC_CACHE_FOLDER,
-						'%FULLWEBPATH%'					 => FULLWEBPATH,
-						'%WEBPATH%'							 => WEBPATH
+		$const_tr = array('%ZENFOLDER%' => ZENFOLDER,
+				'%PLUGIN_FOLDER%' => PLUGIN_FOLDER,
+				'%USER_PLUGIN_FOLDER%' => USER_PLUGIN_FOLDER,
+				'%ALBUMFOLDER%' => ALBUMFOLDER,
+				'%THEMEFOLDER%' => THEMEFOLDER,
+				'%BACKUPFOLDER%' => BACKUPFOLDER,
+				'%UTILITIES_FOLDER%' => UTILITIES_FOLDER,
+				'%DATA_FOLDER%' => DATA_FOLDER,
+				'%CACHEFOLDER%' => CACHEFOLDER,
+				'%UPLOAD_FOLDER%' => UPLOAD_FOLDER,
+				'%STATIC_CACHE_FOLDER%' => STATIC_CACHE_FOLDER,
+				'%FULLWEBPATH%' => FULLWEBPATH,
+				'%WEBPATH%' => WEBPATH
 		);
 		$body = $doc = '';
 		$par = false;
