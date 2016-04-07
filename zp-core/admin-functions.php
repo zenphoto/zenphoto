@@ -3927,7 +3927,16 @@ function processEditSelection($subtab) {
  * @param bool $checkAll set true to include check all box
  */
 function printBulkActions($checkarray, $checkAll = false) {
-	$tags = in_array('addtags', $checkarray) || in_array('alltags', $checkarray);
+	if (getOption('adminTagsTab')) {
+		$tags = in_array('addtags', $checkarray) || in_array('alltags', $checkarray);
+	} else {
+		unset($checkarray[array_search('addtags', $checkarray)]);
+		unset($checkarray[array_search('alltags', $checkarray)]);
+		unset($checkarray[array_search('cleartags', $checkarray)]);
+		unset($checkarray[array_search('clearalltags', $checkarray)]);
+		unset($checkarray[array_search('alltags', $checkarray)]);
+		$tags = false;
+	}
 	$movecopy = in_array('moveimages', $checkarray) || in_array('copyimages', $checkarray);
 	$categories = in_array('addcats', $checkarray) || in_array('clearcats', $checkarray);
 	$changeowner = in_array('changeowner', $checkarray);
