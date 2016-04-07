@@ -145,7 +145,6 @@ if (OFFSET_PATH) {
 		}
 		$recentIP[$ip]['lastAccessed'] = $__time;
 		if (@$recentIP[$ip]['blocked']) {
-			zp_error(gettext('Access threshold exceeded.'), E_USER_NOTICE);
 			exitZP();
 		} else {
 			$recentIP[$ip]['accessed'][] = $__time;
