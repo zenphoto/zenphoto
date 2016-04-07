@@ -30,7 +30,7 @@ class accessThreshold {
 		if (OFFSET_PATH == 2) {
 			setOptionDefault('accessThreshold_IP_RETENTION', 500);
 			setOptionDefault('accessThreshold_THRESHOLD', 5);
-			setOptionDefault('accessThreshold_IP_ACCESS_WINDOW', 600);
+			setOptionDefault('accessThreshold_IP_ACCESS_WINDOW', 3600);
 			setOptionDefault('accessThreshold_SENSITIVITY', '255.255.255.0');
 			setOptionDefault('accessThreshold_LIMIT', 100);
 //clear out the recentIP array
