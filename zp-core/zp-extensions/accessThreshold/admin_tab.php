@@ -16,12 +16,15 @@ $subtab = getSubtabs();
 printAdminHeader('development', $subtab);
 
 $recentIP = getSerializedArray(@file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/recentIP'));
+$accessThreshold_THRESHOLD = $recentIP['config']['accessThreshold_THRESHOLD'];
+$accessThreshold_IP_ACCESS_WINDOW = $recentIP['config']['accessThreshold_IP_ACCESS_WINDOW'];
+
 unset($recentIP['config']);
 
 switch (@$_POST['data_sortby']) {
 	case 'date':
 		$sort = 'accessTime';
-		$recentIP = sortMultiArray($recentIP, array('accessTime'), true, true, false, true);
+		$recentIP = sortMultiArray($recentIP, array('lastAccessed'), true, true, false, true);
 		break;
 	case 'ip':
 		$sort = 'ip';
@@ -39,28 +42,55 @@ switch (@$_POST['data_sortby']) {
 			return $retval;
 		});
 		break;
+	case'blocked':
+		$sort = 'blocked';
+		$recentIP = sortMultiArray($recentIP, array('blocked'), true, true, false, true);
+		break;
 	default:
-		$sort = 'counter';
-		$recentIP = sortMultiArray($recentIP, array('counter'), true, true, false, true);
+		$sort = 'interval';
+		$recentIP = sortMultiArray($recentIP, array('interval'), false, true, false, true);
 		break;
 }
 
-$recentIP = array_slice($recentIP, 0, ($rows = ceil(getOption('accessThreshold_LIMIT') / 4)) * 4);
+$recentIP = array_slice($recentIP, 0, ($rows = ceil(getOption('accessThreshold_LIMIT') / 3)) * 3);
 $output = array();
-
+$__time = time();
 $ct = 0;
-foreach ($recentIP as $entity => $data) {
+$legendExpired = $legendBlocked = $legendInvalid = false;
+foreach ($recentIP as $ip => $data) {
+	if (isset($data['interval']) && $data['interval']) {
+		$interval = sprintf('%.1f', $data['interval']);
+	} else {
+		continue;
+	}
+	if (isset($data['lastAccessed']) && $data['lastAccessed'] < $__time - $accessThreshold_IP_ACCESS_WINDOW) {
+		$old = 'color:LightGrey;';
+		$legendExpired = true;
+	} else {
+		$old = '';
+	}
+	if (isset($data['blocked']) && $data['blocked']) {
+		$color = 'color:red;';
+		$legendBlocked = true;
+	} else {
+		$color = '';
+	}
+	if (count($data['accessed']) < 10) {
+		$invalid = 'color:LightGrey;';
+		$legendInvalid = true;
+	} else {
+		$invalid = '';
+	}
 	$row = $ct % $rows;
-	$out = '<span style="width:23%;float:left;';
+	$out = '<span style="width:30%;float:left;';
 	if ($even = floor($ct / $rows) % 2) {
-		$out .= 'background-color:lightgray;';
+		$out .= 'background-color:WhiteSmoke;';
 	}
 	$out .='">' . "\n";
-	$out .= '  <span style="width:40%;float:left"><span style="float:right">' . $entity . '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span>' . "\n";
-	$out .= '  <span style="width:48%;float:left">' . date('Y-m-d H:i:s', $data['accessTime']) . '</span>' . "\n";
-	$out .= '  <span style="width:3%;float:left"><span style="float:right">' . $data['counter'] . '</span></span>' . "\n";
+	$out .= '  <span style="width:40%;float:left;"><span style="float:right;' . $color . '">' . $ip . '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span>' . "\n";
+	$out .= '  <span style="width:48%;float:left;' . $old . '">' . date('Y-m-d H:i:s', $data['lastAccessed']) . '</span>' . "\n";
+	$out .= '  <span style="width:3%;float:left;"><span style="float:right;' . $invalid . '">' . $interval . '</span></span>' . "\n";
 	$out .= "</span>\n";
-//	$out .= '<span style="width:2%;float:left;">&nbsp;&nbsp;</span>' . "\n";
 
 	if (isset($output[$row])) {
 		$output[$row] .= $out;
@@ -91,9 +121,10 @@ echo "\n</head>";
 						<span class="nowrap">
 							<?php echo gettext('Sort by:'); ?>
 							<select id="sortselect" name="data_sortby" onchange="this.form.submit();">
-								<option value="<?php echo gettext('counter'); ?>" <?php if ($sort == 'counter') echo 'selected="selected"'; ?>><?php echo gettext('count'); ?></option>
+								<option value="<?php echo gettext('interval'); ?>" <?php if ($sort == 'interval') echo 'selected="selected"'; ?>><?php echo gettext('interval'); ?></option>
 								<option value="<?php echo gettext('date'); ?>" <?php if ($sort == 'accessTime') echo 'selected="selected"'; ?>><?php echo gettext('date'); ?></option>
 								<option value="<?php echo gettext('ip'); ?>" <?php if ($sort == 'ip') echo 'selected="selected"'; ?>><?php echo gettext('IP'); ?></option>
+								<option value="<?php echo gettext('blocked'); ?>" <?php if ($sort == 'blocked') echo 'selected="selected"'; ?>><?php echo gettext('blocked'); ?></option>
 							</select>
 						</span>
 					</form>
@@ -103,6 +134,18 @@ echo "\n</head>";
 					zp_apply_filter('admin_note', 'database', '');
 					foreach ($output as $row) {
 						echo $row . '<br style="clearall">' . "\n";
+					}
+					?>
+					<br style="clearall">
+					<?php
+					if ($legendBlocked) {
+						echo '<p>' . gettext('IP addresses in <span style="color:Red;">red</span> have been blocked.') . '</p>';
+					}
+					if ($legendExpired) {
+						echo '<p>' . gettext('Timestamps that are <span style="color:LightGrey;">grayed out</span> have expired.') . '</p>';
+					}
+					if ($legendInvalid) {
+						echo '<p>' . gettext('Intervals that are <span style="color:LightGrey;">grayed out</span> have insufficient data to be valid.') . '</p>';
 					}
 					?>
 				</div>

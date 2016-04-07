@@ -134,7 +134,17 @@ function checkSignature($mandatory) {
 	$_configMutex->lock();
 	if (file_exists(dirname(__FILE__) . '/setup/')) {
 		chdir(dirname(__FILE__) . '/setup/');
+		//just in case files were uploaded over a protected setup folder
+		$have = safe_glob('*.php');
+		foreach ($have as $key => $f) {
+			$f = str_replace('.php', '.xxx', $f);
+			if (file_exists($f)) {
+				@chmod($f, 0777);
+				@unlink($f);
+			}
+		}
 		$restore = safe_glob('*.xxx');
+
 		if (!empty($restore) && $mandatory && defined('ADMIN_RIGHTS') && zp_loggedin(ADMIN_RIGHTS) && $mandatory > 1) {
 			restoreSetupScrpts($mandatory);
 		}
