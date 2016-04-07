@@ -145,7 +145,7 @@ function checkSignature($mandatory) {
 		}
 		$restore = safe_glob('*.xxx');
 
-		if (!empty($restore) && $mandatory && defined('ADMIN_RIGHTS') && zp_loggedin(ADMIN_RIGHTS) && $mandatory > 1) {
+		if (!empty($restore) && $mandatory > 1 && defined('ADMIN_RIGHTS') && zp_loggedin(ADMIN_RIGHTS)) {
 			restoreSetupScrpts($mandatory);
 		}
 		$found = safe_glob('*.*');
