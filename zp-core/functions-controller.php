@@ -107,72 +107,73 @@ function fix_path_redirect() {
 		$request_uri = getRequestURI(false);
 		$parts = parse_url($request_uri);
 		$redirectURL = NULL;
+		if (isset($parts['path'])) { // don't know how this can happen, but if it does, don't redirect
+			if (isset($parts['query'])) {
+				parse_str($parts['query'], $query);
+				$redirectURL = zpRewriteURL($query);
+			} else {
+				$query = array();
+			}
 
-		if (isset($parts['query'])) {
-			parse_str($parts['query'], $query);
-			$redirectURL = zpRewriteURL($query);
-		} else {
-			$query = array();
-		}
+			if (isset($_GET['album'])) {
+				if (isset($_GET['image'])) {
+					//image URLs should not end in a slash
+					if (substr($parts['path'], -1, 1) == '/') {
+						$redirectURL = zpRewriteURL($_GET);
+					}
+				} else {
+					//album URLs should end in a slash for consistency
+					if (substr($parts['path'], -1, 1) != '/') {
+						$redirectURL = zpRewriteURL($_GET);
+					}
+				}
+			}
 
-		if (isset($_GET['album'])) {
-			if (isset($_GET['image'])) {
-				//image URLs should not end in a slash
+			if (isset($_GET['p'])) {
+				switch ($_GET['p']) {
+					case 'news':
+						if (isset($_GET['title'])) {
+							//article URLs should not end in slash
+							if (substr($parts['path'], -1, 1) == '/') {
+								$redirectURL = zpRewriteURL($_GET);
+							}
+						} else {
+							//should be news/
+							if (substr($parts['path'], -1, 1) != '/') {
+								$redirectURL = zpRewriteURL($_GET);
+							}
+						}
+						break;
+					case 'search':
+						if (isset($_GET['date'])) {
+							if (substr($parts['path'], -1, 1) != '/') {
+								$redirectURL = zpRewriteURL($_GET);
+							}
+						}
+						break;
+				}
+			}
+			//page numbers do not have trailing slash
+			if (isset($_GET['page'])) {
 				if (substr($parts['path'], -1, 1) == '/') {
 					$redirectURL = zpRewriteURL($_GET);
 				}
-			} else {
-				//album URLs should end in a slash for consistency
-				if (substr($parts['path'], -1, 1) != '/') {
-					$redirectURL = zpRewriteURL($_GET);
+			}
+
+			if ($redirectURL) {
+				$parts2 = parse_url($redirectURL);
+				if (isset($parts2['query'])) {
+					parse_str($parts2['query'], $query2);
+				} else {
+					$query2 = array();
 				}
-			}
-		}
 
-		if (isset($_GET['p'])) {
-			switch ($_GET['p']) {
-				case 'news':
-					if (isset($_GET['title'])) {
-						//article URLs should not end in slash
-						if (substr($parts['path'], -1, 1) == '/') {
-							$redirectURL = zpRewriteURL($_GET);
-						}
-					} else {
-						//should be news/
-						if (substr($parts['path'], -1, 1) != '/') {
-							$redirectURL = zpRewriteURL($_GET);
-						}
-					}
-					break;
-				case 'search':
-					if (isset($_GET['date'])) {
-						if (substr($parts['path'], -1, 1) != '/') {
-							$redirectURL = zpRewriteURL($_GET);
-						}
-					}
-					break;
-			}
-		}
-		//page numbers do not have trailing slash
-		if (isset($_GET['page'])) {
-			if (substr($parts['path'], -1, 1) == '/') {
-				$redirectURL = zpRewriteURL($_GET);
-			}
-		}
-
-		if ($redirectURL) {
-			$parts2 = parse_url($redirectURL);
-			if (isset($parts2['query'])) {
-				parse_str($parts2['query'], $query2);
-			} else {
-				$query2 = array();
-			}
-
-			if ($query != $query2 || preg_replace('~^' . WEBPATH . '/~', '', $parts['path']) != preg_replace('~^' . WEBPATH . '/~', '', html_encode($parts['path']))) {
-				header("HTTP/1.0 301 Moved Permanently");
-				header("Status: 301 Moved Permanently");
-				header('Location: ' . FULLWEBPATH . '/' . preg_replace('~^' . WEBPATH . '/~', '', $redirectURL));
-				exitZP();
+				if ($query != $query2 || preg_replace('~^' . WEBPATH . '/~', '', $parts['path']) != preg_replace('~^' . WEBPATH . '/~', '', html_encode($parts['path']))) {
+					header("HTTP/1.0 301 Moved Permanently");
+					header("Status: 301 Moved Permanently");
+					header('Location: ' . FULLWEBPATH . '/' . preg_replace('~^' . WEBPATH . '/~', '', $redirectURL));
+					exitZP();
+				}
 			}
 		}
 	}
