@@ -6,20 +6,19 @@
  * for these new fields. They will be placed in the proximate location of the
  * "custom data" field on the page.
  *
+ * Themes and plugins may access the custom fields using the normal "get" and "set" methods,
+ * i.e. <code>$obj->getFieldname();</code> and <code>$obj->setFieldname($value);</code>
+ *
  * Fields added to searchable objects will be included in the list of selectable search
  * fields. They will be enabled in the list by default. The standard search
  * form allows a visitor to choose to disable the field for a particular search.
- *
- * Since the objects are not directly aware of these new fields, themes
- * must use the "get()" methods to retrieve the content for display. E.g.
- * <code>echo $_zp_current_album->get('new_field');</code>
  *
  * Fields are defined in the child class and passed as the <var>fields</var> array
  * parameter which consists of a multi-dimensional array, one row per object/field.
  * The elements of each row are:
  *
  * "table" is the database table name (without prefix) of the object to which the field is to be added.
- * "name" is the MySQL field name for the new field
+ * "name" is the MySQL field name for the new field. It should be lower-case
  * "desc" is the "display name" of the field. If the value is NULL no edit field will show on the admin tab.
  * "type" is the database field type: int, varchar, tinytext, text, mediumtext, etc.
  * "searchDefault" determines if the field is "checked" in the <em>search behavior settings</em> <var>field list</var>.
@@ -29,6 +28,17 @@
  * "function" is the function to call if the edit type is a function
  * "attribute" is the attribute(s) of the field, e.g. NOT NULL, UNSIGNED, etc.
  * "default" is the database "default" value
+ * "bulkAction" allows the field to be set via bulk action drop-down lists. The element is set to an array of bulk actions
+ *
+ * 		each element is indexed by the display text for the drop-down selector has the "kind" of element:
+ *
+ * 				<i>display text</i> => 'mass_customText_data' procudes an input of type text
+ *
+ * 				<i>display text</i> => 'mass_customText_data' produces a text area input
+ *
+ * At present the only bulk action drop-down elements supported are the ones on the albums, images, pages, and articles tabs.
+ * The only field handling provided is a simple text input selected by <var>mass_customText_data</var>.
+ * This could be expanded in the future if other input types are desired.
  *
  * The <i>editor function</i> will be passed three parameters: the object, the $_POST instance, the field array,
  * and the action: "edit" or "save". The function must return an array of the the processed data to be displayed and a format indicator or  the data to be saved.
@@ -421,34 +431,57 @@ value="' . $item . '" />';
 	 */
 	static function _register($me, $fields) {
 		zp_register_filter('searchable_fields', "$me::addToSearch");
-		$items = array();
+		$actions = $items = array();
 		foreach ($fields as $field) {
 			$items[$field['table']] = true;
+			if (isset($field['bulkAction'])) {
+				$actions[$field['table']] = true;
+			}
 		}
+		$registerCMSSave = true;
+
 		if (isset($items['albums'])) {
 			zp_register_filter("save_album_utilities_data", "$me::mediaItemSave");
 			zp_register_filter("edit_album_custom_data", "$me::mediaItemEdit");
+			if (isset($actions['albums'])) {
+				zp_register_filter('bulk_album_actions', "$me::bulkAlbum");
+				zp_register_filter('processBulkAlbumsSave', "$me::bulkAlbumSave");
+			}
 		}
 		if (isset($items['images'])) {
 			zp_register_filter("save_image_utilities_data", "$me::mediaItemSave");
 			zp_register_filter("edit_image_custom_data", "$me::mediaItemEdit");
+			if (isset($actions['images'])) {
+				zp_register_filter('bulk_image_actions', "$me::bulkImage");
+				zp_register_filter('processBulkImageSave', "$me::bulkImageSave");
+			}
 		}
 		if (isset($items['administrators'])) {
 			zp_register_filter("save_admin_custom_data", "$me::adminSave");
 			zp_register_filter("edit_admin_custom_data", "$me::adminEdit");
+			//there are no admin bulk actions currently
 		}
 		if (isset($items['news'])) {
 			zp_register_filter("save_article_custom_data", "$me::cmsItemSave");
 			zp_register_filter("edit_article_custom_data", "$me::cmsItemEdit");
+			if (isset($actions['news'])) {
+				zp_register_filter('bulk_article_actions', "$me::bulkArticle");
+				$registerCMSSave = true;
+			}
 		}
-		if (isset($items['news_categories'])) {
-			zp_register_filter("save_category_custom_data", "$me::cmsItemSave");
-			zp_register_filter("edit_category_custom_data", "$me::cmsItemEdit");
-		}
+
 		if (isset($items['pages'])) {
 			zp_register_filter("save_page_custom_data", "$me::cmsItemSave");
 			zp_register_filter("edit_page_custom_data", "$me::cmsItemEdit");
+			if (isset($actions['pages'])) {
+				zp_register_filter('bulk_page_actions', "$me::bulkPage");
+				$registerCMSSave = true;
+			}
 		}
+		if ($registerCMSSave) {
+			zp_register_filter('processBulkCMSSave', "$me::bulkCMSSave");
+		}
+
 		if (OFFSET_PATH && !getOption($me . "_addedFields")) {
 			requestSetup($me);
 		}
@@ -515,6 +548,46 @@ value="' . $item . '" />';
 		} else {
 			zp_error(gettext('Field not defined.'));
 		}
+	}
+
+	static function bulkActions($checkarray, $table, $fields) {
+		foreach ($fields as $key => $data) {
+			if ($data['table'] == $table && isset($data['bulkAction'])) {
+				$bulk = $data['bulkAction'];
+				foreach ($bulk as $title => $action) {
+					switch ($action) {
+						case 'mass_customTextarea_data':
+						case 'mass_customText_data':
+							$item = array(
+									'name' => $data['name'],
+									'desc' => $data['desc'],
+									'action' => $action
+							);
+							if (isset($data['size'])) {
+								$item['size'] = $data['size'];
+							}
+							$bulk[$title] = $item;
+							break;
+						default:
+							//will be whatever the "standard" actions do, most likely a checkbox
+							$bulk[$title] = $action;
+					}
+				}
+				$checkarray = array_merge($checkarray, $bulk);
+			}
+		}
+		return $checkarray;
+	}
+
+	static function bulkSave($result, $action, $table, $addl, $fields) {
+		if ($action) {
+			foreach ($fields as $key => $data) {
+				if ($data['table'] == $table && $data['name'] == $action && isset($data['bulkAction'])) {
+					$result = sanitize($_POST[$action]);
+				}
+			}
+		}
+		return $result;
 	}
 
 }

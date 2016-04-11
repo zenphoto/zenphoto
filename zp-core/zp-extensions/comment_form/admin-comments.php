@@ -351,11 +351,12 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 					<th colspan="11"><?php echo gettext("Edit this comment"); ?>
 						<?php
 						$checkarray = array(
-										gettext('*Bulk actions*')	 => 'noaction',
-										gettext('Delete')					 => 'deleteall',
-										gettext('Mark as spam')		 => 'spam',
-										gettext('Approve')				 => 'approve',
+								gettext('*Bulk actions*') => 'noaction',
+								gettext('Delete') => 'deleteall',
+								gettext('Mark as spam') => 'spam',
+								gettext('Approve') => 'approve',
 						);
+						$checkarray = zp_apply_filter('bulk_comment_actions', $checkarray);
 						printBulkActions($checkarray);
 						?>
 					</th>

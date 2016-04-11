@@ -693,16 +693,16 @@ function printSortOrderDropdown() {
 			}
 			$option = getNewsAdminOption('sortorder');
 			$selections = array(
-							'date-desc'				 => gettext("Order by creation date descending"),
-							'date-asc'				 => gettext("Order by creation date ascending"),
-							'publishdate-desc' => gettext("Order by published descending"),
-							'publishdate-asc'	 => gettext("Order by published ascending"),
-							'expiredate-desc'	 => gettext("Order by expired descending"),
-							'expiredate-asc'	 => gettext("Order by expired ascending"),
-							'lastchange-desc'	 => gettext("Order by last change descending"),
-							'lastchange-asc'	 => gettext("Order by last change ascending"),
-							'title-desc'			 => gettext("Order by title descending"),
-							'title-asc'				 => gettext("Order by title ascending")
+					'date-desc' => gettext("Order by creation date descending"),
+					'date-asc' => gettext("Order by creation date ascending"),
+					'publishdate-desc' => gettext("Order by published descending"),
+					'publishdate-asc' => gettext("Order by published ascending"),
+					'expiredate-desc' => gettext("Order by expired descending"),
+					'expiredate-asc' => gettext("Order by expired ascending"),
+					'lastchange-desc' => gettext("Order by last change descending"),
+					'lastchange-asc' => gettext("Order by last change ascending"),
+					'title-desc' => gettext("Order by title descending"),
+					'title-asc' => gettext("Order by title ascending")
 			);
 			foreach ($selections as $sortorder => $text) {
 				?>
@@ -750,7 +750,7 @@ function printCategoryDropdown() {
 					$selected = "";
 				}
 				echo "<option $selected value='admin-news.php" . getNewsAdminOptionPath(array_merge(array(
-								'category' => '`'), $option)) . "'>" . gettext("Un-categorized") . "</option>\n";
+						'category' => '`'), $option)) . "'>" . gettext("Un-categorized") . "</option>\n";
 
 				foreach ($result as $cat) {
 					$catobj = newCategory($cat['titlelink']);
@@ -774,7 +774,7 @@ function printCategoryDropdown() {
 					}
 					if ($count != " (0)") {
 						echo "<option $selected value='admin-news.php" . getNewsAdminOptionPath(array_merge(array(
-										'category' => $catobj->getTitlelink()), $option)) . "'>" . $levelmark . $title . $count . "</option>\n";
+								'category' => $catobj->getTitlelink()), $option)) . "'>" . $levelmark . $title . $count . "</option>\n";
 					}
 				}
 				?>
@@ -1507,6 +1507,18 @@ function processZenpageBulkActions($type) {
 	if (isset($_POST['ids'])) {
 		//echo "action for checked items:". $_POST['checkallaction'];
 		$action = sanitize($_POST['checkallaction']);
+		switch ($type) {
+			case'Article':
+				$table = 'news';
+				break;
+			case 'Page':
+				$table = 'pages';
+				break;
+			case 'Category':
+				$table = 'news_categories';
+				break;
+		}
+		$result = zp_apply_filter('processBulkCMSSave', NULL, $action, $table);
 		$links = sanitize($_POST['ids']);
 		$total = count($links);
 		$message = NULL;
@@ -1525,67 +1537,72 @@ function processZenpageBulkActions($type) {
 				}
 				$n = 0;
 				foreach ($links as $titlelink) {
+
 					$obj = new $type($titlelink);
-					switch ($action) {
-						case 'deleteall':
-							$obj->remove();
-							break;
-						case 'addtags':
-							$mytags = array_unique(array_merge($tags, $obj->getTags(false)));
-							$obj->setTags($mytags);
-							break;
-						case 'cleartags':
-							$obj->setTags(array());
-							break;
-						case 'alltags':
-							$allarticles = $obj->getArticles('', 'all', true);
-							foreach ($allarticles as $article) {
-								$newsobj = newArticle($article['titlelink']);
-								$mytags = array_unique(array_merge($tags, $newsobj->getTags(false)));
-								$newsobj->setTags($mytags);
-								$newsobj->save();
-							}
-							break;
-						case 'clearalltags':
-							$allarticles = $obj->getArticles('', 'all', true);
-							foreach ($allarticles as $article) {
-								$newsobj = newArticle($article['titlelink']);
-								$newsobj->setTags(array());
-								$newsobj->save();
-							}
-							break;
-						case 'addcats':
-							$catarray = array();
-							$allcats = $obj->getCategories();
-							foreach ($cats as $cat) {
-								$catitem = $_zp_CMS->getCategory($cat);
-								$catarray[] = $catitem['titlelink']; //to use the setCategories method we need an array with just the titlelinks!
-							}
-							$allcatsarray = array();
-							foreach ($allcats as $allcat) {
-								$allcatsarray[] = $allcat['titlelink']; //same here!
-							}
-							$mycats = array_unique(array_merge($catarray, $allcatsarray));
-							$obj->setCategories($mycats);
-							break;
-						case 'clearcats':
-							$obj->setCategories(array());
-							break;
-						case 'showall':
-							$obj->setShow(1);
-							break;
-						case 'hideall':
-							$obj->setShow(0);
-							break;
-						case 'commentson':
-							$obj->setCommentsAllowed(1);
-							break;
-						case 'commentsoff':
-							$obj->setCommentsAllowed(0);
-							break;
-						case 'resethitcounter':
-							$obj->set('hitcounter', 0);
-							break;
+					if (is_null($result)) {
+						switch ($action) {
+							case 'deleteall':
+								$obj->remove();
+								break;
+							case 'addtags':
+								$mytags = array_unique(array_merge($tags, $obj->getTags(false)));
+								$obj->setTags($mytags);
+								break;
+							case 'cleartags':
+								$obj->setTags(array());
+								break;
+							case 'alltags':
+								$allarticles = $obj->getArticles('', 'all', true);
+								foreach ($allarticles as $article) {
+									$newsobj = newArticle($article['titlelink']);
+									$mytags = array_unique(array_merge($tags, $newsobj->getTags(false)));
+									$newsobj->setTags($mytags);
+									$newsobj->save();
+								}
+								break;
+							case 'clearalltags':
+								$allarticles = $obj->getArticles('', 'all', true);
+								foreach ($allarticles as $article) {
+									$newsobj = newArticle($article['titlelink']);
+									$newsobj->setTags(array());
+									$newsobj->save();
+								}
+								break;
+							case 'addcats':
+								$catarray = array();
+								$allcats = $obj->getCategories();
+								foreach ($cats as $cat) {
+									$catitem = $_zp_CMS->getCategory($cat);
+									$catarray[] = $catitem['titlelink']; //to use the setCategories method we need an array with just the titlelinks!
+								}
+								$allcatsarray = array();
+								foreach ($allcats as $allcat) {
+									$allcatsarray[] = $allcat['titlelink']; //same here!
+								}
+								$mycats = array_unique(array_merge($catarray, $allcatsarray));
+								$obj->setCategories($mycats);
+								break;
+							case 'clearcats':
+								$obj->setCategories(array());
+								break;
+							case 'showall':
+								$obj->setShow(1);
+								break;
+							case 'hideall':
+								$obj->setShow(0);
+								break;
+							case 'commentson':
+								$obj->setCommentsAllowed(1);
+								break;
+							case 'commentsoff':
+								$obj->setCommentsAllowed(0);
+								break;
+							case 'resethitcounter':
+								$obj->set('hitcounter', 0);
+								break;
+						}
+					} else {
+						$obj->set($action, $result);
 					}
 					$obj->save();
 				}

@@ -60,55 +60,265 @@ class optionalObjectFields extends fieldExtender {
 		 * For definition of this array see fieldExtender.php in the extensions/common folder
 		 */
 		return array(
-						/*
-						 * album fields
-						 */
-						array('table' => 'albums', 'name' => 'owner', 'desc' => gettext('Owner'), 'type' => 'varchar', 'size' => 64, 'edit' => 'function', 'function' => 'optionalObjectFields::owner', 'default' => 'NULL'),
-						array('table' => 'albums', 'name' => 'date', 'desc' => gettext('Date'), 'type' => 'datetime', 'edit' => 'function', 'function' => 'optionalObjectFields::date'),
-						array('table' => 'albums', 'name' => 'location', 'desc' => gettext('Location'), 'type' => 'text', 'searchDefault' => 1, 'edit' => 'multilingual'),
-						array('table' => 'albums', 'name' => 'tags', 'desc' => gettext('Tags'), 'type' => NULL, 'searchDefault' => 1, 'edit' => 'function', 'function' => 'optionalObjectFields::tags'),
-						array('table' => 'albums', 'name' => 'codeblock', 'desc' => gettext('Codeblocks'), 'type' => 'text', 'edit' => 'function', 'function' => 'optionalObjectFields::codeblocks'),
-						/*
-						 * image fields
-						 */
-						array('table' => 'images', 'name' => 'owner', 'desc' => gettext('Owner'), 'type' => 'varchar', 'size' => 64, 'edit' => 'function', 'function' => 'optionalObjectFields::owner', 'default' => 'NULL'),
-						array('table' => 'images', 'name' => 'album_thumb', 'desc' => gettext('Set as thumbnail for'), 'type' => NULL, 'edit' => 'function', 'function' => 'optionalObjectFields::thumb'),
-						array('table' => 'images', 'name' => 'date', 'desc' => gettext('Date'), 'type' => 'datetime', 'edit' => 'function', 'function' => 'optionalObjectFields::date'),
-						array('table' => 'images', 'name' => 'watermark', 'desc' => gettext('Image watermark'), 'type' => 'varchar', 'size' => 255, 'edit' => 'function', 'function' => 'optionalObjectFields::watermark', 'default' => NULL),
-						array('table' => 'images', 'name' => 'watermark_use', 'desc' => NULL, 'type' => 'int', 'size' => 1, 'edit' => NULL, 'attribute' => 'UNSIGNED', 'default' => 7),
-						array('table' => 'images', 'name' => 'location', 'desc' => gettext('Location'), 'type' => 'text', 'searchDefault' => 1, 'edit' => 'multilingual'),
-						array('table' => 'images', 'name' => 'city', 'desc' => gettext('City'), 'type' => 'tinytext', 'searchDefault' => 1, 'size' => 50, 'edit' => 'multilingual'),
-						array('table' => 'images', 'name' => 'state', 'desc' => gettext('State'), 'type' => 'tinytext', 'searchDefault' => 1, 'size' => 50, 'edit' => 'multilingual'),
-						array('table' => 'images', 'name' => 'country', 'desc' => gettext('Country'), 'type' => 'tinytext', 'searchDefault' => 1, 'size' => 50, 'edit' => 'multilingual'),
-						array('table' => 'images', 'name' => 'credit', 'desc' => gettext('Credit'), 'type' => 'text', 'edit' => 'multilingual'),
-						array('table' => 'images', 'name' => 'copyright', 'desc' => gettext('Copyright'), 'type' => 'text', 'edit' => 'multilingual'),
-						array('table' => 'images', 'name' => 'tags', 'desc' => gettext('Tags'), 'type' => NULL, 'searchDefault' => 1, 'edit' => 'function', 'function' => 'optionalObjectFields::tags'),
-						array('table' => 'images', 'name' => 'codeblock', 'desc' => gettext('Codeblocks'), 'type' => 'text', 'edit' => 'function', 'function' => 'optionalObjectFields::codeblocks'),
-						/*
-						 * page fields
-						 */
-						array('table' => 'pages', 'name' => 'extracontent', 'desc' => gettext('Extra Content'), 'type' => 'text', 'edit' => 'function', 'function' => 'optionalObjectFields::extracontent'),
-						array('table' => 'pages', 'name' => 'codeblock', 'desc' => gettext('Codeblocks'), 'type' => 'text', 'edit' => 'function', 'function' => 'optionalObjectFields::codeblocks'),
-						array('table' => 'pages', 'name' => 'tags', 'desc' => gettext('Tags'), 'type' => NULL, 'searchDefault' => 1, 'edit' => 'function', 'function' => 'optionalObjectFields::tags'),
-						/*
-						 * news article fields
-						 */
-						array('table' => 'news', 'name' => 'extracontent', 'desc' => gettext('Extra Content'), 'type' => 'text', 'edit' => 'function', 'function' => 'optionalObjectFields::extracontent'),
-						array('table' => 'news', 'name' => 'codeblock', 'desc' => gettext('Codeblocks'), 'type' => 'text', 'edit' => 'function', 'function' => 'optionalObjectFields::codeblocks'),
-						array('table' => 'news', 'name' => 'tags', 'desc' => gettext('Tags'), 'type' => NULL, 'searchDefault' => 1, 'edit' => 'function', 'function' => 'optionalObjectFields::tags')
+				/*
+				 * album fields
+				 */
+				array(
+						'table' => 'albums',
+						'name' => 'owner',
+						'desc' => gettext('Owner'),
+						'type' => 'varchar', 'size' => 64,
+						'edit' => 'function',
+						'function' => 'optionalObjectFields::owner',
+						'default' => 'NULL',
+						'bulkAction' => array(
+								gettext('Change owner') => array('name' => 'changeowner', 'action' => 'mass_owner_data')
+						)
+				),
+				array(
+						'table' => 'albums',
+						'name' => 'date',
+						'desc' => gettext('Date'),
+						'type' => 'datetime',
+						'edit' => 'function',
+						'function' => 'optionalObjectFields::date'
+				),
+				array(
+						'table' => 'albums',
+						'name' => 'location',
+						'desc' => gettext('Location'),
+						'type' => 'text',
+						'searchDefault' => 1,
+						'edit' => 'multilingual'
+				),
+				array(
+						'table' => 'albums',
+						'name' => 'tags',
+						'desc' => gettext('Tags'),
+						'type' => NULL,
+						'searchDefault' => 1,
+						'edit' => 'function',
+						'function' => 'optionalObjectFields::tags',
+						'bulkAction' => array(
+								gettext('Add tags') => array('name' => 'addtags', 'action' => 'mass_tags_data'),
+								gettext('Clear tags') => 'cleartags',
+								gettext('Add tags to images') => array('name' => 'alltags', 'action' => 'mass_tags_data'),
+								gettext('Clear tags of images') => 'clearalltags'
+						)
+				),
+				array(
+						'table' => 'albums',
+						'name' => 'codeblock',
+						'desc' => gettext('Codeblocks'),
+						'type' => 'text',
+						'edit' => 'function',
+						'function' => 'optionalObjectFields::codeblocks'
+				),
+				/*
+				 * image fields
+				 */
+				array(
+						'table' => 'images',
+						'name' => 'owner',
+						'desc' => gettext('Owner'),
+						'type' => 'varchar', 'size' => 64,
+						'edit' => 'function',
+						'function' => 'optionalObjectFields::owner', 'default' => 'NULL',
+						'bulkAction' => array(
+								gettext('Change owner') => array('name' => 'changeowner', 'action' => 'mass_owner_data')
+						)
+				),
+				array(
+						'table' => 'images',
+						'name' => 'album_thumb',
+						'desc' => gettext('Set as thumbnail for'),
+						'type' => NULL, 'edit' => 'function',
+						'function' => 'optionalObjectFields::thumb'
+				),
+				array(
+						'table' => 'images',
+						'name' => 'date',
+						'desc' => gettext('Date'),
+						'type' => 'datetime',
+						'edit' => 'function',
+						'function' => 'optionalObjectFields::date'
+				),
+				array(
+						'table' => 'images',
+						'name' => 'watermark',
+						'desc' => gettext('Image watermark'),
+						'type' => 'varchar', 'size' => 255,
+						'edit' => 'function',
+						'function' => 'optionalObjectFields::watermark',
+						'default' => NULL
+				),
+				array(
+						'table' => 'images',
+						'name' => 'watermark_use',
+						'desc' => NULL,
+						'type' => 'int', 'size' => 1,
+						'edit' => NULL,
+						'attribute' => 'UNSIGNED',
+						'default' => 7
+				),
+				array(
+						'table' => 'images',
+						'name' => 'location',
+						'desc' => gettext('Location'),
+						'type' => 'text',
+						'searchDefault' => 1,
+						'edit' => 'multilingual'
+				),
+				array(
+						'table' => 'images',
+						'name' => 'city',
+						'desc' => gettext('City'),
+						'type' => 'tinytext',
+						'searchDefault' => 1,
+						'size' => 50,
+						'edit' => 'multilingual'
+				),
+				array(
+						'table' => 'images',
+						'name' => 'state',
+						'desc' => gettext('State'),
+						'type' => 'tinytext',
+						'searchDefault' => 1,
+						'size' => 50,
+						'edit' => 'multilingual'
+				),
+				array(
+						'table' => 'images',
+						'name' => 'country',
+						'desc' => gettext('Country'),
+						'type' => 'tinytext', 'size' => 50,
+						'searchDefault' => 1,
+						'edit' => 'multilingual'
+				),
+				array(
+						'table' => 'images',
+						'name' => 'credit',
+						'desc' => gettext('Credit'),
+						'type' => 'text',
+						'edit' => 'multilingual'
+				),
+				array('table' => 'images',
+						'name' => 'copyright',
+						'desc' => gettext('Copyright'),
+						'type' => 'text',
+						'edit' => 'multilingual'
+				),
+				array('table' => 'images',
+						'name' => 'tags',
+						'desc' => gettext('Tags'),
+						'type' => NULL,
+						'searchDefault' => 1,
+						'edit' => 'function',
+						'function' => 'optionalObjectFields::tags',
+						'bulkAction' => array(
+								gettext('Add tags') => array('name' => 'addtags', 'action' => 'mass_tags_data'),
+								gettext('Clear tags') => 'cleartags'
+						)
+				),
+				array(
+						'table' => 'images',
+						'name' => 'codeblock',
+						'desc' => gettext('Codeblocks'),
+						'type' => 'text',
+						'edit' => 'function',
+						'function' => 'optionalObjectFields::codeblocks'
+				),
+				/*
+				 * category fielsds
+				 */
+				array(
+						'table' => 'news_categories',
+						'name' => 'tags',
+						'desc' => gettext('Tags'),
+						'type' => NULL,
+						'searchDefault' => 1,
+						'edit' => 'function',
+						'function' => 'optionalObjectFields::tags',
+						'bulkAction' => array(
+								gettext('Add tags to articles') => array('name' => 'alltags', 'action' => 'mass_tags_data'),
+								gettext('Clear tags of articles') => 'clearalltags'
+						)
+				),
+				/*
+				 * page fields
+				 */
+				array(
+						'table' => 'pages',
+						'name' => 'extracontent',
+						'desc' => gettext('Extra Content'),
+						'type' => 'text',
+						'edit' => 'function',
+						'function' => 'optionalObjectFields::extracontent'
+				),
+				array('table' => 'pages',
+						'name' => 'codeblock',
+						'desc' => gettext('Codeblocks'),
+						'type' => 'text',
+						'edit' => 'function',
+						'function' => 'optionalObjectFields::codeblocks'
+				),
+				array(
+						'table' => 'pages',
+						'name' => 'tags',
+						'desc' => gettext('Tags'),
+						'type' => NULL, 'searchDefault' => 1,
+						'edit' => 'function',
+						'function' => 'optionalObjectFields::tags',
+						'bulkAction' => array(
+								gettext('Add tags') => array('name' => 'addtags', 'action' => 'mass_tags_data'),
+								gettext('Clear tags') => 'clearalltags'
+						)
+				),
+				/*
+				 * news article fields
+				 */
+				array(
+						'table' => 'news',
+						'name' => 'extracontent',
+						'desc' => gettext('Extra Content'),
+						'type' => 'text',
+						'edit' => 'function',
+						'function' => 'optionalObjectFields::extracontent'
+				),
+				array(
+						'table' => 'news',
+						'name' => 'codeblock',
+						'desc' => gettext('Codeblocks'),
+						'type' => 'text',
+						'edit' => 'function',
+						'function' => 'optionalObjectFields::codeblocks'
+				),
+				array(
+						'table' => 'news',
+						'name' => 'tags',
+						'desc' => gettext('Tags'),
+						'type' => NULL,
+						'searchDefault' => 1,
+						'edit' => 'function',
+						'function' => 'optionalObjectFields::tags',
+						'bulkAction' => array(
+								gettext('Add tags') => array('name' => 'addtags', 'action' => 'mass_tags_data'),
+								gettext('Clear tags') => 'clearalltags'
+						)
+				)
 		);
 	}
 
 	function __construct() {
 		$protected = array('date', 'owner');
 		$fields = self::fields();
-		//do not add/remove some critical DB fields
+//do not add/remove some critical DB fields
 		foreach ($fields as $key => $field) {
 			if (in_array($field['name'], $protected))
 				unset($fields[$key]);
 		}
 		parent::constructor('optionalObjectFields', $fields);
-		//  for translations need to define the display names
+//  for translations need to define the display names
 	}
 
 	static function addToSearch($list) {
@@ -129,7 +339,7 @@ class optionalObjectFields extends fieldExtender {
 
 	static function mediaItemEdit($html, $object, $i) {
 		if ($i) {
-			//	only tags on bulk edit tabs
+//	only tags on bulk edit tabs
 			return parent::_mediaItemEdit($html, $object, $i, array(array('table' => $object->table, 'name' => 'tags', 'desc' => gettext('Tags'), 'type' => NULL, 'edit' => 'function', 'function' => 'optionalObjectFields::tags')));
 		} else {
 			return parent::_mediaItemEdit($html, $object, $i, self::fields());
@@ -145,7 +355,39 @@ class optionalObjectFields extends fieldExtender {
 	}
 
 	static function register() {
-		parent::_register('optionalObjectFields', self::fields());
+		parent::_register(__CLASS__, self::fields());
+	}
+
+	static function bulkAdmin($checkarray) {
+		return parent::bulkActions($checkarray, 'administrators', self::fields());
+	}
+
+	static function bulkAlbum($checkarray) {
+		return parent::bulkActions($checkarray, 'albums', self::fields());
+	}
+
+	static function bulkImage($checkarray) {
+		return parent::bulkActions($checkarray, 'images', self::fields());
+	}
+
+	static function bulkArticle($checkarray) {
+		return parent::bulkActions($checkarray, 'news', self::fields());
+	}
+
+	static function bulkPage($checkarray) {
+		return parent::bulkActions($checkarray, 'pages', self::fields());
+	}
+
+	static function bulkAlbumSave($result, $action) {
+		return parent::bulkSave($result, $action, 'albums', NULL, self::fields());
+	}
+
+	static function bulkImageSave($result, $action, $album) {
+		return parent::bulkSave($result, $action, 'images', $album, self::fields());
+	}
+
+	static function bulkCMSSave($result, $action, $type) {
+		return parent::bulkSave($result, $action, $type, $NULL, self::fields());
 	}
 
 	static function owner($obj, $instance, $field, $type) {
@@ -385,7 +627,6 @@ function optionalObjectFields_enable($enabled) {
 
 if (OFFSET_PATH == 2) { // setup call: add the fields into the database
 	new optionalObjectFields;
-} else {
-	optionalObjectFields::register();
 }
+optionalObjectFields::register();
 ?>

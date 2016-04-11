@@ -246,20 +246,19 @@ updatePublished('news');
 								<th colspan="7">
 									<?php
 									$checkarray = array(
-													gettext('*Bulk actions*')			 => 'noaction',
-													gettext('Delete')							 => 'deleteall',
-													gettext('Set to published')		 => 'showall',
-													gettext('Set to unpublished')	 => 'hideall',
-													gettext('Add tags')						 => 'addtags',
-													gettext('Clear tags')					 => 'cleartags',
-													gettext('Disable comments')		 => 'commentsoff',
-													gettext('Enable comments')		 => 'commentson',
-													gettext('Add categories')			 => 'addcats',
-													gettext('Clear categories')		 => 'clearcats'
+											gettext('*Bulk actions*') => 'noaction',
+											gettext('Delete') => 'deleteall',
+											gettext('Set to published') => 'showall',
+											gettext('Set to unpublished') => 'hideall',
+											gettext('Disable comments') => 'commentsoff',
+											gettext('Enable comments') => 'commentson',
+											gettext('Add categories') => array('name' => 'addcats', 'action' => 'mass_cats_data'),
+											gettext('Clear categories') => 'clearcats'
 									);
 									if (extensionEnabled('hitcounter')) {
 										$checkarray['hitcounter'] = 'resethitcounter';
 									}
+									$checkarray = zp_apply_filter('bulk_article_actions', $checkarray);
 									printBulkActions($checkarray);
 									?>
 								</th>

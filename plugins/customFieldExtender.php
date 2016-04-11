@@ -8,11 +8,6 @@
  * fields. They will be enabled in the list by default. The standard search
  * form allows a visitor to choose to disable the field for a particular search.
  *
- * Since the objects are not directly aware of these new fields, themes
- * must use the "get()" methods to retrieve the content for display. E.g.
- * <code>echo $_zp_current_album->get('new_field');</code>
- *
- *
  * The <i>editor function</i> will be passed three parameters: the object, the $_POST instance, the field array,
  * and the action: "edit" or "save". The function must return the processed data to be displayed or saved.
  *
@@ -61,15 +56,76 @@ class customFieldExtender extends fieldExtender {
 	 */
 
 	static $fields = array(
-					array('table' => 'albums', 'name' => 'Finish_Disc', 'desc' => 'Finish Disc', 'type' => 'varchar', 'size' => 50, 'edit' => 'multilingual'),
-					array('table' => 'news', 'name' => 'Finish_Lip', 'desc' => 'Finish Lip', 'type' => 'varchar', 'size' => 50),
-					array('table' => 'images', 'name' => 'custom_option', 'desc' => 'Custom option', 'type' => 'varchar', 'searchDefault' => 1, 'size' => 75, 'edit' => 'function', 'function' => 'customFieldExtender::custom_option'),
-					array('table' => 'news_categories', 'name' => 'Rear_Size', 'desc' => 'Front Size', 'type' => 'varchar', 'size' => 50),
-					array('table' => 'pages', 'name' => 'Rear_Size', 'desc' => 'Rear Size', 'type' => 'varchar', 'size' => 50)
+			array(
+					'table' => 'albums',
+					'name' => 'Album_Custom',
+					'desc' => 'Custom album field',
+					'type' => 'varchar', 'size' => 50,
+					'edit' => 'multilingual'),
+			array(
+					'table' => 'albums',
+					'name' => 'custom_field2',
+					'desc' => 'Custom field 2',
+					'type' => 'varchar', 'size' => 75,
+					'searchDefault' => 1,
+					'bulkAction' => array(
+							'Custom field 2' => 'mass_customText_data'
+					)
+			),
+			array(
+					'table' => 'images',
+					'name' => 'custom_field1',
+					'desc' => 'Custom field 1',
+					'type' => 'varchar', 'size' => 75,
+					'searchDefault' => 1,
+					'edit' => 'function',
+					'function' => 'customFieldExtender::custom_option'
+			),
+			array('table' => 'images',
+					'name' => 'custom_field2',
+					'desc' => 'Custom field 2',
+					'type' => 'varchar', 'size' => 75,
+					'searchDefault' => 1,
+					'bulkAction' => array(
+							'Custom field 2' => 'mass_customText_data'
+					)
+			),
+			array('table' => 'news',
+					'name' => 'News_Custom',
+					'desc' => 'Custom News field',
+					'type' => 'varchar', 'size' => 50
+			),
+			array('table' => 'news',
+					'name' => 'custom_field2',
+					'desc' => 'Custom field 2',
+					'type' => 'varchar', 'size' => 75,
+					'searchDefault' => 1,
+					'bulkAction' => array(
+							'Custom field 2' => 'mass_customText_data'
+					)
+			),
+			array('table' => 'pages',
+					'name' => 'Page_custom',
+					'desc' => 'Custom Page field',
+					'type' => 'varchar', 'size' => 50
+			),
+			array('table' => 'pages',
+					'name' => 'custom_field2',
+					'desc' => 'Custom field 2',
+					'type' => 'text',
+					'searchDefault' => 1,
+					'bulkAction' => array(
+							'Custom field 2' => 'mass_customTextarea_data'
+					)
+			)
 	);
 
 	function __construct() {
 		parent::constructor('customFieldExtender', self::$fields);
+	}
+
+	static function fields() {
+		return self::$fields;
 	}
 
 	static function addToSearch($list) {
@@ -101,7 +157,39 @@ class customFieldExtender extends fieldExtender {
 	}
 
 	static function register() {
-		parent::_register('customFieldExtender', self::$fields);
+		parent::_register(__CLASS__, self::$fields);
+	}
+
+	static function bulkAdmin($checkarray) {
+		return parent::bulkActions($checkarray, 'administrators', self::fields());
+	}
+
+	static function bulkAlbum($checkarray) {
+		return parent::bulkActions($checkarray, 'albums', self::fields());
+	}
+
+	static function bulkImage($checkarray) {
+		return parent::bulkActions($checkarray, 'images', self::fields());
+	}
+
+	static function bulkArticle($checkarray) {
+		return parent::bulkActions($checkarray, 'news', self::fields());
+	}
+
+	static function bulkPage($checkarray) {
+		return parent::bulkActions($checkarray, 'pages', self::fields());
+	}
+
+	static function bulkAlbumSave($result, $action) {
+		return parent::bulkSave($result, $action, 'albums', NULL, self::fields());
+	}
+
+	static function bulkImageSave($result, $action, $album) {
+		return parent::bulkSave($result, $action, 'images', $album, self::fields());
+	}
+
+	static function bulkCMSSave($result, $action, $type) {
+		return parent::bulkSave($result, $action, $type, NULL, self::fields());
 	}
 
 	static function custom_option($obj, $instance, $field, $type) {

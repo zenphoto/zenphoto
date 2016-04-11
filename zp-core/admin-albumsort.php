@@ -83,15 +83,12 @@ echo "\n</head>";
 
 	<?php
 	$checkarray_images = array(
-					gettext('*Bulk actions*')			 => 'noaction',
-					gettext('Delete')							 => 'deleteall',
-					gettext('Set to published')		 => 'showall',
-					gettext('Set to unpublished')	 => 'hideall',
-					gettext('Add tags')						 => 'addtags',
-					gettext('Clear tags')					 => 'cleartags',
-					gettext('Disable comments')		 => 'commentsoff',
-					gettext('Enable comments')		 => 'commentson',
-					gettext('Change owner')				 => 'changeowner'
+			gettext('*Bulk actions*') => 'noaction',
+			gettext('Delete') => 'deleteall',
+			gettext('Set to published') => 'showall',
+			gettext('Set to unpublished') => 'hideall',
+			gettext('Disable comments') => 'commentsoff',
+			gettext('Enable comments') => 'commentson'
 	);
 	if (extensionEnabled('hitcounter')) {
 		$checkarray_images['Reset hitcounter'] = 'resethitcounter';
