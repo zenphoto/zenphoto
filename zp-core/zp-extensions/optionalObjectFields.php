@@ -621,12 +621,14 @@ class optionalObjectFields extends fieldExtender {
 }
 
 function optionalObjectFields_enable($enabled) {
-	if (!$enabled)
+	if (!$enabled) {
 		requestSetup('optionalObjectFields');
+	}
 }
 
 if (OFFSET_PATH == 2) { // setup call: add the fields into the database
 	new optionalObjectFields;
+} else {
+	optionalObjectFields::register();
 }
-optionalObjectFields::register();
 ?>

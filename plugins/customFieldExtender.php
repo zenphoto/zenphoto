@@ -213,8 +213,10 @@ class customFieldExtender extends fieldExtender {
 
 }
 
-function customFieldExtender_disaabled() {
-	requestSetup('customFieldExtender');
+function customFieldExtender_enabled($enabled) {
+	if (!$enabled) {
+		requestSetup('customFieldExtender');
+	}
 }
 
 function getCustomField($field, $object = NULL, &$detail = NULL) {
