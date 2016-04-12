@@ -10,18 +10,51 @@
 require_once(dirname(dirname(__FILE__)) . '/global-definitions.php');
 
 $const_webpath = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
-$serverpath = str_replace('\\', '/', dirname($_SERVER['SCRIPT_FILENAME']));
-preg_match('~(.*)/(' . ZENFOLDER . ')~', $const_webpath, $matches);
-if (empty($matches)) {
-	$const_webpath = '';
-} else {
+$const_serverpath = str_replace('\\', '/', dirname($_SERVER['SCRIPT_FILENAME']));
+/**
+ * see if we are executing out of any of the known script folders. If so we know how to adjust the paths
+ * if not we presume the script is in the root of the installation. If it is not the script better have set
+ * the SERVERPATH and WEBPATH defines to the correct values
+ */
+if (!preg_match('~(.*)/(' . ZENFOLDER . ')~', $const_webpath, $matches)) {
+	preg_match('~(.*)/(' . USER_PLUGIN_FOLDER . '|' . THEMEFOLDER . ')~', $const_webpath, $matches);
+}
+if ($matches) {
 	$const_webpath = $matches[1];
-	$serverpath = substr($serverpath, 0, strrpos($serverpath, '/' . ZENFOLDER));
+	$const_serverpath = substr($const_serverpath, 0, strrpos($const_serverpath, '/' . $matches[2]));
+	if (!defined('OFFSET_PATH')) {
+		switch ($matches[2]) {
+			case ZENFOLDER:
+				define('OFFSET_PATH', 1);
+				break;
+			case USER_PLUGIN_FOLDER:
+				define('OFFSET_PATH', 3);
+				break;
+			case THEMEFOLDER:
+				define('OFFSET_PATH', 4);
+				break;
+		}
+	}
+	unset($matches);
+} else {
+	if (!defined('OFFSET_PATH')) {
+		define('OFFSET_PATH', 0);
+	}
+}
+if ($const_webpath == '/' || $const_webpath == '.') {
+	$const_webpath = '';
 }
 
-define('SETUPLOG', $serverpath . '/' . DATA_FOLDER . '/setup.log');
-if (!defined('SERVERPATH'))
-	define('SERVERPATH', $serverpath);
+if (!defined('SERVERPATH')) {
+	define('SERVERPATH', $const_serverpath);
+}
+if (!defined('WEBPATH')) {
+	define('WEBPATH', $const_webpath);
+}
+unset($const_webpath);
+unset($const_serverpath);
+
+define('SETUPLOG', SERVERPATH . '/' . DATA_FOLDER . '/setup.log');
 
 require_once(dirname(dirname(__FILE__)) . '/functions-config.php');
 
@@ -186,14 +219,14 @@ function checkMark($check, $text, $text2, $msg, $stopAutorun = true) {
  * @param $subfolders
  */
 function folderCheck($which, $path, $class, $subfolders, $recurse, $chmod, $updatechmod) {
-	global $serverpath, $permission_names;
+	global $permission_names;
 	$path = str_replace('\\', '/', $path);
 	if (!is_dir($path) && $class == 'std') {
 		mkdir_recursive($path, $chmod);
 	}
 	switch ($class) {
 		case 'std':
-			$append = trim(str_replace($serverpath, '', $path), '/');
+			$append = trim(str_replace(SERVERPATH, '', $path), '/');
 			if (($append != $which)) {
 				$f = " (<em>$append</em>)";
 			} else {
@@ -255,11 +288,11 @@ function folderCheck($which, $path, $class, $subfolders, $recurse, $chmod, $upda
 		case 'in_webpath':
 			$webpath = $_SERVER['SCRIPT_NAME'];
 			if (empty($webpath)) {
-				$serverroot = $serverpath;
+				$serverroot = SERVERPATH;
 			} else {
 				$i = strpos($webpath, '/' . ZENFOLDER);
 				$webpath = substr($webpath, 0, $i);
-				$serverroot = substr($serverpath, 0, strpos($serverpath, $webpath));
+				$serverroot = substr(SERVERPATH, 0, strpos(SERVERPATH, $webpath));
 			}
 			$append = substr($path, strlen($serverroot) + 1);
 			$f = " (<em>$append</em>)";
@@ -533,12 +566,14 @@ function checkUnique($table, $unique) {
 function setupQuery($sql) {
 	global $updateErrors;
 	$result = db_table_update($sql);
-	if ($result) {
-		setupLog(sprintf(gettext('Query Success: %s'), $sql), true);
-	} else {
-		$updateErrors = true;
-		$error = db_error();
-		setupLog(sprintf(gettext('Query Failed: %1$s ' . "\n" . ' Error: %2$s'), $sql, $error), true);
+	if (OFFSET_PATH == 2) { //don't write to setup log if not running setup
+		if ($result) {
+			setupLog(sprintf(gettext('Query Success: %s'), $sql), true);
+		} else {
+			$updateErrors = true;
+			$error = db_error();
+			setupLog(sprintf(gettext('Query Failed: %1$s ' . "\n" . ' Error: %2$s'), $sql, $error), true);
+		}
 	}
 	return $result;
 }

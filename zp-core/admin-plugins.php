@@ -32,37 +32,49 @@ if (isset($_GET['action'])) {
 	if ($_GET['action'] == 'saveplugins') {
 		if (isset($_POST['checkForPostTruncation'])) {
 			XSRFdefender('saveplugins');
-			$filelist = array();
+			$plugins = array();
 			foreach ($_POST as $plugin => $value) {
 				preg_match('/^present_zp_plugin_(.*)$/xis', $plugin, $matches);
 				if ($matches) {
-					$filelist[] = $matches[1];
+					$is = (int) isset($_POST['zp_plugin_' . $matches[1]]);
+					$was = (int) ($value && true);
+					if ($was == $is) {
+						$action = 1;
+					} else if ($was) {
+						$action = 2;
+					} else {
+						$action = 3;
+					}
+					$plugins[$matches[1]] = $action;
 				}
 			}
-			foreach ($filelist as $extension) {
-				$extension = filesystemToInternal($extension);
-				$opt = 'zp_plugin_' . $extension;
-				if (isset($_POST[$opt])) {
-					$value = sanitize_numeric($_POST[$opt]);
-					if (!getOption($opt)) {
+			foreach ($plugins as $extension => $action) {
+				$f = str_replace('-', '_', $extension) . '_enable';
+				$p = getPlugin($extension . '.php');
+				switch ($action) {
+					case 1:
+						//no change
+						break;
+					case 2:
+						//going from enabled to disabled
+						require_once($p);
+						if (function_exists($f)) {
+							$f(false);
+						}
+						setOption('zp_plugin_' . $extension, 0);
+						break;
+					case 3:
+						//going from disabled to enabled
 						$option_interface = NULL;
-						require_once(getPlugin($extension . '.php'));
+						require_once($p);
 						if ($option_interface && is_string($option_interface)) {
 							$if = new $option_interface; //	prime the default options
 						}
-						if (function_exists($f = str_replace('-', '_', $extension . '_enable'))) {
+						if (function_exists($f)) {
 							$f(true);
 						}
-					}
-					setOption($opt, $value);
-				} else {
-					if (getOption($opt)) {
-						require_once(getPlugin($extension . '.php'));
-						if (function_exists($f = str_replace('-', '_', $extension . '_enable'))) {
-							$f(false);
-						}
-						setOption($opt, 0);
-					}
+						setOption('zp_plugin_' . $extension, sanitize_numeric($_POST['zp_plugin_' . $extension]));
+						break;
 				}
 			}
 			$notify = '&saved';
@@ -252,7 +264,7 @@ $subtab = printSubtabs();
 				?>
 				<tr<?php echo $selected_style; ?>>
 					<td width="30%">
-						<input type="hidden" name="present_<?php echo $opt; ?>" id="present_<?php echo $opt; ?>" value="1" />
+						<input type="hidden" name="present_<?php echo $opt; ?>" id="present_<?php echo $opt; ?>" value="<?php echo $currentsetting; ?>" />
 						<label id="<?php echo $extension; ?>">
 							<?php
 							if ($third_party_plugin) {
@@ -324,12 +336,12 @@ $subtab = printSubtabs();
 					</td>
 					<td width="60">
 						<span class="icons"><a onclick="$.colorbox({
-									close: '<?php echo gettext("close"); ?>',
-									maxHeight: '80%',
-									maxWidth: '80%',
-									innerWidth: '560px',
-									href: '<?php echo $plugin_URL; ?>'
-								});"><img class="icon-position-top3" src="images/info.png" title="<?php printf(gettext('More information on %s'), $extension); ?>" alt=""></a></span>
+										close: '<?php echo gettext("close"); ?>',
+										maxHeight: '80%',
+										maxWidth: '80%',
+										innerWidth: '560px',
+										href: '<?php echo $plugin_URL; ?>'
+									});"><img class="icon-position-top3" src="images/info.png" title="<?php printf(gettext('More information on %s'), $extension); ?>" alt=""></a></span>
 																	 <?php
 																	 if ($optionlink) {
 																		 ?>

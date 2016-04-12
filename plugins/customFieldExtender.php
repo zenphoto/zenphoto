@@ -213,7 +213,7 @@ class customFieldExtender extends fieldExtender {
 
 }
 
-function customFieldExtender_enabled($enabled) {
+function customFieldExtender_enable($enabled) {
 	if (!$enabled) {
 		requestSetup('customFieldExtender');
 	}

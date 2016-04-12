@@ -79,8 +79,8 @@ if (!file_exists($en_US)) {
 }
 
 $zptime = time();
-if (!file_exists($serverpath . '/' . DATA_FOLDER)) {
-	@mkdir($serverpath . '/' . DATA_FOLDER, $chmod | 0311);
+if (!file_exists(SERVERPATH . '/' . DATA_FOLDER)) {
+	@mkdir(SERVERPATH . '/' . DATA_FOLDER, $chmod | 0311);
 }
 
 @unlink(SERVERPATH . '/' . DATA_FOLDER . '/zenphoto.cfg.bak'); //	remove any old backup file
@@ -115,8 +115,8 @@ if (file_exists($oldconfig = SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE))
 }
 
 $zptime = filemtime($oldconfig = SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
-@copy(dirname(dirname(__FILE__)) . '/dataaccess', $serverpath . '/' . DATA_FOLDER . '/.htaccess');
-@chmod($serverpath . '/' . DATA_FOLDER . '/.htaccess', 0444);
+@copy(dirname(dirname(__FILE__)) . '/dataaccess', SERVERPATH . '/' . DATA_FOLDER . '/.htaccess');
+@chmod(SERVERPATH . '/' . DATA_FOLDER . '/.htaccess', 0444);
 
 if (isset($_GET['mod_rewrite'])) {
 	$mod = '&mod_rewrite=' . $_GET['mod_rewrite'];
@@ -187,10 +187,10 @@ if (isset($_GET['security_ack'])) {
 }
 
 $permission_names = array(
-				0444 => gettext('readonly'),
-				0644 => gettext('strict'),
-				0664 => gettext('relaxed'),
-				0666 => gettext('loose')
+		0444 => gettext('readonly'),
+		0644 => gettext('strict'),
+		0664 => gettext('relaxed'),
+		0666 => gettext('loose')
 );
 $permissions = array_keys($permission_names);
 if ($updatechmod = isset($_REQUEST['chmod_permissions'])) {
@@ -374,14 +374,14 @@ if (defined('CHMOD_VALUE')) {
 setOptionDefault('zp_plugin_security-logger', 9 | CLASS_PLUGIN);
 
 $cloneid = bin2hex(FULLWEBPATH);
-$forcerewrite = isset($_SESSION['clone'][$cloneid]['mod_rewrite']) && $_SESSION['clone'][$cloneid]['mod_rewrite'] && !file_exists($serverpath . '/.htaccess');
+$forcerewrite = isset($_SESSION['clone'][$cloneid]['mod_rewrite']) && $_SESSION['clone'][$cloneid]['mod_rewrite'] && !file_exists(SERVERPATH . '/.htaccess');
 if ($newconfig || isset($_GET['copyhtaccess']) || $forcerewrite) {
-	if (($newconfig || $forcerewrite) && !file_exists($serverpath . '/.htaccess') || setupUserAuthorized()) {
-		@chmod($serverpath . '/.htaccess', 0777);
+	if (($newconfig || $forcerewrite) && !file_exists(SERVERPATH . '/.htaccess') || setupUserAuthorized()) {
+		@chmod(SERVERPATH . '/.htaccess', 0777);
 		$ht = @file_get_contents(SERVERPATH . '/.htaccess');
 		$newht = file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/htaccess');
-		file_put_contents($serverpath . '/.htaccess', $newht);
-		@chmod($serverpath . '/.htaccess', 0444);
+		file_put_contents(SERVERPATH . '/.htaccess', $newht);
+		@chmod(SERVERPATH . '/.htaccess', 0444);
 	}
 }
 
@@ -772,7 +772,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 											primeMark(gettext('Character set'));
 											$charset_defined = $_zp_UTF8->iconv_sets[FILESYSTEM_CHARSET];
 											$test = '';
-											if (($dir = opendir($serverpath . '/' . DATA_FOLDER . '/')) !== false) {
+											if (($dir = opendir(SERVERPATH . '/' . DATA_FOLDER . '/')) !== false) {
 												while (($file = readdir($dir)) !== false) {
 													if (preg_match('/^charset([\._])t.*$/', $file, $matches)) {
 														$test = $file;
@@ -857,7 +857,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 											checkMark($notice, $msg, $msg1, sprintf($msg2, charsetSelector($trialset)));
 											// UTF-8 URI
 											if ($notice != -1) {
-												$test = copy(SERVERPATH . '/' . ZENFOLDER . '/images/pass.png', $testjpg = $serverpath . '/' . DATA_FOLDER . '/' . internalToFilesystem('tést.jpg'));
+												$test = copy(SERVERPATH . '/' . ZENFOLDER . '/images/pass.png', $testjpg = SERVERPATH . '/' . DATA_FOLDER . '/' . internalToFilesystem('tést.jpg'));
 												if (file_exists($testjpg)) {
 													?>
 													<li id="internal">
@@ -1020,8 +1020,8 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 
 									$access = -1;
 									$rightsfound = 'unknown';
-									$rightsneeded = array(gettext('Select')	 => 'SELECT', gettext('Create')	 => 'CREATE', gettext('Drop')		 => 'DROP', gettext('Insert')	 => 'INSERT',
-													gettext('Update')	 => 'UPDATE', gettext('Alter')	 => 'ALTER', gettext('Delete')	 => 'DELETE', gettext('Index')	 => 'INDEX');
+									$rightsneeded = array(gettext('Select') => 'SELECT', gettext('Create') => 'CREATE', gettext('Drop') => 'DROP', gettext('Insert') => 'INSERT',
+											gettext('Update') => 'UPDATE', gettext('Alter') => 'ALTER', gettext('Delete') => 'DELETE', gettext('Index') => 'INDEX');
 									ksort($rightsneeded);
 									$neededlist = '';
 									foreach ($rightsneeded as $right => $value) {
@@ -1135,7 +1135,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 							$stdExclude = Array('Thumbs.db', 'readme.md', 'data');
 
 							$lcFilesystem = file_exists(strtoupper(__FILE__));
-							$base = $serverpath . '/';
+							$base = SERVERPATH . '/';
 							getResidentZPFiles(SERVERPATH . '/' . ZENFOLDER, $lcFilesystem, $stdExclude);
 							if ($lcFilesystem) {
 								$res = array_search(strtolower($base . ZENFOLDER . '/zenphoto.package'), $_zp_resident_files);
@@ -1376,7 +1376,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 							$msg = gettext("<em>.htaccess</em> file");
 							$Apache = stristr($_SERVER['SERVER_SOFTWARE'], "apache");
 							$Nginx = stristr($_SERVER['SERVER_SOFTWARE'], "nginx");
-							$htfile = $serverpath . '/.htaccess';
+							$htfile = SERVERPATH . '/.htaccess';
 							$copyaccess = false;
 							if (file_exists($htfile)) {
 								$ht = trim(@file_get_contents($htfile));
@@ -1521,14 +1521,14 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 							if ($robots === false) {
 								checkmark(-1, gettext('<em>robots.txt</em> file'), gettext('<em>robots.txt</em> file [Not created]'), gettext('Setup could not find the  <em>example_robots.txt</em> file.'));
 							} else {
-								if (file_exists($serverpath . '/robots.txt')) {
+								if (file_exists(SERVERPATH . '/robots.txt')) {
 									checkmark(-2, gettext('<em>robots.txt</em> file'), gettext('<em>robots.txt</em> file [Not created]'), gettext('Setup did not create a <em>robots.txt</em> file because one already exists.'));
 								} else {
 									$d = dirname(dirname(dirname($_SERVER['SCRIPT_NAME'])));
 									if ($d == '/')
 										$d = '';
 									$robots = str_replace('/zenphoto', $d, trim($robots));
-									$rslt = file_put_contents($serverpath . '/robots.txt', $robots);
+									$rslt = file_put_contents(SERVERPATH . '/robots.txt', $robots);
 									if ($rslt === false) {
 										$rslt = -1;
 									} else {
@@ -1550,11 +1550,11 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 								$albumfolder = str_replace('\\', '/', $_zp_conf_vars['album_folder']);
 								switch ($_zp_conf_vars['album_folder_class']) {
 									case 'std':
-										$albumfolder = str_replace('\\', '/', $serverpath) . $albumfolder;
+										$albumfolder = str_replace('\\', '/', SERVERPATH) . $albumfolder;
 										break;
 									case 'in_webpath':
 										$webpath = $_SERVER['SCRIPT_NAME'];
-										$root = $serverpath;
+										$root = SERVERPATH;
 										if (!empty($webpath)) {
 											$root = str_replace('\\', '/', dirname($root));
 										}
@@ -1566,15 +1566,15 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 								checkmark(-1, gettext('<em>albums</em> folder'), gettext('<em>albums</em> folder [The line <code>\$conf[\'album_folder\']</code> is missing from your configuration file]'), sprintf(gettext('You should update your configuration file to conform to the current %1$s example file.'), CONFIGFILE));
 							}
 
-							$good = folderCheck('cache', $serverpath . '/' . CACHEFOLDER . '/', 'std', NULL, true, $chmod | 0311, $updatechmod) && $good;
+							$good = folderCheck('cache', SERVERPATH . '/' . CACHEFOLDER . '/', 'std', NULL, true, $chmod | 0311, $updatechmod) && $good;
 							$good = checkmark(file_exists($en_US), gettext('<em>locale</em> folders'), gettext('<em>locale</em> folders [Are not complete]'), gettext('Be sure you have uploaded the complete ZenPhoto20 package. You must have at least the <em>en_US</em> folder.')) && $good;
-							$good = folderCheck(gettext('uploaded'), $serverpath . '/' . UPLOAD_FOLDER . '/', 'std', NULL, false, $chmod | 0311, $updatechmod) && $good;
-							$good = folderCheck(DATA_FOLDER, $serverpath . '/' . DATA_FOLDER . '/', 'std', NULL, false, $chmod | 0311, $updatechmod) && $good;
+							$good = folderCheck(gettext('uploaded'), SERVERPATH . '/' . UPLOAD_FOLDER . '/', 'std', NULL, false, $chmod | 0311, $updatechmod) && $good;
+							$good = folderCheck(DATA_FOLDER, SERVERPATH . '/' . DATA_FOLDER . '/', 'std', NULL, false, $chmod | 0311, $updatechmod) && $good;
 							@rmdir(SERVERPATH . '/' . DATA_FOLDER . '/mutex');
 							@mkdir(SERVERPATH . '/' . DATA_FOLDER . '/' . MUTEX_FOLDER, $chmod | 0311);
 
-							$good = folderCheck(gettext('HTML cache'), $serverpath . '/' . STATIC_CACHE_FOLDER . '/', 'std', $Cache_html_subfolders, true, $chmod | 0311, $updatechmod) && $good;
-							$good = folderCheck(gettext('Third party plugins'), $serverpath . '/' . USER_PLUGIN_FOLDER . '/', 'std', $plugin_subfolders, true, $chmod | 0311, $updatechmod) && $good;
+							$good = folderCheck(gettext('HTML cache'), SERVERPATH . '/' . STATIC_CACHE_FOLDER . '/', 'std', $Cache_html_subfolders, true, $chmod | 0311, $updatechmod) && $good;
+							$good = folderCheck(gettext('Third party plugins'), SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/', 'std', $plugin_subfolders, true, $chmod | 0311, $updatechmod) && $good;
 							?>
 						</ul>
 						<?php
@@ -1649,14 +1649,14 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 								db_free_result($result);
 							}
 							$expected_tables = array($_zp_conf_vars['mysql_prefix'] . 'options', $_zp_conf_vars['mysql_prefix'] . 'albums',
-											$_zp_conf_vars['mysql_prefix'] . 'images', $_zp_conf_vars['mysql_prefix'] . 'comments',
-											$_zp_conf_vars['mysql_prefix'] . 'administrators', $_zp_conf_vars['mysql_prefix'] . 'admin_to_object',
-											$_zp_conf_vars['mysql_prefix'] . 'tags', $_zp_conf_vars['mysql_prefix'] . 'obj_to_tag',
-											$_zp_conf_vars['mysql_prefix'] . 'captcha',
-											$_zp_conf_vars['mysql_prefix'] . 'pages', $_zp_conf_vars['mysql_prefix'] . 'news2cat',
-											$_zp_conf_vars['mysql_prefix'] . 'news_categories', $_zp_conf_vars['mysql_prefix'] . 'news',
-											$_zp_conf_vars['mysql_prefix'] . 'menu', $_zp_conf_vars['mysql_prefix'] . 'plugin_storage',
-											$_zp_conf_vars['mysql_prefix'] . 'search_cache'
+									$_zp_conf_vars['mysql_prefix'] . 'images', $_zp_conf_vars['mysql_prefix'] . 'comments',
+									$_zp_conf_vars['mysql_prefix'] . 'administrators', $_zp_conf_vars['mysql_prefix'] . 'admin_to_object',
+									$_zp_conf_vars['mysql_prefix'] . 'tags', $_zp_conf_vars['mysql_prefix'] . 'obj_to_tag',
+									$_zp_conf_vars['mysql_prefix'] . 'captcha',
+									$_zp_conf_vars['mysql_prefix'] . 'pages', $_zp_conf_vars['mysql_prefix'] . 'news2cat',
+									$_zp_conf_vars['mysql_prefix'] . 'news_categories', $_zp_conf_vars['mysql_prefix'] . 'news',
+									$_zp_conf_vars['mysql_prefix'] . 'menu', $_zp_conf_vars['mysql_prefix'] . 'plugin_storage',
+									$_zp_conf_vars['mysql_prefix'] . 'search_cache'
 							);
 
 							foreach ($expected_tables as $needed) {

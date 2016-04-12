@@ -39,69 +39,85 @@ if (isset($_GET['pluginsEnable'])) {
 	foreach ($pluginlist as $extension) {
 		if ($extension != 'pluginEnabler') {
 			$opt = 'zp_plugin_' . $extension;
+			$is = $was = (int) (getOption($opt) && true);
+
 			switch ($setting) {
+				case 0:
+					$is = 0;
+					break;
 				case 1:
-					if (strpos($paths[$extension], ZENFOLDER) !== false && $extension != ' show_not_logged-in') {
-						$enable = true;
+					if (strpos($paths[$extension], ZENFOLDER) !== false && $extension != 'show_not_logged-in') {
+						$is = 1;
 						break;
 					}
-				case 0:
-					$enable = false;
-					break;
 				case 2:
 					if (!in_array($extension, $savedlist)) {
-						$enable = false;
+						$is = 0;
 						break;
 					}
 				case 3:
-					$enable = true;
+					$is = 1;
 					break;
 			}
-			if ($enable) {
-				$pluginStream = file_get_contents($paths[$extension]);
-				if ($setting != 2) {
-					if ($str = isolate('$plugin_disable', $pluginStream)) {
-						eval($str);
-						if ($plugin_disable) {
-							continue;
-						}
+
+			if ($was == $is) {
+				$action = 1;
+			} else if ($was) {
+				$action = 2;
+			} else {
+				$action = 3;
+			}
+
+			$f = str_replace('-', '_', $extension) . '_enable';
+			switch ($action) {
+				case 1:
+					//no change
+					break;
+				case 2:
+					//going from enabled to disabled
+					require_once($paths[$extension]);
+					if (function_exists($f)) {
+						$f(false);
 					}
-				}
-				$plugin_is_filter = 1 | THEME_PLUGIN;
-				$str = isolate('$plugin_is_filter', $pluginStream);
-				if ($str) {
-					eval($str);
-					if ($plugin_is_filter < THEME_PLUGIN) {
-						if ($plugin_is_filter < 0) {
-							$plugin_is_filter = abs($plugin_is_filter) | THEME_PLUGIN | ADMIN_PLUGIN;
-						} else {
-							if ($plugin_is_filter == 1) {
-								$plugin_is_filter = 1 | THEME_PLUGIN;
-							} else {
-								$plugin_is_filter = $plugin_is_filter | CLASS_PLUGIN;
+					setOption($opt, 0);
+					break;
+				case 3:
+					//going from disabled to enabled
+					$pluginStream = file_get_contents($paths[$extension]);
+					if ($setting != 2) {
+						if ($str = isolate('$plugin_disable', $pluginStream)) {
+							eval($str);
+							if ($plugin_disable) {
+								continue;
 							}
 						}
 					}
-				}
-				if (!getOption($opt)) {
+					$plugin_is_filter = 1 | THEME_PLUGIN;
+					$str = isolate('$plugin_is_filter', $pluginStream);
+					if ($str) {
+						eval($str);
+						if ($plugin_is_filter < THEME_PLUGIN) {
+							if ($plugin_is_filter < 0) {
+								$plugin_is_filter = abs($plugin_is_filter) | THEME_PLUGIN | ADMIN_PLUGIN;
+							} else {
+								if ($plugin_is_filter == 1) {
+									$plugin_is_filter = 1 | THEME_PLUGIN;
+								} else {
+									$plugin_is_filter = $plugin_is_filter | CLASS_PLUGIN;
+								}
+							}
+						}
+					}
 					$option_interface = NULL;
 					require_once($paths[$extension]);
 					if ($option_interface && is_string($option_interface)) {
 						$if = new $option_interface; //	prime the default options
 					}
-					if (function_exists($f = str_replace('-', ' _ ', $extension . '_enable'))) {
+					if (function_exists($f)) {
 						$f(true);
 					}
-				}
-				setOption($opt, $plugin_is_filter);
-			} else {
-				if (getOption($opt)) {
-					require_once($paths[$extension]);
-					if (function_exists($f = str_replace('-', ' _ ', $extension . '_enable'))) {
-						$f(false);
-					}
-				}
-				setOption($opt, 0);
+					setOption($opt, $plugin_is_filter);
+					break;
 			}
 		}
 	}
