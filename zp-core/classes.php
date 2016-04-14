@@ -426,6 +426,25 @@ class PersistentObject {
 		return $this->table . " (" . $this->id . ")";
 	}
 
+	public function __call($method, $args) {
+		$how = strtolower(substr($method, 0, 3));
+		$what = strtolower(substr($method, 3));
+		$arg = array_shift($args);
+		$result = NULL;
+		switch ($how) {
+			case 'get':
+				$result = $this->get($what);
+				break;
+			case 'set':
+				$result = $this->set($what, $arg);
+				break;
+			default:
+				throw new Exception(sprintf(gettext('Call to undefined method Image::%s()'), $method));
+				break;
+		}
+		return $result;
+	}
+
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////

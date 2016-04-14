@@ -145,18 +145,17 @@ updatePublished('pages');
 			<div class="headline"><?php echo gettext('Edit this page'); ?>
 				<?php
 				$checkarray = array(
-								gettext('*Bulk actions*')			 => 'noaction',
-								gettext('Delete')							 => 'deleteall',
-								gettext('Set to published')		 => 'showall',
-								gettext('Set to unpublished')	 => 'hideall',
-								gettext('Add tags')						 => 'addtags',
-								gettext('Clear tags')					 => 'cleartags',
-								gettext('Disable comments')		 => 'commentsoff',
-								gettext('Enable comments')		 => 'commentson'
+						gettext('*Bulk actions*') => 'noaction',
+						gettext('Delete') => 'deleteall',
+						gettext('Set to published') => 'showall',
+						gettext('Set to unpublished') => 'hideall',
+						gettext('Disable comments') => 'commentsoff',
+						gettext('Enable comments') => 'commentson'
 				);
 				if (extensionEnabled('hitcounter')) {
 					$checkarray['Reset hitcounter'] = 'resethitcounter';
 				}
+				$checkarray = zp_apply_filter('bulk_page_actions', $checkarray);
 				printBulkActions($checkarray);
 				?>
 			</div>

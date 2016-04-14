@@ -88,6 +88,8 @@
 <h2>Plugins</h2>
 <p><em>accessThreshold:</em></p>
 <p>If you are experiencing denial of service attacks from specific networks this plugin may help mitigate the problem. The plugin monitors front-end page requests and tallies them by IP address (or sub portion thereof.) If the request threshold is exceeded script loading will stop without sending a response.</p>
+<p><em>fieldExtender:</em></p>
+<p>The base class has been extended to allow custom field extender plugins to assert that fields should be added to the search list by default. Fields may also be added to bulk action drop-down lists. See the <em>fieldExtender </em>comment for details. The "get" and "set" methods for custom fields are now defined for the object. E.g. you can use <code>$obj-&gt;getXXX();</code> and <code>$obj-&gt;setXXX('data');</code> to access and update the fields.</p>
 <p><em>customData:</em></p>
 <p>This plugin has been moved to the <em>User Plugins</em> folder and is no longer actively supported as a ZenPhoto20 plugin. If you have need of custom fields in your database you should create a version of the <em>customFieldExtender </em>plugin to define unique fields for your use.</p>
 <p><em>seo_locale:</em></p>

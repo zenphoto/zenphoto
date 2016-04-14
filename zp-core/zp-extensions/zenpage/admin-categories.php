@@ -143,16 +143,15 @@ zenpageJSCSS();
 						<div class="headline"><?php echo gettext('Edit this Category'); ?>
 							<?php
 							$checkarray = array(
-											gettext('Set to published')				 => 'showall',
-											gettext('Set to unpublished')			 => 'hideall',
-											gettext('*Bulk actions*')					 => 'noaction',
-											gettext('Delete')									 => 'deleteall',
-											gettext('Add tags to articles')		 => 'alltags',
-											gettext('Clear tags of articles')	 => 'clearalltags'
+									gettext('Set to published') => 'showall',
+									gettext('Set to unpublished') => 'hideall',
+									gettext('*Bulk actions*') => 'noaction',
+									gettext('Delete') => 'deleteall',
 							);
 							if (extensionEnabled('hitcounter')) {
 								$checkarray['Reset hitcounter'] = 'resethitcounter';
 							}
+							$checkarray = zp_apply_filter('bulk_category_actions', $checkarray);
 							printBulkActions($checkarray);
 							?>
 						</div>

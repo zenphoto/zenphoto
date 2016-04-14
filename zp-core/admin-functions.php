@@ -496,6 +496,11 @@ function printAdminHeader($tab, $subtab = NULL) {
 			);
 			$default = 'albuminfo';
 		}
+		$extra = zp_apply_filter('album_page_subtabs', array(), $album);
+		if (!empty($extra)) {
+			$zenphoto_tabs['edit']['subtabs'] = array_merge($zenphoto_tabs['edit']['subtabs'], $extra);
+		}
+
 		$zenphoto_tabs['edit']['default'] = $default;
 		if (isset($_GET['tab'])) {
 			return sanitize($_GET['tab']);
@@ -1510,7 +1515,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 													 name="disclose_password<?php echo $suffix; ?>"
 													 id="disclose_password<?php echo $suffix; ?>"
 													 onclick="passwordClear('<?php echo $suffix; ?>');
-															 togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?>
+																	 togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?>
 									</label>
 								</td>
 								<td>
@@ -1867,9 +1872,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 name="<?php echo $prefix; ?>Published"
 										 value="1" <?php if ($album->getShow()) echo ' checked="checked"'; ?>
 										 onclick="$('#<?php echo $prefix; ?>publishdate').val('');
-												 $('#<?php echo $prefix; ?>expirationdate').val('');
-												 $('#<?php echo $prefix; ?>publishdate').css('color', 'black');
-												 $('.<?php echo $prefix; ?>expire').html('');"
+													 $('#<?php echo $prefix; ?>expirationdate').val('');
+													 $('#<?php echo $prefix; ?>publishdate').css('color', 'black');
+													 $('.<?php echo $prefix; ?>expire').html('');"
 										 />
 										 <?php echo gettext("Published"); ?>
 						</label>
@@ -2003,7 +2008,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 } else {
 											 ?>
 											 onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');
-													 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
+															 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
 											 <?php
 										 }
 										 ?> />
@@ -3927,65 +3932,51 @@ function processEditSelection($subtab) {
  * @param bool $checkAll set true to include check all box
  */
 function printBulkActions($checkarray, $checkAll = false) {
-	$tags = in_array('addtags', $checkarray) || in_array('alltags', $checkarray);
-	$movecopy = in_array('moveimages', $checkarray) || in_array('copyimages', $checkarray);
-	$categories = in_array('addcats', $checkarray) || in_array('clearcats', $checkarray);
-	$changeowner = in_array('changeowner', $checkarray);
-	if ($tags || $movecopy || $categories || $changeowner) {
+	$customInfo = $colorboxBookmark = array();
+
+	foreach ($checkarray as $key => $value) {
+		if (is_array($value)) {
+			$checkarray[$key] = $value['name'];
+			switch ($action = $value['action']) {
+				case 'mass_customTextarea_data':
+					$data['size'] = -1;
+				case 'mass_customText_data':
+					$customInfo[$value['name']] = $value;
+					$action = 'mass_' . $value['name'] . '_data';
+					break;
+			}
+			$colorboxBookmark[$value['name']] = $action;
+		}
+	}
+	if (!empty($colorboxBookmark)) {
 		?>
 		<script type="text/javascript">
 			//<!-- <![CDATA[
 			function checkFor(obj) {
 				var sel = obj.options[obj.selectedIndex].value;
+				var mark;
+				switch (sel) {
 		<?php
-		if ($tags) {
+		foreach ($colorboxBookmark as $key => $mark) {
 			?>
-					if (sel == 'addtags' || sel == 'alltags') {
-						$.colorbox({
-							href: "#mass_tags_data",
-							inline: true,
-							open: true,
-							close: '<?php echo gettext("ok"); ?>'
-						});
-					}
-			<?php
-		}
-		if ($movecopy) {
-			?>
-					if (sel == 'moveimages' || sel == 'copyimages') {
-						$.colorbox({
-							href: "#mass_movecopy_data", inline: true,
-							open: true,
-							close: '<?php echo gettext("ok"); ?>'
-						});
-					}
-			<?php
-		}
-		if ($categories) {
-			?>
-					if (sel == 'addcats') {
-						$.colorbox({
-							href: "#mass_cats_data",
-							inline: true,
-							open: true,
-							close: '<?php echo gettext("ok"); ?>'
-						});
-					}
-			<?php
-		}
-		if ($changeowner) {
-			?>
-					if (sel == 'changeowner') {
-						$.colorbox({
-							href: "#mass_owner_data",
-							inline: true,
-							open: true,
-							close: '<?php echo gettext("ok"); ?>'
-						});
-					}
+					case '<?php echo $key; ?>':
+									mark = '<?php echo $mark; ?>';
+									break;
 			<?php
 		}
 		?>
+				default:
+								mark = false;
+								break;
+			}
+			if (mark) {
+				$.colorbox({
+					href: '#' + mark,
+					inline: true,
+					open: true,
+					close: '<?php echo gettext("ok"); ?>'
+				});
+				}
 			}
 			// ]]> -->
 		</script>
@@ -4009,7 +4000,34 @@ function printBulkActions($checkarray, $checkAll = false) {
 		?>
 	</span>
 	<?php
-	if ($tags) {
+	foreach ($customInfo as $key => $data) {
+		?>
+		<div id="mass_<?php echo $key; ?>" style="display:none;
+				 ">
+			<div id="mass_<?php echo $key; ?>_data">
+				<?php
+				printf('Value for %s:', $data['desc']);
+				if ($data['action'] == 'mass_customText_data') {
+					if (isset($data['size']) && $data['size'] >= 0) {
+						$size = max(5, min($data['size'], 200));
+					} else {
+						$size = 100;
+					}
+					?>
+					<input type="text" name="<?php echo $key; ?>" size="<?php echo $size; ?>" value="">
+					<?php
+				} else {
+					?>
+					<textarea name="<?php echo $key; ?>" cols="<?php echo TEXTAREA_COLUMNS; ?>"	style="width: 320px" rows="6"></textarea>
+					<?php
+				}
+				?>
+			</div>
+		</div>
+		<?php
+	}
+
+	if (in_array('mass_tags_data', $colorboxBookmark)) {
 		?>
 		<div id="mass_tags" style="display:none;">
 			<div id="mass_tags_data">
@@ -4020,31 +4038,41 @@ function printBulkActions($checkarray, $checkAll = false) {
 		</div>
 		<?php
 	}
-	if ($categories) {
+	if (in_array('mass_cats_data', $colorboxBookmark)) {
 		?>
 		<div id="mass_cats" style="display:none;">
-			<ul id="mass_cats_data">
+			<div id="mass_cats_data">
 				<?php
-				printNestedItemsList('cats-checkboxlist', '', 'all', 'ignoredirty');
+				echo gettext('New categorys:');
 				?>
-			</ul>
+				<ul>
+					<?php
+					printNestedItemsList('cats-checkboxlist', '', 'all', 'ignoredirty');
+					?>
+				</ul>
+			</div>
 		</div>
 		<?php
 	}
-	if ($changeowner) {
+	if (in_array('mass_owner_data', $colorboxBookmark)) {
 		?>
 		<div id="mass_owner" style="display:none;">
-			<ul id="mass_owner_data">
-				<select class="ignoredirty" id="massownermenu" name="massownerselect" onchange="">
-					<?php
-					echo admin_album_list(NULL);
-					?>
-				</select>
-			</ul>
+			<div id="mass_owner_data">
+				<?php
+				echo gettext('New owner:');
+				?>
+				<ul>
+					<select class="ignoredirty" id="massownermenu" name="massownerselect" onchange="">
+						<?php
+						echo admin_album_list(NULL);
+						?>
+					</select>
+				</ul>
+			</div>
 		</div>
 		<?php
 	}
-	if ($movecopy) {
+	if (in_array('mass_movecopy_data', $colorboxBookmark)) {
 		global $mcr_albumlist, $album, $bglevels;
 		?>
 		<div id="mass_movecopy_copy" style="display:none;">
@@ -4118,6 +4146,7 @@ function processAlbumBulkActions() {
 	if (isset($_POST['ids'])) {
 		$ids = sanitize($_POST['ids']);
 		$action = sanitize($_POST['checkallaction']);
+		$result = zp_apply_filter('processBulkAlbumsSave', NULL, $action);
 		$total = count($ids);
 		if ($action != 'noaction' && $total > 0) {
 			if ($action == 'addtags' || $action == 'alltags') {
@@ -4130,53 +4159,57 @@ function processAlbumBulkActions() {
 			foreach ($ids as $albumname) {
 				$n++;
 				$albumobj = newAlbum($albumname);
-				switch ($action) {
-					case 'deleteallalbum':
-						$albumobj->remove();
-						break;
-					case 'showall':
-						$albumobj->setShow(1);
-						break;
-					case 'hideall':
-						$albumobj->setShow(0);
-						break;
-					case 'commentson':
-						$albumobj->setCommentsAllowed(1);
-						break;
-					case 'commentsoff':
-						$albumobj->setCommentsAllowed(0);
-						break;
-					case 'resethitcounter':
-						$albumobj->set('hitcounter', 0);
-						break;
-					case 'addtags':
-						addTags($tags, $albumobj);
-						break;
-					case 'cleartags':
-						$albumobj->setTags(array());
-						break;
-					case 'alltags':
-						$images = $albumobj->getImages();
-						foreach ($images as $imagename) {
-							$imageobj = newImage($albumobj, $imagename);
-							addTags($tags, $imageobj);
-							$imageobj->save();
-						}
-						break;
-					case 'clearalltags':
-						$images = $albumobj->getImages();
-						foreach ($images as $imagename) {
-							$imageobj = newImage($albumobj, $imagename);
-							$imageobj->setTags(array());
-							$imageobj->save();
-						}
-						break;
-					case 'changeowner':
-						$albumobj->setOwner($newowner);
-						break;
-					default:
-						$action = call_user_func($action, $albumobj);
-						break;
+				if (is_null($result)) {
+					switch ($action) {
+						case 'deleteallalbum':
+							$albumobj->remove();
+							break;
+						case 'showall':
+							$albumobj->setShow(1);
+							break;
+						case 'hideall':
+							$albumobj->setShow(0);
+							break;
+						case 'commentson':
+							$albumobj->setCommentsAllowed(1);
+							break;
+						case 'commentsoff':
+							$albumobj->setCommentsAllowed(0);
+							break;
+						case 'resethitcounter':
+							$albumobj->set('hitcounter', 0);
+							break;
+						case 'addtags':
+							addTags($tags, $albumobj);
+							break;
+						case 'cleartags':
+							$albumobj->setTags(array());
+							break;
+						case 'alltags':
+							$images = $albumobj->getImages();
+							foreach ($images as $imagename) {
+								$imageobj = newImage($albumobj, $imagename);
+								addTags($tags, $imageobj);
+								$imageobj->save();
+							}
+							break;
+						case 'clearalltags':
+							$images = $albumobj->getImages();
+							foreach ($images as $imagename) {
+								$imageobj = newImage($albumobj, $imagename);
+								$imageobj->setTags(array());
+								$imageobj->save();
+							}
+							break;
+						case 'changeowner':
+							$albumobj->setOwner($newowner);
+							break;
+						default:
+							$action = call_user_func($action, $albumobj);
+							break;
+					}
+				} else {
+					$albumobj->set($action, $result);
 				}
 				$albumobj->save();
 			}
@@ -4192,6 +4225,8 @@ function processAlbumBulkActions() {
  */
 function processImageBulkActions($album) {
 	$action = sanitize($_POST['checkallaction']);
+	$result = zp_apply_filter('processBulkImageSave', NULL, $action, $album);
+
 	$ids = sanitize($_POST['ids']);
 	$total = count($ids);
 	if ($action != 'noaction') {
@@ -4213,53 +4248,58 @@ function processImageBulkActions($album) {
 			foreach ($ids as $filename) {
 				$n++;
 				$imageobj = newImage($album, $filename);
-				switch ($action) {
-					case 'deleteall':
-						$imageobj->remove();
-						break;
-					case 'showall':
-						$imageobj->setShow(1);
-						break;
-					case 'hideall':
-						$imageobj->setShow(0);
-						break;
-					case 'commentson':
-						$imageobj->set('commentson', 1);
-						break;
-					case 'commentsoff':
-						$imageobj->set('commentson', 0);
-						break;
-					case 'resethitcounter':
-						$imageobj->set('hitcounter', 0);
-						break;
-					case 'addtags':
-						addTags($tags, $imageobj);
-						break;
-					case 'cleartags':
-						$imageobj->setTags(array());
-						break;
-					case 'copyimages':
-						if ($e = $imageobj->copy($dest)) {
-							return "&mcrerr=" . $e;
-						}
-						break;
-					case 'moveimages':
-						if ($e = $imageobj->move($dest)) {
-							return "&mcrerr=" . $e;
-						}
-						break;
-					case 'changeowner':
-						$imageobj->setOwner($newowner);
-						break;
-					default:
-						$action = call_user_func($action, $imageobj);
-						break;
+				if (is_null($result)) {
+					switch ($action) {
+						case 'deleteall':
+							$imageobj->remove();
+							break;
+						case 'showall':
+							$imageobj->setShow(1);
+							break;
+						case 'hideall':
+							$imageobj->setShow(0);
+							break;
+						case 'commentson':
+							$imageobj->set('commentson', 1);
+							break;
+						case 'commentsoff':
+							$imageobj->set('commentson', 0);
+							break;
+						case 'resethitcounter':
+							$imageobj->set('hitcounter', 0);
+							break;
+						case 'addtags':
+							addTags($tags, $imageobj);
+							break;
+						case 'cleartags':
+							$imageobj->setTags(array());
+							break;
+						case 'copyimages':
+							if ($e = $imageobj->copy($dest)) {
+								return "&mcrerr=" . $e;
+							}
+							break;
+						case 'moveimages':
+							if ($e = $imageobj->move($dest)) {
+								return "&mcrerr=" . $e;
+							}
+							break;
+						case 'changeowner':
+							$imageobj->setOwner($newowner);
+							break;
+						default:
+							$action = call_user_func($action, $imageobj);
+							break;
+					}
+				} else {
+					$imageobj->set($action, $result);
 				}
 				$imageobj->save();
 			}
+			return $action;
 		}
-		return $action;
 	}
+	return false;
 }
 
 /**
@@ -4269,34 +4309,40 @@ function processImageBulkActions($album) {
 function processCommentBulkActions() {
 	if (isset($_POST['ids'])) { // these is actually the folder name here!
 		$action = sanitize($_POST['checkallaction']);
+		$result = zp_apply_filter('processBulkCommentSave', NULL, $action);
 		if ($action != 'noaction') {
 			$ids = sanitize($_POST['ids']);
 			if (count($ids) > 0) {
 				foreach ($ids as $id) {
 					$comment = new Comment(sanitize_numeric($id));
-					switch ($action) {
-						case 'deleteall':
-							$comment->remove();
-							break;
-						case 'spam':
-							if (!$comment->getInModeration()) {
-								$comment->setInModeration(1);
-								zp_apply_filter('comment_disapprove', $comment);
-							}
-							break;
-						case 'approve':
-							if ($comment->getInModeration()) {
-								$comment->setInModeration(0);
-								zp_apply_filter('comment_approve', $comment);
-							}
-							break;
+					if (is_null($result)) {
+						switch ($action) {
+							case 'deleteall':
+								$comment->remove();
+								break;
+							case 'spam':
+								if (!$comment->getInModeration()) {
+									$comment->setInModeration(1);
+									zp_apply_filter('comment_disapprove', $comment);
+								}
+								break;
+							case 'approve':
+								if ($comment->getInModeration()) {
+									$comment->setInModeration(0);
+									zp_apply_filter('comment_approve', $comment);
+								}
+								break;
+						}
+					} else {
+						$comment->set($action, $result);
 					}
 					$comment->save();
 				}
+				return $action;
 			}
 		}
 	}
-	return $action;
+	return false;
 }
 
 /**
@@ -5121,7 +5167,7 @@ function linkPickerIcon($obj, $id = NULL, $extra = NULL) {
 	}
 	?>
 	<a onclick="<?php echo $clickid; ?>$('.pickedObject').removeClass('pickedObject');
-			$('#<?php echo $iconid; ?>').addClass('pickedObject');<?php linkPickerPick($obj, $id, $extra); ?>" title="<?php echo gettext('pick source'); ?>">
+				$('#<?php echo $iconid; ?>').addClass('pickedObject');<?php linkPickerPick($obj, $id, $extra); ?>" title="<?php echo gettext('pick source'); ?>">
 		<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" id="<?php echo $iconid; ?>">
 	</a>
 	<?php

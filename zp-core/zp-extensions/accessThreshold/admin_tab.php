@@ -51,8 +51,10 @@ switch (@$_POST['data_sortby']) {
 		$recentIP = sortMultiArray($recentIP, array('interval'), false, true, false, true);
 		break;
 }
+$slice = ceil(min(count($recentIP), getOption('accessThreshold_LIMIT')) / 3) * 3;
+$recentIP = array_slice($recentIP, 0, $slice);
+$rows = ceil(count($recentIP) / 3);
 
-$recentIP = array_slice($recentIP, 0, ($rows = ceil(getOption('accessThreshold_LIMIT') / 3)) * 3);
 $output = array();
 $__time = time();
 $ct = 0;
@@ -61,7 +63,7 @@ foreach ($recentIP as $ip => $data) {
 	if (isset($data['interval']) && $data['interval']) {
 		$interval = sprintf('%.1f', $data['interval']);
 	} else {
-		continue;
+		$interval = '&mdash;';
 	}
 	if (isset($data['lastAccessed']) && $data['lastAccessed'] < $__time - $accessThreshold_IP_ACCESS_WINDOW) {
 		$old = 'color:LightGrey;';

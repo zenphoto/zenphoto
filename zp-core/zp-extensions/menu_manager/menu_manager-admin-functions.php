@@ -909,10 +909,9 @@ function unpublishedZenphotoItemCheck($obj, $dropdown = true) {
  */
 function processMenuBulkActions() {
 	$report = NULL;
-	if (isset($_POST[
-									'ids'])) {
-		$action = sanitize(
-						$_POST['checkallaction']);
+	if (isset($_POST['ids'])) {
+		$action = sanitize($_POST['checkallaction']);
+		zp_apply_filter('processBulkMenuSave', $action);
 		$ids = $_POST['ids'];
 		$total = count($ids);
 		$message = NULL;
