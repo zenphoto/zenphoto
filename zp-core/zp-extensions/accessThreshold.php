@@ -123,6 +123,8 @@ class accessThreshold {
 if (OFFSET_PATH) {
 	zp_register_filter('admin_tabs', 'accessThreshold::admin_tabs');
 } else {
+	$mu = new zpMutex('aT');
+	$mu->lock();
 	$__time = time();
 	$recentIP = getSerializedArray(@file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/recentIP'));
 	if (array_key_exists('config', $recentIP)) {
@@ -147,6 +149,7 @@ if (OFFSET_PATH) {
 		}
 		$recentIP[$ip]['lastAccessed'] = $__time;
 		if (@$recentIP[$ip]['blocked']) {
+			$mu->unlock();
 			exitZP();
 		} else {
 			$recentIP[$ip]['accessed'][] = $__time;
@@ -159,6 +162,7 @@ if (OFFSET_PATH) {
 			$recentIP = array_shift(sortMultiArray($recentIP, array('lastAccessed'), true, true, false, true));
 		}
 		file_put_contents(SERVERPATH . '/' . DATA_FOLDER . '/recentIP', serialize($recentIP));
+		$mu->unlock();
 
 		unset($ip);
 		unset($recentIP);
