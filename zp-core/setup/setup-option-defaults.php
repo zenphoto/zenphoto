@@ -112,6 +112,9 @@ if (!empty($where)) {
 	db_free_result($result);
 }
 
+$old = @unserialize(getOption('zenphoto_install'));
+$from = preg_replace('/\[.*\]/', '', $old['ZENPHOTO']);
+
 setOption('zenphoto_install', serialize(installSignature()));
 $admins = $_zp_authority->getAdministrators('all');
 
@@ -426,7 +429,7 @@ if (file_exists(SERVERPATH . '/' . THEMEFOLDER . '/effervescence_plus')) {
 		}
 		?>
 		<span>
-			<img src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/setup/setup_themeOptions.php?theme=' . urlencode($theme) . $debug; ?>" title="<?php echo $theme; ?>" alt="<?php echo $theme; ?>" height="16px" width="16px" />
+			<img src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/setup/setup_themeOptions.php?theme=' . urlencode($theme) . $debug; ?>&from=<?php echo $from; ?>" title="<?php echo $theme; ?>" alt="<?php echo $theme; ?>" height="16px" width="16px" />
 		</span>
 		<?php
 	}
@@ -658,6 +661,7 @@ $plugins = getPluginFiles('*.php');
 	//clean up cacheManager storage
 	$key = array_search('cacheManager', $plugins);
 	if ($key !== false) {
+		$_GET['from'] = $from;
 		unset($plugins[$key]);
 		list($usec, $sec) = explode(" ", microtime());
 		$start = (float) $usec + (float) $sec;
@@ -672,7 +676,6 @@ $plugins = getPluginFiles('*.php');
 		$last = (float) $usec + (float) $sec;
 		setupLog(sprintf(gettext('Plugin:%1$s setup completed in %2$.4f seconds'), 'cacheManager', $last - $start));
 	}
-
 
 	natcasesort($plugins);
 	echo gettext('Plugin setup:') . '<br />';
@@ -691,7 +694,7 @@ $plugins = getPluginFiles('*.php');
 		}
 		?>
 		<span>
-			<img src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/setup/setup_pluginOptions.php?plugin=' . $extension . $debug; ?>" title="<?php echo $extension; ?>" alt="<?php echo $extension; ?>" height="16px" width="16px" />
+			<img src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/setup/setup_pluginOptions.php?plugin=' . $extension . $debug; ?>&from=<?php echo $from; ?>" title="<?php echo $extension; ?>" alt="<?php echo $extension; ?>" height="16px" width="16px" />
 		</span>
 		<?php
 		if (!$deprecate) {

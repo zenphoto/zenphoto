@@ -33,8 +33,10 @@ class accessThreshold {
 			setOptionDefault('accessThreshold_IP_ACCESS_WINDOW', 3600);
 			setOptionDefault('accessThreshold_SENSITIVITY', '255.255.255.0');
 			setOptionDefault('accessThreshold_LIMIT', 100);
-//clear out the recentIP array
-			setOption('accessThreshold_CLEAR', 1);
+			if (!isset($_GET['from']) || version_compare($_GET['from'], '1.2.6.31', '<')) {
+				//clear out the recentIP array
+				setOption('accessThreshold_CLEAR', 1);
+			}
 			self::handleOptionSave(NULL, NULL);
 		}
 	}
