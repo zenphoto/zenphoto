@@ -2,15 +2,15 @@
 
 /**
  * This plugin monitors front-end access and shuts down responses when a particular
- * IP sub-network tries to flood the gallery with requests.
+ * source tries to flood the gallery with requests.
  *
- * The sensitivity of the check can be changed by changing the <code>SENSITIVITY>/code> definition.
- * 	4 will resolve to the Host
- *  3 will resolve to the Sub-net
- *  2 will resolve to the Network
+ * A mask is used to control the scope of the data collection. For a IPv4 addresses
+ * 	255.255.255.255 will resolve to the Host.
+ *  255.255.255.0 will resolve to the Sub-net (data for all hosts in the Sub-net are grouped.)
+ *  255.255.0.0 will resolve to the Network (data for the Newtork is grouped.)
  *
- * This definition is used rather than an option to avoid database access as one ot the
- * flooding attacks it to excede the query limit of the database.
+ * Access data is not acted upon until there is at least 10 access attempts. This insures
+ * that flooding is not prematurely indicated.
  *
  * @author Stephen Billard (sbillard)
  * @Copyright 2016 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
