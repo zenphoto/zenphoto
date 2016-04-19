@@ -138,7 +138,6 @@ class Zenpage {
 			$sortdir = ' ASC';
 		}
 		switch ($sorttype) {
-			default:
 			case 'date':
 				$sortorder = 'date';
 				break;
@@ -168,7 +167,6 @@ class Zenpage {
 				break;
 			default:
 				$sortorder = 'sort_order';
-				$sortdir = '';
 				break;
 		}
 		$all_pages = array(); // Disabled cache var for now because it does not return un-publishded and published if logged on index.php somehow if logged in.
@@ -196,7 +194,7 @@ class Zenpage {
    * Returns a list of Zenpage page IDs that the current viewer is not allowed to see
    * Helper function to be used with getAllTagsUnique() and getAllTagsCount()
    * Note if the Zenpage plugin is not enabled but items exists this returns no IDs so you need an extra check afterwards!
-   * 
+   *
    * @return array
    */
   function getNotViewablePages() {
@@ -218,7 +216,7 @@ class Zenpage {
     }
     return $_zp_not_viewable_pages_list;
   }
- 
+
 	/*	 * ********************************* */
 	/* general news article functions   */
 	/*	 * ********************************* */
@@ -431,7 +429,7 @@ class Zenpage {
 		}
 		return $result;
 	}
- 
+
  /**
    * Returns a list of Zenpage news article IDs that the current viewer is not allowed to see
    * Helper function to be used with getAllTagsUnique() and getAllTagsCount() or db queries only
