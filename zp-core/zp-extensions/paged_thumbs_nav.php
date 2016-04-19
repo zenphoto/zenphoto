@@ -17,7 +17,7 @@ $option_interface = 'pagedthumbsOptions';
  */
 class pagedthumbsOptions {
 
-	function pagedthumbsOptions() {
+	function __construct() {
 		if (OFFSET_PATH == 2) {
 			setOptionDefault('pagedthumbs_imagesperpage', '10');
 			setOptionDefault('pagedthumbs_counter', '');
@@ -106,7 +106,7 @@ class pagedThumbsNav {
 	 * @param unknown_type $pagelistlength
 	 * @return pagedThumbsNav
 	 */
-	function pagedThumbsNav($imagesperpage = 0, $counter = false, $prev = '', $next = '', $width = NULL, $height = NULL, $crop = NULL, $placeholders = NULL, $showpagelist = false, $pagelistprevnext = false, $pagelistlength = 6) {
+	function __construct($imagesperpage = 0, $counter = false, $prev = '', $next = '', $width = NULL, $height = NULL, $crop = NULL, $placeholders = NULL, $showpagelist = false, $pagelistprevnext = false, $pagelistlength = 6) {
 		global $_zp_current_album, $_zp_current_image, $_zp_current_search, $_zp_gallery;
 		if (is_null($crop)) {
 			$this->crop = getOption("pagedthumbs_crop");
