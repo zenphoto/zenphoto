@@ -33,7 +33,7 @@ class accessThreshold {
 			setOptionDefault('accessThreshold_IP_ACCESS_WINDOW', 3600);
 			setOptionDefault('accessThreshold_SENSITIVITY', '255.255.255.0');
 			setOptionDefault('accessThreshold_LIMIT', 100);
-			if (!isset($_GET['from']) || version_compare($_GET['from'], '1.2.6.31', '<')) {
+			if (!isset($_GET['from']) || version_compare($_GET['from'], '1.2.6.32', '<')) {
 				//clear out the recentIP array
 				setOption('accessThreshold_CLEAR', 1);
 			}
@@ -112,6 +112,9 @@ class accessThreshold {
 
 	static function walk($v, $key) {
 		global $__previous, $__interval;
+		if (is_array($v)) {
+			$v = $v['time'];
+		}
 		if ($__previous) {
 			$__interval = $__interval + ($v - $__previous );
 		}
@@ -133,7 +136,7 @@ if (OFFSET_PATH) {
 		$accessThreshold_IP_ACCESS_WINDOW = $recentIP['config']['accessThreshold_IP_ACCESS_WINDOW'];
 		$accessThreshold_SENSITIVITY = $recentIP['config']['accessThreshold_SENSITIVITY'];
 
-		$ip = getUserIP();
+		$full_ip = $ip = getUserIP();
 		if (strpos($ip, '.') === false) {
 			$separator = ':';
 		} else {
@@ -152,7 +155,7 @@ if (OFFSET_PATH) {
 			$mu->unlock();
 			exitZP();
 		} else {
-			$recentIP[$ip]['accessed'][] = $__time;
+			$recentIP[$ip]['accessed'][] = array('time' => $__time, 'ip' => $full_ip);
 			array_walk($recentIP[$ip]['accessed'], 'accessThreshold::walk');
 			if (($recentIP[$ip]['interval'] = $__interval / count($recentIP[$ip]['accessed'])) < $accessThreshold_THRESHOLD && count($recentIP[$ip]['accessed']) >= 10) {
 				$recentIP[$ip]['blocked'] = true;
@@ -165,6 +168,7 @@ if (OFFSET_PATH) {
 		$mu->unlock();
 
 		unset($ip);
+		unset($full_ip);
 		unset($recentIP);
 		unset($__time);
 		unset($__interval);

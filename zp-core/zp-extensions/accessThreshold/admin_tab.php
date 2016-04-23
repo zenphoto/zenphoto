@@ -7,7 +7,7 @@
  * Copyright 2016 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
  *
  * @package plugins
- * @subpackage admin
+ * @subpackage development
  */
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 admin_securityChecks(DEBUG_RIGHTS, $return = currentRelativeURL());
@@ -48,7 +48,18 @@ switch (@$_POST['data_sortby']) {
 		break;
 	default:
 		$sort = 'interval';
-		$recentIP = sortMultiArray($recentIP, array('interval'), false, true, false, true);
+		uasort($recentIP, function($a, $b) {
+			$a_i = $a['interval'];
+			$b_i = $b['interval'];
+			if ($a_i === $b_i) {
+				return 0;
+			} else if ($a_i === 0) {
+				return 1;
+			} else if ($b_i === 0) {
+				return -1;
+			}
+			return strnatcmp($a_i, $b_i);
+		});
 		break;
 }
 $slice = ceil(min(count($recentIP), getOption('accessThreshold_LIMIT')) / 3) * 3;
@@ -60,6 +71,9 @@ $__time = time();
 $ct = 0;
 $legendExpired = $legendBlocked = $legendInvalid = false;
 foreach ($recentIP as $ip => $data) {
+	$ipDisp = $ip;
+	$invalid = '';
+
 	if (isset($data['interval']) && $data['interval']) {
 		$interval = sprintf('%.1f', $data['interval']);
 	} else {
@@ -72,24 +86,27 @@ foreach ($recentIP as $ip => $data) {
 		$old = '';
 	}
 	if (isset($data['blocked']) && $data['blocked']) {
-		$color = 'color:red;';
+		$invalid = 'color:red;';
 		$legendBlocked = true;
-	} else {
-		$color = '';
+		$ipDisp = '<a onclick="$.colorbox({
+										close: \'' . gettext("close") . '\',
+										maxHeight: \'80%\',
+										maxWidth: \'80%\',
+										innerWidth: \'560px\',
+										href:\'ip_list.php?selected_ip=' . $ip . '\'});">' . $ip . '</a>';
 	}
 	if (count($data['accessed']) < 10) {
 		$invalid = 'color:LightGrey;';
 		$legendInvalid = true;
-	} else {
-		$invalid = '';
 	}
 	$row = $ct % $rows;
 	$out = '<span style="width:30%;float:left;';
 	if ($even = floor($ct / $rows) % 2) {
 		$out .= 'background-color:WhiteSmoke;';
 	}
+
 	$out .='">' . "\n";
-	$out .= '  <span style="width:40%;float:left;"><span style="float:right;' . $color . '">' . $ip . '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span>' . "\n";
+	$out .= '  <span style="width:40%;float:left;"><span style="float:right;">' . $ipDisp . '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span>' . "\n";
 	$out .= '  <span style="width:48%;float:left;' . $old . '">' . date('Y-m-d H:i:s', $data['lastAccessed']) . '</span>' . "\n";
 	$out .= '  <span style="width:3%;float:left;"><span style="float:right;' . $invalid . '">' . $interval . '</span></span>' . "\n";
 	$out .= "</span>\n";
@@ -140,14 +157,14 @@ echo "\n</head>";
 					?>
 					<br style="clearall">
 					<?php
-					if ($legendBlocked) {
-						echo '<p>' . gettext('IP addresses in <span style="color:Red;">red</span> have been blocked.') . '</p>';
-					}
 					if ($legendExpired) {
 						echo '<p>' . gettext('Timestamps that are <span style="color:LightGrey;">grayed out</span> have expired.') . '</p>';
 					}
 					if ($legendInvalid) {
 						echo '<p>' . gettext('Intervals that are <span style="color:LightGrey;">grayed out</span> have insufficient data to be valid.') . '</p>';
+					}
+					if ($legendBlocked) {
+						echo '<p>' . gettext('Intervals that are <span style="color:Red;">red</span> have caused the address to be blocked. Click on the address for a list of IPs seen.') . '</p>';
 					}
 					?>
 				</div>
