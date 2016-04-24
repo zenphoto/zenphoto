@@ -91,8 +91,6 @@ if (isset($_GET['action'])) {
 }
 
 printAdminHeader('users');
-?>
-<?php
 echo '</head>' . "\n";
 ?>
 

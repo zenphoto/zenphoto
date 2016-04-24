@@ -16,7 +16,7 @@
  * @Copyright 2016 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
  *
  * @package plugins
- * @subpackage development
+ * @subpackage admin
  */
 $plugin_is_filter = 990 | FEATURE_PLUGIN;
 $plugin_description = gettext("Tools to block denial of service attacks.");
@@ -91,6 +91,24 @@ class accessThreshold {
 	}
 
 	static function admin_tabs($tabs) {
+		global $_zp_current_admin_obj;
+		if ((zp_loggedin(ADMIN_RIGHTS) && $_zp_current_admin_obj->getID())) {
+			if (isset($tabs['users']['subtabs'])) {
+				$subtabs = $tabs['users']['subtabs'];
+			} else {
+				$subtabs = array(
+						gettext('users') => 'admin-users.php?page=users&tab=users'
+				);
+			}
+			$subtabs[gettext("access")] = PLUGIN_FOLDER . '/accessThreshold/admin_tab.php?page=users&tab=access';
+			ksort($subtabs, SORT_LOCALE_STRING);
+			$tabs['users'] = array('text' => gettext("admin"),
+					'link' => WEBPATH . "/" . ZENFOLDER . '/admin-users.php?page=users&tab=users',
+					'subtabs' => $subtabs,
+					'default' => 'users');
+		}
+		return $tabs;
+
 		if (zp_loggedin(ADMIN_RIGHTS)) {
 			if (!isset($tabs['development'])) {
 				$tabs['development'] = array('text' => gettext("development"),

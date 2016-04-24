@@ -7,13 +7,10 @@
  * Copyright 2016 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
  *
  * @package plugins
- * @subpackage development
+ * @subpackage admin
  */
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 admin_securityChecks(DEBUG_RIGHTS, $return = currentRelativeURL());
-
-$subtab = getSubtabs();
-printAdminHeader('development', $subtab);
 
 $recentIP = getSerializedArray(@file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/recentIP'));
 $accessThreshold_THRESHOLD = $recentIP['config']['accessThreshold_THRESHOLD'];
@@ -122,6 +119,7 @@ if (empty($output)) {
 	$output[] = gettext("No entries excede the noise level");
 }
 
+printAdminHeader('users');
 echo "\n</head>";
 ?>
 

@@ -7,7 +7,7 @@
  * Copyright 2016 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
  *
  * @package plugins
- * @subpackage development
+ * @subpackage admin
  */
 
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
