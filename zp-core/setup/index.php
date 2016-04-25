@@ -1712,9 +1712,6 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 								setupLog(gettext("Done with database creation and update"), true);
 
 								// set defaults on any options that need it
-								if ($prevRel = getOption('zenphoto_release')) {
-									setupLog(sprintf(gettext("Previous Release was %s"), $prevRel), true);
-								}
 								require(dirname(__FILE__) . '/setup-option-defaults.php');
 
 								if ($debug == 'albumids') {

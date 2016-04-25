@@ -2,21 +2,21 @@
 
 /**
  * This plugin monitors front-end access and shuts down responses when a particular
- * IP sub-network tries to flood the gallery with requests.
+ * source tries to flood the gallery with requests.
  *
- * The sensitivity of the check can be changed by changing the <code>SENSITIVITY>/code> definition.
- * 	4 will resolve to the Host
- *  3 will resolve to the Sub-net
- *  2 will resolve to the Network
+ * A mask is used to control the scope of the data collection. For a IPv4 addresses
+ * 	255.255.255.255 will resolve to the Host.
+ *  255.255.255.0 will resolve to the Sub-net (data for all hosts in the Sub-net are grouped.)
+ *  255.255.0.0 will resolve to the Network (data for the Newtork is grouped.)
  *
- * This definition is used rather than an option to avoid database access as one ot the
- * flooding attacks it to excede the query limit of the database.
+ * Access data is not acted upon until there is at least 10 access attempts. This insures
+ * that flooding is not prematurely indicated.
  *
  * @author Stephen Billard (sbillard)
  * @Copyright 2016 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
  *
  * @package plugins
- * @subpackage development
+ * @subpackage admin
  */
 $plugin_is_filter = 990 | FEATURE_PLUGIN;
 $plugin_description = gettext("Tools to block denial of service attacks.");
@@ -33,8 +33,10 @@ class accessThreshold {
 			setOptionDefault('accessThreshold_IP_ACCESS_WINDOW', 3600);
 			setOptionDefault('accessThreshold_SENSITIVITY', '255.255.255.0');
 			setOptionDefault('accessThreshold_LIMIT', 100);
-//clear out the recentIP array
-			setOption('accessThreshold_CLEAR', 1);
+			if (!isset($_GET['from']) || version_compare($_GET['from'], '1.2.6.32', '<')) {
+				//clear out the recentIP array
+				setOption('accessThreshold_CLEAR', 1);
+			}
 			self::handleOptionSave(NULL, NULL);
 		}
 	}
@@ -89,6 +91,24 @@ class accessThreshold {
 	}
 
 	static function admin_tabs($tabs) {
+		global $_zp_current_admin_obj;
+		if ((zp_loggedin(ADMIN_RIGHTS) && $_zp_current_admin_obj->getID())) {
+			if (isset($tabs['users']['subtabs'])) {
+				$subtabs = $tabs['users']['subtabs'];
+			} else {
+				$subtabs = array(
+						gettext('users') => 'admin-users.php?page=users&tab=users'
+				);
+			}
+			$subtabs[gettext("access")] = PLUGIN_FOLDER . '/accessThreshold/admin_tab.php?page=users&tab=access';
+			ksort($subtabs, SORT_LOCALE_STRING);
+			$tabs['users'] = array('text' => gettext("admin"),
+					'link' => WEBPATH . "/" . ZENFOLDER . '/admin-users.php?page=users&tab=users',
+					'subtabs' => $subtabs,
+					'default' => 'users');
+		}
+		return $tabs;
+
 		if (zp_loggedin(ADMIN_RIGHTS)) {
 			if (!isset($tabs['development'])) {
 				$tabs['development'] = array('text' => gettext("development"),
@@ -110,6 +130,9 @@ class accessThreshold {
 
 	static function walk($v, $key) {
 		global $__previous, $__interval;
+		if (is_array($v)) {
+			$v = $v['time'];
+		}
 		if ($__previous) {
 			$__interval = $__interval + ($v - $__previous );
 		}
@@ -121,6 +144,8 @@ class accessThreshold {
 if (OFFSET_PATH) {
 	zp_register_filter('admin_tabs', 'accessThreshold::admin_tabs');
 } else {
+	$mu = new zpMutex('aT');
+	$mu->lock();
 	$__time = time();
 	$recentIP = getSerializedArray(@file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/recentIP'));
 	if (array_key_exists('config', $recentIP)) {
@@ -129,7 +154,7 @@ if (OFFSET_PATH) {
 		$accessThreshold_IP_ACCESS_WINDOW = $recentIP['config']['accessThreshold_IP_ACCESS_WINDOW'];
 		$accessThreshold_SENSITIVITY = $recentIP['config']['accessThreshold_SENSITIVITY'];
 
-		$ip = getUserIP();
+		$full_ip = $ip = getUserIP();
 		if (strpos($ip, '.') === false) {
 			$separator = ':';
 		} else {
@@ -145,9 +170,10 @@ if (OFFSET_PATH) {
 		}
 		$recentIP[$ip]['lastAccessed'] = $__time;
 		if (@$recentIP[$ip]['blocked']) {
+			$mu->unlock();
 			exitZP();
 		} else {
-			$recentIP[$ip]['accessed'][] = $__time;
+			$recentIP[$ip]['accessed'][] = array('time' => $__time, 'ip' => $full_ip);
 			array_walk($recentIP[$ip]['accessed'], 'accessThreshold::walk');
 			if (($recentIP[$ip]['interval'] = $__interval / count($recentIP[$ip]['accessed'])) < $accessThreshold_THRESHOLD && count($recentIP[$ip]['accessed']) >= 10) {
 				$recentIP[$ip]['blocked'] = true;
@@ -157,8 +183,10 @@ if (OFFSET_PATH) {
 			$recentIP = array_shift(sortMultiArray($recentIP, array('lastAccessed'), true, true, false, true));
 		}
 		file_put_contents(SERVERPATH . '/' . DATA_FOLDER . '/recentIP', serialize($recentIP));
+		$mu->unlock();
 
 		unset($ip);
+		unset($full_ip);
 		unset($recentIP);
 		unset($__time);
 		unset($__interval);
