@@ -33,10 +33,10 @@ require_once(dirname(__FILE__) . '/load_objectClasses.php');
 $_zp_current_context_stack = array();
 
 $_zp_albumthumb_selector = array(array('field' => '', 'direction' => '', 'desc' => 'random'),
-				array('field' => 'id', 'direction' => 'DESC', 'desc' => gettext('most recent')),
-				array('field' => 'mtime', 'direction' => '', 'desc' => gettext('oldest')),
-				array('field' => 'title', 'direction' => '', 'desc' => gettext('first alphabetically')),
-				array('field' => 'hitcounter', 'direction' => 'DESC', 'desc' => gettext('most viewed'))
+		array('field' => 'id', 'direction' => 'DESC', 'desc' => gettext('most recent')),
+		array('field' => 'mtime', 'direction' => '', 'desc' => gettext('oldest')),
+		array('field' => 'title', 'direction' => '', 'desc' => gettext('first alphabetically')),
+		array('field' => 'hitcounter', 'direction' => 'DESC', 'desc' => gettext('most viewed'))
 );
 
 $_zp_missing_album = new TransientAlbum(gettext('missing'));
@@ -1240,7 +1240,7 @@ function storeTags($tags, $id, $tbl) {
  *
  * @param int $id the record id of the album/image
  * @param string $tbl 'albums' or 'images', etc.
- * @return unknown
+ * @return array
  */
 function readTags($id, $tbl, $language) {
 	global $_zp_current_locale;
