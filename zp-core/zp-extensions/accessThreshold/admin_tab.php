@@ -15,6 +15,7 @@ admin_securityChecks(DEBUG_RIGHTS, $return = currentRelativeURL());
 $recentIP = getSerializedArray(@file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/recentIP'));
 $accessThreshold_THRESHOLD = $recentIP['config']['accessThreshold_THRESHOLD'];
 $accessThreshold_IP_ACCESS_WINDOW = $recentIP['config']['accessThreshold_IP_ACCESS_WINDOW'];
+$accessThreshold_LocaleCount = $recentIP['config']['accessThreshold_LocaleCount'];
 
 unset($recentIP['config']);
 
@@ -66,10 +67,10 @@ $rows = ceil(count($recentIP) / 3);
 $output = array();
 $__time = time();
 $ct = 0;
-$legendExpired = $legendBlocked = $legendInvalid = false;
+$legendExpired = $legendBlocked = $legendLocaleBlocked = $legendInvalid = false;
 foreach ($recentIP as $ip => $data) {
 	$ipDisp = $ip;
-	$invalid = '';
+	$localeBlock = $invalid = '';
 
 	if (isset($data['interval']) && $data['interval']) {
 		$interval = sprintf('%.1f', $data['interval']);
@@ -83,6 +84,12 @@ foreach ($recentIP as $ip => $data) {
 		$old = '';
 	}
 	if (isset($data['blocked']) && $data['blocked']) {
+		if (isset($data['locales']) && count($data['locales']) > $accessThreshold_LocaleCount) {
+			$localeBlock = '*';
+			$legendLocaleBlocked = true;
+		} else {
+
+		}
 		$invalid = 'color:red;';
 		$legendBlocked = true;
 		$ipDisp = '<a onclick="$.colorbox({
@@ -105,7 +112,7 @@ foreach ($recentIP as $ip => $data) {
 	$out .='">' . "\n";
 	$out .= '  <span style="width:40%;float:left;"><span style="float:right;">' . $ipDisp . '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span>' . "\n";
 	$out .= '  <span style="width:48%;float:left;' . $old . '">' . date('Y-m-d H:i:s', $data['lastAccessed']) . '</span>' . "\n";
-	$out .= '  <span style="width:3%;float:left;"><span style="float:right;' . $invalid . '">' . $interval . '</span></span>' . "\n";
+	$out .= '  <span style="width:3%;float:left;"><span style="float:right;' . $invalid . '">' . $localeBlock . $interval . '</span></span>' . "\n";
 	$out .= "</span>\n";
 
 	if (isset($output[$row])) {
@@ -162,7 +169,12 @@ echo "\n</head>";
 						echo '<p>' . gettext('Intervals that are <span style="color:LightGrey;">grayed out</span> have insufficient data to be valid.') . '</p>';
 					}
 					if ($legendBlocked) {
-						echo '<p>' . gettext('Intervals that are <span style="color:Red;">red</span> have caused the address to be blocked. Click on the address for a list of IPs seen.') . '</p>';
+						echo '<p>';
+						echo gettext('Intervals that are <span style="color:Red;">red</span> have caused the address to be blocked. Click on the address for a list of IPs seen.');
+						if ($legendLocaleBlocked) {
+							echo '<br />' . gettext('<span style="color:Red;">*</span> blocked because of locale abuse.');
+						}
+						echo '</p>';
 					}
 					?>
 				</div>
