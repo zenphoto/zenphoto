@@ -87,8 +87,6 @@ foreach ($recentIP as $ip => $data) {
 		if (isset($data['locales']) && count($data['locales']) > $accessThreshold_LocaleCount) {
 			$localeBlock = '*';
 			$legendLocaleBlocked = true;
-		} else {
-
 		}
 		$invalid = 'color:red;';
 		$legendBlocked = true;
@@ -99,7 +97,7 @@ foreach ($recentIP as $ip => $data) {
 										innerWidth: \'560px\',
 										href:\'ip_list.php?selected_ip=' . $ip . '\'});">' . $ip . '</a>';
 	}
-	if (count($data['accessed']) < 10) {
+	if (!$localeBlock && count($data['accessed']) < 10) {
 		$invalid = 'color:LightGrey;';
 		$legendInvalid = true;
 	}
@@ -170,7 +168,7 @@ echo "\n</head>";
 					}
 					if ($legendBlocked) {
 						echo '<p>';
-						echo gettext('Intervals that are <span style="color:Red;">red</span> have caused the address to be blocked. Click on the address for a list of IPs seen.');
+						echo gettext('Address with intervals that are <span style="color:Red;">red</span> have been blocked. Click on the address for a list of IPs seen.');
 						if ($legendLocaleBlocked) {
 							echo '<br />' . gettext('<span style="color:Red;">*</span> blocked because of locale abuse.');
 						}

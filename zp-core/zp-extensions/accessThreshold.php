@@ -187,7 +187,7 @@ if (OFFSET_PATH) {
 			$recentIP[$ip]['accessed'][] = array('time' => $__time, 'ip' => $full_ip);
 			$recentIP[$ip]['locales'][getUserLocale()] = 1;
 			array_walk($recentIP[$ip]['accessed'], 'accessThreshold::walk');
-			if ((count($recentIP[$ip]['locales']) > $accessThreshold_LocaleCount) || ($recentIP[$ip]['interval'] = $__interval / count($recentIP[$ip]['accessed'])) < $accessThreshold_THRESHOLD && count($recentIP[$ip]['accessed']) >= 10) {
+			if ((count($recentIP[$ip]['locales']) > $accessThreshold_LocaleCount) || (($recentIP[$ip]['interval'] = $__interval / count($recentIP[$ip]['accessed'])) < $accessThreshold_THRESHOLD && count($recentIP[$ip]['accessed']) >= 10)) {
 				$recentIP[$ip]['blocked'] = true;
 			}
 		}
