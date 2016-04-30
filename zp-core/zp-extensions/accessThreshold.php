@@ -137,10 +137,12 @@ class accessThreshold {
 		global $__previous, $__interval, $__count;
 		$v = @$v['time'];
 		if ($__time - $v < 3600) { //only the within the last 10 minutes
-			$__interval = $__interval + ($v - $__previous);
-			$__previous = $v;
+			if ($__count > 0) {
+				$__interval = $__interval + ($v - $__previous);
+			}
 			$__count++;
 		}
+		$__previous = $v;
 	}
 
 }
@@ -177,6 +179,7 @@ if (OFFSET_PATH) {
 			$recentIP[$ip]['accessed'] = array();
 			$recentIP[$ip]['locales'] = array();
 			$recentIP[$ip]['blocked'] = false;
+			$recentIP[$ip]['interval'] = 0;
 		}
 		if (@$recentIP[$ip]['blocked']) {
 			$mu->unlock();
@@ -194,13 +197,20 @@ if (OFFSET_PATH) {
 
 			$__previous = $__interval = $__count = 0;
 			array_walk($recentIP[$ip]['accessed'], 'accessThreshold::walk', $__time);
-			if ($__count > 10 && ($__interval / $__count) < $accessThreshold_THRESHOLD) {
+			if ($__count > 1) {
+				$__interval = $__interval / $__count;
+			} else {
+				$__interval = 0;
+			}
+			$recentIP[$ip]['interval'] = $__interval;
+			if ($__count > 10 && $__interval < $accessThreshold_THRESHOLD) {
 				$recentIP[$ip]['blocked'] = 2;
 			}
 		}
 		if (count($recentIP) > $accessThreshold_IP_RETENTION) {
 			$recentIP = array_shift(sortMultiArray($recentIP, array('lastAccessed'), true, true, false, true));
 		}
+
 		file_put_contents(SERVERPATH . '/' . DATA_FOLDER . '/recentIP', serialize($recentIP));
 		$mu->unlock();
 
