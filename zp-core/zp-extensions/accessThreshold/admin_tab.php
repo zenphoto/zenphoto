@@ -84,9 +84,10 @@ foreach ($recentIP as $ip => $data) {
 		$old = '';
 	}
 	if (isset($data['blocked']) && $data['blocked']) {
-		if (isset($data['locales']) && count($data['locales']) > $accessThreshold_LocaleCount) {
+		if ($data['blocked'] == 1) {
 			$localeBlock = '*';
 			$legendLocaleBlocked = true;
+			$interval = '&ndash;';
 		}
 		$invalid = 'color:red;';
 		$legendBlocked = true;

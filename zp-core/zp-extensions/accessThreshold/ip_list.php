@@ -14,15 +14,16 @@ require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 
 $ip = sanitize($_GET['selected_ip']);
 $recentIP = getSerializedArray(@file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/recentIP'));
-$list = array();
+$localeList = $ipList = array();
 if (isset($recentIP[$ip])) {
 	foreach ($recentIP[$ip]['accessed'] as $instance) {
-		if (is_array($instance)) {
-			$list[] = $instance['ip'];
-		}
+		$ipList[] = $instance['ip'];
+	}
+	$ipList = array_unique($ipList);
+	foreach ($recentIP[$ip]['locales'] as $instance => $data) {
+		$localeList[] = $instance;
 	}
 }
-$list = array_unique($list);
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -47,11 +48,24 @@ $list = array_unique($list);
 			<div id="content">
 				<ol>
 					<?php
-					foreach ($list as $ip) {
+					foreach ($ipList as $ip) {
 						echo '<li>' . $ip . '</li>';
 					}
 					?>
 				</ol>
+				<?php
+				if (!empty($localeList)) {
+					?>
+					<ol>
+						<?php
+						foreach ($localeList as $locale) {
+							echo '<li>' . $locale . '</li>';
+						}
+						?>
+					</ol>
+					<?php
+				}
+				?>
 			</div>
 		</div>
 	</body>
