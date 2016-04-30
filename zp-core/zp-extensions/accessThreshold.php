@@ -34,7 +34,7 @@ class accessThreshold {
 			setOptionDefault('accessThreshold_SENSITIVITY', '255.255.255.0');
 			setOptionDefault('accessThreshold_LocaleCount', 5);
 			setOptionDefault('accessThreshold_LIMIT', 100);
-			if (!isset($_GET['from']) || version_compare($_GET['from'], '1.2.6.32', '<')) {
+			if (!isset($_GET['from']) || version_compare($_GET['from'], '1.3.0.2', '<')) {
 				//clear out the recentIP array
 				setOption('accessThreshold_CLEAR', 1);
 			}
