@@ -34,7 +34,7 @@ class accessThreshold {
 			setOptionDefault('accessThreshold_SENSITIVITY', '255.255.255.0');
 			setOptionDefault('accessThreshold_LocaleCount', 5);
 			setOptionDefault('accessThreshold_LIMIT', 100);
-			if (!isset($_GET['from']) || version_compare($_GET['from'], '1.3.0.2', '<')) {
+			if (!isset($_GET['from']) || version_compare($_GET['from'], '1.3.0.3', '<')) {
 				//clear out the recentIP array
 				setOption('accessThreshold_CLEAR', 1);
 			}
@@ -188,8 +188,11 @@ if (OFFSET_PATH) {
 			exitZP();
 		} else {
 			$recentIP[$ip]['accessed'][] = array('time' => $__time, 'ip' => $full_ip);
-			if (!isset($recentIP[$ip]['locales'][getUserLocale()])) {
-				$recentIP[$ip]['locales'][getUserLocale()] = array('time' => $__time, 'ip' => $full_ip);
+			$__locale = getUserLocale();
+			if (isset($recentIP[$ip]['locales'][$__locale])) {
+				$recentIP[$ip]['locales'][$__locale]['ip'][$full_ip] = $__time;
+			} else {
+				$recentIP[$ip]['locales'][$__locale] = array('time' => $__time, 'ip' => array($full_ip => $__time));
 			}
 
 			$__previous = $__interval = $__count = 0;
@@ -234,6 +237,7 @@ if (OFFSET_PATH) {
 		unset($__interval);
 		unset($__previous);
 		unset($__count);
+		unset($__locale);
 	}
 }
 ?>

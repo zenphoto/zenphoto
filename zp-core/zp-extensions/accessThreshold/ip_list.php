@@ -21,7 +21,9 @@ if (isset($recentIP[$ip])) {
 	}
 	$ipList = array_unique($ipList);
 	foreach ($recentIP[$ip]['locales'] as $instance => $data) {
-		$localeList[] = $instance;
+		foreach ($data['ip'] as $ip => $time) {
+			$localeList[$ip][$instance] = $time;
+		}
 	}
 }
 ?>
@@ -49,23 +51,19 @@ if (isset($recentIP[$ip])) {
 				<ol>
 					<?php
 					foreach ($ipList as $ip) {
-						echo '<li>' . $ip . '</li>';
+						echo '<li>';
+						echo $ip;
+						if (isset($localeList[$ip])) {
+							echo '<ol>';
+							foreach ($localeList[$ip] as $instance => $time) {
+								echo '<li>' . $instance . '</li>';
+							}
+							echo '</ol>';
+						}
+						echo '</li>';
 					}
 					?>
 				</ol>
-				<?php
-				if (!empty($localeList)) {
-					?>
-					<ol>
-						<?php
-						foreach ($localeList as $locale) {
-							echo '<li>' . $locale . '</li>';
-						}
-						?>
-					</ol>
-					<?php
-				}
-				?>
 			</div>
 		</div>
 	</body>
