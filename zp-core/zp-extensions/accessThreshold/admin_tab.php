@@ -13,10 +13,7 @@ require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 admin_securityChecks(DEBUG_RIGHTS, $return = currentRelativeURL());
 
 $recentIP = getSerializedArray(@file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/recentIP'));
-$accessThreshold_THRESHOLD = $recentIP['config']['accessThreshold_THRESHOLD'];
-$accessThreshold_IP_ACCESS_WINDOW = $recentIP['config']['accessThreshold_IP_ACCESS_WINDOW'];
-$accessThreshold_LocaleCount = $recentIP['config']['accessThreshold_LocaleCount'];
-
+$__config = $recentIP['config'];
 unset($recentIP['config']);
 
 switch (@$_POST['data_sortby']) {
@@ -77,7 +74,7 @@ foreach ($recentIP as $ip => $data) {
 	} else {
 		$interval = '&mdash;';
 	}
-	if (isset($data['lastAccessed']) && $data['lastAccessed'] < $__time - $accessThreshold_IP_ACCESS_WINDOW) {
+	if (isset($data['lastAccessed']) && $data['lastAccessed'] < $__time - $__config['accessThreshold_IP_ACCESS_WINDOW']) {
 		$old = 'color:LightGrey;';
 		$legendExpired = true;
 	} else {
@@ -87,7 +84,9 @@ foreach ($recentIP as $ip => $data) {
 		if ($data['blocked'] == 1) {
 			$localeBlock = '*';
 			$legendLocaleBlocked = true;
-			$interval = '&ndash;';
+			if ($interval >= $__config['accessThreshold_THRESHOLD']) {
+				$interval = '&ndash;';
+			}
 		}
 		$invalid = 'color:red;';
 		$legendBlocked = true;
@@ -97,8 +96,7 @@ foreach ($recentIP as $ip => $data) {
 										maxWidth: \'80%\',
 										innerWidth: \'560px\',
 										href:\'ip_list.php?selected_ip=' . $ip . '\'});">' . $ip . '</a>';
-	}
-	if (!$localeBlock && count($data['accessed']) < 10) {
+	} else if (count($data['accessed']) < 10) {
 		$invalid = 'color:LightGrey;';
 		$legendInvalid = true;
 	}
@@ -171,7 +169,7 @@ echo "\n</head>";
 						echo '<p>';
 						echo gettext('Address with intervals that are <span style="color:Red;">red</span> have been blocked. Click on the address for a list of IPs seen.');
 						if ($legendLocaleBlocked) {
-							echo '<br />' . gettext('<span style="color:Red;">*</span> blocked because of locale abuse.');
+							echo '<br />' . gettext('<span style="color:Red;">*</span> blocked because of <em>locale</em> abuse.');
 						}
 						echo '</p>';
 					}

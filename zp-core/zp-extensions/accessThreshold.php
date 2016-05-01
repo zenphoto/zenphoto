@@ -133,14 +133,16 @@ class accessThreshold {
 		return $tabs;
 	}
 
-	static function walk($v, $key, $__time) {
+	static function walk(&$element, $key, $__time) {
 		global $__previous, $__interval, $__count;
-		$v = @$v['time'];
+		$v = @$element['time'];
 		if ($__time - $v < 3600) { //only the within the last 10 minutes
 			if ($__count > 0) {
 				$__interval = $__interval + ($v - $__previous);
 			}
 			$__count++;
+		} else {
+			$element = NULL;
 		}
 		$__previous = $v;
 	}
@@ -152,79 +154,86 @@ if (OFFSET_PATH) {
 } else {
 	$mu = new zpMutex('aT');
 	$mu->lock();
-	$__time = time();
 	$recentIP = getSerializedArray(@file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/recentIP'));
 	if (array_key_exists('config', $recentIP)) {
-		$accessThreshold_IP_RETENTION = $recentIP['config']['accessThreshold_IP_RETENTION'];
-		$accessThreshold_THRESHOLD = $recentIP['config']['accessThreshold_THRESHOLD'];
-		$accessThreshold_IP_ACCESS_WINDOW = $recentIP['config']['accessThreshold_IP_ACCESS_WINDOW'];
-		$accessThreshold_SENSITIVITY = $recentIP['config']['accessThreshold_SENSITIVITY'];
-		if (array_key_exists('accessThreshold_LocaleCount', $recentIP['config'])) {
-			$accessThreshold_LocaleCount = $recentIP['config']['accessThreshold_LocaleCount'];
-		} else {
-			$accessThreshold_LocaleCount = 5;
+		$__time = time();
+		$__config = $recentIP['config'];
+		if (!isset($__config['accessThreshold_LocaleCount'])) {
+			$__config['accessThreshold_LocaleCount'] = 5;
 		}
 
-		$full_ip = $ip = getUserIP();
-		if (strpos($ip, '.') === false) {
+		$full_ip = getUserIP();
+		if (strpos($full_ip, '.') === false) {
+			//ip v6
 			$separator = ':';
 		} else {
 			$separator = '.';
 		}
-		$x = explode($separator, $ip);
-		$x = array_slice($x, 0, $accessThreshold_SENSITIVITY);
+		$x = array_slice(explode($separator, $full_ip), 0, $__config['accessThreshold_SENSITIVITY']);
 		$ip = implode($separator, $x);
+		unset($x);
 
-		if (isset($recentIP[$ip]['lastAccessed']) && $recentIP[$ip]['lastAccessed'] < $__time - $accessThreshold_IP_ACCESS_WINDOW) {
-			$recentIP[$ip]['accessed'] = array();
-			$recentIP[$ip]['locales'] = array();
-			$recentIP[$ip]['blocked'] = false;
-			$recentIP[$ip]['interval'] = 0;
+		if (isset($recentIP[$ip]['lastAccessed']) && $__time - $recentIP[$ip]['lastAccessed'] > $__config['accessThreshold_IP_ACCESS_WINDOW']) {
+			$recentIP[$ip] = array(
+					'accessed' => array(),
+					'locales' => array(),
+					'blocked' => 0,
+					'interval' => 0
+			);
 		}
+		$recentIP[$ip]['lastAccessed'] = $__time;
 		if (@$recentIP[$ip]['blocked']) {
+			file_put_contents(SERVERPATH . '/' . DATA_FOLDER . '/recentIP', serialize($recentIP));
 			$mu->unlock();
 			exitZP();
 		} else {
-			$recentIP[$ip]['lastAccessed'] = $__time;
 			$recentIP[$ip]['accessed'][] = array('time' => $__time, 'ip' => $full_ip);
-			$recentIP[$ip]['locales'][getUserLocale()] = array('time' => $__time, 'ip' => $full_ip);
+			if (!isset($recentIP[$ip]['locales'][getUserLocale()])) {
+				$recentIP[$ip]['locales'][getUserLocale()] = array('time' => $__time, 'ip' => $full_ip);
+			}
 
 			$__previous = $__interval = $__count = 0;
 			array_walk($recentIP[$ip]['locales'], 'accessThreshold::walk', $__time);
-			if ($__count > $accessThreshold_LocaleCount) {
+			foreach ($recentIP[$ip]['locales'] as $key => $data) {
+				if (is_null($data)) {
+					unset($recentIP[$ip]['locales'][$key]);
+				}
+			}
+			if ($__count > $__config['accessThreshold_LocaleCount']) {
 				$recentIP[$ip]['blocked'] = 1;
 			}
 
 			$__previous = $__interval = $__count = 0;
 			array_walk($recentIP[$ip]['accessed'], 'accessThreshold::walk', $__time);
+			foreach ($recentIP[$ip]['accessed'] as $key => $data) {
+				if (is_null($data)) {
+					unset($recentIP[$ip]['accessed'][$key]);
+				}
+			}
 			if ($__count > 1) {
 				$__interval = $__interval / $__count;
 			} else {
 				$__interval = 0;
 			}
 			$recentIP[$ip]['interval'] = $__interval;
-			if ($__count > 10 && $__interval < $accessThreshold_THRESHOLD) {
+			if ($__count > 10 && $__interval < $__config['accessThreshold_THRESHOLD']) {
 				$recentIP[$ip]['blocked'] = 2;
 			}
 		}
-		if (count($recentIP) > $accessThreshold_IP_RETENTION) {
+		if (count($recentIP) > $__config['accessThreshold_IP_RETENTION']) {
 			$recentIP = array_shift(sortMultiArray($recentIP, array('lastAccessed'), true, true, false, true));
 		}
-
 		file_put_contents(SERVERPATH . '/' . DATA_FOLDER . '/recentIP', serialize($recentIP));
 		$mu->unlock();
 
 		unset($ip);
 		unset($full_ip);
 		unset($recentIP);
+		unset($__config);
 		unset($__time);
 		unset($__interval);
 		unset($__previous);
 		unset($__count);
-		unset($accessThreshold_IP_RETENTION);
-		unset($accessThreshold_THRESHOLD);
-		unset($accessThreshold_IP_ACCESS_WINDOW);
-		unset($accessThreshold_SENSITIVITY);
 	}
 }
 ?>
