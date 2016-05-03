@@ -56,6 +56,10 @@ if ($result) {
 
 //migrate "publish" dates
 foreach (array('albums', 'images', 'news', 'pages') as $table) {
+	$sql = 'UPDATE ' . prefix($table) . ' SET `publishdate`=NULL WHERE `publishdate` ="0000-00-00 00:00:00"';
+	query($sql);
+	$sql = 'UPDATE ' . prefix($table) . ' SET `expiredate`=NULL WHERE `expiredate` ="0000-00-00 00:00:00"';
+	query($sql);
 	$sql = 'UPDATE ' . prefix($table) . ' SET `publishdate`=`date` WHERE `publishdate` IS NULL AND `show`="1"';
 	query($sql);
 }

@@ -476,15 +476,16 @@ class ThemeObject extends PersistentObject {
 		$now = date('Y-m-d H:i:s');
 		if ($this->getShow()) {
 			$d = $this->getExpireDate();
-			if ($d != '0000-00-00 00:00:00' && $d < $now || $this->getPublishDate() > $now) {
+			if ($d && $d < $now || $this->getPublishDate() > $now) {
 				$this->setShow(0);
 				$this->save();
 			}
 		} else {
 			$d = $this->getPublishDate();
-			if ($d != '0000-00-00 00:00:00' && $d <= $now)
+			if ($d && $d <= $now) {
 				$this->setShow(1);
-			$this->save();
+				$this->save();
+			}
 		}
 	}
 
@@ -837,12 +838,7 @@ class ThemeObject extends PersistentObject {
 	 * @return string
 	 */
 	function getExpireDate() {
-		$dt = $this->get("expiredate");
-		if ($dt == '0000-00-00 00:00:00') {
-			return NULL;
-		} else {
-			return $dt;
-		}
+		return $this->get("expiredate");
 	}
 
 	/**

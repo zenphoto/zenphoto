@@ -1424,7 +1424,7 @@ function printHomeLink($before = '', $after = '', $title = NULL, $class = NULL, 
 function getAlbumDate($format = null) {
 	global $_zp_current_album;
 	$d = $_zp_current_album->getDateTime();
-	if (empty($d) || ($d == '0000-00-00 00:00:00')) {
+	if (empty($d)) {
 		return false;
 	}
 	if (is_null($format)) {
@@ -2133,7 +2133,7 @@ function getImageDate($format = null) {
 		return false;
 	global $_zp_current_image;
 	$d = $_zp_current_image->getDateTime();
-	if (empty($d) || ($d == '0000-00-00 00:00:00')) {
+	if (empty($d)) {
 		return false;
 	}
 	if (is_null($format)) {

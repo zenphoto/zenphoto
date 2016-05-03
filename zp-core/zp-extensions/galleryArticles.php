@@ -121,8 +121,9 @@ class galleryArticles {
 	 */
 	static function published($obj) {
 		global $_seen;
-		if ($_seen && !in_array($obj, $_seen)) { //prevent recursive publications
-			$seen[] = $obj;
+		$me = array($obj->table, $obj->getID());
+		if (!$_seen || !in_array($me, $_seen)) { //prevent recursive publications
+			$_seen[] = $me;
 			self::publishArticlesWithCheck($obj);
 		}
 		return $obj;

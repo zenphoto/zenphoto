@@ -457,9 +457,6 @@ class optionalObjectFields extends fieldExtender {
 			$item = NULL;
 			if (true || $obj->isMyItem($obj->manage_some_rights)) {
 				$d = $obj->getDateTime();
-				if ($d == '0000-00-00 00:00:00') {
-					$d = '';
-				}
 				ob_start();
 				?>
 				<script type="text/javascript">
