@@ -387,7 +387,7 @@ class optionalObjectFields extends fieldExtender {
 	}
 
 	static function bulkCMSSave($result, $action, $type) {
-		return parent::bulkSave($result, $action, $type, $NULL, self::fields());
+		return parent::bulkSave($result, $action, $type, NULL, self::fields());
 	}
 
 	static function owner($obj, $instance, $field, $type) {
