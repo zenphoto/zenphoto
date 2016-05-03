@@ -58,40 +58,40 @@ class galleryArticles {
 
 			$list = array('<em>' . gettext('Albums') . '</em>' => 'galleryArticles_albums', '<em>' . gettext('Images') . '</em>' => 'galleryArticles_images');
 
-			$options = array(gettext('Publish for')			 => array('key'				 => 'galleryArticles_items', 'type'			 => OPTION_TYPE_CHECKBOX_ARRAY,
-											'order'			 => 1,
-											'checkboxes' => $list,
-											'desc'			 => gettext('If a <em>type</em> is checked, a news article will be made when an object of that <em>type</em> is published.')),
-							gettext('Image title')			 => array('key'					 => 'galleryArticles_image_text', 'type'				 => OPTION_TYPE_TEXTBOX,
-											'order'				 => 3,
-											'multilingual' => true,
-											'desc'				 => gettext('This text will be used as the <em>title</em> of the article. The album title will be substituted for <code>%2$s</code> and the image title for <code>%1$s</code>.')),
-							gettext('Album title')			 => array('key'					 => 'galleryArticles_album_text', 'type'				 => OPTION_TYPE_TEXTBOX,
-											'order'				 => 2,
-											'multilingual' => true,
-											'desc'				 => gettext('This text will be used as the <em>title</em> of the article. The album title will be substituted for <code>%1$s</code>.')),
-							gettext('Size')							 => array('key'		 => 'galleryArticles_size', 'type'	 => OPTION_TYPE_NUMBER,
-											'order'	 => 5,
-											'desc'	 => gettext('Set the size the image will be displayed.')),
-							gettext('Publish protected') => array('key'		 => 'galleryArticles_protected', 'type'	 => OPTION_TYPE_CHECKBOX,
-											'order'	 => 4,
-											'desc'	 => gettext('Unless this is checked, objects which are "protected" will not have news articles generated.')),
-							gettext('Category')					 => array('key'				 => 'galleryArticles_category', 'type'			 => OPTION_TYPE_SELECTOR,
-											'order'			 => 6,
-											'selections' => $categories,
-											'desc'			 => gettext('Select a category for the generated articles')),
-							gettext('Use album folder')	 => array('key'		 => 'galleryArticles_albumCategory', 'type'	 => OPTION_TYPE_CHECKBOX,
-											'order'	 => 7,
-											'desc'	 => gettext('If this option is checked and a category matching the album folder exists, that will be used as the article category.'))
+			$options = array(gettext('Publish for') => array('key' => 'galleryArticles_items', 'type' => OPTION_TYPE_CHECKBOX_ARRAY,
+							'order' => 1,
+							'checkboxes' => $list,
+							'desc' => gettext('If a <em>type</em> is checked, a news article will be made when an object of that <em>type</em> is published.')),
+					gettext('Image title') => array('key' => 'galleryArticles_image_text', 'type' => OPTION_TYPE_TEXTBOX,
+							'order' => 3,
+							'multilingual' => true,
+							'desc' => gettext('This text will be used as the <em>title</em> of the article. The album title will be substituted for <code>%2$s</code> and the image title for <code>%1$s</code>.')),
+					gettext('Album title') => array('key' => 'galleryArticles_album_text', 'type' => OPTION_TYPE_TEXTBOX,
+							'order' => 2,
+							'multilingual' => true,
+							'desc' => gettext('This text will be used as the <em>title</em> of the article. The album title will be substituted for <code>%1$s</code>.')),
+					gettext('Size') => array('key' => 'galleryArticles_size', 'type' => OPTION_TYPE_NUMBER,
+							'order' => 5,
+							'desc' => gettext('Set the size the image will be displayed.')),
+					gettext('Publish protected') => array('key' => 'galleryArticles_protected', 'type' => OPTION_TYPE_CHECKBOX,
+							'order' => 4,
+							'desc' => gettext('Unless this is checked, objects which are "protected" will not have news articles generated.')),
+					gettext('Category') => array('key' => 'galleryArticles_category', 'type' => OPTION_TYPE_SELECTOR,
+							'order' => 6,
+							'selections' => $categories,
+							'desc' => gettext('Select a category for the generated articles')),
+					gettext('Use album folder') => array('key' => 'galleryArticles_albumCategory', 'type' => OPTION_TYPE_CHECKBOX,
+							'order' => 7,
+							'desc' => gettext('If this option is checked and a category matching the album folder exists, that will be used as the article category.'))
 			);
 			if (getOption('zenpage_combinews')) {
-				$options[gettext('Import Combi-news')] = array('key'		 => 'galleryArticles_import', 'type'	 => OPTION_TYPE_CHECKBOX,
-								'order'	 => 99,
-								'desc'	 => gettext('If this option is checked, articles will be generated based on your old <em>Combi-news</em> settings.'));
+				$options[gettext('Import Combi-news')] = array('key' => 'galleryArticles_import', 'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 99,
+						'desc' => gettext('If this option is checked, articles will be generated based on your old <em>Combi-news</em> settings.'));
 			}
 		} else {
-			$options = array(gettext('Disabled') => array('key'	 => 'galleryArticles_note', 'type' => OPTION_TYPE_NOTE,
-											'desc' => '<p class="notebox">' . gettext('Gallery Articles requires Zenpage to be enabled.') . '</p>'));
+			$options = array(gettext('Disabled') => array('key' => 'galleryArticles_note', 'type' => OPTION_TYPE_NOTE,
+							'desc' => '<p class="notebox">' . gettext('Gallery Articles requires Zenpage to be enabled.') . '</p>'));
 		}
 		return $options;
 	}
@@ -120,7 +120,11 @@ class galleryArticles {
 	 * @param object $obj
 	 */
 	static function published($obj) {
-		self::publishArticlesWithCheck($obj);
+		global $_seen;
+		if ($_seen && !in_array($obj, $_seen)) { //prevent recursive publications
+			$seen[] = $obj;
+			self::publishArticlesWithCheck($obj);
+		}
 		return $obj;
 	}
 
@@ -220,11 +224,11 @@ class galleryArticles {
 
 	static function macro($macros) {
 		$macros['GALLERYARTICLEDESC'] = array(
-						'class'	 => 'function',
-						'params' => array('string', 'string*'),
-						'value'	 => 'galleryArticles::getDesc',
-						'owner'	 => 'galleryArticles',
-						'desc'	 => gettext('Dynamically insert the description from a gallery object--album name (%1), image name (%2).')
+				'class' => 'function',
+				'params' => array('string', 'string*'),
+				'value' => 'galleryArticles::getDesc',
+				'owner' => 'galleryArticles',
+				'desc' => gettext('Dynamically insert the description from a gallery object--album name (%1), image name (%2).')
 		);
 		return $macros;
 	}
