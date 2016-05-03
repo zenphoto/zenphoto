@@ -468,6 +468,27 @@ class ThemeObject extends PersistentObject {
 	}
 
 	/**
+	 * checks if the publish state should be altered due to
+	 * the maturing of the publish date or passing the expire date
+	 */
+	protected function checkForPublish() {
+		//update published state if needed
+		$now = date('Y-m-d H:i:s');
+		if ($this->getShow()) {
+			$d = $this->getExpireDate();
+			if ($d != '0000-00-00 00:00:00' && $d < $now || $this->getPublishDate() > $now) {
+				$this->setShow(0);
+				$this->save();
+			}
+		} else {
+			$d = $this->getPublishDate();
+			if ($d != '0000-00-00 00:00:00' && $d <= $now)
+				$this->setShow(1);
+			$this->save();
+		}
+	}
+
+	/**
 	 * Returns the title
 	 *
 	 * @return string

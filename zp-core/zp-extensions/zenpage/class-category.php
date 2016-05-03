@@ -26,6 +26,7 @@ class Category extends CMSRoot {
 			$catlink = $catlink['titlelink'];
 		}
 		$new = $this->instantiate('news_categories', array('titlelink' => $catlink), 'titlelink', true, empty($catlink), $create);
+		$this->checkForPublish();
 		if ($new || empty($catlink)) {
 			$this->setShow(1);
 		}
