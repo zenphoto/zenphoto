@@ -72,7 +72,7 @@ foreach ($recentIP as $ip => $data) {
 	if (isset($data['interval']) && $data['interval']) {
 		$interval = sprintf('%.1f', $data['interval']);
 	} else {
-		$interval = '&mdash;';
+		$interval = '&hellip;';
 	}
 	if (isset($data['lastAccessed']) && $data['lastAccessed'] < $__time - $__config['accessThreshold_IP_ACCESS_WINDOW']) {
 		$old = 'color:LightGrey;';
@@ -107,9 +107,9 @@ foreach ($recentIP as $ip => $data) {
 	}
 
 	$out .='">' . "\n";
-	$out .= '  <span style="width:40%;float:left;"><span style="float:right;">' . $localeBlock . $ipDisp . '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span>' . "\n";
+	$out .= '  <span style="width:42%;float:left;"><span style="float:right;">' . $localeBlock . $ipDisp . '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span>' . "\n";
 	$out .= '  <span style="width:48%;float:left;' . $old . '">' . date('Y-m-d H:i:s', $data['lastAccessed']) . '</span>' . "\n";
-	$out .= '  <span style="width:3%;float:left;"><span style="float:right;">' . '<span style="' . $invalid . '">' . $interval . '</span></span></span>' . "\n";
+	$out .= '  <span style="width:9%;float:left;"><span style="float:right;">' . '<span style="' . $invalid . '">' . $interval . '</span></span></span>' . "\n";
 	$out .= "</span>\n";
 
 	if (isset($output[$row])) {
