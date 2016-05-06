@@ -101,7 +101,7 @@ foreach ($recentIP as $ip => $data) {
 		$legendInvalid = '<p>' . gettext('Intervals that are <span style="color:LightGrey;">grayed out</span> have insufficient data to be valid.') . '</p>';
 	}
 	$row = $ct % $rows;
-	$out = '<span style="width:30%;float:left;';
+	$out = '<span style="width:33%;float:left;';
 	if ($even = floor($ct / $rows) % 2) {
 		$out .= 'background-color:WhiteSmoke;';
 	}
