@@ -1173,6 +1173,7 @@ class Album extends AlbumBase {
 			return;
 		}
 		$new = $this->instantiate('albums', array('folder' => $this->name), 'folder', $cache, empty($folder8));
+		$this->checkForPublish();
 		if ($new) {
 			$this->save();
 			zp_apply_filter('new_album', $this);

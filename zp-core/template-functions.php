@@ -1319,13 +1319,18 @@ function getParentBreadcrumb() {
 	} else {
 		$parents = getParentAlbums();
 	}
+
 	$n = count($parents);
 	if ($n > 0) {
-		foreach ($parents as $parent) {
-			$url = $parent->getLink($_zp_current_album->getGalleryPage());
-//cleanup things in description for use as attribute tag
+		//the following loop code is @Copyright 2016 by Stephen L Billard for use in ZenPhoto20 (https://github.com/ZenPhoto20/ZenPhoto20)
+		array_push($parents, $_zp_current_album);
+		$parent = array_shift($parents);
+		while ($parent != $_zp_current_album) {
+			$fromAlbum = array_shift($parents);
+			//cleanup things in description for use as attribute tag
 			$desc = getBare(preg_replace('|</p\s*>|i', '</p> ', preg_replace('|<br\s*/>|i', ' ', $parent->getDesc())));
-			$output[] = array('link' => html_encode($url), 'title' => $desc, 'text' => $parent->getTitle());
+			$output[] = array('link' => html_encode($parent->getLink($fromAlbum->getGalleryPage())), 'title' => $desc, 'text' => $parent->getTitle());
+			$parent = $fromAlbum;
 		}
 	}
 	return $output;
@@ -1419,7 +1424,7 @@ function printHomeLink($before = '', $after = '', $title = NULL, $class = NULL, 
 function getAlbumDate($format = null) {
 	global $_zp_current_album;
 	$d = $_zp_current_album->getDateTime();
-	if (empty($d) || ($d == '0000-00-00 00:00:00')) {
+	if (empty($d)) {
 		return false;
 	}
 	if (is_null($format)) {
@@ -2128,7 +2133,7 @@ function getImageDate($format = null) {
 		return false;
 	global $_zp_current_image;
 	$d = $_zp_current_image->getDateTime();
-	if (empty($d) || ($d == '0000-00-00 00:00:00')) {
+	if (empty($d)) {
 		return false;
 	}
 	if (is_null($format)) {

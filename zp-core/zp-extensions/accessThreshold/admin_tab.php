@@ -13,9 +13,7 @@ require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 admin_securityChecks(DEBUG_RIGHTS, $return = currentRelativeURL());
 
 $recentIP = getSerializedArray(@file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/recentIP'));
-$accessThreshold_THRESHOLD = $recentIP['config']['accessThreshold_THRESHOLD'];
-$accessThreshold_IP_ACCESS_WINDOW = $recentIP['config']['accessThreshold_IP_ACCESS_WINDOW'];
-
+$__config = $recentIP['config'];
 unset($recentIP['config']);
 
 switch (@$_POST['data_sortby']) {
@@ -66,23 +64,30 @@ $rows = ceil(count($recentIP) / 3);
 $output = array();
 $__time = time();
 $ct = 0;
-$legendExpired = $legendBlocked = $legendInvalid = false;
+$legendExpired = $legendBlocked = $legendLocaleBlocked = $legendInvalid = false;
 foreach ($recentIP as $ip => $data) {
 	$ipDisp = $ip;
-	$invalid = '';
+	$localeBlock = $invalid = '';
 
 	if (isset($data['interval']) && $data['interval']) {
 		$interval = sprintf('%.1f', $data['interval']);
 	} else {
 		$interval = '&mdash;';
 	}
-	if (isset($data['lastAccessed']) && $data['lastAccessed'] < $__time - $accessThreshold_IP_ACCESS_WINDOW) {
+	if (isset($data['lastAccessed']) && $data['lastAccessed'] < $__time - $__config['accessThreshold_IP_ACCESS_WINDOW']) {
 		$old = 'color:LightGrey;';
 		$legendExpired = true;
 	} else {
 		$old = '';
 	}
 	if (isset($data['blocked']) && $data['blocked']) {
+		if ($data['blocked'] == 1) {
+			$localeBlock = '*';
+			$legendLocaleBlocked = true;
+			if ($interval >= $__config['accessThreshold_THRESHOLD']) {
+				$interval = '&ndash;';
+			}
+		}
 		$invalid = 'color:red;';
 		$legendBlocked = true;
 		$ipDisp = '<a onclick="$.colorbox({
@@ -91,8 +96,7 @@ foreach ($recentIP as $ip => $data) {
 										maxWidth: \'80%\',
 										innerWidth: \'560px\',
 										href:\'ip_list.php?selected_ip=' . $ip . '\'});">' . $ip . '</a>';
-	}
-	if (count($data['accessed']) < 10) {
+	} else if (count($data['accessed']) < 10) {
 		$invalid = 'color:LightGrey;';
 		$legendInvalid = true;
 	}
@@ -105,7 +109,7 @@ foreach ($recentIP as $ip => $data) {
 	$out .='">' . "\n";
 	$out .= '  <span style="width:40%;float:left;"><span style="float:right;">' . $ipDisp . '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span>' . "\n";
 	$out .= '  <span style="width:48%;float:left;' . $old . '">' . date('Y-m-d H:i:s', $data['lastAccessed']) . '</span>' . "\n";
-	$out .= '  <span style="width:3%;float:left;"><span style="float:right;' . $invalid . '">' . $interval . '</span></span>' . "\n";
+	$out .= '  <span style="width:3%;float:left;"><span style="float:right;' . $invalid . '">' . $localeBlock . $interval . '</span></span>' . "\n";
 	$out .= "</span>\n";
 
 	if (isset($output[$row])) {
@@ -162,7 +166,12 @@ echo "\n</head>";
 						echo '<p>' . gettext('Intervals that are <span style="color:LightGrey;">grayed out</span> have insufficient data to be valid.') . '</p>';
 					}
 					if ($legendBlocked) {
-						echo '<p>' . gettext('Intervals that are <span style="color:Red;">red</span> have caused the address to be blocked. Click on the address for a list of IPs seen.') . '</p>';
+						echo '<p>';
+						echo gettext('Address with intervals that are <span style="color:Red;">red</span> have been blocked. Click on the address for a list of IPs seen.');
+						if ($legendLocaleBlocked) {
+							echo '<br />' . gettext('<span style="color:Red;">*</span> blocked because of <em>locale</em> abuse.');
+						}
+						echo '</p>';
 					}
 					?>
 				</div>

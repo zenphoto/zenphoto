@@ -32,6 +32,7 @@ class Article extends CMSItems {
 			$titlelink = $titlelink['titlelink'];
 		}
 		$new = $this->instantiate('news', array('titlelink' => $titlelink), 'titlelink', true, empty($titlelink), $allowCreate);
+		$this->checkForPublish();
 		if ($new || empty($titlelink)) {
 			$this->setPermalink(1);
 			$this->setDateTime(date('Y-m-d H:i:s'));

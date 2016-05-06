@@ -33,10 +33,10 @@ require_once(dirname(__FILE__) . '/load_objectClasses.php');
 $_zp_current_context_stack = array();
 
 $_zp_albumthumb_selector = array(array('field' => '', 'direction' => '', 'desc' => 'random'),
-				array('field' => 'id', 'direction' => 'DESC', 'desc' => gettext('most recent')),
-				array('field' => 'mtime', 'direction' => '', 'desc' => gettext('oldest')),
-				array('field' => 'title', 'direction' => '', 'desc' => gettext('first alphabetically')),
-				array('field' => 'hitcounter', 'direction' => 'DESC', 'desc' => gettext('most viewed'))
+		array('field' => 'id', 'direction' => 'DESC', 'desc' => gettext('most recent')),
+		array('field' => 'mtime', 'direction' => '', 'desc' => gettext('oldest')),
+		array('field' => 'title', 'direction' => '', 'desc' => gettext('first alphabetically')),
+		array('field' => 'hitcounter', 'direction' => 'DESC', 'desc' => gettext('most viewed'))
 );
 
 $_zp_missing_album = new TransientAlbum(gettext('missing'));
@@ -995,7 +995,7 @@ function handleSearchParms($what, $album = NULL, $image = NULL) {
  */
 function updatePublished($table) {
 	//publish items that have matured
-	$sql = 'SELECT * FROM ' . prefix($table) . ' WHERE `show`=0 AND `publishdate`!="0000-00-00 00:00:00" AND `publishdate`<=' . db_quote(date('Y-m-d H:i:s'));
+	$sql = 'SELECT * FROM ' . prefix($table) . ' WHERE `show`=0 AND `publishdate`IS NOT NULL AND `publishdate`<=' . db_quote(date('Y-m-d H:i:s'));
 	$result = query($sql);
 	if ($result) {
 		while ($row = db_fetch_assoc($result)) {
@@ -1005,8 +1005,8 @@ function updatePublished($table) {
 		}
 	}
 
-	//unpublish items that have expired or are not published yet
-	$sql = 'SELECT * FROM ' . prefix($table) . ' WHERE `show`=1 AND (`expiredate`!="0000-00-00 00:00:00" AND `expiredate`<' . db_quote(date('Y-m-d H:i:s')) . ') OR `publishdate`>' . db_quote(date('Y-m-d H:i:s'));
+	//unpublish items that have expired or are not yet published
+	$sql = 'SELECT * FROM ' . prefix($table) . ' WHERE `show`=1 AND (`expiredate` IS NOT NULL AND `expiredate`<' . db_quote(date('Y-m-d H:i:s')) . ' OR `publishdate`>' . db_quote(date('Y-m-d H:i:s')) . ')';
 	$result = query($sql);
 	if ($result) {
 		while ($row = db_fetch_assoc($result)) {
@@ -1240,7 +1240,7 @@ function storeTags($tags, $id, $tbl) {
  *
  * @param int $id the record id of the album/image
  * @param string $tbl 'albums' or 'images', etc.
- * @return unknown
+ * @return array
  */
 function readTags($id, $tbl, $language) {
 	global $_zp_current_locale;

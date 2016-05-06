@@ -121,8 +121,9 @@ function printLanguageSelector($flags = NULL) {
 				}
 			}
 			$uri = $request['path'];
-			if (isset($request['query']))
+			if (isset($request['query'])) {
 				$uri .= '?' . $request['query'];
+			}
 			foreach ($languages as $text => $lang) {
 				?>
 				<li<?php if ($lang == $localeOption) echo ' class="currentLanguage"'; ?>>
@@ -211,17 +212,17 @@ class dynamic_locale {
 				setOption('dynamic_locale_subdomain', 0);
 			}
 		}
-		$options = array(gettext('Use flags')			 => array('key'		 => 'dynamic_locale_visual', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 0,
-										'desc'	 => gettext('Checked produces an array of flags. Not checked produces a selector.')),
-						gettext('Language links')	 => array('key'			 => 'dynamic_locale_subdomain', 'type'		 => OPTION_TYPE_RADIO,
-										'order'		 => 1,
-										'buttons'	 => $buttons,
-										'desc'		 => $localdesc),
-						gettext('Site language')	 => array('key'			 => 'dynamic_locale_base', 'type'		 => OPTION_TYPE_RADIO,
-										'order'		 => 2,
-										'buttons'	 => $locales,
-										'desc'		 => gettext('Set the primary language for your site.'))
+		$options = array(gettext('Use flags') => array('key' => 'dynamic_locale_visual', 'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 0,
+						'desc' => gettext('Checked produces an array of flags. Not checked produces a selector.')),
+				gettext('Language links') => array('key' => 'dynamic_locale_subdomain', 'type' => OPTION_TYPE_RADIO,
+						'order' => 1,
+						'buttons' => $buttons,
+						'desc' => $localdesc),
+				gettext('Site language') => array('key' => 'dynamic_locale_base', 'type' => OPTION_TYPE_RADIO,
+						'order' => 2,
+						'buttons' => $locales,
+						'desc' => gettext('Set the primary language for your site.'))
 		);
 
 		return $options;
@@ -292,7 +293,7 @@ class seo_locale {
 	}
 
 	static function localePath($full = false, $loc = NULL) {
-		global $_zp_page, $_zp_gallery_page;
+		global $_zp_page, $_zp_gallery_page, $_zp_current_locale;
 		if ($full) {
 			$path = FULLWEBPATH;
 		} else {
@@ -301,7 +302,7 @@ class seo_locale {
 		if (is_null($loc)) {
 			$loc = zp_getCookie('dynamic_locale');
 		}
-		if ($loc != BASE_LOCALE) {
+		if ($loc != $_zp_current_locale) {
 			if ($locale = zpFunctions::getLanguageText($loc)) {
 				$path .= '/' . $locale;
 			}
