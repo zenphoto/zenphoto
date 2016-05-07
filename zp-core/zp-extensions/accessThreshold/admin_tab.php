@@ -64,7 +64,7 @@ $rows = ceil(count($recentIP) / 3);
 $output = array();
 $__time = time();
 $ct = 0;
-$legendExpired = $legendBlocked = $legendLocaleBlocked = $legendInvalid = false;
+$legendExpired = $legendBlocked = $legendLocaleBlocked = $legendClick = $legendInvalid = false;
 foreach ($recentIP as $ip => $data) {
 	$ipDisp = $ip;
 	$localeBlock = $invalid = '';
@@ -87,8 +87,9 @@ foreach ($recentIP as $ip => $data) {
 			$legendLocaleBlocked = $localeBlock . gettext('blocked because of <em>locale</em> abuse.');
 		} else {
 			$invalid = 'color:red;';
-			$legendBlocked = gettext('Address with intervals that are <span style="color:Red;">red</span> have been blocked. Click on the address for a list of IPs seen.') . '<br />';
+			$legendBlocked = gettext('Address with intervals that are <span style="color:Red;">red</span> have been blocked. ');
 		}
+		$legendClick = '<br />&nbsp;&nbsp;&nbsp;' . gettext('Click on the address for a list of IPs and <em>locales</em> seen.');
 		$ipDisp = '<a onclick="$.colorbox({
 										close: \'' . gettext("close") . '\',
 										maxHeight: \'80%\',
@@ -164,7 +165,11 @@ echo "\n</head>";
 					if ($legendBlocked || $legendLocaleBlocked) {
 						echo '<p>';
 						echo $legendBlocked;
+						if ($legendBlocked && $legendLocaleBlocked) {
+							echo '<br />';
+						}
 						echo $legendLocaleBlocked;
+						echo $legendClick;
 						echo '</p>';
 					}
 					?>
