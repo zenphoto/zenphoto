@@ -43,40 +43,39 @@ class deprecated_functions {
 	var $unique_functions = array();
 
 	function __construct() {
-		if (OFFSET_PATH == 2) {
-			foreach (getPluginFiles('*.php') as $extension => $plugin) {
-				$deprecated = stripSuffix($plugin) . '/deprecated-functions.php';
-				if (file_exists($deprecated)) {
-					$plugin = basename(dirname($deprecated));
-					$content = preg_replace('~#.*function~', '', file_get_contents($deprecated)); //	remove the comments!
-					preg_match_all('~@deprecated\s+.*since\s+.*(\d+\.\d+\.\d+)~', $content, $versions);
-					preg_match_all('/([public static|static]*)\s*function\s+(.*)\s?\(.*\)\s?\{/', $content, $functions);
-					if ($plugin == 'deprecated-functions') {
-						$plugin = 'core';
-						$suffix = '';
+
+		foreach (getPluginFiles('*.php') as $extension => $plugin) {
+			$deprecated = stripSuffix($plugin) . '/deprecated-functions.php';
+			if (file_exists($deprecated)) {
+				$plugin = basename(dirname($deprecated));
+				$content = preg_replace('~#.*function~', '', file_get_contents($deprecated)); //	remove the comments!
+				preg_match_all('~@deprecated\s+.*since\s+.*(\d+\.\d+\.\d+)~', $content, $versions);
+				preg_match_all('/([public static|static]*)\s*function\s+(.*)\s?\(.*\)\s?\{/', $content, $functions);
+				if ($plugin == 'deprecated-functions') {
+					$plugin = 'core';
+					$suffix = '';
+				} else {
+					$suffix = ' (' . $plugin . ')';
+				}
+				foreach ($functions[2] as $key => $function) {
+
+					if ($functions[1][$key]) {
+						$flag = '_method';
+						$star = '*';
 					} else {
-						$suffix = ' (' . $plugin . ')';
+						$star = $flag = '';
 					}
-					foreach ($functions[2] as $key => $function) {
+					$name = $function . $star . $suffix;
+					$option = 'deprecated_' . $plugin . '_' . $function . $flag;
 
-						if ($functions[1][$key]) {
-							$flag = '_method';
-							$star = '*';
-						} else {
-							$star = $flag = '';
-						}
-						$name = $function . $star . $suffix;
-						$option = 'deprecated_' . $plugin . '_' . $function . $flag;
-
-						setOptionDefault($option, 1);
-						$this->unique_functions[strtolower($function)] = $this->listed_functions[$name] = array(
-										'plugin'	 => $plugin,
-										'function' => $function,
-										'class'		 => trim($functions[1][$key]),
-										'since'		 => @$versions[1][$key],
-										'option'	 => $option,
-										'multiple' => array_key_exists($function, $this->unique_functions));
-					}
+					setOptionDefault($option, 1);
+					$this->unique_functions[strtolower($function)] = $this->listed_functions[$name] = array(
+							'plugin' => $plugin,
+							'function' => $function,
+							'class' => trim($functions[1][$key]),
+							'since' => @$versions[1][$key],
+							'option' => $option,
+							'multiple' => array_key_exists($function, $this->unique_functions));
 				}
 			}
 		}
@@ -88,10 +87,10 @@ class deprecated_functions {
 			$list[$funct] = $details['option'];
 		}
 
-		$options[gettext('Functions')] = array('key'				 => 'deprecated_Function_list', 'type'			 => OPTION_TYPE_CHECKBOX_UL,
-						'checkboxes' => $list,
-						'order'			 => 1,
-						'desc'			 => gettext('Send the <em>deprecated</em> notification message if the function name is checked. Un-checking these boxes will allow you to continue using your theme without warnings while you upgrade its implementation. Functions flagged with an asterisk are class methods. Ones flagged with two asterisks have deprecated parameters.'));
+		$options[gettext('Functions')] = array('key' => 'deprecated_Function_list', 'type' => OPTION_TYPE_CHECKBOX_UL,
+				'checkboxes' => $list,
+				'order' => 1,
+				'desc' => gettext('Send the <em>deprecated</em> notification message if the function name is checked. Un-checking these boxes will allow you to continue using your theme without warnings while you upgrade its implementation. Functions flagged with an asterisk are class methods. Ones flagged with two asterisks have deprecated parameters.'));
 
 		return $options;
 	}
@@ -99,8 +98,8 @@ class deprecated_functions {
 	static function tabs($tabs) {
 		if (zp_loggedin(ADMIN_RIGHTS)) {
 			if (!isset($tabs['development'])) {
-				$tabs['development'] = array('text'		 => gettext("development"),
-								'subtabs'	 => NULL);
+				$tabs['development'] = array('text' => gettext("development"),
+						'subtabs' => NULL);
 			}
 			$tabs['development']['subtabs'][gettext("deprecated")] = PLUGIN_FOLDER . '/deprecated-functions/admin_tab.php?page=development&tab=' . gettext('deprecated');
 			$named = array_flip($tabs['development']['subtabs']);
@@ -221,16 +220,16 @@ class deprecated_functions {
 
 	static function button($buttons) {
 		$buttons[] = array(
-						'category'		 => gettext('Development'),
-						'enable'			 => true,
-						'button_text'	 => gettext('Check deprecated use'),
-						'formname'		 => 'deprecated_functions_check.php',
-						'action'			 => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions/check_for_deprecated.php',
-						'icon'				 => 'images/magnify.png',
-						'title'				 => gettext("Searches PHP scripts for use of deprecated functions."),
-						'alt'					 => gettext('Check for update'),
-						'hidden'			 => '',
-						'rights'			 => ADMIN_RIGHTS
+				'category' => gettext('Development'),
+				'enable' => true,
+				'button_text' => gettext('Check deprecated use'),
+				'formname' => 'deprecated_functions_check.php',
+				'action' => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions/check_for_deprecated.php',
+				'icon' => 'images/magnify.png',
+				'title' => gettext("Searches PHP scripts for use of deprecated functions."),
+				'alt' => gettext('Check for update'),
+				'hidden' => '',
+				'rights' => ADMIN_RIGHTS
 		);
 		return $buttons;
 	}
