@@ -21,12 +21,14 @@ if (!defined('WEBPATH'))
 						href: "#imagemetadata",
 						close: '<?php echo gettext("close"); ?>'
 					});
-					$(".fullimage").colorbox({
-						maxWidth: "98%",
-						maxHeight: "98%",
-						photo: true,
-						close: '<?php echo gettext("close"); ?>'
-					});
+					<?php if (getOption('protect_full_image') != 'Download') { ?>
+						$(".fullimage").colorbox({
+							maxWidth: "98%",
+							maxHeight: "98%",
+							photo: true,
+							close: '<?php echo gettext("close"); ?>'
+						});
+					<?php } ?>
 				});
 				// ]]> -->
 			</script>
