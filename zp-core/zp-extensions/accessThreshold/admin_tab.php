@@ -64,7 +64,7 @@ $rows = ceil(count($recentIP) / 3);
 $output = array();
 $__time = time();
 $ct = 0;
-$legendExpired = $legendBlocked = $legendLocaleBlocked = $legendInvalid = false;
+$legendExpired = $legendBlocked = $legendLocaleBlocked = $legendClick = $legendInvalid = false;
 foreach ($recentIP as $ip => $data) {
 	$ipDisp = $ip;
 	$localeBlock = $invalid = '';
@@ -72,44 +72,45 @@ foreach ($recentIP as $ip => $data) {
 	if (isset($data['interval']) && $data['interval']) {
 		$interval = sprintf('%.1f', $data['interval']);
 	} else {
-		$interval = '&mdash;';
+		$interval = '&hellip;';
 	}
 	if (isset($data['lastAccessed']) && $data['lastAccessed'] < $__time - $__config['accessThreshold_IP_ACCESS_WINDOW']) {
 		$old = 'color:LightGrey;';
-		$legendExpired = true;
+		$legendExpired = '<p>' . gettext('Timestamps that are <span style="color:LightGrey;">grayed out</span> have expired.') . '</p>';
+		;
 	} else {
 		$old = '';
 	}
 	if (isset($data['blocked']) && $data['blocked']) {
 		if ($data['blocked'] == 1) {
-			$localeBlock = '*';
-			$legendLocaleBlocked = true;
-			if ($interval >= $__config['accessThreshold_THRESHOLD']) {
-				$interval = '&ndash;';
-			}
+			$localeBlock = '<span style="color:red;">&sect;</span> ';
+			$legendLocaleBlocked = $localeBlock . gettext('blocked because of <em>locale</em> abuse.');
+		} else {
+			$invalid = 'color:red;';
+			$legendBlocked = gettext('Address with intervals that are <span style="color:Red;">red</span> have been blocked. ');
 		}
-		$invalid = 'color:red;';
-		$legendBlocked = true;
+		$legendClick = '<br />&nbsp;&nbsp;&nbsp;' . gettext('Click on the address for a list of IPs and <em>locales</em> seen.');
 		$ipDisp = '<a onclick="$.colorbox({
 										close: \'' . gettext("close") . '\',
 										maxHeight: \'80%\',
 										maxWidth: \'80%\',
 										innerWidth: \'560px\',
 										href:\'ip_list.php?selected_ip=' . $ip . '\'});">' . $ip . '</a>';
-	} else if (count($data['accessed']) < 10) {
+	}
+	if (count($data['accessed']) < 10) {
 		$invalid = 'color:LightGrey;';
-		$legendInvalid = true;
+		$legendInvalid = '<p>' . gettext('Intervals that are <span style="color:LightGrey;">grayed out</span> have insufficient data to be valid.') . '</p>';
 	}
 	$row = $ct % $rows;
-	$out = '<span style="width:30%;float:left;';
+	$out = '<span style="width:33%;float:left;';
 	if ($even = floor($ct / $rows) % 2) {
 		$out .= 'background-color:WhiteSmoke;';
 	}
 
 	$out .='">' . "\n";
-	$out .= '  <span style="width:40%;float:left;"><span style="float:right;">' . $ipDisp . '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span>' . "\n";
+	$out .= '  <span style="width:42%;float:left;"><span style="float:right;">' . $localeBlock . $ipDisp . '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span>' . "\n";
 	$out .= '  <span style="width:48%;float:left;' . $old . '">' . date('Y-m-d H:i:s', $data['lastAccessed']) . '</span>' . "\n";
-	$out .= '  <span style="width:3%;float:left;"><span style="float:right;' . $invalid . '">' . $localeBlock . $interval . '</span></span>' . "\n";
+	$out .= '  <span style="width:9%;float:left;"><span style="float:right;">' . '<span style="' . $invalid . '">' . $interval . '</span></span></span>' . "\n";
 	$out .= "</span>\n";
 
 	if (isset($output[$row])) {
@@ -159,18 +160,16 @@ echo "\n</head>";
 					?>
 					<br style="clearall">
 					<?php
-					if ($legendExpired) {
-						echo '<p>' . gettext('Timestamps that are <span style="color:LightGrey;">grayed out</span> have expired.') . '</p>';
-					}
-					if ($legendInvalid) {
-						echo '<p>' . gettext('Intervals that are <span style="color:LightGrey;">grayed out</span> have insufficient data to be valid.') . '</p>';
-					}
-					if ($legendBlocked) {
+					echo $legendExpired;
+					echo $legendInvalid;
+					if ($legendBlocked || $legendLocaleBlocked) {
 						echo '<p>';
-						echo gettext('Address with intervals that are <span style="color:Red;">red</span> have been blocked. Click on the address for a list of IPs seen.');
-						if ($legendLocaleBlocked) {
-							echo '<br />' . gettext('<span style="color:Red;">*</span> blocked because of <em>locale</em> abuse.');
+						echo $legendBlocked;
+						if ($legendBlocked && $legendLocaleBlocked) {
+							echo '<br />';
 						}
+						echo $legendLocaleBlocked;
+						echo $legendClick;
 						echo '</p>';
 					}
 					?>
