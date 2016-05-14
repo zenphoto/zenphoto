@@ -223,7 +223,7 @@ if (OFFSET_PATH) {
 				$recentIP[$ip]['blocked'] = 2;
 			}
 		}
-		if (count($recentIP) > $__config['accessThreshold_IP_RETENTION']) {
+		if (count($recentIP) - 1 > $__config['accessThreshold_IP_RETENTION']) {
 			$recentIP = array_shift(sortMultiArray($recentIP, array('lastAccessed'), true, true, false, true));
 		}
 		file_put_contents(SERVERPATH . '/' . DATA_FOLDER . '/recentIP', serialize($recentIP));
