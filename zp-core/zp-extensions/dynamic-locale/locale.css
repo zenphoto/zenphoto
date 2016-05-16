@@ -1,15 +1,10 @@
 /* language selectbox effect.
 ------------------------------------- */
 .languageselect {
-	padding-left: 24px;
-	background-repeat: no-repeat;
-	background-position: center left;
 }
 
 .languageoption {
-	padding-left: 24px;
 	margin-bottom: 2px;
-	background-position: center left;
 }
 
 .flags img {
