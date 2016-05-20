@@ -224,7 +224,8 @@ if (OFFSET_PATH) {
 			}
 		}
 		if (count($recentIP) - 1 > $__config['accessThreshold_IP_RETENTION']) {
-			$recentIP = array_shift(sortMultiArray($recentIP, array('lastAccessed'), true, true, false, true));
+			$recentIP = sortMultiArray($recentIP, array('lastAccessed'), true, true, false, true);
+			$recentIP = array_shift($recentIP);
 		}
 		file_put_contents(SERVERPATH . '/' . DATA_FOLDER . '/recentIP', serialize($recentIP));
 		$mu->unlock();
