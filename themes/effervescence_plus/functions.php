@@ -75,16 +75,16 @@ function EF_head($ignore) {
 	if (!$themeColor) {
 		$themeColor = getThemeOption('Theme_colors');
 	}
-	if (!file_exists(SERVERPATH . '/' . DATA_FOLDER . '/effervescence_plus/styles/' . $themeColor . '.css') || filemtime(SERVERPATH . '/' . DATA_FOLDER . '/effervescence_plus/styles/' . $themeColor . '.css') < filemtime(SERVERPATH . '/' . THEMEFOLDER . '/effervescence_plus/styles/' . $themeColor . '.txt')) {
+	if (!file_exists(SERVERPATH . '/' . THEMEFOLDER . '/effervescence_plus/styles/' . $themeColor . '.css') || filemtime(SERVERPATH . '/' . THEMEFOLDER . '/effervescence_plus/styles/' . $themeColor . '.css') < filemtime(SERVERPATH . '/' . THEMEFOLDER . '/effervescence_plus/styles/' . $themeColor . '.txt')) {
 		eval(file_get_contents(SERVERPATH . '/' . THEMEFOLDER . '/effervescence_plus/styles/' . $themeColor . '.txt'));
 		$css = file_get_contents(SERVERPATH . '/' . THEMEFOLDER . '/effervescence_plus/base.css');
 		$css = strtr($css, $tr);
 		$css = preg_replace('|\.\./images/|', WEBPATH . '/' . THEMEFOLDER . '/effervescence_plus/images/', $css);
-		mkdir_recursive(SERVERPATH . '/' . DATA_FOLDER . '/effervescence_plus/styles/', FOLDER_MOD);
-		file_put_contents(SERVERPATH . '/' . DATA_FOLDER . '/effervescence_plus/styles/' . $themeColor . '.css', $css);
+		mkdir_recursive(SERVERPATH . '/' . THEMEFOLDER . '/effervescence_plus/styles/', FOLDER_MOD);
+		file_put_contents(SERVERPATH . '/' . THEMEFOLDER . '/effervescence_plus/styles/' . $themeColor . '.css', $css);
 	}
 	?>
-	<link rel="stylesheet" href="<?php echo WEBPATH . '/' . DATA_FOLDER; ?>/effervescence_plus/styles/<?php echo $themeColor; ?>.css" type="text/css" />
+	<link rel="stylesheet" href="<?php echo WEBPATH . '/' . THEMEFOLDER; ?>/effervescence_plus/styles/<?php echo $themeColor; ?>.css" type="text/css" />
 	<link rel="stylesheet" href="<?php echo WEBPATH . '/' . THEMEFOLDER; ?>/effervescence_plus/common.css" type="text/css" />
 	<script type="text/javascript">
 		// <!-- <![CDATA[
