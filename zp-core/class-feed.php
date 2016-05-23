@@ -453,7 +453,11 @@ class feed {
 					$title = get_language_string($item['title']);
 					$titlelink = $item['titlelink'];
 					$website = $item['website'];
-					$obj = new $item['type']($titlelink);
+					if($item['type'] == 'news') {
+						$obj = new ZenpageNews($titlelink);
+					} else {
+						$obj = new ZenpagePage($titlelink);
+					}
 					$commentpath = PROTOCOL . '://' . $this->host . html_encode($obj->getLink()) . "#" . $item['id'];
 				} else {
 					$commentpath = '';
