@@ -456,8 +456,8 @@ class cycle {
 			$css = WEBPATH . '/' . THEMEFOLDER . '/' . $theme . '/slideshow2.css';
 		} else {
 			$css = WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/slideshow2/slideshow2.css';
-		}	
-		?>				
+		}
+		?>
 		<link rel="stylesheet" type="text/css" href="<?php echo $css ?>" />
 		<!--[if lte IE 7]>
 			<link rel="stylesheet" type="text/css" href="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/slideshow2/fonts/ie7.css" />
@@ -644,7 +644,7 @@ if (extensionEnabled('slideshow2')) {
 								$imagetitle = html_encode(getBare($imgobj->getTitle()));
 							}
 							?>
-							<a href="<?php echo html_encode(pathurlencode($imagelink)); ?>" rel="slideshow"<?php echo $style; ?> title="<?php echo $imagetitle; ?>"><?php echo $linktext; ?></a>
+							<a class="slideshowlink" href="<?php echo html_encode(pathurlencode($imagelink)); ?>" rel="slideshow"<?php echo $style; ?> title="<?php echo $imagetitle; ?>"><?php echo $linktext; ?></a>
 							<?php
 						}
 					}
