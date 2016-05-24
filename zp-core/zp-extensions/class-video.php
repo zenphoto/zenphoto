@@ -28,10 +28,6 @@ $option_interface = 'VideoObject_Options';
 define('GETID3_INCLUDEPATH', SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/class-video/getid3/');
 require_once(dirname(__FILE__) . '/class-video/getid3/getid3.php');
 
-if (OFFSET_PATH & OFFSET_PATH != 2) {
-	zpFunctions::exifOptions('Video Metadata', (extensionEnabled('class-video')) ? 0 : 2, Video::getMetadataFields());
-}
-
 /**
  * Option class for video objects
  *
@@ -54,24 +50,24 @@ class VideoObject_Options {
 	 * @return array
 	 */
 	function getOptionsSupported() {
-		return array(gettext('Watermark default images')	 => array('key'		 => 'video_watermark_default_images', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 0,
-										'desc'	 => gettext('Check to place watermark image on default thumbnail images.')),
-						gettext('Quicktime video width')		 => array('key'		 => 'class-video_mov_w', 'type'	 => OPTION_TYPE_NUMBER,
-										'order'	 => 2,
-										'desc'	 => ''),
-						gettext('Quicktime video height')		 => array('key'		 => 'class-video_mov_h', 'type'	 => OPTION_TYPE_NUMBER,
-										'order'	 => 2,
-										'desc'	 => ''),
-						gettext('3gp video width')					 => array('key'		 => 'class-video_3gp_w', 'type'	 => OPTION_TYPE_NUMBER,
-										'order'	 => 2,
-										'desc'	 => ''),
-						gettext('3gp video height')					 => array('key'		 => 'class-video_3gp_h', 'type'	 => OPTION_TYPE_NUMBER,
-										'order'	 => 2,
-										'desc'	 => ''),
-						gettext('High quality alternate')		 => array('key'		 => 'class-video_videoalt', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 1,
-										'desc'	 => gettext('<code>getFullImageURL()</code> returns a URL to a file with one of these high quality video alternate suffixes if present.'))
+		return array(gettext('Watermark default images') => array('key' => 'video_watermark_default_images', 'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 0,
+						'desc' => gettext('Check to place watermark image on default thumbnail images.')),
+				gettext('Quicktime video width') => array('key' => 'class-video_mov_w', 'type' => OPTION_TYPE_NUMBER,
+						'order' => 2,
+						'desc' => ''),
+				gettext('Quicktime video height') => array('key' => 'class-video_mov_h', 'type' => OPTION_TYPE_NUMBER,
+						'order' => 2,
+						'desc' => ''),
+				gettext('3gp video width') => array('key' => 'class-video_3gp_w', 'type' => OPTION_TYPE_NUMBER,
+						'order' => 2,
+						'desc' => ''),
+				gettext('3gp video height') => array('key' => 'class-video_3gp_h', 'type' => OPTION_TYPE_NUMBER,
+						'order' => 2,
+						'desc' => ''),
+				gettext('High quality alternate') => array('key' => 'class-video_videoalt', 'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 1,
+						'desc' => gettext('<code>getFullImageURL()</code> returns a URL to a file with one of these high quality video alternate suffixes if present.'))
 		);
 	}
 
@@ -137,27 +133,27 @@ class Video extends Image {
 	 */
 	static function getMetadataFields() {
 		return array(
-						// Database Field     	 => array(0:'source', 1:'Metadata Key', 2;'ZP Display Text', 3:Display?	4:size,	5:enabled, type)
-						'VideoFormat'						 => array('VIDEO', 'fileformat', gettext('Video File Format'), false, 32, true, 'string'),
-						'VideoSize'							 => array('VIDEO', 'filesize', gettext('Video File Size'), false, 32, true, 'number'),
-						'VideoArtist'						 => array('VIDEO', 'artist', gettext('Video Artist'), false, 256, true, 'string'),
-						'VideoTitle'						 => array('VIDEO', 'title', gettext('Video Title'), false, 256, true, 'string'),
-						'VideoBitrate'					 => array('VIDEO', 'bitrate', gettext('Bitrate'), false, 32, true, 'number'),
-						'VideoBitrate_mode'			 => array('VIDEO', 'bitrate_mode', gettext('Bitrate_Mode'), false, 32, true, 'string'),
-						'VideoBits_per_sample'	 => array('VIDEO', 'bits_per_sample', gettext('Bits per sample'), false, 32, true, 'number'),
-						'VideoCodec'						 => array('VIDEO', 'codec', gettext('Codec'), false, 32, true, 'string'),
-						'VideoCompression_ratio' => array('VIDEO', 'compression_ratio', gettext('Compression Ratio'), false, 32, true, 'number'),
-						'VideoDataformat'				 => array('VIDEO', 'dataformat', gettext('Video Dataformat'), false, 32, true, 'string'),
-						'VideoEncoder'					 => array('VIDEO', 'encoder', gettext('File Encoder'), false, 10, true, 'string'),
-						'VideoSamplerate'				 => array('VIDEO', 'Samplerate', gettext('Sample rate'), false, 32, true, 'number'),
-						'VideoChannelmode'			 => array('VIDEO', 'channelmode', gettext('Channel mode'), false, 32, true, 'string'),
-						'VideoFormat'						 => array('VIDEO', 'format', gettext('Format'), false, 10, true, 'string'),
-						'VideoChannels'					 => array('VIDEO', 'channels', gettext('Channels'), false, 10, true, 'number'),
-						'VideoFramerate'				 => array('VIDEO', 'framerate', gettext('Frame rate'), false, 32, true, 'number'),
-						'VideoResolution_x'			 => array('VIDEO', 'resolution_x', gettext('X Resolution'), false, 32, true, 'number'),
-						'VideoResolution_y'			 => array('VIDEO', 'resolution_y', gettext('Y Resolution'), false, 32, true, 'number'),
-						'VideoAspect_ratio'			 => array('VIDEO', 'pixel_aspect_ratio', gettext('Aspect ratio'), false, 32, true, 'number'),
-						'VideoPlaytime'					 => array('VIDEO', 'playtime_string', gettext('Play Time'), false, 10, true, 'string'));
+				// Database Field     	 => array(0:'source', 1:'Metadata Key', 2;'ZP Display Text', 3:Display?	4:size,	5:enabled, type)
+				'VideoFormat' => array('VIDEO', 'fileformat', gettext('Video File Format'), false, 32, true, 'string'),
+				'VideoSize' => array('VIDEO', 'filesize', gettext('Video File Size'), false, 32, true, 'number'),
+				'VideoArtist' => array('VIDEO', 'artist', gettext('Video Artist'), false, 256, true, 'string'),
+				'VideoTitle' => array('VIDEO', 'title', gettext('Video Title'), false, 256, true, 'string'),
+				'VideoBitrate' => array('VIDEO', 'bitrate', gettext('Bitrate'), false, 32, true, 'number'),
+				'VideoBitrate_mode' => array('VIDEO', 'bitrate_mode', gettext('Bitrate_Mode'), false, 32, true, 'string'),
+				'VideoBits_per_sample' => array('VIDEO', 'bits_per_sample', gettext('Bits per sample'), false, 32, true, 'number'),
+				'VideoCodec' => array('VIDEO', 'codec', gettext('Codec'), false, 32, true, 'string'),
+				'VideoCompression_ratio' => array('VIDEO', 'compression_ratio', gettext('Compression Ratio'), false, 32, true, 'number'),
+				'VideoDataformat' => array('VIDEO', 'dataformat', gettext('Video Dataformat'), false, 32, true, 'string'),
+				'VideoEncoder' => array('VIDEO', 'encoder', gettext('File Encoder'), false, 10, true, 'string'),
+				'VideoSamplerate' => array('VIDEO', 'Samplerate', gettext('Sample rate'), false, 32, true, 'number'),
+				'VideoChannelmode' => array('VIDEO', 'channelmode', gettext('Channel mode'), false, 32, true, 'string'),
+				'VideoFormat' => array('VIDEO', 'format', gettext('Format'), false, 10, true, 'string'),
+				'VideoChannels' => array('VIDEO', 'channels', gettext('Channels'), false, 10, true, 'number'),
+				'VideoFramerate' => array('VIDEO', 'framerate', gettext('Frame rate'), false, 32, true, 'number'),
+				'VideoResolution_x' => array('VIDEO', 'resolution_x', gettext('X Resolution'), false, 32, true, 'number'),
+				'VideoResolution_y' => array('VIDEO', 'resolution_y', gettext('Y Resolution'), false, 32, true, 'number'),
+				'VideoAspect_ratio' => array('VIDEO', 'pixel_aspect_ratio', gettext('Aspect ratio'), false, 32, true, 'number'),
+				'VideoPlaytime' => array('VIDEO', 'playtime_string', gettext('Play Time'), false, 10, true, 'string'));
 	}
 
 	/**
@@ -510,6 +506,10 @@ class pseudoPlayer {
 function class_video_enable($enabled) {
 	if (!$enabled)
 		requestSetup('Video Metadata');
+}
+
+if (OFFSET_PATH & OFFSET_PATH != 2) {
+	zpFunctions::exifOptions('Video Metadata', (extensionEnabled('class-video')) ? 0 : 2, Video::getMetadataFields());
 }
 
 $_zp_multimedia_extension = new pseudoPlayer();
