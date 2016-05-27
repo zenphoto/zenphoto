@@ -431,7 +431,7 @@ class feed {
 				$obj = newImage(NULL, array('folder' => $item['folder'], 'filename' => $item['filename']));
 				$link = $obj->getlink();
 				$feeditem['pubdate'] = date("r", strtotime($item['date']));
-				$category = $item['albumtitle'];
+				$category = get_language_string($item['albumtitle']);
 				$website = $item['website'];
 				$title = $category . ": " . $title;
 				$commentpath = PROTOCOL . '://' . $this->host . $link . "#" . $item['id'];
