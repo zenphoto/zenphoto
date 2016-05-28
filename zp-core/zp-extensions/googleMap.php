@@ -75,48 +75,48 @@ class GoogleMap {
 		}
 
 		return array(
-						gettext('Allowed maps')									 => array('key'				 => 'gmap_allowed_maps', 'type'			 => OPTION_TYPE_CHECKBOX_ARRAY,
-										'order'			 => 1,
-										'checkboxes' => array(gettext('Hybrid')		 => 'gmap_map_hybrid',
-														gettext('Map')			 => 'gmap_map_roadmap',
-														gettext('Satellite') => 'gmap_map_satellite',
-														gettext('Terrain')	 => 'gmap_map_terrain'),
-										'desc'			 => gettext('Select the map types that are allowed.')),
-						gettext('Initial map display selection') => array('key'				 => 'gmap_starting_map', 'type'			 => OPTION_TYPE_SELECTOR,
-										'order'			 => 2,
-										'selections' => $MapTypes,
-										'desc'			 => gettext('Select the initial type of map to display.')),
-						gettext('Map display')									 => array('key'				 => 'gmap_display', 'type'			 => OPTION_TYPE_SELECTOR,
-										'order'			 => 3,
-										'selections' => array(gettext('show')			 => 'show',
-														gettext('hide')			 => 'hide',
-														gettext('colorbox')	 => 'colorbox'),
-										'desc'			 => gettext('Select <em>hide</em> to initially hide the map. Select <em>colorbox</em> for the map to display in a colorbox. Select <em>show</em> and the map will display when the page loads.')),
-						gettext('Map controls')									 => array('key'			 => 'gmap_control_type', 'type'		 => OPTION_TYPE_RADIO,
-										'order'		 => 4,
-										'buttons'	 => array(gettext('None')				 => 'none',
-														gettext('Default')		 => 'DEFAULT',
-														gettext('Dropdown')		 => 'DROPDOWN_MENU',
-														gettext('Horizontal')	 => 'HORIZONTAL_BAR'),
-										'desc'		 => gettext('Display options for the Map type control.')),
-						gettext('Zoom controls')								 => array('key'			 => 'gmap_zoom_size', 'type'		 => OPTION_TYPE_RADIO,
-										'order'		 => 5,
-										'buttons'	 => array(gettext('Small')	 => 'SMALL',
-														gettext('Default') => 'DEFAULT',
-														gettext('Large')	 => 'LARGE'),
-										'desc'		 => gettext('Display options for the Zoom control.')),
-						gettext('Max zoom level')								 => array('key'		 => 'gmap_cluster_max_zoom', 'type'	 => OPTION_TYPE_NUMBER,
-										'order'	 => 6,
-										'desc'	 => gettext('The max zoom level for clustering pictures on map.')),
-						gettext('Map dimensions—width')					 => array('key'		 => 'gmap_width', 'type'	 => OPTION_TYPE_NUMBER,
-										'order'	 => 7,
-										'desc'	 => gettext('The default width of the map.')),
-						gettext('Map dimensions—height')				 => array('key'		 => 'gmap_height', 'type'	 => OPTION_TYPE_NUMBER,
-										'order'	 => 8,
-										'desc'	 => gettext('The default height of the map.')),
-						gettext('Map sessions')									 => array('key'		 => 'gmap_sessions', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 9,
-										'desc'	 => gettext('If checked GoogleMaps will use sessions to pass map data for the <em>colorbox</em> display option. We recommend this option be selected. It protects against reference forgery security attacks and mitigates problems with data exceeding the allowed by some browsers.'))
+				gettext('Allowed maps') => array('key' => 'gmap_allowed_maps', 'type' => OPTION_TYPE_CHECKBOX_ARRAY,
+						'order' => 1,
+						'checkboxes' => array(gettext('Hybrid') => 'gmap_map_hybrid',
+								gettext('Map') => 'gmap_map_roadmap',
+								gettext('Satellite') => 'gmap_map_satellite',
+								gettext('Terrain') => 'gmap_map_terrain'),
+						'desc' => gettext('Select the map types that are allowed.')),
+				gettext('Initial map display selection') => array('key' => 'gmap_starting_map', 'type' => OPTION_TYPE_SELECTOR,
+						'order' => 2,
+						'selections' => $MapTypes,
+						'desc' => gettext('Select the initial type of map to display.')),
+				gettext('Map display') => array('key' => 'gmap_display', 'type' => OPTION_TYPE_SELECTOR,
+						'order' => 3,
+						'selections' => array(gettext('show') => 'show',
+								gettext('hide') => 'hide',
+								gettext('colorbox') => 'colorbox'),
+						'desc' => gettext('Select <em>hide</em> to initially hide the map. Select <em>colorbox</em> for the map to display in a colorbox. Select <em>show</em> and the map will display when the page loads.')),
+				gettext('Map controls') => array('key' => 'gmap_control_type', 'type' => OPTION_TYPE_RADIO,
+						'order' => 4,
+						'buttons' => array(gettext('None') => 'none',
+								gettext('Default') => 'DEFAULT',
+								gettext('Dropdown') => 'DROPDOWN_MENU',
+								gettext('Horizontal') => 'HORIZONTAL_BAR'),
+						'desc' => gettext('Display options for the Map type control.')),
+				gettext('Zoom controls') => array('key' => 'gmap_zoom_size', 'type' => OPTION_TYPE_RADIO,
+						'order' => 5,
+						'buttons' => array(gettext('Small') => 'SMALL',
+								gettext('Default') => 'DEFAULT',
+								gettext('Large') => 'LARGE'),
+						'desc' => gettext('Display options for the Zoom control.')),
+				gettext('Max zoom level') => array('key' => 'gmap_cluster_max_zoom', 'type' => OPTION_TYPE_NUMBER,
+						'order' => 6,
+						'desc' => gettext('The max zoom level for clustering pictures on map.')),
+				gettext('Map dimensions—width') => array('key' => 'gmap_width', 'type' => OPTION_TYPE_NUMBER,
+						'order' => 7,
+						'desc' => gettext('The default width of the map.')),
+				gettext('Map dimensions—height') => array('key' => 'gmap_height', 'type' => OPTION_TYPE_NUMBER,
+						'order' => 8,
+						'desc' => gettext('The default height of the map.')),
+				gettext('Map sessions') => array('key' => 'gmap_sessions', 'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 9,
+						'desc' => gettext('If checked GoogleMaps will use sessions to pass map data for the <em>colorbox</em> display option. We recommend this option be selected. It protects against reference forgery security attacks and mitigates problems with data exceeding the allowed by some browsers.'))
 		);
 	}
 
@@ -139,9 +139,9 @@ class GoogleMap {
 		}
 		?>
 		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp<?php echo $loc; ?>"></script>
-		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/GoogleMap/markerClustererPlus/markerclusterer.js"></script>
-		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/GoogleMap/overlappingMarkerSpiderfier/oms.min.js"></script>
-		<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/GoogleMap/googleMap.css" type="text/css" media="screen"/>
+		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/googleMap/markerClustererPlus/markerclusterer.js"></script>
+		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/googleMap/overlappingMarkerSpiderfier/oms.min.js"></script>
+		<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/googleMap/googleMap.css" type="text/css" media="screen"/>
 		<?php
 	}
 
@@ -447,7 +447,7 @@ function printGoogleMap($text = NULL, $id = NULL, $hide = NULL, $obj = NULL, $ca
 				//]]>
 			</script>
 			<div id="<?php echo $id_data; ?>">
-			<?php echo $map->output_html; ?>
+				<?php echo $map->output_html; ?>
 			</div>
 			<?php
 			break;
@@ -475,10 +475,10 @@ function printGoogleMap($text = NULL, $id = NULL, $hide = NULL, $obj = NULL, $ca
 				//]]>
 			</script>
 			<a id="<?php echo $id_toggle; ?>" href="javascript:toggle_<?php echo $id_data; ?>();" title="<?php echo gettext('Display or hide the Google Map.'); ?>">
-			<?php echo $text; ?>
+				<?php echo $text; ?>
 			</a>
 			<div id="<?php echo $id_data; ?>" class="hidden_map">
-			<?php echo $map->output_html; ?>
+				<?php echo $map->output_html; ?>
 			</div>
 			<?php
 			break;
@@ -502,7 +502,7 @@ function printGoogleMap($text = NULL, $id = NULL, $hide = NULL, $obj = NULL, $ca
 				}
 				?>
 				<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/googleMap/map.php' . $param ?>" title="<?php echo $text; ?>" class="google_map">
-				<?php echo $text; ?>
+					<?php echo $text; ?>
 				</a>
 				<script type="text/javascript">
 					//<![CDATA[

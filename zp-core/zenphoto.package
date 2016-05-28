@@ -1019,14 +1019,14 @@ zp-core/gpl-2.0-standalone.htm
 zp-core/htaccess
 zp-core/i.php
 zp-core/index.php
-zp-core/lib-auth.php
-zp-core/lib-encryption.php
 zp-core/lib-GD.php
 zp-core/lib-Imagick.php
-zp-core/lib-json.php
-zp-core/lib-kses.php
 zp-core/lib-MimeTypes.php
 zp-core/lib-NoGraphics.php
+zp-core/lib-auth.php
+zp-core/lib-encryption.php
+zp-core/lib-json.php
+zp-core/lib-kses.php
 zp-core/lib-pclzip.php
 zp-core/lib-utf8.php
 zp-core/lib-zipStream.php
@@ -1657,6 +1657,7 @@ zp-core/zp-extensions/common
 zp-core/zp-extensions/common/fieldExtender.php
 zp-core/zp-extensions/common/rsslib.php
 zp-core/zp-extensions/common/adGallery
+zp-core/zp-extensions/common/adGallery/LICENSE.txt
 zp-core/zp-extensions/common/adGallery/ad_next.png
 zp-core/zp-extensions/common/adGallery/ad_prev.png
 zp-core/zp-extensions/common/adGallery/ad_scroll_back.png
@@ -1664,7 +1665,6 @@ zp-core/zp-extensions/common/adGallery/ad_scroll_forward.png
 zp-core/zp-extensions/common/adGallery/jquery.ad-gallery.css
 zp-core/zp-extensions/common/adGallery/jquery.ad-gallery.js
 zp-core/zp-extensions/common/adGallery/jquery.ad-gallery.min.js
-zp-core/zp-extensions/common/adGallery/LICENSE.txt
 zp-core/zp-extensions/common/adGallery/loader.gif
 zp-core/zp-extensions/common/adGallery/opa75.png
 zp-core/zp-extensions/common/adGallery/trans.gif
@@ -1718,6 +1718,7 @@ zp-core/zp-extensions/elFinder/img/volume_icon_sql.png
 zp-core/zp-extensions/elFinder/js
 zp-core/zp-extensions/elFinder/js/elfinder.min.js
 zp-core/zp-extensions/elFinder/js/i18n
+zp-core/zp-extensions/elFinder/js/i18n/elfinder.LANG.js
 zp-core/zp-extensions/elFinder/js/i18n/elfinder.ar.js
 zp-core/zp-extensions/elFinder/js/i18n/elfinder.bg.js
 zp-core/zp-extensions/elFinder/js/i18n/elfinder.ca.js
@@ -1735,7 +1736,6 @@ zp-core/zp-extensions/elFinder/js/i18n/elfinder.id.js
 zp-core/zp-extensions/elFinder/js/i18n/elfinder.it.js
 zp-core/zp-extensions/elFinder/js/i18n/elfinder.jp.js
 zp-core/zp-extensions/elFinder/js/i18n/elfinder.ko.js
-zp-core/zp-extensions/elFinder/js/i18n/elfinder.LANG.js
 zp-core/zp-extensions/elFinder/js/i18n/elfinder.nl.js
 zp-core/zp-extensions/elFinder/js/i18n/elfinder.no.js
 zp-core/zp-extensions/elFinder/js/i18n/elfinder.pl.js
@@ -1754,6 +1754,7 @@ zp-core/zp-extensions/elFinder/js/i18n/elfinder.zh_TW.js
 zp-core/zp-extensions/elFinder/js/proxy
 zp-core/zp-extensions/elFinder/js/proxy/elFinderSupportVer1.js
 zp-core/zp-extensions/elFinder/php
+zp-core/zp-extensions/elFinder/php/MySQLStorage.sql
 zp-core/zp-extensions/elFinder/php/connector.minimal.php
 zp-core/zp-extensions/elFinder/php/connector_zp.php
 zp-core/zp-extensions/elFinder/php/elFinder.class.php
@@ -1766,7 +1767,6 @@ zp-core/zp-extensions/elFinder/php/elFinderVolumeLocalFileSystem.class.php
 zp-core/zp-extensions/elFinder/php/elFinderVolumeMySQL.class.php
 zp-core/zp-extensions/elFinder/php/elFinderVolumeS3.class.php
 zp-core/zp-extensions/elFinder/php/mime.types
-zp-core/zp-extensions/elFinder/php/MySQLStorage.sql
 zp-core/zp-extensions/elFinder/php/plugins
 zp-core/zp-extensions/elFinder/php/plugins/AutoResize
 zp-core/zp-extensions/elFinder/php/plugins/AutoResize/plugin.php
@@ -1782,8 +1782,6 @@ zp-core/zp-extensions/favoritesAlbums/admin-album.php
 zp-core/zp-extensions/favoritesHandler
 zp-core/zp-extensions/favoritesHandler/favoritesClass.php
 zp-core/zp-extensions/federated_logon
-zp-core/zp-extensions/federated_logon/federated_logon.css
-zp-core/zp-extensions/federated_logon/federated_logon_buttons.css
 zp-core/zp-extensions/federated_logon/Google.png
 zp-core/zp-extensions/federated_logon/Google_logon.php
 zp-core/zp-extensions/federated_logon/MyOpenID.png
@@ -1797,13 +1795,15 @@ zp-core/zp-extensions/federated_logon/Verisign.png
 zp-core/zp-extensions/federated_logon/Verisign_logon.php
 zp-core/zp-extensions/federated_logon/Yahoo.png
 zp-core/zp-extensions/federated_logon/Yahoo_logon.php
+zp-core/zp-extensions/federated_logon/federated_logon.css
+zp-core/zp-extensions/federated_logon/federated_logon_buttons.css
 zp-core/zp-extensions/federated_logon/Auth
 zp-core/zp-extensions/federated_logon/Auth/Janrain Readme.txt
 zp-core/zp-extensions/federated_logon/Auth/OpenID.php
 zp-core/zp-extensions/federated_logon/Auth/OpenID_detect.php
 zp-core/zp-extensions/federated_logon/Auth/OpenID
-zp-core/zp-extensions/federated_logon/Auth/OpenID/Association.php
 zp-core/zp-extensions/federated_logon/Auth/OpenID/AX.php
+zp-core/zp-extensions/federated_logon/Auth/OpenID/Association.php
 zp-core/zp-extensions/federated_logon/Auth/OpenID/BigMath.php
 zp-core/zp-extensions/federated_logon/Auth/OpenID/Consumer.php
 zp-core/zp-extensions/federated_logon/Auth/OpenID/CryptUtil.php
@@ -1824,11 +1824,11 @@ zp-core/zp-extensions/federated_logon/Auth/OpenID/Nonce.php
 zp-core/zp-extensions/federated_logon/Auth/OpenID/PAPE.php
 zp-core/zp-extensions/federated_logon/Auth/OpenID/Parse.php
 zp-core/zp-extensions/federated_logon/Auth/OpenID/PostgreSQLStore.php
+zp-core/zp-extensions/federated_logon/Auth/OpenID/SQLStore.php
+zp-core/zp-extensions/federated_logon/Auth/OpenID/SQLiteStore.php
+zp-core/zp-extensions/federated_logon/Auth/OpenID/SReg.php
 zp-core/zp-extensions/federated_logon/Auth/OpenID/Server.php
 zp-core/zp-extensions/federated_logon/Auth/OpenID/ServerRequest.php
-zp-core/zp-extensions/federated_logon/Auth/OpenID/SQLiteStore.php
-zp-core/zp-extensions/federated_logon/Auth/OpenID/SQLStore.php
-zp-core/zp-extensions/federated_logon/Auth/OpenID/SReg.php
 zp-core/zp-extensions/federated_logon/Auth/OpenID/TrustRoot.php
 zp-core/zp-extensions/federated_logon/Auth/OpenID/URINorm.php
 zp-core/zp-extensions/federated_logon/Auth/Yadis
@@ -1844,8 +1844,8 @@ zp-core/zp-extensions/federated_logon/Auth/Yadis/XRI.php
 zp-core/zp-extensions/federated_logon/Auth/Yadis/XRIRes.php
 zp-core/zp-extensions/federated_logon/Auth/Yadis/Yadis.php
 zp-core/zp-extensions/flag_thumbnail
-zp-core/zp-extensions/flag_thumbnail/action.png
 zp-core/zp-extensions/flag_thumbnail/GPS.png
+zp-core/zp-extensions/flag_thumbnail/action.png
 zp-core/zp-extensions/flag_thumbnail/lock.png
 zp-core/zp-extensions/flag_thumbnail/new.png
 zp-core/zp-extensions/galleryArticles
