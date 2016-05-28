@@ -1819,6 +1819,11 @@ class Googlemaps {
 				zoomOnClick: false'; }
 			if ($this->clusterAverageCenter) { $this->output_js_contents .= ',
 				averageCenter: true'; }
+			// zenphoto hack
+			// Google abandoned their CDN
+			$this->output_js_contents .= ',
+				imagePath: "' . WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/GoogleMap/markerClustererPlus/images/m"';
+			// end zenphotohack
 			$this->output_js_contents .= ',
 				minimumClusterSize: '.$this->clusterMinimumClusterSize.'
 			};
