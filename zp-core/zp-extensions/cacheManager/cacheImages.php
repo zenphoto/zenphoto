@@ -148,8 +148,8 @@ if ($alb) {
 	}
 } else {
 	$object = '<em>' . gettext('Gallery') . '</em>';
-	$zenphoto_tabs['overview']['subtabs'] = array(gettext('Cache images')				 => PLUGIN_FOLDER . '/cacheManager/cacheImages.php?page = overview&tab=images',
-					gettext('Cache stored images') => PLUGIN_FOLDER . '/cacheManager/cacheDBImages.php?page=overview&tab=DB&XSRFToken=' . getXSRFToken('cacheDBImages'));
+	$zenphoto_tabs['overview']['subtabs'] = array(gettext('Cache images') => PLUGIN_FOLDER . '/cacheManager/cacheImages.php?page = overview&tab=images',
+			gettext('Cache stored images') => PLUGIN_FOLDER . '/cacheManager/cacheDBImages.php?page=overview&tab=DB&XSRFToken=' . getXSRFToken('cacheDBImages'));
 }
 $custom = array();
 
@@ -287,7 +287,8 @@ echo "\n" . '<div id = "content">';
 							$checked = ' disabled="disabled"';
 						}
 					}
-					$themeid = $theme = $cacheimage['theme'];
+					$themeid = $cacheimage['theme'];
+					$theme = preg_replace('/[^A-Za-z0-9\-_]/', '', $themeid);
 					if (isset($themes[$theme])) {
 						$themeid = $themes[$theme];
 					}

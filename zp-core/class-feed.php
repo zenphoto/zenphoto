@@ -432,7 +432,7 @@ class feed {
 				$obj = newImage(array('folder' => $item['folder'], 'filename' => $item['filename']));
 				$link = $obj->getlink();
 				$feeditem['pubdate'] = date("r", strtotime($item['date']));
-				$category = $item['albumtitle'];
+				$category = get_language_string($item['albumtitle']);
 				$website = $item['website'];
 				$title = $category . ": " . $title;
 				$commentpath = PROTOCOL . '://' . $this->host . $link . "#" . $item['id'];
@@ -448,7 +448,6 @@ class feed {
 			case 'news':
 			case 'pages':
 				if (extensionEnabled('zenpage')) {
-					$album = '';
 					$feeditem['pubdate'] = date("r", strtotime($item['date']));
 					$category = '';
 					$title = get_language_string($item['title']);

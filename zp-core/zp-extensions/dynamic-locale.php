@@ -142,7 +142,7 @@ function printLanguageSelector($flags = NULL) {
 					$flag = getLanguageFlag($lang);
 					if ($lang != $localeOption) {
 						?>
-						<a href="<?php echo $path; ?>" >
+						<a onclick="launchScript('<?php echo $path; ?>', []);" >
 							<?php
 						}
 						?>
@@ -166,13 +166,13 @@ function printLanguageSelector($flags = NULL) {
 			<input type="hidden" name="oldlocale" value="<?php echo getOption('locale'); ?>" />
 			<select id="dynamic-locale" class="languageselect" name="locale" onchange="this.form.submit()">
 				<?php
-				foreach ($languages as $key => $item) {
-					echo '<option class="languageoption" value="' . html_encode($item) . '"';
-					if ($item == $localeOption) {
+				foreach ($languages as $text => $lang) {
+					echo '<option class="languageoption" value="' . html_encode($lang) . '"';
+					if ($lang == $localeOption) {
 						echo ' selected="selected"';
 					}
-					echo ' >';
-					echo html_encode($key) . "</option>\n";
+					echo '>';
+					echo html_encode($text) . "</option>\n";
 				}
 				?>
 			</select>
@@ -229,6 +229,12 @@ class dynamic_locale {
 	}
 
 	static function dynamic_localeJS() {
+		if (!getOption('dynamic_locale_visual')) {
+			?>
+			<script type="text/javascript"  src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/dynamic-locale/jquery.dd.min.js" />
+			<link type="text/css" rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/dynamic-locale/dd.css" />
+			<?php
+		}
 		?>
 		<link type="text/css" rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/dynamic-locale/locale.css" />
 		<?php

@@ -19,7 +19,12 @@ function confirmDelete(url, msg) {
 }
 
 function launchScript(script, params) {
-	window.location = script + '?' + params.join('&');
+	if (params.length == 0) {
+		params = '';
+	} else {
+		params = '?' + params.join('&');
+	}
+	window.location = script + params;
 }
 
 function addslashes(str) {
