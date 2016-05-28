@@ -1858,20 +1858,11 @@ zp-core/zp-extensions/googleMap/CodeIgniter-Google-Maps-V3-API/Googlemaps.php
 zp-core/zp-extensions/googleMap/markerClustererPlus
 zp-core/zp-extensions/googleMap/markerClustererPlus/markerclusterer.js
 zp-core/zp-extensions/googleMap/markerClustererPlus/images
-zp-core/zp-extensions/googleMap/markerClustererPlus/images/conv30.png
-zp-core/zp-extensions/googleMap/markerClustererPlus/images/conv40.png
-zp-core/zp-extensions/googleMap/markerClustererPlus/images/conv50.png
-zp-core/zp-extensions/googleMap/markerClustererPlus/images/heart30.png
-zp-core/zp-extensions/googleMap/markerClustererPlus/images/heart40.png
-zp-core/zp-extensions/googleMap/markerClustererPlus/images/heart50.png
 zp-core/zp-extensions/googleMap/markerClustererPlus/images/m1.png
 zp-core/zp-extensions/googleMap/markerClustererPlus/images/m2.png
 zp-core/zp-extensions/googleMap/markerClustererPlus/images/m3.png
 zp-core/zp-extensions/googleMap/markerClustererPlus/images/m4.png
 zp-core/zp-extensions/googleMap/markerClustererPlus/images/m5.png
-zp-core/zp-extensions/googleMap/markerClustererPlus/images/people35.png
-zp-core/zp-extensions/googleMap/markerClustererPlus/images/people45.png
-zp-core/zp-extensions/googleMap/markerClustererPlus/images/people55.png
 zp-core/zp-extensions/googleMap/markerClustererPlus/images/pin.png
 zp-core/zp-extensions/googleMap/overlappingMarkerSpiderfier
 zp-core/zp-extensions/googleMap/overlappingMarkerSpiderfier/oms.min.js
@@ -2381,4 +2372,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-2383
+2374
