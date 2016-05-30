@@ -1414,12 +1414,16 @@ function getParentBreadcrumb() {
 	}
 	$n = count($parents);
 	if ($n > 0) {
+		array_push($parents, $_zp_current_album);
+		$index = -1;
 		foreach ($parents as $parent) {
-			$page = $_zp_current_album->getGalleryPage();
-			$url = $parent->getLink($page);
-//cleanup things in description for use as attribute tag
-			$desc = getBare(preg_replace('|</p\s*>|i', '</p> ', preg_replace('|<br\s*/>|i', ' ', $parent->getDesc())));
-			$output[] = array('link' => html_encode($url), 'title' => $desc, 'text' => $parent->getTitle());
+			$index++;
+			if($index != 0) {
+				$parentparent = $parents[$index-1];
+				$page = $parent->getGalleryPage();
+				$url = $parentparent->getLink($page);
+				$output[] = array('link' => html_encode($url), 'title' => $parentparent->getTitle(), 'text' => $parentparent->getTitle());
+			}
 		}
 	}
 	return $output;
