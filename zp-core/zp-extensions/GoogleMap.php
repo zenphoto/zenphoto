@@ -248,7 +248,7 @@ function addGeoCoord($map, $coord) {
 		}
 
 		$marker['position'] = number_format($coord['lat'], 12, '.', '') . ", " . number_format($coord['long'], 12, '.', '');
-		$marker['title'] = $coord['title'];
+		$marker['title'] = addslashes($coord['title']);
 		$marker['infowindow_content'] = $title . $thumb . $desc;
 		$map->add_marker($marker);
 		$lat_f = $coord['lat'] * M_PI / 180;
