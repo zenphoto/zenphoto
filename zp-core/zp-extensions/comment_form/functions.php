@@ -325,12 +325,12 @@ function comment_form_addComment($name, $email, $website, $comment, $code, $code
 		$commentobj->save();
 		//  add to comments array and notify the admin user
 		if (!$moderate) {
-			$receiver->comments[] = array('name'				 => $commentobj->getname(),
-							'email'				 => $commentobj->getEmail(),
-							'website'			 => $commentobj->getWebsite(),
-							'comment'			 => $commentobj->getComment(),
-							'date'				 => $commentobj->getDateTime(),
-							'custom_data'	 => $commentobj->getCustomData());
+			$receiver->comments[] = array('name' => $commentobj->getname(),
+					'email' => $commentobj->getEmail(),
+					'website' => $commentobj->getWebsite(),
+					'comment' => $commentobj->getComment(),
+					'date' => $commentobj->getDateTime(),
+					'custom_data' => $commentobj->getCustomData());
 		}
 		switch ($type) {
 			case "albums":
@@ -521,14 +521,14 @@ function comment_form_handle_comment() {
 			$commentadded = $commentobject->addComment($p_name, $p_email, $p_website, $p_comment, $code1, $code2, $p_server, $p_private, $p_anon, serialize(getCommentAddress(0)));
 
 			$comment_error = $commentadded->getInModeration();
-			$_zp_comment_stored = array('name'		 => $commentadded->getName(),
-							'email'		 => $commentadded->getEmail(),
-							'website'	 => $commentadded->getWebsite(),
-							'comment'	 => $commentadded->getComment(),
-							'saved'		 => isset($_POST['remember']),
-							'private'	 => $commentadded->getPrivate(),
-							'anon'		 => $commentadded->getAnon(),
-							'custom'	 => $commentadded->getCustomData()
+			$_zp_comment_stored = array('name' => $commentadded->getName(),
+					'email' => $commentadded->getEmail(),
+					'website' => $commentadded->getWebsite(),
+					'comment' => $commentadded->getComment(),
+					'saved' => isset($_POST['remember']),
+					'private' => $commentadded->getPrivate(),
+					'anon' => $commentadded->getAnon(),
+					'custom' => $commentadded->getCustomData()
 			);
 
 			if ($comment_error) {
@@ -809,7 +809,7 @@ function printLatestComments($number, $shorten = '123', $type = "all", $item = N
 		} else {
 			$author = "";
 		}
-		$shortcomment = truncate_string($comment['comment'], $shorten);
+		$shortcomment = shortenContent($comment['comment'], $shorten, '');
 		$website = $comment['website'];
 		$date = $comment['date'];
 		switch ($comment['type']) {

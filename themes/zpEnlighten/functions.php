@@ -2,7 +2,7 @@
 
 class Utils {
 
-	private function Utils() {
+	private function __construct() {
 
 	}
 

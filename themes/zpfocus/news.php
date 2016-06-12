@@ -21,24 +21,24 @@
 		<div class="newsarticle">
 			<div class="newsarticlecredit">
 				<span class="newsarticlecredit-left"><?php printNewsDate(); ?> |
-					<?php if ((function_exists('printCommentForm')) && (zenpageOpenedForComments())) { ?>
+					<?php if ((function_exists('printCommentForm')) && (getCommentsAllowed())) { ?>
 						<?php echo gettext("Comments:"); ?> <?php echo getCommentCount(); ?> |
-				<?php } ?>
+					<?php } ?>
 				</span>
 				<?php printNewsCategories(", ", gettext("Categories: "), "newscategories"); ?> |
-	<?php printTags('links', gettext('Tags:') . ' ', 'taglist', ', '); ?>
+				<?php printTags('links', gettext('Tags:') . ' ', 'taglist', ', '); ?>
 			</div>
 			<h3><?php printNewsURL(); ?></h3>
-	<?php printNewsContent(); ?>
+			<?php printNewsContent(); ?>
 		</div>
 
-			<?php if (function_exists('printRating')) { ?>
+		<?php if (function_exists('printRating')) { ?>
 			<div id="rating" class="rating-news">
-			<?php printRating(); ?>
+				<?php printRating(); ?>
 			</div>
 		<?php } ?>
 
-	<?php if (function_exists('printCommentForm')) printCommentForm(); ?>
+		<?php if (function_exists('printCommentForm')) printCommentForm(); ?>
 
 		<div id="img-topbar" class="clearfix" style="margin-top:15px;">
 			<?php if (getNextNewsURL()) { ?>
@@ -46,7 +46,7 @@
 			<?php } ?>
 			<?php if (getPrevNewsURL()) { ?>
 				<div id="img-prev"><?php printPrevNewsLink('«'); ?></div>
-	<?php } ?>
+			<?php } ?>
 		</div>
 
 		<?php
@@ -69,20 +69,20 @@
 					<span class="newsarticlecredit-left"><?php printNewsDate(); ?> |
 						<?php if (function_exists('printCommentForm')) { ?>
 							<?php echo gettext("Comments:"); ?> <?php echo getCommentCount(); ?> |
-					<?php } ?>
+						<?php } ?>
 					</span>
 					<?php printNewsCategories(", ", gettext("Categories: "), "newscategories"); ?>
-		<?php printTags('links', gettext('Tags:') . ' ', 'taglist', ', '); ?>
+					<?php printTags('links', gettext('Tags:') . ' ', 'taglist', ', '); ?>
 				</div>
 				<h3><?php printNewsURL(); ?></h3>
 				<?php printNewsContent(); ?>
-			<?php printCodeblock(); ?>
+				<?php printCodeblock(); ?>
 			</div>
-			<?php endwhile; ?>
+		<?php endwhile; ?>
 		<div class="page-nav">
-		<?php printNewsPageListWithNav('»', '«', 'true', 'page-nav'); ?>
+			<?php printNewsPageListWithNav('»', '«', 'true', 'page-nav'); ?>
 		</div>
-<?php } ?>
+	<?php } ?>
 
 </div>
 

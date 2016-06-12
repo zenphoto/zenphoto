@@ -1046,8 +1046,6 @@ function getTotalNewsPages() {
  * Returns the title and the titlelink of the next article in single news article pagination as an array
  * Returns false if there is none (or option is empty)
  *
- * NOTE: This is not available if using the CombiNews feature
- *
  * @return mixed
  */
 function getNextNewsURL() {
@@ -1140,16 +1138,16 @@ function getZenpageStatistic($number = 10, $option = "all", $mode = "popular", $
 			$counter++;
 			$obj = newArticle($article['titlelink']);
 			$statsarticles[$counter] = array(
-							"id"					 => $obj->getID(),
-							"title"				 => $obj->getTitle(),
-							"titlelink"		 => $article['titlelink'],
-							"hitcounter"	 => $obj->getHitcounter(),
-							"total_votes"	 => $obj->getTotal_votes(),
-							"rating"			 => $obj->getRating(),
-							"content"			 => $obj->getContent(),
-							"date"				 => $obj->getDateTime(),
-							"pubdate"			 => $obj->getPublishDate(),
-							"type"				 => "News"
+					"id" => $obj->getID(),
+					"title" => $obj->getTitle(),
+					"titlelink" => $article['titlelink'],
+					"hitcounter" => $obj->getHitcounter(),
+					"total_votes" => $obj->getTotal_votes(),
+					"rating" => $obj->getRating(),
+					"content" => $obj->getContent(),
+					"date" => $obj->getDateTime(),
+					"pubdate" => $obj->getPublishDate(),
+					"type" => "News"
 			);
 		}
 		$stats = $statsarticles;
@@ -1161,15 +1159,15 @@ function getZenpageStatistic($number = 10, $option = "all", $mode = "popular", $
 		foreach ($categories as $cat) {
 			$counter++;
 			$statscats[$counter] = array(
-							"id"					 => $cat['id'],
-							"title"				 => html_encode(get_language_string($cat['title'])),
-							"titlelink"		 => getNewsCategoryURL($cat['titlelink']),
-							"hitcounter"	 => $cat['hitcounter'],
-							"total_votes"	 => "",
-							"rating"			 => "",
-							"content"			 => '',
-							"date"				 => '',
-							"type"				 => "Category"
+					"id" => $cat['id'],
+					"title" => html_encode(get_language_string($cat['title'])),
+					"titlelink" => getNewsCategoryURL($cat['titlelink']),
+					"hitcounter" => $cat['hitcounter'],
+					"total_votes" => "",
+					"rating" => "",
+					"content" => '',
+					"date" => '',
+					"type" => "Category"
 			);
 		}
 		$stats = $statscats;
@@ -1182,15 +1180,15 @@ function getZenpageStatistic($number = 10, $option = "all", $mode = "popular", $
 			$counter++;
 			$pageobj = newPage($page['titlelink']);
 			$statspages[$counter] = array(
-							"id"					 => $pageobj->getID(),
-							"title"				 => $pageobj->getTitle(),
-							"titlelink"		 => $page['titlelink'],
-							"hitcounter"	 => $pageobj->getHitcounter(),
-							"total_votes"	 => $pageobj->get('total_votes'),
-							"rating"			 => $pageobj->get('rating'),
-							"content"			 => $pageobj->getContent(),
-							"date"				 => $pageobj->getDateTime(),
-							"type"				 => "Page"
+					"id" => $pageobj->getID(),
+					"title" => $pageobj->getTitle(),
+					"titlelink" => $page['titlelink'],
+					"hitcounter" => $pageobj->getHitcounter(),
+					"total_votes" => $pageobj->get('total_votes'),
+					"rating" => $pageobj->get('rating'),
+					"content" => $pageobj->getContent(),
+					"date" => $pageobj->getDateTime(),
+					"type" => "Page"
 			);
 		}
 		$stats = $statspages;
