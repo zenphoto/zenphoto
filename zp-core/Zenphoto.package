@@ -830,8 +830,14 @@ zp-core/zp-extensions/GoogleMap/CodeIgniter-Google-Maps-V3-API/Googlemaps.php
 zp-core/zp-extensions/GoogleMap/Map.php
 zp-core/zp-extensions/GoogleMap/googleMap.css
 zp-core/zp-extensions/GoogleMap/markerClustererPlus
+zp-core/zp-extensions/GoogleMap/markerClustererPlus/images
+zp-core/zp-extensions/GoogleMap/markerClustererPlus/images/m1.png
+zp-core/zp-extensions/GoogleMap/markerClustererPlus/images/m2.png
+zp-core/zp-extensions/GoogleMap/markerClustererPlus/images/m3.png
+zp-core/zp-extensions/GoogleMap/markerClustererPlus/images/m4.png
+zp-core/zp-extensions/GoogleMap/markerClustererPlus/images/m5.png
+zp-core/zp-extensions/GoogleMap/markerClustererPlus/images/pin.png
 zp-core/zp-extensions/GoogleMap/markerClustererPlus/markerclusterer.js
-zp-core/zp-extensions/GoogleMap/markerClustererPlus/markerclusterer_packed.js
 zp-core/zp-extensions/GoogleMap/overlappingMarkerSpiderfier
 zp-core/zp-extensions/GoogleMap/overlappingMarkerSpiderfier/oms.min.js
 zp-core/zp-extensions/PHPMailer
@@ -1745,4 +1751,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1747
+1753
