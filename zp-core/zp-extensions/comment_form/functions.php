@@ -680,7 +680,7 @@ function printEditCommentLink($text, $before = '', $after = '', $title = NULL, $
 }
 
 /**
- * Gets latest comments for images and albums
+ * Gets latest comments for images, albums, news and pages
  *
  * @param int $number how many comments you want.
  * @param string $type	"all" for all latest comments of all images and albums
@@ -795,7 +795,7 @@ function getLatestComments($number, $type = "all", $id = NULL) {
 }
 
 /**
- * Prints out latest comments for images and albums
+ * Prints latest comments for images, albums, news and pages
  *
  * @param see getLatestComments
  *
