@@ -13,7 +13,7 @@ class Zenpage_internal_deprecations {
   public static function getNextPrevNews() {
     deprecated_functions::notify(gettext('Sort parameter options should be set instead with the setSortType() and setSortDirection() object methods at the head of your script.').gettext('This includes getNextPrevNews(), getNextNewsURL(), printNextNewsLink(), getPrevNewsURL() and printPrevNewsLink().'));
   }
-  
+
   /**
    * @deprecated
    * @since 1.4.6
@@ -21,7 +21,7 @@ class Zenpage_internal_deprecations {
   public static function getIndex() {
     deprecated_functions::notify(gettext('Sort parameter options should be set instead with the setSortType(), setSortDirection() and setSortSticky() object methods at the head of your script.'));
   }
-  
+
   /**
    * @deprecated
    * @since 1.4.6
@@ -677,8 +677,8 @@ function getZenpageRSSHeaderLink($option = '', $categorylink = '', $linktext = '
  * @since 1.4.5
  */
 function printLatestZenpageComments($number, $shorten = '123', $id = 'showlatestcomments', $type = "all", $itemID = "") {
-	deprecated_functions::notify(gettext('use printLatestComments($number, $shorten, $type, $itemID, $id);'));
-	printLatestComments($number, $shorten, $type, $itemID, $id);
+	deprecated_functions::notify(gettext('use printLatestComments($number, $shorten, $type, $itemID, $id, $shortenindicator);'));
+	printLatestComments($number, $shorten, $type, $itemID, $id, $shortenindicator);
 }
 
 /**
