@@ -683,7 +683,7 @@ function printEditCommentLink($text, $before = '', $after = '', $title = NULL, $
  * Gets latest comments for images, albums, news and pages
  *
  * @param int $number how many comments you want.
- * @param string $type	"all" for all latest comments of all images and albums
+ * @param string $type	"all" for all latest comments of all images, albums, news and pages
  * 											an array of table items e.g. array('images','albums') for all images and albums
  * 											"image" for the lastest comments of one specific image
  * 											"album" for the latest comments of one specific album
@@ -797,10 +797,20 @@ function getLatestComments($number, $type = "all", $id = NULL) {
 /**
  * Prints latest comments for images, albums, news and pages
  *
- * @param see getLatestComments
- *
+ * @param int $number how many comments you want.
+ * @param int $shorten how many characters you want to show in the excerpt.
+ * @param string $type	"all" for all latest comments of all images, albums, news and pages
+ * 											an array of table items e.g. array('images','albums', 'news', 'pages') for all images, albums, news and pages
+ * 											"image" for the lastest comments of one specific image
+ * 											"album" for the latest comments of one specific album
+ * 											"news" for the latest comments of one specific news article
+ * 											"page" for the latest comments of one specific Page
+ * @param int $item the record id of element to get the comments for if $type != "all".
+ * @param string $ulid id for the <ul> element.
+ * @param string $shortenindicator indicator to show that the string is truncated.
+
  */
-function printLatestComments($number, $shorten = '123', $type = "all", $item = NULL, $ulid = 'showlatestcomments') {
+function printLatestComments($number, $shorten = '123', $type = "all", $item = NULL, $ulid = 'showlatestcomments', $shortenindicator = NULL) {
 	$comments = getLatestComments($number, $type, $item);
 	echo '<ul id="' . $ulid . $item . "\">\n";
 	foreach ($comments as $comment) {
@@ -809,7 +819,7 @@ function printLatestComments($number, $shorten = '123', $type = "all", $item = N
 		} else {
 			$author = "";
 		}
-		$shortcomment = shortenContent($comment['comment'], $shorten, '');
+		$shortcomment = shortenContent($comment['comment'], $shorten, $shortenindicator);
 		$website = $comment['website'];
 		$date = $comment['date'];
 		switch ($comment['type']) {
