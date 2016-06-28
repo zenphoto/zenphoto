@@ -90,7 +90,7 @@
 
 				<div class="news-nav">
 					<?php
-					$next_article_url = getNextNews('date', 'desc');
+					$next_article_url = getNextNewsURL('date', 'desc');
 					if ($next_article_url && array_key_exists('link', $next_article_url) && $next_article_url['link'] != "") {
 						echo "<a class=\"button\" href=\"" . html_encode($next_article_url['link']) . "\" title=\"" . html_encode(strip_tags($next_article_url['title'])) . "\">" . $next_article_url['title'] . " &raquo;</a> ";
 					}

@@ -214,12 +214,7 @@ function shortenContent($articlecontent, $shorten, $shortenindicator, $forceindi
 		}
 		$articlecontent = $short;
 	}
-	if (isset($matches)) {
-		//replace the script text
-		foreach ($matches[0] as $script) {
-			$articlecontent = $script . $articlecontent;
-		}
-	}
+
 	return $articlecontent;
 }
 
