@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Zenphoto 1.4.12\n"
+"Project-Id-Version: Zenphoto 1.4.13\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-11 22:31+0100\n"
-"PO-Revision-Date: 2016-03-11 22:31+0100\n"
+"POT-Creation-Date: 2016-06-30 19:23+0200\n"
+"PO-Revision-Date: 2016-06-30 19:25+0200\n"
 "Last-Translator: Malte Müller (acrylian) <wartgart@gmx.net>\n"
 "Language-Team: Malte Müller (acrylian)\n"
 "Language: de_DE\n"
@@ -14,7 +14,7 @@ msgstr ""
 "X-Poedit-Basepath: /Users/maltemuller/Grafik/htdocs\n"
 "Plural-Forms: nplurals=2; plural=n !=1;\n"
 "X-Poedit-KeywordsList: \n"
-"X-Generator: Poedit 1.8.7\n"
+"X-Generator: Poedit 1.8.8\n"
 "X-Poedit-SearchPath-0: zenphoto-dev/themes\n"
 "X-Poedit-SearchPath-1: zenphoto-dev/zp-core\n"
 
@@ -236,7 +236,7 @@ msgstr "Themefarben"
 #: zenphoto-dev/themes/zenpage/image.php:27
 #: zenphoto-dev/zp-core/admin-functions.php:139
 #: zenphoto-dev/zp-core/admin-plugins.php:81
-#: zenphoto-dev/zp-core/zp-extensions/GoogleMap.php:505
+#: zenphoto-dev/zp-core/zp-extensions/GoogleMap.php:504
 #: zenphoto-dev/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:66
 #: zenphoto-dev/zp-core/zp-extensions/slideshow.php:595
 #: zenphoto-dev/zp-core/zp-extensions/slideshow2.php:597
@@ -383,9 +383,9 @@ msgstr "Seite nicht gefunden"
 #: zenphoto-dev/themes/zpmobile/search.php:51
 #: zenphoto-dev/themes/zpmobile/search.php:53
 #: zenphoto-dev/zp-core/template-functions.php:452
-#: zenphoto-dev/zp-core/template-functions.php:1357
-#: zenphoto-dev/zp-core/template-functions.php:1388
-#: zenphoto-dev/zp-core/template-functions.php:3902
+#: zenphoto-dev/zp-core/template-functions.php:1358
+#: zenphoto-dev/zp-core/template-functions.php:1389
+#: zenphoto-dev/zp-core/template-functions.php:3907
 #: zenphoto-dev/zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:68
 #: zenphoto-dev/zp-core/zp-extensions/html_meta_tags.php:266
 #: zenphoto-dev/zp-core/zp-extensions/slideshow.php:749
@@ -494,7 +494,7 @@ msgid "Effervescence %1$s %2$s"
 msgstr "Effervescence %1$s %2$s"
 
 #: zenphoto-dev/themes/effervescence_plus/functions.php:323
-#: zenphoto-dev/zp-core/template-functions.php:1176
+#: zenphoto-dev/zp-core/template-functions.php:1177
 msgid "The album is password protected."
 msgstr "Dieses Album ist passwortgeschützt."
 
@@ -618,7 +618,7 @@ msgstr "Kategorien:"
 #: zenphoto-dev/themes/garland/album.php:77
 #: zenphoto-dev/themes/garland/favorites.php:91
 #: zenphoto-dev/themes/garland/functions.php:186
-#: zenphoto-dev/themes/garland/gallery.php:63
+#: zenphoto-dev/themes/garland/gallery.php:62
 #: zenphoto-dev/themes/garland/search.php:225
 #: zenphoto-dev/themes/zenpage/gallery.php:61
 #: zenphoto-dev/themes/zenpage/gallery.php:86
@@ -633,7 +633,7 @@ msgstr "weiter »"
 #: zenphoto-dev/themes/garland/album.php:77
 #: zenphoto-dev/themes/garland/favorites.php:91
 #: zenphoto-dev/themes/garland/functions.php:186
-#: zenphoto-dev/themes/garland/gallery.php:63
+#: zenphoto-dev/themes/garland/gallery.php:62
 #: zenphoto-dev/themes/garland/search.php:225
 #: zenphoto-dev/themes/zenpage/gallery.php:61
 #: zenphoto-dev/themes/zenpage/gallery.php:86
@@ -662,8 +662,8 @@ msgstr "Stopp"
 #: zenphoto-dev/themes/effervescence_plus/indexpage.php:43
 #: zenphoto-dev/themes/effervescence_plus/slideshow.php:34
 #: zenphoto-dev/themes/zpmobile/functions.php:65
-#: zenphoto-dev/zp-core/template-functions.php:612
-#: zenphoto-dev/zp-core/template-functions.php:1492
+#: zenphoto-dev/zp-core/template-functions.php:613
+#: zenphoto-dev/zp-core/template-functions.php:1497
 #: zenphoto-dev/zp-core/zp-extensions/menu_manager.php:826
 #: zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:463
 msgid "Home"
@@ -841,7 +841,7 @@ msgstr "Album-Index"
 #: zenphoto-dev/zp-core/lib-auth.php:585
 #: zenphoto-dev/zp-core/setup/setup-option-defaults.php:390
 #: zenphoto-dev/zp-core/setup/setup-option-defaults.php:391
-#: zenphoto-dev/zp-core/template-functions.php:572
+#: zenphoto-dev/zp-core/template-functions.php:573
 #: zenphoto-dev/zp-core/zp-extensions/cacheManager/cacheImages.php:150
 #: zenphoto-dev/zp-core/zp-extensions/defaultCodeblocks.php:34
 #: zenphoto-dev/zp-core/zp-extensions/externalFeed.php:69
@@ -908,8 +908,8 @@ msgstr "Seiten"
 #: zenphoto-dev/themes/effervescence_plus/themeoptions.php:77
 #: zenphoto-dev/themes/zenpage/sidebar.php:56
 #: zenphoto-dev/themes/zpmobile/functions.php:78
-#: zenphoto-dev/zp-core/template-functions.php:1340
-#: zenphoto-dev/zp-core/template-functions.php:1395
+#: zenphoto-dev/zp-core/template-functions.php:1341
+#: zenphoto-dev/zp-core/template-functions.php:1396
 #: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:878
 msgid "Archive"
 msgstr "Archiv"
@@ -943,8 +943,8 @@ msgstr "RSS"
 #: zenphoto-dev/zp-core/template-functions.php:427
 #: zenphoto-dev/zp-core/zp-extensions/cacheManager.php:153
 #: zenphoto-dev/zp-core/zp-extensions/comment_form.php:82
-#: zenphoto-dev/zp-core/zp-extensions/comment_form/functions.php:833
-#: zenphoto-dev/zp-core/zp-extensions/comment_form/functions.php:840
+#: zenphoto-dev/zp-core/zp-extensions/comment_form/functions.php:842
+#: zenphoto-dev/zp-core/zp-extensions/comment_form/functions.php:849
 #: zenphoto-dev/zp-core/zp-extensions/defaultCodeblocks.php:36
 #: zenphoto-dev/zp-core/zp-extensions/externalFeed.php:71
 #: zenphoto-dev/zp-core/zp-extensions/html_meta_tags.php:248
@@ -1120,12 +1120,12 @@ msgstr ""
 "Stellen Sie das <em>menu_manager</em>-Menü ein, dass Sie verwenden möchten."
 
 #: zenphoto-dev/themes/effervescence_plus/themeoptions.php:124
-#: zenphoto-dev/themes/garland/themeoptions.php:92
+#: zenphoto-dev/themes/garland/themeoptions.php:91
 msgid "Image gallery transition"
 msgstr "Bildgalerie-Überblendung"
 
 #: zenphoto-dev/themes/effervescence_plus/themeoptions.php:125
-#: zenphoto-dev/themes/garland/themeoptions.php:93
+#: zenphoto-dev/themes/garland/themeoptions.php:92
 #: zenphoto-dev/zp-core/exif/makers/canon.php:151
 #: zenphoto-dev/zp-core/exif/makers/nikon.php:221
 #: zenphoto-dev/zp-core/zp-extensions/GoogleMap.php:95
@@ -1134,25 +1134,25 @@ msgid "None"
 msgstr "kein"
 
 #: zenphoto-dev/themes/effervescence_plus/themeoptions.php:125
-#: zenphoto-dev/themes/garland/themeoptions.php:93
+#: zenphoto-dev/themes/garland/themeoptions.php:92
 #: zenphoto-dev/zp-core/zp-extensions/bxslider_thumb_nav.php:75
 msgid "Fade"
 msgstr "Ausblenden"
 
 #: zenphoto-dev/themes/effervescence_plus/themeoptions.php:125
-#: zenphoto-dev/themes/garland/themeoptions.php:93
+#: zenphoto-dev/themes/garland/themeoptions.php:92
 msgid "Shrink/grow"
 msgstr "Verkleinern/Vergrößern"
 
 #: zenphoto-dev/themes/effervescence_plus/themeoptions.php:125
-#: zenphoto-dev/themes/garland/themeoptions.php:93
+#: zenphoto-dev/themes/garland/themeoptions.php:92
 #: zenphoto-dev/zp-core/zp-extensions/GoogleMap.php:98
 #: zenphoto-dev/zp-core/zp-extensions/bxslider_thumb_nav.php:73
 msgid "Horizontal"
 msgstr "Horizontal"
 
 #: zenphoto-dev/themes/effervescence_plus/themeoptions.php:125
-#: zenphoto-dev/themes/garland/themeoptions.php:93
+#: zenphoto-dev/themes/garland/themeoptions.php:92
 #: zenphoto-dev/zp-core/zp-extensions/bxslider_thumb_nav.php:74
 #: zenphoto-dev/zp-core/zp-extensions/jcarousel_thumb_nav.php:54
 #: zenphoto-dev/zp-core/zp-extensions/slideshow2.php:117
@@ -1160,27 +1160,27 @@ msgid "Vertical"
 msgstr "Vertikal"
 
 #: zenphoto-dev/themes/effervescence_plus/themeoptions.php:127
-#: zenphoto-dev/themes/garland/themeoptions.php:95
+#: zenphoto-dev/themes/garland/themeoptions.php:94
 msgid "Transition effect for Image gallery"
 msgstr "Überblendungeffekt der Bildgalerie"
 
 #: zenphoto-dev/themes/effervescence_plus/themeoptions.php:128
-#: zenphoto-dev/themes/garland/themeoptions.php:96
+#: zenphoto-dev/themes/garland/themeoptions.php:95
 msgid "Image gallery caption"
 msgstr "Bildgaleriebeschreibung"
 
 #: zenphoto-dev/themes/effervescence_plus/themeoptions.php:129
-#: zenphoto-dev/themes/garland/themeoptions.php:97
+#: zenphoto-dev/themes/garland/themeoptions.php:96
 msgid "On image"
 msgstr "Auf dem Bild"
 
 #: zenphoto-dev/themes/effervescence_plus/themeoptions.php:129
-#: zenphoto-dev/themes/garland/themeoptions.php:97
+#: zenphoto-dev/themes/garland/themeoptions.php:96
 msgid "Separate"
 msgstr "getrennt"
 
 #: zenphoto-dev/themes/effervescence_plus/themeoptions.php:129
-#: zenphoto-dev/themes/garland/themeoptions.php:97
+#: zenphoto-dev/themes/garland/themeoptions.php:96
 #: zenphoto-dev/zp-core/zp-extensions/comment_form.php:92
 #: zenphoto-dev/zp-core/zp-extensions/comment_form.php:96
 #: zenphoto-dev/zp-core/zp-extensions/comment_form.php:100
@@ -1191,7 +1191,7 @@ msgid "Omit"
 msgstr "Weglassen"
 
 #: zenphoto-dev/themes/effervescence_plus/themeoptions.php:131
-#: zenphoto-dev/themes/garland/themeoptions.php:99
+#: zenphoto-dev/themes/garland/themeoptions.php:98
 msgid "Location for Image gallery picture caption"
 msgstr "Ort der Bildgalerie-Bildbeschreibung"
 
@@ -1202,7 +1202,7 @@ msgid "Index Image"
 msgstr "Indexbild"
 
 #: zenphoto-dev/themes/effervescence_plus/themeoptions.php:142
-#: zenphoto-dev/themes/garland/themeoptions.php:88
+#: zenphoto-dev/themes/garland/themeoptions.php:87
 #: zenphoto-dev/themes/zenpage/themeoptions.php:69
 #: zenphoto-dev/zp-core/admin-edit.php:1222
 #: zenphoto-dev/zp-core/admin-options.php:2042
@@ -1232,7 +1232,7 @@ msgstr ""
 "aktiviert ist."
 
 #: zenphoto-dev/themes/effervescence_plus/themeoptions.php:181
-#: zenphoto-dev/themes/garland/themeoptions.php:118
+#: zenphoto-dev/themes/garland/themeoptions.php:117
 msgid "*standard menu"
 msgstr "*Standardmenü"
 
@@ -1265,8 +1265,8 @@ msgstr "Galerie-Index"
 #: zenphoto-dev/themes/garland/album.php:59
 #: zenphoto-dev/themes/garland/favorites.php:51
 #: zenphoto-dev/themes/garland/favorites.php:56
-#: zenphoto-dev/themes/garland/gallery.php:47
-#: zenphoto-dev/themes/garland/gallery.php:52
+#: zenphoto-dev/themes/garland/gallery.php:46
+#: zenphoto-dev/themes/garland/gallery.php:51
 #: zenphoto-dev/themes/garland/search.php:203
 #: zenphoto-dev/themes/garland/search.php:208
 #, php-format
@@ -1314,7 +1314,7 @@ msgstr "Neuste Bilder für %s "
 msgid "Garland image display handling."
 msgstr "Garland Bildanzeigehandhabung"
 
-#: zenphoto-dev/themes/garland/gallery.php:81
+#: zenphoto-dev/themes/garland/gallery.php:80
 #: zenphoto-dev/themes/garland/main.php:56
 msgid "Latest Images"
 msgstr "Neuste Bilder"
@@ -1370,11 +1370,11 @@ msgstr "Wolke erlauben"
 msgid "Set to enable tag cloud for album page."
 msgstr "Auswählen, um die Schlagwortwolke für die Albumseite zu aktivieren."
 
-#: zenphoto-dev/themes/garland/themeoptions.php:86
+#: zenphoto-dev/themes/garland/themeoptions.php:85
 msgid "Custom Homepage"
 msgstr "Benutzerdefinierte Startseite"
 
-#: zenphoto-dev/themes/garland/themeoptions.php:89
+#: zenphoto-dev/themes/garland/themeoptions.php:88
 msgid ""
 "Select the <em>pages</em> titlelink for the home page. Only unpublished "
 "pages are offered for selection."
@@ -6847,7 +6847,7 @@ msgid "Bad "
 msgstr "Schlecht"
 
 #: zenphoto-dev/zp-core/class-feed.php:425
-#: zenphoto-dev/zp-core/zp-extensions/comment_form/functions.php:808
+#: zenphoto-dev/zp-core/zp-extensions/comment_form/functions.php:817
 msgid "by"
 msgstr "von"
 
@@ -12242,28 +12242,28 @@ msgstr "Abmelden"
 msgid "My favorites"
 msgstr "Meine Favoriten"
 
-#: zenphoto-dev/zp-core/template-functions.php:914
-#: zenphoto-dev/zp-core/template-functions.php:1008
+#: zenphoto-dev/zp-core/template-functions.php:915
+#: zenphoto-dev/zp-core/template-functions.php:1009
 #: zenphoto-dev/zp-core/zp-extensions/menu_manager.php:611
 msgid "Previous Page"
 msgstr "Vorherige Seite"
 
-#: zenphoto-dev/zp-core/template-functions.php:916
-#: zenphoto-dev/zp-core/template-functions.php:1114
+#: zenphoto-dev/zp-core/template-functions.php:917
+#: zenphoto-dev/zp-core/template-functions.php:1115
 #: zenphoto-dev/zp-core/zp-extensions/menu_manager.php:651
 msgid "Next Page"
 msgstr "Nächste Seite"
 
-#: zenphoto-dev/zp-core/template-functions.php:1031
+#: zenphoto-dev/zp-core/template-functions.php:1032
 #: zenphoto-dev/zp-core/zp-extensions/menu_manager.php:617
 msgid "Page 1"
 msgstr "Seite 1"
 
-#: zenphoto-dev/zp-core/template-functions.php:1046
-#: zenphoto-dev/zp-core/template-functions.php:1055
-#: zenphoto-dev/zp-core/template-functions.php:1085
-#: zenphoto-dev/zp-core/template-functions.php:1092
-#: zenphoto-dev/zp-core/template-functions.php:1102
+#: zenphoto-dev/zp-core/template-functions.php:1047
+#: zenphoto-dev/zp-core/template-functions.php:1056
+#: zenphoto-dev/zp-core/template-functions.php:1086
+#: zenphoto-dev/zp-core/template-functions.php:1093
+#: zenphoto-dev/zp-core/template-functions.php:1103
 #: zenphoto-dev/zp-core/zp-extensions/menu_manager.php:622
 #: zenphoto-dev/zp-core/zp-extensions/menu_manager.php:640
 #: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1050
@@ -12274,7 +12274,7 @@ msgid_plural "Page %u"
 msgstr[0] "Seite %u"
 msgstr[1] "Seite %u"
 
-#: zenphoto-dev/zp-core/template-functions.php:1066
+#: zenphoto-dev/zp-core/template-functions.php:1067
 #: zenphoto-dev/zp-core/zp-extensions/menu_manager.php:632
 #: zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1059
 #, php-format
@@ -12283,40 +12283,40 @@ msgid_plural "Page %1$u"
 msgstr[0] "Seite %1$u"
 msgstr[1] "Seite %1$u"
 
-#: zenphoto-dev/zp-core/template-functions.php:1179
+#: zenphoto-dev/zp-core/template-functions.php:1180
 msgid "The album is un-published."
 msgstr "Das Album ist unveröffentlicht."
 
-#: zenphoto-dev/zp-core/template-functions.php:1288
+#: zenphoto-dev/zp-core/template-functions.php:1289
 msgid "Album Thumbnails"
 msgstr "Albumthumbnails"
 
-#: zenphoto-dev/zp-core/template-functions.php:1388
+#: zenphoto-dev/zp-core/template-functions.php:1389
 msgid "Return to search"
 msgstr "Zurück zur Suche"
 
-#: zenphoto-dev/zp-core/template-functions.php:1395
+#: zenphoto-dev/zp-core/template-functions.php:1396
 msgid "Return to archive"
 msgstr "Zurück zum Archiv"
 
-#: zenphoto-dev/zp-core/template-functions.php:2163
+#: zenphoto-dev/zp-core/template-functions.php:2168
 msgid "The image is marked un-published."
 msgstr "Das Bild ist unveröffentlicht."
 
-#: zenphoto-dev/zp-core/template-functions.php:2538
+#: zenphoto-dev/zp-core/template-functions.php:2543
 msgid "Image Info"
 msgstr "Bildinfo"
 
-#: zenphoto-dev/zp-core/template-functions.php:3394
+#: zenphoto-dev/zp-core/template-functions.php:3399
 #, php-format
 msgid "View image: %s"
 msgstr "Bild %s ansehen"
 
-#: zenphoto-dev/zp-core/template-functions.php:3589
+#: zenphoto-dev/zp-core/template-functions.php:3594
 msgid "No popular tags"
 msgstr "Keine populären Schlagwörter"
 
-#: zenphoto-dev/zp-core/template-functions.php:3897
+#: zenphoto-dev/zp-core/template-functions.php:3902
 msgid ""
 "printSearchForm $album_list parameter is deprecated. Pass array(\"albums"
 "\"=>array(album, album, ...)) instead."
@@ -12324,45 +12324,45 @@ msgstr ""
 "printSearchForm $album_list Parameter ist veraltet. Übergeben Sie "
 "stattdessen ein array(\"albums\"=>array(album, album,...))."
 
-#: zenphoto-dev/zp-core/template-functions.php:3913
+#: zenphoto-dev/zp-core/template-functions.php:3918
 #, php-format
 msgid "%s within previous results"
 msgstr "%s innerhalb bisheriger Treffer"
 
-#: zenphoto-dev/zp-core/template-functions.php:3994
+#: zenphoto-dev/zp-core/template-functions.php:3999
 msgid "search options"
 msgstr "Sucheinstellungen"
 
-#: zenphoto-dev/zp-core/template-functions.php:3994
+#: zenphoto-dev/zp-core/template-functions.php:3999
 msgid "fields"
 msgstr "Felder"
 
-#: zenphoto-dev/zp-core/template-functions.php:4034
+#: zenphoto-dev/zp-core/template-functions.php:4039
 msgid "Within"
 msgstr "Innerhalb"
 
-#: zenphoto-dev/zp-core/template-functions.php:4038
+#: zenphoto-dev/zp-core/template-functions.php:4043
 #: zenphoto-dev/zp-core/zp-extensions/flag_thumbnail.php:91
 msgid "New"
 msgstr "Neu"
 
-#: zenphoto-dev/zp-core/template-functions.php:4045
+#: zenphoto-dev/zp-core/template-functions.php:4050
 msgid "Check/uncheck all"
 msgstr "Alle aus-/abwählen"
 
-#: zenphoto-dev/zp-core/template-functions.php:4097
+#: zenphoto-dev/zp-core/template-functions.php:4102
 msgid "no date"
 msgstr "kein Datum"
 
-#: zenphoto-dev/zp-core/template-functions.php:4330
+#: zenphoto-dev/zp-core/template-functions.php:4335
 msgid "The page you are trying to view is password protected."
 msgstr "Die Seite, die Sie sehen möchten, ist passwortgeschützt."
 
-#: zenphoto-dev/zp-core/template-functions.php:4335
+#: zenphoto-dev/zp-core/template-functions.php:4340
 msgid "login"
 msgstr "Anmelden"
 
-#: zenphoto-dev/zp-core/template-functions.php:4352
+#: zenphoto-dev/zp-core/template-functions.php:4357
 msgid ""
 "Powered by <a href=\"http://www.zenphoto.org\" title=\"A simpler web album"
 "\"><span id=\"zen-part\">zen</span><span id=\"photo-part\">PHOTO</span></a>"
@@ -12371,21 +12371,21 @@ msgstr ""
 "Bildgalerie\"><span id=\"zen-part\">zen</span><span id=\"photo-part\">PHOTO</"
 "span></a>"
 
-#: zenphoto-dev/zp-core/template-functions.php:4516
+#: zenphoto-dev/zp-core/template-functions.php:4521
 msgid "Zenphoto Error:</strong> the requested object was not found."
 msgstr "Zenphoto Fehler:</strong> Das Objekt wurde nicht gefunden. "
 
-#: zenphoto-dev/zp-core/template-functions.php:4518
+#: zenphoto-dev/zp-core/template-functions.php:4523
 #, php-format
 msgid "Album: %s"
 msgstr "Album: %s"
 
-#: zenphoto-dev/zp-core/template-functions.php:4521
+#: zenphoto-dev/zp-core/template-functions.php:4526
 #, php-format
 msgid "Image: %s"
 msgstr "Bild: %s"
 
-#: zenphoto-dev/zp-core/template-functions.php:4524
+#: zenphoto-dev/zp-core/template-functions.php:4529
 #, php-format
 msgid "Page: %s"
 msgstr "Seite: %s"
@@ -13094,7 +13094,7 @@ msgstr ""
 msgid "Google Map"
 msgstr "Google Map"
 
-#: zenphoto-dev/zp-core/zp-extensions/GoogleMap.php:468
+#: zenphoto-dev/zp-core/zp-extensions/GoogleMap.php:467
 msgid "Display or hide the Google Map."
 msgstr "Google Map anzeigen oder verstecken."
 
@@ -14847,21 +14847,21 @@ msgstr "Kommentar gesendet"
 msgid "Comment posted on unknown page!"
 msgstr "Kommentar auf unbekannter Seite gepostet!"
 
-#: zenphoto-dev/zp-core/zp-extensions/comment_form/functions.php:912
+#: zenphoto-dev/zp-core/zp-extensions/comment_form/functions.php:921
 msgid "Anonymous"
 msgstr "Anonym"
 
-#: zenphoto-dev/zp-core/zp-extensions/comment_form/functions.php:948
+#: zenphoto-dev/zp-core/zp-extensions/comment_form/functions.php:957
 #, php-format
 msgid "%1$s commented on album %2$s%3$s"
 msgstr "%1$s kommentierte das Album %2$s%3$s"
 
-#: zenphoto-dev/zp-core/zp-extensions/comment_form/functions.php:952
+#: zenphoto-dev/zp-core/zp-extensions/comment_form/functions.php:961
 #, php-format
 msgid "%1$s commented on %2$s in album %3$s%4$s"
 msgstr "%1$s kommentierte %2$s im Album %3$s%4$s"
 
-#: zenphoto-dev/zp-core/zp-extensions/comment_form/functions.php:956
+#: zenphoto-dev/zp-core/zp-extensions/comment_form/functions.php:965
 #, php-format
 msgid "%1$s commented on %2$s%3$s"
 msgstr "%1$s kommentierte %2$s%3$s"
@@ -19316,7 +19316,7 @@ msgid "Enter your <em>reCaptcha</em> private key."
 msgstr "Geben Sie Ihren privaten <em>reCaptcha</em>-Schlüssel ein."
 
 #: zenphoto-dev/zp-core/zp-extensions/reCaptcha.php:71
-#: zenphoto-dev/zp-core/zp-extensions/themeSwitcher.php:133
+#: zenphoto-dev/zp-core/zp-extensions/themeSwitcher.php:154
 msgid "Theme"
 msgstr "Theme"
 
@@ -21291,19 +21291,19 @@ msgstr ""
 msgid "Allow a visitor to select the theme of the gallery."
 msgstr "Erlaubt Besuchern der Seite, das Theme der Galerie auszuwählen."
 
-#: zenphoto-dev/zp-core/zp-extensions/themeSwitcher.php:59
+#: zenphoto-dev/zp-core/zp-extensions/themeSwitcher.php:71
 msgid "Cookie duration"
 msgstr "Cookie-Gültigkeitsdauer"
 
-#: zenphoto-dev/zp-core/zp-extensions/themeSwitcher.php:60
+#: zenphoto-dev/zp-core/zp-extensions/themeSwitcher.php:72
 msgid "The time in minutes that the theme switcher cookie lasts."
 msgstr "Die Zeit in Minuten, die der Cookie gültig ist."
 
-#: zenphoto-dev/zp-core/zp-extensions/themeSwitcher.php:61
+#: zenphoto-dev/zp-core/zp-extensions/themeSwitcher.php:73
 msgid "Selector CSS"
 msgstr "Ausklapp-CSS"
 
-#: zenphoto-dev/zp-core/zp-extensions/themeSwitcher.php:63
+#: zenphoto-dev/zp-core/zp-extensions/themeSwitcher.php:75
 msgid ""
 "Change this box if you wish to style the theme switcher selector for your "
 "themes."
@@ -21311,26 +21311,39 @@ msgstr ""
 "Wählen Sie dies auas, wenn Sie den Umschalter über Ihr Theme gestalten "
 "möchten."
 
-#: zenphoto-dev/zp-core/zp-extensions/themeSwitcher.php:64
+#: zenphoto-dev/zp-core/zp-extensions/themeSwitcher.php:76
+msgid "Selector CSS Loggedin"
+msgstr "Auswahlliste CSS eingeloggt"
+
+#: zenphoto-dev/zp-core/zp-extensions/themeSwitcher.php:78
+msgid ""
+"Change this box if you wish to style the theme switcher selector for your "
+"themes. Only if loggedin to cover the admin toolbox."
+msgstr ""
+"Wählen Sie dies aus, wenn Sie die Auswahlliste über Ihr Theme gestalten "
+"möchten. Gilt nur, wenn Sie eingeloggt sind, um über der Admin-"
+"Werkzeugleiste positioniert zu sein."
+
+#: zenphoto-dev/zp-core/zp-extensions/themeSwitcher.php:79
 msgid "Private"
 msgstr "Privat"
 
-#: zenphoto-dev/zp-core/zp-extensions/themeSwitcher.php:65
+#: zenphoto-dev/zp-core/zp-extensions/themeSwitcher.php:80
 msgid ""
 "Only users with <em>Themes</em> rights will see the selector if this is "
 "checked."
 msgstr ""
 "Nur Benutzer mit <em>Theme</em>-Rechten sehen diese Auswahl, wenn ausgewählt."
 
-#: zenphoto-dev/zp-core/zp-extensions/themeSwitcher.php:66
+#: zenphoto-dev/zp-core/zp-extensions/themeSwitcher.php:81
 msgid "Theme list"
 msgstr "Theme-Liste"
 
-#: zenphoto-dev/zp-core/zp-extensions/themeSwitcher.php:68
+#: zenphoto-dev/zp-core/zp-extensions/themeSwitcher.php:83
 msgid "These are the themes that may be selected among."
 msgstr "Diese sind die Themse, die ausgewählt werden können."
 
-#: zenphoto-dev/zp-core/zp-extensions/themeSwitcher.php:144
+#: zenphoto-dev/zp-core/zp-extensions/themeSwitcher.php:165
 msgid ""
 "Themes will not show in this list if selecting them would result in a “not "
 "found” error."
@@ -23792,9 +23805,12 @@ msgstr ""
 "<code>getRSSLink()</code> nur die URL"
 
 #: zenphoto-dev/zp-core/zp-extensions/zenpage/deprecated-functions.php:680
-msgid "use printLatestComments($number, $shorten, $type, $itemID, $id);"
+msgid ""
+"use printLatestComments($number, $shorten, $type, $itemID, $id, "
+"$shortenindicator);"
 msgstr ""
-"Nutzen Sie printLatestComments($number, $shorten, $type, $itemID, $id);"
+"Verwenden Sie printLatestComments($number, $shorten, $type, $itemID, $id, "
+"$shortenindicator);"
 
 #: zenphoto-dev/zp-core/zp-extensions/zenpage/deprecated-functions.php:689
 msgid "use getRSSLink($option,$lang,$categorylink)."
