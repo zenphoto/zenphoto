@@ -20,8 +20,8 @@ if (file_exists(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/filterDoc/filter list_
 function filterDoc_tabs($tabs) {
 	if (zp_loggedin(ADMIN_RIGHTS)) {
 		if (!isset($tabs['development'])) {
-			$tabs['development'] = array('text'		 => gettext("development"),
-							'subtabs'	 => NULL);
+			$tabs['development'] = array('text' => gettext("development"),
+					'subtabs' => NULL);
 		}
 		$tabs['development']['subtabs'][gettext("filters")] = '/' . USER_PLUGIN_FOLDER . '/filterDoc/admin_tab.php?page=development&tab=' . gettext('filters');
 		$named = array_flip($tabs['development']['subtabs']);
@@ -43,17 +43,17 @@ function filterDoc_button($buttons) {
 		processFilters();
 	}
 	$buttons[] = array(
-					'category'		 => gettext('Development'),
-					'enable'			 => true,
-					'button_text'	 => gettext('Filter Doc Gen'),
-					'formname'		 => 'filterDoc_button',
-					'action'			 => '?filterDoc=gen',
-					'icon'				 => 'images/add.png',
-					'title'				 => gettext('Generate filter document'),
-					'alt'					 => '',
-					'hidden'			 => '<input type="hidden" name="filterDoc" value="gen" />',
-					'rights'			 => ADMIN_RIGHTS,
-					'XSRFTag'			 => 'filterDoc'
+			'category' => gettext('Development'),
+			'enable' => true,
+			'button_text' => gettext('Filter Doc Gen'),
+			'formname' => 'filterDoc_button',
+			'action' => '?filterDoc=gen',
+			'icon' => 'images/add.png',
+			'title' => gettext('Generate filter document'),
+			'alt' => '',
+			'hidden' => '<input type="hidden" name="filterDoc" value="gen" />',
+			'rights' => ADMIN_RIGHTS,
+			'XSRFTag' => 'filterDoc'
 	);
 	return $buttons;
 }
@@ -312,63 +312,65 @@ function processFilters() {
 	fwrite($f, "<!-- Begin filter descriptions -->\n");
 	$ulopen = false;
 	foreach ($newfilterlist as $filter) {
-		if ($class !== $filter['class']) {
-			$class = $filter['class'];
-			if (array_key_exists('*' . $class, $filterDescriptions)) {
-				$classhead = '<p>' . $filterDescriptions['*' . $class] . '</p>';
-			} else {
-				$classhead = '';
+		if (array_key_exists($filter['filter'], $filterDescriptions) && $filterDescriptions[$filter['filter']] != '*dummy') {
+			if ($class !== $filter['class']) {
+				$class = $filter['class'];
+				if (array_key_exists('*' . $class, $filterDescriptions)) {
+					$classhead = '<p>' . $filterDescriptions['*' . $class] . '</p>';
+				} else {
+					$classhead = '';
+				}
+				if ($subclass) {
+					fwrite($f, "\t\t\t</ul><!-- filterdetail -->\n");
+				}
+				fwrite($f, "\t" . '<h5><span id="' . $class . '"></span>' . $class . " filters</h5>\n");
+				fwrite($f, "\t" . '<!-- classhead ' . $class . ' -->' . $classhead . "<!--e-->\n");
+				$subclass = NULL;
 			}
-			if ($subclass) {
-				fwrite($f, "\t\t\t</ul><!-- filterdetail -->\n");
+			if ($subclass !== $filter['subclass']) { // new subclass
+				if (!is_null($subclass)) {
+					fwrite($f, "\t\t\t</ul><!-- filterdetail -->\n");
+				}
+				$subclass = $filter['subclass'];
+				if (array_key_exists('*' . $class . '.' . $subclass, $filterDescriptions)) {
+					$subclasshead = '<p>' . $filterDescriptions['*' . $class . '.' . $subclass] . '</p>';
+				} else {
+					$subclasshead = '';
+				}
+				if ($subclass && $filterCategories[$class]['count'] > 1) { //	Class doc is adequate.
+					fwrite($f, "\t\t\t" . '<h6 class="filter"><span id="' . $class . '_' . $subclass . '"></span>' . $subclass . "</h6>\n");
+					fwrite($f, "\t\t\t" . '<!-- subclasshead ' . $class . '.' . $subclass . ' -->' . $subclasshead . "<!--e-->\n");
+				}
+				fwrite($f, "\t\t\t" . '<ul class="filterdetail">' . "\n");
 			}
-			fwrite($f, "\t" . '<h5><span id="' . $class . '"></span>' . $class . " filters</h5>\n");
-			fwrite($f, "\t" . '<!-- classhead ' . $class . ' -->' . $classhead . "<!--e-->\n");
-			$subclass = NULL;
-		}
-		if ($subclass !== $filter['subclass']) { // new subclass
-			if (!is_null($subclass)) {
-				fwrite($f, "\t\t\t</ul><!-- filterdetail -->\n");
+			fwrite($f, "\t\t\t\t" . '<li class="filterdetail">' . "\n");
+			fwrite($f, "\t\t\t\t\t" . '<p class="filterdef"><span class="inlinecode"><strong>' . html_encode($filter['filter']) . '</strong></span>(<em>' . html_encode(implode(', ', $filter['params'])) . "</em>)</p>\n");
+			if (array_key_exists($filter['filter'], $filterDescriptions)) {
+				$filter['desc'] = '<p>' . $filterDescriptions[$filter['filter']] . '</p>';
 			}
-			$subclass = $filter['subclass'];
-			if (array_key_exists('*' . $class . '.' . $subclass, $filterDescriptions)) {
-				$subclasshead = '<p>' . $filterDescriptions['*' . $class . '.' . $subclass] . '</p>';
-			} else {
-				$subclasshead = '';
-			}
-			if ($subclass && $filterCategories[$class]['count'] > 1) { //	Class doc is adequate.
-				fwrite($f, "\t\t\t" . '<h6 class="filter"><span id="' . $class . '_' . $subclass . '"></span>' . $subclass . "</h6>\n");
-				fwrite($f, "\t\t\t" . '<!-- subclasshead ' . $class . '.' . $subclass . ' -->' . $subclasshead . "<!--e-->\n");
-			}
-			fwrite($f, "\t\t\t" . '<ul class="filterdetail">' . "\n");
-		}
-		fwrite($f, "\t\t\t\t" . '<li class="filterdetail">' . "\n");
-		fwrite($f, "\t\t\t\t\t" . '<p class="filterdef"><span class="inlinecode"><strong>' . html_encode($filter['filter']) . '</strong></span>(<em>' . html_encode(implode(', ', $filter['params'])) . "</em>)</p>\n");
-		if (array_key_exists($filter['filter'], $filterDescriptions)) {
-			$filter['desc'] = '<p>' . $filterDescriptions[$filter['filter']] . '</p>';
-		}
-		fwrite($f, "\t\t\t\t\t" . '<!-- description(' . $class . '.' . $subclass . ')-' . $filter['filter'] . ' -->' . $filter['desc'] . "<!--e-->\n");
+			fwrite($f, "\t\t\t\t\t" . '<!-- description(' . $class . '.' . $subclass . ')-' . $filter['filter'] . ' -->' . $filter['desc'] . "<!--e-->\n");
 
-		$user = array_shift($filter['users']);
-		if (!empty($user)) {
-			fwrite($f, "\t\t\t\t\t" . '<p class="handlers">For example see ' . mytrim($user) . '</p>' . "\n");
-		}
-		fwrite($f, "\t\t\t\t\t" . '<p class="calls">Invoked from:' . "</p>\n");
-		fwrite($f, "\t\t\t\t\t<ul><!-- calls -->\n");
-		$calls = $filter['calls'];
-		$limit = 4;
-		foreach ($calls as $call) {
-			$limit --;
-			if ($limit > 0) {
-				fwrite($f, "\t\t\t\t\t\t" . '<li class="call_list">' . mytrim($call) . "</li>\n");
-			} else {
-				fwrite($f, "\t\t\t\t\t\t<li>...</li>\n");
-				break;
+			$user = array_shift($filter['users']);
+			if (!empty($user)) {
+				fwrite($f, "\t\t\t\t\t" . '<p class="handlers">For example see ' . mytrim($user) . '</p>' . "\n");
 			}
-		}
-		fwrite($f, "\t\t\t\t\t" . "</ul><!-- calls -->\n");
+			fwrite($f, "\t\t\t\t\t" . '<p class="calls">Invoked from:' . "</p>\n");
+			fwrite($f, "\t\t\t\t\t<ul><!-- calls -->\n");
+			$calls = $filter['calls'];
+			$limit = 4;
+			foreach ($calls as $call) {
+				$limit --;
+				if ($limit > 0) {
+					fwrite($f, "\t\t\t\t\t\t" . '<li class="call_list">' . mytrim($call) . "</li>\n");
+				} else {
+					fwrite($f, "\t\t\t\t\t\t<li>...</li>\n");
+					break;
+				}
+			}
+			fwrite($f, "\t\t\t\t\t" . "</ul><!-- calls -->\n");
 
-		fwrite($f, "\t\t\t\t" . '</li><!-- filterdetail -->' . "\n");
+			fwrite($f, "\t\t\t\t" . '</li><!-- filterdetail -->' . "\n");
+		}
 	}
 
 	fwrite($f, "\t\t\t" . '</ul><!-- filterdetail -->' . "\n");

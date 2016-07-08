@@ -87,7 +87,7 @@
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>album_page_subtabs</strong></span>(<em>string</em>)</p>
-					<!-- description(Admin.Media)-album_page_subtabs --><p></p><!--e-->
+					<!-- description(Admin.Media)-album_page_subtabs --><p>Allow adding subtabs to the admin album tab.</p><!--e-->
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">d:/test_sites/dev/zp-core/admin-functions.php</li>
@@ -254,7 +254,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>admin_note</strong></span>(<em>string, string</em>)</p>
 					<!-- description(Admin.Miscellaneous)-admin_note --><p>This filter is invoked at the head of each admin page to allow a filter to place a note there.</p><!--e-->
-					<p class="handlers">For example see d:/test_sites/dev/zp-core/zp-extensions/site_upgrade.php</p>
+					<p class="handlers">For example see d:/test_sites/dev/zp-core/zp-extensions/user-expiry.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">d:/test_sites/dev/zp-core/admin-albumsort.php</li>
@@ -519,15 +519,6 @@
 	<!-- classhead Miscellaneous --><p></p><!--e-->
 			<ul class="filterdetail">
 				<li class="filterdetail">
-					<p class="filterdef"><span class="inlinecode"><strong>$hook</strong></span>(<em>value = NULL</em>)</p>
-					<!-- description(Miscellaneous.Miscellaneous)-$hook --><p></p><!--e-->
-					<p class="handlers">For example see d:/test_sites/dev/zp-core/functions-filter.php</p>
-					<p class="calls">Invoked from:</p>
-					<ul><!-- calls -->
-						<li class="call_list">d:/test_sites/dev/zp-core/functions-filter.php</li>
-					</ul><!-- calls -->
-				</li><!-- filterdetail -->
-				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>colorbox_themepath</strong></span>(<em>string</em>)</p>
 					<!-- description(Miscellaneous.Miscellaneous)-colorbox_themepath --><p>allows overriding the path of the "custom" colorbox theme. getPlugin() will be called with this path to get the reference to the css when the selected colorbox theme is set to "custom".</p><!--e-->
 					<p class="calls">Invoked from:</p>
@@ -598,7 +589,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>load_request</strong></span>(<em>bool</em>)</p>
 					<!-- description(Miscellaneous.Miscellaneous)-load_request --><p>Invoked by the front-end when a page is being loaded. The filter may cause the page load to be aborted.</p><!--e-->
-					<p class="handlers">For example see d:/test_sites/dev/zp-core/zp-extensions/tinyurl.php</p>
+					<p class="handlers">For example see d:/test_sites/dev/zp-core/zp-extensions/dynamic-locale.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">d:/test_sites/dev/zp-core/functions-controller.php</li>
@@ -715,22 +706,6 @@
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">d:/test_sites/dev/zp-core/index.php</li>
-					</ul><!-- calls -->
-				</li><!-- filterdetail -->
-				<li class="filterdetail">
-					<p class="filterdef"><span class="inlinecode"><strong>zp_event</strong></span>(<em></em>)</p>
-					<!-- description(Miscellaneous.Miscellaneous)-zp_event --><p></p><!--e-->
-					<p class="calls">Invoked from:</p>
-					<ul><!-- calls -->
-						<li class="call_list">d:/test_sites/dev/zp-core/functions-filter.php</li>
-					</ul><!-- calls -->
-				</li><!-- filterdetail -->
-				<li class="filterdetail">
-					<p class="filterdef"><span class="inlinecode"><strong>zp_hook</strong></span>(<em>zp_var</em>)</p>
-					<!-- description(Miscellaneous.Miscellaneous)-zp_hook --><p></p><!--e-->
-					<p class="calls">Invoked from:</p>
-					<ul><!-- calls -->
-						<li class="call_list">d:/test_sites/dev/zp-core/functions-filter.php</li>
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 			</ul><!-- filterdetail -->
@@ -1144,7 +1119,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>theme_head</strong></span>(<em></em>)</p>
 					<!-- description(Theme.Script)-theme_head --><p>Invoked by all themes just after the &lt;head&gt; HTML tag.</p><!--e-->
-					<p class="handlers">For example see d:/test_sites/dev/zp-core/zp-extensions/jcarousel_thumb_nav.php</p>
+					<p class="handlers">For example see d:/test_sites/dev/zp-core/zp-extensions/dynamic-locale.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">d:/test_sites/dev/themes/basic/404.php</li>
