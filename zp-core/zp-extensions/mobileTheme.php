@@ -92,18 +92,18 @@ class mobileTheme {
 		foreach ($_zp_gallery->getThemes() as $theme => $details) {
 			$themes[$details['name']] = $theme;
 		}
-		$options = array(gettext('Phone theme')	 => array('key'						 => 'mobileTheme_phone', 'type'					 => OPTION_TYPE_SELECTOR,
-										'selections'		 => $themes,
-										'null_selection' => gettext('gallery theme'),
-										'desc'					 => gettext('Select the theme to be used when a phone device connects.')),
-						gettext('Tablet theme')	 => array('key'						 => 'mobileTheme_tablet', 'type'					 => OPTION_TYPE_SELECTOR,
-										'selections'		 => $themes,
-										'null_selection' => gettext('gallery theme'),
-										'desc'					 => gettext('Select the theme to be used when a tablet device connects.')),
-						gettext('Test mode')		 => array('key'						 => 'mobileTheme_test', 'type'					 => OPTION_TYPE_SELECTOR,
-										'selections'		 => array(gettext('Phone') => 'phone', gettext('Tablet') => 'tablet'),
-										'null_selection' => gettext('live'),
-										'desc'					 => gettext('Put the plugin in <em>test mode</em> and it will simulate the selected device. If <em>live</em> is selected operations are normal.'))
+		$options = array(gettext('Phone theme') => array('key' => 'mobileTheme_phone', 'type' => OPTION_TYPE_SELECTOR,
+						'selections' => $themes,
+						'null_selection' => gettext('gallery theme'),
+						'desc' => gettext('Select the theme to be used when a phone device connects.')),
+				gettext('Tablet theme') => array('key' => 'mobileTheme_tablet', 'type' => OPTION_TYPE_SELECTOR,
+						'selections' => $themes,
+						'null_selection' => gettext('gallery theme'),
+						'desc' => gettext('Select the theme to be used when a tablet device connects.')),
+				gettext('Test mode') => array('key' => 'mobileTheme_test', 'type' => OPTION_TYPE_SELECTOR,
+						'selections' => array(gettext('Phone') => 'phone', gettext('Tablet') => 'tablet'),
+						'null_selection' => gettext('live'),
+						'desc' => gettext('Put the plugin in <em>test mode</em> and it will simulate the selected device. If <em>live</em> is selected operations are normal.'))
 		);
 		return $options;
 	}
@@ -171,10 +171,10 @@ class mobileTheme {
 						$link = 'index.php?p=gallery&amp;mobileTheme=' . $enable;
 						break;
 					case 'album.php':
-						$link = pathurlencode($_zp_current_album->getLink(null)) . '&amp;mobileTheme=' . $enable;
+						$link = $_zp_current_album->getLink(null) . '&amp;mobileTheme=' . $enable;
 						break;
 					case 'image.php':
-						$link = pathurlencode($_zp_current_image->getLink(null)) . '&amp;mobileTheme=' . $enable;
+						$link = $_zp_current_image->getLink(null) . '&amp;mobileTheme=' . $enable;
 						break;
 					case 'news.php':
 						if (is_NewsArticle()) {
