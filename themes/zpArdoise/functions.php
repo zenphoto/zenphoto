@@ -142,7 +142,7 @@ function zpArdoise_printImageStatistic($number, $option, $albumfolder = '', $sho
 				break;
 		}
 		if ($showtitle) {
-			echo "<h3><a href=\"" . html_encode(pathurlencode($image->getLink())) . "\" title=\"" . html_encode($image->getTitle()) . "\">\n";
+			echo "<h3><a href=\"" . html_encode($image->getLink()) . "\" title=\"" . html_encode($image->getTitle()) . "\">\n";
 			echo $image->getTitle() . "</a></h3>\n";
 		}
 		if ($showdate) {

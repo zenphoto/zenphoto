@@ -65,52 +65,52 @@ class externalFeed_options {
 	}
 
 	function getOptionsSupported() {
-		$options = array(gettext('externalFeed feeds enabled:') => array('key'				 => 'externalFeed_feed_list', 'type'			 => OPTION_TYPE_CHECKBOX_ARRAY,
-										'order'			 => 0,
-										'checkboxes' => array(gettext('Gallery')						 => 'externalFeed_album_image',
-														gettext('Gallery Comments')		 => 'externalFeed_comments',
-														gettext('News')								 => 'externalFeed_articles',
-														gettext('Pages')							 => 'externalFeed_pages',
-														gettext('News/Page Comments')	 => 'externalFeed_article_comments'
-										),
-										'desc'			 => gettext('Check each feeds you wish to activate.')),
-						gettext('Image feed items:')					 => array('key'		 => 'externalFeed_items', 'type'	 => OPTION_TYPE_NUMBER,
-										'order'	 => 1,
-										'desc'	 => gettext("The number of new images and comments you want to appear in your site’s feed")),
-						gettext('Image size')									 => array('key'		 => 'externalFeed_imagesize', 'type'	 => OPTION_TYPE_NUMBER,
-										'order'	 => 3,
-										'desc'	 => gettext('Size of image feed images:')),
-						gettext('Image feed sort order:')			 => array('key'				 => 'externalFeed_sortorder', 'type'			 => OPTION_TYPE_SELECTOR,
-										'order'			 => 7,
-										'selections' => array(gettext('latest by id')					 => 'latest',
-														gettext('latest by date')				 => 'latest-date',
-														gettext('latest by mtime')			 => 'latest-mtime',
-														gettext('latest by publishdate') => 'latest-publishdate'
-										),
-										'desc'			 => gettext("Choose between latest by id for the latest uploaded, latest by date for the latest uploaded fetched by date, or latest by mtime for the latest uploaded fetched by the file’s last change timestamp.")),
-						gettext('Album feed sort order:')			 => array('key'				 => 'externalFeed_sortorder_albums', 'type'			 => OPTION_TYPE_SELECTOR,
-										'selections' => array(gettext('latest by id')					 => 'latest',
-														gettext('latest by date')				 => 'latest-date',
-														gettext('latest by mtime')			 => 'latest-mtime',
-														gettext('latest by publishdate') => 'latest-publishdate',
-														gettext('latest updated')				 => 'latestupdated'
-										),
-										'order'			 => 8,
-										'desc'			 => gettext('In addition to the above you may select latest updated.')),
-						gettext('New requestor:')							 => array('key'		 => 'externalFeed_site', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 9,
-										'desc'	 => gettext("Supply a site name to add a new using site.")),
-						gettext('Registered sites:')					 => array('key'		 => 'externalFeed_sitelist', 'type'	 => OPTION_TYPE_CUSTOM,
-										'order'	 => 9,
-										'desc'	 => gettext("Check the box to remove a site."))
+		$options = array(gettext('externalFeed feeds enabled:') => array('key' => 'externalFeed_feed_list', 'type' => OPTION_TYPE_CHECKBOX_ARRAY,
+						'order' => 0,
+						'checkboxes' => array(gettext('Gallery') => 'externalFeed_album_image',
+								gettext('Gallery Comments') => 'externalFeed_comments',
+								gettext('News') => 'externalFeed_articles',
+								gettext('Pages') => 'externalFeed_pages',
+								gettext('News/Page Comments') => 'externalFeed_article_comments'
+						),
+						'desc' => gettext('Check each feeds you wish to activate.')),
+				gettext('Image feed items:') => array('key' => 'externalFeed_items', 'type' => OPTION_TYPE_NUMBER,
+						'order' => 1,
+						'desc' => gettext("The number of new images and comments you want to appear in your site’s feed")),
+				gettext('Image size') => array('key' => 'externalFeed_imagesize', 'type' => OPTION_TYPE_NUMBER,
+						'order' => 3,
+						'desc' => gettext('Size of image feed images:')),
+				gettext('Image feed sort order:') => array('key' => 'externalFeed_sortorder', 'type' => OPTION_TYPE_SELECTOR,
+						'order' => 7,
+						'selections' => array(gettext('latest by id') => 'latest',
+								gettext('latest by date') => 'latest-date',
+								gettext('latest by mtime') => 'latest-mtime',
+								gettext('latest by publishdate') => 'latest-publishdate'
+						),
+						'desc' => gettext("Choose between latest by id for the latest uploaded, latest by date for the latest uploaded fetched by date, or latest by mtime for the latest uploaded fetched by the file’s last change timestamp.")),
+				gettext('Album feed sort order:') => array('key' => 'externalFeed_sortorder_albums', 'type' => OPTION_TYPE_SELECTOR,
+						'selections' => array(gettext('latest by id') => 'latest',
+								gettext('latest by date') => 'latest-date',
+								gettext('latest by mtime') => 'latest-mtime',
+								gettext('latest by publishdate') => 'latest-publishdate',
+								gettext('latest updated') => 'latestupdated'
+						),
+						'order' => 8,
+						'desc' => gettext('In addition to the above you may select latest updated.')),
+				gettext('New requestor:') => array('key' => 'externalFeed_site', 'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 9,
+						'desc' => gettext("Supply a site name to add a new using site.")),
+				gettext('Registered sites:') => array('key' => 'externalFeed_sitelist', 'type' => OPTION_TYPE_CUSTOM,
+						'order' => 9,
+						'desc' => gettext("Check the box to remove a site."))
 		);
 		if (extensionEnabled('zenpage')) {
-			$options[gettext('Feed text length')] = array('key'		 => 'externalFeed_truncate_length', 'type'	 => OPTION_TYPE_NUMBER,
-							'order'	 => 6,
-							'desc'	 => gettext("The text length of the Zenpage feed items. No value for full length."));
-			$options[gettext('News feed items')] = array('key'		 => 'externalFeed_zenpage_items', 'type'	 => OPTION_TYPE_NUMBER,
-							'order'	 => 5,
-							'desc'	 => gettext("The number of news articles you want to appear in your site’s News feed."));
+			$options[gettext('Feed text length')] = array('key' => 'externalFeed_truncate_length', 'type' => OPTION_TYPE_NUMBER,
+					'order' => 6,
+					'desc' => gettext("The text length of the Zenpage feed items. No value for full length."));
+			$options[gettext('News feed items')] = array('key' => 'externalFeed_zenpage_items', 'type' => OPTION_TYPE_NUMBER,
+					'order' => 5,
+					'desc' => gettext("The number of news articles you want to appear in your site’s News feed."));
 		}
 
 		return $options;
@@ -338,7 +338,7 @@ class ExternalFeed extends feed {
 		if ($this->mode == "albums") {
 			$albumobj = $item;
 			$totalimages = $albumobj->getNumImages();
-			$itemlink = $this->host . pathurlencode($albumobj->getLink());
+			$itemlink = $this->host . $albumobj->getLink();
 			$thumb = $albumobj->getAlbumThumbImage();
 			$title = $albumobj->getTitle($this->locale);
 
