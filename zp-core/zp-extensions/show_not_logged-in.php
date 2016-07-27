@@ -3,7 +3,7 @@
  * When enabled, users will be appear not to be logged-in when viewing gallery pages
  *
  * @author Stephen Billard (sbillard)
- * 
+ *
  * @package plugins
  * @subpackage development
  */
@@ -12,7 +12,9 @@ $plugin_description = sprintf(gettext("Treats users as not logged in for gallery
 $plugin_author = "Stephen Billard (sbillard)";
 
 
-if (!OFFSET_PATH) {
+if (OFFSET_PATH) {
+	zp_register_filter('admin_note', 'show_not_loggedin::note');
+} else {
 	zp_register_filter('guest_login_attempt', 'show_not_loggedin::adminLoginAttempt');
 	zp_register_filter('login_redirect_link', 'show_not_loggedin::loginRedirect');
 	show_not_loggedin::hideAdmin();
@@ -53,6 +55,14 @@ class show_not_loggedin {
 			<?php
 		}
 		return $link;
+	}
+
+	static function note($where) {
+		?>
+		<p class="errorbox">
+			<strong><?php echo sprintf(gettext('%s is enabled!'), '<a href="' . WEBPATH . '/' . ZENFOLDER . '/' . 'admin-plugins.php?page=plugins&tab=development#show_not_logged-in">show_not_logged-in</a>'); ?></strong>
+		</p>
+		<?php
 	}
 
 }
