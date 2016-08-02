@@ -351,11 +351,11 @@ class cycle {
       if ($linkslides) {
         $url = pathurlencode($imgobj->getFullImageURL());
       } else {
-        $url = pathurlencode($imgobj->getLink());
+        $url = $imgobj->getLink();
       }
       $slidecontent .= '<a href="' . $url . '">' . "\n";
     } else if (!$carousel && $linkslides) {
-      $slidecontent .= '<a href="' . pathurlencode($imgobj->getLink()) . '">' . "\n";
+      $slidecontent .= '<a href="' . $imgobj->getLink() . '">' . "\n";
     }
     $active = '';
     if ($carousel && !is_null($_zp_current_image)) {

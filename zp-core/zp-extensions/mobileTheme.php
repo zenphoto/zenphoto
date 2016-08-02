@@ -169,10 +169,10 @@ class mobileTheme {
 						$link = 'index.php?p=gallery&amp;mobileTheme=' . $enable;
 						break;
 					case 'album.php':
-						$link = pathurlencode($_zp_current_album->getLink(null)) . '&amp;mobileTheme=' . $enable;
+						$link = $_zp_current_album->getLink(null) . '&amp;mobileTheme=' . $enable;
 						break;
 					case 'image.php':
-						$link = pathurlencode($_zp_current_image->getLink(null)) . '&amp;mobileTheme=' . $enable;
+						$link = $_zp_current_image->getLink(null) . '&amp;mobileTheme=' . $enable;
 						break;
 					case 'news.php':
 						if (is_NewsArticle()) {
@@ -193,7 +193,7 @@ class mobileTheme {
 			}
 ?>
 			<span class="mobileThemeControlLink">
-				
+
 				<a href="<?php echo $link; ?>" rel="external">
 					<?php echo html_encode($text); ?>
 				</a>

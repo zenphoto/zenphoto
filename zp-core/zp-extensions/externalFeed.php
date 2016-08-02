@@ -337,7 +337,7 @@ class ExternalFeed extends feed {
 		if ($this->mode == "albums") {
 			$albumobj = $item;
 			$totalimages = $albumobj->getNumImages();
-			$itemlink = $this->host . pathurlencode($albumobj->getLink());
+			$itemlink = $this->host . $albumobj->getLink();
 			$thumb = $albumobj->getAlbumThumbImage();
 			$title = $albumobj->getTitle($this->locale);
 
