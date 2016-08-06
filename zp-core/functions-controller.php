@@ -21,17 +21,17 @@ function zpRewriteURL($query) {
 			case 'news':
 				$redirectURL = _NEWS_;
 				if (isset($query['category'])) {
-					$obj = newCategory(rtrim($query['category'], '/'), false);
+					$obj = newCategory(trim($query['category'], '/'), false);
 					if (!$obj->loaded)
 						return '';
 					$redirectURL = $obj->getLink();
 					unset($query['category']);
 				} else if (isset($query['date'])) {
-					$redirectURL = _NEWS_ARCHIVE_ . '/' . rtrim($query['date'], '/') . '/';
+					$redirectURL = _NEWS_ARCHIVE_ . '/' . trim($query['date'], '/') . '/';
 					unset($query['date']);
 				}
 				if (isset($query['title'])) {
-					$obj = newArticle(rtrim($query['title'], '/'), false);
+					$obj = newArticle(trim($query['title'], '/'), false);
 					if (!$obj->loaded)
 						return '';
 					$redirectURL = $obj->getLink();
@@ -40,7 +40,7 @@ function zpRewriteURL($query) {
 				break;
 			case 'pages':
 				if (isset($query['title'])) {
-					$obj = newPage(rtrim($query['title'], '/'), false);
+					$obj = newPage(trim($query['title'], '/'), false);
 					if (!$obj->loaded)
 						return '';
 					$redirectURL = $obj->getLink();
@@ -50,7 +50,7 @@ function zpRewriteURL($query) {
 			case'search':
 				$redirectURL = _SEARCH_;
 				if (isset($query['date'])) {
-					$redirectURL = _ARCHIVE_ . '/' . rtrim($query['date'], '/') . '/';
+					$redirectURL = _ARCHIVE_ . '/' . trim($query['date'], '/') . '/';
 					unset($query['date']);
 				} else if (isset($query['searchfields']) && $query['searchfields'] == 'tags') {
 					$redirectURL = _TAGS_;
@@ -65,12 +65,12 @@ function zpRewriteURL($query) {
 				}
 				break;
 			default:
-				$redirectURL = getCustomPageURL(rtrim($query['p'], '/'));
+				$redirectURL = getCustomPageURL(trim($query['p'], '/'));
 				break;
 		}
 		unset($query['p']);
 		if (isset($query['page'])) {
-			$redirectURL = rtrim($redirectURL, '/') . '/' . rtrim($query['page'], '/');
+			$redirectURL = rtrim($redirectURL, '/') . '/' . trim($query['page'], '/');
 			unset($query['page']);
 		}
 	} else if (isset($query['album'])) {
@@ -87,14 +87,13 @@ function zpRewriteURL($query) {
 		$redirectURL = preg_replace('~^' . WEBPATH . '/~', '', $obj->getLink(@$query['page']));
 		unset($query['page']);
 	} else if (isset($query['page'])) { //index page
-		$redirectURL = _PAGE_ . '/' . rtrim($query['page'], '/');
+		$redirectURL = _PAGE_ . '/' . trim($query['page'], '/');
 		unset($query['page']);
 	}
 
 	if ($redirectURL && !empty($query)) {
 		$redirectURL .= '?' . http_build_query($query);
 	}
-
 	return $redirectURL;
 }
 
@@ -323,10 +322,10 @@ function load_zenpage_news($request) {
 	global $_zp_current_article, $_zp_current_category, $_zp_post_date;
 	if (isset($request['date'])) {
 		add_context(ZP_ZENPAGE_NEWS_DATE);
-		$_zp_post_date = sanitize(rtrim($request['date'], '/'));
+		$_zp_post_date = sanitize(trim($request['date'], '/'));
 	}
 	if (isset($request['category'])) {
-		$titlelink = sanitize(rtrim($request['category'], '/'));
+		$titlelink = sanitize(trim($request['category'], '/'));
 		$_zp_current_category = new Category($titlelink);
 		if ($_zp_current_category->loaded) {
 			add_context(ZP_ZENPAGE_NEWS_CATEGORY);
@@ -337,7 +336,7 @@ function load_zenpage_news($request) {
 		}
 	}
 	if (isset($request['title'])) {
-		$titlelink = sanitize(rtrim($request['title'], '/'));
+		$titlelink = sanitize(trim($request['title'], '/'));
 		$sql = 'SELECT `id` FROM ' . prefix('news') . ' WHERE `titlelink`=' . db_quote($titlelink);
 		$result = query_single_row($sql);
 		if (is_array($result)) {
@@ -367,7 +366,7 @@ function zp_load_request() {
 					break;
 				case 'pages':
 					if (extensionEnabled('zenpage')) {
-						return load_zenpage_pages(sanitize(rtrim(@$_GET['title'], '/')));
+						return load_zenpage_pages(sanitize(trim(@$_GET['title'], '/')));
 					}
 					break;
 				case 'news':
