@@ -1,10 +1,13 @@
 <?php
 /**
- * This script is used to create dynamic albums from a search.
+ * This script is used tag items from a search.
  *
  * @author Stephen Billard (sbillard)
  *
  * @package core
+ *
+ * Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+ *
  */
 // force UTF-8 Ø
 
