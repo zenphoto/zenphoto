@@ -1498,7 +1498,7 @@ function printHomeLink($before = '', $after = '', $title = NULL, $class = NULL, 
 		}
 		if ($site != SEO_FULLWEBPATH) {
 			if ($before) {
-				echo '<span class="beforetext">' . html_encode(before) . '</span>';
+				echo '<span class="beforetext">' . html_encode($before) . '</span>';
 			}
 			printLinkHTML($site, $name, $title, $class, $id);
 			if ($after) {
