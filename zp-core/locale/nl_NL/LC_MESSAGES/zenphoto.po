@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.4.13\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-28 13:07+0200\n"
+"POT-Creation-Date: 2016-08-17 08:40+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: fretzl\n"
 "Language-Team: \n"
@@ -14,7 +14,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../../..\n"
 "X-Poedit-Bookmarks: -1,-1,-1,-1,-1,3092,-1,-1,-1,-1\n"
-"X-Generator: Poedit 1.8.7\n"
+"X-Generator: Poedit 1.8.8\n"
 "X-Poedit-SearchPath-0: zp-core\n"
 "X-Poedit-SearchPath-1: themes\n"
 "X-Poedit-SearchPathExcluded-0: plugins\n"
@@ -292,7 +292,7 @@ msgstr "Pagina niet gevonden"
 #: themes/zpmobile/functions.php:67 themes/zpmobile/search.php:46
 #: themes/zpmobile/search.php:51 themes/zpmobile/search.php:53
 #: zp-core/template-functions.php:452 zp-core/template-functions.php:1358
-#: zp-core/template-functions.php:1389 zp-core/template-functions.php:3903
+#: zp-core/template-functions.php:1389 zp-core/template-functions.php:3907
 #: zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:68
 #: zp-core/zp-extensions/html_meta_tags.php:266
 #: zp-core/zp-extensions/slideshow.php:749
@@ -540,7 +540,7 @@ msgstr "Stop"
 
 #: themes/effervescence_plus/indexpage.php:43
 #: themes/effervescence_plus/slideshow.php:34 themes/zpmobile/functions.php:65
-#: zp-core/template-functions.php:613 zp-core/template-functions.php:1493
+#: zp-core/template-functions.php:613 zp-core/template-functions.php:1497
 #: zp-core/zp-extensions/menu_manager.php:826
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:463
 msgid "Home"
@@ -763,8 +763,8 @@ msgstr "RSS"
 #: zp-core/template-functions.php:425 zp-core/template-functions.php:427
 #: zp-core/zp-extensions/cacheManager.php:153
 #: zp-core/zp-extensions/comment_form.php:82
-#: zp-core/zp-extensions/comment_form/functions.php:833
-#: zp-core/zp-extensions/comment_form/functions.php:840
+#: zp-core/zp-extensions/comment_form/functions.php:842
+#: zp-core/zp-extensions/comment_form/functions.php:849
 #: zp-core/zp-extensions/defaultCodeblocks.php:36
 #: zp-core/zp-extensions/externalFeed.php:71
 #: zp-core/zp-extensions/html_meta_tags.php:248
@@ -6317,7 +6317,7 @@ msgid "Bad "
 msgstr "Slechte"
 
 #: zp-core/class-feed.php:425
-#: zp-core/zp-extensions/comment_form/functions.php:808
+#: zp-core/zp-extensions/comment_form/functions.php:817
 msgid "by"
 msgstr "door"
 
@@ -11566,24 +11566,24 @@ msgstr "Keer terug naar <em>zoeken</em>"
 msgid "Return to archive"
 msgstr "Keer terug naar <em>archief</em>"
 
-#: zp-core/template-functions.php:2164
+#: zp-core/template-functions.php:2168
 msgid "The image is marked un-published."
 msgstr "Deze afbeelding is als niet-gepubliceerd gemarkeerd."
 
-#: zp-core/template-functions.php:2539
+#: zp-core/template-functions.php:2543
 msgid "Image Info"
 msgstr "Foto-informatie"
 
-#: zp-core/template-functions.php:3395
+#: zp-core/template-functions.php:3399
 #, php-format
 msgid "View image: %s"
 msgstr "Bekijk afbeelding: %s"
 
-#: zp-core/template-functions.php:3590
+#: zp-core/template-functions.php:3594
 msgid "No popular tags"
 msgstr "Geen populaire tags"
 
-#: zp-core/template-functions.php:3898
+#: zp-core/template-functions.php:3902
 msgid ""
 "printSearchForm $album_list parameter is deprecated. Pass array(\"albums"
 "\"=>array(album, album, ...)) instead."
@@ -11591,45 +11591,45 @@ msgstr ""
 "printSearchForm $album_list parameter is verouderd. Gebruik in plaats "
 "daarvan array(“albums”=>aray(album, album,...))."
 
-#: zp-core/template-functions.php:3914
+#: zp-core/template-functions.php:3918
 #, php-format
 msgid "%s within previous results"
 msgstr "%s binnen vorige resultaten"
 
-#: zp-core/template-functions.php:3995
+#: zp-core/template-functions.php:3999
 msgid "search options"
 msgstr "zoekopties"
 
-#: zp-core/template-functions.php:3995
+#: zp-core/template-functions.php:3999
 msgid "fields"
 msgstr "velden"
 
-#: zp-core/template-functions.php:4035
+#: zp-core/template-functions.php:4039
 msgid "Within"
 msgstr "binnen"
 
-#: zp-core/template-functions.php:4039
+#: zp-core/template-functions.php:4043
 #: zp-core/zp-extensions/flag_thumbnail.php:91
 msgid "New"
 msgstr "Nieuw"
 
-#: zp-core/template-functions.php:4046
+#: zp-core/template-functions.php:4050
 msgid "Check/uncheck all"
 msgstr "Selecteer/Deselecteer alle"
 
-#: zp-core/template-functions.php:4098
+#: zp-core/template-functions.php:4102
 msgid "no date"
 msgstr "geen datum"
 
-#: zp-core/template-functions.php:4331
+#: zp-core/template-functions.php:4335
 msgid "The page you are trying to view is password protected."
 msgstr "Deze pagina is beveiligd met een wachtwoord."
 
-#: zp-core/template-functions.php:4336
+#: zp-core/template-functions.php:4340
 msgid "login"
 msgstr "login"
 
-#: zp-core/template-functions.php:4353
+#: zp-core/template-functions.php:4357
 msgid ""
 "Powered by <a href=\"http://www.zenphoto.org\" title=\"A simpler web album"
 "\"><span id=\"zen-part\">zen</span><span id=\"photo-part\">PHOTO</span></a>"
@@ -11637,21 +11637,21 @@ msgstr ""
 "Powered by <a href=\"http://www.zenphoto.org\" title=\"A simpler web album"
 "\"><span id=\"zen-part\">zen</span><span id=\"photo-part\">PHOTO</span></a>"
 
-#: zp-core/template-functions.php:4517
+#: zp-core/template-functions.php:4521
 msgid "Zenphoto Error:</strong> the requested object was not found."
 msgstr "Zenphoto fout:</strong> het gevraagde object kon niet gevonden worden."
 
-#: zp-core/template-functions.php:4519
+#: zp-core/template-functions.php:4523
 #, php-format
 msgid "Album: %s"
 msgstr "Album: %s"
 
-#: zp-core/template-functions.php:4522
+#: zp-core/template-functions.php:4526
 #, php-format
 msgid "Image: %s"
 msgstr "Afbeelding: %s"
 
-#: zp-core/template-functions.php:4525
+#: zp-core/template-functions.php:4529
 #, php-format
 msgid "Page: %s"
 msgstr "Pagina: %s"
@@ -14072,21 +14072,21 @@ msgstr "Reactie geplaatst"
 msgid "Comment posted on unknown page!"
 msgstr "Reactie gepost op onbekende pagina!"
 
-#: zp-core/zp-extensions/comment_form/functions.php:912
+#: zp-core/zp-extensions/comment_form/functions.php:921
 msgid "Anonymous"
 msgstr "Anoniem"
 
-#: zp-core/zp-extensions/comment_form/functions.php:948
+#: zp-core/zp-extensions/comment_form/functions.php:957
 #, php-format
 msgid "%1$s commented on album %2$s%3$s"
 msgstr "%1$s gaf reactie op album %2$s%3$s"
 
-#: zp-core/zp-extensions/comment_form/functions.php:952
+#: zp-core/zp-extensions/comment_form/functions.php:961
 #, php-format
 msgid "%1$s commented on %2$s in album %3$s%4$s"
 msgstr "%1$s gaf reactie op %2$s in album %3$s%4$s"
 
-#: zp-core/zp-extensions/comment_form/functions.php:956
+#: zp-core/zp-extensions/comment_form/functions.php:965
 #, php-format
 msgid "%1$s commented on %2$s%3$s"
 msgstr "%1$s gaf reactie op %2$s%3$s"
@@ -22918,8 +22918,13 @@ msgstr ""
 "HTML)"
 
 #: zp-core/zp-extensions/zenpage/deprecated-functions.php:680
-msgid "use printLatestComments($number, $shorten, $type, $itemID, $id);"
-msgstr "gebruik printLatestComments($number, $shorten, $type, $itemID, $id);"
+#, fuzzy
+msgid ""
+"use printLatestComments($number, $shorten, $type, $itemID, $id, "
+"$shortenindicator);"
+msgstr ""
+"gebruik printLatestComments($number, $shorten, $type, $itemID, $id,"
+"$shortenindicator);"
 
 #: zp-core/zp-extensions/zenpage/deprecated-functions.php:689
 msgid "use getRSSLink($option,$lang,$categorylink)."
