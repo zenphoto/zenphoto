@@ -1726,7 +1726,6 @@ zp-core/zp-extensions/tinymce4/themes/inlite/src/main/js/tinymce/inlite/ui/Forms
 zp-core/zp-extensions/tinymce4/themes/inlite/src/main/js/tinymce/inlite/ui/Panel.js
 zp-core/zp-extensions/tinymce4/themes/inlite/src/main/js/tinymce/inlite/ui/Toolbar.js
 zp-core/zp-extensions/tinymce4/themes/inlite/src/test
-zp-core/zp-extensions/tinymce4/themes/inlite/src/test/.eslintrc
 zp-core/zp-extensions/tinymce4/themes/inlite/src/test/js
 zp-core/zp-extensions/tinymce4/themes/inlite/src/test/js/atomic
 zp-core/zp-extensions/tinymce4/themes/inlite/src/test/js/atomic/alien
@@ -1837,4 +1836,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1839
+1838
