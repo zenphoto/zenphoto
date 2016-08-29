@@ -153,7 +153,7 @@ updatePublished('pages');
 						gettext('Enable comments') => 'commentson'
 				);
 				if (extensionEnabled('hitcounter')) {
-					$checkarray['Reset hitcounter'] = 'resethitcounter';
+					$checkarray[gettext('Reset hitcounter')] = 'resethitcounter';
 				}
 				$checkarray = zp_apply_filter('bulk_page_actions', $checkarray);
 				printBulkActions($checkarray);

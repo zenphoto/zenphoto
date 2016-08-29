@@ -256,7 +256,7 @@ updatePublished('news');
 											gettext('Clear categories') => 'clearcats'
 									);
 									if (extensionEnabled('hitcounter')) {
-										$checkarray['hitcounter'] = 'resethitcounter';
+										$checkarray[gettext('Reset hitcounter')] = 'resethitcounter';
 									}
 									$checkarray = zp_apply_filter('bulk_article_actions', $checkarray);
 									printBulkActions($checkarray);

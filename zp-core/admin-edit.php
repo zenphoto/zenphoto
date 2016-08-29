@@ -701,7 +701,7 @@ echo "\n</head>";
 					gettext('Enable comments') => 'commentson'
 			);
 			if (extensionEnabled('hitcounter')) {
-				$checkarray_images['Reset hitcounter'] = 'resethitcounter';
+				$checkarray_images[gettext('Reset hitcounter')] = 'resethitcounter';
 			}
 			$checkarray_albums = array_merge($checkarray_images, array(
 					gettext('Delete') => 'deleteallalbum'
@@ -1308,7 +1308,7 @@ echo "\n</head>";
 																<p>
 																	<label for="publishdate-<?php echo $currentimage; ?>"><?php echo gettext('Publish date'); ?> <small>(YYYY-MM-DD)</small></label>
 																	<br /><input value="<?php echo $publishdate; ?>" type="text" size="20" maxlength="30" name="publishdate-<?php echo $currentimage; ?>" id="publishdate-<?php echo $currentimage; ?>" <?php if ($publishdate > date('Y-m-d H:i:s')) echo 'style="color:blue"'; ?> />
-																	<label for="expirationdate-<?php echo $currentimage; ?>"><?php echo gettext('Expiration date'); ?> <small>(YYYY-MM-DD)</small></label>
+																	<br /><label for="expirationdate-<?php echo $currentimage; ?>"><?php echo gettext('Expiration date'); ?> <small>(YYYY-MM-DD)</small></label>
 																	<br /><input value="<?php echo $expirationdate; ?>" type="text" size="20" maxlength="30" name="expirationdate-<?php echo $currentimage; ?>" id="expirationdate-<?php echo $currentimage; ?>" />
 																	<strong class="expire-<?php echo $currentimage; ?>" style="color:red">
 																		<?php
