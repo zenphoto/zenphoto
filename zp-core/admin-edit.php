@@ -701,7 +701,7 @@ echo "\n</head>";
 					gettext('Enable comments') => 'commentson'
 			);
 			if (extensionEnabled('hitcounter')) {
-				$checkarray_images['Reset hitcounter'] = 'resethitcounter';
+				$checkarray_images[gettext('Reset hitcounter')] = 'resethitcounter';
 			}
 			$checkarray_albums = array_merge($checkarray_images, array(
 					gettext('Delete') => 'deleteallalbum'
