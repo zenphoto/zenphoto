@@ -1008,7 +1008,7 @@ class _Authority {
 						</fieldset>
 						<br />
 						<?php
-						if ($star) {
+						if ($showCaptcha) {
 							?>
 							<p class="logon_link">
 								<a href="javascript:launchScript('<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php',['logon_step=captcha', 'ref='+$('#user').val()]);" >
@@ -1099,7 +1099,7 @@ class _Authority {
 							</p>
 							<?php
 						} else {
-							if ($star) {
+							if ($showCaptcha) {
 								?>
 								<p class="logon_link">
 									<a href="javascript:launchScript('<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php',['logon_step=captcha', 'ref='+$('#user').val()]);" >
@@ -1114,6 +1114,15 @@ class _Authority {
 				case 'captcha':
 					$captcha = $_zp_captcha->getCaptcha(NULL);
 					?>
+					<script type="text/javascript">
+						function toggleSubmit() {
+							if ($('#user').val()) {
+								$('#submitButton').removeAttr('disabled');
+							} else {
+								$('#submitButton').prop('disabled', 'disabled');
+							}
+						}
+					</script>
 					<form name="login" action="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php" method="post">
 						<?php if (isset($captcha['hidden'])) echo $captcha['hidden']; ?>
 						<input type="hidden" name="login" value="1" />
@@ -1121,7 +1130,7 @@ class _Authority {
 						<input type="hidden" name="redirect" value="<?php echo html_encode(pathurlencode($redirect)); ?>" />
 						<fieldset id="logon_box">
 							<fieldset><legend><?php echo gettext('User'); ?></legend>
-								<input class="textfield" name="user" id="user" type="text" value="<?php echo html_encode($requestor); ?>" />
+								<input class="textfield" name="user" id="user" type="text" value="<?php echo html_encode($requestor); ?>" onkeyup="toggleSubmit();"/>
 							</fieldset>
 							<?php if (isset($captcha['html'])) echo $captcha['html']; ?>
 							<?php
@@ -1135,7 +1144,7 @@ class _Authority {
 							?>
 							<br />
 							<div class="buttons">
-								<button type="submit" value="<?php echo gettext("Request"); ?>" ><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><?php echo gettext("Request password reset"); ?></button>
+								<button type="submit"<?php if (empty($requestor)) echo ' disabled="disabled"'; ?>  id="submitButton" value="<?php echo gettext("Request"); ?>" ><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><?php echo gettext("Request password reset"); ?></button>
 								<button type="button" value="<?php echo gettext("Return"); ?>" onclick="launchScript('<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php', ['logon_step=', 'ref=' + $('#user').val()]);" ><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/refresh.png" alt="" /><?php echo gettext("Return"); ?></button>
 							</div>
 							<br class="clearall" />
