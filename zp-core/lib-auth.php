@@ -854,11 +854,11 @@ class _Authority {
 	 * @param string $redirect URL to return to after login
 	 * @param bool $logo set to true to display the ADMIN zenphoto logo.
 	 * @param bool $showUserField set to true to display the user input
-	 * @param bool $showCaptcha set to false to not display the forgot password captcha.
+	 * @param bool [deprecated] $deprecated set to false to not display the forgot password captcha.
 	 * @param string $hint optional hint for the password
 	 *
 	 */
-	function printLoginForm($redirect = null, $logo = true, $showUserField = true, $showCaptcha = true, $hint = '') {
+	function printLoginForm($redirect = null, $logo = true, $showUserField = true, $deprecated = NULL, $hint = '') {
 		global $_zp_login_error, $_zp_captcha, $_zp_gallery;
 		if (is_null($redirect)) {
 			$redirect = getRequestURI();
@@ -907,7 +907,7 @@ class _Authority {
 				$info = array('challenge' => $questions[$cycle % count($questions)], 'response' => 0x00);
 			} else {
 				if ($admin->getEmail()) {
-					$star = $showCaptcha;
+					$star = true;
 				}
 			}
 		}
@@ -916,7 +916,7 @@ class _Authority {
 			while (count($admins) > 0) {
 				$user = array_shift($admins);
 				if ($user['email']) {
-					$star = $showCaptcha;
+					$star = true;
 				}
 			}
 		}
@@ -1008,7 +1008,7 @@ class _Authority {
 						</fieldset>
 						<br />
 						<?php
-						if ($showCaptcha) {
+						if ($star) {
 							?>
 							<p class="logon_link">
 								<a href="javascript:launchScript('<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php',['logon_step=captcha', 'ref='+$('#user').val()]);" >
@@ -1099,7 +1099,7 @@ class _Authority {
 							</p>
 							<?php
 						} else {
-							if ($showCaptcha) {
+							if ($star) {
 								?>
 								<p class="logon_link">
 									<a href="javascript:launchScript('<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php',['logon_step=captcha', 'ref='+$('#user').val()]);" >
@@ -1313,7 +1313,7 @@ class _Authority {
 						 class="disclose_password"
 						 id="disclose_password<?php echo $id; ?>"
 						 onclick="passwordClear('<?php echo $id; ?>');
-										 togglePassword('<?php echo $id; ?>');">
+								 togglePassword('<?php echo $id; ?>');">
 		</p>
 		<p class="password_field password_field_<?php echo $id; ?>">
 			<label for="pass_r<?php echo $id; ?>" id="match<?php echo $id; ?>"><?php echo gettext("Repeat password") . $flag; ?></label>
