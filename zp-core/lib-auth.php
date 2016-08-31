@@ -1129,7 +1129,7 @@ class _Authority {
 						<input type="hidden" name="password" value="captcha" />
 						<input type="hidden" name="redirect" value="<?php echo html_encode(pathurlencode($redirect)); ?>" />
 						<fieldset id="logon_box">
-							<fieldset><legend><?php echo gettext('User'); ?></legend>
+							<fieldset><legend><?php echo gettext('User name or e-mail address'); ?></legend>
 								<input class="textfield" name="user" id="user" type="text" value="<?php echo html_encode($requestor); ?>" onkeyup="toggleSubmit();"/>
 							</fieldset>
 							<?php if (isset($captcha['html'])) echo $captcha['html']; ?>
@@ -1313,7 +1313,7 @@ class _Authority {
 						 class="disclose_password"
 						 id="disclose_password<?php echo $id; ?>"
 						 onclick="passwordClear('<?php echo $id; ?>');
-								 togglePassword('<?php echo $id; ?>');">
+										 togglePassword('<?php echo $id; ?>');">
 		</p>
 		<p class="password_field password_field_<?php echo $id; ?>">
 			<label for="pass_r<?php echo $id; ?>" id="match<?php echo $id; ?>"><?php echo gettext("Repeat password") . $flag; ?></label>
