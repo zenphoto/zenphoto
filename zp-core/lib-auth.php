@@ -854,11 +854,11 @@ class _Authority {
 	 * @param string $redirect URL to return to after login
 	 * @param bool $logo set to true to display the ADMIN zenphoto logo.
 	 * @param bool $showUserField set to true to display the user input
-	 * @param bool $showCaptcha set to false to not display the forgot password captcha.
+	 * @param bool [deprecated] $deprecated set to false to not display the forgot password captcha.
 	 * @param string $hint optional hint for the password
 	 *
 	 */
-	function printLoginForm($redirect = null, $logo = true, $showUserField = true, $showCaptcha = true, $hint = '') {
+	function printLoginForm($redirect = null, $logo = true, $showUserField = true, $deprecated = NULL, $hint = '') {
 		global $_zp_login_error, $_zp_captcha, $_zp_gallery;
 		if (is_null($redirect)) {
 			$redirect = getRequestURI();
@@ -907,7 +907,7 @@ class _Authority {
 				$info = array('challenge' => $questions[$cycle % count($questions)], 'response' => 0x00);
 			} else {
 				if ($admin->getEmail()) {
-					$star = $showCaptcha;
+					$star = true;
 				}
 			}
 		}
@@ -916,7 +916,7 @@ class _Authority {
 			while (count($admins) > 0) {
 				$user = array_shift($admins);
 				if ($user['email']) {
-					$star = $showCaptcha;
+					$star = true;
 				}
 			}
 		}
@@ -1114,6 +1114,15 @@ class _Authority {
 				case 'captcha':
 					$captcha = $_zp_captcha->getCaptcha(NULL);
 					?>
+					<script type="text/javascript">
+						function toggleSubmit() {
+							if ($('#user').val()) {
+								$('#submitButton').removeAttr('disabled');
+							} else {
+								$('#submitButton').prop('disabled', 'disabled');
+							}
+						}
+					</script>
 					<form name="login" action="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php" method="post">
 						<?php if (isset($captcha['hidden'])) echo $captcha['hidden']; ?>
 						<input type="hidden" name="login" value="1" />
@@ -1121,7 +1130,7 @@ class _Authority {
 						<input type="hidden" name="redirect" value="<?php echo html_encode(pathurlencode($redirect)); ?>" />
 						<fieldset id="logon_box">
 							<fieldset><legend><?php echo gettext('User'); ?></legend>
-								<input class="textfield" name="user" id="user" type="text" value="<?php echo html_encode($requestor); ?>" />
+								<input class="textfield" name="user" id="user" type="text" value="<?php echo html_encode($requestor); ?>" onkeyup="toggleSubmit();"/>
 							</fieldset>
 							<?php if (isset($captcha['html'])) echo $captcha['html']; ?>
 							<?php
@@ -1135,7 +1144,7 @@ class _Authority {
 							?>
 							<br />
 							<div class="buttons">
-								<button type="submit" value="<?php echo gettext("Request"); ?>" ><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><?php echo gettext("Request password reset"); ?></button>
+								<button type="submit"<?php if (empty($requestor)) echo ' disabled="disabled"'; ?>  id="submitButton" value="<?php echo gettext("Request"); ?>" ><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><?php echo gettext("Request password reset"); ?></button>
 								<button type="button" value="<?php echo gettext("Return"); ?>" onclick="launchScript('<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php', ['logon_step=', 'ref=' + $('#user').val()]);" ><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/refresh.png" alt="" /><?php echo gettext("Return"); ?></button>
 							</div>
 							<br class="clearall" />
@@ -1304,7 +1313,7 @@ class _Authority {
 						 class="disclose_password"
 						 id="disclose_password<?php echo $id; ?>"
 						 onclick="passwordClear('<?php echo $id; ?>');
-										 togglePassword('<?php echo $id; ?>');">
+								 togglePassword('<?php echo $id; ?>');">
 		</p>
 		<p class="password_field password_field_<?php echo $id; ?>">
 			<label for="pass_r<?php echo $id; ?>" id="match<?php echo $id; ?>"><?php echo gettext("Repeat password") . $flag; ?></label>
