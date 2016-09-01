@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: zenphoto 1.4.11\n"
+"Project-Id-Version: zenphoto 1.4.14\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-02 16:09-0500\n"
 "PO-Revision-Date: 2016-01-02 16:15-0500\n"
@@ -9728,7 +9728,7 @@ msgid ""
 "for your site to function."
 msgstr ""
 "Les changements détectés sont critiques. Vous <strong>devez</strong> "
-"exécuter la routine d’insallation (%1$ssetup%2$s) pour que votre gallerie "
+"exécuter la routine d’installation (%1$ssetup%2$s) pour que votre gallerie "
 "fonctionne."
 
 #: zp-core/reconfigure.php:225
@@ -9738,7 +9738,7 @@ msgid ""
 "your earliest convenience."
 msgstr ""
 "Les changements détectés ne sont sans doute pas critiques. Vous devriez "
-"néanmoins exécuter la routine d’insallation (%1$ssetup%2$s) le plus "
+"néanmoins exécuter la routine d’installation (%1$ssetup%2$s) le plus "
 "rapidement possible."
 
 #: zp-core/rewrite.php:95
@@ -11913,7 +11913,7 @@ msgid ""
 "should run %1$ssetup%2$s to insure proper migration."
 msgstr ""
 "Vous avez restauré la base de données à partir d’une autre instance de "
-"Zenphoto. Vous devriez donc exécuter la routine d’insallation (%1$ssetup"
+"Zenphoto. Vous devriez donc exécuter la routine d’installation (%1$ssetup"
 "%2$s) pour vous assurer que la migration est correctement effectuée."
 
 #: zp-core/utilities/backup_restore.php:469
