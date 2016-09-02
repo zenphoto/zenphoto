@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Zenphoto 1.4.13\n"
+"Project-Id-Version: Zenphoto 1.4.14\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-17 08:40+0200\n"
+"POT-Creation-Date: 2016-09-02 09:40+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: fretzl\n"
 "Language-Team: \n"
@@ -22918,7 +22918,6 @@ msgstr ""
 "HTML)"
 
 #: zp-core/zp-extensions/zenpage/deprecated-functions.php:680
-#, fuzzy
 msgid ""
 "use printLatestComments($number, $shorten, $type, $itemID, $id, "
 "$shortenindicator);"
