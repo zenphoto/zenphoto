@@ -335,10 +335,12 @@ class htmlmetatags {
 			$meta .= '<meta name="pinterest" content="nopin">' . "\n";
 		} // dissalow users to pin images on Pinterest
 		// Twitter card
-		$twittername = getOption('htmlmeta_twittername');
-		if (getOption('htmlmeta_twittercard') || !empty($twittername)) {
-			$meta .= '<meta name="twitter:creator" content="' . $twittername . '">' . "\n";
-			$meta .= '<meta name="twitter:site" content="' . $twittername . '">' . "\n";
+		if (getOption('htmlmeta_twittercard')) {
+			$twittername = getOption('htmlmeta_twittername');
+			if (!empty($twittername)) {
+				$meta .= '<meta name="twitter:creator" content="' . $twittername . '">' . "\n";
+				$meta .= '<meta name="twitter:site" content="' . $twittername . '">' . "\n";
+			}
 			$meta .= '<meta name="twitter:card" content="' . $twittercard_type . '">' . "\n";
 			$meta .= '<meta name="twitter:title" content="' . $pagetitle . '">' . "\n";
 			$meta .= '<meta name="twitter:description" content="' . $desc . '">' . "\n";
