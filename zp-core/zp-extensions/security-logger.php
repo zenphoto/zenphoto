@@ -67,15 +67,15 @@ class security_logger {
 	 * @return array
 	 */
 	function getOptionsSupported() {
-		return array(gettext('Record logon attempts of')		 => array('key'				 => 'logger_log_allowed', 'type'			 => OPTION_TYPE_CHECKBOX_ARRAY,
-										'checkboxes' => array(gettext('Administrators') => 'logger_log_admin', gettext('Guests') => 'logger_log_guests'),
-										'desc'			 => gettext('If checked login attempts will be logged.')),
-						gettext('Record failed admin access')	 => array('key'			 => 'logge_access_log_type', 'type'		 => OPTION_TYPE_RADIO,
-										'buttons'	 => array(gettext('All attempts') => 'all', gettext('Only user attempts') => 'all_user'),
-										'desc'		 => gettext('Record admin page access failures.')),
-						gettext('Record logon')								 => array('key'			 => 'logger_log_type', 'type'		 => OPTION_TYPE_RADIO,
-										'buttons'	 => array(gettext('All attempts') => 'all', gettext('Successful attempts') => 'success', gettext('unsuccessful attempts') => 'fail'),
-										'desc'		 => gettext('Record login failures, successes, or all attempts.'))
+		return array(gettext('Record logon attempts of') => array('key' => 'logger_log_allowed', 'type' => OPTION_TYPE_CHECKBOX_ARRAY,
+						'checkboxes' => array(gettext('Administrators') => 'logger_log_admin', gettext('Guests') => 'logger_log_guests'),
+						'desc' => gettext('If checked login attempts will be logged.')),
+				gettext('Record failed admin access') => array('key' => 'logge_access_log_type', 'type' => OPTION_TYPE_RADIO,
+						'buttons' => array(gettext('All attempts') => 'all', gettext('Only user attempts') => 'all_user'),
+						'desc' => gettext('Record admin page access failures.')),
+				gettext('Record logon') => array('key' => 'logger_log_type', 'type' => OPTION_TYPE_RADIO,
+						'buttons' => array(gettext('All attempts') => 'all', gettext('Successful attempts') => 'success', gettext('unsuccessful attempts') => 'fail'),
+						'desc' => gettext('Record login failures, successes, or all attempts.'))
 		);
 	}
 
@@ -129,7 +129,7 @@ class security_logger {
 				$aux1 = $addl;
 				$success = 3;
 				$type = gettext('Install');
-				$addl = gettext('version') . ' ' . ZENPHOTO_VERSION . '[' . ZENPHOTO_RELEASE . "]";
+				$addl = gettext('version') . ' ' . ZENPHOTO_VERSION;
 				if (!zpFunctions::hasPrimaryScripts()) {
 					$addl .= ' ' . gettext('clone');
 				}

@@ -149,7 +149,7 @@ if (empty($admins)) { //	empty administrators table
 		$_zp_current_admin_obj->clearID();
 		$_zp_current_admin_obj->save();
 		$_zp_loggedin = ALL_RIGHTS;
-		setOption('license_accepted', ZENPHOTO_VERSION . '[' . ZENPHOTO_RELEASE . ']');
+		setOption('license_accepted', ZENPHOTO_VERSION);
 		unset($_SESSION['clone'][$cloneid]);
 	} else {
 		if (Zenphoto_Authority::$preferred_version > ($oldv = getOption('libauth_version'))) {
