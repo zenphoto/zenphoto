@@ -1223,10 +1223,10 @@ function instrument($point) {
  */
 function parse_size($size) {
 	$suffixes = array(
-					''	 => 1,
-					'k'	 => 1024,
-					'm'	 => 1048576, // 1024 * 1024
-					'g'	 => 1073741824, // 1024 * 1024 * 1024
+			'' => 1,
+			'k' => 1024,
+			'm' => 1048576, // 1024 * 1024
+			'g' => 1073741824, // 1024 * 1024 * 1024
 	);
 	if (preg_match('/([0-9]+)\s*(k|m|g)?(b?(ytes?)?)/i', $size, $match)) {
 		return $match[1] * $suffixes[strtolower($match[2])];
@@ -1427,7 +1427,7 @@ function checkInstall() {
 			$install = getSerializedArray($i);
 			if (isset($install['ZENPHOTO'])) {
 				preg_match('|([^-]*).*\[(.*)\]|', $install['ZENPHOTO'], $matches);
-				if (isset($matches[1]) && isset($matches[2]) && $matches[1] != $version[1] || $matches[2] != ZENPHOTO_RELEASE) {
+				if (isset($matches[1]) && $matches[1] != $version[1]) {
 					_setup(14);
 				}
 			}
@@ -1472,14 +1472,14 @@ function _setup($action) {
 function installSignature() {
 	$folder = dirname(__FILE__);
 	$testFiles = array(
-					'template-functions.php'	 => filesize($folder . '/template-functions.php'),
-					'functions-filter.php'		 => filesize($folder . '/functions-filter.php'),
-					'lib-auth.php'						 => filesize($folder . '/lib-auth.php'),
-					'lib-utf8.php'						 => filesize($folder . '/lib-utf8.php'),
-					'functions.php'						 => filesize($folder . '/functions.php'),
-					'functions-basic.php'			 => filesize($folder . '/functions-basic.php'),
-					'functions-controller.php' => filesize($folder . '/functions-controller.php'),
-					'functions-image.php'			 => filesize($folder . '/functions-image.php')
+			'template-functions.php' => filesize($folder . '/template-functions.php'),
+			'functions-filter.php' => filesize($folder . '/functions-filter.php'),
+			'lib-auth.php' => filesize($folder . '/lib-auth.php'),
+			'lib-utf8.php' => filesize($folder . '/lib-utf8.php'),
+			'functions.php' => filesize($folder . '/functions.php'),
+			'functions-basic.php' => filesize($folder . '/functions-basic.php'),
+			'functions-controller.php' => filesize($folder . '/functions-controller.php'),
+			'functions-image.php' => filesize($folder . '/functions-image.php')
 	);
 
 	if (isset($_SERVER['SERVER_SOFTWARE'])) {
@@ -1494,10 +1494,10 @@ function installSignature() {
 		$version = substr($version, 0, $i);
 	}
 	return array_merge($testFiles, array(
-					'SERVER_SOFTWARE'	 => $s,
-					'ZENPHOTO'				 => $version . '[' . ZENPHOTO_RELEASE . ']',
-					'FOLDER'					 => dirname(dirname(__FILE__)),
-					'DATABASE'				 => $dbs['application'] . ' ' . $dbs['version']
+			'SERVER_SOFTWARE' => $s,
+			'ZENPHOTO' => $version,
+			'FOLDER' => dirname(dirname(__FILE__)),
+			'DATABASE' => $dbs['application'] . ' ' . $dbs['version']
 					)
 	);
 }

@@ -21,16 +21,16 @@ require_once(dirname(dirname(__FILE__)) . '/template-functions.php');
 $signaure = getOption('zenphoto_install');
 
 $buttonlist[] = array(
-				'category'		 => gettext('Admin'),
-				'enable'			 => true,
-				'button_text'	 => gettext('Backup/Restore'),
-				'formname'		 => 'backup_restore.php',
-				'action'			 => FULLWEBPATH . '/' . ZENFOLDER . '/utilities/backup_restore.php',
-				'icon'				 => 'images/folder.png',
-				'title'				 => gettext('Backup and restore your gallery database.'),
-				'alt'					 => '',
-				'hidden'			 => '',
-				'rights'			 => ADMIN_RIGHTS
+		'category' => gettext('Admin'),
+		'enable' => true,
+		'button_text' => gettext('Backup/Restore'),
+		'formname' => 'backup_restore.php',
+		'action' => FULLWEBPATH . '/' . ZENFOLDER . '/utilities/backup_restore.php',
+		'icon' => 'images/folder.png',
+		'title' => gettext('Backup and restore your gallery database.'),
+		'alt' => '',
+		'hidden' => '',
+		'rights' => ADMIN_RIGHTS
 );
 
 if (!$_zp_current_admin_obj || $_zp_current_admin_obj->getID()) {
@@ -461,7 +461,7 @@ if (isset($_REQUEST['backup'])) {
 			</div>';
 	}
 
-	setOption('license_accepted', ZENPHOTO_VERSION . '[' . ZENPHOTO_RELEASE . ']');
+	setOption('license_accepted', ZENPHOTO_VERSION);
 	if ($oldlibauth != Zenphoto_Authority::getVersion()) {
 		if (!$_zp_authority->migrateAuth($oldlibauth)) {
 			$messages .= '
