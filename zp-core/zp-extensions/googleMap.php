@@ -40,6 +40,7 @@ class GoogleMap {
 			setOptionDefault('gmap_map_hybrid', 1);
 			setOptionDefault('gmap_map_satellite', 1);
 			setOptionDefault('gmap_map_terrain', 1);
+			setOptionDefault('gmap_map_api_key', '');
 			setOptionDefault('gmap_starting_map', 'HYBRID');
 			setOptionDefault('gmap_control_type', 'HORIZONTAL_BAR');
 			setOptionDefault('gmap_zoom_size', 'LARGE');
@@ -116,7 +117,10 @@ class GoogleMap {
 						'desc' => gettext('The default height of the map.')),
 				gettext('Map sessions') => array('key' => 'gmap_sessions', 'type' => OPTION_TYPE_CHECKBOX,
 						'order' => 9,
-						'desc' => gettext('If checked GoogleMaps will use sessions to pass map data for the <em>colorbox</em> display option. We recommend this option be selected. It protects against reference forgery security attacks and mitigates problems with data exceeding the allowed by some browsers.'))
+						'desc' => gettext('If checked GoogleMaps will use sessions to pass map data for the <em>colorbox</em> display option. We recommend this option be selected. It protects against reference forgery security attacks and mitigates problems with data exceeding the allowed by some browsers.')),
+				gettext('API key') => array('key' => 'gmap_map_api_key', 'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 10,
+						'desc' => gettext('As of June 22, 2016 Google Maps no longer support keyless access (any request that doesn\'t include an API key). You may need to obtain an API key from <a href="https://console.developers.google.com/project">Google</a>.'))
 		);
 	}
 
@@ -131,14 +135,16 @@ class GoogleMap {
 		if (!defined('BASEPATH'))
 			define('BASEPATH', true); //	for no access test in googleMap.php
 		require_once(dirname(__FILE__) . '/googleMap/CodeIgniter-Google-Maps-V3-API/Googlemaps.php');
+		$key = getOption('gmap_map_api_key');
+		if (!empty($key)) {
+			$key = '&amp;key=' . $key;
+		}
 		$loc = getOption('locale');
-		if (empty($loc)) {
-			$loc = '';
-		} else {
+		if (!empty($loc)) {
 			$loc = '&amp;language=' . substr(getOption('locale'), 0, 2);
 		}
 		?>
-		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp<?php echo $loc; ?>"></script>
+		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp<?php echo $key . $loc; ?>"></script>
 		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/googleMap/markerClustererPlus/markerclusterer.js"></script>
 		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/googleMap/overlappingMarkerSpiderfier/oms.min.js"></script>
 		<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/googleMap/googleMap.css" type="text/css" media="screen"/>
