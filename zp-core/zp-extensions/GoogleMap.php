@@ -130,14 +130,21 @@ class GoogleMap {
 		if (!defined('BASEPATH'))
 			define('BASEPATH', true); //	for no access test in GoogleMap.php
 		require_once(dirname(__FILE__) . '/GoogleMap/CodeIgniter-Google-Maps-V3-API/Googlemaps.php');
+		$parameters = array();
+		$url_appendix = '';
 		$loc = getOption('locale');
-		if (empty($loc)) {
-			$loc = '';
-		} else {
-			$loc = '&amp;language=' . substr(getOption('locale'), 0, 2);
+		if ( !empty($loc) ) {
+			$parameters[] = 'language=' . substr(getOption('locale'), 0, 2);
+		}
+		$apikey = getOption('gmap_api_key');
+		if ( !empty($apikey) ) {
+			$parameters[]  = 'key=' . $apikey;
+		}
+		if ( !empty($parameters) ) {
+			$url_appendix = implode('&amp;', $parameters);
 		}
 		?>
-		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp<?php echo $loc; ?>"></script>
+		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?<?php echo $url_appendix; ?>"></script>
 		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/GoogleMap/markerClustererPlus/markerclusterer.js"></script>
 		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/GoogleMap/overlappingMarkerSpiderfier/oms.min.js"></script>
 		<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/GoogleMap/googleMap.css" type="text/css" media="screen"/>
