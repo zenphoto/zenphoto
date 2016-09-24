@@ -1,7 +1,7 @@
 <?php include ('inc_header.php'); ?>
 
 		<div id="headline" class="clearfix">
-			<h3><?php printHomeLink('', ' » '); echo html_encode(getGalleryTitle()); ?></h3>
+			<h3><?php echo html_encode(getGalleryTitle()); ?></h3>
 			<div class="headline-text"><?php printGalleryDesc(); ?></div>
 		</div>
 

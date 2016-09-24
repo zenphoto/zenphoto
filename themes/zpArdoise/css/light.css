@@ -64,20 +64,8 @@ div.news-cat-list {
 .news-cat-active {
 	background: #bbb;
 }
-div#album-wrap ul li a.album-thumb {
-	border: 1px solid #bbb;
-}
-div#album-wrap ul li a.album-thumb:hover {
-	border: 1px solid #444;
-}
 #image-stat h4 {
 	background: #bbb url(../images/hr_light.gif) repeat-x 0 100%;
-}
-a.thumb, #image-stat a {
-	border: 1px solid #bbb;
-}
-a.thumb:hover, #image-stat a:hover {
-	border: 1px solid #444;
 }
 #image img, #image a img {
 	border: 0 solid #444;
@@ -120,6 +108,9 @@ div.pagination span.current {
 div.pagination a:hover {
 	color: #333;
 	border-color: #b45e2c;
+}
+ul.thumbs li.selected  a.thumb {
+	border: 1px solid #bbb;
 }
 table#archive h4 {
 	border-bottom: 1px solid #666;
@@ -170,7 +161,7 @@ div#footer {
 	background: #ddd;
 	border: 1px solid #bbb;
 }
-#admin_data {
+#admin, #admin_data {
 	border: 1px solid #bbb;
 	background: #ddd;
 }
