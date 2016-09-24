@@ -17,20 +17,21 @@ require_once(dirname(dirname(dirname(__FILE__))) . "/zp-core/admin-globals.php")
 admin_securityChecks(THEMES_RIGHTS, currentRelativeURL());
 
 $legacyReplacements = array(
-				'new ZenpagePage'										 => 'newPage',
-				'new ZenpageNews'										 => 'newArticle',
-				'new ZenpageCategory'								 => 'newCategory',
-				'\$_zp_zenpage'											 => '$_zp_CMS',
-				'ZP_NEWS_ENABLED'										 => 'TRUE/*TODO:replaced ZP_NEWS_ENABLED */',
-				'ZP_PAGES_ENABLED'									 => 'TRUE/*TODO:replaced ZP_PAGES_ENABLED */',
-				'getAllTagsCount\(.*\);'						 => 'getAllTagsUnique(NULL, 1, true);',
-				'printHeadTitle\(.*\);'							 => '/*TODO:replaced printHeadTitle(); */',
-				'getSiteHomeURL\(.*\);'							 => '/*TODO:replaced getSiteHomeURL(); */',
-				'printSiteHomeURL\(.*\);'						 => '/*TODO:replaced printSiteHomeURL(); */',
-				'class_exists\([\'"]Zenpage[\'"]\)'	 => 'class_exists("CMS")',
-				'\$_zp_current_zenpage_article'			 => '$_zp_current_article',
-				'\$_zp_current_zenpage_page'				 => '$_zp_current_page',
-				'->getFullImage\('									 => '->getFullImageURL('
+		'new ZenpagePage' => 'newPage',
+		'new ZenpageNews' => 'newArticle',
+		'new ZenpageCategory' => 'newCategory',
+		'\$_zp_zenpage' => '$_zp_CMS',
+		'ZP_NEWS_ENABLED' => 'TRUE/*TODO:replaced ZP_NEWS_ENABLED */',
+		'ZP_PAGES_ENABLED' => 'TRUE/*TODO:replaced ZP_PAGES_ENABLED */',
+		'getAllTagsCount\(.*?\);' => 'getAllTagsUnique(NULL, 1, true);',
+		'printHeadTitle\(.*?\);' => '/*TODO:replaced printHeadTitle(); */',
+		'getSiteHomeURL\(.*?\)' => 'getGalleryIndexURL() /*TODO:replaced getSiteHomeURL() */',
+		'printSiteHomeURL\(.*?\);' => '/*TODO:replaced printSiteHomeURL(); */',
+		'class_exists\([\'"]Zenpage[\'"]\)' => 'class_exists("CMS")',
+		'\$_zp_current_zenpage_news' => '$_zp_current_article',
+		'\$_zp_current_zenpage_page' => '$_zp_current_page',
+		'->getFullImage\(' => '->getFullImageURL(',
+		'tinymce4_' => 'tinymce_'
 );
 
 /**
@@ -186,6 +187,9 @@ printSubtabs();
 			</button>
 
 		</p>
+
+		<br clear="all">
+
 	</form>
 </div>
 <?php
