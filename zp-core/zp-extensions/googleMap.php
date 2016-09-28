@@ -141,7 +141,7 @@ class GoogleMap {
 		}
 		$loc = getOption('locale');
 		if (!empty($loc)) {
-			$loc = '&amp;language=' . substr(getOption('locale'), 0, 2);
+			$loc = '&amp;language=' . substr($loc, 0, 2);
 		}
 		?>
 		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp<?php echo $key . $loc; ?>"></script>

@@ -26,10 +26,10 @@ $plugin_disable = (file_exists(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/nanospe
 zp_register_filter('tinymce_config', 'nanospell_spellchecker');
 
 function nanospell_spellchecker($discard) {
-	global $MCEspecial, $MCEtoolbars, $locale;
+	global $MCEspecial, $MCEtoolbars;
 	$MCEspecial = 'external_plugins: { "nanospell": "' . WEBPATH . '/' . USER_PLUGIN_FOLDER . '/nanospell/plugin.js" },' . "\n" .
 					'nanospell_server:"php",' . "\n" .
-					'language: "' . $locale . '"';
+					'language: "' . ZENPHOTO_LOCALE . '"';
 
 	if (!empty($MCEtoolbars)) {
 		$bar = array_pop($MCEtoolbars);

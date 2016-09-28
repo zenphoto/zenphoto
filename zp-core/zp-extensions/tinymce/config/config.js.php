@@ -62,50 +62,50 @@ if (OFFSET_PATH) {
 ?>
 <script type="text/javascript">
 // <!-- <![CDATA[
-					tinymce.init({
-					entity_encoding : "raw",
-									selector: "<?php echo $MCEselector; ?>",
-									language: "<?php echo $locale; ?>",
-									relative_urls: false,
+	tinymce.init({
+	entity_encoding : "raw",
+					selector: "<?php echo $MCEselector; ?>",
+					language: "<?php echo ZENPHOTO_LOCALE; ?>",
+					relative_urls: false,
 <?php
 if ($MCEimage_advtab == NULL || $MCEimage_advtab) {
 	?>
-						image_advtab: true,
+		image_advtab: true,
 	<?php
 }
 if ($MCEdirection) {
 	?>
-						directionality : '<?php echo $MCEdirection; ?>',
+		directionality : '<?php echo $MCEdirection; ?>',
 	<?php
 }
 ?>
-					content_css: "<?php echo $MCEcss; ?>",
+	content_css: "<?php echo $MCEcss; ?>",
 <?php
 if ($filehandler) {
 	?>
-						elements : "<?php echo $filehandler; ?>",
-										file_browser_callback : <?php echo $filehandler; ?>,
+		elements : "<?php echo $filehandler; ?>",
+						file_browser_callback : <?php echo $filehandler; ?>,
 	<?php
 }
 ?>
-					plugins: ["<?php echo $MCEplugins; ?>"],
+	plugins: ["<?php echo $MCEplugins; ?>"],
 <?php
 if ($MCEspecial) {
 	echo $MCEspecial . ',';
 }
 if ($MCEskin) {
 	?>
-						skin: "<?php echo $MCEskin; ?>",
+		skin: "<?php echo $MCEskin; ?>",
 	<?php
 }
 if (empty($MCEtoolbars)) {
 	?>
-						toolbar: false,
+		toolbar: false,
 	<?php
 } else {
 	foreach ($MCEtoolbars as $key => $toolbar) {
 		?>
-							toolbar<?php if (count($MCEtoolbars) > 1) echo $key; ?>: "<?php echo $toolbar; ?>",
+			toolbar<?php if (count($MCEtoolbars) > 1) echo $key; ?>: "<?php echo $toolbar; ?>",
 		<?php
 	}
 }
@@ -118,20 +118,20 @@ if ($MCEmenubar) {
 }
 ?>
 
-					statusbar: <?php echo ($MCEstatusbar) ? 'true' : 'false'; ?>,
-									menubar: '<?php echo $MCEmenubar; ?>',
-									setup: function(editor) {
-									editor.on('blur', function(ed, e) {
-									form = $(editor.getContainer()).closest('form');
-													if (editor.isDirty()) {
-									$(form).addClass('tinyDirty');
-									} else {
-									$(form).removeClass('tinyDirty');
-									}
-									});
-									}
-
-
+	statusbar: <?php echo ($MCEstatusbar) ? 'true' : 'false'; ?>,
+					menubar: '<?php echo $MCEmenubar; ?>',
+					setup: function(editor) {
+					editor.on('blur', function(ed, e) {
+					form = $(editor.getContainer()).closest('form');
+					if (editor.isDirty()) {
+					$(form).addClass('tinyDirty');
+					} else {
+					$(form).removeClass('tinyDirty');
+					}
 					});
-					// ]]> -->
+					}
+
+
+	});
+	// ]]> -->
 </script>
