@@ -43,11 +43,11 @@ class favorites extends AlbumBase {
 	function getList() {
 		return $this->list;
 	}
- 
+
  function getOwner() {
    return $this->owner;
  }
-	
+
 	function addImage($img) {
 		$folder = $img->imagefolder;
 		$filename = $img->filename;
@@ -240,7 +240,7 @@ class favorites extends AlbumBase {
 	}
 
 	static function loadScript($script, $request) {
-		global $_zp_current_admin_obj, $_zp_gallery_page, $_myFavorites, $_zp_current_album, $_zp_conf_vars, $_myFavorites;
+		global $_zp_current_admin_obj, $_zp_gallery_page, $_myFavorites, $_zp_current_album, $_zp_conf_vars;
 		if ($_myFavorites && isset($_REQUEST['instance'])) {
 			$_myFavorites->instance = sanitize(rtrim($_REQUEST['instance'], '/'));
 			if ($_myFavorites->instance)
