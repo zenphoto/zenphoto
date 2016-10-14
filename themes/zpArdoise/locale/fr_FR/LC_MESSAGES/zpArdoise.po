@@ -1,0 +1,200 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: zpArdoise\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-03-08 21:14+0100\n"
+"PO-Revision-Date: 2014-04-18 02:23+0100\n"
+"Last-Translator: vincent3569 <vincent_bourganel@yahoo.fr>\n"
+"Language-Team: vincent3569 <vincent_bourganel@yahoo.fr>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: gettext_th\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"Language: fr_FR\n"
+"X-Generator: Poedit 1.6.4\n"
+"X-Poedit-SearchPath-0: C:\\Users\\Famille\\Documents\\_Vincent\\Site Internet"
+"\\Galerie photo\\zenphoto\\themes\\zpArdoise\n"
+
+#: C:\Users\Famille\Documents\_Vincent\Site Internet\Galerie
+#: photo\zenphoto\themes\zpArdoise/inc_footer.php:25
+msgid ""
+"The photos of this site are licensed under <a href=\"http://creativecommons."
+"org/licenses/by-nc-nd/3.0/deed.en\" target=\"_blank\">Creative Commons</a>"
+msgstr ""
+"Les photos de ce site sont sous licence <a href=\"http://creativecommons.org/"
+"licenses/by-nc-nd/3.0/deed.fr\" target=\"_blank\">Creative Commons</a>"
+
+#: C:\Users\Famille\Documents\_Vincent\Site Internet\Galerie
+#: photo\zenphoto\themes\zpArdoise/inc_footer.php:25
+msgid ""
+"<a href=\"http://creativecommons.org/licenses/by-nc-nd/3.0/deed.en\" target="
+"\"_blank\"><img style=\"border-width: 0;\" src=\"http://i.creativecommons."
+"org/l/by-nc-nd/3.0/80x15.png\" alt=\"Creative Commons\" /></a>"
+msgstr ""
+"<a href=\"http://creativecommons.org/licenses/by-nc-nd/3.0/deed.fr\" target="
+"\"_blank\"><img style=\"border-width: 0;\" src=\"http://i.creativecommons."
+"org/l/by-nc-nd/3.0/80x15.png\" alt=\"Creative Commons\" /></a>"
+
+#: C:\Users\Famille\Documents\_Vincent\Site Internet\Galerie
+#: photo\zenphoto\themes\zpArdoise/inc_footer.php:25
+msgid "Thanks contact me before using"
+msgstr "Merci de me contacter avant toute utilisation"
+
+#: C:\Users\Famille\Documents\_Vincent\Site Internet\Galerie
+#: photo\zenphoto\themes\zpArdoise/inc_footer.php:44
+msgid "You can browse with the arrows keys of your keyboard"
+msgstr "Vous pouvez naviguer à l'aide des flèches de votre clavier"
+
+#: C:\Users\Famille\Documents\_Vincent\Site Internet\Galerie
+#: photo\zenphoto\themes\zpArdoise/inc_print_image_statistic.php:7
+msgid "Popular images"
+msgstr "Images populaires"
+
+#: C:\Users\Famille\Documents\_Vincent\Site Internet\Galerie
+#: photo\zenphoto\themes\zpArdoise/inc_print_image_statistic.php:15
+msgid "Most rated images"
+msgstr "Images les plus notées"
+
+#: C:\Users\Famille\Documents\_Vincent\Site Internet\Galerie
+#: photo\zenphoto\themes\zpArdoise/news.php:9
+#: photo\zenphoto\themes\zpArdoise/news.php:11
+msgid "newer"
+msgstr "plus récent"
+
+#: C:\Users\Famille\Documents\_Vincent\Site Internet\Galerie
+#: photo\zenphoto\themes\zpArdoise/news.php:14
+#: photo\zenphoto\themes\zpArdoise/news.php:16
+msgid "older"
+msgstr "plus ancien"
+
+#: C:\Users\Famille\Documents\_Vincent\Site Internet\Galerie
+#: photo\zenphoto\themes\zpArdoise/themeoptions.php:52
+msgid ""
+"Image file for the logo area: enter the full filename (including extension) "
+"of the image file located in themes/zpArdoise/images/ (banniere1.jpg for "
+"example)."
+msgstr ""
+"Image utilisée pour le logo : entrez le nom du fichier complet (avec son "
+"extention) de l'image localisée dans le répetoire themes/zpArdoise/images/ "
+"(banniere1.jpg par exemple)."
+
+#: C:\Users\Famille\Documents\_Vincent\Site Internet\Galerie
+#: photo\zenphoto\themes\zpArdoise/themeoptions.php:53
+msgid "Check to show the logo on the Image page."
+msgstr "Validez pour afficher le logo sur la page Image."
+
+#: C:\Users\Famille\Documents\_Vincent\Site Internet\Galerie
+#: photo\zenphoto\themes\zpArdoise/themeoptions.php:54
+msgid "Choose Dark or Light for color style of the site."
+msgstr "Choisissez Dark ou Light pour le style de couleur du site."
+
+#: C:\Users\Famille\Documents\_Vincent\Site Internet\Galerie
+#: photo\zenphoto\themes\zpArdoise/themeoptions.php:55
+msgid ""
+"Choose the color of links: choose Default to use the default color of Dark "
+"or Light style and choose Custom to use a custom value. You can customize "
+"these values by editing the file theme/zpArdoise/css/custom.css."
+msgstr ""
+"Choisissez la couleur des liens : choisissez Default pour utiliser la "
+"couleur par défaut des styles Dark ou Light et choisissez Custom pour "
+"utiliser une valeur personnalisée. Vous pouvez personnaliser ces valeurs en "
+"modifiant le fichier theme/zpArdoise/css/custom.css."
+
+#: C:\Users\Famille\Documents\_Vincent\Site Internet\Galerie
+#: photo\zenphoto\themes\zpArdoise/themeoptions.php:57
+msgid "Display a menu link to the Archive list."
+msgstr "Affiche un lien vers les Archives dans le menu."
+
+#: C:\Users\Famille\Documents\_Vincent\Site Internet\Galerie
+#: photo\zenphoto\themes\zpArdoise/themeoptions.php:59
+msgid "Check to show a tag cloud with all the tags of the gallery."
+msgstr "Affiche un nuage de tags sur la page Galerie."
+
+#: C:\Users\Famille\Documents\_Vincent\Site Internet\Galerie
+#: photo\zenphoto\themes\zpArdoise/themeoptions.php:60
+msgid ""
+"Shows a strip of thumbnails on Gallery page, depending of the selected "
+"option. NOTE: For anything other than random, the image_statistic plugin "
+"must be activated."
+msgstr ""
+"Montre des mignatures sur la page Galerie, en fonction de l'option choisie. "
+"NOTE : pour un affichage autre que random (aléatoire), le plugin "
+"image_statistic doit être activé."
+
+#: C:\Users\Famille\Documents\_Vincent\Site Internet\Galerie
+#: photo\zenphoto\themes\zpArdoise/themeoptions.php:61
+msgid ""
+"Check to use the Galleriffic script. Uncheck to use a standard display. This "
+"standard display is also displayed when javascript is disabled in the "
+"browser."
+msgstr ""
+"Validez pour utiliser le script Galleriffic. Ne validez pas pour utiliser un "
+"affichage standard. Cet affichage standard est également utilisé lorsque "
+"javascript est désactivé dans le navigateur."
+
+#: C:\Users\Famille\Documents\_Vincent\Site Internet\Galerie
+#: photo\zenphoto\themes\zpArdoise/themeoptions.php:62
+msgid ""
+"If Galleriffic is used, enter the delay of the gallerific slideshow in ms "
+"(eg 3000)."
+msgstr ""
+"Si Galleriffic est utilisé, entrez de délai du diaporama de galleriffic en "
+"ms (par exemple 3000)."
+
+#: C:\Users\Famille\Documents\_Vincent\Site Internet\Galerie
+#: photo\zenphoto\themes\zpArdoise/themeoptions.php:63
+msgid ""
+"Check to display the full size image with Colorbox in album page, if "
+"galleriffic is used or not. NOTE : in that case, Image page will never be "
+"used."
+msgstr ""
+"Permet l'affichage de l'image en grande taille dans Colorbox sur la page "
+"Album, que Galleriffic soit utilisé ou pas. NOTE : si utilisé, la page Image "
+"ne sera jamais utilisée."
+
+#: C:\Users\Famille\Documents\_Vincent\Site Internet\Galerie
+#: photo\zenphoto\themes\zpArdoise/themeoptions.php:64
+msgid "Check to display the full size image with Colorbox in Image page."
+msgstr ""
+"Permet l'affichage de l'image en grande taille dans Colorbox sur la page "
+"Image."
+
+#: C:\Users\Famille\Documents\_Vincent\Site Internet\Galerie
+#: photo\zenphoto\themes\zpArdoise/themeoptions.php:65
+msgid ""
+"Show the main EXIF Data on Image page (Model, FocalLength, FNumber, "
+"ExposureTime, ISOSpeedRatings). Remember you have to check these EXIFs data "
+"on admin>image>information EXIF."
+msgstr ""
+"Affiche les principales données EXIF sur la page Image (Modèle, Focale, "
+"Diaphragme, Vitesse, ISO). Vous devez choisir ces données EXIF dans les "
+"pages admin>image>information EXIF."
+
+#: C:\Users\Famille\Documents\_Vincent\Site Internet\Galerie
+#: photo\zenphoto\themes\zpArdoise/trad.php:1
+msgid ""
+"Creation and maintenance of themes and plugins takes a lot of work and time."
+msgstr ""
+"La création de thèmes et de plugins prend beaucoup de temps et de travail."
+
+#: C:\Users\Famille\Documents\_Vincent\Site Internet\Galerie
+#: photo\zenphoto\themes\zpArdoise/trad.php:1
+msgid "Thanks to donate to help zpArdoise."
+msgstr "Merci de faire un don pour aider zpArdoise."
+
+#: C:\Users\Famille\Documents\_Vincent\Site Internet\Galerie
+#: photo\zenphoto\themes\zpArdoise/trad.php:1
+msgid "Thanks to donate to help zpBoostrap."
+msgstr "Merci de faire un don pour aider zpBootstrap."
+
+#: C:\Users\Famille\Documents\_Vincent\Site Internet\Galerie
+#: photo\zenphoto\themes\zpArdoise/trad.php:1
+msgid "Thanks to donate to help i-feel-dirty."
+msgstr "Merci de faire un don pour aider i-feel-dirty."
+
+#: C:\Users\Famille\Documents\_Vincent\Site Internet\Galerie
+#: photo\zenphoto\themes\zpArdoise/trad.php:1
+msgid "Thanks to donate to help akismet plugin."
+msgstr "Merci de faire un don pour aider le plugin akismet."

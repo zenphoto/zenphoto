@@ -22,32 +22,4 @@
 		fadeSpeed:         'fast',
 		exemptionSelector: '.selected'
 	});
-
-	$('ul.thumbs-nogal img').opacityrollover({
-		mouseOutOpacity:   onMouseOutOpacity,
-		mouseOverOpacity:  1.0,
-		fadeSpeed:         'fast',
-		exemptionSelector: '.selected'
-	});
-
-	$('#image-stat li img').opacityrollover({
-		mouseOutOpacity:   onMouseOutOpacity,
-		mouseOverOpacity:  1.0,
-		fadeSpeed:         'fast',
-		exemptionSelector: '.selected'
-	});
-
-	var onMouseOutOpacityAlbums = 0.9;
-
-	$('div#album-wrap ul li img').opacityrollover({
-		mouseOutOpacity:   onMouseOutOpacityAlbums,
-		mouseOverOpacity:  1.0,
-		fadeSpeed:         'fast'
-	});
-
-	$('div.opac').opacityrollover({
-		mouseOutOpacity:   onMouseOutOpacityAlbums,
-		mouseOverOpacity:  1.0,
-		fadeSpeed:         'fast'
-	});
 });

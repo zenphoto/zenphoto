@@ -3,7 +3,7 @@ Theme Name: zpArdoise
 Theme URI: http://www.vincentbourganel.fr/news/zpArdoise-a-ZenPhoto-ZenPage-theme
 Author: Vincent3569
 Author URI: http://www.vincentbourganel.fr
-Version 1.4.6
+Version 1.4.13
 */
 
 /* --------- clear -----------*/
@@ -36,10 +36,7 @@ div#page {
 	text-align: left;
 	margin-right: auto;
 	margin-left: auto;
-	border-radius: 0 0 10px 10px;
-	-moz-border-radius: 0 0 10px 10px;
-	-khtml-border-radius: 0 0 10px 10px;
-	-webkit-border-radius: 0 0 10px 10px;
+	border-radius: 0 0 10px 10px; -moz-border-radius: 0 0 10px 10px; -khtml-border-radius: 0 0 10px 10px; -webkit-border-radius: 0 0 10px 10px;
 }
 div#container {
 	padding: 10px 20px;
@@ -166,6 +163,7 @@ div.headline-tags {
 	margin: 10px auto;
 	font-family: Georgia, "Times New Roman", Times, serif;
 	text-align: center;
+	line-height: 0.8;
 }
 ul.hor-list, ul.hor-list li {
 	display: inline;
@@ -377,7 +375,7 @@ div#album-wrap ul {
 	margin: 10px 0;
 	padding: 0;
 }
-div#album-wrap ul li {
+div#album-wrap ul li:nth-of-type(n){
 	width: 273px;
 	display: block;
 	float: left;
@@ -386,16 +384,14 @@ div#album-wrap ul li {
 	list-style-type: none;
 	background: none;
 }
-div#album-wrap ul li.lastcol {
+div#album-wrap ul li:nth-of-type(3n){
 	margin-right: 0;
 }
-div#album-wrap ul li a.album-thumb {
-	padding: 2px;
-	display: block;
-	border: 1px solid #4a4a4a;
+div#album-wrap ul li:nth-of-type(3n+1){
+	clear:both;
 }
-div#album-wrap ul li a.album-thumb:hover {
-	border: 1px solid #ccc;
+div#album-wrap ul li a.album-thumb {
+	display: block;
 }
 div#album-wrap ul li h4 {
 	margin: 2px 0 0;
@@ -423,33 +419,37 @@ ul.thumbs-nogal, ul.thumbs, #image-stat ul {
 	margin: 0;
 	padding: 0;
 }
-ul.thumbs-nogal li {
+ul.thumbs-nogal li:nth-of-type(n) {
 	float: left;
 	padding: 0;
 	list-style: none;
-	margin: 5px 20px 15px 0;
+	margin: 5px 27px 22px 0;
 }
-ul.thumbs-nogal li.no-gal-li-lastimg {
+ul.thumbs-nogal li:nth-of-type(5n) {
 	margin-right: 0;
 }
-a.thumb, #image-stat a {
-	padding: 2px;
-	display: block;
-	border: 1px solid #4a4a4a;
+ul.thumbs-nogal li:nth-of-type(5n+1) {
+	clear:both;
 }
-a.thumb:hover, #image-stat a:hover {
-	border: 1px solid #ccc;
+a.thumb, #image-stat a {
+	display: block;
 }
 ul#no-gal-ul, #image-stat ul {
 	text-align: center;
 	width: auto;
 	margin: 0 auto 20px auto;
 }
-#image-stat li {
+#image-stat li:nth-of-type(n) {
 	float: left;
 	padding: 0;
 	list-style: none;
-	margin: 0 8px 5px 8px;
+	margin: 0 20px 5px 0;
+}
+#image-stat li:nth-of-type(1){
+	margin-left: 15px;
+}
+#image-stat li:last-of-type{
+	margin-right:0;
 }
 #image-stat img {
 	display: block;
@@ -463,7 +463,7 @@ ul#no-gal-ul, #image-stat ul {
 #image img, #image a img {
 	margin-top: 10px;
 	border: 1px solid #4a4a4a;
-	box-shadow: 2px 2px 9px #111; -moz-box-shadow: 2px 2px 9px #111; -webkit-box-shadow: 2px 2px 9px #111;
+	box-shadow: 1px 1px 5px #111; -moz-box-shadow: 1px 1px 5px #111; -webkit-box-shadow: 1px 1px 5px #111;
 }
 #img-title {
 	font-weight: bold;
@@ -509,12 +509,12 @@ div#googlemap_data {
 #galleriffic-wrap {
 	margin: 15px 0 0 0;
 	overflow: hidden;
-	display: none;
+	display: block;
 }
 div.content {
-	display: none;
+	display: block;
 	float: right;
-	width: 550px;
+	width: 580px;
 }
 div.controls {
 	margin-top: 5px;
@@ -550,7 +550,7 @@ div.ss-controls a:hover, div.nav-controls a:hover {
 div.slideshow-container {
 	position: relative;
 	clear: both;
-	height: 545px; /* This should be set to be at least the height of the largest image in the slideshow */
+	height: 575px; /* This should be set to be at least the height of the largest image in the slideshow */
 	background: url(../images/hr.gif) repeat-x;
 }
 div.loader {
@@ -558,8 +558,8 @@ div.loader {
 	top: 0;
 	left: 0;
 	background: url(../images/loader.gif) no-repeat center;
-	width: 550px;
-	height: 545px; /* Same comment as above */
+	width: 580px;
+	height: 575px; /* Same comment as above */
 }
 div.slideshow {}
 span.image-wrapper {
@@ -573,9 +573,9 @@ div.slideshow span.image-wrapper {
 }
 div.slideshow a.advance-link {
 	display: block;
-	width: 550px;
-	height: 545px; /* Same comment as above */
-	line-height: 545px; /* Same comment as above */
+	width: 580px;
+	height: 575px; /* Same comment as above */
+	line-height: 575px; /* Same comment as above */
 	text-align: center;
 }
 div.slideshow a.advance-link:hover, div.slideshow a.advance-link:active, div.slideshow a.advance-link:visited {
@@ -584,7 +584,7 @@ div.slideshow a.advance-link:hover, div.slideshow a.advance-link:active, div.sli
 div.slideshow img {
 	vertical-align: middle;
 	border: 1px solid #4a4a4a;
-	box-shadow: 2px 2px 9px #111; -moz-box-shadow: 2px 2px 9px #111; -webkit-box-shadow: 2px 2px 9px #111;
+	box-shadow: 1px 1px 5px #111; -moz-box-shadow: 1px 1px 5px #111; -webkit-box-shadow: 1px 1px 5px #111;
 }
 div.caption-container {
 	position: relative;
@@ -595,7 +595,7 @@ span.image-caption {
 	top: 0;
 	left: 0;
 	display: block;
-	width: 550px;
+	width: 580px;
 	/*height: 25px;*/
 }
 div.caption {
@@ -613,16 +613,19 @@ div.caption div.image-title {
 	letter-spacing: 1px;
 }
 div.caption div.image-desc {/*width: 290px; position: absolute; left: -310px; top: -100px;*/}
-div.navigation {/* The navigation style is set using jQuery so that the javascript specific styles won't be applied unless javascript is enabled. */}
+div.navigation {
+	width: 276px;
+	float: left;
+}
 div.pagination {
 	clear: both;
 }
 div.navigation div.top {
-	margin-bottom: 12px;
-	height: 11px;
+	margin-bottom: 25px;
+	height: 13px;
 }
 div.navigation div.bottom {
-	padding-top: 5px;
+	padding-top: 10px;
 }
 div.pagination a, div.pagination span.current {
 	display: block;
@@ -654,10 +657,13 @@ ul.thumbs li {
 	float: left;
 	padding: 0;
 	list-style: none;
-	margin: 5px 10px 5px 0;
+	margin: 0 5px 5px 0;
+}
+ul.thumbs li  a.thumb {
+	border: 1px solid transparent;
 }
 ul.thumbs li.selected a.thumb {
-	background: #ccc;
+	border: 1px solid #4a4a4a;
 }
 ul.thumbs img {
 	display: block;
@@ -677,7 +683,8 @@ div#post {
 	margin: 0 30px 30px 30px;
 }
 div.news-truncate {
-	margin: 20px 0 30px 0;
+	margin: 20px 0 20px 0;
+	padding-bottom: 10px;
 	border-bottom: 1px dotted #4a4a4a;
 }
 div.newsarticlecredit {
@@ -705,6 +712,7 @@ div#post blockquote, div#news blockquote {
 }
 p.readmorelink {
 	clear: both;
+	padding-top: 10px;
 }
 
 /* images on news and pages */
@@ -721,11 +729,11 @@ img.cadre {
 	border: 1px solid #4a4a4a;
 }
 img.ombre {
-	box-shadow: 2px 2px 9px #111; -moz-box-shadow: 2px 2px 9px #111; -webkit-box-shadow: 2px 2px 9px #111;
+	box-shadow: 1px 1px 5px #111; -moz-box-shadow: 1px 1px 5px #111; -webkit-box-shadow: 1px 1px 5px #111;
 }
 img.ombreB {
 	border: 1px solid #4a4a4a !important;
-	box-shadow: 2px 2px 9px #111; -moz-box-shadow: 2px 2px 9px #111; -webkit-box-shadow: 2px 2px 9px #111;
+	box-shadow: 1px 1px 5px #111; -moz-box-shadow: 1px 1px 5px #111; -webkit-box-shadow: 1px 1px 5px #111;
 }
 
 /*------------------------------------------------------------------------------
@@ -1113,7 +1121,22 @@ div#jump-search select option {
 /*------------------------------------------------------------------------------
 									admin
 ------------------------------------------------------------------------------ */
-
+#admin, #admin_data {
+	border: 1px solid #4a4a4a;
+	background: #292929;
+	position: fixed;
+	right: 0;
+	top: 0;
+	width: 140px;
+	z-index: 99;
+	padding: 2px;
+}
+#admin_data {
+	top: 20px;
+	z-index: 98;
+	line-height: 1.6em;
+	text-align: left;
+}
 #admin_data ul {
 	padding: 5px 0 0 10px;
 }
@@ -1167,8 +1190,4 @@ div#jump-search select option {
 }
 .slide img {
 	display: block;
-}
-
-.zen-logo img {
-	vertical-align: sub;
 }

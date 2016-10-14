@@ -9,14 +9,14 @@ if ($_zenpage_enabled) {
 				<div class="nav-img clearfix">
 					<ul class="clearfix">
 					<?php if (getPrevNewsURL()) { ?>
-						<li><a href="<?php $article_url = getPrevNewsURL(); echo $article_url['link']; ?>" title="<?php echo $article_url['title']; ?>">&laquo; <?php echo gettext('newer'); ?></a></li>
+						<li><a href="<?php $article_url = getPrevNewsURL(); echo $article_url['link']; ?>" title="<?php echo $article_url['title']; ?>">&laquo; <?php echo gettext_th('newer'); ?></a></li>
 					<?php } else { ?>
-						<li class="disabledlink"><span>&laquo; <?php echo gettext('newer'); ?></span></li>
+						<li class="disabledlink"><span>&laquo; <?php echo gettext_th('newer'); ?></span></li>
 					<?php } ?>
 					<?php if (getNextNewsURL()) { ?>
-						<li><a href="<?php $article_url = getNextNewsURL(); echo $article_url['link']; ?>" title="<?php echo $article_url['title']; ?>"><?php echo gettext('older'); ?> &raquo;</a></li>
+						<li><a href="<?php $article_url = getNextNewsURL(); echo $article_url['link']; ?>" title="<?php echo $article_url['title']; ?>"><?php echo gettext_th('older'); ?> &raquo;</a></li>
 					<?php } else { ?>
-						<li class="disabledlink"><span><?php echo gettext('older'); ?> &raquo;</span></li>
+						<li class="disabledlink"><span><?php echo gettext_th('older'); ?> &raquo;</span></li>
 					<?php } ?>
 					</ul>
 				</div>
@@ -26,7 +26,7 @@ if ($_zenpage_enabled) {
 				<?php printAllNewsCategories(gettext('All news'), true, 'news-cat-list', 'news-cat-active'); ?>
 			</div>
 			<?php } ?>
-			<h3><?php printNewsIndexURL(gettext('News')); ?><?php printCurrentNewsCategory(' » ' . gettext('Category') . ' : '); ?><?php printCurrentNewsArchive(' » '); ?></h3>
+			<h3><?php printZenpageItemsBreadcrumb(); ?><?php printCurrentNewsCategory(' » ' . gettext('Category') . ' : '); ?><?php printCurrentNewsArchive(' » '); ?></h3>
 		</div>
 
 	<?php
@@ -70,7 +70,7 @@ if ($_zenpage_enabled) {
 					<?php printNewsDate(); ?><?php printNewsCategories(', ', ' | ', 'hor-list'); ?>
 				</div>
 
-				<?php printNewsContent(); ?>
+				<?php printNewsContent(false, '<p class="readmorelink">(...)</p>'); ?>
 
 			</div>
 			<?php } ?>

@@ -47,13 +47,13 @@ class themeSwitcher {
 		foreach ($themes as $key => $theme) {
 			$list[$theme['name']] = 'themeSwitcher_theme_' . $key;
 		}
-		$options = array(gettext('Cookie duration') => array('key'	 => 'themeSwitcher_timeout', 'type' => OPTION_TYPE_NUMBER,
-										'desc' => gettext('The time in minutes that the theme switcher cookie lasts.')),
-						gettext('Private')				 => array('key'	 => 'themeSwitcher_adminOnly', 'type' => OPTION_TYPE_CHECKBOX,
-										'desc' => gettext('Only users with <em>Themes</em> rights will see the selector if this is checked.')),
-						gettext('Theme list')			 => array('key'				 => 'themeSwitcher_list', 'type'			 => OPTION_TYPE_CHECKBOX_UL,
-										'checkboxes' => $list,
-										'desc'			 => gettext('These are the themes that may be selected among.'))
+		$options = array(gettext('Cookie duration') => array('key' => 'themeSwitcher_timeout', 'type' => OPTION_TYPE_NUMBER,
+						'desc' => gettext('The time in minutes that the theme switcher cookie lasts.')),
+				gettext('Private') => array('key' => 'themeSwitcher_adminOnly', 'type' => OPTION_TYPE_CHECKBOX,
+						'desc' => gettext('Only users with <em>Themes</em> rights will see the selector if this is checked.')),
+				gettext('Theme list') => array('key' => 'themeSwitcher_list', 'type' => OPTION_TYPE_CHECKBOX_UL,
+						'checkboxes' => $list,
+						'desc' => gettext('These are the themes that may be selected among.'))
 		);
 		return $options;
 	}
@@ -105,10 +105,10 @@ class themeSwitcher {
 		if (self::active()) {
 			$themes = array();
 			foreach ($_zp_gallery->getThemes() as $theme => $details) {
-				if ($_themeSwitcherThemelist[$theme]) {
-					if (getPlugin($_zp_gallery_page, $theme)) {
-						$themes[$details['name']] = $theme;
-					}
+				if (in_array($details['name'], $themes)) {
+					$themes[$theme] = $details['name'] . ' v' . $details['version'];
+				} else {
+					$themes[$theme] = $details['name'];
 				}
 			}
 			$text = $textIn;
@@ -131,11 +131,22 @@ class themeSwitcher {
 				<div class="themeSwitcherMenu">
 					<img src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/themeSwitcher/menu.png" onclick="$('.themeSwitcherControl').toggle();" title="<?php echo gettext('Close'); ?>" />
 				</div>
-					<?php echo $text; ?>
-				<select name="themeSwitcher" id="themeSwitcher" onchange="switchTheme('<?php echo html_encode($reloc); ?>')" title="<?php echo gettext("Themes will not show in this list if selecting them would result in a “not found” error."); ?>">
-				<?php generateListFromArray(array($theme), $themes, false, true); ?>
+				<?php echo $text; ?>
+				<select name="themeSwitcher" id="themeSwitcher" onchange="switchTheme('<?php echo html_encode($reloc); ?>')" title="<?php echo gettext("Themes will be disabled in this list if selecting them would result in a “not found” error."); ?>">
+					<?php
+					foreach ($themes as $key => $item) {
+						echo '<option value="' . html_encode($key) . '"';
+						if ($key == $theme) {
+							echo ' selected="selected"';
+						} else if (!getPlugin($_zp_gallery_page, $key)) {
+							echo ' disabled="disabled"';
+						}
+						echo '>' . $item . "</option>" . "\n";
+					}
+					?>
+					<?php //generateListFromArray(array($theme), $themes, false, true); ?>
 				</select>
-			<?php zp_apply_filter('themeSwitcher_Controllink', $theme); ?>
+				<?php zp_apply_filter('themeSwitcher_Controllink', $theme); ?>
 			</div>
 			<?php
 		}

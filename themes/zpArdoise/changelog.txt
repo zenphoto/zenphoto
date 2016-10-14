@@ -1,0 +1,423 @@
+* 1.4.13
+- css/screen, css/light.css, js/zpardoise_light.js, functions.php, themeoptions.php
+	- simplifications of the theme (deleting frames and rollover effect on thumbnails, size optimization of thumbnails and images)
+- css/screen, css/light.css, inc_print_album_thumb.php, inc_print_image_thumb.php
+	- graphical improvements
+- 404.php, album.php, archive.php, contact.php, favorites.php, gallery.php, image.php, password.php, register.php, search.php
+	- removal of the link to homepage
+- 404.php, album.php, archive.php, contact.php, favorites.php, image.php, password.php, register.php, search.php
+	- simplifying the title breadcrumb (removal of the link to gallery)
+- album.php, image.php
+	- uses improvements of printGalleryIndexURL() (https://github.com/zenphoto/zenphoto/issues/1000)
+- album.php
+	- code cleanup (removal of javascript fallback to improve loading delay)
+- inc_header.php
+	- code cleanup (remove of javascript fallback)
+	- code cleanup (optimization of main menu display)
+	- fix issue with favorites menu item
+	- fix issue with $galleryactive
+- news.php
+	- uses printZenpageItemsBreadcrumb() rather than printNewsIndexURL() (https://github.com/zenphoto/zenphoto/issues/985)
+	- fix issue with readmorelink
+- themeoptions.php
+		- fix issue with settings of "custom_index_page" option (now set to 'gallery') and "zenpage_homepage" option
+
+
+* 1.4.6
+- colorbox_js/colorbox.css
+	- upgrade custom css to be compliant with colorbox 1.5.2
+- locale/
+	- update translations to be compliant with zenphoto 1.4.6
+- album.php, archive.php, contact.php, favorites.php, gallery.php, image.php, inc_header.php, inc_footer.php, index.php, news.php, pages.php, register.php
+	- replace function_exists('function_name') by extensionEnabled('plugin_name')
+	- replace class_exists('class_name') by extensionEnabled('plugin_name')
+- album.php, functions.php, image.php, inc_header.php, inc_print_image_thumb.php
+	- proper encoding for full images (https://github.com/zenphoto/zenphoto/commit/f7f9784fa035f739a68993aba76bfbd0adc47da7)
+- album.php, inc_print_image_thumb.php
+	- replace getImageLinkURL() by getImageURL() (deprecated with 1.4.6)
+- archive.php, inc_header.php, inc_footer.php, inc_print_image_statistic.php
+	- update translations to be compliant with zenphoto 1.4.6
+- contact.php, favorites.php, news.php, pages.php, register.php
+	- improve to 404 page management
+- functions.php, inc_header.php
+	- replace getImageLink() method by $image->getLink() (deprecated with 1.4.6)
+- inc_header.php, inc_footer.php
+	- replace "NewsWithImages" feed by "News" feed (feed deprecated with 1.4.6)
+	- fix issue with rss feeds (not display news feed, if zenpage is not allowed or if news feed is disabled)
+- 404.php
+	- use print404status() function
+- functions.php
+	- use new variable $_zenpage_enabled
+	- new function my_checkPageValidity() to be compliant with zenphoto 1.4.6 (http://www.zenphoto.org/news/zenphoto-1.4.6#theme-changes-i-pagination-out-of-bound-checks)
+	- fix issues on cropped images on zenphoto functions (https://github.com/zenphoto/zenphoto/commit/c77313ee2a75b4f0606a1a3be0ead5f41897185e)
+	- force tinymce4_comments option to disable tinyMCE for comment form
+- inc_header.php
+	- cleanup getGalleryIndexURL() function (parameters deprecated with 1.4.6)
+	- fix issue on navigation script with narrow keys when mod_rewrite is disabled
+	- fix issue: <meta http-equiv="content-type" content="text/html; charset=UTF-8" /> is deprecated with html5, replaced by <meta charset="UTF-8">
+- inc_footer.php
+	- replace printCustomPageURL() for register link by printRegisterURL() (https://github.com/zenphoto/zenphoto/issues/713)
+- inc_print_album_thumb.php
+	- replace getAlbumLinkURL() by getAlbumURL() (deprecated with 1.4.6)
+- inc_print_comment.php
+	- use $_zp_current_obj->getCommentsAllowed() (getCommentsAllowed() and zenpageOpenedForComments() deprecated with 1.4.6) (https://github.com/zenphoto/zenphoto/commit/b276f34877fd3465bb4a9793f42d0814037fe9d3)
+- news.php, search.php
+	- replace printNewsTitleLink() by printNewsURL() (deprecated with 1.4.6)
+- search.php
+	- cleanup next_news() function (parameters deprecated with 1.4.6)
+	- fix issue on pages and news search (https://github.com/zenphoto/zenphoto/commit/e38091e7ad0b80e664e84515dd23097f05ca74a5)
+- themeoptions.php
+	- uses setThemeOptionDefault() for all options values
+	- supports cacheManager plugin, whether galleriffic option is activated or not (https://github.com/zenphoto/zenphoto/issues/696)
+
+
+* 1.4.5.1
+- inc_header.php
+	- fix issue introduced by Zenphoto 1.4.5.8
+
+
+* 1.4.5
+- css/screen, css/light.css
+	- fix issue on button css rules (to avoid overwriting between zpArdoise css rules and colorbox 1.4.5 css rules)
+	- graphical improvements to be compliant with html5
+	- graphical improvements to be compliant with new contact, comment and register forms
+- js/jquery.galleriffic.js
+	- fix JS issue (conflict between galleriffic and colorbox navigation)
+- album.php, contact.php, favorites.php, gallery.php, image.php, inc_header.php, inc_print_album_thumb.php, inc_print_image_thumb.php, news.php, search.php
+	- code clean up
+- album.php, image.php, news.php, pages.php, inc_print_comment.php:
+	- some rewrite to be compliant with new comment_form plugin
+- album.php
+	- remove "name" attribute of <a> tags (attribute deprecated with html5)
+	- rename #controls and #slideshow to #zpArdoise_controls and #zpArdoise_slideshow to avoid css confict with slideshow plugin and slideshow macro
+- contact.php, news.php, pages.php, register.php
+	- some rewrite to add controls before display these pages
+- favorites.php
+	- add slideshow link (use improvements of zenphoto 1.4.5)
+- functions
+	- use improvements of zenphoto 1.4.5 on zpArdoise_printRandomImages and zpArdoise_printImageStatistic
+- inc_footer.php
+	- some rewrite to be compliant with new rss plugin
+	- use printRSSLink() instead of printZenpageRSSLink(), deprecated with 1.4.5
+	- remove printAdminToolbox(), deprecated with 1.4.5
+- inc_header.php
+	- switch to html5 (https://github.com/zenphoto/zenphoto/issues/274)
+	- some rewrite to be compliant with new rss plugin
+	- use printRSSHeaderLink() instead of printZenpageRSSHeaderLink(), deprecated with 1.4.5
+	- add jquery to use theme rss image for comment rss feed instead standard rss image
+	- add pagination in title tag on gallery, album, news, search and favorites pages
+	- disable of some options of comment_form, to avoid JS conflits
+	- improvement to avoid JS conflicts between Colorbox and naviguation script
+	- rename #controls and #slideshow to #zpArdoise_controls and #zpArdoise_slideshow to avoid css confict with slideshow plugin and slideshow macro
+	- use .on() method rather than .live() method removed from jQuery 1.9.0
+	- add some JS code to replace .browser() method removed from jQuery 1.9.0 (https://github.com/zenphoto/zenphoto/commit/467a672f3633b34b50dd64076fe509f85018466a)
+- inc_print_image_statistic.php
+	- add parameter in zpArdoise_printImageStatistic's call
+- themeoptions.php
+	- fix issue on 'use_image_logo_filename' field (set multilingual to false)
+	- fix issue on 'Homepage' option: dispalays translated title of unpublished pages
+
+
+* 1.4.4
+- css/screen.css
+	- fix issue on nav-controls
+	- graphical improvements to be compliant with zenphoto 1.4.4
+- js/zpardoise.js, js/zpardoise_light.js
+	- fix an issue: force to open comment box if there is a note
+- locale/
+	- add Polish translation: thanks to Paweł Kowalczyk
+- album.php
+	- use getFullImageURL() rather than getUnprotectedImageURL() to offer zenphoto capabilities on displaying protected image
+	- improvement to support favorites handler
+- favorites.php
+	- new file to support favorites handler
+- functions.php
+	- fix issues in zpArdoise_printEXIF when there are no exifs on picture (undefined index warnings in Debug Log)
+	- improvement to offer zenphoto capabilities on displaying protected image
+- image.php
+	- use getFullImageURL() rather than getUnprotectedImageURL() to offer zenphoto capabilities on displaying protected image
+	- improvement to support favorites handler
+- inc_header.php
+	- some code cleanup
+	- improvement to offer zenphoto capabilities on displaying protected image
+	- improvement to support favorites handler
+- inc_print_image_thumb.php
+	- use getFullImageURL() rather than getUnprotectedImageURL() to offer zenphoto capabilities on displaying protected image
+- themeoptions.php
+	- fix an issue when saving zenpage_homepage option
+	- fix an issue when evaluating "none" value of zenpage_homepage option
+	- fix an issue when seting colorbox_js plugin
+	- improvement to support favorites handler
+
+
+* 1.4.3.1
+- css/light.css
+	- fix issue on searchextrashow
+
+
+* 1.4.3
+- css/screen.css
+	- graphical improvements
+- locale/
+	- add Dutch translation: thanks to Fred Sondaar (fretzl)
+	- update German translation: thanks to Malte Müller (acrylian)
+- 404.php, album.php, archives.php, contact.php, gallery.php, image.php, inc_header.php, news.php, password.php, register.php, search.php
+	- fix html encoding
+- 404.php
+	- fix High-Tech Bridge security issue (http://www.zenphoto.org/trac/changeset/8994)
+- album.php, image.php
+	- fix typo on breadcrumb
+- functions.php
+	- use improvements of zenphoto 1.4.3 on zpArdoise_printRandomImages and zpArdoise_printImageStatistic (http://www.zenphoto.org/trac/changeset/10223)
+- image.php
+	- fix typo
+- inc_footer.php
+	- fix an issue on RSS Feed: use options 'RSS_album_image' and 'RSS_articles'
+	- fix an issue on displaying help message
+	- use rss icon of zpardoise theme
+	- remove contact link
+- inc_header.php
+	- fix an issue with 1.4.3: use only $isHomePage variable to avoid warning of unknown value
+	- fix an issue with 1.4.3: force $galleryactive to false to avoid warning of unknown value
+	- fix an issue on RSS Feed: use options 'RSS_album_image' and 'RSS_articles'
+	- fix an issue on loading galleriffic script
+	- fix translation issue on colorbox: use 'prev' rather than 'previous'
+	- use zenphoto's 'stop' translation rather than local translation
+	- some code cleanup
+- inc_print_album_thumb.php
+	- fix an issue  with 1.4.3: missing some '' on options
+- inc_print_image_thumb.php
+	- fix an issue  with 1.4.3: code cleanup on next_image()
+- index.php
+	- fix an issue with 1.4.3: use only isHomePage variable to avoid warning of unknown value
+- news.php
+	- fix translation issue  add translation for 'category' on news filter
+- password
+	- fix translation issue: add translation for 'close' link of colorbox
+- search.php
+	- fix issue: some </li></ul> was in the wrong order
+- slideshow.php
+	- this file is deprecated (theme supports only colorbox slideshow: think to change options of slideshow plugin)
+- themeoptions.php
+	- set some options (ie: albums_per_row, albums_per_page, images_per_row, images_per_page, colorbox_js)
+	- use SetOption instead SetOptionDefault for some options (in order to force the value of the options)
+
+
+* 1.4.2
+- css/screen.css
+	- rewrite of the file
+	- graphical improvements
+	- fix an issue if there is a error box in comment box
+- css/light.css
+	- new css rules for light style
+- js/jquery.galleriffic.js
+	- fix an issue: disable navigation on an input editable element (issue#147 on http://code.google.com/p/galleriffic/issues/detail?id=147)
+	- new call of colorbox
+- js/zpardoise.js
+	- fix an issue: force to open comment box if there is an error
+- footer.php, header.php, print_album_thumb.php, print_comment.php, print_image_thumb.php, print_news_loop.php, image_statistic
+	- renaming file with prefix inc_ for more lisibility of the code
+- album.php
+	- improvements of management of galleriffic script (add the filename of the current picture in the url)
+	- improvements of management of navigation bars
+	- new call of colorbox
+	- graphical improvements of googlemap link
+	- call of new html_decode() function instead of zp_html_decode()
+- archive.php
+	- use improvements of zenphoto 1.4.2 on printNewsArchive (http://www.zenphoto.org/trac/ticket/1972)
+- functions.php
+	- new customized functions called by zpArdoise
+- gallery.php
+	- improvements of management of navigation bars
+- image.php
+	- new call of colorbox
+- inc_footer.php
+	- change of the div structure of the footer (div#footer is now outside of div#container)
+	- use improvements of zenphoto 1.4.2 on user_login-out (http://www.zenphoto.org/trac/ticket/2054)
+	- improvements of management of user_login-out (login form is displayed in colorbox)
+- inc_header.php
+	- supports printLanguageSelector plugin
+	- supports new 'Style' option
+	- new setup of colorbox's call
+	- call of new html_decode() function instead of zp_html_decode()
+	- fix an issue with evaluation of $_zp_gallery_page (the title of the page was incorrect in some case)
+	- fix an issue on the header's link
+- inc_print_image_statistic.php
+	- use zenphoto's translation rather than local translation
+	- use new customized functions with new call of colorbox
+- inc_print_image_thumb.php
+	- new call of colorbox
+- index.php
+	- fix an issue with evaluation of $_zp_gallery_page (the title of the page was incorrect in some case)
+- login.php
+	- this file is deprecated (login form is displayed in colorbox)
+- password
+	- improvements of management of the password form (password form is displayed in colorbox)
+- search.php
+	- improvements of management of navigation bars
+- themeoptions.php
+	- force some options (ie: thumbnail size, thumbnail crop, image size, colorbox,...) and disable to change them
+	- supports new 'Style' option to choose the main color of the theme
+
+
+* 1.4
+- css/screen.css
+	- graphical improvements
+- js/zpardoise.js
+	- fix a compatibility issue between opacityrollover and flag_thumbnail with ie7 (fix only with no galleriffic)
+- 404.php
+	- update for compatibility with zenphoto 1.4.1
+- album.php
+	- update for compatibility with zenphoto 1.4.1
+	- with galleriffic, add the description and the EXIF data under the image
+- archive.php
+	- update for compatibility with zenphoto 1.4.1
+- contact.php
+	- update for compatibility with zenphoto 1.4.1
+- hearder.php
+	- fix an issue: add some code to force compatibility with IE9
+	- fix an issue: new evaluation of $galleryactive with 1.4.1
+	- update for compatibility with zenphoto 1.4.1
+	- better integration between galleriffic and 'Use Colorbox Album' option
+- footer.php
+	- call the new file login.php
+- functions.php
+	- customized functions called by zpardoise
+- image.php
+	- update for compatibility with zenphoto 1.4.1
+- image_statistic.php
+	 - supports 'Use Colorbox Album' option: if used, the pictures of the statistic strip are opened in the colorbox
+- news.php
+	- fix an issue: include print_comment.php file to display comment
+- login.php
+	- call the zenphoto standard password form
+- pages.php
+	- fix an issue: new evaluation evaluation of BlockCodes with 1.4.1 if an unpublished page is choosen for homepage
+- password.php
+	- call the zenphoto standard password form
+	- update for compatibility with zenphoto 1.4.1
+- print_album_thumb.php
+	- update for compatibility with zenphoto 1.4.1
+- print_comment.php
+	- better displaying of comment number
+	- fix an issue: comments on news and page was not displayed
+- print_image_thumb.php
+	- update for compatibility with zenphoto 1.4.1
+- register.php
+	- update for compatibility with zenphoto 1.4.1
+- search.php
+	- graphical improvements
+	- update for compatibility with zenphoto 1.4.1
+- themeoptions.php
+	- galleriffic is choosen by default
+
+
+* 1.3
+- css/screen.css
+	- graphical improvements
+- album.php
+	- inversion of "controls" and "caption" of galleriffic script
+	- change use_colorbox option by use_colorbox_album (if use_colorbox_album is checked, Image page will never be called)
+	- improvements for the supported GoogleMap plugin
+- footer.php
+	- improvements with he message "You can browse with the arrows keys of your keyboard"
+- header.php
+	- supports new 'Use Colorbox Album' & 'Use Colorbox Image' options
+	- using zpArdoise.js
+	- add configuration of galleriffic script in order to fix some translation issue and to use new option 'Galleriffic delai'
+	- supports personnal translation in english, french, italian, german and spanish for some litteral strings
+	- allows navigation with arrow keys on single news pages
+	- fix issue between Colorbox and naviguation script
+- image.php
+	- fix translation issue of Slideshow
+	- supports new 'Use Colorbox Image' option
+	- supports personnal translation in english, french, italian, german and spanish for some litteral strings
+- image_statistic.php
+	- supports personnal translation in english, french, italian, german and spanish for some litteral strings
+- news.php
+	- rewriting of the news pages (moving "news-cat-list" to the top of the page)
+	- supports personnal translation in english, french, italian, german and spanish for some litteral strings
+- print_comment.php
+	- fix translation issue
+- print_image_thumb
+	- supports new 'Use Colorbox Album' option
+- search.php
+	- fix translation issue
+	- supports Slideshow plugin
+- themeoptions
+	- removal of the 'Use Colorbox' option
+	- supports new 'Use Colorbox Album' & 'Use Colorbox Image' options
+	- supports new 'Galleriffic delai' options
+- zpardoise.js
+	- rewrite and simplification of zpgalleriffic.js and zpgalleriffic-min.js
+
+
+* 1.2
+- css/screen.css
+	- graphical improvements
+- header.php
+	- fix problem with printZenpageRSSHeaderLink() (the title of the link in navigation bar was wrong)
+- news.php
+	- fix problems with IE6 (the text of the news was not aligned under "extra-content" and "news-cat-list")
+
+
+* 1.1
+- css/screen.css
+	- graphical improvements (too many to be explained !)
+	- supports the errorbox of ZenPhoto 1.4 release
+- js/jquery.galleriffic.js
+	- supports the new 'Use Colorbox' option
+- js/zpgalleriffic.js
+	- graphical improvements (no opacityrollover on the name of the picture)
+- js/zpgalleriffic-min.js
+	- graphical improvements (no opacityrollover on the name of the picture)
+- 404.php
+	- graphical improvements
+- album.php
+	- graphical improvements
+	- improvements in management of galleriffic script
+	- supports new 'Use Colorbox' option with galleriffic script
+	- supports GoogleMaps plugin (the map is displayed on album.php only, to locate all the pictures of the album)
+- archive.php
+	- graphical improvements
+	- change sort order of the images archives (sort by descending date)
+- contact.php
+	- graphical improvements
+- footer.php
+	- graphical improvements
+	- add code to be compatible with ZenPhoto 1.4 release (add zp_apply_filter() before </body> tag)
+	- improvements for the supported user_login-out plugin: if not login, display of a link to admin.php
+	- supports register_user plugin
+- gallery.php
+	- graphical improvements
+	- moving the tags to the bottom of the page
+- header.php
+	- supports new 'Use Colorbox' option
+	- supports new 'Color' option
+	- add and suppress code to be compatible with ZenPhoto 1.4 release (add zp_apply_filter() between <head></head> tags, add zp_apply_filter() after <body> tag, remove deprecated normalizeColumns() function)
+	- no display of "news" item if no news
+- image.php
+	- graphical improvements
+	- supports new 'Use Colorbox' option
+- image-statistic.php
+	- graphical improvements
+- news.php
+	- graphical improvements
+	- adding the tags in the bottom of the page
+- password.php
+	- graphical improvements
+- register.php
+	- support register_user plugin
+- search.php
+	- graphical improvements
+	- supports search on albums, images, news and pages
+- slideshow.php and slideshow.css
+	- supports zpArdoise theme
+- themeoptions.php :
+	- add code to be compatible with ZenPhoto 1.4 release
+	- supports new 'Use Colorbox' option
+	- supports new 'Color' option
+
+
+* 1.0
+initial version
