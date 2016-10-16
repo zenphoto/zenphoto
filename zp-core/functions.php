@@ -1771,7 +1771,7 @@ function sanitizeRedirect($redirectTo, $forceHost = false) {
  * @param string $authType override of athorization type
  */
 function zp_handle_password($authType = NULL, $check_auth = NULL, $check_user = NULL) {
-	global $_zp_loggedin, $_zp_login_error, $_zp_current_album, $_zp_current_zenpage_page, $_zp_gallery;
+	global $_zp_loggedin, $_zp_login_error, $_zp_current_album, $_zp_current_zenpage_page, $_zp_current_category, $_zp_current_zenpage_news, $_zp_gallery;
 	if (empty($authType)) { // not supplied by caller
 		$check_auth = '';
 		if (isset($_GET['z']) && @$_GET['p'] == 'full-image' || isset($_GET['p']) && $_GET['p'] == '*full-image') {
@@ -1816,6 +1816,46 @@ function zp_handle_password($authType = NULL, $check_auth = NULL, $check_user = 
 					$check_user = $pageobj->getUser();
 				}
 			}
+		} else if (in_context(ZP_ZENPAGE_NEWS_CATEGORY) || in_context(ZP_ZENPAGE_NEWS_ARTICLE)) {
+			$check_auth_user = array();
+			if (in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
+				$checkcats = array($_zp_current_category);
+			} else if (in_context(ZP_ZENPAGE_NEWS_ARTICLE)) {
+				$checkcats = array();
+				$cats = $_zp_current_zenpage_news->getCategories();
+				foreach ($cats as $cat) {
+					$checkcats[] = new ZenpageCategory($cat['titlelink']);
+				}
+			}
+			if (!empty($checkcats)) {
+				foreach ($checkcats as $obj) {
+					$authType = "zp_category_auth_" .  $obj->getID();
+					$check_auth =  $obj->getPassword();
+					$check_user =  $obj->getUser();
+					if (empty($check_auth)) {
+						$catobj =  $obj;
+						while (empty($check_auth)) {
+							$parentID = $catobj->getParentID();
+							if ($parentID == 0)
+								break;
+							$sql = 'SELECT `titlelink` FROM ' . prefix('news_categories') . ' WHERE `id`=' . $parentID;
+							$result = query_single_row($sql);
+							$catobj = new ZenpageCategory($result['titlelink']);
+							$authType = "zp_category_auth_" . $catobj->getID();
+							$check_auth = $catobj->getPassword();
+							$check_user = $catobj->getUser();
+						}
+					}
+					if(!empty($check_auth)) {
+						//collect passwords from all categories
+						$check_auth_user[] = array(
+							'authtype' => $authType,
+							'check_auth' => $check_auth, 
+							'check_user' => $check_user
+						);
+					}
+				}
+			}
 		}
 		if (empty($check_auth)) { // anything else is controlled by the gallery credentials
 			$authType = 'zp_gallery_auth';
@@ -1823,6 +1863,24 @@ function zp_handle_password($authType = NULL, $check_auth = NULL, $check_user = 
 			$check_user = $_zp_gallery->getUser();
 		}
 	}
+	if (in_context(ZP_ZENPAGE_NEWS_ARTICLE)) {
+		//check every category with password individually
+		foreach($check_auth_user as $check) {
+			zp_handle_password_single($check['authtype'], $check['check_auth'], $check['check_user']);
+		}
+	} else {
+		zp_handle_password_single($authType, $check_auth, $check_user);
+	}
+}
+/**
+ * Handles a passwort 
+ * 
+ * @param string $authType override of authorization type
+ * @param string $check_auth Password
+ * @param string $check_user User
+ * @return bool
+ */
+function zp_handle_password_single($authType = NULL, $check_auth = NULL, $check_user = NULL) {
 	// Handle the login form.
 	if (DEBUG_LOGIN)
 		debugLog("zp_handle_password: \$authType=$authType; \$check_auth=$check_auth; \$check_user=$check_user; ");

@@ -155,7 +155,7 @@ class ZenpageNews extends ZenpageItems {
 	 * returns true if the article resides only in protected categories
 	 */
 	function isProtected() {
-		return $this->inProtectedCategory(true);
+		return $this->checkforGuest() != 'zp_public_access';
 	}
 
 	/**
@@ -192,15 +192,23 @@ class ZenpageNews extends ZenpageItems {
 		if (empty($categories)) { //	cannot be protected!
 			return 'zp_public_access';
 		} else {
+			$access = array();
 			foreach ($categories as $cat) {
 				$catobj = new ZenpageCategory($cat['titlelink']);
 				$guestaccess = $catobj->checkforGuest($hint, $show);
-				if ($guestaccess) {
-					return $guestaccess;
+				if($guestaccess) {
+					$access[] = 1;
+				} else {
+					$access[] = 0;
 				}
 			}
+			if(in_array(0, $access)) { // if there is only one protected category, no public access
+				return false;
+			} else {
+				return 'zp_public_access';
+			}
 		}
-		return false;
+		return false; 
 	}
 
 	/**

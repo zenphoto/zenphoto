@@ -46,7 +46,7 @@ $option_interface = 'zenpagecms';
 
 if (OFFSET_PATH == 2) {
 	setOptionDefault('zenpageNewsLink', array_key_exists('news', $_zp_conf_vars['special_pages']) ? $_zp_conf_vars['special_pages']['news']['rewrite'] : 'news');
-	setOptionDefault('zenpageCategoryLink', array_key_exists('category', $_zp_conf_vars['special_pages']) ? $_zp_conf_vars['special_pages']['category']['rewrite'] : 'category');
+	setOptionDefault('zenpageCategoryLink', array_key_exists('category', $_zp_conf_vars['special_pages']) ? $_zp_conf_vars['special_pages']['category']['rewrite'] : '_NEWS_/category');
 	setOptionDefault('zenpageNewsArchiveLink', array_key_exists('news_archive', $_zp_conf_vars['special_pages']) ? $_zp_conf_vars['special_pages']['news_archive']['rewrite'] : '_NEWS_/archive');
 	setOptionDefault('zenpagePagesLink', array_key_exists('pages', $_zp_conf_vars['special_pages']) ? $_zp_conf_vars['special_pages']['pages']['rewrite'] : 'pages');
 }
@@ -84,7 +84,6 @@ $_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%N
 				'rule'		 => '%REWRITE% index.php?p=news&title=$1 [L,QSA]');
 $_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%NEWS%/*$',
 				'rule'		 => '%REWRITE% index.php?p=news [L,QSA]');
-
 
 zp_register_filter('checkForGuest', 'zenpagecms::checkForGuest');
 zp_register_filter('isMyItemToView', 'zenpagecms::isMyItemToView');
