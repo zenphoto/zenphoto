@@ -330,9 +330,7 @@ class Category extends CMSRoot {
 			if (empty($parentID)) {
 				$obj = NULL;
 			} else {
-				$sql = 'SELECT `titlelink` FROM ' . prefix('news_categories') . ' WHERE `id`=' . $parentID;
-				$result = query_single_row($sql);
-				$obj = newCategory($result['titlelink']);
+				$obj = getItemByID('news_categories', $parentID);
 				$hash = $obj->getPassword();
 				$id = $obj->getID();
 			}
