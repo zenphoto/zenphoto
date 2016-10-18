@@ -698,7 +698,7 @@ class _Authority {
 
 			switch (@$_POST['password']) {
 				default:
-					if (isset($_POST['user'])) { //	must be a guest logon, don't even try admin path
+					if (isset($_POST['user'])) { //	otherwise must be a guest logon, don't even try admin path
 						$user = self::checkLogon($post_user, $post_pass);
 						if ($user) {
 							$_zp_loggedin = $user->getRights();
@@ -1315,7 +1315,7 @@ class _Authority {
 						 class="disclose_password"
 						 id="disclose_password<?php echo $id; ?>"
 						 onclick="passwordClear('<?php echo $id; ?>');
-								 togglePassword('<?php echo $id; ?>');">
+										 togglePassword('<?php echo $id; ?>');">
 		</p>
 		<p class="password_field password_field_<?php echo $id; ?>">
 			<label for="pass_r<?php echo $id; ?>" id="match<?php echo $id; ?>"><?php echo gettext("Repeat password") . $flag; ?></label>
