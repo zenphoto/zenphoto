@@ -314,8 +314,9 @@ class Article extends CMSItems {
 		}
 		foreach ($categories as $category) {
 			$catobj = newCategory($category['titlelink']);
-			if (!$catobj->isProtected() || $catobj->subRights())
+			if ($catobj->checkforGuest() || $catobj->subRights()) {
 				return true;
+			}
 		}
 		return false;
 	}

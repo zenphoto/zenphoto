@@ -322,6 +322,7 @@ class Category extends CMSRoot {
 		if (!parent::checkForGuest()) {
 			return false;
 		}
+		$id = $this->getID();
 		$obj = $this;
 		$hash = $this->getPassword();
 		while (empty($hash) && !is_null($obj)) {
@@ -333,12 +334,14 @@ class Category extends CMSRoot {
 				$result = query_single_row($sql);
 				$obj = newCategory($result['titlelink']);
 				$hash = $obj->getPassword();
+				$id = $obj->getID();
 			}
 		}
+
 		if (empty($hash)) { // no password required
 			return 'zp_public_access';
 		} else {
-			$authType = "zp_category_auth_" . $this->getID();
+			$authType = "zp_category_auth_" . $id;
 			$saved_auth = zp_getCookie($authType);
 			if ($saved_auth == $hash) {
 				return $authType;
