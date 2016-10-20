@@ -1416,7 +1416,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 								}
 
 								$ch = !empty($vr) && version_compare($vr, HTACCESS_VERSION, '>=');
-								$d = str_replace('\\', '/', dirname(dirname(dirname($_SERVER['SCRIPT_NAME']))));
+								$d = rtrim(str_replace('\\', '/', dirname(dirname(dirname($_SERVER['SCRIPT_NAME'])))), '/') . '/';
 								$d = str_replace(' ', '%20', $d); //	apache appears to trip out if there is a space in the rewrite base
 								if (!$ch) { // wrong version
 									$oht = trim(@file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/oldhtaccess'));

@@ -244,20 +244,32 @@ class Category extends CMSRoot {
 	 */
 	function getSubCategories($visible = true, $sorttype = NULL, $sortdirection = NULL) {
 		global $_zp_CMS;
-		if ($this->exists) {
-			$subcategories = array();
+		$subcategories = self::subCategoryRecurse($this, $_zp_CMS->getAllCategories($visible, $sorttype, $sortdirection));
+		if (!empty($subcategories)) {
+			return $subcategories;
+		}
+		return FALSE;
+	}
+
+	/**
+	 * Recursively gets sub categories of a category
+	 * @param object $category the parent category
+	 * @param array $all possible sub category list
+	 * @return array
+	 */
+	protected function subCategoryRecurse($category, $all) {
+		$subcategories = array();
+		if ($category->exists) {
 			$sortorder = $this->getSortOrder();
-			foreach ($_zp_CMS->getAllCategories($visible, $sorttype, $sortdirection) as $cat) {
+			foreach ($all as $cat) {
 				$catobj = newCategory($cat['titlelink']);
-				if ($catobj->getParentID() == $this->getID() && $catobj->getSortOrder() != $sortorder) { // exclude the category itself!
+				if ($catobj->getParentID() == $category->getID() && $catobj->getSortOrder() != $sortorder) { // exclude the category itself!
+					$subcategories = array_merge($subcategories, self::subCategoryRecurse($catobj, $all));
 					array_push($subcategories, $catobj->getTitlelink());
 				}
 			}
-			if (count($subcategories) != 0) {
-				return $subcategories;
-			}
 		}
-		return FALSE;
+		return $subcategories;
 	}
 
 	/**
@@ -322,6 +334,7 @@ class Category extends CMSRoot {
 		if (!parent::checkForGuest()) {
 			return false;
 		}
+		$id = $this->getID();
 		$obj = $this;
 		$hash = $this->getPassword();
 		while (empty($hash) && !is_null($obj)) {
@@ -329,16 +342,16 @@ class Category extends CMSRoot {
 			if (empty($parentID)) {
 				$obj = NULL;
 			} else {
-				$sql = 'SELECT `titlelink` FROM ' . prefix('news_categories') . ' WHERE `id`=' . $parentID;
-				$result = query_single_row($sql);
-				$obj = newCategory($result['titlelink']);
+				$obj = getItemByID('news_categories', $parentID);
 				$hash = $obj->getPassword();
+				$id = $obj->getID();
 			}
 		}
+
 		if (empty($hash)) { // no password required
 			return 'zp_public_access';
 		} else {
-			$authType = "zp_category_auth_" . $this->getID();
+			$authType = "zp_category_auth_" . $id;
 			$saved_auth = zp_getCookie($authType);
 			if ($saved_auth == $hash) {
 				return $authType;

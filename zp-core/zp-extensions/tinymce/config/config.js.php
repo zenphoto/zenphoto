@@ -65,7 +65,7 @@ if (OFFSET_PATH) {
 	tinymce.init({
 	entity_encoding : "raw",
 					selector: "<?php echo $MCEselector; ?>",
-					language: "<?php echo ZENPHOTO_LOCALE; ?>",
+					language: "<?php echo $locale; ?>",
 					relative_urls: false,
 <?php
 if ($MCEimage_advtab == NULL || $MCEimage_advtab) {

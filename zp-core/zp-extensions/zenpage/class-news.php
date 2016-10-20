@@ -148,7 +148,7 @@ class Article extends CMSItems {
 	 *
 	 * @param bool $only set to true to know if the news article belongs only to protected categories (i.e. it is protected)
 	 *
-	 * @return array
+	 * @return bool
 	 */
 	function inProtectedCategory($only = false) {
 		$categories = $this->getCategories();
@@ -314,8 +314,9 @@ class Article extends CMSItems {
 		}
 		foreach ($categories as $category) {
 			$catobj = newCategory($category['titlelink']);
-			if (!$catobj->isProtected() || $catobj->subRights())
+			if ($catobj->checkforGuest() || $catobj->subRights()) {
 				return true;
+			}
 		}
 		return false;
 	}

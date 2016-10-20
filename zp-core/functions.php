@@ -1735,17 +1735,21 @@ function sanitizeRedirect($redirectTo, $forceHost = false) {
  * @return bool true if authorized
  */
 function zp_handle_password($authType = NULL, $check_auth = NULL, $check_user = NULL) {
-	global $_zp_loggedin, $_zp_login_error, $_zp_current_album, $_zp_current_page, $_zp_gallery;
+	global $_zp_loggedin, $_zp_login_error, $_zp_current_album, $_zp_current_page, $_zp_current_category, $_zp_current_article, $_zp_gallery;
+	$success = false;
 	if (empty($authType)) { // not supplied by caller
 		$check_auth = '';
+		$auth = array();
 		if (isset($_GET['z']) && @$_GET['p'] == 'full-image' || isset($_GET['p']) && $_GET['p'] == '*full-image') {
 			$authType = 'zp_image_auth';
 			$check_auth = getOption('protected_image_password');
 			$check_user = getOption('protected_image_user');
+			$auth = array(array('authType' => $authType, 'check_auth' => $check_auth, 'check_user' => $check_user));
 		} else if (in_context(ZP_SEARCH)) { // search page
 			$authType = 'zp_search_auth';
 			$check_auth = getOption('search_password');
 			$check_user = getOption('search_user');
+			$auth = array(array($authType, $check_auth, $check_user));
 		} else if (in_context(ZP_ALBUM)) { // album page
 			$authType = "zp_album_auth_" . $_zp_current_album->getID();
 			$check_auth = $_zp_current_album->getPassword();
@@ -1762,6 +1766,7 @@ function zp_handle_password($authType = NULL, $check_auth = NULL, $check_user = 
 					$parent = $parent->getParent();
 				}
 			}
+			$auth = array(array('authType' => $authType, 'check_auth' => $check_auth, 'check_user' => $check_user));
 		} else if (in_context(ZP_ZENPAGE_PAGE)) {
 			$authType = "zp_page_auth_" . $_zp_current_page->getID();
 			$check_auth = $_zp_current_page->getPassword();
@@ -1772,24 +1777,51 @@ function zp_handle_password($authType = NULL, $check_auth = NULL, $check_user = 
 					$parentID = $pageobj->getParentID();
 					if ($parentID == 0)
 						break;
-					$sql = 'SELECT `titlelink` FROM ' . prefix('pages') . ' WHERE `id`=' . $parentID;
-					$result = query_single_row($sql);
-					$pageobj = new Page($result['titlelink']);
+					$pageobj = getItemByID('pages', $parentID);
 					$authType = "zp_page_auth_" . $pageobj->getID();
 					$check_auth = $pageobj->getPassword();
 					$check_user = $pageobj->getUser();
 				}
 			}
+			$auth = array(array('authType' => $authType, 'check_auth' => $check_auth, 'check_user' => $check_user));
+		} else if (in_context(ZP_ZENPAGE_NEWS_CATEGORY) || in_context(ZP_ZENPAGE_NEWS_ARTICLE)) {
+			if (in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
+				$categories = array(array('titlelink' => $_zp_current_category->getTitleLink()));
+			} else {
+				$categories = $_zp_current_article->getCategories();
+			}
+			foreach ($categories as $category) {
+				$cat = newCategory($category['titlelink']);
+				while ($cat) { // all categories in the family
+					$check_auth = $cat->getPassword();
+					if (!empty($check_auth)) {
+						$authType = 'zp_category_auth_' . $cat->getID();
+						$check_user = $cat->getUser();
+						$auth[] = array('authType' => $authType, 'check_auth' => $check_auth, 'check_user' => $check_user);
+						break; //	only the deepest password is required
+					}
+					$parentID = $cat->getParentID();
+					if ($parentID) {
+						$cat = getItemByID('news_categories', $parentID);
+					} else {
+						$cat = NULL;
+					}
+				}
+			}
 		}
-		if (empty($check_auth)) { // anything else is controlled by the gallery credentials
+		if (empty($auth)) { // anything else is controlled by the gallery credentials
 			$authType = 'zp_gallery_auth';
 			$check_auth = $_zp_gallery->getPassword();
 			$check_user = $_zp_gallery->getUser();
+			$auth = array(array('authType' => $authType, 'check_auth' => $check_auth, 'check_user' => $check_user));
 		}
+	} else {
+		$auth = array(array('authType' => $authType, 'check_auth' => $check_auth, 'check_user' => $check_user));
 	}
-	// Handle the login form.
-	if (DEBUG_LOGIN)
-		debugLog("zp_handle_password: \$authType=$authType; \$check_auth=$check_auth; \$check_user=$check_user; ");
+// Handle the login form.
+	if (DEBUG_LOGIN) {
+		debugLogVar("zp_handle_password:", $auth);
+	}
 	if (isset($_POST['password']) && isset($_POST['pass'])) { // process login form
 		if (isset($_POST['user'])) {
 			$post_user = sanitize($_POST['user'], 0);
@@ -1797,53 +1829,68 @@ function zp_handle_password($authType = NULL, $check_auth = NULL, $check_user = 
 			$post_user = '';
 		}
 		$post_pass = sanitize($_POST['pass'], 0);
-
-		foreach (Zenphoto_Authority::$hashList as $hash => $hi) {
-			$auth = Zenphoto_Authority::passwordHash($post_user, $post_pass, $hi);
-			$success = ($auth == $check_auth) && $post_user == $check_user;
-			if (DEBUG_LOGIN)
-				debugLog("zp_handle_password($success): \$post_user=$post_user; \$post_pass=$post_pass; \$check_auth=$check_auth; \$auth=$auth; \$hash=$hash;");
-			if ($success) {
-				break;
+		if (!empty($auth)) {
+			$alternates = array();
+			foreach (Zenphoto_Authority::$hashList as $hash => $hi) {
+				$alternates[] = Zenphoto_Authority::passwordHash($post_user, $post_pass, $hi);
 			}
-		}
-		$success = zp_apply_filter('guest_login_attempt', $success, $post_user, $post_pass, $authType);
-		if ($success) {
-			// Correct auth info. Set the cookie.
-			if (DEBUG_LOGIN)
-				debugLog("zp_handle_password: valid credentials");
-			zp_setCookie($authType, $auth);
-			if (isset($_POST['redirect'])) {
-				$redirect_to = sanitizeRedirect($_POST['redirect'], true);
-				if (!empty($redirect_to)) {
-					header("Location: " . $redirect_to);
-					exitZP();
+			foreach ($auth as $try) {
+				$authType = $try['authType'];
+				$check_auth = $try['check_auth'];
+				$check_user = $try['check_user'];
+				foreach ($alternates as $auth) {
+					$success = ($auth == $check_auth) && $post_user == $check_user;
+					if (DEBUG_LOGIN)
+						debugLog("zp_handle_password($success): \$post_user=$post_user; \$post_pass=$post_pass; \$check_auth=$check_auth; \$auth=$auth; \$hash=$hash;");
+					if ($success) {
+						break 2;
+					}
 				}
 			}
-		} else {
-			// Clear the cookie, just in case
-			if (DEBUG_LOGIN)
-				debugLog("zp_handle_password: invalid credentials");
-			zp_clearCookie($authType);
-			$_zp_login_error = true;
+
+			$success = zp_apply_filter('guest_login_attempt', $success, $post_user, $post_pass, $authType);
+
+			if ($success) {
+				// Correct auth info. Set the cookie.
+				if (DEBUG_LOGIN)
+					debugLog("zp_handle_password: valid credentials");
+				zp_setCookie($authType, $auth);
+				if (isset($_POST['redirect'])) {
+					$redirect_to = sanitizeRedirect($_POST['redirect'], true);
+					if (!empty($redirect_to)) {
+						header("Location: " . $redirect_to);
+						exitZP();
+					}
+				}
+			} else {
+				// Clear the cookie, just in case
+				if (DEBUG_LOGIN)
+					debugLog("zp_handle_password: invalid credentials");
+				zp_clearCookie($authType);
+				$_zp_login_error = true;
+			}
+			return $success;
 		}
-		return $success;
 	}
 	if (empty($check_auth)) { //no password on record or admin logged in
 		return true;
 	}
-	if (($saved_auth = zp_getCookie($authType)) != '') {
-		if ($saved_auth == $check_auth) {
-			if (DEBUG_LOGIN)
-				debugLog("zp_handle_password: valid cookie");
-			return true;
-		} else {
-			// Clear the cookie
-			if (DEBUG_LOGIN)
-				debugLog("zp_handle_password: invalid cookie");
-			zp_clearCookie($authType);
+	foreach ($auth as $try) {
+		$authType = $try['authType'];
+		if (($saved_auth = zp_getCookie($authType)) != '') {
+			if ($saved_auth == $check_auth) {
+				if (DEBUG_LOGIN)
+					debugLog("zp_handle_password: valid cookie");
+				return true;
+			} else {
+				// Clear the cookie
+				if (DEBUG_LOGIN)
+					debugLog("zp_handle_password: invalid cookie");
+				zp_clearCookie($authType);
+			}
 		}
 	}
+
 	return false;
 }
 
@@ -1932,7 +1979,7 @@ function getThemeOption($option, $album = NULL, $theme = NULL) {
 	if (empty($theme)) {
 		$theme = $_zp_gallery->getCurrentTheme();
 	}
-	// album-theme
+// album-theme
 	$sql = "SELECT `value` FROM " . prefix('options') . " WHERE `name`=" . db_quote($option) . " AND `ownerid`=" . $id . " AND `theme`=" . db_quote($theme);
 	$db = query_single_row($sql);
 	if (!$db) {

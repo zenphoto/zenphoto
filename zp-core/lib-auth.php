@@ -698,18 +698,20 @@ class _Authority {
 
 			switch (@$_POST['password']) {
 				default:
-					$user = self::checkLogon($post_user, $post_pass);
-					if ($user) {
-						$_zp_loggedin = $user->getRights();
-					}
-					$_zp_loggedin = zp_apply_filter('admin_login_attempt', $_zp_loggedin, $post_user, $post_pass);
-					if ($_zp_loggedin) {
-						self::logUser($user);
-						$_zp_current_admin_obj = $user;
-						session_regenerate_id(true);
-					} else {
-						zp_clearCookie("zp_user_auth"); // Clear the cookie, just in case
-						$_zp_login_error = 1;
+					if (isset($_POST['user'])) { //	otherwise must be a guest logon, don't even try admin path
+						$user = self::checkLogon($post_user, $post_pass);
+						if ($user) {
+							$_zp_loggedin = $user->getRights();
+						}
+						$_zp_loggedin = zp_apply_filter('admin_login_attempt', $_zp_loggedin, $post_user, $post_pass);
+						if ($_zp_loggedin) {
+							self::logUser($user);
+							$_zp_current_admin_obj = $user;
+							session_regenerate_id(true);
+						} else {
+							zp_clearCookie("zp_user_auth"); // Clear the cookie, just in case
+							$_zp_login_error = 1;
+						}
 					}
 					break;
 				case 'challenge':

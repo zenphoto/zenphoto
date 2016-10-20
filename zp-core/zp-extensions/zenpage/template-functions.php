@@ -1367,6 +1367,7 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 	if (is_null($limit)) {
 		$limit = MENU_TRUNCATE_STRING;
 	}
+
 	if (is_null($css_id)) {
 		switch ($mode) {
 			case 'pages':
@@ -1402,8 +1403,21 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 			break;
 		case 'categories':
 		case 'allcategories':
+			$articleCategories = array();
+			if ($_zp_current_article) { // should expand all categories it is a member of
+				foreach ($_zp_current_article->getCategories() as $catMember) {
+					$cat = getItemByID('news_categories', $catMember['id']);
+					$parentid = $catMember['parentid'];
+					$articleCategories[$catMember['titlelink']] = $catMember['cat_id'];
+					while ($parentid) {
+						$cat = getItemByID('news_categories', $parentid);
+						$articleCategories[$cat->getTitleLink()] = $parentid;
+						$parentid = $cat->getParentID();
+					}
+				}
+			}
 			$items = $_zp_CMS->getAllCategories();
-			if (is_object($_zp_current_category) && $mode == 'categories') {
+			if (is_object($_zp_current_category)) {
 				$currentitem_sortorder = $_zp_current_category->getSortOrder();
 				$currentitem_id = $_zp_current_category->getID();
 				$currentitem_parentid = $_zp_current_category->getParentID();
@@ -1475,6 +1489,7 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 		$parents[$c] = NULL;
 	}
 	foreach ($items as $item) {
+		$override = false;
 		$password_class = '';
 		switch ($mode) {
 			case 'pages':
@@ -1497,6 +1512,7 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 				$itemtitle = $catobj->getTitle();
 				$itemsortorder = $catobj->getSortOrder();
 				$itemid = $catobj->getID();
+				$override = in_array($itemid, $articleCategories); // to show news article category list
 				$itemparentid = $catobj->getParentID();
 				$itemtitlelink = $catobj->getTitlelink();
 				$itemurl = $catobj->getLink();
@@ -1513,11 +1529,12 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 		}
 		if ($catcount) {
 			$level = max(1, count(explode('-', $itemsortorder)));
+
 			$process = (($level <= $showsubs && $option == "list") // user wants all the pages whose level is <= to the parameter
 							|| ($option == 'list' || $option == 'list-top') && $level == 1 // show the top level
 							|| (($option == 'list' || ($option == 'omit-top' && $level > 1)) && (($itemid == $currentitem_id) // current page
 							|| ($itemparentid == $currentitem_id) // offspring of current page
-							|| ($level < $mylevel && $level > 1 && (strpos($itemsortorder, $myparentsort) === 0) )// direct ancestor
+							|| ($level < $mylevel && $level > 1 && (strpos($itemsortorder, $myparentsort) === 0) || $override )// direct ancestor
 							|| (($level == $mylevel) && ($currentitem_parentid == $itemparentid)) // sibling
 							)
 							) || ($option == 'list-sub' && ($itemparentid == $currentitem_id) // offspring of the current page
