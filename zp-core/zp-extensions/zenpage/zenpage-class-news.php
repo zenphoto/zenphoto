@@ -152,13 +152,6 @@ class ZenpageNews extends ZenpageItems {
 	}
 
 	/**
-	 * returns true if the article resides only in protected categories
-	 */
-	function isProtected() {
-		return $this->checkforGuest() != 'zp_public_access';
-	}
-
-	/**
 	 *
 	 * returns true if the article exists in any published category (or in no categories)
 	 */
@@ -229,7 +222,7 @@ class ZenpageNews extends ZenpageItems {
 			if ($_zp_current_admin_obj->getUser() == $this->getAuthor()) {
 				return true; //	he is the author
 			}
-			if ($this->getShow() && $action == LIST_RIGHTS) {
+			if ($this->getShow() && $action == LIST_RIGHTS && !$this->isProtected()) {
 				return true;
 			}
 			$mycategories = $_zp_current_admin_obj->getObjects('news');

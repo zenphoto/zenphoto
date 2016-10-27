@@ -216,6 +216,16 @@ class ZenpagePage extends ZenpageItems {
 	}
 
 	/**
+	 * returns true if user is allowed to see the page
+	 */
+	function checkAccess(&$hint = NULL, &$show = NULL) {
+		if ($this->isMyItem(LIST_RIGHTS)) {
+			return $this->getShow() || ZENPAGE_PAGES_RIGHTS & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW);
+		}
+		return $this->checkforGuest($hint, $show) && $this->getShow();
+	}
+
+	/**
 	 * Checks if user is allowed to access the page
 	 * @param $hint
 	 * @param $show
@@ -251,16 +261,6 @@ class ZenpagePage extends ZenpageItems {
 				return false;
 			}
 		}
-	}
-
-	/**
-	 * Checks if a page is protected and returns TRUE or FALSE
-	 * NOTE: This function does only check if a password is set not if it has been entered! Use $this->checkforGuest() for that.
-	 *
-	 * @return bool
-	 */
-	function isProtected() {
-		return $this->checkforGuest() != 'zp_public_access';
 	}
 
 	/**

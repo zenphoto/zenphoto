@@ -396,7 +396,7 @@ class Zenpage {
 			if ($resource) {
 				while ($item = db_fetch_assoc($resource)) {
 					$article = new ZenpageNews($item['titlelink']);
-					if ($getUnpublished || $article->isMyItem(ZENPAGE_NEWS_RIGHTS) || $currentcategory && ($article->inNewsCategory($currentcategory)) || $article->categoryIsVisible()) {
+					if ($getUnpublished || $article->checkAccess() || $currentcategory && ($article->inNewsCategory($currentcategory)) || $article->categoryIsVisible()) {
 						$result[] = $item;
 					}
 				}
@@ -1050,6 +1050,26 @@ class ZenpageRoot extends ThemeObject {
 	 */
 	function setTitlelink($v) {
 		$this->set("titlelink", $v);
+	}
+	
+	/**
+	 * returns true if user is allowed to see the item
+	 * 
+	 */
+	function checkAccess(&$hint = NULL, &$show = NULL) {
+		if ($this->isMyItem(LIST_RIGHTS)) {
+			return $this->getShow() || ZENPAGE_NEWS_RIGHTS & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW);
+		}
+		return $this->checkforGuest($hint, $show) && $this->getShow();
+	}
+	
+	/**
+	 * Checks if an item is protected and returns TRUE or FALSE
+	 *
+	 * @return bool
+	 */
+	function isProtected() {
+		return $this->checkforGuest() != 'zp_public_access';
 	}
 
 }
