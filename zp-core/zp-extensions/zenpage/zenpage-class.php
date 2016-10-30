@@ -243,7 +243,7 @@ class Zenpage {
 	function getArticles($articles_per_page = 0, $published = NULL, $ignorepagination = false, $sortorder = NULL, $sortdirection = NULL, $sticky = NULL, $category = NULL) {
 		global $_zp_current_category, $_zp_post_date, $_zp_newsCache;
 		if (empty($published)) {
-			if (zp_loggedin() || $category && $category->isMyItem(ZENPAGE_NEWS_RIGHTS)) {
+			if (zp_loggedin(ALL_NEWS_RIGHTS) || ($category && $category->isMyItem(ALL_NEWS_RIGHTS))) {
 				$published = "all";
 			} else {
 				$published = "published";
@@ -396,7 +396,7 @@ class Zenpage {
 			if ($resource) {
 				while ($item = db_fetch_assoc($resource)) {
 					$article = new ZenpageNews($item['titlelink']);
-					if ($getUnpublished || $article->checkAccess() || $currentcategory && ($article->inNewsCategory($currentcategory)) || $article->categoryIsVisible()) {
+					if ($getUnpublished || $article->isMyItem(LIST_RIGHTS) || $currentcategory && ($article->inNewsCategory($currentcategory)) || $article->categoryIsVisible()) {
 						$result[] = $item;
 					}
 				}
@@ -1050,26 +1050,6 @@ class ZenpageRoot extends ThemeObject {
 	 */
 	function setTitlelink($v) {
 		$this->set("titlelink", $v);
-	}
-	
-	/**
-	 * returns true if user is allowed to see the item
-	 * 
-	 */
-	function checkAccess(&$hint = NULL, &$show = NULL) {
-		if ($this->isMyItem(LIST_RIGHTS)) {
-			return $this->getShow() || ZENPAGE_NEWS_RIGHTS & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW);
-		}
-		return $this->checkforGuest($hint, $show) && $this->getShow();
-	}
-	
-	/**
-	 * Checks if an item is protected and returns TRUE or FALSE
-	 *
-	 * @return bool
-	 */
-	function isProtected() {
-		return $this->checkforGuest() != 'zp_public_access';
 	}
 
 }

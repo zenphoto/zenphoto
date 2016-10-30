@@ -317,6 +317,15 @@ class ZenpageCategory extends ZenpageRoot {
 		}
 	}
 
+	/**
+	 * Checks if a category is protected and returns TRUE or FALSE
+	 *
+	 * @return bool
+	 */
+	function isProtected() {
+		return $this->checkforGuest() != 'zp_public_access';
+	}
+
 	function isMyItem($action) {
 		global $_zp_current_admin_obj;
 		if (parent::isMyItem($action)) {
