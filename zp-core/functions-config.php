@@ -16,7 +16,7 @@
  */
 function updateConfigItem($item, $value, $zp_cfg, $quote = true) {
 	if ($quote) {
-		$value = '"' . $value . '"';
+		$value = "'" . addslashes($value) . "'";
 	}
 	$i = strpos($zp_cfg, $item);
 	if ($i === false) {
