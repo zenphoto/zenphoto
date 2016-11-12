@@ -2872,6 +2872,10 @@ function printAdminHeader($tab, $subtab = NULL) {
 				} else {
 					return '';
 				}
+			case 1:
+				if (!getOption('multi_lingual')) {
+					return array_shift($strings);
+				}
 			default:
 				return serialize($strings);
 		}
