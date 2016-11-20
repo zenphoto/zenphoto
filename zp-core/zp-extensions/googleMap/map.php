@@ -93,7 +93,7 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
 					}
 					//]]>
 				</script>
-				<div id=googlemap_data">
+				<div id="googlemap_data">
 					<?php echo $map->output_html; ?>
 				</div>
 			</div>
