@@ -224,20 +224,18 @@ function inputConvert($num) {
  * @param $image		image object
  */
 function getGeoCoord($image) {
-	global $_zp_current_image;
 	if (isImageClass($image)) {
-		$_zp_current_image = $image;
-		$lat = $_zp_current_image->get('GPSLatitude');
-		$long = $_zp_current_image->get('GPSLongitude');
+		$lat = $image->get('GPSLatitude');
+		$long = $image->get('GPSLongitude');
+		$thumbimg = $image->getCustomImage(150, NULL, NULL, NULL, NULL, NULL, NULL, true);
 		if (!empty($lat) && !empty($long)) {
 			$lat_f = inputConvert($lat);
 			$long_f = inputConvert($long);
-			$thumb = '<a href="javascript:image(\'' . $_zp_current_image->albumname . '\',\'' . $_zp_current_image->filename . '\');"><img src="' . getCustomImageURL(150, NULL, NULL, NULL, NULL, NULL, NULL, true) . '" /></a>';
-			return array('lat' => $lat_f, 'long' => $long_f, 'title' => $_zp_current_image->getTitle(), 'desc' => $_zp_current_image->getDesc(), 'thumb' => $thumb);
+			$thumb = '<a href="javascript:image(\'' . $image->albumname . '\',\'' . $image->filename . '\');"><img src="' . $thumbimg . '" /></a>';
+			return array('lat' => $lat_f, 'long' => $long_f, 'title' => $image->getTitle(), 'desc' => $image->getDesc(), 'thumb' => $thumb);
 		}
-	} else {
-		return false;
 	}
+	return false;
 }
 
 /**
