@@ -81,10 +81,6 @@ $zenpage_homepage = getOption('zenpage_homepage');
 if (is_null($zenpage_homepage))
 	$zenpage_homepage = 'none';
 
-// override width setting for maps
-setOption('gmap_width', '100%', false);
-
-
 // include useragent detector, set variable for mobile users...
 require_once('inc-browser.php');
 $browser = new Browser();

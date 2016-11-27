@@ -84,7 +84,6 @@
 	<?php if (function_exists('printGoogleMap')) { ?>
 		<div class="gmap">
 			<?php
-			setOption('gmap_width', 600, false);
 			printGoogleMap();
 			?>
 		</div>
