@@ -3,7 +3,7 @@
  * This is plugin for display pictures on a Google Map
  * Uses :
  * 		CodeIgniter Google Maps API V3 Class (hacked for zenphoto needs) (https://github.com/BIOSTALL/CodeIgniter-Google-Maps-V3-API-Library)
- * 		markerClustererPlus library 2.0.15 (http://google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/)
+ * 		markerClustererPlus library 2.0.15 
  * 		overlappingMarkerSpiderfier library 0.3 (https://github.com/jawj/OverlappingMarkerSpiderfier)
  *
  * @author Stephen Billard (sbillard) & Vincent Bourganel (vincent3569)
