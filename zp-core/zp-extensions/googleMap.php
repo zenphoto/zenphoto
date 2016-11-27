@@ -3,7 +3,7 @@
  * This is plugin for display pictures on a Google Map
  * Uses :
  * 		CodeIgniter Google Maps API V3 Class (hacked for zenphoto needs) (https://github.com/BIOSTALL/CodeIgniter-Google-Maps-V3-API-Library)
- * 		markerClustererPlus library 2.0.15 
+ * 		markerClustererPlus library 2.0.15
  * 		overlappingMarkerSpiderfier library 0.3 (https://github.com/jawj/OverlappingMarkerSpiderfier)
  *
  * @author Stephen Billard (sbillard) & Vincent Bourganel (vincent3569)
@@ -504,7 +504,7 @@ function printGoogleMap($text = NULL, $id = NULL, $hide = NULL, $obj = NULL, $ca
 						$(".google_map").colorbox({
 							iframe: true,
 							innerWidth: $(window).width() * 0.8,
-							innerHeight: $(window).height() * 0.7,
+							innerHeight: $(window).height() * 0.8,
 							close: '<?php echo gettext("close"); ?>',
 							onComplete: function () {
 								parent.resizeColorBoxMap();
