@@ -24,7 +24,10 @@ if (!defined('WEBPATH'))
 						maxWidth: "98%",
 						maxHeight: "98%",
 						photo: true,
-						close: '<?php echo gettext("close"); ?>'
+						close: '<?php echo gettext("close"); ?>',
+						onComplete: function(){
+							$(window).resize(resizeColorBoxImage);
+						}
 					});
 				});
 				// ]]> -->
@@ -118,9 +121,9 @@ if (!defined('WEBPATH'))
 						?>
 
 						<br style="clear:both" />
-<?php If (function_exists('printAddToFavorites')) printAddToFavorites($_zp_current_image); 
-      @call_user_func('printRating'); 
-      @call_user_func('printGoogleMap'); 
+<?php If (function_exists('printAddToFavorites')) printAddToFavorites($_zp_current_image);
+      @call_user_func('printRating');
+      @call_user_func('printGoogleMap');
       ?>
 					</div>
 <?php @call_user_func('printCommentForm'); ?>

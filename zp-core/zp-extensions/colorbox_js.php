@@ -100,25 +100,36 @@ class colorbox {
 		<link rel="stylesheet" href="<?php echo $css; ?>" type="text/css" />
 		<script type="text/javascript" src="<?php echo FULLWEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/colorbox_js/jquery.colorbox-min.js"></script>
 		<script>
-			/* Colorbox resize function */
+			/* Colorbox resize function for images*/
 			var resizeTimer;
-			function resizeColorBox()
-			{
+
+			function resizeColorBoxImage() {
 				if (resizeTimer)
 					clearTimeout(resizeTimer);
-				resizeTimer = setTimeout(function() {
+					resizeTimer = setTimeout(function() {
 					if (jQuery('#cboxOverlay').is(':visible')) {
-						jQuery.colorbox.resize({width: '90%', maxHeight: '90%'});
+						jQuery.colorbox.resize({width: '90%'});
 						jQuery('#cboxLoadedContent img').css('max-width', '100%').css('height', 'auto');
 					}
 				}, 300)
 			}
-
-			// Resize Colorbox when resizing window or changing mobile device orientation
-			jQuery(window).resize(resizeColorBox);
-			window.addEventListener("orientationchange", resizeColorBox, false);
-
+			/* Colorbox resize function for Google Maps*/
+			function resizeColorBoxMap() {
+				if (resizeTimer)
+					clearTimeout(resizeTimer);
+					resizeTimer = setTimeout(function() {
+					var mapw = $(window).width() * 0.8;
+        			var maph = $(window).height() * 0.7;
+						if (jQuery('#cboxOverlay').is(':visible')) {
+							$.colorbox.resize({innerWidth: mapw, innerHeight: maph});
+							$('#cboxLoadedContent iframe').contents().find('#map_canvas').css('width', '100%').css('height', maph-20);
+						}
+					}, 500)
+			}
+			// Resize Colorbox when changing mobile device orientation
+			window.addEventListener("orientationchange", function(){resizeColorBoxImage();parent.resizeColorBoxMap()}, false);
 		</script>
+
 		<?php
 	}
 
