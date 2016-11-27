@@ -25,14 +25,17 @@ class ga_colorbox {
 		<script type="text/javascript">
 			// <!-- <![CDATA[
 			$(document).ready(function () {
-				$("a.thickbox").colorbox({
-					maxWidth: "98%",
-					maxHeight: "98%",
-					photo: true,
-					close: '<?php echo gettext("close"); ?>'
-				});
+			$("a.thickbox").colorbox({
+			maxWidth: "98%",
+							maxHeight: "98%",
+							photo: true,
+							close: '<?php echo gettext("close"); ?>'
+							onComplete: function(){
+							$(window).resize(resizeColorBoxImage);
+							}
 			});
-			// ]]> -->
+			});
+							// ]]> -->
 		</script>
 		<?php
 	}
