@@ -3594,7 +3594,7 @@ function printAllDates($class = 'archive', $yearid = 'year', $monthid = 'month',
 		} else {
 			$cl = '';
 		}
-		echo "<li" . $cl . "><a href=\"" . html_encode(getSearchURl('', $datekey, '', 0, array('allbums' => $albumlist))) . "\" rel=\"nofollow\">$month ($val)</a></li>\n";
+		echo "<li" . $cl . "><a href=\"" . html_encode(getSearchURl('', $datekey, '', 0, array('albums' => $albumlist))) . "\" rel=\"nofollow\">$month ($val)</a></li>\n";
 	}
 	echo "</ul>\n</li>\n</ul>\n";
 }
