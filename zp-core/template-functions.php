@@ -3666,7 +3666,7 @@ function printAllDates($class = 'archive', $yearid = 'year', $monthid = 'month',
 		$classactive = 'archive_active';
 	} else {
 		$classactive = $class . '_active';
-		$class = "class=\"$class\"";
+		$class = 'class="' . $class . '"';
 	}
 	if ($_zp_gallery_page == 'search.php') {
 		$activedate = getSearchDate('%Y-%m');
@@ -3674,10 +3674,10 @@ function printAllDates($class = 'archive', $yearid = 'year', $monthid = 'month',
 		$activedate = '';
 	}
 	if (!empty($yearid)) {
-		$yearid = "class=\"$yearid\"";
+		$yearid = 'class="' . $yearid . '"';
 	}
 	if (!empty($monthid)) {
-		$monthid = "class=\"$monthid\"";
+		$monthid = 'class="' . $monthid . '"';
 	}
 	$datecount = getAllDates($order);
 	$lastyear = "";
@@ -3712,7 +3712,7 @@ function printAllDates($class = 'archive', $yearid = 'year', $monthid = 'month',
 		} else {
 			$cl = '';
 		}
-		echo "<li" . $cl . "><a href=\"" . html_encode(getSearchURl('', $datekey, '', 0, array('allbums' => $albumlist))) . "\">$month ($val)</a></li>\n";
+		echo '<li' . $cl . '><a href="' . html_encode(getSearchURL('', $datekey, '', 0, array('albums' => $albumlist))) . '">' . $month . ' (' . $val . ')</a></li>' . "\n";
 	}
 	echo "</ul>\n</li>\n</ul>\n";
 }
