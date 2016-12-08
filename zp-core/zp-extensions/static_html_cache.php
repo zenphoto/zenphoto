@@ -284,7 +284,7 @@ class static_html_cache {
 			// strip characters that cannot be in file names
 			$cachefilepath = str_replace(array('<', '>', ':', '"', '/', '\\', '|', '?', '*'), '_', $cachefilepath) . $locale;
 		}
-		return $cachesubfolder . "/" . $cachefilepath;
+		return $cachesubfolder . "/" . $cachefilepath . '.html';
 	}
 
 	/**
