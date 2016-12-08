@@ -69,7 +69,6 @@ if (extensionEnabled('GoogleMap')) {
 			?>
 			<div class="accordion" id="gmap_accordion">
 				<div class="accordion-heading" id="<?php echo $gmap_display; ?>">
-					<?php setOption('gmap_width', '100%', false); // override this option of Google Map plugin to make it reponsive  ?>
 					<a class="accordion-toggle" data-toggle="collapse" data-parent="#gmap_accordion" href="#zpB_googlemap_data" title="<?php echo gettext('Display or hide the Google Map.'); ?>">
 						<i class="icon-map-marker"></i><?php echo gettext('Google Map'); ?>
 					</a>

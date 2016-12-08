@@ -10,10 +10,21 @@ if (!defined('WEBPATH'))
 	<script type="text/javascript">
 		// <!-- <![CDATA[
 		$(document).ready(function () {
-			$(".colorbox").colorbox({inline: true, href: "#imagemetadata"});
-			$("a.thickbox").colorbox({maxWidth: "98%", maxHeight: "98%", photo: true, });
+		$(".colorbox").colorbox({
+		inline: true,
+						href: "#imagemetadata",
+						close: '<?php echo gettext("close"); ?>'
 		});
-		// ]]> -->
+						$("a.thickbox").colorbox({
+		maxWidth: "98%",
+						maxHeight: "98%",
+						photo: true,
+						close: '<?php echo gettext("close"); ?>',
+						onComplete: function(){
+						$(window).resize(resizeColorBoxImage);
+						}
+		});
+						// ]]> -->
 	</script>
 
 	<?php if (extensionEnabled('rss')) printRSSHeaderLink('Album', getAlbumTitle()); ?>

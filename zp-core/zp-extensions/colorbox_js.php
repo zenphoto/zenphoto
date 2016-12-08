@@ -54,10 +54,10 @@ class colorbox {
 			$theme = stripSuffix(basename($theme));
 			$list[ucfirst($theme)] = $theme;
 		}
-		$opts = array(gettext('Colorbox theme') => array('key'				 => 'colorbox_theme', 'type'			 => OPTION_TYPE_SELECTOR,
-										'order'			 => 0,
-										'selections' => $list,
-										'desc'			 => gettext("The Colorbox script comes with 5 example themes you can select here. If you select <em>custom (within theme)</em> you need to place a folder <em>colorbox_js</em> containing a <em>colorbox.css</em> file and a folder <em>images</em> within the current theme to override to use a custom Colorbox theme."))
+		$opts = array(gettext('Colorbox theme') => array('key' => 'colorbox_theme', 'type' => OPTION_TYPE_SELECTOR,
+						'order' => 0,
+						'selections' => $list,
+						'desc' => gettext("The Colorbox script comes with 5 example themes you can select here. If you select <em>custom (within theme)</em> you need to place a folder <em>colorbox_js</em> containing a <em>colorbox.css</em> file and a folder <em>images</em> within the current theme to override to use a custom Colorbox theme."))
 		);
 		$c = 1;
 		foreach (getThemeFiles(array('404.php', 'themeoptions.php', 'theme_description.php')) as $theme => $scripts) {
@@ -65,10 +65,10 @@ class colorbox {
 			foreach ($scripts as $script) {
 				$list[$script] = 'colorbox_' . $theme . '_' . stripSuffix($script);
 			}
-			$opts[$theme] = array('key'				 => 'colorbox_' . $theme . '_scripts', 'type'			 => OPTION_TYPE_CHECKBOX_ARRAY,
-							'order'			 => $c++,
-							'checkboxes' => $list,
-							'desc'			 => gettext('The scripts for which Colorbox is enabled. {Should have been set by the themes!}')
+			$opts[$theme] = array('key' => 'colorbox_' . $theme . '_scripts', 'type' => OPTION_TYPE_CHECKBOX_ARRAY,
+					'order' => $c++,
+					'checkboxes' => $list,
+					'desc' => gettext('The scripts for which Colorbox is enabled. {Should have been set by the themes!}')
 			);
 		}
 
@@ -102,23 +102,37 @@ class colorbox {
 		<link type="text/css" rel="stylesheet" href="<?php echo $css; ?>" />
 		<script type="text/javascript" src="<?php echo FULLWEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/colorbox_js/jquery.colorbox-min.js"></script>
 		<script type="text/javascript">
-			/* Colorbox resize function */
+			/* Colorbox resize function for images */
 			var resizeTimer;
-			function resizeColorBox()
-			{
+
+			function resizeColorBoxImage() {
 				if (resizeTimer)
 					clearTimeout(resizeTimer);
 				resizeTimer = setTimeout(function () {
 					if (jQuery('#cboxOverlay').is(':visible')) {
-						jQuery.colorbox.resize({width: '90%', maxHeight: '90%'});
+						jQuery.colorbox.resize({width: '90%'});
 						jQuery('#cboxLoadedContent img').css('max-width', '100%').css('height', 'auto');
 					}
 				}, 300)
 			}
-
-			// Resize Colorbox when resizing window or changing mobile device orientation
-			jQuery(window).resize(resizeColorBox);
-			window.addEventListener("orientationchange", resizeColorBox, false);
+			/* Colorbox resize function for Google Maps*/
+			function resizeColorBoxMap() {
+				if (resizeTimer)
+					clearTimeout(resizeTimer);
+				resizeTimer = setTimeout(function () {
+					var mapw = $(window).width() * 0.8;
+					var maph = $(window).height() * 0.7;
+					if (jQuery('#cboxOverlay').is(':visible')) {
+						$.colorbox.resize({innerWidth: mapw, innerHeight: maph});
+						$('#cboxLoadedContent iframe').contents().find('#map_canvas').css('width', '100%').css('height', maph - 20);
+					}
+				}, 500)
+			}
+			// Resize Colorbox when changing mobile device orientation
+			window.addEventListener("orientationchange", function () {
+				resizeColorBoxImage();
+				parent.resizeColorBoxMap()
+			}, false);
 
 		</script>
 		<?php

@@ -48,7 +48,6 @@
 		}
 		?>
 		<?php if (function_exists('printGoogleMap')) { ?><div class="section"><?php
-			setOption('gmap_width', 550, false);
 			printGoogleMap();
 			?></div><?php } ?>
 		<?php if (function_exists('printRating')) { ?><div class="section"><?php printRating(); ?></div><?php } ?>

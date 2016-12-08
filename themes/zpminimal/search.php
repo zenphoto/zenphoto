@@ -32,7 +32,8 @@ if (!empty($searchdate)) {
 <div id="content">
 	<div id="main"<?php if ($zpmin_switch) echo ' class="switch"'; ?>>
 		<div id="albums-wrap">
-			<?php $c = 0;
+			<?php
+			$c = 0;
 			while (next_album()): $c++;
 				?>
 				<div class="album-maxspace">
@@ -67,9 +68,8 @@ if (!empty($searchdate)) {
 			<?php printPageListWithNav("← " . gettext("prev"), gettext("next") . " →"); ?>
 			</div>
 		<?php } ?>
-			<?php if (function_exists('printGoogleMap')) { ?><div class="section"><?php setOption('gmap_width', 550, false);
-			printGoogleMap();
-			?></div><?php } ?>
+<?php if (function_exists('printGoogleMap')) { ?><div class="section">
+				?></div><?php } ?>
 
 		<?php
 		if ($_zp_page == 1) { //test of zenpage searches
@@ -112,8 +112,8 @@ if (!empty($searchdate)) {
 	</div>
 	<div id="sidebar"<?php if ($zpmin_switch) echo ' class="switch"'; ?>>
 		<div class="sidebar-divide">
-<?php printGalleryDesc(true); ?>
-<?php if (($c > 0) && (function_exists('printSlideShowLink'))) { ?><div class="sidebar-section"><div class="slideshow-link"><?php printSlideShowLink(gettext('View Slideshow')); ?></div></div><?php } ?>
+			<?php printGalleryDesc(true); ?>
+		<?php if (($c > 0) && (function_exists('printSlideShowLink'))) { ?><div class="sidebar-section"><div class="slideshow-link"><?php printSlideShowLink(gettext('View Slideshow')); ?></div></div><?php } ?>
 		</div>
 <?php include ("inc-sidemenu.php"); ?>
 	</div>

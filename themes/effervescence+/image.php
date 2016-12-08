@@ -26,7 +26,10 @@ if (!defined('WEBPATH'))
 							maxWidth: "98%",
 							maxHeight: "98%",
 							photo: true,
-							close: '<?php echo gettext("close"); ?>'
+							close: '<?php echo gettext("close"); ?>',
+							onComplete: function(){
+								$(window).resize(resizeColorBoxImage);
+							}
 						});
 		<?php
 	}

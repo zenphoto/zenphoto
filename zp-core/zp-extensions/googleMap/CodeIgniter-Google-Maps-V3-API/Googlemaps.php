@@ -1103,9 +1103,10 @@ class Googlemaps {
 		}
 		if ($this->cluster) {
 			$this->output_js .= '
-		<script type="text/javascript" src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclusterer/src/markerclusterer_compiled.js"></script>
-		';
-		}
+			<script type="text/javascript" src="' . WEBPATH . '/' . PLUGIN_FOLDER . '/googleMap/markerClustererPlus/markcluster.js"></script>
+			';
+		} // Script not hosted on Google anymore !
+
 		if ($this->jsfile == "") {
 			$this->output_js .= '
 			<script type="text/javascript">
@@ -2067,6 +2068,12 @@ class Googlemaps {
 		} else {
 			$this->output_js_contents .= '
 				window.addEventListener("load", initialize,false);
+				// hack zenphoto - recenter map after resize
+				google.maps.event.addDomListener(window, "resize", function() {
+					var center = map.getCenter();
+					google.maps.event.trigger(map, "resize");
+					map.setCenter(center);
+				});
 			';
 		}
 
@@ -2108,7 +2115,7 @@ class Googlemaps {
 		}
 		//
 
-		$this->output_html .= '<div id="' . $this->map_div_id . '" style="width:' . $this->map_width . '; height:' . $this->map_height . ';"></div>';
+		$this->output_html .= '<div id="'.$this->map_div_id.'"></div>';
 
 		return array('js' => $this->output_js, 'html' => $this->output_html, 'markers' => $this->markersInfo);
 	}
@@ -2189,5 +2196,4 @@ class Googlemaps {
 	}
 
 }
-
 ?>
