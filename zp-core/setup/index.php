@@ -235,9 +235,9 @@ if ($updatezp_config) {
 // Important. when adding new database support this switch may need to be extended,
 $engines = array();
 
-$preferences = array('mysqli' => 1, 'pdo_mysql' => 2, 'mysql' => 3);
-if (version_compare(PHP_VERSION, '7.0.0', '>=')) {
-	unset($preferences['mysql']);
+$preferences = array('mysqli' => 1, 'pdo_mysql' => 2);
+if (version_compare(PHP_VERSION, '7.0.0', '<')) {
+	$preferences['mysql'] = 3;
 }
 $cur = 999999;
 $preferred = NULL;
