@@ -225,7 +225,11 @@ $curdir = getcwd();
 chdir(dirname(dirname(__FILE__)));
 // Important. when adding new database support this switch may need to be extended,
 $engines = array();
+
 $preferences = array('mysqli' => 1, 'pdo_mysql' => 2, 'mysql' => 3);
+if (version_compare(PHP_VERSION, '7.0.0', '>=')) {
+	unset($preferences['mysql']);
+}
 $cur = 999999;
 $preferred = NULL;
 foreach (setup_glob('functions-db-*.php') as $key => $engineMC) {
