@@ -563,7 +563,7 @@ class RSS extends feed {
 	protected function hitcounter() {
 		if (!zp_loggedin() && getOption('RSS_hitcounter')) {
 			$rssuri = $this->getCacheFilename();
-			$type = 'hitcounter';
+			$type = 'rsshitcounter';
 			$checkitem = query_single_row("SELECT `data` FROM " . prefix('plugin_storage') . " WHERE `aux` = " . db_quote($rssuri) . " AND `type` = '" . $type . "'", true);
 			if ($checkitem) {
 				$hitcount = $checkitem['data'] + 1;

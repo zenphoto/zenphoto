@@ -23,7 +23,7 @@ if (!defined('OFFSET_PATH')) {
 			query('UPDATE ' . prefix('news') . ' SET `hitcounter`= 0');
 			query('UPDATE ' . prefix('pages') . ' SET `hitcounter`= 0');
 			query('UPDATE ' . prefix('news_categories') . ' SET `hitcounter`= 0');
-			query('UPDATE ' . prefix('options') . ' SET `value`= 0 WHERE `name` LIKE "Page-Hitcounter-%"');
+			query('DELETE FROM ' . prefix('options') . ' WHERE `name` LIKE "Page-Hitcounter-%"');
 			query("DELETE FROM " . prefix('plugin_storage') . " WHERE `type` = 'rsshitcounter'");
 			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=external&msg=' . gettext('All hitcounters have been set to zero.'));
 			exitZP();
