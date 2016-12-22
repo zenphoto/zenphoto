@@ -375,15 +375,15 @@ echo $refresh;
 						$rangeset = array();
 						if ($_zp_current_admin_obj) {
 							$admins = array($_zp_current_admin_obj->getUser() =>
-											array('id'					 => $_zp_current_admin_obj->getID(),
-															'user'				 => $_zp_current_admin_obj->getUser(),
-															'pass'				 => $_zp_current_admin_obj->getPass(),
-															'name'				 => $_zp_current_admin_obj->getName(),
-															'email'				 => $_zp_current_admin_obj->getEmail(),
-															'rights'			 => $_zp_current_admin_obj->getRights(),
-															'custom_data'	 => $_zp_current_admin_obj->getCustomData(),
-															'valid'				 => 1,
-															'group'				 => $_zp_current_admin_obj->getGroup()));
+									array('id' => $_zp_current_admin_obj->getID(),
+											'user' => $_zp_current_admin_obj->getUser(),
+											'pass' => $_zp_current_admin_obj->getPass(),
+											'name' => $_zp_current_admin_obj->getName(),
+											'email' => $_zp_current_admin_obj->getEmail(),
+											'rights' => $_zp_current_admin_obj->getRights(),
+											'custom_data' => $_zp_current_admin_obj->getCustomData(),
+											'valid' => 1,
+											'group' => $_zp_current_admin_obj->getGroup()));
 							$showset = array($_zp_current_admin_obj->getUser());
 						} else {
 							$admins = $showset = array();
@@ -597,8 +597,8 @@ echo $refresh;
 													}
 													?>
 													<a id="toggle_<?php echo $id; ?>" onclick="visible = getVisible('<?php echo $id; ?>', 'user', '<?php echo $displaytitle; ?>', '<?php echo $hidetitle; ?>');
-															$('#show_<?php echo $id; ?>').val(visible);
-															toggleExtraInfo('<?php echo $id; ?>', 'user', visible);" title="<?php echo $displaytitle; ?>" >
+																$('#show_<?php echo $id; ?>').val(visible);
+																toggleExtraInfo('<?php echo $id; ?>', 'user', visible);" title="<?php echo $displaytitle; ?>" >
 															 <?php
 															 if (empty($userid)) {
 																 ?>
@@ -607,7 +607,7 @@ echo $refresh;
 															<em><?php echo gettext("New User"); ?></em>
 															<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="adminuser<?php echo $id; ?>" name="adminuser<?php echo $id; ?>" value=""
 																		 onclick="toggleExtraInfo('<?php echo $id; ?>', 'user', visible);
-																				 $('#adminuser<?php echo $id; ?>').focus();" />
+																						 $('#adminuser<?php echo $id; ?>').focus();" />
 
 															<?php
 														} else {
@@ -701,26 +701,31 @@ echo $refresh;
 														?>
 													</p>
 													<?php
-													if (in_array('challenge_phrase', $no_change)) {
-														$_disable = ' disabled="disabled"';
-													} else {
-														$_disable = '';
-													}
-													$challenge = $userobj->getChallengePhraseInfo();
-													?>
-													<p>
-														<?php echo gettext('Challenge phrase') ?>
-														<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="challengephrase-<?php echo $id ?>" name="<?php echo $id ?>-challengephrase"
-																	 value="<?php echo html_encode($challenge['challenge']); ?>"<?php echo $_disable; ?> />
-														<br />
-														<?php echo gettext('Challenge response') ?>
-														<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="challengeresponse-<?php echo $id ?>" name="<?php echo $id ?>-challengeresponse"
-																	 value="<?php echo html_encode($challenge['response']); ?>"<?php echo $_disable; ?> />
+													if (getOption('challenge_foil_enabled')) {
+														if (in_array('challenge_phrase', $no_change)) {
+															$_disable = ' disabled="disabled"';
+														} else {
+															$_disable = '';
+														}
+														$challenge = $userobj->getChallengePhraseInfo();
+														?>
+														<p>
+															<?php echo gettext('Challenge phrase') ?>
+															<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="challengephrase-<?php echo $id ?>" name="<?php echo $id ?>-challengephrase"
+																		 value="<?php echo html_encode($challenge['challenge']); ?>"<?php echo $_disable; ?> />
+															<br />
+															<?php echo gettext('Challenge response') ?>
+															<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="challengeresponse-<?php echo $id ?>" name="<?php echo $id ?>-challengeresponse"
+																		 value="<?php echo html_encode($challenge['response']); ?>"<?php echo $_disable; ?> />
 
-													</p>
+														</p>
+														<?php
+													}
+													?>
 													<?php echo gettext("Full name"); ?>
 													<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="admin_name-<?php echo $id ?>" name="<?php echo $id ?>-admin_name"
 																 value="<?php echo html_encode($userobj->getName()); ?>"<?php if (in_array('name', $no_change)) echo ' disabled="disabled"'; ?> />
+
 													<p>
 														<?php echo gettext("Email"); ?>
 														<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="admin_email-<?php echo $id ?>" name="<?php echo $id ?>-admin_email"
