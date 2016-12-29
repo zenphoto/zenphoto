@@ -90,7 +90,7 @@ if ($filehandler) {
 	plugins: ["<?php echo $MCEplugins; ?>"],
 <?php
 if ($MCEspecial) {
-	echo $MCEspecial . ',';
+	echo $MCEspecial . ",\n";
 }
 if ($MCEskin) {
 	?>
