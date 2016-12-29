@@ -3,7 +3,7 @@
 /**
  * The configuration parameters for TinyMCE 4.x.
  *
- * zenphoto plugin default light configuration
+ * zenphoto basic-light configuration
  * @author Stephen Billard (sbillard)
  */
 $MCEselector = "textarea.texteditor";

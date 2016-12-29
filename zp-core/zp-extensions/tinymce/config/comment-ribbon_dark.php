@@ -3,7 +3,7 @@
 /**
  * The configuration functions for TinyMCE
  *
- * Zenpage plugin default light configuration
+ * Comment form ribbon-dark configuration
  *
  * @author Stephen Billard (sbillard)
  */

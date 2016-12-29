@@ -3,7 +3,7 @@
 /**
  * The configuration parameters for TinyMCE 4.x.
  *
- * Comment form plugin default light configuration
+ * Comment form full-dark configuration
  * @author Stephen Billard (sbillard)
  */
 $MCEcss = 'dark_content.css';

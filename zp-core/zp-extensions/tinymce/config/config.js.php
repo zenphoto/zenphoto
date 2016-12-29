@@ -65,7 +65,7 @@ if (OFFSET_PATH) {
 	tinymce.init({
 	entity_encoding : "raw",
 					selector: "<?php echo $MCEselector; ?>",
-					language: "<?php echo $locale; ?>",
+					language: "<?php echo $MCElocale; ?>",
 					relative_urls: false,
 <?php
 if ($MCEimage_advtab == NULL || $MCEimage_advtab) {
@@ -83,8 +83,7 @@ if ($MCEdirection) {
 <?php
 if ($filehandler) {
 	?>
-		elements : "<?php echo $filehandler; ?>",
-						file_browser_callback : <?php echo $filehandler; ?>,
+		elements : "<?php echo $filehandler; ?>", file_browser_callback : <?php echo $filehandler; ?>,
 	<?php
 }
 ?>

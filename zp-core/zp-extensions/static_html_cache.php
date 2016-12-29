@@ -260,7 +260,7 @@ class static_html_cache {
 		if (isset($_REQUEST['locale'])) {
 			$locale = "_" . sanitize($_REQUEST['locale']);
 		} else {
-			$locale = "_" . getOption("locale");
+			$locale = "_" . getOption('locale');
 		}
 		switch ($_zp_gallery_page) {
 			case 'index.php':

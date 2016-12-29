@@ -3,7 +3,7 @@
 /**
  * The configuration parameters for TinyMCE 4.x.
  *
- * Comment form plugin default light configuration
+ * Comment form slim-light configuration
  * @author Stephen Billard (sbillard)
  */
 $MCEselector = "textarea.textarea_inputbox, textarea.texteditor_comments";

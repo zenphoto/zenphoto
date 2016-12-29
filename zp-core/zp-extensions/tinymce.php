@@ -46,19 +46,19 @@ class tinymceOptions {
 		$configs_zenpage = gettinymceConfigFiles('zenpage');
 		$configs_zenphoto = gettinymceConfigFiles('zenphoto');
 		$options = array(
-						gettext('Text editor configuration - zenphoto')	 => array('key'						 => 'tinymce_zenphoto', 'type'					 => OPTION_TYPE_SELECTOR,
-										'order'					 => 0,
-										'selections'		 => $configs_zenphoto,
-										'null_selection' => gettext('Disabled'),
-										'desc'					 => gettext('Applies to <em>admin</em> editable text other than for Zenpage pages and news articles.')),
-						gettext('Text editor configuration - zenpage')	 => array('key'						 => 'tinymce_zenpage', 'type'					 => OPTION_TYPE_SELECTOR,
-										'order'					 => 1,
-										'selections'		 => $configs_zenpage,
-										'null_selection' => gettext('Disabled'),
-										'desc'					 => gettext('Applies to editing on the Zenpage <em>pages</em> and <em>news</em> tabs.')),
-						gettext('Text editor text direction')						 => array('key'		 => 'tiny_mce_rtl_override', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 2,
-										'desc'	 => gettext('This option should be checked if your language writing direction is right-to-left')));
+				gettext('Text editor configuration - zenphoto') => array('key' => 'tinymce_zenphoto', 'type' => OPTION_TYPE_SELECTOR,
+						'order' => 0,
+						'selections' => $configs_zenphoto,
+						'null_selection' => gettext('Disabled'),
+						'desc' => gettext('Applies to <em>admin</em> editable text other than for Zenpage pages and news articles.')),
+				gettext('Text editor configuration - zenpage') => array('key' => 'tinymce_zenpage', 'type' => OPTION_TYPE_SELECTOR,
+						'order' => 1,
+						'selections' => $configs_zenpage,
+						'null_selection' => gettext('Disabled'),
+						'desc' => gettext('Applies to editing on the Zenpage <em>pages</em> and <em>news</em> tabs.')),
+				gettext('Text editor text direction') => array('key' => 'tiny_mce_rtl_override', 'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 2,
+						'desc' => gettext('This option should be checked if your language writing direction is right-to-left')));
 		return $options;
 	}
 
@@ -69,23 +69,22 @@ class tinymceOptions {
 }
 
 function tinymceConfigJS($mode) {
-	global $_editorconfig, $MCEskin, $MCEdirection, $MCEcss, $MCEspecial, $MCEimage_advtab, $MCEtoolbars;
+	global $_editorconfig, $MCEskin, $MCEdirection, $MCEcss, $MCEspecial, $MCEimage_advtab, $MCEtoolbars, $MCElocale;
 	$MCEskin = $MCEdirection = $MCEcss = $MCEspecial = $MCEimage_advtab = $MCEtoolbars = NULL;
 
 	if (empty($_editorconfig)) { // only if we get here first!
-		$locale = 'en';
-		$loc = str_replace('_', '-', getOption("locale"));
+		$MCElocale = 'en';
+		$loc = str_replace('_', '-', getOption('locale'));
 		if ($loc) {
 			if (file_exists(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/tinymce/langs/' . $loc . '.js')) {
-				$locale = $loc;
+				$MCElocale = $loc;
 			} else {
 				$loc = substr($loc, 0, 2);
 				if (file_exists(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/tinymce/langs/' . $loc . '.js')) {
-					$locale = $loc;
+					$MCElocale = $loc;
 				}
 			}
 		}
-
 		$_editorconfig = getOption('tinymce_' . $mode);
 		if (!empty($_editorconfig)) {
 			$_editorconfig = getPlugin('tinymce/config/' . $_editorconfig, true);
