@@ -302,7 +302,7 @@ function printRSSLink($option, $prev, $linktext, $next, $printIcon = true, $clas
 		$class = 'class="' . $class . '"';
 	}
 	if (empty($lang)) {
-		$lang = zpFunctions::getLanguageText(getOption("locale"));
+		$lang = zpFunctions::getLanguageText(getOption('locale'));
 	}
 	echo $prev . "<a $class href=\"" . html_encode(getRSSLink($option, $lang, $addl)) . "\" title=\"" . html_encode($linktext) . "\" rel=\"nofollow\">" . $linktext . "$icon</a>" . $next;
 }

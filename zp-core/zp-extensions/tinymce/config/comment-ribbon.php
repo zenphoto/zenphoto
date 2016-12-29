@@ -3,7 +3,7 @@
 /**
  * The configuration functions for TinyMCE
  *
- * Zenpage plugin default light configuration
+ * Comment form ribbon-light configuration
  * @author Stephen Billard (sbillard)
  */
 $MCEselector = "textarea.textarea_inputbox, textarea.texteditor_comments";
