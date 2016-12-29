@@ -83,8 +83,7 @@ if ($MCEdirection) {
 <?php
 if ($filehandler) {
 	?>
-		elements : "<?php echo $filehandler; ?>",
-						file_browser_callback : <?php echo $filehandler; ?>,
+		elements : "<?php echo $filehandler; ?>", file_browser_callback : <?php echo $filehandler; ?>,
 	<?php
 }
 ?>
