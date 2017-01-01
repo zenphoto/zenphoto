@@ -26,8 +26,11 @@ $plugin_disable = (file_exists(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/nanospe
 zp_register_filter('tinymce_config', 'nanospell_spellchecker');
 
 function nanospell_spellchecker($discard) {
-	global $MCEspecial, $MCEtoolbars, $MCElocale;
-	$MCEspecial = "\t\t" . 'external_plugins: { "nanospell": "' . WEBPATH . '/' . USER_PLUGIN_FOLDER . '/nanospell/plugin.js" },' . "\n" .
+	global $MCEspecial, $MCEtoolbars;
+	if (!empty($MCEspecial)) {
+		$MCEspecial .= ",\n";
+	}
+	$MCEspecial .= "\t\t" . 'external_plugins: { "nanospell": "' . WEBPATH . '/' . USER_PLUGIN_FOLDER . '/nanospell/plugin.js" },' . "\n" .
 					"\t\t" . 'nanospell_server:"php"';
 
 	if (!empty($MCEtoolbars)) {

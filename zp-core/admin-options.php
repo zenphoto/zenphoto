@@ -781,13 +781,16 @@ Zenphoto_Authority::printPasswordFormJS();
 											$c = 0;
 											foreach ($locales as $language => $dirname) {
 												$languageAlt = $language;
-												if (empty($dirname) || $dirname == 'en_US') {
+												if (empty($dirname)) {
+													$languageP = '';
+												} else if ($dirname == 'en_US') {
 													$languageP = ' <small>[100%]</small>';
 												} else {
 													$stat = explode("\n", file_get_contents(SERVERPATH . "/" . ZENFOLDER . "/locale/" . $dirname . '/LC_MESSAGES/statistics.txt'));
 													preg_match_all('~([\d]+)~', $stat[1], $matches);
 													$languageP = ' <small>[' . $matches[0][1] . '%]</small>';
 												}
+
 												if (empty($dirname)) {
 													$flag = WEBPATH . '/' . ZENFOLDER . '/locale/auto.png';
 												} else {
@@ -856,46 +859,46 @@ Zenphoto_Authority::printPasswordFormJS();
 									<td width="350">
 										<select id="date_format_list" name="date_format_list" onchange="showfield(this, 'customTextBox')">
 											<?php
-											$formatlist = array(gettext('Custom')												 => 'custom',
-															gettext('Preferred date representation') => '%x',
-															gettext('02/25/08 15:30')								 => '%d/%m/%y %H:%M',
-															gettext('02/25/08')											 => '%d/%m/%y',
-															gettext('02/25/2008 15:30')							 => '%d/%m/%Y %H:%M',
-															gettext('02/25/2008')										 => '%d/%m/%Y',
-															gettext('02-25-08 15:30')								 => '%d-%m-%y %H:%M',
-															gettext('02-25-08')											 => '%d-%m-%y',
-															gettext('02-25-2008 15:30')							 => '%d-%m-%Y %H:%M',
-															gettext('02-25-2008')										 => '%d-%m-%Y',
-															gettext('2008. February 25. 15:30')			 => '%Y. %B %d. %H:%M',
-															gettext('2008. February 25.')						 => '%Y. %B %d.',
-															gettext('2008-02-25 15:30')							 => '%Y-%m-%d %H:%M',
-															gettext('2008-02-25')										 => '%Y-%m-%d',
-															gettext('25 Feb 2008 15:30')						 => '%d %B %Y %H:%M',
-															gettext('25 Feb 2008')									 => '%d %B %Y',
-															gettext('25 February 2008 15:30')				 => '%d %B %Y %H:%M',
-															gettext('25 February 2008')							 => '%d %B %Y',
-															gettext('25. Feb 2008 15:30')						 => '%d. %B %Y %H:%M',
-															gettext('25. Feb 2008')									 => '%d. %B %Y',
-															gettext('25. Feb. 08 15:30')						 => '%d. %b %y %H:%M',
-															gettext('25. Feb. 08')									 => '%d. %b %y',
-															gettext('25. February 2008 15:30')			 => '%d. %B %Y %H:%M',
-															gettext('25. February 2008')						 => '%d. %B %Y',
-															gettext('25.02.08 15:30')								 => '%d.%m.%y %H:%M',
-															gettext('25.02.08')											 => '%d.%m.%y',
-															gettext('25.02.2008 15:30')							 => '%d.%m.%Y %H:%M',
-															gettext('25.02.2008')										 => '%d.%m.%Y',
-															gettext('25-02-08 15:30')								 => '%d-%m-%y %H:%M',
-															gettext('25-02-08')											 => '%d-%m-%y',
-															gettext('25-02-2008 15:30')							 => '%d-%m-%Y %H:%M',
-															gettext('25-02-2008')										 => '%d-%m-%Y',
-															gettext('25-Feb-08 15:30')							 => '%d-%b-%y %H:%M',
-															gettext('25-Feb-08')										 => '%d-%b-%y',
-															gettext('25-Feb-2008 15:30')						 => '%d-%b-%Y %H:%M',
-															gettext('25-Feb-2008')									 => '%d-%b-%Y',
-															gettext('Feb 25, 2008 15:30')						 => '%b %d, %Y %H:%M',
-															gettext('Feb 25, 2008')									 => '%b %d, %Y',
-															gettext('February 25, 2008 15:30')			 => '%B %d, %Y %H:%M',
-															gettext('February 25, 2008')						 => '%B %d, %Y');
+											$formatlist = array(gettext('Custom') => 'custom',
+													gettext('Preferred date representation') => '%x',
+													gettext('02/25/08 15:30') => '%d/%m/%y %H:%M',
+													gettext('02/25/08') => '%d/%m/%y',
+													gettext('02/25/2008 15:30') => '%d/%m/%Y %H:%M',
+													gettext('02/25/2008') => '%d/%m/%Y',
+													gettext('02-25-08 15:30') => '%d-%m-%y %H:%M',
+													gettext('02-25-08') => '%d-%m-%y',
+													gettext('02-25-2008 15:30') => '%d-%m-%Y %H:%M',
+													gettext('02-25-2008') => '%d-%m-%Y',
+													gettext('2008. February 25. 15:30') => '%Y. %B %d. %H:%M',
+													gettext('2008. February 25.') => '%Y. %B %d.',
+													gettext('2008-02-25 15:30') => '%Y-%m-%d %H:%M',
+													gettext('2008-02-25') => '%Y-%m-%d',
+													gettext('25 Feb 2008 15:30') => '%d %B %Y %H:%M',
+													gettext('25 Feb 2008') => '%d %B %Y',
+													gettext('25 February 2008 15:30') => '%d %B %Y %H:%M',
+													gettext('25 February 2008') => '%d %B %Y',
+													gettext('25. Feb 2008 15:30') => '%d. %B %Y %H:%M',
+													gettext('25. Feb 2008') => '%d. %B %Y',
+													gettext('25. Feb. 08 15:30') => '%d. %b %y %H:%M',
+													gettext('25. Feb. 08') => '%d. %b %y',
+													gettext('25. February 2008 15:30') => '%d. %B %Y %H:%M',
+													gettext('25. February 2008') => '%d. %B %Y',
+													gettext('25.02.08 15:30') => '%d.%m.%y %H:%M',
+													gettext('25.02.08') => '%d.%m.%y',
+													gettext('25.02.2008 15:30') => '%d.%m.%Y %H:%M',
+													gettext('25.02.2008') => '%d.%m.%Y',
+													gettext('25-02-08 15:30') => '%d-%m-%y %H:%M',
+													gettext('25-02-08') => '%d-%m-%y',
+													gettext('25-02-2008 15:30') => '%d-%m-%Y %H:%M',
+													gettext('25-02-2008') => '%d-%m-%Y',
+													gettext('25-Feb-08 15:30') => '%d-%b-%y %H:%M',
+													gettext('25-Feb-08') => '%d-%b-%y',
+													gettext('25-Feb-2008 15:30') => '%d-%b-%Y %H:%M',
+													gettext('25-Feb-2008') => '%d-%b-%Y',
+													gettext('Feb 25, 2008 15:30') => '%b %d, %Y %H:%M',
+													gettext('Feb 25, 2008') => '%b %d, %Y',
+													gettext('February 25, 2008 15:30') => '%B %d, %Y %H:%M',
+													gettext('February 25, 2008') => '%B %d, %Y');
 											$cv = DATE_FORMAT;
 											$flip = array_flip($formatlist);
 											if (isset($flip[$cv])) {
@@ -1106,7 +1109,7 @@ Zenphoto_Authority::printPasswordFormJS();
 					<div id="tab_gallery" class="tabbox">
 						<?php zp_apply_filter('admin_note', 'options', $subtab); ?>
 						<form class="dirtylistening" onReset="toggle_passwords('', false);
-								setClean('form_options');" id="form_options" action="?action=saveoptions" method="post" autocomplete="off" >
+									setClean('form_options');" id="form_options" action="?action=saveoptions" method="post" autocomplete="off" >
 									<?php XSRFToken('saveoptions'); ?>
 							<input	type="hidden" name="savegalleryoptions" value="yes" />
 							<input	type="hidden" name="password_enabled" id="password_enabled" value="0" />
@@ -1194,7 +1197,7 @@ Zenphoto_Authority::printPasswordFormJS();
 															 name="disclose_password"
 															 id="disclose_password"
 															 onclick="passwordClear('');
-																	 togglePassword('');" /><?php echo gettext('Show password'); ?>
+																			 togglePassword('');" /><?php echo gettext('Show password'); ?>
 											</label>
 										</td>
 										<td>
@@ -1471,7 +1474,7 @@ Zenphoto_Authority::printPasswordFormJS();
 					<div id="tab_search" class="tabbox">
 						<?php zp_apply_filter('admin_note', 'options', $subtab); ?>
 						<form class="dirtylistening" onReset="toggle_passwords('', false);
-								setClean('form_options');" id="form_options" action="?action=saveoptions" method="post" autocomplete="off" >
+									setClean('form_options');" id="form_options" action="?action=saveoptions" method="post" autocomplete="off" >
 									<?php XSRFToken('saveoptions'); ?>
 							<input	type="hidden" name="savesearchoptions" value="yes" />
 							<input	type="hidden" name="password_enabled" id="password_enabled" value="0" />
@@ -1533,7 +1536,7 @@ Zenphoto_Authority::printPasswordFormJS();
 															 name="disclose_password"
 															 id="disclose_password"
 															 onclick="passwordClear('');
-																	 togglePassword('');" /><?php echo gettext('Show password'); ?>
+																			 togglePassword('');" /><?php echo gettext('Show password'); ?>
 											</label>
 										</td>
 										<td>
@@ -2252,7 +2255,7 @@ Zenphoto_Authority::printPasswordFormJS();
 																		 name="disclose_password"
 																		 id="disclose_password"
 																		 onclick="passwordClear('');
-																				 togglePassword('');" /><?php echo gettext('Show password'); ?>
+																						 togglePassword('');" /><?php echo gettext('Show password'); ?>
 														</label>
 													</td>
 												</tr>
@@ -2528,9 +2531,9 @@ Zenphoto_Authority::printPasswordFormJS();
 									?>
 									<th>
 										<br />
-									<div class="errorbox" id="no_themes">
-										<h2><?php echo gettext("There are no themes for which you have rights to administer."); ?></h2>
-									</div>
+										<div class="errorbox" id="no_themes">
+											<h2><?php echo gettext("There are no themes for which you have rights to administer."); ?></h2>
+										</div>
 									</th>
 
 									<?php
@@ -2541,37 +2544,37 @@ Zenphoto_Authority::printPasswordFormJS();
 									?>
 									<tr>
 										<th colspan='2'>
-									<h2 style='float: left'>
-										<?php
-										if ($albumtitle) {
-											printf(gettext('Options for <code><strong>%1$s</strong></code>: <em>%2$s</em>'), $albumtitle, $theme['name']);
-										} else {
-											printf(gettext('Options for <em>%s</em>'), $theme['name']);
-										}
-										?>
-									</h2>
-									</th>
-									<th colspan='1' style='text-align: right'>
-										<?php
-										if (count($themelist) > 1) {
-											echo gettext("Show theme for:");
-											echo '<select id="themealbum" name="themealbum" onchange="this.form.submit()">';
-											generateListFromArray(array(pathurlencode($alb)), $themelist, false, true);
-											echo '</select>';
-										} else {
-											?>
-											<input type="hidden" name="themealbum" value="<?php echo pathurlencode($alb); ?>" />
+											<h2 style='float: left'>
+												<?php
+												if ($albumtitle) {
+													printf(gettext('Options for <code><strong>%1$s</strong></code>: <em>%2$s</em>'), $albumtitle, $theme['name']);
+												} else {
+													printf(gettext('Options for <em>%s</em>'), $theme['name']);
+												}
+												?>
+											</h2>
+										</th>
+										<th colspan='1' style='text-align: right'>
 											<?php
-											echo '&nbsp;';
-										}
-										echo "</th></tr>\n";
-										?>
+											if (count($themelist) > 1) {
+												echo gettext("Show theme for:");
+												echo '<select id="themealbum" name="themealbum" onchange="this.form.submit()">';
+												generateListFromArray(array(pathurlencode($alb)), $themelist, false, true);
+												echo '</select>';
+											} else {
+												?>
+												<input type="hidden" name="themealbum" value="<?php echo pathurlencode($alb); ?>" />
+												<?php
+												echo '&nbsp;';
+											}
+											echo "</th></tr>\n";
+											?>
 									<tr>
 										<td colspan="3">
 											<p class="buttons">
 												<button type="submit" value="<?php echo gettext('Apply') ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 												<button type="button" value="<?php echo gettext('Revert to default') ?>" onclick="$('#savethemeoptions').val('reset');
-														$('#themeoptionsform').submit();"><img src="images/refresh.png" alt="" /><strong><?php echo gettext("Revert to default"); ?></strong></button>
+																$('#themeoptionsform').submit();"><img src="images/refresh.png" alt="" /><strong><?php echo gettext("Revert to default"); ?></strong></button>
 												<button type="reset" value="<?php echo gettext('reset') ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
 											</p>
 										</td>
@@ -2822,7 +2825,7 @@ Zenphoto_Authority::printPasswordFormJS();
 											<p class="buttons">
 												<button type="submit" value="<?php echo gettext('Apply') ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 												<button type="button" value="<?php echo gettext('Revert to default') ?>" onclick="$('#savethemeoptions').val('reset');
-														$('#themeoptionsform').submit();"><img src="images/refresh.png" alt="" /><strong><?php echo gettext("Revert to default"); ?></strong></button>
+																$('#themeoptionsform').submit();"><img src="images/refresh.png" alt="" /><strong><?php echo gettext("Revert to default"); ?></strong></button>
 												<button type="reset" value="<?php echo gettext('reset') ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
 											</p>
 										</td>
