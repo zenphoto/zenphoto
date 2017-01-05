@@ -12611,7 +12611,7 @@ msgstr "Info"
 
 #: zenphoto-dev/zp-core/utilities/database_reference.php:15
 msgid "Database quick reference"
-msgstr "Datenbank-Schellreferenz"
+msgstr "Datenbank-Schnellreferenz"
 
 #: zenphoto-dev/zp-core/utilities/database_reference.php:19
 msgid "Shows all database table and field info for quick reference."
@@ -12625,7 +12625,7 @@ msgid ""
 "folder of your Zenphoto installation. For more detailed info about the "
 "database use tools like phpMyAdmin."
 msgstr ""
-"Die internen Bezüge der Tabellen können in dem PDF database reference, dass "
+"Die internen Bezüge der Tabellen können in dem PDF database reference, das "
 "im Downloadpaket unter /doc zu finden ist, nachgesehen werden. Für "
 "weitergehende Informaton über die Datenbank verwenden Sie bitte Werkzeuge "
 "wie PHPMyAdmin."
