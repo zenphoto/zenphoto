@@ -6536,8 +6536,9 @@ msgid ""
 "in the <em>Admin</em> section of the <em>Utility functions</em>. "
 msgstr ""
 "Die Installationsumgebung ist nicht sicher, Sie sollten die Skripte gegen "
-"Hacker schützen. Nutzen Sie den Butteon <strong>Setup » Skripte schützen</"
-"strong> auf der <em>Admin</em>-Sektion der <em>Werkzeuge</em>. "
+"Hacker schützen. Nutzen Sie den Button <strong>Installation » Skripte "
+"schützen</strong> auf der <em>Verwalten</em>-Sektion der <em>Hilfsfunktionen"
+"</em>. "
 
 #: zenphoto-dev/zp-core/admin.php:276
 msgid "Setup » protect scripts"
@@ -21308,7 +21309,7 @@ msgid ""
 "Change this box if you wish to style the theme switcher selector for your "
 "themes."
 msgstr ""
-"Wählen Sie dies auas, wenn Sie den Umschalter über Ihr Theme gestalten "
+"Wählen Sie dies aus, wenn Sie den Umschalter über Ihr Theme gestalten "
 "möchten."
 
 #: zenphoto-dev/zp-core/zp-extensions/themeSwitcher.php:76
@@ -21341,14 +21342,14 @@ msgstr "Theme-Liste"
 
 #: zenphoto-dev/zp-core/zp-extensions/themeSwitcher.php:83
 msgid "These are the themes that may be selected among."
-msgstr "Diese sind die Themse, die ausgewählt werden können."
+msgstr "Dies sind die Themes, die ausgewählt werden können."
 
 #: zenphoto-dev/zp-core/zp-extensions/themeSwitcher.php:165
 msgid ""
 "Themes will not show in this list if selecting them would result in a “not "
 "found” error."
 msgstr ""
-"Themse zeigen diese Liste nicht, wenn eine Auswahl einen „Nicht gefunden“-"
+"Themes zeigen diese Liste nicht, wenn eine Auswahl einen „Nicht gefunden“-"
 "Fehler auslösen würde."
 
 #: zenphoto-dev/zp-core/zp-extensions/tinyURL.php:17
