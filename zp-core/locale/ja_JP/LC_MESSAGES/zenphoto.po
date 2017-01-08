@@ -18,9 +18,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Zenphoto 1.4.12\n"
+"Project-Id-Version: Zenphoto 1.4.14\n"
 "Report-Msgid-Bugs-To: webmaster at momo-i.org\n"
-"POT-Creation-Date: 2016-03-31 14:28+0900\n"
+"POT-Creation-Date: 2017-01-08 23:38+0900\n"
 "PO-Revision-Date: 2009-08-12 08:30+0900\n"
 "Last-Translator: momo-i <webmaster at momo-i dot org>\n"
 "Language-Team: Japanese\n"
@@ -121,7 +121,7 @@ msgstr "ログの閲覧:"
 #: zp-core/admin-logs.php:144 zp-core/admin-themes.php:299
 #: zp-core/admin-edit.php:566 zp-core/admin-edit.php:579
 #: zp-core/admin-edit.php:583 zp-core/admin-functions.php:2050
-#: zp-core/setup/index.php:1073 zp-core/admin-albumsort.php:74
+#: zp-core/setup/index.php:1077 zp-core/admin-albumsort.php:74
 #: zp-core/zp-extensions/cacheManager.php:250
 #: zp-core/zp-extensions/menu_manager/menu_tab.php:182
 #: zp-core/zp-extensions/menu_manager/menu_tab.php:244
@@ -333,7 +333,7 @@ msgstr ""
 msgid "Make a new Album"
 msgstr "新規アルバムの作成"
 
-#: zp-core/admin-upload.php:285 zp-core/setup/index.php:1081
+#: zp-core/admin-upload.php:285 zp-core/setup/index.php:1085
 msgid "and"
 msgstr "と"
 
@@ -586,7 +586,7 @@ msgstr "ログアウト"
 #: zp-core/lib-auth.php:580 zp-core/admin-functions.php:3172
 #: zp-core/admin-functions.php:3294 zp-core/zp-extensions/related_items.php:152
 #: zp-core/zp-extensions/related_items.php:187
-#: zp-core/zp-extensions/zenpage.php:287
+#: zp-core/zp-extensions/zenpage.php:286
 #: zp-core/zp-extensions/html_meta_tags.php:248
 #: zp-core/zp-extensions/cacheManager.php:153
 #: zp-core/zp-extensions/defaultCodeblocks.php:36
@@ -594,8 +594,8 @@ msgstr "ログアウト"
 #: zp-core/zp-extensions/multiple_layouts.php:93
 #: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:885
 #: zp-core/zp-extensions/comment_form.php:82
-#: zp-core/zp-extensions/comment_form/functions.php:833
-#: zp-core/zp-extensions/comment_form/functions.php:840
+#: zp-core/zp-extensions/comment_form/functions.php:842
+#: zp-core/zp-extensions/comment_form/functions.php:849
 #: zp-core/zp-extensions/externalFeed.php:71 themes/zenpage/sidebar.php:93
 #: themes/effervescence_plus/themeoptions.php:85
 #: themes/effervescence_plus/sidebar.php:116 themes/zpmobile/functions.php:36
@@ -608,7 +608,7 @@ msgstr "ニュース"
 msgid "Object not found"
 msgstr "オブジェクトは見つかりませんでした"
 
-#: zp-core/template-functions.php:452 zp-core/functions.php:2586
+#: zp-core/template-functions.php:452 zp-core/functions.php:2644
 #: zp-core/zp-extensions/html_meta_tags.php:266
 #: themes/effervescence_plus/contact.php:42
 msgid "Contact"
@@ -621,8 +621,8 @@ msgstr "お問合せ"
 msgid "Register"
 msgstr "登録"
 
-#: zp-core/template-functions.php:452 zp-core/template-functions.php:1357
-#: zp-core/template-functions.php:1388 zp-core/template-functions.php:3902
+#: zp-core/template-functions.php:452 zp-core/template-functions.php:1358
+#: zp-core/template-functions.php:1389 zp-core/template-functions.php:3914
 #: zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:68
 #: zp-core/zp-extensions/html_meta_tags.php:266
 #: zp-core/zp-extensions/slideshow.php:749
@@ -657,7 +657,7 @@ msgstr "アーカイブ閲覧"
 msgid "My favorites"
 msgstr "お気に入り"
 
-#: zp-core/template-functions.php:572 zp-core/admin-options.php:2458
+#: zp-core/template-functions.php:573 zp-core/admin-options.php:2458
 #: zp-core/admin-options.php:2459 zp-core/admin-themes.php:101
 #: zp-core/admin-themes.php:102 zp-core/admin-edit.php:1590
 #: zp-core/lib-auth.php:520 zp-core/lib-auth.php:521 zp-core/lib-auth.php:522
@@ -689,7 +689,7 @@ msgstr "お気に入り"
 msgid "Gallery"
 msgstr "ギャラリー"
 
-#: zp-core/template-functions.php:612 zp-core/template-functions.php:1492
+#: zp-core/template-functions.php:613 zp-core/template-functions.php:1497
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:463
 #: zp-core/zp-extensions/menu_manager.php:826
 #: themes/effervescence_plus/slideshow.php:34
@@ -697,24 +697,24 @@ msgstr "ギャラリー"
 msgid "Home"
 msgstr "ホーム"
 
-#: zp-core/template-functions.php:914 zp-core/template-functions.php:1008
+#: zp-core/template-functions.php:915 zp-core/template-functions.php:1009
 #: zp-core/zp-extensions/menu_manager.php:611
 msgid "Previous Page"
 msgstr "前のページ"
 
-#: zp-core/template-functions.php:916 zp-core/template-functions.php:1114
+#: zp-core/template-functions.php:917 zp-core/template-functions.php:1115
 #: zp-core/zp-extensions/menu_manager.php:651
 msgid "Next Page"
 msgstr "次のページ"
 
-#: zp-core/template-functions.php:1031
+#: zp-core/template-functions.php:1032
 #: zp-core/zp-extensions/menu_manager.php:617
 msgid "Page 1"
 msgstr "ページ1"
 
-#: zp-core/template-functions.php:1046 zp-core/template-functions.php:1055
-#: zp-core/template-functions.php:1085 zp-core/template-functions.php:1092
-#: zp-core/template-functions.php:1102
+#: zp-core/template-functions.php:1047 zp-core/template-functions.php:1056
+#: zp-core/template-functions.php:1086 zp-core/template-functions.php:1093
+#: zp-core/template-functions.php:1103
 #: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1050
 #: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1066
 #: zp-core/zp-extensions/menu_manager.php:622
@@ -724,7 +724,7 @@ msgid "Page %u"
 msgid_plural "Page %u"
 msgstr[0] "ページ %u"
 
-#: zp-core/template-functions.php:1066
+#: zp-core/template-functions.php:1067
 #: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1059
 #: zp-core/zp-extensions/menu_manager.php:632
 #, php-format
@@ -732,52 +732,52 @@ msgid "Page %1$u"
 msgid_plural "Page %1$u"
 msgstr[0] "ページ %1$u"
 
-#: zp-core/template-functions.php:1176
+#: zp-core/template-functions.php:1177
 #: themes/effervescence_plus/functions.php:323
 msgid "The album is password protected."
 msgstr "アルバムはパスワードで保護されています。"
 
-#: zp-core/template-functions.php:1179
+#: zp-core/template-functions.php:1180
 msgid "The album is un-published."
 msgstr "アルバムは非公開です。"
 
-#: zp-core/template-functions.php:1288
+#: zp-core/template-functions.php:1289
 msgid "Album Thumbnails"
 msgstr "アルバムサムネイル"
 
-#: zp-core/template-functions.php:1340 zp-core/template-functions.php:1395
+#: zp-core/template-functions.php:1341 zp-core/template-functions.php:1396
 #: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:878
 #: themes/zenpage/sidebar.php:56 themes/effervescence_plus/themeoptions.php:77
 #: themes/effervescence_plus/sidebar.php:80 themes/zpmobile/functions.php:78
 msgid "Archive"
 msgstr "アーカイブ"
 
-#: zp-core/template-functions.php:1388
+#: zp-core/template-functions.php:1389
 msgid "Return to search"
 msgstr "検索へ戻る"
 
-#: zp-core/template-functions.php:1395
+#: zp-core/template-functions.php:1396
 msgid "Return to archive"
 msgstr "アーカイブへ戻る"
 
-#: zp-core/template-functions.php:2163
+#: zp-core/template-functions.php:2168
 msgid "The image is marked un-published."
 msgstr "画像は非公開にマークされていません。"
 
-#: zp-core/template-functions.php:2538
+#: zp-core/template-functions.php:2543
 msgid "Image Info"
 msgstr "画像情報"
 
-#: zp-core/template-functions.php:3394
+#: zp-core/template-functions.php:3406
 #, php-format
 msgid "View image: %s"
 msgstr "画像閲覧: %s"
 
-#: zp-core/template-functions.php:3589
+#: zp-core/template-functions.php:3601
 msgid "No popular tags"
 msgstr "人気のタグはありません"
 
-#: zp-core/template-functions.php:3897
+#: zp-core/template-functions.php:3909
 msgid ""
 "printSearchForm $album_list parameter is deprecated. Pass array(\"albums"
 "\"=>array(album, album, ...)) instead."
@@ -785,45 +785,45 @@ msgstr ""
 "printSearchForm $album_list パラメータは非推奨です。代わりにarray(\"albums"
 "\"=>array(album, album,...))を通してください。"
 
-#: zp-core/template-functions.php:3913
+#: zp-core/template-functions.php:3925
 #, php-format
 msgid "%s within previous results"
 msgstr "前の結果内にある%s"
 
-#: zp-core/template-functions.php:3994
+#: zp-core/template-functions.php:4006
 msgid "search options"
 msgstr "検索オプション"
 
-#: zp-core/template-functions.php:3994
+#: zp-core/template-functions.php:4006
 msgid "fields"
 msgstr "フィールド"
 
-#: zp-core/template-functions.php:4034
+#: zp-core/template-functions.php:4046
 msgid "Within"
 msgstr "含む"
 
-#: zp-core/template-functions.php:4038
+#: zp-core/template-functions.php:4050
 #: zp-core/zp-extensions/flag_thumbnail.php:91
 msgid "New"
 msgstr "新規"
 
-#: zp-core/template-functions.php:4045
+#: zp-core/template-functions.php:4057
 msgid "Check/uncheck all"
 msgstr "全てチェック/チェックを外す"
 
-#: zp-core/template-functions.php:4097
+#: zp-core/template-functions.php:4109
 msgid "no date"
 msgstr "日付なし"
 
-#: zp-core/template-functions.php:4330
+#: zp-core/template-functions.php:4342
 msgid "The page you are trying to view is password protected."
 msgstr "閲覧しようとしているページはパスワードで保護されています。"
 
-#: zp-core/template-functions.php:4335
+#: zp-core/template-functions.php:4347
 msgid "login"
 msgstr "ログイン"
 
-#: zp-core/template-functions.php:4352
+#: zp-core/template-functions.php:4364
 msgid ""
 "Powered by <a href=\"http://www.zenphoto.org\" title=\"A simpler web album"
 "\"><span id=\"zen-part\">zen</span><span id=\"photo-part\">PHOTO</span></a>"
@@ -831,22 +831,22 @@ msgstr ""
 "Powered by <a href=\"http://www.zenphoto.org\" title=\"A simpler web album"
 "\"><span id=\"zen-part\">zen</span><span id=\"photo-part\">PHOTO</span></a>"
 
-#: zp-core/template-functions.php:4516
+#: zp-core/template-functions.php:4528
 msgid "Zenphoto Error:</strong> the requested object was not found."
 msgstr ""
 "Zenphoto エラー:</strong> 要求されたオブジェクトは見つかりませんでした。"
 
-#: zp-core/template-functions.php:4518
+#: zp-core/template-functions.php:4530
 #, php-format
 msgid "Album: %s"
 msgstr "アルバム: %s"
 
-#: zp-core/template-functions.php:4521
+#: zp-core/template-functions.php:4533
 #, php-format
 msgid "Image: %s"
 msgstr "画像: %s"
 
-#: zp-core/template-functions.php:4524
+#: zp-core/template-functions.php:4536
 #, php-format
 msgid "Page: %s"
 msgstr "ページ: %s"
@@ -2474,14 +2474,14 @@ msgstr "メタデータ"
 #: zp-core/admin-users.php:482 zp-core/zp-extensions/contact_form.php:78
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:113
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:114
-#: zp-core/zp-extensions/GoogleMap.php:89
+#: zp-core/zp-extensions/GoogleMap.php:87
 msgid "show"
 msgstr "表示"
 
 #: zp-core/admin-options.php:2366
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:107
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:108
-#: zp-core/zp-extensions/GoogleMap.php:90
+#: zp-core/zp-extensions/GoogleMap.php:88
 msgid "hide"
 msgstr "非表示"
 
@@ -3541,7 +3541,7 @@ msgstr "手動フォーカス"
 msgid "Single"
 msgstr "シングル"
 
-#: zp-core/exif/makers/canon.php:127 zp-core/zp-extensions/GoogleMap.php:104
+#: zp-core/exif/makers/canon.php:127 zp-core/zp-extensions/GoogleMap.php:102
 msgid "Large"
 msgstr "ラージ"
 
@@ -3549,7 +3549,7 @@ msgstr "ラージ"
 msgid "Medium"
 msgstr "ミディアム"
 
-#: zp-core/exif/makers/canon.php:129 zp-core/zp-extensions/GoogleMap.php:102
+#: zp-core/exif/makers/canon.php:129 zp-core/zp-extensions/GoogleMap.php:100
 msgid "Small"
 msgstr "スモール"
 
@@ -3587,7 +3587,7 @@ msgstr "パンフォーカス"
 
 #: zp-core/exif/makers/canon.php:151 zp-core/exif/makers/nikon.php:221
 #: zp-core/zp-extensions/user_login-out.php:36
-#: zp-core/zp-extensions/GoogleMap.php:95 themes/garland/themeoptions.php:92
+#: zp-core/zp-extensions/GoogleMap.php:93 themes/garland/themeoptions.php:92
 #: themes/effervescence_plus/themeoptions.php:125
 msgid "None"
 msgstr "無し"
@@ -3684,7 +3684,7 @@ msgstr "自動-DEP"
 msgid "Flash Did Not Fire"
 msgstr "FlashはFireしません"
 
-#: zp-core/exif/makers/canon.php:236 zp-core/functions.php:2595
+#: zp-core/exif/makers/canon.php:236 zp-core/functions.php:2653
 msgid "Flash Fired"
 msgstr "フラッシュ発光"
 
@@ -4527,7 +4527,7 @@ msgstr "<em>デバッグ Build</em>"
 msgid "Official build"
 msgstr "公式ビルド"
 
-#: zp-core/admin.php:324 zp-core/setup/index.php:399
+#: zp-core/admin.php:324 zp-core/setup/index.php:403
 #: zp-core/functions-basic.php:1228
 #: zp-core/zp-extensions/security-logger.php:132
 msgid "clone"
@@ -5730,7 +5730,7 @@ msgstr ""
 #: zp-core/utilities/gallery_statistics.php:80
 #: zp-core/utilities/gallery_statistics.php:592
 #: zp-core/zp-extensions/related_items.php:152
-#: zp-core/zp-extensions/zenpage.php:290
+#: zp-core/zp-extensions/zenpage.php:289
 #: zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:124
 #: zp-core/zp-extensions/cacheManager.php:154
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage-functions.php:484
@@ -6028,7 +6028,7 @@ msgid "Submit"
 msgstr "送信"
 
 #: zp-core/lib-auth.php:945 zp-core/admin-refresh-metadata.php:130
-#: zp-core/setup/index.php:1605
+#: zp-core/setup/index.php:1610
 #: zp-core/zp-extensions/cacheManager/cacheDBImages.php:155
 #: zp-core/zp-extensions/cacheManager/cacheImages.php:374
 msgid "Refresh"
@@ -6163,7 +6163,7 @@ msgstr "管理者"
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:39
 #: zp-core/zp-extensions/slideshow.php:595
 #: zp-core/zp-extensions/user_login-out.php:152
-#: zp-core/zp-extensions/GoogleMap.php:505
+#: zp-core/zp-extensions/GoogleMap.php:504
 #: zp-core/zp-extensions/slideshow2.php:597 themes/zenpage/image.php:21
 #: themes/zenpage/image.php:27 themes/basic/image.php:22
 #: themes/basic/image.php:28 themes/garland/image.php:19
@@ -6658,17 +6658,17 @@ msgstr "「%s」クロスサイトリクエストフォージェリをブロッ�
 #: zp-core/zp-extensions/comment_form/functions.php:30
 #: zp-core/zp-extensions/slideshow2.php:269
 #: zp-core/zp-extensions/slideshow2.php:595 themes/zenpage/favorites.php:40
-#: themes/zenpage/favorites.php:72 themes/zenpage/image.php:43
+#: themes/zenpage/favorites.php:72 themes/zenpage/image.php:46
 #: themes/zenpage/gallery.php:41 themes/zenpage/gallery.php:57
 #: themes/zenpage/search.php:173 themes/zenpage/album.php:40
 #: themes/zenpage/album.php:73 themes/basic/favorites.php:69
-#: themes/basic/image.php:44 themes/basic/index.php:49
+#: themes/basic/image.php:47 themes/basic/index.php:49
 #: themes/basic/search.php:86 themes/basic/album.php:64
 #: themes/effervescence_plus/favorites.php:30
 #: themes/effervescence_plus/favorites.php:33
 #: themes/effervescence_plus/favorites.php:196
-#: themes/effervescence_plus/image.php:59
-#: themes/effervescence_plus/image.php:61
+#: themes/effervescence_plus/image.php:62
+#: themes/effervescence_plus/image.php:64
 #: themes/effervescence_plus/gallery.php:84
 #: themes/effervescence_plus/search.php:293
 #: themes/effervescence_plus/album.php:32
@@ -6686,17 +6686,17 @@ msgstr "前へ"
 #: zp-core/zp-extensions/jplayer.php:476
 #: zp-core/zp-extensions/slideshow2.php:273
 #: zp-core/zp-extensions/slideshow2.php:596 themes/zenpage/favorites.php:40
-#: themes/zenpage/favorites.php:72 themes/zenpage/image.php:45
+#: themes/zenpage/favorites.php:72 themes/zenpage/image.php:48
 #: themes/zenpage/gallery.php:41 themes/zenpage/gallery.php:57
 #: themes/zenpage/search.php:173 themes/zenpage/album.php:40
 #: themes/zenpage/album.php:73 themes/basic/favorites.php:69
-#: themes/basic/image.php:48 themes/basic/index.php:49
+#: themes/basic/image.php:51 themes/basic/index.php:49
 #: themes/basic/search.php:86 themes/basic/album.php:64
 #: themes/effervescence_plus/favorites.php:41
 #: themes/effervescence_plus/favorites.php:44
 #: themes/effervescence_plus/favorites.php:196
-#: themes/effervescence_plus/image.php:69
-#: themes/effervescence_plus/image.php:71
+#: themes/effervescence_plus/image.php:72
+#: themes/effervescence_plus/image.php:74
 #: themes/effervescence_plus/gallery.php:84
 #: themes/effervescence_plus/search.php:293
 #: themes/effervescence_plus/album.php:43
@@ -7083,231 +7083,183 @@ msgstr "キャッシュ画像: 作成に失敗しました: %s"
 msgid "cacheImage(%1$s) exception: %2$s"
 msgstr "キャッシュ画像(%1$s) 期限: %2$s"
 
-#: zp-core/lib-utf8.php:49
-msgid "Arabic"
-msgstr "アラビア語"
-
 #: zp-core/lib-utf8.php:50
 msgid "Chinese Traditional"
 msgstr "繁体字"
 
 #: zp-core/lib-utf8.php:51
-msgid "IBM EBCDIC (Turkish Latin-5)"
-msgstr "IBM EBDIC(トルコ Latin-5)"
-
-#: zp-core/lib-utf8.php:52
-msgid "Cyrillic (DOS)"
-msgstr "キリル文字(DOS)"
-
-#: zp-core/lib-utf8.php:53
-msgid "IBM EBCDIC (Multilingual Latin-2)"
-msgstr "IBM EBCDIC(Multilingual Latin-2)"
-
-#: zp-core/lib-utf8.php:54
-msgid "Japanese (JIS-Allow 1 byte Kana)"
-msgstr "日本語(JIS-Allow 1 byte Kana)"
-
-#: zp-core/lib-utf8.php:55
-msgid "Arabic (DOS)"
-msgstr "アラビア語(DOS)"
-
-#: zp-core/lib-utf8.php:56
-msgid "Hebrew (DOS)"
-msgstr "ヘブライ語(DOS)"
-
-#: zp-core/lib-utf8.php:57
-msgid "IBM EBCDIC (US-Canada)"
-msgstr "IBM EBCDIC(アメリカ-カナダ)"
-
-#: zp-core/lib-utf8.php:58
 msgid "Chinese Simplified (EUC)"
 msgstr "簡体字(EUC)"
 
-#: zp-core/lib-utf8.php:59
+#: zp-core/lib-utf8.php:52
 msgid "Japanese (EUC)"
 msgstr "日本語(EUC)"
 
-#: zp-core/lib-utf8.php:60
+#: zp-core/lib-utf8.php:53
 msgid "Korean (EUC)"
 msgstr "韓国語(EUC)"
 
-#: zp-core/lib-utf8.php:61
-msgid "Chinese Simplified (GB2312)"
-msgstr "簡体字(GB2312)"
+#: zp-core/lib-utf8.php:54
+msgid "Chinese (PRC new)"
+msgstr "中国語(RPC new)"
 
-#: zp-core/lib-utf8.php:62
-msgid "Chinese Simplified (HZ)"
-msgstr "簡体字(HZ)"
+#: zp-core/lib-utf8.php:55
+msgid "Chinese (PRC old)"
+msgstr "中国語(RPC old)"
 
-#: zp-core/lib-utf8.php:63
+#: zp-core/lib-utf8.php:56
+msgid "Chinese (PRC simplified)"
+msgstr "中国語(PRC 簡体字)"
+
+#: zp-core/lib-utf8.php:57
 msgid "OEM United States"
 msgstr "OEM アメリカ合衆国"
 
-#: zp-core/lib-utf8.php:64
-msgid "Greek (DOS)"
-msgstr "ギリシャ語(DOS)"
-
-#: zp-core/lib-utf8.php:65
+#: zp-core/lib-utf8.php:58
 msgid "Baltic (DOS)"
 msgstr "バルト(DOS)"
 
-#: zp-core/lib-utf8.php:66
+#: zp-core/lib-utf8.php:59
 msgid "Western European (DOS)"
 msgstr "西ヨーロッパ(DOS)"
 
-#: zp-core/lib-utf8.php:67
+#: zp-core/lib-utf8.php:60
 msgid "Central European (DOS)"
 msgstr "中央ヨーロッパ(DOS)"
 
-#: zp-core/lib-utf8.php:68
+#: zp-core/lib-utf8.php:61
 msgid "Turkish (DOS)"
 msgstr "トルコ語(DOS)"
 
-#: zp-core/lib-utf8.php:69
+#: zp-core/lib-utf8.php:62
 msgid "Icelandic (DOS)"
 msgstr "アイスランド語(DOS)"
 
-#: zp-core/lib-utf8.php:70
+#: zp-core/lib-utf8.php:63
 msgid "Greek, Modern (DOS)"
 msgstr "ギリシャ語、現代(DOS)"
 
-#: zp-core/lib-utf8.php:71
+#: zp-core/lib-utf8.php:64
 msgid "Japanese (JIS)"
 msgstr "日本語(JIS)"
 
-#: zp-core/lib-utf8.php:72
-msgid "Japanese (JIS-Allow 1 byte Kana - SO/SI)"
-msgstr "日本語 (JIS-Allow 1 byte Kana - SO/SI)"
-
-#: zp-core/lib-utf8.php:73
-msgid "Korean (ISO)"
-msgstr "韓国語(ISO)"
-
-#: zp-core/lib-utf8.php:74
+#: zp-core/lib-utf8.php:65
 msgid "Western European (ISO)"
 msgstr "西ヨーロッパ(ISO)"
+
+#: zp-core/lib-utf8.php:66
+msgid "Central European (ISO)"
+msgstr "中央ヨーロッパ(ISO)"
+
+#: zp-core/lib-utf8.php:67
+msgid "Latin 3 (ISO)"
+msgstr "Latin 3 (ISO)"
+
+#: zp-core/lib-utf8.php:68
+msgid "Cyrillic (ISO)"
+msgstr "キリル文字(ISO)"
+
+#: zp-core/lib-utf8.php:69
+msgid "Arabic (ISO)"
+msgstr "アラビア語(ISO)"
+
+#: zp-core/lib-utf8.php:70
+msgid "Greek (ISO)"
+msgstr "ギリシャ語(ISO)"
+
+#: zp-core/lib-utf8.php:71
+msgid "Hebrew (ISO-Visual)"
+msgstr "ヘブライ語(ISO-Visual)"
+
+#: zp-core/lib-utf8.php:72
+msgid "Turkish (ISO)"
+msgstr "トルコ語(ISO)"
+
+#: zp-core/lib-utf8.php:73
+msgid "Baltic (ISO)"
+msgstr "バルト語(ISO)"
+
+#: zp-core/lib-utf8.php:74
+msgid "Celtic (ISO)"
+msgstr "ケルト語(ISO)"
 
 #: zp-core/lib-utf8.php:75
 msgid "Latin 9 (ISO)"
 msgstr "Latin 9 (ISO)"
 
 #: zp-core/lib-utf8.php:76
-msgid "Central European (ISO)"
-msgstr "中央ヨーロッパ(ISO)"
+msgid "South European (ISO)"
+msgstr "南ヨーロッパ(ISO)"
 
 #: zp-core/lib-utf8.php:77
-msgid "Latin 3 (ISO)"
-msgstr "Latin 3 (ISO)"
-
-#: zp-core/lib-utf8.php:78
-msgid "Baltic (ISO)"
-msgstr "バルト語(ISO)"
-
-#: zp-core/lib-utf8.php:79
-msgid "Cyrillic (ISO)"
-msgstr "キリル文字(ISO)"
-
-#: zp-core/lib-utf8.php:80
-msgid "Arabic (ISO)"
-msgstr "アラビア語(ISO)"
-
-#: zp-core/lib-utf8.php:81
-msgid "Greek (ISO)"
-msgstr "ギリシャ語(ISO)"
-
-#: zp-core/lib-utf8.php:82
-msgid "Hebrew (ISO-Visual)"
-msgstr "ヘブライ語(ISO-Visual)"
-
-#: zp-core/lib-utf8.php:83
-msgid "Hebrew (ISO-Logical)"
-msgstr "ヘブライ語(ISO-Logical)"
-
-#: zp-core/lib-utf8.php:84
-msgid "Turkish (ISO)"
-msgstr "トルコ語(ISO)"
-
-#: zp-core/lib-utf8.php:85
-msgid "Korean (Johab)"
-msgstr "韓国語(チョハブ)"
-
-#: zp-core/lib-utf8.php:86
 msgid "Cyrillic (KOI8-R)"
 msgstr "キリル文字(KOI8-R)"
 
-#: zp-core/lib-utf8.php:87
+#: zp-core/lib-utf8.php:78
 msgid "Cyrillic (KOI8-U)"
 msgstr "キリル文字(KOI8-U)"
 
-#: zp-core/lib-utf8.php:88 zp-core/functions-i18n.php:78
-msgid "Korean"
-msgstr "韓国語"
-
-#: zp-core/lib-utf8.php:89
-msgid "Western European (MAC)"
-msgstr "西ヨーロッパ(MAC)"
-
-#: zp-core/lib-utf8.php:90
+#: zp-core/lib-utf8.php:79
 msgid "Japanese (Shift-JIS)"
 msgstr "日本語(Shift-JIS)"
 
-#: zp-core/lib-utf8.php:91
-msgid "Unicode"
-msgstr "ユニコード"
+#: zp-core/lib-utf8.php:80 zp-core/functions-i18n.php:125
+msgid "Thai"
+msgstr "タイ語"
 
-#: zp-core/lib-utf8.php:92
-msgid "Unicode (Big-Endian)"
-msgstr "ユニコード(ビッグエンディアン)"
-
-#: zp-core/lib-utf8.php:93
+#: zp-core/lib-utf8.php:81
 msgid "US-ASCII"
 msgstr "US-ASCII"
 
-#: zp-core/lib-utf8.php:94
+#: zp-core/lib-utf8.php:82
 msgid "Unicode (UTF-7)"
 msgstr "ユニコード(UTF-7)"
 
-#: zp-core/lib-utf8.php:95
+#: zp-core/lib-utf8.php:83
 msgid "Unicode (UTF-8)"
 msgstr "ユニコード(UTF-8)"
 
-#: zp-core/lib-utf8.php:96
+#: zp-core/lib-utf8.php:84
+msgid "Unicode (UTF-16)"
+msgstr "ユニコード(UTF-16)"
+
+#: zp-core/lib-utf8.php:85
 msgid "Central European (Windows)"
 msgstr "中央ヨーロッパ(Windows)"
 
-#: zp-core/lib-utf8.php:97
+#: zp-core/lib-utf8.php:86
 msgid "Cyrillic (Windows)"
 msgstr "キリル文字(Windows)"
 
-#: zp-core/lib-utf8.php:98
+#: zp-core/lib-utf8.php:87
 msgid "Western European (Windows)"
 msgstr "西ヨーロッパ(Windows)"
 
-#: zp-core/lib-utf8.php:99
+#: zp-core/lib-utf8.php:88
 msgid "Greek (Windows)"
 msgstr "ギリシャ語(Windows)"
 
-#: zp-core/lib-utf8.php:100
+#: zp-core/lib-utf8.php:89
 msgid "Turkish (Windows)"
 msgstr "トルコ語(Windows)"
 
-#: zp-core/lib-utf8.php:101
+#: zp-core/lib-utf8.php:90
 msgid "Hebrew (Windows)"
 msgstr "ヘブライ語(Windows)"
 
-#: zp-core/lib-utf8.php:102
+#: zp-core/lib-utf8.php:91
 msgid "Arabic (Windows)"
 msgstr "アラビア語(Windows)"
 
-#: zp-core/lib-utf8.php:103
+#: zp-core/lib-utf8.php:92
 msgid "Baltic (Windows)"
 msgstr "バルト語(Windows)"
 
-#: zp-core/lib-utf8.php:104
+#: zp-core/lib-utf8.php:93
 msgid "Vietnamese (Windows)"
 msgstr "ベトナム語(Windows)"
 
-#: zp-core/lib-utf8.php:105
+#: zp-core/lib-utf8.php:94
 msgid "Thai (Windows)"
 msgstr "タイ語(Windows)"
 
@@ -7501,7 +7453,7 @@ msgid "Error!"
 msgstr "エラー！"
 
 #: zp-core/setup/setup-functions.php:123 zp-core/setup/setup-functions.php:138
-#: zp-core/setup/index.php:943
+#: zp-core/setup/index.php:947
 msgid "Warning!"
 msgstr "警告！"
 
@@ -7686,7 +7638,7 @@ msgstr "中程度"
 msgid "loose"
 msgstr "厳密でない"
 
-#: zp-core/setup/index.php:282
+#: zp-core/setup/index.php:286
 msgid ""
 "A corrupt configuration file was detected. You should remove or repair the "
 "file and re-run setup."
@@ -7694,82 +7646,82 @@ msgstr ""
 "壊れた設定ファイルを検出しました。ファイルを削除または修復してセットアップを"
 "再実行してください。"
 
-#: zp-core/setup/index.php:309
+#: zp-core/setup/index.php:313
 msgid "upgrade"
 msgstr "アップグレード"
 
-#: zp-core/setup/index.php:373
+#: zp-core/setup/index.php:377
 msgid "Completed system check"
 msgstr "システムチェック完了"
 
-#: zp-core/setup/index.php:380
+#: zp-core/setup/index.php:384
 msgid "Setup cookie test successful"
 msgstr "Cookieテストのセットアップに成功しました"
 
-#: zp-core/setup/index.php:383
+#: zp-core/setup/index.php:387
 msgid "Setup cookie test unsuccessful"
 msgstr "Cookieテストのセットアップに失敗しました"
 
-#: zp-core/setup/index.php:388
+#: zp-core/setup/index.php:392
 msgid "Post of Database credentials"
 msgstr "データベース証明のPOST"
 
-#: zp-core/setup/index.php:401
+#: zp-core/setup/index.php:405
 #, php-format
 msgid "Zenphoto Setup v%1$s[%2$s]%3$s: %4$s"
 msgstr "Zenphotoセットアップ v%1$s[%2$s]%3$s: %4$s"
 
-#: zp-core/setup/index.php:404
+#: zp-core/setup/index.php:408
 msgid "Full environment"
 msgstr "完全な環境"
 
-#: zp-core/setup/index.php:406
+#: zp-core/setup/index.php:410
 msgid "Primitive environment"
 msgstr "基本の環境"
 
-#: zp-core/setup/index.php:408
+#: zp-core/setup/index.php:412
 #, php-format
 msgid "Query error: %s"
 msgstr "クエリエラー: %s"
 
-#: zp-core/setup/index.php:422
+#: zp-core/setup/index.php:426
 msgid "create"
 msgstr "作成"
 
-#: zp-core/setup/index.php:422
+#: zp-core/setup/index.php:426
 msgid "update"
 msgstr "更新"
 
-#: zp-core/setup/index.php:439
+#: zp-core/setup/index.php:443
 msgid "Upgrade from before Zenphoto v1.2"
 msgstr "Zenphoto v1.2以前からアップグレード"
 
-#: zp-core/setup/index.php:450 zp-core/setup/index.php:467
+#: zp-core/setup/index.php:454 zp-core/setup/index.php:471
 #, php-format
 msgid "Upgrade from Zenphoto v%s"
 msgstr "Zenphoto v%sからアップグレード"
 
-#: zp-core/setup/index.php:455 zp-core/setup/index.php:483
+#: zp-core/setup/index.php:459 zp-core/setup/index.php:487
 msgid "Reinstalling current Zenphoto release"
 msgstr "現在のZenphotoリリースを再インストール中"
 
-#: zp-core/setup/index.php:456 zp-core/setup/index.php:484
+#: zp-core/setup/index.php:460 zp-core/setup/index.php:488
 msgid "reinstall"
 msgstr "再インストール"
 
-#: zp-core/setup/index.php:495
+#: zp-core/setup/index.php:499
 msgid "install"
 msgstr "インストール"
 
-#: zp-core/setup/index.php:518
+#: zp-core/setup/index.php:522
 msgid "Zenphoto Setup"
 msgstr "Zenphoto セットアップ"
 
-#: zp-core/setup/index.php:519
+#: zp-core/setup/index.php:523
 msgid "Setup"
 msgstr "セットアップ"
 
-#: zp-core/setup/index.php:543
+#: zp-core/setup/index.php:547
 #, php-format
 msgid ""
 "Welcome to Zenphoto! This page will set up Zenphoto %s on your web server."
@@ -7777,11 +7729,11 @@ msgstr ""
 "Zenphotoへようこそ！このページはあなたのウェブサーバにZenpotho %sをセットアッ"
 "プします。"
 
-#: zp-core/setup/index.php:545
+#: zp-core/setup/index.php:549
 msgid "Systems Check:"
 msgstr "システムチェック:"
 
-#: zp-core/setup/index.php:560
+#: zp-core/setup/index.php:564
 msgid ""
 "<strong>Note:</strong> The release you are installing has debugging settings "
 "enabled!"
@@ -7789,13 +7741,13 @@ msgstr ""
 "<strong>注:</strong> あなたのインストールしたリリースはデバッグ設定が有効で"
 "す！"
 
-#: zp-core/setup/index.php:567
+#: zp-core/setup/index.php:571
 #, php-format
 msgid "[%u release skipped]"
 msgid_plural "[%u releases skipped]"
 msgstr[0] "【%uのリリースをスキップしました】"
 
-#: zp-core/setup/index.php:567
+#: zp-core/setup/index.php:571
 msgid ""
 "We do not test upgrades that skip releases. We recommend you upgrade in "
 "sequence."
@@ -7803,22 +7755,22 @@ msgstr ""
 "リリースをスキップしたアップグレードをテストしていません。あなたの順序でアッ"
 "プグレードすることをお勧めします。"
 
-#: zp-core/setup/index.php:573
+#: zp-core/setup/index.php:577
 #, php-format
 msgid "Installing Zenphoto v%s"
 msgstr "Zenphoto v%s をインストールします"
 
-#: zp-core/setup/index.php:586
+#: zp-core/setup/index.php:590
 #, php-format
 msgid "<em>%s</em> security"
 msgstr "<em>%s</em> セキュリティ"
 
-#: zp-core/setup/index.php:586
+#: zp-core/setup/index.php:590
 #, php-format
 msgid "<em>%s</em> security [is compromised]"
 msgstr "<em>%s</em>セキュリティ 【危険(is compromised)】"
 
-#: zp-core/setup/index.php:586
+#: zp-core/setup/index.php:590
 #, php-format
 msgid ""
 "Zenphoto suggests you make the sensitive files in the %1$s folder accessable "
@@ -7829,12 +7781,12 @@ msgstr ""
 "ダーの機密ファイルを作成することをおすすめします。<em>%2$s</em>のファイルの"
 "パーミッションは未承認アクセスを許可できる%3$04oである必要があります。"
 
-#: zp-core/setup/index.php:589
+#: zp-core/setup/index.php:593
 #, php-format
 msgid "PHP version %s"
 msgstr "PHPバージョン %s"
 
-#: zp-core/setup/index.php:589
+#: zp-core/setup/index.php:593
 #, php-format
 msgid ""
 "PHP Version %1$s or greater is required. Version %2$s or greater is strongly "
@@ -7843,27 +7795,27 @@ msgstr ""
 "PHPバージョン%1$s以上が必須です。バージョン%2$s以上を強く推奨します。それ以下"
 "のバージョンについては自己責任で使用してください。"
 
-#: zp-core/setup/index.php:592
+#: zp-core/setup/index.php:596
 msgid "PHP <code>Sessions</code>."
 msgstr "PHP<code>セッション</code>"
 
-#: zp-core/setup/index.php:592 zp-core/setup/index.php:594
+#: zp-core/setup/index.php:596 zp-core/setup/index.php:598
 msgid "PHP <code>Sessions</code> [appear to not be working]."
 msgstr "PHP <code>セッション</code> 【動作していないように見えます。】"
 
-#: zp-core/setup/index.php:594
+#: zp-core/setup/index.php:598
 msgid "PHP Sessions are required for Zenphoto administrative functions."
 msgstr "PHPセッションはZenphotoの管理機能に必須です。"
 
-#: zp-core/setup/index.php:609
+#: zp-core/setup/index.php:613
 msgid "PHP <code>Register Globals</code>"
 msgstr "PHP <code>Register Globals</code>"
 
-#: zp-core/setup/index.php:609
+#: zp-core/setup/index.php:613
 msgid "PHP <code>Register Globals</code> [is set]"
 msgstr "PHP <code>Register Globals</code> 【セット】"
 
-#: zp-core/setup/index.php:609
+#: zp-core/setup/index.php:613
 msgid ""
 "PHP Register globals presents a security risk to any PHP application. See <a "
 "href=\"http://php.net/manual/en/security.globals.php\"><em>Using Register "
@@ -7875,15 +7827,15 @@ msgstr ""
 "バル変数の登録機能の使用法</em></a>を御覧ください。php.iniの設定を"
 "<code>register_globals = off</code>に変更してください。"
 
-#: zp-core/setup/index.php:616
+#: zp-core/setup/index.php:620
 msgid "PHP <code>Safe Mode</code>"
 msgstr "PHP<code>セーフモード</code>"
 
-#: zp-core/setup/index.php:616
+#: zp-core/setup/index.php:620
 msgid "PHP <code>Safe Mode</code> [is set]"
 msgstr "PHP <code>セーフモード</code> 【セット】"
 
-#: zp-core/setup/index.php:616
+#: zp-core/setup/index.php:620
 msgid ""
 "Zenphoto functionality is reduced when PHP <code>safe mode</code> "
 "restrictions are in effect."
@@ -7891,11 +7843,11 @@ msgstr ""
 "PHPの<code>safe mode</code>の制限が有効である場合、Zenphotoの機能は縮小されま"
 "す。"
 
-#: zp-core/setup/index.php:634
+#: zp-core/setup/index.php:638
 msgid "<code>Suhosin</code> module [is enabled]"
 msgstr "<code>Suhosin</code> モジュール 【有効】"
 
-#: zp-core/setup/index.php:634
+#: zp-core/setup/index.php:638
 #, php-format
 msgid ""
 "The following PHP functions are blocked: %s. Flagged functions are required "
@@ -7906,19 +7858,19 @@ msgstr ""
 "なります。リスト内の他の関数はZenphotoで使用されるかもしれず、Zenphotoに不具"
 "合や機能縮小を引き起こす可能性があります。"
 
-#: zp-core/setup/index.php:638
+#: zp-core/setup/index.php:642
 msgid "Magic_quotes"
 msgstr "Magic_quotes"
 
-#: zp-core/setup/index.php:644
+#: zp-core/setup/index.php:648
 msgid "PHP <code>magic_quotes_gpc</code>"
 msgstr "PHP <code>magic_quotes_gpc</code>"
 
-#: zp-core/setup/index.php:644
+#: zp-core/setup/index.php:648
 msgid "PHP <code>magic_quotes_gpc</code> [is enabled]"
 msgstr "PHP <code>magic_quotes_gpc</code> 【有効】"
 
-#: zp-core/setup/index.php:644
+#: zp-core/setup/index.php:648
 msgid ""
 "We strongly recommend disabling <code>magic_quotes_gpc</code>. For more "
 "information See <em><a href=\"http://www.zenphoto.org/news/installation-"
@@ -7932,40 +7884,40 @@ msgstr ""
 "disabled\">What is magic_quotes_gpc and why should it be disabled?</a></em>を"
 "見てください。"
 
-#: zp-core/setup/index.php:650
+#: zp-core/setup/index.php:654
 msgid "PHP <code>magic_quotes_runtime</code>"
 msgstr "PHP <code>magic_quotes_runtime</code>"
 
-#: zp-core/setup/index.php:650
+#: zp-core/setup/index.php:654
 msgid "PHP <code>magic_quotes_runtime</code> [is enabled]"
 msgstr "PHP <code>magic_quotes_runtime</code> 【有効】"
 
-#: zp-core/setup/index.php:650
+#: zp-core/setup/index.php:654
 msgid "You must disable <code>magic_quotes_runtime</code>."
 msgstr "<code>magic_quotes_runtime</code>を無効にする必要があります。"
 
-#: zp-core/setup/index.php:651
+#: zp-core/setup/index.php:655
 msgid "PHP <code>magic_quotes_sybase</code>"
 msgstr "PHP <code>magic_quotes_sybase</code>"
 
-#: zp-core/setup/index.php:651
+#: zp-core/setup/index.php:655
 msgid "PHP <code>magic_quotes_sybase</code> [is enabled]"
 msgstr "PHP <code>magic_quotes_sybase</code> 【有効】"
 
-#: zp-core/setup/index.php:651
+#: zp-core/setup/index.php:655
 msgid "You must disable <code>magic_quotes_sybase</code>."
 msgstr "<code>magic_quotes_sybase</code>を無効にする必要があります。"
 
-#: zp-core/setup/index.php:673
+#: zp-core/setup/index.php:677
 msgid "PHP <code>display_errors</code>"
 msgstr "PHP <code>display_errors</code>"
 
-#: zp-core/setup/index.php:673
+#: zp-core/setup/index.php:677
 #, php-format
 msgid "PHP <code>display_errors</code> [is enabled]"
 msgstr "PHP <code>display_errors</code> 【有効】"
 
-#: zp-core/setup/index.php:673
+#: zp-core/setup/index.php:677
 msgid ""
 "This setting may result in PHP error messages being displayed on WEB pages. "
 "These displays may contain sensitive information about your site."
@@ -7973,29 +7925,29 @@ msgstr ""
 "この設定はウェブページ上に表示されるPHPエラーメッセージになるかもしれません。"
 "これらの表示はあなたのサイトについての機密情報が含まれるかもしれません。"
 
-#: zp-core/setup/index.php:675
+#: zp-core/setup/index.php:679
 msgid "PHP <code>gettext()</code> support"
 msgstr "PHP <code>gettext()</code>サポート"
 
-#: zp-core/setup/index.php:675
+#: zp-core/setup/index.php:679
 msgid "PHP <code>gettext()</code> support [is not present]"
 msgstr "PHP <code>gettext()</code>サポート 【未提供】"
 
-#: zp-core/setup/index.php:675
+#: zp-core/setup/index.php:679
 msgid ""
 "Localization of Zenphoto requires native PHP <code>gettext()</code> support"
 msgstr ""
 "Zenphotoの国際化はネイティブなPHPの<code>gettext()</code>サポートが必要です"
 
-#: zp-core/setup/index.php:676
+#: zp-core/setup/index.php:680
 msgid "PHP <code>flock</code> support"
 msgstr "PHP <code>flock</code> サポート"
 
-#: zp-core/setup/index.php:676
+#: zp-core/setup/index.php:680
 msgid "PHP <code>flock</code> support [is not present]"
 msgstr "PHP <code>flock</code> サポート 【未提供】"
 
-#: zp-core/setup/index.php:676
+#: zp-core/setup/index.php:680
 msgid ""
 "Zenpoto uses <code>flock</code> for serializing critical regions of code. "
 "Without <code>flock</code> active sites may experience <em>race conditions</"
@@ -8005,15 +7957,15 @@ msgstr ""
 "します。<code>flock</code>の無いアクティブなサイトはデータの不整合を引き起こ"
 "す可能性のある<em>競合状態</em>が発生するかもしれません。"
 
-#: zp-core/setup/index.php:678
+#: zp-core/setup/index.php:682
 msgid "PHP <code>setlocale()</code>"
 msgstr "PHP <code>setlocale()</code>"
 
-#: zp-core/setup/index.php:678
+#: zp-core/setup/index.php:682
 msgid "PHP <code>setlocale()</code> failed"
 msgstr "PHP <code>setlocale()</code>に失敗しました"
 
-#: zp-core/setup/index.php:678
+#: zp-core/setup/index.php:682
 msgid ""
 "Locale functionality is not implemented on your platform or the specified "
 "locale does not exist. Language translation may not work."
@@ -8021,7 +7973,7 @@ msgstr ""
 "Locale関数はあなたのプラットフォーム上で実行されないか、指定されたロケールは"
 "存在しません。言語翻訳は機能しません。"
 
-#: zp-core/setup/index.php:678
+#: zp-core/setup/index.php:682
 msgid ""
 "See the <a  href=\"http://www.zenphoto.org/news/problems-with-languages"
 "\">user guide</a> on zenphoto.org for details."
@@ -8029,11 +7981,11 @@ msgstr ""
 "詳細についてはzenphoto.orgの<a  href=\"http://www.zenphoto.org/news/problems-"
 "with-languages\">ユーザーガイド</a>を見てください。"
 
-#: zp-core/setup/index.php:680
+#: zp-core/setup/index.php:684
 msgid "mb_strings"
 msgstr "mb_strings"
 
-#: zp-core/setup/index.php:688
+#: zp-core/setup/index.php:692
 msgid ""
 "Setting <em>mbstring.internal_encoding</em> to <strong>UTF-8</strong> in "
 "your <em>php.ini</em> file is recommended to insure accented and multi-byte "
@@ -8043,11 +7995,11 @@ msgstr ""
 "<strong>UTF-8</strong>を設定することはマルチバイト文字列が適切に機能すること"
 "を保証するために推奨されます。"
 
-#: zp-core/setup/index.php:689
+#: zp-core/setup/index.php:693
 msgid "PHP <code>mbstring</code> package"
 msgstr "PHP <code>mbstring</code>パッケージ"
 
-#: zp-core/setup/index.php:689
+#: zp-core/setup/index.php:693
 #, php-format
 msgid ""
 "PHP <code>mbstring</code> package [Your internal character set is <strong>"
@@ -8056,7 +8008,7 @@ msgstr ""
 "PHP <code>mbstring</code>パッケージ 【あなたの内部文字セットは<strong>%s</"
 "strong>です】"
 
-#: zp-core/setup/index.php:693
+#: zp-core/setup/index.php:697
 msgid ""
 "You need to install the <code>mbstring</code> package or correct the issue "
 "with <code>iconv()</code>"
@@ -8064,37 +8016,37 @@ msgstr ""
 "<code>mbstring</code>パッケージをインストールするか、<code>iconv()</code>の問"
 "題を解決する必要があります。"
 
-#: zp-core/setup/index.php:694
+#: zp-core/setup/index.php:698
 msgid ""
 "PHP <code>mbstring</code> package [is not present and <code>iconv()</code> "
 "is not working]"
 msgstr ""
 "PHP <code>mbstring</code>パッケージ 【及び<code>iconv()</code>は未提供】"
 
-#: zp-core/setup/index.php:696
+#: zp-core/setup/index.php:700
 msgid ""
 "Strings generated internally by PHP may not display correctly. (e.g. dates)"
 msgstr ""
 "PHPで内部的に生成された文字列は正しく表示されないかもしれません(例 日付)"
 
-#: zp-core/setup/index.php:697
+#: zp-core/setup/index.php:701
 msgid "PHP <code>mbstring</code> package [is not present]"
 msgstr "PHP <code>mbstring</code>パッケージ 【未提供】"
 
-#: zp-core/setup/index.php:703
+#: zp-core/setup/index.php:707
 msgid "Graphics library"
 msgstr "グラフィックライブラリ"
 
-#: zp-core/setup/index.php:711
+#: zp-core/setup/index.php:715
 #, php-format
 msgid "Graphics support: <code>%s</code>"
 msgstr "グラフィックサポート: [<code>%s</code>]"
 
-#: zp-core/setup/index.php:711
+#: zp-core/setup/index.php:715
 msgid "Graphics support [is not installed]"
 msgstr "グラフィックサポート 【未インストール】"
 
-#: zp-core/setup/index.php:711
+#: zp-core/setup/index.php:715
 msgid ""
 "You need to install a graphics support library such as the <em>GD library</"
 "em> in your PHP"
@@ -8102,17 +8054,17 @@ msgstr ""
 "PHPに<em>GDライブラリ</em>のようなグラフィックサポートライブラリをインストー"
 "ルする必要があります"
 
-#: zp-core/setup/index.php:726
+#: zp-core/setup/index.php:730
 #, php-format
 msgid "Your PHP graphics library does not support %1$s or %2$s"
 msgstr "PHPグラフィックライブラリは%1$sまたは%2$sをサポートしません"
 
-#: zp-core/setup/index.php:728
+#: zp-core/setup/index.php:732
 #, php-format
 msgid "Your PHP graphics library does not support %1$s"
 msgstr "PHPのグラフィックライブラリは%1$sをサポートしません"
 
-#: zp-core/setup/index.php:731
+#: zp-core/setup/index.php:735
 msgid ""
 "To correct this you should install a graphics library with appropriate image "
 "support in your PHP"
@@ -8120,13 +8072,13 @@ msgstr ""
 "これを正しくするには、PHPに適切な画像サポートを持ったグラフィックライブラリを"
 "インストールする必要があります"
 
-#: zp-core/setup/index.php:733
+#: zp-core/setup/index.php:737
 #, php-format
 msgid "Your PHP graphics library does not support %1$s, %2$s, or %3$s"
 msgstr ""
 "PHPのグラフィックライブラリは%1$s、%2$s、または%3$sをサポートしていません"
 
-#: zp-core/setup/index.php:736
+#: zp-core/setup/index.php:740
 msgid ""
 "To correct this you need to install GD with appropriate image support in "
 "your PHP"
@@ -8134,28 +8086,28 @@ msgstr ""
 "これを正しくするには、PHPに適切な画像サポートを持ったGDをインストールする必要"
 "があります。"
 
-#: zp-core/setup/index.php:738
+#: zp-core/setup/index.php:742
 msgid "PHP graphics image support"
 msgstr "PHPのグラフィック画像サポート"
 
-#: zp-core/setup/index.php:739
+#: zp-core/setup/index.php:743
 msgid "The unsupported image types will not be viewable in your albums."
 msgstr "未サポートの画像タイプはアルバムで見ることは出来ません。"
 
-#: zp-core/setup/index.php:743
+#: zp-core/setup/index.php:747
 msgid "Graphics Library rotation support [is not present]"
 msgstr "グラフィックライブラリの回転サポート 【未提供】"
 
-#: zp-core/setup/index.php:743
+#: zp-core/setup/index.php:747
 msgid ""
 "The graphics support library does not provide support for image rotation."
 msgstr "グラフィックサポートライブラリは画像の回転をサポートしません。"
 
-#: zp-core/setup/index.php:751
+#: zp-core/setup/index.php:755
 msgid "Graphics support [configuration error]"
 msgstr "グラフィックサポート 【設定エラー】"
 
-#: zp-core/setup/index.php:751
+#: zp-core/setup/index.php:755
 msgid ""
 "No Zenphoto image handling library was loaded. Be sure that your PHP has a "
 "graphics support."
@@ -8163,17 +8115,17 @@ msgstr ""
 "Zenphotoの画像を扱うためのライブラリが読み込まれませんでした。PHPがグラフィッ"
 "クをサポートしていることを確実にしてください。"
 
-#: zp-core/setup/index.php:762
+#: zp-core/setup/index.php:766
 #, php-format
 msgid "<em>%1$s</em> file"
 msgstr "<em>%1$s</em> ファイル"
 
-#: zp-core/setup/index.php:762
+#: zp-core/setup/index.php:766
 #, php-format
 msgid "<em>%1$s</em> file [does not exist]"
 msgstr "<em>%1$s</em>ファイル 【存在しません】"
 
-#: zp-core/setup/index.php:762
+#: zp-core/setup/index.php:766
 #, php-format
 msgid ""
 "Setup was not able to create this file. You will need to copy the <code>%1$s/"
@@ -8184,31 +8136,31 @@ msgstr ""
 "うに<code>%1$s/zenconfig_cfg.txt</code>ファイルを<code>%2$s/%3$s</code>へコ"
 "ピーしてから編集する必要があります。"
 
-#: zp-core/setup/index.php:764
+#: zp-core/setup/index.php:768
 msgid "File permissions"
 msgstr "ファイルのパーミッション"
 
-#: zp-core/setup/index.php:766
+#: zp-core/setup/index.php:770
 #, php-format
 msgid "Set File permissions to %s."
 msgstr "%sへファイルのパーミッションを設定します。"
 
-#: zp-core/setup/index.php:769
+#: zp-core/setup/index.php:773
 #, php-format
 msgid "<em>%1$s</em> (<code>0%2$o</code>)"
 msgstr "<em>%1$s</em> (<code>0%2$o</code>)"
 
-#: zp-core/setup/index.php:771
+#: zp-core/setup/index.php:775
 #, php-format
 msgid "<em>unknown</em> (<code>%o</code>)"
 msgstr "<em>不明</em> (<code>%o</code>)"
 
-#: zp-core/setup/index.php:782
+#: zp-core/setup/index.php:786
 #, php-format
 msgid "File Permissions [are %s]"
 msgstr "ファイルのパーミッション 【%s】"
 
-#: zp-core/setup/index.php:783
+#: zp-core/setup/index.php:787
 msgid ""
 "If file permissions are not set to <em>strict</em> or tighter there could be "
 "a security risk. However, on some servers Zenphoto does not function "
@@ -8221,11 +8173,11 @@ msgstr ""
 "ミッションエラーがある場合、再セットアップ及び中以下のパーミッションを選択し"
 "てみてください。"
 
-#: zp-core/setup/index.php:789
+#: zp-core/setup/index.php:793
 msgid "Your filesystem is Macintosh"
 msgstr "あなたのファイルシステムはマッキントッシュです"
 
-#: zp-core/setup/index.php:789
+#: zp-core/setup/index.php:793
 msgid ""
 "Zenphoto is unable to deal with Macintosh file names containing diacritical "
 "marks. You should avoid these."
@@ -8233,11 +8185,11 @@ msgstr ""
 "Zenphotoは発音区別符を含むファイル名をマッキントッシュで扱うことが出来ませ"
 "ん。"
 
-#: zp-core/setup/index.php:796
+#: zp-core/setup/index.php:800
 msgid "Character set"
 msgstr "文字セット"
 
-#: zp-core/setup/index.php:837
+#: zp-core/setup/index.php:841
 #, php-format
 msgid ""
 "If your server filesystem character set is different from <code>%s</code> "
@@ -8248,33 +8200,33 @@ msgstr ""
 "クセント付きの文字を含んでいるアルバムや画像のファイル名を作成する場合、これ"
 "らのオブジェクトで問題があるかもしれません。"
 
-#: zp-core/setup/index.php:839
+#: zp-core/setup/index.php:843
 #, php-format
 msgid "Change the filesystem character set define to %1$s"
 msgstr "ファイルシステムの文字セット定義を%1$sに変更します"
 
-#: zp-core/setup/index.php:853
+#: zp-core/setup/index.php:857
 #, php-format
 msgid "The Zenphoto filesystem character define is %1$s [confirmed]"
 msgstr "ファイルシステムの文字セット定義は%1$sです【確認済】"
 
-#: zp-core/setup/index.php:858
+#: zp-core/setup/index.php:862
 msgid "The Zenphoto filesystem character define is ISO-8859-1 [assumed]"
 msgstr "Zenphotoのファイルシステムの文字セット定義はISO-8859-1【仮】です。"
 
-#: zp-core/setup/index.php:863
+#: zp-core/setup/index.php:867
 #, php-format
 msgid "The Zenphoto filesystem character define is %1$s [which seems wrong]"
 msgstr ""
 "Zenphotoのファイルシステムの文字セット定義は%1$sです。【これは正しくない可能"
 "性があります】"
 
-#: zp-core/setup/index.php:868
+#: zp-core/setup/index.php:872
 #, php-format
 msgid "The Zenphoto filesystem character define is %1$s [no test performed]"
 msgstr "ファイルシステムの文字セット定義は%sです【テストは実行されません】"
 
-#: zp-core/setup/index.php:869
+#: zp-core/setup/index.php:873
 #, php-format
 msgid ""
 "Setup did not perform a test of the filesystem character set. You can cause "
@@ -8285,31 +8237,31 @@ msgstr ""
 "ストを行うにはインストールフォルダ<strong><code>%2$s</code></strong>に<code>"
 "%1$s</code>と言う名のファイルを置いてセットアップを再実行します。"
 
-#: zp-core/setup/index.php:882
+#: zp-core/setup/index.php:886
 msgid "Image URIs appear require the <em>filesystem</em> character set."
 msgstr "画像URIの表示は<em>ファイルシステム</em>の文字セットが必要です。"
 
-#: zp-core/setup/index.php:883
+#: zp-core/setup/index.php:887
 msgid "Image URIs appear to require the UTF-8 character set."
 msgstr "画像URIの表示はUTF-8の文字セットが必要です。"
 
-#: zp-core/setup/index.php:904
+#: zp-core/setup/index.php:908
 msgid "You should enable the URL option <em>UTF8 image URIs</em>."
 msgstr "URLオプション<em>UTF8画像URI</em>を有効にすべきです。"
 
-#: zp-core/setup/index.php:904
+#: zp-core/setup/index.php:908
 msgid "<a href=\"javascript:uri(true)\">Please do</a>"
 msgstr "<a href=\"javascript:uri(true)\">実行してください</a>"
 
-#: zp-core/setup/index.php:921
+#: zp-core/setup/index.php:925
 msgid "You should disable the URL option <em>UTF8 image URIs</em>."
 msgstr "URLオプション<em>UTF8画像URI</em>を無効にすべきです。"
 
-#: zp-core/setup/index.php:921
+#: zp-core/setup/index.php:925
 msgid "<a href=\"javascript:uri(false)\">Please do</a>"
 msgstr "<a href=\"javascript:uri(false)\">実行してください</a>"
 
-#: zp-core/setup/index.php:954 zp-core/utilities/database_reference.php:33
+#: zp-core/setup/index.php:958 zp-core/utilities/database_reference.php:33
 #: zp-core/utilities/reset_albumthumbs.php:13
 #: zp-core/utilities/refresh_metadata.php:4
 #: zp-core/utilities/refresh_database.php:4
@@ -8318,12 +8270,12 @@ msgstr "<a href=\"javascript:uri(false)\">実行してください</a>"
 msgid "Database"
 msgstr "データベース"
 
-#: zp-core/setup/index.php:958
+#: zp-core/setup/index.php:962
 #, php-format
 msgid "PHP <code>%s</code> support for configured Database"
 msgstr "設定されたデータベース用のPHP <code>%s サポート</code>"
 
-#: zp-core/setup/index.php:963
+#: zp-core/setup/index.php:967
 #, php-format
 msgid ""
 " <code>%1$s</code> support (<a onclick=\"$('#%1$s').toggle('show')\" "
@@ -8332,26 +8284,26 @@ msgstr ""
 "PHP <code>%1$s</code>サポート (<a onclick=\"$('#%1$s').toggle('show')\" >実験"
 "的</a>)"
 
-#: zp-core/setup/index.php:972
+#: zp-core/setup/index.php:976
 #, php-format
 msgid "PHP <code>%s</code> support"
 msgstr "PHP <code>%s</code> サポート"
 
-#: zp-core/setup/index.php:978
+#: zp-core/setup/index.php:982
 #, php-format
 msgid "PHP <code>%s</code> support [is not installed]"
 msgstr "PHP <code>%s</code> サポート 【未インストール】"
 
-#: zp-core/setup/index.php:988
+#: zp-core/setup/index.php:992
 msgid "No database selected"
 msgstr "データベースが選択されていません"
 
-#: zp-core/setup/index.php:1000
+#: zp-core/setup/index.php:1004
 #, php-format
 msgid "%1$s version %2$s"
 msgstr "%1$sバージョン %2$s"
 
-#: zp-core/setup/index.php:1000
+#: zp-core/setup/index.php:1004
 #, php-format
 msgid ""
 "%1$s Version %2$s or greater is required. Version %3$s or greater is "
@@ -8360,20 +8312,20 @@ msgstr ""
 "%1$sバージョンは%2$s又はそれ以上が必須です。バージョン%3$sまたはそれ以上が参"
 "照されました。低いバージョンは自己責任で使用してください。"
 
-#: zp-core/setup/index.php:1002
+#: zp-core/setup/index.php:1006
 msgid "Database connection"
 msgstr "データベース接続"
 
-#: zp-core/setup/index.php:1008
+#: zp-core/setup/index.php:1012
 msgid "Database credentials in configuration file"
 msgstr "設定ファイルのデータベース資格情報"
 
-#: zp-core/setup/index.php:1008
+#: zp-core/setup/index.php:1012
 #, php-format
 msgid "<em>%1$s</em> reported: %2$s"
 msgstr "<em>%1$s</em> レポート: %2$s"
 
-#: zp-core/setup/index.php:1015
+#: zp-core/setup/index.php:1019
 msgid ""
 "You have not correctly set your <strong>Database</strong> <code>user</code>, "
 "<code>password</code>, etc. in your configuration file and <strong>setup</"
@@ -8383,31 +8335,31 @@ msgstr ""
 "その他が設定ファイルに正しく設定されておらず、<strong>setup</strong>はファイ"
 "ルへ書き込めませんでした。"
 
-#: zp-core/setup/index.php:1017
+#: zp-core/setup/index.php:1021
 msgid "Database setup in configuration file"
 msgstr "設定ファイルのデータベースセットアップ"
 
-#: zp-core/setup/index.php:1020
+#: zp-core/setup/index.php:1024
 #, php-format
 msgid "Connect to %s"
 msgstr "%sへ接続"
 
-#: zp-core/setup/index.php:1020
+#: zp-core/setup/index.php:1024
 msgid "Connect to Database [<code>CONNECT</code> query failed]"
 msgstr "データベースへの接続 【<code>CONNECT</code>クエリに失敗】"
 
-#: zp-core/setup/index.php:1027
+#: zp-core/setup/index.php:1031
 #, php-format
 msgid "Database <code>%s</code> created"
 msgstr "データベース<code>%s</code>を作成しました"
 
-#: zp-core/setup/index.php:1035
+#: zp-core/setup/index.php:1039
 #, php-format
 msgid "Click here to attempt to create <a href=\"?Create_Database\" >%s</a>."
 msgstr ""
 "<a href=\"?Create_Database\" >%s</a>を作成するにはここをクリックします。"
 
-#: zp-core/setup/index.php:1040
+#: zp-core/setup/index.php:1044
 #, php-format
 msgid ""
 "Database <code>%s</code> not created [<code>CREATE DATABASE</code> query "
@@ -8416,7 +8368,7 @@ msgstr ""
 "データベース<code>%s</code>は作成されませんでした 【<code>CREATE DATABASE</"
 "code>クエリに失敗】"
 
-#: zp-core/setup/index.php:1046
+#: zp-core/setup/index.php:1050
 msgid ""
 "You may need to set <code>SQL mode</code> <em>empty</em> in your Database "
 "configuration."
@@ -8424,103 +8376,103 @@ msgstr ""
 "データベース設定に、<code>SQLモード</code>を<em>空</em>に設定する必要がありま"
 "す。"
 
-#: zp-core/setup/index.php:1050
+#: zp-core/setup/index.php:1054
 #, php-format
 msgid "<code>SQL mode</code> [query failed]"
 msgstr "<code>SQLモード</code> 【クエリに失敗】"
 
-#: zp-core/setup/index.php:1053
+#: zp-core/setup/index.php:1057
 #, php-format
 msgid "<code>SQL mode</code> [<em>%s</em> overridden]"
 msgstr "<code>SQLモード</code> 【<em>%s</em>上書き】"
 
-#: zp-core/setup/index.php:1053
+#: zp-core/setup/index.php:1057
 msgid "Consider setting it <em>empty</em> in your Database configuration."
 msgstr "データベース設定に、それを<em>空</em>に設定してください。"
 
-#: zp-core/setup/index.php:1060
+#: zp-core/setup/index.php:1064
 msgid "<code>SQL mode</code>"
 msgstr "<code>SQLモード</code>"
 
-#: zp-core/setup/index.php:1060
+#: zp-core/setup/index.php:1064
 #, php-format
 msgid "<code>SQL mode</code> [is set to <em>%s</em>]"
 msgstr "<code>SQLモード</code> 【<em>%s</em>へ設定】"
 
-#: zp-core/setup/index.php:1060
+#: zp-core/setup/index.php:1064
 msgid "Consider setting it <em>empty</em> if you get Database errors."
 msgstr ""
 "データベースエラーが発生した場合、それを<em>空</em>に設定してください。"
 
-#: zp-core/setup/index.php:1064
+#: zp-core/setup/index.php:1068
 msgid "<code>SQL mode</code> [SET SESSION failed]"
 msgstr "<code>SQLモード</code> 【SET SESSIONに失敗】"
 
-#: zp-core/setup/index.php:1072
+#: zp-core/setup/index.php:1076
 msgid "Select"
 msgstr "選択"
 
-#: zp-core/setup/index.php:1072
+#: zp-core/setup/index.php:1076
 msgid "Create"
 msgstr "作成"
 
-#: zp-core/setup/index.php:1072
+#: zp-core/setup/index.php:1076
 msgid "Drop"
 msgstr "ドロップ"
 
-#: zp-core/setup/index.php:1072
+#: zp-core/setup/index.php:1076
 msgid "Insert"
 msgstr "挿入"
 
-#: zp-core/setup/index.php:1073
+#: zp-core/setup/index.php:1077
 msgid "Update"
 msgstr "更新"
 
-#: zp-core/setup/index.php:1073
+#: zp-core/setup/index.php:1077
 msgid "Alter"
 msgstr "Alter"
 
-#: zp-core/setup/index.php:1073 zp-core/404.php:56
+#: zp-core/setup/index.php:1077 zp-core/404.php:56
 msgid "Index"
 msgstr "インデックス"
 
-#: zp-core/setup/index.php:1083
+#: zp-core/setup/index.php:1087
 msgid "Grants found:"
 msgstr "Grants found:"
 
-#: zp-core/setup/index.php:1111
+#: zp-core/setup/index.php:1115
 msgid "The <em>SHOW GRANTS</em> query failed."
 msgstr "<em>SHOW GRANTS</em>クエリは失敗しました。"
 
-#: zp-core/setup/index.php:1113
+#: zp-core/setup/index.php:1117
 #, php-format
 msgid "Database <code>access rights</code> for <em>%s</em>"
 msgstr "<em>【%s】</em>のデータベース<code>アクセス権限</code>"
 
-#: zp-core/setup/index.php:1113
+#: zp-core/setup/index.php:1117
 #, php-format
 msgid "Database <code>access rights</code> for <em>%1$s</em> [%2$s]"
 msgstr "<em>%1$s</em>のデータベース<code>アクセス権限</code> 【%2$s】"
 
-#: zp-core/setup/index.php:1113
+#: zp-core/setup/index.php:1117
 #, php-format
 msgid "Your Database user must have %s rights."
 msgstr "データベースユーザは%s権限が必要です。"
 
-#: zp-core/setup/index.php:1130
+#: zp-core/setup/index.php:1134
 msgid "<em>SHOW TABLES</em> [found no tables]"
 msgstr "<em>SHOW TABLES</em> 【テーブルがありません】"
 
-#: zp-core/setup/index.php:1133
+#: zp-core/setup/index.php:1137
 #, php-format
 msgid "<em>SHOW TABLES</em> found: %s"
 msgstr "<em>SHOW TABLES</em>は%sを見つけました"
 
-#: zp-core/setup/index.php:1136
+#: zp-core/setup/index.php:1140
 msgid "<em>SHOW TABLES</em> [Failed]"
 msgstr "<em>SHOW GRANTS</em> 【失敗】"
 
-#: zp-core/setup/index.php:1136
+#: zp-core/setup/index.php:1140
 #, php-format
 msgid ""
 "The database did not return a list of the database tables for <code>%s</"
@@ -8529,7 +8481,7 @@ msgstr ""
 "データベースは<code>%s</code>のデータベーステーブルの一覧を取得しませんでし"
 "た。"
 
-#: zp-core/setup/index.php:1137
+#: zp-core/setup/index.php:1141
 msgid ""
 "<strong>Setup</strong> will attempt to create all tables. This will not over "
 "write any existing tables."
@@ -8537,27 +8489,27 @@ msgstr ""
 "<strong>セットアップ</strong>は全てのテーブルの作成を試みます。これは既存のど"
 "のテーブルも上書きしません。"
 
-#: zp-core/setup/index.php:1163
+#: zp-core/setup/index.php:1167
 msgid "Database <code>field collations</code> [Image table]"
 msgstr "データベース <code>フィールド照合</code> 【画像テーブル】"
 
-#: zp-core/setup/index.php:1166
+#: zp-core/setup/index.php:1170
 msgid "Database <code>field collations</code> [Album table]"
 msgstr "データベース <code>フィールド照合</code> 【アルバムテーブル】"
 
-#: zp-core/setup/index.php:1169
+#: zp-core/setup/index.php:1173
 msgid "Database <code>field collations</code> [Image and Album tables]"
 msgstr "データベース <code>フィールド照合</code> 【画像とアルバムテーブル】"
 
-#: zp-core/setup/index.php:1172
+#: zp-core/setup/index.php:1176
 msgid "Database <code>field collations</code> [SHOW COLUMNS query failed]"
 msgstr "データベース <code>フィールド照合</code> 【SHOW COLUMNSクエリに失敗】"
 
-#: zp-core/setup/index.php:1175
+#: zp-core/setup/index.php:1179
 msgid "Database <code>field collations</code>"
 msgstr "データベース <code>フィールド照合</code>"
 
-#: zp-core/setup/index.php:1175
+#: zp-core/setup/index.php:1179
 #, php-format
 msgid ""
 "%s is not UTF-8. You should consider porting your data to UTF-8 and changing "
@@ -8569,13 +8521,13 @@ msgstr[0] ""
 "%sはUTF-8ではありません。<code>utf8_unicode_ci</code>へデータベースフィールド"
 "の照合を変更してUTF-8へデータを変更する必要があります。"
 
-#: zp-core/setup/index.php:1177
+#: zp-core/setup/index.php:1181
 msgid "Database <code>$conf[\"UTF-8\"]</code> [is not set <em>true</em>]"
 msgstr ""
 "データベース <code>$conf[\"UTF-8\"]</code> 【<em>true</em>に設定されていな"
 "い】"
 
-#: zp-core/setup/index.php:1177
+#: zp-core/setup/index.php:1181
 msgid ""
 "You should consider porting your data to UTF-8 and changing the collation of "
 "the database fields to <code>utf8_unicode_ci</code> and setting this "
@@ -8585,15 +8537,15 @@ msgstr ""
 "code>に変更してこれを<em>true</em>に設定することを検討してください。Zenphoto"
 "は純粋なUTF-8円コーディングで最適に動作します。"
 
-#: zp-core/setup/index.php:1182
+#: zp-core/setup/index.php:1186
 msgid "Zenphoto files"
 msgstr "Zenphotoファイル"
 
-#: zp-core/setup/index.php:1210
+#: zp-core/setup/index.php:1214
 msgid "Zenphoto package [missing]"
 msgstr "Zenphotoパッケージ 【不明】"
 
-#: zp-core/setup/index.php:1210
+#: zp-core/setup/index.php:1214
 msgid ""
 "The file <code>Zenphoto.package</code> is either missing, not readable, or "
 "defective. Your installation may be corrupt!"
@@ -8601,12 +8553,12 @@ msgstr ""
 "ファイル<code>Zenphoto.packages</code>が見つからない、読み込めない、または不"
 "完全のいずれかです。インストールはおかしいかもしれません！"
 
-#: zp-core/setup/index.php:1216
+#: zp-core/setup/index.php:1220
 #, php-format
 msgid "Setting permissions (0%o) for Zenphoto package."
 msgstr "Zenphotoパッケージの設定パーミッション(0%o)です。"
 
-#: zp-core/setup/index.php:1319
+#: zp-core/setup/index.php:1323
 msgid ""
 "Zenphoto core files [This is a <em>debug</em> build. Some files are missing "
 "or seem wrong]"
@@ -8614,68 +8566,68 @@ msgstr ""
 "Zenphotoコアファイル 【これは<em>デバッグ</em>Buildです。いくつかのファイルは"
 "欠損、又は間違っている可能性があります】"
 
-#: zp-core/setup/index.php:1321
+#: zp-core/setup/index.php:1325
 msgid "Zenphoto core files [Some files are missing or seem wrong]"
 msgstr ""
 "Zenphotoコアファイル 【いくつかのファイルは欠損、又は間違っている可能性があり"
 "ます】"
 
-#: zp-core/setup/index.php:1323
+#: zp-core/setup/index.php:1327
 msgid ""
 "Perhaps there was a problem with the upload. You should check the following "
 "files: "
 msgstr ""
 "恐らくアップロードで問題があります。以下のファイルをチェックしてください:"
 
-#: zp-core/setup/index.php:1328
+#: zp-core/setup/index.php:1332
 msgid "Zenphoto core files [This is a <em>debug</em> build]"
 msgstr "Zenphotoコアファイル【これは<em>Debug</em>Buildです】"
 
-#: zp-core/setup/index.php:1335
+#: zp-core/setup/index.php:1339
 msgid "Zenphoto core files"
 msgstr "Zenphotoコアファイル"
 
-#: zp-core/setup/index.php:1337
+#: zp-core/setup/index.php:1341
 msgid "Installation files"
 msgstr "インストールファイル"
 
-#: zp-core/setup/index.php:1353
+#: zp-core/setup/index.php:1357
 #, php-format
 msgid ".svn [%s instance]"
 msgid_plural ".svn [%s instances]"
 msgstr[0] ".svn 【%s インスタンス】"
 
-#: zp-core/setup/index.php:1356
+#: zp-core/setup/index.php:1360
 #, php-format
 msgid "php.ini [%s instance]"
 msgid_plural "php.ini [%s instances]"
 msgstr[0] "php.ini 【%s インスタンス】"
 
-#: zp-core/setup/index.php:1379 zp-core/setup/index.php:1382
+#: zp-core/setup/index.php:1383 zp-core/setup/index.php:1386
 msgid "Zenphoto core folders [Some unknown files were found]"
 msgstr "Zenphotoコアファイル 【いくつかの不明なファイルが見つかりました】"
 
-#: zp-core/setup/index.php:1379
+#: zp-core/setup/index.php:1383
 msgid "The following files could not be deleted."
 msgstr "次のファイルを削除できませんでした。"
 
-#: zp-core/setup/index.php:1382
+#: zp-core/setup/index.php:1386
 msgid "You should remove the following files: "
 msgstr "次のファイルを削除すべきです: "
 
-#: zp-core/setup/index.php:1383
+#: zp-core/setup/index.php:1387
 msgid "Delete extra files"
 msgstr "拡張ファイルを削除"
 
-#: zp-core/setup/index.php:1386
+#: zp-core/setup/index.php:1390
 msgid "Zenphoto core file permissions"
 msgstr "Zenphotoコアファイルのパーミッション"
 
-#: zp-core/setup/index.php:1386
+#: zp-core/setup/index.php:1390
 msgid "Zenphoto core file permissions [not correct]"
 msgstr "Zenphotoコアファイルパーミッション 【正しくありません】"
 
-#: zp-core/setup/index.php:1386
+#: zp-core/setup/index.php:1390
 msgid ""
 "Setup could not set the one or more components to the selected permissions "
 "level. You will have to set the permissions manually. See the <a href="
@@ -8689,15 +8641,15 @@ msgstr ""
 "for-zenphoto-files-and-folders\">トラブルシューティングガイド</a>を見てくださ"
 "い。"
 
-#: zp-core/setup/index.php:1389
+#: zp-core/setup/index.php:1393
 msgid "<em>.htaccess</em> file"
 msgstr " <em>.htaccess</em>ファイル"
 
-#: zp-core/setup/index.php:1401
+#: zp-core/setup/index.php:1405
 msgid "<em>.htaccess</em> file [is empty or does not exist]"
 msgstr "<em>.htaccess</em>ファイル 【空もしくは存在しません】"
 
-#: zp-core/setup/index.php:1404
+#: zp-core/setup/index.php:1408
 msgid ""
 "If you have the mod_rewrite module enabled an <em>.htaccess</em> file is "
 "required the root zenphoto folder to create cruft-free URLs."
@@ -8705,7 +8657,7 @@ msgstr ""
 "mod_rewriteモジュールが有効になっている場合、<code>.htaccess</em>ファイルはク"
 "ラフトフリーなURLを作成するためにZenphotoのルートフォルダを必須とします。"
 
-#: zp-core/setup/index.php:1405 zp-core/setup/index.php:1413
+#: zp-core/setup/index.php:1409 zp-core/setup/index.php:1417
 msgid ""
 "You can ignore this warning if you do not intend to set the "
 "<code>mod_rewrite</code> option."
@@ -8713,7 +8665,7 @@ msgstr ""
 "<code>mod_rewrite</code>オプションを設定するつもりでないなら、この警告は無視"
 "できます。"
 
-#: zp-core/setup/index.php:1407
+#: zp-core/setup/index.php:1411
 msgid ""
 "<p class=\"buttons\"><a href=\"?copyhtaccess\" >Make setup create the file</"
 "a></p><br style=\"clear:both\" /><br />"
@@ -8721,11 +8673,11 @@ msgstr ""
 "<p class=\"buttons\"><a href=\"?copyhtaccess\" >ファイルを作成するセットアッ"
 "プを作成します</a></p><br style=\"clear:both\" /><br />"
 
-#: zp-core/setup/index.php:1410
+#: zp-core/setup/index.php:1414
 msgid "Server seems to be <em>nginx</em>"
 msgstr "サーバーは<em>nginx</em>に見えます"
 
-#: zp-core/setup/index.php:1412
+#: zp-core/setup/index.php:1416
 msgid ""
 "If you wish to create cruft-free URLs, you will need to configuring <a href="
 "\"http://www.zenphoto.org/news/nginx-rewrite-rules-tutorial\"><em>URL "
@@ -8735,7 +8687,7 @@ msgstr ""
 "nginx-rewrite-rules-tutorial\"><em>NGINXサーバー用のURL書き換え</em></a>を構"
 "成する必要があります。"
 
-#: zp-core/setup/index.php:1416
+#: zp-core/setup/index.php:1420
 msgid ""
 "Server seems not to be <em>Apache</em> or <em>Apache-compatible</em>, "
 "<code>mod_rewrite</code> may not be available."
@@ -8743,7 +8695,7 @@ msgstr ""
 "サーバは<em>Apache</em>又は<em>Apache互換</em>ではないように見えるため、"
 "<code>mod_rewrite</code>は利用できないかもしれません。"
 
-#: zp-core/setup/index.php:1453
+#: zp-core/setup/index.php:1458
 msgid ""
 "Server seems not to be Apache or Apache-compatible, <code>.htaccess</code> "
 "not required."
@@ -8751,7 +8703,7 @@ msgstr ""
 "サーバはApache又はApache互換ではないように見えるため、<code>.htaccess</code>"
 "は必要ありません。"
 
-#: zp-core/setup/index.php:1456
+#: zp-core/setup/index.php:1461
 #, php-format
 msgid ""
 "The <em>.htaccess</em> file in your root folder is not the same version as "
@@ -8764,7 +8716,7 @@ msgstr ""
 "した場合、新しい<em>.htaccess</em>ファイルを作るために<em>%s/htaccess</em>"
 "ファイルと変更をマージしてください。"
 
-#: zp-core/setup/index.php:1458
+#: zp-core/setup/index.php:1463
 msgid ""
 "<p class=\"buttons\"><a href=\"?copyhtaccess\" >Replace the existing <em>."
 "htaccess</em> file with the current version</a></p><br style=\"clear:both\" /"
@@ -8773,26 +8725,26 @@ msgstr ""
 "<p class=\"buttons\"><a href=\"?copyhtaccess\" >現在のバージョンで既存の<em>."
 "htaccess</em>ファイルに置き換えます</a></p><br style=\"clear:both\" /><br />"
 
-#: zp-core/setup/index.php:1461
+#: zp-core/setup/index.php:1466
 msgid "<em>.htaccess</em> file [wrong version]"
 msgstr "<em>.htaccess</em>ファイル 【間違ったバージョン】"
 
-#: zp-core/setup/index.php:1475
+#: zp-core/setup/index.php:1480
 #, php-format
 msgid "<em>.htaccess</em> file (<em>RewriteEngine</em> is <strong>%s</strong>)"
 msgstr ""
 "<em>.htaccess</em>ファイル (<em>RewriteEngine</em>は<strong>%s</strong>です)"
 
-#: zp-core/setup/index.php:1488
+#: zp-core/setup/index.php:1493
 msgid "<em>.htaccess</em> RewriteBase [is <em>missing</em>]"
 msgstr "<em>.htaccess</em>のRewriteBase 【<em>不明</em>】"
 
-#: zp-core/setup/index.php:1494
+#: zp-core/setup/index.php:1499
 #, php-format
 msgid "<em>.htaccess</em> RewriteBase is <code>%s</code>"
 msgstr "<em>.htaccess</em>のRewriteBaseは<code>%s</code>です"
 
-#: zp-core/setup/index.php:1495
+#: zp-core/setup/index.php:1500
 #, php-format
 msgid ""
 "<em>.htaccess</em> RewriteBase is <code>%s</code> [Does not match install "
@@ -8801,12 +8753,12 @@ msgstr ""
 "<em>.htaccess</em> RewriteBaseは<code>%s</code>です 【インストールフォルダの"
 "不一致】"
 
-#: zp-core/setup/index.php:1502
+#: zp-core/setup/index.php:1507
 #, php-format
 msgid "<em>.htaccess</em> RewriteBase is <code>%s</code> (fixed)"
 msgstr "<em>.htaccess</em>のRewriteBaseは<code>%s</code>です(修正済)"
 
-#: zp-core/setup/index.php:1526
+#: zp-core/setup/index.php:1531
 msgid ""
 "Setup was not able to write to the file change RewriteBase match the install "
 "folder."
@@ -8814,7 +8766,7 @@ msgstr ""
 "セットアップはインストールフォルダにマッチするRewriteBaseの変更をファイルに書"
 "き込めませんでした。"
 
-#: zp-core/setup/index.php:1527
+#: zp-core/setup/index.php:1532
 #, php-format
 msgid ""
 "Either make the file writeable or set <code>RewriteBase</code> in your "
@@ -8823,15 +8775,15 @@ msgstr ""
 "ファイルを書込み可能にするか、<code>.htaccess</code>ファイルの中で<code>%s</"
 "code>に<code>RewriteBase</code>を設定してください。"
 
-#: zp-core/setup/index.php:1529
+#: zp-core/setup/index.php:1534
 msgid "Rewrite rules updated"
 msgstr "Rewriteルールを更新しました"
 
-#: zp-core/setup/index.php:1529
+#: zp-core/setup/index.php:1534
 msgid "Rewrite rules updated [not updated]"
 msgstr "Rewriteルールを更新しました 【未更新】"
 
-#: zp-core/setup/index.php:1529
+#: zp-core/setup/index.php:1534
 msgid ""
 "Setup was not able to write to the file change the rewrite rules for site "
 "upgrades."
@@ -8839,37 +8791,37 @@ msgstr ""
 "セットアップはサイトのアップグレードについてRewriteルールを変更するファイルへ"
 "書込みできませんでした。"
 
-#: zp-core/setup/index.php:1535 zp-core/setup/index.php:1538
-#: zp-core/setup/index.php:1551
+#: zp-core/setup/index.php:1540 zp-core/setup/index.php:1543
+#: zp-core/setup/index.php:1556
 msgid "<em>robots.txt</em> file"
 msgstr " <em>robots.txt</em>ファイル"
 
-#: zp-core/setup/index.php:1535 zp-core/setup/index.php:1538
-#: zp-core/setup/index.php:1551
+#: zp-core/setup/index.php:1540 zp-core/setup/index.php:1543
+#: zp-core/setup/index.php:1556
 msgid "<em>robots.txt</em> file [Not created]"
 msgstr "<em>robots.txt</em>ファイル 【未作成】"
 
-#: zp-core/setup/index.php:1535
+#: zp-core/setup/index.php:1540
 msgid "Setup could not find the  <em>example_robots.txt</em> file."
 msgstr ""
 "セットアップは<em>example_robots.txt</em>ファイルを見つけることが出来ませんで"
 "した。"
 
-#: zp-core/setup/index.php:1538
+#: zp-core/setup/index.php:1543
 msgid ""
 "Setup did not create a <em>robots.txt</em> file because one already exists."
 msgstr ""
 "セットアップは<em>robots.txt</em>ファイルが既に存在するため作成しません。"
 
-#: zp-core/setup/index.php:1551
+#: zp-core/setup/index.php:1556
 msgid "Setup could not create a <em>robots.txt</em> file."
 msgstr "セットアップは<em>robots.txt</em>ファイルを作成できませんでした。"
 
-#: zp-core/setup/index.php:1556
+#: zp-core/setup/index.php:1561
 msgid "albums [<code>$conf['external_album_folder']</code> is deprecated]"
 msgstr "アルバム 【<code>$conf['album_folder']</code>は非推奨】"
 
-#: zp-core/setup/index.php:1556 zp-core/setup/index.php:1580
+#: zp-core/setup/index.php:1561 zp-core/setup/index.php:1585
 #, php-format
 msgid ""
 "You should update your configuration file to conform to the current %1$s "
@@ -8878,11 +8830,11 @@ msgstr ""
 "現在の%1$sのサンプルファイルに一致するために設定ファイルを更新する必要があり"
 "ます。"
 
-#: zp-core/setup/index.php:1580
+#: zp-core/setup/index.php:1585
 msgid "<em>albums</em> folder"
 msgstr "<em>アルバム</em>フォルダ"
 
-#: zp-core/setup/index.php:1580
+#: zp-core/setup/index.php:1585
 msgid ""
 "<em>albums</em> folder [The line <code>\\$conf['album_folder']</code> is "
 "missing from your configuration file]"
@@ -8890,15 +8842,15 @@ msgstr ""
 "<em>アルバム</em>フォルダ 【行<code>\\$conf['album_folder']</code>が設定ファ"
 "イルに見当たりません】"
 
-#: zp-core/setup/index.php:1584
+#: zp-core/setup/index.php:1589
 msgid "<em>locale</em> folders"
 msgstr "<em>locale</em>フォルダ"
 
-#: zp-core/setup/index.php:1584
+#: zp-core/setup/index.php:1589
 msgid "<em>locale</em> folders [Are not complete]"
 msgstr "<em>locale</em>フォルダ 【未完了】"
 
-#: zp-core/setup/index.php:1584
+#: zp-core/setup/index.php:1589
 msgid ""
 "Be sure you have uploaded the complete Zenphoto package. You must have at "
 "least the <em>en_US</em> folder."
@@ -8906,19 +8858,19 @@ msgstr ""
 "完全なZenphotoパッケージをアップロードしたことを確実にしてください。少なくと"
 "も<em>en_US</em>フォルダは必要です。"
 
-#: zp-core/setup/index.php:1585
+#: zp-core/setup/index.php:1590
 msgid "uploaded"
 msgstr "アップロード済"
 
-#: zp-core/setup/index.php:1590
+#: zp-core/setup/index.php:1595
 msgid "HTML cache"
 msgstr "HTMLキャッシュ"
 
-#: zp-core/setup/index.php:1591
+#: zp-core/setup/index.php:1596
 msgid "Third party plugins"
 msgstr "サードパーティ製プラグイン"
 
-#: zp-core/setup/index.php:1601
+#: zp-core/setup/index.php:1606
 msgid ""
 "You need to address the problems indicated above then run <code>setup</code> "
 "again."
@@ -8926,79 +8878,79 @@ msgstr ""
 "上に示された問題を解決してから、再度<code>setup</code>を実行する必要がありま"
 "す。"
 
-#: zp-core/setup/index.php:1604
+#: zp-core/setup/index.php:1609
 msgid "Setup failed."
 msgstr "セットアップフィールドです。"
 
-#: zp-core/setup/index.php:1615 zp-core/setup/index.php:2640
+#: zp-core/setup/index.php:1620 zp-core/setup/index.php:2645
 msgid "You need <em>USER ADMIN</em> rights to run setup."
 msgstr "セットアップを動作するには<em>USER ADMIN</em>権限が必要です。"
 
-#: zp-core/setup/index.php:1617 zp-core/setup/index.php:2642
+#: zp-core/setup/index.php:1622 zp-core/setup/index.php:2647
 msgid "You must be logged in to run setup."
 msgstr "セットアップを実行するにはログインが必要です。"
 
-#: zp-core/setup/index.php:1638
+#: zp-core/setup/index.php:1643
 msgid "database connected"
 msgstr "データベースへ接続しました"
 
-#: zp-core/setup/index.php:2391
+#: zp-core/setup/index.php:2396
 msgid "About to create tables"
 msgstr "テーブルの作成について"
 
-#: zp-core/setup/index.php:2393
+#: zp-core/setup/index.php:2398
 msgid "About to update tables"
 msgstr "テーブルの更新について"
 
-#: zp-core/setup/index.php:2395
+#: zp-core/setup/index.php:2400
 msgid "Begin table creation"
 msgstr "テーブルの作成を開始します"
 
-#: zp-core/setup/index.php:2402 zp-core/setup/index.php:2418
+#: zp-core/setup/index.php:2407 zp-core/setup/index.php:2423
 #, php-format
 msgid "Query %1$s Failed. Error: %2$s"
 msgstr "クエリ %1$s が失敗しました。 エラー: %2$s"
 
-#: zp-core/setup/index.php:2404
+#: zp-core/setup/index.php:2409
 #, php-format
 msgid "Table creation failure:<br />Query: %1$s<br />Error: %2$s"
 msgstr "テーブル作成失敗: <br />クエリ: %1$s<br />エラー: %2$s"
 
-#: zp-core/setup/index.php:2407 zp-core/setup/index.php:2420
+#: zp-core/setup/index.php:2412 zp-core/setup/index.php:2425
 #, php-format
 msgid "Query ( %s ) Success."
 msgstr "クエリ ( %s ) は成功しました。"
 
-#: zp-core/setup/index.php:2411
+#: zp-core/setup/index.php:2416
 msgid "Begin table updates"
 msgstr "テーブルの更新を開始します"
 
-#: zp-core/setup/index.php:2427
+#: zp-core/setup/index.php:2432
 msgid "Done with table create!"
 msgstr "テーブルの作成が完了しました！"
 
-#: zp-core/setup/index.php:2429
+#: zp-core/setup/index.php:2434
 msgid "Done with table create with errors!"
 msgstr "エラー有りでテーブルの作成が完了しました！"
 
-#: zp-core/setup/index.php:2433
+#: zp-core/setup/index.php:2438
 msgid "Done with table update"
 msgstr "テーブルの更新が完了しました"
 
-#: zp-core/setup/index.php:2435
+#: zp-core/setup/index.php:2440
 msgid "Done with table update with errors"
 msgstr "エラー有りでテーブルの更新が完了しました"
 
-#: zp-core/setup/index.php:2450
+#: zp-core/setup/index.php:2455
 msgid "Done with database creation and update"
 msgstr "テーブルの作成と更新が完了しました"
 
-#: zp-core/setup/index.php:2452
+#: zp-core/setup/index.php:2457
 #, php-format
 msgid "Previous Release was %s"
 msgstr "前のリリースは%sです"
 
-#: zp-core/setup/index.php:2491
+#: zp-core/setup/index.php:2496
 #, php-format
 msgid ""
 "You may <a href=\"%1$s\">set your admin user and password</a> or <a href="
@@ -9007,28 +8959,28 @@ msgstr ""
 "<a href=\"%1$s\">管理ユーザ名とパスワードを設定</a>又は<a href=\"%2$s"
 "\">backup-restoreを実行する</a>必要があります。"
 
-#: zp-core/setup/index.php:2494
+#: zp-core/setup/index.php:2499
 #, php-format
 msgid "You need to <a href=\"%1$s\">set your admin user and password</a>"
 msgstr ""
 "<a href=\"%1$s\">管理ユーザ名とパスワードを設定</a>する必要があります。"
 
-#: zp-core/setup/index.php:2500
+#: zp-core/setup/index.php:2505
 #, php-format
 msgid "You can now <a href=\"%1$s\">administer your gallery.</a>"
 msgstr "あなたは今すぐ<a href=\"%1$s\">管理する</a>事が出来ます。"
 
-#: zp-core/setup/index.php:2560
+#: zp-core/setup/index.php:2565
 #, php-format
 msgid "Database tables to create: %s"
 msgstr "作成するデータベーステーブル: %s"
 
-#: zp-core/setup/index.php:2580
+#: zp-core/setup/index.php:2585
 #, php-format
 msgid "Database tables to update: %s"
 msgstr "更新するデータベーステーブル: %s"
 
-#: zp-core/setup/index.php:2609
+#: zp-core/setup/index.php:2614
 msgid ""
 "<strong>Warning!</strong> This upgrade makes structural changes to the "
 "database which are not easily reversed. Be sure you have a database backup "
@@ -9038,28 +8990,28 @@ msgstr ""
 "スに構造的な変更を行ないます。先に進む前に、データベースのバックアップがある"
 "ことを確認してください。"
 
-#: zp-core/setup/index.php:2612
+#: zp-core/setup/index.php:2617
 #, php-format
 msgid "%s I acknowledge that proceeding will restructure my database."
 msgstr "%s 自分のデータベースが再構築されますのでご了承ください。"
 
-#: zp-core/setup/index.php:2672
+#: zp-core/setup/index.php:2677
 msgid "run setup"
 msgstr "セットアップの実行"
 
-#: zp-core/setup/index.php:2672
+#: zp-core/setup/index.php:2677
 msgid "Go"
 msgstr "実行"
 
-#: zp-core/setup/index.php:2688
+#: zp-core/setup/index.php:2693
 msgid "database did not connect"
 msgstr "データベースは接続しませんでした"
 
-#: zp-core/setup/index.php:2690
+#: zp-core/setup/index.php:2695
 msgid "If you haven not created the database yet, now would be a good time."
 msgstr "データベースの作成がまだなら、今すぐ実行してください。"
 
-#: zp-core/setup/index.php:2699
+#: zp-core/setup/index.php:2704
 #, php-format
 msgid "The %1$s file does not exist."
 msgstr "%1$s ファイルは存在しません。"
@@ -9172,32 +9124,32 @@ msgstr ""
 msgid "0 Bytes"
 msgstr "0バイト"
 
-#: zp-core/functions.php:2103
+#: zp-core/functions.php:2161
 #, php-format
 msgid "Zenphoto processed a 404 error on %s. See the debug log for details."
 msgstr ""
 "Zenphotoは%s上で404エラーを実行しました。詳細についてはデバッグログを見てくだ"
 "さい。"
 
-#: zp-core/functions.php:2276
+#: zp-core/functions.php:2334
 msgid "Click to show content"
 msgstr "コンテンツを表示するにはクリック"
 
-#: zp-core/functions.php:2281
+#: zp-core/functions.php:2339
 msgid "Click to hide content"
 msgstr "コンテンツを非表示にするにはクリック"
 
-#: zp-core/functions.php:2331
+#: zp-core/functions.php:2389
 #, php-format
 msgid "<em>[%1$s]</em> parameter %2$d should be a number."
 msgstr "<em>【%1$s】</em> パラメーター %2$d は数字でなければなりません。"
 
-#: zp-core/functions.php:2339
+#: zp-core/functions.php:2397
 #, php-format
 msgid "<em>[%1$s]</em> parameter %2$d should be a string."
 msgstr "<em>【%1$s】</em> パラメーター %2$d は文字列でなければなりません。"
 
-#: zp-core/functions.php:2352
+#: zp-core/functions.php:2410
 #, php-format
 msgid ""
 "<em>[%1$s]</em> parameter %2$d should be <code>true</code> or <code>false</"
@@ -9206,345 +9158,345 @@ msgstr ""
 "<em>【%1$s】</em> パラメーター %2$d は <code>true</code> または <code>false</"
 "code> でなければなりません。"
 
-#: zp-core/functions.php:2371
+#: zp-core/functions.php:2429
 #, php-format
 msgid "<em>[%1$s]</em> parameter %2$d is incorrectly defined."
 msgstr "<em>【%1$s】</em> パラメーター %2$d は正しく定義されていません。"
 
-#: zp-core/functions.php:2377
+#: zp-core/functions.php:2435
 #, php-format
 msgid "<em>[%1$s]</em> parameter %2$d is missing."
 msgstr "<em>【%1$s】</em> パラメーター %2$d が見つかりません。"
 
-#: zp-core/functions.php:2386
+#: zp-core/functions.php:2444
 #, php-format
 msgid "<em>[%1$s]</em> macro does not take parameters"
 msgstr "<em>【%1$s】</em>マクロはパラメーターを取りません"
 
-#: zp-core/functions.php:2409 zp-core/functions.php:2436
+#: zp-core/functions.php:2467 zp-core/functions.php:2494
 #, php-format
 msgid "<em>[%1$s]</em> retuned no data"
 msgstr "<em>【%1$s】</em> データが返されませんでした"
 
-#: zp-core/functions.php:2414
+#: zp-core/functions.php:2472
 #, php-format
 msgid "<em>[%1$s]</em> <code>%2$s</code> is not callable"
 msgstr "<em>【%1$s】</em> <code>%2$s</code> は呼び出し不可です"
 
-#: zp-core/functions.php:2441
+#: zp-core/functions.php:2499
 #, php-format
 msgid "<em>[%1$s]</em> takes %2$d parameter"
 msgid_plural "<em>[%1$s]</em> takes %2$d parameters"
 msgstr[0] "<em>【%1$s】</em> は %2$d パラメーターを取りません"
 
-#: zp-core/functions.php:2567
+#: zp-core/functions.php:2625
 msgid "Camera Maker"
 msgstr "カメラメーカー"
 
-#: zp-core/functions.php:2568
+#: zp-core/functions.php:2626
 msgid "Camera Model"
 msgstr "カメラモデル"
 
-#: zp-core/functions.php:2569
+#: zp-core/functions.php:2627
 msgid "Image Title"
 msgstr "画像タイトル"
 
-#: zp-core/functions.php:2570
+#: zp-core/functions.php:2628
 msgid "Object Name"
 msgstr "オブジェクト名"
 
-#: zp-core/functions.php:2571
+#: zp-core/functions.php:2629
 msgid "Image Headline"
 msgstr "画像ヘッドライン"
 
-#: zp-core/functions.php:2572
+#: zp-core/functions.php:2630
 msgid "Image Caption"
 msgstr "画像見出し"
 
-#: zp-core/functions.php:2573
+#: zp-core/functions.php:2631
 msgid "Image Caption Writer"
 msgstr "画像見出しライター"
 
-#: zp-core/functions.php:2574
+#: zp-core/functions.php:2632
 msgid "Time Taken"
 msgstr "経過時間"
 
-#: zp-core/functions.php:2575
+#: zp-core/functions.php:2633
 msgid "Original Time Taken"
 msgstr "元の経過時間"
 
-#: zp-core/functions.php:2576
+#: zp-core/functions.php:2634
 msgid "Time Digitized"
 msgstr "デジタル化された時間"
 
-#: zp-core/functions.php:2577
+#: zp-core/functions.php:2635
 msgid "Date Created"
 msgstr "作成日"
 
-#: zp-core/functions.php:2578
+#: zp-core/functions.php:2636
 msgid "Time Created"
 msgstr "作成時刻"
 
-#: zp-core/functions.php:2579
+#: zp-core/functions.php:2637
 msgid "Digital Creation Date"
 msgstr "デジタル作成日"
 
-#: zp-core/functions.php:2580
+#: zp-core/functions.php:2638
 msgid "Digital Creation Time"
 msgstr "デジタル作成時刻"
 
-#: zp-core/functions.php:2581
+#: zp-core/functions.php:2639
 msgid "Artist"
 msgstr "アーティスト"
 
-#: zp-core/functions.php:2582
+#: zp-core/functions.php:2640
 msgid "Image Credit"
 msgstr "画像クレジット"
 
-#: zp-core/functions.php:2583
+#: zp-core/functions.php:2641
 msgid "Byline"
 msgstr "署名欄"
 
-#: zp-core/functions.php:2584
+#: zp-core/functions.php:2642
 msgid "Byline Title"
 msgstr "署名欄タイトル"
 
-#: zp-core/functions.php:2585
+#: zp-core/functions.php:2643
 msgid "Image Source"
 msgstr "画像ソース"
 
-#: zp-core/functions.php:2587
+#: zp-core/functions.php:2645
 msgid "Copyright Holder"
 msgstr "著作権保有者"
 
-#: zp-core/functions.php:2588
+#: zp-core/functions.php:2646
 msgid "Copyright Notice"
 msgstr "著作権情報"
 
-#: zp-core/functions.php:2589
+#: zp-core/functions.php:2647
 msgid "Keywords"
 msgstr "キーワード"
 
-#: zp-core/functions.php:2590
+#: zp-core/functions.php:2648
 msgid "Shutter Speed"
 msgstr "シャッタースピード"
 
-#: zp-core/functions.php:2591
+#: zp-core/functions.php:2649
 msgid "Aperture"
 msgstr "口径"
 
-#: zp-core/functions.php:2592
+#: zp-core/functions.php:2650
 msgid "ISO Sensitivity"
 msgstr "ISO感度"
 
-#: zp-core/functions.php:2593
+#: zp-core/functions.php:2651
 msgid "Exposure Compensation"
 msgstr "接触補償"
 
-#: zp-core/functions.php:2594
+#: zp-core/functions.php:2652
 msgid "Metering Mode"
 msgstr "メータリングモード"
 
-#: zp-core/functions.php:2596
+#: zp-core/functions.php:2654
 msgid "Original Width"
 msgstr "元の幅"
 
-#: zp-core/functions.php:2597
+#: zp-core/functions.php:2655
 msgid "Original Height"
 msgstr "元の高さ"
 
-#: zp-core/functions.php:2598
+#: zp-core/functions.php:2656
 msgid "Orientation"
 msgstr "オリエンテーション"
 
-#: zp-core/functions.php:2599
+#: zp-core/functions.php:2657
 msgid "Software"
 msgstr "ソフトウェア"
 
-#: zp-core/functions.php:2600
+#: zp-core/functions.php:2658
 msgid "Contrast Setting"
 msgstr "コントラスト設定"
 
-#: zp-core/functions.php:2601
+#: zp-core/functions.php:2659
 msgid "Sharpness Setting"
 msgstr "シャープネス設定"
 
-#: zp-core/functions.php:2602
+#: zp-core/functions.php:2660
 msgid "Saturation Setting"
 msgstr "飽和設定"
 
-#: zp-core/functions.php:2603
+#: zp-core/functions.php:2661
 msgid "White Balance"
 msgstr "ホワイトバランス"
 
-#: zp-core/functions.php:2604
+#: zp-core/functions.php:2662
 msgid "Subject Distance"
 msgstr "被写体距離"
 
-#: zp-core/functions.php:2605
+#: zp-core/functions.php:2663
 msgid "Focal Length"
 msgstr "焦点の長さ"
 
-#: zp-core/functions.php:2606
+#: zp-core/functions.php:2664
 msgid "Lens Type"
 msgstr "レンズタイプ"
 
-#: zp-core/functions.php:2607
+#: zp-core/functions.php:2665
 msgid "Lens Info"
 msgstr "レンズ情報"
 
-#: zp-core/functions.php:2608
+#: zp-core/functions.php:2666
 msgid "35mm Focal Length Equivalent"
 msgstr "35mmと同等な焦点距離"
 
-#: zp-core/functions.php:2609 zp-core/class-search.php:105
+#: zp-core/functions.php:2667 zp-core/class-search.php:105
 #: zp-core/zp-extensions/contact_form.php:117
 #: zp-core/zp-extensions/contact_form.php:119
 #: zp-core/zp-extensions/userAddressFields.php:51
 msgid "City"
 msgstr "市"
 
-#: zp-core/functions.php:2610
+#: zp-core/functions.php:2668
 msgid "Sub-location"
 msgstr "サブロケーション"
 
-#: zp-core/functions.php:2611
+#: zp-core/functions.php:2669
 msgid "Province/State"
 msgstr "県/市"
 
-#: zp-core/functions.php:2612
+#: zp-core/functions.php:2670
 msgid "Country/Primary Location Code"
 msgstr "国/プライマリのロケーションコード"
 
-#: zp-core/functions.php:2613
+#: zp-core/functions.php:2671
 msgid "Country/Primary Location Name"
 msgstr "国/プライマリのロケーション名"
 
-#: zp-core/functions.php:2614
+#: zp-core/functions.php:2672
 msgid "Content Location Code"
 msgstr "コンテンツのロケーションコード"
 
-#: zp-core/functions.php:2615
+#: zp-core/functions.php:2673
 msgid "Content Location Name"
 msgstr "コンテンツのロケーション名"
 
-#: zp-core/functions.php:2616
+#: zp-core/functions.php:2674
 msgid "Latitude"
 msgstr "緯度"
 
-#: zp-core/functions.php:2617
+#: zp-core/functions.php:2675
 msgid "Latitude Reference"
 msgstr "緯度参照"
 
-#: zp-core/functions.php:2618
+#: zp-core/functions.php:2676
 msgid "Longitude"
 msgstr "経度"
 
-#: zp-core/functions.php:2619
+#: zp-core/functions.php:2677
 msgid "Longitude Reference"
 msgstr "経度参照"
 
-#: zp-core/functions.php:2620
+#: zp-core/functions.php:2678
 msgid "Altitude"
 msgstr "高度"
 
-#: zp-core/functions.php:2621
+#: zp-core/functions.php:2679
 msgid "Altitude Reference"
 msgstr "高度参照"
 
-#: zp-core/functions.php:2622
+#: zp-core/functions.php:2680
 msgid "Originating Program "
 msgstr "親プログラム "
 
-#: zp-core/functions.php:2623
+#: zp-core/functions.php:2681
 msgid "Program Version"
 msgstr "プログラムバージョン"
 
-#: zp-core/functions.php:2624
+#: zp-core/functions.php:2682
 msgid "Video File Format"
 msgstr "動画のファイル形式"
 
-#: zp-core/functions.php:2625
+#: zp-core/functions.php:2683
 msgid "Video File Size"
 msgstr "動画のファイルサイズ"
 
-#: zp-core/functions.php:2626
+#: zp-core/functions.php:2684
 msgid "Video Artist"
 msgstr "動画のアーティスト"
 
-#: zp-core/functions.php:2627
+#: zp-core/functions.php:2685
 msgid "Video Title"
 msgstr "動画のタイトル"
 
-#: zp-core/functions.php:2628
+#: zp-core/functions.php:2686
 msgid "Bitrate"
 msgstr "ビットレート"
 
-#: zp-core/functions.php:2629
+#: zp-core/functions.php:2687
 msgid "Bitrate_Mode"
 msgstr "ビットレートモード"
 
-#: zp-core/functions.php:2630
+#: zp-core/functions.php:2688
 msgid "Bits per sample"
 msgstr "サンプルあたりのビット数"
 
-#: zp-core/functions.php:2631
+#: zp-core/functions.php:2689
 msgid "Codec"
 msgstr "コーデック"
 
-#: zp-core/functions.php:2632
+#: zp-core/functions.php:2690
 msgid "Compression Ratio"
 msgstr "圧縮比"
 
-#: zp-core/functions.php:2633
+#: zp-core/functions.php:2691
 msgid "Video Dataformat"
 msgstr "動画の日付形式"
 
-#: zp-core/functions.php:2634
+#: zp-core/functions.php:2692
 msgid "File Encoder"
 msgstr "ファイルエンコーダー"
 
-#: zp-core/functions.php:2635
+#: zp-core/functions.php:2693
 msgid "Sample rate"
 msgstr "サンプルレート"
 
-#: zp-core/functions.php:2636
+#: zp-core/functions.php:2694
 msgid "Channel mode"
 msgstr "チャンネルモード"
 
-#: zp-core/functions.php:2637
+#: zp-core/functions.php:2695
 msgid "Format"
 msgstr "フォーマット"
 
-#: zp-core/functions.php:2638
+#: zp-core/functions.php:2696
 msgid "Channels"
 msgstr "チャンネル数"
 
-#: zp-core/functions.php:2639
+#: zp-core/functions.php:2697
 msgid "Frame rate"
 msgstr "フレームレート"
 
-#: zp-core/functions.php:2640
+#: zp-core/functions.php:2698
 msgid "X Resolution"
 msgstr "X 解像度"
 
-#: zp-core/functions.php:2641
+#: zp-core/functions.php:2699
 msgid "Y Resolution"
 msgstr "Y 解像度"
 
-#: zp-core/functions.php:2642
+#: zp-core/functions.php:2700
 msgid "Aspect ratio"
 msgstr "アスペクト比"
 
-#: zp-core/functions.php:2643
+#: zp-core/functions.php:2701
 msgid "Play Time"
 msgstr "再生時間"
 
-#: zp-core/functions.php:2644
+#: zp-core/functions.php:2702
 msgid "XMP Rating"
 msgstr "XMP評価"
 
-#: zp-core/functions.php:2872 zp-core/zp-extensions/contact_form.php:137
+#: zp-core/functions.php:2930 zp-core/zp-extensions/contact_form.php:137
 #: zp-core/zp-extensions/comment_form.php:105
 #: zp-core/zp-extensions/register_user.php:91
 msgid "No captcha handler is enabled."
@@ -9822,6 +9774,10 @@ msgstr "イタリア語(イタリア)"
 msgid "Japanese"
 msgstr "日本語"
 
+#: zp-core/functions-i18n.php:78
+msgid "Korean"
+msgstr "韓国語"
+
 #: zp-core/functions-i18n.php:79
 msgid "Lithuanian"
 msgstr "リトアニア語"
@@ -10001,10 +9957,6 @@ msgstr "タミール語"
 #: zp-core/functions-i18n.php:124
 msgid "Telugu"
 msgstr "テルグ語"
-
-#: zp-core/functions-i18n.php:125
-msgid "Thai"
-msgstr "タイ語"
 
 #: zp-core/functions-i18n.php:126
 msgid "Turkish"
@@ -11456,27 +11408,27 @@ msgstr ""
 "<strong>注:</strong> この機能はテーマに統合されます。<em>デフォルト</em>及び"
 "<em>stopdesign</em>テーマのどちらもサポートしません。"
 
-#: zp-core/zp-extensions/zenpage.php:113 zp-core/zp-extensions/zenpage.php:146
+#: zp-core/zp-extensions/zenpage.php:112 zp-core/zp-extensions/zenpage.php:145
 msgid "Read more"
 msgstr "続きを読む"
 
-#: zp-core/zp-extensions/zenpage.php:126
+#: zp-core/zp-extensions/zenpage.php:125
 msgid "Enabled Zenpage items"
 msgstr "Zenpage アイテムを有効"
 
-#: zp-core/zp-extensions/zenpage.php:131
+#: zp-core/zp-extensions/zenpage.php:130
 msgid "Enable news articles and pages"
 msgstr "ニュース記事とページを有効化"
 
-#: zp-core/zp-extensions/zenpage.php:132
+#: zp-core/zp-extensions/zenpage.php:131
 msgid "Enable news"
 msgstr "ニュースを有効"
 
-#: zp-core/zp-extensions/zenpage.php:133
+#: zp-core/zp-extensions/zenpage.php:132
 msgid "Enable pages"
 msgstr "ページを有効"
 
-#: zp-core/zp-extensions/zenpage.php:135
+#: zp-core/zp-extensions/zenpage.php:134
 msgid ""
 "This enables or disables the admin tabs for pages and/or news articles. To "
 "hide news and/or pages content on the front end as well, themes must be "
@@ -11497,11 +11449,11 @@ msgstr ""
 "\"><strong>注:</strong> これはコンテンツを削除しないことと管理権限とは関係あ"
 "りません。</p>"
 
-#: zp-core/zp-extensions/zenpage.php:137
+#: zp-core/zp-extensions/zenpage.php:136
 msgid "Articles per page (theme)"
 msgstr "ページ毎の記事(テーマ)"
 
-#: zp-core/zp-extensions/zenpage.php:139
+#: zp-core/zp-extensions/zenpage.php:138
 msgid ""
 "How many news articles you want to show per page on the news or news "
 "category pages."
@@ -11509,11 +11461,11 @@ msgstr ""
 "ニュース又はニュースカテゴリページ上でページ毎にどれくらいのニュース記事を表"
 "示したいかです。"
 
-#: zp-core/zp-extensions/zenpage.php:140
+#: zp-core/zp-extensions/zenpage.php:139
 msgid "News article text length"
 msgstr "ニュース記事テキストの長さ"
 
-#: zp-core/zp-extensions/zenpage.php:142
+#: zp-core/zp-extensions/zenpage.php:141
 msgid ""
 "The length of news article excerpts in news or news category pages. Leave "
 "empty for full text."
@@ -11521,45 +11473,45 @@ msgstr ""
 "ニュース又はニュースカテゴリページで抜粋するニュース記事の長さです。全てのテ"
 "キストを表示するには空白にします。"
 
-#: zp-core/zp-extensions/zenpage.php:143
+#: zp-core/zp-extensions/zenpage.php:142
 msgid "News article text shorten indicator"
 msgstr "ニュース記事テキストの省略表示"
 
-#: zp-core/zp-extensions/zenpage.php:145
+#: zp-core/zp-extensions/zenpage.php:144
 msgid ""
 "Something that indicates that the article text is shortened, “ (...)” by "
 "default."
 msgstr "記事のテキストが短くされるのを示すもので、デフォルトは(...)です。"
 
-#: zp-core/zp-extensions/zenpage.php:148
+#: zp-core/zp-extensions/zenpage.php:147
 msgid "The text for the link to the full article."
 msgstr "完全な記事へのリンクのテキストです。"
 
-#: zp-core/zp-extensions/zenpage.php:149
+#: zp-core/zp-extensions/zenpage.php:148
 #: zp-core/zp-extensions/print_album_menu.php:55
 #: zp-core/zp-extensions/menu_manager.php:59
 msgid "Truncate titles*"
 msgstr "タイトルを切り取る*"
 
-#: zp-core/zp-extensions/zenpage.php:152
+#: zp-core/zp-extensions/zenpage.php:151
 #: zp-core/zp-extensions/print_album_menu.php:58
 #: zp-core/zp-extensions/menu_manager.php:61
 msgid "Limit titles to this many characters. Zero means no limit."
 msgstr "この多くの文字へタイトルを制限します。ゼロは無制限を意味します。"
 
-#: zp-core/zp-extensions/zenpage.php:153
+#: zp-core/zp-extensions/zenpage.php:152
 #: zp-core/zp-extensions/print_album_menu.php:59
 #: zp-core/zp-extensions/menu_manager.php:55
 msgid "Truncate indicator*"
 msgstr "インジケーターを切り取る*"
 
-#: zp-core/zp-extensions/zenpage.php:156
+#: zp-core/zp-extensions/zenpage.php:155
 #: zp-core/zp-extensions/print_album_menu.php:62
 #: zp-core/zp-extensions/menu_manager.php:58
 msgid "Append this string to truncated titles."
 msgstr "切り捨てられたタイトルのこの文字列を追加します。"
 
-#: zp-core/zp-extensions/zenpage.php:163
+#: zp-core/zp-extensions/zenpage.php:162
 msgid ""
 "* These options may be set via the <a href=\"javascript:gotoName('zenpage');"
 "\"><em>Zenpage</em></a> plugin options."
@@ -11567,7 +11519,7 @@ msgstr ""
 "* これらオプションは<a href=\"javascript:gotoName('zenpage');\"><em>Zenpage</"
 "em></a>プラグインオプションを経由して設定されるかも知れません。"
 
-#: zp-core/zp-extensions/zenpage.php:167
+#: zp-core/zp-extensions/zenpage.php:166
 #: zp-core/zp-extensions/menu_manager.php:72
 msgid ""
 "<p class=\"notebox\">*<strong>Note:</strong> The setting of these options "
@@ -11576,42 +11528,42 @@ msgstr ""
 "<p class=\"notebox\">*<strong>注:</strong> これらのオプションの設定は、他のプ"
 "ラグインで共有されます。"
 
-#: zp-core/zp-extensions/zenpage.php:198
+#: zp-core/zp-extensions/zenpage.php:197
 msgid "Enable Zenpage CMS plugin"
 msgstr "Zenpage CMSプラグインを有効"
 
-#: zp-core/zp-extensions/zenpage.php:299
+#: zp-core/zp-extensions/zenpage.php:298
 msgid "Edit Page"
 msgstr "ページを編集"
 
-#: zp-core/zp-extensions/zenpage.php:304
+#: zp-core/zp-extensions/zenpage.php:303
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:297
 msgid "Delete page"
 msgstr "ページを削除"
 
-#: zp-core/zp-extensions/zenpage.php:304
+#: zp-core/zp-extensions/zenpage.php:303
 msgid "Delete Page"
 msgstr "ページを削除"
 
-#: zp-core/zp-extensions/zenpage.php:308
+#: zp-core/zp-extensions/zenpage.php:307
 msgid "Add Page"
 msgstr "ページを追加"
 
-#: zp-core/zp-extensions/zenpage.php:321
+#: zp-core/zp-extensions/zenpage.php:320
 msgid "Edit Article"
 msgstr "記事編集"
 
-#: zp-core/zp-extensions/zenpage.php:327
+#: zp-core/zp-extensions/zenpage.php:326
 #: zp-core/zp-extensions/zenpage/admin-news-articles.php:374
 #: zp-core/zp-extensions/zenpage/admin-news-articles.php:375
 msgid "Delete article"
 msgstr "記事を削除"
 
-#: zp-core/zp-extensions/zenpage.php:327
+#: zp-core/zp-extensions/zenpage.php:326
 msgid "Delete Article"
 msgstr "記事を削除"
 
-#: zp-core/zp-extensions/zenpage.php:331
+#: zp-core/zp-extensions/zenpage.php:330
 msgid "Add Article"
 msgstr "記事を追加"
 
@@ -12899,7 +12851,8 @@ msgid ""
 "themes. Only if loggedin to cover the admin toolbox."
 msgstr ""
 "あなたのテーマにテーマスイッチャーのセレクタースタイルを表示したい場合この"
-"ボックスを変更します。ログインしている場合にのみ、管理者ツールボックスをカバーします。"
+"ボックスを変更します。ログインしている場合にのみ、管理者ツールボックスをカ"
+"バーします。"
 
 #: zp-core/zp-extensions/themeSwitcher.php:79
 msgid "Private"
@@ -16797,9 +16750,11 @@ msgstr ""
 "完全なhtmlリンクを取得する間、<code>getRSSLink()</code>はURLを返すだけです。"
 
 #: zp-core/zp-extensions/zenpage/deprecated-functions.php:680
-msgid "use printLatestComments($number, $shorten, $type, $itemID, $id);"
+msgid ""
+"use printLatestComments($number, $shorten, $type, $itemID, $id, "
+"$shortenindicator);"
 msgstr ""
-"printLatestComments($number, $shorten, $type, $itemID, $id);を使用します"
+"printLatestComments($number, $shorten, $type, $itemID, $id, $shortenindicator);を使用します"
 
 #: zp-core/zp-extensions/zenpage/deprecated-functions.php:689
 msgid "use getRSSLink($option,$lang,$categorylink)."
@@ -18102,26 +18057,26 @@ msgstr "コメントが投稿されました"
 msgid "Comment posted on unknown page!"
 msgstr "不明なページにコメントが投稿されました！"
 
-#: zp-core/zp-extensions/comment_form/functions.php:808
+#: zp-core/zp-extensions/comment_form/functions.php:817
 #: zp-core/class-feed.php:425
 msgid "by"
 msgstr "by"
 
-#: zp-core/zp-extensions/comment_form/functions.php:912
+#: zp-core/zp-extensions/comment_form/functions.php:921
 msgid "Anonymous"
 msgstr "匿名"
 
-#: zp-core/zp-extensions/comment_form/functions.php:948
+#: zp-core/zp-extensions/comment_form/functions.php:957
 #, php-format
 msgid "%1$s commented on album %2$s%3$s"
 msgstr "%1$sはアルバム%2$s%3$sにコメントしました"
 
-#: zp-core/zp-extensions/comment_form/functions.php:952
+#: zp-core/zp-extensions/comment_form/functions.php:961
 #, php-format
 msgid "%1$s commented on %2$s in album %3$s%4$s"
 msgstr "%1$sはアルバム%3$s%4$sの%2$sにコメントしました"
 
-#: zp-core/zp-extensions/comment_form/functions.php:956
+#: zp-core/zp-extensions/comment_form/functions.php:965
 #, php-format
 msgid "%1$s commented on %2$s%3$s"
 msgstr "%1$sは%2$s%3$sにコメントしました"
@@ -18817,7 +18772,7 @@ msgid "The speed in miliseconds the slides advance when clicked.)"
 msgstr "クリックした時にスライドを進めるミリ秒の速度です。)"
 
 #: zp-core/zp-extensions/bxslider_thumb_nav.php:73
-#: zp-core/zp-extensions/GoogleMap.php:98 themes/garland/themeoptions.php:92
+#: zp-core/zp-extensions/GoogleMap.php:96 themes/garland/themeoptions.php:92
 #: themes/effervescence_plus/themeoptions.php:125
 msgid "Horizontal"
 msgstr "水平"
@@ -20095,11 +20050,11 @@ msgstr "サイトマップツール"
 msgid "Generate or purge sitemap cache files."
 msgstr "サイトマップのキャッシュファイルを生成または削除します。"
 
-#: zp-core/zp-extensions/GoogleMap/Map.php:104
+#: zp-core/zp-extensions/GoogleMap/Map.php:102
 msgid "Map display error"
 msgstr "マップ表示エラー"
 
-#: zp-core/zp-extensions/GoogleMap/Map.php:106
+#: zp-core/zp-extensions/GoogleMap/Map.php:104
 msgid ""
 "The GoogleMap plugin <em>map display</em> script has received a corrupt "
 "<em>Map</em> parameter.\tThis is most likely caused by URL character "
@@ -20109,7 +20064,7 @@ msgstr ""
 "のパラメータを受け取りました。\n"
 "\tこれは、おそらくお使いのブラウザのURL文字制限が原因で発生します。"
 
-#: zp-core/zp-extensions/GoogleMap/Map.php:107
+#: zp-core/zp-extensions/GoogleMap/Map.php:105
 msgid ""
 "For information on URL limits visit <a href=\"javascript:parent.window."
 "location='http://www.boutell.com/newfaq/misc/urllength.html';\">What is the "
@@ -20119,18 +20074,18 @@ msgstr ""
 "www.boutell.com/newfaq/misc/urllength.html';\">What is the maximum length of "
 "a URL</a>(英文)を御覧ください。"
 
-#: zp-core/zp-extensions/GoogleMap/Map.php:110
+#: zp-core/zp-extensions/GoogleMap/Map.php:108
 msgid ""
 "You can try a different browser or contact the site manager for assistance."
 msgstr ""
 "あなたは別のブラウザを試すか、または支援のためにサイト管理者へ連絡することが"
 "できます。"
 
-#: zp-core/zp-extensions/GoogleMap/Map.php:113
+#: zp-core/zp-extensions/GoogleMap/Map.php:111
 msgid "If you are the manager of this site you can try the following:"
 msgstr "このサイトの管理者である場合は、以下を試すことができます:"
 
-#: zp-core/zp-extensions/GoogleMap/Map.php:118
+#: zp-core/zp-extensions/GoogleMap/Map.php:116
 #, php-format
 msgid ""
 "Enable the <a href=\"javascript:parent.window.location=%s;\">GoogleMap "
@@ -20139,15 +20094,15 @@ msgstr ""
 "<a href=\"javascript:parent.window.location=%s;\">GoogleMapオプション</a>の"
 "<em>マップセッション</em>を有効にします。"
 
-#: zp-core/zp-extensions/GoogleMap/Map.php:122
+#: zp-core/zp-extensions/GoogleMap/Map.php:120
 msgid "Reduce the number of <em>points</em> being displayed"
 msgstr "表示されている<em>ポイント</em>数を減らす"
 
-#: zp-core/zp-extensions/GoogleMap/Map.php:123
+#: zp-core/zp-extensions/GoogleMap/Map.php:121
 msgid "Reduce the text passed as the description of each <em>point</em>"
 msgstr "各<em>ポイント</em>の説明として渡されたテキストを減らす"
 
-#: zp-core/zp-extensions/GoogleMap/Map.php:124
+#: zp-core/zp-extensions/GoogleMap/Map.php:122
 msgid "Truncate the titles of the <em>points</em>"
 msgstr "<em>ポイント</em>のタイトルを切り捨てる"
 
@@ -20793,51 +20748,51 @@ msgstr ""
 "に関する場所の制限を行います。あなたのサイトが準拠しているを確認するためにこ"
 "れらを確認してください。"
 
-#: zp-core/zp-extensions/GoogleMap.php:60
-#: zp-core/zp-extensions/GoogleMap.php:78
+#: zp-core/zp-extensions/GoogleMap.php:58
+#: zp-core/zp-extensions/GoogleMap.php:76
 msgid "Hybrid"
 msgstr "ハイブリッド"
 
-#: zp-core/zp-extensions/GoogleMap.php:62
-#: zp-core/zp-extensions/GoogleMap.php:79
+#: zp-core/zp-extensions/GoogleMap.php:60
+#: zp-core/zp-extensions/GoogleMap.php:77
 msgid "Map"
 msgstr "地図"
 
-#: zp-core/zp-extensions/GoogleMap.php:64
-#: zp-core/zp-extensions/GoogleMap.php:80
+#: zp-core/zp-extensions/GoogleMap.php:62
+#: zp-core/zp-extensions/GoogleMap.php:78
 msgid "Satellite"
 msgstr "衛星"
 
-#: zp-core/zp-extensions/GoogleMap.php:66
-#: zp-core/zp-extensions/GoogleMap.php:81
+#: zp-core/zp-extensions/GoogleMap.php:64
+#: zp-core/zp-extensions/GoogleMap.php:79
 msgid "Terrain"
 msgstr "地形"
 
-#: zp-core/zp-extensions/GoogleMap.php:76
+#: zp-core/zp-extensions/GoogleMap.php:74
 msgid "Allowed maps"
 msgstr "許可する地図"
 
-#: zp-core/zp-extensions/GoogleMap.php:82
+#: zp-core/zp-extensions/GoogleMap.php:80
 msgid "Select the map types that are allowed."
 msgstr "許可する地図タイプを選択します。"
 
-#: zp-core/zp-extensions/GoogleMap.php:83
+#: zp-core/zp-extensions/GoogleMap.php:81
 msgid "Initial map display selection"
 msgstr "初期マップの表示選択"
 
-#: zp-core/zp-extensions/GoogleMap.php:86
+#: zp-core/zp-extensions/GoogleMap.php:84
 msgid "Select the initial type of map to display."
 msgstr "表示するマップの初期タイプを選択します。"
 
-#: zp-core/zp-extensions/GoogleMap.php:87
+#: zp-core/zp-extensions/GoogleMap.php:85
 msgid "Map display"
 msgstr "マップ表示"
 
-#: zp-core/zp-extensions/GoogleMap.php:91
+#: zp-core/zp-extensions/GoogleMap.php:89
 msgid "colorbox"
 msgstr "colorbox"
 
-#: zp-core/zp-extensions/GoogleMap.php:92
+#: zp-core/zp-extensions/GoogleMap.php:90
 msgid ""
 "Select <em>hide</em> to initially hide the map. Select <em>colorbox</em> for "
 "the map to display in a colorbox. Select <em>show</em> and the map will "
@@ -20847,60 +20802,44 @@ msgstr ""
 "るには<em>colorbox</em>を選択します。ページが読み込まれた際にマップを表示する"
 "には<em>表示</em>を選択します。"
 
-#: zp-core/zp-extensions/GoogleMap.php:93
+#: zp-core/zp-extensions/GoogleMap.php:91
 msgid "Map controls"
 msgstr "マップコントロール"
 
-#: zp-core/zp-extensions/GoogleMap.php:96
-#: zp-core/zp-extensions/GoogleMap.php:103
+#: zp-core/zp-extensions/GoogleMap.php:94
+#: zp-core/zp-extensions/GoogleMap.php:101
 msgid "Default"
 msgstr "デフォルト"
 
-#: zp-core/zp-extensions/GoogleMap.php:97
+#: zp-core/zp-extensions/GoogleMap.php:95
 msgid "Dropdown"
 msgstr "ドロップダウン"
 
-#: zp-core/zp-extensions/GoogleMap.php:99
+#: zp-core/zp-extensions/GoogleMap.php:97
 msgid "Display options for the Map type control."
 msgstr "マップタイプコントローラーのオプションを表示します。"
 
-#: zp-core/zp-extensions/GoogleMap.php:100
+#: zp-core/zp-extensions/GoogleMap.php:98
 msgid "Zoom controls"
 msgstr "ズームコントロール"
 
-#: zp-core/zp-extensions/GoogleMap.php:105
+#: zp-core/zp-extensions/GoogleMap.php:103
 msgid "Display options for the Zoom control."
 msgstr "ズームコントロールのオプションを表示します。"
 
-#: zp-core/zp-extensions/GoogleMap.php:106
+#: zp-core/zp-extensions/GoogleMap.php:104
 msgid "Max zoom level"
 msgstr "最大ズームレベル"
 
-#: zp-core/zp-extensions/GoogleMap.php:108
+#: zp-core/zp-extensions/GoogleMap.php:106
 msgid "The max zoom level for clustering pictures on map."
 msgstr "マップ上のクラスタリング画像の最大ズームレベルです。"
 
-#: zp-core/zp-extensions/GoogleMap.php:109
-msgid "Map dimensions—width"
-msgstr "地図の大きさ-幅"
-
-#: zp-core/zp-extensions/GoogleMap.php:111
-msgid "The default width of the map."
-msgstr "地図のデフォルトの幅です。"
-
-#: zp-core/zp-extensions/GoogleMap.php:112
-msgid "Map dimensions—height"
-msgstr "地図の大きさ-高さ"
-
-#: zp-core/zp-extensions/GoogleMap.php:114
-msgid "The default height of the map."
-msgstr "地図のデフォルトの高さです。"
-
-#: zp-core/zp-extensions/GoogleMap.php:115
+#: zp-core/zp-extensions/GoogleMap.php:107
 msgid "Map sessions"
 msgstr "マップセッション"
 
-#: zp-core/zp-extensions/GoogleMap.php:117
+#: zp-core/zp-extensions/GoogleMap.php:109
 msgid ""
 "If checked GoogleMaps will use sessions to pass map data for the "
 "<em>colorbox</em> display option. We recommend this option be selected. It "
@@ -20912,11 +20851,21 @@ msgstr ""
 "します。これは、リファレンスフォージェリのセキュリティ攻撃から保護し、一部の"
 "ブラウザによって許可さを超えるデータの問題を軽減します。"
 
-#: zp-core/zp-extensions/GoogleMap.php:326
+#: zp-core/zp-extensions/GoogleMap.php:110
+msgid "API key"
+msgstr "APIキー"
+
+#: zp-core/zp-extensions/GoogleMap.php:112
+msgid ""
+"Enter your API key. You can get one <a href=\"https://developers.google.com/"
+"maps/documentation/javascript/get-api-key#key\">here</a>."
+msgstr "APIキーを入力します。キーは<a href=\"https://developers.google.com/maps/documentation/javascript/get-api-key#key\">ここ</a>で取得できます。"
+
+#: zp-core/zp-extensions/GoogleMap.php:328
 msgid "Google Map"
 msgstr "Googleマップ"
 
-#: zp-core/zp-extensions/GoogleMap.php:468
+#: zp-core/zp-extensions/GoogleMap.php:467
 msgid "Display or hide the Google Map."
 msgstr "Googleマップを表示又は非表示にします。"
 
@@ -21309,11 +21258,11 @@ msgstr ""
 "album.phpのサムネイルとは無関係にimage.php上のサムネイルナビゲーションを表示"
 "します。"
 
-#: zp-core/zp-extensions/paged_thumbs_nav.php:24 themes/zenpage/image.php:67
+#: zp-core/zp-extensions/paged_thumbs_nav.php:24 themes/zenpage/image.php:70
 msgid "« prev thumbs"
 msgstr "&lt;&lt; 前のサムネイル"
 
-#: zp-core/zp-extensions/paged_thumbs_nav.php:26 themes/zenpage/image.php:67
+#: zp-core/zp-extensions/paged_thumbs_nav.php:26 themes/zenpage/image.php:70
 msgid "next thumbs »"
 msgstr "次のサムネイル &gt;&gt;"
 
@@ -22320,9 +22269,9 @@ msgid "View album:"
 msgstr "アルバム閲覧:"
 
 #: themes/zenpage/favorites.php:73 themes/zenpage/news.php:64
-#: themes/zenpage/news.php:101 themes/zenpage/image.php:102
+#: themes/zenpage/news.php:101 themes/zenpage/image.php:105
 #: themes/zenpage/pages.php:50 themes/zenpage/gallery.php:81
-#: themes/zenpage/album.php:74 themes/basic/image.php:108
+#: themes/zenpage/album.php:74 themes/basic/image.php:111
 #: themes/basic/album.php:66 themes/zpmobile/news.php:46
 #: themes/zpmobile/pages.php:57
 msgid "<strong>Tags:</strong>"
@@ -22365,10 +22314,10 @@ msgstr "このサイトに登録"
 
 #: themes/zenpage/archive.php:14 themes/zenpage/gallery.php:14
 #: themes/zenpage/search.php:14 themes/basic/archive.php:15
-#: themes/basic/image.php:34 themes/basic/index.php:15
+#: themes/basic/image.php:37 themes/basic/index.php:15
 #: themes/basic/search.php:14 themes/basic/search.php:96
 #: themes/garland/password.php:12 themes/garland/archive.php:12
-#: themes/garland/image.php:38 themes/garland/register.php:13
+#: themes/garland/image.php:41 themes/garland/register.php:13
 #: themes/garland/pages.php:13 themes/garland/gallery.php:12
 #: themes/garland/main.php:12 themes/garland/404.php:12
 #: themes/garland/search.php:16
@@ -22376,7 +22325,7 @@ msgid "Gallery RSS"
 msgstr "ギャラリーRSS"
 
 #: themes/zenpage/archive.php:33 themes/basic/archive.php:30
-#: themes/basic/image.php:127 themes/basic/index.php:60
+#: themes/basic/image.php:130 themes/basic/index.php:60
 #: themes/basic/search.php:97 themes/basic/album.php:82
 #: themes/garland/archive.php:41 themes/garland/functions.php:122
 #: themes/effervescence_plus/archive.php:30
@@ -22397,12 +22346,12 @@ msgstr "ニュースアーカイブ"
 msgid "Popular Tags"
 msgstr "人気のタグ"
 
-#: themes/zenpage/image.php:43 themes/basic/image.php:44
+#: themes/zenpage/image.php:46 themes/basic/image.php:47
 #: themes/zpmobile/image.php:32
 msgid "Previous Image"
 msgstr "前の画像"
 
-#: themes/zenpage/image.php:45 themes/basic/image.php:48
+#: themes/zenpage/image.php:48 themes/basic/image.php:51
 #: themes/zpmobile/image.php:35
 msgid "Next Image"
 msgstr "次の画像"
@@ -22542,7 +22491,7 @@ msgstr ""
 
 #: themes/zenpage/404.php:23 themes/garland/favorites.php:24
 #: themes/garland/news.php:24 themes/garland/password.php:23
-#: themes/garland/archive.php:22 themes/garland/image.php:49
+#: themes/garland/archive.php:22 themes/garland/image.php:52
 #: themes/garland/register.php:24 themes/garland/pages.php:24
 #: themes/garland/gallery.php:23 themes/garland/main.php:23
 #: themes/garland/404.php:23 themes/garland/search.php:66
@@ -22707,7 +22656,7 @@ msgstr "« 前のアルバム"
 msgid "Comments: %d"
 msgstr "コメント数: %d"
 
-#: themes/garland/news.php:113 themes/garland/image.php:137
+#: themes/garland/news.php:113 themes/garland/image.php:140
 #: themes/garland/pages.php:67 themes/garland/album.php:119
 msgid "Tags: "
 msgstr "タグ: "
@@ -22720,19 +22669,19 @@ msgstr "このページにアクセスするにはパスワードが必須です
 msgid "Images By Date"
 msgstr "日付毎の画像"
 
-#: themes/garland/image.php:118
+#: themes/garland/image.php:121
 msgid "Next image"
 msgstr "次の画像"
 
-#: themes/garland/image.php:119
+#: themes/garland/image.php:122
 msgid "Next »"
 msgstr "次へ »"
 
-#: themes/garland/image.php:128
+#: themes/garland/image.php:131
 msgid "Previous image"
 msgstr "前の画像"
 
-#: themes/garland/image.php:129
+#: themes/garland/image.php:132
 msgid "« Previous"
 msgstr "« 前へ"
 
@@ -23212,65 +23161,3 @@ msgstr ""
 #: themes/zpmobile/404.php:31
 msgid "The Zenphoto object you are requesting cannot be found."
 msgstr "Zenphotoのオブジェクトは要求されたものを見つけられませんでした。"
-
-#~ msgid "PHP <code>Sessions</code> [problems with <em>save_save_path</em>]."
-#~ msgstr ""
-#~ "PHP <code>セッション</code> 【<em>save_save_path</em>に問題が有ります。】"
-
-#~ msgid ""
-#~ "The configured PHP session path could not be used. Zenphoto has set the "
-#~ "path to the %s folder."
-#~ msgstr ""
-#~ "設定したPHPセッションパスは使用することができませんでした。Zenphotoは%s"
-#~ "フォルダーへパスを設定します。"
-
-#~ msgid "<strong>%1$u</strong> Page"
-#~ msgid_plural "<strong>%1$u</strong> Pages"
-#~ msgstr[0] "<strong>%u</strong>件のページ"
-
-#~ msgid "<strong>%1$u</strong> Page (%2$u un-published)"
-#~ msgid_plural "<strong>%1$u</strong> Pages (%2$u un-published)"
-#~ msgstr[0] "<strong>%1$u</strong>個のページ (内%2$u件は非表示)"
-
-#~ msgid "<strong>%1$u</strong> News"
-#~ msgid_plural "<strong>%1$u</strong> News"
-#~ msgstr[0] "<strong>%1$u</strong>件のニュース"
-
-#~ msgid "<strong>%1$u</strong> News (%2$u un-published)"
-#~ msgid_plural "<strong>%1$u</strong> News (%2$u un-published)"
-#~ msgstr[0] "<strong>%1$u</strong>件のニュース (内%2$u件は非表示)"
-
-#~ msgid "<strong>%1$u</strong> Category"
-#~ msgid_plural "<strong>%1$u</strong> Categories"
-#~ msgstr[0] "<strong>%u</strong>個のカテゴリ"
-
-#~ msgid "(<strong>%1$u</strong> news)"
-#~ msgid_plural "(<strong>%1$u</strong> news)"
-#~ msgstr[0] "(<strong>%u</strong>件のニュース)"
-
-#~ msgid "(<strong>%1$u</strong> news, <strong>%2$u</strong> un-published)"
-#~ msgid_plural ""
-#~ "(<strong>%1$u</strong> news, <strong>%2$u</strong> un-published)"
-#~ msgstr[0] ""
-#~ "(<strong>%1$u</strong>件のニュース、<strong>%2$u</strong>件が未公開)"
-
-#~ msgid "Search category"
-#~ msgstr "カテゴリ検索"
-
-#~ msgid "Search news"
-#~ msgstr "ニュース検索"
-
-#~ msgid "Search album"
-#~ msgstr "アルバム検索"
-
-#~ msgid "Search within album"
-#~ msgstr "アルバム内検索"
-
-#~ msgid "Search albums"
-#~ msgstr "アルバム検索"
-
-#~ msgid "Search pages"
-#~ msgstr "ページ検索"
-
-#~ msgid "Search within category"
-#~ msgstr "カテゴリ内検索"
