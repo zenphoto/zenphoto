@@ -193,6 +193,7 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 						?>
 						<label for = "comment"><?php echo gettext("Comment:");
 						?></label>
+						<br clear="all">
 						<textarea rows="8" cols="60" name="comment" class="texteditor_comments"><?php echo html_encode($comment); ?></textarea>
 					</div>
 					<div class="commentformedit_box">
