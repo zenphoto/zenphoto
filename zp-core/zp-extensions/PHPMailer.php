@@ -85,10 +85,9 @@ class zp_PHPMailer {
 }
 
 function zenphoto_PHPMailer($msg, $email_list, $subject, $message, $from_mail, $from_name, $cc_addresses, $replyTo) {
-	require_once(dirname(__FILE__) . '/PHPMailer/class.phpmailer.php');
+	require_once(dirname(__FILE__) . '/PHPMailer/PHPMailerAutoload.php');
 	switch (getOption('PHPMailer_mail_protocol')) {
 		case 'pop3':
-			require_once(dirname(__FILE__) . '/PHPMailer/class.pop3.php');
 			$pop = new POP3();
 			$authorized = $pop->Authorise(getOption('PHPMailer_server'), getOption('PHPMailer_pop_port'), 30, getOption('PHPMailer_user'), getOption('PHPMailer_password'), 0);
 			$mail = new PHPMailer();
