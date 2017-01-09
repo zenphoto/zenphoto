@@ -1897,6 +1897,7 @@ zp-core/zp-extensions/PHPMailer
 zp-core/zp-extensions/PHPMailer/class.phpmailer.php
 zp-core/zp-extensions/PHPMailer/class.pop3.php
 zp-core/zp-extensions/PHPMailer/class.smtp.php
+zp-core/zp-extensions/PHPMailer/PHPMailerAutoload.php
 zp-core/zp-extensions/publishContent
 zp-core/zp-extensions/publishContent/publishContent.css
 zp-core/zp-extensions/publishContent/publishContent.php
@@ -2056,6 +2057,8 @@ zp-core/zp-extensions/tinymce/config/zenphoto-light.php
 zp-core/zp-extensions/tinymce/config/zenphoto-ribbon.php
 zp-core/zp-extensions/tinymce/config/zenphoto-slim.php
 zp-core/zp-extensions/tinymce/langs
+zp-core/zp-extensions/tinymce/langs/cs.js
+zp-core/zp-extensions/tinymce/langs/cs_CZ.js
 zp-core/zp-extensions/tinymce/langs/da.js
 zp-core/zp-extensions/tinymce/langs/de.js
 zp-core/zp-extensions/tinymce/langs/es.js
@@ -2155,8 +2158,6 @@ zp-core/zp-extensions/tinymce/plugins/importcss
 zp-core/zp-extensions/tinymce/plugins/importcss/plugin.min.js
 zp-core/zp-extensions/tinymce/plugins/insertdatetime
 zp-core/zp-extensions/tinymce/plugins/insertdatetime/plugin.min.js
-zp-core/zp-extensions/tinymce/plugins/layer
-zp-core/zp-extensions/tinymce/plugins/layer/plugin.min.js
 zp-core/zp-extensions/tinymce/plugins/legacyoutput
 zp-core/zp-extensions/tinymce/plugins/legacyoutput/plugin.min.js
 zp-core/zp-extensions/tinymce/plugins/link
@@ -2164,7 +2165,6 @@ zp-core/zp-extensions/tinymce/plugins/link/plugin.min.js
 zp-core/zp-extensions/tinymce/plugins/lists
 zp-core/zp-extensions/tinymce/plugins/lists/plugin.min.js
 zp-core/zp-extensions/tinymce/plugins/media
-zp-core/zp-extensions/tinymce/plugins/media/moxieplayer.swf
 zp-core/zp-extensions/tinymce/plugins/media/plugin.min.js
 zp-core/zp-extensions/tinymce/plugins/nonbreaking
 zp-core/zp-extensions/tinymce/plugins/nonbreaking/plugin.min.js
@@ -2198,6 +2198,8 @@ zp-core/zp-extensions/tinymce/plugins/textcolor
 zp-core/zp-extensions/tinymce/plugins/textcolor/plugin.min.js
 zp-core/zp-extensions/tinymce/plugins/textpattern
 zp-core/zp-extensions/tinymce/plugins/textpattern/plugin.min.js
+zp-core/zp-extensions/tinymce/plugins/toc
+zp-core/zp-extensions/tinymce/plugins/toc/plugin.min.js
 zp-core/zp-extensions/tinymce/plugins/visualblocks
 zp-core/zp-extensions/tinymce/plugins/visualblocks/plugin.min.js
 zp-core/zp-extensions/tinymce/plugins/visualblocks/css
@@ -2213,12 +2215,10 @@ zp-core/zp-extensions/tinymce/skins/lightgray/content.min.css
 zp-core/zp-extensions/tinymce/skins/lightgray/skin.ie7.min.css
 zp-core/zp-extensions/tinymce/skins/lightgray/skin.min.css
 zp-core/zp-extensions/tinymce/skins/lightgray/fonts
-zp-core/zp-extensions/tinymce/skins/lightgray/fonts/tinymce-small.dev.svg
 zp-core/zp-extensions/tinymce/skins/lightgray/fonts/tinymce-small.eot
 zp-core/zp-extensions/tinymce/skins/lightgray/fonts/tinymce-small.svg
 zp-core/zp-extensions/tinymce/skins/lightgray/fonts/tinymce-small.ttf
 zp-core/zp-extensions/tinymce/skins/lightgray/fonts/tinymce-small.woff
-zp-core/zp-extensions/tinymce/skins/lightgray/fonts/tinymce.dev.svg
 zp-core/zp-extensions/tinymce/skins/lightgray/fonts/tinymce.eot
 zp-core/zp-extensions/tinymce/skins/lightgray/fonts/tinymce.svg
 zp-core/zp-extensions/tinymce/skins/lightgray/fonts/tinymce.ttf
@@ -2250,6 +2250,8 @@ zp-core/zp-extensions/tinymce/skins/tundora/img/object.gif
 zp-core/zp-extensions/tinymce/skins/tundora/img/trans.gif
 zp-core/zp-extensions/tinymce/skins/tundora/img/wline.gif
 zp-core/zp-extensions/tinymce/themes
+zp-core/zp-extensions/tinymce/themes/inlite
+zp-core/zp-extensions/tinymce/themes/inlite/theme.min.js
 zp-core/zp-extensions/tinymce/themes/modern
 zp-core/zp-extensions/tinymce/themes/modern/theme.min.js
 zp-core/zp-extensions/tweet_news
@@ -2306,4 +2308,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-2308
+2310

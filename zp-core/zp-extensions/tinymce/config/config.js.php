@@ -67,6 +67,7 @@ if (OFFSET_PATH) {
 					selector: "<?php echo $MCEselector; ?>",
 					language: "<?php echo $MCElocale; ?>",
 					relative_urls: false,
+					flash_video_player_url: false,
 <?php
 if ($MCEimage_advtab == NULL || $MCEimage_advtab) {
 	?>
