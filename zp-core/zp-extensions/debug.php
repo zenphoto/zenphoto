@@ -60,22 +60,17 @@ class debug {
 	}
 
 	function getOptionsSupported() {
-		$options = array(gettext('Debuging options') => array(
-										'key'				 => 'galleryArticles_items', 'type'			 => OPTION_TYPE_CHECKBOX_ARRAY,
-										'order'			 => 1,
-										'checkboxes' => array(
-														'404'							 => 'debug_mark_404',
-														'ERROR'						 => 'debug_mark_ERROR',
-														'EXIF'						 => 'debug_mark_EXIF',
-														'EXPLAIN_SELECTS'	 => 'debug_mark_EXPLAIN_SELECTS',
-														'FILTERS'					 => 'debug_mark_FILTERS',
-														'IMAGE'						 => 'debug_mark_IMAGE',
-														'LOCALE'					 => 'debug_mark_LOCALE',
-														'LOGIN'						 => 'debug_mark_LOGIN',
-														'PLUGINS'					 => 'debug_mark_PLUGINS'
-										),
-										'desc'			 => gettext('Select the debug options to enable.')
-						)
+		$options = array(
+				gettext('404') => array('key' => 'debug_mark_404', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Log 404 error processing debug information.')),
+				gettext('ERROR') => array('key' => 'debug_mark_ERROR', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Log Errors.')),
+				gettext('EXIF') => array('key' => 'debug_mark_EXIF', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Log start/finish of exif processing. Useful to find problematic images.')),
+				gettext('EXPLAIN_SELECTS') => array('key' => 'debug_mark_EXPLAIN_SELECTS', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Log the <em>EXPLAIN</em> output from SQL SELECT queries.')),
+				gettext('FILTERS') => array('key' => 'debug_mark_FILTERS', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Log filter application sequence.')),
+				gettext('IMAGE') => array('key' => 'debug_mark_IMAGE', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Log image processing debug information.')),
+				gettext('LOCALE') => array('key' => 'debug_mark_LOCALE', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Used for examining language selection problems.')),
+				gettext('LOGIN') => array('key' => 'debug_mark_LOGIN', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Log admin saves and login attempts.')),
+				gettext('PLUGINS') => array('key' => 'debug_mark_PLUGINS', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Log plugin load sequence.')),
+				'' => array('key' => '', 'type' => OPTION_TYPE_NOTE, 'desc' => gettext('Note: These options are enabled only when the release is marked in <em>debug</em> mode.'))
 		);
 		return $options;
 	}
@@ -114,7 +109,10 @@ class debug {
 					$options .= strtoupper(substr($option, 10));
 				}
 			}
-			return "$originalVersion-DEBUG$options";
+			if ($options) {
+				$options = '-DEBUG' . $options;
+			}
+			return "$originalVersion$options";
 		}
 	}
 
@@ -129,17 +127,17 @@ class debug {
 		}
 
 		$buttons[] = array(
-						'category'		 => gettext('Development'),
-						'enable'			 => true,
-						'button_text'	 => gettext('Mark release'),
-						'formname'		 => 'markRelease_button',
-						'action'			 => '?markRelease=' . $action,
-						'icon'				 => $mark ? 'images/comments-on.png' : 'images/comments-off.png',
-						'title'				 => sprintf(gettext('Edits the version.php file making a “%s” install.'), $text[$action]),
-						'alt'					 => '',
-						'hidden'			 => '<input type="hidden" name="markRelease" value="' . $action . '" />',
-						'rights'			 => ADMIN_RIGHTS,
-						'XSRFTag'			 => 'markRelease'
+				'category' => gettext('Development'),
+				'enable' => true,
+				'button_text' => gettext('Mark release'),
+				'formname' => 'markRelease_button',
+				'action' => '?markRelease=' . $action,
+				'icon' => $mark ? 'images/comments-on.png' : 'images/comments-off.png',
+				'title' => sprintf(gettext('Edits the version.php file making a “%s” install.'), $text[$action]),
+				'alt' => '',
+				'hidden' => '<input type="hidden" name="markRelease" value="' . $action . '" />',
+				'rights' => ADMIN_RIGHTS,
+				'XSRFTag' => 'markRelease'
 		);
 		return $buttons;
 	}
@@ -147,9 +145,9 @@ class debug {
 	static function tabs($tabs) {
 		if (zp_loggedin(DEBUG_RIGHTS)) {
 			if (!isset($tabs['development'])) {
-				$tabs['development'] = array('text'	 => gettext("development"),
-								'link'	 => WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/debug/admin_tab.php',
-								'rights' => DEBUG_RIGHTS);
+				$tabs['development'] = array('text' => gettext("development"),
+						'link' => WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/debug/admin_tab.php',
+						'rights' => DEBUG_RIGHTS);
 			}
 			if (zp_loggedin(ADMIN_RIGHTS)) {
 				$tabs['development']['default'] = 'phpinfo';
