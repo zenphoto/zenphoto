@@ -62,7 +62,6 @@ class debug {
 	function getOptionsSupported() {
 		$options = array(
 				gettext('404') => array('key' => 'debug_mark_404', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Log 404 error processing debug information.')),
-				gettext('ERROR') => array('key' => 'debug_mark_ERROR', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Log Errors.')),
 				gettext('EXIF') => array('key' => 'debug_mark_EXIF', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Log start/finish of exif processing. Useful to find problematic images.')),
 				gettext('EXPLAIN_SELECTS') => array('key' => 'debug_mark_EXPLAIN_SELECTS', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Log the <em>EXPLAIN</em> output from SQL SELECT queries.')),
 				gettext('FILTERS') => array('key' => 'debug_mark_FILTERS', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Log filter application sequence.')),
