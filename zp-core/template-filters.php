@@ -10,5 +10,6 @@
 
 zp_register_filter('theme_head', 'printThemeHeadItems', 9999);
 zp_register_filter('theme_body_close', 'adminToolbox');
-zp_register_filter('zenphoto_information', 'exposeZenPhotoInformations');
+if (TEST_RELEASE)
+	zp_register_filter('zenphoto_information', 'exposeZenPhotoInformations');
 ?>

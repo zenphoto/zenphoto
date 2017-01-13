@@ -62,30 +62,30 @@ class DownloadList {
 	}
 
 	function getOptionsSupported() {
-		$options = array(gettext('Download directory')											 => array('key'		 => 'downloadList_directory', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 2,
-										'desc'	 => gettext("This download folder can be relative to your installation (<em>foldername</em>) or external to it (<em>../foldername</em>)! You can override this setting by using the parameter of the printdownloadList() directly on calling.")),
-						gettext('Show filesize of download items')				 => array('key'		 => 'downloadList_showfilesize', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 3,
-										'desc'	 => ''),
-						gettext('Show download counter of download items') => array('key'		 => 'downloadList_showdownloadcounter', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 4,
-										'desc'	 => ''),
-						gettext('Files to exclude from the download list') => array('key'		 => 'downloadList_excludesuffixes', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 5,
-										'desc'	 => gettext('A list of file suffixes to exclude. Separate with comma and omit the dot (e.g "jpg").')),
-						gettext('Zip source')															 => array('key'			 => 'downloadList_zipFromCache', 'type'		 => OPTION_TYPE_RADIO,
-										'order'		 => 6,
-										'buttons'	 => array(gettext('From album') => 0, gettext('From Cache') => 1),
-										'desc'		 => gettext('Make the album zip from the album folder or from the sized images in the cache.')),
-						gettext('User rights')														 => array('key'		 => 'downloadList_rights', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 1,
-										'desc'	 => gettext('Check if users are required to have <em>file</em> rights to download.'))
+		$options = array(gettext('Download directory') => array('key' => 'downloadList_directory', 'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 2,
+						'desc' => gettext("This download folder can be relative to your installation (<em>foldername</em>) or external to it (<em>../foldername</em>)! You can override this setting by using the parameter of the printdownloadList() directly on calling.")),
+				gettext('Show filesize of download items') => array('key' => 'downloadList_showfilesize', 'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 3,
+						'desc' => ''),
+				gettext('Show download counter of download items') => array('key' => 'downloadList_showdownloadcounter', 'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 4,
+						'desc' => ''),
+				gettext('Files to exclude from the download list') => array('key' => 'downloadList_excludesuffixes', 'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 5,
+						'desc' => gettext('A list of file suffixes to exclude. Separate with comma and omit the dot (e.g "jpg").')),
+				gettext('Zip source') => array('key' => 'downloadList_zipFromCache', 'type' => OPTION_TYPE_RADIO,
+						'order' => 6,
+						'buttons' => array(gettext('From album') => 0, gettext('From Cache') => 1),
+						'desc' => gettext('Make the album zip from the album folder or from the sized images in the cache.')),
+				gettext('User rights') => array('key' => 'downloadList_rights', 'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 1,
+						'desc' => gettext('Check if users are required to have <em>file</em> rights to download.'))
 		);
 		if (GALLERY_SECURITY == 'public') {
-			$options[gettext('credentials')] = array('key'		 => 'downloadList_credentials', 'type'	 => OPTION_TYPE_CUSTOM,
-							'order'	 => 0,
-							'desc'	 => gettext('Provide credentials to password protect downloads'));
+			$options[gettext('credentials')] = array('key' => 'downloadList_credentials', 'type' => OPTION_TYPE_CUSTOM,
+					'order' => 0,
+					'desc' => gettext('Provide credentials to password protect downloads'));
 		}
 		return $options;
 	}
@@ -256,16 +256,16 @@ class DownloadList {
 	 */
 	static function button($buttons) {
 		$buttons[] = array(
-						'category'		 => gettext('Info'),
-						'enable'			 => true,
-						'button_text'	 => gettext('Download statistics'),
-						'formname'		 => 'downloadstatistics_button',
-						'action'			 => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/downloadList/download_statistics.php',
-						'icon'				 => WEBPATH . '/' . ZENFOLDER . '/images/bar_graph.png',
-						'title'				 => gettext('Counts of downloads'),
-						'alt'					 => '',
-						'hidden'			 => '',
-						'rights'			 => ADMIN_RIGHTS,
+				'category' => gettext('Info'),
+				'enable' => true,
+				'button_text' => gettext('Download statistics'),
+				'formname' => 'downloadstatistics_button',
+				'action' => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/downloadList/download_statistics.php',
+				'icon' => WEBPATH . '/' . ZENFOLDER . '/images/bar_graph.png',
+				'title' => gettext('Counts of downloads'),
+				'alt' => '',
+				'hidden' => '',
+				'rights' => ADMIN_RIGHTS,
 		);
 		return $buttons;
 	}
@@ -660,7 +660,6 @@ if (isset($_GET['download'])) {
 				header("Status: 302 Found");
 				header('Last-Modified: ' . ZP_LAST_MODIFIED);
 				include(internalToFilesystem($_zp_script));
-				exposeZenPhotoInformations($_zp_script, array(), $theme);
 				exitZP();
 			}
 		}
