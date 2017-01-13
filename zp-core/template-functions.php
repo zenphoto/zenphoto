@@ -4373,22 +4373,24 @@ function printZenphotoLink() {
  */
 function exposeZenPhotoInformations($obj = '', $plugins = '', $theme = '') {
 	global $_zp_filters;
-
 	$a = basename($obj);
 	if ($a != 'full-image.php') {
-		echo "\n<!-- zenphoto version " . ZENPHOTO_VERSION . " [" . ZENPHOTO_FULL_RELEASE . "]";
-		echo " THEME: " . $theme . " (" . $a . ")";
-		$graphics = zp_graphicsLibInfo();
-		$graphics = sanitize(str_replace('<br />', ', ', $graphics['Library_desc']), 3);
-		echo " GRAPHICS LIB: " . $graphics . " { memory: " . INI_GET('memory_limit') . " }";
-		echo ' PLUGINS: ';
-		if (count($plugins) > 0) {
-			sort($plugins);
-			foreach ($plugins as $plugin) {
-				echo $plugin . ' ';
+		echo "\n<!-- zenphoto version " . ZENPHOTO_VERSION;
+		if (TEST_RELEASE) {
+			echo " [" . ZENPHOTO_FULL_RELEASE . "]";
+			echo " THEME: " . $theme . " (" . $a . ")";
+			$graphics = zp_graphicsLibInfo();
+			$graphics = sanitize(str_replace('<br />', ', ', $graphics['Library_desc']), 3);
+			echo " GRAPHICS LIB: " . $graphics . " { memory: " . INI_GET('memory_limit') . " }";
+			echo ' PLUGINS: ';
+			if (count($plugins) > 0) {
+				sort($plugins);
+				foreach ($plugins as $plugin) {
+					echo $plugin . ' ';
+				}
+			} else {
+				echo 'none ';
 			}
-		} else {
-			echo 'none ';
 		}
 		echo " -->";
 	}
