@@ -191,16 +191,8 @@ class DownloadList {
 		}
 	}
 
-	/*	 * Gets the download items from all download items from the database. For internal use in the downloadList functions.
-	 * @return array
-	 */
-
-	static function getListItemsFromDB() {
-		$downloaditems = query_full_array("SELECT id, `aux`, `data` FROM " . prefix('plugin_storage') . " WHERE `type` = 'downloadList'");
-		return $downloaditems;
-	}
-
-	/*	 * Gets the download items from all download items from the database. For internal use in the downloadlink functions.
+	/*
+	 * Gets the download items from all download items from the database. For internal use in the downloadlink functions.
 	 * @return array
 	 */
 
@@ -302,7 +294,6 @@ class AlbumZip {
 	static function AddAlbum($album, $fromcache, $level = 0) {
 		global $_zp_zip_list, $_zp_albums_visited_albumMenu, $zip_gallery, $defaultSize;
 		$_zp_albums_visited_albumMenu[] = $album->name;
-
 		$albumfolders = explode('/', $album->name);
 		$subalbums = array();
 		for ($i = 0; $i < $level; $i++) {
@@ -551,7 +542,6 @@ function printDownloadURL($file, $linktext = NULL) {
 	}
 	if (getOption('downloadList_showdownloadcounter')) {
 		$downloaditem = DownloadList::getListItemFromDB($file);
-		$downloaditem = DownloadList::getListItemFromDB($file);
 		if ($downloaditem) {
 			$downloadcount = $downloaditem['data'];
 		} else {
@@ -570,14 +560,14 @@ function printDownloadURL($file, $linktext = NULL) {
 /**
  *
  * Prints a download link for an album zip of the current album (therefore to be used only on album.php/image.php).
- * This function only creates a download count and then redirects to the original album zip download.
+ * This function only creates a download and returns to the current page.
  *
  * @param string $linktext
  * @param object $albumobj
  * @param bool $fromcache if true get the images from the cache
  */
 function printDownloadAlbumZipURL($linktext = NULL, $albumobj = NULL, $fromcache = NULL) {
-	global $_zp_current_album;
+	global $_zp_current_album, $_zp_current_search;
 	$request = parse_url(getRequestURI());
 	if (isset($request['query'])) {
 		$query = parse_query($request['query']);
@@ -587,21 +577,27 @@ function printDownloadAlbumZipURL($linktext = NULL, $albumobj = NULL, $fromcache
 	if (is_null($albumobj)) {
 		$albumobj = $_zp_current_album;
 	}
+	$link = preg_replace('~^' . WEBPATH . '/~', '', $request['path']);
 
 	if (!is_null($albumobj)) {
 		$query['albumzip'] = 'true';
-		if (get_class($albumobj) == 'favorites') {
-			$query['download'] = $file = gettext('My favorites');
-			$query['user'] = $albumobj->name;
-			$instance = $query['instance'] = $albumobj->instance;
-			if ($instance) {
-				$file .= '[' . $instance . ']';
-				$query['download'] .= '[' . $instance . ']';
-			}
-			$file .= '.zip';
-		} else {
-			$query['download'] = $albumobj->name;
-			$file = $albumobj->name . '.zip';
+		switch (get_class($albumobj)) {
+			case 'favorites':
+				$query['download'] = $file = gettext('My favorites');
+				$query['user'] = $albumobj->name;
+				$instance = $query['instance'] = $albumobj->instance;
+				if ($instance) {
+					$file .= '[' . $instance . ']';
+					$query['download'] .= '[' . $instance . ']';
+				}
+				$file .= '.zip';
+			case'SearchEngine':
+				$query = array_merge($query, parse_query($_zp_current_search->getSearchParams(0)));
+				$fromcache = false; //all searches are considered unique
+				setOption('downloadList_showdownloadcounter', 0, false); //as above...
+			default:
+				$query['download'] = $albumobj->name;
+				$file = $albumobj->name . '.zip';
 		}
 		if ($fromcache) {
 			$query['fromcache'] = 'true';
@@ -622,9 +618,20 @@ function printDownloadAlbumZipURL($linktext = NULL, $albumobj = NULL, $fromcache
 		if (!empty($linktext)) {
 			$file = $linktext;
 		}
-		$link = preg_replace('~^' . WEBPATH . '/~', '', $request['path']);
 		echo '<a href="' . FULLWEBPATH . '/' . html_encode(pathurlencode($link)) . '?' . http_build_query($query) . '" rel="nofollow class="downloadlist_link"">' . html_encode($file) . '</a>' . $filesize;
 	}
+}
+
+/**
+ * Prints a download link for a zip of the current search result (therefore to be used only on search.php).
+ * This function only creates a download and returns to the current page.
+ *
+ * @global type $_zp_current_search
+ * @param type $linktext
+ */
+function printDownloadSearchZipURL($linktext = NULL) {
+	global $_zp_current_search;
+	printDownloadAlbumZipURL($linktext, $_zp_current_search, false);
 }
 
 /**
@@ -665,9 +672,7 @@ if (isset($_GET['download'])) {
 		}
 	}
 	if (isset($_GET['albumzip'])) {
-		if (isset($_GET['fromcache'])) {
-			$fromcache = sanitize($isset($_GET['fromcache']));
-		} else {
+		if (!$fromcache = isset($_GET['fromcache'])) {
 			$fromcache = getOption('downloadList_zipFromCache');
 		}
 		if (isset($_GET['instance'])) {
@@ -676,8 +681,14 @@ if (isset($_GET['download'])) {
 				$album->instance = $instance;
 			}
 		} else {
-			$album = newAlbum($item, false, true);
+			if ($item == '*search*') {
+				$fromcache = false;
+				$album = new SearchEngine();
+			} else {
+				$album = newAlbum($item, false, true);
+			}
 		}
+
 		AlbumZip::create($album, $item, $fromcache);
 		DownloadList::updateListItemCount($item . '.zip');
 		exitZP();
