@@ -7,14 +7,13 @@
 }
 
 .purgeOptions_list {
-	margin: 0 0 15px 0px;
-	padding: 10px;
+	padding: 20px;
 	float: left;
 }
 
 .purgeOptions_list ul {
 	margin-left: 10px;
-	margin-right: 20px;
+	margin-right: 5px;
 	list-style-type: none;
 	padding: 0px;
 }
