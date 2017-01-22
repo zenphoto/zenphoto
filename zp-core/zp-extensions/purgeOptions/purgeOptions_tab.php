@@ -20,39 +20,56 @@ $xlate = array('plugins' => gettext('User plugins'), 'zp-core/zp-extensions' => 
 
 if (isset($_POST['purge'])) {
 	XSRFdefender('purgeOptions');
+	$purgedActive = array();
+
 	if (isset($_POST['del'])) {
 		foreach ($_POST['del'] as $owner) {
 			$sql = 'DELETE FROM ' . prefix('options') . ' WHERE `creator` LIKE ' . db_quote('%' . basename($owner));
 			$result = query($sql);
 			if (preg_match('~^' . THEMEFOLDER . '/~', $owner)) {
 				if ($owner == THEMEFOLDER . '/') {
+					$purgedActive[] = true;
 					$where = ' WHERE `creator` = "' . THEMEFOLDER . '/"';
 				} else {
 					$where = ' WHERE `creator` LIKE ' . db_quote('%' . basename($owner) . '/themeoptions.php');
+
+					var_dump(SERVERPATH . '/' . THEMEFOLDER . '/' . basename($owner) . '/themeoptions.php');
+
+					if (file_exists(SERVERPATH . '/' . THEMEFOLDER . '/' . basename($owner) . '/themeoptions.php')) {
+						$purgedActive[] = true;
+					}
 				}
 				$sql = 'DELETE FROM ' . prefix('options') . $where;
 				$result = query($sql);
 			} else {
 				purgeOption('zp_plugin_' . stripSuffix(basename($owner)));
+				$purgedActive[basename($owner)] = true;
 			}
 		}
 	}
 	if (isset($_POST['missingplugin'])) {
 		foreach ($_POST['missingplugin'] as $plugin) {
 			purgeOption('zp_plugin_' . stripSuffix($plugin));
+			unset($purgedActive[$plugin]);
 		}
 	}
+	if (!empty($purgedActive)) {
+		requestSetup('purgeOptions');
+	}
+	header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/purgeOptions/purgeOptions_tab.php');
+	exitZP();
 }
 
 printAdminHeader('options', '');
 ?>
-<link rel="stylesheet" href="purgeOptions.css" type="text/css">
+<link rel="stylesheet" href="<?php echo FULLWEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/purgeOptions/purgeOptions.css" type="text/css">
 </head>
 <body>
 	<?php printLogoAndLinks(); ?>
 	<div id="main">
 		<?php printTabs(); ?>
 		<div id="content">
+			<?php zp_apply_filter('admin_note', 'clone', ''); ?>
 			<div id="container">
 				<?php printSubtabs(); ?>
 				<div class="tabbox">
@@ -126,18 +143,17 @@ printAdminHeader('options', '');
 								echo gettext('Check an item to purge options associated with it.');
 								?>
 								<span class="highlighted">
-									<?php echo gettext('Items that are <span class="missing_owner">highlighted</span> appear to no longer to exist.') ?>
+									<?php echo gettext('Items that are <span class = "missing_owner">highlighted</span> appear to no longer to exist.') ?>
 								</span>
 							</p>
 							<ul class="highlighted">
 								<li>
-									<?php printf(gettext('<span class="missing_owner">highlighted</span>%s '), '<input type="checkbox" id="missing" checked="checked" onclick="$(\'.missing\').prop(\'checked\', $(\'#missing\').prop(\'checked\'));">');
+									<?php printf(gettext('<span class = "missing_owner">highlighted</span>%s '), '<input type = "checkbox" id = "missing" checked = "checked" onclick = "$(\'.missing\').prop(\'checked\', $(\'#missing\').prop(\'checked\'));">');
 									?>
 								</li>
 							</ul>
-							<ul>
-								<?php listOwners($owners); ?>
-							</ul>
+							<?php listOwners($owners); ?>
+							<br clear="all">
 							<p class="buttons">
 								<button type="submit" value="<?php echo gettext('Apply') ?>" > <img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt = "" /> <strong><?php echo gettext("Apply"); ?> </strong></button>
 								<button type="reset" value="<?php echo gettext('reset') ?>" > <img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" /> <strong><?php echo gettext("Reset"); ?> </strong></button>

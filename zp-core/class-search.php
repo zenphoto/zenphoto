@@ -18,6 +18,8 @@ define('SEARCH_CACHE_DURATION', getOption('search_cache_duration'));
 
 class SearchEngine {
 
+	var $name = '*search*';
+	var $exists = true;
 	var $fieldList = NULL;
 	var $page = 1;
 	var $images = NULL;
@@ -238,10 +240,13 @@ class SearchEngine {
 
 	/**
 	 * mimic an album object
-	 * @return number
 	 */
 	function getID() {
 		return 0;
+	}
+
+	function checkAccess(&$hint = NULL, &$show = NULL) {
+		return true;
 	}
 
 	/**
@@ -353,8 +358,10 @@ class SearchEngine {
 				$r .= '&page=' . $_zp_page;
 			}
 		}
-		foreach ($this->extraparams as $p => $v) {
-			$r .= '&' . $p . '=' . $v;
+		if ($long !== 0) {
+			foreach ($this->extraparams as $p => $v) {
+				$r .= '&' . $p . '=' . $v;
+			}
 		}
 		return $r;
 	}

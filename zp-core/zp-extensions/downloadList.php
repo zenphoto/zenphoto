@@ -1,42 +1,44 @@
 <?php
 /**
  *
- * A plugin to generate a file download list.
- * This download folder can be relative to your installation  root (<i>foldername</i>) or external to it (<i>../foldername</i>).
+ * Provides support for file downloads. The files may come from a download folder
+ * or from the images on your site.
+ *
+ * The download folder can be relative to your installation  root (<i>foldername</i>) or external to it (<i>../foldername</i>).
  * By default the <var>%UPLOAD_FOLDER%</var> folder is chosen so you can use the file manager to manage those files.
  *
  * You can also override that folder by using the <var>printdownloadList()</var> function parameters directly. Additionally
  * you can set a downloadlink to a specific file directly by using <code>printDownloadURL(<i>path-to-file</i>);<code>.
  *
- * The file names and the download path of the items are stored with the number of downloads in the database's plugin_storage table.
+ * Use <var>printDownloadAlbumZipURL()</var> function to create a zipfile of an album <i>on the fly</i>.
+ * The source of the images may be the original
+ * images from the album and its subalbums or it may be the <i>sized</i> images from the cache. Use the latter if you want
+ * the images to be watermarked (presuming you have watermarks enabled.)
  *
- * The download link is something like:
- * <var>%FULLWEBPATH%/download.php?file=<i>id number of the download</i></var>.
+ * <var>printDownloadSearchZipURL()</var> is similar to <var>printDownloadAlbumZipURL()</var> but makes a zip file of the images
+ * that were found by a search. This function works only if there is an active search, e.g. you are on a <var>search.php</var> script page.
  *
- * So the actual download source is not public. The list itself is generated directly from the file system. However,
- * files which no longer exist are
- * kept in the database for statistical reasons until you clear them manually via the statistics utility.
+ * The file names and the download path of the items are stored along with the number of downloads in the database's plugin_storage table.
+ *
+ * The actual download source is not public. The list is generated directly from the file system but their
+ * sources are not included. Files which no longer exist are
+ * kept in the database for statistical reasons until cleared manually via the statistics utility.
  *
  * You will need to modify your theme to use this plugin. You can use the codeblock fields if your theme supports them or
  * insert the function calls directly where you want the list to appear.
  *
  * To protect the download directory from direct linking you need to set up a proper <var>.htaccess</var> for this folder.
  *
- * The <var>printDownloadAlbumZipURL()</var> function will create a zipfile of the album <i>on the fly</i>.
- * The source of the images may be the original
- * images from the album and its subalbums or they may be the <i>sized</i> images from the cache. Use the latter if you want
- * the images to be watermarked.
- *
  * The list has a CSS class <var>downloadList</var> attached.
  *
- * @author Malte Müller (acrylian), Stephen Billard (sbillard)
+ * @author Stephen Billard (sbillard), Malte Müller (acrylian)
  * @package plugins
  * @subpackage media
  * @tags "file download", "download manager", download
  */
 $plugin_is_filter = 800 | ADMIN_PLUGIN | THEME_PLUGIN;
-$plugin_description = gettext("Plugin to generate file download lists.");
-$plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
+$plugin_description = gettext("Plugin to generate file downloads.");
+$plugin_author = "Stephen Billard (sbillard), Malte Müller (acrylian)";
 
 $option_interface = "downloadList";
 
@@ -58,34 +60,38 @@ class DownloadList {
 			setOptionDefault('downloadList_hint', NULL);
 			setOptionDefault('downloadList_rights', NULL);
 			setOptionDefault('downloadList_zipFromCache', 0);
+			setOptionDefault('downloadList_subAlbums', 1);
 		}
 	}
 
 	function getOptionsSupported() {
-		$options = array(gettext('Download directory')											 => array('key'		 => 'downloadList_directory', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 2,
-										'desc'	 => gettext("This download folder can be relative to your installation (<em>foldername</em>) or external to it (<em>../foldername</em>)! You can override this setting by using the parameter of the printdownloadList() directly on calling.")),
-						gettext('Show filesize of download items')				 => array('key'		 => 'downloadList_showfilesize', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 3,
-										'desc'	 => ''),
-						gettext('Show download counter of download items') => array('key'		 => 'downloadList_showdownloadcounter', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 4,
-										'desc'	 => ''),
-						gettext('Files to exclude from the download list') => array('key'		 => 'downloadList_excludesuffixes', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 5,
-										'desc'	 => gettext('A list of file suffixes to exclude. Separate with comma and omit the dot (e.g "jpg").')),
-						gettext('Zip source')															 => array('key'			 => 'downloadList_zipFromCache', 'type'		 => OPTION_TYPE_RADIO,
-										'order'		 => 6,
-										'buttons'	 => array(gettext('From album') => 0, gettext('From Cache') => 1),
-										'desc'		 => gettext('Make the album zip from the album folder or from the sized images in the cache.')),
-						gettext('User rights')														 => array('key'		 => 'downloadList_rights', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 1,
-										'desc'	 => gettext('Check if users are required to have <em>file</em> rights to download.'))
+		$options = array(gettext('Download directory') => array('key' => 'downloadList_directory', 'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 2,
+						'desc' => gettext("This download folder can be relative to your installation (<em>foldername</em>) or external to it (<em>../foldername</em>)! You can override this setting by using the parameter of the printdownloadList() directly on calling.")),
+				gettext('Show filesize of download items') => array('key' => 'downloadList_showfilesize', 'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 3,
+						'desc' => ''),
+				gettext('Show download counter of download items') => array('key' => 'downloadList_showdownloadcounter', 'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 4,
+						'desc' => ''),
+				gettext('Files to exclude from the download list') => array('key' => 'downloadList_excludesuffixes', 'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 5,
+						'desc' => gettext('A list of file suffixes to exclude. Separate with comma and omit the dot (e.g "jpg").')),
+				gettext('Zip source') => array('key' => 'downloadList_zipFromCache', 'type' => OPTION_TYPE_RADIO,
+						'order' => 6,
+						'buttons' => array(gettext('From album') => 0, gettext('From Cache') => 1),
+						'desc' => gettext('Make the album zip from the album folder or from the sized images in the cache.')),
+				gettext('Zip subalbums') => array('key' => 'downloadList_subalbums', 'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 7,
+						'desc' => gettext('The album zip will contain images from subalbums.')),
+				gettext('User rights') => array('key' => 'downloadList_rights', 'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 1,
+						'desc' => gettext('Check if users are required to have <em>file</em> rights to download.'))
 		);
 		if (GALLERY_SECURITY == 'public') {
-			$options[gettext('credentials')] = array('key'		 => 'downloadList_credentials', 'type'	 => OPTION_TYPE_CUSTOM,
-							'order'	 => 0,
-							'desc'	 => gettext('Provide credentials to password protect downloads'));
+			$options[gettext('credentials')] = array('key' => 'downloadList_credentials', 'type' => OPTION_TYPE_CUSTOM,
+					'order' => 0,
+					'desc' => gettext('Provide credentials to password protect downloads'));
 		}
 		return $options;
 	}
@@ -136,7 +142,7 @@ class DownloadList {
 							 name="disclose_password_downloadList"
 							 id="disclose_password_downloadList"
 							 onclick="passwordClear('_downloadList');
-											 togglePassword('_downloadList');"><?php echo gettext('Show password'); ?>
+									 togglePassword('_downloadList');"><?php echo gettext('Show password'); ?>
 			</label>
 			<br />
 			<span class="password_field__downloadList">
@@ -191,16 +197,8 @@ class DownloadList {
 		}
 	}
 
-	/*	 * Gets the download items from all download items from the database. For internal use in the downloadList functions.
-	 * @return array
-	 */
-
-	static function getListItemsFromDB() {
-		$downloaditems = query_full_array("SELECT id, `aux`, `data` FROM " . prefix('plugin_storage') . " WHERE `type` = 'downloadList'");
-		return $downloaditems;
-	}
-
-	/*	 * Gets the download items from all download items from the database. For internal use in the downloadlink functions.
+	/*
+	 * Gets the download items from all download items from the database. For internal use in the downloadlink functions.
 	 * @return array
 	 */
 
@@ -256,16 +254,16 @@ class DownloadList {
 	 */
 	static function button($buttons) {
 		$buttons[] = array(
-						'category'		 => gettext('Info'),
-						'enable'			 => true,
-						'button_text'	 => gettext('Download statistics'),
-						'formname'		 => 'downloadstatistics_button',
-						'action'			 => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/downloadList/download_statistics.php',
-						'icon'				 => WEBPATH . '/' . ZENFOLDER . '/images/bar_graph.png',
-						'title'				 => gettext('Counts of downloads'),
-						'alt'					 => '',
-						'hidden'			 => '',
-						'rights'			 => ADMIN_RIGHTS,
+				'category' => gettext('Info'),
+				'enable' => true,
+				'button_text' => gettext('Download statistics'),
+				'formname' => 'downloadstatistics_button',
+				'action' => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/downloadList/download_statistics.php',
+				'icon' => WEBPATH . '/' . ZENFOLDER . '/images/bar_graph.png',
+				'title' => gettext('Counts of downloads'),
+				'alt' => '',
+				'hidden' => '',
+				'rights' => ADMIN_RIGHTS,
 		);
 		return $buttons;
 	}
@@ -291,7 +289,6 @@ class DownloadList {
 }
 
 class AlbumZip {
-
 	/**
 	 * generates an array of filenames to zip
 	 * recurses into the albums subalbums
@@ -299,10 +296,19 @@ class AlbumZip {
 	 * @param object $album album object to add
 	 * @param int $base the length of the base album name
 	 */
-	static function AddAlbum($album, $fromcache, $level = 0) {
+
+	/**
+	 * generates an array of filenames to zip
+	 * recurses into the albums subalbums
+	 *
+	 * @param object $album the object containing the images
+	 * @param bool $fromcache use cached images
+	 * @param bool $subalbums recurese through subalbums
+	 * @param int $level recursion level
+	 */
+	static function AddAlbum($album, $fromcache, $subalbums, $level) {
 		global $_zp_zip_list, $_zp_albums_visited_albumMenu, $zip_gallery, $defaultSize;
 		$_zp_albums_visited_albumMenu[] = $album->name;
-
 		$albumfolders = explode('/', $album->name);
 		$subalbums = array();
 		for ($i = 0; $i < $level; $i++) {
@@ -350,10 +356,12 @@ class AlbumZip {
 				}
 			}
 		}
-		foreach ($album->getAlbums() as $albumname) {
-			$subalbum = newAlbum($albumname);
-			if (!in_array($subalbum->name, $_zp_albums_visited_albumMenu) && $subalbum->exists && $subalbum->checkAccess()) {
-				self::AddAlbum($subalbum, $fromcache, $level + 1);
+		if ($subalbums) {
+			foreach ($album->getAlbums() as $albumname) {
+				$subalbum = newAlbum($albumname);
+				if (!in_array($subalbum->name, $_zp_albums_visited_albumMenu) && $subalbum->exists && $subalbum->checkAccess()) {
+					self::AddAlbum($subalbum, $fromcache, $subalbums, $level + 1);
+				}
 			}
 		}
 	}
@@ -382,8 +390,9 @@ class AlbumZip {
 	 * @param object $album album folder
 	 * @param string $zipname name of zip file
 	 * @param bool fromcache if true, images will be the "sized" image in the cache file
+	 * @param bool subalbums recurse through subalbums collecting images
 	 */
-	static function create($album, $zipname, $fromcache) {
+	static function create($album, $zipname, $fromcache, $subalbums) {
 		global $_zp_zip_list, $_zp_albums_visited_albumMenu, $_zp_gallery, $defaultSize;
 		if (!$album->exists) {
 			self::pageError(404, gettext('Album not found'));
@@ -400,7 +409,7 @@ class AlbumZip {
 			$defaultSize = NULL;
 			$opt = array('large_file_size' => 5 * 1024 * 1024, 'comment' => sprintf(gettext('Created from images in %1$s on %2$s.'), $album->name, zpFormattedDate(DATE_FORMAT, time())));
 		}
-		self::AddAlbum($album, $fromcache);
+		self::AddAlbum($album, $fromcache, $subalbums, 0);
 		if (class_exists('ZipArchive')) {
 			$zipfileFS = tempnam('', 'zip');
 			$zip = new ZipArchive;
@@ -551,7 +560,6 @@ function printDownloadURL($file, $linktext = NULL) {
 	}
 	if (getOption('downloadList_showdownloadcounter')) {
 		$downloaditem = DownloadList::getListItemFromDB($file);
-		$downloaditem = DownloadList::getListItemFromDB($file);
 		if ($downloaditem) {
 			$downloadcount = $downloaditem['data'];
 		} else {
@@ -570,14 +578,14 @@ function printDownloadURL($file, $linktext = NULL) {
 /**
  *
  * Prints a download link for an album zip of the current album (therefore to be used only on album.php/image.php).
- * This function only creates a download count and then redirects to the original album zip download.
+ * This function only creates a download and returns to the current page.
  *
  * @param string $linktext
  * @param object $albumobj
  * @param bool $fromcache if true get the images from the cache
  */
-function printDownloadAlbumZipURL($linktext = NULL, $albumobj = NULL, $fromcache = NULL) {
-	global $_zp_current_album;
+function printDownloadAlbumZipURL($linktext = NULL, $albumobj = NULL, $fromcache = NULL, $subalbums = true) {
+	global $_zp_current_album, $_zp_current_search;
 	$request = parse_url(getRequestURI());
 	if (isset($request['query'])) {
 		$query = parse_query($request['query']);
@@ -587,24 +595,39 @@ function printDownloadAlbumZipURL($linktext = NULL, $albumobj = NULL, $fromcache
 	if (is_null($albumobj)) {
 		$albumobj = $_zp_current_album;
 	}
+	$link = preg_replace('~^' . WEBPATH . '/~', '', $request['path']);
 
 	if (!is_null($albumobj)) {
-		$query['albumzip'] = 'true';
-		if (get_class($albumobj) == 'favorites') {
-			$query['download'] = $file = gettext('My favorites');
-			$query['user'] = $albumobj->name;
-			$instance = $query['instance'] = $albumobj->instance;
-			if ($instance) {
-				$file .= '[' . $instance . ']';
-				$query['download'] .= '[' . $instance . ']';
-			}
-			$file .= '.zip';
-		} else {
-			$query['download'] = $albumobj->name;
-			$file = $albumobj->name . '.zip';
+		switch (get_class($albumobj)) {
+			case 'favorites':
+				$query['download'] = $file = gettext('My favorites');
+				$query['user'] = $albumobj->name;
+				$instance = $query['instance'] = $albumobj->instance;
+				if ($instance) {
+					$file .= '[' . $instance . ']';
+					$query['download'] .= '[' . $instance . ']';
+				}
+				$file .= '.zip';
+				$query['type'] = 'albumzip';
+				break;
+			case'SearchEngine':
+				$params = parse_query($_zp_current_search->getSearchParams(0));
+				$query['download'] = $file = gettext('search') . implode('_', $params);
+				$file .= '.zip';
+				$query['type'] = 'searchzip';
+				$query = array_merge($query, $params);
+				break;
+			default:
+				$query['download'] = $albumobj->name;
+				$file = $albumobj->name . '.zip';
+				$query['type'] = 'albumzip';
+				break;
 		}
 		if ($fromcache) {
 			$query['fromcache'] = 'true';
+		}
+		if ($subalbums) {
+			$query['subalbums'] = 'true';
 		}
 
 		DownloadList::addListItem($file);
@@ -622,9 +645,20 @@ function printDownloadAlbumZipURL($linktext = NULL, $albumobj = NULL, $fromcache
 		if (!empty($linktext)) {
 			$file = $linktext;
 		}
-		$link = preg_replace('~^' . WEBPATH . '/~', '', $request['path']);
 		echo '<a href="' . FULLWEBPATH . '/' . html_encode(pathurlencode($link)) . '?' . http_build_query($query) . '" rel="nofollow class="downloadlist_link"">' . html_encode($file) . '</a>' . $filesize;
 	}
+}
+
+/**
+ * Prints a download link for a zip of the current search result (therefore to be used only on search.php).
+ * This function only creates a download and returns to the current page.
+ *
+ * @global type $_zp_current_search
+ * @param type $linktext
+ */
+function printDownloadSearchZipURL($linktext = NULL, $fromcache = NULL) {
+	global $_zp_current_search;
+	printDownloadAlbumZipURL($linktext, $_zp_current_search, $fromcache, false);
 }
 
 /**
@@ -660,49 +694,54 @@ if (isset($_GET['download'])) {
 				header("Status: 302 Found");
 				header('Last-Modified: ' . ZP_LAST_MODIFIED);
 				include(internalToFilesystem($_zp_script));
-				exposeZenPhotoInformations($_zp_script, array(), $theme);
 				exitZP();
 			}
 		}
 	}
-	if (isset($_GET['albumzip'])) {
-		if (isset($_GET['fromcache'])) {
-			$fromcache = sanitize($isset($_GET['fromcache']));
-		} else {
-			$fromcache = getOption('downloadList_zipFromCache');
-		}
-		if (isset($_GET['instance'])) {
-			$album = new favorites(sanitize($_GET['user']));
-			if ($instance = trim(sanitize($_GET['instance']), '/')) {
-				$album->instance = $instance;
+	switch (@$_GET['type']) {
+		case 'searchzip':
+			$album = new SearchEngine();
+		case 'albumzip':
+			if (isset($_GET['instance'])) {
+				$album = new favorites(sanitize($_GET['user']));
+				if ($instance = trim(sanitize($_GET['instance']), '/')) {
+					$album->instance = $instance;
+				}
+			} else if (!isset($album)) {
+				$album = newAlbum($item, false, true);
 			}
-		} else {
-			$album = newAlbum($item, false, true);
-		}
-		AlbumZip::create($album, $item, $fromcache);
-		DownloadList::updateListItemCount($item . '.zip');
-		exitZP();
-	} else {
-		$path = query_single_row("SELECT `aux` FROM " . prefix('plugin_storage') . " WHERE id=" . (int) $item);
-		if (array_key_exists('aux', $path) && file_exists($_downloadFile = internalToFilesystem($path['aux']))) {
-			require_once(SERVERPATH . '/' . ZENFOLDER . '/lib-MimeTypes.php');
-			DownloadList::updateListItemCount($_downloadFile);
-			$ext = getSuffix($_downloadFile);
-			$mimetype = getMimeString($ext);
-			header('Content-Description: File Transfer');
-			header('Content-Type: ' . $mimetype);
-			header('Content-Disposition: attachment; filename=' . basename(urldecode($_downloadFile)));
-			header('Content-Transfer-Encoding: binary');
-			header('Expires: 0');
-			header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
-			header('Pragma: public');
-			header('Content-Length: ' . filesize($_downloadFile));
-			flush();
-			readfile($_downloadFile);
+
+			if (!$fromcache = isset($_GET['fromcache'])) {
+				$fromcache = getOption('downloadList_zipFromCache');
+			}
+			if (!$subalbums = isset($_GET['subalbums'])) {
+				$subalbums = getOption('downloadList_subalbums');
+			}
+
+			AlbumZip::create($album, $item, $fromcache, $subalbums);
+			DownloadList::updateListItemCount($item . '.zip');
 			exitZP();
-		} else {
-			zp_register_filter('theme_body_open', 'DownloadList::noFile');
-		}
+		default:
+			$path = query_single_row("SELECT `aux` FROM " . prefix('plugin_storage') . " WHERE id=" . (int) $item);
+			if (array_key_exists('aux', $path) && file_exists($_downloadFile = internalToFilesystem($path['aux']))) {
+				require_once(SERVERPATH . '/' . ZENFOLDER . '/lib-MimeTypes.php');
+				DownloadList::updateListItemCount($_downloadFile);
+				$ext = getSuffix($_downloadFile);
+				$mimetype = getMimeString($ext);
+				header('Content-Description: File Transfer');
+				header('Content-Type: ' . $mimetype);
+				header('Content-Disposition: attachment; filename=' . basename(urldecode($_downloadFile)));
+				header('Content-Transfer-Encoding: binary');
+				header('Expires: 0');
+				header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+				header('Pragma: public');
+				header('Content-Length: ' . filesize($_downloadFile));
+				flush();
+				readfile($_downloadFile);
+				exitZP();
+			} else {
+				zp_register_filter('theme_body_open', 'DownloadList::noFile');
+			}
 	}
 }
 ?>

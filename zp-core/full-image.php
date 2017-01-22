@@ -33,11 +33,11 @@ $image = internalToFilesystem($image8);
 /* Prevent hotlinking to the full image from other domains. */
 if (getOption('hotlink_protection') && isset($_SERVER['HTTP_REFERER'])) {
 	preg_match('|(.*)//([^/]*)|', $_SERVER['HTTP_REFERER'], $matches);
-	$checkstring = preg_replace('/^www./', '', strtolower($matches[2])); 
-	if (strpos($checkstring,":")) {
-		$checkstring = substr($checkstring,0,strpos($checkstring,":"));
+	$checkstring = preg_replace('/^www./', '', strtolower($matches[2]));
+	if (strpos($checkstring, ":")) {
+		$checkstring = substr($checkstring, 0, strpos($checkstring, ":"));
 	};
-	if (preg_replace('/^www./', '', strtolower($_SERVER['SERVER_NAME'])) != $checkstring) { 
+	if (preg_replace('/^www./', '', strtolower($_SERVER['SERVER_NAME'])) != $checkstring) {
 		/* It seems they are directly requesting the full image. */
 		header('Location: ' . FULLWEBPATH . '/index.php?album=' . $album8 . '&image=' . $image8);
 		exitZP();
@@ -120,7 +120,6 @@ if (($hash || !$albumobj->checkAccess()) && !zp_loggedin(VIEW_FULLIMAGE_RIGHTS))
 		header("Status: 302 Found");
 		header('Last-Modified: ' . ZP_LAST_MODIFIED);
 		include(internalToFilesystem($_zp_script));
-		exposeZenPhotoInformations($_zp_script, array(), $theme);
 		exitZP();
 	}
 }

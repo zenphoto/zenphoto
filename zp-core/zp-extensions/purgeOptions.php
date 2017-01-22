@@ -38,11 +38,13 @@ function purgeOptions_admin_tabs($tabs) {
 
 function listOwners($owners, $nest = '') {
 	global $xlate, $highlighted;
+
 	foreach ($owners as $owner => $detail) {
-		?>
-		<li>
-			<?php
-			if (is_array($detail)) {
+		if (is_array($detail)) {
+			$size = ceil(count($detail) / 25);
+			?>
+			<div class="purgeOptions_list">
+				<?php
 				$autocheck = str_replace('/', '_', $nest . $owner);
 				if (array_key_exists($owner, $xlate)) {
 					echo $xlate[$owner];
@@ -51,44 +53,43 @@ function listOwners($owners, $nest = '') {
 				}
 				?>
 				<input type="checkbox" id="<?php echo $autocheck; ?>" onclick="$('.<?php echo $autocheck; ?>').prop('checked', $('#<?php echo $autocheck; ?>').prop('checked'));">
-				<ul>
+				<ul<?php if ($size > 1) echo' style="' . "column-count:$size;	-moz-column-count: $size;	-webkit-column-count: $size;" . '"'; ?>>
 					<?php listOwners($detail, $nest . $owner . '/'); ?>
-
 				</ul>
-				<?php
-			} else {
-				$autocheck = str_replace('/', '_', rtrim($nest, '/'));
+			</div>
+			<?php
+		} else {
+			$autocheck = str_replace('/', '_', rtrim($nest, '/'));
 
-				if ($detail && file_exists(SERVERPATH . '/' . internalToFilesystem($nest . $detail))) {
-					$missing = '';
-					$labelclass = 'none';
-					$checked = false;
-				} else {
-					$labelclass = 'missing_owner';
-					$missing = ' missing';
-					$checked = ' checked="checked"';
-					$highlighted = true;
-					if (basename($nest) != THEMEFOLDER) {
-						?>
-						<input type="hidden" name="missingplugin[]" value="<?php echo $detail; ?>" />
-						<?php
-					}
+			if ($detail && file_exists(SERVERPATH . '/' . internalToFilesystem($nest . $detail))) {
+				$missing = '';
+				$labelclass = 'none';
+				$checked = false;
+			} else {
+				$labelclass = 'missing_owner';
+				$missing = ' missing';
+				$checked = ' checked="checked"';
+				$highlighted = true;
+				if (basename($nest) != THEMEFOLDER) {
+					?>
+					<input type="hidden" name="missingplugin[]" value="<?php echo $detail; ?>" />
+					<?php
 				}
-				if (empty($detail)) {
-					$display = gettext('unknown');
-					$labelclass = ' empty_name';
-					$checked = ' checked="checked"';
-				} else {
-					$display = stripSuffix($detail);
-				}
-				?>
+			}
+			if (empty($detail)) {
+				$display = gettext('unknown');
+				$labelclass = ' empty_name';
+				$checked = ' checked="checked"';
+			} else {
+				$display = stripSuffix($detail);
+			}
+			?>
+			<li>
 				<label class="<?php echo $labelclass; ?>">
 					<input type="checkbox" name="del[]" class="<?php echo $autocheck . $missing; ?>" value="<?php echo $nest . $detail; ?>"<?php echo $checked; ?> /><?php echo $display; ?>
 				</label>
-				<?php
-			}
-			?>
-		</li>
-		<?php
+			</li>
+			<?php
+		}
 	}
 }

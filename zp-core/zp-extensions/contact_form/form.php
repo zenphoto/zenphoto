@@ -125,6 +125,7 @@
 	</p>
 	<p class="mailmessage">
 		<label for="message"><?php echo gettext("Message<strong>*</strong>"); ?></label>
+		<br clear="all">
 		<textarea id="message" name="message"  class="textarea_inputbox"<?php if ($_processing_post) echo ' disabled="disabled"'; ?>><?php echo $mailcontent['message']; ?></textarea>
 	</p>
 	<?php

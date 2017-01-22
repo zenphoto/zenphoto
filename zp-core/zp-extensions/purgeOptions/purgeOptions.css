@@ -5,7 +5,21 @@
 	color:red;
 	text-decoration:line-through;
 }
-ul {
-	list-style: none;
+
+.purgeOptions_list {
+	padding: 20px;
+	float: left;
 }
 
+.purgeOptions_list ul {
+	margin-left: 10px;
+	margin-right: 5px;
+	list-style-type: none;
+	padding: 0px;
+}
+
+.purgeOptions_list ul li {
+	margin-bottom: 0em;
+	margin-left: 0px;
+	padding: 4px 4px 3px 4px;
+}
