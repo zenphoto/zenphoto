@@ -2054,7 +2054,8 @@ function seoFriendlyJS() {
  */
 function getXSRFToken($action) {
 	global $_zp_current_admin_obj;
-	return sha1($action . serialize($_zp_current_admin_obj) . session_id());
+	$token = sha1($action . serialize($_zp_current_admin_obj->getData()) . session_id());
+	return $token;
 }
 
 /**
