@@ -13,11 +13,11 @@ define('HTACCESS_VERSION', '1.4.5'); // be sure to change this to the one in .ht
 define('OFFSET_PATH', 2);
 
 // leave this as the first executable statement to avoid problems with PHP not having gettext support.
-if (!function_exists("gettext")) {
+if (function_exists("gettext")) {
+	$noxlate = 1;
+} else {
 	require_once(dirname(dirname(__FILE__)) . '/lib-gettext/gettext.inc');
 	$noxlate = -1;
-} else {
-	$noxlate = 1;
 }
 if (version_compare(PHP_VERSION, PHP_MIN_VERSION, '<')) {
 	die(sprintf(gettext('ZenPhoto20 requires PHP version %s or greater'), PHP_MIN_VERSION));
