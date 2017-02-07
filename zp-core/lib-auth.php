@@ -905,8 +905,10 @@ class _Authority {
 				}
 				db_free_result($rslt);
 				$questions = array_unique($questions);
-				shuffle($questions);
-				$info = array('challenge' => $questions[$cycle % count($questions)], 'response' => 0x00);
+				if (!empty($questions)) {
+					shuffle($questions);
+					$info = array('challenge' => $questions[$cycle % count($questions)], 'response' => 0x00);
+				}
 			} else {
 				if ($admin->getEmail()) {
 					$star = true;
