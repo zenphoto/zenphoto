@@ -36,7 +36,7 @@ function purgeOptions_admin_tabs($tabs) {
 	return $tabs;
 }
 
-function listOwners($owners, $nest = '') {
+function listOwners($owners, $nest = '', $container = 'del') {
 	global $xlate, $highlighted;
 
 	foreach ($owners as $owner => $detail) {
@@ -54,14 +54,14 @@ function listOwners($owners, $nest = '') {
 				?>
 				<span class="purgeOptionsClass"><?php echo $ownerN; ?></span> <input type="checkbox" id="<?php echo $autocheck; ?>" onclick="$('.<?php echo $autocheck; ?>').prop('checked', $('#<?php echo $autocheck; ?>').prop('checked'));">
 				<ul class="purgeOptionsBlock"<?php if ($size > 1) echo ' style="' . "column-count:$size;	-moz-column-count: $size;	-webkit-column-count: $size;" . '"'; ?>>
-					<?php listOwners($detail, $nest . $owner . '/'); ?>
+					<?php listOwners($detail, $nest . $owner . '/', $container); ?>
 				</ul>
 			</div>
 			<?php
 		} else {
 			$autocheck = str_replace('/', '_', rtrim($nest, '/'));
 
-			if ($detail && file_exists(SERVERPATH . '/' . internalToFilesystem($nest . $detail))) {
+			if ($container !== 'del' || $detail && file_exists(SERVERPATH . '/' . internalToFilesystem($nest . $detail))) {
 				$missing = '';
 				$labelclass = 'none';
 				$checked = false;
@@ -86,7 +86,7 @@ function listOwners($owners, $nest = '') {
 			?>
 			<li>
 				<label class="<?php echo $labelclass; ?>">
-					<input type="checkbox" name="del[]" class="<?php echo $autocheck . $missing; ?>" value="<?php echo $nest . $detail; ?>"<?php echo $checked; ?> /><?php echo $display; ?>
+					<input type="checkbox" name="<?php echo $container; ?>[]" class="<?php echo $autocheck . $missing; ?>" value="<?php echo $nest . $detail; ?>"<?php echo $checked; ?> /><?php echo $display; ?>
 				</label>
 			</li>
 			<?php

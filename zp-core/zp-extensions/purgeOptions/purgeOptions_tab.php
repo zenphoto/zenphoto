@@ -16,7 +16,7 @@ require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 
 admin_securityChecks(OPTIONS_RIGHTS, $return = currentRelativeURL());
 
-$xlate = array('plugins' => gettext('User plugins'), 'zp-core/zp-extensions' => gettext('Extensions'), 'themes' => gettext('Themes'));
+$xlate = array('plugins' => gettext('User plugins'), 'zp-core/zp-extensions' => gettext('Extensions'), 'themes' => gettext('Themes'), 'orphaned' => gettext('Orphaned options'));
 
 if (isset($_POST['purge'])) {
 	XSRFdefender('purgeOptions');
@@ -32,9 +32,6 @@ if (isset($_POST['purge'])) {
 					$where = ' WHERE `creator` = "' . THEMEFOLDER . '/"';
 				} else {
 					$where = ' WHERE `creator` LIKE ' . db_quote('%' . basename($owner) . '/themeoptions.php');
-
-					var_dump(SERVERPATH . '/' . THEMEFOLDER . '/' . basename($owner) . '/themeoptions.php');
-
 					if (file_exists(SERVERPATH . '/' . THEMEFOLDER . '/' . basename($owner) . '/themeoptions.php')) {
 						$purgedActive[] = true;
 					}
@@ -53,6 +50,12 @@ if (isset($_POST['purge'])) {
 			unset($purgedActive[$plugin]);
 		}
 	}
+	if (isset($_POST['missingcreator'])) {
+		foreach ($_POST['missingcreator'] as $option) {
+			purgeOption(str_replace('orphaned/', '', $option));
+		}
+	}
+
 	if (!empty($purgedActive)) {
 		requestSetup('purgeOptions');
 	}
@@ -86,12 +89,14 @@ printAdminHeader('options', '');
 							$owners[ZENFOLDER . '/' . PLUGIN_FOLDER][$plugin] = $plugin;
 						}
 					}
+					$nullCreator = false;
 					$sql = 'SELECT DISTINCT `creator` FROM ' . prefix('options');
 					$result = query_full_array($sql);
 					foreach ($result as $owner) {
 						$structure = explode('/', $owner['creator']);
 						switch (count($structure)) {
 							case 1:
+								$nullCreator = true;
 								break;
 							case 2:
 								$owners[$structure[0]][] = $structure[1];
@@ -99,8 +104,8 @@ printAdminHeader('options', '');
 							case 3:
 								$owners[$structure[0]][$structure[1]][] = $structure[2];
 								break;
-							case 4:
-								$owners[$structure[0]][$structure[1]][$structure[2]][] = $structure[3];
+							default:
+								$owners[array_shift($structure)][array_shift($structure)][] = implode('/', $structure);
 								break;
 						}
 					}
@@ -110,7 +115,7 @@ printAdminHeader('options', '');
 						natcasesort($owners[USER_PLUGIN_FOLDER]);
 					}
 					if (isset($owners[ZENFOLDER][PLUGIN_FOLDER])) {
-						$owners[ZENFOLDER . '/' . PLUGIN_FOLDER] = array_unique($owners['zp-core']['zp-extensions']);
+						$owners[ZENFOLDER . '/' . PLUGIN_FOLDER] = array_unique($owners[ZENFOLDER][PLUGIN_FOLDER]);
 						natcasesort($owners[ZENFOLDER . '/' . PLUGIN_FOLDER]);
 					}
 					unset($owners[ZENFOLDER]);
@@ -125,7 +130,20 @@ printAdminHeader('options', '');
 						$owners[THEMEFOLDER] = array_unique($owners[THEMEFOLDER]);
 						natcasesort($owners[THEMEFOLDER]);
 					}
-					if (empty($owners)) {
+					if ($nullCreator) {
+						$sql = 'SELECT `name` FROM ' . prefix('options') . ' WHERE `creator` is NULL';
+						$result = query_full_array($sql);
+						foreach ($result as $opt) {
+							if (strpos($opt['name'], 'zp_plugin_') === false) {
+								$orpahaned[] = $opt['name'];
+							}
+						}
+						if (!empty($orpahaned)) {
+							natcasesort($orpahaned);
+						}
+					}
+
+					if (empty($owners) && !$nullCreator) {
 						echo gettext('No option owners have been located.');
 					} else {
 						?>
@@ -152,7 +170,16 @@ printAdminHeader('options', '');
 									?>
 								</li>
 							</ul>
-							<?php listOwners($owners); ?>
+							<?php
+							if (!empty($owners)) {
+								listOwners($owners);
+							}
+							if (!empty($orpahaned)) {
+								$owners = array(gettext('orphaned') => $orpahaned);
+								listOwners($owners, false, 'missingcreator');
+							}
+							?>
+
 							<br clear="all">
 							<p class="buttons">
 								<button type="submit" value="<?php echo gettext('Apply') ?>" > <img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt = "" /> <strong><?php echo gettext("Apply"); ?> </strong></button>

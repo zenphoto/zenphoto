@@ -29,6 +29,7 @@ shuffle($list);
 for ($i = 0; $i < 30; $i++) {
 	$auth_extratext = $auth_extratext . $salt{$list[$i]};
 }
+
 setOptionDefault('extra_auth_hash_text', $auth_extratext);
 setOption('adminTagsTab', 0);
 
@@ -135,7 +136,7 @@ $questions[] = getSerializedArray(getAllTranslations($str));
 $str = gettext("What is the date of the Ides of March?");
 $questions[] = getSerializedArray(getAllTranslations($str));
 setOptionDefault('challenge_foils', serialize($questions));
-
+setOptionDefault('strong_hash', 1);
 if (empty($admins)) { //	empty administrators table
 	$groupsdefined = NULL;
 	if (isset($_SESSION['clone'][$cloneid])) { //replicate the user who cloned the install
@@ -183,6 +184,7 @@ if (empty($admins)) { //	empty administrators table
 // old configuration opitons. preserve them
 $conf = $_zp_conf_vars;
 setOptionDefault('time_offset', 0);
+setOptionDefault('mod_rewrite', 0);
 setOption('mod_rewrite_detected', 0);
 if (isset($_GET['mod_rewrite'])) {
 	?>
@@ -218,9 +220,13 @@ setOptionDefault('server_protocol', "http");
 setOptionDefault('charset', "UTF-8");
 setOptionDefault('image_quality', 85);
 setOptionDefault('thumb_quality', 75);
+setOptionDefault('last_garbage_collect', time());
 
 setOptionDefault('search_password', '');
 setOptionDefault('search_hint', NULL);
+
+setOptionDefault('backup_compression', 0);
+setOptionDefault('license_accepted', 0);
 
 if (getOption('perform_watermark')) {
 	$v = str_replace('.png', "", basename(getOption('watermark_image')));
@@ -709,6 +715,8 @@ $plugins = getPluginFiles('*.php');
 </p>
 
 <?php
+setOptionDefault('deprecated_functions_signature', NULL);
+setOptionDefault('zenphotoCompatibilityPack_signature', NULL);
 if ($deprecate) {
 	require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions.php');
 	$deprecated = new deprecated_functions();
