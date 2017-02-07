@@ -133,7 +133,7 @@ class htmlmetatags {
 								"name='author'" => "htmlmeta_name-author",
 								"name='copyright'" => "htmlmeta_name-copyright",
 								"name='rights'" => "htmlmeta_name-rights",
-								"name='generator' ('Zenphoto')" => "htmlmeta_name-generator",
+								"name='generator' ('ZenPhoto20')" => "htmlmeta_name-generator",
 								"name='revisit-after'" => "htmlmeta_name-revisit-after",
 								"name='expires'" => "htmlmeta_name-expires",
 								"name='date'" => "htmlmeta_name-date",
