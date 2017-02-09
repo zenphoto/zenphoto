@@ -304,6 +304,10 @@ if (isset($_GET['action'])) {
 			setOption('IPTC_encoding', sanitize($_POST['IPTC_encoding']));
 			$disableEmpty = isset($_POST['disableEmpty']);
 			$dbChange = array();
+			$oldDisabled = getSerializedArray(getOption('metadata_disabled'));
+			$disable = array();
+			$display = array();
+
 			foreach ($_zp_exifvars as $key => $item) {
 				if (isset($_POST[$key])) {
 					$v = sanitize_numeric($_POST[$key]);
@@ -311,36 +315,38 @@ if (isset($_GET['action'])) {
 					$v = 2;
 				}
 				switch ($v) {
-					case 0:
-					case 1:
-						if ($item[4]) {
+					case 1: //show
+						$display[$key] = $key;
+					case 0: //hide
+						if ($item[4]) { // item has data (size != 0)
 							$dis = 0;
 							if ($disableEmpty) {
-								$sql = "SELECT `id`,$key FROM " . prefix('images') . " WHERE $key IS NOT NULL AND TRIM($key) <> '' LIMIT 1";
+								$sql = "SELECT `id`, $key FROM " . prefix('images') . " WHERE $key IS NOT NULL AND TRIM($key) <> '' LIMIT 1";
 								$rslt = query_single_row($sql, false);
 								if (empty($rslt)) {
 									$dis = 1;
+									$disable[$key] = $key;
 									$dbChange[$item[0] . ' Metadata'] = $item[0] . ' Metadata';
 								}
 							}
-							if (getOption($key . '-disabled') != $dis) {
+							if (in_array($key, $oldDisabled)) {
 								$dbChange[$item[0] . ' Metadata'] = $item[0] . ' Metadata';
 							}
 						}
-						setOption($key . '-disabled', $dis);
-						setOption($key . '-display', $v);
 						break;
-					case 2:
-						if ($item[4]) {
-							if (!getOption($key . '-disabled')) {
+					case 2: //disable
+						if ($item[4]) { // item has data (size != 0)
+							if (!in_array($key, $oldDisabled)) {
 								$dbChange[$item[0] . ' Metadata'] = $item[0] . ' Metadata';
 							}
 						}
-						setOption($key . '-display', 0);
-						setOption($key . '-disabled', 1);
+						$disable[$key] = $key;
 						break;
 				}
 			}
+			setOption('metadata_disabled', serialize($disable));
+			setOption('metadata_displayed', serialize($display));
+
 			foreach ($dbChange as $requestor) {
 				requestSetup($requestor);
 			}
@@ -1109,7 +1115,7 @@ Zenphoto_Authority::printPasswordFormJS();
 					<div id="tab_gallery" class="tabbox">
 						<?php zp_apply_filter('admin_note', 'options', $subtab); ?>
 						<form class="dirtylistening" onReset="toggle_passwords('', false);
-									setClean('form_options');" id="form_options" action="?action=saveoptions" method="post" autocomplete="off" >
+								setClean('form_options');" id="form_options" action="?action=saveoptions" method="post" autocomplete="off" >
 									<?php XSRFToken('saveoptions'); ?>
 							<input	type="hidden" name="savegalleryoptions" value="yes" />
 							<input	type="hidden" name="password_enabled" id="password_enabled" value="0" />
@@ -1197,7 +1203,7 @@ Zenphoto_Authority::printPasswordFormJS();
 															 name="disclose_password"
 															 id="disclose_password"
 															 onclick="passwordClear('');
-																			 togglePassword('');" /><?php echo gettext('Show password'); ?>
+																	 togglePassword('');" /><?php echo gettext('Show password'); ?>
 											</label>
 										</td>
 										<td>
@@ -1474,7 +1480,7 @@ Zenphoto_Authority::printPasswordFormJS();
 					<div id="tab_search" class="tabbox">
 						<?php zp_apply_filter('admin_note', 'options', $subtab); ?>
 						<form class="dirtylistening" onReset="toggle_passwords('', false);
-									setClean('form_options');" id="form_options" action="?action=saveoptions" method="post" autocomplete="off" >
+								setClean('form_options');" id="form_options" action="?action=saveoptions" method="post" autocomplete="off" >
 									<?php XSRFToken('saveoptions'); ?>
 							<input	type="hidden" name="savesearchoptions" value="yes" />
 							<input	type="hidden" name="password_enabled" id="password_enabled" value="0" />
@@ -1536,7 +1542,7 @@ Zenphoto_Authority::printPasswordFormJS();
 															 name="disclose_password"
 															 id="disclose_password"
 															 onclick="passwordClear('');
-																			 togglePassword('');" /><?php echo gettext('Show password'); ?>
+																	 togglePassword('');" /><?php echo gettext('Show password'); ?>
 											</label>
 										</td>
 										<td>
@@ -2255,7 +2261,7 @@ Zenphoto_Authority::printPasswordFormJS();
 																		 name="disclose_password"
 																		 id="disclose_password"
 																		 onclick="passwordClear('');
-																						 togglePassword('');" /><?php echo gettext('Show password'); ?>
+																				 togglePassword('');" /><?php echo gettext('Show password'); ?>
 														</label>
 													</td>
 												</tr>
@@ -2574,7 +2580,7 @@ Zenphoto_Authority::printPasswordFormJS();
 											<p class="buttons">
 												<button type="submit" value="<?php echo gettext('Apply') ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 												<button type="button" value="<?php echo gettext('Revert to default') ?>" onclick="$('#savethemeoptions').val('reset');
-																$('#themeoptionsform').submit();"><img src="images/refresh.png" alt="" /><strong><?php echo gettext("Revert to default"); ?></strong></button>
+														$('#themeoptionsform').submit();"><img src="images/refresh.png" alt="" /><strong><?php echo gettext("Revert to default"); ?></strong></button>
 												<button type="reset" value="<?php echo gettext('reset') ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
 											</p>
 										</td>
@@ -2825,7 +2831,7 @@ Zenphoto_Authority::printPasswordFormJS();
 											<p class="buttons">
 												<button type="submit" value="<?php echo gettext('Apply') ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 												<button type="button" value="<?php echo gettext('Revert to default') ?>" onclick="$('#savethemeoptions').val('reset');
-																$('#themeoptionsform').submit();"><img src="images/refresh.png" alt="" /><strong><?php echo gettext("Revert to default"); ?></strong></button>
+														$('#themeoptionsform').submit();"><img src="images/refresh.png" alt="" /><strong><?php echo gettext("Revert to default"); ?></strong></button>
 												<button type="reset" value="<?php echo gettext('reset') ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
 											</p>
 										</td>

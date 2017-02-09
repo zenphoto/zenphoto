@@ -93,12 +93,15 @@ foreach ($metadataProviders as $source => $handler) {
 		require_once($plugin);
 		$exifvars = $handler::getMetadataFields();
 
+		$disable = getSerializedArray(getOption('metadata_disabled'));
+		$display = getSerializedArray(getOption('metadata_displayed'));
+
 		foreach ($exifvars as $key => $item) {
-			if (!is_null($disable = getOption($key . '-disabled'))) {
-				$exifvars[$key][5] = !($disable & true);
+			if (in_array($key, $disable)) {
+				$exifvars[$key][5] = false;
 			}
-			if (!is_null($display = getOption($key . '-display'))) {
-				$exifvars[$key][3] = $display;
+			if (in_array($key, $display)) {
+				$exifvars[$key][3] = true;
 			}
 		}
 	}
@@ -122,11 +125,11 @@ foreach ($metadataProviders as $source => $handler) {
 					break;
 			}
 			$field = array(
-							'Field'		 => $key,
-							'Type'		 => $s,
-							'Null'		 => 'YES',
-							'Default'	 => null,
-							'Comment'	 => 'optional_metadata'
+					'Field' => $key,
+					'Type' => $s,
+					'Null' => 'YES',
+					'Default' => null,
+					'Comment' => 'optional_metadata'
 			);
 			if ($s != 'varchar(0)') {
 				$template['images']['fields'][$key] = $field;

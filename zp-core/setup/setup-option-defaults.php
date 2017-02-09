@@ -306,6 +306,30 @@ if ($protection) {
 	setOptionDefault('protect_full_image', 'Protected view');
 }
 
+$disabled = array();
+$displayed = array();
+
+foreach (array('IPTC', 'EXIF', 'XMP', 'Video') as $cat) {
+	$sql = str_replace('XXX', $cat, "SELECT *  FROM " . prefix('options') . " WHERE `name` LIKE 'XXX%'");
+	$result = query_full_array($sql);
+	foreach ($result as $row) {
+		$matches = explode('-', $row['name']);
+		if (isset($matches[1])) {
+			if ($matches[1] == 'display') {
+				$displayed[$key] = $key;
+				purgeOption($key . '-display');
+			} else if ($matches[1] == 'disabled') {
+				$disabled[$key] = $key;
+				purgeOption($key . '-disabled');
+			}
+		}
+	}
+}
+
+setOptionDefault('metadata_disabled', serialize($disabled));
+setOptionDefault('metadata_displayed', serialize($displayed));
+
+
 setOptionDefault('locale', '');
 setOptionDefault('date_format', '%x');
 
@@ -668,7 +692,7 @@ $plugins = getPluginFiles('*.php');
 <p>
 	<?php
 	$plugins = array_keys($plugins);
-	//clean up cacheManager storage
+//clean up cacheManager storage
 	$key = array_search('cacheManager', $plugins);
 	if ($key !== false) {
 		$_GET['from'] = $from;
