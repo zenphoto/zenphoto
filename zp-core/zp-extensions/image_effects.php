@@ -74,7 +74,7 @@ if (defined('OFFSET_PATH') && OFFSET_PATH == 0) {
 
 class image_effects {
 
-	var $effects = NULL;
+	var $effects = array();
 
 	function __construct() {
 		if (OFFSET_PATH == 2) {
@@ -92,7 +92,7 @@ class image_effects {
 	 */
 	function getOptionsSupported() {
 		$list = array('random' => '!');
-		$docs = array();
+		$rand = $docs = array();
 		$effenberger = array('bevel', 'corner', 'crippleedge', 'curl', 'filmed', 'glossy', 'instant', 'reflex', 'slided', 'sphere');
 		foreach ($this->effects as $effect) {
 			$rand[$effect] = 'image_effects_random_' . $effect;
@@ -113,8 +113,8 @@ class image_effects {
 			}
 		}
 		if (count($list) == 0) {
-			return array(gettext('No effects') => array('key'	 => 'image_effect_none', 'type' => OPTION_TYPE_CUSTOM,
-											'desc' => ''));
+			return array(gettext('No effects') => array('key' => 'image_effect_none', 'type' => OPTION_TYPE_CUSTOM,
+							'desc' => ''));
 		}
 		foreach (array('image_std_images', 'image_custom_images', 'image_std_image_thumbs', 'image_std_album_thumbs', 'image_custom_image_thumbs', 'image_custom_album_thumbs') as $option) {
 			$effect = getOption($option);
@@ -122,40 +122,40 @@ class image_effects {
 				$error[$effect] = '<p class="errorbox">' . sprintf(gettext('<strong>Error:</strong> <em>%s</em> effect no longer exists.'), $effect) . '</p>';
 			}
 		}
-		$std = array(gettext('Images (standard)')					 => array('key'						 => 'image_std_images', 'type'					 => OPTION_TYPE_SELECTOR,
-										'order'					 => 0,
-										'selections'		 => $list, 'null_selection' => gettext('none'),
-										'desc'					 => gettext('Apply <em>effect</em> to images shown via the <code>printDefaultSizedImage()</code> function.')),
-						gettext('Images (custom)')						 => array('key'						 => 'image_custom_images', 'type'					 => OPTION_TYPE_SELECTOR,
-										'order'					 => 0,
-										'selections'		 => $list, 'null_selection' => gettext('none'),
-										'desc'					 => gettext('Apply <em>effect</em> to images shown via the custom image functions.')),
-						gettext('Image thumbnails (standard)') => array('key'						 => 'image_std_image_thumbs', 'type'					 => OPTION_TYPE_SELECTOR,
-										'order'					 => 0,
-										'selections'		 => $list, 'null_selection' => gettext('none'),
-										'desc'					 => gettext('Apply <em>effect</em> to images shown via the <code>printImageThumb()</code> function.')),
-						gettext('Album thumbnails (standard)') => array('key'						 => 'image_std_album_thumbs', 'type'					 => OPTION_TYPE_SELECTOR,
-										'order'					 => 0,
-										'selections'		 => $list, 'null_selection' => gettext('none'),
-										'desc'					 => gettext('Apply <em>effect</em> to images shown via the <code>printAlbumThumbImage()</code> function.')),
-						gettext('Image thumbnails (custom)')	 => array('key'						 => 'image_custom_image_thumbs', 'type'					 => OPTION_TYPE_SELECTOR,
-										'order'					 => 0,
-										'selections'		 => $list, 'null_selection' => gettext('none'),
-										'desc'					 => gettext('Apply <em>effect</em> to images shown via the custom image functions when <em>thumbstandin</em> is set.')),
-						gettext('Album thumbnails  (custom)')	 => array('key'						 => 'image_custom_album_thumbs', 'type'					 => OPTION_TYPE_SELECTOR,
-										'order'					 => 0,
-										'selections'		 => $list, 'null_selection' => gettext('none'),
-										'desc'					 => gettext('Apply <em>effect</em> to images shown via the <code>printCustomAlbumThumbImage()</code> function.')),
-						gettext('Random pool')								 => array('key'				 => 'image_effects_random_', 'type'			 => OPTION_TYPE_CHECKBOX_UL,
-										'order'			 => 1,
-										'checkboxes' => $rand,
-										'desc'			 => gettext('Pool of effects for the <em>random</em> effect selection.')),
-						8																			 => array('type'	 => OPTION_TYPE_NOTE,
-										'order'	 => 8.9,
-										'desc'	 => '<hr />'),
-						chr(0)																 => array('key'		 => 'image_effects_docs', 'type'	 => OPTION_TYPE_CUSTOM,
-										'order'	 => 9,
-										'desc'	 => '<em>' . gettext('Acknowledgments') . '</em>')
+		$std = array(gettext('Images (standard)') => array('key' => 'image_std_images', 'type' => OPTION_TYPE_SELECTOR,
+						'order' => 0,
+						'selections' => $list, 'null_selection' => gettext('none'),
+						'desc' => gettext('Apply <em>effect</em> to images shown via the <code>printDefaultSizedImage()</code> function.')),
+				gettext('Images (custom)') => array('key' => 'image_custom_images', 'type' => OPTION_TYPE_SELECTOR,
+						'order' => 0,
+						'selections' => $list, 'null_selection' => gettext('none'),
+						'desc' => gettext('Apply <em>effect</em> to images shown via the custom image functions.')),
+				gettext('Image thumbnails (standard)') => array('key' => 'image_std_image_thumbs', 'type' => OPTION_TYPE_SELECTOR,
+						'order' => 0,
+						'selections' => $list, 'null_selection' => gettext('none'),
+						'desc' => gettext('Apply <em>effect</em> to images shown via the <code>printImageThumb()</code> function.')),
+				gettext('Album thumbnails (standard)') => array('key' => 'image_std_album_thumbs', 'type' => OPTION_TYPE_SELECTOR,
+						'order' => 0,
+						'selections' => $list, 'null_selection' => gettext('none'),
+						'desc' => gettext('Apply <em>effect</em> to images shown via the <code>printAlbumThumbImage()</code> function.')),
+				gettext('Image thumbnails (custom)') => array('key' => 'image_custom_image_thumbs', 'type' => OPTION_TYPE_SELECTOR,
+						'order' => 0,
+						'selections' => $list, 'null_selection' => gettext('none'),
+						'desc' => gettext('Apply <em>effect</em> to images shown via the custom image functions when <em>thumbstandin</em> is set.')),
+				gettext('Album thumbnails  (custom)') => array('key' => 'image_custom_album_thumbs', 'type' => OPTION_TYPE_SELECTOR,
+						'order' => 0,
+						'selections' => $list, 'null_selection' => gettext('none'),
+						'desc' => gettext('Apply <em>effect</em> to images shown via the <code>printCustomAlbumThumbImage()</code> function.')),
+				gettext('Random pool') => array('key' => 'image_effects_random_', 'type' => OPTION_TYPE_CHECKBOX_UL,
+						'order' => 1,
+						'checkboxes' => $rand,
+						'desc' => gettext('Pool of effects for the <em>random</em> effect selection.')),
+				8 => array('type' => OPTION_TYPE_NOTE,
+						'order' => 8.9,
+						'desc' => '<hr />'),
+				chr(0) => array('key' => 'image_effects_docs', 'type' => OPTION_TYPE_CUSTOM,
+						'order' => 9,
+						'desc' => '<em>' . gettext('Acknowledgments') . '</em>')
 		);
 
 		ksort($docs);
@@ -201,8 +201,8 @@ class image_effects {
 			echo "<br />random effect empty!";
 
 		$selected_effects = array_unique(array(getOption('image_std_images'), getOption('image_custom_images'),
-						getOption('image_std_album_thumbs'), getOption('image_std_image_thumbs'),
-						getOption('image_custom_album_thumbs'), $_image_effects_random));
+				getOption('image_std_album_thumbs'), getOption('image_std_image_thumbs'),
+				getOption('image_custom_album_thumbs'), $_image_effects_random));
 		if (false !== $key = array_search('!', $selected_effects)) {
 			unset($selected_effects[$key]);
 		}

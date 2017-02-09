@@ -590,25 +590,27 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 * @param string $initial initila show/hide state
 	 *
 	 * Custom options:
-	 *    OPTION_TYPE_TEXTBOX:          A textbox
-	 *    OPTION_TYPE_PASSWORD:         A passowrd textbox
-	 *    OPTION_TYPE_CLEARTEXT:     	  A textbox, but no sanitization on save
-	 * 		OPTION_TYPE_NUMBER:						A small textbox for numbers. NOTE: the default allows only positive integers
-	 * 																			(i.e. 'step' defaults to 1.) If you need	other values supply a "limits" element, e.g:
-	 * 																			'limits' => array('min' => -25, 'max'=> 25, 'step' => 0.5)
-	 * 		OPTION_TYPE_SLIDER						A number but with a slider that changes the value
-	 *    OPTION_TYPE_CHECKBOX:         A checkbox
-	 *    OPTION_TYPE_CUSTOM:           Handled by $optionHandler->handleOption()
-	 *    OPTION_TYPE_TEXTAREA:         A textarea
-	 *    OPTION_TYPE_RICHTEXT:         A textarea with WYSIWYG editor attached
-	 *    OPTION_TYPE_RADIO:            Radio buttons (button names are in the 'buttons' index of the supported options array)
-	 *    OPTION_TYPE_SELECTOR:         Selector (selection list is in the 'selections' index of the supported options array
-	 * 																			null_selection contains the text for the empty selection. If not present there
-	 * 																			will be no empty selection)
-	 *    OPTION_TYPE_CHECKBOX_ARRAY:   Checkbox array (checkbox list is in the 'checkboxes' index of the supported options array.)
-	 *    OPTION_TYPE_CHECKBOX_UL:      Checkbox UL (checkbox list is in the 'checkboxes' index of the supported options array.)
-	 *    OPTION_TYPE_COLOR_PICKER:     Color picker
-	 *    OPTION_TYPE_NOTE:             Places a note in the options area. The note will span all three columns
+	 *    OPTION_TYPE_TEXTBOX:							A textbox
+	 *    OPTION_TYPE_PASSWORD:							A passowrd textbox
+	 *    OPTION_TYPE_CLEARTEXT:						A textbox, but no sanitization on save
+	 * 		OPTION_TYPE_NUMBER:								A small textbox for numbers. NOTE: the default allows only positive integers
+	 * 																				(i.e. 'step' defaults to 1.) If you need	other values supply a "limits" element, e.g:
+	 * 																				'limits' => array('min' => -25, 'max'=> 25, 'step' => 0.5)
+	 * 		OPTION_TYPE_SLIDER								A number but with a slider that changes the value
+	 *    OPTION_TYPE_CHECKBOX:							A checkbox
+	 *    OPTION_TYPE_CUSTOM:								Handled by $optionHandler->handleOption()
+	 *    OPTION_TYPE_TEXTAREA:							A textarea
+	 *    OPTION_TYPE_RICHTEXT:							A textarea with WYSIWYG editor attached
+	 *    OPTION_TYPE_RADIO:								Radio buttons (button names are in the 'buttons' index of the supported options array)
+	 *    OPTION_TYPE_SELECTOR:							Selector (selection list is in the 'selections' index of the supported options array
+	 * 																				null_selection contains the text for the empty selection. If not present there
+	 * 																				will be no empty selection)
+	 *    OPTION_TYPE_CHECKBOX_ARRAY:				Checkbox array (checkbox list is in the 'checkboxes' index of the supported options array.)
+	 * 		OPTION_TYPE_CHECKBOX_ARRAYLIST:		Same as OPTION_TYPE_CHECKBOX_ARRAY but the set values will be stored as an array
+	 *    OPTION_TYPE_CHECKBOX_UL:					Checkbox UL (checkbox list is in the 'checkboxes' index of the supported options array.)
+	 * 		OPTION_TYPE_CHECKBOX_ULLIST:			Same as OPTION_TYPE_CHECKBOX_UL but the set values will be stored as an array
+	 *    OPTION_TYPE_COLOR_PICKER:					Color picker
+	 *    OPTION_TYPE_NOTE:									Places a note in the options area. The note will span all three columns
 	 *
 	 *    Types 0 and 5 support multi-lingual strings.
 	 */
@@ -628,6 +630,8 @@ function printAdminHeader($tab, $subtab = NULL) {
 	define('OPTION_TYPE_NUMBER', 13);
 	define('OPTION_TYPE_SLIDER', 14);
 	define('OPTION_TYPE_ORDERED_SELECTOR', 15);
+	define('OPTION_TYPE_CHECKBOX_ARRAYLIST', 16);
+	define('OPTION_TYPE_CHECKBOX_ULLIST', 17);
 
 	function customOptions($optionHandler, $indent = "", $album = NULL, $showhide = false, $supportedOptions = NULL, $theme = false, $initial = 'none', $extension = NULL) {
 		if (is_null($supportedOptions)) {
@@ -857,6 +861,28 @@ function printAdminHeader($tab, $subtab = NULL) {
 							</td>
 							<?php
 							break;
+						case OPTION_TYPE_CHECKBOX_ARRAYLIST:
+							$behind = (isset($row['behind']) && $row['behind']);
+							?>
+							<td width="350">
+								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'array-' . $postkey; ?>" value="1" />
+								<?php
+								$setOptions = getSerializedArray($v);
+								foreach ($row['checkboxes'] as $display => $checkbox) {
+
+									$display = str_replace(' ', '&nbsp;', $display);
+									?>
+									<label class="checkboxlabel">
+										<?php if ($behind) echo($display); ?>
+										<input type="checkbox" id="<?php echo $checkbox; ?>" name="<?php echo $postkey; ?>[]" value="<?php echo $checkbox; ?>"<?php if (in_array($checkbox, $setOptions)) echo 'checked="checked"'; ?><?php echo $disabled; ?> />
+										<?php if (!$behind) echo($display); ?>
+									</label>
+									<?php
+								}
+								?>
+							</td>
+							<?php
+							break;
 						case OPTION_TYPE_CHECKBOX_UL:
 							?>
 							<td width="350">
@@ -887,6 +913,46 @@ function printAdminHeader($tab, $subtab = NULL) {
 								?>
 								<ul class="customchecklist">
 									<?php generateUnorderedListFromArray($cvarray, $row['checkboxes'], '', '', true, true, 'all_' . $key); ?>
+								</ul>
+								<script type="text/javascript">
+									// <!-- <![CDATA[
+									function <?php echo $key; ?>_all() {
+										var check = $('#all_<?php echo $key; ?>').prop('checked');
+										$('.all_<?php echo $key; ?>').prop('checked', check);
+									}
+									// ]]> -->
+								</script>
+								<label>
+									<input type="checkbox" name="all_<?php echo $key; ?>" id="all_<?php echo $key; ?>" class="all_<?php echo $key; ?>" onclick="<?php echo $key; ?>_all();" <?php if ($all) echo ' checked="checked"'; ?>/>
+									<?php echo gettext('all'); ?>
+								</label>
+							</td>
+							<?php
+							break;
+						case OPTION_TYPE_CHECKBOX_ULLIST:
+							?>
+							<td width="350">
+								<input class="" type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'array-' . $postkey; ?>" value="1" />
+								<?php
+								$setOptions = getSerializedArray($v);
+								$all = empty($setOptions);
+								?>
+								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'array-' . $postkey; ?>" value="1" />
+								<ul class="customchecklist">
+									<?php
+									foreach ($row['checkboxes'] as $display => $checkbox) {
+
+										$display = str_replace(' ', '&nbsp;', $display);
+										?>
+										<li>
+											<label class="displayinline">
+												<input type="checkbox" id="<?php echo $checkbox; ?>" class="all_<?php echo $key; ?>" name="<?php echo $postkey; ?>[]" value="<?php echo $checkbox; ?>"<?php if (in_array($checkbox, $setOptions)) echo 'checked="checked"'; ?><?php echo $disabled; ?> />
+												<?php echo($display); ?>
+											</label>
+										</li>
+										<?php
+									}
+									?>
 								</ul>
 								<script type="text/javascript">
 									// <!-- <![CDATA[
@@ -981,6 +1047,13 @@ function printAdminHeader($tab, $subtab = NULL) {
 						break;
 					case 'chkbox':
 						$value = (int) isset($_POST[$postkey]);
+						break;
+					case 'array':
+						if (isset($_POST[$postkey])) {
+							$value = serialize($_POST[$postkey]);
+						} else {
+							$value = serialize(array());
+						}
 						break;
 					case 'save':
 						$customHandlers[] = array('whom' => $key, 'extension' => sanitize($_POST[$posted]));
@@ -1515,7 +1588,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 													 name="disclose_password<?php echo $suffix; ?>"
 													 id="disclose_password<?php echo $suffix; ?>"
 													 onclick="passwordClear('<?php echo $suffix; ?>');
-															 togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?>
+																	 togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?>
 									</label>
 								</td>
 								<td>
@@ -1872,9 +1945,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 name="<?php echo $prefix; ?>Published"
 										 value="1" <?php if ($album->getShow()) echo ' checked="checked"'; ?>
 										 onclick="$('#<?php echo $prefix; ?>publishdate').val('');
-												 $('#<?php echo $prefix; ?>expirationdate').val('');
-												 $('#<?php echo $prefix; ?>publishdate').css('color', 'black');
-												 $('.<?php echo $prefix; ?>expire').html('');"
+													 $('#<?php echo $prefix; ?>expirationdate').val('');
+													 $('#<?php echo $prefix; ?>publishdate').css('color', 'black');
+													 $('.<?php echo $prefix; ?>expire').html('');"
 										 />
 										 <?php echo gettext("Published"); ?>
 						</label>
@@ -2008,7 +2081,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 } else {
 											 ?>
 											 onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');
-													 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
+															 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
 											 <?php
 										 }
 										 ?> />
@@ -3957,30 +4030,30 @@ function printBulkActions($checkarray, $checkAll = false) {
 		<script type="text/javascript">
 			//<!-- <![CDATA[
 			function checkFor(obj) {
-			var sel = obj.options[obj.selectedIndex].value;
-							var mark;
-							switch (sel) {
+				var sel = obj.options[obj.selectedIndex].value;
+				var mark;
+				switch (sel) {
 		<?php
 		foreach ($colorboxBookmark as $key => $mark) {
 			?>
-				case '<?php echo $key; ?>':
-								mark = '<?php echo $mark; ?>';
-								break;
+					case '<?php echo $key; ?>':
+									mark = '<?php echo $mark; ?>';
+									break;
 			<?php
 		}
 		?>
-			default:
-							mark = false;
-							break;
+				default:
+								mark = false;
+								break;
 			}
 			if (mark) {
-			$.colorbox({
-			href: '#' + mark,
-							inline: true,
-							open: true,
-							close: '<?php echo gettext("ok"); ?>'
-			});
-			}
+				$.colorbox({
+					href: '#' + mark,
+					inline: true,
+					open: true,
+					close: '<?php echo gettext("ok"); ?>'
+				});
+				}
 			}
 			// ]]> -->
 		</script>
@@ -4356,27 +4429,27 @@ function processCommentBulkActions() {
 function codeblocktabsJS() {
 	?>
 	<script type="text/javascript" charset="utf-8">
-						// <!-- <![CDATA[
-						$(function () {
-						var tabContainers = $('div.tabs > div');
-										$('.first').addClass('selected');
-						});
-						function cbclick(num, id) {
-						$('.cbx-' + id).hide();
-										$('#cb' + num + '-' + id).show();
-										$('.cbt-' + id).removeClass('selected');
-										$('#cbt' + num + '-' + id).addClass('selected');
-						}
+		// <!-- <![CDATA[
+		$(function () {
+			var tabContainers = $('div.tabs > div');
+			$('.first').addClass('selected');
+		});
+		function cbclick(num, id) {
+			$('.cbx-' + id).hide();
+			$('#cb' + num + '-' + id).show();
+			$('.cbt-' + id).removeClass('selected');
+			$('#cbt' + num + '-' + id).addClass('selected');
+		}
 
 		function cbadd(id, offset) {
-		var num = $('#cbu-' + id + ' li').size() - offset;
-						$('li:last', $('#cbu-' + id)).remove();
-						$('#cbu-' + id).append('<li><a class="cbt-' + id + '" id="cbt' + num + '-' + id + '" onclick="cbclick(' + num + ',' + id + ');" title="' + '<?php echo gettext('codeblock %u'); ?>'.replace(/%u/, num) + '">&nbsp;&nbsp;' + num + '&nbsp;&nbsp;</a></li>');
-						$('#cbu-' + id).append('<li><a id="cbp-' + id + '" onclick="cbadd(' + id + ',' + offset + ');" title="<?php echo gettext('add codeblock'); ?>">&nbsp;&nbsp;+&nbsp;&nbsp;</a></li>');
-						$('#cbd-' + id).append('<div class="cbx-' + id + '" id="cb' + num + '-' + id + '" style="display:none">' +
-						'<textarea name="codeblock' + num + '-' + id + '" class="codeblock" id="codeblock' + num + '-' + id + '" rows="40" cols="60"></textarea>' +
-						'</div>');
-						cbclick(num, id);
+			var num = $('#cbu-' + id + ' li').size() - offset;
+			$('li:last', $('#cbu-' + id)).remove();
+			$('#cbu-' + id).append('<li><a class="cbt-' + id + '" id="cbt' + num + '-' + id + '" onclick="cbclick(' + num + ',' + id + ');" title="' + '<?php echo gettext('codeblock %u'); ?>'.replace(/%u/, num) + '">&nbsp;&nbsp;' + num + '&nbsp;&nbsp;</a></li>');
+			$('#cbu-' + id).append('<li><a id="cbp-' + id + '" onclick="cbadd(' + id + ',' + offset + ');" title="<?php echo gettext('add codeblock'); ?>">&nbsp;&nbsp;+&nbsp;&nbsp;</a></li>');
+			$('#cbd-' + id).append('<div class="cbx-' + id + '" id="cb' + num + '-' + id + '" style="display:none">' +
+							'<textarea name="codeblock' + num + '-' + id + '" class="codeblock" id="codeblock' + num + '-' + id + '" rows="40" cols="60"></textarea>' +
+							'</div>');
+			cbclick(num, id);
 		}
 		// ]]> -->
 	</script>
@@ -5176,7 +5249,7 @@ function linkPickerIcon($obj, $id = NULL, $extra = NULL) {
 	}
 	?>
 	<a onclick="<?php echo $clickid; ?>$('.pickedObject').removeClass('pickedObject');
-										$('#<?php echo $iconid; ?>').addClass('pickedObject');<?php linkPickerPick($obj, $id, $extra); ?>" title="<?php echo gettext('pick source'); ?>">
+				$('#<?php echo $iconid; ?>').addClass('pickedObject');<?php linkPickerPick($obj, $id, $extra); ?>" title="<?php echo gettext('pick source'); ?>">
 		<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" id="<?php echo $iconid; ?>">
 	</a>
 	<?php

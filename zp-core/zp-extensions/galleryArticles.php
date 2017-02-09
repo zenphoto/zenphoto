@@ -26,6 +26,13 @@ class galleryArticles {
 
 	function __construct() {
 		if (OFFSET_PATH == 2) {
+			//clean up the mess from previous implementation
+			$sql = 'SELECT * FROM ' . prefix('options') . ' WHERE `name` LIKE "combinews_%"';
+			$result = query_full_array($sql);
+			foreach ($result as $option) {
+				purgeOption($option['name']);
+			}
+
 			setOptionDefault('galleryArticles_images', NULL);
 			setOptionDefault('galleryArticles_albums', NULL);
 			setOptionDefault('galleryArticles_category', NULL);

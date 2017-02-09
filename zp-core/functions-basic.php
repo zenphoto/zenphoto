@@ -421,15 +421,6 @@ function updateOptionOwner($key) {
 		$creator = NULL;
 	}
 
-	/*
-	  if (preg_match('~(.*)/(' . ZENFOLDER . ')~', $serverpath, $matches)) {
-	  $creator = str_replace($matches[1] . '/', '', $f);
-	  } else {
-	  preg_match('~(.*)/(' . USER_PLUGIN_FOLDER . '|' . THEMEFOLDER . ')~', $serverpath, $matches);
-	  $creator = str_replace($matches[1] . '/', '', $f);
-	  }
-	 */
-
 	if ($creator) {
 		$sql = 'UPDATE ' . prefix('options') . 'SET `creator`=' . db_quote($creator) . ' WHERE `name`=' . db_quote($key) . ' AND `ownerid`=0 AND `theme`=""';
 		query($sql, false);

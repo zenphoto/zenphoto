@@ -31,8 +31,7 @@ $option_interface = 'colorbox';
 if (OFFSET_PATH) {
 	zp_register_filter('admin_head', 'colorbox::css');
 } else {
-	global $_zp_gallery, $_zp_gallery_page;
-	if (getOption('colorbox_' . $_zp_gallery->getCurrentTheme() . '_' . stripSuffix($_zp_gallery_page))) {
+	if (in_array(stripSuffix($_zp_gallery_page), getSerializedArray(getOption('colorbox_' . $_zp_gallery->getCurrentTheme() . '_scripts')))) {
 		zp_register_filter('theme_head', 'colorbox::css');
 	}
 }
@@ -41,8 +40,24 @@ class colorbox {
 
 	function __construct() {
 		if (OFFSET_PATH == 2) {
-			//	These are best set by the theme itself!
 			setOptionDefault('colorbox_theme', 'example1');
+
+			$found = array();
+			$sql = 'SELECT * FROM ' . prefix('options') . ' WHERE `name` LIKE "colorbox_%"';
+			$result = query_full_array($sql);
+			foreach ($result as $option) {
+				preg_match('/colorbox_(.*)_(.*)/', $option['name'], $matches);
+				if (count($matches) == 3 && $matches[2] != 'scripts') {
+					$found[$matches[1]][] = $matches[2];
+				}
+			}
+
+			foreach ($found as $theme => $scripts) {
+				setOptionDefault('colorbox_' . $theme . '_scripts', serialize($scripts));
+				foreach ($scripts as $script) {
+					purgeOption('colorbox_' . $theme . '_' . $script);
+				}
+			}
 		}
 	}
 
@@ -63,9 +78,9 @@ class colorbox {
 		foreach (getThemeFiles(array('404.php', 'themeoptions.php', 'theme_description.php')) as $theme => $scripts) {
 			$list = array();
 			foreach ($scripts as $script) {
-				$list[$script] = 'colorbox_' . $theme . '_' . stripSuffix($script);
+				$list[$script] = stripSuffix($script);
 			}
-			$opts[$theme] = array('key' => 'colorbox_' . $theme . '_scripts', 'type' => OPTION_TYPE_CHECKBOX_ARRAY,
+			$opts[$theme] = array('key' => 'colorbox_' . $theme . '_scripts', 'type' => OPTION_TYPE_CHECKBOX_ARRAYLIST,
 					'order' => $c++,
 					'checkboxes' => $list,
 					'desc' => gettext('The scripts for which Colorbox is enabled. {Should have been set by the themes!}')
@@ -77,6 +92,46 @@ class colorbox {
 
 	function handleOption($option, $currentValue) {
 
+	}
+
+	/**
+	 * Use by themes to declare which scripts should have the colorbox CSS loaded
+	 *
+	 * @param string $theme
+	 * @param array $scripts list of the scripts
+	 */
+	static function registerScripts($scripts, $theme = NULL) {
+		if (is_null($theme)) {
+			$bt = debug_backtrace();
+			$b = array_shift($bt); // this function
+			//$b now has the calling file/line# of the setOption... function
+			$f = str_replace('\\', '/', $b['file']);
+			$serverpath = dirname($f);
+			$theme = explode('/', str_replace(SERVERPATH . '/' . THEMEFOLDER . '/', '', $f));
+			$theme = $theme[0];
+		}
+		setOptionDefault('colorbox_' . $theme . '_scripts', serialize($scripts));
+	}
+
+	/**
+	 * Checks if the theme script is registered for colorbox. If not it will register the script
+	 * so next time things will workl
+	 *
+	 * @global type $_zp_gallery
+	 * @global type $_zp_gallery_page
+	 * @param string $theme
+	 * @param string $script
+	 * @return boolean true registered
+	 */
+	static function scriptEnabled($theme, $script) {
+		global $_zp_gallery, $_zp_gallery_page;
+		$scripts = getSerializedArray(getOption('colorbox_' . $_zp_gallery->getCurrentTheme() . '_scripts'));
+		if (!in_array(stripSuffix($_zp_gallery_page), $scripts)) {
+			array_push($scripts, $script);
+			setOptionDefault('colorbox_' . $theme . '_scripts', serialize($scripts));
+			return false;
+		}
+		return true;
 	}
 
 	static function css() {

@@ -560,8 +560,7 @@ if (extensionEnabled('slideshow2')) {
 			case 'colorbox':
 				$theme = $_zp_gallery->getCurrentTheme();
 				$script = stripSuffix($_zp_gallery_page);
-				if (!getOption('colorbox_' . $theme . '_' . $script)) {
-					setOptionDefault('colorbox_' . $theme . '_' . $script, 1);
+				if (!(class_exists('colorbox') && colorbox::scriptEnabled($theme, $script))) {
 					$themes = $_zp_gallery->getThemes();
 					?>
 					<div class="errorbox"><?php printf(gettext('Slideshow not available because colorbox is not enabled on %1$s <em>%2$s</em> pages.'), $themes[$theme]['name'], $script); ?></div>

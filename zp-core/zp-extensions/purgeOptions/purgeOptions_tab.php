@@ -16,7 +16,7 @@ require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 
 admin_securityChecks(OPTIONS_RIGHTS, $return = currentRelativeURL());
 
-$xlate = array('plugins' => gettext('User plugins'), 'zp-core/zp-extensions' => gettext('Extensions'), 'themes' => gettext('Themes'), 'orphaned' => gettext('Orphaned options'));
+$xlate = array('plugins' => gettext('User plugins'), 'zp-core/zp-extensions' => gettext('Extensions'), 'themes' => gettext('Themes'));
 
 if (isset($_POST['purge'])) {
 	XSRFdefender('purgeOptions');
@@ -52,7 +52,8 @@ if (isset($_POST['purge'])) {
 	}
 	if (isset($_POST['missingcreator'])) {
 		foreach ($_POST['missingcreator'] as $option) {
-			purgeOption(str_replace('orphaned/', '', $option));
+			$sql = 'DELETE FROM ' . prefix('options') . ' WHERE `id`=' . $option;
+			$result = query($sql);
 		}
 	}
 
@@ -77,65 +78,53 @@ printAdminHeader('options', '');
 				<?php printSubtabs(); ?>
 				<div class="tabbox">
 					<?php
-					$owners = array();
+					$owners = array(ZENFOLDER . '/' . PLUGIN_FOLDER => array(), USER_PLUGIN_FOLDER => array(), THEMEFOLDER => array());
 					$sql = 'SELECT `name` FROM ' . prefix('options') . ' WHERE `name` LIKE "zp_plugin_%"';
 					$result = query_full_array($sql);
-					foreach ($result as $plugin) {
-						$plugin = str_replace('zp_plugin_', '', $plugin['name']) . '.php';
+					foreach ($result as $row) {
+						$plugin = str_replace('zp_plugin_', '', $row['name']) . '.php';
 						$file = str_replace(SERVERPATH, '', getPlugin($plugin, false));
-						if (strpos($file, PLUGIN_FOLDER) === false) {
-							$owners[USER_PLUGIN_FOLDER][$plugin] = $plugin;
+						if ($file) {
+							if (strpos($file, PLUGIN_FOLDER) === false) {
+								$owners[USER_PLUGIN_FOLDER][$plugin] = $plugin;
+							}
 						} else {
-							$owners[ZENFOLDER . '/' . PLUGIN_FOLDER][$plugin] = $plugin;
+							purgeOption($row['name']);
 						}
 					}
+
+
 					$nullCreator = false;
-					$sql = 'SELECT DISTINCT `creator` FROM ' . prefix('options');
+					$sql = 'SELECT DISTINCT `creator` FROM ' . prefix('options') . ' ORDER BY `creator`';
 					$result = query_full_array($sql);
 					foreach ($result as $owner) {
 						$structure = explode('/', $owner['creator']);
-						switch (count($structure)) {
-							case 1:
+						switch ($structure[0]) {
+							case NULL:
 								$nullCreator = true;
 								break;
-							case 2:
-								$owners[$structure[0]][] = $structure[1];
+							case THEMEFOLDER:
+								$owners[THEMEFOLDER][] = $structure[1];
 								break;
-							case 3:
-								$owners[$structure[0]][$structure[1]][] = $structure[2];
+							case USER_PLUGIN_FOLDER:
+								unset($structure[0]);
+								$owners[USER_PLUGIN_FOLDER][] = implode('/', $structure);
 								break;
-							default:
-								$owners[array_shift($structure)][array_shift($structure)][] = implode('/', $structure);
+							case ZENFOLDER:
+								if ($structure[1] == PLUGIN_FOLDER) {
+									unset($structure[0], $structure[1]);
+									$owners[ZENFOLDER . '/' . PLUGIN_FOLDER][] = implode('/', $structure);
+								}
 								break;
 						}
 					}
 
-					if (isset($owners[USER_PLUGIN_FOLDER])) {
-						$owners[USER_PLUGIN_FOLDER] = array_unique($owners[USER_PLUGIN_FOLDER]);
-						natcasesort($owners[USER_PLUGIN_FOLDER]);
-					}
-					if (isset($owners[ZENFOLDER][PLUGIN_FOLDER])) {
-						$owners[ZENFOLDER . '/' . PLUGIN_FOLDER] = array_unique($owners[ZENFOLDER][PLUGIN_FOLDER]);
-						natcasesort($owners[ZENFOLDER . '/' . PLUGIN_FOLDER]);
-					}
-					unset($owners[ZENFOLDER]);
-
-					if (isset($owners[THEMEFOLDER])) {
-						foreach ($owners[THEMEFOLDER] as $theme => $v) {
-							if (is_array($v)) {
-								$owners[THEMEFOLDER][] = $theme;
-								unset($owners[THEMEFOLDER][$theme]);
-							}
-						}
-						$owners[THEMEFOLDER] = array_unique($owners[THEMEFOLDER]);
-						natcasesort($owners[THEMEFOLDER]);
-					}
 					if ($nullCreator) {
-						$sql = 'SELECT `name` FROM ' . prefix('options') . ' WHERE `creator` is NULL';
+						$sql = 'SELECT * FROM ' . prefix('options') . ' WHERE `creator` is NULL';
 						$result = query_full_array($sql);
 						foreach ($result as $opt) {
 							if (strpos($opt['name'], 'zp_plugin_') === false) {
-								$orpahaned[] = $opt['name'];
+								$orpahaned[$opt['id']] = $opt['name'];
 							}
 						}
 						if (!empty($orpahaned)) {
@@ -147,11 +136,13 @@ printAdminHeader('options', '');
 						echo gettext('No option owners have been located.');
 					} else {
 						?>
-						<form class="dirtylistening" onReset="setClean('purge_options_form');" id="purge_options_form" action="?page=options&tab=purge" method="post" >
-							<?php XSRFToken('purgeOptions'); ?>
+						<form class="dirtylistening" onReset="setClean('purge_options_form');
+									" id="purge_options_form" action="?page = options&tab = purge" method="post" >
+										<?php XSRFToken('purgeOptions'); ?>
 							<input type="hidden" name="purge" value="1" />.
 							<p class = "buttons" >
-								<button type="submit" value="<?php echo gettext('Apply') ?>"> <img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /> <strong><?php echo gettext("Apply"); ?> </strong></button >
+								<button type="submit" value="<?php echo gettext('Apply')
+										?>"> <img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /> <strong><?php echo gettext("Apply"); ?> </strong></button >
 								<button type="" "reset" value="<?php echo gettext('reset') ?>"> <img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" /> <strong><?php echo gettext("Reset"); ?> </strong></button>
 							</p>
 							<br class="clearall" />
@@ -175,8 +166,25 @@ printAdminHeader('options', '');
 								listOwners($owners);
 							}
 							if (!empty($orpahaned)) {
-								$owners = array(gettext('orphaned') => $orpahaned);
-								listOwners($owners, false, 'missingcreator');
+								$size = ceil(count($orpahaned) / 25);
+								?>
+								<div class="purgeOptions_list">
+									<span class="purgeOptionsClass"><?php echo gettext('Orphaned options'); ?></span> <input type="checkbox" id="orphaned" onclick="$('.orphaned').prop('checked', $('#orphaned').prop('checked'));">
+									<ul class="purgeOptionsBlock"<?php if ($size > 1) echo ' style="' . "column-count:$size;	-moz-column-count: $size;	-webkit-column-count: $size;" . '"'; ?>>
+										<?php
+										foreach ($orpahaned as $key => $display) {
+											?>
+											<li>
+												<label class="none">
+													<input type="checkbox" name="missingcreator[]" class="orphaned" value="<?php echo $key; ?>" /><?php echo $display; ?>
+												</label>
+											</li>
+											<?php
+										}
+										?>
+									</ul>
+								</div>
+								<?php
 							}
 							?>
 

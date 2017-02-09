@@ -31,7 +31,8 @@ $legacyReplacements = array(
 		'\$_zp_current_zenpage_news' => '$_zp_current_article',
 		'\$_zp_current_zenpage_page' => '$_zp_current_page',
 		'->getFullImage\(' => '->getFullImageURL(',
-		'tinymce4_' => 'tinymce_'
+		'tinymce4_' => 'tinymce_',
+		'(setOptionDefault\([\'"]colorbox_.*[\'"], .*\);)' => '$1/*TODO:replace with a call to colorbox::registerScripts();*/'
 );
 
 /**

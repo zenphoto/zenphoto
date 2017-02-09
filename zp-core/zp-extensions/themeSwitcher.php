@@ -45,13 +45,13 @@ class themeSwitcher {
 		$themes = $_zp_gallery->getThemes();
 		$list = array();
 		foreach ($themes as $key => $theme) {
-			$list[$theme['name']] = 'themeSwitcher_theme_' . $key;
+			$list[$theme['name']] = $key;
 		}
 		$options = array(gettext('Cookie duration') => array('key' => 'themeSwitcher_timeout', 'type' => OPTION_TYPE_NUMBER,
 						'desc' => gettext('The time in minutes that the theme switcher cookie lasts.')),
 				gettext('Private') => array('key' => 'themeSwitcher_adminOnly', 'type' => OPTION_TYPE_CHECKBOX,
 						'desc' => gettext('Only users with <em>Themes</em> rights will see the selector if this is checked.')),
-				gettext('Theme list') => array('key' => 'themeSwitcher_list', 'type' => OPTION_TYPE_CHECKBOX_UL,
+				gettext('Theme list') => array('key' => 'themeSwitcher_list', 'type' => OPTION_TYPE_CHECKBOX_ULLIST,
 						'checkboxes' => $list,
 						'desc' => gettext('These are the themes that may be selected among.'))
 		);
@@ -105,10 +105,12 @@ class themeSwitcher {
 		if (self::active()) {
 			$themes = array();
 			foreach ($_zp_gallery->getThemes() as $theme => $details) {
-				if (in_array($details['name'], $themes)) {
-					$themes[$theme] = $details['name'] . ' v' . $details['version'];
-				} else {
-					$themes[$theme] = $details['name'];
+				if (!array_key_exists($theme, $_themeSwitcherThemelist) || $_themeSwitcherThemelist[$theme]) {
+					if (in_array($details['name'], $themes)) {
+						$themes[$theme] = $details['name'] . ' v' . $details['version'];
+					} else {
+						$themes[$theme] = $details['name'];
+					}
 				}
 			}
 			$text = $textIn;
@@ -166,14 +168,15 @@ class themeSwitcher {
 }
 
 $_themeSwitcherThemelist = array();
+$__enabled = getSerializedArray(getOption('themeSwitcher_list'));
 foreach ($_zp_gallery->getThemes() as $__key => $__theme) {
-	$set = getOption('themeSwitcher_theme_' . $__key);
-	if (is_null($set)) //newly arrived theme?
-		$set = 1;
-	$_themeSwitcherThemelist[$__key] = $set;
+	$_themeSwitcherThemelist[$__key] = (bool) in_array($__key, $__enabled);
 }
+unset($__enabled);
 unset($__key);
 unset($__theme);
+
+
 if (isset($_GET['themeSwitcher'])) {
 	zp_setCookie('themeSwitcher_theme', sanitize($_GET['themeSwitcher']), getOption('themeSwitcher_timeout') * 60);
 }
