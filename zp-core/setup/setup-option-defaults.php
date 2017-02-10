@@ -315,6 +315,7 @@ foreach (array('IPTC', 'EXIF', 'XMP', 'Video') as $cat) {
 	foreach ($result as $row) {
 		$matches = explode('-', $row['name']);
 		if (isset($matches[1])) {
+			$key = $matches[0];
 			if ($matches[1] == 'display') {
 				$displayed[$key] = $key;
 				purgeOption($key . '-display');
@@ -322,6 +323,9 @@ foreach (array('IPTC', 'EXIF', 'XMP', 'Video') as $cat) {
 				$disabled[$key] = $key;
 				purgeOption($key . '-disabled');
 			}
+		}
+		if (!in_array($row['name'], array('IPTC_encoding', 'xmpMetadata_suffix', 'Video_watermark'))) {
+			purgeOption($row['name']);
 		}
 	}
 }
@@ -342,20 +346,6 @@ setOptionDefault('albumimagedirection', 'DESC');
 setOptionDefault('cache_full_image', 0);
 setOptionDefault('exact_tag_match', 0);
 
-setOptionDefault('image_max_size', 3000);
-setOptionDefault('EXIFMake', 1);
-setOptionDefault('EXIFModel', 1);
-setOptionDefault('EXIFExposureTime', 1);
-setOptionDefault('EXIFFNumber', 1);
-setOptionDefault('EXIFFocalLength', 1);
-setOptionDefault('EXIFISOSpeedRatings', 1);
-setOptionDefault('EXIFDateTimeOriginal', 1);
-setOptionDefault('EXIFExposureBiasValue', 1);
-setOptionDefault('EXIFMeteringMode', 1);
-setOptionDefault('EXIFFlash', 1);
-foreach ($_zp_exifvars as $key => $item) {
-	setOptionDefault($key, 0);
-}
 setOptionDefault('IPTC_encoding', 'ISO-8859-1');
 
 setOptionDefault('sharpen_amount', 40);

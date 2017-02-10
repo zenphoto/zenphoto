@@ -2511,14 +2511,22 @@ class zpFunctions {
 	 */
 	static function exifOptions($whom, $disable, $list) {
 		$reenable = false;
+		$disabled = getSerializedArray(getOption('metadata_disabled'));
+
 		foreach ($list as $key => $exifvar) {
-			$v = $exifvar[5] = getOption($key . '_disabled');
+			$v = $exifvar[5] = in_array($key, $disabled);
 			if ($exifvar[4] && $v != $disable) {
 				$reenable = true;
 			}
-			setOption($key . '_disabled', $disable | ($v & 1));
+			if ($disable | $v) {
+				$disabled[$key] = $key;
+			} else {
+				unset($disabled[$key]);
+			}
 			$list[$key][5] = $disable == 0;
 		}
+		setOption('metadata_disabled', serialize($disabled));
+
 		if (OFFSET_PATH == 2) {
 			metadataFields($list);
 		} else {
