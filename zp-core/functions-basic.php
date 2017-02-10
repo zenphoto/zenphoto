@@ -380,7 +380,6 @@ function setOption($key, $value, $persistent = true) {
 		}
 		$sql .= ') ' . $sqlu;
 		$result = query($sql, false);
-
 		if (db_affected_rows() == 1 || OFFSET_PATH == 2) {
 			//newly created option
 			updateOptionOwner($key);
@@ -409,26 +408,17 @@ function updateOptionOwner($key) {
 	$b = array_shift($bt); //the setOption... function
 	//$b now has the calling file/line# of the setOption... function
 	$f = str_replace('\\', '/', $b['file']);
-	$serverpath = dirname($f);
+	$creator = trim(str_replace(SERVERPATH, '', $f), '/');
 
-
-	if (!preg_match('~(.*)/(' . ZENFOLDER . ')~', $serverpath, $matches)) {
-		preg_match('~(.*)/(' . USER_PLUGIN_FOLDER . '|' . THEMEFOLDER . ')~', $serverpath, $matches);
-	}
-	if ($matches) {
-		$creator = str_replace($matches[1] . '/', '', $f);
+	$matches = explode('/', $creator);
+	if ($matches[0] == THEMEFOLDER) {
+		$theme = ', `theme`=' . db_quote($matches[1]);
 	} else {
-		$creator = NULL;
+		$theme = '';
 	}
 
-	if ($creator) {
-		$sql = 'UPDATE ' . prefix('options') . 'SET `creator`=' . db_quote($creator) . ' WHERE `name`=' . db_quote($key) . ' AND `ownerid`=0 AND `theme`=""';
-		query($sql, false);
-	} else {
-		if (TEST_RELEASE) {
-			debugLogVar('Failed to get option creator', debug_backtrace());
-		}
-	}
+	$sql = 'UPDATE ' . prefix('options') . ' SET `creator`=' . db_quote($creator) . $theme . ' WHERE `name`=' . db_quote($key) . ' AND `ownerid`=0 AND `theme`=""';
+	query($sql, false);
 }
 
 /**

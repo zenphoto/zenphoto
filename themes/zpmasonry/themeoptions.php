@@ -26,28 +26,28 @@ class ThemeOptions {
 		setThemeOptionDefault('thumb_transition', 2);
 
 		// set theme option defaults
-		setOptionDefault('zpmas_usenews', true);
-		setOptionDefault('zpmas_css', 'dark');
-		setOptionDefault('zpmas_logo', '');
-		setOptionDefault('zpmas_logoheight', '');
-		setOptionDefault('zpmas_zpsearchcount', 2);
-		setOptionDefault('zpmas_finallink', 'nolink');
-		setOptionDefault('zpmas_disablemeta', false);
-		setOptionDefault('zpmas_imagetitle', false);
-		setOptionDefault('zpmas_thumbsize', 'small');
-		setOptionDefault('zpmas_thumbcrop', true);
-		setOptionDefault('zpmas_infscroll', true);
-		setOptionDefault('zpmas_fixsidebar', true);
-		setOptionDefault('zpmas_cbtarget', true);
-		setOptionDefault('zpmas_cbstyle', 'example3');
-		setOptionDefault('zpmas_cbtransition', 'fade');
-		setOptionDefault('zpmas_cbssspeed', '2500');
-		setOptionDefault('zpmas_ss', true);
-		setOptionDefault('zpmas_sstype', 'random');
-		setOptionDefault('zpmas_sscount', 5);
-		setOptionDefault('zpmas_sseffect', 'fade');
-		setOptionDefault('zpmas_ssspeed', '4000');
-		setOptionDefault('jcarousel_zpmasonry_image', 1);
+		setThemeOptionDefault('zpmas_usenews', true);
+		setThemeOptionDefault('zpmas_css', 'dark');
+		setThemeOptionDefault('zpmas_logo', '');
+		setThemeOptionDefault('zpmas_logoheight', '');
+		setThemeOptionDefault('zpmas_zpsearchcount', 2);
+		setThemeOptionDefault('zpmas_finallink', 'nolink');
+		setThemeOptionDefault('zpmas_disablemeta', false);
+		setThemeOptionDefault('zpmas_imagetitle', false);
+		setThemeOptionDefault('zpmas_thumbsize', 'small');
+		setThemeOptionDefault('zpmas_thumbcrop', true);
+		setThemeOptionDefault('zpmas_infscroll', true);
+		setThemeOptionDefault('zpmas_fixsidebar', true);
+		setThemeOptionDefault('zpmas_cbtarget', true);
+		setThemeOptionDefault('zpmas_cbstyle', 'example3');
+		setThemeOptionDefault('zpmas_cbtransition', 'fade');
+		setThemeOptionDefault('zpmas_cbssspeed', '2500');
+		setThemeOptionDefault('zpmas_ss', true);
+		setThemeOptionDefault('zpmas_sstype', 'random');
+		setThemeOptionDefault('zpmas_sscount', 5);
+		setThemeOptionDefault('zpmas_sseffect', 'fade');
+		setThemeOptionDefault('zpmas_ssspeed', '4000');
+		setThemeOptionDefault('jcarousel_zpmasonry_image', 1);
 		if (class_exists('cacheManager')) {
 			cacheManager::deleteThemeCacheSizes('zpmasonry');
 			cacheManager::addThemeCacheSize('zpmasonry', null, 108, 108, 108, 108, null, null, null, true, getOption('Image_watermark'), false, false); // image thumbs - small
@@ -70,83 +70,83 @@ class ThemeOptions {
 
 	function getOptionsSupported() {
 		return array(
-						gettext('Style')																			 => array('key'		 => 'zpmas_css', 'type'	 => OPTION_TYPE_CUSTOM,
-										'order'	 => 1,
-										'desc'	 => gettext('Select a dark or light overall color style.')),
-						gettext('General Thumb Sizes')												 => array('key'		 => 'zpmas_thumbsize', 'type'	 => OPTION_TYPE_CUSTOM,
-										'order'	 => 2,
-										'desc'	 => gettext('Toggle large or small thumbnails.  This theme does not allow you to set the thumb sizes above for layout reasons.
+				gettext('Style') => array('key' => 'zpmas_css', 'type' => OPTION_TYPE_CUSTOM,
+						'order' => 1,
+						'desc' => gettext('Select a dark or light overall color style.')),
+				gettext('General Thumb Sizes') => array('key' => 'zpmas_thumbsize', 'type' => OPTION_TYPE_CUSTOM,
+						'order' => 2,
+						'desc' => gettext('Toggle large or small thumbnails.  This theme does not allow you to set the thumb sizes above for layout reasons.
 				For advanced users, these are set in the functions.php file.')),
-						gettext('Crop Album Thumbs to Landscape Orientation?') => array('key'		 => 'zpmas_thumbcrop', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 3,
-										'desc'	 => gettext('Check to crop the album thumbs to a more landscape orientation.')),
-						gettext('Show Image Title on Album Pages?')						 => array('key'		 => 'zpmas_imagetitle', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 4,
-										'desc'	 => gettext('Check to show the image title above images on the album and search pages.')),
-						gettext('Use Infinite Scroll?')												 => array('key'		 => 'zpmas_infscroll', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 5,
-										'desc'	 => gettext('Loads subsequent pages into the current page, disables normal pagination. Experimental, use with caution.')),
-						gettext('Fix the sidebar\'s position?')								 => array('key'		 => 'zpmas_fixsidebar', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 6,
-										'desc'	 => gettext('Check to fix the sidebar and make it always visible as user scrolls.  If sidebar is too tall for the users
+				gettext('Crop Album Thumbs to Landscape Orientation?') => array('key' => 'zpmas_thumbcrop', 'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 3,
+						'desc' => gettext('Check to crop the album thumbs to a more landscape orientation.')),
+				gettext('Show Image Title on Album Pages?') => array('key' => 'zpmas_imagetitle', 'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 4,
+						'desc' => gettext('Check to show the image title above images on the album and search pages.')),
+				gettext('Use Infinite Scroll?') => array('key' => 'zpmas_infscroll', 'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 5,
+						'desc' => gettext('Loads subsequent pages into the current page, disables normal pagination. Experimental, use with caution.')),
+				gettext('Fix the sidebar\'s position?') => array('key' => 'zpmas_fixsidebar', 'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 6,
+						'desc' => gettext('Check to fix the sidebar and make it always visible as user scrolls.  If sidebar is too tall for the users
 				viewport, it will revert to static position.')),
-						gettext('Logo Image')																	 => array('key'		 => 'zpmas_logo', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 7,
-										'desc'	 => gettext('Enter an image file located in the themes image directory, including extension, to use as an image logo. Or leave
+				gettext('Logo Image') => array('key' => 'zpmas_logo', 'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 7,
+						'desc' => gettext('Enter an image file located in the themes image directory, including extension, to use as an image logo. Or leave
 				blank to use a text representation of your Gallery name.  As an example there is a logo.gif image in the images directory with a
 				height of 83 (must enter height of image as well!).')),
-						gettext('Logo Height')																 => array('key'		 => 'zpmas_logoheight', 'type'	 => OPTION_TYPE_NUMBER,
-										'order'	 => 8,
-										'desc'	 => gettext('If using a logo image above, you must enter the height of the image in pixels here.')),
-						gettext('Final Image Link Option')										 => array('key'		 => 'zpmas_finallink', 'type'	 => OPTION_TYPE_CUSTOM,
-										'order'	 => 9,
-										'desc'	 => gettext('Choose the option for the final image link on image.php.  Can either link to full image using standard zenphoto
+				gettext('Logo Height') => array('key' => 'zpmas_logoheight', 'type' => OPTION_TYPE_NUMBER,
+						'order' => 8,
+						'desc' => gettext('If using a logo image above, you must enter the height of the image in pixels here.')),
+				gettext('Final Image Link Option') => array('key' => 'zpmas_finallink', 'type' => OPTION_TYPE_CUSTOM,
+						'order' => 9,
+						'desc' => gettext('Choose the option for the final image link on image.php.  Can either link to full image using standard zenphoto
 				process (with core options), colorbox (if plugin enabled), or no link (default).')),
-						gettext('Disable MetaData Display?')									 => array('key'		 => 'zpmas_disablemeta', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 10,
-										'desc'	 => gettext('Check to disable the metadata (EXIF,IPTC) display on the image page.')),
-						gettext('ZenPage Search Results')											 => array('key'		 => 'zpmas_zpsearchcount', 'type'	 => OPTION_TYPE_SLIDER,
-										'min'		 => 0,
-										'max'		 => 4,
-										'order'	 => 11,
-										'desc'	 => gettext('If using Zenpage, enter the number of search results to display for each news and pages.  Default is 2 (4 total
+				gettext('Disable MetaData Display?') => array('key' => 'zpmas_disablemeta', 'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 10,
+						'desc' => gettext('Check to disable the metadata (EXIF,IPTC) display on the image page.')),
+				gettext('ZenPage Search Results') => array('key' => 'zpmas_zpsearchcount', 'type' => OPTION_TYPE_SLIDER,
+						'min' => 0,
+						'max' => 4,
+						'order' => 11,
+						'desc' => gettext('If using Zenpage, enter the number of search results to display for each news and pages.  Default is 2 (4 total
 				possible).')),
-						gettext('Colorbox Style')															 => array('key'		 => 'zpmas_cbstyle', 'type'	 => OPTION_TYPE_CUSTOM,
-										'order'	 => 12,
-										'desc'	 => gettext('Select the Colorbox style you wish to use (examples on the colorbox site).')),
-						gettext('Colorbox Transition Type')										 => array('key'		 => 'zpmas_cbtransition', 'type'	 => OPTION_TYPE_CUSTOM,
-										'order'	 => 13,
-										'desc'	 => gettext('The colorbox transition type. Can be set to elastic, fade, or none.')),
-						gettext('Colorbox Slideshow Speed')										 => array('key'		 => 'zpmas_cbssspeed', 'type'	 => OPTION_TYPE_NUMBER,
-										'order'	 => 14,
-										'desc'	 => gettext('Enter a number here in milliseconds that determines the colorbox slideshow speed. Default is \'2500\'.')),
-						gettext('Colorbox Target Sized Image in Galleriffic')	 => array('key'		 => 'zpmas_cbtarget', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 15,
-										'desc'	 => gettext('Click to enable colorbox targeting the sized image setting in the top options, instead of the full original image.
+				gettext('Colorbox Style') => array('key' => 'zpmas_cbstyle', 'type' => OPTION_TYPE_CUSTOM,
+						'order' => 12,
+						'desc' => gettext('Select the Colorbox style you wish to use (examples on the colorbox site).')),
+				gettext('Colorbox Transition Type') => array('key' => 'zpmas_cbtransition', 'type' => OPTION_TYPE_CUSTOM,
+						'order' => 13,
+						'desc' => gettext('The colorbox transition type. Can be set to elastic, fade, or none.')),
+				gettext('Colorbox Slideshow Speed') => array('key' => 'zpmas_cbssspeed', 'type' => OPTION_TYPE_NUMBER,
+						'order' => 14,
+						'desc' => gettext('Enter a number here in milliseconds that determines the colorbox slideshow speed. Default is \'2500\'.')),
+				gettext('Colorbox Target Sized Image in Galleriffic') => array('key' => 'zpmas_cbtarget', 'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 15,
+						'desc' => gettext('Click to enable colorbox targeting the sized image setting in the top options, instead of the full original image.
 				This is usefull if you upload large images as you can set Colorbox to target a smaller, resized version based on your setting
 				above.')),
-						gettext('Frontpage Slideshow?')												 => array('key'		 => 'zpmas_ss', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 16,
-										'desc'	 => gettext('Check if you want to show a slideshow on the frontpage. Contents of slideshow and settings can be selected below.')),
-						gettext('Frontpage Slideshow Option')									 => array('key'		 => 'zpmas_sstype', 'type'	 => OPTION_TYPE_CUSTOM,
-										'order'	 => 17,
-										'desc'	 => gettext('Select the contents option of the frontpage slideshow if selected above.')),
-						gettext('Frontpage Slideshow Count')									 => array('key'		 => 'zpmas_sscount', 'type'	 => OPTION_TYPE_NUMBER,
-										'order'	 => 18,
-										'desc'	 => gettext('How many images/albums to display in the slideshow.')),
-						gettext('Frontpage Slideshow Transition Effect?')			 => array('key'		 => 'zpmas_sseffect', 'type'	 => OPTION_TYPE_CUSTOM,
-										'order'	 => 19,
-										'desc'	 => gettext('Choose the transition effect, if slideshow is selected above.')),
-						gettext('Frontpage Slideshow Speed?')									 => array('key'		 => 'zpmas_ssspeed', 'type'	 => OPTION_TYPE_NUMBER,
-										'order'	 => 20,
-										'desc'	 => gettext('Choose the delay of each rotation for slideshow in milliseconds.')),
-						gettext('Use News Feature')														 => array('key'		 => 'zpmas_usenews', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 21,
-										'desc'	 => gettext("IF you have the Zenpage plugin enabled, you can uncheck this to NOT use the news feature of the Zenpage plugin (use only pages)")),
-						gettext('Custom CSS')																	 => array('order'				 => 9, 'key'					 => 'zpmas_customcss', 'type'				 => OPTION_TYPE_TEXTAREA,
-										'order'				 => 22,
-										'multilingual' => false,
-										'desc'				 => gettext('Enter any custom CSS, safely carries over upon theme upgrade.'))
+				gettext('Frontpage Slideshow?') => array('key' => 'zpmas_ss', 'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 16,
+						'desc' => gettext('Check if you want to show a slideshow on the frontpage. Contents of slideshow and settings can be selected below.')),
+				gettext('Frontpage Slideshow Option') => array('key' => 'zpmas_sstype', 'type' => OPTION_TYPE_CUSTOM,
+						'order' => 17,
+						'desc' => gettext('Select the contents option of the frontpage slideshow if selected above.')),
+				gettext('Frontpage Slideshow Count') => array('key' => 'zpmas_sscount', 'type' => OPTION_TYPE_NUMBER,
+						'order' => 18,
+						'desc' => gettext('How many images/albums to display in the slideshow.')),
+				gettext('Frontpage Slideshow Transition Effect?') => array('key' => 'zpmas_sseffect', 'type' => OPTION_TYPE_CUSTOM,
+						'order' => 19,
+						'desc' => gettext('Choose the transition effect, if slideshow is selected above.')),
+				gettext('Frontpage Slideshow Speed?') => array('key' => 'zpmas_ssspeed', 'type' => OPTION_TYPE_NUMBER,
+						'order' => 20,
+						'desc' => gettext('Choose the delay of each rotation for slideshow in milliseconds.')),
+				gettext('Use News Feature') => array('key' => 'zpmas_usenews', 'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 21,
+						'desc' => gettext("IF you have the Zenpage plugin enabled, you can uncheck this to NOT use the news feature of the Zenpage plugin (use only pages)")),
+				gettext('Custom CSS') => array('order' => 9, 'key' => 'zpmas_customcss', 'type' => OPTION_TYPE_TEXTAREA,
+						'order' => 22,
+						'multilingual' => false,
+						'desc' => gettext('Enter any custom CSS, safely carries over upon theme upgrade.'))
 		);
 	}
 

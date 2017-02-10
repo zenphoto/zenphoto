@@ -36,6 +36,17 @@ setOption('adminTagsTab', 0);
 /* fix for NULL theme name */
 Query('UPDATE ' . prefix('options') . ' SET `theme`="" WHERE `theme` IS NULL');
 
+$sql = 'SELECT * FROM ' . prefix('options') . ' WHERE `theme`="" AND `creator` LIKE "themes/%";';
+$result = query_full_array($sql);
+foreach ($result as $row) {
+	$elements = explode('/', $row['creator']);
+	$theme = $elements[1];
+	$sql = 'UPDATE ' . prefix('options') . ' SET `theme`=' . db_quote($theme) . ' WHERE `id`=' . $row['id'] . ';';
+	if (!query($sql, false)) {
+		$rslt = query('DELETE FROM ' . prefix('options') . ' WHERE `id`=' . $row['id'] . ';');
+	}
+}
+
 //clean up tag list quoted strings
 $sql = 'SELECT * FROM ' . prefix('tags') . ' WHERE `name` LIKE \'"%\' OR `name` LIKE "\'%"';
 $result = query($sql);
@@ -309,6 +320,7 @@ if ($protection) {
 $disabled = array();
 $displayed = array();
 
+//clean up metadata item options.
 foreach (array('IPTC', 'EXIF', 'XMP', 'Video') as $cat) {
 	$sql = str_replace('XXX', $cat, "SELECT *  FROM " . prefix('options') . " WHERE `name` LIKE 'XXX%'");
 	$result = query_full_array($sql);
@@ -318,10 +330,8 @@ foreach (array('IPTC', 'EXIF', 'XMP', 'Video') as $cat) {
 			$key = $matches[0];
 			if ($matches[1] == 'display') {
 				$displayed[$key] = $key;
-				purgeOption($key . '-display');
 			} else if ($matches[1] == 'disabled') {
 				$disabled[$key] = $key;
-				purgeOption($key . '-disabled');
 			}
 		}
 		if (!in_array($row['name'], array('IPTC_encoding', 'xmpMetadata_suffix', 'Video_watermark'))) {
