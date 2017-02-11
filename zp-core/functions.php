@@ -1928,7 +1928,7 @@ function setThemeOption($key, $value, $album, $theme, $default = false, $creator
 		$creator = THEMEFOLDER . '/' . $theme . '[' . $cr . ']';
 	}
 
-	$sql = 'INSERT INTO ' . prefix('options') . ' (`name`,`ownerid`,`theme`,`creator`,`value`) VALUES (' . db_quote($key) . ',0,' . db_quote($theme) . ',' . db_quote($creator) . ',';
+	$sql = 'INSERT INTO ' . prefix('options') . ' (`name`,`ownerid`,`theme`,`creator`,`value`) VALUES (' . db_quote($key) . ',' . $id . ',' . db_quote($theme) . ',' . db_quote($creator) . ',';
 	$sqlu = ' ON DUPLICATE KEY UPDATE `value`=';
 	if (is_null($value)) {
 		$sql .= 'NULL';
