@@ -93,12 +93,11 @@ printAdminHeader('options', '');
 						}
 					}
 
-
 					$nullCreator = false;
-					$sql = 'SELECT DISTINCT `creator` FROM ' . prefix('options') . ' ORDER BY `creator`';
+					$sql = 'SELECT `creator` FROM ' . prefix('options') . ' ORDER BY `creator`';
 					$result = query_full_array($sql);
 					foreach ($result as $owner) {
-						$structure = explode('/', $owner['creator']);
+						$structure = explode('/', preg_replace('~\[.*\]$~', '', $owner['creator']));
 						switch ($structure[0]) {
 							case NULL:
 								$nullCreator = true;
@@ -130,6 +129,15 @@ printAdminHeader('options', '');
 						if (!empty($orpahaned)) {
 							natcasesort($orpahaned);
 						}
+					}
+					if (isset($owners[ZENFOLDER . '/' . PLUGIN_FOLDER])) {
+						$owners[ZENFOLDER . '/' . PLUGIN_FOLDER] = array_unique($owners[ZENFOLDER . '/' . PLUGIN_FOLDER]);
+					}
+					if (isset($owners[USER_PLUGIN_FOLDER])) {
+						$owners[USER_PLUGIN_FOLDER] = array_unique($owners[USER_PLUGIN_FOLDER]);
+					}
+					if (isset($owners[THEMEFOLDER])) {
+						$owners[THEMEFOLDER] = array_unique($owners[THEMEFOLDER]);
 					}
 
 					if (empty($owners) && !$nullCreator) {

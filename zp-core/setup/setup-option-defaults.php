@@ -129,7 +129,7 @@ if (!empty($where)) {
 }
 
 $old = @unserialize(getOption('zenphoto_install'));
-$from = preg_replace('/\[.*\]/', '', $old['ZENPHOTO']);
+$from = preg_replace('/\[.*\]/', '', @$old['ZENPHOTO']);
 
 setOption('zenphoto_install', serialize(installSignature()));
 $admins = $_zp_authority->getAdministrators('all');
@@ -319,6 +319,10 @@ if ($protection) {
 
 $disabled = array();
 $displayed = array();
+
+//clean up plugin enable options
+$sql = 'UPDATE ' . prefix('options') . ' SET `creator`=' . db_quote(ZENFOLDER . '/setup/setup-option-defaults.php[' . __LINE__ . ']') . ' WHERE `name` LIKE "zp_plugin_%" AND `creator` IS NULL;';
+query($sql);
 
 //clean up metadata item options.
 foreach (array('IPTC', 'EXIF', 'XMP', 'Video') as $cat) {

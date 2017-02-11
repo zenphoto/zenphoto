@@ -112,7 +112,7 @@ class deprecated_functions {
 		}
 		if (isset($traces[1]['file']) && isset($traces[1]['line'])) {
 
-			$path = explode('/', str_replace(SERVERPATH . '/', '', trim(str_replace('\\', '/', $traces[1]['file']), '/')));
+			$path = explode('/', replaceScriptPath($traces[1]['file']));
 			switch (array_shift($path)) {
 				case THEMEFOLDER:
 					$script = sprintf(gettext('theme %1$s:%2$s'), array_shift($path), array_pop($path));

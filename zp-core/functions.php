@@ -1913,8 +1913,9 @@ function getOptionFromDB($key) {
  * @param object $album
  * @param string $theme default theme
  * @param bool $default set to true for setting default theme options (does not set the option if it already exists)
+ * @param string $creator the caller of setThemeOptionDefault()
  */
-function setThemeOption($key, $value, $album, $theme, $default = false) {
+function setThemeOption($key, $value, $album, $theme, $default = false, $creator = NULL) {
 	global $_zp_options;
 	if (is_null($album)) {
 		$id = 0;
@@ -1922,7 +1923,10 @@ function setThemeOption($key, $value, $album, $theme, $default = false) {
 		$id = $album->getID();
 		$theme = $album->getAlbumTheme();
 	}
-	$creator = THEMEFOLDER . '/' . $theme;
+	if (!$creator) { // core functions in behalf of the theme
+		list($th, $cr) = getOptionOwner();
+		$creator = THEMEFOLDER . '/' . $theme . '[' . $cr . ']';
+	}
 
 	$sql = 'INSERT INTO ' . prefix('options') . ' (`name`,`ownerid`,`theme`,`creator`,`value`) VALUES (' . db_quote($key) . ',0,' . db_quote($theme) . ',' . db_quote($creator) . ',';
 	$sqlu = ' ON DUPLICATE KEY UPDATE `value`=';
@@ -1951,10 +1955,8 @@ function setThemeOption($key, $value, $album, $theme, $default = false) {
  * @param mixed $value
  */
 function setThemeOptionDefault($key, $value) {
-	$bt = debug_backtrace();
-	$b = array_shift($bt);
-	$theme = basename(dirname($b['file']));
-	setThemeOption($key, $value, NULL, $theme, true);
+	list($theme, $creator) = getOptionOwner();
+	setThemeOption($key, $value, NULL, $theme, true, $creator);
 }
 
 /**

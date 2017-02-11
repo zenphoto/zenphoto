@@ -369,21 +369,15 @@ function getOptionsLike($pattern) {
 function setOption($key, $value, $persistent = true) {
 	global $_zp_options;
 	if ($persistent) {
-		$sql = 'INSERT INTO ' . prefix('options') . ' (`name`,`ownerid`,`theme`,`value`) VALUES (' . db_quote($key) . ',0,"",';
-		$sqlu = ' ON DUPLICATE KEY UPDATE `value`=';
+		list($theme, $creator) = getOptionOwner();
 		if (is_null($value)) {
-			$sql .= 'NULL';
-			$sqlu .= 'NULL';
+			$v .= 'NULL';
 		} else {
-			$sql .= db_quote($value);
-			$sqlu .= db_quote($value);
+			$v = db_quote($value);
 		}
-		$sql .= ') ' . $sqlu;
+		$sql = 'INSERT INTO ' . prefix('options') . ' (`name`,`value`,`ownerid`,`theme`,`creator`) VALUES (' . db_quote($key) . ',' . $v . ',0,' . db_quote($theme) . ',' . db_quote($creator) . ')' . ' ON DUPLICATE KEY UPDATE `value`=' . $v;
+		;
 		$result = query($sql, false);
-		if (db_affected_rows() == 1 || OFFSET_PATH == 2) {
-			//newly created option
-			updateOptionOwner($key);
-		}
 	} else {
 		$result = true;
 	}
@@ -396,29 +390,28 @@ function setOption($key, $value, $persistent = true) {
 }
 
 /**
- * sets the owner fields of an option. Typically used when the option is set
+ * returns the owner fields of an option. Typically used when the option is set
  * to its default value
  *
- * @param string $key the option name
+ * @return array
  */
-function updateOptionOwner($key) {
+function getOptionOwner() {
 	$creator = NULL;
 	$bt = debug_backtrace();
 	$b = array_shift($bt); // this function
 	$b = array_shift($bt); //the setOption... function
 	//$b now has the calling file/line# of the setOption... function
-	$f = str_replace('\\', '/', $b['file']);
-	$creator = trim(str_replace(SERVERPATH, '', $f), '/');
-
+	$creator = replaceScriptPath($b['file']);
 	$matches = explode('/', $creator);
 	if ($matches[0] == THEMEFOLDER) {
-		$theme = ', `theme`=' . db_quote($matches[1]);
+		$theme = $matches[1];
 	} else {
 		$theme = '';
 	}
-
-	$sql = 'UPDATE ' . prefix('options') . ' SET `creator`=' . db_quote($creator) . $theme . ' WHERE `name`=' . db_quote($key) . ' AND `ownerid`=0 AND `theme`=""';
-	query($sql, false);
+	if (isset($b['line'])) {
+		$creator.='[' . $b['line'] . ']';
+	}
+	return array($theme, $creator);
 }
 
 /**
@@ -431,18 +424,17 @@ function updateOptionOwner($key) {
  */
 function setOptionDefault($key, $default) {
 	global $_zp_options;
-	$sql = 'INSERT INTO ' . prefix('options') . ' (`name`, `value`, `ownerid`, `theme`) VALUES (' . db_quote($key) . ',';
+	list($theme, $creator) = getOptionOwner();
+	$sql = 'INSERT INTO ' . prefix('options') . ' (`name`, `value`, `ownerid`, `theme`, `creator`) VALUES (' . db_quote($key) . ',';
 	if (is_null($default)) {
 		$sql .= 'NULL';
 	} else {
 		$sql .= db_quote($default);
 	}
-	$sql .= ',0,"");';
-
+	$sql .= ',0,' . db_quote($theme) . ',' . db_quote($creator) . ');';
 	if (query($sql, false)) {
 		$_zp_options[strtolower($key)] = $default;
 	}
-	updateOptionOwner($key);
 }
 
 /**
@@ -488,6 +480,23 @@ function purgeOption($key) {
 function getOptionList() {
 	global $_zp_options;
 	return $_zp_options;
+}
+
+/**
+ * Cloned installations may be using symLinks to the "standard" ZenPhoto20 files.
+ * This can cause a problem examining the "path" to the file. __FILE__ and other functions will
+ * return the actual path to the file, e.g. the path to the parent installation of
+ * a clone. SERVERPATH is the path to the clone installation and will not be the same
+ * as the script path to the symLinked files.
+ *
+ * This function deals with the situation and returns the relative path in all cases
+ *
+ * @param string $file
+ * @return string the relative path to the file
+ */
+function replaceScriptPath($file, $replace = '') {
+	$file = str_replace('\\', '/', $file);
+	return trim(preg_replace('~^(' . SERVERPATH . '|' . SCRIPTPATH . ')~i', $replace, $file), '/');
 }
 
 /**
@@ -628,7 +637,7 @@ function getImageCacheFilename($album8, $image8, $args) {
  */
 function makeSpecialImageName($image) {
 	$filename = basename($image);
-	$base = explode('/', str_replace(SERVERPATH . '/', '', dirname($image)));
+	$base = explode('/', replaceScriptPath(dirname($image)));
 	$sourceFolder = array_shift($base);
 	$sourceSubfolder = implode('/', $base);
 	return array('source' => $sourceFolder . '/' . $sourceSubfolder . '/' . $filename, 'name' => $sourceFolder . '_' . basename($sourceSubfolder) . '_' . $filename);

@@ -102,13 +102,7 @@ class colorbox {
 	 */
 	static function registerScripts($scripts, $theme = NULL) {
 		if (is_null($theme)) {
-			$bt = debug_backtrace();
-			$b = array_shift($bt); // this function
-			//$b now has the calling file/line# of the setOption... function
-			$f = str_replace('\\', '/', $b['file']);
-			$serverpath = dirname($f);
-			$theme = explode('/', str_replace(SERVERPATH . '/' . THEMEFOLDER . '/', '', $f));
-			$theme = $theme[0];
+			list($theme, $creaator) = getOptionOwner();
 		}
 		setOptionDefault('colorbox_' . $theme . '_scripts', serialize($scripts));
 	}
