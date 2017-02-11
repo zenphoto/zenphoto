@@ -4803,7 +4803,7 @@ function admin_album_list($owner) {
  */
 function getLogTabs() {
 	$new = $subtabs = array();
-	$default = NULL;
+	$default_viewed = $default = NULL;
 	$localizer = array('setup' => gettext('setup'), 'security' => gettext('security'), 'debug' => gettext('debug'), 'deprecated' => gettext('deprecated'));
 	$filelist = safe_glob(SERVERPATH . "/" . DATA_FOLDER . '/*.log');
 	if (count($filelist) > 0) {
@@ -4820,6 +4820,7 @@ function getLogTabs() {
 			if ($log == $tab) {
 				$default = $tab;
 			}
+
 			if (array_key_exists($log, $localizer)) {
 				$logfiletext = $localizer[$log];
 			} else {
@@ -4827,7 +4828,15 @@ function getLogTabs() {
 			}
 			$subtabs = array_merge($subtabs, array($logfiletext => 'admin-logs.php?page=logs&tab=' . $log));
 			if (filesize($logfile) > 0 && empty($default)) {
-				$default = $log;
+				$default_viewed = $log;
+			}
+		}
+		if (empty($default)) {
+			if (empty($new)) {
+				$default = $default_viewed;
+			} else {
+				$default = $new;
+				$default = array_shift($default);
 			}
 		}
 	}
