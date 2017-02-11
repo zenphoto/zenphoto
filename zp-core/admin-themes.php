@@ -151,7 +151,7 @@ if (count($themelist) > 1) {
 	echo '<form action="#" method="post">';
 	zp_apply_filter('admin_note', 'themes', '');
 	echo gettext("Show theme for: ");
-	echo '<select id="themealbum" name="themealbum" onchange="this.form.submit()">';
+	echo '<select id="themealbum" class="ignoredirty" name="themealbum" onchange="this.form.submit()">';
 	generateListFromArray(array(pathurlencode($alb)), $themelist, false, true);
 	echo '</select>';
 	echo '</form>';

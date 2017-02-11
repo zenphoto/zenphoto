@@ -427,7 +427,9 @@ if (isset($_GET['action'])) {
 						setThemeOption('images_per_page', $images_per_page, $table, $themename);
 						setThemeOption('images_per_row', $images_per_row, $table, $themename);
 					}
-					setThemeOption('theme_head_separator', sanitize($_POST['theme_head_separator']), $table, $themename);
+					if (isset($_POST['theme_head_separator'])) {
+						setThemeOption('theme_head_separator', sanitize($_POST['theme_head_separator']), $table, $themename);
+					}
 					setThemeOption('theme_head_listparents', (int) isset($_POST['theme_head_listparents']), $table, $themename);
 
 					if (isset($_POST['thumb_transition']))
@@ -1115,7 +1117,7 @@ Zenphoto_Authority::printPasswordFormJS();
 					<div id="tab_gallery" class="tabbox">
 						<?php zp_apply_filter('admin_note', 'options', $subtab); ?>
 						<form class="dirtylistening" onReset="toggle_passwords('', false);
-								setClean('form_options');" id="form_options" action="?action=saveoptions" method="post" autocomplete="off" >
+									setClean('form_options');" id="form_options" action="?action=saveoptions" method="post" autocomplete="off" >
 									<?php XSRFToken('saveoptions'); ?>
 							<input	type="hidden" name="savegalleryoptions" value="yes" />
 							<input	type="hidden" name="password_enabled" id="password_enabled" value="0" />
@@ -1203,7 +1205,7 @@ Zenphoto_Authority::printPasswordFormJS();
 															 name="disclose_password"
 															 id="disclose_password"
 															 onclick="passwordClear('');
-																	 togglePassword('');" /><?php echo gettext('Show password'); ?>
+																			 togglePassword('');" /><?php echo gettext('Show password'); ?>
 											</label>
 										</td>
 										<td>
@@ -1480,7 +1482,7 @@ Zenphoto_Authority::printPasswordFormJS();
 					<div id="tab_search" class="tabbox">
 						<?php zp_apply_filter('admin_note', 'options', $subtab); ?>
 						<form class="dirtylistening" onReset="toggle_passwords('', false);
-								setClean('form_options');" id="form_options" action="?action=saveoptions" method="post" autocomplete="off" >
+									setClean('form_options');" id="form_options" action="?action=saveoptions" method="post" autocomplete="off" >
 									<?php XSRFToken('saveoptions'); ?>
 							<input	type="hidden" name="savesearchoptions" value="yes" />
 							<input	type="hidden" name="password_enabled" id="password_enabled" value="0" />
@@ -1542,7 +1544,7 @@ Zenphoto_Authority::printPasswordFormJS();
 															 name="disclose_password"
 															 id="disclose_password"
 															 onclick="passwordClear('');
-																	 togglePassword('');" /><?php echo gettext('Show password'); ?>
+																			 togglePassword('');" /><?php echo gettext('Show password'); ?>
 											</label>
 										</td>
 										<td>
@@ -2261,7 +2263,7 @@ Zenphoto_Authority::printPasswordFormJS();
 																		 name="disclose_password"
 																		 id="disclose_password"
 																		 onclick="passwordClear('');
-																				 togglePassword('');" /><?php echo gettext('Show password'); ?>
+																						 togglePassword('');" /><?php echo gettext('Show password'); ?>
 														</label>
 													</td>
 												</tr>
@@ -2564,7 +2566,7 @@ Zenphoto_Authority::printPasswordFormJS();
 											<?php
 											if (count($themelist) > 1) {
 												echo gettext("Show theme for:");
-												echo '<select id="themealbum" name="themealbum" onchange="this.form.submit()">';
+												echo '<select id="themealbum" class="ignoredirty" name="themealbum" onchange="this.form.submit()">';
 												generateListFromArray(array(pathurlencode($alb)), $themelist, false, true);
 												echo '</select>';
 											} else {
@@ -2580,7 +2582,7 @@ Zenphoto_Authority::printPasswordFormJS();
 											<p class="buttons">
 												<button type="submit" value="<?php echo gettext('Apply') ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 												<button type="button" value="<?php echo gettext('Revert to default') ?>" onclick="$('#savethemeoptions').val('reset');
-														$('#themeoptionsform').submit();"><img src="images/refresh.png" alt="" /><strong><?php echo gettext("Revert to default"); ?></strong></button>
+																$('#themeoptionsform').submit();"><img src="images/refresh.png" alt="" /><strong><?php echo gettext("Revert to default"); ?></strong></button>
 												<button type="reset" value="<?php echo gettext('reset') ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
 											</p>
 										</td>
@@ -2831,7 +2833,7 @@ Zenphoto_Authority::printPasswordFormJS();
 											<p class="buttons">
 												<button type="submit" value="<?php echo gettext('Apply') ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 												<button type="button" value="<?php echo gettext('Revert to default') ?>" onclick="$('#savethemeoptions').val('reset');
-														$('#themeoptionsform').submit();"><img src="images/refresh.png" alt="" /><strong><?php echo gettext("Revert to default"); ?></strong></button>
+																$('#themeoptionsform').submit();"><img src="images/refresh.png" alt="" /><strong><?php echo gettext("Revert to default"); ?></strong></button>
 												<button type="reset" value="<?php echo gettext('reset') ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
 											</p>
 										</td>
