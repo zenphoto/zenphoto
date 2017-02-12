@@ -2425,10 +2425,10 @@ function getImageMetaData($image = NULL, $displayonly = true) {
 	$data = $image->getMetaData();
 
 	foreach ($data as $field => $value) { //	remove the empty or not selected to display
-		if ($_zp_exifvars[$field][6] == 'time' && $value = '0000-00-00 00:00:00') {
+		if ($_zp_exifvars[$field][EXIF_FIELD_TYPE] == 'time' && $value = '0000-00-00 00:00:00') {
 			$value = ''; // really it is empty
 		}
-		if ($displayonly && (!$value || !$_zp_exifvars[$field][3])) {
+		if ($displayonly && (!$value || !$_zp_exifvars[$field][EXIF_DISPLAY])) {
 			unset($data[$field]);
 		} else {
 			$data[$field] = exifTranslate($value);
@@ -2486,9 +2486,9 @@ function printImageMetadata($title = NULL, $toggle = true, $id = 'imagemetadata'
 			<table>
 				<?php
 				foreach ($exif as $field => $value) {
-					$label = $_zp_exifvars[$field][2];
+					$label = $_zp_exifvars[$field][EXIF_DISPLAY_TEXT];
 					echo "<tr><td class=\"label " . html_encode($field) . "\">$label:</td><td class=\"value\">";
-					switch ($_zp_exifvars[$field][6]) {
+					switch ($_zp_exifvars[$field][EXIF_FIELD_TYPE]) {
 						case 'time':
 							echo zpFormattedDate(DATE_FORMAT, strtotime($value));
 							break;
@@ -3835,39 +3835,39 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 	<div id="<?php echo $id; ?>">
 		<!-- search form -->
 		<script type="text/javascript">
-					// <!-- <![CDATA[
-					var within = <?php echo (int) $within; ?>;
-					function search_(way) {
-						within = way;
-						if (way) {
-							$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
+				// <!-- <![CDATA[
+				var within = <?php echo (int) $within; ?>;
+				function search_(way) {
+					within = way;
+					if (way) {
+						$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
+					} else {
+						lastsearch = '';
+						$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
+					}
+					$('#search_input').val('');
+				}
+				$('#search_form').submit(function () {
+					if (within) {
+						var newsearch = $.trim($('#search_input').val());
+						if (newsearch.substring(newsearch.length - 1) == ',') {
+							newsearch = newsearch.substr(0, newsearch.length - 1);
+						}
+						if (newsearch.length > 0) {
+							$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
 						} else {
-							lastsearch = '';
-							$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
+							$('#search_input').val('<?php echo $searchwords; ?>');
 						}
-						$('#search_input').val('');
 					}
-					$('#search_form').submit(function () {
-						if (within) {
-							var newsearch = $.trim($('#search_input').val());
-							if (newsearch.substring(newsearch.length - 1) == ',') {
-								newsearch = newsearch.substr(0, newsearch.length - 1);
-							}
-							if (newsearch.length > 0) {
-								$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
-							} else {
-								$('#search_input').val('<?php echo $searchwords; ?>');
-							}
-						}
-						return true;
-					});
-					function search_all() {
-						//search all is Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}. All rights reserved
-						var check = $('#SEARCH_checkall').prop('checked');
-						$('.SEARCH_checkall').prop('checked', check);
-					}
+					return true;
+				});
+				function search_all() {
+					//search all is Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}. All rights reserved
+					var check = $('#SEARCH_checkall').prop('checked');
+					$('.SEARCH_checkall').prop('checked', check);
+				}
 
-					// ]]> -->
+				// ]]> -->
 		</script>
 		<form method="post" action="<?php echo $searchurl; ?>" id="search_form">
 			<?php echo $prevtext; ?>

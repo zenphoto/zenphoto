@@ -2493,10 +2493,10 @@ class zpFunctions {
 		$display = getSerializedArray(getOption('metadata_displayed'));
 		foreach ($exifvars as $key => $item) {
 			if (in_array($key, $disable)) {
-				$exifvars[$key][5] = false;
-			}
-			if (in_array($key, $display)) {
-				$exifvars[$key][3] = true;
+				$exifvars[$key][EXIF_DISPLAY] = $exifvars[$key][EXIF_FIELD_ENABLED] = false;
+			} else {
+				$exifvars[$key][EXIF_DISPLAY] = isset($display[$key]);
+				$exifvars[$key][EXIF_FIELD_ENABLED] = true;
 			}
 		}
 		return $exifvars;

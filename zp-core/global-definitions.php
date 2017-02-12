@@ -38,6 +38,15 @@ define('FEATURE_PLUGIN', 2048);
 define('THEME_PLUGIN', 1024);
 define('PLUGIN_PRIORITY', 1023);
 
+//exif index defines
+define('EXIF_SOURCE', 0);
+define('EXIF_KEY', 1);
+define('EXIF_DISPLAY_TEXT', 2);
+define('EXIF_DISPLAY', 3);
+define('EXIF_FIELD_SIZE', 4);
+define('EXIF_FIELD_ENABLED', 5);
+define('EXIF_FIELD_TYPE', 6);
+
 define('SYMLINK', function_exists('symlink') && strpos(@ini_get("suhosin.executor.func.blacklist"), 'symlink') === false);
 define('CASE_INSENSITIVE', file_exists(strtoupper(__FILE__)));
 

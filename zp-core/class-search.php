@@ -119,8 +119,8 @@ class SearchEngine {
 		}
 		//metadata fields
 		foreach ($_zp_exifvars as $field => $row) {
-			if ($row[4] && $row[5]) { //	only those that are "real" and "processed"
-				$this->search_structure[strtolower($field)] = $row[2];
+			if ($row[EXIF_DISPLAY] && $row[EXIF_FIELD_ENABLED]) { //	only those that are "real" and "processed"
+				$this->search_structure[strtolower($field)] = $row[EXIF_DISPLAY_TEXT];
 			}
 		}
 

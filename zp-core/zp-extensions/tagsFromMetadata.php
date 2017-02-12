@@ -38,13 +38,13 @@ class tagsFromMetadata {
 		$allowed = array();
 
 		foreach ($_zp_exifvars as $key => $meta) {
-			if ($meta[5] && $key != 'IPTCKeywords') {
+			if ($meta[EXIF_FIELD_ENABLED] && $key != 'IPTCKeywords') {
 				$allowed[$key] = 'tagsFromMetadata_tag_' . $key;
 			}
 		}
-		$options = array(gettext('Metadata to tag') => array('key'				 => 'tagsFromMetadata_tag', 'type'			 => OPTION_TYPE_CHECKBOX_UL,
-										'checkboxes' => $allowed,
-										'desc'			 => gettext('Select the metadata items that will be tagged.'))
+		$options = array(gettext('Metadata to tag') => array('key' => 'tagsFromMetadata_tag', 'type' => OPTION_TYPE_CHECKBOX_UL,
+						'checkboxes' => $allowed,
+						'desc' => gettext('Select the metadata items that will be tagged.'))
 		);
 		return $options;
 	}
@@ -63,7 +63,6 @@ class tagsFromMetadata {
 	}
 
 	static function new_image($image) {
-		global $_zp_exifvars;
 		$entry_locale = getUserLocale();
 		$languages = generateLanguageList();
 		$languageTags = $element = array();

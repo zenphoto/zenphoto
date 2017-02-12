@@ -415,7 +415,7 @@ class Video extends Image {
 			//see if there are any "enabled" VIDEO fields
 			$process = array();
 			foreach ($_zp_exifvars as $field => $exifvar) {
-				if ($exifvar[5] && $exifvar[0] == 'VIDEO') {
+				if ($exifvar[EXIF_FIELD_ENABLED] && $exifvar[EXIF_SOURCE] == 'VIDEO') {
 					$process[$field] = $exifvar;
 				}
 			}
@@ -506,10 +506,6 @@ class pseudoPlayer {
 function class_video_enable($enabled) {
 	if (!$enabled)
 		requestSetup('Video Metadata');
-}
-
-if (OFFSET_PATH & OFFSET_PATH != 2) {
-	zpFunctions::exifOptions('Video Metadata', (extensionEnabled('class-video')) ? 0 : 2, Video::getMetadataFields());
 }
 
 $_zp_multimedia_extension = new pseudoPlayer();
