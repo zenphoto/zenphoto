@@ -45,7 +45,43 @@ class deprecated_functions {
 			$sql = 'SELECT * FROM ' . prefix('options') . ' WHERE `name` LIKE "deprecated_%"';
 			$result = query_full_array($sql);
 			foreach ($result as $option) {
-				purgeOption($option['name']);
+				if ($option['name'] != 'deprecated_functions_signature') {
+					purgeOption($option['name']);
+				}
+			}
+		}
+		foreach (getPluginFiles('*.php') as $extension => $plugin) {
+			$deprecated = stripSuffix($plugin) . '/deprecated-functions.php';
+			if (file_exists($deprecated)) {
+				$plugin = basename(dirname($deprecated));
+				$content = file_get_contents($deprecated);
+				$content = preg_replace('~#(.*)\n~', '', $content);
+				preg_match_all('~@deprecated\s+.*since\s+.*(\d+\.\d+\.\d+)~', $content, $versions);
+				preg_match_all('/([public static|static]*)\s*function\s+(.*)\s?\(.*\)\s?\{/', $content, $functions);
+				if ($plugin == 'deprecated-functions') {
+					$plugin = 'core';
+					$suffix = '';
+				} else {
+					$suffix = ' (' . $plugin . ')';
+				}
+				foreach ($functions[2] as $key => $function) {
+					if ($functions[1][$key]) {
+						$flag = '_method';
+						$star = '*';
+					} else {
+						$star = $flag = '';
+					}
+					$name = $function . $star . $suffix;
+					$option = 'deprecated_' . $plugin . '_' . $function . $flag;
+
+					$this->unique_functions[strtolower($function)] = $this->listed_functions[$name] = array(
+							'plugin' => $plugin,
+							'function' => $function,
+							'class' => trim($functions[1][$key]),
+							'since' => @$versions[1][$key],
+							'option' => $option,
+							'multiple' => array_key_exists($function, $this->unique_functions));
+				}
 			}
 		}
 	}
