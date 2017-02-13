@@ -504,8 +504,23 @@ class pseudoPlayer {
 }
 
 function class_video_enable($enabled) {
-	if (!$enabled)
-		requestSetup('Video Metadata');
+	if ($enabled) {
+		//establish defaults for display and disable
+		$display = getSerializedArray('metadata_displayed');
+		$disable = getSerializedArray(getOption('metadata_disabled'));
+		$exifvars = Video::getMetadataFields();
+		foreach ($exifvars as $key => $item) {
+			if ($exifvars[$key][EXIF_DISPLAY]) {
+				$display[$key] = $key;
+			}
+			if (!$exifvars[$key][EXIF_FIELD_ENABLED]) {
+				$disable[$key] = $key;
+			}
+		}
+		setOption('metadata_disabled', serialize($disable));
+		setOption('metadata_displayed', serialize($display));
+	}
+	requestSetup('Video Metadata');
 }
 
 $_zp_multimedia_extension = new pseudoPlayer();
