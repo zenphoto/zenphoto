@@ -47,6 +47,11 @@ foreach ($result as $row) {
 	}
 }
 
+//clean up plugin enable options
+$sql = 'UPDATE ' . prefix('options') . ' SET `creator`=' . db_quote(ZENFOLDER . '/setup/setup-option-defaults.php[' . __LINE__ . ']') . ' WHERE `name` LIKE "zp_plugin_%" AND `creator` IS NULL;';
+query($sql);
+
+
 //clean up tag list quoted strings
 $sql = 'SELECT * FROM ' . prefix('tags') . ' WHERE `name` LIKE \'"%\' OR `name` LIKE "\'%"';
 $result = query($sql);

@@ -1173,9 +1173,13 @@ function xmpMetadata_enable($enabled) {
 		foreach ($exifvars as $key => $item) {
 			if ($exifvars[$key][EXIF_DISPLAY]) {
 				$display[$key] = $key;
+			} else {
+				unset($display[$key]);
 			}
 			if (!$exifvars[$key][EXIF_FIELD_ENABLED]) {
 				$disable[$key] = $key;
+			} else {
+				unset($disable[$key]);
 			}
 		}
 		setOption('metadata_disabled', serialize($disable));
