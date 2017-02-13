@@ -438,7 +438,7 @@ value="' . $item . '" />';
 				$actions[$field['table']] = true;
 			}
 		}
-		$registerCMSSave = true;
+		$registerCMSSave = false;
 
 		if (isset($items['albums'])) {
 			zp_register_filter("save_album_utilities_data", "$me::mediaItemSave");
