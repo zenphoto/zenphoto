@@ -2342,7 +2342,7 @@ Zenphoto_Authority::printPasswordFormJS();
 								<tr>
 									<td><?php
 										echo gettext("Metadata");
-										$exifstuff = sortMultiArray($_zp_exifvars, array(2, 0));
+										$exifstuff = sortMultiArray($_zp_exifvars, array(EXIF_DISPLAY_TEXT, EXIF_SOURCE));
 										?></td>
 									<td>
 										<div id="resizable">
@@ -2371,7 +2371,7 @@ Zenphoto_Authority::printPasswordFormJS();
 														<label><input id="<?php echo $key; ?>_show" name="<?php echo $key; ?>" type="radio" <?php echo $class_show . $checked_show ?> value="1" /><img src ="images/pass.png" alt="<?php echo gettext('show'); ?>" /></label>
 														<label><input id="<?php echo $key; ?>_hide" name="<?php echo $key; ?>" type="radio" <?php echo $class_hide . $checked_hide ?> value="0" /><img src ="images/reset.png" alt="<?php echo gettext('hide'); ?>" /></label>
 														<label><input id="<?php echo $key; ?>_disable" name="<?php echo $key; ?>" type="radio" class="disableMeta"<?php echo $checked_disabled ?> value="2" /><img src ="images/fail.png" alt="<?php echo gettext('disabled'); ?>" /></label>
-														<?php echo $item[0] . ' ' . $item[2]; ?>
+														<?php echo $item[2] . ' {' . $item[0] . '}'; ?>
 													</li>
 													<?php
 												}
