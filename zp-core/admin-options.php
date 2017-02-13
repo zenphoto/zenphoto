@@ -304,47 +304,67 @@ if (isset($_GET['action'])) {
 			setOption('IPTC_encoding', sanitize($_POST['IPTC_encoding']));
 			setOption('transform_newlines', (int) isset($_POST['transform_newlines']));
 			$disableEmpty = isset($_POST['disableEmpty']);
-			$dbChange = array();
+
 			$oldDisabled = getSerializedArray(getOption('metadata_disabled'));
+			$dbChange = array();
 			$disable = array();
 			$display = array();
 
-			foreach ($_zp_exifvars as $key => $item) {
-				if (isset($_POST[$key])) {
-					$v = sanitize_numeric($_POST[$key]);
-				} else {
-					$v = 2;
-				}
-				switch ($v) {
-					case 1: //show
+			if (isset($_POST['restore_to_defaults'])) {
+				$exifvars = zpFunctions::exifvars(true);
+
+				foreach ($exifvars as $key => $item) {
+					if ($exifvars[$key][EXIF_DISPLAY]) {
 						$display[$key] = $key;
-					case 0: //hide
-						if ($item[EXIF_FIELD_SIZE]) { // item has data (size != 0)
-							$dis = 0;
-							if ($disableEmpty) {
-								$sql = "SELECT `id`, $key FROM " . prefix('images') . " WHERE $key IS NOT NULL AND TRIM($key) <> '' LIMIT 1";
-								$rslt = query_single_row($sql, false);
-								if (empty($rslt)) {
-									$dis = 1;
-									$disable[$key] = $key;
-									$dbChange[$item[EXIF_SOURCE] . ' Metadata'] = $item[0] . ' Metadata';
+					}
+					if (!$exifvars[$key][EXIF_FIELD_ENABLED]) {
+						$disable[$key] = $key;
+					}
+					if ($item[EXIF_FIELD_SIZE]) { // item has data (size != 0)
+						if ((int) in_array($key, $oldDisabled) != (int) !$exifvars[$key][EXIF_FIELD_ENABLED]) {
+							$dbChange[$item[EXIF_SOURCE] . ' Metadata'] = $item[EXIF_SOURCE] . ' Metadata';
+						}
+					}
+				}
+			} else {
+				foreach ($_zp_exifvars as $key => $item) {
+					if (isset($_POST[$key])) {
+						$v = sanitize_numeric($_POST[$key]);
+					} else {
+						$v = 2;
+					}
+					switch ($v) {
+						case 1: //show
+							$display[$key] = $key;
+						case 0: //hide
+							if ($item[EXIF_FIELD_SIZE]) { // item has data (size != 0)
+								$dis = 0;
+								if ($disableEmpty) {
+									$sql = "SELECT `id`, $key FROM " . prefix('images') . " WHERE $key IS NOT NULL AND TRIM($key) <> '' LIMIT 1";
+									$rslt = query_single_row($sql, false);
+									if (empty($rslt)) {
+										$dis = 1;
+										$disable[$key] = $key;
+										$dbChange[$item[EXIF_SOURCE] . ' Metadata'] = $item[EXIF_SOURCE] . ' Metadata';
+									}
+								}
+								if (in_array($key, $oldDisabled)) {
+									$dbChange[$item[EXIF_SOURCE] . ' Metadata'] = $item[EXIF_SOURCE] . ' Metadata';
 								}
 							}
-							if (in_array($key, $oldDisabled)) {
-								$dbChange[$item[EXIF_SOURCE] . ' Metadata'] = $item[0] . ' Metadata';
+							break;
+						case 2: //disable
+							if ($item[EXIF_FIELD_SIZE]) { // item has data (size != 0)
+								if (!in_array($key, $oldDisabled)) {
+									$dbChange[$item[EXIF_SOURCE] . ' Metadata'] = $item[EXIF_SOURCE] . ' Metadata';
+								}
 							}
-						}
-						break;
-					case 2: //disable
-						if ($item[EXIF_FIELD_SIZE]) { // item has data (size != 0)
-							if (!in_array($key, $oldDisabled)) {
-								$dbChange[$item[EXIF_SOURCE] . ' Metadata'] = $item[EXIF_SOURCE] . ' Metadata';
-							}
-						}
-						$disable[$key] = $key;
-						break;
+							$disable[$key] = $key;
+							break;
+					}
 				}
 			}
+
 			setOption('metadata_disabled', serialize($disable));
 			setOption('metadata_displayed', serialize($display));
 
@@ -2389,9 +2409,11 @@ Zenphoto_Authority::printPasswordFormJS();
 
 										<br clear="all"/>
 										<p>
+											<label><input type="checkbox" name="restore_to_defaults" value="1" /><?php echo gettext('restore fields to defaults'); ?></label><br />
 											<label><input type="checkbox" name="disableEmpty" value="1" /><?php echo gettext('Mark unused fields <em>do not process</em>'); ?></label>
 											<br />
 											<label><input type="checkbox" name="transform_newlines" value="1" /><?php echo gettext('replace newlines'); ?></label>
+
 										</p>
 									</td>
 									<td>
@@ -2406,9 +2428,11 @@ Zenphoto_Authority::printPasswordFormJS();
 										<p>
 											<?php echo gettext('Hint: you can drag down the <em>drag handle</em> in the lower right corner to show more selections.') ?>
 										</p>
+										<p><?php echo gettext('If <em>restore fields to defaults</em> is selected the default values for <code>show</code>, <code>hide</code>, and <code>Do not process</code> willl be restored.'); ?></p>
 										<?php echo gettext('Columns for fields marked <em>do not process</em> will be removed from the database on the next <code>setup</code> execution. Selecting the <em>Mark unused fields do not process</em> will cause metadata fields that have no values to be marked <em>do not process</em> allowing them to be removed from the database.') ?>
 										</p>
 										<p><?php echo gettext('If <em>replace newlines</em> is selected <code>&lt;br /&gt;</code> will replace <em>newline</em> characters from image metadata destined for <em>titles</em> and <em>descriptions</em>. This happens only when the metadata is imported so you may need to refresh your metadata to see the results.'); ?></p>
+
 									</td>
 								</tr>
 								<?php

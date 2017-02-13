@@ -12,6 +12,9 @@ $dbSoftware = db_software();
 $indexComments = version_compare($dbSoftware['version'], '5.5.0') >= 0;
 
 $database = $orphans = array();
+$collation = db_collation();
+$template = unserialize(file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/databaseTemplate'));
+
 foreach (getDBTables() as $table) {
 	$tablecols = db_list_fields($table);
 	foreach ($tablecols as $key => $datum) {
@@ -78,9 +81,104 @@ foreach (getDBTables() as $table) {
 	}
 }
 
-$collation = db_collation();
-$template = unserialize(file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/databaseTemplate'));
+//metadata display and disalbe options
+$display = getOption('metadata_displayed');
+$validMetadataOptions = false;
 
+if (is_null($display)) {
+	$disable = array();
+	$display = array();
+
+//clean up metadata item options.
+	foreach (array('IPTC', 'EXIF', 'XMP', 'Video') as $cat) {
+		foreach (getOptionsLike($cat) as $option => $name) {
+			if (!in_array($name, array('IPTC_encoding', 'xmpMetadata_suffix', 'Video_watermark'))) {
+				$validMetadataOptions = true;
+				$matches = explode('-', $name);
+				if (isset($matches[1])) {
+					$key = $matches[0];
+
+					if ($matches[1] == 'display') {
+						$display[$key] = $key;
+					} else if ($matches[1] == 'disabled') {
+						$disable[$key] = $key;
+					}
+				}
+				purgeOption($name);
+			}
+		}
+	}
+} else {
+	$validMetadataOptions = true;
+	$display = getSerializedArray($display);
+	$disable = getSerializedArray(getOption('metadata_disabled'));
+}
+
+//Add in the enabled image metadata fields
+$metadataProviders = array('image', 'class-video' => 'Video', 'xmpMetadata' => 'xmpMetadata');
+foreach ($metadataProviders as $source => $handler) {
+	if ($handler == 'image') {
+		$enabled = true;
+	} else {
+		$enabled = extensionEnabled($source);
+		$plugin = getPlugin($source . '.php');
+		require_once($plugin);
+	}
+
+	$exifvars = $handler::getMetadataFields();
+	foreach ($exifvars as $key => $exifvar) {
+		if ($validMetadataOptions) {
+			if (in_array($key, $disable)) {
+				$exifvars[$key][EXIF_DISPLAY] = $exifvars[$key][EXIF_FIELD_ENABLED] = $exifvar[EXIF_FIELD_ENABLED] = false;
+			} else {
+				$exifvars[$key][EXIF_DISPLAY] = isset($display[$key]);
+				$exifvars[$key][EXIF_FIELD_ENABLED] = $exifvar[EXIF_FIELD_ENABLED] = true;
+			}
+		} else {
+			if ($exifvars[$key][EXIF_DISPLAY]) {
+				$display[$key] = $key;
+			}
+			if (!$exifvars[$key][EXIF_FIELD_ENABLED]) {
+				$disable[$key] = $key;
+			}
+		}
+
+		$s = $exifvar[EXIF_FIELD_SIZE];
+		if ($exifvar[EXIF_FIELD_ENABLED] && $enabled) {
+			switch ($exifvar[EXIF_FIELD_TYPE]) {
+				case 'string':
+					if ($s < 255) {
+						$s = "varchar($s)";
+					} else {
+						$s = 'mediumtext';
+					}
+					break;
+				case 'number':
+					$s = 'varchar(52)';
+					break;
+				case 'time':
+					$s = 'datetime';
+					break;
+			}
+			$field = array(
+					'Field' => $key,
+					'Type' => $s,
+					'Null' => 'YES',
+					'Default' => null,
+					'Comment' => 'optional_metadata'
+			);
+			if ($s != 'varchar(0)') {
+				$template['images']['fields'][$key] = $field;
+			}
+		} else {
+			if (isset($database['images']['fields'][$key])) {
+				$database['images']['fields'][$key]['Comment'] = 'optional_metadata';
+			}
+		}
+	}
+}
+
+//setup database
 foreach ($template as $tablename => $table) {
 	$exists = array_key_exists($tablename, $database);
 	if (!$exists) {
@@ -200,112 +298,12 @@ foreach ($template as $tablename => $table) {
 		}
 	}
 }
+
+// now the database is setup we can store the options
+setOptionDefault('metadata_disabled', serialize($disable));
+setOptionDefault('metadata_displayed', serialize($display));
+
 foreach ($orphans as $message) {
 	setupLog($message, true);
 }
-
-//metadata display and disalbe options
-$display = getOption('metadata_displayed');
-$validMetadataOptions = false;
-
-if (is_null($display)) {
-	$disable = array();
-	$display = array();
-
-//clean up metadata item options.
-	foreach (array('IPTC', 'EXIF', 'XMP', 'Video') as $cat) {
-		$sql = str_replace('XXX', $cat, "SELECT *  FROM " . prefix('options') . " WHERE `name` LIKE 'XXX%'");
-		$result = query_full_array($sql);
-		foreach ($result as $row) {
-			if (!in_array($row['name'], array('IPTC_encoding', 'xmpMetadata_suffix', 'Video_watermark'))) {
-				$validMetadataOptions = true;
-				$matches = explode('-', $row['name']);
-				if (isset($matches[1])) {
-					$key = $matches[0];
-
-					if ($matches[1] == 'display') {
-						$display[$key] = $key;
-					} else if ($matches[1] == 'disabled') {
-						$disable[$key] = $key;
-					}
-				}
-
-				purgeOption($row['name']);
-			}
-		}
-	}
-} else {
-	$validMetadataOptions = true;
-	$display = getSerializedArray($display);
-	$disable = getSerializedArray(getOption('metadata_disabled'));
-}
-
-//Add in the enabled image metadata fields
-$metadataProviders = array('image', 'class-video' => 'Video', 'xmpMetadata' => 'xmpMetadata');
-foreach ($metadataProviders as $source => $handler) {
-	if ($handler == 'image') {
-		$enabled = true;
-	} else {
-		$enabled = extensionEnabled($source);
-		$plugin = getPlugin($source . '.php');
-		require_once($plugin);
-	}
-	$exifvars = $handler::getMetadataFields();
-
-	foreach ($exifvars as $key => $item) {
-		if ($validMetadataOptions) {
-			if (in_array($key, $disable)) {
-				$exifvars[$key][EXIF_DISPLAY] = $exifvars[$key][EXIF_FIELD_ENABLED] = false;
-			} else {
-				$exifvars[$key][EXIF_DISPLAY] = isset($display[$key]);
-				$exifvars[$key][EXIF_FIELD_ENABLED] = true;
-			}
-		} else {
-			if ($exifvars[$key][EXIF_DISPLAY]) {
-				$display[$key] = $key;
-			}
-			if (!$exifvars[$key][EXIF_FIELD_ENABLED]) {
-				$disable[$key] = $key;
-			}
-		}
-
-		foreach ($exifvars as $key => $exifvar) {
-			$s = $exifvar[4];
-			if ($exifvar[5] && $enabled) {
-				switch ($exifvar[6]) {
-					case 'string':
-						if ($s < 255) {
-							$s = "varchar($s)";
-						} else {
-							$s = 'mediumtext';
-						}
-						break;
-					case 'number':
-						$s = 'varchar(52)';
-						break;
-					case 'time':
-						$s = 'datetime';
-						break;
-				}
-				$field = array(
-						'Field' => $key,
-						'Type' => $s,
-						'Null' => 'YES',
-						'Default' => null,
-						'Comment' => 'optional_metadata'
-				);
-				if ($s != 'varchar(0)') {
-					$template['images']['fields'][$key] = $field;
-				}
-			} else {
-				if (isset($database['images']['fields'][$key])) {
-					$database['images']['fields'][$key]['Comment'] = 'optional_metadata';
-				}
-			}
-		}
-	}
-}
-
-setOptionDefault('metadata_disabled', serialize($disable));
-setOptionDefault('metadata_displayed', serialize($display));
 ?>
