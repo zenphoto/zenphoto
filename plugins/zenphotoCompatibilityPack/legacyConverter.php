@@ -81,7 +81,6 @@ if (isset($_GET['action'])) {
 	}
 	$counter = 0;
 	foreach ($files as $file) {
-		$counter++;
 		$source = $body = file_get_contents($file);
 		foreach ($legacyReplacements as $match => $replace) {
 			$body = preg_replace('~' . $match . '~im', $replace, $body);
@@ -89,6 +88,7 @@ if (isset($_GET['action'])) {
 		$body = preg_replace('~/\* TODO:replaced .*/\* TODO:replaced(.*)\*/ \*/~', '/* TODO:replaced$1*/', $body); //in case we came here twice
 		if ($source != $body) {
 			file_put_contents($file, $body);
+			$counter++;
 		}
 	}
 }
