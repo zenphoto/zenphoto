@@ -11,7 +11,6 @@
  */
 // force UTF-8 Ø
 
-
 define('OFFSET_PATH', 3);
 require_once(dirname(dirname(dirname(__FILE__))) . "/zp-core/admin-globals.php");
 admin_securityChecks(THEMES_RIGHTS, currentRelativeURL());
@@ -21,18 +20,20 @@ $legacyReplacements = array(
 		'new ZenpageNews' => 'newArticle',
 		'new ZenpageCategory' => 'newCategory',
 		'\$_zp_zenpage' => '$_zp_CMS',
-		'ZP_NEWS_ENABLED' => 'TRUE/*TODO:replaced ZP_NEWS_ENABLED */',
-		'ZP_PAGES_ENABLED' => 'TRUE/*TODO:replaced ZP_PAGES_ENABLED */',
+		'ZP_NEWS_ENABLED' => 'TRUE/* TODO:replaced ZP_NEWS_ENABLED */',
+		'ZP_PAGES_ENABLED' => 'TRUE/* TODO:replaced ZP_PAGES_ENABLED */',
 		'getAllTagsCount\(.*?\);' => 'getAllTagsUnique(NULL, 1, true);',
-		'printHeadTitle\(.*?\);' => '/*TODO:replaced printHeadTitle(); */',
-		'getSiteHomeURL\(.*?\)' => 'getGalleryIndexURL() /*TODO:replaced getSiteHomeURL() */',
-		'printSiteHomeURL\(.*?\);' => '/*TODO:replaced printSiteHomeURL(); */',
+		'printHeadTitle\(.*?\);' => '/* TODO:replaced printHeadTitle(); */',
+		'getSiteHomeURL\(.*?\)' => 'getGalleryIndexURL() /* TODO:replaced getSiteHomeURL() */',
+		'printSiteHomeURL\(.*?\);' => '/* TODO:replaced printSiteHomeURL(); */',
+		'getNextPrevNews\([\'"](.*)[\'"]\)' => 'get$1News() /* TODO:replaced getNextPrevNews(\'$1\') */',
+		'zenpagePublish\((.*)\,(.*)\);' => '$1->setShow($2); /* TODO:replaced zenpagePublish() */',
 		'class_exists\([\'"]Zenpage[\'"]\)' => 'class_exists("CMS")',
 		'\$_zp_current_zenpage_news' => '$_zp_current_article',
 		'\$_zp_current_zenpage_page' => '$_zp_current_page',
 		'->getFullImage\(' => '->getFullImageURL(',
 		'tinymce4_' => 'tinymce_',
-		'(setOptionDefault\([\'"]colorbox_.*[\'"], .*\);)' => '$1/*TODO:replace with a call to colorbox::registerScripts();*/'
+		'(setOptionDefault\([\'"]colorbox_.*[\'"],.*\);)' => '$1 /* TODO:replace with a call to colorbox::registerScripts(); */'
 );
 
 /**
@@ -85,6 +86,7 @@ if (isset($_GET['action'])) {
 		foreach ($legacyReplacements as $match => $replace) {
 			$body = preg_replace('~' . $match . '~im', $replace, $body);
 		}
+		$body = preg_replace('~/\* TODO:replaced .*/\* TODO:replaced(.*)\*/ \*/~', '/* TODO:replaced$1*/', $body); //in case we came here twice
 		if ($source != $body) {
 			file_put_contents($file, $body);
 		}
