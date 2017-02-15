@@ -62,7 +62,7 @@ define('LOCALE_TYPE', getOption('dynamic_locale_subdomain'));
 define('BASE_LOCALE', getOption('dynamic_locale_base'));
 
 if (OFFSET_PATH != 2) {
-	zp_register_filter('theme_head', 'dynamic_locale::dynamic_localeJS');
+	zp_register_filter('theme_head', 'dynamic_locale::dynamic_localeCSS');
 	if (LOCALE_TYPE && extensionEnabled('dynamic-locale')) {
 		if (LOCALE_TYPE == 1) {
 			zp_register_filter('load_request', 'seo_locale::load_request');
@@ -228,13 +228,7 @@ class dynamic_locale {
 		return $options;
 	}
 
-	static function dynamic_localeJS() {
-		if (!getOption('dynamic_locale_visual')) {
-			?>
-			<script type="text/javascript"  src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/dynamic-locale/jquery.dd.min.js" />
-			<link type="text/css" rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/dynamic-locale/dd.css" />
-			<?php
-		}
+	static function dynamic_localeCSS() {
 		?>
 		<link type="text/css" rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/dynamic-locale/locale.css" />
 		<?php
