@@ -333,9 +333,8 @@ setOptionDefault('albumimagesort', 'ID');
 setOptionDefault('albumimagedirection', 'DESC');
 setOptionDefault('cache_full_image', 0);
 setOptionDefault('exact_tag_match', 0);
-
+setOptionDefault('image_max_size', 3000);
 setOptionDefault('IPTC_encoding', 'ISO-8859-1');
-
 setOptionDefault('sharpen_amount', 40);
 setOptionDefault('sharpen_radius', 0.5);
 setOptionDefault('sharpen_threshold', 3);
@@ -636,6 +635,19 @@ while (count($vers) < 3) {
 }
 $zpversion = $vers[0] . '.' . $vers[1] . '.' . $vers[2];
 $_languages = generateLanguageList('all');
+
+$unsupported = $disallow = array();
+$disallowd = getOptionsLike('disallow_');
+
+foreach ($disallowd as $key => $option) {
+	purgeOption($key);
+	if ($option) {
+		$lang = str_replace('disallow_', '', $key);
+		$disallow[$lang] = $lang;
+	}
+}
+setOptionDefault('locale_disallowed', serialize($disallow));
+
 foreach ($_languages as $language => $dirname) {
 	if (!empty($dirname) && $dirname != 'en_US') {
 		$version = '';
@@ -652,16 +664,13 @@ foreach ($_languages as $language => $dirname) {
 				$version = (int) $vers[0] . '.' . (int) $vers[1] . '.' . (int) $vers[2];
 			}
 		}
-		if (is_null(getOption('disallow_' . $dirname)) && $version < $zpversion) {
-			setOptionDefault('disallow_' . $dirname, 1);
-		}
-		if (i18nSetLocale($dirname)) {
-			purgeOption('unsupported_' . $dirname);
-		} else {
-			setOption('unsupported_' . $dirname, 1);
+		purgeOption('unsupported_' . $dirname);
+		if (!i18nSetLocale($dirname)) {
+			$unsupported[$dirname] = $dirname;
 		}
 	}
 }
+setOption('locale_unsupported', serialize($unsupported));
 
 //The following should be done LAST so it catches anything done above
 //set plugin default options by instantiating the options interface

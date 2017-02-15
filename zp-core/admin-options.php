@@ -63,15 +63,15 @@ if (isset($_GET['action'])) {
 			$newloc = sanitize($_POST['locale'], 3);
 			$languages = generateLanguageList(true);
 			$languages[''] = '';
+			$disallow = array();
 			foreach ($languages as $text => $lang) {
-				if ($lang == $newloc || isset($_POST['language_allow_' . $lang])) {
-					setOption('disallow_' . $lang, 0);
-				} else {
-					setOption('disallow_' . $lang, 1);
+				if ($lang != $newloc && !isset($_POST['language_allow_' . $lang])) {
+					$disallow[$lang] = $lang;
 				}
 			}
 			if ($newloc != $oldloc) {
-				if (!empty($newloc) && getOption('disallow_' . $newloc)) {
+				$oldDisallow = getSerializedArray(getOption('locale_disallowed'));
+				if (!empty($newloc) && isset($oldDisallow[$newloc])) {
 					$notify = '?local_failed=' . $newloc;
 				} else {
 					zp_clearCookie('dynamic_locale'); // clear the language cookie
@@ -82,6 +82,7 @@ if (isset($_GET['action'])) {
 					setOption('locale', $newloc);
 				}
 			}
+			setOption('locale_disallowed', serialize($disallow));
 
 			setOption('mod_rewrite', (int) isset($_POST['mod_rewrite']));
 			setOption('mod_rewrite_image_suffix', sanitize($_POST['mod_rewrite_image_suffix'], 3));
@@ -235,7 +236,12 @@ if (isset($_GET['action'])) {
 
 		/*		 * * Image options ** */
 		if (isset($_POST['saveimageoptions'])) {
-			setOption('image_max_size', sanitize_numeric($_POST['image_max_size']));
+			$M = sanitize_numeric($_POST['image_max_size']);
+			if ($M) {
+				setOption('image_max_size', $M);
+			} else {
+				$notify = '?maxsize';
+			}
 			setOption('image_quality', sanitize($_POST['imagequality'], 3));
 			setOption('thumb_quality', sanitize($_POST['thumbquality'], 3));
 			setOption('image_allow_upscale', (int) isset($_POST['image_allow_upscale']));
@@ -245,7 +251,6 @@ if (isset($_GET['action'])) {
 			setOption('ImbedIPTC', (int) isset($_POST['ImbedIPTC']));
 			setOption('default_copyright', sanitize($_POST['default_copyright']));
 			setOption('sharpen_amount', sanitize_numeric($_POST['sharpen_amount']));
-			setOption('image_max_size', sanitize_numeric($_POST['image_max_size']));
 			$num = str_replace(',', '.', sanitize($_POST['sharpen_radius']));
 			if (is_numeric($num)) {
 				setOption('sharpen_radius', $num);
@@ -280,7 +285,14 @@ if (isset($_GET['action'])) {
 			setOption('cache_full_image', (int) isset($_POST['cache_full_image']));
 			setOption('protect_full_image', sanitize($_POST['protect_full_image'], 3));
 			setOption('imageProcessorConcurrency', $_POST['imageProcessorConcurrency']);
-			$notify = processCredentials('protected_image');
+			$processNotify = processCredentials('protected_image');
+			if ($processNotify) {
+				if ($notify) {
+					$notify .= str_replace('?', '&', $processNotify);
+				} else {
+					$notify = $processNotify;
+				}
+			}
 
 			setOption('secure_image_processor', (int) isset($_POST['secure_image_processor']));
 			if (isset($_POST['protected_image_cache'])) {
@@ -603,6 +615,11 @@ Zenphoto_Authority::printPasswordFormJS();
 					echo '<h2>' . gettext('Your browser did not post all the fields. Some options may not have been set.') . '</h2>';
 					echo '</div>';
 				}
+				if (isset($_GET['maxsize'])) {
+					echo '<div class="errorbox">';
+					echo '<h2>' . gettext('Maximum image size nust be greater than zero.') . '</h2>';
+					echo '</div>';
+				}
 
 				if (isset($_GET['mismatch'])) {
 					echo '<div class="errorbox fade-message">';
@@ -742,11 +759,11 @@ Zenphoto_Authority::printPasswordFormJS();
 										<p>
 											<label>
 												<input type="checkbox" name="unique_image_prefix"<?php
-												if (!MOD_REWRITE || !IM_SUFFIX)
-													echo ' disabled="disabled"';
-												if (UNIQUE_IMAGE)
-													echo ' checked="checked";'
-													?>><?php echo gettext("Unique images"); ?>
+									if (!MOD_REWRITE || !IM_SUFFIX)
+										echo ' disabled="disabled"';
+									if (UNIQUE_IMAGE)
+										echo ' checked="checked";'
+											?>><?php echo gettext("Unique images"); ?>
 											</label>
 										</p>
 
@@ -798,6 +815,8 @@ Zenphoto_Authority::printPasswordFormJS();
 										<br />
 										<ul class="languagelist">
 											<?php
+											$unsupported = getSerializedArray(getOption('locale_unsupported'));
+											$disallow = getSerializedArray(getOption('locale_disallowed'));
 											$locales = generateLanguageList('all');
 											$locales[gettext("HTTP_Accept_Language")] = '';
 											ksort($locales, SORT_LOCALE_STRING);
@@ -825,10 +844,10 @@ Zenphoto_Authority::printPasswordFormJS();
 												} else {
 													$flag = getLanguageFlag($dirname);
 												}
-												if (getOption('unsupported_' . $dirname)) {
+												if (isset($unsupported[$dirname])) {
 													$c_attrs = $r_attrs = ' disabled="disabled"';
 												} else {
-													if (getOption('disallow_' . $dirname)) {
+													if (isset($disallow[$dirname])) {
 														$c_attrs = '';
 														$r_attrs = ' disabled="disabled"';
 													} else {
@@ -981,16 +1000,16 @@ Zenphoto_Authority::printPasswordFormJS();
 											// <!-- <![CDATA[
 											function resetallowedtags() {
 												$('#allowed_tags').val(<?php
-									$t = getOption('allowed_tags_default');
-									$tags = explode("\n", $t);
-									$c = 0;
-									foreach ($tags as $t) {
-										$t = trim($t);
-										if (!empty($t)) {
-											if ($c > 0) {
-												echo '+';
-												echo "\n";
-												?>
+										$t = getOption('allowed_tags_default');
+										$tags = explode("\n", $t);
+										$c = 0;
+										foreach ($tags as $t) {
+											$t = trim($t);
+											if (!empty($t)) {
+												if ($c > 0) {
+													echo '+';
+													echo "\n";
+													?>
 				<?php
 			}
 			$c++;
@@ -2208,9 +2227,9 @@ Zenphoto_Authority::printPasswordFormJS();
 													 <?php checked('1', getOption('protected_image_cache')); ?> />
 									</td>
 									<td><?php
-										echo gettext('If checked all image URIs will link to the image processor and the image cache will be disabled to browsers via an <em>.htaccess</em> file. Images are still cached but the image processor is used to serve the image rather than allowing the browser to fetch the file.') .
-										'<p class="notebox">' . gettext('<strong>WARNING	:</strong> This option adds significant overhead to <strong>each and every</strong> image reference! Some <em>JavaScript</em> and <em>Flash</em> based image handlers will not work with an image processor URI and are incompatible with this option.') . '</p>';
-										?></td>
+													 echo gettext('If checked all image URIs will link to the image processor and the image cache will be disabled to browsers via an <em>.htaccess</em> file. Images are still cached but the image processor is used to serve the image rather than allowing the browser to fetch the file.') .
+													 '<p class="notebox">' . gettext('<strong>WARNING	:</strong> This option adds significant overhead to <strong>each and every</strong> image reference! Some <em>JavaScript</em> and <em>Flash</em> based image handlers will not work with an image processor URI and are incompatible with this option.') . '</p>';
+													 ?></td>
 								</tr>
 								<tr>
 									<td><?php echo gettext("Secure image processor"); ?></td>
@@ -2219,9 +2238,9 @@ Zenphoto_Authority::printPasswordFormJS();
 													 <?php checked('1', getOption('secure_image_processor')); ?> />
 									</td>
 									<td><?php
-										echo gettext('When enabled, the image processor will check album access credentials.') .
-										'<p class="notebox">' . gettext('<strong>WARNING	:</strong> This option adds memory overhead to image caching! You may be unable to cache some images depending on your server memory availability.') . '</p>';
-										?></td>
+													 echo gettext('When enabled, the image processor will check album access credentials.') .
+													 '<p class="notebox">' . gettext('<strong>WARNING	:</strong> This option adds memory overhead to image caching! You may be unable to cache some images depending on your server memory availability.') . '</p>';
+													 ?></td>
 								</tr>
 								<tr>
 									<td><?php echo gettext("Full image protection:"); ?></td>
@@ -2361,9 +2380,9 @@ Zenphoto_Authority::printPasswordFormJS();
 
 								<tr>
 									<td><?php
-										echo gettext("Metadata");
-										$exifstuff = sortMultiArray($_zp_exifvars, array(EXIF_DISPLAY_TEXT, EXIF_SOURCE));
-										?></td>
+													 echo gettext("Metadata");
+													 $exifstuff = sortMultiArray($_zp_exifvars, array(EXIF_DISPLAY_TEXT, EXIF_SOURCE));
+													 ?></td>
 									<td>
 										<div id="resizable">
 											<ul id="metadatalist" class="metadatalist">
@@ -3123,12 +3142,12 @@ Zenphoto_Authority::printPasswordFormJS();
 									<td>
 										<p><?php echo gettext("Normally this option should be set to <em>http</em>. If you are running a secure server, change this to <em>https</em>. Select <em>secure admin</em> if you need only to insure secure access to <code>admin</code> pages."); ?></p>
 										<p class="notebox"><?php
-											echo gettext("<strong>Note:</strong>" .
-															"<br /><br />Login from the front-end user login form is secure only if <em>https</em> is selected." .
-															"<br /><br />If you select <em>https</em> or <em>secure admin</em> your server <strong>MUST</strong> support <em>https</em>.  " .
-															"If you set either of these on a server which does not support <em>https</em> you will not be able to access the <code>admin</code> pages to reset the option! " .
-															'Your only possibility then is to change the option named <span class="inlinecode">server_protocol</span> in the <em>options</em> table of your database.');
-											?>
+							echo gettext("<strong>Note:</strong>" .
+											"<br /><br />Login from the front-end user login form is secure only if <em>https</em> is selected." .
+											"<br /><br />If you select <em>https</em> or <em>secure admin</em> your server <strong>MUST</strong> support <em>https</em>.  " .
+											"If you set either of these on a server which does not support <em>https</em> you will not be able to access the <code>admin</code> pages to reset the option! " .
+											'Your only possibility then is to change the option named <span class="inlinecode">server_protocol</span> in the <em>options</em> table of your database.');
+							?>
 										</p>
 									</td>
 								</tr>
