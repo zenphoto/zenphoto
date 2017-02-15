@@ -39,22 +39,18 @@ if (isset($_GET['pluginsEnable'])) {
 	foreach ($pluginlist as $extension) {
 		if ($extension != 'pluginEnabler') {
 			$opt = 'zp_plugin_' . $extension;
-			$is = $was = (int) (getOption($opt) && true);
+			$was = (int) (getOption($opt) && true);
 
 			switch ($setting) {
 				case 0:
 					$is = 0;
 					break;
 				case 1:
-					if (strpos($paths[$extension], ZENFOLDER) !== false && $extension != 'show_not_logged-in') {
-						$is = 1;
-						break;
-					}
+					$is = (int) (strpos($paths[$extension], ZENFOLDER) !== false && $extension != 'show_not_logged-in');
+					break;
 				case 2:
-					if (!in_array($extension, $savedlist)) {
-						$is = 0;
-						break;
-					}
+					$is = in_array($extension, $savedlist);
+					break;
 				case 3:
 					$is = 1;
 					break;
