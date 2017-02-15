@@ -175,6 +175,7 @@ class themeSwitcher {
 $_themeSwitcherThemelist = array();
 $__enabled = getSerializedArray(getOption('themeSwitcher_list'));
 foreach ($_zp_gallery->getThemes() as $__key => $__theme) {
+	$_themeSwitcherThemelist[$__key] = in_array($__key, $__enabled);
 }
 unset($__enabled);
 unset($__key);
