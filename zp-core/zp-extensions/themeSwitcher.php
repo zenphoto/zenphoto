@@ -29,12 +29,17 @@ class themeSwitcher {
 
 	function __construct() {
 		global $_zp_gallery;
+		$themelist = array();
 		if (OFFSET_PATH == 2) {
+			$virgin = is_null(getOption('themeSwitcher_list'));
 			$themes = $_zp_gallery->getThemes();
 			foreach ($themes as $key => $theme) {
-				setOptionDefault('themeSwitcher_theme_' . $key, 1);
-				$themelist[$key] = getOption('themeSwitcher_theme_' . $key);
+				if ($virgin || getOption('themeSwitcher_theme_' . $key)) {
+					$themelist[$key] = $key;
+				}
+				purgeOption('themeSwitcher_theme_' . $key);
 			}
+			setOptionDefault('themeSwitcher_list', serialize($themelist));
 			setOptionDefault('themeSwitcher_timeout', 60 * 2);
 			setOptionDefault('themeSwitcher_adminOnly', 1);
 		}
@@ -170,7 +175,6 @@ class themeSwitcher {
 $_themeSwitcherThemelist = array();
 $__enabled = getSerializedArray(getOption('themeSwitcher_list'));
 foreach ($_zp_gallery->getThemes() as $__key => $__theme) {
-	$_themeSwitcherThemelist[$__key] = (bool) in_array($__key, $__enabled);
 }
 unset($__enabled);
 unset($__key);
