@@ -35,20 +35,20 @@ class bxslider {
 			setOptionDefault('bxslider_fullimagelink', '');
 			setOptionDefault('bxslider_mode', 'horizontal');
 			$found = array();
-			$sql = 'SELECT * FROM ' . prefix('options') . ' WHERE `name` LIKE "bxslider_%"';
-			$result = query_full_array($sql);
+			$result = getOptionsLike('bxslider_');
 			foreach ($result as $option) {
-				preg_match('/bxslider_(.*)_(.*)/', $option['name'], $matches);
+
+				preg_match('/bxslider_(.*)_(.*)/', $option, $matches);
 				if (count($matches) == 3 && $matches[2] != 'scripts') {
-					$found[$matches[1]][] = $matches[2];
+					if ($value) {
+						$found[$matches[1]][] = $matches[2];
+					}
+					purgeOption('bxslider_' . $matches[1] . '_' . $matches[2]);
 				}
 			}
 
 			foreach ($found as $theme => $scripts) {
 				setOptionDefault('bxslider_' . $theme . '_scripts', serialize($scripts));
-				foreach ($scripts as $script) {
-					purgeOption('bxslider_' . $theme . '_' . $script);
-				}
 			}
 			if (class_exists('cacheManager')) {
 				cacheManager::deleteThemeCacheSizes('bxslider_thumb_nav');

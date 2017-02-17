@@ -44,18 +44,17 @@ class colorbox {
 
 			$found = array();
 			$result = getOptionsLike('colorbox_');
-			foreach ($result as $option) {
+			foreach ($result as $option => $value) {
 				preg_match('/colorbox_(.*)_(.*)/', $option, $matches);
 				if (count($matches) == 3 && $matches[2] != 'scripts') {
-					$found[$matches[1]][] = $matches[2];
+					if ($value) {
+						$found[$matches[1]][] = $matches[2];
+					}
+					purgeOption('colorbox_' . $matches[1] . '_' . $matches[2]);
 				}
 			}
-
 			foreach ($found as $theme => $scripts) {
 				setOptionDefault('colorbox_' . $theme . '_scripts', serialize($scripts));
-				foreach ($scripts as $script) {
-					purgeOption('colorbox_' . $theme . '_' . $script);
-				}
 			}
 		}
 	}

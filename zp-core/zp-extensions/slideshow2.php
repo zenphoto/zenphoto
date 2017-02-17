@@ -59,17 +59,17 @@ class cycle {
 			foreach ($result as $option => $value) {
 				preg_match('/cycle_(.*)_(.*)/', $option, $matches);
 				if (count($matches) == 3 && $matches[2] != 'scripts') {
-					$found[$matches[1]][] = $matches[2];
+					if ($value) {
+						$found[$matches[1]][] = $matches[2];
+					}
+					purgeOption('cycle_' . $matches[1] . '_' . $matches[2]);
 				}
 			}
 
 			foreach ($found as $theme => $scripts) {
 				setOptionDefault('cycle_' . $theme . '_scripts', serialize($scripts));
-				foreach ($scripts as $script) {
-					purgeOption('cycle_' . $theme . '_' . $script);
-				}
 			}
-			//normal slideshow
+//normal slideshow
 			setOptionDefault('cycle-slideshow_width', '595');
 			setOptionDefault('cycle-slideshow_height', '595');
 			setOptionDefault('cycle-slideshow_mode', 'cycle');
@@ -77,7 +77,7 @@ class cycle {
 			setOptionDefault('cycle-slideshow_speed', '1000');
 			setOptionDefault('cycle-slideshow_timeout', '3000');
 			setOptionDefault('cycle-slideshow_showdesc', 0);
-			// colorbox mode
+// colorbox mode
 			setOptionDefault('cycle-slideshow_colorbox_transition', 'fade');
 			setOptionDefault('cycle-slideshow_colorbox_imagetype', 'sizedimage');
 			setOptionDefault('cycle-slideshow_colorbox_imagetitle', 1);
@@ -210,7 +210,7 @@ class cycle {
 		if (!$albumobj->isMyItem(LIST_RIGHTS) && !checkAlbumPassword($albumobj)) {
 			return '<div class="errorbox" id="message"><h2>' . gettext('This album is password protected!') . '</h2></div>';
 		}
-		// setting the image size
+// setting the image size
 		if (empty($width) || empty($height)) {
 			$width = getOption('cycle-slideshow_width');
 			$height = getOption('cycle-slideshow_height');
@@ -222,17 +222,17 @@ class cycle {
 			$cropw = NULL;
 			$croph = NULL;
 		}
-		//echo $imagenumber;
+//echo $imagenumber;
 		$slides = $albumobj->getImages(0);
 		$numslides = $albumobj->getNumImages();
 		if ($shuffle) { // means random order, not the effect!
 			shuffle($slides);
 		}
-		//echo "<pre>";
-		// print_r($slides);
-		//echo "</pre>";
-		//cycle2 in progressive loading mode cannot start with specific slides as it does not "know" them.
-		//The start slide needs to be set manually so I remove and append those before the desired start slide at the end
+//echo "<pre>";
+// print_r($slides);
+//echo "</pre>";
+//cycle2 in progressive loading mode cannot start with specific slides as it does not "know" them.
+//The start slide needs to be set manually so I remove and append those before the desired start slide at the end
 		if ($imagenumber != 0) { // if start slide not the first
 			$count = -1; //cycle2 starts with 0
 			$extractslides = array();
@@ -245,10 +245,10 @@ class cycle {
 			}
 			$slides = array_merge($slides, $extractslides);
 		}
-		//echo "<pre>";
-		// print_r($slides);
-		//echo "</pre>";
-		//$albumid = $albumobj->getID();
+//echo "<pre>";
+// print_r($slides);
+//echo "</pre>";
+//$albumid = $albumobj->getID();
 		if (getOption('cycle-slideshow_swipe')) {
 			$option_swipe = 'true';
 		} else {
@@ -288,7 +288,7 @@ class cycle {
 			$slideshow .= '<li><a href="#" data-cycle-cmd="next" class="cycle-slideshow-next icon-forward" title="' . gettext('next') . '"></a></li>' . "\n";
 			$slideshow .= '</ul>' . "\n";
 		}
-		//class cylce-slideshow is mandatory!
+//class cylce-slideshow is mandatory!
 		$slideshow .= '<div class="cycle-slideshow"' . "\n";
 		$slideshow .= 'data-cycle-pause-on-hover=' . $option_pausehover . "\n";
 		$slideshow .= 'data-cycle-fx="' . $option_fx . '"' . "\n";
@@ -303,7 +303,7 @@ class cycle {
 		$slideshow .= 'data-cycle-loader=true' . "\n";
 		$slideshow .= 'data-cycle-progressive=".slides"' . "\n";
 		$slideshow .= '>';
-		// first slide manually for progressive slide loading
+// first slide manually for progressive slide loading
 		$firstslide = array_shift($slides);
 		/*
 		 * This obj stuff could be done within printslides but we
@@ -312,10 +312,10 @@ class cycle {
 		 * otherwise the slides count is disturbed as it is done on all
 		 */
 		$slideobj = cycle::getSlideObj($firstslide, $albumobj);
-		//$ext = slideshow::is_valid($slideobj->filename, $validtypes);
-		//if ($ext) {
+//$ext = slideshow::is_valid($slideobj->filename, $validtypes);
+//if ($ext) {
 		$slideshow .= cycle::getSlide($albumobj, $slideobj, $width, $height, $cropw, $croph, $linkslides, false);
-		//}
+//}
 		$slideshow .= '<script class="slides" type="text/cycle" data-cycle-split="---">' . "\n";
 		$count = '';
 		foreach ($slides as $slide) {
@@ -357,12 +357,12 @@ class cycle {
 			$imageurl = $imgobj->getCustomImage(NULL, $maxwidth, $maxheight, NULL, NULL, NULL, NULL, NULL, NULL);
 		}
 		$slidecontent = '<div class="slide">' . "\n";
-		// no space in carousels for titles!
+// no space in carousels for titles!
 		if (!$carousel) {
 			$slidecontent .= '<h4>' . html_encode($albumobj->getTitle()) . ': ' . html_Encode($imgobj->getTitle()) . '</h4>' . "\n";
 		}
 		if ($carousel) {
-			// on the carousel this means fullimage as they are always linked anyway
+// on the carousel this means fullimage as they are always linked anyway
 			if ($linkslides) {
 				$url = pathurlencode($imgobj->getFullImageURL());
 			} else {
@@ -384,7 +384,7 @@ class cycle {
 		if ($linkslides || $carousel) {
 			$slidecontent .= '</a>' . "\n";
 		}
-		// no space in carousels for this!
+// no space in carousels for this!
 		if (getOption("cycle-slideshow_showdesc") && !$carousel) {
 			$slidecontent .= '<div class="slide_desc">' . html_encodeTagged($imgobj->getDesc()) . '</div>' . "\n";
 		}
@@ -692,7 +692,7 @@ if (extensionEnabled('slideshow2')) {
 		if (!isset($_POST['albumid']) AND ! is_object($albumobj)) {
 			return '<div class="errorbox" id="message"><h2>' . gettext('Invalid linking to the slideshow page.') . '</h2></div>';
 		}
-		//getting the image to start with
+//getting the image to start with
 		if (!empty($_POST['imagenumber']) AND ! is_object($imageobj)) {
 			$imagenumber = sanitize_numeric($_POST['imagenumber']) - 1; // slideshows starts with 0, but zp with 1.
 		} elseif (is_object($imageobj)) {
@@ -700,13 +700,13 @@ if (extensionEnabled('slideshow2')) {
 		} else {
 			$imagenumber = 0;
 		}
-		// set pagenumber to 0 if not called via POST link
+// set pagenumber to 0 if not called via POST link
 		if (isset($_POST['pagenr'])) {
 			$pagenumber = sanitize_numeric($_POST['pagenr']);
 		} else {
 			$pagenumber = 1;
 		}
-		// getting the number of images
+// getting the number of images
 		if (!empty($_POST['numberofimages'])) {
 			$numberofimages = sanitize_numeric($_POST['numberofimages']);
 		} elseif (is_object($albumobj)) {
@@ -718,7 +718,7 @@ if (extensionEnabled('slideshow2')) {
 			$imagenumber = 0;
 		}
 
-		//getting the album to show
+//getting the album to show
 		if (!empty($_POST['albumid']) && !is_object($albumobj)) {
 			$albumid = sanitize_numeric($_POST['albumid']);
 		} elseif (is_object($albumobj)) {

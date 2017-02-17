@@ -65,15 +65,14 @@ class slideshow {
 			foreach ($result as $option => $value) {
 				preg_match('/slideshow_(.*)_(.*)/', $option, $matches);
 				if (count($matches) == 3 && $matches[2] != 'scripts') {
-					$found[$matches[1]][] = $matches[2];
+					if ($value) {
+						$found[$matches[1]][] = $matches[2];
+					}
+					purgeOption('slideshow_' . $matches[1] . '_' . $matches[2]);
 				}
 			}
-
 			foreach ($found as $theme => $scripts) {
 				setOptionDefault('slideshow_' . $theme . '_scripts', serialize($scripts));
-				foreach ($scripts as $script) {
-					purgeOption('slideshow_' . $theme . '_' . $script);
-				}
 			}
 			//setOptionDefault('slideshow_size', '595');
 			setOptionDefault('slideshow_width', '595');
