@@ -18,8 +18,21 @@ zp_register_filter('codeblock', 'defaultCodeblocks_codebox');
 class defaultCodeblocks {
 
 	var $codeblocks;
+	var $enabled = array();
 
 	function __construct() {
+		if (OFFSET_PATH == 2) {
+			$list = getOptionsLike('defaultcodeblocks_object_');
+			$objects = array();
+			foreach ($list as $option => $value) {
+				if ($value) {
+					$object = str_replace('defaultcodeblocks_object_', '', $option);
+					$objects[$object] = $object;
+				}
+				purgeOption($option);
+			}
+			setOptionDefault('defaultCodeblocks_objects', serialize($objects));
+		}
 		$blocks = query_single_row("SELECT id, `aux`, `data` FROM " . prefix('plugin_storage') . " WHERE `type` = 'defaultCodeblocks'");
 		if ($blocks) {
 			$this->codeblocks = $blocks['data'];
@@ -31,17 +44,17 @@ class defaultCodeblocks {
 	}
 
 	static function getOptionsSupported() {
-		$list = array(gettext('Gallery') => 'defaultCodeblocks_object_gallery', gettext('Album') => 'defaultCodeblocks_object_albums', gettext('Image') => 'defaultCodeblocks_object_images');
+		$list = array(gettext('Gallery') => 'gallery', gettext('Album') => 'albums', gettext('Image') => 'images');
 		if (extensionEnabled('zenpage')) {
-			$list = array_merge($list, array(gettext('News category') => 'defaultCodeblocks_object_news_categories', gettext('News') => 'defaultCodeblocks_object_news', gettext('Page') => 'defaultCodeblocks_object_pages'));
+			$list = array_merge($list, array(gettext('News category') => 'news_categories', gettext('News') => 'news', gettext('Page') => 'pages'));
 		}
-		$options = array(gettext('Objects')		 => array('key'				 => 'defaultCodeblocks_objects', 'type'			 => OPTION_TYPE_CHECKBOX_UL,
-										'order'			 => 0,
-										'checkboxes' => $list,
-										'desc'			 => gettext('Default codeblocks will be applied for the checked objects.')),
-						gettext('Codeblocks')	 => array('key'		 => 'defaultCodeblocks_blocks', 'type'	 => OPTION_TYPE_CUSTOM,
-										'order'	 => 2,
-										'desc'	 => gettext('Codeblocks to be inserted when the one for the object is empty.'))
+		$options = array(gettext('Objects') => array('key' => 'defaultCodeblocks_objects', 'type' => OPTION_TYPE_CHECKBOX_ULLIST,
+						'order' => 0,
+						'checkboxes' => $list,
+						'desc' => gettext('Default codeblocks will be applied for the checked objects.')),
+				gettext('Codeblocks') => array('key' => 'defaultCodeblocks_blocks', 'type' => OPTION_TYPE_CUSTOM,
+						'order' => 2,
+						'desc' => gettext('Codeblocks to be inserted when the one for the object is empty.'))
 		);
 		return $options;
 	}
@@ -80,8 +93,11 @@ class defaultCodeblocks {
 }
 
 function defaultCodeblocks_codebox($current, $object, $number) {
-	global $_defaultCodeBlocks;
-	if (empty($current) && getOption('defaultCodeblocks_object_' . $object->table)) {
+	global $_defaultCodeBlocks, $_enabledCodeblockTables;
+	if (is_null($_enabledCodeblockTables)) {
+		$_enabledCodeblockTables = getSerializedArray(getOption('defaultCodeblocks_objects'));
+	}
+	if (empty($current) && isset($_enabledCodeblockTables[$object->table])) {
 		if (!$_defaultCodeBlocks) {
 			$_defaultCodeBlocks = new defaultCodeblocks();
 		}
