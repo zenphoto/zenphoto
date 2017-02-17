@@ -31,6 +31,7 @@ class _Authority {
 			setOptionDefault('min_password_lenght', 6);
 			setOptionDefault('user_album_edit_default', 1);
 			setOptionDefault('challenge_foil_enabled', 1);
+			setOptionDefault('libauth_version', self::$preferred_version);
 		}
 		$this->admin_all = $this->admin_groups = $this->admin_users = $this->admin_other = array();
 
@@ -1317,7 +1318,7 @@ class _Authority {
 						 class="disclose_password"
 						 id="disclose_password<?php echo $id; ?>"
 						 onclick="passwordClear('<?php echo $id; ?>');
-										 togglePassword('<?php echo $id; ?>');">
+								 togglePassword('<?php echo $id; ?>');">
 		</p>
 		<p class="password_field password_field_<?php echo $id; ?>">
 			<label for="pass_r<?php echo $id; ?>" id="match<?php echo $id; ?>"><?php echo gettext("Repeat password") . $flag; ?></label>

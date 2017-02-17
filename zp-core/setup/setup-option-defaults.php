@@ -31,7 +31,7 @@ for ($i = 0; $i < 30; $i++) {
 }
 
 setOptionDefault('extra_auth_hash_text', $auth_extratext);
-setOption('adminTagsTab', 0);
+purgeOption('adminTagsTab', 0);
 
 /* fix for NULL theme name */
 Query('UPDATE ' . prefix('options') . ' SET `theme`="" WHERE `theme` IS NULL');
@@ -135,9 +135,10 @@ if (!empty($where)) {
 
 $old = @unserialize(getOption('zenphoto_install'));
 $from = preg_replace('/\[.*\]/', '', @$old['ZENPHOTO']);
-
+purgeOption('zenphoto_install');
 setOption('zenphoto_install', serialize(installSignature()));
 $admins = $_zp_authority->getAdministrators('all');
+setOptionDefault('gallery_data', NULL);
 
 $str = gettext("What is your father’s middle name?");
 $questions[] = getSerializedArray(getAllTranslations($str));
@@ -196,12 +197,15 @@ if (empty($admins)) { //	empty administrators table
 	}
 	$groupsdefined = @unserialize(getOption('defined_groups'));
 }
+purgeOption('defined_groups');
 
 // old configuration opitons. preserve them
 $conf = $_zp_conf_vars;
 setOptionDefault('time_offset', 0);
 setOptionDefault('mod_rewrite', 0);
-setOption('mod_rewrite_detected', 0);
+setOptionDefault('mod_rewrite_image_suffix', NULL);
+
+purgeOption('mod_rewrite_detected');
 if (isset($_GET['mod_rewrite'])) {
 	?>
 	<script type="text/javascript">
@@ -223,6 +227,7 @@ if (isset($_GET['mod_rewrite'])) {
 	</p>
 	<?php
 }
+setOptionDefault('UTF8_image_URI_found', 'unknown');
 if (isset($_POST['setUTF8URI'])) {
 	setOption('UTF8_image_URI_found', sanitize($_POST['setUTF8URI']));
 	if ($_POST['setUTF8URI'] == 'unknown') {
@@ -232,11 +237,14 @@ if (isset($_POST['setUTF8URI'])) {
 		setOptionDefault('UTF8_image_URI', (int) ( $_POST['setUTF8URI'] == 'internal'));
 	}
 }
+setOptionDefault('unique_image_prefix', NULL);
+
 setOptionDefault('server_protocol', "http");
 setOptionDefault('charset', "UTF-8");
 setOptionDefault('image_quality', 85);
 setOptionDefault('thumb_quality', 75);
 setOptionDefault('last_garbage_collect', time());
+setOptionDefault('cookie_persistence', 5184000);
 
 setOptionDefault('search_password', '');
 setOptionDefault('search_hint', NULL);
@@ -605,7 +613,6 @@ $_zp_gallery = new Gallery(); // insure we have the proper options instantiated
 
 setOptionDefault('search_cache_duration', 30);
 setOptionDefault('search_within', 1);
-setOption('last_update_check', 30);
 
 setOptionDefault('plugins_per_page', 25);
 setOptionDefault('users_per_page', 10);

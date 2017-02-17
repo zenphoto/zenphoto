@@ -91,7 +91,8 @@
 <p><em>colrobox_js, bxslider_thumb_nav</em>:</p>
 <p>These plugins has been changed to use <code>OPTION_TYPE_CHECKBOX_ARRAYLIST </code>for the registered scripts. Two static methods have been added to the plugin classes for themes and plugins to use in managing the script options: <code>registerScripts()</code> and <code>scriptEnabled()</code>. These methods should be used in lieu of directly setting the option. Note: the old script options will be purged from the database during setup after the new array option has been established from their settings.</p>
 <p><em>purgeOptions</em>:</p>
-<p>Improved the layout of the Options:Purge tab for better space usage. Added posting a Setup request when options for an active (not missing) element are purged so that the element may re-establish its default options. <em>purgeOptions </em>will now provide a list of options which have no recorded <em>creator</em> so that you can eliminate obsolete options from this list.</p>
+<p>Improved the layout of the Options:Purge tab for better space usage. Added posting a Setup request when options for an active (not missing) element are purged so that the element may re-establish its default options. </p>
+<p><em>purgeOptions </em>will now provide a list of options which have no recorded <em>creator</em> (<em>orphaned options</em>) so that you can purge obsolete options via this list. Options will be starred if the option value is empty. There is little risk in purging empty options since referencing a non-existent option will produce an empty value.</p>
 <p><em>downloadList</em>:</p>
 <p>Added the ability to download images found by a search.</p>
 <p><em>themeSwitcher</em>:</p>

@@ -31,6 +31,7 @@ class themeSwitcher {
 		global $_zp_gallery;
 		$themelist = array();
 		if (OFFSET_PATH == 2) {
+			purgeOption('themeSwitcher_default_color');
 			$virgin = is_null(getOption('themeSwitcher_list'));
 			$themes = $_zp_gallery->getThemes();
 			foreach ($themes as $key => $theme) {

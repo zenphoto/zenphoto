@@ -282,7 +282,9 @@ switch (OFFSET_PATH) {
 				$hash .= md5(file_get_contents(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/' . $name));
 			}
 		}
-		if ($hash) {
+		if ($hash)
+			etOption('site_upgrade_hash', $hash);
+		{
 			setOption('site_upgrade_hash', $hash);
 		}
 		break;

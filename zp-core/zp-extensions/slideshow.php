@@ -61,7 +61,7 @@ class slideshow {
 		global $_zp_gallery;
 		if (OFFSET_PATH == 2) {
 			$found = array();
-			$result = getOptionsLike('colorbox_');
+			$result = getOptionsLike('slideshow_');
 			foreach ($result as $option => $value) {
 				preg_match('/slideshow_(.*)_(.*)/', $option, $matches);
 				if (count($matches) == 3 && $matches[2] != 'scripts') {
