@@ -90,11 +90,11 @@ if (is_null($display)) {
 	$display = array();
 
 //clean up metadata item options.
-	foreach (array('IPTC', 'EXIF', 'XMP', 'Video') as $cat) {
+	foreach (array('iptc', 'exif', 'xmp', 'video') as $cat) {
 		foreach (getOptionsLike($cat) as $option => $name) {
-			if (!in_array($name, array('IPTC_encoding', 'xmpMetadata_suffix', 'Video_watermark'))) {
+			if (!in_array($option, array('iptc_encoding', 'xmpmetadata_suffix', 'video_watermark'))) {
 				$validMetadataOptions = true;
-				$matches = explode('-', $name);
+				$matches = explode('-', $option);
 				if (isset($matches[1])) {
 					$key = $matches[0];
 
@@ -104,7 +104,7 @@ if (is_null($display)) {
 						$disable[$key] = $key;
 					}
 				}
-				purgeOption($name);
+				purgeOption($option);
 			}
 		}
 	}
