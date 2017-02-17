@@ -434,6 +434,9 @@ function setOptionDefault($key, $default) {
 	$sql .= ',0,' . db_quote($theme) . ',' . db_quote($creator) . ');';
 	if (query($sql, false)) {
 		$_zp_options[strtolower($key)] = $default;
+	} else {
+		$sql = 'UPDATE ' . prefix('options') . ' SET `theme`=' . db_quote($theme) . ', `creator`=' . db_quote($creator) . ' WHERE `ownerid`=0 AND `name`=' . db_quote($key) . ' AND `theme`=' . db_quote($theme) . ';';
+		query($sql);
 	}
 }
 
