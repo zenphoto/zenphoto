@@ -39,23 +39,25 @@ chdir($cwd);
 
 if (!OFFSET_PATH) {
 	if (extensionEnabled('themeSwitcher')) {
-		$themeColor = getOption('themeSwitcher_effervescence_color');
+		$themeColor = getThemeOption('themeSwitcher_color');
 		if (isset($_GET['themeColor'])) {
 			$new = $_GET['themeColor'];
 			if (in_array($new, $themecolors)) {
-				setOption('themeSwitcher_effervescence_color', $new);
+				setThemeOption('themeSwitcher_color', $new);
 				$themeColor = $new;
+			} else {
+				$themeColor = NULL;
 			}
 		}
 		if (!$themeColor) {
 			$themeColor = getOption('Theme_colors');
 		}
 
-		$personality = getOption('themeSwitcher_effervescence_personality');
+		$personality = getThemeOption('themeSwitcher_personality');
 		if (isset($_GET['themePersonality'])) {
 			$new = $_GET['themePersonality'];
 			if (in_array($new, $personalities)) {
-				setOption('themeSwitcher_effervescence_personality', $new);
+				setThemeOption('themeSwitcher_personality', $new);
 				$personality = $new;
 			}
 		}
@@ -145,7 +147,7 @@ function switcher_head($ignore) {
 
 function switcher_controllink($ignore) {
 	global $personalities, $themecolors, $_zp_gallery_page, $themeColor;
-	$themeColor = getOption('themeSwitcher_effervescence_color');
+	$themeColor = getThemeOption('themeSwitcher_color');
 	if (!$themeColor) {
 		list($personality, $themeColor) = getPersonality();
 	}
@@ -158,7 +160,7 @@ function switcher_controllink($ignore) {
 			</select>
 		</span>
 		<?php
-		$personality = getOption('themeSwitcher_effervescence_personality');
+		$personality = getThemeOption('themeSwitcher_personality');
 		if (!$personality) {
 			$personality = getOption('effervescence_personality');
 		}

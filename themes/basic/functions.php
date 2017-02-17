@@ -64,11 +64,11 @@ function printSoftwareLink() {
 
 function switcher_head($ignore) {
 	global $personalities, $themecolors, $themeColor;
-	$themeColor = getOption('themeSwitcher_default_color');
+	$themeColor = getThemeOption('themeSwitcher_color');
 	if (isset($_GET['themeColor'])) {
 		$new = $_GET['themeColor'];
 		if (in_array($new, $themecolors)) {
-			setOption('themeSwitcher_default_color', $new);
+			setThemeOption('themeSwitcher_color', $new);
 			$themeColor = $new;
 		}
 	}
@@ -87,7 +87,7 @@ function switcher_head($ignore) {
 
 function switcher_controllink($ignore) {
 	global $themecolors;
-	$color = getOption('themeSwitcher_default_color');
+	$color = getThemeOption('themeSwitcher_color');
 	if (!$color) {
 		$color = getOption('Theme_colors');
 	}

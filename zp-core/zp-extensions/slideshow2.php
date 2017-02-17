@@ -40,7 +40,7 @@ $plugin_disable = (extensionEnabled('slideshow')) ? sprintf(gettext('Only one sl
 $option_interface = 'cycle';
 
 global $_zp_gallery, $_zp_gallery_page;
-if (($_zp_gallery_page == 'slideshow.php' && getOption('cycle-slideshow_mode') == 'cycle') || getOption('cycle_' . $_zp_gallery->getCurrentTheme() . '_' . stripSuffix($_zp_gallery_page))) {
+if (($_zp_gallery_page == 'slideshow.php' && getOption('cycle-slideshow_mode') == 'cycle') || in_array(stripSuffix($_zp_gallery_page), getSerializedArray(getOption('cycle_' . $_zp_gallery->getCurrentTheme() . 'scripts')))) {
 	zp_register_filter('theme_head', 'cycle::cycleJS');
 }
 zp_register_filter('content_macro', 'cycle::macro');
@@ -54,6 +54,21 @@ class cycle {
 	function __construct() {
 		global $_zp_gallery;
 		if (OFFSET_PATH == 2) {
+			$found = array();
+			$result = getOptionsLike('cycle_');
+			foreach ($result as $option => $value) {
+				preg_match('/cycle_(.*)_(.*)/', $option, $matches);
+				if (count($matches) == 3 && $matches[2] != 'scripts') {
+					$found[$matches[1]][] = $matches[2];
+				}
+			}
+
+			foreach ($found as $theme => $scripts) {
+				setOptionDefault('cycle_' . $theme . '_scripts', serialize($scripts));
+				foreach ($scripts as $script) {
+					purgeOption('cycle_' . $theme . '_' . $script);
+				}
+			}
 			//normal slideshow
 			setOptionDefault('cycle-slideshow_width', '595');
 			setOptionDefault('cycle-slideshow_height', '595');

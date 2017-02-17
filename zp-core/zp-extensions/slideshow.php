@@ -45,7 +45,8 @@ $plugin_disable = (extensionEnabled('slideshow2')) ? sprintf(gettext('Only one s
 $option_interface = 'slideshow';
 
 global $_zp_gallery, $_zp_gallery_page;
-if ($_zp_gallery_page == 'slideshow.php' || getOption('slideshow_' . $_zp_gallery->getCurrentTheme() . '_' . stripSuffix($_zp_gallery_page))) {
+
+if ($_zp_gallery_page == 'slideshow.php' || in_array(stripSuffix($_zp_gallery_page), getSerializedArray(getOption('slideshow_' . $_zp_gallery->getCurrentTheme() . 'scripts')))) {
 	zp_register_filter('theme_head', 'slideshow::header_js');
 }
 zp_register_filter('content_macro', 'slideshow::macro');
@@ -59,6 +60,21 @@ class slideshow {
 	function __construct() {
 		global $_zp_gallery;
 		if (OFFSET_PATH == 2) {
+			$found = array();
+			$result = getOptionsLike('colorbox_');
+			foreach ($result as $option => $value) {
+				preg_match('/slideshow_(.*)_(.*)/', $option, $matches);
+				if (count($matches) == 3 && $matches[2] != 'scripts') {
+					$found[$matches[1]][] = $matches[2];
+				}
+			}
+
+			foreach ($found as $theme => $scripts) {
+				setOptionDefault('slideshow_' . $theme . '_scripts', serialize($scripts));
+				foreach ($scripts as $script) {
+					purgeOption('slideshow_' . $theme . '_' . $script);
+				}
+			}
 			//setOptionDefault('slideshow_size', '595');
 			setOptionDefault('slideshow_width', '595');
 			setOptionDefault('slideshow_height', '595');
@@ -145,6 +161,19 @@ class slideshow {
 
 	function handleOption($option, $currentValue) {
 
+	}
+
+	/**
+	 * Use by themes to declare which scripts should have the colorbox CSS loaded
+	 *
+	 * @param string $theme
+	 * @param array $scripts list of the scripts
+	 */
+	static function registerScripts($scripts, $theme = NULL) {
+		if (is_null($theme)) {
+			list($theme, $creaator) = getOptionOwner();
+		}
+		setOptionDefault('slideshow_' . $theme . '_scripts', serialize($scripts));
 	}
 
 	static function getPlayer($album, $controls = false, $width = NULL, $height = NULL) {

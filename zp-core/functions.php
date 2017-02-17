@@ -1444,12 +1444,12 @@ function sortMultiArray($data, $field, $desc = false, $nat = true, $case = false
 	//create the comparator function
 	$comp = 'str';
 	if ($nat) {
-		$comp .='nat';
+		$comp .= 'nat';
 	}
 	if ($case) {
-		$comp .='case';
+		$comp .= 'case';
 	}
-	$comp .='cmp';
+	$comp .= 'cmp';
 	if ($desc) {
 		uasort($data, function($b, $a) use($field, $comp) {
 			$retval = 0;
@@ -1915,7 +1915,7 @@ function getOptionFromDB($key) {
  * @param bool $default set to true for setting default theme options (does not set the option if it already exists)
  * @param string $creator the caller of setThemeOptionDefault()
  */
-function setThemeOption($key, $value, $album, $theme, $default = false, $creator = NULL) {
+function setThemeOption($key, $value, $album = NULL, $theme = NULL, $default = false, $creator = NULL) {
 	global $_zp_options;
 	if (is_null($album)) {
 		$id = 0;
@@ -1923,9 +1923,14 @@ function setThemeOption($key, $value, $album, $theme, $default = false, $creator
 		$id = $album->getID();
 		$theme = $album->getAlbumTheme();
 	}
-	if (!$creator) { // core functions in behalf of the theme
+	if (!$creator) {
 		list($th, $cr) = getOptionOwner();
-		$creator = THEMEFOLDER . '/' . $theme . '[' . $cr . ']';
+		if (is_null($theme)) {
+			$theme = $th;
+			$creator = $cr;
+		} else { // core functions in behalf of the theme
+			$creator = THEMEFOLDER . '/' . $theme . '[' . $cr . ']';
+		}
 	}
 
 	$sql = 'INSERT INTO ' . prefix('options') . ' (`name`,`ownerid`,`theme`,`creator`,`value`) VALUES (' . db_quote($key) . ',' . $id . ',' . db_quote($theme) . ',' . db_quote($creator) . ',';

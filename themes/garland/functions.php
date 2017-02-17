@@ -17,11 +17,11 @@ foreach ($persona as $personality) {
 
 if (!OFFSET_PATH) {
 	if (extensionEnabled('themeSwitcher')) {
-		$personality = getOption('themeSwitcher_garland_personality');
+		$personality = getThemeOption('themeSwitcher_personality');
 		if (isset($_GET['themePersonality'])) {
 			$new = $_GET['themePersonality'];
 			if (in_array($new, $personalities)) {
-				setOption('themeSwitcher_garland_personality', $new);
+				setThemeOption('themeSwitcher_personality', $new);
 				$personality = $new;
 			}
 		}
@@ -59,7 +59,7 @@ function switcher_head($ignore) {
 
 function switcher_controllink($html) {
 	global $personalities, $_zp_gallery_page;
-	$personality = getOption('themeSwitcher_garland_personality');
+	$personality = getThemeOption('themeSwitcher_personality');
 	if (!$personality) {
 		$personality = getOption('garland_personality');
 	}

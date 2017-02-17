@@ -119,11 +119,13 @@ printAdminHeader('options', '');
 					}
 
 					if ($nullCreator) {
+						$empty = false;
 						$sql = 'SELECT * FROM ' . prefix('options') . ' WHERE `creator` is NULL';
 						$result = query_full_array($sql);
 						foreach ($result as $opt) {
 							if (strpos($opt['name'], 'zp_plugin_') === false) {
-								$orpahaned[$opt['id']] = $opt['name'];
+								$empty = $empty || empty($opt['value']);
+								$orpahaned[$opt['id']] = $opt['name'] . (empty($opt['value']) ? ' *' : '');
 							}
 						}
 						if (!empty($orpahaned)) {
@@ -191,6 +193,11 @@ printAdminHeader('options', '');
 										}
 										?>
 									</ul>
+									<?php
+									if ($empty) {
+										echo gettext('* Denotes an empty option value.');
+									}
+									?>
 								</div>
 								<?php
 							}

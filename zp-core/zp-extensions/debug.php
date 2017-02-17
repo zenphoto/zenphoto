@@ -65,6 +65,9 @@ class debug {
 				purgeOption($option);
 			}
 			setOptionDefault('debug_mark_marks', serialize($list));
+
+			$version = debug::version(true);
+			setOptionDefault('markRelease_state', $version);
 		}
 	}
 

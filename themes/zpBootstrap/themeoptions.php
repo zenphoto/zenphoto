@@ -33,16 +33,12 @@ class ThemeOptions {
 		if (class_exists('colorbox')) {
 			colorbox::registerScripts(array('album', 'favorites', 'image', 'search'));
 		}
-
-		setOption('slideshow_zpBootstrap_album', 1);
-		setOption('slideshow_zpBootstrap_image', 1);
-		setOption('slideshow_zpBootstrap_favorites', 1);
-		setOption('slideshow_zpBootstrap_search', 1);
-
-		setOption('cycle_zpBootstrap_album', 1);
-		setOption('cycle_zpBootstrap_image', 1);
-		setOption('cycle_zpBootstrap_favorites', 1);
-		setOption('cycle_zpBootstrap_search', 1);
+		if (class_exists('slideshow')) {
+			slideshow::registerScripts(array('album', 'favorites', 'image', 'search'));
+		}
+		if (class_exists('cycle')) {
+			cycle::registerScripts(array('album', 'favorites', 'image', 'search'));
+		}
 
 		if (class_exists('cacheManager')) {
 			$me = basename(dirname(__FILE__));

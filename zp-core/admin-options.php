@@ -697,6 +697,7 @@ Zenphoto_Authority::printPasswordFormJS();
 									<?php
 									if (function_exists('date_default_timezone_get')) {
 										$offset = timezoneDiff($_zp_server_timezone, $tz = getOption('time_zone'));
+										setOption('time_offset', $offset);
 										?>
 										<td width="175"><?php echo gettext("Time zone:"); ?></td>
 										<td width="350">
@@ -759,11 +760,11 @@ Zenphoto_Authority::printPasswordFormJS();
 										<p>
 											<label>
 												<input type="checkbox" name="unique_image_prefix"<?php
-									if (!MOD_REWRITE || !IM_SUFFIX)
-										echo ' disabled="disabled"';
-									if (UNIQUE_IMAGE)
-										echo ' checked="checked";'
-											?>><?php echo gettext("Unique images"); ?>
+												if (!MOD_REWRITE || !IM_SUFFIX)
+													echo ' disabled="disabled"';
+												if (UNIQUE_IMAGE)
+													echo ' checked="checked";'
+													?>><?php echo gettext("Unique images"); ?>
 											</label>
 										</p>
 
@@ -1000,16 +1001,16 @@ Zenphoto_Authority::printPasswordFormJS();
 											// <!-- <![CDATA[
 											function resetallowedtags() {
 												$('#allowed_tags').val(<?php
-										$t = getOption('allowed_tags_default');
-										$tags = explode("\n", $t);
-										$c = 0;
-										foreach ($tags as $t) {
-											$t = trim($t);
-											if (!empty($t)) {
-												if ($c > 0) {
-													echo '+';
-													echo "\n";
-													?>
+									$t = getOption('allowed_tags_default');
+									$tags = explode("\n", $t);
+									$c = 0;
+									foreach ($tags as $t) {
+										$t = trim($t);
+										if (!empty($t)) {
+											if ($c > 0) {
+												echo '+';
+												echo "\n";
+												?>
 				<?php
 			}
 			$c++;
@@ -1157,7 +1158,7 @@ Zenphoto_Authority::printPasswordFormJS();
 					<div id="tab_gallery" class="tabbox">
 						<?php zp_apply_filter('admin_note', 'options', $subtab); ?>
 						<form class="dirtylistening" onReset="toggle_passwords('', false);
-									setClean('form_options');" id="form_options" action="?action=saveoptions" method="post" autocomplete="off" >
+								setClean('form_options');" id="form_options" action="?action=saveoptions" method="post" autocomplete="off" >
 									<?php XSRFToken('saveoptions'); ?>
 							<input	type="hidden" name="savegalleryoptions" value="yes" />
 							<input	type="hidden" name="password_enabled" id="password_enabled" value="0" />
@@ -1245,7 +1246,7 @@ Zenphoto_Authority::printPasswordFormJS();
 															 name="disclose_password"
 															 id="disclose_password"
 															 onclick="passwordClear('');
-																			 togglePassword('');" /><?php echo gettext('Show password'); ?>
+																	 togglePassword('');" /><?php echo gettext('Show password'); ?>
 											</label>
 										</td>
 										<td>
@@ -1522,7 +1523,7 @@ Zenphoto_Authority::printPasswordFormJS();
 					<div id="tab_search" class="tabbox">
 						<?php zp_apply_filter('admin_note', 'options', $subtab); ?>
 						<form class="dirtylistening" onReset="toggle_passwords('', false);
-									setClean('form_options');" id="form_options" action="?action=saveoptions" method="post" autocomplete="off" >
+								setClean('form_options');" id="form_options" action="?action=saveoptions" method="post" autocomplete="off" >
 									<?php XSRFToken('saveoptions'); ?>
 							<input	type="hidden" name="savesearchoptions" value="yes" />
 							<input	type="hidden" name="password_enabled" id="password_enabled" value="0" />
@@ -1584,7 +1585,7 @@ Zenphoto_Authority::printPasswordFormJS();
 															 name="disclose_password"
 															 id="disclose_password"
 															 onclick="passwordClear('');
-																			 togglePassword('');" /><?php echo gettext('Show password'); ?>
+																	 togglePassword('');" /><?php echo gettext('Show password'); ?>
 											</label>
 										</td>
 										<td>
@@ -2227,9 +2228,9 @@ Zenphoto_Authority::printPasswordFormJS();
 													 <?php checked('1', getOption('protected_image_cache')); ?> />
 									</td>
 									<td><?php
-													 echo gettext('If checked all image URIs will link to the image processor and the image cache will be disabled to browsers via an <em>.htaccess</em> file. Images are still cached but the image processor is used to serve the image rather than allowing the browser to fetch the file.') .
-													 '<p class="notebox">' . gettext('<strong>WARNING	:</strong> This option adds significant overhead to <strong>each and every</strong> image reference! Some <em>JavaScript</em> and <em>Flash</em> based image handlers will not work with an image processor URI and are incompatible with this option.') . '</p>';
-													 ?></td>
+										echo gettext('If checked all image URIs will link to the image processor and the image cache will be disabled to browsers via an <em>.htaccess</em> file. Images are still cached but the image processor is used to serve the image rather than allowing the browser to fetch the file.') .
+										'<p class="notebox">' . gettext('<strong>WARNING	:</strong> This option adds significant overhead to <strong>each and every</strong> image reference! Some <em>JavaScript</em> and <em>Flash</em> based image handlers will not work with an image processor URI and are incompatible with this option.') . '</p>';
+										?></td>
 								</tr>
 								<tr>
 									<td><?php echo gettext("Secure image processor"); ?></td>
@@ -2238,9 +2239,9 @@ Zenphoto_Authority::printPasswordFormJS();
 													 <?php checked('1', getOption('secure_image_processor')); ?> />
 									</td>
 									<td><?php
-													 echo gettext('When enabled, the image processor will check album access credentials.') .
-													 '<p class="notebox">' . gettext('<strong>WARNING	:</strong> This option adds memory overhead to image caching! You may be unable to cache some images depending on your server memory availability.') . '</p>';
-													 ?></td>
+										echo gettext('When enabled, the image processor will check album access credentials.') .
+										'<p class="notebox">' . gettext('<strong>WARNING	:</strong> This option adds memory overhead to image caching! You may be unable to cache some images depending on your server memory availability.') . '</p>';
+										?></td>
 								</tr>
 								<tr>
 									<td><?php echo gettext("Full image protection:"); ?></td>
@@ -2303,7 +2304,7 @@ Zenphoto_Authority::printPasswordFormJS();
 																		 name="disclose_password"
 																		 id="disclose_password"
 																		 onclick="passwordClear('');
-																						 togglePassword('');" /><?php echo gettext('Show password'); ?>
+																				 togglePassword('');" /><?php echo gettext('Show password'); ?>
 														</label>
 													</td>
 												</tr>
@@ -2380,9 +2381,9 @@ Zenphoto_Authority::printPasswordFormJS();
 
 								<tr>
 									<td><?php
-													 echo gettext("Metadata");
-													 $exifstuff = sortMultiArray($_zp_exifvars, array(EXIF_DISPLAY_TEXT, EXIF_SOURCE));
-													 ?></td>
+										echo gettext("Metadata");
+										$exifstuff = sortMultiArray($_zp_exifvars, array(EXIF_DISPLAY_TEXT, EXIF_SOURCE));
+										?></td>
 									<td>
 										<div id="resizable">
 											<ul id="metadatalist" class="metadatalist">
@@ -2626,7 +2627,7 @@ Zenphoto_Authority::printPasswordFormJS();
 											<p class="buttons">
 												<button type="submit" value="<?php echo gettext('Apply') ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 												<button type="button" value="<?php echo gettext('Revert to default') ?>" onclick="$('#savethemeoptions').val('reset');
-																$('#themeoptionsform').submit();"><img src="images/refresh.png" alt="" /><strong><?php echo gettext("Revert to default"); ?></strong></button>
+														$('#themeoptionsform').submit();"><img src="images/refresh.png" alt="" /><strong><?php echo gettext("Revert to default"); ?></strong></button>
 												<button type="reset" value="<?php echo gettext('reset') ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
 											</p>
 										</td>
@@ -2877,7 +2878,7 @@ Zenphoto_Authority::printPasswordFormJS();
 											<p class="buttons">
 												<button type="submit" value="<?php echo gettext('Apply') ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 												<button type="button" value="<?php echo gettext('Revert to default') ?>" onclick="$('#savethemeoptions').val('reset');
-																$('#themeoptionsform').submit();"><img src="images/refresh.png" alt="" /><strong><?php echo gettext("Revert to default"); ?></strong></button>
+														$('#themeoptionsform').submit();"><img src="images/refresh.png" alt="" /><strong><?php echo gettext("Revert to default"); ?></strong></button>
 												<button type="reset" value="<?php echo gettext('reset') ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
 											</p>
 										</td>
@@ -3142,12 +3143,12 @@ Zenphoto_Authority::printPasswordFormJS();
 									<td>
 										<p><?php echo gettext("Normally this option should be set to <em>http</em>. If you are running a secure server, change this to <em>https</em>. Select <em>secure admin</em> if you need only to insure secure access to <code>admin</code> pages."); ?></p>
 										<p class="notebox"><?php
-							echo gettext("<strong>Note:</strong>" .
-											"<br /><br />Login from the front-end user login form is secure only if <em>https</em> is selected." .
-											"<br /><br />If you select <em>https</em> or <em>secure admin</em> your server <strong>MUST</strong> support <em>https</em>.  " .
-											"If you set either of these on a server which does not support <em>https</em> you will not be able to access the <code>admin</code> pages to reset the option! " .
-											'Your only possibility then is to change the option named <span class="inlinecode">server_protocol</span> in the <em>options</em> table of your database.');
-							?>
+											echo gettext("<strong>Note:</strong>" .
+															"<br /><br />Login from the front-end user login form is secure only if <em>https</em> is selected." .
+															"<br /><br />If you select <em>https</em> or <em>secure admin</em> your server <strong>MUST</strong> support <em>https</em>.  " .
+															"If you set either of these on a server which does not support <em>https</em> you will not be able to access the <code>admin</code> pages to reset the option! " .
+															'Your only possibility then is to change the option named <span class="inlinecode">server_protocol</span> in the <em>options</em> table of your database.');
+											?>
 										</p>
 									</td>
 								</tr>
