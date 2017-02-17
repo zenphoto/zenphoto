@@ -101,7 +101,7 @@ echo "\n</head>";
 					?>
 
 					<!-- A log -->
-					<div id="theme-editor" class="tabbox">
+					<div class="tabbox">
 						<?php
 						if (isset($result)) {
 							?>
