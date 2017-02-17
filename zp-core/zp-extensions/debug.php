@@ -117,12 +117,10 @@ class debug {
 		} else {
 			$options = '';
 			$list = getSerializedArray(getOption('debug_mark_marks'));
-			ksort($list);
-			foreach ($list as $option => $value) {
-				$options .= '_' . $value;
-			}
+			sort($list);
+			$options = implode('_', $list);
 			if ($options) {
-				$options = '-DEBUG' . $options;
+				$options = '-DEBUG_' . $options;
 			}
 			return $originalVersion . $options;
 		}
