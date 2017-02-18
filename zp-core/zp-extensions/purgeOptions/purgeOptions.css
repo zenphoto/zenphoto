@@ -11,6 +11,10 @@
 	color: darkmagenta;
 }
 
+.hiddenOrphanHighlight {
+	color: blue;
+}
+
 .purgeOptions_list {
 	padding: 20px;
 	float: left;

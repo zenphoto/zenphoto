@@ -75,6 +75,7 @@ if (isset($_POST['purge'])) {
 }
 
 printAdminHeader('options', '');
+$orphaned = array();
 ?>
 <link rel="stylesheet" href="<?php echo FULLWEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/purgeOptions/purgeOptions.css" type="text/css">
 </head>
@@ -103,7 +104,7 @@ printAdminHeader('options', '');
 						}
 					}
 
-					$nullCreator = false;
+					$nullCreator = $hiddenOptions = false;
 					$sql = 'SELECT `creator` FROM ' . prefix('options') . ' ORDER BY `creator`';
 					$result = query_full_array($sql);
 					foreach ($result as $owner) {
@@ -127,9 +128,8 @@ printAdminHeader('options', '');
 								break;
 						}
 					}
-
+					$empty = false;
 					if ($nullCreator) {
-						$empty = false;
 						$sql = 'SELECT * FROM ' . prefix('options') . ' WHERE `creator` is NULL';
 						$result = query_full_array($sql);
 						foreach ($result as $opt) {
@@ -142,10 +142,20 @@ printAdminHeader('options', '');
 								}
 							}
 						}
-						if (!empty($orpahaned)) {
-							natcasesort($orpahaned);
+					}
+					//	"owned" by purgeOptions
+					$sql = 'SELECT * FROM ' . prefix('options') . ' WHERE `creator` LIKE "%purgeOptions%";';
+					$result = query_full_array($sql);
+					foreach ($result as $opt) {
+						$hiddenOptions = true;
+						if (empty($opt['value'])) {
+							$empty = true;
+							$orpahaned[$opt['id']] = '<span class="hiddenOrphanHighlight emptyOption">' . $opt['name'] . '</span>';
+						} else {
+							$orpahaned[$opt['id']] = '<span class="hiddenOrphanHighlight">' . $opt['name'] . '</span>';
 						}
 					}
+
 					if (isset($owners[ZENFOLDER . '/' . PLUGIN_FOLDER])) {
 						$owners[ZENFOLDER . '/' . PLUGIN_FOLDER] = array_unique($owners[ZENFOLDER . '/' . PLUGIN_FOLDER]);
 					}
@@ -166,7 +176,7 @@ printAdminHeader('options', '');
 							<input type="hidden" name="purge" value="1" />.
 							<p class = "buttons" >
 								<button type="submit" value="<?php echo gettext('Apply')
-										?>"> <img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" /> <strong><?php echo gettext("Apply"); ?> </strong></button >
+										?>"> <img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass_2.png" alt="" /> <strong><?php echo gettext("Apply"); ?> </strong></button >
 								<button type="" "reset" value="<?php echo gettext('reset') ?>"> <img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" /> <strong><?php echo gettext("Reset"); ?> </strong></button>
 							</p>
 							<br class="clearall" />
@@ -192,7 +202,7 @@ printAdminHeader('options', '');
 							if (!empty($owners)) {
 								listOwners($owners);
 							}
-							if (!empty($orpahaned)) {
+							if (!empty($orpahaned) || !empty($orpahanedb)) {
 								$size = ceil(count($orpahaned) / 25);
 								?>
 								<br class="clearall">
@@ -202,20 +212,21 @@ printAdminHeader('options', '');
 									<input type="radio" name="orphaned" id="orphanedIgnore" onclick="$('.orphanedDelete').removeAttr('checked');$('.orphaned').removeAttr('checked');">
 									<img src="<?php echo WEBPATH . '/' . ZENFOLDER . '/images/fail.png' ?>">
 									<input type="radio" name="orphaned" id="orphanedDelete" onclick="$('.orphanedDelete').prop('checked', $('#orphanedDelete').prop('checked'));">
-									<img src="<?php echo WEBPATH . '/' . ZENFOLDER . '/images/add.png' ?>">
+									<img src="<?php echo WEBPATH . '/' . ZENFOLDER . '/images/pass_2.png' ?>">
 									<input type="radio" name="orphaned" id="orphaned" onclick="$('.orphaned').prop('checked', $('#orphaned').prop('checked'));">
 									<br />
 									<ul class="purgeOptionsBlock"<?php if ($size > 1) echo ' style="' . "column-count:$size;	-moz-column-count: $size;	-webkit-column-count: $size;" . '"'; ?>>
 										<?php
 										foreach ($orpahaned as $key => $display) {
+											$hidden = strpos($display, '<span class="hiddenOrphan') === 0;
 											?>
-											<li>
+											<li<?php if ($hidden) echo ' class="hiddenOrphan"'; ?>>
 												<label class="none">
 													<img src="<?php echo WEBPATH . '/' . ZENFOLDER . '/images/view.png' ?>">
 													<input type="radio" name="missingcreator[<?php echo $key; ?>]" class="orphanedIgnore" value="1" onclick="$(this).removeAttr('checked');"/>
 													<img src="<?php echo WEBPATH . '/' . ZENFOLDER . '/images/fail.png' ?>">
 													<input type="radio" name="missingcreator[<?php echo $key; ?>]" class="orphanedDelete" value="2" />
-													<img src="<?php echo WEBPATH . '/' . ZENFOLDER . '/images/add.png' ?>">
+													<img src="<?php echo WEBPATH . '/' . ZENFOLDER . '/images/pass_2.png' ?>">
 													<input type="radio" name="missingcreator[<?php echo $key; ?>]" class="orphaned" value="3" />
 													<?php echo $display; ?>
 												</label>
@@ -228,12 +239,20 @@ printAdminHeader('options', '');
 									<?php echo gettext('no action'); ?>
 									<img src="<?php echo WEBPATH . '/' . ZENFOLDER . '/images/fail.png' ?>">
 									<?php echo gettext('delete'); ?>
-									<img src="<?php echo WEBPATH . '/' . ZENFOLDER . '/images/add.png' ?>">
+									<img src="<?php echo WEBPATH . '/' . ZENFOLDER . '/images/pass_2.png' ?>">
 									<?php echo gettext('hide'); ?>
 									<br />
 									<?php
 									if ($empty) {
 										echo gettext('<span class="emptyOption">Denotes</span> an empty option value.');
+									}
+									if ($hiddenOptions) {
+										echo gettext(' <span class="hiddenOrphan"><span class="hiddenOrphanHighlight">Denotes</span> a "hidden" option.</span>');
+										?>
+										<br />
+										<input type="checkbox" name="showHidden" id="showHidden" class="ignoredirty" onclick="$('.hiddenOrphan').toggle();"/>
+										<?php
+										echo gettext(' Show hidden orphans.');
 									}
 									?>
 								</div>
@@ -242,7 +261,7 @@ printAdminHeader('options', '');
 							?>
 							<br class="clearall" />
 							<p class="buttons">
-								<button type="submit" value="<?php echo gettext('Apply') ?>" > <img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt = "" /> <strong><?php echo gettext("Apply"); ?> </strong></button>
+								<button type="submit" value="<?php echo gettext('Apply') ?>" > <img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass_2.png" alt = "" /> <strong><?php echo gettext("Apply"); ?> </strong></button>
 								<button type="reset" value="<?php echo gettext('reset') ?>" > <img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" /> <strong><?php echo gettext("Reset"); ?> </strong></button>
 							</p>
 							<br class="clearall" />
@@ -254,15 +273,18 @@ printAdminHeader('options', '');
 			</div>
 		</div>
 	</div>
-	<?php
-	if (!isset($highlighted)) {
-		?>
-		<script type="text/javascript">
-			$('.highlighted').remove();
-		</script>
-		<?php
-	}
+
+	<script type="text/javascript">
+		$('.hiddenOrphan').hide();
+<?php
+if (!isset($highlighted)) {
 	?>
+			$('.highlighted').remove();
+	<?php
+}
+?>
+	</script>
+
 	<br class="clearall" />
 	<?php printAdminFooter(); ?>
 </body>
