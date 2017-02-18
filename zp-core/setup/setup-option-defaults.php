@@ -252,7 +252,7 @@ setOptionDefault('search_hint', NULL);
 setOptionDefault('backup_compression', 0);
 setOptionDefault('license_accepted', 0);
 
-setOptionDefault('watermark_image', NULL);
+setOptionDefault('watermark_image', 'watermarks/watermark.png');
 if (getOption('perform_watermark')) {
 	$v = str_replace('.png', "", basename(getOption('watermark_image')));
 	setoptionDefault('fullimage_watermark', $v);

@@ -1,9 +1,14 @@
 .missing_owner{
 	color: red;
 }
+
 .empty_name {
 	color:red;
 	text-decoration:line-through;
+}
+
+.emptyOption {
+	color: darkmagenta;
 }
 
 .purgeOptions_list {
