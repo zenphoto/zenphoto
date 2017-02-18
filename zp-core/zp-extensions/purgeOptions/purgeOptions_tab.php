@@ -51,9 +51,19 @@ if (isset($_POST['purge'])) {
 		}
 	}
 	if (isset($_POST['missingcreator'])) {
-		foreach ($_POST['missingcreator'] as $option) {
-			$sql = 'DELETE FROM ' . prefix('options') . ' WHERE `id`=' . $option;
-			$result = query($sql);
+		foreach ($_POST['missingcreator'] as $key => $action) {
+			switch ($action) {
+				case 1: // take no action
+					break;
+				case 2: //	purge
+					$sql = 'DELETE FROM ' . prefix('options') . ' WHERE `id`=' . $key;
+					$result = query($sql);
+					break;
+				case 3: //	mark as ingored
+					$sql = 'UPDATE ' . prefix('options') . ' SET `creator`=' . db_quote(ZENFOLDER . '/' . PLUGIN_FOLDER . 'PurgeOptions.php[' . __LINE__ . ']') . ' WHERE `id`=' . $key;
+					$result = query($sql);
+					break;
+			}
 		}
 	}
 
@@ -179,20 +189,33 @@ printAdminHeader('options', '');
 								$size = ceil(count($orpahaned) / 25);
 								?>
 								<div class="purgeOptions_list">
-									<span class="purgeOptionsClass"><?php echo gettext('Orphaned options'); ?></span> <input type="checkbox" id="orphaned" onclick="$('.orphaned').prop('checked', $('#orphaned').prop('checked'));">
+									<span class="purgeOptionsClass"><?php echo gettext('Orphaned options'); ?></span> <input type="checkbox" id="orphaned" onclick="$('.orphanedDelete').prop('checked', $('#orphaned').prop('checked'));">
 									<ul class="purgeOptionsBlock"<?php if ($size > 1) echo ' style="' . "column-count:$size;	-moz-column-count: $size;	-webkit-column-count: $size;" . '"'; ?>>
 										<?php
 										foreach ($orpahaned as $key => $display) {
 											?>
 											<li>
 												<label class="none">
-													<input type="checkbox" name="missingcreator[]" class="orphaned" value="<?php echo $key; ?>" /><?php echo $display; ?>
+													<img src="<?php echo WEBPATH . '/' . ZENFOLDER . '/images/view.png' ?>">
+													<input type="radio" name="missingcreator[<?php echo $key; ?>]" class="orphanedIgnore" value="1" />
+													<img src="<?php echo WEBPATH . '/' . ZENFOLDER . '/images/reset.png' ?>">
+													<input type="radio" name="missingcreator[<?php echo $key; ?>]" class="orphanedDelete" value="2" />
+													<img src="<?php echo WEBPATH . '/' . ZENFOLDER . '/images/pass.png' ?>">
+													<input type="radio" name="missingcreator[<?php echo $key; ?>]" class="orphaned" value="3" />
+													<?php echo $display; ?>
 												</label>
 											</li>
 											<?php
 										}
 										?>
 									</ul>
+									<img src="<?php echo WEBPATH . '/' . ZENFOLDER . '/images/view.png' ?>">
+									<?php echo gettext('Take no action'); ?>
+									<img src="<?php echo WEBPATH . '/' . ZENFOLDER . '/images/reset.png' ?>">
+									<?php echo gettext('delete'); ?>
+									<img src="<?php echo WEBPATH . '/' . ZENFOLDER . '/images/pass.png' ?>">
+									<?php echo gettext('ignore'); ?>
+									<br />
 									<?php
 									if ($empty) {
 										echo gettext('* Denotes an empty option value.');
