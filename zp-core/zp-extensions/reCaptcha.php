@@ -48,6 +48,8 @@ class reCaptcha extends _zp_captcha {
 	function __construct() {
 		if (OFFSET_PATH == 2) {
 			setOptionDefault('reCaptcha_theme', 'red');
+			setOptionDefault('reCaptcha_private_key', NULL);
+			setOptionDefault('reCaptcha_public_key', NULL);
 		}
 	}
 
@@ -66,19 +68,19 @@ class reCaptcha extends _zp_captcha {
 		}
 
 		return array(
-						gettext('Public key')	 => array('key'		 => 'reCaptcha_public_key', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 1,
-										'desc'	 => gettext('Enter your <em>reCaptcha</em> public key. You can obtain this key from the Google <a href="http://www.google.com/recaptcha">reCaptcha</a> site')),
-						gettext('Private key') => array('key'		 => 'reCaptcha_private_key', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 2,
-										'desc'	 => gettext('Enter your <em>reCaptcha</em> private key.')),
-						gettext('Theme')			 => array('key'				 => 'reCaptcha_theme', 'type'			 => OPTION_TYPE_SELECTOR,
-										'order'			 => 3,
-										'selections' => $themes,
-										'desc'			 => gettext('Select the <em>reCaptcha</em> theme.')),
-						''										 => array('key'		 => 'reCcaptcha_image', 'type'	 => OPTION_TYPE_CUSTOM,
-										'order'	 => 4,
-										'desc'	 => gettext('Sample CAPTCHA image'))
+				gettext('Public key') => array('key' => 'reCaptcha_public_key', 'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 1,
+						'desc' => gettext('Enter your <em>reCaptcha</em> public key. You can obtain this key from the Google <a href="http://www.google.com/recaptcha">reCaptcha</a> site')),
+				gettext('Private key') => array('key' => 'reCaptcha_private_key', 'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 2,
+						'desc' => gettext('Enter your <em>reCaptcha</em> private key.')),
+				gettext('Theme') => array('key' => 'reCaptcha_theme', 'type' => OPTION_TYPE_SELECTOR,
+						'order' => 3,
+						'selections' => $themes,
+						'desc' => gettext('Select the <em>reCaptcha</em> theme.')),
+				'' => array('key' => 'reCcaptcha_image', 'type' => OPTION_TYPE_CUSTOM,
+						'order' => 4,
+						'desc' => gettext('Sample CAPTCHA image'))
 		);
 	}
 
@@ -120,14 +122,14 @@ class reCaptcha extends _zp_captcha {
 			$source = getPlugin('reCaptcha/' . $theme . '/reCaptcha.html');
 			if ($source) {
 				$webpath = dirname(getplugin('reCaptcha/' . $theme . '/reCaptcha.html', false, true));
-				$tr = array('__GETHELP__'				 => gettext("Help"),
-								'__GETIMAGE__'			 => gettext("Get a visual challenge"),
-								'__GETAUDIO__'			 => gettext("Get an audio challenge"),
-								'__RELOAD__'				 => gettext("Get another challenge"),
-								'__WORDS__'					 => gettext("Type the two words"),
-								'__NUMBERS__'				 => gettext("Type what you hear"),
-								'__ERROR__'					 => gettext("Incorrect please try again"),
-								'__SOURCEWEBPATH__'	 => $webpath);
+				$tr = array('__GETHELP__' => gettext("Help"),
+						'__GETIMAGE__' => gettext("Get a visual challenge"),
+						'__GETAUDIO__' => gettext("Get an audio challenge"),
+						'__RELOAD__' => gettext("Get another challenge"),
+						'__WORDS__' => gettext("Type the two words"),
+						'__NUMBERS__' => gettext("Type what you hear"),
+						'__ERROR__' => gettext("Incorrect please try again"),
+						'__SOURCEWEBPATH__' => $webpath);
 				$html = strtr(file_get_contents($source), $tr);
 				$theme = 'custom'; //	to tell google to use the above
 			} else {

@@ -201,7 +201,7 @@ purgeOption('defined_groups');
 
 // old configuration opitons. preserve them
 $conf = $_zp_conf_vars;
-setOptionDefault('time_offset', 0);
+setOptionDefault('time_zone', date('T'));
 setOptionDefault('mod_rewrite', 0);
 setOptionDefault('mod_rewrite_image_suffix', NULL);
 
@@ -252,11 +252,13 @@ setOptionDefault('search_hint', NULL);
 setOptionDefault('backup_compression', 0);
 setOptionDefault('license_accepted', 0);
 
+setOptionDefault('watermark_image', NULL);
 if (getOption('perform_watermark')) {
 	$v = str_replace('.png', "", basename(getOption('watermark_image')));
 	setoptionDefault('fullimage_watermark', $v);
 }
 
+setOptionDefault('pasteImageSize', NULL);
 setOptionDefault('watermark_h_offset', 90);
 setOptionDefault('watermark_w_offset', 90);
 setOptionDefault('watermark_scale', 5);
