@@ -61,7 +61,13 @@ function listOwners($owners, $nest = '') {
 		} else {
 			$autocheck = str_replace('/', '_', rtrim($nest, '/'));
 
-			if ($detail && file_exists(SERVERPATH . '/' . internalToFilesystem($nest . $detail))) {
+			if ($nest == THEMEFOLDER . '/') {
+				$suffix = '';
+			} else {
+				$suffix = '.php';
+			}
+
+			if ($detail && file_exists(SERVERPATH . '/' . internalToFilesystem($nest . $detail . $suffix))) {
 				$missing = '';
 				$labelclass = 'none';
 				$checked = false;
