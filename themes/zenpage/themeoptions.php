@@ -23,9 +23,9 @@ class ThemeOptions {
 		setThemeOptionDefault('albums_per_row', 2);
 		setThemeOptionDefault('images_per_page', 20);
 		setThemeOptionDefault('images_per_row', 5);
-		setThemeOption('image_size', 580, NULL, 'zenpage');
-		setThemeOption('image_use_side', 'longest', NULL, 'zenpage');
-		setThemeOption('thumb_size', 95, NULL, 'zenpage');
+		setThemeOption('image_size', 580, NULL);
+		setThemeOption('image_use_side', 'longest', NULL);
+		setThemeOption('thumb_size', 95, NULL);
 		setThemeOptionDefault('thumb_crop_width', 95);
 		setThemeOptionDefault('thumb_crop_height', 95);
 		setThemeOptionDefault('thumb_crop', 1);

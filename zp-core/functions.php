@@ -1925,7 +1925,7 @@ function setThemeOption($key, $value, $album = NULL, $theme = NULL, $default = f
 	}
 	if (!$creator) {
 		list($th, $cr) = getOptionOwner();
-		if (is_null($theme)) {
+		if (is_null($theme) || $theme == basename($th)) {
 			$theme = $th;
 			$creator = $cr;
 		} else { // core functions in behalf of the theme

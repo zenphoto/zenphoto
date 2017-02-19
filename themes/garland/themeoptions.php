@@ -13,10 +13,10 @@ class ThemeOptions {
 		setThemeOptionDefault('albums_per_row', 2);
 		setThemeOptionDefault('images_per_page', 20);
 		setThemeOptionDefault('images_per_row', 5);
-		setThemeOption('image_size', 520, NULL, 'garland');
-		setThemeOption('image_use_side', 'longest', NULL, 'garland');
+		setThemeOption('image_size', 520, NULL);
+		setThemeOption('image_use_side', 'longest', NULL);
 		setThemeOptionDefault('thumb_transition', 1);
-		setThemeOption('thumb_size', 85, NULL, 'garland');
+		setThemeOption('thumb_size', 85, NULL);
 		setThemeOptionDefault('thumb_crop_width', 85);
 		setThemeOptionDefault('thumb_crop_height', 85);
 		setThemeOptionDefault('thumb_crop', 1);

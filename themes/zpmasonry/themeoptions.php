@@ -13,9 +13,9 @@ class ThemeOptions {
 
 	function __construct() {
 		// force core theme options for this theme
-		setThemeOption('thumb_size', 168, null, 'zpmasonry');
-		setThemeOption('thumb_crop', 1, null, 'zpmasonry');
-		setThemeOption('image_use_side', 'longest', null, 'zpmasonry');
+		setThemeOption('thumb_size', 168, null);
+		setThemeOption('thumb_crop', 1, null);
+		setThemeOption('image_use_side', 'longest', null);
 
 		// set core theme option defaults
 		setThemeOptionDefault('image_size', 1200);
