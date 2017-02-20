@@ -130,17 +130,17 @@ $orphaned = array();
 							if (empty($opt['value'])) {
 								$empty = true;
 								if (empty($opt['creator'])) {
-									$orpahaned[$opt['id']] = '<span class="emptyOption">' . $opt['name'] . '</span>';
+									$orpahaned[$opt['id']] = array('display' => $opt['name'], 'class' => array('emptyOption')); //'<span class="emptyOption">' . $opt['name'] . '</span>';
 								} else {
 									$hiddenOptions = true;
-									$orpahaned[$opt['id']] = '<span class="hiddenOrphanHighlight emptyOption">' . $opt['name'] . '</span>';
+									$orpahaned[$opt['id']] = array('display' => $opt['name'], 'class' => array('emptyOption', 'hiddenOrphanHighlight')); //'<span class="hiddenOrphanHighlight emptyOption">' . $opt['name'] . '</span>';
 								}
 							} else {
 								if (empty($opt['creator'])) {
-									$orpahaned[$opt['id']] = $opt['name'];
+									$orpahaned[$opt['id']] = array('display' => $opt['name'], 'class' => array());
 								} else {
 									$hiddenOptions = true;
-									$orpahaned[$opt['id']] = '<span class="hiddenOrphanHighlight">' . $opt['name'] . '</span>';
+									$orpahaned[$opt['id']] = array('display' => $opt['name'], 'class' => array('hiddenOrphanHighlight')); //'<span class="hiddenOrphanHighlight">' . $opt['name'] . '</span>';
 								}
 							}
 						}
@@ -189,27 +189,59 @@ $orphaned = array();
 								<br class="clearall">
 								<div class="purgeOptions_list">
 									<span class="purgeOptionsClass"><?php echo gettext('Orphaned options'); ?></span>
-									<img src="<?php echo WEBPATH . '/' . ZENFOLDER . '/images/view.png' ?>">
-									<input type="radio" name="orphaned" id="orphanedIgnore" onclick="$('.orphanedDelete').removeAttr('checked');$('.orphaned').removeAttr('checked');">
-									<img src="<?php echo WEBPATH . '/' . ZENFOLDER . '/images/fail.png' ?>">
-									<input type="radio" name="orphaned" id="orphanedDelete" onclick="$('.orphanedDelete').prop('checked', $('#orphanedDelete').prop('checked'));">
-									<img src="<?php echo WEBPATH . '/' . ZENFOLDER . '/images/pass_2.png' ?>">
-									<input type="radio" name="orphaned" id="orphaned" onclick="$('.orphaned').prop('checked', $('#orphaned').prop('checked'));">
-									<br />
-									<ul class="purgeOptionsBlock"<?php if ($size > 1) echo ' style="' . "column-count:$size;	-moz-column-count: $size;	-webkit-column-count: $size;" . '"'; ?>>
-										<?php
-										foreach ($orpahaned as $key => $display) {
-											$hidden = strpos($display, '<span class="hiddenOrphan') === 0;
+									<label>
+										<img src="<?php echo WEBPATH . '/' . ZENFOLDER . '/images/view.png' ?>">
+										<input type="radio" name="orphaned" id="orphanedIgnore" onclick="$('.orphanedDelete').removeAttr('checked');$('.orphaned').removeAttr('checked');$('#emptyOptionCheck').removeAttr('checked');">
+									</label>
+									<label>
+										<img src="<?php echo WEBPATH . '/' . ZENFOLDER . '/images/fail.png' ?>">
+										<input type="radio" name="orphaned" id="orphanedDelete" onclick="$('.orphanedDelete').prop('checked', $('#orphanedDelete').prop('checked'));">
+									</label>
+									<label>
+										<img src="<?php echo WEBPATH . '/' . ZENFOLDER . '/images/pass_2.png' ?>">
+										<input type="radio" name="orphaned" id="orphaned" onclick="$('.orphaned').prop('checked', $('#orphaned').prop('checked'));$('#emptyOptionCheck').removeAttr('checked');">
+									</label>
+									<?php
+									if ($empty) {
+										?>
+										<label>
+											<?php
+											echo gettext('<span class="emptyOption">empty</span>');
 											?>
+											<input type = "checkbox" id = "emptyOptionCheck"  onclick = "$('.deleteEmpty').prop('checked', $('#emptyOptionCheck').prop('checked'));"></label>
+										<?php
+									}
+									?>
+									<br />
+									<ul class = "purgeOptionsBlock"<?php
+									if ($size > 1)
+										echo ' style="' . "column-count:$size;	-moz-column-count: $size;	-webkit-column-count: $size;" . '"';
+									?>>
+												<?php
+												foreach ($orpahaned as $key => $option) {
+													$display = $option['display'];
+													$classes = $option['class'];
+													$hidden = in_array('hiddenOrphanHighlight', $classes);
+													?>
 											<li<?php if ($hidden) echo ' class="hiddenOrphan"'; ?>>
 												<label class="none">
 													<img src="<?php echo WEBPATH . '/' . ZENFOLDER . '/images/view.png' ?>">
 													<input type="radio" name="missingcreator[<?php echo $key; ?>]" class="orphanedIgnore" value="1" onclick="$(this).removeAttr('checked');"/>
+												</label>
+												<label class="none">
 													<img src="<?php echo WEBPATH . '/' . ZENFOLDER . '/images/fail.png' ?>">
-													<input type="radio" name="missingcreator[<?php echo $key; ?>]" class="orphanedDelete" value="2" />
+													<input type="radio" name="missingcreator[<?php echo $key; ?>]" class="orphanedDelete<?php if (in_array('emptyOption', $classes)) echo ' deleteEmpty'; ?>" value="2" />
+												</label>
+												<label class="none">
 													<img src="<?php echo WEBPATH . '/' . ZENFOLDER . '/images/pass_2.png' ?>">
 													<input type="radio" name="missingcreator[<?php echo $key; ?>]" class="orphaned" value="3" />
-													<?php echo $display; ?>
+													<?php
+													if (empty($classes)) {
+														echo $display;
+													} else {
+														echo '<span class="' . implode($classes) . '">' . $display . '</span>';
+													}
+													?>
 												</label>
 											</li>
 											<?php
@@ -228,6 +260,7 @@ $orphaned = array();
 										echo gettext('<span class="emptyOption">Denotes</span> an empty option value.');
 									}
 									if ($hiddenOptions) {
+
 										echo gettext(' <span class="hiddenOrphan"><span class="hiddenOrphanHighlight">Denotes</span> a "hidden" option.</span>');
 										?>
 										<br />
