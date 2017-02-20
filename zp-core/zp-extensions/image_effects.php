@@ -77,11 +77,19 @@ class image_effects {
 	var $effects = array();
 
 	function __construct() {
+		$effect = getPluginFiles('*.txt', 'image_effects');
+		$this->effects = array_keys($effect);
 		if (OFFSET_PATH == 2) {
-			$effect = getPluginFiles('*.txt', 'image_effects');
-			foreach ($this->effects = array_keys($effect) as $suffix) {
-				setOptionDefault('image_effects_random_' . $suffix, 1);
+			$list = array();
+			$options = getOptionsLike('image_effects_random_');
+			foreach ($options as $option => $value) {
+				if ($value) {
+					$effect = str_replace('image_effects_random_', '', $option);
+					$list[$effect] = $effect;
+				}
+				purgeOption($option);
 			}
+			setOptionDefault('image_effects_random', serialize($list));
 		}
 	}
 
@@ -91,11 +99,13 @@ class image_effects {
 	 * @return array
 	 */
 	function getOptionsSupported() {
+
+
 		$list = array('random' => '!');
 		$rand = $docs = array();
 		$effenberger = array('bevel', 'corner', 'crippleedge', 'curl', 'filmed', 'glossy', 'instant', 'reflex', 'slided', 'sphere');
 		foreach ($this->effects as $effect) {
-			$rand[$effect] = 'image_effects_random_' . $effect;
+			$rand[$effect] = $effect;
 			$effectdata = image_effects::getEffect($effect);
 			$list[$effect] = $effect;
 			$docs[chr(0) . $effect] = array('key' => 'image_effect_' . $effect, 'order' => $effect, 'type' => OPTION_TYPE_CUSTOM);
@@ -146,7 +156,7 @@ class image_effects {
 						'order' => 0,
 						'selections' => $list, 'null_selection' => gettext('none'),
 						'desc' => gettext('Apply <em>effect</em> to images shown via the <code>printCustomAlbumThumbImage()</code> function.')),
-				gettext('Random pool') => array('key' => 'image_effects_random_', 'type' => OPTION_TYPE_CHECKBOX_UL,
+				gettext('Random pool') => array('key' => 'image_effects_random', 'type' => OPTION_TYPE_CHECKBOX_ULLIST,
 						'order' => 1,
 						'checkboxes' => $rand,
 						'desc' => gettext('Pool of effects for the <em>random</em> effect selection.')),
@@ -185,16 +195,14 @@ class image_effects {
 	static function effectsJS() {
 		global $_image_effects_random;
 		$effectlist = array_keys(getPluginFiles('*.txt', 'image_effects'));
-		shuffle($effectlist);
+		$random = getSerializedArray(getOption('image_effects_random'));
+		shuffle($random);
 		$common = array();
+
 		do {
-			$_image_effects_random = array_shift($effectlist);
-			if (getOption('image_effects_random_' . $_image_effects_random)) {
-				$effectdata = image_effects::getEffect($_image_effects_random);
-				$invalid_effect = $effectdata && array_key_exists('error', $effectdata);
-			} else {
-				$invalid_effect = true;
-			}
+			$_image_effects_random = array_shift($random);
+			$effectdata = image_effects::getEffect($_image_effects_random);
+			$invalid_effect = $effectdata && array_key_exists('error', $effectdata);
 		} while ($_image_effects_random && $invalid_effect);
 
 		if (!$_image_effects_random)
