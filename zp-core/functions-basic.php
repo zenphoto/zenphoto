@@ -341,20 +341,19 @@ function getOption($key) {
 }
 
 /**
- * Returns a list of options that start with $pattern
- * @global array $_zp_options
+ * Returns a list of options that match $pattern
  * @param string $pattern
  * @return array
  */
 function getOptionsLike($pattern) {
-	global $_zp_options;
 	$result = array();
-	$pattern = strtolower($pattern);
-	foreach ($_zp_options as $option => $value) {
-		if (strpos($option, $pattern) === 0) {
-			$result[$option] = $value;
-		}
+
+	$sql = 'SELECT `name`,`value` FROM ' . prefix('options') . ' WHERE `name` LIKE ' . db_quote(rtrim($pattern, '%') . '%') . ' ORDER BY `name`;';
+	$found = query_full_array($sql);
+	foreach ($found as $row) {
+		$result[$row['name']] = $row['value'];
 	}
+
 	return $result;
 }
 
