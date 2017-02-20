@@ -39,6 +39,8 @@ class themeSwitcher {
 					$themelist[$key] = $key;
 				}
 				purgeOption('themeSwitcher_theme_' . $key);
+				$sql = 'DELETE FROM ' . prefix('options') . ' WHERE `name` LIKE ' . db_quote('themeSwitcher_' . $key . '%');
+				query($sql);
 			}
 			setOptionDefault('themeSwitcher_list', serialize($themelist));
 			setOptionDefault('themeSwitcher_timeout', 60 * 2);
