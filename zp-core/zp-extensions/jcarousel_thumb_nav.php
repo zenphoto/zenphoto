@@ -23,6 +23,22 @@ class jcarousel {
 
 	function __construct() {
 		if (OFFSET_PATH == 2) {
+
+			$found = array();
+			$result = getOptionsLike('jcarousel_');
+			foreach ($result as $option => $value) {
+				preg_match('/jcarousel_(.*)_(.*)/', $option, $matches);
+				if (count($matches) == 3 && $matches[2] != 'scripts') {
+					if ($value) {
+						$found[$matches[1]][] = $matches[2];
+					}
+					purgeOption('jcarousel_' . $matches[1] . '_' . $matches[2]);
+				}
+			}
+			foreach ($found as $theme => $scripts) {
+				setOptionDefault('jcarousel_' . $theme . '_scripts', serialize($scripts));
+			}
+
 			setOptionDefault('jcarousel_scroll', '3');
 			setOptionDefault('jcarousel_width', '50');
 			setOptionDefault('jcarousel_height', '50');
@@ -39,29 +55,37 @@ class jcarousel {
 
 	function getOptionsSupported() {
 		global $_zp_gallery;
-		$options = array(gettext('Thumbs number')	 => array('key'	 => 'jcarousel_scroll', 'type' => OPTION_TYPE_NUMBER,
-										'desc' => gettext("The number of thumbs to scroll by. Note that the CSS might need to be adjusted.")),
-						gettext('width')					 => array('key'	 => 'jcarousel_width', 'type' => OPTION_TYPE_NUMBER,
-										'desc' => gettext("Width of the carousel. Note that the CSS might need to be adjusted.")),
-						gettext('height')					 => array('key'	 => 'jcarousel_height', 'type' => OPTION_TYPE_NUMBER,
-										'desc' => gettext("Height of the carousel. Note that the CSS might need to be adjusted.")),
-						gettext('Crop width')			 => array('key'	 => 'jcarousel_cropw', 'type' => OPTION_TYPE_NUMBER,
-										'desc' => ""),
-						gettext('Crop height')		 => array('key'	 => 'jcarousel_croph', 'type' => OPTION_TYPE_NUMBER,
-										'desc' => ""),
-						gettext('Full image link') => array('key'	 => 'jcarousel_fullimagelink', 'type' => OPTION_TYPE_CHECKBOX,
-										'desc' => gettext("If checked the thumbs link to the full image instead of the image page.")),
-						gettext('Vertical')				 => array('key'	 => 'jcarousel_vertical', 'type' => OPTION_TYPE_CHECKBOX,
-										'desc' => gettext("If checked the carousel will flow vertically instead of the default horizontal. Changing this may require theme changes!"))
+		$options = array(gettext('Thumbs number') => array('key' => 'jcarousel_scroll', 'type' => OPTION_TYPE_NUMBER,
+						'order' => 0,
+						'desc' => gettext("The number of thumbs to scroll by. Note that the CSS might need to be adjusted.")),
+				gettext('width') => array('key' => 'jcarousel_width', 'type' => OPTION_TYPE_NUMBER,
+						'order' => 1,
+						'desc' => gettext("Width of the carousel. Note that the CSS might need to be adjusted.")),
+				gettext('height') => array('key' => 'jcarousel_height', 'type' => OPTION_TYPE_NUMBER,
+						'order' => 2,
+						'desc' => gettext("Height of the carousel. Note that the CSS might need to be adjusted.")),
+				gettext('Crop width') => array('key' => 'jcarousel_cropw', 'type' => OPTION_TYPE_NUMBER,
+						'order' => 3,
+						'desc' => ""),
+				gettext('Crop height') => array('key' => 'jcarousel_croph', 'type' => OPTION_TYPE_NUMBER,
+						'order' => 4,
+						'desc' => ""),
+				gettext('Full image link') => array('key' => 'jcarousel_fullimagelink', 'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 5,
+						'desc' => gettext("If checked the thumbs link to the full image instead of the image page.")),
+				gettext('Vertical') => array('key' => 'jcarousel_vertical', 'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 6,
+						'desc' => gettext("If checked the carousel will flow vertically instead of the default horizontal. Changing this may require theme changes!"))
 		);
 		foreach (getThemeFiles(array('404.php', 'themeoptions.php', 'theme_description.php', 'functions.php', 'password.php', 'sidebar.php', 'register.php', 'contact.php')) as $theme => $scripts) {
 			$list = array();
 			foreach ($scripts as $script) {
 				$list[$script] = 'jcarousel_' . $theme . '_' . stripSuffix($script);
 			}
-			$options[$theme] = array('key'				 => 'jcarousel_' . $theme . '_scripts', 'type'			 => OPTION_TYPE_CHECKBOX_ARRAY,
-							'checkboxes' => $list,
-							'desc'			 => gettext('The scripts for which jCarousel is enabled. {If themes require it they might set this, otherwise you need to do it manually!}')
+			$options[$theme] = array('key' => 'jcarousel_' . $theme . '_scripts', 'type' => OPTION_TYPE_CHECKBOX_ARRAY,
+					'order' => 99,
+					'checkboxes' => $list,
+					'desc' => gettext('The scripts for which jCarousel is enabled. {If themes require it they might set this, otherwise you need to do it manually!}')
 			);
 		}
 		return $options;
