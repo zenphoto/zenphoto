@@ -10,7 +10,7 @@
 
 define('OFFSET_PATH', 1);
 
-function markUpdated() {
+function markUpdated($user) {
 	global $updated;
 	$updated = true;
 	//for finding out who did it!	debugLogBacktrace('updated');
@@ -115,7 +115,7 @@ if (isset($_GET['action'])) {
 									$what = 'new';
 									$userobj = Zenphoto_Authority::newAdministrator('');
 									$userobj->setUser($user);
-									markUpdated();
+									markUpdated($user);
 								}
 							} else {
 								$what = 'update';
@@ -125,14 +125,14 @@ if (isset($_GET['action'])) {
 							if (isset($_POST[$i . '-admin_name'])) {
 								$admin_n = trim(sanitize($_POST[$i . '-admin_name']));
 								if ($admin_n != $userobj->getName()) {
-									markUpdated();
+									markUpdated($user);
 									$userobj->setName($admin_n);
 								}
 							}
 							if (isset($_POST[$i . '-admin_email'])) {
 								$admin_e = trim(sanitize($_POST[$i . '-admin_email']));
 								if ($admin_e != $userobj->getEmail()) {
-									markUpdated();
+									markUpdated($user);
 									$userobj->setEmail($admin_e);
 								}
 							}
@@ -152,10 +152,10 @@ if (isset($_GET['action'])) {
 										$notify = '?mismatch=format&error=' . urlencode($msg);
 									} else {
 										$userobj->setPass($pass);
-										markUpdated();
+										markUpdated($user);
 									}
 								} else {
-									$notify = '?mismatch=password';
+									$notify = '?mismatch=password&whom=' . $user . $pass;
 									$error = true;
 								}
 							}
@@ -165,22 +165,23 @@ if (isset($_GET['action'])) {
 								$info = $userobj->getChallengePhraseInfo();
 								if ($challenge != $info['challenge'] || $response != $info['response']) {
 									$userobj->setChallengePhraseInfo($challenge, $response);
-									markUpdated();
+									markUpdated($user);
 								}
 							}
 							$lang = sanitize($_POST[$i . '-admin_language'], 3);
 							if ($lang != $userobj->getLanguage()) {
 								$userobj->setLanguage($lang);
-								markUpdated();
+								markUpdated($user);
 							}
 							$rights = 0;
 							if ($alter) {
 								if (isset($_POST[$i . '-rightsenabled'])) {
 									$oldrights = $userobj->getRights() & ~(ALBUM_RIGHTS | ZENPAGE_PAGES_RIGHTS | ZENPAGE_NEWS_RIGHTS);
 									$rights = processRights($i);
+
 									if (($rights & ~(ALBUM_RIGHTS | ZENPAGE_PAGES_RIGHTS | ZENPAGE_NEWS_RIGHTS)) != $oldrights) {
 										$userobj->setRights($rights | NO_RIGHTS);
-										markUpdated();
+										markUpdated($user);
 									}
 								}
 								$oldobjects = $userobj->getObjects();
@@ -195,18 +196,18 @@ if (isset($_GET['action'])) {
 								if ($rights != $oldrights || $objects != $oldobjects) {
 									$userobj->setObjects($objects);
 									$userobj->setRights($rights | NO_RIGHTS);
-									markUpdated();
+									markUpdated($user);
 								}
 							} else {
 								$oldobjects = $userobj->setObjects(NULL); // indicates no change
 							}
 							if (isset($_POST['delinkAlbum_' . $i])) {
 								$userobj->setAlbum(NULL);
-								markUpdated();
+								markUpdated($user);
 							}
 							if (isset($_POST['createAlbum_' . $i])) {
 								$userobj->createPrimealbum();
-								markUpdated();
+								markUpdated($user);
 							}
 							$updated = zp_apply_filter('save_admin_custom_data', $updated, $userobj, $i, $alter);
 							if ($updated) {
