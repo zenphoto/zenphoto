@@ -240,7 +240,7 @@ if (isset($_GET['mod_rewrite'])) {
 		});
 	</script>
 	<p>
-	<?php echo gettext('Mod_Rewrite check:'); ?>
+		<?php echo gettext('Mod_Rewrite check:'); ?>
 		<br />
 		<span>
 			<img src="<?php echo FULLWEBPATH . '/' . $_zp_conf_vars['special_pages']['page']['rewrite']; ?>/setup_set-mod_rewrite?z=setup" title="<?php echo gettext('Mod_rewrite'); ?>" alt="<?php echo gettext('Mod_rewrite'); ?>" height="16px" width="16px" />
@@ -445,6 +445,36 @@ setOptionDefault('AlbumThumbSelect', 1);
 setOptionDefault('site_email', "zenphoto@" . $_SERVER['SERVER_NAME']);
 setOptionDefault('site_email_name', 'ZenPhoto20');
 
+setOptionDefault('obfuscate_cache', 0);
+
+//	obsolete plugin cleanup.
+$sql = 'DELETE FROM ' . prefix('options') . ' WHERE `name` LIKE "tinymce_tinyzenpage%";';
+query($sql);
+$sql = 'DELETE FROM ' . prefix('options') . ' WHERE `name` LIKE "tinymce4%";';
+query($sql);
+$sql = 'DELETE FROM ' . prefix('options') . ' WHERE `name` LIKE "zenpage_combinews%";';
+query($sql);
+$sql = 'DELETE FROM ' . prefix('options') . ' WHERE `name` LIKE "cycle-slideshow_%_slideshow";';
+query($sql);
+purgeOption('tinyMCEPresent');
+purgeOption('enable_ajaxfilemanager');
+purgeOption('zenphoto_theme_list');
+purgeOption('spam_filter');
+purgeOption('site_upgrade_state');
+purgeOption('last_update_check');
+
+foreach (array('albums_per_page', 'albums_per_row', 'images_per_page', 'images_per_row', 'image_size', 'image_use_side', 'thumb_size', 'thumb_crop_width', 'thumb_crop_height', 'thumb_crop', 'thumb_transition') as $option) {
+	$sql = 'DELETE FROM ' . prefix('options') . ' WHERE `name`=' . db_quote($option) . ' AND `theme`=""';
+	query($sql);
+}
+
+foreach (getOptionsLike('logviewed_') as $option => $value) {
+	$file = SERVERPATH . '/' . DATA_FOLDER . '/' . str_replace('logviewed_', '', $option) . '.log';
+	if (!file_exists($file)) {
+		purgeOption($option);
+	}
+}
+
 //effervescence_plus migration
 if (file_exists(SERVERPATH . '/' . THEMEFOLDER . '/effervescence_plus')) {
 	if ($_zp_gallery->getCurrentTheme() == 'effervescence_plus') {
@@ -586,20 +616,20 @@ if (!isset($data['unprotected_pages']))
 if ($data['unprotected_pages']) {
 	$unprotected = $data['unprotected_pages'];
 } else {
-	setOptionDefault('gallery_page_unprotected_register', 1);
-	setOptionDefault('gallery_page_unprotected_contact', 1);
-	$unprotected = array();
+	$unprotected = array('register', 'contact');
 }
 
 primeOptions(); // get a fresh start
-$optionlist = getOptionList();
-
+$optionlist = getOptionsLike('gallery_page_unprotected_');
 foreach ($optionlist as $key => $option) {
-
-	if ($option && strpos($key, 'gallery_page_unprotected_') === 0) {
-		$unprotected[] = str_replace('gallery_page_unprotected_', '', $key);
+	if ($option) {
+		$name = str_replace('gallery_page_unprotected_', '', $key);
+		$unprotected[] = $name;
+		purgeOption($key);
 	}
 }
+$unprotected = array_unique($unprotected);
+
 if (!isset($data['album_publish'])) {
 	$set = getOption('album_default');
 	if (is_null($set))
