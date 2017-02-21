@@ -467,6 +467,11 @@ function loadLocalOptions($albumid, $theme) {
 	}
 }
 
+/**
+ *
+ * @global array $_zp_options
+ * @param string $key
+ */
 function purgeOption($key) {
 	global $_zp_options;
 	unset($_zp_options[strtolower($key)]);
