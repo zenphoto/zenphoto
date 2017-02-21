@@ -348,7 +348,7 @@ function getOption($key) {
 function getOptionsLike($pattern) {
 	$result = array();
 
-	$sql = 'SELECT `name`,`value` FROM ' . prefix('options') . ' WHERE `name` LIKE ' . db_quote(rtrim($pattern, '%') . '%') . ' ORDER BY `name`;';
+	$sql = 'SELECT `name`,`value` FROM ' . prefix('options') . ' WHERE `name` LIKE ' . db_quote(str_replace('_', '\_', rtrim($pattern, '%')) . '%') . ' ORDER BY `name`;';
 	$found = query_full_array($sql);
 	foreach ($found as $row) {
 		$result[$row['name']] = $row['value'];
