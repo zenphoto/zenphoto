@@ -201,6 +201,27 @@ purgeOption('defined_groups');
 
 // old configuration opitons. preserve them
 $conf = $_zp_conf_vars;
+
+$showDefaultThumbs = array();
+foreach (getOptionsLike('album_tab_default_thumbs_') as $option => $value) {
+	if ($value) {
+		$tab = str_replace('album_tab_default_thumbs_', '', $option);
+		if (empty($tab))
+			$tab = '*';
+		$showDefaultThumbs[$tab] = $tab;
+	}
+	purgeOption($option);
+}
+setOptionDefault('album_tab_showDefaultThumbs', serialize($showDefaultThumbs));
+
+$showDefaultThumbs = getSerializedArray(getOption('album_tab_showDefaultThumbs'));
+foreach ($showDefaultThumbs as $key => $value) {
+	if (!file_exists(getAlbumFolder() . $value)) {
+		unset($showDefaultThumbs[$key]);
+	}
+}
+setOption('album_tab_showDefaultThumbs', serialize($showDefaultThumbs));
+
 setOptionDefault('time_zone', date('T'));
 setOptionDefault('mod_rewrite', 0);
 setOptionDefault('mod_rewrite_image_suffix', NULL);
@@ -219,7 +240,7 @@ if (isset($_GET['mod_rewrite'])) {
 		});
 	</script>
 	<p>
-		<?php echo gettext('Mod_Rewrite check:'); ?>
+	<?php echo gettext('Mod_Rewrite check:'); ?>
 		<br />
 		<span>
 			<img src="<?php echo FULLWEBPATH . '/' . $_zp_conf_vars['special_pages']['page']['rewrite']; ?>/setup_set-mod_rewrite?z=setup" title="<?php echo gettext('Mod_rewrite'); ?>" alt="<?php echo gettext('Mod_rewrite'); ?>" height="16px" width="16px" />
