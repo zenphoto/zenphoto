@@ -220,6 +220,7 @@ class user_groups {
 			} else {
 				$notice = '';
 			}
+			$notice = '<div class="notebox"><p>' . gettext('Templates are highlighted.') . $notice . '</p><p>' . gettext('<strong>Note:</strong> When a group is assigned <em>rights</em> and <em>managed objects</em> are determined by the group!') . '</p></div>';
 			$grouppart = self::groupList($userobj, $i, $background, $current, true);
 		} else {
 			$notice = '';
@@ -231,7 +232,7 @@ class user_groups {
 		}
 		$result = "\n" . '<tr' . ((!$current) ? ' style="display:none;"' : '') . ' class="userextrainfo">' . "\n" .
 						'<td width="20%"' . ((!empty($background)) ? ' style="' . $background . '"' : '') . ' valign="top">' . "\n" . sprintf(gettext('User group membership: %s'), $grouppart) . "\n" .
-						"</td>\n<td" . ((!empty($background)) ? ' style="' . $background . '"' : '') . ">" . '<div class="notebox"><p>' . gettext('Templates are highlighted.') . $notice . '</p><p>' . gettext('<strong>Note:</strong> When a group is assigned <em>rights</em> and <em>managed objects</em> are determined by the group!') . '</p></div></td>' . "\n" .
+						"</td>\n<td" . ((!empty($background)) ? ' style="' . $background . '"' : '') . '>' . $notice . '</td>' . "\n" .
 						"</tr>\n";
 		return $html . $result;
 	}
