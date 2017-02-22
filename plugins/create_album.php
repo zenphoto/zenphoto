@@ -83,11 +83,19 @@ class create_album {
 	 * Option definitions
 	 */
 	function getOptionsSupported() {
-		global $__creatAlbumList;
+		global $_zp_authority;
+		$admins = $_zp_authority->getAdministrators();
+		$list = array();
+		foreach ($admins as $admin) {
+			$rights = $admin['rights'];
+			if (($rights & (ALBUM_RIGHTS | UPLOAD_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS | ADMIN_RIGHTS)) == (ALBUM_RIGHTS | UPLOAD_RIGHTS)) {
+				$list[$admin['user']] = $admin['user'];
+			}
+		}
 		return array(gettext('Default') => array('key' => 'create_album_default', 'type' => OPTION_TYPE_CHECKBOX,
 						'desc' => gettext('Default new users to "allowed"')),
 				gettext('Users') => array('key' => 'create_album_userlist', 'type' => OPTION_TYPE_CHECKBOX_ULLIST,
-						'checkboxes' => $__creatAlbumList,
+						'checkboxes' => $list,
 						'desc' => gettext('Checked users will be allowed to create root level albums.') .
 						'<p class="notebox">' . gettext('<strong>Note:</strong> Candidates are those users with <em>Album</em> and <em>Upload</em> rights who do not also have <em>Admin</em> or <em>Manage all album</em> rights.') . '</p>')
 		);
