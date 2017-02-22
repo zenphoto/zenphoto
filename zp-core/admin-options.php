@@ -1799,10 +1799,9 @@ Zenphoto_Authority::printPasswordFormJS();
 											?>
 											<label id="album_direction_div" style="display:<?php echo $dsp; ?>;white-space:nowrap;">
 												<?php echo gettext("Descending"); ?>
-												<input type="checkbox" name="album_sortdirection" value="1"
-												<?php
+												<input type="checkbox" name="album_sortdirection" value="1"<?php
 												if (getOption('search_album_sort_direction')) {
-													echo "CHECKED";
+													echo ' checked="checked"';
 												};
 												?> />
 											</label>
