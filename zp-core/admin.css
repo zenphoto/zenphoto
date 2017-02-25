@@ -571,7 +571,7 @@ table.noinput td {
 	word-break: keep-all;
 }
 
-table.bordered {
+.bordered {
 	width: 100%;
 	padding: 0px;
 	border-spacing: 0px;
@@ -593,7 +593,7 @@ table.bordered th {
 	background-repeat: repeat-x;
 }
 
-table.bordered .subhead {
+.bordered .subhead {
 	border-top: 1px solid #cccccc;
 }
 
@@ -667,16 +667,16 @@ table.options tr td {
 	border: none;
 }
 
-table.formlayout {
+.formlayout {
 	width: 100%;
 }
 
-table.formlayout td {
+.formlayout td {
 	padding: 2px;
 	vertical-align: top;
 }
 
-table.formlayout td.bulk_checkbox {
+.formlayout td.bulk_checkbox {
 	width: 21px;
 }
 
@@ -761,10 +761,8 @@ div.outerbox {
 	width: 100%;
 }
 
-
 .leftcolumn {
-	width: 200px;
-	min-width:150px;
+	padding-top: 5px;
 	white-space: nowrap;
 	vertical-align: top;
 	text-align:left;
@@ -776,22 +774,12 @@ div.outerbox {
 	width: 258px;
 }
 
-.rightcolumnmiddle {
-	padding-left: 15px;
-	vertical-align: top;
-	text-align: left;
-}
-
 .middlecolumn {
 	vertical-align: top;
 	padding-right: 20px !important;
-	width: 100%;
+	min-width: 300px;
+	width: 99%;
 }
-
-.middlecolumn input{
-	width: 100%;
-}
-
 
 
 /* Sortable Images

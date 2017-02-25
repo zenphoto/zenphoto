@@ -186,12 +186,6 @@ DIV.container IMG {
 	height: 500px;
 }
 
-.topalign-padding { /* for left colums on edit pages */
-	vertical-align: top;
-	padding-top: 5px;
-	text-align: left;
-}
-
 .topalign-nopadding { /* for left colums on edit pages */
 	vertical-align: top;
 	padding-top: 5px;

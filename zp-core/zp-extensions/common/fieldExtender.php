@@ -411,7 +411,7 @@ class fieldExtender {
 				list($item, $formatted) = fieldExtender::_editHandler($object, $field, NULL);
 				if (!is_null($formatted)) {
 					$html .= "<tr>\n" .
-									'<td><span class="topalign-padding nowrap">' . $field['desc'] . "</span></td>\n" .
+									'<td><span class="leftcolumn nowrap">' . $field['desc'] . "</span></td>\n" .
 									'<td>' . "\n";
 					if ($formatted) {
 						$html .= $item;
