@@ -761,7 +761,8 @@ div.outerbox {
 	width: 100%;
 }
 
-td.leftcolumn {
+
+.leftcolumn {
 	width: 200px;
 	min-width:150px;
 	white-space: nowrap;
@@ -769,25 +770,25 @@ td.leftcolumn {
 	text-align:left;
 }
 
-td.rightcolumn {
+.rightcolumn {
 	padding-left: 15px;
 	vertical-align: top;
 	width: 258px;
 }
 
-td.rightcolumnmiddle {
+.rightcolumnmiddle {
 	padding-left: 15px;
 	vertical-align: top;
 	text-align: left;
 }
 
-td.middlecolumn {
+.middlecolumn {
 	vertical-align: top;
 	padding-right: 20px !important;
 	width: 100%;
 }
 
-td.middlecolumn input{
+.middlecolumn input{
 	width: 100%;
 }
 
