@@ -153,7 +153,7 @@ class _Authority {
 				$questions[] = array('');
 				foreach ($questions as $key => $question) {
 					?>
-					<?php print_language_string_list($question, 'challenge_foil_' . $key, false, NULL, '', '100%'); ?>	<br/>
+					<?php print_language_string_list($question, 'challenge_foil_' . $key, false, NULL, ''); ?>	<br/>
 					<?php
 				}
 				break;
@@ -1318,7 +1318,7 @@ class _Authority {
 						 class="disclose_password"
 						 id="disclose_password<?php echo $id; ?>"
 						 onclick="passwordClear('<?php echo $id; ?>');
-										 togglePassword('<?php echo $id; ?>');">
+								 togglePassword('<?php echo $id; ?>');">
 		</p>
 		<p class="password_field password_field_<?php echo $id; ?>">
 			<label for="pass_r<?php echo $id; ?>" id="match<?php echo $id; ?>"><?php echo gettext("Repeat password") . $flag; ?></label>

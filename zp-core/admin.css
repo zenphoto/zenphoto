@@ -677,6 +677,10 @@ table.options tr td {
 	width: 350;
 }
 
+.optiondesc {
+	min-width: 200;
+}
+
 .formlayout {
 	width: 100%;
 }

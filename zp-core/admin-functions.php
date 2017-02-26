@@ -1004,7 +1004,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					}
 					if ($type != OPTION_TYPE_NOTE) {
 						?>
-						<td><?php echo $desc; ?></td>
+						<td class="optiondesc"><?php echo $desc; ?></td>
 						<?php
 					}
 					?>
