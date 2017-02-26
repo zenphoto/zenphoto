@@ -14,7 +14,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../../..\n"
 "X-Poedit-Bookmarks: -1,-1,-1,-1,-1,3092,-1,-1,-1,-1\n"
-"X-Generator: Poedit 1.8.11\n"
+"X-Generator: Poedit 1.8.12\n"
 "X-Poedit-SearchPath-0: zp-core\n"
 "X-Poedit-SearchPath-1: themes\n"
 "X-Poedit-SearchPathExcluded-0: plugins\n"
@@ -5863,7 +5863,7 @@ msgstr "E-mail"
 
 #: zp-core/admin-users.php:727
 msgid "create primary album"
-msgstr "maak gastalbum"
+msgstr "maak persoonlijk album"
 
 #: zp-core/admin-users.php:737
 #, php-format
@@ -9207,7 +9207,7 @@ msgid ""
 "Enter your User ID and press <code>Refresh</code> to get your challenge "
 "question and/or get a link to request a reset by e-mail."
 msgstr ""
-"Vul je gebruikersnaam in en klik op <code>Refresh</code> voor de "
+"Vul je gebruikersnaam in en klik op <code>Ververs</code> voor de "
 "controlevraag en/of een link voor een een reset per e-mail."
 
 #: zp-core/lib-auth.php:944
@@ -14365,7 +14365,7 @@ msgstr "Bericht<strong>*</strong>"
 
 #: zp-core/zp-extensions/contact_form/form.php:134
 msgid "Send e-mail"
-msgstr "Verzend"
+msgstr "Verzenden"
 
 #: zp-core/zp-extensions/crop_image.php:22
 msgid "An image cropping tool."
@@ -21660,7 +21660,7 @@ msgstr "Selecteer gebruikers:"
 #: zp-core/zp-extensions/user_mailing_list.php:165
 #: zp-core/zp-extensions/user_mailing_list.php:166
 msgid "Send mail"
-msgstr "Verzend"
+msgstr "Verzenden"
 
 #: zp-core/zp-extensions/viewer_size_image.php:26
 msgid "Provides a means allowing users to select the image size to view."
@@ -22091,7 +22091,7 @@ msgid ""
 "class=\"notebox\"><strong>NOTE:</strong> This does not delete content and is "
 "not related to management rights.</p>"
 msgstr ""
-"Dit activeerd of deactiveerd de admin tabs voor pagina's en/of nieuws. Om de "
+"Dit activeert of deactiveert de admin tabs voor pagina's en/of nieuws. Om de "
 "inhoud van pagina's en/of nieuws te verbergen in de front-end moeten thema's "
 "op de gewenste plek gebruik maken van <br><code>if(extensionEnabled(\"zenpage"
 "\") && ZP_NEWS_ENABLED) { … }</code> of "
