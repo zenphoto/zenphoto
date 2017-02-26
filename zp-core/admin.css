@@ -667,6 +667,16 @@ table.options tr td {
 	border: none;
 }
 
+.optionname {
+	white-space: nowrap;
+	vertical-align: top;
+	text-align:left;
+}
+
+.optionvalue {
+	width: 350;
+}
+
 .formlayout {
 	width: 100%;
 }
