@@ -84,18 +84,14 @@
 <p>The Zenphoto20 site configuration details HTML comment is no longer displayed unless the build is marked as a Debug Build.</p>
 <p>Various JavaScript scripts have been updated to their current versions. </p>
 <p>Zenphoto20 no longer uses (or displays) the GitHub release id. The current release methodology insures that the version number changes whenever there is an update made to the master.</p>
-<p>Option handling has been improved so that any newly created option will have the script that created it stored in the <em>creator</em> field. For existing sites attempts are made to determine and record the creator; however it is not always possible to do so, therefore there will be valid options that lack a creator.</p>
-<p>Two new custom option types have been added: <code>OPTION_TYPE_CHECKBOX_ARRAYLIST </code>and <code>OPTION_TYPE_CHECKBOX_ULLIST</code>. These will display the options in the same maner as <code>OPTION_TYPE_CHECKBOX_ARRAY</code> and <code>OPTION_TYPE_CHECKBOX_UL</code> but the option itself will be a serialized array of the items that have been checked. Use of these option types in place of the non-<code>LIST</code> versions helps contain the proliferation of options in the database. These options have been used to mitigate the option proliferation of several core option sets.</p>
-<p>There is now a checkbox to reset the Image Metadata show/hide/disable settings back to their default values.</p>
+<h2>Admin pages</h2>
+<p>The admin pages have been made a bit more responsive.</p>
 <h2>Plugins</h2>
-<p><em>colrobox_js, bxslider_thumb_nav</em>:</p>
-<p>These plugins has been changed to use <code>OPTION_TYPE_CHECKBOX_ARRAYLIST </code>for the registered scripts. Two static methods have been added to the plugin classes for themes and plugins to use in managing the script options: <code>registerScripts()</code> and <code>scriptEnabled()</code>. These methods should be used in lieu of directly setting the option. Note: the old script options will be purged from the database during setup after the new array option has been established from their settings.</p>
 <p><em>purgeOptions</em>:</p>
-<p>Improved the layout of the Options:Purge tab for better space usage. Added posting a Setup request when options for an active (not missing) element are purged so that the element may re-establish its default options. </p>
-<p><em>purgeOptions </em>will now provide a list of options which have no recorded <em>creator</em> (<em>orphaned options</em>) so that you can purge obsolete options via this list. Options will be starred if the option value is empty. There is little risk in purging empty options since referencing a non-existent option will produce an empty value.</p>
+<p>Improved the layout of the Options:Purge tab for better space usage. Added posting a Setup request when options for an active (not missing) element are purged so that the element may re-establish its default options.</p>
 <p><em>downloadList</em>:</p>
 <p>Added the ability to download images found by a search.</p>
-<p><em>themeSwitcher</em>:</p>
+<p><em>themeSwircher</em>:</p>
 <p>When a theme does not have a script for the current page the selector for it in the drop down list will be disabled. This avoids the 404 error if the theme were selected. Duplicate theme names are more gracefully handled by showing the version in the drop down.</p>
 <p><em>googleMaps:</em></p>
 <p>Add option for the googleMaps API key.</p>
