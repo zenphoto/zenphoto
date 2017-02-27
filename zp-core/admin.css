@@ -667,17 +667,17 @@ table.options tr td {
 	border: none;
 }
 
-.optionname {
-	white-space: nowrap;
+.option_name {
+	white-space: nowrap !important;
 	vertical-align: top;
 	text-align:left;
 }
 
-.optionvalue {
+.option_value {
 	width: 350;
 }
 
-.optiondesc {
+.option_desc {
 	min-width: 200;
 }
 

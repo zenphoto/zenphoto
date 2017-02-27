@@ -710,7 +710,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					}
 					if ($type != OPTION_TYPE_NOTE) {
 						?>
-						<td class="optionname"><?php if ($option) echo $indent . $option; ?></td>
+						<td class="option_name"><?php if ($option) echo $indent . $option; ?></td>
 						<?php
 					}
 					switch ($type) {
@@ -761,7 +761,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 									break;
 							}
 							?>
-							<td class="optionvalue">
+							<td class="option_value">
 								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . $clear . 'text-' . $postkey; ?>" value="1" />
 								<?php
 								if ($multilingual) {
@@ -784,7 +784,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 							break;
 						case OPTION_TYPE_CHECKBOX:
 							?>
-							<td class="optionvalue">
+							<td class="option_value">
 								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'chkbox-' . $postkey; ?>" value="1" />
 								<input type="checkbox" id="__<?php echo $key; ?>" name="<?php echo $postkey; ?>" value="1" <?php checked('1', $v); ?><?php echo $disabled; ?> />
 							</td>
@@ -792,7 +792,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 							break;
 						case OPTION_TYPE_CUSTOM:
 							?>
-							<td class="optionvalue">
+							<td class="option_value">
 								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'custom-' . $postkey; ?>" value="0" />
 								<?php $optionHandler->handleOption($key, $v); ?>
 							</td>
@@ -801,7 +801,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						case OPTION_TYPE_RADIO:
 							$behind = (isset($row['behind']) && $row['behind']);
 							?>
-							<td class="optionvalue">
+							<td class="option_value">
 								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'radio-' . $postkey; ?>" value="1"<?php echo $disabled; ?> />
 								<?php generateRadiobuttonsFromArray($v, $row['buttons'], $postkey, $behind, 'checkboxlabel', $disabled); ?>
 							</td>
@@ -811,7 +811,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 							$descending = false;
 						case OPTION_TYPE_ORDERED_SELECTOR:
 							?>
-							<td class="optionvalue">
+							<td class="option_value">
 								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'selector-' . $postkey ?>" value="1" />
 								<select id="__<?php echo $key; ?>" name="<?php echo $postkey; ?>"<?php echo $disabled; ?> >
 									<?php
@@ -833,7 +833,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						case OPTION_TYPE_CHECKBOX_ARRAY:
 							$behind = (isset($row['behind']) && $row['behind']);
 							?>
-							<td class="optionvalue">
+							<td class="option_value">
 								<?php
 								foreach ($row['checkboxes'] as $display => $checkbox) {
 									if ($theme) {
@@ -864,7 +864,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						case OPTION_TYPE_CHECKBOX_ARRAYLIST:
 							$behind = (isset($row['behind']) && $row['behind']);
 							?>
-							<td class="optionvalue">
+							<td class="option_value">
 								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'array-' . $postkey; ?>" value="1" />
 								<?php
 								$setOptions = getSerializedArray($v);
@@ -885,7 +885,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 							break;
 						case OPTION_TYPE_CHECKBOX_UL:
 							?>
-							<td class="optionvalue">
+							<td class="option_value">
 								<?php
 								$all = true;
 								$cvarray = array();
@@ -931,7 +931,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 							break;
 						case OPTION_TYPE_CHECKBOX_ULLIST:
 							?>
-							<td class="optionvalue">
+							<td class="option_value">
 								<input class="" type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'array-' . $postkey; ?>" value="1" />
 								<?php
 								$setOptions = getSerializedArray($v);
@@ -973,7 +973,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 							if (empty($v))
 								$v = '#000000';
 							?>
-							<td class="optionvalue" style="margin:0; padding:0">
+							<td class="option_value" style="margin:0; padding:0">
 								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'text-' . $postkey; ?>" value="1" />
 								<script type="text/javascript">
 									// <!-- <![CDATA[
@@ -995,7 +995,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 							$min = $row['min'];
 							$max = $row['max'];
 							?>
-							<td class="optionvalue" style="margin:0; padding:0">
+							<td class="option_value" style="margin:0; padding:0">
 								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'slider-' . $postkey; ?>" value="1" />
 								<?php putSlider('', $postkey, $min, $max, $v); ?>
 							</td>
@@ -1004,7 +1004,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					}
 					if ($type != OPTION_TYPE_NOTE) {
 						?>
-						<td class="optiondesc"><?php echo $desc; ?></td>
+						<td class="option_desc"><?php echo $desc; ?></td>
 						<?php
 					}
 					?>
