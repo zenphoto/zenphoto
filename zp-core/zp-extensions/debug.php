@@ -64,7 +64,7 @@ class debug {
 				}
 				purgeOption($option);
 			}
-			setOptionDefault('debug_mark_marks', serialize($list));
+			setOptionDefault('debug_marks', serialize($list));
 
 			$version = debug::version(true);
 			setOptionDefault('markRelease_state', $version);
@@ -83,7 +83,7 @@ class debug {
 				gettext('Log plugin load sequence.') => 'PLUGINS'
 		);
 		$options = array(
-				NULL => array('key' => 'debug_mark_marks', 'type' => OPTION_TYPE_CHECKBOX_ARRAYLIST,
+				NULL => array('key' => 'debug_marks', 'type' => OPTION_TYPE_CHECKBOX_ARRAYLIST,
 						'checkboxes' => $list,
 						'order' => 1,
 						'desc' => ''),
@@ -119,7 +119,7 @@ class debug {
 			return $originalVersion;
 		} else {
 			$options = '';
-			$list = getSerializedArray(getOption('debug_mark_marks'));
+			$list = getSerializedArray(getOption('debug_marks'));
 			sort($list);
 			$options = implode('_', $list);
 			if ($options) {
