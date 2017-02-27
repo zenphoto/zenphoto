@@ -12,8 +12,6 @@
  */
 $plugin_is_filter = 5 | CLASS_PLUGIN;
 $plugin_description = gettext("Filter out files from albums and image searches that we do not want shown. See the plugin options for configuration.");
-$plugin_author = "Stephen Billard (sbillard)";
-$plugin_version = '1.4.3';
 $option_interface = 'filter_file_searches_options';
 
 $mysetoptions = array();
@@ -75,12 +73,12 @@ class filter_file_searches_options {
 		foreach ($list as $suffix) {
 			$listi[$suffix] = 'filter_file_searches_images_' . $suffix;
 		}
-		return array(gettext('Albums')	 => array('key'				 => 'filter_file_searches_albums', 'type'			 => OPTION_TYPE_CHECKBOX_UL,
-										'checkboxes' => $lista,
-										'desc'			 => gettext("Check album names to be ignored.")),
-						gettext('Images')	 => array('key'				 => 'filter_file_searches_images', 'type'			 => OPTION_TYPE_CHECKBOX_UL,
-										'checkboxes' => $listi,
-										'desc'			 => gettext('Check image suffixes to be ignored.'))
+		return array(gettext('Albums') => array('key' => 'filter_file_searches_albums', 'type' => OPTION_TYPE_CHECKBOX_UL,
+						'checkboxes' => $lista,
+						'desc' => gettext("Check album names to be ignored.")),
+				gettext('Images') => array('key' => 'filter_file_searches_images', 'type' => OPTION_TYPE_CHECKBOX_UL,
+						'checkboxes' => $listi,
+						'desc' => gettext('Check image suffixes to be ignored.'))
 		);
 	}
 

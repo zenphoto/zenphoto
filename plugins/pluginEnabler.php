@@ -19,8 +19,6 @@
  */
 $plugin_is_filter = 5 | ADMIN_PLUGIN;
 $plugin_description = gettext("Mass enable/disable for plugins.");
-$plugin_author = "Stephen Billard (sbillard)";
-$plugin_version = '1.4.3';
 
 zp_register_filter('admin_utilities_buttons', 'pluginEnabler::buttons');
 

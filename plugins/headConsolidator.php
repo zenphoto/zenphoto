@@ -17,7 +17,7 @@
  * reasonable collection of plugins. So it may not be appropriate to use it from a performance perspective.]
  *
  * @author Stephen Billard (sbillard)
- * 
+ *
  * @package plugins
  * @subpackage example
  * @category package
@@ -26,7 +26,6 @@
 $plugin_is_filter = 9 | THEME_PLUGIN;
 $plugin_description = gettext('A plugin to collect and consolidate theme_head scripts and css.');
 $plugin_author = "Stephen Billard (sbillard)";
-$plugin_version = '1.4.3';
 
 // Note: these are not exact. If some other plugin decides to insert before or after, it's output
 // will not get processed.
