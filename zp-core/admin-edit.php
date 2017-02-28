@@ -1248,7 +1248,7 @@ echo "\n</head>";
 												<div class="floatleft">
 													<table class="width100percent" id="image-<?php echo $currentimage; ?>">
 														<tr>
-															<td class="leftcolumn"><?php echo gettext("Title:");
+															<td class="leftcolumn"><?php echo gettext("Title");
 													?></td>
 															<td class="middlecolumn">
 																<?php print_language_string_list($image->getTitle('all'), $currentimage . '-title', false, NULL, '', '100%'); ?>
@@ -1264,14 +1264,14 @@ echo "\n</head>";
 
 														</tr>
 														<tr>
-															<td class="leftcolumn"<?php echo gettext("Description:"); ?></td>
+															<td class="leftcolumn"><?php echo gettext("Description"); ?></td>
 															<td class="middlecolumn"><?php print_language_string_list($image->getDesc('all'), $currentimage . '-desc', true, NULL, 'texteditor', '100%'); ?></td>
 														</tr>
 														<?php
 														if ($image->get('hasMetadata')) {
 															?>
 															<tr>
-																<td class="leftcolumn"><?php echo gettext("Metadata:"); ?></td>
+																<td class="leftcolumn"><?php echo gettext("Metadata"); ?></td>
 																<td class="middlecolumn">
 																	<?php
 																	$data = '';
