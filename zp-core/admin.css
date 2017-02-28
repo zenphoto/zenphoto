@@ -678,7 +678,8 @@ table.options tr td {
 }
 
 .option_desc {
-	min-width: 200;
+	min-width: 300;
+	max-width: 500px;
 }
 
 .formlayout {
@@ -2270,6 +2271,72 @@ button.positive,.log_buttons a.positive {
 .resizeable_metadata {
 	height: 240px;
 	overflow:scroll;
+}
+
+
+/* language selector tabs */
+
+div.flagTabs {
+	padding-top: 10px;
+	margin: 0px;
+}
+
+UL.flagTabs {
+	list-style: none;
+	margin: 2px;
+	padding: 0px;
+	display: inline;
+	white-space: nowrap;
+	overflow: scroll;
+}
+
+UL.flagTabs LI {
+	display: inline;
+	padding: 1px;
+}
+
+UL.flagTabs LI A {
+	padding-top: 9px;
+	padding-right: 4px;
+	padding-bottom: 4px;
+	padding-left: 4px;
+	background-color: #EEEEEE;
+	border: 1px solid #C7D3D8;
+	-moz-border-radius: 5px 5px 0px 0px;
+	-khtml-border-radius: 5px 5px 0px 0px;
+	-webkit-border-radius: 5px 5px 0px 0px;
+	border-radius: 5px 5px 0px 0px;
+}
+
+UL.flagTabs LI A.selected {
+	background-color: white;
+	color: black;
+	padding-top: 9px;
+	padding-right: 4px;
+	padding-bottom: 4px;
+	padding-left: 4px;
+}
+
+UL.flagTabs LI A:hover {
+	background-color: white;
+	color: gray;
+	padding-top: 9px;
+	padding-right: 4px;
+	padding-bottom: 4px;
+	padding-left: 4px;
+}
+
+UL.flagTabs LI A:active {
+	background-color: white;
+	color: black;
+	padding-top: 9px;
+	padding-right: 4px;
+	padding-bottom: 4px;
+	padding-left: 4px;
+}
+
+UL.flagTabs LI A:focus {
+	outline: 0;
 }
 
 /* Codeblock fields tabs

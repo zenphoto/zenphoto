@@ -1592,7 +1592,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 													 name="disclose_password<?php echo $suffix; ?>"
 													 id="disclose_password<?php echo $suffix; ?>"
 													 onclick="passwordClear('<?php echo $suffix; ?>');
-															 togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?>
+																	 togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?>
 									</label>
 								</td>
 								<td>
@@ -1950,9 +1950,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 name="<?php echo $prefix; ?>Published"
 										 value="1" <?php if ($album->getShow()) echo ' checked="checked"'; ?>
 										 onclick="$('#<?php echo $prefix; ?>publishdate').val('');
-												 $('#<?php echo $prefix; ?>expirationdate').val('');
-												 $('#<?php echo $prefix; ?>publishdate').css('color', 'black');
-												 $('.<?php echo $prefix; ?>expire').html('');"
+													 $('#<?php echo $prefix; ?>expirationdate').val('');
+													 $('#<?php echo $prefix; ?>publishdate').css('color', 'black');
+													 $('.<?php echo $prefix; ?>expire').html('');"
 										 />
 										 <?php echo gettext("Published"); ?>
 						</label>
@@ -2086,7 +2086,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 } else {
 											 ?>
 											 onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');
-													 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
+															 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
 											 <?php
 										 }
 										 ?> />
@@ -2776,8 +2776,21 @@ function printAdminHeader($tab, $subtab = NULL) {
 				$activelang[$allLang[$lang]] = $lang;
 			}
 		}
-		echo '<div id="ls_' . ++$_lsInstance . '">' . "\n";
 
+		if (!$_lsInstance) {
+			?>
+			<script type="text/javascript" charset="utf-8">
+				// <!-- <![CDATA[
+				function lsclick(key, id) {
+					$('.lbx-' + id).hide();
+					$('#lb' + key + '-' + id).show();
+					$('.lbt-' + id).removeClass('selected');
+					$('#lbt-' + key + '-' + id).addClass('selected');
+				}
+				// ]]> -->
+			</script>
+			<?php
+		}
 		if ($multi = getOption('multi_lingual') && !empty($activelang)) {
 			if ($textbox) {
 				if (strpos($wide, '%') === false) {
@@ -2830,45 +2843,58 @@ function printAdminHeader($tab, $subtab = NULL) {
 			} else {
 				$class = '';
 			}
-			echo '<ul id="ul_' . $_lsInstance . '" class="' . $ulclass . $class . '"' . ">\n";
-			$empty = true;
-
-			foreach ($emptylang as $key => $lang) {
-				if (isset($strings[$key])) {
-					$string = $strings[$key];
-					if (!empty($string)) {
-						unset($emptylang[$key]);
-						$empty = false;
+			$tabSelected = ' selected';
+			$editHidden = '';
+			?>
+			<div id="ls_<?php echo ++$_lsInstance; ?>" class="flagTabs">
+				<ul id="<?php echo 'lang_selector-' . $_lsInstance; ?>" class="flagTabs">
+					<?php
+					foreach ($emptylang as $key => $lang) {
+						$flag = getLanguageFlag($key);
 						?>
 						<li>
-							<label for="<?php echo $name . '_' . $key; ?>"><?php echo $lang; ?></label>
-							<?php
-							if ($textbox) {
-								echo "\n" . '<textarea name="' . $name . '_' . $key . '"' . $edit . $width . '	rows="' . $rows . '">' . html_encode($string) . '</textarea>';
-							} else {
-								echo '<br /><input id="' . $name . '_' . $key . '" name="' . $name . '_' . $key . '"' . $edit . ' type="text" value="' . html_encode($string) . '"' . $width . ' />';
-							}
-							?>
+							<a class="lbt-<?php echo $_lsInstance . $tabSelected; ?>" id="lbt-<?php echo $key . '-' . $_lsInstance; ?>" onclick="lsclick(<?php echo "'" . $key . "'," . $_lsInstance; ?>);" title="<?php echo $lang; ?>">
+								<img src="<?php echo $flag; ?>" alt="<?php echo $key; ?>" title="<?php echo $lang; ?>" />
+							</a>
 						</li>
 						<?php
-					}
-				}
-			}
-			foreach ($emptylang as $key => $lang) {
-				?>
-				<li>
-					<label for="<?php echo $name . '_' . $key; ?>"><?php echo $lang; ?></label>
-					<?php
-					if ($textbox) {
-						echo "\n" . '<textarea name="' . $name . '_' . $key . '"' . $edit . $width . '	rows="' . $rows . '"></textarea>';
-					} else {
-						echo '<br /><input id="' . $name . '_' . $key . '" name="' . $name . '_' . $key . '"' . $edit . ' type="text" value=""' . $width . ' />';
+						$tabSelected = '';
 					}
 					?>
-				</li>
+				</ul>
+
 				<?php
-			}
-			echo "</ul>\n";
+				foreach ($emptylang as $key => $lang) {
+					if (isset($strings[$key])) {
+						$string = $strings[$key];
+					} else {
+						$string = '';
+					}
+					?>
+
+					<div id="lb<?php echo $key . '-' . $_lsInstance ?>" class="lbx-<?php echo $_lsInstance ?>"<?php echo $editHidden; ?>>
+						<?php
+//						echo $lang;
+						if ($textbox) {
+							?>
+							<textarea name="<?php echo $name . '_' . $key ?>"<?php echo $edit . $width; ?>	rows="<?php echo $rows ?>">
+								<?php echo html_encode($string); ?>
+							</textarea>
+							<?php
+						} else {
+							?>
+
+							<input name="<?php echo $name . '_' . $key ?>"<?php echo $edit . $width; ?> type="text" value="<?php echo html_encode($string); ?>"  />
+							<?php
+						}
+						?>
+					</div>
+					<?php
+					$editHidden = ' style="display:none;"';
+				}
+				?>
+			</div>
+			<?php
 		} else {
 			if ($textbox) {
 				if (strpos($wide, '%') === false) {
@@ -2903,21 +2929,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 					<?php
 				}
 			}
-		}
-		echo "</div>\n";
-		if ($multi) {
-			?>
-			<script type="text/javascript">
-				$(function () {
-					$('#ls_<?php echo $_lsInstance; ?>').resizable({
-						minHeight: 60,
-						resize: function (event, ui) {
-							$(this).css("width", '');
-							$('#ul_<?php echo $_lsInstance; ?>').height($('#ls_<?php echo $_lsInstance; ?>').height());
-						}
-					});
-				});</script>
-			<?php
 		}
 	}
 
@@ -3371,17 +3382,17 @@ function printAdminHeader($tab, $subtab = NULL) {
 						?>
 						<label title="<?php echo html_encode(get_language_string($right['hint'])); ?>">
 							<input type="checkbox" name="<?php echo $id . '-' . $rightselement; ?>" id="<?php echo $rightselement . '-' . $id; ?>" class="user-<?php echo $id; ?>" value="<?php echo $right['value']; ?>"<?php
-							if ($rights & $right['value'])
-								echo ' checked="checked"';
-							echo $alterrights;
-							?> /> <?php echo $right['name']; ?>
+				if ($rights & $right['value'])
+					echo ' checked="checked"';
+				echo $alterrights;
+						?> /> <?php echo $right['name']; ?>
 						</label>
 						<?php
 					} else {
 						?>
 						<input type="hidden" name="<?php echo $id . '-' . $rightselement; ?>" id="<?php echo $rightselement . '-' . $id; ?>" value="<?php echo $right['value']; ?>"<?php
-						if ($rights & $right['value'])
-							echo ' checked="checked"';
+				if ($rights & $right['value'])
+					echo ' checked="checked"';
 						?> />
 									 <?php
 								 }
@@ -4037,30 +4048,30 @@ function printBulkActions($checkarray, $checkAll = false) {
 		<script type="text/javascript">
 			//<!-- <![CDATA[
 			function checkFor(obj) {
-			var sel = obj.options[obj.selectedIndex].value;
-							var mark;
-							switch (sel) {
+				var sel = obj.options[obj.selectedIndex].value;
+				var mark;
+				switch (sel) {
 		<?php
 		foreach ($colorboxBookmark as $key => $mark) {
 			?>
-				case '<?php echo $key; ?>':
-								mark = '<?php echo $mark; ?>';
-								break;
+					case '<?php echo $key; ?>':
+									mark = '<?php echo $mark; ?>';
+									break;
 			<?php
 		}
 		?>
-			default:
-							mark = false;
-							break;
+				default:
+								mark = false;
+								break;
 			}
 			if (mark) {
-			$.colorbox({
-			href: '#' + mark,
-							inline: true,
-							open: true,
-							close: '<?php echo gettext("ok"); ?>'
-			});
-			}
+				$.colorbox({
+					href: '#' + mark,
+					inline: true,
+					open: true,
+					close: '<?php echo gettext("ok"); ?>'
+				});
+				}
 			}
 			// ]]> -->
 		</script>
@@ -4436,27 +4447,27 @@ function processCommentBulkActions() {
 function codeblocktabsJS() {
 	?>
 	<script type="text/javascript" charset="utf-8">
-						// <!-- <![CDATA[
-						$(function () {
-						var tabContainers = $('div.tabs > div');
-										$('.first').addClass('selected');
-						});
-						function cbclick(num, id) {
-						$('.cbx-' + id).hide();
-										$('#cb' + num + '-' + id).show();
-										$('.cbt-' + id).removeClass('selected');
-										$('#cbt' + num + '-' + id).addClass('selected');
-						}
+		// <!-- <![CDATA[
+		$(function () {
+			var tabContainers = $('div.tabs > div');
+			$('.first').addClass('selected');
+		});
+		function cbclick(num, id) {
+			$('.cbx-' + id).hide();
+			$('#cb' + num + '-' + id).show();
+			$('.cbt-' + id).removeClass('selected');
+			$('#cbt' + num + '-' + id).addClass('selected');
+		}
 
 		function cbadd(id, offset) {
-		var num = $('#cbu-' + id + ' li').size() - offset;
-						$('li:last', $('#cbu-' + id)).remove();
-						$('#cbu-' + id).append('<li><a class="cbt-' + id + '" id="cbt' + num + '-' + id + '" onclick="cbclick(' + num + ',' + id + ');" title="' + '<?php echo gettext('codeblock %u'); ?>'.replace(/%u/, num) + '">&nbsp;&nbsp;' + num + '&nbsp;&nbsp;</a></li>');
-						$('#cbu-' + id).append('<li><a id="cbp-' + id + '" onclick="cbadd(' + id + ',' + offset + ');" title="<?php echo gettext('add codeblock'); ?>">&nbsp;&nbsp;+&nbsp;&nbsp;</a></li>');
-						$('#cbd-' + id).append('<div class="cbx-' + id + '" id="cb' + num + '-' + id + '" style="display:none">' +
-						'<textarea name="codeblock' + num + '-' + id + '" class="codeblock" id="codeblock' + num + '-' + id + '" rows="40" cols="60"></textarea>' +
-						'</div>');
-						cbclick(num, id);
+			var num = $('#cbu-' + id + ' li').size() - offset;
+			$('li:last', $('#cbu-' + id)).remove();
+			$('#cbu-' + id).append('<li><a class="cbt-' + id + '" id="cbt' + num + '-' + id + '" onclick="cbclick(' + num + ',' + id + ');" title="' + '<?php echo gettext('codeblock %u'); ?>'.replace(/%u/, num) + '">&nbsp;&nbsp;' + num + '&nbsp;&nbsp;</a></li>');
+			$('#cbu-' + id).append('<li><a id="cbp-' + id + '" onclick="cbadd(' + id + ',' + offset + ');" title="<?php echo gettext('add codeblock'); ?>">&nbsp;&nbsp;+&nbsp;&nbsp;</a></li>');
+			$('#cbd-' + id).append('<div class="cbx-' + id + '" id="cb' + num + '-' + id + '" style="display:none">' +
+							'<textarea name="codeblock' + num + '-' + id + '" class="codeblock" id="codeblock' + num + '-' + id + '" rows="40" cols="60"></textarea>' +
+							'</div>');
+			cbclick(num, id);
 		}
 		// ]]> -->
 	</script>
@@ -5265,7 +5276,7 @@ function linkPickerIcon($obj, $id = NULL, $extra = NULL) {
 	}
 	?>
 	<a onclick="<?php echo $clickid; ?>$('.pickedObject').removeClass('pickedObject');
-										$('#<?php echo $iconid; ?>').addClass('pickedObject');<?php linkPickerPick($obj, $id, $extra); ?>" title="<?php echo gettext('pick source'); ?>">
+				$('#<?php echo $iconid; ?>').addClass('pickedObject');<?php linkPickerPick($obj, $id, $extra); ?>" title="<?php echo gettext('pick source'); ?>">
 		<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" id="<?php echo $iconid; ?>">
 	</a>
 	<?php
