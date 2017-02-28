@@ -231,7 +231,7 @@ class fieldExtender {
 		switch ($action) {
 			case 'multilingual':
 				ob_start();
-				print_language_string_list($obj->get($field['name']), $instance . '-' . $field['name']);
+				print_language_string_list($obj->get($field['name']), $instance . '-' . $field['name'], false, NULL, '', '100%');
 				$item = ob_get_contents();
 				ob_end_clean();
 				$formatted = true;
@@ -302,7 +302,7 @@ class fieldExtender {
 						$html .= $item;
 					} else {
 						if (in_array(strtolower($field['type']), array('varchar', 'int', 'tinytext'))) {
-							$input .= '<input name = "' . $field['name'] . '_' . $i . '" type = "text" size = "' . TEXT_INPUT_SIZE . '" value = "' . $item . '" />';
+							$input .= '<input name = "' . $field['name'] . '_' . $i . '" type = "text" style="width:100%;" value = "' . $item . '" />';
 						} else {
 							$input .= '<textarea name = "' . $field['name'] . '_' . $i . '" cols = "' . TEXTAREA_COLUMNS . '"rows = "1">' . $item . '</textarea>';
 						}
@@ -420,7 +420,7 @@ class fieldExtender {
 							$html .= '<input name="' . $field['name'] . '" type="text" style = "width:97%;"
 value="' . $item . '" />';
 						} else {
-							$html .= '<textarea name = "' . $field['name'] . '" style = "width:97%;" "rows="6">' . $item . '</textarea>';
+							$html .= '<textarea name = "' . $field['name'] . '" style = "width:100%;" "rows="6">' . $item . '</textarea>';
 						}
 					}
 					$html .= "</td>\n" .

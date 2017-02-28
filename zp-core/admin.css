@@ -674,7 +674,7 @@ table.options tr td {
 }
 
 .option_value {
-	width: 350;
+	min-width: 350;
 }
 
 .option_desc {

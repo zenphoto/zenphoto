@@ -153,7 +153,7 @@ class _Authority {
 				$questions[] = array('');
 				foreach ($questions as $key => $question) {
 					?>
-					<?php print_language_string_list($question, 'challenge_foil_' . $key, false, NULL, ''); ?>	<br/>
+					<?php print_language_string_list($question, 'challenge_foil_' . $key, false, NULL, '100%'); ?>	<br/>
 					<?php
 				}
 				break;

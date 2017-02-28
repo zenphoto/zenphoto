@@ -1174,14 +1174,14 @@ Zenphoto_Authority::printPasswordFormJS();
 								<tr>
 									<td class="option_name"><?php echo gettext("Gallery title"); ?></td>
 									<td class="option_value">
-										<?php print_language_string_list($_zp_gallery->getTitle('all'), 'gallery_title'); ?>
+										<?php print_language_string_list($_zp_gallery->getTitle('all'), 'gallery_title', false, null, '', '100%'); ?>
 									</td>
 									<td class="option_desc"><?php echo gettext("What you want to call your site."); ?></td>
 								</tr>
 								<tr>
 									<td class="option_name"><?php echo gettext("Gallery description"); ?></td>
 									<td class="option_value">
-										<?php print_language_string_list($_zp_gallery->getDesc('all'), 'Gallery_description', true, NULL, 'texteditor'); ?>
+										<?php print_language_string_list($_zp_gallery->getDesc('all'), 'Gallery_description', true, NULL, 'texteditor', '100%'); ?>
 									</td>
 									<td class="option_desc"><?php echo gettext("A brief description of your gallery. Some themes may display this text."); ?></td>
 								</tr>
@@ -1335,14 +1335,14 @@ Zenphoto_Authority::printPasswordFormJS();
 								<tr>
 									<td class="option_name"><?php echo gettext("Website title"); ?></td>
 									<td class="option_value">
-										<?php print_language_string_list($_zp_gallery->getWebsiteTitle('all'), 'website_title'); ?>
+										<?php print_language_string_list($_zp_gallery->getWebsiteTitle('all'), 'website_title', false, null, '', '100%'); ?>
 									</td>
 									<td class="option_desc"><?php echo gettext("Your web site title."); ?></td>
 								</tr>
 								<tr>
 									<td class="option_name"><?php echo gettext("Website url"); ?></td>
-									<td class="option_value"><input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" name="website_url"
-																								 value="<?php echo html_encode($_zp_gallery->getWebsiteURL()); ?>" /></td>
+									<td class="option_value"><input type="text" name="website_url" style="width:100%;"
+																									value="<?php echo html_encode($_zp_gallery->getWebsiteURL()); ?>" /></td>
 									<td class="option_desc"><?php echo gettext("This is used to link back to your main site, but your theme must support it."); ?></td>
 								</tr>
 								<tr>
@@ -1630,7 +1630,7 @@ Zenphoto_Authority::printPasswordFormJS();
 											<?php echo gettext("Search password hint"); ?>
 										</td>
 										<td class="option_value">
-											<?php print_language_string_list(getOption('search_hint'), 'hint', false, NULL, 'hint'); ?>
+											<?php print_language_string_list(getOption('search_hint'), 'hint', false, NULL, 'hint', '100%'); ?>
 										</td>
 										<td class="option_desc">
 											<?php echo gettext("A reminder hint for the password."); ?>
@@ -2342,7 +2342,7 @@ Zenphoto_Authority::printPasswordFormJS();
 														<?php echo gettext("hint"); ?>
 													</td>
 													<td style="margin:0; padding:0">
-														<?php print_language_string_list(getOption('protected_image_hint'), 'hint', false, NULL, 'hint'); ?>
+														<?php print_language_string_list(getOption('protected_image_hint'), 'hint', false, NULL, 'hint', '100%'); ?>
 													</td>
 												</tr>
 											</table>
