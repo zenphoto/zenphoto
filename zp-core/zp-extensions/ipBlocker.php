@@ -61,6 +61,7 @@ class ipBlocker {
 			setOptionDefault('ipBlocker_threshold', 10);
 			setOptionDefault('ipBlocker_404_threshold', 10);
 			setOptionDefault('ipBlocker_timeout', 60);
+			setOptionDefault('ipBlocker_forbidden', NULL);
 		}
 	}
 
@@ -80,33 +81,33 @@ class ipBlocker {
 		foreach ($list as $file) {
 			$files[$file] = $file;
 		}
-		$options = array(gettext('IP list')				 => array('key'		 => 'ipBlocker_IP', 'type'	 => OPTION_TYPE_CUSTOM,
-										'order'	 => 5,
-										'desc'	 => sprintf(gettext('List of IP ranges to %s.'), $text[getOption('ipBlocker_type')])),
-						gettext('Import list')		 => array('key'						 => 'ipBlocker_import', 'type'					 => OPTION_TYPE_SELECTOR,
-										'order'					 => 6,
-										'selections'		 => $files,
-										'nullselection'	 => '',
-										'disabled'			 => !extensionEnabled('ipBlocker'),
-										'desc'					 => sprintf(gettext('Import an external IP list. <p class="notebox"><strong>NOTE:</strong> If this list is large it may exceed the capacity of zenphoto and %s to process and store the results.'), DATABASE_SOFTWARE)),
-						gettext('Action')					 => array('key'			 => 'ipBlocker_type', 'type'		 => OPTION_TYPE_RADIO,
-										'order'		 => 4,
-										'buttons'	 => $buttons,
-										'desc'		 => gettext('How the plugin will interpret the IP list.')),
-						gettext('Logon threshold') => array('key'		 => 'ipBlocker_threshold', 'type'	 => OPTION_TYPE_NUMBER,
-										'order'	 => 1,
-										'desc'	 => gettext('Admin page requests will be ignored after this many failed tries.')),
-						gettext('404 threshold')	 => array('key'		 => 'ipBlocker_404_threshold', 'type'	 => OPTION_TYPE_NUMBER,
-										'order'	 => 1,
-										'desc'	 => gettext('Access will be suspended after this many 404 errors.')),
-						gettext('Cool off')				 => array('key'		 => 'ipBlocker_timeout', 'type'	 => OPTION_TYPE_NUMBER,
-										'order'	 => 3,
-										'desc'	 => gettext('The block will be removed after this many minutes.'))
+		$options = array(gettext('IP list') => array('key' => 'ipBlocker_IP', 'type' => OPTION_TYPE_CUSTOM,
+						'order' => 5,
+						'desc' => sprintf(gettext('List of IP ranges to %s.'), $text[getOption('ipBlocker_type')])),
+				gettext('Import list') => array('key' => 'ipBlocker_import', 'type' => OPTION_TYPE_SELECTOR,
+						'order' => 6,
+						'selections' => $files,
+						'nullselection' => '',
+						'disabled' => !extensionEnabled('ipBlocker'),
+						'desc' => sprintf(gettext('Import an external IP list. <p class="notebox"><strong>NOTE:</strong> If this list is large it may exceed the capacity of zenphoto and %s to process and store the results.'), DATABASE_SOFTWARE)),
+				gettext('Action') => array('key' => 'ipBlocker_type', 'type' => OPTION_TYPE_RADIO,
+						'order' => 4,
+						'buttons' => $buttons,
+						'desc' => gettext('How the plugin will interpret the IP list.')),
+				gettext('Logon threshold') => array('key' => 'ipBlocker_threshold', 'type' => OPTION_TYPE_NUMBER,
+						'order' => 1,
+						'desc' => gettext('Admin page requests will be ignored after this many failed tries.')),
+				gettext('404 threshold') => array('key' => 'ipBlocker_404_threshold', 'type' => OPTION_TYPE_NUMBER,
+						'order' => 1,
+						'desc' => gettext('Access will be suspended after this many 404 errors.')),
+				gettext('Cool off') => array('key' => 'ipBlocker_timeout', 'type' => OPTION_TYPE_NUMBER,
+						'order' => 3,
+						'desc' => gettext('The block will be removed after this many minutes.'))
 		);
 		if (!extensionEnabled('ipBlocker')) {
-			$options['note'] = array('key'		 => 'ipBlocker_note', 'type'	 => OPTION_TYPE_NOTE,
-							'order'	 => 0,
-							'desc'	 => '<p class="notebox">' . gettext('IP list ranges cannot be managed with the plugin disabled') . '</p>');
+			$options['note'] = array('key' => 'ipBlocker_note', 'type' => OPTION_TYPE_NOTE,
+					'order' => 0,
+					'desc' => '<p class="notebox">' . gettext('IP list ranges cannot be managed with the plugin disabled') . '</p>');
 		}
 		return $options;
 	}

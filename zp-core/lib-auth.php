@@ -31,6 +31,7 @@ class _Authority {
 			setOptionDefault('min_password_lenght', 6);
 			setOptionDefault('user_album_edit_default', 1);
 			setOptionDefault('challenge_foil_enabled', 1);
+			setOptionDefault('libauth_version', self::$preferred_version);
 		}
 		$this->admin_all = $this->admin_groups = $this->admin_users = $this->admin_other = array();
 
@@ -152,7 +153,7 @@ class _Authority {
 				$questions[] = array('');
 				foreach ($questions as $key => $question) {
 					?>
-					<?php print_language_string_list($question, 'challenge_foil_' . $key, false, NULL, '', '100%'); ?>	<br/>
+					<?php print_language_string_list($question, 'challenge_foil_' . $key, false, NULL, '100%'); ?>	<br/>
 					<?php
 				}
 				break;
@@ -633,8 +634,8 @@ class _Authority {
 		foreach ($rightsset as $key => $right) {
 			$allrights = $allrights | $right['value'];
 		}
-		$rightsset['ALL_RIGHTS'] = array('value' => $allrights, 'name' => gettext('All rights'), 'display' => false);
-		$rightsset['DEFAULT_RIGHTS'] = array('value' => $rightsset['OVERVIEW_RIGHTS']['value'] + $rightsset['POST_COMMENT_RIGHTS']['value'], 'name' => gettext('Default rights'), 'display' => false);
+		$rightsset['ALL_RIGHTS'] = array('value' => $allrights, 'name' => gettext('All rights'), 'set' => '', 'display' => false, 'hint' => '');
+		$rightsset['DEFAULT_RIGHTS'] = array('value' => $rightsset['OVERVIEW_RIGHTS']['value'] + $rightsset['POST_COMMENT_RIGHTS']['value'], 'name' => gettext('Default rights'), 'set' => '', 'display' => false, 'hint' => '');
 		if (isset($rightsset['VIEW_ALL_RIGHTS']['value'])) {
 			$rightsset['DEFAULT_RIGHTS']['value'] = $rightsset['DEFAULT_RIGHTS']['value'] | $rightsset['VIEW_ALL_RIGHTS']['value'];
 		} else {
@@ -905,8 +906,10 @@ class _Authority {
 				}
 				db_free_result($rslt);
 				$questions = array_unique($questions);
-				shuffle($questions);
-				$info = array('challenge' => $questions[$cycle % count($questions)], 'response' => 0x00);
+				if (!empty($questions)) {
+					shuffle($questions);
+					$info = array('challenge' => $questions[$cycle % count($questions)], 'response' => 0x00);
+				}
 			} else {
 				if ($admin->getEmail()) {
 					$star = true;
@@ -1315,7 +1318,7 @@ class _Authority {
 						 class="disclose_password"
 						 id="disclose_password<?php echo $id; ?>"
 						 onclick="passwordClear('<?php echo $id; ?>');
-										 togglePassword('<?php echo $id; ?>');">
+								 togglePassword('<?php echo $id; ?>');">
 		</p>
 		<p class="password_field password_field_<?php echo $id; ?>">
 			<label for="pass_r<?php echo $id; ?>" id="match<?php echo $id; ?>"><?php echo gettext("Repeat password") . $flag; ?></label>

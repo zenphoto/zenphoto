@@ -293,15 +293,15 @@ if (is_array($result)) {
 							<td colspan="2"><?php printf(gettext("Menu <em>%s</em>"), $selector); ?></td>
 						</tr>
 						<tr style="vertical-align: top">
-							<td style="width: 13%"><?php echo gettext("Type:"); ?></td>
+							<td style="width: 13%"><?php echo gettext("Type"); ?></td>
 							<td id="selector"></td>
 						</tr>
 						<tr style="vertical-align: top">
-							<td><?php echo gettext("Description:"); ?></td>
+							<td><?php echo gettext("Description"); ?></td>
 							<td id="description"></td>
 						</tr>
 						<tr>
-							<td><span id="titlelabel"><?php echo gettext("Title:"); ?></span></td>
+							<td><span id="titlelabel"><?php echo gettext("Title"); ?></span></td>
 							<td>
 								<span id="titleinput"><?php print_language_string_list($result['title'], "title", false, NULL, '', 100); ?></span>
 								<?php

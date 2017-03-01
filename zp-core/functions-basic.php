@@ -341,20 +341,19 @@ function getOption($key) {
 }
 
 /**
- * Returns a list of options that start with $pattern
- * @global array $_zp_options
+ * Returns a list of options that match $pattern
  * @param string $pattern
  * @return array
  */
 function getOptionsLike($pattern) {
-	global $_zp_options;
 	$result = array();
-	$pattern = strtolower($pattern);
-	foreach ($_zp_options as $option => $value) {
-		if (strpos($option, $pattern) === 0) {
-			$result[$option] = $value;
-		}
+
+	$sql = 'SELECT `name`,`value` FROM ' . prefix('options') . ' WHERE `name` LIKE ' . db_quote(str_replace('_', '\_', rtrim($pattern, '%')) . '%') . ' ORDER BY `name`;';
+	$found = query_full_array($sql);
+	foreach ($found as $row) {
+		$result[$row['name']] = $row['value'];
 	}
+
 	return $result;
 }
 
@@ -369,16 +368,14 @@ function getOptionsLike($pattern) {
 function setOption($key, $value, $persistent = true) {
 	global $_zp_options;
 	if ($persistent) {
-		$sql = 'INSERT INTO ' . prefix('options') . ' (`name`,`ownerid`,`theme`,`value`) VALUES (' . db_quote($key) . ',0,"",';
-		$sqlu = ' ON DUPLICATE KEY UPDATE `value`=';
+		list($theme, $creator) = getOptionOwner();
 		if (is_null($value)) {
-			$sql .= 'NULL';
-			$sqlu .= 'NULL';
+			$v .= 'NULL';
 		} else {
-			$sql .= db_quote($value);
-			$sqlu .= db_quote($value);
+			$v = db_quote($value);
 		}
-		$sql .= ') ' . $sqlu;
+		$sql = 'INSERT INTO ' . prefix('options') . ' (`name`,`value`,`ownerid`,`theme`,`creator`) VALUES (' . db_quote($key) . ',' . $v . ',0,' . db_quote($theme) . ',' . db_quote($creator) . ')' . ' ON DUPLICATE KEY UPDATE `value`=' . $v;
+		;
 		$result = query($sql, false);
 	} else {
 		$result = true;
@@ -392,6 +389,31 @@ function setOption($key, $value, $persistent = true) {
 }
 
 /**
+ * returns the owner fields of an option. Typically used when the option is set
+ * to its default value
+ *
+ * @return array
+ */
+function getOptionOwner() {
+	$creator = NULL;
+	$bt = debug_backtrace();
+	$b = array_shift($bt); // this function
+	$b = array_shift($bt); //the setOption... function
+	//$b now has the calling file/line# of the setOption... function
+	$creator = replaceScriptPath($b['file']);
+	$matches = explode('/', $creator);
+	if ($matches[0] == THEMEFOLDER) {
+		$theme = $matches[1];
+	} else {
+		$theme = '';
+	}
+	if (isset($b['line'])) {
+		$creator.='[' . $b['line'] . ']';
+	}
+	return array($theme, $creator);
+}
+
+/**
  * Sets the default value of an option.
  *
  * If the option has never been set it is set to the value passed
@@ -401,38 +423,19 @@ function setOption($key, $value, $persistent = true) {
  */
 function setOptionDefault($key, $default) {
 	global $_zp_options;
-	$bt = debug_backtrace();
-	$b = array_shift($bt);
-
-	$serverpath = str_replace('\\', '/', dirname($b['file']));
-	if (!preg_match('~(.*)/(' . ZENFOLDER . ')~', $serverpath, $matches)) {
-		preg_match('~(.*)/(' . USER_PLUGIN_FOLDER . '|' . THEMEFOLDER . ')~', $serverpath, $matches);
-	}
-	if ($matches) {
-		$creator = str_replace($matches[1] . '/', '', str_replace('\\', '/', $b['file']));
-	} else {
-		$creator = NULL;
-	}
-
+	list($theme, $creator) = getOptionOwner();
 	$sql = 'INSERT INTO ' . prefix('options') . ' (`name`, `value`, `ownerid`, `theme`, `creator`) VALUES (' . db_quote($key) . ',';
 	if (is_null($default)) {
 		$sql .= 'NULL';
 	} else {
 		$sql .= db_quote($default);
 	}
-	$sql .= ',0,"",';
-	if (is_null($creator)) {
-		$sql .= 'NULL);';
-	} else {
-		$sql .= db_quote($creator) . ');';
-	}
+	$sql .= ',0,' . db_quote($theme) . ',' . db_quote($creator) . ');';
 	if (query($sql, false)) {
 		$_zp_options[strtolower($key)] = $default;
 	} else {
-		if (!is_null($creator)) {
-			$sql = 'UPDATE ' . prefix('options') . 'SET `creator`=' . db_quote($creator) . ' WHERE `name`=' . db_quote($key) . ' AND `ownerid`=0 AND `theme`=""';
-			query($sql, false);
-		}
+		$sql = 'UPDATE ' . prefix('options') . ' SET `theme`=' . db_quote($theme) . ', `creator`=' . db_quote($creator) . ' WHERE `ownerid`=0 AND `name`=' . db_quote($key) . ' AND `theme`=' . db_quote($theme) . ';';
+		query($sql);
 	}
 }
 
@@ -444,7 +447,7 @@ function setOptionDefault($key, $default) {
  */
 function loadLocalOptions($albumid, $theme) {
 	global $_zp_options, $_loaded_local;
-	//raw theme options
+//raw theme options
 	$sql = "SELECT LCASE(`name`) as name, `value` FROM " . prefix('options') . ' WHERE `theme`=' . db_quote($theme) . ' AND `ownerid`=0';
 	$optionlist = query_full_array($sql, false);
 	if ($optionlist !== false) {
@@ -453,7 +456,7 @@ function loadLocalOptions($albumid, $theme) {
 		}
 	}
 	if ($albumid) {
-		//album-theme options
+//album-theme options
 		$sql = "SELECT LCASE(`name`) as name, `value` FROM " . prefix('options') . ' WHERE `theme`=' . db_quote($theme) . ' AND `ownerid`=' . $albumid;
 		$optionlist = query_full_array($sql, false);
 		if ($optionlist !== false) {
@@ -464,6 +467,11 @@ function loadLocalOptions($albumid, $theme) {
 	}
 }
 
+/**
+ *
+ * @global array $_zp_options
+ * @param string $key
+ */
 function purgeOption($key) {
 	global $_zp_options;
 	unset($_zp_options[strtolower($key)]);
@@ -479,6 +487,23 @@ function purgeOption($key) {
 function getOptionList() {
 	global $_zp_options;
 	return $_zp_options;
+}
+
+/**
+ * Cloned installations may be using symLinks to the "standard" ZenPhoto20 files.
+ * This can cause a problem examining the "path" to the file. __FILE__ and other functions will
+ * return the actual path to the file, e.g. the path to the parent installation of
+ * a clone. SERVERPATH is the path to the clone installation and will not be the same
+ * as the script path to the symLinked files.
+ *
+ * This function deals with the situation and returns the relative path in all cases
+ *
+ * @param string $file
+ * @return string the relative path to the file
+ */
+function replaceScriptPath($file, $replace = '') {
+	$file = str_replace('\\', '/', $file);
+	return trim(preg_replace('~^(' . SERVERPATH . '|' . SCRIPTPATH . ')~i', $replace, $file), '/');
 }
 
 /**
@@ -503,7 +528,7 @@ function isHandledAlbum($path) {
 	global $_zp_albumHandlers;
 	foreach (array_keys($_zp_albumHandlers) as $suffix) {
 		if (file_exists($path . '.' . $suffix)) {
-			//	it is a handled album sans suffix
+//	it is a handled album sans suffix
 			return $suffix;
 		}
 	} return NULL;
@@ -523,13 +548,13 @@ function rewrite_get_album_image($albumvar, $imagevar) {
 	global $_zp_rewritten, $_zp_albumHandlers;
 	$ralbum = isset($_GET[$albumvar]) ? trim(sanitize($_GET[$albumvar]), '/') : NULL;
 	$rimage = isset($_GET[$imagevar]) ? sanitize($_GET[$imagevar]) : NULL;
-	//	we assume that everything is correct if rewrite rules were not applied
+//	we assume that everything is correct if rewrite rules were not applied
 	if ($_zp_rewritten) {
 		if (!empty($ralbum) && empty($rimage)) { //	rewrite rules never set the image part!
 			$path = internalToFilesystem(getAlbumFolder(SERVERPATH) . $ralbum);
 			if (IM_SUFFIX) { // require the rewrite have the suffix as well
 				if (preg_match('|^(.*)' . preg_quote(IM_SUFFIX) . '$|', $ralbum, $matches)) {
-					//has an IM_SUFFIX attached
+//has an IM_SUFFIX attached
 					$rimage = basename($matches[1]);
 					$ralbum = trim(dirname($matches[1]), '/');
 					$path = internalToFilesystem(getAlbumFolder(SERVERPATH) . $ralbum);
@@ -572,7 +597,7 @@ function rewrite_get_album_image($albumvar, $imagevar) {
  */
 function getImageCacheFilename($album8, $image8, $args) {
 	global $_zp_supported_images, $_zp_cachefileSuffix;
-	// this function works in FILESYSTEM_CHARSET, so convert the file names
+// this function works in FILESYSTEM_CHARSET, so convert the file names
 	$album = internalToFilesystem($album8);
 	if (is_array($image8)) {
 		$image8 = $image8['name'];
@@ -591,7 +616,7 @@ function getImageCacheFilename($album8, $image8, $args) {
 		$image = stripSuffix(internalToFilesystem($image8));
 	}
 
-	// Set default variable values.
+// Set default variable values.
 	$postfix = getImageCachePostfix($args);
 	if (empty($album)) {
 		$albumsep = '';
@@ -619,7 +644,7 @@ function getImageCacheFilename($album8, $image8, $args) {
  */
 function makeSpecialImageName($image) {
 	$filename = basename($image);
-	$base = explode('/', str_replace(SERVERPATH . '/', '', dirname($image)));
+	$base = explode('/', replaceScriptPath(dirname($image)));
 	$sourceFolder = array_shift($base);
 	$sourceSubfolder = implode('/', $base);
 	return array('source' => $sourceFolder . '/' . $sourceSubfolder . '/' . $filename, 'name' => $sourceFolder . '_' . basename($sourceSubfolder) . '_' . $filename);
@@ -705,7 +730,7 @@ function getImageParameters($args, $album = NULL) {
 	$thumb_crop_height = getOption('thumb_crop_height');
 	$image_default_size = getOption('image_size');
 	$quality = getOption('image_quality');
-	// Set up the parameters
+// Set up the parameters
 	$thumb = $crop = false;
 	@list($size, $width, $height, $cw, $ch, $cx, $cy, $quality, $thumb, $crop, $thumbstandin, $WM, $adminrequest, $effects) = $args;
 	$thumb = $thumbstandin;
@@ -797,7 +822,7 @@ function getImageParameters($args, $album = NULL) {
 			}
 		}
 	}
-	// Return an array of parameters used in image conversion.
+// Return an array of parameters used in image conversion.
 	$args = array($size, $width, $height, $cw, $ch, $cx, $cy, $quality, $thumb, $crop, $thumbstandin, $WM, $adminrequest, $effects);
 	return $args;
 }
@@ -1124,7 +1149,7 @@ function build_url($parts) {
 function pathurlencode($path) {
 	$parts = parse_url($path);
 	if (isset($parts['query'])) {
-		//	some kind of query link
+//	some kind of query link
 		$pairs = parse_query($parts['query']);
 		$parts['query'] = http_build_query($pairs);
 	}
@@ -1306,7 +1331,7 @@ function getAlbumInherited($folder, $field, &$id) {
  * @return string
  */
 function imageThemeSetup($album) {
-	// we need to conserve memory in i.php so loading the classes is out of the question.
+// we need to conserve memory in i.php so loading the classes is out of the question.
 	$id = NULL;
 	$theme = getAlbumInherited(filesystemToInternal($album), 'album_theme', $id);
 	if (empty($theme)) {

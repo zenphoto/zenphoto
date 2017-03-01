@@ -43,7 +43,7 @@ if (OFFSET_PATH) {
 	$_site_filelist = array(
 			'closed.htm' => '+', // copy and update
 			'closed.php' => '*', // just copy
-			// "feed" plugins. The convention is that the file name is plugin prefix-closed.xml
+// "feed" plugins. The convention is that the file name is plugin prefix-closed.xml
 			'rss-closed.xml' => 'RSS', // create from RSS class
 			'externalFeed-closed.xml' => 'externalFeed' // create from externamFeed class
 	);
@@ -243,7 +243,7 @@ switch (OFFSET_PATH) {
 	case 2:
 
 		mkdir_recursive(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/', FOLDER_MOD);
-
+		setOptionDefault('site_upgrade_hash', NULL);
 		$hash = '';
 		foreach ($_site_filelist as $name => $source) {
 			if (isset($_REQUEST['refreshHTML']) || !file_exists(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/' . $name)) {
@@ -256,7 +256,7 @@ switch (OFFSET_PATH) {
 						}
 						break;
 					default:
-						// Feed plugin
+// Feed plugin
 						$plugin = substr($name, 0, strpos($name, '-')) . '.php';
 						$items = array(
 								array(

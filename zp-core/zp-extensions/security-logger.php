@@ -89,19 +89,13 @@ class security_logger {
 	 * @param int $success
 	 * @param string $user
 	 * @param string $name
-	 * @param string $ip
 	 * @param string $type
 	 * @param string $authority kind of login
 	 * @param string $addl more info
 	 */
 	private static function Logger($success, $user, $name, $action, $authority, $addl = NULL) {
 		global $_zp_authority, $_zp_mutex;
-		$pattern = '~^([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])$~';
-		$forwardedIP = NULL;
 		$ip = sanitize($_SERVER['REMOTE_ADDR']);
-		if (!preg_match($pattern, $ip)) {
-			$ip = NULL;
-		}
 		if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
 			$forwardedIP = sanitize($_SERVER['HTTP_X_FORWARDED_FOR']);
 			if (preg_match($pattern, $forwardedIP)) {

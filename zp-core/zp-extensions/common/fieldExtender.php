@@ -72,6 +72,11 @@ class fieldExtender {
 	 * @param array $newfields
 	 */
 	function constructor($me, $newfields) {
+		if (OFFSET_PATH == 2) {
+			//clean up creator fields
+			$sql = 'UPDATE ' . prefix('options') . ' SET `creator`=' . db_quote(replaceScriptPath(__FILE__) . '[' . __LINE__ . ']') . ' WHERE `name`=' . db_quote($me . '_addedFields') . ' AND `creator` IS NULL;';
+			query($sql);
+		}
 		$database = array();
 		foreach (getDBTables() as $table) {
 			$tablecols = db_list_fields($table);
@@ -226,7 +231,7 @@ class fieldExtender {
 		switch ($action) {
 			case 'multilingual':
 				ob_start();
-				print_language_string_list($obj->get($field['name']), $instance . '-' . $field['name']);
+				print_language_string_list($obj->get($field['name']), $instance . '-' . $field['name'], false, NULL, '', '100%');
 				$item = ob_get_contents();
 				ob_end_clean();
 				$formatted = true;
@@ -297,7 +302,7 @@ class fieldExtender {
 						$html .= $item;
 					} else {
 						if (in_array(strtolower($field['type']), array('varchar', 'int', 'tinytext'))) {
-							$input .= '<input name = "' . $field['name'] . '_' . $i . '" type = "text" size = "' . TEXT_INPUT_SIZE . '" value = "' . $item . '" />';
+							$input .= '<input name = "' . $field['name'] . '_' . $i . '" type = "text" style="width:100%;" value = "' . $item . '" />';
 						} else {
 							$input .= '<textarea name = "' . $field['name'] . '_' . $i . '" cols = "' . TEXTAREA_COLUMNS . '"rows = "1">' . $item . '</textarea>';
 						}
@@ -406,7 +411,7 @@ class fieldExtender {
 				list($item, $formatted) = fieldExtender::_editHandler($object, $field, NULL);
 				if (!is_null($formatted)) {
 					$html .= "<tr>\n" .
-									'<td><span class="topalign-padding nowrap">' . $field['desc'] . "</span></td>\n" .
+									'<td><span class="leftcolumn nowrap">' . $field['desc'] . "</span></td>\n" .
 									'<td>' . "\n";
 					if ($formatted) {
 						$html .= $item;
@@ -415,7 +420,7 @@ class fieldExtender {
 							$html .= '<input name="' . $field['name'] . '" type="text" style = "width:97%;"
 value="' . $item . '" />';
 						} else {
-							$html .= '<textarea name = "' . $field['name'] . '" style = "width:97%;" "rows="6">' . $item . '</textarea>';
+							$html .= '<textarea name = "' . $field['name'] . '" style = "width:100%;" "rows="6">' . $item . '</textarea>';
 						}
 					}
 					$html .= "</td>\n" .
@@ -438,7 +443,7 @@ value="' . $item . '" />';
 				$actions[$field['table']] = true;
 			}
 		}
-		$registerCMSSave = true;
+		$registerCMSSave = false;
 
 		if (isset($items['albums'])) {
 			zp_register_filter("save_album_utilities_data", "$me::mediaItemSave");

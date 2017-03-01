@@ -55,21 +55,39 @@ class debug {
 
 	function __construct() {
 		if (OFFSET_PATH == 2) {
-			setOptionDefault('debug_mark_404', true);
+			$list = array('404' => '404');
+			$options = getOptionsLike('debug_mark_');
+			foreach ($options as $option => $value) {
+				if ($value) {
+					$object = strtoupper(str_replace('debug_mark_', '', $option));
+					$list[$object] = $object;
+				}
+				purgeOption($option);
+			}
+			setOptionDefault('debug_marks', serialize($list));
+
+			$version = debug::version(true);
+			setOptionDefault('markRelease_state', $version);
 		}
 	}
 
 	function getOptionsSupported() {
+		$list = array(
+				gettext('Log 404 error processing debug information.') => '404',
+				gettext('Log start/finish of exif processing.') => 'EXIF',
+				gettext('Log the <em>EXPLAIN</em> output from SQL SELECT queries.') => 'EXPLAIN_SELECTS',
+				gettext('Log filter application sequence.') => 'FILTERS',
+				gettext('Log image processing debug information.') => 'IMAGE',
+				gettext('Log language selection processing.') => 'LOCALE,',
+				gettext('Log admin saves and login attempts.') => 'LOGIN',
+				gettext('Log plugin load sequence.') => 'PLUGINS'
+		);
 		$options = array(
-				gettext('404') => array('key' => 'debug_mark_404', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Log 404 error processing debug information.')),
-				gettext('EXIF') => array('key' => 'debug_mark_EXIF', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Log start/finish of exif processing. Useful to find problematic images.')),
-				gettext('EXPLAIN_SELECTS') => array('key' => 'debug_mark_EXPLAIN_SELECTS', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Log the <em>EXPLAIN</em> output from SQL SELECT queries.')),
-				gettext('FILTERS') => array('key' => 'debug_mark_FILTERS', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Log filter application sequence.')),
-				gettext('IMAGE') => array('key' => 'debug_mark_IMAGE', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Log image processing debug information.')),
-				gettext('LOCALE') => array('key' => 'debug_mark_LOCALE', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Used for examining language selection problems.')),
-				gettext('LOGIN') => array('key' => 'debug_mark_LOGIN', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Log admin saves and login attempts.')),
-				gettext('PLUGINS') => array('key' => 'debug_mark_PLUGINS', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Log plugin load sequence.')),
-				'' => array('key' => '', 'type' => OPTION_TYPE_NOTE, 'desc' => gettext('Note: These options are enabled only when the release is marked in <em>debug</em> mode.'))
+				NULL => array('key' => 'debug_marks', 'type' => OPTION_TYPE_CHECKBOX_ARRAYLIST,
+						'checkboxes' => $list,
+						'order' => 1,
+						'desc' => ''),
+				1 => array('key' => '', 'type' => OPTION_TYPE_NOTE, 'desc' => gettext('Note: These options are enabled only when the release is marked in <em>debug</em> mode.'))
 		);
 		return $options;
 	}
@@ -101,17 +119,13 @@ class debug {
 			return $originalVersion;
 		} else {
 			$options = '';
-			$list = getOptionsLike('debug_mark_');
-			ksort($list);
-			foreach ($list as $option => $value) {
-				if ($value) {
-					$options .= strtoupper(substr($option, 10));
-				}
-			}
+			$list = getSerializedArray(getOption('debug_marks'));
+			sort($list);
+			$options = implode('_', $list);
 			if ($options) {
-				$options = '-DEBUG' . $options;
+				$options = '-DEBUG_' . $options;
 			}
-			return "$originalVersion$options";
+			return $originalVersion . $options;
 		}
 	}
 

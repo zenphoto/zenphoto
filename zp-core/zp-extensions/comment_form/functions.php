@@ -229,8 +229,8 @@ function comment_form_addComment($name, $email, $website, $comment, $code, $code
 				$whattocheck = $whattocheck | USE_CAPTCHA;
 				break;
 		}
-		if (getOption('comment_body_requiired'))
-			$whattocheck = $whattocheck | COMMENT_BODY_REQUIRED;
+
+		$whattocheck = $whattocheck | COMMENT_BODY_REQUIRED;
 		IF (getOption('email_new_comments'))
 			$whattocheck = $whattocheck | COMMENT_SEND_EMAIL;
 	} else {

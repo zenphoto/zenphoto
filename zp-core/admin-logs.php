@@ -36,6 +36,7 @@ if (isset($_GET['action'])) {
 				}
 				break;
 			case 'delete_log':
+				purgeOption('logviewed_' . $what);
 				$_zp_mutex->lock();
 				@chmod($file, 0777);
 				if (@unlink($file)) {
@@ -60,11 +61,11 @@ if (isset($_GET['action'])) {
 }
 
 list($subtabs, $default, $new) = getLogTabs();
-$zenphoto_tabs['logs'] = array('text'		 => gettext("logs"),
-				'link'		 => WEBPATH . "/" . ZENFOLDER . '/admin-logs.php?page=logs',
-				'subtabs'	 => $subtabs,
-				'alert'		 => $new,
-				'default'	 => $default);
+$zenphoto_tabs['logs'] = array('text' => gettext("logs"),
+		'link' => WEBPATH . "/" . ZENFOLDER . '/admin-logs.php?page=logs',
+		'subtabs' => $subtabs,
+		'alert' => $new,
+		'default' => $default);
 
 printAdminHeader('logs', $default);
 echo "\n</head>";
@@ -100,7 +101,7 @@ echo "\n</head>";
 					?>
 
 					<!-- A log -->
-					<div id="theme-editor" class="tabbox">
+					<div class="tabbox">
 						<?php
 						if (isset($result)) {
 							?>

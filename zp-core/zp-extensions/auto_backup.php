@@ -24,7 +24,7 @@ $plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'auto_backup';
 if (OFFSET_PATH == 2) {
-	setOption('last_backup_run', 0); // for sure things have changed
+	purgeOption('last_backup_run'); // for sure things have changed
 } else {
 	if ((getOption('last_backup_run') + getOption('backup_interval') * 86400) < time()) { // register if it is time for a backup
 		require_once(dirname(dirname(__FILE__)) . '/admin-functions.php');
@@ -57,19 +57,19 @@ class auto_backup {
 	 * @return array
 	 */
 	function getOptionsSupported() {
-		$options = array(gettext('Run interval')		 => array('key'		 => 'backup_interval', 'type'	 => OPTION_TYPE_NUMBER,
-										'order'	 => 1,
-										'limits' => array('min' => 1),
-										'desc'	 => gettext('The run interval (in days) for auto backup.')),
-						gettext('Backups to keep') => array('key'		 => 'backups_to_keep', 'type'	 => OPTION_TYPE_NUMBER,
-										'order'	 => 0,
-										'limits' => array('min' => 1),
-										'desc'	 => gettext('Auto backup will keep only this many backup sets. Older sets will be removed.'))
+		$options = array(gettext('Run interval') => array('key' => 'backup_interval', 'type' => OPTION_TYPE_NUMBER,
+						'order' => 1,
+						'limits' => array('min' => 1),
+						'desc' => gettext('The run interval (in days) for auto backup.')),
+				gettext('Backups to keep') => array('key' => 'backups_to_keep', 'type' => OPTION_TYPE_NUMBER,
+						'order' => 0,
+						'limits' => array('min' => 1),
+						'desc' => gettext('Auto backup will keep only this many backup sets. Older sets will be removed.'))
 		);
 		if ($d = getOption('last_backup_run')) {
-			$options[gettext('Last backup')] = array('key'		 => 'last_backup_run', 'type'	 => OPTION_TYPE_NOTE,
-							'order'	 => 2,
-							'desc'	 => '<p class="notebox">' . sprintf(gettext('Auto Backup last ran %s.'), date('Y-m-d H:i:s', $d)) . '</p>');
+			$options[gettext('Last backup')] = array('key' => 'last_backup_run', 'type' => OPTION_TYPE_NOTE,
+					'order' => 2,
+					'desc' => '<p class="notebox">' . sprintf(gettext('Auto Backup last ran %s.'), date('Y-m-d H:i:s', $d)) . '</p>');
 		}
 		return $options;
 	}

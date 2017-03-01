@@ -402,9 +402,10 @@ function setupLog($message, $anyway = false, $reset = false) {
 
 function setupLanguageSelector() {
 	$languages = generateLanguageList();
+	$unsupported = getSerializedArray(getOption('locale_unsupported'));
 	if (isset($_REQUEST['locale'])) {
 		$locale = sanitize($_REQUEST['locale']);
-		if (getOption('locale') != $locale || getOption('unsupported_' . $locale)) {
+		if (getOption('locale') != $locale || isset($unsupported[$locale])) {
 			?>
 			<div class="errorbox">
 				<h2>

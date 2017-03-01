@@ -590,25 +590,27 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 * @param string $initial initila show/hide state
 	 *
 	 * Custom options:
-	 *    OPTION_TYPE_TEXTBOX:          A textbox
-	 *    OPTION_TYPE_PASSWORD:         A passowrd textbox
-	 *    OPTION_TYPE_CLEARTEXT:     	  A textbox, but no sanitization on save
-	 * 		OPTION_TYPE_NUMBER:						A small textbox for numbers. NOTE: the default allows only positive integers
-	 * 																			(i.e. 'step' defaults to 1.) If you need	other values supply a "limits" element, e.g:
-	 * 																			'limits' => array('min' => -25, 'max'=> 25, 'step' => 0.5)
-	 * 		OPTION_TYPE_SLIDER						A number but with a slider that changes the value
-	 *    OPTION_TYPE_CHECKBOX:         A checkbox
-	 *    OPTION_TYPE_CUSTOM:           Handled by $optionHandler->handleOption()
-	 *    OPTION_TYPE_TEXTAREA:         A textarea
-	 *    OPTION_TYPE_RICHTEXT:         A textarea with WYSIWYG editor attached
-	 *    OPTION_TYPE_RADIO:            Radio buttons (button names are in the 'buttons' index of the supported options array)
-	 *    OPTION_TYPE_SELECTOR:         Selector (selection list is in the 'selections' index of the supported options array
-	 * 																			null_selection contains the text for the empty selection. If not present there
-	 * 																			will be no empty selection)
-	 *    OPTION_TYPE_CHECKBOX_ARRAY:   Checkbox array (checkbox list is in the 'checkboxes' index of the supported options array.)
-	 *    OPTION_TYPE_CHECKBOX_UL:      Checkbox UL (checkbox list is in the 'checkboxes' index of the supported options array.)
-	 *    OPTION_TYPE_COLOR_PICKER:     Color picker
-	 *    OPTION_TYPE_NOTE:             Places a note in the options area. The note will span all three columns
+	 *    OPTION_TYPE_TEXTBOX:							A textbox
+	 *    OPTION_TYPE_PASSWORD:							A passowrd textbox
+	 *    OPTION_TYPE_CLEARTEXT:						A textbox, but no sanitization on save
+	 * 		OPTION_TYPE_NUMBER:								A small textbox for numbers. NOTE: the default allows only positive integers
+	 * 																				(i.e. 'step' defaults to 1.) If you need	other values supply a "limits" element, e.g:
+	 * 																				'limits' => array('min' => -25, 'max'=> 25, 'step' => 0.5)
+	 * 		OPTION_TYPE_SLIDER								A number but with a slider that changes the value
+	 *    OPTION_TYPE_CHECKBOX:							A checkbox
+	 *    OPTION_TYPE_CUSTOM:								Handled by $optionHandler->handleOption()
+	 *    OPTION_TYPE_TEXTAREA:							A textarea
+	 *    OPTION_TYPE_RICHTEXT:							A textarea with WYSIWYG editor attached
+	 *    OPTION_TYPE_RADIO:								Radio buttons (button names are in the 'buttons' index of the supported options array)
+	 *    OPTION_TYPE_SELECTOR:							Selector (selection list is in the 'selections' index of the supported options array
+	 * 																				null_selection contains the text for the empty selection. If not present there
+	 * 																				will be no empty selection)
+	 *    OPTION_TYPE_CHECKBOX_ARRAY:				Checkbox array (checkbox list is in the 'checkboxes' index of the supported options array.)
+	 * 		OPTION_TYPE_CHECKBOX_ARRAYLIST:		Same as OPTION_TYPE_CHECKBOX_ARRAY but the set values will be stored as an array
+	 *    OPTION_TYPE_CHECKBOX_UL:					Checkbox UL (checkbox list is in the 'checkboxes' index of the supported options array.)
+	 * 		OPTION_TYPE_CHECKBOX_ULLIST:			Same as OPTION_TYPE_CHECKBOX_UL but the set values will be stored as an array
+	 *    OPTION_TYPE_COLOR_PICKER:					Color picker
+	 *    OPTION_TYPE_NOTE:									Places a note in the options area. The note will span all three columns
 	 *
 	 *    Types 0 and 5 support multi-lingual strings.
 	 */
@@ -628,6 +630,8 @@ function printAdminHeader($tab, $subtab = NULL) {
 	define('OPTION_TYPE_NUMBER', 13);
 	define('OPTION_TYPE_SLIDER', 14);
 	define('OPTION_TYPE_ORDERED_SELECTOR', 15);
+	define('OPTION_TYPE_CHECKBOX_ARRAYLIST', 16);
+	define('OPTION_TYPE_CHECKBOX_ULLIST', 17);
 
 	function customOptions($optionHandler, $indent = "", $album = NULL, $showhide = false, $supportedOptions = NULL, $theme = false, $initial = 'none', $extension = NULL) {
 		if (is_null($supportedOptions)) {
@@ -706,7 +710,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					}
 					if ($type != OPTION_TYPE_NOTE) {
 						?>
-						<td width="175"><?php if ($option) echo $indent . $option; ?></td>
+						<td class="option_name"><?php if ($option) echo $indent . $option; ?></td>
 						<?php
 					}
 					switch ($type) {
@@ -757,20 +761,20 @@ function printAdminHeader($tab, $subtab = NULL) {
 									break;
 							}
 							?>
-							<td width="350">
+							<td class="option_value">
 								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . $clear . 'text-' . $postkey; ?>" value="1" />
 								<?php
 								if ($multilingual) {
-									print_language_string_list($v, $postkey, $type, NULL, $editor);
+									print_language_string_list($v, $postkey, $type, NULL, $editor, '100%');
 								} else {
 									if ($type == OPTION_TYPE_TEXTAREA || $type == OPTION_TYPE_RICHTEXT) {
 										$v = get_language_string($v); // just in case....
 										?>
-										<textarea id="<?php echo $key; ?>"<?php if ($type == OPTION_TYPE_RICHTEXT) echo ' class="texteditor"'; ?> name="<?php echo $postkey; ?>" cols="<?php echo TEXTAREA_COLUMNS; ?>"	style="width: 320px" rows="6"<?php echo $disabled; ?>><?php echo html_encode($v); ?></textarea>
+										<textarea id="__<?php echo $key; ?>"<?php if ($type == OPTION_TYPE_RICHTEXT) echo ' class="texteditor"'; ?> name="<?php echo $postkey; ?>" cols="<?php echo TEXTAREA_COLUMNS; ?>"	 rows="6"<?php echo $disabled; ?>><?php echo html_encode($v); ?></textarea>
 										<?php
 									} else {
 										?>
-										<input type="<?php echo $inputtype; ?>" id="<?php echo $key; ?>" name="<?php echo $postkey; ?>" style="width: <?php echo $wide; ?>" value="<?php echo html_encode($v); ?>"<?php echo $disabled; ?> />
+										<input type="<?php echo $inputtype; ?>" id="__<?php echo $key; ?>" name="<?php echo $postkey; ?>" style="width:100%;" value="<?php echo html_encode($v); ?>"<?php echo $disabled; ?> />
 										<?php
 									}
 								}
@@ -780,15 +784,15 @@ function printAdminHeader($tab, $subtab = NULL) {
 							break;
 						case OPTION_TYPE_CHECKBOX:
 							?>
-							<td width="350">
+							<td class="option_value">
 								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'chkbox-' . $postkey; ?>" value="1" />
-								<input type="checkbox" id="<?php echo $key; ?>" name="<?php echo $postkey; ?>" value="1" <?php checked('1', $v); ?><?php echo $disabled; ?> />
+								<input type="checkbox" id="__<?php echo $key; ?>" name="<?php echo $postkey; ?>" value="1" <?php checked('1', $v); ?><?php echo $disabled; ?> />
 							</td>
 							<?php
 							break;
 						case OPTION_TYPE_CUSTOM:
 							?>
-							<td width="350">
+							<td class="option_value">
 								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'custom-' . $postkey; ?>" value="0" />
 								<?php $optionHandler->handleOption($key, $v); ?>
 							</td>
@@ -797,7 +801,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						case OPTION_TYPE_RADIO:
 							$behind = (isset($row['behind']) && $row['behind']);
 							?>
-							<td width="350">
+							<td class="option_value">
 								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'radio-' . $postkey; ?>" value="1"<?php echo $disabled; ?> />
 								<?php generateRadiobuttonsFromArray($v, $row['buttons'], $postkey, $behind, 'checkboxlabel', $disabled); ?>
 							</td>
@@ -807,9 +811,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 							$descending = false;
 						case OPTION_TYPE_ORDERED_SELECTOR:
 							?>
-							<td width="350">
+							<td class="option_value">
 								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'selector-' . $postkey ?>" value="1" />
-								<select id="<?php echo $key; ?>" name="<?php echo $postkey; ?>"<?php echo $disabled; ?> >
+								<select id="__<?php echo $key; ?>" name="<?php echo $postkey; ?>"<?php echo $disabled; ?> >
 									<?php
 									if (array_key_exists('null_selection', $row)) {
 										?>
@@ -829,7 +833,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						case OPTION_TYPE_CHECKBOX_ARRAY:
 							$behind = (isset($row['behind']) && $row['behind']);
 							?>
-							<td width="350">
+							<td class="option_value">
 								<?php
 								foreach ($row['checkboxes'] as $display => $checkbox) {
 									if ($theme) {
@@ -848,7 +852,29 @@ function printAdminHeader($tab, $subtab = NULL) {
 									<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'chkbox-' . postIndexEncode($checkbox); ?>" value="1" />
 									<label class="checkboxlabel">
 										<?php if ($behind) echo($display); ?>
-										<input type="checkbox" id="<?php echo $checkbox; ?>" name="<?php echo postIndexEncode($checkbox); ?>" value="1"<?php checked('1', $v); ?><?php echo $disabled; ?> />
+										<input type="checkbox" id="__<?php echo $checkbox; ?>" name="<?php echo postIndexEncode($checkbox); ?>" value="1"<?php checked('1', $v); ?><?php echo $disabled; ?> />
+										<?php if (!$behind) echo($display); ?>
+									</label>
+									<?php
+								}
+								?>
+							</td>
+							<?php
+							break;
+						case OPTION_TYPE_CHECKBOX_ARRAYLIST:
+							$behind = (isset($row['behind']) && $row['behind']);
+							?>
+							<td class="option_value">
+								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'array-' . $postkey; ?>" value="1" />
+								<?php
+								$setOptions = getSerializedArray($v);
+								foreach ($row['checkboxes'] as $display => $checkbox) {
+
+									$display = str_replace(' ', '&nbsp;', $display);
+									?>
+									<label class="checkboxlabel">
+										<?php if ($behind) echo($display); ?>
+										<input type="checkbox" id="__<?php echo $checkbox; ?>" name="<?php echo $postkey; ?>[]" value="<?php echo $checkbox; ?>"<?php if (in_array($checkbox, $setOptions)) echo 'checked="checked"'; ?><?php echo $disabled; ?> />
 										<?php if (!$behind) echo($display); ?>
 									</label>
 									<?php
@@ -859,7 +885,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 							break;
 						case OPTION_TYPE_CHECKBOX_UL:
 							?>
-							<td width="350">
+							<td class="option_value">
 								<?php
 								$all = true;
 								$cvarray = array();
@@ -903,11 +929,51 @@ function printAdminHeader($tab, $subtab = NULL) {
 							</td>
 							<?php
 							break;
+						case OPTION_TYPE_CHECKBOX_ULLIST:
+							?>
+							<td class="option_value">
+								<input class="" type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'array-' . $postkey; ?>" value="1" />
+								<?php
+								$setOptions = getSerializedArray($v);
+								$all = empty($setOptions);
+								?>
+								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'array-' . $postkey; ?>" value="1" />
+								<ul class="customchecklist">
+									<?php
+									foreach ($row['checkboxes'] as $display => $checkbox) {
+
+										$display = str_replace(' ', '&nbsp;', $display);
+										?>
+										<li>
+											<label class="displayinline">
+												<input type="checkbox" id="__<?php echo $checkbox; ?>" class="all_<?php echo $key; ?>" name="<?php echo $postkey; ?>[]" value="<?php echo $checkbox; ?>"<?php if (in_array($checkbox, $setOptions)) echo 'checked="checked"'; ?><?php echo $disabled; ?> />
+												<?php echo($display); ?>
+											</label>
+										</li>
+										<?php
+									}
+									?>
+								</ul>
+								<script type="text/javascript">
+									// <!-- <![CDATA[
+									function <?php echo $key; ?>_all() {
+										var check = $('#all_<?php echo $key; ?>').prop('checked');
+										$('.all_<?php echo $key; ?>').prop('checked', check);
+									}
+									// ]]> -->
+								</script>
+								<label>
+									<input type="checkbox" name="all_<?php echo $key; ?>" id="all_<?php echo $key; ?>" class="all_<?php echo $key; ?>" onclick="<?php echo $key; ?>_all();" <?php if ($all) echo ' checked="checked"'; ?>/>
+									<?php echo gettext('all'); ?>
+								</label>
+							</td>
+							<?php
+							break;
 						case OPTION_TYPE_COLOR_PICKER:
 							if (empty($v))
 								$v = '#000000';
 							?>
-							<td width="350" style="margin:0; padding:0">
+							<td class="option_value" style="margin:0; padding:0">
 								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'text-' . $postkey; ?>" value="1" />
 								<script type="text/javascript">
 									// <!-- <![CDATA[
@@ -918,8 +984,8 @@ function printAdminHeader($tab, $subtab = NULL) {
 								</script>
 								<table style="margin:0; padding:0" >
 									<tr>
-										<td><input type="text" id="<?php echo $key; ?>" name="<?php echo $postkey; ?>"	value="<?php echo $v; ?>" style="height:100px; width:100px; float:right;" /></td>
-										<td><div id="<?php echo $key; ?>_colorpicker"></div></td>
+										<td><input type="text" id="__<?php echo $key; ?>" name="<?php echo $postkey; ?>"	value="<?php echo $v; ?>" style="height:100px; width:100px; float:right;" /></td>
+										<td><div id="__<?php echo $key; ?>_colorpicker"></div></td>
 									</tr>
 								</table>
 							</td>
@@ -929,7 +995,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 							$min = $row['min'];
 							$max = $row['max'];
 							?>
-							<td width="350" style="margin:0; padding:0">
+							<td class="option_value" style="margin:0; padding:0">
 								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'slider-' . $postkey; ?>" value="1" />
 								<?php putSlider('', $postkey, $min, $max, $v); ?>
 							</td>
@@ -938,7 +1004,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					}
 					if ($type != OPTION_TYPE_NOTE) {
 						?>
-						<td><?php echo $desc; ?></td>
+						<td class="option_desc"><?php echo $desc; ?></td>
 						<?php
 					}
 					?>
@@ -981,6 +1047,13 @@ function printAdminHeader($tab, $subtab = NULL) {
 						break;
 					case 'chkbox':
 						$value = (int) isset($_POST[$postkey]);
+						break;
+					case 'array':
+						if (isset($_POST[$postkey])) {
+							$value = serialize($_POST[$postkey]);
+						} else {
+							$value = serialize(array());
+						}
 						break;
 					case 'save':
 						$customHandlers[] = array('whom' => $key, 'extension' => sanitize($_POST[$posted]));
@@ -1077,7 +1150,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			?>
 			<label<?php if ($class) echo ' class="' . $class . '"'; ?>>
 				<?php if ($behind) echo $text; ?>
-				<input type="radio" name="<?php echo $option; ?>" id="<?php echo $option . '-' . $value; ?>" value="<?php echo $value; ?>"<?php echo $checked; ?><?php echo $disabled; ?> />
+				<input type="radio" name="<?php echo $option; ?>" id="__<?php echo $option . '-' . $value; ?>" value="<?php echo $value; ?>"<?php echo $checked; ?><?php echo $disabled; ?> />
 				<?php if (!$behind) echo $text; ?>
 			</label>
 			<?php
@@ -1397,6 +1470,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					<img	src="images/fail.png" alt="" />
 					<strong><?php echo gettext("Reset"); ?></strong>
 				</button>
+				<br class="clearall">
 				<div class="floatright">
 					<?php
 					if (!$album->isDynamic()) {
@@ -1417,14 +1491,17 @@ function printAdminHeader($tab, $subtab = NULL) {
 						<strong><?php echo gettext('View Album'); ?></strong>
 					</a>
 				</div>
+
 			</span>
 			<?php
 		}
+		$bglevels = array('#fff', '#f8f8f8', '#efefef', '#e8e8e8', '#dfdfdf', '#d8d8d8', '#cfcfcf', '#c8c8c8');
 		?>
-		<br class="clearall" /><br />
-		<table class="formlayout">
-			<tr>
-				<td valign="top">
+		<br class="clearall" />
+		<br />
+		<div class="formlayout">
+			<div class="floatleft">
+				<div>
 					<table class="width100percent">
 						<tr>
 							<td class="leftcolumn">
@@ -1469,7 +1546,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						?>
 						<tr>
 							<td class="leftcolumn">
-								<?php echo gettext("Album Description:"); ?>
+								<?php echo gettext("Album Description"); ?>
 							</td>
 							<td>
 								<?php print_language_string_list($album->getDesc('all'), $prefix . "albumdesc", true, NULL, 'texteditor', '100%'); ?>
@@ -1481,7 +1558,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 							<tr class="password<?php echo $suffix; ?>extrashow">
 								<td class="leftcolumn">
 									<a onclick="toggle_passwords('<?php echo $suffix; ?>', true);">
-										<?php echo gettext("Album password:"); ?>
+										<?php echo gettext("Album password"); ?>
 									</a>
 								</td>
 								<td class="middlecolumn">
@@ -1507,7 +1584,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 							<tr class="password<?php echo $suffix; ?>extrahide" style="display:none" >
 								<td class="leftcolumn">
 									<a onclick="toggle_passwords('<?php echo $suffix; ?>', false);">
-										<?php echo gettext("Album guest user:"); ?>
+										<?php echo gettext("Album guest user"); ?>
 									</a>
 									<br />
 									<label>
@@ -1530,14 +1607,14 @@ function printAdminHeader($tab, $subtab = NULL) {
 							<tr class="password<?php echo $suffix; ?>extrahide" style="display:none" >
 								<td class="leftcolumn">
 									<p>
-										<span id="strength<?php echo $suffix; ?>"><?php echo gettext("Album password:"); ?></span>
+										<span id="strength<?php echo $suffix; ?>"><?php echo gettext("Album password"); ?></span>
 										<br />
 										<span id="match<?php echo $suffix; ?>" class="password_field_<?php echo $suffix; ?>">
-											<?php echo gettext("repeat password:"); ?>
+											<?php echo gettext("repeat password"); ?>
 										</span>
 									</p>
 									<p>
-										<?php echo gettext("Password hint:"); ?>
+										<?php echo gettext("Password hint"); ?>
 									</p>
 								</td>
 								<td>
@@ -1577,7 +1654,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						 */
 						?>
 						<tr>
-							<td class="leftcolumn"><?php echo gettext("Sort subalbums by:"); ?> </td>
+							<td class="leftcolumn"><?php echo gettext("Sort subalbums by"); ?> </td>
 							<td>
 								<span class="nowrap">
 									<select id="albumsortselect<?php echo $prefix; ?>" name="<?php echo $prefix; ?>subalbumsortby" onchange="update_direction(this, 'album_direction_div<?php echo $suffix; ?>', 'album_custom_div<?php echo $suffix; ?>');">
@@ -1608,7 +1685,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										<?php echo gettext("Descending"); ?>
 										<input type="checkbox" name="<?php echo $prefix; ?>album_sortdirection" value="1" <?php
 										if ($album->getSortDirection('album')) {
-											echo "CHECKED";
+											echo ' checked="checked"';
 										};
 										?> />
 									</label>
@@ -1623,7 +1700,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 								?>
 								<span id="album_custom_div<?php echo $suffix; ?>" class="customText" style="display:<?php echo $dsp; ?>;white-space:nowrap;">
 									<br />
-									<?php echo gettext('custom fields:') ?>
+									<?php echo gettext('custom fields') ?>
 									<span class="tagSuggestContainer">
 										<input id="customalbumsort<?php echo $suffix; ?>" class="customalbumsort" name="<?php echo $prefix; ?>customalbumsort" type="text" value="<?php echo html_encode($cvt); ?>" />
 									</span>
@@ -1681,7 +1758,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 								?>
 								<span id="image_custom_div<?php echo $suffix; ?>" class="customText" style="display:<?php echo $dsp; ?>;white-space:nowrap;">
 									<br />
-									<?php echo gettext('custom fields:') ?>
+									<?php echo gettext('custom fields') ?>
 									<span class="tagSuggestContainer">
 										<input id="customimagesort<?php echo $suffix; ?>" class="customimagesort" name="<?php echo $prefix; ?>customimagesort" type="text" value="<?php echo html_encode($cvt); ?>" />
 									</span>
@@ -1693,7 +1770,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						if (is_null($album->getParent())) {
 							?>
 							<tr>
-								<td class="leftcolumn"><?php echo gettext("Album theme:"); ?> </td>
+								<td class="leftcolumn"><?php echo gettext("Album theme"); ?> </td>
 								<td>
 									<select id="album_theme" class="album_theme" name="<?php echo $prefix; ?>album_theme"	<?php if (!zp_loggedin(THEMES_RIGHTS)) echo 'disabled="disabled" '; ?>	>
 										<?php
@@ -1726,7 +1803,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						if (!$album->isDynamic()) {
 							?>
 							<tr>
-								<td class="leftcolumn"><?php echo gettext("Album watermarks:"); ?> </td>
+								<td class="leftcolumn"><?php echo gettext("Album watermarks"); ?> </td>
 								<td>
 									<?php $current = $album->getWatermark(); ?>
 									<select id="album_watermark<?php echo $suffix; ?>" name="<?php echo $prefix; ?>album_watermark">
@@ -1771,7 +1848,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 							}
 							?>
 							<tr>
-								<td class="leftcolumn"><?php echo gettext("Thumbnail:"); ?> </td>
+								<td class="leftcolumn"><?php echo gettext("Thumbnail"); ?> </td>
 								<td>
 									<?php
 									if ($showThumb) {
@@ -1862,9 +1939,10 @@ function printAdminHeader($tab, $subtab = NULL) {
 						echo $custom = zp_apply_filter('edit_album_custom_data', '', $album, $prefix);
 						?>
 					</table>
-				</td>
-				<?php $bglevels = array('#fff', '#f8f8f8', '#efefef', '#e8e8e8', '#dfdfdf', '#d8d8d8', '#cfcfcf', '#c8c8c8'); ?>
-				<td class="rightcolumn" valign="top">
+				</div>
+			</div>
+			<div class="floatleft">
+				<div class="rightcolumn" valign="top">
 					<h2 class="h2_bordered_edit"><?php echo gettext("General"); ?></h2>
 					<div class="box-edit">
 						<label class="checkboxlabel">
@@ -2075,13 +2153,12 @@ function printAdminHeader($tab, $subtab = NULL) {
 						?>
 						<span class="clearall" ></span>
 					</div>
-				</td>
-			</tr>
-
-		</table>
-
+				</div>
+			</div>
+		</div>
 
 		<br class="clearall" />
+		<br />
 		<?php
 		if ($buttons) {
 			?>
@@ -2672,11 +2749,17 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 * @param string $locale optional locale of the translation desired
 	 * @param string $edit optional class
 	 * @param int $wide column size. true or false for the standard or short sizes. Or pass a column size
-	 * @param string $ulclass set to the class for the UL element
 	 * @param int $rows set to the number of rows to show.
+	 * @param deprecated xrows %ulclass parameter was deprecated promoting rows to that positon. This allows for migration
 	 */
-	function print_language_string_list($dbstring, $name, $textbox = false, $locale = NULL, $edit = '', $wide = TEXT_INPUT_SIZE, $ulclass = 'language_string_list', $rows = 6) {
+	function print_language_string_list($dbstring, $name, $textbox = false, $locale = NULL, $edit = '', $wide = TEXT_INPUT_SIZE, $rows = 6, $xrows = 6) {
 		global $_zp_active_languages, $_zp_current_locale, $_lsInstance;
+		if (!is_numeric($rows)) { //	deprecation of $ulclass parameter
+			if (class_exists('deprecated_functions')) {
+				deprecated_functions::notify(gettext("The \$ulclass parameter is deprecated. You should remove '$rows' from your print_language_string_list() function calls."));
+			}
+			$rows = $xrows;
+		}
 		$dbstring = zpFunctions::unTagURLs($dbstring);
 		if (!empty($edit))
 			$edit = ' class="' . $edit . '"';
@@ -2693,15 +2776,28 @@ function printAdminHeader($tab, $subtab = NULL) {
 		}
 		$activelang = generateLanguageList();
 		$allLang = array_flip(generateLanguageList('all'));
-
+		$multi = getOption('multi_lingual');
 		foreach ($strings as $lang => $v) {
 			if (!array_key_exists($lang, $activelang)) {
 				$activelang[$allLang[$lang]] = $lang;
 			}
 		}
-		echo '<div id="ls_' . ++$_lsInstance . '">' . "\n";
 
-		if ($multi = getOption('multi_lingual') && !empty($activelang)) {
+		if ($multi && !$_lsInstance) {
+			?>
+			<script type="text/javascript" charset="utf-8">
+				// <!-- <![CDATA[
+				function lsclick(key, id) {
+					$('.lbx-' + id).hide();
+					$('#lb' + key + '-' + id).show();
+					$('.lbt-' + id).removeClass('selected');
+					$('#lbt-' + key + '-' + id).addClass('selected');
+				}
+				// ]]> -->
+			</script>
+			<?php
+		}
+		if ($multi && !empty($activelang)) {
 			if ($textbox) {
 				if (strpos($wide, '%') === false) {
 					$width = ' cols="' . $wide . '"';
@@ -2753,45 +2849,58 @@ function printAdminHeader($tab, $subtab = NULL) {
 			} else {
 				$class = '';
 			}
-			echo '<ul id="ul_' . $_lsInstance . '" class="' . $ulclass . $class . '"' . ">\n";
-			$empty = true;
-
-			foreach ($emptylang as $key => $lang) {
-				if (isset($strings[$key])) {
-					$string = $strings[$key];
-					if (!empty($string)) {
-						unset($emptylang[$key]);
-						$empty = false;
+			$tabSelected = ' selected';
+			$editHidden = '';
+			?>
+			<div id="ls_<?php echo ++$_lsInstance; ?>" class="flagTabs">
+				<ul id="<?php echo 'lang_selector-' . $_lsInstance; ?>" class="flagTabs">
+					<?php
+					foreach ($emptylang as $key => $lang) {
+						$flag = getLanguageFlag($key);
 						?>
 						<li>
-							<label for="<?php echo $name . '_' . $key; ?>"><?php echo $lang; ?></label>
-							<?php
-							if ($textbox) {
-								echo "\n" . '<textarea name="' . $name . '_' . $key . '"' . $edit . $width . '	rows="' . $rows . '">' . html_encode($string) . '</textarea>';
-							} else {
-								echo '<br /><input id="' . $name . '_' . $key . '" name="' . $name . '_' . $key . '"' . $edit . ' type="text" value="' . html_encode($string) . '"' . $width . ' />';
-							}
-							?>
+							<a class="lbt-<?php echo $_lsInstance . $tabSelected; ?>" id="lbt-<?php echo $key . '-' . $_lsInstance; ?>" onclick="lsclick(<?php echo "'" . $key . "'," . $_lsInstance; ?>);" title="<?php echo $lang; ?>">
+								<img src="<?php echo $flag; ?>" alt="<?php echo $key; ?>" title="<?php echo $lang; ?>" />
+							</a>
 						</li>
 						<?php
-					}
-				}
-			}
-			foreach ($emptylang as $key => $lang) {
-				?>
-				<li>
-					<label for="<?php echo $name . '_' . $key; ?>"><?php echo $lang; ?></label>
-					<?php
-					if ($textbox) {
-						echo "\n" . '<textarea name="' . $name . '_' . $key . '"' . $edit . $width . '	rows="' . $rows . '"></textarea>';
-					} else {
-						echo '<br /><input id="' . $name . '_' . $key . '" name="' . $name . '_' . $key . '"' . $edit . ' type="text" value=""' . $width . ' />';
+						$tabSelected = '';
 					}
 					?>
-				</li>
+				</ul>
+
 				<?php
-			}
-			echo "</ul>\n";
+				foreach ($emptylang as $key => $lang) {
+					if (isset($strings[$key])) {
+						$string = $strings[$key];
+					} else {
+						$string = '';
+					}
+					?>
+
+					<div id="lb<?php echo $key . '-' . $_lsInstance ?>" class="lbx-<?php echo $_lsInstance ?>"<?php echo $editHidden; ?>>
+						<?php
+//						echo $lang;
+						if ($textbox) {
+							?>
+							<textarea name="<?php echo $name . '_' . $key ?>"<?php echo $edit . $width; ?>	rows="<?php echo $rows ?>">
+								<?php echo html_encode($string); ?>
+							</textarea>
+							<?php
+						} else {
+							?>
+
+							<input name="<?php echo $name . '_' . $key ?>"<?php echo $edit . $width; ?> type="text" value="<?php echo html_encode($string); ?>"  />
+							<?php
+						}
+						?>
+					</div>
+					<?php
+					$editHidden = ' style="display:none;"';
+				}
+				?>
+			</div>
+			<?php
 		} else {
 			if ($textbox) {
 				if (strpos($wide, '%') === false) {
@@ -2826,21 +2935,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 					<?php
 				}
 			}
-		}
-		echo "</div>\n";
-		if ($multi) {
-			?>
-			<script type="text/javascript">
-				$(function () {
-					$('#ls_<?php echo $_lsInstance; ?>').resizable({
-						minHeight: 60,
-						resize: function (event, ui) {
-							$(this).css("width", '');
-							$('#ul_<?php echo $_lsInstance; ?>').height($('#ls_<?php echo $_lsInstance; ?>').height());
-						}
-					});
-				});</script>
-			<?php
 		}
 	}
 
@@ -3278,8 +3372,8 @@ function printAdminHeader($tab, $subtab = NULL) {
 			<input type="checkbox" name="<?php echo $id; ?>-rightsenabled" class="user-<?php echo $id; ?>" value="1" checked="checked" <?php echo $alterrights; ?> style="display:none" />
 			<?php
 			foreach ($rightslist as $rightselement => $right) {
-				if ($right['display']) {
-					if (($right['set'] != gettext('Pages') && $right['set'] != gettext('News')) || extensionEnabled('zenpage')) {
+				if (!empty($right['set'])) {
+					if ($right['display'] && (($right['set'] != gettext('Pages') && $right['set'] != gettext('News')) || extensionEnabled('zenpage'))) {
 						if ($activeset != $right['set']) {
 							if ($activeset) {
 								?>
@@ -3302,12 +3396,15 @@ function printAdminHeader($tab, $subtab = NULL) {
 						<?php
 					} else {
 						?>
-						<input type="hidden" name="<?php echo $id . '-' . $rightselement; ?>" id="<?php echo $rightselement . '-' . $id; ?>" value="<?php echo $right['value']; ?>" />
-						<?php
-					}
-				}
-			}
-			?>
+						<input type="hidden" name="<?php echo $id . '-' . $rightselement; ?>" id="<?php echo $rightselement . '-' . $id; ?>" value="<?php echo $right['value']; ?>"<?php
+						if ($rights & $right['value'])
+							echo ' checked="checked"';
+						?> />
+									 <?php
+								 }
+							 }
+						 }
+						 ?>
 		</fieldset>
 	</div>
 	<?php
@@ -4730,7 +4827,7 @@ function admin_album_list($owner) {
  */
 function getLogTabs() {
 	$new = $subtabs = array();
-	$default = NULL;
+	$default_viewed = $default = NULL;
 	$localizer = array('setup' => gettext('setup'), 'security' => gettext('security'), 'debug' => gettext('debug'), 'deprecated' => gettext('deprecated'));
 	$filelist = safe_glob(SERVERPATH . "/" . DATA_FOLDER . '/*.log');
 	if (count($filelist) > 0) {
@@ -4747,6 +4844,7 @@ function getLogTabs() {
 			if ($log == $tab) {
 				$default = $tab;
 			}
+
 			if (array_key_exists($log, $localizer)) {
 				$logfiletext = $localizer[$log];
 			} else {
@@ -4754,7 +4852,15 @@ function getLogTabs() {
 			}
 			$subtabs = array_merge($subtabs, array($logfiletext => 'admin-logs.php?page=logs&tab=' . $log));
 			if (filesize($logfile) > 0 && empty($default)) {
-				$default = $log;
+				$default_viewed = $log;
+			}
+		}
+		if (empty($default)) {
+			if (empty($new)) {
+				$default = $default_viewed;
+			} else {
+				$default = $new;
+				$default = array_shift($default);
 			}
 		}
 	}

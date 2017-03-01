@@ -12,6 +12,9 @@ $dbSoftware = db_software();
 $indexComments = version_compare($dbSoftware['version'], '5.5.0') >= 0;
 
 $database = $orphans = array();
+$collation = db_collation();
+$template = unserialize(file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/databaseTemplate'));
+
 foreach (getDBTables() as $table) {
 	$tablecols = db_list_fields($table);
 	foreach ($tablecols as $key => $datum) {
@@ -78,35 +81,71 @@ foreach (getDBTables() as $table) {
 	}
 }
 
-$collation = db_collation();
-$template = unserialize(file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/databaseTemplate'));
+//metadata display and disalbe options
+$display = getOption('metadata_displayed');
+$validMetadataOptions = false;
+
+if (is_null($display)) {
+	$disable = array();
+	$display = array();
+
+//clean up metadata item options.
+	foreach (array('iptc', 'exif', 'xmp', 'video') as $cat) {
+		foreach (getOptionsLike($cat) as $option => $name) {
+			if (!in_array($option, array('iptc_encoding', 'xmpmetadata_suffix', 'video_watermark'))) {
+				$validMetadataOptions = true;
+				$matches = explode('-', $option);
+				if (isset($matches[1])) {
+					$key = $matches[0];
+
+					if ($matches[1] == 'display') {
+						$display[$key] = $key;
+					} else if ($matches[1] == 'disabled') {
+						$disable[$key] = $key;
+					}
+				}
+				purgeOption($option);
+			}
+		}
+	}
+} else {
+	$validMetadataOptions = true;
+	$display = getSerializedArray($display);
+	$disable = getSerializedArray(getOption('metadata_disabled'));
+}
 
 //Add in the enabled image metadata fields
-$metadataProviders = array(zpFunctions::exifvars(), 'class-video' => 'Video', 'xmpMetadata' => 'xmpMetadata');
+$metadataProviders = array('image', 'class-video' => 'Video', 'xmpMetadata' => 'xmpMetadata');
 foreach ($metadataProviders as $source => $handler) {
-	if (is_array($handler)) {
+	if ($handler == 'image') {
 		$enabled = true;
-		$exifvars = $handler;
 	} else {
 		$enabled = extensionEnabled($source);
 		$plugin = getPlugin($source . '.php');
 		require_once($plugin);
-		$exifvars = $handler::getMetadataFields();
-
-		foreach ($exifvars as $key => $item) {
-			if (!is_null($disable = getOption($key . '-disabled'))) {
-				$exifvars[$key][5] = !($disable & true);
-			}
-			if (!is_null($display = getOption($key . '-display'))) {
-				$exifvars[$key][3] = $display;
-			}
-		}
 	}
 
+	$exifvars = $handler::getMetadataFields();
 	foreach ($exifvars as $key => $exifvar) {
-		$s = $exifvar[4];
-		if ($exifvar[5] && $enabled) {
-			switch ($exifvar[6]) {
+		if ($validMetadataOptions) {
+			if (in_array($key, $disable)) {
+				$exifvars[$key][EXIF_DISPLAY] = $exifvars[$key][EXIF_FIELD_ENABLED] = $exifvar[EXIF_FIELD_ENABLED] = false;
+			} else {
+				$exifvars[$key][EXIF_DISPLAY] = isset($display[$key]);
+				$exifvars[$key][EXIF_FIELD_ENABLED] = $exifvar[EXIF_FIELD_ENABLED] = true;
+			}
+		} else {
+			if ($exifvars[$key][EXIF_DISPLAY]) {
+				$display[$key] = $key;
+			}
+			if (!$exifvars[$key][EXIF_FIELD_ENABLED]) {
+				$disable[$key] = $key;
+			}
+		}
+
+		$s = $exifvar[EXIF_FIELD_SIZE];
+		if ($exifvar[EXIF_FIELD_ENABLED] && $enabled) {
+			switch ($exifvar[EXIF_FIELD_TYPE]) {
 				case 'string':
 					if ($s < 255) {
 						$s = "varchar($s)";
@@ -122,11 +161,11 @@ foreach ($metadataProviders as $source => $handler) {
 					break;
 			}
 			$field = array(
-							'Field'		 => $key,
-							'Type'		 => $s,
-							'Null'		 => 'YES',
-							'Default'	 => null,
-							'Comment'	 => 'optional_metadata'
+					'Field' => $key,
+					'Type' => $s,
+					'Null' => 'YES',
+					'Default' => null,
+					'Comment' => 'optional_metadata'
 			);
 			if ($s != 'varchar(0)') {
 				$template['images']['fields'][$key] = $field;
@@ -139,6 +178,7 @@ foreach ($metadataProviders as $source => $handler) {
 	}
 }
 
+//setup database
 foreach ($template as $tablename => $table) {
 	$exists = array_key_exists($tablename, $database);
 	if (!$exists) {
@@ -258,6 +298,11 @@ foreach ($template as $tablename => $table) {
 		}
 	}
 }
+
+// now the database is setup we can store the options
+setOptionDefault('metadata_disabled', serialize($disable));
+setOptionDefault('metadata_displayed', serialize($display));
+
 foreach ($orphans as $message) {
 	setupLog($message, true);
 }

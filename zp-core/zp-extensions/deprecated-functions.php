@@ -14,10 +14,7 @@
  * 	<dt><var>final static</var></dt><dd>class methods with parameters which have been deprecated.</dd>
  * </dl>
  *
- * The default settings cause an <var>E_USER_NOTICE</var> error to be generated when the function is used.
- * The text of the error message will tell you how to replace calls on the deprecated function. The error
- * message can be disabled to allow your scripts to continue to run. Visit the <i>deprecated-functions</i>
- * plugin options. Find the function and uncheck the box by the function.
+ * 	A log entry in the <var>deprecated</var> log is created if a deprecated function is invoked.
  *
  * A utility button is provided that allows you to search themes and plugins for uses of functions which have been deprecated.
  * Use it to be proactive in replacing or changing these items.
@@ -29,7 +26,6 @@
  */
 $plugin_description = gettext("Provides replacements for deprecated functions.");
 $plugin_notice = gettext("This plugin is <strong>NOT</strong> required for the distributed code.");
-$option_interface = 'deprecated_functions';
 $plugin_is_filter = 900 | CLASS_PLUGIN;
 
 define('DEPRECATED_LOG', SERVERPATH . '/' . DATA_FOLDER . '/deprecated.log');
@@ -44,11 +40,22 @@ class deprecated_functions {
 
 	function __construct() {
 
+		if (OFFSET_PATH == 2) {
+			//clean up the mess from previous implementation
+			$sql = 'SELECT * FROM ' . prefix('options') . ' WHERE `name` LIKE "deprecated_%"';
+			$result = query_full_array($sql);
+			foreach ($result as $option) {
+				if ($option['name'] != 'deprecated_functions_signature') {
+					purgeOption($option['name']);
+				}
+			}
+		}
 		foreach (getPluginFiles('*.php') as $extension => $plugin) {
 			$deprecated = stripSuffix($plugin) . '/deprecated-functions.php';
 			if (file_exists($deprecated)) {
 				$plugin = basename(dirname($deprecated));
-				$content = preg_replace('~#.*function~', '', file_get_contents($deprecated)); //	remove the comments!
+				$content = file_get_contents($deprecated);
+				$content = preg_replace('~#(.*)\n~', '', $content);
 				preg_match_all('~@deprecated\s+.*since\s+.*(\d+\.\d+\.\d+)~', $content, $versions);
 				preg_match_all('/([public static|static]*)\s*function\s+(.*)\s?\(.*\)\s?\{/', $content, $functions);
 				if ($plugin == 'deprecated-functions') {
@@ -58,7 +65,6 @@ class deprecated_functions {
 					$suffix = ' (' . $plugin . ')';
 				}
 				foreach ($functions[2] as $key => $function) {
-
 					if ($functions[1][$key]) {
 						$flag = '_method';
 						$star = '*';
@@ -68,7 +74,6 @@ class deprecated_functions {
 					$name = $function . $star . $suffix;
 					$option = 'deprecated_' . $plugin . '_' . $function . $flag;
 
-					setOptionDefault($option, 1);
 					$this->unique_functions[strtolower($function)] = $this->listed_functions[$name] = array(
 							'plugin' => $plugin,
 							'function' => $function,
@@ -79,20 +84,6 @@ class deprecated_functions {
 				}
 			}
 		}
-	}
-
-	function getOptionsSupported() {
-		$options = $deorecated = $list = array();
-		foreach ($this->listed_functions as $funct => $details) {
-			$list[$funct] = $details['option'];
-		}
-
-		$options[gettext('Functions')] = array('key' => 'deprecated_Function_list', 'type' => OPTION_TYPE_CHECKBOX_UL,
-				'checkboxes' => $list,
-				'order' => 1,
-				'desc' => gettext('Send the <em>deprecated</em> notification message if the function name is checked. Un-checking these boxes will allow you to continue using your theme without warnings while you upgrade its implementation. Functions flagged with an asterisk are class methods. Ones flagged with two asterisks have deprecated parameters.'));
-
-		return $options;
 	}
 
 	static function tabs($tabs) {
@@ -137,9 +128,7 @@ class deprecated_functions {
 	 * used to provided deprecated function notification.
 	 */
 
-	static function
-
-	notify($use) {
+	static function notify($use) {
 		$traces = @debug_backtrace();
 		$fcn = $traces[1]['function'];
 		if (empty($fcn))
@@ -159,7 +148,7 @@ class deprecated_functions {
 		}
 		if (isset($traces[1]['file']) && isset($traces[1]['line'])) {
 
-			$path = explode('/', str_replace(SERVERPATH . '/', '', trim(str_replace('\\', '/', $traces[1]['file']), '/')));
+			$path = explode('/', replaceScriptPath($traces[1]['file']));
 			switch (array_shift($path)) {
 				case THEMEFOLDER:
 					$script = sprintf(gettext('theme %1$s:%2$s'), array_shift($path), array_pop($path));

@@ -310,7 +310,7 @@ class Image extends MediaObject {
 		// Put together an array of EXIF data to return
 		foreach ($_zp_exifvars as $field => $exifvar) {
 			//	only enabled image metadata
-			if ($_zp_exifvars[$field][5]) {
+			if ($_zp_exifvars[$field][EXIF_FIELD_ENABLED]) {
 				$exif[$field] = $this->get($field);
 			}
 		}
@@ -325,7 +325,7 @@ class Image extends MediaObject {
 	 */
 	private function fetchMetadata($field) {
 		global $_zp_exifvars;
-		if ($_zp_exifvars[$field][5]) {
+		if ($_zp_exifvars[$field][EXIF_FIELD_ENABLED]) {
 			return $this->get($field);
 		} else {
 			return NULL;
@@ -409,10 +409,10 @@ class Image extends MediaObject {
 					$this->set('hasMetadata', 1);
 					foreach ($_zp_exifvars as $field => $exifvar) {
 						$exif = NULL;
-						if (isset($exifraw[$exifvar[0]][$exifvar[1]])) {
-							$exif = trim(sanitize($exifraw[$exifvar[0]][$exifvar[1]], 1));
-						} else if (isset($exifraw[$exifvar[0]]['MakerNote'][$exifvar[1]])) {
-							$exif = trim(sanitize($exifraw[$exifvar[0]]['MakerNote'][$exifvar[1]], 1));
+						if (isset($exifraw[$exifvar[EXIF_SOURCE]][$exifvar[EXIF_KEY]])) {
+							$exif = trim(sanitize($exifraw[$exifvar[EXIF_SOURCE]][$exifvar[EXIF_KEY]], 1));
+						} else if (isset($exifraw[$exifvar[EXIF_SOURCE]]['MakerNote'][$exifvar[EXIF_KEY]])) {
+							$exif = trim(sanitize($exifraw[$exifvar[EXIF_SOURCE]]['MakerNote'][$exifvar[EXIF_KEY]], 1));
 						}
 						$this->set($field, $exif);
 					}
@@ -438,13 +438,13 @@ class Image extends MediaObject {
 						}
 						// Extract IPTC fields of interest
 						foreach ($_zp_exifvars as $field => $exifvar) {
-							if ($exifvar[0] == 'IPTC') {
-								$datum = self::getIPTCTag($IPTCtags[$exifvar[1]], $iptc);
+							if ($exifvar[EXIF_SOURCE] == 'IPTC') {
+								$datum = self::getIPTCTag($IPTCtags[$exifvar[EXIF_KEY]], $iptc);
 								$this->set($field, $this->prepIPTCString($datum, $characterset));
 							}
 						}
 						/* iptc keywords (tags) */
-						if ($_zp_exifvars['IPTCKeywords'][5]) {
+						if ($_zp_exifvars['IPTCKeywords'][EXIF_FIELD_ENABLED]) {
 							$datum = self::getIPTCTagArray($IPTCtags['Keywords'], $iptc);
 							if (is_array($datum)) {
 								$tags = array();

@@ -1444,12 +1444,12 @@ function sortMultiArray($data, $field, $desc = false, $nat = true, $case = false
 	//create the comparator function
 	$comp = 'str';
 	if ($nat) {
-		$comp .='nat';
+		$comp .= 'nat';
 	}
 	if ($case) {
-		$comp .='case';
+		$comp .= 'case';
 	}
-	$comp .='cmp';
+	$comp .= 'cmp';
 	if ($desc) {
 		uasort($data, function($b, $a) use($field, $comp) {
 			$retval = 0;
@@ -1913,8 +1913,9 @@ function getOptionFromDB($key) {
  * @param object $album
  * @param string $theme default theme
  * @param bool $default set to true for setting default theme options (does not set the option if it already exists)
+ * @param string $creator the caller of setThemeOptionDefault()
  */
-function setThemeOption($key, $value, $album, $theme, $default = false) {
+function setThemeOption($key, $value, $album = NULL, $theme = NULL, $default = false, $creator = NULL) {
 	global $_zp_options;
 	if (is_null($album)) {
 		$id = 0;
@@ -1922,9 +1923,17 @@ function setThemeOption($key, $value, $album, $theme, $default = false) {
 		$id = $album->getID();
 		$theme = $album->getAlbumTheme();
 	}
-	$creator = THEMEFOLDER . '/' . $theme;
+	if (!$creator) {
+		list($th, $cr) = getOptionOwner();
+		if (is_null($theme) || $theme == basename($th)) {
+			$theme = $th;
+			$creator = $cr;
+		} else { // core functions in behalf of the theme
+			$creator = THEMEFOLDER . '/' . $theme . '[' . $cr . ']';
+		}
+	}
 
-	$sql = 'INSERT INTO ' . prefix('options') . ' (`name`,`ownerid`,`theme`,`creator`,`value`) VALUES (' . db_quote($key) . ',0,' . db_quote($theme) . ',' . db_quote($creator) . ',';
+	$sql = 'INSERT INTO ' . prefix('options') . ' (`name`,`ownerid`,`theme`,`creator`,`value`) VALUES (' . db_quote($key) . ',' . $id . ',' . db_quote($theme) . ',' . db_quote($creator) . ',';
 	$sqlu = ' ON DUPLICATE KEY UPDATE `value`=';
 	if (is_null($value)) {
 		$sql .= 'NULL';
@@ -1951,10 +1960,8 @@ function setThemeOption($key, $value, $album, $theme, $default = false) {
  * @param mixed $value
  */
 function setThemeOptionDefault($key, $value) {
-	$bt = debug_backtrace();
-	$b = array_shift($bt);
-	$theme = basename(dirname($b['file']));
-	setThemeOption($key, $value, NULL, $theme, true);
+	list($theme, $creator) = getOptionOwner();
+	setThemeOption($key, $value, NULL, $theme, true, $creator);
 }
 
 /**
@@ -2487,12 +2494,14 @@ class zpFunctions {
 			return $exifvars;
 		}
 
+		$disable = getSerializedArray(getOption('metadata_disabled'));
+		$display = getSerializedArray(getOption('metadata_displayed'));
 		foreach ($exifvars as $key => $item) {
-			if (!is_null($disable = getOption($key . '-disabled'))) {
-				$exifvars[$key][5] = !($disable & true);
-			}
-			if (!is_null($display = getOption($key . '-display'))) {
-				$exifvars[$key][3] = $display;
+			if (in_array($key, $disable)) {
+				$exifvars[$key][EXIF_DISPLAY] = $exifvars[$key][EXIF_FIELD_ENABLED] = false;
+			} else {
+				$exifvars[$key][EXIF_DISPLAY] = isset($display[$key]);
+				$exifvars[$key][EXIF_FIELD_ENABLED] = true;
 			}
 		}
 		return $exifvars;
@@ -2509,14 +2518,22 @@ class zpFunctions {
 	 */
 	static function exifOptions($whom, $disable, $list) {
 		$reenable = false;
+		$disabled = getSerializedArray(getOption('metadata_disabled'));
+
 		foreach ($list as $key => $exifvar) {
-			$v = $exifvar[5] = getOption($key . '_disabled');
+			$v = $exifvar[5] = in_array($key, $disabled);
 			if ($exifvar[4] && $v != $disable) {
 				$reenable = true;
 			}
-			setOption($key . '_disabled', $disable | ($v & 1));
+			if ($disable | $v) {
+				$disabled[$key] = $key;
+			} else {
+				unset($disabled[$key]);
+			}
 			$list[$key][5] = $disable == 0;
 		}
+		setOption('metadata_disabled', serialize($disabled));
+
 		if (OFFSET_PATH == 2) {
 			metadataFields($list);
 		} else {

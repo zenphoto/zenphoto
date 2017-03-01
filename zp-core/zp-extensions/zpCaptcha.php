@@ -3,7 +3,7 @@
  * Default captcha handler
  *
  * @author Stephen Billard (sbillard)
- * 
+ *
  * @package plugins
  * @subpackage admin
  */
@@ -28,6 +28,7 @@ class zpCaptcha extends _zp_captcha {
 	function __construct() {
 		global $plugin_is_filter;
 		if (OFFSET_PATH == 2) {
+			setOptionDefault('zenphoto_captcha_font', '');
 			setOptionDefault('zenphoto_captcha_length', 5);
 			setOptionDefault('zenphoto_captcha_font_size', 18);
 			setOptionDefault('zenphoto_captcha_key', sha1($_SERVER['HTTP_HOST'] . 'a9606420399a77387af2a4b541414ee5' . getUserIP()));
@@ -43,26 +44,26 @@ class zpCaptcha extends _zp_captcha {
 	function getOptionsSupported() {
 		$fontlist = zp_getFonts();
 		$options = array(
-						gettext('Hash key')						 => array('key'		 => 'zenphoto_captcha_key', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 2,
-										'desc'	 => gettext('The key used in hashing the CAPTCHA string. Note: this key will change with each successful CAPTCHA verification.')),
-						gettext('Allowed characters')	 => array('key'		 => 'zenphoto_captcha_string', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 1,
-										'desc'	 => gettext('The characters which may appear in the CAPTCHA string.')),
-						gettext('CAPTCHA length')			 => array('key'			 => 'zenphoto_captcha_length', 'type'		 => OPTION_TYPE_RADIO,
-										'order'		 => 0,
-										'buttons'	 => array(gettext('3') => 3, gettext('4') => 4, gettext('5') => 5, gettext('6') => 6),
-										'desc'		 => gettext('The number of characters in the CAPTCHA.')),
-						gettext('CAPTCHA font')				 => array('key'				 => 'zenphoto_captcha_font', 'type'			 => OPTION_TYPE_SELECTOR,
-										'order'			 => 3,
-										'selections' => array_merge(array('*' . gettext('random') . '*' => '*'), $fontlist),
-										'desc'			 => gettext('The font to use for CAPTCHA characters.')),
-						gettext('CAPTCHA font size')	 => array('key'		 => 'zenphoto_captcha_font_size', 'type'	 => OPTION_TYPE_NUMBER,
-										'order'	 => 3.5,
-										'desc'	 => gettext('The size to use if the font is scalable (<em>TTF</em> and <em>Imagick</em> fonts.)')),
-						''														 => array('key'		 => 'zenphoto_captcha_image', 'type'	 => OPTION_TYPE_CUSTOM,
-										'order'	 => 4,
-										'desc'	 => gettext('Sample CAPTCHA image'))
+				gettext('Hash key') => array('key' => 'zenphoto_captcha_key', 'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 2,
+						'desc' => gettext('The key used in hashing the CAPTCHA string. Note: this key will change with each successful CAPTCHA verification.')),
+				gettext('Allowed characters') => array('key' => 'zenphoto_captcha_string', 'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 1,
+						'desc' => gettext('The characters which may appear in the CAPTCHA string.')),
+				gettext('CAPTCHA length') => array('key' => 'zenphoto_captcha_length', 'type' => OPTION_TYPE_RADIO,
+						'order' => 0,
+						'buttons' => array(gettext('3') => 3, gettext('4') => 4, gettext('5') => 5, gettext('6') => 6),
+						'desc' => gettext('The number of characters in the CAPTCHA.')),
+				gettext('CAPTCHA font') => array('key' => 'zenphoto_captcha_font', 'type' => OPTION_TYPE_SELECTOR,
+						'order' => 3,
+						'selections' => array_merge(array('*' . gettext('random') . '*' => '*'), $fontlist),
+						'desc' => gettext('The font to use for CAPTCHA characters.')),
+				gettext('CAPTCHA font size') => array('key' => 'zenphoto_captcha_font_size', 'type' => OPTION_TYPE_NUMBER,
+						'order' => 3.5,
+						'desc' => gettext('The size to use if the font is scalable (<em>TTF</em> and <em>Imagick</em> fonts.)')),
+				'' => array('key' => 'zenphoto_captcha_image', 'type' => OPTION_TYPE_CUSTOM,
+						'order' => 4,
+						'desc' => gettext('Sample CAPTCHA image'))
 		);
 		return $options;
 	}
@@ -73,8 +74,8 @@ class zpCaptcha extends _zp_captcha {
 		<span id="zenphoto_captcha_image_loc"><?php echo $captcha['html']; ?></span>
 		<script type="text/javascript">
 			// <!-- <![CDATA[
-			$(document).ready(function() {
-				$('#zenphoto_captcha_font').change(function() {
+			$(document).ready(function () {
+				$('#zenphoto_captcha_font').change(function () {
 					var base = $('#zenphoto_captcha_image_loc').html();
 					var match = base.match(/src=".*"\s/gi) + '%';
 					if ((i = match.indexOf('&')) <= 0) {

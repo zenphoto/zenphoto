@@ -26,6 +26,7 @@ $requirePath = getPlugin('themeoptions.php', $theme);
 
 if (!empty($requirePath)) {
 	require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cacheManager.php');
+	require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/colorbox_js.php');
 	require_once(SERVERPATH . '/' . THEMEFOLDER . '/' . $theme . '/themeoptions.php');
 	/* prime the default theme options */
 	$_zp_gallery->setCurrentTheme($theme);

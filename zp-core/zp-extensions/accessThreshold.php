@@ -81,10 +81,10 @@ class accessThreshold {
 		}
 		if (getOption('accessThreshold_CLEAR')) {
 			$recentIP = array();
-			setOption('accessThreshold_CLEAR', 0);
 		} else {
 			$recentIP = getSerializedArray(@file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/recentIP'));
 		}
+		purgeOption('accessThreshold_CLEAR');
 		$recentIP['config'] = array(
 				'accessThreshold_IP_RETENTION' => getOption('accessThreshold_IP_RETENTION'),
 				'accessThreshold_THRESHOLD' => getOption('accessThreshold_THRESHOLD'),

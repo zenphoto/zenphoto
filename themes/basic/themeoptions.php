@@ -28,10 +28,10 @@ class ThemeOptions {
 		setThemeOptionDefault('thumb_crop_height', 100);
 		setThemeOptionDefault('thumb_crop', 1);
 		setThemeOptionDefault('thumb_transition', 1);
-		setOptionDefault('colorbox_' . $me . '_album', 1);
-		setOptionDefault('colorbox_' . $me . '_favorites', 1);
-		setOptionDefault('colorbox_' . $me . '_image', 1);
-		setOptionDefault('colorbox_' . $me . '_search', 1);
+
+		if (class_exists('colorbox')) {
+			colorbox::registerScripts(array('album', 'favorites', 'image', 'search'));
+		}
 		if (class_exists('cacheManager')) {
 			$me = basename(dirname(__FILE__));
 			cacheManager::deleteThemeCacheSizes($me);
@@ -41,8 +41,8 @@ class ThemeOptions {
 	}
 
 	function getOptionsSupported() {
-		return array(gettext('Allow search')	 => array('key' => 'Allow_search', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Check to enable search form.')),
-						gettext('Theme colors')	 => array('key' => 'Theme_colors', 'type' => OPTION_TYPE_CUSTOM, 'desc' => gettext('Select the colors of the theme'))
+		return array(gettext('Allow search') => array('key' => 'Allow_search', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Check to enable search form.')),
+				gettext('Theme colors') => array('key' => 'Theme_colors', 'type' => OPTION_TYPE_CUSTOM, 'desc' => gettext('Select the colors of the theme'))
 		);
 	}
 

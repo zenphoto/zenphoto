@@ -121,15 +121,15 @@ class customData {
 	}
 
 	function getOptionsSupported() {
-		return array(gettext('Enabled custom_data') => array('key'				 => 'customDataAlbums', 'type'			 => OPTION_TYPE_CHECKBOX_ARRAY,
-										'checkboxes' => array(// The definition of the checkboxes
-														gettext('Albums')					 => 'customDataAlbums',
-														gettext('Images')					 => 'customDataImages',
-														gettext('News articles')	 => 'customDataNews',
-														gettext('News categories') => 'customDataCategories',
-														gettext('Pages')					 => 'customDataPages'
-										),
-										'desc'			 => gettext('Expose the <code>custom_data</code> field on the admin pages for these objects.'))
+		return array(gettext('Enabled custom_data') => array('key' => 'customDataAlbums', 'type' => OPTION_TYPE_CHECKBOX_ARRAY,
+						'checkboxes' => array(// The definition of the checkboxes
+								gettext('Albums') => 'customDataAlbums',
+								gettext('Images') => 'customDataImages',
+								gettext('News articles') => 'customDataNews',
+								gettext('News categories') => 'customDataCategories',
+								gettext('Pages') => 'customDataPages'
+						),
+						'desc' => gettext('Expose the <code>custom_data</code> field on the admin pages for these objects.'))
 		);
 	}
 
@@ -155,9 +155,8 @@ class customData {
 			<td class="topalign-nopadding nowrap"><?php echo gettext("Custom:"); ?></td>
 			<td class="middlecolumn">
 				<?php
-				print_language_string_list($object->getCustomData('all'), 'custom_data', true, NULL, 'custom_data', '100%', 'zenpage_language_string_list', 10);
+				print_language_string_list($object->getCustomData('all'), 'custom_data', true, NULL, 'custom_data', '100%', 10);
 				?>
-
 			</td>
 		</tr>
 		<?php

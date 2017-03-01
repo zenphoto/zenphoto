@@ -186,12 +186,6 @@ DIV.container IMG {
 	height: 500px;
 }
 
-.topalign-padding { /* for left colums on edit pages */
-	vertical-align: top;
-	padding-top: 5px;
-	text-align: left;
-}
-
 .topalign-nopadding { /* for left colums on edit pages */
 	vertical-align: top;
 	padding-top: 5px;
@@ -256,39 +250,6 @@ div.zenpagechecklist label.hover,
 }
 
 * html div.zenpagechecklist label {
-	height: 1%;
-}
-
-
-
-/* CSS for language_string_list - Modified version for zenpage*/
-.zenpage_language_string_list {
-	border: 1px solid #ccc;
-	list-style: none;
-	height: 5.5em;
-	width: 100%;
-	overflow: auto;
-	background-color: white;
-}
-
-.zenpage_language_string_list,.zenpage_language_string_list li {
-	margin: 0;
-	padding: 0;
-	border-bottom: 1px dotted #C6D880;
-}
-
-.zenpage_language_string_list label {
-	display: inline;
-	margin: 0;
-	padding: 0;
-}
-
-.zenpage_language_string_list label:hover,.language_string_list_zenpage label.hover {
-	background: #F1F2F3;
-	color: #333;
-}
-
-* html .zenpage_language_string_list label {
 	height: 1%;
 }
 

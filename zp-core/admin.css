@@ -571,7 +571,7 @@ table.noinput td {
 	word-break: keep-all;
 }
 
-table.bordered {
+.bordered {
 	width: 100%;
 	padding: 0px;
 	border-spacing: 0px;
@@ -593,7 +593,7 @@ table.bordered th {
 	background-repeat: repeat-x;
 }
 
-table.bordered .subhead {
+.bordered .subhead {
 	border-top: 1px solid #cccccc;
 }
 
@@ -667,16 +667,31 @@ table.options tr td {
 	border: none;
 }
 
-table.formlayout {
+.option_name {
+	white-space: nowrap !important;
+	vertical-align: top;
+	text-align:left;
+}
+
+.option_value {
+	min-width: 350;
+}
+
+.option_desc {
+	min-width: 300;
+	max-width: 500px;
+}
+
+.formlayout {
 	width: 100%;
 }
 
-table.formlayout td {
+.formlayout td {
 	padding: 2px;
 	vertical-align: top;
 }
 
-table.formlayout td.bulk_checkbox {
+.formlayout td.bulk_checkbox {
 	width: 21px;
 }
 
@@ -761,36 +776,25 @@ div.outerbox {
 	width: 100%;
 }
 
-td.leftcolumn {
-	width: 200px;
-	min-width:150px;
+.leftcolumn {
+	padding-top: 5px;
 	white-space: nowrap;
 	vertical-align: top;
 	text-align:left;
 }
 
-td.rightcolumn {
+.rightcolumn {
 	padding-left: 15px;
 	vertical-align: top;
 	width: 258px;
 }
 
-td.rightcolumnmiddle {
-	padding-left: 15px;
-	vertical-align: top;
-	text-align: left;
-}
-
-td.middlecolumn {
+.middlecolumn {
 	vertical-align: top;
 	padding-right: 20px !important;
-	width: 100%;
+	min-width: 300px;
+	width: 99%;
 }
-
-td.middlecolumn input{
-	width: 100%;
-}
-
 
 
 /* Sortable Images
@@ -2269,6 +2273,72 @@ button.positive,.log_buttons a.positive {
 	overflow:scroll;
 }
 
+
+/* language selector tabs */
+
+div.flagTabs {
+	padding-top: 10px;
+	margin: 0px;
+}
+
+UL.flagTabs {
+	list-style: none;
+	margin: 2px;
+	padding: 0px;
+	display: inline;
+	white-space: nowrap;
+	overflow: scroll;
+}
+
+UL.flagTabs LI {
+	display: inline;
+	padding: 1px;
+}
+
+UL.flagTabs LI A {
+	padding-top: 9px;
+	padding-right: 4px;
+	padding-bottom: 4px;
+	padding-left: 4px;
+	background-color: #EEEEEE;
+	border: 1px solid #C7D3D8;
+	-moz-border-radius: 5px 5px 0px 0px;
+	-khtml-border-radius: 5px 5px 0px 0px;
+	-webkit-border-radius: 5px 5px 0px 0px;
+	border-radius: 5px 5px 0px 0px;
+}
+
+UL.flagTabs LI A.selected {
+	background-color: white;
+	color: black;
+	padding-top: 9px;
+	padding-right: 4px;
+	padding-bottom: 4px;
+	padding-left: 4px;
+}
+
+UL.flagTabs LI A:hover {
+	background-color: white;
+	color: gray;
+	padding-top: 9px;
+	padding-right: 4px;
+	padding-bottom: 4px;
+	padding-left: 4px;
+}
+
+UL.flagTabs LI A:active {
+	background-color: white;
+	color: black;
+	padding-top: 9px;
+	padding-right: 4px;
+	padding-bottom: 4px;
+	padding-left: 4px;
+}
+
+UL.flagTabs LI A:focus {
+	outline: 0;
+}
+
 /* Codeblock fields tabs
 -------------------------------------------------*/
 .codeblock {
@@ -2655,7 +2725,6 @@ tr.highlightselection td {
 	-ms-box-sizing: border-box;
 	box-sizing: border-box;
 }
-
 
 /* thumb albumsort */
 #images,

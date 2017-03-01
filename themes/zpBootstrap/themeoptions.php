@@ -30,20 +30,15 @@ class ThemeOptions {
 		setThemeOptionDefault('zpB_show_exif', true);
 
 		// configure some zenphoto plugin options
-		setOption('colorbox_zpBootstrap_album', 1);
-		setOption('colorbox_zpBootstrap_favorites', 1);
-		setOption('colorbox_zpBootstrap_image', 1);
-		setOption('colorbox_zpBootstrap_search', 1);
-
-		setOption('slideshow_zpBootstrap_album', 1);
-		setOption('slideshow_zpBootstrap_image', 1);
-		setOption('slideshow_zpBootstrap_favorites', 1);
-		setOption('slideshow_zpBootstrap_search', 1);
-
-		setOption('cycle_zpBootstrap_album', 1);
-		setOption('cycle_zpBootstrap_image', 1);
-		setOption('cycle_zpBootstrap_favorites', 1);
-		setOption('cycle_zpBootstrap_search', 1);
+		if (class_exists('colorbox')) {
+			colorbox::registerScripts(array('album', 'favorites', 'image', 'search'));
+		}
+		if (class_exists('slideshow')) {
+			slideshow::registerScripts(array('album', 'favorites', 'image', 'search'));
+		}
+		if (class_exists('cycle')) {
+			cycle::registerScripts(array('album', 'favorites', 'image', 'search'));
+		}
 
 		if (class_exists('cacheManager')) {
 			$me = basename(dirname(__FILE__));
@@ -59,12 +54,12 @@ class ThemeOptions {
 
 	function getOptionsSupported() {
 		return array(
-						gettext('Homepage')			 => array('order' => 1, 'key' => 'zpB_homepage', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext("Display a home page, with a slider of 5 random picts, the gallery description and the latest news.")),
-						gettext('Social Links')	 => array('order' => 2, 'key' => 'zpB_social_links', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext("Check to show some social links.")),
-						gettext('Allow search')	 => array('order' => 5, 'key' => 'allow_search', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext("Check to enable search form.")),
-						gettext('Archive View')	 => array('order' => 6, 'key' => 'zpB_show_archive', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext("Display a link to the Archive list.")),
-						gettext('Tags')					 => array('order' => 7, 'key' => 'zpB_show_tags', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext("Check to show a tag cloud in Archive list, with all the tags of the gallery.")),
-						gettext('Exif')					 => array('order' => 7, 'key' => 'zpB_show_exif', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Show the EXIF Data on Image page. Remember you have to check EXIFs data you want to show on admin>image>information EXIF.'))
+				gettext('Homepage') => array('order' => 1, 'key' => 'zpB_homepage', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext("Display a home page, with a slider of 5 random picts, the gallery description and the latest news.")),
+				gettext('Social Links') => array('order' => 2, 'key' => 'zpB_social_links', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext("Check to show some social links.")),
+				gettext('Allow search') => array('order' => 5, 'key' => 'allow_search', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext("Check to enable search form.")),
+				gettext('Archive View') => array('order' => 6, 'key' => 'zpB_show_archive', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext("Display a link to the Archive list.")),
+				gettext('Tags') => array('order' => 7, 'key' => 'zpB_show_tags', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext("Check to show a tag cloud in Archive list, with all the tags of the gallery.")),
+				gettext('Exif') => array('order' => 7, 'key' => 'zpB_show_exif', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Show the EXIF Data on Image page. Remember you have to check EXIFs data you want to show on admin>image>information EXIF.'))
 		);
 	}
 

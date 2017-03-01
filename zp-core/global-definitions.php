@@ -15,6 +15,7 @@ if (!defined('SORT_NATURAL'))
 if (!defined('SORT_LOCALE_STRING'))
 	define('SORT_LOCALE_STRING', 0);
 
+define('SCRIPTPATH', str_replace('\\', '/', dirname(dirname(__FILE__))));
 define('ZENFOLDER', 'zp-core');
 define('PLUGIN_FOLDER', 'zp-extensions');
 define('COMMON_FOLDER', PLUGIN_FOLDER . '/common');
@@ -36,6 +37,15 @@ define('ADMIN_PLUGIN', 4096);
 define('FEATURE_PLUGIN', 2048);
 define('THEME_PLUGIN', 1024);
 define('PLUGIN_PRIORITY', 1023);
+
+//exif index defines
+define('EXIF_SOURCE', 0);
+define('EXIF_KEY', 1);
+define('EXIF_DISPLAY_TEXT', 2);
+define('EXIF_DISPLAY', 3);
+define('EXIF_FIELD_SIZE', 4);
+define('EXIF_FIELD_ENABLED', 5);
+define('EXIF_FIELD_TYPE', 6);
 
 define('SYMLINK', function_exists('symlink') && strpos(@ini_get("suhosin.executor.func.blacklist"), 'symlink') === false);
 define('CASE_INSENSITIVE', file_exists(strtoupper(__FILE__)));

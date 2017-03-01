@@ -13,10 +13,10 @@ class ThemeOptions {
 		setThemeOptionDefault('albums_per_row', 2);
 		setThemeOptionDefault('images_per_page', 20);
 		setThemeOptionDefault('images_per_row', 5);
-		setThemeOption('image_size', 520, NULL, 'garland');
-		setThemeOption('image_use_side', 'longest', NULL, 'garland');
+		setThemeOption('image_size', 520, NULL);
+		setThemeOption('image_use_side', 'longest', NULL);
 		setThemeOptionDefault('thumb_transition', 1);
-		setThemeOption('thumb_size', 85, NULL, 'garland');
+		setThemeOption('thumb_size', 85, NULL);
 		setThemeOptionDefault('thumb_crop_width', 85);
 		setThemeOptionDefault('thumb_crop_height', 85);
 		setThemeOptionDefault('thumb_crop', 1);
@@ -24,11 +24,10 @@ class ThemeOptions {
 		setThemeOptionDefault('garland_personality', 'image_page');
 		setThemeOptionDefault('garland_transition', 'slide-hori');
 		setThemeOptionDefault('garland_caption_location', 'image');
-		setOptionDefault('colorbox_' . $me . '_image', 1);
-		setOptionDefault('colorbox_' . $me . '_favorites', 1);
-		setOptionDefault('colorbox_' . $me . '_album', 1);
-		setOptionDefault('colorbox_' . $me . '_search', 1);
 		setThemeOptionDefault('garland_menu', '');
+		if (class_exists('colorbox')) {
+			colorbox::registerScripts(array('album', 'favorites', 'image', 'search'));
+		}
 		if (class_exists('cacheManager')) {
 			$me = basename(dirname(__FILE__));
 			cacheManager::deleteThemeCacheSizes($me);
@@ -37,17 +36,17 @@ class ThemeOptions {
 		}
 		if (function_exists('createMenuIfNotExists')) {
 			$menuitems = array(
-							array('type' => 'menulabel', 'title' => gettext('News Articles'), 'link' => '', 'show' => 1, 'nesting' => 0),
-							array('type'			 => 'menufunction', 'title'			 => gettext('All news'),
-											'link'			 => 'printAllNewsCategories("All news",TRUE,"","menu-active",false,"inner_ul",false,"list",false,getOption("menu_manager_truncate_string"));',
-											'show'			 => 1, 'include_li' => 0, 'nesting'		 => 1),
-							array('type' => 'html', 'title' => gettext('News Articles Rule'), 'link' => '<li class="menu_rule menu_menulabel"></li>', 'show' => 1, 'include_li' => 0, 'nesting' => 0),
-							array('type' => 'custompage', 'title' => gettext('Gallery'), 'link' => 'gallery', 'show' => 1, 'nesting' => 0),
-							array('type' => 'menufunction', 'title' => gettext('All Albums'), 'link' => 'printAlbumMenuList("list",NULL,"","menu-active","inner_ul","menu-active","",false,false,false,false,getOption("menu_manager_truncate_string"));', 'show' => 1, 'include_li' => 0, 'nesting' => 1),
-							array('type' => 'html', 'title' => gettext('Gallery Rule'), 'link' => '<li class="menu_rule menu_menulabel"></li>', 'show' => 1, 'include_li' => 0, 'nesting' => 0),
-							array('type' => 'menulabel', 'title' => gettext('Pages'), 'link' => '', 'show' => 1, 'nesting' => 0),
-							array('type' => 'menufunction', 'title' => gettext('All pages'), 'link' => 'printPageMenu("list","","menu-active","inner_ul","menu-active","",0,false,getOption("menu_manager_truncate_string"));', 'show' => 1, 'include_li' => 0, 'nesting' => 1, getOption("menu_manager_truncate_string")),
-							array('type' => 'html', 'title' => gettext('Pages Rule'), 'link' => '<li class="menu_rule menu_menulabel"></li>', 'show' => 1, 'include_li' => 0, 'nesting' => 0),
+					array('type' => 'menulabel', 'title' => gettext('News Articles'), 'link' => '', 'show' => 1, 'nesting' => 0),
+					array('type' => 'menufunction', 'title' => gettext('All news'),
+							'link' => 'printAllNewsCategories("All news",TRUE,"","menu-active",false,"inner_ul",false,"list",false,getOption("menu_manager_truncate_string"));',
+							'show' => 1, 'include_li' => 0, 'nesting' => 1),
+					array('type' => 'html', 'title' => gettext('News Articles Rule'), 'link' => '<li class="menu_rule menu_menulabel"></li>', 'show' => 1, 'include_li' => 0, 'nesting' => 0),
+					array('type' => 'custompage', 'title' => gettext('Gallery'), 'link' => 'gallery', 'show' => 1, 'nesting' => 0),
+					array('type' => 'menufunction', 'title' => gettext('All Albums'), 'link' => 'printAlbumMenuList("list",NULL,"","menu-active","inner_ul","menu-active","",false,false,false,false,getOption("menu_manager_truncate_string"));', 'show' => 1, 'include_li' => 0, 'nesting' => 1),
+					array('type' => 'html', 'title' => gettext('Gallery Rule'), 'link' => '<li class="menu_rule menu_menulabel"></li>', 'show' => 1, 'include_li' => 0, 'nesting' => 0),
+					array('type' => 'menulabel', 'title' => gettext('Pages'), 'link' => '', 'show' => 1, 'nesting' => 0),
+					array('type' => 'menufunction', 'title' => gettext('All pages'), 'link' => 'printPageMenu("list","","menu-active","inner_ul","menu-active","",0,false,getOption("menu_manager_truncate_string"));', 'show' => 1, 'include_li' => 0, 'nesting' => 1, getOption("menu_manager_truncate_string")),
+					array('type' => 'html', 'title' => gettext('Pages Rule'), 'link' => '<li class="menu_rule menu_menulabel"></li>', 'show' => 1, 'include_li' => 0, 'nesting' => 0),
 			);
 			createMenuIfNotExists($menuitems, 'garland');
 		}
@@ -65,12 +64,12 @@ class ThemeOptions {
 			$note = '';
 		}
 		$options = array(
-						gettext('Theme personality') => array('key'				 => 'garland_personality', 'type'			 => OPTION_TYPE_SELECTOR,
-										'selections' => $personalities,
-										'desc'			 => gettext('Select the theme personality')),
-						gettext('Allow search')			 => array('key' => 'Allow_search', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Set to enable search form.')),
-						gettext('Allow cloud')			 => array('key' => 'Allow_cloud', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Set to enable tag cloud for album page.')),
-						gettext('Custom menu')			 => array('key' => 'garland_menu', 'type' => OPTION_TYPE_CUSTOM, 'desc' => gettext('Set this to the <em>menu_manager</em> menu you wish to use.') . $note)
+				gettext('Theme personality') => array('key' => 'garland_personality', 'type' => OPTION_TYPE_SELECTOR,
+						'selections' => $personalities,
+						'desc' => gettext('Select the theme personality')),
+				gettext('Allow search') => array('key' => 'Allow_search', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Set to enable search form.')),
+				gettext('Allow cloud') => array('key' => 'Allow_cloud', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Set to enable tag cloud for album page.')),
+				gettext('Custom menu') => array('key' => 'garland_menu', 'type' => OPTION_TYPE_CUSTOM, 'desc' => gettext('Set this to the <em>menu_manager</em> menu you wish to use.') . $note)
 		);
 		if (extensionEnabled('zenpage')) {
 			global $_zp_CMS;
@@ -83,20 +82,20 @@ class ThemeOptions {
 					$list[getBare(get_language_string($page['title']))] = $page['titlelink'];
 				}
 			}
-			$options[gettext('Custom Homepage')] = array('key'						 => 'garland_customHome', 'type'					 => OPTION_TYPE_SELECTOR,
-							'selections'		 => $list,
-							'null_selection' => gettext('none'),
-							'desc'					 => gettext('Select the <em>pages</em> titlelink for the home page. Only unpublished pages are offered for selection.'));
+			$options[gettext('Custom Homepage')] = array('key' => 'garland_customHome', 'type' => OPTION_TYPE_SELECTOR,
+					'selections' => $list,
+					'null_selection' => gettext('none'),
+					'desc' => gettext('Select the <em>pages</em> titlelink for the home page. Only unpublished pages are offered for selection.'));
 		}
 		if (getOption('garland_personality') == 'image_gallery') {
-			$options[gettext('Image gallery transition')] = array('key'				 => 'garland_transition', 'type'			 => OPTION_TYPE_SELECTOR,
-							'selections' => array(gettext('None') => '', gettext('Fade') => 'fade', gettext('Shrink/grow') => 'resize', gettext('Horizontal') => 'slide-hori', gettext('Vertical') => 'slide-vert'),
-							'order'			 => 10,
-							'desc'			 => gettext('Transition effect for Image gallery'));
-			$options[gettext('Image gallery caption')] = array('key'			 => 'garland_caption_location', 'type'		 => OPTION_TYPE_RADIO,
-							'buttons'	 => array(gettext('On image') => 'image', gettext('Separate') => 'separate', gettext('Omit') => 'none'),
-							'order'		 => 10.5,
-							'desc'		 => gettext('Location for Image gallery picture caption'));
+			$options[gettext('Image gallery transition')] = array('key' => 'garland_transition', 'type' => OPTION_TYPE_SELECTOR,
+					'selections' => array(gettext('None') => '', gettext('Fade') => 'fade', gettext('Shrink/grow') => 'resize', gettext('Horizontal') => 'slide-hori', gettext('Vertical') => 'slide-vert'),
+					'order' => 10,
+					'desc' => gettext('Transition effect for Image gallery'));
+			$options[gettext('Image gallery caption')] = array('key' => 'garland_caption_location', 'type' => OPTION_TYPE_RADIO,
+					'buttons' => array(gettext('On image') => 'image', gettext('Separate') => 'separate', gettext('Omit') => 'none'),
+					'order' => 10.5,
+					'desc' => gettext('Location for Image gallery picture caption'));
 		}
 		return $options;
 	}

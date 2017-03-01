@@ -47,13 +47,13 @@ function listOwners($owners, $nest = '') {
 				<?php
 				$autocheck = str_replace('/', '_', $nest . $owner);
 				if (array_key_exists($owner, $xlate)) {
-					echo $xlate[$owner];
+					$ownerN = $xlate[$owner];
 				} else {
-					echo $owner;
+					$ownerN = $owner;
 				}
 				?>
-				<input type="checkbox" id="<?php echo $autocheck; ?>" onclick="$('.<?php echo $autocheck; ?>').prop('checked', $('#<?php echo $autocheck; ?>').prop('checked'));">
-				<ul<?php if ($size > 1) echo' style="' . "column-count:$size;	-moz-column-count: $size;	-webkit-column-count: $size;" . '"'; ?>>
+				<span class="purgeOptionsClass"><?php echo $ownerN; ?></span> <input type="checkbox" id="<?php echo $autocheck; ?>" onclick="$('.<?php echo $autocheck; ?>').prop('checked', $('#<?php echo $autocheck; ?>').prop('checked'));">
+				<ul class="purgeOptionsBlock"<?php if ($size > 1) echo ' style="' . "column-count:$size;	-moz-column-count: $size;	-webkit-column-count: $size;" . '"'; ?>>
 					<?php listOwners($detail, $nest . $owner . '/'); ?>
 				</ul>
 			</div>
@@ -61,7 +61,13 @@ function listOwners($owners, $nest = '') {
 		} else {
 			$autocheck = str_replace('/', '_', rtrim($nest, '/'));
 
-			if ($detail && file_exists(SERVERPATH . '/' . internalToFilesystem($nest . $detail))) {
+			if ($nest == THEMEFOLDER . '/') {
+				$suffix = '';
+			} else {
+				$suffix = '.php';
+			}
+
+			if ($detail && file_exists(SERVERPATH . '/' . internalToFilesystem($nest . $detail . $suffix))) {
 				$missing = '';
 				$labelclass = 'none';
 				$checked = false;
