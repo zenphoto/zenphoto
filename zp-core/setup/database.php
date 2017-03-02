@@ -82,7 +82,6 @@ foreach (getDBTables() as $table) {
 }
 
 //metadata display and disalbe options
-$display = getOption('metadata_displayed');
 $validMetadataOptions = !is_null(getOption('metadata_displayed'));
 
 $disable = array();
