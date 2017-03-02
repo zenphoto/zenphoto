@@ -506,19 +506,14 @@ class pseudoPlayer {
 function class_video_enable($enabled) {
 	if ($enabled) {
 		//establish defaults for display and disable
-		$display = getSerializedArray('metadata_displayed');
-		$disable = getSerializedArray(getOption('metadata_disabled'));
+		$display = $disable = array();
 		$exifvars = Video::getMetadataFields();
 		foreach ($exifvars as $key => $item) {
 			if ($exifvars[$key][EXIF_DISPLAY]) {
 				$display[$key] = $key;
-			} else {
-				unset($display[$key]);
 			}
 			if (!$exifvars[$key][EXIF_FIELD_ENABLED]) {
 				$disable[$key] = $key;
-			} else {
-				unset($disable[$key]);
 			}
 		}
 		setOption('metadata_disabled', serialize($disable));
