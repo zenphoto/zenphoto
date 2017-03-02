@@ -435,7 +435,7 @@ $tagsort = getTagOrder();
 														echo gettext("A search engine friendly <em>titlelink</em> (aka slug) without special characters to be used in URLs is generated from the title of the currently chosen language automatically. You can edit it manually later after saving if necessary.");
 													} else {
 														?>
-														<input name="titlelink" type="text" size="92" id="titlelink" value="<?php echo $result->getTitlelink(); ?>" disabled="disabled" />
+														<input name="titlelink" type="text" id="titlelink" value="<?php echo $result->getTitlelink(); ?>" disabled="disabled" />
 														<?php
 													}
 													?>
@@ -484,7 +484,7 @@ $tagsort = getTagOrder();
 												<?php
 												if (!is_AdminEditPage("newscategory")) {
 													?>
-													<p><?php echo gettext("Author:"); ?> <?php authorSelector($result->getAuthor()); ?></p>
+													<p><?php echo gettext("Author"); ?> <?php authorSelector($result->getAuthor()); ?></p>
 													<?php
 												}
 												?>
@@ -732,7 +732,7 @@ $tagsort = getTagOrder();
 													<?php
 													if ($result->getLastchangeAuthor() != "") {
 														?>
-														<hr /><p><?php printf(gettext('Last change:<br />%1$s<br />by %2$s'), $result->getLastchange(), $result->getLastchangeauthor()); ?>
+														<hr /><p><?php printf(gettext('Last change<br />%1$s<br />by %2$s'), $result->getLastchange(), $result->getLastchangeauthor()); ?>
 														</p>
 														<?php
 													}

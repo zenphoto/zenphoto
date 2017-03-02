@@ -110,6 +110,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			$subtabtext = '-' . $_zp_admin_subtab;
 		}
 	}
+	$multi = getOption('multi_lingual');
 	header('Last-Modified: ' . ZP_LAST_MODIFIED);
 	header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 	zp_apply_filter('admin_headers');
@@ -130,6 +131,11 @@ function printAdminHeader($tab, $subtab = NULL) {
 				<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-rtl.css" type="text/css" />
 				<?php
 			}
+			if ($multi) {
+				?>
+				<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/msdropdown/dd.css" type="text/css" />
+				<?php
+			}
 			?>
 			<title><?php echo sprintf(gettext('%1$s %2$s: %3$s%4$s'), html_encode($_zp_gallery->getTitle()), gettext('admin'), html_encode($tabtext), html_encode($subtabtext)); ?></title>
 			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.js" type="text/javascript"></script>
@@ -144,6 +150,11 @@ function printAdminHeader($tab, $subtab = NULL) {
 				<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.ui.touch-punch.min.js"></script>
 				<?php
 			}
+			if ($multi) {
+				?>
+				<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/msdropdown/jquery.dd.min.js" type="text/javascript"></script>
+				<?php
+			}
 			?>
 			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/dirtyforms/jquery.dirtyforms.min.js" type="text/javascript"></script>
 			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/facebox/facebox.js" type="text/javascript"></script>
@@ -155,6 +166,18 @@ function printAdminHeader($tab, $subtab = NULL) {
 					$('form#' + id).dirtyForms('setClean');
 					$('form#' + id).removeClass('tinyDirty');
 				}
+	<?php
+	if ($multi) {
+		?>
+					function lsclick(key, id) {
+						$('.lbx-' + id).hide();
+						$('#lb' + key + '-' + id).show();
+						$('.lbt-' + id).removeClass('selected');
+						$('#lbt-' + key + '-' + id).addClass('selected');
+					}
+		<?php
+	}
+	?>
 				$(document).ready(function () {
 	<?php
 	if (zp_has_filter('admin_head', 'colorbox::css')) {
@@ -164,6 +187,15 @@ function printAdminHeader($tab, $subtab = NULL) {
 							maxHeight: "98%",
 							close: '<?php echo addslashes(gettext("close")); ?>'
 						});
+		<?php
+	}
+	if ($multi) {
+		?>
+						try {
+							$('.languageSelector').msDropDown();
+						} catch (e) {
+							alert(e.message);
+						}
 		<?php
 	}
 	?>
@@ -2783,20 +2815,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 			}
 		}
 
-		if ($multi && !$_lsInstance) {
-			?>
-			<script type="text/javascript" charset="utf-8">
-				// <!-- <![CDATA[
-				function lsclick(key, id) {
-					$('.lbx-' + id).hide();
-					$('#lb' + key + '-' + id).show();
-					$('.lbt-' + id).removeClass('selected');
-					$('#lbt-' + key + '-' + id).addClass('selected');
-				}
-				// ]]> -->
-			</script>
-			<?php
-		}
 		if ($multi && !empty($activelang)) {
 			if ($textbox) {
 				if (strpos($wide, '%') === false) {
@@ -2808,7 +2826,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 				if (strpos($wide, '%') === false) {
 					$width = ' size="' . $wide . '"';
 				} else {
-					$width = ' style="width:' . ((int) $wide - 2) . '%;"';
+					$width = ' style="width:' . ((int) $wide) . '%;"';
 				}
 			}
 
@@ -2852,22 +2870,19 @@ function printAdminHeader($tab, $subtab = NULL) {
 			$tabSelected = ' selected';
 			$editHidden = '';
 			?>
-			<div id="ls_<?php echo ++$_lsInstance; ?>" class="flagTabs">
-				<ul id="<?php echo 'lang_selector-' . $_lsInstance; ?>" class="flagTabs">
+			<div id="ls_<?php echo ++$_lsInstance; ?>">
+				<select class="languageSelector ignoredirty" onchange="lsclick(this.value,<?php echo $_lsInstance; ?>);"<?php if ($key == $locale) echo ' selected="selected"' ?>>
 					<?php
 					foreach ($emptylang as $key => $lang) {
 						$flag = getLanguageFlag($key);
 						?>
-						<li>
-							<a class="lbt-<?php echo $_lsInstance . $tabSelected; ?>" id="lbt-<?php echo $key . '-' . $_lsInstance; ?>" onclick="lsclick(<?php echo "'" . $key . "'," . $_lsInstance; ?>);" title="<?php echo $lang; ?>">
-								<img src="<?php echo $flag; ?>" alt="<?php echo $key; ?>" title="<?php echo $lang; ?>" />
-							</a>
-						</li>
+						<option value="<?php echo $key; ?>" data-image="<?php echo $flag; ?>" alt="<?php echo $key; ?>">
+							<?php echo $lang; ?>
+						</option>
 						<?php
-						$tabSelected = '';
 					}
 					?>
-				</ul>
+				</select>
 
 				<?php
 				foreach ($emptylang as $key => $lang) {
@@ -2880,7 +2895,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 
 					<div id="lb<?php echo $key . '-' . $_lsInstance ?>" class="lbx-<?php echo $_lsInstance ?>"<?php echo $editHidden; ?>>
 						<?php
-//						echo $lang;
 						if ($textbox) {
 							?>
 							<textarea name="<?php echo $name . '_' . $key ?>"<?php echo $edit . $width; ?>	rows="<?php echo $rows ?>">
@@ -2889,7 +2903,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 							<?php
 						} else {
 							?>
-
 							<input name="<?php echo $name . '_' . $key ?>"<?php echo $edit . $width; ?> type="text" value="<?php echo html_encode($string); ?>"  />
 							<?php
 						}
@@ -5260,7 +5273,7 @@ function pickSource($obj) {
 
 function linkPickerItem($obj, $id) {
 	?>
-	<input type = "text" name="<?php echo $id; ?>" id="<?php echo $id; ?>" value="<?php echo $obj->getLink(); ?>" READONLY title="<?php echo gettext('You can also copy the link to your clipboard to paste elsewhere'); ?>" style="width:100%;" />
+	<input type="text" name="<?php echo $id; ?>" id="<?php echo $id; ?>" value="<?php echo $obj->getLink(); ?>" READONLY title="<?php echo gettext('You can also copy the link to your clipboard to paste elsewhere'); ?>" style="width:100%;" />
 	<?php
 }
 

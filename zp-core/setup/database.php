@@ -82,37 +82,37 @@ foreach (getDBTables() as $table) {
 }
 
 //metadata display and disalbe options
-$display = getOption('metadata_displayed');
-$validMetadataOptions = false;
+$validMetadataOptions = !is_null(getOption('metadata_displayed'));
 
-if (is_null($display)) {
-	$disable = array();
-	$display = array();
+$disable = array();
+$display = array();
 
 //clean up metadata item options.
-	foreach (array('iptc', 'exif', 'xmp', 'video') as $cat) {
-		foreach (getOptionsLike($cat) as $option => $name) {
-			if (!in_array($option, array('iptc_encoding', 'xmpmetadata_suffix', 'video_watermark'))) {
-				$validMetadataOptions = true;
+foreach (array('iptc', 'exif', 'xmp', 'video') as $cat) {
+	foreach (getOptionsLike($cat) as $option => $value) {
+		if (!in_array($option, array('iptc_encoding', 'xmpmetadata_suffix', 'video_watermark'))) {
+			$validMetadataOptions = true;
+			if ($value) { // no need to process if the option was not set
 				$matches = explode('-', $option);
+				$key = $matches[0];
 				if (isset($matches[1])) {
-					$key = $matches[0];
-
-					if ($matches[1] == 'display') {
-						$display[$key] = $key;
-					} else if ($matches[1] == 'disabled') {
+					if ($matches[1] == 'disabled') {
 						$disable[$key] = $key;
 					}
+				} else { //	bare option===display
+					$display[$key] = $key;
 				}
-				purgeOption($option);
 			}
+			purgeOption($option);
 		}
 	}
-} else {
-	$validMetadataOptions = true;
-	$display = getSerializedArray($display);
-	$disable = getSerializedArray(getOption('metadata_disabled'));
 }
+setOptionDefault('metadata_display', serialize($display));
+setOptionDefault('metadata_disabled', serialize($disable));
+
+$display = getSerializedArray(getOption('metadata_displayed'));
+$disable = getSerializedArray(getOption('metadata_disabled'));
+
 
 //Add in the enabled image metadata fields
 $metadataProviders = array('image', 'class-video' => 'Video', 'xmpMetadata' => 'xmpMetadata');

@@ -1074,6 +1074,10 @@ zp-core/images/zen-logo-light.png
 zp-core/images/zen-logo.png
 zp-core/images/zp.png
 zp-core/images/zp_gold.png
+zp-core/images/msdropdown
+zp-core/images/msdropdown/skin1
+zp-core/images/msdropdown/skin1/dd_arrow.gif
+zp-core/images/msdropdown/skin1/title-bg.gif
 zp-core/images/strengths
 zp-core/images/strengths/strength0.png
 zp-core/images/strengths/strength1.png
@@ -1227,6 +1231,9 @@ zp-core/js/jqueryui/images/ui-icons_2e83ff_256x240.png
 zp-core/js/jqueryui/images/ui-icons_454545_256x240.png
 zp-core/js/jqueryui/images/ui-icons_888888_256x240.png
 zp-core/js/jqueryui/images/ui-icons_cd0a0a_256x240.png
+zp-core/js/msdropdown
+zp-core/js/msdropdown/dd.css
+zp-core/js/msdropdown/jquery.dd.min.js
 zp-core/lib-gettext
 zp-core/lib-gettext/gettext.inc
 zp-core/locale
@@ -2308,4 +2315,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-2310
+2317
