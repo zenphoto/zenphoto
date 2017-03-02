@@ -60,7 +60,6 @@ class user_groups {
 				}
 				$rights = $group->getRights() | $rights;
 				$objects = array_merge($group->getObjects(), $objects);
-				$custom[] = $group->getCustomData();
 			} else {
 				unset($groups[$key]);
 			}

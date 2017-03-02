@@ -58,4 +58,45 @@ function getAllTagsCount($language = NULL) {
 	return getAllTagsUnique($language, 1, true);
 }
 
+/**
+ * @deprecated
+ * @since 1.4.0
+ */
+function getAlbumCustomData() {
+	global $_zp_current_album;
+	deprecated_functions::notify(gettext('Use customFieldExtender to define unique fields'));
+	return $_zp_current_album->getCustomData();
+}
+
+/**
+ * @deprecated
+ * @since 1.4.0
+ */
+function printAlbumCustomData() {
+	deprecated_functions::notify(gettext('Use customFieldExtender to define unique fields'));
+	echo html_encodeTagged(getAlbumCustomData());
+}
+
+/**
+ * @deprecated
+ * @since 1.4.0
+ */
+function getImageCustomData() {
+	global $_zp_current_image;
+	deprecated_functions::notify(gettext('Use customFieldExtender to define unique fields'));
+	return $_zp_current_image->getCustomData();
+}
+
+/**
+ * @deprecated
+ * @since 1.4.0
+ */
+function printImageCustomData() {
+	deprecated_functions::notify(gettext('Use customFieldExtender to define unique fields'));
+	$data = getImageCustomData();
+	$data = str_replace("\r\n", "\n", $data);
+	$data = str_replace("\n", "<br />", $data);
+	echo $data;
+}
+
 ?>
