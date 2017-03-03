@@ -266,7 +266,7 @@ function comment_form_addComment($name, $email, $website, $comment, $code, $code
 	$commentobj->setPrivate($private);
 	$commentobj->setAnon($anon);
 	$commentobj->setInModeration(0);
-	$commentobj->setCustomData($customdata);
+	$commentobj->setAddressData($customdata);
 	if (($whattocheck & COMMENT_EMAIL_REQUIRED) && (empty($email) || !is_valid_email_zp($email))) {
 		$commentobj->setInModeration(-2);
 		$commentobj->comment_error_text .= ' ' . gettext("You must supply an e-mail address.");
@@ -320,6 +320,7 @@ function comment_form_addComment($name, $email, $website, $comment, $code, $code
 		// ignore filter provided errors if caller is supplying the fields to check
 		$localerrors = $commentobj->getInModeration();
 	}
+
 	if ($goodMessage && $localerrors >= 0) {
 		// Update the database entry with the new comment
 		$commentobj->save();
@@ -330,7 +331,7 @@ function comment_form_addComment($name, $email, $website, $comment, $code, $code
 					'website' => $commentobj->getWebsite(),
 					'comment' => $commentobj->getComment(),
 					'date' => $commentobj->getDateTime(),
-					'custom_data' => $commentobj->getAddressData());
+					'address_data' => $commentobj->getAddressData());
 		}
 		switch ($type) {
 			case "albums":
@@ -521,14 +522,15 @@ function comment_form_handle_comment() {
 			$commentadded = $commentobject->addComment($p_name, $p_email, $p_website, $p_comment, $code1, $code2, $p_server, $p_private, $p_anon, serialize(getCommentAddress(0)));
 
 			$comment_error = $commentadded->getInModeration();
-			$_zp_comment_stored = array('name' => $commentadded->getName(),
+			$_zp_comment_stored = array(
+					'name' => $commentadded->getName(),
 					'email' => $commentadded->getEmail(),
 					'website' => $commentadded->getWebsite(),
 					'comment' => $commentadded->getComment(),
 					'saved' => isset($_POST['remember']),
 					'private' => $commentadded->getPrivate(),
 					'anon' => $commentadded->getAnon(),
-					'custom' => $commentadded->getAddressData()
+					'addresses' => $commentadded->getAddressData()
 			);
 
 			if ($comment_error) {

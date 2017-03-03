@@ -398,9 +398,9 @@ function printContactForm($subject_override = '') {
 			if (zp_loggedin()) {
 				$mailcontent = array('title' => '', 'name' => $_zp_current_admin_obj->getName(), 'company' => '', 'street' => '', 'city' => '', 'state' => '',
 						'country' => '', 'postal' => '', 'email' => $_zp_current_admin_obj->getEmail(), 'website' => '', 'phone' => '',
-						'subject' => $subject_ovcomment_formerride, 'message' => '', 'honeypot' => '');
+						'subject' => $subject_override, 'message' => '', 'honeypot' => '');
 				if (class_exists('userAddressFields')) {
-					$address = userAddressFields::getCustomData($_zp_current_admin_obj);
+					$address = userAddressFields::getcustomData($_zp_current_admin_obj);
 					foreach ($address as $key => $field) {
 						$mailcontent[$key] = $field;
 					}
