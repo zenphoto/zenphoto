@@ -1559,20 +1559,6 @@ class _Administrator extends PersistentObject {
 	}
 
 	/**
-	 * Stores custom data
-	 */
-	function setCustomData($custom_data) {
-		$this->set('custom_data', $custom_data);
-	}
-
-	/**
-	 * Returns custom data
-	 */
-	function getCustomData() {
-		return $this->get('custom_data');
-	}
-
-	/**
 	 * Sets the "valid" flag. Valid is 1 for users, 0 for groups and templates
 	 */
 	function setValid($valid) {

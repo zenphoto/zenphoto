@@ -564,16 +564,18 @@ function checkUnique($table, $unique) {
  * @author Stephen Billard
  * @Copyright 2016 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
  */
-function setupQuery($sql) {
+function setupQuery($sql, $failNotify = true) {
 	global $updateErrors;
 	$result = db_table_update($sql);
 	if (OFFSET_PATH == 2) { //don't write to setup log if not running setup
 		if ($result) {
 			setupLog(sprintf(gettext('Query Success: %s'), $sql), true);
 		} else {
-			$updateErrors = true;
-			$error = db_error();
-			setupLog(sprintf(gettext('Query Failed: %1$s ' . "\n" . ' Error: %2$s'), $sql, $error), true);
+			if ($failNotify) {
+				$updateErrors = true;
+				$error = db_error();
+				setupLog(sprintf(gettext('Query Failed: %1$s ' . "\n" . ' Error: %2$s'), $sql, $error), true);
+			}
 		}
 	}
 	return $result;

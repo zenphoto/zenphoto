@@ -330,7 +330,7 @@ function comment_form_addComment($name, $email, $website, $comment, $code, $code
 					'website' => $commentobj->getWebsite(),
 					'comment' => $commentobj->getComment(),
 					'date' => $commentobj->getDateTime(),
-					'custom_data' => $commentobj->getCustomData());
+					'custom_data' => $commentobj->getAddressData());
 		}
 		switch ($type) {
 			case "albums":
@@ -528,7 +528,7 @@ function comment_form_handle_comment() {
 					'saved' => isset($_POST['remember']),
 					'private' => $commentadded->getPrivate(),
 					'anon' => $commentadded->getAnon(),
-					'custom' => $commentadded->getCustomData()
+					'custom' => $commentadded->getAddressData()
 			);
 
 			if ($comment_error) {

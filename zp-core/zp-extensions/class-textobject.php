@@ -41,7 +41,7 @@
  * this property.
  *
  * Since text files have no natural height and width, we set them based on the image size option. This happens after the call
- * <var>PersistentObject()</var>. The rest of the code there sets up the default title.
+ * <var>common_instantiate()</var>. The rest of the code there sets up the default title.
  *
  * <var>getThumb()</var> is responsible for generating the thumbnail image for the object. As above, if there is a similar named real
  * image, it will be used. Otherwise [for this object implementation] we will use a thumbnail image provided with the plugin.
@@ -76,8 +76,8 @@ class TextObject_Options {
 	 * @return array
 	 */
 	function getOptionsSupported() {
-		return array(gettext('Watermark default images') => array('key'	 => 'textobject_watermark_default_images', 'type' => OPTION_TYPE_CHECKBOX,
-										'desc' => gettext('Check to place watermark image on default thumbnail images.')));
+		return array(gettext('Watermark default images') => array('key' => 'textobject_watermark_default_images', 'type' => OPTION_TYPE_CHECKBOX,
+						'desc' => gettext('Check to place watermark image on default thumbnail images.')));
 	}
 
 }

@@ -18,11 +18,28 @@ class internal_deprecations {
 # example of method with deprecated parameters
 #	/**
 #	 * @deprecated
-#	 * @since 1.4.6
+#	 * @since 1.0.0
 #	 */
 #	public static function next_album() {
 #		deprecated_functions::notify(gettext('Sort parameter options should be set instead with the setSortType() and setSortDirection() object methods at the head of your script.'));
 #	}
+	/**
+	 * @deprecated
+	 * @since 1.4.0
+	 */
+
+	static function getCustomData() {
+		deprecated_functions::notify(gettext('Use customFieldExtender to define unique fields'));
+	}
+
+	/**
+	 * @deprecated
+	 * @since 1.4.0
+	 */
+	static function setCustomData($val) {
+		deprecated_functions::notify(gettext('Use customFieldExtender to define unique fields'));
+	}
+
 }
 
 # For other deprecated functions simply move them here.

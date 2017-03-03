@@ -668,6 +668,9 @@ class ThemeObject extends PersistentObject {
 	 * @return string
 	 */
 	function getCustomData($locale = NULL) {
+		if (class_exists('deprecated_functions')) {
+			deprecated_functions::notify(gettext('Use customFieldExtender to define unique fields'));
+		}
 		$text = $this->get('custom_data');
 		if ($locale !== 'all') {
 			$text = get_language_string($text, $locale);
@@ -682,6 +685,9 @@ class ThemeObject extends PersistentObject {
 	 * @param string $val the value to be put in custom_data
 	 */
 	function setCustomData($val) {
+		if (class_exists('deprecated_functions')) {
+			deprecated_functions::notify(gettext('Use customFieldExtender to define unique fields'));
+		}
 		$this->set('custom_data', zpFunctions::tagURLs($val));
 	}
 
@@ -730,7 +736,7 @@ class ThemeObject extends PersistentObject {
 	}
 
 	/**
-	 * Adds comments to the album
+	 * Adds comments to an object
 	 * assumes data is coming straight from GET or POST
 	 *
 	 * Returns a comment object
