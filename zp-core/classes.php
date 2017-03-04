@@ -74,7 +74,7 @@ class PersistentObject {
 		$this->data = $this->tempdata = $this->updates = array();
 		$this->loaded = false;
 		$this->table = $tablename;
-		$this->unique_set = $unique_set;
+		$this->unique_set = array_change_key_case($unique_set, CASE_LOWER);
 		if (is_null($cache_by)) {
 			$this->cache_by = serialize($unique_set);
 		} else {
@@ -122,6 +122,7 @@ class PersistentObject {
 	function set($var, $value) {
 		if (empty($var))
 			return false;
+		$var = strtolower($var);
 		if ($this->loaded && !array_key_exists($var, $this->data)) {
 			$this->tempdata[$var] = $value;
 		} else {
@@ -158,6 +159,7 @@ class PersistentObject {
 	 */
 	function move($new_unique_set) {
 		// Check if we have a row
+		$new_unique_set = array_change_key_case($new_unique_set, CASE_LOWER);
 		$result = query_single_row('SELECT * FROM ' . prefix($this->table) . getWhereClause($new_unique_set) . ' LIMIT 1;');
 		if (!$result || $result['id'] == $this->id) { //	we should not find an entry for the new unique set!
 			if (!zp_apply_filter('move_object', true, $this, $new_unique_set)) {
@@ -181,6 +183,7 @@ class PersistentObject {
 	 */
 	function copy($new_unique_set) {
 		// Check if we have a row
+		$new_unique_set = array_change_key_case($new_unique_set, CASE_LOWER);
 		$result = query('SELECT * FROM ' . prefix($this->table) . getWhereClause($new_unique_set) . ' LIMIT 1;');
 
 		if ($result && db_num_rows($result) == 0) {
@@ -270,6 +273,7 @@ class PersistentObject {
 	 * as of the last save of this object.
 	 */
 	function get($var, $current = true) {
+		$var = strtolower($var);
 		if ($current && array_key_exists($var, $this->updates)) {
 			return $this->updates[$var];
 		} else if (array_key_exists($var, $this->data)) {
@@ -296,12 +300,14 @@ class PersistentObject {
 		// Check the database if: 1) not using cache, or 2) didn't get a hit.
 		if (empty($entry) && !$this->transient) {
 			$sql = 'SELECT * FROM ' . prefix($this->table) . getWhereClause($this->unique_set) . ' LIMIT 1;';
-			$entry = query_single_row($sql, false);
+			$entry = array_change_key_case(query_single_row($sql, false), CASE_LOWER);
+
 			// Save this entry into the cache so we get a hit next time.
 			if ($entry) {
 				$this->addToCache($entry);
 			}
 		}
+
 		// If we don't have an entry yet, this is a new record. Create it.
 		if (empty($entry)) {
 			if ($this->transient || !$allowCreate) { // no don't save it in the DB!
@@ -309,7 +315,7 @@ class PersistentObject {
 				$result = db_list_fields($this->table);
 				if ($result) {
 					foreach ($result as $row) {
-						$this->data[$row['Field']] = NULL;
+						$this->data[strtolower($row['Field'])] = NULL;
 					}
 				}
 				if ($allowCreate) {
@@ -322,7 +328,8 @@ class PersistentObject {
 			} else {
 				$new = true;
 				$this->save();
-				$entry = query_single_row($sql);
+				$entry = array_change_key_case(query_single_row($sql), CASE_LOWER);
+
 				// If we still don't have an entry, something went wrong...
 				if (!$entry)
 					return null;

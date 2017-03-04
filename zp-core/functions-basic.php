@@ -370,7 +370,7 @@ function setOption($key, $value, $persistent = true) {
 	if ($persistent) {
 		list($theme, $creator) = getOptionOwner();
 		if (is_null($value)) {
-			$v .= 'NULL';
+			$v = 'NULL';
 		} else {
 			$v = db_quote($value);
 		}
