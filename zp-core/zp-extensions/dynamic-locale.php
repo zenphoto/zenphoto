@@ -167,12 +167,13 @@ function printLanguageSelector($flags = NULL) {
 			<select id="dynamic-locale" class="languageselect" name="locale" onchange="this.form.submit()">
 				<?php
 				foreach ($languages as $text => $lang) {
-					echo '<option class="languageoption" value="' . html_encode($lang) . '"';
-					if ($lang == $localeOption) {
-						echo ' selected="selected"';
-					}
-					echo '>';
-					echo html_encode($text) . "</option>\n";
+					$flag = getLanguageFlag($lang);
+					?>
+					<option class="languageoption" data-image="<?php echo $flag; ?>" value="<?php echo html_encode($lang); ?>"<?php if ($lang == $localeOption) echo ' selected="selected"'; ?>>
+						<?php echo html_encode($text); ?>
+					</option>
+					?>
+					<?php
 				}
 				?>
 			</select>
