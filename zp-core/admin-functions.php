@@ -58,9 +58,8 @@ function printAdminFooter($addl = '') {
 		$('#return-to-top').click(function () {      // When arrow is clicked
 			$('body,html').animate({
 				scrollTop: 0                       // Scroll to top of body
-			}, 500);
+			}, 400);
 		});
-
 	</script>
 	<?php
 	db_close(); //	close the database as we are done
@@ -285,39 +284,42 @@ function printAdminHeader($tab, $subtab = NULL) {
 			}
 			?>
 
+
 		<span id="administration">
 			<img id="logo" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/zen-logo.png"
 					 title="<?php echo sprintf(gettext('%1$s administration:%2$s%3$s'), html_encode($_zp_gallery->getTitle()), html_encode($_zp_admin_tab), html_encode($subtab)); ?>"
 					 alt="<?php echo gettext('ZenPhoto20 Administration'); ?>" />
 		</span>
-		<?php
-		echo "\n<div id=\"links\">";
-		echo "\n  ";
 
-		if (is_object($_zp_current_admin_obj) && !$_zp_current_admin_obj->reset) {
-			$sec = (int) ((SERVER_PROTOCOL == 'https') & true);
-			$last = $_zp_current_admin_obj->getLastlogon();
-			if (empty($last)) {
-				printf(gettext('Logged in as %1$s'), $_zp_current_admin_obj->getUser());
-			} else {
-				printf(gettext('Logged in as %1$s (last login %2$s)'), $_zp_current_admin_obj->getUser(), $last);
+		<a href="javascript:" id="return-to-top" title="<?php echo gettext('return to top'); ?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+
+		<div id="links">
+			<?php
+			if (is_object($_zp_current_admin_obj) && !$_zp_current_admin_obj->reset) {
+				$sec = (int) ((SERVER_PROTOCOL == 'https') & true);
+				$last = $_zp_current_admin_obj->getLastlogon();
+				if (empty($last)) {
+					printf(gettext('Logged in as %1$s'), $_zp_current_admin_obj->getUser());
+				} else {
+					printf(gettext('Logged in as %1$s (last login %2$s)'), $_zp_current_admin_obj->getUser(), $last);
+				}
+				if ($_zp_current_admin_obj->logout_link) {
+					$link = WEBPATH . "/" . ZENFOLDER . "/admin.php?logout=" . $sec;
+					echo " &nbsp; | &nbsp; <a href=\"" . $link . "\">" . gettext("Log Out") . "</a> &nbsp; | &nbsp; ";
+				}
 			}
-			if ($_zp_current_admin_obj->logout_link) {
-				$link = WEBPATH . "/" . ZENFOLDER . "/admin.php?logout=" . $sec;
-				echo " &nbsp; | &nbsp; <a href=\"" . $link . "\">" . gettext("Log Out") . "</a> &nbsp; | &nbsp; ";
-			}
-		}
-		echo ' <a href="' . FULLWEBPATH . '/">';
-		$t = $_zp_gallery->getTitle();
-		if (!empty($t)) {
-			printf(gettext("View <em>%s</em>"), $t);
-		} else {
-			echo gettext("View gallery index");
-		}
-		echo "</a>";
-		echo "\n</div>";
-		?>
-		<a href="javascript:" id="return-to-top" title="<?php echo gettext('return to top'); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/chevron.png"</a>
+			?>
+			<a href="<?php echo FULLWEBPATH; ?>/">
+				<?php
+				$t = $_zp_gallery->getTitle();
+				if (!empty($t)) {
+					printf(gettext("View <em>%s</em>"), $t);
+				} else {
+					echo gettext("View gallery index");
+				}
+				?>
+			</a>
+		</div>
 		<?php
 	}
 
