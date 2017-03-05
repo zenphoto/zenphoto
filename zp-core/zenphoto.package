@@ -1015,6 +1015,8 @@ zp-core/images/burst.png
 zp-core/images/cache.png
 zp-core/images/calendar.png
 zp-core/images/captcha_background.png
+zp-core/images/chevron-hover.png
+zp-core/images/chevron.png
 zp-core/images/clock.png
 zp-core/images/comments-off.png
 zp-core/images/comments-on.png
@@ -2315,4 +2317,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-2317
+2319
