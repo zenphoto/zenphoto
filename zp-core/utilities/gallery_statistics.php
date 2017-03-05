@@ -281,14 +281,10 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 	echo "<table class='bordered'>";
 	echo "<tr><th colspan='4'><strong>" . $headline . "</strong>";
 
-	if (isset($_GET['stats'])) {
-		echo "<a href='gallery_statistics.php'> | " . gettext("Back to the top 10 lists") . "</a>";
-	} else {
-
+	if (!isset($_GET['stats'])) {
 		if (count($itemssorted) > 10) {
 			echo "<a href='gallery_statistics.php?stats=" . $sortorder . "&amp;type=" . $type . "'> | " . gettext("View more") . "</a>";
 		}
-		echo "<a href='#top'> | " . gettext("top") . "</a>";
 	}
 	echo "</th></tr>";
 	echo $no_statistic_message;
@@ -471,20 +467,26 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 							echo "<a href='" . $editurl . "' title='" . $name . "'>" . gettext("Edit") . "</a> | <a href='" . $viewurl . "' title='" . $name . "'>" . gettext("View") . "</a></td>";
 							break;
 					}
-					echo "</tr>";
-					if ($count >= $limit) {
-						break;
-					}
-					$count++;
-				}
-			} // foreach end
-			echo "</table>";
+					?>
+			</tr>
+			<?php
+			if ($count >= $limit) {
+				break;
+			}
+			$count++;
 		}
+	} // foreach end
+	echo "</table>";
+}
+?>
 
-		echo '</head>';
-		?>
+<?php
+echo '</head>';
+?>
+<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/return-to-top-arrow/style.css">
 
 <body>
+	<a href="javascript:" id="return-to-top"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/return-to-top-arrow/chevron.png"</a>
 	<?php
 	printLogoAndLinks();
 	?>
@@ -492,8 +494,6 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 		<span id="top"></span>
 		<?php
 		printTabs();
-
-
 
 // getting the counts
 		$albumcount = $_zp_gallery->getNumAlbums(true);
@@ -508,7 +508,8 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 				<h1><?php echo gettext("Gallery Statistics"); ?></h1>
 				<p><?php echo gettext("This page shows more detailed statistics of your gallery. For album statistics the bar graph always shows the total number of images in that album. For image statistics always the album the image is in is shown.<br />Un-published items are marked in dark red. Images are marked un-published if their (direct) album is, too."); ?></p>
 
-				<ul class="statistics_general"><li>
+				<ul class="statistics_general">
+					<li>
 						<?php
 						if ($imagecount_unpub > 0) {
 							printf(gettext('<strong>%1$u</strong> images (%2$u un-published)'), $imagecount, $imagecount_unpub);
@@ -516,7 +517,8 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 							printf(gettext('<strong>%u</strong> images'), $imagecount);
 						}
 						?>
-					</li><li>
+					</li>
+					<li>
 						<?php
 						if ($albumscount_unpub > 0) {
 							printf(gettext('<strong>%1$u</strong> albums (%2$u un-published)'), $albumcount, $albumscount_unpub);
@@ -662,223 +664,237 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 					<hr />
 
 					<!-- albums -->
-					<span id="albums-latest"></a>
-						<?php printBarGraph("latest", "albums"); ?>
+					<span id="albums-latest"></span>
+					<?php printBarGraph("latest", "albums"); ?>
 
-						<span id="albums-latestupdated"></span>
-						<?php printBarGraph("latestupdated", "albums"); ?>
+					<span id="albums-latestupdated"></span>
+					<?php printBarGraph("latestupdated", "albums"); ?>
 
-						<span id="albums-mostimages"></span>
-						<?php printBarGraph("mostimages", "albums"); ?>
+					<span id="albums-mostimages"></span>
+					<?php printBarGraph("mostimages", "albums"); ?>
 
-						<span id="albums-popular"></span>
-						<?php printBarGraph("popular", "albums"); ?>
+					<span id="albums-popular"></span>
+					<?php printBarGraph("popular", "albums"); ?>
 
-						<span id="albums-popularimages"></span>
-						<?php printBarGraph("popularimages", "albums"); ?>
+					<span id="albums-popularimages"></span>
+					<?php printBarGraph("popularimages", "albums"); ?>
 
-						<span id="albums-mostrated"></span>
-						<?php printBarGraph("mostrated", "albums"); ?>
+					<span id="albums-mostrated"></span>
+					<?php printBarGraph("mostrated", "albums"); ?>
 
-						<span id="albums-toprated"></span>
-						<?php printBarGraph("toprated", "albums"); ?>
+					<span id="albums-toprated"></span>
+					<?php printBarGraph("toprated", "albums"); ?>
 
-						<span id="albums-mostcommented"></span>
-						<?php printBarGraph("mostcommented", "albums"); ?>
+					<span id="albums-mostcommented"></span>
+					<?php printBarGraph("mostcommented", "albums"); ?>
+
+					<hr />
+
+					<span id="tags-mostused"></span>
+					<?php printBarGraph("mostused", "tags"); ?>
+
+					<?php if (extensionEnabled('zenpage')) { ?>
+						<hr />
+						<!-- Zenpage pages -->
+						<span id="pages-popular"></span>
+						<?php printBarGraph("popular", "pages"); ?>
+
+						<span id="pages-mostcommented"></span>
+						<?php printBarGraph("mostcommented", "pages"); ?>
+
+						<span id="pages-mostrated"></span>
+						<?php printBarGraph("mostrated", "pages"); ?>
+
+						<span id="pages-toprated"></span>
+						<?php printBarGraph("toprated", "pages"); ?>
 
 						<hr />
 
-						<span id="tags-mostused"></span>
-						<?php printBarGraph("mostused", "tags"); ?>
+						<!-- Zenpage news articles -->
+						<span id="news-popular"></span>
+						<?php printBarGraph("popular", "news"); ?>
 
-						<?php if (extensionEnabled('zenpage')) { ?>
-							<hr />
-							<!-- Zenpage pages -->
-							<span id="pages-popular"></span>
-							<?php printBarGraph("popular", "pages"); ?>
+						<span id="news-mostcommented"></span>
+						<?php printBarGraph("mostcommented", "news"); ?>
 
-							<span id="pages-mostcommented"></span>
-							<?php printBarGraph("mostcommented", "pages"); ?>
+						<span id="news-mostrated"></span>
+						<?php printBarGraph("mostrated", "news"); ?>
 
-							<span id="pages-mostrated"></span>
-							<?php printBarGraph("mostrated", "pages"); ?>
+						<span id="news-toprated"></span>
+						<?php printBarGraph("toprated", "news"); ?>
+						<hr />
 
-							<span id="pages-toprated"></span>
-							<?php printBarGraph("toprated", "pages"); ?>
+						<h2><?php echo gettext('Statistics for news categories'); ?></h2>
+						<span id="newscategories-popular"></span>
+						<?php printBarGraph("popular", "newscategories"); ?>
 
-							<hr />
+						<span id="newscategories-mostarticles"></span>
+						<?php printBarGraph("mostused", "newscategories"); ?>
 
-							<!-- Zenpage news articles -->
-							<span id="news-popular"></a>
-								<?php printBarGraph("popular", "news"); ?>
+						<h2><?php echo gettext('Statistics for RSS feeds'); ?></h2>
+						<span id="rss-popular"></span>
+						<?php printBarGraph("popular", "rss"); ?>
 
-								<span id="news-mostcommented"></span>
-								<?php printBarGraph("mostcommented", "news"); ?>
+					<?php } ?>
+					<?php
+				}
 
-								<span id="news-mostrated"></span>
-								<?php printBarGraph("mostrated", "news"); ?>
-
-								<span id="news-toprated"></span>
-								<?php printBarGraph("toprated", "news"); ?>
-								<hr />
-
-								<h2><?php echo gettext('Statistics for news categories'); ?></h2>
-								<span id="newscategories-popular"></span>
-								<?php printBarGraph("popular", "newscategories"); ?>
-
-								<span id="newscategories-mostarticles"></span>
-								<?php printBarGraph("mostused", "newscategories"); ?>
-
-								<h2><?php echo gettext('Statistics for RSS feeds'); ?></h2>
-								<span id="rss-popular"></span>
-								<?php printBarGraph("popular", "rss"); ?>
-
-							<?php } ?>
-							<?php
+				// If a single list is requested
+				if (isset($_GET['type'])) {
+					if (!isset($_GET['from_number'])) {
+						$from_number = 0;
+					} else {
+						$from_number = sanitize_numeric($_GET['from_number']) - 1;
+					}
+					if (!isset($_GET['to_number'])) {
+						$to_number = 50;
+						if ($_GET['type'] === "images" AND $to_number > $imagecount) {
+							$to_number = $imagecount;
 						}
-
-						// If a single list is requested
-						if (isset($_GET['type'])) {
-							if (!isset($_GET['from_number'])) {
-								$from_number = 0;
-							} else {
-								$from_number = sanitize_numeric($_GET['from_number']) - 1;
+						if ($_GET['type'] === "albums" AND $to_number > $albumcount) {
+							$to_number = $albumcount;
+						}
+					} else {
+						$to_number = sanitize_numeric($_GET['to_number']);
+						if ($from_number < $to_number) {
+							$to_number = $to_number - $from_number;
+						}
+					}
+					?>
+					<form name="limit" id="limit" action="gallery_statistics.php">
+						<label for="from_number"><?php echo gettext("From "); ?></label>
+						<input type ="text" size="10" id="from_number" name="from_number" value="<?php echo ($from_number + 1); ?>" />
+						<label for="to_number"><?php echo gettext("to "); ?></label>
+						<input type ="text" size="10" id="to_number" name="to_number" value="<?php echo ($to_number + $from_number); ?>" />
+						<input type="hidden" name="stats"	value="<?php echo html_encode(sanitize($_GET['stats'])); ?>" />
+						<input type="hidden" name="type" value="<?php echo html_encode(sanitize($_GET['type'])); ?>" />
+						<input type="submit" value="<?php echo gettext("Show"); ?>" />
+					</form>
+					<br />
+					<?php
+					switch ($_GET['type']) {
+						case "albums":
+							switch ($_GET['stats']) {
+								case "latest":
+									printBarGraph("latest", "albums", $from_number, $to_number);
+									break;
+								case "latestupdated":
+									printBarGraph("latestupdated", "albums", $from_number, $to_number);
+									break;
+								case "popular":
+									printBarGraph("popular", "albums", $from_number, $to_number);
+									break;
+								case "popularimages":
+									printBarGraph("popularimages", "albums", $from_number, $to_number);
+									break;
+								case "mostrated":
+									printBarGraph("mostrated", "albums", $from_number, $to_number);
+									break;
+								case "toprated":
+									printBarGraph("toprated", "albums", $from_number, $to_number);
+									break;
+								case "mostcommented":
+									printBarGraph("mostcommented", "albums", $from_number, $to_number);
+									break;
+								case "mostimages":
+									printBarGraph("mostimages", "albums", $from_number, $to_number);
+									break;
 							}
-							if (!isset($_GET['to_number'])) {
-								$to_number = 50;
-								if ($_GET['type'] === "images" AND $to_number > $imagecount) {
-									$to_number = $imagecount;
-								}
-								if ($_GET['type'] === "albums" AND $to_number > $albumcount) {
-									$to_number = $albumcount;
-								}
-							} else {
-								$to_number = sanitize_numeric($_GET['to_number']);
-								if ($from_number < $to_number) {
-									$to_number = $to_number - $from_number;
+							break;
+						case "images":
+							switch ($_GET['stats']) {
+								case "latest":
+									printBarGraph("latest", "images", $from_number, $to_number);
+									break;
+								case "popular":
+									printBarGraph("popular", "images", $from_number, $to_number);
+									break;
+								case "mostrated":
+									printBarGraph("mostrated", "images", $from_number, $to_number);
+									break;
+								case "toprated":
+									printBarGraph("toprated", "images", $from_number, $to_number);
+									break;
+								case "mostcommented":
+									printBarGraph("mostcommented", "images", $from_number, $to_number);
+									break;
+							}
+							break;
+						case "tags":
+							printBarGraph("mostused", "tags", $from_number, $to_number);
+							break;
+						case "rss":
+							printBarGraph("popular", "rss", $from_number, $to_number);
+							break;
+						case "pages":
+							if (extensionEnabled('zenpage')) {
+								switch ($_GET['stats']) {
+									case "popular":
+										printBarGraph("popular", "pages", $from_number, $to_number);
+										break;
+									case "mostcommented":
+										printBarGraph("mostcommented", "pages", $from_number, $to_number);
+										break;
+									case "mostrated":
+										printBarGraph("mostrated", "pages", $from_number, $to_number);
+										break;
+									case "toprated":
+										printBarGraph("toprated", "pages", $from_number, $to_number);
+										break;
 								}
 							}
-							?>
-							<form name="limit" id="limit" action="gallery_statistics.php">
-								<label for="from_number"><?php echo gettext("From "); ?></label>
-								<input type ="text" size="10" id="from_number" name="from_number" value="<?php echo ($from_number + 1); ?>" />
-								<label for="to_number"><?php echo gettext("to "); ?></label>
-								<input type ="text" size="10" id="to_number" name="to_number" value="<?php echo ($to_number + $from_number); ?>" />
-								<input type="hidden" name="stats"	value="<?php echo html_encode(sanitize($_GET['stats'])); ?>" />
-								<input type="hidden" name="type" value="<?php echo html_encode(sanitize($_GET['type'])); ?>" />
-								<input type="submit" value="<?php echo gettext("Show"); ?>" />
-							</form>
-							<br />
-							<?php
-							switch ($_GET['type']) {
-								case "albums":
-									switch ($_GET['stats']) {
-										case "latest":
-											printBarGraph("latest", "albums", $from_number, $to_number);
-											break;
-										case "latestupdated":
-											printBarGraph("latestupdated", "albums", $from_number, $to_number);
-											break;
-										case "popular":
-											printBarGraph("popular", "albums", $from_number, $to_number);
-											break;
-										case "popularimages":
-											printBarGraph("popularimages", "albums", $from_number, $to_number);
-											break;
-										case "mostrated":
-											printBarGraph("mostrated", "albums", $from_number, $to_number);
-											break;
-										case "toprated":
-											printBarGraph("toprated", "albums", $from_number, $to_number);
-											break;
-										case "mostcommented":
-											printBarGraph("mostcommented", "albums", $from_number, $to_number);
-											break;
-										case "mostimages":
-											printBarGraph("mostimages", "albums", $from_number, $to_number);
-											break;
-									}
-									break;
-								case "images":
-									switch ($_GET['stats']) {
-										case "latest":
-											printBarGraph("latest", "images", $from_number, $to_number);
-											break;
-										case "popular":
-											printBarGraph("popular", "images", $from_number, $to_number);
-											break;
-										case "mostrated":
-											printBarGraph("mostrated", "images", $from_number, $to_number);
-											break;
-										case "toprated":
-											printBarGraph("toprated", "images", $from_number, $to_number);
-											break;
-										case "mostcommented":
-											printBarGraph("mostcommented", "images", $from_number, $to_number);
-											break;
-									}
-									break;
-								case "tags":
-									printBarGraph("mostused", "tags", $from_number, $to_number);
-									break;
-								case "rss":
-									printBarGraph("popular", "rss", $from_number, $to_number);
-									break;
-								case "pages":
-									if (extensionEnabled('zenpage')) {
-										switch ($_GET['stats']) {
-											case "popular":
-												printBarGraph("popular", "pages", $from_number, $to_number);
-												break;
-											case "mostcommented":
-												printBarGraph("mostcommented", "pages", $from_number, $to_number);
-												break;
-											case "mostrated":
-												printBarGraph("mostrated", "pages", $from_number, $to_number);
-												break;
-											case "toprated":
-												printBarGraph("toprated", "pages", $from_number, $to_number);
-												break;
-										}
-									}
-									break;
-								case "news":
-									if (extensionEnabled('zenpage')) {
-										switch ($_GET['stats']) {
-											case "popular":
-												printBarGraph("popular", "news", $from_number, $to_number);
-												break;
-											case "mostcommented":
-												printBarGraph("mostcommented", "news", $from_number, $to_number);
-												break;
-											case "mostrated":
-												printBarGraph("mostrated", "news", $from_number, $to_number);
-												break;
-											case "toprated":
-												printBarGraph("toprated", "news", $from_number, $to_number);
-												break;
-										}
-									}
-									break;
-								case "newscategories":
-									if (extensionEnabled('zenpage')) {
-										switch ($_GET['stats']) {
-											case "popular":
-												printBarGraph("popular", "newscategories", $from_number, $to_number);
-												break;
-											case "mostused":
-												printBarGraph("mostused", "newscategories", $from_number, $to_number);
-												break;
-										}
-									}
-									break;
-							} // main switch end
-							echo "<a href='#top'>" . gettext("Back to top") . "</a>";
-						} // main if end
-						?>
-						</div>
-						</div><!-- content -->
-						<?php printAdminFooter(); ?>
-						</div><!-- main -->
-						</body>
-						<?php echo "</html>"; ?>
+							break;
+						case "news":
+							if (extensionEnabled('zenpage')) {
+								switch ($_GET['stats']) {
+									case "popular":
+										printBarGraph("popular", "news", $from_number, $to_number);
+										break;
+									case "mostcommented":
+										printBarGraph("mostcommented", "news", $from_number, $to_number);
+										break;
+									case "mostrated":
+										printBarGraph("mostrated", "news", $from_number, $to_number);
+										break;
+									case "toprated":
+										printBarGraph("toprated", "news", $from_number, $to_number);
+										break;
+								}
+							}
+							break;
+						case "newscategories":
+							if (extensionEnabled('zenpage')) {
+								switch ($_GET['stats']) {
+									case "popular":
+										printBarGraph("popular", "newscategories", $from_number, $to_number);
+										break;
+									case "mostused":
+										printBarGraph("mostused", "newscategories", $from_number, $to_number);
+										break;
+								}
+							}
+							break;
+					} // main switch end
+				} // main if end
+				?>
+			</div>
+		</div><!-- content -->
+		<?php printAdminFooter(); ?>
+	</div><!-- main -->
+	<script type="text/javascript">
+// ===== Scroll to Top ====
+		$(window).scroll(function () {
+			if ($(this).scrollTop() >= 50) {        // If page is scrolled more than 50px
+				$('#return-to-top').fadeIn(200);    // Fade in the arrow
+			} else {
+				$('#return-to-top').fadeOut(200);   // Else fade out the arrow
+			}
+		});
+		$('#return-to-top').click(function () {      // When arrow is clicked
+			$('body,html').animate({
+				scrollTop: 0                       // Scroll to top of body
+			}, 500);
+		});
+	</script>
+</body>
+<?php echo "</html>"; ?>
