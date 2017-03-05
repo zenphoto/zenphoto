@@ -2770,6 +2770,7 @@ form.tinyDirty input[type=submit]:active{
 	position: fixed;
 	bottom: 20px;
 	right: 20px;
+	z-index: 999999;
 	background: rgb(0, 0, 0);
 	background: rgba(0, 0, 0, 0.7);
 	background-image: url('images/chevron.png');
