@@ -483,10 +483,9 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 <?php
 echo '</head>';
 ?>
-<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/return-to-top-arrow/style.css">
 
 <body>
-	<a href="javascript:" id="return-to-top"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/return-to-top-arrow/chevron.png"</a>
+	<a href="javascript:" id="return-to-top"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/chevron.png"</a>
 	<?php
 	printLogoAndLinks();
 	?>
