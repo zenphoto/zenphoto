@@ -60,6 +60,7 @@ function printAdminFooter($addl = '') {
 				scrollTop: 0                       // Scroll to top of body
 			}, 500);
 		});
+
 	</script>
 	<?php
 	db_close(); //	close the database as we are done
@@ -283,7 +284,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 				$subtab = '';
 			}
 			?>
-		<a href="javascript:" id="return-to-top" title="<?php echo gettext('return to top'); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/chevron.png"</a>
 
 		<span id="administration">
 			<img id="logo" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/zen-logo.png"
@@ -316,6 +316,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 		}
 		echo "</a>";
 		echo "\n</div>";
+		?>
+		<a href="javascript:" id="return-to-top" title="<?php echo gettext('return to top'); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/chevron.png"</a>
+		<?php
 	}
 
 	/**
