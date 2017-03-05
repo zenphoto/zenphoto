@@ -46,6 +46,21 @@ function printAdminFooter($addl = '') {
 		| <a href="https://<?php echo GITHUB; ?>/commits/master" title="<?php echo gettext('View Change log'); ?>"><?php echo gettext('Change log'); ?></a>
 		| <?php printf(gettext('Server date: %s'), date('Y-m-d H:i:s')); ?>
 	</div>
+	<script type="text/javascript">
+	// ===== Scroll to Top ====
+		$(window).scroll(function () {
+			if ($(this).scrollTop() >= 50) {        // If page is scrolled more than 50px
+				$('#return-to-top').fadeIn(200);    // Fade in the arrow
+			} else {
+				$('#return-to-top').fadeOut(200);   // Else fade out the arrow
+			}
+		});
+		$('#return-to-top').click(function () {      // When arrow is clicked
+			$('body,html').animate({
+				scrollTop: 0                       // Scroll to top of body
+			}, 500);
+		});
+	</script>
 	<?php
 	db_close(); //	close the database as we are done
 }
@@ -161,57 +176,57 @@ function printAdminHeader($tab, $subtab = NULL) {
 
 
 			<script type="text/javascript">
-				// <!-- <![CDATA[
-				function setClean(id) {
-					$('form#' + id).dirtyForms('setClean');
-					$('form#' + id).removeClass('tinyDirty');
-				}
+		// <!-- <![CDATA[
+		function setClean(id) {
+			$('form#' + id).dirtyForms('setClean');
+			$('form#' + id).removeClass('tinyDirty');
+		}
 	<?php
 	if ($multi) {
 		?>
-					function lsclick(key, id) {
-						$('.lbx-' + id).hide();
-						$('#lb' + key + '-' + id).show();
-						$('.lbt-' + id).removeClass('selected');
-						$('#lbt-' + key + '-' + id).addClass('selected');
-					}
+			function lsclick(key, id) {
+				$('.lbx-' + id).hide();
+				$('#lb' + key + '-' + id).show();
+				$('.lbt-' + id).removeClass('selected');
+				$('#lbt-' + key + '-' + id).addClass('selected');
+			}
 		<?php
 	}
 	?>
-				$(document).ready(function () {
+		$(document).ready(function () {
 	<?php
 	if (zp_has_filter('admin_head', 'colorbox::css')) {
 		?>
-						$("a.colorbox").colorbox({
-							maxWidth: "98%",
-							maxHeight: "98%",
-							close: '<?php echo addslashes(gettext("close")); ?>'
-						});
+				$("a.colorbox").colorbox({
+					maxWidth: "98%",
+					maxHeight: "98%",
+					close: '<?php echo addslashes(gettext("close")); ?>'
+				});
 		<?php
 	}
 	if ($multi) {
 		?>
-						try {
-							$('.languageSelector').msDropDown();
-						} catch (e) {
-							alert(e.message);
-						}
+				try {
+					$('.languageSelector').msDropDown();
+				} catch (e) {
+					alert(e.message);
+				}
 		<?php
 	}
 	?>
-					$.DirtyForms.ignoreClass = 'ignoredirty';
-					$.DirtyForms.message = '<?php echo gettext('You have unsaved changes!'); ?>';
-					$.DirtyForms.title = '<?php echo gettext('Are you sure you want to leave this page?'); ?>';
-					$.DirtyForms.continueText = '<?php echo gettext('Leave'); ?>';
-					$.DirtyForms.stopText = '<?php echo gettext('Stay'); ?>';
-					$.facebox.settings.closeImage = '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/facebox/closelabel.png';
-					$('#modal').facebox();
-					$('form.dirtylistening').dirtyForms();
-				});
-				jQuery(function ($) {
-					$(".fade-message").fadeTo(5000, 1).fadeOut(1000);
-				})
-				// ]]> -->
+			$.DirtyForms.ignoreClass = 'ignoredirty';
+			$.DirtyForms.message = '<?php echo gettext('You have unsaved changes!'); ?>';
+			$.DirtyForms.title = '<?php echo gettext('Are you sure you want to leave this page?'); ?>';
+			$.DirtyForms.continueText = '<?php echo gettext('Leave'); ?>';
+			$.DirtyForms.stopText = '<?php echo gettext('Stay'); ?>';
+			$.facebox.settings.closeImage = '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/facebox/closelabel.png';
+			$('#modal').facebox();
+			$('form.dirtylistening').dirtyForms();
+		});
+		jQuery(function ($) {
+			$(".fade-message").fadeTo(5000, 1).fadeOut(1000);
+		})
+		// ]]> -->
 			</script>
 			<?php
 			zp_apply_filter('admin_head');
@@ -222,33 +237,33 @@ function printAdminHeader($tab, $subtab = NULL) {
 			<!--Nested Sortables-->
 			<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.ui.nestedSortable.js"></script>
 			<script type="text/javascript">
-				//<!-- <![CDATA[
-				$(document).ready(function () {
+		//<!-- <![CDATA[
+		$(document).ready(function () {
 
-					$('ul.page-list').nestedSortable({
-						disableNesting: 'no-nest',
-						forcePlaceholderSize: true,
-						handle: 'div',
-						items: 'li',
-						opacity: .6,
-						placeholder: 'placeholder',
-						tabSize: 25,
-						tolerance: 'intersect',
-						toleranceElement: '> div',
-						listType: 'ul',
-						change: function (event, ui) {
-							$('#sortableListForm').dirtyForms('setDirty');
-						}
-					});
-					$('.serialize').click(function () {
-						serialized = $('ul.page-list').nestedSortable('serialize');
-						if (serialized != original_order) {
-							$('#serializeOutput').html('<input type="hidden" name="order" size="30" maxlength="1000" value="' + serialized + '" />');
-						}
-					})
-					var original_order = $('ul.page-list').nestedSortable('serialize');
-				});
-				// ]]> -->
+			$('ul.page-list').nestedSortable({
+				disableNesting: 'no-nest',
+				forcePlaceholderSize: true,
+				handle: 'div',
+				items: 'li',
+				opacity: .6,
+				placeholder: 'placeholder',
+				tabSize: 25,
+				tolerance: 'intersect',
+				toleranceElement: '> div',
+				listType: 'ul',
+				change: function (event, ui) {
+					$('#sortableListForm').dirtyForms('setDirty');
+				}
+			});
+			$('.serialize').click(function () {
+				serialized = $('ul.page-list').nestedSortable('serialize');
+				if (serialized != original_order) {
+					$('#serializeOutput').html('<input type="hidden" name="order" size="30" maxlength="1000" value="' + serialized + '" />');
+				}
+			})
+			var original_order = $('ul.page-list').nestedSortable('serialize');
+		});
+		// ]]> -->
 			</script>
 			<!--Nested Sortables End-->
 			<?php
@@ -268,6 +283,8 @@ function printAdminHeader($tab, $subtab = NULL) {
 				$subtab = '';
 			}
 			?>
+		<a href="javascript:" id="return-to-top"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/chevron.png"</a>
+
 		<span id="administration">
 			<img id="logo" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/zen-logo.png"
 					 title="<?php echo sprintf(gettext('%1$s administration:%2$s%3$s'), html_encode($_zp_gallery->getTitle()), html_encode($_zp_admin_tab), html_encode($subtab)); ?>"
