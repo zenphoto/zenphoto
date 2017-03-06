@@ -300,10 +300,10 @@ class PersistentObject {
 		// Check the database if: 1) not using cache, or 2) didn't get a hit.
 		if (empty($entry) && !$this->transient) {
 			$sql = 'SELECT * FROM ' . prefix($this->table) . getWhereClause($this->unique_set) . ' LIMIT 1;';
-			$entry = array_change_key_case(query_single_row($sql, false), CASE_LOWER);
-
+			$entry = query_single_row($sql, false);
 			// Save this entry into the cache so we get a hit next time.
 			if ($entry) {
+				$entry = array_change_key_case($entry, CASE_LOWER);
 				$this->addToCache($entry);
 			}
 		}
@@ -328,12 +328,13 @@ class PersistentObject {
 			} else {
 				$new = true;
 				$this->save();
-				$entry = array_change_key_case(query_single_row($sql), CASE_LOWER);
+				$entry = query_single_row($sql);
 
 				// If we still don't have an entry, something went wrong...
 				if (!$entry)
 					return null;
 				// Save this new entry into the cache so we get a hit next time.
+				$entry = array_change_key_case($entry, CASE_LOWER);
 				$this->addToCache($entry);
 			}
 		}
