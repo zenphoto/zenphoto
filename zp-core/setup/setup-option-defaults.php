@@ -273,11 +273,24 @@ setOptionDefault('search_hint', NULL);
 setOptionDefault('backup_compression', 0);
 setOptionDefault('license_accepted', 0);
 
+setOptionDefault('protected_image_cache', NULL);
+setOptionDefault('secure_image_processor', NULL);
+
+setoptionDefault('image_allow_upscale', NULL);
+setoptionDefault('image_cache_suffix', NULL);
+setoptionDefault('image_sharpen', NULL);
+setoptionDefault('image_interlace', NULL);
+setOptionDefault('thumb_sharpen', NULL);
+setOptionDefault('use_embedded_thumb', NULL);
+
+
 setOptionDefault('watermark_image', 'watermarks/watermark.png');
 if (getOption('perform_watermark')) {
 	$v = str_replace('.png', "", basename(getOption('watermark_image')));
-	setoptionDefault('fullimage_watermark', $v);
+} else {
+	$v = NULL;
 }
+setoptionDefault('fullimage_watermark', $v);
 
 setOptionDefault('pasteImageSize', NULL);
 setOptionDefault('watermark_h_offset', 90);
@@ -285,6 +298,7 @@ setOptionDefault('watermark_w_offset', 90);
 setOptionDefault('watermark_scale', 5);
 setOptionDefault('watermark_allow_upscale', 1);
 setOptionDefault('perform_video_watermark', 0);
+setOptionDefault('ImbedIPTC', NULL);
 
 if (getOption('perform_video_watermark')) {
 	$v = str_replace('.png', "", basename(getOption('video_watermark_image')));

@@ -41,6 +41,7 @@ class lib_Imagick_Options {
 	public static $ignore_size = 0;
 
 	function __construct() {
+		setOptionDefault('use_imagick', NULL);
 		setOptionDefault('magick_max_height', self::$ignore_size);
 		setOptionDefault('magick_max_width', self::$ignore_size);
 
@@ -64,42 +65,42 @@ class lib_Imagick_Options {
 			setOption('use_imagick', 0, true);
 		}
 		$imagickOptions = array(
-						gettext('Enable Imagick') => array(
-										'key'			 => 'use_imagick',
-										'type'		 => OPTION_TYPE_CHECKBOX,
-										'order'		 => 0,
-										'disabled' => $disabled,
-										'desc'		 => ($disabled) ? '<p class="notebox">' . $disabled . '</p>' : gettext('Your PHP has support for Imagick. Check this option if you wish to use the Imagick graphics library.')
-						)
+				gettext('Enable Imagick') => array(
+						'key' => 'use_imagick',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 0,
+						'disabled' => $disabled,
+						'desc' => ($disabled) ? '<p class="notebox">' . $disabled . '</p>' : gettext('Your PHP has support for Imagick. Check this option if you wish to use the Imagick graphics library.')
+				)
 		);
 
 		if (!$disabled) {
 			$imagickOptions += array(
-							gettext('Max height')			 => array(
-											'key'		 => 'magick_max_height',
-											'type'	 => OPTION_TYPE_TEXTBOX,
-											'order'	 => 1,
-											'desc'	 => sprintf(gettext('The maximum height used by the site for processed images. Set to %d for unconstrained. Default is <strong>%d</strong>'), self::$ignore_size, self::$ignore_size)
+					gettext('Max height') => array(
+							'key' => 'magick_max_height',
+							'type' => OPTION_TYPE_TEXTBOX,
+							'order' => 1,
+							'desc' => sprintf(gettext('The maximum height used by the site for processed images. Set to %d for unconstrained. Default is <strong>%d</strong>'), self::$ignore_size, self::$ignore_size)
+					),
+					gettext('Max width') => array(
+							'key' => 'magick_max_width',
+							'type' => OPTION_TYPE_TEXTBOX,
+							'order' => 2,
+							'desc' => sprintf(gettext('The maximum width used by the site for processed images. Set to %d for unconstrained. Default is <strong>%d</strong>.'), self::$ignore_size, self::$ignore_size)
+					),
+					gettext('Chroma sampling') => array(
+							'key' => 'magick_sampling_factor',
+							'type' => OPTION_TYPE_ORDERED_SELECTOR,
+							'null_selection' => '',
+							'selections' => array(
+									gettext('no sampling') => '1x1 1x1 1x1',
+									gettext('horizontally halved') => '4x1 2x1 2x1',
+									gettext('vertically halved') => '1x4 1x2 1x2',
+									gettext('horizontally and vertically halved') => '4x4 2x2 2x2'
 							),
-							gettext('Max width')			 => array(
-											'key'		 => 'magick_max_width',
-											'type'	 => OPTION_TYPE_TEXTBOX,
-											'order'	 => 2,
-											'desc'	 => sprintf(gettext('The maximum width used by the site for processed images. Set to %d for unconstrained. Default is <strong>%d</strong>.'), self::$ignore_size, self::$ignore_size)
-							),
-							gettext('Chroma sampling') => array(
-											'key'						 => 'magick_sampling_factor',
-											'type'					 => OPTION_TYPE_ORDERED_SELECTOR,
-											'null_selection' => '',
-											'selections'		 => array(
-															gettext('no sampling')												 => '1x1 1x1 1x1',
-															gettext('horizontally halved')								 => '4x1 2x1 2x1',
-															gettext('vertically halved')									 => '1x4 1x2 1x2',
-															gettext('horizontally and vertically halved')	 => '4x4 2x2 2x2'
-											),
-											'order'					 => 3,
-											'desc'					 => gettext('Select a Chroma sampling pattern. Leave empty for the image default.')
-							)
+							'order' => 3,
+							'desc' => gettext('Select a Chroma sampling pattern. Leave empty for the image default.')
+					)
 			);
 		}
 
@@ -135,11 +136,11 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	$_lib_Imagick_info['Library_desc'] = sprintf(gettext('PHP Imagick library <em>%s</em>') . '<br /><em>%s</em>', $_imagick_version, $_imagemagick_version['versionString']);
 
 	$_imagick_format_whitelist = array(
-					'BMP'		 => 'jpg', 'BMP2'	 => 'jpg', 'BMP3'	 => 'jpg',
-					'GIF'		 => 'gif', 'GIF87'	 => 'gif',
-					'JPG'		 => 'jpg', 'JPEG'	 => 'jpg',
-					'PNG'		 => 'png', 'PNG8'	 => 'png', 'PNG24'	 => 'png', 'PNG32'	 => 'png',
-					'TIFF'	 => 'jpg', 'TIFF64' => 'jpg'
+			'BMP' => 'jpg', 'BMP2' => 'jpg', 'BMP3' => 'jpg',
+			'GIF' => 'gif', 'GIF87' => 'gif',
+			'JPG' => 'jpg', 'JPEG' => 'jpg',
+			'PNG' => 'png', 'PNG8' => 'png', 'PNG24' => 'png', 'PNG32' => 'png',
+			'TIFF' => 'jpg', 'TIFF64' => 'jpg'
 	);
 
 	$_imagick = new Imagick();
