@@ -225,6 +225,7 @@ setOption('album_tab_showDefaultThumbs', serialize($showDefaultThumbs));
 setOptionDefault('time_zone', date('T'));
 setOptionDefault('mod_rewrite', 0);
 setOptionDefault('mod_rewrite_image_suffix', NULL);
+setOptionDefault('dirtyform_enable', 1);
 
 purgeOption('mod_rewrite_detected');
 if (isset($_GET['mod_rewrite'])) {

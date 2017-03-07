@@ -174,7 +174,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/dirtyforms/jquery.dirtyforms.min.js" type="text/javascript"></script>
 			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/facebox/facebox.js" type="text/javascript"></script>
 
-
 			<script type="text/javascript">
 		// <!-- <![CDATA[
 		function setClean(id) {
@@ -193,7 +192,11 @@ function printAdminHeader($tab, $subtab = NULL) {
 		<?php
 	}
 	?>
-		$(document).ready(function () {
+		jQuery(function ($) {
+			$(".fade-message").fadeTo(5000, 1).fadeOut(1000);
+		});
+
+		window.addEventListener('load', function () {
 	<?php
 	if (zp_has_filter('admin_head', 'colorbox::css')) {
 		?>
@@ -213,19 +216,24 @@ function printAdminHeader($tab, $subtab = NULL) {
 				}
 		<?php
 	}
+	if (getOption('dirtyform_enable')) {
+		?>
+				$.DirtyForms.ignoreClass = 'ignoredirty';
+				$.DirtyForms.message = '<?php echo gettext('You have unsaved changes!'); ?>';
+				$.DirtyForms.title = '<?php echo gettext('Are you sure you want to leave this page?'); ?>';
+				$.DirtyForms.continueText = '<?php echo gettext('Leave'); ?>';
+				$.DirtyForms.stopText = '<?php echo gettext('Stay'); ?>';
+				$.facebox.settings.closeImage = '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/facebox/closelabel.png';
+				$('#modal').facebox();
+				$('form.dirtylistening').dirtyForms();
+
+				$('form.dirtylistening')[0].reset();
+		<?php
+	}
 	?>
-			$.DirtyForms.ignoreClass = 'ignoredirty';
-			$.DirtyForms.message = '<?php echo gettext('You have unsaved changes!'); ?>';
-			$.DirtyForms.title = '<?php echo gettext('Are you sure you want to leave this page?'); ?>';
-			$.DirtyForms.continueText = '<?php echo gettext('Leave'); ?>';
-			$.DirtyForms.stopText = '<?php echo gettext('Stay'); ?>';
-			$.facebox.settings.closeImage = '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/facebox/closelabel.png';
-			$('#modal').facebox();
-			$('form.dirtylistening').dirtyForms();
-		});
-		jQuery(function ($) {
-			$(".fade-message").fadeTo(5000, 1).fadeOut(1000);
-		})
+
+		}, false);
+
 		// ]]> -->
 			</script>
 			<?php

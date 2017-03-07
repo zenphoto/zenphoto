@@ -127,6 +127,7 @@ if (isset($_GET['action'])) {
 
 			setOption('site_email_name', process_language_string_save('site_email_name', 3));
 			setOption('users_per_page', sanitize_numeric($_POST['users_per_page']));
+			setOption('dirtyform_enable', isset($_POST['dirtyform_enable']));
 			setOption('plugins_per_page', sanitize_numeric($_POST['plugins_per_page']));
 			if (isset($_POST['articles_per_page'])) {
 				setOption('articles_per_page', sanitize_numeric($_POST['articles_per_page']));
@@ -1105,6 +1106,20 @@ Zenphoto_Authority::printPasswordFormJS();
 										?>
 									</td>
 									<td class="option_desc"><?php echo gettext('These options control the number of items displayed on their tabs. If you have problems using these tabs, reduce the number shown here.'); ?></td>
+								</tr>
+								<tr>
+									<td class="option_name">
+										<?php echo gettext('Dirty form check'); ?>
+									</td>
+									<td class="option_value">
+										<label>
+											<input type="checkbox" name="dirtyform_enable" id="dirtyform_enable" value="1"<?php checked('1', getOption('dirtyform_enable')); ?> />
+											<?php echo gettext("Detect unsaved forms"); ?>
+										</label>
+									</td>
+									<td class="option_desc">
+										<?php echo gettext("Enable checking for form changes before leaving pages."); ?>
+									</td>
 								</tr>
 								<?php
 								$subtabs = array('security' => gettext('security'), 'debug' => gettext('debug'));
