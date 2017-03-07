@@ -36,13 +36,13 @@ function comment_form_PaginationJS() {
 				});
 			}
 		}
-		$(document).ready(function () {
+		window.addEventListener('load', function () {
 			current_comment_N = $('.comment h4').index($(addrBar_hash)) + 1;
 			initPagination();
 			if (Comm_ID_found) {
 				$(addrBar_hash).scrollToMe();
 			}
-		});
+		}, false);
 		var current_comment_N, addrBar_hash = window.location.hash, Comm_ID_found = !addrBar_hash.search(/#zp_comment_id_/);
 		jQuery.fn.extend({
 			scrollToMe: function () {
@@ -255,6 +255,7 @@ function comment_form_addComment($name, $email, $website, $comment, $code, $code
 	else
 		$anon = 0;
 	$commentobj = new Comment();
+
 	$commentobj->transient = false; // otherwise we won't be able to save it....
 	$commentobj->setOwnerID($receiverid);
 	$commentobj->setName($name);
@@ -267,6 +268,7 @@ function comment_form_addComment($name, $email, $website, $comment, $code, $code
 	$commentobj->setAnon($anon);
 	$commentobj->setInModeration(0);
 	$commentobj->setAddressData($customdata);
+
 	if (($whattocheck & COMMENT_EMAIL_REQUIRED) && (empty($email) || !is_valid_email_zp($email))) {
 		$commentobj->setInModeration(-2);
 		$commentobj->comment_error_text .= ' ' . gettext("You must supply an e-mail address.");

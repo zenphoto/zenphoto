@@ -151,7 +151,7 @@
 		<script src="<?php echo FULLWEBPATH . "/" . ZENFOLDER ?>/zp-extensions/colorbox_js/jquery.colorbox-min.js" type="text/javascript"></script>
 		<link rel="stylesheet" href="<?php echo FULLWEBPATH . "/" . ZENFOLDER ?>/zp-extensions/colorbox_js/themes/<?php echo $zpfocus_cbstyle; ?>/colorbox.css" type="text/css" media="screen"/>
 		<script type="text/javascript">
-			$(document).ready(function () {
+			window.addEventListener('load', function () {
 				$("a[rel='zoom']").colorbox({
 					slideshow: false,
 					slideshowStart: '<?php echo gettext('start slideshow'); ?>',
@@ -188,7 +188,7 @@
 					});
 <?php } ?>
 				$('#random-wrap').css('display', 'block');
-			});
+			}, false);
 		</script>
 		<?php
 		if ($_zp_gallery_page == 'search.php') {

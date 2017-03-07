@@ -97,7 +97,7 @@ echo "\n</head>";
 						}
 					}
 
-					$(document).ready(function () {
+					window.addEventListener('load', function () {
 	<?php
 	foreach ($searchstring as $key => $singlesearchstring) {
 		switch ($singlesearchstring) {
@@ -115,7 +115,7 @@ echo "\n</head>";
 		}
 	}
 	?>
-					});
+					}, false);
 
 				</script>
 				<?php

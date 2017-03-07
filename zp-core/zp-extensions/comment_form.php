@@ -263,9 +263,9 @@ function printCommentForm($showcomments = true, $addcommenttext = NULL, $addhead
 								$('#comment_toggle').html('<button class="button buttons" onclick="toggleComments(true);"><?php echo gettext('hide comments'); ?></button>');
 							}
 						}
-						$(document).ready(function () {
+						window.addEventListener('load', function () {
 							toggleComments(window.location.hash.search(/#zp_comment_id_/));
-						});
+						}, false);
 						// ]]> -->
 					</script>
 					<?php

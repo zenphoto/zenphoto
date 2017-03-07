@@ -93,10 +93,10 @@ switch (OFFSET_PATH) {
 						<form class="dirtylistening" name="site_upgrade_form" id="site_upgrade_form">
 						</form>
 						<script type="text/javascript">
-							$(document).ready(function () {
+							window.addEventListener('load', function () {
 								$('#site_upgrade_form').dirtyForms('setDirty');
 								$.DirtyForms.message = '<?php echo gettext('The site is closed!'); ?>';
-							});
+							}, false);
 						</script>
 						<?php
 					}

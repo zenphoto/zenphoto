@@ -35,9 +35,9 @@ class user_logout_options {
 	}
 
 	function getOptionsSupported() {
-		return array(gettext('Login form') => array('key'			 => 'user_logout_login_form', 'type'		 => OPTION_TYPE_RADIO,
-										'buttons'	 => array(gettext('None') => 0, gettext('Form') => 1, gettext('Colorbox') => 2),
-										'desc'		 => gettext('If the user is not logged-in display an <em>in-line</em> logon form or a link to a modal <em>Colorbox</em> form.'))
+		return array(gettext('Login form') => array('key' => 'user_logout_login_form', 'type' => OPTION_TYPE_RADIO,
+						'buttons' => array(gettext('None') => 0, gettext('Form') => 1, gettext('Colorbox') => 2),
+						'desc' => gettext('If the user is not logged-in display an <em>in-line</em> logon form or a link to a modal <em>Colorbox</em> form.'))
 		);
 	}
 
@@ -152,7 +152,7 @@ function printUserLogin_out($before = '', $after = '', $showLoginForm = NULL, $l
 						?>
 						<script type="text/javascript">
 							// <!-- <![CDATA[
-							$(document).ready(function () {
+							window.addEventListener('load', function () {
 								$(".logonlink").colorbox({
 									inline: true,
 									innerWidth: "400px",
@@ -160,7 +160,7 @@ function printUserLogin_out($before = '', $after = '', $showLoginForm = NULL, $l
 									close: '<?php echo gettext("close"); ?>',
 									open: $('#passwordform_enclosure .errorbox').length
 								});
-							});
+							}, false);
 							// ]]> -->
 						</script>
 						<?php

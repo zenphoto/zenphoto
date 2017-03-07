@@ -101,9 +101,9 @@ function printZDRoundedCornerJS() {
 	<script type="text/javascript" src="<?php echo $_zp_themeroot; ?>/js/jquery.corner.js"></script>
 	<script type="text/javascript">
 		//<!-- <![CDATA[
-		$(document).ready(function () {
+		window.addEventListener('load', function () {
 			$(".album,#slideshowlink a,textarea,#exif_link a").corner("keep 5px");
-		});
+		}, false);
 		// ]]> -->
 	</script>
 	<?php

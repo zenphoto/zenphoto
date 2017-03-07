@@ -12,9 +12,9 @@ function jqm_loadScripts() {
 	<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/jquerymobile/jquery.mobile-1.4.5.min.css" />
 	<script type="text/javascript" src="<?php echo $_zp_themeroot; ?>/jquerymobile/jquery.mobile-1.4.5.min.js"></script>
 	<script type="text/javascript">
-		$(document).ready(function () {
+		window.addEventListener('load', function () {
 			$("#admin_data a, a.downloadlist_link").attr('data-ajax', 'false');
-		});
+		}, false);
 	</script>
 	<?php
 	printZDSearchToggleJS();

@@ -862,9 +862,9 @@ Zenphoto_Authority::printPasswordFormJS();
 													?>
 													<input type="hidden" name="language_allow_<?php echo $dirname; ?>" value="1" />
 													<script type="text/javascript">
-														$(document).ready(function () {
+														window.addEventListener('load', function () {
 															$('ul.languagelist').scrollTo('li:eq(<?php echo ($c - 2); ?>)');
-														});</script>
+														}, false);</script>
 													<?php
 												}
 												$c++;

@@ -135,7 +135,7 @@
 		<?php } ?>
 		<link rel="stylesheet" href="<?php echo FULLWEBPATH . "/" . ZENFOLDER ?>/zp-extensions/colorbox_js/themes/<?php echo $zpmas_cbstyle; ?>/colorbox.css" type="text/css" media="screen"/>
 		<script type="text/javascript">
-			$(document).ready(function () {
+			window.addEventListener('load', function () {
 				$('#page_nav').css('display', 'none');
 				$("a.zpmas-cb").colorbox({
 					slideshow: false,
@@ -196,7 +196,7 @@
 					});
 					$('#cycle ul').css('display', 'block');
 <?php } ?>
-			});
+			}, false);
 		</script>
 		<?php
 		if (strlen($zpmas_logo) > 0) {
