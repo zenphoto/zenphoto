@@ -1325,11 +1325,11 @@ function zenpageJSCSS() {
 	<link rel="stylesheet" href="zenpage.css" type="text/css" />
 	<script type="text/javascript">
 		// <!-- <![CDATA[
-		$(document).ready(function () {
+		window.addEventListener('load', function () {
 			$("#tip a").click(function () {
 				$("#tips").toggle("slow");
 			});
-		});
+		}, false);
 		// ]]> -->
 	</script>
 	<?php

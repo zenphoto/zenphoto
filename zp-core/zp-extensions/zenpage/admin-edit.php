@@ -27,19 +27,22 @@ if (is_AdminEditPage('page')) {
 	$_GET['tab'] = $tab = 'pages';
 	$new = 'newPage';
 	$update = 'updatePage';
+	$returnpage = 'page';
 } else if (is_AdminEditPage('newsarticle')) {
 	$_GET['tab'] = $tab = 'news';
 	$new = 'newArticle';
 	$update = 'updateArticle';
+	$returnpage = 'newsarticle';
 } else if (is_AdminEditPage('newscategory')) {
 	$tab = 'news';
 	$_GET['tab'] = 'categories';
 	$new = 'newCategory';
 	$update = 'updateCategory';
+	$returnpage = 'newscategory';
 }
 
 
-
+$redirect = false;
 if (isset($_GET['titlelink'])) {
 	$result = $new(urldecode(sanitize($_GET['titlelink'])));
 } else if (isset($_GET['update'])) {
@@ -64,8 +67,9 @@ if (isset($_GET['titlelink'])) {
 		}
 	}
 	if (isset($_POST['subpage']) && $_POST['subpage'] == 'object' && count($reports) <= 1) {
-		header('Location: ' . $result->getLink());
-		exitZP();
+		$redirect = $result->getLink();
+	} else {
+		$redirect = WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-edit.php?' . $returnpage . '&titlelink=' . html_encode($result->getTitlelink());
 	}
 } else {
 	$result = $new('');
@@ -73,6 +77,7 @@ if (isset($_GET['titlelink'])) {
 if (isset($_GET['save'])) {
 	XSRFdefender('save');
 	$result = $update($reports, true);
+	$redirect = WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-edit.php?' . $returnpage . '&titlelink=' . html_encode($result->getTitlelink());
 }
 if (isset($_GET['delete'])) {
 	XSRFdefender('delete');
@@ -80,6 +85,14 @@ if (isset($_GET['delete'])) {
 	if (!empty($msg)) {
 		$reports[] = $msg;
 	}
+}
+if ($redirect) {
+	$_SESSION['reports'] = $reports;
+	header('Location: ' . $redirect);
+	exitZP();
+} else if (isset($_SESSION['reports'])) {
+	$reports = $_SESSION['reports'];
+	unset($_SESSION['reports']);
 }
 /*
  * Here we should restart if any action processing has occurred to be sure that everything is
