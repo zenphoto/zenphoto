@@ -50,9 +50,9 @@ function printAdminFooter($addl = '') {
 		// ===== Scroll to Top ====
 		$(window).scroll(function () {
 			if ($(this).scrollTop() >= 50) {        // If page is scrolled more than 50px
-				$('#return-to-top').fadeIn(200);    // Fade in the arrow
+				$('#return-to-top').fadeIn(200); // Fade in the arrow
 			} else {
-				$('#return-to-top').fadeOut(200);   // Else fade out the arrow
+				$('#return-to-top').fadeOut(200); // Else fade out the arrow
 			}
 		});
 		$('#return-to-top').click(function () {      // When arrow is clicked
@@ -60,6 +60,51 @@ function printAdminFooter($addl = '') {
 				scrollTop: 0                       // Scroll to top of body
 			}, 400);
 		});
+	<?php
+	/* debug code
+	  if (getOption('dirtyform_enable')) {
+	  ?>
+	  $(document).bind('scan.dirtyforms', function (event) {
+	  // Access the form that triggered the event
+	  var form = $(event.target);
+
+	  alert('scan ' + form.prop('name'));
+
+	  });
+	  $(document).bind('rescan.dirtyforms', function (event) {
+	  // Access the form that triggered the event
+	  var form = $(event.target);
+
+	  alert('rescan ' + form.prop('name'));
+
+	  });
+	  $(document).bind('dirty.dirtyforms', function (event) {
+	  // Access the form that triggered the event
+	  var form = $(event.target);
+
+	  alert('dirty ' + form.prop('name'));
+
+	  });
+
+	  $(document).bind('clean.dirtyforms', function (event) {
+	  // Access the form that triggered the event
+	  var form = $(event.target);
+
+	  alert('clean ' + form.prop('name'));
+
+	  });
+	  $(document).bind('setclean.dirtyforms', function (event) {
+	  // Access the form that triggered the event
+	  var form = $(event.target);
+
+	  alert('setclean ' + form.prop('name'));
+
+	  });
+
+	  <?php
+	  }
+	 */
+	?>
 	</script>
 	<?php
 	db_close(); //	close the database as we are done
@@ -177,7 +222,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 			<script type="text/javascript">
 		// <!-- <![CDATA[
 		function setClean(id) {
-			$('form#' + id).dirtyForms('setClean');
 			$('form#' + id).removeClass('tinyDirty');
 		}
 	<?php
@@ -195,7 +239,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 		jQuery(function ($) {
 			$(".fade-message").fadeTo(5000, 1).fadeOut(1000);
 		});
-
 		window.addEventListener('load', function () {
 	<?php
 	if (zp_has_filter('admin_head', 'colorbox::css')) {
@@ -225,15 +268,12 @@ function printAdminHeader($tab, $subtab = NULL) {
 				$.DirtyForms.stopText = '<?php echo gettext('Stay'); ?>';
 				$.facebox.settings.closeImage = '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/facebox/closelabel.png';
 				$('#modal').facebox();
-				$('form.dirtylistening').dirtyForms();
-
-				$('form.dirtylistening')[0].reset();
+				$('form.dirtylistening').dirtyForms({debug: true});
 		<?php
 	}
 	?>
 
 		}, false);
-
 		// ]]> -->
 			</script>
 			<?php
@@ -246,7 +286,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.ui.nestedSortable.js"></script>
 			<script type="text/javascript">
 		//<!-- <![CDATA[
-		$(document).ready(function () {
+		window.addEventListener('load', function () {
 
 			$('ul.page-list').nestedSortable({
 				disableNesting: 'no-nest',
@@ -270,7 +310,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 				}
 			})
 			var original_order = $('ul.page-list').nestedSortable('serialize');
-		});
+		}, false);
 		// ]]> -->
 			</script>
 			<!--Nested Sortables End-->
@@ -1039,9 +1079,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'text-' . $postkey; ?>" value="1" />
 								<script type="text/javascript">
 									// <!-- <![CDATA[
-									$(document).ready(function () {
+									window.addEventListener('load', function () {
 										$('#<?php echo $key; ?>_colorpicker').farbtastic('#<?php echo $key; ?>');
-									});
+									}, false);
 									// ]]> -->
 								</script>
 								<table style="margin:0; padding:0" >
