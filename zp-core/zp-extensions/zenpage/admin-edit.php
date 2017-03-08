@@ -67,7 +67,7 @@ if (isset($_GET['titlelink'])) {
 		}
 	}
 	if (isset($_POST['subpage']) && $_POST['subpage'] == 'object' && count($reports) <= 1) {
-		$redirect = $result->getLink();
+		header('Location: ' . $result->getLink());
 	} else {
 		$redirect = WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-edit.php?' . $returnpage . '&titlelink=' . html_encode($result->getTitlelink());
 	}
