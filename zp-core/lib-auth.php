@@ -834,6 +834,7 @@ class Zenphoto_Authority {
 		$star = false;
 		$mails = array();
 		$info = array('challenge' => '', 'response' => '');
+		$username_is_valid = false;
 		if (!empty($requestor)) {
 			$admin = self::getAnAdmin(array('`user`=' => $requestor, '`valid`=' => 1));
 			if (is_object($admin)) {
@@ -841,6 +842,7 @@ class Zenphoto_Authority {
 					$star = $showCaptcha;
 				}
 				$info = $admin->getChallengePhraseInfo();
+				$username_is_valid = true;
 			}
 		}
 		if (!$star) {
@@ -923,7 +925,7 @@ class Zenphoto_Authority {
 								</fieldset>
 								<br />
 								<?php } else {
-										if ( !$admin->getEmail() ) { ?>
+										if ( $username_is_valid && !$admin->getEmail() ) { ?>
 											<fieldset><p class="logon_form_text errorbox"><?php echo gettext('A password reset is not possible.'); ?></p></fieldset>
 									<?php } else { ?>
 											<p class="logon_form_text"><?php echo gettext('Please request a reset by e-mail by clicking the link below.'); ?></p>
@@ -949,7 +951,7 @@ class Zenphoto_Authority {
 						</fieldset>
 						<br />
 						<?php
-						if ( $star && (!empty($requestor) && $admin->getEmail()) ) {
+						if ( $star && (!empty($requestor) && $username_is_valid && $admin->getEmail()) ) {
 							?>
 							<p class="logon_link">
 								<a href="javascript:launchScript('<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php',['logon_step=captcha', 'ref='+$('#user').val()]);" >
