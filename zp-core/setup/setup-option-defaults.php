@@ -602,8 +602,10 @@ if (!isset($data['gallery_user']))
 	$data['gallery_user'] = getOption('gallery_user');
 if (!isset($data['gallery_hint']))
 	$data['gallery_hint'] = getOption('gallery_hint');
-if (!isset($data['hitcounter']))
+if (!isset($data['hitcounter'])) {
 	$data['hitcounter'] = $result = getOption('Page-Hitcounter-index');
+	purgeOption('Page-Hitcounter-index');
+}
 if (!isset($data['current_theme'])) {
 	$data['current_theme'] = getOption('current_theme');
 	if (is_null($data['current_theme'])) {
