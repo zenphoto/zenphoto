@@ -98,6 +98,9 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 			$typename = gettext("News Categories");
 			$dbquery = "SELECT * FROM " . prefix('news_categories');
 			break;
+		case 'scripts':
+			$typename = gettext('Script pages');
+			break;
 		case "tags":
 			$typename = gettext("Tags");
 			break;
@@ -138,6 +141,20 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 						$maxvalue = 0;
 					} else {
 						$maxvalue = $itemssorted[0]['data'];
+					}
+					break;
+				case'scripts':
+					$maxvalue = 0;
+					$itemssorted = array();
+					$hitcounters = getSerializedArray(getOption('page_hitcounters'));
+					if (!empty($hitcounters)) {
+						asort($hitcounters, SORT_NUMERIC);
+						foreach ($hitcounters as $script => $value) {
+							$itemssorted[] = array('type' => 'scripthitcounter', 'aux' => $script, 'data' => $value);
+							if ($value > $maxvalue) {
+								$maxvalue = $value;
+							}
+						}
 					}
 					break;
 				default:
@@ -305,6 +322,7 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 			case "popular":
 				switch ($type) {
 					case 'rss':
+					case'scripts':
 						$barsize = round($item['data'] / $maxvalue * $bargraphmaxsize);
 						$value = $item['data'];
 						break;
@@ -429,6 +447,11 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 				$viewurl = WEBPATH . "/index.php?" . html_encode(strrchr($item['aux'], 'rss'));
 				$title = html_encode(strrchr($item['aux'], 'rss'));
 				break;
+			case 'scripts':
+				$editurl = '';
+				$viewurl = '';
+				$title = html_encode($item['aux']);
+				break;
 		}
 		if (isset($item['show'])) {
 			if ($item['show'] != "1") {
@@ -460,6 +483,8 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 				<td class="statistic_link" <?php echo $style; ?>>
 					<?php
 					switch ($type) {
+						case'scripts':
+							break;
 						case 'rss':
 							echo "<a href='" . $viewurl . "' title='" . $name . "'>" . gettext("View") . "</a></td>";
 							break;
@@ -728,6 +753,16 @@ echo '</head>';
 
 						<span id="newscategories-mostarticles"></span>
 						<?php printBarGraph("mostused", "newscategories"); ?>
+
+						<?php
+						if (extensionEnabled('hitcounter')) {
+							?>
+							<h2><?php echo gettext('Statistics for Script pages'); ?></h2>
+							<span id="scriptpage-popular"></span>
+							<?php
+							printBarGraph("popular", "scripts");
+						}
+						?>
 
 						<h2><?php echo gettext('Statistics for RSS feeds'); ?></h2>
 						<span id="rss-popular"></span>

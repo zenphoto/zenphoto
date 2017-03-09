@@ -179,10 +179,15 @@ class hitcounter {
 			}
 
 			if (!$skip) {
-				global $_zp_gallery_page, $_zp_current_album, $_zp_current_image, $_zp_current_article, $_zp_current_page, $_zp_current_category, $_scriptpage_hitcounters;
+				global $_zp_gallery, $_zp_gallery_page, $_zp_current_album, $_zp_current_image, $_zp_current_article, $_zp_current_page, $_zp_current_category, $_scriptpage_hitcounters;
 				if (checkAccess()) {
 					// count only if permitted to access
 					switch ($_zp_gallery_page) {
+						case'index.php':
+							if (!zp_loggedin()) {
+								$_zp_gallery->countHit();
+							}
+							break;
 						case 'album.php':
 							if (!$_zp_current_album->isMyItem(ALBUM_RIGHTS) && getCurrentPage() == 1) {
 								$_zp_current_album->countHit();
@@ -248,9 +253,12 @@ class hitcounter {
  * @return string
  */
 function getHitcounter($obj = NULL) {
-	global $_zp_current_album, $_zp_current_image, $_zp_gallery_page, $_zp_current_article, $_zp_current_page, $_zp_current_category, $_scriptpage_hitcounters;
+	global $_zp_current_album, $_zp_current_image, $_zp_gallery, $_zp_gallery_page, $_zp_current_article, $_zp_current_page, $_zp_current_category, $_scriptpage_hitcounters;
 	if (is_null($obj)) {
 		switch ($_zp_gallery_page) {
+			case'index.php';
+				$obj = $_zp_gallery;
+				break;
 			case 'album.php':
 				$obj = $_zp_current_album;
 				break;
@@ -265,12 +273,10 @@ function getHitcounter($obj = NULL) {
 					$obj = $_zp_current_category;
 				} else {
 					$obj = $_zp_current_article;
-					if (is_null($obj))
-						return 0;
 				}
+				if (is_null($obj))
+					return 0;
 				break;
-			case 'search.php':
-				return NULL;
 			default:
 				$page = stripSuffix($_zp_gallery_page);
 				return @$_scriptpage_hitcounters[$page];
