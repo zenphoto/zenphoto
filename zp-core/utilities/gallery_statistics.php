@@ -150,7 +150,7 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 					$hitcounters = getSerializedArray(getOption('page_hitcounters'));
 					$hitcounters['index'] = $_zp_gallery->getHitcounter();
 					if (!empty($hitcounters)) {
-						asort($hitcounters, SORT_NUMERIC);
+						arsort($hitcounters, SORT_NUMERIC);
 						foreach ($hitcounters as $script => $value) {
 							$itemssorted[] = array('type' => 'scripthitcounter', 'aux' => $script, 'data' => $value);
 							if ($value > $maxvalue) {
@@ -325,43 +325,43 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 				switch ($type) {
 					case 'rss':
 					case'scripts':
-						$barsize = round($item['data'] / $maxvalue * $bargraphmaxsize);
+						$barsize = $item['data'] / $maxvalue * $bargraphmaxsize;
 						$value = $item['data'];
 						break;
 					default:
-						$barsize = round($item['hitcounter'] / $maxvalue * $bargraphmaxsize);
+						$barsize = $item['hitcounter'] / $maxvalue * $bargraphmaxsize;
 						$value = $item['hitcounter'];
 						break;
 				}
 				break;
 			case 'popularimages':
-				$barsize = round($item['hits'] / $maxvalue * $bargraphmaxsize) - 10;
+				$barsize = $item['hits'] / $maxvalue * $bargraphmaxsize;
 				$value = $item['hits'];
 				break;
 			case "mostrated":
-				$barsize = round($item['total_votes'] / $maxvalue * $bargraphmaxsize);
+				$barsize = $item['total_votes'] / $maxvalue * $bargraphmaxsize;
 				$value = $item['total_votes'];
 				break;
 			case "toprated":
-				$barsize = round(($item['total_value'] / $item['total_votes']) / $maxvalue * $bargraphmaxsize);
-				$value = round($item['total_value'] / $item['total_votes']);
+				$barsize = ($item['total_value'] / $item['total_votes']) / $maxvalue * $bargraphmaxsize;
+				$value = $item['total_value'] / $item['total_votes'];
 				break;
 			case "mostcommented":
 				if ($maxvalue != 0) {
-					$barsize = round($item['commentcount'] / $maxvalue * $bargraphmaxsize);
+					$barsize = $item['commentcount'] / $maxvalue * $bargraphmaxsize;
 				} else {
 					$barsize = 0;
 				}
 				$value = $item['commentcount'];
 				break;
 			case "mostimages":
-				$barsize = round($item['imagenumber'] / $maxvalue * $bargraphmaxsize);
+				$barsize = $item['imagenumber'] / $maxvalue * $bargraphmaxsize;
 				$value = $item['imagenumber'];
 				break;
 			case "latest":
 				switch ($type) {
 					case "albums":
-						$barsize = 0; //round($item['imagenumber'] / $maxvalue * $bargraphmaxsize);
+						$barsize = 0;
 						$value = sprintf(gettext("%s images"), $item['imagenumber']);
 						break;
 					case "images":
@@ -371,14 +371,14 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 				}
 				break;
 			case "latestupdated":
-				$barsize = 0; //round($item['imagenumber'] / $maxvalue * $bargraphmaxsize);
+				$barsize = 0;
 				$value = sprintf(gettext("%s images"), $item['imagenumber']);
 				break;
 			case "mostused":
 				switch ($type) {
 					case "tags":
 						if ($maxvalue != 0) {
-							$barsize = round($item['tagcount'] / $maxvalue * $bargraphmaxsize);
+							$barsize = $item['tagcount'] / $maxvalue * $bargraphmaxsize;
 						} else {
 							$barsize = 0;
 						}
@@ -386,7 +386,7 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 						break;
 					case "newscategories":
 						if ($maxvalue != 0) {
-							$barsize = round($item['catcount'] / $maxvalue * $bargraphmaxsize);
+							$barsize = $item['catcount'] / $maxvalue * $bargraphmaxsize;
 						} else {
 							$barsize = 0;
 						}
@@ -485,13 +485,7 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 					<strong<?php echo $show; ?>><?php echo $title; ?></strong> <?php echo $name; ?>
 				</td>
 				<td class="statistic_graphwrap" <?php echo $style; ?>>
-					<div class="statistic_bargraph" style="width: <?php
-					if ($value) {
-						echo max(0.5, $barsize);
-					} else {
-						echo 0;
-					}
-					?>%"></div>
+					<div class="statistic_bargraph" style="width: <?php echo round($barsize, 3); ?>%"></div>
 					<div class="statistic_value"><?php echo $value; ?></div>
 				</td>
 				<td class="statistic_link" <?php echo $style; ?>>
