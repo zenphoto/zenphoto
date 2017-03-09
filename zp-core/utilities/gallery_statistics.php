@@ -69,6 +69,7 @@ function gallerystats_filesize_r($path) {
  * @param int $queryLimit Number of entries to show
  */
 function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number = 0, $to_number = NULL) {
+	global $_zp_gallery;
 	if (is_null($to_number)) {
 		$queryLimit = "0,11";
 		$limit = 10;
@@ -99,7 +100,7 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 			$dbquery = "SELECT * FROM " . prefix('news_categories');
 			break;
 		case 'scripts':
-			$typename = gettext('Script pages');
+			$typename = gettext('Script Pages');
 			break;
 		case "tags":
 			$typename = gettext("Tags");
@@ -147,6 +148,7 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 					$maxvalue = 0;
 					$itemssorted = array();
 					$hitcounters = getSerializedArray(getOption('page_hitcounters'));
+					$hitcounters['index'] = $_zp_gallery->getHitcounter();
 					if (!empty($hitcounters)) {
 						asort($hitcounters, SORT_NUMERIC);
 						foreach ($hitcounters as $script => $value) {
@@ -449,7 +451,13 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 				break;
 			case 'scripts':
 				$editurl = '';
-				$viewurl = '';
+				$page = $item['aux'];
+				if ($page == 'index') {
+					$viewurl = WEBPATH . '/index.php';
+				} else {
+					$viewurl = WEBPATH . '/page/' . $page;
+				}
+
 				$title = html_encode($item['aux']);
 				break;
 		}
@@ -477,14 +485,19 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 					<strong<?php echo $show; ?>><?php echo $title; ?></strong> <?php echo $name; ?>
 				</td>
 				<td class="statistic_graphwrap" <?php echo $style; ?>>
-					<div class="statistic_bargraph" style="width: <?php echo $barsize; ?>%"></div>
+					<div class="statistic_bargraph" style="width: <?php
+					if ($value) {
+						echo max(0.5, $barsize);
+					} else {
+						echo 0;
+					}
+					?>%"></div>
 					<div class="statistic_value"><?php echo $value; ?></div>
 				</td>
 				<td class="statistic_link" <?php echo $style; ?>>
 					<?php
 					switch ($type) {
 						case'scripts':
-							break;
 						case 'rss':
 							echo "<a href='" . $viewurl . "' title='" . $name . "'>" . gettext("View") . "</a></td>";
 							break;
