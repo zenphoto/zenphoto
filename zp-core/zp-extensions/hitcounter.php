@@ -9,8 +9,6 @@
 /** Reset hitcounters ********************************************************** */
 /* * ***************************************************************************** */
 
-$_scriptpage_hitcounters = getSerializedArray(getOption('page_hitcounters'));
-
 if (!defined('OFFSET_PATH')) {
 	define('OFFSET_PATH', 3);
 	require_once(dirname(dirname(__FILE__)) . '/admin-functions.php');
@@ -44,6 +42,8 @@ $option_interface = 'hitcounter';
 
 zp_register_filter('load_theme_script', 'hitcounter::load_script');
 zp_register_filter('admin_utilities_buttons', 'hitcounter::button');
+
+$_scriptpage_hitcounters = getSerializedArray(getOption('page_hitcounters'));
 
 /**
  * Plugin option handling class
