@@ -149,13 +149,11 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 					$itemssorted = array();
 					$hitcounters = getSerializedArray(getOption('page_hitcounters'));
 					$hitcounters['index'] = $_zp_gallery->getHitcounter();
-					if (!empty($hitcounters)) {
-						arsort($hitcounters, SORT_NUMERIC);
-						foreach ($hitcounters as $script => $value) {
-							$itemssorted[] = array('type' => 'scripthitcounter', 'aux' => $script, 'hitcounter' => $value);
-							if ($value > $maxvalue) {
-								$maxvalue = $value;
-							}
+					arsort($hitcounters, SORT_NUMERIC);
+					foreach ($hitcounters as $script => $value) {
+						$itemssorted[] = array('type' => 'scripthitcounter', 'aux' => $script, 'hitcounter' => $value);
+						if ($value > $maxvalue) {
+							$maxvalue = $value;
 						}
 					}
 					break;
@@ -194,35 +192,17 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 		case "toprated":
 			$dbquery .= " WHERE `total_votes`>0 ORDER BY (total_value/total_votes) DESC, total_value DESC LIMIT $queryLimit";
 			$itemssorted = query_full_array($dbquery);
-			if (empty($itemssorted)) {
-				$maxvalue = 0;
-			} else {
+			$maxvalue = 0;
+			if (!empty($itemssorted)) {
 				if ($itemssorted[0]['total_votes'] != 0) {
 					$maxvalue = ($itemssorted[0]['total_value'] / $itemssorted[0]['total_votes']);
-				} else {
-					$maxvalue = 0;
 				}
 			}
 			$headline = $typename . " - " . gettext("top rated");
 			break;
 		case "mostcommented":
-			switch ($type) {
-				case "albums":
-					$dbquery = "SELECT comments.ownerid, count(*) as commentcount, albums.* FROM " . prefix('comments') . " AS comments, " . prefix('albums') . " AS albums WHERE albums.id=comments.ownerid AND type = 'albums' GROUP BY comments.ownerid ORDER BY commentcount DESC LIMIT " . $queryLimit;
-					$itemssorted = query_full_array($dbquery);
-					break;
-				case "images":
-					$dbquery = "SELECT comments.ownerid, count(*) as commentcount, images.* FROM " . prefix('comments') . " AS comments, " . prefix('images') . " AS images WHERE images.id=comments.ownerid AND type = 'images' GROUP BY comments.ownerid ORDER BY commentcount DESC LIMIT " . $queryLimit;
-					$itemssorted = query_full_array($dbquery);
-					break;
-				case "pages":
-					$itemssorted = query_full_array("SELECT comments.ownerid, count(*) as commentcount, pages.* FROM " . prefix('comments') . " AS comments, " . prefix('pages') . " AS pages WHERE pages.id=comments.ownerid AND type = 'page' GROUP BY comments.ownerid ORDER BY commentcount DESC LIMIT " . $queryLimit);
-					break;
-				case "news":
-					$dbquery = "SELECT comments.ownerid, count(*) as commentcount, news.* FROM " . prefix('comments') . " AS comments, " . prefix('news') . " AS news WHERE news.id=comments.ownerid AND type = 'news' GROUP BY comments.ownerid ORDER BY commentcount DESC LIMIT " . $queryLimit;
-					$itemssorted = query_full_array($dbquery);
-					break;
-			}
+			$dbquery = "SELECT comments.ownerid, count(*) as commentcount, " . $type . ".* FROM " . prefix('comments') . " AS comments, " . prefix($type) . " AS " . $type . " WHERE " . $type . ".id=comments.ownerid AND type = '" . $type . "' GROUP BY comments.ownerid ORDER BY commentcount DESC LIMIT " . $queryLimit;
+			$itemssorted = query_full_array($dbquery);
 			if (empty($itemssorted)) {
 				$maxvalue = 0;
 			} else {
@@ -315,11 +295,9 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 			$name = $item['filename'];
 		} else if (array_key_exists("folder", $item)) {
 			$name = $item['folder'];
-		} else if ($type === "pages" OR $type === "news") {
+		} else if (array_key_exists("titlelink", $item)) {
 			$name = $item['titlelink'];
-		} else if ($type === "newscategories") {
-			$name = $item['titlelink'];
-		} else if ($type === "tags") {
+		} else {
 			$name = "";
 		}
 		switch ($sortorder) {
@@ -402,7 +380,6 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 				$title = get_language_string($item['title']);
 				break;
 			case "images":
-
 				if ($item['albumid']) {
 					$getalbumfolder = query_single_row("SELECT title, folder, `show` from " . prefix("albums") . " WHERE id = " . $item['albumid']);
 					if ($sortorder === "latest") {
@@ -453,19 +430,13 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 				$title = html_encode($item['aux']);
 				break;
 		}
-		if (isset($item['show'])) {
-			if ($item['show'] != "1") {
-				$show = " class='unpublished_item'";
-			} else {
-				$show = "";
-			}
+		if (isset($item['show']) && $item['show'] != "1") {
+			$show = " class='unpublished_item'";
 		} else {
 			$show = "";
 		}
-		if ($value != 0 OR $sortorder === "latest") {
-			if (empty($name)) {
-				$name = "";
-			} else {
+		if ($value != 0 || $sortorder === "latest") {
+			if (!empty($name)) {
 				$name = "(" . $name . ")";
 			}
 			?>
