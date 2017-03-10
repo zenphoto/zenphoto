@@ -136,12 +136,12 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 		case "popular":
 			switch ($type) {
 				case 'rss':
-					$dbquery = "SELECT `type`,`aux`, `data` FROM " . prefix('plugin_storage') . " WHERE `type` = 'rsshitcounter' ORDER BY CONVERT(data,UNSIGNED) DESC LIMIT " . $queryLimit;
+					$dbquery = "SELECT `type`,`aux`, `data` as 'hitcounter' FROM " . prefix('plugin_storage') . " WHERE `type` = 'rsshitcounter' ORDER BY CONVERT(data,UNSIGNED) DESC LIMIT " . $queryLimit;
 					$itemssorted = query_full_array($dbquery);
 					if (empty($itemssorted)) {
 						$maxvalue = 0;
 					} else {
-						$maxvalue = $itemssorted[0]['data'];
+						$maxvalue = $itemssorted[0]['hitcounter'];
 					}
 					break;
 				case'scripts':
@@ -152,7 +152,7 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 					if (!empty($hitcounters)) {
 						arsort($hitcounters, SORT_NUMERIC);
 						foreach ($hitcounters as $script => $value) {
-							$itemssorted[] = array('type' => 'scripthitcounter', 'aux' => $script, 'data' => $value);
+							$itemssorted[] = array('type' => 'scripthitcounter', 'aux' => $script, 'hitcounter' => $value);
 							if ($value > $maxvalue) {
 								$maxvalue = $value;
 							}
@@ -324,17 +324,8 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 		}
 		switch ($sortorder) {
 			case "popular":
-				switch ($type) {
-					case 'rss':
-					case'scripts':
-						$barsize = $item['data'] / $maxvalue * $bargraphmaxsize;
-						$value = $item['data'];
-						break;
-					default:
-						$barsize = $item['hitcounter'] / $maxvalue * $bargraphmaxsize;
-						$value = $item['hitcounter'];
-						break;
-				}
+				$barsize = $item['hitcounter'] / $maxvalue * $bargraphmaxsize;
+				$value = $item['hitcounter'];
 				break;
 			case 'popularimages':
 				$barsize = $item['hits'] / $maxvalue * $bargraphmaxsize;
@@ -459,7 +450,6 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 				} else {
 					$viewurl = WEBPATH . '/page/' . $page;
 				}
-
 				$title = html_encode($item['aux']);
 				break;
 		}
