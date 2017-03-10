@@ -308,6 +308,8 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 	echo "</th></tr>";
 	echo $no_statistic_message;
 
+	$maxvalue = ceil($maxvalue / 10) * 10;
+
 	foreach ($itemssorted as $item) {
 		if (array_key_exists("filename", $item)) {
 			$name = $item['filename'];
