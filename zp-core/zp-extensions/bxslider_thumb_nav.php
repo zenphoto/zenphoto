@@ -283,7 +283,7 @@ if (!$plugin_disable && !OFFSET_PATH && in_array(stripSuffix($_zp_gallery_page),
 				?>
 			</ul>
 			<script type="text/javascript">
-				$(document).ready(function () {
+				window.addEventListener('load', function () {
 					var index = $('.bxslider<?php echo $albumid; ?> li.activeimg').index();
 					index = ++index;
 					currentPager = parseInt(index / <?php echo $maxitems; ?>)
@@ -300,7 +300,7 @@ if (!$plugin_disable && !OFFSET_PATH && in_array(stripSuffix($_zp_gallery_page),
 						useCSS: false,
 						startSlide: currentPager
 					});
-				});
+				}, false);
 			</script>
 			<?php
 		}

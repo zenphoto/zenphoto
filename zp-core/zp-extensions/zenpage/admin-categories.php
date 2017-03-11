@@ -82,14 +82,14 @@ zenpageJSCSS();
 		}
 	}
 
-	$(document).ready(function () {
+	window.addEventListener('load', function () {
 		$('form [name=checkeditems] #checkallaction').change(function () {
 			if ($(this).val() == 'deleteall') {
 				// general text about "items" so it can be reused!
 				alert('<?php echo js_encode(gettext('Are you sure you want to delete all selected items? THIS CANNOT BE UNDONE!')); ?>');
 			}
 		});
-	});
+	}, false);
 	// ]]> -->
 </script>
 </head>

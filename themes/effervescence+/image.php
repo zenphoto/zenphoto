@@ -12,7 +12,7 @@ if (!defined('WEBPATH'))
 		<?php if (zp_has_filter('theme_head', 'colorbox::css')) { ?>
 			<script type="text/javascript">
 				// <!-- <![CDATA[
-				$(document).ready(function () {
+				window.addEventListener('load', function () {
 					$(".colorbox").colorbox({
 						inline: true,
 						href: "#imagemetadata",
@@ -27,14 +27,14 @@ if (!defined('WEBPATH'))
 							maxHeight: "98%",
 							photo: true,
 							close: '<?php echo gettext("close"); ?>',
-							onComplete: function(){
+							onComplete: function () {
 								$(window).resize(resizeColorBoxImage);
 							}
 						});
 		<?php
 	}
 	?>
-				});
+				}, false);
 				// ]]> -->
 			</script>
 		<?php } ?>

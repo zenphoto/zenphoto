@@ -177,7 +177,7 @@ if (extensionEnabled('zenpage')) {
 			</script>
 			<script type="text/javascript">
 				//<!-- <![CDATA[
-				$(document).ready(function () {
+				window.addEventListener('load', function () {
 <?php
 if (is_array($result)) {
 	?>
@@ -194,7 +194,7 @@ if (is_array($result)) {
 						$('#link').val('');
 						handleSelectorChange($(this).val());
 					});
-				});
+				}, false);
 				//]]> -->
 			</script>
 			<h1>

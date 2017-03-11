@@ -603,7 +603,7 @@ if (extensionEnabled('slideshow')) {
 					$count = '';
 					?>
 					<script type="text/javascript">
-						$(document).ready(function () {
+						window.addEventListener('load', function () {
 							$("a[rel='slideshow']").colorbox({
 								slideshow: true,
 								loop: true,
@@ -619,7 +619,7 @@ if (extensionEnabled('slideshow')) {
 								maxHeight: '98%',
 								photo: true
 							});
-						});
+						}, false);
 					</script>
 					<?php
 					foreach ($images as $image) {

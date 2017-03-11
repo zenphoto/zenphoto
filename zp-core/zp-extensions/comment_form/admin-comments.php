@@ -80,7 +80,7 @@ if (isset($_GET['action'])) {
 				$comment->setWebsite(sanitize($_POST['website'], 3));
 			$comment->setDateTime(sanitize($_POST['date'], 3));
 			$comment->setComment(sanitize($_POST['comment'], 1));
-			$comment->setCustomData($_comment_form_save_post = serialize(getCommentAddress(0)));
+			$comment->setAddressData($_comment_form_save_post = serialize(getCommentAddress(0)));
 			$comment->save();
 			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/comment_form/admin-comments.php?saved&page=editcomment&id=' . $comment->getID());
 			exitZP();
@@ -124,7 +124,7 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 			$commentarr = query_single_row("SELECT * FROM " . prefix('comments') . " WHERE id = $id LIMIT 1");
 			if ($commentarr) {
 				extract($commentarr);
-				$commentarr = array_merge($commentarr, getSerializedArray($commentarr['custom_data']));
+				$commentarr = array_merge($commentarr, getSerializedArray($commentarr['address_data']));
 				?>
 				<form class="dirtylistening" onReset="setClean('form_editcomment');" id="form_editcomment" action="?action=savecomment" method="post" autocomplete="off">
 					<?php XSRFToken('savecomment'); ?>
@@ -179,15 +179,15 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 						if (getOption('comment_form_addresses')) {
 							?>
 							<label for="comment_form_street"><?php echo gettext('Street:'); ?></label>
-							<input type="text" name="0-comment_form_street" id="comment_form_street" class="inputbox" size="40" value="<?php echo @$address['street']; ?>">
+							<input type="text" name="0-comment_form_street" id="comment_form_street" class="inputbox" size="40" value="<?php echo $commentarr['street']; ?>">
 							<label for="comment_form_city"><?php echo gettext('City:'); ?></label>
-							<input type="text" name="0-comment_form_city" id="comment_form_city" class="inputbox" size="40" value="<?php echo @$address['city']; ?>">
+							<input type="text" name="0-comment_form_city" id="comment_form_city" class="inputbox" size="40" value="<?php echo $commentarr['city']; ?>">
 							<label for="comment_form_state"><?php echo gettext('State:'); ?></label>
-							<input type="text" name="0-comment_form_state" id="comment_form_state" class="inputbox" size="40" value="<?php echo @$address['state']; ?>">
+							<input type="text" name="0-comment_form_state" id="comment_form_state" class="inputbox" size="40" value="<?php echo $commentarr['state']; ?>">
 							<label for="comment_form_country"><?php echo gettext('Country:'); ?></label>
-							<input type="text" name="0-comment_form_country" id="comment_form_country" class="inputbox" size="40" value="<?php echo @$address['country']; ?>">
+							<input type="text" name="0-comment_form_country" id="comment_form_country" class="inputbox" size="40" value="<?php echo $commentarr['country']; ?>">
 							<label for="comment_form_postal"><?php echo gettext('Postal code:'); ?></label>
-							<input type="text" name="0-comment_form_postal" id="comment_form_postal" class="inputbox" size="40" value="<?php echo @$address['postal']; ?>">
+							<input type="text" name="0-comment_form_postal" id="comment_form_postal" class="inputbox" size="40" value="<?php echo $commentarr['postal']; ?>">
 							<?php
 						}
 						?>

@@ -225,6 +225,7 @@ setOption('album_tab_showDefaultThumbs', serialize($showDefaultThumbs));
 setOptionDefault('time_zone', date('T'));
 setOptionDefault('mod_rewrite', 0);
 setOptionDefault('mod_rewrite_image_suffix', NULL);
+setOptionDefault('dirtyform_enable', 1);
 
 purgeOption('mod_rewrite_detected');
 if (isset($_GET['mod_rewrite'])) {
@@ -273,11 +274,24 @@ setOptionDefault('search_hint', NULL);
 setOptionDefault('backup_compression', 0);
 setOptionDefault('license_accepted', 0);
 
+setOptionDefault('protected_image_cache', NULL);
+setOptionDefault('secure_image_processor', NULL);
+
+setoptionDefault('image_allow_upscale', NULL);
+setoptionDefault('image_cache_suffix', NULL);
+setoptionDefault('image_sharpen', NULL);
+setoptionDefault('image_interlace', NULL);
+setOptionDefault('thumb_sharpen', NULL);
+setOptionDefault('use_embedded_thumb', NULL);
+
+
 setOptionDefault('watermark_image', 'watermarks/watermark.png');
 if (getOption('perform_watermark')) {
 	$v = str_replace('.png', "", basename(getOption('watermark_image')));
-	setoptionDefault('fullimage_watermark', $v);
+} else {
+	$v = NULL;
 }
+setoptionDefault('fullimage_watermark', $v);
 
 setOptionDefault('pasteImageSize', NULL);
 setOptionDefault('watermark_h_offset', 90);
@@ -285,6 +299,7 @@ setOptionDefault('watermark_w_offset', 90);
 setOptionDefault('watermark_scale', 5);
 setOptionDefault('watermark_allow_upscale', 1);
 setOptionDefault('perform_video_watermark', 0);
+setOptionDefault('ImbedIPTC', NULL);
 
 if (getOption('perform_video_watermark')) {
 	$v = str_replace('.png', "", basename(getOption('video_watermark_image')));
@@ -587,8 +602,10 @@ if (!isset($data['gallery_user']))
 	$data['gallery_user'] = getOption('gallery_user');
 if (!isset($data['gallery_hint']))
 	$data['gallery_hint'] = getOption('gallery_hint');
-if (!isset($data['hitcounter']))
+if (!isset($data['hitcounter'])) {
 	$data['hitcounter'] = $result = getOption('Page-Hitcounter-index');
+	purgeOption('Page-Hitcounter-index');
+}
 if (!isset($data['current_theme'])) {
 	$data['current_theme'] = getOption('current_theme');
 	if (is_null($data['current_theme'])) {

@@ -208,7 +208,7 @@ $orphaned = array();
 											<?php
 											echo gettext('<span class="emptyOption">empty</span>');
 											?>
-											<input type = "checkbox" id = "emptyOptionCheck"  onclick = "$('.deleteEmpty').prop('checked', $('#emptyOptionCheck').prop('checked'));"></label>
+											<input type = "checkbox" id = "emptyOptionCheck" title="<?php echo gettext('It is generally safe to remove an orphaned option whose value is empty since referencing a non-existent option will return an empty value.'); ?>" onclick = "$('.deleteEmpty').prop('checked', $('#emptyOptionCheck').prop('checked'));"></label>
 										<?php
 									}
 									?>

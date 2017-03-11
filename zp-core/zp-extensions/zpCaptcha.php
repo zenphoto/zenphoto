@@ -74,7 +74,7 @@ class zpCaptcha extends _zp_captcha {
 		<span id="zenphoto_captcha_image_loc"><?php echo $captcha['html']; ?></span>
 		<script type="text/javascript">
 			// <!-- <![CDATA[
-			$(document).ready(function () {
+			window.addEventListener('load', function () {
 				$('#zenphoto_captcha_font').change(function () {
 					var base = $('#zenphoto_captcha_image_loc').html();
 					var match = base.match(/src=".*"\s/gi) + '%';
@@ -85,7 +85,7 @@ class zpCaptcha extends _zp_captcha {
 					var nbase = base.replace(path, path + '&amp;f=' + $('#zenphoto_captcha_font').val());
 					$('#zenphoto_captcha_image_loc').html(nbase);
 				});
-			});
+			}, false);
 			// ]]> -->
 		</script>
 		<?php

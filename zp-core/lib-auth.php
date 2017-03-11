@@ -779,11 +779,12 @@ class _Authority {
 							$msg = "\n" . $requestor .
 											"\n" . sprintf(gettext("To reset your Admin passwords visit: %s"), FULLWEBPATH . "/" . ZENFOLDER . "/admin-users.php?ticket=$ref&user=" . $user['user']) .
 											"\n" . gettext("If you do not wish to reset your passwords just ignore this message. This ticket will automatically expire in 3 days.");
-							$err_msg = zp_mail(gettext("The ZenPhoto20 information you requested"), $msg, $mails, $cclist);
+							$err_msg = zp_mail(gettext("The ZenPhoto20 information you requested"), $msg, $mails, $cclist, NULL, NULL, sprintf(gettext('%1$s password reset request mail failed.'), $user['user']));
 							if (empty($err_msg)) {
 								$_zp_login_error = 2;
 							} else {
-								$_zp_login_error = $err_msg;
+								debugLog($err_msg);
+								$_zp_login_error = gettext('Reset request failed.');
 							}
 						}
 					} else {
@@ -1149,7 +1150,9 @@ class _Authority {
 							?>
 							<br />
 							<div class="buttons">
-								<button type="submit"<?php if (empty($requestor)) echo ' disabled="disabled"'; ?>  id="submitButton" value="<?php echo gettext("Request"); ?>" ><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><?php echo gettext("Request password reset"); ?></button>
+								<button type="submit"<?php if (empty($requestor)) echo ' disabled="disabled"'; ?>  id="submitButton" value="<?php echo gettext("Request"); ?>" >
+									<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><?php echo gettext("Request password reset"); ?>
+								</button>
 								<button type="button" value="<?php echo gettext("Return"); ?>" onclick="launchScript('<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php', ['logon_step=', 'ref=' + $('#user').val()]);" ><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/refresh.png" alt="" /><?php echo gettext("Return"); ?></button>
 							</div>
 							<br class="clearall" />
@@ -1318,7 +1321,7 @@ class _Authority {
 						 class="disclose_password"
 						 id="disclose_password<?php echo $id; ?>"
 						 onclick="passwordClear('<?php echo $id; ?>');
-								 togglePassword('<?php echo $id; ?>');">
+										 togglePassword('<?php echo $id; ?>');">
 		</p>
 		<p class="password_field password_field_<?php echo $id; ?>">
 			<label for="pass_r<?php echo $id; ?>" id="match<?php echo $id; ?>"><?php echo gettext("Repeat password") . $flag; ?></label>
@@ -1556,20 +1559,6 @@ class _Administrator extends PersistentObject {
 			}
 		}
 		return $result;
-	}
-
-	/**
-	 * Stores custom data
-	 */
-	function setCustomData($custom_data) {
-		$this->set('custom_data', $custom_data);
-	}
-
-	/**
-	 * Returns custom data
-	 */
-	function getCustomData() {
-		return $this->get('custom_data');
 	}
 
 	/**

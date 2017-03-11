@@ -27,19 +27,22 @@ if (is_AdminEditPage('page')) {
 	$_GET['tab'] = $tab = 'pages';
 	$new = 'newPage';
 	$update = 'updatePage';
+	$returnpage = 'page';
 } else if (is_AdminEditPage('newsarticle')) {
 	$_GET['tab'] = $tab = 'news';
 	$new = 'newArticle';
 	$update = 'updateArticle';
+	$returnpage = 'newsarticle';
 } else if (is_AdminEditPage('newscategory')) {
 	$tab = 'news';
 	$_GET['tab'] = 'categories';
 	$new = 'newCategory';
 	$update = 'updateCategory';
+	$returnpage = 'newscategory';
 }
 
 
-
+$redirect = false;
 if (isset($_GET['titlelink'])) {
 	$result = $new(urldecode(sanitize($_GET['titlelink'])));
 } else if (isset($_GET['update'])) {
@@ -65,7 +68,8 @@ if (isset($_GET['titlelink'])) {
 	}
 	if (isset($_POST['subpage']) && $_POST['subpage'] == 'object' && count($reports) <= 1) {
 		header('Location: ' . $result->getLink());
-		exitZP();
+	} else {
+		$redirect = WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-edit.php?' . $returnpage . '&titlelink=' . html_encode($result->getTitlelink());
 	}
 } else {
 	$result = $new('');
@@ -73,6 +77,7 @@ if (isset($_GET['titlelink'])) {
 if (isset($_GET['save'])) {
 	XSRFdefender('save');
 	$result = $update($reports, true);
+	$redirect = WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-edit.php?' . $returnpage . '&titlelink=' . html_encode($result->getTitlelink());
 }
 if (isset($_GET['delete'])) {
 	XSRFdefender('delete');
@@ -80,6 +85,14 @@ if (isset($_GET['delete'])) {
 	if (!empty($msg)) {
 		$reports[] = $msg;
 	}
+}
+if ($redirect) {
+	$_SESSION['reports'] = $reports;
+	header('Location: ' . $redirect);
+	exitZP();
+} else if (isset($_SESSION['reports'])) {
+	$reports = $_SESSION['reports'];
+	unset($_SESSION['reports']);
 }
 /*
  * Here we should restart if any action processing has occurred to be sure that everything is
@@ -137,9 +150,9 @@ $tagsort = getTagOrder();
 		$('.width100percent').width($('.formlayout').width() - $('.rightcolumn').width() - 30);
 	}
 
-	window.onload = function () {
+	window.addEventListener('load', function () {
 		resizeTable();
-	}
+	}, false);
 	// ]]> -->
 </script>
 <?php Zenphoto_Authority::printPasswordFormJS(); ?>
@@ -165,7 +178,6 @@ $tagsort = getTagOrder();
 				if (!empty($page)) {
 					$zenphoto_tabs['news']['subtabs'][gettext('articles')] .= $page;
 				}
-				$subtab = printSubtabs();
 				$admintype = 'newsarticle';
 				$additem = gettext('New Article');
 				$deleteitem = gettext('Article');
@@ -174,7 +186,6 @@ $tagsort = getTagOrder();
 			}
 
 			if (is_AdminEditPage('newscategory')) {
-				$subtab = printSubtabs();
 				$admintype = 'newscategory';
 				IF (zp_loggedin(MANAGE_ALL_NEWS_RIGHTS)) {
 					$additem = gettext('newCategory');
@@ -187,7 +198,6 @@ $tagsort = getTagOrder();
 			}
 
 			if (is_AdminEditPage('page')) {
-				$subtab = 'edit';
 				$admintype = 'page';
 				$additem = gettext('New Page');
 				$deleteitem = gettext('Page');
@@ -305,6 +315,7 @@ $tagsort = getTagOrder();
 
 							<?php
 							if (is_AdminEditPage("newsarticle")) {
+								$me = 'news';
 								$backurl = 'admin-news.php?' . $page;
 								if (isset($_GET['category']))
 									$backurl .= '&amp;category=' . html_encode(sanitize($_GET['category']));
@@ -318,12 +329,14 @@ $tagsort = getTagOrder();
 									$backurl .= '&amp;articles_page=' . html_encode(sanitize($_GET['articles_page']));
 							}
 							if (is_AdminEditPage("newscategory")) {
+								$me = 'news';
 								$backurl = 'admin-categories.php?';
 							}
 							if (is_AdminEditPage("page")) {
+								$me = 'page';
 								$backurl = 'admin-pages.php';
 							}
-							zp_apply_filter('admin_note', 'news', $subtab);
+							zp_apply_filter('admin_note', $me, 'edit');
 							if ($reports) {
 								$show = array();
 								preg_match_all('/<p class=[\'"](.*?)[\'"]>(.*?)<\/p>/', implode('', $reports), $matches);
@@ -494,9 +507,9 @@ $tagsort = getTagOrder();
 																 id="show"
 																 value="1" <?php checkIfChecked($result->getShow()); ?>
 																 onclick="$('#pubdate').val('');
-																		 $('#expiredate').val('');
-																		 $('#pubdate').css('color', 'black');
-																		 $('.expire').html('');"
+																			 $('#expiredate').val('');
+																			 $('#pubdate').css('color', 'black');
+																			 $('.expire').html('');"
 																 />
 													<label for="show"><?php echo gettext("Published"); ?></label>
 												</p>
@@ -598,7 +611,7 @@ $tagsort = getTagOrder();
 																			 name="disclose_password"
 																			 id="disclose_password"
 																			 onclick="passwordClear('');
-																					 togglePassword('');"><?php echo gettext('Show password'); ?>
+																								 togglePassword('');"><?php echo gettext('Show password'); ?>
 															</label>
 															<br />
 															<span class="password_field_">
@@ -625,13 +638,13 @@ $tagsort = getTagOrder();
 													<label class="checkboxlabel">
 														<input type="radio" id="copy_object" name="copy_delete_object" value="copy"
 																	 onclick="$('#copyfield').show();
-																			 $('#deletemsg').hide();" />
+																					 $('#deletemsg').hide();" />
 																	 <?php echo gettext("Copy"); ?>
 													</label>
 													<label class="checkboxlabel">
 														<input type="radio" id="delete_object" name="copy_delete_object" value="delete"
 																	 onclick="deleteConfirm('delete_object', '', '<?php addslashes(printf(gettext('Are you sure you want to delete this %s?'), $deleteitem)); ?>');
-																			 $('#copyfield').hide();" />
+																					 $('#copyfield').hide();" />
 																	 <?php echo gettext('delete'); ?>
 													</label>
 													<br class="clearall" />

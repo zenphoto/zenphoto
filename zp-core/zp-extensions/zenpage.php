@@ -46,38 +46,38 @@ if (OFFSET_PATH == 2) {
 }
 
 //Zenpage rewrite definitions
-$_zp_conf_vars['special_pages']['news'] = array('define'	 => '_NEWS_', 'rewrite'	 => getOption('NewsLink'),
-				'option'	 => 'NewsLink', 'default'	 => 'news');
-$_zp_conf_vars['special_pages']['category'] = array('define'	 => '_CATEGORY_', 'rewrite'	 => getOption('categoryLink'),
-				'option'	 => 'categoryLink', 'default'	 => '_NEWS_/category');
-$_zp_conf_vars['special_pages']['news_archive'] = array('define'	 => '_NEWS_ARCHIVE_', 'rewrite'	 => getOption('NewsArchiveLink'),
-				'option'	 => 'NewsArchiveLink', 'default'	 => '_NEWS_/archive');
-$_zp_conf_vars['special_pages']['pages'] = array('define'	 => '_PAGES_', 'rewrite'	 => getOption('PagesLink'),
-				'option'	 => 'PagesLink', 'default'	 => 'pages');
+$_zp_conf_vars['special_pages']['news'] = array('define' => '_NEWS_', 'rewrite' => getOption('NewsLink'),
+		'option' => 'NewsLink', 'default' => 'news');
+$_zp_conf_vars['special_pages']['category'] = array('define' => '_CATEGORY_', 'rewrite' => getOption('categoryLink'),
+		'option' => 'categoryLink', 'default' => '_NEWS_/category');
+$_zp_conf_vars['special_pages']['news_archive'] = array('define' => '_NEWS_ARCHIVE_', 'rewrite' => getOption('NewsArchiveLink'),
+		'option' => 'NewsArchiveLink', 'default' => '_NEWS_/archive');
+$_zp_conf_vars['special_pages']['pages'] = array('define' => '_PAGES_', 'rewrite' => getOption('PagesLink'),
+		'option' => 'PagesLink', 'default' => 'pages');
 
 $_zp_conf_vars['special_pages'][] = array('definition' => '%NEWS%', 'rewrite' => '_NEWS_');
 $_zp_conf_vars['special_pages'][] = array('definition' => '%CATEGORY%', 'rewrite' => '_CATEGORY_');
 $_zp_conf_vars['special_pages'][] = array('definition' => '%NEWS_ARCHIVE%', 'rewrite' => '_NEWS_ARCHIVE_');
 $_zp_conf_vars['special_pages'][] = array('definition' => '%PAGES%', 'rewrite' => '_PAGES_');
 
-$_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%PAGES%/*$',
-				'rule'		 => '%REWRITE% index.php?p=pages [L,QSA]');
-$_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%PAGES%/(.+?)/*$',
-				'rule'		 => '%REWRITE% index.php?p=pages&title=$1 [L, QSA]');
-$_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%CATEGORY%/(.+)/([0-9]+)/*$',
-				'rule'		 => '%REWRITE% index.php?p=news&category=$1&page=$2 [L,QSA]');
-$_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%CATEGORY%/(.+?)/*$',
-				'rule'		 => '%REWRITE% index.php?p=news&category=$1 [L,QSA]');
-$_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%NEWS_ARCHIVE%/(.+)/([0-9]+)/*$',
-				'rule'		 => '%REWRITE% index.php?p=news&date=$1&page=$2 [L,QSA]');
-$_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%NEWS_ARCHIVE%/(.+?)/*$',
-				'rule'		 => '%REWRITE% index.php?p=news&date=$1 [L,QSA]');
-$_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%NEWS%/([0-9]+)/*$',
-				'rule'		 => '%REWRITE% index.php?p=news&page=$1 [L,QSA]');
-$_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%NEWS%/(.+?)/*$',
-				'rule'		 => '%REWRITE% index.php?p=news&title=$1 [L,QSA]');
-$_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%NEWS%/*$',
-				'rule'		 => '%REWRITE% index.php?p=news [L,QSA]');
+$_zp_conf_vars['special_pages'][] = array('define' => false, 'rewrite' => '^%PAGES%/*$',
+		'rule' => '%REWRITE% index.php?p=pages [L,QSA]');
+$_zp_conf_vars['special_pages'][] = array('define' => false, 'rewrite' => '^%PAGES%/(.+?)/*$',
+		'rule' => '%REWRITE% index.php?p=pages&title=$1 [L, QSA]');
+$_zp_conf_vars['special_pages'][] = array('define' => false, 'rewrite' => '^%CATEGORY%/(.+)/([0-9]+)/*$',
+		'rule' => '%REWRITE% index.php?p=news&category=$1&page=$2 [L,QSA]');
+$_zp_conf_vars['special_pages'][] = array('define' => false, 'rewrite' => '^%CATEGORY%/(.+?)/*$',
+		'rule' => '%REWRITE% index.php?p=news&category=$1 [L,QSA]');
+$_zp_conf_vars['special_pages'][] = array('define' => false, 'rewrite' => '^%NEWS_ARCHIVE%/(.+)/([0-9]+)/*$',
+		'rule' => '%REWRITE% index.php?p=news&date=$1&page=$2 [L,QSA]');
+$_zp_conf_vars['special_pages'][] = array('define' => false, 'rewrite' => '^%NEWS_ARCHIVE%/(.+?)/*$',
+		'rule' => '%REWRITE% index.php?p=news&date=$1 [L,QSA]');
+$_zp_conf_vars['special_pages'][] = array('define' => false, 'rewrite' => '^%NEWS%/([0-9]+)/*$',
+		'rule' => '%REWRITE% index.php?p=news&page=$1 [L,QSA]');
+$_zp_conf_vars['special_pages'][] = array('define' => false, 'rewrite' => '^%NEWS%/(.+?)/*$',
+		'rule' => '%REWRITE% index.php?p=news&title=$1 [L,QSA]');
+$_zp_conf_vars['special_pages'][] = array('define' => false, 'rewrite' => '^%NEWS%/*$',
+		'rule' => '%REWRITE% index.php?p=news [L,QSA]');
 
 
 zp_register_filter('checkForGuest', 'cmsFilters::checkForGuest');
@@ -106,7 +106,6 @@ class cmsFilters {
 			setOptionDefault('zenpage_textshorten_indicator', ' (...)');
 			gettext($str = 'Read more');
 			setOptionDefault('zenpage_read_more', getAllTranslations($str));
-			setOptionDefault('zenpage_indexhitcounter', false);
 			setOptionDefault('menu_truncate_string', 0);
 			setOptionDefault('menu_truncate_indicator', '');
 			setOptionDefault('zenpage_enabled_items', 3);
@@ -117,48 +116,48 @@ class cmsFilters {
 		global $_common_truncate_handler;
 
 		$options = array(
-						gettext('Enabled CMS items')									 => array(
-										'key'			 => 'zenpage_enabled_items',
-										'type'		 => OPTION_TYPE_RADIO,
-										'order'		 => 7,
-										'buttons'	 => array(
-														gettext('News')	 => 1,
-														gettext('Pages') => 2,
-														gettext('Both')	 => 3
-										),
-										'desc'		 => gettext('Select the CMS features you wish to use on your site.')
+				gettext('Enabled CMS items') => array(
+						'key' => 'zenpage_enabled_items',
+						'type' => OPTION_TYPE_RADIO,
+						'order' => 7,
+						'buttons' => array(
+								gettext('News') => 1,
+								gettext('Pages') => 2,
+								gettext('Both') => 3
 						),
-						gettext('Articles per page (theme)')					 => array('key'		 => 'zenpage_articles_per_page', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 0,
-										'desc'	 => gettext("How many news articles you want to show per page on the news or news category pages.")),
-						gettext('News article text length')						 => array('key'		 => 'zenpage_text_length', 'type'	 => OPTION_TYPE_NUMBER,
-										'order'	 => 1,
-										'desc'	 => gettext("The length of news article excerpts in news or news category pages. Leave empty for full text.")),
-						gettext('News article text shorten indicator') => array('key'		 => 'zenpage_textshorten_indicator', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 2,
-										'desc'	 => gettext("Something that indicates that the article text is shortened, “ (...)” by default.")),
-						gettext('Read more')													 => array('key'					 => 'zenpage_read_more', 'type'				 => OPTION_TYPE_TEXTBOX, 'multilingual' => 1,
-										'order'				 => 3,
-										'desc'				 => gettext("The text for the link to the full article.")),
-						gettext('Truncate titles*')										 => array('key'			 => 'menu_truncate_string', 'type'		 => OPTION_TYPE_NUMBER,
-										'disabled' => $_common_truncate_handler,
-										'order'		 => 23,
-										'desc'		 => gettext('Limit titles to this many characters. Zero means no limit.')),
-						gettext('Truncate indicator*')								 => array('key'			 => 'menu_truncate_indicator', 'type'		 => OPTION_TYPE_TEXTBOX,
-										'disabled' => $_common_truncate_handler,
-										'order'		 => 24,
-										'desc'		 => gettext('Append this string to truncated titles.'))
+						'desc' => gettext('Select the CMS features you wish to use on your site.')
+				),
+				gettext('Articles per page (theme)') => array('key' => 'zenpage_articles_per_page', 'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 0,
+						'desc' => gettext("How many news articles you want to show per page on the news or news category pages.")),
+				gettext('News article text length') => array('key' => 'zenpage_text_length', 'type' => OPTION_TYPE_NUMBER,
+						'order' => 1,
+						'desc' => gettext("The length of news article excerpts in news or news category pages. Leave empty for full text.")),
+				gettext('News article text shorten indicator') => array('key' => 'zenpage_textshorten_indicator', 'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 2,
+						'desc' => gettext("Something that indicates that the article text is shortened, “ (...)” by default.")),
+				gettext('Read more') => array('key' => 'zenpage_read_more', 'type' => OPTION_TYPE_TEXTBOX, 'multilingual' => 1,
+						'order' => 3,
+						'desc' => gettext("The text for the link to the full article.")),
+				gettext('Truncate titles*') => array('key' => 'menu_truncate_string', 'type' => OPTION_TYPE_NUMBER,
+						'disabled' => $_common_truncate_handler,
+						'order' => 23,
+						'desc' => gettext('Limit titles to this many characters. Zero means no limit.')),
+				gettext('Truncate indicator*') => array('key' => 'menu_truncate_indicator', 'type' => OPTION_TYPE_TEXTBOX,
+						'disabled' => $_common_truncate_handler,
+						'order' => 24,
+						'desc' => gettext('Append this string to truncated titles.'))
 		);
 		if ($_common_truncate_handler) {
-			$options['note'] = array('key'		 => 'menu_truncate_note', 'type'	 => OPTION_TYPE_NOTE,
-							'order'	 => 25,
-							'desc'	 => '<p class="notebox">' . $_common_truncate_handler . '</p>');
+			$options['note'] = array('key' => 'menu_truncate_note', 'type' => OPTION_TYPE_NOTE,
+					'order' => 25,
+					'desc' => '<p class="notebox">' . $_common_truncate_handler . '</p>');
 		} else {
 			$_common_truncate_handler = gettext('* These options may be set via the <a href="javascript:gotoName(\'zenpage\');"><em>Zenpage</em></a> plugin options.');
-			$options['note'] = array('key'		 => 'menu_truncate_note',
-							'type'	 => OPTION_TYPE_NOTE,
-							'order'	 => 25,
-							'desc'	 => gettext('<p class="notebox">*<strong>Note:</strong> The setting of these options are shared with other plugins.</p>'));
+			$options['note'] = array('key' => 'menu_truncate_note',
+					'type' => OPTION_TYPE_NOTE,
+					'order' => 25,
+					'desc' => gettext('<p class="notebox">*<strong>Note:</strong> The setting of these options are shared with other plugins.</p>'));
 		}
 		return $options;
 	}

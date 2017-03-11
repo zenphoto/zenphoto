@@ -95,21 +95,21 @@ class jquery_rating {
 	 */
 	function getOptionsSupported() {
 		$stars = ceil(getOption('rating_stars_count'));
-		return array(gettext('Voting state')							 => array('key'			 => 'rating_status', 'type'		 => OPTION_TYPE_RADIO,
-										'buttons'	 => $this->ratingstate,
-										'desc'		 => gettext('<em>Enable</em> state of voting.')),
-						gettext('Stars')										 => array('key'	 => 'rating_stars_count', 'type' => OPTION_TYPE_NUMBER,
-										'desc' => sprintf(ngettext('Rating will use %u star.', 'Rating will use %u stars.', $stars), $stars)),
-						gettext('Split stars')							 => array('key'			 => 'rating_split_stars', 'type'		 => OPTION_TYPE_RADIO,
-										'buttons'	 => array(gettext('full') => 1, gettext('half') => 2, gettext('third') => 3),
-										'desc'		 => gettext('Show fractional stars based on rating. May cause performance problems for pages with large numbers of rating elements.')),
-						gettext('Individual image control')	 => array('key'	 => 'rating_image_individual_control', 'type' => OPTION_TYPE_CHECKBOX,
-										'desc' => gettext('Enable to allow voting status control on individual images.')),
-						gettext('Recast vote')							 => array('key'			 => 'rating_recast', 'type'		 => OPTION_TYPE_RADIO,
-										'buttons'	 => array(gettext('No') => 0, gettext('Show rating') => 1, gettext('Show previous vote') => 2),
-										'desc'		 => gettext('Allow users to change their vote. If Show previous vote is chosen, the stars will reflect the last vote of the viewer. Otherwise they will reflect the current rating.')),
-						gettext('Disguise IP')							 => array('key'	 => 'rating_hash_ip', 'type' => OPTION_TYPE_CHECKBOX,
-										'desc' => gettext('Causes the stored IP addressed to be hashed so as to avoid privacy tracking issues.'))
+		return array(gettext('Voting state') => array('key' => 'rating_status', 'type' => OPTION_TYPE_RADIO,
+						'buttons' => $this->ratingstate,
+						'desc' => gettext('<em>Enable</em> state of voting.')),
+				gettext('Stars') => array('key' => 'rating_stars_count', 'type' => OPTION_TYPE_NUMBER,
+						'desc' => sprintf(ngettext('Rating will use %u star.', 'Rating will use %u stars.', $stars), $stars)),
+				gettext('Split stars') => array('key' => 'rating_split_stars', 'type' => OPTION_TYPE_RADIO,
+						'buttons' => array(gettext('full') => 1, gettext('half') => 2, gettext('third') => 3),
+						'desc' => gettext('Show fractional stars based on rating. May cause performance problems for pages with large numbers of rating elements.')),
+				gettext('Individual image control') => array('key' => 'rating_image_individual_control', 'type' => OPTION_TYPE_CHECKBOX,
+						'desc' => gettext('Enable to allow voting status control on individual images.')),
+				gettext('Recast vote') => array('key' => 'rating_recast', 'type' => OPTION_TYPE_RADIO,
+						'buttons' => array(gettext('No') => 0, gettext('Show rating') => 1, gettext('Show previous vote') => 2),
+						'desc' => gettext('Allow users to change their vote. If Show previous vote is chosen, the stars will reflect the last vote of the viewer. Otherwise they will reflect the current rating.')),
+				gettext('Disguise IP') => array('key' => 'rating_hash_ip', 'type' => OPTION_TYPE_CHECKBOX,
+						'desc' => gettext('Causes the stored IP addressed to be hashed so as to avoid privacy tracking issues.'))
 		);
 	}
 
@@ -173,17 +173,17 @@ class jquery_rating {
 
 	static function rating_purgebutton($buttons) {
 		$buttons[] = array(
-						'category'		 => gettext('Database'),
-						'enable'			 => true,
-						'button_text'	 => gettext('Reset all ratings'),
-						'formname'		 => 'clearrating_button',
-						'action'			 => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/rating.php?action=clear_rating',
-						'icon'				 => 'images/reset.png',
-						'title'				 => gettext('Sets all ratings to unrated.'),
-						'alt'					 => '',
-						'hidden'			 => '<input type="hidden" name="action" value="clear_rating" />',
-						'rights'			 => ADMIN_RIGHTS,
-						'XSRFTag'			 => 'clear_rating'
+				'category' => gettext('Database'),
+				'enable' => true,
+				'button_text' => gettext('Reset all ratings'),
+				'formname' => 'clearrating_button',
+				'action' => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/rating.php?action=clear_rating',
+				'icon' => 'images/reset.png',
+				'title' => gettext('Sets all ratings to unrated.'),
+				'alt' => '',
+				'hidden' => '<input type="hidden" name="action" value="clear_rating" />',
+				'rights' => ADMIN_RIGHTS,
+				'XSRFTag' => 'clear_rating'
 		);
 		return $buttons;
 	}
@@ -358,7 +358,7 @@ function printRating($vote = 3, $object = NULL, $text = true) {
 	<script type="text/javascript">
 		// <!-- <![CDATA[
 		var recast<?php echo $unique; ?> = <?php printf('%u', $recast && $oldrating); ?>;
-		$(document).ready(function () {
+		window.addEventListener('load', function () {
 			$('#star_rating<?php echo $unique; ?> :radio.star').rating('select', '<?php echo $starselector; ?>');
 	<?php
 	if ($disable) {
@@ -367,7 +367,7 @@ function printRating($vote = 3, $object = NULL, $text = true) {
 		<?php
 	}
 	?>
-		});
+		}, false);
 
 		function cast<?php echo $unique; ?>() {
 			var dataString = $('#star_rating<?php echo $unique; ?>').serialize();

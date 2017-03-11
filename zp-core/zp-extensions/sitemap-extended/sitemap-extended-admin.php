@@ -55,7 +55,7 @@ if (isset($_GET['generatesitemaps'])) {
 <link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-statistics.css" type="text/css" media="screen" />
 <script type="text/javascript">
 	// <!-- <![CDATA[
-	$(document).ready(function () {
+	window.addEventListener('load', function () {
 		/*	$(".colorbox").colorbox({
 		 iframe: false,
 		 inline:true,
@@ -64,7 +64,7 @@ if (isset($_GET['generatesitemaps'])) {
 		 photo: false,
 		 close: '<?php echo gettext("close"); ?>'
 		 }); */
-	});
+	}, false);
 	// ]]> -->
 </script>
 <?php
@@ -156,9 +156,9 @@ function sitemap_printAvailableSitemaps() {
 						?>
 						<script type="text/javascript">
 							// <!-- <![CDATA[
-							$(document).ready(function () {
+							window.addEventListener('load', function () {
 								window.location = "<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/sitemap-extended/sitemap-extended-admin.php";
-							});
+							}, false);
 							// ]]> -->
 						</script>
 						<?php

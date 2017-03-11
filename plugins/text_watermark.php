@@ -30,19 +30,19 @@ class text_watermark {
 	}
 
 	function getOptionsSupported() {
-		return array(gettext('Text')	 => array('key'		 => 'text_watermark_text', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 2,
-										'desc'	 => gettext('Text for the watermark.')),
-						gettext('Color') => array('key'		 => 'text_watermark_color', 'type'	 => OPTION_TYPE_COLOR_PICKER,
-										'order'	 => 0,
-										'desc'	 => gettext("Text color.")),
-						gettext('Font')	 => array('key'				 => 'text_watermark_font', 'type'			 => OPTION_TYPE_SELECTOR,
-										'order'			 => 1,
-										'selections' => zp_getFonts(),
-										'desc'			 => gettext('Watermark font.')),
-						''							 => array('key'		 => 'text_watermark_save', 'type'	 => OPTION_TYPE_CUSTOM,
-										'order'	 => 3,
-										'desc'	 => gettext("Enter the text you wish for the watermark and choose the text color."))
+		return array(gettext('Text') => array('key' => 'text_watermark_text', 'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 2,
+						'desc' => gettext('Text for the watermark.')),
+				gettext('Color') => array('key' => 'text_watermark_color', 'type' => OPTION_TYPE_COLOR_PICKER,
+						'order' => 0,
+						'desc' => gettext("Text color.")),
+				gettext('Font') => array('key' => 'text_watermark_font', 'type' => OPTION_TYPE_SELECTOR,
+						'order' => 1,
+						'selections' => zp_getFonts(),
+						'desc' => gettext('Watermark font.')),
+				'' => array('key' => 'text_watermark_save', 'type' => OPTION_TYPE_CUSTOM,
+						'order' => 3,
+						'desc' => gettext("Enter the text you wish for the watermark and choose the text color."))
 		);
 	}
 
@@ -58,7 +58,7 @@ class text_watermark {
 		?>
 		<script type="text/javascript">
 			// <!-- <![CDATA[
-			$(document).ready(function () {
+			window.addEventListener('load', function () {
 				$('#text_watermark_font').change(function () {
 					updatewm();
 				});
@@ -71,7 +71,7 @@ class text_watermark {
 				$('#text_watermark_text').change(function () {
 					updatewm();
 				});
-			});
+			}, false);
 			function imgsrc() {
 				var imgsrc = '<?php echo FULLWEBPATH; ?>/plugins/text_watermark/createwatermark.php'
 								+ '?text_watermark_text=' + encodeURIComponent($('#text_watermark_text').val())

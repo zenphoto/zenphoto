@@ -49,7 +49,7 @@
  * this property.
  *
  * Since text files have no natural height and width, we set them based on the image size option. This happens after the call
- * PersistentObject(). The rest of the code there sets up the default title.
+ * common_instantiate(). The rest of the code there sets up the default title.
  *
  * getThumb() is responsible for generating the thumbnail image for the object. As above, if there is a similar named real
  * image, it will be used. Otherwise [for this object implementation] we will use a thumbnail image provided with the plugin.

@@ -46,6 +46,66 @@ function printAdminFooter($addl = '') {
 		| <a href="https://<?php echo GITHUB; ?>/commits/master" title="<?php echo gettext('View Change log'); ?>"><?php echo gettext('Change log'); ?></a>
 		| <?php printf(gettext('Server date: %s'), date('Y-m-d H:i:s')); ?>
 	</div>
+	<script type="text/javascript">
+		// ===== Scroll to Top ====
+		$(window).scroll(function () {
+			if ($(this).scrollTop() >= 50) {        // If page is scrolled more than 50px
+				$('#return-to-top').fadeIn(200); // Fade in the arrow
+			} else {
+				$('#return-to-top').fadeOut(200); // Else fade out the arrow
+			}
+		});
+		$('#return-to-top').click(function () {      // When arrow is clicked
+			$('body,html').animate({
+				scrollTop: 0                       // Scroll to top of body
+			}, 400);
+		});
+	<?php
+	/* debug code
+	  if (getOption('dirtyform_enable')) {
+	  ?>
+	  $(document).bind('scan.dirtyforms', function (event) {
+	  // Access the form that triggered the event
+	  var form = $(event.target);
+
+	  alert('scan ' + form.prop('name'));
+
+	  });
+	  $(document).bind('rescan.dirtyforms', function (event) {
+	  // Access the form that triggered the event
+	  var form = $(event.target);
+
+	  alert('rescan ' + form.prop('name'));
+
+	  });
+	  $(document).bind('dirty.dirtyforms', function (event) {
+	  // Access the form that triggered the event
+	  var form = $(event.target);
+
+	  alert('dirty ' + form.prop('name'));
+
+	  });
+
+	  $(document).bind('clean.dirtyforms', function (event) {
+	  // Access the form that triggered the event
+	  var form = $(event.target);
+
+	  alert('clean ' + form.prop('name'));
+
+	  });
+	  $(document).bind('setclean.dirtyforms', function (event) {
+	  // Access the form that triggered the event
+	  var form = $(event.target);
+
+	  alert('setclean ' + form.prop('name'));
+
+	  });
+
+	  <?php
+	  }
+	 */
+	?>
+	</script>
 	<?php
 	db_close(); //	close the database as we are done
 }
@@ -157,61 +217,69 @@ function printAdminHeader($tab, $subtab = NULL) {
 			}
 			?>
 			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/dirtyforms/jquery.dirtyforms.min.js" type="text/javascript"></script>
+
 			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/facebox/facebox.js" type="text/javascript"></script>
 
-
 			<script type="text/javascript">
-				// <!-- <![CDATA[
-				function setClean(id) {
-					$('form#' + id).dirtyForms('setClean');
-					$('form#' + id).removeClass('tinyDirty');
-				}
+		// <!-- <![CDATA[
+		function setClean(id) {
+			$('form#' + id).removeClass('tinyDirty');
+		}
 	<?php
 	if ($multi) {
 		?>
-					function lsclick(key, id) {
-						$('.lbx-' + id).hide();
-						$('#lb' + key + '-' + id).show();
-						$('.lbt-' + id).removeClass('selected');
-						$('#lbt-' + key + '-' + id).addClass('selected');
-					}
+			function lsclick(key, id) {
+				$('.lbx-' + id).hide();
+				$('#lb' + key + '-' + id).show();
+				$('.lbt-' + id).removeClass('selected');
+				$('#lbt-' + key + '-' + id).addClass('selected');
+			}
 		<?php
 	}
 	?>
-				$(document).ready(function () {
+		jQuery(function ($) {
+			$(".fade-message").fadeTo(5000, 1).fadeOut(1000);
+		});
+		window.addEventListener('load', function () {
 	<?php
 	if (zp_has_filter('admin_head', 'colorbox::css')) {
 		?>
-						$("a.colorbox").colorbox({
-							maxWidth: "98%",
-							maxHeight: "98%",
-							close: '<?php echo addslashes(gettext("close")); ?>'
-						});
+				$("a.colorbox").colorbox({
+					maxWidth: "98%",
+					maxHeight: "98%",
+					close: '<?php echo addslashes(gettext("close")); ?>'
+				});
 		<?php
 	}
 	if ($multi) {
 		?>
-						try {
-							$('.languageSelector').msDropDown();
-						} catch (e) {
-							alert(e.message);
-						}
+				try {
+					$('.languageSelector').msDropDown();
+				} catch (e) {
+					alert(e.message);
+				}
+		<?php
+	}
+	if (getOption('dirtyform_enable')) {
+		?>
+				$.DirtyForms.ignoreClass = 'ignoredirty';
+				$.DirtyForms.message = '<?php echo gettext('You have unsaved changes!'); ?>';
+				$.DirtyForms.title = '<?php echo gettext('Are you sure you want to leave this page?'); ?>';
+				$.DirtyForms.continueText = '<?php echo gettext('Leave'); ?>';
+				$.DirtyForms.stopText = '<?php echo gettext('Stay'); ?>';
+				$.facebox.settings.closeImage = '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/facebox/closelabel.png';
+				$('#modal').facebox();
+				$('form.dirtylistening').dirtyForms({debug: true});
+				// brute force kludge to make the form clean after the load
+				var timeoutID = window.setTimeout(function () {
+					$('form.dirtylistening').trigger("reset");
+				}, 100);
 		<?php
 	}
 	?>
-					$.DirtyForms.ignoreClass = 'ignoredirty';
-					$.DirtyForms.message = '<?php echo gettext('You have unsaved changes!'); ?>';
-					$.DirtyForms.title = '<?php echo gettext('Are you sure you want to leave this page?'); ?>';
-					$.DirtyForms.continueText = '<?php echo gettext('Leave'); ?>';
-					$.DirtyForms.stopText = '<?php echo gettext('Stay'); ?>';
-					$.facebox.settings.closeImage = '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/facebox/closelabel.png';
-					$('#modal').facebox();
-					$('form.dirtylistening').dirtyForms();
-				});
-				jQuery(function ($) {
-					$(".fade-message").fadeTo(5000, 1).fadeOut(1000);
-				})
-				// ]]> -->
+
+		}, false);
+		// ]]> -->
 			</script>
 			<?php
 			zp_apply_filter('admin_head');
@@ -222,33 +290,33 @@ function printAdminHeader($tab, $subtab = NULL) {
 			<!--Nested Sortables-->
 			<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.ui.nestedSortable.js"></script>
 			<script type="text/javascript">
-				//<!-- <![CDATA[
-				$(document).ready(function () {
+		//<!-- <![CDATA[
+		window.addEventListener('load', function () {
 
-					$('ul.page-list').nestedSortable({
-						disableNesting: 'no-nest',
-						forcePlaceholderSize: true,
-						handle: 'div',
-						items: 'li',
-						opacity: .6,
-						placeholder: 'placeholder',
-						tabSize: 25,
-						tolerance: 'intersect',
-						toleranceElement: '> div',
-						listType: 'ul',
-						change: function (event, ui) {
-							$('#sortableListForm').dirtyForms('setDirty');
-						}
-					});
-					$('.serialize').click(function () {
-						serialized = $('ul.page-list').nestedSortable('serialize');
-						if (serialized != original_order) {
-							$('#serializeOutput').html('<input type="hidden" name="order" size="30" maxlength="1000" value="' + serialized + '" />');
-						}
-					})
-					var original_order = $('ul.page-list').nestedSortable('serialize');
-				});
-				// ]]> -->
+			$('ul.page-list').nestedSortable({
+				disableNesting: 'no-nest',
+				forcePlaceholderSize: true,
+				handle: 'div',
+				items: 'li',
+				opacity: .6,
+				placeholder: 'placeholder',
+				tabSize: 25,
+				tolerance: 'intersect',
+				toleranceElement: '> div',
+				listType: 'ul',
+				change: function (event, ui) {
+					$('#sortableListForm').dirtyForms('setDirty');
+				}
+			});
+			$('.serialize').click(function () {
+				serialized = $('ul.page-list').nestedSortable('serialize');
+				if (serialized != original_order) {
+					$('#serializeOutput').html('<input type="hidden" name="order" size="30" maxlength="1000" value="' + serialized + '" />');
+				}
+			})
+			var original_order = $('ul.page-list').nestedSortable('serialize');
+		}, false);
+		// ]]> -->
 			</script>
 			<!--Nested Sortables End-->
 			<?php
@@ -268,37 +336,44 @@ function printAdminHeader($tab, $subtab = NULL) {
 				$subtab = '';
 			}
 			?>
+
+
 		<span id="administration">
 			<img id="logo" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/zen-logo.png"
 					 title="<?php echo sprintf(gettext('%1$s administration:%2$s%3$s'), html_encode($_zp_gallery->getTitle()), html_encode($_zp_admin_tab), html_encode($subtab)); ?>"
 					 alt="<?php echo gettext('ZenPhoto20 Administration'); ?>" />
 		</span>
-		<?php
-		echo "\n<div id=\"links\">";
-		echo "\n  ";
 
-		if (is_object($_zp_current_admin_obj) && !$_zp_current_admin_obj->reset) {
-			$sec = (int) ((SERVER_PROTOCOL == 'https') & true);
-			$last = $_zp_current_admin_obj->getLastlogon();
-			if (empty($last)) {
-				printf(gettext('Logged in as %1$s'), $_zp_current_admin_obj->getUser());
-			} else {
-				printf(gettext('Logged in as %1$s (last login %2$s)'), $_zp_current_admin_obj->getUser(), $last);
+		<a href="javascript:" id="return-to-top" title="<?php echo gettext('return to top'); ?>"></a>
+
+		<div id="links">
+			<?php
+			if (is_object($_zp_current_admin_obj) && !$_zp_current_admin_obj->reset) {
+				$sec = (int) ((SERVER_PROTOCOL == 'https') & true);
+				$last = $_zp_current_admin_obj->getLastlogon();
+				if (empty($last)) {
+					printf(gettext('Logged in as %1$s'), $_zp_current_admin_obj->getUser());
+				} else {
+					printf(gettext('Logged in as %1$s (last login %2$s)'), $_zp_current_admin_obj->getUser(), $last);
+				}
+				if ($_zp_current_admin_obj->logout_link) {
+					$link = WEBPATH . "/" . ZENFOLDER . "/admin.php?logout=" . $sec;
+					echo " &nbsp; | &nbsp; <a href=\"" . $link . "\">" . gettext("Log Out") . "</a> &nbsp; | &nbsp; ";
+				}
 			}
-			if ($_zp_current_admin_obj->logout_link) {
-				$link = WEBPATH . "/" . ZENFOLDER . "/admin.php?logout=" . $sec;
-				echo " &nbsp; | &nbsp; <a href=\"" . $link . "\">" . gettext("Log Out") . "</a> &nbsp; | &nbsp; ";
-			}
-		}
-		echo ' <a href="' . FULLWEBPATH . '/">';
-		$t = $_zp_gallery->getTitle();
-		if (!empty($t)) {
-			printf(gettext("View <em>%s</em>"), $t);
-		} else {
-			echo gettext("View gallery index");
-		}
-		echo "</a>";
-		echo "\n</div>";
+			?>
+			<a href="<?php echo FULLWEBPATH; ?>/">
+				<?php
+				$t = $_zp_gallery->getTitle();
+				if (!empty($t)) {
+					printf(gettext("View <em>%s</em>"), $t);
+				} else {
+					echo gettext("View gallery index");
+				}
+				?>
+			</a>
+		</div>
+		<?php
 	}
 
 	/**
@@ -1009,9 +1084,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'text-' . $postkey; ?>" value="1" />
 								<script type="text/javascript">
 									// <!-- <![CDATA[
-									$(document).ready(function () {
+									window.addEventListener('load', function () {
 										$('#<?php echo $key; ?>_colorpicker').farbtastic('#<?php echo $key; ?>');
-									});
+									}, false);
 									// ]]> -->
 								</script>
 								<table style="margin:0; padding:0" >

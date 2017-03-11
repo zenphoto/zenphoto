@@ -246,8 +246,8 @@ class Comment extends PersistentObject {
 	 *
 	 * @return string
 	 */
-	function getCustomData() {
-		return $this->get('custom_data');
+	function getAddressData() {
+		return $this->get('address_data');
 	}
 
 	/**
@@ -255,8 +255,8 @@ class Comment extends PersistentObject {
 	 *
 	 * @param string $value
 	 */
-	function setCustomData($value) {
-		$this->set('custom_data', $value);
+	function setAddressData($value) {
+		$this->set('address_data', $value);
 	}
 
 }

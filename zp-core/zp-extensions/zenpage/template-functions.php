@@ -488,26 +488,6 @@ function getNewsReadMore() {
 }
 
 /**
- * Gets the custom data field of the curent news article
- *
- * @return string
- */
-function getNewsCustomData() {
-	global $_zp_current_article;
-	if (!is_null($_zp_current_article)) {
-		return $_zp_current_article->getCustomData();
-	}
-}
-
-/**
- * Prints the custom data field of the curent news article
- *
- */
-function printNewsCustomData() {
-	echo getNewsCustomData();
-}
-
-/**
  * Gets the author of a news article (if in Combinews mode for gallery items the owner)
  *
  * @return string
@@ -563,26 +543,6 @@ function getNewsCategoryDesc() {
  */
 function printNewsCategoryDesc() {
 	echo html_encodeTagged(getNewsCategoryDesc());
-}
-
-/**
- * Gets the custom data field of the current news category
- *
- * @return string
- */
-function getNewsCategoryCustomData() {
-	global $_zp_current_category;
-	if (!is_null($_zp_current_category)) {
-		return $_zp_current_category->getCustomData();
-	}
-}
-
-/**
- * Prints the custom data field of the news category
- *
- */
-function printNewsCategoryCustomData() {
-	echo getNewsCategoryCustomData();
 }
 
 /**
@@ -1982,26 +1942,6 @@ function getPageExtraContent($titlelink = '', $published = true) {
  */
 function printPageExtraContent($titlelink = NULL, $published = true) {
 	echo getPageExtraContent($titlelink, $published);
-}
-
-/**
- * Gets the custom data field of the current page
- *
- * @return string
- */
-function getPageCustomData() {
-	global $_zp_current_page;
-	if (!is_null($_zp_current_page)) {
-		return $_zp_current_page->getCustomData();
-	}
-}
-
-/**
- * Prints the custom data field of the current page
- *
- */
-function printPageCustomData() {
-	echo getPageCustomData();
 }
 
 /**

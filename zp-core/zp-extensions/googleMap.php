@@ -500,7 +500,7 @@ function printGoogleMap($text = NULL, $id = NULL, $hide = NULL, $obj = NULL, $ca
 				</a>
 				<script type="text/javascript">
 					//<![CDATA[
-					$(document).ready(function () {
+					window.addEventListener('load', function () {
 						$(".google_map").colorbox({
 							iframe: true,
 							innerWidth: $(window).width() * 0.8,
@@ -511,7 +511,7 @@ function printGoogleMap($text = NULL, $id = NULL, $hide = NULL, $obj = NULL, $ca
 								$(window).resize(resizeColorBoxMap);
 							}
 						});
-					});
+					}, false);
 					//]]>
 				</script>
 				<?php

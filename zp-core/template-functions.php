@@ -1508,26 +1508,6 @@ function printBareAlbumDesc() {
 }
 
 /**
- * Returns the custom_data field of the current album
- *
- * @return string
- */
-function getAlbumCustomData() {
-	global $_zp_current_album;
-	return $_zp_current_album->getCustomData();
-}
-
-/**
- * Prints the custom_data field of the current album.
- * Converts and displays line break in the admin field as <br />.
- *
- * @author Ozh
- */
-function printAlbumCustomData() {
-	echo html_encodeTagged(getAlbumCustomData());
-}
-
-/**
  * A composit for getting album data
  *
  * @param string $field which field you want
@@ -2257,29 +2237,6 @@ function getImageData($field) {
 		return false;
 	global $_zp_current_image;
 	return get_language_string($_zp_current_image->get($field));
-}
-
-/**
- * Returns the custom_data field of the current image
- *
- * @return string
- */
-function getImageCustomData() {
-	Global $_zp_current_image;
-	return $_zp_current_image->getCustomData();
-}
-
-/**
- * Prints the custom_data field of the current image.
- * Converts and displays line breaks set in the admin field as <br />.
- *
- * @return string
- */
-function printImageCustomData() {
-	$data = getImageCustomData();
-	$data = str_replace("\r\n", "\n", $data);
-	$data = str_replace("\n", "<br />", $data);
-	echo $data;
 }
 
 /**
