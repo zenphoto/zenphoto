@@ -415,9 +415,11 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 				$title = get_language_string($item['name']);
 				break;
 			case "rss":
-				$editurl = '';
-				$viewurl = WEBPATH . "/index.php?" . html_encode(strrchr($item['aux'], 'rss'));
-				$title = html_encode(strrchr($item['aux'], 'rss'));
+				$editurl = $viewurl = '';
+				if (file_exists(SERVERPATH . '/' . STATIC_CACHE_FOLDER . '/rss/' . $item['aux'])) {
+					$viewurl = WEBPATH . '/' . STATIC_CACHE_FOLDER . '/rss/' . html_encode($item['aux']);
+				}
+				$title = html_encode(stripSuffix($item['aux']));
 				break;
 			case 'scripts':
 				$editurl = '';
@@ -456,7 +458,9 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 					switch ($type) {
 						case'scripts':
 						case 'rss':
-							echo "<a href='" . $viewurl . "' title='" . $name . "'>" . gettext("View") . "</a></td>";
+							if ($viewurl) {
+								echo "<a href='" . $viewurl . "' title='" . $name . "'>" . gettext("View") . "</a></td>";
+							}
 							break;
 						default:
 							echo "<a href='" . $editurl . "' title='" . $name . "'>" . gettext("Edit") . "</a> | <a href='" . $viewurl . "' title='" . $name . "'>" . gettext("View") . "</a></td>";
