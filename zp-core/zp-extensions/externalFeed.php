@@ -260,6 +260,7 @@ class ExternalFeed extends feed {
 				require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/template-functions.php');
 
 				break;
+
 			case 'pages': //Zenpage News
 				if (!getOption('externalFeed_pages')) {
 					self::feed404();
@@ -322,8 +323,13 @@ class ExternalFeed extends feed {
 					require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/template-functions.php');
 				}
 				break;
+
 			case 'null': //we just want the class instantiated
 				return;
+
+			default: // an unknown request
+				self::feed404();
+				break;
 		}
 		$this->feeditems = $this->getitems();
 	}
