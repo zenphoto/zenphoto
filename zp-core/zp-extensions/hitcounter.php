@@ -21,6 +21,8 @@ if (!defined('OFFSET_PATH')) {
 			}
 			zp_session_start();
 			XSRFdefender('hitcounter');
+			$_zp_gallery->set('hitcounter', 0);
+			$_zp_gallery->save();
 			query('UPDATE ' . prefix('albums') . ' SET `hitcounter`= 0');
 			query('UPDATE ' . prefix('images') . ' SET `hitcounter`= 0');
 			query('UPDATE ' . prefix('news') . ' SET `hitcounter`= 0');
