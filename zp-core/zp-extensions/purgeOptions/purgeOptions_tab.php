@@ -35,7 +35,7 @@ if (isset($_POST['purge'])) {
 				}
 			} else {
 				$plugin = basename($owner);
-				if (!in_array($plugin, $_POST['missingplugin'])) {
+				if (!(isset($_POST['missingplugin']) && in_array($plugin, $_POST['missingplugin']))) {
 					$purgedActive[basename($owner)] = true;
 					purgeOption('zp_plugin_' . stripSuffix(basename($owner)));
 				}
