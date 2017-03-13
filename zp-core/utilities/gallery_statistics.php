@@ -136,7 +136,7 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 		case "popular":
 			switch ($type) {
 				case 'rss':
-					$dbquery = "SELECT `type`,`aux`, `data` as 'hitcounter' FROM " . prefix('plugin_storage') . " WHERE `type` = 'rsshitcounter' ORDER BY CONVERT(data,UNSIGNED) DESC LIMIT " . $queryLimit;
+					$dbquery = "SELECT `type`,`aux`, `data` as 'hitcounter' FROM " . prefix('plugin_storage') . " WHERE `type`='hitcounter' AND `subtype`='rss' ORDER BY CONVERT(data,UNSIGNED) DESC LIMIT " . $queryLimit;
 					$itemssorted = query_full_array($dbquery);
 					if (empty($itemssorted)) {
 						$maxvalue = 0;

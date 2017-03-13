@@ -29,7 +29,7 @@ if (!defined('OFFSET_PATH')) {
 			query('UPDATE ' . prefix('pages') . ' SET `hitcounter`= 0');
 			query('UPDATE ' . prefix('news_categories') . ' SET `hitcounter`= 0');
 			purgeOption('page_hitcounters');
-			query("DELETE FROM " . prefix('plugin_storage') . " WHERE `type` = 'rsshitcounter'");
+			query("DELETE FROM " . prefix('plugin_storage') . " WHERE `type` = 'hitcounter' AND `subtype`='rss'");
 			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=external&msg=' . gettext('All hitcounters have been set to zero.'));
 			exitZP();
 		}
@@ -71,6 +71,9 @@ class hitcounter {
 				purgeOption($option);
 			}
 			setOptionDefault('page_hitcounters', serialize($_scriptpage_hitcounters));
+
+			$sql = 'UPDATE ' . prefix('plugin_storage') . ' SET `type`="hitcounter",`subtype`="rss" WHERE `type`="rsshitcounter"';
+			query($sql);
 		}
 	}
 

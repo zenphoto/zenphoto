@@ -25,7 +25,10 @@ if (isset($_POST['purge'])) {
 	if (isset($_POST['del'])) {
 		foreach ($_POST['del'] as $owner) {
 			$sql = 'DELETE FROM ' . prefix('options') . ' WHERE `creator` LIKE ' . db_quote($owner . '%');
-			$result = query($sql);
+			query($sql);
+			$sql = 'DELETE FROM ' . prefix('plugin_storage') . ' WHERE `type`=' . db_quote(basename($owner));
+			query($sql);
+
 			if (preg_match('~^' . THEMEFOLDER . '/~', $owner)) {
 				if (file_exists(SERVERPATH . '/' . THEMEFOLDER . '/' . basename($owner) . '/themeoptions.php')) {
 					$purgedActive[] = true; // theme still exists, need to re-run setup
@@ -91,6 +94,17 @@ $orphaned = array();
 							}
 						} else {
 							purgeOption($row['name']);
+						}
+					}
+					$sql = 'SELECT DISTINCT `type` FROM ' . prefix('plugin_storage');
+					$result = query_full_array($sql);
+					foreach ($result as $row) {
+						$plugin = $row['type'];
+						$file = str_replace(SERVERPATH, '', getPlugin($plugin . '.php', false));
+						if ($file && strpos($file, PLUGIN_FOLDER) !== false) {
+							$owners[ZENFOLDER . '/' . PLUGIN_FOLDER][strtolower($plugin)] = $plugin;
+						} else {
+							$owners[USER_PLUGIN_FOLDER][strtolower($plugin)] = $plugin;
 						}
 					}
 
