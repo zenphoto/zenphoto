@@ -744,9 +744,7 @@ function updateMenuItem(&$reports) {
  * Deletes a menu item set via GET
  *
  */
-function deleteItem(&
-
-$reports) {
+function deleteItem(&$reports) {
 	if (isset($_GET['delete'])) {
 		$delete = sanitize_numeric($_GET['delete'], 3);
 		query("DELETE FROM " . prefix('menu') . " WHERE `id` = $delete");

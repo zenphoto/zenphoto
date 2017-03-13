@@ -17,6 +17,11 @@ class favorites extends AlbumBase {
 	var $imageNames; // list of images for handling duplicate file names
 
 	function __construct($user) {
+
+		if (OFFSET_PATH == 2) {
+			$sql = 'UPDATE ' . prefix('plugin_storage') . ' SET `type`="favoritesHandler" WHERE `type`="favorites"';
+			query($sql);
+		}
 		$this->table = 'albums';
 		$this->name = $user;
 		$this->setOwner($this->owner = $user);
@@ -27,7 +32,7 @@ class favorites extends AlbumBase {
 		$this->imageSortType = getOption('favorites_image_sort_type');
 		$this->albumSortType = getOption('favorites_album_sort_type');
 		$this->multi = getOption('favorites_multi');
-		$list = query_full_array('SELECT `aux` FROM ' . prefix('plugin_storage') . ' WHERE `type`="favorites" AND `aux` REGEXP ' . db_quote('[[:<:]]' . $user . '[[:>:]]'));
+		$list = query_full_array('SELECT `aux` FROM ' . prefix('plugin_storage') . ' WHERE `type`="favoritesHandler" AND `aux` REGEXP ' . db_quote('[[:<:]]' . $user . '[[:>:]]'));
 
 		foreach ($list as $aux) {
 			$instance = getSerializedArray($aux['aux']);
@@ -61,7 +66,7 @@ class favorites extends AlbumBase {
 	function removeImage($img) {
 		$folder = $img->imagefolder;
 		$filename = $img->filename;
-		$sql = 'DELETE FROM ' . prefix('plugin_storage') . ' WHERE `type`="favorites" AND `aux`=' . db_quote($this->getInstance()) . ' AND `data`=' . db_quote(serialize(array('type' => 'images', 'id' => $folder . '/' . $filename)));
+		$sql = 'DELETE FROM ' . prefix('plugin_storage') . ' WHERE `type`="favoritesHandler" AND `aux`=' . db_quote($this->getInstance()) . ' AND `data`=' . db_quote(serialize(array('type' => 'images', 'id' => $folder . '/' . $filename)));
 		query($sql);
 		zp_apply_filter('favoritesHandler_action', 'remove', $img, $this->name);
 	}
@@ -75,7 +80,7 @@ class favorites extends AlbumBase {
 
 	function removeAlbum($alb) {
 		$folder = $alb->name;
-		$sql = 'DELETE FROM ' . prefix('plugin_storage') . ' WHERE `type`="favorites" AND `aux`=' . db_quote($this->getInstance()) . ' AND `data`=' . db_quote(serialize(array('type' => 'albums', 'id' => $folder)));
+		$sql = 'DELETE FROM ' . prefix('plugin_storage') . ' WHERE `type`="favoritesHandler" AND `aux`=' . db_quote($this->getInstance()) . ' AND `data`=' . db_quote(serialize(array('type' => 'albums', 'id' => $folder)));
 		query($sql);
 		$this->_removeCache(internalToFilesystem($folder));
 		zp_apply_filter('favoritesHandler_action', 'remove', $alb, $this->name);
@@ -91,11 +96,11 @@ class favorites extends AlbumBase {
 			case 'images':
 				$folder = $obj->imagefolder;
 				$filename = $obj->filename;
-				$sql = 'SELECT DISTINCT `aux` FROM ' . prefix('plugin_storage') . '  WHERE `type`="favorites" AND `data`=' . db_quote(serialize(array('type' => 'images', 'id' => $folder . '/' . $filename)));
+				$sql = 'SELECT DISTINCT `aux` FROM ' . prefix('plugin_storage') . '  WHERE `type`="favoritesHandler" AND `data`=' . db_quote(serialize(array('type' => 'images', 'id' => $folder . '/' . $filename)));
 				break;
 			case 'albums':
 				$folder = $obj->name;
-				$sql = 'SELECT DISTINCT `aux` FROM ' . prefix('plugin_storage') . '  WHERE `type`="favorites" AND `data`=' . db_quote(serialize(array('type' => 'albums', 'id' => $folder)));
+				$sql = 'SELECT DISTINCT `aux` FROM ' . prefix('plugin_storage') . '  WHERE `type`="favoritesHandler" AND `data`=' . db_quote(serialize(array('type' => 'albums', 'id' => $folder)));
 				break;
 		}
 		$watchers = array();
@@ -160,7 +165,7 @@ class favorites extends AlbumBase {
 		global $_zp_gallery;
 		if ($mine || is_null($this->subalbums) || $care && $sorttype . $sortdirection !== $this->lastsubalbumsort) {
 			$results = array();
-			$result = query($sql = 'SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="favorites" AND `aux`=' . db_quote($this->getInstance()) . ' AND `data` LIKE "%s:4:\"type\";s:6:\"albums\";%"');
+			$result = query($sql = 'SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="favoritesHandler" AND `aux`=' . db_quote($this->getInstance()) . ' AND `data` LIKE "%s:4:\"type\";s:6:\"albums\";%"');
 			if ($result) {
 				while ($row = db_fetch_assoc($result)) {
 					$data = getSerializedArray($row['data']);
@@ -218,7 +223,7 @@ class favorites extends AlbumBase {
 		if ($mine || is_null($this->images) || $care && $sorttype . $sortdirection !== $this->lastimagesort) {
 			$this->images = NULL;
 			$images = array();
-			$result = query($sql = 'SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="favorites" AND `aux`=' . db_quote($this->getInstance()) . ' AND `data` LIKE "%s:4:\"type\";s:6:\"images\";%"');
+			$result = query($sql = 'SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="favoritesHandler" AND `aux`=' . db_quote($this->getInstance()) . ' AND `data` LIKE "%s:4:\"type\";s:6:\"images\";%"');
 			if ($result) {
 				while ($row = db_fetch_assoc($result)) {
 					$id = $row['id'];

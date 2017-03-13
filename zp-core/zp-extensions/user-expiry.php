@@ -61,6 +61,9 @@ class user_expiry {
 			setOptionDefault('user_expiry_warn_interval', 7);
 			setOptionDefault('user_expiry_auto_renew', 0);
 			setOptionDefault('user_expiry_password_cycle', 0);
+
+			$sql = 'UPDATE ' . prefix('plugin_storage') . ' SET `type`="user-expiry" WHERE `type`="user_expiry_usedPasswords"';
+			query($sql);
 		}
 	}
 
@@ -184,12 +187,12 @@ class user_expiry {
 	}
 
 	static function cleanup($user) {
-		query('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `type`=' . db_quote('user_expiry_usedPasswords') . ' AND `aux`=' . $user->getID());
+		query('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `type`="user_expiry" AND `aux`=' . $user->getID());
 	}
 
 	static function passwordAllowed($msg, $pwd, $user) {
 		if ($id = $user->getID() > 0) {
-			$store = query_single_row('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`=' . db_quote('user_expiry_usedPasswords') . ' AND `aux`=' . $id);
+			$store = query_single_row('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="user_expiry" AND `aux`=' . $id);
 			if ($store) {
 				$used = getSerializedArray($store['data']);
 				if (in_array($pwd, $used)) {
@@ -207,9 +210,9 @@ class user_expiry {
 			}
 			array_push($used, $pwd);
 			if ($store) {
-				query('UPDATE ' . prefix('plugin_storage') . 'SET `data`=' . db_quote(serialize($used)) . ' WHERE `type`=' . db_quote('user_expiry_usedPasswords') . ' AND `aux`=' . $id);
+				query('UPDATE ' . prefix('plugin_storage') . 'SET `data`=' . db_quote(serialize($used)) . ' WHERE `type`="user_expiry" AND `aux`=' . $id);
 			} else {
-				query('INSERT INTO ' . prefix('plugin_storage') . ' (`type`, `aux`, `data`) VALUES (' . db_quote('user_expiry_usedPasswords') . ',' . $id . ',' . db_quote(serialize($used)) . ')');
+				query('INSERT INTO ' . prefix('plugin_storage') . ' (`type`, `aux`, `data`) VALUES ("user_expiry",' . $id . ',' . db_quote(serialize($used)) . ')');
 			}
 		}
 		return $msg;

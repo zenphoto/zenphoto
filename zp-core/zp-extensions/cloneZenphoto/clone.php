@@ -127,17 +127,17 @@ if ($success) {
 	array_unshift($msg, '<h2>' . sprintf(gettext('Successful clone to %s'), $folder) . '</h2>' . "\n");
 	list($diff, $needs) = checkSignature(4);
 	if (empty($needs)) {
-		$rslt = query_single_row('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="clone" AND `aux`=' . db_quote(rtrim($folder, '/')));
+		$rslt = query_single_row('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="cloneZenphoto" AND `aux`=' . db_quote(rtrim($folder, '/')));
 		if (empty($rslt)) {
-			query('INSERT INTO ' . prefix('plugin_storage') . '(`type`,`aux`,`data`) VALUES("clone",' . db_quote(rtrim($folder, '/')) . ',' . db_quote(trim($newinstall, '/')) . ')');
+			query('INSERT INTO ' . prefix('plugin_storage') . '(`type`,`aux`,`data`) VALUES("cloneZenphoto",' . db_quote(rtrim($folder, '/')) . ',' . db_quote(trim($newinstall, '/')) . ')');
 		}
 		$cloneid = bin2hex(rtrim($newinstall, '/'));
 		$_SESSION['clone'][$cloneid] = array(
-						'link'					 => $newinstall,
-						'UTF8_image_URI' => UTF8_IMAGE_URI,
-						'mod_rewrite'		 => MOD_REWRITE,
-						'hash'					 => HASH_SEED,
-						'strong_hash'		 => getOption('strong_hash'));
+				'link' => $newinstall,
+				'UTF8_image_URI' => UTF8_IMAGE_URI,
+				'mod_rewrite' => MOD_REWRITE,
+				'hash' => HASH_SEED,
+				'strong_hash' => getOption('strong_hash'));
 		$_SESSION['admin'][$cloneid] = serialize($_zp_current_admin_obj);
 		$msg[] = '<p><span class="buttons"><a href="' . $newinstall . ZENFOLDER . '/setup/index.php?autorun" target=_newtab">' . gettext('setup the new install') . '</a></span><br class="clearall" /></p>' . "\n";
 	} else {

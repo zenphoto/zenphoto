@@ -71,6 +71,9 @@ class favoritesHandler {
 			setOptionDefault('favorites_image_sort_type', 'title');
 			setOptionDefault('favorites_album_sort_direction', '');
 			setOptionDefault('favorites_image_sort_direction', '');
+
+			$sql = 'UPDATE ' . prefix('plugin_storage') . ' SET `type`="favoritesHandler" WHERE `type`="favorites"';
+			query($sql);
 		}
 	}
 
@@ -87,7 +90,7 @@ class favoritesHandler {
 			$list[$file] = str_replace('.php', '', $file);
 		}
 		$list = array_diff($list, standardScripts());
-		$all = query_full_array('SELECT `aux` FROM ' . prefix('plugin_storage') . ' WHERE `type`="favorites"');
+		$all = query_full_array('SELECT `aux` FROM ' . prefix('plugin_storage') . ' WHERE `type`="favoritesHandler"');
 		$disable = false;
 		$text = gettext('If enabled a user may have multiple (named) favorites.');
 		foreach ($all as $aux) {

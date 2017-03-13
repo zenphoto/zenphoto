@@ -31,6 +31,11 @@ $plugin_description = gettext('Allows multiple installations to share a single s
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_disable = (SYMLINK) ? (zpFunctions::hasPrimaryScripts()) ? false : gettext('Only the primary installation may clone offspring installations.') : gettext('Your server does not support symbolic linking.');
 
+if (OFFSET_PATH == 2) {
+	$sql = 'UPDATE ' . prefix('plugin_storage') . ' SET `type`="cloneZenphoto" WHERE `type`="clone"';
+	query($sql);
+}
+
 require_once(SERVERPATH . '/' . ZENFOLDER . '/reconfigure.php');
 if ($plugin_disable) {
 	enableExtension('cloneZenphoto', 0);
@@ -45,10 +50,10 @@ if ($plugin_disable) {
 				$tabs = array();
 				foreach ($oldtabs as $tab => $data) {
 					if ($tab == 'logs') {
-						$tabs['clone'] = array('text'		 => gettext("clone"),
-										'link'		 => WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cloneZenphoto/cloneTab.php',
-										'rights'	 => ADMIN_RIGHTS,
-										'subtabs'	 => NULL);
+						$tabs['clone'] = array('text' => gettext("clone"),
+								'link' => WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cloneZenphoto/cloneTab.php',
+								'rights' => ADMIN_RIGHTS,
+								'subtabs' => NULL);
 					}
 					$tabs[$tab] = $data;
 				}
@@ -60,7 +65,7 @@ if ($plugin_disable) {
 		static function clones() {
 			global $_zp_current_admin_obj;
 			$clones = array();
-			if ($result = query('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="clone"')) {
+			if ($result = query('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="cloneZenphoto"')) {
 				while ($row = db_fetch_assoc($result)) {
 					if (file_exists($row['aux'] . '/' . DATA_FOLDER . '/zenphoto.cfg.php')) {
 						$clones[$row['aux']] = $row['data'] . '/';
