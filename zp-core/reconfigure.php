@@ -178,6 +178,7 @@ function reconfigureCS() {
 		.reconfigbox {
 			text-align: left;
 			padding: 10px;
+			color: black;
 			background-color: #FFEFB7;
 			border-width: 1px 1px 2px 1px;
 			border-color: #FFDEB5;
@@ -194,6 +195,9 @@ function reconfigureCS() {
 			font-size: 120%;
 			font-weight: bold;
 			margin-bottom: 1em;
+		}
+		.reconfigbox a {
+			color: blue;
 		}
 		#errors ul {
 			list-style-type: square;
