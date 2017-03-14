@@ -649,6 +649,7 @@ table.options th {
 	background-repeat: repeat-x;
 }
 
+
 table.options .subhead {
 	border-top: 1px solid #cccccc;
 }
@@ -667,6 +668,19 @@ table.options tr td {
 	border: none;
 }
 
+.option_shaded {
+	font-weight: bold;
+	padding: 8px 0px 4px 10px;
+	border-bottom: 2px solid #cccccc;
+	background: #ECF1F2;
+	background-image: url(images/admin-headlineback.jpg);
+	background-repeat: repeat-x;
+}
+
+.checkbox_array {
+	max-width: 700px !important;
+	min-width: 350px !important;
+}
 .option_name {
 	white-space: nowrap !important;
 	vertical-align: top;
@@ -674,12 +688,13 @@ table.options tr td {
 }
 
 .option_value {
-	min-width: 350;
+	text-align:left;
+	min-width: 350px !important;
 }
 
 .option_desc {
-	min-width: 300;
-	max-width: 500px;
+	min-width: 300px !important;
+	text-align:left;
 }
 
 .formlayout {
