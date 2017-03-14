@@ -654,7 +654,6 @@ table.options .subhead {
 }
 
 table.options td {
-	padding: 16px 16px 10px 16px !important;
 	vertical-align: top;
 }
 table.options td p {
@@ -662,7 +661,7 @@ table.options td p {
 }
 
 table.options tr td {
-	padding: 8px 16px;
+	padding: 8px 8px;
 	margin: 0px;
 	background-color: #fff;
 	border: none;
