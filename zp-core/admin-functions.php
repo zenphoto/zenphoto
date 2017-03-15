@@ -1089,7 +1089,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 								<script type="text/javascript">
 									// <!-- <![CDATA[
 									window.addEventListener('load', function () {
-										$('#<?php echo $key; ?>_colorpicker').farbtastic('#<?php echo $key; ?>');
+										$('#__<?php echo $key; ?>_colorpicker').farbtastic('#__<?php echo $key; ?>');
 									}, false);
 									// ]]> -->
 								</script>
@@ -1703,7 +1703,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 													 name="disclose_password<?php echo $suffix; ?>"
 													 id="disclose_password<?php echo $suffix; ?>"
 													 onclick="passwordClear('<?php echo $suffix; ?>');
-															 togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?>
+																	 togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?>
 									</label>
 								</td>
 								<td>
@@ -2061,9 +2061,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 name="<?php echo $prefix; ?>Published"
 										 value="1" <?php if ($album->getShow()) echo ' checked="checked"'; ?>
 										 onclick="$('#<?php echo $prefix; ?>publishdate').val('');
-												 $('#<?php echo $prefix; ?>expirationdate').val('');
-												 $('#<?php echo $prefix; ?>publishdate').css('color', 'black');
-												 $('.<?php echo $prefix; ?>expire').html('');"
+													 $('#<?php echo $prefix; ?>expirationdate').val('');
+													 $('#<?php echo $prefix; ?>publishdate').css('color', 'black');
+													 $('.<?php echo $prefix; ?>expire').html('');"
 										 />
 										 <?php echo gettext("Published"); ?>
 						</label>
@@ -2197,7 +2197,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 } else {
 											 ?>
 											 onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');
-													 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
+															 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
 											 <?php
 										 }
 										 ?> />
@@ -2948,65 +2948,65 @@ function printAdminHeader($tab, $subtab = NULL) {
 			?>
 			<div id="ls_<?php echo ++$_lsInstance; ?>">
 				<select class="languageSelector ignoredirty" onchange="lsclick(this.value,<?php echo $_lsInstance; ?>);"<?php if ($key == $locale) echo ' selected="selected"' ?>>
-		<?php
-		foreach ($emptylang as $key => $lang) {
-			$flag = getLanguageFlag($key);
-			?>
-						<option value="<?php echo $key; ?>" data-image="<?php echo $flag; ?>" alt="<?php echo $key; ?>">
-						<?php echo $lang; ?>
-						</option>
-							<?php
-						}
+					<?php
+					foreach ($emptylang as $key => $lang) {
+						$flag = getLanguageFlag($key);
 						?>
+						<option value="<?php echo $key; ?>" data-image="<?php echo $flag; ?>" alt="<?php echo $key; ?>">
+							<?php echo $lang; ?>
+						</option>
+						<?php
+					}
+					?>
 				</select>
 
-		<?php
-		foreach ($emptylang as $key => $lang) {
-			if (isset($strings[$key])) {
-				$string = $strings[$key];
-			} else {
-				$string = '';
-			}
-			?>
+				<?php
+				foreach ($emptylang as $key => $lang) {
+					if (isset($strings[$key])) {
+						$string = $strings[$key];
+					} else {
+						$string = '';
+					}
+					?>
 
 					<div id="lb<?php echo $key . '-' . $_lsInstance ?>" class="lbx-<?php echo $_lsInstance ?>"<?php echo $editHidden; ?>>
-			<?php
-			if ($textbox) {
-				?>
+						<?php
+						if ($textbox) {
+							?>
 							<textarea name="<?php echo $name . '_' . $key ?>"<?php echo $edit . $width; ?>	rows="<?php echo $rows ?>">
-							<?php echo html_encode($string); ?>
+								<?php echo html_encode($string); ?>
 							</textarea>
-								<?php
-							} else {
-								?>
+							<?php
+						} else {
+							?>
 							<input name="<?php echo $name . '_' . $key ?>"<?php echo $edit . $width; ?> type="text" value="<?php echo html_encode($string); ?>"  />
 							<?php
 						}
 						?>
 					</div>
-						<?php
-						$editHidden = ' style="display:none;"';
-					}
-					?>
+					<?php
+					$editHidden = ' style="display:none;"';
+				}
+				?>
 			</div>
-				<?php
+			<?php
+		} else {
+			if (empty($locale))
+				$locale = 'en_US';
+			if (isset($strings[$locale])) {
+				$dbstring = $strings[$locale];
+				unset($strings[$locale]);
 			} else {
-				if (empty($locale))
-					$locale = 'en_US';
-				if (isset($strings[$locale])) {
-					$dbstring = $strings[$locale];
-					unset($strings[$locale]);
-				} else {
-					$dbstring = array_shift($strings);
-				}
-				if ($textbox) {
-					echo '<textarea name="' . $name . '_' . $locale . '"' . $edit . $width . '	rows="' . $rows . '">' . html_encode($dbstring) . '</textarea>';
-				} else {
-					echo '<input name="' . $name . '_' . $locale . '"' . $edit . ' type="text" value="' . html_encode($dbstring) . '"' . $width . ' />';
-				}
-				foreach ($strings as $key => $dbstring) {
-					if (!empty($dbstring)) {
-						?>
+				$dbstring = array_shift($strings);
+			}
+			if ($textbox) {
+				echo '<textarea name="' . $name . '_' . $locale . '"' . $edit . $width . '	rows="' . $rows . '">' . html_encode($dbstring) . '</textarea>';
+			} else {
+				echo '<input name="' . $name . '_' . $locale . '"' . $edit . ' type="text" value="' . html_encode($dbstring) . '"' . $width . ' />';
+			}
+			foreach ($strings as $key => $dbstring) {
+				if (!empty($dbstring)) {
+					?>
 					<input type="hidden" name="<?php echo $name . '_' . $key; ?>" value="<?php echo html_encode($dbstring); ?>" />
 					<?php
 				}
@@ -3441,10 +3441,10 @@ function printAdminHeader($tab, $subtab = NULL) {
 		?>
 		<div class="box-rights">
 			<strong><?php echo gettext("Rights:"); ?></strong>
-	<?php
-	$element = 3;
-	$activeset = false;
-	?>
+			<?php
+			$element = 3;
+			$activeset = false;
+			?>
 			<input type="checkbox" name="<?php echo $id; ?>-rightsenabled" class="user-<?php echo $id; ?>" value="1" checked="checked" <?php echo $alterrights; ?> style="display:none" />
 			<?php
 			foreach ($rightslist as $rightselement => $right) {
@@ -3454,29 +3454,29 @@ function printAdminHeader($tab, $subtab = NULL) {
 							if ($activeset) {
 								?>
 							</fieldset>
-								<?php
-							}
-							$activeset = $right['set'];
-							?>
+							<?php
+						}
+						$activeset = $right['set'];
+						?>
 						<fieldset><legend><?php echo $activeset; ?></legend>
-						<?php
-					}
-					?>
+							<?php
+						}
+						?>
 						<label title="<?php echo html_encode(get_language_string($right['hint'])); ?>">
 							<input type="checkbox" name="<?php echo $id . '-' . $rightselement; ?>" id="<?php echo $rightselement . '-' . $id; ?>" class="user-<?php echo $id; ?>" value="<?php echo $right['value']; ?>"<?php
-				if ($rights & $right['value'])
-					echo ' checked="checked"';
-				echo $alterrights;
-					?> /> <?php echo $right['name']; ?>
+							if ($rights & $right['value'])
+								echo ' checked="checked"';
+							echo $alterrights;
+							?> /> <?php echo $right['name']; ?>
 						</label>
-										 <?php
-									 } else {
-										 ?>
+						<?php
+					} else {
+						?>
 						<input type="hidden" name="<?php echo $id . '-' . $rightselement; ?>" id="<?php echo $rightselement . '-' . $id; ?>" value="<?php echo $right['value']; ?>"<?php
 						if ($rights & $right['value'])
 							echo ' checked="checked"';
 						?> />
-						<?php
+									 <?php
 								 }
 							 }
 						 }
@@ -3645,10 +3645,10 @@ function printManagedObjects($type, $objlist, $alterrights, $userobj, $prefix_id
 		</h2>
 		<div id="<?php echo $prefix ?>" style="display:none;">
 			<ul class="albumchecklist">
-	<?php
-	generateUnorderedListFromArray($cv, $cv, $prefix, $alterrights, true, true, 'user-' . $prefix_id, $extra);
-	generateUnorderedListFromArray(array(), $rest, $prefix, $alterrights, true, true, 'user-' . $prefix_id, $extra2);
-	?>
+				<?php
+				generateUnorderedListFromArray($cv, $cv, $prefix, $alterrights, true, true, 'user-' . $prefix_id, $extra);
+				generateUnorderedListFromArray(array(), $rest, $prefix, $alterrights, true, true, 'user-' . $prefix_id, $extra2);
+				?>
 			</ul>
 			<span class="floatright"><?php echo $legend; ?>&nbsp;&nbsp;&nbsp;&nbsp;</span>
 			<br class="clearall" />
@@ -4036,26 +4036,26 @@ function printEditDropdown($subtab, $nestinglevels, $nesting, $query = NULL) {
 	?>
 	<form name="AutoListBox2" style="float: right;" action="#" >
 		<select name="ListBoxURL" size="1" onchange="gotoLink(this.form);">
-	<?php
-	foreach ($nestinglevels as $nestinglevel) {
-		if ($nesting == $nestinglevel) {
-			$selected = 'selected="selected"';
-		} else {
-			$selected = "";
-		}
-		echo '<option ' . $selected . ' value="admin-edit.php' . $link . $nestinglevel . $query . '">';
-		switch ($subtab) {
-			case '':
-			case 'subalbuminfo':
-				printf(ngettext('Show %u album level', 'Show %u album levels', $nestinglevel), $nestinglevel);
-				break;
-			case 'imageinfo':
-				printf(ngettext('%u image per page', '%u images per page', $nestinglevel), $nestinglevel);
-				break;
-		}
-		echo '</option>';
-	}
-	?>
+			<?php
+			foreach ($nestinglevels as $nestinglevel) {
+				if ($nesting == $nestinglevel) {
+					$selected = 'selected="selected"';
+				} else {
+					$selected = "";
+				}
+				echo '<option ' . $selected . ' value="admin-edit.php' . $link . $nestinglevel . $query . '">';
+				switch ($subtab) {
+					case '':
+					case 'subalbuminfo':
+						printf(ngettext('Show %u album level', 'Show %u album levels', $nestinglevel), $nestinglevel);
+						break;
+					case 'imageinfo':
+						printf(ngettext('%u image per page', '%u images per page', $nestinglevel), $nestinglevel);
+						break;
+				}
+				echo '</option>';
+			}
+			?>
 		</select>
 		<script type="text/javascript" >
 			// <!-- <![CDATA[
@@ -4130,30 +4130,30 @@ function printBulkActions($checkarray, $checkAll = false) {
 		<script type="text/javascript">
 			//<!-- <![CDATA[
 			function checkFor(obj) {
-			var sel = obj.options[obj.selectedIndex].value;
-							var mark;
-							switch (sel) {
+				var sel = obj.options[obj.selectedIndex].value;
+				var mark;
+				switch (sel) {
 		<?php
 		foreach ($colorboxBookmark as $key => $mark) {
 			?>
-				case '<?php echo $key; ?>':
-								mark = '<?php echo $mark; ?>';
-								break;
+					case '<?php echo $key; ?>':
+									mark = '<?php echo $mark; ?>';
+									break;
 			<?php
 		}
 		?>
-			default:
-							mark = false;
-							break;
+				default:
+								mark = false;
+								break;
 			}
 			if (mark) {
-			$.colorbox({
-			href: '#' + mark,
-							inline: true,
-							open: true,
-							close: '<?php echo gettext("ok"); ?>'
-			});
-			}
+				$.colorbox({
+					href: '#' + mark,
+					inline: true,
+					open: true,
+					close: '<?php echo gettext("ok"); ?>'
+				});
+				}
 			}
 			// ]]> -->
 		</script>
@@ -4162,11 +4162,11 @@ function printBulkActions($checkarray, $checkAll = false) {
 	?>
 	<span style="float:right">
 		<select class="ignoredirty" name="checkallaction" id="checkallaction" size="1" onchange="checkFor(this);" >
-	<?php generateListFromArray(array('noaction'), $checkarray, false, true); ?>
+			<?php generateListFromArray(array('noaction'), $checkarray, false, true); ?>
 		</select>
-			<?php
-			if ($checkAll) {
-				?>
+		<?php
+		if ($checkAll) {
+			?>
 			<br />
 			<?php
 			echo gettext("Check All");
@@ -4176,21 +4176,21 @@ function printBulkActions($checkarray, $checkAll = false) {
 		}
 		?>
 	</span>
-		<?php
-		foreach ($customInfo as $key => $data) {
-			?>
+	<?php
+	foreach ($customInfo as $key => $data) {
+		?>
 		<div id="mass_<?php echo $key; ?>" style="display:none;
 				 ">
 			<div id="mass_<?php echo $key; ?>_data">
-		<?php
-		printf('Value for %s:', $data['desc']);
-		if ($data['action'] == 'mass_customText_data') {
-			if (isset($data['size']) && $data['size'] >= 0) {
-				$size = max(5, min($data['size'], 200));
-			} else {
-				$size = 100;
-			}
-			?>
+				<?php
+				printf('Value for %s:', $data['desc']);
+				if ($data['action'] == 'mass_customText_data') {
+					if (isset($data['size']) && $data['size'] >= 0) {
+						$size = max(5, min($data['size'], 200));
+					} else {
+						$size = 100;
+					}
+					?>
 					<input type="text" name="<?php echo $key; ?>" size="<?php echo $size; ?>" value="">
 					<?php
 				} else {
@@ -4208,9 +4208,9 @@ function printBulkActions($checkarray, $checkAll = false) {
 		?>
 		<div id="mass_tags" style="display:none;">
 			<div id="mass_tags_data">
-		<?php
-		tagSelector(NULL, 'mass_tags_', false, getTagOrder(), true, false, 'checkTagsAuto ignoredirty');
-		?>
+				<?php
+				tagSelector(NULL, 'mass_tags_', false, getTagOrder(), true, false, 'checkTagsAuto ignoredirty');
+				?>
 			</div>
 		</div>
 		<?php
@@ -4219,13 +4219,13 @@ function printBulkActions($checkarray, $checkAll = false) {
 		?>
 		<div id="mass_cats" style="display:none;">
 			<div id="mass_cats_data">
-		<?php
-		echo gettext('New categorys:');
-		?>
-				<ul>
 				<?php
-				printNestedItemsList('cats-checkboxlist', '', 'all', 'ignoredirty');
+				echo gettext('New categorys:');
 				?>
+				<ul>
+					<?php
+					printNestedItemsList('cats-checkboxlist', '', 'all', 'ignoredirty');
+					?>
 				</ul>
 			</div>
 		</div>
@@ -4235,14 +4235,14 @@ function printBulkActions($checkarray, $checkAll = false) {
 		?>
 		<div id="mass_owner" style="display:none;">
 			<div id="mass_owner_data">
-		<?php
-		echo gettext('New owner:');
-		?>
+				<?php
+				echo gettext('New owner:');
+				?>
 				<ul>
 					<select class="ignoredirty" id="massownermenu" name="massownerselect" onchange="">
-		<?php
-		echo admin_album_list(NULL);
-		?>
+						<?php
+						echo admin_album_list(NULL);
+						?>
 					</select>
 				</ul>
 			</div>
@@ -4255,29 +4255,29 @@ function printBulkActions($checkarray, $checkAll = false) {
 		<div id="mass_movecopy_copy" style="display:none;">
 			<div id="mass_movecopy_data">
 				<input type="hidden" name="massfolder" value="<?php echo $album->name; ?>" />
-		<?php
-		echo gettext('Destination');
-		?>
-				<select class="ignoredirty" id="massalbumselectmenu" name="massalbumselect" onchange="">
 				<?php
-				foreach ($mcr_albumlist as $fullfolder => $albumtitle) {
-					$singlefolder = $fullfolder;
-					$saprefix = "";
-					$salevel = 0;
-					$selected = "";
-					if ($album->name == $fullfolder) {
-						$selected = " selected=\"selected\" ";
-					}
-					// Get rid of the slashes in the subalbum, while also making a subalbum prefix for the menu.
-					while (strstr($singlefolder, '/') !== false) {
-						$singlefolder = substr(strstr($singlefolder, '/'), 1);
-						$saprefix = "&nbsp; &nbsp;&nbsp;" . $saprefix;
-						$salevel++;
-					}
-					echo '<option value="' . $fullfolder . '"' . ($salevel > 0 ? ' style="background-color: ' . $bglevels[$salevel] . ';"' : '')
-					. "$selected>" . $saprefix . $singlefolder . "</option>\n";
-				}
+				echo gettext('Destination');
 				?>
+				<select class="ignoredirty" id="massalbumselectmenu" name="massalbumselect" onchange="">
+					<?php
+					foreach ($mcr_albumlist as $fullfolder => $albumtitle) {
+						$singlefolder = $fullfolder;
+						$saprefix = "";
+						$salevel = 0;
+						$selected = "";
+						if ($album->name == $fullfolder) {
+							$selected = " selected=\"selected\" ";
+						}
+						// Get rid of the slashes in the subalbum, while also making a subalbum prefix for the menu.
+						while (strstr($singlefolder, '/') !== false) {
+							$singlefolder = substr(strstr($singlefolder, '/'), 1);
+							$saprefix = "&nbsp; &nbsp;&nbsp;" . $saprefix;
+							$salevel++;
+						}
+						echo '<option value="' . $fullfolder . '"' . ($salevel > 0 ? ' style="background-color: ' . $bglevels[$salevel] . ';"' : '')
+						. "$selected>" . $saprefix . $singlefolder . "</option>\n";
+					}
+					?>
 				</select>
 			</div>
 		</div>
@@ -4529,27 +4529,27 @@ function processCommentBulkActions() {
 function codeblocktabsJS() {
 	?>
 	<script type="text/javascript" charset="utf-8">
-						// <!-- <![CDATA[
-						$(function () {
-						var tabContainers = $('div.tabs > div');
-										$('.first').addClass('selected');
-						});
-						function cbclick(num, id) {
-						$('.cbx-' + id).hide();
-										$('#cb' + num + '-' + id).show();
-										$('.cbt-' + id).removeClass('selected');
-										$('#cbt' + num + '-' + id).addClass('selected');
-						}
+		// <!-- <![CDATA[
+		$(function () {
+			var tabContainers = $('div.tabs > div');
+			$('.first').addClass('selected');
+		});
+		function cbclick(num, id) {
+			$('.cbx-' + id).hide();
+			$('#cb' + num + '-' + id).show();
+			$('.cbt-' + id).removeClass('selected');
+			$('#cbt' + num + '-' + id).addClass('selected');
+		}
 
 		function cbadd(id, offset) {
-		var num = $('#cbu-' + id + ' li').size() - offset;
-						$('li:last', $('#cbu-' + id)).remove();
-						$('#cbu-' + id).append('<li><a class="cbt-' + id + '" id="cbt' + num + '-' + id + '" onclick="cbclick(' + num + ',' + id + ');" title="' + '<?php echo gettext('codeblock %u'); ?>'.replace(/%u/, num) + '">&nbsp;&nbsp;' + num + '&nbsp;&nbsp;</a></li>');
-						$('#cbu-' + id).append('<li><a id="cbp-' + id + '" onclick="cbadd(' + id + ',' + offset + ');" title="<?php echo gettext('add codeblock'); ?>">&nbsp;&nbsp;+&nbsp;&nbsp;</a></li>');
-						$('#cbd-' + id).append('<div class="cbx-' + id + '" id="cb' + num + '-' + id + '" style="display:none">' +
-						'<textarea name="codeblock' + num + '-' + id + '" class="codeblock" id="codeblock' + num + '-' + id + '" rows="40" cols="60"></textarea>' +
-						'</div>');
-						cbclick(num, id);
+			var num = $('#cbu-' + id + ' li').size() - offset;
+			$('li:last', $('#cbu-' + id)).remove();
+			$('#cbu-' + id).append('<li><a class="cbt-' + id + '" id="cbt' + num + '-' + id + '" onclick="cbclick(' + num + ',' + id + ');" title="' + '<?php echo gettext('codeblock %u'); ?>'.replace(/%u/, num) + '">&nbsp;&nbsp;' + num + '&nbsp;&nbsp;</a></li>');
+			$('#cbu-' + id).append('<li><a id="cbp-' + id + '" onclick="cbadd(' + id + ',' + offset + ');" title="<?php echo gettext('add codeblock'); ?>">&nbsp;&nbsp;+&nbsp;&nbsp;</a></li>');
+			$('#cbd-' + id).append('<div class="cbx-' + id + '" id="cb' + num + '-' + id + '" style="display:none">' +
+							'<textarea name="codeblock' + num + '-' + id + '" class="codeblock" id="codeblock' + num + '-' + id + '" rows="40" cols="60"></textarea>' +
+							'</div>');
+			cbclick(num, id);
 		}
 		// ]]> -->
 	</script>
@@ -4576,9 +4576,9 @@ function printCodeblockEdit($obj, $id) {
 	?>
 	<div id="cbd-<?php echo $id; ?>" class="tabs">
 		<ul id="<?php echo 'cbu' . '-' . $id; ?>" class="tabNavigation">
-	<?php
-	for ($i = $start; $i < $codeblockCount; $i++) {
-		?>
+			<?php
+			for ($i = $start; $i < $codeblockCount; $i++) {
+				?>
 				<li><a class="<?php if ($i == 1) echo 'first '; ?>cbt-<?php echo $id; ?>" id="<?php echo 'cbt' . $i . '-' . $id; ?>" onclick="cbclick(<?php echo $i . ',' . $id; ?>);" title="<?php printf(gettext('codeblock %u'), $i); ?>">&nbsp;&nbsp;<?php echo $i; ?>&nbsp;&nbsp;</a></li>
 				<?php
 			}
@@ -4593,244 +4593,244 @@ function printCodeblockEdit($obj, $id) {
 			?>
 		</ul>
 
-	<?php
-	for ($i = $start; $i < $codeblockCount; $i++) {
-		?>
+		<?php
+		for ($i = $start; $i < $codeblockCount; $i++) {
+			?>
 			<div class="cbx-<?php echo $id; ?>" id="cb<?php echo $i . '-' . $id; ?>"<?php if ($i != 1) echo ' style="display:none"'; ?>>
-			<?php
-			if (!$i) {
-				?>
+				<?php
+				if (!$i) {
+					?>
 					<span class="notebox"><?php echo gettext('Codeblock 0 is deprecated.') ?></span>
 					<?php
 				}
 				?>
 				<textarea name="codeblock<?php echo $i; ?>-<?php echo $id; ?>" class="codeblock" id="codeblock<?php echo $i; ?>-<?php echo $id; ?>" rows="40" cols="60"<?php echo $disabled; ?>><?php echo html_encode(@$codeblock[$i]); ?></textarea>
 			</div>
-		<?php
-	}
-	?>
+			<?php
+		}
+		?>
 	</div>
-		<?php
-	}
+	<?php
+}
 
-	/**
-	 *
-	 * handles saveing of codeblock edits
-	 * @param object $object
-	 * @param int $id
-	 * @return string
-	 */
-	function processCodeblockSave($id, $obj) {
-		$codeblock = array();
-		$found = false;
-		$i = (int) !isset($_POST['codeblock0-' . $id]);
-		while (isset($_POST['codeblock' . $i . '-' . $id])) {
-			$found = true;
-			$v = sanitize($_POST['codeblock' . $i . '-' . $id], 0);
-			if ($v) {
-				$codeblock[$i] = $v;
-			}
-			$i++;
+/**
+ *
+ * handles saveing of codeblock edits
+ * @param object $object
+ * @param int $id
+ * @return string
+ */
+function processCodeblockSave($id, $obj) {
+	$codeblock = array();
+	$found = false;
+	$i = (int) !isset($_POST['codeblock0-' . $id]);
+	while (isset($_POST['codeblock' . $i . '-' . $id])) {
+		$found = true;
+		$v = sanitize($_POST['codeblock' . $i . '-' . $id], 0);
+		if ($v) {
+			$codeblock[$i] = $v;
 		}
-		if ($found) {
-			$obj->setCodeblock(serialize($codeblock));
+		$i++;
+	}
+	if ($found) {
+		$obj->setCodeblock(serialize($codeblock));
+	}
+}
+
+/**
+ * Standard admin pages checks
+ * @param bit $rights
+ * @param string $return--where to go after login
+ */
+function admin_securityChecks($rights, $return) {
+	global $_zp_current_admin_obj, $_zp_loggedin;
+	checkInstall();
+	httpsRedirect();
+	if ($_zp_current_admin_obj) {
+		if ($_zp_current_admin_obj->reset) {
+			$_zp_loggedin = USER_RIGHTS;
 		}
 	}
-
-	/**
-	 * Standard admin pages checks
-	 * @param bit $rights
-	 * @param string $return--where to go after login
-	 */
-	function admin_securityChecks($rights, $return) {
-		global $_zp_current_admin_obj, $_zp_loggedin;
-		checkInstall();
-		httpsRedirect();
-		if ($_zp_current_admin_obj) {
-			if ($_zp_current_admin_obj->reset) {
-				$_zp_loggedin = USER_RIGHTS;
-			}
-		}
-		if (!zp_loggedin($rights)) {
+	if (!zp_loggedin($rights)) {
 // prevent nefarious access to this page.
-			$returnurl = urldecode($return);
-			if (!zp_apply_filter('admin_allow_access', false, $returnurl)) {
-				$uri = explode('?', $returnurl);
-				header("HTTP/1.0 302 Found");
-				header("Status: 302 Found");
-				header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . $uri[0]);
-				exitZP();
-			}
-		}
-	}
-
-	/**
-	 *
-	 * Checks if protocol not https and redirects if https required
-	 */
-	function httpsRedirect() {
-		if (defined('SERVER_PROTOCOL') && SERVER_PROTOCOL == 'https_admin') {
-// force https login
-			if (!isset($_SERVER["HTTPS"])) {
-				$redirect = "https://" . $_SERVER['HTTP_HOST'] . getRequestURI();
-				header("Location:$redirect");
-				exitZP();
-			}
-		}
-	}
-
-	/**
-	 * Checks for Cross Site Request Forgeries
-	 * @param string $action
-	 */
-	function XSRFdefender($action) {
-		$token = getXSRFToken($action);
-		if (!isset($_REQUEST['XSRFToken']) || $_REQUEST['XSRFToken'] != $token) {
-			zp_apply_filter('admin_XSRF_access', false, $action);
+		$returnurl = urldecode($return);
+		if (!zp_apply_filter('admin_allow_access', false, $returnurl)) {
+			$uri = explode('?', $returnurl);
 			header("HTTP/1.0 302 Found");
 			header("Status: 302 Found");
-			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=external&error&msg=' . sprintf(gettext('“%s” Cross Site Request Forgery blocked.'), $action));
+			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . $uri[0]);
 			exitZP();
 		}
-		unset($_REQUEST['XSRFToken']);
-		unset($_POST['XSRFToken']);
-		unset($_GET['XSRFToken']);
 	}
+}
 
-	/**
-	 * getPageSelector "diff" function
-	 *
-	 * returns the shortest string difference
-	 * @param string $string1
-	 * @param string2 $string2
-	 */
-	function minDiff($string1, $string2) {
-		if ($string1 == $string2) {
-			return $string2;
+/**
+ *
+ * Checks if protocol not https and redirects if https required
+ */
+function httpsRedirect() {
+	if (defined('SERVER_PROTOCOL') && SERVER_PROTOCOL == 'https_admin') {
+// force https login
+		if (!isset($_SERVER["HTTPS"])) {
+			$redirect = "https://" . $_SERVER['HTTP_HOST'] . getRequestURI();
+			header("Location:$redirect");
+			exitZP();
 		}
-		if (empty($string1)) {
-			return substr($string2, 0, 10);
-		}
-		if (empty($string2)) {
-			return substr($string1, 0, 10);
-		}
-		if (strlen($string2) > strlen($string1)) {
-			$base = $string2;
-		} else {
-			$base = $string1;
-		}
-		for ($i = 0; $i < min(strlen($string1), strlen($string2)); $i++) {
-			if ($string1[$i] != $string2[$i]) {
-				$base = substr($string2, 0, max($i + 1, 10));
-				break;
-			}
-		}
-		return rtrim($base, '-_');
 	}
+}
 
-	/**
-	 * getPageSelector "diff" function
-	 *
-	 * Used when you want getPgeSelector to show the full text of the items
-	 * @param string $string1
-	 * @param string $string2
-	 * @return string
-	 */
-	function fullText($string1, $string2) {
+/**
+ * Checks for Cross Site Request Forgeries
+ * @param string $action
+ */
+function XSRFdefender($action) {
+	$token = getXSRFToken($action);
+	if (!isset($_REQUEST['XSRFToken']) || $_REQUEST['XSRFToken'] != $token) {
+		zp_apply_filter('admin_XSRF_access', false, $action);
+		header("HTTP/1.0 302 Found");
+		header("Status: 302 Found");
+		header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=external&error&msg=' . sprintf(gettext('“%s” Cross Site Request Forgery blocked.'), $action));
+		exitZP();
+	}
+	unset($_REQUEST['XSRFToken']);
+	unset($_POST['XSRFToken']);
+	unset($_GET['XSRFToken']);
+}
+
+/**
+ * getPageSelector "diff" function
+ *
+ * returns the shortest string difference
+ * @param string $string1
+ * @param string2 $string2
+ */
+function minDiff($string1, $string2) {
+	if ($string1 == $string2) {
 		return $string2;
 	}
+	if (empty($string1)) {
+		return substr($string2, 0, 10);
+	}
+	if (empty($string2)) {
+		return substr($string1, 0, 10);
+	}
+	if (strlen($string2) > strlen($string1)) {
+		$base = $string2;
+	} else {
+		$base = $string1;
+	}
+	for ($i = 0; $i < min(strlen($string1), strlen($string2)); $i++) {
+		if ($string1[$i] != $string2[$i]) {
+			$base = substr($string2, 0, max($i + 1, 10));
+			break;
+		}
+	}
+	return rtrim($base, '-_');
+}
 
-	/**
-	 * getPageSelector "diff" function
-	 *
-	 * returns the shortest "date" difference
-	 * @param string $date1
-	 * @param string $date2
-	 * @return string
-	 */
-	function dateDiff($date1, $date2) {
-		$separators = array('', '-', '-', ' ', ':', ':');
-		preg_match('/(.*)-(.*)-(.*) (.*):(.*):(.*)/', $date1, $matches1);
-		preg_match('/(.*)-(.*)-(.*) (.*):(.*):(.*)/', $date2, $matches2);
-		if (empty($matches1)) {
-			$matches1 = array(0, 0, 0, 0, 0, 0, 0);
-		}
-		if (empty($matches2)) {
-			$matches2 = array(0, 0, 0, 0, 0, 0, 0);
-		}
+/**
+ * getPageSelector "diff" function
+ *
+ * Used when you want getPgeSelector to show the full text of the items
+ * @param string $string1
+ * @param string $string2
+ * @return string
+ */
+function fullText($string1, $string2) {
+	return $string2;
+}
 
-		$date = '';
-		for ($i = 1; $i <= 6; $i++) {
-			if (@$matches1[$i] != @$matches2[$i]) {
-				break;
-			}
-		}
-		switch ($i) {
-			case 7:
-			case 6:
-				$date = ':' . $matches2[6];
-			case 5:
-			case 4:
-				$date = ' ' . $matches2[4] . ':' . $matches2[5] . $date;
-			default:
-				$date = $matches2[1] . '-' . $matches2[2] . '-' . $matches2[3] . $date;
-		}
-
-		if ($date == '0-0-0 0:0:0') {
-			return '&bull; &bull; &bull; ';
-		}
-
-		return rtrim($date, ':-');
+/**
+ * getPageSelector "diff" function
+ *
+ * returns the shortest "date" difference
+ * @param string $date1
+ * @param string $date2
+ * @return string
+ */
+function dateDiff($date1, $date2) {
+	$separators = array('', '-', '-', ' ', ':', ':');
+	preg_match('/(.*)-(.*)-(.*) (.*):(.*):(.*)/', $date1, $matches1);
+	preg_match('/(.*)-(.*)-(.*) (.*):(.*):(.*)/', $date2, $matches2);
+	if (empty($matches1)) {
+		$matches1 = array(0, 0, 0, 0, 0, 0, 0);
+	}
+	if (empty($matches2)) {
+		$matches2 = array(0, 0, 0, 0, 0, 0, 0);
 	}
 
-	/**
-	 * returns a selector list based on the "names" of the list items
-	 *
-	 *
-	 * @param array $list
-	 * @param int $itmes_per_page
-	 * @param string $diff
-	 * 									"fullText" for the complete names
-	 * 									"minDiff" for a truncated string showing just the unique characters of the names
-	 * 									"dateDiff" it the "names" are really dates.
-	 * @return array
-	 */
-	function getPageSelector($list, $itmes_per_page, $diff = 'fullText') {
-		$rangeset = array();
-		$pages = round(ceil(count($list) / (int) $itmes_per_page));
-		$list = array_values($list);
-		if ($pages > 1) {
-			$ranges = array();
-			for ($page = 0; $page < $pages; $page++) {
-				$ranges[$page]['start'] = strtolower($list[$page * $itmes_per_page]);
-				$last = (int) ($page * $itmes_per_page + $itmes_per_page - 1);
-				if (array_key_exists($last, $list)) {
-					$ranges[$page]['end'] = strtolower($list[$last]);
-				} else {
-					$ranges[$page]['end'] = strtolower(@array_pop($list));
-				}
-			}
-			$last = '';
-			foreach ($ranges as $page => $range) {
-				$next = @$ranges[$page + 1]['start'];
-				$rangeset[$page] = $diff($last, $range['start']) . ' » ' . $diff($next, $range['end']);
-				$last = $range['end'];
-			}
+	$date = '';
+	for ($i = 1; $i <= 6; $i++) {
+		if (@$matches1[$i] != @$matches2[$i]) {
+			break;
 		}
-		return $rangeset;
+	}
+	switch ($i) {
+		case 7:
+		case 6:
+			$date = ':' . $matches2[6];
+		case 5:
+		case 4:
+			$date = ' ' . $matches2[4] . ':' . $matches2[5] . $date;
+		default:
+			$date = $matches2[1] . '-' . $matches2[2] . '-' . $matches2[3] . $date;
 	}
 
-	function printPageSelector($subpage, $rangeset, $script, $queryParams) {
-		global $instances;
-		$pages = count($rangeset);
-		$jump = $query = '';
-		foreach ($queryParams as $param => $value) {
-			$query .= html_encode($param) . '=' . html_encode($value) . '&amp;';
-			$jump .= "'" . html_encode($param) . "=" . html_encode($value) . "',";
+	if ($date == '0-0-0 0:0:0') {
+		return '&bull; &bull; &bull; ';
+	}
+
+	return rtrim($date, ':-');
+}
+
+/**
+ * returns a selector list based on the "names" of the list items
+ *
+ *
+ * @param array $list
+ * @param int $itmes_per_page
+ * @param string $diff
+ * 									"fullText" for the complete names
+ * 									"minDiff" for a truncated string showing just the unique characters of the names
+ * 									"dateDiff" it the "names" are really dates.
+ * @return array
+ */
+function getPageSelector($list, $itmes_per_page, $diff = 'fullText') {
+	$rangeset = array();
+	$pages = round(ceil(count($list) / (int) $itmes_per_page));
+	$list = array_values($list);
+	if ($pages > 1) {
+		$ranges = array();
+		for ($page = 0; $page < $pages; $page++) {
+			$ranges[$page]['start'] = strtolower($list[$page * $itmes_per_page]);
+			$last = (int) ($page * $itmes_per_page + $itmes_per_page - 1);
+			if (array_key_exists($last, $list)) {
+				$ranges[$page]['end'] = strtolower($list[$last]);
+			} else {
+				$ranges[$page]['end'] = strtolower(@array_pop($list));
+			}
 		}
-		$query = '?' . $query;
-		if ($subpage > 0) {
-			?>
+		$last = '';
+		foreach ($ranges as $page => $range) {
+			$next = @$ranges[$page + 1]['start'];
+			$rangeset[$page] = $diff($last, $range['start']) . ' » ' . $diff($next, $range['end']);
+			$last = $range['end'];
+		}
+	}
+	return $rangeset;
+}
+
+function printPageSelector($subpage, $rangeset, $script, $queryParams) {
+	global $instances;
+	$pages = count($rangeset);
+	$jump = $query = '';
+	foreach ($queryParams as $param => $value) {
+		$query .= html_encode($param) . '=' . html_encode($value) . '&amp;';
+		$jump .= "'" . html_encode($param) . "=" . html_encode($value) . "',";
+	}
+	$query = '?' . $query;
+	if ($subpage > 0) {
+		?>
 		<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . $script . $query; ?>subpage=<?php echo ($subpage - 1); ?>" >« <?php echo gettext('prev'); ?></a>
 		<?php
 	}
@@ -4842,19 +4842,19 @@ function printCodeblockEdit($obj, $id) {
 		}
 		?>
 		<select name="subpage" class="ignoredirty" id="subpage<?php echo $instances; ?>" onchange="launchScript('<?php echo WEBPATH . '/' . ZENFOLDER . '/' . $script; ?>', [<?php echo $jump; ?>'subpage=' + $('#subpage<?php echo $instances; ?>').val()]);" >
-		<?php
-		foreach ($rangeset as $page => $range) {
-			?>
+			<?php
+			foreach ($rangeset as $page => $range) {
+				?>
 				<option value="<?php echo $page; ?>" <?php if ($page == $subpage) echo ' selected="selected"'; ?>><?php echo $range; ?></option>
 				<?php
 			}
 			?>
 		</select>
-			<?php
-		}
-		if ($pages > $subpage + 1) {
-			if ($pages > 2) {
-				?>
+		<?php
+	}
+	if ($pages > $subpage + 1) {
+		if ($pages > 2) {
+			?>
 			|
 		<?php }
 		?>
@@ -5237,105 +5237,105 @@ function consolidatedEditMessages($subtab) {
 	if (!empty($errorbox)) {
 		?>
 		<div class="errorbox fade-message">
-		<?php echo implode('<br />', $errorbox); ?>
+			<?php echo implode('<br />', $errorbox); ?>
 		</div>
-			<?php
-		}
-		if (!empty($notebox)) {
-			?>
-		<div class="notebox fade-message">
-		<?php echo implode('<br />', $notebox); ?>
-		</div>
-			<?php
-		}
-		if (!empty($messagebox)) {
-			?>
-		<div class="messagebox fade-message">
-		<?php echo implode('<br />', $messagebox); ?>
-		</div>
-			<?php
-		}
+		<?php
 	}
-
-	/**
-	 * returns an array of the theme scripts not in the exclude array
-	 * @param array $exclude those scripts to ignore
-	 * @return array
-	 */
-	function getThemeFiles($exclude) {
-		global $_zp_gallery;
-		$files = array();
-		foreach (array_keys($_zp_gallery->getThemes()) as $theme) {
-			$curdir = getcwd();
-			$root = SERVERPATH . '/' . THEMEFOLDER . '/' . $theme . '/';
-			chdir($root);
-			$filelist = safe_glob('*.php');
-			$list = array();
-			foreach ($filelist as $file) {
-				if (!in_array($file, $exclude)) {
-					$files[$theme][] = filesystemToInternal($file);
-				}
-			}
-			chdir($curdir);
-		}
-		return $files;
-	}
-
-	/**
-	 *
-	 * Checks for bad parentIDs from old move/copy bug
-	 * @param unknown_type $albumname
-	 * @param unknown_type $id
-	 */
-	function checkAlbumParentid($albumname, $id, $recorder) {
-		$album = newAlbum($albumname);
-		$oldid = $album->getParentID();
-		if ($oldid != $id) {
-			$album->set('parentid', $id);
-			$album->save();
-			if (is_null($oldid))
-				$oldid = '<em>NULL</em>';
-			if (is_null($id))
-				$id = '<em>NULL</em>';
-			$msg = sprintf('Fixed album <strong>%1$s</strong>: parentid was %2$s should have been %3$s<br />', $albumname, $oldid, $id);
-			$recorder($msg, true);
-		}
-		$id = $album->getID();
-		if (!$album->isDynamic()) {
-			$albums = $album->getAlbums();
-			foreach ($albums as $albumname) {
-				checkAlbumParentid($albumname, $id, $recorder);
-			}
-		}
-	}
-
-	function clonedFrom() {
-		if (PRIMARY_INSTALLATION) {
-			return false;
-		} else {
-			$zen = str_replace('\\', '/', @readlink(SERVERPATH . '/' . ZENFOLDER));
-			return dirname($zen);
-		}
-	}
-
-	function pickSource($obj) {
-		$params = '';
-		switch ($obj->table) {
-			case 'albums':
-				$params = 'pick[album]=' . $obj->getFileName();
-				break;
-			case 'images':
-				$params = 'pick[album]=' . $obj->album->getFileName() . '&pick[image]=' . $obj->getFileName();
-				break;
-			default:
-				$params = 'pick[' . $obj->table . ']=' . $obj->getTitleLink();
-				break;
-		}
-		return $params;
-	}
-
-	function linkPickerItem($obj, $id) {
+	if (!empty($notebox)) {
 		?>
+		<div class="notebox fade-message">
+			<?php echo implode('<br />', $notebox); ?>
+		</div>
+		<?php
+	}
+	if (!empty($messagebox)) {
+		?>
+		<div class="messagebox fade-message">
+			<?php echo implode('<br />', $messagebox); ?>
+		</div>
+		<?php
+	}
+}
+
+/**
+ * returns an array of the theme scripts not in the exclude array
+ * @param array $exclude those scripts to ignore
+ * @return array
+ */
+function getThemeFiles($exclude) {
+	global $_zp_gallery;
+	$files = array();
+	foreach (array_keys($_zp_gallery->getThemes()) as $theme) {
+		$curdir = getcwd();
+		$root = SERVERPATH . '/' . THEMEFOLDER . '/' . $theme . '/';
+		chdir($root);
+		$filelist = safe_glob('*.php');
+		$list = array();
+		foreach ($filelist as $file) {
+			if (!in_array($file, $exclude)) {
+				$files[$theme][] = filesystemToInternal($file);
+			}
+		}
+		chdir($curdir);
+	}
+	return $files;
+}
+
+/**
+ *
+ * Checks for bad parentIDs from old move/copy bug
+ * @param unknown_type $albumname
+ * @param unknown_type $id
+ */
+function checkAlbumParentid($albumname, $id, $recorder) {
+	$album = newAlbum($albumname);
+	$oldid = $album->getParentID();
+	if ($oldid != $id) {
+		$album->set('parentid', $id);
+		$album->save();
+		if (is_null($oldid))
+			$oldid = '<em>NULL</em>';
+		if (is_null($id))
+			$id = '<em>NULL</em>';
+		$msg = sprintf('Fixed album <strong>%1$s</strong>: parentid was %2$s should have been %3$s<br />', $albumname, $oldid, $id);
+		$recorder($msg, true);
+	}
+	$id = $album->getID();
+	if (!$album->isDynamic()) {
+		$albums = $album->getAlbums();
+		foreach ($albums as $albumname) {
+			checkAlbumParentid($albumname, $id, $recorder);
+		}
+	}
+}
+
+function clonedFrom() {
+	if (PRIMARY_INSTALLATION) {
+		return false;
+	} else {
+		$zen = str_replace('\\', '/', @readlink(SERVERPATH . '/' . ZENFOLDER));
+		return dirname($zen);
+	}
+}
+
+function pickSource($obj) {
+	$params = '';
+	switch ($obj->table) {
+		case 'albums':
+			$params = 'pick[album]=' . $obj->getFileName();
+			break;
+		case 'images':
+			$params = 'pick[album]=' . $obj->album->getFileName() . '&pick[image]=' . $obj->getFileName();
+			break;
+		default:
+			$params = 'pick[' . $obj->table . ']=' . $obj->getTitleLink();
+			break;
+	}
+	return $params;
+}
+
+function linkPickerItem($obj, $id) {
+	?>
 	<input type="text" name="<?php echo $id; ?>" id="<?php echo $id; ?>" value="<?php echo $obj->getLink(); ?>" READONLY title="<?php echo gettext('You can also copy the link to your clipboard to paste elsewhere'); ?>" style="width:100%;" />
 	<?php
 }
@@ -5358,7 +5358,7 @@ function linkPickerIcon($obj, $id = NULL, $extra = NULL) {
 	}
 	?>
 	<a onclick="<?php echo $clickid; ?>$('.pickedObject').removeClass('pickedObject');
-										$('#<?php echo $iconid; ?>').addClass('pickedObject');<?php linkPickerPick($obj, $id, $extra); ?>" title="<?php echo gettext('pick source'); ?>">
+				$('#<?php echo $iconid; ?>').addClass('pickedObject');<?php linkPickerPick($obj, $id, $extra); ?>" title="<?php echo gettext('pick source'); ?>">
 		<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" id="<?php echo $iconid; ?>">
 	</a>
 	<?php

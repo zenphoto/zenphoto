@@ -25,8 +25,8 @@ class lib_GD_Options {
 	 */
 	function getOptionsSupported() {
 		if (defined('GD_FREETYPE') && GD_FREETYPE) {
-			return array(gettext('GD TypeFace path') => array('key'	 => 'GD_FreeType_Path', 'type' => OPTION_TYPE_TEXTBOX,
-											'desc' => gettext('Supply the full path to your TrueType fonts.')));
+			return array(gettext('GD TypeFace path') => array('key' => 'GD_FreeType_Path', 'type' => OPTION_TYPE_TEXTBOX,
+							'desc' => gettext('Supply the full path to your TrueType fonts.')));
 		} else {
 			return array();
 		}
@@ -543,7 +543,7 @@ if (!function_exists('zp_graphicsLibInfo')) {
 						$filelist = safe_glob('*.ttf');
 						foreach ($filelist as $file) {
 							$key = filesystemToInternal($file);
-							$_gd_fontlist[$key] = $basefile . '/' . $file;
+							$_gd_fontlist[$key] = $basefile . $file;
 						}
 					}
 				}
@@ -628,9 +628,9 @@ if (!function_exists('zp_graphicsLibInfo')) {
 			for ($i = 0; $i < $radius; $i++) {
 				if (function_exists('imageconvolution')) { // PHP >= 5.1
 					$matrix = array(
-									array(1, 2, 1),
-									array(2, 4, 2),
-									array(1, 2, 1)
+							array(1, 2, 1),
+							array(2, 4, 2),
+							array(1, 2, 1)
 					);
 					imageconvolution($imgCanvas, $matrix, 16, 0);
 				}

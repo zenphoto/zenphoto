@@ -58,25 +58,13 @@ class text_watermark {
 		?>
 		<script type="text/javascript">
 			// <!-- <![CDATA[
-			window.addEventListener('load', function () {
-				$('#text_watermark_font').change(function () {
-					updatewm();
-				});
-				$('#text_watermark_color').change(function () {
-					updatewm();
-				});
-				$('#text_watermark_color_colorpicker').change(function () {
-					updatewm();
-				});
-				$('#text_watermark_text').change(function () {
-					updatewm();
-				});
-			}, false);
+			$('form.dirtylistening').removeClass('dirtylistening');	//	we have nothing to save
+
 			function imgsrc() {
 				var imgsrc = '<?php echo FULLWEBPATH; ?>/plugins/text_watermark/createwatermark.php'
-								+ '?text_watermark_text=' + encodeURIComponent($('#text_watermark_text').val())
-								+ '&amp;text_watermark_font=' + encodeURIComponent($('#text_watermark_font').val())
-								+ '&amp;text_watermark_color=' + encodeURIComponent($('#text_watermark_color').val());
+								+ '?text_watermark_text=' + encodeURIComponent($('#__text_watermark_text').val())
+								+ '&amp;text_watermark_font=' + encodeURIComponent($('#__text_watermark_font').val())
+								+ '&amp;text_watermark_color=' + encodeURIComponent($('#__text_watermark_color').val());
 				return imgsrc;
 			}
 			function updatewm() {
@@ -92,9 +80,19 @@ class text_watermark {
 			}
 			// ]]> -->
 		</script>
+
 		<p class="buttons">
+			<button type="button" title="<?php echo gettext('Create'); ?>" onclick="updatewm();">
+				<strong>
+					<?php echo gettext('View'); ?>
+				</strong>
+			</button>
+			<button type="button" title="<?php echo gettext('Create'); ?>" onclick="createwm();">
+				<strong>
+					<?php echo gettext('Create'); ?>
+				</strong>
+			</button>
 			<span id="text_watermark_image_loc"><?php echo $imageurl ?></span>
-			<button type="button" title="<?php echo gettext('Create'); ?>" onclick="createwm();"><strong><?php echo gettext('Create'); ?></strong></button>
 		</p>
 		<?php
 	}

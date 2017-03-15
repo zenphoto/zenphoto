@@ -117,13 +117,9 @@ class hitcounter {
 					function hitcounter_defaults() {
 						$('#hitcounter_ignoreIPList').val('');
 						$('#hitcounter_ip_button').removeAttr('disabled');
-						$('#hitcounter_ignoreIPList_enable').prop('checked', false);
-						$('#hitcounter_ignoreSearchCrawlers_enable').prop('checked', false);
-
-						$('#hitcounter_searchCrawlerList').val(reset);
-
-
-
+						$('#__hitcounter_ignoreIPList_enable').prop('checked', false);
+						$('#__hitcounter_ignoreSearchCrawlers_enable').prop('checked', false);
+						$('#__hitcounter_searchCrawlerList').val(reset);
 					}
 					// ]]> -->
 				</script>
