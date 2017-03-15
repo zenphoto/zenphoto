@@ -27,15 +27,21 @@ if (isset($_GET['f'])) {
 		$fontname = array_shift($fonts);
 	}
 }
-$font = zp_imageLoadFont($fontname, getOption('zenphoto_captcha_font_size'));
+if (isset($_GET['p'])) {
+	$size = sanitize_numeric($_GET['p']);
+} else {
+	$size = getOption('zenphoto_captcha_font_size');
+}
+
+$font = zp_imageLoadFont($fontname, $size);
 
 $pallet = array(
-				array('R' => 16, 'G' => 110, 'B' => 3),
-				array('R' => 132, 'G' => 4, 'B' => 16),
-				array('R' => 103, 'G' => 3, 'B' => 143),
-				array('R' => 143, 'G' => 32, 'B' => 3),
-				array('R' => 143, 'G' => 38, 'B' => 48),
-				array('R' => 0, 'G' => 155, 'B' => 18));
+		array('R' => 16, 'G' => 110, 'B' => 3),
+		array('R' => 132, 'G' => 4, 'B' => 16),
+		array('R' => 103, 'G' => 3, 'B' => 143),
+		array('R' => 143, 'G' => 32, 'B' => 3),
+		array('R' => 143, 'G' => 38, 'B' => 48),
+		array('R' => 0, 'G' => 155, 'B' => 18));
 $fw = zp_imageFontWidth($font);
 $w = $fw * $len + 2;
 $h = $fh = zp_imagefontheight($font);
