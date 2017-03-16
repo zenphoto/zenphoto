@@ -1084,21 +1084,19 @@ function printAdminHeader($tab, $subtab = NULL) {
 							if (empty($v))
 								$v = '#000000';
 							?>
-							<td class="option_value" style="margin:0; padding:0">
+							<td class="option_value">
 								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'text-' . $postkey; ?>" value="1" />
 								<script type="text/javascript">
 									// <!-- <![CDATA[
 									window.addEventListener('load', function () {
-										$('#__<?php echo $key; ?>_colorpicker').farbtastic('#__<?php echo $key; ?>');
+										$('#__<?php echo $key; ?>').spectrum({
+											preferredFormat: "hex",
+											color: "$('#__<?php echo $key; ?>').val()"
+										});
 									}, false);
 									// ]]> -->
 								</script>
-								<table style="margin:0; padding:0" >
-									<tr>
-										<td><input type="text" id="__<?php echo $key; ?>" name="<?php echo $postkey; ?>"	value="<?php echo $v; ?>" style="height:100px; width:100px; float:right;" /></td>
-										<td><div id="__<?php echo $key; ?>_colorpicker"></div></td>
-									</tr>
-								</table>
+								<input type="text" id="__<?php echo $key; ?>" name="<?php echo $postkey; ?>"	value="<?php echo $v; ?>" />
 							</td>
 							<?php
 							break;

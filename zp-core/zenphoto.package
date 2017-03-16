@@ -1114,8 +1114,6 @@ zp-core/images/strengths/strength8.png
 zp-core/images/strengths/strength9.png
 zp-core/js
 zp-core/js/admin.js
-zp-core/js/farbtastic.css
-zp-core/js/farbtastic.js
 zp-core/js/htmlencoder.js
 zp-core/js/Jcrop.gif
 zp-core/js/jquery.Jcrop.css
@@ -1236,6 +1234,9 @@ zp-core/js/jqueryui/images/ui-icons_cd0a0a_256x240.png
 zp-core/js/msdropdown
 zp-core/js/msdropdown/dd.css
 zp-core/js/msdropdown/jquery.dd.min.js
+zp-core/js/spectrum
+zp-core/js/spectrum/spectrum.css
+zp-core/js/spectrum/spectrum.js
 zp-core/lib-gettext
 zp-core/lib-gettext/gettext.inc
 zp-core/locale
@@ -2317,4 +2318,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-2319
+2320

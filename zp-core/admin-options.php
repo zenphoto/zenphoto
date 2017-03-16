@@ -534,8 +534,8 @@ if (isset($_GET['action'])) {
 }
 printAdminHeader($_current_tab);
 ?>
-<script type="text/javascript" src="js/farbtastic.js"></script>
-<link rel="stylesheet" href="js/farbtastic.css" type="text/css" />
+<script src='js/spectrum/spectrum.js'></script>
+<link rel='stylesheet' href='js/spectrum/spectrum.css' />
 <?php
 if ($_zp_admin_subtab == 'gallery' || $_zp_admin_subtab == 'image') {
 	if ($_zp_admin_subtab == 'image') {
@@ -1171,7 +1171,7 @@ Zenphoto_Authority::printPasswordFormJS();
 					<div id="tab_gallery" class="tabbox">
 						<?php zp_apply_filter('admin_note', 'options', $subtab); ?>
 						<form class="dirtylistening" onReset="toggle_passwords('', false);
-								setClean('form_options');" id="form_options" action="?action=saveoptions" method="post" autocomplete="off" >
+									setClean('form_options');" id="form_options" action="?action=saveoptions" method="post" autocomplete="off" >
 									<?php XSRFToken('saveoptions'); ?>
 							<input	type="hidden" name="savegalleryoptions" value="yes" />
 							<input	type="hidden" name="password_enabled" id="password_enabled" value="0" />
@@ -1259,7 +1259,7 @@ Zenphoto_Authority::printPasswordFormJS();
 															 name="disclose_password"
 															 id="disclose_password"
 															 onclick="passwordClear('');
-																	 togglePassword('');" /><?php echo gettext('Show password'); ?>
+																			 togglePassword('');" /><?php echo gettext('Show password'); ?>
 											</label>
 										</td>
 										<td class="option_desc">
@@ -1536,7 +1536,7 @@ Zenphoto_Authority::printPasswordFormJS();
 					<div id="tab_search" class="tabbox">
 						<?php zp_apply_filter('admin_note', 'options', $subtab); ?>
 						<form class="dirtylistening" onReset="toggle_passwords('', false);
-								setClean('form_options');" id="form_options" action="?action=saveoptions" method="post" autocomplete="off" >
+									setClean('form_options');" id="form_options" action="?action=saveoptions" method="post" autocomplete="off" >
 									<?php XSRFToken('saveoptions'); ?>
 							<input	type="hidden" name="savesearchoptions" value="yes" />
 							<input	type="hidden" name="password_enabled" id="password_enabled" value="0" />
@@ -1598,7 +1598,7 @@ Zenphoto_Authority::printPasswordFormJS();
 															 name="disclose_password"
 															 id="disclose_password"
 															 onclick="passwordClear('');
-																	 togglePassword('');" /><?php echo gettext('Show password'); ?>
+																			 togglePassword('');" /><?php echo gettext('Show password'); ?>
 											</label>
 										</td>
 										<td class="option_desc">
@@ -2316,7 +2316,7 @@ Zenphoto_Authority::printPasswordFormJS();
 																		 name="disclose_password"
 																		 id="disclose_password"
 																		 onclick="passwordClear('');
-																				 togglePassword('');" /><?php echo gettext('Show password'); ?>
+																						 togglePassword('');" /><?php echo gettext('Show password'); ?>
 														</label>
 													</td>
 												</tr>
@@ -2639,7 +2639,7 @@ Zenphoto_Authority::printPasswordFormJS();
 											<p class="buttons">
 												<button type="submit" value="<?php echo gettext('Apply') ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 												<button type="button" value="<?php echo gettext('Revert to default') ?>" onclick="$('#savethemeoptions').val('reset');
-														$('#themeoptionsform').submit();"><img src="images/refresh.png" alt="" /><strong><?php echo gettext("Revert to default"); ?></strong></button>
+																$('#themeoptionsform').submit();"><img src="images/refresh.png" alt="" /><strong><?php echo gettext("Revert to default"); ?></strong></button>
 												<button type="reset" value="<?php echo gettext('reset') ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
 											</p>
 										</td>
@@ -2890,7 +2890,7 @@ Zenphoto_Authority::printPasswordFormJS();
 											<p class="buttons">
 												<button type="submit" value="<?php echo gettext('Apply') ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 												<button type="button" value="<?php echo gettext('Revert to default') ?>" onclick="$('#savethemeoptions').val('reset');
-														$('#themeoptionsform').submit();"><img src="images/refresh.png" alt="" /><strong><?php echo gettext("Revert to default"); ?></strong></button>
+																$('#themeoptionsform').submit();"><img src="images/refresh.png" alt="" /><strong><?php echo gettext("Revert to default"); ?></strong></button>
 												<button type="reset" value="<?php echo gettext('reset') ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
 											</p>
 										</td>

@@ -58,9 +58,27 @@ class text_watermark {
 		?>
 		<script type="text/javascript">
 			// <!-- <![CDATA[
-			$('form.dirtylistening').removeClass('dirtylistening');	//	we have nothing to save
+			window.addEventListener('load', function () {
+
+				$('#__text_watermark_font').change(function () {
+					updatewm();
+				});
+
+				$('#__text_watermark_color').change(function () {
+					updatewm();
+				});
+
+				$('#__text_watermark_text').change(function () {
+					updatewm();
+				});
+
+
+			}, false);
+
+			$('form.dirtylistening').removeClass('dirtylistening');	//	we have nothing needed to be saved
 
 			function imgsrc() {
+
 				var imgsrc = '<?php echo FULLWEBPATH; ?>/plugins/text_watermark/createwatermark.php'
 								+ '?text_watermark_text=' + encodeURIComponent($('#__text_watermark_text').val())
 								+ '&amp;text_watermark_font=' + encodeURIComponent($('#__text_watermark_font').val())
@@ -83,11 +101,6 @@ class text_watermark {
 		</script>
 
 		<p class="buttons">
-			<button type="button" title="<?php echo gettext('Render'); ?>" onclick="updatewm();">
-				<strong>
-					<?php echo gettext('Render'); ?>
-				</strong>
-			</button>
 			<button type="button" title="<?php echo gettext('Create'); ?>" onclick="createwm();">
 				<strong>
 					<?php echo gettext('Create'); ?>
