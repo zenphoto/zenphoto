@@ -23,9 +23,9 @@ class text_watermark {
 		if (OFFSET_PATH == 2) {
 			$fonts = zp_getFonts();
 			$fon = array_shift($fonts);
-			setOptionDefault('text_watermark_color', '#FFFFFF');
+			setOptionDefault('text_watermark_color', '#000000');
 			setOptionDefault('text_watermark_font', $fon);
-			setOptionDefault('text_watermark_text', '');
+			setOptionDefault('text_watermark_text', 'Sample Text');
 		}
 	}
 
@@ -67,6 +67,7 @@ class text_watermark {
 								+ '&amp;text_watermark_color=' + encodeURIComponent($('#__text_watermark_color').val());
 				return imgsrc;
 			}
+
 			function updatewm() {
 				$('#text_watermark_image_loc').html('<img src="' + imgsrc() + '&amp;transient" alt="" />');
 			}
@@ -82,9 +83,9 @@ class text_watermark {
 		</script>
 
 		<p class="buttons">
-			<button type="button" title="<?php echo gettext('Create'); ?>" onclick="updatewm();">
+			<button type="button" title="<?php echo gettext('Render'); ?>" onclick="updatewm();">
 				<strong>
-					<?php echo gettext('View'); ?>
+					<?php echo gettext('Render'); ?>
 				</strong>
 			</button>
 			<button type="button" title="<?php echo gettext('Create'); ?>" onclick="createwm();">
