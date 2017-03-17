@@ -259,10 +259,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 	if (getOption('dirtyform_enable')) {
 		?>
 				$.DirtyForms.ignoreClass = 'ignoredirty';
-				$.DirtyForms.message = '<?php echo gettext('You have unsaved changes!'); ?>';
-				$.DirtyForms.title = '<?php echo gettext('Are you sure you want to leave this page?'); ?>';
-				$.DirtyForms.continueText = '<?php echo gettext('Leave'); ?>';
-				$.DirtyForms.stopText = '<?php echo gettext('Stay'); ?>';
 				$('form.dirtylistening').dirtyForms({debug: true});
 
 				// brute force kludge to make the form clean after the load
