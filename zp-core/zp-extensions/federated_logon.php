@@ -226,7 +226,6 @@ class federated_logon {
 				$userobj->setName($name);
 				$userobj->setPass($user . HASH_SEED . gmdate('d M Y H:i:s'));
 				$userobj->setObjects(NULL);
-				$userobj->setCustomData('');
 				$userobj->setLanguage(getUserLocale());
 				$userobj->setObjects($groupobj->getObjects());
 				if (is_valid_email_zp($email)) {

@@ -45,7 +45,6 @@
 					?>
 					<div class="comment"><?php echo getImageDesc(); ?></div>
 					<div class="data">
-						<?php if (getImageCustomData()) { ?><div><label><?php echo gettext('Custom data:'); ?> </label><?php echo getImageCustomData(); ?></div><?php } ?>
 						<?php if (getImageLocation()) { ?><div><label><?php echo gettext('Location:'); ?> </label><?php echo getImageLocation(); ?></div><?php } ?>
 						<?php if (getImageCity()) { ?><div><label><?php echo gettext('City:'); ?> </label><?php echo getImageCity(); ?></div><?php } ?>
 						<?php if (getImageState()) { ?><div><label><?php echo gettext('State:'); ?> </label><?php echo getImageState(); ?></div><?php } ?>

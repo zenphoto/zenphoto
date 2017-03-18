@@ -400,7 +400,7 @@ function printContactForm($subject_override = '') {
 						'country' => '', 'postal' => '', 'email' => $_zp_current_admin_obj->getEmail(), 'website' => '', 'phone' => '',
 						'subject' => $subject_override, 'message' => '', 'honeypot' => '');
 				if (class_exists('userAddressFields')) {
-					$address = userAddressFields::getcustomData($_zp_current_admin_obj);
+					$address = userAddressFields::getCustomDataset($_zp_current_admin_obj);
 					foreach ($address as $key => $field) {
 						$mailcontent[$key] = $field;
 					}

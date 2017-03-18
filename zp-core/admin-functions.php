@@ -2769,36 +2769,28 @@ function printAdminHeader($tab, $subtab = NULL) {
 			$images = $album->getImages(0);
 			if ($count = count($images) > 1) {
 				?>
-				<tr>
-					<td colspan="4" class="bordered" id="imagenavb">
-						<?php
-						$i = array_search($image->filename, $images);
-						if ($i > 0) {
-							?>
-							<a href="?page=edit&tab=imageinfo&album=<?php echo pathurlencode($image->album->name); ?>&singleimage=<?php echo html_encode($images[$i - 1]); ?>"><?php echo gettext('prev image'); ?></a>
-							<?php
-						}
-						if (array_key_exists($i + 1, $images)) {
-							if ($i > 0)
-								echo ' | ';
-							?>
-							<a href="?page=edit&tab=imageinfo&album=<?php echo pathurlencode($image->album->name); ?>&singleimage=<?php echo html_encode($images[$i + 1]); ?>"><?php echo gettext('next image'); ?></a>
-							<?php
-						}
+				<span class="floatright">
+					<?php
+					$i = array_search($image->filename, $images);
+					if ($i > 0) {
 						?>
-					</td>
-				</tr>
+						<a href="?page=edit&tab=imageinfo&album=<?php echo pathurlencode($image->album->name); ?>&singleimage=<?php echo html_encode($images[$i - 1]); ?>"><?php echo gettext('prev image'); ?></a>
+						<?php
+					}
+					if (array_key_exists($i + 1, $images)) {
+						if ($i > 0)
+							echo ' | ';
+						?>
+						<a href="?page=edit&tab=imageinfo&album=<?php echo pathurlencode($image->album->name); ?>&singleimage=<?php echo html_encode($images[$i + 1]); ?>"><?php echo gettext('next image'); ?></a>
+						<?php
+					}
+					?>
+				</span>
 				<?php
 			}
 		} else {
 			if ($allimagecount != $totalimages) { // need pagination links
-				?>
-				<tr>
-					<td colspan="4" class="bordered" id="imagenavb">
-						<?php adminPageNav($pagenum, $totalpages, 'admin-edit.php', '?page=edit&amp;album=' . html_encode(pathurlencode($album->name)), '&amp;tab=imageinfo&amp;filter=' . $filter); ?>
-					</td>
-				</tr>
-				<?php
+				adminPageNav($pagenum, $totalpages, 'admin-edit.php', '?page=edit&amp;album=' . html_encode(pathurlencode($album->name)), '&amp;tab=imageinfo&amp;filter=' . $filter);
 			}
 		}
 	}

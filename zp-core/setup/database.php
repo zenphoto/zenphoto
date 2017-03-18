@@ -190,6 +190,7 @@ foreach ($template as $tablename => $table) {
 		$create[] = "CREATE TABLE IF NOT EXISTS " . prefix($tablename) . " (";
 		$create[] = "  `id` int(11) UNSIGNED NOT NULL auto_increment,";
 	}
+	$after = ' FIRST';
 	foreach ($table['fields'] as $key => $field) {
 		if ($key != 'id') {
 			$string = "ALTER TABLE " . prefix($tablename) . " %s `" . $field['Field'] . "` " . $field['Type'];
@@ -209,7 +210,7 @@ foreach ($template as $tablename => $table) {
 			} else {
 				$comment = " COMMENT '" . $field['Comment'] . "'";
 			}
-			$addString = sprintf($string, 'ADD COLUMN') . $comment . ';';
+			$addString = sprintf($string, 'ADD COLUMN') . $comment . $after . ';';
 			$changeString = sprintf($string, "CHANGE `" . $field['Field'] . "`") . $comment . ';';
 			if ($exists) {
 				if (array_key_exists($key, $database[$tablename]['fields'])) {
@@ -224,6 +225,8 @@ foreach ($template as $tablename => $table) {
 				$create[] = "  " . $x[1] . $comment . ',';
 			}
 		}
+		$after = ' AFTER `' . $field['Field'] . '`';
+
 		unset($database[$tablename]['fields'][$key]);
 	}
 	if ($exists) {

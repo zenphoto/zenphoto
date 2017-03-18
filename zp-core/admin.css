@@ -793,6 +793,7 @@ div.outerbox {
 
 .leftcolumn {
 	padding-top: 5px;
+	padding-right: 5px;
 	white-space: nowrap;
 	vertical-align: top;
 	text-align:left;
@@ -808,7 +809,7 @@ div.outerbox {
 	vertical-align: top;
 	padding-right: 20px !important;
 	min-width: 300px;
-	width: 99%;
+	width: 95%;
 }
 
 

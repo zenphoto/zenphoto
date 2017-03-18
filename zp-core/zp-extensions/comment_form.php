@@ -334,7 +334,7 @@ function printCommentForm($showcomments = true, $addcommenttext = NULL, $addhead
 
 				if (zp_loggedin()) {
 					if (extensionEnabled('userAddressFields')) {
-						$address = userAddressFields::getCustomData($_zp_current_admin_obj);
+						$address = userAddressFields::getCustomDataset($_zp_current_admin_obj);
 						foreach ($address as $key => $value) {
 							if (!empty($value)) {
 								$disabled[$key] = true;

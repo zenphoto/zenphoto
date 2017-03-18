@@ -498,7 +498,7 @@ value="' . $item . '" />';
 	 * @param array $fields
 	 * @return array
 	 */
-	static function _getCustomData($obj, $fields) {
+	static function _getCustomDataset($obj, $fields) {
 		$result = array();
 		foreach ($fields as $element) {
 			if ($element['table'] == $obj->table) {
@@ -508,7 +508,7 @@ value="' . $item . '" />';
 		return $result;
 	}
 
-	static function _setCustomData($obj, $values) {
+	static function _setCustomDataset($obj, $values) {
 		foreach ($values as $field => $value) {
 			$obj->set($field, $value);
 		}

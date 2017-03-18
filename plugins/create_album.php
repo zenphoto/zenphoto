@@ -4,7 +4,8 @@
  * assigned in the users managed albums list.
  *
  * The User interface appears on the user tab in the <i>custom data</i> area when an enabled user is logged in.
- * Candidate users must have <var>Album</var> and <var>Upload</var> rights. Users with <var>Admin</var> right or <var>Manage all album</var> rights
+ * Candidate users must have <var>Album</var> and <var>Upload</var> rights.
+ * Users with <var>Admin</var> right or <var>Manage all album</var> rights
  * can already make root level albums, so are excluded from this plugin.
  *
  * @author Stephen Billard (sbillard)
