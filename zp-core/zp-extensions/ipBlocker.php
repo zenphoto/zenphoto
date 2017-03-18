@@ -317,7 +317,7 @@ class ipBlocker {
 		$sql = 'DELETE FROM ' . prefix('plugin_storage') . ' WHERE `type`="ipBlocker" AND `aux` < "' . (time() - getOption('ipBlocker_timeout') * 60) . '"';
 		query($sql);
 		//	add this attempt
-		$sql = 'INSERT INTO ' . prefix('plugin_storage') . ' (`type`, `subtype`, `aux`,`data`) VALUES ("ipBlocker"' . db_quote($type) . ', ' . db_quote(time()) . ',' . db_quote(getUserIP()) . ')';
+		$sql = 'INSERT INTO ' . prefix('plugin_storage') . ' (`type`, `subtype`, `aux`,`data`) VALUES ("ipBlocker",' . db_quote($type) . ', ' . db_quote(time()) . ',' . db_quote(getUserIP()) . ')';
 		query($sql);
 		//	check how many times this has happened recently
 		$count = db_count('plugin_storage', 'WHERE `type`="ipBlocker" AND `subtype`=' . db_quote($type) . ' AND `data`="' . getUserIP() . '"');
