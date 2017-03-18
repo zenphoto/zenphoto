@@ -20,12 +20,12 @@ $plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'create_album';
 
-zp_register_filter('admin_head', 'create_album::create_albumJS');
-zp_register_filter('edit_admin_custom_data', 'create_album::create_album_edit', 1);
-zp_register_filter('save_admin_custom_data', 'create_album::create_album_save');
-zp_register_filter('save_user', 'create_album::create_album_save_user');
-zp_register_filter('upload_root_ui', 'create_album::create_album_upload_root_ui');
-zp_register_filter('admin_upload_process', 'create_album::create_album_admin_upload_process');
+zp_register_filter('admin_head', 'create_album::JS');
+zp_register_filter('edit_admin_custom_data', 'create_album::edit', 1);
+zp_register_filter('save_admin_custom_data', 'create_album::save');
+zp_register_filter('save_user', 'create_album::save_user');
+zp_register_filter('upload_root_ui', 'create_album::upload_root_ui');
+zp_register_filter('admin_upload_process', 'create_album::admin_upload_process');
 zp_register_filter('plugin_tabs', 'create_album::tab');
 
 $__creatAlbumList = getSerializedArray(getOption('create_album_userlist'));
@@ -109,7 +109,7 @@ class create_album {
 	/**
 	 * HTML Header JS
 	 */
-	static function create_albumJS() {
+	static function JS() {
 		global $_zp_admin_tab, $_zp_admin_subtab, $_zp_gallery;
 		if ($_zp_admin_tab == 'users') {
 			$albums = $_zp_gallery->getAlbums(0);
@@ -231,7 +231,7 @@ class create_album {
 	 * @param $i
 	 * @param $alter
 	 */
-	static function create_album_save($updated, $userobj, $i, $alter) {
+	static function save($updated, $userobj, $i, $alter) {
 		global $_create_album_errors;
 		if (isset($_POST['createalbum']) && $userobj->getValid()) {
 			if (isset($_POST['folderdisplay'])) {
@@ -277,8 +277,8 @@ class create_album {
 	 * @param $userobj
 	 * @param $what
 	 */
-	static function create_album_save_user($msg, $userobj, $what) {
-		global $_create_album_errors, $__creatAlbumList;
+	static function save_user($msg, $userobj, $what) {
+		global $_errors, $__creatAlbumList;
 		if (is_array($_create_album_errors) && array_key_exists($userobj->getUser(), $_create_album_errors)) {
 			$msg .= ($msg) ? '; ' : '' . $_create_album_errors[$userobj->getUser()];
 		}
@@ -300,7 +300,7 @@ class create_album {
 		return $msg;
 	}
 
-	static function create_album_upload_root_ui($allow) {
+	static function upload_root_ui($allow) {
 		global $_zp_current_admin_obj, $__creatAlbumList;
 		if (!$allow) {
 			$rights = $_zp_current_admin_obj->getRights();
@@ -316,9 +316,9 @@ class create_album {
 		return $allow;
 	}
 
-	static function create_album_admin_upload_process($folder) {
+	static function admin_upload_process($folder) {
 		global $_zp_current_admin_obj;
-		if ($this->create_album_upload_root_ui(true)) { //	user has permission to create a root album
+		if (self::upload_root_ui(true)) { //	user has permission to create a root album
 			$leaves = explode('/', $folder);
 			if (count($leaves) == 1) { //	// and it is a root album
 				$targetPath = ALBUM_FOLDER_SERVERPATH . internalToFilesystem($folder);
