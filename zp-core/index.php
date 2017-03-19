@@ -39,9 +39,9 @@ foreach (getEnabledPlugins() as $extension => $plugin) {
 require_once(SERVERPATH . "/" . ZENFOLDER . '/rewrite.php');
 require_once(dirname(__FILE__) . '/template-functions.php');
 checkInstall();
-if (MOD_REWRITE || isset($_GET['z']))
+if (MOD_REWRITE || isset($_GET['z'])) {
 	rewriteHandler();
-
+}
 //$_zp_script_timer['require'] = microtime();
 /**
  * Invoke the controller to handle requests
