@@ -57,7 +57,7 @@ function newImage($album, $filename = NULL, $quiet = false) {
 		$msg = sprintf(gettext('Bad filename suffix in newImage(%s)'), $filename);
 	}
 	if (!$quiet) {
-		zp_error($msg, E_USER_WARNING);
+		debugLogBacktrace($msg);
 	}
 	return $_zp_missing_image;
 }
@@ -123,7 +123,7 @@ class Image extends MediaObject {
 		if ($msg) {
 			$this->exists = false;
 			if (!$quiet) {
-				zp_error($msg, E_USER_WARNING);
+				debugLogBacktrace($msg);
 			}
 			return;
 		}
@@ -246,7 +246,7 @@ class Image extends MediaObject {
 				}
 			}
 			if (!$good) {
-				zp_error(gettext('An image object was instantiated without using the newImage() function.'), E_USER_WARNING);
+				debugLogBacktrace(gettext('An image object was instantiated without using the newImage() function.'));
 			}
 		}
 
