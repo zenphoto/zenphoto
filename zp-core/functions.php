@@ -1506,8 +1506,8 @@ function getNotViewableAlbums() {
 		if ($result) {
 			$_zp_not_viewable_album_list = array();
 			while ($row = db_fetch_assoc($result)) {
-				$album = newAlbum($row['folder']);
-				if (!$album->checkAccess()) {
+				$album = newAlbum($row['folder'], false, true);
+				if (!$album || !$album->exists || !$album->checkAccess()) {
 					$_zp_not_viewable_album_list[] = $row['id'];
 				}
 			}
