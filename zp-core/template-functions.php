@@ -1760,10 +1760,10 @@ function getMaxSpaceContainer(&$width, &$height, $image, $thumb = false) {
 	} else {
 		$s_width = $image->get('width');
 		if ($s_width == 0)
-			$s_width = max($width, $height);
+			$s_width = max($width, $height, 1);
 		$s_height = $image->get('height');
 		if ($s_height == 0)
-			$s_height = max($width, $height);
+			$s_height = max($width, $height, 1);
 	}
 
 	$newW = round($height / $s_height * $s_width);
@@ -2744,10 +2744,10 @@ function getSizeDefaultThumb($image = NULL) {
 	if (is_null($image)) {
 		$image = $_zp_current_image;
 	}
-	$s = getOption('thumb_size');
+	$s = max(getOption('thumb_size'), 1);
 	if (getOption('thumb_crop')) {
-		$w = getOption('thumb_crop_width');
-		$h = getOption('thumb_crop_height');
+		$w = max(getOption('thumb_crop_width'), 1);
+		$h = max(getOption('thumb_crop_height'), 1);
 		if ($w > $h) {
 			//landscape
 			$h = round($h * $s / $w);
