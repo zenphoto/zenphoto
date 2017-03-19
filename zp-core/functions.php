@@ -2191,17 +2191,26 @@ function getItemByID($table, $id) {
 		switch ($table) {
 			case 'images':
 				if ($alb = getItemByID('albums', $result['albumid'])) {
-					return newImage($alb, $result['filename'], true);
+					$obj = newImage($alb, $result['filename'], true);
+				} else {
+					$obj = NULL;
 				}
 				break;
 			case 'albums':
-				return newAlbum($result['folder'], false, true);
+				$obj = newAlbum($result['folder'], false, true);
+				break;
 			case 'news':
-				return newArticle($result['titlelink']);
+				$obj = newArticle($result['titlelink']);
+				break;
 			case 'pages':
-				return newPage($result['titlelink']);
+				$obj = newPage($result['titlelink']);
+				break;
 			case 'news_categories':
-				return new Category($result['titlelink']);
+				$obj = new Category($result['titlelink']);
+				break;
+		}
+		if ($obj && $obj->loaded) {
+			return $obj;
 		}
 	}
 	return NULL;
