@@ -1550,7 +1550,6 @@ class dynamicAlbum extends AlbumBase {
 			return;
 		}
 		$new = $this->instantiate('albums', array('folder' => $this->name), 'folder', $cache, empty($folder8));
-		$this->exists = true;
 		if (!is_dir(stripSuffix($this->localpath))) {
 			$this->linkname = stripSuffix($folder8);
 		}
