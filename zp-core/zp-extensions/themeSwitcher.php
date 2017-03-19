@@ -53,19 +53,35 @@ class themeSwitcher {
 
 	function getOptionsSupported() {
 		global $_zp_gallery;
+		$knownThemes = getSerializedArray(getOption('known_themes'));
+		$enabled = getSerializedArray(getOption('themeSwitcher_list'));
+
+		$unknown = array();
 		$themes = $_zp_gallery->getThemes();
 		$list = array();
 		foreach ($themes as $key => $theme) {
 			$list[$theme['name']] = $key;
+			if (!isset($knownThemes[$key]) && in_array($key, $enabled)) {
+				$unknown[$key] = $theme['name'];
+			}
 		}
 		$options = array(gettext('Cookie duration') => array('key' => 'themeSwitcher_timeout', 'type' => OPTION_TYPE_NUMBER,
+						'order' => 1,
 						'desc' => gettext('The time in minutes that the theme switcher cookie lasts.')),
 				gettext('Private') => array('key' => 'themeSwitcher_adminOnly', 'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 2,
 						'desc' => gettext('Only users with <em>Themes</em> rights will see the selector if this is checked.')),
 				gettext('Theme list') => array('key' => 'themeSwitcher_list', 'type' => OPTION_TYPE_CHECKBOX_ULLIST,
+						'order' => 3,
 						'checkboxes' => $list,
 						'desc' => gettext('These are the themes that may be selected among.'))
 		);
+		if (!empty($unknown)) {
+			$options['note'] = array('key' => 'themeswitcher_note', 'type' => OPTION_TYPE_NOTE,
+					'order' => 4,
+					'desc' => '<span class="notebox">' . gettext('These themes are enabled but have not got their default optons set:') . ' <em>' . implode('</em>, <em>', $unknown) . '</em></span>');
+		}
+
 		return $options;
 	}
 
