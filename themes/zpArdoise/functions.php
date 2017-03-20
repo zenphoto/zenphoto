@@ -1,5 +1,8 @@
 <?php
+zp_register_filter('themeSwitcher_head', 'switcher_head');
 zp_register_filter('iconColor', 'iconColor');
+zp_register_filter('themeSwitcher_Controllink', 'switcher_controllink');
+
 if (!OFFSET_PATH) {
 	if ((getOption('use_galleriffic')) && !(($_zp_gallery_page == 'image.php') || ($_zp_gallery_page == 'search.php') || ($_zp_gallery_page == 'favorites.php'))) {
 		setOption('image_size', '555', false);
@@ -12,10 +15,10 @@ if (!OFFSET_PATH) {
 	setOption('personnal_thumb_width', '267', false);
 	setOption('personnal_thumb_height', '133', false);
 
-	setOption('zp_plugin_colorbox_js', 9|THEME_PLUGIN, false);	//force colorbox
-	setOption('comment_form_toggle', false, false);		// force this option of comment_form, to avoid JS conflits
-	setOption('comment_form_pagination', false, false);	// force this option of comment_form, to avoid JS conflits
-	setOption('tinymce_comments', null, false);			// force this option to disable tinyMCE for comment form
+	setOption('zp_plugin_colorbox_js', 9 | THEME_PLUGIN, false); //force colorbox
+	setOption('comment_form_toggle', false, false); // force this option of comment_form, to avoid JS conflits
+	setOption('comment_form_pagination', false, false); // force this option of comment_form, to avoid JS conflits
+	setOption('tinymce_comments', null, false); // force this option to disable tinyMCE for comment form
 
 	$_zenpage_enabled = extensionEnabled('zenpage');
 	$_zp_page_check = 'my_checkPageValidity';
@@ -29,6 +32,51 @@ function iconColor($icon) {
 	return($icon);
 }
 
+$themecolors = array('light', 'dark');
+
+function switcher_head($ignore) {
+	global $personalities, $themecolors, $themeColor;
+	$themeColor = getThemeOption('themeSwitcher_color');
+	if (isset($_GET['themeColor'])) {
+		$new = $_GET['themeColor'];
+		if (in_array($new, $themecolors)) {
+			setThemeOption('themeSwitcher_color', $new);
+			$themeColor = $new;
+		}
+	}
+	if (!empty($themeColor)) {
+		setOption('css_style', $themeColor, false);
+	}
+	?>
+	<script type="text/javascript">
+		// <!-- <![CDATA[
+		function switchColors() {
+			personality = $('#themeColor').val();
+			window.location = '?themeColor=' + personality;
+		}
+		// ]]> -->
+	</script>
+	<?php
+	return $ignore;
+}
+
+function switcher_controllink($ignore) {
+	global $themecolors;
+	$color = getThemeOption('themeSwitcher_color');
+	if (!$color) {
+		$color = getOption('css_style');
+	}
+	?>
+	<span title="<?php echo gettext("Default theme color scheme."); ?>">
+		<?php echo gettext('Theme Color'); ?>
+		<select name="themeColor" id="themeColor" onchange="switchColors();">
+			<?php generateListFromArray(array($color), $themecolors, false, false); ?>
+		</select>
+	</span>
+	<?php
+	return $ignore;
+}
+
 function my_checkPageValidity($request, $gallery_page, $page) {
 	if ($gallery_page == 'gallery.php') {
 		$gallery_page = 'index.php';
@@ -37,15 +85,16 @@ function my_checkPageValidity($request, $gallery_page, $page) {
 }
 
 /* zpArdoise_printRandomImages
-/*	- use improvements of zenphoto 1.4.6 on printRandomImages
-/*	- use improvements of zenphoto 1.4.5 on printRandomImages
-/*	- use improvements of zenphoto 1.4.2 on printRandomImages
-/*		- http://www.zenphoto.org/trac/ticket/1914,
-/*		- http://www.zenphoto.org/trac/ticket/2020,
-/*		- http://www.zenphoto.org/trac/ticket/2028
-/*	- implements call of colorbox (http://www.zenphoto.org/trac/ticket/1908 and http://www.zenphoto.org/trac/ticket/1909)
-*/
-function zpArdoise_printRandomImages($number=5, $class=NULL, $option='all', $rootAlbum='', $width=NULL, $height=NULL, $crop=NULL, $fullimagelink=false, $a_class=NULL) {
+  /*	- use improvements of zenphoto 1.4.6 on printRandomImages
+  /*	- use improvements of zenphoto 1.4.5 on printRandomImages
+  /*	- use improvements of zenphoto 1.4.2 on printRandomImages
+  /*		- http://www.zenphoto.org/trac/ticket/1914,
+  /*		- http://www.zenphoto.org/trac/ticket/2020,
+  /*		- http://www.zenphoto.org/trac/ticket/2028
+  /*	- implements call of colorbox (http://www.zenphoto.org/trac/ticket/1908 and http://www.zenphoto.org/trac/ticket/1909)
+ */
+
+function zpArdoise_printRandomImages($number = 5, $class = NULL, $option = 'all', $rootAlbum = '', $width = NULL, $height = NULL, $crop = NULL, $fullimagelink = false, $a_class = NULL) {
 	if (is_null($crop) && is_null($width) && is_null($height)) {
 		$crop = 2;
 	} else {
@@ -84,7 +133,7 @@ function zpArdoise_printRandomImages($number=5, $class=NULL, $option='all', $roo
 			echo '<a href="' . html_encode($randomImageURL) . '"' . $aa_class . ' title="' . html_encode($randomImage->getTitle()) . '">';
 			switch ($crop) {
 				case 0:
-					$html =  "<img src=\"" . html_encode(pathurlencode($randomImage->getCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, TRUE))) . "\" alt=\"" . html_encode($randomImage->getTitle()) . "\" />\n";
+					$html = "<img src=\"" . html_encode(pathurlencode($randomImage->getCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, TRUE))) . "\" alt=\"" . html_encode($randomImage->getTitle()) . "\" />\n";
 					break;
 				case 1:
 					$html = "<img src=\"" . html_encode(pathurlencode($randomImage->getCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, TRUE))) . "\" alt=\"" . html_encode($randomImage->getTitle()) . "\" width=\"" . $width . "\" height=\"" . $height . "\" />\n";
@@ -104,11 +153,12 @@ function zpArdoise_printRandomImages($number=5, $class=NULL, $option='all', $roo
 }
 
 /* zpArdoise_printImageStatistic
-/*	- use improvements of zenphoto 1.4.6 on printRandomImages
-/*	- use improvements of zenphoto 1.4.2 on printImageStatistic (http://www.zenphoto.org/trac/ticket/1914)
-/*	- implements call of colorbox (http://www.zenphoto.org/trac/ticket/1908 and http://www.zenphoto.org/trac/ticket/1909)
-*/
-function zpArdoise_printImageStatistic($number, $option, $albumfolder='', $showtitle=false, $showdate=false, $showdesc=false, $desclength=40, $showstatistic='', $width=NULL, $height=NULL, $crop=NULL, $collection=false, $fullimagelink=false, $threshold=0, $a_class=NULL) {
+  /*	- use improvements of zenphoto 1.4.6 on printRandomImages
+  /*	- use improvements of zenphoto 1.4.2 on printImageStatistic (http://www.zenphoto.org/trac/ticket/1914)
+  /*	- implements call of colorbox (http://www.zenphoto.org/trac/ticket/1908 and http://www.zenphoto.org/trac/ticket/1909)
+ */
+
+function zpArdoise_printImageStatistic($number, $option, $albumfolder = '', $showtitle = false, $showdate = false, $showdesc = false, $desclength = 40, $showstatistic = '', $width = NULL, $height = NULL, $crop = NULL, $collection = false, $fullimagelink = false, $threshold = 0, $a_class = NULL) {
 	$images = getImageStatistic($number, $option, $albumfolder, $collection, $threshold);
 	if (is_null($crop) && is_null($width) && is_null($height)) {
 		$crop = 2;
@@ -134,7 +184,7 @@ function zpArdoise_printImageStatistic($number, $option, $albumfolder='', $showt
 			$aa_class = NULL;
 			$imagelink = $image->getLink();
 		}
-		echo "<li><a href=\"" . html_encode(pathurlencode($imagelink)) ."\"" . $aa_class . " title=\"" . html_encode($image->getTitle()) . "\">\n";
+		echo "<li><a href=\"" . html_encode(pathurlencode($imagelink)) . "\"" . $aa_class . " title=\"" . html_encode($image->getTitle()) . "\">\n";
 		switch ($crop) {
 			case 0:
 				echo "<img src=\"" . html_encode(pathurlencode($image->getCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, TRUE))) . "\" alt=\"" . html_encode($image->getTitle()) . "\" /></a>\n";
@@ -157,7 +207,7 @@ function zpArdoise_printImageStatistic($number, $option, $albumfolder='', $showt
 			$votes = $image->get("total_votes");
 			$value = $image->get("total_value");
 			if ($votes != 0) {
-				$rating =  round($value/$votes, 1);
+				$rating = round($value / $votes, 1);
 			}
 			echo "<p>" . sprintf(gettext('Rating: %1$u (Votes: %2$u)'), $rating, $votes) . "</p>";
 		}
@@ -168,8 +218,8 @@ function zpArdoise_printImageStatistic($number, $option, $albumfolder='', $showt
 			}
 			echo "<p>" . sprintf(gettext("Views: %u"), $hitcounter) . "</p>";
 		}
-		if($showdesc) {
-			echo html_encodeTagged(shortenContent($image->getDesc(), $desclength,' (...)'));
+		if ($showdesc) {
+			echo html_encodeTagged(shortenContent($image->getDesc(), $desclength, ' (...)'));
 		}
 		echo "</li>";
 	}
@@ -177,17 +227,27 @@ function zpArdoise_printImageStatistic($number, $option, $albumfolder='', $showt
 }
 
 /* zpArdoise_printEXIF */
+
 function zpardoise_printEXIF() {
-	$Meta_data = getImageMetaData();		// put all exif data in a array
+	$Meta_data = getImageMetaData(); // put all exif data in a array
 	if (!is_null($Meta_data)) {
 		$Exifs_list = '';
-		if (isset($Meta_data['EXIFModel'])) { $Exifs_list .= html_encode($Meta_data['EXIFModel']); };
-		if (isset($Meta_data['EXIFFocalLength'])) { $Exifs_list .= ' &ndash; ' . html_encode($Meta_data['EXIFFocalLength']); };
-		if (isset($Meta_data['EXIFFNumber'])) { $Exifs_list .= ' &ndash; ' . html_encode($Meta_data['EXIFFNumber']); };
-		if (isset($Meta_data['EXIFExposureTime'])) {$Exifs_list .= ' &ndash; ' . html_encode($Meta_data['EXIFExposureTime']); };
-		if (isset($Meta_data['EXIFISOSpeedRatings'])) {$Exifs_list .= ' &ndash; ' . html_encode($Meta_data['EXIFISOSpeedRatings']) . ' ISO'; };
+		if (isset($Meta_data['EXIFModel'])) {
+			$Exifs_list .= html_encode($Meta_data['EXIFModel']);
+		};
+		if (isset($Meta_data['EXIFFocalLength'])) {
+			$Exifs_list .= ' &ndash; ' . html_encode($Meta_data['EXIFFocalLength']);
+		};
+		if (isset($Meta_data['EXIFFNumber'])) {
+			$Exifs_list .= ' &ndash; ' . html_encode($Meta_data['EXIFFNumber']);
+		};
+		if (isset($Meta_data['EXIFExposureTime'])) {
+			$Exifs_list .= ' &ndash; ' . html_encode($Meta_data['EXIFExposureTime']);
+		};
+		if (isset($Meta_data['EXIFISOSpeedRatings'])) {
+			$Exifs_list .= ' &ndash; ' . html_encode($Meta_data['EXIFISOSpeedRatings']) . ' ISO';
+		};
 		echo $Exifs_list;
 	}
 }
-
 ?>
