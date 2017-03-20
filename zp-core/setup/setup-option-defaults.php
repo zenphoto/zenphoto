@@ -505,6 +505,7 @@ if (file_exists(SERVERPATH . '/' . THEMEFOLDER . '/effervescence_plus')) {
 ?>
 <p>
 	<?php
+	setOption('known_themes', serialize(array())); //	reset known themes
 	$deprecate = false;
 	$themes = array_keys($_zp_gallery->getThemes());
 	natcasesort($themes);
