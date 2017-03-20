@@ -16,7 +16,7 @@
 				$zpmas_metadesc = truncate_string(getBareGalleryDesc(), 150, '...');
 				$galleryactive = true;
 				if ($zpmas_ss)
-					require_once (ZENFOLDER . "/zp-extensions/image_album_statistics.php");
+					require_once (SERVERPATH . '/' . ZENFOLDER . "/zp-extensions/image_album_statistics.php");
 				break;
 			case 'album.php':
 			case 'favorites.php':
