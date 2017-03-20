@@ -1,4 +1,54 @@
 <?php
+zp_register_filter('themeSwitcher_head', 'switcher_head');
+zp_register_filter('themeSwitcher_Controllink', 'switcher_controllink');
+zp_register_filter('iconColor', 'iconColor');
+
+
+$themecolors = array('light', 'dark');
+if (extensionEnabled('themeSwitcher')) {
+	$themeColor = getThemeOption('themeSwitcher_color');
+	if (isset($_GET['themeColor'])) {
+		$new = $_GET['themeColor'];
+		if (in_array($new, $themecolors)) {
+			setThemeOption('themeSwitcher_color', $new);
+			$themeColor = $new;
+		}
+	}
+	if (!empty($themeColor)) {
+		setOption('zpmas_css', $themeColor, false);
+	}
+}
+
+function switcher_head($ignore) {
+	?>
+	<script type="text/javascript">
+		// <!-- <![CDATA[
+		function switchColors() {
+			personality = $('#themeColor').val();
+			window.location = '?themeColor=' + personality;
+		}
+		// ]]> -->
+	</script>
+	<?php
+	return $ignore;
+}
+
+function switcher_controllink($ignore) {
+	global $themecolors;
+	$color = getThemeOption('themeSwitcher_color');
+	if (!$color) {
+		$color = getOption('zpmas_css');
+	}
+	?>
+	<span title="<?php echo gettext("Default theme color scheme."); ?>">
+		<?php echo gettext('Theme Color'); ?>
+		<select name="themeColor" id="themeColor" onchange="switchColors();">
+			<?php generateListFromArray(array($color), $themecolors, false, false); ?>
+		</select>
+	</span>
+	<?php
+	return $ignore;
+}
 
 // set some variables for zpMasonry...
 
@@ -222,7 +272,6 @@ if ($zpmas_ss) {
 			break;
 	}
 }
-zp_register_filter('iconColor', 'iconColor');
 
 function iconColor($icon) {
 	if (getOption('zpmas_css') == 'dark') {
