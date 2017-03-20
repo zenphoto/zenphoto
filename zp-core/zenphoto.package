@@ -323,6 +323,7 @@ themes/zpBootstrap/images/loading.gif
 themes/zpBootstrap/images/placeholder.jpg
 themes/zpBootstrap/images/resize.png
 themes/zpBootstrap/images/search-drop.png
+themes/zpBootstrap/images/zen-logo.png
 themes/zpBootstrap/js
 themes/zpBootstrap/js/bootstrap.min.js
 themes/zpBootstrap/js/jquery.flexslider-min.js
@@ -2383,4 +2384,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-2385
+2386
