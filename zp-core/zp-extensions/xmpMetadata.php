@@ -792,9 +792,6 @@ class xmpMetadata {
 					if (array_key_exists('owner', $metadata)) {
 						$album->setOwner($metadata['owner']);
 					}
-					if (array_key_exists('custom_data', $metadata)) {
-						$album->setCustomData($metadata['custom_data']);
-					}
 					if (array_key_exists('codeblock', $metadata)) {
 						$album->setCodeblock($metadata['codeblock']);
 					}

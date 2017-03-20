@@ -534,8 +534,8 @@ if (isset($_GET['action'])) {
 }
 printAdminHeader($_current_tab);
 ?>
-<script type="text/javascript" src="js/farbtastic.js"></script>
-<link rel="stylesheet" href="js/farbtastic.css" type="text/css" />
+<script src='js/spectrum/spectrum.js'></script>
+<link rel='stylesheet' href='js/spectrum/spectrum.css' />
 <?php
 if ($_zp_admin_subtab == 'gallery' || $_zp_admin_subtab == 'image') {
 	if ($_zp_admin_subtab == 'image') {
@@ -2058,7 +2058,7 @@ Zenphoto_Authority::printPasswordFormJS();
 									}
 									?>
 									<td class="option_value"><input type="checkbox" name="use_embedded_thumb" value="1" <?php checked('1', getOption('use_embedded_thumb')); ?><?php echo $disabled; ?> /></td>
-									<td>
+									<td class="option_desc">
 										<p><?php echo gettext('If set, thumbnail imbedded in the image will be used when creating a cached image that is equal or smaller in size. Note: the quality of this image varies by camera and its orientation may not match the master image.'); ?></p>
 										<?php
 										if ($disabled) {
@@ -2948,7 +2948,7 @@ Zenphoto_Authority::printPasswordFormJS();
 							<?php XSRFToken('saveoptions'); ?>
 							<input type="hidden" name="savepluginoptions" value="yes" />
 							<input type="hidden" name="subpage" value="<?php echo $subpage; ?>" />
-							<table class="bordered">
+							<table class="options">
 								<?php
 								if ($single) {
 									?>
@@ -3003,84 +3003,69 @@ Zenphoto_Authority::printPasswordFormJS();
 										?>
 										<!-- <?php echo $extension; ?> -->
 										<tr>
-											<td style="padding: 0;margin:0" colspan="3">
-												<table class="options" style="border: 0" id="plugin-<?php echo $extension; ?>">
-													<tr>
-														<?php
-														if ($showExtension) {
-															$v = 1;
-														} else {
-															$v = 0;
-														}
-														?>
-														<th style="text-align:left; width: 20%">
-															<span id="<?php echo $extension; ?>" ></span>
-															<?php
-															if (!$showExtension) {
-																$optionlink = FULLWEBPATH . '/' . ZENFOLDER . '/admin-options.php?page=options&amp;tab=plugin&amp;single=' . html_encode($extension);
-																?>
-																<span class="icons"><a href="<?php echo $optionlink; ?>" title="<?php printf(gettext("Change %s options"), html_encode($extension)); ?>"><img class="icon-position-top3" src="images/options.png" alt="" />
-																		<?php
-																	}
-																	echo $extension;
-																	if (!$showExtension) {
-																		?>
-																	</a></span>
-																<?php
-															}
-															if ($warn) {
-																?>
-																<img src="images/action.png" alt="<?php echo gettext('warning'); ?>" />
-																<?php
-															}
-															?>
-														</th>
-														<th style="text-align:left; font-weight: normal;" colspan="2">
-															<?php echo $plugin_description; ?>
-														</th>
-													</tr>
-													<?php
-													if ($warn) {
-														?>
-														<tr style="display:none" class="pluginextrahide">
-															<td colspan="3">
-																<p class="notebox" ><?php echo $warn; ?></p>
-															</td>
-														</tr>
-														<?php
-													}
-													if ($showExtension) {
-														$supportedOptions = $option_interface->getOptionsSupported();
-														if (count($supportedOptions) > 0) {
-															customOptions($option_interface, '', NULL, false, $supportedOptions, NULL, NULL, $extension);
-														}
-														$key = array_search($extension, $list);
-														if ($key > 0) {
-															$prev = $list[$key - 1];
-														} else {
-															$prev = NULL;
-														}
-														if ($key + 1 >= count($list)) {
-															$next = NULL;
-														} else {
-															$next = $list[$key + 1];
-														}
-														?>
-														<tr>
-															<th colspan="3" style="padding-left:3em; padding-right: 3em;">
-																<a href="?page=options&tab=plugin&single=<?php echo $prev; ?>"><?php echo $prev; ?></a>
-																<span class="floatright" >
-																	<a href="?page=options&tab=plugin&single=<?php echo $next; ?>"><?php echo $next; ?></a>
-																</span>
-															</th>
-														</tr>
-														<?php
-													}
+											<td class="option_name<?php if ($showExtension) echo ' option_shaded'; ?>">
+												<span id="<?php echo $extension; ?>" ></span>
+												<?php
+												if (!$showExtension) {
+													$optionlink = FULLWEBPATH . '/' . ZENFOLDER . '/admin-options.php?page=options&amp;tab=plugin&amp;single=' . html_encode($extension);
 													?>
-												</table>
+													<span class="icons"><a href="<?php echo $optionlink; ?>" title="<?php printf(gettext("Change %s options"), html_encode($extension)); ?>"><img class="icon-position-top3" src="images/options.png" alt="" />
+															<?php
+														}
+														echo $extension;
+														if (!$showExtension) {
+															?>
+														</a></span>
+													<?php
+												}
+												if ($warn) {
+													?>
+													<img src="images/action.png" alt="<?php echo gettext('warning'); ?>" />
+													<?php
+												}
+												?>
+											</td>
+											<td class="option_value<?php if ($showExtension) echo ' option_shaded'; ?>" colspan="2">
+												<?php echo $plugin_description; ?>
 											</td>
 										</tr>
 										<?php
+										if ($warn) {
+											?>
+											<tr style="display:none" class="pluginextrahide">
+												<td colspan="3">
+													<p class="notebox" ><?php echo $warn; ?></p>
+												</td>
+											</tr>
+											<?php
+										}
+										if ($showExtension) {
+											$supportedOptions = $option_interface->getOptionsSupported();
+											if (count($supportedOptions) > 0) {
+												customOptions($option_interface, '', NULL, false, $supportedOptions, NULL, NULL, $extension);
+											}
+											$key = array_search($extension, $list);
+											if ($key > 0) {
+												$prev = $list[$key - 1];
+											} else {
+												$prev = NULL;
+											}
+											if ($key + 1 >= count($list)) {
+												$next = NULL;
+											} else {
+												$next = $list[$key + 1];
+											}
+											?>
+											<tr>
+												<th colspan="3" style="padding-left:3em; padding-right: 3em;">
+													<a href="?page=options&tab=plugin&single=<?php echo $prev; ?>"><?php echo $prev; ?></a>
+													<span class="floatright" >
+														<a href="?page=options&tab=plugin&single=<?php echo $next; ?>"><?php echo $next; ?></a>
+													</span>
+												</th>
+											</tr>
+											<?php
+										}
 									}
 								}
 								if ($_zp_plugin_count == 0) {
@@ -3094,15 +3079,6 @@ Zenphoto_Authority::printPasswordFormJS();
 									</tr>
 									<?php
 								} else {
-									?>
-									<tr>
-										<th></th>
-										<th style="text-align:right; padding-right: 10px;">
-											<?php printPageSelector($subpage, $rangeset, 'admin-options.php', array('page' => 'options', 'tab' => 'plugin')); ?>
-										</th>
-										<th></th>
-									</tr>
-									<?php
 									if ($single) {
 										?>
 										<tr>
@@ -3112,6 +3088,16 @@ Zenphoto_Authority::printPasswordFormJS();
 													<button type="reset" value="<?php echo gettext('reset') ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
 												</p>
 											</td>
+										</tr>
+										<?php
+									} else {
+										?>
+										<tr>
+											<th></th>
+											<th style="text-align:right; padding-right: 10px;">
+												<?php printPageSelector($subpage, $rangeset, 'admin-options.php', array('page' => 'options', 'tab' => 'plugin')); ?>
+											</th>
+											<th></th>
 										</tr>
 										<?php
 									}
@@ -3147,9 +3133,9 @@ Zenphoto_Authority::printPasswordFormJS();
 									<td class="option_name"><?php echo gettext("Server protocol"); ?></td>
 									<td class="option_value">
 										<select id="server_protocol" name="server_protocol">
-											<option value="http" <?php if (SERVER_PROTOCOL == 'http') echo 'selected="selected"'; ?>>http</option>
-											<option value="https" <?php if (SERVER_PROTOCOL == 'https') echo 'selected="selected"'; ?>>https</option>
-											<option value="https_admin" <?php if (SERVER_PROTOCOL == 'https_admin') echo 'selected="selected"'; ?>><?php echo gettext('secure admin'); ?></option>
+											<option value="http" <?php if (SERVER_PROTOCOL == 'http') echo 'selected = "selected"'; ?>>http</option>
+											<option value="https" <?php if (SERVER_PROTOCOL == 'https') echo 'selected = "selected"'; ?>>https</option>
+											<option value="https_admin" <?php if (SERVER_PROTOCOL == 'https_admin') echo 'selected = "selected"'; ?>><?php echo gettext('secure admin'); ?></option>
 										</select>
 									</td>
 									<td class="option_desc">
@@ -3159,7 +3145,7 @@ Zenphoto_Authority::printPasswordFormJS();
 															"<br /><br />Login from the front-end user login form is secure only if <em>https</em> is selected." .
 															"<br /><br />If you select <em>https</em> or <em>secure admin</em> your server <strong>MUST</strong> support <em>https</em>.  " .
 															"If you set either of these on a server which does not support <em>https</em> you will not be able to access the <code>admin</code> pages to reset the option! " .
-															'Your only possibility then is to change the option named <span class="inlinecode">server_protocol</span> in the <em>options</em> table of your database.');
+															'Your only possibility then is to change the option named <span class = "inlinecode">server_protocol</span> in the <em>options</em> table of your database.');
 											?>
 										</p>
 									</td>
@@ -3229,7 +3215,7 @@ Zenphoto_Authority::printPasswordFormJS();
 												<?php
 												echo gettext('If enabled guest logon forms will include the <em>User Name</em> field. This allows users to logon from the form.');
 												if ($disable) {
-													echo '<p class="notebox">' . gettext('<strong>Note</strong>: This field is required because one or more of the <em>Guest</em> passwords has a user name associated.') . '</p>';
+													echo '<p class = "notebox">' . gettext('<strong>Note</strong>: This field is required because one or more of the <em>Guest</em> passwords has a user name associated.') . '</p>';
 												}
 												?>
 											</td>

@@ -135,7 +135,9 @@ if (!empty($_REQUEST['themealbum'])) {
 		$themename = $album->getAlbumTheme();
 	}
 }
+$knownThemes = getSerializedArray(getOption('known_themes'));
 $themes = $_zp_gallery->getThemes();
+
 if (empty($themename)) {
 	$current_theme = $galleryTheme;
 	$theme = $themes[$galleryTheme];
@@ -203,6 +205,7 @@ if (count($themelist) == 0) {
 		foreach ($themes as $theme => $themeinfo) {
 			$style = ($theme == $current_theme) ? ' ' . $current_theme_style : '';
 			$themedir = SERVERPATH . '/themes/' . internalToFilesystem($theme);
+
 			$themeweb = WEBPATH . "/themes/$theme";
 			$path = $themedir . '/logo.png';
 			if (file_exists($path)) {
@@ -266,6 +269,13 @@ if (count($themelist) == 0) {
 					?>
 					<br /><br />
 					<a href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-options.php?page=options&amp;tab=theme&amp;optiontheme=<?php echo $linkto; ?>" ><?php echo sprintf(gettext('Set <em>%s</em> theme options'), $themeinfo['name']); ?></a>
+					<?php
+					if (!isset($knownThemes[$theme])) {
+						?>
+						<span class="notebox"><?php echo gettext('The default options for this theme have not been set.'); ?></span>
+						<?php
+					}
+					?>
 				</td>
 				<td width="20%" <?php echo $style; ?>>
 					<ul class="theme_links">

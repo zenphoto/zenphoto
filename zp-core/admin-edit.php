@@ -1180,8 +1180,12 @@ echo "\n</head>";
 										$thumbnail = $album->get('thumb');
 										foreach ($images as $filename) {
 											$image = newImage($album, $filename);
+											if (!$image->exists) {
+												break;
+											}
 											printImagePagination($album, $image, $singleimage, $allimagecount, $totalimages, $pagenum, $totalpages, $filter);
 											?>
+											<br />
 											<input type="hidden" name="<?php echo $currentimage; ?>-filename"	value="<?php echo $image->filename; ?>" />
 											<div  class="formlayout">
 												<br class="clearall">
@@ -1191,8 +1195,8 @@ echo "\n</head>";
 												}
 												?>
 
-												<div class = "floatleft leftdeatil">
-													<div style = "width: 135px;">
+												<div class="floatleft leftdeatil">
+													<div style="width: 135px;">
 														<?php
 														if ($close = (isImagePhoto($image) || !is_null($image->objectsThumb))) {
 															?>
@@ -1224,7 +1228,7 @@ echo "\n</head>";
 														<?php echo gettext('<strong>Filename:</strong>'); ?>
 														<br />
 														<?php
-														echo $image->filename;
+														echo truncate_string($image->filename, 30);
 														?>
 													</p>
 													<p><?php echo gettext('<strong>Image id:</strong>'); ?> <?php echo $image->getID(); ?></p>
@@ -1232,12 +1236,12 @@ echo "\n</head>";
 													<p><?php echo gettext("<strong>Size:</strong>"); ?><br /><?php echo byteConvert($image->getImageFootprint()); ?></p>
 												</div>
 
-												<div class = "floatright top bulk_checkbox">
+												<div class="floatright top bulk_checkbox">
 													<?php
 													if (!$singleimage) {
 														?>
-														<div class = "page-list_icon">
-															<input class = "checkbox" type = "checkbox" name = "ids[]" value="<?php echo $image->getFileName(); ?>" onclick="triggerAllBox(this.form, 'ids[]', this.form.allbox);" />
+														<div class="page-list_icon">
+															<input class="checkbox" type = "checkbox" name = "ids[]" value="<?php echo $image->getFileName(); ?>" onclick="triggerAllBox(this.form, 'ids[]', this.form.allbox);" />
 														</div>
 														<?php
 													}
@@ -1585,23 +1589,12 @@ echo "\n</head>";
 											</button>
 										</p>
 
-										<br class="clearall">
-										<br />
+
+
 										<?php
 										printImagePagination($album, $image, $singleimage, $allimagecount, $totalimages, $pagenum, $totalpages, $filter);
-										/*
-										  if (!empty($target_image)) {
-										  ?>
-										  <script type="text/javascript" >
-										  // <!-- <![CDATA[
-										  toggleExtraInfo('<?php echo $target_image_nr; ?>', 'image', true);
-										  // ]]> -->
-										  </script>
-										  <?php
-										  }
-										 */
 										?>
-
+										<br class="clearall">
 									</div>
 								</div>
 								<input type="hidden" name="checkForPostTruncation" value="1" />

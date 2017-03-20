@@ -23,9 +23,9 @@ class text_watermark {
 		if (OFFSET_PATH == 2) {
 			$fonts = zp_getFonts();
 			$fon = array_shift($fonts);
-			setOptionDefault('text_watermark_color', '#FFFFFF');
+			setOptionDefault('text_watermark_color', '#000000');
 			setOptionDefault('text_watermark_font', $fon);
-			setOptionDefault('text_watermark_text', '');
+			setOptionDefault('text_watermark_text', 'Sample Text');
 		}
 	}
 
@@ -59,26 +59,33 @@ class text_watermark {
 		<script type="text/javascript">
 			// <!-- <![CDATA[
 			window.addEventListener('load', function () {
-				$('#text_watermark_font').change(function () {
+
+				$('#__text_watermark_font').change(function () {
 					updatewm();
 				});
-				$('#text_watermark_color').change(function () {
+
+				$('#__text_watermark_color').change(function () {
 					updatewm();
 				});
-				$('#text_watermark_color_colorpicker').change(function () {
+
+				$('#__text_watermark_text').change(function () {
 					updatewm();
 				});
-				$('#text_watermark_text').change(function () {
-					updatewm();
-				});
+
+
 			}, false);
+
+			$('form.dirtylistening').removeClass('dirtylistening');	//	we have nothing needed to be saved
+
 			function imgsrc() {
+
 				var imgsrc = '<?php echo FULLWEBPATH; ?>/plugins/text_watermark/createwatermark.php'
-								+ '?text_watermark_text=' + encodeURIComponent($('#text_watermark_text').val())
-								+ '&amp;text_watermark_font=' + encodeURIComponent($('#text_watermark_font').val())
-								+ '&amp;text_watermark_color=' + encodeURIComponent($('#text_watermark_color').val());
+								+ '?text_watermark_text=' + encodeURIComponent($('#__text_watermark_text').val())
+								+ '&amp;text_watermark_font=' + encodeURIComponent($('#__text_watermark_font').val())
+								+ '&amp;text_watermark_color=' + encodeURIComponent($('#__text_watermark_color').val());
 				return imgsrc;
 			}
+
 			function updatewm() {
 				$('#text_watermark_image_loc').html('<img src="' + imgsrc() + '&amp;transient" alt="" />');
 			}
@@ -92,9 +99,14 @@ class text_watermark {
 			}
 			// ]]> -->
 		</script>
+
 		<p class="buttons">
+			<button type="button" title="<?php echo gettext('Create'); ?>" onclick="createwm();">
+				<strong>
+					<?php echo gettext('Create'); ?>
+				</strong>
+			</button>
 			<span id="text_watermark_image_loc"><?php echo $imageurl ?></span>
-			<button type="button" title="<?php echo gettext('Create'); ?>" onclick="createwm();"><strong><?php echo gettext('Create'); ?></strong></button>
 		</p>
 		<?php
 	}

@@ -649,12 +649,12 @@ table.options th {
 	background-repeat: repeat-x;
 }
 
+
 table.options .subhead {
 	border-top: 1px solid #cccccc;
 }
 
 table.options td {
-	padding: 16px 16px 10px 16px !important;
 	vertical-align: top;
 }
 table.options td p {
@@ -662,12 +662,25 @@ table.options td p {
 }
 
 table.options tr td {
-	padding: 8px 16px;
+	padding: 8px 8px;
 	margin: 0px;
 	background-color: #fff;
 	border: none;
 }
 
+.option_shaded {
+	font-weight: bold;
+	padding: 8px 0px 4px 10px;
+	border-bottom: 2px solid #cccccc;
+	background: #ECF1F2;
+	background-image: url(images/admin-headlineback.jpg);
+	background-repeat: repeat-x;
+}
+
+.checkbox_array {
+	max-width: 700px !important;
+	min-width: 350px !important;
+}
 .option_name {
 	white-space: nowrap !important;
 	vertical-align: top;
@@ -675,12 +688,13 @@ table.options tr td {
 }
 
 .option_value {
-	min-width: 350;
+	text-align:left;
+	min-width: 350px !important;
 }
 
 .option_desc {
-	min-width: 300;
-	max-width: 500px;
+	min-width: 300px !important;
+	text-align:left;
 }
 
 .formlayout {
@@ -779,6 +793,7 @@ div.outerbox {
 
 .leftcolumn {
 	padding-top: 5px;
+	padding-right: 5px;
 	white-space: nowrap;
 	vertical-align: top;
 	text-align:left;
@@ -794,7 +809,7 @@ div.outerbox {
 	vertical-align: top;
 	padding-right: 20px !important;
 	min-width: 300px;
-	width: 99%;
+	width: 95%;
 }
 
 

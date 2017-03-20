@@ -72,7 +72,6 @@ function comment_form_print10Most() {
 				$author = $comment['name'];
 				$email = $comment['email'];
 				$link = gettext('<strong>database error</strong> '); // incase of such
-				// ZENPAGE: switch added for zenpage comment support
 				switch ($comment['type']) {
 					case "albums":
 						$album = getItemByID('albums', $comment['ownerid']);

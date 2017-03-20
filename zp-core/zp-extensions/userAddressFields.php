@@ -108,12 +108,12 @@ class userAddressFields extends fieldExtender {
 		parent::_register('userAddressFields', self::fields());
 	}
 
-	static function getCustomData($obj) {
-		return parent::_getCustomData($obj, self::fields());
+	static function getCustomDataset($obj) {
+		return parent::_getCustomDataset($obj, self::fields());
 	}
 
-	static function setCustomData($obj, $values) {
-		parent::_setCustomData($obj, $values);
+	static function setCustomDataset($obj, $values) {
+		parent::_setCustomDataset($obj, $values);
 	}
 
 }

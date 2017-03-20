@@ -29,8 +29,8 @@ $plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'register_user';
 
-$_zp_conf_vars['special_pages']['register_user'] = array('define'	 => '_REGISTER_USER_', 'rewrite'	 => getOption('register_user_link'),
-				'option'	 => 'register_user_link', 'default'	 => '_PAGE_/register');
+$_zp_conf_vars['special_pages']['register_user'] = array('define' => '_REGISTER_USER_', 'rewrite' => getOption('register_user_link'),
+		'option' => 'register_user_link', 'default' => '_PAGE_/register');
 $_zp_conf_vars['special_pages'][] = array('definition' => '%REGISTER_USER%', 'rewrite' => '_REGISTER_USER_');
 
 $_zp_conf_vars['special_pages'][] = array('define' => false, 'rewrite' => '%REGISTER_USER%', 'rule' => '^%REWRITE%/*$		index.php?p=' . 'register' . ' [L,QSA]');
@@ -65,44 +65,44 @@ class register_user {
 	function getOptionsSupported() {
 		global $_zp_authority, $_common_notify_handler, $_zp_captcha;
 		$options = array(
-						gettext('Link text')							 => array('key'		 => 'register_user_page_link', 'type'	 => OPTION_TYPE_TEXTAREA,
-										'order'	 => 1,
-										'desc'	 => gettext('Default text for the register user link.')),
-						gettext('Hint text')							 => array('key'		 => 'register_user_page_tip', 'type'	 => OPTION_TYPE_TEXTAREA,
-										'order'	 => 2.5,
-										'desc'	 => gettext('Default hint text for the register user link.')),
-						gettext('Notify*')								 => array('key'		 => 'register_user_notify', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 4,
-										'desc'	 => gettext('If checked, an e-mail will be sent to the gallery admin when a new user has verified his registration.')),
-						gettext('User album')							 => array('key'		 => 'register_user_create_album', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 6,
-										'desc'	 => gettext('If checked, an album will be created and assigned to the user.')),
-						gettext('Email ID')								 => array('key'		 => 'register_user_email_is_id', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 4,
-										'desc'	 => gettext('If checked, The use’s e-mail address will be used as his User ID.')),
-						gettext('Email notification text') => array('key'		 => 'register_user_text', 'type'	 => OPTION_TYPE_TEXTAREA,
-										'order'	 => 3,
-										'desc'	 => gettext('Text for the body of the email sent to the registrant for registration verification. <p class="notebox"><strong>Note:</strong> You must include <code>%1$s</code> in your message where you wish the <em>registration verification</em> link to appear. You may also insert the registrant’s <em>name</em> (<code>%2$s</code>), <em>user id</em> (<code>%3$s</code>), and <em>password</em>* (<code>%4$s</code>).<br /><br />*For security reasons we recommend <strong>not</strong> inserting the <em>password</em>.</p>')),
-						gettext('CAPTCHA')								 => array('key'		 => 'register_user_captcha', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 5,
-										'desc'	 => ($_zp_captcha->name) ? gettext('If checked, the form will include a Captcha verification.') : '<span class="notebox">' . gettext('No captcha handler is enabled.') . '</span>'),
+				gettext('Link text') => array('key' => 'register_user_page_link', 'type' => OPTION_TYPE_TEXTAREA,
+						'order' => 1,
+						'desc' => gettext('Default text for the register user link.')),
+				gettext('Hint text') => array('key' => 'register_user_page_tip', 'type' => OPTION_TYPE_TEXTAREA,
+						'order' => 2.5,
+						'desc' => gettext('Default hint text for the register user link.')),
+				gettext('Notify*') => array('key' => 'register_user_notify', 'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 4,
+						'desc' => gettext('If checked, an e-mail will be sent to the gallery admin when a new user has verified his registration.')),
+				gettext('User album') => array('key' => 'register_user_create_album', 'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 6,
+						'desc' => gettext('If checked, an album will be created and assigned to the user.')),
+				gettext('Email ID') => array('key' => 'register_user_email_is_id', 'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 4,
+						'desc' => gettext('If checked, The use’s e-mail address will be used as his User ID.')),
+				gettext('Email notification text') => array('key' => 'register_user_text', 'type' => OPTION_TYPE_TEXTAREA,
+						'order' => 3,
+						'desc' => gettext('Text for the body of the email sent to the registrant for registration verification. <p class="notebox"><strong>Note:</strong> You must include <code>%1$s</code> in your message where you wish the <em>registration verification</em> link to appear. You may also insert the registrant’s <em>name</em> (<code>%2$s</code>), <em>user id</em> (<code>%3$s</code>), and <em>password</em>* (<code>%4$s</code>).<br /><br />*For security reasons we recommend <strong>not</strong> inserting the <em>password</em>.</p>')),
+				gettext('CAPTCHA') => array('key' => 'register_user_captcha', 'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 5,
+						'desc' => ($_zp_captcha->name) ? gettext('If checked, the form will include a Captcha verification.') : '<span class="notebox">' . gettext('No captcha handler is enabled.') . '</span>'),
 		);
 		if (extensionEnabled('userAddressFields')) {
-			$options[gettext('Address fields')] = array('key'			 => 'register_user_address_info', 'type'		 => OPTION_TYPE_RADIO,
-							'order'		 => 4.5,
-							'buttons'	 => array(gettext('Omit') => 0, gettext('Show') => 1, gettext('Require') => 'required'),
-							'desc'		 => gettext('If <em>Address fields</em> are shown or required, the form will include positions for address information. If required, the user must supply data in each address field.'));
+			$options[gettext('Address fields')] = array('key' => 'register_user_address_info', 'type' => OPTION_TYPE_RADIO,
+					'order' => 4.5,
+					'buttons' => array(gettext('Omit') => 0, gettext('Show') => 1, gettext('Require') => 'required'),
+					'desc' => gettext('If <em>Address fields</em> are shown or required, the form will include positions for address information. If required, the user must supply data in each address field.'));
 		}
 		if ($_common_notify_handler) {
-			$options['note'] = array('key'		 => 'menu_truncate_note', 'type'	 => OPTION_TYPE_NOTE,
-							'order'	 => 8,
-							'desc'	 => '<p class="notebox">' . $_common_notify_handler . '</p>');
+			$options['note'] = array('key' => 'menu_truncate_note', 'type' => OPTION_TYPE_NOTE,
+					'order' => 8,
+					'desc' => '<p class="notebox">' . $_common_notify_handler . '</p>');
 		} else {
 			$_common_notify_handler = gettext('* The option may be set via the <a href="javascript:gotoName(\'register_user\');"><em>register_user</em></a> plugin options.');
-			$options['note'] = array('key'		 => 'menu_truncate_note',
-							'type'	 => OPTION_TYPE_NOTE,
-							'order'	 => 8,
-							'desc'	 => gettext('<p class="notebox">*<strong>Note:</strong> The setting of this option is shared with other plugins.</p>'));
+			$options['note'] = array('key' => 'menu_truncate_note',
+					'type' => OPTION_TYPE_NOTE,
+					'order' => 8,
+					'desc' => gettext('<p class="notebox">*<strong>Note:</strong> The setting of this option is shared with other plugins.</p>'));
 		}
 		$mailinglist = $_zp_authority->getAdminEmail(ADMIN_RIGHTS);
 		if (count($mailinglist) == 0) { //	no one to send the notice to!
@@ -127,19 +127,19 @@ class register_user {
 					setOptionDefault('register_user_user_rights', $nullselection);
 				}
 			}
-			$options[gettext('Default user group')] = array('key'				 => 'register_user_user_rights', 'type'			 => OPTION_TYPE_SELECTOR,
-							'order'			 => 1,
-							'selections' => $ordered,
-							'desc'			 => gettext("Initial group assignment for the new user."));
+			$options[gettext('Default user group')] = array('key' => 'register_user_user_rights', 'type' => OPTION_TYPE_SELECTOR,
+					'order' => 1,
+					'selections' => $ordered,
+					'desc' => gettext("Initial group assignment for the new user."));
 		} else {
 			if (is_numeric(getOption('register_user_user_rights'))) {
 				setOptionDefault('register_user_user_rights', NO_RIGHTS);
 			} else {
 				setOption('register_user_user_rights', NO_RIGHTS);
 			}
-			$options[gettext('Default rights')] = array('key'		 => 'register_user_user_rights', 'type'	 => OPTION_TYPE_CUSTOM,
-							'order'	 => 2,
-							'desc'	 => gettext("Initial rights for the new user. (If no rights are set, approval of the user will be required.)"));
+			$options[gettext('Default rights')] = array('key' => 'register_user_user_rights', 'type' => OPTION_TYPE_CUSTOM,
+					'order' => 2,
+					'desc' => gettext("Initial rights for the new user. (If no rights are set, approval of the user will be required.)"));
 		}
 		return $options;
 	}
@@ -249,7 +249,6 @@ class register_user {
 					$userobj->setRights(0);
 					$userobj->setObjects(NULL);
 					$userobj->setGroup('');
-					$userobj->setCustomData('');
 					$userobj->setLanguage(getUserLocale());
 					if (extensionEnabled('userAddressFields')) {
 						$addresses = getOption('register_user_address_info');
@@ -278,7 +277,7 @@ class register_user {
 							}
 						}
 						zp_setCookie('reister_user_form_addresses', $_comment_form_save_post);
-						userAddressFields::setCustomData($userobj, $userinfo);
+						userAddressFields::setCustomDataset($userobj, $userinfo);
 					}
 
 					zp_apply_filter('register_user_registered', $userobj);
@@ -510,13 +509,13 @@ function printRegistrationForm($thanks = NULL) {
 				<div class="errorbox fade-message">
 					<h2><?php echo gettext("Registration failed."); ?></h2>
 					<p>
-				<?php
-				if (is_object($userobj) && !empty($userobj->msg)) {
-					echo $userobj->msg;
-				} else {
-					echo gettext('Your registration attempt failed a <code>register_user_registered</code> filter check.');
-				}
-				?>
+						<?php
+						if (is_object($userobj) && !empty($userobj->msg)) {
+							echo $userobj->msg;
+						} else {
+							echo gettext('Your registration attempt failed a <code>register_user_registered</code> filter check.');
+						}
+						?>
 					</p>
 				</div>
 				<?php

@@ -81,7 +81,7 @@ class AlbumBase extends MediaObject {
 				}
 			}
 			if (!$good) {
-				zp_error(gettext('An album object was instantiated without using the newAlbum() function.'), E_USER_WARNING);
+				debugLogBacktrace(gettext('An album object was instantiated without using the newAlbum() function.'));
 			}
 		}
 
@@ -126,7 +126,7 @@ class AlbumBase extends MediaObject {
 		}
 		if ($msg) {
 			if (!$quiet) {
-				zp_error($msg, E_USER_WARNING);
+				debugLogBacktrace($msg);
 			}
 			return false;
 		}
@@ -1487,7 +1487,7 @@ class Album extends AlbumBase {
 			} else {
 				$msg = sprintf(gettext("Error: The album named %s cannot be found."), html_encode($this->name));
 			}
-			zp_error($msg, E_USER_WARNING);
+			debugLogBacktrace($msg);
 			return array();
 		}
 
@@ -1550,7 +1550,6 @@ class dynamicAlbum extends AlbumBase {
 			return;
 		}
 		$new = $this->instantiate('albums', array('folder' => $this->name), 'folder', $cache, empty($folder8));
-		$this->exists = true;
 		if (!is_dir(stripSuffix($this->localpath))) {
 			$this->linkname = stripSuffix($folder8);
 		}

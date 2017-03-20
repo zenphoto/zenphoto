@@ -65,7 +65,7 @@ class user_groups {
 			}
 		}
 
-		$userobj->setCustomData(array_shift($custom)); //	for now it is first come, first served.
+		$userobj->setCustomDataset(array_shift($custom)); //	for now it is first come, first served.
 		// unique objects
 		$newobjects = array();
 		foreach ($objects as $object) {

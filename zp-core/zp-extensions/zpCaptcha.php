@@ -60,6 +60,7 @@ class zpCaptcha extends _zp_captcha {
 						'desc' => gettext('The font to use for CAPTCHA characters.')),
 				gettext('CAPTCHA font size') => array('key' => 'zenphoto_captcha_font_size', 'type' => OPTION_TYPE_NUMBER,
 						'order' => 3.5,
+						'disabled' => getSuffix(getOption('zenphoto_captcha_font')) != 'ttf',
 						'desc' => gettext('The size to use if the font is scalable (<em>TTF</em> and <em>Imagick</em> fonts.)')),
 				'' => array('key' => 'zenphoto_captcha_image', 'type' => OPTION_TYPE_CUSTOM,
 						'order' => 4,
@@ -70,19 +71,33 @@ class zpCaptcha extends _zp_captcha {
 
 	function handleOption($key, $cv) {
 		$captcha = $this->getCaptcha(NULL);
+		preg_match('/src=\"(.*?)\"/', $captcha['html'], $matches);
 		?>
-		<span id="zenphoto_captcha_image_loc"><?php echo $captcha['html']; ?></span>
+		<span id="zenphoto_captcha_image_loc">
+			<?php echo $captcha['html']; ?>
+		</span>
 		<script type="text/javascript">
 			// <!-- <![CDATA[
+			var path = '<?php echo $matches[1]; ?>';
 			window.addEventListener('load', function () {
-				$('#zenphoto_captcha_font').change(function () {
-					var base = $('#zenphoto_captcha_image_loc').html();
-					var match = base.match(/src=".*"\s/gi) + '%';
-					if ((i = match.indexOf('&')) <= 0) {
-						i = match.indexOf('" %');
+				$('#__zenphoto_captcha_font').change(function () {
+					newpath = path + '&amp;f=' + $('#__zenphoto_captcha_font').val() + '&amp;p=' + $('#__zenphoto_captcha_font_size').val();
+					nbase = $('#zenphoto_captcha_image_loc').html().replace(/src=".+?"/g, 'src="' + newpath + '"');
+					$('#zenphoto_captcha_image_loc').html(nbase);
+					suffix = $('#__zenphoto_captcha_font').val().split('.').pop().toLowerCase();
+					if (suffix == 'ttf') {
+						$('#__zenphoto_captcha_font_size').prop('disabled', '');
+					} else {
+						$('#__zenphoto_captcha_font_size').prop('disabled', 'disabled');
 					}
-					var path = match.substr(0, i);
-					var nbase = base.replace(path, path + '&amp;f=' + $('#zenphoto_captcha_font').val());
+				});
+				$('#__zenphoto_captcha_font_size').change(function () {
+					newpath = path + '&amp;f=' + $('#__zenphoto_captcha_font').val() + '&amp;p=' + $('#__zenphoto_captcha_font_size').val();
+					nbase = $('#zenphoto_captcha_image_loc').html().replace(/src=".+?"/g, 'src="' + newpath + '"');
+					$('#zenphoto_captcha_image_loc').html(nbase);
+				});
+				$('#form_options').on('reset', function () {
+					nbase = $('#zenphoto_captcha_image_loc').html().replace(/src=".+?"/g, 'src="' + path + '"');
 					$('#zenphoto_captcha_image_loc').html(nbase);
 				});
 			}, false);

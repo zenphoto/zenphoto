@@ -183,8 +183,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 			<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jqueryui/jquery-ui-zenphoto.css" type="text/css" />
 			<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.css" type="text/css" />
 
-			<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/facebox/facebox.css" type="text/css" />
-
 			<?php
 			if ($_zp_RTL_css) {
 				?>
@@ -217,8 +215,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 			}
 			?>
 			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/dirtyforms/jquery.dirtyforms.min.js" type="text/javascript"></script>
-
-			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/facebox/facebox.js" type="text/javascript"></script>
 
 			<script type="text/javascript">
 		// <!-- <![CDATA[
@@ -263,13 +259,8 @@ function printAdminHeader($tab, $subtab = NULL) {
 	if (getOption('dirtyform_enable')) {
 		?>
 				$.DirtyForms.ignoreClass = 'ignoredirty';
-				$.DirtyForms.message = '<?php echo gettext('You have unsaved changes!'); ?>';
-				$.DirtyForms.title = '<?php echo gettext('Are you sure you want to leave this page?'); ?>';
-				$.DirtyForms.continueText = '<?php echo gettext('Leave'); ?>';
-				$.DirtyForms.stopText = '<?php echo gettext('Stay'); ?>';
-				$.facebox.settings.closeImage = '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/facebox/closelabel.png';
-				$('#modal').facebox();
 				$('form.dirtylistening').dirtyForms({debug: true});
+
 				// brute force kludge to make the form clean after the load
 				var timeoutID = window.setTimeout(function () {
 					$('form.dirtylistening').trigger("reset");
@@ -941,30 +932,32 @@ function printAdminHeader($tab, $subtab = NULL) {
 							$behind = (isset($row['behind']) && $row['behind']);
 							?>
 							<td class="option_value">
-								<?php
-								foreach ($row['checkboxes'] as $display => $checkbox) {
-									if ($theme) {
-										$v = getThemeOption($checkbox, $album, $theme);
-									} else {
-										$sql = "SELECT `value` FROM " . prefix('options') . " WHERE `name`=" . db_quote($checkbox);
-										$db = query_single_row($sql);
-										if ($db) {
-											$v = $db['value'];
-										} else {
-											$v = 0;
-										}
-									}
-									$display = str_replace(' ', '&nbsp;', $display);
-									?>
-									<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'chkbox-' . postIndexEncode($checkbox); ?>" value="1" />
-									<label class="checkboxlabel">
-										<?php if ($behind) echo($display); ?>
-										<input type="checkbox" id="__<?php echo $checkbox; ?>" name="<?php echo postIndexEncode($checkbox); ?>" value="1"<?php checked('1', $v); ?><?php echo $disabled; ?> />
-										<?php if (!$behind) echo($display); ?>
-									</label>
+								<div class="checkbox_array">
 									<?php
-								}
-								?>
+									foreach ($row['checkboxes'] as $display => $checkbox) {
+										if ($theme) {
+											$v = getThemeOption($checkbox, $album, $theme);
+										} else {
+											$sql = "SELECT `value` FROM " . prefix('options') . " WHERE `name`=" . db_quote($checkbox);
+											$db = query_single_row($sql);
+											if ($db) {
+												$v = $db['value'];
+											} else {
+												$v = 0;
+											}
+										}
+										$display = str_replace(' ', '&nbsp;', $display);
+										?>
+										<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'chkbox-' . postIndexEncode($checkbox); ?>" value="1" />
+										<label class="checkboxlabel">
+											<?php if ($behind) echo($display); ?>
+											<input type="checkbox" id="__<?php echo $checkbox; ?>" name="<?php echo postIndexEncode($checkbox); ?>" value="1"<?php checked('1', $v); ?><?php echo $disabled; ?> />
+											<?php if (!$behind) echo($display); ?>
+										</label>
+										<?php
+									}
+									?>
+								</div>
 							</td>
 							<?php
 							break;
@@ -972,21 +965,23 @@ function printAdminHeader($tab, $subtab = NULL) {
 							$behind = (isset($row['behind']) && $row['behind']);
 							?>
 							<td class="option_value">
-								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'array-' . $postkey; ?>" value="1" />
-								<?php
-								$setOptions = getSerializedArray($v);
-								foreach ($row['checkboxes'] as $display => $checkbox) {
-
-									$display = str_replace(' ', '&nbsp;', $display);
-									?>
-									<label class="checkboxlabel">
-										<?php if ($behind) echo($display); ?>
-										<input type="checkbox" id="__<?php echo $checkbox; ?>" name="<?php echo $postkey; ?>[]" value="<?php echo $checkbox; ?>"<?php if (in_array($checkbox, $setOptions)) echo 'checked="checked"'; ?><?php echo $disabled; ?> />
-										<?php if (!$behind) echo($display); ?>
-									</label>
+								<div class="checkbox_array">
+									<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'array-' . $postkey; ?>" value="1" />
 									<?php
-								}
-								?>
+									$setOptions = getSerializedArray($v);
+									foreach ($row['checkboxes'] as $display => $checkbox) {
+
+										$display = str_replace(' ', '&nbsp;', $display);
+										?>
+										<label class="checkboxlabel">
+											<?php if ($behind) echo($display); ?>
+											<input type="checkbox" id="__<?php echo $checkbox; ?>" name="<?php echo $postkey; ?>[]" value="<?php echo $checkbox; ?>"<?php if (in_array($checkbox, $setOptions)) echo 'checked="checked"'; ?><?php echo $disabled; ?> />
+											<?php if (!$behind) echo($display); ?>
+										</label>
+										<?php
+									}
+									?>
+								</div>
 							</td>
 							<?php
 							break;
@@ -1080,21 +1075,19 @@ function printAdminHeader($tab, $subtab = NULL) {
 							if (empty($v))
 								$v = '#000000';
 							?>
-							<td class="option_value" style="margin:0; padding:0">
+							<td class="option_value">
 								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'text-' . $postkey; ?>" value="1" />
 								<script type="text/javascript">
 									// <!-- <![CDATA[
 									window.addEventListener('load', function () {
-										$('#<?php echo $key; ?>_colorpicker').farbtastic('#<?php echo $key; ?>');
+										$('#__<?php echo $key; ?>').spectrum({
+											preferredFormat: "hex",
+											color: "$('#__<?php echo $key; ?>').val()"
+										});
 									}, false);
 									// ]]> -->
 								</script>
-								<table style="margin:0; padding:0" >
-									<tr>
-										<td><input type="text" id="__<?php echo $key; ?>" name="<?php echo $postkey; ?>"	value="<?php echo $v; ?>" style="height:100px; width:100px; float:right;" /></td>
-										<td><div id="__<?php echo $key; ?>_colorpicker"></div></td>
-									</tr>
-								</table>
+								<input type="text" id="__<?php echo $key; ?>" name="<?php echo $postkey; ?>"	value="<?php echo $v; ?>" />
 							</td>
 							<?php
 							break;
@@ -1219,6 +1212,10 @@ function printAdminHeader($tab, $subtab = NULL) {
 		setThemeOption('thumb_crop_height', 100, $album, $theme, true);
 		setThemeOption('thumb_crop', 1, $album, $theme, true);
 		setThemeOption('thumb_transition', 1, $album, $theme, true);
+
+		$knownThemes = getSerializedArray(getOptionFromDB('known_themes'));
+		$knownThemes[$theme] = $theme;
+		setOption('known_themes', serialize($knownThemes));
 	}
 
 	/**
@@ -1699,7 +1696,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 													 name="disclose_password<?php echo $suffix; ?>"
 													 id="disclose_password<?php echo $suffix; ?>"
 													 onclick="passwordClear('<?php echo $suffix; ?>');
-															 togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?>
+																	 togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?>
 									</label>
 								</td>
 								<td>
@@ -2057,9 +2054,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 name="<?php echo $prefix; ?>Published"
 										 value="1" <?php if ($album->getShow()) echo ' checked="checked"'; ?>
 										 onclick="$('#<?php echo $prefix; ?>publishdate').val('');
-												 $('#<?php echo $prefix; ?>expirationdate').val('');
-												 $('#<?php echo $prefix; ?>publishdate').css('color', 'black');
-												 $('.<?php echo $prefix; ?>expire').html('');"
+													 $('#<?php echo $prefix; ?>expirationdate').val('');
+													 $('#<?php echo $prefix; ?>publishdate').css('color', 'black');
+													 $('.<?php echo $prefix; ?>expire').html('');"
 										 />
 										 <?php echo gettext("Published"); ?>
 						</label>
@@ -2193,7 +2190,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 } else {
 											 ?>
 											 onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');
-													 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
+															 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
 											 <?php
 										 }
 										 ?> />
@@ -2776,36 +2773,28 @@ function printAdminHeader($tab, $subtab = NULL) {
 			$images = $album->getImages(0);
 			if ($count = count($images) > 1) {
 				?>
-				<tr>
-					<td colspan="4" class="bordered" id="imagenavb">
-						<?php
-						$i = array_search($image->filename, $images);
-						if ($i > 0) {
-							?>
-							<a href="?page=edit&tab=imageinfo&album=<?php echo pathurlencode($image->album->name); ?>&singleimage=<?php echo html_encode($images[$i - 1]); ?>"><?php echo gettext('prev image'); ?></a>
-							<?php
-						}
-						if (array_key_exists($i + 1, $images)) {
-							if ($i > 0)
-								echo ' | ';
-							?>
-							<a href="?page=edit&tab=imageinfo&album=<?php echo pathurlencode($image->album->name); ?>&singleimage=<?php echo html_encode($images[$i + 1]); ?>"><?php echo gettext('next image'); ?></a>
-							<?php
-						}
+				<span class="floatright">
+					<?php
+					$i = array_search($image->filename, $images);
+					if ($i > 0) {
 						?>
-					</td>
-				</tr>
+						<a href="?page=edit&tab=imageinfo&album=<?php echo pathurlencode($image->album->name); ?>&singleimage=<?php echo html_encode($images[$i - 1]); ?>"><?php echo gettext('prev image'); ?></a>
+						<?php
+					}
+					if (array_key_exists($i + 1, $images)) {
+						if ($i > 0)
+							echo ' | ';
+						?>
+						<a href="?page=edit&tab=imageinfo&album=<?php echo pathurlencode($image->album->name); ?>&singleimage=<?php echo html_encode($images[$i + 1]); ?>"><?php echo gettext('next image'); ?></a>
+						<?php
+					}
+					?>
+				</span>
 				<?php
 			}
 		} else {
 			if ($allimagecount != $totalimages) { // need pagination links
-				?>
-				<tr>
-					<td colspan="4" class="bordered" id="imagenavb">
-						<?php adminPageNav($pagenum, $totalpages, 'admin-edit.php', '?page=edit&amp;album=' . html_encode(pathurlencode($album->name)), '&amp;tab=imageinfo&amp;filter=' . $filter); ?>
-					</td>
-				</tr>
-				<?php
+				adminPageNav($pagenum, $totalpages, 'admin-edit.php', '?page=edit&amp;album=' . html_encode(pathurlencode($album->name)), '&amp;tab=imageinfo&amp;filter=' . $filter);
 			}
 		}
 	}
@@ -2890,21 +2879,23 @@ function printAdminHeader($tab, $subtab = NULL) {
 			}
 		}
 
-		if ($multi && !empty($activelang)) {
-			if ($textbox) {
-				if (strpos($wide, '%') === false) {
-					$width = ' cols="' . $wide . '"';
-				} else {
-					$width = ' style="width:' . ((int) $wide - 1) . '%;"';
-				}
+		if ($textbox) {
+			$class = 'box';
+			if (strpos($wide, '%') === false) {
+				$width = ' cols="' . $wide . '"';
 			} else {
-				if (strpos($wide, '%') === false) {
-					$width = ' size="' . $wide . '"';
-				} else {
-					$width = ' style="width:' . ((int) $wide) . '%;"';
-				}
+				$width = ' style="width:' . ((int) $wide - (int) ($multi && !empty($activelang))) . '%;"';
 			}
+		} else {
+			$class = '';
+			if (strpos($wide, '%') === false) {
+				$width = ' size="' . $wide . '"';
+			} else {
+				$width = ' style="width:' . ((int) $wide) . '%;"';
+			}
+		}
 
+		if ($multi && !empty($activelang)) {
 			// put the language list in perferred order
 			$preferred = array();
 			if ($_zp_current_locale) {
@@ -2937,11 +2928,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 				$emptylang[$active] = $key;
 			}
 
-			if ($textbox) {
-				$class = 'box';
-			} else {
-				$class = '';
-			}
 			$tabSelected = ' selected';
 			$editHidden = '';
 			?>
@@ -2990,19 +2976,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 			</div>
 			<?php
 		} else {
-			if ($textbox) {
-				if (strpos($wide, '%') === false) {
-					$width = ' cols="' . $wide . '"';
-				} else {
-					$width = ' style="width:' . $wide . ';"';
-				}
-			} else {
-				if (strpos($wide, '%') === false) {
-					$width = ' size="' . $wide . '"';
-				} else {
-					$width = ' style="width:' . $wide . ';"';
-				}
-			}
 			if (empty($locale))
 				$locale = 'en_US';
 			if (isset($strings[$locale])) {
@@ -4142,30 +4115,30 @@ function printBulkActions($checkarray, $checkAll = false) {
 		<script type="text/javascript">
 			//<!-- <![CDATA[
 			function checkFor(obj) {
-			var sel = obj.options[obj.selectedIndex].value;
-							var mark;
-							switch (sel) {
+				var sel = obj.options[obj.selectedIndex].value;
+				var mark;
+				switch (sel) {
 		<?php
 		foreach ($colorboxBookmark as $key => $mark) {
 			?>
-				case '<?php echo $key; ?>':
-								mark = '<?php echo $mark; ?>';
-								break;
+					case '<?php echo $key; ?>':
+									mark = '<?php echo $mark; ?>';
+									break;
 			<?php
 		}
 		?>
-			default:
-							mark = false;
-							break;
+				default:
+								mark = false;
+								break;
 			}
 			if (mark) {
-			$.colorbox({
-			href: '#' + mark,
-							inline: true,
-							open: true,
-							close: '<?php echo gettext("ok"); ?>'
-			});
-			}
+				$.colorbox({
+					href: '#' + mark,
+					inline: true,
+					open: true,
+					close: '<?php echo gettext("ok"); ?>'
+				});
+				}
 			}
 			// ]]> -->
 		</script>
@@ -4541,27 +4514,27 @@ function processCommentBulkActions() {
 function codeblocktabsJS() {
 	?>
 	<script type="text/javascript" charset="utf-8">
-						// <!-- <![CDATA[
-						$(function () {
-						var tabContainers = $('div.tabs > div');
-										$('.first').addClass('selected');
-						});
-						function cbclick(num, id) {
-						$('.cbx-' + id).hide();
-										$('#cb' + num + '-' + id).show();
-										$('.cbt-' + id).removeClass('selected');
-										$('#cbt' + num + '-' + id).addClass('selected');
-						}
+		// <!-- <![CDATA[
+		$(function () {
+			var tabContainers = $('div.tabs > div');
+			$('.first').addClass('selected');
+		});
+		function cbclick(num, id) {
+			$('.cbx-' + id).hide();
+			$('#cb' + num + '-' + id).show();
+			$('.cbt-' + id).removeClass('selected');
+			$('#cbt' + num + '-' + id).addClass('selected');
+		}
 
 		function cbadd(id, offset) {
-		var num = $('#cbu-' + id + ' li').size() - offset;
-						$('li:last', $('#cbu-' + id)).remove();
-						$('#cbu-' + id).append('<li><a class="cbt-' + id + '" id="cbt' + num + '-' + id + '" onclick="cbclick(' + num + ',' + id + ');" title="' + '<?php echo gettext('codeblock %u'); ?>'.replace(/%u/, num) + '">&nbsp;&nbsp;' + num + '&nbsp;&nbsp;</a></li>');
-						$('#cbu-' + id).append('<li><a id="cbp-' + id + '" onclick="cbadd(' + id + ',' + offset + ');" title="<?php echo gettext('add codeblock'); ?>">&nbsp;&nbsp;+&nbsp;&nbsp;</a></li>');
-						$('#cbd-' + id).append('<div class="cbx-' + id + '" id="cb' + num + '-' + id + '" style="display:none">' +
-						'<textarea name="codeblock' + num + '-' + id + '" class="codeblock" id="codeblock' + num + '-' + id + '" rows="40" cols="60"></textarea>' +
-						'</div>');
-						cbclick(num, id);
+			var num = $('#cbu-' + id + ' li').size() - offset;
+			$('li:last', $('#cbu-' + id)).remove();
+			$('#cbu-' + id).append('<li><a class="cbt-' + id + '" id="cbt' + num + '-' + id + '" onclick="cbclick(' + num + ',' + id + ');" title="' + '<?php echo gettext('codeblock %u'); ?>'.replace(/%u/, num) + '">&nbsp;&nbsp;' + num + '&nbsp;&nbsp;</a></li>');
+			$('#cbu-' + id).append('<li><a id="cbp-' + id + '" onclick="cbadd(' + id + ',' + offset + ');" title="<?php echo gettext('add codeblock'); ?>">&nbsp;&nbsp;+&nbsp;&nbsp;</a></li>');
+			$('#cbd-' + id).append('<div class="cbx-' + id + '" id="cb' + num + '-' + id + '" style="display:none">' +
+							'<textarea name="codeblock' + num + '-' + id + '" class="codeblock" id="codeblock' + num + '-' + id + '" rows="40" cols="60"></textarea>' +
+							'</div>');
+			cbclick(num, id);
 		}
 		// ]]> -->
 	</script>
@@ -4682,7 +4655,7 @@ function admin_securityChecks($rights, $return) {
  */
 function httpsRedirect() {
 	if (defined('SERVER_PROTOCOL') && SERVER_PROTOCOL == 'https_admin') {
-		// force https login
+// force https login
 		if (!isset($_SERVER["HTTPS"])) {
 			$redirect = "https://" . $_SERVER['HTTP_HOST'] . getRequestURI();
 			header("Location:$redirect");
@@ -5103,7 +5076,7 @@ function processCredentials($object, $suffix = '') {
 			}
 			if (empty($pwd)) {
 				if (strlen($_POST['pass' . $suffix]) == 0) {
-					// clear the  password
+// clear the  password
 					if (is_object($object)) {
 						$object->setPassword(NULL);
 					} else {
@@ -5370,7 +5343,7 @@ function linkPickerIcon($obj, $id = NULL, $extra = NULL) {
 	}
 	?>
 	<a onclick="<?php echo $clickid; ?>$('.pickedObject').removeClass('pickedObject');
-										$('#<?php echo $iconid; ?>').addClass('pickedObject');<?php linkPickerPick($obj, $id, $extra); ?>" title="<?php echo gettext('pick source'); ?>">
+				$('#<?php echo $iconid; ?>').addClass('pickedObject');<?php linkPickerPick($obj, $id, $extra); ?>" title="<?php echo gettext('pick source'); ?>">
 		<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" id="<?php echo $iconid; ?>">
 	</a>
 	<?php

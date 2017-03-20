@@ -19,7 +19,7 @@ function getPHPFiles($folder, $exclude, &$files = array()) {
 	return $files;
 }
 
-function formatList($title, $subject, $pattern, $started) {
+function formatList($title, $subject, $pattern, $started = FALSE) {
 	global $deprecated;
 	$emitted = false;
 	preg_match_all($pattern, $subject, $matches);

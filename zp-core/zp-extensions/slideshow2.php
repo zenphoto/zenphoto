@@ -40,7 +40,7 @@ $plugin_disable = (extensionEnabled('slideshow')) ? sprintf(gettext('Only one sl
 $option_interface = 'cycle';
 
 global $_zp_gallery, $_zp_gallery_page;
-if (($_zp_gallery_page == 'slideshow.php' && getOption('cycle-slideshow_mode') == 'cycle') || in_array(stripSuffix($_zp_gallery_page), getSerializedArray(getOption('cycle_' . $_zp_gallery->getCurrentTheme() . 'scripts')))) {
+if (($_zp_gallery_page == 'slideshow.php' && getOption('cycle-slideshow_mode') == 'cycle') || in_array(stripSuffix($_zp_gallery_page), getSerializedArray(getOption('cycle-slideshow_' . $_zp_gallery->getCurrentTheme() . 'scripts')))) {
 	zp_register_filter('theme_head', 'cycle::cycleJS');
 }
 zp_register_filter('content_macro', 'cycle::macro');
@@ -189,6 +189,19 @@ class cycle {
 
 	function handleOption($option, $currentValue) {
 
+	}
+
+	/**
+	 * Use by themes to declare which scripts should have the colorbox CSS loaded
+	 *
+	 * @param string $theme
+	 * @param array $scripts list of the scripts
+	 */
+	static function registerScripts($scripts, $theme = NULL) {
+		if (is_null($theme)) {
+			list($theme, $creaator) = getOptionOwner();
+		}
+		setOptionDefault('cycle-slideshow_' . $theme . '_scripts', serialize($scripts));
 	}
 
 	static function getSlideshowPlayer($album, $controls = false, $width = NULL, $height = NULL) {
