@@ -28,16 +28,16 @@ $legacyReplacements = array(
 		'printSiteHomeURL\(.*?\);?' => '/* TODO:replaced printSiteHomeURL() */',
 		'getNextPrevNews\([\'"](.*)[\'"]\)' => 'get$1News() /* TODO:replaced getNextPrevNews(\'$1\') */',
 		'zenpagePublish\((.*)\,(.*)\)' => '$1->setShow($2) /* TODO:replaced zenpagePublish() */',
-		'getImageCustomData\(\)' => '($_zp_current_image)?$_zp_current_image->get("custom_data"):NULL /*TODO: Use customFieldExtender to define unique fields */',
-		'printImageCategoryCustomData\(\)' => 'echo ($_zp_current_image)?$_zp_current_image->get("custom_data"):NULL /*TODO: Use customFieldExtender to define unique fields */',
-		'getAlbumCustomData\(\)' => '($_zp_current_album)?$_zp_current_album->get("custom_data"):NULL /*TODO: Use customFieldExtender to define unique fields */',
-		'printAlbumCategoryCustomData\(\)' => 'echo ($_zp_current_album)?$_zp_current_album->get("custom_data"):NULL /*TODO: Use customFieldExtender to define unique fields */',
-		'getPageCustomData\(\)' => '($_zp_current_page)?$_zp_current_page->get("custom_data"):NULL /*TODO: Use customFieldExtender to define unique fields */',
-		'printPageCategoryCustomData\(\)' => 'echo ($_zp_current_page)?$_zp_current_page->get("custom_data"):NULL /*TODO: Use customFieldExtender to define unique fields */',
-		'getNewsCustomData\(\)' => '($_zp_current_article)?$_zp_current_article->get("custom_data"):NULL /*TODO: Use customFieldExtender to define unique fields */',
-		'printNewsCustomData\(\)' => 'echo ($_zp_current_article)?$_zp_current_article->get("custom_data"):NULL /*TODO: Use customFieldExtender to define unique fields */',
-		'getNewsCategoryCustomData\(\)' => '($_zp_current_category)?$_zp_current_category->get("custom_data"):NULL /*TODO: Use customFieldExtender to define unique fields */',
-		'printNewsCategoryCustomData\(\)' => 'echo ($_zp_current_category)?$_zp_current_category->get("custom_data"):NULL /*TODO: Use customFieldExtender to define unique fields */',
+		'getImageCustomData\(\)' => '($_zp_current_image)?$_zp_current_image->get("custom_data"):NULL /* TODO: Use customFieldExtender to define unique fields */',
+		'printImageCategoryCustomData\(\)' => 'echo ($_zp_current_image)?$_zp_current_image->get("custom_data"):NULL /* TODO: Use customFieldExtender to define unique fields */',
+		'getAlbumCustomData\(\)' => '($_zp_current_album)?$_zp_current_album->get("custom_data"):NULL /* TODO: Use customFieldExtender to define unique fields */',
+		'printAlbumCategoryCustomData\(\)' => 'echo ($_zp_current_album)?$_zp_current_album->get("custom_data"):NULL /* TODO: Use customFieldExtender to define unique fields */',
+		'getPageCustomData\(\)' => '($_zp_current_page)?$_zp_current_page->get("custom_data"):NULL /* TODO: Use customFieldExtender to define unique fields */',
+		'printPageCategoryCustomData\(\)' => 'echo ($_zp_current_page)?$_zp_current_page->get("custom_data"):NULL /* TODO: Use customFieldExtender to define unique fields */',
+		'getNewsCustomData\(\)' => '($_zp_current_article)?$_zp_current_article->get("custom_data"):NULL /* TODO: Use customFieldExtender to define unique fields */',
+		'printNewsCustomData\(\)' => 'echo ($_zp_current_article)?$_zp_current_article->get("custom_data"):NULL /* TODO: Use customFieldExtender to define unique fields */',
+		'getNewsCategoryCustomData\(\)' => '($_zp_current_category)?$_zp_current_category->get("custom_data"):NULL /* TODO: Use customFieldExtender to define unique fields */',
+		'printNewsCategoryCustomData\(\)' => 'echo ($_zp_current_category)?$_zp_current_category->get("custom_data"):NULL /* TODO: Use customFieldExtender to define unique fields */',
 		'class_exists\([\'"]Zenpage[\'"]\)' => 'class_exists("CMS")',
 		'\$_zp_current_zenpage_news' => '$_zp_current_article',
 		'\$_zp_current_zenpage_page' => '$_zp_current_page',
@@ -118,9 +118,9 @@ printSubtabs();
 <div class="tabbox">
 	<h1><?php echo gettext('Convert legacy Zenphoto themes and plugins'); ?></h1>
 
-<?php
-if (isset($counter)) {
-	?>
+	<?php
+	if (isset($counter)) {
+		?>
 		<div class="messagebox fade-message">
 			<h2><?php printf(ngettext('%s file updated', '%s files updated', $counter), $counter); ?></h2>
 		</div>
@@ -152,16 +152,16 @@ if (isset($counter)) {
 	?>
 	<form class="dirtylistening" id="form_convert" action="?action=process" method="post" >
 		<ul class="page-list">
-	<?php
-	XSRFToken('saveoptions');
-	if (!empty($themes)) {
-		?>
+			<?php
+			XSRFToken('saveoptions');
+			if (!empty($themes)) {
+				?>
 				<li>
 					<ul>
-				<?php
-				echo gettext('Themes');
-				foreach ($themes as $theme) {
-					?>
+						<?php
+						echo gettext('Themes');
+						foreach ($themes as $theme) {
+							?>
 							<li><label><input type="checkbox" name="themes[]" value="<?php echo html_encode($theme); ?>" ><?php echo html_encode($theme); ?></label></li>
 							<?php
 						}
@@ -169,25 +169,25 @@ if (isset($counter)) {
 					</ul>
 				</li>
 				<br />
-						<?php
-					}
-					if (!empty($plugins)) {
-						?>
+				<?php
+			}
+			if (!empty($plugins)) {
+				?>
 				<li>
 					<ul>
-				<?php
-				echo gettext('Plugins');
-				foreach ($plugins as $plugin) {
-					?>
+						<?php
+						echo gettext('Plugins');
+						foreach ($plugins as $plugin) {
+							?>
 							<li><label><input type="checkbox" name="plugins[]" value="<?php echo html_encode($plugin); ?>" ><?php echo html_encode($plugin); ?></label></li>
 							<?php
 						}
 						?>
 					</ul>
 				</li>
-						<?php
-					}
-					?>
+				<?php
+			}
+			?>
 		</ul>
 
 		<p class="buttons">
