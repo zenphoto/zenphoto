@@ -54,7 +54,7 @@ if (isset($_GET['action'])) {
 				}
 				break;
 			case 'download_log':
-				putZip(basename(sanitize($_GET['tab'], 3)) . '.zip', $file);
+				putZip($what . '.zip', $file);
 				exitZP();
 		}
 	}
