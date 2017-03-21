@@ -2404,11 +2404,7 @@ function getMacros() {
  */
 function getNestedAlbumList($subalbum, $levels, $level = array()) {
 	global $_zp_gallery;
-	if (OFFSET_PATH) {
-		$rights = ALBUM_RIGHTS;
-	} else {
-		$rights = LIST_RIGHTS;
-	}
+
 	$cur = count($level);
 	$levels--; // make it 0 relative to sync with $cur
 	if (is_null($subalbum)) {
@@ -2416,10 +2412,11 @@ function getNestedAlbumList($subalbum, $levels, $level = array()) {
 	} else {
 		$albums = $subalbum->getAlbums();
 	}
+
 	$list = array();
 	foreach ($albums as $analbum) {
 		$albumobj = newAlbum($analbum);
-		if (!is_null($subalbum) || $albumobj->isMyItem($rights)) {
+		if (OFFSET_PATH && (!is_null($subalbum) || $albumobj->isMyItem(ALBUM_RIGHTS)) || (!OFFSET_PATH && $albumobj->checkAccess())) {
 			$level[$cur] = sprintf('%03u', $albumobj->getSortOrder());
 			$list[] = array('name' => $analbum, 'sort_order' => $level);
 			if ($cur < $levels && ($albumobj->getNumAlbums()) && !$albumobj->isDynamic()) {
