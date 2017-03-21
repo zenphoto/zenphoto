@@ -2416,7 +2416,7 @@ function getNestedAlbumList($subalbum, $levels, $level = array()) {
 	$list = array();
 	foreach ($albums as $analbum) {
 		$albumobj = newAlbum($analbum);
-		if (OFFSET_PATH && (!is_null($subalbum) || $albumobj->isMyItem(ALBUM_RIGHTS)) || (!OFFSET_PATH && $albumobj->checkAccess())) {
+		if (!OFFSET_PATH || (!is_null($subalbum) || $albumobj->isMyItem(ALBUM_RIGHTS))) {
 			$level[$cur] = sprintf('%03u', $albumobj->getSortOrder());
 			$list[] = array('name' => $analbum, 'sort_order' => $level);
 			if ($cur < $levels && ($albumobj->getNumAlbums()) && !$albumobj->isDynamic()) {
