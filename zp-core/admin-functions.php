@@ -3079,7 +3079,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			unlink($zipfileFS);
 		} else {
 			include_once(SERVERPATH . '/' . ZENFOLDER . '/lib-zipStream.php');
-			$zip = new ZipStream(internalToFilesystem($zipname));
+			$zip = new ZipStream(internalToFilesystem(basename($zipname)));
 			$zip->add_file_from_path(basename($fileFS), $fileFS);
 			$zip->finish();
 		}
