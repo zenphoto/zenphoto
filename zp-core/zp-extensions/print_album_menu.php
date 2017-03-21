@@ -49,31 +49,31 @@ class print_album_menu {
 
 	function getOptionsSupported() {
 		global $_common_truncate_handler;
-		$options = array(gettext('"List" subalbum level') => array('key'		 => 'print_album_menu_showsubs', 'type'	 => OPTION_TYPE_NUMBER,
-										'order'	 => 0,
-										'desc'	 => gettext('The depth of subalbum levels shown with the <code>printAlbumMenu</code> and <code>printAlbumMenuList</code> “List” option. Note: themes may override this default.')),
-						gettext('Show counts')					 => array('key'		 => 'print_album_menu_count', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 1,
-										'desc'	 => gettext('If checked, image and album counts will be included in the list. Note: Themes may override this option.')),
-						gettext('Truncate titles*')			 => array('key'			 => 'menu_truncate_string', 'type'		 => OPTION_TYPE_TEXTBOX,
-										'disabled' => $_common_truncate_handler,
-										'order'		 => 6,
-										'desc'		 => gettext('Limit titles to this many characters. Zero means no limit.')),
-						gettext('Truncate indicator*')	 => array('key'			 => 'menu_truncate_indicator', 'type'		 => OPTION_TYPE_TEXTBOX,
-										'disabled' => $_common_truncate_handler,
-										'order'		 => 7,
-										'desc'		 => gettext('Append this string to truncated titles.'))
+		$options = array(gettext('"List" subalbum level') => array('key' => 'print_album_menu_showsubs', 'type' => OPTION_TYPE_NUMBER,
+						'order' => 0,
+						'desc' => gettext('The depth of subalbum levels shown with the <code>printAlbumMenu</code> and <code>printAlbumMenuList</code> “List” option. Note: themes may override this default.')),
+				gettext('Show counts') => array('key' => 'print_album_menu_count', 'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 1,
+						'desc' => gettext('If checked, image and album counts will be included in the list. Note: Themes may override this option.')),
+				gettext('Truncate titles*') => array('key' => 'menu_truncate_string', 'type' => OPTION_TYPE_TEXTBOX,
+						'disabled' => $_common_truncate_handler,
+						'order' => 6,
+						'desc' => gettext('Limit titles to this many characters. Zero means no limit.')),
+				gettext('Truncate indicator*') => array('key' => 'menu_truncate_indicator', 'type' => OPTION_TYPE_TEXTBOX,
+						'disabled' => $_common_truncate_handler,
+						'order' => 7,
+						'desc' => gettext('Append this string to truncated titles.'))
 		);
 		if ($_common_truncate_handler) {
-			$options['note'] = array('key'		 => 'menu_truncate_note', 'type'	 => OPTION_TYPE_NOTE,
-							'order'	 => 8,
-							'desc'	 => '<p class="notebox">' . $_common_truncate_handler . '</p>');
+			$options['note'] = array('key' => 'menu_truncate_note', 'type' => OPTION_TYPE_NOTE,
+					'order' => 8,
+					'desc' => '<p class="notebox">' . $_common_truncate_handler . '</p>');
 		} else {
 			$_common_truncate_handler = gettext('* These options may be set via the <a onclick="gotoName(\'print_album_menu\');"><em>print_album_menu</em></a> plugin options.');
-			$options['note'] = array('key'		 => 'menu_truncate_note',
-							'type'	 => OPTION_TYPE_NOTE,
-							'order'	 => 8,
-							'desc'	 => gettext('<p class="notebox">*<strong>Note:</strong> The setting of these options may be shared with other plugins.</p>'));
+			$options['note'] = array('key' => 'menu_truncate_note',
+					'type' => OPTION_TYPE_NOTE,
+					'order' => 8,
+					'desc' => gettext('<p class="notebox">*<strong>Note:</strong> The setting of these options may be shared with other plugins.</p>'));
 		}
 		return $options;
 	}
@@ -338,6 +338,8 @@ function printAlbumMenuJump($option = "count", $indexname = "Gallery Index", $fi
 	if ($showsubs && !is_numeric($showsubs)) {
 		$showsubs = 9999999999;
 	}
+	$albums = getNestedAlbumList(null, $showsubs);
+
 	if (!$skipform) {
 		?>
 		<script type="text/javaScript">
@@ -359,7 +361,7 @@ function printAlbumMenuJump($option = "count", $indexname = "Gallery Index", $fi
 						<?php
 					}
 				}
-				$albums = getNestedAlbumList(null, $showsubs);
+
 				foreach ($albums as $album) {
 					$albumobj = newAlbum($album['name'], true);
 					$count = '';
