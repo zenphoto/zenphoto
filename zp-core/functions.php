@@ -2061,20 +2061,24 @@ function seoFriendlyJS() {
 /**
  * returns an XSRF token
  * @param string $action
+ * @param string $modifier optional extra data. Use, for instance to include
+ * 																							parts of URL being used for more security
  */
-function getXSRFToken($action) {
+function getXSRFToken($action, $modifier = NULL) {
 	global $_zp_current_admin_obj;
-	$token = sha1($action . serialize($_zp_current_admin_obj->getData()) . session_id());
+	$token = sha1($action . $modifier . serialize($_zp_current_admin_obj->getData()) . session_id());
 	return $token;
 }
 
 /**
  * Emits a "hidden" input for the XSRF token
  * @param string $action
+ * @param string $modifier optional extra data. Use, for instance to include
+ * 																							parts of URL being used for more security
  */
-function XSRFToken($action) {
+function XSRFToken($action, $modifier = NULL) {
 	?>
-	<input type="hidden" name="XSRFToken" id="XSRFToken" value="<?php echo getXSRFToken($action); ?>" />
+	<input type="hidden" name="XSRFToken" id="XSRFToken" value="<?php echo getXSRFToken($action, $modifier); ?>" />
 	<?php
 }
 
