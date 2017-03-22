@@ -65,7 +65,6 @@ if (isset($_GET['action'])) {
 	}
 }
 
-
 printAdminHeader('themes');
 
 // Script for the "Duplicate theme" feature
@@ -200,7 +199,9 @@ if (count($themelist) == 0) {
 			<th><b><?php echo gettext('Action'); ?></b></th>
 		</tr>
 		<?php
-		$zenphoto_date = date('Y-m-d H:i:s', filemtime(SERVERPATH . '/' . ZENFOLDER . '/version.php'));
+		$zenphoto_version = explode('-', ZENPHOTO_VERSION);
+		$zenphoto_version = array_shift($zenphoto_version);
+		$zenphoto_date = date('Y-m-d', filemtime(SERVERPATH . '/' . ZENFOLDER . '/version.php'));
 		$current_theme_style = 'class="currentselection"';
 		foreach ($themes as $theme => $themeinfo) {
 			$style = ($theme == $current_theme) ? ' ' . $current_theme_style : '';
@@ -250,8 +251,8 @@ if (count($themelist) == 0) {
 					<?php echo $themeinfo['author']; ?>
 					<br />
 					<?php
-					if ($ico == 'images/zp_gold.png') {
-						$version = ZENPHOTO_VERSION;
+					if ($ico == 'images/zp_gold.png' || $themeinfo['version'] === true) {
+						$version = $zenphoto_version;
 						$date = $zenphoto_date;
 					} else {
 						$version = $themeinfo['version'];
