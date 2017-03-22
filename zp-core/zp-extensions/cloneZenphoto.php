@@ -67,16 +67,25 @@ if ($plugin_disable) {
 			$clones = array();
 			if ($result = query('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="cloneZenphoto"')) {
 				while ($row = db_fetch_assoc($result)) {
-					if (file_exists($row['aux'] . '/' . DATA_FOLDER . '/zenphoto.cfg.php')) {
-						$clones[$row['aux']] = $row['data'] . '/';
-						$_SESSION['admin'][bin2hex($row['aux'])] = serialize($_zp_current_admin_obj);
-					} else {
-						query('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `id` = ' . $row['id']);
-					}
+					$clones[$row['aux']] = $row['data'] . '/';
+					$_SESSION['admin'][bin2hex($row['aux'])] = serialize($_zp_current_admin_obj);
 				}
 				db_free_result($result);
 			}
 			return $clones;
+		}
+
+		static function purgeClones() {
+			$clones = array();
+			if ($result = query('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="cloneZenphoto"')) {
+				while ($row = db_fetch_assoc($result)) {
+					$link = str_replace('\\', '/', @readlink($row['aux'] . '/' . ZENFOLDER));
+					if (empty($link) || $link != SERVERPATH . '/' . ZENFOLDER) { // no longer a clone of this installation
+						query('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `id`=' . $row['id']);
+					}
+				}
+				db_free_result($result);
+			}
 		}
 
 	}
