@@ -58,7 +58,7 @@ class favorites extends AlbumBase {
 	function addImage($img) {
 		$folder = $img->imagefolder;
 		$filename = $img->filename;
-		$sql = 'INSERT INTO ' . prefix('plugin_storage') . ' (`type`, `aux`,`data`) VALUES ("favorites",' . db_quote($this->getInstance()) . ',' . db_quote(serialize(array('type' => 'images', 'id' => $folder . '/' . $filename))) . ')';
+		$sql = 'INSERT INTO ' . prefix('plugin_storage') . ' (`type`, `aux`,`data`) VALUES ("favoritesHandler",' . db_quote($this->getInstance()) . ',' . db_quote(serialize(array('type' => 'images', 'id' => $folder . '/' . $filename))) . ')';
 		query($sql);
 		zp_apply_filter('favoritesHandler_action', 'add', $img, $this->name);
 	}
@@ -73,7 +73,7 @@ class favorites extends AlbumBase {
 
 	function addAlbum($alb) {
 		$folder = $alb->name;
-		$sql = 'INSERT INTO ' . prefix('plugin_storage') . ' (`type`, `aux`,`data`) VALUES ("favorites",' . db_quote($this->getInstance()) . ',' . db_quote(serialize(array('type' => 'albums', 'id' => $folder))) . ')';
+		$sql = 'INSERT INTO ' . prefix('plugin_storage') . ' (`type`, `aux`,`data`) VALUES ("favoritesHandler",' . db_quote($this->getInstance()) . ',' . db_quote(serialize(array('type' => 'albums', 'id' => $folder))) . ')';
 		query($sql);
 		zp_apply_filter('favoritesHandler_action', 'add', $alb, $this->name);
 	}
