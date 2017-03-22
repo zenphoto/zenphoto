@@ -3079,7 +3079,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			unlink($zipfileFS);
 		} else {
 			include_once(SERVERPATH . '/' . ZENFOLDER . '/lib-zipStream.php');
-			$zip = new ZipStream(internalToFilesystem($zipname));
+			$zip = new ZipStream(internalToFilesystem(basename($zipname)));
 			$zip->add_file_from_path(basename($fileFS), $fileFS);
 			$zip->finish();
 		}
@@ -4667,9 +4667,11 @@ function httpsRedirect() {
 /**
  * Checks for Cross Site Request Forgeries
  * @param string $action
+ * @param string $modifier optional extra data. Used, for instance to include
+ * 																							parts of URL being used for more security
  */
-function XSRFdefender($action) {
-	$token = getXSRFToken($action);
+function XSRFdefender($action, $modifier = NULL) {
+	$token = getXSRFToken($action, $modifier);
 	if (!isset($_REQUEST['XSRFToken']) || $_REQUEST['XSRFToken'] != $token) {
 		zp_apply_filter('admin_XSRF_access', false, $action);
 		header("HTTP/1.0 302 Found");

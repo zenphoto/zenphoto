@@ -2061,20 +2061,24 @@ function seoFriendlyJS() {
 /**
  * returns an XSRF token
  * @param string $action
+ * @param string $modifier optional extra data. Use, for instance to include
+ * 																							parts of URL being used for more security
  */
-function getXSRFToken($action) {
+function getXSRFToken($action, $modifier = NULL) {
 	global $_zp_current_admin_obj;
-	$token = sha1($action . serialize($_zp_current_admin_obj->getData()) . session_id());
+	$token = sha1($action . $modifier . serialize($_zp_current_admin_obj->getData()) . session_id());
 	return $token;
 }
 
 /**
  * Emits a "hidden" input for the XSRF token
  * @param string $action
+ * @param string $modifier optional extra data. Use, for instance to include
+ * 																							parts of URL being used for more security
  */
-function XSRFToken($action) {
+function XSRFToken($action, $modifier = NULL) {
 	?>
-	<input type="hidden" name="XSRFToken" id="XSRFToken" value="<?php echo getXSRFToken($action); ?>" />
+	<input type="hidden" name="XSRFToken" id="XSRFToken" value="<?php echo getXSRFToken($action, $modifier); ?>" />
 	<?php
 }
 
@@ -2404,11 +2408,7 @@ function getMacros() {
  */
 function getNestedAlbumList($subalbum, $levels, $level = array()) {
 	global $_zp_gallery;
-	if (OFFSET_PATH) {
-		$rights = ALBUM_RIGHTS;
-	} else {
-		$rights = LIST_RIGHTS;
-	}
+
 	$cur = count($level);
 	$levels--; // make it 0 relative to sync with $cur
 	if (is_null($subalbum)) {
@@ -2416,10 +2416,11 @@ function getNestedAlbumList($subalbum, $levels, $level = array()) {
 	} else {
 		$albums = $subalbum->getAlbums();
 	}
+
 	$list = array();
 	foreach ($albums as $analbum) {
 		$albumobj = newAlbum($analbum);
-		if (!is_null($subalbum) || $albumobj->isMyItem($rights)) {
+		if (!OFFSET_PATH || (!is_null($subalbum) || $albumobj->isMyItem(ALBUM_RIGHTS))) {
 			$level[$cur] = sprintf('%03u', $albumobj->getSortOrder());
 			$list[] = array('name' => $analbum, 'sort_order' => $level);
 			if ($cur < $levels && ($albumobj->getNumAlbums()) && !$albumobj->isDynamic()) {

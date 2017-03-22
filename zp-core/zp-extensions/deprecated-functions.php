@@ -223,15 +223,6 @@ class deprecated_functions {
 		return $buttons;
 	}
 
-	static function addPluginScript() {
-		global $_zp_plugin_scripts;
-		if (is_array($_zp_plugin_scripts)) {
-			foreach ($_zp_plugin_scripts as $script) {
-				echo $script . "\n";
-			}
-		}
-	}
-
 }
 
 //Load the deprecated function scripts
