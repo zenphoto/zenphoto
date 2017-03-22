@@ -28,7 +28,7 @@
 						printPageMenu("list-top", "", "", "", "", "", "1", false);
 					}
 					if (function_exists('printFavoritesURL')) {
-						printFavoritesURL(NULL, '', '<li>', '</li>');
+						printFavoritesURL(NULL, '<li>', '</li><li>', '<li>');
 					}
 					if (extensionEnabled('contact_form')) {
 						?>
