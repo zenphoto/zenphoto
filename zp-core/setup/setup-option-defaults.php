@@ -164,6 +164,10 @@ if (empty($admins)) { //	empty administrators table
 		if ($clone['mod_rewrite']) {
 			$_GET['mod_rewrite'] = true;
 		}
+		//	replicate enabled plugins
+		foreach ($clone['plugins'] as $extension => $plugin) {
+			setOption('zp_plugin_' . $extension, $plugin['priority']);
+		}
 		$admin_obj = unserialize($_SESSION['admin'][$cloneid]);
 		$admindata = $admin_obj->getData();
 		$myadmin = new Zenphoto_Administrator($admindata['user'], 1);
