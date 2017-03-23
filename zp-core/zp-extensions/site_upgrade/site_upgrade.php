@@ -16,7 +16,7 @@ switch (isset($_GET['siteState']) ? $_GET['siteState'] : NULL) {
 			require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cloneZenphoto.php');
 			if (class_exists('cloneZenphoto')) {
 				$clones = cloneZenphoto::clones();
-				foreach ($clones as $clone => $url) {
+				foreach ($clones as $clone => $data) {
 					setSiteState('closed', $clone . '/');
 				}
 			}
@@ -31,7 +31,7 @@ switch (isset($_GET['siteState']) ? $_GET['siteState'] : NULL) {
 			require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cloneZenphoto.php');
 			if (class_exists('cloneZenphoto')) {
 				$clones = cloneZenphoto::clones();
-				foreach ($clones as $clone => $url) {
+				foreach ($clones as $clone => $data) {
 					setSiteState('open', $clone . '/');
 				}
 			}
@@ -46,7 +46,7 @@ switch (isset($_GET['siteState']) ? $_GET['siteState'] : NULL) {
 			require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cloneZenphoto.php');
 			if (class_exists('cloneZenphoto')) {
 				$clones = cloneZenphoto::clones();
-				foreach ($clones as $clone => $url) {
+				foreach ($clones as $clone => $data) {
 					setSiteState('closed_for_test', $clone . '/');
 				}
 			}

@@ -32,24 +32,23 @@ printAdminHeader('clone');
 				<?php printSubtabs(); ?>
 				<div class="tabbox">
 					<?php
-					$clones = cloneZenphoto::clones();
+					$clones = cloneZenphoto::clones(false);
 					if (isset($folder)) {
 						unset($clones[rtrim($folder, '/')]);
 					}
 					$invalid = false;
-					foreach ($clones as $clone => $url) {
-						$link = str_replace('\\', '/', @readlink($clone . '/' . ZENFOLDER));
-						if (empty($link) || $link != SERVERPATH . '/' . ZENFOLDER) { // no longer a clone of this installation
+					foreach ($clones as $clone => $data) {
+						if ($data['valid']) {
+							$title = gettext('Visit the site.');
+							$strike = '';
+						} else { // no longer a clone of this installation
 							$strike = ' style="text-decoration: line-through;"';
 							$title = gettext('No longer a clone of this installation.');
 							$invalid = true;
-						} else {
-							$title = gettext('Visit the site.');
-							$strike = '';
 						}
 						?>
 						<p<?php echo $strike; ?>>
-							<a href="<?php echo $url; ?>" target="_blank" title="<?php echo $title; ?>"><?php echo $clone; ?></a>
+							<a href="<?php echo $data['url']; ?>" target="_blank" title="<?php echo $title; ?>"><?php echo $clone; ?></a>
 						</p>
 						<?php
 					}

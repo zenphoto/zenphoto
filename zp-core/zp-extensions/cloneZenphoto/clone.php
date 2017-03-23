@@ -15,7 +15,12 @@ admin_securityChecks(NULL, currentRelativeURL());
 XSRFdefender('cloneZenphoto');
 
 if (isset($_GET['purge'])) {
-	cloneZenphoto::purgeClones();
+	$clones = cloneZenphoto::clones(false);
+	foreach ($clones as $clone => $data) {
+		if (!$data['valid']) {
+			query('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `type`="cloneZenphoto" AND `aux`=' . db_quote($clone));
+		}
+	}
 } else {
 	$msg = array();
 	$folder = sanitize($_GET['clonePath']);
