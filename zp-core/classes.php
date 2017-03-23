@@ -132,18 +132,6 @@ class PersistentObject {
 	}
 
 	/**
-	 * used to make the object "virgin" so it can be re-saved with a new id
-	 */
-	function clearID() {
-		$insert_data = array_merge($this->data, $this->updates);
-		$insert_data['id'] = $this->id = 0;
-		$this->updates = $this->data = array();
-		foreach (db_list_fields($this->table) as $col) {
-			$this->updates[$col['Field']] = $insert_data[$col['Field']];
-		}
-	}
-
-	/**
 	 * Sets default values for new objects using the set() method.
 	 * Should do nothing in the base class; subclasses should override.
 	 */
