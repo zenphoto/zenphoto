@@ -14,6 +14,12 @@ admin_securityChecks(NULL, currentRelativeURL());
 printAdminHeader('clone');
 ?>
 <script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/sprintf.js"></script>
+<script type="text/javascript">
+	function reloadCloneTab() {
+		this.document.location.href = '<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/cloneZenphoto/cloneTab.php';
+	}
+
+</script>
 </head>
 <body>
 	<?php printLogoAndLinks(); ?>
@@ -26,15 +32,34 @@ printAdminHeader('clone');
 				<?php printSubtabs(); ?>
 				<div class="tabbox">
 					<?php
-					$clones = cloneZenphoto::clones();
+					$clones = cloneZenphoto::clones(false);
 					if (isset($folder)) {
 						unset($clones[rtrim($folder, '/')]);
 					}
-
-
-					foreach ($clones as $clone => $url) {
+					$invalid = false;
+					foreach ($clones as $clone => $data) {
+						if ($data['valid']) {
+							$title = gettext('Visit the site.');
+							$strike = '';
+						} else { // no longer a clone of this installation
+							$strike = ' style="text-decoration: line-through;"';
+							$title = gettext('No longer a clone of this installation.');
+							$invalid = true;
+						}
 						?>
-						<p><?php echo sprintf(gettext('<a href="%1$s" target="_blank">%2$s</a>'), $url, $clone); ?></p>
+						<p<?php echo $strike; ?>>
+							<a href="<?php echo $data['url']; ?>" target="_blank" title="<?php echo $title; ?>"><?php echo $clone; ?></a>
+						</p>
+						<?php
+					}
+					if ($invalid) {
+						?>
+						<p>
+							<span class="buttons"><a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/cloneZenphoto/clone.php?purge&XSRFToken=<?php echo getXSRFToken('cloneZenphoto'); ?>">
+									<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/fail.png" alt="" /> <?php echo gettext("Remove invalid clones."); ?>
+								</a>
+						</p>
+						<br class="clearall" />
 						<?php
 					}
 					?>

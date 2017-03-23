@@ -161,11 +161,22 @@ if (empty($admins)) { //	empty administrators table
 		setOption('UTF8_image_URI', $clone['UTF8_image_URI']);
 		setOption('strong_hash', $clone['strong_hash']);
 		setOption('extra_auth_hash_text', $clone['hash']);
-		if ($clone['mod_rewrite'])
+		if ($clone['mod_rewrite']) {
 			$_GET['mod_rewrite'] = true;
-		$_zp_current_admin_obj = unserialize($_SESSION['admin'][$cloneid]);
-		$_zp_current_admin_obj->clearID();
-		$_zp_current_admin_obj->save();
+		}
+		//	replicate enabled plugins
+		foreach ($clone['plugins'] as $extension => $plugin) {
+			setOption('zp_plugin_' . $extension, $plugin['priority']);
+		}
+		$admin_obj = unserialize($_SESSION['admin'][$cloneid]);
+		$admindata = $admin_obj->getData();
+		$myadmin = new Zenphoto_Administrator($admindata['user'], 1);
+		unset($admindata['id']);
+		unset($admindata['user']);
+		foreach ($admindata as $key => $value) {
+			$myadmin->set($key, $value);
+		}
+		$myadmin->save();
 		$_zp_loggedin = ALL_RIGHTS;
 		setOption('license_accepted', ZENPHOTO_VERSION);
 		unset($_SESSION['clone'][$cloneid]);

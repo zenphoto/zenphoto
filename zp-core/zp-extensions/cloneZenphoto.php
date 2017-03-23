@@ -62,16 +62,29 @@ if ($plugin_disable) {
 			return $tabs;
 		}
 
-		static function clones() {
+		/**
+		 * get a list of cloned installations
+		 *
+		 * @global type $_zp_current_admin_obj
+		 * @param bool $valid if true, do not return obsolete entries
+		 * @return array
+		 */
+		static function clones($only_valid = true) {
 			global $_zp_current_admin_obj;
 			$clones = array();
+			$sig = @file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/version.php');
 			if ($result = query('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="cloneZenphoto"')) {
 				while ($row = db_fetch_assoc($result)) {
-					if (file_exists($row['aux'] . '/' . DATA_FOLDER . '/zenphoto.cfg.php')) {
-						$clones[$row['aux']] = $row['data'] . '/';
+					if (SYMLINK) {
+						$link = str_replace('\\', '/', @readlink($row['aux'] . '/' . ZENFOLDER));
+						$valid = !(empty($link) || $link != SERVERPATH . '/' . ZENFOLDER);
+					} else { //	best guess if the clone has been changed
+						$clonesig = @file_get_contents($row['aux'] . '/' . ZENFOLDER . '/version.php');
+						$valid = $sig == $clonesig;
+					}
+					if ($valid || !$only_valid) {
+						$clones[$row['aux']] = array('url' => $row['data'] . '/', 'valid' => $valid);
 						$_SESSION['admin'][bin2hex($row['aux'])] = serialize($_zp_current_admin_obj);
-					} else {
-						query('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `id` = ' . $row['id']);
 					}
 				}
 				db_free_result($result);
