@@ -349,9 +349,11 @@ function getOptionsLike($pattern) {
 	$result = array();
 
 	$sql = 'SELECT `name`,`value` FROM ' . prefix('options') . ' WHERE `name` LIKE ' . db_quote(str_replace('_', '\_', rtrim($pattern, '%')) . '%') . ' ORDER BY `name`;';
-	$found = query_full_array($sql);
-	foreach ($found as $row) {
-		$result[$row['name']] = $row['value'];
+	$found = query_full_array($sql, false);
+	if (!empty($found)) {
+		foreach ($found as $row) {
+			$result[$row['name']] = $row['value'];
+		}
 	}
 
 	return $result;
@@ -435,7 +437,7 @@ function setOptionDefault($key, $default) {
 		$_zp_options[strtolower($key)] = $default;
 	} else {
 		$sql = 'UPDATE ' . prefix('options') . ' SET `theme`=' . db_quote($theme) . ', `creator`=' . db_quote($creator) . ' WHERE `ownerid`=0 AND `name`=' . db_quote($key) . ' AND `theme`=' . db_quote($theme) . ';';
-		query($sql);
+		query($sql, false);
 	}
 }
 

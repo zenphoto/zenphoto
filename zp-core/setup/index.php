@@ -1748,14 +1748,18 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 									if (class_exists('cloneZenphoto'))
 										$clones = cloneZenphoto::clones();
 								}
-								$link = sprintf(gettext('You can now <a href="%1$s">administer your gallery.</a>'), WEBPATH . '/' . ZENFOLDER . '/admin.php');
+
 								foreach ($clones as $clone => $url) {
 									$autorun = false;
-									?>
-									<p class="delayshow" style="display:none;"><?php echo sprintf(gettext('Setup <a href="%1$s" target="_blank">%2$s</a>'), $url . ZENFOLDER . '/setup/index.php?autorun', $clone); ?></p>
-									<?php
+									$link = str_replace('\\', '/', @readlink($clone . '/' . ZENFOLDER));
+									if (!(empty($link) || $link != SERVERPATH . '/' . ZENFOLDER)) { //	still a clone of this installation
+										?>
+										<p class="delayshow" style="display:none;"><?php echo sprintf(gettext('Setup <a href="%1$s" target="_blank">%2$s</a>'), $url . ZENFOLDER . '/setup/index.php?autorun', $clone); ?></p>
+										<?php
+									}
 								}
 							}
+							$link = sprintf(gettext('You can now <a href="%1$s">administer your gallery.</a>'), WEBPATH . '/' . ZENFOLDER . '/admin.php');
 							?>
 							<p id="golink" class="delayshow" style="display:none;"><?php echo $link; ?></p>
 							<?php
