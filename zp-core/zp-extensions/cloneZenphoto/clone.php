@@ -148,6 +148,17 @@ if (isset($_GET['purge'])) {
 					'strong_hash' => getOption('strong_hash'),
 					'plugins' => getEnabledPlugins()
 			);
+			$adminTableDB = db_list_fields('administrators');
+			$adminTable = array();
+			foreach ($adminTableDB as $key => $datum) {
+				// remove don't care fields
+				unset($datum['Collation']);
+				unset($datum['Key']);
+				unset($datum['Extra']);
+				unset($datum['Privileges']);
+				$adminTable[$datum['Field']] = $datum;
+			}
+			$_SESSION['admin']['db_admin_fields'] = $adminTable;
 			$_SESSION['admin'][$cloneid] = serialize($_zp_current_admin_obj);
 			$msg[] = '<p><span class="buttons"><a href="' . $newinstall . ZENFOLDER . '/setup/index.php?autorun" target=_newtab" onclick="reloadCloneTab();">' . gettext('setup the new install') . '</a></span><br class="clearall" /></p>' . "\n";
 		} else {
