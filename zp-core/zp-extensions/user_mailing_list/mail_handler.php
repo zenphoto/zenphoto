@@ -48,6 +48,6 @@ foreach ($toList as $name => $email) {
 	if ($err_msg) {
 		debugLogVar(gettext('user_mailing_list error'), $err_msg);
 	}
-	sleep(5); //	pase the mail send
+	sleep(10); //	pace the mail send
 }
 ?>
