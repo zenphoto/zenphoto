@@ -1213,14 +1213,8 @@ function switchLog($log) {
 	$dir = getcwd();
 	chdir(SERVERPATH . '/' . DATA_FOLDER);
 	$list = safe_glob($log . '-*.log');
-	if (empty($list)) {
-		$counter = 1;
-	} else {
-		sort($list);
-		$last = array_pop($list);
-		preg_match('|' . $log . '-(.*).log|', $last, $matches);
-		$counter = $matches[1] + 1;
-	}
+	$counter = count($list) + 1;
+
 	chdir($dir);
 	@copy(SERVERPATH . '/' . DATA_FOLDER . '/' . $log . '.log', SERVERPATH . '/' . DATA_FOLDER . '/' . $log . '-' . $counter . '.log');
 	if (getOption($log . '_log_mail')) {
