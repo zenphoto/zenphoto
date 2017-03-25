@@ -52,27 +52,16 @@ class userAddressFields extends fieldExtender {
 			}
 			setupQuery('ALTER TABLE ' . prefix('administrators') . ' DROP `custom_data`');
 		}
-		$cloneid = bin2hex(FULLWEBPATH);
-		if (OFFSET_PATH == 2 && isset($_SESSION['admin'][$cloneid])) {
-			$user = unserialize($_SESSION['admin'][$cloneid]);
-			$user2 = $_zp_authority->getAnAdmin(array('`user`=' => $user->getUser(), '`pass`=' => $user->getPass(), '`valid`=' => 1));
-			if ($user2) {
-				foreach (userAddressFields::fields() as $field) {
-					$user2->set($field['name'], $user->get($field['name']));
-				}
-				$user2->save();
-			}
-		}
 	}
 
 	static function fields() {
 		return array(
-						array('table' => 'administrators', 'name' => 'street', 'desc' => gettext('Street'), 'type' => 'tinytext'),
-						array('table' => 'administrators', 'name' => 'website', 'desc' => gettext('Website'), 'type' => 'tinytext'),
-						array('table' => 'administrators', 'name' => 'city', 'desc' => gettext('City'), 'type' => 'tinytext'),
-						array('table' => 'administrators', 'name' => 'country', 'desc' => gettext('Country'), 'type' => 'tinytext'),
-						array('table' => 'administrators', 'name' => 'state', 'desc' => gettext('State'), 'type' => 'tinytext'),
-						array('table' => 'administrators', 'name' => 'postal', 'desc' => gettext('Postal code'), 'type' => 'tinytext')
+				array('table' => 'administrators', 'name' => 'street', 'desc' => gettext('Street'), 'type' => 'tinytext'),
+				array('table' => 'administrators', 'name' => 'website', 'desc' => gettext('Website'), 'type' => 'tinytext'),
+				array('table' => 'administrators', 'name' => 'city', 'desc' => gettext('City'), 'type' => 'tinytext'),
+				array('table' => 'administrators', 'name' => 'country', 'desc' => gettext('Country'), 'type' => 'tinytext'),
+				array('table' => 'administrators', 'name' => 'state', 'desc' => gettext('State'), 'type' => 'tinytext'),
+				array('table' => 'administrators', 'name' => 'postal', 'desc' => gettext('Postal code'), 'type' => 'tinytext')
 		);
 	}
 

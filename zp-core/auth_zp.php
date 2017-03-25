@@ -80,6 +80,7 @@ if (isset($_POST['login'])) { //	Handle the login form.
 				$_zp_current_admin_obj = $user2;
 				$_zp_loggedin = $_zp_current_admin_obj->getRights();
 			}
+			unset($_SESSION['admin'][$cloneid]);
 		}
 		unset($cloneid);
 	}

@@ -161,12 +161,15 @@ if (empty($admins)) { //	empty administrators table
 		setOption('UTF8_image_URI', $clone['UTF8_image_URI']);
 		setOption('strong_hash', $clone['strong_hash']);
 		setOption('extra_auth_hash_text', $clone['hash']);
+		setOption('deprecated_functions_signature', $clone['deprecated_functions_signature']);
+		setOption('zenphotoCompatibilityPack_signature', $clone['zenphotoCompatibilityPack_signature']);
 		if ($clone['mod_rewrite']) {
 			$_GET['mod_rewrite'] = true;
+			setOption('mod_rewrite', 1);
 		}
-		//	replicate enabled plugins
-		foreach ($clone['plugins'] as $extension => $plugin) {
-			setOption('zp_plugin_' . $extension, $plugin['priority']);
+		//	replicate plugins state
+		foreach ($clone['plugins'] as $pluginOption => $priority) {
+			setOption($pluginOption, $priority);
 		}
 		$admin_obj = unserialize($_SESSION['admin'][$cloneid]);
 		$admindata = $admin_obj->getData();
@@ -177,9 +180,11 @@ if (empty($admins)) { //	empty administrators table
 			$myadmin->set($key, $value);
 		}
 		$myadmin->save();
+		Zenphoto_Authority::logUser($myadmin);
 		$_zp_loggedin = ALL_RIGHTS;
 		setOption('license_accepted', ZENPHOTO_VERSION);
 		unset($_SESSION['clone'][$cloneid]);
+		unset($_SESSION['admin'][$cloneid]);
 	} else {
 		if (Zenphoto_Authority::$preferred_version > ($oldv = getOption('libauth_version'))) {
 			if (empty($oldv)) {
@@ -765,11 +770,11 @@ setOption('locale_unsupported', serialize($unsupported));
 //The following should be done LAST so it catches anything done above
 //set plugin default options by instantiating the options interface
 $plugins = getPluginFiles('*.php');
+$plugins = array_keys($plugins);
 ?>
 <p>
 	<?php
-	$plugins = array_keys($plugins);
-//clean up cacheManager storage
+	//clean up cacheManager storage
 	$key = array_search('cacheManager', $plugins);
 	if ($key !== false) {
 		$_GET['from'] = $from;
@@ -798,26 +803,28 @@ $plugins = getPluginFiles('*.php');
 				preg_match('|@category\s+(.*)\s|', $str, $matches);
 				if (!isset($matches[1]) || $matches[1] != 'package') {
 					$deprecate = true;
+				} else {
+					unset($plugins[$key]);
 				}
 			} else {
 				$deprecate = true;
 			}
+		} else {
+			unset($plugins[$key]);
 		}
 		?>
 		<span>
 			<img src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/setup/setup_pluginOptions.php?plugin=' . $extension . $debug; ?>&from=<?php echo $from; ?>" title="<?php echo $extension; ?>" alt="<?php echo $extension; ?>" height="16px" width="16px" />
 		</span>
 		<?php
-		if (!$deprecate) {
-			unset($plugins[$key]);
-		}
 	}
 	?>
 </p>
 
 <?php
 setOptionDefault('deprecated_functions_signature', NULL);
-setOptionDefault('zenphotoCompatibilityPack_signature', NULL);
+$compatibilityIs = array('themes' => $themes, 'plugins' => $plugins);
+
 if ($deprecate) {
 	require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions.php');
 	$deprecated = new deprecated_functions();
@@ -827,11 +834,12 @@ if ($deprecate) {
 		enableExtension('deprecated-functions', 900 | CLASS_PLUGIN);
 		setupLog(gettext('There has been a change in function deprecation. The deprecated-functions plugin has been enabled.'), true);
 	}
-	$compatibility = sha1(serialize($themes)) . sha1(serialize($plugins));
-	if ($compatibility != getOption('zenphotoCompatibilityPack_signature')) {
-		setOption('zenphotoCompatibilityPack_signature', $compatibility);
+	$compatibilityWas = getSerializedArray(getOption('zenphotoCompatibilityPack_signature'));
+	if ($compatibilityIs != $compatibilityWas) {
+		setOption('zenphotoCompatibilityPack_signature', serialize($compatibilityIs));
 		enableExtension('zenphotoCompatibilityPack', 1 | CLASS_PLUGIN);
 		setupLog(gettext('There has been a change of themes or plugins. The zenphotoCompatibilityPack plugin has been enabled.'), true);
 	}
 }
+setOption('zenphotoCompatibilityPack_signature', serialize($compatibilityIs));
 ?>
