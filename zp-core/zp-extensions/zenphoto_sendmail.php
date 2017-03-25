@@ -19,7 +19,7 @@ if ($plugin_disable) {
 	zp_register_filter('sendmail', 'zenphoto_sendmail');
 }
 
-function zenphoto_sendmail($msg, $email_list, $subject, $message, $from_mail, $from_name, $cc_addresses, $replyTo, $html = false) {
+function zenphoto_sendmail($msg, $email_list, $subject, $message, $from_mail, $from_name, $cc_addresses, $bcc_addresses, $replyTo, $html = false) {
 	$headers = sprintf('From: %1$s <%2$s>', $from_name, $from_mail) . "\n";
 	if (count($cc_addresses) > 0) {
 		$cclist = '';
@@ -31,8 +31,10 @@ function zenphoto_sendmail($msg, $email_list, $subject, $message, $from_mail, $f
 	if ($replyTo) {
 		$headers .= 'Reply-To: ' . array_shift($replyTo) . "\n";
 	}
+	$sendList = array_merge($email_list, $bcc_addresses);
+
 	$result = true;
-	foreach ($email_list as $to_mail) {
+	foreach ($sendList as $to_mail) {
 		$result = $result && utf8::send_mail($to_mail, $subject, $message, $headers, '', $html);
 	}
 	if (!$result) {
