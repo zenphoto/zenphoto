@@ -2,6 +2,8 @@
 
 /*
  * Handles sending the mailing list e-mails
+ *
+ * Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
  */
 // UTF-8 Ø
 define('OFFSET_PATH', 4);
@@ -43,11 +45,17 @@ if (!empty($currentadminmail)) {
 	}
 }
 
+$waittime = false;
 foreach ($toList as $name => $email) {
+	if ($waittime) {
+		sleep($waittime); //	pace the mail send
+	} else {
+		$waitTime = getOption('user_mailing_list_pace');
+	}
+
 	$err_msg = zp_mail($subject, $message, array($name => $email), array(), array());
 	if ($err_msg) {
 		debugLogVar(gettext('user_mailing_list error'), $err_msg);
 	}
-	sleep(10); //	pace the mail send
 }
 ?>
