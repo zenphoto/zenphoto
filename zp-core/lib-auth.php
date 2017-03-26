@@ -831,8 +831,6 @@ class _Authority {
 		foreach (self::getAuthCookies() as $cookie => $value) {
 			zp_clearCookie($cookie);
 		}
-		if (isset($_SESSION['admin'][bin2hex(FULLWEBPATH)]))
-			unset($_SESSION['admin'][bin2hex(FULLWEBPATH)]);
 		$_zp_loggedin = false;
 		$_zp_pre_authorization = array();
 		return zp_apply_filter('zp_logout', NULL, $_zp_current_admin_obj);

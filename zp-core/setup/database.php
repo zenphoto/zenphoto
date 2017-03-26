@@ -15,6 +15,15 @@ $database = $orphans = array();
 $collation = db_collation();
 $template = unserialize(file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/databaseTemplate'));
 
+if (isset($_SESSION['admin']['db_admin_fields'])) { //	we are in a clone install, be srue admin fields match
+	$adminTable = $template['administrators']['fields'];
+	foreach ($_SESSION['admin']['db_admin_fields'] as $key => $datum) {
+		if (!isset($adminTable[$key])) {
+			$template['administrators']['fields'][$key] = $datum;
+		}
+	}
+}
+
 /* rename Comment table custom_data since it is really address data */
 $sql = "ALTER TABLE " . prefix('comments') . " CHANGE `custom_data` `address_data` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT 'zp20';";
 setupQuery($sql, false);
@@ -85,7 +94,7 @@ foreach (getDBTables() as $table) {
 	}
 }
 
-//metadata display and disalbe options
+//metadata display and disable options
 $validMetadataOptions = !is_null(getOption('metadata_displayed'));
 
 $disable = array();

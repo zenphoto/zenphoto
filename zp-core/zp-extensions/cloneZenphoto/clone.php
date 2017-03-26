@@ -32,12 +32,10 @@ if (isset($_GET['purge'])) {
 	} else {
 		$success = true;
 		$targets = array(ZENFOLDER => 'dir', USER_PLUGIN_FOLDER => 'dir', 'index.php' => 'file');
-		foreach ($_zp_gallery->getThemes() as $theme => $data) {
-			if (protectedTheme($theme)) {
-				$targets[THEMEFOLDER . '/' . $theme] = 'dir';
-			}
-		}
 
+		foreach ($_zp_gallery->getThemes() as $theme => $data) {
+			$targets[THEMEFOLDER . '/' . $theme] = 'dir';
+		}
 
 		foreach (array(internalToFilesystem('charset_tést'), internalToFilesystem('charset.tést')) as $charset) {
 			if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . $charset)) {
@@ -146,8 +144,22 @@ if (isset($_GET['purge'])) {
 					'mod_rewrite' => MOD_REWRITE,
 					'hash' => HASH_SEED,
 					'strong_hash' => getOption('strong_hash'),
-					'plugins' => getEnabledPlugins()
+					'deprecated_functions_signature' => getOption('deprecated_functions_signature'),
+					'zenphotoCompatibilityPack_signature' => getOption('zenphotoCompatibilityPack_signature'),
+					'plugins' => getOptionsLike('zp_plugin_')
 			);
+
+			$adminTableDB = db_list_fields('administrators');
+			$adminTable = array();
+			foreach ($adminTableDB as $key => $datum) {
+				// remove don't care fields
+				unset($datum['Collation']);
+				unset($datum['Key']);
+				unset($datum['Extra']);
+				unset($datum['Privileges']);
+				$adminTable[$datum['Field']] = $datum;
+			}
+			$_SESSION['admin']['db_admin_fields'] = $adminTable;
 			$_SESSION['admin'][$cloneid] = serialize($_zp_current_admin_obj);
 			$msg[] = '<p><span class="buttons"><a href="' . $newinstall . ZENFOLDER . '/setup/index.php?autorun" target=_newtab" onclick="reloadCloneTab();">' . gettext('setup the new install') . '</a></span><br class="clearall" /></p>' . "\n";
 		} else {

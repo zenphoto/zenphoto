@@ -362,13 +362,15 @@ function is_valid_email_zp($input_email) {
  * @param array $cc_addresses a list of addresses to send copies to.
  * @param array $bcc_addresses a list of addresses to send blind copies to.
  * @param string $replyTo reply-to address
+ * @param string $failMessage will be displayed upon a failure to send
+ * @param array $fromMail an array of name=>email arrress for the sender. Defaults to the site email name and address
  *
  * @return string
  *
  * @author Todd Papaioannou (lucky@luckyspin.org)
  * @since  1.0.0
  */
-function zp_mail($subject, $message, $email_list = NULL, $cc_addresses = NULL, $bcc_addresses = NULL, $replyTo = NULL, $failMessage = NULL) {
+function zp_mail($subject, $message, $email_list = NULL, $cc_addresses = NULL, $bcc_addresses = NULL, $replyTo = NULL, $failMessage = NULL, $fromMail = NULL) {
 	global $_zp_authority, $_zp_gallery, $_zp_UTF8;
 	if (is_null($failMessage)) {
 		$failMessage = gettext('Mail send failed.') . ' ';
@@ -436,16 +438,21 @@ function zp_mail($subject, $message, $email_list = NULL, $cc_addresses = NULL, $
 	if (count($email_list) + count($bcc_addresses) > 0) {
 		if (zp_has_filter('sendmail')) {
 
-			$from_mail = getOption('site_email');
-			$from_name = get_language_string(getOption('site_email_name'));
+			if (is_array($fromMail)) {
+				$from_name = reset($fromMail);
+				$from_mail = array_shift($fromMail);
+			} else {
+				$from_mail = getOption('site_email');
+				$from_name = get_language_string(getOption('site_email_name'));
+			}
 
-// Convert to UTF-8
+			// Convert to UTF-8
 			if (LOCAL_CHARSET != 'UTF-8') {
 				$subject = $_zp_UTF8->convert($subject, LOCAL_CHARSET);
 				$message = $_zp_UTF8->convert($message, LOCAL_CHARSET);
 			}
 
-//	we do not support rich text
+			//	we do not support rich text
 			$message = preg_replace('~<p[^>]*>~', "\n", $message); // Replace the start <p> or <p attr="">
 			$message = preg_replace('~</p>~', "\n", $message); // Replace the end
 			$message = preg_replace('~<br[^>]*>~', "\n", $message); // Replace <br> or <br ...>
@@ -458,15 +465,8 @@ function zp_mail($subject, $message, $email_list = NULL, $cc_addresses = NULL, $
 			$message = getBare($message);
 			$message = preg_replace('~\n\n\n+~', "\n\n", $message);
 
-// Send the mail
-			if (count($email_list) > 0) {
-				$result = zp_apply_filter('sendmail', '', $email_list, $subject, $message, $from_mail, $from_name, $cc_addresses, $replyTo); // will be true if all mailers succeeded
-			}
-			if (count($bcc_addresses) > 0) {
-				foreach ($bcc_addresses as $bcc) {
-					$result = zp_apply_filter('sendmail', '', array($bcc), $subject, $message, $from_mail, $from_name, array(), $replyTo); // will be true if all mailers succeeded
-				}
-			}
+			// Send the mail
+			$result = zp_apply_filter('sendmail', $result, $email_list, $subject, $message, $from_mail, $from_name, $cc_addresses, $bcc_addresses, $replyTo); // will be true if all mailers succeeded
 		} else {
 			$result = gettext('Mail send failed. There is no mail handler configured.');
 		}

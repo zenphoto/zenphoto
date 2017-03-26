@@ -84,7 +84,6 @@ if ($plugin_disable) {
 					}
 					if ($valid || !$only_valid) {
 						$clones[$row['aux']] = array('url' => $row['data'] . '/', 'valid' => $valid);
-						$_SESSION['admin'][bin2hex($row['aux'])] = serialize($_zp_current_admin_obj);
 					}
 				}
 				db_free_result($result);

@@ -2421,6 +2421,9 @@ zp-core/zp-extensions/user-expiry
 zp-core/zp-extensions/user-expiry/user-expiry-tab.php
 zp-core/zp-extensions/user_groups
 zp-core/zp-extensions/user_groups/user_groups-tab.php
+zp-core/zp-extensions/user_mailing_list
+zp-core/zp-extensions/user_mailing_list/mail_handler.php
+zp-core/zp-extensions/user_mailing_list/user_mailing_listTab.php
 zp-core/zp-extensions/wordpress_import
 zp-core/zp-extensions/wordpress_import/wpmini-blue.png
 zp-core/zp-extensions/zenpage
@@ -2451,4 +2454,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-2453
+2456

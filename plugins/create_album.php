@@ -279,7 +279,7 @@ class create_album {
 	 * @param $what
 	 */
 	static function save_user($msg, $userobj, $what) {
-		global $_errors, $__creatAlbumList;
+		global $_errors, $__creatAlbumList, $_create_album_errors;
 		if (is_array($_create_album_errors) && array_key_exists($userobj->getUser(), $_create_album_errors)) {
 			$msg .= ($msg) ? '; ' : '' . $_create_album_errors[$userobj->getUser()];
 		}
