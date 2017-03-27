@@ -60,25 +60,35 @@ class DownloadList {
 	}
 
 	function getOptionsSupported() {
-		$options = array(gettext('Download directory')											 => array('key'		 => 'downloadList_directory', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 2,
-										'desc'	 => gettext("This download folder can be relative to your Zenphoto installation (<em>foldername</em>) or external to it (<em>../foldername</em>)! You can override this setting by using the parameter of the printdownloadList() directly on calling.")),
-						gettext('Show filesize of download items')				 => array('key'		 => 'downloadList_showfilesize', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 3,
-										'desc'	 => ''),
-						gettext('Show download counter of download items') => array('key'		 => 'downloadList_showdownloadcounter', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 4,
-										'desc'	 => ''),
-						gettext('Files to exclude from the download list') => array('key'		 => 'downloadList_excludesuffixes', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 5,
-										'desc'	 => gettext('A list of file suffixes to exclude. Separate with comma and omit the dot (e.g "jpg").')),
-						gettext('Zip source')															 => array('key'			 => 'downloadList_zipFromCache', 'type'		 => OPTION_TYPE_RADIO,
-										'order'		 => 6,
-										'buttons'	 => array(gettext('From album') => 0, gettext('From Cache') => 1),
-										'desc'		 => gettext('Make the album zip from the album folder or from the sized images in the cache.')),
-						gettext('User rights')														 => array('key'		 => 'downloadList_rights', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 1,
-										'desc'	 => gettext('Check if users are required to have <em>file</em> rights to download.'))
+		$options = array(gettext('Download directory') => array(
+						'key' => 'downloadList_directory',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 2,
+						'desc' => gettext("This download folder can be relative to your Zenphoto installation (<em>foldername</em>) or external to it (<em>../foldername</em>)! You can override this setting by using the parameter of the printdownloadList() directly on calling.")),
+				gettext('Show filesize of download items') => array(
+						'key' => 'downloadList_showfilesize', 
+						'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 3,
+						'desc' => ''),
+				gettext('Show download counter of download items') => array(
+						'key' => 'downloadList_showdownloadcounter', 
+						'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 4,
+						'desc' => ''),
+				gettext('Files to exclude from the download list') => array(
+						'key' => 'downloadList_excludesuffixes', 
+						'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 5,
+						'desc' => gettext('A list of file suffixes to exclude. Separate with comma and omit the dot (e.g "jpg").')),
+				gettext('Zip source') => array(
+						'key' => 'downloadList_zipFromCache', 
+						'type' => OPTION_TYPE_RADIO,
+						'order' => 6,
+						'buttons' => array(gettext('From album') => 0, gettext('From Cache') => 1),
+						'desc' => gettext('Make the album zip from the album folder or from the sized images in the cache.')),
+				gettext('User rights') => array('key' => 'downloadList_rights', 'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 1,
+						'desc' => gettext('Check if users are required to have <em>file</em> rights to download.'))
 		);
 		if (GALLERY_SECURITY == 'public') {
 			$options[gettext('credentials')] = array('key'		 => 'downloadList_credentials', 'type'	 => OPTION_TYPE_CUSTOM,
@@ -291,11 +301,15 @@ class AlbumZip {
 	 * @param int $base the length of the base album name
 	 */
 	static function AddAlbum($album, $base, $filebase) {
-		global $_zp_zip_list, $zip_gallery;
+		global $_zp_zip_list;
 		$albumbase = substr($album->name, $base) . '/';
-		foreach ($album->sidecars as $suffix) {
+		$album_sidecars = $album->sidecars;
+		foreach($album->sidecars as $album_sidecar) {
+			$album_sidecars[] = strtoupper($album_sidecar);
+		}
+		foreach ($album_sidecars as $suffix) {
 			$f = $albumbase . $album->name . '.' . $suffix;
-			if (file_exists(internalToFilesystem($f))) {
+			if (file_exists($album->localpath .  internalToFilesystem($f))) {
 				$_zp_zip_list[$filebase . $f] = $f;
 			}
 		}
@@ -305,11 +319,15 @@ class AlbumZip {
 			$f = $albumbase . $image->filename;
 			$_zp_zip_list[$filebase . internalToFilesystem($f)] = $f;
 			$imagebase = stripSuffix($image->filename);
-			foreach ($image->sidecars as $suffix) {
-				$f = $albumbase . $imagebase . '.' . $suffix;
-				if (file_exists($f)) {
-					$_zp_zip_list[$filebase . $f] = $f;
-				}
+			$image_sidecars = $image->sidecars;
+			foreach($image->sidecars as $image_sidecar) {
+				$image_sidecars[] = strtoupper($image_sidecar);
+			}
+ 			foreach ($image_sidecars as $suffix) {
+				$f = $imagebase . '.' . $suffix;
+				if (file_exists($album->localpath . $f)) {
+					$_zp_zip_list[$album->localpath . internalToFilesystem($f)] = $f;
+				} 
 			}
 		}
 		$albums = $album->getAlbums();
@@ -329,7 +347,7 @@ class AlbumZip {
 	 * @param int $base the length of the base album name
 	 */
 	static function AddAlbumCache($album, $base, $filebase) {
-		global $_zp_zip_list, $zip_gallery, $defaultSize;
+		global $_zp_zip_list, $defaultSize;
 		$albumbase = substr($album->name, $base) . '/';
 		$images = $album->getImages();
 		foreach ($images as $imagename) {
@@ -360,11 +378,15 @@ class AlbumZip {
 	static function pageError($err, $text) {
 		header("HTTP/1.0 " . $err . ' ' . $text);
 		header("Status: " . $err . ' ' . $text);
-		echo "<html xmlns=\"http://www.w3.org/1999/xhtml\"><head>	<title>" . $err . " - " . $text . "</TITLE>	<META NAME=\"ROBOTS\" CONTENT=\"NOINDEX, FOLLOW\"></head>";
-		echo "<BODY bgcolor=\"#ffffff\" text=\"#000000\" link=\"#0000ff\" vlink=\"#0000ff\" alink=\"#0000ff\">";
-		echo "<FONT face=\"Helvitica,Arial,Sans-serif\" size=\"2\">";
-		echo "<b>" . sprintf(gettext('Page error: %2$s (%1$s)'), $err, $text) . "</b><br /><br />";
-		echo "</body></html>";
+		echo '<html>';
+		echo '<head>';
+		echo '<title>' . $err . ' - ' . $text . '</title>';
+		echo '<meta name="ROBOTS" content="NOINDEX, FOLLOW">';
+		echo '</head>';
+		echo '<body style="background-color: #ffffff; color: #000000">';
+		echo '<p><strong>' . sprintf(gettext('Page error: %2$s (%1$s)'), $err, $text) . '</strong></p>';
+		echo '</body>';
+		echo '</html>';
 		exitZP();
 	}
 
