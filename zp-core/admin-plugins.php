@@ -32,11 +32,19 @@ if (isset($_GET['action'])) {
 	if ($_GET['action'] == 'saveplugins') {
 		if (isset($_POST['checkForPostTruncation'])) {
 			XSRFdefender('saveplugins');
+
+			var_dump($_POST);
+
 			$plugins = array();
 			foreach ($_POST as $plugin => $value) {
 				preg_match('/^present_zp_plugin_(.*)$/xis', $plugin, $matches);
 				if ($matches) {
 					$is = (int) isset($_POST['zp_plugin_' . $matches[1]]);
+					if ($is) {
+						$nv = sanitize_numeric($_POST['zp_plugin_' . $matches[1]]);
+					} else {
+						$nv = NULL;
+					}
 					$was = (int) ($value && true);
 					if ($was == $is) {
 						$action = 1;
@@ -45,13 +53,13 @@ if (isset($_GET['action'])) {
 					} else {
 						$action = 3;
 					}
-					$plugins[$matches[1]] = $action;
+					$plugins[$matches[1]] = array('action' => $action, 'is' => $nv);
 				}
 			}
-			foreach ($plugins as $extension => $action) {
-				$f = str_replace('-', '_', $extension) . '_enable';
-				$p = getPlugin($extension . '.php');
-				switch ($action) {
+			foreach ($plugins as $_plugin_extension => $data) {
+				$f = str_replace('-', '_', $_plugin_extension) . '_enable';
+				$p = getPlugin($_plugin_extension . '.php');
+				switch ($data['action']) {
 					case 1:
 						//no change
 						break;
@@ -61,19 +69,21 @@ if (isset($_GET['action'])) {
 						if (function_exists($f)) {
 							$f(false);
 						}
-						setOption('zp_plugin_' . $extension, 0);
+						setOption('zp_plugin_' . $_plugin_extension, 0);
 						break;
 					case 3:
 						//going from disabled to enabled
+						setOption('zp_plugin_' . $_plugin_extension, $data['is']);
 						$option_interface = NULL;
 						require_once($p);
+
 						if ($option_interface && is_string($option_interface)) {
 							$if = new $option_interface; //	prime the default options
 						}
+
 						if (function_exists($f)) {
 							$f(true);
 						}
-						setOption('zp_plugin_' . $extension, sanitize_numeric($_POST['zp_plugin_' . $extension]));
 						break;
 				}
 			}
@@ -81,6 +91,8 @@ if (isset($_GET['action'])) {
 		} else {
 			$notify = '&post_error';
 		}
+		exit();
+
 		header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-plugins.php?page=plugins&tab=" . html_encode($subtab) . "&subpage=" . html_encode($subpage) . $notify);
 		exitZP();
 	}
@@ -125,7 +137,7 @@ if ($saved) {
 ?>
 <h1><?php echo gettext('Plugins'); ?></h1>
 <?php
-$subtab = printSubtabs();
+$subtab = getSubtabs();
 ?>
 <div class="tabbox">
 	<?php
