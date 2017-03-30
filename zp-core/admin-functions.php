@@ -335,7 +335,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					 alt="<?php echo gettext('ZenPhoto20 Administration'); ?>" />
 		</span>
 
-		<a href="javascript:" id="return-to-top" title="<?php echo gettext('return to top'); ?>"></a>
+		<a href="javascript:" id="return-to-top" class="ignoredirty" title="<?php echo gettext('return to top'); ?>"></a>
 
 		<div id="links">
 			<?php
