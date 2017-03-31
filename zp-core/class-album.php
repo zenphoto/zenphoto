@@ -339,6 +339,10 @@ class AlbumBase extends MediaObject {
 		}
 	}
 
+	function getSidecars() {
+		return array();
+	}
+
 	/**
 	 * Returns the count of subalbums
 	 *
@@ -1244,6 +1248,22 @@ class Album extends AlbumBase {
 			$this->lastsubalbumsort = $sorttype . $sortdirection;
 		}
 		return parent::getAlbums($page);
+	}
+
+	/**
+	 * Returns the side car files associated with the album
+	 *
+	 * @return array
+	 */
+	function getSidecars() {
+		$files = safe_glob(substr($this->localpath, 0, -1) . '.*');
+		$result = array();
+		foreach ($files as $file) {
+			if (!is_dir($file) && in_array(strtolower(getSuffix($file)), $this->sidecars)) {
+				$result[basename($file)] = $file;
+			}
+		}
+		return $result;
 	}
 
 	/**
