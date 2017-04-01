@@ -148,8 +148,6 @@ if ($alb) {
 	}
 } else {
 	$object = '<em>' . gettext('Gallery') . '</em>';
-	$zenphoto_tabs['overview']['subtabs'] = array(gettext('Cache images') => PLUGIN_FOLDER . '/cacheManager/cacheImages.php?page = overview&tab=images',
-			gettext('Cache stored images') => PLUGIN_FOLDER . '/cacheManager/cacheDBImages.php?page=overview&tab=DB&XSRFToken=' . getXSRFToken('cacheDBImages'));
 }
 $custom = array();
 
@@ -175,24 +173,20 @@ printLogoAndLinks();
 echo "\n" . '<div id = "main">';
 printTabs();
 echo "\n" . '<div id = "content">';
+zp_apply_filter('admin_note', 'cache', '');
+$clear = sprintf(gettext('Refresh cache for %s'), $object);
+$count = 0;
+
+if ($alb) {
+	$r = '/admin-edit.php?page = edit&album = ' . $alb;
+	echo "\n<h1>" . $clear . "</h2>";
+} else {
+	$r = '/admin.php';
+	echo "\n<h1>" . $clear . "</h2>";
+}
 ?>
-<?php printSubtabs(); ?>
 <div class="tabbox">
-
-
 	<?php
-	zp_apply_filter('admin_note', 'cache', '');
-	$clear = sprintf(gettext('Refreshing cache for %s'), $object);
-	$count = 0;
-
-	if ($alb) {
-		$r = '/admin-edit.php?page = edit&album = ' . $alb;
-		echo "\n<h2>" . $clear . "</h2>";
-	} else {
-		$r = '/admin.php';
-		echo "\n<h2>" . $clear . "</h2>";
-	}
-
 	$cachesizes = 0;
 	$currenttheme = $_zp_gallery->getCurrentTheme();
 	$themes = array();

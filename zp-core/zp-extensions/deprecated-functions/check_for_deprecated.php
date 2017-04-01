@@ -31,7 +31,6 @@ if (isset($_GET['action'])) {
 	$report = array();
 	$selected = sanitize_numeric($_POST['target']);
 }
-$zenphoto_tabs['overview']['subtabs'] = array(gettext('Deprecated') => '');
 printAdminHeader('overview', 'deprecated');
 ?>
 <?php
@@ -42,10 +41,9 @@ echo '</head>' . "\n";
 	<div id="main">
 		<?php printTabs(); ?>
 		<div id="content">
-			<?php printSubtabs(); ?>
+			<?php zp_apply_filter('admin_note', 'development', ''); ?>
+			<h1><?php echo gettext("Locate calls on deprecated functions."); ?></h1>
 			<div id="tab_deprecated" class="tabbox">
-				<h1><?php echo gettext("Locate calls on deprecated functions."); ?></h1>
-				<?php zp_apply_filter('admin_note', 'development', ''); ?>
 				<form action="?action=search" method="post">
 					<?php XSRFToken('deprecated'); ?>
 					<select name="target">

@@ -30,7 +30,7 @@ $plugin_is_filter = 900 | CLASS_PLUGIN;
 
 define('DEPRECATED_LOG', SERVERPATH . '/' . DATA_FOLDER . '/deprecated.log');
 
-zp_register_filter('admin_utilities_buttons', 'deprecated_functions::button');
+zp_register_filter('admin_tabs', 'deprecated_functions::admin_tabs');
 zp_register_filter('admin_tabs', 'deprecated_functions::tabs');
 
 class deprecated_functions {
@@ -207,20 +207,9 @@ class deprecated_functions {
 		}
 	}
 
-	static function button($buttons) {
-		$buttons[] = array(
-				'category' => gettext('Development'),
-				'enable' => true,
-				'button_text' => gettext('Check deprecated use'),
-				'formname' => 'deprecated_functions_check.php',
-				'action' => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions/check_for_deprecated.php',
-				'icon' => 'images/magnify.png',
-				'title' => gettext("Searches PHP scripts for use of deprecated functions."),
-				'alt' => gettext('Check for update'),
-				'hidden' => '',
-				'rights' => ADMIN_RIGHTS
-		);
-		return $buttons;
+	static function admin_tabs($tabs) {
+		$tabs['overview']['subtabs'][gettext('Check deprecated')] = '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions/check_for_deprecated.php?tab=checkdeprecated';
+		return $tabs;
 	}
 
 }

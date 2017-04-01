@@ -122,7 +122,6 @@ foreach ($tables as $table) {
 	updatePublished($table);
 }
 
-$zenphoto_tabs['overview']['subtabs'] = array(gettext('Content') => '');
 printAdminHeader('overview', gettext('Content'));
 datepickerJS();
 ?>
@@ -143,10 +142,9 @@ echo '</head>';
 	<div id="main">
 		<?php printTabs(); ?>
 		<div id="content">
-			<?php printSubtabs(); ?>
+			<?php zp_apply_filter('admin_note', 'schedule', ''); ?>
+			<h1><?php echo (gettext('Manage content publication')); ?></h1>
 			<div class="tabbox">
-				<?php zp_apply_filter('admin_note', 'schedule', ''); ?>
-				<h1><?php echo (gettext('Manage content publication')); ?></h1>
 				<?php
 				$albpublish = $_zp_gallery->getAlbumPublish();
 				$imgpublish = $_zp_gallery->getImagePublish();

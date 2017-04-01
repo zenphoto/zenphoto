@@ -14,7 +14,7 @@ $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 
 $option_interface = 'user_mailing_list';
 
-zp_register_filter('admin_utilities_buttons', 'user_mailing_list::button');
+zp_register_filter('admin_tabs', 'user_mailing_list::admin_tabs');
 
 class user_mailing_list {
 
@@ -35,32 +35,11 @@ class user_mailing_list {
 
 	}
 
-	static function button($buttons) {
-		global $_zp_authority, $_zp_current_admin_obj;
-		$button = array(
-				'category' => gettext('Admin'),
-				'enable' => false,
-				'button_text' => gettext('User mailing list'),
-				'formname' => 'user_mailing_list.php',
-				'action' => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/user_mailing_list/user_mailing_listTab.php',
-				'icon' => 'images/icon_mail.png',
-				'title' => gettext('There are no other registered users who have provided an e-mail address.'),
-				'alt' => '',
-				'hidden' => '',
-				'rights' => ADMIN_RIGHTS
-		);
-		$currentadminuser = $_zp_current_admin_obj->getUser();
-		$admins = $_zp_authority->getAdministrators();
-		foreach ($admins as $admin) {
-			if (!empty($admin['email']) && $currentadminuser != $admin['user']) {
-				$button['enable'] = true;
-				$button['title'] = gettext('A tool to send e-mails to all registered users who have provided an e-mail address.');
-				break;
-			}
-		}
-		$buttons[] = $button;
-		return $buttons;
+	static function admin_tabs($tabs) {
+		$tabs['overview']['subtabs'][gettext('Mailing list')] = '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/user_mailing_list/user_mailing_listTab.php?tab=mailinglist';
+		return $tabs;
 	}
 
 }
+
 ?>

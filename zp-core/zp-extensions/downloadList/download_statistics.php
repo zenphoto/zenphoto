@@ -18,7 +18,6 @@ if (!zp_loggedin(OVERVIEW_RIGHTS)) { // prevent nefarious access to this page.
 	exitZP();
 }
 
-$zenphoto_tabs['overview']['subtabs'] = array(gettext('Download') => '');
 printAdminHeader('overview', 'download');
 ?>
 <link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-statistics.css" type="text/css" media="screen" />
@@ -97,7 +96,8 @@ echo '</head>';
 			<?php printTabs(); ?>
 		</span>
 		<div id="content">
-			<?php printSubtabs(); ?>
+			<?php zp_apply_filter('admin_note', 'statistics', ''); ?>
+			<h1><?php echo gettext("Download Statistics"); ?></h1>
 			<div class="tabbox">
 				<?php
 				if (isset($_GET['removeoutdateddownloads'])) {
@@ -120,7 +120,6 @@ echo '</head>';
 					echo '<p class="messagebox fade-message">' . gettext('All download file entries cleared from the database') . '</p>';
 				}
 				?>
-				<h1><?php echo gettext("Download Statistics"); ?></h1>
 				<p><?php echo gettext("Shows statistical graphs and info about your gallery’s downloads if using the downloadList plugin."); ?></p>
 				<p><?php echo gettext("Entries marked red do not exist in the download folder anymore but are kept for the statistics until you remove them manually via the button."); ?></p>
 

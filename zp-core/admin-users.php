@@ -44,8 +44,9 @@ if (isset($_GET['subpage'])) {
 	}
 }
 
-if (!isset($_GET['page']))
+if (!isset($_GET['page'])) {
 	$_GET['page'] = 'users';
+}
 $_current_tab = sanitize($_GET['page'], 3);
 
 /* handle posts */
@@ -286,7 +287,7 @@ echo $refresh;
 				echo "</div>";
 			}
 
-			/* Page code */
+			echo '<h1>' . gettext('Users') . '</h1>';
 			?>
 			<div id="container">
 				<?php
@@ -308,7 +309,6 @@ echo $refresh;
 				}
 				?>
 				<?php
-				printSubtabs();
 				global $_zp_authority;
 				?>
 				<div id="tab_admin" class="tabbox">

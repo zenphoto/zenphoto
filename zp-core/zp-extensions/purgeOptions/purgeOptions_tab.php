@@ -79,7 +79,7 @@ $orphaned = array();
 		<div id="content">
 			<?php zp_apply_filter('admin_note', 'clone', ''); ?>
 			<div id="container">
-				<?php printSubtabs(); ?>
+				<h1><?php echo gettext('purge options'); ?></h1>
 				<div class="tabbox">
 					<?php
 					$owners = array(ZENFOLDER . '/' . PLUGIN_FOLDER => array(), USER_PLUGIN_FOLDER => array(), THEMEFOLDER => array());

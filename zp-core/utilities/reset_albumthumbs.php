@@ -12,16 +12,16 @@ require_once(dirname(dirname(__FILE__)) . '/admin-globals.php');
 require_once(dirname(dirname(__FILE__)) . '/template-functions.php');
 
 $buttonlist[] = array(
-				'category'		 => gettext('Database'),
-				'enable'			 => true,
-				'button_text'	 => gettext('Reset album thumbs'),
-				'formname'		 => 'reset_albumthumbs.php',
-				'action'			 => FULLWEBPATH . '/' . ZENFOLDER . '/utilities/reset_albumthumbs.php',
-				'icon'				 => 'images/reset.png',
-				'title'				 => gettext('Reset album thumbnails to either random or most recent'),
-				'alt'					 => '',
-				'hidden'			 => '',
-				'rights'			 => MANAGE_ALL_ALBUM_RIGHTS | ADMIN_RIGHTS
+		'category' => gettext('Database'),
+		'enable' => true,
+		'button_text' => gettext('Reset album thumbs'),
+		'formname' => 'reset_albumthumbs.php',
+		'action' => FULLWEBPATH . '/' . ZENFOLDER . '/utilities/reset_albumthumbs.php',
+		'icon' => 'images/reset.png',
+		'title' => gettext('Reset album thumbnails to either random or most recent'),
+		'alt' => '',
+		'hidden' => '',
+		'rights' => MANAGE_ALL_ALBUM_RIGHTS | ADMIN_RIGHTS
 );
 
 admin_securityChecks(MANAGE_ALL_ALBUM_RIGHTS, $return = currentRelativeURL());
@@ -32,8 +32,6 @@ if (isset($_REQUEST['thumbtype']) || isset($_REQUEST['thumbselector'])) {
 
 $buffer = '';
 
-$zenphoto_tabs['overview']['subtabs'] = array(gettext('Thumbs') => '');
-
 printAdminHeader('overview', 'thumbs');
 echo '</head>';
 ?>
@@ -43,10 +41,9 @@ echo '</head>';
 	<div id="main">
 		<?php printTabs(); ?>
 		<div id="content">
-			<?php printSubtabs(); ?>
+			<?php zp_apply_filter('admin_note', 'reste_thumbs', ''); ?>
+			<h1><?php echo (gettext('Reset your album thumbnails')); ?></h1>
 			<div class="tabbox">
-				<?php zp_apply_filter('admin_note', 'reste_thumbs', ''); ?>
-				<h1><?php echo (gettext('Reset your album thumbnails')); ?></h1>
 				<?php
 				if (isset($_REQUEST['thumbtype'])) {
 					$key = sanitize_numeric($_REQUEST['thumbtype'], 3);

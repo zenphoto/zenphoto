@@ -42,7 +42,8 @@ function reconfigureAction($mandatory) {
 			header("Location: $location");
 			exitZP();
 		} else {
-			global $subtabs, $zenphoto_tabs, $main_tab_space, $_zp_admin_tab, $_zp_invisible_execute, $_zp_gallery;
+			// because we are loading the script from within a function!
+			global $subtabs, $zenphoto_tabs, $_zp_admin_tab, $_zp_invisible_execute, $_zp_gallery;
 			$_zp_invisible_execute = 1;
 			require_once(SERVERPATH . '/' . ZENFOLDER . '/admin-globals.php');
 			header('Last-Modified: ' . ZP_LAST_MODIFIED);

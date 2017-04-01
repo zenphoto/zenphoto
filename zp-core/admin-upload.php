@@ -69,9 +69,6 @@ printLogoAndLinks();
 	?>
 	<div id="content">
 		<?php
-		if (!empty($zenphoto_tabs['upload']['subtabs'])) {
-			printSubtabs();
-		}
 		$albumlist = array();
 		genAlbumList($albumlist);
 		//	remove dynamic albums--can't upload to them
@@ -94,10 +91,10 @@ foreach ($albumlist as $key => $value) {
 ?>);
 			// ]]> -->
 		</script>
+		<?php zp_apply_filter('admin_note', 'upload', 'images'); ?>
+		<h1><?php echo gettext("Upload Images"); ?></h1>
 
 		<div class="tabbox">
-			<?php zp_apply_filter('admin_note', 'upload', 'images'); ?>
-			<h1><?php echo gettext("Upload Images"); ?></h1>
 			<p>
 				<?php
 				natcasesort($_zp_supported_images);

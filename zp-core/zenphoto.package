@@ -2125,6 +2125,8 @@ zp-core/zp-extensions/rss
 zp-core/zp-extensions/rss/rss.css
 zp-core/zp-extensions/search_statistics
 zp-core/zp-extensions/search_statistics/search_analysis.php
+zp-core/zp-extensions/seo_cleanup
+zp-core/zp-extensions/seo_cleanup/admin_tab.php
 zp-core/zp-extensions/site_upgrade
 zp-core/zp-extensions/site_upgrade/closed.htm
 zp-core/zp-extensions/site_upgrade/closed.php
@@ -2454,4 +2456,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-2456
+2458

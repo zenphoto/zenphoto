@@ -20,11 +20,10 @@ printAdminHeader('development', gettext('rewriteTokens'));
 		<div id="main">
 			<?php printTabs(); ?>
 		<div id="content">
-			<?php zp_apply_filter('admin_note', 'development', ''); ?>
 			<div id="container">
-				<?php printSubtabs(); ?>
+				<?php zp_apply_filter('admin_note', 'development', ''); ?>
+				<h1><?php echo gettext('ZenPhoto20 filters'); ?></h1>
 				<div class="tabbox">
-					<h1><?php echo gettext('ZenPhoto20 filters'); ?></h1>
 					<?php
 					echo '<div style="float:left;width:70%;">';
 					include ('intro.html');

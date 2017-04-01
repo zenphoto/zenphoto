@@ -113,7 +113,7 @@ echo "\n</head>";
 			<h1><?php printf(gettext('Edit Album: <em>%1$s%2$s</em>'), $link, $alb); ?></h1>
 			<?php
 			$images = $album->getImages();
-			$subtab = printSubtabs();
+			$subtab = getCurrentTab();
 
 			$parent = dirname($album->name);
 			if ($parent == '/' || $parent == '.' || empty($parent)) {

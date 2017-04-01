@@ -17,6 +17,7 @@ foreach (getEnabledPlugins() as $extension => $plugin) {
 	if ($plugin['priority'] & CLASS_PLUGIN)
 		require_once($plugin['path']);
 }
+$zenphoto_tabs = $_SESSION['navigation_tabs']; //	Remembered since we are not loading all the plugins
 
 require_once(dirname(__FILE__) . '/template-functions.php');
 
@@ -25,6 +26,7 @@ if (isset($_REQUEST['album'])) {
 } else {
 	$localrights = NULL;
 }
+
 admin_securityChecks($localrights, $return = currentRelativeURL());
 
 XSRFdefender('refresh');
@@ -131,8 +133,6 @@ if (isset($_GET['refresh'])) {
 	$metaURL = $starturl = '?' . $type . 'refresh=start' . $albumparm . '&amp;XSRFToken=' . getXSRFToken('refresh') . $ret;
 }
 
-$zenphoto_tabs['overview']['subtabs'] = array(gettext('Refresh') => '');
-
 printAdminHeader($tab, 'Refresh');
 if (!empty($metaURL)) {
 	?>
@@ -146,9 +146,8 @@ echo "\n" . '<div id="main">';
 printTabs();
 ?>
 <div id="content">
-	<?php printSubtabs(); ?>
+	<h1><?php echo $title; ?></h1>
 	<div class="tabbox">
-		<h1><?php echo $title; ?></h1>
 		<?php
 		if (isset($_GET['refresh'])) {
 			if (empty($imageid)) {

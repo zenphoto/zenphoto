@@ -205,6 +205,7 @@ printAdminHeader('overview');
 </script>
 <?php
 echo "\n</head>";
+
 if (!zp_loggedin()) {
 	// If they are not logged in, display the login form and exit
 	?>
@@ -234,7 +235,7 @@ if (!zp_loggedin()) {
 				</div>
 				<?php
 			}
-			zp_apply_filter('admin_note', 'Overview', NULL);
+			zp_apply_filter('admin_note', 'overview', '');
 			$buttonlist = array();
 
 			$curdir = getcwd();

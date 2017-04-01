@@ -12,7 +12,6 @@ require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 admin_securityChecks(NULL, currentRelativeURL());
 
 $admins = $_zp_authority->getAdministrators();
-$zenphoto_tabs['overview']['subtabs'] = array(gettext('Mailing') => '');
 
 printAdminHeader('overview', 'Mailing');
 ?>
@@ -22,10 +21,9 @@ printAdminHeader('overview', 'Mailing');
 	<div id="main">
 		<?php printTabs(); ?>
 		<div id="content">
-			<?php printSubtabs('Mailing'); ?>
+			<?php zp_apply_filter('admin_note', 'user_mailing', ''); ?>
+			<h1><?php echo gettext('User mailing list'); ?></h1>
 			<div class="tabbox">
-				<?php zp_apply_filter('admin_note', 'user_mailing', ''); ?>
-				<h1><?php echo gettext('User mailing list'); ?></h1>
 				<p><?php echo gettext("A tool to send e-mails to all registered users who have provided an e-mail address. There is always a copy sent to the current admin and all e-mails are sent as <em>blind copies</em>."); ?></p>
 				<?php
 				if (!zp_has_filter('sendmail')) {

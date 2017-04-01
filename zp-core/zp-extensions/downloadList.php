@@ -42,7 +42,7 @@ $plugin_author = "Stephen Billard (sbillard), Malte Müller (acrylian)";
 
 $option_interface = "downloadList";
 
-zp_register_filter('admin_utilities_buttons', 'DownloadList::button');
+zp_register_filter('admin_tabs', 'DownloadList::admin_tabs');
 
 /**
  * Plugin option handling class
@@ -142,7 +142,7 @@ class DownloadList {
 							 name="disclose_password_downloadList"
 							 id="disclose_password_downloadList"
 							 onclick="passwordClear('_downloadList');
-									 togglePassword('_downloadList');"><?php echo gettext('Show password'); ?>
+											 togglePassword('_downloadList');"><?php echo gettext('Show password'); ?>
 			</label>
 			<br />
 			<span class="password_field__downloadList">
@@ -249,23 +249,10 @@ class DownloadList {
 		}
 	}
 
-	/**
-	 * Admin overview button for download statistics utility
-	 */
-	static function button($buttons) {
-		$buttons[] = array(
-				'category' => gettext('Info'),
-				'enable' => true,
-				'button_text' => gettext('Download statistics'),
-				'formname' => 'downloadstatistics_button',
-				'action' => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/downloadList/download_statistics.php',
-				'icon' => WEBPATH . '/' . ZENFOLDER . '/images/bar_graph.png',
-				'title' => gettext('Counts of downloads'),
-				'alt' => '',
-				'hidden' => '',
-				'rights' => ADMIN_RIGHTS,
-		);
-		return $buttons;
+	static function admin_tabs($tabs) {
+		$tabs['overview']['subtabs'][gettext('Download statistics')] = '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/downloadList/download_statistics.php?tab=downloadlist';
+
+		return $tabs;
 	}
 
 	static function noFile() {

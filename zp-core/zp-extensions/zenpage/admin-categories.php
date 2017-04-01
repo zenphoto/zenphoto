@@ -103,8 +103,12 @@ zenpageJSCSS();
 		?>
 		<div id="content">
 			<?php
-			$subtab = printSubtabs();
+			$subtab = getCurrentTab();
 			?>
+			<h1>
+				<?php echo gettext('Categories'); ?>
+			</h1>
+
 			<div id="tab_articles" class="tabbox">
 				<?php
 				zp_apply_filter('admin_note', 'categories', $subtab);
@@ -119,8 +123,7 @@ zenpageJSCSS();
 					}
 				}
 				?>
-				<h1>
-					<?php echo gettext('Categories'); ?><span class="zenpagestats"><?php printCategoriesStatistic(); ?></span></h1>
+				<span class="zenpagestats"><?php printCategoriesStatistic(); ?></span>
 				<form class="dirtylistening" onReset="setClean('checkeditems');" action="admin-categories.php?page=news&amp;tab=categories" method="post" id="checkeditems" name="checkeditems" onsubmit="return confirmAction();" autocomplete="off">
 					<?php XSRFToken('checkeditems'); ?>
 					<input	type="hidden" name="action" id="action" value="update" />

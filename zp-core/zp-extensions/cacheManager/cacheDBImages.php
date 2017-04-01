@@ -15,8 +15,7 @@ admin_securityChecks(NULL, $return = currentRelativeURL());
 
 XSRFdefender('cacheDBImages');
 
-$zenphoto_tabs['overview']['subtabs'] = array(gettext('Cache images')				 => PLUGIN_FOLDER . '/cacheManager/cacheImages.php?page=overview&tab=images',
-				gettext('Cache stored images') => PLUGIN_FOLDER . '/cacheManager/cacheDBImages.php?page=overview&tab=DB&XSRFToken=' . getXSRFToken('cacheDBImages'));
+
 printAdminHeader('overview', 'DB');
 echo "\n</head>";
 echo "\n<body>";
@@ -25,12 +24,11 @@ printLogoAndLinks();
 echo "\n" . '<div id="main">';
 printTabs();
 echo "\n" . '<div id="content">';
+
+zp_apply_filter('admin_note', 'cache', '');
+echo '<h1>' . gettext('Cach images stored in the database') . '</h1>';
 ?>
-<?php printSubtabs('Cache'); ?>
 <div class="tabbox">
-	<?php
-	zp_apply_filter('admin_note', 'cache', '');
-	?>
 	<p class="notebox">
 		<?php
 		echo gettext('This utility scans the database for images references that have been stored there.') . ' ';
@@ -40,9 +38,9 @@ echo "\n" . '<div id="content">';
 	</p>
 	<?php
 	$tables = array('albums' => array('desc'),
-					'images' => array('desc'),
-					'pages'	 => array('content', 'extracontent'),
-					'news'	 => array('content', 'extracontent'));
+			'images' => array('desc'),
+			'pages' => array('content', 'extracontent'),
+			'news' => array('content', 'extracontent'));
 	?>
 	<form name="size_selections" action="?select" method="post">
 		<?php

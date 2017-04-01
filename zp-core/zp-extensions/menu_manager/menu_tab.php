@@ -128,14 +128,15 @@ printSortableHead();
 				}
 				// ]]> -->
 			</script>
+			<?php
+			zp_apply_filter('admin_note', 'menu', '');
+			?>
+
 			<h1><?php
 				echo gettext("Menu Manager") . "<small>";
 				printf(gettext(" (Menu: %s)"), html_encode($menuset));
 				echo "</small>";
 				?></h1>
-			<?php
-			zp_apply_filter('admin_note', 'menu', '');
-			?>
 			<form class="dirtylistening" onReset="setClean('update_form');" id="update_form" action="menu_tab.php?menuset=<?php echo $menuset; ?>" method="post" name="update" onsubmit="return confirmAction();" autocomplete="off">
 				<?php XSRFToken('update_menu'); ?>
 				<p>
@@ -178,10 +179,10 @@ printSortableHead();
 							echo $selector;
 							printItemStatusDropdown();
 							$checkarray = array(
-											gettext('*Bulk actions*')	 => 'noaction',
-											gettext('Delete')					 => 'deleteall',
-											gettext('Show')						 => 'showall',
-											gettext('Hide')						 => 'hideall'
+									gettext('*Bulk actions*') => 'noaction',
+									gettext('Delete') => 'deleteall',
+									gettext('Show') => 'showall',
+									gettext('Hide') => 'hideall'
 							);
 							?>
 							<span style="float:right">

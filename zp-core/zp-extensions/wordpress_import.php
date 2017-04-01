@@ -15,22 +15,11 @@ if (defined('OFFSET_PATH')) {
 	$plugin_author = "Malte Müller (acrylian)";
 
 
-	zp_register_filter('admin_utilities_buttons', 'wordpress_import_button');
+	zp_register_filter('admin_tabs', 'wordpress_import_admin_tabs');
 
-	function wordpress_import_button($buttons) {
-		$buttons[] = array(
-						'category'		 => gettext('Admin'),
-						'enable'			 => true,
-						'button_text'	 => gettext('Wordpress Importer'),
-						'formname'		 => 'wordpress_import.php',
-						'action'			 => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/wordpress_import.php',
-						'icon'				 => WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/wordpress_import/wpmini-blue.png',
-						'title'				 => gettext('An importer for Wordpress posts and pages to Zenpage.'),
-						'alt'					 => '',
-						'hidden'			 => '',
-						'rights'			 => ADMIN_RIGHTS
-		);
-		return $buttons;
+	function wordpress_import_admin_tabs($tabs) {
+		$tabs['overview']['subtabs'][gettext('Wordpress')] = '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/wordpress_import.php';
+		return $tabs;
 	}
 
 } else {
@@ -356,7 +345,6 @@ if (defined('OFFSET_PATH')) {
 			$postinfo .= "<li class='import-nothing'>" . gettext("No posts or pages to import.") . "</li>";
 		}
 	} // if db data set
-	$zenphoto_tabs['overview']['subtabs'] = array(gettext('Wordpress') => '');
 	printAdminHeader('overview', 'wordpress');
 	if (!empty($metaURL) && $postcount < $posttotalcount) {
 		?>
@@ -384,10 +372,9 @@ if (defined('OFFSET_PATH')) {
 		<div id="main">
 			<?php printTabs(); ?>
 			<div id="content">
-				<?php printSubtabs('Wordpress'); ?>
+				<?php zp_apply_filter('admin_note', 'wordpress', ''); ?>
+				<h1><?php echo (gettext('Wordpress Importer')); ?></h1>
 				<div class="tabbox">
-					<?php zp_apply_filter('admin_note', 'wordpress', ''); ?>
-					<h1><?php echo (gettext('Wordpress Importer')); ?></h1>
 					<?php if (!isset($_REQUEST['dbname']) && !isset($_REQUEST['dbuser']) && !isset($_REQUEST['dbpass']) && !isset($_REQUEST['dbhost']) && !isset($_GET['refresh'])) { ?>
 						<p><?php echo gettext("An importer for <strong>Wordpress 3.x or newer</strong> to the Zenpage CMS plugin that imports the following:"); ?></p>
 						<ul>
@@ -397,7 +384,7 @@ if (defined('OFFSET_PATH')) {
 							<li><?php echo gettext("<strong>Post tags => zenphoto tags including assignment to their article</strong>"); ?></li>
 							<li><?php echo gettext("<strong>Post and page comments => zenphoto comments including assignment to their article</strong>"); ?></li>
 						</ul>
-							<p class="notebox">
+						<p class="notebox">
 							<?php echo gettext("<strong>IMPORTANT: </strong>MySQLi must be selected as the database handler on the Zenphoto options (generally the default)."); ?>
 						</p
 						<p class="notebox">

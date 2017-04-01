@@ -48,11 +48,11 @@ if (isset($_GET['action'])) {
 				}
 				clearstatcache();
 				$_zp_mutex->unlock();
-				unset($_GET['tab']); // it is gone, after all
 				if (basename($file) == 'security.log') {
 					zp_apply_filter('admin_log_actions', true, $file, $action); // have to record the fact
 				}
-				break;
+				header('location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-logs.php');
+				exitZP();
 			case 'download_log':
 				putZip($what . '.zip', $file);
 				exitZP();
@@ -60,12 +60,7 @@ if (isset($_GET['action'])) {
 	}
 }
 
-list($subtabs, $default, $new) = getLogTabs();
-$zenphoto_tabs['logs'] = array('text' => gettext("logs"),
-		'link' => WEBPATH . "/" . ZENFOLDER . '/admin-logs.php?page=logs',
-		'subtabs' => $subtabs,
-		'alert' => $new,
-		'default' => $default);
+list($logtabs, $default, $new) = getLogTabs();
 
 printAdminHeader('logs', $default);
 echo "\n</head>";
@@ -77,9 +72,20 @@ echo "\n</head>";
 	<div id="main">
 		<?php
 		printTabs();
+		$subtab = getCurrentTab();
+		setOption('logviewed_' . $subtab, time());
+		foreach ($logtabs as $text => $link) {
+			preg_match('~tab=(.*?)(&|$)~', $link, $matches);
+			if (isset($matches[1])) {
+				if ($matches[1] == $subtab) {
+					$logname = $text;
+					break;
+				}
+			}
+		}
 		?>
 		<div id="content">
-			<h1><?php echo gettext("View logs:"); ?></h1>
+			<h1><?php echo ucfirst($logname); ?></h1>
 
 			<div id="container">
 				<?php
@@ -93,11 +99,6 @@ echo "\n</head>";
 					} else {
 						$logtext = array();
 					}
-					?>
-
-					<?php
-					$subtab = printSubtabs();
-					setOption('logviewed_' . $subtab, time());
 					?>
 
 					<!-- A log -->

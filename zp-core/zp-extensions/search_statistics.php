@@ -30,7 +30,7 @@ $plugin_author = "Stephen Billard (sbillard)";
 $option_interface = 'search_statistics';
 
 zp_register_filter('search_statistics', 'search_statistics::handler');
-zp_register_filter('admin_utilities_buttons', 'search_statistics::button');
+zp_register_filter('admin_tabs', 'search_statistics::admin_tabs');
 
 /**
  * Option handler class
@@ -60,18 +60,18 @@ class search_statistics {
 	 * @return array
 	 */
 	function getOptionsSupported() {
-		return array(gettext('Threshold (success)') => array('key'		 => 'search_statistics_threshold', 'type'	 => OPTION_TYPE_NUMBER,
-										'order'	 => 1,
-										'desc'	 => gettext('Show the top <em>Threshold</em> criteria of successful searches. (Searches which returned at least one result.)')),
-						gettext('Threshold (failed)')	 => array('key'		 => 'search_statistics_failed_threshold', 'type'	 => OPTION_TYPE_NUMBER,
-										'order'	 => 2,
-										'desc'	 => gettext('Show the top <em>Threshold</em> criteria of searches that failed.')),
-						gettext('Threshold (terms)')	 => array('key'		 => 'search_statistics_terms_threshold', 'type'	 => OPTION_TYPE_NUMBER,
-										'order'	 => 3,
-										'desc'	 => gettext('Show the top <em>Threshold</em> terms used in searches.')),
-						gettext('Threshold (IP)')			 => array('key'		 => 'search_statistics_ip_threshold', 'type'	 => OPTION_TYPE_NUMBER,
-										'order'	 => 4,
-										'desc'	 => gettext('Show the top <em>Threshold</em> IPs that have performed searches.'))
+		return array(gettext('Threshold (success)') => array('key' => 'search_statistics_threshold', 'type' => OPTION_TYPE_NUMBER,
+						'order' => 1,
+						'desc' => gettext('Show the top <em>Threshold</em> criteria of successful searches. (Searches which returned at least one result.)')),
+				gettext('Threshold (failed)') => array('key' => 'search_statistics_failed_threshold', 'type' => OPTION_TYPE_NUMBER,
+						'order' => 2,
+						'desc' => gettext('Show the top <em>Threshold</em> criteria of searches that failed.')),
+				gettext('Threshold (terms)') => array('key' => 'search_statistics_terms_threshold', 'type' => OPTION_TYPE_NUMBER,
+						'order' => 3,
+						'desc' => gettext('Show the top <em>Threshold</em> terms used in searches.')),
+				gettext('Threshold (IP)') => array('key' => 'search_statistics_ip_threshold', 'type' => OPTION_TYPE_NUMBER,
+						'order' => 4,
+						'desc' => gettext('Show the top <em>Threshold</em> IPs that have performed searches.'))
 		);
 	}
 
@@ -79,20 +79,9 @@ class search_statistics {
 
 	}
 
-	static function button($buttons) {
-		$buttons[] = array(
-						'category'		 => gettext('Info'),
-						'enable'			 => true,
-						'button_text'	 => gettext('Search statistics'),
-						'formname'		 => 'search_statistics_button',
-						'action'			 => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/search_statistics/search_analysis.php',
-						'icon'				 => 'images/bar_graph.png',
-						'title'				 => gettext('Analyze searches'),
-						'alt'					 => '',
-						'hidden'			 => '',
-						'rights'			 => OVERVIEW_RIGHTS,
-		);
-		return $buttons;
+	static function admin_tabs($tabs) {
+		$tabs['overview']['subtabs'][gettext('Search analysis')] = '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/search_statistics/search_analysis.php?tab=searchstat';
+		return $tabs;
 	}
 
 	/**

@@ -43,7 +43,9 @@ $legacyReplacements = array(
 		'\$_zp_current_zenpage_page' => '$_zp_current_page',
 		'->getFullImage\(' => '->getFullImageURL(',
 		'tinymce4_' => 'tinymce_',
-		'(setOptionDefault\([\'"]colorbox_.*[\'"],.*\);?)' => '$1 /* TODO:replace with a call to colorbox::registerScripts(); */'
+		'(setOptionDefault\([\'"]colorbox_.*[\'"],.*\);?)' => '$1 /* TODO:replace with a call to colorbox::registerScripts(); */',
+		'getSubtabs' => 'getCurrentTab	/* TODO:replaced printSubtabs. Remove this if you do not use the return value */',
+		'printSubtabs' => 'getCurrentTab	/* TODO:replaced printSubtabs. Remove this if you do not use the return value */'
 );
 
 /**
@@ -113,11 +115,10 @@ printTabs();
 echo "\n" . '<div id="content">';
 zp_apply_filter('admin_note', 'development', '');
 echo "\n" . '<div id="container">';
-printSubtabs();
 ?>
-<div class="tabbox">
-	<h1><?php echo gettext('Convert legacy Zenphoto themes and plugins'); ?></h1>
+<h1><?php echo gettext('Convert legacy Zenphoto themes and plugins'); ?></h1>
 
+<div class="tabbox">
 	<?php
 	if (isset($counter)) {
 		?>

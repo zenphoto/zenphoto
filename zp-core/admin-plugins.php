@@ -25,16 +25,13 @@ if (isset($_GET['subpage'])) {
 }
 
 $_GET['page'] = 'plugins';
-list($tabs, $subtab, $pluginlist, $paths, $member) = getPluginTabs();
+list($tabs, $subtab, $pluginlist, $paths, $member, $classXlate) = getPluginTabs();
 
 /* handle posts */
 if (isset($_GET['action'])) {
 	if ($_GET['action'] == 'saveplugins') {
 		if (isset($_POST['checkForPostTruncation'])) {
 			XSRFdefender('saveplugins');
-
-			var_dump($_POST);
-
 			$plugins = array();
 			foreach ($_POST as $plugin => $value) {
 				preg_match('/^present_zp_plugin_(.*)$/xis', $plugin, $matches);
@@ -91,7 +88,6 @@ if (isset($_GET['action'])) {
 		} else {
 			$notify = '&post_error';
 		}
-		exit();
 
 		header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-plugins.php?page=plugins&tab=" . html_encode($subtab) . "&subpage=" . html_encode($subpage) . $notify);
 		exitZP();
@@ -135,13 +131,16 @@ if ($saved) {
 	echo '</div>';
 }
 ?>
-<h1><?php echo gettext('Plugins'); ?></h1>
-<?php
-$subtab = getSubtabs();
-?>
+<h1>
+	<?php
+	$subtab = getCurrentTab();
+	printf(gettext('%1$s plugins'), ucfirst(@$classXlate[$subtab]));
+	?>
+</h1>
+
 <div class="tabbox">
 	<?php
-	zp_apply_filter('admin_note', 'users', 'users');
+	zp_apply_filter('admin_note', 'plugins', '');
 	if (isset($_GET['post_error'])) {
 		echo '<div class="errorbox">';
 		echo "<h2>" . gettext('Error') . "</h2>";

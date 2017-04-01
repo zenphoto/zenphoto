@@ -25,7 +25,7 @@ $plugin_author = 'Malte Müller (acrylian)';
 
 $option_interface = 'sitemap';
 
-zp_register_filter('admin_utilities_buttons', 'sitemap::button');
+zp_register_filter('admin_tabs', 'sitemap::admin_tabs');
 
 $sitemapfolder = SERVERPATH . '/' . STATIC_CACHE_FOLDER . '/sitemap';
 if (!file_exists($sitemapfolder)) {
@@ -194,25 +194,9 @@ class sitemap {
 
 	}
 
-	/**
-	 * creates the Utilities button to purge the static sitemap cache
-	 * @param array $buttons
-	 * @return array
-	 */
-	static function button($buttons) {
-		$buttons[] = array(
-				'category' => gettext('Seo'),
-				'enable' => true,
-				'button_text' => gettext('Sitemap tools'),
-				'formname' => 'sitemap_button',
-				'action' => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/sitemap-extended/sitemap-extended-admin.php',
-				'icon' => 'images/cache.png',
-				'title' => gettext('Generate or purge sitemap cache files.'),
-				'alt' => '',
-				'hidden' => '',
-				'rights' => ADMIN_RIGHTS
-		);
-		return $buttons;
+	static function admin_tabs($tabs) {
+		$tabs['overview']['subtabs'][gettext('Sitemap')] = '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/sitemap-extended/sitemap-extended-admin.php?tab=sitemap';
+		return $tabs;
 	}
 
 }

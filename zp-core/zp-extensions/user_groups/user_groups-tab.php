@@ -146,9 +146,19 @@ echo '</head>' . "\n";
 				echo "<h2>" . gettext('Saved') . "</h2>";
 				echo '</div>';
 			}
-			$subtab = printSubtabs();
+			$subtab = getCurrentTab();
 			?>
-			<div id="tab_users" class="tabbox">
+			<h1>
+				<?php
+				if ($subtab == 'groups') {
+					echo gettext('Groups');
+				} else {
+					echo gettext('Assignments');
+				}
+				?>
+			</h1>
+
+			<div id = "tab_users" class = "tabbox">
 				<?php
 				zp_apply_filter('admin_note', 'users', $subtab);
 				switch ($subtab) {

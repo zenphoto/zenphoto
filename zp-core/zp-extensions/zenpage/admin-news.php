@@ -82,7 +82,7 @@ updatePublished('news');
 </head>
 <body>
 	<?php
-	$subtab = getSubtabs();
+	$subtab = getCurrentTab();
 	if (isset($_GET['author'])) {
 		$cur_author = sanitize($_GET['author']);
 	} else {
@@ -95,9 +95,10 @@ updatePublished('news');
 		printTabs();
 		?>
 		<div id="content">
+			<h1>
+				<?php echo gettext('Articles'); ?>
+			</h1>
 			<div id = "container">
-
-				<?php printSubtabs(); ?>
 				<div id="tab_articles" class="tabbox">
 					<?php
 					zp_apply_filter('admin_note', 'news', $subtab);
@@ -112,8 +113,6 @@ updatePublished('news');
 							echo '<p class="' . $type . '">' . implode('<br />', $list) . '</p>';
 						}
 					}
-
-
 
 					if (isset($_GET['author'])) {
 						echo "<em><small>" . html_encode(sanitize($_GET['author'])) . '</small></em>';
@@ -205,7 +204,7 @@ updatePublished('news');
 					}
 					?>
 					<span class="zenpagestats"><?php printNewsStatistic($articles, count($resultU)); ?></span>
-					</h1>
+
 					<div class="floatright">
 						<?php
 						printAuthorDropdown();

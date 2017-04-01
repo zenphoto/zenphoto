@@ -111,7 +111,7 @@ class create_album {
 	 * HTML Header JS
 	 */
 	static function JS() {
-		global $_zp_admin_tab, $_zp_admin_subtab, $_zp_gallery;
+		global $_zp_admin_tab, $_zp_gallery;
 		if ($_zp_admin_tab == 'users') {
 			$albums = $_zp_gallery->getAlbums(0);
 			?>

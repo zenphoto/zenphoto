@@ -3,25 +3,25 @@
 /* Main Layout
  ------------------------------ */
 #logo {
-    float: right;
-    text-align: right;
-    margin: 20px 30px 0px 10px;
+	float: right;
+	text-align: right;
+	margin: 20px 30px 0px 10px;
 }
 
 #links {
-    float: left;
-    font-size: 100%;
-    margin: 40px 0 0 30px;
-    direction:rtl;
+	float: left;
+	font-size: 100%;
+	margin: 40px 0 0 30px;
+	direction:rtl;
 }
 
 #content {
-    clear: right;
+	clear: right;
 }
 
 #main {
-    text-align: right;
-    direction: rtl;
+	text-align: right;
+	direction: rtl;
 }
 
 
@@ -34,79 +34,77 @@ form td {text-align:right !important;}
 /* Menu
  ------------------------------ */
 
-#main > .nav {width:80em !important;}
-
-.nav {
-    text-align: right;
-    _padding: 0 30 0 0;
-    margin: 0 30px 0 0;
-    float: right;
+#content {
+	padding-right: 14em;
 }
 
-.nav li a {
-    float: right;
-    margin: 0px 0px 0px 8px;
+.navigation ul li a{
+	text-align: right;
 }
 
-.subnav {
-	_padding: 0 30px 0 0;
-	margin: 0 30px 0 0;
-	float:right; 
+.navigation ul ul {
+  top: 0;
+  left: -99%;
 }
 
-.subnav li {
-	display: inline;
+.navigation > ul > li > a {
+  border-right: 0px;
+	border-left: 0.3em solid #34A65F;
 }
 
-.subnav li a {
-	margin: 0px 0px 0px 8px;
-	float: right;
+.navigation ul li.has-sub > a:after {
+	content: '';
 }
 
+.navigation ul li.has-sub > a:before {
+  content: '»';
+	position: absolute;
+  left: 1em;
+}
 
 /* icon legend
  ------------------*/
 #administration {
-    float: right;
-    text-align: right;
-    font-size: 2em;
-    text-decoration: none;
+	float: right;
+	text-align: right;
+	font-size: 2em;
+	text-decoration: none;
 }
 
 /* Individual Page Styles
  ------------------------------ */
 #overview-leftcolumn {
-    width: 45%;
-    float: right;
+	width: 45%;
+	float: right;
 }
 
 #overview-rightcolumn {
-    width: 50%;
-    float: right;
+	width: 50%;
+	float: right;
 }
 
 #overview-stats {
-    float: right;
-    width: 400px;
-    margin: 0 10px 10px 0;
+	float: right;
+	width: 400px;
+	margin: 0 10px 10px 0;
 }
 
 #overview-maint, #overview-utility {
-    float: right;
+	float: right;
 }
 
 
 #overview-comments, #overview-gallerystats, #overview-info, #overview-news {
-    float: right;
+	float: right;
 }
 
 #overview-comments h3, #overview-gallerystats h3, #overview-utility h2, #overview-info h3 {
-    padding-right: 10px;
+	padding-right: 10px;
 }
 
 /* css for the log viewer */
 .log_buttons a, .buttons button {
-    float: right;
+	float: right;
 }
 
 
@@ -116,7 +114,7 @@ form td {text-align:right !important;}
 	padding-left:0;
 }
 
-/* CSS for tag new lists 
+/* CSS for tag new lists
 -----------------------------*/
 .tagnewlist{
 	padding-right: 4px;
@@ -135,7 +133,7 @@ form td {text-align:right !important;}
 }
 .buttons a,.buttons button {
 	float: right;
-	margin: 0 0 0 7px;	
+	margin: 0 0 0 7px;
 	padding: 5px 7px 6px 10px; /* Links */
 }
 

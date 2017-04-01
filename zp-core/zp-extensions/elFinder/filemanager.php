@@ -44,13 +44,11 @@ echo "\n</head>";
 			<?php ?>
 			<div id="container">
 				<?php
-				$subtab = getSubtabs();
-				if (!$theme)
-					printSubtabs();
+				$subtab = getCurrentTab();
+				zp_apply_filter('admin_note', 'upload', $subtab);
 				?>
+				<h1><?php echo $title; ?></h1>
 				<div class="tabbox">
-					<?php zp_apply_filter('admin_note', 'upload', $subtab); ?>
-					<h1><?php echo $title; ?></h1>
 					<script type="text/javascript">
 						$().ready(function () {
 							var elf = $('#elfinder').elfinder({

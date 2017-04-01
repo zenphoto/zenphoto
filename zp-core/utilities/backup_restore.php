@@ -20,19 +20,6 @@ require_once(dirname(dirname(__FILE__)) . '/admin-globals.php');
 require_once(dirname(dirname(__FILE__)) . '/template-functions.php');
 $signaure = getOption('zenphoto_install');
 
-$buttonlist[] = array(
-		'category' => gettext('Admin'),
-		'enable' => true,
-		'button_text' => gettext('Backup/Restore'),
-		'formname' => 'backup_restore.php',
-		'action' => FULLWEBPATH . '/' . ZENFOLDER . '/utilities/backup_restore.php',
-		'icon' => 'images/folder.png',
-		'title' => gettext('Backup and restore your gallery database.'),
-		'alt' => '',
-		'hidden' => '',
-		'rights' => ADMIN_RIGHTS
-);
-
 if (!$_zp_current_admin_obj || $_zp_current_admin_obj->getID()) {
 	$rights = NULL;
 } else {
@@ -136,7 +123,6 @@ function writeHeader($type, $value) {
 if ($_zp_current_admin_obj->reset) {
 	printAdminHeader('restore');
 } else {
-	$zenphoto_tabs['overview']['subtabs'] = array(gettext('Backup') => '');
 	printAdminHeader('overview', 'backup');
 }
 
@@ -496,22 +482,17 @@ if (isset($_GET['compression'])) {
 	<div id="main">
 		<?php printTabs(); ?>
 		<div id="content">
-			<?php
-			if (!$_zp_current_admin_obj->reset) {
-				printSubtabs();
-			}
-			?>
+			<?php zp_apply_filter('admin_note', 'backkup', ''); ?>
+			<h1>
+				<?php
+				if ($_zp_current_admin_obj->reset) {
+					echo (gettext('Restore your Database'));
+				} else {
+					echo (gettext('Backup and Restore your Database'));
+				}
+				?>
+			</h1>
 			<div class="tabbox">
-				<?php zp_apply_filter('admin_note', 'backkup', ''); ?>
-				<h1>
-					<?php
-					if ($_zp_current_admin_obj->reset) {
-						echo (gettext('Restore your Database'));
-					} else {
-						echo (gettext('Backup and Restore your Database'));
-					}
-					?>
-				</h1>
 				<?php
 				echo $messages;
 				$compression_level = getOption('backup_compression');
