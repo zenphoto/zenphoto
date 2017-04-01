@@ -710,6 +710,22 @@ class Image extends MediaObject {
 	}
 
 	/**
+	 * Returns the side car files associated with the image
+	 *
+	 * @return array
+	 */
+	function getSidecars() {
+		$files = safe_glob(stripSuffix($this->localpath) . '.*');
+		$result = array();
+		foreach ($files as $file) {
+			if (!is_dir($file) && in_array(strtolower(getSuffix($file)), $this->sidecars)) {
+				$result[basename($file)] = $file;
+			}
+		}
+		return $result;
+	}
+
+	/**
 	 * Returns the album that holds this image
 	 *
 	 * @return object

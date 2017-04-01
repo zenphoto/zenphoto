@@ -321,12 +321,8 @@ class AlbumZip {
 		}
 
 		if ($level && !$fromcache) { // we don't collect the sidecars for the base album
-			foreach ($album->sidecars as $suffix) {
-				$f = '/' . basename($album->name) . '.' . $suffix;
-				$full = ALBUM_FOLDER_SERVERPATH . internalToFilesystem($album->name) . '.' . $suffix;
-				if (file_exists(internalToFilesystem($full))) {
-					$_zp_zip_list[$full] = $f;
-				}
+			foreach ($album->getSidecars() as $name => $path) {
+				$_zp_zip_list[$path] = '/' . $name;
 			}
 		}
 
@@ -347,15 +343,12 @@ class AlbumZip {
 			$_zp_zip_list[$full] = $f;
 
 			if (!$fromcache) {
-				$f = stripSuffix($f);
-				$full = stripSuffix($full);
-				foreach ($image->sidecars as $suffix) {
-					if (file_exists($full . '.' . $suffix)) {
-						$_zp_zip_list[$full . '.' . $suffix] = $f . '.' . $suffix;
-					}
+				foreach ($image->getSidecars() as $name => $path) {
+					$_zp_zip_list[$path] = $albumroot . $name;
 				}
 			}
 		}
+
 		if ($subalbums) {
 			foreach ($album->getAlbums() as $albumname) {
 				$subalbum = newAlbum($albumname);
