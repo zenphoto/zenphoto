@@ -1116,6 +1116,14 @@ zp-core/toolbox.css
 zp-core/zenphoto-rewrite.txt
 zp-core/zenphoto.package
 zp-core/zenphoto_cfg.txt
+zp-core/admin_options
+zp-core/admin_options/gallery.php
+zp-core/admin_options/general.php
+zp-core/admin_options/image.php
+zp-core/admin_options/plugin.php
+zp-core/admin_options/search.php
+zp-core/admin_options/security.php
+zp-core/admin_options/theme.php
 zp-core/exif
 zp-core/exif/exif.php
 zp-core/exif/exifTranslations.php
@@ -2456,4 +2464,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-2458
+2466
