@@ -151,6 +151,11 @@ p {
 	margin-bottom: 0.8em;
 }
 
+.padded {
+	padding-left: 8px;;
+	padding-right: 8px;
+}
+
 code {
 	font-family: Courier, Monaco, monospace;
 	font-size: 1.1em;
@@ -631,21 +636,26 @@ table.options tr td {
 }
 
 .option_desc_hidden {
-	position: relative;
+	position: fixed;
 	z-index: 1000;
-	margin-left: -350px;
+	margin-left: -400px;
 	max-width: 400px;
 	visibility: hidden;
 	background: white !important;
 	padding: 5px;
 	border: 1px solid #dedede;
+	-moz-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
 	height: 25px;
 }
 
 .option_info:hover > div {
 	visibility: visible;
-	height: 100%;
+	height: auto;
 	overflow-x: visible;
+	overflow-y: visible;
 }
 
 

@@ -821,7 +821,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 							?>
 							<td class="option_value">
 								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'radio-' . $postkey; ?>" value="1"<?php echo $disabled; ?> />
-								<?php generateRadiobuttonsFromArray($v, $row['buttons'], $postkey, $behind, 'checkboxlabel', $disabled); ?>
+								<?php generateRadiobuttonsFromArray($v, $row['buttons'], $postkey, $key, $behind, 'checkboxlabel', $disabled); ?>
 							</td>
 							<?php
 							break;
@@ -1022,7 +1022,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 							<?php
 							break;
 					}
-					if ($type != OPTION_TYPE_NOTE) {
+					if ($desc && $type != OPTION_TYPE_NOTE) {
 						?>
 						<td class="option_desc">
 							<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
@@ -1167,9 +1167,10 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 * @param string $currentvalue The current selected value
 	 * @param string $list the array of the list items form is localtext => buttonvalue
 	 * @param string $option the name of the option for the input field name
+	 * @param string $radioid the base ID value for the radio buttons
 	 * @param bool $behind set true to have the "text" before the button
 	 */
-	function generateRadiobuttonsFromArray($currentvalue, $list, $option, $behind = false, $class = 'checkboxlabel', $disabled = NULL) {
+	function generateRadiobuttonsFromArray($currentvalue, $list, $option, $radioid, $behind = false, $class = 'checkboxlabel', $disabled = NULL) {
 		foreach ($list as $text => $value) {
 			$checked = "";
 			if ($value == $currentvalue) {
@@ -1178,7 +1179,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			?>
 			<label<?php if ($class) echo ' class="' . $class . '"'; ?>>
 				<?php if ($behind) echo $text; ?>
-				<input type="radio" name="<?php echo $option; ?>" id="__<?php echo $option . '-' . $value; ?>" value="<?php echo $value; ?>"<?php echo $checked; ?><?php echo $disabled; ?> />
+				<input type="radio" name="<?php echo $option; ?>" id="__<?php echo $radioid . '-' . $value; ?>" value="<?php echo $value; ?>"<?php echo $checked; ?><?php echo $disabled; ?> />
 				<?php if (!$behind) echo $text; ?>
 			</label>
 			<?php

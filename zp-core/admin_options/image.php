@@ -258,7 +258,7 @@ function getOptionContent() {
 								</select>
 								<label id="image_sortdirection" style="display:<?php echo $dspd; ?>white-space:nowrap;">
 									<input type="checkbox" name="image_sortdirection"	value="1" <?php checked('1', $_zp_gallery->getSortDirection('image')); ?> />
-									<?php echo gettext("Descending"); ?>
+									<?php echo gettext("descending"); ?>
 								</label>
 							</span>
 
@@ -297,13 +297,13 @@ function getOptionContent() {
 						<td class="option_name"><?php echo gettext("Image quality"); ?></td>
 						<td class="option_value">
 							<p class="nowrap">
-								<?php putSlider(gettext('Normal Image'), 'imagequality', 0, 100, getOption('image_quality')); ?>
+								<?php putSlider(gettext('normal image'), 'imagequality', 0, 100, getOption('image_quality')); ?>
 							</p>
 							<p class="nowrap">
 								<?php putSlider(gettext('<em>full</em> Image'), 'fullimagequality', 0, 100, getOption('full_image_quality')); ?>
 							</p>
 							<p class="nowrap">
-								<?php putSlider(gettext('Thumbnail'), 'thumbquality', 0, 100, getOption('thumb_quality')); ?>
+								<?php putSlider(gettext('thumbnail'), 'thumbquality', 0, 100, getOption('thumb_quality')); ?>
 							</p>
 						</td>
 						<td class="option_desc">
@@ -366,15 +366,15 @@ function getOptionContent() {
 							<p class="nowrap">
 								<label>
 									<input type="checkbox" name="image_sharpen" value="1" <?php checked('1', getOption('image_sharpen')); ?> />
-									<?php echo gettext('Images'); ?>
+									<?php echo gettext('images'); ?>
 								</label>
 								<label>
 									<input type="checkbox" name="thumb_sharpen" value="1" <?php checked('1', getOption('thumb_sharpen')); ?> />
-									<?php echo gettext('Thumbs'); ?>
+									<?php echo gettext('thumbs'); ?>
 								</label>
 							</p>
 							<p class="nowrap">
-								<?php putSlider(gettext('Amount'), 'sharpen_amount', 0, 100, getOption('sharpen_amount')); ?>
+								<?php putSlider(gettext('amount'), 'sharpen_amount', 0, 100, getOption('sharpen_amount')); ?>
 							</p>
 
 							<table>
@@ -403,7 +403,7 @@ function getOptionContent() {
 						<td class="option_value">
 							<table>
 								<tr>
-									<td class="image_option_tablerow"><?php echo gettext('Images'); ?> </td>
+									<td class="image_option_tablerow"><?php echo gettext('images'); ?> </td>
 									<td class="image_option_tablerow">
 										<select id="fullimage_watermark" name="fullimage_watermark">
 											<?php $current = IMAGE_WATERMARK; ?>
@@ -416,7 +416,7 @@ function getOptionContent() {
 									</td>
 								</tr>
 								<tr>
-									<td class="image_option_tablerow"><?php echo gettext('Full sized images'); ?> </td>
+									<td class="image_option_tablerow"><?php echo gettext('full sized images'); ?> </td>
 									<td class="image_option_tablerow">
 										<select id="fullsizeimage_watermark" name="fullsizeimage_watermark">
 											<?php $current = FULLIMAGE_WATERMARK; ?>
@@ -438,7 +438,7 @@ function getOptionContent() {
 									<tr>
 										<td class="image_option_tablerow">
 											<?php
-											printf(gettext('%s thumbnails'), gettext($plugin));
+											printf(gettext('%s thumbnails'), lcfirst(gettext($plugin)));
 											if ($plugin != 'Image')
 												echo ' <strong>*</strong>';
 											?> </td>
@@ -501,7 +501,7 @@ function getOptionContent() {
 						<td class="option_name"><?php echo gettext("Caching concurrency"); ?></td>
 						<td class="option_value">
 							<p>
-								<?php putSlider(gettext('Limit'), 'imageProcessorConcurrency', 1, 60, getOption('imageProcessorConcurrency')); ?>
+								<?php putSlider(gettext('limit'), 'imageProcessorConcurrency', 1, 60, getOption('imageProcessorConcurrency')); ?>
 						</td>
 						<td class="option_desc">
 							<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
@@ -516,7 +516,7 @@ function getOptionContent() {
 						<td class="option_name"><?php echo gettext("Cache as"); ?></td>
 						<td class="option_value">
 							<?php $type = IMAGE_CACHE_SUFFIX; ?>
-							<input type="radio" name="image_cache_suffix" value=""<?php if (empty($type)) echo ' checked="checked"'; ?> />&nbsp;<?php echo gettext("Original"); ?>
+							<input type="radio" name="image_cache_suffix" value=""<?php if (empty($type)) echo ' checked="checked"'; ?> />&nbsp;<?php echo gettext("original"); ?>
 							<?php
 							$cachesuffix = array_unique($_zp_cachefileSuffix);
 							foreach ($cachesuffix as $suffix) {
@@ -571,12 +571,12 @@ function getOptionContent() {
 							<p>
 								<label>
 									<input type="checkbox" name="hotlink_protection" value="1" <?php checked('1', getOption('hotlink_protection')); ?> />
-									<?php echo gettext('Disable hotlinking'); ?>
+									<?php echo gettext('disable hotlinking'); ?>
 								</label>
 								<br />
 								<label>
 									<input type="checkbox" name="cache_full_image" value="1" <?php checked('1', getOption('cache_full_image')); ?> />
-									<?php echo gettext('Cache the full image'); ?>
+									<?php echo gettext('cache the full image'); ?>
 								</label>
 							</p>
 
@@ -759,10 +759,10 @@ function getOptionContent() {
 
 							<br clear="all"/>
 							<p>
-								<label><input type="checkbox" name="restore_to_defaults" value="1" /><?php echo gettext('Restore fields to defaults'); ?></label><br />
-								<label><input type="checkbox" name="disableEmpty" value="1" /><?php echo gettext('Mark unused fields <em>do not process</em>'); ?></label>
+								<label><input type="checkbox" name="restore_to_defaults" value="1" /><?php echo gettext('restore fields to defaults'); ?></label><br />
+								<label><input type="checkbox" name="disableEmpty" value="1" /><?php echo gettext('mark unused fields <em>do not process</em>'); ?></label>
 								<br />
-								<label><input type="checkbox" name="transform_newlines" value="1" /><?php echo gettext('Replace newlines'); ?></label>
+								<label><input type="checkbox" name="transform_newlines" value="1" /><?php echo gettext('replace newlines'); ?></label>
 
 							</p>
 						</td>
@@ -812,7 +812,7 @@ function getOptionContent() {
 						$optionText = gettext('Imbed IPTC copyright');
 						$desc = gettext('If checked and an image has no IPTC data a copyright notice will be imbedded cached copies.');
 					} else {
-						$optionText = gettext('Replicate IPTC metadata');
+						$optionText = gettext('replicate IPTC metadata');
 						$desc = gettext('If checked IPTC data from the original image will be imbedded in cached copies. If the image has no IPTC data a copyright notice will be imbedded. (The text supplied will be used if the orginal image has no copyright.)');
 					}
 					?>

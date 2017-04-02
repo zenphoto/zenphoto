@@ -185,16 +185,6 @@ function getOptionContent() {
 								} else {
 									$next = $list[$key + 1];
 								}
-								?>
-								<tr>
-									<th colspan="3" style="padding-left:3em; padding-right: 3em;">
-										<a href="?page=options&tab=plugin&single=<?php echo $prev; ?>"><?php echo $prev; ?></a>
-										<span class="floatright" >
-											<a href="?page=options&tab=plugin&single=<?php echo $next; ?>"><?php echo $next; ?></a>
-										</span>
-									</th>
-								</tr>
-								<?php
 							}
 						}
 					}
@@ -232,7 +222,20 @@ function getOptionContent() {
 							<?php
 						}
 						?>
-					</table> <!-- single plugin page table -->
+					</table>
+					<?php
+					if ($single) {
+						?>
+						<p class="padded">
+							<a href="?page=options&tab=plugin&single=<?php echo $prev; ?>"><?php echo $prev; ?></a>
+							<span class="floatright" >
+								<a href="?page=options&tab=plugin&single=<?php echo $next; ?>"><?php echo $next; ?></a>
+							</span>
+						</p>
+						<?php
+					}
+					?>
+
 					<input type="hidden" name="checkForPostTruncation" value="1" />
 					<?php
 				}

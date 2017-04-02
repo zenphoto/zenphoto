@@ -57,7 +57,7 @@ if (!(false === ($requirePath = getPlugin('themeoptions.php', $themename)))) {
 function saveOptions() {
 	global $_zp_gallery;
 
-	$themeswitch = $notify = $table = NULL;
+	$themeswitch = $themealbum = $notify = $table = NULL;
 	$themename = urldecode(sanitize($_POST['optiontheme'], 3));
 	$returntab = "&tab=theme";
 	if ($themename)
@@ -159,7 +159,7 @@ function saveOptions() {
 }
 
 function getOptionContent() {
-	global $_zp_gallery, $optionHandler, $themelist, $themename, $alb, $album, $albumtitle;
+	global $_zp_gallery, $optionHandler, $themelist, $themename, $themealbum, $alb, $album, $albumtitle;
 
 	if (zp_loggedin(THEMES_RIGHTS)) {
 		?>
