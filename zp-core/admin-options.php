@@ -169,7 +169,6 @@ Zenphoto_Authority::printPasswordFormJS();
 	</div><!-- end of main -->
 	<?php printAdminFooter(); ?>
 
-
 </body>
 </html>
 

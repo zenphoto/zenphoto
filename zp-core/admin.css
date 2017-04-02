@@ -451,6 +451,7 @@ code {
 	-khtml-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
+	width: 94%;
 }
 
 .notebox li {
@@ -618,16 +619,35 @@ table.options tr td {
 }
 
 .option_value {
+	vertical-align: top;
 	text-align:left;
 	min-width: 350px !important;
 	padding: 5px;
 }
 
 .option_desc {
-	min-width: 300px !important;
 	text-align:left;
 	padding: 5px;
 }
+
+.option_desc_hidden {
+	position: relative;
+	z-index: 1000;
+	margin-left: -350px;
+	max-width: 400px;
+	visibility: hidden;
+	background: white !important;
+	padding: 5px;
+	border: 1px solid #dedede;
+	height: 25px;
+}
+
+.option_info:hover > div {
+	visibility: visible;
+	height: 100%;
+	overflow-x: visible;
+}
+
 
 .formlayout {
 	width: 100%;

@@ -103,7 +103,11 @@ function getOptionContent() {
 								?>
 							</td>
 							<td class="option_desc">
-								<p><?php echo gettext("Password for the search guest user. click on <em>Search password</em> to change."); ?></p>
+								<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+								<div class="option_desc_hidden">
+
+									<p><?php echo gettext("Password for the search guest user. click on <em>Search password</em> to change."); ?></p>
+								</div>
 							</td>
 						</tr>
 						<tr class="passwordextrahide" style="display:none">
@@ -129,7 +133,10 @@ function getOptionContent() {
 								</label>
 							</td>
 							<td class="option_desc">
-								<?php echo gettext("User ID for the search guest user") ?>
+								<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+								<div class="option_desc_hidden">
+									<?php echo gettext("User ID for the search guest user") ?>
+								</div>
 							</td>
 						</tr>
 						<tr class="passwordextrahide" style="display:none" >
@@ -162,7 +169,11 @@ function getOptionContent() {
 								</span>
 							</td>
 							<td class="option_desc">
-								<?php echo gettext("Password for the search guest user. If this is set, visitors must know this password to view search results."); ?>
+								<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+								<div class="option_desc_hidden">
+
+									<?php echo gettext("Password for the search guest user. If this is set, visitors must know this password to view search results."); ?>
+								</div>
 							</td>
 						</tr>
 						<tr class="passwordextrahide" style="display:none" >
@@ -173,7 +184,10 @@ function getOptionContent() {
 								<?php print_language_string_list(getOption('search_hint'), 'hint', false, NULL, 'hint', '100%'); ?>
 							</td>
 							<td class="option_desc">
-								<?php echo gettext("A reminder hint for the password."); ?>
+								<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+								<div class="option_desc_hidden">
+									<?php echo gettext("A reminder hint for the password."); ?>
+								</div>
 							</td>
 						</tr>
 						<?php
@@ -285,22 +299,25 @@ function getOptionContent() {
 						?>
 					</td>
 					<td class="option_desc">
-						<p><?php echo gettext("<em>Field list</em> is the set of fields on which searches may be performed."); ?></p>
-						<p>
-							<?php
-							echo gettext("Search does matches on all fields chosen based on the matching criteria selected. The <em>string matching</em> criteria is used for all fields except <em>tags</em>. The <em>tag matching</em> criteria is used for them.");
-							?>
-						<ul>
-							<li><?php echo gettext('<code>pattern</code>: match the target anywhere within the field'); ?></li>
-							<li><?php echo gettext('<code>exact</code>: match the target with the whole field'); ?></li>
-							<li><?php echo gettext('<code>word</code>: match the target with whole words in the field'); ?></li>
-							<li><?php echo gettext('<code>partial word</code>: match the target with the start of words in the field'); ?></li>
-						</ul>
-						</p>
-						<p><?php echo gettext('If <code>Language specific tags</code> is set, searches will ignore tags assigned to languages other than the viewer’s locale. Selecting <code>specific</code> requires an exact match of the tag locale to the viewer locale. Otherwise generic matching is used, e.g. if the user is in the local <em>en_UK</em> he will view tags marked <em>en_US</em>.'); ?></p>
-						<p><?php echo gettext('Setting <code>Treat spaces as</code> to <em>OR</em> will cause search to trigger on any of the words in a string separated by spaces. Setting it to <em>AND</em> will cause the search to trigger only when all strings are present. Leaving the option unchecked will treat the whole string as a search target.') ?></p>
-						<p><?php echo gettext('<code>Default search</code> sets how searches from search page results behave. The search will either be from <em>within</em> the results of the previous search or will be a fresh <em>new</em> search.') ?></p>
-						<p><?php echo gettext('Setting <code>Do not return <em>{item}</em> matches</code> will cause search to ignore <em>{items}</em> when looking for matches.') ?></p>
+						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+						<div class="option_desc_hidden">
+							<p><?php echo gettext("<em>Field list</em> is the set of fields on which searches may be performed."); ?></p>
+							<p>
+								<?php
+								echo gettext("Search does matches on all fields chosen based on the matching criteria selected. The <em>string matching</em> criteria is used for all fields except <em>tags</em>. The <em>tag matching</em> criteria is used for them.");
+								?>
+							<ul>
+								<li><?php echo gettext('<code>pattern</code>: match the target anywhere within the field'); ?></li>
+								<li><?php echo gettext('<code>exact</code>: match the target with the whole field'); ?></li>
+								<li><?php echo gettext('<code>word</code>: match the target with whole words in the field'); ?></li>
+								<li><?php echo gettext('<code>partial word</code>: match the target with the start of words in the field'); ?></li>
+							</ul>
+							</p>
+							<p><?php echo gettext('If <code>Language specific tags</code> is set, searches will ignore tags assigned to languages other than the viewer’s locale. Selecting <code>specific</code> requires an exact match of the tag locale to the viewer locale. Otherwise generic matching is used, e.g. if the user is in the local <em>en_UK</em> he will view tags marked <em>en_US</em>.'); ?></p>
+							<p><?php echo gettext('Setting <code>Treat spaces as</code> to <em>OR</em> will cause search to trigger on any of the words in a string separated by spaces. Setting it to <em>AND</em> will cause the search to trigger only when all strings are present. Leaving the option unchecked will treat the whole string as a search target.') ?></p>
+							<p><?php echo gettext('<code>Default search</code> sets how searches from search page results behave. The search will either be from <em>within</em> the results of the previous search or will be a fresh <em>new</em> search.') ?></p>
+							<p><?php echo gettext('Setting <code>Do not return <em>{item}</em> matches</code> will cause search to ignore <em>{items}</em> when looking for matches.') ?></p>
+						</div>
 					</td>
 					<tr>
 						<td class="option_name"><?php echo gettext('Cache expiry'); ?></td>
@@ -308,7 +325,10 @@ function getOptionContent() {
 							<?php printf(gettext('Redo search after %s minutes.'), '<input type="textbox" size="4" name="search_cache_duration" value="' . getOption('search_cache_duration') . '" />'); ?>
 						</td>
 						<td class="option_desc">
-							<?php echo gettext('Search will remember the results of particular searches so that it can quickly serve multiple pages, etc. Over time this remembered result can become obsolete, so it should be refreshed. This option lets you decide how long before a search will be considered obsolete and thus re-executed. Setting the option to <em>zero</em> disables caching of searches.'); ?>
+							<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+							<div class="option_desc_hidden">
+								<?php echo gettext('Search will remember the results of particular searches so that it can quickly serve multiple pages, etc. Over time this remembered result can become obsolete, so it should be refreshed. This option lets you decide how long before a search will be considered obsolete and thus re-executed. Setting the option to <em>zero</em> disables caching of searches.'); ?>
+							</div>
 						</td>
 					</tr>
 					<?php

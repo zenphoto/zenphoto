@@ -268,19 +268,22 @@ function getOptionContent() {
 								<input type="text" size="3" name="albums_per_page" value="<?php echo getThemeOption('albums_per_page', $album, $themename); ?>"<?php echo $disable; ?> /> <?php echo gettext('thumbnails per page'); ?>
 							</td>
 							<td class="option_desc">
-								<?php
-								echo gettext('These specify the Theme <a title="Look at your album page and count the number of album thumbnails that show up in one row. This is the value you should set for the option.">CSS determined number</a> of album thumbnails that will fit in a "row" and the number of albums thumbnails you wish per page.');
-								if (getThemeOption('albums_per_row', $album, $themename) > 1) {
-									?>
-									<p class="notebox">
-										<?php
-										echo gettext('<strong>Note:</strong> If <em>thumbnails per row</em> is greater than 1, The actual number of thumbnails that are displayed on a page will be rounded up to  the next multiple of it.') . ' ';
-										printf(gettext('For album pages there will be %1$u rows of thumbnails.'), ceil(getThemeOption('albums_per_page', $album, $themename) / getThemeOption('albums_per_row', $album, $themename)));
-										?>
-									</p>
+								<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+								<div class="option_desc_hidden">
 									<?php
-								}
-								?>
+									echo gettext('These specify the Theme <a title="Look at your album page and count the number of album thumbnails that show up in one row. This is the value you should set for the option.">CSS determined number</a> of album thumbnails that will fit in a "row" and the number of albums thumbnails you wish per page.');
+									if (getThemeOption('albums_per_row', $album, $themename) > 1) {
+										?>
+										<p class="notebox">
+											<?php
+											echo gettext('<strong>Note:</strong> If <em>thumbnails per row</em> is greater than 1, The actual number of thumbnails that are displayed on a page will be rounded up to  the next multiple of it.') . ' ';
+											printf(gettext('For album pages there will be %1$u rows of thumbnails.'), ceil(getThemeOption('albums_per_page', $album, $themename) / getThemeOption('albums_per_row', $album, $themename)));
+											?>
+										</p>
+										<?php
+									}
+									?>
+								</div>
 							</td>
 						</tr>
 						<tr>
@@ -305,19 +308,22 @@ function getOptionContent() {
 								<input type="text" size="3" name="images_per_page" value="<?php echo getThemeOption('images_per_page', $album, $themename); ?>"<?php echo $disable; ?> /> <?php echo gettext('thumbnails per page'); ?>
 							</td>
 							<td class="option_desc">
-								<?php
-								echo gettext('These specify the Theme <a title="Look at your album page and count the number of image thumbnails that show up in one row. This is the value you should set for the option.">CSS determined number</a> of image thumbnails that will fit in a "row" and the number of image thumbnails you wish per page.');
-								if (getThemeOption('images_per_row', $album, $themename) > 1) {
-									?>
-									<p class="notebox">
-										<?php
-										echo gettext('<strong>Note:</strong> If <em>thumbnails per row</em> is greater than 1, The actual number of thumbnails that are displayed on a page will be rounded up to  the next multiple of it.') . ' ';
-										printf(gettext('For pages containing images there will be %1$u rows of thumbnails.'), ceil(getThemeOption('images_per_page', $album, $themename) / getThemeOption('images_per_row', $album, $themename)));
-										?>
-									</p>
+								<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+								<div class="option_desc_hidden">
 									<?php
-								}
-								?>
+									echo gettext('These specify the Theme <a title="Look at your album page and count the number of image thumbnails that show up in one row. This is the value you should set for the option.">CSS determined number</a> of image thumbnails that will fit in a "row" and the number of image thumbnails you wish per page.');
+									if (getThemeOption('images_per_row', $album, $themename) > 1) {
+										?>
+										<p class="notebox">
+											<?php
+											echo gettext('<strong>Note:</strong> If <em>thumbnails per row</em> is greater than 1, The actual number of thumbnails that are displayed on a page will be rounded up to  the next multiple of it.') . ' ';
+											printf(gettext('For pages containing images there will be %1$u rows of thumbnails.'), ceil(getThemeOption('images_per_page', $album, $themename) / getThemeOption('images_per_row', $album, $themename)));
+											?>
+										</p>
+										<?php
+									}
+									?>
+								</div>
 							</td>
 						</tr>
 						<?php
@@ -348,7 +354,11 @@ function getOptionContent() {
 									<label><input type="radio" name="thumb_transition" value="2"<?php echo $combined; ?> /><?php echo gettext('combined'); ?></label>
 								</span>
 							</td>
-							<td class="option_desc"><?php echo gettext('if both album and image <em>thumbnails per row</em> are greater than 1 you can choose if album thumbnails and image thumbnails are placed together on the page that transitions from only album thumbnails to only image thumbnails.'); ?></td>
+							<td class="option_desc">
+								<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+								<div class="option_desc_hidden">
+								<?php echo gettext('if both album and image <em>thumbnails per row</em> are greater than 1 you can choose if album thumbnails and image thumbnails are placed together on the page that transitions from only album thumbnails to only image thumbnails.'); ?></td>
+							</div>
 						</tr>
 						<?php
 						if (in_array('thumb_size', $unsupportedOptions)) {
@@ -367,8 +377,14 @@ function getOptionContent() {
 							<td class="option_value">
 								<input type="text" size="3" name="thumb_size" value="<?php echo $ts; ?>"<?php echo $disable; ?> />
 							</td>
-							<td class="option_desc"><?php printf(gettext("Standard thumbnails will be scaled to %u pixels."), $ts); ?></td>
+							<td class="option_desc">
+								<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+								<div class="option_desc_hidden">
+									<?php printf(gettext("Standard thumbnails will be scaled to %u pixels."), $ts); ?>
+								</div>
+							</td>
 						</tr>
+
 						<?php
 						if (in_array('thumb_crop', $unsupportedOptions)) {
 							$disable = ' disabled="disabled"';
@@ -391,9 +407,12 @@ function getOptionContent() {
 								</span>
 							</td>
 							<td class="option_desc">
-								<?php printf(gettext('If checked the thumbnail will be cropped %1$.1f%% in from the top and the bottom margins and %2$.1f%% in from the left and the right margins.'), $ct, $cl); ?>
-								<br />
-								<p class='notebox'><?php echo gettext('<strong>Note:</strong> changing crop will invalidate existing custom crops.'); ?></p>
+								<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+								<div class="option_desc_hidden">
+									<?php printf(gettext('If checked the thumbnail will be cropped %1$.1f%% in from the top and the bottom margins and %2$.1f%% in from the left and the right margins.'), $ct, $cl); ?>
+									<br />
+									<p class='notebox'><?php echo gettext('<strong>Note:</strong> changing crop will invalidate existing custom crops.'); ?></p>
+								</div>
 							</td>
 						</tr>
 						<tr>
@@ -408,7 +427,12 @@ function getOptionContent() {
 									<input type="checkbox" name="thumb_gray" id="thumb_gray" value="1" <?php checked('1', getThemeOption('thumb_gray', $album, $themename)); ?> />
 								</label>
 							</td>
-							<td class="option_desc"><?php echo gettext("If checked, images/thumbnails will be created in gray scale."); ?></td>
+							<td class="option_desc">
+								<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+								<div class="option_desc_hidden">
+									<?php echo gettext("If checked, images/thumbnails will be created in gray scale."); ?>
+								</div>
+							</td>
 						</tr>
 						<?php
 						if (in_array('image_size', $unsupportedOptions)) {
@@ -449,8 +473,12 @@ function getOptionContent() {
 									</tr>
 								</table>
 							</td>
-							<td class="option_desc"><?php echo gettext("Default image display size."); ?> <br />
-								<?php echo gettext("The image will be sized so that the <em>height</em>, <em>width</em>, <em>shortest side</em>, or the <em>longest side</em> will be equal to <em>image size</em>."); ?>
+							<td class="option_desc">
+								<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+								<div class="option_desc_hidden">
+									<?php echo gettext("Default image display size."); ?> <br />
+									<?php echo gettext("The image will be sized so that the <em>height</em>, <em>width</em>, <em>shortest side</em>, or the <em>longest side</em> will be equal to <em>image size</em>."); ?>
+								</div>
 							</td>
 						</tr>
 						<?php
@@ -463,10 +491,14 @@ function getOptionContent() {
 									<br />
 									<input type="text" name="theme_head_separator" size="2em" value="<?php echo getThemeOption('theme_head_separator', $album, $themename); ?>" /><?php echo "separator"; ?>
 								</td>
-								<td class="option_desc"><?php echo gettext('Select if you want parent breadcrumbs and if so the separator for them.'); ?></td>
+
+								<td class="option_desc">
+									<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+									<div class="option_desc_hidden">
+										<?php echo gettext('Select if you want parent breadcrumbs and if so the separator for them.'); ?>
+									</div>
+								</td>
 							</tr>
-
-
 							<?php
 						}
 						if (count($supportedOptions) > 0) {

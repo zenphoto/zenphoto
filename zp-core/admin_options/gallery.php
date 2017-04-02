@@ -73,14 +73,24 @@ function getOptionContent() {
 						<td class="option_value">
 							<?php print_language_string_list($_zp_gallery->getTitle('all'), 'gallery_title', false, null, '', '100%'); ?>
 						</td>
-						<td class="option_desc"><?php echo gettext("What you want to call your site."); ?></td>
+						<td class="option_desc">
+							<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+							<div class="option_desc_hidden">
+								<?php echo gettext("What you want to call your site."); ?>
+							</div>
+						</td>
 					</tr>
 					<tr>
 						<td class="option_name"><?php echo gettext("Gallery description"); ?></td>
 						<td class="option_value">
 							<?php print_language_string_list($_zp_gallery->getDesc('all'), 'Gallery_description', true, NULL, 'texteditor', '100%'); ?>
 						</td>
-						<td class="option_desc"><?php echo gettext("A brief description of your gallery. Some themes may display this text."); ?></td>
+						<td class="option_desc">
+							<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+							<div class="option_desc_hidden">
+								<?php echo gettext("A brief description of your gallery. Some themes may display this text."); ?>
+							</div>
+						</td>
 					</tr>
 					<tr>
 						<td class="option_name"><?php echo gettext('Gallery type'); ?></td>
@@ -89,21 +99,24 @@ function getOptionContent() {
 							<label><input type="radio" name="gallery_security" value="private" alt="<?php echo gettext('private'); ?>"<?php if (GALLERY_SECURITY != 'public') echo 'checked="checked"' ?> onclick="$('.public_gallery').hide();" /><?php echo gettext('private'); ?></label>
 						</td>
 						<td class="option_desc">
-							<?php echo gettext('Private galleries are viewable only by registered users.'); ?>
+							<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+							<div class="option_desc_hidden">
+								<?php echo gettext('Private galleries are viewable only by registered users.'); ?>
+							</div>
 						</td>
 					</tr>
 					<?php
 					if (GALLERY_SECURITY == 'public') {
 						?>
 						<tr class="passwordextrashow public_gallery">
-							<td style="background-color: #ECF1F2;">
+							<td class="option_name" style="background-color: #ECF1F2;">
 								<p>
 									<a onclick="toggle_passwords('', true);">
 										<?php echo gettext("Gallery password"); ?>
 									</a>
 								</p>
 							</td>
-							<td style="background-color: #ECF1F2;">
+							<td class="option_value" style="background-color: #ECF1F2;">
 								<?php
 								$x = $_zp_gallery->getPassword();
 								if (empty($x)) {
@@ -118,10 +131,13 @@ function getOptionContent() {
 								}
 								?>
 							</td>
-							<td style="background-color: #ECF1F2;">
-								<p>
-									<?php echo gettext("Master password for the gallery. Click on <em>Gallery password</em> to change."); ?>
-								</p>
+							<td class="option_desc" style="background-color: #ECF1F2;">
+								<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+								<div class="option_desc_hidden">
+									<p>
+										<?php echo gettext("Master password for the gallery. Click on <em>Gallery password</em> to change."); ?>
+									</p>
+								</div>
 							</td>
 						</tr>
 						<tr class="passwordextrahide" style="display:none">
@@ -147,7 +163,10 @@ function getOptionContent() {
 								</label>
 							</td>
 							<td class="option_desc">
-								<?php echo gettext("User ID for the gallery guest user") ?>
+								<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+								<div class="option_desc_hidden">
+									<?php echo gettext("User ID for the gallery guest user") ?>
+								</div>
 							</td>
 						</tr>
 						<tr class="passwordextrahide" style="display:none" >
@@ -180,7 +199,10 @@ function getOptionContent() {
 								</span>
 							</td>
 							<td class="option_desc">
-								<?php echo gettext("Master password for the gallery. If this is set, visitors must know this password to view the gallery."); ?>
+								<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+								<div class="option_desc_hidden">
+									<?php echo gettext("Master password for the gallery. If this is set, visitors must know this password to view the gallery."); ?>
+								</div>
 							</td>
 						</tr>
 						<tr class="passwordextrahide" style="display:none" >
@@ -191,7 +213,10 @@ function getOptionContent() {
 								<?php print_language_string_list($_zp_gallery->getPasswordHint('all'), 'hint', false, NULL, 'hint'); ?>
 							</td>
 							<td class="option_desc">
-								<?php echo gettext("A reminder hint for the password."); ?>
+								<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+								<div class="option_desc_hidden">
+									<?php echo gettext("A reminder hint for the password."); ?>
+								</div>
 							</td>
 						</tr>
 						<?php
@@ -227,20 +252,35 @@ function getOptionContent() {
 								<?php generateUnorderedListFromArray($current, $list, 'gallery_page_unprotected_', false, true, true); ?>
 							</ul>
 						</td>
-						<td class="option_desc"><?php echo gettext('Place a checkmark on any page scripts which should not be protected by the gallery password.'); ?></td>
+						<td class="option_desc">
+							<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+							<div class="option_desc_hidden">
+								<?php echo gettext('Place a checkmark on any page scripts which should not be protected by the gallery password.'); ?>
+							</div>
+						</td>
 					</tr>
 					<tr>
 						<td class="option_name"><?php echo gettext("Website title"); ?></td>
 						<td class="option_value">
 							<?php print_language_string_list($_zp_gallery->getWebsiteTitle('all'), 'website_title', false, null, '', '100%'); ?>
 						</td>
-						<td class="option_desc"><?php echo gettext("Your web site title."); ?></td>
+						<td class="option_desc">
+							<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+							<div class="option_desc_hidden">
+								<?php echo gettext("Your web site title."); ?>
+							</div>
+						</td>
 					</tr>
 					<tr>
 						<td class="option_name"><?php echo gettext("Website url"); ?></td>
 						<td class="option_value"><input type="text" name="website_url" style="width:100%;"
 																						value="<?php echo html_encode($_zp_gallery->getWebsiteURL()); ?>" /></td>
-						<td class="option_desc"><?php echo gettext("This is used to link back to your main site, but your theme must support it."); ?></td>
+						<td class="option_desc">
+							<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+							<div class="option_desc_hidden">
+								<?php echo gettext("This is used to link back to your main site, but your theme must support it."); ?>
+							</div>
+						</td>
 					</tr>
 					<tr>
 						<td class="option_name"><?php echo gettext("Album thumbnails"); ?></td>
@@ -257,7 +297,12 @@ function getOptionContent() {
 								?>
 							</select>
 						</td>
-						<td class="option_desc"><?php echo gettext("Default thumbnail selection for albums."); ?></td>
+						<td class="option_desc">
+							<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+							<div class="option_desc_hidden">
+								<?php echo gettext("Default thumbnail selection for albums."); ?>
+							</div>
+						</td>
 					</tr>
 					<tr>
 						<td class="option_name"><?php echo gettext("Sort gallery by"); ?></td>
@@ -318,9 +363,12 @@ function getOptionContent() {
 							</table>
 						</td>
 						<td class="option_desc">
-							<?php
-							echo gettext('Sort order for the albums on the index of the gallery. Custom sort values must be database field names. You can have multiple fields separated by commas. This option is also the default sort for albums and subalbums.');
-							?>
+							<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+							<div class="option_desc_hidden">
+								<?php
+								echo gettext('Sort order for the albums on the index of the gallery. Custom sort values must be database field names. You can have multiple fields separated by commas. This option is also the default sort for albums and subalbums.');
+								?>
+							</div>
 						</td>
 					</tr>
 					<tr>
@@ -361,34 +409,25 @@ function getOptionContent() {
 							</p>
 						</td>
 						<td class="option_desc">
-							<p><?php echo gettext("<a onclick=\"toggle('albumpub');\" >Details</a> for <em>publish albums by default</em>"); ?></p>
-							<div id="albumpub" style="display: none">
-								<p><?php echo gettext("This sets the default behavior for when an album is discovered. If checked, the album will be published, if unchecked it will be unpublished.") ?></p>
-							</div>
-							<p><?php echo gettext("<a onclick=\"toggle('imagepub');\" >Details</a> for <em>publish images by default</em>"); ?></p>
-							<div id="imagepub" style="display: none">
-								<p><?php echo gettext("This sets the default behavior for when an image is discovered. If checked, the image will be published, if unchecked it will be unpublished.") ?></p>
-							</div>
-							<p><?php echo gettext("<a onclick=\"toggle('albumdate');\" >Details</a> for <em>use latest image date as album date</em>"); ?></p>
-							<div id="albumdate" style="display: none">
+							<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+							<div class="option_desc_hidden">
+
+								<p><?php echo gettext("<em>publish albums by default</em> sets the default behavior for when an album is discovered. If checked, the album will be published, if unchecked it will be unpublished.") ?></p>
+
+								<p><?php echo gettext("<em>publish images by default</em> sets the default behavior for when an image is discovered. If checked, the image will be published, if unchecked it will be unpublished.") ?></p>
+
 								<p>
-									<?php echo gettext("If you wish your album date to reflect the date of the latest image uploaded set this option. Otherwise the date will be set initially to the date the album was created.") ?>
+									<?php echo gettext("If you wish your album date to reflect the date of the latest image uploaded set <em>use latest image date as album date</em>. Otherwise the date will be set initially to the date the album was created.") ?>
 								</p>
 								<p class="notebox">
 									<?php echo gettext('<strong>NOTE</strong>: The album date will be updated only if an image is discovered which is newer than the current date of the album.'); ?>
 								</p>
-							</div>
 
-							<p><?php echo gettext("<a onclick=\"toggle('visualthumb');\" >Details</a> for <em>visual thumb selection</em>"); ?></p>
-							<div id="visualthumb" style="display: none">
-								<p><?php echo gettext("Setting this option places thumbnails in the album thumbnail selection list (the dropdown list on each album’s edit page). In Firefox the dropdown shows the thumbs, but in IE and Safari only the names are displayed (even if the thumbs are loaded!). In albums with many images loading these thumbs takes much time and is unnecessary when the browser will not display them. Uncheck this option and the images will not be loaded. "); ?></p>
-							</div>
+								<p><?php echo gettext("Setting <em>visual thumb selection</em> places thumbnails in the album thumbnail selection list (the dropdown list on each album’s edit page). In Firefox the dropdown shows the thumbs, but in IE and Safari only the names are displayed (even if the thumbs are loaded!). In albums with many images loading these thumbs takes much time and is unnecessary when the browser will not display them. Uncheck this option and the images will not be loaded. "); ?></p>
 
-							<p><?php echo gettext("<a onclick=\"toggle('multithumb');\" >Details</a> for <em>subalbum thumb selection</em>"); ?></p>
-							<div id="multithumb" style="display: none">
-								<p><?php echo gettext("Setting this option allows selecting images from subalbums as well as from the album. Naturally populating these images adds overhead. If your album edit tabs load too slowly, do not select this option."); ?></p>
-							</div>
+								<p><?php echo gettext("Setting <em>subalbum thumb selection</em> allows selecting images from subalbums as well as from the album. Naturally populating these images adds overhead. If your album edit tabs load too slowly, do not select this option."); ?></p>
 
+							</div>
 						</td>
 					</tr>
 

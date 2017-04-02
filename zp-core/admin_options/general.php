@@ -174,8 +174,11 @@ function getOptionContent() {
 								</select>
 							</td>
 							<td class="option_desc">
-								<p><?php printf(gettext('Your server reports its time zone as: <code>%s</code>.'), $_zp_server_timezone); ?></p>
-								<p><?php printf(ngettext('Your time zone offset is %d hour. If your time zone is different from the servers, select the correct time zone here.', 'Your time zone offset is: %d hours. If your time zone is different from the servers, select the correct time zone here.', $offset), $offset); ?></p>
+								<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+								<div class="option_desc_hidden">
+									<p><?php printf(gettext('Your server reports its time zone as: <code>%s</code>.'), $_zp_server_timezone); ?></p>
+									<p><?php printf(ngettext('Your time zone offset is %d hour. If your time zone is different from the servers, select the correct time zone here.', 'Your time zone offset is: %d hours. If your time zone is different from the servers, select the correct time zone here.', $offset), $offset); ?></p>
+								</div>
 							</td>
 							<?php
 						} else {
@@ -186,7 +189,10 @@ function getOptionContent() {
 								<input type="text" size="3" name="time_offset" value="<?php echo html_encode($offset); ?>" />
 							</td>
 							<td class="option_desc">
-								<p><?php echo gettext("If you are in a different time zone from your server, set the offset in hours of your time zone from that of the server. For instance if your server is on the US East Coast (<em>GMT</em> - 5) and you are on the Pacific Coast (<em>GMT</em> - 8), set the offset to 3 (-5 - (-8))."); ?></p>
+								<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+								<div class="option_desc_hidden">
+									<p><?php echo gettext("If you are in a different time zone from your server, set the offset in hours of your time zone from that of the server. For instance if your server is on the US East Coast (<em>GMT</em> - 5) and you are on the Pacific Coast (<em>GMT</em> - 8), set the offset to 3 (-5 - (-8))."); ?></p>
+								</div>
 							</td>
 							<?php
 						}
@@ -234,44 +240,47 @@ function getOptionContent() {
 
 						</td>
 						<td class="option_desc">
-							<p>
+							<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+							<div class="option_desc_hidden">
+								<p>
+									<?php
+									echo gettext("If you have Apache <em>mod rewrite</em> (or equivalent), put a checkmark on the <em>mod rewrite</em> option and you will get nice cruft-free URLs.");
+									echo sprintf(gettext('The <em>tokens</em> used in rewritten URIs may be altered to your taste. See the <a href="%s">plugin options</a> for <code>rewriteTokens</code>.'), WEBPATH . '/' . ZENFOLDER . '/admin-options.php?page=options&tab=plugin&single=rewriteTokens');
+									if (!getOption('mod_rewrite_detected'))
+										echo '<p class="notebox">' . gettext('Setup did not detect a working <em>mod_rewrite</em> facility.'), '</p>';
+									?>
+								</p>
 								<?php
-								echo gettext("If you have Apache <em>mod rewrite</em> (or equivalent), put a checkmark on the <em>mod rewrite</em> option and you will get nice cruft-free URLs.");
-								echo sprintf(gettext('The <em>tokens</em> used in rewritten URIs may be altered to your taste. See the <a href="%s">plugin options</a> for <code>rewriteTokens</code>.'), WEBPATH . '/' . ZENFOLDER . '/admin-options.php?page=options&tab=plugin&single=rewriteTokens');
-								if (!getOption('mod_rewrite_detected'))
-									echo '<p class="notebox">' . gettext('Setup did not detect a working <em>mod_rewrite</em> facility.'), '</p>';
-								?>
-							</p>
-							<?php
-							if (FILESYSTEM_CHARSET != LOCAL_CHARSET) {
-								echo '<p>' . gettext("If you are having problems with images whose names contain characters with diacritical marks try changing the <em>image URI</em> setting.");
-								switch (getOption('UTF8_image_URI_found')) {
-									case'unknown':
-										echo '<p class="notebox">' . gettext('Setup could not determine a setting that allowed images with diacritical marks in the name.'), '</p>';
-										break;
-									case 'internal':
-										if (!getOption('UTF8_image_URI')) {
-											echo '<p class="notebox">' . sprintf(gettext('Setup detected <em>%s</em> image URIs.'), LOCAL_CHARSET), '</p>';
-										}
-										break;
-									case 'filesystem':
-										if (getOption('UTF8_image_URI')) {
-											echo '<p class="notebox">' . gettext('Setup detected <em>file system</em> image URIs.'), '</p>';
-										}
-										break;
+								if (FILESYSTEM_CHARSET != LOCAL_CHARSET) {
+									echo '<p>' . gettext("If you are having problems with images whose names contain characters with diacritical marks try changing the <em>image URI</em> setting.");
+									switch (getOption('UTF8_image_URI_found')) {
+										case'unknown':
+											echo '<p class="notebox">' . gettext('Setup could not determine a setting that allowed images with diacritical marks in the name.'), '</p>';
+											break;
+										case 'internal':
+											if (!getOption('UTF8_image_URI')) {
+												echo '<p class="notebox">' . sprintf(gettext('Setup detected <em>%s</em> image URIs.'), LOCAL_CHARSET), '</p>';
+											}
+											break;
+										case 'filesystem':
+											if (getOption('UTF8_image_URI')) {
+												echo '<p class="notebox">' . gettext('Setup detected <em>file system</em> image URIs.'), '</p>';
+											}
+											break;
+									}
+									echo '</p>';
 								}
-								echo '</p>';
-							}
-							?>
-							<p><?php echo gettext("If <em>mod_rewrite</em> is checked above, zenphoto will append the <em>mod_rewrite suffix</em> to the end of image URLs. (This helps search engines.) Examples: <em>.html, .php</em>, etc."); ?></p>
-							<p>
-								<?php
-								printf(gettext('If <em>Unique images</em> is checked, image links will omit the image suffix. E.g. a link to the image page for <code>myalbum/myphoto.jpg</code> will appear as <code>myalbum/myphoto%s</code>'), IM_SUFFIX);
-								echo '<p class="notebox">';
-								echo gettext('<strong>Note:</strong> This option requires <em>mod rewrite</em> and <em>mod_rewrite suffix</em> both be set and the image prefixes must be unique within an album!');
-								echo '</p>';
 								?>
-							</p>
+								<p><?php echo gettext("If <em>mod_rewrite</em> is checked above, zenphoto will append the <em>mod_rewrite suffix</em> to the end of image URLs. (This helps search engines.) Examples: <em>.html, .php</em>, etc."); ?></p>
+								<p>
+									<?php
+									printf(gettext('If <em>Unique images</em> is checked, image links will omit the image suffix. E.g. a link to the image page for <code>myalbum/myphoto.jpg</code> will appear as <code>myalbum/myphoto%s</code>'), IM_SUFFIX);
+									echo '<p class="notebox">';
+									echo gettext('<strong>Note:</strong> This option requires <em>mod rewrite</em> and <em>mod_rewrite suffix</em> both be set and the image prefixes must be unique within an album!');
+									echo '</p>';
+									?>
+								</p>
+							</div>
 						</td>
 					</tr>
 					<tr>
@@ -361,10 +370,12 @@ function getOptionContent() {
 							</label>
 						</td>
 						<td class="option_desc">
-							<p><?php echo gettext("You can disable languages by unchecking their checkboxes. Only checked languages will be available to the installation."); ?></p>
-							<p><?php echo gettext("Select the preferred language to display text in. (Set to <em>HTTP_Accept_Language</em> to use the language preference specified by the viewer’s browser.)"); ?></p>
-							<p><?php echo gettext("Set <em>Multi-lingual</em> to enable multiple language input for options that provide theme text."); ?></p>
-
+							<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+							<div class="option_desc_hidden">
+								<p><?php echo gettext("You can disable languages by unchecking their checkboxes. Only checked languages will be available to the installation."); ?></p>
+								<p><?php echo gettext("Select the preferred language to display text in. (Set to <em>HTTP_Accept_Language</em> to use the language preference specified by the viewer’s browser.)"); ?></p>
+								<p><?php echo gettext("Set <em>Multi-lingual</em> to enable multiple language input for options that provide theme text."); ?></p>
+							</div>
 						</td>
 					</tr>
 					<tr>
@@ -429,7 +440,12 @@ function getOptionContent() {
 								<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" name="date_format" value="<?php echo html_encode(DATE_FORMAT); ?>" />
 							</div>
 						</td>
-						<td class="option_desc"><?php echo gettext('Format for dates. Select from the list or set to <code>custom</code> and provide a <a href="http://us2.php.net/manual/en/function.strftime.php"><span class="nowrap"><code>strftime()</code></span></a> format string in the text box.'); ?></td>
+						<td class="option_desc">
+							<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+							<div class="option_desc_hidden">
+								<?php echo gettext('Format for dates. Select from the list or set to <code>custom</code> and provide a <a href="http://us2.php.net/manual/en/function.strftime.php"><span class="nowrap"><code>strftime()</code></span></a> format string in the text box.'); ?>
+							</div>
+						</td>
 					</tr>
 
 					<tr>
@@ -451,7 +467,10 @@ function getOptionContent() {
 							</select>
 						</td>
 						<td class="option_desc">
-							<?php echo gettext('The character encoding to use for the filesystem.'); ?>
+							<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+							<div class="option_desc_hidden">
+								<?php echo gettext('The character encoding to use for the filesystem.'); ?>
+							</div>
 						</td>
 					</tr>
 
@@ -465,16 +484,16 @@ function getOptionContent() {
 								// <!-- <![CDATA[
 								function resetallowedtags() {
 									$('#allowed_tags').val(<?php
-					$t = getOption('allowed_tags_default');
-					$tags = explode("\n", $t);
-					$c = 0;
-					foreach ($tags as $t) {
-						$t = trim($t);
-						if (!empty($t)) {
-							if ($c > 0) {
-								echo '+';
-								echo "\n";
-								?>
+						$t = getOption('allowed_tags_default');
+						$tags = explode("\n", $t);
+						$c = 0;
+						foreach ($tags as $t) {
+							$t = trim($t);
+							if (!empty($t)) {
+								if ($c > 0) {
+									echo '+';
+									echo "\n";
+									?>
 					<?php
 				}
 				$c++;
@@ -485,14 +504,17 @@ function getOptionContent() {
 								}
 								// ]]> -->
 							</script>
-							<p><?php echo gettext("Tags and attributes allowed in comments, descriptions, and other fields."); ?><p>
-							<p><?php echo gettext("Follow the form <em>tag</em> =&gt; (<em>attribute</em> =&gt; (<em>attribute</em>=&gt; (), <em>attribute</em> =&gt; ()...)))"); ?></p>
-							<?php if (EDITOR_SANITIZE_LEVEL == 4) { ?>
-								<p class="notebox"><?php echo gettext('<strong>Note:</strong> visual editing is enabled so the editor overrides these settings on tags where it is active.'); ?></p>
-							<?php } ?>
-							<p class="buttons">
-								<a onclick="resetallowedtags()" ><?php echo gettext('reset to default'); ?></a>
-							</p>
+							<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+							<div class="option_desc_hidden">
+								<p><?php echo gettext("Tags and attributes allowed in comments, descriptions, and other fields."); ?></p>
+								<p><?php echo gettext("Follow the form <em>tag</em> =&gt; (<em>attribute</em> =&gt; (<em>attribute</em>=&gt; (), <em>attribute</em> =&gt; ()...)))"); ?></p>
+								<?php if (EDITOR_SANITIZE_LEVEL == 4) { ?>
+									<p class="notebox"><?php echo gettext('<strong>Note:</strong> visual editing is enabled so the editor overrides these settings on tags where it is active.'); ?></p>
+								<?php } ?>
+								<p class="buttons">
+									<a onclick="resetallowedtags()" ><?php echo gettext('reset to default'); ?></a>
+								</p>
+							</div>
 						</td>
 					</tr>
 					<tr>
@@ -522,16 +544,20 @@ function getOptionContent() {
 							</p>
 						</td>
 						<td class="option_desc">
-							<?php
-							if (!GALLERY_SESSION) {
-								?>
-								<p><?php printf(gettext('The <em>path</em> to use when storing cookies. (Leave empty to default to <em>%s</em>)'), WEBPATH); ?></p>
-								<p><?php echo gettext("Set to the time in seconds that cookies should be kept by browsers."); ?></p>
+							<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+							<div class="option_desc_hidden">
 								<?php
-							}
-							?>
-							<p><?php echo gettext('If this option is selected <a href="http://www.w3schools.com/php/php_sessions.asp">PHP sessions</a> will be used instead of cookies to make visitor settings persistent.'); ?></p>
-							<p class="notebox"><?php echo gettext('<strong>NOTE</strong>: Sessions will normally close when the browser closes causing all password and other data to be discarded. They may close more frequently depending on the runtime configuration. Longer <em>lifetime</em> of sessions is generally more conducive to a pleasant user experience. Cookies are the prefered storage option since their duration is determined by the <em>Cookie duration</em> option. ') ?>
+								if (!GALLERY_SESSION) {
+									?>
+									<p><?php printf(gettext('The <em>path</em> to use when storing cookies. (Leave empty to default to <em>%s</em>)'), WEBPATH); ?></p>
+									<p><?php echo gettext("Set to the time in seconds that cookies should be kept by browsers."); ?></p>
+									<?php
+								}
+								?>
+								<p><?php echo gettext('If this option is selected <a href="http://www.w3schools.com/php/php_sessions.asp">PHP sessions</a> will be used instead of cookies to make visitor settings persistent.'); ?></p>
+								<p class="notebox"><?php echo gettext('<strong>NOTE</strong>: Sessions will normally close when the browser closes causing all password and other data to be discarded. They may close more frequently depending on the runtime configuration. Longer <em>lifetime</em> of sessions is generally more conducive to a pleasant user experience. Cookies are the prefered storage option since their duration is determined by the <em>Cookie duration</em> option. ') ?>
+								</p>
+							</div>
 						</td>
 					</tr>
 					<tr>
@@ -543,7 +569,12 @@ function getOptionContent() {
 							<p><input type="text" size="48" name="site_email_name" value="<?php echo get_language_string(getOption('site_email_name')) ?>" /></p>
 							<p><input type="text" size="48" id="site_email" name="site_email"  value="<?php echo getOption('site_email'); ?>" /></p>
 						</td>
-						<td class="option_desc"><?php echo gettext("This email name and address will be used as the <em>From</em> address for all mails sent by the gallery."); ?></td>
+						<td class="option_desc">
+							<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+							<div class="option_desc_hidden">
+								<?php echo gettext("This email name and address will be used as the <em>From</em> address for all mails sent by the gallery."); ?>
+							</div>
+						</td>
 					</tr>
 					<tr>
 						<td class="option_name">
@@ -570,7 +601,12 @@ function getOptionContent() {
 							}
 							?>
 						</td>
-						<td class="option_desc"><?php echo gettext('These options control the number of items displayed on their tabs. If you have problems using these tabs, reduce the number shown here.'); ?></td>
+						<td class="option_desc">
+							<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+							<div class="option_desc_hidden">
+								<?php echo gettext('These options control the number of items displayed on their tabs. If you have problems using these tabs, reduce the number shown here.'); ?>
+							</div>
+						</td>
 					</tr>
 					<tr>
 						<td class="option_name">
@@ -583,7 +619,10 @@ function getOptionContent() {
 							</label>
 						</td>
 						<td class="option_desc">
-							<?php echo gettext("Enable checking for form changes before leaving pages."); ?>
+							<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+							<div class="option_desc_hidden">
+								<?php echo gettext("Enable checking for form changes before leaving pages."); ?>
+							</div>
 						</td>
 					</tr>
 					<?php
@@ -613,7 +652,12 @@ function getOptionContent() {
 							}
 							?>
 						</td>
-						<td class="option_desc"><?php echo gettext('Logs will be "rolled" over when they exceed the specified size. If checked, the administrator will be e-mailed when this occurs.') ?></td>
+						<td class="option_desc">
+							<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+							<div class="option_desc_hidden">
+								<?php echo gettext('Logs will be "rolled" over when they exceed the specified size. If checked, the administrator will be e-mailed when this occurs.') ?>
+							</div>
+						</td>
 					</tr>
 					<?php zp_apply_filter('admin_general_data'); ?>
 					<tr>
