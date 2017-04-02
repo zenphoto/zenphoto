@@ -2060,6 +2060,8 @@ zp-core/zp-extensions/rating/delete.png
 zp-core/zp-extensions/rating/jquery.MetaData.js
 zp-core/zp-extensions/rating/jquery.rating.css
 zp-core/zp-extensions/rating/jquery.rating.js
+zp-core/zp-extensions/rating/jquery.rating_like.css
+zp-core/zp-extensions/rating/like.png
 zp-core/zp-extensions/rating/star.png
 zp-core/zp-extensions/rating/update.php
 zp-core/zp-extensions/reCaptcha
@@ -2464,4 +2466,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-2466
+2468

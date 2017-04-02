@@ -20,14 +20,14 @@ if (!defined('OFFSET_PATH')) {
 
 	if (isset($_GET['action']) && $_GET['action'] == 'clear_rating') {
 		if (!zp_loggedin(ADMIN_RIGHTS)) {
-			// prevent nefarious access to this page.
+// prevent nefarious access to this page.
 			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . currentRelativeURL());
 			exitZP();
 		}
 
 		require_once(dirname(dirname(__FILE__)) . '/admin-functions.php');
 		if (session_id() == '') {
-			// force session cookie to be secure when in https
+// force session cookie to be secure when in https
 			if (secureServer()) {
 				$CookieInfo = session_get_cookie_params();
 				session_set_cookie_params($CookieInfo['lifetime'], $CookieInfo['path'], $CookieInfo['domain'], TRUE);
@@ -84,6 +84,7 @@ class jquery_rating {
 			setOptionDefault('rating_split_stars', 2);
 			setOptionDefault('rating_status', 3);
 			setOptionDefault('rating_image_individual_control', 0);
+			setOptionDefault('rating_like-dislike', 0);
 		}
 		$this->ratingstate = array(gettext('open') => 3, gettext('members &amp; guests') => 2, gettext('members only') => 1, gettext('closed') => 0);
 	}
@@ -96,25 +97,85 @@ class jquery_rating {
 	function getOptionsSupported() {
 		$stars = ceil(getOption('rating_stars_count'));
 		return array(gettext('Voting state') => array('key' => 'rating_status', 'type' => OPTION_TYPE_RADIO,
+						'order' => 7,
 						'buttons' => $this->ratingstate,
 						'desc' => gettext('<em>Enable</em> state of voting.')),
 				gettext('Stars') => array('key' => 'rating_stars_count', 'type' => OPTION_TYPE_NUMBER,
+						'order' => 6,
 						'desc' => sprintf(ngettext('Rating will use %u star.', 'Rating will use %u stars.', $stars), $stars)),
 				gettext('Split stars') => array('key' => 'rating_split_stars', 'type' => OPTION_TYPE_RADIO,
+						'order' => 4,
 						'buttons' => array(gettext('full') => 1, gettext('half') => 2, gettext('third') => 3),
 						'desc' => gettext('Show fractional stars based on rating. May cause performance problems for pages with large numbers of rating elements.')),
 				gettext('Individual image control') => array('key' => 'rating_image_individual_control', 'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 2,
 						'desc' => gettext('Enable to allow voting status control on individual images.')),
 				gettext('Recast vote') => array('key' => 'rating_recast', 'type' => OPTION_TYPE_RADIO,
+						'order' => 3,
 						'buttons' => array(gettext('No') => 0, gettext('Show rating') => 1, gettext('Show previous vote') => 2),
 						'desc' => gettext('Allow users to change their vote. If Show previous vote is chosen, the stars will reflect the last vote of the viewer. Otherwise they will reflect the current rating.')),
+				gettext('Like/Dislike') => array('key' => 'rating_like', 'type' => OPTION_TYPE_CUSTOM,
+						'order' => 3.5,
+						'desc' => gettext('Use like/dislike rather than stars.')),
+				gettext('Allow zero') => array('key' => 'rating_zero_ok', 'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 5,
+						'desc' => gettext('Allows rating to be zero.')),
 				gettext('Disguise IP') => array('key' => 'rating_hash_ip', 'type' => OPTION_TYPE_CHECKBOX,
-						'desc' => gettext('Causes the stored IP addressed to be hashed so as to avoid privacy tracking issues.'))
+						'order' => 1,
+						'desc' => gettext('Causes the stored IP addressed to be hashed so as to avoid privacy tracking issues.')),
+				'' => array('key' => 'rating_js', 'type' => OPTION_TYPE_CUSTOM,
+						'order' => 9999,
+						'desc' => '')
 		);
 	}
 
 	function handleOption($option, $currentValue) {
+		switch ($option) {
+			case 'rating_like':
+				?>
+				<input type="checkbox" id="__rating_like" name="rating_like-dislike" value="1"<?php if (getOption('rating_like-dislike')) echo ' checked="checked"'; ?> onclick="ratinglikebox();"/>
+				<?php
+				break;
+			case 'rating_js':
+				?>
+				<script type="text/javascript">
+					function ratinglikebox() {
+						if ($('#__rating_like').prop('checked')) {
+							$('#__rating_split_stars-1').prop('checked', 'checked');
+							$('#__rating_split_stars-3').attr('disabled', 'disabled');
+							$('#__rating_split_stars-2').attr('disabled', 'disabled');
+							$('#__rating_split_stars-1').attr('disabled', 'disabled');
+							$('#__rating_zero_ok').prop('checked', 'checked');
+							$('#__rating_zero_ok').attr('disabled', 'disabled');
+							$('#__rating_stars_count').val(1);
+							$('#__rating_stars_count').attr('disabled', 'disabled');
+						} else {
+							$('#__rating_split_stars-1').removeAttr('disabled');
+							$('#__rating_split_stars-2').removeAttr('disabled');
+							$('#__rating_split_stars-3').removeAttr('disabled');
+							$('#__rating_zero_ok').removeAttr('disabled');
+							$('#__rating_stars_count').removeAttr('disabled');
+						}
+					}
 
+					ratinglikebox();
+
+				</script>
+				<?php
+				break;
+		}
+	}
+
+	function handleOptionSave($themename, $themealbum) {
+		if (isset($_POST['rating_like-dislike'])) {
+			setOption('rating_like-dislike', 1);
+			setOption('rating_stars_count', 1);
+			setOption('rating_split_stars', 1);
+			setOption('rating_zero_ok', 1);
+		} else {
+			setOption('rating_like-dislike', 0);
+		}
+		return false;
 	}
 
 	static function ratingJS() {
@@ -123,9 +184,16 @@ class jquery_rating {
 		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/' . $ME; ?>/jquery.MetaData.js"></script>
 		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/' . $ME; ?>/jquery.rating.js"></script>
 		<?php
-		$css = getPlugin('rating/jquery.rating.css', true, true);
+		if (getOption('rating_like-dislike')) {
+			$css = getPlugin('rating/jquery.rating_like.css', true, true);
+		} else {
+			$css = getPlugin('rating/jquery.rating.css', true, true);
+		}
 		?>
 		<link rel="stylesheet" href="<?php echo pathurlencode($css); ?>" type="text/css" />
+		<?php
+		?>
+
 		<script type="text/javascript">
 			// <!-- <![CDATA[
 			$.fn.rating.options = {cancel: '<?php echo gettext('retract'); ?>'};
@@ -331,6 +399,7 @@ function printRating($vote = 3, $object = NULL, $text = true) {
 		$split = '';
 		$step = 1;
 	}
+	$like = getOption('rating_like-dislike');
 	?>
 	<form name="star_rating<?php echo $unique; ?>" id="star_rating<?php echo $unique; ?>" action="submit">
 		<?php
@@ -339,11 +408,17 @@ function printRating($vote = 3, $object = NULL, $text = true) {
 			$v = ceil($i);
 			$j++;
 			?>
-			<input type="radio" class="star<?php echo $split; ?>" name="star_rating-value<?php echo $unique; ?>" value="<?php echo $j; ?>" title="<?php printf(ngettext('%u star', '%u stars', $v), $v); ?>" />
-			<?php
-		}
-		if (!$disable) {
-			?>
+			<input type="radio" class="star<?php echo $split; ?>" name="star_rating-value<?php echo $unique; ?>" value="<?php echo $j; ?>" title="<?php
+			if ($like) {
+				echo gettext('like');
+			} else {
+				printf(ngettext('%u star', '%u stars', $v), $v);
+			}
+			?>" />
+						 <?php
+					 }
+					 if (!$disable) {
+						 ?>
 			<span id="submit_button<?php echo $unique; ?>">
 				<input type="button" class="button buttons" value="<?php echo gettext('Submit »'); ?>" onclick="cast<?php echo $unique; ?>();" />
 			</span>
@@ -371,6 +446,10 @@ function printRating($vote = 3, $object = NULL, $text = true) {
 
 		function cast<?php echo $unique; ?>() {
 			var dataString = $('#star_rating<?php echo $unique; ?>').serialize();
+			if (!dataString && <?php echo (bool) getOption('rating_like-dislike'); ?>) {
+				dataString = 'star_rating-value<?php echo $unique; ?>=0';
+			}
+
 			if (dataString || recast<?php echo $unique; ?>) {
 	<?php
 	if ($recast) {
