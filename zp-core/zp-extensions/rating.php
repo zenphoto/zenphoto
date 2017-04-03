@@ -195,9 +195,9 @@ class jquery_rating {
 		?>
 
 		<script type="text/javascript">
-			// <!-- <![CDATA[
-			$.fn.rating.options = {cancel: '<?php echo gettext('retract'); ?>'};
-			// ]]> -->
+					// <!-- <![CDATA[
+					$.fn.rating.options = {cancel: '<?php echo gettext('retract'); ?>', starWidth: 32};
+					// ]]> -->
 		</script>
 		<?php
 	}
