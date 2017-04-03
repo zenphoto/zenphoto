@@ -82,6 +82,7 @@ class jquery_rating {
 			setOptionDefault('rating_recast', 1);
 			setOptionDefault('rating_stars_count', 5);
 			setOptionDefault('rating_split_stars', 2);
+			setOptionDefault('rating_star_size', 24);
 			setOptionDefault('rating_status', 3);
 			setOptionDefault('rating_image_individual_control', 0);
 			setOptionDefault('rating_like-dislike', 0);
@@ -107,6 +108,10 @@ class jquery_rating {
 						'order' => 4,
 						'buttons' => array(gettext('full') => 1, gettext('half') => 2, gettext('third') => 3),
 						'desc' => gettext('Show fractional stars based on rating. May cause performance problems for pages with large numbers of rating elements.')),
+				gettext('Icon size') => array('key' => 'rating_star_size', 'type' => OPTION_TYPE_RADIO,
+						'order' => 4.5,
+						'buttons' => array(gettext('large') => 32, gettext('medium') => 24, gettext('small') => 16),
+						'desc' => gettext('the size of the icon used for voting.')),
 				gettext('Individual image control') => array('key' => 'rating_image_individual_control', 'type' => OPTION_TYPE_CHECKBOX,
 						'order' => 2,
 						'desc' => gettext('Enable to allow voting status control on individual images.')),
@@ -184,10 +189,15 @@ class jquery_rating {
 		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/' . $ME; ?>/jquery.MetaData.js"></script>
 		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/' . $ME; ?>/jquery.rating.js"></script>
 		<?php
+		$size = getOption('rating_star_size');
+
+		$size = 32;
+
+
 		if (getOption('rating_like-dislike')) {
-			$css = getPlugin('rating/jquery.rating_like.css', true, true);
+			$css = getPlugin('rating/jquery.rating_like-' . $size . '.css', true, true);
 		} else {
-			$css = getPlugin('rating/jquery.rating.css', true, true);
+			$css = getPlugin('rating/jquery.rating-' . $size . '.css', true, true);
 		}
 		?>
 		<link rel="stylesheet" href="<?php echo pathurlencode($css); ?>" type="text/css" />
@@ -196,7 +206,7 @@ class jquery_rating {
 
 		<script type="text/javascript">
 					// <!-- <![CDATA[
-					$.fn.rating.options = {cancel: '<?php echo gettext('retract'); ?>', starWidth: 32};
+					$.fn.rating.options = {cancel: '<?php echo gettext('retract'); ?>', starWidth: <?php echo $size; ?>};
 					// ]]> -->
 		</script>
 		<?php
@@ -420,7 +430,8 @@ function printRating($vote = 3, $object = NULL, $text = true) {
 					 if (!$disable) {
 						 ?>
 			<span id="submit_button<?php echo $unique; ?>">
-				<input type="button" class="button buttons" value="<?php echo gettext('Submit »'); ?>" onclick="cast<?php echo $unique; ?>();" />
+				<input type="button" class="rating_button" value="<?php echo gettext('Submit »'); ?>" onclick="cast<?php echo $unique; ?>();" />
+				<br class="clearall">
 			</span>
 			<?php
 		}
