@@ -190,10 +190,6 @@ class jquery_rating {
 		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/' . $ME; ?>/jquery.rating.js"></script>
 		<?php
 		$size = getOption('rating_star_size');
-
-		$size = 32;
-
-
 		if (getOption('rating_like-dislike')) {
 			$css = getPlugin('rating/jquery.rating_like-' . $size . '.css', true, true);
 		} else {
