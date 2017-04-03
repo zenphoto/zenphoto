@@ -167,7 +167,7 @@ if ($saved) {
 			<button type="submit" value="<?php echo gettext('Apply') ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 			<button type="reset" value="<?php echo gettext('Reset') ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
 		</p><br class="clearall" /><br /><br />
-		<table class="bordered options">
+		<table>
 			<tr>
 				<th id="imagenav" colspan="3">
 					<?php printPageSelector($subpage, $rangeset, 'admin-plugins.php', array('page' => 'plugins', 'tab' => $subtab)); ?>
@@ -347,12 +347,12 @@ if ($saved) {
 					</td>
 					<td width="60">
 						<span class="icons"><a onclick="$.colorbox({
-									close: '<?php echo gettext("close"); ?>',
-									maxHeight: '80%',
-									maxWidth: '80%',
-									innerWidth: '560px',
-									href: '<?php echo $plugin_URL; ?>'
-								});"><img class="icon-position-top3" src="images/info.png" title="<?php printf(gettext('More information on %s'), $extension); ?>" alt=""></a></span>
+										close: '<?php echo gettext("close"); ?>',
+										maxHeight: '80%',
+										maxWidth: '80%',
+										innerWidth: '560px',
+										href: '<?php echo $plugin_URL; ?>'
+									});"><img class="icon-position-top3" src="images/info.png" title="<?php printf(gettext('More information on %s'), $extension); ?>" alt=""></a></span>
 																	 <?php
 																	 if ($optionlink) {
 																		 ?>
