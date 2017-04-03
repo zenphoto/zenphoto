@@ -2447,6 +2447,7 @@ zp-core/zp-extensions/user_mailing_list
 zp-core/zp-extensions/user_mailing_list/mail_handler.php
 zp-core/zp-extensions/user_mailing_list/user_mailing_listTab.php
 zp-core/zp-extensions/wordpress_import
+zp-core/zp-extensions/wordpress_import/admin_tab.php
 zp-core/zp-extensions/wordpress_import/wpmini-blue.png
 zp-core/zp-extensions/zenpage
 zp-core/zp-extensions/zenpage/admin-categories.php
@@ -2476,4 +2477,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-2478
+2479

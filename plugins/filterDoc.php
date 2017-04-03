@@ -22,7 +22,7 @@ function filterDoc_tabs($tabs) {
 			$tabs['development'] = array('text' => gettext("development"),
 					'subtabs' => NULL);
 		}
-		$tabs['development']['subtabs'][gettext("filters")] = '/' . USER_PLUGIN_FOLDER . '/filterDoc/admin_tab.php?page=development?tab=' . gettext('filters');
+		$tabs['development']['subtabs'][gettext("filters")] = '/' . USER_PLUGIN_FOLDER . '/filterDoc/admin_tab.php?page=development&tab=filters';
 		$named = array_flip($tabs['development']['subtabs']);
 		natcasesort($named);
 		$tabs['development']['subtabs'] = $named = array_flip($named);

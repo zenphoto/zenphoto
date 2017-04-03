@@ -594,10 +594,6 @@ if (isset($_GET['album'])) {
 	}
 	$album = newAlbum($folder);
 	$subtab = setAlbumSubtabs($album);
-} else {
-	if ($is_massedit) {
-		$zenphoto_tabs['edit']['subtabs'] = NULL;
-	}
 }
 if (empty($subtab)) {
 	if (isset($_GET['album'])) {
@@ -870,7 +866,7 @@ echo "\n</head>";
 					<div id="tab_albuminfo" class="tabbox">
 						<?php consolidatedEditMessages('albuminfo'); ?>
 						<form class="dirtylistening" onReset="toggle_passwords('', false);
-								setClean('form_albumedit');" name="albumedit1" id="form_albumedit" autocomplete="off" action="?page=edit&amp;action=save<?php echo "&amp;album=" . pathurlencode($album->name); ?>"	method="post" >
+										setClean('form_albumedit');" name="albumedit1" id="form_albumedit" autocomplete="off" action="?page=edit&amp;action=save<?php echo "&amp;album=" . pathurlencode($album->name); ?>"	method="post" >
 									<?php XSRFToken('albumedit'); ?>
 							<input type="hidden" name="album"	value="<?php echo $album->name; ?>" />
 							<input type="hidden"	name="savealbuminfo" value="1" />
@@ -935,7 +931,7 @@ echo "\n</head>";
 							</form>
 							<br clear="all">
 							<form class="dirtylistening" onReset="setClean('sortableListForm');
-									$('#albumsort').sortable('cancel');" action="?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>&amp;action=savesubalbumorder&amp;tab=subalbuminfo" method="post" name="sortableListForm" id="sortableListForm" onsubmit="return confirmAction();" autocomplete="off" >
+												$('#albumsort').sortable('cancel');" action="?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>&amp;action=savesubalbumorder&amp;tab=subalbuminfo" method="post" name="sortableListForm" id="sortableListForm" onsubmit="return confirmAction();" autocomplete="off" >
 										<?php XSRFToken('savealbumorder'); ?>
 								<p class="notebox">
 									<?php echo gettext('<strong>Note:</strong> Dragging an album under a different parent will move the album. You cannot move albums under a <em>dynamic</em> album.'); ?>
@@ -1257,7 +1253,7 @@ echo "\n</head>";
 												<table class="width100percent" id="image-<?php echo $currentimage; ?>">
 													<tr>
 														<td class="leftcolumn"><?php echo gettext("Title");
-												?></td>
+								?></td>
 														<td class="middlecolumn">
 															<?php print_language_string_list($image->getTitle('all'), $currentimage . '-title', false, NULL, '', '100%'); ?>
 														</td>
@@ -1333,9 +1329,9 @@ echo "\n</head>";
 																	 name="<?php echo $currentimage; ?>-Visible"
 																	 value="1" <?php if ($image->getShow()) echo ' checked = "checked"'; ?>
 																	 onclick="$('#publishdate-<?php echo $currentimage; ?>').val('');
-																			 $('#expirationdate-<?php echo $currentimage; ?>').val('');
-																			 $('#publishdate-<?php echo $currentimage; ?>').css('color', 'black ');
-																			 $('.expire-<?php echo $currentimage; ?>').html('');"
+																							 $('#expirationdate-<?php echo $currentimage; ?>').val('');
+																							 $('#publishdate-<?php echo $currentimage; ?>').css('color', 'black ');
+																							 $('.expire-<?php echo $currentimage; ?>').html('');"
 																	 />
 																	 <?php echo gettext("Published"); ?>
 													</label>
@@ -1344,10 +1340,10 @@ echo "\n</head>";
 														?>
 														<label class="checkboxlabel">
 															<input type="checkbox" id="allowcomments-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-allowcomments" value="1" <?php
-															if ($image->getCommentsAllowed()) {
-																echo ' checked = "checked"';
-															}
-															?> />
+									if ($image->getCommentsAllowed()) {
+										echo ' checked = "checked"';
+									}
+														?> />
 																		 <?php echo gettext("Allow Comments"); ?>
 														</label>
 														<?php
@@ -1447,17 +1443,17 @@ echo "\n</head>";
 													<label class="checkboxlabel">
 														<input type="radio" id="copy-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="copy"
 																	 onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>'
-																							 , 'copy');"  /> <?php echo gettext("Copy"); ?>
+																											 , 'copy');"  /> <?php echo gettext("Copy"); ?>
 													</label>
 													<label class="checkboxlabel">
 														<input type="radio" id="rename-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="rename"
 																	 onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>',
-																							 'rename');"  /> <?php echo gettext("Rename File"); ?>
+																											 'rename');"  /> <?php echo gettext("Rename File"); ?>
 													</label>
 													<label class="checkboxlabel">
 														<input type="radio" id="Delete-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="delete"
 																	 onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>', '');
-																			 deleteConfirm('Delete-<?php echo $currentimage; ?>', '<?php echo $currentimage; ?>', '<?php echo addslashes(gettext("Are you sure you want to select this image for deletion?")); ?>')" /> <?php echo gettext("Delete image") ?>
+																							 deleteConfirm('Delete-<?php echo $currentimage; ?>', '<?php echo $currentimage; ?>', '<?php echo addslashes(gettext("Are you sure you want to select this image for deletion?")); ?>')" /> <?php echo gettext("Delete image") ?>
 													</label>
 													<br class="clearall" />
 													<div id="movecopydiv-<?php echo $currentimage; ?>" style="padding-top: .5em; padding-left: .5em; display: none;">
@@ -1513,30 +1509,30 @@ echo "\n</head>";
 														<input type="hidden" name="<?php echo $currentimage; ?>-oldrotation" value="<?php echo $rotation; ?>" />
 														<label class="checkboxlabel">
 															<input type="radio" id="rotation_none-<?php echo $currentimage; ?>"	name="<?php echo $currentimage; ?>-rotation" value="0" <?php
-															checked(0, $rotation);
-															echo $disablerotate
-															?> />
+									checked(0, $rotation);
+									echo $disablerotate
+														?> />
 																		 <?php echo gettext('none'); ?>
 														</label>
 														<label class="checkboxlabel">
 															<input type="radio" id="rotation_90-<?php echo $currentimage; ?>"	name="<?php echo $currentimage; ?>-rotation" value="6" <?php
-															checked(6, $rotation);
-															echo $disablerotate
-															?> />
+													 checked(6, $rotation);
+													 echo $disablerotate
+																		 ?> />
 																		 <?php echo gettext('90 degrees'); ?>
 														</label>
 														<label class="checkboxlabel">
 															<input type="radio" id="rotation_180-<?php echo $currentimage; ?>"	name="<?php echo $currentimage; ?>-rotation" value="3" <?php
-															checked(3, $rotation);
-															echo $disablerotate
-															?> />
+													 checked(3, $rotation);
+													 echo $disablerotate
+																		 ?> />
 																		 <?php echo gettext('180 degrees'); ?>
 														</label>
 														<label class="checkboxlabel">
 															<input type="radio" id="rotation_270-<?php echo $currentimage; ?>"	name="<?php echo $currentimage; ?>-rotation" value="8" <?php
-															checked(8, $rotation);
-															echo $disablerotate
-															?> />
+													 checked(8, $rotation);
+													 echo $disablerotate
+																		 ?> />
 																		 <?php echo gettext('270 degrees'); ?>
 														</label>
 														<?php
@@ -1765,7 +1761,7 @@ echo "\n</head>";
 					</p>
 
 					<form class="dirtylistening" onReset="setClean('sortableListForm');
-							$('#albumsort').sortable('cancel');" action="?page=edit&amp;action=savealbumorder" method="post" name="sortableListForm" id="sortableListForm" onsubmit="return confirmAction();" autocomplete="off" >
+									$('#albumsort').sortable('cancel');" action="?page=edit&amp;action=savealbumorder" method="post" name="sortableListForm" id="sortableListForm" onsubmit="return confirmAction();" autocomplete="off" >
 								<?php XSRFToken('savealbumorder'); ?>
 						<p class="buttons">
 							<?php

@@ -176,6 +176,9 @@ code {
 	position: absolute;
 	overflow: visible;
 	z-index: 500;
+  width: 13em;
+  background: darkgray;
+	zoom: 1;
 }
 
 .navigation ul,
@@ -228,11 +231,6 @@ code {
 
 .navigation ul ul { margin-top: 0.05em; }
 
-.navigation {
-  width: 13em;
-  background: darkgray;
-	zoom: 1;
-}
 
 .navigation:before {
   content: '';

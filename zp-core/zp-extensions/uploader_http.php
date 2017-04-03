@@ -10,11 +10,11 @@
  * @subpackage admin
  *
  */
-$plugin_is_filter = defaultExtension(5 | ADMIN_PLUGIN);
+$plugin_is_filter = defaultExtension(30 | ADMIN_PLUGIN);
 $plugin_description = gettext('<em>http</em> image upload handler.');
 $plugin_author = 'Stephen Billard (sbillard)';
 
-zp_register_filter('admin_tabs', 'httpUploadHandler_admin_tabs', 10);
+zp_register_filter('admin_tabs', 'httpUploadHandler_admin_tabs');
 if (zp_loggedin(UPLOAD_RIGHTS)) {
 	zp_register_filter('upload_handlers', 'httpUploadHandler');
 }
@@ -29,13 +29,13 @@ function httpUploadHandler_admin_tabs($tabs) {
 		$me = sprintf(gettext('images (%s)'), 'http');
 		$mylink = 'admin-upload.php?page=upload&tab=http&type=' . gettext('images');
 		if (is_null($tabs['upload'])) {
-			$tabs['upload'] = array('text'		 => gettext("upload"),
-							'link'		 => WEBPATH . "/" . ZENFOLDER . '/admin-upload.php',
-							'subtabs'	 => NULL);
+			$tabs['upload'] = array('text' => gettext("upload"),
+					'link' => WEBPATH . "/" . ZENFOLDER . '/' . $mylink,
+					'subtabs' => NULL,
+					'default' => 'http'
+			);
 		}
 		$tabs['upload']['subtabs'][$me] = $mylink;
-		if (zp_getcookie('uploadtype') == 'http')
-			$tabs['upload']['link'] = WEBPATH . "/" . ZENFOLDER . '/' . $mylink;
 	}
 	return $tabs;
 }

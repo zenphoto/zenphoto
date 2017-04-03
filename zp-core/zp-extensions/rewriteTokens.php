@@ -81,8 +81,8 @@ class rewriteTokens {
 		} else {
 			$desc = sprintf(gettext('Link for <em>%s</em> script page.'), $page);
 		}
-		return array('key'	 => 'rewriteTokens_' . $page, 'type' => OPTION_TYPE_CUSTOM,
-						'desc' => $desc);
+		return array('key' => 'rewriteTokens_' . $page, 'type' => OPTION_TYPE_CUSTOM,
+				'desc' => $desc);
 	}
 
 	function getOptionsSupported() {
@@ -90,15 +90,15 @@ class rewriteTokens {
 		$options = array();
 		if (!MOD_REWRITE) {
 			$options['note'] = array(
-							'key'		 => 'rewriteTokens_note',
-							'type'	 => OPTION_TYPE_NOTE,
-							'order'	 => 0,
-							'desc'	 => gettext('<p class="notebox">Rewrite Tokens are not useful unless the <code>mod_rewrite</code> option is enabled.</p>')
+					'key' => 'rewriteTokens_note',
+					'type' => OPTION_TYPE_NOTE,
+					'order' => 0,
+					'desc' => gettext('<p class="notebox">Rewrite Tokens are not useful unless the <code>mod_rewrite</code> option is enabled.</p>')
 			);
 		}
-		$options[gettext('Reset')] = array('key'		 => 'rewriteTokens_restore', 'type'	 => OPTION_TYPE_CHECKBOX,
-						'order'	 => 99999,
-						'desc'	 => gettext('Restore defaults.'));
+		$options[gettext('Reset')] = array('key' => 'rewriteTokens_restore', 'type' => OPTION_TYPE_CHECKBOX,
+				'order' => 99999,
+				'desc' => gettext('Restore defaults.'));
 		foreach ($this->conf_vars as $page => $element) {
 			$options[$page] = self::anOption($page, $element, $_definitions);
 		}
@@ -183,10 +183,10 @@ class rewriteTokens {
 	static function tabs($tabs) {
 		if (zp_loggedin(ADMIN_RIGHTS)) {
 			if (!isset($tabs['development'])) {
-				$tabs['development'] = array('text'		 => gettext("development"),
-								'subtabs'	 => NULL);
+				$tabs['development'] = array('text' => gettext("development"),
+						'subtabs' => NULL);
 			}
-			$tabs['development']['subtabs'][gettext("tokens")] = PLUGIN_FOLDER . '/rewriteTokens/admin_tab.php?page=development&tab=' . gettext('tokens');
+			$tabs['development']['subtabs'][gettext("tokens")] = PLUGIN_FOLDER . '/rewriteTokens/admin_tab.php?page=development&tab=tokens';
 			$named = array_flip($tabs['development']['subtabs']);
 			natcasesort($named);
 			$tabs['development']['subtabs'] = $named = array_flip($named);

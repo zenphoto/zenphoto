@@ -103,7 +103,7 @@ if (isset($_GET['refresh'])) {
 		if (!empty($ret)) {
 			$ret = '&amp;return=' . $ret;
 		}
-		$metaURL = $redirecturl = '?' . $type . 'refresh=continue&amp;id=' . $imageid . $albumparm . $ret . '&XSRFToken=' . getXSRFToken('refresh');
+		$metaURL = $redirecturl = '?' . $type . 'refresh=continue&amp;tab=refresh&amp;id=' . $imageid . $albumparm . $ret . '&XSRFToken=' . getXSRFToken('refresh');
 	}
 } else {
 	if ($type !== 'prune&amp;') {
@@ -130,7 +130,7 @@ if (isset($_GET['refresh'])) {
 		$ret = sanitize($_REQUEST['return']);
 	if (!empty($ret))
 		$ret = '&amp;return=' . $ret;
-	$metaURL = $starturl = '?' . $type . 'refresh=start' . $albumparm . '&amp;XSRFToken=' . getXSRFToken('refresh') . $ret;
+	$metaURL = $starturl = '?' . $type . 'refresh=start' . $albumparm . '&amp;tab=refresh&amp;XSRFToken=' . getXSRFToken('refresh') . $ret;
 }
 
 printAdminHeader($tab, 'Refresh');
