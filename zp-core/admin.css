@@ -2704,7 +2704,9 @@ dl.userlist dt {
 }
 
 form.dirty button[type=submit],
-form.dirty input[type=submit] {
+form.dirty input[type=submit],
+form.tinyDirty button[type=submit],
+form.tinyDirty input[type=submit] {
 	border: 1px solid #74b341 !important;
 	background: #d7e5a6;
 }
@@ -2712,21 +2714,11 @@ form.dirty input[type=submit] {
 form.dirty button[type=submit]:hover,
 form.dirty button[type=submit]:active,
 form.dirty input[type=submit]:hover,
-form.dirty input[type=submit]:active{
-	border: 1px solid green !important;
-	background: #eff6d5;
-}
-
-form.tinyDirty button[type=submit],
-form.tinyDirty input[type=submit] {
-	border: 1px solid #74b341 !important;
-	background: #d7e5a6;
-}
-
+form.dirty input[type=submit]:active,
 form.tinyDirty button[type=submit]:hover,
 form.tinyDirty button[type=submit]:active,
 form.tinyDirty input[type=submit]:hover,
-form.tinyDirty input[type=submit]:active{
+form.tinyDirty input[type=submit]:active {
 	border: 1px solid green !important;
 	background: #eff6d5;
 }
