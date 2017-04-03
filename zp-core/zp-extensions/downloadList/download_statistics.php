@@ -40,7 +40,7 @@ function printBarGraph() {
 	}
 
 	$countlines = 0;
-	echo "<table class='bordered'>";
+	echo "<table'>";
 	echo "<tr><th colspan='4'><strong>" . gettext("Most downloaded files") . "</strong>";
 	echo "</th></tr>";
 	$count = '';
