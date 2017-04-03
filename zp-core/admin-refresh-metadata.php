@@ -39,15 +39,15 @@ if (isset($_GET['refresh'])) {
 	$imageid = $_zp_gallery->garbageCollect(true, true, $imageid);
 }
 
-if (isset($_GET['prune'])) {
-	$type = 'prune&amp;';
+if (isset($_GET['tab']) && $_GET['tab'] == 'prune') {
+	$type = 'tab=prune&amp;';
 	$title = gettext('Refresh Database');
 	$finished = gettext('Finished refreshing the database');
 	$incomplete = gettext('Database refresh is incomplete');
 	$allset = gettext("We are all set to refresh the database");
 	$continue = gettext('Continue refreshing the database.');
 } else {
-	$type = '';
+	$type = 'tab=refresh&amp;';
 	$title = gettext('Refresh Metadata');
 	$finished = gettext('Finished refreshing the metadata');
 	$incomplete = gettext('Metadata refresh is incomplete');
@@ -103,10 +103,10 @@ if (isset($_GET['refresh'])) {
 		if (!empty($ret)) {
 			$ret = '&amp;return=' . $ret;
 		}
-		$metaURL = $redirecturl = '?' . $type . 'refresh=continue&amp;tab=refresh&amp;id=' . $imageid . $albumparm . $ret . '&XSRFToken=' . getXSRFToken('refresh');
+		$metaURL = $redirecturl = '?' . $type . 'refresh=continue&amp;id=' . $imageid . $albumparm . $ret . '&XSRFToken=' . getXSRFToken('refresh');
 	}
 } else {
-	if ($type !== 'prune&amp;') {
+	if ($type !== 'tab=prune&amp;') {
 		if (!empty($folder)) {
 			$album = newAlbum($folder);
 			if (!$album->isMyItem(ALBUM_RIGHTS)) {
@@ -130,7 +130,7 @@ if (isset($_GET['refresh'])) {
 		$ret = sanitize($_REQUEST['return']);
 	if (!empty($ret))
 		$ret = '&amp;return=' . $ret;
-	$metaURL = $starturl = '?' . $type . 'refresh=start' . $albumparm . '&amp;tab=refresh&amp;XSRFToken=' . getXSRFToken('refresh') . $ret;
+	$metaURL = $starturl = '?' . $type . 'refresh=start' . $albumparm . '&amp;XSRFToken=' . getXSRFToken('refresh') . $ret;
 }
 
 printAdminHeader($tab, 'Refresh');
@@ -166,7 +166,7 @@ printTabs();
 				<?php
 			}
 		} else {
-			if ($type !== 'prune&amp;') {
+			if ($type !== 'tab=prune&amp;') {
 				if (!empty($id)) {
 					$sql = "UPDATE " . prefix('albums') . " SET `mtime`=0" . ($_zp_gallery->getAlbumUseImagedate() ? ", `date`=NULL" : '') . " WHERE `id`=$id";
 					query($sql);

@@ -77,12 +77,15 @@ if (@$_zp_loggedin) {
 				'default' => 'overview');
 		$zenphoto_tabs['overview']['subtabs'][gettext('Gallery statistics')] = '/' . ZENFOLDER . '/utilities/gallery_statistics.php?tab=gallerystats';
 	}
+	if ($_zp_loggedin & ADMIN_RIGHTS) {
+		$zenphoto_tabs['overview']['subtabs'][gettext('Refresh database')] = '/' . ZENFOLDER . '/admin-refresh-metadata.php?tab=prune&XSRFToken=' . getXSRFToken('refresh');
+	}
 
 	if ($_zp_loggedin & ALBUM_RIGHTS) {
 		$zenphoto_tabs['edit'] = array('text' => gettext("albums"),
 				'link' => WEBPATH . "/" . ZENFOLDER . '/admin-edit.php',
 				'subtabs' => NULL);
-		$zenphoto_tabs['overview']['subtabs'][gettext('Refresh Metadata')] = '/' . ZENFOLDER . '/admin-refresh-metadata.php?tab=refresh&XSRFToken=' . getXSRFToken('refresh');
+		$zenphoto_tabs['overview']['subtabs'][gettext('Refresh metadata')] = '/' . ZENFOLDER . '/admin-refresh-metadata.php?tab=refresh&XSRFToken=' . getXSRFToken('refresh');
 	}
 
 	if ($_zp_loggedin & MANAGE_ALL_ALBUM_RIGHTS) {
@@ -134,8 +137,9 @@ if (@$_zp_loggedin) {
 		$subtabs[gettext("image")] = 'admin-options.php?page=options&tab=image';
 	}
 	if ($_zp_loggedin & ADMIN_RIGHTS) {
-		if (empty($optiondefault))
+		if (empty($optiondefault)) {
 			$optiondefault = '&tab=plugin';
+		}
 		$subtabs[gettext("plugin")] = 'admin-options.php?page=options&tab=plugin';
 	}
 	if ($_zp_loggedin & OPTIONS_RIGHTS) {
