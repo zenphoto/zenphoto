@@ -527,7 +527,29 @@ function getOptionContent() {
 					}
 					?>
 				</table>
+				<?php
+				$prev = $next = $found = NULL;
+				foreach ($themes as $atheme => $data) {
+					array_shift($themes);
+					if ($atheme == $themename) {
+						$found = true;
+					} else {
+						if ($found) {
+							$next = $atheme;
+							break;
+						}
+						$prev = $atheme;
+					}
+				}
+				?>
+				<p class="padded">
+					<a href="?page=options&tab=theme&optiontheme=<?php echo $prev; ?>"><?php echo $prev; ?></a>
+					<span class="floatright" >
+						<a href="?page=options&tab=theme&optiontheme=<?php echo $next; ?>"><?php echo $next; ?></a>
+					</span>
+				</p>
 			</form>
+			<br class="clearall">
 		</div>
 		<!-- end of tab_theme div -->
 		<?php
