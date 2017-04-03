@@ -185,7 +185,7 @@ function getOptionContent() {
 				<input type="hidden" id="saveoptions" name="saveoptions" value="theme" />
 				<input type="hidden" name="optiontheme" value="<?php echo urlencode($themename); ?>" />
 				<input type="hidden" name="old_themealbum" value="<?php echo pathurlencode($alb); ?>" />
-				<table class='bordered options'>
+				<table>
 
 					<?php
 					if (count($themelist) == 0) {
@@ -235,7 +235,7 @@ function getOptionContent() {
 								<p class="buttons">
 									<button type="submit" value="<?php echo gettext('Apply') ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 									<button type="button" value="<?php echo gettext('Revert to default') ?>" onclick="$('#savethemeoptions').val('reset');
-											$('#themeoptionsform').submit();"><img src="images/refresh.png" alt="" /><strong><?php echo gettext("Revert to default"); ?></strong></button>
+														$('#themeoptionsform').submit();"><img src="images/refresh.png" alt="" /><strong><?php echo gettext("Revert to default"); ?></strong></button>
 									<button type="reset" value="<?php echo gettext('reset') ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
 								</p>
 							</td>
@@ -518,7 +518,7 @@ function getOptionContent() {
 								<p class="buttons">
 									<button type="submit" value="<?php echo gettext('Apply') ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 									<button type="button" value="<?php echo gettext('Revert to default') ?>" onclick="$('#savethemeoptions').val('reset');
-											$('#themeoptionsform').submit();"><img src="images/refresh.png" alt="" /><strong><?php echo gettext("Revert to default"); ?></strong></button>
+														$('#themeoptionsform').submit();"><img src="images/refresh.png" alt="" /><strong><?php echo gettext("Revert to default"); ?></strong></button>
 									<button type="reset" value="<?php echo gettext('reset') ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
 								</p>
 							</td>
