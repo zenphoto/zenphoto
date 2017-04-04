@@ -204,7 +204,7 @@ updatePublished('news');
 					}
 					?>
 					<span class="zenpagestats"><?php printNewsStatistic($articles, count($resultU)); ?></span>
-
+					<br class="clearall" />
 					<div class="floatright">
 						<?php
 						printAuthorDropdown();
@@ -214,11 +214,8 @@ updatePublished('news');
 						printSortOrderDropdown();
 						printArticlesPerPageDropdown($subpage);
 						?>
-						<span class="buttons">
-							<a href="admin-edit.php?newsarticle&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add') ?>"> <img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" /> <strong><?php echo gettext("New Article"); ?></strong></a>
-						</span>
-						<br style="clear: both" />
 					</div>
+					<br class="clearall" />
 					<?php
 					$option = getNewsAdminOptionPath(getNewsAdminOption(NULL));
 					?>
@@ -228,7 +225,10 @@ updatePublished('news');
 							<button type="submit" title="<?php echo gettext('Apply'); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><strong><?php echo gettext('Apply'); ?></strong>
 							</button>
 						</div>
-						<br style="clear: both" /><br />
+						<span class="buttons floatright">
+							<a href="admin-edit.php?newsarticle&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add') ?>"> <img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" /> <strong><?php echo gettext("New Article"); ?></strong></a>
+						</span>
+						<br class="clearall" /><br />
 
 						<table class="bordered">
 							<tr>
