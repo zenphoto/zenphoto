@@ -252,18 +252,6 @@ code {
   text-transform: uppercase;
 }
 
-.navigation a.alert {
-	background-color: darkgoldenrod;
-}
-
-.navigation a.active {
-	background-color: #4eb1ff !important;
-}
-
-.navigation ul a.active {
-	background-color: #4eb1ff;
-}
-
 .navigation > ul { width: 13em; }
 
 .navigation ul ul { width: 13em; }
@@ -272,12 +260,6 @@ code {
   border-right: 0.3em solid #34A65F;
   color: #ffffff;
 }
-
-.navigation > ul > li > a:hover { color: #ffffff; }
-
-.navigation > ul > li a:hover,
-.navigation > ul > li:hover a { background: #34A65F; }
-
 
 .navigation li { position: relative; }
 
@@ -310,14 +292,31 @@ code {
 
 .navigation ul ul a { color: #ffffff; }
 
-.navigation ul ul a:hover { color: #ffffff; }
-
 .navigation ul ul li { border-bottom: 1px solid #0F8A5F; }
 
-.navigation ul ul li:hover > a {
-  background: #0974f6;
-  color: #ffffff;
+
+.navigation a.alert {
+	background-color: darkgoldenrod;
 }
+
+.navigation a.active {
+	background-color: #4eb1ff !important;
+}
+
+.navigation ul a.active {
+	background-color: #4eb1ff;
+}
+
+.navigation > ul > li a:hover,
+.navigation > ul > li:hover a { background: #34A65F; color: #ffffff; }
+
+.navigation ul ul a:hover,
+.navigation ul ul li:hover > a {  background: #0974f6 !important;   color: #ffffff;}
+
+.navigation a.active:hover {
+	background: darkblue !important;   color: #ffffff;}
+}
+
 
 .navigation.align-right > ul > li > a {
   border-left: 0.3em solid #34A65F;
