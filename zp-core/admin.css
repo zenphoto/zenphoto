@@ -314,7 +314,7 @@ code {
 .navigation ul ul li:hover > a {  background: #0974f6 !important;   color: #ffffff;}
 
 .navigation a.active:hover {
-	background: darkblue !important;   color: #ffffff;}
+	background: darkblue !important;   color: #ffffff;
 }
 
 
