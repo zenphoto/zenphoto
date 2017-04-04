@@ -257,6 +257,10 @@ code {
 }
 
 .navigation a.active {
+	background-color: #4eb1ff !important;
+}
+
+.navigation ul a.active {
 	background-color: #4eb1ff;
 }
 
