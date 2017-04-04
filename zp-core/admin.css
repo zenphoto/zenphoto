@@ -2521,20 +2521,25 @@ div.bordered .page-list_row .page-list_albumthumb img {
 
 div.bordered .page-list_row .page-list_albumtitle {
 	float: left;
-	width: 25%;
 	height: 30px;
-	padding: 20px 0px 0px 10px;
+	padding: 20px 10px 0px 10px;
 
 }
 
 div.bordered .page-list_row .page-list_extra {
 	float: left;
 	padding-top: 20px;
-	margin-right: 20px;
+}
+
+div.bordered .page-list_row .page-list_right {
+	float: right !important;
+	width: 60px;
+	overflow-x: hidden;
 }
 
 div.bordered .page-list_row .page-list_extra a img {
 	border: 0;
+	vertical-align: center;
 }
 
 div.bordered .page-list_row .page-list_extra > span,
