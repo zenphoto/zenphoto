@@ -252,11 +252,11 @@ code {
 }
 
 .navigation a.alert {
-	background-color: darkgoldenrod !important;
+	background-color: darkgoldenrod;
 }
 
 .navigation a.active {
-	background-color: #4eb1ff !important;
+	background-color: #4eb1ff;
 }
 
 .navigation > ul { width: 13em; }
