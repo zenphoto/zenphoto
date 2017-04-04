@@ -745,7 +745,7 @@ class xmpMetadata {
 	 * @return $object
 	 */
 	static function album_instantiate($album) {
-		$album->sidecars[XMP_EXTENSION] = XMP_EXTENSION;
+		$album->addSidecar(XMP_EXTENSION);
 		return $album;
 	}
 
@@ -864,7 +864,7 @@ class xmpMetadata {
 	}
 
 	static function image_instantiate($image) {
-		$image->sidecars[XMP_EXTENSION] = XMP_EXTENSION;
+		$image->addSidecar(XMP_EXTENSION);
 		return $image;
 	}
 

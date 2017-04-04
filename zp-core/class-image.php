@@ -725,6 +725,10 @@ class Image extends MediaObject {
 		return $result;
 	}
 
+	function addSidecar($car) {
+		$this->sidecars[$car] = $car;
+	}
+
 	/**
 	 * Returns the album that holds this image
 	 *
