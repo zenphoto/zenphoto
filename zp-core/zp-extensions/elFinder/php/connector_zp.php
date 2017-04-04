@@ -32,22 +32,29 @@ include_once SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/elFinder/php
  * */
 function access($attr, $path, $data, $volume) {
 	return strpos(basename($path), '.') === 0 // if file/folder begins with '.' (dot)
-					? !($attr == 'read' || $attr == 'write') // set read+write to false, other (locked+hidden) set to true
+					? !($attr == 'read' || $attr == 'write' ) // set read+write to false, other (locked+hidden) set to true
 					: null; // else elFinder decide it itself
 }
 
 function accessImage($attr, $path, $data, $volume) {
+	global $validSuffix;
+	if (access($attr, $path, $data, $volume)) {
+		return true;
+	}
 	//	allow only images
-	if (access($attr, $path, $data, $volume) || (!is_dir($path) && !exif_imagetype($path))) {
+	if (!is_dir($path) && !in_array(getSuffix($path), $validSuffix)) {
 		return !($attr == 'read' || $attr == 'write');
 	}
 	return NULL;
 }
 
 function accessMedia($attr, $path, $data, $volume) {
+	if (access($attr, $path, $data, $volume)) {
+		return true;
+	}
 	//allow only tinyMCE recognized media suffixes
 	$valid = array("mp3", "wav", "mp4", "webm", "ogg", "swf");
-	if (access($attr, $path, $data, $volume) || (!is_dir($path) && !in_array(getSuffix($path), $valid))) {
+	if (!is_dir($path) && !in_array(getSuffix($path), $valid)) {
 		return !($attr == 'read' || $attr == 'write');
 	}
 	return NULL;
@@ -66,6 +73,9 @@ function accessAlbums($attr, $path, $data, $volume) {
 
 $opts = array();
 $rights = zp_loggedin();
+$sidecars = zp_apply_filter('upload_filetypes', array());
+$validSuffix = array_keys($_zp_images_classes);
+$validSuffix = array_merge($validSuffix, $sidecars);
 
 if ($_REQUEST['origin'] == 'upload') {
 	$themeAlias = sprintf(gettext('Themes (%s)'), THEMEFOLDER);
@@ -83,20 +93,26 @@ if ($_REQUEST['origin'] == 'upload') {
 		$themeRequest = '';
 	}
 
+	if (CASE_INSENSITIVE) { //	ignore case on case insensitive file systems!
+		$i = 'i';
+	} else {
+		$i = '';
+	}
+
 	if ($rights & FILES_RIGHTS) {
 		$opts['roots'][0] = array(
-						'driver'				 => 'LocalFileSystem',
-						'startPath'			 => SERVERPATH . '/' . UPLOAD_FOLDER . '/',
-						'path'					 => SERVERPATH . '/' . UPLOAD_FOLDER . '/',
-						'URL'						 => WEBPATH . '/' . UPLOAD_FOLDER . '/',
-						'alias'					 => sprintf(gettext('Upload folder (%s)'), UPLOAD_FOLDER),
-						'mimeDetect'		 => 'internal',
-						'tmbPath'				 => '.tmb',
-						'utf8fix'				 => true,
-						'tmbCrop'				 => false,
-						'tmbBgColor'		 => 'transparent',
-						'accessControl'	 => 'access',
-						'acceptedName'	 => '/^[^\.].*$/'
+				'driver' => 'LocalFileSystem',
+				'startPath' => SERVERPATH . '/' . UPLOAD_FOLDER . '/',
+				'path' => SERVERPATH . '/' . UPLOAD_FOLDER . '/',
+				'URL' => WEBPATH . '/' . UPLOAD_FOLDER . '/',
+				'alias' => sprintf(gettext('Upload folder (%s)'), UPLOAD_FOLDER),
+				'mimeDetect' => 'internal',
+				'tmbPath' => '.tmb',
+				'utf8fix' => true,
+				'tmbCrop' => false,
+				'tmbBgColor' => 'transparent',
+				'accessControl' => 'access',
+				'acceptedName' => '/^[^\.].*$/'
 		);
 	}
 
@@ -108,56 +124,61 @@ if ($_REQUEST['origin'] == 'upload') {
 			}
 		}
 		$opts['roots'][1] = array(
-						'driver'				 => 'LocalFileSystem',
-						'startPath'			 => SERVERPATH . '/' . THEMEFOLDER . '/' . $themeRequest,
-						'path'					 => SERVERPATH . '/' . THEMEFOLDER . '/' . $themeRequest,
-						'URL'						 => WEBPATH . '/' . THEMEFOLDER . '/' . $themeRequest,
-						'alias'					 => $themeAlias,
-						'mimeDetect'		 => 'internal',
-						'tmbPath'				 => '.tmb',
-						'utf8fix'				 => true,
-						'tmbCrop'				 => false,
-						'tmbBgColor'		 => 'transparent',
-						'accessControl'	 => 'access',
-						'acceptedName'	 => '/^[^\.].*$/',
-						'attributes'		 => $attr = array(
-						array(
-										'pattern'	 => '/.(' . implode('$|', $zplist) . '$)/', // Dont write or delete to this but subfolders and files
-										'read'		 => true,
-										'write'		 => false,
-										'locked'	 => true
-						),
-						array(
-										'pattern'	 => '/.(' . implode('\/|', $zplist) . '\/)/', // Dont write or delete to this but subfolders and files
-										'read'		 => true,
-										'write'		 => false,
-										'locked'	 => true
-						)
-						)
+				'driver' => 'LocalFileSystem',
+				'startPath' => SERVERPATH . '/' . THEMEFOLDER . '/' . $themeRequest,
+				'path' => SERVERPATH . '/' . THEMEFOLDER . '/' . $themeRequest,
+				'URL' => WEBPATH . '/' . THEMEFOLDER . '/' . $themeRequest,
+				'alias' => $themeAlias,
+				'mimeDetect' => 'internal',
+				'tmbPath' => '.tmb',
+				'utf8fix' => true,
+				'tmbCrop' => false,
+				'tmbBgColor' => 'transparent',
+				'accessControl' => 'access',
+				'acceptedName' => '/^[^\.].*$/',
+				'attributes' => $attr = array(
+		array(
+				'pattern' => '/.(' . implode('$|', $zplist) . '$)/' . $i, // Dont write or delete to this but subfolders and files
+				'read' => true,
+				'write' => false,
+				'locked' => true
+		),
+		array(
+				'pattern' => '/.(' . implode('\/|', $zplist) . '\/)/' . $i, // Dont write or delete to this but subfolders and files
+				'read' => true,
+				'write' => false,
+				'locked' => true
+		)
+				)
 		);
 	}
 
 	if ($rights & UPLOAD_RIGHTS) {
 		$opts['roots'][2] = array(
-						'driver'			 => 'LocalFileSystem',
-						'startPath'		 => getAlbumFolder(SERVERPATH),
-						'path'				 => getAlbumFolder(SERVERPATH),
-						'URL'					 => getAlbumFolder(WEBPATH),
-						'alias'				 => sprintf(gettext('Albums folder (%s)'), basename(getAlbumFolder())),
-						'mimeDetect'	 => 'internal',
-						'tmbPath'			 => '.tmb',
-						'utf8fix'			 => true,
-						'tmbCrop'			 => false,
-						'tmbBgColor'	 => 'transparent',
-						'uploadAllow'	 => array('image'),
-						'acceptedName' => '/^[^\.].*$/'
+				'driver' => 'LocalFileSystem',
+				'startPath' => getAlbumFolder(SERVERPATH),
+				'path' => getAlbumFolder(SERVERPATH),
+				'URL' => getAlbumFolder(WEBPATH),
+				'alias' => sprintf(gettext('Albums folder (%s)'), basename(getAlbumFolder())),
+				'mimeDetect' => 'internal',
+				'tmbPath' => '.tmb',
+				'utf8fix' => true,
+				'tmbCrop' => false,
+				'tmbBgColor' => 'transparent',
+				'uploadAllow' => array('image'),
+				'acceptedName' => '/^[^\.].*$/'
 		);
 		if ($rights & ADMIN_RIGHTS) {
 			$opts['roots'][2]['accessControl'] = 'access';
 		} else {
-			$opts['roots'][2]['accessControl'] = 'accessAlbums';
+			if ($rights & FILES_RIGHTS) {
+				$opts['roots'][2]['accessControl'] = 'accessAlbums';
+			} else {
+				$opts['roots'][2]['accessControl'] = 'accessImage';
+			}
+
 			$_managed_folders = getManagedAlbumList();
-			$excluded_folders = $_zp_gallery->getAlbums(0);
+			$excluded_folders = $_zp_gallery->getAlbums(0, null, null, false, true); //	get them all!
 			$excluded_folders = array_diff($excluded_folders, $_managed_folders);
 			foreach ($excluded_folders as $key => $folder) {
 				$excluded_folders[$key] = preg_quote($folder);
@@ -190,50 +211,60 @@ if ($_REQUEST['origin'] == 'upload') {
 				}
 			}
 
+			$excludepattern = '';
+			$noteditpattern = '';
+			foreach ($sidecars as $car) {
+				$excludepattern .='|' . implode('.' . $car . '|', $excluded_folders) . '.' . $car;
+				$noteditpattern .= '|' . implode('.' . $car . '|', $_not_edit) . '.' . $car;
+			}
+
 			$opts['roots'][2]['attributes'] = array();
 			if (!empty($excluded_folders)) {
-				$opts['roots'][2]['attributes'][0] = array(//	albums he does not manage
-								'pattern'	 => '/.(' . implode('$|', $excluded_folders) . '$)/', // Dont write or delete to this but subfolders and files
-								'read'		 => false,
-								'write'		 => false,
-								'locked'	 => true
+				$opts['roots'][2]['attributes'][] = array(//	albums he does not manage
+						'pattern' => '/.(' . implode('$|', $excluded_folders) . '$)/' . $i, // Dont write or delete to this but subfolders and files
+						'read' => false,
+						'write' => false,
+						'hidden' => true,
+						'locked' => true
 				);
 
-				$opts['roots'][2]['attributes'][1] = array(//	xmp for albums he does not manage
-								'pattern'	 => '/.(' . implode('.xmp|', $excluded_folders) . '.xmp)/', // Dont write or delete to this but subfolders and files
-								'read'		 => false,
-								'write'		 => false,
-								'locked'	 => true
+				$opts['roots'][2]['attributes'][] = array(//	sidecars for albums he does not manage
+						'pattern' => '/.(' . ltrim($excludepattern, '|') . ')/i', // Dont write or delete to this but subfolders and files
+						'read' => false,
+						'write' => false,
+						'hidden' => true,
+						'locked' => true
 				);
 			}
 			if (!empty($_not_upload)) {
-				$opts['roots'][2]['attributes'][2] = array(//	albums he can not upload
-								'pattern'	 => '/.(' . implode('$|', $_not_upload) . '$)/', // Dont write or delete to this but subfolders and files
-								'read'		 => true,
-								'write'		 => false,
-								'locked'	 => true
+				$opts['roots'][2]['attributes'][] = array(//	albums he can not upload
+						'pattern' => '/.(' . implode('$|', $_not_upload) . '$)/' . $i, // Dont write or delete to this but subfolders and files
+						'read' => true,
+						'write' => false,
+						'locked' => true
 				);
 			}
 			if (!empty($_not_edit)) {
-				$opts['roots'][2]['attributes'][3] = array(//	albums content he not edit
-								'pattern'	 => '/.(' . implode('\/|', $_not_edit) . '\/)/', // Dont write or delete to this but subfolders and files
-								'read'		 => true,
-								'write'		 => false,
-								'locked'	 => true
+				$opts['roots'][2]['attributes'][] = array(//	albums content he not edit
+						'pattern' => '/.(' . implode('\/|', $_not_edit) . '\/)/' . $i, // Dont write or delete to this but subfolders and files
+						'read' => true,
+						'write' => false,
+						'locked' => true
 				);
-				$opts['roots'][2]['attributes'][4] = array(//	xmp for albums he can not edit
-								'pattern'	 => '/.(' . implode('\/|', $_not_edit) . '.xmp)/', // Dont write or delete to this but subfolders and files
-								'read'		 => true,
-								'write'		 => false,
-								'locked'	 => true
+				$opts['roots'][2]['attributes'][] = array(//	sidecars for albums he can not edit
+						'pattern' => '/.(' . ltrim($noteditpattern, '|') . ')/i', // Dont write or delete to this but subfolders and files
+						'read' => true,
+						'write' => false,
+						'locked' => true
 				);
 			}
 			if (!empty($all_actions)) {
-				$opts['roots'][2]['attributes'][5] = array(//	albums he can not upload
-								'pattern'	 => '/.(' . implode('$|', $all_actions) . '$)/', // Dont write or delete to this but subfolders and files
-								'read'		 => true,
-								'write'		 => true,
-								'locked'	 => false
+				$opts['roots'][2]['attributes'][] = array(//	albums he can not upload
+						'pattern' => '/.(' . implode('$|', $all_actions) . '$)/' . $i, // Dont write or delete to this but subfolders and files
+						'read' => true,
+						'write' => true,
+						'hidden' => false,
+						'locked' => false
 				);
 			}
 		}
@@ -241,64 +272,64 @@ if ($_REQUEST['origin'] == 'upload') {
 
 	if ($rights & ADMIN_RIGHTS) {
 		$opts['roots'][3] = array(
-						'driver'				 => 'LocalFileSystem',
-						'startPath'			 => SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/',
-						'path'					 => SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/',
-						'URL'						 => WEBPATH . '/' . USER_PLUGIN_FOLDER . '/',
-						'alias'					 => sprintf(gettext('Third party plugins (%s)'), USER_PLUGIN_FOLDER),
-						'mimeDetect'		 => 'internal',
-						'tmbPath'				 => '.tmb',
-						'utf8fix'				 => true,
-						'tmbCrop'				 => false,
-						'tmbBgColor'		 => 'transparent',
-						'accessControl'	 => 'access',
-						'acceptedName'	 => '/^[^\.].*$/'
+				'driver' => 'LocalFileSystem',
+				'startPath' => SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/',
+				'path' => SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/',
+				'URL' => WEBPATH . '/' . USER_PLUGIN_FOLDER . '/',
+				'alias' => sprintf(gettext('Third party plugins (%s)'), USER_PLUGIN_FOLDER),
+				'mimeDetect' => 'internal',
+				'tmbPath' => '.tmb',
+				'utf8fix' => true,
+				'tmbCrop' => false,
+				'tmbBgColor' => 'transparent',
+				'accessControl' => 'access',
+				'acceptedName' => '/^[^\.].*$/'
 		);
 		$opts['roots'][4] = array(
-						'driver'				 => 'LocalFileSystem',
-						'startPath'			 => SERVERPATH . '/' . DATA_FOLDER . '/',
-						'path'					 => SERVERPATH . '/' . DATA_FOLDER . '/',
-						'URL'						 => WEBPATH . '/' . DATA_FOLDER . '/',
-						'alias'					 => sprintf(gettext('Data (%s)'), DATA_FOLDER),
-						'mimeDetect'		 => 'internal',
-						'tmbPath'				 => '.tmb',
-						'utf8fix'				 => true,
-						'tmbCrop'				 => false,
-						'tmbBgColor'		 => 'transparent',
-						'accessControl'	 => 'access',
-						'acceptedName'	 => '/^[^\.].*$/'
+				'driver' => 'LocalFileSystem',
+				'startPath' => SERVERPATH . '/' . DATA_FOLDER . '/',
+				'path' => SERVERPATH . '/' . DATA_FOLDER . '/',
+				'URL' => WEBPATH . '/' . DATA_FOLDER . '/',
+				'alias' => sprintf(gettext('Data (%s)'), DATA_FOLDER),
+				'mimeDetect' => 'internal',
+				'tmbPath' => '.tmb',
+				'utf8fix' => true,
+				'tmbCrop' => false,
+				'tmbBgColor' => 'transparent',
+				'accessControl' => 'access',
+				'acceptedName' => '/^[^\.].*$/'
 		);
 		$opts['roots'][5] = array(
-						'driver'				 => 'LocalFileSystem',
-						'startPath'			 => SERVERPATH . '/' . BACKUPFOLDER . '/',
-						'path'					 => SERVERPATH . '/' . BACKUPFOLDER . '/',
-						'URL'						 => WEBPATH . '/' . BACKUPFOLDER . '/',
-						'alias'					 => sprintf(gettext('Backup files (%s)'), BACKUPFOLDER),
-						'mimeDetect'		 => 'internal',
-						'tmbPath'				 => '.tmb',
-						'utf8fix'				 => true,
-						'tmbCrop'				 => false,
-						'tmbBgColor'		 => 'transparent',
-						'accessControl'	 => 'access',
-						'acceptedName'	 => '/^[^\.].*$/'
+				'driver' => 'LocalFileSystem',
+				'startPath' => SERVERPATH . '/' . BACKUPFOLDER . '/',
+				'path' => SERVERPATH . '/' . BACKUPFOLDER . '/',
+				'URL' => WEBPATH . '/' . BACKUPFOLDER . '/',
+				'alias' => sprintf(gettext('Backup files (%s)'), BACKUPFOLDER),
+				'mimeDetect' => 'internal',
+				'tmbPath' => '.tmb',
+				'utf8fix' => true,
+				'tmbCrop' => false,
+				'tmbBgColor' => 'transparent',
+				'accessControl' => 'access',
+				'acceptedName' => '/^[^\.].*$/'
 		);
 	}
 } else { //	origin == 'tinyMCE
 	if ($rights & FILES_RIGHTS) {
 		$opts['roots'][0] = array(
-						'driver'				 => 'LocalFileSystem',
-						'startPath'			 => SERVERPATH . '/' . UPLOAD_FOLDER . '/',
-						'path'					 => SERVERPATH . '/' . UPLOAD_FOLDER . '/',
-						'URL'						 => WEBPATH . '/' . UPLOAD_FOLDER . '/',
-						'alias'					 => sprintf(gettext('Upload folder (%s)'), UPLOAD_FOLDER),
-						'mimeDetect'		 => 'internal',
-						'tmbPath'				 => '.tmb',
-						'utf8fix'				 => true,
-						'tmbCrop'				 => false,
-						'tmbBgColor'		 => 'transparent',
-						'uploadAllow'		 => array('image'),
-						'accessControl'	 => 'accessImage',
-						'acceptedName'	 => '/^[^\.].*$/'
+				'driver' => 'LocalFileSystem',
+				'startPath' => SERVERPATH . '/' . UPLOAD_FOLDER . '/',
+				'path' => SERVERPATH . '/' . UPLOAD_FOLDER . '/',
+				'URL' => WEBPATH . '/' . UPLOAD_FOLDER . '/',
+				'alias' => sprintf(gettext('Upload folder (%s)'), UPLOAD_FOLDER),
+				'mimeDetect' => 'internal',
+				'tmbPath' => '.tmb',
+				'utf8fix' => true,
+				'tmbCrop' => false,
+				'tmbBgColor' => 'transparent',
+				'uploadAllow' => array('image'),
+				'accessControl' => 'accessImage',
+				'acceptedName' => '/^[^\.].*$/'
 		);
 		switch (@$_GET['type']) {
 			case 'media':
