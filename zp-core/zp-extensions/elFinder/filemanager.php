@@ -6,7 +6,7 @@
  * @subpackage admin
  */
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
-admin_securityChecks(FILES_RIGHTS, currentRelativeURL());
+admin_securityChecks(FILES_RIGHTS | UPLOAD_RIGHTS, currentRelativeURL());
 zp_setCookie('uploadtype', 'elFinder');
 $locale = substr(getOption('locale'), 0, 2);
 if (empty($locale))

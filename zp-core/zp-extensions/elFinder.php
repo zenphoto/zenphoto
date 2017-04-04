@@ -65,7 +65,7 @@ class elFinder_options {
 
 }
 
-if (getOption('elFinder_files') && zp_loggedin(FILES_RIGHTS)) {
+if (getOption('elFinder_files') && zp_loggedin(FILES_RIGHTS | UPLOAD_RIGHTS)) {
 	zp_register_filter('admin_tabs', 'elFinder_admin_tabs');
 	if (!extensionEnabled('themes-editor')) {
 		zp_register_filter('themeEditor', 'elFinderThemeEdit');
@@ -76,7 +76,7 @@ if (getOption('elFinder_tinymce')) {
 }
 
 function elFinder_admin_tabs($tabs) {
-	if (zp_loggedin(FILES_RIGHTS)) {
+	if (zp_loggedin(UPLOAD_RIGHTS)) {
 		$me = sprintf(gettext('files (%s)'), 'elFinder');
 		$mylink = PLUGIN_FOLDER . '/' . 'elFinder/filemanager.php?page=upload&tab=elFinder&type=' . gettext('files');
 		if (is_null($tabs['upload'])) {

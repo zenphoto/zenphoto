@@ -14,7 +14,7 @@
 define('OFFSET_PATH', 1);
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 
-admin_securityChecks(OPTIONS_RIGHTS, $return = currentRelativeURL());
+admin_securityChecks(ADMIN_RIGHTS, $return = currentRelativeURL());
 
 $xlate = array('plugins' => gettext('User plugins'), 'zp-core/zp-extensions' => gettext('Extensions'), 'themes' => gettext('Themes'));
 

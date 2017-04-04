@@ -303,7 +303,7 @@ class user_expiry {
 			if (user_expiry::checkPasswordRenew()) {
 				echo '<p class="errorbox">' . gettext('You must change your password.'), '</p>';
 			} else {
-				if ($_zp_authority->getAnAdmin(array('`valid`>' => 1))) {
+				if (zp_loggedin(ADMIN_RIGHTS) && $_zp_authority->getAnAdmin(array('`valid`>' => 1))) {
 					echo '<p class="notebox">' . gettext('You have users whose credentials have expired.'), '</p>';
 				}
 			}
