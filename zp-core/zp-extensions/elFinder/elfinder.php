@@ -36,17 +36,17 @@ if (empty($locale))
 
 		<!-- elFinder initialization (REQUIRED) -->
 		<script type="text/javascript" charset="utf-8">
-							var FileBrowserDialogue = {
-							init: function() {
-							// Here goes your code for setting your custom things onLoad.
-							},
-											mySubmit: function(URL) {
-											// pass selected file path to TinyMCE
-											top.tinymce.activeEditor.windowManager.getParams().setUrl(URL);
-															// close popup window
-															top.tinymce.activeEditor.windowManager.close();
-											}
+			var FileBrowserDialogue = {
+			init: function() {
+			// Here goes your code for setting your custom things onLoad.
+			},
+							mySubmit: function(URL) {
+							// pass selected file path to TinyMCE
+							top.tinymce.activeEditor.windowManager.getParams().setUrl(URL);
+							// close popup window
+							top.tinymce.activeEditor.windowManager.close();
 							}
+			}
 
 			$().ready(function() {
 			var elf = $('#elfinder').elfinder({
@@ -71,7 +71,7 @@ if (zp_loggedin(FILES_RIGHTS)) {
 											'origin':'tinyMCE',
 											'type':'<?php echo sanitize(@$_GET['type']); ?>'
 							},
-							url : '<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/elFinder/'; ?>php/connector_zp.php', // connector URL (REQUIRED)
+							url : '<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/elFinder/php/connector_zp.php', // connector URL (REQUIRED)
 							getFileCallback: function(file) { // editor callback
 							FileBrowserDialogue.mySubmit(file.url); // pass selected file path to TinyMCE
 							}
