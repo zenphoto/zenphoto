@@ -516,7 +516,6 @@ table.noinput td {
 	border-spacing: 0px;
 	background: #E5E5E5;
 	border: 1px solid #E5E5E5;
-	border-bottom-width: 5px;
 	-moz-border-radius: 5px;
 	-khtml-border-radius: 5px;
 	-webkit-border-radius: 5px;
@@ -571,7 +570,6 @@ table.options {
 	border-spacing: 0px;
 	background: #E5E5E5;
 	border: 1px solid #E5E5E5;
-	border-bottom-width: 5px;
 	-moz-border-radius: 5px;
 	-khtml-border-radius: 5px;
 	-webkit-border-radius: 5px;
@@ -697,7 +695,6 @@ table.checkboxes td {
 	padding: 4px;
 	background-color: #FAFAFA;
 	border: 1px solid #E5E5E5;
-	border-bottom-width: 5px;
 	-moz-border-radius: 5px;
 	-khtml-border-radius: 5px;
 	-webkit-border-radius: 5px;
@@ -707,7 +704,6 @@ table.checkboxes td {
 	padding: 4px;
 	background-color: LightGray;
 	border: 1px solid #E5E5E5;
-	border-bottom-width: 5px;
 	-moz-border-radius: 5px;
 	-khtml-border-radius: 5px;
 	-webkit-border-radius: 5px;
@@ -718,7 +714,6 @@ table.checkboxes td {
 	padding: 10px;
 	background-color: #FAFAFA;
 	border: 1px solid #E5E5E5;
-	border-bottom-width: 5px;
 	-moz-border-radius: 5px;
 	-khtml-border-radius: 5px;
 	-webkit-border-radius: 5px;
@@ -1928,7 +1923,6 @@ span.tagMatches span {
 	padding: 8px;
 	background-color: white;
 	border: 1px solid #cccccc;
-	border-bottom-width: 5px;
 	width: 18.4em;
 	-moz-border-radius: 0 0 5px 5px;
 	-khtml-border-radius: 0 0 5px 5px;
@@ -1958,7 +1952,6 @@ span.tagMatches span {
 	padding: 0px 0px 0px 0px;
 	background-color: white;
 	border: 1px solid #cccccc;
-	border-bottom-width: 5px;
 	-moz-border-radius: 0 0 5px 5px;
 	-khtml-border-radius: 0 0 5px 5px;
 	-webkit-border-radius: 0 0 5px 5px;
@@ -1971,7 +1964,6 @@ span.tagMatches span {
 	padding: 0px 0px 0px 0px;
 	background-color: white;
 	border: 1px solid #cccccc;
-	border-bottom-width: 5px;
 	-moz-border-radius: 0 0 5px 5px;
 	-khtml-border-radius: 0 0 5px 5px;
 	-webkit-border-radius: 0 0 5px 5px;
@@ -2002,7 +1994,6 @@ span.tagMatches span {
 	padding: 0px 0px 0px 0px;
 	background-color: white;
 	border: 1px solid #cccccc;
-	border-bottom-width: 5px;
 	-moz-border-radius: 5px;
 	-khtml-border-radius: 5px;
 	-webkit-border-radius: 5px;
@@ -2474,7 +2465,6 @@ div.bordered {
 	border-spacing: 0px;
 	background-color: white;
 	border: 1px solid #E5E5E5;
-	border-bottom-width: 5px;
 	-moz-border-radius: 5px;
 	-khtml-border-radius: 5px;
 	-webkit-border-radius: 5px;
