@@ -255,6 +255,15 @@ code {
 .navigation a.alert {
 	background-color: darkgoldenrod;
 }
+
+.navigation a.active {
+	background-color: #4eb1ff !important;
+}
+
+.navigation ul a.active {
+	background-color: #4eb1ff;
+}
+
 .navigation > ul { width: 13em; }
 
 .navigation ul ul { width: 13em; }
@@ -268,6 +277,7 @@ code {
 
 .navigation > ul > li a:hover,
 .navigation > ul > li:hover a { background: #34A65F; }
+
 
 .navigation li { position: relative; }
 
@@ -353,19 +363,6 @@ code {
   -webkit-border-radius: 3px 0 0 3px;
   -moz-border-radius: 3px 0 0 3px;
   border-radius: 3px 0 0 3px;
-}
-
-
-.navigation a.active {
-	background-color: #4eb1ff ;
-}
-
-.navigation ul a.active {
-	background-color: #4eb1ff !important;
-}
-
-.navigation ul a.active:hover {
-	background-color: #0974f6 !important;
 }
 
 /* Messages
