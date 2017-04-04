@@ -543,9 +543,9 @@ function getOptionContent() {
 				}
 				?>
 				<p class="padded">
-					<a href="?page=options&tab=theme&optiontheme=<?php echo $prev; ?>"><?php echo $prev; ?></a>
+					<a href="?page=options&tab=theme&optiontheme=<?php echo urlencode($prev); ?>"><?php echo $prev; ?></a>
 					<span class="floatright" >
-						<a href="?page=options&tab=theme&optiontheme=<?php echo $next; ?>"><?php echo $next; ?></a>
+						<a href="?page=options&tab=theme&optiontheme=<?php echo urlencode($next); ?>"><?php echo $next; ?></a>
 					</span>
 				</p>
 			</form>
