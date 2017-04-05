@@ -2452,6 +2452,87 @@ ul.page-list {
 	cursor: move;
 }
 
+.page-list_row {
+	width: 100%;
+	height: 50px;
+	background-color: white !important;
+	border-top: 1px solid #F7F8F9 !important;
+	border-bottom: 1px solid #F7F8F9 !important;
+}
+
+.page-list_row .page-list_title {
+	float: left;
+	width: 20%;
+	height: 30px;
+	padding: 20px 0px 0px 45px;
+	background-image: url(images/drag_handle.png) !important;
+	background-repeat: no-repeat;
+	background-position: 15px 20px;
+
+}
+
+.page-list_row .page-list_albumthumb {
+	float: left;
+	width: 50px;
+	height: 45px;
+	padding: 5px 0px 0px 45px;
+	background-image: url(images/drag_handle.png) !important;
+	background-repeat: no-repeat;
+	background-position: 15px 20px;
+}
+
+.page-list_row .page-list_albumthumb img {
+
+}
+
+.page-list_row .page-list_albumtitle {
+	float: left;
+	height: 30px;
+	padding: 20px 10px 0px 10px;
+
+}
+
+.page-list_row .page-list_extra {
+	float: left;
+	padding-top: 20px;
+}
+
+.page-list_row .page-list_right {
+	float: right !important;
+	width: 60px;
+}
+
+.page-list_row .page-list_extra a img {
+	border: 0;
+	vertical-align: center;
+}
+
+.page-list_row .page-list_extra > span,
+.page-list_row .page-list_extra > a > span {
+	position: relative;
+	top: -3px;
+}
+
+.page-list_row .page-list_iconwrapper,
+.page-list_row .page-list_iconwrapperalbum {
+	text-align: right;
+	float: right;
+	padding-top: 18px;
+	margin-right: 10px;
+}
+
+.page-list_row .page-list_icon {
+	display: inline;
+	margin-right: 20px;
+}
+
+
+.page-list_row .page-list_icon .checkbox {
+	display: inline;
+	position: relative;
+	top: -4px;
+}
+
 .placeholder {
 	background-color: #cfcfcf;
 }
@@ -2499,89 +2580,6 @@ div.bordered .subhead  {
 	padding-top: 5px;
 	padding-right: 20px;
 }
-
-
-div.bordered .page-list_row {
-	width: 100%;
-	height: 50px;
-	background-color: white !important;
-	border-top: 1px solid #F7F8F9 !important;
-	border-bottom: 1px solid #F7F8F9 !important;
-}
-
-div.bordered .page-list_row .page-list_title {
-	float: left;
-	width: 20%;
-	height: 30px;
-	padding: 20px 0px 0px 45px;
-	background-image: url(images/drag_handle.png) !important;
-	background-repeat: no-repeat;
-	background-position: 15px 20px;
-
-}
-div.bordered .page-list_row .page-list_albumthumb {
-	float: left;
-	width: 50px;
-	height: 45px;
-	padding: 5px 0px 0px 45px;
-	background-image: url(images/drag_handle.png) !important;
-	background-repeat: no-repeat;
-	background-position: 15px 20px;
-}
-
-div.bordered .page-list_row .page-list_albumthumb img {
-
-}
-
-
-div.bordered .page-list_row .page-list_albumtitle {
-	float: left;
-	height: 30px;
-	padding: 20px 10px 0px 10px;
-
-}
-
-div.bordered .page-list_row .page-list_extra {
-	float: left;
-	padding-top: 20px;
-}
-
-div.bordered .page-list_row .page-list_right {
-	float: right !important;
-	width: 60px;
-}
-
-div.bordered .page-list_row .page-list_extra a img {
-	border: 0;
-	vertical-align: center;
-}
-
-div.bordered .page-list_row .page-list_extra > span,
-div.bordered .page-list_row .page-list_extra > a > span {
-	position: relative;
-	top: -3px;
-}
-
-div.bordered .page-list_row .page-list_iconwrapper,
-div.bordered .page-list_row .page-list_iconwrapperalbum {
-	text-align: right;
-	float: right;
-	padding-top: 18px;
-	margin-right: 10px;
-}
-
-div.bordered .page-list_row .page-list_icon {
-	display: inline;
-	margin-right: 20px;
-}
-
-
-div.bordered .page-list_row .page-list_icon .checkbox {
-	display: inline;
-	position: relative;
-	top: -4px;
-}
-
 
 /* helper classes */
 .floatright {
