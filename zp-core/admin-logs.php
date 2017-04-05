@@ -60,9 +60,11 @@ if (isset($_GET['action'])) {
 	}
 }
 
-list($logtabs, $default, $new) = getLogTabs();
+list($logtabs, $subtab, $new) = getLogTabs();
 
-printAdminHeader('logs', $default);
+printAdminHeader('logs', $subtab);
+
+$_GET['tab'] = $subtab;
 echo "\n</head>";
 ?>
 
@@ -72,7 +74,7 @@ echo "\n</head>";
 	<div id="main">
 		<?php
 		printTabs();
-		$subtab = getCurrentTab();
+
 		setOption('logviewed_' . $subtab, time());
 		foreach ($logtabs as $text => $link) {
 			preg_match('~tab=(.*?)(&|$)~', $link, $matches);
@@ -89,11 +91,11 @@ echo "\n</head>";
 
 			<div id="container">
 				<?php
-				zp_apply_filter('admin_note', 'logs', $default);
-				if ($default) {
-					$logfiletext = str_replace('_', ' ', $default);
+				zp_apply_filter('admin_note', 'logs', $subtab);
+				if ($subtab) {
+					$logfiletext = str_replace('_', ' ', $subtab);
 					$logfiletext = strtoupper(substr($logfiletext, 0, 1)) . substr($logfiletext, 1);
-					$logfile = SERVERPATH . "/" . DATA_FOLDER . '/' . $default . '.log';
+					$logfile = SERVERPATH . "/" . DATA_FOLDER . '/' . $subtab . '.log';
 					if (file_exists($logfile) && filesize($logfile) > 0) {
 						$logtext = explode("\n", file_get_contents($logfile));
 					} else {
