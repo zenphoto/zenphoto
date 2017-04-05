@@ -192,11 +192,14 @@ if (isset($_GET['action'])) {
 									}
 								}
 								$oldrights = $rights;
-								$oldobjects = sortMultiArray($oldobjects, 'data');
-								$objects = sortMultiArray(processManagedObjects($i, $rights), 'data');
-								if ($rights != $oldrights || $objects != $oldobjects) {
-									$userobj->setObjects($objects);
+								if ($rights != $oldrights) {
 									$userobj->setRights($rights | NO_RIGHTS);
+									markUpdated($user);
+								}
+								$oldobjects = sortMultiArray($oldobjects, 'data', true, false, false, false);
+								$objects = sortMultiArray(processManagedObjects($i, $rights), 'data', true, false, false, false);
+								if ($objects != $oldobjects) {
+									$userobj->setObjects($objects);
 									markUpdated($user);
 								}
 							} else {
@@ -386,6 +389,7 @@ echo $refresh;
 							$admins = $showset = array();
 						}
 					}
+
 					$max = floor((count($admins) - 1) / USERS_PER_PAGE);
 					if ($subpage > $max) {
 						$subpage = $max;
@@ -528,6 +532,7 @@ echo $refresh;
 							if (!empty($newuser)) {
 								$userlist[-1] = $newuser;
 							}
+
 							foreach ($userlist as $key => $user) {
 								$ismaster = false;
 								$local_alterrights = $alterrights;
