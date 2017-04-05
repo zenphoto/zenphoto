@@ -2047,6 +2047,18 @@ fieldset,
 	text-align: left;
 }
 
+.user_left {
+	width: 30em;
+	float: left;
+}
+.user_right {
+	float: left;
+}
+
+.user_column {
+	width: 35em;
+}
+
 #logon_box input#user,
 #logon_box input#pass {
 	width: 300px;

@@ -302,7 +302,7 @@ class fieldExtender {
 						$html .= $item;
 					} else {
 						if (in_array(strtolower($field['type']), array('varchar', 'int', 'tinytext'))) {
-							$input .= '<input name = "' . $field['name'] . '_' . $i . '" type = "text" style="width:100%;" value = "' . $item . '" />';
+							$input .= '<input name = "' . $field['name'] . '_' . $i . '" type = "text" style="width:98%;" value = "' . $item . '" />';
 						} else {
 							$input .= '<textarea name = "' . $field['name'] . '_' . $i . '" cols = "' . TEXTAREA_COLUMNS . '"rows = "1">' . $item . '</textarea>';
 						}
@@ -315,19 +315,27 @@ class fieldExtender {
 		if (($count = count($list)) % 2) {
 			$list[] = '';
 		}
-
 		if (!empty($list)) {
-			for ($key = 0; $key < $count; $key = $key + 2) {
+
+			$output = array_chunk($list, round($count / 2));
+
+			$html .=
+							'<tr' . ((!$current) ? ' style = "display:none;"' : '') . ' class = "userextrainfo">' .
+							'<td' . ((!empty($background)) ? ' style = "' . $background . '"' : '') . ' valign = "top" colspan="100%">';
+			$html .=
+							'<div class="user_left">' .
+							implode($output[0], "\n") .
+							'</div>';
+
+			if (!empty($output[1])) {
 				$html .=
-								'<tr' . ((!$current) ? ' style = "display:none;"' : '') . ' class = "userextrainfo">' .
-								'<td width = "20%"' . ((!empty($background)) ? ' style = "' . $background . '"' : '') . ' valign = "top">' .
-								$list[$key] .
-								'</td>' .
-								'<td ' . ((!empty($background)) ? ' style = "' . $background . '"' : '') . ' valign = "top">' .
-								$list[$key + 1] .
-								'</td>' .
-								'</tr>';
+								'<div class="user_right">' .
+								implode($output[1], "\n") .
+								'</div>';
 			}
+			$html .=
+							'</td>' .
+							'</tr>';
 		}
 		return $html;
 	}

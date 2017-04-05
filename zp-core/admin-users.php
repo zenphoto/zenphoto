@@ -684,143 +684,148 @@ echo $refresh;
 											}
 											?>
 											<tr <?php if (!$current) echo 'style="display:none;"'; ?> class="userextrainfo">
-												<td <?php if (!empty($background)) echo " style=\"$background\""; ?> valign="top">
-													<p>
-														<?php
-														$pad = false;
-														$pwd = $userobj->getPass();
-														if (!empty($userid) && !$clearPass) {
-															if (!empty($pwd)) {
-																$pad = true;
-															}
-														}
-														if (!empty($pwd) && in_array('password', $no_change)) {
-															$password_disable = ' disabled="disabled"';
-														} else {
-															$password_disable = '';
-														}
-														Zenphoto_Authority::printPasswordForm($id, $pad, $password_disable, $clearPass);
-														?>
-													</p>
-													<?php
-													if (getOption('challenge_foil_enabled')) {
-														if (in_array('challenge_phrase', $no_change)) {
-															$_disable = ' disabled="disabled"';
-														} else {
-															$_disable = '';
-														}
-														$challenge = $userobj->getChallengePhraseInfo();
-														?>
-														<p>
-															<?php echo gettext('Challenge phrase') ?>
-															<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="challengephrase-<?php echo $id ?>" name="<?php echo $id ?>-challengephrase"
-																		 value="<?php echo html_encode($challenge['challenge']); ?>"<?php echo $_disable; ?> />
-															<br />
-															<?php echo gettext('Challenge response') ?>
-															<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="challengeresponse-<?php echo $id ?>" name="<?php echo $id ?>-challengeresponse"
-																		 value="<?php echo html_encode($challenge['response']); ?>"<?php echo $_disable; ?> />
 
+
+												<td <?php if (!empty($background)) echo " style=\"$background\""; ?> valign="top" colspan="100%">
+
+													<div class="user_left">
+														<p>
+															<?php
+															$pad = false;
+															$pwd = $userobj->getPass();
+															if (!empty($userid) && !$clearPass) {
+																if (!empty($pwd)) {
+																	$pad = true;
+																}
+															}
+															if (!empty($pwd) && in_array('password', $no_change)) {
+																$password_disable = ' disabled="disabled"';
+															} else {
+																$password_disable = '';
+															}
+															Zenphoto_Authority::printPasswordForm($id, $pad, $password_disable, $clearPass);
+															?>
 														</p>
 														<?php
-													}
-													?>
-													<?php echo gettext("Full name"); ?>
-													<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="admin_name-<?php echo $id ?>" name="<?php echo $id ?>-admin_name"
-																 value="<?php echo html_encode($userobj->getName()); ?>"<?php if (in_array('name', $no_change)) echo ' disabled="disabled"'; ?> />
+														if (getOption('challenge_foil_enabled')) {
+															if (in_array('challenge_phrase', $no_change)) {
+																$_disable = ' disabled="disabled"';
+															} else {
+																$_disable = '';
+															}
+															$challenge = $userobj->getChallengePhraseInfo();
+															?>
+															<p>
+																<?php echo gettext('Challenge phrase') ?>
+																<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="challengephrase-<?php echo $id ?>" name="<?php echo $id ?>-challengephrase"
+																			 value="<?php echo html_encode($challenge['challenge']); ?>"<?php echo $_disable; ?> />
+																<br />
+																<?php echo gettext('Challenge response') ?>
+																<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="challengeresponse-<?php echo $id ?>" name="<?php echo $id ?>-challengeresponse"
+																			 value="<?php echo html_encode($challenge['response']); ?>"<?php echo $_disable; ?> />
 
-													<p>
-														<?php echo gettext("Email"); ?>
-														<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="admin_email-<?php echo $id ?>" name="<?php echo $id ?>-admin_email"
-																	 value="<?php echo html_encode($userobj->getEmail()); ?>"<?php if (in_array('email', $no_change)) echo ' disabled="disabled"'; ?> />
-													</p>
-													<?php
-													$primeAlbum = $userobj->getAlbum();
-													if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
-														if (empty($primeAlbum)) {
-															if (!($userobj->getRights() & (ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS))) {
+															</p>
+															<?php
+														}
+														?>
+														<?php echo gettext("Full name"); ?>
+														<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="admin_name-<?php echo $id ?>" name="<?php echo $id ?>-admin_name"
+																	 value="<?php echo html_encode($userobj->getName()); ?>"<?php if (in_array('name', $no_change)) echo ' disabled="disabled"'; ?> />
+
+														<p>
+															<?php echo gettext("Email"); ?>
+															<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="admin_email-<?php echo $id ?>" name="<?php echo $id ?>-admin_email"
+																		 value="<?php echo html_encode($userobj->getEmail()); ?>"<?php if (in_array('email', $no_change)) echo ' disabled="disabled"'; ?> />
+														</p>
+														<?php
+														$primeAlbum = $userobj->getAlbum();
+														if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
+															if (empty($primeAlbum)) {
+																if (!($userobj->getRights() & (ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS))) {
+																	?>
+																	<p>
+																		<label>
+																			<input type="checkbox" name="createAlbum_<?php echo $id ?>" id="createAlbum_<?php echo $id ?>" value="1" <?php echo $alterrights; ?>/>
+																			<?php echo gettext('create primary album'); ?>
+																		</label>
+																	</p>
+																	<?php
+																}
+															} else {
 																?>
 																<p>
 																	<label>
-																		<input type="checkbox" name="createAlbum_<?php echo $id ?>" id="createAlbum_<?php echo $id ?>" value="1" <?php echo $alterrights; ?>/>
-																		<?php echo gettext('create primary album'); ?>
+																		<input type="checkbox" name="delinkAlbum_<?php echo $id ?>" id="delinkAlbum_<?php echo $id ?>" value="1" <?php echo $alterrights; ?>/>
+																		<?php printf(gettext('delink primary album <strong>%1$s</strong>(<em>%2$s</em>)'), $primeAlbum->getTitle(), $primeAlbum->name); ?>
 																	</label>
+																</p>
+																<p class="notebox">
+																	<?php echo gettext('The primary album was created in association with the user. It will be removed if the user is deleted. Delinking the album removes this association.'); ?>
 																</p>
 																<?php
 															}
-														} else {
-															?>
-															<p>
-																<label>
-																	<input type="checkbox" name="delinkAlbum_<?php echo $id ?>" id="delinkAlbum_<?php echo $id ?>" value="1" <?php echo $alterrights; ?>/>
-																	<?php printf(gettext('delink primary album <strong>%1$s</strong>(<em>%2$s</em>)'), $primeAlbum->getTitle(), $primeAlbum->name); ?>
-																</label>
-															</p>
-															<p class="notebox">
-																<?php echo gettext('The primary album was created in association with the user. It will be removed if the user is deleted. Delinking the album removes this association.'); ?>
-															</p>
-															<?php
 														}
-													}
-													$currentValue = $userobj->getLanguage();
-													?>
-													<p>
-														<label for="admin_language_<?php echo $id ?>"><?php echo gettext('Language:'); ?></label></p>
-													<input type="hidden" name="<?php echo $id ?>-admin_language" id="admin_language_<?php echo $id ?>" value="<?php echo $currentValue; ?>" />
-													<ul class="flags" style="margin-left: 0px;">
-														<?php
-														$_languages = generateLanguageList();
-														$c = 0;
-														foreach ($_languages as $text => $lang) {
-															?>
-															<li id="<?php echo $lang . '_' . $id; ?>"<?php if ($lang == $currentValue) echo ' class="currentLanguage"'; ?>>
-																<a onclick="languageChange('<?php echo $id; ?>', '<?php echo $lang; ?>');" >
-																	<img src="<?php echo getLanguageFlag($lang); ?>" alt="<?php echo $text; ?>" title="<?php echo $text; ?>" />
-																</a>
-															</li>
+														$currentValue = $userobj->getLanguage();
+														?>
+														<p>
+															<label for="admin_language_<?php echo $id ?>"><?php echo gettext('Language:'); ?></label></p>
+														<input type="hidden" name="<?php echo $id ?>-admin_language" id="admin_language_<?php echo $id ?>" value="<?php echo $currentValue; ?>" />
+														<ul class="flags" style="margin-left: 0px;">
 															<?php
-															$c++;
-															if (($c % 7) == 0)
-																echo '<br class="clearall" />';
+															$_languages = generateLanguageList();
+															$c = 0;
+															foreach ($_languages as $text => $lang) {
+																?>
+																<li id="<?php echo $lang . '_' . $id; ?>"<?php if ($lang == $currentValue) echo ' class="currentLanguage"'; ?>>
+																	<a onclick="languageChange('<?php echo $id; ?>', '<?php echo $lang; ?>');" >
+																		<img src="<?php echo getLanguageFlag($lang); ?>" alt="<?php echo $text; ?>" title="<?php echo $text; ?>" />
+																	</a>
+																</li>
+																<?php
+																$c++;
+																if (($c % 7) == 0)
+																	echo '<br class="clearall" />';
+															}
+															?>
+														</ul>
+													</div>
+
+													<div class="user_right">
+														<?php
+														printAdminRightsTable($id, $background, $local_alterrights, $userobj->getRights());
+														if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
+															$album_alter_rights = $local_alterrights;
+														} else {
+															$album_alter_rights = ' disabled="disabled"';
+														}
+														if ($ismaster) {
+															echo '<p>' . gettext("The <em>master</em> account has full rights to all objects.") . '</p>';
+														} else {
+															if (is_object($primeAlbum)) {
+																$flag = array($primeAlbum->name);
+															} else {
+																$flag = array();
+															}
+															printManagedObjects('albums', $albumlist, $album_alter_rights, $userobj, $id, gettext('user'), $flag);
+															if (extensionEnabled('zenpage')) {
+																$pagelist = array();
+																$pages = $_zp_CMS->getPages(false);
+																foreach ($pages as $page) {
+																	if (!$page['parentid']) {
+																		$pagelist[get_language_string($page['title'])] = $page['titlelink'];
+																	}
+																}
+																$newslist = array('"' . gettext('un-categorized') . '"' => '`');
+																$categories = $_zp_CMS->getAllCategories(false);
+																foreach ($categories as $category) {
+																	$newslist[get_language_string($category['title'])] = $category['titlelink'];
+																}
+																printManagedObjects('news', $newslist, $album_alter_rights, $userobj, $id, gettext('user'), NULL);
+																printManagedObjects('pages', $pagelist, $album_alter_rights, $userobj, $id, gettext('user'), NULL);
+															}
 														}
 														?>
-													</ul>
-												</td>
-
-												<td <?php if (!empty($background)) echo " style=\"$background\""; ?>>
-													<?php
-													printAdminRightsTable($id, $background, $local_alterrights, $userobj->getRights());
-													if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
-														$album_alter_rights = $local_alterrights;
-													} else {
-														$album_alter_rights = ' disabled="disabled"';
-													}
-													if ($ismaster) {
-														echo '<p>' . gettext("The <em>master</em> account has full rights to all objects.") . '</p>';
-													} else {
-														if (is_object($primeAlbum)) {
-															$flag = array($primeAlbum->name);
-														} else {
-															$flag = array();
-														}
-														printManagedObjects('albums', $albumlist, $album_alter_rights, $userobj, $id, gettext('user'), $flag);
-														if (extensionEnabled('zenpage')) {
-															$pagelist = array();
-															$pages = $_zp_CMS->getPages(false);
-															foreach ($pages as $page) {
-																if (!$page['parentid']) {
-																	$pagelist[get_language_string($page['title'])] = $page['titlelink'];
-																}
-															}
-															$newslist = array('"' . gettext('un-categorized') . '"' => '`');
-															$categories = $_zp_CMS->getAllCategories(false);
-															foreach ($categories as $category) {
-																$newslist[get_language_string($category['title'])] = $category['titlelink'];
-															}
-															printManagedObjects('news', $newslist, $album_alter_rights, $userobj, $id, gettext('user'), NULL);
-															printManagedObjects('pages', $pagelist, $album_alter_rights, $userobj, $id, gettext('user'), NULL);
-														}
-													}
-													?>
+													</div>
 												</td>
 											</tr>
 											<?php echo $custom_row; ?>
