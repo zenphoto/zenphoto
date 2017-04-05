@@ -55,7 +55,7 @@ printAdminHeader('overview', 'Mailing');
 							<textarea id="message" name="message" value="" cols="68" rows="10"<?php echo $disabled; ?> ></textarea>
 					</div>
 
-					<div class="floatright">
+					<div class="floatleft">
 						<?php echo gettext('Select users:'); ?>
 						<ul class="unindentedchecklist" style="height: 205px; width: 30em;">
 							<?php
