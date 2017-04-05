@@ -27,7 +27,9 @@ body {
 	padding: 0;
 }
 
-
+.centered {
+	text-align: center;
+}
 
 em {
 	color: black;
@@ -459,6 +461,7 @@ code {
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
 	width: 94%;
+	font-weight: normal;
 }
 
 .notebox li {
@@ -2534,7 +2537,6 @@ div.bordered .page-list_row .page-list_extra {
 div.bordered .page-list_row .page-list_right {
 	float: right !important;
 	width: 60px;
-	overflow-x: hidden;
 }
 
 div.bordered .page-list_row .page-list_extra a img {
@@ -2576,6 +2578,7 @@ div.bordered .page-list_row .page-list_icon .checkbox {
 
 .floatleft {
 	float: left !important;
+	padding-right: 5px;
 }
 
 img.zp_logoicon {

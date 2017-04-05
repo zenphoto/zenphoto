@@ -46,43 +46,43 @@ printAdminHeader('overview', 'Mailing');
 				<h2><?php echo gettext('Please enter the message you want to send.'); ?></h2>
 				<form class="dirtylistening" onReset="setClean('massmail');" id="massmail" action="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/user_mailing_list/mail_handler.php?sendmail" method="post" accept-charset="UTF-8" autocomplete="off">
 					<?php XSRFToken('mailing_list'); ?>
-					<table>
-						<tr>
-							<td valign="top">
+
+
+					<div class="floatleft">
 						<labelfor="subject"><?php echo gettext('Subject:'); ?></label><br />
 							<input type="text" id="subject" name="subject" value="" size="70"<?php echo $disabled; ?> /><br /><br />
 							<label for="message"><?php echo gettext('Message:'); ?></label><br />
 							<textarea id="message" name="message" value="" cols="68" rows="10"<?php echo $disabled; ?> ></textarea>
-							</td>
-							<td valign="top" align="left">
-								<?php echo gettext('Select users:'); ?>
-								<ul class="unindentedchecklist" style="height: 205px; width: 30em;">
-									<?php
-									$currentadminuser = $_zp_current_admin_obj->getUser();
-									foreach ($admins as $admin) {
-										if (!empty($admin['email']) && $currentadminuser != $admin['user']) {
-											?>
-											<li>
-												<label for="admin_<?php echo $admin['id']; ?>">
-													<input name="admin_<?php echo $admin['id']; ?>" id="admin_<?php echo $admin['id']; ?>" type="checkbox" value="<?php echo html_encode($admin['email']); ?>" checked="checked"  <?php echo $disabled; ?>/>
-													<?php
-													echo $admin['user'] . " (";
-													if (!empty($admin['name'])) {
-														echo $admin['name'] . " - ";
-													}
-													echo $admin['email'] . ")";
-													?>
-												</label>
-											</li>
-											<?php
-										}
-									}
+					</div>
+
+					<div class="floatright">
+						<?php echo gettext('Select users:'); ?>
+						<ul class="unindentedchecklist" style="height: 205px; width: 30em;">
+							<?php
+							$currentadminuser = $_zp_current_admin_obj->getUser();
+							foreach ($admins as $admin) {
+								if (!empty($admin['email']) && $currentadminuser != $admin['user']) {
 									?>
-								</ul>
-								<br />
-							</td>
-							</tr>
-					</table>
+									<li>
+										<label for="admin_<?php echo $admin['id']; ?>">
+											<input name="admin_<?php echo $admin['id']; ?>" id="admin_<?php echo $admin['id']; ?>" type="checkbox" value="<?php echo html_encode($admin['email']); ?>" checked="checked"  <?php echo $disabled; ?>/>
+											<?php
+											echo $admin['user'] . " (";
+											if (!empty($admin['name'])) {
+												echo $admin['name'] . " - ";
+											}
+											echo $admin['email'] . ")";
+											?>
+										</label>
+									</li>
+									<?php
+								}
+							}
+							?>
+						</ul>
+
+					</div>
+					<br class="clearall">
 					<script type="text/javascript">
 						$('form#massmail').submit(function () {
 							$.post($(this).attr('action'), $(this).serialize(), function (res) {

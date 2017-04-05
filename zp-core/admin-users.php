@@ -510,7 +510,7 @@ echo $refresh;
 									<?php
 								} else {
 									?>
-									<th colspan=3>&nbsp;</th>
+									<th colspan="100%">&nbsp;</th>
 									<?php
 								}
 								?>
@@ -580,7 +580,7 @@ echo $refresh;
 								?>
 								<!-- finished with filters -->
 								<tr>
-									<td colspan="3" style="margin: 0pt; padding: 0pt;border-top: 4px solid #D1DBDF;<?php echo $background; ?>">
+									<td colspan="100%" style="margin: 0pt; padding: 0pt;border-top: 4px solid #D1DBDF;<?php echo $background; ?>">
 										<table class="bordered" style="border: 0" id='user-<?php echo $id; ?>'>
 											<tr>
 												<td style="margin-top: 0px; width:20em;<?php echo $background; ?>" valign="top">
@@ -594,8 +594,8 @@ echo $refresh;
 													}
 													?>
 													<a id="toggle_<?php echo $id; ?>" onclick="visible = getVisible('<?php echo $id; ?>', 'user', '<?php echo $displaytitle; ?>', '<?php echo $hidetitle; ?>');
-																$('#show_<?php echo $id; ?>').val(visible);
-																toggleExtraInfo('<?php echo $id; ?>', 'user', visible);" title="<?php echo $displaytitle; ?>" >
+															$('#show_<?php echo $id; ?>').val(visible);
+															toggleExtraInfo('<?php echo $id; ?>', 'user', visible);" title="<?php echo $displaytitle; ?>" >
 															 <?php
 															 if (empty($userid)) {
 																 ?>
@@ -604,7 +604,7 @@ echo $refresh;
 															<em><?php echo gettext("New User"); ?></em>
 															<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="adminuser<?php echo $id; ?>" name="adminuser<?php echo $id; ?>" value=""
 																		 onclick="toggleExtraInfo('<?php echo $id; ?>', 'user', visible);
-																						 $('#adminuser<?php echo $id; ?>').focus();" />
+																				 $('#adminuser<?php echo $id; ?>').focus();" />
 
 															<?php
 														} else {
@@ -669,7 +669,7 @@ echo $refresh;
 												$no_change = $userobj->getCredentials();
 												?>
 												<tr <?php if (!$current) echo 'style="display:none;"'; ?> class="userextrainfo">
-													<td <?php if (!empty($background)) echo " style=\"$background\""; ?> colspan="2">
+													<td <?php if (!empty($background)) echo " style=\"$background\""; ?> colspan="100%">
 														<p class="notebox">
 															<?php echo gettext('<strong>Note:</strong> You must have ADMIN rights to alter anything but your personal information.'); ?>
 														</p>

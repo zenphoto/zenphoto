@@ -190,13 +190,14 @@ function getOptionContent() {
 					<?php
 					if (count($themelist) == 0) {
 						?>
-						<th>
-							<br />
-							<div class="errorbox" id="no_themes">
-								<h2><?php echo gettext("There are no themes for which you have rights to administer."); ?></h2>
-							</div>
-						</th>
-
+						<tr>
+							<th>
+								<br />
+								<div class="errorbox" id="no_themes">
+									<h2><?php echo gettext("There are no themes for which you have rights to administer."); ?></h2>
+								</div>
+							</th>
+						</tr>
 						<?php
 					} else {
 						/* handle theme options */
@@ -215,7 +216,7 @@ function getOptionContent() {
 									?>
 								</h2>
 							</th>
-							<th colspan='1' style='text-align: right'>
+							<th style='text-align: right'>
 								<?php
 								if (count($themelist) > 1) {
 									echo gettext("Show theme for");
@@ -231,20 +232,22 @@ function getOptionContent() {
 								echo "</th></tr>\n";
 								?>
 						<tr>
-							<td colspan="3">
+							<td colspan="100%">
 								<p class="buttons">
 									<button type="submit" value="<?php echo gettext('Apply') ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 									<button type="button" value="<?php echo gettext('Revert to default') ?>" onclick="$('#savethemeoptions').val('reset');
-														$('#themeoptionsform').submit();"><img src="images/refresh.png" alt="" /><strong><?php echo gettext("Revert to default"); ?></strong></button>
+											$('#themeoptionsform').submit();"><img src="images/refresh.png" alt="" /><strong><?php echo gettext("Revert to default"); ?></strong></button>
 									<button type="reset" value="<?php echo gettext('reset') ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
 								</p>
 							</td>
 						</tr>
 						<tr class="alt1">
-							<td align="left">
-								<?php echo gettext('<strong>Standard options</strong>') ?>
-							</td>
-							<td colspan="2" ><?php echo gettext('<em>These image and album presentation options provided by the Core for all themes.</em>') . '<p class="notebox">' . gettext('<strong>Note:</strong> These are <em>recommendations</em> as themes may choose to override them for design reasons'); ?></p></td>
+							<th align="left">
+
+							</th>
+							<th colspan="100%" >
+								<?php echo gettext('<em>These image and album presentation options provided by the Core for all themes.</em>') . '<p class="notebox">' . gettext('<strong>Note:</strong> These are <em>recommendations</em> as themes may choose to override them for design reasons'); ?></p>
+							</th>
 						</tr>
 						<tr>
 							<td class="option_name"><?php echo gettext("Albums"); ?></td>
@@ -504,21 +507,23 @@ function getOptionContent() {
 						if (count($supportedOptions) > 0) {
 							?>
 							<tr class="alt1" >
-								<td align="left">
-									<?php echo gettext('<strong>Custom theme options</strong>') ?>
-								</td>
-								<td colspan="2"><em><?php printf(gettext('The following are options specifically implemented by %s.'), $theme['name']); ?></em></td>
+								<th align="left">
+
+								</th>
+								<th colspan="100%">
+									<em><?php printf(gettext('The following are options specifically implemented by %s.'), $theme['name']); ?></em>
+								</th>
 							</tr>
 							<?php
 							customOptions($optionHandler, '', $album, false, $supportedOptions, $themename);
 						}
 						?>
 						<tr>
-							<td colspan="3">
+							<td colspan="100%">
 								<p class="buttons">
 									<button type="submit" value="<?php echo gettext('Apply') ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 									<button type="button" value="<?php echo gettext('Revert to default') ?>" onclick="$('#savethemeoptions').val('reset');
-														$('#themeoptionsform').submit();"><img src="images/refresh.png" alt="" /><strong><?php echo gettext("Revert to default"); ?></strong></button>
+											$('#themeoptionsform').submit();"><img src="images/refresh.png" alt="" /><strong><?php echo gettext("Revert to default"); ?></strong></button>
 									<button type="reset" value="<?php echo gettext('reset') ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
 								</p>
 							</td>

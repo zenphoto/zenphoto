@@ -232,34 +232,32 @@ updatePublished('news');
 
 						<table class="bordered">
 							<tr>
-								<th colspan="14" id="imagenav">
+								<th colspan="100%" id="imagenav">
 									<?php printPageSelector($subpage, $rangeset, PLUGIN_FOLDER . '/zenpage/admin-news.php', $options); ?>
 								</th>
 							</tr>
 							<tr>
-								<th colspan="7"><?php echo gettext('Edit this article'); ?>
-
-								</th>
-
-
-								<th colspan="7">
-									<?php
-									$checkarray = array(
-											gettext('*Bulk actions*') => 'noaction',
-											gettext('Delete') => 'deleteall',
-											gettext('Set to published') => 'showall',
-											gettext('Set to unpublished') => 'hideall',
-											gettext('Disable comments') => 'commentsoff',
-											gettext('Enable comments') => 'commentson',
-											gettext('Add categories') => array('name' => 'addcats', 'action' => 'mass_cats_data'),
-											gettext('Clear categories') => 'clearcats'
-									);
-									if (extensionEnabled('hitcounter')) {
-										$checkarray[gettext('Reset hitcounter')] = 'resethitcounter';
-									}
-									$checkarray = zp_apply_filter('bulk_article_actions', $checkarray);
-									printBulkActions($checkarray);
-									?>
+								<th colspan=100%>
+									<?php echo gettext('Edit this article'); ?>
+									<span class="floatright">
+										<?php
+										$checkarray = array(
+												gettext('*Bulk actions*') => 'noaction',
+												gettext('Delete') => 'deleteall',
+												gettext('Set to published') => 'showall',
+												gettext('Set to unpublished') => 'hideall',
+												gettext('Disable comments') => 'commentsoff',
+												gettext('Enable comments') => 'commentson',
+												gettext('Add categories') => array('name' => 'addcats', 'action' => 'mass_cats_data'),
+												gettext('Clear categories') => 'clearcats'
+										);
+										if (extensionEnabled('hitcounter')) {
+											$checkarray[gettext('Reset hitcounter')] = 'resethitcounter';
+										}
+										$checkarray = zp_apply_filter('bulk_article_actions', $checkarray);
+										printBulkActions($checkarray);
+										?>
+									</span>
 								</th>
 							</tr>
 							<tr class="newstr">
@@ -275,7 +273,7 @@ updatePublished('news');
 									?></th>
 								<th><?php echo gettext('Published'); ?></th>
 								<th><?php echo gettext('Expires'); ?></th>
-								<th class="subhead" colspan="8">
+								<th class="subhead" colspan="100%">
 									<label style="float: right"><?php echo gettext("Check All"); ?> <input type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this.checked);" />
 									</label>
 								</th>
@@ -330,7 +328,9 @@ updatePublished('news');
 									<td class="page-list_icon">
 										<?php
 										if ($article->inProtectedCategory()) {
-											echo '<img src="../../images/lock.png" style="border: 0px;" alt="' . gettext('Password protected') . '" title="' . gettext('Password protected') . '" />';
+											echo '<img src="../../images/lock_2.png" style="border: 0px;" alt="' . gettext('password protected') . '" title="' . gettext('password protected') . '" />';
+										} else {
+											echo '<img src="../../images/lock_open.png" style="border: 0px;" alt="' . gettext('unprotected') . '" title="' . gettext('unprotected') . '" />';
 										}
 										?>
 									</td>
@@ -427,7 +427,7 @@ updatePublished('news');
 							}
 							?>
 							<tr>
-								<td id="imagenavb" colspan="11"><?php printPageSelector($subpage, $rangeset, PLUGIN_FOLDER . '/zenpage/admin-news.php', $options); ?>	</td>
+								<td id="imagenavb" colspan="100%"><?php printPageSelector($subpage, $rangeset, PLUGIN_FOLDER . '/zenpage/admin-news.php', $options); ?>	</td>
 							</tr>
 						</table>
 

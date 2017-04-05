@@ -212,7 +212,7 @@ function getOptionContent() {
 
 				<table>
 					<tr>
-						<td colspan="3">
+						<td colspan="100%">
 							<p class="buttons">
 								<button type="submit" value="<?php echo gettext('Apply') ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 								<button type="reset" value="<?php echo gettext('reset') ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
@@ -833,7 +833,7 @@ function getOptionContent() {
 						</td>
 					</tr>
 					<tr>
-						<td colspan="3">
+						<td colspan="100%">
 							<p class="buttons">
 								<button type="submit" value="<?php echo gettext('Apply') ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 								<button type="reset" value="<?php echo gettext('reset') ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>

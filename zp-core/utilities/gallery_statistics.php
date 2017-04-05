@@ -257,14 +257,14 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 	} else {
 		$no_statistic_message = "";
 		if (($sortorder == 'popular' || $sortorder == 'popularimages') && $type != 'rss' && !extensionEnabled('hitcounter')) {
-			$no_statistic_message = "<tr><td colspan='4'><em>" . gettext("Note: The hitcounter plugin is not enabled, therefore any existing values will not get updated.") . "</em></td><td></td><td></td><td></td></tr>";
+			$no_statistic_message = "<tr><td colspan='100%'><em>" . gettext("Note: The hitcounter plugin is not enabled, therefore any existing values will not get updated.") . "</em></td><td></td><td></td><td></td></tr>";
 		}
 	}
 
 	$count = $from_number + 1; //	counting numbers start at 1!
 
 	echo "<table class='bordered'>";
-	echo "<tr><th colspan='4'><strong>" . $headline . "</strong>";
+	echo "<tr><th colspan='100%'><strong>" . $headline . "</strong>";
 
 	if (!isset($_GET['stats'])) {
 		if (count($itemssorted) > 10) {

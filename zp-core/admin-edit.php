@@ -866,7 +866,7 @@ echo "\n</head>";
 					<div id="tab_albuminfo" class="tabbox">
 						<?php consolidatedEditMessages('albuminfo'); ?>
 						<form class="dirtylistening" onReset="toggle_passwords('', false);
-										setClean('form_albumedit');" name="albumedit1" id="form_albumedit" autocomplete="off" action="?page=edit&amp;action=save<?php echo "&amp;album=" . pathurlencode($album->name); ?>"	method="post" >
+								setClean('form_albumedit');" name="albumedit1" id="form_albumedit" autocomplete="off" action="?page=edit&amp;action=save<?php echo "&amp;album=" . pathurlencode($album->name); ?>"	method="post" >
 									<?php XSRFToken('albumedit'); ?>
 							<input type="hidden" name="album"	value="<?php echo $album->name; ?>" />
 							<input type="hidden"	name="savealbuminfo" value="1" />
@@ -931,7 +931,7 @@ echo "\n</head>";
 							</form>
 							<br clear="all">
 							<form class="dirtylistening" onReset="setClean('sortableListForm');
-												$('#albumsort').sortable('cancel');" action="?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>&amp;action=savesubalbumorder&amp;tab=subalbuminfo" method="post" name="sortableListForm" id="sortableListForm" onsubmit="return confirmAction();" autocomplete="off" >
+									$('#albumsort').sortable('cancel');" action="?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>&amp;action=savesubalbumorder&amp;tab=subalbuminfo" method="post" name="sortableListForm" id="sortableListForm" onsubmit="return confirmAction();" autocomplete="off" >
 										<?php XSRFToken('savealbumorder'); ?>
 								<p class="notebox">
 									<?php echo gettext('<strong>Note:</strong> Dragging an album under a different parent will move the album. You cannot move albums under a <em>dynamic</em> album.'); ?>
@@ -1311,7 +1311,7 @@ echo "\n</head>";
 													if (!$singleimage) {
 														?>
 														<tr>
-															<td colspan="2" style="border-bottom:none;">
+															<td colspan="100%" style="border-bottom:none;">
 																<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit&tab=imageinfo&album=' . $album->name . '&singleimage=' . $image->filename . '&subpage=' . $pagenum; ?>&filter=<?php echo $filter; ?>"><img src="images/options.png" /> <?php echo gettext('Edit all image data'); ?></a>
 															</td>
 														</tr>
@@ -1329,9 +1329,9 @@ echo "\n</head>";
 																	 name="<?php echo $currentimage; ?>-Visible"
 																	 value="1" <?php if ($image->getShow()) echo ' checked = "checked"'; ?>
 																	 onclick="$('#publishdate-<?php echo $currentimage; ?>').val('');
-																							 $('#expirationdate-<?php echo $currentimage; ?>').val('');
-																							 $('#publishdate-<?php echo $currentimage; ?>').css('color', 'black ');
-																							 $('.expire-<?php echo $currentimage; ?>').html('');"
+																			 $('#expirationdate-<?php echo $currentimage; ?>').val('');
+																			 $('#publishdate-<?php echo $currentimage; ?>').css('color', 'black ');
+																			 $('.expire-<?php echo $currentimage; ?>').html('');"
 																	 />
 																	 <?php echo gettext("Published"); ?>
 													</label>
@@ -1443,17 +1443,17 @@ echo "\n</head>";
 													<label class="checkboxlabel">
 														<input type="radio" id="copy-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="copy"
 																	 onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>'
-																											 , 'copy');"  /> <?php echo gettext("Copy"); ?>
+																							 , 'copy');"  /> <?php echo gettext("Copy"); ?>
 													</label>
 													<label class="checkboxlabel">
 														<input type="radio" id="rename-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="rename"
 																	 onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>',
-																											 'rename');"  /> <?php echo gettext("Rename File"); ?>
+																							 'rename');"  /> <?php echo gettext("Rename File"); ?>
 													</label>
 													<label class="checkboxlabel">
 														<input type="radio" id="Delete-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="delete"
 																	 onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>', '');
-																							 deleteConfirm('Delete-<?php echo $currentimage; ?>', '<?php echo $currentimage; ?>', '<?php echo addslashes(gettext("Are you sure you want to select this image for deletion?")); ?>')" /> <?php echo gettext("Delete image") ?>
+																			 deleteConfirm('Delete-<?php echo $currentimage; ?>', '<?php echo $currentimage; ?>', '<?php echo addslashes(gettext("Are you sure you want to select this image for deletion?")); ?>')" /> <?php echo gettext("Delete image") ?>
 													</label>
 													<br class="clearall" />
 													<div id="movecopydiv-<?php echo $currentimage; ?>" style="padding-top: .5em; padding-left: .5em; display: none;">
@@ -1761,9 +1761,9 @@ echo "\n</head>";
 					</p>
 
 					<form class="dirtylistening" onReset="setClean('sortableListForm');
-									$('#albumsort').sortable('cancel');" action="?page=edit&amp;action=savealbumorder" method="post" name="sortableListForm" id="sortableListForm" onsubmit="return confirmAction();" autocomplete="off" >
+							$('#albumsort').sortable('cancel');" action="?page=edit&amp;action=savealbumorder" method="post" name="sortableListForm" id="sortableListForm" onsubmit="return confirmAction();" autocomplete="off" >
 								<?php XSRFToken('savealbumorder'); ?>
-						<p class="buttons">
+						<span class="buttons">
 							<?php
 							if ($album_nesting > 1 || zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 								?>
@@ -1782,7 +1782,7 @@ echo "\n</head>";
 								<?php
 							}
 							?>
-						</p>
+						</span>
 						<br class="clearall" /><br />
 						<div class="bordered">
 							<div class="headline"><?php echo gettext("Edit this album"); ?>

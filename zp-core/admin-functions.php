@@ -746,7 +746,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					switch ($type) {
 						case OPTION_TYPE_NOTE:
 							?>
-							<td colspan="3"><?php echo $desc; ?></td>
+							<td colspan="100%"><?php echo $desc; ?></td>
 							<?php
 							break;
 						case OPTION_TYPE_NUMBER:
@@ -2289,7 +2289,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 			<?php
 			if (GALLERY_SECURITY == 'public') {
 				?>
-				<li><img src="images/lock.png" alt="" /><?php echo gettext("Has Password"); ?></li>
+				<li><img src="images/lock_2.png" alt="" />
+					<img src="images/lock_open.png" alt="" />
+					<?php echo gettext("has/does not have password"); ?></li>
 				<?php
 			}
 			?>
@@ -2297,19 +2299,26 @@ function printAdminHeader($tab, $subtab = NULL) {
 			<li>
 				<img src="images/pass.png" alt="Published" />
 				<img src="images/action.png" alt="" />
-				<img src="images/clock.png" alt="" /><?php echo gettext("Published/Not published/Scheduled for publishing"); ?>
+				<img src="images/clock.png" alt="" /><?php echo gettext("published/not published/scheduled for publishing"); ?>
 			</li>
-			<li><img src="images/comments-on.png" alt="" /><img src="images/comments-off.png" alt="" /><?php echo gettext("Comments on/off"); ?></li>
-			<li><img src="images/view.png" alt="" /><?php echo gettext("View the album"); ?></li>
-			<li><img src="images/refresh.png" alt="" /><?php echo gettext("Refresh metadata"); ?></li>
+			<li>
+				<img src="images/comments-on.png" alt="" />
+				<img src="images/comments-off.png" alt="" />
+				<?php echo gettext("comments on/off"); ?>
+			</li>
+			<li><img src="images/view.png" alt="" /><?php echo gettext("view the album"); ?></li>
+			<li><img src="images/refresh.png" alt="" /><?php echo gettext("refresh metadata"); ?></li>
 			<?php
 			if (extensionEnabled('hitcounter')) {
 				?>
-				<li><img src="images/reset.png" alt="" /><?php echo gettext("Reset hit counters"); ?></li>
+				<li>
+					<img src="images/reset.png" alt="" />
+					<?php echo gettext("reset hit counters"); ?>
+				</li>
 				<?php
 			}
 			?>
-			<li><img src="images/fail.png" alt="" /><?php echo gettext("Delete"); ?></li>
+			<li><img src="images/fail.png" alt="" /><?php echo gettext("delete"); ?></li>
 		</ul>
 		<?php
 	}
@@ -2388,13 +2397,14 @@ function printAdminHeader($tab, $subtab = NULL) {
 				$sa = '<a href="?page=edit&amp;album=' . html_encode(pathurlencode($album->name)) . '&amp;tab=subalbuminfo" title="' . gettext('Subalbum List') . '">' . $sa . '</a>';
 			}
 			?>
-			<?php $wide = '40px'; ?>
 			<div class="page-list_iconwrapperalbum">
 				<div class="page-list_icon">
 					<?php
 					$pwd = $album->getPassword();
-					if (!empty($pwd)) {
-						echo '<a title="' . gettext('Password protected') . '"><img src="images/lock.png" style="border: 0px;" alt="" title="' . gettext('Password protected') . '" /></a>';
+					if (empty($pwd)) {
+						echo '<a title="' . gettext('un-protected') . '"><img src="images/lock_open.png" style="border: 0px;" alt="" title="' . gettext('unprotected') . '" /></a>';
+					} else {
+						echo '<a title="' . gettext('password protected') . '"><img src="images/lock_2.png" style="border: 0px;" alt="" title="' . gettext('password protected') . '" /></a>';
 					}
 					?>
 				</div>
@@ -2427,7 +2437,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 							}
 							if ($album->getPublishDate() > date('Y-m-d H:i:s')) {
 								?>
-								<img src="images/clock.png" alt="<?php echo gettext("Un-published"); ?>" title= "<?php echo gettext("Publish (override scheduling)"); ?>" />
+								<img src="images/clock.png" alt="<?php echo gettext("un-published"); ?>" title= "<?php echo gettext("Publish (override scheduling)"); ?>" />
 								<?php
 							} else {
 								?>

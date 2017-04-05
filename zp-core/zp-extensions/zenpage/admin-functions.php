@@ -235,7 +235,9 @@ function printPagesListTable($page, $flag) {
 			<div class="page-list_icon">
 				<?php
 				if ($page->getPassword()) {
-					echo '<img src="../../images/lock.png" style="border: 0px;" alt="' . gettext('Password protected') . '" title="' . gettext('Password protected') . '" />';
+					echo '<img src="../../images/lock_2.png" style="border: 0px;" alt="' . gettext('password protected') . '" title="' . gettext('password protected') . '" />';
+				} else {
+					echo '<img src="../../images/lock_open.png" style="border: 0px;" alt="' . gettext('unprotected') . '" title="' . gettext('not protected') . '" />';
 				}
 				?>
 			</div>
@@ -956,8 +958,10 @@ function printCategoryListSortableTable($cat, $flag) {
 		<div class="page-list_iconwrapper">
 			<div class="page-list_icon"><?php
 				$password = $cat->getPassword();
-				if (!empty($password)) {
-					echo '<img src="../../images/lock.png" style="border: 0px;" alt="' . gettext('Password protected') . '" title="' . gettext('Password protected') . '" />';
+				if (empty($password)) {
+					echo '<img src="../../images/lock_open.png" style="border: 0px;" alt="' . gettext('password protected') . '" title="' . gettext('password protected') . '" />';
+				} else {
+					echo '<img src="../../images/lock_2.png" style="border: 0px;" alt="' . gettext('unprotected') . '" title="' . gettext('password protected') . '" />';
 				}
 				?>
 			</div>
@@ -972,13 +976,13 @@ function printCategoryListSortableTable($cat, $flag) {
 					$title = gettext("Un-publish");
 					?>
 					<a href="?publish=0&amp;titlelink=<?php echo html_encode($cat->getTitlelink()); ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo $title; ?>">
-						<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="<?php gettext("Scheduled for publishing"); ?>" title="<?php echo $title; ?>" /></a>
+						<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="<?php gettext("scheduled for publishing"); ?>" title="<?php echo $title; ?>" /></a>
 					<?php
 				} else {
 					$title = gettext("Publish");
 					?>
 					<a href="?publish=1&amp;titlelink=<?php echo html_encode($cat->getTitlelink()); ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo $title; ?>">
-						<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/action.png" alt="<?php echo gettext("Un-published"); ?>" title="<?php echo $title; ?>" /></a>
+						<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/action.png" alt="<?php echo gettext("un-published"); ?>" title="<?php echo $title; ?>" /></a>
 					<?php
 				}
 				?>
@@ -989,7 +993,7 @@ function printCategoryListSortableTable($cat, $flag) {
 					<?php
 				} else {
 					?>
-					<a href="../../../index.php?p=news&amp;category=<?php echo js_encode($cat->getTitlelink()); ?>" title="<?php echo gettext("View category"); ?>">
+					<a href="../../../index.php?p=news&amp;category=<?php echo js_encode($cat->getTitlelink()); ?>" title="<?php echo gettext("view category"); ?>">
 						<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/view.png" alt="view" />
 					</a>
 				<?php } ?>
@@ -1042,9 +1046,9 @@ function printCategoryCheckboxListEntry($cat, $articleid, $option, $class = '') 
 	$catname = $cat->getTitle();
 	$catlink = $cat->getTitlelink();
 	if ($cat->getPassword()) {
-		$protected = '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/lock.png" alt="' . gettext('password protected') . '" />';
+		$protected = '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/lock_2.png" alt="' . gettext('password protected') . '" />';
 	} else {
-		$protected = '';
+		$protected = '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/lock_open.png" alt="' . gettext('not protected') . '" />';
 	}
 	$catid = $cat->getID();
 	echo '<label for="cat' . $catid . '"><input name="addcategories[]" class="' . $class . '" id="cat' . $catid . '" type="checkbox" value="' . $catid . '"' . $selected . ' />' . $catname . ' ' . $protected . "</label>\n";
@@ -1338,28 +1342,32 @@ function zenpageJSCSS() {
 function printZenpageIconLegend() {
 	?>
 	<ul class="iconlegend">
-		<?php
-		if (GALLERY_SECURITY == 'public') {
-			?>
-			<li><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock.png" alt="" /><?php echo gettext("Has Password"); ?></li>
+		<li>
 			<?php
-		}
-		?>
+			if (GALLERY_SECURITY == 'public') {
+				?>
+				<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock_2.png" alt="" />
+				<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock_open.png" alt="" />
+				<?php echo gettext("has/does not have password"); ?>
+				<?php
+			}
+			?>
+		</li>
 		<li><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" /><?php echo gettext("pick source"); ?></li>
 		<li>
 			<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><img	src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/action.png" alt="" />
-			<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/clock.png" alt="" /><?php echo gettext("Published/Not published/Scheduled for publishing"); ?>
+			<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/clock.png" alt="" /><?php echo gettext("published/not published/scheduled for publishing"); ?>
 		</li>
-		<li><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/comments-on.png" alt="" /><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/comments-off.png" alt="" /><?php echo gettext("Comments on/off"); ?></li>
-		<li><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/view.png" alt="" /><?php echo gettext("View"); ?></li>
+		<li><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/comments-on.png" alt="" /><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/comments-off.png" alt="" /><?php echo gettext("comments on/off"); ?></li>
+		<li><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/view.png" alt="" /><?php echo gettext("view"); ?></li>
 		<?php
 		if (extensionEnabled('hitcounter')) {
 			?>
-			<li><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" /><?php echo gettext("Reset hitcounter"); ?></li>
+			<li><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" /><?php echo gettext("reset hitcounter"); ?></li>
 			<?php
 		}
 		?>
-		<li><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/fail.png" alt="" /><?php echo gettext("Delete"); ?></li>
+		<li><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/fail.png" alt="" /><?php echo gettext("delete"); ?></li>
 	</ul>
 	<?php
 }
@@ -1446,7 +1454,7 @@ function printPublishIconLink($object, $urladd) {
 			//overriding scheduling
 			?>
 			<a href="?publish=2&amp;titlelink=<?php echo html_encode($object->getTitlelink()) . $urladd; ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>">
-				<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/clock.png" alt="<?php echo gettext("Un-published"); ?>" title= "<?php echo gettext("Publish (override scheduling)"); ?>" /></a>
+				<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/clock.png" alt="<?php echo gettext("un-published"); ?>" title= "<?php echo gettext("publish (override scheduling)"); ?>" /></a>
 			<?php
 		} else {
 			?>

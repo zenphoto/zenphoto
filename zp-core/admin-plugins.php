@@ -169,13 +169,13 @@ if ($saved) {
 		</p><br class="clearall" /><br /><br />
 		<table>
 			<tr>
-				<th id="imagenav" colspan="3">
+				<th id="imagenav" colspan="100%">
 					<?php printPageSelector($subpage, $rangeset, 'admin-plugins.php', array('page' => 'plugins', 'tab' => $subtab)); ?>
 				</th>
 			</tr>
 			<tr>
 				<th colspan="2"><span class="displayleft"><?php echo gettext("Available Plugins"); ?></span></th>
-				<th colspan="1">
+				<th>
 					<span class="displayleft"><?php echo gettext("Description"); ?></span>
 				</th>
 
@@ -347,12 +347,12 @@ if ($saved) {
 					</td>
 					<td width="60">
 						<span class="icons"><a onclick="$.colorbox({
-										close: '<?php echo gettext("close"); ?>',
-										maxHeight: '80%',
-										maxWidth: '80%',
-										innerWidth: '560px',
-										href: '<?php echo $plugin_URL; ?>'
-									});"><img class="icon-position-top3" src="images/info.png" title="<?php printf(gettext('More information on %s'), $extension); ?>" alt=""></a></span>
+									close: '<?php echo gettext("close"); ?>',
+									maxHeight: '80%',
+									maxWidth: '80%',
+									innerWidth: '560px',
+									href: '<?php echo $plugin_URL; ?>'
+								});"><img class="icon-position-top3" src="images/info.png" title="<?php printf(gettext('More information on %s'), $extension); ?>" alt=""></a></span>
 																	 <?php
 																	 if ($optionlink) {
 																		 ?>
@@ -370,7 +370,7 @@ if ($saved) {
 						}
 						?>
 					</td>
-					<td colspan="2">
+					<td colspan="100%">
 						<?php
 						echo $plugin_description;
 						if ($plugin_disable) {
@@ -407,7 +407,7 @@ if ($saved) {
 			}
 			?>
 			<tr>
-				<td colspan="4" id="imagenavb">
+				<td colspan="100%" id="imagenavb">
 					<?php printPageSelector($subpage, $rangeset, 'admin-plugins.php', array('page' => 'plugins', 'tab' => $subtab)); ?>
 				</td>
 			</tr>

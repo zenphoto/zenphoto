@@ -293,7 +293,7 @@ if (is_array($result)) {
 							}
 							?>
 							<tr>
-								<td colspan="2"><?php printf(gettext("Menu <em>%s</em>"), $selector); ?></td>
+								<td colspan="100%"><?php printf(gettext("Menu <em>%s</em>"), $selector); ?></td>
 							</tr>
 							<tr style="vertical-align: top">
 								<td style="width: 13%"><?php echo gettext("Type"); ?></td>
@@ -369,7 +369,7 @@ if (is_array($result)) {
 								if (!$array['valid']) {
 									?>
 									<tr>
-										<td colspan="2">
+										<td colspan="100%">
 											<span class="notebox">
 												<?php
 												if (array_key_exists('theme', $array)) {

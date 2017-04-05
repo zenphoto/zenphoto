@@ -150,7 +150,7 @@ function getOptionContent() {
 				<input	type="hidden" name="saveoptions" value="general" />
 				<table>
 					<tr>
-						<td colspan="3">
+						<td colspan="100%">
 							<p class="buttons">
 								<button type="submit" value="<?php echo gettext('Apply') ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 								<button type="reset" value="<?php echo gettext('reset') ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
@@ -220,7 +220,7 @@ function getOptionContent() {
 								<p>
 									<label>
 										<input type="checkbox" name="UTF8_image_URI" value="1"<?php checked('0', UTF8_IMAGE_URI); ?> />
-										<?php echo gettext('<em>Filesystem</em> image URIs'); ?>
+										<?php echo gettext('<em>filesystem</em> image URIs'); ?>
 									</label>
 								</p>
 								<?php
@@ -234,7 +234,7 @@ function getOptionContent() {
 										echo ' disabled="disabled"';
 									if (UNIQUE_IMAGE)
 										echo ' checked="checked";'
-										?>><?php echo gettext("Unique images"); ?>
+										?>><?php echo gettext("unique images"); ?>
 								</label>
 							</p>
 
@@ -366,7 +366,7 @@ function getOptionContent() {
 							</ul>
 							<br class="clearall" />
 							<label class="checkboxlabel">
-								<input type="checkbox" name="multi_lingual" value="1"	<?php checked('1', getOption('multi_lingual')); ?> /><?php echo gettext('Multi-lingual'); ?>
+								<input type="checkbox" name="multi_lingual" value="1"	<?php checked('1', getOption('multi_lingual')); ?> /><?php echo gettext('multi-lingual'); ?>
 							</label>
 						</td>
 						<td class="option_desc">
@@ -524,12 +524,12 @@ function getOptionContent() {
 						<td class="option_value">
 							<?php
 							if (!GALLERY_SESSION) {
-								echo gettext('Path');
+								echo gettext('path');
 								?>
 								<input type="text" size="48" id="zenphoto_cookie_path" name="zenphoto_cookie_path"  value="<?php echo getOption('zenphoto_cookie_path'); ?>" />
 								<p>
 									<?php
-									echo gettext('Duration');
+									echo gettext('duration');
 									?>
 									<input type="text" name="cookie_persistence" value="<?php echo COOKIE_PESISTENCE; ?>" />
 								</p>
@@ -615,7 +615,7 @@ function getOptionContent() {
 						<td class="option_value">
 							<label>
 								<input type="checkbox" name="dirtyform_enable" id="dirtyform_enable" value="1"<?php checked('1', getOption('dirtyform_enable')); ?> />
-								<?php echo gettext("Detect unsaved forms"); ?>
+								<?php echo gettext("detect unsaved forms"); ?>
 							</label>
 						</td>
 						<td class="option_desc">
@@ -661,7 +661,7 @@ function getOptionContent() {
 					</tr>
 					<?php zp_apply_filter('admin_general_data'); ?>
 					<tr>
-						<td colspan="3">
+						<td colspan="100%">
 							<p class="buttons">
 								<button type="submit" value="<?php echo gettext('save') ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 								<button type="reset" value="<?php echo gettext('reset') ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>

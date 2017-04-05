@@ -73,10 +73,10 @@ class quota_manager {
 	 * @return array
 	 */
 	function getOptionsSupported() {
-		return array(gettext('Default quota')	 => array('key'	 => 'quota_default', 'type' => OPTION_TYPE_NUMBER,
-										'desc' => gettext('Default size limit in kilobytes.')),
-						gettext('Allow ZIP files') => array('key'	 => 'quota_allowZIP', 'type' => OPTION_TYPE_CHECKBOX,
-										'desc' => gettext('The size of a ZIP file may be slightly smaller than the sum of the <em>image</em> files it contains. Un-check this box if you wish to disable uploading of ZIP files.'))
+		return array(gettext('Default quota') => array('key' => 'quota_default', 'type' => OPTION_TYPE_NUMBER,
+						'desc' => gettext('Default size limit in kilobytes.')),
+				gettext('Allow ZIP files') => array('key' => 'quota_allowZIP', 'type' => OPTION_TYPE_CHECKBOX,
+						'desc' => gettext('The size of a ZIP file may be slightly smaller than the sum of the <em>image</em> files it contains. Un-check this box if you wish to disable uploading of ZIP files.'))
 		);
 	}
 
@@ -130,7 +130,7 @@ class quota_manager {
 			$used = '';
 		}
 		$result = '<tr' . ((!$current) ? ' style="display:none;"' : '') . ' class="userextrainfo">
-				<td colspan="2"' . ((!empty($background)) ? ' style="' . $background . '"' : '') . ' valign="top" width="345">' . gettext("Image storage quota:") . '&nbsp;' .
+				<td colspan="100%"' . ((!empty($background)) ? ' style="' . $background . '"' : '') . ' valign="top" width="345">' . gettext("Image storage quota:") . '&nbsp;' .
 						sprintf(gettext('Allowed: %s kb'), '<input type="text" size="10" name="' . $i . 'quota" value="' . $quota . '" ' . $local_alterrights . ' />') . ' ' .
 						$used .
 						"\n" .

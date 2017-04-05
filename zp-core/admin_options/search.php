@@ -69,7 +69,7 @@ function getOptionContent() {
 				<input	type="hidden" name="password_enabled" id="password_enabled" value="0" />
 				<table>
 					<tr>
-						<td colspan="3">
+						<td colspan="100%">
 							<p class="buttons">
 								<button type="submit" value="<?php echo gettext('Apply') ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 								<button type="reset" value="<?php echo gettext('reset') ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
@@ -337,7 +337,7 @@ function getOptionContent() {
 					?>
 					<tr>
 						<td class="option_name"><?php echo gettext("Sort albums by"); ?> </td>
-						<td colspan="2">
+						<td colspan="100%">
 							<span class="nowrap">
 								<select id="albumsortselect" name="subalbumsortby" onchange="update_direction(this, 'album_direction_div', 'album_custom_div');">
 									<?php
@@ -387,7 +387,7 @@ function getOptionContent() {
 
 					<tr>
 						<td class="option_name"><?php echo gettext("Sort images by"); ?> </td>
-						<td colspan="2">
+						<td colspan="100%">
 							<span class="nowrap">
 								<select id="imagesortselect" name="sortby" onchange="update_direction(this, 'image_direction_div', 'image_custom_div')">
 									<?php
@@ -436,7 +436,7 @@ function getOptionContent() {
 
 					</tr>
 					<tr>
-						<td colspan="3">
+						<td colspan="100%">
 							<p class="buttons">
 								<button type="submit" value="<?php echo gettext('Apply') ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 								<button type="reset" value="<?php echo gettext('reset') ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>

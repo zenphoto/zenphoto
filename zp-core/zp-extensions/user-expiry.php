@@ -288,7 +288,7 @@ class user_expiry {
 			}
 			$msg = sprintf(gettext('Your subscription expires on %s'), $expires_display);
 			$myhtml = '<tr' . ((!$current) ? ' style="display:none;"' : '') . ' class="userextrainfo">
-					<td' . ((!empty($background)) ? ' style="' . $background . '"' : '') . ' valign="top" colspan="2">' . "\n" .
+					<td' . ((!empty($background)) ? ' style="' . $background . '"' : '') . ' valign="top" colspan="100%">' . "\n" .
 							'<p class="notebox">' . $msg . '</p>' . "\n" .
 							'</td>
 				</tr>' . "\n";

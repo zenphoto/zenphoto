@@ -185,20 +185,30 @@ zenpageJSCSS();
 						<?php
 						if (GALLERY_SECURITY == 'public') {
 							?>
-							<li><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock.png" alt="" /><?php echo gettext("Has Password"); ?></li>
-							<?php
-						}
-						?>
+							<li>
+								<?php
+								if (true) {
+									?>
+									<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock_2.png" alt="" />
+									<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock_open.png" alt="" />
+									<?php echo gettext("has/does not have password"); ?>
+									<?php
+								}
+								?>
+							<li>
+								<?php
+							}
+							?>
 						<li><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" /><?php echo gettext("pick source"); ?></li>
-						<li><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/view.png" alt="" /><?php echo gettext('View'); ?></li>
+						<li><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/view.png" alt="" /><?php echo gettext('view'); ?></li>
 						<?php
 						if (extensionEnabled('hitcounter')) {
 							?>
-							<li><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" /><?php echo gettext('Reset hitcounter'); ?></li>
+							<li><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" /><?php echo gettext('reset hitcounter'); ?></li>
 							<?php
 						}
 						?>
-						<li><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/fail.png" alt="" /><?php echo gettext('Delete category'); ?></li>
+						<li><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/fail.png" alt="" /><?php echo gettext('delete category'); ?></li>
 					</ul>
 				</form>
 

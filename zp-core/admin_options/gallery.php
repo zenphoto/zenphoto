@@ -61,7 +61,7 @@ function getOptionContent() {
 				<input	type="hidden" name="password_enabled" id="password_enabled" value="0" />
 				<table>
 					<tr>
-						<td colspan="3">
+						<td colspan="100%">
 							<p class="buttons">
 								<button type="submit" value="<?php echo gettext('Apply') ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 								<button type="reset" value="<?php echo gettext('reset') ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
@@ -345,13 +345,13 @@ function getOptionContent() {
 										<span id="gallery_sortdirection" style="display:<?php echo $dspd; ?>">
 											<label>
 												<input type="checkbox" name="gallery_sortdirection"	value="1" <?php checked('1', $_zp_gallery->getSortDirection()); ?> />
-												<?php echo gettext("Descending"); ?>
+												<?php echo gettext("descending"); ?>
 											</label>
 										</span>
 									</td>
 								</tr>
 								<tr>
-									<td colspan="2">
+									<td colspan="100%">
 										<span id="customTextBox2" class="customText" style="display:<?php echo $dspc; ?>">
 											<?php echo gettext('custom fields') ?>
 											<span class="tagSuggestContainer">
@@ -377,13 +377,13 @@ function getOptionContent() {
 							<p>
 								<label>
 									<input type="checkbox" name="album_default"	value="1"<?php if ($_zp_gallery->getAlbumPublish()) echo ' checked="checked"'; ?> />
-									<?php echo gettext("Publish albums by default"); ?>
+									<?php echo gettext("publish albums by default"); ?>
 								</label>
 							</p>
 							<p>
 								<label>
 									<input type="checkbox" name="image_default"	value="1"<?php if ($_zp_gallery->getImagePublish()) echo ' checked="checked"'; ?> />
-									<?php echo gettext("Publish images by default"); ?>
+									<?php echo gettext("publish images by default"); ?>
 								</label>
 							</p>
 							<p>
@@ -441,7 +441,7 @@ function getOptionContent() {
 					</tr>
 
 					<tr>
-						<td colspan="3">
+						<td colspan="100%">
 							<p class="buttons">
 								<button type="submit" value="<?php echo gettext('Apply') ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 								<button type="reset" value="<?php echo gettext('reset') ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>

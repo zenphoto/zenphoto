@@ -349,7 +349,7 @@ printLogoAndLinks();
 							<br class="clearall" /><br />
 							<table class="bordered">
 								<tr>
-									<th colspan="11"><?php echo gettext("Edit this comment"); ?>
+									<th colspan="100%"><?php echo gettext("Edit this comment"); ?>
 										<?php
 										$checkarray = array(
 												gettext('*Bulk actions*') => 'noaction',
@@ -364,7 +364,7 @@ printLogoAndLinks();
 
 								</tr>
 								<tr>
-									<td colspan="11" class="subhead">
+									<td colspan="100%" class="subhead">
 										<label style="float: right"><?php echo gettext("Check All"); ?>
 											<input type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this.checked);" />
 

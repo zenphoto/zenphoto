@@ -193,7 +193,7 @@ class create_album {
 			ob_start();
 			?>
 			<tr <?php if (!$current) echo 'style="display:none;"'; ?> class="userextrainfo">
-				<td colspan="2"  style="background-color:#ECF1F2;" valign="top">
+				<td colspan="100%"  style="background-color:#ECF1F2;" valign="top">
 					<div id="newalbumbox" style="margin-top: 5px;">
 						<input id="newalbumcheckbox" type="checkbox" name="createalbum" />
 						<?php echo gettext('Create an album') ?>

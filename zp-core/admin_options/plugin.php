@@ -83,7 +83,7 @@ function getOptionContent() {
 					if ($single) {
 						?>
 						<tr>
-							<td colspan="3">
+							<td colspan="100%">
 								<p class="buttons">
 									<button type="submit" value="<?php echo gettext('save') ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 									<button type="reset" value="<?php echo gettext('reset') ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
@@ -155,7 +155,7 @@ function getOptionContent() {
 									}
 									?>
 								</td>
-								<td class="option_value<?php if ($showExtension) echo ' option_shaded'; ?>" colspan="2">
+								<td class="option_value<?php if ($showExtension) echo ' option_shaded'; ?>" colspan="100%">
 									<?php echo $plugin_description; ?>
 								</td>
 							</tr>
@@ -163,7 +163,7 @@ function getOptionContent() {
 							if ($warn) {
 								?>
 								<tr style="display:none" class="pluginextrahide">
-									<td colspan="3">
+									<td colspan="100%">
 										<p class="notebox" ><?php echo $warn; ?></p>
 									</td>
 								</tr>
@@ -191,7 +191,7 @@ function getOptionContent() {
 					if ($_zp_plugin_count == 0) {
 						?>
 						<tr>
-							<td style="padding: 0;margin:0" colspan="3">
+							<td style="padding: 0;margin:0" colspan="100%">
 								<?php
 								echo gettext("There are no plugin options to administer.");
 								?>
@@ -202,7 +202,7 @@ function getOptionContent() {
 						if ($single) {
 							?>
 							<tr>
-								<td colspan="3">
+								<td colspan="100%">
 									<p class="buttons">
 										<button type="submit" value="<?php echo gettext('save') ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 										<button type="reset" value="<?php echo gettext('reset') ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
