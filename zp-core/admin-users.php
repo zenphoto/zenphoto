@@ -826,9 +826,18 @@ echo $refresh;
 														}
 														?>
 													</div>
+													<br class="clearall">
+													<div class="userextrainfo">
+														<?php
+														if ($custom_row) {
+															echo stripTableRows($custom_row);
+														}
+														?>
+													</div>
+													<br class="clearall">
 												</td>
 											</tr>
-											<?php echo $custom_row; ?>
+
 										</table> <!-- end individual admin table -->
 									</td>
 								</tr>

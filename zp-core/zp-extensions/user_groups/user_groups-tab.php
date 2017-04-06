@@ -293,9 +293,7 @@ echo '</head>' . "\n";
 												}
 												?>
 											</div>
-
 											<br class="clearall">
-
 											<div class="user_left userextrainfo" style="display:none">
 												<?php
 												printAdminRightsTable($id, '', '', $rights);
@@ -326,7 +324,7 @@ echo '</head>' . "\n";
 												?>
 
 											</div>
-											<div class="user_left userextrainfo" style="display:none">
+											<div class="user_right userextrainfo" style="display:none">
 												<strong><?php echo gettext('description:'); ?></strong>
 												<br />
 												<textarea name="<?php echo $id; ?>-desc" cols="40" rows="4"><?php echo html_encode($desc); ?></textarea>
@@ -377,10 +375,7 @@ echo '</head>' . "\n";
 												<?php
 												$custom = zp_apply_filter('edit_admin_custom_data', '', $groupobj, $id, $background, true, '');
 												if ($custom) {
-													//remove the table row stuff since we are in a DIV
-													$custom = preg_replace('~</*tr[^>]*>~i', '', $custom);
-													$custom = preg_replace('~</*td[^>]*>~i', '', $custom);
-													echo $custom;
+													echo stripTableRows($custom);
 												}
 												?>
 											</div>

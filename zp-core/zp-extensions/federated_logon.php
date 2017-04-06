@@ -306,21 +306,17 @@ class federated_logon {
 				$email = $userobj->getEmail();
 				if (empty($email)) {
 					$msg = gettext('<strong>NOTE:</strong> Update your profile with a valid <em>e-mail</em> address and you will be sent a link to validate your access to the site.');
-					$myhtml = '<tr' . ((!$current) ? ' style="display:none;"' : '') . ' class="userextrainfo">
-							<td' . ((!empty($background)) ? ' style="' . $background . '"' : '') . ' valign="top" colspan="100%">' . "\n" .
-									'<p class="notebox">' . $msg . '</p>' . "\n" .
-									'</td>
-						</tr>' . "\n";
+					$myhtml = '<p class="notebox">' . $msg . '</p>' . "\n"
+									. '<br class="clearall">' . "\n";
 					$html = $myhtml . $html;
 				}
 			}
 		} else if ($federated) {
 			$msg = gettext("<strong>NOTE:</strong> User’s credentials came from a Federated logon.");
-			$myhtml = '<tr' . ((!$current) ? ' style="display:none;"' : '') . ' class="userextrainfo">
-					<td' . ((!empty($background)) ? ' style="' . $background . '"' : '') . ' valign="top" colspan="100%">' . "\n" .
-							'<p class="notebox">' . $msg . '</p>' . "\n" .
-							'</td>
-				</tr>' . "\n";
+			$myhtml = '<div class="user_left">' . "\n"
+							. '<p class="notebox">' . $msg . '</p>' . "\n"
+							. '</div>' . "\n"
+							. '<br class="clearall">' . "\n";
 			$html = $myhtml . $html;
 		}
 		return $html;

@@ -4456,6 +4456,22 @@ function processCommentBulkActions() {
 }
 
 /**
+ * strips out tablerow stuff created by old edit_amin_custm_data plugins
+ * replaces it with appropriate DIV structure
+ *
+ * @param string $custom the custom html from plugins
+ * @return type
+ */
+function stripTableRows($custom) {
+	//remove the table row stuff since we are in a DIV and replace with user_right class DIVs
+	$custom = preg_replace('~<tr[^>]*>~i', '', $custom);
+	$custom = preg_replace('~<td[^>]*>~i', 'div class="user_right">', $custom);
+	$custom = preg_replace('~</td[^>]*>~i', '</div>', $custom);
+	$custom = preg_replace('~</tr[^>]*>~i', '<br class="clearall">', $custom);
+	return $custom;
+}
+
+/**
  * Codeblock tabs JavaScript code
  *
  */

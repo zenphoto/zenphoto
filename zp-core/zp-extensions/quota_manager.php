@@ -129,13 +129,12 @@ class quota_manager {
 		} else {
 			$used = '';
 		}
-		$result = '<tr' . ((!$current) ? ' style="display:none;"' : '') . ' class="userextrainfo">
-				<td colspan="100%"' . ((!empty($background)) ? ' style="' . $background . '"' : '') . ' valign="top" width="345">' . gettext("Image storage quota:") . '&nbsp;' .
+		$result = '<div class="user_left">' . "\n"
+						. gettext("Image storage quota:") . '&nbsp;' .
 						sprintf(gettext('Allowed: %s kb'), '<input type="text" size="10" name="' . $i . 'quota" value="' . $quota . '" ' . $local_alterrights . ' />') . ' ' .
-						$used .
-						"\n" .
-						'</td>' .
-						'</tr>' . "\n";
+						$used . "\n"
+						. '</div>' . "\n"
+						. '<br class="clearall">' . "\n";
 		return $html . $result;
 	}
 

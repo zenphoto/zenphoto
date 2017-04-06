@@ -229,15 +229,13 @@ class user_groups {
 				$grouppart = '<code>' . gettext('no group affiliation') . '</code>';
 			}
 		}
-		$result = "\n" . '<tr' . ((!$current) ? ' style="display:none;"' : '') . ' class="userextrainfo">' . "\n" .
-						'<td colspan="100%"' . ((!empty($background)) ? ' style="' . $background . '"' : '') . ' valign="top">' . "\n" .
-						'<div class="user_left">' . "\n" . sprintf(gettext('User group membership: %s'), $grouppart) . "\n" .
-						'</div>' . "\n" .
-						'<div class="user_right user_column">' . "\n" .
-						$notice .
-						'</div>' . "\n" .
-						'</td>' . "\n" .
-						"</tr>\n";
+		$result = '<div class="user_left">' . "\n" . sprintf(gettext('User group membership: %s'), $grouppart) . "\n"
+						. '</div>' . "\n"
+						. '<div class="user_right user_column">' . "\n"
+						. '<br />'
+						. $notice
+						. '</div>' . "\n"
+						. '<br class="clearall">' . "\n";
 		return $html . $result;
 	}
 

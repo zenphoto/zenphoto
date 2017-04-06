@@ -319,9 +319,7 @@ class fieldExtender {
 
 			$output = array_chunk($list, round($count / 2));
 
-			$html .=
-							'<tr' . ((!$current) ? ' style = "display:none;"' : '') . ' class = "userextrainfo">' .
-							'<td' . ((!empty($background)) ? ' style = "' . $background . '"' : '') . ' valign = "top" colspan="100%">';
+
 			$html .=
 							'<div class="user_left">' .
 							implode($output[0], "\n") .
@@ -333,9 +331,7 @@ class fieldExtender {
 								implode($output[1], "\n") .
 								'</div>';
 			}
-			$html .=
-							'</td>' .
-							'</tr>';
+			$html .= '<br class="clearall">';
 		}
 		return $html;
 	}

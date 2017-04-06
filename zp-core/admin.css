@@ -2050,9 +2050,11 @@ fieldset,
 .user_left {
 	width: 30em;
 	float: left;
+	padding-top: 10px;
 }
 .user_right {
 	float: left;
+	padding-top: 10px;
 }
 
 .user_column {
