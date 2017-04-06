@@ -201,6 +201,7 @@ echo '</head>' . "\n";
 							<br class="clearall" /><br />
 							<input type="hidden" name="savegroups" value="yes" />
 							<input type="hidden" name="subpage" value="<?php echo $subpage; ?>" />
+
 							<table class="bordered">
 								<tr>
 									<th>
@@ -213,7 +214,6 @@ echo '</head>' . "\n";
 									<th>
 										<?php printPageSelector($subpage, $rangeset, PLUGIN_FOLDER . '/user_groups/user_groups-tab.php', array('page' => 'users', 'tab' => 'groups')); ?>
 									</th>
-									<th></th>
 								</tr>
 
 								<?php
@@ -239,56 +239,67 @@ echo '</head>' . "\n";
 									}
 									?>
 									<tr id="user-<?php echo $id; ?>">
-										<td style="border-top: 4px solid #D1DBDF;<?php echo $background; ?>" valign="top">
-											<?php
-											if (empty($groupname)) {
-												?>
-												<em>
-													<label><input type="radio" name="<?php echo $id; ?>-type" value="group" checked="checked" onclick="javascrpt:toggle('users<?php echo $id; ?>');
-															toggleExtraInfo('<?php echo $id; ?>', 'user', true);" /><?php echo gettext('group'); ?></label>
-													<label><input type="radio" name="<?php echo $id; ?>-type" value="template" onclick="javascrpt:toggle('users<?php echo $id; ?>');
-															toggleExtraInfo('<?php echo $id; ?>', 'user', true);" /><?php echo gettext('template'); ?></label>
-												</em>
-												<br />
-												<input type="text" size="35" id="group-<?php echo $id ?>" name="<?php echo $id ?>-group" value=""
-															 onclick="toggleExtraInfo('<?php echo $id; ?>', 'user', true);" />
-															 <?php
-														 } else {
-															 ?>
-												<span class="userextrashow">
-													<em><?php echo $kind; ?></em>:
-													<a onclick="toggleExtraInfo('<?php echo $id; ?>', 'user', true);" title="<?php echo $groupname; ?>" >
-														<strong><?php echo $groupname; ?></strong>
-													</a>
-												</span>
-												<span style="display:none;" class="userextrahide">
-													<em><?php echo $kind; ?></em>:
-													<a onclick="toggleExtraInfo('<?php echo $id; ?>', 'user', false);" title="<?php echo $groupname; ?>" >
-														<strong><?php echo $groupname; ?></strong>
-													</a>
-												</span>
-												<input type="hidden" id="group-<?php echo $id ?>" name="<?php echo $id ?>-group" value="<?php echo html_encode($groupname); ?>" />
-												<input type="hidden" name="<?php echo $id ?>-type" value="<?php echo html_encode($grouptype); ?>" />
+
+										<td style="border-top: 4px solid #D1DBDF;<?php echo $background; ?>" valign="top" colspan="100%">
+											<div class="user_left">
 												<?php
-											}
-											?>
-											<input type="hidden" name="<?php echo $id ?>-confirmed" value="1" />
-											<span class="userextrainfo" style="display:none" >
-												<br /><br />
-												<?php
-												printAdminRightsTable($id, '', '', $rights);
-												$custom = zp_apply_filter('edit_admin_custom_data', '', $groupobj, $id, $background, true, '');
-												if ($custom) {
-													$custom = preg_replace('~</*tr[^>]*>~i', '', $custom);
-													$custom = preg_replace('~</*td[^>]*>~i', '', $custom);
-													echo $custom;
+												if (empty($groupname)) {
+													?>
+													<em>
+														<label>
+															<input type="radio" name="<?php echo $id; ?>-type" value="group" checked="checked" onclick="javascrpt:toggle('users<?php echo $id; ?>');
+																	toggleExtraInfo('<?php echo $id; ?>', 'user', true);" /><?php echo gettext('group'); ?>
+														</label>
+														<label>
+															<input type="radio" name="<?php echo $id; ?>-type" value="template" onclick="javascrpt:toggle('users<?php echo $id; ?>');
+																	toggleExtraInfo('<?php echo $id; ?>', 'user', true);" /><?php echo gettext('template'); ?>
+														</label>
+													</em>
+													<br />
+													<input type="text" size="35" id="group-<?php echo $id ?>" name="<?php echo $id ?>-group" value=""
+																 onclick="toggleExtraInfo('<?php echo $id; ?>', 'user', true);" />
+																 <?php
+															 } else {
+																 ?>
+													<span class="userextrashow">
+														<em><?php echo $kind; ?></em>:
+														<a onclick="toggleExtraInfo('<?php echo $id; ?>', 'user', true);" title="<?php echo $groupname; ?>" >
+															<strong><?php echo $groupname; ?></strong>
+														</a>
+													</span>
+													<span style="display:none;" class="userextrahide">
+														<em><?php echo $kind; ?></em>:
+														<a onclick="toggleExtraInfo('<?php echo $id; ?>', 'user', false);" title="<?php echo $groupname; ?>" >
+															<strong><?php echo $groupname; ?></strong>
+														</a>
+													</span>
+													<input type="hidden" id="group-<?php echo $id ?>" name="<?php echo $id ?>-group" value="<?php echo html_encode($groupname); ?>" />
+													<input type="hidden" name="<?php echo $id ?>-type" value="<?php echo html_encode($grouptype); ?>" />
+													<?php
 												}
 												?>
-											</span>
-										</td>
-										<td style="border-top: 4px solid #D1DBDF;<?php echo $background; ?>" valign="top">
-											<span class="userextrainfo" style="display:none;" >
+												<input type="hidden" name="<?php echo $id ?>-confirmed" value="1" />
+											</div>
+											<div class="floatright">
 												<?php
+												if (!empty($groupname)) {
+													$msg = gettext('Are you sure you want to delete this group?');
+													?>
+													<a href="javascript:if(confirm(<?php echo "'" . $msg . "'"; ?>)) { launchScript('',['action=deletegroup','group=<?php echo addslashes($groupname); ?>','XSRFToken=<?php echo getXSRFToken('deletegroup') ?>']); }"
+														 title="<?php echo gettext('Delete this group.'); ?>" style="color: #c33;">
+														<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/fail.png" style="border: 0px;" alt="Delete" />
+													</a>
+													<?php
+												}
+												?>
+											</div>
+
+											<br class="clearall">
+
+											<div class="user_left userextrainfo" style="display:none">
+												<?php
+												printAdminRightsTable($id, '', '', $rights);
+
 												if (empty($groupname) && !empty($groups)) {
 													?>
 													<?php echo gettext('clone:'); ?>
@@ -313,7 +324,10 @@ echo '</head>' . "\n";
 													<?php
 												}
 												?>
-												<?php echo gettext('description:'); ?>
+
+											</div>
+											<div class="user_left userextrainfo" style="display:none">
+												<strong><?php echo gettext('description:'); ?></strong>
 												<br />
 												<textarea name="<?php echo $id; ?>-desc" cols="40" rows="4"><?php echo html_encode($desc); ?></textarea>
 
@@ -356,21 +370,24 @@ echo '</head>' . "\n";
 													printManagedObjects('news', $newslist, '', $groupobj, $id, $kind, NULL);
 												}
 												?>
-											</span>
-										</td>
-										<td style="border-top: 4px solid #D1DBDF;<?php echo $background; ?>" valign="top">
-											<?php
-											if (!empty($groupname)) {
-												$msg = gettext('Are you sure you want to delete this group?');
-												?>
-												<a href="javascript:if(confirm(<?php echo "'" . $msg . "'"; ?>)) { launchScript('',['action=deletegroup','group=<?php echo addslashes($groupname); ?>','XSRFToken=<?php echo getXSRFToken('deletegroup') ?>']); }"
-													 title="<?php echo gettext('Delete this group.'); ?>" style="color: #c33;">
-													<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/fail.png" style="border: 0px;" alt="Delete" />
-												</a>
+
+											</div>
+											<br class="clearall">
+											<div class="userextrainfo" style="display:none">
 												<?php
-											}
-											?>
+												$custom = zp_apply_filter('edit_admin_custom_data', '', $groupobj, $id, $background, true, '');
+												if ($custom) {
+													//remove the table row stuff since we are in a DIV
+													$custom = preg_replace('~</*tr[^>]*>~i', '', $custom);
+													$custom = preg_replace('~</*td[^>]*>~i', '', $custom);
+													echo $custom;
+												}
+												?>
+											</div>
+
+
 										</td>
+
 									</tr>
 
 									<?php
@@ -388,7 +405,6 @@ echo '</head>' . "\n";
 									<th>
 										<?php printPageSelector($subpage, $rangeset, PLUGIN_FOLDER . '/user_groups/user_groups-tab.php', array('page' => 'users', 'tab' => 'groups')); ?>
 									</th>
-									<th></th>
 								</tr>
 							</table>
 							<p class="buttons">

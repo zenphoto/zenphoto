@@ -1040,7 +1040,8 @@ function printAdminHeader($tab, $subtab = NULL) {
 							<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
 							<div class="option_desc_hidden">
 								<?php echo $desc; ?>
-							</div></td>
+							</div>
+						</td>
 						<?php
 					}
 					?>

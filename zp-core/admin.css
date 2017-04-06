@@ -639,7 +639,7 @@ table.options tr td {
 }
 
 .option_desc_hidden {
-	position: fixed;
+	position: absolute;
 	z-index: 1000;
 	margin-left: -400px;
 	max-width: 400px;
@@ -2004,7 +2004,7 @@ span.tagMatches span {
 
 
 .box-rights {
-	width: 460px;
+	width: 360px;
 	margin: 0 0 10px 0;
 	padding: 0px 0px 0px 0px;
 }
@@ -2532,6 +2532,10 @@ ul.page-list {
 	display: inline;
 	position: relative;
 	top: -4px;
+}
+
+.page_list_short {
+	max-width: 300px;
 }
 
 .placeholder {

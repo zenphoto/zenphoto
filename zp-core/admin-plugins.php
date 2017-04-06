@@ -276,7 +276,7 @@ if ($saved) {
 				<tr<?php echo $selected_style; ?>>
 					<td width="30%">
 						<input type="hidden" name="present_<?php echo $opt; ?>" id="present_<?php echo $opt; ?>" value="<?php echo $currentsetting; ?>" />
-						<label id="<?php echo $extension; ?>">
+						<label id="<?php echo $extension; ?>" class="nowrap">
 							<?php
 							if ($third_party_plugin) {
 								$path = stripSuffix($paths[$extension]) . '/logo.png';
