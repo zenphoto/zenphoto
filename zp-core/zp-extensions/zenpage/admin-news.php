@@ -260,21 +260,23 @@ updatePublished('news');
 									</span>
 								</th>
 							</tr>
-							<tr class="newstr">
+							<tr>
 								<th><!--title--></th>
 								<th><?php echo gettext('Categories'); ?></th>
 								<th><?php echo gettext('Author'); ?></th>
-								<th><?php
+								<th>
+									<?php
 									if ($sortorder == 'date') {
 										echo gettext('Created');
 									} else {
 										echo gettext('Last changed');
 									}
-									?></th>
+									?>
+								</th>
 								<th><?php echo gettext('Published'); ?></th>
 								<th><?php echo gettext('Expires'); ?></th>
 								<th class="subhead" colspan="100%">
-									<label style="float: right"><?php echo gettext("Check All"); ?> <input type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this.checked);" />
+									<label class="floatright"><?php echo gettext("Check All"); ?> <input type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this.checked);" />
 									</label>
 								</th>
 							</tr>
@@ -282,7 +284,7 @@ updatePublished('news');
 							foreach ($result as $article) {
 								$article = newArticle($article['titlelink']);
 								?>
-								<tr class="newstr">
+								<tr>
 									<td>
 										<?php
 										switch ($article->getSticky()) {
@@ -325,103 +327,112 @@ updatePublished('news');
 									<td>
 										<?php printExpired($article); ?>
 									</td>
-									<td class="page-list_icon">
-										<?php
-										if ($article->inProtectedCategory()) {
-											echo '<img src="../../images/lock_2.png" style="border: 0px;" alt="' . gettext('password protected') . '" title="' . gettext('password protected') . '" />';
-										} else {
-											echo '<img src="../../images/lock_open.png" style="border: 0px;" alt="' . gettext('unprotected') . '" title="' . gettext('unprotected') . '" />';
-										}
-										?>
-									</td>
-									<td><?php echo linkPickerIcon($article); ?></td>
-									<?php
-									$option = getNewsAdminOptionPath(getNewsAdminOption(NULL));
-									if (empty($option)) {
-										$divider = '?';
-									} else {
-										$divider = '&amp;';
-									}
-									if (checkIfLocked($article)) {
-										?>
-										<td class="page-list_icon">
-											<?php printPublishIconLink($article, $option); ?>
-										</td>
-										<td class="page-list_icon">
+
+									<td>
+
+										<div class="page-list_icon">
 											<?php
-											if ($article->getCommentsAllowed()) {
-												?>
-												<a href="<?php echo $option . $divider; ?>commentson=0&amp;titlelink=<?php
-												echo html_encode($article->getTitlelink());
-												?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo gettext('Disable comments'); ?>">
-													<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/comments-on.png" alt="" title="<?php echo gettext("Comments on"); ?>" style="border: 0px;"/>
-												</a>
-												<?php
+											if ($article->inProtectedCategory()) {
+												echo '<img src="../../images/lock_2.png" style="border: 0px;" alt="' . gettext('password protected') . '" title="' . gettext('password protected') . '" />';
 											} else {
+												echo '<img src="../../images/lock_open.png" style="border: 0px;" alt="' . gettext('unprotected') . '" title="' . gettext('unprotected') . '" />';
+											}
+											?>
+										</div>
+										<div class="page-list_icon">
+											<?php echo linkPickerIcon($article); ?>
+										</div >
+										<?php
+										$option = getNewsAdminOptionPath(getNewsAdminOption(NULL));
+										if (empty($option)) {
+											$divider = '?';
+										} else {
+											$divider = '&amp;';
+										}
+										if (checkIfLocked($article)) {
+											?>
+											<div class="page-list_icon">
+												<?php printPublishIconLink($article, $option); ?>
+											</div>
+											<div class="page-list_icon">
+												<?php
+												if ($article->getCommentsAllowed()) {
+													?>
+													<a href="<?php echo $option . $divider; ?>commentson=0&amp;titlelink=<?php
+													echo html_encode($article->getTitlelink());
+													?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo gettext('Disable comments'); ?>">
+														<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/comments-on.png" alt="" title="<?php echo gettext("Comments on"); ?>" style="border: 0px;"/>
+													</a>
+													<?php
+												} else {
+													?>
+													<a href="<?php echo $option . $divider; ?>commentson=1&amp;titlelink=<?php
+													echo html_encode($article->getTitlelink());
+													?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo gettext('Enable comments'); ?>">
+														<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/comments-off.png" alt="" title="<?php echo gettext("Comments off"); ?>" style="border: 0px;"/>
+													</a>
+													<?php
+												}
 												?>
-												<a href="<?php echo $option . $divider; ?>commentson=1&amp;titlelink=<?php
-												echo html_encode($article->getTitlelink());
-												?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo gettext('Enable comments'); ?>">
-													<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/comments-off.png" alt="" title="<?php echo gettext("Comments off"); ?>" style="border: 0px;"/>
-												</a>
+											</div>
+											<?php
+										} else {
+											?>
+											<div class="page-list_icon">
+												<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/icon_inactive.png" alt="<?php gettext('locked'); ?>" />
+											</div>
+											<div class="page-list_icon">
+												<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/icon_inactive.png" alt="<?php gettext('locked'); ?>" />
+											</div>
+										<?php } ?>
+
+										<div class="page-list_icon">
+											<a target="_blank" href="../../../index.php?p=news&amp;title=<?php
+											echo $article->getTitlelink();
+											?>" title="<?php echo gettext('View article'); ?>">
+												<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/view.png" alt="" title="<?php echo gettext('View article'); ?>" />
+											</a>
+										</div>
+
+										<?php
+										if ($unlocked = checkIfLocked($article)) {
+											if (extensionEnabled('hitcounter')) {
+												?>
+												<div class="page-list_icon">
+													<a href="<?php echo $option . $divider; ?>hitcounter=1&amp;titlelink=<?php
+													echo html_encode($article->getTitlelink());
+													?>&amp;XSRFToken=<?php echo getXSRFToken('hitcounter') ?>" title="<?php echo gettext('Reset hitcounter'); ?>">
+														<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" title="<?php echo gettext('Reset hitcounter'); ?>" /></a>
+												</div>
 												<?php
 											}
 											?>
-										</td>
-										<?php
-									} else {
-										?>
-										<td class="page-list_icon">
-											<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/icon_inactive.png" alt="<?php gettext('locked'); ?>" />
-										</td>
-										<td class="page-list_icon">
-											<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/icon_inactive.png" alt="<?php gettext('locked'); ?>" />
-										</td>
-									<?php } ?>
+											<div class="page-list_icon">
+												<a href="javascript:confirmDelete('admin-news.php<?php echo $option . $divider; ?>delete=<?php echo $article->getTitlelink(); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete') ?>','<?php echo js_encode(gettext('Are you sure you want to delete this article? THIS CANNOT BE UNDONE!')); ?>')" title="<?php echo gettext('Delete article'); ?>">
+													<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/fail.png" alt="" title="<?php echo gettext('Delete article'); ?>" /></a>
+											</div>
 
-									<td class="page-list_icon">
-										<a target="_blank" href="../../../index.php?p=news&amp;title=<?php
-										echo $article->getTitlelink();
-										?>" title="<?php echo gettext('View article'); ?>">
-											<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/view.png" alt="" title="<?php echo gettext('View article'); ?>" />
-										</a>
-									</td>
 
-									<?php
-									if (checkIfLocked($article)) {
-										if (extensionEnabled('hitcounter')) {
+											<?php
+										} else {
 											?>
-											<td class="page-list_icon">
-												<a href="<?php echo $option . $divider; ?>hitcounter=1&amp;titlelink=<?php
-												echo html_encode($article->getTitlelink());
-												?>&amp;XSRFToken=<?php echo getXSRFToken('hitcounter') ?>" title="<?php echo gettext('Reset hitcounter'); ?>">
-													<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" title="<?php echo gettext('Reset hitcounter'); ?>" /></a>
-											</td>
+											<div class="page-list_icon">
+												<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/icon_inactive.png" alt="" title="<?php gettext('locked'); ?>" />
+											</div>
+											<div class="page-list_icon">
+												<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/icon_inactive.png" alt="" title="<?php gettext('locked'); ?>" />
+											</div>
+
 											<?php
 										}
 										?>
-										<td class="page-list_icon">
-											<a href="javascript:confirmDelete('admin-news.php<?php echo $option . $divider; ?>delete=<?php echo $article->getTitlelink(); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete') ?>','<?php echo js_encode(gettext('Are you sure you want to delete this article? THIS CANNOT BE UNDONE!')); ?>')" title="<?php echo gettext('Delete article'); ?>">
-												<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/fail.png" alt="" title="<?php echo gettext('Delete article'); ?>" /></a>
-										</td>
-										<td class="page-list_icon">
-											<input type="checkbox" name="ids[]" value="<?php echo $article->getTitlelink(); ?>" onclick="triggerAllBox(this.form, 'ids[]', this.form.allbox);" />
-										</td>
-										<?php
-									} else {
-										?>
-										<td class="page-list_icon">
-											<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/icon_inactive.png" alt="" title="<?php gettext('locked'); ?>" />
-										</td>
-										<td class="page-list_icon">
-											<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/icon_inactive.png" alt="" title="<?php gettext('locked'); ?>" />
-										</td>
-										<td class="page-list_icon">
-											<input type="checkbox" name="disabled" value="none" disabled="Disabled" />
-										</td>
-										<?php
-									}
-									?>
+
+									</td>
+									<td>
+										<div class="floatright">
+											<input type="checkbox" name="ids[]" value="<?php echo $article->getTitlelink(); ?>" onclick="triggerAllBox(this.form, 'ids[]', this.form.allbox);" <?php if (!$unlocked) echo ' disabled="disabled"'; ?>/>
+										</div>
+									</td>
 								</tr>
 								<?php
 							}

@@ -526,7 +526,7 @@ table.noinput td {
 
 table.bordered th {
 	font-weight: bold;
-	padding: 8px 0px 4px 10px;
+	padding: 8px 8px 4px 10px;
 	border-bottom: 2px solid #cccccc;
 	background: #ECF1F2;
 	background-image: url(images/admin-headlineback.jpg);
@@ -538,7 +538,7 @@ table.bordered th {
 }
 
 table.bordered tr td {
-	padding: 8px 16px;
+	padding: 8px 8px;
 	margin: 0px;
 	background-color: #fff;
 	border-bottom: 1px solid #E5E5E5;
@@ -552,7 +552,7 @@ table.bordered tr.alt1 td {
 }
 
 table.bordered table.compact {
-	padding: 8px 16px;
+	padding: 8px 8px;
 	margin: 0px;
 }
 
@@ -562,7 +562,7 @@ table.bordered table.compact tr {
 }
 
 table.bordered table.compact td {
-	padding: 8px 16px;
+	padding: 8px 8px;
 	margin: 0px;
 }
 
@@ -2489,7 +2489,6 @@ ul.page-list {
 	float: left;
 	height: 30px;
 	padding: 20px 10px 0px 10px;
-
 }
 
 .page-list_row .page-list_extra {
@@ -2497,9 +2496,9 @@ ul.page-list {
 	padding-top: 20px;
 }
 
-.page-list_row .page-list_right {
+.page-list_right {
 	float: right !important;
-	width: 60px;
+	min-width: 60px;
 }
 
 .page-list_row .page-list_extra a img {
@@ -2513,21 +2512,23 @@ ul.page-list {
 	top: -3px;
 }
 
-.page-list_row .page-list_iconwrapper,
-.page-list_row .page-list_iconwrapperalbum {
+.page-list_iconwrapper,
+.page-list_iconwrapperalbum {
 	text-align: right;
-	float: right;
+	float: right !important;
 	padding-top: 18px;
 	margin-right: 10px;
+	overflow: auto;
 }
 
-.page-list_row .page-list_icon {
+.page-list_icon {
 	display: inline;
 	margin-right: 20px;
+	vertical-align: middle;
 }
 
 
-.page-list_row .page-list_icon .checkbox {
+.page-list_icon .checkbox {
 	display: inline;
 	position: relative;
 	top: -4px;
