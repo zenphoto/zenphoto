@@ -246,7 +246,7 @@ function getOptionContent() {
 
 							</th>
 							<th colspan="100%" >
-								<?php echo gettext('<em>These image and album presentation options provided by the Core for all themes.</em>') . '<p class="notebox">' . gettext('<strong>Note:</strong> These are <em>recommendations</em> as themes may choose to override them for design reasons'); ?></p>
+								<?php echo gettext('<em>These image and album presentation options provided by the Core for all themes.</em>') . '<p class="notebox">' . gettext('<strong>Note:</strong> These are <em>recommendations</em> as themes may choose to override them for design reasons.'); ?></p>
 							</th>
 						</tr>
 						<tr>

@@ -351,7 +351,7 @@ function getOptionContent() {
 						</td>
 					</tr>
 					<tr>
-						<td class="option_namee"><?php echo gettext("Allow upscale"); ?></td>
+						<td class="option_name"><?php echo gettext("Allow upscale"); ?></td>
 						<td class="option_value"><input type="checkbox" name="image_allow_upscale" value="1" <?php checked('1', getOption('image_allow_upscale')); ?> /></td>
 						<td class="option_desc">
 							<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>

@@ -130,7 +130,7 @@ function getOptionContent() {
 						?>
 						<div class="public_gallery">
 							<tr>
-								<td class="option_namee"><?php echo gettext('User name'); ?></td>
+								<td class="option_name"><?php echo gettext('User name'); ?></td>
 								<td class="option_value">
 									<label>
 										<?php
