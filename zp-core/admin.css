@@ -642,7 +642,7 @@ table.options tr td {
 	position: absolute;
 	z-index: 1000;
 	margin-left: -400px;
-	max-width: 400px;
+	width: 400px;
 	visibility: hidden;
 	background: white !important;
 	padding: 5px;
@@ -659,6 +659,7 @@ table.options tr td {
 	height: auto;
 	overflow-x: visible;
 	overflow-y: visible;
+	min-height: 40px;
 }
 
 
