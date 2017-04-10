@@ -433,7 +433,7 @@ printLogoAndLinks();
 										<td><?php echo $link; ?></td>
 										<td><?php echo $comment['IP']; ?></td>
 										<td>
-											<div class="page-list_iconwrapper">
+											<div>
 												<?php
 												if ($private) {
 													echo '<div class="page-list_icon">'
@@ -478,7 +478,7 @@ printLogoAndLinks();
 											</div>
 										</td>
 										<td>
-											<div class="page-list_icon">
+											<div>
 												<input type="checkbox" name="ids[]" value="<?php echo $id; ?>"
 															 onclick="triggerAllBox(this.form, 'ids[]', this.form.allbox);" />
 											</div>

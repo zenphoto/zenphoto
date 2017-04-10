@@ -274,7 +274,7 @@ if ($saved) {
 				}
 				?>
 				<tr<?php echo $selected_style; ?>>
-					<td width="30%">
+					<td min-width="30%">
 						<input type="hidden" name="present_<?php echo $opt; ?>" id="present_<?php echo $opt; ?>" value="<?php echo $currentsetting; ?>" />
 						<label id="<?php echo $extension; ?>" class="nowrap">
 							<?php
