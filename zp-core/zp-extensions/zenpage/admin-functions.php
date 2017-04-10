@@ -305,7 +305,7 @@ function printPagesListTable($page, $flag) {
 						<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/fail.png" alt="" title="<?php echo gettext("delete"); ?>" /></a>
 				</div>
 				<div class="page-list_icon">
-					<input class="checkbox" type="checkbox" name="ids[]" value="<?php echo $page->getTitlelink(); ?>" onclick="triggerAllBox(this.form, 'ids[]', this.form.allbox);" />
+					<input class="checkbox" type="checkbox" name="ids[]" value="<?php echo $page->getTitlelink(); ?>" />
 				</div>
 				<?php
 			} else {
@@ -946,6 +946,7 @@ function printCategoryListSortableTable($cat, $flag) {
 		$cattitle = "<span style='color:red; font-weight: bold'> <strong>*</strong>" . $cat->getTitlelink() . "*</span>";
 	}
 	?>
+
 	<div class='page-list_row'>
 		<div class='page-list_title' >
 			<?php echo "<a href='admin-edit.php?newscategory&amp;titlelink=" . $cat->getTitlelink() . "' title='" . gettext('Edit this category') . "'>" . $cattitle . "</a>" . checkHitcounterDisplay($cat->getHitcounter()); ?>
@@ -1019,8 +1020,7 @@ function printCategoryListSortableTable($cat, $flag) {
 			<div class="page-list_icon">
 				<?php echo linkPickerIcon($cat, 'link_source_' . $cat->getID()); ?>
 			</div>
-			<div class="page-list_icon"><input class="checkbox" type="checkbox" name="ids[]" value="<?php echo $cat->getTitlelink(); ?>"
-																				 onclick="triggerAllBox(this.form, 'ids[]', this.form.allbox);" />
+			<div class="page-list_icon"><input class="checkbox" type="checkbox" name="ids[]" value="<?php echo $cat->getTitlelink(); ?>" />
 			</div>
 		</div>
 	</div>

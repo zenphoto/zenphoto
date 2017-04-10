@@ -430,7 +430,7 @@ updatePublished('news');
 									</td>
 									<td>
 										<div class="floatright">
-											<input type="checkbox" name="ids[]" value="<?php echo $article->getTitlelink(); ?>" onclick="triggerAllBox(this.form, 'ids[]', this.form.allbox);" <?php if (!$unlocked) echo ' disabled="disabled"'; ?>/>
+											<input type="checkbox" name="ids[]" value="<?php echo $article->getTitlelink(); ?>"<?php if (!$unlocked) echo ' disabled="disabled"'; ?>/>
 										</div>
 									</td>
 								</tr>
@@ -441,7 +441,6 @@ updatePublished('news');
 								<td id="imagenavb" colspan="100%"><?php printPageSelector($subpage, $rangeset, PLUGIN_FOLDER . '/zenpage/admin-news.php', $options); ?>	</td>
 							</tr>
 						</table>
-
 
 						<p class="buttons"><button type="submit" title="<?php echo gettext('Apply'); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><strong><?php echo gettext('Apply'); ?></strong></button></p>
 					</form>
