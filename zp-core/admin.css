@@ -2458,6 +2458,7 @@ ul.page-list {
 }
 
 .page-list_row {
+	clear: both !important;
 	width: 100%;
 	height: 50px;
 	background-color: white !important;
