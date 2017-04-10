@@ -2353,6 +2353,8 @@ div.tabs>div h2 {
 	float:right;
 	white-space:nowrap;
 	font-size:85%;
+	padding-left: 5px;
+	paddint-right: 5px;
 }
 .displayleft {
 	float:left;
@@ -2515,8 +2517,7 @@ ul.page-list {
 	top: -3px;
 }
 
-.page-list_iconwrapper,
-.page-list_iconwrapperalbum {
+.page-list_iconwrapper {
 	text-align: right;
 	float: right !important;
 	padding-top: 18px;
@@ -2535,6 +2536,8 @@ ul.page-list {
 	display: inline;
 	position: relative;
 	top: -4px;
+	float: right;
+	margin-right: 14px;
 }
 
 .page_list_short {
