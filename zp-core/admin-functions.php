@@ -135,7 +135,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			<?php printStandardMeta(); ?>
 			<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/toggleElements.css" type="text/css" />
 			<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jqueryui/jquery-ui-zenphoto.css" type="text/css" />
-			<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.css" type="text/css" />
+			<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin_pages.css" type="text/css" />
 
 			<?php
 			if ($_zp_RTL_css) {

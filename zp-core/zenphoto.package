@@ -1052,8 +1052,8 @@ zp-core/admin-themes.php
 zp-core/admin-thumbcrop.php
 zp-core/admin-upload.php
 zp-core/admin-users.php
-zp-core/admin.css
 zp-core/admin.php
+zp-core/admin_pages.css
 zp-core/auth_zp.php
 zp-core/cacheprotect
 zp-core/class-album.php
