@@ -774,25 +774,41 @@ $plugins = array_keys($plugins);
 ?>
 <p>
 	<?php
-	//clean up cacheManager storage
-	$key = array_search('cacheManager', $plugins);
-	if ($key !== false) {
-		$_GET['from'] = $from;
-		unset($plugins[$key]);
-		list($usec, $sec) = explode(" ", microtime());
-		$start = (float) $usec + (float) $sec;
-		setupLog(sprintf(gettext('Plugin:%s setup started'), 'cacheManager'), TEST_RELEASE);
-		require_once(SERVERPATH . '/' . ZENFOLDER . '/admin-functions.php');
-		require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cacheManager.php');
-		$priority = $plugin_is_filter & PLUGIN_PRIORITY . ' | CLASS_PLUGIN';
-		setupLog(sprintf(gettext('Plugin:%s enabled (%2$s)'), 'cacheManager', $priority), TEST_RELEASE);
-		new cacheManager;
-		setupLog(sprintf(gettext('Plugin:%1$s option interface instantiated (%2$s)'), 'cacheManager', $option_interface), TEST_RELEASE);
-		list($usec, $sec) = explode(" ", microtime());
-		$last = (float) $usec + (float) $sec;
-		setupLog(sprintf(gettext('Plugin:%1$s setup completed in %2$.4f seconds'), 'cacheManager', $last - $start));
+	//clean up plugins needed for themes and other plugins
+	$dependentExtensions = array('cacheManager', 'colorbox_js');
+	foreach ($dependentExtensions as $extension) {
+		$key = array_search($extension, $plugins);
+		if ($key !== false) {
+			$_GET['from'] = $from;
+			unset($plugins[$key]);
+			list($usec, $sec) = explode(" ", microtime());
+			$start = (float) $usec + (float) $sec;
+			setupLog(sprintf(gettext('Plugin:%s setup started'), $extension), TEST_RELEASE);
+			require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/' . $extension . '.php');
+			$priority = $plugin_is_filter & PLUGIN_PRIORITY;
+			if ($plugin_is_filter & CLASS_PLUGIN) {
+				$priority .= ' | CLASS_PLUGIN';
+			}
+			if ($plugin_is_filter & ADMIN_PLUGIN) {
+				$priority .= ' | ADMIN_PLUGIN';
+			}
+			if ($plugin_is_filter & FEATURE_PLUGIN) {
+				$priority .= ' | FEATURE_PLUGIN';
+			}
+			if ($plugin_is_filter & THEME_PLUGIN) {
+				$priority .= ' | THEME_PLUGIN';
+			}
+			if (extensionEnabled($extension)) {
+				enableExtension($extension, $plugin_is_filter);
+			}
+			setupLog(sprintf(gettext('Plugin:%s enabled (%2$s)'), $extension, $priority), TEST_RELEASE);
+			new cacheManager;
+			setupLog(sprintf(gettext('Plugin:%1$s option interface instantiated (%2$s)'), $extension, $option_interface), TEST_RELEASE);
+			list($usec, $sec) = explode(" ", microtime());
+			$last = (float) $usec + (float) $sec;
+			setupLog(sprintf(gettext('Plugin:%1$s setup completed in %2$.4f seconds'), $extension, $last - $start));
+		}
 	}
-
 	natcasesort($plugins);
 	echo gettext('Plugin setup:') . '<br />';
 	foreach ($plugins as $key => $extension) {
