@@ -1020,7 +1020,8 @@ function printCategoryListSortableTable($cat, $flag) {
 			<div class="page-list_icon">
 				<?php echo linkPickerIcon($cat, 'link_source_' . $cat->getID()); ?>
 			</div>
-			<div class="page-list_icon"><input class="checkbox" type="checkbox" name="ids[]" value="<?php echo $cat->getTitlelink(); ?>" />
+			<div class="page-list_icon">
+				<input class="checkbox" type="checkbox" name="ids[]" value="<?php echo $cat->getTitlelink(); ?>" />
 			</div>
 		</div>
 	</div>

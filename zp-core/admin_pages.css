@@ -2538,7 +2538,8 @@ ul.page-list {
 	position: relative;
 	top: -4px;
 	float: right;
-	margin-right: 14px;
+	margin-right: 0px;
+	width: 40px;
 }
 
 .page_list_short {

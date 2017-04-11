@@ -365,7 +365,7 @@ printLogoAndLinks();
 								</tr>
 								<tr>
 									<td colspan="100%" class="subhead">
-										<label style="float: right"><?php echo gettext("Check All"); ?>
+										<label style="float: right; margin-right:4px;"><?php echo gettext("Check All"); ?>
 											<input type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this.checked);" />
 
 										</label>
@@ -478,7 +478,7 @@ printLogoAndLinks();
 											</div>
 										</td>
 										<td>
-											<div>
+											<div class="flopatright">
 												<input type="checkbox" name="ids[]" value="<?php echo $id; ?>"
 															 onclick="triggerAllBox(this.form, 'ids[]', this.form.allbox);" />
 											</div>
