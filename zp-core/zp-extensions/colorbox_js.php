@@ -120,7 +120,7 @@ class colorbox {
 		$scripts = getSerializedArray(getOption('colorbox_' . $_zp_gallery->getCurrentTheme() . '_scripts'));
 		if (!in_array(stripSuffix($_zp_gallery_page), $scripts)) {
 			array_push($scripts, $script);
-			setOptionDefault('colorbox_' . $theme . '_scripts', serialize($scripts));
+			setOption('colorbox_' . $theme . '_scripts', serialize($scripts));
 			return false;
 		}
 		return true;

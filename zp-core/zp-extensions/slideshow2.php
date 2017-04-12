@@ -170,13 +170,15 @@ class cycle {
 				}
 				break;
 		}
-
+		$c = 10;
 		foreach (getThemeFiles(array('404.php', 'themeoptions.php', 'theme_description.php', 'slideshow.php', 'functions.php', 'password.php', 'sidebar.php', 'register.php', 'contact.php')) as $theme => $scripts) {
 			$list = array();
 			foreach ($scripts as $script) {
-				$list[$script] = 'cycle_' . $theme . '_' . stripSuffix($script);
+				$list[$script] = stripSuffix($script);
 			}
-			$options2[$theme] = array('key' => 'cycle_' . $theme . '_scripts', 'type' => OPTION_TYPE_CHECKBOX_ARRAY,
+
+			$options2[$theme] = array('key' => 'cycle_' . $theme . '_scripts', 'type' => OPTION_TYPE_CHECKBOX_ARRAYLIST,
+					'order' => $c++,
 					'checkboxes' => $list,
 					'desc' => gettext('The scripts for which the cycle2 plugin is enabled. {If themes require it they might set this, otherwise you need to do it manually!}')
 			);
@@ -204,6 +206,27 @@ class cycle {
 		setOptionDefault('cycle-slideshow_' . $theme . '_scripts', serialize($scripts));
 	}
 
+	/**
+	 * Checks if the theme script is registered for colorbox. If not it will register the script
+	 * so next time things will workl
+	 *
+	 * @global type $_zp_gallery
+	 * @global type $_zp_gallery_page
+	 * @param string $theme
+	 * @param string $script
+	 * @return boolean true registered
+	 */
+	static function scriptEnabled($theme, $script) {
+		global $_zp_gallery, $_zp_gallery_page;
+		$scripts = getSerializedArray(getOption('cycle_' . $_zp_gallery->getCurrentTheme() . '_scripts'));
+		if (!in_array(stripSuffix($_zp_gallery_page), $scripts)) {
+			array_push($scripts, $script);
+			setOption('cycle_' . $theme . '_scripts', serialize($scripts));
+			return false;
+		}
+		return true;
+	}
+
 	static function getSlideshowPlayer($album, $controls = false, $width = NULL, $height = NULL) {
 		$albumobj = NULL;
 		if (!empty($album)) {
@@ -219,7 +242,6 @@ class cycle {
 
 	static function getShow($heading, $speedctl, $albumobj, $imageobj, $width, $height, $crop, $shuffle, $linkslides, $controls, $returnpath, $imagenumber) {
 		global $_zp_gallery, $_zp_gallery_page;
-		setOption('cycle-slideshow_' . $_zp_gallery->getCurrentTheme() . '_' . stripSuffix($_zp_gallery_page), 1);
 		if (!$albumobj->isMyItem(LIST_RIGHTS) && !checkAlbumPassword($albumobj)) {
 			return '<div class="errorbox" id="message"><h2>' . gettext('This album is password protected!') . '</h2></div>';
 		}
@@ -701,10 +723,12 @@ if (extensionEnabled('slideshow2')) {
 	 *
 	 */
 	function printSlideShow($heading = true, $speedctl = false, $albumobj = NULL, $imageobj = NULL, $width = NULL, $height = NULL, $crop = false, $shuffle = false, $linkslides = false, $controls = true) {
-		global $_myFavorites, $_zp_conf_vars;
+		global $_myFavorites, $_zp_conf_vars, $_zp_gallery, $_zp_gallery_page;
 		if (!isset($_POST['albumid']) AND ! is_object($albumobj)) {
 			return '<div class="errorbox" id="message"><h2>' . gettext('Invalid linking to the slideshow page.') . '</h2></div>';
 		}
+		cycle::scriptEnabled($_zp_gallery->getCurrentTheme(), stripSuffix($_zp_gallery_page));
+
 //getting the image to start with
 		if (!empty($_POST['imagenumber']) AND ! is_object($imageobj)) {
 			$imagenumber = sanitize_numeric($_POST['imagenumber']) - 1; // slideshows starts with 0, but zp with 1.
