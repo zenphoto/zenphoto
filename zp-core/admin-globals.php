@@ -64,11 +64,14 @@ if (@$_zp_loggedin) {
 	$zenphoto_tabs['edit'] = NULL;
 	$zenphoto_tabs['pages'] = NULL;
 	$zenphoto_tabs['news'] = NULL;
+	$zenphoto_tabs['comments'] = NULL;
 	$zenphoto_tabs['themes'] = NULL;
 	$zenphoto_tabs['plugins'] = NULL;
-	$zenphoto_tabs['development'] = NULL;
-	$zenphoto_tabs['comments'] = NULL;
+	$zenphoto_tabs['menu'] = NULL;
 	$zenphoto_tabs['upload'] = NULL;
+	$zenphoto_tabs['tags'] = NULL;
+	$zenphoto_tabs['clone'] = NULL;
+	$zenphoto_tabs['development'] = NULL;
 
 	if ($_zp_loggedin & OVERVIEW_RIGHTS) {
 		$zenphoto_tabs['overview'] = array('text' => gettext("overview"),

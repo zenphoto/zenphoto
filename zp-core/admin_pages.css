@@ -269,6 +269,7 @@ code {
 }
 
 .navigation ul ul {
+	margin-top: -1px;
 	width: 13em;
 }
 
