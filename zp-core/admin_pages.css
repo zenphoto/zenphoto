@@ -337,12 +337,12 @@ code {
 .navigation ul ul a:hover,
 .navigation ul ul li:hover > a {
 	background: lightskyblue !important;
-	color: white;
+	color: black;
 }
 
 .navigation a.active:hover {
 	background: lightskyblue !important;
-	color: white;
+	color: black;
 }
 
 .navigation.align-right > ul > li > a {
