@@ -45,10 +45,6 @@ h3 span {
 	border: 1px solid #dddde2;
 	background-color: #fff;
 	margin-bottom: 20px;
-	-moz-border-radius: 5px 5px 5px 5px;
-	-khtml-border-radius: 5px 5px 5px 5px;
-	-webkit-border-radius: 5px 5px 5px 5px;
-	border-radius: 5px 5px 5px 5px;
 }
 
 A:link,A:visited {
@@ -261,17 +257,9 @@ li {
 	border-left: 1px solid #BAC9CF;
 	border-right: 1px solid #BAC9CF;
 	border-bottom: 5px solid #BAC9CF;
-	-moz-border-radius: 5px 5px 5px 5px;
-	-khtml-border-radius: 5px 5px 5px 5px;
-	-webkit-border-radius: 5px 5px 5px 5px;
-	border-radius: 5px 5px 5px 5px;
 }
 
 #loginform fieldset {
-	-moz-border-radius: 5px 5px 5px 5px;
-	-khtml-border-radius: 5px 5px 5px 5px;
-	-webkit-border-radius: 5px 5px 5px 5px;
-	border-radius: 5px 5px 5px 5px;
 	border: 1px solid lightgray;
 	padding:10px;
 	text-align:left;
@@ -293,13 +281,6 @@ li {
 
 .logon_link {
 	text-align:center;
-}
-
-.error,.warning,.notice, .dbwindow {
-	-moz-border-radius: 5px 5px 5px 5px;
-	-khtml-border-radius: 5px 5px 5px 5px;
-	-webkit-border-radius: 5px 5px 5px 5px;
-	border-radius: 5px 5px 5px 5px;
 }
 
 #setup .submitbutton{
