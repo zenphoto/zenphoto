@@ -175,12 +175,11 @@ code {
   line-height: 1;
 	margin-top: 20px;
 	padding: 0;
-	width: 14em;
 	position: absolute;
 	overflow: visible;
 	z-index: 500;
   width: 13em;
-  background: darkgray;
+  background: gainsboro;
 	zoom: 1;
 }
 
@@ -239,7 +238,7 @@ code {
 }
 
 .navigation ul ul {
-	margin-top: 0.05em;
+	margin-top: 0.03em;
 }
 
 
@@ -256,10 +255,10 @@ code {
 
 .navigation a {
   display: block;
-  padding: 1em 1.3em;
-  color: #ffffff;
+  padding: 0.7em 1.3em;
+  color: black;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 
 .navigation > ul {
@@ -271,8 +270,8 @@ code {
 }
 
 .navigation > ul > li > a {
-  border-right: 0.3em solid #34A65F;
-  color: #ffffff;
+  border-right: 0.3em solid lightgray;
+  color: black;
 }
 
 .navigation li {
@@ -305,50 +304,46 @@ code {
 }
 
 .navigation ul ul {
-	border: 1px solid #34A65F;
+	border: 1px solid lightgray;
 }
 
 .navigation ul ul a {
-	color: #ffffff;
+	color: black;
 }
 
 .navigation ul ul li {
-	border-bottom: 1px solid #0F8A5F;
+	border-bottom: 1px solid lightgray;
 }
 
 .navigation ul li a.alert,
 .navigation ul ul li a.alert{
-	background-color: darkgoldenrod !important;
+	background-color: lightgoldenrodyellow !important;
 }
 
-.navigation a.active {
-	background-color: #4eb1ff !important;
-}
-
-.navigation ul a.active {
-	background-color: #4eb1ff;
+.navigation ul li a.active,
+.navigation ul ul li a.active {
+	background-color: lightblue !important;
 }
 
 .navigation > ul > li a:hover,
 .navigation > ul > li:hover a {
-	background: #34A65F !important;
-	color: #ffffff;
+	background: lightgray !important;
+	color: black;
 }
 
 .navigation ul ul a:hover,
 .navigation ul ul li:hover > a {
-	background: #0974f6 !important;
-	color: #ffffff;
+	background: lightskyblue !important;
+	color: white;
 }
 
 .navigation a.active:hover {
-	background: darkblue !important;
-	color: #ffffff;
+	background: lightskyblue !important;
+	color: white;
 }
 
-
 .navigation.align-right > ul > li > a {
-  border-left: 0.3em solid #34A65F;
+  border-left: 0.3em solid lightgrayx;
   border-right: none;
 }
 
