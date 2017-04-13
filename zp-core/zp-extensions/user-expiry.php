@@ -28,14 +28,14 @@
  */
 // force UTF-8 Ø
 
-$plugin_is_filter = 5 | CLASS_PLUGIN;
+$plugin_is_filter = 8 | CLASS_PLUGIN;
 $plugin_description = gettext("Provides management of users based on when they were created.");
 $plugin_author = "Stephen Billard (sbillard)";
 
 
 $option_interface = 'user_expiry';
 
-zp_register_filter('admin_tabs', 'user_expiry::admin_tabs', 0);
+zp_register_filter('admin_tabs', 'user_expiry::admin_tabs', 1);
 zp_register_filter('authorization_cookie', 'user_expiry::checkcookie');
 zp_register_filter('admin_login_attempt', 'user_expiry::checklogon');
 zp_register_filter('federated_login_attempt', 'user_expiry::checklogon');
@@ -110,11 +110,10 @@ class user_expiry {
 				);
 			}
 			$subtabs[gettext('expiry')] = PLUGIN_FOLDER . '/user-expiry/user-expiry-tab.php?page=users&tab=expiry';
+			$tabs['users']['text'] = gettext("admin");
+			$tabs['users']['link'] = WEBPATH . "/" . ZENFOLDER . '/admin-users.php?page=users&tab=users';
+			$tabs['users']['subtabs'] = $subtabs;
 			ksort($subtabs, SORT_LOCALE_STRING);
-			$tabs['users'] = array('text' => gettext("admin"),
-					'link' => WEBPATH . "/" . ZENFOLDER . '/admin-users.php?page=users&tab=users',
-					'subtabs' => $subtabs,
-					'default' => 'users');
 		}
 		return $tabs;
 	}

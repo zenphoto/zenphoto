@@ -366,7 +366,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 						<a href="<?php echo html_encode($atab['link']); ?>" <?php echo $class; ?>><?php echo html_encode(ucfirst($atab['text'])); ?></a>
 						<?php
 						if ($hasSubtabs) { // don't print <ul> if there is nothing
-							ksort($subtabs, SORT_NATURAL);
+							if (!(isset($atab['ordered']) && $atab['ordered'])) {
+								ksort($subtabs, SORT_NATURAL);
+							}
 							?>
 							<ul>
 								<?php

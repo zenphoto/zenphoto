@@ -14,12 +14,12 @@
  */
 // force UTF-8 Ø
 
-$plugin_is_filter = 5 | ADMIN_PLUGIN;
+$plugin_is_filter = 10 | ADMIN_PLUGIN;
 $plugin_description = gettext("Provides rudimentary user groups.");
 $plugin_author = "Stephen Billard (sbillard)";
 
 
-zp_register_filter('admin_tabs', 'user_groups::admin_tabs');
+zp_register_filter('admin_tabs', 'user_groups::admin_tabs', 999);
 zp_register_filter('admin_alterrights', 'user_groups::admin_alterrights');
 zp_register_filter('save_admin_custom_data', 'user_groups::save_admin');
 zp_register_filter('edit_admin_custom_data', 'user_groups::edit_admin');
@@ -249,14 +249,11 @@ class user_groups {
 						gettext('users') => 'admin-users.php?page=users&tab=users'
 				);
 			}
-			$subtabs[gettext('assignments')] = PLUGIN_FOLDER . '/user_groups/user_groups-tab.php?page=users&tab=assignments';
 			$subtabs[gettext('groups')] = PLUGIN_FOLDER . '/user_groups/user_groups-tab.php?page=users&tab=groups';
-			ksort($subtabs, SORT_LOCALE_STRING);
-
-			$tabs['users'] = array('text' => gettext("admin"),
-					'link' => WEBPATH . "/" . ZENFOLDER . '/admin-users.php?page=users&tab=users',
-					'subtabs' => $subtabs,
-					'default' => 'users');
+			$subtabs[gettext('assignments')] = PLUGIN_FOLDER . '/user_groups/user_groups-tab.php?page=users&tab=assignments';
+			$tabs['users']['text'] = gettext("admin");
+			$tabs['users']['link'] = WEBPATH . "/" . ZENFOLDER . '/admin-users.php?page=users&tab=users';
+			$tabs['users']['subtabs'] = $subtabs;
 		}
 		return $tabs;
 	}
