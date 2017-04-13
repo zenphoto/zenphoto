@@ -6,7 +6,7 @@
  * @subpackage admin
  */
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
-admin_securityChecks(FILES_RIGHTS, currentRelativeURL());
+admin_securityChecks(FILES_RIGHTS | UPLOAD_RIGHTS, currentRelativeURL());
 zp_setCookie('uploadtype', 'elFinder');
 $locale = substr(getOption('locale'), 0, 2);
 if (empty($locale))
@@ -44,13 +44,11 @@ echo "\n</head>";
 			<?php ?>
 			<div id="container">
 				<?php
-				$subtab = getSubtabs();
-				if (!$theme)
-					printSubtabs();
+				$subtab = getCurrentTab();
+				zp_apply_filter('admin_note', 'upload', $subtab);
 				?>
+				<h1><?php echo $title; ?></h1>
 				<div class="tabbox">
-					<?php zp_apply_filter('admin_note', 'upload', $subtab); ?>
-					<h1><?php echo $title; ?></h1>
 					<script type="text/javascript">
 						$().ready(function () {
 							var elf = $('#elfinder').elfinder({

@@ -116,4 +116,24 @@ function printImageCustomData() {
 	echo $data;
 }
 
+/**
+ * @deprecated
+ * @since 1.4.1
+ */
+function printSubtabs() {
+	deprecated_functions::notify(gettext('Subtabs are no longer separate from tabs. If you need the current subtab use getCurrentTab() otherwise remove the call'));
+	$current = getCurrentTab();
+	return $current;
+}
+
+/**
+ * @deprecated
+ * @since 1.4.1
+ */
+function getSubtabs() {
+	deprecated_functions::notify(gettext('Subtabs are no longer separate from tabs. If you need the current subtab use getCurrentTab() otherwise remove the call'));
+	$current = getCurrentTab();
+	return $current;
+}
+
 ?>

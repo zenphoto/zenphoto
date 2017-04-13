@@ -21,24 +21,10 @@ foreach ($tables as $table) {
 	updatePublished($table);
 }
 
-$buttonlist[] = array(
-		'category' => gettext('Info'),
-		'enable' => true,
-		'button_text' => gettext('Gallery Statistics'),
-		'formname' => 'gallery_statistics.php',
-		'action' => FULLWEBPATH . '/' . ZENFOLDER . '/utilities/gallery_statistics.php',
-		'icon' => 'images/bar_graph.png',
-		'title' => gettext('Shows statistical graphs and info about your gallery’s images and albums.'),
-		'alt' => '',
-		'hidden' => '',
-		'rights' => ADMIN_RIGHTS
-);
-
 admin_securityChecks(OVERVIEW_RIGHTS, currentRelativeURL());
 
 $_zp_gallery->garbageCollect();
 
-$zenphoto_tabs['overview']['subtabs'] = array(gettext('Statistics') => '');
 printAdminHeader('overview', 'statistics');
 ?>
 <link rel="stylesheet" href="../admin-statistics.css" type="text/css" media="screen" />
@@ -271,14 +257,14 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 	} else {
 		$no_statistic_message = "";
 		if (($sortorder == 'popular' || $sortorder == 'popularimages') && $type != 'rss' && !extensionEnabled('hitcounter')) {
-			$no_statistic_message = "<tr><td colspan='4'><em>" . gettext("Note: The hitcounter plugin is not enabled, therefore any existing values will not get updated.") . "</em></td><td></td><td></td><td></td></tr>";
+			$no_statistic_message = "<tr><td colspan='100%'><em>" . gettext("Note: The hitcounter plugin is not enabled, therefore any existing values will not get updated.") . "</em></td><td></td><td></td><td></td></tr>";
 		}
 	}
 
 	$count = $from_number + 1; //	counting numbers start at 1!
 
 	echo "<table class='bordered'>";
-	echo "<tr><th colspan='4'><strong>" . $headline . "</strong>";
+	echo "<tr><th colspan='100%'><strong>" . $headline . "</strong>";
 
 	if (!isset($_GET['stats'])) {
 		if (count($itemssorted) > 10) {
@@ -488,7 +474,6 @@ echo '</head>';
 	printLogoAndLinks();
 	?>
 	<div id="main">
-		<span id="top"></span>
 		<?php
 		printTabs();
 
@@ -499,10 +484,9 @@ echo '</head>';
 		$imagecount_unpub = $imagecount - $_zp_gallery->getNumImages(true);
 		?>
 		<div id="content">
-			<?php printSubtabs() ?>
+			<?php zp_apply_filter('admin_note', 'statistics', ''); ?>
+			<h1><?php echo gettext("Gallery Statistics"); ?></h1>
 			<div class="tabbox">
-				<?php zp_apply_filter('admin_note', 'statistics', ''); ?>
-				<h1><?php echo gettext("Gallery Statistics"); ?></h1>
 				<p><?php echo gettext("This page shows more detailed statistics of your gallery. For album statistics the bar graph always shows the total number of images in that album. For image statistics always the album the image is in is shown.<br />Un-published items are marked in dark red. Images are marked un-published if their (direct) album is, too."); ?></p>
 
 				<ul class="statistics_general">

@@ -143,8 +143,18 @@ if (!defined('OFFSET_PATH')) {
 			<head>
 				<?php printStandardMeta(); ?>
 				<title><?php echo $pagetitle; ?></title>
-				<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.css" type="text/css" />
+				<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin_pages.css" type="text/css" />
 				<style>
+
+					#plugin-content {
+						background-color: #f1f1f1;
+						border: 1px solid #CBCBCB;
+						-moz-border-radius: 5px;
+						-khtml-border-radius: 5px;
+						-webkit-border-radius: 5px;
+						border-radius: 5px;
+						padding: 5px;
+					}
 					.doc_box_field {
 						padding-left: 0px;
 						padding-right: 5px;
@@ -236,7 +246,7 @@ if (!defined('OFFSET_PATH')) {
 						echo $translatetext;
 					}
 					?>
-					<div id="content">
+					<div id="plugin-content">
 						<h1><img class="zp_logoicon" src="<?php echo $ico; ?>" alt="logo" title="<?php echo $whose; ?>" /><?php echo html_encode($extension); ?></h1>
 						<div class="border">
 							<?php echo $plugin_description; ?>

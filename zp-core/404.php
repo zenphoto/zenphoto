@@ -1,6 +1,6 @@
 <?php
 // force UTF-8// Ø
-
+zp_clearCookie('index_page_paged');
 list($album, $image) = rewrite_get_album_image('album', 'image');
 $folders = explode('/', $album);
 if (array_key_exists(0, $folders) && $folders[0] == CACHEFOLDER) {

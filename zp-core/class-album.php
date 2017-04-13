@@ -47,10 +47,10 @@ class AlbumBase extends MediaObject {
 	var $images = NULL; // Full images array storage.
 	var $parent = null; // The parent album name
 	var $parentalbum = null; // The parent album's album object (lazy)
-	var $sidecars = array(); // keeps the list of suffixes associated with this album
 	var $manage_rights = MANAGE_ALL_ALBUM_RIGHTS;
 	var $manage_some_rights = ALBUM_RIGHTS;
 	var $access_rights = ALL_ALBUMS_RIGHTS;
+	protected $sidecars = array(); // keeps the list of suffixes associated with this album
 	protected $subalbums = null; // Full album array storage.
 	protected $index;
 	protected $lastimagesort = NULL; // remember the order for the last album/image sorts
@@ -341,6 +341,10 @@ class AlbumBase extends MediaObject {
 
 	function getSidecars() {
 		return array();
+	}
+
+	function addSidecar($car) {
+		$this->sidecars[$car] = $car;
 	}
 
 	/**
@@ -1015,7 +1019,7 @@ class AlbumBase extends MediaObject {
 			$mine = $this->subRights() & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW);
 		}
 		$sortkey = $this->getImageSortKey($sorttype);
-		if ((trim($sortkey . '`') != 'sort_order') || ($sortkey == 'RAND()')) {
+		if ((trim($sortkey . '`') == 'sort_order') || ($sortkey == 'RAND()')) {
 			// manual sort is always ascending
 			$order = false;
 		} else {

@@ -25,7 +25,7 @@ if (isset($_GET['subpage'])) {
 }
 
 $_GET['page'] = 'plugins';
-list($tabs, $subtab, $pluginlist, $paths, $member) = getPluginTabs();
+list($tabs, $subtab, $pluginlist, $paths, $member, $classXlate) = getPluginTabs();
 
 /* handle posts */
 if (isset($_GET['action'])) {
@@ -131,13 +131,16 @@ if ($saved) {
 	echo '</div>';
 }
 ?>
-<h1><?php echo gettext('Plugins'); ?></h1>
-<?php
-$subtab = getSubtabs();
-?>
+<h1>
+	<?php
+	$subtab = getCurrentTab();
+	printf(gettext('%1$s plugins'), ucfirst(@$classXlate[$subtab]));
+	?>
+</h1>
+
 <div class="tabbox">
 	<?php
-	zp_apply_filter('admin_note', 'users', 'users');
+	zp_apply_filter('admin_note', 'plugins', '');
 	if (isset($_GET['post_error'])) {
 		echo '<div class="errorbox">';
 		echo "<h2>" . gettext('Error') . "</h2>";
@@ -164,15 +167,15 @@ $subtab = getSubtabs();
 			<button type="submit" value="<?php echo gettext('Apply') ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 			<button type="reset" value="<?php echo gettext('Reset') ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
 		</p><br class="clearall" /><br /><br />
-		<table class="bordered options">
+		<table>
 			<tr>
-				<th id="imagenav" colspan="3">
+				<th id="imagenav" colspan="100%">
 					<?php printPageSelector($subpage, $rangeset, 'admin-plugins.php', array('page' => 'plugins', 'tab' => $subtab)); ?>
 				</th>
 			</tr>
 			<tr>
 				<th colspan="2"><span class="displayleft"><?php echo gettext("Available Plugins"); ?></span></th>
-				<th colspan="1">
+				<th>
 					<span class="displayleft"><?php echo gettext("Description"); ?></span>
 				</th>
 
@@ -271,9 +274,9 @@ $subtab = getSubtabs();
 				}
 				?>
 				<tr<?php echo $selected_style; ?>>
-					<td width="30%">
+					<td min-width="30%">
 						<input type="hidden" name="present_<?php echo $opt; ?>" id="present_<?php echo $opt; ?>" value="<?php echo $currentsetting; ?>" />
-						<label id="<?php echo $extension; ?>">
+						<label id="<?php echo $extension; ?>" class="nowrap">
 							<?php
 							if ($third_party_plugin) {
 								$path = stripSuffix($paths[$extension]) . '/logo.png';
@@ -367,7 +370,7 @@ $subtab = getSubtabs();
 						}
 						?>
 					</td>
-					<td colspan="2">
+					<td colspan="100%">
 						<?php
 						echo $plugin_description;
 						if ($plugin_disable) {
@@ -404,7 +407,7 @@ $subtab = getSubtabs();
 			}
 			?>
 			<tr>
-				<td colspan="4" id="imagenavb">
+				<td colspan="100%" id="imagenavb">
 					<?php printPageSelector($subpage, $rangeset, 'admin-plugins.php', array('page' => 'plugins', 'tab' => $subtab)); ?>
 				</td>
 			</tr>

@@ -768,7 +768,7 @@ class Gallery {
 			$viewUnpublished = (zp_loggedin() && $obj->subRights() & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW));
 		}
 
-		if ((trim($sortkey . '`') != 'sort_order') || ($sortkey == 'RAND()')) { // manual sort is always ascending
+		if ((trim($sortkey . '`') == 'sort_order') || ($sortkey == 'RAND()')) { // manual sort is always ascending
 			$order = false;
 		} else {
 			if (is_null($sortdirection)) {
@@ -804,6 +804,7 @@ class Gallery {
 		}
 		//	now put the results in the right order
 		$results = sortByKey($results, $sortkey, $order);
+
 		//	albums are now in the correct order
 		$albums_ordered = array();
 		foreach ($results as $row) { // check for visible

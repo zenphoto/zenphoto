@@ -17,6 +17,7 @@ foreach (getEnabledPlugins() as $extension => $plugin) {
 	if ($plugin['priority'] & CLASS_PLUGIN)
 		require_once($plugin['path']);
 }
+$zenphoto_tabs = $_SESSION['navigation_tabs']; //	Remembered since we are not loading all the plugins
 
 require_once(dirname(__FILE__) . '/template-functions.php');
 
@@ -25,6 +26,7 @@ if (isset($_REQUEST['album'])) {
 } else {
 	$localrights = NULL;
 }
+
 admin_securityChecks($localrights, $return = currentRelativeURL());
 
 XSRFdefender('refresh');
@@ -37,15 +39,15 @@ if (isset($_GET['refresh'])) {
 	$imageid = $_zp_gallery->garbageCollect(true, true, $imageid);
 }
 
-if (isset($_GET['prune'])) {
-	$type = 'prune&amp;';
+if (isset($_GET['tab']) && $_GET['tab'] == 'prune') {
+	$type = 'tab=prune&amp;';
 	$title = gettext('Refresh Database');
 	$finished = gettext('Finished refreshing the database');
 	$incomplete = gettext('Database refresh is incomplete');
 	$allset = gettext("We are all set to refresh the database");
 	$continue = gettext('Continue refreshing the database.');
 } else {
-	$type = '';
+	$type = 'tab=refresh&amp;';
 	$title = gettext('Refresh Metadata');
 	$finished = gettext('Finished refreshing the metadata');
 	$incomplete = gettext('Metadata refresh is incomplete');
@@ -104,7 +106,7 @@ if (isset($_GET['refresh'])) {
 		$metaURL = $redirecturl = '?' . $type . 'refresh=continue&amp;id=' . $imageid . $albumparm . $ret . '&XSRFToken=' . getXSRFToken('refresh');
 	}
 } else {
-	if ($type !== 'prune&amp;') {
+	if ($type !== 'tab=prune&amp;') {
 		if (!empty($folder)) {
 			$album = newAlbum($folder);
 			if (!$album->isMyItem(ALBUM_RIGHTS)) {
@@ -131,8 +133,6 @@ if (isset($_GET['refresh'])) {
 	$metaURL = $starturl = '?' . $type . 'refresh=start' . $albumparm . '&amp;XSRFToken=' . getXSRFToken('refresh') . $ret;
 }
 
-$zenphoto_tabs['overview']['subtabs'] = array(gettext('Refresh') => '');
-
 printAdminHeader($tab, 'Refresh');
 if (!empty($metaURL)) {
 	?>
@@ -146,9 +146,8 @@ echo "\n" . '<div id="main">';
 printTabs();
 ?>
 <div id="content">
-	<?php printSubtabs(); ?>
+	<h1><?php echo $title; ?></h1>
 	<div class="tabbox">
-		<h1><?php echo $title; ?></h1>
 		<?php
 		if (isset($_GET['refresh'])) {
 			if (empty($imageid)) {
@@ -167,7 +166,7 @@ printTabs();
 				<?php
 			}
 		} else {
-			if ($type !== 'prune&amp;') {
+			if ($type !== 'tab=prune&amp;') {
 				if (!empty($id)) {
 					$sql = "UPDATE " . prefix('albums') . " SET `mtime`=0" . ($_zp_gallery->getAlbumUseImagedate() ? ", `date`=NULL" : '') . " WHERE `id`=$id";
 					query($sql);

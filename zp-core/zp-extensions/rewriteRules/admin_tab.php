@@ -21,12 +21,15 @@ echo "\n</head>";
 		<?php printTabs(); ?>
 		<div id="content">
 			<div id="container">
-				<?php printSubtabs(); ?>
-				<div class="tabbox">
+				<?php
+				zp_apply_filter('admin_note', 'development', '');
+				?>
+				<h1>
 					<?php
-					zp_apply_filter('admin_note', 'development', '');
 					echo gettext('Rewrite Rules');
 					?>
+				</h1>			<div class="tabbox">
+
 					<dl class="code">
 						<?php
 						$c = 0;
@@ -34,7 +37,7 @@ echo "\n</head>";
 							$c++;
 							?>
 							<dt<?php if ($c & 1) echo ' class=" bar"'; ?>>
-							<code><?php echo $rule[0], ' ' . $rule[1]; ?></code>
+								<code><?php echo $rule[0], ' ' . $rule[1]; ?></code>
 							</dt>
 							<dd<?php if ($c & 1) echo ' class=" bar"'; ?>>
 								<code><?php echo $rule[2]; ?></code>

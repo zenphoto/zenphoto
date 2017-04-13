@@ -112,7 +112,8 @@ echo '</head>' . "\n";
 					echo '</div>';
 				}
 			}
-			$subtab = printSubtabs();
+			$subtab = getCurrentTab();
+			echo '<h1>' . gettext('User expiry') . '</h1>';
 			?>
 			<div id="tab_users" class="tabbox">
 				<?php

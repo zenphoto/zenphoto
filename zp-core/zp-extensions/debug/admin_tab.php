@@ -20,7 +20,7 @@ if (isset($_POST['delete_cookie'])) {
 	exitZP();
 }
 
-$subtab = getSubtabs();
+$subtab = getCurrentTab();
 printAdminHeader('development', $subtab);
 
 echo "\n</head>";
@@ -34,45 +34,107 @@ echo "\n</head>";
 		<div id="content">
 			<div id="container">
 				<?php
-				$subtab = printSubtabs();
+				zp_apply_filter('admin_note', 'development', '');
+				$subtab = getCurrentTab();
 				switch ($subtab) {
 					case 'phpinfo':
 						?>
-						<div class="tabbox">
+						<h1>
 							<?php
-							zp_apply_filter('admin_note', 'development', '');
 							echo gettext('Your PHP configuration information.');
 							?>
-							<br />
-							<br />
-							<?php phpinfo(); ?>
-						</div>
+						</h1>
 						<?php
 						break;
-					case'session':
+					case 'session':
 						?>
-						<div class="tabbox">
+						<h1>
 							<?php
-							zp_apply_filter('admin_note', 'development', '');
 							echo gettext('_SESSION array');
-							$session = preg_replace('/^Array\n/', '<pre>', print_r($_SESSION, true)) . '</pre>';
-							echo $session;
 							?>
-						</div>
+						</h1>
 						<?php
 						break;
 					case 'http':
-						$httpaccept = parseHttpAcceptLanguage();
-						if (count($httpaccept) > 0) {
-							$accept = $httpaccept;
-							$accept = array_shift($accept);
+						?>
+						<h1>
+							<?php
+							echo ('Http Accept Languages:');
 							?>
-							<div class="tabbox">
-								<?php
-								zp_apply_filter('admin_note', 'development', '');
-								echo ('Http Accept Languages:');
+						</h1>
+						<?php
+						break;
+					case 'locale':
+						?>
+						<h1>
+							<?php
+							echo gettext('Supported locales:');
+							?>
+						</h1>
+						<?php
+						break;
+					case 'cookie':
+						?>
+						<h1>
+							<?php
+							echo gettext('Site browser cookies found.');
+							?>
+						</h1>
+						<?php
+						break;
+				}
+				?>
+				<div class="tabbox">
+					<?php
+					zp_apply_filter('admin_note', 'development', '');
+					$subtab = getCurrentTab();
+					switch ($subtab) {
+						case 'phpinfo':
+							//	need to cleanup the phpinfo() output because it thinks it is a page unto itself
+							ob_start();
+							phpinfo();
+							$phpinfo = ob_get_clean();
+							ob_end_flush();
+
+
+							$i = strpos($phpinfo, '<div class="center">');
+							$phpinfo = substr($phpinfo, $i);
+							$phpinfo = str_replace('</body></html>', '', $phpinfo);
+
+							file_put_contents(SERVERPATH . '/' . DATA_FOLDER . '/phpinfo.htm', $phpinfo);
+							?>
+							<style type="text/css">
+								pre {margin: 0; font-family: monospace;}
+								a:link {color: #009; text-decoration: none;}
+								a:hover {text-decoration: underline;}
+								table {border-collapse: collapse; border: 0; width: 934px; box-shadow: 1px 2px 3px #ccc;}
+								.center {text-align: center;}
+								.center table {margin: 1em auto; text-align: left;}
+								.center th {text-align: center !important;}
+								td, th {border: 1px solid #666; font-size: 75%; vertical-align: baseline; padding: 4px 5px;}
+								h1 {font-size: 150%;}
+								h2 {font-size: 125%;}
+								.p {text-align: left;}
+								.e {background-color: #ccf; width: 300px; font-weight: bold;}
+								.h {background-color: #99c; font-weight: bold;}
+								.v {background-color: #ddd; max-width: 300px; overflow-x: auto; word-wrap: break-word;}
+								.v i {color: #999;}
+								img {float: right; border: 0;}
+								hr {width: 934px; background-color: #ccc; border: 0; height: 1px;}
+							</style>
+							<?php
+							echo $phpinfo;
+							break;
+						case'session':
+							$session = preg_replace('/^Array\n/', '<pre>', print_r($_SESSION, true)) . '</pre>';
+							echo $session;
+							break;
+						case 'http':
+							$httpaccept = parseHttpAcceptLanguage();
+							if (count($httpaccept) > 0) {
+								$accept = $httpaccept;
+								$accept = array_shift($accept);
 								?>
-								<br />
 								<table>
 									<tr>
 										<th width = 100 align="left">Key</th>
@@ -101,16 +163,11 @@ echo "\n</head>";
 									}
 									?>
 								</table>
-							</div>
-							<?php
-						}
-						break;
-					case 'locale':
-						?>
-						<div class="tabbox">
-							<?php
-							zp_apply_filter('admin_note', 'development', '');
-							echo gettext('Supported locales:');
+
+								<?php
+							}
+							break;
+						case 'locale':
 							if (strtoupper(substr(PHP_OS, 0, 3)) == 'WIN') {
 								// source of the list:
 								// http://msdn.microsoft.com/en-us/library/39cwe7zf(v=vs.90).aspx
@@ -192,17 +249,11 @@ echo "\n</head>";
 									echo $locale . ' ';
 								}
 							}
+
+							break;
+						case 'cookie':
 							?>
-						</div>
-						<?php
-						break;
-					case 'cookie':
-						?>
-						<div class="tabbox">
-							<?php
-							zp_apply_filter('admin_note', 'development', '');
-							echo gettext('Site browser cookies found.');
-							?>
+
 							<form name="cookie_form" class="dirtychyeck" method="post" action="?page=develpment&amp;tab=cookie">
 								<table class="compact">
 									<?php
@@ -229,11 +280,11 @@ echo "\n</head>";
 								</p>
 							</form>
 							<br class="clearall">
-						</div>
-						<?php
-						break;
-				}
-				?>
+							<?php
+							break;
+					}
+					?>
+				</div>
 			</div>
 		</div>
 	</div>

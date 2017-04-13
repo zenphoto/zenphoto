@@ -102,14 +102,20 @@ class slideshow {
 						'order' => 1,
 						'desc' => gettext("Speed of the transition in milliseconds."))
 		);
+		$c = 30;
+		$opts['note'] = array('key' => 'slideshow_note', 'type' => OPTION_TYPE_NOTE,
+				'order' => $c,
+				'desc' => gettext('<strong>NOTE:</strong> the plugin will automatically set the following options based on actual script page use. They may also be set by the themes themselves. It is unnecessary to set them here, but the first time used the JavaScript and CSS files may be loaded and the slideshow not shown. Refreshing the page will then show the slideshow.')
+		);
 		foreach (getThemeFiles(array('404.php', 'themeoptions.php', 'theme_description.php', 'slideshow.php', 'functions.php', 'password.php', 'sidebar.php', 'register.php', 'contact.php')) as $theme => $scripts) {
 			$list = array();
 			foreach ($scripts as $script) {
-				$list[$script] = 'slideshow_' . $theme . '_' . stripSuffix($script);
+				$list[$script] = stripSuffix($script);
 			}
-			$opts[$theme] = array('key' => 'slideshow_' . $theme . '_scripts', 'type' => OPTION_TYPE_CHECKBOX_ARRAY,
+			$opts[$theme] = array('key' => 'slideshow_' . $theme . '_scripts', 'type' => OPTION_TYPE_CHECKBOX_ARRAYLIST,
+					'order' => $c++,
 					'checkboxes' => $list,
-					'desc' => gettext('The scripts for which the slideshow is enabled. {Should have been set by the themes!}')
+					'desc' => gettext('The scripts for which the slideshow is enabled.')
 			);
 		}
 		$options = array_merge($options, $opts);
@@ -175,6 +181,27 @@ class slideshow {
 		setOptionDefault('slideshow_' . $theme . '_scripts', serialize($scripts));
 	}
 
+	/**
+	 * Checks if the theme script is registered for colorbox. If not it will register the script
+	 * so next time things will workl
+	 *
+	 * @global type $_zp_gallery
+	 * @global type $_zp_gallery_page
+	 * @param string $theme
+	 * @param string $script
+	 * @return boolean true registered
+	 */
+	static function scriptEnabled($theme, $script) {
+		global $_zp_gallery, $_zp_gallery_page;
+		$scripts = getSerializedArray(getOption('slideshow_' . $_zp_gallery->getCurrentTheme() . '_scripts'));
+		if (!in_array(stripSuffix($_zp_gallery_page), $scripts)) {
+			array_push($scripts, $script);
+			setOption('slideshow_' . $theme . '_scripts', serialize($scripts));
+			return false;
+		}
+		return true;
+	}
+
 	static function getPlayer($album, $controls = false, $width = NULL, $height = NULL) {
 		$albumobj = NULL;
 		if (!empty($album)) {
@@ -190,7 +217,6 @@ class slideshow {
 
 	static function getShow($heading, $speedctl, $albumobj, $imageobj, $width, $height, $crop, $shuffle, $linkslides, $controls, $returnpath, $imagenumber) {
 		global $_zp_gallery, $_zp_gallery_page;
-		setOption('slideshow_' . $_zp_gallery->getCurrentTheme() . '_' . stripSuffix($_zp_gallery_page), 1);
 		if (!$albumobj->isMyItem(LIST_RIGHTS) && !checkAlbumPassword($albumobj)) {
 			return '<div class="errorbox" id="message"><h2>' . gettext('This album is password protected!') . '</h2></div>';
 		}
@@ -719,10 +745,12 @@ if (extensionEnabled('slideshow')) {
 	 *
 	 */
 	function printSlideShow($heading = true, $speedctl = false, $albumobj = NULL, $imageobj = NULL, $width = NULL, $height = NULL, $crop = false, $shuffle = false, $linkslides = false, $controls = true) {
-		global $_myFavorites, $_zp_conf_vars;
+		global $_myFavorites, $_zp_conf_vars, $_zp_gallery, $_zp_gallery_page;
+
 		if (!isset($_POST['albumid']) AND ! is_object($albumobj)) {
 			return '<div class="errorbox" id="message"><h2>' . gettext('Invalid linking to the slideshow page.') . '</h2></div>';
 		}
+		slideshow::scriptEnabled($_zp_gallery->getCurrentTheme(), stripSuffix($_zp_gallery_page));
 		//getting the image to start with
 		if (!empty($_POST['imagenumber']) AND ! is_object($imageobj)) {
 			$imagenumber = sanitize_numeric($_POST['imagenumber']) - 1; // slideshows starts with 0, but zp with 1.

@@ -160,18 +160,9 @@ class comment_form {
 
 	static function admin_tabs($tabs) {
 		if (zp_loggedin(COMMENT_RIGHTS)) {
-			$add = true;
-			$newtabs = array();
-			foreach ($tabs as $key => $tab) {
-				if ($add && !in_array($key, array('overview', 'edit', 'upload', 'pages', 'news', 'tags', 'menu'))) {
-					$newtabs['comments'] = array('text' => gettext("comments"),
-							'link' => WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/' . 'comment_form/admin-comments.php?page=comments&tab=' . gettext('comments'),
-							'subtabs' => NULL);
-					$add = false;
-				}
-				$newtabs[$key] = $tab;
-			}
-			return $newtabs;
+			$tabs['comments'] = array('text' => gettext("comments"),
+					'link' => WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/' . 'comment_form/admin-comments.php?page=comments&tab=' . gettext('comments'),
+					'subtabs' => NULL);
 		}
 		return $tabs;
 	}

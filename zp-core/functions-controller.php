@@ -178,12 +178,12 @@ function fix_path_redirect() {
 	}
 }
 
-function zp_load_page($pagenum = NULL) {
+function zp_load_page() {
 	global $_zp_page;
-	if (!is_numeric($pagenum)) {
-		$_zp_page = isset($_GET['page']) ? $_GET['page'] : 1;
+	if (isset($_GET['page'])) {
+		$_zp_page = sanitize_numeric($_GET['page']);
 	} else {
-		$_zp_page = round($pagenum);
+		$_zp_page = 1;
 	}
 }
 
@@ -393,7 +393,8 @@ function zp_load_request() {
  * @return string
  */
 function prepareIndexPage() {
-	global $_zp_gallery_page, $_zp_script;
+	global $_zp_gallery_page, $_zp_script, $_zp_page;
+	zp_setCookie('index_page_paged', $_zp_page);
 	handleSearchParms('index');
 	$theme = setupTheme();
 	$_zp_gallery_page = basename($_zp_script = THEMEFOLDER . "/$theme/index.php");

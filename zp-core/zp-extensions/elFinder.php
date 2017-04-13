@@ -22,7 +22,7 @@
  * @package plugins
  * @subpackage admin
  */
-$plugin_is_filter = defaultExtension(5 | ADMIN_PLUGIN);
+$plugin_is_filter = defaultExtension(50 | ADMIN_PLUGIN);
 $plugin_description = gettext('Provides file handling for the <code>upload/files</code> tab and the <em>TinyMCE</em> file browser.');
 $plugin_author = "Stephen Billard (sbillard)";
 
@@ -51,10 +51,10 @@ class elFinder_options {
 	 * @return array
 	 */
 	function getOptionsSupported() {
-		$options = array(gettext('Files tab')			 => array('key'	 => 'elFinder_files', 'type' => OPTION_TYPE_CHECKBOX,
-										'desc' => gettext('Use as the upload <em>files</em> subtab.')),
-						gettext('TinyMCE plugin')	 => array('key'	 => 'elFinder_tinymce', 'type' => OPTION_TYPE_CHECKBOX,
-										'desc' => gettext('Enable plugin for TinyMCE.'))
+		$options = array(gettext('Files tab') => array('key' => 'elFinder_files', 'type' => OPTION_TYPE_CHECKBOX,
+						'desc' => gettext('Use as the upload <em>files</em> subtab.')),
+				gettext('TinyMCE plugin') => array('key' => 'elFinder_tinymce', 'type' => OPTION_TYPE_CHECKBOX,
+						'desc' => gettext('Enable plugin for TinyMCE.'))
 		);
 		return $options;
 	}
@@ -65,8 +65,8 @@ class elFinder_options {
 
 }
 
-if (getOption('elFinder_files') && zp_loggedin(FILES_RIGHTS)) {
-	zp_register_filter('admin_tabs', 'elFinder_admin_tabs', 50);
+if (getOption('elFinder_files') && zp_loggedin(FILES_RIGHTS | UPLOAD_RIGHTS)) {
+	zp_register_filter('admin_tabs', 'elFinder_admin_tabs');
 	if (!extensionEnabled('themes-editor')) {
 		zp_register_filter('themeEditor', 'elFinderThemeEdit');
 	}
@@ -76,17 +76,17 @@ if (getOption('elFinder_tinymce')) {
 }
 
 function elFinder_admin_tabs($tabs) {
-	if (zp_loggedin(FILES_RIGHTS)) {
+	if (zp_loggedin(UPLOAD_RIGHTS)) {
 		$me = sprintf(gettext('files (%s)'), 'elFinder');
 		$mylink = PLUGIN_FOLDER . '/' . 'elFinder/filemanager.php?page=upload&tab=elFinder&type=' . gettext('files');
 		if (is_null($tabs['upload'])) {
-			$tabs['upload'] = array('text'		 => gettext("upload"),
-							'link'		 => WEBPATH . "/" . ZENFOLDER . '/admin-upload.php',
-							'subtabs'	 => NULL);
+			$tabs['upload'] = array('text' => gettext("upload"),
+					'link' => WEBPATH . "/" . ZENFOLDER . '/' . $mylink,
+					'subtabs' => NULL,
+					'default' => 'elFinder'
+			);
 		}
 		$tabs['upload']['subtabs'][$me] = $mylink;
-		if (zp_getcookie('uploadtype') == 'elFinder')
-			$tabs['upload']['link'] = WEBPATH . "/" . ZENFOLDER . '/' . $mylink;
 	}
 	return $tabs;
 }

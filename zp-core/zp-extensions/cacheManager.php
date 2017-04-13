@@ -89,7 +89,8 @@ $option_interface = 'cacheManager';
 
 require_once(SERVERPATH . '/' . ZENFOLDER . '/class-feed.php');
 
-zp_register_filter('admin_utilities_buttons', 'cacheManager::overviewbutton');
+zp_register_filter('admin_utilities_buttons', 'cacheManager::buttons');
+zp_register_filter('admin_tabs', 'cacheManager::admin_tabs');
 zp_register_filter('edit_album_utilities', 'cacheManager::albumbutton', -9999);
 zp_register_filter('show_change', 'cacheManager::published');
 
@@ -341,7 +342,13 @@ class cacheManager {
 		return $obj;
 	}
 
-	static function overviewbutton($buttons) {
+	static function admin_tabs($tabs) {
+		$tabs['overview']['subtabs'][gettext('Cache images')] = PLUGIN_FOLDER . '/cacheManager/cacheImages.php?page=overview&tab=images';
+		$tabs['overview']['subtabs'][gettext('Cache stored images')] = PLUGIN_FOLDER . '/cacheManager/cacheDBImages.php?page=overview&tab=DB&XSRFToken=' . getXSRFToken('cacheDBImages');
+		return $tabs;
+	}
+
+	static function buttons($buttons) {
 		if (query_single_row('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="cacheManager" LIMIT 1')) {
 			$enable = true;
 			$title = gettext('Finds images that have not been cached and creates the cached versions.');
@@ -350,18 +357,6 @@ class cacheManager {
 			$title = gettext('You must first set the plugin options for cached image parameters.');
 		}
 
-		$buttons[] = array(
-				'category' => gettext('Cache'),
-				'enable' => $enable,
-				'button_text' => gettext('Cache manager'),
-				'formname' => 'cacheManager_button',
-				'action' => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cacheManager/cacheImages.php?page=overview&tab=images',
-				'icon' => 'images/cache.png',
-				'alt' => '',
-				'hidden' => '',
-				'rights' => ADMIN_RIGHTS,
-				'title' => $title
-		);
 		if (class_exists('RSS')) {
 			$buttons[] = array(
 					'XSRFTag' => 'clear_cache',

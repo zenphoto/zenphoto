@@ -92,15 +92,20 @@ class bxslider {
 						'desc' => gettext("The mode of the thumb nav. Note this might require theme changes."),
 						'order' => 9)
 		);
-
+		$c = 30;
+		$options['note'] = array('key' => 'bxslider_note', 'type' => OPTION_TYPE_NOTE,
+				'order' => $c,
+				'desc' => gettext('<strong>NOTE:</strong> the plugin will automatically set the following options based on actual script page use. They may also be set by the themes themselves. It is unnecessary to set them here, but the first time used the JavaScript and CSS files may not be loaded and the thumb slider not shown. Refreshing the page will then show the thumb slider.')
+		);
 		foreach (getThemeFiles(array('404.php', 'themeoptions.php', 'theme_description.php', 'functions.php', 'password.php', 'sidebar.php', 'register.php', 'contact.php')) as $theme => $scripts) {
 			$list = array();
 			foreach ($scripts as $script) {
-				$list[$script] = 'bxslider_' . $theme . '_' . stripSuffix($script);
+				$list[$script] = stripSuffix($script);
 			}
-			$options[$theme] = array('key' => 'bxslider_' . $theme . '_scripts', 'type' => OPTION_TYPE_CHECKBOX_ARRAY,
+			$options[$theme] = array('key' => 'bxslider_' . $theme . '_scripts', 'type' => OPTION_TYPE_CHECKBOX_ARRAYLIST,
+					'order' => $c++,
 					'checkboxes' => $list,
-					'desc' => gettext('The scripts for which BxSlider is enabled. {If themes require it they might set this, otherwise you need to do it manually!}')
+					'desc' => gettext('The scripts for which BxSlider is enabled.')
 			);
 		}
 		return $options;
@@ -134,7 +139,7 @@ class bxslider {
 		$scripts = getSerializedArray(getOption('bxslider_' . $_zp_gallery->getCurrentTheme() . '_scripts'));
 		if (!in_array(stripSuffix($_zp_gallery_page), $scripts)) {
 			array_push($scripts, $script);
-			setOptionDefault('bxslider_' . $theme . '_scripts', serialize($scripts));
+			setOption('bxslider_' . $theme . '_scripts', serialize($scripts));
 			return false;
 		}
 		return true;

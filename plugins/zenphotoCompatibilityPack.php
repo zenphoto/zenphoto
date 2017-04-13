@@ -42,10 +42,10 @@ class zenPhotoCompatibilityPack {
 	static function admin_tabs($tabs) {
 		if (zp_loggedin(ADMIN_RIGHTS)) {
 			if (!isset($tabs['development'])) {
-				$tabs['development'] = array('text'		 => gettext("development"),
-								'subtabs'	 => NULL);
+				$tabs['development'] = array('text' => gettext("development"),
+						'subtabs' => NULL);
 			}
-			$tabs['development']['subtabs'][gettext("legacyConverter")] = '/' . USER_PLUGIN_FOLDER . '/zenphotoCompatibilityPack/legacyConverter.php?page=development&tab=' . gettext('legacyConverter');
+			$tabs['development']['subtabs'][gettext("legacy Converter")] = '/' . USER_PLUGIN_FOLDER . '/zenphotoCompatibilityPack/legacyConverter.php?page=development&tab=legacyConverter';
 			$named = array_flip($tabs['development']['subtabs']);
 			natcasesort($named);
 			$tabs['development']['subtabs'] = $named = array_flip($named);

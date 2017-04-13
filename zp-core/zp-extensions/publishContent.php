@@ -22,7 +22,7 @@
  * the gallery options tab.)
  *
  * @author Stephen Billard (sbillard)
- * 
+ *
  * @package plugins
  * @subpackage admin
  */
@@ -30,24 +30,13 @@ $plugin_is_filter = 500 | ADMIN_PLUGIN;
 $plugin_description = gettext('A single place to quickly review your unpublished content.');
 $plugin_author = "Stephen Billard (sbillard)";
 
-zp_register_filter('admin_utilities_buttons', 'publishContent::button');
+zp_register_filter('admin_tabs', 'publishContent::admin_tabs');
 
 class publishContent {
 
-	static function button($buttons) {
-		$buttons[] = array(
-						'category'		 => gettext('Admin'),
-						'enable'			 => true,
-						'button_text'	 => gettext('Publish content'),
-						'formname'		 => 'publishContent_button',
-						'action'			 => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/publishContent/publishContent.php',
-						'icon'				 => 'images/calendar.png',
-						'title'				 => gettext('Manage published state of content in your gallery.'),
-						'alt'					 => '',
-						'hidden'			 => '',
-						'rights'			 => ALBUM_RIGHTS
-		);
-		return $buttons;
+	static function admin_tabs($tabs) {
+		$tabs['overview']['subtabs'][gettext('Publish content')] = '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/publishContent/publishContent.php?tab=content';
+		return $tabs;
 	}
 
 }

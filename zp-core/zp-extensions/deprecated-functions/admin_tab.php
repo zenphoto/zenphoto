@@ -9,7 +9,7 @@ require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions.php');
 
 admin_securityChecks(DEBUG_RIGHTS, $return = currentRelativeURL());
-$subtab = getSubtabs();
+$subtab = getCurrentTab();
 printAdminHeader('development', $subtab);
 
 echo "\n</head>";
@@ -22,11 +22,14 @@ echo "\n</head>";
 		<?php printTabs(); ?>
 		<div id="content">
 			<div id="container">
-				<?php printSubtabs(); ?>
+				<?php zp_apply_filter('admin_note', 'development', ''); ?>
+				<h1>
+					<?php
+					echo gettext('Deprecated Functions');
+					?>
+				</h1>
 				<div class="tabbox">
 					<?php
-					zp_apply_filter('admin_note', 'development', '');
-					echo gettext('Deprecated Functions');
 					$list = array();
 					$deprecated = new deprecated_functions();
 					$listed = $deprecated->listed_functions;
@@ -40,27 +43,27 @@ echo "\n</head>";
 						?>
 						<p>
 							<?php echo gettext('Functions flagged with an "*" are class methods. Ones flagged with "+" have deprecated parameters.'); ?>
-						</p>
-						<?php
-						foreach ($listed as $details) {
-							switch ($details['class']) {
-								case 'static':
-									$class = '*';
-									break;
-								case 'public static':
-									$class = '+';
-									break;
-								case 'final static':
-									$class = '*+';
-									break;
-								default:
-									$class = '';
-									break;
+							ph1>
+							<?php
+							foreach ($listed as $details) {
+								switch ($details['class']) {
+									case 'static':
+										$class = '*';
+										break;
+									case 'public static':
+										$class = '+';
+										break;
+									case 'final static':
+										$class = '*+';
+										break;
+									default:
+										$class = '';
+										break;
+								}
+								$list[$details['since']][$details['plugin']][] = $details['function'] . $class;
+								krsort($list, SORT_NATURAL | SORT_FLAG_CASE);
 							}
-							$list[$details['since']][$details['plugin']][] = $details['function'] . $class;
-							krsort($list, SORT_NATURAL | SORT_FLAG_CASE);
-						}
-						?>
+							?>
 						<ul style="list-style-type: none;">
 							<?php
 							foreach ($list as $release => $plugins) {

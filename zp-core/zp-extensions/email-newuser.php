@@ -5,7 +5,7 @@
  * It contains a link allowing him to do a password reset.
  *
  * @author Stephen Billard (sbillard)
- * 
+ *
  * @package plugins
  * @subpackage users
  */
@@ -38,9 +38,12 @@ class email_new_user {
 		if ($userobj->getValid()) {
 			$user = $userobj->getUser();
 			if (empty($user)) {
-				$result = '<tr' . ((!$current) ? ' style="display:none;"' : '') . ' class="userextrainfo">
-				<td colspan="2" ' . ((!empty($background)) ? ' style="' . $background . '"' : '') . ' valign="top"><p class="notebox">' . gettext('New users will be mailed a password set link') . '</p></td>
-				</tr>' . "\n";
+				$result = '<div class="user_left">' . "\n"
+								. '<p class="notebox">'
+								. gettext('New users will be mailed a password set link')
+								. '</p>' . "\n"
+								. '</div>' . "\n"
+								. '<br class="clearall">' . "\n";
 				$html = $result . $html;
 			}
 		}

@@ -23,7 +23,6 @@ if (isset($_GET['clearsitemapcache'])) {
 	exitZP();
 }
 
-$zenphoto_tabs['overview']['subtabs'] = array(gettext('Sitemap') => '');
 printAdminHeader('overview', 'sitemap');
 if (isset($_GET['generatesitemaps'])) {
 	$_zp_loggedin = NULL;
@@ -100,10 +99,9 @@ function sitemap_printAvailableSitemaps() {
 		<?php printTabs();
 		?>
 		<div id="content">
-			<?php printSubtabs(); ?>
+			<?php zp_apply_filter('admin_note', 'sitemap', ''); ?>
+			<h1><?php echo gettext('Sitemap tools'); ?></h1>
 			<div class="tabbox">
-				<?php zp_apply_filter('admin_note', 'sitemap', ''); ?>
-				<h1>Sitemap tools</h1>
 				<?php if (!isset($_GET['generatesitemaps']) && !isset($_GET['clearsitemapcache'])) { ?>
 					<p class="notebox"><?php echo gettext('<strong>NOTE:</strong> If your theme uses different custom settings instead of the backend options the sitemaps may not match your site.'); ?></p>
 					<p><?php echo gettext('This creates individual static xml sitemap files of the following items:'); ?></p>

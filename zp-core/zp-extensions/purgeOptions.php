@@ -31,7 +31,7 @@ if (strpos(__FILE__, ZENFOLDER) === false) {
 zp_register_filter('admin_tabs', 'purgeOptions_admin_tabs');
 
 function purgeOptions_admin_tabs($tabs) {
-	if (zp_loggedin(OPTIONS_RIGHTS))
+	if (zp_loggedin(ADMIN_RIGHTS))
 		$tabs['options']['subtabs'][gettext("purge")] = "/" . PURGEOPTIONS_FOLDER . 'purgeOptions_tab.php?page=options&tab=purge';
 	return $tabs;
 }

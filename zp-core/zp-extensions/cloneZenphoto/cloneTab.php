@@ -29,7 +29,6 @@ printAdminHeader('clone');
 			<h1><?php echo gettext('Site clones'); ?></h1>
 			<?php zp_apply_filter('admin_note', 'clone', ''); ?>
 			<div id="container">
-				<?php printSubtabs(); ?>
 				<div class="tabbox">
 					<?php
 					$clones = cloneZenphoto::clones(false);

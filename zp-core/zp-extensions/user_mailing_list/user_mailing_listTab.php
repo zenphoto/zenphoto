@@ -12,7 +12,6 @@ require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 admin_securityChecks(NULL, currentRelativeURL());
 
 $admins = $_zp_authority->getAdministrators();
-$zenphoto_tabs['overview']['subtabs'] = array(gettext('Mailing') => '');
 
 printAdminHeader('overview', 'Mailing');
 ?>
@@ -22,10 +21,9 @@ printAdminHeader('overview', 'Mailing');
 	<div id="main">
 		<?php printTabs(); ?>
 		<div id="content">
-			<?php printSubtabs('Mailing'); ?>
+			<?php zp_apply_filter('admin_note', 'user_mailing', ''); ?>
+			<h1><?php echo gettext('User mailing list'); ?></h1>
 			<div class="tabbox">
-				<?php zp_apply_filter('admin_note', 'user_mailing', ''); ?>
-				<h1><?php echo gettext('User mailing list'); ?></h1>
 				<p><?php echo gettext("A tool to send e-mails to all registered users who have provided an e-mail address. There is always a copy sent to the current admin and all e-mails are sent as <em>blind copies</em>."); ?></p>
 				<?php
 				if (!zp_has_filter('sendmail')) {
@@ -48,43 +46,43 @@ printAdminHeader('overview', 'Mailing');
 				<h2><?php echo gettext('Please enter the message you want to send.'); ?></h2>
 				<form class="dirtylistening" onReset="setClean('massmail');" id="massmail" action="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/user_mailing_list/mail_handler.php?sendmail" method="post" accept-charset="UTF-8" autocomplete="off">
 					<?php XSRFToken('mailing_list'); ?>
-					<table>
-						<tr>
-							<td valign="top">
+
+
+					<div class="floatleft">
 						<labelfor="subject"><?php echo gettext('Subject:'); ?></label><br />
 							<input type="text" id="subject" name="subject" value="" size="70"<?php echo $disabled; ?> /><br /><br />
 							<label for="message"><?php echo gettext('Message:'); ?></label><br />
 							<textarea id="message" name="message" value="" cols="68" rows="10"<?php echo $disabled; ?> ></textarea>
-							</td>
-							<td valign="top" align="left">
-								<?php echo gettext('Select users:'); ?>
-								<ul class="unindentedchecklist" style="height: 205px; width: 30em;">
-									<?php
-									$currentadminuser = $_zp_current_admin_obj->getUser();
-									foreach ($admins as $admin) {
-										if (!empty($admin['email']) && $currentadminuser != $admin['user']) {
-											?>
-											<li>
-												<label for="admin_<?php echo $admin['id']; ?>">
-													<input name="admin_<?php echo $admin['id']; ?>" id="admin_<?php echo $admin['id']; ?>" type="checkbox" value="<?php echo html_encode($admin['email']); ?>" checked="checked"  <?php echo $disabled; ?>/>
-													<?php
-													echo $admin['user'] . " (";
-													if (!empty($admin['name'])) {
-														echo $admin['name'] . " - ";
-													}
-													echo $admin['email'] . ")";
-													?>
-												</label>
-											</li>
-											<?php
-										}
-									}
+					</div>
+
+					<div class="floatleft">
+						<?php echo gettext('Select users:'); ?>
+						<ul class="unindentedchecklist" style="height: 205px; width: 30em;">
+							<?php
+							$currentadminuser = $_zp_current_admin_obj->getUser();
+							foreach ($admins as $admin) {
+								if (!empty($admin['email']) && $currentadminuser != $admin['user']) {
 									?>
-								</ul>
-								<br />
-							</td>
-							</tr>
-					</table>
+									<li>
+										<label for="admin_<?php echo $admin['id']; ?>">
+											<input name="admin_<?php echo $admin['id']; ?>" id="admin_<?php echo $admin['id']; ?>" type="checkbox" value="<?php echo html_encode($admin['email']); ?>" checked="checked"  <?php echo $disabled; ?>/>
+											<?php
+											echo $admin['user'] . " (";
+											if (!empty($admin['name'])) {
+												echo $admin['name'] . " - ";
+											}
+											echo $admin['email'] . ")";
+											?>
+										</label>
+									</li>
+									<?php
+								}
+							}
+							?>
+						</ul>
+
+					</div>
+					<br class="clearall">
 					<script type="text/javascript">
 						$('form#massmail').submit(function () {
 							$.post($(this).attr('action'), $(this).serialize(), function (res) {

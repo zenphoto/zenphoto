@@ -196,7 +196,7 @@ if (count($themelist) == 0) {
 	<table class="bordered">
 		<tr>
 			<th colspan="2"><b><?php echo gettext('Installed themes'); ?></b></th>
-			<th><b><?php echo gettext('Action'); ?></b></th>
+			<th class="centered"><b><?php echo gettext('Action'); ?></b></th>
 		</tr>
 		<?php
 		$zenphoto_version = explode('-', ZENPHOTO_VERSION);

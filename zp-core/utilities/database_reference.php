@@ -8,26 +8,12 @@ define('OFFSET_PATH', 3);
 
 require_once(dirname(dirname(__FILE__)) . '/admin-globals.php');
 
-$buttonlist[] = $mybutton = array(
-				'category'		 => gettext('Info'),
-				'enable'			 => true,
-				'button_text'	 => gettext('Database quick reference'),
-				'formname'		 => 'database_reference.php',
-				'action'			 => FULLWEBPATH . '/' . ZENFOLDER . '/utilities/database_reference.php',
-				'icon'				 => 'images/info.png',
-				'title'				 => gettext('Shows all database table and field info for quick reference.'),
-				'alt'					 => '',
-				'hidden'			 => '',
-				'rights'			 => ADMIN_RIGHTS
-);
-
 admin_securityChecks(NULL, currentRelativeURL());
 
 if (isset($_POST['dbname']) || isset($_POST['dbuser']) || isset($_POST['dbpass']) || isset($_POST['dbhost'])) {
 	XSRFdefender('databaseinfo');
 }
 
-$zenphoto_tabs['overview']['subtabs'] = array(gettext('Database') => '');
 printAdminHeader('overview', 'Database');
 ?>
 <link rel="stylesheet" href="../admin-statistics.css" type="text/css" media="screen" />
@@ -62,12 +48,11 @@ printAdminHeader('overview', 'Database');
 	<div id="main">
 		<?php printTabs(); ?>
 		<div id="content">
-			<?php printSubtabs() ?>
+			<?php zp_apply_filter('admin_note', 'database', ''); ?>
+			<h1><span id="top"><?php echo gettext('Database quick reference'); ?></span></h1>
 			<div class="tabbox">
-				<?php zp_apply_filter('admin_note', 'database', ''); ?>
-				<h1><span id="top"><?php echo $mybutton['button_text']; ?></span></h1>
 				<p>
-					<?php echo $mybutton['title']; ?>
+					<?php echo gettext('Shows all database table and field info for quick reference.'); ?>
 					<?php echo gettext("The internal table relations can be viewed on the PDF database reference that is included in the release package within the /docs_files folder of your installation. For more detailed info about the database use tools like phpMyAdmin."); ?>
 				</p>
 				<?php

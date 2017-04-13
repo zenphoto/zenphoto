@@ -175,9 +175,6 @@ $tagsort = getTagOrder();
 			$saveitem = $updateitem = gettext('Apply');
 
 			if (is_AdminEditPage('newsarticle')) {
-				if (!empty($page)) {
-					$zenphoto_tabs['news']['subtabs'][gettext('articles')] .= $page;
-				}
 				$admintype = 'newsarticle';
 				$additem = gettext('New Article');
 				$deleteitem = gettext('Article');

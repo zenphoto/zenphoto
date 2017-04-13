@@ -31,6 +31,44 @@ zp_register_filter('plugin_tabs', 'create_album::tab');
 
 $__creatAlbumList = getSerializedArray(getOption('create_album_userlist'));
 
+
+//	create the html before anything is output
+if ($albpublish = $_zp_gallery->getAlbumPublish()) {
+	$publishchecked = ' checked="checked"';
+} else {
+	$publishchecked = '';
+}
+
+ob_start();
+?>
+<div class="user_left">
+	<div id="newalbumbox" style="margin-top: 5px;">
+		<input id="newalbumcheckbox" type="checkbox" name="createalbum" />
+		<?php echo gettext('Create an album') ?>
+	</div>
+	<div id="albumtext" style="margin-top: 5px;"><?php echo gettext("titled:"); ?>
+		<input id="albumtitle" size="42" type="text" name="albumtitle"
+					 onkeyup="updateFolder(this, 'folderdisplay', 'autogen', '<?php echo addslashes(gettext('That name is already used.')); ?>', '<?php echo addslashes(gettext('This upload has to have a folder. Type a title or folder name to continue...')); ?>');" />
+
+		<div>
+			<?php echo gettext("with the folder name:"); ?>
+			<input type="text" name="folderdisplay" id="folderdisplay" size="18" disabled="disabled" onkeyup="albumSelect();" />
+			<span id="foldererror" style="display: none; color: #D66;"></span>
+			<input type="checkbox" name="autogenfolder" id="autogen" checked="checked"
+						 onclick="toggleAutogen('folderdisplay', 'albumtitle', this);" />
+			<label for="autogen"><?php echo gettext("Auto-generate"); ?></label>
+		</div>
+		<div id="publishtext">
+			<input type="checkbox" name="publishalbum" id="publishalbum" value="1" <?php echo $publishchecked; ?> />
+			<label for="publishalbum"><?php echo gettext("Publish the album so everyone can see it."); ?></label>
+		</div>
+	</div>
+</div>
+<br class="clearall">
+<?php
+$_create_album_html = ob_get_contents();
+ob_end_clean();
+
 class create_album {
 
 	/**
@@ -111,7 +149,7 @@ class create_album {
 	 * HTML Header JS
 	 */
 	static function JS() {
-		global $_zp_admin_tab, $_zp_admin_subtab, $_zp_gallery;
+		global $_zp_admin_tab, $_zp_gallery;
 		if ($_zp_admin_tab == 'users') {
 			$albums = $_zp_gallery->getAlbums(0);
 			?>
@@ -175,7 +213,7 @@ class create_album {
 	 * @param $local_alterrights
 	 */
 	static function edit($html, $userobj, $id, $background, $current, $local_alterrights) {
-		global $_zp_current_admin_obj, $_zp_gallery, $__creatAlbumList;
+		global $_zp_current_admin_obj, $_zp_gallery, $__creatAlbumList, $_create_album_html;
 		if (!$userobj->getValid())
 			return $html;
 		$rights = $userobj->getRights();
@@ -185,41 +223,7 @@ class create_album {
 			$enabled = getOption('create_album_default');
 		}
 		if ($enabled && ($user == $_zp_current_admin_obj->getUser()) && ($rights & (ALBUM_RIGHTS | UPLOAD_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS | ADMIN_RIGHTS)) == (ALBUM_RIGHTS | UPLOAD_RIGHTS)) {
-			if ($albpublish = $_zp_gallery->getAlbumPublish()) {
-				$publishchecked = ' checked="checked"';
-			} else {
-				$publishchecked = '';
-			}
-			ob_start();
-			?>
-			<tr <?php if (!$current) echo 'style="display:none;"'; ?> class="userextrainfo">
-				<td colspan="2"  style="background-color:#ECF1F2;" valign="top">
-					<div id="newalbumbox" style="margin-top: 5px;">
-						<input id="newalbumcheckbox" type="checkbox" name="createalbum" />
-						<?php echo gettext('Create an album') ?>
-					</div>
-					<div id="albumtext" style="margin-top: 5px;"><?php echo gettext("titled:"); ?>
-						<input id="albumtitle" size="42" type="text" name="albumtitle"
-									 onkeyup="updateFolder(this, 'folderdisplay', 'autogen', '<?php echo addslashes(gettext('That name is already used.')); ?>', '<?php echo addslashes(gettext('This upload has to have a folder. Type a title or folder name to continue...')); ?>');" />
-
-						<div>
-							<?php echo gettext("with the folder name:"); ?>
-							<input type="text" name="folderdisplay" id="folderdisplay" size="18" disabled="disabled" onkeyup="albumSelect();" />
-							<span id="foldererror" style="display: none; color: #D66;"></span>
-							<input type="checkbox" name="autogenfolder" id="autogen" checked="checked"
-										 onclick="toggleAutogen('folderdisplay', 'albumtitle', this);" />
-							<label for="autogen"><?php echo gettext("Auto-generate"); ?></label>
-						</div>
-						<div id="publishtext">
-							<input type="checkbox" name="publishalbum" id="publishalbum" value="1" <?php echo $publishchecked; ?> />
-							<label for="publishalbum"><?php echo gettext("Publish the album so everyone can see it."); ?></label>
-						</div>
-					</div>
-				</td>
-			</tr>
-			<?php
-			$html .= ob_get_contents();
-			ob_end_clean();
+			$html .= $_create_album_html;
 		}
 		return $html;
 	}

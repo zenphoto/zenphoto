@@ -42,7 +42,8 @@ function reconfigureAction($mandatory) {
 			header("Location: $location");
 			exitZP();
 		} else {
-			global $subtabs, $zenphoto_tabs, $main_tab_space, $_zp_admin_tab, $_zp_invisible_execute, $_zp_gallery;
+			// because we are loading the script from within a function!
+			global $subtabs, $zenphoto_tabs, $_zp_admin_tab, $_zp_invisible_execute, $_zp_gallery;
 			$_zp_invisible_execute = 1;
 			require_once(SERVERPATH . '/' . ZENFOLDER . '/admin-globals.php');
 			header('Last-Modified: ' . ZP_LAST_MODIFIED);
@@ -52,7 +53,7 @@ function reconfigureAction($mandatory) {
 			<html xmlns="http://www.w3.org/1999/xhtml">
 				<head>
 					<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-					<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.css" type="text/css" />
+					<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin_pages.css" type="text/css" />
 					<?php reconfigureCS(); ?>
 				</head>
 				<body>

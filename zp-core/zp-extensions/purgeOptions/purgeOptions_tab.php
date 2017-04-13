@@ -14,7 +14,7 @@
 define('OFFSET_PATH', 1);
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 
-admin_securityChecks(OPTIONS_RIGHTS, $return = currentRelativeURL());
+admin_securityChecks(ADMIN_RIGHTS, $return = currentRelativeURL());
 
 $xlate = array('plugins' => gettext('User plugins'), 'zp-core/zp-extensions' => gettext('Extensions'), 'themes' => gettext('Themes'));
 
@@ -79,7 +79,7 @@ $orphaned = array();
 		<div id="content">
 			<?php zp_apply_filter('admin_note', 'clone', ''); ?>
 			<div id="container">
-				<?php printSubtabs(); ?>
+				<h1><?php echo gettext('purge options'); ?></h1>
 				<div class="tabbox">
 					<?php
 					$owners = array(ZENFOLDER . '/' . PLUGIN_FOLDER => array(), USER_PLUGIN_FOLDER => array(), THEMEFOLDER => array());

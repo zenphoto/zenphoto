@@ -197,6 +197,9 @@ if (is_array($result)) {
 				}, false);
 				//]]> -->
 			</script>
+			<?php
+			zp_apply_filter('admin_note', 'menu', 'edit');
+			?>
 			<h1>
 				<?php
 				if (is_array($result) && $result['id']) {
@@ -206,189 +209,190 @@ if (is_array($result)) {
 				}
 				?>
 			</h1>
-			<?php
-			zp_apply_filter('admin_note', 'menu', 'edit');
-			foreach ($reports as $report) {
-				echo $report;
-			}
-			if (isset($_GET['save']) && !isset($_GET['add'])) {
-				?>
-				<div class="messagebox fade-message">
-					<h2>
-						<?php echo gettext("Changes applied") ?>
-					</h2>
-				</div>
+			<div class="tabbox">
 				<?php
-			}
-			?>
-			<p class="buttons">
-				<strong><a href="menu_tab.php?menuset=<?php echo $menuset; ?>"><img	src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/arrow_left_blue_round.png" alt="" /><?php echo gettext("Back"); ?></a></strong>
-				<span class="floatright">
-					<strong><a href="menu_tab_edit.php?add&amp;menuset=<?php echo urlencode($menuset); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" /> <?php echo gettext("Add Menu Items"); ?></a></strong>
-				</span>
-			</p>
-			<br class="clearall" /><br />
-			<div class="box" style="padding:15px; margin-top: 10px">
-				<?php
-				$action = $type = $id = $link = '';
-				if (is_array($result)) {
-					$type = $result['type'];
-					$id = $result['id'];
-					if (array_key_exists('link', $result)) {
-						$link = $result['link'];
-					}
-					$action = !empty($id);
+				foreach ($reports as $report) {
+					echo $report;
 				}
-				if (isset($_GET['add']) && !isset($_GET['save'])) {
-					$add = '&amp;add'
+				if (isset($_GET['save']) && !isset($_GET['add'])) {
 					?>
-					<select id="typeselector" name="typeselector">
-						<option value=""><?php echo gettext("*Select the type of the menus item you wish to add*"); ?></option>
-						<option value="all_items"><?php echo gettext("All menu items"); ?></option>
-						<option value="galleryindex"><?php echo gettext("Gallery index"); ?></option>
-						<option value="all_albums"><?php echo gettext("All Albums"); ?></option>
-						<option value="album"><?php echo gettext("Album"); ?></option>
-						<?php
-						if (extensionEnabled('zenpage')) {
-							?>
-							<option value="all_pages"><?php echo gettext("All pages"); ?></option>
-							<option value="page"><?php echo gettext("Page"); ?></option>
-							<option value="newsindex"><?php echo gettext("News index"); ?></option>
-							<option value="all_categorys"><?php echo gettext("All news categories"); ?></option>
-							<option value="category"><?php echo gettext("News category"); ?></option>
-							<?php
-						}
-						?>
-						<option value="custompage"><?php echo gettext("Custom theme page"); ?></option>
-						<option value="customlink"><?php echo gettext("Custom link"); ?></option>
-						<option value="menulabel"><?php echo gettext("Label"); ?></option>
-						<option value="menufunction"><?php echo gettext("Function"); ?></option>
-						<option value="html"><?php echo gettext("HTML"); ?></option>
-					</select>
+					<div class="messagebox fade-message">
+						<h2>
+							<?php echo gettext("Changes applied") ?>
+						</h2>
+					</div>
 					<?php
-				} else {
-					$add = '&amp;update';
 				}
 				?>
-				<form class="dirtylistening" onReset="setClean('add');" autocomplete="off"  method="post" id="add" name="add" action="menu_tab_edit.php?save<?php
-				echo $add;
-				if ($menuset)
-					echo '&amp;menuset=' . $menuset;
-				?>" style="display: none">
-							<?php XSRFToken('update_menu'); ?>
-					<input type="hidden" name="update" id="update" value="<?php echo html_encode($action); ?>" />
-					<input type="hidden" name="id" id="id" value="<?php echo $id; ?>" />
-					<input type="hidden" name="link-old" id="link-old" value="<?php echo html_encode($link); ?>" />
-					<input type="hidden" name="type" id="type" value="<?php echo $type; ?>" />
-					<table style="width: 80%">
-						<?php
-						if (is_array($result)) {
-							$selector = html_encode($menuset);
-						} else {
-							$result = array('id' => NULL, 'title' => '', 'link' => '', 'show' => 1, 'type' => NULL, 'include_li' => 1, 'span_id' => '', 'span_class' => '');
-							$selector = getMenuSetSelector(false);
+				<p class="buttons">
+					<strong><a href="menu_tab.php?menuset=<?php echo $menuset; ?>"><img	src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/arrow_left_blue_round.png" alt="" /><?php echo gettext("Back"); ?></a></strong>
+					<span class="floatright">
+						<strong><a href="menu_tab_edit.php?add&amp;menuset=<?php echo urlencode($menuset); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" /> <?php echo gettext("Add Menu Items"); ?></a></strong>
+					</span>
+				</p>
+				<br class="clearall" /><br />
+				<div class="box" style="padding:15px; margin-top: 10px">
+					<?php
+					$action = $type = $id = $link = '';
+					if (is_array($result)) {
+						$type = $result['type'];
+						$id = $result['id'];
+						if (array_key_exists('link', $result)) {
+							$link = $result['link'];
 						}
+						$action = !empty($id);
+					}
+					if (isset($_GET['add']) && !isset($_GET['save'])) {
+						$add = '&amp;add'
 						?>
-						<tr>
-							<td colspan="2"><?php printf(gettext("Menu <em>%s</em>"), $selector); ?></td>
-						</tr>
-						<tr style="vertical-align: top">
-							<td style="width: 13%"><?php echo gettext("Type"); ?></td>
-							<td id="selector"></td>
-						</tr>
-						<tr style="vertical-align: top">
-							<td><?php echo gettext("Description"); ?></td>
-							<td id="description"></td>
-						</tr>
-						<tr>
-							<td><span id="titlelabel"><?php echo gettext("Title"); ?></span></td>
-							<td>
-								<span id="titleinput"><?php print_language_string_list($result['title'], "title", false, NULL, '', 100); ?></span>
-								<?php
-								printAlbumsSelector($result['link']);
-								if (class_exists('CMS')) {
-									printPagesSelector($result['link']);
-									printNewsCategorySelector($result['link']);
-								}
+						<select id="typeselector" name="typeselector">
+							<option value=""><?php echo gettext("*Select the type of the menus item you wish to add*"); ?></option>
+							<option value="all_items"><?php echo gettext("All menu items"); ?></option>
+							<option value="galleryindex"><?php echo gettext("Gallery index"); ?></option>
+							<option value="all_albums"><?php echo gettext("All Albums"); ?></option>
+							<option value="album"><?php echo gettext("Album"); ?></option>
+							<?php
+							if (extensionEnabled('zenpage')) {
 								?>
-							</td>
-						</tr>
-						<tr id="link_row">
-							<td><span id="link_label"></span></td>
-							<td>
-								<?php printCustomPageSelector($result['link']); ?>
-								<input name="link" type="text" size="100" id="link" value="<?php echo html_encode($result['link']); ?>" />
-							</td>
-						</tr>
-						<tr id="visible_row">
-							<td>
-								<label id="show_visible" for="show" style="display: inline">
-									<input name="show" type="checkbox" id="show" value="1" <?php
-									if ($result['show'] == 1) {
-										echo "checked='checked'";
-									}
-									?> style="display: inline" />
-												 <?php echo gettext("published"); ?>
-								</label>
-							</td>
-							<td>
-								<label id="include_li_label" style="display: inline">
-									<input name="include_li" type="checkbox" id="include_li" value="1" <?php
-									if ($result['include_li'] == 1) {
-										echo "checked='checked'";
-									}
-									?> style="display: inline" />
-												 <?php echo gettext("Include <em>&lt;LI&gt;</em> element"); ?>
-								</label>
-							</td>
-						</tr>
-						<tr id="span_row">
-							<td>
-								<label>
-									<input name="span" type="checkbox" id="span" value="1" <?php
-									if ($result['span_id'] || $result['span_class']) {
-										echo "checked='checked'";
-									}
-									?> style="display: inline" />
-												 <?php echo gettext("Add <em>span</em> tags"); ?>
-								</label>
-							</td>
-							<td>
-								<?php echo gettext('ID'); ?>
-								<input name="span_id" type="text" size="20" id="span_id" value="<?php echo html_encode($result['span_id']); ?>" />
-								<?php echo gettext('Class'); ?>
-								<input name="span_class" type="text" size="20" id="span_class" value="<?php echo html_encode($result['span_class']); ?>" />
-							</td>
-						</tr>
-						<?php
-						if (is_array($result) && !empty($result['type'])) {
-							$array = getItemTitleAndURL($result);
-							if (!$array['valid']) {
-								?>
-								<tr>
-									<td colspan="2">
-										<span class="notebox">
-											<?php
-											if (array_key_exists('theme', $array)) {
-												printf(gettext('Target does not exist in <em>%1$s</em> theme'), $array['theme']);
-											} else {
-												echo gettext('Target does not exist.');
-											}
-											?>
-										</span>
-									</td>
-								</tr>
+								<option value="all_pages"><?php echo gettext("All pages"); ?></option>
+								<option value="page"><?php echo gettext("Page"); ?></option>
+								<option value="newsindex"><?php echo gettext("News index"); ?></option>
+								<option value="all_categorys"><?php echo gettext("All news categories"); ?></option>
+								<option value="category"><?php echo gettext("News category"); ?></option>
 								<?php
 							}
-						}
-						?>
-					</table>
-					<p class="buttons">
-						<button type="submit"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
-						<button type="reset"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
-					</p>
-					<br class="clearall" /><br />
-				</form>
+							?>
+							<option value="custompage"><?php echo gettext("Custom theme page"); ?></option>
+							<option value="customlink"><?php echo gettext("Custom link"); ?></option>
+							<option value="menulabel"><?php echo gettext("Label"); ?></option>
+							<option value="menufunction"><?php echo gettext("Function"); ?></option>
+							<option value="html"><?php echo gettext("HTML"); ?></option>
+						</select>
+						<?php
+					} else {
+						$add = '&amp;update';
+					}
+					?>
+					<form class="dirtylistening" onReset="setClean('add');" autocomplete="off"  method="post" id="add" name="add" action="menu_tab_edit.php?save<?php
+					echo $add;
+					if ($menuset)
+						echo '&amp;menuset=' . $menuset;
+					?>" style="display: none">
+								<?php XSRFToken('update_menu'); ?>
+						<input type="hidden" name="update" id="update" value="<?php echo html_encode($action); ?>" />
+						<input type="hidden" name="id" id="id" value="<?php echo $id; ?>" />
+						<input type="hidden" name="link-old" id="link-old" value="<?php echo html_encode($link); ?>" />
+						<input type="hidden" name="type" id="type" value="<?php echo $type; ?>" />
+						<table style="width: 80%">
+							<?php
+							if (is_array($result)) {
+								$selector = html_encode($menuset);
+							} else {
+								$result = array('id' => NULL, 'title' => '', 'link' => '', 'show' => 1, 'type' => NULL, 'include_li' => 1, 'span_id' => '', 'span_class' => '');
+								$selector = getMenuSetSelector(false);
+							}
+							?>
+							<tr>
+								<td colspan="100%"><?php printf(gettext("Menu <em>%s</em>"), $selector); ?></td>
+							</tr>
+							<tr style="vertical-align: top">
+								<td style="width: 13%"><?php echo gettext("Type"); ?></td>
+								<td id="selector"></td>
+							</tr>
+							<tr style="vertical-align: top">
+								<td><?php echo gettext("Description"); ?></td>
+								<td id="description"></td>
+							</tr>
+							<tr>
+								<td><span id="titlelabel"><?php echo gettext("Title"); ?></span></td>
+								<td>
+									<span id="titleinput"><?php print_language_string_list($result['title'], "title", false, NULL, '', 100); ?></span>
+									<?php
+									printAlbumsSelector($result['link']);
+									if (class_exists('CMS')) {
+										printPagesSelector($result['link']);
+										printNewsCategorySelector($result['link']);
+									}
+									?>
+								</td>
+							</tr>
+							<tr id="link_row">
+								<td><span id="link_label"></span></td>
+								<td>
+									<?php printCustomPageSelector($result['link']); ?>
+									<input name="link" type="text" size="100" id="link" value="<?php echo html_encode($result['link']); ?>" />
+								</td>
+							</tr>
+							<tr id="visible_row">
+								<td>
+									<label id="show_visible" for="show" style="display: inline">
+										<input name="show" type="checkbox" id="show" value="1" <?php
+										if ($result['show'] == 1) {
+											echo "checked='checked'";
+										}
+										?> style="display: inline" />
+													 <?php echo gettext("published"); ?>
+									</label>
+								</td>
+								<td>
+									<label id="include_li_label" style="display: inline">
+										<input name="include_li" type="checkbox" id="include_li" value="1" <?php
+										if ($result['include_li'] == 1) {
+											echo "checked='checked'";
+										}
+										?> style="display: inline" />
+													 <?php echo gettext("Include <em>&lt;LI&gt;</em> element"); ?>
+									</label>
+								</td>
+							</tr>
+							<tr id="span_row">
+								<td>
+									<label>
+										<input name="span" type="checkbox" id="span" value="1" <?php
+										if ($result['span_id'] || $result['span_class']) {
+											echo "checked='checked'";
+										}
+										?> style="display: inline" />
+													 <?php echo gettext("Add <em>span</em> tags"); ?>
+									</label>
+								</td>
+								<td>
+									<?php echo gettext('ID'); ?>
+									<input name="span_id" type="text" size="20" id="span_id" value="<?php echo html_encode($result['span_id']); ?>" />
+									<?php echo gettext('Class'); ?>
+									<input name="span_class" type="text" size="20" id="span_class" value="<?php echo html_encode($result['span_class']); ?>" />
+								</td>
+							</tr>
+							<?php
+							if (is_array($result) && !empty($result['type'])) {
+								$array = getItemTitleAndURL($result);
+								if (!$array['valid']) {
+									?>
+									<tr>
+										<td colspan="100%">
+											<span class="notebox">
+												<?php
+												if (array_key_exists('theme', $array)) {
+													printf(gettext('Target does not exist in <em>%1$s</em> theme'), $array['theme']);
+												} else {
+													echo gettext('Target does not exist.');
+												}
+												?>
+											</span>
+										</td>
+									</tr>
+									<?php
+								}
+							}
+							?>
+						</table>
+						<p class="buttons">
+							<button type="submit"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
+							<button type="reset"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
+						</p>
+						<br class="clearall" /><br />
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>

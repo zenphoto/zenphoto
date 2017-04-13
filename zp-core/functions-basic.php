@@ -293,13 +293,6 @@ define('HASH_SEED', getOption('extra_auth_hash_text'));
 define('IP_TIED_COOKIES', getOption('IP_tied_cookies'));
 
 /**
- * Decodes HTML Special Characters.
- *
- * @param string $text
- * @return string
- */
-
-/**
  * encodes a pre-sanitized string to be used as a Javascript parameter
  *
  * @param string $this_string

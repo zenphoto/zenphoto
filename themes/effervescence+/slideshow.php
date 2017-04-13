@@ -57,7 +57,7 @@ if (function_exists('printSlideShow')) {
 										printAlbumBreadcrumb("", " | ");
 									}
 									?> </span>
-								Slideshow
+								echo gettext('Slideshow');
 							</div> <!-- navbar -->
 						</div> <!-- wrapnav -->
 					</div> <!-- galleryheader -->
@@ -72,12 +72,6 @@ if (function_exists('printSlideShow')) {
 			</div> <!-- main4 -->
 			<br style="clear:all" />
 			<!-- Footer -->
-			<div class="footlinks">
-				<?php
-				printThemeInfo();
-				?>
-				<?php printZenphotoLink(); ?>
-			</div> <!-- footlinks -->
 			<?php
 			printFooter();
 			zp_apply_filter('theme_body_close');

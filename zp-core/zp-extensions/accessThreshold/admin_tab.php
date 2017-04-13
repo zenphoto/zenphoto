@@ -133,10 +133,13 @@ echo "\n</head>";
 	<div id="main">
 		<?php printTabs(); ?>
 		<div id="content">
-			<div id="container">
+			<?php zp_apply_filter('admin_note', 'users', ''); ?>
+			<h1>
 				<?php
-				$subtab = printSubtabs();
+				echo gettext('Access threshold');
 				?>
+			</h1>
+			<div id="container">
 
 				<div class="tabbox">
 					<form name="data_sort" style="float: right;" method="post" action="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/accessThreshold/admin_tab.php?action=data_sortorder&tab=accessThreshold" >
@@ -153,7 +156,6 @@ echo "\n</head>";
 					<br style="clearall">
 					<br />
 					<?php
-					zp_apply_filter('admin_note', 'database', '');
 					foreach ($output as $row) {
 						echo $row . '<br style="clearall">' . "\n";
 					}

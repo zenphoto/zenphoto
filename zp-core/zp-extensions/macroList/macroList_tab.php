@@ -20,11 +20,15 @@ echo "\n</head>";
 		<?php printTabs(); ?>
 		<div id="content">
 			<div id="container">
-				<?php printSubtabs(); ?>
-				<div class="tabbox">
+				<?php
+				zp_apply_filter('admin_note', 'development', '');
+				?>
+				<h1>
 					<?php
-					zp_apply_filter('admin_note', 'development', '');
-
+					echo gettext('Defined Macros');
+					?>
+				</h1>			<div class="tabbox">
+					<?php
 					$macros = getMacros();
 					ksort($macros);
 					if (empty($macros)) {

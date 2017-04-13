@@ -287,11 +287,10 @@ class user_expiry {
 				$expires_display = '<span style="color:red" class="tooltip" title="' . gettext('Expires soon') . '">' . $expires_display . '</span>';
 			}
 			$msg = sprintf(gettext('Your subscription expires on %s'), $expires_display);
-			$myhtml = '<tr' . ((!$current) ? ' style="display:none;"' : '') . ' class="userextrainfo">
-					<td' . ((!empty($background)) ? ' style="' . $background . '"' : '') . ' valign="top" colspan="2">' . "\n" .
-							'<p class="notebox">' . $msg . '</p>' . "\n" .
-							'</td>
-				</tr>' . "\n";
+			$myhtml = '<div class="user_left">' . "\n"
+							. '<p class="notebox">' . $msg . '</p>' . "\n"
+							. '</div>' . "\n"
+							. '<br class="clearall">' . "\n";
 			$html = $myhtml . $html;
 		}
 		return $html;
@@ -303,7 +302,7 @@ class user_expiry {
 			if (user_expiry::checkPasswordRenew()) {
 				echo '<p class="errorbox">' . gettext('You must change your password.'), '</p>';
 			} else {
-				if ($_zp_authority->getAnAdmin(array('`valid`>' => 1))) {
+				if (zp_loggedin(ADMIN_RIGHTS) && $_zp_authority->getAnAdmin(array('`valid`>' => 1))) {
 					echo '<p class="notebox">' . gettext('You have users whose credentials have expired.'), '</p>';
 				}
 			}
