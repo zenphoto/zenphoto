@@ -167,7 +167,7 @@ if (@$_zp_loggedin) {
 				'link' => WEBPATH . "/" . ZENFOLDER . '/admin-plugins.php',
 				'subtabs' => $subtabs,
 				'default' => $default);
-		$zenphoto_tabs['overview']['subtabs'][gettext('Backup')] = "/" . ZENFOLDER . '/utilities/backup_restore.php?tab=bacakup';
+		$zenphoto_tabs['overview']['subtabs'][gettext('Backup')] = "/" . ZENFOLDER . '/utilities/backup_restore.php?tab=backup';
 	}
 
 	if ($_zp_loggedin & ADMIN_RIGHTS) {
