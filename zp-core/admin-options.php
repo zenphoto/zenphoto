@@ -136,7 +136,7 @@ Zenphoto_Authority::printPasswordFormJS();
 			}
 			if (isset($_GET['maxsize'])) {
 				echo '<div class="errorbox">';
-				echo '<h2>' . gettext('Maximum image size nust be greater than zero.') . '</h2>';
+				echo '<h2>' . gettext('Maximum image size must be greater than zero.') . '</h2>';
 				echo '</div>';
 			}
 

@@ -292,42 +292,41 @@ function printAdminHeader($tab, $subtab = NULL) {
 			}
 			?>
 
-
-		<span id="administration">
-			<img id="logo" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/zen-logo.png"
-					 title="<?php echo sprintf(gettext('%1$s administration:%2$s%3$s'), html_encode($_zp_gallery->getTitle()), html_encode($_zp_admin_tab), html_encode($subtab)); ?>"
-					 alt="<?php echo gettext('ZenPhoto20 Administration'); ?>" />
-		</span>
-
-		<a href="javascript:" id="return-to-top" class="ignoredirty" title="<?php echo gettext('return to top'); ?>"></a>
-
-		<div id="links">
-			<?php
-			if (is_object($_zp_current_admin_obj) && !$_zp_current_admin_obj->reset) {
-				$sec = (int) ((SERVER_PROTOCOL == 'https') & true);
-				$last = $_zp_current_admin_obj->getLastlogon();
-				if (empty($last)) {
-					printf(gettext('Logged in as %1$s'), $_zp_current_admin_obj->getUser());
-				} else {
-					printf(gettext('Logged in as %1$s (last login %2$s)'), $_zp_current_admin_obj->getUser(), $last);
-				}
-				if ($_zp_current_admin_obj->logout_link) {
-					$link = WEBPATH . "/" . ZENFOLDER . "/admin.php?logout=" . $sec;
-					echo " &nbsp; | &nbsp; <a href=\"" . $link . "\">" . gettext("Log Out") . "</a> &nbsp; | &nbsp; ";
-				}
-			}
-			?>
-			<a href="<?php echo FULLWEBPATH; ?>/">
+		<p id="admin_head">
+			<span id="administration">
+				<img id="logo" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/zen-logo.png"
+						 title="<?php echo sprintf(gettext('%1$s administration:%2$s%3$s'), html_encode($_zp_gallery->getTitle()), html_encode($_zp_admin_tab), html_encode($subtab)); ?>"
+						 alt="<?php echo gettext('ZenPhoto20 Administration'); ?>" />
+			</span>
+			<span id="links">
 				<?php
-				$t = $_zp_gallery->getTitle();
-				if (!empty($t)) {
-					printf(gettext("View <em>%s</em>"), $t);
-				} else {
-					echo gettext("View gallery index");
+				if (is_object($_zp_current_admin_obj) && !$_zp_current_admin_obj->reset) {
+					$sec = (int) ((SERVER_PROTOCOL == 'https') & true);
+					$last = $_zp_current_admin_obj->getLastlogon();
+					if (empty($last)) {
+						printf(gettext('Logged in as %1$s'), $_zp_current_admin_obj->getUser());
+					} else {
+						printf(gettext('Logged in as %1$s (last login %2$s)'), $_zp_current_admin_obj->getUser(), $last);
+					}
+					if ($_zp_current_admin_obj->logout_link) {
+						$link = WEBPATH . "/" . ZENFOLDER . "/admin.php?logout=" . $sec;
+						echo " &nbsp; | &nbsp; <a href=\"" . $link . "\">" . gettext("Log Out") . "</a> &nbsp; | &nbsp; ";
+					}
 				}
 				?>
-			</a>
-		</div>
+				<a href="<?php echo FULLWEBPATH; ?>/">
+					<?php
+					$t = $_zp_gallery->getTitle();
+					if (!empty($t)) {
+						printf(gettext("View <em>%s</em>"), $t);
+					} else {
+						echo gettext("View gallery index");
+					}
+					?>
+				</a>
+			</span>
+		</p>
+		<a href="javascript:" id="return-to-top" class="ignoredirty" title="<?php echo gettext('return to top'); ?>"></a>
 		<?php
 	}
 
@@ -366,7 +365,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 						<a href="<?php echo html_encode($atab['link']); ?>" <?php echo $class; ?>><?php echo html_encode(ucfirst($atab['text'])); ?></a>
 						<?php
 						if ($hasSubtabs) { // don't print <ul> if there is nothing
-							ksort($subtabs, SORT_NATURAL);
+							if (!(isset($atab['ordered']) && $atab['ordered'])) {
+								ksort($subtabs, SORT_NATURAL);
+							}
 							?>
 							<ul>
 								<?php

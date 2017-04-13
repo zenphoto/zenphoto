@@ -43,21 +43,9 @@ em {
 
 /* Main Layout
 ------------------------------ */
-#logo {
-	float: left;
-	text-align: left;
-	margin: 20px 10px 0px 30px;
-	width: 200px;
-	height: 47px;
-}
-
-#logo img {
-	border: 0;
-}
 
 #main {
 	text-align: left;
-	padding: 20px 0;
 	clear: both;
 }
 
@@ -83,10 +71,25 @@ em {
 	border-bottom: 1px solid #FF8A00;
 }
 
+#admin_head {
+	vertical-align: middle;
+}
+
+#logo img {
+	border: 0;
+}
+
+#administration {
+	padding-left: 3em;
+	float: left;
+}
+
 #links {
+	padding-right: 1em;
+	padding-top: 1em;
 	float: right;
 	font-size: 100%;
-	margin: 40px 30px 0 0;
+
 }
 
 #links a {
@@ -175,12 +178,11 @@ code {
   line-height: 1;
 	margin-top: 20px;
 	padding: 0;
-	width: 14em;
 	position: absolute;
 	overflow: visible;
 	z-index: 500;
   width: 13em;
-  background: darkgray;
+  background: gainsboro;
 	zoom: 1;
 }
 
@@ -239,7 +241,7 @@ code {
 }
 
 .navigation ul ul {
-	margin-top: 0.05em;
+	margin-top: 0.03em;
 }
 
 
@@ -256,8 +258,8 @@ code {
 
 .navigation a {
   display: block;
-  padding: 1em 1.3em;
-  color: #ffffff;
+  padding: 0.7em 1.3em;
+  color: black;
   text-decoration: none;
   text-transform: uppercase;
 }
@@ -271,8 +273,8 @@ code {
 }
 
 .navigation > ul > li > a {
-  border-right: 0.3em solid #34A65F;
-  color: #ffffff;
+  border-right: 0.3em solid lightgray;
+  color: black;
 }
 
 .navigation li {
@@ -305,50 +307,46 @@ code {
 }
 
 .navigation ul ul {
-	border: 1px solid #34A65F;
+	border: 1px solid lightgray;
 }
 
 .navigation ul ul a {
-	color: #ffffff;
+	color: black;
 }
 
 .navigation ul ul li {
-	border-bottom: 1px solid #0F8A5F;
+	border-bottom: 1px solid lightgray;
 }
 
 .navigation ul li a.alert,
 .navigation ul ul li a.alert{
-	background-color: darkgoldenrod !important;
+	background-color: lightgoldenrodyellow !important;
 }
 
-.navigation a.active {
-	background-color: #4eb1ff !important;
-}
-
-.navigation ul a.active {
-	background-color: #4eb1ff;
+.navigation ul li a.active,
+.navigation ul ul li a.active {
+	background-color: lightblue !important;
 }
 
 .navigation > ul > li a:hover,
 .navigation > ul > li:hover a {
-	background: #34A65F !important;
-	color: #ffffff;
+	background: lightgray !important;
+	color: black;
 }
 
 .navigation ul ul a:hover,
 .navigation ul ul li:hover > a {
-	background: #0974f6 !important;
-	color: #ffffff;
+	background: lightskyblue !important;
+	color: black;
 }
 
 .navigation a.active:hover {
-	background: darkblue !important;
-	color: #ffffff;
+	background: lightskyblue !important;
+	color: black;
 }
 
-
 .navigation.align-right > ul > li > a {
-  border-left: 0.3em solid #34A65F;
+  border-left: 0.3em solid lightgrayx;
   border-right: none;
 }
 
@@ -459,10 +457,6 @@ code {
 	border-width: 1px 1px 2px 1px;
 	border-style: solid;
 	border-color: #FFDEB5;
-	-moz-border-radius: 5px;
-	-khtml-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	border-radius: 5px;
 	margin-bottom: 10px;
 	font-size: 100%;
 	list-style-type: none;
@@ -489,10 +483,6 @@ code {
 	border-style: solid;
 	margin-bottom: 10px;
 	font-size: 100%;
-	-moz-border-radius: 5px;
-	-khtml-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	border-radius: 5px;
 	width: 94%;
 	font-weight: normal;
 }
@@ -551,10 +541,6 @@ table.noinput td {
 	border-spacing: 0px;
 	background: #E5E5E5;
 	border: 1px solid #E5E5E5;
-	-moz-border-radius: 5px;
-	-khtml-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	border-radius: 5px;
 }
 
 table.bordered th {
@@ -605,10 +591,6 @@ table.options {
 	border-spacing: 0px;
 	background: #E5E5E5;
 	border: 1px solid #E5E5E5;
-	-moz-border-radius: 5px;
-	-khtml-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	border-radius: 5px;
 }
 
 table.options th {
@@ -680,10 +662,6 @@ table.options tr td {
 	background: white !important;
 	padding: 5px;
 	border: 1px solid #dedede;
-	-moz-border-radius: 5px;
-	-khtml-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	border-radius: 5px;
 	height: 25px;
 }
 
@@ -731,29 +709,18 @@ table.checkboxes td {
 	padding: 4px;
 	background-color: #FAFAFA;
 	border: 1px solid #E5E5E5;
-	-moz-border-radius: 5px;
-	-khtml-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	border-radius: 5px;
 }
 .boxb {
 	padding: 4px;
 	background-color: LightGray;
 	border: 1px solid #E5E5E5;
-	-moz-border-radius: 5px;
-	-khtml-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	border-radius: 5px;
 }
 
 .tabbox {
 	padding: 10px;
 	background-color: #FAFAFA;
 	border: 1px solid #E5E5E5;
-	-moz-border-radius: 5px;
-	-khtml-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	border-radius: 5px;
+
 }
 
 div.outerbox {
@@ -1017,10 +984,6 @@ input.tags {
 	border-left: 1px solid #E5E5E5;
 	border-right: 1px solid #E5E5E5;
 	border-bottom: 5px solid #E5E5E5;
-	-moz-border-radius: 5px;
-	-khtml-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	border-radius: 5px;
 }
 
 #albumselect input {
@@ -1087,17 +1050,9 @@ acronym {
 	border-left: 1px solid #BAC9CF;
 	border-right: 1px solid #BAC9CF;
 	border-bottom: 5px solid #BAC9CF;
-	-moz-border-radius: 5px 5px 5px 5px;
-	-khtml-border-radius: 5px 5px 5px 5px;
-	-webkit-border-radius: 5px 5px 5px 5px;
-	border-radius: 5px 5px 5px 5px;
 }
 
 #loginform fieldset {
-	-moz-border-radius: 5px 5px 5px 5px;
-	-khtml-border-radius: 5px 5px 5px 5px;
-	-webkit-border-radius: 5px 5px 5px 5px;
-	border-radius: 5px 5px 5px 5px;
 	border: 1px solid lightgray;
 	padding:10px;
 	text-align:left;
@@ -1258,10 +1213,6 @@ label:hover {
 	color: #565656;
 	cursor: pointer;
 	padding: 5px 10px 6px 7px; /* Links */
-	-moz-border-radius: 5px;
-	-khtml-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	border-radius: 5px;
 }
 
 .buttons button {
@@ -1908,12 +1859,6 @@ ul.pagelist li.current {
 	width: 400px;
 }
 
-#administration {
-	float: left;
-	text-align: left;
-	vertical-align: sub;
-}
-
 span.tagMatches {
 	width: 165px;
 	position: absolute;
@@ -1948,10 +1893,6 @@ span.tagMatches span {
 	background-image: url(images/admin-headlineback.jpg);
 	background-repeat: repeat-x;
 	margin-bottom: 0;
-	-moz-border-radius: 5px 5px 0 0;
-	-khtml-border-radius: 5px 5px 0 0;
-	-webkit-border-radius: 5px 5px 0 0;
-	border-radius: 5px 5px 0 0;
 }
 
 .box-edit {
@@ -1960,10 +1901,6 @@ span.tagMatches span {
 	background-color: white;
 	border: 1px solid #cccccc;
 	width: 18.4em;
-	-moz-border-radius: 0 0 5px 5px;
-	-khtml-border-radius: 0 0 5px 5px;
-	-webkit-border-radius: 0 0 5px 5px;
-	border-radius: 0 0 5px 5px;
 }
 
 .checkboxlabel {
@@ -1988,10 +1925,6 @@ span.tagMatches span {
 	padding: 0px 0px 0px 0px;
 	background-color: white;
 	border: 1px solid #cccccc;
-	-moz-border-radius: 0 0 5px 5px;
-	-khtml-border-radius: 0 0 5px 5px;
-	-webkit-border-radius: 0 0 5px 5px;
-	border-radius: 0 0 5px 5px;
 }
 
 .box-tags-unpadded {
@@ -2000,10 +1933,6 @@ span.tagMatches span {
 	padding: 0px 0px 0px 0px;
 	background-color: white;
 	border: 1px solid #cccccc;
-	-moz-border-radius: 0 0 5px 5px;
-	-khtml-border-radius: 0 0 5px 5px;
-	-webkit-border-radius: 0 0 5px 5px;
-	border-radius: 0 0 5px 5px;
 }
 
 .tagtext p {
@@ -2030,10 +1959,6 @@ span.tagMatches span {
 	padding: 0px 0px 0px 0px;
 	background-color: white;
 	border: 1px solid #cccccc;
-	-moz-border-radius: 5px;
-	-khtml-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	border-radius: 5px;
 }
 
 
@@ -2047,10 +1972,6 @@ fieldset,
 .box-rights fieldset {
 	padding: 5px;
 	border: 1px solid darkgray;
-	-moz-border-radius: 05px;
-	-khtml-border-radius: px;
-	-webkit-border-radius: 5px;
-	border-radius: 5px;
 	margin-bottom: 5px;
 	width: 335px;
 }
@@ -2327,10 +2248,6 @@ UL.tabNavigation LI A {
 	color: #6b7d84;
 	text-decoration: none;
 	border: 1px solid #C7D3D8;
-	-moz-border-radius: 5px 5px 0px 0px;
-	-khtml-border-radius: 5px 5px 0px 0px;
-	-webkit-border-radius: 5px 5px 0px 0px;
-	border-radius: 5px 5px 0px 0px;
 }
 
 UL.tabNavigation LI A.selected {
@@ -2606,10 +2523,6 @@ div.bordered {
 	border-spacing: 0px;
 	background-color: white;
 	border: 1px solid #E5E5E5;
-	-moz-border-radius: 5px;
-	-khtml-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	border-radius: 5px;
 }
 
 div.bordered .headline {

@@ -105,6 +105,7 @@ if (@$_zp_loggedin) {
 					'link' => WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-news.php',
 					'subtabs' => array(gettext('articles') => PLUGIN_FOLDER . '/zenpage/admin-news.php?page=news&tab=articles',
 							gettext('categories') => PLUGIN_FOLDER . '/zenpage/admin-categories.php?page=news&tab=categories'),
+					'ordered' => true,
 					'default' => 'articles');
 		}
 	}
@@ -118,6 +119,7 @@ if (@$_zp_loggedin) {
 	if ($_zp_loggedin & USER_RIGHTS) {
 		$zenphoto_tabs['users'] = array('text' => gettext("users"),
 				'link' => WEBPATH . "/" . ZENFOLDER . '/admin-users.php?page=users',
+				'ordered' => true,
 				'subtabs' => NULL);
 	}
 
@@ -135,15 +137,11 @@ if (@$_zp_loggedin) {
 			$subtabs[gettext("security")] = 'admin-options.php?page=options&tab=security';
 		}
 		$subtabs[gettext("image")] = 'admin-options.php?page=options&tab=image';
-	}
-	if ($_zp_loggedin & ADMIN_RIGHTS) {
-		if (empty($optiondefault)) {
-			$optiondefault = '&tab=plugin';
-		}
-		$subtabs[gettext("plugin")] = 'admin-options.php?page=options&tab=plugin';
-	}
-	if ($_zp_loggedin & OPTIONS_RIGHTS) {
 		$subtabs[gettext("search")] = 'admin-options.php?page=options&tab=search';
+		if ($_zp_loggedin & ADMIN_RIGHTS) {
+			$subtabs[gettext("plugin")] = 'admin-options.php?page=options&tab=plugin';
+		}
+
 		if ($_zp_loggedin & THEMES_RIGHTS) {
 			if (empty($optiondefault))
 				$optiondefault = '&tab=theme';
@@ -152,6 +150,7 @@ if (@$_zp_loggedin) {
 		$zenphoto_tabs['options'] = array('text' => gettext("options"),
 				'link' => WEBPATH . "/" . ZENFOLDER . '/admin-options.php?page=options' . $optiondefault,
 				'subtabs' => $subtabs,
+				'ordered' => true,
 				'default' => 'gallery');
 	}
 
@@ -167,7 +166,7 @@ if (@$_zp_loggedin) {
 				'link' => WEBPATH . "/" . ZENFOLDER . '/admin-plugins.php',
 				'subtabs' => $subtabs,
 				'default' => $default);
-		$zenphoto_tabs['overview']['subtabs'][gettext('Backup')] = "/" . ZENFOLDER . '/utilities/backup_restore.php?tab=bacakup';
+		$zenphoto_tabs['overview']['subtabs'][gettext('Backup')] = "/" . ZENFOLDER . '/utilities/backup_restore.php?tab=backup';
 	}
 
 	if ($_zp_loggedin & ADMIN_RIGHTS) {

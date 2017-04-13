@@ -106,11 +106,9 @@ class accessThreshold {
 				);
 			}
 			$subtabs[gettext("access")] = PLUGIN_FOLDER . '/accessThreshold/admin_tab.php?page=users&tab=access';
-			ksort($subtabs, SORT_LOCALE_STRING);
-			$tabs['users'] = array('text' => gettext("admin"),
-					'link' => WEBPATH . "/" . ZENFOLDER . '/admin-users.php?page=users&tab=users',
-					'subtabs' => $subtabs,
-					'default' => 'users');
+			$tabs['users']['text'] = gettext("admin");
+			$tabs['users']['link'] = WEBPATH . "/" . ZENFOLDER . '/admin-users.php?page=users&tab=users';
+			$tabs['users']['subtabs'] = $subtabs;
 		}
 		return $tabs;
 
@@ -150,7 +148,7 @@ class accessThreshold {
 }
 
 if (OFFSET_PATH) {
-	zp_register_filter('admin_tabs', 'accessThreshold::admin_tabs');
+	zp_register_filter('admin_tabs', 'accessThreshold::admin_tabs', 0);
 } else {
 	$mu = new zpMutex('aT');
 	$mu->lock();
