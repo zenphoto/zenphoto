@@ -221,18 +221,26 @@ code {
   width: 100%;
 }
 
-.navigation ul ul li { float: none; }
+.navigation ul ul li {
+	float: none;
+}
 
-.navigation ul li:hover > ul { visibility: visible; }
+.navigation ul li:hover > ul {
+	visibility: visible;
+}
 
 .navigation ul ul {
   top: 0;
   left: 99%;
 }
 
-.navigation ul li { float: none; }
+.navigation ul li {
+	float: none;
+}
 
-.navigation ul ul { margin-top: 0.05em; }
+.navigation ul ul {
+	margin-top: 0.05em;
+}
 
 
 .navigation:before {
@@ -254,16 +262,22 @@ code {
   text-transform: uppercase;
 }
 
-.navigation > ul { width: 13em; }
+.navigation > ul {
+	width: 13em;
+}
 
-.navigation ul ul { width: 13em; }
+.navigation ul ul {
+	width: 13em;
+}
 
 .navigation > ul > li > a {
   border-right: 0.3em solid #34A65F;
   color: #ffffff;
 }
 
-.navigation li { position: relative; }
+.navigation li {
+	position: relative;
+}
 
 .navigation ul li.has-sub > a:after {
   content: '»';
@@ -290,14 +304,20 @@ code {
   border-radius: 0 3px 3px 0;
 }
 
-.navigation ul ul { border: 1px solid #34A65F; }
+.navigation ul ul {
+	border: 1px solid #34A65F;
+}
 
-.navigation ul ul a { color: #ffffff; }
+.navigation ul ul a {
+	color: #ffffff;
+}
 
-.navigation ul ul li { border-bottom: 1px solid #0F8A5F; }
+.navigation ul ul li {
+	border-bottom: 1px solid #0F8A5F;
+}
 
-
-.navigation a.alert {
+.navigation ul li a.alert,
+.navigation ul ul li a.alert{
 	background-color: darkgoldenrod !important;
 }
 
@@ -310,13 +330,20 @@ code {
 }
 
 .navigation > ul > li a:hover,
-.navigation > ul > li:hover a { background: #34A65F; color: #ffffff; }
+.navigation > ul > li:hover a {
+	background: #34A65F !important;
+	color: #ffffff;
+}
 
 .navigation ul ul a:hover,
-.navigation ul ul li:hover > a {  background: #0974f6 !important;   color: #ffffff;}
+.navigation ul ul li:hover > a {
+	background: #0974f6 !important;
+	color: #ffffff;
+}
 
 .navigation a.active:hover {
-	background: darkblue !important;   color: #ffffff;
+	background: darkblue !important;
+	color: #ffffff;
 }
 
 
@@ -325,9 +352,13 @@ code {
   border-right: none;
 }
 
-.navigation.align-right { float: right; }
+.navigation.align-right {
+	float: right;
+}
 
-.navigation.align-right li { text-align: right; }
+.navigation.align-right li {
+	text-align: right;
+}
 
 .navigation.align-right ul li.has-sub > a:before {
   content: '+';
@@ -337,7 +368,9 @@ code {
   margin-top: -6px;
 }
 
-.navigation.align-right ul li.has-sub > a:after { content: none; }
+.navigation.align-right ul li.has-sub > a:after {
+	content: none;
+}
 
 .navigation.align-right ul ul {
   visibility: hidden;
