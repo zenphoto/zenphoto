@@ -103,6 +103,10 @@ class slideshow {
 						'desc' => gettext("Speed of the transition in milliseconds."))
 		);
 		$c = 30;
+		$opts['note'] = array('key' => 'slideshow_note', 'type' => OPTION_TYPE_NOTE,
+				'order' => $c,
+				'desc' => gettext('<strong>NOTE:</strong> the plugin will automatically set the following options based on actual script page use. It is unnecessary to set them here, but the first time used the JavaScript and CSS files will not be loaded and the slideshow will not be shown. Refreshing the page will then show the slideshow.')
+		);
 		foreach (getThemeFiles(array('404.php', 'themeoptions.php', 'theme_description.php', 'slideshow.php', 'functions.php', 'password.php', 'sidebar.php', 'register.php', 'contact.php')) as $theme => $scripts) {
 			$list = array();
 			foreach ($scripts as $script) {
@@ -111,7 +115,7 @@ class slideshow {
 			$opts[$theme] = array('key' => 'slideshow_' . $theme . '_scripts', 'type' => OPTION_TYPE_CHECKBOX_ARRAYLIST,
 					'order' => $c++,
 					'checkboxes' => $list,
-					'desc' => gettext('The scripts for which the slideshow is enabled. {Should have been set by the themes!}')
+					'desc' => gettext('The scripts for which the slideshow is enabled.')
 			);
 		}
 		$options = array_merge($options, $opts);

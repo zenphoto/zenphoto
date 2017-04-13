@@ -40,7 +40,7 @@ $plugin_disable = (extensionEnabled('slideshow')) ? sprintf(gettext('Only one sl
 $option_interface = 'cycle';
 
 global $_zp_gallery, $_zp_gallery_page;
-if (($_zp_gallery_page == 'slideshow.php' && getOption('cycle-slideshow_mode') == 'cycle') || in_array(stripSuffix($_zp_gallery_page), getSerializedArray(getOption('cycle-slideshow_' . $_zp_gallery->getCurrentTheme() . 'scripts')))) {
+if ($_zp_gallery_page == 'slideshow.php' || in_array(stripSuffix($_zp_gallery_page), getSerializedArray(getOption('cycle-slideshow_' . $_zp_gallery->getCurrentTheme() . 'scripts')))) {
 	zp_register_filter('theme_head', 'cycle::cycleJS');
 }
 zp_register_filter('content_macro', 'cycle::macro');
@@ -171,6 +171,10 @@ class cycle {
 				break;
 		}
 		$c = 10;
+		$options2['note'] = array('key' => 'cycle_note', 'type' => OPTION_TYPE_NOTE,
+				'order' => $c,
+				'desc' => gettext('<strong>NOTE:</strong> the plugin will automatically set the following options based on actual script page use. It is unnecessary to set them here, but the first time used the JavaScript and CSS files will not be loaded and the slideshow will not be shown. Refreshing the page will then show the slideshow.')
+		);
 		foreach (getThemeFiles(array('404.php', 'themeoptions.php', 'theme_description.php', 'slideshow.php', 'functions.php', 'password.php', 'sidebar.php', 'register.php', 'contact.php')) as $theme => $scripts) {
 			$list = array();
 			foreach ($scripts as $script) {
@@ -180,7 +184,7 @@ class cycle {
 			$options2[$theme] = array('key' => 'cycle_' . $theme . '_scripts', 'type' => OPTION_TYPE_CHECKBOX_ARRAYLIST,
 					'order' => $c++,
 					'checkboxes' => $list,
-					'desc' => gettext('The scripts for which the cycle2 plugin is enabled. {If themes require it they might set this, otherwise you need to do it manually!}')
+					'desc' => gettext('The scripts for which the cycle2 plugin is enabled.')
 			);
 		}
 

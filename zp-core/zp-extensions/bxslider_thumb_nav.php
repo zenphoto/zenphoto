@@ -93,6 +93,10 @@ class bxslider {
 						'order' => 9)
 		);
 		$c = 30;
+		$options['note'] = array('key' => 'bxslider_note', 'type' => OPTION_TYPE_NOTE,
+				'order' => $c,
+				'desc' => gettext('<strong>NOTE:</strong> the plugin will automatically set the following options based on actual script page use. It is unnecessary to set them here, but the first time used the JavaScript and CSS files will not be loaded and the thumb slider will not be shown. Refreshing the page will then show the thumb slider.')
+		);
 		foreach (getThemeFiles(array('404.php', 'themeoptions.php', 'theme_description.php', 'functions.php', 'password.php', 'sidebar.php', 'register.php', 'contact.php')) as $theme => $scripts) {
 			$list = array();
 			foreach ($scripts as $script) {
@@ -101,7 +105,7 @@ class bxslider {
 			$options[$theme] = array('key' => 'bxslider_' . $theme . '_scripts', 'type' => OPTION_TYPE_CHECKBOX_ARRAYLIST,
 					'order' => $c++,
 					'checkboxes' => $list,
-					'desc' => gettext('The scripts for which BxSlider is enabled. {If themes require it they might set this, otherwise you need to do it manually!}')
+					'desc' => gettext('The scripts for which BxSlider is enabled.')
 			);
 		}
 		return $options;
