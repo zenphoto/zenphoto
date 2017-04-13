@@ -173,7 +173,7 @@ class cycle {
 		$c = 10;
 		$options2['note'] = array('key' => 'cycle_note', 'type' => OPTION_TYPE_NOTE,
 				'order' => $c,
-				'desc' => gettext('<strong>NOTE:</strong> the plugin will automatically set the following options based on actual script page use. It is unnecessary to set them here, but the first time used the JavaScript and CSS files will not be loaded and the slideshow will not be shown. Refreshing the page will then show the slideshow.')
+				'desc' => gettext('<strong>NOTE:</strong> the plugin will automatically set the following options based on actual script page use. They may also be set by the themes themselves. It is unnecessary to set them here, but the first time used the JavaScript and CSS files may not be loaded and the slideshow not shown. Refreshing the page will then show the slideshow.')
 		);
 		foreach (getThemeFiles(array('404.php', 'themeoptions.php', 'theme_description.php', 'slideshow.php', 'functions.php', 'password.php', 'sidebar.php', 'register.php', 'contact.php')) as $theme => $scripts) {
 			$list = array();

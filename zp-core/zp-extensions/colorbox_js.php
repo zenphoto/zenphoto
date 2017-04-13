@@ -75,7 +75,7 @@ class colorbox {
 		$c = 10;
 		$opts['note'] = array('key' => 'colorbox_note', 'type' => OPTION_TYPE_NOTE,
 				'order' => $c,
-				'desc' => gettext('<strong>NOTE:</strong> the plugin will automatically set the following options based on actual script page use. It is unnecessary to set them here, but the first time used the JavaScript and CSS files will not be loaded and the colorbox will not be shown. Refreshing the page will then show the colorbox.')
+				'desc' => gettext('<strong>NOTE:</strong> the plugin will automatically set the following options based on actual script page use. They may also be set by the themes themselves. It is unnecessary to set them here, but the first time used the JavaScript and CSS files may not be loaded and the colorbox not shown. Refreshing the page will then show the colorbox.')
 		);
 		foreach (getThemeFiles(array('404.php', 'themeoptions.php', 'theme_description.php')) as $theme => $scripts) {
 			$list = array();
