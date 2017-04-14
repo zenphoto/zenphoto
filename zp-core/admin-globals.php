@@ -165,8 +165,7 @@ if (@$_zp_loggedin) {
 		list($subtabs, $default) = getPluginTabs();
 		$zenphoto_tabs['plugins'] = array('text' => gettext("plugins"),
 				'link' => WEBPATH . "/" . ZENFOLDER . '/admin-plugins.php',
-				'subtabs' => $subtabs,
-				'default' => $default);
+				'subtabs' => $subtabs);
 		$zenphoto_tabs['overview']['subtabs'][gettext('Backup')] = "/" . ZENFOLDER . '/utilities/backup_restore.php?tab=backup';
 	}
 
