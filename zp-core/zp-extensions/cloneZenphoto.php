@@ -46,17 +46,10 @@ if ($plugin_disable) {
 
 		static function tabs($tabs) {
 			if (zp_loggedin(ADMIN_RIGHTS)) {
-				$oldtabs = $tabs;
-				$tabs = array();
-				foreach ($oldtabs as $tab => $data) {
-					if ($tab == 'logs') {
-						$tabs['clone'] = array('text' => gettext("clone"),
-								'link' => WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cloneZenphoto/cloneTab.php',
-								'rights' => ADMIN_RIGHTS,
-								'subtabs' => NULL);
-					}
-					$tabs[$tab] = $data;
-				}
+				$tabs['clone'] = array('text' => gettext("clone"),
+						'link' => WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cloneZenphoto/cloneTab.php',
+						'rights' => ADMIN_RIGHTS,
+						'subtabs' => NULL);
 			}
 
 			return $tabs;

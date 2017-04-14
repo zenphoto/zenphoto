@@ -64,17 +64,19 @@ if (@$_zp_loggedin) {
 	$zenphoto_tabs['edit'] = NULL;
 	$zenphoto_tabs['pages'] = NULL;
 	$zenphoto_tabs['news'] = NULL;
+	$zenphoto_tabs['comments'] = NULL;
 	$zenphoto_tabs['themes'] = NULL;
 	$zenphoto_tabs['plugins'] = NULL;
-	$zenphoto_tabs['development'] = NULL;
-	$zenphoto_tabs['comments'] = NULL;
+	$zenphoto_tabs['menu'] = NULL;
 	$zenphoto_tabs['upload'] = NULL;
+	$zenphoto_tabs['tags'] = NULL;
+	$zenphoto_tabs['clone'] = NULL;
+	$zenphoto_tabs['development'] = NULL;
 
 	if ($_zp_loggedin & OVERVIEW_RIGHTS) {
 		$zenphoto_tabs['overview'] = array('text' => gettext("overview"),
 				'link' => WEBPATH . "/" . ZENFOLDER . '/admin.php',
-				'subtabs' => NULL,
-				'default' => 'overview');
+				'subtabs' => NULL);
 		$zenphoto_tabs['overview']['subtabs'][gettext('Gallery statistics')] = '/' . ZENFOLDER . '/utilities/gallery_statistics.php?tab=gallerystats';
 	}
 	if ($_zp_loggedin & ADMIN_RIGHTS) {
@@ -90,7 +92,6 @@ if (@$_zp_loggedin) {
 
 	if ($_zp_loggedin & MANAGE_ALL_ALBUM_RIGHTS) {
 		$zenphoto_tabs['overview']['subtabs'][gettext('Reset album thumbs')] = "/" . ZENFOLDER . '/utilities/reset_albumthumbs.php?tab=resetthumbs';
-		$zenphoto_tabs['edit']['subtabs'][gettext('Mass-edit albums')] = "/" . ZENFOLDER . '/admin-edit.php?tab=massedit';
 	}
 
 	if (extensionEnabled('zenpage')) {
@@ -164,8 +165,7 @@ if (@$_zp_loggedin) {
 		list($subtabs, $default) = getPluginTabs();
 		$zenphoto_tabs['plugins'] = array('text' => gettext("plugins"),
 				'link' => WEBPATH . "/" . ZENFOLDER . '/admin-plugins.php',
-				'subtabs' => $subtabs,
-				'default' => $default);
+				'subtabs' => $subtabs);
 		$zenphoto_tabs['overview']['subtabs'][gettext('Backup')] = "/" . ZENFOLDER . '/utilities/backup_restore.php?tab=backup';
 	}
 

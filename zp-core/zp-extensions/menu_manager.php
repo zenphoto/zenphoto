@@ -56,24 +56,24 @@ class menu_manager {
 		global $_common_truncate_handler;
 
 		$options = array(
-						gettext('Truncate indicator*') => array('key'			 => 'menu_truncate_indicator', 'type'		 => OPTION_TYPE_TEXTBOX,
-										'order'		 => 2,
-										'disabled' => $_common_truncate_handler,
-										'desc'		 => gettext('Append this string to truncated titles.')),
-						gettext('Truncate titles*')		 => array('key'		 => 'menu_truncate_string', 'type'	 => OPTION_TYPE_NUMBER,
-										'order'	 => 1,
-										'desc'	 => gettext('Limit titles to this many characters. Zero means no limit.'))
+				gettext('Truncate indicator*') => array('key' => 'menu_truncate_indicator', 'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 2,
+						'disabled' => $_common_truncate_handler,
+						'desc' => gettext('Append this string to truncated titles.')),
+				gettext('Truncate titles*') => array('key' => 'menu_truncate_string', 'type' => OPTION_TYPE_NUMBER,
+						'order' => 1,
+						'desc' => gettext('Limit titles to this many characters. Zero means no limit.'))
 		);
 		if ($_common_truncate_handler) {
-			$options['note'] = array('key'		 => 'menu_truncate_note', 'type'	 => OPTION_TYPE_NOTE,
-							'order'	 => 8,
-							'desc'	 => '<p class="notebox">' . $_common_truncate_handler . '</p>');
+			$options['note'] = array('key' => 'menu_truncate_note', 'type' => OPTION_TYPE_NOTE,
+					'order' => 8,
+					'desc' => '<p class="notebox">' . $_common_truncate_handler . '</p>');
 		} else {
 			$_common_truncate_handler = gettext('* These options may be set via the <a onclick="gotoName(\'menu_manager\');"><em>menu_manager</em></a> plugin options.');
-			$options['note'] = array('key'		 => 'menu_truncate_note',
-							'type'	 => OPTION_TYPE_NOTE,
-							'order'	 => 8,
-							'desc'	 => gettext('<p class="notebox">*<strong>Note:</strong> The setting of these options are shared with other plugins.</p>'));
+			$options['note'] = array('key' => 'menu_truncate_note',
+					'type' => OPTION_TYPE_NOTE,
+					'order' => 8,
+					'desc' => gettext('<p class="notebox">*<strong>Note:</strong> The setting of these options are shared with other plugins.</p>'));
 		}
 		return $options;
 	}
@@ -105,17 +105,11 @@ function menu_admin_toolbox_global($zf) {
  */
 function menu_tabs($tabs) {
 	if (zp_loggedin(ADMIN_RIGHTS)) {
-		$newtabs = array();
-		foreach ($tabs as $key => $tab) {
-			if ($key == 'tags') {
-				$newtabs['menu'] = array('text'		 => gettext("menu"),
-								'link'		 => WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/menu_manager/menu_tab.php?page=menu&amp;tab=menu',
-								'default'	 => 'menu',
-								'subtabs'	 => NULL);
-			}
-			$newtabs[$key] = $tab;
-		}
-		return $newtabs;
+		$tabs['menu'] = array('text' => gettext("menu"),
+				'link' => WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/menu_manager/menu_tab.php?page=menu&amp;tab=menu',
+				'default' => 'menu',
+				'subtabs' => NULL
+		);
 	}
 	return $tabs;
 }
@@ -366,9 +360,9 @@ function inventMenuItem($menuset, $visibility) {
 				}
 			}
 			if (!empty($currentkey)) {
-				$item = array('id'				 => 9999, 'sort_order' => $currentkey, 'parentid'	 => $item['id'], 'type'			 => 'image',
-								'include_li' => true, 'title'			 => $_zp_current_image->getTitle(),
-								'show'			 => 1, 'link'			 => '', 'menuset'		 => $menuset);
+				$item = array('id' => 9999, 'sort_order' => $currentkey, 'parentid' => $item['id'], 'type' => 'image',
+						'include_li' => true, 'title' => $_zp_current_image->getTitle(),
+						'show' => 1, 'link' => '', 'menuset' => $menuset);
 			}
 			break;
 		case 'news.php':
@@ -391,9 +385,9 @@ function inventMenuItem($menuset, $visibility) {
 			}
 			if (!empty($currentkey)) {
 				if (is_NewsArticle()) {
-					$item = array('id'				 => 9999, 'sort_order' => $currentkey, 'parentid'	 => $item['id'], 'type'			 => 'article',
-									'include_li' => true, 'title'			 => $_zp_current_article->getTitle(),
-									'show'			 => 1, 'link'			 => '', 'menuset'		 => $menuset);
+					$item = array('id' => 9999, 'sort_order' => $currentkey, 'parentid' => $item['id'], 'type' => 'article',
+							'include_li' => true, 'title' => $_zp_current_article->getTitle(),
+							'show' => 1, 'link' => '', 'menuset' => $menuset);
 				} else {
 					$currentkey = false; // not a news page, must be the index?
 				}
@@ -405,9 +399,9 @@ function inventMenuItem($menuset, $visibility) {
 					if ($item['type'] == 'custompage' && $item['link'] == 'search') {
 						$insertpoint = $item['sort_order'];
 						$currentkey = $insertpoint . '-9999';
-						$item = array('id'				 => 9999, 'sort_order' => $currentkey, 'parentid'	 => $item['id'], 'type'			 => 'page',
-										'include_li' => true, 'title'			 => $_zp_current_page->getTitle(),
-										'show'			 => 1, 'link'			 => '', 'menuset'		 => $menuset);
+						$item = array('id' => 9999, 'sort_order' => $currentkey, 'parentid' => $item['id'], 'type' => 'page',
+								'include_li' => true, 'title' => $_zp_current_page->getTitle(),
+								'show' => 1, 'link' => '', 'menuset' => $menuset);
 						break;
 					}
 				}

@@ -88,18 +88,18 @@ function datepickerJS() {
  * @param string $subtab the sub-tab if any
  */
 function printAdminHeader($tab, $subtab = NULL) {
-	global $_zp_admin_tab, $_zp_admin_subtab, $_zp_gallery, $zenphoto_tabs, $_zp_RTL_css;
+	global $_zp_admin_tab, $_zp_admin_subtab, $_zp_gallery, $zenphoto_tabs, $_zp_RTL_css, $tabtext, $subtabtext;
 	$_zp_admin_tab = $tab;
 	if (isset($_GET['tab'])) {
 		$_zp_admin_subtab = sanitize($_GET['tab'], 3);
 	} else {
 		$_zp_admin_subtab = $subtab;
 	}
-	$tabtext = $_zp_admin_tab;
+	$tabtext = ucfirst($_zp_admin_tab);
 	$tabrow = NULL;
 	foreach ($zenphoto_tabs as $key => $tabrow) {
 		if ($key == $_zp_admin_tab) {
-			$tabtext = $tabrow['text'];
+			$tabtext = ucfirst($tabrow['text']);
 			break;
 		}
 		$tabrow = NULL;
@@ -113,7 +113,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			preg_match('~tab=(.*?)(&|$)~', $link, $matches);
 			if (isset($matches[1])) {
 				if ($matches[1] == $_zp_admin_subtab) {
-					$subtabtext = '-' . $key;
+					$subtabtext = '-' . ucfirst($key);
 					break;
 				}
 			}
@@ -121,7 +121,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	}
 	if (empty($subtabtext)) {
 		if ($_zp_admin_subtab) {
-			$subtabtext = '-' . $_zp_admin_subtab;
+			$subtabtext = '-' . ucfirst($_zp_admin_subtab);
 		}
 	}
 	$multi = getOption('multi_lingual');
@@ -149,7 +149,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 				<?php
 			}
 			?>
-			<title><?php echo sprintf(gettext('%1$s %2$s: %3$s%4$s'), html_encode($_zp_gallery->getTitle()), gettext('admin'), html_encode($tabtext), html_encode($subtabtext)); ?></title>
+			<title><?php echo sprintf(gettext('%1$s %2$s: %3$s%4$s'), html_encode($_zp_gallery->getTitle()), gettext('Admin'), html_encode($tabtext), html_encode($subtabtext)); ?></title>
 			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.js" type="text/javascript"></script>
 			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jqueryui/jquery-ui-zenphoto.js" type="text/javascript"></script>
 			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/zenphoto.js" type="text/javascript" ></script>
@@ -284,18 +284,12 @@ function printAdminHeader($tab, $subtab = NULL) {
 		 * @since  1.0.0
 		 */
 		function printLogoAndLinks() {
-			global $_zp_current_admin_obj, $_zp_admin_tab, $_zp_admin_subtab, $_zp_gallery;
-			if ($_zp_admin_subtab) {
-				$subtab = '-' . $_zp_admin_subtab;
-			} else {
-				$subtab = '';
-			}
+			global $_zp_current_admin_obj, $_zp_admin_tab, $_zp_admin_subtab, $_zp_gallery, $tabtext, $subtabtext;
 			?>
-
-		<p id="admin_head">
+		<div id="admin_head">
 			<span id="administration">
 				<img id="logo" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/zen-logo.png"
-						 title="<?php echo sprintf(gettext('%1$s administration:%2$s%3$s'), html_encode($_zp_gallery->getTitle()), html_encode($_zp_admin_tab), html_encode($subtab)); ?>"
+						 title="<?php echo sprintf(gettext('%1$s administration:%2$s%3$s'), html_encode($_zp_gallery->getTitle()), html_encode($tabtext), html_encode($subtabtext)); ?>"
 						 alt="<?php echo gettext('ZenPhoto20 Administration'); ?>" />
 			</span>
 			<span id="links">
@@ -325,7 +319,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					?>
 				</a>
 			</span>
-		</p>
+		</div>
 		<a href="javascript:" id="return-to-top" class="ignoredirty" title="<?php echo gettext('return to top'); ?>"></a>
 		<?php
 	}
@@ -344,6 +338,8 @@ function printAdminHeader($tab, $subtab = NULL) {
 		<div class="navigation">
 			<ul>
 				<?php
+				$tabc = count($zenphoto_tabs);
+				$tabp = 0;
 				foreach ($zenphoto_tabs as $key => $atab) {
 					if (array_key_exists('alert', $zenphoto_tabs[$key])) {
 						$alert = $zenphoto_tabs[$key]['alert'];
@@ -360,6 +356,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					}
 					$subtabs = $zenphoto_tabs[$key]['subtabs'];
 					$hasSubtabs = is_array($subtabs);
+					$tabp++;
 					?>
 					<li<?php if ($hasSubtabs) echo ' class="has-sub"'; ?>>
 						<a href="<?php echo html_encode($atab['link']); ?>" <?php echo $class; ?>><?php echo html_encode(ucfirst($atab['text'])); ?></a>
@@ -368,8 +365,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 							if (!(isset($atab['ordered']) && $atab['ordered'])) {
 								ksort($subtabs, SORT_NATURAL);
 							}
+							$position = floor($tabp / $tabc * min($tabp, count($subtabs))) * 2.2;
 							?>
-							<ul>
+							<ul<?php if ($position > 0) echo ' style="margin-top: -' . $position . 'em;"' ?>>
 								<?php
 								if ($activeTab) {
 									if (isset($_GET['tab'])) {
@@ -404,7 +402,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 										$subclass = ' class="' . trim($subclass) . '"';
 									}
 									?>
-									<li><a href="<?php echo html_encode($link); ?>"<?php echo $subclass; ?>><?php echo html_encode(ucfirst($subkey)); ?></a></li>
+									<li>
+										<a href="<?php echo html_encode($link); ?>"<?php echo $subclass; ?>><?php echo html_encode(ucfirst($subkey)); ?></a>
+									</li>
 									<?php
 								} // foreach end
 								?>
@@ -1635,7 +1635,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 													 name="disclose_password<?php echo $suffix; ?>"
 													 id="disclose_password<?php echo $suffix; ?>"
 													 onclick="passwordClear('<?php echo $suffix; ?>');
-															 togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?>
+																	 togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?>
 									</label>
 								</td>
 								<td>
@@ -1993,9 +1993,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 name="<?php echo $prefix; ?>Published"
 										 value="1" <?php if ($album->getShow()) echo ' checked="checked"'; ?>
 										 onclick="$('#<?php echo $prefix; ?>publishdate').val('');
-												 $('#<?php echo $prefix; ?>expirationdate').val('');
-												 $('#<?php echo $prefix; ?>publishdate').css('color', 'black');
-												 $('.<?php echo $prefix; ?>expire').html('');"
+													 $('#<?php echo $prefix; ?>expirationdate').val('');
+													 $('#<?php echo $prefix; ?>publishdate').css('color', 'black');
+													 $('.<?php echo $prefix; ?>expire').html('');"
 										 />
 										 <?php echo gettext("Published"); ?>
 						</label>
@@ -2129,7 +2129,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 } else {
 											 ?>
 											 onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');
-													 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
+															 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
 											 <?php
 										 }
 										 ?> />
@@ -4067,30 +4067,30 @@ function printBulkActions($checkarray, $checkAll = false) {
 		<script type="text/javascript">
 			//<!-- <![CDATA[
 			function checkFor(obj) {
-			var sel = obj.options[obj.selectedIndex].value;
-							var mark;
-							switch (sel) {
+				var sel = obj.options[obj.selectedIndex].value;
+				var mark;
+				switch (sel) {
 		<?php
 		foreach ($colorboxBookmark as $key => $mark) {
 			?>
-				case '<?php echo $key; ?>':
-								mark = '<?php echo $mark; ?>';
-								break;
+					case '<?php echo $key; ?>':
+									mark = '<?php echo $mark; ?>';
+									break;
 			<?php
 		}
 		?>
-			default:
-							mark = false;
-							break;
+				default:
+								mark = false;
+								break;
 			}
 			if (mark) {
-			$.colorbox({
-			href: '#' + mark,
-							inline: true,
-							open: true,
-							close: '<?php echo gettext("ok"); ?>'
-			});
-			}
+				$.colorbox({
+					href: '#' + mark,
+					inline: true,
+					open: true,
+					close: '<?php echo gettext("ok"); ?>'
+				});
+				}
 			}
 			// ]]> -->
 		</script>
@@ -4482,27 +4482,27 @@ function stripTableRows($custom) {
 function codeblocktabsJS() {
 	?>
 	<script type="text/javascript" charset="utf-8">
-						// <!-- <![CDATA[
-						$(function () {
-						var tabContainers = $('div.tabs > div');
-										$('.first').addClass('selected');
-						});
-						function cbclick(num, id) {
-						$('.cbx-' + id).hide();
-										$('#cb' + num + '-' + id).show();
-										$('.cbt-' + id).removeClass('selected');
-										$('#cbt' + num + '-' + id).addClass('selected');
-						}
+		// <!-- <![CDATA[
+		$(function () {
+			var tabContainers = $('div.tabs > div');
+			$('.first').addClass('selected');
+		});
+		function cbclick(num, id) {
+			$('.cbx-' + id).hide();
+			$('#cb' + num + '-' + id).show();
+			$('.cbt-' + id).removeClass('selected');
+			$('#cbt' + num + '-' + id).addClass('selected');
+		}
 
 		function cbadd(id, offset) {
-		var num = $('#cbu-' + id + ' li').size() - offset;
-						$('li:last', $('#cbu-' + id)).remove();
-						$('#cbu-' + id).append('<li><a class="cbt-' + id + '" id="cbt' + num + '-' + id + '" onclick="cbclick(' + num + ',' + id + ');" title="' + '<?php echo gettext('codeblock %u'); ?>'.replace(/%u/, num) + '">&nbsp;&nbsp;' + num + '&nbsp;&nbsp;</a></li>');
-						$('#cbu-' + id).append('<li><a id="cbp-' + id + '" onclick="cbadd(' + id + ',' + offset + ');" title="<?php echo gettext('add codeblock'); ?>">&nbsp;&nbsp;+&nbsp;&nbsp;</a></li>');
-						$('#cbd-' + id).append('<div class="cbx-' + id + '" id="cb' + num + '-' + id + '" style="display:none">' +
-						'<textarea name="codeblock' + num + '-' + id + '" class="codeblock" id="codeblock' + num + '-' + id + '" rows="40" cols="60"></textarea>' +
-						'</div>');
-						cbclick(num, id);
+			var num = $('#cbu-' + id + ' li').size() - offset;
+			$('li:last', $('#cbu-' + id)).remove();
+			$('#cbu-' + id).append('<li><a class="cbt-' + id + '" id="cbt' + num + '-' + id + '" onclick="cbclick(' + num + ',' + id + ');" title="' + '<?php echo gettext('codeblock %u'); ?>'.replace(/%u/, num) + '">&nbsp;&nbsp;' + num + '&nbsp;&nbsp;</a></li>');
+			$('#cbu-' + id).append('<li><a id="cbp-' + id + '" onclick="cbadd(' + id + ',' + offset + ');" title="<?php echo gettext('add codeblock'); ?>">&nbsp;&nbsp;+&nbsp;&nbsp;</a></li>');
+			$('#cbd-' + id).append('<div class="cbx-' + id + '" id="cb' + num + '-' + id + '" style="display:none">' +
+							'<textarea name="codeblock' + num + '-' + id + '" class="codeblock" id="codeblock' + num + '-' + id + '" rows="40" cols="60"></textarea>' +
+							'</div>');
+			cbclick(num, id);
 		}
 		// ]]> -->
 	</script>
@@ -5322,7 +5322,7 @@ function linkPickerIcon($obj, $id = NULL, $extra = NULL) {
 	}
 	?>
 	<a onclick="<?php echo $clickid; ?>$('.pickedObject').removeClass('pickedObject');
-										$('#<?php echo $iconid; ?>').addClass('pickedObject');<?php linkPickerPick($obj, $id, $extra); ?>" title="<?php echo gettext('pick source'); ?>">
+				$('#<?php echo $iconid; ?>').addClass('pickedObject');<?php linkPickerPick($obj, $id, $extra); ?>" title="<?php echo gettext('pick source'); ?>">
 		<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" id="<?php echo $iconid; ?>">
 	</a>
 	<?php

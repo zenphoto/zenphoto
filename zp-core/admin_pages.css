@@ -72,7 +72,7 @@ em {
 }
 
 #admin_head {
-	vertical-align: middle;
+	margin-top: 10px;
 }
 
 #logo img {
@@ -85,7 +85,7 @@ em {
 }
 
 #links {
-	padding-right: 1em;
+	padding-right: 2em;
 	padding-top: 1em;
 	float: right;
 	font-size: 100%;
@@ -105,6 +105,7 @@ em {
 }
 
 #content {
+	margin-top: -10px;
 	padding-left: 14em;
 	padding-right: 1em;
 	background-color: #f1f1f1;
@@ -175,9 +176,8 @@ code {
   padding: 0;
   margin: 0;
   border: 0;
-  line-height: 1;
-	margin-top: 20px;
-	padding: 0;
+  line-height: 1em;
+	margin-top: 10px;
 	position: absolute;
 	overflow: visible;
 	z-index: 500;
@@ -258,7 +258,7 @@ code {
 
 .navigation a {
   display: block;
-  padding: 0.7em 1.3em;
+  padding: 0.5em 1.3em;
   color: black;
   text-decoration: none;
   text-transform: uppercase;
@@ -269,7 +269,8 @@ code {
 }
 
 .navigation ul ul {
-	width: 13em;
+	margin-top: -1px;
+	width: 18em;
 }
 
 .navigation > ul > li > a {
@@ -312,10 +313,6 @@ code {
 
 .navigation ul ul a {
 	color: black;
-}
-
-.navigation ul ul li {
-	border-bottom: 1px solid lightgray;
 }
 
 .navigation ul li a.alert,
