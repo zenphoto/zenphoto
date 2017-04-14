@@ -76,8 +76,7 @@ if (@$_zp_loggedin) {
 	if ($_zp_loggedin & OVERVIEW_RIGHTS) {
 		$zenphoto_tabs['overview'] = array('text' => gettext("overview"),
 				'link' => WEBPATH . "/" . ZENFOLDER . '/admin.php',
-				'subtabs' => NULL,
-				'default' => 'overview');
+				'subtabs' => NULL);
 		$zenphoto_tabs['overview']['subtabs'][gettext('Gallery statistics')] = '/' . ZENFOLDER . '/utilities/gallery_statistics.php?tab=gallerystats';
 	}
 	if ($_zp_loggedin & ADMIN_RIGHTS) {

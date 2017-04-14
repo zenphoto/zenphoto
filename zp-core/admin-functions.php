@@ -88,18 +88,18 @@ function datepickerJS() {
  * @param string $subtab the sub-tab if any
  */
 function printAdminHeader($tab, $subtab = NULL) {
-	global $_zp_admin_tab, $_zp_admin_subtab, $_zp_gallery, $zenphoto_tabs, $_zp_RTL_css;
+	global $_zp_admin_tab, $_zp_admin_subtab, $_zp_gallery, $zenphoto_tabs, $_zp_RTL_css, $tabtext, $subtabtext;
 	$_zp_admin_tab = $tab;
 	if (isset($_GET['tab'])) {
 		$_zp_admin_subtab = sanitize($_GET['tab'], 3);
 	} else {
 		$_zp_admin_subtab = $subtab;
 	}
-	$tabtext = $_zp_admin_tab;
+	$tabtext = ucfirst($_zp_admin_tab);
 	$tabrow = NULL;
 	foreach ($zenphoto_tabs as $key => $tabrow) {
 		if ($key == $_zp_admin_tab) {
-			$tabtext = $tabrow['text'];
+			$tabtext = ucfirst($tabrow['text']);
 			break;
 		}
 		$tabrow = NULL;
@@ -113,7 +113,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			preg_match('~tab=(.*?)(&|$)~', $link, $matches);
 			if (isset($matches[1])) {
 				if ($matches[1] == $_zp_admin_subtab) {
-					$subtabtext = '-' . $key;
+					$subtabtext = '-' . ucfirst($key);
 					break;
 				}
 			}
@@ -121,7 +121,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	}
 	if (empty($subtabtext)) {
 		if ($_zp_admin_subtab) {
-			$subtabtext = '-' . $_zp_admin_subtab;
+			$subtabtext = '-' . ucfirst($_zp_admin_subtab);
 		}
 	}
 	$multi = getOption('multi_lingual');
@@ -149,7 +149,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 				<?php
 			}
 			?>
-			<title><?php echo sprintf(gettext('%1$s %2$s: %3$s%4$s'), html_encode($_zp_gallery->getTitle()), gettext('admin'), html_encode($tabtext), html_encode($subtabtext)); ?></title>
+			<title><?php echo sprintf(gettext('%1$s %2$s: %3$s%4$s'), html_encode($_zp_gallery->getTitle()), gettext('Admin'), html_encode($tabtext), html_encode($subtabtext)); ?></title>
 			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.js" type="text/javascript"></script>
 			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jqueryui/jquery-ui-zenphoto.js" type="text/javascript"></script>
 			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/zenphoto.js" type="text/javascript" ></script>
@@ -284,18 +284,12 @@ function printAdminHeader($tab, $subtab = NULL) {
 		 * @since  1.0.0
 		 */
 		function printLogoAndLinks() {
-			global $_zp_current_admin_obj, $_zp_admin_tab, $_zp_admin_subtab, $_zp_gallery;
-			if ($_zp_admin_subtab) {
-				$subtab = '-' . $_zp_admin_subtab;
-			} else {
-				$subtab = '';
-			}
+			global $_zp_current_admin_obj, $_zp_admin_tab, $_zp_admin_subtab, $_zp_gallery, $tabtext, $subtabtext;
 			?>
-
 		<div id="admin_head">
 			<span id="administration">
 				<img id="logo" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/zen-logo.png"
-						 title="<?php echo sprintf(gettext('%1$s administration:%2$s%3$s'), html_encode($_zp_gallery->getTitle()), html_encode($_zp_admin_tab), html_encode($subtab)); ?>"
+						 title="<?php echo sprintf(gettext('%1$s administration:%2$s%3$s'), html_encode($_zp_gallery->getTitle()), html_encode($tabtext), html_encode($subtabtext)); ?>"
 						 alt="<?php echo gettext('ZenPhoto20 Administration'); ?>" />
 			</span>
 			<span id="links">
