@@ -344,6 +344,8 @@ function printAdminHeader($tab, $subtab = NULL) {
 		<div class="navigation">
 			<ul>
 				<?php
+				$tabc = count($zenphoto_tabs);
+				$tabp = 0;
 				foreach ($zenphoto_tabs as $key => $atab) {
 					if (array_key_exists('alert', $zenphoto_tabs[$key])) {
 						$alert = $zenphoto_tabs[$key]['alert'];
@@ -360,6 +362,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					}
 					$subtabs = $zenphoto_tabs[$key]['subtabs'];
 					$hasSubtabs = is_array($subtabs);
+					$tabp++;
 					?>
 					<li<?php if ($hasSubtabs) echo ' class="has-sub"'; ?>>
 						<a href="<?php echo html_encode($atab['link']); ?>" <?php echo $class; ?>><?php echo html_encode(ucfirst($atab['text'])); ?></a>
@@ -368,8 +371,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 							if (!(isset($atab['ordered']) && $atab['ordered'])) {
 								ksort($subtabs, SORT_NATURAL);
 							}
+							$position = floor($tabp / $tabc * min($tabp, count($subtabs))) * 2.2;
 							?>
-							<ul>
+							<ul<?php if ($position > 0) echo ' style="margin-top: -' . $position . 'em;"' ?>>
 								<?php
 								if ($activeTab) {
 									if (isset($_GET['tab'])) {
@@ -404,7 +408,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 										$subclass = ' class="' . trim($subclass) . '"';
 									}
 									?>
-									<li><a href="<?php echo html_encode($link); ?>"<?php echo $subclass; ?>><?php echo html_encode(ucfirst($subkey)); ?></a></li>
+									<li>
+										<a href="<?php echo html_encode($link); ?>"<?php echo $subclass; ?>><?php echo html_encode(ucfirst($subkey)); ?></a>
+									</li>
 									<?php
 								} // foreach end
 								?>

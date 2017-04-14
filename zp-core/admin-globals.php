@@ -93,7 +93,6 @@ if (@$_zp_loggedin) {
 
 	if ($_zp_loggedin & MANAGE_ALL_ALBUM_RIGHTS) {
 		$zenphoto_tabs['overview']['subtabs'][gettext('Reset album thumbs')] = "/" . ZENFOLDER . '/utilities/reset_albumthumbs.php?tab=resetthumbs';
-		$zenphoto_tabs['edit']['subtabs'][gettext('Mass-edit albums')] = "/" . ZENFOLDER . '/admin-edit.php?tab=massedit';
 	}
 
 	if (extensionEnabled('zenpage')) {

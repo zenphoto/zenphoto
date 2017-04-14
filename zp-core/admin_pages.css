@@ -175,9 +175,8 @@ code {
   padding: 0;
   margin: 0;
   border: 0;
-  line-height: 1;
+  line-height: 1em;
 	margin-top: 20px;
-	padding: 0;
 	position: absolute;
 	overflow: visible;
 	z-index: 500;
@@ -258,7 +257,7 @@ code {
 
 .navigation a {
   display: block;
-  padding: 0.7em 1.3em;
+  padding: 0.5em 1.3em;
   color: black;
   text-decoration: none;
   text-transform: uppercase;
@@ -270,7 +269,7 @@ code {
 
 .navigation ul ul {
 	margin-top: -1px;
-	width: 13em;
+	width: 18em;
 }
 
 .navigation > ul > li > a {
@@ -313,10 +312,6 @@ code {
 
 .navigation ul ul a {
 	color: black;
-}
-
-.navigation ul ul li {
-	border-bottom: 1px solid lightgray;
 }
 
 .navigation ul li a.alert,

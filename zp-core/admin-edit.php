@@ -594,6 +594,8 @@ if (isset($_GET['album'])) {
 	}
 	$album = newAlbum($folder);
 	$subtab = setAlbumSubtabs($album);
+} else {
+	$zenphoto_tabs['edit']['subtabs'][gettext('Mass-edit albums')] = "/" . ZENFOLDER . '/admin-edit.php?tab=massedit';
 }
 if (empty($subtab)) {
 	if (isset($_GET['album'])) {
@@ -1253,7 +1255,7 @@ echo "\n</head>";
 												<table class="width100percent" id="image-<?php echo $currentimage; ?>">
 													<tr>
 														<td class="leftcolumn"><?php echo gettext("Title");
-												?></td>
+								?></td>
 														<td class="middlecolumn">
 															<?php print_language_string_list($image->getTitle('all'), $currentimage . '-title', false, NULL, '', '100%'); ?>
 														</td>
@@ -1340,10 +1342,10 @@ echo "\n</head>";
 														?>
 														<label class="checkboxlabel">
 															<input type="checkbox" id="allowcomments-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-allowcomments" value="1" <?php
-															if ($image->getCommentsAllowed()) {
-																echo ' checked = "checked"';
-															}
-															?> />
+									if ($image->getCommentsAllowed()) {
+										echo ' checked = "checked"';
+									}
+														?> />
 																		 <?php echo gettext("Allow Comments"); ?>
 														</label>
 														<?php
@@ -1509,30 +1511,30 @@ echo "\n</head>";
 														<input type="hidden" name="<?php echo $currentimage; ?>-oldrotation" value="<?php echo $rotation; ?>" />
 														<label class="checkboxlabel">
 															<input type="radio" id="rotation_none-<?php echo $currentimage; ?>"	name="<?php echo $currentimage; ?>-rotation" value="0" <?php
-															checked(0, $rotation);
-															echo $disablerotate
-															?> />
+									checked(0, $rotation);
+									echo $disablerotate
+														?> />
 																		 <?php echo gettext('none'); ?>
 														</label>
 														<label class="checkboxlabel">
 															<input type="radio" id="rotation_90-<?php echo $currentimage; ?>"	name="<?php echo $currentimage; ?>-rotation" value="6" <?php
-															checked(6, $rotation);
-															echo $disablerotate
-															?> />
+													 checked(6, $rotation);
+													 echo $disablerotate
+																		 ?> />
 																		 <?php echo gettext('90 degrees'); ?>
 														</label>
 														<label class="checkboxlabel">
 															<input type="radio" id="rotation_180-<?php echo $currentimage; ?>"	name="<?php echo $currentimage; ?>-rotation" value="3" <?php
-															checked(3, $rotation);
-															echo $disablerotate
-															?> />
+													 checked(3, $rotation);
+													 echo $disablerotate
+																		 ?> />
 																		 <?php echo gettext('180 degrees'); ?>
 														</label>
 														<label class="checkboxlabel">
 															<input type="radio" id="rotation_270-<?php echo $currentimage; ?>"	name="<?php echo $currentimage; ?>-rotation" value="8" <?php
-															checked(8, $rotation);
-															echo $disablerotate
-															?> />
+													 checked(8, $rotation);
+													 echo $disablerotate
+																		 ?> />
 																		 <?php echo gettext('270 degrees'); ?>
 														</label>
 														<?php
