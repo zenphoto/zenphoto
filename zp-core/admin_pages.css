@@ -135,8 +135,6 @@ h2.h2_bordered {
 	font-weight: bold;
 	padding: 4px 12px;
 	border-bottom: 2px solid #cccccc;
-	background-image: url(images/admin-headlineback.jpg);
-	background-repeat: repeat-x;
 }
 
 /* edit page subheadlines like "images" or "albums" */
@@ -182,7 +180,7 @@ code {
 	overflow: visible;
 	z-index: 500;
   width: 13em;
-  background: gainsboro;
+  background: #fafafa;
 	zoom: 1;
 }
 
@@ -244,7 +242,6 @@ code {
 	margin-top: 0.03em;
 }
 
-
 .navigation:before {
   content: '';
   display: block;
@@ -274,10 +271,13 @@ code {
 }
 
 .navigation > ul > li > a {
-  border-right: 0.3em solid lightgray;
+  border-right: 0.15em solid lightgray;
   color: black;
 }
 
+.navigation >ul > li:last-of-type > a {
+	border-bottom: 0.15em solid lightgray;
+}
 .navigation li {
 	position: relative;
 }
@@ -327,7 +327,7 @@ code {
 
 .navigation > ul > li a:hover,
 .navigation > ul > li:hover a {
-	background: lightgray !important;
+	background: #e6e6e6 !important;
 	color: black;
 }
 
