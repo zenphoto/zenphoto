@@ -595,7 +595,6 @@ table.options th {
 	padding: 8px 0px 4px 10px;
 	border-bottom: 2px solid #cccccc;
 	background: #ECF1F2;
-	background-image: url(images/admin-headlineback.jpg);
 	background-repeat: repeat-x;
 }
 
@@ -623,7 +622,6 @@ table.options tr td {
 	padding: 8px 0px 4px 10px;
 	border-bottom: 2px solid #cccccc;
 	background: #ECF1F2;
-	background-image: url(images/admin-headlineback.jpg);
 	background-repeat: repeat-x;
 }
 
@@ -1703,7 +1701,6 @@ button:hover:disabled,.buttons a:hover:disabled {
 	text-align: center;
 	background: #ECF1F2;
 	border-bottom: 2px solid #BAC9CF;
-	background-image: url(images/admin-headlineback.jpg);
 	background-repeat: repeat-x;
 }
 
@@ -1711,7 +1708,6 @@ button:hover:disabled,.buttons a:hover:disabled {
 	text-align: center;
 	background: #ECF1F2;
 	border-top: 2px solid #BAC9CF;
-	background-image: url(images/admin-headlineback.jpg);
 	background-repeat: repeat-x;
 }
 
@@ -1887,7 +1883,6 @@ span.tagMatches span {
 	border-left: 1px solid #cccccc;
 	border-right: 1px solid #cccccc;
 	border-top: 1px solid #cccccc;
-	background-image: url(images/admin-headlineback.jpg);
 	background-repeat: repeat-x;
 	margin-bottom: 0;
 }
@@ -1945,7 +1940,6 @@ span.tagMatches span {
 	border-left: 1px solid #cccccc;
 	border-right: 1px solid #cccccc;
 	border-top: 1px solid #cccccc;
-	background-image: url(images/admin-headlineback.jpg);
 	background-repeat: repeat-x;
 	margin: 0;
 }
@@ -2527,7 +2521,6 @@ div.bordered .headline {
 	padding: 8px 10px 13px 10px;
 	border-bottom: 2px solid #cccccc;
 	background: #ECF1F2;
-	background-image: url(images/admin-headlineback.jpg);
 	background-repeat: repeat-x;
 	vertical-align: middle;
 }

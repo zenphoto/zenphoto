@@ -1145,11 +1145,8 @@ zp-core/gd_fonts/cry.gdf
 zp-core/images
 zp-core/images/action.png
 zp-core/images/add.png
-zp-core/images/admin-boxback.jpg
 zp-core/images/admin-buttonback.jpg
 zp-core/images/admin-headerback.jpg
-zp-core/images/admin-headlineback.jpg
-zp-core/images/admin-navtabback.jpg
 zp-core/images/ajax-loader.gif
 zp-core/images/arrow_down.png
 zp-core/images/arrow_in.png
@@ -2475,4 +2472,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-2477
+2474
