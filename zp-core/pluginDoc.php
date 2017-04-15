@@ -103,7 +103,7 @@ if (!defined('OFFSET_PATH')) {
 				if (file_exists($path)) {
 					$ico = str_replace(SERVERPATH, WEBPATH, $path);
 				} else {
-					$ico = 'images/place_holder_icon.png';
+					$ico = 'images/placeholder.png';
 				}
 				break;
 			case 'supplemental':
@@ -149,10 +149,6 @@ if (!defined('OFFSET_PATH')) {
 					#plugin-content {
 						background-color: #f1f1f1;
 						border: 1px solid #CBCBCB;
-						-moz-border-radius: 5px;
-						-khtml-border-radius: 5px;
-						-webkit-border-radius: 5px;
-						border-radius: 5px;
 						padding: 5px;
 					}
 					.doc_box_field {
@@ -163,10 +159,6 @@ if (!defined('OFFSET_PATH')) {
 						margin: 15px;
 						border: 1px solid #cccccc;
 						width: 460px;
-						-moz-border-radius: 5px;
-						-khtml-border-radius: 5px;
-						-webkit-border-radius: 5px;
-						border-radius: 5px;
 					}
 					.moc_button {
 						display: block;
@@ -187,10 +179,6 @@ if (!defined('OFFSET_PATH')) {
 						color: #565656;
 						cursor: pointer;
 						padding: 5px 10px 6px 7px; /* Links */
-						-moz-border-radius: 5px;
-						-khtml-border-radius: 5px;
-						-webkit-border-radius: 5px;
-						border-radius: 5px;
 					}
 					.buttons .tip {
 						text-align: left;

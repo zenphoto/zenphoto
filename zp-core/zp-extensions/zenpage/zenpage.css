@@ -204,10 +204,6 @@ div.zenpagechecklist,
 	background-color: white;
 	padding: 0;
 	margin: 0px 0 0 0;
-	-moz-border-radius: 0px 0px 5px 5px;
-	-khtml-border-radius: 0px 0px 5px 5px;
-	-webkit-border-radius: 0px 0px 5px 5px;
-	border-radius: 0px 0px 5px 5px;
 }
 .zenpagechecklist ul,
 #zenpagetags .tagchecklist ul {
@@ -311,13 +307,8 @@ ul.language_string_list {
 	border-left: 1px solid #E5E5E5;
 	border-right: 1px solid #E5E5E5;
 	border-top: 1px solid #E5E5E5;
-	background-image: url(../../images/admin-headlineback.jpg);
 	background-repeat: repeat-x;
 	margin-bottom: 0;
-	-moz-border-radius: 5px 5px 0px 0px;
-	-khtml-border-radius: 5px 5px 0px 0px;
-	-webkit-border-radius: 5px 5px 0px 0px;
-	border-radius: 5px 05px 0px 0px;
 }
 
 .box-edit-zenpage {
@@ -328,70 +319,66 @@ ul.language_string_list {
 	border-bottom-width: 5px;
 	width: 16em;
 	line-height: 1.5em;
-	-moz-border-radius: 0px 0px 5px 5px;
-	-khtml-border-radius: 0px 0px 5px 5px;
-	-webkit-border-radius: 0px 0px 5px 5px;
-	border-radius: 0px 0px 5px 5px;
-}
-
-/* check box label and p styling - edit page */
-
-.box-edit-zenpage label {
-	display: inline;
-}
-
-.checkbox {
-	margin: 0.3em 0px 0em 0px;
-	padding: 0;
-}
 
 
-/* scheduled publishing
---------------------------*/
-.expire {
-	color: red;
-	font-weight: normal;
-}
+	/* check box label and p styling - edit page */
 
-.scheduledate {
-	color: #FF8A00;
-	font-weight: normal;
-}
+	.box-edit-zenpage label {
+		display: inline;
+	}
 
-.inactivescheduledate {
-	color: red;
-	font-weight: bold;
-}
-
-.expiredate {
-	color:#0080C0;
-	font-weight: normal;
-}
-.expired {
-	color: red;
-	font-weight: bold;
-}
-
-div.floatright form {
-	margin-left: 0px;
-	margin-right: 0px;
-}
-
-form#articledatesdropdown,
-form#unpublisheddropdown,
-form#categoriesdropdown {
-	margin-right: 0px;
-}
-
-form#sortorderdropdown {
-	margin-right: 0px;
-}
+	.checkbox {
+		margin: 0.3em 0px 0em 0px;
+		padding: 0;
+	}
 
 
-/* Checkbox category bulk selector */
-#mass_cats_data li {
-	text-align: left;
-	list-style: none;
-	padding: 0;
-	margin: 0  10px 0 -30px;
-}
+	/* scheduled publishing
+	--------------------------*/
+	.expire {
+		color: red;
+		font-weight: normal;
+	}
+
+	.scheduledate {
+		color: #FF8A00;
+		font-weight: normal;
+	}
+
+	.inactivescheduledate {
+		color: red;
+		font-weight: bold;
+	}
+
+	.expiredate {
+		color:#0080C0;
+		font-weight: normal;
+	}
+	.expired {
+		color: red;
+		font-weight: bold;
+	}
+
+	div.floatright form {
+		margin-left: 0px;
+		margin-right: 0px;
+	}
+
+	form#articledatesdropdown,
+	form#unpublisheddropdown,
+	form#categoriesdropdown {
+		margin-right: 0px;
+	}
+
+	form#sortorderdropdown {
+		margin-right: 0px;
+	}
+
+
+	/* Checkbox category bulk selector */
+	#mass_cats_data li {
+		text-align: left;
+		list-style: none;
+		padding: 0;
+		margin: 0  10px 0 -30px;
+	}
