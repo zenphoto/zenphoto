@@ -133,7 +133,6 @@ if ($saved) {
 ?>
 <h1>
 	<?php
-	$subtab = getCurrentTab();
 	printf(gettext('%1$s plugins'), ucfirst(@$classXlate[$subtab]));
 	?>
 </h1>
@@ -347,12 +346,12 @@ if ($saved) {
 					</td>
 					<td width="60">
 						<span class="icons"><a onclick="$.colorbox({
-									close: '<?php echo gettext("close"); ?>',
-									maxHeight: '80%',
-									maxWidth: '80%',
-									innerWidth: '560px',
-									href: '<?php echo $plugin_URL; ?>'
-								});"><img class="icon-position-top3" src="images/info.png" title="<?php printf(gettext('More information on %s'), $extension); ?>" alt=""></a></span>
+										close: '<?php echo gettext("close"); ?>',
+										maxHeight: '80%',
+										maxWidth: '80%',
+										innerWidth: '560px',
+										href: '<?php echo $plugin_URL; ?>'
+									});"><img class="icon-position-top3" src="images/info.png" title="<?php printf(gettext('More information on %s'), $extension); ?>" alt=""></a></span>
 																	 <?php
 																	 if ($optionlink) {
 																		 ?>
