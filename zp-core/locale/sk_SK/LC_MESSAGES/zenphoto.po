@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: ZenPhoto20 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-07-08 09:50-0800\n"
-"PO-Revision-Date: 2015-06-03 14:13-0800\n"
+"PO-Revision-Date: 2017-04-15 14:30-0700\n"
 "Last-Translator: Stephen <stephen@sbillard.org>\n"
 "Language-Team: Jakub Meisner <jakub@jlfoto.sk>\n"
 "Language: sk_SK\n"
@@ -14,9 +14,8 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Poedit-KeywordsList: gettext_theme\n"
-"X-Generator: Poedit 1.8.1\n"
-"X-Poedit-SearchPath-0: D:\\github\\ZenPhoto20/themes\n"
-"X-Poedit-SearchPath-1: D:\\github\\ZenPhoto20/zp-core\n"
+"X-Generator: Poedit 2.0.1\n"
+"X-Poedit-Basepath: D:/github/ZenPhoto20\n"
 
 #: D:\github\ZenPhoto20/themes/basic/404.php:22
 #: D:\github\ZenPhoto20/themes/basic/archive.php:29
@@ -607,7 +606,7 @@ msgstr "<a href=\"http://www.noscope.com\" target=\"_blank\">Joen Asmussen</a> a
 #: D:\github\ZenPhoto20/themes/basic/theme_description.php:8
 #, fuzzy
 msgid "The simplest theme in 4 distinct flavors. After choosing this theme you can pick the theme color by going to the Admin Options tab and changing the <em>Theme colors</em> option."
-msgstr "Štandardná šablóna je v 4 rôznych variantoch. Keď si ju nastavíte môžete si vybrať farbu šablóny v záložke Administrátorské nastavenia a zmeniť ju v nastavení <em>Farba šablóny</em>."
+msgstr "Najjednoduchší motív v 4 rôznych príchutiach. Po výbere tejto témy si môžete vybrať farbu motívu na karte Admin možnosti a zmenou <em>farby motívu</em> možnosť."
 
 #: D:\github\ZenPhoto20/themes/basic/themeoptions.php:43
 #: D:\github\ZenPhoto20/themes/effervescence+/themeoptions.php:96
@@ -1913,7 +1912,7 @@ msgstr "Vyberte titlelink <em>stránok</em> pre úvodnú stránku. V ponuke sú 
 #: D:\github\ZenPhoto20/themes/gray_highlights/functions.php:11
 #, fuzzy
 msgid "Calendar"
-msgstr "kalendár"
+msgstr "Kalendár"
 
 #: D:\github\ZenPhoto20/themes/gray_highlights/functions.php:35
 #: D:\github\ZenPhoto20/themes/gray_highlights/login.php:5
@@ -1977,7 +1976,7 @@ msgstr "Copyright:"
 #: D:\github\ZenPhoto20/themes/gray_highlights/search.php:39
 #, fuzzy, php-format
 msgid "Total matches: %1$u"
-msgstr "Zhoda pre <em>%1$s</em>: %2$u"
+msgstr "Celkový počet zápasov: %1$ u"
 
 #: D:\github\ZenPhoto20/themes/zenpage/archive.php:39
 #: D:\github\ZenPhoto20/themes/zpArdoise/archive.php:19
@@ -2149,8 +2148,9 @@ msgid "Latest news"
 msgstr "Najnovšie články"
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/inc_footer.php:63
+#, fuzzy
 msgid "You can browse with the arrows keys of your keyboard"
-msgstr ""
+msgstr "Môžete prechádzať s šípok na klávesnici"
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/inc_header.php:14
 #: D:\github\ZenPhoto20/themes/zpArdoise/inc_header.php:317
@@ -2188,7 +2188,7 @@ msgstr "Moje obľúbené"
 #: D:\github\ZenPhoto20/themes/zpArdoise/inc_header.php:62
 #, fuzzy
 msgid "Password Required..."
-msgstr "Požadované heslo"
+msgstr "Nutné heslo"
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/inc_header.php:284
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-header.php:155
@@ -2225,12 +2225,12 @@ msgstr "Náhodné obrázky"
 #: D:\github\ZenPhoto20/themes/zpArdoise/inc_print_image_statistic.php:8
 #, fuzzy
 msgid "Popular images"
-msgstr "Obľúbené tagy:"
+msgstr "Obľúbené obrázky"
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/inc_print_image_statistic.php:16
 #, fuzzy
 msgid "Most rated images"
-msgstr "Najlepšie hodnotené obrázky"
+msgstr "Najviac hodnotené obrázky"
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/inc_print_image_statistic.php:18
 #: D:\github\ZenPhoto20/zp-core/class-feed.php:274
@@ -2239,14 +2239,15 @@ msgstr "Najlepšie hodnotené obrázky"
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/news.php:12
 #: D:\github\ZenPhoto20/themes/zpArdoise/news.php:14
+#, fuzzy
 msgid "newer"
-msgstr ""
+msgstr "novšie"
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/news.php:17
 #: D:\github\ZenPhoto20/themes/zpArdoise/news.php:19
 #, fuzzy
 msgid "older"
-msgstr "najstaršie"
+msgstr "systémov"
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/news.php:29
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/galleryArticles.php:82
@@ -2256,34 +2257,40 @@ msgid "Category"
 msgstr "Kategórie"
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/news.php:38
+#, fuzzy
 msgid " | "
-msgstr ""
+msgstr "|"
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/themeoptions.php:73
+#, fuzzy
 msgid "Use this file as logo"
-msgstr ""
+msgstr "Použiť tento súbor ako logo"
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/themeoptions.php:73
+#, fuzzy
 msgid "Image file for the logo area: enter the full filename (including extension) of the image file located in themes/zpArdoise/images/ (banniere1.jpg for example)."
-msgstr ""
+msgstr "Súbor obrazu pre oblasť logo: zadajte celý názov súboru (vrátane predĺženia) image súbor umiestnený v témy/zpArdoise/images / (banniere1.jpg napríklad)."
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/themeoptions.php:74
+#, fuzzy
 msgid "Show the logo on Image page"
-msgstr ""
+msgstr "Zobraziť logo na stránke obrázka"
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/themeoptions.php:74
 #, fuzzy
 msgid "Check to show the logo on the Image page."
-msgstr "Text pre odkaz na stránku obľúbených."
+msgstr "Skontrolujte Zobraziť logo na stránke obrázok."
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/themeoptions.php:75
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:74
+#, fuzzy
 msgid "Style"
-msgstr ""
+msgstr "Štýl"
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/themeoptions.php:75
+#, fuzzy
 msgid "Choose Dark or Light for color style of the site."
-msgstr ""
+msgstr "Zvoliť tmavé alebo svetlé farby štýl stránky."
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/themeoptions.php:76
 #: D:\github\ZenPhoto20/zp-core/exif/makers/nikon.php:175
@@ -2291,88 +2298,96 @@ msgid "Color"
 msgstr "Farba"
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/themeoptions.php:76
+#, fuzzy
 msgid "Choose the color of links: choose Default to use the default color of Dark or Light style and choose Custom to use a custom value. You can customize these values by editing the file theme/zpArdoise/css/custom.css."
-msgstr ""
+msgstr "Vybrať farbu odkazov: vybrať predvolený používať predvolenú farbu Dark alebo Light štýl a vybrať vlastné používať vlastnú hodnotu. Tieto hodnoty môžete prispôsobiť úpravou súboru theme/zpArdoise/css/custom.css."
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/themeoptions.php:77
 #: D:\github\ZenPhoto20/themes/zpEnlighten/themeoptions.php:37
 #: D:\github\ZenPhoto20/themes/zpskeleton/themeoptions.php:75
 #, fuzzy
 msgid "Choose here any <em>un-published Zenpage page</em> (listed by <em>titlelink</em>) to act as your site's homepage instead the normal gallery index."
-msgstr "Vyberte si <em>nezverejnenú stránku Zenpage</em> (zoradené podľa <em>titlelink</em>), ktorú budete používať namiesto indexu galérie ako domovskú stránku."
+msgstr "Tu vyberiete akúkoľvek <em>un-zverejnené Zenpage stránky</em> (uvádzané podľa <em>titlelink</em>) pôsobiť ako domovskú stránku vašej lokality namiesto normálneho gallery index."
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/themeoptions.php:78
 #, fuzzy
 msgid "Show Archive link"
-msgstr "Archív"
+msgstr "Zobraziť archív odkaz"
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/themeoptions.php:78
+#, fuzzy
 msgid "Display a menu link to the Archive list."
-msgstr ""
+msgstr "Zobraziť ponuku prepojenie do archívu zoznam."
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/themeoptions.php:80
 #, fuzzy
 msgid "Show Tags"
-msgstr "Zobraziť hodnotenie"
+msgstr "Zobraziť tagy"
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/themeoptions.php:80
 #, fuzzy
 msgid "Check to show a tag cloud with all the tags of the gallery."
-msgstr "Dovoľuje návštevníkom nastaviť si šablónu galérie."
+msgstr "Skontrolujte Ukázať tag cloud so všetkými štítkami v galérii."
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/themeoptions.php:81
 #, fuzzy
 msgid "Show Image Statistic strip"
-msgstr "Zobraziť popis obrázku"
+msgstr "Zobraziť obrázok štatistiky strip"
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/themeoptions.php:81
+#, fuzzy
 msgid "Shows a strip of thumbnails on Gallery page, depending of the selected option. NOTE: For anything other than random, the image_statistic plugin must be activated."
-msgstr ""
+msgstr "Zobrazuje pruh miniatúr na stránku galérie, v závislosti od vybratej možnosti. Poznámka: Ak pre nič iné ako náhodné, musí byť aktivovaný image_statistic plugin."
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/themeoptions.php:82
 #, fuzzy
 msgid "Use Galleriffic script"
-msgstr "Popis galérie:"
+msgstr "Galleriffic skript použiť"
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/themeoptions.php:82
+#, fuzzy
 msgid "Check to use the Galleriffic script. Uncheck to use a standard display. This standard display is also displayed when javascript is disabled in the browser."
-msgstr ""
+msgstr "Kontrola použitia Galleriffic skriptu. Zrušte začiarknutie políčka použiť štandardné zobrazenie. Toto štandardné zobrazenie sa zobrazuje aj keď je vypnutý javascript v prehliadači."
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/themeoptions.php:83
+#, fuzzy
 msgid "Galleriffic slideshow delay"
-msgstr ""
+msgstr "Oneskorenie prezentácie Galleriffic"
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/themeoptions.php:83
+#, fuzzy
 msgid "If Galleriffic is used, enter the delay of the gallerific slideshow in ms (eg 3000)."
-msgstr ""
+msgstr "Ak Galleriffic používa, zadajte oneskorenie prezentácie gallerific ms (napr. 3000)."
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/themeoptions.php:84
 #, fuzzy
 msgid "Use Colorbox in Album page"
-msgstr "Použiť Colorbox"
+msgstr "Používať Colorbox Album stránke"
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/themeoptions.php:84
+#, fuzzy
 msgid "Check to display the full size image with Colorbox in album page, if galleriffic is used or not. NOTE : in that case, Image page will never be used."
-msgstr ""
+msgstr "Či chcete zobraziť v plnej veľkosti s Colorbox album stránke galleriffic používa alebo nie. Poznámka: v tomto prípade obrázok stránky nikdy použije."
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/themeoptions.php:85
 #, fuzzy
 msgid "Use Colorbox in Image page"
-msgstr "Typ obrázku Colorbox"
+msgstr "Použitie Colorbox obrázok stránky"
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/themeoptions.php:85
 #, fuzzy
 msgid "Check to display the full size image with Colorbox in Image page."
-msgstr "Zaškrtnutím sa v Colorbox-e bude zobrazovať obrázok v plnej veľkosti."
+msgstr "Skontrolujte zobrazenie v plnej veľkosti s Colorbox obrázok stránky."
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/themeoptions.php:86
 #, fuzzy
 msgid "Show image EXIF data"
-msgstr "Zobraziť popis obrázku"
+msgstr "Zobraziť obrázok EXIF dáta"
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/themeoptions.php:86
+#, fuzzy
 msgid "Show the main EXIF Data on Image page (Model, FocalLength, FNumber, ExposureTime, ISOSpeedRatings). Remember you have to check these EXIFs data on admin>image>information EXIF."
-msgstr ""
+msgstr "Zobraziť hlavné EXIF dáta na stránke obrázka (Model, FocalLength, FNumber, ExposureTime, ISOSpeedRatings). Pamätajte, musíte skontrolovať tieto údaje EXIFs admin > obraz > informácie EXIF."
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/themeoptions.php:129
 #: D:\github\ZenPhoto20/themes/zpEnlighten/themeoptions.php:47
@@ -2384,7 +2399,7 @@ msgstr "Žiadna nezverejnená stránka nie je k dispozícii"
 #: D:\github\ZenPhoto20/themes/zpEnlighten/404.php:28
 #, fuzzy
 msgid "The Object you are requesting cannot be found."
-msgstr "Objekt Zenphota, ktorý požadujete, sa nedá nájsť."
+msgstr "Nedá sa nájsť objekt žiadate."
 
 #: D:\github\ZenPhoto20/themes/zpEnlighten/404.php:30
 #: D:\github\ZenPhoto20/themes/zpminimal/inc-footer.php:23
@@ -2421,7 +2436,7 @@ msgstr "Spustiť prezeranie"
 #: D:\github\ZenPhoto20/themes/zpEnlighten/contact.php:33
 #, fuzzy
 msgid "Send me a message of Love"
-msgstr "Odoslať ďalšiu správu."
+msgstr "Pošlite mi správu lásky"
 
 #: D:\github\ZenPhoto20/themes/zpEnlighten/image.php:120
 #: D:\github\ZenPhoto20/zp-core/template-functions.php:2454
@@ -2445,7 +2460,7 @@ msgstr "Odoslať"
 #: D:\github\ZenPhoto20/themes/zpEnlighten/password_form.php:28
 #, fuzzy, php-format
 msgid "Hint: %s"
-msgstr "Verzia: %s"
+msgstr "Tip: %s"
 
 #: D:\github\ZenPhoto20/themes/zpEnlighten/search.php:89
 #: D:\github\ZenPhoto20/themes/zpEnlighten/search.php:118
@@ -2457,23 +2472,23 @@ msgstr "%s"
 #: D:\github\ZenPhoto20/themes/zpEnlighten/search.php:126
 #, fuzzy, php-format
 msgid "%1$s "
-msgstr "%1$s: %2$s"
+msgstr "%1$s"
 
 #: D:\github\ZenPhoto20/themes/zpEnlighten/sidebar.php:52
 #, fuzzy
 msgid "Latest notes"
-msgstr "Najnovšie články"
+msgstr "Najnovšie poznámky"
 
 #: D:\github\ZenPhoto20/themes/zpEnlighten/sidebar.php:67
 #, fuzzy
 msgid "Toolbox"
-msgstr "Administrátorká sekcia"
+msgstr "Toolbox"
 
 #: D:\github\ZenPhoto20/themes/zpEnlighten/sidebar.php:75
 #: D:\github\ZenPhoto20/themes/zpEnlighten/sidebar.php:78
 #, fuzzy
 msgid "Site archive view"
-msgstr "Prehľad archívu"
+msgstr "Zobrazenie lokality Archív"
 
 #: D:\github\ZenPhoto20/themes/zpEnlighten/sidebar.php:83
 msgid "Album RSS feed"
@@ -2482,33 +2497,34 @@ msgstr "RSS kanál albumu"
 #: D:\github\ZenPhoto20/themes/zpEnlighten/sidebar.php:87
 #, fuzzy
 msgid "Notes RSS feed"
-msgstr "RSS kanály"
+msgstr "Poznámky RSS feed"
 
 #: D:\github\ZenPhoto20/themes/zpEnlighten/theme_description.php:8
+#, fuzzy
 msgid "Theme derived from Zenpage theme 1.3. Really more just a skin than a custom theme."
-msgstr ""
+msgstr "Téma odvodených z témy Zenpage 1.3. Naozaj viac len pleť ako vlastný motív."
 
 #: D:\github\ZenPhoto20/themes/zpEnlighten/themeoptions.php:36
 #, fuzzy
 msgid "Enable this if you want to show the news section's first page on the <code>index.php</code> page."
-msgstr "Zapnúť ak chcete aby sa vám na domovskej <code>index.php</code> stránke zobrazovala sekcia správ."
+msgstr "Túto možnosť povoľte, ak chcete zobraziť prvú stranu časti správy na <code>index.php</code> stránku."
 
 #: D:\github\ZenPhoto20/themes/zpEnlighten/themeoptions.php:39
 #, fuzzy
 msgid "Check this if you want to use the <em>menu_manager</em> plugin if enabled to build a custom menu instead of the separate standard ones. As standard menu set named \"zenpage\" is created and used automatically."
-msgstr "Zapnite ak chcete použiť zásuvný modul <em>menu_manager</em> na vytvorenie upravenej ponuky menu namiesto štandardnej. Štandardné menu \"zenpage\" je tvorené a používané automaticky."
+msgstr "Pozrite sa Ak chcete používať <em>menu_manager</em> plugin povolen├╜ vybudovať vlastnú ponuku namiesto samostatné štandardné kodeky. Ako štandardný súbor s názvom \"zenpage\" vytvorený a používaný automaticky."
 
 #: D:\github\ZenPhoto20/themes/zpfocus/404.php:5
 #, fuzzy
 msgid "Page not found..."
-msgstr "Stránka nenájdená"
+msgstr "Stránka sa nenašla"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/404.php:14
 #: D:\github\ZenPhoto20/themes/zpminimal/404.php:9
 #: D:\github\ZenPhoto20/themes/zpskeleton/404.php:14
 #, fuzzy
 msgid "The page you are requesting cannot be found."
-msgstr "Objekt Zenphota, ktorý požadujete, sa nedá nájsť."
+msgstr "Stránky, ktoré požadujete sa nedá nájsť."
 
 #: D:\github\ZenPhoto20/themes/zpfocus/404.php:16
 #: D:\github\ZenPhoto20/themes/zpminimal/404.php:13
@@ -2535,18 +2551,18 @@ msgstr "Strana: %s"
 #: D:\github\ZenPhoto20/themes/zpfocus/favorites.php:22
 #, fuzzy
 msgid "| Tags:  "
-msgstr "Tagy:"
+msgstr "Značky:"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/album.php:21
 #: D:\github\ZenPhoto20/themes/zpfocus/favorites.php:24
 #, fuzzy
 msgid "Edit Description..."
-msgstr "Popis"
+msgstr "Upravte popis..."
 
 #: D:\github\ZenPhoto20/themes/zpfocus/album.php:26
 #, fuzzy
 msgid "SubAlbums in "
-msgstr "Podalbumy"
+msgstr "SubAlbums v"
 
 msgid "New album name?"
 msgstr "Nový názov albumu?"
@@ -2562,7 +2578,7 @@ msgstr "Nový album"
 #: D:\github\ZenPhoto20/themes/zpfocus/favorites.php:51
 #, fuzzy
 msgid "View SubAlbum:"
-msgstr "Prezrieť album"
+msgstr "Zobraziť SubAlbum:"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/album.php:86
 #: D:\github\ZenPhoto20/themes/zpfocus/favorites.php:85
@@ -2572,13 +2588,13 @@ msgstr "Prezrieť album"
 #: D:\github\ZenPhoto20/themes/zpmasonry/search.php:41
 #, fuzzy
 msgid "Play Slideshow"
-msgstr "Prezentácia"
+msgstr "Prehrať prezentáciu"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/album.php:94
 #: D:\github\ZenPhoto20/themes/zpfocus/favorites.php:93
 #, fuzzy
 msgid "Images in "
-msgstr "obrázky"
+msgstr "obrázky v"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/album.php:150
 #: D:\github\ZenPhoto20/themes/zpfocus/favorites.php:144
@@ -2586,7 +2602,7 @@ msgstr "obrázky"
 #: D:\github\ZenPhoto20/themes/zpfocus/search.php:201
 #, fuzzy
 msgid "Prev"
-msgstr "Predchádzajúci text"
+msgstr "Späť"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/album.php:150
 #: D:\github\ZenPhoto20/themes/zpfocus/favorites.php:144
@@ -2609,14 +2625,14 @@ msgstr "Archív galérie"
 #: D:\github\ZenPhoto20/themes/zpskeleton/archive.php:19
 #, fuzzy
 msgid "News Archive"
-msgstr "Archív článkov"
+msgstr "Archív aktualít"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/functions.php:93
 #: D:\github\ZenPhoto20/themes/zpmasonry/functions.php:233
 #: D:\github\ZenPhoto20/themes/zpskeleton/functions.php:111
 #, fuzzy
 msgid "Search Result"
-msgstr "Hľadať v správach"
+msgstr "Výsledok hľadania"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/gallery.php:14
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-header.php:112
@@ -2627,7 +2643,7 @@ msgstr "Hľadať v správach"
 #: D:\github\ZenPhoto20/themes/zpskeleton/inc-header.php:119
 #, fuzzy
 msgid "Latest News"
-msgstr "Najnovšie články"
+msgstr "Najnovšie správy"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/gallery.php:19
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-header.php:108
@@ -2637,44 +2653,45 @@ msgstr "Najnovšie články"
 #: D:\github\ZenPhoto20/themes/zpskeleton/inc-header.php:115
 #, fuzzy
 msgid "Latest Albums"
-msgstr "Najnovšie albumy"
+msgstr "Najnovšie Albumy"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/image.php:37
 #, fuzzy
 msgid "EXIF Metadata"
-msgstr "Metadáta"
+msgstr "EXIF metadáta"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/image.php:39
+#, fuzzy
 msgid "TAGS:  "
-msgstr ""
+msgstr "Kľúčové slová"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/image.php:42
 #, fuzzy
 msgid "(Edit Description...)"
-msgstr "Popis"
+msgstr "(Upraviť popis...)"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-footer.php:6
 #, fuzzy
 msgid "all rights reserved"
-msgstr "Žiadna strénka nie je registrovaná"
+msgstr "VŠETKY PRÁVA VYHRADENÉ"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-footer.php:39
 #: D:\github\ZenPhoto20/themes/zpminimal/inc-footer.php:7
 #, fuzzy
 msgid "Subscribe: "
-msgstr "Odoberať komentáre"
+msgstr "Registrácia"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-footer.php:42
 #: D:\github\ZenPhoto20/themes/zpminimal/inc-footer.php:10
 #, fuzzy
 msgid "This Album"
-msgstr "Prezrieť album"
+msgstr "Tento Album"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-footer.php:45
 #: D:\github\ZenPhoto20/themes/zpminimal/inc-footer.php:12
 #, fuzzy
 msgid "Gallery Images"
-msgstr "všetky obrázky"
+msgstr "Galéria"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-header.php:34
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-header.php:47
@@ -2694,7 +2711,7 @@ msgstr "všetky obrázky"
 #: D:\github\ZenPhoto20/themes/zpskeleton/inc-header.php:126
 #, fuzzy
 msgid "Latest Comments"
-msgstr "(najnovšie komentáre)"
+msgstr "Najnovšie komentáre"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-header.php:91
 #: D:\github\ZenPhoto20/themes/zpmasonry/inc-header.php:94
@@ -2702,22 +2719,24 @@ msgstr "(najnovšie komentáre)"
 #: D:\github\ZenPhoto20/themes/zpskeleton/inc-header.php:97
 #, fuzzy
 msgid "Password Required"
-msgstr "Požadované heslo"
+msgstr "Nutné heslo"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-header.php:95
 #: D:\github\ZenPhoto20/themes/zpmasonry/inc-header.php:98
 #: D:\github\ZenPhoto20/themes/zpminimal/inc-header.php:104
 #: D:\github\ZenPhoto20/themes/zpskeleton/inc-header.php:101
+#, fuzzy
 msgid "404 Not Found..."
-msgstr ""
+msgstr "Stránka sa nenašla"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-header.php:157
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-header.php:171
 #: D:\github\ZenPhoto20/themes/zpmasonry/inc-footer.php:33
 #: D:\github\ZenPhoto20/themes/zpmasonry/inc-header.php:141
 #: D:\github\ZenPhoto20/themes/zpmasonry/inc-header.php:156
+#, fuzzy
 msgid "image {current} of {total}"
-msgstr ""
+msgstr "obrázok {current} z {total}"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-header.php:158
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-header.php:172
@@ -2729,37 +2748,39 @@ msgid "previous"
 msgstr "späť"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-header.php:237
+#, fuzzy
 msgid "SEARCH"
-msgstr ""
+msgstr "HĽADAŤ"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-sidebar.php:13
 #, fuzzy
 msgid "Random Album Image"
-msgstr "Náhodné albumy"
+msgstr "Náhodný Album obrázok"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-sidebar.php:17
 #, fuzzy
 msgid "Random Gallery Image"
-msgstr "Náhodné obrázky"
+msgstr "Náhodná Galéria obrázkov"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-sidebar.php:43
+#, fuzzy
 msgid "About"
-msgstr ""
+msgstr "O"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-sidebar.php:52
 #, fuzzy
 msgid "More News"
-msgstr "Správy"
+msgstr "Ďalšie novinky"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-sidebar.php:75
 #, fuzzy
 msgid "Latest Gallery Comments"
-msgstr "Komentáre galérie"
+msgstr "Galéria najnovšie komentáre"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-sidebar.php:80
 #, fuzzy
 msgid "Latest News Comments"
-msgstr "Komentáre článkov / stránok"
+msgstr "Najnovšie novinky komentáre"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-sidebar.php:91
 #: D:\github\ZenPhoto20/themes/zpmasonry/news.php:16
@@ -2784,7 +2805,7 @@ msgstr "Tagy:"
 #: D:\github\ZenPhoto20/themes/zpskeleton/password.php:15
 #, fuzzy
 msgid "Please Login"
-msgstr "Skúste to znova"
+msgstr "Prosím prihláste sa"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/password.php:17
 #: D:\github\ZenPhoto20/themes/zpmasonry/password.php:21
@@ -2792,222 +2813,243 @@ msgstr "Skúste to znova"
 #: D:\github\ZenPhoto20/themes/zpskeleton/password.php:19
 #, fuzzy
 msgid "You are logged in..."
-msgstr "už ste prihlasený(á)."
+msgstr "Ste prihlásení"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/search.php:93
 #, fuzzy
 msgid "Album Search Results"
-msgstr "Prístup k albumu"
+msgstr "Výsledky hľadania album"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/search.php:105
 #: D:\github\ZenPhoto20/themes/zpfocus/search.php:106
 #, fuzzy
 msgid "View Album:"
-msgstr "Prezrieť album"
+msgstr "Zobraziť Album:"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/search.php:154
 #, fuzzy
 msgid "Image Search Results"
-msgstr "Obrázok už existuje."
+msgstr "Výsledky vyhľadávania obrázkov"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/search.php:214
 #, fuzzy
 msgid "Sorry, no matches. Try refining your search."
-msgstr "Zhoda nenájdená. Skúste upresniť vaše vyhľadávanie."
+msgstr "Ospravedlňujeme sa, žiadne zápasy. Skúste vyhľadávanie upraviť."
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:67
 #, fuzzy
 msgid "Tagline"
-msgstr "Byline"
+msgstr "Línia tagov"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:67
 #, fuzzy
 msgid "The text above the sitename on the home page."
-msgstr "Text pre odkaz na stránku obľúbených."
+msgstr "Text nad sitename na domovskej stránke."
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:68
 #, fuzzy
 msgid "Album Menu Type"
-msgstr "Index albumov"
+msgstr "Album Menu typ"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:68
+#, fuzzy
 msgid "Choose whether to show a dropdown menu item in the main menu for all your albums or a jump menu next to the search input. For sites with a lot of albums, the jump menu is recommended."
-msgstr ""
+msgstr "Vyberte, či chcete zobraziť rozbaľovacie menu položky v hlavnom menu pre všetky vaše albumy alebo skok menu vedľa vstupu pre vyhľadávanie. Pre stránky s množstvom albumov, odporúča sa prejsť menu."
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:69
 #, fuzzy
 msgid "Show Archive Link"
-msgstr "Archív"
+msgstr "Zobraziť archív odkaz"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:69
+#, fuzzy
 msgid "Display a menu link drop down for the dated archive of images."
-msgstr ""
+msgstr "Zobraziť prepojenie rozbaľovacieho menu pre datované Archív obrázkov."
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:71
+#, fuzzy
 msgid "Use Image as Logo?"
-msgstr ""
+msgstr "Použiť obrázok ako"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:71
+#, fuzzy
 msgid "Check to use an image file instead of text as your logo."
-msgstr ""
+msgstr "Skontrolujte, či použiť obrázok namiesto textu ako svoje logo."
 
 msgid "Delete image"
 msgstr "Vymazať obrázok"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:72
+#, fuzzy
 msgid "Use Image as Logo Filename:"
-msgstr ""
+msgstr "Použiť obrázok ako Logo Filename:"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:72
+#, fuzzy
 msgid "If checked above, enter full file name of logo file including file extension(image must be located within the images folder of the zpFocus theme folder). "
-msgstr ""
+msgstr "Ak je zaškrtnuté vyššie, zadajte celý názov logo súboru vrátane prípony súboru (obrázok musí byť umiestnený v priečinku obrázky z priečinka zpFocus tému)."
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:73
 #, fuzzy
 msgid "Choose here any <em>unpublished Zenpage page</em> (listed by <em>titlelink</em>) to act as your site's homepage instead the normal gallery index."
-msgstr "Vyberte si <em>nezverejnenú stránku Zenpage</em> (zoradené podľa <em>titlelink</em>), ktorú budete používať namiesto indexu galérie ako domovskú stránku."
+msgstr "Tu vyberiete všetky <em>nepublikované Zenpage stránky</em> (uvádzané podľa <em>titlelink</em>) pôsobiť ako domovskú stránku vašej lokality namiesto normálneho gallery index."
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:74
 #, fuzzy
 msgid "Spotlight"
-msgstr "Blesk"
+msgstr "svetlomet"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:74
+#, fuzzy
 msgid "Select what to use in the spotlight area. Latest News obviously requires ZenPage."
-msgstr ""
+msgstr "Vyberte, čo chcete použiť v oblasti spotlight. Novinka samozrejme vyžaduje ZenPage."
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:75
+#, fuzzy
 msgid "Spotlight Text"
-msgstr ""
+msgstr "Reflektor Text"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:75
+#, fuzzy
 msgid "Enter \"Spotlight Text\" if option above for the spotlight area is set to manual.  If Latest News is selected above this text will NOT be displayed."
-msgstr ""
+msgstr "Ak možnosť vyššie pre oblasť spotlight je nastavený na manuálne zadať \"Spotlight Text\".  Ak Novinky je vybraté vyššie tento text sa nezobrazí."
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:76
+#, fuzzy
 msgid "Check to utilize the jQuery script colorbox to zoom images on the album page."
-msgstr ""
+msgstr "Skontrolujte, či využiť jQuery colorbox skript pre zväčšenie obrázkov na stránke."
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:77
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:115
 #: D:\github\ZenPhoto20/themes/zpminimal/themeoptions.php:37
 #, fuzzy
 msgid "Colorbox Style"
-msgstr "Šablóna Colorboxu"
+msgstr "ColorBox štýl"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:77
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:117
 #: D:\github\ZenPhoto20/themes/zpminimal/themeoptions.php:37
+#, fuzzy
 msgid "Select the Colorbox style you wish to use (examples on the colorbox site)."
-msgstr ""
+msgstr "Vyberte Colorbox štýl, ktorý chcete použiť (príklady na stránke colorbox)."
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:78
 #, fuzzy
 msgid "Colorbox Target Sized Image"
-msgstr "Názov obrázku Colorboxu"
+msgstr "ColorBox cieľovej veľkosti obrazu"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:78
+#, fuzzy
 msgid "Click to enable colorbox targeting a sized image of 800px (longest side), instead of the full original image. This is usefull if you upload large images as you can set Colorbox to target a smaller, resized version."
-msgstr ""
+msgstr "Kliknite na položku umožniť colorbox zacielenie veľkosti obrázka 800px (najdlhšia strana), miesto plné pôvodný obrázok. To je užitočné, ak si nahrať veľké obrázky, ako môžete nastaviť Colorbox zamerať sa na menšie, zmenenou verziou."
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:79
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:118
 #, fuzzy
 msgid "Colorbox Transition Type"
-msgstr "Colorbox: prelínanie"
+msgstr "Typ prechodu ColorBox"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:79
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:120
 #, fuzzy
 msgid "The colorbox transition type. Can be set to elastic, fade, or none."
-msgstr "Efekt prelínania Colorbox, ktorý sa použije."
+msgstr "Typ prechodu colorbox. Je možné nastaviť elastické, fade alebo none."
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:80
 #, fuzzy
 msgid "Use Colorbox Slideshow"
-msgstr "Použiť Colorbox"
+msgstr "Použite Colorbox Slideshow"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:80
+#, fuzzy
 msgid "Check to utilize the jQuery script colorbox to display a slideshow on the album page."
-msgstr ""
+msgstr "Skontrolujte, či využiť jQuery colorbox skript na zobrazenie prezentácie na stránke albumu."
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:81
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:121
 #, fuzzy
 msgid "Colorbox Slideshow Speed"
-msgstr "Prezentácia: rýchlosť"
+msgstr "ColorBox rýchlosť prezentácie"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:81
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:123
+#, fuzzy
 msgid "Enter a number here in milliseconds that determines the colorbox slideshow speed. Default is '2500'."
-msgstr ""
+msgstr "Zadajte číslo v milisekundách, ktorý určuje rýchlosť prezentácie colorbox. Predvolená hodnota je \"2500\"."
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:82
 #, fuzzy
 msgid "Random Image Option?"
-msgstr "Náhodné obrázky"
+msgstr "Náhodný obrázok možnosť?"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:82
+#, fuzzy
 msgid "Choose how to display random image(s), top left. Or select none to not display."
-msgstr ""
+msgstr "Výber spôsobu zobrazenia náhodných obrázkov, hore vľavo. Alebo vyberte žiadne, ak chcete zobraziť."
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:83
 #, fuzzy
 msgid "Rotator Transition Effect?"
-msgstr "Colorbox: prelínanie"
+msgstr "Rotátor prechodový efekt?"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:83
+#, fuzzy
 msgid "Choose the transition effect, if rotator is selected above."
-msgstr ""
+msgstr "Výber prechodového efektu, ak je rotátorovej je vybraté vyššie."
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:84
 #, fuzzy
 msgid "Rotator Speed?"
-msgstr "Rýchlosť uzávierky"
+msgstr "Rotátor rýchlosť?"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:84
 #, fuzzy
 msgid "Choose the delay of each rotation in milliseconds."
-msgstr "Rýchlosť prelínania v milisekundách"
+msgstr "Vyberte oneskorenie každej rotácie v milisekundách."
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:85
 #, fuzzy
 msgid "Image Final Link Option"
-msgstr "Úryvok obrázku"
+msgstr "Záverečná odkaz možnosť obrázok"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:85
+#, fuzzy
 msgid "Select the final image link option as viewed on image.php.  Default is no link, but choose standard (or new to open in new window) if you want to take advantage of some of the core image link options (such as automatic download)."
-msgstr ""
+msgstr "Vyberte možnosť prepojenie výsledného obrazu, pri pohľade na image.php.  Predvolený je žiadny odkaz, ale vybrať štandardné (alebo nový otvoriť v novom okne) Ak chcete využiť niektoré Core image odkaz možnosti (napr. automatické sťahovanie)."
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:86
+#, fuzzy
 msgid "Show ZenPhoto Credit"
-msgstr ""
+msgstr "Zobraziť ZenPhoto úveru"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:86
+#, fuzzy
 msgid "Check to display the Powered by ZenPhoto20 link in the footer."
-msgstr ""
+msgstr "Skontrolovať zobrazenie Powered ZenPhoto20 odkaz v zápätia."
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:87
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:147
 #: D:\github\ZenPhoto20/themes/zpskeleton/themeoptions.php:80
 #, fuzzy
 msgid "Custom CSS"
-msgstr "Používatelské nastavenie"
+msgstr "Custom CSS"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:87
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:150
 #: D:\github\ZenPhoto20/themes/zpskeleton/themeoptions.php:80
+#, fuzzy
 msgid "Enter any custom CSS, safely carries over upon theme upgrade."
-msgstr ""
+msgstr "Zadajte akékoľvek vlastné CSS, bezpečne nesie cez na tému inovácie."
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:88
 #, fuzzy
 msgid "Enable Zenpage News"
-msgstr "Povoliť zásuvný modul Zenpage CMS"
+msgstr "Umožniť Zenpage novinky"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:88
+#, fuzzy
 msgid "Check to enable the news function of Zenpage (default). Uncheck to use pages only (hides menu items and search results of news)."
-msgstr ""
+msgstr "Začiarknutím tohto políčka povolíte funkciu news Zenpage (predvolené). Zrušte začiarknutie políčka používať stránky len (skryje položky ponuky a výsledky vyhľadávania správ)."
 
 #: D:\github\ZenPhoto20/themes/zpfocus/z_comment_form/comment_form.php:18
 #: D:\github\ZenPhoto20/themes/zpskeleton/comment_form/comment_form.php:16
@@ -3019,7 +3061,7 @@ msgstr "%sMeno:"
 #: D:\github\ZenPhoto20/themes/zpskeleton/comment_form/comment_form.php:18
 #, fuzzy
 msgid " <em>anonymous</em> "
-msgstr "<em>anonym</em>"
+msgstr "<em>anonymný</em>"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/z_comment_form/comment_form.php:35
 #: D:\github\ZenPhoto20/themes/zpskeleton/comment_form/comment_form.php:31
@@ -3074,7 +3116,7 @@ msgstr "Vložiť CAPTCHA:"
 #: D:\github\ZenPhoto20/themes/zpskeleton/comment_form/comment_form.php:82
 #, fuzzy
 msgid "Private comment (don't publish)"
-msgstr "Súkromný komentár (nezverejňovať)"
+msgstr "Súkromné komentár (Nezverejňuj)"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/z_comment_form/comment_form.php:107
 #: D:\github\ZenPhoto20/themes/zpskeleton/comment_form/comment_form.php:66
@@ -3111,7 +3153,7 @@ msgstr "Firma<strong>%s</strong>:"
 #: D:\github\ZenPhoto20/themes/zpskeleton/contact_form/form.php:34
 #, fuzzy, php-format
 msgid "Sdiveet<strong>%s</strong>:"
-msgstr "Ulica<strong>%s</strong>:"
+msgstr "Sdiveet<strong>%s</strong>:"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/z_contact_form/form.php:41
 #: D:\github\ZenPhoto20/themes/zpskeleton/contact_form/form.php:41
@@ -3129,7 +3171,7 @@ msgstr "Okres<strong>%s</strong>:"
 #: D:\github\ZenPhoto20/themes/zpskeleton/contact_form/form.php:55
 #, fuzzy, php-format
 msgid "Coundivy<strong>%s</strong>:"
-msgstr "Štát<strong>%s</strong>:"
+msgstr "Coundivy<strong>%s</strong>:"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/z_contact_form/form.php:62
 #: D:\github\ZenPhoto20/themes/zpskeleton/contact_form/form.php:62
@@ -3160,19 +3202,19 @@ msgstr "Telefón<strong>%s</strong>:"
 #: D:\github\ZenPhoto20/themes/zpskeleton/register_user/register_user_form.php:60
 #, fuzzy
 msgid "Enter CAPTCHA<strong>*</strong>:"
-msgstr "Vložiť CAPTCHA<strong>*</strong>"
+msgstr "Opíšte text z obrázku"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/z_contact_form/form.php:102
 #: D:\github\ZenPhoto20/themes/zpskeleton/contact_form/form.php:99
 #, fuzzy, php-format
 msgid "Subject<strong>%s</strong>:"
-msgstr "Predmet<strong>*</strong>"
+msgstr "Predmet<strong>%s</strong>:"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/z_contact_form/form.php:109
 #: D:\github\ZenPhoto20/themes/zpskeleton/contact_form/form.php:106
 #, fuzzy, php-format
 msgid "Message<strong>%s</strong>:"
-msgstr "Správa<strong>*</strong>"
+msgstr "Správu<strong>%s</strong>:"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/z_contact_form/form.php:116
 #: D:\github\ZenPhoto20/themes/zpskeleton/contact_form/form.php:113
@@ -3233,30 +3275,32 @@ msgid "Reset"
 msgstr "Vynulovať"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/404.php:4
+#, fuzzy
 msgid "404 error"
-msgstr ""
+msgstr "404 Chyba"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/404.php:16
 #, fuzzy
 msgid "Sorry, the page you are requesting cannot be found."
-msgstr "Objekt Zenphota, ktorý požadujete, sa nedá nájsť."
+msgstr "Ľutujeme, stránka žiadate sa nenašla."
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/album.php:15
 #: D:\github\ZenPhoto20/themes/zpmasonry/favorites.php:18
 #, fuzzy
 msgid "subalbum"
-msgstr "Podalbumy"
+msgstr "subalbum"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/album.php:36
 #: D:\github\ZenPhoto20/themes/zpmasonry/favorites.php:42
 #, fuzzy
 msgid "number"
-msgstr "Telefón"
+msgstr "lézie"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/album.php:36
 #: D:\github\ZenPhoto20/themes/zpmasonry/favorites.php:42
+#, fuzzy
 msgid "total"
-msgstr ""
+msgstr "celkom"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/album.php:45
 #: D:\github\ZenPhoto20/themes/zpmasonry/album.php:105
@@ -3275,7 +3319,7 @@ msgstr ""
 #: D:\github\ZenPhoto20/themes/zpskeleton/search.php:112
 #, fuzzy
 msgid "subalbums"
-msgstr "Podalbumy"
+msgstr "subalbums"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/album.php:48
 #: D:\github\ZenPhoto20/themes/zpmasonry/album.php:108
@@ -3307,7 +3351,7 @@ msgstr "obrázky"
 #: D:\github\ZenPhoto20/themes/zpmasonry/search.php:83
 #, fuzzy
 msgid "Preview"
-msgstr "zobraziť"
+msgstr "Náhľad"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/comment_form/comment_form.php:18
 #: D:\github\ZenPhoto20/themes/zpminimal/z_disable_comment_form/comment_form.php:18
@@ -3321,7 +3365,7 @@ msgstr "Meno"
 #: D:\github\ZenPhoto20/themes/zpminimal/z_disable_comment_form/comment_form.php:24
 #, fuzzy
 msgid "E-Mail"
-msgstr "E-Mail:"
+msgstr "E-mail"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/comment_form/comment_form.php:30
 #: D:\github\ZenPhoto20/themes/zpminimal/z_disable_comment_form/comment_form.php:30
@@ -3346,12 +3390,12 @@ msgstr "Vložiť CAPTCHA"
 #: D:\github\ZenPhoto20/themes/zpmasonry/functions.php:176
 #, fuzzy
 msgid "Latest Updated Albums"
-msgstr "naposledy upravované albumy"
+msgstr "Posledné aktualizované albumy"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/functions.php:181
 #, fuzzy
 msgid "Most Rated Albums"
-msgstr "Najlepšie hodnotené albumy"
+msgstr "Najviac hodnotené albumy"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/functions.php:186
 #, fuzzy
@@ -3361,12 +3405,12 @@ msgstr "Najlepšie hodnotené albumy"
 #: D:\github\ZenPhoto20/themes/zpmasonry/functions.php:206
 #, fuzzy
 msgid "Popular Images"
-msgstr "Obľúbené tagy:"
+msgstr "Obľúbené obrázky"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/functions.php:211
 #, fuzzy
 msgid "Most Rated Images"
-msgstr "(Najviac hodnotené stránky)"
+msgstr "Najviac hodnotené obrázky"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/functions.php:216
 #, fuzzy
@@ -3384,22 +3428,23 @@ msgstr "Náhodné obrázky"
 #: D:\github\ZenPhoto20/themes/zpminimal/image.php:45
 #, fuzzy
 msgid "Image Number/Total images"
-msgstr "CombiNews: Počet obrázkov"
+msgstr "Obrázok číslo/celkový počet obrázkov"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/image.php:40
 #: D:\github\ZenPhoto20/themes/zpskeleton/image.php:80
 #, fuzzy
 msgid "Start Slideshow"
-msgstr "spustiť prezentáciu"
+msgstr "Spustiť prezentáciu"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/inc-footer.php:17
+#, fuzzy
 msgid "Loading additional pages..."
-msgstr ""
+msgstr "Prebieha načítavanie ďalších strán..."
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/inc-footer.php:19
 #, fuzzy
 msgid "No more pages to load..."
-msgstr "Stránky na import neexistujú"
+msgstr "Žiadne ďalšie stránky načítať..."
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/inc-menu.php:11
 #: D:\github\ZenPhoto20/themes/zpskeleton/album.php:131
@@ -3407,24 +3452,26 @@ msgstr "Stránky na import neexistujú"
 #: D:\github\ZenPhoto20/themes/zpskeleton/image.php:90
 #, fuzzy
 msgid "Latest Images of this Album"
-msgstr "Najnovšie obrázky v %s"
+msgstr "Najnovšie obrázky v tomto albume"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/inc-menu.php:12
 #: D:\github\ZenPhoto20/themes/zpskeleton/album.php:132
 #: D:\github\ZenPhoto20/themes/zpskeleton/favorites.php:134
 #: D:\github\ZenPhoto20/themes/zpskeleton/image.php:91
+#, fuzzy
 msgid "Latest Comments of this Album"
-msgstr ""
+msgstr "Najnovšie komentáre tohto albumu"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/inc-menu.php:15
 #: D:\github\ZenPhoto20/themes/zpskeleton/image.php:89
 #, fuzzy
 msgid "Latest Comments of this Image"
-msgstr "najnovšie obrázky: plný obrázok"
+msgstr "Najnovšie komentáre tohto obrázku"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/index.php:11
+#, fuzzy
 msgid "Welcome"
-msgstr ""
+msgstr "欢迎"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/index.php:53
 #: D:\github\ZenPhoto20/themes/zpmasonry/index.php:57
@@ -3439,7 +3486,7 @@ msgstr "Zobraziť obrázok: %s"
 #: D:\github\ZenPhoto20/themes/zpminimal/index.php:56
 #, fuzzy
 msgid "No Images Exist..."
-msgstr "Neexistujú žiadne menu"
+msgstr "Neexistujú žiadne obrázky..."
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/index.php:99
 #: D:\github\ZenPhoto20/zp-core/template-functions.php:832
@@ -3451,7 +3498,7 @@ msgstr "Ďalšia stránka"
 #: D:\github\ZenPhoto20/themes/zpmasonry/news.php:83
 #, fuzzy
 msgid "« Prev"
-msgstr "« Späť"
+msgstr "späť"
 
 msgid "Delete album"
 msgstr "Vymazať album"
@@ -3460,188 +3507,215 @@ msgstr "Vymazať album"
 #: D:\github\ZenPhoto20/themes/zpminimal/search.php:23
 #, fuzzy
 msgid "items"
-msgstr "Mapa stránky"
+msgstr "Firmy"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/search.php:115
 #: D:\github\ZenPhoto20/themes/zpminimal/search.php:87
 #, fuzzy
 msgid "Sorry, no matches found."
-msgstr "Pre vaše vyhľadávanie neboli nájdené zhody."
+msgstr "Ľutujeme, Nenašli sa zhody."
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:76
+#, fuzzy
 msgid "Select a dark or light overall color style."
-msgstr ""
+msgstr "Vyberte štýl celkovú farbu tmavé alebo svetlé."
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:77
 #, fuzzy
 msgid "General Thumb Sizes"
-msgstr "Veľkosť miniatúr:"
+msgstr "Všeobecné orientačné veľkosti"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:79
+#, fuzzy
 msgid "Toggle large or small thumbnails.  This theme does not allow you to set the thumb sizes above for layout reasons.\n"
 "\t\t\t\tFor advanced users, these are set in the functions.php file."
-msgstr ""
+msgstr "Prepínanie veľké alebo malé miniatúry.  Táto téma vám nedovoľuje nastaviť palec veľkosti nad rozloženie dôvodov.\n"
+"\t\t\t\tPre pokročilých používateľov, sú uvedené v súbore functions.php."
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:81
+#, fuzzy
 msgid "Crop Album Thumbs to Landscape Orientation?"
-msgstr ""
+msgstr "Plodina Album palec na orientáciu na šírku?"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:83
+#, fuzzy
 msgid "Check to crop the album thumbs to a more landscape orientation."
-msgstr ""
+msgstr "Skontrolujte orezať album palec na viac orientáciu na šírku."
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:84
+#, fuzzy
 msgid "Show Image Title on Album Pages?"
-msgstr ""
+msgstr "Ukázať obrázok titul na Album stránok?"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:86
+#, fuzzy
 msgid "Check to show the image title above images on the album and search pages."
-msgstr ""
+msgstr "Skontrolujte Ukázať obrázok nadpis nad obrázky na stránkach album a Hľadať."
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:87
+#, fuzzy
 msgid "Use Infinite Scroll?"
-msgstr ""
+msgstr "Nekonečné skrollovanie"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:89
+#, fuzzy
 msgid "Loads subsequent pages into the current page, disables normal pagination. Experimental, use with caution."
-msgstr ""
+msgstr "Následné stránky načíta do aktuálnej stránky, zakáže normálne stránkovanie. Experimentálne, používajte opatrne."
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:90
+#, fuzzy
 msgid "Fix the sidebar's position?"
-msgstr ""
+msgstr "Oprava sidebar polohy?"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:92
+#, fuzzy
 msgid "Check to fix the sidebar and make it always visible as user scrolls.  If sidebar is too tall for the users\n"
 "\t\t\t\tviewport, it will revert to static position."
-msgstr ""
+msgstr "Skontrolujte, či oprava sidebar a to vždy viditeľné ako užívateľ zvitky.  Ak bočný panel je príliš vysoký pre užívateľov viewport, obnoví statickej polohe."
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:94
 #: D:\github\ZenPhoto20/themes/zpminimal/themeoptions.php:42
 #, fuzzy
 msgid "Logo Image"
-msgstr "%u Obrázok"
+msgstr "Obrázok loga"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:96
+#, fuzzy
 msgid "Enter an image file located in the themes image directory, including extension, to use as an image logo. Or leave\n"
 "\t\t\t\tblank to use a text representation of your Gallery name.  As an example there is a logo.gif image in the images directory with a\n"
 "\t\t\t\theight of 83 (must enter height of image as well!)."
-msgstr ""
+msgstr "Zadajte obrázok umiestnený v adresári témy obrazu, vrátane predĺženia, použiť ako obrázok logo. Alebo ponechajte prázdne používať textové vyjadrenia názov galérie.  Ako príklad, tam je obraz logo.gif v adresári obrázkov s výškou 83 (musíte zadať výšku obraz rovnako!)."
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:99
 #, fuzzy
 msgid "Logo Height"
-msgstr "Výška"
+msgstr "logo Výška"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:101
+#, fuzzy
 msgid "If using a logo image above, you must enter the height of the image in pixels here."
-msgstr ""
+msgstr "Ak používate vyššie uvedené logo image, musíte zadať výšku obrázka v pixeloch tu."
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:102
 #: D:\github\ZenPhoto20/themes/zpminimal/themeoptions.php:34
 #, fuzzy
 msgid "Final Image Link Option"
-msgstr "Úryvok obrázku"
+msgstr "Výsledného obrazu prepojeniemožnosť"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:104
+#, fuzzy
 msgid "Choose the option for the final image link on image.php.  Can either link to full image using standard zenphoto\n"
 "\t\t\t\tprocess (with core options), colorbox (if plugin enabled), or no link (default)."
-msgstr ""
+msgstr "Vyberte možnosť odkaz na finálny obraz na image.php.  Môžete buď odkaz na úplný obrázok pomocou štandardných zenphoto procesu (s vo╡by), colorbox (ak je plugin povolené) alebo žiadny odkaz (predvolené)."
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:106
 #: D:\github\ZenPhoto20/themes/zpminimal/themeoptions.php:38
+#, fuzzy
 msgid "Disable MetaData Display?"
-msgstr ""
+msgstr "Zakázať zobrazenie metadát?"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:108
 #: D:\github\ZenPhoto20/themes/zpminimal/themeoptions.php:38
+#, fuzzy
 msgid "Check to disable the metadata (EXIF,IPTC) display on the image page."
-msgstr ""
+msgstr "Začiarknutie vypnúť zobrazenie metadát (EXIF, IPTC) na stránke obrázok."
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:109
 #: D:\github\ZenPhoto20/themes/zpminimal/themeoptions.php:41
+#, fuzzy
 msgid "ZenPage Search Results"
-msgstr ""
+msgstr "Výsledky hľadania ZenPage"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:113
+#, fuzzy
 msgid "If using Zenpage, enter the number of search results to display for each news and pages.  Default is 2 (4 total\n"
 "\t\t\t\tpossible)."
-msgstr ""
+msgstr "Ak používate Zenpage, zadajte počet výsledkov vyhľadávania majú zobraziť pre každý novinky a stránky.  Predvolená hodnota je 2 (4 celkom možné)."
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:124
+#, fuzzy
 msgid "Colorbox Target Sized Image in Galleriffic"
-msgstr ""
+msgstr "ColorBox cieľovej veľkosti obrázka v Galleriffic"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:126
+#, fuzzy
 msgid "Click to enable colorbox targeting the sized image setting in the top options, instead of the full original image.\n"
 "\t\t\t\tThis is usefull if you upload large images as you can set Colorbox to target a smaller, resized version based on your setting\n"
 "\t\t\t\tabove."
-msgstr ""
+msgstr "Kliknutím umožníte colorbox zacielenie na nastavenie veľkosti obrázka v hlavné možnosti, miesto plné pôvodný obrázok.\n"
+"\t\t\t\tTo je užitočné, ak nahráte veľké obrázky, ako môžete nastaviť Colorbox zamerať sa na menšie, veľkosť verzia založená na vaše nastavenie uvedené vyššie."
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:129
 #, fuzzy
 msgid "Frontpage Slideshow?"
-msgstr "Spustiť prezeranie"
+msgstr "FrontPage Slideshow?"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:131
+#, fuzzy
 msgid "Check if you want to show a slideshow on the frontpage. Contents of slideshow and settings can be selected below."
-msgstr ""
+msgstr "Skontrolujte, ak chcete zobraziť prezentáciu v programe frontpage. Obsah prezentácie a nastavenia môžu byť vybrané nižšie."
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:132
 #, fuzzy
 msgid "Frontpage Slideshow Option"
-msgstr "Prezentácia: popis"
+msgstr "FrontPage Slideshow možnosť"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:134
+#, fuzzy
 msgid "Select the contents option of the frontpage slideshow if selected above."
-msgstr ""
+msgstr "Možnosť obsah frontpage slideshow Ak vybraté vyššie."
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:135
 #, fuzzy
 msgid "Frontpage Slideshow Count"
-msgstr "Prezentácia: prerušenie"
+msgstr "FrontPage Slideshow počítať"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:137
 #, fuzzy
 msgid "How many images/albums to display in the slideshow."
-msgstr "Výška obrázkov v prezentácii."
+msgstr "Koľko obrázkov/albumov Zobraziť v prezentácii."
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:138
+#, fuzzy
 msgid "Frontpage Slideshow Transition Effect?"
-msgstr ""
+msgstr "FrontPage Slideshow prechodový efekt?"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:140
+#, fuzzy
 msgid "Choose the transition effect, if slideshow is selected above."
-msgstr ""
+msgstr "Výber prechodového efektu, ak je prezentácia je vybraté vyššie."
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:141
 #, fuzzy
 msgid "Frontpage Slideshow Speed?"
-msgstr "Prezentácia: rýchlosť"
+msgstr "FrontPage Slideshow rýchlosť?"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:143
 #, fuzzy
 msgid "Choose the delay of each rotation for slideshow in milliseconds."
-msgstr "Rýchlosť prelínania v milisekundách"
+msgstr "Vyberte oneskorenie každej otáčke slideshow v milisekundách."
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:144
 #: D:\github\ZenPhoto20/themes/zpskeleton/themeoptions.php:50
+#, fuzzy
 msgid "Use News Feature"
-msgstr ""
+msgstr "Funkciu News"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:146
 #: D:\github\ZenPhoto20/themes/zpskeleton/themeoptions.php:52
+#, fuzzy
 msgid "IF you have the Zenpage plugin enabled, you can uncheck this to NOT use the news feature of the Zenpage plugin (use only pages)"
-msgstr ""
+msgstr "Ak máte plugin Zenpage zapnutá, môžete zrušiť začiarknutie tohto nepoužívať funkciu news Zenpage plugin (použiť len stránky)"
 
 #: D:\github\ZenPhoto20/themes/zpminimal/404.php:24
 #, fuzzy
 msgid "Back to Gallery Index →"
-msgstr "Index galérie"
+msgstr "Späť do galérie Index →"
 
 #: D:\github\ZenPhoto20/themes/zpminimal/inc-footer.php:21
 #, fuzzy
 msgid "Subalbum"
-msgstr "Podalbumy"
+msgstr "Subalbum"
 
 #: D:\github\ZenPhoto20/themes/zpminimal/inc-header.php:122
 msgid "News RSS"
@@ -3650,81 +3724,92 @@ msgstr "RSS správ"
 #: D:\github\ZenPhoto20/themes/zpminimal/index.php:59
 #, fuzzy
 msgid "Enter Gallery &rarr;"
-msgstr "Upraviť galériu"
+msgstr "Zadajte Galéria &rarr;"
 
 #: D:\github\ZenPhoto20/themes/zpminimal/news.php:45
 #, fuzzy
 msgid "Next →"
-msgstr "Ďalej »"
+msgstr "Ďalší"
 
 #: D:\github\ZenPhoto20/themes/zpminimal/news.php:45
+#, fuzzy
 msgid "← Prev"
-msgstr ""
+msgstr "späť"
 
 #: D:\github\ZenPhoto20/themes/zpminimal/password.php:4
 #, fuzzy
 msgid "Enter Login"
-msgstr "Prihlásiť"
+msgstr "Vložte prihlasovacie meno"
 
 #: D:\github\ZenPhoto20/themes/zpminimal/themeoptions.php:33
 #, fuzzy
 msgid "Home Page Image Option"
-msgstr "Úryvok obrázku"
+msgstr "Možnosť obrázok domovskej stránky"
 
 #: D:\github\ZenPhoto20/themes/zpminimal/themeoptions.php:33
+#, fuzzy
 msgid "Choose the option for the single image on the homepage.  See Image-Album-Statistics plugin or Random Image functions for more information."
-msgstr ""
+msgstr "Vyberte možnosť pre jeden obrázok na domovskej stránke.  Pozri obrázok-albumu-Štatistiky plugin alebo náhodný obrázok funkcie ďalšie informácie."
 
 #: D:\github\ZenPhoto20/themes/zpminimal/themeoptions.php:34
+#, fuzzy
 msgid "Choose the option for the final image link on image.php.  Can either link to full image using standard zenphoto process (with core options), colorbox, or no link (default)."
-msgstr ""
+msgstr "Vyberte možnosť odkaz na finálny obraz na image.php.  Môžete buď odkaz na úplný obrázok pomocou štandardných zenphoto procesu (s vo╡by), colorbox alebo žiadna súvislosť (predvolené)."
 
 #: D:\github\ZenPhoto20/themes/zpminimal/themeoptions.php:35
+#, fuzzy
 msgid "Sidebar Position on the Right?"
-msgstr ""
+msgstr "Pozícia sidebar na pravej strane?"
 
 #: D:\github\ZenPhoto20/themes/zpminimal/themeoptions.php:35
+#, fuzzy
 msgid "Check to reverse the sidebar and content area positions.  Default (unchecked) is the sidebar on the left."
-msgstr ""
+msgstr "Skontrolujte zvrátiť sidebar a obsah oblasti pozície.  Predvolené (nezačiarknuté) je bočnom paneli na ľavej strane."
 
 #: D:\github\ZenPhoto20/themes/zpminimal/themeoptions.php:36
+#, fuzzy
 msgid "Use colorbox on Album and Search Pages?"
-msgstr ""
+msgstr "Použitie colorbox Album a vyhľadávacích stránkach?"
 
 #: D:\github\ZenPhoto20/themes/zpminimal/themeoptions.php:36
+#, fuzzy
 msgid "If checked, 2 links appear when hovering images in album and search pages, one to popup the image in colorbox, and the other to go to the details page."
-msgstr ""
+msgstr "Ak je zaškrtnuté, 2 odkazy objaví pri vznesenie obrázky v albume a Hľadať stránky, jedna popup image colorbox a druhý prejdete na stránku Podrobnosti."
 
 #: D:\github\ZenPhoto20/themes/zpminimal/themeoptions.php:39
 #, fuzzy
 msgid "Album Thumb Size"
-msgstr "Miniatúry albumu"
+msgstr "Veľkosť albumu palec"
 
 #: D:\github\ZenPhoto20/themes/zpminimal/themeoptions.php:39
+#, fuzzy
 msgid "Select the size of album thumbs. The thumb size above is for image thumbs. Album thumbs will also take on your selection of cropping or not.  A good size for albums is 158 (3 per row), and a good size above for image thumbs is 113 (4 per row). Make sure you also set the number of thumbs per row for images and albums above! "
-msgstr ""
+msgstr "Vyberte veľkosť album palec hore. Palec veľkosti nad je na obrázku palca. Album palec bude venovať výberu plodín alebo nie.  Dobré veľkosti albumov je 158 (3 x za sebou), a dobré veľkosti nad doplnku image thumbs je 113 (4 za sebou). Uistite sa, že nastavíte počet palce na riadok pre obrázky a albumy vyššie!"
 
 #: D:\github\ZenPhoto20/themes/zpminimal/themeoptions.php:40
 #, fuzzy
 msgid "Menu Name of Menu Manager"
-msgstr "Správa menu"
+msgstr "Názov ponuky Menu Správca"
 
 #: D:\github\ZenPhoto20/themes/zpminimal/themeoptions.php:40
+#, fuzzy
 msgid "If you use the menu manager plugin, enter the name of the menu you would like to use.  Make sure you create the menu in the menu manager backend! Or leave blank to use the theme menu."
-msgstr ""
+msgstr "Ak použijete menu manager plugin, zadajte názov ponuky by ste chceli použiť.  Uistite sa, že môžete vytvoriť menu v menu správca backend! Alebo ponechajte prázdne používať tému menu."
 
 #: D:\github\ZenPhoto20/themes/zpminimal/themeoptions.php:41
+#, fuzzy
 msgid "If using Zenpage, enter the number of search results to display for each news and pages.  Default is 2 (4 total possible)."
-msgstr ""
+msgstr "Ak používate Zenpage, zadajte počet výsledkov vyhľadávania majú zobraziť pre každý novinky a stránky.  Predvolená hodnota je 2 (4 celkom možné)."
 
 #: D:\github\ZenPhoto20/themes/zpminimal/themeoptions.php:42
+#, fuzzy
 msgid "Enter an image file located in the themes image directory, including extension, to use as an image logo. Or leave blank to use a text representation of your Gallery name.  As an example there is a logo.gif image in the images directory."
-msgstr ""
+msgstr "Zadajte obrázok umiestnený v adresári témy obrazu, vrátane predĺženia, použiť ako obrázok logo. Alebo ponechajte prázdne používať textové vyjadrenia názov galérie.  Ako príklad je obraz logo.gif v adresári images."
 
 #: D:\github\ZenPhoto20/themes/zpmobile/404.php:32
 #, fuzzy
 msgid "The object you are requesting cannot be found."
-msgstr "Objekt Zenphota, ktorý požadujete, sa nedá nájsť."
+msgstr "Nedá sa nájsť objekt žiadate."
 
 #: D:\github\ZenPhoto20/themes/zpmobile/archive.php:27
 #: D:\github\ZenPhoto20/zp-core/template-functions.php:452
@@ -3804,21 +3889,22 @@ msgstr "Zakliknutím povolíte priamy odkaz na multimediálnu položku na danej 
 #: D:\github\ZenPhoto20/themes/zpskeleton/404.php:6
 #, fuzzy
 msgid "404 not found"
-msgstr "Stránka nenájdená"
+msgstr "Stránka sa nenašla"
 
 #: D:\github\ZenPhoto20/themes/zpskeleton/archive.php:22
 #, fuzzy
 msgid "Tag Cloud"
-msgstr "Zamračené"
+msgstr "Tag Cloud"
 
 #: D:\github\ZenPhoto20/themes/zpskeleton/functions.php:201
+#, fuzzy
 msgid "Click for Detail Page"
-msgstr ""
+msgstr "Kliknite na stránku s podrobnosťami"
 
 #: D:\github\ZenPhoto20/themes/zpskeleton/image.php:79
 #, fuzzy
 msgid "Download Original"
-msgstr "Stiahnuť"
+msgstr "Stiahnite si originálne"
 
 #: D:\github\ZenPhoto20/themes/zpskeleton/inc-bottom.php:49
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:495
@@ -3857,17 +3943,17 @@ msgstr "Menu"
 #: D:\github\ZenPhoto20/themes/zpskeleton/news.php:62
 #, fuzzy
 msgid "Comment(s)"
-msgstr "Komentáre"
+msgstr "Komentár(e)"
 
 #: D:\github\ZenPhoto20/themes/zpskeleton/news.php:116
 #, fuzzy
 msgid "Comments of this article"
-msgstr "Upraviť článok"
+msgstr "Komentáre tohto článku"
 
 #: D:\github\ZenPhoto20/themes/zpskeleton/password.php:6
 #, fuzzy
 msgid "Password required..."
-msgstr "Požadované heslo"
+msgstr "heslo je povinné"
 
 #: D:\github\ZenPhoto20/themes/zpskeleton/register_user/register_user_form.php:13
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:992
@@ -3883,7 +3969,7 @@ msgstr "E-Mail:"
 #: D:\github\ZenPhoto20/themes/zpskeleton/register_user/register_user_form.php:22
 #, fuzzy
 msgid "User ID:"
-msgstr "ID používateľa"
+msgstr "ID užívateľa:"
 
 #: D:\github\ZenPhoto20/themes/zpskeleton/register_user/register_user_form.php:28
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/downloadList.php:99
@@ -3896,7 +3982,7 @@ msgstr "Heslo:"
 #: D:\github\ZenPhoto20/themes/zpskeleton/register_user/register_user_form.php:33
 #, fuzzy
 msgid "Re-enter:"
-msgstr "Stred"
+msgstr "Znovu"
 
 #: D:\github\ZenPhoto20/themes/zpskeleton/register_user/register_user_form.php:83
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/register_user/register_user_form.php:113
@@ -3906,7 +3992,7 @@ msgstr "Môžete sa tiež zaregistrovať použitím združených údajov"
 #: D:\github\ZenPhoto20/themes/zpskeleton/themeoptions.php:53
 #, fuzzy
 msgid "Thumb Size"
-msgstr "Veľkosť miniatúr:"
+msgstr "Palec veľkosť"
 
 #: D:\github\ZenPhoto20/themes/zpskeleton/themeoptions.php:55
 #: D:\github\ZenPhoto20/zp-core/exif/makers/canon.php:127
@@ -3921,70 +4007,79 @@ msgid "Small"
 msgstr "Malé"
 
 #: D:\github\ZenPhoto20/themes/zpskeleton/themeoptions.php:56
+#, fuzzy
 msgid "Choose the relative thumb size for the album and search pages."
-msgstr ""
+msgstr "Vybrať relatívne palec veľkosť pre album a Hľadať stránky."
 
 #: D:\github\ZenPhoto20/themes/zpskeleton/themeoptions.php:57
+#, fuzzy
 msgid "Debug User Agent"
-msgstr ""
+msgstr "Debug User Agent"
 
 #: D:\github\ZenPhoto20/themes/zpskeleton/themeoptions.php:59
+#, fuzzy
 msgid "Check to display user information in the footer for debugging mobile displays."
-msgstr ""
+msgstr "Skontrolovať Zobraziť informácie v päte pre ladenie mobilných displejov."
 
 #: D:\github\ZenPhoto20/themes/zpskeleton/themeoptions.php:60
 #, fuzzy
 msgid "Disable Plugin Warning"
-msgstr "Upozornenia pre zásuvné moduly"
+msgstr "Zakázať Plugin varovania"
 
 #: D:\github\ZenPhoto20/themes/zpskeleton/themeoptions.php:62
+#, fuzzy
 msgid "Check to disable the warning message about disabling plugins on the index page.  If you see no warning, you should also check this as well to eliminate the plugin verifications."
-msgstr ""
+msgstr "Skontrolujte, ak chcete vypnúť upozorňujúce hlásenie o vypnutí pluginy na index stránke.  Ak vidíte bez varovania, ste sa mali tiež pozrieť aj na odstránenie overovania plugin."
 
 #: D:\github\ZenPhoto20/themes/zpskeleton/themeoptions.php:63
+#, fuzzy
 msgid "Popup (PrettyPhoto) Target"
-msgstr ""
+msgstr "Popup (PrettyPhoto) cieľ"
 
 #: D:\github\ZenPhoto20/themes/zpskeleton/themeoptions.php:65
+#, fuzzy
 msgid "Sized (630px)"
-msgstr ""
+msgstr "Veľkosti (630px)"
 
 #: D:\github\ZenPhoto20/themes/zpskeleton/themeoptions.php:65
 #, fuzzy
 msgid "Original Image"
-msgstr "Originálny čas záberu"
+msgstr "Načítať pôvodný obrázok"
 
 #: D:\github\ZenPhoto20/themes/zpskeleton/themeoptions.php:66
+#, fuzzy
 msgid "Select whether the popup script (PrettyPhoto) targets a processed/sized image for the slideshow or the original (unsized/uprocessed) uploaded image.  Although not used on mobile decives, this will decrease your load time if you select sized.  You need to also select sized if you are using watermarks."
-msgstr ""
+msgstr "Vyberte, či popup skript (PrettyPhoto) ciele spracované/veľkosti obrazu pre prezentáciu alebo originál (netriedené/uprocessed) nahral image.  Hoci nepoužívali mobilné spaľovaného, znížite čas načítania Ak vyberiete veľkosti.  Musíte tiež vybrať veľkosť Ak používate vodoznakov."
 
 #: D:\github\ZenPhoto20/themes/zpskeleton/themeoptions.php:67
 #, fuzzy
 msgid "Download Button"
-msgstr "Stiahnuť"
+msgstr "Stiahnuť tlačidlo"
 
 #: D:\github\ZenPhoto20/themes/zpskeleton/themeoptions.php:69
+#, fuzzy
 msgid "Check to display a download button on the image page, behavour controlled by options->image->Full Image Protection."
-msgstr ""
+msgstr "Skontrolovať Zobraziť tlačidlo prevziať na stránke obrázok, behavour riadené možnosti-> obraz-> plnú ochranu obrazu."
 
 #: D:\github\ZenPhoto20/themes/zpskeleton/themeoptions.php:70
 #, fuzzy
 msgid "Show Archive"
-msgstr "Archív"
+msgstr "Zobraziť Archív"
 
 #: D:\github\ZenPhoto20/themes/zpskeleton/themeoptions.php:72
 #, fuzzy
 msgid "Check to display the gallery and news archive menu item."
-msgstr "Zaškrtnutím sa v Colorbox-e bude zobrazovať obrázok v plnej veľkosti."
+msgstr "Skontrolujte zobrazenie v galérii a novinky Archív menu."
 
 #: D:\github\ZenPhoto20/themes/zpskeleton/themeoptions.php:76
 #, fuzzy
 msgid "Image Strip"
-msgstr "Názov obrázku"
+msgstr "Obrázok pásu"
 
 #: D:\github\ZenPhoto20/themes/zpskeleton/themeoptions.php:79
+#, fuzzy
 msgid "Select whether the image strip on the bottom shows random images or latest images."
-msgstr ""
+msgstr "Vyberte, či obrázok prúžok na spodnej strane zobrazuje Náhodné obrázky alebo najnovšie obrázky."
 
 #: D:\github\ZenPhoto20/zp-core/404.php:56
 #, php-format
@@ -4279,7 +4374,7 @@ msgstr "upraviť"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/admin-functions.php:1418
 #, fuzzy
 msgid "pick source"
-msgstr "Zdroj zip"
+msgstr "vybrať zdroj"
 
 #: D:\github\ZenPhoto20/zp-core/admin-dynamic-album.php:46
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/favoritesAlbums/admin-album.php:46
@@ -4772,12 +4867,12 @@ msgstr "Plný obrázok"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/admin-edit.php:800
 #, fuzzy
 msgid "show content"
-msgstr "ukázať komentáre"
+msgstr "Ukaž obsah"
 
 #: D:\github\ZenPhoto20/zp-core/admin-edit.php:1528
 #, fuzzy
 msgid "No tags assigned"
-msgstr "Pridané nové tagy"
+msgstr "Žiadne značky priradené"
 
 #: D:\github\ZenPhoto20/zp-core/admin-edit.php:1538
 msgid "Metadata:"
@@ -4801,12 +4896,12 @@ msgstr "Upraviť všetky dáta obrázku"
 #: D:\github\ZenPhoto20/zp-core/admin-edit.php:1629
 #, fuzzy
 msgid "prev image"
-msgstr "predchádzajúca strana"
+msgstr "Predchádzajúci obrázok"
 
 #: D:\github\ZenPhoto20/zp-core/admin-edit.php:1636
 #, fuzzy
 msgid "next image"
-msgstr "Nasledujúci obrázok"
+msgstr "Ďalší obrázok"
 
 #: D:\github\ZenPhoto20/zp-core/admin-edit.php:1711
 msgid "Edit All Albums in"
@@ -4837,22 +4932,24 @@ msgstr "Nie je tu žiadny album, ktorý môžete upravovať."
 
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:31
 #: D:\github\ZenPhoto20/zp-core/setup/setup-functions.php:581
+#, fuzzy
 msgid "A simpler media content management system"
-msgstr ""
+msgstr "Jednoduchšie media content management system"
 
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:31
+#, fuzzy
 msgid "<span class=\"zenlogo\"><a href=\"https://<?php echo GITHUB; ?>\" title=\""
-msgstr ""
+msgstr "<span class=\"zenlogo\"><a href=\"https://<?php echo GITHUB; ?>\" title=\" href=\"https://<?php echo GITHUB; ?>\" title=\"\"></a href=\"https://<?php echo GITHUB; ?>\" title=\"></span>"
 
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:31
 #, fuzzy, php-format
 msgid "version %1$s [%2$s]"
-msgstr "%1$s verzia %2$s"
+msgstr "verzia %1$s [%2$s]"
 
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:37
 #, fuzzy
 msgid "ZenPhoto20 licence"
-msgstr "Licencia Zenphota"
+msgstr "ZenPhoto20 preukaz"
 
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:37
 msgid "License"
@@ -4862,7 +4959,7 @@ msgstr "Licencia"
 #: D:\github\ZenPhoto20/zp-core/setup/setup-functions.php:582
 #, fuzzy
 msgid "Support"
-msgstr "Šport"
+msgstr "Podpora"
 
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:39
 #: D:\github\ZenPhoto20/zp-core/setup/setup-functions.php:582
@@ -4899,15 +4996,17 @@ msgstr "Máte neuložené zmeny!"
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:157
 #, fuzzy
 msgid "Are you sure you want to leave this page?"
-msgstr "Naozaj chcete vymazať tohoto používateľa?"
+msgstr "Ste si istý, že chcete opustiť túto ligu?"
 
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:158
+#, fuzzy
 msgid "Leave"
-msgstr ""
+msgstr "Opustiť"
 
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:159
+#, fuzzy
 msgid "Stay"
-msgstr ""
+msgstr "Pobyt"
 
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:259
 #, php-format
@@ -4917,7 +5016,7 @@ msgstr "%1$s administrácia: %2$s%3$s"
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:260
 #, fuzzy
 msgid "ZenPhoto20 Administration"
-msgstr "Administrácia Zenphota"
+msgstr "ZenPhoto20 administratíva"
 
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:269
 #, php-format
@@ -5660,8 +5759,9 @@ msgid "There was an error #%d with a move, copy, or rename operation."
 msgstr "Vyskytol sa problém #%d s operáciou presunu, kopírovania alebo premenovávania."
 
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:4983
+#, fuzzy
 msgid "You can also copy the link to your clipboard to paste elsewhere"
-msgstr ""
+msgstr "Môžete tiež Kopírovať odkaz do schránky prilepiť inde"
 
 #: D:\github\ZenPhoto20/zp-core/admin-globals.php:28
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/favoritesHandler.php:134
@@ -5853,8 +5953,9 @@ msgstr "Cesta %s nie je podporované vaším serverom."
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:631
 #: D:\github\ZenPhoto20/zp-core/setup/setup-functions.php:431
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/dynamic-locale.php:61
+#, fuzzy
 msgid "You can use the <em>debug</em> plugin to see which locales your server supports."
-msgstr ""
+msgstr "Môžete použiť <em>ladiť</em> plugin zistiť ktoré locales váš server podporuje."
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:593
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:1062
@@ -5925,7 +6026,7 @@ msgstr "mod_rewrite obrázková prípona:"
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:661
 #, fuzzy
 msgid "Unique images"
-msgstr "%u obrázkov"
+msgstr "Jedinečné obrazy"
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:668
 msgid "If you have Apache <em>mod rewrite</em> (or equivalent), put a checkmark on the <em>mod rewrite</em> option and you will get nice cruft-free URLs."
@@ -5949,13 +6050,14 @@ msgid "If <em>mod_rewrite</em> is checked above, zenphoto will append the <em>mo
 msgstr "Ak je aktivovaný <em>mod_rewrite</em> zenphoto bude pridávať <em>mod_rewrite príponu</em> na koniec URL obrázkov. (To pomáha vyhľadávačom.) Príklady: <em>.html, .php, view</em> atď."
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:679
-#, php-format
+#, fuzzy, php-format
 msgid "If Unique images is checked, image links will omit the image suffix. E.g. a link to the image page for myalbum/myphoto.jpg will appear as myalbum/myphoto%s"
-msgstr ""
+msgstr "Ak je zaškrtnuté jedinečné obrazy, obraz odkazy vynechať obrázok príponu. Napríklad sa zobrazí odkaz na stránku obrázok pre myalbum/myphoto.jpg ako myalbum/myphoto%s"
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:681
+#, fuzzy
 msgid "<strong>Note:</strong> This option requires <em>mod rewrite</em> and <em>mod_rewrite suffix</em> both be set and the image prefixes must be unique within an album!"
-msgstr ""
+msgstr "<strong>Poznámka:</strong> Táto možnosť vyžaduje <em>mod prepísať</em> a <em>mod_rewrite prípona</em> obe množiny a obraz prefixov musí byť jedinečný v rámci albumu!"
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:687
 #: D:\github\ZenPhoto20/zp-core/admin-users.php:739
@@ -5969,7 +6071,7 @@ msgstr "HTTP_Accept_Language"
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:805
 #, fuzzy, php-format
 msgid "Highlighted languages are not current with ZenPhoto20 v%1$s. (The version of the out-of-date language is shown in braces.)"
-msgstr "Zvýraznené jazyky nie sú prispôsobené pre aktuálnu verziu Zenphota %s. (Verzia Zenphota neaktuálnych jazykov je zobrazená v zátvorke.) Pozrite si  <a href=\"%2$s\">translation repository</a> kde by mohli byť nové či upravené preklady jazykov."
+msgstr "Zvýraznené jazyky nie sú aktuálne s ZenPhoto20 v %1$s. (verzia zastaraný jazyk sa zobrazí v traky.)"
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:807
 msgid "Multi-lingual"
@@ -6269,7 +6371,7 @@ msgstr "Názov galérie:"
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:1095
 #, fuzzy
 msgid "What you want to call your site."
-msgstr "Ako chcete aby so volala vaša stránka."
+msgstr "To, čo chcete volať vaše stránky."
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:1098
 msgid "Gallery description:"
@@ -6406,7 +6508,7 @@ msgstr "<a href=\"javascript:toggle('albumpub');\" >Detaily</a> pre <em>štandar
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:1371
 #, fuzzy
 msgid "This sets the default behavior for when an album is discovered. If checked, the album will be published, if unchecked it will be unpublished."
-msgstr "Nastavenie základného chovania Zenphota pri objavení nového albumu. Zaškrtnutím sa album publikuje, prázdne políčko znamená nepublikovať."
+msgstr "Týmto sa nastaví predvolené správanie pre kedy sa objavil album. Ak začiarknuté, album bude zverejnený, ak to bude nepublikované."
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:1373
 msgid "<a href=\"javascript:toggle('imagepub');\" >Details</a> for <em>publish images by default</em>"
@@ -6415,7 +6517,7 @@ msgstr "<a href=\"javascript:toggle('imagepub');\" >Detaily</a> pre <em>štandar
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:1375
 #, fuzzy
 msgid "This sets the default behavior for when an image is discovered. If checked, the image will be published, if unchecked it will be unpublished."
-msgstr "Nastavenie základného chovania Zenphota pri objavení nového obrázku. Zaškrtnutím sa obrázok publikuje, prázdne políčko znamená nepublikovať."
+msgstr "Týmto sa nastaví predvolené správanie pre kedy sa objavil obraz. Ak začiarknuté, obraz bude zverejnený, ak to bude nepublikované."
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:1377
 msgid "<a href=\"javascript:toggle('albumdate');\" >Details</a> for <em>use latest image date as album date</em>"
@@ -6508,23 +6610,24 @@ msgid "<em>exact</em>"
 msgstr "<em>presne</em>"
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:1579
+#, fuzzy
 msgid "Language specific tags"
-msgstr ""
+msgstr "Jazyk konkrétne značky"
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:1581
 #, fuzzy
 msgid "off"
-msgstr "vypnuté"
+msgstr "z"
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:1584
 #, fuzzy
 msgid "generic"
-msgstr "hlavné"
+msgstr "všeobecná"
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:1587
 #, fuzzy
 msgid "specific"
-msgstr "*nešpecifikované"
+msgstr "konkrétne"
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:1592
 msgid "Treat spaces as"
@@ -6575,28 +6678,34 @@ msgid "<em>Field list</em> is the set of fields on which searches may be perform
 msgstr "<em>Zoznam polí</em> je zoznam polí, v ktorých sa má vyhľadávať."
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:1639
+#, fuzzy
 msgid "Search does matches on all fields chosen based on the matching criteria selected. The <em>string matching</em> criteria is used for all fields except <em>tags</em>. The <em>tag matching</em> criteria is used for them."
-msgstr ""
+msgstr "Vyhľadávanie robí zápasy na všetkých poliach vybraný na základe zodpovedajúcich zvolených kritérií. <em>Reťazec zodpovedajúce</em> kritériá sa používa pre všetky polia okrem <em>značky</em>. <em>Tag zodpovedajúce</em> kritériá sa používa pre nich."
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:1642
+#, fuzzy
 msgid "<code>pattern</code>: match the target anywhere within the field"
-msgstr ""
+msgstr "<code>pattern</code>: zápas cieľ kdekoľvek v oblasti"
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:1643
+#, fuzzy
 msgid "<code>exact</code>: match the target with the whole field"
-msgstr ""
+msgstr "<code>exact</code>: zápas cieľ s celú oblasť"
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:1644
+#, fuzzy
 msgid "<code>word</code>: match the target with whole words in the field"
-msgstr ""
+msgstr "<code>word</code>: zápas cieľ s celé slová v poli"
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:1645
+#, fuzzy
 msgid "<code>partial word</code>: match the target with the start of words in the field"
-msgstr ""
+msgstr "<code>partial word</code>: zápas cieľ s na začiatku slov v oblasti"
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:1648
+#, fuzzy
 msgid "If <code>Language specific tags</code> is set serches will ignore tags assigned to languages other than the viewer’s locale. Selecting <code>specific</code> requires an exact match to of the tag locale to the viewer locale. Otherwise generic matching is used, e.g. if the user is in the local <em>en_UK</en> he will view tags marked <en>en_US</en>."
-msgstr ""
+msgstr "Ak <code>Language specific tags</code> nastavená serches bude ignorovať značky pridelené iné jazyky ako diváka locale. Výber <code>specific</code> vyžaduje presnú zhodu s tag locale prehliadač locale. Inak všeobecná zhoda sa používa, napríklad ak používateľ je v miestnej <em>en_UK on Zobraziť značky označené <en>en_US</en>.</em>"
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:1649
 msgid "Setting <code>Treat spaces as</code> to <em>OR</em> will cause search to trigger on any of the words in a string separated by spaces. Setting it to <em>AND</em> will cause the search to trigger only when all strings are present. Leaving the option unchecked will treat the whole string as a search target."
@@ -6669,7 +6778,7 @@ msgstr "Miniatúra"
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:1930
 #, fuzzy
 msgid "Compression quality for generated images and thumbnails generated."
-msgstr "Kvalita kompresie obrázkov a miniatúr použitá Zenphotom."
+msgstr "Kvalitu kompresie pre generované obrázky a náhľady vytvorené."
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:1931
 msgid "Quality ranges from 0 (worst quality, smallest file) to 100 (best quality, biggest file). "
@@ -6805,13 +6914,14 @@ msgid "If a watermark image is selected for these <em>images classes</em> it wil
 msgstr "Ak je pre tieto <em>triedy obrázkov</em> vybraný vodoznak, bude použitý namiesto vodoznaku miniatúry obrázku."
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:2118
+#, fuzzy
 msgid "Caching concurrency:"
-msgstr ""
+msgstr "Caching súbežnosť:"
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:2144
-#, php-format
+#, fuzzy, php-format
 msgid "Cache processing worker limit: %s."
-msgstr ""
+msgstr "Cache spracovania pracovník limit: %s."
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:2145
 msgid "More workers will get the job done faster so long as your server does not get swamped or run out of memory."
@@ -6944,7 +7054,7 @@ msgstr "deaktivované"
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:2356
 #, fuzzy
 msgid "replace newlines"
-msgstr "Index správ Zenpage"
+msgstr "nahradiť nové riadky"
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:2361
 msgid "Select how image metadata fields are handled."
@@ -6967,8 +7077,9 @@ msgid "Hint: you can drag down the <em>drag handle</em> in the lower right corne
 msgstr "Nápoveda: v pravom dolnom rohu môžete potiahnuť <em>rukoväť</em>, aby sa vám zobrazil väčší výber."
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:2371
+#, fuzzy
 msgid "If <em>replace newlines</em> is selected <code>&lt;br /&gt;</code> will replace <em>newline</em> characters from image metadata destined for <em>titles</em> and <em>descriptions</em>. This happens only when the metadata is imported so you may need to refresh your metadata to see the results."
-msgstr ""
+msgstr "Ak je <em>nahradiť nové riadky</em> začiarknuté <code><br /></code> nahradí <em>newline</em> znaky z image metadáta určené pre <em>nadpisy</em> a <em>popisy</em>. To sa deje len pri metaúdaje dováža, takže možno budete musieť obnoviť vaše metadáta, ak chcete vidieť výsledky."
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:2380
 msgid "IPTC encoding:"
@@ -7036,7 +7147,7 @@ msgstr "<strong>Štandardné nastavenia</strong>"
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:2553
 #, fuzzy
 msgid "<em>These image and album presentation options provided by the Core for all themes.</em>"
-msgstr "<em>Nastavenia prezentácie albumov a obrázkov poskytované Zenphotom pre všetky šablóny.</em>"
+msgstr "<em>Tieto imidž a album prezentácia možnosti poskytované jadro pre všetky témy.</em>"
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:2553
 msgid "<strong>Note:</strong> These are <em>recommendations</em> as themes may choose to override them for design reasons"
@@ -7176,12 +7287,14 @@ msgid "The image will be sized so that the <em>height</em>, <em>width</em>, <em>
 msgstr "Obrázok bude upravený na rozmer <em>výšky</em>, <em>šírky</em>, <em>najkratšej strany</em> alebo <em>najdlhšej strany</em>."
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:2771
+#, fuzzy
 msgid "Theme head &lt;title&gt; tag"
-msgstr ""
+msgstr "Téma hlavy < názov > tag"
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:2777
+#, fuzzy
 msgid "Select if you want parent breadcrumbs and if so the separator for them."
-msgstr ""
+msgstr "Vyberte, či chcete rodič strúhankou a oddeľovač pre nich."
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:2780
 msgid "Gallery index page link:"
@@ -7278,7 +7391,7 @@ msgstr "Meno používateľa"
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:3134
 #, fuzzy
 msgid "If enabled guest logon forms will include the <em>User Name</em> field. This allows users to logon from the form."
-msgstr "Ak je táto možnosť zapnutá formulár na prihlasovanie hosťov bude obsahovať pole <em>Používateľské meno</em>. To dovolí používateľom <em>Zenphota</em> prihlásiť sa cez tento formulár."
+msgstr "Ak povolené hodnotenie prihlasovacie formuláre musia obsahovať pole <em>Meno používateľa</em> . To umožňuje užívateľom prihlásiť z formulára."
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:3136
 msgid "<strong>Note</strong>: This field is required because one or more of the <em>Guest</em> passwords has a user name associated."
@@ -7292,12 +7405,12 @@ msgstr "Zásuvné moduly"
 #: D:\github\ZenPhoto20/zp-core/admin-plugins.php:128
 #, fuzzy
 msgid "Plugins provide optional functionality."
-msgstr "Zásuvné moduly poskytujú ďalšie funkcie pre Zenphoto."
+msgstr "Pluginy voliteľné funkcionality."
 
 #: D:\github\ZenPhoto20/zp-core/admin-plugins.php:129
 #, fuzzy
 msgid "They may be provided as part of the distribution or as offerings from third parties."
-msgstr "Môžu byť distribuované ako súčasť Zenphota, ale aj dodávané tretími stanami."
+msgstr "Im môže byť poskytnutá ako súčasť distribúcie alebo ponuky tretích strán."
 
 #: D:\github\ZenPhoto20/zp-core/admin-plugins.php:130
 #, php-format
@@ -7331,12 +7444,12 @@ msgstr "Popis"
 #: D:\github\ZenPhoto20/zp-core/admin-plugins.php:400
 #, fuzzy
 msgid "Supplemental plugin"
-msgstr "zásuvný modul šablóny"
+msgstr "Doplnkové plugin"
 
 #: D:\github\ZenPhoto20/zp-core/admin-plugins.php:175
 #, fuzzy
 msgid "Third party plugin"
-msgstr "Zásuvné moduly tretích strán"
+msgstr "Zásuvného modulu tretej strany"
 
 #: D:\github\ZenPhoto20/zp-core/admin-plugins.php:179
 #: D:\github\ZenPhoto20/zp-core/admin-plugins.php:399
@@ -7376,7 +7489,7 @@ msgstr "zásuvný modul šablóny"
 #: D:\github\ZenPhoto20/zp-core/admin-plugins.php:401
 #, fuzzy
 msgid "Admin plugin"
-msgstr "zásuvný modul admina"
+msgstr "Admin plugin"
 
 #: D:\github\ZenPhoto20/zp-core/admin-plugins.php:316
 msgid "This plugin is disabled. Click for details."
@@ -7507,27 +7620,27 @@ msgstr "Správa tagov"
 #: D:\github\ZenPhoto20/zp-core/admin-tags.php:137
 #, fuzzy
 msgid "Order by"
-msgstr "Usporiadať podľa najpoužívanejších"
+msgstr "Zoradiť podľa"
 
 #: D:\github\ZenPhoto20/zp-core/admin-tags.php:140
 #, fuzzy
 msgid "Alphabetic"
-msgstr "Usporiadať abecedne"
+msgstr "Abecedne"
 
 #: D:\github\ZenPhoto20/zp-core/admin-tags.php:141
 #, fuzzy
 msgid "Most used"
-msgstr "najpoužívanejšie"
+msgstr "Najviac používané"
 
 #: D:\github\ZenPhoto20/zp-core/admin-tags.php:142
 #, fuzzy
 msgid "Language"
-msgstr "Jazyk:"
+msgstr "Jazyk"
 
 #: D:\github\ZenPhoto20/zp-core/admin-tags.php:143
 #, fuzzy
 msgid "Most recent"
-msgstr "najnovšie"
+msgstr "Nedávno pridané"
 
 #: D:\github\ZenPhoto20/zp-core/admin-tags.php:174
 #: D:\github\ZenPhoto20/zp-core/admin-tags.php:178
@@ -7538,17 +7651,18 @@ msgstr "Vymazať označené tagy"
 #: D:\github\ZenPhoto20/zp-core/admin-tags.php:187
 #, fuzzy
 msgid "assign"
-msgstr "Nastaviť"
+msgstr "Priradiť"
 
 #: D:\github\ZenPhoto20/zp-core/admin-tags.php:191
 #: D:\github\ZenPhoto20/zp-core/admin-tags.php:268
+#, fuzzy
 msgid "Universal"
-msgstr ""
+msgstr "univerzálny"
 
 #: D:\github\ZenPhoto20/zp-core/admin-tags.php:204
 #, fuzzy
 msgid "Place a checkmark in the box for each tag you wish to delete or to assign a language then press the appropriate button. The brackets contain the number of times the tag appears."
-msgstr "Označte každý tag, ktorý chcete vymazať a potom kliknite na <em>Vymazať označené tagy</em>. V zátvorke je uvedené koľkokrát je tag použitý."
+msgstr "Začiarknite políčko pre každú značku chcete odstrániť alebo priradiť jazyk potom stlačte príslušné tlačidlo. Držiaky obsahujú koľkokrát značka sa objaví."
 
 #: D:\github\ZenPhoto20/zp-core/admin-tags.php:209
 #: D:\github\ZenPhoto20/zp-core/admin-tags.php:232
@@ -7655,7 +7769,7 @@ msgstr "Vymazať priradenie šablóny"
 #: D:\github\ZenPhoto20/zp-core/admin-themes.php:185
 #, fuzzy
 msgid "Themes allow you to visually change the entire look and feel of your gallery. Theme files are located in your <code>/themes</code> folder."
-msgstr "šablóny vám umožňujú zmeniť celkový vizuálny vzhľad vašej stránky. Súbory šablón sa nachádzajú v zložke <code>/themes</code>."
+msgstr "Motívy vám umožnia vizuálne zmeniť celý vzhľad a dojem z vašej galérie. Tému súbory sa nachádzajú vo vašej <code>/themes</code> priečinok."
 
 #: D:\github\ZenPhoto20/zp-core/admin-themes.php:186
 msgid "You can download more themes from the <a href=\"http://www.zenphoto.org/theme/\">zenphoto themes page</a>."
@@ -7668,7 +7782,7 @@ msgstr "Nahrajte stiahnuté šablóny do zložky <code>/themes</code> a hned vá
 #: D:\github\ZenPhoto20/zp-core/admin-themes.php:191
 #, fuzzy
 msgid "You can edit files from custom themes. Official themes shipped with the software are not editable, since your changes would be lost on next update."
-msgstr "Editovať môžete len neoficiálne šablóny, pretože oficiálne sa s každou aktualizáciou systému prepíšu a vy by ste prišli o svoje úpravy."
+msgstr "Môžete upravovať súbory z vlastných motívov. Oficiálne témy dodávané so softvérom nie sú editovateľné, pretože zmeny by stratil na ďalšiu aktualizáciu."
 
 #: D:\github\ZenPhoto20/zp-core/admin-themes.php:192
 msgid "If you want to customize an official theme, please first <em>duplicate</em> it. This will place a copy in your <code>/themes</code> folder for you to edit."
@@ -7687,7 +7801,7 @@ msgstr "Akcia"
 #: D:\github\ZenPhoto20/zp-core/admin-themes.php:210
 #, fuzzy
 msgid "Third party theme"
-msgstr "šablóna tretej strany"
+msgstr "Treťou stranou tému"
 
 #: D:\github\ZenPhoto20/zp-core/admin-themes.php:252
 msgid "Version"
@@ -7774,7 +7888,7 @@ msgstr "<strong>Poznámka: </strong>"
 #: D:\github\ZenPhoto20/zp-core/admin-upload.php:130
 #, fuzzy
 msgid "ZIP files must contain only supported <em>image</em> types."
-msgstr "Archívy ZIP môžu obsahovať iba formáty <em>obrázkov</em> podporovaných Zenphotom."
+msgstr "ZIP súbory musia obsahovať iba podporované typy <em>obrázkov</em> ."
 
 #: D:\github\ZenPhoto20/zp-core/admin-upload.php:140
 #, php-format
@@ -7807,8 +7921,9 @@ msgid "PHP Safe Mode Restrictions in effect!"
 msgstr "Sú aktívne PHP Safe Mode obmedzenia!"
 
 #: D:\github\ZenPhoto20/zp-core/admin-upload.php:174
+#, fuzzy
 msgid "These restrictions may prevent PHP scripts from uploading files."
-msgstr ""
+msgstr "Tieto obmedzenia môžu zabrániť nahrávanie súborov PHP skripty."
 
 #: D:\github\ZenPhoto20/zp-core/admin-upload.php:180
 msgid "Upload to:"
@@ -8002,7 +8117,7 @@ msgstr "Presunúť práva"
 #: D:\github\ZenPhoto20/zp-core/admin-users.php:850
 #, fuzzy, php-format
 msgid "You may wish to revert the <em>Zenphoto_Authority</em> user rights to version %s for backwards compatibility with prior releases."
-msgstr "Možno budete chcieť vrátiť používateľské práva <em>Zenphoto_Authority</em> na verziu %s pre spätnú kompatibilitu so staršími verziami Zenphoto."
+msgstr "Možno budete chcieť vrátiť <em>Zenphoto_Authority</em> používateľské práva na verzia %s pre spätnú kompatibilitu s predchádzajúce verzie."
 
 #: D:\github\ZenPhoto20/zp-core/admin-users.php:853
 msgid "Revert rights"
@@ -8126,16 +8241,17 @@ msgstr "zdroj: %s"
 #: D:\github\ZenPhoto20/zp-core/admin.php:353
 #, fuzzy
 msgid "release notes"
-msgstr "vydané"
+msgstr "poznámky k vydaniu"
 
 #: D:\github\ZenPhoto20/zp-core/admin.php:353
+#, fuzzy
 msgid "notes"
-msgstr ""
+msgstr "poznámky"
 
 #: D:\github\ZenPhoto20/zp-core/admin.php:357
 #, fuzzy, php-format
 msgid "ZenPhoto20 version <strong>%1$s (%2$s)</strong>"
-msgstr "Verzia Zenphoto20 <strong>%1$s (%2$s)</strong>"
+msgstr "ZenPhoto20 verzia <strong>%1$s (%2$s)</strong>"
 
 #: D:\github\ZenPhoto20/zp-core/admin.php:364
 #, php-format
@@ -8737,8 +8853,9 @@ msgid "Average"
 msgstr "Priemer"
 
 #: D:\github\ZenPhoto20/zp-core/exif/exif.php:707
+#, fuzzy
 msgid "Center Weighted Average"
-msgstr ""
+msgstr "Vážený priemer"
 
 #: D:\github\ZenPhoto20/zp-core/exif/exif.php:709
 msgid "Spot"
@@ -9161,8 +9278,9 @@ msgid "Macro/Close-Up"
 msgstr "Makro/Detail"
 
 #: D:\github\ZenPhoto20/zp-core/exif/makers/canon.php:145
+#, fuzzy
 msgid "Pan Focus"
-msgstr ""
+msgstr "Pan zameranie"
 
 #: D:\github\ZenPhoto20/zp-core/exif/makers/canon.php:152
 msgid "2x"
@@ -9282,12 +9400,14 @@ msgid "FP sync used"
 msgstr "použitý FP sync"
 
 #: D:\github\ZenPhoto20/zp-core/exif/makers/canon.php:244
+#, fuzzy
 msgid "2nd(rear)-curtain sync used"
-msgstr ""
+msgstr "2. (zadné)-záves synchronizácie používa"
 
 #: D:\github\ZenPhoto20/zp-core/exif/makers/canon.php:245
+#, fuzzy
 msgid "1st curtain sync"
-msgstr ""
+msgstr "1. záves synchronizácie"
 
 #: D:\github\ZenPhoto20/zp-core/exif/makers/canon.php:270
 msgid "Sunny"
@@ -9327,16 +9447,19 @@ msgid "Hard"
 msgstr "Tvrdé"
 
 #: D:\github\ZenPhoto20/zp-core/exif/makers/fujifilm.php:89
+#, fuzzy
 msgid "DaylightColor-fluorescence"
-msgstr ""
+msgstr "DaylightColor-fluorescencia"
 
 #: D:\github\ZenPhoto20/zp-core/exif/makers/fujifilm.php:90
+#, fuzzy
 msgid "DaywhiteColor-fluorescence"
-msgstr ""
+msgstr "DaywhiteColor-fluorescencia"
 
 #: D:\github\ZenPhoto20/zp-core/exif/makers/fujifilm.php:91
+#, fuzzy
 msgid "White-fluorescence"
-msgstr ""
+msgstr "Biela-fluorescencie"
 
 #: D:\github\ZenPhoto20/zp-core/exif/makers/fujifilm.php:92
 #: D:\github\ZenPhoto20/zp-core/exif/makers/nikon.php:210
@@ -9726,7 +9849,7 @@ msgstr "%1$s: %2$s v %3$s na riadku %4$s"
 #: D:\github\ZenPhoto20/zp-core/functions-config.php:27
 #, fuzzy
 msgid "The configuration file is corrupt. You will need to restore it from a backup."
-msgstr "Konfiguračný súbor Zenphota je poškodený. Mali by ste ho obnoviť zo zálohy."
+msgstr "Konfiguračný súbor je poškodený. Budete musieť obnoviť zo zálohy."
 
 #: D:\github\ZenPhoto20/zp-core/functions-config.php:43
 msgid "Updating the configuration file"
@@ -10275,7 +10398,7 @@ msgstr "Welština"
 #: D:\github\ZenPhoto20/zp-core/functions-image.php:21
 #, fuzzy, php-format
 msgid "Image Processing Error: %s"
-msgstr "Chyba spracovávnia obrázku Zenphota: %s"
+msgstr "Obrázok spracovanie chyba: %s"
 
 #: D:\github\ZenPhoto20/zp-core/functions-image.php:22
 #, php-format
@@ -10364,7 +10487,7 @@ msgstr "Obrázok %s sa nedá otáčať."
 #: D:\github\ZenPhoto20/zp-core/functions-image.php:251
 #, fuzzy, php-format
 msgid "Unknown error processing %s! Please report to the <a href=\""
-msgstr "Neznáma chyba pri spracovaní %s! Prosíme oznámte ju vývojárom na <a href=\"http://www.zenphoto.org\">zenphoto.org</a>"
+msgstr "Neznáma chyba pri spracovaní %s! Nahláste < href = \""
 
 #: D:\github\ZenPhoto20/zp-core/functions-image.php:363
 #: D:\github\ZenPhoto20/zp-core/functions-image.php:388
@@ -10979,7 +11102,7 @@ msgstr "Hash algoritmus hesla"
 #: D:\github\ZenPhoto20/zp-core/lib-auth.php:113
 #, fuzzy, php-format
 msgid "The hashing algorithm to be used. In order of robustness the choices are %s"
-msgstr "Hash algoritmus používaný Zenphotom. Kvôli robustnosti sú možnosti %s"
+msgstr "Hashovací algoritmus sa použije. V poradí trvácnosti voľby sú %s"
 
 #: D:\github\ZenPhoto20/zp-core/lib-auth.php:377
 #, php-format
@@ -11234,8 +11357,9 @@ msgid "Users must have this right to change their credentials."
 msgstr "Používatelia musia mať toto oprávnenie, aby mohli robiť zmeny vo svojich nacionáliách."
 
 #: D:\github\ZenPhoto20/zp-core/lib-auth.php:566
+#, fuzzy
 msgid "Allows viewing of the debug tab items."
-msgstr ""
+msgstr "Umožňuje prehliadanie Ladiť kartu položky."
 
 #: D:\github\ZenPhoto20/zp-core/lib-auth.php:584
 msgid "Codeblock"
@@ -11274,7 +11398,7 @@ msgstr "Nie je komu poslať správu o požiadavke na obnovenie."
 #: D:\github\ZenPhoto20/zp-core/lib-auth.php:735
 #, fuzzy, php-format
 msgid "To reset your Admin passwords visit: %s"
-msgstr "Pre obnovenie administrátorského hesla do Zenphota navštívte: %s"
+msgstr "Obnoviť vaše Admin heslá návštevu: %s"
 
 #: D:\github\ZenPhoto20/zp-core/lib-auth.php:736
 msgid "If you do not wish to reset your passwords just ignore this message. This ticket will automatically expire in 3 days."
@@ -11283,7 +11407,7 @@ msgstr "Ak ste nepožiadali o obnovenie hesla jednoducho tento mail ignorujte. P
 #: D:\github\ZenPhoto20/zp-core/lib-auth.php:737
 #, fuzzy
 msgid "The ZenPhoto20 information you requested"
-msgstr "Informácie, ktoré ste žiadali od Zenphota"
+msgstr "Požadované informácie ZenPhoto20"
 
 #: D:\github\ZenPhoto20/zp-core/lib-auth.php:745
 msgid "Your input did not match the captcha"
@@ -11636,7 +11760,7 @@ msgstr "Thaičina (Windows)"
 #: D:\github\ZenPhoto20/zp-core/license.php:37
 #, fuzzy
 msgid "ZenPhoto20 License agreement"
-msgstr "Licenčná dohoda Zenphota"
+msgstr "ZenPhoto20 licenčnej zmluvy"
 
 #: D:\github\ZenPhoto20/zp-core/license.php:40
 #, php-format
@@ -11646,7 +11770,7 @@ msgstr "Táto licencia je v angličtine, pretože <em>Free Software Foundation</
 #: D:\github\ZenPhoto20/zp-core/license.php:47
 #, fuzzy
 msgid "You must accept this license to continue to use ZenPhoto20."
-msgstr "Aby ste mohli pokračovať v používaní Zenphota, musíte súhlasiť s touto licenciou."
+msgstr "Musíte súhlasiť s touto licenciou naďalej používať ZenPhoto20."
 
 #: D:\github\ZenPhoto20/zp-core/license.php:47
 msgid "I agree to these terms and conditions"
@@ -11659,7 +11783,7 @@ msgstr "Nie su zapnutí žiadni správcovia nahrávania, ktorý by spracovali va
 #: D:\github\ZenPhoto20/zp-core/pluginDoc.php:125
 #, fuzzy
 msgid "This document is generated from the plugin comment block and other items that are in English and outside of the <em>Gettext()</em> translation system. This link will send the URL to the Google translation WEB to present the page in your language."
-msgstr "Tento dokument je vygenerovaný z komentárového bloku zásuvného modulu, ktorý je v angličtine a mimo prekladového systému Zenphota. Tento link pošle URL do Google prekladaču, aby sa vám stránka zobrazila vo vašom jazyku."
+msgstr "Tento dokument je generovaný z plugin komentovať blok a iných položiek, ktoré sú v angličtine a mimo <em>Gettext()</em> preklad systému. Tento odkaz bude poslať URL na Google Preklad webových prezentovať na stránke vo vašom jazyku."
 
 #: D:\github\ZenPhoto20/zp-core/pluginDoc.php:126
 msgid "Translate this page."
@@ -11805,7 +11929,7 @@ msgstr "Ukážka údajov databázy"
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:413
 #, fuzzy, php-format
 msgid "ZenPhoto20 Setup v%1$s%2$s: %3$s"
-msgstr "Inaštalácia Zenphoto20 v%1$s%2$s: %3$s"
+msgstr "ZenPhoto20 inštalácie v %1$s %2$s: %3$s"
 
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:416
 msgid "Full environment"
@@ -11831,7 +11955,7 @@ msgstr "aktualizovať"
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:467
 #, fuzzy
 msgid "ZenPhoto20 Setup"
-msgstr "Inaštalácia Zenphota"
+msgstr "ZenPhoto20 nastavenie"
 
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:492
 #, php-format
@@ -11849,7 +11973,7 @@ msgstr "<strong>Poznámka:</strong> Vydanie, ktoré inštalujete má povolené d
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:521
 #, fuzzy, php-format
 msgid "Installing ZenPhoto20 v%s"
-msgstr "Inštalovanie Zenphota v%s"
+msgstr "Inštalácia v ZenPhoto20 %s"
 
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:534
 #, php-format
@@ -11897,7 +12021,7 @@ msgstr "Nastavená cesta pre PHP session nemôže byť použitá. ZenPhoto20 nas
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:545
 #, fuzzy
 msgid "PHP Sessions are required for administrative functions."
-msgstr "PHP Sessions sú vyžadované pre administračné funkcie Zenphota."
+msgstr "PHP sedenφ sú potrebné pre správne funkcie."
 
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:561
 msgid "PHP <code>Register Globals</code>"
@@ -11922,7 +12046,7 @@ msgstr "PHP <code>Safe Mode</code> [aktívne]"
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:568
 #, fuzzy
 msgid "ZenPhoto20 functionality is reduced when PHP <code>safe mode</code> restrictions are in effect."
-msgstr "Funkcie Zenphota sú obmedzené pokial je zapnutý PHP Safe Mode."
+msgstr "Obmedzené funkcie ZenPhoto20 keď PHP <code>safe mode</code> sa uplatňujú obmedzenia."
 
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:586
 msgid "<code>Suhosin</code> module [is enabled]"
@@ -11931,7 +12055,7 @@ msgstr "<code>Suhosin</code> module [aktivovaný]"
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:586
 #, fuzzy, php-format
 msgid "The following PHP functions are blocked: %s. Flagged functions are required. Other functions in the list may be used, possibly causing reduced functionality or failures."
-msgstr "Nasledujúce funkcie PHP sú blokované: %s. Označené funkcie sú vyžadované Zenphotom. Ostatné funkcie v zozname môžu byť používané Zenphotom a môžu znížiť funkcionalitu alebo padanie Zenphota."
+msgstr "Blokované nasledujúce funkcie PHP: %s. príznakom funkcie sú potrebné. Ďalšie funkcie v zozname môžu byť použité, prípadne spôsobuje znížená funkčnosť alebo zlyhania."
 
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:590
 msgid "Magic_quotes"
@@ -11948,7 +12072,7 @@ msgstr "PHP <code>magic_quotes_gpc</code> [aktivované]"
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:596
 #, fuzzy
 msgid "We strongly recommend disabling <code>magic_quotes_gpc</code>."
-msgstr "Mali by ste vypnúť <code>magic_quotes_sybase</code>."
+msgstr "Dôrazne odporúčame vypnúť <code>magic_quotes_gpc</code> ."
 
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:602
 msgid "PHP <code>magic_quotes_runtime</code>"
@@ -11998,7 +12122,7 @@ msgstr "Podpora PHP <code>gettext()</code> [chýba]"
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:627
 #, fuzzy
 msgid "Localization requires native PHP <code>gettext()</code> support"
-msgstr "Lokalizácia Zenphota potrebuje podporu PHP <code>gettext()</code>"
+msgstr "Lokalizácia vyžaduje natívne PHP <code>gettext()</code> podporu"
 
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:628
 msgid "PHP <code>flock</code> support"
@@ -12189,22 +12313,22 @@ msgstr "Zmení znakovú sada Zenphota na %1$s"
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:806
 #, fuzzy, php-format
 msgid "The filesystem character define is %1$s [confirmed]"
-msgstr "Znaková sada Zenphota je %1$s [skontrolované]."
+msgstr "Definovať charakter súborový systém je %1$s [potvrdila]"
 
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:811
 #, fuzzy
 msgid "The filesystem character define is ISO-8859-1 [assumed]"
-msgstr "Znaková sada Zenphota je ISO-8859-1 [predpoklad]"
+msgstr "Definovať charakter súborového systému ISO-8859-1 [predpokladá]"
 
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:816
 #, fuzzy, php-format
 msgid "The filesystem character define is %1$s [which seems wrong]"
-msgstr "Znaková sada Zenphota je %1$s [asi nesprávna]"
+msgstr "Definovať charakter súborový systém je %1$s, ktoré sa zdá byť zle]"
 
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:821
 #, fuzzy, php-format
 msgid "The filesystem character define is %1$s [no test performed]"
-msgstr "Znaková sada Zenphota je %1$s [neprebehol test]."
+msgstr "Definovať charakter súborový systém je %1$s [žiadne skúšky]"
 
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:822
 #, php-format
@@ -12473,32 +12597,32 @@ msgstr "Zvážte prevod vašich dát do UTF-8 a zmeniť kontorlu databázových 
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:1135
 #, fuzzy
 msgid "ZenPhoto20 files"
-msgstr "Súbory Zenphota"
+msgstr "ZenPhoto20 súbory"
 
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:1163
 #, fuzzy
 msgid "ZenPhoto20 package [missing]"
-msgstr "Balík Zenphota [chýba]"
+msgstr "ZenPhoto20 balík [chýba]"
 
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:1163
 #, fuzzy
 msgid "The file <code>zenphoto.package</code> is either missing, not readable, or defective. Your installation may be corrupt!"
-msgstr "Súbor <code>Zenphoto.package</code> chýba, nie je čitateľný alebo je poškodený. Vaša inštalácia može byť znehodnotená!"
+msgstr "Súbor <code>zenphoto.package</code> chýba, nie je čitateľný alebo chybný. Inštalácia je pravdepodobne poškodený!"
 
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:1169
 #, fuzzy, php-format
 msgid "Setting permissions (0%o) for ZenPhoto20 package."
-msgstr "Nastaviť práva (0%o) pre balík Zenphota."
+msgstr "Nastavenie povolení (0 %o) pre ZenPhoto20 balík."
 
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:1274
 #, fuzzy
 msgid "ZenPhoto20 core files [This is a <em>debug</em> build. Some files are missing or seem wrong]"
-msgstr "Zdrojové súbory Zenphota [Toto je <em>debug</em> verzia. Niektoré súbory chýbajú alebo nie sú správne]"
+msgstr "ZenPhoto20 základné súbory [to je <em>debug</em> build. Niektoré súbory sú chýbajúce alebo zle]"
 
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:1276
 #, fuzzy
 msgid "ZenPhoto20 core files [Some files are missing or seem wrong]"
-msgstr "Zdrojové súbory Zenphota [Niektoré súbory chýbajú alebo sú poškodené]"
+msgstr "ZenPhoto20 základné súbory [niektoré súbory sú chýbajúce alebo zle]"
 
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:1278
 msgid "Perhaps there was a problem with the upload. You should check the following files: "
@@ -12507,22 +12631,22 @@ msgstr "Možno je to problém s nahrávaním. Mali by ste skontrolovať tieto s�
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:1283
 #, fuzzy
 msgid "ZenPhoto20 core files [Could not update the root <em>index.php</em> file.]"
-msgstr "Zdrojové súbory Zenphota [Toto je <em>debug</em> verzia.]"
+msgstr "ZenPhoto20 základné súbory [nemohol aktualizovať súbor <em>index.php</em> koreňového.]"
 
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:1284
-#, php-format
+#, fuzzy, php-format
 msgid "Perhaps there is a permissions issue. You should manually copy the %s <em>root_index.php</em> file to the installation root and rename it <em>index.php</em>."
-msgstr ""
+msgstr "Možno tam je problém s povoleniami. Mali manuálne skopírujte <em>root_index.php</em> súbor %s do koreňového adresára inštalácie a premenujte ho <em>index.php</em>."
 
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:1288
 #, fuzzy
 msgid "ZenPhoto20 core files [This is a <em>debug</em> build]"
-msgstr "Zdrojové súbory Zenphota [Toto je <em>debug</em> verzia.]"
+msgstr "ZenPhoto20 základné súbory [to je <em>debug</em> build]"
 
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:1296
 #, fuzzy
 msgid "ZenPhoto20 core files"
-msgstr "Zdrojové súbory Zenphota"
+msgstr "ZenPhoto20 základné súbory"
 
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:1298
 msgid "Installation files"
@@ -12564,17 +12688,17 @@ msgstr "Vymazať súbory, ktoré sú navyše"
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:1348
 #, fuzzy
 msgid "ZenPhoto20 core file permissions"
-msgstr "Práva zdrojových súborov Zenphota"
+msgstr "ZenPhoto20 základné povolenia pre súbor"
 
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:1348
 #, fuzzy
 msgid "ZenPhoto20 core file permissions [not correct]"
-msgstr "Práva zdrojových súborov Zenphota [nie sú správne]"
+msgstr "ZenPhoto20 základné povolenia pre súbor [nie je správne]"
 
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:1348
 #, fuzzy
 msgid "Setup could not set the one or more components to the selected permissions level. You will have to set the permissions manually."
-msgstr "Inštalácii sa nepodarilo nastaviť jednému alebo viacerým komponentom vybranú úroveň práv. Budete musieť nastaviť práva manuálne. Prečítajte si <a href=\"http://www.zenphoto.org/news/troubleshooting-zenphoto#29\">Sprievodca problémami</a> kde sú detaily o potrebných právach pre Zenphoto."
+msgstr "Inštalátor nemohol nastaviť jednu alebo viac zložiek vybraté povolenia úrovni. Budete musieť manuálne nastaviť povolenia."
 
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:1351
 msgid "<em>.htaccess</em> file"
@@ -12602,8 +12726,9 @@ msgid "Server seems to be <em>nginx</em>"
 msgstr "Server sa zdá byť <em>nginx</em>"
 
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:1380
+#, fuzzy
 msgid "If you wish to create cruft-free URLs, you will need to configuring <em>rewriting</em> for your NGINX server so that any link that does not go directly to a file goes to the installation root <code>index.php</code> script."
-msgstr ""
+msgstr "Ak chcete vytvoriť cruft zadarmo URL, budete musieť Konfigurácia <em>prepisovanie</em> pre váš server NGINX, tak, že akýkoľvek odkaz, ktorý nemá ísť priamo do súboru ide do koreňového adresára inštalácie <code>index.php</code> skript."
 
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:1384
 msgid "Server seems not to be <em>Apache</em> or <em>Apache-compatible</em>, <code>mod_rewrite</code> may not be available."
@@ -12616,7 +12741,7 @@ msgstr "Server je pravdepodobne Apache alebo kopatibilný s Apache, <code>.htacc
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:1424
 #, fuzzy, php-format
 msgid "The <em>.htaccess</em> file in your root folder is not the same version as the one distributed with this version of ZenPhoto20. If you have made changes to <em>.htaccess</em>, merge those changes with the <em>%s/htaccess</em> file to produce a new <em>.htaccess</em> file."
-msgstr "Súbor <em>.htaccess</em> v hlavnom adresári Zenphota nie je rovnakej verzie ako ten, ktorý je distribuovaný v tejto verzii Zenphota. Ak ste v <em>.htaccess</em> spravili nejaké zmeny, vložte ich do súboru <em>%s/htaccess</em>, aby ste vytvorili nový súbor <em>.htaccess</em>."
+msgstr "<em>Htaccess</em> súboru vo vašom koreňovom adresári nie je istá verzia ako jednu distribuované s touto verziou programu ZenPhoto20. Ak ste vykonali zmeny <em>.htaccess</em>, zlúčiť tieto zmeny s <em>%s/htaccess</em> súbor vytvárať nový súbor <em>.htaccess</em> ."
 
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:1426
 msgid "<p class=\"buttons\"><a href=\"?copyhtaccess\" >Replace the existing <em>.htaccess</em> file with the current version</a></p><br style=\"clear:both\" /><br />"
@@ -12724,7 +12849,7 @@ msgstr "Zložky <em>locale</em> [nie su kompletné]"
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:1551
 #, fuzzy
 msgid "Be sure you have uploaded the complete ZenPhoto20 package. You must have at least the <em>en_US</em> folder."
-msgstr "Uistite sa, že ste nahrali kompletný balík Zenphota. Musíte mať minimálne zložku <em>en_US</em>."
+msgstr "Uistite sa, že ste nahrali kompletný balík ZenPhoto20. Musíte mať aspoň priečinka <em>en_US</em> ."
 
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:1552
 msgid "uploaded"
@@ -12934,7 +13059,7 @@ msgstr "<em>%1$s</em> zložka%2$s [problém s právami]"
 #: D:\github\ZenPhoto20/zp-core/setup/setup-functions.php:235
 #, fuzzy, php-format
 msgid "Setup could not change the file permissions from <em>%1$s</em> (<code>0%2$o</code>) to <em>%3$s</em> (<code>0%4$o</code>). You will have to set the permissions manually."
-msgstr "Inštalácia nemohla zmeniť oprávnenia pre <em>%1$s</em> (<code>0%2$o</code>) na <em>%3$s</em> (<code>0%4$o</code>). Budete musieť nastaviť práva manuálne. Prečítajte si <a href=\"http://www.zenphoto.org/news/troubleshooting-zenphoto#29\">Sprievodca problémami</a> kde sú detaily o potrebných právach pre Zenphoto."
+msgstr "Inštalátor nemohol zmeniť povolenia súboru z <em>%1$s</em> ( <code>0%2$o</code> ) k <em>%3$s</em> ( <code>0%4$o</code> ). Budete musieť manuálne nastaviť povolenia."
 
 #: D:\github\ZenPhoto20/zp-core/setup/setup-functions.php:272
 #, php-format
@@ -12991,8 +13116,9 @@ msgid "Click <a href=\"%s\">here</a> to acknowledge that you wish to ignore this
 msgstr "Kliknite <a href=\"%s\">sem</a> aby ste potvrdili, že chcete ignorovať tento problém. Potom sa to zmení na varovanie."
 
 #: D:\github\ZenPhoto20/zp-core/setup/setup-functions.php:581
+#, fuzzy
 msgid "<span class=\"zen-logo\"><a href=\"https://"
-msgstr ""
+msgstr "<span class=\"zen-logo\"><a href=\"https:// href=\"\"></a href=\"https://></span>"
 
 #: D:\github\ZenPhoto20/zp-core/setup/setup-functions.php:604
 msgid "Updated configuration file"
@@ -13001,12 +13127,12 @@ msgstr "Konfiguračný súbor bol obnovený"
 #: D:\github\ZenPhoto20/zp-core/setup/setup-functions.php:630
 #, fuzzy, php-format
 msgid "<strong>Warning:</strong> the <code>%s</code> table appears not to have a proper <em>UNIQUE</em> key. There are probably duplicate entries in the table which can cause unpredictable behavior. This can normally be corrected by creating a ZenPhoto20 backup, dropping the table, running setup to restore the table, and then restoring from the backup. Note, however, that the duplicate entries will be lost."
-msgstr "<strong>Varovanie:</strong> vyzerá, že tabuľka <code>%s</code> nemá správny <em>UNIQUE</em> kľúč. Je možné, že v nej sú duplicitné zápisy, ktoré možu spôsobovať nepredvídateľné správanie. Tento problé sa dá odstrániť vytvorením zálohy Zenphota, vymazaním tabuľky, spustením aktualizácie na obnovenie tabuľky a obnovením Zenphota zo zálohy. Pamätajte však, že dupicitné dáta budú stratené."
+msgstr "<strong>Upozornenie:</strong> <code>%s</code> tabuľky sa objaví nemajú správny kľúč <em>unikátny</em> . Existuje pravdepodobne duplicitné záznamy v tabuľke, ktorá môže spôsobiť nepredvídateľné správanie. To sa môže normálne odstrániť vytvorenie ZenPhoto20 zálohovanie, zvrhnutie tabuľky, spustiť inštalačný program obnoviť tabuľky a potom obnovenie zo zálohy. Všimnite si, že duplicitné položky sa stratia."
 
 #: D:\github\ZenPhoto20/zp-core/setup/setup-option-defaults.php:11
 #, fuzzy
 msgid "Set default options"
-msgstr "Nastaviť štandardné nastavenia Zenphota"
+msgstr "Nastavenie predvolených možností"
 
 #: D:\github\ZenPhoto20/zp-core/setup/setup-option-defaults.php:45
 #, php-format
@@ -13143,17 +13269,17 @@ msgstr "Zásuvný modul:%s inštalácia hotová"
 #: D:\github\ZenPhoto20/zp-core/setup/setup_set-mod_rewrite.php:18
 #, fuzzy
 msgid "The option “mod_rewrite” will be set to “enabled”."
-msgstr "Nastavenie Zenphota “mod_rewrite” bude nastavené na ”aktivované”."
+msgstr "Možnosť \"mod_rewrite\" sa nastavia na \"enabled\"."
 
 #: D:\github\ZenPhoto20/zp-core/setup/setup_set-mod_rewrite.php:21
 #, fuzzy
 msgid "The option “mod_rewrite” is “enabled”."
-msgstr "Nastavenie Zenphota “mod_rewrite” je ”aktivované”."
+msgstr "Možnosť \"mod_rewrite\" \"zapnuté\"."
 
 #: D:\github\ZenPhoto20/zp-core/setup/setup_set-mod_rewrite.php:23
 #, fuzzy
 msgid "The option “mod_rewrite” is “disabled”."
-msgstr "Nastavenie Zenphota “mod_rewrite” je ”deaktivované”."
+msgstr "Možnosť \"mod_rewrite\" \"vypnuté\"."
 
 #: D:\github\ZenPhoto20/zp-core/setup/setup_set-mod_rewrite.php:26
 msgid "Notice: “Module mod_rewrite” is working."
@@ -13165,9 +13291,9 @@ msgid "Theme:%s setup started"
 msgstr "Šablóna:%s inštalácia začala"
 
 #: D:\github\ZenPhoto20/zp-core/setup/setup_themeOptions.php:21
-#, php-format
+#, fuzzy, php-format
 msgid "Theme:%s triggered the deprecated functions plugin"
-msgstr ""
+msgstr "Téma: %s spustil odmietané funkcie plugin"
 
 #: D:\github\ZenPhoto20/zp-core/setup/setup_themeOptions.php:32
 #, php-format
@@ -13359,9 +13485,9 @@ msgid "login"
 msgstr "prihlásenie"
 
 #: D:\github\ZenPhoto20/zp-core/template-functions.php:4253
-#, php-format
+#, fuzzy, php-format
 msgid "<span class=\"zen-logo\"><a href=\"https://<?php echo GITHUB; ?>\" title=\"\">Powered by <img src=\"%s\" /></a></span>"
-msgstr ""
+msgstr "<span class=\"zen-logo\"><a href=\"https://<?php echo GITHUB; ?>\" title=\"\">správca<img src=\"%s\"></a></span>"
 
 #: D:\github\ZenPhoto20/zp-core/template-functions.php:4418
 msgid "Error:</strong> the requested object was not found."
@@ -13437,12 +13563,12 @@ msgstr "Pri obnove sa vyskytli tieto problémy:"
 #: D:\github\ZenPhoto20/zp-core/utilities/backup_restore.php:462
 #, fuzzy, php-format
 msgid "You have restored your database from a different instance of zenphoto. You should run %1$ssetup%2$s to insure proper migration."
-msgstr "Obnovili ste vašu databázu inou inštaláciou Zenpota. Mali by ste spustit %1$ssetup%2$s aby ste zaistili správnu migráciu."
+msgstr "Ste obnovili databázu z inej inštancie zenphoto. Mali by ste spustiť %1$ssetup %2$s poistiť riadne migrácie."
 
 #: D:\github\ZenPhoto20/zp-core/utilities/backup_restore.php:471
 #, fuzzy
 msgid "Rights migration failed!"
-msgstr "Presun práv zlyhal."
+msgstr "Práva migrácia zlyhala!"
 
 #: D:\github\ZenPhoto20/zp-core/utilities/backup_restore.php:485
 msgid "Restore completed"
@@ -13519,7 +13645,7 @@ msgstr "<strong>Poznámka:</strong> Každá databáza je pred obnovením úplne 
 #: D:\github\ZenPhoto20/zp-core/utilities/backup_restore.php:588
 #, fuzzy
 msgid "Ideally a restore should be done only on the same version on which the backup was created. If you are intending to upgrade, first do the restore on the version you were running, then install the new zenphoto. If this is not possible the restore can still be done, but if the database fields have changed between versions, data from changed fields will not be restored."
-msgstr "Ideálne je, ak je obnovenie robené iba v tej istej verzii Zenphota, v ktorej bola vytvorená záloha. Ak plánujete aktualizáciu, najprv obnovte zálohu v stávajúcej verzii a potom nainštalujte novú verziu Zenphota. Ak to nie je možné, stále môžete obnovu vykonať po inštalácii novej verzie, ale databázové polia, ktoré sa medzi verziami zmenili nebudú obnovené."
+msgstr "V ideálnom prípade obnovenia by mal vykonať len na tú istú verziu, na ktorom bola vytvorená záloha. Ak plánujete upgrade, najprv vykonať obnovenie na verziu, ktorý bol spustený, potom nainštalovať nový zenphoto. Ak to nie je možné obnoviť ešte dá, ale ak Databázové polia zmenili medzi verziami, údaje zo zmenených polia nebudú obnovené."
 
 #: D:\github\ZenPhoto20/zp-core/utilities/database_reference.php:12
 #: D:\github\ZenPhoto20/zp-core/utilities/gallery_statistics.php:19
@@ -13539,7 +13665,7 @@ msgstr "Zobrazí všetky databázové polia a tabuľky v rýchlom vyvolaní"
 #: D:\github\ZenPhoto20/zp-core/utilities/database_reference.php:73
 #, fuzzy
 msgid "The internal table relations can be viewed on the PDF database reference that is included in the release package within the /docs_files folder of your installation. For more detailed info about the database use tools like phpMyAdmin."
-msgstr "Interné vzťahy tabuliek Zenphota si môžete prezrieť v PDF súbore, ktorý je súčasťou inštálácie Zenphota a je uložený v zložke /docs_files. Ak chcete viac informácií o databáze, použite napríklad myPhpAdmin."
+msgstr "Vzťahy vnútornú tabuľku si môžete prezrieť na PDF databáze odkaz, ktorý je zahrnutý v balíku release v priečinku /docs_files inštalácie. Podrobnejšie informácie o databáze pomocou nástrojov ako je phpMyAdmin."
 
 #: D:\github\ZenPhoto20/zp-core/utilities/database_reference.php:108
 msgid "Table prefix: no prefix"
@@ -13822,7 +13948,7 @@ msgstr "Nastaviť všetky albumy na"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/PHPMailer.php:13
 #, fuzzy
 msgid "Outgoing mail handler based on the <em>PHPMailer</em> class mailing facility."
-msgstr "Nástroj Zenphota na odosielanie mailov založený na <em>PHPMailer</em>. "
+msgstr "Odchádzajúcej pošty handler na základe <em>PHPMailer</em> triedy poštové zariadenia."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/PHPMailer.php:15
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenphoto_sendmail.php:14
@@ -13914,7 +14040,7 @@ msgstr "Nemáte práva na zmenu stavu <em>zverejnenia</em>."
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/auto_backup.php:22
 #, fuzzy
 msgid "Periodically backup the database."
-msgstr "Pravideľne zálohovať databázu."
+msgstr "Pravidelne zálohovanie databázy."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/auto_backup.php:53
 msgid "Run interval"
@@ -14136,8 +14262,9 @@ msgid "Cache"
 msgstr "Keška"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/cacheManager.php:352
+#, fuzzy
 msgid "Cache manager"
-msgstr ""
+msgstr "Správca vyrovnávacej pamäte"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/cacheManager.php:366
 msgid "Purge RSS cache"
@@ -14186,12 +14313,14 @@ msgid "If an image processor URI is discovered it will be converted to a cache f
 msgstr "Ak bude objavené URI správcu obrázkov bude prekonvertované na URI keš súboru."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/cacheManager/cacheDBImages.php:38
+#, fuzzy
 msgid "If the cache file for the image does not exist, a caching image reference will be made for the image."
-msgstr ""
+msgstr "Ak neexistuje súbor vyrovnávacej pamäte pre obrázok, caching odkaz na obrázok sa obrázok."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/cacheManager/cacheDBImages.php:71
+#, fuzzy
 msgid "image processor reference"
-msgstr ""
+msgstr "odkaz na obrázok procesor"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/cacheManager/cacheDBImages.php:143
 msgid "<strong>Note:</strong> the following objects have images that appear to no longer exist."
@@ -14210,8 +14339,9 @@ msgstr[1] "%u nájdené odkazy na obrázkový procesor."
 msgstr[2] "%u nájdených odkazov na obrázkový procesor."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/cacheManager/cacheDBImages.php:161
+#, fuzzy
 msgid "You should use the refresh button to convert these to cached image references"
-msgstr ""
+msgstr "Použijete tlačidlo obnoviť previesť tieto cache obraz odkazy"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/cacheManager/cacheDBImages.php:166
 #, php-format
@@ -14441,11 +14571,12 @@ msgstr "Invalid Textobject instantiation: súbor neexistuje."
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/class-video.php:18
 #, fuzzy
 msgid "The <em>audio-video</em> handler."
-msgstr "Manažér <em>audio-video</em> Zenphota."
+msgstr "<em>Audio-video</em> handler."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/class-video.php:19
+#, fuzzy
 msgid "This plugin handles <code>3gp</code> and <code>mov</code> multi-media files. <strong>Note:</strong> you should also enable a multimedia player plugin to handle other media files."
-msgstr ""
+msgstr "Tento plugin spracováva <code>3gp</code> a <code>mov</code> multi-mediálne súbory. <strong>Poznámka:</strong> by tiež umožnili multimediálny prehrávač plugin zvládnuť iných mediálnych súborov."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/class-video.php:54
 msgid "Quicktime video width"
@@ -14491,7 +14622,7 @@ msgstr "Nie je nainštalovaný žiaden multimediálny doplnok."
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/cloneZenphoto.php:25
 #, fuzzy
 msgid "Allows multiple installations to share a single set of script files."
-msgstr "Povoliť použiť viacerým inštaláciám Zenphota jednu sadu skriptových súborov Zenphota."
+msgstr "Umožňuje inštalácií viacerých zdieľať jednu sadu súbory skriptov."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/cloneZenphoto.php:27
 msgid "Only the primary installation may clone offspring installations."
@@ -15223,13 +15354,14 @@ msgid "You will need to run <a href=\"%1$s\">setup</a> to update the database wi
 msgstr "Budete musieť spustiť <a href=\"%1$s\">setup</a> aby ste aktualizovali databázu poliami definovanými zásuvným modulom <em>%2$s</em>."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/common/fieldExtender.php:347
+#, fuzzy
 msgid "There is no defined context, you must pass a comment object."
-msgstr ""
+msgstr "Neexistuje žiadny definovaný kontext, musíte prejsť komentár objekt."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/common/fieldExtender.php:365
 #, fuzzy
 msgid "Field not defined."
-msgstr "Nedefinované"
+msgstr "Pole nie je definovaný."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/contact_form.php:19
 msgid "Prints an e-mail contact so that visitors may e-mail the site administrator."
@@ -15511,7 +15643,7 @@ msgstr "orezať obrázok"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/crop_image.php:331
 #, fuzzy
 msgid "Are you sure you want to permanently alter this image?"
-msgstr "Naozaj chcete vymazať tohoto používateľa?"
+msgstr "Naozaj chcete natrvalo zmeniť tento obrázok?"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/crop_image.php:344
 msgid "Image cropping"
@@ -15538,7 +15670,7 @@ msgstr "veľkosť"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/crop_image.php:370
 #, fuzzy, php-format
 msgid "crop width:%1$s %2$s crop height:%3$s"
-msgstr "Šírka: %1$s %2$s Výška:%3$s %4$s vrátiť %5$s"
+msgstr "Orezať Šírka: %1$s %2$s plodín výška: %3$s"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/crop_image.php:370
 msgid "swap width and height fields"
@@ -15547,24 +15679,27 @@ msgstr "prehodiť polia výšky a šírky"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/crop_image.php:389
 #, fuzzy
 msgid "Link image watermark"
-msgstr "Vodoznak obrázku:"
+msgstr "Prepojenie obrázka vodoznaku"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/debug.php:11
+#, fuzzy
 msgid "Debugging aids tab."
-msgstr ""
+msgstr "Ladenie aids kartu."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/debug.php:25
+#, fuzzy
 msgid "phpinfo"
-msgstr ""
+msgstr "phpinfo"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/debug.php:26
+#, fuzzy
 msgid "HTTP accept"
-msgstr ""
+msgstr "HTTP prijať"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/debug.php:27
 #, fuzzy
 msgid "Locales"
-msgstr "zväčšiť"
+msgstr "Miestne nastavenia"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/debug.php:28
 #, fuzzy
@@ -15578,27 +15713,27 @@ msgstr "Informácie o nastavení PHP."
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/debug/admin_tab.php:89
 #, fuzzy
 msgid "Supported locales:"
-msgstr "Žiadne podporované databázy"
+msgstr "Podporované miestne nastavenia:"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/debug/admin_tab.php:140
 #, fuzzy
 msgid "Languange"
-msgstr "Jazyk:"
+msgstr "Languange"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/debug/admin_tab.php:141
 #, fuzzy
 msgid "Sub-Languange"
-msgstr "Jazyk:"
+msgstr "Sub-Languange"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/debug/admin_tab.php:142
 #, fuzzy
 msgid "Languange String"
-msgstr "Jazyk:"
+msgstr "Languange reťazec"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/debug/admin_tab.php:180
 #, fuzzy
 msgid "Zenphoto browser cookies found."
-msgstr "Používateľ Zenphota vytvorený"
+msgstr "Zenphoto prehliadača cookies našiel."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/defaultCodeblocks.php:12
 msgid "Create default codeblocks."
@@ -15638,12 +15773,12 @@ msgstr "Kódové bloky, ktoré budú vložené, ak sú u tohto objektu prázdne.
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/deprecated-functions.php:33
 #, fuzzy
 msgid "Provides replacements for deprecated functions."
-msgstr "Poskytuje zastarané funkcie Zenphota."
+msgstr "Poskytuje náhrada za zastarané funkcie."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/deprecated-functions.php:34
 #, fuzzy
 msgid "This plugin is <strong>NOT</strong> required for the distributed code."
-msgstr "Tento zásuvný modul <strong>nie je</strong> vyžadovaný pre distribuované funkcie Zenphota."
+msgstr "Tento plugin je <strong>nie</strong> potrebné pre distribuované kód."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/deprecated-functions.php:107
 msgid "Functions"
@@ -15660,27 +15795,27 @@ msgstr "funkcia"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/deprecated-functions.php:182
 #, fuzzy, php-format
 msgid "theme %1$s:%2$s"
-msgstr "%1$s: %2$s"
+msgstr "Téma: %1$s od %2$s"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/deprecated-functions.php:185
 #, fuzzy, php-format
 msgid "user plugin %1$s:%2$s"
-msgstr "V zásuvných moduloch používateľa"
+msgstr "užívateľ plugin %1$s: %2$s"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/deprecated-functions.php:188
-#, php-format
+#, fuzzy, php-format
 msgid "standard plugin %1$s:%2$s"
-msgstr ""
+msgstr "štandard plugin %1$s: %2$s"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/deprecated-functions.php:191
-#, php-format
+#, fuzzy, php-format
 msgid "core:%s"
-msgstr ""
+msgstr "jadro: %s"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/deprecated-functions.php:198
 #, fuzzy, php-format
 msgid "%1$s (called from %2$s line %3$s) is deprecated."
-msgstr "%1$s (požadovaná %2$s riadok %3$s) je zastaraná"
+msgstr "%1$s (nazývané z %2$s line %3$s) je zastaraný."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/deprecated-functions.php:240
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/markRelease.php:57
@@ -15706,7 +15841,7 @@ msgstr "Zastarané funkcie."
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/deprecated-functions/admin_tab.php:32
 #, fuzzy
 msgid "There are no deprecated functions at this time."
-msgstr "Nemáte zapnuté žiadne zasuvné moduly, ktoré môžete nastavovať."
+msgstr "Nie sú žiadne odmietané funkcie v tejto dobe."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/deprecated-functions/admin_tab.php:38
 msgid "Functions flagged with an \"*\" are class methods. Ones flagged with \"+\" have deprecated parameters."
@@ -15731,7 +15866,7 @@ msgstr "V zásuvných moduloch používateľa"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:62
 #, fuzzy
 msgid "In ZenPhoto20 code"
-msgstr "V kóde Zenphota"
+msgstr "ZenPhoto20 kód"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:68
 msgid "In Codeblocks"
@@ -15744,7 +15879,7 @@ msgstr "<strong>Poznámka:</strong> Toto vyhľadávanie bude mať nesprávne vý
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:49
 #, fuzzy
 msgid "This feature is handled in the \"theme_head\" filter. For parameters set the theme options."
-msgstr "Túto funkciu teraz vykonáva filter  \"theme_head\". Môžete ostrániť volanie na funkciu."
+msgstr "Táto funkcia zabezpečuje vo filtri \"theme_head\". Pre parametre nastaviť tému volieb."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/deprecated-functions/functions.php:101
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/deprecated-functions/functions.php:139
@@ -15767,7 +15902,7 @@ msgstr "Zložka sťahovania"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/downloadList.php:65
 #, fuzzy
 msgid "This download folder can be relative to your installation (<em>foldername</em>) or external to it (<em>../foldername</em>)! You can override this setting by using the parameter of the printdownloadList() directly on calling."
-msgstr "Táto zložka sťahovania môže byť buď priamo v inštalácii Zenphota (<em>názov zložky</em>) or external to it (<em>../názov zložky</em>)! Toto nastavenie môžete zmeniť nadradeným parametrom v printdownloadList() priamo pri vyvolaní."
+msgstr "Tento priečinok Preberanie môže byť vzhľadom k vašej inštalácie (<em>názov priečinka</em>) alebo externé na to (<em>.. / názov_priečinka</em>)! Toto nastavenie môžete prepísať pomocou parametra printdownloadList() priamo na volanie."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/downloadList.php:66
 msgid "Show filesize of download items"
@@ -15926,7 +16061,7 @@ msgstr "Ak je zaškrtnuté odkazy na alternatívne jazyky budú vo forme <code><
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/sitemap-extended.php:72
 #, fuzzy
 msgid "This requires that you have created the appropriate subdomains pointing to your installation. That is <code>fr.mydomain.com/zenphoto/</code> must point to the same location as <code>mydomain.com/zenphoto/</code>. (Some providers will automatically redirect undefined subdomains to the main domain. If your provider does this, no subdomain creation is needed.)"
-msgstr "Na to je vyžadované aby ste vytvorili subdomény smerujúce na vašu inštaláciu Zenphota. To znamená, že <code>fr.mydomain.com/zenphoto/</code> musí smerovať na rovnaké miesto ako <code>mydomain.com/zenphoto/</code>. (Niektorí poskytovatelia automaticky presmerovávajú nedefinované domény na hlavnú domenú. Ak to robí aj váš, nie je potrebné vytvárať subdoménu.)"
+msgstr "To si vyžaduje, aby ste vytvorili vhodné subdomény smerovali k vašej inštalácii. Čiže <code>fr.mydomain.com/zenphoto/</code> musí ukazovať na tom istom mieste ako <code>mydomain.com/zenphoto/</code> . (Niektorí poskytovatelia sa automaticky presmeruje undefined subdomény na hlavnú doméne. Ak váš poskytovateľ to potrebné žiadne poddoménu vytvorenie.)"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/dynamic-locale.php:170
 msgid "Use flags"
@@ -15994,7 +16129,7 @@ msgstr "<strong>Poznámka:</strong> Prístup k zložke albumov s týmto nástroj
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/elFinder/php/connector_zp.php:62
 #, fuzzy, php-format
 msgid "Themes (%s)"
-msgstr "Obrázky (%s)"
+msgstr "Témy (%s)"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/elFinder/php/connector_zp.php:68
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/publishContent/publishContent.php:429
@@ -16021,7 +16156,7 @@ msgstr "Zásuvné moduly tretích strán (%s)"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/elFinder/php/connector_zp.php:253
 #, fuzzy, php-format
 msgid "Data (%s)"
-msgstr "Stránky (%s)"
+msgstr "Údajov (%s)"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/elFinder/php/connector_zp.php:267
 #, php-format
@@ -16040,7 +16175,7 @@ msgstr "Tento mail ste dostali, pretože bol pre vás vytvorený použivateľsk�
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/email-newuser.php:27
 #, fuzzy, php-format
 msgid "To set your User password visit: %s"
-msgstr "Pre nastavenie používateľského hesla do Zenphota navštívte: %s"
+msgstr "Nastaviť vaše používateľské heslo, navštívte: %s"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/email-newuser.php:28
 msgid "This ticket will automatically expire in 3 days."
@@ -16049,7 +16184,7 @@ msgstr "Táto požiadavka má platnosť 3 dni."
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/email-newuser.php:29
 #, fuzzy
 msgid "ZenPhoto20 user created"
-msgstr "Používateľ Zenphota vytvorený"
+msgstr "ZenPhoto20 používateľ vytvoril"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/email-newuser.php:42
 msgid "New users will be mailed a password set link"
@@ -16070,7 +16205,7 @@ msgstr "Zobrazí číslo aktuálnej strany."
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/exampleMacros.php:35
 #, fuzzy
 msgid "Prints the version of the installation."
-msgstr "Zobrazí verziu inštalácie Zenphota."
+msgstr "Vytlačí verziu inštalácie."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/exampleMacros.php:40
 msgid "An example of how to reference global variables. In this case to dump the current gallery page variable."
@@ -16091,7 +16226,7 @@ msgstr "PARAM_DUMP macro zistilo nasledujúce:"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/externalFeed.php:48
 #, fuzzy
 msgid "The <em>externalFeed</em> handler."
-msgstr "Manažér <em>externalFeed</em> Zenphota."
+msgstr "Obslužný program <em>externalFeed</em> ."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/externalFeed.php:68
 msgid "externalFeed feeds enabled:"
@@ -16165,8 +16300,9 @@ msgid "latest by publishdate"
 msgstr "najnovšie podľa zverejnenia"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/externalFeed.php:90
+#, fuzzy
 msgid "Choose between latest by id for the latest uploaded, latest by date for the latest uploaded fetched by date, or latest by mtime for the latest uploaded fetched by the file’s last change timestamp."
-msgstr ""
+msgstr "Vybrať medzi Posledná ID pre Posledná nahrané, najneskôr do dátumu pre Posledná nahrané vzali podľa dátumu, alebo najnovšie tým mtime pre Posledná nahrané načítať súbor posledné zmeny časových pečiatok."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/externalFeed.php:91
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/rss.php:70
@@ -16174,16 +16310,18 @@ msgid "Album feed sort order:"
 msgstr "Poradie v kanály albumov:"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/externalFeed.php:99
+#, fuzzy
 msgid "In addition to the above you may select latest updated."
-msgstr ""
+msgstr "Okrem vyššie uvedených môžete vybrať Posledná aktualizácia."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/externalFeed.php:100
 msgid "New requestor:"
 msgstr "Nový žiadateľ:"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/externalFeed.php:102
+#, fuzzy
 msgid "Supply a site name to add a new using site."
-msgstr ""
+msgstr "Zdroj názov lokality pridať nové používanie stránky."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/externalFeed.php:103
 msgid "Registered sites:"
@@ -16285,23 +16423,24 @@ msgstr[1] "%s (%u obrázky)"
 msgstr[2] "%s (%u obrázkov)"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/favoritesAlbums.php:29
+#, fuzzy
 msgid "Publish <em>favorites</em> into albums that others can view."
-msgstr ""
+msgstr "Publikovať <em>obľúbených</em> do albumov, ktoré si ostatní môžu prezerať."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/favoritesAlbums.php:177
 #, fuzzy
 msgid "Create an album from favorites"
-msgstr "Vytvoriť album z vyhľadávania"
+msgstr "Vytvoriť album z obľúbených položiek"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/favoritesAlbums/admin-album.php:78
 #, fuzzy
 msgid "Create Favorites Album"
-msgstr "Vytvoriť album"
+msgstr "Vytvoriť Album obľúbených"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/favoritesAlbums/admin-album.php:90
 #, fuzzy
 msgid "favorite"
-msgstr "Obľúbené"
+msgstr "obľúbená položka"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/favoritesHandler.php:48
 msgid "Support for <em>favorites</em> handling."
@@ -16361,8 +16500,9 @@ msgid "The favorites page description text."
 msgstr "Popisný text stránky obľúbených."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/favoritesHandler.php:126
+#, fuzzy
 msgid "<p class=\"notebox\">Favorites requires the <code>mod_rewrite</code> option be enabled.</p>"
-msgstr ""
+msgstr "<p class=\"notebox\">Obľúbené vyžaduje <code>mod_rewrite</code> byť povolená voľba.</p>"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/favoritesHandler/favoritesClass.php:107
 msgid "Users watching:"
@@ -16509,7 +16649,7 @@ msgstr "Overiť"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/federated_logon/Verisign_logon.php:59
 #, fuzzy
 msgid "Return to ZenPhoto20"
-msgstr "Vrátiť sa do Zenphota"
+msgstr "Návrat do ZenPhoto20"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/federated_logon/OpenID_try_auth.php:21
 msgid "Not a valid OpenID URL"
@@ -16685,9 +16825,9 @@ msgid "Image title"
 msgstr "Názov obrázku"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/galleryArticles.php:71
-#, php-format
+#, fuzzy, php-format
 msgid "This text will be used as the <em>title</em> of the article. The album title will be substituted for <code>%2$s</code> and the image title for <code>%1$s</code>."
-msgstr ""
+msgstr "Tento text sa použije ako <em>nadpis</em> článku. Názov albumu sa nahradí <code>%2$s</code> a obraz titul pre <code>%1$s</code> ."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/galleryArticles.php:72
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:103
@@ -16695,9 +16835,9 @@ msgid "Album title"
 msgstr "Názov albumu"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/galleryArticles.php:75
-#, php-format
+#, fuzzy, php-format
 msgid "This text will be used as the <em>title</em> of the article. The album title will be substituted for <code>%1$s</code>."
-msgstr ""
+msgstr "Tento text sa použije ako <em>nadpis</em> článku. Názov albumu sa nahradí <code>%1$s</code> ."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/galleryArticles.php:78
 msgid "Set the size the image will be displayed."
@@ -16708,36 +16848,41 @@ msgid "Publish protected"
 msgstr "Zverejniť chránené"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/galleryArticles.php:81
+#, fuzzy
 msgid "Unless this is checked, objects which are \"protected\" will not have news articles generated."
-msgstr ""
+msgstr "Ak je toto políčko začiarknuté, objekty, ktoré sú \"chránené\" nebude mať novinky články generujú."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/galleryArticles.php:85
+#, fuzzy
 msgid "Select a category for the generated articles"
-msgstr ""
+msgstr "Vyberte kategóriu pre generované články"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/galleryArticles.php:86
 msgid "Use album folder"
 msgstr "Použiť zložku albumu"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/galleryArticles.php:88
+#, fuzzy
 msgid "If this option is checked and a category matching the album folder exists, that will be used as the article category."
-msgstr ""
+msgstr "Ak je začiarknutá táto voľba a existuje kategória zodpovedajúce priečinku albumu, ktorý sa použije ako v kategórii."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/galleryArticles.php:91
 msgid "Import Combi-news"
 msgstr "Importovať Combi-news"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/galleryArticles.php:93
+#, fuzzy
 msgid "If this option is checked, articles will be generated based on your old <em>Combi-news</em> settings."
-msgstr ""
+msgstr "Ak je začiarknutá táto voľba, články sa vygeneruje na základe staré nastavenia <em>Combi-news</em> ."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/galleryArticles/combiNews.php:244
 msgid "combiNews"
 msgstr "combiNews"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/galleryArticles/combiNews.php:245
+#, fuzzy
 msgid "Auto category for ported combi-news articles."
-msgstr ""
+msgstr "Auto kategórie pre portován combi-novinové články."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/googleMap.php:16
 msgid "Display Google Maps based on <em>latitude</em> and <em>longitude</em> metadata in the images."
@@ -17035,8 +17180,9 @@ msgid "Twitter name"
 msgstr "Twitter meno"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/html_meta_tags.php:87
+#, fuzzy
 msgid "If you enabled Twitter card meta tags, you need to enter your Twitter user name here."
-msgstr ""
+msgstr "Ak je zapnutý Twitter karty meta tagy, budete musieť zadať vaše užívateľské meno rozechvění tu."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/html_meta_tags.php:88
 msgid "HTML meta tags"
@@ -17069,7 +17215,7 @@ msgstr "dôveryhodný"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/http_auth.php:76
 #, fuzzy
 msgid "Set to <em>trusted</em> to presume the HTTP user is securely authorized. (This setting does not verify passwords against the zenphoto user.)"
-msgstr "Nastavte na <em>dôveryhodný</em> aby sa predpokladalo, že HTTP používateľ je bezpečne autorizovaný. (Toto nastavenie neoveruje heslo cez používateľa Zenphota.)"
+msgstr "Nastaviť <em>dôveryhodných</em> predpokladať HTTP používateľ privolenie bezpečne. (Toto nastavenie neoveruje heslá proti zenphoto používateľa.)"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/image_album_statistics.php:14
 msgid "Functions that provide various statistics about images and albums in the gallery."
@@ -17221,7 +17367,7 @@ msgstr "Načítať zoznam"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/ipBlocker.php:85
 #, fuzzy, php-format
 msgid "Import an external IP list. <p class=\"notebox\"><strong>NOTE:</strong> If this list is large it may exceed the capacity of zenphoto and %s to process and store the results."
-msgstr "Importovať zoznam externých IP. <p class=\"notebox\"><strong>POZNÁMKA:</strong> Ak je zoznam veľký, môže prekročiť kapacitu Zenphota a %s aby sa spracoval a uložil výsledok."
+msgstr "Importovať externé IP zoznam.<p class=\"notebox\"><strong>Poznámka:</strong> Ak tento zoznam je veľký prekročiť kapacitu zenphoto a %s na spracovanie a ukladanie výsledkov."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/ipBlocker.php:89
 msgid "How the plugin will interpret the IP list."
@@ -17284,8 +17430,9 @@ msgid "The scripts for which jCarousel is enabled. {If themes require it they mi
 msgstr "Skripty, pre ktoré je jCarousel aktivovaný. {Ak to šablóny vyžadujú, mali by si to nastaviť, inak to musíte urobiť manuálne!}"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/jplayer.php:71
+#, fuzzy
 msgid "This plugin handles <code>flv</code>, <code>fla</code>, <code>mp3</code>, <code>mp4</code>, <code>m4v</code>, and <code>m4a</code> multi-media files."
-msgstr ""
+msgstr "Tento plugin spracováva <code>flv</code> , <code>fla</code> , <code>mp3</code> , <code>mp4</code> , <code>m4v</code> , a <code>m4a</code> multi-mediálne súbory."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/jplayer.php:72
 msgid "Please see <a href='http://jplayer.org'>jplayer.org</a> for more info about the player and its license."
@@ -17392,7 +17539,7 @@ msgstr "jp-video-1080p (1920x1080 px)*"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/jplayer.php:156
 #, fuzzy
 msgid "jPlayer is dependent on their HTML and CSS based skin. Sizes marked with a <strong>*</strong> are supported by the two zenphoto custom skins only (these two skins are also responsive in width). If you need different sizes you need to modify a skin or make your own and also need to change values in the plugin class method getPlayerSize()."
-msgstr "jPlayer sa nedá voľne zväšovať, pretože jeho veľkosť závisí od jeho HTML či CSS vzoru. Veľkosti označené <strong>*</strong> sú podporované oboma vzormi Zenphota. Ak potrebujete iné veľkosti musíte si upraviť vzor alebo vyrobiť vlastný a tiež musíte zmeniť hodnoty v zásuvnom module - class method getPlayerSize()."
+msgstr "jPlayer je závislá na ich HTML a CSS založené kože. Rozmery označené <strong>*</strong> sú podporované dva zenphoto vlastné skiny len (tieto dva skins sú tiež citlivé na šírku). Ak budete potrebovať rôzne veľkosti, budete musieť upraviť kože alebo vytvoriť svoj vlastný a tiež potrebné zmeniť hodnoty v plugin triedy metóda getPlayerSize()."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/jplayer.php:157
 msgid "Player skin"
@@ -17401,7 +17548,7 @@ msgstr "Farebnosť prehrávača"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/jplayer.php:159
 #, fuzzy
 msgid "Select the skin (theme) to use. <br />NOTE: Since the skin is pure HTML/CSS only there may be display issues with certain themes that require manual adjustments. The two zenphoto custom skins are responsive regarding the player width. Place custom skin within the root plugins folder. See plugin documentation for more info."
-msgstr "Vyberte si vzor (šablónu). <br />POZNÁMKA: Keďže vzor je čiste pre HTML/CSS môže dôjsť k problémom v zobrazovaní v niektorých šablónach, ktoré budú potrebovať manuálne upraviť. Dva upravené vzory Zenphota sa prispôsobujú podľa šírky prehrávača. Pre viac informácií si pozrite dokumentáciu zásuvného modulu."
+msgstr "Vybrať skin (tému) používať.<br>Poznámka: Vzhľadom k tomu, koža je čistý HTML/CSS len tam môžu byť problémy so zobrazením určité témy, ktoré vyžadujú ručné úpravy. Dve zenphoto vlastné skiny sú citlivé o šírku hráč. Miesto vlastný obal v koreňovom priečinku plugins. Ďalšie informácie nájdete v dokumentácii dodanej plugin."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/jplayer.php:241
 #, php-format
@@ -17491,8 +17638,9 @@ msgid "Macro identifiers may not contain special characters."
 msgstr "Identifikaátory makier by nemali obsahovať špeciálne znaky."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/macroList.php:120
+#, fuzzy
 msgid "The number of macro parameters must match the number of replacement tokens in the expression."
-msgstr ""
+msgstr "Počet parametrov makro musí zodpovedať počtu výmena žetónov vo výraze."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/macroList.php:124
 #, php-format
@@ -17522,7 +17670,7 @@ msgstr "Neboli definované žiadne makrá."
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/macroList/macroList_tab.php:34
 #, fuzzy, php-format
 msgid "These Content macros can be used to insert items as described into <em>descriptions</em>, <em>zenpage content</em>, and <em>zenpage extra content</em>.</p> <p>Replace any parameters (<em>%d</em>) with the appropriate value."
-msgstr "Tieto obsahové makrá môžu byť použité na vloženie vecí zo Zenphota ako je popísané v <em>descriptions</em>, <em>zenpage content</em> a <em>zenpage extra content</em>.</p> <p>Nahraďte všetky parametre (<em>%d</em>) požadovanou hodnotou."
+msgstr "Obsah makrá možno vložiť položky opísané do <em>opisy</em>, <em>zenpage obsah</em>, a <em>zenpage extra obsahu</em>.<p><p>Nahradiť všetky parametre (<em>%d</em>) zodpovedajúcu hodnotu."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/macroList/macroList_tab.php:35
 msgid "Parameter types:"
@@ -17888,7 +18036,7 @@ msgstr "Presuňte položky do požadovaného poradia ako chcete aby sa zobrazova
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_tab.php:145
 #, fuzzy
 msgid "<strong>IMPORTANT:</strong> This menu’s order is completely independent from any order of albums or pages set on the other admin pages. Use with customized themes that do not wish the standard zenphoto display structure. zenphoto functions such as the breadcrumb functions and the next_album() loop will NOT reflect of this menu’s structure!"
-msgstr "<strong>Dôležité:</strong> Poradie týchto menu je úplne nezávislé na poradí albumov či stránok nastavených na iných adminstrátorských stránkach. Dá sa použiť s neštandardnými šablónami, pri ktorých nechcete ukazovať štandardnú štruktúru zobrazovania zo Zenphota. Funkcie Zenphota, ako napríklad breadcrumb alebo next_album() loop nebudú brať ohľad na štruktúru týchto menu!"
+msgstr "<strong>Dôležité:</strong> Toto poradie je úplne nezávislá od akejkoľvek objednávky stránok nastaviť admin stránok alebo albumy. Použiť prispôsobené motívy, ktoré si neželajú štandardné zenphoto zobrazenie štruktúry. Zenphoto funkcie ako sú strúhanka funkcie a next_album() slučky sa nevyjadruje Toto menu štruktúry!"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_tab.php:157
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:223
@@ -18020,7 +18168,7 @@ msgstr "Upravený odkaz"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:141
 #, fuzzy
 msgid "Creates a link outside the zenphoto structure. Use of a full URL is recommended (e.g. http://www.domain.com)."
-msgstr "Vytvorí odkaz smerujúci mimo štruktúry Zenphota. Odporúčame použiť úplnú adresu (napr. http://www.domain.com)."
+msgstr "Vytvorí prepojenie mimo zenphoto štruktúry. Odporúča sa použiť celú adresu URL (napr. http://www.domain.com)."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:148
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:260
@@ -18066,7 +18214,7 @@ msgstr "*vyberte si typ položiek menu, ktoré chcete pridať*"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:253
 #, fuzzy
 msgid "All news categories"
-msgstr "kategórie článkov"
+msgstr "Všetky Novinky kategórie"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:258
 msgid "Custom theme page"
@@ -18588,39 +18736,42 @@ msgstr "Žiadna nezverejnená stránka"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/purgeOptions.php:19
 #, fuzzy
 msgid "Provides a means to purge options for Themes and Plugins."
-msgstr "Poskytuje možnosť zobraziť formulár na prihlásenie alebo odhlásenie na stránkach šablóny."
+msgstr "Poskytuje prostriedky k čistky možnosti tém a pluginov."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/purgeOptions.php:33
+#, fuzzy
 msgid "purge"
-msgstr ""
+msgstr "čistenie"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:15
 #, fuzzy
 msgid "User plugins"
-msgstr "V zásuvných moduloch používateľa"
+msgstr "Užívateľských pluginov"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:15
 #, fuzzy
 msgid "Extensions"
-msgstr "Spracovať prípony."
+msgstr "Rozšírenia"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:95
 #, fuzzy
 msgid "No option owners have been located."
-msgstr "Vaše súbory boli nahraté."
+msgstr "Žiadna možnosť majitelia boli umiestnené."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:109
+#, fuzzy
 msgid "Check an item to purge options associated with it."
-msgstr ""
+msgstr "Skontrolujte položku Vymazať možnosti spojené s to."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:112
+#, fuzzy
 msgid "Items that are <span class=\"missing_owner\">higlighed</span> appear no longer to exist."
-msgstr ""
+msgstr "Položky, ktoré sa <span class=\"missing_owner\">higlighed</span> objavujú už existovať."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:117
-#, php-format
+#, fuzzy, php-format
 msgid "<span class=\"missing_owner\">higlighed</span>%s "
-msgstr ""
+msgstr "<span class=\"missing_owner\">higlighed</span>%s"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/quota_manager.php:31
 msgid "Provides a quota management system to limit the sum of sizes of images a user uploads."
@@ -19112,17 +19263,19 @@ msgid "Error processing rewrite rule:"
 msgstr "Chyba spracovávania pravidla prepisu: "
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/rewriteTokens.php:11
+#, fuzzy
 msgid "Utility to alter the rewrite token substitutions array in the configuration file."
-msgstr ""
+msgstr "Pomôcka k zmene token suplovania array prepísať v konfiguračnom súbore."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/rewriteTokens.php:13
+#, fuzzy
 msgid "Rewrite Tokens are not useful unless the <code>mod_rewrite</code> option is enabled."
-msgstr ""
+msgstr "Prepísať tokeny nie sú užitočné ak <code>mod_rewrite</code> je zapnutá."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/rewriteTokens.php:39
 #, fuzzy
 msgid "The Configuration file is corrupt. You will need to restore it from a backup."
-msgstr "Konfiguračný súbor Zenphota je poškodený. Mali by ste ho obnoviť zo zálohy."
+msgstr "Konfiguračný súbor je poškodený. Budete musieť obnoviť zo zálohy."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/rewriteTokens.php:65
 msgid "rewriteTokens restored to default"
@@ -19140,8 +19293,9 @@ msgid "Link for <em>%s</em> script page."
 msgstr "Odkaz pre <em>%s</em> stránku skriptu."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/rewriteTokens.php:96
+#, fuzzy
 msgid "<p class=\"notebox\">Rewrite Tokens are not useful unless the <code>mod_rewrite</code> option is enabled.</p>"
-msgstr ""
+msgstr "<p class=\"notebox\">Prepísať tokeny nie sú užitočné ak <code>mod_rewrite</code> je zapnutá.</p>"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/rewriteTokens.php:101
 msgid "Restore defaults."
@@ -19158,23 +19312,24 @@ msgid "Link for <em>%s</em> rule."
 msgstr "Odkaz pre <em>%s</em> pravidlo."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/rewriteTokens.php:189
+#, fuzzy
 msgid "tokens"
-msgstr ""
+msgstr "Tokeny"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/rewriteTokens/admin_tab.php:11
 #, fuzzy
 msgid "rewriteTokens"
-msgstr "prepisovanie"
+msgstr "rewriteTokens"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/rewriteTokens/admin_tab.php:27
 #, fuzzy
 msgid "Rewrite Tokens"
-msgstr "Prepisovacie pravidlá"
+msgstr "Prepísať tokeny"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/rss.php:12
 #, fuzzy
 msgid "The <em>RSS</em> handler."
-msgstr "Manažér <em>RSS</em> Zenphota."
+msgstr "<em>RSS</em> handler."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/rss.php:13
 msgid "This plugin must be enabled to supply <em>RSS</em> feeds."
@@ -19222,8 +19377,9 @@ msgid "Size of RSS album feed images :"
 msgstr "Veľkosť obrázkov v RSS kanale:"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/rss.php:69
+#, fuzzy
 msgid "Choose between latest by id for the latest uploaded, latest by date for the latest uploaded fetched by date, or latest by mtime for the latest uploaded fetched by the file’ last change timestamp."
-msgstr ""
+msgstr "Vybrať medzi Posledná ID Posledná nahrané, najnovšie podľa dátumu pre Posledná nahrané přehnanější podľa dátumu alebo najnovšie mtime pre Posledná nahrané načítať súbor \"Posledná zmena časovej pečiatky."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/rss.php:78
 msgid "Choose between latest by id for the latest uploaded and latest updated"
@@ -19497,8 +19653,9 @@ msgid "Request delete user"
 msgstr "Požiadavka na vymazanie používateľa"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/security-logger.php:148
+#, fuzzy
 msgid "Cross Site Reference"
-msgstr ""
+msgstr "Krížový odkaz stránky"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/security-logger.php:151
 msgid "Album access"
@@ -19750,8 +19907,9 @@ msgid "Restore site_upgrade files"
 msgstr "Obnoviť súbory site_upgrade"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/site_upgrade.php:105
+#, fuzzy
 msgid "Restores the files in the \"plugins/site_upgrade\" folder to their default state. Note: this will overwrite any custom edits you may have made."
-msgstr ""
+msgstr "Obnoví súbory v priečinku \"plugins/site_upgrade\" predvolený stav. Poznámka: Táto prepíše všetky vlastné úpravy ste urobili."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/site_upgrade.php:116
 msgid "Site » test mode"
@@ -19772,7 +19930,7 @@ msgstr "Nastaví stránku ako dostupnú na prezeranie."
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/site_upgrade.php:146
 #, fuzzy
 msgid "Your setup scripts are not protected!"
-msgstr "Inštalačné skripty nie sú chránené."
+msgstr "Svojich inštalačných skriptov nie sú chránené!"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/site_upgrade.php:158
 msgid "Site » close"
@@ -19783,8 +19941,9 @@ msgid "Make site unavailable for viewing by redirecting to the \"closed.html\" p
 msgstr "Stránka sa nebude dať prezerať a bude presmerovaná na stránku \"closed.html\" ."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/site_upgrade.php:175
+#, fuzzy
 msgid "site_upgrade files Restored to original."
-msgstr ""
+msgstr "site_upgrade súbory Restored originál."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/site_upgrade.php:184
 #, php-format
@@ -19974,7 +20133,7 @@ msgstr "A je táto možnosť zaškrtnutá bude výstupný súbor XML formátovan
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/sitemap-extended.php:161
 #, fuzzy
 msgid "<strong>Note:</strong> Other search engines (Yahoo, Bing) might not be able to read your sitemap. Also the Google extensions cover only image and video formats. If you use custom file types that are not covered by standard plugins or types like .mp3, .txt and .html you should probably not use this or modify the plugin. Also, if your site is really huge think about if you really need this setting as the creation may cause extra workload of your server and result in timeouts"
-msgstr "<strong>Poznámka:</strong> Ostatné vyhľadávače (Yahoo, Bing) možno nebudú schopné váš sitemap prečítať. Taktiež rozšírenia Googlu pokrývajú iba formáty obrázkov a videí. Ak používate typy súborov, ktoré nie sú podporované štandardnými zásuvnými modulmi Zenphoto, alebo typy ako .mp3, .txt a .html asi by ste tento zásuvný modul nemali používať. Taktiež ak je vaša stránka rozsiahla, mali by ste porozmýšlať, či naozaj potrebujete toto nastavenie, pretože vytváranie mapy spôsobuje prácu naviac pre server, čo môže viesť k výpadkom."
+msgstr "<strong>Poznámka:</strong> Iné vyhľadávače (Yahoo, Bing) nemusí byť schopný čítať váš sitemap. Tiež Google rozšírenia pokrytie iba obrázok a video formáty. Ak používate vlastný súbor typy, ktoré nie sú pokryté štandardné zásuvné moduly alebo typy ako .mp3, .txt a .html by pravdepodobne nie použiť alebo upraviť plugin. Tiež, ak váš web je naozaj obrovský premýšľať o tom, či naozaj potrebujete toto nastavenie ako vytvorenie môže spôsobiť dodatočné zaťaženie servera a výsledok v časových limitov"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/sitemap-extended.php:162
 msgid "Google - URL to image license"
@@ -19985,8 +20144,9 @@ msgid "Optional. Used only if the Google extension is checked. Must be an absolu
 msgstr "Voliteľné. Používa sa iba ak je zapnuté Google rozšírenie. Musí obsahovať absolútnu URL adresu vo formáte: http://mydomain.com/license.html sein."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/sitemap-extended.php:166
+#, fuzzy
 msgid "Sitemap processing chunk"
-msgstr ""
+msgstr "Sitemap spracovanie kus"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/sitemap-extended.php:168
 msgid "The number of albums that will be processed for each sitemap file. Lower this value if you get script timeouts when creating the files."
@@ -20027,7 +20187,7 @@ msgstr "Týmto vytvoríte samostatné štatické súbory XML mapy stránok pre n
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:112
 #, fuzzy
 msgid "ZenPhoto20 items"
-msgstr "Položky Zenphota"
+msgstr "ZenPhoto20 predmety"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:114
 msgid "Index pages"
@@ -20272,8 +20432,9 @@ msgid "Invalid linking to the slideshow page."
 msgstr "Nesprávne odkazy na stránku prezentácie."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/slideshow2.php:36
+#, fuzzy
 msgid "Slideshow plugin based on the Cycle2 jQuery plugin."
-msgstr ""
+msgstr "Slideshow plugin na základe Cycle2 jQuery plugin."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/slideshow2.php:81
 msgid "Slideshow: Mode"
@@ -20324,12 +20485,14 @@ msgid "Tile slide"
 msgstr "Rozdeliť snímku"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/slideshow2.php:110
+#, fuzzy
 msgid "Tile blind"
-msgstr ""
+msgstr "Dlaždice nevidiacich"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/slideshow2.php:111
+#, fuzzy
 msgid "The cycle slide effect to be used. Flip transitions are only supported on browsers that support CSS3 3D transforms. (IE10+, current Chrome, Firefox, Opera and Safari.)"
-msgstr ""
+msgstr "Efekt cyklu snímky majú byť použité. Flip prechody sú podporované len v prehliadačoch, ktoré podporujú CSS3 3D transformácie. (IE10 +, aktuálny prehliadač Chrome, Firefox, Opera a Safari.)"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/slideshow2.php:112
 msgid "Slideshow: Tile Effect - Extra"
@@ -20340,8 +20503,9 @@ msgid "Horziontal"
 msgstr "Horizontálne"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/slideshow2.php:117
+#, fuzzy
 msgid "If one of the tile effects is selected, this is its orientation."
-msgstr ""
+msgstr "Ak je vybratá jedna dlaždica účinkov, to je jeho orientáciu."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/slideshow2.php:118
 msgid "Slideshow: Timeout"
@@ -20390,7 +20554,7 @@ msgstr "Skripty, pre ktoré je cycle2 aktivovaný. {Ak to šablóny vyžadujú, 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/static_html_cache.php:28
 #, fuzzy
 msgid "Adds static HTML cache functionality."
-msgstr "Pridáva do Zenphota funkciu štatickej HTML vyrovnávacej pamäti."
+msgstr "Pridá statické HTML cache funkčnosť."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/static_html_cache.php:36
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/static_html_cache.php:44
@@ -20400,7 +20564,7 @@ msgstr "Zložka štatickej HTML vyrovnávacej pamäti nemohla byť vytvorená. P
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/static_html_cache.php:171
 #, fuzzy, php-format
 msgid "Cached content of %3$s served by static_html_cache in %1$.4f seconds plus %2$.4f seconds unavoidable overhead."
-msgstr "Nahratie obsahu z %3$s poskytnutým použitím static_html_cache do vyrovnávacej pamäti za %1$.4f sekúnd plus %2$.4f sekúnd pridaných Zenphotom."
+msgstr "Obsah vo vyrovnávacej pamäti %3$s obsluhovaná static_html_cache v %1$.4f sekúnd plus %2$.4f sekúnd nevyhnutné réžia."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/static_html_cache.php:329
 msgid "Static HTML cache expire"
@@ -20427,8 +20591,9 @@ msgid "Enables jQuery tag suggestions on the search field."
 msgstr "Povoluje nápovedu JQuery tagov vo vyhľadávacom poli."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/themeEditor.php:14
+#, fuzzy
 msgid "PHP based theme editor."
-msgstr ""
+msgstr "PHP na tému editor."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/themeEditor/themes-editor.php:54
 msgid "File updated successfully"
@@ -20531,7 +20696,7 @@ msgstr "Šablóny sa neobjavia v tomto zozname ak ich vybranie spôsobí chybu '
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinyURL.php:18
 #, fuzzy
 msgid "Provides short URLs to zenphoto objects."
-msgstr "Poskytuje skrátené URL pre objekty Zenphota."
+msgstr "Poskytuje krátke URL pre zenphoto objekty."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinyURL.php:20
 msgid "Shortened URLs require the <code>mod_rewrite</code> option be enabled."
@@ -20542,8 +20707,9 @@ msgid "Use in themes for"
 msgstr "Použiť v šablónach pre"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinyURL.php:68
+#, fuzzy
 msgid "If an option is chosen, normal theme URLs will be replaced with <i>tinyURL</i>s for that object."
-msgstr ""
+msgstr "Ak sa zvolí možnosť, nahradí bežné tému URL s <i>tinyURL</i>pre daný objekt."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinyURL.php:83
 msgid "news categories"
@@ -20556,7 +20722,7 @@ msgstr "Textový editor TinyMCE 4.x"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce.php:48
 #, fuzzy
 msgid "Text editor configuration - zenphoto"
-msgstr "Nastavenia textového editoru - Zenphoto"
+msgstr "Textový editor konfigurácie - zenphoto"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce.php:52
 msgid "Applies to <em>admin</em> editable text other than for Zenpage pages and news articles."
@@ -20565,16 +20731,17 @@ msgstr "Aplikuje sa na texty editovateľné <em>administrátorom</em> mimo Zenpa
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce.php:53
 #, fuzzy
 msgid "tinyZenpage plugin"
-msgstr "Povoliť zásuvný modul Zenpage CMS"
+msgstr "tinyZenpage plugin"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce.php:55
+#, fuzzy
 msgid "Enable legacy tinyZenpage feature."
-msgstr ""
+msgstr "Dedičstvo tinyZenpage funkciu."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce.php:56
 #, fuzzy
 msgid "Text editor configuration - zenpage"
-msgstr "Nastavenia textového editoru - Zenpage"
+msgstr "Textový editor Konfigurácia - zenpage"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce.php:60
 msgid "Applies to editing on the Zenpage <em>pages</em> and <em>news</em> tabs."
@@ -20617,77 +20784,79 @@ msgstr "Prenastavená výška orezu (%) pre vlastnú veľkosť orezu miniatúr v
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:27
 #, fuzzy
 msgid "ZenPhoto20 object insertion"
-msgstr "Administrácia Zenphota"
+msgstr "Vloženie objektu ZenPhoto20"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:34
 #, fuzzy, php-format
 msgid "<em>image</em>: %s"
-msgstr "<em>medzera</em>"
+msgstr "<em>obrázok</em>: %s"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:35
 #, fuzzy
 msgid "image with link to image"
-msgstr "Odkaz na obrázok"
+msgstr "obrázok s odkazom na obrázok"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:43
 #, fuzzy, php-format
 msgid "<em>album</em>: %s"
-msgstr "Zložka <em>albums</em>"
+msgstr "<em>album</em>: %s"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:44
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:146
 #, fuzzy
 msgid "image with link to album"
-msgstr "Vyhľadávať v albume"
+msgstr "obrázok s odkaz na album"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:53
 #, fuzzy, php-format
 msgid "<em>news article</em>: %s"
-msgstr "<em>čiastočne</em>"
+msgstr "<em>novinový článok</em>: %s"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:54
 #, fuzzy
 msgid "title with link to news article"
-msgstr "Text pre odkaz na celý článok."
+msgstr "názov s odkazom na článok so správami"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:58
 #, fuzzy, php-format
 msgid "<em>page</em>: %s"
-msgstr "<em>medzera</em>"
+msgstr "<em>stránka</em>: %s"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:59
+#, fuzzy
 msgid "title with link to page"
-msgstr ""
+msgstr "názov s odkazom na stránku"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:63
 #, fuzzy, php-format
 msgid "<em>category</em>: %s"
-msgstr "<em>šablóna</em>"
+msgstr "<em>kategórie</em>: %s"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:64
 #, fuzzy
 msgid "title with link to category"
-msgstr "Hľadať v rámci kategórie"
+msgstr "názov s odkazom na kategóriu"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:119
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:121
 #, fuzzy
 msgid "paste"
-msgstr "Master"
+msgstr "pasta"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:131
 #, fuzzy
 msgid "image only"
-msgstr "obrázok"
+msgstr "len obraz"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:135
+#, fuzzy
 msgid "title only"
-msgstr ""
+msgstr "iba názov"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:159
-#, php-format
+#, fuzzy, php-format
 msgid "No source has been picked. You can pick a ZenPhoto20 object for insertion by browsing to the object and clicking on the %s icon. Custom sized and cropped images may be picked from the <em>crop image</em> page if the <code>crop_image</code> plugin is enabled."
-msgstr ""
+msgstr "Žiadny zdroj bol vybral. Môžete si vybrať objekt ZenPhoto20 pre vloženie prehliadania na objekt a kliknutím na ikonu %s. Vlastné veľkosti a orezanie obrázkov môžu byť vybraný <em>orezať obrázok</em> na stránke, ak <code>crop_image</code> plugin je povolená."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/tinyzenpage/js/dialog.php:85
 #, php-format
@@ -20852,7 +21021,7 @@ msgstr "Okno sa nezatvára automaticky, takže môžete vybrať niekoľko obráz
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:206
 #, fuzzy
 msgid "Thumbnail: Size as set in theme’s options"
-msgstr "Miniatúra: veľkosť podla nastavenia v Zenphote"
+msgstr "Miniatúry: Veľkosť ako nastaviť v možnosti motívu"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:207
 msgid "Custom thumbnail: size for the longest side / (cropwidth x cropheight). You can set default sizes for this on the TinyMCE plugin options."
@@ -21863,8 +22032,9 @@ msgid "Metadata exported"
 msgstr "Metadáta exportované"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/xmpMetadata.php:1110
+#, fuzzy
 msgid "Export metadata info to XMP sidecar."
-msgstr ""
+msgstr "Exportovať informácie metadát XMP sidecar."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/xmpMetadata.php:1115
 msgid "Export Metadata"
@@ -22028,13 +22198,13 @@ msgstr "Nový článok"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/admin-edit.php:209
 #, fuzzy
 msgid "newCategory"
-msgstr "Nová kategória"
+msgstr "newCategory"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/admin-edit.php:220
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/admin-edit.php:238
 #, fuzzy
 msgid "newPage"
-msgstr "Ďalšia stránka"
+msgstr "newPage"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/admin-edit.php:233
 msgid "New Category"
@@ -22099,7 +22269,7 @@ msgstr "Typy k používaniu"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/admin-edit.php:389
 #, fuzzy
 msgid "Check <em>Edit Titlelink</em> if you need to customize how the title appears in URLs. Otherwise it will be automatically updated to any changes made to the title. If you want to prevent this check <em>Enable permaTitlelink</em> and the titlelink stays always the same (recommended if you use multilingual mode)."
-msgstr "Označte <em>Upraviť Titlelink</em> ak chcete upraviť ako sa zobrazuje názov v URL. Inak bude automaticky zmenený po akýchkoľvek aktualizáciách titulu. Ak chcete zamedziť takejto kontrole označte <em>Povoliť permaTitlelink</em> a titlelink ostane vždy rovnaký (odporúčané ak používate viacjazyčný mód Zenphota)."
+msgstr "Skontrolujte <em>Upraviť Titlelink</em> Ak potrebujete upraviť, ako sa názov zobrazí v URL. Inak bude automaticky aktualizovať zmenami názvu. Ak chcete zabrániť túto kontrolu <em>umožniť permaTitlelink</em> a titlelink vždy zostane rovnaký (odporúčaná Ak používate viacjazyčný režim)."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/admin-edit.php:390
 msgid "<strong>Note:</strong> Edit titlelink overrides the permalink setting."
@@ -22108,7 +22278,7 @@ msgstr "<strong>Poznámka:</strong> Funkcia Upraviť titlelink je nadradená nas
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/admin-edit.php:391
 #, fuzzy
 msgid "<strong>Important:</strong> If you are using multi-lingual mode the Titlelink is generated from the Title of the currently selected language."
-msgstr "<strong>Dôležité:</strong> Ak používate viacjazyčný mód Zenphota Titlelink je generovaný z názvu práve zvoleného jazyku."
+msgstr "<strong>Dôležité:</strong> Ak používate multi-kultúrne režim Titlelink je generovaný z názvu aktuálne vybraný jazyk."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/admin-edit.php:392
 msgid "If you lock an article only the current active author/user or any user with full admin rights will be able to edit it later again!"
@@ -22133,7 +22303,7 @@ msgstr "<em>Extra obsah:</em> Sem môžete pridať extra obsah, ktorý sa bude z
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/admin-edit.php:405
 #, fuzzy
 msgid "<em>Codeblocks:</em> Use these fields if you need to enter php code (for example zenphoto functions) or JavaScript code."
-msgstr "<em>Bloky kódov:</em> Použite bloky kódov, ak potrebujete vložiť PHP kód alebo JavaScript."
+msgstr "<em>Codeblocks:</em> Tieto polia použite, ak potrebujete vložiť php kód (napríklad zenphoto funkcií) alebo JavaScript."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/admin-edit.php:406
 msgid "You also can use the codeblock fields as custom fields."
@@ -22616,7 +22786,7 @@ msgstr "<code>zenpageAlbumImage()</code> nenašiel album %1$s"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenphoto_sendmail.php:12
 #, fuzzy
 msgid "Outgoing mail handler based on the PHP <em>mail</em> facility."
-msgstr "Nástroj Zenphota na odosielanie mailov založený na nástroji <em>PHP mail</em>. "
+msgstr "Odchádzajúcej pošty handler založené na PHP <em>mail</em> zariadenia."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenphoto_sendmail.php:41
 #, php-format
@@ -22626,7 +22796,7 @@ msgstr "<code>zenphoto_sendmail</code> nedokazál odoslať <em>%s</em> k jedném
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpotoCompatibilityPack.php:40
 #, fuzzy
 msgid "Zenphoto compatibility."
-msgstr "Zdrojové súbory Zenphota"
+msgstr "Zenphoto kompatibility."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zpCaptcha.php:13
 msgid "ZenPhoto20 captcha handler."
