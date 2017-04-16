@@ -436,7 +436,7 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 					<strong<?php echo $show; ?>><?php echo $title; ?></strong> <?php echo $name; ?>
 				</td>
 				<td class="statistic_graphwrap" <?php echo $style; ?>>
-					<div class="statistic_bargraph" style="width: <?php echo round($barsize, 3); ?>%"></div>
+					<div class="statistic_bargraph" style="width: <?php echo ceil($barsize); ?>%"></div>
 					<div class="statistic_value"><?php echo $value; ?></div>
 				</td>
 				<td class="statistic_link" <?php echo $style; ?>>
