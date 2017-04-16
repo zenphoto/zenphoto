@@ -338,8 +338,8 @@ function printAdminHeader($tab, $subtab = NULL) {
 		<div class="navigation">
 			<ul>
 				<?php
-				$tabc = count($zenphoto_tabs);
-				$tabp = 0;
+				$bottom = count($zenphoto_tabs);
+				$loc = -1;
 				foreach ($zenphoto_tabs as $key => $atab) {
 					if (array_key_exists('alert', $zenphoto_tabs[$key])) {
 						$alert = $zenphoto_tabs[$key]['alert'];
@@ -356,7 +356,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					}
 					$subtabs = $zenphoto_tabs[$key]['subtabs'];
 					$hasSubtabs = is_array($subtabs);
-					$tabp++;
+					$loc++;
 					?>
 					<li<?php if ($hasSubtabs) echo ' class="has-sub"'; ?>>
 						<a href="<?php echo html_encode($atab['link']); ?>" <?php echo $class; ?>><?php echo html_encode(ucfirst($atab['text'])); ?></a>
@@ -365,12 +365,21 @@ function printAdminHeader($tab, $subtab = NULL) {
 							if (!(isset($atab['ordered']) && $atab['ordered'])) {
 								ksort($subtabs, SORT_NATURAL);
 							}
-							$position = round($tabp / $tabc * min($tabp, count($subtabs)) * 2.2, 1);
-							if ($position * 10 % 2 != 0) {
-								$position = $position - 0.1;
+							$high = count($subtabs);
+							$_top = $loc - floor(0.5 * $high);
+							$_bottom = $loc + ceil(0.5 * $high);
+
+							if ($_top >= 0 && $_bottom <= $bottom) {
+								$position = floor(0.5 * $high);
+							} else {
+								if ($_bottom > $bottom) {
+									$position = $high - 1;
+								} else {
+									$position = $loc;
+								}
 							}
 							?>
-							<ul<?php if ($position > 2.2) echo ' style="margin-top: -' . $position . 'em;"' ?>>
+							<ul<?php if ($position > 2.2) echo ' style="margin-top: -' . ($position * 32) . 'px;"' ?>>
 								<?php
 								if ($activeTab) {
 									if (isset($_GET['tab'])) {
