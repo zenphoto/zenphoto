@@ -369,9 +369,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 							if ($high > 2) {
 								$_top = $loc - floor(0.5 * $high);
 								$_bottom = $loc + ceil(0.5 * $high);
-
-//								echo "$_top, $_bottom";
-
 								if ($_top >= 0 && $_bottom <= $bottom) { //	fits within the bounds
 									$position = floor(0.5 * $high);
 								} else {
