@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: zenphoto 1.3.1.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-02-05 18:01-0800\n"
-"PO-Revision-Date: 2017-04-15 13:47-0700\n"
+"PO-Revision-Date: 2017-04-16 15:05-0700\n"
 "Last-Translator: Stephen <stephen@sbillard.org>\n"
 "Language-Team: Polish <zenphoto-translate.googlegroup.com>\n"
 "Language: pl_PL\n"
@@ -39,14 +39,12 @@ msgid "DL"
 msgstr "DL"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/tinymce/tinymce.min.js:8
-#, fuzzy
 msgid "align"
-msgstr "wyrównać"
+msgstr "align"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/tinymce/tinymce.min.js:8
-#, fuzzy
 msgid "blockquote"
-msgstr "Blok cytatu"
+msgstr "blockquote"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/tinymce/tinymce.min.js:8
 #, fuzzy
@@ -2956,7 +2954,7 @@ msgstr "Podpowiedź: %s"
 #: D:/github/ZenPhoto20/themes/zpEnlighten/search.php:122
 #, fuzzy, php-format
 msgid "%s "
-msgstr "Effervescence %s"
+msgstr "%s"
 
 #: D:/github/ZenPhoto20/themes/zpEnlighten/search.php:125
 #, fuzzy, php-format
@@ -3555,7 +3553,7 @@ msgstr "Sprawdź, aby wyświetlić Powered przez ZenPhoto20 link w stopce."
 #: D:/github/ZenPhoto20/themes/zpskeleton/themeoptions.php:79
 #, fuzzy
 msgid "Custom CSS"
-msgstr "Niestandardowy CSS"
+msgstr "Niestandardowy kod CSS"
 
 #: D:/github/ZenPhoto20/themes/zpfocus/themeoptions.php:86
 #: D:/github/ZenPhoto20/themes/zpmasonry/themeoptions.php:149
@@ -15732,7 +15730,7 @@ msgstr "Opcje wyszukiwania"
 #: D:/github/ZenPhoto20/zp-core/template-functions.php:3879
 #, fuzzy
 msgid "fields"
-msgstr "Do wyświetlania dodatkowej zawartości możesz też użyć bloków kodu."
+msgstr "Pola ND1"
 
 #: D:/github/ZenPhoto20/zp-core/template-functions.php:3918
 #, fuzzy

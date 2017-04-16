@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: zenphoto 1.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-16 09:25-0800\n"
-"PO-Revision-Date: 2017-04-15 11:26-0700\n"
+"PO-Revision-Date: 2017-04-16 12:41-0700\n"
 "Last-Translator: Stephen <stephen@sbillard.org>\n"
 "Language-Team: Anxo Botana García <anxobotana@abwebdeveloper.com>\n"
 "Language: gl_ES\n"
@@ -2960,7 +2960,7 @@ msgstr "%s"
 #: D:\github\ZenPhoto20/themes/zpEnlighten/search.php:125
 #, fuzzy, php-format
 msgid "%1$s "
-msgstr "Configuración actual da localización: <strong>%1$s</strong>"
+msgstr "Álbums (%1$s) &amp; Imaxes (%2$s)"
 
 #: D:\github\ZenPhoto20/themes/zpEnlighten/sidebar.php:52
 #, fuzzy
@@ -3886,7 +3886,7 @@ msgstr "ant."
 #: D:\github\ZenPhoto20/themes/zpminimal/search.php:23
 #, fuzzy
 msgid "items"
-msgstr "Elementos seleccionados marcados como spam"
+msgstr "Elementos eliminados escollidos"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/search.php:115
 #: D:\github\ZenPhoto20/themes/zpminimal/search.php:87
@@ -8662,7 +8662,7 @@ msgstr "Administración de Etiqueta"
 #: D:\github\ZenPhoto20/zp-core/admin-tags.php:138
 #, fuzzy
 msgid "Order by"
-msgstr "Arranxo gardado."
+msgstr "Arranxo de imaxes gardada"
 
 #: D:\github\ZenPhoto20/zp-core/admin-tags.php:141
 #, fuzzy
@@ -15880,7 +15880,7 @@ msgstr ""
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/rss.php:85
 #, fuzzy
 msgid "Cache"
-msgstr "caché das imaxes completas"
+msgstr "A caché foi baleirada."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/cacheManager.php:354
 #, fuzzy
@@ -17736,7 +17736,7 @@ msgstr ""
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:53
 #, fuzzy
 msgid "In Themes"
-msgstr "Temas"
+msgstr "temas"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:56
 #, fuzzy
@@ -21097,7 +21097,7 @@ msgstr "Lonxitude do texto das Novas"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/publishContent/publishContent.php:572
 #, fuzzy
 msgid "Articles:"
-msgstr "Artigos"
+msgstr "artigos"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/publishContent/publishContent.php:584
 #, fuzzy
@@ -21763,7 +21763,7 @@ msgstr ""
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/rewriteRules/admin_tab.php:14
 #, fuzzy
 msgid "rewrite"
-msgstr "A opción de ZenPhoto20 \"mod_rewrite\" está \"habilitada\"."
+msgstr "Sufixo mod_rewrite:"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/rewriteRules/admin_tab.php:26
 #, fuzzy
@@ -23892,7 +23892,7 @@ msgstr "Descrición da galería:"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:146
 #, fuzzy
 msgid "No description"
-msgstr "descrición:"
+msgstr "Descrición:"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:147
 #, fuzzy
@@ -24638,7 +24638,7 @@ msgstr "A caché foi baleirada."
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/user-expiry/user-expiry-tab.php:184
 #, fuzzy
 msgid "enable"
-msgstr "Activar múltiples disposicións para:"
+msgstr "Marca para activar o formulario de busca"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/user-expiry/user-expiry-tab.php:186
 #, fuzzy
@@ -24673,7 +24673,7 @@ msgstr "Desactivar"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/user-expiry/user-expiry-tab.php:210
 #, fuzzy
 msgid "Enable"
-msgstr "Activar múltiples disposicións para:"
+msgstr "Marca para activar o formulario de busca"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/user-expiry/user-expiry-tab.php:219
 msgid "Renew"
@@ -24746,7 +24746,7 @@ msgstr "grupos"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/user_groups/user_groups-tab.php:144
 #, fuzzy
 msgid "Deleted"
-msgstr "Non foi posíbel eliminar os ficheiros seguintes."
+msgstr "Elementos eliminados escollidos"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/user_groups/user_groups-tab.php:185
 msgid ""

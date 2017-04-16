@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: ZenPhoto20 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-16 09:18-0800\n"
-"PO-Revision-Date: 2017-04-15 10:05-0700\n"
+"PO-Revision-Date: 2017-04-16 11:29-0700\n"
 "Last-Translator: Stephen <stephen@sbillard.org>\n"
 "Language-Team: Malte Müller (acrylian)\n"
 "Language: de_DE\n"
@@ -3296,7 +3296,7 @@ msgstr "Bitte anmelden"
 #: D:\github\ZenPhoto20/themes/zpskeleton/password.php:19
 #, fuzzy
 msgid "You are logged in..."
-msgstr "Sie sind eingeloggt"
+msgstr "Sie müssen angemeldet sein, um die Installation durchführen zu können."
 
 #: D:\github\ZenPhoto20/themes/zpfocus/search.php:93
 #, fuzzy

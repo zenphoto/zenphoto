@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: ZenPhoto20 1.0.0\n"
 "Report-Msgid-Bugs-To: webmaster at momo-i.org\n"
 "POT-Creation-Date: 2015-03-16 09:28-0800\n"
-"PO-Revision-Date: 2017-04-15 13:01-0700\n"
+"PO-Revision-Date: 2017-04-16 14:09-0700\n"
 "Last-Translator: Stephen <stephen@sbillard.org>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -2332,7 +2332,7 @@ msgstr "ランダム画像"
 #: D:\github\ZenPhoto20/themes/zpArdoise/inc_print_image_statistic.php:8
 #, fuzzy
 msgid "Popular images"
-msgstr "人気画像"
+msgstr "最も人気のある画像"
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/inc_print_image_statistic.php:16
 #, fuzzy
@@ -2398,7 +2398,7 @@ msgstr "画像のページにロゴを表示してください。"
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:74
 #, fuzzy
 msgid "Style"
-msgstr "スタイル"
+msgstr "左の回り込み: <em>style=\"float:right\"</em>"
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/themeoptions.php:75
 #, fuzzy
@@ -2827,7 +2827,7 @@ msgstr "お気に入り"
 #: D:\github\ZenPhoto20/themes/zpBootstrap/inc_header.php:26
 #, fuzzy
 msgid "Password Required..."
-msgstr "パスワードは必要です"
+msgstr "パスワード必須"
 
 #: D:\github\ZenPhoto20/themes/zpBootstrap/inc_header.php:35
 #, fuzzy
@@ -2965,12 +2965,12 @@ msgstr "ヒント: %s"
 #: D:\github\ZenPhoto20/themes/zpEnlighten/search.php:122
 #, fuzzy, php-format
 msgid "%s "
-msgstr "%s "
+msgstr "%1$s: %2$s"
 
 #: D:\github\ZenPhoto20/themes/zpEnlighten/search.php:125
 #, fuzzy, php-format
 msgid "%1$s "
-msgstr "%1$s "
+msgstr "<a href=\"#%1$s\"><code>%1$s</code></a>は既に有効です。"
 
 #: D:\github\ZenPhoto20/themes/zpEnlighten/sidebar.php:52
 #, fuzzy
@@ -3029,24 +3029,26 @@ msgstr ""
 #: D:\github\ZenPhoto20/themes/zpfocus/404.php:5
 #, fuzzy
 msgid "Page not found..."
-msgstr "ページが見つかりません"
+msgstr "ページは見つかりませんでした"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/album.php:19
 #: D:\github\ZenPhoto20/themes/zpfocus/favorites.php:22
 #, fuzzy
 msgid "| Tags:  "
-msgstr "タグ:"
+msgstr "タグ: "
 
 #: D:\github\ZenPhoto20/themes/zpfocus/album.php:21
 #: D:\github\ZenPhoto20/themes/zpfocus/favorites.php:24
 #, fuzzy
 msgid "Edit Description..."
-msgstr "説明を編集するには."
+msgstr ""
+"説明およびデータを編集するアルバムまたは、全ての初期レベルのサブアルバムの<a "
+"href=\"?page=edit&amp;album=%s&amp;massedit\">一括編集</a>を選択します。"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/album.php:26
 #, fuzzy
 msgid "SubAlbums in "
-msgstr "SubAlbums"
+msgstr "サブアルバム"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/album.php:40
 #: D:\github\ZenPhoto20/themes/zpfocus/album.php:41
@@ -3072,7 +3074,7 @@ msgstr "START SLIDE SHOW"
 #: D:\github\ZenPhoto20/themes/zpfocus/favorites.php:93
 #, fuzzy
 msgid "Images in "
-msgstr "画像"
+msgstr "画像:"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/album.php:150
 #: D:\github\ZenPhoto20/themes/zpfocus/favorites.php:144
@@ -3096,7 +3098,7 @@ msgstr "次へ"
 #: D:\github\ZenPhoto20/themes/zpskeleton/archive.php:13
 #, fuzzy
 msgid "Gallery Archive"
-msgstr "ギャラリー アーカイブ"
+msgstr "ギャラリーアーカイブ"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/archive.php:18
 #: D:\github\ZenPhoto20/themes/zpmasonry/archive.php:27
@@ -3122,7 +3124,7 @@ msgstr "検索結果"
 #: D:\github\ZenPhoto20/themes/zpskeleton/inc-header.php:119
 #, fuzzy
 msgid "Latest News"
-msgstr "最新ニュース"
+msgstr "新着ニュース"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/gallery.php:19
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-header.php:108
@@ -3132,7 +3134,7 @@ msgstr "最新ニュース"
 #: D:\github\ZenPhoto20/themes/zpskeleton/inc-header.php:115
 #, fuzzy
 msgid "Latest Albums"
-msgstr "最新のアルバム"
+msgstr "新着アルバム"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/image.php:37
 #, fuzzy
@@ -3142,12 +3144,14 @@ msgstr "EXIF メタデータ"
 #: D:\github\ZenPhoto20/themes/zpfocus/image.php:39
 #, fuzzy
 msgid "TAGS:  "
-msgstr "タグ:"
+msgstr "タグ: "
 
 #: D:\github\ZenPhoto20/themes/zpfocus/image.php:42
 #, fuzzy
 msgid "(Edit Description...)"
-msgstr "(説明を編集...)"
+msgstr ""
+"説明およびデータを編集するアルバムまたは、全ての初期レベルのサブアルバムの<a "
+"href=\"?page=edit&amp;album=%s&amp;massedit\">一括編集</a>を選択します。"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-footer.php:6
 #, fuzzy
@@ -3190,7 +3194,7 @@ msgstr "画像ギャラリー"
 #: D:\github\ZenPhoto20/themes/zpskeleton/inc-header.php:126
 #, fuzzy
 msgid "Latest Comments"
-msgstr "最新のコメント"
+msgstr " (新着コメント)"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-header.php:91
 #: D:\github\ZenPhoto20/themes/zpmasonry/inc-header.php:93
@@ -3198,7 +3202,7 @@ msgstr "最新のコメント"
 #: D:\github\ZenPhoto20/themes/zpskeleton/inc-header.php:97
 #, fuzzy
 msgid "Password Required"
-msgstr "パスワードは必要です"
+msgstr "パスワード必須"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-header.php:95
 #: D:\github\ZenPhoto20/themes/zpmasonry/inc-header.php:97
@@ -3291,7 +3295,7 @@ msgstr "ログイン ID が入力されていません"
 #: D:\github\ZenPhoto20/themes/zpskeleton/password.php:19
 #, fuzzy
 msgid "You are logged in..."
-msgstr "現在のログイン名は"
+msgstr "セットアップを実行するにはログインが必要です。"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/search.php:93
 #, fuzzy
@@ -3302,7 +3306,7 @@ msgstr "アルバム検索結果"
 #: D:\github\ZenPhoto20/themes/zpfocus/search.php:106
 #, fuzzy
 msgid "View Album:"
-msgstr "アルバムを表示"
+msgstr "アルバム閲覧:"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/search.php:154
 #, fuzzy
@@ -3312,7 +3316,7 @@ msgstr "イメージ検索結果"
 #: D:\github\ZenPhoto20/themes/zpfocus/search.php:214
 #, fuzzy
 msgid "Sorry, no matches. Try refining your search."
-msgstr "申し訳ありませんが、一致なし。検索を絞り込むにしてみてください。"
+msgstr "すみません、一致しませんでした。検索精度を上げてみてください。"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:67
 #, fuzzy
@@ -3648,7 +3652,7 @@ msgstr "%spostal コード:"
 #: D:\github\ZenPhoto20/themes/zpskeleton/comment_form/comment_form.php:70
 #, fuzzy
 msgid "Enter CAPTCHA:"
-msgstr "CAPTCHA を入力します。"
+msgstr "CAPTCHAの入力"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/z_comment_form/comment_form.php:107
 #: D:\github\ZenPhoto20/themes/zpskeleton/comment_form/comment_form.php:66
@@ -3666,7 +3670,7 @@ msgstr "タイトル<strong>%s</strong>:"
 #: D:\github\ZenPhoto20/themes/zpskeleton/contact_form/form.php:20
 #, fuzzy, php-format
 msgid "Name<strong>%s</strong>:"
-msgstr "名前<strong>%s</strong>:"
+msgstr "データベース名 <strong>%s</strong>"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/z_contact_form/form.php:27
 #: D:\github\ZenPhoto20/themes/zpskeleton/contact_form/form.php:27
@@ -3727,7 +3731,7 @@ msgstr "電話<strong>%s</strong>:"
 #: D:\github\ZenPhoto20/themes/zpskeleton/register_user/register_user_form.php:60
 #, fuzzy
 msgid "Enter CAPTCHA<strong>*</strong>:"
-msgstr "キャプチャ<strong>*</strong>を入力します。"
+msgstr "CAPTCHAの入力<strong>*</strong>"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/z_contact_form/form.php:102
 #: D:\github\ZenPhoto20/themes/zpskeleton/contact_form/form.php:99
@@ -3750,19 +3754,19 @@ msgstr "404エラー"
 #: D:\github\ZenPhoto20/themes/zpmasonry/favorites.php:18
 #, fuzzy
 msgid "subalbum"
-msgstr "subalbum"
+msgstr "サブアルバムサムネイルを表示"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/album.php:36
 #: D:\github\ZenPhoto20/themes/zpmasonry/favorites.php:42
 #, fuzzy
 msgid "number"
-msgstr "数値"
+msgstr "POPのポート番号です。"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/album.php:36
 #: D:\github\ZenPhoto20/themes/zpmasonry/favorites.php:42
 #, fuzzy
 msgid "total"
-msgstr "合計"
+msgstr "<em>%1$s</em>の合計一致数: %2$u"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/album.php:45
 #: D:\github\ZenPhoto20/themes/zpmasonry/album.php:105
@@ -3781,7 +3785,7 @@ msgstr "合計"
 #: D:\github\ZenPhoto20/themes/zpskeleton/search.php:112
 #, fuzzy
 msgid "subalbums"
-msgstr "subalbums"
+msgstr "サブアルバム"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/album.php:48
 #: D:\github\ZenPhoto20/themes/zpmasonry/album.php:108
@@ -3818,7 +3822,7 @@ msgstr "プレビュー"
 #: D:\github\ZenPhoto20/themes/zpminimal/z_disable_comment_form/comment_form.php:24
 #, fuzzy
 msgid "E-Mail"
-msgstr "メール"
+msgstr "メールアドレス"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/comment_form/comment_form.php:30
 #: D:\github\ZenPhoto20/themes/zpminimal/z_disable_comment_form/comment_form.php:30
@@ -3843,7 +3847,7 @@ msgstr "CAPTCHAの入力"
 #: D:\github\ZenPhoto20/themes/zpmasonry/functions.php:176
 #, fuzzy
 msgid "Latest Updated Albums"
-msgstr "アルバムの最新の更新"
+msgstr "最新のアルバム"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/functions.php:181
 #, fuzzy
@@ -3853,12 +3857,12 @@ msgstr "ほとんどの定格のアルバム"
 #: D:\github\ZenPhoto20/themes/zpmasonry/functions.php:186
 #, fuzzy
 msgid "Top Rated Albums"
-msgstr "評価の高いアルバム"
+msgstr "人気のアルバム"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/functions.php:206
 #, fuzzy
 msgid "Popular Images"
-msgstr "人気画像"
+msgstr "最も人気のある画像"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/functions.php:211
 #, fuzzy
@@ -3868,7 +3872,7 @@ msgstr "ほとんどの定格画像"
 #: D:\github\ZenPhoto20/themes/zpmasonry/functions.php:216
 #, fuzzy
 msgid "Top Rated Images"
-msgstr "トップクラスの画像"
+msgstr "人気の画像"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/functions.php:221
 #: D:\github\ZenPhoto20/themes/zpskeleton/inc-bottom.php:18
@@ -3887,7 +3891,7 @@ msgstr "画像数/合計"
 #: D:\github\ZenPhoto20/themes/zpskeleton/image.php:80
 #, fuzzy
 msgid "Start Slideshow"
-msgstr "スライドショーを開始"
+msgstr "スライドショーの開始"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/inc-footer.php:17
 #, fuzzy
@@ -3951,13 +3955,13 @@ msgstr "次のページ"
 #: D:\github\ZenPhoto20/themes/zpmasonry/news.php:83
 #, fuzzy
 msgid "« Prev"
-msgstr "前へ"
+msgstr "« 前へ"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/search.php:22
 #: D:\github\ZenPhoto20/themes/zpminimal/search.php:23
 #, fuzzy
 msgid "items"
-msgstr "個"
+msgstr "選択したアイテムを削除しました"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/search.php:115
 #: D:\github\ZenPhoto20/themes/zpminimal/search.php:87
@@ -4219,7 +4223,7 @@ msgstr "ギャラリーに戻る → インデックス"
 #: D:\github\ZenPhoto20/themes/zpminimal/inc-footer.php:22
 #, fuzzy
 msgid "Subalbum"
-msgstr "Subalbum"
+msgstr "サブアルバムサムネイルを表示"
 
 #: D:\github\ZenPhoto20/themes/zpminimal/inc-footer.php:24
 #: D:\github\ZenPhoto20/themes/zpmobile/functions.php:44
@@ -4247,12 +4251,12 @@ msgstr "ギャラリーを入力 &rarr;"
 #: D:\github\ZenPhoto20/themes/zpminimal/news.php:45
 #, fuzzy
 msgid "Next →"
-msgstr "次へ"
+msgstr "次へ »"
 
 #: D:\github\ZenPhoto20/themes/zpminimal/news.php:45
 #, fuzzy
 msgid "← Prev"
-msgstr "前へ"
+msgstr "« 前へ"
 
 #: D:\github\ZenPhoto20/themes/zpminimal/password.php:4
 #, fuzzy
@@ -4524,7 +4528,7 @@ msgstr "この記事のコメント"
 #: D:\github\ZenPhoto20/themes/zpskeleton/password.php:6
 #, fuzzy
 msgid "Password required..."
-msgstr "パスワードは必要です"
+msgstr "パスワード必須"
 
 #: D:\github\ZenPhoto20/themes/zpskeleton/register_user/register_user_form.php:13
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:1024
@@ -4540,7 +4544,7 @@ msgstr "メールアドレス:"
 #: D:\github\ZenPhoto20/themes/zpskeleton/register_user/register_user_form.php:22
 #, fuzzy
 msgid "User ID:"
-msgstr "ユーザー ID:"
+msgstr "ユーザID"
 
 #: D:\github\ZenPhoto20/themes/zpskeleton/register_user/register_user_form.php:28
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/downloadList.php:99
@@ -4558,7 +4562,7 @@ msgstr "再入力してください。"
 #: D:\github\ZenPhoto20/themes/zpskeleton/themeoptions.php:53
 #, fuzzy
 msgid "Thumb Size"
-msgstr "親指サイズ"
+msgstr "サムネイルサイズ:"
 
 #: D:\github\ZenPhoto20/themes/zpskeleton/themeoptions.php:55
 #: D:\github\ZenPhoto20/zp-core/exif/exifTranslations.php:123
@@ -4619,7 +4623,10 @@ msgstr "サイズ (630px)"
 #: D:\github\ZenPhoto20/themes/zpskeleton/themeoptions.php:65
 #, fuzzy
 msgid "Original Image"
-msgstr "元の画像を読み込む"
+msgstr ""
+"オリジナルからのIPTCデータをチェックした場合、画像はキャッシュされたコピーか"
+"ら埋めこまれます。画像がIPTCデータを持っていない場合、著作権情報が埋め込まれ"
+"れます。(元の画像に著作権情報がない場合に提供されたテキストが使用されます。)"
 
 #: D:\github\ZenPhoto20/themes/zpskeleton/themeoptions.php:66
 #, fuzzy
@@ -5541,7 +5548,9 @@ msgstr ""
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:31
 #, fuzzy, php-format
 msgid "version %1$s"
-msgstr "バージョン %1$s"
+msgstr ""
+"バージョン%1$s(Zenphoto_Authorityは%2$s及び%3$sのみサポートします)へ権限を統"
+"合できません。"
 
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:37
 #, fuzzy
@@ -5556,7 +5565,7 @@ msgstr "ライセンス"
 #: D:\github\ZenPhoto20/zp-core/setup/setup-functions.php:492
 #, fuzzy
 msgid "Support"
-msgstr "サポート"
+msgstr "PHPのグラフィック画像サポートがありません。"
 
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:39
 #: D:\github\ZenPhoto20/zp-core/setup/setup-functions.php:492
@@ -6304,7 +6313,7 @@ msgstr "%sの削除に成功しました。"
 #: D:\github\ZenPhoto20/zp-core/admin-users.php:417
 #, fuzzy
 msgid "You must supply a password."
-msgstr "パスワードを指定する必要があります。"
+msgstr "<em>%s</em>ゲストユーザのパスワードを設定してください"
 
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:4828
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:579
@@ -7492,7 +7501,11 @@ msgstr "医薬品-同種"
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:1631
 #, fuzzy
 msgid "specific"
-msgstr "WANO TSM"
+msgstr ""
+"完全なURLを特定のサイトのロゴ画像を入力します。Facebookは、Googleの+と他の記"
+"事内のリンクのプレビューに示すように、サムネイルのようにそれを使用します。イ"
+"メージまたはアルバムページのデフォルトのサイズのアルバムや画像のサムネイルが"
+"自動的に使用されます。"
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:1636
 msgid "Treat spaces as"
@@ -8769,7 +8782,7 @@ msgstr "機能プラグイン"
 #: D:\github\ZenPhoto20/zp-core/admin-plugins.php:390
 #, fuzzy
 msgid "Theme plugin"
-msgstr "テーマタグ プラグイン"
+msgstr "テーマプラグイン"
 
 #: D:\github\ZenPhoto20/zp-core/admin-plugins.php:391
 msgid "Usage info"
@@ -8889,7 +8902,7 @@ msgstr "タグ管理"
 #: D:\github\ZenPhoto20/zp-core/admin-tags.php:138
 #, fuzzy
 msgid "Order by"
-msgstr "並び順"
+msgstr "画像の並び順を保存しました"
 
 #: D:\github\ZenPhoto20/zp-core/admin-tags.php:141
 #, fuzzy
@@ -8899,18 +8912,18 @@ msgstr "アルファベット順"
 #: D:\github\ZenPhoto20/zp-core/admin-tags.php:142
 #, fuzzy
 msgid "Most used"
-msgstr "最も使用されるもの"
+msgstr "最多使用"
 
 #: D:\github\ZenPhoto20/zp-core/admin-tags.php:143
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/debug/admin_tab.php:155
 #, fuzzy
 msgid "Language"
-msgstr "言語"
+msgstr "言語:"
 
 #: D:\github\ZenPhoto20/zp-core/admin-tags.php:144
 #, fuzzy
 msgid "Most recent"
-msgstr "最新"
+msgstr "直近"
 
 #: D:\github\ZenPhoto20/zp-core/admin-tags.php:175
 #: D:\github\ZenPhoto20/zp-core/admin-tags.php:179
@@ -8921,7 +8934,7 @@ msgstr "チェックしたタグの削除"
 #: D:\github\ZenPhoto20/zp-core/admin-tags.php:188
 #, fuzzy
 msgid "assign"
-msgstr "関連づけに追加"
+msgstr "割り当て"
 
 #: D:\github\ZenPhoto20/zp-core/admin-tags.php:192
 #: D:\github\ZenPhoto20/zp-core/admin-tags.php:269
@@ -9545,7 +9558,7 @@ msgstr "セットアップが実行できないようにセットアップファ
 #: D:\github\ZenPhoto20/zp-core/admin.php:295
 #, fuzzy
 msgid "Run setup"
-msgstr "セットアップを実行します。"
+msgstr "セットアップの実行"
 
 #: D:\github\ZenPhoto20/zp-core/admin.php:300
 #, fuzzy
@@ -14460,7 +14473,7 @@ msgstr "前のリリースは%sです"
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:2442
 #, fuzzy
 msgid "Completed"
-msgstr "完了しました"
+msgstr "システムチェック完了"
 
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:2448
 #, php-format
@@ -15208,7 +15221,7 @@ msgstr ""
 #: D:\github\ZenPhoto20/zp-core/utilities/backup_restore.php:471
 #, fuzzy
 msgid "Rights migration failed!"
-msgstr "アクセス権の移行に失敗しました。"
+msgstr "権限の統合に失敗しました。"
 
 #: D:\github\ZenPhoto20/zp-core/utilities/backup_restore.php:485
 msgid "Restore completed"
@@ -16978,12 +16991,12 @@ msgstr "IP:"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/comment_form/admin-comments.php:177
 #, fuzzy
 msgid "Street:"
-msgstr "地址:"
+msgstr "住所"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/comment_form/admin-comments.php:185
 #, fuzzy
 msgid "Postal code:"
-msgstr "郵便番号："
+msgstr "郵便番号"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/comment_form/admin-comments.php:190
 msgid "Comment:"
@@ -17740,7 +17753,7 @@ msgstr "ロケール"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/debug.php:150
 #, fuzzy
 msgid "Session"
-msgstr "セッション"
+msgstr "<code>SQLモード</code> 【SET SESSIONに失敗】"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/debug.php:154
 #, fuzzy
@@ -17750,7 +17763,7 @@ msgstr "HTTP を受け入れる"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/debug.php:155
 #, fuzzy
 msgid "Cookies"
-msgstr "クッキー"
+msgstr "クッキー:"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/debug/admin_tab.php:42
 msgid "Your PHP configuration information."
@@ -18446,7 +18459,7 @@ msgstr "画像サイズ"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/externalFeed.php:82
 #, fuzzy
 msgid "Size of image feed images:"
-msgstr "イメージのサイズは、画像をフィードしました。"
+msgstr "RSS画像フィードの画像サイズ:"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/externalFeed.php:83
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/rss.php:62
@@ -18529,7 +18542,8 @@ msgstr "フィードテキストの長さ"
 #, fuzzy
 msgid "The text length of the Zenpage feed items. No value for full length."
 msgstr ""
-"Zenpage のテキストの長さはフィード項目です。完全な長さの値がありません。"
+"ZenpageのRSSフィードアイテムのテキストの長さです。完全な長さにするには値を入"
+"れません。"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/externalFeed.php:111
 msgid "News feed items"
@@ -18631,7 +18645,7 @@ msgstr "お気に入りのアルバムを作成します。"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/favoritesAlbums/admin-album.php:95
 #, fuzzy
 msgid "favorite"
-msgstr "お気に入り"
+msgstr "お気に入りの歌手は？"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/favoritesHandler.php:48
 msgid "Support for <em>favorites</em> handling."
@@ -18834,11 +18848,7 @@ msgstr "%sを使用するログイン"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/federated_logon/Auth/OpenID_detect.php:507
 #, fuzzy
 msgid "back"
-msgstr ""
-"シナノケンシは今 v {1} にアップデートされました。\n"
-"メイン メニューに戻るし、[インポート ゲーム] 既存のスカッドが新鮮な新しいゲー"
-"ムの世界を開始するキーを押す必要があります。\n"
-"それ以外の場合いくつかの世界のコンテンツが見つからないまたはバギー。"
+msgstr "戻る"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/federated_logon/OpenID_common.php:62
 #, fuzzy, php-format
@@ -19836,7 +19846,7 @@ msgstr "IPアドレスの形式エラー"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/ipBlocker.php:318
 #, fuzzy
 msgid "Suspended"
-msgstr "取消"
+msgstr "RSS 一時停止"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/jcarousel_thumb_nav.php:12
 msgid ""
@@ -20824,7 +20834,7 @@ msgstr ""
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/mergedRSS.php:67
 #, fuzzy
 msgid "Feed items:"
-msgstr "フィード項目:"
+msgstr "ニュースフィードアイテム:"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/mergedRSS.php:69
 #, fuzzy
@@ -20947,7 +20957,7 @@ msgstr "「オプション」のオブジェクト フィールドを処理し�
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/optionalObjectFields.php:60
 #, fuzzy
 msgid "Location"
-msgstr "地域"
+msgstr "ロケーション:"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/optionalObjectFields.php:56
 #, fuzzy
@@ -21390,12 +21400,12 @@ msgstr "テーマやプラグインのオプションを削除する手段を提
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/purgeOptions.php:35
 #, fuzzy
 msgid "purge"
-msgstr "PURGE"
+msgstr "サイトマップのキャッシュファイルを生成または削除します。"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:19
 #, fuzzy
 msgid "User plugins"
-msgstr "ユーザーのプラグイン"
+msgstr "ユーザプラグインで"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:19
 #, fuzzy
@@ -22767,7 +22777,7 @@ msgstr "サイトを閲覧許可にします。"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/site_upgrade.php:194
 #, fuzzy
 msgid "Your setup scripts are not protected!"
-msgstr "セットアップ スクリプトが保護されていない!"
+msgstr "セットアップスクリプトは保護されていません。"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/site_upgrade.php:206
 msgid "Site » close"
@@ -23683,7 +23693,7 @@ msgstr "検索フィールド上でjQueryのタグの候補を有効にします
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tag_suggest.php:33
 #, fuzzy
 msgid "threshold"
-msgstr "しきい値"
+msgstr "閾値"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tag_suggest.php:36
 #, fuzzy
@@ -25518,7 +25528,7 @@ msgstr "露出プログラム:"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/xmpMetadata.php:657
 #, fuzzy
 msgid "Rating"
-msgstr "評価"
+msgstr "評価をクリア (未評価)"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/xmpMetadata.php:1154
 msgid "Metadata exported"
@@ -26224,7 +26234,7 @@ msgstr "未公開"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/admin-functions.php:975
 #, fuzzy
 msgid "Scheduled for publishing"
-msgstr "出版予定"
+msgstr "(公開用にスケジュールされたページ)"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/admin-functions.php:992
 msgid "View category"

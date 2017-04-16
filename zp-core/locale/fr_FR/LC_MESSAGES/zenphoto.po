@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: ZenPhoto20 1.2.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-02-05 17:45-0800\n"
-"PO-Revision-Date: 2017-04-15 11:07-0700\n"
+"PO-Revision-Date: 2017-04-16 13:54-0700\n"
 "Last-Translator: Stephen <stephen@sbillard.org>\n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon <michel@mgagnon.net>\n"
 "Language: fr_FR\n"
@@ -32,19 +32,16 @@ msgid "'"
 msgstr "'"
 
 #: zp-core/zp-extensions/tinymce/plugins/lists/plugin.min.js:1
-#, fuzzy
 msgid "UL"
-msgstr "UL"
+msgstr ""
 
 #: zp-core/zp-extensions/tinymce/plugins/lists/plugin.min.js:1
-#, fuzzy
 msgid "OL"
-msgstr "OL"
+msgstr ""
 
 #: zp-core/zp-extensions/tinymce/plugins/lists/plugin.min.js:1
-#, fuzzy
 msgid "DL"
-msgstr "n"
+msgstr ""
 
 #: zp-core/zp-extensions/tinymce/tinymce.min.js:8
 msgid "align"
@@ -886,7 +883,7 @@ msgstr ""
 #: plugins/federated_logon/Direct-access-demo_logon.php:116
 #, fuzzy, php-format
 msgid "Not logged in."
-msgstr "vous êtes déjà connecté(e)."
+msgstr "Connecté sous %1$s"
 
 #: plugins/federated_logon/Direct-access-demo_logon.php:119
 #, fuzzy, php-format
@@ -1263,7 +1260,7 @@ msgstr "Progression"
 #: plugins/mediaelementjs_player.php:117
 #, fuzzy
 msgid "Current"
-msgstr "Insère le numéro de page courant."
+msgstr "Enregistre l’état courant des extensions (activées ou non)."
 
 #: plugins/mediaelementjs_player.php:118 zp-core/admin-options.php:997
 msgid "Duration"
@@ -1743,7 +1740,7 @@ msgstr "Génère le fichier <em>zenphoto.package</em>."
 #: plugins/zenphoto_package.php:32
 #, fuzzy
 msgid "Folder"
-msgstr "Nom du fichier ou du dossier"
+msgstr "%s n’est pas un dossier racine."
 
 #: plugins/zenphoto_package.php:34
 msgid "Place the package file in this folder."
@@ -3627,7 +3624,7 @@ msgstr "Commentaires récents"
 #: themes/libratus/inc-footer.php:408 themes/libratus/inc-footer.php:435
 #, fuzzy
 msgid "More"
-msgstr "Gestionnaires d’un ou de plusieurs albums"
+msgstr "Afficher plus de résultats"
 
 #: themes/libratus/inc-footer.php:120
 #, fuzzy
@@ -3677,7 +3674,7 @@ msgstr "Twitter"
 #: themes/libratus/inc-footer.php:478 themes/zpbase/inc/footer.php:35
 #, fuzzy
 msgid "Google+"
-msgstr "Gestionnaire de captcha Google."
+msgstr "Afficher ou masquer la carte Google."
 
 #: themes/libratus/inc-header.php:11
 #, fuzzy
@@ -3943,7 +3940,7 @@ msgstr "aléatoire"
 #: themes/libratus/themeoptions.php:130
 #, fuzzy
 msgid "Popular"
-msgstr " (Actualités les plus populaires)"
+msgstr "Albums les plus populaires"
 
 #: themes/libratus/themeoptions.php:131
 #, fuzzy
@@ -4224,7 +4221,7 @@ msgstr "Désactiver"
 #: themes/libratus/themeoptions.php:197
 #, fuzzy
 msgid "1"
-msgstr "<strong>Un</strong> commentaire"
+msgstr "Nombre de résultats : %1$u"
 
 #: themes/libratus/themeoptions.php:197
 #, fuzzy
@@ -5432,7 +5429,7 @@ msgstr "Aucun autre élément à charger."
 #: themes/zpbase/inc/masonry-jscall.php:35
 #, fuzzy
 msgid "Loading..."
-msgstr "Chargement..."
+msgstr "Chargement en cours…"
 
 #: themes/zpbase/inc/masonry-jscall.php:67
 #: themes/zpbase/inc/masonry-jscall.php:107
@@ -6034,7 +6031,7 @@ msgstr "Affichage de la légende initiale Galleria"
 #: themes/zpbase/themeoptions.php:266
 #, fuzzy
 msgid "Visible"
-msgstr "Éléments visibles et masqués"
+msgstr "L’image est marquée comme non visible."
 
 #: themes/zpbase/themeoptions.php:267
 #, fuzzy
@@ -20946,7 +20943,7 @@ msgstr "Traitement des informations de débogage de l’image journal."
 #: zp-core/zp-extensions/debug.php:69
 #, fuzzy
 msgid "LOCALE"
-msgstr "Les dossiers <em>locale</em> sont incomplets"
+msgstr "Le paramètre régional %s n’est pas supporté par votre serveur."
 
 #: zp-core/zp-extensions/debug.php:69
 #, fuzzy

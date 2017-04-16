@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: ZenPhoto20 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-07-08 09:50-0800\n"
-"PO-Revision-Date: 2017-04-15 14:30-0700\n"
+"PO-Revision-Date: 2017-04-16 15:55-0700\n"
 "Last-Translator: Stephen <stephen@sbillard.org>\n"
 "Language-Team: Jakub Meisner <jakub@jlfoto.sk>\n"
 "Language: sk_SK\n"
@@ -1912,7 +1912,7 @@ msgstr "Vyberte titlelink <em>stránok</em> pre úvodnú stránku. V ponuke sú 
 #: D:\github\ZenPhoto20/themes/gray_highlights/functions.php:11
 #, fuzzy
 msgid "Calendar"
-msgstr "Kalendár"
+msgstr "kalendár"
 
 #: D:\github\ZenPhoto20/themes/gray_highlights/functions.php:35
 #: D:\github\ZenPhoto20/themes/gray_highlights/login.php:5
@@ -2188,7 +2188,7 @@ msgstr "Moje obľúbené"
 #: D:\github\ZenPhoto20/themes/zpArdoise/inc_header.php:62
 #, fuzzy
 msgid "Password Required..."
-msgstr "Nutné heslo"
+msgstr "Požadované heslo"
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/inc_header.php:284
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-header.php:155
@@ -2225,7 +2225,7 @@ msgstr "Náhodné obrázky"
 #: D:\github\ZenPhoto20/themes/zpArdoise/inc_print_image_statistic.php:8
 #, fuzzy
 msgid "Popular images"
-msgstr "Obľúbené obrázky"
+msgstr "Najpopulárnejšie obrázky"
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/inc_print_image_statistic.php:16
 #, fuzzy
@@ -2285,7 +2285,7 @@ msgstr "Skontrolujte Zobraziť logo na stránke obrázok."
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:74
 #, fuzzy
 msgid "Style"
-msgstr "Štýl"
+msgstr "Zarovnanie vľavo: <em>style=\"float:right\"</em>"
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/themeoptions.php:75
 #, fuzzy
@@ -2307,7 +2307,7 @@ msgstr "Vybrať farbu odkazov: vybrať predvolený používať predvolenú farbu
 #: D:\github\ZenPhoto20/themes/zpskeleton/themeoptions.php:75
 #, fuzzy
 msgid "Choose here any <em>un-published Zenpage page</em> (listed by <em>titlelink</em>) to act as your site's homepage instead the normal gallery index."
-msgstr "Tu vyberiete akúkoľvek <em>un-zverejnené Zenpage stránky</em> (uvádzané podľa <em>titlelink</em>) pôsobiť ako domovskú stránku vašej lokality namiesto normálneho gallery index."
+msgstr "Vyberte si <em>nezverejnenú stránku Zenpage</em> (zoradené podľa <em>titlelink</em>), ktorú budete používať namiesto indexu galérie ako domovskú stránku."
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/themeoptions.php:78
 #, fuzzy
@@ -2467,12 +2467,12 @@ msgstr "Tip: %s"
 #: D:\github\ZenPhoto20/themes/zpEnlighten/search.php:123
 #, fuzzy, php-format
 msgid "%s "
-msgstr "%s"
+msgstr "%1$s: %2$s"
 
 #: D:\github\ZenPhoto20/themes/zpEnlighten/search.php:126
 #, fuzzy, php-format
 msgid "%1$s "
-msgstr "%1$s"
+msgstr "<a href=\"#%1$s\"><code>%1$s</code></a> už je zapnuté."
 
 #: D:\github\ZenPhoto20/themes/zpEnlighten/sidebar.php:52
 #, fuzzy
@@ -2507,7 +2507,7 @@ msgstr "Téma odvodených z témy Zenpage 1.3. Naozaj viac len pleť ako vlastn�
 #: D:\github\ZenPhoto20/themes/zpEnlighten/themeoptions.php:36
 #, fuzzy
 msgid "Enable this if you want to show the news section's first page on the <code>index.php</code> page."
-msgstr "Túto možnosť povoľte, ak chcete zobraziť prvú stranu časti správy na <code>index.php</code> stránku."
+msgstr "Zapnúť ak chcete aby sa vám na domovskej <code>index.php</code> stránke zobrazovala sekcia správ."
 
 #: D:\github\ZenPhoto20/themes/zpEnlighten/themeoptions.php:39
 #, fuzzy
@@ -2517,7 +2517,7 @@ msgstr "Pozrite sa Ak chcete používať <em>menu_manager</em> plugin povolen├
 #: D:\github\ZenPhoto20/themes/zpfocus/404.php:5
 #, fuzzy
 msgid "Page not found..."
-msgstr "Stránka sa nenašla"
+msgstr "Stránka nenájdená"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/404.php:14
 #: D:\github\ZenPhoto20/themes/zpminimal/404.php:9
@@ -2551,18 +2551,18 @@ msgstr "Strana: %s"
 #: D:\github\ZenPhoto20/themes/zpfocus/favorites.php:22
 #, fuzzy
 msgid "| Tags:  "
-msgstr "Značky:"
+msgstr "Tagy:"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/album.php:21
 #: D:\github\ZenPhoto20/themes/zpfocus/favorites.php:24
 #, fuzzy
 msgid "Edit Description..."
-msgstr "Upravte popis..."
+msgstr "Označte album, u ktorého chete upraviť popis či obsah, alebo <a href=\"?page=edit&amp;album=%s&amp;massedit\">upravte hromadne</a> všetky albumy prvej úrovne."
 
 #: D:\github\ZenPhoto20/themes/zpfocus/album.php:26
 #, fuzzy
 msgid "SubAlbums in "
-msgstr "SubAlbums v"
+msgstr "Podalbumy"
 
 msgid "New album name?"
 msgstr "Nový názov albumu?"
@@ -2594,7 +2594,7 @@ msgstr "Prehrať prezentáciu"
 #: D:\github\ZenPhoto20/themes/zpfocus/favorites.php:93
 #, fuzzy
 msgid "Images in "
-msgstr "obrázky v"
+msgstr "Obrázky:"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/album.php:150
 #: D:\github\ZenPhoto20/themes/zpfocus/favorites.php:144
@@ -2602,7 +2602,7 @@ msgstr "obrázky v"
 #: D:\github\ZenPhoto20/themes/zpfocus/search.php:201
 #, fuzzy
 msgid "Prev"
-msgstr "Späť"
+msgstr "späť"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/album.php:150
 #: D:\github\ZenPhoto20/themes/zpfocus/favorites.php:144
@@ -2625,7 +2625,7 @@ msgstr "Archív galérie"
 #: D:\github\ZenPhoto20/themes/zpskeleton/archive.php:19
 #, fuzzy
 msgid "News Archive"
-msgstr "Archív aktualít"
+msgstr "Archív článkov"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/functions.php:93
 #: D:\github\ZenPhoto20/themes/zpmasonry/functions.php:233
@@ -2643,7 +2643,7 @@ msgstr "Výsledok hľadania"
 #: D:\github\ZenPhoto20/themes/zpskeleton/inc-header.php:119
 #, fuzzy
 msgid "Latest News"
-msgstr "Najnovšie správy"
+msgstr "Najnovšie články"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/gallery.php:19
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-header.php:108
@@ -2653,7 +2653,7 @@ msgstr "Najnovšie správy"
 #: D:\github\ZenPhoto20/themes/zpskeleton/inc-header.php:115
 #, fuzzy
 msgid "Latest Albums"
-msgstr "Najnovšie Albumy"
+msgstr "Najnovšie albumy"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/image.php:37
 #, fuzzy
@@ -2663,12 +2663,12 @@ msgstr "EXIF metadáta"
 #: D:\github\ZenPhoto20/themes/zpfocus/image.php:39
 #, fuzzy
 msgid "TAGS:  "
-msgstr "Kľúčové slová"
+msgstr "Tagy:"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/image.php:42
 #, fuzzy
 msgid "(Edit Description...)"
-msgstr "(Upraviť popis...)"
+msgstr "Označte album, u ktorého chete upraviť popis či obsah, alebo <a href=\"?page=edit&amp;album=%s&amp;massedit\">upravte hromadne</a> všetky albumy prvej úrovne."
 
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-footer.php:6
 #, fuzzy
@@ -2711,7 +2711,7 @@ msgstr "Galéria"
 #: D:\github\ZenPhoto20/themes/zpskeleton/inc-header.php:126
 #, fuzzy
 msgid "Latest Comments"
-msgstr "Najnovšie komentáre"
+msgstr "(najnovšie komentáre)"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-header.php:91
 #: D:\github\ZenPhoto20/themes/zpmasonry/inc-header.php:94
@@ -2719,7 +2719,7 @@ msgstr "Najnovšie komentáre"
 #: D:\github\ZenPhoto20/themes/zpskeleton/inc-header.php:97
 #, fuzzy
 msgid "Password Required"
-msgstr "Nutné heslo"
+msgstr "Požadované heslo"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-header.php:95
 #: D:\github\ZenPhoto20/themes/zpmasonry/inc-header.php:98
@@ -2750,7 +2750,7 @@ msgstr "späť"
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-header.php:237
 #, fuzzy
 msgid "SEARCH"
-msgstr "HĽADAŤ"
+msgstr "hľadať"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-sidebar.php:13
 #, fuzzy
@@ -2813,7 +2813,7 @@ msgstr "Prosím prihláste sa"
 #: D:\github\ZenPhoto20/themes/zpskeleton/password.php:19
 #, fuzzy
 msgid "You are logged in..."
-msgstr "Ste prihlásení"
+msgstr "Musíte byť prihlásení, aby ste mohli spustiť inštaláciu."
 
 #: D:\github\ZenPhoto20/themes/zpfocus/search.php:93
 #, fuzzy
@@ -2824,7 +2824,7 @@ msgstr "Výsledky hľadania album"
 #: D:\github\ZenPhoto20/themes/zpfocus/search.php:106
 #, fuzzy
 msgid "View Album:"
-msgstr "Zobraziť Album:"
+msgstr "Prezrieť album:"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/search.php:154
 #, fuzzy
@@ -2834,7 +2834,7 @@ msgstr "Výsledky vyhľadávania obrázkov"
 #: D:\github\ZenPhoto20/themes/zpfocus/search.php:214
 #, fuzzy
 msgid "Sorry, no matches. Try refining your search."
-msgstr "Ospravedlňujeme sa, žiadne zápasy. Skúste vyhľadávanie upraviť."
+msgstr "Zhoda nenájdená. Skúste upresniť vaše vyhľadávanie."
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:67
 #, fuzzy
@@ -3061,7 +3061,7 @@ msgstr "%sMeno:"
 #: D:\github\ZenPhoto20/themes/zpskeleton/comment_form/comment_form.php:18
 #, fuzzy
 msgid " <em>anonymous</em> "
-msgstr "<em>anonymný</em>"
+msgstr "<em>anonym</em>"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/z_comment_form/comment_form.php:35
 #: D:\github\ZenPhoto20/themes/zpskeleton/comment_form/comment_form.php:31
@@ -3202,7 +3202,7 @@ msgstr "Telefón<strong>%s</strong>:"
 #: D:\github\ZenPhoto20/themes/zpskeleton/register_user/register_user_form.php:60
 #, fuzzy
 msgid "Enter CAPTCHA<strong>*</strong>:"
-msgstr "Opíšte text z obrázku"
+msgstr "Vložiť CAPTCHA<strong>*</strong>"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/z_contact_form/form.php:102
 #: D:\github\ZenPhoto20/themes/zpskeleton/contact_form/form.php:99
@@ -3288,19 +3288,19 @@ msgstr "Ľutujeme, stránka žiadate sa nenašla."
 #: D:\github\ZenPhoto20/themes/zpmasonry/favorites.php:18
 #, fuzzy
 msgid "subalbum"
-msgstr "subalbum"
+msgstr "zobraziť miniatúry podalbumu"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/album.php:36
 #: D:\github\ZenPhoto20/themes/zpmasonry/favorites.php:42
 #, fuzzy
 msgid "number"
-msgstr "lézie"
+msgstr "Číslo POP portu."
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/album.php:36
 #: D:\github\ZenPhoto20/themes/zpmasonry/favorites.php:42
 #, fuzzy
 msgid "total"
-msgstr "celkom"
+msgstr "Zhoda pre <em>%1$s</em>: %2$u"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/album.php:45
 #: D:\github\ZenPhoto20/themes/zpmasonry/album.php:105
@@ -3319,7 +3319,7 @@ msgstr "celkom"
 #: D:\github\ZenPhoto20/themes/zpskeleton/search.php:112
 #, fuzzy
 msgid "subalbums"
-msgstr "subalbums"
+msgstr "Podalbumy"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/album.php:48
 #: D:\github\ZenPhoto20/themes/zpmasonry/album.php:108
@@ -3390,7 +3390,7 @@ msgstr "Vložiť CAPTCHA"
 #: D:\github\ZenPhoto20/themes/zpmasonry/functions.php:176
 #, fuzzy
 msgid "Latest Updated Albums"
-msgstr "Posledné aktualizované albumy"
+msgstr "naposledy upravované albumy"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/functions.php:181
 #, fuzzy
@@ -3405,7 +3405,7 @@ msgstr "Najlepšie hodnotené albumy"
 #: D:\github\ZenPhoto20/themes/zpmasonry/functions.php:206
 #, fuzzy
 msgid "Popular Images"
-msgstr "Obľúbené obrázky"
+msgstr "Najpopulárnejšie obrázky"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/functions.php:211
 #, fuzzy
@@ -3434,7 +3434,7 @@ msgstr "Obrázok číslo/celkový počet obrázkov"
 #: D:\github\ZenPhoto20/themes/zpskeleton/image.php:80
 #, fuzzy
 msgid "Start Slideshow"
-msgstr "Spustiť prezentáciu"
+msgstr "spustiť prezentáciu"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/inc-footer.php:17
 #, fuzzy
@@ -3498,7 +3498,7 @@ msgstr "Ďalšia stránka"
 #: D:\github\ZenPhoto20/themes/zpmasonry/news.php:83
 #, fuzzy
 msgid "« Prev"
-msgstr "späť"
+msgstr "« späť"
 
 msgid "Delete album"
 msgstr "Vymazať album"
@@ -3507,7 +3507,7 @@ msgstr "Vymazať album"
 #: D:\github\ZenPhoto20/themes/zpminimal/search.php:23
 #, fuzzy
 msgid "items"
-msgstr "Firmy"
+msgstr "Označené položky vymazané"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/search.php:115
 #: D:\github\ZenPhoto20/themes/zpminimal/search.php:87
@@ -3715,7 +3715,7 @@ msgstr "Späť do galérie Index →"
 #: D:\github\ZenPhoto20/themes/zpminimal/inc-footer.php:21
 #, fuzzy
 msgid "Subalbum"
-msgstr "Subalbum"
+msgstr "zobraziť miniatúry podalbumu"
 
 #: D:\github\ZenPhoto20/themes/zpminimal/inc-header.php:122
 msgid "News RSS"
@@ -3729,12 +3729,12 @@ msgstr "Zadajte Galéria &rarr;"
 #: D:\github\ZenPhoto20/themes/zpminimal/news.php:45
 #, fuzzy
 msgid "Next →"
-msgstr "Ďalší"
+msgstr "ďalej »"
 
 #: D:\github\ZenPhoto20/themes/zpminimal/news.php:45
 #, fuzzy
 msgid "← Prev"
-msgstr "späť"
+msgstr "« späť"
 
 #: D:\github\ZenPhoto20/themes/zpminimal/password.php:4
 #, fuzzy
@@ -3894,7 +3894,7 @@ msgstr "Stránka sa nenašla"
 #: D:\github\ZenPhoto20/themes/zpskeleton/archive.php:22
 #, fuzzy
 msgid "Tag Cloud"
-msgstr "Tag Cloud"
+msgstr "Poskytuje funkcie na vytlačenie oblaku tagov zo všetkých tagov ZenPhoto20 objektu."
 
 #: D:\github\ZenPhoto20/themes/zpskeleton/functions.php:201
 #, fuzzy
@@ -3953,7 +3953,7 @@ msgstr "Komentáre tohto článku"
 #: D:\github\ZenPhoto20/themes/zpskeleton/password.php:6
 #, fuzzy
 msgid "Password required..."
-msgstr "heslo je povinné"
+msgstr "Požadované heslo"
 
 #: D:\github\ZenPhoto20/themes/zpskeleton/register_user/register_user_form.php:13
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:992
@@ -3969,7 +3969,7 @@ msgstr "E-Mail:"
 #: D:\github\ZenPhoto20/themes/zpskeleton/register_user/register_user_form.php:22
 #, fuzzy
 msgid "User ID:"
-msgstr "ID užívateľa:"
+msgstr "ID používateľa"
 
 #: D:\github\ZenPhoto20/themes/zpskeleton/register_user/register_user_form.php:28
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/downloadList.php:99
@@ -3992,7 +3992,7 @@ msgstr "Môžete sa tiež zaregistrovať použitím združených údajov"
 #: D:\github\ZenPhoto20/themes/zpskeleton/themeoptions.php:53
 #, fuzzy
 msgid "Thumb Size"
-msgstr "Palec veľkosť"
+msgstr "Veľkosť miniatúr:"
 
 #: D:\github\ZenPhoto20/themes/zpskeleton/themeoptions.php:55
 #: D:\github\ZenPhoto20/zp-core/exif/makers/canon.php:127
@@ -4044,7 +4044,7 @@ msgstr "Veľkosti (630px)"
 #: D:\github\ZenPhoto20/themes/zpskeleton/themeoptions.php:65
 #, fuzzy
 msgid "Original Image"
-msgstr "Načítať pôvodný obrázok"
+msgstr "Ak je táto možnosť zaškrtnutá IPTC dáta originálneho obrázku budú vložené do kópií vo vyrovnávacej pamäti. Ak obrázok nemá žiadne IPTC dáta bude do kópií vo vyrovnávacej pamäti vložená poznámka o copyrighte. (Poskytnutý text sa bude vkladať do originálneho obrázku, ktorý nemá copyright.)"
 
 #: D:\github\ZenPhoto20/themes/zpskeleton/themeoptions.php:66
 #, fuzzy
@@ -4901,7 +4901,7 @@ msgstr "Predchádzajúci obrázok"
 #: D:\github\ZenPhoto20/zp-core/admin-edit.php:1636
 #, fuzzy
 msgid "next image"
-msgstr "Ďalší obrázok"
+msgstr "Nasledujúci obrázok"
 
 #: D:\github\ZenPhoto20/zp-core/admin-edit.php:1711
 msgid "Edit All Albums in"
@@ -4959,7 +4959,7 @@ msgstr "Licencia"
 #: D:\github\ZenPhoto20/zp-core/setup/setup-functions.php:582
 #, fuzzy
 msgid "Support"
-msgstr "Podpora"
+msgstr "Grafická podpora obrázkov PHP chýba."
 
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:39
 #: D:\github\ZenPhoto20/zp-core/setup/setup-functions.php:582
@@ -6617,7 +6617,7 @@ msgstr "Jazyk konkrétne značky"
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:1581
 #, fuzzy
 msgid "off"
-msgstr "z"
+msgstr "vypnuté"
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:1584
 #, fuzzy
@@ -6627,7 +6627,7 @@ msgstr "všeobecná"
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:1587
 #, fuzzy
 msgid "specific"
-msgstr "konkrétne"
+msgstr "Vložte plnú URL adresu špecifického loga stránky. Facebook, Google+ a ďalší ho budú používať ako miniatúru zobrazenú v ukázkach odkazov v správe. Pri obrázkoch a albumoch sa automaticky použile základná veľkosť miniatúr."
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:1592
 msgid "Treat spaces as"
@@ -7620,7 +7620,7 @@ msgstr "Správa tagov"
 #: D:\github\ZenPhoto20/zp-core/admin-tags.php:137
 #, fuzzy
 msgid "Order by"
-msgstr "Zoradiť podľa"
+msgstr "Poradie obrázkov uložené"
 
 #: D:\github\ZenPhoto20/zp-core/admin-tags.php:140
 #, fuzzy
@@ -7630,17 +7630,17 @@ msgstr "Abecedne"
 #: D:\github\ZenPhoto20/zp-core/admin-tags.php:141
 #, fuzzy
 msgid "Most used"
-msgstr "Najviac používané"
+msgstr "najpoužívanejšie"
 
 #: D:\github\ZenPhoto20/zp-core/admin-tags.php:142
 #, fuzzy
 msgid "Language"
-msgstr "Jazyk"
+msgstr "Jazyk:"
 
 #: D:\github\ZenPhoto20/zp-core/admin-tags.php:143
 #, fuzzy
 msgid "Most recent"
-msgstr "Nedávno pridané"
+msgstr "najnovšie"
 
 #: D:\github\ZenPhoto20/zp-core/admin-tags.php:174
 #: D:\github\ZenPhoto20/zp-core/admin-tags.php:178
@@ -7651,7 +7651,7 @@ msgstr "Vymazať označené tagy"
 #: D:\github\ZenPhoto20/zp-core/admin-tags.php:187
 #, fuzzy
 msgid "assign"
-msgstr "Priradiť"
+msgstr "Nastaviť"
 
 #: D:\github\ZenPhoto20/zp-core/admin-tags.php:191
 #: D:\github\ZenPhoto20/zp-core/admin-tags.php:268
@@ -13568,7 +13568,7 @@ msgstr "Ste obnovili databázu z inej inštancie zenphoto. Mali by ste spustiť 
 #: D:\github\ZenPhoto20/zp-core/utilities/backup_restore.php:471
 #, fuzzy
 msgid "Rights migration failed!"
-msgstr "Práva migrácia zlyhala!"
+msgstr "Presun práv zlyhal."
 
 #: D:\github\ZenPhoto20/zp-core/utilities/backup_restore.php:485
 msgid "Restore completed"
@@ -16440,7 +16440,7 @@ msgstr "Vytvoriť Album obľúbených"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/favoritesAlbums/admin-album.php:90
 #, fuzzy
 msgid "favorite"
-msgstr "obľúbená položka"
+msgstr "Kto je váš obľúbený spevák?"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/favoritesHandler.php:48
 msgid "Support for <em>favorites</em> handling."
@@ -18741,12 +18741,12 @@ msgstr "Poskytuje prostriedky k čistky možnosti tém a pluginov."
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/purgeOptions.php:33
 #, fuzzy
 msgid "purge"
-msgstr "čistenie"
+msgstr "Generuje alebo vymazáva súbory vyrovnávacej pamäte mapy stránok."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:15
 #, fuzzy
 msgid "User plugins"
-msgstr "Užívateľských pluginov"
+msgstr "V zásuvných moduloch používateľa"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:15
 #, fuzzy
@@ -19930,7 +19930,7 @@ msgstr "Nastaví stránku ako dostupnú na prezeranie."
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/site_upgrade.php:146
 #, fuzzy
 msgid "Your setup scripts are not protected!"
-msgstr "Svojich inštalačných skriptov nie sú chránené!"
+msgstr "Inštalačné skripty nie sú chránené."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/site_upgrade.php:158
 msgid "Site » close"

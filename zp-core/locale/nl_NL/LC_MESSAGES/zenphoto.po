@@ -23,34 +23,28 @@ msgid "'"
 msgstr "'"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/lists/plugin.min.js:1
-#, fuzzy
 msgid "UL"
-msgstr "UL"
+msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/lists/plugin.min.js:1
-#, fuzzy
 msgid "OL"
-msgstr "OL"
+msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/lists/plugin.min.js:1
-#, fuzzy
 msgid "DL"
-msgstr "DL"
+msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/tinymce/tinymce.min.js:8
-#, fuzzy
 msgid "align"
-msgstr "uitgelijning"
+msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/tinymce/tinymce.min.js:8
-#, fuzzy
 msgid "blockquote"
-msgstr "Blockquote"
+msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/tinymce/tinymce.min.js:8
-#, fuzzy
 msgid "p"
-msgstr "p"
+msgstr ""
 
 #: D:/github/ZenPhoto20/themes/basic/404.php:22
 #: D:/github/ZenPhoto20/themes/basic/archive.php:29
@@ -3142,7 +3136,7 @@ msgstr "vorige"
 #: D:/github/ZenPhoto20/themes/zpfocus/inc-header.php:239
 #, fuzzy
 msgid "SEARCH"
-msgstr "Zoeken"
+msgstr "zoeken"
 
 #: D:/github/ZenPhoto20/themes/zpfocus/inc-sidebar.php:13
 #, fuzzy
@@ -4173,7 +4167,7 @@ msgstr "Voer Gallery &rarr;"
 #: D:/github/ZenPhoto20/themes/zpminimal/news.php:45
 #, fuzzy
 msgid "Next →"
-msgstr "Volgende »"
+msgstr "volgende »"
 
 #: D:/github/ZenPhoto20/themes/zpminimal/news.php:45
 #, fuzzy
@@ -4551,12 +4545,7 @@ msgstr "Formaat (630px)"
 #: D:/github/ZenPhoto20/themes/zpskeleton/themeoptions.php:64
 #, fuzzy
 msgid "Original Image"
-msgstr ""
-"Als dit is aangevinkt wordt IPTC info van originele afbeeldingen geplaatst "
-"in gecachte kopieën. Als de afbeelding géén IPTC info heeft, wordt er "
-"copyright informatie in de afbeeldings-info van gecachte kopieën geplaatst. "
-"(De opgegeven tekst wordt gebruikt als de originele afbeelding geen "
-"copyright heeft)"
+msgstr "Originele afbeelding"
 
 #: D:/github/ZenPhoto20/themes/zpskeleton/themeoptions.php:65
 #, fuzzy
@@ -8886,7 +8875,7 @@ msgstr "Tag Beheer"
 #: D:/github/ZenPhoto20/zp-core/admin-tags.php:134
 #, fuzzy
 msgid "Order by"
-msgstr "Afbeeldingsvolgorde opgeslagen"
+msgstr "Afbeeldingsvolgorde"
 
 #: D:/github/ZenPhoto20/zp-core/admin-tags.php:137
 #, fuzzy
@@ -16016,7 +16005,7 @@ msgstr "Geen posten excede het geluidsniveau"
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/accessThreshold/admin_tab.php:144
 #, fuzzy
 msgid "Sort by:"
-msgstr "* album sorteervolgorde"
+msgstr "Sorteer afbeeldingen"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/accessThreshold/admin_tab.php:146
 #, fuzzy
@@ -18050,7 +18039,7 @@ msgstr "Log filter toepassing volgorde."
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/debug.php:68
 #, fuzzy
 msgid "IMAGE"
-msgstr "Afbeelding"
+msgstr "afbeelding"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/debug.php:68
 #, fuzzy
@@ -18129,7 +18118,7 @@ msgstr "Locale vertalingen"
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/debug.php:155
 #, fuzzy
 msgid "Session"
-msgstr "<code>SQL mode</code> [SET SESSION mislukt]"
+msgstr "Sessie"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/debug.php:159
 #, fuzzy

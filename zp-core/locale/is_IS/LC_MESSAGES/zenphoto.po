@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Zenphoto\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-02-05 17:56-0800\n"
-"PO-Revision-Date: 2017-04-15 12:15-0700\n"
+"PO-Revision-Date: 2017-04-16 13:55-0700\n"
 "Last-Translator: Stephen <stephen@sbillard.org>\n"
 "Language-Team: \n"
 "Language: is_IS\n"
@@ -34,18 +34,16 @@ msgid "DL"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/tinymce/tinymce.min.js:8
-#, fuzzy
 msgid "align"
-msgstr "Staðsetning"
+msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/tinymce/tinymce.min.js:8
 msgid "blockquote"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/tinymce/tinymce.min.js:8
-#, fuzzy
 msgid "p"
-msgstr "P"
+msgstr ""
 
 #: D:/github/ZenPhoto20/themes/basic/404.php:22
 #: D:/github/ZenPhoto20/themes/basic/archive.php:29
@@ -2573,7 +2571,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/contact_form/form.php:85
 #, fuzzy, php-format
 msgid "E-Mail%s"
-msgstr "Netfang:"
+msgstr "Netfang"
 
 #: D:/github/ZenPhoto20/themes/zpBootstrap/comment_form/comment_form.php:51
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/comment_form/comment_form.php:47

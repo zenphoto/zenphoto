@@ -373,7 +373,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 									$position = floor(0.5 * $high);
 								} else {
 									if ($_bottom > $bottom) { //	overflows at bottom
-										if ($loc - $high > 0) { //	does not overflow at top
+										if ($loc - $high > 0) { //	won't overflow at top
 											$position = $high - 1; //	align to the bottom
 										} else {
 											$position = $loc; //	align to top and let the bottom overflow

@@ -37,14 +37,12 @@ msgid "DL"
 msgstr "DL"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/tinymce/tinymce.min.js:8
-#, fuzzy
 msgid "align"
-msgstr "对齐"
+msgstr "align"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/tinymce/tinymce.min.js:8
-#, fuzzy
 msgid "blockquote"
-msgstr "区块引用"
+msgstr "blockquote"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/tinymce/tinymce.min.js:8
 #, fuzzy

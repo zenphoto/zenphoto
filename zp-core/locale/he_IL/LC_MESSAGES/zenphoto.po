@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Zenphoto 1.4.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-02-05 17:55-0800\n"
-"PO-Revision-Date: 2017-04-15 12:13-0700\n"
+"PO-Revision-Date: 2017-04-16 13:55-0700\n"
 "Last-Translator: Stephen <stephen@sbillard.org>\n"
 "Language-Team: \n"
 "Language: he_IL\n"
@@ -23,35 +23,28 @@ msgid "'"
 msgstr "‘"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/lists/plugin.min.js:1
-#, fuzzy
 msgid "UL"
-msgstr "UL"
+msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/lists/plugin.min.js:1
-#, fuzzy
 msgid "OL"
-msgstr "OL"
+msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/lists/plugin.min.js:1
-#, fuzzy
 msgid "DL"
-msgstr "DL"
+msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/tinymce/tinymce.min.js:8
-#, fuzzy
 msgid "align"
-msgstr "יישור"
+msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/tinymce/tinymce.min.js:8
-#, fuzzy
 msgid "blockquote"
-msgstr "Blockquote"
+msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/tinymce/tinymce.min.js:8
-#, fuzzy
 msgid "p"
 msgstr ""
-"<p>שדות עם <strong>*</strong> נדרשים. HTML או סוג אחר של קוד אסורים.</p>"
 
 #: D:/github/ZenPhoto20/themes/basic/404.php:22
 #: D:/github/ZenPhoto20/themes/basic/archive.php:29
@@ -17118,7 +17111,7 @@ msgstr "מצב ערוץ"
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/class-video.php:150
 #, fuzzy
 msgid "Format"
-msgstr "פורמט"
+msgstr "תבנית"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/class-video.php:151
 #, fuzzy
@@ -25782,7 +25775,7 @@ msgstr "סמנו להפעלת טופס החיפוש"
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/user-expiry/user-expiry-tab.php:184
 #, fuzzy
 msgid "disable"
-msgstr "הפעל / בטל ארכיוני תכונות."
+msgstr "נטרל"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/user-expiry/user-expiry-tab.php:187
 #, fuzzy
@@ -25808,7 +25801,7 @@ msgstr "%1$s <strong>%2$s</strong> (%3$slast כניסה: %4$s)"
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/user-expiry/user-expiry-tab.php:207
 #, fuzzy
 msgid "Disable"
-msgstr "הפעל / בטל ארכיוני תכונות."
+msgstr "נטרל"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/user-expiry/user-expiry-tab.php:208
 #, fuzzy

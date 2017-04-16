@@ -40,14 +40,12 @@ msgid "DL"
 msgstr "DL"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/tinymce/tinymce.min.js:8
-#, fuzzy
 msgid "align"
-msgstr "выравнивание"
+msgstr "align"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/tinymce/tinymce.min.js:8
-#, fuzzy
 msgid "blockquote"
-msgstr "цитата"
+msgstr "blockquote"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/tinymce/tinymce.min.js:8
 #, fuzzy
@@ -2947,7 +2945,7 @@ msgstr "Подсказка: %s"
 #: D:/github/ZenPhoto20/themes/zpEnlighten/search.php:122
 #, fuzzy, php-format
 msgid "%s "
-msgstr "Панель управления %1$s: %2$s%3$s"
+msgstr "%s"
 
 #: D:/github/ZenPhoto20/themes/zpEnlighten/search.php:125
 #, fuzzy, php-format
@@ -10323,7 +10321,7 @@ msgstr "Ориентация"
 #: D:/github/ZenPhoto20/zp-core/class-image.php:191
 #, fuzzy
 msgid "Software"
-msgstr "ПО вашего сервера было изменено с %1$s на %2$s."
+msgstr "Программное обеспечение"
 
 #: D:/github/ZenPhoto20/zp-core/class-image.php:192
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/xmpMetadata.php:625
@@ -10697,7 +10695,7 @@ msgstr "Лампа"
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:57
 #, fuzzy
 msgid "Center"
-msgstr "К Центру"
+msgstr "Центр"
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:58
 #, fuzzy
@@ -15976,7 +15974,7 @@ msgstr "Ключ"
 #: D:/github/ZenPhoto20/zp-core/utilities/database_reference.php:208
 #, fuzzy
 msgid "Column"
-msgstr "Столбец"
+msgstr "Колонка"
 
 #: D:/github/ZenPhoto20/zp-core/utilities/database_reference.php:211
 msgid "Comment"
@@ -21186,10 +21184,13 @@ msgid "Suspended"
 msgstr "Приостановлен"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/jcarousel_thumb_nav.php:12
+#, fuzzy
 msgid ""
 "jQuery jCarousel thumb nav plugin with dynamic loading of thumbs on request "
 "via JavaScript."
 msgstr ""
+"с динамической загрузки больших пальцев по запросу через JavaScript, jQuery "
+"плагин nav jCarousel пальца."
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/jcarousel_thumb_nav.php:42
 #, fuzzy
@@ -21490,7 +21491,7 @@ msgstr "повторить"
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/slideshow2.php:105
 #, fuzzy
 msgid "shuffle"
-msgstr "Перемешать"
+msgstr "перемешать"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/jplayer.php:483
 #, fuzzy
@@ -24942,8 +24943,7 @@ msgid ""
 "The scripts for which the slideshow is enabled. {Should have been set by the "
 "themes!}"
 msgstr ""
-"Отметьте скрипты, для которых Colorbox будет активирован. {Необходима "
-"поддержка темой оформления!}"
+"Сценарии, для которых включен слайд-шоу. {Должны были установлены по темам!}"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/slideshow.php:104
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/slideshow.php:136
@@ -25828,8 +25828,9 @@ msgid "title only"
 msgstr "только название"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:316
+#, fuzzy
 msgid "Click to bring up the custom cropping page."
-msgstr ""
+msgstr "Нажмите, чтобы воспитывать настраиваемой обрезки страницы."
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:317
 #, fuzzy
@@ -26536,8 +26537,9 @@ msgid "User %s is assigned to more than one group."
 msgstr "Пользователь %s в нескольких группах."
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/user_groups/user_groups-tab.php:415
+#, fuzzy
 msgid "Group names may not contain “?”, “&”, or quotation marks."
-msgstr ""
+msgstr "Группа имена не могут содержать «?», «&», или кавычки."
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/user_groups/user_groups-tab.php:420
 #, fuzzy, php-format
@@ -27926,7 +27928,7 @@ msgstr "Удалить разделы"
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-news.php:272
 #, fuzzy
 msgid "Created"
-msgstr "Новая пользовательская тема создана успешно!"
+msgstr "Создан"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-news.php:274
 #, fuzzy

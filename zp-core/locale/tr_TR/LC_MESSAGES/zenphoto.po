@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Zenphoto\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-02-05 18:04-0800\n"
-"PO-Revision-Date: 2017-04-16 09:46-0700\n"
+"PO-Revision-Date: 2017-04-16 16:19-0700\n"
 "Last-Translator: Stephen <stephen@sbillard.org>\n"
 "Language-Team: \n"
 "Language: tr_TR\n"
@@ -38,14 +38,12 @@ msgid "DL"
 msgstr "DL"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/tinymce/tinymce.min.js:8
-#, fuzzy
 msgid "align"
-msgstr "hizalamak"
+msgstr "align"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/tinymce/tinymce.min.js:8
-#, fuzzy
 msgid "blockquote"
-msgstr "Alıntı"
+msgstr "blockquote"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/tinymce/tinymce.min.js:8
 #, fuzzy

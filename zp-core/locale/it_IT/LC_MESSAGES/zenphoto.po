@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: 1.4.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-02-05 17:57-0800\n"
-"PO-Revision-Date: 2017-04-15 12:47-0700\n"
+"PO-Revision-Date: 2017-04-16 13:52-0700\n"
 "Last-Translator: Stephen <stephen@sbillard.org>\n"
 "Language-Team: \n"
 "Language: it_IT\n"
@@ -22,34 +22,28 @@ msgid "'"
 msgstr "'"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/lists/plugin.min.js:1
-#, fuzzy
 msgid "UL"
-msgstr "UL"
+msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/lists/plugin.min.js:1
-#, fuzzy
 msgid "OL"
-msgstr "OL"
+msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/lists/plugin.min.js:1
-#, fuzzy
 msgid "DL"
-msgstr "DL"
+msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/tinymce/tinymce.min.js:8
-#, fuzzy
 msgid "align"
-msgstr "calettare"
+msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/tinymce/tinymce.min.js:8
-#, fuzzy
 msgid "blockquote"
-msgstr "Citazione"
+msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/tinymce/tinymce.min.js:8
-#, fuzzy
 msgid "p"
-msgstr "p"
+msgstr ""
 
 #: D:/github/ZenPhoto20/themes/basic/404.php:22
 #: D:/github/ZenPhoto20/themes/basic/archive.php:29
@@ -9023,7 +9017,7 @@ msgstr "Gestione tag"
 #: D:/github/ZenPhoto20/zp-core/admin-tags.php:134
 #, fuzzy
 msgid "Order by"
-msgstr "Ordine immagini salvato"
+msgstr "Ordinamento predefinito per le immagini."
 
 #: D:/github/ZenPhoto20/zp-core/admin-tags.php:137
 #, fuzzy
@@ -16304,7 +16298,7 @@ msgstr "Nessun voci excede il livello di rumore"
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/accessThreshold/admin_tab.php:144
 #, fuzzy
 msgid "Sort by:"
-msgstr "*ordinamento galleria album"
+msgstr "Ordinamento predefinito per le immagini."
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/accessThreshold/admin_tab.php:146
 #, fuzzy
@@ -23321,7 +23315,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/rss.php:91
 #, fuzzy
 msgid "Hitcounter"
-msgstr "Contatori delle visite per gli elementi selezionati"
+msgstr "(Il plug-in del contatore delle visite non è abilitato.)"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/rss.php:93
 msgid "Check if you want to store the hitcount on RSS feeds."
