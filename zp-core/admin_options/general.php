@@ -313,7 +313,10 @@ function getOptionContent() {
 										$translated = $matches[0][1];
 										preg_match_all('~([\d]+)~', $stat[2], $matches);
 										$needswork = $matches[0][1];
-										$languageP = ' <span style="font-size:xx-small;">[' . ($translated + $needswork) . '%]</span>';
+										$languageP = ' <span style="font-size:xx-small;">' . ($translated + $needswork) . '%</span>';
+										if ($needswork) {
+											$languageP .= ' <span style="font-size:xx-small;color:red;">[' . $needswork . '%]</span>';
+										}
 									}
 
 									if (empty($dirname)) {
@@ -367,6 +370,7 @@ function getOptionContent() {
 								}
 								?>
 							</ul>
+							<?php echo '<span class="floatright" style="font-size:xx-small;">' . gettext('Percent mechanically translated in red.'); ?></span>
 							<br class="clearall" />
 							<label class="checkboxlabel">
 								<input type="checkbox" name="multi_lingual" value="1"	<?php checked('1', getOption('multi_lingual')); ?> /><?php echo gettext('multi-lingual'); ?>
