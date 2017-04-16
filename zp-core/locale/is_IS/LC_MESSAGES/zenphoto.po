@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Zenphoto\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-02-05 17:56-0800\n"
-"PO-Revision-Date: 2017-02-05 17:56-0800\n"
+"PO-Revision-Date: 2017-04-15 12:15-0700\n"
 "Last-Translator: Stephen <stephen@sbillard.org>\n"
 "Language-Team: \n"
 "Language: is_IS\n"
@@ -12,14 +12,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-Basepath: .\n"
-"X-Generator: Poedit 1.8.11\n"
+"X-Generator: Poedit 2.0.1\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Poedit-SearchPath-0: D:/github/ZenPhoto20/themes\n"
-"X-Poedit-SearchPath-1: D:/github/ZenPhoto20/zp-core\n"
+"X-Poedit-Basepath: D:/github/ZenPhoto20\n"
 
 #: D:/github/ZenPhoto20/zp-core/js/jqueryui/jquery-ui-zenphoto.js:10
+#, fuzzy
 msgid "'"
-msgstr ""
+msgstr "'"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/lists/plugin.min.js:1
 msgid "UL"
@@ -34,16 +34,18 @@ msgid "DL"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/tinymce/tinymce.min.js:8
+#, fuzzy
 msgid "align"
-msgstr ""
+msgstr "Staðsetning"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/tinymce/tinymce.min.js:8
 msgid "blockquote"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/tinymce/tinymce.min.js:8
+#, fuzzy
 msgid "p"
-msgstr ""
+msgstr "P"
 
 #: D:/github/ZenPhoto20/themes/basic/404.php:22
 #: D:/github/ZenPhoto20/themes/basic/archive.php:29
@@ -489,8 +491,9 @@ msgstr "Hafðu samband"
 #: D:/github/ZenPhoto20/themes/zpskeleton/favorites.php:70
 #: D:/github/ZenPhoto20/themes/zpskeleton/favorites.php:104
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/user-expiry/user-expiry-tab.php:206
+#, fuzzy
 msgid "Remove"
-msgstr ""
+msgstr "Fjarlægja"
 
 #: D:/github/ZenPhoto20/themes/basic/functions.php:95
 #, fuzzy
@@ -501,7 +504,7 @@ msgstr "Veldu liti þemans"
 #: D:/github/ZenPhoto20/themes/effervescence+/functions.php:155
 #, fuzzy
 msgid "Theme Color"
-msgstr "Þemalitir"
+msgstr "Aðallitur"
 
 #: D:/github/ZenPhoto20/themes/basic/image.php:22
 #: D:/github/ZenPhoto20/themes/basic/image.php:28
@@ -628,7 +631,7 @@ msgstr "Nýskrá"
 #: D:/github/ZenPhoto20/themes/zpskeleton/register.php:6
 #, fuzzy
 msgid "User Registration"
-msgstr "Nýskráningarsíða notenda:"
+msgstr "Skráning"
 
 #: D:/github/ZenPhoto20/themes/basic/search.php:44
 #, php-format
@@ -718,7 +721,7 @@ msgstr "Yfirlit"
 #: D:/github/ZenPhoto20/themes/garland/404.php:44
 #, fuzzy
 msgid "Page not found"
-msgstr "Hlutur fannst ekki"
+msgstr "Síða fannst ekki"
 
 #: D:/github/ZenPhoto20/themes/effervescence+/album.php:74
 #: D:/github/ZenPhoto20/themes/effervescence+/image.php:95
@@ -831,7 +834,7 @@ msgstr "Myndir eftir dagsetningu"
 #: D:/github/ZenPhoto20/themes/zpmobile/archive.php:35
 #, fuzzy
 msgid "News archive"
-msgstr "Fréttagreinar"
+msgstr "Skjalasafn"
 
 #: D:/github/ZenPhoto20/themes/effervescence+/contact.php:52
 #: D:/github/ZenPhoto20/themes/gray_highlights/contact.php:28
@@ -888,7 +891,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/themes/garland/functions.php:69
 #, fuzzy
 msgid "Personality"
-msgstr "Þemapersónuleiki"
+msgstr "Veldu þemapersónuleika"
 
 #: D:/github/ZenPhoto20/themes/effervescence+/functions.php:200
 #: D:/github/ZenPhoto20/themes/effervescence+/indexpage.php:82
@@ -953,8 +956,9 @@ msgstr "Effervescence %1$s %2$s"
 
 #: D:/github/ZenPhoto20/themes/effervescence+/functions.php:344
 #: D:/github/ZenPhoto20/zp-core/template-functions.php:1084
+#, fuzzy
 msgid "The album is password protected."
-msgstr ""
+msgstr "Þetta albúm er varið með aðgangsorði!"
 
 #: D:/github/ZenPhoto20/themes/effervescence+/functions.php:347
 msgid "The album is not published."
@@ -1026,7 +1030,7 @@ msgstr[1] "Skrifa ummæli"
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/comment_form/admin-comments.php:385
 #, fuzzy
 msgid "album"
-msgstr "1 albúm"
+msgstr "Albúm"
 
 #: D:/github/ZenPhoto20/themes/effervescence+/functions.php:447
 #: D:/github/ZenPhoto20/themes/garland/functions.php:149
@@ -1040,8 +1044,9 @@ msgstr "mynd"
 
 #: D:/github/ZenPhoto20/themes/effervescence+/functions.php:447
 #: D:/github/ZenPhoto20/themes/garland/functions.php:149
+#, fuzzy
 msgid "video"
-msgstr ""
+msgstr "MYNDBAND"
 
 #: D:/github/ZenPhoto20/themes/effervescence+/functions.php:447
 #: D:/github/ZenPhoto20/themes/effervescence+/functions.php:449
@@ -1052,7 +1057,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/tinyURL.php:81
 #, fuzzy
 msgid "news"
-msgstr "[fréttir]"
+msgstr "Fréttir"
 
 #: D:/github/ZenPhoto20/themes/effervescence+/functions.php:451
 #: D:/github/ZenPhoto20/themes/garland/functions.php:153
@@ -1146,14 +1151,16 @@ msgstr "Sortera albúm"
 #: D:/github/ZenPhoto20/themes/effervescence+/image_gallery/functions.php:46
 #: D:/github/ZenPhoto20/themes/garland/image_gallery/functions.php:46
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/uploader_jQuery/upload_form.php:140
+#, fuzzy
 msgid "Start"
-msgstr ""
+msgstr "Byrja"
 
 #: D:/github/ZenPhoto20/themes/effervescence+/image_gallery/functions.php:47
 #: D:/github/ZenPhoto20/themes/garland/image_gallery/functions.php:47
 #: D:/github/ZenPhoto20/themes/zpArdoise/inc_header.php:94
+#, fuzzy
 msgid "Stop"
-msgstr ""
+msgstr "Stöðva"
 
 #: D:/github/ZenPhoto20/themes/effervescence+/indexpage.php:67
 msgid "Picture of the day"
@@ -1176,7 +1183,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/themes/zenpage/news.php:30
 #, fuzzy
 msgid "Search news"
-msgstr "Leitardálkar:"
+msgstr "Leita"
 
 #: D:/github/ZenPhoto20/themes/effervescence+/password.php:31
 #: D:/github/ZenPhoto20/themes/zenpage/album.php:32
@@ -1204,8 +1211,9 @@ msgstr "Leitardálkar:"
 #: D:/github/ZenPhoto20/themes/zpEnlighten/search.php:34
 #: D:/github/ZenPhoto20/zp-core/404.php:73
 #: D:/github/ZenPhoto20/zp-core/setup/index.php:1028
+#, fuzzy
 msgid "Index"
-msgstr ""
+msgstr "Vísitala"
 
 #: D:/github/ZenPhoto20/themes/effervescence+/search.php:114
 #, fuzzy, php-format
@@ -1246,7 +1254,7 @@ msgstr[1] "Núgildandi sorterun: <em>%1$s%2$s</em>. "
 #: D:/github/ZenPhoto20/themes/zpskeleton/search.php:56
 #, fuzzy, php-format
 msgid "Pages (%s)"
-msgstr "Síða: %s"
+msgstr "Síður"
 
 #: D:/github/ZenPhoto20/themes/effervescence+/search.php:152
 #: D:/github/ZenPhoto20/themes/effervescence+/search.php:185
@@ -1295,7 +1303,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/themes/zpskeleton/search.php:98
 #, fuzzy, php-format
 msgid "Images (%s)"
-msgstr "Mynd: %s"
+msgstr "Myndir"
 
 #: D:/github/ZenPhoto20/themes/effervescence+/search.php:221
 #: D:/github/ZenPhoto20/themes/garland/search.php:184
@@ -1357,8 +1365,9 @@ msgstr "Fréttagreinar"
 #: D:/github/ZenPhoto20/themes/zpEnlighten/sidebar.php:11
 #: D:/github/ZenPhoto20/themes/zpEnlighten/themeoptions.php:23
 #: D:/github/ZenPhoto20/themes/zpmobile/functions.php:174
+#, fuzzy
 msgid "All news"
-msgstr ""
+msgstr "Allt"
 
 #: D:/github/ZenPhoto20/themes/effervescence+/sidebar.php:43
 #: D:/github/ZenPhoto20/themes/effervescence+/sidebar.php:63
@@ -1615,7 +1624,7 @@ msgstr "Albúm"
 #: D:/github/ZenPhoto20/themes/garland/themeoptions.php:47
 #, fuzzy
 msgid "Gallery Rule"
-msgstr "RSS flæði gallerýa"
+msgstr "GALLERÍ"
 
 #: D:/github/ZenPhoto20/themes/effervescence+/themeoptions.php:62
 #: D:/github/ZenPhoto20/themes/garland/themeoptions.php:49
@@ -1624,7 +1633,7 @@ msgstr "RSS flæði gallerýa"
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:254
 #, fuzzy
 msgid "All pages"
-msgstr "Öll gallerý"
+msgstr "Síður"
 
 #: D:/github/ZenPhoto20/themes/effervescence+/themeoptions.php:63
 #: D:/github/ZenPhoto20/themes/garland/themeoptions.php:50
@@ -1635,7 +1644,7 @@ msgstr "Síður"
 #: D:/github/ZenPhoto20/themes/effervescence+/themeoptions.php:66
 #, fuzzy
 msgid "Archive Rule"
-msgstr "Myndasafnsyfirlit"
+msgstr "Skjalasafn"
 
 #: D:/github/ZenPhoto20/themes/effervescence+/themeoptions.php:73
 #, fuzzy
@@ -1769,7 +1778,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/themes/garland/themeoptions.php:92
 #, fuzzy
 msgid "Image gallery transition"
-msgstr "Virkja gallerýssetu:"
+msgstr "Myndir"
 
 #: D:/github/ZenPhoto20/themes/effervescence+/themeoptions.php:108
 #: D:/github/ZenPhoto20/themes/garland/themeoptions.php:93
@@ -1782,8 +1791,9 @@ msgstr "Ekkert"
 #: D:/github/ZenPhoto20/themes/effervescence+/themeoptions.php:108
 #: D:/github/ZenPhoto20/themes/garland/themeoptions.php:93
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/bxslider_thumb_nav.php:75
+#, fuzzy
 msgid "Fade"
-msgstr ""
+msgstr "Deyfa(Fade)"
 
 #: D:/github/ZenPhoto20/themes/effervescence+/themeoptions.php:108
 #: D:/github/ZenPhoto20/themes/garland/themeoptions.php:93
@@ -1794,16 +1804,18 @@ msgstr ""
 #: D:/github/ZenPhoto20/themes/garland/themeoptions.php:93
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/bxslider_thumb_nav.php:73
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/googleMap.php:99
+#, fuzzy
 msgid "Horizontal"
-msgstr ""
+msgstr "Snúa lárétt"
 
 #: D:/github/ZenPhoto20/themes/effervescence+/themeoptions.php:108
 #: D:/github/ZenPhoto20/themes/garland/themeoptions.php:93
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/bxslider_thumb_nav.php:74
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/jcarousel_thumb_nav.php:54
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/slideshow2.php:117
+#, fuzzy
 msgid "Vertical"
-msgstr ""
+msgstr "Snúa lóðrétt"
 
 #: D:/github/ZenPhoto20/themes/effervescence+/themeoptions.php:110
 #: D:/github/ZenPhoto20/themes/garland/themeoptions.php:95
@@ -1814,13 +1826,13 @@ msgstr ""
 #: D:/github/ZenPhoto20/themes/garland/themeoptions.php:96
 #, fuzzy
 msgid "Image gallery caption"
-msgstr "gallerýsstillingar"
+msgstr "Myndir"
 
 #: D:/github/ZenPhoto20/themes/effervescence+/themeoptions.php:112
 #: D:/github/ZenPhoto20/themes/garland/themeoptions.php:97
 #, fuzzy
 msgid "On image"
-msgstr "engar myndir"
+msgstr "% af mynd"
 
 #: D:/github/ZenPhoto20/themes/effervescence+/themeoptions.php:112
 #: D:/github/ZenPhoto20/themes/garland/themeoptions.php:97
@@ -1887,8 +1899,9 @@ msgstr ""
 
 #: D:/github/ZenPhoto20/themes/effervescence+/themeoptions.php:160
 #: D:/github/ZenPhoto20/themes/garland/themeoptions.php:118
+#, fuzzy
 msgid "*standard menu"
-msgstr ""
+msgstr "Staðall"
 
 #: D:/github/ZenPhoto20/themes/effervescence+/themeoptions.php:167
 #, fuzzy
@@ -1986,7 +1999,7 @@ msgstr "Næsta mynd"
 #: D:/github/ZenPhoto20/themes/zpmasonry/news.php:83
 #, fuzzy
 msgid "Next »"
-msgstr "Næsta"
+msgstr "næsta"
 
 #: D:/github/ZenPhoto20/themes/garland/image.php:129
 #, fuzzy
@@ -2007,7 +2020,7 @@ msgstr "Fyrra"
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/html_meta_tags.php:256
 #, fuzzy
 msgid "Password required"
-msgstr "Varið aðgangsorði"
+msgstr "Lykilorðs krafist"
 
 #: D:/github/ZenPhoto20/themes/garland/password.php:42
 msgid "A password is required to access this page."
@@ -2065,8 +2078,9 @@ msgid ""
 msgstr ""
 
 #: D:/github/ZenPhoto20/themes/gray_highlights/functions.php:10
+#, fuzzy
 msgid "Calendar"
-msgstr ""
+msgstr "Dagatal"
 
 #: D:/github/ZenPhoto20/themes/gray_highlights/functions.php:34
 #: D:/github/ZenPhoto20/themes/gray_highlights/login.php:28
@@ -2084,8 +2098,9 @@ msgstr ""
 #: D:/github/ZenPhoto20/themes/zpskeleton/login.php:6
 #: D:/github/ZenPhoto20/zp-core/lib-auth.php:1029
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/user_login-out.php:118
+#, fuzzy
 msgid "Login"
-msgstr ""
+msgstr "Innskrá"
 
 #: D:/github/ZenPhoto20/themes/gray_highlights/image.php:48
 msgid "Custom data:"
@@ -2111,8 +2126,9 @@ msgid "Country:"
 msgstr "Land:"
 
 #: D:/github/ZenPhoto20/themes/gray_highlights/image.php:53
+#, fuzzy
 msgid "Credit:"
-msgstr ""
+msgstr "Kreditkort"
 
 #: D:/github/ZenPhoto20/themes/gray_highlights/image.php:54
 msgid "Copyright:"
@@ -2237,7 +2253,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/themes/zpskeleton/themeoptions.php:72
 #, fuzzy
 msgid "Homepage"
-msgstr "Zenpage"
+msgstr "Forsíða"
 
 #: D:/github/ZenPhoto20/themes/zenpage/themeoptions.php:65
 msgid ""
@@ -2297,9 +2313,9 @@ msgstr ""
 #: D:/github/ZenPhoto20/themes/zpArdoise/functions.php:169
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/image_album_statistics.php:285
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/image_album_statistics.php:604
-#, php-format
+#, fuzzy, php-format
 msgid "Views: %u"
-msgstr ""
+msgstr "Skoðað"
 
 #: D:/github/ZenPhoto20/themes/zpArdoise/inc_footer.php:23
 #: D:/github/ZenPhoto20/themes/zpArdoise/inc_header.php:33
@@ -2319,7 +2335,7 @@ msgstr "%s myndir"
 #: D:/github/ZenPhoto20/themes/zpmobile/index.php:67
 #, fuzzy
 msgid "Latest news"
-msgstr "nýjustu ummæli"
+msgstr "Nýjustu fréttir"
 
 #: D:/github/ZenPhoto20/themes/zpArdoise/inc_header.php:13
 #: D:/github/ZenPhoto20/themes/zpArdoise/inc_header.php:244
@@ -2357,8 +2373,9 @@ msgstr "Heim"
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/downloadList.php:603
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/favoritesHandler.php:61
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/html_meta_tags.php:258
+#, fuzzy
 msgid "My favorites"
-msgstr ""
+msgstr "Eftirlætin mín"
 
 #: D:/github/ZenPhoto20/themes/zpArdoise/inc_header.php:207
 #: D:/github/ZenPhoto20/themes/zpfocus/inc-header.php:157
@@ -2370,7 +2387,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/slideshow2.php:586
 #, fuzzy
 msgid "start slideshow"
-msgstr "Glærusýning"
+msgstr "Hefja myndasýningu"
 
 #: D:/github/ZenPhoto20/themes/zpArdoise/inc_header.php:208
 #: D:/github/ZenPhoto20/themes/zpfocus/inc-header.php:158
@@ -2389,7 +2406,7 @@ msgstr "Glærusýning"
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/comment_form.php:245
 #, fuzzy
 msgid "No Comments"
-msgstr "Engin ummæli"
+msgstr "Ummæli:"
 
 #: D:/github/ZenPhoto20/themes/zpArdoise/inc_print_image_statistic.php:6
 #: D:/github/ZenPhoto20/zp-core/class-feed.php:281
@@ -2411,8 +2428,9 @@ msgid "Category"
 msgstr "Flokkur"
 
 #: D:/github/ZenPhoto20/themes/zpArdoise/news.php:38
+#, fuzzy
 msgid " | "
-msgstr ""
+msgstr "|"
 
 #: D:/github/ZenPhoto20/themes/zpArdoise/themeoptions.php:72
 msgid "Use this file as logo"
@@ -2429,8 +2447,9 @@ msgstr ""
 
 #: D:/github/ZenPhoto20/themes/zpArdoise/themeoptions.php:75
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:67
+#, fuzzy
 msgid "Color"
-msgstr ""
+msgstr "Litur"
 
 #: D:/github/ZenPhoto20/themes/zpArdoise/themeoptions.php:76
 #: D:/github/ZenPhoto20/themes/zpEnlighten/themeoptions.php:38
@@ -2448,7 +2467,7 @@ msgstr "Myndasafnsyfirlit"
 #: D:/github/ZenPhoto20/themes/zpArdoise/themeoptions.php:79
 #, fuzzy
 msgid "Show Tags"
-msgstr "Tög"
+msgstr "Sýna tögg"
 
 #: D:/github/ZenPhoto20/themes/zpArdoise/themeoptions.php:80
 msgid "Show Image Statistic strip"
@@ -2511,8 +2530,9 @@ msgstr ""
 
 #: D:/github/ZenPhoto20/themes/zpBootstrap/album.php:73
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/googleMap.php:332
+#, fuzzy
 msgid "Google Map"
-msgstr ""
+msgstr "Google"
 
 #: D:/github/ZenPhoto20/themes/zpBootstrap/archive.php:33
 #: D:/github/ZenPhoto20/themes/zpBootstrap/themeoptions.php:66
@@ -2559,7 +2579,7 @@ msgstr "Netfang:"
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/comment_form/comment_form.php:47
 #, fuzzy, php-format
 msgid "Site%s"
-msgstr "Síða:"
+msgstr "S"
 
 #: D:/github/ZenPhoto20/themes/zpBootstrap/comment_form/comment_form.php:63
 #: D:/github/ZenPhoto20/themes/zpBootstrap/contact_form/form.php:38
@@ -2567,9 +2587,9 @@ msgstr "Síða:"
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/comment_form/comment_form.php:56
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/contact_form/form.php:45
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/register_user/register_user_form.php:59
-#, php-format
+#, fuzzy, php-format
 msgid "Street%s"
-msgstr ""
+msgstr "Gata"
 
 #: D:/github/ZenPhoto20/themes/zpBootstrap/comment_form/comment_form.php:69
 #: D:/github/ZenPhoto20/themes/zpBootstrap/contact_form/form.php:47
@@ -2589,7 +2609,7 @@ msgstr "Borg"
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/register_user/register_user_form.php:71
 #, fuzzy, php-format
 msgid "State%s"
-msgstr "Ríki"
+msgstr "Sýsla"
 
 #: D:/github/ZenPhoto20/themes/zpBootstrap/comment_form/comment_form.php:81
 #: D:/github/ZenPhoto20/themes/zpBootstrap/contact_form/form.php:65
@@ -2609,7 +2629,7 @@ msgstr "Land"
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/register_user/register_user_form.php:83
 #, fuzzy, php-format
 msgid "Postal code%s"
-msgstr "Atkvæði samtals"
+msgstr "Póstnúmer"
 
 #: D:/github/ZenPhoto20/themes/zpBootstrap/comment_form/comment_form.php:97
 #: D:/github/ZenPhoto20/themes/zpBootstrap/contact_form/form.php:110
@@ -2619,13 +2639,13 @@ msgstr "Atkvæði samtals"
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/register_user/register_user_form.php:92
 #, fuzzy
 msgid "Enter CAPTCHA<strong>*</strong>"
-msgstr "Hæfingarteljari: <strong>%u</strong>"
+msgstr "Skrifaðu inn texta…"
 
 #: D:/github/ZenPhoto20/themes/zpBootstrap/comment_form/comment_form.php:115
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/comment_form/comment_form.php:95
 #, fuzzy
 msgid "<strong>*</strong>Required fields"
-msgstr "<strong>%u</strong> myndir"
+msgstr "Nauðsynlegir reitir"
 
 #: D:/github/ZenPhoto20/themes/zpBootstrap/comment_form/comment_form.php:124
 #: D:/github/ZenPhoto20/themes/zpfocus/z_comment_form/comment_form.php:101
@@ -2649,13 +2669,13 @@ msgstr "Skrifa ummæli"
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/contact_form/form.php:15
 #, fuzzy, php-format
 msgid "Title%s"
-msgstr "Titill"
+msgstr "Starfsheiti: %s"
 
 #: D:/github/ZenPhoto20/themes/zpBootstrap/contact_form/form.php:29
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/contact_form/form.php:37
-#, php-format
+#, fuzzy, php-format
 msgid "Company%s"
-msgstr ""
+msgstr "Fyrirtæki: %s"
 
 #: D:/github/ZenPhoto20/themes/zpBootstrap/contact_form/form.php:92
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/contact_form/form.php:93
@@ -2665,9 +2685,9 @@ msgstr "Vefsíða"
 
 #: D:/github/ZenPhoto20/themes/zpBootstrap/contact_form/form.php:101
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/contact_form/form.php:101
-#, php-format
+#, fuzzy, php-format
 msgid "Phone%s"
-msgstr ""
+msgstr "sími"
 
 #: D:/github/ZenPhoto20/themes/zpBootstrap/contact_form/form.php:126
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/contact_form/form.php:123
@@ -2755,7 +2775,7 @@ msgstr "Núllstilla"
 #: D:/github/ZenPhoto20/themes/zpBootstrap/inc_header.php:64
 #, fuzzy
 msgid "Password Required..."
-msgstr "Varið aðgangsorði"
+msgstr "Lykilorðs krafist"
 
 #: D:/github/ZenPhoto20/themes/zpBootstrap/inc_header.php:81
 msgid "Latest images RSS"
@@ -2768,8 +2788,9 @@ msgstr ""
 
 #: D:/github/ZenPhoto20/themes/zpBootstrap/register_user/register_user_form.php:24
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/register_user/register_user_form.php:24
+#, fuzzy
 msgid "User ID"
-msgstr ""
+msgstr "Notandi Nr"
 
 #: D:/github/ZenPhoto20/themes/zpBootstrap/register_user/register_user_form.php:36
 #: D:/github/ZenPhoto20/themes/zpmasonry/comment_form/comment_form.php:18
@@ -2797,8 +2818,9 @@ msgstr "<strong>%u</strong> myndir"
 #: D:/github/ZenPhoto20/themes/zpskeleton/register_user/register_user_form.php:78
 #: D:/github/ZenPhoto20/zp-core/lib-auth.php:1005
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/register_user/register_user_form.php:108
+#, fuzzy
 msgid "Submit"
-msgstr ""
+msgstr "Senda"
 
 #: D:/github/ZenPhoto20/themes/zpBootstrap/register_user/register_user_form.php:132
 #: D:/github/ZenPhoto20/themes/zpskeleton/register_user/register_user_form.php:83
@@ -2879,12 +2901,12 @@ msgstr "Vísbending: %s"
 #: D:/github/ZenPhoto20/themes/zpEnlighten/search.php:122
 #, fuzzy, php-format
 msgid "%s "
-msgstr "%s pixlar"
+msgstr "S"
 
 #: D:/github/ZenPhoto20/themes/zpEnlighten/search.php:125
-#, php-format
+#, fuzzy, php-format
 msgid "%1$s "
-msgstr ""
+msgstr "Núgildandi þema gallerýs: <strong>%1$s</strong>"
 
 #: D:/github/ZenPhoto20/themes/zpEnlighten/sidebar.php:52
 #, fuzzy
@@ -2931,13 +2953,13 @@ msgstr ""
 #: D:/github/ZenPhoto20/themes/zpfocus/404.php:5
 #, fuzzy
 msgid "Page not found..."
-msgstr "Hlutur fannst ekki"
+msgstr "Síða fannst ekki"
 
 #: D:/github/ZenPhoto20/themes/zpfocus/album.php:19
 #: D:/github/ZenPhoto20/themes/zpfocus/favorites.php:22
 #, fuzzy
 msgid "| Tags:  "
-msgstr "Tög:"
+msgstr "Merki:"
 
 #: D:/github/ZenPhoto20/themes/zpfocus/album.php:21
 #: D:/github/ZenPhoto20/themes/zpfocus/favorites.php:24
@@ -3004,14 +3026,14 @@ msgstr "Gallerýssafn"
 #: D:/github/ZenPhoto20/themes/zpskeleton/archive.php:19
 #, fuzzy
 msgid "News Archive"
-msgstr "Myndasafn"
+msgstr "Skjalasafn"
 
 #: D:/github/ZenPhoto20/themes/zpfocus/functions.php:92
 #: D:/github/ZenPhoto20/themes/zpmasonry/functions.php:241
 #: D:/github/ZenPhoto20/themes/zpskeleton/functions.php:103
 #, fuzzy
 msgid "Search Result"
-msgstr "Leitardálkar:"
+msgstr "leitarniðurstaða"
 
 #: D:/github/ZenPhoto20/themes/zpfocus/gallery.php:14
 #: D:/github/ZenPhoto20/themes/zpfocus/inc-header.php:115
@@ -3022,7 +3044,7 @@ msgstr "Leitardálkar:"
 #: D:/github/ZenPhoto20/themes/zpskeleton/inc-header.php:122
 #, fuzzy
 msgid "Latest News"
-msgstr "nýjustu ummæli"
+msgstr "Nýjustu fréttir"
 
 #: D:/github/ZenPhoto20/themes/zpfocus/gallery.php:19
 #: D:/github/ZenPhoto20/themes/zpfocus/inc-header.php:111
@@ -3040,8 +3062,9 @@ msgid "EXIF Metadata"
 msgstr "Endurnýja lýsigögn"
 
 #: D:/github/ZenPhoto20/themes/zpfocus/image.php:39
+#, fuzzy
 msgid "TAGS:  "
-msgstr ""
+msgstr "Tög:"
 
 #: D:/github/ZenPhoto20/themes/zpfocus/image.php:42
 #, fuzzy
@@ -3049,25 +3072,27 @@ msgid "(Edit Description...)"
 msgstr "Lýsing"
 
 #: D:/github/ZenPhoto20/themes/zpfocus/inc-footer.php:6
+#, fuzzy
 msgid "all rights reserved"
-msgstr ""
+msgstr "Allur réttur áskilinn."
 
 #: D:/github/ZenPhoto20/themes/zpfocus/inc-footer.php:41
 #: D:/github/ZenPhoto20/themes/zpminimal/inc-footer.php:8
+#, fuzzy
 msgid "Subscribe: "
-msgstr ""
+msgstr "Skrá mig á póstlistann"
 
 #: D:/github/ZenPhoto20/themes/zpfocus/inc-footer.php:44
 #: D:/github/ZenPhoto20/themes/zpminimal/inc-footer.php:11
 #, fuzzy
 msgid "This Album"
-msgstr "Breyta albúmi"
+msgstr "Skoða albúm:"
 
 #: D:/github/ZenPhoto20/themes/zpfocus/inc-footer.php:47
 #: D:/github/ZenPhoto20/themes/zpminimal/inc-footer.php:13
 #, fuzzy
 msgid "Gallery Images"
-msgstr "Gallerýsyfirlit"
+msgstr "Myndir í safni"
 
 #: D:/github/ZenPhoto20/themes/zpfocus/inc-header.php:35
 #: D:/github/ZenPhoto20/themes/zpfocus/inc-header.php:49
@@ -3095,14 +3120,15 @@ msgstr "nýjustu ummæli"
 #: D:/github/ZenPhoto20/themes/zpskeleton/inc-header.php:99
 #, fuzzy
 msgid "Password Required"
-msgstr "Varið aðgangsorði"
+msgstr "Lykilorðs krafist"
 
 #: D:/github/ZenPhoto20/themes/zpfocus/inc-header.php:97
 #: D:/github/ZenPhoto20/themes/zpmasonry/inc-header.php:99
 #: D:/github/ZenPhoto20/themes/zpminimal/inc-header.php:103
 #: D:/github/ZenPhoto20/themes/zpskeleton/inc-header.php:103
+#, fuzzy
 msgid "404 Not Found..."
-msgstr ""
+msgstr "404 Finnst ekki"
 
 #: D:/github/ZenPhoto20/themes/zpfocus/inc-header.php:159
 #: D:/github/ZenPhoto20/themes/zpfocus/inc-header.php:173
@@ -3123,8 +3149,9 @@ msgid "previous"
 msgstr "Fyrra"
 
 #: D:/github/ZenPhoto20/themes/zpfocus/inc-header.php:239
+#, fuzzy
 msgid "SEARCH"
-msgstr ""
+msgstr "Leita"
 
 #: D:/github/ZenPhoto20/themes/zpfocus/inc-sidebar.php:13
 #, fuzzy
@@ -3137,13 +3164,14 @@ msgid "Random Gallery Image"
 msgstr "Myndir af handahófi"
 
 #: D:/github/ZenPhoto20/themes/zpfocus/inc-sidebar.php:43
+#, fuzzy
 msgid "About"
-msgstr ""
+msgstr "Um"
 
 #: D:/github/ZenPhoto20/themes/zpfocus/inc-sidebar.php:52
 #, fuzzy
 msgid "More News"
-msgstr "Fréttir"
+msgstr "Meira"
 
 #: D:/github/ZenPhoto20/themes/zpfocus/inc-sidebar.php:75
 #, fuzzy
@@ -3161,7 +3189,7 @@ msgstr "nýjustu ummæli"
 #: D:/github/ZenPhoto20/zp-core/utilities/gallery_statistics.php:92
 #, fuzzy
 msgid "News Categories"
-msgstr "Flokkar: "
+msgstr "Flokkar"
 
 #: D:/github/ZenPhoto20/themes/zpfocus/news.php:29
 #: D:/github/ZenPhoto20/themes/zpfocus/news.php:75
@@ -3175,29 +3203,33 @@ msgstr "Tög:"
 #: D:/github/ZenPhoto20/themes/zpmasonry/password.php:17
 #: D:/github/ZenPhoto20/themes/zpminimal/password.php:13
 #: D:/github/ZenPhoto20/themes/zpskeleton/password.php:15
+#, fuzzy
 msgid "Please Login"
-msgstr ""
+msgstr "Vinsamlegast skráðu þig inn"
 
 #: D:/github/ZenPhoto20/themes/zpfocus/password.php:17
 #: D:/github/ZenPhoto20/themes/zpmasonry/password.php:21
 #: D:/github/ZenPhoto20/themes/zpminimal/password.php:17
 #: D:/github/ZenPhoto20/themes/zpskeleton/password.php:19
+#, fuzzy
 msgid "You are logged in..."
-msgstr ""
+msgstr "Þú ert þegar innskráð/-ur!"
 
 #: D:/github/ZenPhoto20/themes/zpfocus/search.php:93
+#, fuzzy
 msgid "Album Search Results"
-msgstr ""
+msgstr "Leitarniðurstöður:"
 
 #: D:/github/ZenPhoto20/themes/zpfocus/search.php:105
 #: D:/github/ZenPhoto20/themes/zpfocus/search.php:106
 #, fuzzy
 msgid "View Album:"
-msgstr "Skoða albúm"
+msgstr "Skoða albúm:"
 
 #: D:/github/ZenPhoto20/themes/zpfocus/search.php:156
+#, fuzzy
 msgid "Image Search Results"
-msgstr ""
+msgstr "Leitarniðurstöður:"
 
 #: D:/github/ZenPhoto20/themes/zpfocus/search.php:216
 msgid "Sorry, no matches. Try refining your search."
@@ -3206,8 +3238,9 @@ msgstr ""
 "leitarskilyrðunum."
 
 #: D:/github/ZenPhoto20/themes/zpfocus/themeoptions.php:66
+#, fuzzy
 msgid "Tagline"
-msgstr ""
+msgstr "Slagorð"
 
 #: D:/github/ZenPhoto20/themes/zpfocus/themeoptions.php:66
 #, fuzzy
@@ -3261,8 +3294,9 @@ msgid ""
 msgstr ""
 
 #: D:/github/ZenPhoto20/themes/zpfocus/themeoptions.php:73
+#, fuzzy
 msgid "Spotlight"
-msgstr ""
+msgstr "Í sviðsljósinu"
 
 #: D:/github/ZenPhoto20/themes/zpfocus/themeoptions.php:73
 msgid ""
@@ -3468,14 +3502,15 @@ msgstr ""
 
 #: D:/github/ZenPhoto20/themes/zpfocus/z_comment_form/comment_form.php:87
 #: D:/github/ZenPhoto20/themes/zpskeleton/comment_form/comment_form.php:70
+#, fuzzy
 msgid "Enter CAPTCHA:"
-msgstr ""
+msgstr "Skrifaðu inn texta…"
 
 #: D:/github/ZenPhoto20/themes/zpfocus/z_comment_form/comment_form.php:107
 #: D:/github/ZenPhoto20/themes/zpskeleton/comment_form/comment_form.php:66
 #, fuzzy
 msgid "*Required fields"
-msgstr "Leitardálkar:"
+msgstr "Nauðsynlegir reitir"
 
 #: D:/github/ZenPhoto20/themes/zpfocus/z_contact_form/form.php:13
 #: D:/github/ZenPhoto20/themes/zpskeleton/contact_form/form.php:13
@@ -3523,7 +3558,7 @@ msgstr "Land<strong>%s</strong>:"
 #: D:/github/ZenPhoto20/themes/zpskeleton/contact_form/form.php:62
 #, fuzzy, php-format
 msgid "Postal code<strong>%s</strong>:"
-msgstr "Titill<strong>%s</strong>:"
+msgstr "Póstnúmer"
 
 #: D:/github/ZenPhoto20/themes/zpfocus/z_contact_form/form.php:69
 #: D:/github/ZenPhoto20/themes/zpskeleton/contact_form/form.php:69
@@ -3548,7 +3583,7 @@ msgstr "Sími<strong>%s</strong>:"
 #: D:/github/ZenPhoto20/themes/zpskeleton/register_user/register_user_form.php:60
 #, fuzzy
 msgid "Enter CAPTCHA<strong>*</strong>:"
-msgstr "Land<strong>%s</strong>:"
+msgstr "Skrifaðu inn texta…"
 
 #: D:/github/ZenPhoto20/themes/zpfocus/z_contact_form/form.php:102
 #: D:/github/ZenPhoto20/themes/zpskeleton/contact_form/form.php:99
@@ -3563,24 +3598,27 @@ msgid "Message<strong>%s</strong>:"
 msgstr "Skilaboð<strong>%s</strong>:"
 
 #: D:/github/ZenPhoto20/themes/zpmasonry/404.php:4
+#, fuzzy
 msgid "404 error"
-msgstr ""
+msgstr "Villa"
 
 #: D:/github/ZenPhoto20/themes/zpmasonry/album.php:16
 #: D:/github/ZenPhoto20/themes/zpmasonry/favorites.php:18
 #, fuzzy
 msgid "subalbum"
-msgstr "Undiralbúm"
+msgstr "Undiralbúmalisti"
 
 #: D:/github/ZenPhoto20/themes/zpmasonry/album.php:40
 #: D:/github/ZenPhoto20/themes/zpmasonry/favorites.php:42
+#, fuzzy
 msgid "number"
-msgstr ""
+msgstr "Tala"
 
 #: D:/github/ZenPhoto20/themes/zpmasonry/album.php:40
 #: D:/github/ZenPhoto20/themes/zpmasonry/favorites.php:42
+#, fuzzy
 msgid "total"
-msgstr ""
+msgstr "Upphæð"
 
 #: D:/github/ZenPhoto20/themes/zpmasonry/album.php:52
 #: D:/github/ZenPhoto20/themes/zpmasonry/album.php:123
@@ -3630,7 +3668,7 @@ msgstr "myndir"
 #: D:/github/ZenPhoto20/themes/zpmasonry/search.php:127
 #, fuzzy
 msgid "Preview"
-msgstr "Fyrra"
+msgstr "Forskoða"
 
 #: D:/github/ZenPhoto20/themes/zpmasonry/comment_form/comment_form.php:24
 #: D:/github/ZenPhoto20/themes/zpminimal/z_disable_comment_form/comment_form.php:24
@@ -3655,8 +3693,9 @@ msgstr "Ónafngreindur"
 #: D:/github/ZenPhoto20/themes/zpmasonry/comment_form/comment_form.php:53
 #: D:/github/ZenPhoto20/themes/zpminimal/z_disable_comment_form/comment_form.php:57
 #: D:/github/ZenPhoto20/zp-core/lib-auth.php:1141
+#, fuzzy
 msgid "Enter CAPTCHA"
-msgstr ""
+msgstr "Skrifaðu inn texta…"
 
 #: D:/github/ZenPhoto20/themes/zpmasonry/functions.php:176
 #, fuzzy
@@ -3704,7 +3743,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/themes/zpskeleton/image.php:80
 #, fuzzy
 msgid "Start Slideshow"
-msgstr "Glærusýning"
+msgstr "Hefja myndasýningu"
 
 #: D:/github/ZenPhoto20/themes/zpmasonry/inc-footer.php:17
 msgid "Loading additional pages..."
@@ -3736,8 +3775,9 @@ msgid "Latest Comments of this Image"
 msgstr "%u hæfingar á þessa mynd"
 
 #: D:/github/ZenPhoto20/themes/zpmasonry/index.php:11
+#, fuzzy
 msgid "Welcome"
-msgstr ""
+msgstr "Velkomin(n)"
 
 #: D:/github/ZenPhoto20/themes/zpmasonry/index.php:53
 #: D:/github/ZenPhoto20/themes/zpmasonry/index.php:57
@@ -3763,12 +3803,13 @@ msgstr "Næsta síða"
 #: D:/github/ZenPhoto20/themes/zpmasonry/news.php:83
 #, fuzzy
 msgid "« Prev"
-msgstr "Fyrra"
+msgstr "fyrri"
 
 #: D:/github/ZenPhoto20/themes/zpmasonry/search.php:30
 #: D:/github/ZenPhoto20/themes/zpminimal/search.php:29
+#, fuzzy
 msgid "items"
-msgstr ""
+msgstr "Hlutur"
 
 #: D:/github/ZenPhoto20/themes/zpmasonry/search.php:169
 #: D:/github/ZenPhoto20/themes/zpminimal/search.php:109
@@ -3883,8 +3924,9 @@ msgstr ""
 
 #: D:/github/ZenPhoto20/themes/zpmasonry/themeoptions.php:108
 #: D:/github/ZenPhoto20/themes/zpminimal/themeoptions.php:41
+#, fuzzy
 msgid "ZenPage Search Results"
-msgstr ""
+msgstr "Leitarniðurstöður:"
 
 #: D:/github/ZenPhoto20/themes/zpmasonry/themeoptions.php:112
 msgid ""
@@ -3970,7 +4012,7 @@ msgstr "Gallerýsyfirlit"
 #: D:/github/ZenPhoto20/themes/zpminimal/inc-footer.php:24
 #, fuzzy
 msgid "Subalbum"
-msgstr "Undiralbúm"
+msgstr "Undiralbúmalisti"
 
 #: D:/github/ZenPhoto20/themes/zpminimal/inc-footer.php:26
 #: D:/github/ZenPhoto20/themes/zpmobile/functions.php:44
@@ -3998,12 +4040,12 @@ msgstr "Breyta gallerýi"
 #: D:/github/ZenPhoto20/themes/zpminimal/news.php:45
 #, fuzzy
 msgid "Next →"
-msgstr "Næsta"
+msgstr "næsta"
 
 #: D:/github/ZenPhoto20/themes/zpminimal/news.php:45
 #, fuzzy
 msgid "← Prev"
-msgstr "Fyrra"
+msgstr "fyrri"
 
 #: D:/github/ZenPhoto20/themes/zpminimal/password.php:4
 #, fuzzy
@@ -4114,18 +4156,21 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/site_upgrade.php:220
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/user_mailing_list.php:20
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/wordpress_import.php:22
+#, fuzzy
 msgid "Admin"
-msgstr ""
+msgstr "Kerfisskráning"
 
 #: D:/github/ZenPhoto20/themes/zpmobile/functions.php:117
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/favoritesHandler.php:302
+#, fuzzy
 msgid "Favorites"
-msgstr ""
+msgstr "Eftirlæti"
 
 #: D:/github/ZenPhoto20/themes/zpmobile/functions.php:205
 #: D:/github/ZenPhoto20/zp-core/utilities/gallery_statistics.php:854
+#, fuzzy
 msgid "Back to top"
-msgstr ""
+msgstr "Aftur upp"
 
 #: D:/github/ZenPhoto20/themes/zpmobile/functions.php:224
 #, fuzzy, php-format
@@ -4173,11 +4218,12 @@ msgstr ""
 #: D:/github/ZenPhoto20/themes/zpskeleton/404.php:6
 #, fuzzy
 msgid "404 not found"
-msgstr "Hlutur fannst ekki"
+msgstr "404 Finnst ekki"
 
 #: D:/github/ZenPhoto20/themes/zpskeleton/archive.php:22
+#, fuzzy
 msgid "Tag Cloud"
-msgstr ""
+msgstr "Ský"
 
 #: D:/github/ZenPhoto20/themes/zpskeleton/functions.php:188
 #, fuzzy
@@ -4219,8 +4265,9 @@ msgstr "Ummæli"
 
 #: D:/github/ZenPhoto20/themes/zpskeleton/inc-header.php:170
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/menu_manager.php:94
+#, fuzzy
 msgid "Menu"
-msgstr ""
+msgstr "Valmynd"
 
 #: D:/github/ZenPhoto20/themes/zpskeleton/news.php:19
 #: D:/github/ZenPhoto20/themes/zpskeleton/news.php:62
@@ -4236,7 +4283,7 @@ msgstr "Lokað er fyrir ummæli"
 #: D:/github/ZenPhoto20/themes/zpskeleton/password.php:6
 #, fuzzy
 msgid "Password required..."
-msgstr "Varið aðgangsorði"
+msgstr "Lykilorðs krafist"
 
 #: D:/github/ZenPhoto20/themes/zpskeleton/register_user/register_user_form.php:13
 #: D:/github/ZenPhoto20/zp-core/admin-options.php:1026
@@ -4250,8 +4297,9 @@ msgid "Email:"
 msgstr "Netfang:"
 
 #: D:/github/ZenPhoto20/themes/zpskeleton/register_user/register_user_form.php:22
+#, fuzzy
 msgid "User ID:"
-msgstr ""
+msgstr "Notandi Nr"
 
 #: D:/github/ZenPhoto20/themes/zpskeleton/register_user/register_user_form.php:28
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/downloadList.php:107
@@ -4262,8 +4310,9 @@ msgid "Password:"
 msgstr "Lykilorð:"
 
 #: D:/github/ZenPhoto20/themes/zpskeleton/register_user/register_user_form.php:33
+#, fuzzy
 msgid "Re-enter:"
-msgstr ""
+msgstr "Færa inn"
 
 #: D:/github/ZenPhoto20/themes/zpskeleton/themeoptions.php:52
 #, fuzzy
@@ -4343,7 +4392,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/themes/zpskeleton/themeoptions.php:69
 #, fuzzy
 msgid "Show Archive"
-msgstr "Myndasafn"
+msgstr "Skjalasafn"
 
 #: D:/github/ZenPhoto20/themes/zpskeleton/themeoptions.php:71
 msgid "Check to display the gallery and news archive menu item."
@@ -4372,8 +4421,9 @@ msgstr "Aftur á %s"
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-categories.php:148
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-news.php:249
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-pages.php:148
+#, fuzzy
 msgid "*Bulk actions*"
-msgstr ""
+msgstr "Aðgerðir"
 
 #: D:/github/ZenPhoto20/zp-core/admin-albumsort.php:87
 #: D:/github/ZenPhoto20/zp-core/admin-edit.php:697
@@ -4624,8 +4674,9 @@ msgstr "Til baka"
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-pages.php:127
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-pages.php:182
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-pages.php:184
+#, fuzzy
 msgid "Apply"
-msgstr ""
+msgstr "Sækja um"
 
 #: D:/github/ZenPhoto20/zp-core/admin-albumsort.php:205
 #: D:/github/ZenPhoto20/zp-core/admin-albumsort.php:263
@@ -4707,8 +4758,9 @@ msgid "Return unpublished items"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/admin-dynamic-album.php:261
+#, fuzzy
 msgid "tagged"
-msgstr ""
+msgstr "merkt"
 
 #: D:/github/ZenPhoto20/zp-core/admin-dynamic-album.php:268
 #, fuzzy
@@ -4819,8 +4871,9 @@ msgstr "Dragðu albúmið í þá röð sem þú vilt hafa þau."
 
 #: D:/github/ZenPhoto20/zp-core/admin-edit.php:867
 #: D:/github/ZenPhoto20/zp-core/admin-edit.php:1681
+#, fuzzy
 msgid "descending"
-msgstr ""
+msgstr "Lækkandi"
 
 #: D:/github/ZenPhoto20/zp-core/admin-edit.php:873
 #: D:/github/ZenPhoto20/zp-core/admin-functions.php:1586
@@ -4940,7 +4993,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/publishContent/publishContent.php:679
 #, fuzzy
 msgid "all"
-msgstr "Lítið"
+msgstr "Breyta öllum albúmum í"
 
 #: D:/github/ZenPhoto20/zp-core/admin-edit.php:1078
 msgid "unpublished"
@@ -4968,8 +5021,9 @@ msgid "crop %s"
 msgstr "skera %s"
 
 #: D:/github/ZenPhoto20/zp-core/admin-edit.php:1188
+#, fuzzy
 msgid "Zoom"
-msgstr ""
+msgstr "Súma inn"
 
 #: D:/github/ZenPhoto20/zp-core/admin-edit.php:1193
 #: D:/github/ZenPhoto20/zp-core/utilities/gallery_statistics.php:448
@@ -5033,8 +5087,9 @@ msgstr "Titill:"
 #: D:/github/ZenPhoto20/zp-core/lib-auth.php:628
 #: D:/github/ZenPhoto20/zp-core/lib-auth.php:629
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-edit.php:666
+#, fuzzy
 msgid "General"
-msgstr ""
+msgstr "Almennt"
 
 #: D:/github/ZenPhoto20/zp-core/admin-edit.php:1221
 #: D:/github/ZenPhoto20/zp-core/admin-functions.php:1879
@@ -5082,26 +5137,29 @@ msgstr "Einkunn: engin"
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-edit.php:594
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-edit.php:614
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-edit.php:634
+#, fuzzy
 msgid "calendar"
-msgstr ""
+msgstr "Dagatal"
 
 #: D:/github/ZenPhoto20/zp-core/admin-edit.php:1300
 #: D:/github/ZenPhoto20/zp-core/admin-edit.php:1316
 #: D:/github/ZenPhoto20/zp-core/admin-functions.php:1957
 #: D:/github/ZenPhoto20/zp-core/admin-functions.php:1973
+#, fuzzy
 msgid "Expired!"
-msgstr ""
+msgstr "Útrunnin"
 
 #: D:/github/ZenPhoto20/zp-core/admin-edit.php:1309
 #: D:/github/ZenPhoto20/zp-core/admin-functions.php:1966
 #, fuzzy
 msgid "Publish date"
-msgstr "Útgefið"
+msgstr "Skrá"
 
 #: D:/github/ZenPhoto20/zp-core/admin-edit.php:1311
 #: D:/github/ZenPhoto20/zp-core/admin-functions.php:1968
+#, fuzzy
 msgid "Expiration date"
-msgstr ""
+msgstr "Gildistími"
 
 #: D:/github/ZenPhoto20/zp-core/admin-edit.php:1323
 #: D:/github/ZenPhoto20/zp-core/admin-functions.php:1980
@@ -5149,7 +5207,7 @@ msgstr "Myndinni verður eytt þegar breytingarnar verða vistaðar."
 #: D:/github/ZenPhoto20/zp-core/admin-edit.php:1389
 #, fuzzy
 msgid "Rotation:"
-msgstr "Snúningur: "
+msgstr "snúningur:"
 
 #: D:/github/ZenPhoto20/zp-core/admin-edit.php:1408
 msgid "90 degrees"
@@ -5177,7 +5235,7 @@ msgstr "Endurnýja lýsigögn"
 #: D:/github/ZenPhoto20/zp-core/admin-edit.php:1440
 #, fuzzy
 msgid "Crop thumbnail"
-msgstr "Skera smámyndir:"
+msgstr "Smámyndir"
 
 #: D:/github/ZenPhoto20/zp-core/admin-edit.php:1473
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:300
@@ -5187,7 +5245,7 @@ msgstr "Lýsing:"
 #: D:/github/ZenPhoto20/zp-core/admin-edit.php:1480
 #, fuzzy
 msgid "Metadata:"
-msgstr "Endurnýja lýsigögn"
+msgstr "Endurnýja lýsingargögn fyrir albúmið %s"
 
 #: D:/github/ZenPhoto20/zp-core/admin-edit.php:1497
 msgid "None selected for display"
@@ -5251,13 +5309,17 @@ msgid "ZenPhoto20 licence"
 msgstr "ZenPhoto20 uppsetning"
 
 #: D:/github/ZenPhoto20/zp-core/admin-functions.php:44
+#, fuzzy
 msgid "License"
-msgstr ""
+msgstr "Leyfi:"
 
 #: D:/github/ZenPhoto20/zp-core/admin-functions.php:45
 #: D:/github/ZenPhoto20/zp-core/setup/setup-functions.php:526
+#, fuzzy
 msgid "Support"
 msgstr ""
+"Til að leiðrétta þetta þarftu að setja inn GD með viðeigandi myndastuðningi "
+"í PHP"
 
 #: D:/github/ZenPhoto20/zp-core/admin-functions.php:46
 #: D:/github/ZenPhoto20/zp-core/setup/setup-functions.php:526
@@ -5269,7 +5331,7 @@ msgstr "Skoða breytingaskrá"
 #: D:/github/ZenPhoto20/zp-core/setup/setup-functions.php:526
 #, fuzzy
 msgid "Change log"
-msgstr "Skoða breytingaskrá"
+msgstr "Breyta"
 
 #: D:/github/ZenPhoto20/zp-core/admin-functions.php:47
 #, fuzzy, php-format
@@ -5302,8 +5364,9 @@ msgid "Are you sure you want to leave this page?"
 msgstr "Ertu viss um að þú viljir eyða þessum notanda?"
 
 #: D:/github/ZenPhoto20/zp-core/admin-functions.php:173
+#, fuzzy
 msgid "Leave"
-msgstr ""
+msgstr "Hætta"
 
 #: D:/github/ZenPhoto20/zp-core/admin-functions.php:174
 msgid "Stay"
@@ -5321,7 +5384,7 @@ msgstr "ZenPhoto20 stjórnun"
 #: D:/github/ZenPhoto20/zp-core/admin-functions.php:252
 #, fuzzy, php-format
 msgid "Logged in as %1$s"
-msgstr "Skráð(ur) inn sem %s"
+msgstr "Innskráður sem <a href=\"%s/wp-admin/profile.php\">%s</a>."
 
 #: D:/github/ZenPhoto20/zp-core/admin-functions.php:254
 #, fuzzy, php-format
@@ -5357,8 +5420,9 @@ msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/admin-functions.php:1277
 #: D:/github/ZenPhoto20/zp-core/admin-functions.php:1278
+#, fuzzy
 msgid "add tag"
-msgstr ""
+msgstr "Bæta við"
 
 #: D:/github/ZenPhoto20/zp-core/admin-functions.php:1431
 msgid "Album Title"
@@ -5406,12 +5470,12 @@ msgstr "Gestanotandi albúms:"
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-edit.php:525
 #, fuzzy
 msgid "Show password"
-msgstr "Leitaraðgangsorð:"
+msgstr "Sýna lykilorð"
 
 #: D:/github/ZenPhoto20/zp-core/admin-functions.php:1536
 #, fuzzy
 msgid "repeat password:"
-msgstr "Leitaraðgangsorð:"
+msgstr "Endurtaka lykilorð"
 
 #: D:/github/ZenPhoto20/zp-core/admin-functions.php:1540
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/downloadList.php:159
@@ -5438,7 +5502,7 @@ msgstr "Lækkandi"
 #: D:/github/ZenPhoto20/zp-core/admin-options.php:1947
 #, fuzzy
 msgid "custom fields:"
-msgstr "sýna fleiri dálka"
+msgstr "Custom Fields"
 
 #: D:/github/ZenPhoto20/zp-core/admin-functions.php:1635
 #: D:/github/ZenPhoto20/zp-core/admin-options.php:1781
@@ -5476,13 +5540,14 @@ msgstr "Dagsetning albúms:"
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/optionalObjectFields.php:507
 #, fuzzy
 msgid "*no watermark"
-msgstr "vatnsmerkja með"
+msgstr "Vatnsmerkja hausmynd"
 
 #: D:/github/ZenPhoto20/zp-core/admin-functions.php:1734
 #: D:/github/ZenPhoto20/zp-core/admin-functions.php:1749
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/optionalObjectFields.php:508
+#, fuzzy
 msgid "*default"
-msgstr ""
+msgstr "Sjálfgefið stafasett fyrir IPTC lýsigögn myndar."
 
 #: D:/github/ZenPhoto20/zp-core/admin-functions.php:1755
 #: D:/github/ZenPhoto20/zp-core/admin-options.php:2026
@@ -5522,7 +5587,7 @@ msgstr "Myndinni verður eytt þegar breytingarnar verða vistaðar."
 #: D:/github/ZenPhoto20/zp-core/admin-functions.php:2064
 #, fuzzy
 msgid "to:"
-msgstr "til"
+msgstr "til:"
 
 #: D:/github/ZenPhoto20/zp-core/admin-functions.php:2139
 #, fuzzy
@@ -5574,8 +5639,9 @@ msgstr "Er varið aðgangsorði"
 #: D:/github/ZenPhoto20/zp-core/admin-functions.php:5179
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-categories.php:189
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-functions.php:1348
+#, fuzzy
 msgid "pick source"
-msgstr ""
+msgstr "Heimild:"
 
 #: D:/github/ZenPhoto20/zp-core/admin-functions.php:2182
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-functions.php:1351
@@ -5647,7 +5713,7 @@ msgstr "Gefa albúmið %s út"
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-functions.php:1454
 #, fuzzy
 msgid "Un-published"
-msgstr "Útgefið"
+msgstr "Birt"
 
 #: D:/github/ZenPhoto20/zp-core/admin-functions.php:2318
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-functions.php:1449
@@ -5665,19 +5731,19 @@ msgstr "Útgefið"
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-news.php:358
 #, fuzzy
 msgid "Comments on"
-msgstr "Ummæli"
+msgstr "Ummæli:"
 
 #: D:/github/ZenPhoto20/zp-core/admin-functions.php:2356
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-functions.php:265
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-news.php:366
 #, fuzzy
 msgid "Comments off"
-msgstr "Ummæli"
+msgstr "Engar athugasemdir"
 
 #: D:/github/ZenPhoto20/zp-core/admin-functions.php:2367
 #, fuzzy
 msgid "View album"
-msgstr "Skoða albúm:"
+msgstr "Skoða albúm"
 
 #: D:/github/ZenPhoto20/zp-core/admin-functions.php:2368
 #, fuzzy, php-format
@@ -5719,12 +5785,12 @@ msgstr "Eyða albúminu %s"
 #: D:/github/ZenPhoto20/zp-core/admin-functions.php:2601
 #, fuzzy
 msgid "prev image"
-msgstr "fyrri síða"
+msgstr "Mynd"
 
 #: D:/github/ZenPhoto20/zp-core/admin-functions.php:2608
 #, fuzzy
 msgid "next image"
-msgstr "næsta síða"
+msgstr "Næsta mynd"
 
 #: D:/github/ZenPhoto20/zp-core/admin-functions.php:2637
 #: D:/github/ZenPhoto20/zp-core/admin-functions.php:2645
@@ -5855,7 +5921,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/tweet_news.php:116
 #, fuzzy
 msgid "News categories"
-msgstr "Fréttagreinar"
+msgstr "Flokkar"
 
 #: D:/github/ZenPhoto20/zp-core/admin-functions.php:3449
 #, fuzzy
@@ -5872,8 +5938,9 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/admin-users.php:817
 #: D:/github/ZenPhoto20/zp-core/admin-users.php:818
 #: D:/github/ZenPhoto20/zp-core/functions-common.php:132
+#, fuzzy
 msgid "user"
-msgstr ""
+msgstr "Notandakenni fyrir gestaleitarnotandann"
 
 #: D:/github/ZenPhoto20/zp-core/admin-functions.php:3458
 #, php-format
@@ -5902,21 +5969,23 @@ msgstr[0] "Myndir á síðu:"
 msgstr[1] "Myndir á síðu:"
 
 #: D:/github/ZenPhoto20/zp-core/admin-functions.php:3981
+#, fuzzy
 msgid "ok"
-msgstr ""
+msgstr "Í lagi"
 
 #: D:/github/ZenPhoto20/zp-core/admin-functions.php:4050
 msgid "New categorys:"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/admin-functions.php:4066
+#, fuzzy
 msgid "New owner:"
-msgstr ""
+msgstr "Eigandi"
 
 #: D:/github/ZenPhoto20/zp-core/admin-functions.php:4086
 #, fuzzy
 msgid "Destination"
-msgstr "Lýsing"
+msgstr "Til, Áfangastaður"
 
 #: D:/github/ZenPhoto20/zp-core/admin-functions.php:4374
 #: D:/github/ZenPhoto20/zp-core/admin-functions.php:4409
@@ -5952,8 +6021,9 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/admin-functions.php:4734
 #: D:/github/ZenPhoto20/zp-core/admin-options.php:1063
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/debug.php:119
+#, fuzzy
 msgid "debug"
-msgstr ""
+msgstr "Kemba"
 
 #: D:/github/ZenPhoto20/zp-core/admin-functions.php:4734
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/deprecated-functions.php:104
@@ -5961,18 +6031,20 @@ msgid "deprecated"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/admin-functions.php:4782
+#, fuzzy
 msgid "3rd party"
-msgstr ""
+msgstr "Fjöldi"
 
 #: D:/github/ZenPhoto20/zp-core/admin-functions.php:4783
 #: D:/github/ZenPhoto20/zp-core/admin-options.php:2801
 #, fuzzy
 msgid "enabled"
-msgstr "Virkt"
+msgstr "virkjuð"
 
 #: D:/github/ZenPhoto20/zp-core/admin-functions.php:4785
+#, fuzzy
 msgid "demo"
-msgstr ""
+msgstr "Demó"
 
 #: D:/github/ZenPhoto20/zp-core/admin-functions.php:4786
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/accessThreshold.php:119
@@ -5981,21 +6053,24 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/macroList.php:89
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/rewriteRules.php:27
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/rewriteTokens.php:186
+#, fuzzy
 msgid "development"
-msgstr ""
+msgstr "Appþróun"
 
 #: D:/github/ZenPhoto20/zp-core/admin-functions.php:4787
+#, fuzzy
 msgid "feed"
-msgstr ""
+msgstr "Straumur"
 
 #: D:/github/ZenPhoto20/zp-core/admin-functions.php:4788
 #, fuzzy
 msgid "mail"
-msgstr "Netfang"
+msgstr "Senda tölvupóst"
 
 #: D:/github/ZenPhoto20/zp-core/admin-functions.php:4789
+#, fuzzy
 msgid "media"
-msgstr ""
+msgstr "Gögn"
 
 #: D:/github/ZenPhoto20/zp-core/admin-functions.php:4790
 msgid "misc"
@@ -6020,8 +6095,9 @@ msgstr "uppflytja"
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/user-expiry.php:97
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/user-expiry.php:106
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/user_groups.php:246
+#, fuzzy
 msgid "users"
-msgstr ""
+msgstr "Notendur"
 
 #: D:/github/ZenPhoto20/zp-core/admin-functions.php:4955
 #, php-format
@@ -6148,8 +6224,9 @@ msgstr "Titill"
 #: D:/github/ZenPhoto20/zp-core/admin-globals.php:30
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/favoritesHandler.php:150
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:357
+#, fuzzy
 msgid "ID"
-msgstr ""
+msgstr "Nr"
 
 #: D:/github/ZenPhoto20/zp-core/admin-globals.php:31
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/favoritesHandler.php:151
@@ -6160,8 +6237,9 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/favoritesHandler.php:152
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/optionalObjectFields.php:69
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/optionalObjectFields.php:123
+#, fuzzy
 msgid "Owner"
-msgstr ""
+msgstr "Eigandi"
 
 #: D:/github/ZenPhoto20/zp-core/admin-globals.php:60
 msgid "overview"
@@ -6190,8 +6268,9 @@ msgid "tags"
 msgstr "tög"
 
 #: D:/github/ZenPhoto20/zp-core/admin-globals.php:105
+#, fuzzy
 msgid "general"
-msgstr ""
+msgstr "Almennt"
 
 #: D:/github/ZenPhoto20/zp-core/admin-globals.php:109
 #, fuzzy
@@ -6207,7 +6286,7 @@ msgstr "íbætur"
 #: D:/github/ZenPhoto20/zp-core/functions-common.php:135
 #, fuzzy
 msgid "theme"
-msgstr "þemu"
+msgstr "Veldu liti þemans"
 
 #: D:/github/ZenPhoto20/zp-core/admin-globals.php:127
 msgid "options"
@@ -6253,7 +6332,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/admin-logs.php:81
 #, fuzzy
 msgid "View logs:"
-msgstr "Skoða allt"
+msgstr "Skoða:"
 
 #: D:/github/ZenPhoto20/zp-core/admin-logs.php:127
 #: D:/github/ZenPhoto20/zp-core/admin-options.php:2308
@@ -6294,8 +6373,9 @@ msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/admin-options.php:564
 #: D:/github/ZenPhoto20/zp-core/admin-plugins.php:122
+#, fuzzy
 msgid "Applied"
-msgstr ""
+msgstr "Applied"
 
 #: D:/github/ZenPhoto20/zp-core/admin-options.php:574
 msgid ""
@@ -6359,8 +6439,9 @@ msgid "reset"
 msgstr "Núllstilla"
 
 #: D:/github/ZenPhoto20/zp-core/admin-options.php:655
+#, fuzzy
 msgid "Time zone:"
-msgstr ""
+msgstr "Tímabelti"
 
 #: D:/github/ZenPhoto20/zp-core/admin-options.php:661
 msgid "*not specified"
@@ -6395,8 +6476,9 @@ msgid ""
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/admin-options.php:685
+#, fuzzy
 msgid "URL options:"
-msgstr ""
+msgstr "Valmöguleikar"
 
 #: D:/github/ZenPhoto20/zp-core/admin-options.php:697
 msgid "mod rewrite"
@@ -6711,16 +6793,17 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/admin-options.php:987
 #, fuzzy
 msgid "Cookies:"
-msgstr "Flokkar: "
+msgstr "Kökur"
 
 #: D:/github/ZenPhoto20/zp-core/admin-options.php:992
+#, fuzzy
 msgid "Path"
-msgstr ""
+msgstr "Slóð"
 
 #: D:/github/ZenPhoto20/zp-core/admin-options.php:997
 #, fuzzy
 msgid "Duration"
-msgstr "Lýsing"
+msgstr "Tímalengd"
 
 #: D:/github/ZenPhoto20/zp-core/admin-options.php:1007
 #, fuzzy
@@ -6826,15 +6909,17 @@ msgstr "Stutt lýsing á gallerýinu þínu. Sum þemu sýna þennan texta."
 #: D:/github/ZenPhoto20/zp-core/admin-options.php:1140
 #, fuzzy
 msgid "Gallery type"
-msgstr "Titill gallerýs:"
+msgstr "GALLERÍ"
 
 #: D:/github/ZenPhoto20/zp-core/admin-options.php:1142
+#, fuzzy
 msgid "public"
-msgstr ""
+msgstr "Aðgengilegt öllum"
 
 #: D:/github/ZenPhoto20/zp-core/admin-options.php:1143
+#, fuzzy
 msgid "private"
-msgstr ""
+msgstr "Einka"
 
 #: D:/github/ZenPhoto20/zp-core/admin-options.php:1146
 msgid "Private galleries are viewable only by registered users."
@@ -7083,8 +7168,9 @@ msgid "Search behavior settings:"
 msgstr "Vísbending fyrir leitaraðgangsorð:"
 
 #: D:/github/ZenPhoto20/zp-core/admin-options.php:1613
+#, fuzzy
 msgid "Fields list:"
-msgstr ""
+msgstr "Akrar"
 
 #: D:/github/ZenPhoto20/zp-core/admin-options.php:1631
 msgid "String matching:"
@@ -7123,11 +7209,12 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/admin-options.php:1644
 #, fuzzy
 msgid "off"
-msgstr "af"
+msgstr "Óvirkt"
 
 #: D:/github/ZenPhoto20/zp-core/admin-options.php:1647
+#, fuzzy
 msgid "generic"
-msgstr ""
+msgstr "Venjuleg skrá"
 
 #: D:/github/ZenPhoto20/zp-core/admin-options.php:1650
 msgid "specific"
@@ -7145,11 +7232,16 @@ msgstr " <em>%s</em> mappa"
 #: D:/github/ZenPhoto20/zp-core/admin-options.php:1656
 #, fuzzy
 msgid "<em>OR</em>"
-msgstr " <em>%s</em> mappa"
+msgstr ""
+"Veldu þetta til að virkja glærusýningu fyrir <em>Smoothgallery</em> "
+"persónuleikann."
 
 #: D:/github/ZenPhoto20/zp-core/admin-options.php:1656
+#, fuzzy
 msgid "<em>AND</em>"
 msgstr ""
+"Veldu þetta til að virkja glærusýningu fyrir <em>Smoothgallery</em> "
+"persónuleikann."
 
 #: D:/github/ZenPhoto20/zp-core/admin-options.php:1661
 #, fuzzy
@@ -7366,7 +7458,7 @@ msgstr "Skerpa:"
 #: D:/github/ZenPhoto20/zp-core/admin-options.php:2030
 #, fuzzy
 msgid "Amount"
-msgstr "Land"
+msgstr "Fjöldi"
 
 #: D:/github/ZenPhoto20/zp-core/admin-options.php:2035
 msgid "Radius"
@@ -7425,8 +7517,9 @@ msgid "image thumb"
 msgstr "mynd"
 
 #: D:/github/ZenPhoto20/zp-core/admin-options.php:2117
+#, fuzzy
 msgid "cover"
-msgstr ""
+msgstr "- Hlíf"
 
 #: D:/github/ZenPhoto20/zp-core/admin-options.php:2119
 #, no-php-format
@@ -7442,9 +7535,9 @@ msgid "offset h"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/admin-options.php:2128
-#, no-php-format
+#, fuzzy, no-php-format
 msgid "% w, "
-msgstr ""
+msgstr "W"
 
 #: D:/github/ZenPhoto20/zp-core/admin-options.php:2130
 #, no-php-format
@@ -7489,8 +7582,9 @@ msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/admin-options.php:2151
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/accessThreshold.php:62
+#, fuzzy
 msgid "Limit"
-msgstr ""
+msgstr "Þol"
 
 #: D:/github/ZenPhoto20/zp-core/admin-options.php:2155
 msgid "Cache processing worker limit."
@@ -7505,7 +7599,9 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/admin-options.php:2160
 #, fuzzy
 msgid "Cache as:"
-msgstr "Skyndiminni hreinsað."
+msgstr ""
+"Skyndiminnismappan (cache) er ekki til. Vinsamlegast búið hana til og "
+"stillið skráarkerfisréttindin á 0777."
 
 #: D:/github/ZenPhoto20/zp-core/admin-options.php:2163
 #, fuzzy
@@ -7573,13 +7669,14 @@ msgid "password:"
 msgstr "Lykilorð:"
 
 #: D:/github/ZenPhoto20/zp-core/admin-options.php:2243
+#, fuzzy
 msgid "user:"
-msgstr ""
+msgstr "Notandakenni fyrir gestaleitarnotandann"
 
 #: D:/github/ZenPhoto20/zp-core/admin-options.php:2294
 #, fuzzy
 msgid "hint:"
-msgstr "Vísbending: %s"
+msgstr "Vísbending fyrir aðgangsorð gallerýs:"
 
 #: D:/github/ZenPhoto20/zp-core/admin-options.php:2308
 msgid "Protected view"
@@ -7643,7 +7740,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/admin-options.php:2335
 #, fuzzy
 msgid "Metadata"
-msgstr "Endurnýja lýsigögn"
+msgstr "Endurnýja lýsingargögn fyrir albúmið %s"
 
 #: D:/github/ZenPhoto20/zp-core/admin-options.php:2362
 #: D:/github/ZenPhoto20/zp-core/admin-options.php:2375
@@ -7663,20 +7760,22 @@ msgstr "sýna"
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/googleMap.php:91
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:101
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:102
+#, fuzzy
 msgid "hide"
-msgstr ""
+msgstr "Fela"
 
 #: D:/github/ZenPhoto20/zp-core/admin-options.php:2364
 #: D:/github/ZenPhoto20/zp-core/admin-options.php:2377
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/dynamic-locale.php:205
 #, fuzzy
 msgid "disabled"
-msgstr "[er virkt]"
+msgstr "óvirkjuð"
 
 #: D:/github/ZenPhoto20/zp-core/admin-options.php:2374
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/multiple_layouts.php:261
+#, fuzzy
 msgid "default"
-msgstr ""
+msgstr "Sjálfgefið stafasett fyrir IPTC lýsigögn myndar."
 
 #: D:/github/ZenPhoto20/zp-core/admin-options.php:2383
 msgid "Mark unused fields <em>do not process</em>"
@@ -7855,7 +7954,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/publishContent/publishContent.php:416
 #, fuzzy
 msgid "Images:"
-msgstr "Myndir"
+msgstr "myndir"
 
 #: D:/github/ZenPhoto20/zp-core/admin-options.php:2648
 msgid ""
@@ -7874,7 +7973,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/admin-options.php:2670
 #, fuzzy
 msgid "Transition:"
-msgstr "Lýsing:"
+msgstr "Umskipting"
 
 #: D:/github/ZenPhoto20/zp-core/admin-options.php:2686
 msgid "separate"
@@ -8091,7 +8190,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/admin-options.php:3144
 #, fuzzy
 msgid "User name"
-msgstr "Notandastjórnandi"
+msgstr "Notendanafn"
 
 #: D:/github/ZenPhoto20/zp-core/admin-options.php:3165
 msgid ""
@@ -8222,8 +8321,9 @@ msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/admin-plugins.php:279
 #: D:/github/ZenPhoto20/zp-core/admin-themes.php:244
+#, fuzzy
 msgid "logo"
-msgstr ""
+msgstr "Textinn fyrir þemamerkið"
 
 #: D:/github/ZenPhoto20/zp-core/admin-plugins.php:282
 msgid "class plugin"
@@ -8292,7 +8392,7 @@ msgstr "Stillingar"
 #: D:/github/ZenPhoto20/zp-core/admin-plugins.php:414
 #, fuzzy
 msgid "Warning note"
-msgstr "Aðvörun!"
+msgstr "VARÚÐ"
 
 #: D:/github/ZenPhoto20/zp-core/admin-refresh-metadata.php:42
 msgid "Refresh Database"
@@ -8340,7 +8440,7 @@ msgstr "Halda áfram að endurnýja lýsigögn"
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/cacheManager/cacheImages.php:375
 #, fuzzy
 msgid "Refresh"
-msgstr "Endurnýja gagnagrunn"
+msgstr "Endurnýja lýsingargögn fyrir albúmið %s"
 
 #: D:/github/ZenPhoto20/zp-core/admin-refresh-metadata.php:157
 msgid "you should return automatically. If not press: "
@@ -8396,7 +8496,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/admin-tags.php:134
 #, fuzzy
 msgid "Order by"
-msgstr "Raða eftir notkun"
+msgstr "Dragðu albúmið í þá röð sem þú vilt hafa þau."
 
 #: D:/github/ZenPhoto20/zp-core/admin-tags.php:137
 #, fuzzy
@@ -8406,7 +8506,7 @@ msgstr "Raða í stafrófsröð"
 #: D:/github/ZenPhoto20/zp-core/admin-tags.php:138
 #, fuzzy
 msgid "Most used"
-msgstr "mest skoðað"
+msgstr "Notað"
 
 #: D:/github/ZenPhoto20/zp-core/admin-tags.php:139
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/debug/admin_tab.php:162
@@ -8427,8 +8527,9 @@ msgid "Delete checked tags"
 msgstr "eyða völdum tögum"
 
 #: D:/github/ZenPhoto20/zp-core/admin-tags.php:184
+#, fuzzy
 msgid "assign"
-msgstr ""
+msgstr "Tengja"
 
 #: D:/github/ZenPhoto20/zp-core/admin-tags.php:188
 #: D:/github/ZenPhoto20/zp-core/admin-tags.php:265
@@ -8466,7 +8567,7 @@ msgstr "Ný tög"
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/optionalObjectFields.php:305
 #, fuzzy
 msgid "Add tags"
-msgstr "Bæta við síðu"
+msgstr "Bæta við"
 
 #: D:/github/ZenPhoto20/zp-core/admin-tags.php:280
 msgid ""
@@ -8503,8 +8604,9 @@ msgid "no theme assigned, defaulting to Gallery theme"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/admin-themes.php:153
+#, fuzzy
 msgid "Show theme for: "
-msgstr ""
+msgstr "Sýna þema fyrir:"
 
 #: D:/github/ZenPhoto20/zp-core/admin-themes.php:165
 #, php-format
@@ -8559,8 +8661,9 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/admin-themes.php:198
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/ipBlocker.php:92
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/trivialSpam.php:63
+#, fuzzy
 msgid "Action"
-msgstr ""
+msgstr "Hreyfing"
 
 #: D:/github/ZenPhoto20/zp-core/admin-themes.php:218
 msgid "Third party theme"
@@ -8569,20 +8672,22 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/admin-themes.php:257
 #, fuzzy
 msgid "Version"
-msgstr "Persneska"
+msgstr "PHP útgáfa: <strong>%1$s</strong>"
 
 #: D:/github/ZenPhoto20/zp-core/admin-themes.php:268
 #, fuzzy, php-format
 msgid "Set <em>%s</em> theme options"
-msgstr "<em>%s</em> fannst ekki"
+msgstr "%s Þemu Valmöguleikar"
 
 #: D:/github/ZenPhoto20/zp-core/admin-themes.php:278
+#, fuzzy
 msgid "Activate"
-msgstr ""
+msgstr "Virkja"
 
 #: D:/github/ZenPhoto20/zp-core/admin-themes.php:290
+#, fuzzy
 msgid "Assign"
-msgstr ""
+msgstr "Tengja"
 
 #: D:/github/ZenPhoto20/zp-core/admin-themes.php:296
 msgid "Current Theme"
@@ -8601,8 +8706,9 @@ msgid "Edit"
 msgstr "Breyta"
 
 #: D:/github/ZenPhoto20/zp-core/admin-themes.php:327
+#, fuzzy
 msgid "Duplicate"
-msgstr ""
+msgstr "Tvöfalda"
 
 #: D:/github/ZenPhoto20/zp-core/admin-thumbcrop.php:242
 msgid "Custom thumbnail cropping"
@@ -8640,7 +8746,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/admin-upload.php:100
 #, fuzzy
 msgid "Upload Images"
-msgstr "engar myndir"
+msgstr "Hlaða upp myndum"
 
 #: D:/github/ZenPhoto20/zp-core/admin-upload.php:114
 #, php-format
@@ -8705,8 +8811,9 @@ msgid "These restrictions may prevent PHP scripts from uploading files."
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/admin-upload.php:177
+#, fuzzy
 msgid "Upload to:"
-msgstr ""
+msgstr "Hlaða inn"
 
 #: D:/github/ZenPhoto20/zp-core/admin-upload.php:203
 #: D:/github/ZenPhoto20/zp-core/admin-upload.php:275
@@ -8731,8 +8838,9 @@ msgstr "Búa til nýtt albúm"
 
 #: D:/github/ZenPhoto20/zp-core/admin-upload.php:278
 #: D:/github/ZenPhoto20/zp-core/setup/index.php:1036
+#, fuzzy
 msgid "and"
-msgstr ""
+msgstr "og"
 
 #: D:/github/ZenPhoto20/zp-core/admin-upload.php:280
 msgid "Publish the album so everyone can see it."
@@ -8744,8 +8852,9 @@ msgid "titled:"
 msgstr "Titill:"
 
 #: D:/github/ZenPhoto20/zp-core/admin-upload.php:289
+#, fuzzy
 msgid "with the folder name:"
-msgstr ""
+msgstr "Skráarnafn/möppunafn"
 
 #: D:/github/ZenPhoto20/zp-core/admin-upload.php:295
 msgid "Auto-generate"
@@ -8805,8 +8914,9 @@ msgid "pending verification"
 msgstr "bíður staðfestingar"
 
 #: D:/github/ZenPhoto20/zp-core/admin-users.php:496
+#, fuzzy
 msgid "no group"
-msgstr ""
+msgstr "Hópur"
 
 #: D:/github/ZenPhoto20/zp-core/admin-users.php:561
 msgid "Master"
@@ -8815,12 +8925,12 @@ msgstr "Aðal"
 #: D:/github/ZenPhoto20/zp-core/admin-users.php:592
 #, fuzzy
 msgid "Show details"
-msgstr "myndupplýsingar"
+msgstr "Upplýsingar"
 
 #: D:/github/ZenPhoto20/zp-core/admin-users.php:593
 #, fuzzy
 msgid "Hide details"
-msgstr "myndupplýsingar"
+msgstr "Upplýsingar"
 
 #: D:/github/ZenPhoto20/zp-core/admin-users.php:595
 #, php-format
@@ -8835,7 +8945,7 @@ msgstr "myndupplýsingar úr EXIF"
 #: D:/github/ZenPhoto20/zp-core/admin-users.php:607
 #, fuzzy
 msgid "New User"
-msgstr "Ný tög"
+msgstr "Nýr notandi"
 
 #: D:/github/ZenPhoto20/zp-core/admin-users.php:633
 msgid "Authenticate user"
@@ -8872,7 +8982,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/admin-users.php:725
 #, fuzzy
 msgid "Full name"
-msgstr "Fullt nafn:"
+msgstr "FULLT NAFN"
 
 #: D:/github/ZenPhoto20/zp-core/admin-users.php:743
 #, fuzzy
@@ -8962,7 +9072,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/admin.php:112
 #, fuzzy
 msgid "protected"
-msgstr "Óvarin"
+msgstr "Þetta albúm er varið með aðgangsorði!"
 
 #: D:/github/ZenPhoto20/zp-core/admin.php:114
 msgid "Setup files protected."
@@ -9017,8 +9127,9 @@ msgid ""
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/admin.php:283
+#, fuzzy
 msgid "Run setup"
-msgstr ""
+msgstr "Uppsetning"
 
 #: D:/github/ZenPhoto20/zp-core/admin.php:288
 msgid "Run the setup script."
@@ -9062,17 +9173,19 @@ msgid "clone"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/admin.php:355
-#, php-format
+#, fuzzy, php-format
 msgid "source: %s"
-msgstr ""
+msgstr "Heimild:"
 
 #: D:/github/ZenPhoto20/zp-core/admin.php:376
+#, fuzzy
 msgid "release notes"
-msgstr ""
+msgstr "Útgáfuskýringar %s"
 
 #: D:/github/ZenPhoto20/zp-core/admin.php:376
+#, fuzzy
 msgid "notes"
-msgstr ""
+msgstr "Athugasemd"
 
 #: D:/github/ZenPhoto20/zp-core/admin.php:380
 #, php-format
@@ -9095,8 +9208,9 @@ msgid "Server path:"
 msgstr "Samskiptareglur netþjóns:"
 
 #: D:/github/ZenPhoto20/zp-core/admin.php:397
+#, fuzzy
 msgid "WEB path:"
-msgstr ""
+msgstr "Slóð"
 
 #: D:/github/ZenPhoto20/zp-core/admin.php:400
 #, fuzzy
@@ -9318,8 +9432,9 @@ msgid "Random albums"
 msgstr "Skoða allt"
 
 #: D:/github/ZenPhoto20/zp-core/class-feed.php:389
+#, fuzzy
 msgid "Bad "
-msgstr ""
+msgstr "Bad"
 
 #: D:/github/ZenPhoto20/zp-core/class-feed.php:426
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/comment_form/functions.php:818
@@ -9339,8 +9454,9 @@ msgstr "Villa: 'albums' mappan (%s) er án lesréttinda."
 #: D:/github/ZenPhoto20/zp-core/class-gallery.php:301
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:229
 #: D:/github/ZenPhoto20/zp-core/setup/setup-functions.php:349
+#, fuzzy
 msgid "Unknown"
-msgstr ""
+msgstr "ÓSKRÁÐ"
 
 #: D:/github/ZenPhoto20/zp-core/class-gallery.php:301
 #, fuzzy
@@ -9353,8 +9469,9 @@ msgid "Invalid album folder: %1$s %2$s"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/class-gallery.php:513
+#, fuzzy
 msgid "fixed"
-msgstr ""
+msgstr "Stöðugt flæði"
 
 #: D:/github/ZenPhoto20/zp-core/class-gallery.php:513
 msgid "discarded"
@@ -9393,7 +9510,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/class-image.php:160
 #, fuzzy
 msgid "Image Title"
-msgstr "Stærð myndar:"
+msgstr "Mynd Titill"
 
 #: D:/github/ZenPhoto20/zp-core/class-image.php:161
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/xmpMetadata.php:655
@@ -9433,11 +9550,12 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/class-image.php:168
 #, fuzzy
 msgid "Date Created"
-msgstr "Dagsetningarsnið:"
+msgstr "Skapað:"
 
 #: D:/github/ZenPhoto20/zp-core/class-image.php:169
+#, fuzzy
 msgid "Time Created"
-msgstr ""
+msgstr "Skapað:"
 
 #: D:/github/ZenPhoto20/zp-core/class-image.php:170
 msgid "Digital Creation Date"
@@ -9486,8 +9604,9 @@ msgstr "Höfundaréttur:"
 
 #: D:/github/ZenPhoto20/zp-core/class-image.php:180
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/xmpMetadata.php:652
+#, fuzzy
 msgid "Keywords"
-msgstr ""
+msgstr "Leitarorð"
 
 #: D:/github/ZenPhoto20/zp-core/class-image.php:181
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/xmpMetadata.php:629
@@ -9506,8 +9625,9 @@ msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/class-image.php:184
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/xmpMetadata.php:636
+#, fuzzy
 msgid "ISO Sensitivity"
-msgstr ""
+msgstr "Næmni"
 
 #: D:/github/ZenPhoto20/zp-core/class-image.php:185
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/xmpMetadata.php:627
@@ -9534,12 +9654,14 @@ msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/class-image.php:190
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/xmpMetadata.php:642
+#, fuzzy
 msgid "Orientation"
-msgstr ""
+msgstr "Stefna"
 
 #: D:/github/ZenPhoto20/zp-core/class-image.php:191
+#, fuzzy
 msgid "Software"
-msgstr ""
+msgstr "Hugbúnaður"
 
 #: D:/github/ZenPhoto20/zp-core/class-image.php:192
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/xmpMetadata.php:625
@@ -9572,14 +9694,15 @@ msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/class-image.php:198
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/xmpMetadata.php:638
+#, fuzzy
 msgid "Lens Type"
-msgstr ""
+msgstr "Gerð"
 
 #: D:/github/ZenPhoto20/zp-core/class-image.php:199
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/xmpMetadata.php:637
 #, fuzzy
 msgid "Lens Info"
-msgstr "Myndupplýsingar"
+msgstr "Upplýsingar"
 
 #: D:/github/ZenPhoto20/zp-core/class-image.php:200
 msgid "35mm Focal Length Equivalent"
@@ -9625,8 +9748,9 @@ msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/class-image.php:208
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/xmpMetadata.php:634
+#, fuzzy
 msgid "Latitude"
-msgstr ""
+msgstr "Breiddargráða"
 
 #: D:/github/ZenPhoto20/zp-core/class-image.php:209
 msgid "Latitude Reference"
@@ -9634,8 +9758,9 @@ msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/class-image.php:210
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/xmpMetadata.php:635
+#, fuzzy
 msgid "Longitude"
-msgstr ""
+msgstr "Lengdargráða"
 
 #: D:/github/ZenPhoto20/zp-core/class-image.php:211
 msgid "Longitude Reference"
@@ -9672,7 +9797,7 @@ msgstr "Skráarnafn/möppunafn"
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/publishContent/publishContent.php:126
 #, fuzzy
 msgid "Content"
-msgstr "Hafa samband"
+msgstr "Innihald"
 
 #: D:/github/ZenPhoto20/zp-core/class-search.php:115
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-news.php:269
@@ -9760,8 +9885,9 @@ msgid "3-area-focusing (High speed)"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:30
+#, fuzzy
 msgid "Upside-down"
-msgstr ""
+msgstr "Snýr upp/niður"
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:31
 msgid "Upside-down Mirrored"
@@ -9808,8 +9934,9 @@ msgid "Aperture Priority AE"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:42
+#, fuzzy
 msgid "Auto"
-msgstr ""
+msgstr "Sjálfvirkt"
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:43
 msgid "Auto + Red Eye Reduction"
@@ -9820,8 +9947,9 @@ msgid "Auto Focus Good"
 msgstr "Sjálfvirkur fókus í lagi"
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:45
+#, fuzzy
 msgid "Auto Selected"
-msgstr ""
+msgstr "Valin atriði"
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:46
 msgid "Auto; Continuous"
@@ -9832,16 +9960,18 @@ msgid "Auto; Focus button"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:48
+#, fuzzy
 msgid "Auto-DEP"
-msgstr ""
+msgstr "Sjálfvirkt"
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:49
 msgid "Av"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:50
+#, fuzzy
 msgid "Average"
-msgstr ""
+msgstr "Meðal boð"
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:51
 msgid "Baby"
@@ -9868,8 +9998,9 @@ msgid "Bulb"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:57
+#, fuzzy
 msgid "Center"
-msgstr ""
+msgstr "Miðjustilla"
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:58
 msgid "Center of Pixel Array"
@@ -9904,8 +10035,9 @@ msgid "Close-up (Macro)"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:66
+#, fuzzy
 msgid "Cloudy"
-msgstr ""
+msgstr "Ský"
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:68
 msgid "Color Sequential Area Sensor"
@@ -9944,16 +10076,19 @@ msgid "Contrast Normal(STD)"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:77
+#, fuzzy
 msgid "Contrast+"
-msgstr ""
+msgstr "Skuggaefni"
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:78
+#, fuzzy
 msgid "Contrast-"
-msgstr ""
+msgstr "Skuggaefni"
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:79
+#, fuzzy
 msgid "Cool"
-msgstr ""
+msgstr "Geymist kælt."
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:81
 msgid "Datum Point"
@@ -10008,8 +10143,9 @@ msgid "Fast Shutter"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:94
+#, fuzzy
 msgid "Fine"
-msgstr ""
+msgstr "Fine"
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:95
 msgid "Fireworks"
@@ -10020,8 +10156,9 @@ msgid "Fisheye"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:97
+#, fuzzy
 msgid "Flash"
-msgstr ""
+msgstr "Flash"
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:98
 msgid "Flash Did Not Fire"
@@ -10056,16 +10193,18 @@ msgid "Fluorescent"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:107
+#, fuzzy
 msgid "Food"
-msgstr ""
+msgstr "Matur"
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:108
 msgid "FP sync used"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:109
+#, fuzzy
 msgid "Full Auto"
-msgstr ""
+msgstr "Sjálfvirkt"
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:110
 msgid "Halogen"
@@ -10076,12 +10215,14 @@ msgid "Hard"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:112
+#, fuzzy
 msgid "High"
-msgstr ""
+msgstr "Hátt"
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:113
+#, fuzzy
 msgid "High Sensitivity"
-msgstr ""
+msgstr "Næmni"
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:114
 msgid "Horizontal (normal)"
@@ -10104,8 +10245,9 @@ msgid "Internal Flash"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:119
+#, fuzzy
 msgid "ISO Speed"
-msgstr ""
+msgstr "Hraði"
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:120
 msgid "ISO Studio Tungsten"
@@ -10116,20 +10258,23 @@ msgid "Jpeg Compression"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:122
+#, fuzzy
 msgid "Landscape"
-msgstr ""
+msgstr "Liggjandi"
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:124
+#, fuzzy
 msgid "Left"
-msgstr ""
+msgstr "Vinstri"
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:125
 msgid "Locked (Pan Mode)"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:126
+#, fuzzy
 msgid "Low"
-msgstr ""
+msgstr "Lágt"
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:127
 msgid "Low/High Quality"
@@ -10152,16 +10297,19 @@ msgid "Manual Focus"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:133
+#, fuzzy
 msgid "Medium"
-msgstr ""
+msgstr "Miðlungs"
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:134
+#, fuzzy
 msgid "Mode 1"
-msgstr ""
+msgstr "1"
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:135
+#, fuzzy
 msgid "Mode 2"
-msgstr ""
+msgstr "2"
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:136
 msgid "Monochrome"
@@ -10172,8 +10320,9 @@ msgid "Multi-Spot"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:138
+#, fuzzy
 msgid "Natural"
-msgstr ""
+msgstr "Náttúra"
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:139
 msgid "Night"
@@ -10189,62 +10338,72 @@ msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:142
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/rating.php:109
+#, fuzzy
 msgid "No"
-msgstr ""
+msgstr "Nei"
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:143
 msgid "No Compression"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:144
+#, fuzzy
 msgid "No Flash"
-msgstr ""
+msgstr "Flash"
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:145
+#, fuzzy
 msgid "No Unit"
-msgstr ""
+msgstr "Nei"
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:146
+#, fuzzy
 msgid "No Warning"
-msgstr ""
+msgstr "Aðvörun!"
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:148
 #: D:/github/ZenPhoto20/zp-core/exif/makers/sanyo.php:70
 #: D:/github/ZenPhoto20/zp-core/exif/makers/sanyo.php:83
+#, fuzzy
 msgid "Normal"
-msgstr ""
+msgstr "Hefðbundið"
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:149
 msgid "Not defined"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:150
+#, fuzzy
 msgid "Off"
-msgstr ""
+msgstr "Óvirkt"
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:151
+#, fuzzy
 msgid "On"
-msgstr ""
+msgstr "Virkt"
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:152
 msgid "On + Red Eye Reduction"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:153
+#, fuzzy
 msgid "On Camera"
-msgstr ""
+msgstr "Myndavél"
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:154
 msgid "One Chip Color Area Sensor"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:155
+#, fuzzy
 msgid "One-Shot"
-msgstr ""
+msgstr "Einn"
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:156
+#, fuzzy
 msgid "Other"
-msgstr ""
+msgstr "Annað"
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:157
 msgid "Out of Focus"
@@ -10267,28 +10426,33 @@ msgid "Partial"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:162
+#, fuzzy
 msgid "Party"
-msgstr ""
+msgstr "Fjöldi"
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:163
 msgid "Pattern"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:164
+#, fuzzy
 msgid "Pet"
-msgstr ""
+msgstr "Gæludýr"
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:165
+#, fuzzy
 msgid "pixels"
-msgstr ""
+msgstr "punktar"
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:166
+#, fuzzy
 msgid "Portrait"
-msgstr ""
+msgstr "Standandi"
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:167
+#, fuzzy
 msgid "Preset"
-msgstr ""
+msgstr "Forstillta"
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:168
 msgid "Program"
@@ -10319,8 +10483,9 @@ msgid "Recommended Exposure Index and ISO Speed"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:175
+#, fuzzy
 msgid "Red Eye"
-msgstr ""
+msgstr "Auga"
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:176
 msgid "Red Eye Reduction"
@@ -10367,8 +10532,9 @@ msgid "RGB"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:187
+#, fuzzy
 msgid "Right"
-msgstr ""
+msgstr "Hægri"
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:188
 msgid "Rotate 270 CW"
@@ -10383,8 +10549,9 @@ msgid "Scenery"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:191
+#, fuzzy
 msgid "sec"
-msgstr ""
+msgstr "sek."
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:192
 msgid "Sepia"
@@ -10395,12 +10562,14 @@ msgid "Shutter Priority"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:194
+#, fuzzy
 msgid "Simple"
-msgstr ""
+msgstr "Einfalt"
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:195
+#, fuzzy
 msgid "Single"
-msgstr ""
+msgstr "Einhleyp/ur"
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:196
 msgid "Single/Timer"
@@ -10415,20 +10584,23 @@ msgid "Slow Synchro"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:200
+#, fuzzy
 msgid "Snow"
-msgstr ""
+msgstr "Snjór"
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:201
+#, fuzzy
 msgid "Soft"
-msgstr ""
+msgstr "Mjúkt"
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:202
 msgid "SpeedLight"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:203
+#, fuzzy
 msgid "Sport"
-msgstr ""
+msgstr "Íþrótt"
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:204
 msgid "Sports"
@@ -10447,8 +10619,9 @@ msgid "sRGB"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:208
+#, fuzzy
 msgid "Standard"
-msgstr ""
+msgstr "Staðall"
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:209
 msgid "Standard Light A"
@@ -10487,16 +10660,18 @@ msgid "Superfine"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:218
+#, fuzzy
 msgid "SXGA Basic"
-msgstr ""
+msgstr "Grunnur"
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:219
 msgid "SXGA Fine"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:220
+#, fuzzy
 msgid "SXGA Normal"
-msgstr ""
+msgstr "Hefðbundið"
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:221
 msgid "The file could not be found."
@@ -10515,8 +10690,9 @@ msgid "Tungsten"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:225
+#, fuzzy
 msgid "Tv"
-msgstr ""
+msgstr "SJÓNVARP ECDC"
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:226
 msgid "Two Chip Color Area Sensor"
@@ -10532,32 +10708,37 @@ msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:230
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/security-logger.php:132
+#, fuzzy
 msgid "version"
-msgstr ""
+msgstr "PHP útgáfa: <strong>%1$s</strong>"
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:231
+#, fuzzy
 msgid "Very High"
-msgstr ""
+msgstr "Hátt"
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:232
+#, fuzzy
 msgid "VGA Basic"
-msgstr ""
+msgstr "Grunnur"
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:233
 msgid "VGA Fine"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:234
+#, fuzzy
 msgid "VGA Normal"
-msgstr ""
+msgstr "Hefðbundið"
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:235
 msgid "Warm"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:236
+#, fuzzy
 msgid "Warning"
-msgstr ""
+msgstr "Aðvörun!"
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:237
 msgid "White-fluorescence"
@@ -10568,8 +10749,9 @@ msgid "YCbCr"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/exif/exifTranslations.php:239
+#, fuzzy
 msgid "Yes"
-msgstr ""
+msgstr "Já"
 
 #: D:/github/ZenPhoto20/zp-core/full-image.php:18
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/downloadList.php:401
@@ -10608,28 +10790,34 @@ msgid "%1$s Error: ( %2$s ) failed. %1$s returned the error %3$s"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/functions-common.php:97
+#, fuzzy
 msgid "ERROR"
-msgstr ""
+msgstr "Villa!"
 
 #: D:/github/ZenPhoto20/zp-core/functions-common.php:98
+#, fuzzy
 msgid "WARNING"
-msgstr ""
+msgstr "Aðvörun!"
 
 #: D:/github/ZenPhoto20/zp-core/functions-common.php:99
+#, fuzzy
 msgid "NOTICE"
-msgstr ""
+msgstr "ATHUGASEMD"
 
 #: D:/github/ZenPhoto20/zp-core/functions-common.php:100
+#, fuzzy
 msgid "USER ERROR"
-msgstr ""
+msgstr "Villa"
 
 #: D:/github/ZenPhoto20/zp-core/functions-common.php:101
+#, fuzzy
 msgid "USER WARNING"
-msgstr ""
+msgstr "VARÚÐ"
 
 #: D:/github/ZenPhoto20/zp-core/functions-common.php:102
+#, fuzzy
 msgid "USER NOTICE"
-msgstr ""
+msgstr "Skilaboð"
 
 #: D:/github/ZenPhoto20/zp-core/functions-common.php:103
 msgid "STRICT NOTICE"
@@ -11042,7 +11230,7 @@ msgstr "Sinhala"
 #: D:/github/ZenPhoto20/zp-core/functions-i18n.php:100
 #, fuzzy
 msgid "Slovak"
-msgstr "Slóvakíska"
+msgstr "Slovak"
 
 #: D:/github/ZenPhoto20/zp-core/functions-i18n.php:101
 msgid "Slovenian"
@@ -11197,14 +11385,15 @@ msgid "Cache: [%s]"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/functions-image.php:31
-#, php-format
+#, fuzzy, php-format
 msgid "Image: [%s]"
-msgstr ""
+msgstr "Mynd: %s"
 
 #: D:/github/ZenPhoto20/zp-core/functions-image.php:59
 #: D:/github/ZenPhoto20/zp-core/lib-auth.php:603
+#, fuzzy
 msgid "Debug"
-msgstr ""
+msgstr "Kemba"
 
 #: D:/github/ZenPhoto20/zp-core/functions-image.php:59
 msgid "Arguments:"
@@ -11227,8 +11416,9 @@ msgid "cw ="
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/functions-image.php:66
+#, fuzzy
 msgid "ch ="
-msgstr ""
+msgstr "CH$"
 
 #: D:/github/ZenPhoto20/zp-core/functions-image.php:67
 msgid "cx ="
@@ -11239,16 +11429,19 @@ msgid "cy ="
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/functions-image.php:69
+#, fuzzy
 msgid "quality ="
-msgstr ""
+msgstr "Myndgæði:"
 
 #: D:/github/ZenPhoto20/zp-core/functions-image.php:70
+#, fuzzy
 msgid "thumb ="
-msgstr ""
+msgstr "Smámyndastærð:"
 
 #: D:/github/ZenPhoto20/zp-core/functions-image.php:71
+#, fuzzy
 msgid "crop ="
-msgstr ""
+msgstr "skera %s"
 
 #: D:/github/ZenPhoto20/zp-core/functions-image.php:175
 #, fuzzy, php-format
@@ -11336,8 +11529,9 @@ msgid "most viewed"
 msgstr "mest skoðað"
 
 #: D:/github/ZenPhoto20/zp-core/functions.php:42
+#, fuzzy
 msgid "missing"
-msgstr ""
+msgstr "Vantar tegund"
 
 #: D:/github/ZenPhoto20/zp-core/functions.php:378
 #: D:/github/ZenPhoto20/zp-core/functions.php:387
@@ -11452,7 +11646,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/global-definitions.php:58
 #, fuzzy
 msgid "not connected"
-msgstr "gagnagrunnur ótengdur"
+msgstr "gagnagrunnur tengdur"
 
 #: D:/github/ZenPhoto20/zp-core/i.php:58
 #, fuzzy
@@ -11530,7 +11724,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/lib-Imagick.php:78
 #, fuzzy
 msgid "Max height"
-msgstr "hæð"
+msgstr "Hæð"
 
 #: D:/github/ZenPhoto20/zp-core/lib-Imagick.php:82
 #, php-format
@@ -11542,7 +11736,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/lib-Imagick.php:84
 #, fuzzy
 msgid "Max width"
-msgstr "breidd"
+msgstr "Breidd"
 
 #: D:/github/ZenPhoto20/zp-core/lib-Imagick.php:88
 #, php-format
@@ -11696,7 +11890,7 @@ msgstr "Uppflytja"
 #: D:/github/ZenPhoto20/zp-core/lib-auth.php:612
 #, fuzzy
 msgid "Post comments"
-msgstr "Engin ummæli"
+msgstr "Engar athugasemdir"
 
 #: D:/github/ZenPhoto20/zp-core/lib-auth.php:548
 #: D:/github/ZenPhoto20/zp-core/lib-auth.php:568
@@ -11776,7 +11970,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/lib-auth.php:618
 #, fuzzy
 msgid "Files"
-msgstr "Skrá"
+msgstr "skrár"
 
 #: D:/github/ZenPhoto20/zp-core/lib-auth.php:565
 #: D:/github/ZenPhoto20/zp-core/lib-auth.php:589
@@ -11856,7 +12050,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/lib-auth.php:604
 #, fuzzy
 msgid "View gallery"
-msgstr "Skoða gallerý"
+msgstr "Skoðaðu myndasafnið"
 
 #: D:/github/ZenPhoto20/zp-core/lib-auth.php:577
 #: D:/github/ZenPhoto20/zp-core/lib-auth.php:604
@@ -11868,7 +12062,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/lib-auth.php:605
 #, fuzzy
 msgid "View search"
-msgstr "Leyfa leit"
+msgstr "Leita"
 
 #: D:/github/ZenPhoto20/zp-core/lib-auth.php:578
 #: D:/github/ZenPhoto20/zp-core/lib-auth.php:605
@@ -11939,8 +12133,9 @@ msgstr "Sjá um öll albúm"
 #: D:/github/ZenPhoto20/zp-core/lib-auth.php:977
 #: D:/github/ZenPhoto20/zp-core/lib-auth.php:1071
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/favoritesHandler.php:279
+#, fuzzy
 msgid "User"
-msgstr ""
+msgstr "Notandakenni fyrir gestaleitarnotandann"
 
 #: D:/github/ZenPhoto20/zp-core/lib-auth.php:602
 msgid "Users must have this right to change their credentials."
@@ -12046,8 +12241,9 @@ msgid "Challenge question:"
 msgstr "Lýsing gallerýs:"
 
 #: D:/github/ZenPhoto20/zp-core/lib-auth.php:989
+#, fuzzy
 msgid "Your response"
-msgstr ""
+msgstr "Viðbrögð"
 
 #: D:/github/ZenPhoto20/zp-core/lib-auth.php:998
 msgid ""
@@ -12059,7 +12255,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/lib-auth.php:1150
 #, fuzzy
 msgid "Return"
-msgstr "Aftur á %s"
+msgstr "þú ættir að koma aftur sjálfkrafa. Ef ekki, ýttu á: "
 
 #: D:/github/ZenPhoto20/zp-core/lib-auth.php:1017
 msgid "Request reset by e-mail"
@@ -12084,13 +12280,14 @@ msgid "User name or e-mail address"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/lib-auth.php:1149
+#, fuzzy
 msgid "Request"
-msgstr ""
+msgstr "BEIÐNI"
 
 #: D:/github/ZenPhoto20/zp-core/lib-auth.php:1149
 #, fuzzy
 msgid "Request password reset"
-msgstr "*Sláðu inn %s til að senda núllstillingartölvupóst."
+msgstr "Endusetja lykilorð"
 
 #: D:/github/ZenPhoto20/zp-core/lib-auth.php:1218
 #, fuzzy
@@ -12113,17 +12310,17 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/lib-auth.php:1249
 #, fuzzy
 msgid "passwords match"
-msgstr "Aðgangsorðin þín samsvarast ekki"
+msgstr "Lykilorðin þurfa að vera eins"
 
 #: D:/github/ZenPhoto20/zp-core/lib-auth.php:1253
 #, fuzzy
 msgid "passwords do not match"
-msgstr "Aðgangsorðin þín samsvarast ekki"
+msgstr "Lykilorðin eru ekki eins."
 
 #: D:/github/ZenPhoto20/zp-core/lib-auth.php:1321
 #, fuzzy
 msgid "Repeat password"
-msgstr "Leitaraðgangsorð:"
+msgstr "Endurtaktu lykilorð"
 
 #: D:/github/ZenPhoto20/zp-core/lib-utf8.php:49
 #, fuzzy
@@ -12177,7 +12374,7 @@ msgstr "Japanska"
 #: D:/github/ZenPhoto20/zp-core/lib-utf8.php:60
 #, fuzzy
 msgid "Korean (EUC)"
-msgstr "Kóreyska"
+msgstr "kóreska"
 
 #: D:/github/ZenPhoto20/zp-core/lib-utf8.php:61
 msgid "Chinese Simplified (GB2312)"
@@ -12190,12 +12387,12 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/lib-utf8.php:63
 #, fuzzy
 msgid "OEM United States"
-msgstr "Enska (Bandaríkin)"
+msgstr "BANDARÍKIN"
 
 #: D:/github/ZenPhoto20/zp-core/lib-utf8.php:64
 #, fuzzy
 msgid "Greek (DOS)"
-msgstr "Gríska"
+msgstr "gríska"
 
 #: D:/github/ZenPhoto20/zp-core/lib-utf8.php:65
 msgid "Baltic (DOS)"
@@ -12212,12 +12409,12 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/lib-utf8.php:68
 #, fuzzy
 msgid "Turkish (DOS)"
-msgstr "Tyrkneska"
+msgstr "Turkish"
 
 #: D:/github/ZenPhoto20/zp-core/lib-utf8.php:69
 #, fuzzy
 msgid "Icelandic (DOS)"
-msgstr "Íslenska"
+msgstr "Icelandic"
 
 #: D:/github/ZenPhoto20/zp-core/lib-utf8.php:70
 msgid "Greek, Modern (DOS)"
@@ -12235,7 +12432,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/lib-utf8.php:73
 #, fuzzy
 msgid "Korean (ISO)"
-msgstr "Kóreyska"
+msgstr "kóreska"
 
 #: D:/github/ZenPhoto20/zp-core/lib-utf8.php:74
 msgid "Western European (ISO)"
@@ -12269,7 +12466,7 @@ msgstr "Arabíska (Íran)"
 #: D:/github/ZenPhoto20/zp-core/lib-utf8.php:81
 #, fuzzy
 msgid "Greek (ISO)"
-msgstr "Gríska"
+msgstr "gríska"
 
 #: D:/github/ZenPhoto20/zp-core/lib-utf8.php:82
 msgid "Hebrew (ISO-Visual)"
@@ -12282,7 +12479,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/lib-utf8.php:84
 #, fuzzy
 msgid "Turkish (ISO)"
-msgstr "Tyrkneska"
+msgstr "Turkish"
 
 #: D:/github/ZenPhoto20/zp-core/lib-utf8.php:85
 #, fuzzy
@@ -12364,8 +12561,9 @@ msgid "Vietnamese (Windows)"
 msgstr "Víetnamska"
 
 #: D:/github/ZenPhoto20/zp-core/lib-utf8.php:105
+#, fuzzy
 msgid "Thai (Windows)"
-msgstr ""
+msgstr "Windows"
 
 #: D:/github/ZenPhoto20/zp-core/license.php:37
 msgid "ZenPhoto20 License agreement"
@@ -12599,8 +12797,9 @@ msgid "Post of Database credentials"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/setup/index.php:413
+#, fuzzy
 msgid "Started"
-msgstr ""
+msgstr "byrjaði"
 
 #: D:/github/ZenPhoto20/zp-core/setup/index.php:437
 #, php-format
@@ -12610,7 +12809,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/setup/index.php:441
 #, fuzzy
 msgid "Full environment"
-msgstr "Fullt nafn:"
+msgstr "Umhverfi"
 
 #: D:/github/ZenPhoto20/zp-core/setup/index.php:443
 #, fuzzy
@@ -13018,8 +13217,9 @@ msgid ""
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/setup/index.php:737
+#, fuzzy
 msgid "File permissions"
-msgstr ""
+msgstr "Heimildir"
 
 #: D:/github/ZenPhoto20/zp-core/setup/index.php:740
 #, php-format
@@ -13130,7 +13330,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/rating.php:176
 #, fuzzy
 msgid "Database"
-msgstr "Endurnýja gagnagrunn"
+msgstr "Endurnýjun gagnagrunns lokið"
 
 #: D:/github/ZenPhoto20/zp-core/setup/index.php:913
 #, php-format
@@ -13260,12 +13460,14 @@ msgid "<code>SQL mode</code> [SET SESSION failed]"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/setup/index.php:1027
+#, fuzzy
 msgid "Select"
-msgstr ""
+msgstr "Ertu viss um að þú viljir velja þessa mynd til eyðingar?"
 
 #: D:/github/ZenPhoto20/zp-core/setup/index.php:1027
+#, fuzzy
 msgid "Create"
-msgstr ""
+msgstr "búa til"
 
 #: D:/github/ZenPhoto20/zp-core/setup/index.php:1027
 msgid "Drop"
@@ -13276,8 +13478,9 @@ msgid "Insert"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/setup/index.php:1028
+#, fuzzy
 msgid "Update"
-msgstr ""
+msgstr "uppfæra"
 
 #: D:/github/ZenPhoto20/zp-core/setup/index.php:1028
 msgid "Alter"
@@ -13676,11 +13879,12 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/setup/index.php:1575
 #, fuzzy
 msgid "uploaded"
-msgstr "uppflytja"
+msgstr "Upphalað:"
 
 #: D:/github/ZenPhoto20/zp-core/setup/index.php:1580
+#, fuzzy
 msgid "HTML cache"
-msgstr ""
+msgstr "Cache"
 
 #: D:/github/ZenPhoto20/zp-core/setup/index.php:1581
 msgid "Third party plugins"
@@ -13734,8 +13938,9 @@ msgid "Done with database creation and update"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/setup/index.php:1731
+#, fuzzy
 msgid "Completed"
-msgstr ""
+msgstr "Klárað"
 
 #: D:/github/ZenPhoto20/zp-core/setup/index.php:1737
 #, php-format
@@ -13772,8 +13977,9 @@ msgid "%s I acknowledge that proceeding will restructure my database."
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/setup/index.php:1870
+#, fuzzy
 msgid "run setup"
-msgstr ""
+msgstr "Uppsetning"
 
 #: D:/github/ZenPhoto20/zp-core/setup/index.php:1870
 #, fuzzy
@@ -13832,8 +14038,9 @@ msgid "<strong>Notice!</strong> click for details"
 msgstr "<strong>%u</strong> ummæli"
 
 #: D:/github/ZenPhoto20/zp-core/setup/setup-functions.php:183
+#, fuzzy
 msgid "Notice!"
-msgstr ""
+msgstr "Skilaboð"
 
 #: D:/github/ZenPhoto20/zp-core/setup/setup-functions.php:204
 msgid "Autorun aborted"
@@ -13853,8 +14060,9 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/setup/setup-functions.php:267
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/deprecated-functions.php:179
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/purgeOptions.php:80
+#, fuzzy
 msgid "unknown"
-msgstr ""
+msgstr "ÓSKRÁÐ"
 
 #: D:/github/ZenPhoto20/zp-core/setup/setup-functions.php:269
 #, php-format
@@ -13921,8 +14129,9 @@ msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/setup/setup-functions.php:360
 #: D:/github/ZenPhoto20/zp-core/setup/setup-functions.php:374
+#, fuzzy
 msgid "apply"
-msgstr ""
+msgstr "Sækja um"
 
 #: D:/github/ZenPhoto20/zp-core/setup/setup-functions.php:370
 #, fuzzy, php-format
@@ -14127,7 +14336,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/wordpress_import.php:423
 #, fuzzy
 msgid "Database password"
-msgstr "Er varið aðgangsorði"
+msgstr "Gagnagruns Lykilorð"
 
 #: D:/github/ZenPhoto20/zp-core/setup/setup-sqlform.php:86
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/wordpress_import.php:102
@@ -14219,17 +14428,19 @@ msgid "new album"
 msgstr "Nýtt albúm"
 
 #: D:/github/ZenPhoto20/zp-core/template-functions.php:136
+#, fuzzy
 msgid "Users"
-msgstr ""
+msgstr "Notendur"
 
 #: D:/github/ZenPhoto20/zp-core/template-functions.php:160
+#, fuzzy
 msgid "Logs"
-msgstr ""
+msgstr "logs"
 
 #: D:/github/ZenPhoto20/zp-core/template-functions.php:173
 #, fuzzy
 msgid "Sort Gallery"
-msgstr "Sortera gallerý"
+msgstr "Sortera gallerý eftir:"
 
 #: D:/github/ZenPhoto20/zp-core/template-functions.php:182
 #, fuzzy
@@ -14248,15 +14459,16 @@ msgstr "Sortera undiralbúm eftir:"
 #: D:/github/ZenPhoto20/zp-core/template-functions.php:220
 #, fuzzy
 msgid "Sort images"
-msgstr "Sortera myndir eftir:"
+msgstr "Myndir"
 
 #: D:/github/ZenPhoto20/zp-core/template-functions.php:230
 msgid "Delete the album"
 msgstr "Eyða þessu albúmi"
 
 #: D:/github/ZenPhoto20/zp-core/template-functions.php:239
+#, fuzzy
 msgid "Upload Here"
-msgstr ""
+msgstr "Hlaða inn"
 
 #: D:/github/ZenPhoto20/zp-core/template-functions.php:245
 msgid "New Album Here"
@@ -14281,8 +14493,9 @@ msgstr "Búa til albúm"
 
 #: D:/github/ZenPhoto20/zp-core/template-functions.php:320
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/user_login-out.php:120
+#, fuzzy
 msgid "Logout"
-msgstr ""
+msgstr "Útskrá"
 
 #: D:/github/ZenPhoto20/zp-core/template-functions.php:822
 #: D:/github/ZenPhoto20/zp-core/template-functions.php:916
@@ -14294,7 +14507,7 @@ msgstr "Fyrri síða"
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/menu_manager.php:630
 #, fuzzy
 msgid "Page 1"
-msgstr "Síður"
+msgstr "Page 1"
 
 #: D:/github/ZenPhoto20/zp-core/template-functions.php:954
 #: D:/github/ZenPhoto20/zp-core/template-functions.php:963
@@ -14359,27 +14572,29 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/template-functions.php:3879
 #, fuzzy
 msgid "search options"
-msgstr "þemavalmöguleikar"
+msgstr "Birta fleiri leitarvalkosti"
 
 #: D:/github/ZenPhoto20/zp-core/template-functions.php:3879
 #, fuzzy
 msgid "fields"
-msgstr "Leitardálkar:"
+msgstr "Akrar"
 
 #: D:/github/ZenPhoto20/zp-core/template-functions.php:3918
+#, fuzzy
 msgid "Within"
-msgstr ""
+msgstr "Innan:"
 
 #: D:/github/ZenPhoto20/zp-core/template-functions.php:3922
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/flag_thumbnail.php:94
 #, fuzzy
 msgid "New"
-msgstr "Fréttir"
+msgstr "Búa til nýtt albúm"
 
 #: D:/github/ZenPhoto20/zp-core/template-functions.php:3929
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-functions.php:806
+#, fuzzy
 msgid "All"
-msgstr ""
+msgstr "Breyta öllum albúmum í"
 
 #: D:/github/ZenPhoto20/zp-core/template-functions.php:3981
 msgid "no date"
@@ -14390,8 +14605,9 @@ msgid "The page you are trying to view is password protected."
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/template-functions.php:4186
+#, fuzzy
 msgid "login"
-msgstr ""
+msgstr "innskrá"
 
 #: D:/github/ZenPhoto20/zp-core/template-functions.php:4210
 #, php-format
@@ -14581,8 +14797,9 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/utilities/gallery_statistics.php:25
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/downloadList.php:257
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/search_statistics.php:84
+#, fuzzy
 msgid "Info"
-msgstr ""
+msgstr "Upplýsingar"
 
 #: D:/github/ZenPhoto20/zp-core/utilities/database_reference.php:14
 #, fuzzy
@@ -14606,16 +14823,19 @@ msgid "Table prefix: no prefix"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/utilities/database_reference.php:205
+#, fuzzy
 msgid "Key"
-msgstr ""
+msgstr "Lykill"
 
 #: D:/github/ZenPhoto20/zp-core/utilities/database_reference.php:208
+#, fuzzy
 msgid "Column"
-msgstr ""
+msgstr "1 Dálkur"
 
 #: D:/github/ZenPhoto20/zp-core/utilities/database_reference.php:211
+#, fuzzy
 msgid "Comment"
-msgstr ""
+msgstr "Ummæli:"
 
 #: D:/github/ZenPhoto20/zp-core/utilities/gallery_statistics.php:27
 #: D:/github/ZenPhoto20/zp-core/utilities/gallery_statistics.php:488
@@ -14630,18 +14850,19 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/utilities/gallery_statistics.php:41
 #, fuzzy
 msgid "Statistics"
-msgstr "Tölfræði gallerýa"
+msgstr "Tölfræði"
 
 #: D:/github/ZenPhoto20/zp-core/utilities/gallery_statistics.php:99
+#, fuzzy
 msgid "rss"
-msgstr ""
+msgstr "RSS flæði"
 
 #: D:/github/ZenPhoto20/zp-core/utilities/gallery_statistics.php:122
 #: D:/github/ZenPhoto20/zp-core/utilities/gallery_statistics.php:590
 #: D:/github/ZenPhoto20/zp-core/utilities/gallery_statistics.php:613
 #, fuzzy
 msgid "most used"
-msgstr "mest skoðað"
+msgstr "Notað"
 
 #: D:/github/ZenPhoto20/zp-core/utilities/gallery_statistics.php:152
 #: D:/github/ZenPhoto20/zp-core/utilities/gallery_statistics.php:572
@@ -14656,8 +14877,9 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/utilities/gallery_statistics.php:584
 #: D:/github/ZenPhoto20/zp-core/utilities/gallery_statistics.php:599
 #: D:/github/ZenPhoto20/zp-core/utilities/gallery_statistics.php:607
+#, fuzzy
 msgid "top rated"
-msgstr ""
+msgstr "Flestar stjörnur"
 
 #: D:/github/ZenPhoto20/zp-core/utilities/gallery_statistics.php:187
 #: D:/github/ZenPhoto20/zp-core/utilities/gallery_statistics.php:574
@@ -14669,15 +14891,17 @@ msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/utilities/gallery_statistics.php:196
 #: D:/github/ZenPhoto20/zp-core/utilities/gallery_statistics.php:581
+#, fuzzy
 msgid "most images"
-msgstr ""
+msgstr "Myndir"
 
 #: D:/github/ZenPhoto20/zp-core/utilities/gallery_statistics.php:212
 #: D:/github/ZenPhoto20/zp-core/utilities/gallery_statistics.php:218
 #: D:/github/ZenPhoto20/zp-core/utilities/gallery_statistics.php:570
 #: D:/github/ZenPhoto20/zp-core/utilities/gallery_statistics.php:579
+#, fuzzy
 msgid "latest"
-msgstr ""
+msgstr "Nýjast"
 
 #: D:/github/ZenPhoto20/zp-core/utilities/gallery_statistics.php:234
 #: D:/github/ZenPhoto20/zp-core/utilities/gallery_statistics.php:580
@@ -14706,12 +14930,14 @@ msgid "Back to the top 10 lists"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/utilities/gallery_statistics.php:264
+#, fuzzy
 msgid "View more"
-msgstr ""
+msgstr "sjá meira"
 
 #: D:/github/ZenPhoto20/zp-core/utilities/gallery_statistics.php:266
+#, fuzzy
 msgid "top"
-msgstr ""
+msgstr "Skopparakringla"
 
 #: D:/github/ZenPhoto20/zp-core/utilities/gallery_statistics.php:328
 #: D:/github/ZenPhoto20/zp-core/utilities/gallery_statistics.php:338
@@ -14818,8 +15044,9 @@ msgid "Core scripts size: <strong>%s</strong>"
 msgstr "Vefsíða<strong>%s</strong>:"
 
 #: D:/github/ZenPhoto20/zp-core/utilities/gallery_statistics.php:616
+#, fuzzy
 msgid "RSS feeds"
-msgstr ""
+msgstr "RSS straumar"
 
 #: D:/github/ZenPhoto20/zp-core/utilities/gallery_statistics.php:701
 msgid "Statistics for news categories"
@@ -14830,12 +15057,17 @@ msgid "Statistics for RSS feeds"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/utilities/gallery_statistics.php:744
+#, fuzzy
 msgid "From "
 msgstr ""
+"Þú fékkst þennan tölvupóst vegna þess að notandi sem reyndi að skrá sig inn "
+"með nafninu %s bað um að láta núllstilla aðgangsorð sitt á ZenPhoto20 "
+"gallerýinu þínu."
 
 #: D:/github/ZenPhoto20/zp-core/utilities/gallery_statistics.php:746
+#, fuzzy
 msgid "to "
-msgstr ""
+msgstr "til"
 
 #: D:/github/ZenPhoto20/zp-core/utilities/gallery_statistics.php:750
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/cacheManager.php:197
@@ -14850,8 +15082,9 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/comment_form.php:114
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_tab.php:183
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/register_user.php:93
+#, fuzzy
 msgid "Show"
-msgstr ""
+msgstr "sýna"
 
 #: D:/github/ZenPhoto20/zp-core/utilities/refresh_database.php:10
 msgid "Refresh the Database"
@@ -14974,12 +15207,14 @@ msgid "ZenPhoto20 group"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/LDAP_auth.php:90
+#, fuzzy
 msgid "LDAP group"
-msgstr ""
+msgstr "Hópur"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/LDAP_auth/LDAP auth.php:225
+#, fuzzy
 msgid "Could not connect to LDAP server."
-msgstr ""
+msgstr "<cf font=\"Arial\" size=\"10\"> Gat ekki tengt mig við þjóninn."
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/PHPMailer.php:13
 msgid ""
@@ -14997,7 +15232,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/PHPMailer.php:56
 #, fuzzy
 msgid "Mail protocol"
-msgstr "Samskiptareglur netþjóns:"
+msgstr "FERLI"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/PHPMailer.php:58
 msgid "Select the mail protocol you wish to be used."
@@ -15019,7 +15254,7 @@ msgstr "Senda tölvupóst"
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/PHPMailer.php:62
 #, fuzzy
 msgid "no"
-msgstr "enginn"
+msgstr "nr."
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/PHPMailer.php:62
 #, fuzzy
@@ -15035,8 +15270,9 @@ msgid "Set to use a secure protocol."
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/PHPMailer.php:64
+#, fuzzy
 msgid "Mail user"
-msgstr ""
+msgstr "Notandi"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/PHPMailer.php:65
 #, fuzzy
@@ -15046,7 +15282,7 @@ msgstr " <em>%s</em> mappa"
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/PHPMailer.php:66
 #, fuzzy
 msgid "Mail password"
-msgstr "Aðgangsorð gallerýs:"
+msgstr "Lykilorð"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/PHPMailer.php:67
 #, fuzzy
@@ -15056,7 +15292,7 @@ msgstr " <em>%s</em> mappa"
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/PHPMailer.php:68
 #, fuzzy
 msgid "POP port"
-msgstr "PHP GD stuðningur"
+msgstr "Popp"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/PHPMailer.php:69
 msgid "POP port number."
@@ -15080,8 +15316,9 @@ msgid "Tools to block denial of service attacks."
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/accessThreshold.php:47
+#, fuzzy
 msgid "Memory"
-msgstr ""
+msgstr "Minni"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/accessThreshold.php:49
 msgid "The number unique access attempts to keep."
@@ -15094,8 +15331,9 @@ msgid ""
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/accessThreshold.php:53
+#, fuzzy
 msgid "Window"
-msgstr ""
+msgstr "Gluggi"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/accessThreshold.php:55
 msgid "The access interval is reset if the last access is beyond this window."
@@ -15124,16 +15362,18 @@ msgid "The the top %d accesses will be displayed."
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/accessThreshold.php:65
+#, fuzzy
 msgid "Clear list"
-msgstr ""
+msgstr "Hreinsa"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/accessThreshold.php:67
 msgid "Clear the access list."
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/accessThreshold.php:108
+#, fuzzy
 msgid "access"
-msgstr ""
+msgstr "Enginn aðgangur"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/accessThreshold.php:122
 msgid "accessThreshold"
@@ -15170,8 +15410,9 @@ msgid "No entries excede the noise level"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/accessThreshold/admin_tab.php:144
+#, fuzzy
 msgid "Sort by:"
-msgstr ""
+msgstr "Ekkert albúm var gefið til að sortera."
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/accessThreshold/admin_tab.php:146
 msgid "interval"
@@ -15183,7 +15424,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/sitemap-extended.php:94
 #, fuzzy
 msgid "date"
-msgstr "uppfæra"
+msgstr "Dagsetning"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/accessThreshold/admin_tab.php:148
 msgid "ip"
@@ -15294,20 +15535,23 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/cacheManager.php:260
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/jcarousel_thumb_nav.php:48
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/paged_thumbs_nav.php:52
+#, fuzzy
 msgid "Crop width"
-msgstr ""
+msgstr "Breidd"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/bxslider_thumb_nav.php:62
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/cacheManager.php:260
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/jcarousel_thumb_nav.php:50
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/paged_thumbs_nav.php:54
+#, fuzzy
 msgid "Crop height"
-msgstr ""
+msgstr "Hæð"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/bxslider_thumb_nav.php:65
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/slideshow.php:86
+#, fuzzy
 msgid "Speed"
-msgstr ""
+msgstr "Hraði"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/bxslider_thumb_nav.php:66
 msgid "The speed in miliseconds the slides advance when clicked.)"
@@ -15418,14 +15662,16 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/cacheManager/cacheImages.php:213
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/cacheManager/cacheImages.php:218
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_tab.php:184
+#, fuzzy
 msgid "Hide"
-msgstr ""
+msgstr "Fela"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/cacheManager.php:219
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:31
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-edit.php:92
+#, fuzzy
 msgid "add"
-msgstr ""
+msgstr "Bæta við"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/cacheManager.php:259
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/galleryArticles.php:73
@@ -15469,8 +15715,11 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/cacheManager.php:394
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/cacheManager.php:408
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/rss.php:85
+#, fuzzy
 msgid "Cache"
 msgstr ""
+"Skyndiminnismappan (cache) er ekki til. Vinsamlegast búið hana til og "
+"stillið skráarkerfisréttindin á 0777."
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/cacheManager.php:356
 msgid "Cache manager"
@@ -15621,7 +15870,7 @@ msgstr "Er að endurnýja skyndiminni fyrir %s"
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/cacheManager/cacheImages.php:250
 #, fuzzy
 msgid "Full Image"
-msgstr "Fullt nafn:"
+msgstr "Mynd"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/cacheManager/cacheImages.php:286
 msgid "invalid_MaxSpace"
@@ -15685,7 +15934,7 @@ msgstr "Albúm: %s"
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/cacheManager/functions.php:66
 #, fuzzy, php-format
 msgid "%1$s: %2$s"
-msgstr "%1$s x %2$s pixlar"
+msgstr "%1$s:%2$s"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/class-AnyFile.php:18
 msgid ""
@@ -15743,7 +15992,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/tinymce.php:57
 #, fuzzy
 msgid "Disabled"
-msgstr "[er virkt]"
+msgstr "óvirkjuð"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/class-WEBdocs.php:59
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/class-WEBdocs.php:70
@@ -15782,8 +16031,9 @@ msgid ""
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/class-WEBdocs.php:68
+#, fuzzy
 msgid "PowerPoint"
-msgstr ""
+msgstr "PowerPoint"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/class-WEBdocs.php:74
 msgid "Choose the WEB service to use for rendering PowerPoint document."
@@ -15913,8 +16163,9 @@ msgid "Channel mode"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/class-video.php:150
+#, fuzzy
 msgid "Format"
-msgstr ""
+msgstr "Tegund sniðs"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/class-video.php:151
 msgid "Channels"
@@ -15925,12 +16176,14 @@ msgid "Frame rate"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/class-video.php:153
+#, fuzzy
 msgid "X Resolution"
-msgstr ""
+msgstr "Skjáupplausn"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/class-video.php:154
+#, fuzzy
 msgid "Y Resolution"
-msgstr ""
+msgstr "Skjáupplausn"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/class-video.php:155
 msgid "Aspect ratio"
@@ -15939,7 +16192,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/class-video.php:156
 #, fuzzy
 msgid "Play Time"
-msgstr "Spilarar"
+msgstr "Spila"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/class-video.php:440
 #, php-format
@@ -16129,7 +16382,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/comment_form.php:96
 #, fuzzy
 msgid "Name field"
-msgstr "sýna fleiri dálka"
+msgstr "Field"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/comment_form.php:98
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/comment_form.php:102
@@ -16263,7 +16516,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/comment_form.php:138
 #, fuzzy
 msgid "Comments per page"
-msgstr "Myndir á síðu:"
+msgstr "Athugasemdir á síðu"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/comment_form.php:140
 msgid ""
@@ -16314,17 +16567,17 @@ msgstr "Skrifa ummæli:"
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/comment_form.php:259
 #, fuzzy
 msgid "show comments"
-msgstr "Engin ummæli"
+msgstr "Engar athugasemdir"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/comment_form.php:263
 #, fuzzy
 msgid "hide comments"
-msgstr "ummæli"
+msgstr "Engar athugasemdir"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/comment_form.php:297
 #, fuzzy
 msgid "on"
-msgstr "enginn"
+msgstr "þann"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/comment_form.php:320
 msgid "Only registered users may post comments."
@@ -16350,7 +16603,7 @@ msgstr "breyta ummæli"
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/comment_form/admin-comments.php:463
 #, fuzzy
 msgid "Are you sure you want to delete this comment?"
-msgstr "Ertu viss um að þú viljir eyða þessum notanda?"
+msgstr "Ertu viss að þú vilt eyða þetta?"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/comment_form/admin-comments.php:156
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-edit.php:411
@@ -16374,13 +16627,14 @@ msgid "IP:"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/comment_form/admin-comments.php:181
+#, fuzzy
 msgid "Street:"
-msgstr ""
+msgstr "Gata"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/comment_form/admin-comments.php:189
 #, fuzzy
 msgid "Postal code:"
-msgstr "Atkvæði samtals"
+msgstr "Póstnúmer"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/comment_form/admin-comments.php:194
 msgid "Comment:"
@@ -16397,8 +16651,9 @@ msgstr "Lokað er fyrir ummæli"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/comment_form/admin-comments.php:205
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/comment_form/admin-comments.php:358
+#, fuzzy
 msgid "Approve"
-msgstr ""
+msgstr "Samþykkja"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/comment_form/admin-comments.php:206
 #, fuzzy
@@ -16411,8 +16666,9 @@ msgid "Comment is approved"
 msgstr "Lokað er fyrir ummæli"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/comment_form/admin-comments.php:211
+#, fuzzy
 msgid "Un-approve"
-msgstr ""
+msgstr "Samþykkja"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/comment_form/admin-comments.php:212
 #, fuzzy
@@ -16477,8 +16733,9 @@ msgid "Edit this comment"
 msgstr "Breyta þessu ummæli."
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/comment_form/admin-comments.php:357
+#, fuzzy
 msgid "Mark as spam"
-msgstr ""
+msgstr "Tilkynna"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/comment_form/admin-comments.php:379
 msgid "The item upon which this comment was posted no longer exists."
@@ -16490,8 +16747,9 @@ msgid "<strong>Missing Object</strong> "
 msgstr "<strong>viðfangsefni</strong>"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/comment_form/admin-comments.php:392
+#, fuzzy
 msgid "article"
-msgstr ""
+msgstr "Bæta við grein"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/comment_form/admin-comments.php:426
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/comment_form/admin-comments.php:478
@@ -16743,8 +17001,9 @@ msgid ""
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/contact_form.php:78
+#, fuzzy
 msgid "required"
-msgstr ""
+msgstr "nauðsynlegt"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/contact_form.php:78
 msgid "omitted"
@@ -16765,8 +17024,9 @@ msgid "The intro text for your contact form"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/contact_form.php:84
+#, fuzzy
 msgid "Confirm text"
-msgstr ""
+msgstr "Staðfesta"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/contact_form.php:86
 msgid ""
@@ -16775,8 +17035,9 @@ msgid ""
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/contact_form.php:87
+#, fuzzy
 msgid "Thanks text"
-msgstr ""
+msgstr "Takk"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/contact_form.php:89
 msgid "The text that is shown after a message has been confirmed and sent."
@@ -16804,8 +17065,9 @@ msgid ""
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/contact_form.php:96
+#, fuzzy
 msgid "Send copy"
-msgstr ""
+msgstr "Senda"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/contact_form.php:98
 msgid ""
@@ -16840,14 +17102,16 @@ msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/contact_form.php:111
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/contact_form.php:113
+#, fuzzy
 msgid "Company"
-msgstr ""
+msgstr "Fyrirtæki"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/contact_form.php:114
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/contact_form.php:116
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/userAddressFields.php:70
+#, fuzzy
 msgid "Street"
-msgstr ""
+msgstr "Gata"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/contact_form.php:120
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/contact_form.php:122
@@ -16861,7 +17125,7 @@ msgstr "Ríki"
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/userAddressFields.php:75
 #, fuzzy
 msgid "Postal code"
-msgstr "Atkvæði samtals"
+msgstr "Póstnúmer"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/contact_form.php:126
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/contact_form.php:128
@@ -16874,12 +17138,13 @@ msgstr "Land"
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/contact_form.php:131
 #, fuzzy
 msgid "E-mail"
-msgstr "Netfang"
+msgstr "Netfang:"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/contact_form.php:135
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/register_user.php:86
+#, fuzzy
 msgid "CAPTCHA"
-msgstr ""
+msgstr "CAPTCHA"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/contact_form.php:137
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/register_user.php:88
@@ -16888,53 +17153,59 @@ msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/contact_form.php:138
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/mobileTheme.php:104
+#, fuzzy
 msgid "Phone"
-msgstr ""
+msgstr "Sími"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/contact_form.php:140
+#, fuzzy
 msgid "Phone number"
-msgstr ""
+msgstr "Símanúmer"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/contact_form.php:199
 #, fuzzy
 msgid "a title"
-msgstr "Titill gallerýs:"
+msgstr "Titill:"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/contact_form.php:202
 #, fuzzy
 msgid "a name"
-msgstr "Fullt nafn:"
+msgstr "Nafn:"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/contact_form.php:205
+#, fuzzy
 msgid "a company"
-msgstr ""
+msgstr "Fyrirtæki"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/contact_form.php:208
+#, fuzzy
 msgid "a street"
-msgstr ""
+msgstr "Gata"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/contact_form.php:211
+#, fuzzy
 msgid "a city"
-msgstr ""
+msgstr "Borg:"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/contact_form.php:214
 #, fuzzy
 msgid "a state"
-msgstr "Ríki"
+msgstr "Ríki:"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/contact_form.php:217
+#, fuzzy
 msgid "a postal code"
-msgstr ""
+msgstr "Póstnúmer"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/contact_form.php:220
 #, fuzzy
 msgid "a country"
-msgstr "Land"
+msgstr "Land:"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/contact_form.php:223
 #, fuzzy
 msgid "a valid email address"
-msgstr "<strong>virkt netfang</strong>"
+msgstr "Gilt netfang"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/contact_form.php:226
 #, fuzzy
@@ -16944,16 +17215,17 @@ msgstr "Vefsíða"
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/contact_form.php:235
 #, fuzzy
 msgid "a phone number"
-msgstr "<strong>símanúmer</strong>"
+msgstr "Símanúmer"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/contact_form.php:238
+#, fuzzy
 msgid "a subject"
-msgstr ""
+msgstr "Fyrirsögn"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/contact_form.php:241
 #, fuzzy
 msgid "a message"
-msgstr "Einkaskilaboð"
+msgstr "Skilaboð<strong>%s</strong>:"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/contact_form.php:249
 msgid "the correct CAPTCHA verification code"
@@ -16979,8 +17251,9 @@ msgid "Confirm"
 msgstr "Staðfesta"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/contact_form.php:342
+#, fuzzy
 msgid "Discard"
-msgstr ""
+msgstr "Fargið"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/contact_form.php:382
 msgid "Error sending mail:"
@@ -16996,7 +17269,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/crop_image.php:63
 #, fuzzy
 msgid "Crop image"
-msgstr "engar myndir"
+msgstr "Mynd"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/crop_image.php:60
 msgid "Permanently crop the actual image."
@@ -17009,7 +17282,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/crop_image.php:221
 #, fuzzy
 msgid "crop image"
-msgstr "engar myndir"
+msgstr "Mynd"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/crop_image.php:363
 #, fuzzy
@@ -17054,16 +17327,18 @@ msgid "Link image watermark"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/crop_image.php:477
+#, fuzzy
 msgid "Done"
-msgstr ""
+msgstr "Lokið"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/debug.php:33
 msgid "Debugging aids."
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/debug.php:64
+#, fuzzy
 msgid "404"
-msgstr ""
+msgstr "445445"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/debug.php:64
 msgid "Log 404 error processing debug information."
@@ -17094,8 +17369,9 @@ msgid "Log filter application sequence."
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/debug.php:68
+#, fuzzy
 msgid "IMAGE"
-msgstr ""
+msgstr "mynd"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/debug.php:68
 msgid "Log image processing debug information."
@@ -17110,16 +17386,18 @@ msgid "Used for examining language selection problems."
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/debug.php:70
+#, fuzzy
 msgid "LOGIN"
-msgstr ""
+msgstr "INNSKRÁ"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/debug.php:70
 msgid "Log admin saves and login attempts."
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/debug.php:71
+#, fuzzy
 msgid "PLUGINS"
-msgstr ""
+msgstr "íbætur"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/debug.php:71
 msgid "Log plugin load sequence."
@@ -17132,17 +17410,20 @@ msgid ""
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/debug.php:119
+#, fuzzy
 msgid "released"
-msgstr ""
+msgstr "Dagssetning afhendingar"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/debug.php:129
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/deprecated-functions.php:223
+#, fuzzy
 msgid "Development"
-msgstr ""
+msgstr "Appþróun"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/debug.php:131
+#, fuzzy
 msgid "Mark release"
-msgstr ""
+msgstr "Leysa út"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/debug.php:135
 #, php-format
@@ -17158,16 +17439,18 @@ msgid "Locales"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/debug.php:155
+#, fuzzy
 msgid "Session"
-msgstr ""
+msgstr "Lota"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/debug.php:159
 msgid "HTTP accept"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/debug.php:160
+#, fuzzy
 msgid "Cookies"
-msgstr ""
+msgstr "Kökur"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/debug/admin_tab.php:44
 #, fuzzy
@@ -17179,8 +17462,9 @@ msgid "Supported locales:"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/debug/admin_tab.php:163
+#, fuzzy
 msgid "Sub-Language"
-msgstr ""
+msgstr "Tungumál"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/debug/admin_tab.php:164
 msgid "Language String"
@@ -17208,7 +17492,7 @@ msgstr "Flokkur"
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/template-functions.php:993
 #, fuzzy
 msgid "Page"
-msgstr "Síður"
+msgstr "[síða]"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/defaultCodeblocks.php:38
 msgid "Objects"
@@ -17241,7 +17525,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/deprecated-functions.php:90
 #, fuzzy
 msgid "Functions"
-msgstr "Stillingar"
+msgstr "aðgerðir"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/deprecated-functions.php:93
 msgid ""
@@ -17255,7 +17539,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/deprecated-functions.php:146
 #, fuzzy
 msgid "function"
-msgstr "Staðsetning"
+msgstr "Röstaðgerð"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/deprecated-functions.php:165
 #, php-format
@@ -17273,9 +17557,9 @@ msgid "standard plugin %1$s:%2$s"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/deprecated-functions.php:174
-#, php-format
+#, fuzzy, php-format
 msgid "core:%s"
-msgstr ""
+msgstr "S"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/deprecated-functions.php:181
 #, php-format
@@ -17321,7 +17605,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:53
 #, fuzzy
 msgid "In Themes"
-msgstr "Þemu"
+msgstr "þemu"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:56
 #, fuzzy
@@ -17362,7 +17646,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/deprecated-functions/functions.php:121
 #, fuzzy, php-format
 msgid "%s table"
-msgstr "[er virkt]"
+msgstr "Tafla"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/downloadList.php:40
 msgid "Plugin to generate file downloads."
@@ -17400,8 +17684,9 @@ msgid ""
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/downloadList.php:80
+#, fuzzy
 msgid "Zip source"
-msgstr ""
+msgstr "Heimild:"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/downloadList.php:82
 #, fuzzy
@@ -17409,8 +17694,9 @@ msgid "From album"
 msgstr "1 albúm"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/downloadList.php:82
+#, fuzzy
 msgid "From Cache"
-msgstr ""
+msgstr "Cache"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/downloadList.php:83
 msgid ""
@@ -17446,7 +17732,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-edit.php:501
 #, fuzzy
 msgid "Guest user:"
-msgstr "Gestanotandi gallerýs:"
+msgstr "Notandakenni fyrir gestaleitarnotandann"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/downloadList.php:169
 #, fuzzy
@@ -17467,9 +17753,9 @@ msgid "Counts of downloads"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/downloadList.php:282
-#, php-format
+#, fuzzy, php-format
 msgid "File “%s” was not found."
-msgstr ""
+msgstr "Fann ekki skjal \"%s\"!"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/downloadList.php:382
 #, php-format
@@ -17567,8 +17853,9 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/dynamic-locale.php:210
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:51
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:143
+#, fuzzy
 msgid "URL"
-msgstr ""
+msgstr "Tengill vefsíðu þinnar er ógildur"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/dynamic-locale.php:208
 #, php-format
@@ -17580,7 +17867,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/dynamic-locale.php:215
 #, fuzzy
 msgid "Use flags"
-msgstr "Nota flv spilunarlista"
+msgstr "Fáni"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/dynamic-locale.php:217
 msgid "Checked produces an array of flags. Not checked produces a selector."
@@ -17591,8 +17878,9 @@ msgid "Language links"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/dynamic-locale.php:222
+#, fuzzy
 msgid "Site language"
-msgstr ""
+msgstr "Tungumál"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/dynamic-locale.php:225
 msgid "Set the primary language for your site."
@@ -17629,7 +17917,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/elFinder.php:81
 #, fuzzy
 msgid "files"
-msgstr "skrá"
+msgstr "Bæta við skrám"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/elFinder/filemanager.php:19
 msgid "Theme Manager"
@@ -17638,7 +17926,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/elFinder/filemanager.php:22
 #, fuzzy
 msgid "File Manager"
-msgstr "Skráarnafn"
+msgstr "Framkvæmdastjóri"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/elFinder/filemanager.php:82
 msgid ""
@@ -17655,7 +17943,7 @@ msgstr "Þemu"
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/elFinder/php/connector_zp.php:77
 #, fuzzy, php-format
 msgid "%s"
-msgstr "%"
+msgstr "S"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/elFinder/php/connector_zp.php:92
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/elFinder/php/connector_zp.php:293
@@ -17900,13 +18188,15 @@ msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/externalFeed.php:240
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/rss.php:417
+#, fuzzy
 msgid " (Latest news)"
-msgstr ""
+msgstr "Nýjustu fréttir"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/externalFeed.php:244
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/rss.php:434
+#, fuzzy
 msgid " (Most popular news)"
-msgstr ""
+msgstr "Vinsælast"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/externalFeed.php:247
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/rss.php:437
@@ -17915,8 +18205,9 @@ msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/externalFeed.php:250
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/rss.php:440
+#, fuzzy
 msgid " (Top rated news)"
-msgstr ""
+msgstr "Flestar stjörnur"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/externalFeed.php:253
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/rss.php:443
@@ -17981,8 +18272,9 @@ msgid "Create Favorites Album"
 msgstr "Búa til albúmið"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/favoritesAlbums/admin-album.php:95
+#, fuzzy
 msgid "favorite"
-msgstr ""
+msgstr "Eftirlæti"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/favoritesHandler.php:48
 msgid "Support for <em>favorites</em> handling."
@@ -18024,8 +18316,9 @@ msgid "Multiple sets"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/favoritesHandler.php:110
+#, fuzzy
 msgid "Add button"
-msgstr ""
+msgstr "Tala"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/favoritesHandler.php:113
 #, fuzzy
@@ -18213,13 +18506,15 @@ msgid "OpenID Authentication"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/federated_logon/OpenID_logon.php:55
+#, fuzzy
 msgid "Identity URL:"
-msgstr ""
+msgstr "Samsemd"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/federated_logon/OpenID_logon.php:60
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/federated_logon/Verisign_logon.php:53
+#, fuzzy
 msgid "Verify"
-msgstr ""
+msgstr "Staðfesta"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/federated_logon/OpenID_logon.php:66
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/federated_logon/Verisign_logon.php:59
@@ -18255,8 +18550,9 @@ msgid "Overlay icons over thumbnails to indicate image status."
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/flag_thumbnail.php:68
+#, fuzzy
 msgid "Criteria"
-msgstr ""
+msgstr "Sláðu inn leitarskilyrðin."
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/flag_thumbnail.php:70
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/sitemap-extended.php:90
@@ -18272,8 +18568,9 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/flag_thumbnail.php:76
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/flag_thumbnail.php:80
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/flag_thumbnail.php:84
+#, fuzzy
 msgid "Icon"
-msgstr ""
+msgstr "Táknmynd"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/flag_thumbnail.php:75
 msgid "Select the icon that will show for “new” images."
@@ -18298,7 +18595,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/flag_thumbnail.php:91
 #, fuzzy
 msgid "Protected"
-msgstr "Óvarin"
+msgstr "Þetta albúm er varið með aðgangsorði!"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/flag_thumbnail.php:93
 msgid ""
@@ -18324,8 +18621,9 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/flag_thumbnail.php:109
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/flag_thumbnail.php:115
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/flag_thumbnail.php:121
+#, fuzzy
 msgid "Text"
-msgstr ""
+msgstr "Textinn fyrir þemamerkið"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/flag_thumbnail.php:102
 msgid "Text flag for <em>geodata tagged</em> images."
@@ -18354,7 +18652,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/flag_thumbnail.php:127
 #, fuzzy
 msgid "Use text"
-msgstr "Fyrri texti"
+msgstr "Texti"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/flag_thumbnail.php:129
 msgid ""
@@ -18384,7 +18682,7 @@ msgstr "Skoða mynd: %s"
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/galleryArticles.php:61
 #, fuzzy
 msgid "Publish for"
-msgstr "Útgefið"
+msgstr "Skrá"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/galleryArticles.php:64
 msgid ""
@@ -18494,13 +18792,15 @@ msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/googleMap.php:63
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/googleMap.php:80
+#, fuzzy
 msgid "Map"
-msgstr ""
+msgstr "Kort"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/googleMap.php:65
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/googleMap.php:81
+#, fuzzy
 msgid "Satellite"
-msgstr ""
+msgstr "Gervitungl"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/googleMap.php:67
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/googleMap.php:82
@@ -18526,7 +18826,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/googleMap.php:88
 #, fuzzy
 msgid "Map display"
-msgstr "sýning mynda"
+msgstr "Birta:"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/googleMap.php:92
 msgid "colorbox"
@@ -18545,8 +18845,9 @@ msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/googleMap.php:97
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/googleMap.php:104
+#, fuzzy
 msgid "Default"
-msgstr ""
+msgstr "Sjálfgefið stafasett fyrir IPTC lýsigögn myndar."
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/googleMap.php:98
 msgid "Dropdown"
@@ -18573,8 +18874,9 @@ msgid "The max zoom level for clustering pictures on map."
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/googleMap.php:110
+#, fuzzy
 msgid "Map sessions"
-msgstr ""
+msgstr "Innskráðir"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/googleMap.php:112
 msgid ""
@@ -18585,8 +18887,9 @@ msgid ""
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/googleMap.php:113
+#, fuzzy
 msgid "API key"
-msgstr ""
+msgstr "API Lykill"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/googleMap.php:115
 msgid ""
@@ -18670,15 +18973,16 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/hitcounter.php:63
 #, fuzzy
 msgid "IP Address list"
-msgstr "IP tala"
+msgstr "IP-tala"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/hitcounter.php:67
 msgid "Comma-separated list of IP addresses to ignore."
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/hitcounter.php:69
+#, fuzzy
 msgid "Filter"
-msgstr ""
+msgstr "Sía"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/hitcounter.php:73
 #, fuzzy
@@ -18789,8 +19093,9 @@ msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/html_meta_tags.php:112
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-news.php:278
+#, fuzzy
 msgid "Expires"
-msgstr ""
+msgstr "Rennur út"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/html_meta_tags.php:114
 msgid ""
@@ -18816,7 +19121,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/html_meta_tags.php:118
 #, fuzzy
 msgid "Site logo"
-msgstr "Þemamerki"
+msgstr "Merki fyrirtækis"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/html_meta_tags.php:119
 msgid ""
@@ -18829,7 +19134,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/html_meta_tags.php:120
 #, fuzzy
 msgid "Twitter name"
-msgstr "Skráarnafn"
+msgstr "Twitter"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/html_meta_tags.php:121
 msgid ""
@@ -18885,8 +19190,9 @@ msgid "User validation"
 msgstr "Notandastjórnandi"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/http_auth.php:77
+#, fuzzy
 msgid "verify"
-msgstr ""
+msgstr "Staðfesta"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/http_auth.php:77
 msgid "trusted"
@@ -19020,8 +19326,9 @@ msgid "No image effects found."
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/image_effects.php:177
+#, fuzzy
 msgid "Effect"
-msgstr ""
+msgstr "Effekt"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/image_effects.php:268
 #, php-format
@@ -19050,13 +19357,14 @@ msgid "Allow"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/ipBlocker.php:73
+#, fuzzy
 msgid "Block"
-msgstr ""
+msgstr "Blokk"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/ipBlocker.php:83
 #, fuzzy
 msgid "IP list"
-msgstr "Spilunarlisti"
+msgstr "Listi"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/ipBlocker.php:85
 #, php-format
@@ -19064,8 +19372,9 @@ msgid "List of IP ranges to %s."
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/ipBlocker.php:86
+#, fuzzy
 msgid "Import list"
-msgstr ""
+msgstr "Flytja Inn"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/ipBlocker.php:91
 #, php-format
@@ -19096,8 +19405,9 @@ msgid "Access will be suspended after this many 404 errors."
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/ipBlocker.php:102
+#, fuzzy
 msgid "Cool off"
-msgstr ""
+msgstr "Óvirkt"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/ipBlocker.php:104
 msgid "The block will be removed after this many minutes."
@@ -19110,7 +19420,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/ipBlocker.php:163
 #, fuzzy
 msgid "clear list"
-msgstr "Spilunarlisti"
+msgstr "Hreinsa"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/ipBlocker.php:186
 #, fuzzy
@@ -19118,8 +19428,9 @@ msgid "IP address format error"
 msgstr "IP tala"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/ipBlocker.php:320
+#, fuzzy
 msgid "Suspended"
-msgstr ""
+msgstr "frestað"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/jcarousel_thumb_nav.php:12
 msgid ""
@@ -19183,8 +19494,9 @@ msgid "This player does not support <em>External Albums</em>."
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/jplayer.php:126
+#, fuzzy
 msgid "Autoplay"
-msgstr ""
+msgstr "sjálfstýring"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/jplayer.php:127
 msgid "Disabled automatically if several players on one page"
@@ -19209,8 +19521,9 @@ msgid ""
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/jplayer.php:132
+#, fuzzy
 msgid "Show title"
-msgstr ""
+msgstr "Birta fyrirsögn"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/jplayer.php:133
 msgid ""
@@ -19324,32 +19637,36 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/jplayer.php:468
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/jplayer.php:728
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/slideshow2.php:272
+#, fuzzy
 msgid "play"
-msgstr ""
+msgstr "Spila"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/jplayer.php:373
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/jplayer.php:410
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/jplayer.php:741
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/jplayer.php:777
+#, fuzzy
 msgid "mute"
-msgstr ""
+msgstr "Slökkva á hljóði?"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/jplayer.php:374
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/jplayer.php:411
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/jplayer.php:742
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/jplayer.php:778
+#, fuzzy
 msgid "max volume"
-msgstr ""
+msgstr "Rúmmál"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/jplayer.php:472
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/slideshow2.php:270
+#, fuzzy
 msgid "stop"
-msgstr ""
+msgstr "Stöðva"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/jplayer.php:478
 #, fuzzy
 msgid "repeat"
-msgstr "endurtaka:"
+msgstr "(endurtaka)"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/jplayer.php:480
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/slideshow.php:112
@@ -19358,8 +19675,9 @@ msgid "shuffle"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/jplayer.php:483
+#, fuzzy
 msgid "full screen"
-msgstr ""
+msgstr "Stærri mynd"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/jplayer.php:490
 msgid "Update Required"
@@ -19495,8 +19813,9 @@ msgid ""
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/menu_manager.php:111
+#, fuzzy
 msgid "menu"
-msgstr ""
+msgstr "Valmynd"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/menu_manager.php:643
 #, fuzzy, php-format
@@ -19519,7 +19838,7 @@ msgstr[1] "síða %u"
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:120
 #, fuzzy
 msgid "News index"
-msgstr "Fréttagreinar"
+msgstr "Vísitala"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/menu_manager.php:868
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/menu_manager.php:882
@@ -19562,7 +19881,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-pages.php:26
 #, fuzzy
 msgid "Sort order saved."
-msgstr "Röðun mynda vistuð"
+msgstr "Pöntun vistuð"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:65
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:373
@@ -19589,7 +19908,7 @@ msgstr "Varið aðgangsorði"
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-functions.php:286
 #, fuzzy
 msgid "view"
-msgstr "Yfirlit"
+msgstr "Skoða"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:137
 #, php-format
@@ -19778,8 +20097,9 @@ msgid "Ok to delete menu %s? This cannot be undone!"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_tab.php:132
+#, fuzzy
 msgid "Menu Manager"
-msgstr ""
+msgstr "Framkvæmdastjóri"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_tab.php:133
 #, php-format
@@ -19807,8 +20127,9 @@ msgid "Add Menu Items"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_tab.php:161
+#, fuzzy
 msgid "New Menu"
-msgstr ""
+msgstr "Valmynd"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_tab.php:176
 #, fuzzy
@@ -19821,8 +20142,9 @@ msgid "Duplicate %s menu"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_tab.php:192
+#, fuzzy
 msgid "Duplicate menu"
-msgstr ""
+msgstr "Tvöfalda"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_tab.php:195
 #, fuzzy, php-format
@@ -19832,7 +20154,7 @@ msgstr "Eyða þessu ummæli."
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_tab.php:195
 #, fuzzy
 msgid "Delete menu"
-msgstr "Eyða mynd"
+msgstr "Eyða"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_tab.php:226
 #, fuzzy
@@ -19845,8 +20167,9 @@ msgid "Menu target is password protected"
 msgstr "Þetta albúm er varið með aðgangsorði!"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_tab.php:242
+#, fuzzy
 msgid "Show/hide"
-msgstr ""
+msgstr "Fela"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:57
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:247
@@ -19918,7 +20241,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:133
 #, fuzzy
 msgid "Custom page"
-msgstr "Sérsniðin yfirlitssíða:"
+msgstr "Sérsniðið"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:134
 msgid "Creates a link to a custom theme script page."
@@ -19943,8 +20266,9 @@ msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:148
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:264
+#, fuzzy
 msgid "Label"
-msgstr ""
+msgstr "Merki"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:149
 msgid "Creates a <em>label</em> to use in menu structures)."
@@ -19955,7 +20279,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:265
 #, fuzzy
 msgid "Function"
-msgstr "Staðsetning"
+msgstr "virka"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:155
 msgid "Executes the PHP function provided."
@@ -19964,8 +20288,9 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:163
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:165
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:266
+#, fuzzy
 msgid "HTML"
-msgstr ""
+msgstr "HTML"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:164
 msgid "Inserts custom HTML."
@@ -19999,8 +20324,9 @@ msgid "Menu <em>%s</em>"
 msgstr " <em>%s</em> mappa"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:296
+#, fuzzy
 msgid "Type:"
-msgstr ""
+msgstr "Tegund:"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:341
 msgid "Include <em>&lt;LI&gt;</em> element"
@@ -20011,8 +20337,9 @@ msgid "Add <em>span</em> tags"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:359
+#, fuzzy
 msgid "Class"
-msgstr ""
+msgstr "Tímar"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:375
 msgid "Target does not exist."
@@ -20037,8 +20364,9 @@ msgid ""
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/mergedRSS.php:69
+#, fuzzy
 msgid "Feed items:"
-msgstr ""
+msgstr "Hlutur"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/mergedRSS.php:71
 #, fuzzy
@@ -20076,7 +20404,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/mobileTheme.php:103
 #, fuzzy
 msgid "Test mode"
-msgstr "Prófa"
+msgstr "Hamur"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/mobileTheme.php:104
 #, fuzzy
@@ -20084,8 +20412,9 @@ msgid "Tablet"
 msgstr "Virkt"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/mobileTheme.php:105
+#, fuzzy
 msgid "live"
-msgstr ""
+msgstr "Netspjall"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/mobileTheme.php:106
 msgid ""
@@ -20096,12 +20425,12 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/mobileTheme.php:150
 #, fuzzy
 msgid "View the mobile gallery"
-msgstr "Heimsækja ljósmyndagallerýið"
+msgstr "Skoðaðu myndasafnið"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/mobileTheme.php:155
 #, fuzzy
 msgid "View the normal gallery"
-msgstr "Heimsækja ljósmyndagallerýið"
+msgstr "Skoðaðu myndasafnið"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/multiple_layouts.php:44
 msgid "Multiple <em>Theme</em> layouts"
@@ -20112,8 +20441,9 @@ msgid "Enable multiple layouts for"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/multiple_layouts.php:220
+#, fuzzy
 msgid "Select layout:"
-msgstr ""
+msgstr "Veljið umbrotsstillingu"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/multiple_layouts.php:233
 #, fuzzy
@@ -20179,8 +20509,9 @@ msgstr "Breytingar vistaðar"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/optionalObjectFields.php:89
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/optionalObjectFields.php:167
+#, fuzzy
 msgid "Location"
-msgstr ""
+msgstr "Staðsetning:"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/optionalObjectFields.php:104
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/optionalObjectFields.php:220
@@ -20188,7 +20519,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/optionalObjectFields.php:306
 #, fuzzy
 msgid "Clear tags"
-msgstr "Endurskíra tög"
+msgstr "Hreinsa"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/optionalObjectFields.php:105
 #, fuzzy
@@ -20211,7 +20542,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/optionalObjectFields.php:201
 #, fuzzy
 msgid "Credit"
-msgstr "breyta"
+msgstr "Kreditkort"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/optionalObjectFields.php:207
 #, fuzzy
@@ -20242,23 +20573,25 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/slideshow2.php:144
 #, fuzzy
 msgid "full image"
-msgstr "%u myndir"
+msgstr "Mynd"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/optionalObjectFields.php:563
 msgid "No tags assigned"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/optionalObjectFields.php:567
+#, fuzzy
 msgid "remove tags"
-msgstr ""
+msgstr "Fjarlægja"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/optionalObjectFields.php:568
 msgid "cancel"
 msgstr "hætta við"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/optionalObjectFields.php:571
+#, fuzzy
 msgid "Add"
-msgstr ""
+msgstr "Bæta við"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/paged_thumbs_nav.php:11
 msgid ""
@@ -20277,8 +20610,9 @@ msgid ""
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/paged_thumbs_nav.php:46
+#, fuzzy
 msgid "Counter"
-msgstr ""
+msgstr "Teljari"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/paged_thumbs_nav.php:47
 msgid "If you want to show the counter “x - y of z images”."
@@ -20336,7 +20670,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/paged_thumbs_nav.php:60
 #, fuzzy
 msgid "Page list"
-msgstr "Síður"
+msgstr "Síða"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/paged_thumbs_nav.php:61
 msgid "If you want the list of the pages to be shown."
@@ -20543,7 +20877,7 @@ msgstr "%s var ekki hægt að eyða."
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-functions.php:1454
 #, fuzzy
 msgid "Publish"
-msgstr "Útgefið"
+msgstr "Skrá"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/publishContent/publishContent.php:458
 #, fuzzy
@@ -20553,7 +20887,7 @@ msgstr "ekki gefa út"
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/publishContent/publishContent.php:492
 #, fuzzy
 msgid "all images"
-msgstr "myndir"
+msgstr "Myndir"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/publishContent/publishContent.php:496
 #, fuzzy
@@ -20630,7 +20964,7 @@ msgstr "Fréttagreinar"
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/publishContent/publishContent.php:616
 #, fuzzy
 msgid "Articles:"
-msgstr "Bæta við grein"
+msgstr "Fréttagreinar"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/publishContent/publishContent.php:628
 msgid "Publish waiting articles."
@@ -20790,21 +21124,23 @@ msgid ""
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/rating.php:88
+#, fuzzy
 msgid "open"
-msgstr ""
+msgstr "Opna"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/rating.php:88
 msgid "members &amp; guests"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/rating.php:88
+#, fuzzy
 msgid "members only"
-msgstr ""
+msgstr "Meðlimir"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/rating.php:88
 #, fuzzy
 msgid "closed"
-msgstr "loka"
+msgstr "Lokað"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/rating.php:98
 msgid "Voting state"
@@ -20815,8 +21151,9 @@ msgid "<em>Enable</em> state of voting."
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/rating.php:101
+#, fuzzy
 msgid "Stars"
-msgstr ""
+msgstr "Sólstjarna"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/rating.php:102
 #, php-format
@@ -20830,16 +21167,19 @@ msgid "Split stars"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/rating.php:104
+#, fuzzy
 msgid "full"
-msgstr ""
+msgstr "FULLT NAFN"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/rating.php:104
+#, fuzzy
 msgid "half"
-msgstr ""
+msgstr "Skipta pizzu"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/rating.php:104
+#, fuzzy
 msgid "third"
-msgstr ""
+msgstr "Þriðja"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/rating.php:105
 msgid ""
@@ -20885,12 +21225,14 @@ msgid ""
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/rating.php:131
+#, fuzzy
 msgid "retract"
-msgstr ""
+msgstr "Sjálfvirk afturfærsla"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/rating.php:148
+#, fuzzy
 msgid "Vote Status:"
-msgstr ""
+msgstr "Staða"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/rating.php:178
 msgid "Reset all ratings"
@@ -20919,8 +21261,9 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/rating.php:348
+#, fuzzy
 msgid "Submit »"
-msgstr ""
+msgstr "Senda"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/rating.php:396
 msgid "Vote Submitted"
@@ -20943,25 +21286,28 @@ msgid ""
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/reCaptcha.php:60
+#, fuzzy
 msgid "Red"
-msgstr ""
+msgstr "Rauður"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/reCaptcha.php:60
+#, fuzzy
 msgid "White"
-msgstr ""
+msgstr "Hvítt"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/reCaptcha.php:60
 msgid "Black Glass"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/reCaptcha.php:60
+#, fuzzy
 msgid "Clean"
-msgstr ""
+msgstr "Hreinar vefslóðir"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/reCaptcha.php:69
 #, fuzzy
 msgid "Public key"
-msgstr "Útgefið"
+msgstr "Aðgengilegt öllum"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/reCaptcha.php:71
 msgid ""
@@ -20972,7 +21318,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/reCaptcha.php:72
 #, fuzzy
 msgid "Private key"
-msgstr "Einkaskilaboð"
+msgstr "Einka"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/reCaptcha.php:74
 #, fuzzy
@@ -20983,7 +21329,7 @@ msgstr "Sláðu inn leitarskilyrðin."
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/themeSwitcher.php:116
 #, fuzzy
 msgid "Theme"
-msgstr "Þemu"
+msgstr "Veldu liti þemans"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/reCaptcha.php:78
 #, fuzzy
@@ -21000,8 +21346,9 @@ msgid "reCAPTCHA is not properly configured."
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/reCaptcha.php:123
+#, fuzzy
 msgid "Help"
-msgstr ""
+msgstr "Aðstoð"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/reCaptcha.php:124
 msgid "Get a visual challenge"
@@ -21024,8 +21371,9 @@ msgid "Type what you hear"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/reCaptcha.php:129
+#, fuzzy
 msgid "Incorrect please try again"
-msgstr ""
+msgstr "Vinsamlegast reyndu aftur."
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/register_user.php:27
 msgid ""
@@ -21074,7 +21422,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/register_user.php:80
 #, fuzzy
 msgid "Email ID"
-msgstr "Netfang"
+msgstr "tölvupóstfang"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/register_user.php:82
 msgid "If checked, The use’s e-mail address will be used as his User ID."
@@ -21154,8 +21502,9 @@ msgid "Registration confirmation"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/register_user.php:395
+#, fuzzy
 msgid "you are already logged in."
-msgstr ""
+msgstr "Þú ert þegar innskráð/-ur!"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/register_user.php:407
 msgid "Thank you for registering."
@@ -21208,8 +21557,9 @@ msgid "Invalid verification link."
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/register_user.php:488
+#, fuzzy
 msgid "Enter a valid email address."
-msgstr ""
+msgstr "Vinsamlegast sláðu inn gilt netfang"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/register_user.php:496
 msgid "The CAPTCHA you entered was not correct."
@@ -21348,7 +21698,7 @@ msgstr "[er virkt]"
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/rss.php:45
 #, fuzzy
 msgid "All News"
-msgstr "Fréttir"
+msgstr "Allt"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/rss.php:46
 #, fuzzy
@@ -21410,8 +21760,9 @@ msgid ""
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/rss.php:82
+#, fuzzy
 msgid "Media RSS:"
-msgstr ""
+msgstr "Gögn"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/rss.php:84
 msgid ""
@@ -21458,8 +21809,9 @@ msgstr "Titill vefsíðu:"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/rss.php:96
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage.php:127
+#, fuzzy
 msgid "Both"
-msgstr ""
+msgstr "Tveir"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/rss.php:97
 msgid ""
@@ -21505,7 +21857,7 @@ msgstr "Setja nýlega uppfluttar myndir í skyndiminni."
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/rss.php:574
 #, fuzzy, php-format
 msgid "Date: %s"
-msgstr "Dagsetning:"
+msgstr "Dags.: %s"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/search_statistics.php:27
 #, fuzzy
@@ -21670,7 +22022,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/security-logger.php:120
 #, fuzzy
 msgid "Log reset"
-msgstr "Skráð(ur) út"
+msgstr "Endurstilla"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/security-logger.php:123
 msgid "Log deleted"
@@ -21682,8 +22034,9 @@ msgid "Log downloaded"
 msgstr "Niðurhala"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/security-logger.php:131
+#, fuzzy
 msgid "Install"
-msgstr ""
+msgstr "setja"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/security-logger.php:138
 msgid "Restore setup scripts"
@@ -21741,12 +22094,12 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/security-logger.php:195
 #, fuzzy
 msgid "Failed"
-msgstr "[Mistókst]"
+msgstr "mistókst"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/security-logger.php:198
 #, fuzzy
 msgid "Success"
-msgstr "Tókst."
+msgstr "Árangri náð"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/security-logger.php:201
 msgid "Blocked"
@@ -21950,8 +22303,9 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/site_upgrade.php:126
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/site_upgrade.php:133
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/site_upgrade.php:140
+#, fuzzy
 msgid "Site status:"
-msgstr ""
+msgstr "Staða"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/site_upgrade.php:133
 msgid "The site is in test mode!"
@@ -21980,8 +22334,9 @@ msgid "Make the site available for viewing administrators only."
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/site_upgrade.php:195
+#, fuzzy
 msgid "Site » open"
-msgstr ""
+msgstr "Opna"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/site_upgrade.php:199
 msgid "Make site available for viewing."
@@ -21992,8 +22347,9 @@ msgid "Your setup scripts are not protected!"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/site_upgrade.php:222
+#, fuzzy
 msgid "Site » close"
-msgstr ""
+msgstr "LOKA"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/site_upgrade.php:226
 msgid ""
@@ -22076,7 +22432,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/sitemap-extended.php:92
 #, fuzzy
 msgid "Image date"
-msgstr "Myndasíða"
+msgstr "Mynd"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/sitemap-extended.php:96
 msgid "Field to use for the last modification date of images."
@@ -22103,8 +22459,9 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/sitemap-extended.php:140
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/sitemap-extended.php:150
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/sitemap-extended.php:160
+#, fuzzy
 msgid "hourly"
-msgstr ""
+msgstr "Á klukkutímafresti"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/sitemap-extended.php:101
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/sitemap-extended.php:111
@@ -22113,8 +22470,9 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/sitemap-extended.php:141
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/sitemap-extended.php:151
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/sitemap-extended.php:161
+#, fuzzy
 msgid "daily"
-msgstr ""
+msgstr "Daglega"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/sitemap-extended.php:102
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/sitemap-extended.php:112
@@ -22123,8 +22481,9 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/sitemap-extended.php:142
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/sitemap-extended.php:152
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/sitemap-extended.php:162
+#, fuzzy
 msgid "weekly"
-msgstr ""
+msgstr "Vikulega"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/sitemap-extended.php:103
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/sitemap-extended.php:113
@@ -22133,8 +22492,9 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/sitemap-extended.php:143
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/sitemap-extended.php:153
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/sitemap-extended.php:163
+#, fuzzy
 msgid "monthly"
-msgstr ""
+msgstr "Mánaðarlega"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/sitemap-extended.php:104
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/sitemap-extended.php:114
@@ -22143,8 +22503,9 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/sitemap-extended.php:144
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/sitemap-extended.php:154
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/sitemap-extended.php:164
+#, fuzzy
 msgid "yearly"
-msgstr ""
+msgstr "Árlega"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/sitemap-extended.php:105
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/sitemap-extended.php:115
@@ -22247,7 +22608,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:26
 #, fuzzy
 msgid "Sitemap"
-msgstr "Síða:"
+msgstr "Vefsíðukort"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:76
 msgid "Available sitemap files:"
@@ -22394,12 +22755,14 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/slideshow.php:125
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/slideshow2.php:103
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/slideshow2.php:139
+#, fuzzy
 msgid "fade"
-msgstr ""
+msgstr "Deyfa(Fade)"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/slideshow.php:112
+#, fuzzy
 msgid "zoom"
-msgstr ""
+msgstr "Súma inn"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/slideshow.php:112
 msgid "slide X"
@@ -22414,8 +22777,9 @@ msgid "scroll up"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/slideshow.php:112
+#, fuzzy
 msgid "scroll down"
-msgstr ""
+msgstr "Skruna niður"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/slideshow.php:112
 msgid "scroll left"
@@ -22516,8 +22880,9 @@ msgid "Play"
 msgstr "Spila"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/slideshow.php:386
+#, fuzzy
 msgid ":"
-msgstr ""
+msgstr ":"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/slideshow.php:447
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/slideshow2.php:415
@@ -22588,20 +22953,24 @@ msgid "fadeOut"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/slideshow2.php:106
+#, fuzzy
 msgid "Scroll horizontal"
-msgstr ""
+msgstr "Skrolla lárétt"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/slideshow2.php:107
+#, fuzzy
 msgid "Scroll vertical"
-msgstr ""
+msgstr "Skrolla lóðrétt"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/slideshow2.php:108
+#, fuzzy
 msgid "Flip horizontal"
-msgstr ""
+msgstr "Snúa lárétt"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/slideshow2.php:109
+#, fuzzy
 msgid "Flip vertical"
-msgstr ""
+msgstr "Snúa lóðrétt"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/slideshow2.php:110
 msgid "Tile slide"
@@ -22679,8 +23048,9 @@ msgid ""
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/slideshow2.php:271
+#, fuzzy
 msgid "pause"
-msgstr ""
+msgstr "Hlé"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/static_html_cache.php:27
 msgid "Adds static HTML cache functionality."
@@ -22745,8 +23115,9 @@ msgid "Tag items found by the search"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/tagFromSearch.php:39
+#, fuzzy
 msgid "Tag items"
-msgstr ""
+msgstr "Hlutur"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/tagFromSearch/tag.php:75
 #, php-format
@@ -22887,7 +23258,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/themeEditor/themes-editor.php:157
 #, fuzzy
 msgid "Update File"
-msgstr "Endurskíra skrá"
+msgstr "Uppfæra"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/themeEditor/themes-editor.php:171
 msgid ""
@@ -22909,8 +23280,9 @@ msgid "The time in minutes that the theme switcher cookie lasts."
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/themeSwitcher.php:52
+#, fuzzy
 msgid "Private"
-msgstr ""
+msgstr "Einka"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/themeSwitcher.php:53
 msgid ""
@@ -22963,7 +23335,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/tinyURL.php:83
 #, fuzzy
 msgid "news categories"
-msgstr "Flokkar: "
+msgstr "Flokkar"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/tinymce.php:20
 msgid "TinyMCE WYSIWYG editor"
@@ -23070,7 +23442,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:252
 #, fuzzy
 msgid "image only"
-msgstr "sýning mynda"
+msgstr "Mynd"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:258
 msgid "image with link to full-sized image"
@@ -23094,16 +23466,18 @@ msgid "Include caption"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:304
+#, fuzzy
 msgid "title only"
-msgstr ""
+msgstr "Titill"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:316
 msgid "Click to bring up the custom cropping page."
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:317
+#, fuzzy
 msgid "Custom crop"
-msgstr ""
+msgstr "Sérsniðið"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:323
 msgid "No object source has been chosen."
@@ -23145,8 +23519,9 @@ msgid "moderate"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/trivialSpam.php:64
+#, fuzzy
 msgid "reject"
-msgstr ""
+msgstr "Hafna símtali"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/trivialSpam.php:65
 msgid "This action will be taken for all messages."
@@ -23181,8 +23556,9 @@ msgid ""
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/tweet_news.php:76
+#, fuzzy
 msgid "Secret"
-msgstr ""
+msgstr "Secret"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/tweet_news.php:78
 msgid "The <em>secret</em> associated with your <em>consumer key</em>."
@@ -23215,8 +23591,9 @@ msgid ""
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/tweet_news.php:97
+#, fuzzy
 msgid "Tweet"
-msgstr ""
+msgstr "Tíst"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/tweet_news.php:100
 msgid ""
@@ -23265,8 +23642,9 @@ msgid "Tweet News Errors:"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/tweet_news.php:387
+#, fuzzy
 msgid "Tweet me"
-msgstr ""
+msgstr "Tíst"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/uploader_http.php:14
 msgid "<em>http</em> image upload handler."
@@ -23276,7 +23654,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/uploader_jQuery.php:37
 #, fuzzy, php-format
 msgid "images (%s)"
-msgstr "%u mynd(ir)"
+msgstr "Myndir"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/uploader_http/upload_form.php:64
 msgid "Does not reload!"
@@ -23357,17 +23735,17 @@ msgstr "Snúningur mynda krefst PHP útgáfu 4.3 eða nýrri."
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/uploader_jQuery/upload_form.php:110
 #, fuzzy
 msgid "Add files..."
-msgstr "Bæta við grein"
+msgstr "Bæta við skrám"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/uploader_jQuery/upload_form.php:114
 #, fuzzy
 msgid "Start upload"
-msgstr "uppflytja"
+msgstr "Hlaða Upp"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/uploader_jQuery/upload_form.php:115
 #, fuzzy
 msgid "Cancel upload"
-msgstr "Myndir uppfluttar"
+msgstr "Hætta upphlaðningu"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/uploader_jQuery/upload_form.php:130
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/uploader_jQuery/upload_form.php:152
@@ -23480,8 +23858,9 @@ msgid ""
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/user-expiry.php:109
+#, fuzzy
 msgid "expiry"
-msgstr ""
+msgstr "Gildistími"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/user-expiry.php:157
 #, php-format
@@ -23500,8 +23879,9 @@ msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/user-expiry.php:284
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/user-expiry/user-expiry-tab.php:158
+#, fuzzy
 msgid "Expires soon"
-msgstr ""
+msgstr "Rennur út"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/user-expiry.php:286
 #, php-format
@@ -23538,15 +23918,15 @@ msgid "Manage user expiry."
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/user-expiry/user-expiry-tab.php:155
-#, php-format
+#, fuzzy, php-format
 msgid "Expired:%s; "
-msgstr ""
+msgstr "Útrunnin"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/user-expiry/user-expiry-tab.php:158
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/user-expiry/user-expiry-tab.php:160
-#, php-format
+#, fuzzy, php-format
 msgid "Expires:%s; "
-msgstr ""
+msgstr "Rennur út %s"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/user-expiry/user-expiry-tab.php:176
 #, fuzzy
@@ -23556,12 +23936,14 @@ msgstr "Skyndiminni hefur verið hreinsað."
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/user-expiry/user-expiry-tab.php:182
 #, fuzzy
 msgid "enable"
-msgstr "Virkt"
+msgstr ""
+"Veldu þetta til að virkja glærusýningu fyrir <em>Smoothgallery</em> "
+"persónuleikann."
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/user-expiry/user-expiry-tab.php:184
 #, fuzzy
 msgid "disable"
-msgstr "[er virkt]"
+msgstr "afvirkja"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/user-expiry/user-expiry-tab.php:187
 msgid "renew"
@@ -23585,16 +23967,19 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/user-expiry/user-expiry-tab.php:207
 #, fuzzy
 msgid "Disable"
-msgstr "[er virkt]"
+msgstr "Slökkva"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/user-expiry/user-expiry-tab.php:208
 #, fuzzy
 msgid "Enable"
-msgstr "Virkt"
+msgstr ""
+"Veldu þetta til að virkja glærusýningu fyrir <em>Smoothgallery</em> "
+"persónuleikann."
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/user-expiry/user-expiry-tab.php:217
+#, fuzzy
 msgid "Renew"
-msgstr ""
+msgstr "endurnýja"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/user-expiry/user-expiry-tab.php:218
 msgid "Email renewal link"
@@ -23613,8 +23998,9 @@ msgid "no groups established"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/user_groups.php:140
+#, fuzzy
 msgid " (Template)"
-msgstr ""
+msgstr "Sniðmát"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/user_groups.php:155
 #, fuzzy
@@ -23652,13 +24038,14 @@ msgid "assignments"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/user_groups.php:250
+#, fuzzy
 msgid "groups"
-msgstr ""
+msgstr "Hópar"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/user_groups/user_groups-tab.php:141
 #, fuzzy
 msgid "Deleted"
-msgstr "Eyða"
+msgstr "þeim er eytt"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/user_groups/user_groups-tab.php:182
 msgid ""
@@ -23669,13 +24056,15 @@ msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/user_groups/user_groups-tab.php:221
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/user_groups/user_groups-tab.php:238
+#, fuzzy
 msgid "group"
-msgstr ""
+msgstr "Hópur"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/user_groups/user_groups-tab.php:223
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/user_groups/user_groups-tab.php:240
+#, fuzzy
 msgid "template"
-msgstr ""
+msgstr "Sniðmát"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/user_groups/user_groups-tab.php:284
 msgid "clone:"
@@ -23693,7 +24082,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/user_groups/user_groups-tab.php:354
 #, fuzzy
 msgid "Are you sure you want to delete this group?"
-msgstr "Ertu viss um að þú viljir eyða þessum notanda?"
+msgstr "Ertu viss að þú vilt eyða þetta?"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/user_groups/user_groups-tab.php:357
 #, fuzzy
@@ -23723,12 +24112,14 @@ msgid "Provides a means for users to login/out from your theme pages."
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/user_login-out.php:38
+#, fuzzy
 msgid "Login form"
-msgstr ""
+msgstr "Innskráning"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/user_login-out.php:39
+#, fuzzy
 msgid "Form"
-msgstr ""
+msgstr "Eyðublað"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/user_login-out.php:39
 msgid "Colorbox"
@@ -23787,17 +24178,20 @@ msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/user_mailing_list.php:114
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/user_mailing_list.php:128
+#, fuzzy
 msgid "Subject:"
-msgstr ""
+msgstr "Titill:"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/user_mailing_list.php:115
+#, fuzzy
 msgid "To:"
-msgstr ""
+msgstr "Til"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/user_mailing_list.php:116
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/user_mailing_list.php:130
+#, fuzzy
 msgid "Message:"
-msgstr ""
+msgstr "Skilaboð<strong>%s</strong>:"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/user_mailing_list.php:117
 #, fuzzy
@@ -23817,7 +24211,7 @@ msgstr "Gestaleitarnotandi:"
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/user_mailing_list.php:165
 #, fuzzy
 msgid "Send mail"
-msgstr "Senda tölvupóst"
+msgstr "Senda"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/viewer_size_image.php:27
 msgid "Provides a means allowing users to select the image size to view."
@@ -23852,8 +24246,9 @@ msgid "Choose the kind of selector to be presented the viewer."
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/viewer_size_image.php:62
+#, fuzzy
 msgid "Default size"
-msgstr ""
+msgstr "Sjálfgefið"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/viewer_size_image.php:63
 msgid ""
@@ -23862,8 +24257,9 @@ msgid ""
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/viewer_size_image.php:100
+#, fuzzy
 msgid "Select image size"
-msgstr ""
+msgstr "Velja mynd"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/viewer_size_image.php:109
 msgid ""
@@ -23911,12 +24307,14 @@ msgid "Query failed : "
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/wordpress_import.php:70
+#, fuzzy
 msgid "Please try again"
-msgstr ""
+msgstr "Vinsamlegast reyndu aftur."
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/wordpress_import.php:85
+#, fuzzy
 msgid "Missing"
-msgstr ""
+msgstr "Vantar tegund"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/wordpress_import.php:97
 msgid "Wordpress-Database info"
@@ -24101,8 +24499,9 @@ msgid "Convert linefeeds to new lines (br)"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/wordpress_import.php:427
+#, fuzzy
 msgid "Import"
-msgstr ""
+msgstr "Flytja Inn"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/wordpress_import.php:450
 msgid "Import finished."
@@ -24118,8 +24517,9 @@ msgid "Pages and Articles"
 msgstr "Fréttagreinar"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/wordpress_import.php:490
+#, fuzzy
 msgid "New import"
-msgstr ""
+msgstr "Flytja Inn"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/xmpMetadata.php:595
 msgid "Sidecar file extension"
@@ -24153,8 +24553,9 @@ msgid "Exposure program"
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/xmpMetadata.php:659
+#, fuzzy
 msgid "Rating"
-msgstr ""
+msgstr "einkunn"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/xmpMetadata.php:1155
 msgid "Metadata exported"
@@ -24184,8 +24585,9 @@ msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage.php:107
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage.php:140
+#, fuzzy
 msgid "Read more"
-msgstr ""
+msgstr "Skoða frekar"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage.php:120
 msgid "Enabled CMS items"
@@ -24300,7 +24702,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-categories.php:135
 #, fuzzy
 msgid "New category"
-msgstr "Flokkur"
+msgstr "nýr flokkur"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-categories.php:143
 #, fuzzy
@@ -24316,7 +24718,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-categories.php:198
 #, fuzzy
 msgid "Delete category"
-msgstr "Eyða síðu"
+msgstr "eyða flokk"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-edit.php:53
 #, php-format
@@ -24333,7 +24735,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-news.php:219
 #, fuzzy
 msgid "New Article"
-msgstr "Fréttagreinar"
+msgstr "Hinn"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-edit.php:179
 #, fuzzy
@@ -24345,7 +24747,7 @@ msgstr "Flokkur"
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-pages.php:135
 #, fuzzy
 msgid "New Page"
-msgstr "Næsta síða"
+msgstr "Síða"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-edit.php:207
 #, fuzzy
@@ -24365,7 +24767,7 @@ msgstr "<em>%s</em> fannst ekki"
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-edit.php:231
 #, fuzzy, php-format
 msgid "Page <em>%s</em> not found"
-msgstr "<em>%s</em> fannst ekki"
+msgstr "Síða fannst ekki"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-edit.php:240
 #, fuzzy
@@ -24514,11 +24916,12 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-edit.php:460
 #, fuzzy
 msgid "Position:"
-msgstr "Lýsing:"
+msgstr "Tilboð"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-edit.php:462
+#, fuzzy
 msgid "normal"
-msgstr ""
+msgstr "Hefðbundið"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-edit.php:464
 msgid "Stick to top"
@@ -24527,7 +24930,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-edit.php:557
 #, fuzzy, php-format
 msgid "Are you sure you want to delete this %s?"
-msgstr "Ertu viss um að þú viljir eyða þessum notanda?"
+msgstr "Ertu viss að þú vilt eyða þetta?"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-edit.php:563
 #, php-format
@@ -24568,7 +24971,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-edit.php:774
 #, fuzzy
 msgid "Content:"
-msgstr "Ummæli:"
+msgstr "Innihald"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-functions.php:76
 msgid "Duplicate page title"
@@ -24660,7 +25063,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-functions.php:285
 #, fuzzy
 msgid "View page"
-msgstr "Skoða mynd:"
+msgstr "Síða"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-functions.php:371
 #, fuzzy
@@ -24764,7 +25167,7 @@ msgstr "Raða eftir notkun"
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-functions.php:746
 #, fuzzy
 msgid "All categories"
-msgstr "Öll gallerý"
+msgstr "Leita í öllum flokkum"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-functions.php:753
 msgid "Un-categorized"
@@ -24810,7 +25213,7 @@ msgstr "Breyta þessari mynd"
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-functions.php:1439
 #, fuzzy
 msgid "Un-publish"
-msgstr "ekki gefa út"
+msgstr "Skrá"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-functions.php:975
 msgid "Scheduled for publishing"
@@ -24819,7 +25222,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-functions.php:992
 #, fuzzy
 msgid "View category"
-msgstr "Skoða gallerý"
+msgstr "Flokkur"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-functions.php:1011
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-functions.php:1013
@@ -24858,7 +25261,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-functions.php:1256
 #, fuzzy
 msgid "Articles"
-msgstr "Bæta við grein"
+msgstr "Fréttagreinar"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-functions.php:1292
 #, php-format
@@ -24940,7 +25343,7 @@ msgstr "Breyta grein"
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-news.php:255
 #, fuzzy
 msgid "Add categories"
-msgstr "Flokkar: "
+msgstr "Flokkar"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-news.php:256
 #, fuzzy
@@ -24948,8 +25351,9 @@ msgid "Clear categories"
 msgstr "Flokkar: "
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-news.php:272
+#, fuzzy
 msgid "Created"
-msgstr ""
+msgstr "Skapað:"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-news.php:274
 msgid "Last changed"
@@ -24959,7 +25363,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-news.php:387
 #, fuzzy
 msgid "View article"
-msgstr "Fréttagreinar"
+msgstr "Hinn"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/admin-pages.php:116
 #, fuzzy
@@ -25003,7 +25407,7 @@ msgstr ""
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/template-functions.php:907
 #, fuzzy
 msgid "Prev page"
-msgstr "fyrri síða"
+msgstr "Síða"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/template-functions.php:1475
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/template-functions.php:1521
@@ -25032,7 +25436,7 @@ msgstr "Skoða albúmið: %s"
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/template-functions.php:2293
 #, fuzzy, php-format
 msgid "View %s"
-msgstr "Skoða"
+msgstr "Skoða %s"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zenpage/template-functions.php:2301
 #, php-format
@@ -25060,8 +25464,9 @@ msgid "ZenPhoto20 captcha handler."
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zpCaptcha.php:46
+#, fuzzy
 msgid "Hash key"
-msgstr ""
+msgstr "Lykill"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zpCaptcha.php:48
 msgid ""
@@ -25102,8 +25507,9 @@ msgid "The number of characters in the CAPTCHA."
 msgstr ""
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zpCaptcha.php:56
+#, fuzzy
 msgid "CAPTCHA font"
-msgstr ""
+msgstr "CAPTCHA"
 
 #: D:/github/ZenPhoto20/zp-core/zp-extensions/zpCaptcha.php:58
 msgid "random"

@@ -15,8 +15,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Generator: Poedit 1.8.11\n"
-"X-Poedit-SearchPath-0: D:/github/ZenPhoto20/themes\n"
-"X-Poedit-SearchPath-1: D:/github/ZenPhoto20/zp-core\n"
+"X-Poedit-Basepath: D:/github/ZenPhoto20\n"
 
 #: D:/github/ZenPhoto20/zp-core/js/jqueryui/jquery-ui-zenphoto.js:10
 msgid "'"

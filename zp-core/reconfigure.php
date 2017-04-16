@@ -186,10 +186,6 @@ function reconfigureCS() {
 			border-style: solid;
 			margin-bottom: 10px;
 			font-size: 100%;
-			-moz-border-radius: 5px;
-			-khtml-border-radius: 5px;
-			-webkit-border-radius: 5px;
-			border-radius: 5px;
 		}
 		.reconfigbox h1,.notebox strong {
 			color: #663300;

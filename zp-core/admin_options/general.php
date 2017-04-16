@@ -310,7 +310,10 @@ function getOptionContent() {
 									} else {
 										$stat = explode("\n", file_get_contents(SERVERPATH . "/" . ZENFOLDER . "/locale/" . $dirname . '/LC_MESSAGES/statistics.txt'));
 										preg_match_all('~([\d]+)~', $stat[1], $matches);
-										$languageP = ' <small>[' . $matches[0][1] . '%]</small>';
+										$translated = $matches[0][1];
+										preg_match_all('~([\d]+)~', $stat[2], $matches);
+										$needswork = $matches[0][1];
+										$languageP = ' <span style="font-size:xx-small;">[' . ($translated + $needswork) . '%]</span>';
 									}
 
 									if (empty($dirname)) {

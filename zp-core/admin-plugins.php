@@ -133,7 +133,6 @@ if ($saved) {
 ?>
 <h1>
 	<?php
-	$subtab = getCurrentTab();
 	printf(gettext('%1$s plugins'), ucfirst(@$classXlate[$subtab]));
 	?>
 </h1>
@@ -283,27 +282,27 @@ if ($saved) {
 								if (file_exists($path)) {
 									$ico = str_replace(SERVERPATH, WEBPATH, $path);
 								} else {
-									$ico = 'images/place_holder_icon.png';
+									$ico = 'images/placeholder.png';
 								}
 							}
 							?>
 							<img class="zp_logoicon" src="<?php echo $ico; ?>" alt="<?php echo gettext('logo'); ?>" title="<?php echo $whose; ?>" />
 							<?php
 							if ($plugin_is_filter & CLASS_PLUGIN) {
-								$iconA = '<img class="zp_logoicon" width="8px" src="images/place_holder_icon.png" /><a title="' . gettext('class plugin') . '"><img class="zp_logoicon" src="images/folder_picture.png" /></a><img class="zp_logoicon" width="8px" src="images/place_holder_icon.png" />';
+								$iconA = '<img class="zp_logoicon" width="8px" src="images/placeholder.png" /><a title="' . gettext('class plugin') . '"><img class="zp_logoicon" src="images/folder_picture.png" /></a><img class="zp_logoicon" width="8px" src="images/placeholder.png" />';
 								$iconT = '';
 							} else {
 								if ($plugin_is_filter & ADMIN_PLUGIN) {
 									$iconA = '<a title="' . gettext('admin plugin') . '"><img class="zp_logoicon" src="images/folder.png" /></a>';
 								} else {
-									$iconA = '<img class="zp_logoicon" src="images/place_holder_icon.png" />';
+									$iconA = '<img class="zp_logoicon" src="images/placeholder.png" />';
 								}
 								if ($plugin_is_filter & FEATURE_PLUGIN) {
 									$iconT = '<a title="' . gettext('feature plugin') . '"><img class="zp_logoicon" src="images/pictures.png" /></a>';
 								} else if ($plugin_is_filter & THEME_PLUGIN) {
 									$iconT = '<a title="' . gettext('theme plugin') . '"><img class="zp_logoicon" src="images/pictures_dn.png" /></a>';
 								} else {
-									$iconT = '<img class="zp_logoicon" src="images/place_holder_icon.png" />';
+									$iconT = '<img class="zp_logoicon" src="images/placeholder.png" />';
 								}
 							}
 							echo $iconT;
@@ -347,12 +346,12 @@ if ($saved) {
 					</td>
 					<td width="60">
 						<span class="icons"><a onclick="$.colorbox({
-									close: '<?php echo gettext("close"); ?>',
-									maxHeight: '80%',
-									maxWidth: '80%',
-									innerWidth: '560px',
-									href: '<?php echo $plugin_URL; ?>'
-								});"><img class="icon-position-top3" src="images/info.png" title="<?php printf(gettext('More information on %s'), $extension); ?>" alt=""></a></span>
+										close: '<?php echo gettext("close"); ?>',
+										maxHeight: '80%',
+										maxWidth: '80%',
+										innerWidth: '560px',
+										href: '<?php echo $plugin_URL; ?>'
+									});"><img class="icon-position-top3" src="images/info.png" title="<?php printf(gettext('More information on %s'), $extension); ?>" alt=""></a></span>
 																	 <?php
 																	 if ($optionlink) {
 																		 ?>
@@ -360,7 +359,7 @@ if ($saved) {
 							<?php
 						} else {
 							?>
-							<span class="icons"><img class="icon-position-top3" src="images/place_holder_icon.png" alt="" /></span>
+							<span class="icons"><img class="icon-position-top3" src="images/placeholder.png" alt="" /></span>
 							<?php
 						}
 						if ($plugin_notice) {

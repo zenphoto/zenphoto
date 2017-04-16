@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: ZenPhoto20 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-16 09:18-0800\n"
-"PO-Revision-Date: 2017-02-05 17:42-0800\n"
+"PO-Revision-Date: 2017-04-15 10:05-0700\n"
 "Last-Translator: Stephen <stephen@sbillard.org>\n"
 "Language-Team: Malte Müller (acrylian)\n"
 "Language: de_DE\n"
@@ -13,9 +13,8 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=n !=1;\n"
 "X-Poedit-KeywordsList: \n"
-"X-Generator: Poedit 1.8.11\n"
-"X-Poedit-SearchPath-0: D:/github/ZenPhoto20/themes\n"
-"X-Poedit-SearchPath-1: D:/github/ZenPhoto20/zp-core\n"
+"X-Generator: Poedit 2.0.1\n"
+"X-Poedit-Basepath: D:/github/ZenPhoto20\n"
 
 #: D:\github\ZenPhoto20/themes/basic/404.php:22
 #: D:\github\ZenPhoto20/themes/basic/archive.php:29
@@ -627,9 +626,9 @@ msgid ""
 "pick the theme color by going to the Admin Options tab and changing the "
 "<em>Theme colors</em> option."
 msgstr ""
-"Das Standardtheme (default theme) in 4 verschiedenen Varianten. Nachdem Sie "
-"dieses Theme ausgewählt haben, können Sie eine Themegrundfarbe auswählen, "
-"indem Sie sie in den Theme-Einstellungen unter <em>Themefarben</em> ändern."
+"Das einfachste Thema in 4 verschiedenen Geschmacksrichtungen. Nach der "
+"Auswahl dieses Themas holen Sie das Thema Farbe, indem Sie auf der "
+"Registerkarte \"Admin Optionen\" und ändern der <em>Designfarben</em> Option."
 
 #: D:\github\ZenPhoto20/themes/basic/themeoptions.php:44
 #: D:\github\ZenPhoto20/themes/effervescence+/themeoptions.php:97
@@ -1631,9 +1630,12 @@ msgid "Daily image"
 msgstr "Tägliches Bild"
 
 #: D:\github\ZenPhoto20/themes/effervescence+/themeoptions.php:96
+#, fuzzy
 msgid ""
 "If checked the heading image will change daily rather than on each page load."
 msgstr ""
+"Wenn die Rubrik Bild überprüft wird Veränderung täglich anstatt auf jeder "
+"Seite geladen."
 
 #: D:\github\ZenPhoto20/themes/effervescence+/themeoptions.php:98
 #: D:\github\ZenPhoto20/themes/zpArdoise/album.php:23
@@ -2048,7 +2050,7 @@ msgstr "Copyright:"
 #: D:\github\ZenPhoto20/themes/gray_highlights/search.php:45
 #, fuzzy, php-format
 msgid "Total matches: %1$u"
-msgstr "Fundstellen insgesamt von"
+msgstr "Zählen Sie alles zusammen: \"% 1\" $u"
 
 #: D:\github\ZenPhoto20/themes/zenpage/archive.php:39
 #: D:\github\ZenPhoto20/themes/zpArdoise/archive.php:19
@@ -2263,8 +2265,9 @@ msgid "Latest news"
 msgstr "Neuigkeiten"
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/inc_footer.php:65
+#, fuzzy
 msgid "You can browse with the arrows keys of your keyboard"
-msgstr ""
+msgstr "Finden Sie mit den Pfeiltasten Ihrer Tastatur"
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/inc_header.php:219
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-header.php:153
@@ -2331,7 +2334,7 @@ msgstr "Zufallsbilder"
 #: D:\github\ZenPhoto20/themes/zpArdoise/inc_print_image_statistic.php:8
 #, fuzzy
 msgid "Popular images"
-msgstr "Meistbenutzte Schlagwörter:"
+msgstr "Beliebteste Bilder"
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/inc_print_image_statistic.php:16
 #, fuzzy
@@ -2345,14 +2348,15 @@ msgstr "Am besten bewertete Bilder"
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/news.php:12
 #: D:\github\ZenPhoto20/themes/zpArdoise/news.php:14
+#, fuzzy
 msgid "newer"
-msgstr ""
+msgstr "Neuere"
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/news.php:17
 #: D:\github\ZenPhoto20/themes/zpArdoise/news.php:19
 #, fuzzy
 msgid "older"
-msgstr "Ordner"
+msgstr "Älter"
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/news.php:29
 #: D:\github\ZenPhoto20/themes/zpBootstrap/news.php:9
@@ -2363,37 +2367,46 @@ msgid "Category"
 msgstr "Kategorie"
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/news.php:38
+#, fuzzy
 msgid " | "
-msgstr ""
+msgstr " | "
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/themeoptions.php:73
+#, fuzzy
 msgid "Use this file as logo"
-msgstr ""
+msgstr "Verwenden Sie diese Datei als logo"
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/themeoptions.php:73
+#, fuzzy
 msgid ""
 "Image file for the logo area: enter the full filename (including extension) "
 "of the image file located in themes/zpArdoise/images/ (banniere1.jpg for "
 "example)."
 msgstr ""
+"Image-Datei für den Logobereich: Geben Sie den vollständigen Dateinamen "
+"(einschließlich Erweiterung) der Image-Datei befindet sich in Themen/"
+"ZpArdoise/Bilder / (banniere1.jpg zum Beispiel)."
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/themeoptions.php:74
+#, fuzzy
 msgid "Show the logo on Image page"
-msgstr ""
+msgstr "Das Logo auf Bild-Seite anzeigen"
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/themeoptions.php:74
 #, fuzzy
 msgid "Check to show the logo on the Image page."
-msgstr "Der Text für den Link zur Favoriten-Seiten."
+msgstr "Überprüfen Sie um das Logo auf der Beschreibungsseite zu zeigen."
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/themeoptions.php:75
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:74
+#, fuzzy
 msgid "Style"
-msgstr ""
+msgstr "Stil"
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/themeoptions.php:75
+#, fuzzy
 msgid "Choose Dark or Light for color style of the site."
-msgstr ""
+msgstr "Wählen Sie dunkel oder hell für Farbstil der Website."
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/themeoptions.php:76
 #: D:\github\ZenPhoto20/zp-core/exif/exifTranslations.php:67
@@ -2401,11 +2414,16 @@ msgid "Color"
 msgstr "Farbe"
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/themeoptions.php:76
+#, fuzzy
 msgid ""
 "Choose the color of links: choose Default to use the default color of Dark "
 "or Light style and choose Custom to use a custom value. You can customize "
 "these values by editing the file theme/zpArdoise/css/custom.css."
 msgstr ""
+"Wählen Sie die Farbe der Links: Wählen Sie standardmäßig verwenden Sie die "
+"Standardfarbe der Dunkelheit oder Licht Stil und wählen Benutzerdefiniert "
+"aus, um einen benutzerdefinierten Wert verwenden. Sie können diese Werte "
+"anpassen, indem Sie die Datei theme/zpArdoise/css/custom.css bearbeiten."
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/themeoptions.php:77
 #: D:\github\ZenPhoto20/themes/zpEnlighten/themeoptions.php:37
@@ -2422,89 +2440,111 @@ msgstr ""
 #: D:\github\ZenPhoto20/themes/zpArdoise/themeoptions.php:78
 #, fuzzy
 msgid "Show Archive link"
-msgstr "Archiv"
+msgstr "Archiv anzeigen"
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/themeoptions.php:78
+#, fuzzy
 msgid "Display a menu link to the Archive list."
-msgstr ""
+msgstr "Einen Menü-Link auf der Archiv-Liste anzeigen"
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/themeoptions.php:80
 #, fuzzy
 msgid "Show Tags"
-msgstr "Bewertungen erlauben"
+msgstr "Tags anzeigen."
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/themeoptions.php:80
 #, fuzzy
 msgid "Check to show a tag cloud with all the tags of the gallery."
-msgstr "Erlaubt Besuchern der Seite, das Theme der Galerie auszuwählen."
+msgstr "Überprüfen Sie eine Tag-Cloud mit den Tags der Galerie zeigen."
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/themeoptions.php:81
 #, fuzzy
 msgid "Show Image Statistic strip"
-msgstr "Bildbeschreibung anzeigen"
+msgstr "Zeigen Bild Statistik Streifen"
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/themeoptions.php:81
+#, fuzzy
 msgid ""
 "Shows a strip of thumbnails on Gallery page, depending of the selected "
 "option. NOTE: For anything other than random, the image_statistic plugin "
 "must be activated."
 msgstr ""
+"Zeigt einen Streifen von Thumbnails auf Seite \"Gallery\", abhängig von der "
+"gewählten Option. Hinweis: Für alles andere als zufällig, muss das "
+"Image_statistic-Plugin aktiviert werden."
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/themeoptions.php:82
 #, fuzzy
 msgid "Use Galleriffic script"
-msgstr "Galerie-Beschreibung:"
+msgstr "Galleriffic Skript verwenden"
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/themeoptions.php:82
+#, fuzzy
 msgid ""
 "Check to use the Galleriffic script. Uncheck to use a standard display. This "
 "standard display is also displayed when javascript is disabled in the "
 "browser."
 msgstr ""
+"Überprüfen Sie das Galleriffic-Skript verwenden. Deaktivieren Sie um ein "
+"standard-Display verwenden. Dieser standard wird auch angezeigt wenn "
+"Javascript im Browser deaktiviert ist."
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/themeoptions.php:83
+#, fuzzy
 msgid "Galleriffic slideshow delay"
-msgstr ""
+msgstr "Galleriffic Diashow Verzögerung"
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/themeoptions.php:83
+#, fuzzy
 msgid ""
 "If Galleriffic is used, enter the delay of the gallerific slideshow in ms "
 "(eg 3000)."
 msgstr ""
+"Wenn Galleriffic verwendet wird, geben Sie die Verzögerung der Gallerific "
+"Diashow in ms (z.B. 3000)."
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/themeoptions.php:84
 #, fuzzy
 msgid "Use Colorbox in Album page"
-msgstr "Colorbox verwenden"
+msgstr "Colorbox in Albumseite verwenden"
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/themeoptions.php:84
+#, fuzzy
 msgid ""
 "Check to display the full size image with Colorbox in album page, if "
 "galleriffic is used or not. NOTE : in that case, Image page will never be "
 "used."
 msgstr ""
+"Überprüfen Sie das Bild in voller Größe mit Colorbox in Albumseite, "
+"anzeigen, wenn Galleriffic oder nicht verwendet wird. Hinweis: in diesem "
+"Fall wird Bildseite nie verwendet."
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/themeoptions.php:85
 #, fuzzy
 msgid "Use Colorbox in Image page"
-msgstr "Colorbox Bildtyp"
+msgstr "Colorbox in Bild-Seite verwenden"
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/themeoptions.php:85
 #, fuzzy
 msgid "Check to display the full size image with Colorbox in Image page."
-msgstr "Auswählen, um das Originalbild mit Colorbox anzuzeigen."
+msgstr ""
+"Überprüfen Sie das Bild in voller Größe mit Colorbox in Bildseite angezeigt."
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/themeoptions.php:86
 #, fuzzy
 msgid "Show image EXIF data"
-msgstr "Bildbeschreibung anzeigen"
+msgstr "EXIF Daten des Bildes"
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/themeoptions.php:86
+#, fuzzy
 msgid ""
 "Show the main EXIF Data on Image page (Model, FocalLength, FNumber, "
 "ExposureTime, ISOSpeedRatings). Remember you have to check these EXIFs data "
 "on admin>image>information EXIF."
 msgstr ""
+"Zeigen Sie die wichtigsten EXIF-Daten auf der Bildseite (Modell, "
+"FocalLength, FNumber, ExposureTime, ISOSpeedRatings). Denken Sie daran, du "
+"musst diese EXIFs Datenprüfung auf Admin > Bild > EXIF Informationen."
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/themeoptions.php:129
 #: D:\github\ZenPhoto20/themes/zpEnlighten/themeoptions.php:47
@@ -2661,7 +2701,7 @@ msgstr "<strong>*</strong>Pflichtfelder"
 #: D:\github\ZenPhoto20/themes/zpskeleton/comment_form/comment_form.php:82
 #, fuzzy
 msgid "Private comment (don't publish)"
-msgstr "Privater Kommentar (wird nicht veröffentlicht)"
+msgstr "Privater Kommentar (nicht veröffentlicht)"
 
 #: D:\github\ZenPhoto20/themes/zpBootstrap/comment_form/comment_form.php:123
 #: D:\github\ZenPhoto20/themes/zpfocus/z_comment_form/comment_form.php:109
@@ -2839,37 +2879,50 @@ msgid "You may also register using federated credentials"
 msgstr "Sie können sich auch über federated-Logon-Daten anmelden."
 
 #: D:\github\ZenPhoto20/themes/zpBootstrap/themeoptions.php:68
+#, fuzzy
 msgid ""
 "Display a home page, with a slider of 5 random picts, the gallery "
 "description and the latest news."
 msgstr ""
+"Eine Homepage mit einem Schieberegler 5 zufällige Pikten, die Beschreibung "
+"und die neuesten Nachrichten angezeigt."
 
 #: D:\github\ZenPhoto20/themes/zpBootstrap/themeoptions.php:69
+#, fuzzy
 msgid "Social Links"
-msgstr ""
+msgstr "Social Links"
 
 #: D:\github\ZenPhoto20/themes/zpBootstrap/themeoptions.php:69
+#, fuzzy
 msgid "Check to show some social links."
-msgstr ""
+msgstr "Überprüfen Sie, einige Links zu sozialen Netzwerken zeigen."
 
 #: D:\github\ZenPhoto20/themes/zpBootstrap/themeoptions.php:71
+#, fuzzy
 msgid "Display a link to the Archive list."
-msgstr ""
+msgstr "Einen Link auf der Archiv-Liste angezeigt."
 
 #: D:\github\ZenPhoto20/themes/zpBootstrap/themeoptions.php:72
+#, fuzzy
 msgid ""
 "Check to show a tag cloud in Archive list, with all the tags of the gallery."
 msgstr ""
+"Überprüfen Sie eine Tag-Cloud in Archiv-Liste, mit den Tags der Galerie "
+"zeigen."
 
 #: D:\github\ZenPhoto20/themes/zpBootstrap/themeoptions.php:73
+#, fuzzy
 msgid "Exif"
-msgstr ""
+msgstr "Exif"
 
 #: D:\github\ZenPhoto20/themes/zpBootstrap/themeoptions.php:73
+#, fuzzy
 msgid ""
 "Show the EXIF Data on Image page. Remember you have to check EXIFs data you "
 "want to show on admin>image>information EXIF."
 msgstr ""
+"Die EXIF-Daten auf Bild-Seite anzeigen. Denken Sie daran, Sie müssen EXIFs "
+"Daten überprüfen Sie auf Admin anzeigen möchten > Bild > EXIF Informationen."
 
 #: D:\github\ZenPhoto20/themes/zpEnlighten/album.php:90
 #: D:\github\ZenPhoto20/themes/zpEnlighten/favorites.php:98
@@ -2888,7 +2941,7 @@ msgstr "Diaschau ansehen"
 #: D:\github\ZenPhoto20/themes/zpEnlighten/contact.php:31
 #, fuzzy
 msgid "Send me a message of Love"
-msgstr "Weitere Mail schicken."
+msgstr "Senden Sie mir eine Botschaft der Liebe"
 
 #: D:\github\ZenPhoto20/themes/zpEnlighten/image.php:118
 #: D:\github\ZenPhoto20/zp-core/template-functions.php:2444
@@ -2917,23 +2970,23 @@ msgstr "%s"
 #: D:\github\ZenPhoto20/themes/zpEnlighten/search.php:125
 #, fuzzy, php-format
 msgid "%1$s "
-msgstr "%1$s Besucher"
+msgstr "<a href=\"#%1$s\"><code>%1$s</code></a> ist bereits aktiv."
 
 #: D:\github\ZenPhoto20/themes/zpEnlighten/sidebar.php:52
 #, fuzzy
 msgid "Latest notes"
-msgstr "Neuigkeiten"
+msgstr "Neueste Notizen"
 
 #: D:\github\ZenPhoto20/themes/zpEnlighten/sidebar.php:67
 #, fuzzy
 msgid "Toolbox"
-msgstr "Verwaltung"
+msgstr "Toolbox"
 
 #: D:\github\ZenPhoto20/themes/zpEnlighten/sidebar.php:75
 #: D:\github\ZenPhoto20/themes/zpEnlighten/sidebar.php:78
 #, fuzzy
 msgid "Site archive view"
-msgstr "Archiv-Ansicht"
+msgstr "Website-Archiv-Anzeige"
 
 #: D:\github\ZenPhoto20/themes/zpEnlighten/sidebar.php:83
 msgid "Album RSS feed"
@@ -2942,13 +2995,16 @@ msgstr "Album-RSS-Feed"
 #: D:\github\ZenPhoto20/themes/zpEnlighten/sidebar.php:87
 #, fuzzy
 msgid "Notes RSS feed"
-msgstr "RSS-Feeds"
+msgstr "Noten-RSS-feed"
 
 #: D:\github\ZenPhoto20/themes/zpEnlighten/theme_description.php:8
+#, fuzzy
 msgid ""
 "Theme derived from Zenpage theme 1.3. Really more just a skin than a custom "
 "theme."
 msgstr ""
+"Thema von Zenpage Theme 1.3 abgeleitet. Eigentlich eher nur eine Haut als "
+"ein benutzerdefiniertes Design."
 
 #: D:\github\ZenPhoto20/themes/zpEnlighten/themeoptions.php:36
 #, fuzzy
@@ -2966,10 +3022,10 @@ msgid ""
 "build a custom menu instead of the separate standard ones. As standard menu "
 "set named \"zenpage\" is created and used automatically."
 msgstr ""
-"Wählen Sie dies, wenn Sie das <em>menu_manager</em>Plugin, sofern diese "
-"aktiviert ist, verwenden möchten, um ein benutzerdefiniertes Menü zu "
-"erstellen, anstatt die vorgegebenen Standardmenüs zu verwenden. Ein Standard-"
-"Menüset namens \"zenpage\" wird automatisch erstellt und verwendet."
+"Überprüfen Sie dies, wenn Sie das <em>Menu_manager</em> -Plugin verwenden, "
+"wenn aktiviert, ein benutzerdefiniertes Menü anstelle der separaten standard "
+"bauen wollen. Als standard-Menü Set namens \"Zenpage\" erstellt und "
+"automatisch verwendet."
 
 #: D:\github\ZenPhoto20/themes/zpfocus/404.php:5
 #, fuzzy
@@ -2986,7 +3042,10 @@ msgstr "Schlagwörter:"
 #: D:\github\ZenPhoto20/themes/zpfocus/favorites.php:24
 #, fuzzy
 msgid "Edit Description..."
-msgstr "(Keine Beschreibung...)"
+msgstr ""
+"Wählen Sie ein Album, um seine Beschreibung und Daten zu bearbeiten oder <a "
+"href=\"?page=edit&amp;album=%s&amp;massedit\">Massenbearbeiten</a> Sie alle "
+"Alben der ersten Ebene."
 
 #: D:\github\ZenPhoto20/themes/zpfocus/album.php:26
 #, fuzzy
@@ -3001,7 +3060,7 @@ msgstr "Unteralben"
 #: D:\github\ZenPhoto20/themes/zpfocus/favorites.php:51
 #, fuzzy
 msgid "View SubAlbum:"
-msgstr "Album ansehen"
+msgstr "Ansicht SubAlbum:"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/album.php:86
 #: D:\github\ZenPhoto20/themes/zpfocus/favorites.php:85
@@ -3011,13 +3070,13 @@ msgstr "Album ansehen"
 #: D:\github\ZenPhoto20/themes/zpmasonry/search.php:41
 #, fuzzy
 msgid "Play Slideshow"
-msgstr "Diaschau"
+msgstr "Diaschau automatisch abspielen"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/album.php:94
 #: D:\github\ZenPhoto20/themes/zpfocus/favorites.php:93
 #, fuzzy
 msgid "Images in "
-msgstr "Bilder"
+msgstr "Bilder:"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/album.php:150
 #: D:\github\ZenPhoto20/themes/zpfocus/favorites.php:144
@@ -3054,7 +3113,7 @@ msgstr "Neuigkeitenarchiv"
 #: D:\github\ZenPhoto20/themes/zpskeleton/functions.php:109
 #, fuzzy
 msgid "Search Result"
-msgstr "Neuigkeiten durchsuchen"
+msgstr "Suchergebnis"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/gallery.php:14
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-header.php:112
@@ -3080,39 +3139,43 @@ msgstr "Neuste Alben"
 #: D:\github\ZenPhoto20/themes/zpfocus/image.php:37
 #, fuzzy
 msgid "EXIF Metadata"
-msgstr "Metadaten"
+msgstr "EXIF-Metadaten"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/image.php:39
+#, fuzzy
 msgid "TAGS:  "
-msgstr ""
+msgstr "Schlagwörter:"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/image.php:42
 #, fuzzy
 msgid "(Edit Description...)"
-msgstr "(Keine Beschreibung...)"
+msgstr ""
+"Wählen Sie ein Album, um seine Beschreibung und Daten zu bearbeiten oder <a "
+"href=\"?page=edit&amp;album=%s&amp;massedit\">Massenbearbeiten</a> Sie alle "
+"Alben der ersten Ebene."
 
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-footer.php:6
 #, fuzzy
 msgid "all rights reserved"
-msgstr "Keine registrierten Sites"
+msgstr "alle Rechte vorbehalten"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-footer.php:39
 #: D:\github\ZenPhoto20/themes/zpminimal/inc-footer.php:7
 #, fuzzy
 msgid "Subscribe: "
-msgstr "Kommentare abonnieren"
+msgstr "Anmelden"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-footer.php:42
 #: D:\github\ZenPhoto20/themes/zpminimal/inc-footer.php:10
 #, fuzzy
 msgid "This Album"
-msgstr "Album ansehen"
+msgstr "Dieses Album"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-footer.php:45
 #: D:\github\ZenPhoto20/themes/zpminimal/inc-footer.php:12
 #, fuzzy
 msgid "Gallery Images"
-msgstr "Alle Bilder"
+msgstr "Galeriebilder"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-header.php:34
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-header.php:47
@@ -3132,7 +3195,7 @@ msgstr "Alle Bilder"
 #: D:\github\ZenPhoto20/themes/zpskeleton/inc-header.php:126
 #, fuzzy
 msgid "Latest Comments"
-msgstr "Neuste Kommentare RSS "
+msgstr " (Neuste Kommentare)"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-header.php:91
 #: D:\github\ZenPhoto20/themes/zpmasonry/inc-header.php:93
@@ -3146,16 +3209,18 @@ msgstr "Passwortgeschützt"
 #: D:\github\ZenPhoto20/themes/zpmasonry/inc-header.php:97
 #: D:\github\ZenPhoto20/themes/zpminimal/inc-header.php:103
 #: D:\github\ZenPhoto20/themes/zpskeleton/inc-header.php:101
+#, fuzzy
 msgid "404 Not Found..."
-msgstr ""
+msgstr "404 - Seite konnte nicht gefunden werden"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-header.php:155
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-header.php:169
 #: D:\github\ZenPhoto20/themes/zpmasonry/inc-footer.php:33
 #: D:\github\ZenPhoto20/themes/zpmasonry/inc-header.php:140
 #: D:\github\ZenPhoto20/themes/zpmasonry/inc-header.php:155
+#, fuzzy
 msgid "image {current} of {total}"
-msgstr ""
+msgstr "Bild {current} von {total}"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-header.php:156
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-header.php:170
@@ -3167,38 +3232,39 @@ msgid "previous"
 msgstr "vorige"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-header.php:235
+#, fuzzy
 msgid "SEARCH"
-msgstr ""
+msgstr "Suche"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-sidebar.php:13
 #, fuzzy
 msgid "Random Album Image"
-msgstr "Zufallsalben"
+msgstr "Zufällige Albumbild"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-sidebar.php:17
 #, fuzzy
 msgid "Random Gallery Image"
-msgstr "Zufallsbilder"
+msgstr "Zufällige Galeriebild"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-sidebar.php:43
 #, fuzzy
 msgid "About"
-msgstr "Bereit, um"
+msgstr "Über"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-sidebar.php:52
 #, fuzzy
 msgid "More News"
-msgstr "Neuigkeiten"
+msgstr "Weitere Nachrichten"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-sidebar.php:75
 #, fuzzy
 msgid "Latest Gallery Comments"
-msgstr "Galerie-Kommentare"
+msgstr "Neueste Galerie Kommentare"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-sidebar.php:80
 #, fuzzy
 msgid "Latest News Comments"
-msgstr "Neuste Kommentare RSS "
+msgstr "Neueste News Kommentare"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-sidebar.php:91
 #: D:\github\ZenPhoto20/themes/zpmasonry/news.php:16
@@ -3222,7 +3288,7 @@ msgstr "Schlagwörter:"
 #: D:\github\ZenPhoto20/themes/zpskeleton/password.php:15
 #, fuzzy
 msgid "Please Login"
-msgstr "Bitte erneut versuchen"
+msgstr "Bitte anmelden"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/password.php:17
 #: D:\github\ZenPhoto20/themes/zpmasonry/password.php:21
@@ -3230,23 +3296,23 @@ msgstr "Bitte erneut versuchen"
 #: D:\github\ZenPhoto20/themes/zpskeleton/password.php:19
 #, fuzzy
 msgid "You are logged in..."
-msgstr "Sie sind bereits angemeldet."
+msgstr "Sie sind eingeloggt"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/search.php:93
 #, fuzzy
 msgid "Album Search Results"
-msgstr "Albumzugriff"
+msgstr "Album-Suchergebnisse"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/search.php:105
 #: D:\github\ZenPhoto20/themes/zpfocus/search.php:106
 #, fuzzy
 msgid "View Album:"
-msgstr "Album ansehen"
+msgstr "Album ansehen:"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/search.php:154
 #, fuzzy
 msgid "Image Search Results"
-msgstr "Das Bild existiert bereits."
+msgstr "Bild: Suchergebnisseite"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/search.php:214
 #, fuzzy
@@ -3256,52 +3322,65 @@ msgstr "Leider keine Treffer. Versuchen Sie Ihre Suche zu verfeinern."
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:67
 #, fuzzy
 msgid "Tagline"
-msgstr "ByLine"
+msgstr "Untertitel"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:67
 #, fuzzy
 msgid "The text above the sitename on the home page."
-msgstr "Der Text für den Link zur Favoriten-Seiten."
+msgstr "Der Text über den Sitename auf der Startseite."
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:68
 #, fuzzy
 msgid "Album Menu Type"
-msgstr "Album-Index"
+msgstr "Menü Albumtyp"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:68
+#, fuzzy
 msgid ""
 "Choose whether to show a dropdown menu item in the main menu for all your "
 "albums or a jump menu next to the search input. For sites with a lot of "
 "albums, the jump menu is recommended."
 msgstr ""
+"Wählen Sie, ob Sie ein Dropdown-Menü-Eintrag in das Hauptmenü für Ihre Alben "
+"oder einem Sprungmenü neben der Suche geben Sie zeigen. Für Standorte mit "
+"einer Menge Alben empfiehlt sich das Sprungmenü."
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:69
 #, fuzzy
 msgid "Show Archive Link"
-msgstr "Archiv"
+msgstr "Archiv anzeigen"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:69
+#, fuzzy
 msgid "Display a menu link drop down for the dated archive of images."
-msgstr ""
+msgstr "Zeigt eine Menü Link Dropdown für die vom Archiv der Bilder."
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:71
+#, fuzzy
 msgid "Use Image as Logo?"
-msgstr ""
+msgstr "Verwende das Bild als Logo"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:71
+#, fuzzy
 msgid "Check to use an image file instead of text as your logo."
 msgstr ""
+"Überprüfen Sie um eine Image-Datei anstelle von Text als Logo zu verwenden."
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:72
+#, fuzzy
 msgid "Use Image as Logo Filename:"
-msgstr ""
+msgstr "Verwenden Sie Bild als Logo Dateinamen:"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:72
+#, fuzzy
 msgid ""
 "If checked above, enter full file name of logo file including file "
 "extension(image must be located within the images folder of the zpFocus "
 "theme folder). "
 msgstr ""
+"Wenn oben aktiviert, geben Sie vollständigen Dateinamen der Logo-Datei "
+"einschließlich der Dateierweiterung (Bild muss sich innerhalb der ZpFocus-"
+"Theme-Ordner im Ordner \"Bilder\")."
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:73
 #, fuzzy
@@ -3309,172 +3388,215 @@ msgid ""
 "Choose here any <em>unpublished Zenpage page</em> (listed by <em>titlelink</"
 "em>) to act as your site's homepage instead the normal gallery index."
 msgstr ""
-"Welchen Sie hier eine<em>unveröffentlichte Zenpage-Seite</em> (aufgelistet "
-"nach <em>titlelink</em>), um sie als Homepage anstatt des normalen "
-"Galerieindexes zu verwenden."
+"Wählen Sie hier <em>Zenpage Seite unveröffentlicht</em> (angegeben durch "
+"<em>Titlelink</em>) als Ihre Startseite statt den normalen Galerie Index "
+"handeln."
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:74
 #, fuzzy
 msgid "Spotlight"
-msgstr "einfach"
+msgstr "Spotlight"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:74
+#, fuzzy
 msgid ""
 "Select what to use in the spotlight area. Latest News obviously requires "
 "ZenPage."
 msgstr ""
+"Wählen Sie, was Sie in den Spotlight-Bereich verwenden. Neuesten Nachrichten "
+"erfordert offensichtlich ZenPage."
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:75
+#, fuzzy
 msgid "Spotlight Text"
-msgstr ""
+msgstr "Vertiefungsthema"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:75
+#, fuzzy
 msgid ""
 "Enter \"Spotlight Text\" if option above for the spotlight area is set to "
 "manual.  If Latest News is selected above this text will NOT be displayed."
 msgstr ""
+"Geben Sie \"Spotlight\" Option oben für die Spotlight-Bereich auf manuell "
+"gesetzt ist.  Wenn Sie Neuigkeiten über diesem Text ausgewählt ist wird "
+"nicht angezeigt."
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:76
+#, fuzzy
 msgid ""
 "Check to utilize the jQuery script colorbox to zoom images on the album page."
 msgstr ""
+"Überprüfen Sie die jQuery Skript Colorbox zum Vergrößern der Bilder auf der "
+"Albumseite verwenden."
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:77
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:115
 #: D:\github\ZenPhoto20/themes/zpminimal/themeoptions.php:37
 #, fuzzy
 msgid "Colorbox Style"
-msgstr "Colorbox-Theme"
+msgstr "ColorBox-Stil"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:77
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:117
 #: D:\github\ZenPhoto20/themes/zpminimal/themeoptions.php:37
+#, fuzzy
 msgid ""
 "Select the Colorbox style you wish to use (examples on the colorbox site)."
 msgstr ""
+"Wählen Sie die Colorbox-Stil (Beispiele auf der Website von Colorbox) "
+"verwenden möchten."
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:78
 #, fuzzy
 msgid "Colorbox Target Sized Image"
-msgstr "Colorbox Bildtitel"
+msgstr "ColorBox Target Size Image"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:78
+#, fuzzy
 msgid ""
 "Click to enable colorbox targeting a sized image of 800px (longest side), "
 "instead of the full original image. This is usefull if you upload large "
 "images as you can set Colorbox to target a smaller, resized version."
 msgstr ""
+"Klicken Sie, um gezielt ein Bild von 800px Colorbox ermöglichen (Längsseite) "
+"statt des vollen ursprünglichen Bildes. Dies ist nützlich, wenn Sie große "
+"Bilder hochladen, wie Sie, Colorbox festlegen können auf eine kleinere, "
+"angepasste Version."
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:79
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:118
 #, fuzzy
 msgid "Colorbox Transition Type"
-msgstr "Colorbox: Überblendung"
+msgstr "ColorBox Übergangstyp"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:79
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:120
 #, fuzzy
 msgid "The colorbox transition type. Can be set to elastic, fade, or none."
-msgstr "Der Colorbox-Überblendeffekt."
+msgstr ""
+"Colorbox Übergangstyp. Einstellbar bis elastisch, verblassen oder none."
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:80
 #, fuzzy
 msgid "Use Colorbox Slideshow"
-msgstr "Colorbox verwenden"
+msgstr "Colorbox Slideshow verwenden"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:80
+#, fuzzy
 msgid ""
 "Check to utilize the jQuery script colorbox to display a slideshow on the "
 "album page."
 msgstr ""
+"Überprüfen Sie die jQuery Skript Colorbox zum Anzeigen einer Diashows auf "
+"der Albumseite verwenden."
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:81
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:121
 #, fuzzy
 msgid "Colorbox Slideshow Speed"
-msgstr "Slideshow: Geschwindigkeit"
+msgstr "Die Geschwindigkeit der Diashow Colorbox"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:81
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:123
+#, fuzzy
 msgid ""
 "Enter a number here in milliseconds that determines the colorbox slideshow "
 "speed. Default is '2500'."
 msgstr ""
+"Geben Sie hier eine Zahl in Millisekunden, die die Colorbox-Diashow-"
+"Geschwindigkeit bestimmt. Standardwert ist \"2500\"."
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:82
 #, fuzzy
 msgid "Random Image Option?"
-msgstr "Zufallsbilder"
+msgstr "Zufälliges Bild Option?"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:82
+#, fuzzy
 msgid ""
 "Choose how to display random image(s), top left. Or select none to not "
 "display."
 msgstr ""
+"Wählen Sie wie zufällige Bilder, oben links angezeigt. Oder wählen Sie "
+"keine, nicht angezeigt."
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:83
 #, fuzzy
 msgid "Rotator Transition Effect?"
-msgstr "Colorbox: Überblendung"
+msgstr "Übergangseffekt Rotator?"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:83
+#, fuzzy
 msgid "Choose the transition effect, if rotator is selected above."
-msgstr ""
+msgstr "Wählen Sie den Übergangseffekt wenn Rotator oben ausgewählt ist."
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:84
 #, fuzzy
 msgid "Rotator Speed?"
-msgstr "Verschlussgeschwindigkeit"
+msgstr "Rotor-Geschwindigkeit?"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:84
 #, fuzzy
 msgid "Choose the delay of each rotation in milliseconds."
-msgstr "Geschwindigkeit der Überblendung in Millisekunden."
+msgstr "Wählen Sie die Verzögerung einer Drehung in Millisekunden."
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:85
 #, fuzzy
 msgid "Image Final Link Option"
-msgstr "Bildtitel"
+msgstr "Bild letzte Glied Option"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:85
+#, fuzzy
 msgid ""
 "Select the final image link option as viewed on image.php.  Default is no "
 "link, but choose standard (or new to open in new window) if you want to take "
 "advantage of some of the core image link options (such as automatic "
 "download)."
 msgstr ""
+"Wählen Sie das endgültige Bild Option \"verknüpfen\" wie image.php "
+"angezeigt.  Standardmäßig ist kein Link, aber wählen Sie standard (oder neu "
+"auf in neuem Fenster öffnen) Wenn Sie einige der Kern Bild-Link-Optionen (z. "
+"B. automatischer Download) nutzen möchten."
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:86
+#, fuzzy
 msgid "Show zenphoto Credit"
-msgstr ""
+msgstr "Zenphoto Kredit zeigen"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:86
+#, fuzzy
 msgid "Check to display the Powered by ZenPhoto20 link in the footer."
-msgstr ""
+msgstr "Überprüfen Sie das Powered ZenPhoto20 Link in der Fußzeile angezeigt."
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:87
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:147
 #: D:\github\ZenPhoto20/themes/zpskeleton/themeoptions.php:80
 #, fuzzy
 msgid "Custom CSS"
-msgstr "Benutzerdefiniert"
+msgstr "Benutzerdefiniertes CSS"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:87
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:150
 #: D:\github\ZenPhoto20/themes/zpskeleton/themeoptions.php:80
+#, fuzzy
 msgid "Enter any custom CSS, safely carries over upon theme upgrade."
 msgstr ""
+"Geben Sie benutzerdefinierten CSS, sicher trägt über nach dem Thema Upgrade."
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:88
 #, fuzzy
 msgid "Enable Zenpage News"
-msgstr "Das Zenpage-CMS-Plugin aktivieren"
+msgstr "Zenpage News zu ermöglichen"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:88
+#, fuzzy
 msgid ""
 "Check to enable the news function of Zenpage (default). Uncheck to use pages "
 "only (hides menu items and search results of news)."
 msgstr ""
+"Überprüfen Sie die Nachrichten Funktion der Zenpage (Standard). Deaktivieren "
+"Sie um nur Seiten (Häute Menüpunkte und Suchergebnisse von Nachrichten) zu "
+"verwenden."
 
 #: D:\github\ZenPhoto20/themes/zpfocus/z_comment_form/comment_form.php:18
 #: D:\github\ZenPhoto20/themes/zpskeleton/comment_form/comment_form.php:16
@@ -3562,7 +3684,7 @@ msgstr "Firma<strong>%s</strong>:"
 #: D:\github\ZenPhoto20/themes/zpskeleton/contact_form/form.php:34
 #, fuzzy, php-format
 msgid "Sdiveet<strong>%s</strong>:"
-msgstr "Straße<strong>%s</strong>:"
+msgstr "Sdiveet<strong>%s</strong>:"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/z_contact_form/form.php:41
 #: D:\github\ZenPhoto20/themes/zpskeleton/contact_form/form.php:41
@@ -3580,7 +3702,7 @@ msgstr "Bundesland<strong>%s</strong>:"
 #: D:\github\ZenPhoto20/themes/zpskeleton/contact_form/form.php:55
 #, fuzzy, php-format
 msgid "Coundivy<strong>%s</strong>:"
-msgstr "Land<strong>%s</strong>:"
+msgstr "Coundivy<strong>%s</strong>:"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/z_contact_form/form.php:62
 #: D:\github\ZenPhoto20/themes/zpskeleton/contact_form/form.php:62
@@ -3617,34 +3739,36 @@ msgstr "CAPTCHA eingeben<strong>*</strong>"
 #: D:\github\ZenPhoto20/themes/zpskeleton/contact_form/form.php:99
 #, fuzzy, php-format
 msgid "Subject<strong>%s</strong>:"
-msgstr "Betreff<strong>*</strong>"
+msgstr "Thema<strong>%s</strong>:"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/z_contact_form/form.php:109
 #: D:\github\ZenPhoto20/themes/zpskeleton/contact_form/form.php:106
 #, fuzzy, php-format
 msgid "Message<strong>%s</strong>:"
-msgstr "Nachricht<strong>*</strong>"
+msgstr "Nachricht<strong>%s</strong>:"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/404.php:4
+#, fuzzy
 msgid "404 error"
-msgstr ""
+msgstr "404 Fehler"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/album.php:15
 #: D:\github\ZenPhoto20/themes/zpmasonry/favorites.php:18
 #, fuzzy
 msgid "subalbum"
-msgstr "Unteralben"
+msgstr "Unteralbum-Thumbs anzeigen"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/album.php:36
 #: D:\github\ZenPhoto20/themes/zpmasonry/favorites.php:42
 #, fuzzy
 msgid "number"
-msgstr "Telefonnummer"
+msgstr "POP-Port-Nummer."
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/album.php:36
 #: D:\github\ZenPhoto20/themes/zpmasonry/favorites.php:42
+#, fuzzy
 msgid "total"
-msgstr ""
+msgstr "Ges."
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/album.php:45
 #: D:\github\ZenPhoto20/themes/zpmasonry/album.php:105
@@ -3694,7 +3818,7 @@ msgstr "Bilder"
 #: D:\github\ZenPhoto20/themes/zpmasonry/search.php:83
 #, fuzzy
 msgid "Preview"
-msgstr "Ansehen"
+msgstr "Vorschau"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/comment_form/comment_form.php:24
 #: D:\github\ZenPhoto20/themes/zpminimal/z_disable_comment_form/comment_form.php:24
@@ -3729,7 +3853,7 @@ msgstr "Zuletzt geänderte Alben"
 #: D:\github\ZenPhoto20/themes/zpmasonry/functions.php:181
 #, fuzzy
 msgid "Most Rated Albums"
-msgstr "Am besten bewertete Alben"
+msgstr "Die meisten bewerteten Alben"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/functions.php:186
 #, fuzzy
@@ -3739,12 +3863,12 @@ msgstr "Am besten bewertete Alben"
 #: D:\github\ZenPhoto20/themes/zpmasonry/functions.php:206
 #, fuzzy
 msgid "Popular Images"
-msgstr "Meistbenutzte Schlagwörter:"
+msgstr "Beliebteste Bilder"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/functions.php:211
 #, fuzzy
 msgid "Most Rated Images"
-msgstr " (Meist bewertete Seiten)"
+msgstr "Die meisten bewertete Bilder"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/functions.php:216
 #, fuzzy
@@ -3762,7 +3886,7 @@ msgstr "Zufallsbilder"
 #: D:\github\ZenPhoto20/themes/zpminimal/image.php:45
 #, fuzzy
 msgid "Image Number/Total images"
-msgstr "CombiNews: Anzahl der Bilder"
+msgstr "Bild Nummer/Gesamt Bilder"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/image.php:40
 #: D:\github\ZenPhoto20/themes/zpskeleton/image.php:80
@@ -3771,13 +3895,14 @@ msgid "Start Slideshow"
 msgstr "Diaschau starten"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/inc-footer.php:17
+#, fuzzy
 msgid "Loading additional pages..."
-msgstr ""
+msgstr "Weitere Seiten werden geladen..."
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/inc-footer.php:19
 #, fuzzy
 msgid "No more pages to load..."
-msgstr "Keine Artikel oder Seiten zum Importieren vorhanden."
+msgstr "Es existieren keine weiteren Einträge."
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/inc-menu.php:11
 #: D:\github\ZenPhoto20/themes/zpskeleton/album.php:138
@@ -3785,7 +3910,7 @@ msgstr "Keine Artikel oder Seiten zum Importieren vorhanden."
 #: D:\github\ZenPhoto20/themes/zpskeleton/image.php:90
 #, fuzzy
 msgid "Latest Images of this Album"
-msgstr "Neuste Bilder dieses Albums RSS "
+msgstr "Neueste Bilder von diesem Album"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/inc-menu.php:12
 #: D:\github\ZenPhoto20/themes/zpskeleton/album.php:145
@@ -3793,17 +3918,18 @@ msgstr "Neuste Bilder dieses Albums RSS "
 #: D:\github\ZenPhoto20/themes/zpskeleton/image.php:91
 #, fuzzy
 msgid "Latest Comments of this Album"
-msgstr "Neuste Kommentare zu diesem Album RSS "
+msgstr "Neueste Kommentare von diesem Album"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/inc-menu.php:15
 #: D:\github\ZenPhoto20/themes/zpskeleton/image.php:89
 #, fuzzy
 msgid "Latest Comments of this Image"
-msgstr "Neuste Kommentare zu diesem Bild RSS "
+msgstr "Neueste Kommentare dieses Bildes"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/index.php:11
+#, fuzzy
 msgid "Welcome"
-msgstr ""
+msgstr "Willkommen"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/index.php:53
 #: D:\github\ZenPhoto20/themes/zpmasonry/index.php:57
@@ -3818,7 +3944,7 @@ msgstr "Bild %s ansehen"
 #: D:\github\ZenPhoto20/themes/zpminimal/index.php:56
 #, fuzzy
 msgid "No Images Exist..."
-msgstr "Keine Menüs vorhanden"
+msgstr "Keine Bilder vorhanden..."
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/index.php:99
 #: D:\github\ZenPhoto20/zp-core/template-functions.php:814
@@ -3830,81 +3956,103 @@ msgstr "Nächste Seite"
 #: D:\github\ZenPhoto20/themes/zpmasonry/news.php:83
 #, fuzzy
 msgid "« Prev"
-msgstr "« Zurück"
+msgstr "« zurück"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/search.php:22
 #: D:\github\ZenPhoto20/themes/zpminimal/search.php:23
 #, fuzzy
 msgid "items"
-msgstr "Sitemap"
+msgstr "Ausgewählte Einträge gelöscht"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/search.php:115
 #: D:\github\ZenPhoto20/themes/zpminimal/search.php:87
 #, fuzzy
 msgid "Sorry, no matches found."
-msgstr "Leider keine Treffer für <em>"
+msgstr "Leider sind keine Übereinstimmungen gefunden."
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:76
+#, fuzzy
 msgid "Select a dark or light overall color style."
-msgstr ""
+msgstr "Wählen Sie eine dunkle oder helle Gesamtart Farbe."
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:77
 #, fuzzy
 msgid "General Thumb Sizes"
-msgstr "Thumbnailgrösse:"
+msgstr "Allgemeine Daumen Größen"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:79
+#, fuzzy
 msgid ""
 "Toggle large or small thumbnails.  This theme does not allow you to set the "
 "thumb sizes above for layout reasons.\n"
 "\t\t\t\tFor advanced users, these are set in the functions.php file."
 msgstr ""
+"Große oder kleine Vorschaubilder zu wechseln.  Dieses Thema ist nicht "
+"möglich, legen Sie die Daumen Größen oben aus Layout-Gründen.\n"
+"\t\t\t\tFür fortgeschrittene Benutzer werden diese in der functions.php "
+"Datei festgelegt."
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:81
+#, fuzzy
 msgid "Crop Album Thumbs to Landscape Orientation?"
-msgstr ""
+msgstr "Ernte-Album Daumen zu Querformat?"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:83
+#, fuzzy
 msgid "Check to crop the album thumbs to a more landscape orientation."
-msgstr ""
+msgstr "Überprüfen Sie um die Album Daumen zu mehr Querformat zu beschneiden."
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:84
+#, fuzzy
 msgid "Show Image Title on Album Pages?"
-msgstr ""
+msgstr "Anzeigen Bildtitel auf Album-Seiten?"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:86
+#, fuzzy
 msgid ""
 "Check to show the image title above images on the album and search pages."
 msgstr ""
+"Überprüfen Sie den Bildtitel oben Bilder auf dem Album und Such-Seiten "
+"zeigen."
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:87
+#, fuzzy
 msgid "Use Infinite Scroll?"
-msgstr ""
+msgstr "Unendliches Scrollen"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:89
+#, fuzzy
 msgid ""
 "Loads subsequent pages into the current page, disables normal pagination. "
 "Experimental, use with caution."
 msgstr ""
+"Nachfolgende Seiten in der aktuellen Seite geladen, normale Paginierung "
+"deaktiviert. Experimental, Gebrauch mit Vorsicht."
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:90
+#, fuzzy
 msgid "Fix the sidebar's position?"
-msgstr ""
+msgstr "Fixieren Sie die Sidebar Position?"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:92
+#, fuzzy
 msgid ""
 "Check to fix the sidebar and make it always visible as user scrolls.  If "
 "sidebar is too tall for the users\n"
 "\t\t\t\tviewport, it will revert to static position."
 msgstr ""
+"Überprüfen Sie die Seitenleiste zu beheben und als Benutzer Schriftrollen "
+"immer sichtbar zu machen.  Wenn Sidebar für das Ansichtsfenster \"Benutzer\" "
+"zu groß ist, wird es zur statischen Position zurückkehren."
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:94
 #: D:\github\ZenPhoto20/themes/zpminimal/themeoptions.php:42
 #, fuzzy
 msgid "Logo Image"
-msgstr "%u Bild"
+msgstr "Logo Bilddatei"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:96
+#, fuzzy
 msgid ""
 "Enter an image file located in the themes image directory, including "
 "extension, to use as an image logo. Or leave\n"
@@ -3912,59 +4060,81 @@ msgid ""
 "example there is a logo.gif image in the images directory with a\n"
 "\t\t\t\theight of 83 (must enter height of image as well!)."
 msgstr ""
+"Geben Sie eine Image-Datei befindet sich in den Themen Bild-Verzeichnis, "
+"einschließlich der Verlängerung, als ein Bild-Logo verwenden. Oder lassen "
+"Sie leer, eine Textdarstellung Ihre Galerie-Namen zu verwenden.  Als "
+"Beispiel gibt ein logo.gif Bild im Bilder-Verzeichnis mit einer Höhe von 83 "
+"(müssen Höhe des Bildes sowie eingeben!)."
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:99
 #, fuzzy
 msgid "Logo Height"
-msgstr "Höhe"
+msgstr "Logo Höhe"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:101
+#, fuzzy
 msgid ""
 "If using a logo image above, you must enter the height of the image in "
 "pixels here."
 msgstr ""
+"Wenn Sie ein Logo-Bild oben verwenden, müssen Sie die Höhe des Bildes in "
+"Pixel hier eingeben."
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:102
 #: D:\github\ZenPhoto20/themes/zpminimal/themeoptions.php:34
 #, fuzzy
 msgid "Final Image Link Option"
-msgstr "Bildtitel"
+msgstr "Endbild Option \"verknüpfen\""
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:104
+#, fuzzy
 msgid ""
 "Choose the option for the final image link on image.php.  Can either link to "
 "full image using standard zenphoto\n"
 "\t\t\t\tprocess (with core options), colorbox (if plugin enabled), or no "
 "link (default)."
 msgstr ""
+"Wählen Sie die Option für das endgültige Bildlink image.php.  Entweder "
+"können link zum Vollbild mit standard Zenphoto Prozess (mit Kern), Colorbox "
+"(wenn Plugin aktiviert) oder keine Verbindung (Standard)."
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:106
 #: D:\github\ZenPhoto20/themes/zpminimal/themeoptions.php:38
+#, fuzzy
 msgid "Disable MetaData Display?"
-msgstr ""
+msgstr "Deaktivieren Metadaten-Anzeige?"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:108
 #: D:\github\ZenPhoto20/themes/zpminimal/themeoptions.php:38
+#, fuzzy
 msgid "Check to disable the metadata (EXIF,IPTC) display on the image page."
 msgstr ""
+"Überprüfen Sie um die Metadaten (EXIF, IPTC) Anzeige auf der "
+"Beschreibungsseite zu deaktivieren."
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:109
 #: D:\github\ZenPhoto20/themes/zpminimal/themeoptions.php:41
+#, fuzzy
 msgid "ZenPage Search Results"
-msgstr ""
+msgstr "ZenPage-Suchergebnisse"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:113
+#, fuzzy
 msgid ""
 "If using Zenpage, enter the number of search results to display for each "
 "news and pages.  Default is 2 (4 total\n"
 "\t\t\t\tpossible)."
 msgstr ""
+"Wenn Sie Zenpage verwenden, geben Sie die Anzahl der Suchergebnisse für jede "
+"News und Seiten angezeigt.  Standard ist 2 (4 insgesamt möglich)."
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:124
+#, fuzzy
 msgid "Colorbox Target Sized Image in Galleriffic"
-msgstr ""
+msgstr "ColorBox Target Size Bild in Galleriffic"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:126
+#, fuzzy
 msgid ""
 "Click to enable colorbox targeting the sized image setting in the top "
 "options, instead of the full original image.\n"
@@ -3972,77 +4142,94 @@ msgid ""
 "to target a smaller, resized version based on your setting\n"
 "\t\t\t\tabove."
 msgstr ""
+"Klicken Sie, um gezielt die Größe Bildeinstellung in Top-Optionen, statt des "
+"vollen ursprünglichen Bildes Colorbox ermöglichen.\n"
+"\t\t\t\tDies ist nützlich, wenn Sie große Bilder hochladen, wie Sie Colorbox "
+"auf eine kleinere, angepasste Version basierend auf Ihre obige Einstellung "
+"festlegen können."
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:129
 #, fuzzy
 msgid "Frontpage Slideshow?"
-msgstr "Diaschau ansehen"
+msgstr "FrontPage Slideshow?"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:131
+#, fuzzy
 msgid ""
 "Check if you want to show a slideshow on the frontpage. Contents of "
 "slideshow and settings can be selected below."
 msgstr ""
+"Überprüfen Sie, ob Sie eine Diashow auf der Startseite anzeigen möchten. "
+"Inhalt der Diashow und Einstellungen können unten ausgewählt werden."
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:132
 #, fuzzy
 msgid "Frontpage Slideshow Option"
-msgstr "Slideshow: Beschreibung"
+msgstr "FrontPage-Diashow-Option"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:134
+#, fuzzy
 msgid ""
 "Select the contents option of the frontpage slideshow if selected above."
 msgstr ""
+"Wählen Sie die Option Inhalt der Frontpage Slideshow wenn oben ausgewählt."
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:135
 #, fuzzy
 msgid "Frontpage Slideshow Count"
-msgstr "Slideshow: Zeitinterval"
+msgstr "FrontPage Slideshow Graf"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:137
 #, fuzzy
 msgid "How many images/albums to display in the slideshow."
-msgstr "Höhe der Bilder in der Diaschau."
+msgstr "Wie viele Bilder/Alben in der Diashow angezeigt."
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:138
+#, fuzzy
 msgid "Frontpage Slideshow Transition Effect?"
-msgstr ""
+msgstr "Übergangseffekt FrontPage Slideshow?"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:140
+#, fuzzy
 msgid "Choose the transition effect, if slideshow is selected above."
-msgstr ""
+msgstr "Wählen Sie den Übergangseffekt wenn Diashow oben ausgewählt ist."
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:141
 #, fuzzy
 msgid "Frontpage Slideshow Speed?"
-msgstr "Slideshow: Geschwindigkeit"
+msgstr "Die Geschwindigkeit der Diashow der FrontPage?"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:143
 #, fuzzy
 msgid "Choose the delay of each rotation for slideshow in milliseconds."
-msgstr "Geschwindigkeit der Überblendung in Millisekunden."
+msgstr "Wählen Sie die Verzögerung einer Drehung für Diashow in Millisekunden."
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:144
 #: D:\github\ZenPhoto20/themes/zpskeleton/themeoptions.php:50
+#, fuzzy
 msgid "Use News Feature"
-msgstr ""
+msgstr "News-Funktion verwenden"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:146
 #: D:\github\ZenPhoto20/themes/zpskeleton/themeoptions.php:52
+#, fuzzy
 msgid ""
 "IF you have the Zenpage plugin enabled, you can uncheck this to NOT use the "
 "news feature of the Zenpage plugin (use only pages)"
 msgstr ""
+"Wenn Sie das Zenpage-Plugin aktiviert haben, können Sie dies, um die "
+"Nachrichten-Funktion des Zenpage Plugins (Nutzung nur Seiten) nicht "
+"verwenden deaktivieren."
 
 #: D:\github\ZenPhoto20/themes/zpminimal/404.php:14
 #, fuzzy
 msgid "Back to Gallery Index →"
-msgstr "Galerie-Index"
+msgstr "Zurück zur Galerie Index →"
 
 #: D:\github\ZenPhoto20/themes/zpminimal/inc-footer.php:22
 #, fuzzy
 msgid "Subalbum"
-msgstr "Unteralben"
+msgstr "Unteralbum-Thumbs anzeigen"
 
 #: D:\github\ZenPhoto20/themes/zpminimal/inc-footer.php:24
 #: D:\github\ZenPhoto20/themes/zpmobile/functions.php:44
@@ -4064,67 +4251,85 @@ msgstr "Neues RSS"
 #: D:\github\ZenPhoto20/themes/zpminimal/index.php:59
 #, fuzzy
 msgid "Enter Gallery &rarr;"
-msgstr "Galerie bearbeiten"
+msgstr "Galerie &rarr;"
 
 #: D:\github\ZenPhoto20/themes/zpminimal/news.php:45
 #, fuzzy
 msgid "Next →"
-msgstr "Weiter »"
+msgstr "weiter »"
 
 #: D:\github\ZenPhoto20/themes/zpminimal/news.php:45
 #, fuzzy
 msgid "← Prev"
-msgstr "Zurück"
+msgstr "« zurück"
 
 #: D:\github\ZenPhoto20/themes/zpminimal/password.php:4
 #, fuzzy
 msgid "Enter Login"
-msgstr "%s eingeben:"
+msgstr "Geben Sie Login."
 
 #: D:\github\ZenPhoto20/themes/zpminimal/themeoptions.php:33
 #, fuzzy
 msgid "Home Page Image Option"
-msgstr "Bildtitel"
+msgstr "Startseite-Bild-Option"
 
 #: D:\github\ZenPhoto20/themes/zpminimal/themeoptions.php:33
+#, fuzzy
 msgid ""
 "Choose the option for the single image on the homepage.  See Image-Album-"
 "Statistics plugin or Random Image functions for more information."
 msgstr ""
+"Wählen Sie die Option für das einzelne Bild auf der Homepage.  Siehe Bild-"
+"Album-Statistik-Plugin oder zufälliges Bild Funktionen für weitere "
+"Informationen."
 
 #: D:\github\ZenPhoto20/themes/zpminimal/themeoptions.php:34
+#, fuzzy
 msgid ""
 "Choose the option for the final image link on image.php.  Can either link to "
 "full image using standard zenphoto process (with core options), colorbox, or "
 "no link (default)."
 msgstr ""
+"Wählen Sie die Option für das endgültige Bildlink image.php.  Entweder "
+"können mit Vollbild mit standard Zenphoto Prozess (mit Kern), Colorbox oder "
+"keine Verbindung (Standard) verknüpfen."
 
 #: D:\github\ZenPhoto20/themes/zpminimal/themeoptions.php:35
+#, fuzzy
 msgid "Sidebar Position on the Right?"
-msgstr ""
+msgstr "Position der Sidebar auf der rechten Seite?"
 
 #: D:\github\ZenPhoto20/themes/zpminimal/themeoptions.php:35
+#, fuzzy
 msgid ""
 "Check to reverse the sidebar and content area positions.  Default "
 "(unchecked) is the sidebar on the left."
 msgstr ""
+"Überprüfen Sie um die Sidebar und Content Bereich Positionen rückgängig zu "
+"machen.  Standard (ohne Haken) ist die Sidebar auf der linken Seite."
 
 #: D:\github\ZenPhoto20/themes/zpminimal/themeoptions.php:36
+#, fuzzy
 msgid "Use colorbox on Album and Search Pages?"
-msgstr ""
+msgstr "Verwenden Colorbox auf Album und Suchseiten?"
 
 #: D:\github\ZenPhoto20/themes/zpminimal/themeoptions.php:36
+#, fuzzy
 msgid ""
 "If checked, 2 links appear when hovering images in album and search pages, "
 "one to popup the image in colorbox, and the other to go to the details page."
 msgstr ""
+"Wenn diese Option aktiviert, werden 2 Links Schwebeflug Bilder im Album und "
+"Such-Seiten, ein Popup das Bild in Colorbox, und andererseits auf die "
+"Detailseite gehen."
 
 #: D:\github\ZenPhoto20/themes/zpminimal/themeoptions.php:39
 #, fuzzy
 msgid "Album Thumb Size"
-msgstr "Albumthumbnails"
+msgstr "Album-Bildgröße"
 
 #: D:\github\ZenPhoto20/themes/zpminimal/themeoptions.php:39
+#, fuzzy
 msgid ""
 "Select the size of album thumbs. The thumb size above is for image thumbs. "
 "Album thumbs will also take on your selection of cropping or not.  A good "
@@ -4132,32 +4337,49 @@ msgid ""
 "is 113 (4 per row). Make sure you also set the number of thumbs per row for "
 "images and albums above! "
 msgstr ""
+"Wählen Sie die Größe des Albums Daumen. Die Bildgröße oben ist für Bild "
+"Daumen. Album Daumen nehmen auch auf Ihre Auswahl beschneiden oder nicht.  "
+"Eine gute Größe für Alben ist 158 (3 pro Zeile), und eine gute Größe oben "
+"für Bild Daumen ist 113 (4 pro Zeile). Stellen Sie sicher, dass Sie auch die "
+"Anzahl der Daumen pro Zeile für Bilder und Alben oben eingestellt!"
 
 #: D:\github\ZenPhoto20/themes/zpminimal/themeoptions.php:40
 #, fuzzy
 msgid "Menu Name of Menu Manager"
-msgstr "Menü-Manager"
+msgstr "Menünamen der Menü-Manager"
 
 #: D:\github\ZenPhoto20/themes/zpminimal/themeoptions.php:40
+#, fuzzy
 msgid ""
 "If you use the menu manager plugin, enter the name of the menu you would "
 "like to use.  Make sure you create the menu in the menu manager backend! Or "
 "leave blank to use the theme menu."
 msgstr ""
+"Wenn Sie die Menü-Manager-Plugin verwenden, geben Sie den Namen des Menüs, "
+"die Sie verwenden möchten.  Stellen Sie sicher, dass Sie das Menü im Menü-"
+"Manager Backend erstellen! Oder lassen Sie leer, das \"Thema\" zu verwenden."
 
 #: D:\github\ZenPhoto20/themes/zpminimal/themeoptions.php:41
+#, fuzzy
 msgid ""
 "If using Zenpage, enter the number of search results to display for each "
 "news and pages.  Default is 2 (4 total possible)."
 msgstr ""
+"Wenn Sie Zenpage verwenden, geben Sie die Anzahl der Suchergebnisse für jede "
+"News und Seiten angezeigt.  Standard ist 2 (4 insgesamt möglich)."
 
 #: D:\github\ZenPhoto20/themes/zpminimal/themeoptions.php:42
+#, fuzzy
 msgid ""
 "Enter an image file located in the themes image directory, including "
 "extension, to use as an image logo. Or leave blank to use a text "
 "representation of your Gallery name.  As an example there is a logo.gif "
 "image in the images directory."
 msgstr ""
+"Geben Sie eine Image-Datei befindet sich in den Themen Bild-Verzeichnis, "
+"einschließlich der Verlängerung, als ein Bild-Logo verwenden. Oder lassen "
+"Sie leer, eine Textdarstellung Ihre Galerie-Namen zu verwenden.  Als "
+"Beispiel gibt es eine logo.gif Bild im Bilder-Verzeichnis."
 
 #: D:\github\ZenPhoto20/themes/zpmobile/archive.php:26
 #: D:\github\ZenPhoto20/zp-core/template-functions.php:455
@@ -4249,22 +4471,24 @@ msgstr ""
 #: D:\github\ZenPhoto20/themes/zpskeleton/404.php:6
 #, fuzzy
 msgid "404 not found"
-msgstr "(nicht gefunden)"
+msgstr "404 nicht gefunden"
 
 #: D:\github\ZenPhoto20/themes/zpskeleton/archive.php:22
 #, fuzzy
 msgid "Tag Cloud"
-msgstr "Bewölkt"
+msgstr ""
+"Bietet die Funktionalität eine Schlagwortwolke aus allen Schlagworten eines "
+"Objektes auszugeben"
 
 #: D:\github\ZenPhoto20/themes/zpskeleton/functions.php:194
 #, fuzzy
 msgid "Click for Detail Page"
-msgstr "Hier klicken, um Schlagwörter zu bearbeiten..."
+msgstr "Klicken Sie hier für Detailseite"
 
 #: D:\github\ZenPhoto20/themes/zpskeleton/image.php:79
 #, fuzzy
 msgid "Download Original"
-msgstr "Runterladen"
+msgstr "Original herunterladen"
 
 #: D:\github\ZenPhoto20/themes/zpskeleton/inc-bottom.php:49
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:466
@@ -4304,12 +4528,12 @@ msgstr "Menü"
 #: D:\github\ZenPhoto20/themes/zpskeleton/news.php:62
 #, fuzzy
 msgid "Comment(s)"
-msgstr "Kommentare"
+msgstr "Kommentar(e)"
 
 #: D:\github\ZenPhoto20/themes/zpskeleton/news.php:116
 #, fuzzy
 msgid "Comments of this article"
-msgstr "Diesen Artikel bearbeiten"
+msgstr "Kommentare zu diesem Artikel"
 
 #: D:\github\ZenPhoto20/themes/zpskeleton/password.php:6
 #, fuzzy
@@ -4343,7 +4567,7 @@ msgstr "Passwort:"
 #: D:\github\ZenPhoto20/themes/zpskeleton/register_user/register_user_form.php:33
 #, fuzzy
 msgid "Re-enter:"
-msgstr "Wiederholen:"
+msgstr "Erneut eingeben:"
 
 #: D:\github\ZenPhoto20/themes/zpskeleton/themeoptions.php:53
 #, fuzzy
@@ -4363,45 +4587,57 @@ msgid "Small"
 msgstr "Klein"
 
 #: D:\github\ZenPhoto20/themes/zpskeleton/themeoptions.php:56
+#, fuzzy
 msgid "Choose the relative thumb size for the album and search pages."
-msgstr ""
+msgstr "Wählen Sie die relative Bildgröße für das Album und Such-Seiten."
 
 #: D:\github\ZenPhoto20/themes/zpskeleton/themeoptions.php:57
+#, fuzzy
 msgid "Debug User Agent"
-msgstr ""
+msgstr "User-Agent zu debuggen"
 
 #: D:\github\ZenPhoto20/themes/zpskeleton/themeoptions.php:59
+#, fuzzy
 msgid ""
 "Check to display user information in the footer for debugging mobile "
 "displays."
 msgstr ""
+"Überprüfen Sie die Benutzerinformationen in der Fußzeile für das Debuggen "
+"von mobilen Displays anzeigen."
 
 #: D:\github\ZenPhoto20/themes/zpskeleton/themeoptions.php:60
 #, fuzzy
 msgid "Disable Plugin Warning"
-msgstr "Plugin-Warnungen"
+msgstr "Plugin-Warnung deaktivieren"
 
 #: D:\github\ZenPhoto20/themes/zpskeleton/themeoptions.php:62
+#, fuzzy
 msgid ""
 "Check to disable the warning message about disabling plugins on the index "
 "page.  If you see no warning, you should also check this as well to "
 "eliminate the plugin verifications."
 msgstr ""
+"Überprüfen Sie um die Warnmeldung über das Deaktivieren von Plugins auf der "
+"Index-Seite zu deaktivieren.  Wenn keine Warnung angezeigt wird, prüfen Sie "
+"auch hier, sowie um die Plugins Prüfungen zu beseitigen."
 
 #: D:\github\ZenPhoto20/themes/zpskeleton/themeoptions.php:63
+#, fuzzy
 msgid "Popup (PrettyPhoto) Target"
-msgstr ""
+msgstr "Popup (PrettyPhoto) Ziel"
 
 #: D:\github\ZenPhoto20/themes/zpskeleton/themeoptions.php:65
+#, fuzzy
 msgid "Sized (630px)"
-msgstr ""
+msgstr "Größe (630px)"
 
 #: D:\github\ZenPhoto20/themes/zpskeleton/themeoptions.php:65
 #, fuzzy
 msgid "Original Image"
-msgstr "Originaldatum des Fotos"
+msgstr "Original Bild"
 
 #: D:\github\ZenPhoto20/themes/zpskeleton/themeoptions.php:66
+#, fuzzy
 msgid ""
 "Select whether the popup script (PrettyPhoto) targets a processed/sized "
 "image for the slideshow or the original (unsized/uprocessed) uploaded "
@@ -4409,38 +4645,49 @@ msgid ""
 "time if you select sized.  You need to also select sized if you are using "
 "watermarks."
 msgstr ""
+"Wählen Sie, ob das Pop-up-Skript (PrettyPhoto) richtet sich an eine Bild "
+"verarbeitet/Bild in Größe für die Diashow oder das Original "
+"(Tiefkühltemperatur/Uprocessed) hochgeladen.  Obwohl nicht auf mobilen "
+"Decives verwendet, wird dies Ihre Ladezeit verringern, wenn Sie auswählen "
+"Größe.  Sie müssen auch auswählen, Größe, wenn Sie Wasserzeichen verwenden."
 
 #: D:\github\ZenPhoto20/themes/zpskeleton/themeoptions.php:67
 #, fuzzy
 msgid "Download Button"
-msgstr "Runterladen"
+msgstr "Download Button"
 
 #: D:\github\ZenPhoto20/themes/zpskeleton/themeoptions.php:69
+#, fuzzy
 msgid ""
 "Check to display a download button on the image page, behavour controlled by "
 "options->image->Full Image Protection."
 msgstr ""
+"Überprüfen Sie, um einen Download-Button auf der Beschreibungsseite "
+"Verhalten gesteuert durch-> Bild-> Bild-Vollschutz-Optionen anzuzeigen."
 
 #: D:\github\ZenPhoto20/themes/zpskeleton/themeoptions.php:70
 #, fuzzy
 msgid "Show Archive"
-msgstr "Archiv"
+msgstr "Archiv anzeigen"
 
 #: D:\github\ZenPhoto20/themes/zpskeleton/themeoptions.php:72
 #, fuzzy
 msgid "Check to display the gallery and news archive menu item."
-msgstr "Auswählen, um das Originalbild mit Colorbox anzuzeigen."
+msgstr "Überprüfen Sie die Galerie und News Archiv Menüpunkt angezeigt."
 
 #: D:\github\ZenPhoto20/themes/zpskeleton/themeoptions.php:76
 #, fuzzy
 msgid "Image Strip"
-msgstr "Bildtitel"
+msgstr "Main Image Strip:"
 
 #: D:\github\ZenPhoto20/themes/zpskeleton/themeoptions.php:79
+#, fuzzy
 msgid ""
 "Select whether the image strip on the bottom shows random images or latest "
 "images."
 msgstr ""
+"Wählen Sie, ob Bildstreifen auf der Unterseite zufällige oder aktuelle "
+"Bilder zeigt."
 
 #: D:\github\ZenPhoto20/zp-core/404.php:73
 #, php-format
@@ -4743,8 +4990,9 @@ msgid "You do not have edit rights on this album."
 msgstr "Sie haben keine Bearbeitungsrechte für dieses Album."
 
 #: D:\github\ZenPhoto20/zp-core/admin-dynamic-album.php:109
+#, fuzzy
 msgid "Your search criteria is empty."
-msgstr ""
+msgstr "Ihre Suchkriterien ist leer."
 
 #: D:\github\ZenPhoto20/zp-core/admin-dynamic-album.php:114
 #: D:\github\ZenPhoto20/zp-core/admin-dynamic-album.php:258
@@ -4797,10 +5045,13 @@ msgid "Album <em>Tag</em>"
 msgstr "Album-<em>Tag</em>"
 
 #: D:\github\ZenPhoto20/zp-core/admin-dynamic-album.php:271
+#, fuzzy
 msgid ""
 "Select <em>tagged</em> to tag the search results with this <em>tag</em> and "
 "use as the album criteria."
 msgstr ""
+"<em>Tagged</em> markieren die Suchergebnisse mit diesem <em>Tag</em> und "
+"verwenden Sie als Kriterium Album auswählen."
 
 #: D:\github\ZenPhoto20/zp-core/admin-dynamic-album.php:275
 msgid "Search fields:"
@@ -4808,15 +5059,19 @@ msgstr "Suchfelder:"
 
 #: D:\github\ZenPhoto20/zp-core/admin-dynamic-album.php:303
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/favoritesAlbums/admin-album.php:198
+#, fuzzy
 msgid "There is no place you are allowed to put this album."
-msgstr ""
+msgstr "Es gibt keinen Ort, den Sie berechtigt sind, dieses Album zu setzen."
 
 #: D:\github\ZenPhoto20/zp-core/admin-dynamic-album.php:306
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/favoritesAlbums/admin-album.php:201
+#, fuzzy
 msgid ""
 "You must have <em>upload</em> rights to at least one album to have a place "
 "to store this album."
 msgstr ""
+"<em>Laden Sie</em> Rechte an mindestens ein Album, einen Ort zum Speichern "
+"von diesem Albums haben müssen."
 
 #: D:\github\ZenPhoto20/zp-core/admin-dynamic-album.php:311
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/favoritesAlbums/admin-album.php:206
@@ -4957,8 +5212,9 @@ msgstr "Neues Unteralbum"
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:1360
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:2060
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:2062
+#, fuzzy
 msgid "New dynamic subalbum"
-msgstr ""
+msgstr "Neue dynamische subalbum"
 
 #: D:\github\ZenPhoto20/zp-core/admin-edit.php:854
 #: D:\github\ZenPhoto20/zp-core/admin-edit.php:1671
@@ -4967,10 +5223,13 @@ msgstr "Dieses Album bearbeiten"
 
 #: D:\github\ZenPhoto20/zp-core/admin-edit.php:863
 #: D:\github\ZenPhoto20/zp-core/admin-edit.php:1676
+#, fuzzy
 msgid ""
 "Thumbnail generation may be time consuming on slow servers or when there are "
 "a lot of images."
 msgstr ""
+"Generieren von Miniaturansichten möglicherweise zeitaufwendig auf langsamen "
+"Servern oder wenn es eine Menge von Bildern gibt."
 
 #: D:\github\ZenPhoto20/zp-core/admin-edit.php:870
 #: D:\github\ZenPhoto20/zp-core/admin-edit.php:1681
@@ -5228,7 +5487,7 @@ msgstr "Nichts zum Anzeigen ausgewählt"
 #: D:\github\ZenPhoto20/zp-core/admin-edit.php:1414
 #, fuzzy
 msgid "No tags assigned"
-msgstr "Neue Schlagwörter hinzugefügt"
+msgstr "Keine Tags zugewiesen"
 
 #: D:\github\ZenPhoto20/zp-core/admin-edit.php:1421
 msgid "Edit all image data"
@@ -5237,7 +5496,7 @@ msgstr "Alle Bilddaten bearbeiten"
 #: D:\github\ZenPhoto20/zp-core/admin-edit.php:1466
 #, fuzzy
 msgid "prev image"
-msgstr "Vorherige Seite"
+msgstr "Bild zurück"
 
 #: D:\github\ZenPhoto20/zp-core/admin-edit.php:1473
 #, fuzzy
@@ -5275,8 +5534,9 @@ msgstr "Neues Album"
 #: D:\github\ZenPhoto20/zp-core/admin-edit.php:1662
 #: D:\github\ZenPhoto20/zp-core/admin-edit.php:1712
 #: D:\github\ZenPhoto20/zp-core/admin-edit.php:1731
+#, fuzzy
 msgid "New dynamic album"
-msgstr ""
+msgstr "Neue dynamische album"
 
 #: D:\github\ZenPhoto20/zp-core/admin-edit.php:1723
 msgid "There are no albums for you to edit."
@@ -5284,17 +5544,23 @@ msgstr "Es gibt keine Alben, die Sie bearbeiten können."
 
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:31
 #: D:\github\ZenPhoto20/zp-core/setup/setup-functions.php:491
+#, fuzzy
 msgid "A simpler media content management system"
-msgstr ""
+msgstr "Ein einfacher Media-Content-Management-system"
 
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:31
+#, fuzzy
 msgid "<span class=\"zenlogo\"><a href=\"https://"
 msgstr ""
+"<span class=\"zenlogo\"><a href=\"https:// href=\"\"></a href=\"https://></"
+"span>"
 
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:31
 #, fuzzy, php-format
 msgid "version %1$s"
-msgstr "%1$s Version"
+msgstr ""
+"Benutzerrechte können nicht auf Version %1$s übertragen werden "
+"(Zenphoto_Authority unterstützt nur %2$s und %3$s.)"
 
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:37
 msgid "ZenPhoto20 licence"
@@ -5308,7 +5574,7 @@ msgstr "Lizenz"
 #: D:\github\ZenPhoto20/zp-core/setup/setup-functions.php:492
 #, fuzzy
 msgid "Support"
-msgstr "Sport"
+msgstr "Keine PHP-Bildbearbeitungunterstützung"
 
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:39
 #: D:\github\ZenPhoto20/zp-core/setup/setup-functions.php:492
@@ -5345,15 +5611,17 @@ msgstr "Es gibt ungesicherte Änderungen!"
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:164
 #, fuzzy
 msgid "Are you sure you want to leave this page?"
-msgstr "Sind Sie sicher, dass Sie diesen Benutzer löschen wollen?"
+msgstr "Sind Sie sicher, dass Sie diese Seite verlassen möchten?"
 
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:165
+#, fuzzy
 msgid "Leave"
-msgstr ""
+msgstr "Verlassen"
 
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:166
+#, fuzzy
 msgid "Stay"
-msgstr ""
+msgstr "Stay"
 
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:233
 #, php-format
@@ -5626,7 +5894,7 @@ msgstr "hat Passwort"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/admin-functions.php:1349
 #, fuzzy
 msgid "pick source"
-msgstr "ZIP-Quelle"
+msgstr "Wählen Sie Quelle"
 
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:2132
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/admin-functions.php:1352
@@ -5696,8 +5964,9 @@ msgstr "Unveröffentlicht"
 
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:2268
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/admin-functions.php:1466
+#, fuzzy
 msgid "Publish (override scheduling)"
-msgstr ""
+msgstr "Veröffentlichen Sie (Überschreibung Terminierung)"
 
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:2272
 #, php-format
@@ -5986,8 +6255,9 @@ msgid "deprecated"
 msgstr "Veraltet"
 
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:4646
+#, fuzzy
 msgid "3rd party"
-msgstr ""
+msgstr "Drittanbieter"
 
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:4647
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:2858
@@ -6134,8 +6404,11 @@ msgstr ""
 "Es ist der Fehler #%d beim Verschieben, Kopieren oder Umbenennen aufgetreten."
 
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:5021
+#, fuzzy
 msgid "You can also copy the link to your clipboard to paste elsewhere"
 msgstr ""
+"Sie können auch den Link in die Zwischenablage an anderer Stelle einfügen "
+"kopieren."
 
 #: D:\github\ZenPhoto20/zp-core/admin-globals.php:29
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/favoritesHandler.php:134
@@ -6349,10 +6622,13 @@ msgstr "Die Locale %s wird von Ihrem Server nicht unterstützt."
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:637
 #: D:\github\ZenPhoto20/zp-core/setup/setup-functions.php:380
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/dynamic-locale.php:62
+#, fuzzy
 msgid ""
 "You can use the <em>debug</em> plugin to see which locales your server "
 "supports."
 msgstr ""
+"Können Sie das <em>Debuggen</em> Plugin zu sehen, welche Orte Ihr Server "
+"unterstützt."
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:640
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:1094
@@ -6439,7 +6715,7 @@ msgstr "Mod_rewrite Bildsuffix:"
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:708
 #, fuzzy
 msgid "Unique images"
-msgstr "%u Bilder"
+msgstr "Einzigartige Bilder"
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:715
 msgid ""
@@ -6485,19 +6761,26 @@ msgstr ""
 "Suchmaschinen). Beispiele: <em>.html, .php, view</em> etc."
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:726
-#, php-format
+#, fuzzy, php-format
 msgid ""
 "If Unique images is checked, image links will omit the image suffix. E.g. a "
 "link to the image page for myalbum/myphoto.jpg will appear as myalbum/myphoto"
 "%s"
 msgstr ""
+"Wenn einzigartige Bilder aktiviert ist, werden Bild-Links das Bild Suffix "
+"weglassen. Z.B. erscheint ein Link zu der Bildseite für myalbum/myphoto.jpg "
+"als myalbum/myphoto%s"
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:728
+#, fuzzy
 msgid ""
 "<strong>Note:</strong> This option requires <em>mod rewrite</em> and "
 "<em>mod_rewrite suffix</em> both be set and the image prefixes must be "
 "unique within an album!"
 msgstr ""
+"<strong>Hinweis:</strong> Diese Option erfordert die <em>mod rewrite</em> "
+"und <em>Mod_rewrite Suffix</em> beide eingestellt werden und das Bild "
+"Präfixe müssen eindeutig innerhalb eines Albums sein!"
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:734
 #: D:\github\ZenPhoto20/zp-core/admin-users.php:748
@@ -6759,10 +7042,13 @@ msgstr ""
 "(<em>attribute</em>=&gt; (), <em>attribute</em> =&gt; ()...)))"
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:976
+#, fuzzy
 msgid ""
 "<strong>Note:</strong> visual editing is enabled so the editor overrides "
 "these settings on tags where it is active."
 msgstr ""
+"<strong>Hinweis:</strong> visuelle Bearbeitung aktiviert ist, damit der "
+"Editor diese Einstellungen auf Tags überschreibt es aktiv ist."
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:979
 msgid "reset to default"
@@ -7047,8 +7333,8 @@ msgid ""
 "<a onclick=\"toggle('albumpub');\" >Details</a> for <em>publish albums by "
 "default</em>"
 msgstr ""
-"<a href=\"javascript:toggle('albumpub');\" >Details</a> zur<em>zum "
-"standardmäßigen Veröffentlichen von Album</em>"
+"<a onclick=\"toggle('albumpub');\">Details</a> zu <em>veröffentlichen Alben "
+"standardmäßig</em>"
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:1409
 #, fuzzy
@@ -7056,8 +7342,9 @@ msgid ""
 "This sets the default behavior for when an album is discovered. If checked, "
 "the album will be published, if unchecked it will be unpublished."
 msgstr ""
-"Dies stellt das Standardverhalten beim Entdecken eines neuen Albums ein. Nur "
-"wenn aktiviert, wird das Album automatisch veröffentlich."
+"Dadurch wird das Standardverhalten für ein Album entdeckte. Wenn aktiviert, "
+"das Album veröffentlicht werden, wenn nicht aktiviert, es werden "
+"unveröffentlichte,."
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:1411
 #, fuzzy
@@ -7065,8 +7352,8 @@ msgid ""
 "<a onclick=\"toggle('imagepub');\" >Details</a> for <em>publish images by "
 "default</em>"
 msgstr ""
-"<a href=\"javascript:toggle('albumdate');\" >Details</a> zur<em>Verwendung "
-"des Datums des neusten Bilds als Albumdatum</em>"
+"<a onclick=\"toggle('imagepub');\">Details</a> für <em>Bilder standardmäßig "
+"veröffentlichen</em>"
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:1413
 #, fuzzy
@@ -7074,8 +7361,9 @@ msgid ""
 "This sets the default behavior for when an image is discovered. If checked, "
 "the image will be published, if unchecked it will be unpublished."
 msgstr ""
-"Dies stellt das Standardverhalten beim Entdecken eines neuen Bildes ein. Nur "
-"wenn aktiviert, wird das Bild automatisch veröffentlich."
+"Dadurch wird das Standardverhalten für ein Bild entdeckte. Wenn aktiviert, "
+"das Bild veröffentlicht werden, wenn nicht aktiviert, es werden "
+"unveröffentlichte,."
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:1415
 #, fuzzy
@@ -7083,8 +7371,8 @@ msgid ""
 "<a onclick=\"toggle('albumdate');\" >Details</a> for <em>use latest image "
 "date as album date</em>"
 msgstr ""
-"<a href=\"javascript:toggle('albumdate');\" >Details</a> uzr<em>Verwendung "
-"des Datums des neusten Bilds als Albumdatum</em>"
+"<a onclick=\"toggle('albumdate');\">Details</a> zum <em>neuesten Album Bild "
+"Datum verwenden</em>"
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:1418
 msgid ""
@@ -7111,8 +7399,8 @@ msgid ""
 "<a onclick=\"toggle('visualthumb');\" >Details</a> for <em>visual thumb "
 "selection</em>"
 msgstr ""
-"<a href=\"javascript:toggle('visualthumb');\" >Details</a> zur <em>visuellen "
-"Thumbnailauswahl</em>"
+"<a onclick=\"toggle('visualthumb');\">Details</a> zur <em>visuellen Daumen "
+"Auswahl</em>"
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:1427
 msgid ""
@@ -7137,8 +7425,8 @@ msgid ""
 "<a onclick=\"toggle('multithumb');\" >Details</a> for <em>subalbum thumb "
 "selection</em>"
 msgstr ""
-"<a href=\"javascript:toggle('multithumb');\" >Details</a> zur <em>Unteralbum-"
-"Thumb-Auswahl</em>"
+"<a onclick=\"toggle('multithumb');\">Details</a> zu <em>Subalbum-Daumen-"
+"Auswahl</em>"
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:1432
 msgid ""
@@ -7226,23 +7514,27 @@ msgid "<em>exact</em>"
 msgstr "<em>Exakt</em>"
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:1623
+#, fuzzy
 msgid "Language specific tags"
-msgstr ""
+msgstr "Sprachspezifische"
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:1625
 #, fuzzy
 msgid "off"
-msgstr "von"
+msgstr "aus"
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:1628
 #, fuzzy
 msgid "generic"
-msgstr "Allgemein"
+msgstr "Arzneimittel, nichtgeschützte Bezeichnungen für"
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:1631
 #, fuzzy
 msgid "specific"
-msgstr "*nicht spezifiziert"
+msgstr ""
+"Geben Sie die volle URL zu einem speziellen Sitelogo an. Facebook, Google+ & "
+"Co werden dies in der Linkvorschau innerhalb von Posts verwenden. Für Bild "
+"oder Albumseiten wird das Thumbnail in der Standardgröße verwendet."
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:1636
 msgid "Treat spaces as"
@@ -7326,6 +7618,7 @@ msgstr ""
 "<code>Wortteil</code>: Übereinstimmung des Wortanfangs innerhalb des Feldes"
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:1692
+#, fuzzy
 msgid ""
 "If <code>Language specific tags</code> is set, searches will ignore tags "
 "assigned to languages other than the viewer’s locale. Selecting "
@@ -7333,6 +7626,12 @@ msgid ""
 "viewer locale. Otherwise generic matching is used, e.g. if the user is in "
 "the local <em>en_UK</em> he will view tags marked <em>en_US</em>."
 msgstr ""
+"Wenn <code>Language specific tags</code> ist festgelegt, Suchanfragen "
+"ignoriert Tags auf andere Sprachen als die Betrachter Gebietsschema "
+"zugewiesen. Auswahl der <code>specific</code> erfordert eine exakte "
+"Übereinstimmung der Tag zu dem Betrachter Gebietsschema Gebietsschema. "
+"Ansonsten generischen Abgleich dient, z. B. wenn der Benutzer in der lokalen "
+"<em>Grenzen</em> wird er Tags markiert <em>En_US</em>anzeigen."
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:1693
 msgid ""
@@ -7873,13 +8172,14 @@ msgid "default"
 msgstr "Voreinstellung"
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:2436
+#, fuzzy
 msgid "Mark unused fields <em>do not process</em>"
-msgstr ""
+msgstr "Mark nicht verwendete Felder <em>nicht verarbeitet werden.</em>"
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:2438
 #, fuzzy
 msgid "replace newlines"
-msgstr "Zenpage Artikelindex"
+msgstr "Zeilenumbrüche ersetzen"
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:2443
 msgid "Select how image metadata fields are handled."
@@ -7906,6 +8206,7 @@ msgstr ""
 "mehr anzuzeigen. "
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:2453
+#, fuzzy
 msgid ""
 "Columns for fields marked <em>do not process</em> will be removed from the "
 "database on the next <code>setup</code> execution. Selecting the <em>Mark "
@@ -7913,8 +8214,14 @@ msgid ""
 "values to be marked <em>do not process</em> allowing them to be removed from "
 "the database."
 msgstr ""
+"Spalten für Felder <em>verarbeiten nicht</em> gelöscht werden, aus der "
+"Datenbank auf die nächste <code>setup</code> Ausführung. Auswahl der "
+"<em>Markieren Sie unbenutzte Felder verarbeiten nicht</em> wird dazu führen, "
+"dass Metadatenfelder, die keine Werte <em>nicht verarbeiten</em> , so dass "
+"sie aus der Datenbank entfernt werden, gekennzeichnet werden müssen."
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:2455
+#, fuzzy
 msgid ""
 "If <em>replace newlines</em> is selected <code>&lt;br /&gt;</code> will "
 "replace <em>newline</em> characters from image metadata destined for "
@@ -7922,6 +8229,11 @@ msgid ""
 "metadata is imported so you may need to refresh your metadata to see the "
 "results."
 msgstr ""
+"<em>Zeilenumbrüche ersetzen</em> ausgewählt <code><br /></code> ersetzt "
+"<em>Newline</em> Zeichen von Bild-Metadaten für <em>Titel</em> und "
+"<em>Beschreibungen</em>bestimmt. Dies geschieht nur, wenn die Metadaten "
+"importiert wird, so Sie aktualisieren Sie Ihre Metadaten, um die Ergebnisse "
+"zu sehen müssen."
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:2464
 msgid "IPTC encoding:"
@@ -8194,12 +8506,16 @@ msgstr ""
 "<em>Bildgröße</em> entspricht."
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:2856
+#, fuzzy
 msgid "Theme head &lt;title&gt; tag"
-msgstr ""
+msgstr "Thema Kopf < Titel > tag"
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:2862
+#, fuzzy
 msgid "Select if you want parent breadcrumbs and if so the separator for them."
 msgstr ""
+"Wählen Sie wenn Sie übergeordnete Paniermehl und wenn ja das Trennzeichen "
+"für sie."
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:2865
 msgid "Gallery index page link:"
@@ -8439,12 +8755,12 @@ msgstr "Beschreibung"
 #: D:\github\ZenPhoto20/zp-core/admin-plugins.php:386
 #, fuzzy
 msgid "Supplemental plugin"
-msgstr "Theme-Plugin"
+msgstr "Zusätzliches plugin"
 
 #: D:\github\ZenPhoto20/zp-core/admin-plugins.php:168
 #, fuzzy
 msgid "Third party plugin"
-msgstr "Drittherstellerplugins"
+msgstr "Drittanbieter-plugin"
 
 #: D:\github\ZenPhoto20/zp-core/admin-plugins.php:172
 #: D:\github\ZenPhoto20/zp-core/admin-plugins.php:385
@@ -8487,16 +8803,19 @@ msgid "logo"
 msgstr "Logo"
 
 #: D:\github\ZenPhoto20/zp-core/admin-plugins.php:261
+#, fuzzy
 msgid "class plugin"
-msgstr ""
+msgstr "Klasse plugin"
 
 #: D:\github\ZenPhoto20/zp-core/admin-plugins.php:265
+#, fuzzy
 msgid "admin plugin"
-msgstr ""
+msgstr "Admin-plugin"
 
 #: D:\github\ZenPhoto20/zp-core/admin-plugins.php:270
+#, fuzzy
 msgid "feature plugin"
-msgstr ""
+msgstr "Feature-plugin"
 
 #: D:\github\ZenPhoto20/zp-core/admin-plugins.php:272
 msgid "theme plugin"
@@ -8516,21 +8835,24 @@ msgid "Plugin warnings"
 msgstr "Plugin-Warnungen"
 
 #: D:\github\ZenPhoto20/zp-core/admin-plugins.php:387
+#, fuzzy
 msgid "Class plugin"
-msgstr ""
+msgstr "Klasse plugin"
 
 #: D:\github\ZenPhoto20/zp-core/admin-plugins.php:388
 #, fuzzy
 msgid "Admin plugin"
-msgstr "Admin-Plugin"
+msgstr "Admin-plugin"
 
 #: D:\github\ZenPhoto20/zp-core/admin-plugins.php:389
+#, fuzzy
 msgid "Feature plugin"
-msgstr ""
+msgstr "Feature-plugin"
 
 #: D:\github\ZenPhoto20/zp-core/admin-plugins.php:390
+#, fuzzy
 msgid "Theme plugin"
-msgstr ""
+msgstr "Theme-Plugin"
 
 #: D:\github\ZenPhoto20/zp-core/admin-plugins.php:391
 msgid "Usage info"
@@ -8650,12 +8972,12 @@ msgstr "Schlagwortverwaltung"
 #: D:\github\ZenPhoto20/zp-core/admin-tags.php:138
 #, fuzzy
 msgid "Order by"
-msgstr "Nach Verwendungshäufigkeit sortieren"
+msgstr "Bildreihenfolge"
 
 #: D:\github\ZenPhoto20/zp-core/admin-tags.php:141
 #, fuzzy
 msgid "Alphabetic"
-msgstr "Sortierung alphabetisch"
+msgstr "Alphabetisch"
 
 #: D:\github\ZenPhoto20/zp-core/admin-tags.php:142
 #, fuzzy
@@ -8686,8 +9008,9 @@ msgstr "Zuweisen"
 
 #: D:\github\ZenPhoto20/zp-core/admin-tags.php:192
 #: D:\github\ZenPhoto20/zp-core/admin-tags.php:269
+#, fuzzy
 msgid "Universal"
-msgstr ""
+msgstr "Universell"
 
 #: D:\github\ZenPhoto20/zp-core/admin-tags.php:205
 #, fuzzy
@@ -8696,9 +9019,10 @@ msgid ""
 "language then press the appropriate button. The brackets contain the number "
 "of times the tag appears."
 msgstr ""
-"Um Schlagwörter zu löschen, aktivieren Sie die Checkbox vor dem jeweiligen "
-"Schlagwort. Klicken Sie dann auf <em>Ausgewählte Schlagwörter löschen</em>. "
-"Die Nummern in den Klammern zeigen wie häufig ein Schlagwort verwendet wird."
+"Setzen Sie ein Häkchen in das Kontrollkästchen für jede Variable, die Sie "
+"möchten, zu löschen oder Zuweisen einer Sprache und drücken die "
+"entsprechende Schaltfläche. Die Klammern enthalten die Anzahl der "
+"Wiederholungen, die das Tag wird angezeigt."
 
 #: D:\github\ZenPhoto20/zp-core/admin-tags.php:210
 #: D:\github\ZenPhoto20/zp-core/admin-tags.php:233
@@ -8778,8 +9102,8 @@ msgid ""
 "Themes allow you to visually change the entire look and feel of your "
 "gallery. Theme files are located in your <code>/themes</code> folder."
 msgstr ""
-"Themes erlauben Ihnen, das Aussehen Ihrer Galerie zu verändern. Alle Themes "
-"befinden sich im <code>/themes</code>-Verzeichnis."
+"Designs können Sie das gesamte Look And Feel Ihrer Galerie visuell zu "
+"ändern. Theme-Dateien befinden sich den <code>/themes</code> Ordner."
 
 #: D:\github\ZenPhoto20/zp-core/admin-themes.php:186
 msgid ""
@@ -8829,7 +9153,7 @@ msgstr "Aktion"
 #: D:\github\ZenPhoto20/zp-core/admin-themes.php:217
 #, fuzzy
 msgid "Third party theme"
-msgstr "Dritthersteller-Themes"
+msgstr "Dritten Thema"
 
 #: D:\github\ZenPhoto20/zp-core/admin-themes.php:256
 msgid "Version"
@@ -8975,8 +9299,11 @@ msgid "PHP Safe Mode Restrictions in effect!"
 msgstr "PHP Safe Mode-Einschränkungen sind aktiv."
 
 #: D:\github\ZenPhoto20/zp-core/admin-upload.php:173
+#, fuzzy
 msgid "These restrictions may prevent PHP scripts from uploading files."
 msgstr ""
+"Diese Einschränkungen können verhindern, dass die PHP-Skripte Hochladen von "
+"Dateien."
 
 #: D:\github\ZenPhoto20/zp-core/admin-upload.php:179
 msgid "Upload to:"
@@ -9194,9 +9521,9 @@ msgid ""
 "You may wish to revert the <em>Zenphoto_Authority</em> user rights to "
 "version %s for backwards compatibility with prior releases."
 msgstr ""
-"Sie möchten vielleicht die <em>Zenphoto_Authority</em>-Benutzerrechte  auf "
-"Version %s für eine Rückwärtskompatibilät mit alten Zenphoto-Versionen "
-"zurücksetzen."
+"Vielleicht möchten Sie die <em>Zenphoto_Authority</em> -Benutzerrechte auf "
+"Version %s für rückwärts Kompatibilität mit früheren Versionen "
+"wiederherstellen."
 
 #: D:\github\ZenPhoto20/zp-core/admin-users.php:862
 msgid "Revert rights"
@@ -9228,8 +9555,9 @@ msgid "Setup files restored."
 msgstr "Installationsdateien wiederhergestellt."
 
 #: D:\github\ZenPhoto20/zp-core/admin.php:82
+#, fuzzy
 msgid "Setup files restore failed."
-msgstr ""
+msgstr "Setup-Dateien-Wiederherstellung ist fehlgeschlagen."
 
 #: D:\github\ZenPhoto20/zp-core/admin.php:102
 msgid "protected"
@@ -9240,8 +9568,9 @@ msgid "Setup files protected."
 msgstr "Installationsdateien geschützt."
 
 #: D:\github\ZenPhoto20/zp-core/admin.php:108
+#, fuzzy
 msgid "Protecting setup files failed."
-msgstr ""
+msgstr "Fehler beim Setup-Dateien zu schützen."
 
 #: D:\github\ZenPhoto20/zp-core/admin.php:136
 msgid "purge Image cache"
@@ -9338,12 +9667,12 @@ msgstr "Quelle: %s"
 #: D:\github\ZenPhoto20/zp-core/admin.php:358
 #, fuzzy
 msgid "release notes"
-msgstr "veröffentlicht"
+msgstr "Versions-Informationen"
 
 #: D:\github\ZenPhoto20/zp-core/admin.php:358
 #, fuzzy
 msgid "notes"
-msgstr "Anmerkung: "
+msgstr "Notizen"
 
 #: D:\github\ZenPhoto20/zp-core/admin.php:362
 #, php-format
@@ -9788,8 +10117,9 @@ msgstr "Schlüsselwörter"
 
 #: D:\github\ZenPhoto20/zp-core/class-image.php:184
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/xmpMetadata.php:627
+#, fuzzy
 msgid "Exposure time"
-msgstr ""
+msgstr "Expositionsdauer"
 
 #: D:\github\ZenPhoto20/zp-core/class-image.php:185
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/xmpMetadata.php:643
@@ -10061,16 +10391,18 @@ msgid "10s"
 msgstr "10 sek"
 
 #: D:\github\ZenPhoto20/zp-core/exif/exifTranslations.php:25
+#, fuzzy
 msgid "Normal (0 deg)"
-msgstr ""
+msgstr "Normal (0 Grad)"
 
 #: D:\github\ZenPhoto20/zp-core/exif/exifTranslations.php:26
 msgid "1st curtain sync"
 msgstr "1st curtain sync"
 
 #: D:\github\ZenPhoto20/zp-core/exif/exifTranslations.php:27
+#, fuzzy
 msgid "Mirrored"
-msgstr ""
+msgstr "Gespiegelt"
 
 #: D:\github\ZenPhoto20/zp-core/exif/exifTranslations.php:28
 msgid "2nd(rear)-curtain sync used"
@@ -10081,28 +10413,34 @@ msgid "3-area-focusing (High speed)"
 msgstr "3-area-focusing (High speed)"
 
 #: D:\github\ZenPhoto20/zp-core/exif/exifTranslations.php:30
+#, fuzzy
 msgid "Upside-down"
-msgstr ""
+msgstr "Verkehrt herum"
 
 #: D:\github\ZenPhoto20/zp-core/exif/exifTranslations.php:31
+#, fuzzy
 msgid "Upside-down Mirrored"
-msgstr ""
+msgstr "Upside-Down gespiegelt"
 
 #: D:\github\ZenPhoto20/zp-core/exif/exifTranslations.php:32
+#, fuzzy
 msgid "90 deg CCW Mirrored"
-msgstr ""
+msgstr "90 deg CCW gespiegelt"
 
 #: D:\github\ZenPhoto20/zp-core/exif/exifTranslations.php:33
+#, fuzzy
 msgid "90 deg CW"
-msgstr ""
+msgstr "90 Grad CW"
 
 #: D:\github\ZenPhoto20/zp-core/exif/exifTranslations.php:34
+#, fuzzy
 msgid "90 deg CW Mirrored"
-msgstr ""
+msgstr "90 Grad CW gespiegelt"
 
 #: D:\github\ZenPhoto20/zp-core/exif/exifTranslations.php:35
+#, fuzzy
 msgid "90 deg CCW"
-msgstr ""
+msgstr "90 deg CCW"
 
 #: D:\github\ZenPhoto20/zp-core/exif/exifTranslations.php:36
 msgid "AE Good"
@@ -10145,12 +10483,14 @@ msgid "Auto Selected"
 msgstr "Automatisch ausgewählt"
 
 #: D:\github\ZenPhoto20/zp-core/exif/exifTranslations.php:46
+#, fuzzy
 msgid "Auto; Continuous"
-msgstr ""
+msgstr "Auto; Kontinuierliche"
 
 #: D:\github\ZenPhoto20/zp-core/exif/exifTranslations.php:47
+#, fuzzy
 msgid "Auto; Focus button"
-msgstr ""
+msgstr "Auto; Focus-Taste"
 
 #: D:\github\ZenPhoto20/zp-core/exif/exifTranslations.php:48
 msgid "Auto-DEP"
@@ -10241,12 +10581,14 @@ msgid "Compulsory Flash"
 msgstr "Zwangsblitz"
 
 #: D:\github\ZenPhoto20/zp-core/exif/exifTranslations.php:71
+#, fuzzy
 msgid "Compulsory Flash; Return light detected"
-msgstr ""
+msgstr "Obligatorische Flash; Rückkehr leicht erkannt"
 
 #: D:\github\ZenPhoto20/zp-core/exif/exifTranslations.php:72
+#, fuzzy
 msgid "Compulsory Flash; Return light not detected"
-msgstr ""
+msgstr "Obligatorische Flash; Rückkehr Licht nicht erkannt"
 
 #: D:\github\ZenPhoto20/zp-core/exif/exifTranslations.php:73
 msgid "Continuous"
@@ -10349,24 +10691,29 @@ msgid "Flash Did Not Fire"
 msgstr "Blitz wurde nicht ausgelöst"
 
 #: D:\github\ZenPhoto20/zp-core/exif/exifTranslations.php:100
+#, fuzzy
 msgid "Flash; Auto-Mode"
-msgstr ""
+msgstr "Blitz; Auto-Modus"
 
 #: D:\github\ZenPhoto20/zp-core/exif/exifTranslations.php:101
+#, fuzzy
 msgid "Flash; Auto-Mode; Return light detected"
-msgstr ""
+msgstr "Blitz; Auto-Modus; Rückkehr leicht erkannt"
 
 #: D:\github\ZenPhoto20/zp-core/exif/exifTranslations.php:102
+#, fuzzy
 msgid "Flash; Auto-Mode; Return light not detected"
-msgstr ""
+msgstr "Blitz; Auto-Modus; Rückkehr Licht nicht erkannt"
 
 #: D:\github\ZenPhoto20/zp-core/exif/exifTranslations.php:103
+#, fuzzy
 msgid "Flash; strobe return str_replace($matches[0], light detected"
-msgstr ""
+msgstr "Blitz; Strobe return Str_replace ($matches [0], leicht erkannt"
 
 #: D:\github\ZenPhoto20/zp-core/exif/exifTranslations.php:104
+#, fuzzy
 msgid "Flash; strobe return str_replace($matches[0], light not detected"
-msgstr ""
+msgstr "Blitz; Strobe return Str_replace ($matches [0], leichte nicht erkannt"
 
 #: D:\github\ZenPhoto20/zp-core/exif/exifTranslations.php:105
 msgid "Fluorescence"
@@ -10649,36 +10996,44 @@ msgid "Red Eye Reduction"
 msgstr "Rote Augen-Unterdrückung"
 
 #: D:\github\ZenPhoto20/zp-core/exif/exifTranslations.php:177
+#, fuzzy
 msgid "Red Eye; Auto-Mode"
-msgstr ""
+msgstr "Rote Augen; Auto-Modus"
 
 #: D:\github\ZenPhoto20/zp-core/exif/exifTranslations.php:178
+#, fuzzy
 msgid "Red Eye; Auto-Mode; Return light detected"
-msgstr ""
+msgstr "Rote Augen; Auto-Modus; Rückkehr leicht erkannt"
 
 #: D:\github\ZenPhoto20/zp-core/exif/exifTranslations.php:179
+#, fuzzy
 msgid "Red Eye; Auto-Mode; Return light not detected"
-msgstr ""
+msgstr "Rote Augen; Auto-Modus; Rückkehr Licht nicht erkannt"
 
 #: D:\github\ZenPhoto20/zp-core/exif/exifTranslations.php:180
+#, fuzzy
 msgid "Red Eye; Compulsory Flash"
-msgstr ""
+msgstr "Rote Augen; Obligatorische Flash"
 
 #: D:\github\ZenPhoto20/zp-core/exif/exifTranslations.php:181
+#, fuzzy
 msgid "Red Eye; Compulsory Flash; Return light detected"
-msgstr ""
+msgstr "Rote Augen; Obligatorische Flash; Rückkehr leicht erkannt"
 
 #: D:\github\ZenPhoto20/zp-core/exif/exifTranslations.php:182
+#, fuzzy
 msgid "Red Eye; Compulsory Flash; Return light not detected"
-msgstr ""
+msgstr "Rote Augen; Obligatorische Flash; Rückkehr Licht nicht erkannt"
 
 #: D:\github\ZenPhoto20/zp-core/exif/exifTranslations.php:183
+#, fuzzy
 msgid "Red Eye; Return light detected"
-msgstr ""
+msgstr "Rote Augen; Rückkehr leicht erkannt"
 
 #: D:\github\ZenPhoto20/zp-core/exif/exifTranslations.php:184
+#, fuzzy
 msgid "Red Eye; Return light not detected"
-msgstr ""
+msgstr "Rote Augen; Rückkehr Licht nicht erkannt"
 
 #: D:\github\ZenPhoto20/zp-core/exif/exifTranslations.php:185
 msgid "Red-Eye Reduction"
@@ -10798,8 +11153,11 @@ msgid "Standard Output Sensitivity and Recommended Exposure Index"
 msgstr "Standard-Ausgabeempfindlichkeit und empfohlener Belichtungsindex"
 
 #: D:\github\ZenPhoto20/zp-core/exif/exifTranslations.php:215
+#, fuzzy
 msgid "Standard Output Sensitivity; Recommended Exposure Index and ISO Speed"
 msgstr ""
+"Standard-Ausgabe-Empfindlichkeit; Empfohlene Belichtung Index und ISO-"
+"Empfindlichkeit"
 
 #: D:\github\ZenPhoto20/zp-core/exif/exifTranslations.php:216
 msgid "Sunny"
@@ -11600,7 +11958,8 @@ msgstr "Bild %s kann nicht rotiert werden."
 #: D:\github\ZenPhoto20/zp-core/functions-image.php:256
 #, fuzzy, php-format
 msgid "Unknown error processing %s! Please report to the <a href=\""
-msgstr "Unbekannter Fehler! Bitte berichten Sie den Entwicklern davon im"
+msgstr ""
+"Unbekannter Fehlerverarbeitung %s! Bitte melden Sie die < ein Href = \""
 
 #: D:\github\ZenPhoto20/zp-core/functions-image.php:368
 #: D:\github\ZenPhoto20/zp-core/functions-image.php:393
@@ -11958,15 +12317,21 @@ msgstr ""
 "der Robustheit: %s"
 
 #: D:\github\ZenPhoto20/zp-core/lib-auth.php:115
+#, fuzzy
 msgid "Challenge phrase foils"
-msgstr ""
+msgstr "Herausforderung Satz Folien"
 
 #: D:\github\ZenPhoto20/zp-core/lib-auth.php:116
+#, fuzzy
 msgid ""
 "These <em>foil</em> challenge phrases will be presented randomly. This list "
 "should not be empty, otherwise hackers can discover valid user IDs and know "
 "that there is an answer to any presented challenge phrase."
 msgstr ""
+"Diese <em>Folie</em> Herausforderung Sätze werden nach dem Zufallsprinzip "
+"vorgestellt. Diese Liste darf nicht leer sein, sonst können Hacker gültige "
+"Benutzer-IDs zu entdecken und wissen, dass es eine Antwort auf alle "
+"vorgestellten Sicherheitsabfrage."
 
 #: D:\github\ZenPhoto20/zp-core/lib-auth.php:402
 #, php-format
@@ -12289,8 +12654,9 @@ msgid "Users must have this right to change their credentials."
 msgstr "Benutzer benötigen dieses Recht, um ihre Einstellungen zu ändern."
 
 #: D:\github\ZenPhoto20/zp-core/lib-auth.php:591
+#, fuzzy
 msgid "Allows viewing of the debug tab items."
-msgstr ""
+msgstr "Ermöglicht die Anzeige der Debug Registerkarte Artikel."
 
 #: D:\github\ZenPhoto20/zp-core/lib-auth.php:612
 msgid "Codeblock"
@@ -12717,10 +13083,10 @@ msgid ""
 "system. This link will send the URL to the Google translation WEB to present "
 "the page in your language."
 msgstr ""
-"Dieses Dokument wird aus dem Kommentarblock innerhalb der Plugindatei "
-"erzeugt. Diese sind in Englisch und außerhalb des Übersetzungssystems. "
-"Dieser Link wird die URL zum Google-Übersetzer schicken und die Seite "
-"versuchen zu übersetzen."
+"Dieses Dokument wird von der Plugin-Kommentarblock und andere Gegenstände "
+"sind in englischer Sprache und zur Übersetzung gehörenden <em>Gettext()</em> "
+"generiert. Diesen Link senden die URL, die Google-Übersetzung WEB Seite in "
+"Ihrer Sprache zu präsentieren."
 
 #: D:\github\ZenPhoto20/zp-core/pluginDoc.php:126
 msgid "Translate this page."
@@ -12752,16 +13118,19 @@ msgid "an unknown release"
 msgstr "eine unbekannte Version"
 
 #: D:\github\ZenPhoto20/zp-core/reconfigure.php:115
+#, fuzzy
 msgid "restored"
-msgstr ""
+msgstr "site_upgrade-Dateien sind auf Originalstand zurückgesetzt."
 
 #: D:\github\ZenPhoto20/zp-core/reconfigure.php:120
+#, fuzzy
 msgid "restored to run setup"
-msgstr ""
+msgstr "restauriert, um Setup ausführen"
 
 #: D:\github\ZenPhoto20/zp-core/reconfigure.php:123
+#, fuzzy
 msgid "restored by cloning"
-msgstr ""
+msgstr "restauriert von Klonen"
 
 #: D:\github\ZenPhoto20/zp-core/reconfigure.php:201
 msgid "ZenPhoto20 has detected a change in your installation."
@@ -12788,8 +13157,9 @@ msgid "Your installation has moved from %1$s to %2$s."
 msgstr "Ihre Installation wurde von %1$s nach %2$s verschoben."
 
 #: D:\github\ZenPhoto20/zp-core/reconfigure.php:223
+#, fuzzy
 msgid "setup has been requested by:"
-msgstr ""
+msgstr "Setup hat beantragt:"
 
 #: D:\github\ZenPhoto20/zp-core/reconfigure.php:233
 #, php-format
@@ -12895,8 +13265,9 @@ msgid "Post of Database credentials"
 msgstr "Datenbank-Benutzerdaten"
 
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:394
+#, fuzzy
 msgid "Started"
-msgstr ""
+msgstr "Beginn"
 
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:418
 #, php-format
@@ -12933,7 +13304,7 @@ msgstr "ZenPhoto20 -Installation"
 msgid ""
 "Welcome to ZenPhoto20! This page will set up version %1$s on your web server."
 msgstr ""
-"Willkommen bei ZenPhoto20! Diese Seite wird Zenphoto %s auf Ihrem Webserver "
+"Willkommen bei ZenPhoto20! Diese Seite wird Version %1$s auf Ihrem Webserver "
 "einrichten."
 
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:498
@@ -13083,7 +13454,7 @@ msgstr "PHP <code>magic_quotes_gpc</code> [sind aktiviert]"
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:602
 #, fuzzy
 msgid "We strongly recommend disabling <code>magic_quotes_gpc</code>."
-msgstr "Sie müssen <code>magic_quotes_sybase</code> deaktivieren."
+msgstr "Wir empfehlen deaktivieren <code>magic_quotes_gpc</code> ."
 
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:608
 msgid "PHP <code>magic_quotes_runtime</code>"
@@ -13799,12 +14170,15 @@ msgid ""
 msgstr "ZenPhoto20-Hauptdateien [Dies ist keine offizielle Version]"
 
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:1299
-#, php-format
+#, fuzzy, php-format
 msgid ""
 "Perhaps there is a permissions issue. You should manually copy the %s "
 "<em>root_index.php</em> file to the installation root and rename it "
 "<em>index.php</em>."
 msgstr ""
+"Vielleicht gibt es ein Berechtigungsproblem. Sie sollten manuell die %s "
+"<em>root_index.php</em> Datei in die Installation Root kopieren und "
+"umbenennen <em>index.php</em>."
 
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:1303
 msgid "ZenPhoto20 core files [This is a <em>debug</em> build]"
@@ -13904,12 +14278,16 @@ msgid "Server seems to be <em>nginx</em>"
 msgstr "Der Server scheint <em>nginx</em> zu sein."
 
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:1395
+#, fuzzy
 msgid ""
 "If you wish to create cruft-free URLs, you will need to configuring "
 "<em>rewriting</em> for your NGINX server so that any link that does not go "
 "directly to a file goes to the installation root <code>index.php</code> "
 "script."
 msgstr ""
+"Wenn Cruft-freie URLs erstellen möchten, müssen Sie <em>umschreiben</em> für "
+"den NGINX-Server so konfigurieren, dass jeder Link, der nicht direkt in eine "
+"Datei geht die Installation Root geht <code>index.php</code> Skript."
 
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:1399
 msgid ""
@@ -14187,8 +14565,9 @@ msgid "Previous Release was %s"
 msgstr "Die vorige Veröffentlichung war %s"
 
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:2442
+#, fuzzy
 msgid "Completed"
-msgstr ""
+msgstr "Systemüberprüfung komplett"
 
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:2448
 #, php-format
@@ -14212,9 +14591,9 @@ msgid "You can now <a href=\"%1$s\">administer your gallery.</a>"
 msgstr "Sie können nun <a href=\"%1$s\">Ihre Galerie verwalten</a>."
 
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:2466
-#, php-format
+#, fuzzy, php-format
 msgid "Setup <a href=\"%1$s\" target=\"_blank\">%2$s</a>"
-msgstr ""
+msgstr "<a href=\"%1$s\" target=\"_blank\">%2$s</a> einrichten"
 
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:2531
 #, php-format
@@ -14410,8 +14789,11 @@ msgstr ""
 "Problem ignorieren möchten. Es wird dann als Warnung angezeigt."
 
 #: D:\github\ZenPhoto20/zp-core/setup/setup-functions.php:491
+#, fuzzy
 msgid "<span class=\"zen-logo\"><a href=\"https://"
 msgstr ""
+"<span class=\"zen-logo\"><a href=\"https:// href=\"\"></a href=\"https://></"
+"span>"
 
 #: D:\github\ZenPhoto20/zp-core/setup/setup-functions.php:517
 #, php-format
@@ -14520,16 +14902,22 @@ msgid "Plugin setup:"
 msgstr "Verfügbare Plugins:"
 
 #: D:\github\ZenPhoto20/zp-core/setup/setup-option-defaults.php:677
+#, fuzzy
 msgid ""
 "There has been a change in function deprecation. The deprecated-functions "
 "plugin has been enabled."
 msgstr ""
+"Eine Änderung der Funktion Abwertung stattgefunden hat. Das Plugin veraltet-"
+"Funktionen wurde aktiviert."
 
 #: D:\github\ZenPhoto20/zp-core/setup/setup-option-defaults.php:683
+#, fuzzy
 msgid ""
 "There has been a change of themes or plugins. The zenphotoCompatibilityPack "
 "plugin has been enabled."
 msgstr ""
+"Es wurde eine Änderung des Themes oder Plugins. Das "
+"ZenphotoCompatibilityPack-Plugin wurde aktiviert."
 
 #: D:\github\ZenPhoto20/zp-core/setup/setup-sqlform.php:3
 msgid ""
@@ -14609,9 +14997,9 @@ msgid "Plugin:%1$s option interface instantiated (%2$s)"
 msgstr "Plugin:%1$s Einstellungssteuerung erzeugt (%2$s)"
 
 #: D:\github\ZenPhoto20/zp-core/setup/setup_pluginOptions.php:84
-#, php-format
+#, fuzzy, php-format
 msgid "Plugin:%1$s setup completed in %2$.4f seconds"
-msgstr ""
+msgstr "Plugin:%1$s Setup abgeschlossen in %2$.4f Sekunden"
 
 #: D:\github\ZenPhoto20/zp-core/setup/setup_set-mod_rewrite.php:21
 msgid "The option “mod_rewrite” will be set to “enabled”."
@@ -14640,9 +15028,9 @@ msgid "Theme:%s option interface instantiated"
 msgstr "Theme: %s Einstellungssteuerung erzeugt"
 
 #: D:\github\ZenPhoto20/zp-core/setup/setup_themeOptions.php:57
-#, php-format
+#, fuzzy, php-format
 msgid "Theme:%s setup completed in %2$.4f seconds"
-msgstr ""
+msgstr "Thema: %s Setup abgeschlossen in %2$.4f Sekunden"
 
 #: D:\github\ZenPhoto20/zp-core/template-functions.php:53
 msgid "Are you sure you want to delete the image? THIS CANNOT BE UNDONE!"
@@ -14840,11 +15228,13 @@ msgid "login"
 msgstr "Anmelden"
 
 #: D:\github\ZenPhoto20/zp-core/template-functions.php:4208
-#, php-format
+#, fuzzy, php-format
 msgid ""
 "<span class=\"zen-logo\"><a href=\"https://%1$s\" title=\"\">Powered by <img "
 "src=\"%2$s\" /></a></span>"
 msgstr ""
+"<span class=\"zen-logo\"><a href=\"https://%1$s\" title=\"\">Powered by<img "
+"src=\"%2$s\"></a></span>"
 
 #: D:\github\ZenPhoto20/zp-core/template-functions.php:4401
 msgid "Error:</strong> the requested object was not found."
@@ -14931,9 +15321,9 @@ msgid ""
 "You have restored your database from a different instance of zenphoto. You "
 "should run %1$ssetup%2$s to insure proper migration."
 msgstr ""
-"Sie haben Ihre Database von einer anderen Installation hergestellt. Sie "
-"sollten %1$ssetup%2$s ausführen, um eine korrekte Migration sicher zu "
-"stellen."
+"Sie haben Ihre Datenbank von einer anderen Instanz von Zenphoto "
+"wiederhergestellt. Führen Sie \"% 1\" $Ssetup %2$s um korrekte Migration zu "
+"versichern."
 
 #: D:\github\ZenPhoto20/zp-core/utilities/backup_restore.php:471
 msgid "Rights migration failed!"
@@ -15075,10 +15465,10 @@ msgid ""
 "your installation. For more detailed info about the database use tools like "
 "phpMyAdmin."
 msgstr ""
-"Die internen Bezüge der Tabellen können in dem PDF database reference, dass "
-"im Downloadpaket unter /doc zu finden ist, nachgesehen werden. Für "
-"weitergehende Informaton über die Datenbank verwenden Sie bitte Werkzeuge "
-"wie PHPMyAdmin."
+"Die interne Tabellenbeziehungen können auf dem PDF-Referenz-Datenbank "
+"angezeigt werden, die in der Release-Paket innerhalb der /docs_files-Ordner "
+"der Installation enthalten ist. Ausführlichere Informationen über die "
+"Datenbank verwenden Sie Tools wie PhpMyAdmin."
 
 #: D:\github\ZenPhoto20/zp-core/utilities/database_reference.php:106
 msgid "Table prefix: no prefix"
@@ -16076,8 +16466,9 @@ msgid "Browser default"
 msgstr "Browserstandard"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/class-WEBdocs.php:61
+#, fuzzy
 msgid "Choose the WEB service to use for rendering pdf documents."
-msgstr ""
+msgstr "Wählen Sie den Webdienst für Rendering PDF-Dokumente verwenden."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/class-WEBdocs.php:62
 #, php-format
@@ -16122,25 +16513,29 @@ msgstr ""
 "Stellt Funktionalität bereit, um Textdateien  (.txt, .html, .htm) anzuzeigen."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/class-textobject/class-textobject_core.php:103
-#, php-format
+#, fuzzy, php-format
 msgid "Invalid %s instantiation: Album does not exist"
-msgstr ""
+msgstr "Ungültige %s Instanziierung: Album existiert nicht"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/class-textobject/class-textobject_core.php:105
-#, php-format
+#, fuzzy, php-format
 msgid "Invalid %s instantiation: file does not exist"
-msgstr ""
+msgstr "Ungültige %s Instanziierung: Datei existiert nicht"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/class-video.php:18
 msgid "The <em>audio-video</em> handler."
 msgstr "Die Funktionen für <em>Audio/Video</em>."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/class-video.php:19
+#, fuzzy
 msgid ""
 "This plugin handles <code>3gp</code> and <code>mov</code> multi-media files. "
 "<strong>Note:</strong> you should also enable a multimedia player plugin to "
 "handle other media files."
 msgstr ""
+"Dieses Plugin behandelt <code>3gp</code> und <code>mov</code> Multi-Media-"
+"Dateien. <strong>Hinweis:</strong> sollten Sie auch aktivieren, eine "
+"Multimedia-Player-Plugin, um andere Medien-Dateien zu verarbeiten."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/class-video.php:58
 msgid "Quicktime video width"
@@ -16376,11 +16771,13 @@ msgid "setup the new install"
 msgstr "Die neue Installation einrichten"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/cloneZenphoto/clone.php:144
-#, php-format
+#, fuzzy, php-format
 msgid ""
 "Before running setup for <code>%1$s</code> please reinstall the following "
 "setup files from the %2$s to this installation:"
 msgstr ""
+"Vor dem Ausführen von Setup für <code>%1$s</code> Bitte installieren Sie die "
+"folgenden Setup-Dateien von %2$s zu dieser Installation:"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/cloneZenphoto/clone.php:155
 #, php-format
@@ -16411,8 +16808,9 @@ msgid "Select the destination folder:"
 msgstr "Wählen Sie das Zielverzeichnis:"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/cloneZenphoto/cloneTab.php:160
+#, fuzzy
 msgid "Verify WEB link to this install:"
-msgstr ""
+msgstr "WEB-Link zu dieser Installation zu überprüfen:"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/colorbox_js.php:26
 msgid "Loads Colorbox JS and CSS scripts for selected theme page scripts."
@@ -16818,8 +17216,9 @@ msgid "<strong>Missing Object</strong> "
 msgstr "<strong>Fehlendes Objekt</strong>"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/comment_form/admin-comments.php:385
+#, fuzzy
 msgid "article"
-msgstr ""
+msgstr "Artikel"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/comment_form/admin-comments.php:419
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/comment_form/admin-comments.php:471
@@ -16849,9 +17248,9 @@ msgid "Edit this comment."
 msgstr "Diesen Kommentar bearbeiten."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/comment_form/admin-comments.php:450
-#, php-format
+#, fuzzy, php-format
 msgid "%1$s commented on %2$s:"
-msgstr ""
+msgstr "%1$s kommentierte den Artikel %2$s"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/comment_form/admin-comments.php:452
 msgid "Reply:"
@@ -17039,13 +17438,15 @@ msgid "Article"
 msgstr "Artikel"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/common/fieldExtender.php:459
+#, fuzzy
 msgid "There is no defined context, you must pass a comment object."
 msgstr ""
+"Es gibt keinen definierten Kontext, Sie müssen ein Comment-Objekt übergeben."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/common/fieldExtender.php:477
 #, fuzzy
 msgid "Field not defined."
-msgstr "Nicht definiert"
+msgstr "Feld nicht definiert."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/contact_form.php:19
 msgid ""
@@ -17350,7 +17751,7 @@ msgstr "Bild beschneiden"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/crop_image.php:363
 #, fuzzy
 msgid "Are you sure you want to permanently alter this image?"
-msgstr "Sind Sie sicher, dass Sie diesen Benutzer löschen wollen?"
+msgstr "Sind Sie sicher, dass Sie dieses Bild dauerhaft verändern wollen?"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/crop_image.php:384
 msgid "Image cropping"
@@ -17382,7 +17783,7 @@ msgstr "Größe"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/crop_image.php:413
 #, fuzzy, php-format
 msgid "crop width:%1$s %2$s crop height:%3$s"
-msgstr "Breite: %1$s %2$s Höhe:%3$s %4$s Zurücksetzen %5$s"
+msgstr "Breite: %1$s %2$s Ernte Höhe: %3$s zuschneiden"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/crop_image.php:413
 msgid "swap width and height fields"
@@ -17391,32 +17792,40 @@ msgstr "Höhe- und Breitefelder tauschen"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/crop_image.php:438
 #, fuzzy
 msgid "Link image watermark"
-msgstr "Bildwasserzeichen"
+msgstr "Link Bild Wasserzeichen"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/crop_image.php:477
+#, fuzzy
 msgid "Done"
-msgstr ""
+msgstr "Fertig!"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/customData.php:26
+#, fuzzy
 msgid "This plugin exposes the \"custom_data\" field on objects."
-msgstr ""
+msgstr "Dieses Plugin macht das \"Custom_data\" Feld auf Objekte."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/customData.php:27
+#, fuzzy
 msgid ""
 "This plugin is for legacy use. You should make a custom field extender "
 "plugin "
 msgstr ""
+"Dieses Plugin ist für ältere. Sie sollten eine benutzerdefiniertes Feld-"
+"Extender-Plugin"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/customData.php:107
 #, fuzzy
 msgid "Enabled custom_data"
-msgstr "Kommentare einschalten"
+msgstr "Aktivierte custom_data"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/customData.php:115
+#, fuzzy
 msgid ""
 "Expose the <code>custom_data</code> field on the admin pages for these "
 "objects."
 msgstr ""
+"Setzen Sie die <code>custom_data</code> Feld auf den Adminseiten für diese "
+"Objekte."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/customData.php:138
 msgid "Custom:"
@@ -17427,16 +17836,19 @@ msgid "Custom data"
 msgstr "Benutzerdefinierte Daten:"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/debug.php:33
+#, fuzzy
 msgid "Debugging aids."
-msgstr ""
+msgstr "Debuggen von Aids."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/debug.php:55
+#, fuzzy
 msgid "Debuging options"
-msgstr ""
+msgstr "Debugen Optionen"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/debug.php:69
+#, fuzzy
 msgid "Select the debug options to enable."
-msgstr ""
+msgstr "Wählen Sie die Debug-Optionen aktivieren."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/debug.php:114
 msgid "released"
@@ -17458,21 +17870,24 @@ msgstr ""
 "Bearbeitet die version.php-Datei, um eine „%s“-Installation zu erstellen."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/debug.php:148
+#, fuzzy
 msgid "phpinfo"
-msgstr ""
+msgstr "phpinfo"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/debug.php:149
 #, fuzzy
 msgid "Locales"
-msgstr "Sprache:"
+msgstr "Locale"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/debug.php:150
+#, fuzzy
 msgid "Session"
-msgstr ""
+msgstr "Veranstaltung"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/debug.php:154
+#, fuzzy
 msgid "HTTP accept"
-msgstr ""
+msgstr "HTTP akzeptieren"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/debug.php:155
 #, fuzzy
@@ -17484,28 +17899,29 @@ msgid "Your PHP configuration information."
 msgstr "Ihre PHP-Konfigurations-Information"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/debug/admin_tab.php:52
+#, fuzzy
 msgid "_SESSION array"
-msgstr ""
+msgstr "_SESSION-array"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/debug/admin_tab.php:104
 #, fuzzy
 msgid "Supported locales:"
-msgstr "Keine unterstützten Datenbanken"
+msgstr "Unterstützten Gebietsschemas:"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/debug/admin_tab.php:156
 #, fuzzy
 msgid "Sub-Language"
-msgstr "Sprache:"
+msgstr "Sub-Sprache"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/debug/admin_tab.php:157
 #, fuzzy
 msgid "Language String"
-msgstr "Sprache:"
+msgstr "Sprache-String"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/debug/admin_tab.php:195
 #, fuzzy
 msgid "Site browser cookies found."
-msgstr "ZenPhoto20-Benutzer erstellt"
+msgstr "Website Browser-Cookies gefunden."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/defaultCodeblocks.php:12
 msgid "Create default codeblocks."
@@ -17582,27 +17998,27 @@ msgstr "Funktion"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/deprecated-functions.php:165
 #, fuzzy, php-format
 msgid "theme %1$s:%2$s"
-msgstr "%1$s: %2$s"
+msgstr "Theme %1$s von %2$s"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/deprecated-functions.php:168
 #, fuzzy, php-format
 msgid "user plugin %1$s:%2$s"
-msgstr "In Benutzer-Plugins"
+msgstr "Benutzer \"% 1\" Plugin $s: %2$s"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/deprecated-functions.php:171
-#, php-format
+#, fuzzy, php-format
 msgid "standard plugin %1$s:%2$s"
-msgstr ""
+msgstr "Standard-Plugin \"% 1\" $s: %2$s"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/deprecated-functions.php:174
-#, php-format
+#, fuzzy, php-format
 msgid "core:%s"
-msgstr ""
+msgstr "Kern: %s"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/deprecated-functions.php:181
 #, fuzzy, php-format
 msgid "%1$s (called from %2$s line %3$s) is deprecated."
-msgstr "%1$s (aufgerufen von %2$s Zeile %3$s) ist veraltet"
+msgstr "%1$s (genannt von %2$s Linie %3$s) ist veraltet."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/deprecated-functions.php:225
 msgid "Check deprecated use"
@@ -17623,7 +18039,7 @@ msgstr "Veraltete Funktionen"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/deprecated-functions/admin_tab.php:32
 #, fuzzy
 msgid "There are no deprecated functions at this time."
-msgstr "Die Nachrichten über veraltete Funktionen finden."
+msgstr "Zu diesem Zeitpunkt gibt es keine veralteten Funktionen."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/deprecated-functions/admin_tab.php:38
 msgid ""
@@ -17675,12 +18091,13 @@ msgid ""
 "This feature is handled in the \"theme_head\" filter. For parameters set the "
 "theme options."
 msgstr ""
-"Diese Funktion wird nun über den \"theme_head\"-Filter aufgerufen. Sie "
-"können den Funktionsaufruf entfernen."
+"Diese Funktion wird in der \"Theme_head\" Filter behandelt. Für die "
+"Parameter der Theme-Optionen festlegen."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:57
+#, fuzzy
 msgid "Use getAllTagsUnique()"
-msgstr ""
+msgstr "Verwenden Sie getAllTagsUnique()"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/deprecated-functions/functions.php:101
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/deprecated-functions/functions.php:139
@@ -17928,8 +18345,8 @@ msgid ""
 "* This option may be set via the <a onclick=\"gotoName('dynamic-locale');"
 "\"><em>dynamic-locale</em></a> plugin options."
 msgstr ""
-"* Diese Option kann über <a href=\"javascript:gotoName('dynamic-locale');"
-"\"><em>dynamic-locale</em></a>-Plugineinstellungen geändert werden."
+"* Diese Option kann über die <a onclick=\"gotoName('dynamic-locale');"
+"\"><em>Dynamik-Locale</em></a> -Plugin-Optionen gesetzt werden."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/dynamic-locale.php:186
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/federated_logon.php:135
@@ -17977,8 +18394,9 @@ msgid "files"
 msgstr "Dateien"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/elFinder/filemanager.php:19
+#, fuzzy
 msgid "Theme Manager"
-msgstr ""
+msgstr "Theme-Manager"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/elFinder/filemanager.php:22
 msgid "File Manager"
@@ -17997,7 +18415,7 @@ msgstr ""
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/elFinder/php/connector_zp.php:71
 #, fuzzy, php-format
 msgid "Themes (%s)"
-msgstr "Bilder (%s)"
+msgstr "Themen (%s)"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/elFinder/php/connector_zp.php:77
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/publishContent/publishContent.php:437
@@ -18024,7 +18442,7 @@ msgstr "Drittherstellerplugins (%s)"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/elFinder/php/connector_zp.php:262
 #, fuzzy, php-format
 msgid "Data (%s)"
-msgstr "Seiten (%s)"
+msgstr "Daten (%s)"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/elFinder/php/connector_zp.php:276
 #, php-format
@@ -18320,23 +18738,26 @@ msgstr[0] "%s (%u Bild)"
 msgstr[1] "%s (%u Bilder)"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/favoritesAlbums.php:32
+#, fuzzy
 msgid "Publish <em>favorites</em> into albums that others can view."
 msgstr ""
+"Veröffentlichen Sie <em>Favoriten</em> in Alben, die andere Benutzer "
+"anzeigen können."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/favoritesAlbums.php:179
 #, fuzzy
 msgid "Create an album from favorites"
-msgstr "Erstelle Album aus der Suche"
+msgstr "Erstellen Sie ein Fotoalbum aus den Favoriten"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/favoritesAlbums/admin-album.php:83
 #, fuzzy
 msgid "Create Favorites Album"
-msgstr "Album erstellen"
+msgstr "Album \"Favoriten\" erstellen"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/favoritesAlbums/admin-album.php:95
 #, fuzzy
 msgid "favorite"
-msgstr "Favoriten"
+msgstr "Favorit hinzufügen"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/favoritesHandler.php:48
 msgid "Support for <em>favorites</em> handling."
@@ -18408,8 +18829,9 @@ msgid "Users watching:"
 msgstr "Beobachtende Benutzer:"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/favoritesHandler.php:267
+#, fuzzy
 msgid "instance"
-msgstr ""
+msgstr "Instanz"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/federated_logon.php:50
 msgid "Handles logon from <em>OpenID</em> credential providers."
@@ -19253,12 +19675,15 @@ msgstr ""
 "diese sind im Internet zu finden."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/html_meta_tags.php:126
+#, fuzzy
 msgid "Keyword threshold"
-msgstr ""
+msgstr "Keyword-Schwelle"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/html_meta_tags.php:129
+#, fuzzy
 msgid "Only keywords with at least this number of uses will be shown."
 msgstr ""
+"Nur Keywords mit mindestens diese Anzahl von Anwendungen wird angezeigt."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/html_meta_tags.php:140
 #, fuzzy
@@ -19266,8 +19691,8 @@ msgid ""
 "* This option may be set via the <a onclick=\"gotoName('html_meta_tags');"
 "\"><em>html_meta_tags</em></a> plugin options."
 msgstr ""
-"* Diese Option kann über <a href=\"javascript:gotoName('html_meta_tags');"
-"\"><em>html_meta_tags</em></a>-Plugineinstellungen geändert werden."
+"* Diese Option kann über das <a onclick=\"gotoName('html_meta_tags');"
+"\"><em>Html_meta_tags</em></a> -Plugin-Optionen gesetzt werden."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/http_auth.php:50
 msgid "Checks for Apache HTTP authentication of authorized users."
@@ -19507,16 +19932,19 @@ msgstr ""
 "Versuchen ignoriert."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/ipBlocker.php:97
+#, fuzzy
 msgid "404 threshold"
-msgstr ""
+msgstr "404 Schwelle"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/ipBlocker.php:99
+#, fuzzy
 msgid "Access will be suspended after this many 404 errors."
-msgstr ""
+msgstr "Nach diesem viele 404-Fehler wird der Zugang gesperrt."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/ipBlocker.php:100
+#, fuzzy
 msgid "Cool off"
-msgstr ""
+msgstr "Immer cool bleiben"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/ipBlocker.php:102
 msgid "The block will be removed after this many minutes."
@@ -19536,8 +19964,9 @@ msgid "IP address format error"
 msgstr "IP-Adressen-Formatfehler"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/ipBlocker.php:318
+#, fuzzy
 msgid "Suspended"
-msgstr ""
+msgstr "RSS ausgesetzt"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/jcarousel_thumb_nav.php:12
 msgid ""
@@ -19591,9 +20020,9 @@ msgid ""
 "This plugin handles <code>flv</code>, <code>fla</code>, <code>mp3</code>, "
 "<code>mp4</code>, <code>m4v</code>, and <code>m4a</code> multi-media files."
 msgstr ""
-"Ihr MySQL-Benutzer muß über <code>Erstell-</code>, <code>Verwerfen-</code>, "
-"<code>Auswahl-</code>, <code>Einfüge-</code>, <code>Ändern-</code>, "
-"<code>Aktualisierungs-</code> and <code>Lösch-</code>Rechte verfügen."
+"Dieses Plugin behandelt <code>flv</code> , <code>fla</code> , <code>mp3</"
+"code> , <code>mp4</code> , <code>m4v</code> , und <code>m4a</code> Multi-"
+"Media-Dateien."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/jplayer.php:72
 msgid ""
@@ -19604,8 +20033,9 @@ msgstr ""
 "Information über den Player und seine Lizenz."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/jplayer.php:74
+#, fuzzy
 msgid "This plugin requires the <em>class-video</em> plugin"
-msgstr ""
+msgstr "Dieses Plugin benötigt die <em>Klasse-Video</em> -plugin"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/jplayer.php:74
 #, php-format
@@ -19731,13 +20161,12 @@ msgid ""
 "you need to modify a skin or make your own and also need to change values in "
 "the plugin class method getPlayerSize()."
 msgstr ""
-"jPlayer kann nicht frei in der Größe verändert werden, da es von seinem HTML "
-"und CSS basierenden Skin abhängig ist. Die Größen markiert mit einem "
-"<strong>*</strong> werden nur von den beiden speziellen Zenphoto-Skins "
-"unterstützt (diese beiden sind auch in der Breite responsiv). Wenn Sie "
-"andere Größe benötigen, müssen Sie ein Skin bearbeiten oder Ihr eigenes "
-"erstellen. Außerdem müssten Sie Werten in der Plugin-Methode getPlayerSize() "
-"ändern."
+"jPlayer ist abhängig von ihrer HTML- und CSS-basierte Haut. Größen mit einem "
+"<strong>*</strong> gekennzeichnet werden unterstützt von den beiden Zenphoto "
+"benutzerdefinierte Skins nur (diese beiden Skins reagieren auch in der "
+"Breite). Wenn Sie andere Größen benötigen müssen Sie eine Haut ändern oder "
+"erstellen Sie Ihre eigene und auch Werte in die Plugin-Klasse Methode "
+"getPlayerSize() ändern müssen."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/jplayer.php:148
 msgid "Player skin"
@@ -19752,12 +20181,12 @@ msgid ""
 "player width. Place custom skin within the root plugins folder. See plugin "
 "documentation for more info."
 msgstr ""
-"Wählen Sie das Skin (Theme), dass Sie verwenden möchten. <br />Anmerkung: Da "
-"die Skins HTML/CSS basiert sind, können bei bestimmten Themes "
-"Darstellungsfeher auftauchen, die manuell angepaßt werden müssen. Die beiden "
-"Zenphoto-Skins sind responsiv bezüglich der Breite. Platzieren Sie dazu Ihre "
-"benutzerdefinierten Skins innerhalb des /plugins-Ordners. Bitte lesen Sie "
-"die Plugindokumentation dazu."
+"Wählen Sie die Skin (Thema) zu verwenden.<br>Hinweis: Da die Haut rein "
+"anzeigen HTML/CSS nur gibt es möglicherweise Probleme mit bestimmten Themen, "
+"die manuelle Anpassungen erfordern. Die zwei Zenphoto benutzerdefinierte "
+"Skins reagieren über die Spieler-Breite. Legen Sie benutzerdefinierte Skin "
+"in den Stammordner des Plugins. Plugin-Dokumentation für weitere "
+"Informationen."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/jplayer.php:232
 #, php-format
@@ -19885,10 +20314,10 @@ msgid ""
 "content</em>.</p> <p>Replace any parameters (<em>%d</em>) with the "
 "appropriate value."
 msgstr ""
-"Die obigen Inhaltmacros können verwendet werden, um wie beschrieben Zenphoto-"
-"Funktionen in <em>Beschreibungs-</em>, <em>Zenpage-Inhalt-</em>und "
-"<em>Zenpage-Extrainhalt</em>-Felder einzufügen. Ersetzen Sie Parameter (<em>"
-"%d</em>) mit den entsprechenden Werten."
+"Diese Inhalte Makros können verwendet werden, um Elemente einfügen, wie "
+"beschrieben in <em>Beschreibungen</em>, <em>Zenpage Inhalt</em>, und "
+"<em>Zenpage zusätzliche Inhalte</em>.<p><p>Ersetzen Sie alle Parameter (<em>"
+"%d</em>) mit dem entsprechenden Wert."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/macroList/macroList_tab.php:35
 msgid "Parameter types:"
@@ -19962,8 +20391,8 @@ msgid ""
 "* These options may be set via the <a onclick=\"gotoName('menu_manager');"
 "\"><em>menu_manager</em></a> plugin options."
 msgstr ""
-"* Diese Option kann über <a href=\"javascript:gotoName('menu_manager');"
-"\"><em>menu_manager</em></a>-Plugineinstellungen geändert werden."
+"* Diese Optionen können über das <a onclick=\"gotoName('menu_manager');"
+"\"><em>Menu_manager</em></a> -Plugin-Optionen eingestellt werden."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/menu_manager.php:74
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage.php:161
@@ -20045,13 +20474,14 @@ msgstr "Sortierung gesichert."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:61
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:376
-#, php-format
+#, fuzzy, php-format
 msgid "Target does not exist in <em>%1$s</em> theme"
-msgstr ""
+msgstr "Ziel ist in <em>%1$s</em> Thema nicht vorhanden."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:63
+#, fuzzy
 msgid "Target does not exist"
-msgstr ""
+msgstr "Spieler existiert nicht."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:84
 msgid "The object of this menu is under password protection"
@@ -20094,7 +20524,7 @@ msgstr "Versteckte Einträge"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:461
 #, fuzzy
 msgid "Menu items for all objects added."
-msgstr "Menueinträge für alle Zenphoto-Objekte hinzugefügt."
+msgstr "Menüelemente für alle Objekte hinzugefügt."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:465
 msgid "Menu items for all albums added."
@@ -20361,7 +20791,7 @@ msgstr "Dies fügt Menüeinträge für alle Alben ein."
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:82
 #, fuzzy
 msgid "Creates a link to a zenphoto Album."
-msgstr "Erstellt einen Link zu einem Album."
+msgstr "Erstellt eine Verknüpfung mit einem Zenphoto Album."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:95
 msgid "All Zenpage pages"
@@ -20408,8 +20838,10 @@ msgid "Custom page"
 msgstr "Benutzerdefinierte Seite"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:140
+#, fuzzy
 msgid "Creates a link to a custom theme script page."
 msgstr ""
+"Erstellt eine Verknüpfung zu einer benutzerdefinierten Designs-Skript-Seite."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:141
 msgid "Script page"
@@ -20475,7 +20907,7 @@ msgstr "*Wählen Sie die Art der hinzu zufügenden Menüeinträge*"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:259
 #, fuzzy
 msgid "All news categories"
-msgstr "Neuigkeiten-Kategorien"
+msgstr "News-Kategorien"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:264
 msgid "Custom theme page"
@@ -20507,8 +20939,9 @@ msgid "Class"
 msgstr "Klasse"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:378
+#, fuzzy
 msgid "Target does not exist."
-msgstr ""
+msgstr "Spieler existiert nicht."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/mergedRSS.php:19
 msgid "Merges several RSS feeds into one."
@@ -20642,30 +21075,36 @@ msgid "Query failure: %s"
 msgstr "Abfragefehler: %s“"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/nanospell.php:22
+#, fuzzy
 msgid "Spellchecker for tinyMCE."
-msgstr ""
+msgstr "Rechtschreibprüfung für TinyMCE."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/optionalObjectFields.php:32
+#, fuzzy
 msgid "Handles the \"optional\" object fields"
-msgstr ""
+msgstr "Griffe \"optional\" Objekt-Felder"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/optionalObjectFields.php:50
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/optionalObjectFields.php:60
+#, fuzzy
 msgid "Location"
-msgstr ""
+msgstr "Ort:"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/optionalObjectFields.php:56
+#, fuzzy
 msgid "Set as thumbnail for"
-msgstr ""
+msgstr "Legen Sie als Miniaturansicht für"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/optionalObjectFields.php:58
+#, fuzzy
 msgid "Image watermark"
-msgstr ""
+msgstr "Bild-Wasserzeichen"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/optionalObjectFields.php:71
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/optionalObjectFields.php:76
+#, fuzzy
 msgid "Extra Content"
-msgstr ""
+msgstr "Zusätzliche Inhalte"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/optionalObjectFields.php:258
 msgid "thumb"
@@ -20846,8 +21285,8 @@ msgid ""
 "* These options may be set via the <a onclick=\"gotoName('print_album_menu');"
 "\"><em>print_album_menu</em></a> plugin options."
 msgstr ""
-"* Diese Option kann über <a href=\"javascript:gotoName('print_album_menu');"
-"\"><em>print_album_menu</em></a>-Plugineinstellungen geändert werden."
+"* Diese Optionen können über das <a onclick=\"gotoName('print_album_menu');"
+"\"><em>Print_album_menu</em></a> -Plugin-Optionen eingestellt werden."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/print_album_menu.php:74
 msgid ""
@@ -21092,12 +21531,12 @@ msgstr "Keine unveröffentlichten Seiten"
 #, fuzzy
 msgid "Provides a means to purge options for Themes and Plugins."
 msgstr ""
-"Bietet die Möglichkeit einen Benutzer-An- und Abmeldelink auf den Theme-"
-"Seiten anzuzeigen."
+"Bietet eine Möglichkeit, Optionen für Themes und Plugins zu bereinigen."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/purgeOptions.php:35
+#, fuzzy
 msgid "purge"
-msgstr ""
+msgstr "Sitemap-Dateien erstellen oder Sitemap-Cache löschen"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:19
 #, fuzzy
@@ -21107,27 +21546,32 @@ msgstr "In Benutzer-Plugins"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:19
 #, fuzzy
 msgid "Extensions"
-msgstr "Abmessung:"
+msgstr "Erweiterungen"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:112
 #, fuzzy
 msgid "No option owners have been located."
-msgstr "Ihren Dateien wurden hochgeladen."
+msgstr "Keine Option Eigentümer wurden entfernt."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:126
+#, fuzzy
 msgid "Check an item to purge options associated with it."
 msgstr ""
+"Überprüfen Sie ein Element, um Optionen, die mit ihr verbundenen bereinigen."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:129
+#, fuzzy
 msgid ""
 "Items that are <span class=\"missing_owner\">higlighed</span> appear no "
 "longer to exist."
 msgstr ""
+"Elemente, die <span class=\"missing_owner\">Higlighed</span> sind scheinen "
+"nicht mehr zu existieren."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:134
-#, php-format
+#, fuzzy, php-format
 msgid "<span class=\"missing_owner\">higlighed</span>%s "
-msgstr ""
+msgstr "<span class=\"missing_owner\">Higlighed</span>%s"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/quota_manager.php:31
 msgid ""
@@ -21481,16 +21925,18 @@ msgid "Click here to register for this site."
 msgstr "Hier klicken, um sich auf die Seite zu registrieren."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/register_user.php:69
+#, fuzzy
 msgid "Default text for the retgister user link."
-msgstr ""
+msgstr "Standard-Text für den Link Retgister Benutzer."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/register_user.php:70
 msgid "Hint text"
 msgstr "Hinweistext"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/register_user.php:72
+#, fuzzy
 msgid "Default hint text for the register user link."
-msgstr ""
+msgstr "Standardtext Hinweis für den Benutzer Registrierungslink."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/register_user.php:75
 msgid ""
@@ -21733,7 +22179,7 @@ msgstr ""
 msgid ""
 "The Configuration file is corrupt. You will need to restore it from a backup."
 msgstr ""
-"Die Zenphoto-Konfigurations-Datei ist korrupt. Sie werden sie von einem "
+"Die ZenPhoto20-Konfigurations-Datei ist korrupt. Sie werden sie von einem "
 "Backup wiederherstellen müssen."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/rewriteTokens.php:65
@@ -21791,7 +22237,7 @@ msgstr "Rewrite Tokens"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/rss.php:12
 #, fuzzy
 msgid "The <em>RSS</em> handler."
-msgstr "Die Zenphoto-Funktionen für <em>RSS</em>."
+msgstr "Der <em>RSS</em> -Handler."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/rss.php:13
 msgid "This plugin must be enabled to supply <em>RSS</em> feeds."
@@ -22154,8 +22600,9 @@ msgid "Install"
 msgstr "Installieren"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/security-logger.php:138
+#, fuzzy
 msgid "Restore setup scripts"
-msgstr ""
+msgstr "Wiederherstellen von Installationsskripts"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/security-logger.php:141
 msgid "Protect setup scripts"
@@ -22725,14 +23172,15 @@ msgid ""
 "really need this setting as the creation may cause extra workload of your "
 "server and result in timeouts"
 msgstr ""
-"<strong>Anmerkung:</strong> Andere Suchmaschinen (Yahoo, Bing) können "
-"möglicherweise Ihre Sitemap nicht lesen. Außerdem berücksichtigt die Google-"
-"Erweiterung nur Bild- und Videoformate. Wenn Sie benutzerdefinierte "
-"Dateitypen verwenden, die nicht von Zenphoto-Standardplugins unterstützt "
-"werden oder solche wie .mp3, .txt und .html, sollten Sie dies nicht "
-"verwenden oder das Plugin modifizieren. Auch wenn Ihre Website sehr groß "
-"ist, bedenken Sie, dass die Erstellung hiermit Ihren Server extra belastet "
-"und Timeouts auslösen kann."
+"<strong>Hinweis:</strong> Andere Suchmaschinen (Yahoo, Bing) möglicherweise "
+"nicht in der Lage, Ihre XML-Sitemap zu lesen. Auch decken die Google-"
+"Erweiterungen nur Bild- und video-Formate. Wenn Sie benutzerdefinierte "
+"Dateitypen, die nicht durch standard-Plugins fallen oder Typen wie MP3, txt "
+"und HTML verwenden sollten Sie wahrscheinlich nicht das verwenden oder "
+"ändern das Plugin. Auch, wenn Ihre Website wirklich riesig ist darüber "
+"nachdenken Sie wenn Sie diese Einstellung unbedingt, da die Schaffung "
+"zusätzlichen Arbeitsbelastung Ihres Servers und Ergebnis in Timeouts führen "
+"kann"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/sitemap-extended.php:162
 msgid "Google - URL to image license"
@@ -22806,7 +23254,7 @@ msgstr ""
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:111
 #, fuzzy
 msgid "ZenPhoto20 items"
-msgstr "Zenphoto-Einträge"
+msgstr "ZenPhoto20 Elemente"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:113
 msgid "Index pages"
@@ -23260,8 +23708,8 @@ msgid ""
 "Cached content of %3$s served by static_html_cache in %1$.4f seconds plus "
 "%2$.4f seconds unavoidable overhead."
 msgstr ""
-"Der Cacheinhalt von %3$s wurde vom static_html_cache in %1$.4f Sekunden plus "
-"%2$.4f Sekunden unvermeidbaren Zenphoto-Aufwandes geliefert."
+"Zwischengespeicherte Inhalte von %3$s von Static_html_cache in %1$.4f "
+"Sekunden plus %2$.4f Sekunden unvermeidlich Gemeinkostenzuschläge serviert."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/static_html_cache.php:335
 msgid "Static HTML cache expire"
@@ -23301,26 +23749,33 @@ msgstr ""
 "ein. Trennen Sie mehrere Einträge durch Kommata."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tagFromSearch.php:19
+#, fuzzy
 msgid "Facilitates assigning unique tags to related objects."
-msgstr ""
+msgstr "Erleichtert die verknüpften Objekte einzigartige Tags zuweisen."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tagFromSearch.php:28
+#, fuzzy
 msgid "Tags only searches"
-msgstr ""
+msgstr "Stichwörter nur Suchanfragen"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tagFromSearch.php:29
+#, fuzzy
 msgid ""
 "Restrict viewer searches to the <code>tags</code> field unless they have "
 "<em>Tags rights</em>."
 msgstr ""
+"Viewer Suchanfragen zu beschränken die <code>tags</code> Feld, wenn sie "
+"<em>Tags Rechte</em>haben."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tagFromSearch.php:39
+#, fuzzy
 msgid "Tag items found by the search"
-msgstr ""
+msgstr "Tag-Elemente von der Suche gefundenen"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tagFromSearch.php:39
+#, fuzzy
 msgid "Tag items"
-msgstr ""
+msgstr "Tag-Elemente"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tagFromSearch/tag.php:72
 #, php-format
@@ -23365,8 +23820,9 @@ msgstr[1] ""
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tagFromSearch/tag.php:222
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tagFromSearch/tag.php:224
+#, fuzzy
 msgid "Tag the items"
-msgstr ""
+msgstr "Markieren Sie die Elemente"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tag_extras.php:13
 msgid ""
@@ -23380,12 +23836,15 @@ msgid "Enables jQuery tag suggestions on the search field."
 msgstr "Aktiviert jQuery-Schlagwortvorschläge beim Suchfeld."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tag_suggest.php:33
+#, fuzzy
 msgid "threshold"
-msgstr ""
+msgstr "Schwelle"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tag_suggest.php:36
+#, fuzzy
 msgid "Only tags with at least this number of uses will be suggested."
 msgstr ""
+"Nur tags mit mindestens diese Anzahl der Nutzungen vorgeschlagen werden."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tagsFromMetadata.php:26
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/xmpMetadata.php:36
@@ -23396,16 +23855,19 @@ msgstr ""
 "Liest <em>xmp</em>-Metadaten aus Bildern und <code>xmp</code>-Nebendateien."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tagsFromMetadata.php:45
+#, fuzzy
 msgid "Metadata to tag"
-msgstr ""
+msgstr "Metadaten-Tag"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tagsFromMetadata.php:47
+#, fuzzy
 msgid "Select the metadata items that will be tagged."
-msgstr ""
+msgstr "Wählen Sie die Metadatenelemente, die markiert werden."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/themeEditor.php:17
+#, fuzzy
 msgid "PHP based theme editor."
-msgstr ""
+msgstr "PHP-basierten Design-Editor."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/themeEditor/themes-editor.php:55
 msgid "File updated successfully"
@@ -23550,13 +24012,14 @@ msgid "news categories"
 msgstr "Neuigkeiten-Kategorien"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce.php:20
+#, fuzzy
 msgid "TinyMCE WYSIWYG editor"
-msgstr ""
+msgstr "TinyMCE WYSIWYG-editor"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce.php:55
 #, fuzzy
 msgid "Text editor configuration - zenphoto"
-msgstr "Texteditor-Konfiguration - Zenphoto"
+msgstr "Text-Editor-Konfiguration - zenphoto"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce.php:59
 msgid ""
@@ -23569,7 +24032,7 @@ msgstr ""
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce.php:60
 #, fuzzy
 msgid "Text editor configuration - zenpage"
-msgstr "Texteditor-Konfiguration - Zenpage"
+msgstr "Text-Editor-Konfiguration - zenpage"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce.php:64
 msgid ""
@@ -23579,128 +24042,137 @@ msgstr ""
 "<em>Neuigkeiten</em>-Tabs."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce.php:65
+#, fuzzy
 msgid "Text editor text direction"
-msgstr ""
+msgstr "Text-Editor-Textrichtung"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce.php:67
+#, fuzzy
 msgid ""
 "This option should be checked if your language writing direction is right-to-"
 "left"
 msgstr ""
+"Diese Option sollte überprüft werden, ob Ihre Sprache Schreibrichtung rechts-"
+"nach-links ist"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:36
 #, fuzzy
 msgid "ZenPhoto20 object insertion"
-msgstr "Zenphoto-Verwaltung"
+msgstr "ZenPhoto20 Objekt einfügen"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:48
 #, fuzzy, php-format
 msgid "<em>image</em>: %s"
-msgstr "<em>Leerzeichen</em>"
+msgstr "<em>Bild</em>: %s"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:49
 #, fuzzy, php-format
 msgid "%s with link to image"
-msgstr "Link zum Bild"
+msgstr "%s mit Link zum Bild"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:59
 #, fuzzy, php-format
 msgid "<em>album</em>: %s"
-msgstr "<em>albums</em>-Ordner"
+msgstr "<em>Album</em>: %s"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:60
 #, fuzzy, php-format
 msgid "%s with link to album"
-msgstr "Innerhalb des Albums suchen"
+msgstr "%s mit Link zum album"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:75
 #, fuzzy, php-format
 msgid "<em>news article</em>: %s"
-msgstr "<em>Teilweise</em>"
+msgstr "<em>News-Artikel</em>: %s"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:76
 #, fuzzy
 msgid "title with link to news article"
-msgstr "Der Text für den Link zum vollen Artikel."
+msgstr "Titel mit Link zum News-Artikel"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:80
 #, fuzzy, php-format
 msgid "<em>page</em>: %s"
-msgstr "<em>Leerzeichen</em>"
+msgstr "<em>Seite</em>: %s"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:81
+#, fuzzy
 msgid "title with link to page"
-msgstr ""
+msgstr "Titel mit Link zur Seite"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:85
 #, fuzzy, php-format
 msgid "<em>category</em>: %s"
-msgstr "<em>Muster</em>"
+msgstr "<em>Kategorie</em>: %s"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:86
 #, fuzzy
 msgid "title with link to category"
-msgstr "Innerhalb der Kategorie suchen"
+msgstr "Titel mit Link zur Kategorie"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:209
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:211
 #, fuzzy
 msgid "paste"
-msgstr "Master"
+msgstr "Paste"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:222
 #, fuzzy
 msgid "thumb only"
-msgstr "Thumbnail"
+msgstr "nur Daumen"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:228
+#, fuzzy
 msgid "thumb with link to full-sized image"
-msgstr ""
+msgstr "Daumen Sie mit Link zum Bild in voller Größe"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:235
 #, fuzzy
 msgid "thumb with link to album"
-msgstr "Innerhalb des Albums suchen"
+msgstr "Daumen Sie mit Link zum album"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:244
 #, fuzzy
 msgid "image only"
-msgstr "Bild"
+msgstr "nur Bild"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:250
+#, fuzzy
 msgid "image with link to full-sized image"
-msgstr ""
+msgstr "Bild mit Link zum Bild in voller Größe"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:259
 #, fuzzy
 msgid "image with link to album"
-msgstr "Innerhalb des Albums suchen"
+msgstr "Bild mit Link zum album"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:276
 #, fuzzy
 msgid "Include caption"
-msgstr "RSS-Link anzeigen"
+msgstr "Beschriftung enthalten"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:280
+#, fuzzy
 msgid "title only"
-msgstr ""
+msgstr "nur den Titel"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:292
+#, fuzzy
 msgid "Click to bring up the custom cropping page."
-msgstr ""
+msgstr "Klicken Sie, um die benutzerdefinierte Zuschneiden Seite aufzurufen."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:293
 #, fuzzy
 msgid "Custom crop"
-msgstr "Benutzerdefinierte Seite"
+msgstr "Eigene Ernte"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:299
 #, fuzzy
 msgid "No object source has been chosen."
-msgstr "Eine Reset-Anfrage wurde gesendet."
+msgstr "Keine Objektquelle wurde gewählt."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:302
-#, php-format
+#, fuzzy, php-format
 msgid ""
 "You can pick a ZenPhoto20 object for insertion by browsing to the object and "
 "clicking on the %s icon. This icon will be just below the <em>Title</em> of "
@@ -23709,6 +24181,13 @@ msgid ""
 "<em>pages</em> tabs or the <em>image order</em> album subtab.) A <em>pick</"
 "em> icon is provided for each item in the list."
 msgstr ""
+"Sie können ein ZenPhoto20-Objekt zum Einfügen auswählen, Surfen auf das "
+"Objekt und klicken Sie auf das Symbol %s. Dieses Symbol wird nur unter dem "
+"<em>Titel</em> des Objekts sein. Sie können schnell Objekte von Admin-Seiten "
+"auswählen, die Objekte (z. B. <em>Alben</em>, <em>News</em>, <em>Kategorien</"
+"em>, oder <em>Seiten</em> Tabstopps oder das <em>Bild, um</em> Album "
+"Werbezeitplaner) auflisten Eine <em>pick</em> -Symbol wird für jedes Element "
+"in der Liste zur Verfügung gestellt."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/tinyzenpage/js/dialog.php:85
 #, php-format
@@ -23843,12 +24322,15 @@ msgid "No wrap"
 msgstr "Kein Textumfluß"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:189
-#, php-format
+#, fuzzy, php-format
 msgid ""
 "<em>tiny</em>Zenpage ia deprecated. It is replaced by tinyMCE:obj. Please "
 "see the <a href=\"%s\" target=\"_blank\"><em>tinyMCE:obj plugin</em> release "
 "notes</a>"
 msgstr ""
+"<em>winzige</em> Zenpage ia veraltet. Es wird durch TinyMCE:obj ersetzt. "
+"Finden Sie das <a href=\"%s\" target=\"_blank\"> <em>TinyMCE:obj Plugin</em> "
+"Versionshinweisen</a>"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:191
 msgid ""
@@ -23925,7 +24407,7 @@ msgstr ""
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:222
 #, fuzzy
 msgid "Thumbnail: Size as set in theme’s options"
-msgstr "Thumbnail: Größe wie in den Zenphoto-Einstellungen vorgegeben."
+msgstr "Miniatur: Größe wie in der Theme-Optionen"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:223
 msgid ""
@@ -24104,16 +24586,23 @@ msgstr ""
 "Bildbutton oder den Quellcode-Editor verwenden."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/touchPunch.php:13
+#, fuzzy
 msgid "Enables Touch Event Support for jQuery UI."
-msgstr ""
+msgstr "Tippen Sie auf Event-Support ermöglicht für jQuery UI."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/touchPunch.php:14
+#, fuzzy
 msgid ""
 "This plugin may not work for you. Use at your own discretion. It has been "
 "tested and works on an iPad with the Safari browser and on Android with the "
 "default browser. Drag and drop works but clicking on links does not on "
 "Chrome on Android. It does not work for Opera on Android."
 msgstr ""
+"Dieses Plugin funktioniert möglicherweise nicht für Sie. Verwenden Sie in "
+"Ihrem eigenen Ermessen. Es wurde getestet und funktioniert auf dem iPad mit "
+"dem Safari-Browser und auf Android mit der Standard-Browser. Drag & Drop "
+"funktioniert aber auf Links klicken tut nicht auf Chrome auf Android. Es "
+"funktioniert nicht für Opera auf Android."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/trivialSpam.php:13
 msgid "Trivial SPAM filter."
@@ -24494,7 +24983,7 @@ msgstr "Ungültigkeit"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/user-expiry.php:153
 #, fuzzy, php-format
 msgid "Your user id for the ZenPhoto20 site %s will expire on %s."
-msgstr "Ihre Benutzer-ID für die Zenphoto-Site %s wird am  %s ungültig."
+msgstr "Ihre Benutzer-Id für den ZenPhoto20 Standort %s wird auf %s verfallen."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/user-expiry.php:154
 msgid "User id expiration"
@@ -25194,16 +25683,19 @@ msgstr ""
 "rechenintensiv sein."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/xmpMetadata.php:621
+#, fuzzy
 msgid "Aperature Value"
-msgstr ""
+msgstr "Aperature Wert"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/xmpMetadata.php:626
+#, fuzzy
 msgid "Exposure program"
-msgstr ""
+msgstr "Belichtungsprogramm"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/xmpMetadata.php:657
+#, fuzzy
 msgid "Rating"
-msgstr ""
+msgstr "Bewertung löschen (nicht bewertet)"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/xmpMetadata.php:1154
 msgid "Metadata exported"
@@ -25243,12 +25735,13 @@ msgstr "Mehr lesen"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage.php:120
 #, fuzzy
 msgid "Enabled CMS items"
-msgstr "Installierte Themes"
+msgstr "Aktivierte CMS-Elemente"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage.php:129
 #, fuzzy
 msgid "Select the CMS features you wish to use on your site."
-msgstr "Wählen Sie das gewünschte E-Mail-Protokoll."
+msgstr ""
+"Wählen Sie die CMS-Funktionen, die Sie auf Ihrer Website verwenden möchten."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage.php:131
 msgid "Articles per page (theme)"
@@ -25641,12 +26134,14 @@ msgid "%s will be deleted when changes are applied."
 msgstr "%s  wird gelöscht, wenn die Änderungen ausgeführt werden."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/admin-edit.php:617
+#, fuzzy
 msgid "Publish date (YYYY-MM-DD) "
-msgstr ""
+msgstr "Veröffentlichungsdatum (JJJJ-MM-DD)"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/admin-edit.php:638
+#, fuzzy
 msgid "Expiration date (YYYY-MM-DD)"
-msgstr ""
+msgstr "Ablaufdatum (JJJJ-MM-DD)"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/admin-edit.php:655
 #, php-format
@@ -25808,8 +26303,9 @@ msgid "password protected"
 msgstr "Passwortgeschützt"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/admin-functions.php:536
+#, fuzzy
 msgid "All authors"
-msgstr ""
+msgstr "Alle Autoren"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/admin-functions.php:572
 msgid "View all months"
@@ -25824,36 +26320,44 @@ msgid "Sticky"
 msgstr "Oben behalten"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/admin-functions.php:703
+#, fuzzy
 msgid "Order by creation date descending"
-msgstr ""
+msgstr "Sortieren Sie nach Datum absteigend"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/admin-functions.php:704
+#, fuzzy
 msgid "Order by creation date ascending"
-msgstr ""
+msgstr "Erstellungsdatum aufsteigend sortieren"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/admin-functions.php:705
+#, fuzzy
 msgid "Order by published descending"
-msgstr ""
+msgstr "Veröffentlicht absteigend sortieren"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/admin-functions.php:706
+#, fuzzy
 msgid "Order by published ascending"
-msgstr ""
+msgstr "Sortiert nach aufsteigender veröffentlicht"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/admin-functions.php:707
+#, fuzzy
 msgid "Order by expired descending"
-msgstr ""
+msgstr "Bestellung von absteigenden abgelaufen"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/admin-functions.php:708
+#, fuzzy
 msgid "Order by expired ascending"
-msgstr ""
+msgstr "Bestellung durch aufsteigende abgelaufen"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/admin-functions.php:709
+#, fuzzy
 msgid "Order by last change descending"
-msgstr ""
+msgstr "Nach letztem Reihenfolge absteigend"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/admin-functions.php:710
+#, fuzzy
 msgid "Order by last change ascending"
-msgstr ""
+msgstr "Nach letztem Reihenfolge aufsteigend"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/admin-functions.php:711
 msgid "Order by title descending"
@@ -25906,8 +26410,9 @@ msgid "Un-publish"
 msgstr "auf unveröffentlicht stellen"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/admin-functions.php:975
+#, fuzzy
 msgid "Scheduled for publishing"
-msgstr ""
+msgstr "(Seite wird zeitgesteuert veröffentlicht)"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/admin-functions.php:992
 msgid "View category"
@@ -26020,12 +26525,14 @@ msgid "Clear categories"
 msgstr "Kategorien entfernen"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/admin-news.php:268
+#, fuzzy
 msgid "Created"
-msgstr ""
+msgstr "ZenPhoto20-Benutzer erstellt"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/admin-news.php:270
+#, fuzzy
 msgid "Last changed"
-msgstr ""
+msgstr "Zuletzt geändert"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/admin-news.php:382
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/admin-news.php:383
@@ -26062,16 +26569,20 @@ msgstr ""
 "höhere Ebene und speichern Sie die Reihenfolge."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/deprecated-functions.php:14
+#, fuzzy
 msgid "Use the individual getPrevNewsURL() and getNextNewsURL() functions."
 msgstr ""
+"Verwenden Sie die einzelnen getPrevNewsURL() und getNextNewsURL() Funktionen."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/deprecated-functions.php:27
+#, fuzzy
 msgid "Use the setShow method directly."
-msgstr ""
+msgstr "Verwenden Sie die SetShow-Methode direkt."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/template-functions.php:371
+#, fuzzy
 msgid "<em>This entry belongs to a protected category.</em>"
-msgstr ""
+msgstr "<em>Dieser Eintrag gehört zu einer geschützten Kategorie.</em>"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/template-functions.php:910
 msgid "Prev page"
@@ -26132,7 +26643,7 @@ msgstr ""
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zpCaptcha.php:13
 #, fuzzy
 msgid "ZenPhoto20 captcha handler."
-msgstr "Zenphoto-Captcha-Steuerung."
+msgstr "ZenPhoto20-Captcha-Handler."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zpCaptcha.php:46
 msgid "Hash key"
@@ -26204,20 +26715,24 @@ msgstr ""
 "<em>Imagick</em>-Schriften.)"
 
 #: D:\github\ZenPhoto20/zp-core/js/jqueryui/jquery-ui-zenphoto.js:10
+#, fuzzy
 msgid "'"
-msgstr ""
+msgstr "‚"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/tinymce.min.js:6
+#, fuzzy
 msgid "align"
-msgstr ""
+msgstr "align"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/tinymce.min.js:6
+#, fuzzy
 msgid "blockquote"
-msgstr ""
+msgstr "Blockzitat"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/tinymce.min.js:6
+#, fuzzy
 msgid "p"
-msgstr ""
+msgstr "p"
 
 #~ msgid "Show ZenPhoto Credit"
 #~ msgstr "ZenPhoto20-Installation"

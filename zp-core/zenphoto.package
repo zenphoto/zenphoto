@@ -1145,11 +1145,8 @@ zp-core/gd_fonts/cry.gdf
 zp-core/images
 zp-core/images/action.png
 zp-core/images/add.png
-zp-core/images/admin-boxback.jpg
 zp-core/images/admin-buttonback.jpg
 zp-core/images/admin-headerback.jpg
-zp-core/images/admin-headlineback.jpg
-zp-core/images/admin-navtabback.jpg
 zp-core/images/ajax-loader.gif
 zp-core/images/arrow_down.png
 zp-core/images/arrow_in.png
@@ -1160,7 +1157,6 @@ zp-core/images/bar_graph.png
 zp-core/images/burst.png
 zp-core/images/cache.png
 zp-core/images/calendar.png
-zp-core/images/captcha_background.png
 zp-core/images/chevron-hover.png
 zp-core/images/chevron.png
 zp-core/images/clock.png
@@ -1190,8 +1186,6 @@ zp-core/images/lock_2.png
 zp-core/images/lock_open.png
 zp-core/images/magnify.png
 zp-core/images/marker.png
-zp-core/images/mask.png
-zp-core/images/movie.jpg
 zp-core/images/options.png
 zp-core/images/page_white_copy.png
 zp-core/images/pass.png
@@ -1199,14 +1193,12 @@ zp-core/images/pass_2.png
 zp-core/images/pencil.png
 zp-core/images/pictures.png
 zp-core/images/pictures_dn.png
-zp-core/images/place_holder_icon.png
 zp-core/images/placeholder.png
 zp-core/images/redo.png
 zp-core/images/refresh.png
 zp-core/images/reset.png
 zp-core/images/rss.png
 zp-core/images/searchfields_icon.png
-zp-core/images/select_files_button.png
 zp-core/images/shape_handles.png
 zp-core/images/sortorder.png
 zp-core/images/stock_copy.png
@@ -1217,7 +1209,6 @@ zp-core/images/togglero.png
 zp-core/images/toggleroh.png
 zp-core/images/view.png
 zp-core/images/warn.png
-zp-core/images/wheel.png
 zp-core/images/zen-logo-light.png
 zp-core/images/zen-logo.png
 zp-core/images/zp.png
@@ -2463,6 +2454,7 @@ zp-core/zp-extensions/zenpage/template-functions.php
 zp-core/zp-extensions/zenpage/zenpage.css
 zp-core/zp-extensions/zpCaptcha
 zp-core/zp-extensions/zpCaptcha/c.php
+zp-core/zp-extensions/zpCaptcha/captcha_background.png
 zp-core/version.php:*
 zp-core/setup:*
 zp-core/setup/database.php:*
@@ -2475,4 +2467,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-2477
+2469

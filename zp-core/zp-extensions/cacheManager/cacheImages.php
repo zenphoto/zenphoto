@@ -234,7 +234,7 @@ if ($alb) {
 					if (!is_array($enabled)) {
 						?>
 						<span class="icons" id="<?php echo $theme; ?>_arrow">
-							<img class="icon-position-top4" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/images/place_holder_icon.png'; ?>" alt="" />
+							<img class="icon-position-top4" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/images/placeholder.png'; ?>" alt="" />
 						</span>
 						<?php
 					}

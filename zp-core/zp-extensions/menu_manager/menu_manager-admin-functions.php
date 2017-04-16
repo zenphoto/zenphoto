@@ -89,7 +89,7 @@ function printItemsListTable($item, $flag) {
 					<?php
 				} else {
 					?>
-					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/place_holder_icon.png" alt="<?php echo gettext("under password protection"); ?>" style="border: 0px;" />
+					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/placeholder.png" alt="<?php echo gettext("under password protection"); ?>" style="border: 0px;" />
 					<?php
 				}
 				?>

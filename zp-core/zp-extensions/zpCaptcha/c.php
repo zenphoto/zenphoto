@@ -56,7 +56,7 @@ for ($i = 0; $i < $len; $i++) {
 	$p[$i] = $pallet[rand(0, 5)];
 }
 $image = zp_createImage($w, $h);
-$background = zp_imageGet(SERVERPATH . '/' . ZENFOLDER . '/images/captcha_background.png');
+$background = zp_imageGet(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zpCaptcha/captcha_background.png');
 zp_copyCanvas($image, $background, 0, 0, rand(0, 9), rand(0, 9), $w, $h);
 
 $l = rand(2, $kerning);

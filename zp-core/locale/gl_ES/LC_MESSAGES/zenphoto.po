@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: zenphoto 1.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-16 09:25-0800\n"
-"PO-Revision-Date: 2017-02-05 17:46-0800\n"
+"PO-Revision-Date: 2017-04-15 11:26-0700\n"
 "Last-Translator: Stephen <stephen@sbillard.org>\n"
 "Language-Team: Anxo Botana García <anxobotana@abwebdeveloper.com>\n"
 "Language: gl_ES\n"
@@ -14,9 +14,8 @@ msgstr ""
 "X-Poedit-KeywordsList: _;__e;_e\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-Bookmarks: 81,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
-"X-Generator: Poedit 1.8.11\n"
-"X-Poedit-SearchPath-0: D:/github/ZenPhoto20/themes\n"
-"X-Poedit-SearchPath-1: D:/github/ZenPhoto20/zp-core\n"
+"X-Generator: Poedit 2.0.1\n"
+"X-Poedit-Basepath: D:/github/ZenPhoto20\n"
 
 #: D:\github\ZenPhoto20/themes/basic/404.php:22
 #: D:\github\ZenPhoto20/themes/basic/archive.php:29
@@ -465,13 +464,14 @@ msgstr "Contacta connosco."
 #: D:\github\ZenPhoto20/themes/zpskeleton/favorites.php:70
 #: D:\github\ZenPhoto20/themes/zpskeleton/favorites.php:104
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/user-expiry/user-expiry-tab.php:208
+#, fuzzy
 msgid "Remove"
-msgstr ""
+msgstr "Eliminar"
 
 #: D:\github\ZenPhoto20/themes/basic/functions.php:86
 #, fuzzy
 msgid "Default theme color scheme."
-msgstr "Escolle as cores do tema"
+msgstr "Esquema de cor predeterminado"
 
 #: D:\github\ZenPhoto20/themes/basic/functions.php:87
 #: D:\github\ZenPhoto20/themes/effervescence+/functions.php:134
@@ -507,7 +507,7 @@ msgstr "Cores do Tema"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/user_login-out.php:158
 #, fuzzy
 msgid "close"
-msgstr "pechado"
+msgstr "Pechar"
 
 #: D:\github\ZenPhoto20/themes/basic/image.php:44
 #: D:\github\ZenPhoto20/themes/gray_highlights/image.php:80
@@ -687,7 +687,7 @@ msgstr "Índice Principal"
 #: D:\github\ZenPhoto20/themes/garland/404.php:44
 #, fuzzy
 msgid "Page not found"
-msgstr "Obxecto non atopado"
+msgstr "Páxina non atopada!"
 
 #: D:\github\ZenPhoto20/themes/effervescence+/album.php:74
 #: D:\github\ZenPhoto20/themes/effervescence+/image.php:92
@@ -799,7 +799,7 @@ msgstr "Imaxes pola Data"
 #: D:\github\ZenPhoto20/themes/zpmobile/archive.php:35
 #, fuzzy
 msgid "News archive"
-msgstr "Novas"
+msgstr "arquivo"
 
 #: D:\github\ZenPhoto20/themes/effervescence+/contact.php:52
 #: D:\github\ZenPhoto20/themes/gray_highlights/contact.php:26
@@ -854,7 +854,7 @@ msgstr ""
 #: D:\github\ZenPhoto20/themes/garland/functions.php:69
 #, fuzzy
 msgid "Personality"
-msgstr "Personalidade do Tema"
+msgstr "Escolle a personalidade do tema"
 
 #: D:\github\ZenPhoto20/themes/effervescence+/functions.php:179
 #: D:\github\ZenPhoto20/themes/effervescence+/indexpage.php:81
@@ -1109,14 +1109,16 @@ msgstr "Busca álbums"
 #: D:\github\ZenPhoto20/themes/effervescence+/image_gallery/functions.php:46
 #: D:\github\ZenPhoto20/themes/garland/image_gallery/functions.php:46
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/uploader_jQuery/upload_form.php:140
+#, fuzzy
 msgid "Start"
-msgstr ""
+msgstr "Inicio"
 
 #: D:\github\ZenPhoto20/themes/effervescence+/image_gallery/functions.php:47
 #: D:\github\ZenPhoto20/themes/garland/image_gallery/functions.php:47
 #: D:\github\ZenPhoto20/themes/zpArdoise/inc_header.php:95
+#, fuzzy
 msgid "Stop"
-msgstr ""
+msgstr "Deter"
 
 #: D:\github\ZenPhoto20/themes/effervescence+/indexpage.php:66
 msgid "Picture of the day"
@@ -1730,8 +1732,9 @@ msgstr "Ningunha"
 #: D:\github\ZenPhoto20/themes/effervescence+/themeoptions.php:114
 #: D:\github\ZenPhoto20/themes/garland/themeoptions.php:94
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/bxslider_thumb_nav.php:73
+#, fuzzy
 msgid "Fade"
-msgstr ""
+msgstr "desvanecer"
 
 #: D:\github\ZenPhoto20/themes/effervescence+/themeoptions.php:114
 #: D:\github\ZenPhoto20/themes/garland/themeoptions.php:94
@@ -1768,7 +1771,7 @@ msgstr "Lenda da imaxe"
 #: D:\github\ZenPhoto20/themes/garland/themeoptions.php:98
 #, fuzzy
 msgid "On image"
-msgstr "imaxe"
+msgstr "% da imaxe"
 
 #: D:\github\ZenPhoto20/themes/effervescence+/themeoptions.php:118
 #: D:\github\ZenPhoto20/themes/garland/themeoptions.php:98
@@ -1867,7 +1870,7 @@ msgstr "Effervescence"
 #: D:\github\ZenPhoto20/themes/garland/search.php:205
 #, fuzzy, php-format
 msgid "View album:  %s"
-msgstr "Ver o álbum: %s"
+msgstr "Ver álbum %s"
 
 #: D:\github\ZenPhoto20/themes/garland/album.php:98
 #: D:\github\ZenPhoto20/themes/garland/favorites.php:111
@@ -1879,25 +1882,25 @@ msgstr "Descrición do Álbum:"
 #: D:\github\ZenPhoto20/themes/garland/favorites.php:116
 #, fuzzy
 msgid "Next album"
-msgstr "Novo Álbum"
+msgstr "Álbum musical"
 
 #: D:\github\ZenPhoto20/themes/garland/album.php:103
 #: D:\github\ZenPhoto20/themes/garland/favorites.php:116
 #, fuzzy
 msgid "Next album »"
-msgstr "Novo Álbum"
+msgstr "Álbum musical"
 
 #: D:\github\ZenPhoto20/themes/garland/album.php:111
 #: D:\github\ZenPhoto20/themes/garland/favorites.php:124
 #, fuzzy
 msgid "Prev Album"
-msgstr "Novo Álbum"
+msgstr "Álbum musical"
 
 #: D:\github\ZenPhoto20/themes/garland/album.php:111
 #: D:\github\ZenPhoto20/themes/garland/favorites.php:124
 #, fuzzy
 msgid "« Prev Album"
-msgstr "« miniaturas prev."
+msgstr "Álbum musical"
 
 #: D:\github\ZenPhoto20/themes/garland/album.php:117
 #: D:\github\ZenPhoto20/themes/garland/image.php:135
@@ -1944,7 +1947,7 @@ msgstr "Imaxe Seguinte"
 #: D:\github\ZenPhoto20/themes/zpmasonry/news.php:83
 #, fuzzy
 msgid "Next »"
-msgstr "Seguinte"
+msgstr "seg."
 
 #: D:\github\ZenPhoto20/themes/garland/image.php:126
 #, fuzzy
@@ -2293,7 +2296,7 @@ msgstr "RSS da últimas imaxes"
 #: D:\github\ZenPhoto20/themes/zpmobile/index.php:67
 #, fuzzy
 msgid "Latest news"
-msgstr "Últimos Álbums"
+msgstr "Últimas novas"
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/inc_footer.php:65
 msgid "You can browse with the arrows keys of your keyboard"
@@ -2381,14 +2384,15 @@ msgstr "Rotar imaxes automaticamente:"
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/news.php:12
 #: D:\github\ZenPhoto20/themes/zpArdoise/news.php:14
+#, fuzzy
 msgid "newer"
-msgstr ""
+msgstr "Novos %s"
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/news.php:17
 #: D:\github\ZenPhoto20/themes/zpArdoise/news.php:19
 #, fuzzy
 msgid "older"
-msgstr "máis vellas"
+msgstr "%s Antigos"
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/news.php:29
 #: D:\github\ZenPhoto20/themes/zpBootstrap/news.php:9
@@ -2399,8 +2403,9 @@ msgid "Category"
 msgstr "Categoría"
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/news.php:38
+#, fuzzy
 msgid " | "
-msgstr ""
+msgstr "|"
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/themeoptions.php:73
 msgid "Use this file as logo"
@@ -2423,8 +2428,9 @@ msgstr ""
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/themeoptions.php:75
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:74
+#, fuzzy
 msgid "Style"
-msgstr ""
+msgstr "axuste á esquerda: <em>style=\"float:right\"</em>"
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/themeoptions.php:75
 msgid "Choose Dark or Light for color style of the site."
@@ -2465,7 +2471,7 @@ msgstr ""
 #: D:\github\ZenPhoto20/themes/zpArdoise/themeoptions.php:80
 #, fuzzy
 msgid "Show Tags"
-msgstr "Amosar a puntuación"
+msgstr "Etiquetas"
 
 #: D:\github\ZenPhoto20/themes/zpArdoise/themeoptions.php:80
 msgid "Check to show a tag cloud with all the tags of the gallery."
@@ -2601,7 +2607,7 @@ msgstr "Etiquetas"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/contact_form/form.php:23
 #, fuzzy, php-format
 msgid "Name%s"
-msgstr "Nome"
+msgstr "Nome da Base de Datos <strong>%s</strong>"
 
 #: D:\github\ZenPhoto20/themes/zpBootstrap/comment_form/comment_form.php:23
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/comment_form/comment_form.php:25
@@ -2614,13 +2620,13 @@ msgstr "<em>anónimo</em>"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/contact_form/form.php:85
 #, fuzzy, php-format
 msgid "E-Mail%s"
-msgstr "E-Mail:"
+msgstr "Correo electrónico"
 
 #: D:\github\ZenPhoto20/themes/zpBootstrap/comment_form/comment_form.php:45
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/comment_form/comment_form.php:47
 #, fuzzy, php-format
 msgid "Site%s"
-msgstr "Sitio Web:"
+msgstr "%s"
 
 #: D:\github\ZenPhoto20/themes/zpBootstrap/comment_form/comment_form.php:55
 #: D:\github\ZenPhoto20/themes/zpBootstrap/contact_form/form.php:38
@@ -2630,7 +2636,7 @@ msgstr "Sitio Web:"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/register_user/register_user_form.php:59
 #, fuzzy, php-format
 msgid "Street%s"
-msgstr "Rúa:"
+msgstr "Rúa"
 
 #: D:\github\ZenPhoto20/themes/zpBootstrap/comment_form/comment_form.php:61
 #: D:\github\ZenPhoto20/themes/zpBootstrap/contact_form/form.php:47
@@ -2640,7 +2646,7 @@ msgstr "Rúa:"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/register_user/register_user_form.php:65
 #, fuzzy, php-format
 msgid "City%s"
-msgstr "Cidade"
+msgstr "%s"
 
 #: D:\github\ZenPhoto20/themes/zpBootstrap/comment_form/comment_form.php:67
 #: D:\github\ZenPhoto20/themes/zpBootstrap/contact_form/form.php:56
@@ -2650,7 +2656,7 @@ msgstr "Cidade"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/register_user/register_user_form.php:71
 #, fuzzy, php-format
 msgid "State%s"
-msgstr "Estado ou Provincia"
+msgstr "Estado"
 
 #: D:\github\ZenPhoto20/themes/zpBootstrap/comment_form/comment_form.php:73
 #: D:\github\ZenPhoto20/themes/zpBootstrap/contact_form/form.php:65
@@ -2660,7 +2666,7 @@ msgstr "Estado ou Provincia"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/register_user/register_user_form.php:77
 #, fuzzy, php-format
 msgid "Country%s"
-msgstr "País"
+msgstr "Country"
 
 #: D:\github\ZenPhoto20/themes/zpBootstrap/comment_form/comment_form.php:79
 #: D:\github\ZenPhoto20/themes/zpBootstrap/contact_form/form.php:74
@@ -2670,7 +2676,7 @@ msgstr "País"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/register_user/register_user_form.php:83
 #, fuzzy, php-format
 msgid "Postal code%s"
-msgstr "Código Postal:"
+msgstr "Código postal:"
 
 #: D:\github\ZenPhoto20/themes/zpBootstrap/comment_form/comment_form.php:88
 #: D:\github\ZenPhoto20/themes/zpBootstrap/contact_form/form.php:110
@@ -2709,25 +2715,25 @@ msgstr "Comentar"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/contact_form/form.php:15
 #, fuzzy, php-format
 msgid "Title%s"
-msgstr "Título"
+msgstr "Título %i%s"
 
 #: D:\github\ZenPhoto20/themes/zpBootstrap/contact_form/form.php:29
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/contact_form/form.php:37
 #, fuzzy, php-format
 msgid "Company%s"
-msgstr "unha compañía"
+msgstr "Empresa"
 
 #: D:\github\ZenPhoto20/themes/zpBootstrap/contact_form/form.php:92
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/contact_form/form.php:93
 #, fuzzy, php-format
 msgid "Website%s"
-msgstr "Sitio Web"
+msgstr "Sitio web"
 
 #: D:\github\ZenPhoto20/themes/zpBootstrap/contact_form/form.php:101
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/contact_form/form.php:101
-#, php-format
+#, fuzzy, php-format
 msgid "Phone%s"
-msgstr ""
+msgstr "teléfono"
 
 #: D:\github\ZenPhoto20/themes/zpBootstrap/contact_form/form.php:126
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/contact_form/form.php:123
@@ -2952,9 +2958,9 @@ msgid "%s "
 msgstr "%s"
 
 #: D:\github\ZenPhoto20/themes/zpEnlighten/search.php:125
-#, php-format
+#, fuzzy, php-format
 msgid "%1$s "
-msgstr ""
+msgstr "Configuración actual da localización: <strong>%1$s</strong>"
 
 #: D:\github\ZenPhoto20/themes/zpEnlighten/sidebar.php:52
 #, fuzzy
@@ -3008,19 +3014,22 @@ msgstr ""
 #: D:\github\ZenPhoto20/themes/zpfocus/404.php:5
 #, fuzzy
 msgid "Page not found..."
-msgstr "Obxecto non atopado"
+msgstr "Páxina non atopada!"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/album.php:19
 #: D:\github\ZenPhoto20/themes/zpfocus/favorites.php:22
 #, fuzzy
 msgid "| Tags:  "
-msgstr "Etiquetas"
+msgstr "Etiquetas:"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/album.php:21
 #: D:\github\ZenPhoto20/themes/zpfocus/favorites.php:24
 #, fuzzy
 msgid "Edit Description..."
-msgstr "(Sen descrición...)"
+msgstr ""
+"Escolle un álbum para editar a súa descrición e datos, ou fai <a href=\"?"
+"page=edit&amp;album=%s&amp;massedit\">edición-masiva</a> de tódolos "
+"subálbums no primeiro nivel."
 
 #: D:\github\ZenPhoto20/themes/zpfocus/album.php:26
 #, fuzzy
@@ -3051,7 +3060,7 @@ msgstr "Presentación de diapositivas"
 #: D:\github\ZenPhoto20/themes/zpfocus/favorites.php:93
 #, fuzzy
 msgid "Images in "
-msgstr "Imaxes"
+msgstr "Imaxes:"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/album.php:150
 #: D:\github\ZenPhoto20/themes/zpfocus/favorites.php:144
@@ -3059,7 +3068,7 @@ msgstr "Imaxes"
 #: D:\github\ZenPhoto20/themes/zpfocus/search.php:201
 #, fuzzy
 msgid "Prev"
-msgstr "Previo"
+msgstr "ant."
 
 #: D:\github\ZenPhoto20/themes/zpfocus/album.php:150
 #: D:\github\ZenPhoto20/themes/zpfocus/favorites.php:144
@@ -3082,14 +3091,14 @@ msgstr "Arquivo da Galería"
 #: D:\github\ZenPhoto20/themes/zpskeleton/archive.php:19
 #, fuzzy
 msgid "News Archive"
-msgstr "Arquivo"
+msgstr "arquivo"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/functions.php:93
 #: D:\github\ZenPhoto20/themes/zpmasonry/functions.php:233
 #: D:\github\ZenPhoto20/themes/zpskeleton/functions.php:109
 #, fuzzy
 msgid "Search Result"
-msgstr "Busca Nova"
+msgstr "resultado da procura"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/gallery.php:14
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-header.php:112
@@ -3100,7 +3109,7 @@ msgstr "Busca Nova"
 #: D:\github\ZenPhoto20/themes/zpskeleton/inc-header.php:119
 #, fuzzy
 msgid "Latest News"
-msgstr "Últimos Álbums"
+msgstr "Últimas novas"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/gallery.php:19
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-header.php:108
@@ -3114,33 +3123,37 @@ msgstr "Últimos Álbums"
 #: D:\github\ZenPhoto20/themes/zpfocus/image.php:37
 #, fuzzy
 msgid "EXIF Metadata"
-msgstr "Metadatos:"
+msgstr "Metadatos"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/image.php:39
+#, fuzzy
 msgid "TAGS:  "
-msgstr ""
+msgstr "Etiquetas:"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/image.php:42
 #, fuzzy
 msgid "(Edit Description...)"
-msgstr "(Sen descrición...)"
+msgstr ""
+"Escolle un álbum para editar a súa descrición e datos, ou fai <a href=\"?"
+"page=edit&amp;album=%s&amp;massedit\">edición-masiva</a> de tódolos "
+"subálbums no primeiro nivel."
 
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-footer.php:6
 #, fuzzy
 msgid "all rights reserved"
-msgstr "Tódolos dereitos"
+msgstr "Todos os dereitos reservados"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-footer.php:39
 #: D:\github\ZenPhoto20/themes/zpminimal/inc-footer.php:7
 #, fuzzy
 msgid "Subscribe: "
-msgstr "Subscríbete para os comentarios"
+msgstr "Subscribirse"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-footer.php:42
 #: D:\github\ZenPhoto20/themes/zpminimal/inc-footer.php:10
 #, fuzzy
 msgid "This Album"
-msgstr "Ver Álbum"
+msgstr "Álbum musical"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-footer.php:45
 #: D:\github\ZenPhoto20/themes/zpminimal/inc-footer.php:12
@@ -3180,8 +3193,9 @@ msgstr "Contrasinal obrigatorio"
 #: D:\github\ZenPhoto20/themes/zpmasonry/inc-header.php:97
 #: D:\github\ZenPhoto20/themes/zpminimal/inc-header.php:103
 #: D:\github\ZenPhoto20/themes/zpskeleton/inc-header.php:101
+#, fuzzy
 msgid "404 Not Found..."
-msgstr ""
+msgstr "404 Non atopamos nada"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-header.php:155
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-header.php:169
@@ -3202,8 +3216,9 @@ msgid "previous"
 msgstr "Previo"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-header.php:235
+#, fuzzy
 msgid "SEARCH"
-msgstr ""
+msgstr "buscar"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-sidebar.php:13
 #, fuzzy
@@ -3216,13 +3231,14 @@ msgid "Random Gallery Image"
 msgstr "Imaxes aleatorias"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-sidebar.php:43
+#, fuzzy
 msgid "About"
-msgstr ""
+msgstr "Acerca de"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-sidebar.php:52
 #, fuzzy
 msgid "More News"
-msgstr "Novas"
+msgstr "Noticias"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/inc-sidebar.php:75
 #, fuzzy
@@ -3265,23 +3281,23 @@ msgstr "Téntao de novo"
 #: D:\github\ZenPhoto20/themes/zpskeleton/password.php:19
 #, fuzzy
 msgid "You are logged in..."
-msgstr "xa tes unha sesión iniciada."
+msgstr "Debes identificarte para correr a configuración."
 
 #: D:\github\ZenPhoto20/themes/zpfocus/search.php:93
 #, fuzzy
 msgid "Album Search Results"
-msgstr "O álbum xa existe."
+msgstr "resultados da procura"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/search.php:105
 #: D:\github\ZenPhoto20/themes/zpfocus/search.php:106
 #, fuzzy
 msgid "View Album:"
-msgstr "Ver Álbum"
+msgstr "Ver álbum:"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/search.php:154
 #, fuzzy
 msgid "Image Search Results"
-msgstr "A imaxe xa existe."
+msgstr "resultados da procura"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/search.php:214
 #, fuzzy
@@ -3489,7 +3505,7 @@ msgstr ""
 #: D:\github\ZenPhoto20/themes/zpskeleton/themeoptions.php:80
 #, fuzzy
 msgid "Custom CSS"
-msgstr "Personalizado"
+msgstr "CSS personalizado"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/themeoptions.php:87
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:150
@@ -3619,7 +3635,7 @@ msgstr "País<strong>%s</strong>:"
 #: D:\github\ZenPhoto20/themes/zpskeleton/contact_form/form.php:62
 #, fuzzy, php-format
 msgid "Postal code<strong>%s</strong>:"
-msgstr "Título<strong>%s</strong>:"
+msgstr "Código postal:"
 
 #: D:\github\ZenPhoto20/themes/zpfocus/z_contact_form/form.php:69
 #: D:\github\ZenPhoto20/themes/zpskeleton/contact_form/form.php:69
@@ -3658,25 +3674,27 @@ msgid "Message<strong>%s</strong>:"
 msgstr "Mensaxe<strong>%s</strong>:"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/404.php:4
+#, fuzzy
 msgid "404 error"
-msgstr ""
+msgstr "Erro"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/album.php:15
 #: D:\github\ZenPhoto20/themes/zpmasonry/favorites.php:18
 #, fuzzy
 msgid "subalbum"
-msgstr "Subálbums"
+msgstr "\"Lista\" nivel de subálbum"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/album.php:36
 #: D:\github\ZenPhoto20/themes/zpmasonry/favorites.php:42
 #, fuzzy
 msgid "number"
-msgstr "Número de miniaturas"
+msgstr "Número do porto POP"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/album.php:36
 #: D:\github\ZenPhoto20/themes/zpmasonry/favorites.php:42
+#, fuzzy
 msgid "total"
-msgstr ""
+msgstr "Total"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/album.php:45
 #: D:\github\ZenPhoto20/themes/zpmasonry/album.php:105
@@ -3726,7 +3744,7 @@ msgstr "imaxes"
 #: D:\github\ZenPhoto20/themes/zpmasonry/search.php:83
 #, fuzzy
 msgid "Preview"
-msgstr "ver"
+msgstr "Previsualizar"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/comment_form/comment_form.php:24
 #: D:\github\ZenPhoto20/themes/zpminimal/z_disable_comment_form/comment_form.php:24
@@ -3834,8 +3852,9 @@ msgid "Latest Comments of this Image"
 msgstr "RSS dos últimos comentarios para esta imaxe"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/index.php:11
+#, fuzzy
 msgid "Welcome"
-msgstr ""
+msgstr "Benvido/a"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/index.php:53
 #: D:\github\ZenPhoto20/themes/zpmasonry/index.php:57
@@ -3859,13 +3878,15 @@ msgid "Next Page"
 msgstr "Páxina Seguinte"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/news.php:83
+#, fuzzy
 msgid "« Prev"
-msgstr ""
+msgstr "ant."
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/search.php:22
 #: D:\github\ZenPhoto20/themes/zpminimal/search.php:23
+#, fuzzy
 msgid "items"
-msgstr ""
+msgstr "Elementos seleccionados marcados como spam"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/search.php:115
 #: D:\github\ZenPhoto20/themes/zpminimal/search.php:87
@@ -3931,7 +3952,7 @@ msgstr ""
 #: D:\github\ZenPhoto20/themes/zpminimal/themeoptions.php:42
 #, fuzzy
 msgid "Logo Image"
-msgstr "%u Imaxe"
+msgstr "Imaxe"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:96
 msgid ""
@@ -3945,7 +3966,7 @@ msgstr ""
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:99
 #, fuzzy
 msgid "Logo Height"
-msgstr "Alto de recorte"
+msgstr "altura"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:101
 msgid ""
@@ -3979,8 +4000,9 @@ msgstr ""
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:109
 #: D:\github\ZenPhoto20/themes/zpminimal/themeoptions.php:41
+#, fuzzy
 msgid "ZenPage Search Results"
-msgstr ""
+msgstr "resultados da procura"
 
 #: D:\github\ZenPhoto20/themes/zpmasonry/themeoptions.php:113
 msgid ""
@@ -4067,7 +4089,7 @@ msgstr "Índice Galería"
 #: D:\github\ZenPhoto20/themes/zpminimal/inc-footer.php:22
 #, fuzzy
 msgid "Subalbum"
-msgstr "Subálbums"
+msgstr "\"Lista\" nivel de subálbum"
 
 #: D:\github\ZenPhoto20/themes/zpminimal/inc-footer.php:24
 #: D:\github\ZenPhoto20/themes/zpmobile/functions.php:44
@@ -4094,11 +4116,12 @@ msgstr "Editar Galería"
 #: D:\github\ZenPhoto20/themes/zpminimal/news.php:45
 #, fuzzy
 msgid "Next →"
-msgstr "Seguinte"
+msgstr "seg."
 
 #: D:\github\ZenPhoto20/themes/zpminimal/news.php:45
+#, fuzzy
 msgid "← Prev"
-msgstr ""
+msgstr "ant."
 
 #: D:\github\ZenPhoto20/themes/zpminimal/password.php:4
 #, fuzzy
@@ -4271,12 +4294,12 @@ msgstr ""
 #: D:\github\ZenPhoto20/themes/zpskeleton/404.php:6
 #, fuzzy
 msgid "404 not found"
-msgstr "Non se atopou o álbum"
+msgstr "404 Non atopamos nada"
 
 #: D:\github\ZenPhoto20/themes/zpskeleton/archive.php:22
 #, fuzzy
 msgid "Tag Cloud"
-msgstr "Anubrado"
+msgstr "Nube"
 
 #: D:\github\ZenPhoto20/themes/zpskeleton/functions.php:194
 msgid "Click for Detail Page"
@@ -4318,14 +4341,15 @@ msgstr "Comentarios"
 
 #: D:\github\ZenPhoto20/themes/zpskeleton/inc-header.php:166
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/menu_manager.php:92
+#, fuzzy
 msgid "Menu"
-msgstr ""
+msgstr "menú"
 
 #: D:\github\ZenPhoto20/themes/zpskeleton/news.php:19
 #: D:\github\ZenPhoto20/themes/zpskeleton/news.php:62
 #, fuzzy
 msgid "Comment(s)"
-msgstr "Comentarios"
+msgstr "Comentario"
 
 #: D:\github\ZenPhoto20/themes/zpskeleton/news.php:116
 #, fuzzy
@@ -4444,7 +4468,7 @@ msgstr ""
 #: D:\github\ZenPhoto20/themes/zpskeleton/themeoptions.php:70
 #, fuzzy
 msgid "Show Archive"
-msgstr "Arquivo"
+msgstr "arquivo"
 
 #: D:\github\ZenPhoto20/themes/zpskeleton/themeoptions.php:72
 #, fuzzy
@@ -4534,7 +4558,7 @@ msgstr "Engadir etiquetas"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/admin-pages.php:153
 #, fuzzy
 msgid "Clear tags"
-msgstr "Renomear etiquetas"
+msgstr "Borrar"
 
 #: D:\github\ZenPhoto20/zp-core/admin-albumsort.php:90
 #: D:\github\ZenPhoto20/zp-core/admin-edit.php:649
@@ -4821,7 +4845,7 @@ msgstr "Marcar coma non publicado"
 #: D:\github\ZenPhoto20/zp-core/admin-dynamic-album.php:261
 #, fuzzy
 msgid "tagged"
-msgstr "Xeoetiquetado"
+msgstr "Etiquetado:"
 
 #: D:\github\ZenPhoto20/zp-core/admin-dynamic-album.php:268
 #, fuzzy
@@ -5165,13 +5189,13 @@ msgstr "calendario"
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:1917
 #, fuzzy
 msgid "Expired!"
-msgstr "Caduca"
+msgstr "Caducados:"
 
 #: D:\github\ZenPhoto20/zp-core/admin-edit.php:1199
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:1910
 #, fuzzy
 msgid "Publish date"
-msgstr "Publicado"
+msgstr "Publicar"
 
 #: D:\github\ZenPhoto20/zp-core/admin-edit.php:1201
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:1912
@@ -5277,12 +5301,12 @@ msgstr "Editar imaxe"
 #: D:\github\ZenPhoto20/zp-core/admin-edit.php:1466
 #, fuzzy
 msgid "prev image"
-msgstr "páxina previa"
+msgstr "Imaxe"
 
 #: D:\github\ZenPhoto20/zp-core/admin-edit.php:1473
 #, fuzzy
 msgid "next image"
-msgstr "páxina seguinte"
+msgstr "Imaxe Seguinte"
 
 #: D:\github\ZenPhoto20/zp-core/admin-edit.php:1548
 msgid "Edit All Albums in"
@@ -5334,7 +5358,9 @@ msgstr ""
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:31
 #, fuzzy, php-format
 msgid "version %1$s"
-msgstr "%1$s versión"
+msgstr ""
+"Non se poden migrar dereitos á versión %1$s (Zenphoto_Authority só soporta "
+"%2$s e %3$s.)"
 
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:37
 msgid "ZenPhoto20 licence"
@@ -5343,13 +5369,15 @@ msgstr "Arquivos de ZenPhoto20"
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:37
 #, fuzzy
 msgid "License"
-msgstr "Licenza:GPLv2"
+msgstr "Licenza"
 
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:38
 #: D:\github\ZenPhoto20/zp-core/setup/setup-functions.php:492
 #, fuzzy
 msgid "Support"
-msgstr "Deporte"
+msgstr ""
+"A libraría de soporte gráfico non fornece de soporte para a rotación de "
+"imaxes."
 
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:39
 #: D:\github\ZenPhoto20/zp-core/setup/setup-functions.php:492
@@ -5409,7 +5437,7 @@ msgstr "Administración de ZenPhoto20"
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:243
 #, fuzzy, php-format
 msgid "Logged in as %1$s"
-msgstr "Identificado como %s"
+msgstr "Conectado como %1$s"
 
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:245
 #, fuzzy, php-format
@@ -5459,7 +5487,7 @@ msgstr "todo"
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:1231
 #, fuzzy
 msgid "add tag"
-msgstr "Engadir etiquetas"
+msgstr "Engadir Nova Etiqueta"
 
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:1382
 msgid "Album Title"
@@ -5497,7 +5525,7 @@ msgstr "Usuario convidado ó álbum:"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/admin-edit.php:521
 #, fuzzy
 msgid "Show password"
-msgstr "Busca contrasinal:"
+msgstr "Contrasinal"
 
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:1484
 #, fuzzy
@@ -5679,7 +5707,7 @@ msgstr "Ten Contrasinal"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/admin-functions.php:1349
 #, fuzzy
 msgid "pick source"
-msgstr "Fonte da imaxe"
+msgstr "Fonte"
 
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:2132
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/admin-functions.php:1352
@@ -5756,7 +5784,7 @@ msgstr ""
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:2272
 #, fuzzy, php-format
 msgid "Unpublished"
-msgstr "Sen publicar"
+msgstr "Páxinas dispoñibles non publicadas"
 
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:2292
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/admin-edit.php:669
@@ -5886,7 +5914,7 @@ msgstr "Novo tema creado, pero a súa descrición non foi actualizada"
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:3185
 #, fuzzy
 msgid "Rights:"
-msgstr "Dereitos"
+msgstr "Sen privilexios"
 
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:3245
 #, fuzzy
@@ -5993,13 +6021,14 @@ msgstr[1] "%u imaxes por páxina"
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:3880
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:3892
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:3904
+#, fuzzy
 msgid "ok"
-msgstr ""
+msgstr "DE ACORDO"
 
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:3975
 #, fuzzy
 msgid "Destination"
-msgstr "Descrición"
+msgstr "Destino"
 
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:4246
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:4281
@@ -6025,14 +6054,14 @@ msgstr "\"%s\" Cross Site Request Forgery bloqueado."
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:4602
 #, fuzzy
 msgid "setup"
-msgstr "Instalación"
+msgstr "A proba de configuración de cookies superouse con éxito."
 
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:4602
 #: D:\github\ZenPhoto20/zp-core/admin-globals.php:114
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:1061
 #, fuzzy
 msgid "security"
-msgstr "Seguridade da Galería"
+msgstr "Seguranza"
 
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:4602
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:1061
@@ -6050,14 +6079,16 @@ msgid "deprecated"
 msgstr "Data creación"
 
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:4646
+#, fuzzy
 msgid "3rd party"
-msgstr ""
+msgstr "Festa"
 
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:4647
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:2858
 #, fuzzy
 msgid "enabled"
-msgstr "Activado"
+msgstr ""
+"A opción de ZenPhoto20 \"mod_rewrite\" ten establecerse coma \"habilitada\"."
 
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:4649
 msgid "demo"
@@ -6074,30 +6105,34 @@ msgstr ""
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:4651
 #, fuzzy
 msgid "feed"
-msgstr "RSS"
+msgstr "Escolle cada RSS que desexes activar."
 
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:4652
 #, fuzzy
 msgid "mail"
-msgstr "Email"
+msgstr ""
+"O envío de correo fallou. Non hai un manipulador de correo configurado."
 
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:4653
 #, fuzzy
 msgid "media"
-msgstr "medio"
+msgstr "medios"
 
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:4654
+#, fuzzy
 msgid "misc"
-msgstr ""
+msgstr "Varios"
 
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:4655
+#, fuzzy
 msgid "spam"
 msgstr ""
+"Marcar como sospeitoso de SPAM para moderación é preferible que coma SPAM"
 
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:4656
 #, fuzzy
 msgid "seo"
-msgstr "seg"
+msgstr "Seo"
 
 #: D:\github\ZenPhoto20/zp-core/admin-functions.php:4657
 #, fuzzy
@@ -6312,7 +6347,7 @@ msgstr "rexistros"
 #: D:\github\ZenPhoto20/zp-core/admin-globals.php:161
 #, fuzzy
 msgid "Restore"
-msgstr "Copia de seguridade/Restaurar"
+msgstr "Restaurar atopou excepcións"
 
 #: D:\github\ZenPhoto20/zp-core/admin-logs.php:26
 #, php-format
@@ -6838,13 +6873,14 @@ msgid "Cookies:"
 msgstr "Categorías: "
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:990
+#, fuzzy
 msgid "Path"
-msgstr ""
+msgstr "Camiño"
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:995
 #, fuzzy
 msgid "Duration"
-msgstr "Orientación"
+msgstr "Duración"
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:1005
 msgid "enable gallery sessions"
@@ -6951,7 +6987,7 @@ msgstr ""
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:1137
 #, fuzzy
 msgid "Gallery type"
-msgstr "Título da Galería:"
+msgstr "Galería"
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:1139
 msgid "public"
@@ -7046,7 +7082,7 @@ msgstr ""
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:1291
 #, fuzzy
 msgid "Album thumbnails:"
-msgstr "Miniatura do álbum"
+msgstr "Miniaturas do álbum"
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:1305
 msgid "Default thumbnail selection for albums."
@@ -7268,7 +7304,7 @@ msgstr "Desactivado"
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:1628
 #, fuzzy
 msgid "generic"
-msgstr "xeral"
+msgstr "Xenérico"
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:1631
 #, fuzzy
@@ -7674,12 +7710,12 @@ msgstr ""
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:2220
 #, fuzzy
 msgid "Cache as:"
-msgstr "Pre-Caché de Imaxes"
+msgstr "HTML cache"
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:2223
 #, fuzzy
 msgid "Original"
-msgstr "Ancho Orixinal"
+msgstr "Tempo orixinal da toma"
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:2233
 msgid ""
@@ -8333,7 +8369,7 @@ msgstr ""
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:3198
 #, fuzzy
 msgid "User name"
-msgstr "un nome"
+msgstr "Nome de usuario/a"
 
 #: D:\github\ZenPhoto20/zp-core/admin-options.php:3219
 msgid ""
@@ -8387,7 +8423,7 @@ msgstr ""
 #: D:\github\ZenPhoto20/zp-core/admin-plugins.php:126
 #, fuzzy
 msgid "Find more plugins"
-msgstr "Plugins de terceiros"
+msgstr "Máis complementos"
 
 #: D:\github\ZenPhoto20/zp-core/admin-plugins.php:128
 msgid ""
@@ -8450,8 +8486,9 @@ msgstr "<strong>Erro na análise da cadea <em>plugin_disable</em>!</strong>."
 
 #: D:\github\ZenPhoto20/zp-core/admin-plugins.php:258
 #: D:\github\ZenPhoto20/zp-core/admin-themes.php:243
+#, fuzzy
 msgid "logo"
-msgstr ""
+msgstr "O texto para o logo do tema"
 
 #: D:\github\ZenPhoto20/zp-core/admin-plugins.php:261
 msgid "class plugin"
@@ -8625,7 +8662,7 @@ msgstr "Administración de Etiqueta"
 #: D:\github\ZenPhoto20/zp-core/admin-tags.php:138
 #, fuzzy
 msgid "Order by"
-msgstr "Arranxar por frecuencia de uso"
+msgstr "Arranxo gardado."
 
 #: D:\github\ZenPhoto20/zp-core/admin-tags.php:141
 #, fuzzy
@@ -9085,7 +9122,7 @@ msgstr "Agochar os detalles para o usuario %s"
 #: D:\github\ZenPhoto20/zp-core/admin-users.php:595
 #, fuzzy
 msgid "New User"
-msgstr "Engadir Novo Usuario"
+msgstr "novo usuario"
 
 #: D:\github\ZenPhoto20/zp-core/admin-users.php:621
 msgid "Authenticate user"
@@ -9127,7 +9164,7 @@ msgstr ""
 #: D:\github\ZenPhoto20/zp-core/admin-users.php:709
 #, fuzzy
 msgid "Full name"
-msgstr "Nome Completo:"
+msgstr "nombre y apellidos"
 
 #: D:\github\ZenPhoto20/zp-core/admin-users.php:726
 #, fuzzy
@@ -9213,7 +9250,7 @@ msgstr ""
 #: D:\github\ZenPhoto20/zp-core/admin.php:102
 #, fuzzy
 msgid "protected"
-msgstr "Desprotexida"
+msgstr "Protexido"
 
 #: D:\github\ZenPhoto20/zp-core/admin.php:104
 #, fuzzy
@@ -9247,8 +9284,9 @@ msgid "You do not have proper rights to access %s."
 msgstr "Non tes os permiso de acceso a %s."
 
 #: D:\github\ZenPhoto20/zp-core/admin.php:244
+#, fuzzy
 msgid "Misc"
-msgstr ""
+msgstr "Varios"
 
 #: D:\github\ZenPhoto20/zp-core/admin.php:258
 msgid "Setup » restore scripts"
@@ -9310,17 +9348,18 @@ msgid "clone"
 msgstr "clon:"
 
 #: D:\github\ZenPhoto20/zp-core/admin.php:337
-#, php-format
+#, fuzzy, php-format
 msgid "source: %s"
-msgstr ""
+msgstr "Fonte   : %s"
 
 #: D:\github\ZenPhoto20/zp-core/admin.php:358
 msgid "release notes"
 msgstr ""
 
 #: D:\github\ZenPhoto20/zp-core/admin.php:358
+#, fuzzy
 msgid "notes"
-msgstr ""
+msgstr "Notas"
 
 #: D:\github\ZenPhoto20/zp-core/admin.php:362
 #, php-format
@@ -9339,11 +9378,12 @@ msgstr "<strong>Fallou a configuración de localización</strong>"
 #: D:\github\ZenPhoto20/zp-core/admin.php:376
 #, fuzzy
 msgid "Server path:"
-msgstr "Data do servidor: %s"
+msgstr "Servidor"
 
 #: D:\github\ZenPhoto20/zp-core/admin.php:379
+#, fuzzy
 msgid "WEB path:"
-msgstr ""
+msgstr "Camiño"
 
 #: D:\github\ZenPhoto20/zp-core/admin.php:382
 #, fuzzy
@@ -9609,8 +9649,9 @@ msgid "Random albums"
 msgstr "Álbums administrados:"
 
 #: D:\github\ZenPhoto20/zp-core/class-feed.php:389
+#, fuzzy
 msgid "Bad "
-msgstr ""
+msgstr "Parámetro incorrecto do obxecto álbum a newImage(%s)"
 
 #: D:\github\ZenPhoto20/zp-core/class-feed.php:426
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/comment_form/functions.php:808
@@ -9643,8 +9684,9 @@ msgid "Invalid album folder: %1$s %2$s"
 msgstr ""
 
 #: D:\github\ZenPhoto20/zp-core/class-gallery.php:513
+#, fuzzy
 msgid "fixed"
-msgstr ""
+msgstr "fixo"
 
 #: D:\github\ZenPhoto20/zp-core/class-gallery.php:513
 #, fuzzy
@@ -9689,7 +9731,7 @@ msgstr "Título da imaxe"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/xmpMetadata.php:653
 #, fuzzy
 msgid "Object Name"
-msgstr "Nome do obxecto"
+msgstr "Obxecto"
 
 #: D:\github\ZenPhoto20/zp-core/class-image.php:165
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/xmpMetadata.php:649
@@ -9724,12 +9766,12 @@ msgstr "Tempo da Dixitalización"
 #: D:\github\ZenPhoto20/zp-core/class-image.php:171
 #, fuzzy
 msgid "Date Created"
-msgstr "Data creación"
+msgstr "Creado"
 
 #: D:\github\ZenPhoto20/zp-core/class-image.php:172
 #, fuzzy
 msgid "Time Created"
-msgstr "Hora creación"
+msgstr "Creado"
 
 #: D:\github\ZenPhoto20/zp-core/class-image.php:173
 msgid "Digital Creation Date"
@@ -9775,8 +9817,9 @@ msgstr "Nota do Copyright"
 
 #: D:\github\ZenPhoto20/zp-core/class-image.php:183
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/xmpMetadata.php:650
+#, fuzzy
 msgid "Keywords"
-msgstr ""
+msgstr "Keywords:"
 
 #: D:\github\ZenPhoto20/zp-core/class-image.php:184
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/xmpMetadata.php:627
@@ -9829,7 +9872,7 @@ msgstr "Orientación"
 #: D:\github\ZenPhoto20/zp-core/class-image.php:194
 #, fuzzy
 msgid "Software"
-msgstr "Brando"
+msgstr "Software"
 
 #: D:\github\ZenPhoto20/zp-core/class-image.php:195
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/xmpMetadata.php:623
@@ -9889,7 +9932,7 @@ msgstr "Cidade"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/xmpMetadata.php:656
 #, fuzzy
 msgid "Sub-location"
-msgstr "Sublocalización"
+msgstr "Ubicación"
 
 #: D:\github\ZenPhoto20/zp-core/class-image.php:206
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/xmpMetadata.php:655
@@ -10932,28 +10975,34 @@ msgstr ""
 "%2$s</em>"
 
 #: D:\github\ZenPhoto20/zp-core/functions-common.php:45
+#, fuzzy
 msgid "ERROR"
-msgstr ""
+msgstr "Erro!"
 
 #: D:\github\ZenPhoto20/zp-core/functions-common.php:46
+#, fuzzy
 msgid "WARNING"
-msgstr ""
+msgstr "aviso"
 
 #: D:\github\ZenPhoto20/zp-core/functions-common.php:47
+#, fuzzy
 msgid "NOTICE"
-msgstr ""
+msgstr "Atención!"
 
 #: D:\github\ZenPhoto20/zp-core/functions-common.php:48
+#, fuzzy
 msgid "USER ERROR"
-msgstr ""
+msgstr "Erro"
 
 #: D:\github\ZenPhoto20/zp-core/functions-common.php:49
+#, fuzzy
 msgid "USER WARNING"
-msgstr ""
+msgstr "Aviso"
 
 #: D:\github\ZenPhoto20/zp-core/functions-common.php:50
+#, fuzzy
 msgid "USER NOTICE"
-msgstr ""
+msgstr "Aviso"
 
 #: D:\github\ZenPhoto20/zp-core/functions-common.php:51
 msgid "STRICT NOTICE"
@@ -11724,8 +11773,9 @@ msgstr ""
 "em> na túa instalación."
 
 #: D:\github\ZenPhoto20/zp-core/functions.php:1627
+#, fuzzy
 msgid "0 Bytes"
-msgstr ""
+msgstr "Bytes"
 
 #: D:\github\ZenPhoto20/zp-core/functions.php:2177
 #, fuzzy
@@ -11877,7 +11927,7 @@ msgstr ""
 #: D:\github\ZenPhoto20/zp-core/lib-Imagick.php:78
 #, fuzzy
 msgid "Max height"
-msgstr "alto"
+msgstr "altura"
 
 #: D:\github\ZenPhoto20/zp-core/lib-Imagick.php:82
 #, php-format
@@ -11889,7 +11939,7 @@ msgstr ""
 #: D:\github\ZenPhoto20/zp-core/lib-Imagick.php:84
 #, fuzzy
 msgid "Max width"
-msgstr "ancho"
+msgstr "Lonxitude máxima"
 
 #: D:\github\ZenPhoto20/zp-core/lib-Imagick.php:88
 #, php-format
@@ -12310,7 +12360,7 @@ msgstr "Xestionar tódolos álbums"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/favoritesHandler.php:266
 #, fuzzy
 msgid "User"
-msgstr "ID do usuario:"
+msgstr "usuario"
 
 #: D:\github\ZenPhoto20/zp-core/lib-auth.php:590
 #, fuzzy
@@ -12324,7 +12374,7 @@ msgstr ""
 #: D:\github\ZenPhoto20/zp-core/lib-auth.php:612
 #, fuzzy
 msgid "Codeblock"
-msgstr "Codeblocks:"
+msgstr "Tamén podes usar os campos de codeblocks coma campos personalizados."
 
 #: D:\github\ZenPhoto20/zp-core/lib-auth.php:612
 #, fuzzy
@@ -12432,7 +12482,7 @@ msgstr ""
 #: D:\github\ZenPhoto20/zp-core/lib-auth.php:1115
 #, fuzzy
 msgid "Return"
-msgstr "Volver a %s"
+msgstr "Voltar a"
 
 #: D:\github\ZenPhoto20/zp-core/lib-auth.php:1004
 #, fuzzy
@@ -12455,12 +12505,12 @@ msgstr ""
 #: D:\github\ZenPhoto20/zp-core/lib-auth.php:1114
 #, fuzzy
 msgid "Request"
-msgstr "Requirido"
+msgstr "URI solicitada: [ <code>%s</code> ]"
 
 #: D:\github\ZenPhoto20/zp-core/lib-auth.php:1114
 #, fuzzy
 msgid "Request password reset"
-msgstr "Petición para engadir usuario"
+msgstr "Reinicialización do contrasinal"
 
 #: D:\github\ZenPhoto20/zp-core/lib-auth.php:1183
 #, fuzzy
@@ -12488,7 +12538,7 @@ msgstr "O seu contrasinal non cadra"
 #: D:\github\ZenPhoto20/zp-core/lib-auth.php:1218
 #, fuzzy
 msgid "passwords do not match"
-msgstr "O seu contrasinal non cadra"
+msgstr "Os novos contrasinais non coinciden"
 
 #: D:\github\ZenPhoto20/zp-core/lib-auth.php:1282
 #, fuzzy
@@ -12498,7 +12548,7 @@ msgstr "limpar contrasinal"
 #: D:\github\ZenPhoto20/zp-core/lib-utf8.php:49
 #, fuzzy
 msgid "Arabic"
-msgstr "Árabe (Irán)"
+msgstr "Árabe"
 
 #: D:\github\ZenPhoto20/zp-core/lib-utf8.php:50
 #, fuzzy
@@ -12560,7 +12610,7 @@ msgstr ""
 #: D:\github\ZenPhoto20/zp-core/lib-utf8.php:63
 #, fuzzy
 msgid "OEM United States"
-msgstr "Inglés (Estados Unidos)"
+msgstr "Estadounidense"
 
 #: D:\github\ZenPhoto20/zp-core/lib-utf8.php:64
 #, fuzzy
@@ -12590,8 +12640,9 @@ msgid "Icelandic (DOS)"
 msgstr "Islandes"
 
 #: D:\github\ZenPhoto20/zp-core/lib-utf8.php:70
+#, fuzzy
 msgid "Greek, Modern (DOS)"
-msgstr ""
+msgstr "Grego moderno"
 
 #: D:\github\ZenPhoto20/zp-core/lib-utf8.php:71
 #, fuzzy
@@ -12672,8 +12723,9 @@ msgid "Western European (MAC)"
 msgstr ""
 
 #: D:\github\ZenPhoto20/zp-core/lib-utf8.php:90
+#, fuzzy
 msgid "Japanese (Shift-JIS)"
-msgstr ""
+msgstr "Xaponés (Shift JIS)"
 
 #: D:\github\ZenPhoto20/zp-core/lib-utf8.php:91
 msgid "Unicode"
@@ -12700,42 +12752,49 @@ msgid "Central European (Windows)"
 msgstr ""
 
 #: D:\github\ZenPhoto20/zp-core/lib-utf8.php:97
+#, fuzzy
 msgid "Cyrillic (Windows)"
-msgstr ""
+msgstr "Cirílico (Windows-1251)"
 
 #: D:\github\ZenPhoto20/zp-core/lib-utf8.php:98
+#, fuzzy
 msgid "Western European (Windows)"
-msgstr ""
+msgstr "Europeo Occidental (Windows-1252)"
 
 #: D:\github\ZenPhoto20/zp-core/lib-utf8.php:99
+#, fuzzy
 msgid "Greek (Windows)"
-msgstr ""
+msgstr "Grego (Windows-1253)"
 
 #: D:\github\ZenPhoto20/zp-core/lib-utf8.php:100
+#, fuzzy
 msgid "Turkish (Windows)"
-msgstr ""
+msgstr "Turco (Windows-1254)"
 
 #: D:\github\ZenPhoto20/zp-core/lib-utf8.php:101
+#, fuzzy
 msgid "Hebrew (Windows)"
-msgstr ""
+msgstr "Hebreo (Windows-1255)"
 
 #: D:\github\ZenPhoto20/zp-core/lib-utf8.php:102
 #, fuzzy
 msgid "Arabic (Windows)"
-msgstr "Árabe (Irán)"
+msgstr "Árabe (Windows-1256)"
 
 #: D:\github\ZenPhoto20/zp-core/lib-utf8.php:103
+#, fuzzy
 msgid "Baltic (Windows)"
-msgstr ""
+msgstr "Báltico (Windows-1257)"
 
 #: D:\github\ZenPhoto20/zp-core/lib-utf8.php:104
 #, fuzzy
 msgid "Vietnamese (Windows)"
-msgstr "Vietnamita"
+msgstr "Vietnamita (Windows-1258)"
 
 #: D:\github\ZenPhoto20/zp-core/lib-utf8.php:105
+#, fuzzy
 msgid "Thai (Windows)"
-msgstr ""
+msgstr "Tailandés (Windows-874)"
 
 #: D:\github\ZenPhoto20/zp-core/license.php:37
 msgid "ZenPhoto20 License agreement"
@@ -12916,12 +12975,20 @@ msgstr ""
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:308
 #, fuzzy
 msgid "upgrade"
-msgstr "Actualizar"
+msgstr ""
+"Idealmente unha restauración debe facerse só na mesma versión de ZenPhoto20 "
+"na que foi feita a copia de seguridade. Se estás tentando facer unha "
+"actualización, fai primeiro a restauración na versión de Zenphoto que estás "
+"a correr e logo instala o novo Zenphoto. Se isto non é posible a "
+"restauración aínda se pode facer, pero se a base de datos cambiou entre "
+"versións, os datos dos campos cambiados non serán restaurados."
 
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:317
 #, fuzzy
 msgid "install"
-msgstr "Instalado"
+msgstr ""
+"Precisas instalar unha librería de soporte gráfico coma a <em>librería GD</"
+"em> no teu PHP"
 
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:375
 msgid "Completed system check"
@@ -13352,7 +13419,7 @@ msgstr ""
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:721
 #, fuzzy, php-format
 msgid "<em>%1$s</em> file"
-msgstr "carpeta <em>%1$s</em> %2$s"
+msgstr "%1$s"
 
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:721
 #, fuzzy, php-format
@@ -13373,7 +13440,7 @@ msgstr ""
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:723
 #, fuzzy
 msgid "File permissions"
-msgstr "Permisos para o Arquivo/Carpeta"
+msgstr "Permisos dos arquivos do núcleo de ZenPhoto20 [incorrectos]"
 
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:725
 #, fuzzy, php-format
@@ -14237,8 +14304,9 @@ msgid "Previous Release was %s"
 msgstr "A última versión foi %s"
 
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:2442
+#, fuzzy
 msgid "Completed"
-msgstr ""
+msgstr "Comprobación da configuración do sistema completada"
 
 #: D:\github\ZenPhoto20/zp-core/setup/index.php:2448
 #, fuzzy, php-format
@@ -14334,7 +14402,7 @@ msgstr "Aviso"
 #: D:\github\ZenPhoto20/zp-core/setup/setup-functions.php:70
 #, fuzzy
 msgid "Pass: "
-msgstr "Contrasinal:"
+msgstr "pasar"
 
 #: D:\github\ZenPhoto20/zp-core/setup/setup-functions.php:117
 msgid "Error!"
@@ -14729,8 +14797,9 @@ msgid "Users"
 msgstr "usuarios"
 
 #: D:\github\ZenPhoto20/zp-core/template-functions.php:155
+#, fuzzy
 msgid "Logs"
-msgstr ""
+msgstr "rexistros"
 
 #: D:\github\ZenPhoto20/zp-core/template-functions.php:174
 msgid "Sort Gallery"
@@ -14751,7 +14820,7 @@ msgstr "Ordenar subálbums"
 #: D:\github\ZenPhoto20/zp-core/template-functions.php:221
 #, fuzzy
 msgid "Sort images"
-msgstr "Ordenar imaxes por:"
+msgstr "Imaxes"
 
 #: D:\github\ZenPhoto20/zp-core/template-functions.php:231
 msgid "Delete the album"
@@ -14862,7 +14931,7 @@ msgstr "%s nos resultados anteriores"
 #: D:\github\ZenPhoto20/zp-core/template-functions.php:3885
 #, fuzzy
 msgid "search options"
-msgstr "opcións"
+msgstr "Opcións de procura"
 
 #: D:\github\ZenPhoto20/zp-core/template-functions.php:3885
 msgid "fields"
@@ -14918,7 +14987,7 @@ msgstr "Facer copias de seguridade e restaurar a base de datos da túa galería.
 #: D:\github\ZenPhoto20/zp-core/utilities/backup_restore.php:139
 #, fuzzy
 msgid "Backup"
-msgstr "copia de seguridade"
+msgstr "Fallou a escritura da Copia de seguridade!"
 
 #: D:\github\ZenPhoto20/zp-core/utilities/backup_restore.php:179
 #, php-format
@@ -15005,7 +15074,7 @@ msgstr "A restauración completouse utilizando compresión %s"
 #: D:\github\ZenPhoto20/zp-core/utilities/backup_restore.php:511
 #, fuzzy
 msgid "Restore your Database"
-msgstr "Restaurar a Base de Datos"
+msgstr "Facer Copia de Seguridade e Restaura a túa Base de Datos"
 
 #: D:\github\ZenPhoto20/zp-core/utilities/backup_restore.php:513
 msgid "Backup and Restore your Database"
@@ -15109,7 +15178,7 @@ msgstr ""
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/search_statistics.php:82
 #, fuzzy
 msgid "Info"
-msgstr "Información dos lentes"
+msgstr "Información da Base de datos de WordPress"
 
 #: D:\github\ZenPhoto20/zp-core/utilities/database_reference.php:14
 msgid "Database quick reference"
@@ -15138,12 +15207,14 @@ msgid "Table prefix: no prefix"
 msgstr "Prefixo da táboa: sen prefixo"
 
 #: D:\github\ZenPhoto20/zp-core/utilities/database_reference.php:206
+#, fuzzy
 msgid "Key"
-msgstr ""
+msgstr "Clave"
 
 #: D:\github\ZenPhoto20/zp-core/utilities/database_reference.php:209
+#, fuzzy
 msgid "Column"
-msgstr ""
+msgstr "Columna"
 
 #: D:\github\ZenPhoto20/zp-core/utilities/gallery_statistics.php:27
 #: D:\github\ZenPhoto20/zp-core/utilities/gallery_statistics.php:488
@@ -15161,7 +15232,7 @@ msgstr ""
 #: D:\github\ZenPhoto20/zp-core/utilities/gallery_statistics.php:41
 #, fuzzy
 msgid "Statistics"
-msgstr "estatísticas"
+msgstr "Estatísticas para categorías das novas"
 
 #: D:\github\ZenPhoto20/zp-core/utilities/gallery_statistics.php:99
 msgid "rss"
@@ -15470,12 +15541,12 @@ msgstr "Correo seguro"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/PHPMailer.php:60
 #, fuzzy
 msgid "no"
-msgstr "ningún"
+msgstr "non"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/PHPMailer.php:60
 #, fuzzy
 msgid "SSL"
-msgstr "RSS"
+msgstr "SSL"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/PHPMailer.php:60
 msgid "TLS"
@@ -15755,8 +15826,9 @@ msgstr ""
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/cacheManager/cacheImages.php:213
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/cacheManager/cacheImages.php:218
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_tab.php:184
+#, fuzzy
 msgid "Hide"
-msgstr ""
+msgstr "agochar"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/cacheManager.php:217
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:31
@@ -15768,7 +15840,7 @@ msgstr "engadir"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/galleryArticles.php:70
 #, fuzzy
 msgid "Size"
-msgstr "Tamaño completo"
+msgstr "tamaño ="
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/cacheManager.php:258
 msgid "Crop X axis"
@@ -15806,8 +15878,9 @@ msgstr ""
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/cacheManager.php:380
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/cacheManager.php:392
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/rss.php:85
+#, fuzzy
 msgid "Cache"
-msgstr ""
+msgstr "caché das imaxes completas"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/cacheManager.php:354
 #, fuzzy
@@ -16011,12 +16084,12 @@ msgstr "%s imaxes"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/cacheManager/functions.php:62
 #, fuzzy, php-format
 msgid "album %s"
-msgstr "álbums"
+msgstr "Álbum: %s"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/cacheManager/functions.php:66
 #, fuzzy, php-format
 msgid "%1$s: %2$s"
-msgstr "%1$s x %2$s px"
+msgstr "%1$s %2$s"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/class-AnyFile.php:18
 msgid ""
@@ -16060,8 +16133,9 @@ msgid ""
 msgstr ""
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/class-WEBdocs.php:55
+#, fuzzy
 msgid "PDF"
-msgstr ""
+msgstr "PDF"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/class-WEBdocs.php:56
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/class-WEBdocs.php:67
@@ -16204,25 +16278,26 @@ msgstr "Artista"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/class-video.php:141
 #, fuzzy
 msgid "Video Title"
-msgstr "Escala do vídeo"
+msgstr "Título do vídeo"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/class-video.php:142
 #, fuzzy
 msgid "Bitrate"
-msgstr "mellor puntuados"
+msgstr "Taxa de bits"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/class-video.php:143
 msgid "Bitrate_Mode"
 msgstr ""
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/class-video.php:144
+#, fuzzy
 msgid "Bits per sample"
-msgstr ""
+msgstr "Bits por mostra"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/class-video.php:145
 #, fuzzy
 msgid "Codec"
-msgstr "Codeblocks:"
+msgstr "Códec"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/class-video.php:146
 #, fuzzy
@@ -16242,44 +16317,47 @@ msgstr "Xestor de ficheiros"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/class-video.php:149
 #, fuzzy
 msgid "Sample rate"
-msgstr "moderado"
+msgstr "Taxa de mostra"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/class-video.php:150
 #, fuzzy
 msgid "Channel mode"
-msgstr "Rexistro de modificacións"
+msgstr "Canle"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/class-video.php:151
 #, fuzzy
 msgid "Format"
-msgstr "normal"
+msgstr "Formato"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/class-video.php:152
 #, fuzzy
 msgid "Channels"
-msgstr "Rexistro de modificacións"
+msgstr "Canles"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/class-video.php:153
 #, fuzzy
 msgid "Frame rate"
-msgstr "moderado"
+msgstr "Taxa de fotogramas"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/class-video.php:154
+#, fuzzy
 msgid "X Resolution"
-msgstr ""
+msgstr "Resolución"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/class-video.php:155
+#, fuzzy
 msgid "Y Resolution"
-msgstr ""
+msgstr "Resolución"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/class-video.php:156
+#, fuzzy
 msgid "Aspect ratio"
-msgstr ""
+msgstr "Proporción de aspecto"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/class-video.php:157
 #, fuzzy
 msgid "Play Time"
-msgstr "Reproducir"
+msgstr "Tempo"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/class-video.php:440
 #, php-format
@@ -16644,7 +16722,7 @@ msgstr ""
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/comment_form.php:148
 #, fuzzy
 msgid "Pagination"
-msgstr "Información de uso"
+msgstr "paxinación"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/comment_form.php:150
 msgid ""
@@ -16672,7 +16750,7 @@ msgstr "agochar comentarios"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/comment_form.php:295
 #, fuzzy
 msgid "on"
-msgstr "ningún"
+msgstr "en"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/comment_form.php:318
 msgid "Only registered users may post comments."
@@ -16828,8 +16906,9 @@ msgid "<strong>Missing Object</strong> "
 msgstr "<strong>Falta o arquivo de información do Tema!</strong>"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/comment_form/admin-comments.php:385
+#, fuzzy
 msgid "article"
-msgstr ""
+msgstr "Artigo"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/comment_form/admin-comments.php:419
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/comment_form/admin-comments.php:471
@@ -17233,7 +17312,7 @@ msgstr "Código Postal:"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/contact_form.php:130
 #, fuzzy
 msgid "E-mail"
-msgstr "Email"
+msgstr "E-Mail:"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/contact_form.php:134
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/register_user.php:85
@@ -17249,7 +17328,7 @@ msgstr ""
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/mobileTheme.php:104
 #, fuzzy
 msgid "Phone"
-msgstr "Campo do Teléfono"
+msgstr "Teléfono<strong>%s</strong>:"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/contact_form.php:139
 #, fuzzy
@@ -17279,12 +17358,12 @@ msgstr "unha cidade"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/contact_form.php:213
 #, fuzzy
 msgid "a state"
-msgstr "estado ou provincia:"
+msgstr "Estado ou Provincia:"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/contact_form.php:216
 #, fuzzy
 msgid "a postal code"
-msgstr "código postal:"
+msgstr "Código Postal:"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/contact_form.php:219
 msgid "a country"
@@ -17412,8 +17491,9 @@ msgid "Link image watermark"
 msgstr "Imaxe da marca de auga:"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/crop_image.php:477
+#, fuzzy
 msgid "Done"
-msgstr ""
+msgstr "Feito"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/customData.php:26
 msgid "This plugin exposes the \"custom_data\" field on objects."
@@ -17465,8 +17545,9 @@ msgid "Development"
 msgstr ""
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/debug.php:126
+#, fuzzy
 msgid "Mark release"
-msgstr ""
+msgstr "Liberación"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/debug.php:130
 #, php-format
@@ -17483,8 +17564,9 @@ msgid "Locales"
 msgstr "escalar"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/debug.php:150
+#, fuzzy
 msgid "Session"
-msgstr ""
+msgstr "Sesión"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/debug.php:154
 #, fuzzy
@@ -17509,8 +17591,9 @@ msgid "Supported locales:"
 msgstr ""
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/debug/admin_tab.php:156
+#, fuzzy
 msgid "Sub-Language"
-msgstr ""
+msgstr "Idioma"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/debug/admin_tab.php:157
 msgid "Language String"
@@ -17528,7 +17611,7 @@ msgstr ""
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:260
 #, fuzzy
 msgid "News category"
-msgstr "Categorías de Novas"
+msgstr "Categorías das novas de Zenpage"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/defaultCodeblocks.php:36
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:104
@@ -17543,7 +17626,7 @@ msgstr "Páxina"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/defaultCodeblocks.php:38
 #, fuzzy
 msgid "Objects"
-msgstr "Nome do obxecto"
+msgstr "Usuarios que só poden ver obxectos de zenphoto"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/defaultCodeblocks.php:41
 #, fuzzy
@@ -17604,9 +17687,9 @@ msgid "standard plugin %1$s:%2$s"
 msgstr ""
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/deprecated-functions.php:174
-#, php-format
+#, fuzzy, php-format
 msgid "core:%s"
-msgstr ""
+msgstr "s"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/deprecated-functions.php:181
 #, fuzzy, php-format
@@ -17695,7 +17778,7 @@ msgstr ""
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/deprecated-functions/functions.php:111
 #, fuzzy, php-format
 msgid "%s table"
-msgstr "Desactivada"
+msgstr "Mesa"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/downloadList.php:38
 #, fuzzy
@@ -17737,17 +17820,17 @@ msgstr ""
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/downloadList.php:75
 #, fuzzy
 msgid "Zip source"
-msgstr "Fonte da imaxe"
+msgstr "Fonte"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/downloadList.php:77
 #, fuzzy
 msgid "From album"
-msgstr "1 álbum"
+msgstr "Álbum musical"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/downloadList.php:77
 #, fuzzy
 msgid "From Cache"
-msgstr "De"
+msgstr "Cache"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/downloadList.php:78
 msgid ""
@@ -17777,7 +17860,7 @@ msgstr "O destino do menú está protexido con contrasinal"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/admin-edit.php:500
 #, fuzzy
 msgid "Guest user:"
-msgstr "Usuario convidado á páxina:"
+msgstr "Identificador do usuario para visitante da galería"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/downloadList.php:155
 #, fuzzy
@@ -17949,7 +18032,7 @@ msgstr ""
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/elFinder.php:52
 #, fuzzy
 msgid "Files tab"
-msgstr "Ficheiros"
+msgstr "ARQUIVOS"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/elFinder.php:53
 msgid "Use as the upload <em>files</em> subtab."
@@ -17968,7 +18051,7 @@ msgstr "Activar o formulario de identificación"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/elFinder.php:76
 #, fuzzy, php-format
 msgid "files (%s)"
-msgstr "Artigos (%s)"
+msgstr "ARQUIVOS"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/elFinder.php:77
 msgid "files"
@@ -18252,7 +18335,7 @@ msgstr ""
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/externalFeed.php:130
 #, fuzzy, php-format
 msgid "<em><strong>%1$s</strong></em> key=%2$s"
-msgstr "<strong>%1$u</strong> Nova"
+msgstr "%1$s %2$s"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/externalFeed.php:136
 msgid "No sites registered"
@@ -18260,8 +18343,9 @@ msgstr ""
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/externalFeed.php:241
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/rss.php:417
+#, fuzzy
 msgid " (Latest news)"
-msgstr ""
+msgstr "Últimas novas"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/externalFeed.php:245
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/rss.php:434
@@ -18284,7 +18368,7 @@ msgstr "mellor puntuados"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/rss.php:443
 #, fuzzy
 msgid " (Random news)"
-msgstr "Imaxes aleatorias"
+msgstr "Aleatorio"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/externalFeed.php:270
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/rss.php:461
@@ -18380,7 +18464,7 @@ msgstr "O texto para a ligazón do artigo completo."
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/favoritesHandler.php:95
 #, fuzzy
 msgid "Multiple sets"
-msgstr "Múltiples disposicións"
+msgstr "Múltiplo"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/favoritesHandler.php:97
 msgid "If enabled a user may have multiple (named) favorites."
@@ -18389,7 +18473,7 @@ msgstr ""
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/favoritesHandler.php:98
 #, fuzzy
 msgid "Add button"
-msgstr "Botóns de radio"
+msgstr "Botón"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/favoritesHandler.php:101
 msgid "Default text for the <em>add to favorites</em> button."
@@ -18577,8 +18661,9 @@ msgid "OpenID Authentication"
 msgstr ""
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/federated_logon/OpenID_logon.php:55
+#, fuzzy
 msgid "Identity URL:"
-msgstr ""
+msgstr "Identidade"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/federated_logon/OpenID_logon.php:60
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/federated_logon/Verisign_logon.php:53
@@ -18904,12 +18989,12 @@ msgstr "Escolle o tipo de mapa inicial."
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/googleMap.php:84
 #, fuzzy
 msgid "Map display"
-msgstr "Vista EXIF"
+msgstr "Amosar"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/googleMap.php:88
 #, fuzzy
 msgid "colorbox"
-msgstr "Usar Colorbox"
+msgstr "Tipo da imaxe no Colorbox"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/googleMap.php:89
 msgid ""
@@ -18926,7 +19011,7 @@ msgstr "Controis do Mapa"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/googleMap.php:100
 #, fuzzy
 msgid "Default"
-msgstr "Predefinidos"
+msgstr "por defecto"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/googleMap.php:94
 msgid "Dropdown"
@@ -18940,7 +19025,7 @@ msgstr "Usar botóns ou lista para o selector de tipos de mapas."
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/googleMap.php:97
 #, fuzzy
 msgid "Zoom controls"
-msgstr "Controis do Mapa"
+msgstr "Controis"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/googleMap.php:102
 msgid "Display options for the Zoom control."
@@ -19189,7 +19274,7 @@ msgstr ""
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/html_meta_tags.php:94
 #, fuzzy
 msgid "Site logo"
-msgstr "Logo do tema"
+msgstr "Logotipo"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/html_meta_tags.php:95
 msgid ""
@@ -19202,7 +19287,7 @@ msgstr ""
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/html_meta_tags.php:96
 #, fuzzy
 msgid "Twitter name"
-msgstr "co nome da carpeta:"
+msgstr "Twitter"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/html_meta_tags.php:97
 msgid ""
@@ -19246,8 +19331,9 @@ msgid "User validation"
 msgstr "Rexistro de Usuario"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/http_auth.php:75
+#, fuzzy
 msgid "verify"
-msgstr ""
+msgstr "comprobar"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/http_auth.php:75
 msgid "trusted"
@@ -19430,8 +19516,9 @@ msgid "Tools to block hacker access to your site."
 msgstr ""
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/ipBlocker.php:71
+#, fuzzy
 msgid "Allow"
-msgstr ""
+msgstr "Permite artigos privados"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/ipBlocker.php:71
 #, fuzzy
@@ -19441,7 +19528,7 @@ msgstr "trancado"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/ipBlocker.php:81
 #, fuzzy
 msgid "IP list"
-msgstr "Lista de páxinas"
+msgstr "Lista"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/ipBlocker.php:83
 #, php-format
@@ -19477,16 +19564,18 @@ msgstr ""
 "de tentativas fallidas."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/ipBlocker.php:97
+#, fuzzy
 msgid "404 threshold"
-msgstr ""
+msgstr "Limiar"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/ipBlocker.php:99
 msgid "Access will be suspended after this many 404 errors."
 msgstr ""
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/ipBlocker.php:100
+#, fuzzy
 msgid "Cool off"
-msgstr ""
+msgstr "desactivado"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/ipBlocker.php:102
 #, fuzzy
@@ -19500,7 +19589,7 @@ msgstr ""
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/ipBlocker.php:161
 #, fuzzy
 msgid "clear list"
-msgstr "Lista de páxinas"
+msgstr "Limpar a lista"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/ipBlocker.php:184
 #, fuzzy
@@ -19661,7 +19750,7 @@ msgstr ""
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/jplayer.php:140
 #, fuzzy
 msgid "Player size"
-msgstr "Tamaño da imaxe"
+msgstr "Reprodutor..."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/jplayer.php:142
 msgid "jp-video-270p (480x270px)"
@@ -19693,8 +19782,9 @@ msgid ""
 msgstr ""
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/jplayer.php:148
+#, fuzzy
 msgid "Player skin"
-msgstr ""
+msgstr "Reprodutor..."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/jplayer.php:150
 msgid ""
@@ -19726,31 +19816,34 @@ msgstr ""
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/slideshow2.php:271
 #, fuzzy
 msgid "play"
-msgstr "Auto-reproducir"
+msgstr "Reproducir"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/jplayer.php:371
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/jplayer.php:408
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/jplayer.php:739
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/jplayer.php:775
+#, fuzzy
 msgid "mute"
-msgstr ""
+msgstr "Desactivar o son"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/jplayer.php:372
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/jplayer.php:409
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/jplayer.php:740
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/jplayer.php:776
+#, fuzzy
 msgid "max volume"
-msgstr ""
+msgstr "Volume"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/jplayer.php:470
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/slideshow2.php:269
+#, fuzzy
 msgid "stop"
-msgstr ""
+msgstr "Deter"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/jplayer.php:476
 #, fuzzy
 msgid "repeat"
-msgstr "repetir:"
+msgstr "(repetir)"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/jplayer.php:478
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/slideshow.php:114
@@ -20177,9 +20270,9 @@ msgid "Name for new menu:"
 msgstr ""
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_tab.php:109
-#, php-format
+#, fuzzy, php-format
 msgid "Copy_of_%s"
-msgstr ""
+msgstr "copia de %s"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_tab.php:115
 #, fuzzy, php-format
@@ -20226,8 +20319,9 @@ msgid "Add Menu Items"
 msgstr "Engadir elementos ó Menú"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_tab.php:161
+#, fuzzy
 msgid "New Menu"
-msgstr ""
+msgstr "Novo"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_tab.php:176
 msgid "Edit the menu"
@@ -20251,7 +20345,7 @@ msgstr "Borrar %s"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_tab.php:195
 #, fuzzy
 msgid "Delete menu"
-msgstr "Borrar imaxe"
+msgstr "Borrar"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/menu_manager/menu_tab.php:226
 msgid "No menus exist"
@@ -20463,7 +20557,7 @@ msgstr ""
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/mergedRSS.php:67
 #, fuzzy
 msgid "Feed items:"
-msgstr "elementos agochados"
+msgstr "Ítems"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/mergedRSS.php:69
 #, fuzzy
@@ -20500,8 +20594,9 @@ msgid "Select the theme to be used when a tablet device connects."
 msgstr ""
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/mobileTheme.php:103
+#, fuzzy
 msgid "Test mode"
-msgstr ""
+msgstr "TEST"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/mobileTheme.php:104
 #, fuzzy
@@ -20509,8 +20604,9 @@ msgid "Tablet"
 msgstr "Activado"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/mobileTheme.php:105
+#, fuzzy
 msgid "live"
-msgstr ""
+msgstr "En directo"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/mobileTheme.php:106
 msgid ""
@@ -20588,8 +20684,9 @@ msgstr ""
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/optionalObjectFields.php:50
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/optionalObjectFields.php:60
+#, fuzzy
 msgid "Location"
-msgstr ""
+msgstr "Localización:"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/optionalObjectFields.php:56
 msgid "Set as thumbnail for"
@@ -20921,7 +21018,7 @@ msgstr "Non publicar"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/publishContent/publishContent.php:458
 #, fuzzy
 msgid "all images"
-msgstr "Imaxe completa"
+msgstr "Imaxes"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/publishContent/publishContent.php:462
 msgid "Process the above changes."
@@ -21062,18 +21159,19 @@ msgstr ""
 "teus temas."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/purgeOptions.php:35
+#, fuzzy
 msgid "purge"
-msgstr ""
+msgstr "Purga"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:19
 #, fuzzy
 msgid "User plugins"
-msgstr "plugins"
+msgstr "Plugins"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:19
 #, fuzzy
 msgid "Extensions"
-msgstr "Procesar extensións"
+msgstr "Extensiones"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:112
 #, fuzzy
@@ -21219,8 +21317,9 @@ msgid "Split stars"
 msgstr "Partir estrelas"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/rating.php:102
+#, fuzzy
 msgid "full"
-msgstr ""
+msgstr "Imaxe <em>completa</em>"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/rating.php:102
 msgid "half"
@@ -21343,19 +21442,21 @@ msgstr ""
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/reCaptcha.php:58
 #, fuzzy
 msgid "Red"
-msgstr "Gravar"
+msgstr "Auto + Ollos Vermellos"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/reCaptcha.php:58
+#, fuzzy
 msgid "White"
-msgstr ""
+msgstr "Branco"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/reCaptcha.php:58
 msgid "Black Glass"
 msgstr ""
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/reCaptcha.php:58
+#, fuzzy
 msgid "Clean"
-msgstr ""
+msgstr "Limpar"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/reCaptcha.php:67
 #, fuzzy
@@ -21382,7 +21483,7 @@ msgstr "Define os teus criterios da busca."
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/themeSwitcher.php:135
 #, fuzzy
 msgid "Theme"
-msgstr "Temas"
+msgstr "tema"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/reCaptcha.php:76
 #, fuzzy
@@ -21428,7 +21529,7 @@ msgstr ""
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/reCaptcha.php:127
 #, fuzzy
 msgid "Incorrect please try again"
-msgstr "Téntao de novo"
+msgstr "¡Por favor, ténteo de novo!"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/register_user.php:27
 msgid ""
@@ -21474,7 +21575,7 @@ msgstr ""
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/register_user.php:76
 #, fuzzy
 msgid "User album"
-msgstr "novo álbum"
+msgstr "Álbum musical"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/register_user.php:78
 #, fuzzy
@@ -21662,7 +21763,7 @@ msgstr ""
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/rewriteRules/admin_tab.php:14
 #, fuzzy
 msgid "rewrite"
-msgstr "mod_rewrite"
+msgstr "A opción de ZenPhoto20 \"mod_rewrite\" está \"habilitada\"."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/rewriteRules/admin_tab.php:26
 #, fuzzy
@@ -21875,7 +21976,7 @@ msgstr ""
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/rss.php:91
 #, fuzzy
 msgid "Hitcounter"
-msgstr "contador RSS"
+msgstr "Contador dos elementos escollidos"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/rss.php:93
 msgid "Check if you want to store the hitcount on RSS feeds."
@@ -21893,8 +21994,9 @@ msgstr "Título del website:"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/rss.php:96
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage.php:127
+#, fuzzy
 msgid "Both"
-msgstr ""
+msgstr "Ambas"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/rss.php:97
 msgid ""
@@ -21999,7 +22101,7 @@ msgstr "Analiza buscas"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/search_statistics/search_analysis.php:21
 #, fuzzy
 msgid "Analysis"
-msgstr "análise da busca"
+msgstr "Análise"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/search_statistics/search_analysis.php:126
 msgid "Search analysis"
@@ -22121,7 +22223,9 @@ msgstr "Descargado rexistro"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/security-logger.php:131
 #, fuzzy
 msgid "Install"
-msgstr "Instalado"
+msgstr ""
+"Precisas instalar unha librería de soporte gráfico coma a <em>librería GD</"
+"em> no teu PHP"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/security-logger.php:138
 msgid "Restore setup scripts"
@@ -22191,7 +22295,7 @@ msgstr "Éxito"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/security-logger.php:201
 #, fuzzy
 msgid "Blocked"
-msgstr "trancado"
+msgstr "bloqueado"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/seo_cleanup.php:17
 msgid "Provides a utility SEO file/folder name clenser."
@@ -22199,8 +22303,9 @@ msgstr ""
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/seo_cleanup.php:25
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/sitemap-extended.php:199
+#, fuzzy
 msgid "Seo"
-msgstr ""
+msgstr "Seo"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/seo_cleanup.php:27
 msgid "SEO Cleaner"
@@ -22416,7 +22521,7 @@ msgstr ""
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/site_upgrade.php:128
 #, fuzzy
 msgid "Site status:"
-msgstr "Estado da Votación:"
+msgstr "Estado"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/site_upgrade.php:121
 msgid "The site is in test mode!"
@@ -22446,8 +22551,9 @@ msgid "Make the site available for viewing administrators only."
 msgstr ""
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/site_upgrade.php:179
+#, fuzzy
 msgid "Site » open"
-msgstr ""
+msgstr "Abrir"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/site_upgrade.php:183
 msgid "Make site available for viewing."
@@ -22458,8 +22564,9 @@ msgid "Your setup scripts are not protected!"
 msgstr ""
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/site_upgrade.php:206
+#, fuzzy
 msgid "Site » close"
-msgstr ""
+msgstr "Pechar"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/site_upgrade.php:210
 msgid ""
@@ -22535,7 +22642,7 @@ msgstr ""
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/sitemap-extended.php:75
 #, fuzzy
 msgid "Gallery index page"
-msgstr "Ligazón á páxina do índice da Galería:"
+msgstr "Esta é a páxina normal de zenphoto para o índice da galería."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/sitemap-extended.php:78
 msgid ""
@@ -22548,7 +22655,7 @@ msgstr ""
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/sitemap-extended.php:79
 #, fuzzy
 msgid "Album date"
-msgstr "Título do Álbum"
+msgstr "Álbum musical"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/sitemap-extended.php:83
 #, fuzzy
@@ -22558,7 +22665,7 @@ msgstr "Data da última modificación - álbums"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/sitemap-extended.php:84
 #, fuzzy
 msgid "Image date"
-msgstr "Páxina de imaxe"
+msgstr "Imaxe"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/sitemap-extended.php:88
 #, fuzzy
@@ -23218,8 +23325,9 @@ msgid ""
 msgstr ""
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/slideshow2.php:270
+#, fuzzy
 msgid "pause"
-msgstr ""
+msgstr "En pausa"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/static_html_cache.php:28
 msgid "Adds static HTML cache functionality."
@@ -23301,8 +23409,9 @@ msgid "Tag items found by the search"
 msgstr ""
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tagFromSearch.php:39
+#, fuzzy
 msgid "Tag items"
-msgstr ""
+msgstr "Ítems"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tagFromSearch/tag.php:72
 #, php-format
@@ -23360,8 +23469,9 @@ msgid "Enables jQuery tag suggestions on the search field."
 msgstr ""
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tag_suggest.php:33
+#, fuzzy
 msgid "threshold"
-msgstr ""
+msgstr "Limiar"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tag_suggest.php:36
 msgid "Only tags with at least this number of uses will be suggested."
@@ -23492,7 +23602,7 @@ msgstr ""
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/themeSwitcher.php:68
 #, fuzzy
 msgid "Theme list"
-msgstr "Temas"
+msgstr "Tema"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/themeSwitcher.php:70
 msgid "These are the themes that may be selected among."
@@ -23527,7 +23637,7 @@ msgstr ""
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinyURL.php:83
 #, fuzzy
 msgid "news categories"
-msgstr "Categorías de Novas"
+msgstr "Categorías das Novas"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce.php:20
 msgid "TinyMCE WYSIWYG editor"
@@ -23624,11 +23734,12 @@ msgstr "Procura dentro da categoría."
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:211
 #, fuzzy
 msgid "paste"
-msgstr "Master"
+msgstr "Colar"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:222
+#, fuzzy
 msgid "thumb only"
-msgstr ""
+msgstr "Polgar"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:228
 msgid "thumb with link to full-sized image"
@@ -23641,7 +23752,7 @@ msgstr ""
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:244
 #, fuzzy
 msgid "image only"
-msgstr "imaxe"
+msgstr "Imaxe"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:250
 msgid "image with link to full-sized image"
@@ -23657,16 +23768,18 @@ msgid "Include caption"
 msgstr ""
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:280
+#, fuzzy
 msgid "title only"
-msgstr ""
+msgstr "Título"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:292
 msgid "Click to bring up the custom cropping page."
 msgstr ""
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:293
+#, fuzzy
 msgid "Custom crop"
-msgstr ""
+msgstr "Personalizada"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:299
 msgid "No object source has been chosen."
@@ -23779,7 +23892,7 @@ msgstr "Descrición da galería:"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:146
 #, fuzzy
 msgid "No description"
-msgstr "(Sen descrición...)"
+msgstr "descrición:"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:147
 #, fuzzy
@@ -24479,7 +24592,7 @@ msgstr ""
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/user-expiry.php:294
 #, fuzzy
 msgid "You must change your password."
-msgstr "Debes proporcionar un contrasinal."
+msgstr "Cambiar o seu contrasinal"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/user-expiry.php:297
 msgid "You have users whose credentials have expired."
@@ -24525,12 +24638,12 @@ msgstr "A caché foi baleirada."
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/user-expiry/user-expiry-tab.php:184
 #, fuzzy
 msgid "enable"
-msgstr "Activado"
+msgstr "Activar múltiples disposicións para:"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/user-expiry/user-expiry-tab.php:186
 #, fuzzy
 msgid "disable"
-msgstr "Desactivada"
+msgstr "Desactivar"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/user-expiry/user-expiry-tab.php:189
 msgid "renew"
@@ -24555,12 +24668,12 @@ msgstr "%1$s versión: <strong>%2$s</strong>"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/user-expiry/user-expiry-tab.php:209
 #, fuzzy
 msgid "Disable"
-msgstr "Desactivada"
+msgstr "Desactivar"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/user-expiry/user-expiry-tab.php:210
 #, fuzzy
 msgid "Enable"
-msgstr "Activado"
+msgstr "Activar múltiples disposicións para:"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/user-expiry/user-expiry-tab.php:219
 msgid "Renew"
@@ -24587,7 +24700,7 @@ msgstr "*sen grupo seleccionado"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/user_groups.php:136
 #, fuzzy
 msgid " (Template)"
-msgstr "Modelo:"
+msgstr "modelo"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/user_groups.php:151
 msgid "*no group selected"
@@ -24633,7 +24746,7 @@ msgstr "grupos"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/user_groups/user_groups-tab.php:144
 #, fuzzy
 msgid "Deleted"
-msgstr "Borrar"
+msgstr "Non foi posíbel eliminar os ficheiros seguintes."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/user_groups/user_groups-tab.php:185
 msgid ""
@@ -24706,16 +24819,17 @@ msgstr ""
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/user_login-out.php:36
 #, fuzzy
 msgid "Login form"
-msgstr "Activar o formulario de identificación"
+msgstr "Iniciar a sesión"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/user_login-out.php:37
+#, fuzzy
 msgid "Form"
-msgstr ""
+msgstr "O texto de introdución do teu formulario de contacto"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/user_login-out.php:37
 #, fuzzy
 msgid "Colorbox"
-msgstr "Usar Colorbox"
+msgstr "Tipo da imaxe no Colorbox"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/user_login-out.php:38
 msgid ""
@@ -25027,7 +25141,7 @@ msgstr "Non hai entradas ou páxinas para importar."
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/wordpress_import.php:356
 #, fuzzy
 msgid "Wordpress"
-msgstr "WordPress"
+msgstr "Información da Base de datos de WordPress"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/wordpress_import.php:389
 #, fuzzy
@@ -25180,8 +25294,9 @@ msgid "Exposure program"
 msgstr ""
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/xmpMetadata.php:657
+#, fuzzy
 msgid "Rating"
-msgstr ""
+msgstr "Puntuación"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/xmpMetadata.php:1154
 #, fuzzy
@@ -25334,7 +25449,7 @@ msgstr ""
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/admin-categories.php:135
 #, fuzzy
 msgid "New category"
-msgstr "Ver categoría"
+msgstr "Novo Nome de Categoría"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/admin-categories.php:143
 msgid "Edit this Category"
@@ -25389,7 +25504,7 @@ msgstr "Esta non é unha data futura!"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/admin-news.php:214
 #, fuzzy
 msgid "New Article"
-msgstr "Novas"
+msgstr "Artigo"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/admin-edit.php:178
 #, fuzzy
@@ -25401,12 +25516,12 @@ msgstr "Categoría"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/admin-pages.php:135
 #, fuzzy
 msgid "New Page"
-msgstr "Páxina Seguinte"
+msgstr "páxina"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/admin-edit.php:206
 #, fuzzy
 msgid "New Category"
-msgstr "RSS das Categorías das Novas"
+msgstr "Novo Nome de Categoría"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/admin-edit.php:220
 #, fuzzy, php-format
@@ -25421,7 +25536,7 @@ msgstr "<em>%s</em> non atopado"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/admin-edit.php:230
 #, fuzzy, php-format
 msgid "Page <em>%s</em> not found"
-msgstr "<em>%s</em> non atopado"
+msgstr "Páxina non atopada"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/admin-edit.php:239
 msgid "Edit Article:"
@@ -25792,8 +25907,9 @@ msgid "password protected"
 msgstr "protexido con contrasinal"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/admin-functions.php:536
+#, fuzzy
 msgid "All authors"
-msgstr ""
+msgstr "Autores"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/admin-functions.php:572
 msgid "View all months"
@@ -25893,8 +26009,9 @@ msgid "Un-publish"
 msgstr "Sen-Publicar"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/admin-functions.php:975
+#, fuzzy
 msgid "Scheduled for publishing"
-msgstr ""
+msgstr "(Páxina programada para publicar)"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/admin-functions.php:992
 msgid "View category"
@@ -26004,7 +26121,7 @@ msgstr "Editar este artigo"
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/admin-news.php:252
 #, fuzzy
 msgid "Add categories"
-msgstr "Tódalas categorías"
+msgstr "Categorías"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/admin-news.php:253
 #, fuzzy
@@ -26012,8 +26129,10 @@ msgid "Clear categories"
 msgstr "Tódalas categorías"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/admin-news.php:268
+#, fuzzy
 msgid "Created"
 msgstr ""
+"Se está marcado, as imaxes/miniaturas serán xeradas en escala de grises."
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zenpage/admin-news.php:270
 msgid "Last changed"
@@ -26175,8 +26294,9 @@ msgid "CAPTCHA font"
 msgstr "Fonte do CAPTCHA"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zpCaptcha.php:58
+#, fuzzy
 msgid "random"
-msgstr ""
+msgstr "Aleatorio"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/zpCaptcha.php:59
 msgid "The font to use for CAPTCHA characters."
@@ -26193,8 +26313,9 @@ msgid ""
 msgstr ""
 
 #: D:\github\ZenPhoto20/zp-core/js/jqueryui/jquery-ui-zenphoto.js:10
+#, fuzzy
 msgid "'"
-msgstr ""
+msgstr "'"
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/tinymce.min.js:6
 msgid "align"
@@ -26205,8 +26326,9 @@ msgid "blockquote"
 msgstr ""
 
 #: D:\github\ZenPhoto20/zp-core/zp-extensions/tinymce/tinymce.min.js:6
+#, fuzzy
 msgid "p"
-msgstr ""
+msgstr "P"
 
 #~ msgid "Auto, Continuous"
 #~ msgstr "Automático, Continuo"
