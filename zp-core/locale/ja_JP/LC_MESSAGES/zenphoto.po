@@ -1,19 +1,10 @@
-# Japanese translations for Zenphoto package
-# Zenphoto
-# Copyright (C) 2005-2011 THE Zenphoto's COPYRIGHT HOLDER
-# This file is distributed under the same license as the Zenphoto package.
-#
-# Zenphotoの日本語訳です。
-# 翻訳の中で誤訳やTypoなどがあれば、適宜修正して以下のチケットで報告してください。
-# 旧: http://www.zenphoto.org/trac/ticket/738
-# 新: http://www.zenphoto.org/trac/ticket/1698
-#
 msgid ""
 msgstr ""
-"Project-Id-Version: ZenPhoto20 1.0.0\n"
+"Project-Id-Version: ZenPhoto20\n"
+
 "Report-Msgid-Bugs-To: webmaster at momo-i.org\n"
-"POT-Creation-Date: 2017-04-16 17:16-0700\n"
-"PO-Revision-Date: 2017-04-16 17:16-0700\n"
+"POT-Creation-Date: 2017-04-17 09:29-0700\n"
+"PO-Revision-Date: 2017-04-17 09:55-0700\n"
 "Last-Translator: Stephen <stephen@sbillard.org>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -26,6 +17,7 @@ msgstr ""
 "X-Poedit-Basepath: ../../../..\n"
 "X-Poedit-SearchPath-0: zp-core/locale/ja_JP/LC_MESSAGES/zenphoto.po\n"
 "X-Poedit-SearchPath-1: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
 
 #: plugins/cacheHeader.php:18
 msgid "Outputs a \"Cache-control\" header with selected caching options."
@@ -274,7 +266,7 @@ msgstr "<em>%s</em>はすでに存在します。"
 #, fuzzy, php-format
 #| msgid "Database tables to create: %s"
 msgid "Unable to create %s."
-msgstr "次に作成:"
+msgstr "作成"
 
 #: plugins/customData.php:26
 #, fuzzy
@@ -2872,7 +2864,7 @@ msgstr ""
 #: themes/paradigm/themeoptions.php:102
 #, fuzzy
 msgid "Twitter profile name"
-msgstr "名前%s"
+msgstr "次のフォルダ名で:"
 
 #: themes/paradigm/themeoptions.php:102
 msgid ""
@@ -2894,7 +2886,7 @@ msgstr ""
 #: themes/paradigm/themeoptions.php:104
 #, fuzzy
 msgid "URL to FlickR"
-msgstr "URLオプション:"
+msgstr "識別情報URL:"
 
 #: themes/paradigm/themeoptions.php:104
 msgid "Provide your <a href=\"http://www.flickr.com\">FlickR</a> gallery URL"
@@ -2903,7 +2895,7 @@ msgstr ""
 #: themes/paradigm/themeoptions.php:105
 #, fuzzy
 msgid "URL to 500px"
-msgstr "URLオプション:"
+msgstr "識別情報URL:"
 
 #: themes/paradigm/themeoptions.php:105
 msgid "Provide your <a href=\"http://500px.com\">500px</a> gallery URL"
@@ -2912,7 +2904,7 @@ msgstr ""
 #: themes/paradigm/themeoptions.php:106
 #, fuzzy
 msgid "URL to Instagram"
-msgstr "URLオプション:"
+msgstr "識別情報URL:"
 
 #: themes/paradigm/themeoptions.php:106
 msgid "Provide your <a href=\"http://instagram.com/\">Instagram</a>"
@@ -2921,7 +2913,7 @@ msgstr ""
 #: themes/paradigm/themeoptions.php:107
 #, fuzzy
 msgid "URL to Pinterest"
-msgstr "URLオプション:"
+msgstr "識別情報URL:"
 
 #: themes/paradigm/themeoptions.php:107
 msgid ""
@@ -2931,7 +2923,7 @@ msgstr ""
 #: themes/paradigm/themeoptions.php:108
 #, fuzzy
 msgid "URL to Deviantart"
-msgstr "URLオプション:"
+msgstr "識別情報URL:"
 
 #: themes/paradigm/themeoptions.php:108
 msgid "Provide your <a href=\"http://deviantart.com/\">Deviantart</a> page"
@@ -2940,7 +2932,7 @@ msgstr ""
 #: themes/paradigm/themeoptions.php:109
 #, fuzzy
 msgid "URL to Tumblr"
-msgstr "URLオプション:"
+msgstr "識別情報URL:"
 
 #: themes/paradigm/themeoptions.php:109
 msgid "Provide your <a href=\"http://tumblr.com/\">Tumblr</a> page URL"
@@ -3653,7 +3645,7 @@ msgstr "コメントを購読"
 #: themes/zpfocus/inc-footer.php:44 themes/zpminimal/inc-footer.php:11
 #, fuzzy
 msgid "This Album"
-msgstr "アルバム閲覧:"
+msgstr "アルバム"
 
 #: themes/zpfocus/inc-footer.php:47 themes/zpminimal/inc-footer.php:13
 #, fuzzy
@@ -4017,7 +4009,7 @@ msgstr "フッターで ZenPhoto20 リンクによって搭載が表示を確認
 #: themes/zpskeleton/themeoptions.php:79
 #, fuzzy
 msgid "Custom CSS"
-msgstr "カスタム"
+msgstr "カスタム:"
 
 #: themes/zpfocus/themeoptions.php:86 themes/zpmasonry/themeoptions.php:149
 #: themes/zpskeleton/themeoptions.php:79
@@ -4513,7 +4505,7 @@ msgstr ""
 #: themes/zpmasonry/themeoptions.php:105 themes/zpminimal/themeoptions.php:38
 #, fuzzy
 msgid "Disable MetaData Display?"
-msgstr "メタデータ:"
+msgstr "メタデータ"
 
 #: themes/zpmasonry/themeoptions.php:107 themes/zpminimal/themeoptions.php:38
 #, fuzzy
@@ -5011,7 +5003,7 @@ msgstr ""
 #: themes/zpskeleton/themeoptions.php:66
 #, fuzzy
 msgid "Download Button"
-msgstr "追加ボタン"
+msgstr "ダウンロード"
 
 #: themes/zpskeleton/themeoptions.php:68
 #, fuzzy
@@ -6741,7 +6733,7 @@ msgstr "閲覧するログがありません。"
 #, fuzzy, php-format
 #| msgid "options"
 msgid "%1$s options"
-msgstr " <em>%s</em>のオプション"
+msgstr "%sオプションを変更"
 
 #: zp-core/admin-options.php:109
 #, fuzzy
@@ -13252,7 +13244,7 @@ msgstr ""
 #, fuzzy, php-format
 #| msgid "run setup"
 msgid "to run setup [%s]"
-msgstr "セットアップを実行するにはログインが必要です。"
+msgstr "セットアップの実行"
 
 #: zp-core/reconfigure.php:307
 #, fuzzy
@@ -15088,7 +15080,7 @@ msgstr "mod_rewrite"
 #: zp-core/setup/setup_set-mod_rewrite.php:26
 #, fuzzy
 msgid "The option “mod_rewrite” is “disabled”."
-msgstr "mod_rewriteの拡張子:"
+msgstr "mod_rewriteのチェック:"
 
 #: zp-core/setup/setup_set-mod_rewrite.php:29
 #, fuzzy
@@ -15817,7 +15809,7 @@ msgstr ""
 #, fuzzy
 #| msgid "clear password"
 msgid "LDAP reader password"
-msgstr "パスワード必須"
+msgstr "アルバムパスワード:"
 
 #: zp-core/zp-extensions/LDAP_auth.php:63
 #, fuzzy
@@ -15827,7 +15819,7 @@ msgstr "ダウンロード一覧ユーザのパスワードを設定してくだ
 #: zp-core/zp-extensions/LDAP_auth.php:66
 #, fuzzy
 msgid "LDAP Group map"
-msgstr "グループ無し"
+msgstr "地図"
 
 #: zp-core/zp-extensions/LDAP_auth.php:68
 msgid "Mapping of LDAP groups to ZenPhoto20 groups"
@@ -15967,8 +15959,8 @@ msgstr ""
 #, fuzzy
 msgid "Memory"
 msgstr ""
-"多くのワーカーはメモリ不足やあなたのサーバに殺到しないように動作を早くしま"
-"す。"
+"PHP メモリ制限: <strong>%1$s</strong> (注: サーバはより少なく割り当てるかもし"
+"れません！)"
 
 #: zp-core/zp-extensions/accessThreshold.php:49
 msgid "The number unique access attempts to keep."
@@ -16085,7 +16077,7 @@ msgstr "アクセスなし"
 #, fuzzy
 #| msgid "Sort gallery by:"
 msgid "Sort by:"
-msgstr "ソートするアルバムがありません。"
+msgstr "*ギャラリーアルバムの並び順"
 
 #: zp-core/zp-extensions/accessThreshold/admin_tab.php:149
 #, fuzzy
@@ -16178,8 +16170,8 @@ msgid ""
 "Only one Carousel plugin may be enabled. <a href=\"#%1$s\"><code>%1$s</"
 "code></a> is already enabled."
 msgstr ""
-"メールを取り扱うプラグインは1つのみ有効にできます。<a href=\"#%1$s\"><code>"
-"%1$s</code></a>がすでに有効化されています。"
+"1つのSEOフィルタプラグインのみ有効にできるかもしれません。<a href=\"#%1$s"
+"\"><code>%1$s</code></a>はすでに有効化されています。"
 
 #: zp-core/zp-extensions/bxslider_thumb_nav.php:63
 msgid "Minimum items"
@@ -18197,7 +18189,7 @@ msgstr "ブラウザのIPアドレスへクッキーを結びつけます。"
 #: zp-core/zp-extensions/debug/admin_tab.php:221
 #, fuzzy
 msgid "Sub-Language"
-msgstr "サブロケーション"
+msgstr "言語:"
 
 #: zp-core/zp-extensions/debug/admin_tab.php:222
 #, fuzzy
@@ -18258,12 +18250,12 @@ msgstr "発泡(Effervescence) %1$s %2$s"
 #: zp-core/zp-extensions/deprecated-functions.php:157
 #, fuzzy, php-format
 msgid "user plugin %1$s:%2$s"
-msgstr "%1$s: %2$s"
+msgstr "プラグイン:%s 有効 (%2$s)"
 
 #: zp-core/zp-extensions/deprecated-functions.php:160
 #, fuzzy, php-format
 msgid "standard plugin %1$s:%2$s"
-msgstr "%1$s: %2$s"
+msgstr "プラグイン:%s 有効 (%2$s)"
 
 #: zp-core/zp-extensions/deprecated-functions.php:163
 #, fuzzy, php-format
@@ -19936,7 +19928,7 @@ msgstr ""
 #: zp-core/zp-extensions/html_meta_tags.php:116
 #, fuzzy
 msgid "Twitter name"
-msgstr "名前%s"
+msgstr "次のフォルダ名で:"
 
 #: zp-core/zp-extensions/html_meta_tags.php:117
 #, fuzzy
@@ -21923,7 +21915,7 @@ msgstr "テンプレートはハイライトされます。"
 #, fuzzy
 #| msgid "Change %s options"
 msgid "Orphaned options"
-msgstr "URLオプション:"
+msgstr "検索オプション"
 
 #: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:223
 #, fuzzy
@@ -23690,8 +23682,8 @@ msgid ""
 "Only one slideshow plugin may be enabled. <a href=\"#%1$s\"><code>%1$s</"
 "code></a> is already enabled."
 msgstr ""
-"1つのSEOフィルタプラグインのみ有効にできるかもしれません。<a href=\"#%1$s"
-"\"><code>%1$s</code></a>はすでに有効化されています。"
+"メールを取り扱うプラグインは1つのみ有効にできます。<a href=\"#%1$s\"><code>"
+"%1$s</code></a>がすでに有効化されています。"
 
 #: zp-core/zp-extensions/slideshow.php:99
 #: zp-core/zp-extensions/slideshow2.php:99
@@ -24509,7 +24501,7 @@ msgstr "アルバムへのリンク"
 #: zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:75
 #, fuzzy, php-format
 msgid "<em>news article</em>: %s"
-msgstr "記事<em>%s</em>を追加しました"
+msgstr "記事<em>%s</em>は見つかりませんでした"
 
 #: zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:76
 #, fuzzy
@@ -24524,7 +24516,7 @@ msgstr "<em>%s</em>スクリプトページのリンクです。"
 #: zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:81
 #, fuzzy
 msgid "title with link to page"
-msgstr "ギャラリーインデックスページのリンク:"
+msgstr "お気に入りページへのリンクのテキストです。"
 
 #: zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:85
 #, fuzzy, php-format
@@ -24596,7 +24588,7 @@ msgstr "画像見出し"
 #: zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:304
 #, fuzzy
 msgid "title only"
-msgstr "タイトル:"
+msgstr "タイトル"
 
 #: zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:316
 #, fuzzy
@@ -25922,7 +25914,7 @@ msgstr "ヒットカウンターリセット"
 #, fuzzy
 #| msgid "Delete category"
 msgid "delete category"
-msgstr "カテゴリを削除"
+msgstr "カテゴリの削除"
 
 #: zp-core/zp-extensions/zenpage/admin-edit.php:56
 #, php-format
@@ -26753,2130 +26745,3 @@ msgid ""
 msgstr ""
 "フォントがスケーラブル(<em>TTF</em>及び<em>Imagick</em>のフォント)な場合の使"
 "用したいサイズです。"
-
-#, fuzzy
-#~ msgid "Subject<strong>%s</strong>:"
-#~ msgstr "件名<strong>%s</strong>:"
-
-#, fuzzy
-#~ msgid "Message<strong>%s</strong>:"
-#~ msgstr "メッセージ<strong>%s</strong>:"
-
-#~ msgid "No album provided to sort."
-#~ msgstr "ソートするアルバムがありません。"
-
-#~ msgid "Current sort: <em>%1$s%2$s</em>. "
-#~ msgstr "現在のソート: <em>%1$s%2$s</em>"
-
-#~ msgid ""
-#~ "Select an album to edit its description and data, or <a href=\"?"
-#~ "page=edit&amp;album=%s&amp;massedit\">mass-edit</a> all first level "
-#~ "subalbums."
-#~ msgstr ""
-#~ "説明およびデータを編集するアルバムまたは、全ての初期レベルのサブアルバムの"
-#~ "<a href=\"?page=edit&amp;album=%s&amp;massedit\">一括編集</a>を選択しま"
-#~ "す。"
-
-#~ msgid "Title:"
-#~ msgstr "タイトル:"
-
-#~ msgid "Description:"
-#~ msgstr "説明:"
-
-#~ msgid "Metadata:"
-#~ msgstr "メタデータ:"
-
-#~ msgid "Edit Gallery"
-#~ msgstr "ギャラリーの編集"
-
-#~ msgid "Current sort: <em>%1$s%2$s</em>."
-#~ msgstr "現在のソート: <em>%1$s%2$s</em>"
-
-#~ msgid ""
-#~ "Select an album to edit its description and data, or <a href=\"?"
-#~ "page=edit&amp;massedit\">mass-edit</a> all gallery level albums."
-#~ msgstr ""
-#~ "説明およびデータを編集するアルバムまたは、全てのギャラリーレベルのアルバム"
-#~ "の<a href=\"?page=edit&amp;massedit\">一括編集</a>を選択します。"
-
-#~ msgid "You have unsaved changes!"
-#~ msgstr "変更が保存されていません！"
-
-#, fuzzy
-#~ msgid "Are you sure you want to leave this page?"
-#~ msgstr "本当にこのサイトを去ってもよろしいですか？"
-
-#, fuzzy
-#~ msgid "Leave"
-#~ msgstr "離れる"
-
-#, fuzzy
-#~ msgid "Stay"
-#~ msgstr "留まる"
-
-#~ msgid "Has Password"
-#~ msgstr "パスワード有り"
-
-#~ msgid "Password protected"
-#~ msgstr "パスワードで保護されています"
-
-#~ msgid "View logs:"
-#~ msgstr "ログの閲覧:"
-
-#~ msgid "UTF8 image URIs"
-#~ msgstr "UTF8画像URI"
-
-#, fuzzy
-#~ msgid ""
-#~ "Highlighted languages are not current with ZenPhoto20 v%1$s. (The version "
-#~ "of the out-of-date language is shown in braces.)"
-#~ msgstr ""
-#~ "強調表示されている言語は現在 ZenPhoto20 v %1$s (中かっこで古い言語のバー"
-#~ "ジョンを示します) とは"
-
-#~ msgid "Charset:"
-#~ msgstr "文字コード:"
-
-#~ msgid ""
-#~ "The character encoding to use internally. Leave at <em>Unicode (UTF-8)</"
-#~ "em> if you are unsure."
-#~ msgstr ""
-#~ "文字エンコーディングは内部的に使用します。不確かな場合、<em>Unicode "
-#~ "(UTF-8)</em>を削除してください。"
-
-#~ msgid ""
-#~ "Character sets <span style=\"color:gray\">shown in gray</span> have no "
-#~ "character translation support."
-#~ msgstr ""
-#~ "文字セットが灰色で表示されている物については翻訳をサポートしません。"
-
-#~ msgid "Cookies:"
-#~ msgstr "クッキー:"
-
-#~ msgid "Path"
-#~ msgstr "パス"
-
-#~ msgid "Gallery title:"
-#~ msgstr "ギャラリータイトル:"
-
-#~ msgid "Website title:"
-#~ msgstr "ウェブサイトのタイトル:"
-
-#, fuzzy
-#~ msgid ""
-#~ "<a onclick=\"toggle('albumpub');\" >Details</a> for <em>publish albums by "
-#~ "default</em>"
-#~ msgstr ""
-#~ "<em>デフォルトでアルバムを公開</em>の<a onclick=\"toggle('albumpub');\">詳"
-#~ "細</a>"
-
-#, fuzzy
-#~ msgid ""
-#~ "<a onclick=\"toggle('imagepub');\" >Details</a> for <em>publish images by "
-#~ "default</em>"
-#~ msgstr ""
-#~ "<em>デフォルトでは画像を公開</em>の<a onclick=\"toggle('imagepub');\">詳細"
-#~ "</a>"
-
-#, fuzzy
-#~ msgid ""
-#~ "<a onclick=\"toggle('albumdate');\" >Details</a> for <em>use latest image "
-#~ "date as album date</em>"
-#~ msgstr ""
-#~ "<em>アルバムの日付として最新のイメージの日付を使用して</em>の<a onclick="
-#~ "\"toggle('albumdate');\">詳細</a>"
-
-#, fuzzy
-#~ msgid ""
-#~ "<a onclick=\"toggle('visualthumb');\" >Details</a> for <em>visual thumb "
-#~ "selection</em>"
-#~ msgstr ""
-#~ "<em>ビジュアル親指選択</em>の<a onclick=\"toggle('visualthumb');\">詳細</"
-#~ "a>"
-
-#, fuzzy
-#~ msgid ""
-#~ "<a onclick=\"toggle('multithumb');\" >Details</a> for <em>subalbum thumb "
-#~ "selection</em>"
-#~ msgstr ""
-#~ "<em>Subalbum 親指選択</em>の<a onclick=\"toggle('multithumb');\">詳細</a>"
-
-#~ msgid "Codeblocks:"
-#~ msgstr "コードブロック:"
-
-#~ msgid "user:"
-#~ msgstr "ユーザ:"
-
-#~ msgid "<strong>Standard options</strong>"
-#~ msgstr "<strong>基本オプション</strong>"
-
-#~ msgid "Image size:"
-#~ msgstr "画像サイズ:"
-
-#~ msgid "Gallery index page link:"
-#~ msgstr "ギャラリーインデックスページのリンク:"
-
-#~ msgid ""
-#~ "If this option is not empty, the Gallery Index URL that would normally "
-#~ "link to the theme <code>index.php</code> script will instead link to this "
-#~ "script. This frees up the <code>index.php</code> script so that you can "
-#~ "create a customized <em>Home page</em> script. This option applies only "
-#~ "to the main theme for the <em>Gallery</em>."
-#~ msgstr ""
-#~ "コのオプションが空でない場合、通常、テーマ<code>index.php</code>スクリプト"
-#~ "にリンクされるギャラリーのインデックスURLは代わりにこのスクリプトにリンク"
-#~ "されます。これはカスタマイズされた<em>ホームページ</em>スクリプトを作成で"
-#~ "きるように<code>index.php</code>を開放します。コのオプションは<em>ギャラ"
-#~ "リー</em>の主なテーマだけに適用されます。"
-
-#~ msgid "<strong>Custom theme options</strong>"
-#~ msgstr "<strong>カスタムテーマオプション</strong>"
-
-#~ msgid ""
-#~ "Password reset request.<br />You may now set admin usernames and "
-#~ "passwords."
-#~ msgstr ""
-#~ "パスワードリセットリクエストです。<br />管理者ユーザ名とパスワードを今すぐ"
-#~ "設定できます。"
-
-#~ msgid "<strong>%1$u</strong> Page"
-#~ msgid_plural "<strong>%1$u</strong> Pages"
-#~ msgstr[0] "<strong>%u</strong>件のページ"
-
-#~ msgid "<strong>%1$u</strong> News"
-#~ msgid_plural "<strong>%1$u</strong> News"
-#~ msgstr[0] "<strong>%1$u</strong>件のニュース"
-
-#~ msgid "<strong>%1$u</strong> News (%2$u un-published)"
-#~ msgid_plural "<strong>%1$u</strong> News (%2$u un-published)"
-#~ msgstr[0] "<strong>%1$u</strong>件のニュース (内%2$u件は非表示)"
-
-#~ msgid "<strong>%1$u</strong> Category"
-#~ msgid_plural "<strong>%1$u</strong> Categories"
-#~ msgstr[0] "<strong>%u</strong>個のカテゴリ"
-
-#~ msgid "Location/Place"
-#~ msgstr "位置/場所"
-
-#~ msgid "Cache: [<code>%s</code>]"
-#~ msgstr "キャッシュ: [<code>%s</code>]"
-
-#~ msgid "Image: [<code>%s</code>]"
-#~ msgstr "画像: [<code>%s</code>]"
-
-#~ msgid "an unknown release"
-#~ msgstr "不明なリリース"
-
-#, fuzzy
-#~ msgid "restored"
-#~ msgstr "回復します"
-
-#, fuzzy
-#~ msgid "restored to run setup"
-#~ msgstr "セットアップを実行する復元"
-
-#~ msgid "PHP <code>Sessions</code> [problems with <em>save_save_path</em>]."
-#~ msgstr ""
-#~ "PHP <code>セッション</code> 【<em>save_save_path</em>に問題が有ります。】"
-
-#, fuzzy
-#~ msgid ""
-#~ "The configured PHP session path could not be used. ZenPhoto20 has set the "
-#~ "path to the %s folder."
-#~ msgstr ""
-#~ "構成されている PHP セッションのパスは使用できませんでした。ZenPhoto20 "
-#~ "は、%s フォルダーにパスを設定います。"
-
-#, fuzzy
-#~ msgid "PHP Sessions are required for administrative functions."
-#~ msgstr "PHP のセッション管理機能に必要です。"
-
-#~ msgid "You should enable the URL option <em>UTF8 image URIs</em>."
-#~ msgstr "URLオプション<em>UTF8画像URI</em>を有効にすべきです。"
-
-#~ msgid "<a href=\"javascript:uri(true)\">Please do</a>"
-#~ msgstr "<a href=\"javascript:uri(true)\">実行してください</a>"
-
-#~ msgid "You should disable the URL option <em>UTF8 image URIs</em>."
-#~ msgstr "URLオプション<em>UTF8画像URI</em>を無効にすべきです。"
-
-#~ msgid "<a href=\"javascript:uri(false)\">Please do</a>"
-#~ msgstr "<a href=\"javascript:uri(false)\">実行してください</a>"
-
-#~ msgid "About to create tables"
-#~ msgstr "テーブルの作成について"
-
-#~ msgid "Begin table creation"
-#~ msgstr "テーブルの作成を開始します"
-
-#~ msgid "Table creation failure:<br />Query: %1$s<br />Error: %2$s"
-#~ msgstr "テーブル作成失敗: <br />クエリ: %1$s<br />エラー: %2$s"
-
-#~ msgid "Query ( %s ) Success."
-#~ msgstr "クエリ ( %s ) は成功しました。"
-
-#~ msgid "Begin table updates"
-#~ msgstr "テーブルの更新を開始します"
-
-#~ msgid "Done with table create!"
-#~ msgstr "テーブルの作成が完了しました！"
-
-#~ msgid "Done with table create with errors!"
-#~ msgstr "エラー有りでテーブルの作成が完了しました！"
-
-#~ msgid "Done with table update with errors"
-#~ msgstr "エラー有りでテーブルの更新が完了しました"
-
-#~ msgid "Previous Release was %s"
-#~ msgstr "前のリリースは%sです"
-
-#~ msgid "Database tables to update: %s"
-#~ msgstr "更新するデータベーステーブル: %s"
-
-#~ msgid "Admin Toolbox"
-#~ msgstr "管理用ツールボックス"
-
-#~ msgid "Backup/Restore"
-#~ msgstr "バックアップ/リストア"
-
-#~ msgid "Backup and restore your gallery database."
-#~ msgstr "Galleryデータベースをバックアップ・リストアします。"
-
-#~ msgid "Info"
-#~ msgstr "情報"
-
-#, fuzzy
-#~ msgid ""
-#~ "Shows statistical graphs and info about your gallery’s images and albums."
-#~ msgstr "統計グラフと、ギャラリーの画像やアルバムについての情報を示します。"
-
-#~ msgid "Statistics"
-#~ msgstr "統計"
-
-#~ msgid "Back to the top 10 lists"
-#~ msgstr "トップ10一覧へ戻る"
-
-#~ msgid "top"
-#~ msgstr "トップ"
-
-#~ msgid "Refresh the Database"
-#~ msgstr "データベースをリフレッシュします"
-
-#~ msgid "Perform a garbage collection of the Database"
-#~ msgstr "データベースのガベージコレクションを実行"
-
-#~ msgid "Forces a refresh of the metadata for all images and albums."
-#~ msgstr "全ての画像及びあるガムのメタデータの更新を強制します。"
-
-#, fuzzy
-#~ msgid ""
-#~ "The scripts for which BxSlider is enabled. {If themes require it they "
-#~ "might set this, otherwise you need to do it manually!}"
-#~ msgstr ""
-#~ "BxSlider が有効になっているスクリプトです。{テーマは、彼らがこれを設定可能"
-#~ "性がありますそれを必要とする場合それ以外の場合する必要があります手動でそれ"
-#~ "を行う!}"
-
-#, fuzzy
-#~ msgid "Cache manager"
-#~ msgstr "キャッシュ マネージャー"
-
-#~ msgid "Create a new installation using links to the current install files."
-#~ msgstr ""
-#~ "現在のインストールファイルへのリンクを使用することで新しいインストールを作"
-#~ "成します。"
-
-#~ msgid "Clone"
-#~ msgstr "複製"
-
-#, fuzzy
-#~ msgid "Debuging options"
-#~ msgstr "デバッグ オプション"
-
-#, fuzzy
-#~ msgid "Select the debug options to enable."
-#~ msgstr "有効にするデバッグ オプションを選択します。"
-
-#~ msgid "Functions"
-#~ msgstr "関数"
-
-#, fuzzy
-#~ msgid ""
-#~ "Send the <em>deprecated</em> notification message if the function name is "
-#~ "checked. Un-checking these boxes will allow you to continue using your "
-#~ "theme without warnings while you upgrade its implementation. Functions "
-#~ "flagged with an asterisk are class methods. Ones flagged with two "
-#~ "asterisks have deprecated parameters."
-#~ msgstr ""
-#~ "関数名がオンの場合は、<em>廃止</em>の通知メッセージを送信します。チェック "
-#~ "ボックスをオフこれらのボックスは、その実装をアップグレードしている間、警告"
-#~ "なしにあなたのテーマを使用し続けるようになります。アスタリスクが付け関数"
-#~ "は、クラスのメソッドです。2 つのアスタリスクのフラグが付いたものはパラメー"
-#~ "ターが廃止します。"
-
-#~ msgid "Searches PHP scripts for use of deprecated functions."
-#~ msgstr "非推奨関数の使用についてPHPスクリプトを検索します。"
-
-#~ msgid "Check for update"
-#~ msgstr "更新をチェック"
-
-#~ msgid "Deprecated"
-#~ msgstr "非推奨"
-
-#~ msgid "Counts of downloads"
-#~ msgstr "ダウンロード数"
-
-#, fuzzy
-#~ msgid ""
-#~ "* This option may be set via the <a onclick=\"gotoName('dynamic-locale');"
-#~ "\"><em>dynamic-locale</em></a> plugin options."
-#~ msgstr ""
-#~ "* このオプションは、<a onclick=\"gotoName('dynamic-locale');\"><em>動的な"
-#~ "ロケール</em></a>のプラグインのオプションを介して設定可能性があります。"
-
-#~ msgid "Map dimensions—width"
-#~ msgstr "地図の大きさ-幅"
-
-#~ msgid "The default width of the map."
-#~ msgstr "地図のデフォルトの幅です。"
-
-#~ msgid "Map dimensions—height"
-#~ msgstr "地図の大きさ-高さ"
-
-#~ msgid "The default height of the map."
-#~ msgstr "地図のデフォルトの高さです。"
-
-#, fuzzy
-#~ msgid "Keyword threshold"
-#~ msgstr "キーワードしきい値"
-
-#, fuzzy
-#~ msgid "Only keywords with at least this number of uses will be shown."
-#~ msgstr "でのキーワードのみを使用してのこの最小の数が表示されます。"
-
-#, fuzzy
-#~ msgid ""
-#~ "* This option may be set via the <a onclick=\"gotoName('html_meta_tags');"
-#~ "\"><em>html_meta_tags</em></a> plugin options."
-#~ msgstr ""
-#~ "* このオプションは、 <a onclick=\"gotoName('html_meta_tags');"
-#~ "\"><em>html_meta_tags</em></a>プラグインのオプションを介して設定することが"
-#~ "あります。"
-
-#~ msgid "Manage published state of content in your gallery."
-#~ msgstr "あなたのギャラリーにコンテンツの公開状態を管理します。"
-
-#~ msgid "Search statistics"
-#~ msgstr "統計統計"
-
-#~ msgid "Analyze searches"
-#~ msgstr "検索の分析"
-
-#~ msgid "Analysis"
-#~ msgstr "分析"
-
-#~ msgid "Seo"
-#~ msgstr "SEO"
-
-#~ msgid "SEO Cleaner"
-#~ msgstr "SEOクリーナー"
-
-#~ msgid "Make file and folder names in the Gallery SEO friendly."
-#~ msgstr "Gallery SEOフレンドリーにファイルとフォルダ名を作成します。"
-
-#~ msgid "Allows setting language locale through the URI."
-#~ msgstr "URIを通して言語ロケールの設定を許可します。"
-
-#~ msgid ""
-#~ "<strong>Note:</strong> This plugin is not activated for <em>back&#8209;"
-#~ "end</em> (administrative) URLs. However, once activated, the language is "
-#~ "remembered, even for the <em>back&#8209;end</em>."
-#~ msgstr ""
-#~ "<strong>注:</strong> このプラグインは<em>バック&#8209;エンド</em>(管理"
-#~ "用)URLで有効になっていません。しかしながら、一度有効にすると言語は<em>バッ"
-#~ "ク&#8209;エンド</em>のためにさえ覚えられます。"
-
-#~ msgid "<em>mod_rewrite</em> must be enabled for this plugin to function."
-#~ msgstr ""
-#~ "<em>mod_rewrite</em>はこのプラグインが機能するために有効にしなければなりま"
-#~ "せん。"
-
-#~ msgid ""
-#~ "This plugin is not compatible with the <code>dynamic locale</code> "
-#~ "<em>Use subdomains</em> option"
-#~ msgstr ""
-#~ "このプラグインは<code>dynamic locale</code> <em>サブドメインを使用する</"
-#~ "em>オプションと互換性がありません。"
-
-#, fuzzy
-#~ msgid "externalFeed suspended"
-#~ msgstr "externalFeed 中断"
-
-#~ msgid "The external feed is currently not available."
-#~ msgstr "外部フィードは現在利用可能ではありません。"
-
-#~ msgid ""
-#~ "* This option may be set via the <a href=\"javascript:gotoName('sitemap-"
-#~ "extended');\"><em>sitemap-extended</em></a> plugin options."
-#~ msgstr ""
-#~ "* オプションは<a href=\"javascript:gotoName('sitemap-extended');"
-#~ "\"><em>sitemap-extended</em></a>プラグインオプションを経由して設定されるか"
-#~ "も知れません。"
-
-#~ msgid "Generate or purge sitemap cache files."
-#~ msgstr "サイトマップのキャッシュファイルを生成または削除します。"
-
-#, fuzzy
-#~ msgid ""
-#~ "The scripts for which the cycle2 plugin is enabled. {If themes require it "
-#~ "they might set this, otherwise you need to do it manually!}"
-#~ msgstr ""
-#~ "Cycle2 プラグインが有効になっているスクリプトです。{テーマは、彼らがこれを"
-#~ "設定可能性がありますそれを必要とする場合それ以外の場合する必要があります手"
-#~ "動でそれを行う!}"
-
-#~ msgid "Selector CSS"
-#~ msgstr "セレクターCSS"
-
-#~ msgid ""
-#~ "Change this box if you wish to style the theme switcher selector for your "
-#~ "themes."
-#~ msgstr ""
-#~ "あなたのテーマにテーマスイッチャーのセレクタースタイルを表示したい場合この"
-#~ "ボックスにチェックします。"
-
-#~ msgid "It is not possible to a include a custom size %s."
-#~ msgstr "カスタムサイズ%sを含めることは出来ません。"
-
-#~ msgid "It is not possible to a include a full size %s."
-#~ msgstr "完全なサイズ%sを含めることは出来ません。"
-
-#~ msgid "Album:"
-#~ msgstr "アルバム"
-
-#~ msgid "Album folder:"
-#~ msgstr "アルバムフォルダ:"
-
-#~ msgid "(Click on image to include)"
-#~ msgstr "(含めるには画像上でクリック)"
-
-#~ msgid "<em>Albumthumb</em>"
-#~ msgstr "<em>アルバムサムネイル</em>"
-
-#~ msgid "<strong>Note:</strong> This album does not contain any images."
-#~ msgstr "<strong>注:</strong> このアルバムは画像を含んでいません。"
-
-#~ msgid "(Click on article title to include a link)"
-#~ msgstr "(リンクを含めるには記事タイトル上でクリック)"
-
-#~ msgid "*Select*"
-#~ msgstr "*選択*"
-
-#~ msgid "(only direct links!)"
-#~ msgstr "(直接リンクのみ！)"
-
-#~ msgid "*Select an album*"
-#~ msgstr "*アルバムを選択*"
-
-#~ msgid "(select variant below)"
-#~ msgstr "(以下の異なるものを選択)"
-
-#~ msgid "What to include"
-#~ msgstr "含めるもの"
-
-#~ msgid "Custom text"
-#~ msgstr "カスタムテキスト"
-
-#~ msgid "Custom thumbnail"
-#~ msgstr "カスタムサムネイル"
-
-#~ msgid "Sized image/multimedia item"
-#~ msgstr "大きい画像/マルチメディアアイテム"
-
-#~ msgid "Custom size (un-cropped)"
-#~ msgstr "カスタムサイズ(トリミングしない)"
-
-#~ msgid "Full image"
-#~ msgstr "フル画像"
-
-#~ msgid "Title and description"
-#~ msgstr "タイトルと説明"
-
-#~ msgid "No description"
-#~ msgstr "説明なし"
-
-#~ msgid "Show image description"
-#~ msgstr "画像説明を表示"
-
-#~ msgid "Show album description"
-#~ msgstr "アルバム説明を表示"
-
-#~ msgid "Link type"
-#~ msgstr "リンクタイプ"
-
-#~ msgid "Link to image"
-#~ msgstr "画像へのリンク"
-
-#~ msgid "Link to full image"
-#~ msgstr "完全な画像へのリンク"
-
-#~ msgid "Link to album"
-#~ msgstr "アルバムへのリンク"
-
-#~ msgid "No link"
-#~ msgstr "リンク無し"
-
-#~ msgid "Text wrap"
-#~ msgstr "テキストの回り込み"
-
-#~ msgid "No wrap"
-#~ msgstr "回り込み無し"
-
-#, fuzzy
-#~ msgid ""
-#~ "<em>tiny</em>Zenpage ia deprecated. It is replaced by tinyMCE:obj. Please "
-#~ "see the <a href=\"%s\" target=\"_blank\"><em>tinyMCE:obj plugin</em> "
-#~ "release notes</a>"
-#~ msgstr ""
-#~ "<em>小さな</em>Zenpage ia 非推奨します。それは tinyMCE:obj に置き換えられ"
-#~ "ます。<a href=\"%s\" target=\"_blank\"> <em>TinyMCE:obj プラグイン</em>リ"
-#~ "リース ノートを参照してください。</a>"
-
-#~ msgid ""
-#~ "This provides access to your images and albums (select from the "
-#~ "<em>Zenphoto</em> dropdown) as well as pages, news articles and news "
-#~ "categories (select from the <em>Zenpage</em> dropdown) to easily include "
-#~ "them in your pages and articles."
-#~ msgstr ""
-#~ "これはページと記事の中にこれらを簡単に含めるためにページ、ニュース記事、及"
-#~ "びニュースカテゴリ(<em>Zenpage</em>ドロップダウンからの選択)としてよく知ら"
-#~ "れる画像とアルバム(<em>Zenphoto</em>ドロップダウンからの選択)へのアクセス"
-#~ "を提供します。これらから画像を特定のアルバムへ含ませるためには少なくとも"
-#~ "「全アルバムの管理」又は「編集」権限が必要です。"
-
-#, fuzzy
-#~ msgid ""
-#~ "Select <em>pages</em>, <em>articles</em> or <em>categories</em> to show a "
-#~ "list of these items. Click on a title to include a link. Hover of the "
-#~ "link to see an excerpt of the page or article. Un-published pages or "
-#~ "articles are marked with an “*” and protected with an “+”. There are no "
-#~ "further options."
-#~ msgstr ""
-#~ "<em>ページ</em>、<em>記事</em>またはこれらの項目のリストを表示する<em>カテ"
-#~ "ゴリ</em>を選択します。リンクを含めるようにタイトルをクリックします。ペー"
-#~ "ジまたは記事の抜粋が表示へのリンクを置きます。公開されていないページや記事"
-#~ "が付いて、\"*\"で保護し、「+」。さらにオプションはありません。"
-
-#, fuzzy
-#~ msgid ""
-#~ "Select an album to include images from into your page or article. Click "
-#~ "on the image to include it. Un-published albums or images are marked with "
-#~ "an “*”. You can also click on the magnify glass icon to see a preview of "
-#~ "the item. The preview opens in a colorbox showing the frontend/theme "
-#~ "view. The first thumbnail is always the thumbnail of the selected album. "
-#~ "It is titled <em>Albumthumb</em> and appears on every thumbnail page."
-#~ msgstr ""
-#~ "あなたのページや記事にからの画像を含めるようにアルバムを選択します。それを"
-#~ "挿入する画像をクリックします。非公開アルバムや画像が付いて、\"*\"。また、"
-#~ "項目のプレビューを表示する拡大ガラス アイコンをクリックすることができま"
-#~ "す。カラー ボックス ライトボックスプラグイン フロント エンド/テーマ ビュー"
-#~ "を表示でプレビューが開きます。最初のサムネイルは、常に選択したアルバムのサ"
-#~ "ムネイルです。それは<em>Albumthumb</em>のタイトルは、すべてのサムネイル "
-#~ "ページに表示されます。"
-
-#~ msgid "Options on what to include"
-#~ msgstr "何を含めるかのオプション"
-
-#~ msgid ""
-#~ "Include the image itself, only its title, the title of its album, or some "
-#~ "custom text."
-#~ msgstr ""
-#~ "画像自身、それのタイトルのみ、それのアルバムのタイトル又は幾つかのカスタム"
-#~ "テキストを含めます。"
-
-#~ msgid ""
-#~ "NOTE: These selections are not sticky. If you change albums or change "
-#~ "pages in an album you will have to select them again."
-#~ msgstr ""
-#~ "注: これらの選択は固定されません。アルバムの変更またはアルバムの中のページ"
-#~ "の変更をする場合、もう一度これらを選択する必要があります。"
-
-#~ msgid ""
-#~ "The window does not close automatically so you can include several images "
-#~ "one after another."
-#~ msgstr ""
-#~ "画像を続けて含めることが出来るため、ウィンドウは自動的に閉じません。"
-
-#, fuzzy
-#~ msgid "Thumbnail: Size as set in theme’s options"
-#~ msgstr "テーマのオプションで設定されたサムネイル: サイズ"
-
-#~ msgid ""
-#~ "Custom thumbnail: size for the longest side / (cropwidth x cropheight). "
-#~ "You can set default sizes for this on the TinyMCE plugin options."
-#~ msgstr ""
-#~ "カスタムサムネイル: 一番長いサイド/トリミング幅xトリミングの高さのサイズで"
-#~ "す。TinyMCEプラグインのオプションでこれのデフォルトサイズを設定できます。"
-
-#, fuzzy
-#~ msgid ""
-#~ "Sized image/multimedia item: The sized image as set in gallery default "
-#~ "theme’s options."
-#~ msgstr ""
-#~ "サイズ画像/マルチ メディア項目: ギャラリーのデフォルトのテーマのオプション"
-#~ "で設定されたサイズの画像。"
-
-#~ msgid ""
-#~ "<strong>Multimedia item</strong>: This embeds the content macro "
-#~ "MEDIAPLAYER into the text. This generates a video or audio player on the "
-#~ "front end if any suitable multimedia player plugin for the file type is "
-#~ "enabled and also has registered to the macro."
-#~ msgstr ""
-#~ "<strong>マルチメディアアイテム</strong>: これは、テキストにコンテンツマク"
-#~ "ロMEDIAPLAYERを埋め込みます。これは、ファイルタイプに適した任意のマルチメ"
-#~ "ディアプレーヤープラグインが有効である場合、フロントエンドでビデオやオー"
-#~ "ディオプレーヤーを生成し、また、マクロに登録されます。"
-
-#~ msgid "Custom size (un-cropped)."
-#~ msgstr "カスタムサイズ(トリミングしない)"
-
-#~ msgid ""
-#~ "Full image: The original image directly. NOTE: Full image protection "
-#~ "options do not apply!."
-#~ msgstr ""
-#~ "フル画像: 元の画像を直接。注: フル画像保護のオプションは適用されません！"
-
-#~ msgid ""
-#~ "If you additionally check <em>Show title</em> or <em>Show description</"
-#~ "em> the title/description of the image or album (if you checked <em>link "
-#~ "to album</em>) will be printed below the image. Only if <em>Image</em> is "
-#~ "chosen as type."
-#~ msgstr ""
-#~ "<em>タイトルを表示</em>または<em>説明を表示</em>を追加でチェックした場合、"
-#~ "画像またはアルバム(<em>アルバムへリンク</em>にチェックされてるなら)のタイ"
-#~ "トル/説明は画像の下に表示されます。<em>画像</em>がタイプとして選択された場"
-#~ "合のみです。"
-
-#~ msgid ""
-#~ "Select to link to the image page of the image, to the album the image is "
-#~ "in, no link at all or a custom URL."
-#~ msgstr ""
-#~ "すべてかカスタムURLでリンクをしない、イメージがあるアルバムへ、画像の画像"
-#~ "ページにリンクするには選択します。"
-
-#~ msgid ""
-#~ "Wrap the text right or left of the image or not at all. Note that "
-#~ "tinyZenpage adds a bit of CSS to the included image if you use text wrap. "
-#~ "So that you see immediate results to the text wrap it attaches some "
-#~ "inline CSS:"
-#~ msgstr ""
-#~ "画像の右または左にテキストを回りこむか全てでしません。tineZenpageはテキス"
-#~ "トの回りこみを使用する場合、画像に含まれるCSSの少しを追加します。なので同"
-#~ "じインラインCSSを添付するテキストの回りこみの結果をすぐに見れます。"
-
-#~ msgid "left wrap: <em>style=\"float:right\"</em>"
-#~ msgstr "左の回り込み: <em>style=\"float:right\"</em>"
-
-#~ msgid "right wrap: <em>style=\"float: left\"</em>"
-#~ msgstr "右の回り込み: <em>style=\"float: left\"</em>"
-
-#, fuzzy
-#~ msgid ""
-#~ "Also tinyZenpage attaches a default CSS class to the image (if image is "
-#~ "chosen) to be styled with your theme’s css. If you choose left or right "
-#~ "align “_left” or “_right” is appended:"
-#~ msgstr ""
-#~ "TinyZenpage 既定の CSS クラスにアタッチ イメージ (存在する場合は、画像を選"
-#~ "択すると) あなたのテーマの css でスタイルを設定します。左または右を選択し"
-#~ "た場合「_left」を整列または\"_right\"が追加されます。"
-
-#~ msgid ""
-#~ "Default thumbnail: <em>zenpage_thumb</em> /<em>zenpage_thumb_left</em> /"
-#~ "<em>zenpage_thumb_right</em>"
-#~ msgstr ""
-#~ "デフォルトサムネイル: <em>zenpage_thumb</em> /<em>zenpage_thumb_left</"
-#~ "em> /<em>zenpage_thumb_right</em>"
-
-#~ msgid ""
-#~ "Custom thumbnail: <em>zenpage_customthumb</em> or "
-#~ "<em>zenpage_customthumb_left</em>/<em>zenpage_customthumb_right</em>"
-#~ msgstr ""
-#~ "カスタムサムネイル: <em>zenpage_customthumb</em> または"
-#~ "<em>zenpage_customthumb</em>/<em>zenpage_customthumb</em>"
-
-#~ msgid ""
-#~ "Sized image: <em>zenpage_sizedimage</em>/<em>zenpage_sizedimage_left</em>/"
-#~ "<em>zenpage_sizedimage_right</em>"
-#~ msgstr ""
-#~ "大きい画像: <em>zenpage_sizedimage</em>/<em>zenpage_sizedimage_left</em>/"
-#~ "<em>zenpage_sizedimage_right</em>"
-
-#~ msgid ""
-#~ "Custom image: <em>zenpage_customimage</em>/<em>zenpage_customimage_left</"
-#~ "em>/<em>zenpage_customimage_right</em>"
-#~ msgstr ""
-#~ "カスタム画像: <em>zenpage_customimage</em>/<em>zenpage_customimage_left</"
-#~ "em>/<em>zenpage_customimage_right</em>"
-
-#~ msgid ""
-#~ "If you additionally have checked <em>Show title</em> or <em>Show "
-#~ "description</em> for an image or album the div with the class "
-#~ "<em>zenpage_wrapper</em> is wrapped around the image and link. Within "
-#~ "that after the image and the link a div with the class <em>zenpage_title</"
-#~ "em> wrapping the title respectively <em>zenpage_desc</em> wrapping the "
-#~ "description."
-#~ msgstr ""
-#~ "画像またはアルバムの<em>説明を表示</em>または<em>タイトルを表示</em>にさら"
-#~ "にチェックする場合、<em>zenpage_wrapper</em>のクラスのdivは画像とリンクに"
-#~ "巻きつけられます。その中で画像やリンクを<em>zenpage_desc</em>説明を折り返"
-#~ "し、それぞれのタイトルをラップクラス<em>zenpage_title</em>を持つdivの後"
-#~ "に。"
-
-#~ msgid ""
-#~ "Additionally a default CSS class is attached to the link itself depending "
-#~ "on the link option set:"
-#~ msgstr ""
-#~ "追加で、デフォルトのCSSクラスは次のリンクオプション設定に依存する地震のリ"
-#~ "ンクに添付されます。"
-
-#~ msgid "Image link: <em>zenpage_imagelink</em>"
-#~ msgstr "画像リンク: <em>zenpage_imagelink</em>"
-
-#~ msgid ""
-#~ "Full image link: <em>zenpage_fullimagelink</em>. Additionally "
-#~ "<em>rel='colorbox'</em> is attached so you can move through all images on "
-#~ "a page using Colorbox or similar *box scripts."
-#~ msgstr ""
-#~ "フル画像のリンク: <em>zenpage_fullimagelink</em>です。さらに"
-#~ "<em>rel='colorbox'</em>はColorboxまたは同様の*boxスクリプトを使用してペー"
-#~ "ジ上に全ての画像を通して移動することが出来るように添付されます。"
-
-#~ msgid "Album link: <em>zenpage_albumlink</em>"
-#~ msgstr "アルバムリンク: <em>zenpage_albumlink</em>"
-
-#~ msgid "Custom link: <em>zenpage_customlink</em>"
-#~ msgstr "カスタムリンク: <em>zenpage_customlink</em>"
-
-#, fuzzy
-#~ msgid ""
-#~ "If you would like to do some direct styling you can also use TinyMCE’s "
-#~ "image button or source code editor."
-#~ msgstr ""
-#~ "いくつかの直接のスタイリングを行うにしたい場合は、TinyMCE のイメージ ボタ"
-#~ "ンまたはソース コード エディターも使用できます。"
-
-#~ msgid ""
-#~ "There are no other registered users who have provided an e-mail address."
-#~ msgstr "メールアドレスを提供している他の登録ユーザーはいません。"
-
-#~ msgid ""
-#~ "A tool to send e-mails to all registered users who have provided an e-"
-#~ "mail address."
-#~ msgstr ""
-#~ "メールアドレスを記入した全ての登録ユーザへメールを送信するツールです。"
-
-#~ msgid "Mailing"
-#~ msgstr "メーリング"
-
-#~ msgid "To:"
-#~ msgstr "宛先:"
-
-#~ msgid "Send another mail"
-#~ msgstr "別のメール送信"
-
-#~ msgid "An importer for Wordpress posts and pages to Zenpage."
-#~ msgstr "ZenpageへWordpressの投稿とページをインポートします。"
-
-#~ msgid "TitleLink:"
-#~ msgstr "タイトルリンク:"
-
-#~ msgid "Content:"
-#~ msgstr "コンテンツ:"
-
-#~ msgid "(<strong>%1$u</strong> page, <strong>%2$u</strong> un-published)"
-#~ msgid_plural ""
-#~ "(<strong>%1$u</strong> pages, <strong>%2$u</strong> un-published)"
-#~ msgstr[0] "(<strong>%1$u</strong>件のページ、%2$u件が未公開)"
-
-#~ msgid "(<strong>%1$u</strong> news)"
-#~ msgid_plural "(<strong>%1$u</strong> news)"
-#~ msgstr[0] "(<strong>%u</strong>件のニュース)"
-
-#~ msgid "(<strong>%1$u</strong> news, <strong>%2$u</strong> un-published)"
-#~ msgid_plural ""
-#~ "(<strong>%1$u</strong> news, <strong>%2$u</strong> un-published)"
-#~ msgstr[0] ""
-#~ "(<strong>%1$u</strong>件のニュース、<strong>%2$u</strong>件が未公開)"
-
-#~ msgid "Auto, Continuous"
-#~ msgstr "自動、連続"
-
-#~ msgid "Auto, Focus button"
-#~ msgstr "自動、フォーカスボタン"
-
-#~ msgid "Compulsory Flash, Return light detected"
-#~ msgstr "強制フラッシュ、逆光が検出されました"
-
-#~ msgid "Compulsory Flash, Return light not detected"
-#~ msgstr "強制フラッシュ、逆光は検出されませんでした"
-
-#~ msgid "Flash, Auto-Mode"
-#~ msgstr "フラッシュ、自動モード"
-
-#~ msgid "Flash, Auto-Mode, Return light detected"
-#~ msgstr "フラッシュ、自動モード、逆光が検出されました"
-
-#~ msgid "Flash, Auto-Mode, Return light not detected"
-#~ msgstr "フラッシュ、自動モード、逆光は検出されませんでした"
-
-#~ msgid "Flash, strobe return light detected"
-#~ msgstr "フラッシュ、ストロボ逆光が検出されました"
-
-#~ msgid "Flash, strobe return light not detected"
-#~ msgstr "フラッシュ、ストロボ逆光は検出されませんでした"
-
-#~ msgid "Red Eye, Auto-Mode"
-#~ msgstr "赤目、自動モード"
-
-#~ msgid "Red Eye, Auto-Mode, Return light detected"
-#~ msgstr "赤目、自動モード、逆光が検出されました"
-
-#~ msgid "Red Eye, Auto-Mode, Return light not detected"
-#~ msgstr "赤目、自動モード、逆光は検出されませんでした"
-
-#~ msgid "Red Eye, Compulsory Flash"
-#~ msgstr "赤目、強制フラッシュ"
-
-#~ msgid "Red Eye, Compulsory Flash, Return light detected"
-#~ msgstr "赤目、強制フラッシュ、逆光が検出されました"
-
-#~ msgid "Red Eye, Compulsory Flash, Return light not detected"
-#~ msgstr "赤目、強制フラッシュ、逆光は検出されませんでした"
-
-#~ msgid "Red Eye, Return light detected"
-#~ msgstr "赤目、逆光が検出されました"
-
-#~ msgid "Red Eye, Return light not detected"
-#~ msgstr "赤目、逆光は検出されませんでした"
-
-#~ msgid ""
-#~ "Standard Output Sensitivity, Recommended Exposure Index and ISO Speed"
-#~ msgstr "標準出力感度、推奨露出インデックス及びISOスピード"
-
-#~ msgid "XMP Rating"
-#~ msgstr "XMP評価"
-
-#~ msgid "Plugin:%s setup completed"
-#~ msgstr "プラグイン: %sのセットアップが完了しました"
-
-#~ msgid "Theme:%s setup completed"
-#~ msgstr "テーマ:%s のセットアップが完了しました"
-
-#~ msgid ""
-#~ "Before running setup for <code>%1$s</code> please reinstall the following "
-#~ "setup files from the %2$s [%3$s] to this installation:"
-#~ msgstr ""
-#~ "<code>%1$s</code>のセットアップを実行する前にこのインストールに%2$s [%3$s]"
-#~ "から次のセットアップファイルを再インストールしてください:"
-
-#~ msgid ""
-#~ "You will need to run <a href=\"%1$s\">setup</a> to update the database "
-#~ "with the custom fields defined by the <em>%2$s</em> plugin."
-#~ msgstr ""
-#~ "あなたは、<em>%2$s</em>プラグインによって定義されたカスタムフィールドを使"
-#~ "用してデータベースを更新するために、<a href=\"%1$s\">セットアップ</a>を実"
-#~ "行する必要があります。"
-
-#~ msgid "Logon cool off"
-#~ msgstr "ログオンのクールオフ"
-
-#, fuzzy
-#~ msgid "Mark installation as “released”."
-#~ msgstr "「リリース」としてインストールをマークします。"
-
-#~ msgid "Owner:"
-#~ msgstr "所有者:"
-
-#~ msgid "Set as thumbnail for:"
-#~ msgstr "サムネイルとして設定する:"
-
-#~ msgid "Image watermark:"
-#~ msgstr "画像透かし:"
-
-#~ msgid "Scan pending"
-#~ msgstr "保留をスキャン"
-
-#~ msgid ""
-#~ "<code>tweet_news</code> notices when a page or an article is published. "
-#~ "If the date is in the future, it is put in the <em>to-be-tweeted</em> and "
-#~ "tweeted when that date arrives. This option allows you to re-populate "
-#~ "that list to the current state of scheduled tweets."
-#~ msgstr ""
-#~ "<code>tweet_news</code>は記事が公開されたときに通知します。記事の日付が未"
-#~ "来の場合は、それが<em>to-be-tweeted</em>に置かれると、その日付が到着したと"
-#~ "きにツイートされます。このオプションは、再スケジュールされたツイートの現在"
-#~ "の状態に、そのリストを再度読み込むことができます。"
-
-#~ msgid "No scheduled news articles found."
-#~ msgstr "スケジュールされたニュース記事は見つかりませんでした。"
-
-#~ msgid "Scheduled items have been noted for tweeting."
-#~ msgstr "スケジュールされたアイテムはツイートに書き留められました。"
-
-#~ msgid "Order by date descending"
-#~ msgstr "日付を降順で並び替え"
-
-#~ msgid "Order by date ascending"
-#~ msgstr "日付を昇順で並び替え"
-
-#~ msgid ""
-#~ "If checked on the heading image will change daily rather than on each "
-#~ "page load."
-#~ msgstr ""
-#~ "チェックした場合、見出し画像はページが読み込まれるたびに毎日変更されます。"
-
-#, fuzzy
-#~ msgid "The Object you are requesting cannot be found."
-#~ msgstr "Zenphotoのオブジェクトは要求されたものを見つけられませんでした。"
-
-#, fuzzy
-#~ msgid "Theme page"
-#~ msgstr "ページ毎のサムネイル"
-
-#, fuzzy
-#~ msgid "The page you are requesting cannot be found."
-#~ msgstr "Zenphotoのオブジェクトは要求されたものを見つけられませんでした。"
-
-#, fuzzy
-#~ msgid "Sorry, the page you are requesting cannot be found."
-#~ msgstr "Zenphotoのオブジェクトは要求されたものを見つけられませんでした。"
-
-#~ msgid ""
-#~ "Select <em>tagged</em> to tag the current search results with this "
-#~ "<em>tag</em> and use as the album criteria."
-#~ msgstr ""
-#~ "この<em>タグ</em>で現在の検索結果をタグ付けしたりアルバムの語句として使用"
-#~ "するには<em>タグ済み(tagged)</em>を選択します。"
-
-#~ msgid ""
-#~ "Thumbnail generation may be time consuming on slow servers on when there "
-#~ "are a lot of images."
-#~ msgstr ""
-#~ "サムネイルの生成は多くの画像が有るときに、遅いサーバでは時間がかかるかも知"
-#~ "れません。"
-
-#~ msgid "Future publishing date."
-#~ msgstr "公開予定日です。"
-
-#, fuzzy
-#~ msgid "show content"
-#~ msgstr "コメントの表示"
-
-#~ msgid "Dynamic album search:"
-#~ msgstr "ダイナミックアルバム検索:"
-
-#~ msgid ""
-#~ "<a href=\"javascript:toggle('albumpub');\" >Details</a> for <em>publish "
-#~ "albums by default</em>"
-#~ msgstr ""
-#~ "<em>デフォルトで公開するアルバム</em>についての<a href=\"javascript:"
-#~ "toggle('albumpub');\" >詳細</a>"
-
-#~ msgid ""
-#~ "<a href=\"javascript:toggle('imagepub');\" >Details</a> for <em>publish "
-#~ "images by default</em>"
-#~ msgstr ""
-#~ "<em>デフォルトで公開する画像</em>についての<a href=\"javascript:"
-#~ "toggle('imagepub');\" >詳細</a>"
-
-#~ msgid ""
-#~ "<a href=\"javascript:toggle('albumdate');\" >Details</a> for <em>use "
-#~ "latest image date as album date</em>"
-#~ msgstr ""
-#~ "<em>アルバムの日付として最新の画像の日付を使用する事</em>についての<a "
-#~ "href=\"javascript:toggle('albumdate');\" >詳細</a>"
-
-#~ msgid ""
-#~ "<a href=\"javascript:toggle('visualthumb');\" >Details</a> for <em>visual "
-#~ "thumb selection</em>"
-#~ msgstr ""
-#~ "<em>ビジュアルサムネイルの選択</em>についての<a href=\"javascript:"
-#~ "toggle('visualthumb');\" >詳細</a>"
-
-#~ msgid ""
-#~ "<a href=\"javascript:toggle('multithumb');\" >Details</a> for "
-#~ "<em>subalbum thumb selection</em>"
-#~ msgstr ""
-#~ "<em>サブアルバムのサムネイルの選択</em>についての<a href=\"javascript:"
-#~ "toggle('multithumb');\" >詳細</a>"
-
-#~ msgid "ExtraContent"
-#~ msgstr "外部コンテンツ"
-
-#~ msgid "1: Normal (0 deg)"
-#~ msgstr "1: Normal (0 deg)"
-
-#~ msgid "2: Mirrored"
-#~ msgstr "2: Mirrored"
-
-#~ msgid "3: Upside-down"
-#~ msgstr "3: Upside-down"
-
-#~ msgid "4: Upside-down Mirrored"
-#~ msgstr "4: Upside-down Mirrored"
-
-#~ msgid "5: 90 deg CW Mirrored"
-#~ msgstr "5: 90 deg CW Mirrored"
-
-#~ msgid "6: 90 deg CCW"
-#~ msgstr "6: 90 deg CCW"
-
-#~ msgid "7: 90 deg CCW Mirrored"
-#~ msgstr "7: 90 deg CCW Mirrored"
-
-#~ msgid "8: 90 deg CW"
-#~ msgstr "8: 90 deg CW"
-
-#~ msgid "%d: Unknown"
-#~ msgstr "%d: 不明"
-
-#~ msgid "D55"
-#~ msgstr "D55"
-
-#~ msgid "D65"
-#~ msgstr "D65"
-
-#~ msgid "D75"
-#~ msgstr "D75"
-
-#~ msgid "D50"
-#~ msgstr "D50"
-
-#~ msgid "/10s"
-#~ msgstr "/10s"
-
-#~ msgid "2x"
-#~ msgstr "2x"
-
-#~ msgid "4x"
-#~ msgstr "4x"
-
-#~ msgid "50"
-#~ msgstr "50"
-
-#~ msgid "100"
-#~ msgstr "100"
-
-#~ msgid "200"
-#~ msgstr "200"
-
-#~ msgid "400"
-#~ msgstr "400"
-
-#~ msgid "12"
-#~ msgstr "12"
-
-#~ msgid "13"
-#~ msgstr "13"
-
-#~ msgid "14"
-#~ msgstr "14"
-
-#~ msgid "15"
-#~ msgstr "15"
-
-#~ msgid "Unknown: "
-#~ msgstr "不明: "
-
-#~ msgid "2s"
-#~ msgstr "2s"
-
-#~ msgid "Updating the configuration file"
-#~ msgstr "設定ファイルを更新中"
-
-#~ msgid "prefix"
-#~ msgstr "プレフィクス"
-
-#~ msgid "DB"
-#~ msgstr "DB"
-
-#, fuzzy
-#~ msgid ""
-#~ "Welcome to ZenPhoto20! This page will set up the version %s on your web "
-#~ "server."
-#~ msgstr ""
-#~ "Zenphotoへようこそ！このページはあなたのウェブサーバにZenpotho %sをセット"
-#~ "アップします。"
-
-#~ msgid "Database admin user"
-#~ msgstr "データベース管理者ユーザ"
-
-#~ msgid "Database admin password"
-#~ msgstr "データベース管理者パスワード"
-
-#~ msgid "Invalid Textobject instantiation: Album does not exist"
-#~ msgstr ""
-#~ "不正なテキストオブジェクトのインスタンス生成: アルバムは存在しません"
-
-#~ msgid "Invalid Textobject instantiation: file does not exist"
-#~ msgstr ""
-#~ "不正なテキストオブジェクトのインスタンス生成: ファイルは存在しません。"
-
-#, fuzzy
-#~ msgid "Languange"
-#~ msgstr "言語:"
-
-#, fuzzy
-#~ msgid "Sub-Languange"
-#~ msgstr "言語:"
-
-#, fuzzy
-#~ msgid "Languange String"
-#~ msgstr "言語:"
-
-#, fuzzy
-#~ msgid "Zenphoto browser cookies found."
-#~ msgstr "Zenphotoコアファイル"
-
-#~ msgid ""
-#~ "* This option may be set via the <a href=\"javascript:gotoName('dynamic-"
-#~ "locale');\"><em>dynamic-locale</em></a> plugin options."
-#~ msgstr ""
-#~ "* オプションは<a href=\"javascript:gotoName('dynamic-locale');"
-#~ "\"><em>dynamic-locale</em></a>プラグインオプションを経由して設定されるかも"
-#~ "知れません。"
-
-#~ msgid ""
-#~ "* This option may be set via the <a href=\"javascript:"
-#~ "gotoName('html_meta_tags');\"><em>html_meta_tags</em></a> plugin options."
-#~ msgstr ""
-#~ "* これらのオプションは<a href=\"javascript:gotoName('html_meta_tags');"
-#~ "\"><em>html_meta_tags</em></a>プラグインオプションを経由して設定されるかも"
-#~ "知れません。"
-
-#~ msgid "unmute"
-#~ msgstr "消音解除"
-
-#~ msgid "restore screen"
-#~ msgstr "画面の復元"
-
-#~ msgid "shuffle off"
-#~ msgstr "シャッフルオフ"
-
-#~ msgid "repeat off"
-#~ msgstr "リピートオフ"
-
-#~ msgid ""
-#~ "* These options may be set via the <a href=\"javascript:"
-#~ "gotoName('menu_manager');\"><em>menu_manager</em></a> plugin options."
-#~ msgstr ""
-#~ "* これらのオプションは<a href=\"javascript:gotoName('menu_manager');"
-#~ "\"><em>menu_manager</em></a>プラグインオプションを経由して設定されるかも知"
-#~ "れません。"
-
-#, fuzzy
-#~ msgid "Target does not exists in <em>%1$s</em> theme"
-#~ msgstr "<em>ニュース</em>の一致を返しません"
-
-#~ msgid ""
-#~ "Creates a link to a custom theme page as described in the theming "
-#~ "tutorial."
-#~ msgstr ""
-#~ "テーマチュートリアルに記載されているようにカスタムテーマページへのリンクを"
-#~ "作成します。"
-
-#~ msgid ""
-#~ "* These options may be set via the <a href=\"javascript:"
-#~ "gotoName('print_album_menu');\"><em>print_album_menu</em></a> plugin "
-#~ "options."
-#~ msgstr ""
-#~ "* これらのオプションは<a href=\"javascript:gotoName('print_album_menu');"
-#~ "\"><em>print_album_menu</em></a>プラグインオプションを経由して設定されるか"
-#~ "も知れません。"
-
-#~ msgid ""
-#~ "If this option is set, the visitor login form will include a link to this "
-#~ "page. The link text will be labeled with the text provided."
-#~ msgstr ""
-#~ "このオプションが設定されているなら、訪問者のログインフォームはこのページへ"
-#~ "のリンクを含みます。リンクテキストは提供するテキストに分類されます。"
-
-#~ msgid "Set Security log permissions"
-#~ msgstr "セキュリティログのパーミッションを設定"
-
-#~ msgid "File permissions of Security log are %04o"
-#~ msgstr "セキュリティログのファイルパーミッションは%04o"
-
-#~ msgid "Site is now marked in upgrade."
-#~ msgstr "サイトは現在、アップグレードでマークされています。"
-
-#~ msgid "Text editor TinyMCE 4.x"
-#~ msgstr "テキストエディター TinyMCE 4.x"
-
-#, fuzzy
-#~ msgid "tinyZenpage plugin"
-#~ msgstr "Zenpage CMSプラグインを有効"
-
-#~ msgid "Custom image size"
-#~ msgstr "カスタム画像サイズ"
-
-#~ msgid ""
-#~ "Predefined size (px) for custom size images included using tinyZenpage."
-#~ msgstr ""
-#~ "tinyZenpageを使用して含められたカスタムサイズの画像のサイズ(ピクセル)を予"
-#~ "め定義します。"
-
-#~ msgid "Custom thumb crop - size"
-#~ msgstr "カスタムサムネイルトリミング - サイズ"
-
-#~ msgid ""
-#~ "Predefined size (px) for custom cropped thumb images included using "
-#~ "tinyZenpage."
-#~ msgstr ""
-#~ "tinyZenpageを使用して含められたカスタムトリミングサムネイル画像の画像のサ"
-#~ "イズ(ピクセル)を予め定義します。"
-
-#~ msgid "Custom thumb crop - width"
-#~ msgstr "カスタムサムネイルトリミング - 幅"
-
-#~ msgid ""
-#~ "Predefined crop width (%) for custom cropped thumb  images included using "
-#~ "tinyZenpage."
-#~ msgstr ""
-#~ "tinyZenpageを使用して含められたカスタムトリミングサムネイル画像の画像の幅"
-#~ "(%)を予め定義します。"
-
-#~ msgid "Custom thumb crop - height"
-#~ msgstr "カスタムサムネイルトリミング - 高さ"
-
-#~ msgid ""
-#~ "Predefined crop height (%) for custom cropped thumb images included using "
-#~ "tinyZenpage."
-#~ msgstr ""
-#~ "tinyZenpageを使用して含められたカスタムトリミングサムネイル画像の切り取る"
-#~ "高さ(%)を予め定義します。"
-
-#, fuzzy
-#~ msgid "image with link to image"
-#~ msgstr "画像へのリンク"
-
-#~ msgid "*no group affiliation"
-#~ msgstr "*グループアフィリエイトはありません"
-
-#~ msgid "Future publishing date:"
-#~ msgstr "公開予定日:"
-
-#, fuzzy
-#~ msgid "newPage"
-#~ msgstr "新規ページ"
-
-#~ msgid ""
-#~ "<strong>Note:</strong> Scheduled publishing is not active unless the "
-#~ "article is also set to <em>published</em>"
-#~ msgstr ""
-#~ "<strong>注:</strong> 公開スケジュールは記事も<em>公開</em>に設定されていな"
-#~ "い場合、アクティブにはなりません。"
-
-#~ msgid ""
-#~ "Note: Scheduled publishing is not active unless the page is also set to "
-#~ "<em>published</em>"
-#~ msgstr ""
-#~ "注: 公開スケジュールはページも<em>公開</em>に設定されていない場合、アク"
-#~ "ティブにはなりません。"
-
-#~ msgid "Expiration date:"
-#~ msgstr "有効期限:"
-
-#~ msgid "ExtraContent:"
-#~ msgstr "外部コンテンツ:"
-
-#~ msgid "Scheduled for published"
-#~ msgstr "公開スケジュール"
-
-#~ msgid "Publish immediately (skip scheduling)"
-#~ msgstr "すぐに公開(スケジュールをスキップ)"
-
-#~ msgid "Enable scheduled publishing"
-#~ msgstr "公開スケジュールを有効化"
-
-#~ msgid "Publish (override expiration)"
-#~ msgstr "公開(期限を上書き)"
-
-#~ msgid "<em>This entry belongs to a protected album.</em>"
-#~ msgstr "<em>このエントリは保護されたアルバムに属しています。</em>"
-
-#~ msgid ""
-#~ "Zenphoto may be unable to perform uploads when PHP Safe Mode restrictions "
-#~ "are in effect"
-#~ msgstr ""
-#~ "ZenphotoはPHPのセーフモード制限がかかってるときアップロードを実行できない"
-#~ "かもしれません"
-
-#~ msgid ""
-#~ "printSearchForm $album_list parameter is deprecated. Pass array(\"albums"
-#~ "\"=>array(album, album, ...)) instead."
-#~ msgstr ""
-#~ "printSearchForm $album_list パラメータは非推奨です。代わりにarray(\"albums"
-#~ "\"=>array(album, album,...))を通してください。"
-
-#~ msgid ""
-#~ "Powered by <a href=\"http://www.zenphoto.org\" title=\"A simpler web album"
-#~ "\"><span id=\"zen-part\">zen</span><span id=\"photo-part\">PHOTO</span></"
-#~ "a>"
-#~ msgstr ""
-#~ "Powered by <a href=\"http://www.zenphoto.org\" title=\"A simpler web album"
-#~ "\"><span id=\"zen-part\">zen</span><span id=\"photo-part\">PHOTO</span></"
-#~ "a>"
-
-#~ msgid "Your passwords did not match"
-#~ msgstr "パスワードが一致しませんでした。"
-
-#~ msgid "See the troubleshooting guide on zenphoto.org for details."
-#~ msgstr ""
-#~ "詳細についてはzenphoto.orgのトラブルシューティングガイドを見てください。"
-
-#~ msgid "Plugins per page (Options):"
-#~ msgstr "ページ毎のプラグイン (オプション):"
-
-#~ msgid "Expand plugin options"
-#~ msgstr "プラグインオプションを開く"
-
-#~ msgid "Collapse all plugin options"
-#~ msgstr "プラグインオプションを全て閉じる"
-
-#~ msgid "Delete tags from the gallery"
-#~ msgstr "ギャラリーからタグを削除"
-
-#~ msgid "You must supply a password"
-#~ msgstr "パスワードを入力してください"
-
-#~ msgid "Preview the release notes for Zenphoto %s"
-#~ msgstr "Zenphoto %s のリリースノートをプレビューします"
-
-#~ msgid "expand all fields"
-#~ msgstr "全てのフィールドを拡げる"
-
-#~ msgid "collapse all fields"
-#~ msgstr "全てのフィールドを閉じる"
-
-#~ msgid "show more fields"
-#~ msgstr "もっとフィールドを表示"
-
-#~ msgid "show fewer fields"
-#~ msgstr "少なくフィールドを表示"
-
-#~ msgid ""
-#~ "<a href=\"http://www.zenphoto.org\" title=\"The simpler media website CMS"
-#~ "\">Zen<strong>photo</strong></a> version %1$s"
-#~ msgstr ""
-#~ "<a href=\"http://www.zenphoto.org\" title=\"シンプルなメディアウェブサイト"
-#~ "CMS\">Zen<strong>photo</strong></a> バージョン %1$s"
-
-#~ msgid "User guide"
-#~ msgstr "ユーザーガイド"
-
-#~ msgid "Forum"
-#~ msgstr "フォーラム"
-
-#~ msgid "Bugtracker"
-#~ msgstr "バグトラッカー"
-
-#~ msgid "tools"
-#~ msgstr "ツール"
-
-#~ msgid "utilities"
-#~ msgstr "ユーティリティ"
-
-#~ msgid ""
-#~ "See the <a href=\"http://www.zenphoto.org/news/troubleshooting-"
-#~ "zenphoto#24\">troubleshooting guide</a> on zenphoto.org for details."
-#~ msgstr ""
-#~ "詳細についてはzenphoto.orgの<a href=\"http://www.zenphoto.org/news/"
-#~ "troubleshooting-zenphoto#24\">トラブルシューティングガイド</a>を見てくださ"
-#~ "い。"
-
-#~ msgid "The simpler media website CMS"
-#~ msgstr "シンプルなメディアウェブサイトCMS"
-
-#~ msgid "Upgrade from before Zenphoto v1.2"
-#~ msgstr "Zenphoto v1.2以前からアップグレード"
-
-#~ msgid "Upgrade from Zenphoto v%s"
-#~ msgstr "Zenphoto v%sからアップグレード"
-
-#~ msgid "Reinstalling current Zenphoto release"
-#~ msgstr "現在のZenphotoリリースを再インストール中"
-
-#~ msgid "reinstall"
-#~ msgstr "再インストール"
-
-#~ msgid "Setup"
-#~ msgstr "セットアップ"
-
-#~ msgid "[%u release skipped]"
-#~ msgid_plural "[%u releases skipped]"
-#~ msgstr[0] "【%uのリリースをスキップしました】"
-
-#~ msgid ""
-#~ "We do not test upgrades that skip releases. We recommend you upgrade in "
-#~ "sequence."
-#~ msgstr ""
-#~ "リリースをスキップしたアップグレードをテストしていません。あなたの順序で"
-#~ "アップグレードすることをお勧めします。"
-
-#~ msgid ""
-#~ "We strongly recommend disabling <code>magic_quotes_gpc</code>. For more "
-#~ "information See <em><a href=\"http://www.zenphoto.org/news/"
-#~ "troubleshooting-zenphoto#what-is-magic_quotes_gpc-and-why-should-it-be-"
-#~ "disabled-\">What is magic_quotes_gpc and why should it be disabled?</a></"
-#~ "em> in the Zenphoto troubleshooting guide."
-#~ msgstr ""
-#~ "<code>magic_quotes_gpc</code>を無効にする必要があります。詳細については"
-#~ "Zenphotoのトラブルシューティングガイドの<em><a href=\"http://www.zenphoto."
-#~ "org/news/troubleshooting-zenphoto#what-is-magic_quotes_gpc-and-why-should-"
-#~ "it-be-disabled-\">What is magic_quotes_gpc and why should it be disabled?"
-#~ "</a></em>を見てください。"
-
-#~ msgid ""
-#~ "See the <a  href=\"http://www.zenphoto.org/news/troubleshooting-"
-#~ "zenphoto#24\">troubleshooting guide</a> on zenphoto.org for details."
-#~ msgstr ""
-#~ "詳細についてはzenphoto.orgの<a  href=\"http://www.zenphoto.org/news/"
-#~ "troubleshooting-zenphoto#24\">トラブルシューティングガイド</a>を見てくださ"
-#~ "い。"
-
-#~ msgid ""
-#~ "If you wish to create cruft-free URLs, you will need to configuring <a "
-#~ "href=\"http://www.zenphoto.org/news/nginx-rewrite-rules-tutorial"
-#~ "\"><em>URL rewriting for NGINX servers</em></a>."
-#~ msgstr ""
-#~ "クラフトフリーなURLを作成したい場合、<a href=\"http://www.zenphoto.org/"
-#~ "news/nginx-rewrite-rules-tutorial\"><em>NGINXサーバー用のURL書き換え</"
-#~ "em></a>を構成する必要があります。"
-
-#~ msgid "%s protected."
-#~ msgstr "%sを保護しました。"
-
-#~ msgid "failed to protect %s."
-#~ msgstr "%sの保護に失敗しました。"
-
-#~ msgid "Setup scripts protected."
-#~ msgstr "セットアップスクリプトを保護しました。"
-
-#~ msgid "Failed to protect: %s"
-#~ msgstr "保護に失敗しました: %s"
-
-#~ msgid "Mail send failed. "
-#~ msgstr "メールの送信に失敗しました。"
-
-#~ msgid "Show PHP Information"
-#~ msgstr "PHP情報の表示"
-
-#~ msgid "Display PHP information."
-#~ msgstr "PHPの情報を表示します。"
-
-#~ msgid "PHPInfo"
-#~ msgstr "PHP情報"
-
-#~ msgid "PHP Info"
-#~ msgstr "PHP情報"
-
-#~ msgid "Zenphoto Rights migration failed!"
-#~ msgstr "zenphoto権限の統合に失敗しました！"
-
-#~ msgid "third party plugin"
-#~ msgstr "サードパーティ製プラグイン"
-
-#~ msgid ""
-#~ "See also the Zenphoto online documentation: <a href=\"%1$s\">%2$s</a>"
-#~ msgstr ""
-#~ "Zenphotoオンラインドキュメントもご覧ください: <a href=\"%1$s\">%2$s</a>"
-
-#~ msgid "Zenphoto themes (%s)"
-#~ msgstr "Zenphotoテーマ (%s)"
-
-#~ msgid "Zenphoto data (%s)"
-#~ msgstr "Zenphotoデータ (%s)"
-
-#~ msgid "Use printThumbNav()."
-#~ msgstr "printThumbNav()を使用します。"
-
-#~ msgid ""
-#~ "Places the latest 3 news articles from Zenphoto.org on the admin overview "
-#~ "page."
-#~ msgstr ""
-#~ "管理オーバービューページ上でZenphoto.orgから新着記事を3つ配置します。"
-
-#~ msgid "PHP <em>DOM Object Model</em> is required."
-#~ msgstr "PHP <em>DOMオブジェクトモデル</em>が必須です。"
-
-#~ msgid "Truncation"
-#~ msgstr "切り捨て"
-
-#~ msgid "The length of the article to display."
-#~ msgstr "表示する記事の長さです。"
-
-#~ msgid "News from Zenphoto.org"
-#~ msgstr "Zenphoto.orgからのニュース"
-
-#~ msgid "Failed to retrieve link <em>%s</em>"
-#~ msgstr "リンク<em>%s</em>を受け取るのに失敗しました"
-
-#~ msgid "A connection to <em>Zenphoto.org</em> could not be established."
-#~ msgstr "<em>Zenphoto.org</em>への接続を確立できませんでした。"
-
-#~ msgid "Use the instantiate method instead"
-#~ msgstr "instantiate methodを代わりに使用します。"
-
-#~ msgid "Use the getFilename() method instead"
-#~ msgstr "getFilename() methodを代わりに使用します。"
-
-#~ msgid "Use the getLink() method instead"
-#~ msgstr "getLink() methodを代わりに使用します。"
-
-#~ msgid "Use the getSortType() method instead"
-#~ msgstr "getSortType() methodを代わりに使用します。"
-
-#~ msgid "Use the getThumb() method instead"
-#~ msgstr "getThumb() methodを代わりに使用します。"
-
-#~ msgid "Use the setThumb() method instead"
-#~ msgstr "setThumb() methodを代わりに使用します。"
-
-#~ msgid "Use the setSortType() method instead"
-#~ msgstr "setSortType() methodを代わりに使用します。"
-
-#~ msgid "Use printImageMetadata()."
-#~ msgstr "printImageMetadata()を使用します。"
-
-#~ msgid "Use printCustomSizedImageMaxSpace()."
-#~ msgstr "printCustomSizedImageMaxSpace()を使用します。"
-
-#~ msgid "Use getCommentDateTime()."
-#~ msgstr "getCommentDateTime()を使用します。"
-
-#~ msgid "Use getHitcounter()."
-#~ msgstr "getHitcounter()を使用します。"
-
-#~ msgid "Use truncate_string()."
-#~ msgstr "truncate_string()を使用します。"
-
-#~ msgid "Use getImageMetaData()."
-#~ msgstr "getImageMetaData()を使用します。"
-
-#~ msgid "Use getAlbumLocation()."
-#~ msgstr "getAlbumLocation()を使用します。"
-
-#~ msgid "Use printAlbumLocation()."
-#~ msgstr "printAlbumLocation()を使用します。"
-
-#~ msgid "No longer supported."
-#~ msgstr "サポートされなくなりました。"
-
-#~ msgid "Use rewrite_path()."
-#~ msgstr "rewrite_path()を使用します。"
-
-#~ msgid "Use getNumAlbums()."
-#~ msgstr "getNumAlbums()を使用します。"
-
-#~ msgid "Use getAllAlbums()."
-#~ msgstr "getAllAlbums()を使用します。"
-
-#~ msgid "Use zp_apply_filter(\"theme_head\")."
-#~ msgstr "zp_apply_filter(\"theme_head\")を使用します。"
-
-#~ msgid "Use instead the theme options for images and albums per row."
-#~ msgstr "列ごとの画像やアルバムのテーマオプションの代わりに使用します。"
-
-#~ msgid "Use printZenpageItemsBreadcrumb()."
-#~ msgstr "printZenpageItemsBreadcrumb()を使用します。"
-
-#~ msgid "Use instead the Album class method isMyItem()."
-#~ msgstr "Album class method isMyItem()を代わりに使用します。"
-
-#~ msgid ""
-#~ "There is no need for this function as password handling is done by the "
-#~ "core."
-#~ msgstr ""
-#~ "パスワードの処理はコアによって行われるようにこの関数の必要はありません。"
-
-#~ msgid "The google-maps plugin is deprecated. Convert to GoogleMap."
-#~ msgstr "google-mapsプラグインは非推奨です。GooleMapプラグインに変換します。"
-
-#~ msgid ""
-#~ "printPreloadScript is deprecated. It is a helper for a specific theme and "
-#~ "should be placed within that theme's \"functions.php\" script."
-#~ msgstr ""
-#~ "printPreloadScriptは非推奨です。それは指定したテーマの助けとなり、テーマ"
-#~ "「functions.php」スクリプトの中におかれるべきです。"
-
-#~ msgid "Use the album class method <code>isProtected()</code> instead."
-#~ msgstr ""
-#~ "Zenpage page class method <code>isProtected()</code>を代わりに使用します。"
-
-#~ msgid ""
-#~ "Use the template function <code>getRSSLink()</code> instead. NOTE: While "
-#~ "this function gets a full html link <code>getRSSLink()</code> just "
-#~ "returns the URL."
-#~ msgstr ""
-#~ "テンプレート関数<code>getRSSLink()</code>を代わりに使用します。注: この関"
-#~ "数が完全なhtmlリンクを取得する間、<code>getRSSLink()</code>はURLを返すだけ"
-#~ "です。"
-
-#~ msgid ""
-#~ "Use $_zp_captcha->getCaptcha($prompt). Note that you will require "
-#~ "updating your code to the new function."
-#~ msgstr ""
-#~ "$_zp_captcha->getCaptcha($prompt)を使用します。新しい関数へコードをアップ"
-#~ "デートする必要が有ることに注意してください。"
-
-#~ msgid "Use downloadList plugin <code>printDownloadURLAlbumZip()</code>."
-#~ msgstr ""
-#~ "downloadListプラグインの<code>printDownloadURLAlbumZip()</code>を使用しま"
-#~ "す。"
-
-#~ msgid "Download a zip file of this album"
-#~ msgstr "このアルバムのZipファイルをダウンロード"
-
-#~ msgid "Use printImageThumb()."
-#~ msgstr "printImageThumb()を使用します。"
-
-#~ msgid "Use $_zp_current_image->getID()."
-#~ msgstr "$_zp_current_image->getID()を使用します。"
-
-#~ msgid "Use echo \"image_\".$_zp_current_image->getID()."
-#~ msgstr "echo \"image_\".$_zp_current_image->getID()を使用します。"
-
-#~ msgid "Use echo \"image_\".$_zp_current_album->getID()."
-#~ msgstr "echo \"image_\".$_zp_current_album->getID()を使用します。"
-
-#~ msgid "Just what do you expect this does?"
-#~ msgstr "ただこれが何を期待していますか？"
-
-#~ msgid "Use object methods."
-#~ msgstr "オブジェクトメソッドを使用します。"
-
-#~ msgid "Use echo $_zp_current_image->getSortOrder()."
-#~ msgstr "echo $_zp_current_image->getSortOrder()を使用します。"
-
-#~ msgid ""
-#~ "If you need this function copy it to your theme's functions.php script."
-#~ msgstr ""
-#~ "この関数が必要な場合、あなたのテーマのfunctions.phpスクリプトにそれをコ"
-#~ "ピーします。"
-
-#~ msgid "use $_zp_captcha->getCaptcha() and format the results as desired."
-#~ msgstr ""
-#~ "$_zp_captcha->getCaptcha()を使用して、必要に応じて結果をフォーマットしま"
-#~ "す。"
-
-#~ msgid "Enter CAPTCHA <strong>*</strong>"
-#~ msgstr "CAPTCHAの入力<strong>*</strong>"
-
-#~ msgid ""
-#~ "Front end editing is not supported. Use the property specific methods."
-#~ msgstr ""
-#~ "フロントエンドの編集はサポートされていません。プロパティの特定の方法を使用"
-#~ "します。"
-
-#~ msgid "printField() invalid function call, context %X."
-#~ msgstr "printField()は不完全な関数呼び出しです。コンテキスト: %X"
-
-#~ msgid "printField() invalid function call, field:%s."
-#~ msgstr "printField()は不完全な関数呼び出しです。フィールド:%s"
-
-#~ msgid "printField() invalid function call, not an object."
-#~ msgstr ""
-#~ "printField()は不完全な関数呼び出しであり、オブジェクトではありません。"
-
-#~ msgid ""
-#~ "This feature is now done by a \"theme_body_close\" filter. You can remove "
-#~ "the function call."
-#~ msgstr ""
-#~ "この機能は、今では「theme_body_close」フィルタによって行われます。関数の呼"
-#~ "び出しを削除出来ます。"
-
-#~ msgid "use getLinkHTML()"
-#~ msgstr "getLinkHTML()を使用します。"
-
-#~ msgid "use printLinkHTML()"
-#~ msgstr "printLinkHTML()を使用します。"
-
-#~ msgid "use setupDomain()"
-#~ msgstr "サブドメインを使用"
-
-#~ msgid "use getAlbumURL()"
-#~ msgstr "getAlbumURL()を使用します。"
-
-#~ msgid "use getImageURL()"
-#~ msgstr "getImageURL()を使用します。"
-
-#~ msgid "use printAlbumURL()"
-#~ msgstr "printAlbumURL()を使用します。"
-
-#~ msgid "use printImageURL()"
-#~ msgstr "printImageURL()を使用します。"
-
-#~ msgid "use printNextPageURL()"
-#~ msgstr "printNextPageURL()を使用します。"
-
-#~ msgid "use printPrevPageURL()"
-#~ msgstr "printPrevPageURL()を使用します。"
-
-#~ msgid "use printSizedImageURL()"
-#~ msgstr "printSizedImageURL()を使用します。"
-
-#~ msgid "use the object's getCommentsAllowed() method"
-#~ msgstr "オブジェクトのgetCommentsAllowed()メソッドを使用します。"
-
-#~ msgid "use Gallery::addImageHandler()"
-#~ msgstr "Gallery::addImageHandler()を使用します。"
-
-#~ msgid "use Gallery::validImage()"
-#~ msgstr "Gallery::validImage()を使用します。"
-
-#~ msgid "use Gallery::validImageAlt()"
-#~ msgstr "Gallery::validImageAlt()を使用します。"
-
-#~ msgid "use printDownloadURL()"
-#~ msgstr "printDownloadURL()を使用します。"
-
-#~ msgid "use getDownloadURL()"
-#~ msgstr "getDownloadURL()を使用します。"
-
-#~ msgid "use printDownloadAlbumZipURL()"
-#~ msgstr "printDownloadAlbumZipURL()を使用します。"
-
-#~ msgid "Use this plugin is to enable using older third party spam filters."
-#~ msgstr ""
-#~ "このオプションを使用することは古いサードパーティ製のSPAMフィルターを使用す"
-#~ "ることを有効にします。"
-
-#~ msgid ""
-#~ "Please contact the author of your SPAM filter and request it be updated "
-#~ "to work with the <i>plugin</i> model of SPAM filters. This plugin will be "
-#~ "removed from future Zenphoto releases."
-#~ msgstr ""
-#~ "SPAMフィルターの作者へ連絡をして、SPAMフィルターの<i>プラグイン</i>モデル"
-#~ "で動作するための更新をリクエストしてください。このプラグインは将来の"
-#~ "Zenphotoのリリースから削除されます。"
-
-#~ msgid "Associated Spam Filter"
-#~ msgstr "関連したSPAMフィルター"
-
-#~ msgid "Select the legacy spam filter to be used."
-#~ msgstr "使用したい従来のSPAMフィルターを選択します。"
-
-#~ msgid "You must first set the plugin's options for cached image parameters."
-#~ msgstr ""
-#~ "あなたは、最初にキャッシュされたイメージのパラメータ用のプラグインのオプ"
-#~ "ションを設定する必要があります。"
-
-#~ msgid "Clone Zenphoto"
-#~ msgstr "Zenphotoの複製"
-
-#, fuzzy
-#~ msgid ""
-#~ "This plugin must always be enabled to use multimedia content. Note that "
-#~ "you should also enable a multimedia player. See the info of the player "
-#~ "you use to see how it is configured."
-#~ msgstr ""
-#~ "このプラグインは、常にマルチメディアコンテンツを使用するために有効にする必"
-#~ "要があります。また、マルチメディアプレーヤーを有効にする必要があることに注"
-#~ "意してください。あなたはそれが設定されているか確認するために使用するプレー"
-#~ "ヤーの情報を参照してください。"
-
-#~ msgid "The %1$s feed is deprecated."
-#~ msgstr "%1$s フィード は非推奨です。"
-
-#~ msgid "Adds a Zenphoto donations block to the admin overview page."
-#~ msgstr "管理者のオーバービューページにZenphotoの寄付ブロックを追加します。"
-
-#~ msgid "Like using Zenphoto? Donate!"
-#~ msgstr "Zenphotoを起きに召しましたか？ぜひ寄付を！"
-
-#~ msgid ""
-#~ "Your support helps pay for the Zenphoto site server and helps development "
-#~ "of Zenphoto. Thank you!"
-#~ msgstr ""
-#~ "あなたの助けはZenphotoのサイトに使用しているサーバの支払いやZenphotoの開発"
-#~ "の手助けとなります。ありがとうございます！"
-
-#~ msgid ""
-#~ "You can disable this error message by going to the <em>deprecated-"
-#~ "functions</em> plugin options and un-checking <strong>%s</strong> in the "
-#~ "list of functions.<br />"
-#~ msgstr ""
-#~ "関数の一覧の<strong>%s</strong>のチェックボックスを外して<em>deprecated-"
-#~ "functions</em>プラグインオプションへ行くことでこのエラーメッセージを無効に"
-#~ "することが出来ます。"
-
-#~ msgid "All Zenpage news categories"
-#~ msgstr "全Zenpageニュースカテゴリ"
-
-#, fuzzy
-#~ msgid ""
-#~ "CombiNews is deprecated. Remove the  \"$option\" parameter. See the <a "
-#~ "href=\"http://www.zenphoto.org/news/zenphoto-1.4.6\">Zenphoto 1.4.6 "
-#~ "release notes</a>."
-#~ msgstr ""
-#~ "<a href=\"http://www.zenphoto.org/zp/theme/\">Zenphotoテーマページ</a>から"
-#~ "もっとテーマをダウンロードすることが出来ます。"
-
-#~ msgid "Use the getLink method instead"
-#~ msgstr "getLink methodを代わりに使用します。"
-
-#~ msgid "Create an object and use its getLink method."
-#~ msgstr "オブジェクトを作成してそのgetLinkメソッドを使用します。"
-
-#~ msgid "Use getNewsArchivePath()."
-#~ msgstr "getNewsArchivePath()を使用します。"
-
-#~ msgid ""
-#~ "The Zenpage class method is deprecated. Use the global function "
-#~ "getNewsIndexURL()."
-#~ msgstr ""
-#~ "Zenpageクラスメソッドは非推奨です。グローバル関数のgetNewsIndexURL()を使用"
-#~ "します。"
-
-#~ msgid "Use the Zenpage Page class->getPages() method."
-#~ msgstr "Zenpage Page class->getPages() methodを使用します。"
-
-#~ msgid "Use object->getTags() method."
-#~ msgstr "object->getTags()メソッドを使用します。"
-
-#~ msgid "Use printTags()."
-#~ msgstr "printTags()を使用します。"
-
-#~ msgid "Use instead the Zenpage category class method getSubCategories()."
-#~ msgstr ""
-#~ "Zenpage category class method getSubCategories()を代わりに使用します。"
-
-#~ msgid "Use instead the Zenpage news class method inProtectedCategory()."
-#~ msgstr ""
-#~ "Zenpage news class method inProtectedCategory()を代わりに使用します。"
-
-#~ msgid "Use instead the Zenpage category class method isProtected()."
-#~ msgstr "Zenpage category class method isProtected()を代わりに使用します。"
-
-#~ msgid "Use instead the Zenpage category class method getParents()."
-#~ msgstr "Zenpage category class method getParents()を代わりに使用します。"
-
-#~ msgid "Use instead the Zenpage category class method getTitle()."
-#~ msgstr "Zenpage category class method getTitle()を代わりに使用します。"
-
-#~ msgid "Use instead the Zenpage category class method getID()."
-#~ msgstr "Zenpage category class method getID()を代わりに使用します。"
-
-#~ msgid "Use instead the Zenpage category class method getParentID()."
-#~ msgstr "Zenpage category class method getParentID()を代わりに使用します。"
-
-#~ msgid "Use instead the Zenpage category class method getSortOrder()."
-#~ msgstr "Zenpage category class method getSortOrder()を代わりに使用します。"
-
-#~ msgid "Use instead the Zenpage page class method getParents()."
-#~ msgstr "Zenpage page class method getParents()を代わりに使用します。"
-
-#~ msgid "Use instead the Zenpage page class method isProtected()."
-#~ msgstr "Zenpage page class method isProtected()を代わりに使用します。"
-
-#~ msgid "Use instead the Zenpage category class method isMyItem()."
-#~ msgstr "Zenpage category class method isMyItem()を代わりに使用します。"
-
-#~ msgid "Use instead the Zenpage category class method checkforGuest()."
-#~ msgstr "Zenpage category class method checkforGuest()を代わりに使用します。"
-
-#~ msgid "Use instead the Zenpage news class method isMyItem()."
-#~ msgstr "Zenpage news class method isMyItem()を代わりに使用します。"
-
-#~ msgid "Use instead the Zenpage news class method checkNewsAccess()."
-#~ msgstr "Zenpage news class method checkNewsAccess()を代わりに使用します。"
-
-#~ msgid ""
-#~ "Use instead the Zenpage category global object variable: "
-#~ "$_zp_current_category->getTitlelink()."
-#~ msgstr ""
-#~ "Zenpage categoryグローバルオブジェクト変数を代わりに使用します: "
-#~ "$_zp_current_category->getTitlelink()"
-
-#~ msgid ""
-#~ "Use instead the Zenpage category global object variable: "
-#~ "$_zp_current_category->getID()."
-#~ msgstr ""
-#~ "Zenpage categoryグローバルオブジェクト変数を代わりに使用します: "
-#~ "$_zp_current_category->getID()"
-
-#~ msgid ""
-#~ "Use instead the Zenpage category global object variable: "
-#~ "$_zp_current_category->getParentID()."
-#~ msgstr ""
-#~ "Zenpage categoryグローバルオブジェクト変数を代わりに使用します: "
-#~ "$_zp_current_category->getParentID()"
-
-#~ msgid ""
-#~ "Use instead the Zenpage news global object variable: "
-#~ "$_zp_current_zenpage_news->inNewsCategory($catlink)."
-#~ msgstr ""
-#~ "Zenpage newsグローバルオブジェクト変数を代わりに使用します: "
-#~ "$_zp_current_zenpage_news->inNewsCategory($catlink)"
-
-#~ msgid ""
-#~ "Use instead the Zenpage news global object variable: "
-#~ "$_zp_current_zenpage_news->inSubNewsCategoryOf($catlink)."
-#~ msgstr ""
-#~ "Zenpage newsグローバルオブジェクト変数を代わりに使用します: "
-#~ "$_zp_current_zenpage_news->inSubNewsCategoryOf($catlink)"
-
-#~ msgid ""
-#~ "Use instead the Zenpage category global object variable: "
-#~ "$_zp_current_category->isSubNewsCategoryOf($catlink)."
-#~ msgstr ""
-#~ "Zenpage categoryグローバルオブジェクト変数を代わりに使用します: "
-#~ "$_zp_current_category->isSubNewsCategoryOf($catlink)"
-
-#~ msgid ""
-#~ "Functionality is now included in getNewsContent(), printNewsContent() and "
-#~ "getContentShorten() to properly cover custom shortening via TinyMCE "
-#~ "<pagebreak>."
-#~ msgstr ""
-#~ "関数はTinyMCE経由でカスタムショートニングを適切にカバーするために"
-#~ "getNewsContent()、printNewsContent()、及びgetContentShorten()に現在含まれ"
-#~ "ています。<pagebreak>"
-
-#~ msgid ""
-#~ "Use getContentShorten() instead. Note the read more url must be passed "
-#~ "directly."
-#~ msgstr ""
-#~ "getContentShorten()を代わりに使用します。複数のURLを直接通す必要があり、読"
-#~ "み取りに注意してください。"
-
-#~ msgid "This happens automatically."
-#~ msgstr "これは自動的に発生します。"
-
-#~ msgid ""
-#~ "Use the method from either the ZenpagePage or the ZenpageCategory class "
-#~ "instead."
-#~ msgstr ""
-#~ "代わりにZenpagePageまたはZenpageCategoryクラスのどちらかからメソッドを使用"
-#~ "します。"
-
-#~ msgid "Use the Zenpage class method instead."
-#~ msgstr "Zenpage class methodを代わりに使用します。"
-
-#~ msgid "Count the articles instead."
-#~ msgstr "代わりに記事をカウントします。"
-
-#~ msgid "Use the global $_zp_page instead."
-#~ msgstr "global $_zp_page を代わりに使用します。"
-
-#~ msgid "Combinews is removed."
-#~ msgstr "コンビニュースは削除されました。"
-
-#~ msgid ""
-#~ "Use the template function <code>getRSSLink()</code> instead. NOTE: While "
-#~ "this function gets a full html link  <code>getRSSLink()</code> just "
-#~ "returns the URL."
-#~ msgstr ""
-#~ "テンプレート関数<code>getRSSLink()</code>を代わりに使用します。注: この関"
-#~ "数が完全なhtmlリンクを取得する間、<code>getRSSLink()</code>はURLを返すだけ"
-#~ "です。"
-
-#~ msgid "use printLatestComments($number, $shorten, $type, $itemID, $id);"
-#~ msgstr ""
-#~ "printLatestComments($number, $shorten, $type, $itemID, $id);を使用します"
-
-#~ msgid "use getRSSLink($option,$lang,$categorylink)."
-#~ msgstr "getRSSLink($option,$lang,$categorylink)を使用します。"
-
-#~ msgid ""
-#~ "use printRSSLink($option, $prev, $linktext, $next, $printIcon, $class, "
-#~ "$lang, $categoryLink)."
-#~ msgstr ""
-#~ "printRSSLink($option, $prev, $linktext, $next, $printIcon, $class, $lang, "
-#~ "$categoryLink)を使用します。"
-
-#~ msgid "use printRSSHeaderLink($option, $linktext, $lang, $categorylink)."
-#~ msgstr ""
-#~ "printRSSHeaderLink($option, $linktext, $lang, $categorylink)を使用します。"
-
-#, fuzzy
-#~ msgid ""
-#~ "CombiNews is deprecated. See the <a href=\"http://www.zenphoto.org/news/"
-#~ "zenphoto-1.4.6\">Zenphoto 1.4.6 release notes</a>."
-#~ msgstr ""
-#~ "<a href=\"http://www.zenphoto.org/zp/theme/\">Zenphotoテーマページ</a>から"
-#~ "もっとテーマをダウンロードすることが出来ます。"
-
-#~ msgid "Create an object and use the object getLink"
-#~ msgstr "オブジェクトを作成してオブジェクトgetLinkを使用します"
-
-#~ msgid "use getNewsURL()"
-#~ msgstr "getNewsURL()を使用します。"
-
-#~ msgid "use printNewsURL()"
-#~ msgstr "printNewsURL()を使用します。"
-
-#~ msgid "use getPageURL()"
-#~ msgstr "getPageURL()を使用します。"
-
-#~ msgid "use printPageURL()"
-#~ msgstr "printPageURL()を使用します。"
-
-#~ msgid "Expired: %s"
-#~ msgstr "期限切れ: %s"
-
-#~ msgid "Expires: %s"
-#~ msgstr "期限: %s"
-
-#~ msgid "Use printRating()."
-#~ msgstr "printRating()を使用します。"
-
-#~ msgid "use printFavoritesURL()"
-#~ msgstr "printFavoritesURL()を使用します。"
-
-#~ msgid ""
-#~ "<strong>Note:</strong> Address fields are handled by the "
-#~ "<em>comment_form</em> plugin."
-#~ msgstr ""
-#~ "<strong>注:</strong> アドレスフィールドは<em>comment_form</em>プラグインで"
-#~ "扱われます。"
-
-#, fuzzy
-#~ msgid "Use the getContent() method."
-#~ msgstr "getSortType() methodを代わりに使用します。"
-
-#~ msgid "Enable <strong>jPlayer</strong> to handle multimedia files."
-#~ msgstr ""
-#~ "マルチメディアファイルを扱うための<strong>jPlayer</strong>を有効にします。"
-
-#~ msgid ""
-#~ "<strong>IMPORTANT</strong>: Only one multimedia extension plugin can be "
-#~ "enabled at the time and the class-video plugin must be enabled, too."
-#~ msgstr ""
-#~ "<strong>重要</strong>: ひとつのマルチメディア拡張のみ一度に有効にでき、"
-#~ "class-videoプラグインも有効にする必要が有ります。"
-
-#~ msgid "clear width and height fields"
-#~ msgstr "幅と高さのフィールドをクリア"
-
-#~ msgid "Mod Rewrite is required for this plugin"
-#~ msgstr "mod_rewriteはこのプラグインで必須です。"
-
-#~ msgid "back to Zenphoto"
-#~ msgstr "Zenphotoへ戻る"
-
-#~ msgid ""
-#~ "Checks if there is a Zenphoto versions that is newer than the installed "
-#~ "version."
-#~ msgstr ""
-#~ "インストールされたバージョンよりも新しいZenphotoのバージョンがある場合"
-#~ "チェックします。"
-
-#~ msgid "Zenphoto download page"
-#~ msgstr "Zenphotoダウンロードページ"
-
-#~ msgid "A new version of Zenphoto version is available."
-#~ msgstr "zenphotoの最新バージョンが利用可能です。"
-
-#~ msgid "Powered by"
-#~ msgstr "Powered by"

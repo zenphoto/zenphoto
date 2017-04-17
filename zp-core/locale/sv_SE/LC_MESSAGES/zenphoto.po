@@ -1,9 +1,10 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: zenphoto 1.3\n"
+"Project-Id-Version: ZenPhoto20\n"
+
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-16 17:21-0700\n"
-"PO-Revision-Date: 2017-04-16 17:22-0700\n"
+"POT-Creation-Date: 2017-04-17 09:24-0700\n"
+"PO-Revision-Date: 2017-04-17 09:54-0700\n"
 "Last-Translator: Stephen <stephen@sbillard.org>\n"
 "Language-Team: pasi@pilm.se\n"
 "Language: sv_SE\n"
@@ -12,11 +13,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
 "Plural-Forms: nplurals=2; plural=n !=1;\n"
-"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 "X-Generator: Poedit 2.0.1\n"
 "X-Poedit-Basepath: ../../../..\n"
 "X-Poedit-SearchPath-0: zp-core/locale/sv_SE/LC_MESSAGES/zenphoto.po\n"
 "X-Poedit-SearchPath-1: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
 
 #: plugins/cacheHeader.php:18
 msgid "Outputs a \"Cache-control\" header with selected caching options."
@@ -266,7 +268,7 @@ msgstr "<em>%s</em> finns redan."
 #, fuzzy, php-format
 #| msgid "Database tables to create: %s"
 msgid "Unable to create %s."
-msgstr "Skapa i:"
+msgstr "Skapa"
 
 #: plugins/customData.php:26
 msgid "This plugin exposes the \"custom_data\" field on objects."
@@ -500,7 +502,7 @@ msgstr ""
 #, fuzzy
 #| msgid "Process changes"
 msgid "unprocessed heading items"
-msgstr "ZenPhoto20 installation"
+msgstr "Synliga objekt"
 
 #: plugins/headConsolidator.php:112
 #, fuzzy
@@ -639,7 +641,7 @@ msgstr ""
 #: zp-core/zp-extensions/flag_thumbnail.php:121
 #, fuzzy
 msgid "Text"
-msgstr "Text för föregående tumnaglar."
+msgstr "Texten för temalogotypen"
 
 #: plugins/text_watermark.php:35
 #, fuzzy
@@ -2392,7 +2394,7 @@ msgstr "E-Post<strong>%s</strong>:"
 #: zp-core/zp-extensions/comment_form/comment_form.php:47
 #, fuzzy, php-format
 msgid "Site%s"
-msgstr "Klicka här för att registrera dig."
+msgstr "Titel för webbplatsen."
 
 #: themes/paradigm/comment_form/comment_form.php:62
 #: themes/paradigm/contact_form/form.php:53
@@ -2803,7 +2805,7 @@ msgstr ""
 #: themes/paradigm/themeoptions.php:75
 #, fuzzy
 msgid "Number of slides"
-msgstr "Antalet länkar för sidlistan."
+msgstr "POP portsnummer."
 
 #: themes/paradigm/themeoptions.php:78 zp-core/zp-extensions/zpCaptcha.php:55
 msgid "3"
@@ -2867,7 +2869,7 @@ msgstr "Texten ovanför platsnamn på startsidan."
 #, fuzzy
 #| msgid "Homepage"
 msgid "Homepage content"
-msgstr "Innehåll:"
+msgstr "Innehåll"
 
 #: themes/paradigm/themeoptions.php:92
 #, fuzzy
@@ -2904,7 +2906,7 @@ msgstr ""
 #: themes/paradigm/themeoptions.php:99
 #, fuzzy
 msgid "ShareThis id"
-msgstr "E-postID"
+msgstr "AnvändarID:"
 
 #: themes/paradigm/themeoptions.php:99
 msgid "Provide your <a href=\"http://www.sharethis.com\">ShareThis</a> ID"
@@ -2936,7 +2938,7 @@ msgstr ""
 #: themes/paradigm/themeoptions.php:102
 #, fuzzy
 msgid "Twitter profile name"
-msgstr "Albumnamn:"
+msgstr "med mappnamnet:"
 
 #: themes/paradigm/themeoptions.php:102
 msgid ""
@@ -3752,7 +3754,7 @@ msgstr "Sök"
 #: themes/zpfocus/inc-sidebar.php:13
 #, fuzzy
 msgid "Random Album Image"
-msgstr "Stoppa och återvänd till album eller bildsidan"
+msgstr "*Bildsortering av överordnade album"
 
 #: themes/zpfocus/inc-sidebar.php:17
 #, fuzzy
@@ -3762,7 +3764,7 @@ msgstr "Slumpmässig bild..."
 #: themes/zpfocus/inc-sidebar.php:52
 #, fuzzy
 msgid "More News"
-msgstr "Läs mer"
+msgstr "Visa mer"
 
 #: themes/zpfocus/inc-sidebar.php:75
 #, fuzzy
@@ -3811,7 +3813,7 @@ msgstr "Visa album:"
 #: themes/zpfocus/search.php:156
 #, fuzzy
 msgid "Image Search Results"
-msgstr "Sök"
+msgstr "Visa fler resultat"
 
 #: themes/zpfocus/search.php:216
 #, fuzzy
@@ -3906,7 +3908,7 @@ msgstr ""
 #: themes/zpfocus/themeoptions.php:74
 #, fuzzy
 msgid "Spotlight Text"
-msgstr "Text för föregående tumnaglar."
+msgstr "Texten för temalogotypen"
 
 #: themes/zpfocus/themeoptions.php:74
 #, fuzzy
@@ -4099,7 +4101,7 @@ msgstr "<em>anonym</em>"
 #: themes/zpskeleton/comment_form/comment_form.php:31
 #, fuzzy, php-format
 msgid "%sE-Mail:"
-msgstr "Skicka e-post"
+msgstr "E-postanvändare"
 
 #: themes/zpfocus/z_comment_form/comment_form.php:48
 #: themes/zpskeleton/comment_form/comment_form.php:42
@@ -4245,7 +4247,7 @@ msgstr "\"List\" subalbum level"
 #: themes/zpmasonry/album.php:40 themes/zpmasonry/favorites.php:42
 #, fuzzy
 msgid "number"
-msgstr "Antalet länkar för sidlistan."
+msgstr "POP portsnummer."
 
 #: themes/zpmasonry/album.php:40 themes/zpmasonry/favorites.php:42
 #, fuzzy
@@ -4367,12 +4369,12 @@ msgstr "Bildspel"
 #: themes/zpmasonry/inc-footer.php:17
 #, fuzzy
 msgid "Loading additional pages..."
-msgstr "Exkludera sidor"
+msgstr "Sidor (%s)"
 
 #: themes/zpmasonry/inc-footer.php:19
 #, fuzzy
 msgid "No more pages to load..."
-msgstr "Läs mer"
+msgstr "Visa mer"
 
 #: themes/zpmasonry/inc-menu.php:12 themes/zpskeleton/album.php:139
 #: themes/zpskeleton/favorites.php:134 themes/zpskeleton/image.php:91
@@ -4437,7 +4439,7 @@ msgstr "Välj en mörk eller ljus övergripande färg stil."
 #: themes/zpmasonry/themeoptions.php:76
 #, fuzzy
 msgid "General Thumb Sizes"
-msgstr "tumnagel "
+msgstr "Tumnagel ="
 
 #: themes/zpmasonry/themeoptions.php:78
 #, fuzzy
@@ -4786,7 +4788,7 @@ msgstr ""
 #: themes/zpminimal/themeoptions.php:40
 #, fuzzy
 msgid "Menu Name of Menu Manager"
-msgstr "Menyhanterare: Lägg till Menypost"
+msgstr "Menyhanterare: Redigera Menypost"
 
 #: themes/zpminimal/themeoptions.php:40
 #, fuzzy
@@ -4972,7 +4974,7 @@ msgstr "Lösenord:"
 #: themes/zpskeleton/register_user/register_user_form.php:33
 #, fuzzy
 msgid "Re-enter:"
-msgstr "Ange en giltig e-postadress."
+msgstr "Skriv sökord."
 
 #: themes/zpskeleton/themeoptions.php:52
 #, fuzzy
@@ -5157,7 +5159,7 @@ msgstr "Inga opublicerade sidor tillgängliga"
 #: zp-core/zp-extensions/zenpage/admin-pages.php:152
 #, fuzzy
 msgid "Disable comments"
-msgstr "Förhindra direktlänkning"
+msgstr "Kommentarer:"
 
 #: zp-core/admin-albumsort.php:91 zp-core/admin-edit.php:730
 #: zp-core/admin-functions.php:2495
@@ -5167,7 +5169,7 @@ msgstr "Förhindra direktlänkning"
 #: zp-core/zp-extensions/zenpage/admin-pages.php:153
 #, fuzzy
 msgid "Enable comments"
-msgstr "Aktivera permaTitellänk"
+msgstr "Aktivera Imagick"
 
 #: zp-core/admin-albumsort.php:94 zp-core/admin-edit.php:733
 #: zp-core/zp-extensions/zenpage/admin-categories.php:155
@@ -5197,21 +5199,21 @@ msgstr "Bildfölj sparad"
 #: zp-core/zp-extensions/zenpage/admin-functions.php:1627
 #, fuzzy
 msgid "Selected items deleted"
-msgstr "*ingen grupp vald"
+msgstr "%s raderades."
 
 #: zp-core/admin-albumsort.php:147 zp-core/admin-functions.php:5164
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:926
 #: zp-core/zp-extensions/zenpage/admin-functions.php:1630
 #, fuzzy
 msgid "Selected items published"
-msgstr "Publicerad/Opublicerad/Schemalagd för publicering"
+msgstr "Publicerat/Opublicerat"
 
 #: zp-core/admin-albumsort.php:150 zp-core/admin-functions.php:5167
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:930
 #: zp-core/zp-extensions/zenpage/admin-functions.php:1633
 #, fuzzy
 msgid "Selected items unpublished"
-msgstr "*ingen grupp vald"
+msgstr "*ingen logo vald"
 
 #: zp-core/admin-albumsort.php:153 zp-core/admin-functions.php:5170
 #: zp-core/zp-extensions/zenpage/admin-functions.php:1636
@@ -5229,7 +5231,7 @@ msgstr "Kommentarer inaktiverade för valda artiklar"
 #: zp-core/zp-extensions/zenpage/admin-functions.php:1642
 #, fuzzy
 msgid "Hitcounter for selected items"
-msgstr "Återställ Träffräknare"
+msgstr "*ingen logo vald"
 
 #: zp-core/admin-albumsort.php:162 zp-core/admin-functions.php:5179
 #, fuzzy
@@ -5453,7 +5455,7 @@ msgstr "Nytt albumnamn?"
 #: zp-core/zp-extensions/zenpage/admin-pages.php:83
 #, fuzzy
 msgid "Are you sure you want to delete the checked items?"
-msgstr "Är det säkert att du vill radera denna grupp?"
+msgstr "Är det säkert att du vill radera hela albumet?"
 
 #: zp-core/admin-edit.php:719
 #, fuzzy
@@ -5463,7 +5465,7 @@ msgstr "Visa"
 #: zp-core/admin-edit.php:722
 #, fuzzy
 msgid "Show album thumb"
-msgstr "tumnagel "
+msgstr "Tumnagel ="
 
 #: zp-core/admin-edit.php:741 zp-core/admin-edit.php:1443
 #: zp-core/admin-functions.php:2126
@@ -5905,7 +5907,7 @@ msgstr "Serverdatum: %s"
 #: zp-core/admin-functions.php:152
 #, fuzzy, php-format
 msgid "%1$s %2$s: %3$s%4$s"
-msgstr "%1$s x %2$s px"
+msgstr "Album (%1$s) &amp; Bilder (%2$s)"
 
 #: zp-core/admin-functions.php:292
 #, fuzzy, php-format
@@ -5919,7 +5921,7 @@ msgstr "ZenPhoto20 Administration"
 #: zp-core/admin-functions.php:301
 #, fuzzy, php-format
 msgid "Logged in as %1$s"
-msgstr "du är redan inloggad."
+msgstr "%1$s (0%2$o)"
 
 #: zp-core/admin-functions.php:303
 #, fuzzy, php-format
@@ -5943,7 +5945,7 @@ msgstr "Visa galleri-index"
 #, fuzzy
 #| msgid "Return to %s"
 msgid "return to top"
-msgstr "Tillbaka till toppen"
+msgstr "Tillbaka till %s"
 
 #: zp-core/admin-functions.php:526
 msgid "Image order"
@@ -5966,7 +5968,7 @@ msgstr "album [<code>$conf['external_album_folder']</code> är föråldrad]"
 #: zp-core/admin-functions.php:1412 zp-core/admin-functions.php:1413
 #, fuzzy
 msgid "add tag"
-msgstr "Lägg till sida"
+msgstr "Lägg till kommentar"
 
 #: zp-core/admin-functions.php:1570
 msgid "Album Title"
@@ -6017,7 +6019,7 @@ msgstr "Album gäst-användare:"
 #: zp-core/zp-extensions/zenpage/admin-edit.php:611
 #, fuzzy
 msgid "Show password"
-msgstr "Lösenord"
+msgstr "Lösenord:"
 
 #: zp-core/admin-functions.php:1675
 #, fuzzy
@@ -6136,7 +6138,7 @@ msgstr "Rensar albumets cachelagrade bilder."
 #: zp-core/admin-functions.php:2280
 #, fuzzy
 msgid "Clear album image cache"
-msgstr "Cacha originalbilden"
+msgstr "Bildcache rensat."
 
 #: zp-core/admin-functions.php:2283
 #, fuzzy
@@ -6241,7 +6243,7 @@ msgstr "Subalbum-översikt"
 #, fuzzy
 #| msgid "Unprotected"
 msgid "un-protected"
-msgstr "Avpublicera"
+msgstr "Ta bort godkännande"
 
 #: zp-core/admin-functions.php:2426
 #: zp-core/zp-extensions/zenpage/admin-functions.php:240
@@ -6726,7 +6728,7 @@ msgstr "Kan inte byta filändelse på bild"
 #: zp-core/zp-extensions/seo_cleanup/admin_tab.php:36
 #, fuzzy
 msgid "Album delete failed"
-msgstr "%s kunde inte radera."
+msgstr "Radera album"
 
 #: zp-core/admin-functions.php:5216
 #, fuzzy, php-format
@@ -7094,7 +7096,7 @@ msgstr "<strong>Notera!</strong> klicka för detaljer"
 #: zp-core/admin-plugins.php:354
 #, fuzzy, php-format
 msgid "More information on %s"
-msgstr "Läs mer"
+msgstr "Visa mer"
 
 #: zp-core/admin-plugins.php:358 zp-core/admin_options/plugin.php:142
 #, fuzzy, php-format
@@ -7229,7 +7231,7 @@ msgstr "Radera markerade taggar"
 #: zp-core/admin-tags.php:105
 #, fuzzy
 msgid "Tags renamed"
-msgstr "Inga taggar att importera."
+msgstr "Populära Taggar:"
 
 #: zp-core/admin-tags.php:131
 msgid "Tag Management"
@@ -7781,7 +7783,7 @@ msgstr "<em>Huvudkontot</em> har fullständiga rättigheter till alla objekt."
 #: zp-core/admin-users.php:818 zp-core/functions.php:878
 #, fuzzy
 msgid "un-categorized"
-msgstr "Propagera opublicerat läge"
+msgstr "Publicerat/Opublicerat"
 
 #: zp-core/admin-users.php:877
 #, fuzzy, php-format
@@ -7853,12 +7855,12 @@ msgstr "Installation misslyckades."
 #: zp-core/admin.php:112
 #, fuzzy
 msgid "protected"
-msgstr "Detta album är lösenordsskyddat!"
+msgstr "Detta album är lösenordsskyddat."
 
 #: zp-core/admin.php:114
 #, fuzzy
 msgid "Setup files protected."
-msgstr "Lösenordsskyddad"
+msgstr "Skyddad visning"
 
 #: zp-core/admin.php:118
 #, fuzzy
@@ -9035,7 +9037,7 @@ msgstr ""
 #: zp-core/admin_options/image.php:284
 #, fuzzy
 msgid "Maximum image size"
-msgstr "Välj bildstorlek"
+msgstr "Standard bildvisningsstorlek."
 
 #: zp-core/admin_options/image.php:292
 #, fuzzy
@@ -9212,7 +9214,7 @@ msgstr ""
 #: zp-core/admin_options/image.php:441
 #, fuzzy, php-format
 msgid "%s thumbnails"
-msgstr "Beskär tumnaglar:"
+msgstr "Albumtumnaglar"
 
 #: zp-core/admin_options/image.php:452
 #, fuzzy
@@ -9338,7 +9340,7 @@ msgstr ""
 #: zp-core/admin_options/image.php:537
 #, fuzzy
 msgid "Protect image cache"
-msgstr "Cacha originalbilden"
+msgstr "Bildcache rensat."
 
 #: zp-core/admin_options/image.php:546
 #, fuzzy
@@ -9408,7 +9410,7 @@ msgstr "Cacha originalbilden"
 #, fuzzy
 #| msgid "password:"
 msgid "password"
-msgstr "Lösenord"
+msgstr "Lösenord:"
 
 #: zp-core/admin_options/image.php:665
 #, fuzzy
@@ -10078,7 +10080,7 @@ msgstr ""
 #: zp-core/admin_options/security.php:176
 #, fuzzy, php-format
 msgid "Authentication authority: <strong>%s</strong>"
-msgstr "CAPTCHAskapare: <strong>%s</strong>"
+msgstr "E-Post<strong>%s</strong>:"
 
 #: zp-core/admin_options/theme.php:212
 #, php-format
@@ -10100,7 +10102,7 @@ msgstr "Visa tema för:"
 #: zp-core/admin_options/theme.php:525 zp-core/admin_options/theme.php:526
 #, fuzzy
 msgid "Revert to default"
-msgstr "Standard quota"
+msgstr "Standard rättigheter"
 
 #: zp-core/admin_options/theme.php:249
 #, fuzzy
@@ -10126,7 +10128,7 @@ msgstr ""
 #: zp-core/admin_options/theme.php:262 zp-core/admin_options/theme.php:302
 #, fuzzy
 msgid "thumbnails per row"
-msgstr "Beskär tumnaglar:"
+msgstr "Albumtumnaglar"
 
 #: zp-core/admin_options/theme.php:271 zp-core/admin_options/theme.php:311
 #, fuzzy
@@ -10484,7 +10486,7 @@ msgstr "Datum:"
 #: zp-core/class-image.php:169
 #, fuzzy
 msgid "Time Created"
-msgstr "Tidskompensation (Timmar):"
+msgstr "Originaltid för skapande"
 
 #: zp-core/class-image.php:170
 msgid "Digital Creation Date"
@@ -10786,7 +10788,7 @@ msgstr "10 sek"
 #: zp-core/exif/exifTranslations.php:25
 #, fuzzy
 msgid "Normal (0 deg)"
-msgstr "Normal Bild"
+msgstr "Horizontal (normal"
 
 #: zp-core/exif/exifTranslations.php:26
 msgid "1st curtain sync"
@@ -12735,7 +12737,7 @@ msgstr ""
 #: zp-core/lib-auth.php:97
 #, fuzzy
 msgid "Password hash algorithm"
-msgstr "Lösenord"
+msgstr "Lösenord:"
 
 #: zp-core/lib-auth.php:100
 #, fuzzy, php-format
@@ -13192,7 +13194,7 @@ msgstr "Uppdatera metadata för albumet %s"
 #: zp-core/lib-auth.php:1009 zp-core/lib-auth.php:1154
 #, fuzzy
 msgid "Return"
-msgstr "Stoppa och återvänd till album eller bildsidan"
+msgstr "du bör returneras automatiskt. Om inte, tryck:"
 
 #: zp-core/lib-auth.php:1019
 #, fuzzy
@@ -13242,7 +13244,7 @@ msgstr "Auto Focus God"
 #: zp-core/lib-auth.php:1228
 #, fuzzy
 msgid "password strength strong"
-msgstr "Lösenord"
+msgstr "Lösenord:"
 
 #: zp-core/lib-auth.php:1233
 #, fuzzy
@@ -13599,7 +13601,7 @@ msgstr "Sida: %s"
 #: zp-core/pluginDoc.php:137
 #, fuzzy
 msgid "Plugin usage information"
-msgstr "Installationsinformation"
+msgstr "Insticksmodul"
 
 #: zp-core/pluginDoc.php:138
 #, fuzzy, php-format
@@ -13638,7 +13640,7 @@ msgstr "Den <code>db_software</code> specifikation är inte giltig."
 #: zp-core/reconfigure.php:107
 #, fuzzy
 msgid "The database connection failed."
-msgstr "Registrering misslyckades."
+msgstr "Installation misslyckades."
 
 #: zp-core/reconfigure.php:229
 msgid "ZenPhoto20 has detected a change in your installation."
@@ -13821,7 +13823,7 @@ msgstr "Cookietest misslyckades"
 #: zp-core/setup/index.php:409
 #, fuzzy
 msgid "Post of Database credentials"
-msgstr "Uppdatera databasen"
+msgstr "databasen ansluten"
 
 #: zp-core/setup/index.php:413
 #, fuzzy
@@ -13892,7 +13894,7 @@ msgstr "<em>%s</em> inte funnen"
 #: zp-core/setup/index.php:553
 #, fuzzy, php-format
 msgid "<em>%s</em> security [is compromised]"
-msgstr "Kategori <em>%s</em> tillagd"
+msgstr "Alternativ för <em>%s</em>"
 
 #: zp-core/setup/index.php:553
 #, fuzzy, php-format
@@ -14047,7 +14049,7 @@ msgstr "Du måste inaktivera <code>magic_quotes_sybase</code> ."
 #: zp-core/setup/index.php:635
 #, fuzzy
 msgid "PHP <code>display_errors</code>"
-msgstr "PHP <code>setlocale()</code> misslyckades"
+msgstr "PHP <code>Safe Mode</code>"
 
 #: zp-core/setup/index.php:635
 #, fuzzy, php-format
@@ -14276,7 +14278,7 @@ msgstr ""
 #: zp-core/setup/index.php:735
 #, fuzzy, php-format
 msgid "<em>%1$s</em> file"
-msgstr "%1$s <em>%2$s</em> tillagd"
+msgstr "<em>%1$s</em>-mappen%2$s"
 
 #: zp-core/setup/index.php:735
 #, fuzzy, php-format
@@ -14445,17 +14447,17 @@ msgstr ""
 #: zp-core/setup/index.php:927
 #, fuzzy, php-format
 msgid "PHP <code>%s</code> support"
-msgstr "PHP <code>gettext()</code> stöd [saknas]"
+msgstr "Grafikstöd: <code>%s</code>"
 
 #: zp-core/setup/index.php:933
 #, fuzzy, php-format
 msgid "PHP <code>%s</code> support [is not installed]"
-msgstr "PHP <code>gettext()</code> stöd [saknas]"
+msgstr "Grafikstöd: <code>%s</code>"
 
 #: zp-core/setup/index.php:943
 #, fuzzy
 msgid "No database selected"
-msgstr "*ingen grupp vald"
+msgstr "*ingen logo vald"
 
 #: zp-core/setup/index.php:955
 #, fuzzy, php-format
@@ -14982,7 +14984,7 @@ msgstr "mod rewrite"
 #: zp-core/setup/index.php:1520
 #, fuzzy
 msgid "Rewrite rules updated [not updated]"
-msgstr "Filuppdatering lyckades"
+msgstr "Menypost uppdaterad!"
 
 #: zp-core/setup/index.php:1520
 #, fuzzy
@@ -15316,7 +15318,7 @@ msgstr "<em>%1$s</em>-mappen%2$s"
 #: zp-core/setup/setup-functions.php:360 zp-core/setup/setup-functions.php:374
 #, fuzzy
 msgid "change the definition"
-msgstr "Ändringsfrekvens - album"
+msgstr "Visa Versionsändringar"
 
 #: zp-core/setup/setup-functions.php:360 zp-core/setup/setup-functions.php:374
 #, fuzzy
@@ -15554,7 +15556,7 @@ msgstr ""
 #: zp-core/setup/setup-sqlform.php:49
 #, fuzzy
 msgid "Database engine"
-msgstr "Uppdatera databasen"
+msgstr "Databaslösenord"
 
 #: zp-core/setup/setup-sqlform.php:66
 #, fuzzy, php-format
@@ -15771,7 +15773,7 @@ msgstr "Albumtumnaglar"
 #: zp-core/zp-extensions/zenpage/template-functions.php:1615
 #, fuzzy
 msgid "Return to search"
-msgstr "Tillbaka till %s"
+msgstr "Sök"
 
 #: zp-core/template-functions.php:1301
 #: zp-core/zp-extensions/zenpage/template-functions.php:1618
@@ -16618,7 +16620,7 @@ msgstr "Den topp %d åtkomst visas."
 #: zp-core/zp-extensions/accessThreshold.php:65
 #, fuzzy
 msgid "Clear list"
-msgstr "Sidlista"
+msgstr "Subalbum-översikt"
 
 #: zp-core/zp-extensions/accessThreshold.php:67
 #, fuzzy
@@ -17018,7 +17020,7 @@ msgstr "Visa eller göm Google Maps."
 #: zp-core/zp-extensions/zenpage/admin-edit.php:105
 #, fuzzy
 msgid "add"
-msgstr "Lägg till fler uppladdningsväljare"
+msgstr "Lägg till Menyposter"
 
 #: zp-core/zp-extensions/cacheManager.php:260
 #: zp-core/zp-extensions/galleryArticles.php:80
@@ -17034,7 +17036,7 @@ msgstr "slide X"
 #: zp-core/zp-extensions/cacheManager.php:262
 #, fuzzy
 msgid "Crop Y axis"
-msgstr "Beskär"
+msgstr "Beskär = "
 
 #: zp-core/zp-extensions/cacheManager.php:278
 msgid "Watermark"
@@ -17298,7 +17300,7 @@ msgstr "Album: %s"
 #: zp-core/zp-extensions/cacheManager/functions.php:66
 #, fuzzy, php-format
 msgid "%1$s: %2$s"
-msgstr "<code>zenpageAlbumImage()</code> hittade inte bilden %1$s:%2$s"
+msgstr "Redigera album: <em>%1$s%2$s</em>"
 
 #: zp-core/zp-extensions/class-AnyFile.php:18
 #, fuzzy
@@ -17724,13 +17726,13 @@ msgstr "PHP <code>setlocale()</code> misslyckades"
 #: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:29
 #, fuzzy
 msgid "Site clones"
-msgstr "Klicka här för att registrera dig."
+msgstr "Titel för webbplatsen."
 
 #: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:41
 #, fuzzy
 #| msgid "Visible items"
 msgid "Visit the site."
-msgstr "Klicka här för att registrera dig."
+msgstr "Titel för webbplatsen."
 
 #: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:45
 #, fuzzy
@@ -17767,7 +17769,7 @@ msgstr "Installationen kunde inte skapa följande undermappar:<br />%s"
 #: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:171
 #, fuzzy
 msgid "Select the destination folder:"
-msgstr "Byt namn på mapp"
+msgstr "med mappnamnet:"
 
 #: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:198
 #, fuzzy
@@ -19062,7 +19064,7 @@ msgstr "Tilläggsfunktioner"
 #: zp-core/zp-extensions/deprecated-functions/admin_tab.php:39
 #, fuzzy
 msgid "There are no deprecated functions at this time."
-msgstr "Tidszon:"
+msgstr "Datum"
 
 #: zp-core/zp-extensions/deprecated-functions/admin_tab.php:45
 #, fuzzy
@@ -19122,7 +19124,7 @@ msgstr ""
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:74
 #, fuzzy
 msgid "Use getAllTagsUnique()"
-msgstr "Teckensnitt för CAPTCHA-tecken."
+msgstr "Använd standard kontakt-sida"
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:124
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:134
@@ -19408,7 +19410,7 @@ msgstr ""
 #: zp-core/zp-extensions/dynamic-locale.php:216
 #, fuzzy
 msgid "Use flags"
-msgstr "Teckensnitt för CAPTCHA-tecken."
+msgstr "Använd standard kontakt-sida"
 
 #: zp-core/zp-extensions/dynamic-locale.php:218
 #, fuzzy
@@ -19521,7 +19523,7 @@ msgstr "Tredjeparts insticksmoduler"
 #: zp-core/zp-extensions/elFinder/php/connector_zp.php:293
 #, fuzzy, php-format
 msgid "Data (%s)"
-msgstr "Anpassade data:"
+msgstr "Anpassade data"
 
 #: zp-core/zp-extensions/elFinder/php/connector_zp.php:307
 #, fuzzy, php-format
@@ -19662,7 +19664,7 @@ msgstr ""
 #: zp-core/zp-extensions/externalFeed.php:82
 #, fuzzy
 msgid "Size of image feed images:"
-msgstr "Välj bildstorlek"
+msgstr "Standard bildvisningsstorlek."
 
 #: zp-core/zp-extensions/externalFeed.php:83 zp-core/zp-extensions/rss.php:62
 #, fuzzy
@@ -19888,7 +19890,7 @@ msgstr "Länktext"
 #: zp-core/zp-extensions/favoritesHandler.php:108
 #, fuzzy
 msgid "The text for the link to the favorites page."
-msgstr "Text för länken till hela artikeln."
+msgstr "Ny länktext för meddelande"
 
 #: zp-core/zp-extensions/favoritesHandler.php:109
 #, fuzzy
@@ -19898,7 +19900,7 @@ msgstr "Sätter alla betyg till ej betygsatt."
 #: zp-core/zp-extensions/favoritesHandler.php:113
 #, fuzzy
 msgid "Add button"
-msgstr "Lägg till sida"
+msgstr "Lägg till kommentar"
 
 #: zp-core/zp-extensions/favoritesHandler.php:116
 #, fuzzy
@@ -19936,7 +19938,7 @@ msgstr ""
 #: zp-core/zp-extensions/favoritesHandler.php:273
 #, fuzzy
 msgid "Users watching:"
-msgstr "Tilldela användare"
+msgstr "Bannlysta användare"
 
 #: zp-core/zp-extensions/favoritesHandler.php:282
 #, fuzzy
@@ -20187,7 +20189,7 @@ msgstr "Overlay ikoner över miniatyrerna för att indikera statusen för bilden
 #: zp-core/zp-extensions/flag_thumbnail.php:68
 #, fuzzy
 msgid "Criteria"
-msgstr "Inga bilder stämmer in på kriteriet."
+msgstr "Skriv sökord."
 
 #: zp-core/zp-extensions/flag_thumbnail.php:70
 #: zp-core/zp-extensions/sitemap-extended.php:90
@@ -20242,7 +20244,7 @@ msgstr "Miniatyrer för bilder som inte <em>publiceras</em> markeras."
 #: zp-core/zp-extensions/flag_thumbnail.php:91
 #, fuzzy
 msgid "Protected"
-msgstr "Detta album är lösenordsskyddat!"
+msgstr "Detta album är lösenordsskyddat."
 
 #: zp-core/zp-extensions/flag_thumbnail.php:93
 #, fuzzy
@@ -20305,7 +20307,7 @@ msgstr "Texten flagga för <em>skyddade</em> bilder."
 #: zp-core/zp-extensions/flag_thumbnail.php:127
 #, fuzzy
 msgid "Use text"
-msgstr "Använd Colorbox"
+msgstr "Introduktionstext"
 
 #: zp-core/zp-extensions/flag_thumbnail.php:129
 #, fuzzy
@@ -20383,7 +20385,7 @@ msgstr ""
 #: zp-core/zp-extensions/galleryArticles.php:82
 #, fuzzy
 msgid "Set the size the image will be displayed."
-msgstr "Välj bildstorlek"
+msgstr "Standard bildvisningsstorlek."
 
 #: zp-core/zp-extensions/galleryArticles.php:83
 #, fuzzy
@@ -20407,7 +20409,7 @@ msgstr "Välj en kategori för de genererade artiklarna"
 #: zp-core/zp-extensions/galleryArticles.php:90
 #, fuzzy
 msgid "Use album folder"
-msgstr "Byt namn på mapp"
+msgstr "med mappnamnet:"
 
 #: zp-core/zp-extensions/galleryArticles.php:92
 #, fuzzy
@@ -20894,7 +20896,7 @@ msgstr ""
 #: zp-core/zp-extensions/html_meta_tags.php:116
 #, fuzzy
 msgid "Twitter name"
-msgstr "Albumnamn:"
+msgstr "med mappnamnet:"
 
 #: zp-core/zp-extensions/html_meta_tags.php:117
 #, fuzzy
@@ -20949,7 +20951,7 @@ msgstr ""
 #: zp-core/zp-extensions/sitemap-extended.php:180
 #, fuzzy
 msgid "Use subdomains"
-msgstr "Teckensnitt för CAPTCHA-tecken."
+msgstr "Använd standard kontakt-sida"
 
 #: zp-core/zp-extensions/http_auth.php:50
 #, fuzzy
@@ -21154,7 +21156,7 @@ msgstr "Verktyg för att blockera hackare tillgång till din webbplats."
 #: zp-core/zp-extensions/ipBlocker.php:79
 #, fuzzy
 msgid "Allow"
-msgstr "Tillåt ZIP-filer"
+msgstr "Tillåt privata meddelanden"
 
 #: zp-core/zp-extensions/ipBlocker.php:79
 #, fuzzy
@@ -21232,7 +21234,7 @@ msgstr "IP-lista spänner kan inte hanteras med plugin inaktiverad"
 #: zp-core/zp-extensions/ipBlocker.php:169
 #, fuzzy
 msgid "clear list"
-msgstr "Sidlista"
+msgstr "Subalbum-översikt"
 
 #: zp-core/zp-extensions/ipBlocker.php:192
 #, fuzzy
@@ -21422,7 +21424,7 @@ msgstr "Möjliggör direkt Filhämtning (endast spellistor)."
 #: zp-core/zp-extensions/jplayer.php:142
 #, fuzzy
 msgid "Player size"
-msgstr "Standardstorlek"
+msgstr "Bildstorlek"
 
 #: zp-core/zp-extensions/jplayer.php:144
 #, fuzzy
@@ -22441,7 +22443,7 @@ msgstr ""
 #: zp-core/zp-extensions/optionalObjectFields.php:128
 #, fuzzy
 msgid "Change owner"
-msgstr "Ändringsfrekvens - album"
+msgstr "Visa Versionsändringar"
 
 #: zp-core/zp-extensions/optionalObjectFields.php:104
 #: zp-core/zp-extensions/optionalObjectFields.php:220
@@ -22516,7 +22518,7 @@ msgstr "Kommentar kunde ej anges!"
 #: zp-core/zp-extensions/optionalObjectFields.php:567
 #, fuzzy
 msgid "remove tags"
-msgstr "Inga taggar att importera."
+msgstr "Populära Taggar:"
 
 #: zp-core/zp-extensions/optionalObjectFields.php:568
 #, fuzzy
@@ -22526,7 +22528,7 @@ msgstr "Avbryt"
 #: zp-core/zp-extensions/optionalObjectFields.php:571
 #, fuzzy
 msgid "Add"
-msgstr "Lägg till fler uppladdningsväljare"
+msgstr "Lägg till Menyposter"
 
 #: zp-core/zp-extensions/paged_thumbs_nav.php:11
 #, fuzzy
@@ -22725,7 +22727,7 @@ msgstr "Publicera innehåll"
 #: zp-core/zp-extensions/publishContent/publishContent.php:27
 #, fuzzy
 msgid "Click to show content"
-msgstr "Visa"
+msgstr "Publicera innehåll"
 
 #: zp-core/zp-extensions/publishContent/publishContent.php:32
 #, fuzzy
@@ -22785,7 +22787,7 @@ msgstr "Genomför ovanstående ändringar."
 #: zp-core/zp-extensions/publishContent/publishContent.php:281
 #, fuzzy
 msgid "Unpublished state propagated"
-msgstr "Röstning"
+msgstr "Provins/Stat"
 
 #: zp-core/zp-extensions/publishContent/publishContent.php:288
 #, fuzzy
@@ -22815,7 +22817,7 @@ msgstr "Inga opublicerade album."
 #: zp-core/zp-extensions/publishContent/publishContent.php:365
 #, fuzzy
 msgid "Images not published"
-msgstr "Publicerad/Opublicerad/Schemalagd för publicering"
+msgstr "Publicerat/Opublicerat"
 
 #: zp-core/zp-extensions/publishContent/publishContent.php:370
 #, php-format
@@ -23306,7 +23308,7 @@ msgstr ""
 #, fuzzy
 #| msgid "Allow search"
 msgid "Allow zero"
-msgstr "Tillåt ZIP-filer"
+msgstr "Tillåt privata meddelanden"
 
 #: zp-core/zp-extensions/rating.php:127
 #, fuzzy
@@ -23617,17 +23619,17 @@ msgstr "Du måste ange en e-postadress"
 #: zp-core/zp-extensions/register_user.php:264
 #, fuzzy
 msgid "You must supply the city field."
-msgstr "Du måste ange en adress till en webbplats."
+msgstr "Du måste ange en e-postadress"
 
 #: zp-core/zp-extensions/register_user.php:268
 #, fuzzy
 msgid "You must supply the state field."
-msgstr "Du måste ange en adress till en webbplats."
+msgstr "Du måste ange en e-postadress"
 
 #: zp-core/zp-extensions/register_user.php:272
 #, fuzzy
 msgid "You must supply the country field."
-msgstr "Du måste ange en e-postadress"
+msgstr "Du måste ange en adress till en webbplats."
 
 #: zp-core/zp-extensions/register_user.php:276
 #, fuzzy
@@ -23791,7 +23793,7 @@ msgstr ""
 #: zp-core/zp-extensions/rewriteTokens.php:65
 #, fuzzy
 msgid "rewriteTokens restored to default"
-msgstr "Standard quota"
+msgstr "Standard rättigheter"
 
 #: zp-core/zp-extensions/rewriteTokens.php:80
 #, fuzzy, php-format
@@ -23830,7 +23832,7 @@ msgstr "Rewrite-tokens kan inte vara tomt."
 #: zp-core/zp-extensions/rewriteTokens.php:165
 #, fuzzy, php-format
 msgid "Link for <em>%s</em> rule."
-msgstr "Kategori <em>%s</em> tillagd"
+msgstr "<em>%s</em> finns redan."
 
 #: zp-core/zp-extensions/rewriteTokens.php:189
 #, fuzzy
@@ -23896,7 +23898,7 @@ msgstr "Storleken på RSS bild foder bilder:"
 #: zp-core/zp-extensions/rss.php:59
 #, fuzzy
 msgid "Album image size"
-msgstr "Välj bildstorlek"
+msgstr "Standard bildvisningsstorlek."
 
 #: zp-core/zp-extensions/rss.php:61
 #, fuzzy
@@ -24247,7 +24249,7 @@ msgstr "Cookietest lyckades"
 #: zp-core/zp-extensions/security-logger.php:138
 #, fuzzy
 msgid "Request add user"
-msgstr "Lägg till sida"
+msgstr "Lägg till kommentar"
 
 #: zp-core/zp-extensions/security-logger.php:141
 #, fuzzy
@@ -24355,7 +24357,7 @@ msgstr[1] "Show %u albumnivåer"
 #: zp-core/zp-extensions/seo_cleanup/admin_tab.php:150
 #, fuzzy
 msgid "No albums cleaned."
-msgstr "Publicera album"
+msgstr "Album-Index"
 
 #: zp-core/zp-extensions/seo_cleanup/admin_tab.php:157
 #, fuzzy, php-format
@@ -24538,7 +24540,7 @@ msgstr "Cookietest lyckades"
 #: zp-core/zp-extensions/site_upgrade.php:140
 #, fuzzy
 msgid "The site is opened"
-msgstr "Klicka här för att registrera dig."
+msgstr "Titel för webbplatsen."
 
 #: zp-core/zp-extensions/site_upgrade.php:163
 #, fuzzy
@@ -24611,7 +24613,7 @@ msgstr "<strong><em>%s</em></strong> genomgår en uppgradering"
 #: zp-core/zp-extensions/site_upgrade.php:255
 #, fuzzy
 msgid "Please return later"
-msgstr "Stoppa och återvänd till album eller bildsidan"
+msgstr "du bör returneras automatiskt. Om inte, tryck:"
 
 #: zp-core/zp-extensions/site_upgrade.php:263
 #, fuzzy, php-format
@@ -25488,7 +25490,7 @@ msgstr "Underlättar tilldela unika taggar till relaterade objekt."
 #: zp-core/zp-extensions/tagFromSearch.php:28
 #, fuzzy
 msgid "Tags only searches"
-msgstr "Inga taggar att importera."
+msgstr "Populära Taggar:"
 
 #: zp-core/zp-extensions/tagFromSearch.php:29
 #, fuzzy
@@ -25700,7 +25702,7 @@ msgstr ""
 #: zp-core/zp-extensions/themeSwitcher.php:74
 #, fuzzy
 msgid "Theme list"
-msgstr "Sidlista"
+msgstr "Subalbum-översikt"
 
 #: zp-core/zp-extensions/themeSwitcher.php:77
 #, fuzzy
@@ -25800,7 +25802,7 @@ msgstr ""
 #: zp-core/zp-extensions/tinymce.php:59
 #, fuzzy
 msgid "Text editor text direction"
-msgstr "Text för föregående tumnaglar."
+msgstr "Texten för temalogotypen"
 
 #: zp-core/zp-extensions/tinymce.php:61
 #, fuzzy
@@ -26161,7 +26163,7 @@ msgstr "Nytt albumnamn?"
 #: zp-core/zp-extensions/tweet_news.php:356
 #, fuzzy
 msgid "Tweet News Errors:"
-msgstr "Galleri och nyheter"
+msgstr "Nyhetsartiklar"
 
 #: zp-core/zp-extensions/tweet_news.php:387
 #, fuzzy
@@ -26278,7 +26280,7 @@ msgstr "jQuery uploader kräver PHP 5.3 eller större."
 #: zp-core/zp-extensions/uploader_jQuery/upload_form.php:110
 #, fuzzy
 msgid "Add files..."
-msgstr "Lägg till sida"
+msgstr "Lägg till kommentar"
 
 #: zp-core/zp-extensions/uploader_jQuery/upload_form.php:114
 #, fuzzy
@@ -27379,7 +27381,7 @@ msgstr "Återställ Träffräknare"
 #, fuzzy
 #| msgid "Delete category"
 msgid "delete category"
-msgstr "Radera kategori"
+msgstr "Radera Kategori"
 
 #: zp-core/zp-extensions/zenpage/admin-edit.php:56
 #, fuzzy, php-format
@@ -27408,7 +27410,7 @@ msgstr "newCategory"
 #: zp-core/zp-extensions/zenpage/admin-pages.php:135
 #, fuzzy
 msgid "New Page"
-msgstr "Ny import"
+msgstr "Nytt underalbum"
 
 #: zp-core/zp-extensions/zenpage/admin-edit.php:215
 #, fuzzy
@@ -27635,7 +27637,7 @@ msgstr "Tillbaka till toppen"
 #: zp-core/zp-extensions/zenpage/admin-edit.php:643
 #, fuzzy, php-format
 msgid "Are you sure you want to delete this %s?"
-msgstr "Är det säkert att du vill radera denna användare?"
+msgstr "Är det säkert att du vill radera hela albumet?"
 
 #: zp-core/zp-extensions/zenpage/admin-edit.php:649
 #, fuzzy, php-format
@@ -27812,7 +27814,7 @@ msgstr "Artikeln <em>%s</em> uppdaterad"
 #: zp-core/zp-extensions/zenpage/admin-functions.php:527
 #, fuzzy
 msgid "All authors"
-msgstr "Alla inloggningsförsök"
+msgstr "Alla nyheter"
 
 #: zp-core/zp-extensions/zenpage/admin-functions.php:563
 msgid "View all months"
@@ -27884,12 +27886,12 @@ msgstr "Alla kategorier"
 #: zp-core/zp-extensions/zenpage/admin-functions.php:755
 #, fuzzy
 msgid "Un-categorized"
-msgstr "Propagera opublicerat läge"
+msgstr "Publicerat/Opublicerat"
 
 #: zp-core/zp-extensions/zenpage/admin-functions.php:804
 #, fuzzy, php-format
 msgid "%u per page"
-msgstr "Tumnaglar per sida"
+msgstr "Sida %u"
 
 #: zp-core/zp-extensions/zenpage/admin-functions.php:844
 #, fuzzy
@@ -28236,4014 +28238,3 @@ msgid ""
 msgstr ""
 "Storlek att använda om teckensnitt är skalbara (<em>TTF</em> och "
 "<em>Imagick</em> teckensnitt.)"
-
-#~ msgid "Subject<strong>%s</strong>:"
-#~ msgstr "Ämne<strong>%s</strong>:"
-
-#~ msgid "Message<strong>%s</strong>:"
-#~ msgstr "Meddelande<strong>%s</strong>:"
-
-#~ msgid ""
-#~ "Select an album to edit its description and data, or <a href=\"?"
-#~ "page=edit&amp;album=%s&amp;massedit\">mass-edit</a> all first level "
-#~ "subalbums."
-#~ msgstr ""
-#~ "Välj ett album för att redigera dess beskrivning och data, eller <a href="
-#~ "\"?page=edit&amp;album=%s&amp;massedit\">mass-redigera</a> alla "
-#~ "förstanivå underalbum."
-
-#~ msgid "Title:"
-#~ msgstr "Titel:"
-
-#~ msgid "Description:"
-#~ msgstr "Beskrivning:"
-
-#~ msgid "Metadata:"
-#~ msgstr "Metadata:"
-
-#~ msgid "Edit Gallery"
-#~ msgstr "Redigera galleri"
-
-#~ msgid ""
-#~ "Select an album to edit its description and data, or <a href=\"?"
-#~ "page=edit&amp;massedit\">mass-edit</a> all gallery level albums."
-#~ msgstr ""
-#~ "Välj ett album för att redigera dess beskrivning och data, eller <a href="
-#~ "\"?page=edit&amp;massedit\">mass-redigera</a> alla album på gallerinivå."
-
-#, fuzzy
-#~ msgid "You have unsaved changes!"
-#~ msgstr "Du har osparade ändringar!"
-
-#, fuzzy
-#~ msgid "Are you sure you want to leave this page?"
-#~ msgstr "﻿Är du säker på att du vill lämna denna sida?"
-
-#, fuzzy
-#~ msgid "Leave"
-#~ msgstr "Lämna"
-
-#, fuzzy
-#~ msgid "Stay"
-#~ msgstr "Stay"
-
-#~ msgid "Has Password"
-#~ msgstr "Har lösenord"
-
-#~ msgid "Password protected"
-#~ msgstr "Lösenordsskyddad"
-
-#~ msgid "View logs:"
-#~ msgstr "Visa loggar:"
-
-#, fuzzy
-#~ msgid "Cookies:"
-#~ msgstr "Cookies"
-
-#, fuzzy
-#~ msgid "Path"
-#~ msgstr "Sökväg"
-
-#~ msgid "Gallery title:"
-#~ msgstr "Gallerinamn:"
-
-#~ msgid "Website title:"
-#~ msgstr "Webbplatsens titel:"
-
-#, fuzzy
-#~ msgid ""
-#~ "<a onclick=\"toggle('albumpub');\" >Details</a> for <em>publish albums by "
-#~ "default</em>"
-#~ msgstr ""
-#~ "<a onclick=\"toggle('albumpub');\">Detaljer</a> för <em>publicera album "
-#~ "som standard</em>"
-
-#, fuzzy
-#~ msgid ""
-#~ "<a onclick=\"toggle('imagepub');\" >Details</a> for <em>publish images by "
-#~ "default</em>"
-#~ msgstr ""
-#~ "<a onclick=\"toggle('imagepub');\">Detaljer</a> för <em>publicera bilder "
-#~ "som standard</em>"
-
-#, fuzzy
-#~ msgid ""
-#~ "<a onclick=\"toggle('albumdate');\" >Details</a> for <em>use latest image "
-#~ "date as album date</em>"
-#~ msgstr ""
-#~ "<a onclick=\"toggle('albumdate');\">Detaljer</a> för <em>använder senaste "
-#~ "bild datum som album datum</em>"
-
-#, fuzzy
-#~ msgid ""
-#~ "<a onclick=\"toggle('visualthumb');\" >Details</a> for <em>visual thumb "
-#~ "selection</em>"
-#~ msgstr ""
-#~ "<a onclick=\"toggle('visualthumb');\">Detaljer</a> för <em>visuell tummen "
-#~ "urval</em>"
-
-#, fuzzy
-#~ msgid ""
-#~ "<a onclick=\"toggle('multithumb');\" >Details</a> for <em>subalbum thumb "
-#~ "selection</em>"
-#~ msgstr ""
-#~ "<a onclick=\"toggle('multithumb');\">Detaljer</a> för <em>subalbum tummen "
-#~ "urval</em>"
-
-#~ msgid "Codeblocks:"
-#~ msgstr "Kodblock:"
-
-#~ msgid "user:"
-#~ msgstr "användare:"
-
-#~ msgid "<strong>Standard options</strong>"
-#~ msgstr "<strong>Standardinställningar</strong>"
-
-#~ msgid "Image size:"
-#~ msgstr "Bildstorlek:"
-
-#~ msgid "<strong>Custom theme options</strong>"
-#~ msgstr "<strong>Speciella tema inställningar</strong>"
-
-#~ msgid "Backup/Restore"
-#~ msgstr "Säkerhetskopiera/Återställ"
-
-#~ msgid "Backup and restore your gallery database."
-#~ msgstr "Säkerhetskopiera eller återställ din databas för galleriet."
-
-#, fuzzy
-#~ msgid "Info"
-#~ msgstr "Wordpress databas-information"
-
-#, fuzzy
-#~ msgid ""
-#~ "Shows statistical graphs and info about your gallery’s images and albums."
-#~ msgstr ""
-#~ "Visar statistiska diagram och information om din gallery's bilder och "
-#~ "album."
-
-#, fuzzy
-#~ msgid "Statistics"
-#~ msgstr "Statistik för nyhetskategorier"
-
-#~ msgid "Back to the top 10 lists"
-#~ msgstr "Tillbaka till 10 i topp listan"
-
-#~ msgid "top"
-#~ msgstr "toppen"
-
-#~ msgid "Refresh the Database"
-#~ msgstr "Uppdatera databasen"
-
-#, fuzzy
-#~ msgid "Perform a garbage collection of the Database"
-#~ msgstr "Utföra en skräpinsamling av databasen"
-
-#~ msgid "Forces a refresh of the metadata for all images and albums."
-#~ msgstr "Framtvingar en uppdatering av metadatat för alla bilder och album."
-
-#, fuzzy
-#~ msgid ""
-#~ "The scripts for which BxSlider is enabled. {If themes require it they "
-#~ "might set this, otherwise you need to do it manually!}"
-#~ msgstr ""
-#~ "Skripten som BxSlider är aktiverad. {Om teman kräver det. de kan ställa "
-#~ "in detta, annars du måste göra det manuellt!}"
-
-#, fuzzy
-#~ msgid "Cache manager"
-#~ msgstr "Cache-hanteraren"
-
-#, fuzzy
-#~ msgid "<a href=\"%1$s\" target=\"_blank\">%2$s</a>"
-#~ msgstr "<a href=\"%1$s\" target=\"_blank\">%2$s</a>"
-
-#, fuzzy
-#~ msgid "404"
-#~ msgstr "Oops!!"
-
-#, fuzzy
-#~ msgid "EXIF"
-#~ msgstr "Exif"
-
-#, fuzzy
-#~ msgid "EXPLAIN_SELECTS"
-#~ msgstr "EXPLAIN_SELECTS"
-
-#, fuzzy
-#~ msgid "FILTERS"
-#~ msgstr "Filter"
-
-#, fuzzy
-#~ msgid "IMAGE"
-#~ msgstr "Bild"
-
-#, fuzzy
-#~ msgid "LOCALE"
-#~ msgstr "Språket %s stöds inte av din server."
-
-#, fuzzy
-#~ msgid "LOGIN"
-#~ msgstr "Användarnamn"
-
-#, fuzzy
-#~ msgid "PLUGINS"
-#~ msgstr "Insticksmoduler"
-
-#, fuzzy
-#~ msgid "Functions"
-#~ msgstr "Områden"
-
-#, fuzzy
-#~ msgid ""
-#~ "Send the <em>deprecated</em> notification message if the function name is "
-#~ "checked. Un-checking these boxes will allow you to continue using your "
-#~ "theme without warnings while you upgrade its implementation. Functions "
-#~ "flagged with an asterisk are class methods. Ones flagged with two "
-#~ "asterisks have deprecated parameters."
-#~ msgstr ""
-#~ "Skicka meddelandet <em>föråldrad</em> om funktionsnamnet är markerad. "
-#~ "Avmarkera rutorna gör att du kan fortsätta använda ditt tema utan "
-#~ "varningar medan du uppgradera dess genomförande. Funktioner flaggas med "
-#~ "en asterisk är klassmetoder. De flaggade med två asterisker har inaktuell "
-#~ "parametrar."
-
-#, fuzzy
-#~ msgid "Searches PHP scripts for use of deprecated functions."
-#~ msgstr "Söker PHP-skript för användning av föråldrade funktioner."
-
-#~ msgid "Check for update"
-#~ msgstr "Kontrollera uppdateringar"
-
-#, fuzzy
-#~ msgid "Deprecated"
-#~ msgstr "Avstånd"
-
-#, fuzzy
-#~ msgid "Counts of downloads"
-#~ msgstr "Antal nedladdningar"
-
-#, fuzzy
-#~ msgid "Keyword threshold"
-#~ msgstr "Nyckelord tröskel"
-
-#, fuzzy
-#~ msgid "Only keywords with at least this number of uses will be shown."
-#~ msgstr "Enda sökord med på minst detta antal användningar visas."
-
-#, fuzzy
-#~ msgid "Manage published state of content in your gallery."
-#~ msgstr "Hantera publicerade tillstånd av innehållet i ditt Galleri."
-
-#, fuzzy
-#~ msgid "Search statistics"
-#~ msgstr "Sökstatistik"
-
-#, fuzzy
-#~ msgid "Analyze searches"
-#~ msgstr "Analysera sökningar"
-
-#, fuzzy
-#~ msgid "Analysis"
-#~ msgstr "Analys"
-
-#, fuzzy
-#~ msgid "Seo"
-#~ msgstr "SEO"
-
-#, fuzzy
-#~ msgid "SEO Cleaner"
-#~ msgstr "SEO renare"
-
-#, fuzzy
-#~ msgid "Make file and folder names in the Gallery SEO friendly."
-#~ msgstr "Se fil-och mappnamn i Galleri SEO vänlig."
-
-#, fuzzy
-#~ msgid "Generate or purge sitemap cache files."
-#~ msgstr "Generera eller rensa cacheminnet webbplatskartfiler."
-
-#, fuzzy
-#~ msgid ""
-#~ "The scripts for which the cycle2 plugin is enabled. {If themes require it "
-#~ "they might set this, otherwise you need to do it manually!}"
-#~ msgstr ""
-#~ "Skript som cycle2 plugin är aktiverad. {Om teman kräver det. de kan "
-#~ "ställa in detta, annars du måste göra det manuellt!}"
-
-#, fuzzy
-#~ msgid ""
-#~ "There are no other registered users who have provided an e-mail address."
-#~ msgstr ""
-#~ "Det finns inga andra registrerade användare som har lämnat en e-"
-#~ "postadress."
-
-#~ msgid ""
-#~ "A tool to send e-mails to all registered users who have provided an e-"
-#~ "mail address."
-#~ msgstr ""
-#~ "Ett verktyg för att skicka e-post till alla registrerade användare som "
-#~ "angett e-postadress."
-
-#, fuzzy
-#~ msgid "Mailing"
-#~ msgstr "Post"
-
-#~ msgid "To:"
-#~ msgstr "Till:"
-
-#~ msgid "Send another mail"
-#~ msgstr "Skicka ytterligare e-post"
-
-#~ msgid "An importer for Wordpress posts and pages to Zenpage."
-#~ msgstr "En importerare för Wordpress inlägg och sidor till Zenpage."
-
-#~ msgid "TitleLink:"
-#~ msgstr "Titellänk:"
-
-#~ msgid "Content:"
-#~ msgstr "Innehåll:"
-
-#~ msgid ""
-#~ "<strong>Note:</strong> This option is valid only if you have the "
-#~ "<em>Gallery index page link</em> option set to \"gallery\". Of course the "
-#~ "<em>menu_manager</em> plugin must also be enabled."
-#~ msgstr ""
-#~ "<strong>Notera:</strong> Detta alternativ är endast giltig om du har satt "
-#~ "<em>Galleri-index länk</em> alternativet till \"gallery\". Givetvis måste "
-#~ "även <em>menu_manager</em> modulen vara aktiverad."
-
-#~ msgid "No album provided to sort."
-#~ msgstr "Inget album valt för sortering."
-
-#~ msgid " descending"
-#~ msgstr " Nedstigande"
-
-#~ msgid "Current sort: <em>%1$s%2$s</em>. "
-#~ msgstr "Nuvarande sortering: <em>%1$s%2$s</em>. "
-
-#~ msgid "Current sort: <em>%1$s%2$s</em>."
-#~ msgstr "Nuvarande sortering: <em>%1$s%2$s</em>. "
-
-#~ msgid "UTF8 image URIs"
-#~ msgstr "UTF8 bild URI"
-
-#, fuzzy
-#~ msgid ""
-#~ "If you are having problems with images whose names contain characters "
-#~ "with diacritical marks try changing the <em>UTF8 image URIs</em> setting."
-#~ msgstr ""
-#~ "Om du har problem med bilder vars namn innehåller tecken med accenter, "
-#~ "försök att ändra <em>UTF8 bild URI</em> inställningen."
-
-#~ msgid "Charset:"
-#~ msgstr "Teckenuppsättning:"
-
-#~ msgid ""
-#~ "The character encoding to use internally. Leave at <em>Unicode (UTF-8)</"
-#~ "em> if you are unsure."
-#~ msgstr ""
-#~ "Teckenkodning för intern användning. Låt vara <em>Unicode (UTF-8)</em> om "
-#~ "du är osäker."
-
-#~ msgid ""
-#~ "Character sets <span style=\"color:gray\">shown in gray</span> have no "
-#~ "character translation support."
-#~ msgstr ""
-#~ "Teckenuppsättning <span style=\"color:gray\">som visas med grått</span> "
-#~ "har ingen teckenöversättningssupport."
-
-#~ msgid "Gallery index page link:"
-#~ msgstr "Galleri-Index länk:"
-
-#, fuzzy
-#~ msgid ""
-#~ "If this option is not empty, the Gallery Index URL that would normally "
-#~ "link to the theme <code>index.php</code> script will instead link to this "
-#~ "script. This frees up the <code>index.php</code> script so that you can "
-#~ "create a customized <em>Home page</em> script. This option applies only "
-#~ "to the main theme for the <em>Gallery</em>."
-#~ msgstr ""
-#~ "Om denna är ifylld, länkas galleriets Indexadress till detta skript "
-#~ "istället för temats <code>index.php</code>. <code>index.php</code> "
-#~ "skriptet blir då tillgängligt för att skapa anpassat <em>Hem</"
-#~ "em>sidesskript. Detta alternativ gäller endast för <em>Galleriets</em> "
-#~ "huvudtema."
-
-#~ msgid ""
-#~ "Password reset request.<br />You may now set admin usernames and "
-#~ "passwords."
-#~ msgstr ""
-#~ "Lösenordsåterställning.<br/>Du kan nu konfigurera administratörens "
-#~ "användarnamn och lösenord."
-
-#~ msgid "<strong>%1$u</strong> Page"
-#~ msgid_plural "<strong>%1$u</strong> Pages"
-#~ msgstr[0] "<strong>%1$u</strong> Sida"
-#~ msgstr[1] "<strong>%1$u</strong> Sidor"
-
-#~ msgid "<strong>%1$u</strong> Page (%2$u un-published)"
-#~ msgid_plural "<strong>%1$u</strong> Pages (%2$u un-published)"
-#~ msgstr[0] "<strong>%1$u</strong> Sida (%2$u ej publicerad)"
-#~ msgstr[1] "<strong>%1$u</strong> Sidor  (%2$u ej publicerade)"
-
-#, fuzzy
-#~ msgid "<strong>%1$u</strong> News"
-#~ msgid_plural "<strong>%1$u</strong> News"
-#~ msgstr[0] "<strong>%1$u</strong> Nyhet"
-#~ msgstr[1] "%1$u Nyheter"
-
-#~ msgid "<strong>%1$u</strong> News (%2$u un-published)"
-#~ msgid_plural "<strong>%1$u</strong> News (%2$u un-published)"
-#~ msgstr[0] "<strong>%1$u</strong> Nyhet (%2$u ej publicerad)"
-#~ msgstr[1] "<strong>%1$u</strong> Nyheter (%2$u ej publicerade)"
-
-#~ msgid "<strong>%1$u</strong> Category"
-#~ msgid_plural "<strong>%1$u</strong> Categories"
-#~ msgstr[0] "<strong>%1$u</strong> Kategori"
-#~ msgstr[1] "<strong>%1$u</strong> Kategorier"
-
-#~ msgid "Location/Place"
-#~ msgstr "Ort/Plats"
-
-#, fuzzy
-#~ msgid "No supported databases"
-#~ msgstr "Anslut till databasen"
-
-#~ msgid "Request URI: [ <code>%s</code> ]"
-#~ msgstr "Efterfrågad URI: [ <code>%s</code> ]"
-
-#~ msgid "Cache: [<code>%s</code>]"
-#~ msgstr "Cache: [<code>%s</code>]"
-
-#~ msgid "Image: [<code>%s</code>]"
-#~ msgstr "Bild: [<code>%s</code>]"
-
-#, fuzzy
-#~ msgid "an unknown release"
-#~ msgstr "Okänt namn"
-
-#~ msgid ""
-#~ "Setting <em>mbstring.internal_encoding</em> to <strong>UTF-8</strong> in "
-#~ "your <em>php.ini</em> file is recommended to insure accented and multi-"
-#~ "byte characters function properly."
-#~ msgstr ""
-#~ "Det är rekommenderat att ändra <em>mbstring.internal_encoding</em>till "
-#~ "<strong>UTF-8</strong> i din <em>php.ini</em>-fil för att specialtecken "
-#~ "och multi-byte tecken ska visas korrekt."
-
-#~ msgid "About to create tables"
-#~ msgstr "På väg att skapa tabeller"
-
-#~ msgid "Begin table creation"
-#~ msgstr "Börja skapa tabeller"
-
-#, fuzzy
-#~ msgid "Query %1$s Failed. Error: %2$s"
-#~ msgstr "MySQL Query %1$s Misslyckades. Error: %2$s"
-
-#, fuzzy
-#~ msgid "Table creation failure:<br />Query: %1$s<br />Error: %2$s"
-#~ msgstr "Fel vid skapande av tabeller: %s"
-
-#, fuzzy
-#~ msgid "Query ( %s ) Success."
-#~ msgstr "MySQL Query ( %s ) Lyckades."
-
-#~ msgid "Begin table updates"
-#~ msgstr "Börja uppdatera tabeller"
-
-#~ msgid "Done with table create!"
-#~ msgstr "Färdig med att skapa tabeller!"
-
-#~ msgid "Done with table create with errors!"
-#~ msgstr "Skapandet av tabeller slutfördes med fel!"
-
-#~ msgid "Done with table update"
-#~ msgstr "Uppdatering av tabeller slutfördes!"
-
-#~ msgid "Done with table update with errors"
-#~ msgstr "Uppdatering av tabeller slutfördes med fel"
-
-#~ msgid "Previous Release was %s"
-#~ msgstr "Föregående Release var %s"
-
-#~ msgid "Database tables to update: %s"
-#~ msgstr "Databastabeller att uppdatera:  %s"
-
-#, fuzzy
-#~ msgid "If you haven not created the database yet, now would be a good time."
-#~ msgstr "Har du inte redan skapat databasen bör du göra detta nu."
-
-#~ msgid "Migrating lib-auth data version %1$s => version %2$s"
-#~ msgstr "Migrerar lib-auth data version %1$s => version %2$s"
-
-#, fuzzy
-#~ msgid "Copyright %1$u: %2$s"
-#~ msgstr "Copyright:"
-
-#~ msgid "Admin Toolbox"
-#~ msgstr "Adminverktyg"
-
-#, fuzzy
-#~ msgid "Clone"
-#~ msgstr "klona:"
-
-#, fuzzy
-#~ msgid "Plugin to generate file download lists."
-#~ msgstr "Markera för att aktivera ZIP-filsnedladdningar."
-
-#~ msgid "Map dimensions—width"
-#~ msgstr "Kartstorlek—bredd"
-
-#~ msgid "The default width of the map."
-#~ msgstr "Standardbredd för karta."
-
-#~ msgid "Map dimensions—height"
-#~ msgstr "Kartstorlek—höjd"
-
-#~ msgid "The default height of the map."
-#~ msgstr "Standardhöjd för karta."
-
-#~ msgid "Allows setting language locale through the URI."
-#~ msgstr "Tillåt språkinställning (locale) genom URI."
-
-#, fuzzy
-#~ msgid ""
-#~ "<strong>Note:</strong> This plugin is not activated for <em>back&#8209;"
-#~ "end</em> (administrative) URLs. However, once activated, the language is "
-#~ "remembered, even for the <em>back&#8209;end</em>."
-#~ msgstr ""
-#~ "<strong>Notera:</strong> Denna insticksmodul är inte aktiverad för "
-#~ "<em>back-end</em> (administrativa) URL:er. Om den är aktiverad kommer "
-#~ "dock språket att kommas ihåg, även i <em>back-end</em>."
-
-#~ msgid "<em>mod_rewrite</em> must be enabled for this plugin to function."
-#~ msgstr ""
-#~ "<em>mod_rewrite</em> måste vara aktiverad för att denna modul skall "
-#~ "fungera."
-
-#, fuzzy
-#~ msgid "The RSS feed is currently not available."
-#~ msgstr "Bilden är dold."
-
-#, fuzzy
-#~ msgid "Selector CSS"
-#~ msgstr "Välj"
-
-#~ msgid "Album:"
-#~ msgstr "Album:"
-
-#~ msgid "Album folder:"
-#~ msgstr "Albummapp:"
-
-#~ msgid "(Click on image to include)"
-#~ msgstr "(Klicka på bilden för att inkludera)"
-
-#, fuzzy
-#~ msgid "<em>Albumthumb</em>"
-#~ msgstr "<em>OCH</em>"
-
-#~ msgid "<strong>Note:</strong> This album does not contain any images."
-#~ msgstr "<strong>Notera:</strong> Detta album innehåller inga bilder."
-
-#~ msgid "(Click on article title to include a link)"
-#~ msgstr "(Klicka på en artikels titel för att infoga en länk)"
-
-#~ msgid "*Select*"
-#~ msgstr "*Välj*"
-
-#~ msgid "(only direct links!)"
-#~ msgstr "(endast direktlänkning!)"
-
-#~ msgid "*Select an album*"
-#~ msgstr "*Välj album*"
-
-#~ msgid "(select variant below)"
-#~ msgstr "(Välj variant nedan)"
-
-#~ msgid "What to include"
-#~ msgstr "Vad som inkluderas"
-
-#~ msgid "Custom text"
-#~ msgstr "Anpassad text"
-
-#~ msgid "Custom thumbnail"
-#~ msgstr "Anpassad tumnagel"
-
-#~ msgid "Custom size (un-cropped)"
-#~ msgstr "Anpassad storlek (obeskuren)"
-
-#, fuzzy
-#~ msgid "Full image"
-#~ msgstr "full bild"
-
-#, fuzzy
-#~ msgid "Title and description"
-#~ msgstr "Galleribeskrivning:"
-
-#, fuzzy
-#~ msgid "No description"
-#~ msgstr "(Ingen beskrivning...)"
-
-#, fuzzy
-#~ msgid "Show image description"
-#~ msgstr "CombiNews: Visa bildbeskrivning"
-
-#, fuzzy
-#~ msgid "Show album description"
-#~ msgstr "Albumbeskrivning:"
-
-#~ msgid "Link type"
-#~ msgstr "Länktyp"
-
-#~ msgid "Link to image"
-#~ msgstr "Länk till bild"
-
-#, fuzzy
-#~ msgid "Link to full image"
-#~ msgstr "Länk till bild"
-
-#~ msgid "Link to album"
-#~ msgstr "Länk till album"
-
-#~ msgid "No link"
-#~ msgstr "Ingen länk"
-
-#~ msgid "Text wrap"
-#~ msgstr "Radbyte text"
-
-#~ msgid "No wrap"
-#~ msgstr "Inget radbyte"
-
-#, fuzzy
-#~ msgid ""
-#~ "This provides access to your images and albums (select from the "
-#~ "<em>Zenphoto</em> dropdown) as well as pages, news articles and news "
-#~ "categories (select from the <em>Zenpage</em> dropdown) to easily include "
-#~ "them in your pages and articles."
-#~ msgstr ""
-#~ "Tillhandahåller tillgång till dina bilder och album (dropdown 'zenphoto') "
-#~ "såväl som sidor, nyhetsartiklar och nyhetskategorier (dropdown 'zenpage') "
-#~ "för att enkelt kunna inkludera dessa på dina sidor och artiklar. Du "
-#~ "behöver åtminstone 'Hantera alla album' eller 'Redigeringsrättigheter' "
-#~ "till specifika album för att kunna lägga till bilder."
-
-#, fuzzy
-#~ msgid ""
-#~ "Select <em>pages</em>, <em>articles</em> or <em>categories</em> to show a "
-#~ "list of these items. Click on a title to include a link. Hover of the "
-#~ "link to see an excerpt of the page or article. Un-published pages or "
-#~ "articles are marked with an “*” and protected with an “+”. There are no "
-#~ "further options."
-#~ msgstr ""
-#~ "Välj för att visa en lista av Zenpage sidor, artiklar eller kategorier. "
-#~ "Klicka på en titel för att inkludera en länk. Hovra ovanför länken för "
-#~ "att se en förhandsgranskning av sidan eller artikeln. Opublicerade sidor "
-#~ "eller artiklar är markerade med en '*'. Inga fler funktioner."
-
-#, fuzzy
-#~ msgid ""
-#~ "Select an album to include images from into your page or article. Click "
-#~ "on the image to include it. Un-published albums or images are marked with "
-#~ "an “*”. You can also click on the magnify glass icon to see a preview of "
-#~ "the item. The preview opens in a colorbox showing the frontend/theme "
-#~ "view. The first thumbnail is always the thumbnail of the selected album. "
-#~ "It is titled <em>Albumthumb</em> and appears on every thumbnail page."
-#~ msgstr ""
-#~ "Välj ett album att inkludera bilder från till din artikel eller sida. "
-#~ "Klicka på bilden för att inkludera den. Opublicerade album eller bilder "
-#~ "är markerade med en '*'. Du kan också klicka på förstoringsglaset för att "
-#~ "se en förhandsgranskning filen (Multimediafiler förhandsgranskas i "
-#~ "Flowplayer, oavsett om den insticksmodulen är aktiverad eller inte.) <br /"
-#~ ">Notera att det inte är möjligt att inkludera multimediafiler direkt som "
-#~ "storleksförändrad bild eller anpassad bild. Förutom detta, har du flera "
-#~ "alternativ för att inkludera och hur:"
-
-#, fuzzy
-#~ msgid "Options on what to include"
-#~ msgstr "Vad som inkluderas"
-
-#, fuzzy
-#~ msgid ""
-#~ "Include the image itself, only its title, the title of its album, or some "
-#~ "custom text."
-#~ msgstr ""
-#~ "Inkludera bilden, endast titeln, endast albumtiteln eller anpassad text."
-
-#, fuzzy
-#~ msgid ""
-#~ "The window does not close automatically so you can include several images "
-#~ "one after another."
-#~ msgstr ""
-#~ "Fönstret stängs inte automatisk vilket medgör att du kan inkludera flera "
-#~ "bilder efter varann."
-
-#, fuzzy
-#~ msgid "Custom size (un-cropped)."
-#~ msgstr "Anpassad storlek (obeskuren)"
-
-#~ msgid ""
-#~ "Select to link to the image page of the image, to the album the image is "
-#~ "in, no link at all or a custom URL."
-#~ msgstr ""
-#~ "Välj för att länka till bildsidan för bilden, till albumet som bilden "
-#~ "finns i, ingen länk eller en anpassad URL."
-
-#~ msgid ""
-#~ "Wrap the text right or left of the image or not at all. Note that "
-#~ "tinyZenpage adds a bit of CSS to the included image if you use text wrap. "
-#~ "So that you see immediate results to the text wrap it attaches some "
-#~ "inline CSS:"
-#~ msgstr ""
-#~ "Radbryt texten till höger eller vänster om bilden eller inte alls. Notera "
-#~ "att tinyZenpage lägger till lite CSS till den inkluderade bilden om du "
-#~ "använder radbrytning. För att du ska se omedelbart resultat så visas den "
-#~ "med CSS:"
-
-#~ msgid "left wrap: <em>style=\"float:right\"</em>"
-#~ msgstr "vänster radbrytning: <em>style=\"float:right\"</em>"
-
-#~ msgid "right wrap: <em>style=\"float: left\"</em>"
-#~ msgstr "höger radbrytning: <em>style=\"float: left\"</em>"
-
-#, fuzzy
-#~ msgid ""
-#~ "Also tinyZenpage attaches a default CSS class to the image (if image is "
-#~ "chosen) to be styled with your theme’s css. If you choose left or right "
-#~ "align “_left” or “_right” is appended:"
-#~ msgstr ""
-#~ "tinyZenpage lägger även till en standard CSS-klass till bilden (om en "
-#~ "bild är vald) för att styla den med ditt temas CSS:"
-
-#, fuzzy
-#~ msgid ""
-#~ "Default thumbnail: <em>zenpage_thumb</em> /<em>zenpage_thumb_left</em> /"
-#~ "<em>zenpage_thumb_right</em>"
-#~ msgstr ""
-#~ "Standard tumnagel: <em>zenpage_thumb_left</em> eller "
-#~ "<em>zenpage_thumb_right</em>"
-
-#, fuzzy
-#~ msgid ""
-#~ "Custom thumbnail: <em>zenpage_customthumb</em> or "
-#~ "<em>zenpage_customthumb_left</em>/<em>zenpage_customthumb_right</em>"
-#~ msgstr ""
-#~ "Anpassad tumnagel: <em>zenpage_customthumb_left</em> eller "
-#~ "<em>zenpage_customthumb_right</em>"
-
-#, fuzzy
-#~ msgid ""
-#~ "Sized image: <em>zenpage_sizedimage</em>/<em>zenpage_sizedimage_left</em>/"
-#~ "<em>zenpage_sizedimage_right</em>"
-#~ msgstr ""
-#~ "Storleksförändrad bild: <em>zenpage_sizedimage_left</em> eller "
-#~ "<em>zenpage_sizedimage_right</em>"
-
-#, fuzzy
-#~ msgid ""
-#~ "Custom image: <em>zenpage_customimage</em>/<em>zenpage_customimage_left</"
-#~ "em>/<em>zenpage_customimage_right</em>"
-#~ msgstr ""
-#~ "Anpassad bild: <em>zenpage_customimage_left</em> eller "
-#~ "<em>zenpage_customimage_right</em>"
-
-#, fuzzy
-#~ msgid ""
-#~ "An importer for <strong>Wordpress 3.x</strong> to the Zenpage CMS plugin "
-#~ "that imports the following:"
-#~ msgstr ""
-#~ "En importerare för <strong>Wordpress 2.9.x</strong> till Zenpage CMS "
-#~ "modul som importerar följande:"
-
-#, fuzzy
-#~ msgid ""
-#~ "Hint: If you need more space for your text use TinyMCE’s full screen mode "
-#~ "(Click the expend icon of editor’s control bar, near ZP icon)."
-#~ msgstr ""
-#~ "Vink: om du behöver mer plats for din text kan du använda TinyMCE's "
-#~ "fullskärmsläge (Klicka på den blå fyrkanten överst till höger i "
-#~ "redigerarens kontrollpanel)."
-
-#~ msgid "(<strong>%1$u</strong> page)"
-#~ msgid_plural "(<strong>%1$u</strong> pages)"
-#~ msgstr[0] "(<strong>%1$u</strong> sida)"
-#~ msgstr[1] "(<strong>%1$u</strong> sidor)"
-
-#~ msgid "(<strong>%1$u</strong> page, <strong>%2$u</strong> un-published)"
-#~ msgid_plural ""
-#~ "(<strong>%1$u</strong> pages, <strong>%2$u</strong> un-published)"
-#~ msgstr[0] "(<strong>%1$u</strong> sida, <strong>%2$u</strong> opublicerade)"
-#~ msgstr[1] ""
-#~ "(<strong>%1$u</strong> sidor, <strong>%2$u</strong> opublicerade)"
-
-#~ msgid "(<strong>%1$u</strong> news)"
-#~ msgid_plural "(<strong>%1$u</strong> news)"
-#~ msgstr[0] "(<strong>%1$u</strong> nyhet)"
-#~ msgstr[1] "(<strong>%1$u</strong> nyheter)"
-
-#~ msgid "(<strong>%1$u</strong> news, <strong>%2$u</strong> un-published)"
-#~ msgid_plural ""
-#~ "(<strong>%1$u</strong> news, <strong>%2$u</strong> un-published)"
-#~ msgstr[0] ""
-#~ "(<strong>%1$u</strong> nyhet, <strong>%2$u</strong> opublicerade)"
-#~ msgstr[1] ""
-#~ "(<strong>%1$u</strong> nyheter, <strong>%2$u</strong> opublicerade)"
-
-#~ msgid "(<strong>%1$u</strong> category)"
-#~ msgid_plural "(<strong>%1$u</strong> categories)"
-#~ msgstr[0] "<strong>%1$u</strong> kategori"
-#~ msgstr[1] "(<strong>%1$u</strong> kategorier)"
-
-#~ msgid "Show ZenPhoto Credit"
-#~ msgstr "ZenPhoto20 installation"
-
-#~ msgid "Auto, Continuous"
-#~ msgstr "Auto, Continuous"
-
-#~ msgid "Auto, Focus button"
-#~ msgstr "Auto, Focus-knapp"
-
-#~ msgid "Compulsory Flash, Return light detected"
-#~ msgstr "Fyllnads-blixt, Återvändande ljus detekterades"
-
-#~ msgid "Compulsory Flash, Return light not detected"
-#~ msgstr "Fyllnads-blixt, Återvändande ljus detekterades inte"
-
-#~ msgid "Flash, Auto-Mode"
-#~ msgstr "Blixt, Autoläge"
-
-#~ msgid "Flash, Auto-Mode, Return light detected"
-#~ msgstr "Blixt, Autoläge, Återvändande ljus detekterades"
-
-#~ msgid "Flash, Auto-Mode, Return light not detected"
-#~ msgstr "Blixt, Autoläge, Återvändande ljus detekterades inte"
-
-#~ msgid "Flash, strobe return light detected"
-#~ msgstr "Blixt, strobe return light detected"
-
-#~ msgid "Flash, strobe return light not detected"
-#~ msgstr "Blixt, Inget återvändande ljus detekterades"
-
-#~ msgid "Red Eye, Auto-Mode"
-#~ msgstr "Röda-ögon-reducering, Autoläge"
-
-#~ msgid "Red Eye, Auto-Mode, Return light detected"
-#~ msgstr "Röda-ögon-reducering, Autoläge, Återvändande ljus detekterades"
-
-#~ msgid "Red Eye, Auto-Mode, Return light not detected"
-#~ msgstr "Röda-ögon-reducering, Autoläge, Återvändande ljus detekterades inte"
-
-#~ msgid "Red Eye, Compulsory Flash"
-#~ msgstr "Röda-ögon-reducering, Fyllnads-blixt"
-
-#~ msgid "Red Eye, Compulsory Flash, Return light detected"
-#~ msgstr ""
-#~ "Röda-ögon-reducering, Fyllnads-blixt, Återvändande ljus detekterades"
-
-#~ msgid "Red Eye, Compulsory Flash, Return light not detected"
-#~ msgstr ""
-#~ "Röda-ögon-reducering, Fyllnads-blixt, Återvändande ljus detekterades inte"
-
-#~ msgid "Red Eye, Return light detected"
-#~ msgstr "Röda-ögon-reducering, Återvändande ljus detekterades"
-
-#~ msgid "Red Eye, Return light not detected"
-#~ msgstr "Röda-ögon-reducering, Återvändande ljus detekterades inte"
-
-#, fuzzy
-#~ msgid "Theme:%s setup completed"
-#~ msgstr "återställning färdig"
-
-#~ msgid "Owner:"
-#~ msgstr "Ägare:"
-
-#, fuzzy
-#~ msgid "Set as thumbnail for:"
-#~ msgstr "Välj som tumnagel för albumet."
-
-#~ msgid "Image watermark:"
-#~ msgstr "Vattenstämpel för bild:"
-
-#, fuzzy
-#~ msgid "Scan pending"
-#~ msgstr "Fallande"
-
-#, fuzzy
-#~ msgid "Order by date descending"
-#~ msgstr "Sortera efter mest använd"
-
-#, fuzzy
-#~ msgid "Order by date ascending"
-#~ msgstr "Sortera efter mest använd"
-
-#, fuzzy
-#~ msgid "The Object you are requesting cannot be found."
-#~ msgstr "Zenphoto-objektet hittades inte."
-
-#~ msgid "Theme page"
-#~ msgstr "Temasida"
-
-#, fuzzy
-#~ msgid "The page you are requesting cannot be found."
-#~ msgstr "Zenphoto-objektet hittades inte."
-
-#, fuzzy
-#~ msgid "Sorry, the page you are requesting cannot be found."
-#~ msgstr "Zenphoto-objektet hittades inte."
-
-#, fuzzy
-#~ msgid "Future publishing date."
-#~ msgstr "Framtida publiceringsdatum:"
-
-#, fuzzy
-#~ msgid "show content"
-#~ msgstr "visa kommentarer"
-
-#~ msgid "Dynamic album search:"
-#~ msgstr "Dynamisk albumsökning:"
-
-#, fuzzy
-#~ msgid ""
-#~ "<a href=\"javascript:toggle('albumpub');\" >Details</a> for <em>publish "
-#~ "albums by default</em>"
-#~ msgstr ""
-#~ "<a href=\"javascript:toggle('visualthumb');\" >Detaljer</a> för "
-#~ "<em>visuellt tumnagelsval</em>"
-
-#, fuzzy
-#~ msgid ""
-#~ "<a href=\"javascript:toggle('imagepub');\" >Details</a> for <em>publish "
-#~ "images by default</em>"
-#~ msgstr ""
-#~ "<a href=\"javascript:toggle('albumdate');\" >Detaljer</a> för <em>använd "
-#~ "senaste bilddatumet som albumdatum</em>"
-
-#~ msgid ""
-#~ "<a href=\"javascript:toggle('albumdate');\" >Details</a> for <em>use "
-#~ "latest image date as album date</em>"
-#~ msgstr ""
-#~ "<a href=\"javascript:toggle('albumdate');\" >Detaljer</a> för <em>använd "
-#~ "senaste bilddatumet som albumdatum</em>"
-
-#~ msgid ""
-#~ "<a href=\"javascript:toggle('visualthumb');\" >Details</a> for <em>visual "
-#~ "thumb selection</em>"
-#~ msgstr ""
-#~ "<a href=\"javascript:toggle('visualthumb');\" >Detaljer</a> för "
-#~ "<em>visuellt tumnagelsval</em>"
-
-#, fuzzy
-#~ msgid ""
-#~ "<a href=\"javascript:toggle('multithumb');\" >Details</a> for "
-#~ "<em>subalbum thumb selection</em>"
-#~ msgstr ""
-#~ "<a href=\"javascript:toggle('visualthumb');\" >Detaljer</a> för "
-#~ "<em>visuellt tumnagelsval</em>"
-
-#~ msgid "ExtraContent"
-#~ msgstr "Extra Innehåll"
-
-#~ msgid "1: Normal (0 deg)"
-#~ msgstr "1: Normal (0 Grad)"
-
-#~ msgid "2: Mirrored"
-#~ msgstr "2: Spegelvänt"
-
-#~ msgid "3: Upside-down"
-#~ msgstr "3: Uppochner"
-
-#~ msgid "4: Upside-down Mirrored"
-#~ msgstr "4: Uppochner spegelvänt"
-
-#~ msgid "5: 90 deg CW Mirrored"
-#~ msgstr "5: 90 Grad medurs spegelvänt"
-
-#~ msgid "6: 90 deg CCW"
-#~ msgstr "6: 90 Grad moturs"
-
-#~ msgid "7: 90 deg CCW Mirrored"
-#~ msgstr "7: 90 Grad moturs spegelvänd"
-
-#~ msgid "8: 90 deg CW"
-#~ msgstr "8: 90 Grad medurs"
-
-#~ msgid "%d: Unknown"
-#~ msgstr "%d: Okännt"
-
-#~ msgid "D55"
-#~ msgstr "D55"
-
-#~ msgid "D65"
-#~ msgstr "D65"
-
-#~ msgid "D75"
-#~ msgstr "D75"
-
-#~ msgid "D50"
-#~ msgstr "D50"
-
-#~ msgid "/10s"
-#~ msgstr "/10 sek"
-
-#~ msgid "2x"
-#~ msgstr "2x"
-
-#~ msgid "4x"
-#~ msgstr "4x"
-
-#~ msgid "50"
-#~ msgstr "50"
-
-#~ msgid "100"
-#~ msgstr "100"
-
-#~ msgid "200"
-#~ msgstr "200"
-
-#~ msgid "400"
-#~ msgstr "400"
-
-#~ msgid "12"
-#~ msgstr "12"
-
-#~ msgid "13"
-#~ msgstr "13"
-
-#~ msgid "14"
-#~ msgstr "14"
-
-#~ msgid "15"
-#~ msgstr "15"
-
-#~ msgid "Unknown: "
-#~ msgstr "Okänd:"
-
-#~ msgid "2s"
-#~ msgstr "2 sek"
-
-#, fuzzy
-#~ msgid "Updating the configuration file"
-#~ msgstr "TinyMCE-konfiguration"
-
-#~ msgid ""
-#~ "ZenPhoto20 processed a 404 error on %s. See the debug log for details."
-#~ msgstr ""
-#~ "ZenPhoto20 bearbetade ett 404-fel på %s. Se debug-loggen för detaljer."
-
-#, fuzzy
-#~ msgid ""
-#~ "Welcome to ZenPhoto20! This page will set up the version %s on your web "
-#~ "server."
-#~ msgstr ""
-#~ "Välkommen till Zenphoto! Denna sida hjälper dig att installera Zenphoto."
-
-#, fuzzy
-#~ msgid "Updated configuration file"
-#~ msgstr "Uppdatera artikel"
-
-#, fuzzy
-#~ msgid "Database admin user"
-#~ msgstr "Databasanvändare"
-
-#, fuzzy
-#~ msgid "Database admin password"
-#~ msgstr "Databaslösenord"
-
-#, fuzzy
-#~ msgid "Invalid Textobject instantiation: file does not exist"
-#~ msgstr "Bild hittades inte; filen finns inte."
-
-#, fuzzy
-#~ msgid "Languange"
-#~ msgstr "Språk:"
-
-#, fuzzy
-#~ msgid "Sub-Languange"
-#~ msgstr "Språk:"
-
-#, fuzzy
-#~ msgid "Languange String"
-#~ msgstr "Språk:"
-
-#, fuzzy
-#~ msgid "Zenphoto browser cookies found."
-#~ msgstr "Zenphoto-kärnfiler"
-
-#, fuzzy
-#~ msgid "restore screen"
-#~ msgstr "återställning färdig"
-
-#, fuzzy
-#~ msgid "shuffle off"
-#~ msgstr "blanda"
-
-#, fuzzy
-#~ msgid "repeat off"
-#~ msgstr "repetera:"
-
-#, fuzzy
-#~ msgid "Target does not exists in <em>%1$s</em> theme"
-#~ msgstr "Returnera ej <em>nyhets</em>-träffar"
-
-#~ msgid ""
-#~ "Creates a link to a custom theme page as described in the theming "
-#~ "tutorial."
-#~ msgstr ""
-#~ "Skapar en länk till en anpassad temasida som beskrivs i handledning för "
-#~ "teman."
-
-#~ msgid ""
-#~ "If this option is set, the visitor login form will include a link to this "
-#~ "page. The link text will be labeled with the text provided."
-#~ msgstr ""
-#~ "Om markerad, visas en länk till denna sida i inloggningsformuläret. "
-#~ "Länktexten blir texten som du anger."
-
-#~ msgid "Set Security log permissions"
-#~ msgstr "ZenPhoto20 kärnfilsrättigheter"
-
-#, fuzzy
-#~ msgid "tinyZenpage plugin"
-#~ msgstr "Zenpage sida"
-
-#, fuzzy
-#~ msgid "Custom image size"
-#~ msgstr "Anpassad sida"
-
-#, fuzzy
-#~ msgid "Custom thumb crop - size"
-#~ msgstr "Anpassade tumnagelsbeskärningar"
-
-#, fuzzy
-#~ msgid "Custom thumb crop - width"
-#~ msgstr "Anpassade tumnagelsbeskärningar"
-
-#, fuzzy
-#~ msgid "Custom thumb crop - height"
-#~ msgstr "Anpassade tumnagelsbeskärningar"
-
-#, fuzzy
-#~ msgid "image with link to image"
-#~ msgstr "Länk till bild"
-
-#~ msgid "*no group affiliation"
-#~ msgstr "*ingen grupptilldelning"
-
-#~ msgid "Future publishing date:"
-#~ msgstr "Framtida publiceringsdatum:"
-
-#, fuzzy
-#~ msgid "newPage"
-#~ msgstr "Sida"
-
-#~ msgid ""
-#~ "<strong>Note:</strong> Scheduled publishing is not active unless the "
-#~ "article is also set to <em>published</em>"
-#~ msgstr ""
-#~ "<strong>Notera:</strong> Tidsbestämd publicering är inte aktiverad förrän "
-#~ "artikeln är <em>publicerad</em>"
-
-#~ msgid ""
-#~ "Note: Scheduled publishing is not active unless the page is also set to "
-#~ "<em>published</em>"
-#~ msgstr ""
-#~ "Notera: Tidsbestämd publicering är inte aktiverad förrän sidan är "
-#~ "<em>publicerad</em>"
-
-#~ msgid "Expiration date:"
-#~ msgstr "Utgångsdatum:"
-
-#~ msgid "ExtraContent:"
-#~ msgstr "Extra Innehåll:"
-
-#~ msgid "Scheduled for published"
-#~ msgstr "Schemalagd för publicering"
-
-#~ msgid "Publish immediately (skip scheduling)"
-#~ msgstr "Publicera direkt (ej schemalagd)"
-
-#~ msgid "Enable scheduled publishing"
-#~ msgstr "Aktivera schemalagd publicering"
-
-#~ msgid "Publish (override expiration)"
-#~ msgstr "Publicera (åsidosätt utgångsdatum)"
-
-#~ msgid "<em>This entry belongs to a protected album.</em>"
-#~ msgstr "<em>Denna post tillhör ett skyddat album.</em>"
-
-#~ msgid "(%s: 1 new image)"
-#~ msgstr "(%s: 1 ny bild)"
-
-#~ msgid "(%1$s: %2$s new images)"
-#~ msgstr "(%1$s: %2$s nya bilder)"
-
-#~ msgid "(%s: 1 image)"
-#~ msgstr "(%s: 1 bild)"
-
-#~ msgid "(%1$s: %2$s images)"
-#~ msgstr "(%1$s: %2$s bilder)"
-
-#~ msgid ""
-#~ "For the best viewing experience <a href=\"http://www.macromedia.com/go/"
-#~ "getflashplayer/\">Get Adobe Flash.</a>"
-#~ msgstr ""
-#~ "För bästa visuella upplevelse <a href=\"http://www.macromedia.com/go/"
-#~ "getflashplayer/\">Hämta Adobe Flash.</a>"
-
-#~ msgid "View Gallery Without Flash"
-#~ msgstr "Visa Galleri utan Flash"
-
-#~ msgid "Open In New Window"
-#~ msgstr "Öppna I nytt fönster"
-
-#~ msgid "Effervescence %s (not found)"
-#~ msgstr "Effervescence %s (hittades inte)"
-
-#~ msgid "next &raquo;"
-#~ msgstr "nästa &raquo;"
-
-#~ msgid "&laquo; prev"
-#~ msgstr "&laquo; föregående"
-
-#~ msgid "Zenphoto gallery"
-#~ msgstr "Zenphoto-Galleri"
-
-#~ msgid "For the best viewing experience"
-#~ msgstr "För bästa möjliga upplevelse"
-
-#~ msgid "get Adobe Flash."
-#~ msgstr "installera Adobe Flash."
-
-#~ msgid ""
-#~ "Simpleviewer requires <em>mod_rewrite</em> to be set. Simpleviewer is "
-#~ "disabled."
-#~ msgstr ""
-#~ "Simpleviewer kräver att <em>mod_rewrite</em> är aktiverat. Simpleviewer "
-#~ "är avaktiverad."
-
-#~ msgid "Simpleviewer"
-#~ msgstr "Simpleviewer"
-
-#~ msgid "Slimbox"
-#~ msgstr "Slimbox"
-
-#~ msgid "Smoothgallery"
-#~ msgstr "Smoothgallery"
-
-#~ msgid ""
-#~ "Based on Effervescence 1.1 with multiple personalities (slimbox, "
-#~ "simpleviewer and smoothgallery) added. Select different color schemes and "
-#~ "personalities from the Admin Options tab."
-#~ msgstr ""
-#~ "Baserat på Effervescence 1.1 med olika varianter(slimbox, simpleviewer "
-#~ "und smoothgallery) tillagda. Välj olika färgscheman från fliken "
-#~ "Administrera Egenskaper."
-
-#~ msgid "1 photo"
-#~ msgstr "1 Bild"
-
-#~ msgid "%u photos"
-#~ msgstr "%u Bilder"
-
-#~ msgid "1 album,&nbsp;1 photo"
-#~ msgstr "1 Album,&nbsp;1 Bild"
-
-#~ msgid "%u album,&nbsp;1 photo"
-#~ msgid_plural "%u albums,&nbsp;1 photo"
-#~ msgstr[0] "%u Album,&nbsp;1 Bild"
-#~ msgstr[1] "%u Album,&nbsp;1 Bild"
-
-#~ msgid "%1$u album,&nbsp;%2$u photos"
-#~ msgstr "%1$u Album,&nbsp;%2$u Bilder"
-
-#~ msgid "1 album,&nbsp;%u photos"
-#~ msgstr "1 Album,&nbsp;%u Bilder"
-
-#~ msgid "photos %1$u-%2$u of %3$u"
-#~ msgstr "Bilder %1$u-%2$u av %3$u"
-
-#~ msgid "SHOW"
-#~ msgstr "VISA"
-
-#~ msgid "HIDE"
-#~ msgstr "GÖM"
-
-#~ msgid "No comments yet"
-#~ msgstr "Inga kommentarer"
-
-#~ msgid "%u comment so far"
-#~ msgid_plural "%u comments so far"
-#~ msgstr[0] "%u kommentar hittils"
-#~ msgstr[1] "%u kommentarer hittils"
-
-#~ msgid "Link to Comment %u"
-#~ msgstr "Länk till kommentar %u"
-
-#~ msgid "%s wrote:"
-#~ msgstr "%s skrev:"
-
-#~ msgid "(not displayed)"
-#~ msgstr "(visas inte)"
-
-#~ msgid "URL:"
-#~ msgstr "URL:"
-
-#~ msgid "Private comment:"
-#~ msgstr "Privat Kommentar:"
-
-#~ msgid "(don't publish)"
-#~ msgstr "(publicera inte)"
-
-#~ msgid "Avoid clicking &ldquo;Post&rdquo; more than once."
-#~ msgstr "Klicka endast en gång på &ldquo;Skicka&rdquo; ."
-
-#~ msgid "Contact form"
-#~ msgstr "Kontaktformulär"
-
-#~ msgid ""
-#~ "<a href=\"http://stopdesign.com/templates/photos/\">Photo Templates</a> "
-#~ "from Stopdesign"
-#~ msgstr ""
-#~ "<a href=\"http://stopdesign.com/templates/photos/\">Teman</a> från "
-#~ "Stopdesign"
-
-#~ msgid "All galleries"
-#~ msgstr "Alla gallerier"
-
-#~ msgid "%u photo"
-#~ msgid_plural "%u photos"
-#~ msgstr[0] "%u bild"
-#~ msgstr[1] "%u bilder"
-
-#~ msgid "1 album,&nbsp;%u photo"
-#~ msgid_plural "1 album,&nbsp;%u photos"
-#~ msgstr[0] "1 album,&nbsp;%u bild"
-#~ msgstr[1] "1 album,&nbsp;%u bilder"
-
-#~ msgid "%1$u album,&nbsp;%2$s"
-#~ msgid_plural "%1$u albums,&nbsp;%2$s"
-#~ msgstr[0] "%1$u album,&nbsp;%2$s"
-#~ msgstr[1] "%1$u album,&nbsp;%2$s"
-
-#~ msgid "Gallery Feeds"
-#~ msgstr "Galleri-Newsfeeds"
-
-#~ msgid "Photos"
-#~ msgstr "Bilder"
-
-#~ msgid "%1$u of %2$u photos"
-#~ msgstr "%1$u av %2$u Bilder"
-
-#~ msgid ""
-#~ "<a href=\"http://stopdesign.com/templates/photos/\">Photo Templates</a> "
-#~ "from Stopdesign."
-#~ msgstr ""
-#~ "<a href=\"http://stopdesign.com/templates/photos/\">Teman</a> av "
-#~ "Stopdesign."
-
-#~ msgid "Recently Updated Galleries"
-#~ msgstr "Nyligen uppdaterade gallerier"
-
-#~ msgid "Gallery data"
-#~ msgstr "Galleridata"
-
-#~ msgid "Galleries"
-#~ msgstr "Gallerier"
-
-#~ msgid "A password is required"
-#~ msgstr "Lösenord krävs"
-
-#~ msgid "%u albums,&nbsp;1 photo"
-#~ msgstr "%u album,&nbsp;1 foto"
-
-#~ msgid "%1$u albums,&nbsp;%2$u photos"
-#~ msgstr "%1$u album,&nbsp;%2$u foton"
-
-#~ msgid "%u albums"
-#~ msgstr "%u album"
-
-#~ msgid "Mini slide selector"
-#~ msgstr "Mini bildspels-väljare"
-
-#~ msgid "Select what you want for the six special slides."
-#~ msgstr "Välj vad du vill inkludera i dessa sex special-bildspel."
-
-#~ msgid "Gallery image crop width"
-#~ msgstr "Beskärningsbredd för bilder"
-
-#~ msgid "The width of image to crop in the gallery pages"
-#~ msgstr "Bredd att beskära bilder till på gallerisidor"
-
-#~ msgid "Gallery image crop height"
-#~ msgstr "Beskärningshöjd för bilder"
-
-#~ msgid "The height of image to crop in the gallery pages"
-#~ msgstr "Höjd att beskära bilder till på gallerisidor"
-
-#~ msgid "Ported to Zenphoto by Mark Galeassi and Stephen Billard"
-#~ msgstr "Anpassat till Zenphoto av Mark Galeassi och Stephen Billard"
-
-#~ msgid ""
-#~ "A theme based on the design from <a href=\"http://stopdesign.com/"
-#~ "templates/photos/\">Douglas Bowman</a>. This theme is licensed under the "
-#~ "<a href=\"http://creativecommons.org/licenses/by-nc-sa/2.5/\">Creative "
-#~ "Commons Attribution-NonCommercial-ShareAlike 2.5</a> License."
-#~ msgstr ""
-#~ "Ett tema baserat på design från <a href=\"http://stopdesign.com/templates/"
-#~ "photos/\">Douglas Bowman</a>. Detta tema licensierat under <a href="
-#~ "\"http://creativecommons.org/licenses/by-nc-sa/2.5/\">Creative Commons "
-#~ "Attribution-NonCommercial-ShareAlike 2.5</a>-Licens."
-
-#~ msgid ""
-#~ "Powered by <a href=\"http://www.zenphoto.org\" title=\"A simpler web "
-#~ "photo album\"><span id=\"zen-part\">zen</span><span id=\"photo-part"
-#~ "\">PHOTO</span></a>"
-#~ msgstr ""
-#~ "Skapat med <a href=\"http://www.zenphoto.org\" title=\"Ett enklare webb-"
-#~ "album\"><span id=\"zen-part\">zen</span><span id=\"photo-part\">photo</"
-#~ "span></a>"
-
-#~ msgid "&laquo; prev thumbs"
-#~ msgstr "&laquo; föreg. tumnaglar"
-
-#~ msgid "next thumbs &raquo;"
-#~ msgstr "nästa tumnaglar &raquo;"
-
-#~ msgid "Save order"
-#~ msgstr "Spara ordning"
-
-#~ msgid "Save"
-#~ msgstr "Spara"
-
-#~ msgid "Comment saved successfully."
-#~ msgstr "Kommentar sparades."
-
-#~ msgid "Album/Image"
-#~ msgstr "Album/Bild"
-
-#~ msgid "Author/Link"
-#~ msgstr "Upphovsman/Länk"
-
-#~ msgid "Date/Time"
-#~ msgstr "Datum/Tid"
-
-#~ msgid "E&#8209;Mail"
-#~ msgstr "E&#8209;Post"
-
-#~ msgid "SPAM"
-#~ msgstr "SPAM"
-
-#~ msgid "Delete Selected Comments"
-#~ msgstr "Radera markerade kommentarer"
-
-#~ msgid "randomly selected"
-#~ msgstr "slumpmässigt valt"
-
-#~ msgid "Save Order"
-#~ msgstr "Spara ordning"
-
-#~ msgid "expand all fields"
-#~ msgstr "Utvidga alla fält"
-
-#~ msgid "collapse all fields"
-#~ msgstr "Förminska alla fält"
-
-#~ msgid "Visible"
-#~ msgstr "Synlig"
-
-#~ msgid "Hit counter: <strong>%u</strong>"
-#~ msgstr "Visningar: <strong>%u</strong>"
-
-#~ msgid "Rating: <strong>%u</strong>"
-#~ msgstr "Betyg: <strong>%u</strong>"
-
-#~ msgid "show fewer fields"
-#~ msgstr "Visa färre fält"
-
-#~ msgid "Back to the list of albums (go up a level)"
-#~ msgstr "Tillbaka till albumlista (upp en nivå)"
-
-#~ msgid ""
-#~ "<a href=\"http://www.zenphoto.org\" title=\"A simpler web photo album"
-#~ "\">Zen<strong>photo</strong></a> version %1$s"
-#~ msgstr ""
-#~ "<a href=\"http://www.zenphoto.org\" title=\"Ett enklare webbalbum"
-#~ "\">zen<strong>photo</strong></a> version %1$s"
-
-#~ msgid "User guide"
-#~ msgstr "Användarhandledning"
-
-#~ msgid "Forum"
-#~ msgstr "Forum"
-
-#~ msgid "Bugtracker"
-#~ msgstr "Buggtracker"
-
-#~ msgid "zenphoto administration"
-#~ msgstr "Zenphoto-administration"
-
-#~ msgid ""
-#~ "*Enter CAPTCHA in place of <em>Password</em> to request a password reset."
-#~ msgstr ""
-#~ "*Skriv CAPTCHA istället för <em>Lösenord</em> för att begära "
-#~ "återställning av lösenordet."
-
-#~ msgid "Resets all hitcounters in the album."
-#~ msgstr "Återställer alla bildvisningsräknare i albumet"
-
-#~ msgid ""
-#~ "Forces a refresh of the EXIF and IPTC data for all images in the album."
-#~ msgstr ""
-#~ "Påtvingar en uppdatering av EXIF och IPTC data för all bilder i albumet."
-
-#~ msgid "Pre-cache images in %s"
-#~ msgstr "Cacha bilder i %s"
-
-#~ msgid "Cache the album %s"
-#~ msgstr "Cacha albumet %s"
-
-#~ msgid "comment"
-#~ msgstr "Kommentar"
-
-#~ msgid "Reset %s"
-#~ msgstr "Återställ %s"
-
-#~ msgid "Download %s ZIP file"
-#~ msgstr "Ladda ned %s ZIP-fil"
-
-#~ msgid "See the troubleshooting guide on zenphoto.org for details."
-#~ msgstr "Se felsökningsguiden på zenphoto.org för detaljer."
-
-#~ msgid ""
-#~ "<strong>Note:</strong> Login from the front-end user login form is secure "
-#~ "only if <em>https</em> is selected."
-#~ msgstr ""
-#~ "<strong>Notera:</strong> Inloggning genom inloggningsformuläret är säker "
-#~ "endast om <em>https</em> valts."
-
-#~ msgid ""
-#~ "If the checkbox is disabled, setup did not detect a working Apache "
-#~ "<em>mod rewrite</em> facility and proper <em>.htaccess</em> file."
-#~ msgstr ""
-#~ "Om kryssrutan är inaktiverad hittades inte en fungerande <em>mod rewrite</"
-#~ "em> och en korrekt <em>.htaccess</em>-fil."
-
-#~ msgid ""
-#~ "<strong>Note:</strong> if you have created multi-language strings, "
-#~ "uncheck this option, then save anything, you will lose your strings."
-#~ msgstr ""
-#~ "<strong>Notera:</strong> om du har skapat flerspråkssträngar och "
-#~ "avmarkerar denna egenskap och sparar, kommer du att förlora dina strängar."
-
-#~ msgid "CAPTCHA generator:"
-#~ msgstr "CAPTCHA-skapare:"
-
-#~ msgid "Select the <em>CAPTCHA</em> generator to be used by Zenphoto."
-#~ msgstr "Välj vilken <em>CAPTCHA</em>-skapare Zenphoto ska använda."
-
-#~ msgid "restore default allowed tags"
-#~ msgstr "återställ tillåtna taggar till standard"
-
-#~ msgid ""
-#~ "Check <em>restore default allowed tags</em> to reset allowed tags to the "
-#~ "zenphoto default values."
-#~ msgstr ""
-#~ "Markera <em>Återställ tillåtna taggar till standard</em> för att ställa "
-#~ "in zenphotos tillåtna standard-taggar."
-
-#~ msgid "Enable TinyMCE for use in back-end editing."
-#~ msgstr "Aktivera TinyMCE vid redigering av text."
-
-#~ msgid "TinyMCE is not available."
-#~ msgstr "TinyMCE är ej tillgängligt."
-
-#~ msgid "enable user name login field"
-#~ msgstr "aktivera inloggningsfält"
-
-#~ msgid "enable persistent archives"
-#~ msgstr "Aktivera permanenta arkiv"
-
-#~ msgid ""
-#~ "<a href=\"javascript:toggle('username');\" >Details</a> for <em>enable "
-#~ "user name login field</em>"
-#~ msgstr ""
-#~ "<a href=\"javascript:toggle('username');\" >Detaljer</a> för <em>aktivera "
-#~ "inloggningsfält för användare</em>"
-
-#~ msgid ""
-#~ "This option places a field on the gallery (search, album) login form for "
-#~ "entering a user name. This is necessary if you have set guest login user "
-#~ "names. It is also useful to allow Admin users to log in on these pages "
-#~ "rather than at the Admin login."
-#~ msgstr ""
-#~ "Denna inställning placerar ett inloggningfält i(sök, album) för att kunna "
-#~ "logga in. Detta behövs om du har gästanvändare. Det är även enklare för "
-#~ "administratören att logga in via denna."
-
-#~ msgid ""
-#~ "<a href=\"javascript:toggle('persistentarchive');\" >Details</a> for "
-#~ "<em>enable persistent archive</em>"
-#~ msgstr ""
-#~ "<a href=\"javascript:toggle('persistentarchive');\" >Detaljer</a> för "
-#~ "<em>aktivera bestående arkiv</em>"
-
-#~ msgid ""
-#~ "Put a checkmark here to re-serve Zip Archive files if you are using the "
-#~ "optional template function <em>printAlbumZip()</em> to enable visitors of "
-#~ "your site to download images of an album as .zip files. If not checked "
-#~ "that .zip file will be regenerated each time."
-#~ msgstr ""
-#~ "Markera denna för att spara zip-filer om du använder dig av mall-"
-#~ "funktionen <em>printAlbumZip</em> för att användare ska kunna ladda ner "
-#~ "bilder från ett album som zip-filer. Om denna inte är markerad kommer zip-"
-#~ "filen att re-genereras varje gång."
-
-#~ msgid ""
-#~ "<a href=\"javascript:toggle('gallerysessions');\" >Details</a> for "
-#~ "<em>enable gallery sessions</em>"
-#~ msgstr ""
-#~ "<a href=\"javascript:toggle('gallerysessions');\" >Detaljer</a> för "
-#~ "<em>aktivera gallerisessioner</em>"
-
-#~ msgid ""
-#~ "Check this option if you are having issues with album password cookies "
-#~ "not being retained. Setting the option causes zenphoto to use sessions "
-#~ "rather than cookies."
-#~ msgstr ""
-#~ "Markera denna om du har problem med att lösenordscookies inte sparas för "
-#~ "att istället använda sessioner."
-
-#~ msgid "exact"
-#~ msgstr "exakt"
-
-#~ msgid "partial"
-#~ msgstr "Delvis"
-
-#~ msgid "Search behavior settings."
-#~ msgstr "Sökbeteendeinställningar."
-
-#~ msgid ""
-#~ "Search does partial matches on all fields selected with the possible "
-#~ "exception of <em>Tags</em>. This means that if the field contains the "
-#~ "search criteria anywhere within it a result will be returned. If "
-#~ "<em>exact</em> is selected for <em>Tags</em> then the search criteria "
-#~ "must exactly match the tag for a result to be returned."
-#~ msgstr ""
-#~ "Sök gör partiella matchningar på alla fält med möjligheten att utesluta "
-#~ "<em>Taggar</em>. Detta innebär att om något fält innehåller sök-kriteriet "
-#~ "så kommer det att presenteras som ett resultat. Om <em>exakt</em> är vald "
-#~ "för <em>Taggar</em>,  måste sök-kriteriet matcha taggen för att resultat "
-#~ "ska returneras."
-
-#~ msgid "Images RSS"
-#~ msgstr "Bild-RSS"
-
-#~ msgid "Albums RSS"
-#~ msgstr "Album-RSS"
-
-#~ msgid ""
-#~ "The number of new items you want to appear in your site's RSS feed. The "
-#~ "images and comments RSS share the value."
-#~ msgstr ""
-#~ "Antal nya artiklar som ska ska synas i din webbplats RSS-flöde. Bilder "
-#~ "och kommentarer delar på värdet."
-
-#~ msgid "RSS cache"
-#~ msgstr "RSS cache"
-
-#~ msgid "You must supply a password for the Protected image user"
-#~ msgstr "Du måste ange ett lösenord för Skyddad bild användaren"
-
-#~ msgid "Automatically rotate images based on the EXIF orientation setting."
-#~ msgstr "Rotera bilder automatiskt baserat på EXIF-rotations inställning."
-
-#~ msgid ""
-#~ "Image rotation requires the <em>imagerotate</em> function found in the "
-#~ "bundled GD library of PHP version 4.3 or greater."
-#~ msgstr ""
-#~ "Bildrotering kräver <em>bildroterings</em>-funktionen i GD-biblioteket i "
-#~ "PHP version 4.3 och senare."
-
-#~ msgid "*none"
-#~ msgstr "*Ingen"
-
-#~ msgid ""
-#~ "Check those EXIF fields you wish displayed in image EXIF information."
-#~ msgstr "Markera vilka EXIF-fält som ska visas i bildens EXIF-information."
-
-#~ msgid "Spam filter:"
-#~ msgstr "Spamfilter:"
-
-#~ msgid "The SPAM filter plug-in you wish to use to check comments for SPAM"
-#~ msgstr ""
-#~ "SPAM-filter-tillägget du vill använda för att förhindra ovälkomna "
-#~ "kommentarer."
-
-#~ msgid "Checked fields must be valid in a comment posting."
-#~ msgstr "Markerade fält måste fyllas i vid kommentering."
-
-#~ msgid ""
-#~ "Recommended number of albums on a page. You might need to adjust this for "
-#~ "a better page layout."
-#~ msgstr ""
-#~ "Rekommenderat antal album per sida. Du kan ändra denna för att anpassa "
-#~ "din layout."
-
-#~ msgid "Recommended number of thumbnails on an album page."
-#~ msgstr "Rekommenderat antal tumnaglar på en albumsida."
-
-#~ msgid ""
-#~ "<strong>Note:</strong> You might need to adjust this for a better page "
-#~ "layout."
-#~ msgstr ""
-#~ "<strong>Notera: </strong> Du kan behöva ändra denna för att anpassa din "
-#~ "layout."
-
-#~ msgid ""
-#~ "If checked the thumbnail cropped to the <em>width</em> and <em>height</"
-#~ "em> indicated."
-#~ msgstr ""
-#~ "Om markerad kommer tumnageln att beskäras till inställda <em>bredd-</em> "
-#~ "och <em>höjd</em>-värden."
-
-#~ msgid "Expand plugin options"
-#~ msgstr "Utvidga plugin-inställningar"
-
-#~ msgid "Collapse all plugin options"
-#~ msgstr "Förminska plugin-inställningar"
-
-#~ msgid ""
-#~ "<strong>Error parsing <em>plugin_URL</em> string!</strong> Try removing "
-#~ "semicolons from string."
-#~ msgstr ""
-#~ "<strong>Kunde inte läsa <em>plugin_URL</em> sträng!</strong> Försök med "
-#~ "att ta bort semikolon från strängen."
-
-#~ msgid ""
-#~ "Check the zp-config.php file to make sure you've got the right username, "
-#~ "password, host, and database. If you haven't created the database yet, "
-#~ "now would be a good time."
-#~ msgstr ""
-#~ "Kontrollera i filen zp-config.php att du angivit korrekt användarnamn, "
-#~ "lösenord, värd, och databas. Om du inte skapat någon databas ännu, bör du "
-#~ "göra det nu."
-
-#~ msgid "Sort the tags alphabetically"
-#~ msgstr "Sortera taggar alfabetiskt"
-
-#~ msgid "Sort the tags by most used"
-#~ msgstr "Sortera taggar efter mest använd"
-
-#~ msgid "Delete all the tags checked above."
-#~ msgstr "Radera alla markerade taggar ovan."
-
-#~ msgid "Save all the changes entered above."
-#~ msgstr "Spara alla ändringar ovan."
-
-#~ msgid "Add all the tags entered above."
-#~ msgstr "Lägg till alla taggar ovan."
-
-#~ msgid "New theme name? (e.g. \"My Theme\")"
-#~ msgstr "Nytt temanamn? (ex. \"Mitt tema\")"
-
-#~ msgid "My Theme"
-#~ msgstr "Mitt tema"
-
-#~ msgid "New directory name? (e.g. \"my_theme\")"
-#~ msgstr "Nytt mappnamn? (ex. \"mitt_tema\")"
-
-#~ msgid "Set this as your theme"
-#~ msgstr "Använd detta tema"
-
-#~ msgid "Assign this as your album theme"
-#~ msgstr "Använd detta som albumtema"
-
-#~ msgid "Edit this theme"
-#~ msgstr "Redigera detta tema"
-
-#~ msgid "Delete this theme"
-#~ msgstr "Radera detta tema"
-
-#~ msgid "Do you want to replace the file %s?"
-#~ msgstr "Vill du ersätta filen %s?"
-
-#~ msgid "Upload queue is full. The upload limit is %u."
-#~ msgstr "Uppladdningskön är full. Uppladdningsgräns är %u."
-
-#~ msgid "Upload Photos"
-#~ msgstr "Ladda upp bilder"
-
-#~ msgid "Something went wrong..."
-#~ msgstr "Något gick snett..."
-
-#~ msgid ""
-#~ "Zenphoto may be unable to perform uploads when PHP Safe Mode restrictions "
-#~ "are in effect"
-#~ msgstr ""
-#~ "Zenphoto kanske inte kan ladda upp bilder om PHP-Safe-Mode-restriktioner "
-#~ "är aktiva."
-
-#~ msgid "Zenphoto supported file types | all files"
-#~ msgstr "Filtyper som stöds av Zenphoto | alla filer"
-
-#~ msgid ""
-#~ "There appears to be no <em>Flash</em> plugin installed in your browser."
-#~ msgstr "Din webbläsare verkar sakna stöd för <em>Flash</em>."
-
-#~ msgid ""
-#~ "If your upload does not work try the <a href=\"javascript:"
-#~ "switchUploader('admin-upload.php?uploadtype=http');\" >http-browser "
-#~ "single file upload</a> or use FTP instead."
-#~ msgstr ""
-#~ "Om uppladdning inte fungerar kan du prova <a href=\"javascript:"
-#~ "switchUploader('admin-upload.php?uploadtype=http');\" >http-singelfil-"
-#~ "uppladdning</a> eller FTP."
-
-#~ msgid ""
-#~ "Try the <a href=\"javascript:switchUploader('admin-upload.php?"
-#~ "uploadtype=multifile');\" >multi file upload</a>"
-#~ msgstr ""
-#~ "Prova <a href=\"javascript:switchUploader('admin-upload.php?"
-#~ "uploadtype=multifile');\" >Flerfilsuppladdning</a>"
-
-#~ msgid "You must supply a password for the Gallery guest user"
-#~ msgstr "Du måste ange lösenord för Galleriets gästanvändare"
-
-#~ msgid "You must supply a password"
-#~ msgstr "Du måste skriva ett lösenord"
-
-#~ msgid "email:"
-#~ msgstr "E-Post:"
-
-#~ msgid "You are running the latest zenphoto version."
-#~ msgstr "Du har den senaste ZenPhoto versionen."
-
-#~ msgid ""
-#~ "Could not connect to <a href=\"http://www.zenphoto.org\">zenphoto.org</a>"
-#~ msgstr ""
-#~ "Kunde inte ansluta till <a href=\"http://www.zenphoto.org\">zenphoto.org</"
-#~ "a>"
-
-#~ msgid "zenphoto version %s is available."
-#~ msgstr "ZenPhoto Version %s finns tillgänglig."
-
-#~ msgid "<strong>%1$u</strong> Image (%2$u not visible)"
-#~ msgid_plural "<strong>%1$u</strong> Images (%2$u not visible)"
-#~ msgstr[0] "<strong>%1$u</strong> Bild (%2$u ej synliga)"
-#~ msgstr[1] "<strong>%1$u</strong> Bilder (%2$u ej synliga)"
-
-#~ msgid "SVN"
-#~ msgstr "SVN"
-
-#~ msgid "Could not create zip file."
-#~ msgstr "Kunde inte skapa zip-arkiv."
-
-#~ msgid "Could not create tar file."
-#~ msgstr "Kunde inte skapa tar-fil."
-
-#~ msgid "Could not create bzip2 file."
-#~ msgstr "Kunde inte skapa bzip2-fil."
-
-#~ msgid "Could not create gzip file."
-#~ msgstr "Kunde inte skapa gzip-fil ."
-
-#~ msgid ""
-#~ "Can only use download_file() if archive is in memory. Redirect to file "
-#~ "otherwise, it is faster."
-#~ msgstr ""
-#~ "Kan endast använda download_file() om arkivet är i minnet. Omdirigera "
-#~ "annars till fil som är snabbare."
-
-#~ msgid "Could not add %s to archive because the filename is too long."
-#~ msgstr "Kunde inte lägga till %s i arkivet eftersom namnet är för långt."
-
-#~ msgid "Could not open file %s for reading. It was not added."
-#~ msgstr "Kunde inte öppna filen %s för läsning. Ej tillagd."
-
-#~ msgid "This script does not support extracting this type of tar file."
-#~ msgstr "Detta skript kan inte extrahera denna typ av tar-fil."
-
-#~ msgid "Could not extract from %s it is corrupt."
-#~ msgstr "Kunde inte extrahera %s, filen är korrupt."
-
-#~ msgid "Could not open %s for writing."
-#~ msgstr "Kunde inte öppna %s för skrivning."
-
-#~ msgid "Could not open sfx module from %s"
-#~ msgstr "sfx-Modulen kunde inte öppnas från %s."
-
-#~ msgid ""
-#~ "<strong>Zenphoto error:</strong> zp-config.php not found. Perhaps you "
-#~ "need to run <a href=\"%s/setup.php\">setup</a> (or migrate your old "
-#~ "config.php)"
-#~ msgstr ""
-#~ "<strong>Zenphoto Fel:</strong> zp-config.php hittades inte. Du kanske "
-#~ "måste köra <a href=\"%s/setup.php\">setup</a> (eller migrera din gamla "
-#~ "config.php)"
-
-#~ msgid "ERROR: Assertion failed in"
-#~ msgstr "Fel: Påståendet misslyckades i"
-
-#~ msgid "<strong>Backtrace:</strong>"
-#~ msgstr "<strong>Bakåtspårning:</strong>"
-
-#~ msgid "Oops.. Cannot edit from this page"
-#~ msgstr "Oj...Kan inte redigera från denna sida"
-
-#~ msgid "Error: malformed Ajax POST"
-#~ msgstr "Fel: Ajax posten är felaktig"
-
-#~ msgid "Could not save!"
-#~ msgstr "Kunde inte spara!"
-
-#~ msgid ""
-#~ "MySQL Error: The PHP MySQL extensions have not been installed. Please ask "
-#~ "your administrator to add MySQL support to your PHP installation."
-#~ msgstr ""
-#~ "MySQL-Fel: PHP-MySQL-tilläggen har inte installerats. Be din "
-#~ "administratör lägga till MySQL stöd till din PHP-installation."
-
-#~ msgid ""
-#~ "The <code>$_zp_conf_vars</code> variable is not an array. Zenphoto has "
-#~ "not been instantiated correctly."
-#~ msgstr ""
-#~ "<code>$_zp_conf_vars</code>-variabeln är ingen array. Zenphoto har inte "
-#~ "instantierats korrekt."
-
-#~ msgid ""
-#~ "Unknown error! Please report to the developers at <a href=\"http://www."
-#~ "zenphoto.org/\">www.zenphoto.org</a>"
-#~ msgstr ""
-#~ "Okänt fel! Rapportera till utvecklarna på <a href=\"http://www.zenphoto."
-#~ "org\">zenphoto.org</a>"
-
-#~ msgid "ByLine"
-#~ msgstr "ByLine"
-
-#~ msgid "Mail send failed. The \"to\" list is empty."
-#~ msgstr "E-post kunde inte skickas. \"Till\"-raden är tom."
-
-#~ msgid "Unknown author"
-#~ msgstr "Okänt upphovsman"
-
-#~ msgid "<strong>Theme description error!</strong>"
-#~ msgstr "<strong>Temabeskrivningsfel!</strong>"
-
-#~ msgid "Unknown date"
-#~ msgstr "Okänt datum"
-
-#~ msgid "Password must be at least %u characters"
-#~ msgstr "Lösenordet måste vara minst %u tecken långt"
-
-#~ msgid "Password must contain at least one of %s"
-#~ msgstr "Lösenordet måste innehålla åtminstone ett av följande %s"
-
-#~ msgid ""
-#~ "<strong>Note</strong>: passwords must be at least %1$u characters long "
-#~ "and contain at least one character from %2$s."
-#~ msgid_plural ""
-#~ "<strong>Note</strong>: passwords must be at least %1$u characters long "
-#~ "and contain at least one character from each of the following groups: "
-#~ "%2$s."
-#~ msgstr[0] ""
-#~ "<strong>Notera</strong>: lösenord måste vara minst %1$u tecken långa och "
-#~ "innehålla minst ett tecken från %2$s."
-#~ msgstr[1] ""
-#~ "<strong>Notera</strong>: lösenord måste vara minst %1$u tecken långa och "
-#~ "innehålla minst ett tecken från följande grupper: %2$s."
-
-#~ msgid ""
-#~ "<strong>Note</strong>: passwords must contain at least one character from "
-#~ "%s."
-#~ msgid_plural ""
-#~ "<strong>Note</strong>: passwords must contain at least one character from "
-#~ "each of the following groups: %s."
-#~ msgstr[0] ""
-#~ "<strong>Notera</strong>: lösenord måste innehålla minst ett tecken från "
-#~ "%s."
-#~ msgstr[1] ""
-#~ "<strong>Notera</strong>: lösenord måste innehålla minst ett tecken från "
-#~ "alla följande grupper: %s."
-
-#~ msgid ""
-#~ "<strong>Note</strong>: passwords must be at least %u characters long."
-#~ msgstr "<strong>Notera</strong>: lösenord måste innehålla minst  %u tecken."
-
-#~ msgid ""
-#~ "Extra text appended when hashing password to strengthen Zenphoto "
-#~ "authentication."
-#~ msgstr ""
-#~ "Extra text att lägga till vid hashning av lösenord för att stärka "
-#~ "Zenphotos autenticering."
-
-#~ msgid ""
-#~ "<strong>Note:</strong> Changing this will require all users to reset "
-#~ "their passwords! You should change your password immediately if you "
-#~ "change this text."
-#~ msgstr ""
-#~ "<strong>Notera:</strong> Om du ändrar detta måste alla användares "
-#~ "lösenord återställas! Du bör ändra ditt lösenord så fort texten ändrats."
-
-#~ msgid "Minimum number of characters a password must contain."
-#~ msgstr "Hur många tecken lösenordet minst måste innehålla."
-
-#~ msgid "Password characters:"
-#~ msgstr "Lösenordstecken:"
-
-#~ msgid ""
-#~ "Passwords must contain at least one of the characters from each of the "
-#~ "groups. Groups are separated by \"|\". (Use \"\\|\" to represent the \"|"
-#~ "\" character in the groups.)"
-#~ msgstr ""
-#~ "Lösenord måste innehålla minst ett tecken av alla grupper. Grupper "
-#~ "separeras med \"|\". (Använd \"\\|\" för att representera \"|\" -tecknet "
-#~ "i grupper.)"
-
-#~ msgid "Imagick memory limit"
-#~ msgstr "Minnesgräns för Imagick"
-
-#~ msgid ""
-#~ "Amount of memory allocated to Imagick in megabytes. Set to <strong>0</"
-#~ "strong> for unlimited memory."
-#~ msgstr ""
-#~ "Minne att allokera till Imagick i megabyte. Sätt till <strong>0</strong> "
-#~ "för obegränsat."
-
-#~ msgid ""
-#~ "<strong>Note</strong>: Image processing will be faster with a higher "
-#~ "memory limit. However, if your server experiences problems with image "
-#~ "processing, try setting this lower."
-#~ msgstr ""
-#~ "<strong>Notera</strong>: Bildhantering går snabbare med mer minne, men om "
-#~ "du däremot får problem med bildhanteringen, försök sänka denna "
-#~ "inställning."
-
-#~ msgid ""
-#~ "The font size (in pixels) for CAPTCHAs. Default is <strong>18</strong>."
-#~ msgstr ""
-#~ "Fontstorlek (i pixlar) för CAPTCHA. Standard är <strong>18</strong>."
-
-#~ msgid "PHP Imagick library <em>%s</em><br /><em>%s</em>"
-#~ msgstr "PHP Imagick bibliotek <em>%s</em><br /><em>%s</em>"
-
-#~ msgid "A simpler web photo album"
-#~ msgstr "Ett anklare webbalbum"
-
-#~ msgid "Updated zp-config.php"
-#~ msgstr "Uppdaterat zp-config.php"
-
-#~ msgid "strict+"
-#~ msgstr "strikt+"
-
-#~ msgid "Zenphoto Setup"
-#~ msgstr "Zenphoto Installation"
-
-#~ msgid "Version %1$s or greater is strongly recommended."
-#~ msgstr "Version %1$s eller högre rekommenderas."
-
-#~ msgid ""
-#~ "You should consider disabling <code>magic_quotes_gpc</code>. For more "
-#~ "information See <em>What is magic_quotes_gpc and why should it be "
-#~ "disabled?</em> in the Zenphoto troubleshooting guide."
-#~ msgstr ""
-#~ "Du bör inaktivera <code>magic_quotes_gpc</code>. Se <em>Vad är "
-#~ "magic_quotes_gpc och varför bör det inaktiveras?</em> i Zenphotos "
-#~ "felsökningsguide."
-
-#~ msgid "PHP <code>MySQL support</code>"
-#~ msgstr "PHP <code>MySQL support</code>"
-
-#~ msgid "You need to install MySQL support in your PHP"
-#~ msgstr "Du måste installera MySQL-stöd för PHP"
-
-#~ msgid "<em>zp-config.php</em> file"
-#~ msgstr "<em>zp-config.php</em> fil"
-
-#~ msgid "<em>zp-config.php</em> file [does not exist]"
-#~ msgstr "<em>zp-config.php</em> fil [saknas]"
-
-#~ msgid "<br /><br />You can find the file in the \"%s\" directory."
-#~ msgstr "<br /><br />Du kan finna filen i  \"%s\" mappen."
-
-#~ msgid "Change file/folder permissions mask: %s"
-#~ msgstr "Ändra fil/mapp-rättigheter mask: %s"
-
-#~ msgid "You must be logged in to change permissions."
-#~ msgstr "Du måste vara inloggad för att ändra rättigheter."
-
-#~ msgid "MySQL setup in <em>zp-config.php</em>"
-#~ msgstr "MySQL-Konfiguration i <em>zp-config.php</em>"
-
-#~ msgid "MySQL admin user"
-#~ msgstr "MySQL-Administratör"
-
-#~ msgid "MySQL admin password"
-#~ msgstr "MySQL-lösenord"
-
-#~ msgid "MySQL host"
-#~ msgstr "MySQL-värd"
-
-#~ msgid "MySQL database"
-#~ msgstr "MySQL-databas"
-
-#~ msgid "Connect to MySQL"
-#~ msgstr "anslut till MySQL"
-
-#~ msgid ""
-#~ "Check the <code>user</code>, <code>password</code>, and <code>database "
-#~ "host</code> and try again."
-#~ msgstr ""
-#~ "Kontrollera <code>användare</code>, <code>lösenord</code>, och "
-#~ "<code>databasvärd</code> och försök igen."
-
-#~ msgid "MySQL version %s"
-#~ msgstr "MySQL-Version %s"
-
-#~ msgid "Connect to the database [You have not provided a database name]"
-#~ msgstr "Anslut till databas [Du har inte anget databasnamn]"
-
-#~ msgid "Connect to the database [Database does not exist]"
-#~ msgstr "Anslut till databas [Databas saknas]"
-
-#~ msgid ""
-#~ "Could not access the <strong>MySQL</strong> database (<code>%s</code>)."
-#~ msgstr ""
-#~ "Kunde inte ansluta till <strong>MySQL</strong>-databasen (<code>%s</"
-#~ "code>)."
-
-#~ msgid ""
-#~ "Check the <code>user</code>, <code>password</code>, <code>database name</"
-#~ "code>, and <code>MySQL host</code>."
-#~ msgstr ""
-#~ "Kontrollera <code>användare</code>, <code>lösenord</code>, "
-#~ "<code>databasnamn</code>, och <code>MySQL-värd</code>."
-
-#~ msgid ""
-#~ "Make sure the database has been created and that <code>%s</code> has "
-#~ "access to it."
-#~ msgstr ""
-#~ "Verifiera att databasen skapades och att <code>%s</code> har tillgång "
-#~ "till den."
-
-#~ msgid "MySQL <code>access rights</code>"
-#~ msgstr "MySQL <code>rättigheter</code>"
-
-#~ msgid "MySQL <em>show tables</em> [Failed]"
-#~ msgstr "MySQL <em>visa tabeller</em> [Misslyckades]"
-
-#~ msgid ""
-#~ "Click <a href=\"?copyhtaccess\" >here</a> to have setup create the file."
-#~ msgstr "Klicka <a href=\"?copyhtaccess\" >här</a> för att skapa filen."
-
-#~ msgid "create and or update the database tables."
-#~ msgstr "skapa eller uppdatera databastabeller."
-
-#~ msgid ""
-#~ "The zp-config.php file does not exist. You should run setup.php to check "
-#~ "your configuration and create this file."
-#~ msgstr ""
-#~ "Filen zp-config.php existerar inte. Du bör köra setup.php för att "
-#~ "kontrollera konfigurationen och skapa denna fil"
-
-#~ msgid "Saving"
-#~ msgstr "Sparar"
-
-#~ msgid "Click to edit..."
-#~ msgstr "Klicka för att redigera..."
-
-#~ msgid "Edit this image"
-#~ msgstr "Redigera denna bild"
-
-#~ msgid "(No title...)"
-#~ msgstr "(Ingen titel...)"
-
-#~ msgid "(No date...)"
-#~ msgstr "(Inget datum...)"
-
-#~ msgid "(No Location...)"
-#~ msgstr "(Ingen Plats...)"
-
-#~ msgid "printEditable() incomplete function call."
-#~ msgstr "printEditable() felaktigt funktionsanrop."
-
-#~ msgid "(...)"
-#~ msgstr "(...)"
-
-#~ msgid "(No data...)"
-#~ msgstr "(Inget data...)"
-
-#~ msgid "(No data)"
-#~ msgstr "(Inget data)"
-
-#~ msgid "Download Zip of the Album"
-#~ msgstr "Ladda ned albumet som Zip-fil"
-
-#~ msgid "Download a zip file of this album"
-#~ msgstr "Ladda ned en Zip fil av albumet"
-
-#~ msgid "(No tags...)"
-#~ msgstr "(Inga taggar...)"
-
-#~ msgid "Latest images of this album and its subalbums RSS"
-#~ msgstr "Senaste bilderna i detta och underliggande album-RSS"
-
-#~ msgid "Latest comments RSS"
-#~ msgstr "Senaste kommentarer-RSS"
-
-#~ msgid "Latest albums RSS"
-#~ msgstr "Senaste album-RSS"
-
-#~ msgid "select search fields"
-#~ msgstr "välj sökfält"
-
-#~ msgid "Uploadify error on %1$s. Review your debug log."
-#~ msgstr "Uploadify error på %1$s. Se debug-loggen."
-
-#~ msgid "MySQL Query ( <em>%1$s</em> ) failed. Error: %2$s"
-#~ msgstr "MySQL-fråga ( <em>%1$s</em> ) misslyckades. Fel: %2$s"
-
-#~ msgid "Tables are prefixed by <strong>%s</strong>"
-#~ msgstr "Tabeller har prefixet <strong>%s</strong>"
-
-#~ msgid ""
-#~ "The restore enabled the Zenpage plugin. You should run <a href=\"%1$s/"
-#~ "%2$s/setup.php\">setup</a> to create Zenpage database tables. If tables "
-#~ "are created, you will need repeat thus restore operation."
-#~ msgstr ""
-#~ "Återställningen aktiverade Zenpage insticksmodul. Du bör köra <a href="
-#~ "\"%1$s/%2$s/setup.php\">installation</a> för att skapa Zenpage "
-#~ "databastabeller. Om tabellerna skapas, måste du köra återställning igen."
-
-#~ msgid ""
-#~ "Finds newly uploaded images that have not been cached and creates the "
-#~ "cached version. It also refreshes the numbers above. If you have a large "
-#~ "number of images in your gallery you might consider using the pre-cache "
-#~ "image link for each album to avoid swamping your browser."
-#~ msgstr ""
-#~ "Söker efter nyligen uppladdade bilder och skapar en cachad version. Den "
-#~ "uppdaterar även siffrorna ovanför. Om du har ett stort antal bilder i "
-#~ "ditt galleri bör du använda dig av förcachning av bilder för att inte din "
-#~ "webbläsare ska behöva jobba alltför hårt."
-
-#~ msgid ""
-#~ "Queries the Zenphoto web site for the latest version and compares that "
-#~ "with the one that is running."
-#~ msgstr ""
-#~ "Frågar Zenphoto webbsida efter senaste version och jämför med den "
-#~ "installerade."
-
-#~ msgid "<strong>%1$u</strong> images (%2$u not visible)"
-#~ msgstr "<strong>%1$u</strong> Bilder (%2$u ej synliga)"
-
-#~ msgid "Clears the image cache. Images will be re-cached as they are viewed."
-#~ msgstr ""
-#~ "Raderar bild-cachen. Bilderna cachas på nytt så fort dom visas igen."
-
-#~ msgid ""
-#~ "Cleans the database and removes any orphan entries for comments, images, "
-#~ "and albums."
-#~ msgstr "Tar bort föräldralösa kommentarer, bilder och album ur databasen."
-
-#~ msgid "Sets all album thumbs to random."
-#~ msgstr "Sätter alla albumtumnaglar till slumpmässig."
-
-#~ msgid "Set to <em>random</em>"
-#~ msgstr "Sätt till <em>slumpmässig</em>"
-
-#~ msgid "Set to <em>%s</em>"
-#~ msgstr "Sätt till <em>%s</em>"
-
-#~ msgid ""
-#~ "These buttons allow you to set all of your album thumbs to either a "
-#~ "<em>random</em> image or to the <em>%s</em> image. This will override any "
-#~ "album thumb selections you have made on individual albums."
-#~ msgstr ""
-#~ "Dessa knappar tillåter dig att ställa in alla albumtumnaglar till "
-#~ "<em>slumpmässig</em> bild eller till <em>%s</em> bild. Detta ändrar alla "
-#~ "individuella inställningar av albumtumnaglar du gjort."
-
-#~ msgid "Make images visible by default"
-#~ msgstr "Gör bilder synliga som standard"
-
-#~ msgid "Not visible images:"
-#~ msgstr "Ej synliga bilder:"
-
-#~ msgid ""
-#~ "<strong>Notes:</strong> <em>Wordpress page nesting</em> is not preserved "
-#~ "but can easily be recreated by drag and drop sorting on the pages tab. \n"
-#~ "<em>Category nesting</em> is also not directly supported by Zenpage. "
-#~ "Therefore all categories will be plain level, you can however use the "
-#~ "<em>menu_manager plugin</em> to recreate this if needed."
-#~ msgstr ""
-#~ "<strong>Notering:</strong> <em>Wordpress sidnästling</em> behålls inte, "
-#~ "men kan enkelt återskapas genom dra och släpp sortering på fliken "
-#~ "sidor. \n"
-#~ "<em>Kategorinästling</em> stöds inte heller direkt av Zenpage,  därför "
-#~ "hamnar alla kategorier på samma nivå. Du kan däremot använda "
-#~ "<em>meny_hanteringsmodulen</em> för att återskapa detta vid behov."
-
-#~ msgid "<strong>ERROR:</strong> Wordpress database info incomplete"
-#~ msgstr "<strong>FEL:</strong> Wordpress databasinformation ofullständig"
-
-#~ msgid ""
-#~ "Provides a means for showing text where zenphoto would normally display "
-#~ "images. For documentation, see the script file."
-#~ msgstr ""
-#~ "Förser dig med möjligheten att visa text där zenphoto normalt skulle visa "
-#~ "bilder. För dokumentation, se script-filen."
-
-#~ msgid ""
-#~ "Video and MP3/4 handling for Zenphoto. This plugin must always be enabled "
-#~ "to use multimedia content."
-#~ msgstr ""
-#~ "Video och MP3/4 hantering för Zenphoto. Denna insticksmodul måste alltid "
-#~ "aktiveras för att visa multimedia."
-
-#~ msgid "Website:"
-#~ msgstr "Webbplats:"
-
-#~ msgid "Comment error \"%d\" not defined."
-#~ msgstr "Kommentarfel \"%d\" ej definierad."
-
-#~ msgid ""
-#~ "Prints an e-mail contact form that uses Zenphoto's internal validation "
-#~ "functions for e-mail and URL. Name, e-mail address, subject and message "
-#~ "(and if enabled CAPTCHA) are required fields. You need to enter a custom "
-#~ "mail address that should be used for the messages. Supports Zenphoto's "
-#~ "CAPTCHA and confirmation before the message is sent. No other spam filter "
-#~ "support, since mail providers have this anyway."
-#~ msgstr ""
-#~ "Skapar e-post formulär som använder ZenPhotos interna "
-#~ "valideringsfunktioner för e-post och URL. Namn, e-postadress, ämne och "
-#~ "meddelande (och om tillämpligt CAPTCHA) är obligatoriska uppgifter. Du "
-#~ "behöver ange en anpassad e-postadress som används för meddelanden. "
-#~ "Stödjer ZenPhotos CAPTCHA och validering innan meddelandet sänds. Inga "
-#~ "andra spam-filter används eftersom mail-providern har detta."
-
-#~ msgid "Mail address"
-#~ msgstr "E-postadress"
-
-#~ msgid "Title field."
-#~ msgstr "Titelfält."
-
-#~ msgid "Name field."
-#~ msgstr "Namnfält."
-
-#~ msgid "Company field."
-#~ msgstr "Företagsfält."
-
-#~ msgid "Street field"
-#~ msgstr "Gatufält"
-
-#~ msgid "Street field."
-#~ msgstr "Gatufält."
-
-#~ msgid "City field"
-#~ msgstr "Stadfält"
-
-#~ msgid "City field."
-#~ msgstr "Stadfält."
-
-#~ msgid "Country field"
-#~ msgstr "Landfält"
-
-#~ msgid "Country field."
-#~ msgstr "Landfält."
-
-#~ msgid "E-mail field."
-#~ msgstr "E-postfält."
-
-#~ msgid "Website field."
-#~ msgstr "Webbplatsfält."
-
-#~ msgid "CAPTCHA field"
-#~ msgstr "CAPTCHAfält"
-
-#~ msgid "If CAPTCHA should be required."
-#~ msgstr "Om CAPTCHA ska krävas."
-
-#~ msgid "Subject field"
-#~ msgstr "Ämnesfält"
-
-#~ msgid "Subject field."
-#~ msgstr "Ämnesfält."
-
-#~ msgid "Message field"
-#~ msgstr "Meddelandefält"
-
-#~ msgid "Message field."
-#~ msgstr "Meddelandefält."
-
-#~ msgid "a <strong>title</strong>"
-#~ msgstr "en <strong>Titel</strong>"
-
-#~ msgid "a <strong>name</strong>"
-#~ msgstr "ett <strong>Namn</strong>"
-
-#~ msgid "a <strong>company</strong>"
-#~ msgstr "ett <strong>Företag</strong>"
-
-#~ msgid "a <strong>street</strong>"
-#~ msgstr "en <strong>Gata</strong>"
-
-#~ msgid "a <strong>city</strong>"
-#~ msgstr "en <strong>Stad</strong>"
-
-#~ msgid "a <strong>country</strong>"
-#~ msgstr "ett <strong>Land</strong>"
-
-#~ msgid "a <strong>valid email address</strong>"
-#~ msgstr "en <strong>giltig e-postadress</strong>"
-
-#~ msgid "a <strong>website</strong>"
-#~ msgstr "en <strong>Webbsida</strong>"
-
-#~ msgid "a <strong>phone number</strong>"
-#~ msgstr "ett <strong>Telefonnummer</strong>"
-
-#~ msgid "a <strong>message</strong>"
-#~ msgstr "ett <strong>Meddelande</strong>"
-
-#~ msgid "<p style='color:red'>Please enter "
-#~ msgstr "<p style='color:red'>Vänligen skriv"
-
-#~ msgid " and "
-#~ msgstr " och"
-
-#~ msgid ". Thanks.</p>"
-#~ msgstr ". Tack.</p>"
-
-#~ msgid ""
-#~ "Deprecated Zenphoto functions. These functions have been removed from "
-#~ "mainstream Zenphoto as they have been supplanted. They are not maintained "
-#~ "and they are not guaranteed to function correctly with the current "
-#~ "version of Zenphoto."
-#~ msgstr ""
-#~ "Föråldrade Zenphoto funktioner. Dessa funktioner har tagits bort från "
-#~ "Zenphoto eftersom dom har ersatts. Ej underhållna och ingen garanti kan "
-#~ "lämnas att dom fungerar med nuvarande version av Zenphoto."
-
-#~ msgid "getZenpageHitcounter is deprecated. Use getHitcounter()."
-#~ msgstr "getZenpageHitcounter är föråldrad. Använd getHitcounter()."
-
-#~ msgid "printImageEXIFData is deprecated. Use printImageMetadata()."
-#~ msgstr "printImageEXIFData är föråldrad. Använd printImageMetadata()."
-
-#~ msgid ""
-#~ "printCustomSizedImageMaxHeight is deprecated. Use "
-#~ "printCustomSizedImageMaxSpace()."
-#~ msgstr ""
-#~ "printCustomSizedImageMaxHeight är föråldrad. Använd "
-#~ "printCustomSizedImageMaxSpace()."
-
-#~ msgid "getCommentDate is deprecated. Use getCommentDateTime()."
-#~ msgstr "getCommentDate är föråldrad. Använd getCommentDateTime()."
-
-#~ msgid "getCommentTime is deprecated. Use getCommentDateTime()."
-#~ msgstr "getCommentTime är föråldrad. Använd getCommentDateTime()."
-
-#~ msgid "hitcounter is deprecated. Use getHitcounter()."
-#~ msgstr "hitcounter är föråldrad. Använd getHitcounter()."
-
-#~ msgid "my_truncate_string is deprecated. Use truncate_string()."
-#~ msgstr "my_truncate_string är föråldrad. Använd truncate_string()."
-
-#~ msgid "getImageEXIFData is deprecated. Use getImageMetaData()."
-#~ msgstr "getImageEXIFData är föråldrad. Använd getImageMetaData()."
-
-#~ msgid "getAlbumPlace is deprecated. Use getAlbumLocation()."
-#~ msgstr "getAlbumPlace är föråldrad. Använd getAlbumLocation()."
-
-#~ msgid "printAlbumPlace is deprecated. Use printAlbumLocation()."
-#~ msgstr "printAlbumPlace Är föråldrad. Använd printAlbumLocation()."
-
-#~ msgid "(No place...)"
-#~ msgstr "(Ingen plats...)"
-
-#~ msgid "zenpageHitcounter is deprecated. Use getHitcounter()."
-#~ msgstr "zenpageHitcounter är föråldrad. Använd getHitcounter()."
-
-#~ msgid ""
-#~ "An image crop tool. Places an image crop button in the image utilities "
-#~ "box of the images tab."
-#~ msgstr ""
-#~ "Bildbeskärningsverktyg. Placerar en bildbeskärningsknapp i "
-#~ "bildverktygslådan på bildfliken."
-
-#~ msgid ""
-#~ "Filter applied to filenames to translate accented characters to "
-#~ "unaccented ones for SEO friendly URLs."
-#~ msgstr ""
-#~ "Filter som läggs på filnamn för att översätta accenter i tecken till "
-#~ "oaccenterade för att skapa sökmotoroptimerade URL:er."
-
-#~ msgid ""
-#~ "Enable <strong>flowplayer 3</strong> to handle multimedia files. "
-#~ "IMPORTANT: Only one multimedia player plugin can be enabled at the time "
-#~ "and the class-video plugin must be enabled, too. <br /> Please see <a "
-#~ "href='http://flowplayer.org'>flowplayer.org</a> for more info about the "
-#~ "player and its license."
-#~ msgstr ""
-#~ "Tillåt <strong>flowplayer 3</strong> att hantera multimediafiler. "
-#~ "VIKTIGT: Endast en multimediaspelare kan vara aktiverad åt gången samt "
-#~ "att class-video insticksmodulen måste vara aktiverad. <br /> Se <a "
-#~ "href='http://flowplayer.org'>flowplayer.org</a> för mer information om "
-#~ "spelaren och dess licens."
-
-#~ msgid "flow player width"
-#~ msgstr "Flow Player bredd"
-
-#~ msgid "Player width (ignored for <em>mp3</em> files.)"
-#~ msgstr "Player-Bredd (används inte för <em>mp3s</em> filer.)"
-
-#~ msgid "flow player height"
-#~ msgstr "Flow Player Höjd"
-
-#~ msgid "Player height (ignored for <em>mp3</em> files.)"
-#~ msgstr "Player-Höjd (används inte för <em>mp3s</em> filer.)"
-
-#~ msgid "Player background color"
-#~ msgstr "Bakgrundsfärg för spelare"
-
-#~ msgid "The color of the player background."
-#~ msgstr "Spelarens bakgrundsfärg."
-
-#~ msgid "Player background color gradient"
-#~ msgstr "Spelarens färgtoning för bakgrund"
-
-#~ msgid "low"
-#~ msgstr "Låg"
-
-#~ msgid "high"
-#~ msgstr "Hög"
-
-#~ msgid "Gradient setting for player background color."
-#~ msgstr "Färgtoningsinställning för spelarens bakgrundsfärg."
-
-#~ msgid "Controls background color"
-#~ msgstr "Kontrollerar bakgrundsfärgen"
-
-#~ msgid "Background color of the controls."
-#~ msgstr "Bakgrundsfärg för kontrollerna."
-
-#~ msgid "Controls background color gradient"
-#~ msgstr "Hanterar bakgrundsfärgtoning för kontrollerna"
-
-#~ msgid "Gradient setting for background color of the controls."
-#~ msgstr "Färgtoningsinställning för spelarens kontroller."
-
-#~ msgid "Controls border color"
-#~ msgstr "Hanterar ramfärgen"
-
-#~ msgid "Color of the border of the player controls"
-#~ msgstr "Spelarkontrollernas ramfärg."
-
-#~ msgid ""
-#~ "Should the video start automatically. Yes if selected. (NOTE: Probably "
-#~ "because of a flowplayer bug mp3s are always autoplayed.)"
-#~ msgstr ""
-#~ "Ska videon startas automatiskt?. Ja, om vald. (NOTERA: Troligtvis pga. en "
-#~ "bugg i flowplayer spelas MP3:or alltid upp automatiskt.)"
-
-#~ msgid "Background color"
-#~ msgstr "Bakgrundsfärg"
-
-#~ msgid ""
-#~ "Changes the color of the Flowplayer's background canvas. By default the "
-#~ "canvas is all black. You can specify a value of -1 and the background "
-#~ "will not be drawn (only the video will be visible)."
-#~ msgstr ""
-#~ "Ändrar färgerna på flowplayers bakgrund. Standardfärg är svart. Om du "
-#~ "anger -1 så visas inte bakgrunden alls."
-
-#~ msgid "Controls autohide"
-#~ msgstr "Göm kontroller automatiskt"
-
-#~ msgid "fullscreen"
-#~ msgstr "fullskärm"
-
-#~ msgid ""
-#~ "Specifies whether the controlbar should be hidden when the user is not "
-#~ "actively using the player."
-#~ msgstr "Specifierar om kontrollpanelen ska gömmas vid inaktivitet."
-
-#~ msgid "Controls time color"
-#~ msgstr "Färg på spelad tid"
-
-#~ msgid ""
-#~ "Value for the font color in the time field. This is the running time."
-#~ msgstr "Värde för fontfärgen i tidsfältet. Detta är den spelade tiden."
-
-#~ msgid ""
-#~ "Value for the font color in the time field that specifies the total "
-#~ "duration of the clip or total time."
-#~ msgstr "Värde för fontfärgen i tidsfältet för totala speltiden."
-
-#~ msgid "Controls progress bar color"
-#~ msgstr "Hanterar färgen på förloppsindikatorn"
-
-#~ msgid ""
-#~ "Color of the progress bar. This is the bar in the timeline from zero time "
-#~ "to the point where playback is at a given time."
-#~ msgstr ""
-#~ "Färg på förloppsindikator. Detta är indikatorn i tidslinjen från början "
-#~ "till den punkt där avspelningen är just då."
-
-#~ msgid "Controls progress bar gradient"
-#~ msgstr "Hanterar förloppsindikatorns toning"
-
-#~ msgid "Gradient setting for the progress bar."
-#~ msgstr "Toningsinställningar för förloppsindikatorn."
-
-#~ msgid "Controls buffer color"
-#~ msgstr "Hanterar buffertfärg"
-
-#~ msgid ""
-#~ "Color of the buffer. The buffer is the bar that indicates how much video "
-#~ "data has been read into the player's memory."
-#~ msgstr ""
-#~ "Färg på bufferten. Bufferten är indikatorn som visas hur mycket videodata "
-#~ "som har läst in i spelarens minne."
-
-#~ msgid "Controls buffer gradient"
-#~ msgstr "Hanterar buffertens toning"
-
-#~ msgid "Gradient setting for the buffer."
-#~ msgstr "Toningsinställningar för buffert."
-
-#~ msgid "Controls slider color"
-#~ msgstr "Hanterar skjutreglagets färg"
-
-#~ msgid ""
-#~ "Background color for the timeline before the buffer bar fills it. The "
-#~ "same background color is also used in the volume slider."
-#~ msgstr ""
-#~ "Bakgrundsfärg för tidslinjen innan bufferten fyller den. Samma "
-#~ "bakgrundsfärg används även av volymreglaget."
-
-#~ msgid "Controls slider gradient"
-#~ msgstr "Hanterar skjutreglagets toning"
-
-#~ msgid "Gradient setting for the sliders."
-#~ msgstr "Toningsinställningar för skjutreglagen."
-
-#~ msgid "Controls button color"
-#~ msgstr "Hanterar knappfärg"
-
-#~ msgid "Color of the player buttons: stop, play, pause and full screen."
-#~ msgstr "Färg på spelarens knappar: stopp, spela, paus och fullskärm."
-
-#~ msgid "Controls hover button color"
-#~ msgstr "Hanterar färg på knappar vid svävning"
-
-#~ msgid "Button color when the mouse is positioned over them."
-#~ msgstr "Knappfärg när muspekaren är ovanför dom."
-
-#~ msgid "Splash image scale"
-#~ msgstr "Skala på laddningsbild"
-
-#~ msgid "fit"
-#~ msgstr "passa"
-
-#~ msgid "orig"
-#~ msgstr "orig"
-
-#~ msgid ""
-#~ "Setting which defines how video is scaled on the video screen. Available "
-#~ "options are:<br /><em>fit</em>: Fit to window by preserving the aspect "
-#~ "ratio encoded in the file's metadata.<br /><em>half</em>: Half-size "
-#~ "(preserves aspect ratio)<br /><em>orig</em>: Use the dimensions encoded "
-#~ "in the file. If the video is too big for the available space, the video "
-#~ "is scaled using the 'fit' option.<br /><em>scale</em>: Scale the video to "
-#~ "fill all available space. This is the default setting."
-#~ msgstr ""
-#~ "Inställning som definierar hur video skalas på skärmen. Tillgängliga "
-#~ "alternativ är:<br /><em>passa</em>: Passa till videofönster och behåll "
-#~ "aspekt.<br /><em>halv</em>: Halv storlek (behåller aspekten)<br /"
-#~ "><em>orig</em>: Använd dimensioner från videofilen. Om videon är för stor "
-#~ "för tillgängligt utrymme skalas videon enligt 'passa' alternativet.<br /"
-#~ "><em>skala</em>: Skala video att fylla hela utrymmet. Detta är "
-#~ "standardinställningen."
-
-#~ msgid ""
-#~ "Show the content of an media album with .flv/.mp4/.mp3 movie/audio files "
-#~ "only as a playlist or as separate players on one page with Flowplayer 3."
-#~ msgstr ""
-#~ "Visa innehållet i ett mediaalbum med .flv/.mp4/.mp3 movie/audio-filer "
-#~ "endast som spellista eller som separata spelare på en sida med Flowplayer "
-#~ "3."
-
-#~ msgid ""
-#~ "<strong>Important:</strong> The Flowplayer 3 plugin needs to be activated "
-#~ "to use this plugin and your theme needs to be modified."
-#~ msgstr ""
-#~ "<strong>Viktigt:</strong> Flowplayer 3 insticksmodul måste vara aktiverad "
-#~ "för att använda denna modul och ditt tema måste modifieras."
-
-#~ msgid ""
-#~ "Player width (Note this refers to the player window. The playlist display "
-#~ "itself is styled via CSS.)"
-#~ msgstr ""
-#~ "Spelarbredd (Notera att detta speglar spelarens fönster. Spellistan "
-#~ "stylas genom CSS.)"
-
-#~ msgid ""
-#~ "Player height (Note this refers to the player window. The playlist "
-#~ "display itself is styled via CSS.)"
-#~ msgstr ""
-#~ "Spelarhöjd (Notera att detta speglar spelarens fönster. Spellistan stylas "
-#~ "genom CSS.)"
-
-#~ msgid "Splash image"
-#~ msgstr "Splashbild"
-
-#~ msgid ""
-#~ "Check if you want to display the videothumb of the first playlist entry "
-#~ "as a splash/cover image. It will be cropped to the fit the width and "
-#~ "height of the player window and will disappear on starting the playlist."
-#~ msgstr ""
-#~ "Markera om du vill visa videotumnagel från första mediat i spellistan som "
-#~ "förstabild. Den kommer att beskäras för att passa spelarens fönster och "
-#~ "försvinner vid start av spelaren."
-
-#~ msgid "Google Earth"
-#~ msgstr "Google Earth"
-
-#~ msgid "Google Maps API key"
-#~ msgstr "Google-Maps-API-nyckel"
-
-#~ msgid ""
-#~ "If you are going to be using Google Maps, <a href=\"http://www.google.com/"
-#~ "apis/maps/signup.html\" target=\"_blank\">get an API key</a> and enter it "
-#~ "here."
-#~ msgstr ""
-#~ "Om du ska använda Google Maps, <a href=\"http://www.google.com/apis/maps/"
-#~ "signup.html\" target=\"_blank\">hämta en API-nyckel</a> och skriv in den "
-#~ "här."
-
-#~ msgid "All album points"
-#~ msgstr "Alla albumpunkter"
-
-#~ msgid ""
-#~ "Controls which image points are shown on an album page. Check to show "
-#~ "points for all images in the album. If not checked points are shown only "
-#~ "for those images whose thumbs are on the page."
-#~ msgstr ""
-#~ "Kontrollerar vilka geografiska bild-punkter som visas på albumsidan. "
-#~ "Markera för att visa alla. Om ej markerad visas endast punkter för "
-#~ "bilderna vars tumnaglar för tillfället visas på sidan."
-
-#~ msgid "Map type selector"
-#~ msgstr "Karttypsväljare"
-
-#~ msgid "Buttons"
-#~ msgstr "Knappar"
-
-#~ msgid "List"
-#~ msgstr "Lista"
-
-#~ msgid "Map background"
-#~ msgstr "Bakgrund för karta"
-
-#~ msgid ""
-#~ "Set the map background color to match the one of your theme. (Use the "
-#~ "same <em>color</em> values as in your CSS background statements.)"
-#~ msgstr ""
-#~ "Välj bakgrundsfärg för kartan som matchar färgen på ditt tema. (Använd "
-#~ "samma <em>färg</em>värden som finns i dina CSS-bakgrundsinställningar.)"
-
-#~ msgid ""
-#~ "Select the initial type of map to display. <br /><strong>Note:</strong> "
-#~ "If <code>Google Earth</code> is selected the <em>toggle</em> function "
-#~ "which initially hides the map is ignored. The browser <em>Google Earth "
-#~ "Plugin</em> does not initialize properly when the map is hidden."
-#~ msgstr ""
-#~ "Välj vilken inledande karttyp som ska visas. <br /><strong>Notera:</"
-#~ "strong> Om <code>Google Earth</code> är markerad, ignoreras <em>växlings</"
-#~ "em>funktionen som inledningsvis gömmer kartan. Webbläsarens <em>Google "
-#~ "Earth Insticksmodul</em> initialiseras inte korrekt om kartan är gömd."
-
-#~ msgid ""
-#~ "A plugin to print the most common HTML meta tags (except the charset one "
-#~ "which is standard to all theme files anyway) to the head of your site's "
-#~ "pages using general existing Zenphoto info like gallery description, tags "
-#~ "or Zenpage news categories."
-#~ msgstr ""
-#~ "En insticksmodul för att skriva dom vanligaste HTML-metataggarna (förutom "
-#~ "teckenkodning vilken är standard i alla temafiler oavsett) till huvudet "
-#~ "av din webbplats sidor genom att använda existerande Zenphoto information "
-#~ "som, beskrivning, taggar eller Zenpage nyhetskategorier."
-
-#~ msgid ""
-#~ "Provides the means to set an limit of the number of images that can be "
-#~ "uploaded to an album in total. Of course this is bypassed if using FTP "
-#~ "upload or ZIP files! If you want to limit the latter you need to use the "
-#~ "quota_management plugin additionally."
-#~ msgstr ""
-#~ "Sätter en gräns på hur många bilder som totalt kan laddas upp till ett "
-#~ "album. Används FTP-uppladdning eller ZIP-filer förbigås detta! Om du även "
-#~ "vill begränsa dessa måste du använda dig av quota_hanteringsmodulen också."
-
-#~ msgid "Upload limit"
-#~ msgstr "Uppladdningsgräns"
-
-#~ msgid ""
-#~ "The maximum number of images per album if uploading via the multifile "
-#~ "upload."
-#~ msgstr "Max bilder per album vid uppladdning via multifiluppladdning."
-
-#~ msgid "Disable new album creation"
-#~ msgstr "Avaktivera skapande av nya album"
-
-#~ msgid "There is a plugin conflict with <em>image_upload_limiter</em>"
-#~ msgstr "Insticksmodulkonflikt med <em>bild_uppladdnings_gräns</em>"
-
-#~ msgid ""
-#~ "The album exceeded the image number limit. You cannot upload more images!"
-#~ msgstr "Albumet överskred bildantalet. Du kan inte ladda upp fler bilder!"
-
-#~ msgid "Maximum number of images left for this album: "
-#~ msgstr "Antal bilder kvar att ladda upp till detta album: "
-
-#~ msgid ""
-#~ "HTTP single file uploading is disabled because upload limitations are in "
-#~ "effect. Please use the <a href=\"javascript:switchUploader('admin-upload."
-#~ "php?uploadtype=multifile');\" >multi file upload</a>"
-#~ msgstr ""
-#~ "HTTP singlefiluppladdning är avaktiverad eftersom uppladdningsgräns är "
-#~ "aktiverad. Prova <a href=\"javascript:switchUploader('admin-upload.php?"
-#~ "uploadtype=multifile');\" >Flerfilsuppladdning</a>"
-
-#~ msgid ""
-#~ "<strong>Note:</strong> You can upload a maximum of %s images to each "
-#~ "album."
-#~ msgstr ""
-#~ "<strong>Notera:</strong> Du kan maximalt ladda upp %s bilder till varje "
-#~ "album."
-
-#~ msgid ""
-#~ "jQuery jCarousel thumb nav plugin with dynamic loading of thumbs on "
-#~ "request via JavaScript. Place printjCarousel() on your theme's image.php "
-#~ "where you want it to appear. Supports theme based css files (place "
-#~ "jcarousel.css and needed images in your theme's folder)."
-#~ msgstr ""
-#~ "Insticksmodul för jQUERY jCarousel tumnagelnavigering med dynamisk "
-#~ "visning av tumnaglar via JavaScript. Ange printCarousel() i ditt temas "
-#~ "image.php där du vill att det ska synas. Stödjer temabaserade css-filer "
-#~ "(placera jcarousel.css och bilderna som krävs i mappen för ditt tema)."
-
-#~ msgid "(%u album)"
-#~ msgid_plural "(%u albums)"
-#~ msgstr[0] "(%u album)"
-#~ msgstr[1] "(%u album)"
-
-#~ msgid ""
-#~ "Prints a paged thumbs navigation on image.php, independent of the album."
-#~ "php's thumbs. The function contains some predefined CSS ids you can use "
-#~ "for styling. Please see the documentation for more info."
-#~ msgstr ""
-#~ "Skapar en paginerad tumnagelnavigation på image.php, oavsett av album."
-#~ "php's tumnaglar. Funktionen har några fördefinierade CSS-id som du kan "
-#~ "använda. Se dokumentationen för mer information."
-
-#~ msgid "PHP version 5 or greater is required."
-#~ msgstr "PHP version 5 eller högre krävs"
-
-#~ msgid "Image quota information."
-#~ msgstr "Bildquotainformation."
-
-#~ msgid "*no owner"
-#~ msgstr "*Ingen ägare"
-
-#~ msgid "Assign images to:"
-#~ msgstr "Tilldela bilder till:"
-
-#~ msgid "3 stars"
-#~ msgstr "3 stjärnor"
-
-#~ msgid "4 stars"
-#~ msgstr "4 stjärnor"
-
-#~ msgid "5 stars"
-#~ msgstr "5 stjärnor"
-
-#~ msgid "Submit &raquo;"
-#~ msgstr "Skicka &raquo;"
-
-#~ msgid ""
-#~ "Text for the body of the email sent to the user. <strong>Note:</strong> "
-#~ "You must include <code>%s</code> in your message where you wish the "
-#~ "registration completion link to appear."
-#~ msgstr ""
-#~ "Text i meddelandet som skickas till användaren. <strong>Notera:</strong> "
-#~ "Du måste inkludera <code>%s</code> i meddelandet där du vill att "
-#~ "verifieringslänken skall visas."
-
-#~ msgid "User registration page"
-#~ msgstr "Registreringssida för användare"
-
-#~ msgid "Use CAPTCHA"
-#~ msgstr "Använd CAPTCHA"
-
-#~ msgid ""
-#~ "If checked, CAPTCHA validation will be required for user registration."
-#~ msgstr ""
-#~ "Markera för att inkludera CAPTCHA-validering vid användarregistrering."
-
-#~ msgid "Default user rights"
-#~ msgstr "Standard användarrättigheter"
-
-#~ msgid "View Rights"
-#~ msgstr "Visningsrättigheter"
-
-#~ msgid ""
-#~ "Initial rights for the new user.<br />Set to <em>No rights</em> if you "
-#~ "want to approve the user.<br />Set to <em>View Rights</em> to allow "
-#~ "viewing the gallery once the user is verified."
-#~ msgstr ""
-#~ "Initiala rätigheter för nya användare. <br />Sätt till <em>Inga "
-#~ "rättigheter</em> om du vill godkänna användaren.<br />Sätt till "
-#~ "<em>Visningsrättigheter</em> för att tillåta visning av galleriet så fort "
-#~ "användaren verifierats."
-
-#~ msgid "*no page selected"
-#~ msgstr "*ingen sida vald"
-
-#~ msgid "sitemap cache cleared."
-#~ msgstr "sitemap-cache rensat."
-
-#~ msgid ""
-#~ "Generates a sitemaps.org compatible XML file, for use with Google and "
-#~ "other search engines. It supports albums and images as well as optionally "
-#~ "Zenpage pages, news articles and news categories. Renders the sitemap if "
-#~ "called via \"www.yourdomain.com/zenphoto/sitemap.php\" in the URL."
-#~ msgstr ""
-#~ "Skapar en sitemaps.org kompatibel XML-fil, för användning med Google och "
-#~ "andra sökmotorer. Den stödjer album och bilder samt Zenpage sidor, "
-#~ "nyhetsartiklar och nyhetskategorier. Den skapar sitemap genom att ange "
-#~ "\"www.yourdomain.com/zenphoto/sitemap.php\" i adressfältet."
-
-#~ msgid "Sitemap cache expire"
-#~ msgstr "sitemap cache upphör"
-
-#~ msgid ""
-#~ "When the cache should expire in seconds. Default is 86400 seconds (1 day  "
-#~ "= 24 hrs * 60 min * 60 sec).The cache can also be cleared on the admin "
-#~ "overview page manually."
-#~ msgstr ""
-#~ "När cachen ska utgå i sekunder. Standard är 86400 sekunder (1 Dag  = 24 "
-#~ "Timmar. * 60 min * 60 sek). Cachen kan även raderas manuellt på "
-#~ "adminsidans översiktssida."
-
-#~ msgid "Clear the static sitemap cache. It will be re-cached if requested."
-#~ msgstr "Raderar statisk sitemap-cache. Cachas på nytt när det behövs."
-
-#~ msgid ""
-#~ "Adds a theme function to call a slideshow either based on jQuery "
-#~ "(default) or Flash using Flowplayer3 if installed. Additionally the files "
-#~ "<em>slideshow.php</em>, <em>slideshow.css</em> and <em>slideshow-controls."
-#~ "png</em> need to be present in the theme folder."
-#~ msgstr ""
-#~ "Lägger till en temafunktion som antingen baseras på jQuery (standard) "
-#~ "eller Flash med Flowplayer3 om installerat. Dessutom måste <em>slideshow."
-#~ "php</em>, <em>slideshow.css</em> och <em>slideshow-controls.png</em> "
-#~ "finnas i temamappen."
-
-#~ msgid ""
-#~ "Width of the images in the slideshow. <em>[jQuery mode option]</em><br /"
-#~ ">If empty the theme options <em>image size</em> is used."
-#~ msgstr ""
-#~ "Bredd på bilderna i bildspelet. <em>[jQuery mode option]</em><br />Om tom "
-#~ "används istället <em>Bildstorlek</em> från temainställningarna."
-
-#~ msgid ""
-#~ "Height of the images in the slideshow. <em>[jQuery mode option]</em><br /"
-#~ ">If empty the theme options <em>image size</em> is used."
-#~ msgstr ""
-#~ "Höjd på bilderna i bildspelet. <em>[jQuery mode option]</em><br />Om tom "
-#~ "används istället <em>Bildstorlek</em> från temainställningarna."
-
-#~ msgid ""
-#~ "Check if you want to use your watermark on the images <em>[jQuery mode "
-#~ "option]</em>."
-#~ msgstr ""
-#~ "Markera om du vill använda vattenstämpel på bilderna <em>[jQuery mode "
-#~ "option]</em>."
-
-#~ msgid "flash"
-#~ msgstr "flash"
-
-#~ msgid ""
-#~ "<em>jQuery</em> for JS ajax slideshow, <em>flash</em> for flash based "
-#~ "slideshow.)"
-#~ msgstr ""
-#~ "<em>jQuery</em> för JS ajax bildspel, <em>flash</em> för flashbaserat "
-#~ "bildspel.)"
-
-#~ msgid ""
-#~ "Width of the Flowplayer display for the slideshow <em>(Flash mode)</em>."
-#~ msgstr ""
-#~ "Bredd för Flowplayer-displayen för bildspelet<em>(Flash-Modus)</em>."
-
-#~ msgid ""
-#~ "Height of the Flowplayer display for the slideshow <em>(Flash mode)</em>."
-#~ msgstr ""
-#~ "Höjd för Flowplayer-displayen för bildspelet <em>(Flash-Modus)</em>."
-
-#~ msgid "Click on the right in the player control bar to view full size."
-#~ msgstr "Klicka på högra sidan av kontrollpanelen för att visa full storlek."
-
-#~ msgid ""
-#~ "Adds static HTML cache functionality to Zenphoto v1.2 or higher. Caches "
-#~ "all Zenphoto pages (incl. Zenpage support) except search.php (search "
-#~ "results, date archive) and the custom error page 404.php. This plugin "
-#~ "uses the folder <em>cache_html</em> and it's subfolders <em>index, "
-#~ "images, albums</em> and <em>pages</em> in Zenphoto's root folder."
-#~ msgstr ""
-#~ "Lägger till statisk HTML-cache funktionalitet till Zenphoto v1.2 eller "
-#~ "högre. Cachar alla Zenphoto sidor (inkl. Zenpage stöd) förutom search.php "
-#~ "(sökresultat, datumarkiv) och anpassade 404.php sidor. Denna "
-#~ "insticksmodul använder mappen <em>cache_html</em> och dess undermappar "
-#~ "<em>index, bilder, album</em> och <em>sidor</em> i Zenphoto's rotmapp."
-
-#~ msgid "Content generated dynamically in %u seconds"
-#~ msgstr "Innehåll skapat dynamiskt på %u Sekunder"
-
-#~ msgid ""
-#~ "Prints a tag cloud of all image tags from an album optionally including "
-#~ "the subalbums or the album tags including sub album tags. Note the "
-#~ "optional counter prints the total number of the tag used, not just for "
-#~ "the selected album (as clicking on it will return all anyway)."
-#~ msgstr ""
-#~ "Skapar ett tagg-moln från alla bildtaggar i ett album och underalbum, "
-#~ "eller albumtaggar inkluderat taggar från underalbum. Den valfria räknaren "
-#~ "skriver totalt användande av taggen, ej endast för valt album (om du "
-#~ "klickar på taggen hämtas alla objekt med den)."
-
-#~ msgid ""
-#~ "Enables jQuery tag suggestions on the search field. Just activate the "
-#~ "plugin and the feature is available on the theme's search field."
-#~ msgstr ""
-#~ "Aktiverar jQuery-tag-förslag i sökfältet. Aktivera insticksmodulen och du "
-#~ "har tillgång till den på temats sökfält."
-
-#~ msgid ""
-#~ "an adaption of Remy Sharp's <a href='http://remysharp.com/2007/12/28/"
-#~ "jquery-tag-suggestion/ '>jQuery Tag Suggestion</a>"
-#~ msgstr ""
-#~ "En anpassning av Remy Sharps <a href='http://remysharp.com/2007/12/28/"
-#~ "jquery-tag-suggestion/ '>jQuery Tag Suggestion</a>"
-
-#~ msgid "Group:"
-#~ msgstr "Grupp:"
-
-#~ msgid ""
-#~ "If enabled, a login form will be displayed if the viewer is not logged in."
-#~ msgstr ""
-#~ "Om aktiverad, kommer ett inloggningsformulär att visas om användaren inte "
-#~ "är inloggad."
-
-#~ msgid ""
-#~ "How many news articles you want to show per page on the news article "
-#~ "admin page."
-#~ msgstr ""
-#~ "Hur många artiklar som visas per sida på administrationssidorna för "
-#~ "nyhetsartiklar."
-
-#~ msgid "News page name"
-#~ msgstr "Namn på nyhetssida"
-
-#~ msgid ""
-#~ "If you want to rename the theme page <em>news.php</em> that is used to "
-#~ "display news, you need to enter the new name without the .php suffix here."
-#~ msgstr ""
-#~ "Om du vill döpa om temasidan <em>news.php</em> som används för att visa "
-#~ "nyheter, ska du ange det nya namnet utan .php ändelse här."
-
-#~ msgid ""
-#~ "<strong>Note: </strong>If you use mod_rewrite you need to modify your "
-#~ "<em>.htaccess</em> file manually, too!"
-#~ msgstr ""
-#~ "<strong>Notera: </strong>Om du använder mod_rewrite, måste du modifiera "
-#~ "din <em>.htaccess</em>-fil manuellt också!"
-
-#~ msgid ""
-#~ "If you want to rename the theme page <em>pages.php</em> that is used to "
-#~ "display pages, you need to enter the new name without the .php suffix "
-#~ "here."
-#~ msgstr ""
-#~ "Om du vill döpa om temasidan <em>pages.php</em> som används för att visa "
-#~ "sidor, ska du ange det nya namnet utan .php ändelse här."
-
-#~ msgid ""
-#~ "Set to enable the CombiNews feature to show news articles and latest "
-#~ "gallery items together on the news section's overview page(s)."
-#~ msgstr ""
-#~ "Sätt för att aktivera så att CombiNews funktionen visar nyhetsartiklar "
-#~ "och senaste galleriobjekt på nyhetsavdelningens översiktssida."
-
-#~ msgid ""
-#~ "<strong>Note:</strong> Images/albums and news articles are still "
-#~ "separate, your Zenphoto gallery is not touched in any way! "
-#~ "<strong>IMPORTANT: This feature requires MySQL 4.1 or later.</strong>"
-#~ msgstr ""
-#~ "<strong>Notera:</strong> Bilder/Album och nyhetsartiklar är fortfarande "
-#~ "separata. Ditt Zenphoto-galleri ändras inte på något vis! "
-#~ "<strong>VIKTIGT: Denna funktion kräver MySQL 4.1 eller nyare.</strong>"
-
-#~ msgid "CombiNews: Gallery page link"
-#~ msgstr "CombiNews: Gallerisidans länk"
-
-#~ msgid ""
-#~ "The text for the 'read more'/'view more' link to the gallery page for "
-#~ "images/movies/audio."
-#~ msgstr ""
-#~ "Texten för 'läs mer'/'visa mer' länken till galleriet för bilder/filmer/"
-#~ "ljud."
-
-#~ msgid "CombiNews: Mode"
-#~ msgstr "CombiNews: Mode"
-
-#~ msgid "latest images: sized image"
-#~ msgstr "senaste bilder: storleksförändrad bild"
-
-#~ msgid "latest images: thumbnail"
-#~ msgstr "senaste bilder: tumnagel"
-
-#~ msgid "latest albums: sized image"
-#~ msgstr "senaste album: storleksförändrad bild"
-
-#~ msgid "latest albums: thumbnail"
-#~ msgstr "senaste album: tumnagel"
-
-#~ msgid "latest albums: thumbnail-customcrop"
-#~ msgstr "senaste album: tumnagel-egen beskärning"
-
-#~ msgid "latest images: thumbnail-customcrop"
-#~ msgstr "senaste bilder: tumnagel-egen beskärning"
-
-#~ msgid "latest images by album: thumbnail"
-#~ msgstr "senaste bilder efter album: tumnagel"
-
-#~ msgid "latest images by album: thumbnail-customcrop"
-#~ msgstr "senaste bilder efter album: tumnagel-egen beskärning"
-
-#~ msgid "latest images by album: sized image"
-#~ msgstr "senaste bilder efter album: storleksändrad bild"
-
-#~ msgid ""
-#~ "What you want to show within the CombiNews section.<br /><ul><li>Latest "
-#~ "images: Entries for all images ever added</li><li>Latest albums: Entries "
-#~ "for all albums ever created</li><li>Latest images by album: Entries for "
-#~ "all images but grouped by images that have been added within a day to "
-#~ "each album (Scheme: 'x new images in album y on date z')</li></ul>"
-#~ msgstr ""
-#~ "Vad du vill visa i Combinews sektionen.<br /><ul><li>Senaste bilder: "
-#~ "Lista över alla bilder</li><li>Senaste album: Lista över alla album</"
-#~ "li><li>Senaste bilder after album: Lista över alla bilder, men grupperade "
-#~ "som senast inlagda inom en dag till varje album (Formel: 'x nya bilder i "
-#~ "albumet y vid datum z')</li></ul>"
-
-#~ msgid "CombiNews: Sized image size"
-#~ msgstr "CombiNews: Storlek på bild"
-
-#~ msgid ""
-#~ "The size of the sized image shown the CombiNews section <em>(only in "
-#~ "latest images-sizedimage or latest albums-sizedimage mode)</em>."
-#~ msgstr ""
-#~ "Bildstorlek på storleksförändrad bild som visas i CombiNews sektionen "
-#~ "<em>(endast senaste bilder-storleksförändrad bild eller senaste album-"
-#~ "storleksförändrat mode)</em>."
-
-#~ msgid "CombiNews: Sortorder"
-#~ msgstr "CombiNews: Sorteringsordning"
-
-#~ msgid "id"
-#~ msgstr "ID"
-
-#~ msgid ""
-#~ "The sort order for your gallery items within the CombiNews display except "
-#~ "for <em>latest images by album</em> which is by date or mtime only. "
-#~ "'date' (date order), 'id' (added to db order), 'mtime' (upload order)."
-#~ msgstr ""
-#~ "Sorteringsordning för dina galleriobjekt inom CombiNews visning förutom "
-#~ "för <em>senaste bilder efter album</em> som endast är efter datum eller "
-#~ "mtime. 'datum' (datumordning), 'id' (databasordning), "
-#~ "'mtime' (uppladdningsordning)."
-
-#~ msgid ""
-#~ "<strong>Note: </strong> If you experience unexpected results, this refers "
-#~ "only to the images that are fetched from the database. Even if they are "
-#~ "fetched by id they will be sorted by date with the articles afterwards "
-#~ "since articles only have a date."
-#~ msgstr ""
-#~ "<strong>Notera:</strong> Om du får oväntade resultat, berör detta endast "
-#~ "bilder som hämtats från databasen. Även om dom hämtas efter id eller "
-#~ "mtime sorteras dom efter datum med artiklarna efteråt eftersom artiklar "
-#~ "endast har datum."
-
-#~ msgid "CombiNews: Gallery link"
-#~ msgstr "CombiNews: Gallerilänk"
-
-#~ msgid ""
-#~ "Choose if you want to link from the image entry to its image page "
-#~ "directly or to the album page (if CombiNews mode is set for albums the "
-#~ "link is automatically only linking to albums). This affects all links of "
-#~ "the entry (<em>title</em>, <em>image</em> and the <em>visit gallery link</"
-#~ "em>"
-#~ msgstr ""
-#~ "Välj om du vill länka från bilden direkt till bildsidan eller till "
-#~ "albumsidan  (om CombiNews mode är satt för album länkas länken endast "
-#~ "till albumet). Detta påverkar alla länkar i artikeln (<em>titel</em>, "
-#~ "<em>bild</em> och <em>besök galleriet länk</em>"
-
-#~ msgid ""
-#~ "Choose if you want to load the TinyMCE text editor for pages and articles "
-#~ "light or full featured."
-#~ msgstr ""
-#~ "Välj om du vill ladda TinyMCE textredigerare för sidor och artiklar som "
-#~ "enkel eller fullfjädrad."
-
-#~ msgid "CombiNews: Thumbnail crop width"
-#~ msgstr "CombiNews: Beskärningsbredd tumnagel"
-
-#~ msgid ""
-#~ "For <em>thumbnail custom crop</em> only. Leave empty if you don't want to "
-#~ "use it."
-#~ msgstr ""
-#~ "Endast för <em>anpassad tumnagelsbeskärning</em>.Lämna tom om du inte "
-#~ "vill använda."
-
-#~ msgid "CombiNews: Thumbnail crop height"
-#~ msgstr "CombiNews: Beskärningshöjd tumnagel"
-
-#~ msgid "CombiNews: Thumbnail width"
-#~ msgstr "CombiNews: Bredd tumnagel"
-
-#~ msgid "CombiNews: Thumbnail height"
-#~ msgstr "CombiNews: Höjd tumnagel"
-
-#~ msgid "CombiNews: Thumbnail crop x axis"
-#~ msgstr "CombiNews: Beskär tumnagel på x-axeln"
-
-#~ msgid "CombiNews: Thumbnail crop y axis"
-#~ msgstr "CombiNews: Beskär tumnagel på y-axeln"
-
-#~ msgid ""
-#~ "Set to show the image description with every item if using the CombiNews "
-#~ "mode <em>latest images by album</em> only. Printed as a paragraph."
-#~ msgstr ""
-#~ "Markera för att visa bildbeskrivning med varje bild i CombiNews-läget "
-#~ "<em>senaste bilder efter album</em>. Visad som en paragraf."
-
-#~ msgid ""
-#~ "Set to show the image title with every item if using the CombiNews mode "
-#~ "<em>latest images by album</em> only. Printed as h4-headline."
-#~ msgstr ""
-#~ "Markera för att visa bildtitel med varje bild i CombiNews-läget "
-#~ "<em>senaste bilder efter album</em>. Visad som en h4-överskrift."
-
-#~ msgid "CombiNews: Custom title (singular)"
-#~ msgstr "CombiNews: Anpassad titel (singular)"
-
-#~ msgid ""
-#~ "Custom title for the article in sprintf() syntax. %1$u = number of new "
-#~ "items, %2$s = title of the album they are in, %3$s = titles of the new "
-#~ "items. Never leave any of these three out! (<em>latest images by album</"
-#~ "em> option only)."
-#~ msgstr ""
-#~ "Anpassad titel för artikeln i sprintf() syntax. %1$u = antal nya objekt, "
-#~ "%2$s = titeln av albumet där dom finns, %3$s = titlar för nya objekt. "
-#~ "Utelämna aldrig någon av dessa tre! (Endast för <em>senaste bilder efter "
-#~ "album</em>)."
-
-#~ msgid "CombiNews: Custom title (plural)"
-#~ msgstr "CombiNews: Anpassad titel (plural)"
-
-#~ msgid "CombiNews: Custom title - Number of image titles"
-#~ msgstr "CombiNews: Anpassad titel - Antal bildtitlar"
-
-#~ msgid ""
-#~ "How many images titles you want to show with the custom title (<em>latest "
-#~ "images by album</em> option only)."
-#~ msgstr ""
-#~ "Hur många bildtitlar du vill visa med anpassad titel (Endast för "
-#~ "<em>senaste bilder efter album</em>)."
-
-#~ msgid ""
-#~ "Places the latest 3 news articles from Zenphoto.org on the admin overview "
-#~ "page."
-#~ msgstr ""
-#~ "Placerar dom 3 senaste nyhetsartiklarna från Zenphoto.org på admindelens "
-#~ "översiktssida."
-
-#~ msgid "News from Zenphoto.org"
-#~ msgstr "Nyheter från Zenphoto.org"
-
-#~ msgid "A connection to <em>Zenphoto.org</em> could not be established."
-#~ msgstr "Anslutning till <em>Zenphoto.org</em> kunde inte skapas."
-
-#~ msgid "Your browser is not compatible with Google maps"
-#~ msgstr "Din webbläsare stödjer inte Google maps"
-
-#~ msgid "Horizontal rule added"
-#~ msgstr "Horisontell regel tillagd"
-
-#~ msgid "Menuset id"
-#~ msgstr "Menyset id"
-
-#~ msgid "Add Menu set"
-#~ msgstr "Lägg till Menyset"
-
-#~ msgid "Delete menu set '%s'"
-#~ msgstr "Radera menyn '%s'"
-
-#~ msgid "Menu Manager: Edit Menu Item or add new Menu Item"
-#~ msgstr "Menyhanterare: Redigera Menypost eller lägg till ny Menypost"
-
-#~ msgid "visible"
-#~ msgstr "synlig"
-
-#~ msgid "%s is not a valid getRating() context"
-#~ msgstr "%s är ingen giltig getRating() kontext"
-
-#~ msgid "Enter %s:"
-#~ msgstr "Skriv %s:"
-
-#~ msgid ""
-#~ "The options below the 'Zenphoto' drop down do only affect including "
-#~ "images and albums. These options are be used on the fly and are not "
-#~ "sticky if you reload the page (selecting another album or moving between "
-#~ "pages in an album)."
-#~ msgstr ""
-#~ "Funktionerna nedan 'zenphoto' drop down gäller endast för bilder och "
-#~ "album. Dessa funktioner används endast tillfälligt och är inte fasta "
-#~ "ifall du laddar om sidan (välja annat album eller förflytta mellan sidor "
-#~ "i ett album).  "
-
-#~ msgid ""
-#~ "The tinyZenpage page on the Zenpage project site: <a href='http://zenpage."
-#~ "maltem.de/pages/tinyZenpage' title='Zenpage project site'>zenpage.maltem."
-#~ "de/pages/tinyZenpage</a>"
-#~ msgstr ""
-#~ "tinyZenpage sidan på Zenpage projektets hemsida: <a href='http://zenpage."
-#~ "maltem.de/pages/tinyZenpage' title='zenpage project site'>zenpage.maltem."
-#~ "de/pages/tinyZenpage</a>"
-
-#~ msgid ""
-#~ "Include the thumbnail of the size set in Zenphoto's options, a custom "
-#~ "thumbnail (size for the longest side / cropwidth x cropheight), the sized "
-#~ "image as set in Zenphoto's options or a custom size (size is for the "
-#~ "longest side of the image)."
-#~ msgstr ""
-#~ "Inkludera en tumnagel med storlek från Zenphoto's inställningar, en "
-#~ "anpassad tumnagel (storlek för längsta sidan / beskärningbredd x "
-#~ "beskärningshöjd), den storleksförändrade bildstorleken från Zenphoto's "
-#~ "inställningar eller en anpassad storlek (storlek för längsta sidan av "
-#~ "bilden)."
-
-#~ msgid ""
-#~ "If you like to do some direct styling you can also use TinyMCE's image "
-#~ "button or source code editor. <br />Also you can customize the CSS output "
-#~ "yourself by directly changing the textwrap variables in line 47 and 50 in "
-#~ "<em>tinyzenpage/js/dialog.php</em>."
-#~ msgstr ""
-#~ "Om du vill styla direkt kan du även använda dig av TinyMCE's bildknapp "
-#~ "eller källkodsredigerare.<br />Du kan även definiera CSS utseende själv "
-#~ "genom att ändra textwrap variablerna på rad 47 och 50 i <em>tinyzenpage/"
-#~ "js/dialog.php</em>."
-
-#~ msgid ""
-#~ "A search engine friendly <em>titlelink</em> (aka slug) without special "
-#~ "characters to be used in URLs is generated from the title of the "
-#~ "currently chosen language automatically if a new category is added. You "
-#~ "can edit it later manually if necessary."
-#~ msgstr ""
-#~ "Sökmotorvänlig <em>titellänk</em> (aka slug) utan specialtecken som ska "
-#~ "användas i URL:er genererade från titeln av för tillfället valda språket "
-#~ "automatiskt om en ny kategori läggs till. Du kan redigera den manuellt "
-#~ "senare om du önskar."
-
-#~ msgid ""
-#~ "If you are editing a category check <em>Edit Titlelink</em> if you need "
-#~ "to customize how the title appears in URLs. Otherwise it will be "
-#~ "automatically updated to any changes made to the title. If you want to "
-#~ "prevent this check <em>Enable permaTitlelink</em> and the titlelink stays "
-#~ "always the same (recommended if you use Zenphoto's multilingual mode). "
-#~ "<strong>Note: </strong> <em>Edit titlelink</em> overrides the permalink "
-#~ "setting."
-#~ msgstr ""
-#~ "Om du redigerar en kategori, markera <em>Redigera titellänk</em> om du "
-#~ "behöver anpassa hur titeln visas i URL:er. Annars uppdateras den "
-#~ "automatiskt vid ändringar du gör på titeln. Om du vill förhindra detta, "
-#~ "markera <em>Aktivera permaTitellänk</em> och titellänken förblir samma "
-#~ "(rekommenderat om du använder Zenphoto's flerspråksläge). <strong>Notera: "
-#~ "</strong> <em>Redigera titellänk</em> åsidosätter permalink inställningen."
-
-#~ msgid "Category Title:"
-#~ msgstr "Kategorititel:"
-
-#~ msgid "New Category Title:"
-#~ msgstr "Ny kategorititel:"
-
-#~ msgid "Enable permaTitleLink"
-#~ msgstr "Aktivera permaTitellänk"
-
-#~ msgid "Category TitleLink:"
-#~ msgstr "Kategori titellänk:"
-
-#~ msgid "Category password:"
-#~ msgstr "Kategorilösenord:"
-
-#~ msgid "Category password hint:"
-#~ msgstr "Kategorins lösenordsvink:"
-
-#~ msgid ""
-#~ "<strong>Note:</strong> Articles assigned to multiple categories will take "
-#~ "the protection of the least strict category. So if the article belongs to "
-#~ "any unprotected category it will be unprotected."
-#~ msgstr ""
-#~ "<strong>Notera:</strong> Artiklar som har flera kategorier använder "
-#~ "säkerhet från kategorin med lägsta säkerhet. Om artikeln tillhör någon "
-#~ "oskyddad kategori kommer den att vara oskyddad."
-
-#~ msgid "Update Category"
-#~ msgstr "Uppdatera kategori"
-
-#~ msgid "Save New Category"
-#~ msgstr "Spara ny kategori"
-
-#~ msgid "Save Article"
-#~ msgstr "Spara artikel"
-
-#~ msgid "Update Page"
-#~ msgstr "Uppdatera Sida"
-
-#~ msgid "Save Page"
-#~ msgstr "Spara Sida"
-
-#~ msgid ""
-#~ "<strong>Note:</strong> This page is either password protected itself or "
-#~ "subpage of a passport protected page."
-#~ msgstr ""
-#~ "<strong>Notera:</strong> Denna sida är antingen lösenordsskyddad eller är "
-#~ "en undersida till en lösenordsskyddad sida."
-
-#~ msgid "Page password:"
-#~ msgstr "Sidlösenord:"
-
-#~ msgid "Page password hint:"
-#~ msgstr "Sida Lösenordsvink:"
-
-#~ msgid "Reset hitcounter (Hits: %1$s)"
-#~ msgstr "Återställ träffräknare (Träffar: %1$s)"
-
-#~ msgid "Codeblock 2"
-#~ msgstr "Kodblock 2"
-
-#~ msgid "Codeblock 3"
-#~ msgstr "Kodblock 3"
-
-#~ msgid "Enable or disable comments"
-#~ msgstr "Aktivera eller avaktivera kommentarer"
-
-#~ msgid "<em>(password protected)</em>"
-#~ msgstr "<em>(lösenordsskyddad)</em>"
-
-#~ msgid "Prev Page"
-#~ msgstr "Föregående sida"
-
-#~ msgid "Toggle Editor"
-#~ msgstr "Växla redigerare"
-
-#~ msgid "<em>This article belongs to a protected category.</em>"
-#~ msgstr "<em>Denna artikel tillhör en skyddad kategori.</em>"
-
-#~ msgid "News Category RSS"
-#~ msgstr "RSS-flöde Nyhetskategorier"
-
-#~ msgid "News and Gallery RSS"
-#~ msgstr "RSS-flöde för Nyheter och Galleri"
-
-#~ msgid "Zenpage Comments RSS"
-#~ msgstr "RSS-flöde för Zenpage-kommentarer"
-
-#~ msgid "News article comments RSS"
-#~ msgstr "RSS-flöde för kommentarer på nyhetsartiklar"
-
-#~ msgid "Page Comments RSS"
-#~ msgstr "RSS-flöde för kommentarer"
-
-#~ msgid "View the photo album %s"
-#~ msgstr "Visa fotoalbum %s"
-
-#~ msgid "Failed to retrieve link <em>%s</em>"
-#~ msgstr "Kunde inte hämta länk <em>%s</em>"
-
-#~ msgid ""
-#~ "Are you sure you want to delete this page? THIS CANNOT BE UNDONE AND WILL "
-#~ "ALSO DELETE ALL SUBPAGES OF THIS PAGE!"
-#~ msgstr ""
-#~ "Är det säkert att du vill radera denna sida? GÅR EJ ATT ÅNGRA SAMT ATT "
-#~ "DETTA RADERAR UNDERLIGGANDE SIDOR OCKSÅ!"
-
-#~ msgid "Get Adobe Flash."
-#~ msgstr "Installera Adobe Flash."
-
-#~ msgid "Enter Captcha"
-#~ msgstr "Skriv Captcha"
-
-#~ msgid ""
-#~ "Powered by <a href=\"http://www.zenphoto.org\" title=\"A simpler web "
-#~ "photo album\"><span id=\"zen-part\">zen</span><span id=\"photo-part"
-#~ "\">PHOTO</span></a> <span id=\"IE-clear-part\">with</span> <a href="
-#~ "\"http://www.zenphoto.org/2009/03/zenpage-a-cms-plugin-for-zenphoto/"
-#~ "\"><span id=\"zen-part\">zen</span><span id=\"photo-part\">PAGE</span></a>"
-#~ msgstr ""
-#~ "Skapat med <a href=\"http://www.zenphoto.org\" title=\"Ett enklare "
-#~ "webbalbum\"><span id=\"zen-part\">zen</span><span id=\"photo-part"
-#~ "\">PHOTO</span></a> <span id=\"IE-clear-part\">med</span> <a href="
-#~ "\"http://www.zenphoto.org/2009/03/zenpage-a-cms-plugin-for-zenphoto/"
-#~ "\"><span id=\"zen-part\">zen</span><span id=\"photo-part\">PAGE</span></a>"
-
-#~ msgid "Clearing and refreshing cache for %s"
-#~ msgstr "Raderar och uppdaterar cache för %s"
-
-#~ msgid "Reset\thitcounters"
-#~ msgstr "Återställ\tvisningsräknare."
-
-#~ msgid "View Gallery: %s"
-#~ msgstr "Visa Galleri: %s"
-
-#~ msgid "Captcha"
-#~ msgstr "Captcha"
-
-#~ msgid "You can also upload ZIP files containing files of these types."
-#~ msgstr "Du kan även ladda upp zip-filer med bilder av dessa typer."
-
-#~ msgid ""
-#~ "You have a problem with your javascript or your browser's flash plugin is "
-#~ "not supported."
-#~ msgstr ""
-#~ "Din webbläsare har problem med antingen javaskript eller så stöds inte "
-#~ "din flash-plugin."
-
-#~ msgid "<strong>%1$u</strong> Comment (<strong>%2$u</strong> in moderation)"
-#~ msgid_plural ""
-#~ "<strong>%1$u</strong> Comments (<strong>%2$u</strong> in moderation)"
-#~ msgstr[0] ""
-#~ "<strong>%1$u</strong> Kommentar (<strong>%2$u</strong> för moderering)"
-#~ msgstr[1] ""
-#~ "<strong>%1$u</strong> Kommentarer (<strong>%2$u</strong> för moderering)"
-
-#~ msgid "<strong>%1$u</strong> Page (<strong>%2$u</strong> unpublished)"
-#~ msgid_plural ""
-#~ "<strong>%1$u</strong> Pages (<strong>%2$u</strong> unpublished)"
-#~ msgstr[0] "<strong>%1$u</strong> Sida (<strong>%2$u</strong> opublicerade)"
-#~ msgstr[1] "<strong>%1$u</strong> Sidor (<strong>%2$u</strong> opublicerade)"
-
-#~ msgid "<strong>%1$u</strong> News (<strong>%2$u</strong> unpublished)"
-#~ msgid_plural ""
-#~ "<strong>%1$u</strong> News (<strong>%2$u</strong> unpublished)"
-#~ msgstr[0] "<strong>%1$u</strong> Nyhet (<strong>%2$u</strong> opublicerade)"
-#~ msgstr[1] ""
-#~ "<strong>%1$u</strong>Nyheter (<strong>%2$u</strong> opublicerade)"
-
-#~ msgid ""
-#~ "Clears the RSS cache. RSS files will be re-cached as they are viewed."
-#~ msgstr "Raderar RSS-cache. Rss-filer återskapas vid första visning."
-
-#~ msgid "getSubAlbums is deprecated. Use getAlbums()."
-#~ msgstr "getSubAlbums är föråldrad. Använd getAlbums()."
-
-#~ msgid "getNumSubAlbums is deprecated. Use getNumAlbums()."
-#~ msgstr "getNumSubAlbums är föråldrad. Använd getNumAlbums()."
-
-#~ msgid ""
-#~ "Check your <strong>zp-config.php</strong> file for the correct "
-#~ "<em><strong>host</strong>, <strong>user name</strong>, and "
-#~ "<strong>password</strong></em>."
-#~ msgstr ""
-#~ "Titta i din <strong>zp-config.php</strong> fil efter korrekt "
-#~ "<em><strong>Server</strong>, <strong>Användarnamn</strong>, och "
-#~ "<strong>Lösenord</strong></em>."
-
-#~ msgid ""
-#~ "Note that you may need to change the <em>host</em> from localhost if your "
-#~ "web server uses a separate MySQL server, which is common in large shared "
-#~ "hosting environments like Dreamhost and GoDaddy."
-#~ msgstr ""
-#~ "Notera att du kan behöva ändra <em>Server</em> namnet localhost om MySQL "
-#~ "körs på en separat server, vilket är vanligt hos stora webbhotell."
-
-#~ msgid "Also make sure the server is running, if you control it."
-#~ msgstr "Kontrollera även så att servern är igång."
-
-#~ msgid "Make sure it already exists, create it if you need to."
-#~ msgstr "Säkerställ att den redan existerar, skapa den annars."
-
-#~ msgid ""
-#~ "Also make sure the user you're trying to connect with has privileges to "
-#~ "use this database."
-#~ msgstr ""
-#~ "Kontrollera även att användaren du försöker ansluta med har rättigheter "
-#~ "att använda databasen."
-
-#~ msgid "It looks like your zenphoto tables haven't been created."
-#~ msgstr "Det verkar som dina Zenphoto tabeller inte har skapats."
-
-#~ msgid ""
-#~ "You may need to run <a href=\"%s/%s/setup.php\">the setup script.</a>"
-#~ msgstr "Du kan behöva köra <a href=\"%s/%s/setup.php\">Setup-Skriptet.</a>"
-
-#~ msgid "Flourescent"
-#~ msgstr "Lysrör"
-
-#~ msgid "Incandescense"
-#~ msgstr "Incandescense"
-
-#~ msgid "<strong>%1$u</strong> Pages (<strong>%2$u</strong> unpublished)"
-#~ msgstr "<strong>%1$u</strong> Sidor (<strong>%2$u</strong> opublicerade)"
-
-#~ msgid ""
-#~ "Provides trackback functionality to comments. Tracksbacks are available "
-#~ "for images and albums as well as Zenpage news articles and pages. "
-#~ "Trackback pings currently available only for news articles and pages. "
-#~ "CAUTION: BETA STATUS. BETA STATUS Known bug: Does not work with sites in "
-#~ "subdomains!"
-#~ msgstr ""
-#~ "Tillhandahåller trackback-funktion till kommentarer. Tracksback finns "
-#~ "tillgängligt för bilder och album samt Zenpage nyhetsartiklar och sidor. "
-#~ "Trackback pings finns endast för nyheter och sidor. OBSERVERA: BETA "
-#~ "STATUS. BETA STATUS känd bugg: Fungerar ej med webbplatser i subdomäner!"
-
-#~ msgid "Allow trackbacks on"
-#~ msgstr "Tillåt trackback på"
-
-#~ msgid "Trackbacking your entry..."
-#~ msgstr "Skapar trackback..."
-
-#~ msgid ""
-#~ "I found your entry interessting so I've added a Trackback to it on my "
-#~ "weblog."
-#~ msgstr ""
-#~ "Jag fann ditt inlägg intressant så jag skapade en Trackback till den på "
-#~ "min blogg."
-
-#~ msgid "An error occured while trying to log your trackback..."
-#~ msgstr "Ett fel uppstod när din trackback loggades..."
-
-#~ msgid "Trackback send to <em>%s</em>."
-#~ msgstr "Trackback skickad till <em>%s</em>."
-
-#~ msgid "Trackback to <em>%1$s</em> failed...%2$s"
-#~ msgstr "Trackback till <em>%1$s</em> misslyckades...%2$s"
-
-#~ msgid "No trackbacks were auto-discovered..."
-#~ msgstr "Inga trackback hittades..."
-
-#~ msgid "This trackback already exists!"
-#~ msgstr "Denna trackback finns redan!"
-
-#~ msgid "Send trackback ping"
-#~ msgstr "Skicka trackback ping"
-
-#~ msgid ""
-#~ "Attaches \"Effenberger effects\" to images and thumbnails. This plugin is "
-#~ "intended as an example for the use of the <em>image_html</em> filters."
-#~ "<br /><strong>Due to licensing considerations no effects are included "
-#~ "with this plugin.</strong> See <a href=\"http://www.netzgesta.de/cvi/"
-#~ "\">CVI Astonishing Image Effects</a> by Christian Effenberger to select "
-#~ "and download effects. Unzip the file you download and copy the "
-#~ "<code><em>effect</em></code>.js file to the <code>/%s/"
-#~ "effenberger_effects</code> folder.<br />All testing was done with the "
-#~ "<code>default</code> theme. No warranty is made that any particular "
-#~ "effect will work with any particular theme."
-#~ msgstr ""
-#~ "Lägger till \"Effenberger effects\" till bilder och tumnaglar. Denna "
-#~ "insticksmodul är ett exempel på användning av <em>image_html</em> filter."
-#~ "<br /><strong>Eftersom detta är licensierad programvara inkluderas inga "
-#~ "effekter.</strong> Se <a href=\"http://www.netzgesta.de/cvi/\">CVI "
-#~ "Astonishing Image Effects</a> av Christian Effenberger för att välja och "
-#~ "ladda ned effekter. Packa upp filen och kopiera <code><em>effect</em></"
-#~ "code>.js filen till <code>/%s/effenberger_effects</code>-mappen.<br /"
-#~ ">Alla tester har utförts på <code>standard</code>-temat. Inga garantier "
-#~ "lämnas på att alla effekter fungerar på alla teman."
-
-#~ msgid "Modifiers for <em>%s</em>"
-#~ msgstr "Modifierare för <em>%s</em>"
-
-#~ msgid ""
-#~ "Due to licensing considerations no effects are included with this plugin. "
-#~ "See <a href=\"http://www.netzgesta.de/cvi/\">CVI Astonishing Image "
-#~ "Effects</a> by Christian Effenberger to select and download effects. "
-#~ "Unzip the file you download and copy the <code><em>effect</em></code>.js "
-#~ "file to a folder named <code>effenberger_effects</code> in the global "
-#~ "plugins folder."
-#~ msgstr ""
-#~ "P.G.A licenskrav levereras inga effekter med insticksmodulen. Se <a href="
-#~ "\"http://www.netzgesta.de/cvi/\">CVI Astonishing Image Effects</a> av "
-#~ "Christian Effenberger för att välja och ladda ned effekter.  Packa upp "
-#~ "filen och kopiera <code><em>effect</em></code>.js filen till mappen "
-#~ "<code>/%s/effenberger_effects</code> i global_plugins-mappen."
-
-#~ msgid "No <em>effects</em> scripts found."
-#~ msgstr "Inga <em>effekts</em>-skripts hittades."
-
-#~ msgid ""
-#~ "An example of how to create extensions to the administrative toolbox on "
-#~ "your theme pages."
-#~ msgstr ""
-#~ "Ett exempel för hur du skapar tillägg till den administrativa "
-#~ "verktygslådan på dina temasidor."
-
-#~ msgid "Email all posters when a new comment is made on an item."
-#~ msgstr ""
-#~ "Skicka E-post till alla postare när en kommentar görs på en artikel."
-
-#~ msgid "A reply has been posted on album \"%1$s\"."
-#~ msgstr "Ett svar har postats på albumet \"%1$s\"."
-
-#~ msgid "A reply has been posted on article \"%1$s\"."
-#~ msgstr "Ett svar har postats på artikeln \"%1$s\"."
-
-#~ msgid "A reply has been posted on page \"%1$s\"."
-#~ msgstr "Ett svar har postats på sidan \"%1$s\"."
-
-#~ msgid "A reply has been posted on \"%1$s\" the album \"%2$s\"."
-#~ msgstr "Ett svar har postats på  \"%1$s\" i albumet \"%2$s\"."
-
-#~ msgid "Reply posted"
-#~ msgstr "Svar postat"
-
-#~ msgid "Example filter for custom data."
-#~ msgstr "Exempelfilter för anpassat data."
-
-#~ msgid "Special data:"
-#~ msgstr "Specialdata:"
-
-#~ msgid "Extra information:"
-#~ msgstr "Extra information:"
-
-#~ msgid ""
-#~ "Address information. (Provided for you by the <code>filter-custom_data</"
-#~ "code> <em>admin custom data</em> filters.)"
-#~ msgstr ""
-#~ "Adressinformation. (Tillhandahålls genom <code>filter-custom_data</code> "
-#~ "<em>admin custom data</em> filter.)"
-
-#~ msgid ""
-#~ "Logs all attempts to login to the admin pages to <em>security_log.txt</"
-#~ "em> in the %s folder."
-#~ msgstr ""
-#~ "Loggar alla försök att logga in på adminsidorna i <em>security_log.txt</"
-#~ "em> i mappen %s."
-
-#~ msgid "Front-end"
-#~ msgstr "Front-end"
-
-#~ msgid "Back-end"
-#~ msgstr "Back-end"
-
-#~ msgid ""
-#~ "Adds admin user who uploaded image to the description of the image (and "
-#~ "to the album description if the album did not already exist.)"
-#~ msgstr ""
-#~ "Lägger till admin-användare som laddade upp bilden till beskrivningen av "
-#~ "bilden (och till albumbeskrivningen om albumet inte redan fanns.)"
-
-#~ msgid ""
-#~ "For this to work with ZIP files you must have ZZIPlib configured in your "
-#~ "PHP."
-#~ msgstr ""
-#~ "För att detta ska fungera med ZIP-filer måste ZZIPlib vara konfigurerat i "
-#~ "din PHP."
-
-#~ msgid "<strong>You do not have ZZIPlib configured.</strong>"
-#~ msgstr "<strong>ZZIPlib är inte konfigurerat.</strong>"
-
-#~ msgid "Created by: "
-#~ msgstr "Skapad av:"
-
-#~ msgid "Uploaded by: "
-#~ msgstr "Uppladdad av:"
-
-#~ msgid ""
-#~ "Apply <img src=\"%1$s/images/lock.png\" alt=\"\"/> over thumbnails of "
-#~ "<em>password protected</em> albums and <img src=\"%1$s/images/action.png"
-#~ "\" alt=\"\"/> over thumbnails of <em>not published</em> albums and "
-#~ "<em>not visible</em> images."
-#~ msgstr ""
-#~ "Visa <img src=\"%1$s/images/lock.png\" alt=\"\"/> över tumnaglar till "
-#~ "<em>lösenordsskyddade</em> album och <img src=\"%1$s/images/action.png\" "
-#~ "alt=\"\"/> över tumnaglar till <em>ej publicerade</em> album och <em>ej "
-#~ "synliga</em> bilder."
-
-#~ msgid ""
-#~ "Enable <strong>FLV player 4.x</strong> to handle multimedia files. "
-#~ "<strong>No <em>FLVPlayer</em> player files are included with this plugin "
-#~ "due to licensing considerations.</strong> Please download these files "
-#~ "from the <a href=\"http://www.longtailvideo.com/players/jw-flv-player/"
-#~ "\">Longtail Video</a> site. Extract the files \"player*.swf\" and "
-#~ "\"swobjects.js\" into <code>/%s/flvplayer/</code>. <br />IMPORTANT: Only "
-#~ "one multimedia player plugin can be enabled at the time. The class-video "
-#~ "plugin must be enabled."
-#~ msgstr ""
-#~ "Aktivera <strong>FLV player 4.x</strong> för hantering av mediafiler. "
-#~ "<strong>Inga <em>FLVPlayer</em> spelarfiler inkluderas med denna "
-#~ "insticksmodul p.g.a licensskäl.</strong> Ladda ned dessa filer från <a "
-#~ "href=\"http://www.longtailvideo.com/players/jw-flv-player/\">Longtail "
-#~ "Video</a> -sidan. Packa upp filerna \"player*.swf\" och \"swobjects.js\" "
-#~ "till <code>/%s/flvplayer/</code>. <br />VIKTIGT: Endast en "
-#~ "multimediaspelare kan vara aktiverad åt gången. Class-video insticksmodul "
-#~ "måste vara aktiverad."
-
-#~ msgid "No FLV Player"
-#~ msgstr "Ingen FLV Player"
-
-#~ msgid ""
-#~ "No <em>FLVPlayer</em> player files are included with this plugin due to "
-#~ "licensing considerations. Please download these files from the <a href="
-#~ "\"http://www.longtailvideo.com/players/jw-flv-player/\">Longtail Video</"
-#~ "a> site. Extract the files and place the files \"player*.swf\" and "
-#~ "\"swobjects.js\" in a folder named <code>flvplayer</code> in the global "
-#~ "plugins folder."
-#~ msgstr ""
-#~ "Inga <em>FLVPlayer</em> spelarfiler inkluderas med denna insticksmodul p."
-#~ "g.a licensskäl. Ladda ned dessa från <a href=\"http://www.longtailvideo."
-#~ "com/players/jw-flv-player/\">Longtail Video</a>-sidan. Packa upp filerna "
-#~ "\"player*.swf\" och \"swobjects.js\" i en mapp som heter <code>flvplayer</"
-#~ "code> i global plugins-mappen."
-
-#~ msgid "flv player width"
-#~ msgstr "FLV Player Bredd"
-
-#~ msgid "flv player height"
-#~ msgstr "FLV Player Höjd"
-
-#~ msgid ""
-#~ "Player height (ignored for .<em>mp3</em> files if there is no preview "
-#~ "image available.)"
-#~ msgstr ""
-#~ "Player-Höjd (Används inte för <em>mp3s</em>-filer, Om det inte finns "
-#~ "någon förhandsgranskning tillgänglig)"
-
-#~ msgid "Autostart"
-#~ msgstr "Autostart"
-
-#~ msgid "Should the video start automatically. Yes if selected."
-#~ msgstr "Om vald, kommer video att spelas upp automatiskt."
-
-#~ msgid "BufferSize"
-#~ msgstr "Buffertstorlek"
-
-#~ msgid "Size of the buffer in % before the video starts."
-#~ msgstr "Storlek på bufferten i % innan video börjar visas."
-
-#~ msgid "Controlbar position"
-#~ msgstr "Kontrollreglagets position"
-
-#~ msgid "Bottom"
-#~ msgstr "Botten"
-
-#~ msgid ""
-#~ "Position of the playlist (only if using the special <code>flvplaylist()</"
-#~ "code> function)."
-#~ msgstr ""
-#~ "Position på spellistan (Endast om du använder <code>flvplaylist()</code> "
-#~ "funktionen)."
-
-#~ msgid ""
-#~ "When <em>playlist</em> is set to <em>below</em> this refers to the "
-#~ "height, when <em>right</em> this refers to the width of the playlist "
-#~ "(only if using the special <code>flvplaylist()</code> function)."
-#~ msgstr ""
-#~ "När <em>spellista</em> är satt till <em>under</em> menas höjden, "
-#~ "om<em>höger</em> menas bredden av spellistan (Endast om specialfunktinen "
-#~ "<code>flvplaylist()</code> används)."
-
-#~ msgid "Always"
-#~ msgstr "Alltid"
-
-#~ msgid ""
-#~ "set to list to play the entire playlist once, to always to continously "
-#~ "play the song/video/playlist and to single to continue repeating the "
-#~ "selected file in a playlist. (only if using the special "
-#~ "<code>flvplaylist()</code> function)."
-#~ msgstr ""
-#~ "Sätt listan till att spelas en gång, to always to continously play the "
-#~ "song/video/playlist and to single to continue repeating the selected file "
-#~ "in a playlist. (only if using the special <code>flvplaylist()</code> "
-#~ "function)."
-
-#~ msgid "flv player width for playlist"
-#~ msgstr "flv player bredd för spellista"
-
-#~ msgid ""
-#~ "Player width for use with the playlist (ignored for <em>mp3</em> files.)"
-#~ msgstr "Spelarens bredd för spellistan (ignoreras för <em>mp3</em> filer.)"
-
-#~ msgid "flv player height for playlist"
-#~ msgstr "flv player höjd för spellista"
-
-#~ msgid ""
-#~ "Player height for use with the playlist (ignored for .<em>mp3</em> files "
-#~ "if there is no preview image available.)"
-#~ msgstr ""
-#~ "Spelarens höjd för spellistan (ignoreras för <em>mp3</em> filer om det "
-#~ "inte finns någon förhandsgranskningsbild tillgänglig.)"
-
-#~ msgid "Backcolor"
-#~ msgstr "Bakgrundsfärg"
-
-#~ msgid "Backgroundcolor of the controls, in HEX format."
-#~ msgstr "Bakgrundsfärg för kontrollerna, i HEX-Format."
-
-#~ msgid "Frontcolor"
-#~ msgstr "Förgrundsfärg"
-
-#~ msgid "Text &amp; buttons color of the controls, in HEX format. "
-#~ msgstr "Text &amp;knappar färg på kontrollerna, i HEX format. "
-
-#~ msgid "Lightcolor"
-#~ msgstr "Ljusfärg"
-
-#~ msgid "Rollover color of the controls, in HEX format."
-#~ msgstr "Mouseover-färg för kontrollerna, i HEX-Format."
-
-#~ msgid "Screencolor"
-#~ msgstr "Skärmfärg"
-
-#~ msgid "Color of the display area, in HEX format."
-#~ msgstr "Displayens färg, i HEX-Format."
-
-#~ msgid "Exactfit"
-#~ msgstr "Exactfit"
-
-#~ msgid "Uniform"
-#~ msgstr "Uniform"
-
-#~ msgid "Fill"
-#~ msgstr "Fill"
-
-#~ msgid ""
-#~ "Defines how to resize images in the display. Can be none (no stretching), "
-#~ "exactfit (disproportionate), uniform (stretch with black borders) or fill "
-#~ "(uniform, but completely fill the display)."
-#~ msgstr ""
-#~ "Definierar hur bilder storleksändras på skärmen . Kan vara ingen (no "
-#~ "stretching), exactfit (ej proportionell), uniform (fyll ut med svarta "
-#~ "kanter) eller fill (uniform, men fyller hela skärmen)."
-
-#~ msgid "FLV Player support files missing."
-#~ msgstr "FLV Player stödfiler saknas."
-
-#~ msgid ""
-#~ "The flv player is not installed. Please install or activate the flv "
-#~ "player plugin."
-#~ msgstr ""
-#~ "Flv-spelaren är inte installerad. Var vänlig och installera eller "
-#~ "aktivera flv-player insticksmodul"
-
-#~ msgid "Use Captcha"
-#~ msgstr "Använd Captcha"
-
-#~ msgid ""
-#~ "For <em>thumbnail custom crop</em> only.Leave empty if you don't want to "
-#~ "use it."
-#~ msgstr ""
-#~ "Endast för <em>anpassad tumnagelsbeskärning</em>.Lämna tom om du inte "
-#~ "vill använda."
-
-#~ msgid "Captcha length"
-#~ msgstr "Längd på Captcha"
-
-#~ msgid "Captcha font"
-#~ msgstr "Captcha font"
-
-#~ msgid "Enter Captcha:"
-#~ msgstr "Skriv Captcha:"
-
-#~ msgid "Get Flash"
-#~ msgstr "Hämta flash"
-
-#~ msgid "to see this player."
-#~ msgstr "för att se denna spelare."
-
-#~ msgid "You need Admin Rights or Zenpage rights to use Zenpage"
-#~ msgstr ""
-#~ "Du behöver admin-rättigheter eller Zenpage-rättigheter för att använda "
-#~ "Zenpage"
-
-#~ msgid "<h3> %1$u Hit for <em>%2$s</em>"
-#~ msgid_plural "%1$u Hits for <em>%2$s</em></h3>"
-#~ msgstr[0] "<h3> %1$u Träff för <em>%2$s</em>"
-#~ msgstr[1] "%1$u Träffar för <em>%2$s</em></h3>"
-
-#~ msgid "or Esc Key"
-#~ msgstr "eller Esc-knappen"
-
-#~ msgid "Imagick is present on your server. Check this option to enalbe it."
-#~ msgstr ""
-#~ "Imagick finns tillgängligt på servern. Markera denna för att aktivera."

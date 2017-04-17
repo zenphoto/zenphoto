@@ -1,9 +1,10 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Zenphoto\n"
+"Project-Id-Version: ZenPhoto20\n"
+
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-16 17:22-0700\n"
-"PO-Revision-Date: 2017-04-16 17:22-0700\n"
+"POT-Creation-Date: 2017-04-17 09:23-0700\n"
+"PO-Revision-Date: 2017-04-17 09:54-0700\n"
 "Last-Translator: Stephen <stephen@sbillard.org>\n"
 "Language-Team: \n"
 "Language: tr_TR\n"
@@ -12,11 +13,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 "X-Generator: Poedit 2.0.1\n"
 "X-Poedit-Basepath: ../../../..\n"
 "X-Poedit-SearchPath-0: zp-core/locale/tr_TR/LC_MESSAGES/zenphoto.po\n"
 "X-Poedit-SearchPath-1: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
 
 #: plugins/cacheHeader.php:18
 msgid "Outputs a \"Cache-control\" header with selected caching options."
@@ -551,7 +553,7 @@ msgstr ""
 #, fuzzy
 #| msgid "Plugins"
 msgid "Plugins » all"
-msgstr "eklentiler"
+msgstr "Eklentiler"
 
 #: plugins/pluginEnabler.php:48
 #, fuzzy
@@ -580,7 +582,7 @@ msgstr ""
 #, fuzzy
 #| msgid "Plugins"
 msgid "Plugins × all"
-msgstr "eklentiler"
+msgstr "Eklentiler"
 
 #: plugins/pluginEnabler.php:87
 msgid "Disables all plugins except pluginEnabler."
@@ -593,7 +595,7 @@ msgstr ""
 #: plugins/pluginEnabler/handler.php:26
 #, fuzzy
 msgid "Plugins disabled"
-msgstr "eklentiler"
+msgstr "Eklentiler"
 
 #: plugins/pluginEnabler/handler.php:29
 #, fuzzy
@@ -2508,7 +2510,7 @@ msgstr "Yorum ekle"
 #: zp-core/zp-extensions/contact_form/form.php:15
 #, fuzzy, php-format
 msgid "Title%s"
-msgstr "Başlık:"
+msgstr "Başlık"
 
 #: themes/paradigm/contact_form/form.php:43
 #: themes/zpBootstrap/contact_form/form.php:29
@@ -2940,7 +2942,7 @@ msgstr ""
 #: themes/paradigm/themeoptions.php:102
 #, fuzzy
 msgid "Twitter profile name"
-msgstr "Albüm adı:"
+msgstr "dizin adı ile birlikte:"
 
 #: themes/paradigm/themeoptions.php:102
 msgid ""
@@ -3032,7 +3034,7 @@ msgstr "Küçük resimler"
 #: zp-core/zp-extensions/paged_thumbs_nav.php:27
 #, fuzzy
 msgid "next thumbs »"
-msgstr "Küçük resimler"
+msgstr "ileri"
 
 #: themes/zenpage/search.php:47 themes/zpmobile/search.php:52
 #, fuzzy
@@ -3565,7 +3567,7 @@ msgstr "%1$s yönetim:%2$s%3$s"
 #: themes/zpEnlighten/sidebar.php:52
 #, fuzzy
 msgid "Latest notes"
-msgstr "Son Albümler"
+msgstr "son"
 
 #: themes/zpEnlighten/sidebar.php:67
 #, fuzzy
@@ -3656,7 +3658,7 @@ msgstr "Slayt Gösterisi Yap"
 #: themes/zpfocus/album.php:94 themes/zpfocus/favorites.php:93
 #, fuzzy
 msgid "Images in "
-msgstr "resimler"
+msgstr "Resimler"
 
 #: themes/zpfocus/album.php:150 themes/zpfocus/favorites.php:144
 #: themes/zpfocus/gallery.php:49 themes/zpfocus/search.php:203
@@ -3738,7 +3740,7 @@ msgstr "Albümü göster:"
 #: themes/zpfocus/inc-footer.php:47 themes/zpminimal/inc-footer.php:13
 #, fuzzy
 msgid "Gallery Images"
-msgstr "resimler"
+msgstr "Resimler"
 
 #: themes/zpfocus/inc-header.php:35 themes/zpfocus/inc-header.php:49
 #: themes/zpfocus/inc-header.php:118 themes/zpfocus/inc-sidebar.php:66
@@ -4107,7 +4109,7 @@ msgstr ""
 #: themes/zpfocus/themeoptions.php:87
 #, fuzzy
 msgid "Enable Zenpage News"
-msgstr "Zenpage"
+msgstr "Değişim sıklığı - ZenPage haber indeksi"
 
 #: themes/zpfocus/themeoptions.php:87
 #, fuzzy
@@ -4935,7 +4937,7 @@ msgstr ""
 #: themes/zpskeleton/404.php:6
 #, fuzzy
 msgid "404 not found"
-msgstr "<em>%s</em> bulunamadı"
+msgstr "Albüm bulunamadı"
 
 #: themes/zpskeleton/archive.php:22
 #, fuzzy
@@ -5339,7 +5341,7 @@ msgstr "dinamik"
 #: zp-core/admin-dynamic-album.php:122
 #, fuzzy
 msgid "Create Dynamic Album"
-msgstr "Arama sonuçlarından bir albüm oluşturun"
+msgstr "Albümü oluştur"
 
 #: zp-core/admin-dynamic-album.php:161
 #: zp-core/zp-extensions/favoritesAlbums/admin-album.php:126
@@ -5363,7 +5365,7 @@ msgstr "Arama kriterleri:"
 #: zp-core/admin-dynamic-album.php:235
 #, fuzzy
 msgid "Return albums found"
-msgstr "%s'e geri dön"
+msgstr "Albümler"
 
 #: zp-core/admin-dynamic-album.php:236
 #, fuzzy
@@ -5946,7 +5948,7 @@ msgstr "Galeri içeriğini görüntüle"
 #, fuzzy
 #| msgid "Return to %s"
 msgid "return to top"
-msgstr "en yüksek puanlı"
+msgstr "%s'e geri dön"
 
 #: zp-core/admin-functions.php:526
 msgid "Image order"
@@ -6139,7 +6141,7 @@ msgstr "Albümün önbelleğe alınmış görüntüleri temizler."
 #: zp-core/admin-functions.php:2280
 #, fuzzy
 msgid "Clear album image cache"
-msgstr "tüm resmi önbelleğe al"
+msgstr "Resim önbelleği silindi"
 
 #: zp-core/admin-functions.php:2283
 #, fuzzy
@@ -6188,7 +6190,7 @@ msgstr "Kaynak Seç"
 #: zp-core/zp-extensions/zenpage/admin-functions.php:1360
 #, fuzzy
 msgid "published/not published/scheduled for publishing"
-msgstr "Bu albüm henüz yaymlanmamıştır."
+msgstr "Yayımlanmış/Yayımlanmamış"
 
 #: zp-core/admin-functions.php:2328
 #: zp-core/zp-extensions/zenpage/admin-functions.php:1362
@@ -6279,7 +6281,7 @@ msgstr "%s albümünü yayımla"
 #: zp-core/zp-extensions/zenpage/admin-functions.php:1458
 #, fuzzy
 msgid "un-published"
-msgstr "Hepsini yayından kaldır"
+msgstr "Yayımlanmış/Yayımlanmamış"
 
 #: zp-core/admin-functions.php:2461
 #, fuzzy
@@ -6646,7 +6648,7 @@ msgstr "%s öğesi başarıyla silindi."
 #: zp-core/admin-functions.php:5127 zp-core/admin-users.php:418
 #, fuzzy
 msgid "You must supply a password."
-msgstr "E-posta adresi alanını boş bırakamazsınız."
+msgstr "Şehir alanını boş bırakamazsınız."
 
 #: zp-core/admin-functions.php:5129 zp-core/admin-options.php:150
 #: zp-core/admin-users.php:427 zp-core/zp-extensions/register_user.php:463
@@ -6958,7 +6960,7 @@ msgstr ""
 #: zp-core/admin-plugins.php:136
 #, fuzzy, php-format
 msgid "%1$s plugins"
-msgstr "Kullanılabilir Eklentiler"
+msgstr "Eklentiler"
 
 #: zp-core/admin-plugins.php:152
 msgid "Plugins provide optional functionality."
@@ -7024,7 +7026,7 @@ msgstr "Üçüncü taraf eklenti"
 #: zp-core/admin-plugins.php:203 zp-core/admin-plugins.php:416
 #, fuzzy
 msgid "Official plugin"
-msgstr "Yönetilecek eklenti bulunamadı."
+msgstr "eklenti"
 
 #: zp-core/admin-plugins.php:209
 #, fuzzy
@@ -7083,7 +7085,7 @@ msgstr "eklenti"
 #: zp-core/admin-plugins.php:301
 #, fuzzy
 msgid "feature plugin"
-msgstr "Yönetilecek eklenti bulunamadı."
+msgstr "eklenti"
 
 #: zp-core/admin-plugins.php:303
 #, fuzzy
@@ -7098,7 +7100,7 @@ msgstr "Bu eklenti devre dışı bırakılır. Detaylar için tıklayın."
 #: zp-core/admin-plugins.php:354
 #, fuzzy, php-format
 msgid "More information on %s"
-msgstr "Daha fazla görüntüle"
+msgstr "Kurulum bilgisi"
 
 #: zp-core/admin-plugins.php:358 zp-core/admin_options/plugin.php:142
 #, fuzzy, php-format
@@ -7108,7 +7110,7 @@ msgstr "Takip eden seçenekler %s tarafından özel olarak uygulandı."
 #: zp-core/admin-plugins.php:367
 #, fuzzy
 msgid "Plugin warnings"
-msgstr "Yönetilecek eklenti bulunamadı."
+msgstr "eklenti"
 
 #: zp-core/admin-plugins.php:418
 #, fuzzy
@@ -7123,7 +7125,7 @@ msgstr "eklenti"
 #: zp-core/admin-plugins.php:420
 #, fuzzy
 msgid "Feature plugin"
-msgstr "Yönetilecek eklenti bulunamadı."
+msgstr "eklenti"
 
 #: zp-core/admin-plugins.php:421
 #, fuzzy
@@ -7762,7 +7764,7 @@ msgstr "tam resim"
 #: zp-core/admin-users.php:749
 #, fuzzy
 msgid "create primary album"
-msgstr "Arama sonuçlarından bir albüm oluşturun"
+msgstr "Albümü oluştur"
 
 #: zp-core/admin-users.php:759
 #, fuzzy, php-format
@@ -7790,7 +7792,7 @@ msgstr "<em>Ana</em> hesabın tüm nesnelere tam hakları vardır."
 #: zp-core/admin-users.php:818 zp-core/functions.php:878
 #, fuzzy
 msgid "un-categorized"
-msgstr "%s albümünü yayımdan çek"
+msgstr "Yayımlanmış/Yayımlanmamış"
 
 #: zp-core/admin-users.php:877
 #, fuzzy, php-format
@@ -7865,7 +7867,7 @@ msgstr "Bu albüm şifre korumalıdır."
 #: zp-core/admin.php:114
 #, fuzzy
 msgid "Setup files protected."
-msgstr "Şifre korumalı"
+msgstr "Korunmuş görünüm"
 
 #: zp-core/admin.php:118
 #, fuzzy
@@ -7875,7 +7877,7 @@ msgstr "Kur dosyaları koruma başarısız oldu."
 #: zp-core/admin.php:150
 #, fuzzy
 msgid "purge Image cache"
-msgstr "tüm resmi önbelleğe al"
+msgstr "Resim önbelleği silindi"
 
 #: zp-core/admin.php:151
 #, fuzzy
@@ -9205,7 +9207,7 @@ msgstr "Filigranlar:"
 #: zp-core/admin_options/image.php:419
 #, fuzzy
 msgid "full sized images"
-msgstr "resimler"
+msgstr "Resimler"
 
 #: zp-core/admin_options/image.php:441
 #, fuzzy, php-format
@@ -9341,7 +9343,7 @@ msgstr ""
 #: zp-core/admin_options/image.php:537
 #, fuzzy
 msgid "Protect image cache"
-msgstr "tüm resmi önbelleğe al"
+msgstr "Resim önbelleği silindi"
 
 #: zp-core/admin_options/image.php:546
 #, fuzzy
@@ -9768,7 +9770,7 @@ msgstr "Etiketler"
 #: zp-core/admin_options/search.php:247
 #, fuzzy
 msgid "off"
-msgstr "Yorumlar kapalı"
+msgstr "Yorumlar açık/kapalı"
 
 #: zp-core/admin_options/search.php:250
 #, fuzzy
@@ -10486,7 +10488,7 @@ msgstr "tarih yok"
 #: zp-core/class-image.php:169
 #, fuzzy
 msgid "Time Created"
-msgstr "Zaman farkı (saat):"
+msgstr "Dijital Ortama Aktarım Zamanı"
 
 #: zp-core/class-image.php:170
 msgid "Digital Creation Date"
@@ -10512,7 +10514,7 @@ msgstr "Byline"
 #: zp-core/class-image.php:175
 #, fuzzy
 msgid "Byline Title"
-msgstr "Albüm Başlığı"
+msgstr "Başlık"
 
 #: zp-core/class-image.php:176 zp-core/zp-extensions/xmpMetadata.php:652
 #, fuzzy
@@ -10535,7 +10537,7 @@ msgstr "Anahtar Kelimeler"
 #: zp-core/class-image.php:181 zp-core/zp-extensions/xmpMetadata.php:625
 #, fuzzy
 msgid "Exposure time"
-msgstr "Saat Dilimi:"
+msgstr "Çekilme Zamanı"
 
 #: zp-core/class-image.php:182 zp-core/zp-extensions/xmpMetadata.php:641
 msgid "Shutter Speed"
@@ -11292,7 +11294,7 @@ msgstr "Orta"
 #: zp-core/exif/exifTranslations.php:134
 #, fuzzy
 msgid "Mode 1"
-msgstr "Sayfa 1"
+msgstr "Ölçüm Kipi"
 
 #: zp-core/exif/exifTranslations.php:135
 #, fuzzy
@@ -11356,7 +11358,7 @@ msgstr "Uyarı yok"
 #: zp-core/exif/makers/sanyo.php:83
 #, fuzzy
 msgid "Normal"
-msgstr "Kontrast Normal (STD)"
+msgstr "Normal Resim"
 
 #: zp-core/exif/exifTranslations.php:149
 #, fuzzy
@@ -11366,7 +11368,7 @@ msgstr "Tanımlı değil"
 #: zp-core/exif/exifTranslations.php:150
 #, fuzzy
 msgid "Off"
-msgstr "Yorumlar kapalı"
+msgstr "Yorumlar açık/kapalı"
 
 #: zp-core/exif/exifTranslations.php:151
 #, fuzzy
@@ -12412,7 +12414,7 @@ msgstr "Sıfırlama isteği gönderildi."
 #: zp-core/functions-image.php:28
 #, fuzzy, php-format
 msgid "Cache: [%s]"
-msgstr "Sayfalar (%s)"
+msgstr "RSS önbelleği silindi."
 
 #: zp-core/functions-image.php:31
 #, fuzzy, php-format
@@ -13556,7 +13558,7 @@ msgstr "ISO Hassasiyeti"
 #: zp-core/lib-utf8.php:80
 #, fuzzy
 msgid "Arabic (ISO)"
-msgstr "Arapça (Bahreyn)"
+msgstr "ISO Hassasiyeti"
 
 #: zp-core/lib-utf8.php:81
 #, fuzzy
@@ -13566,7 +13568,7 @@ msgstr "Yunanca"
 #: zp-core/lib-utf8.php:82
 #, fuzzy
 msgid "Hebrew (ISO-Visual)"
-msgstr "görsel küçük resim seçimi"
+msgstr "İbranice"
 
 #: zp-core/lib-utf8.php:83
 #, fuzzy
@@ -13730,7 +13732,7 @@ msgstr "Sayfa: %s"
 #: zp-core/pluginDoc.php:137
 #, fuzzy
 msgid "Plugin usage information"
-msgstr "eklenti"
+msgstr "Kurulum bilgisi"
 
 #: zp-core/pluginDoc.php:138
 #, fuzzy, php-format
@@ -14449,7 +14451,7 @@ msgstr ""
 #: zp-core/setup/index.php:735
 #, fuzzy, php-format
 msgid "<em>%1$s</em> file"
-msgstr "Göster: <em>%s</em>"
+msgstr "<em>%1$s</em> %2$s'i yorumladı:"
 
 #: zp-core/setup/index.php:735
 #, fuzzy, php-format
@@ -14785,7 +14787,7 @@ msgstr ""
 #: zp-core/setup/index.php:1038
 #, fuzzy
 msgid "Grants found:"
-msgstr "<em>%s</em> bulunamadı"
+msgstr "Albüm bulunamadı"
 
 #: zp-core/setup/index.php:1066
 #, fuzzy
@@ -14898,7 +14900,7 @@ msgstr "ZenPhoto20 galeri"
 #: zp-core/setup/index.php:1167
 #, fuzzy
 msgid "ZenPhoto20 package [missing]"
-msgstr "ZenPhoto20 Yönetim"
+msgstr "Kayıp"
 
 #: zp-core/setup/index.php:1167
 #, fuzzy
@@ -15773,7 +15775,7 @@ msgstr ""
 #: zp-core/setup/setup-sqlform.php:49
 #, fuzzy
 msgid "Database engine"
-msgstr "Veritabanı güncellemesi sona erdi"
+msgstr "Veritabanını Güncelle"
 
 #: zp-core/setup/setup-sqlform.php:66
 #, fuzzy, php-format
@@ -15848,7 +15850,7 @@ msgstr "Dikkat: \"Modülü mod_rewrite\" çalışıyor."
 #: zp-core/setup/setup_themeOptions.php:23
 #, fuzzy, php-format
 msgid "Theme:%s setup started"
-msgstr "<em>%s</em> tema seçeneklerini ayarlayın"
+msgstr "Temanızın altyapısı %s'dır."
 
 #: zp-core/setup/setup_themeOptions.php:34
 #, fuzzy, php-format
@@ -15975,7 +15977,7 @@ msgstr[0] "Sayfa %1$u"
 #: zp-core/template-functions.php:1085
 #, fuzzy
 msgid "The album is un-published."
-msgstr "Hepsini yayından kaldır"
+msgstr "Yayımlanmış/Yayımlanmamış"
 
 #: zp-core/template-functions.php:1194
 msgid "Album Thumbnails"
@@ -15986,7 +15988,7 @@ msgstr "Albüm İçin Küçük Resimler"
 #: zp-core/zp-extensions/zenpage/template-functions.php:1615
 #, fuzzy
 msgid "Return to search"
-msgstr "%s'e geri dön"
+msgstr "ara"
 
 #: zp-core/template-functions.php:1301
 #: zp-core/zp-extensions/zenpage/template-functions.php:1618
@@ -15997,7 +15999,7 @@ msgstr "Arşiv Görünümü"
 #: zp-core/template-functions.php:2056
 #, fuzzy
 msgid "The image is marked un-published."
-msgstr "Bu resim görünür olarak işaretlenmedi."
+msgstr "Yayımlanmamış bir albüm bulunmuyor."
 
 #: zp-core/template-functions.php:3755
 #, fuzzy, php-format
@@ -17324,7 +17326,7 @@ msgstr "RSS önbellekten tüm dosyaları silin"
 #: zp-core/zp-extensions/cacheManager.php:379
 #, fuzzy
 msgid "Purge Image cache"
-msgstr "tüm resmi önbelleğe al"
+msgstr "Resim önbelleği silindi"
 
 #: zp-core/zp-extensions/cacheManager.php:384
 #, fuzzy
@@ -17844,7 +17846,7 @@ msgstr "Görüntü Oranı"
 #: zp-core/zp-extensions/class-video.php:156
 #, fuzzy
 msgid "Play Time"
-msgstr "Saat Dilimi:"
+msgstr "Çekilme Zamanı"
 
 #: zp-core/zp-extensions/class-video.php:440
 #, fuzzy, php-format
@@ -18133,7 +18135,7 @@ msgstr ""
 #: zp-core/zp-extensions/comment_form.php:108
 #, fuzzy
 msgid "Captcha field"
-msgstr "CAPTCHA'yı girin"
+msgstr "CAPTCHA"
 
 #: zp-core/zp-extensions/comment_form.php:110
 #, fuzzy
@@ -19327,7 +19329,7 @@ msgstr "Kullanımdan kaldırılan işlevler için çağrıları bulun."
 #: zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:51
 #, fuzzy
 msgid "In Themes"
-msgstr "temalar"
+msgstr "Temalar"
 
 #: zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:54
 #, fuzzy
@@ -19694,7 +19696,7 @@ msgstr "Upload <em>dosyaları</em> alt sekmesini kullanın."
 #: zp-core/zp-extensions/elFinder.php:56
 #, fuzzy
 msgid "TinyMCE plugin"
-msgstr "Yönetilecek eklenti bulunamadı."
+msgstr "eklenti"
 
 #: zp-core/zp-extensions/elFinder.php:57
 #, fuzzy
@@ -19733,7 +19735,7 @@ msgstr ""
 #: zp-core/zp-extensions/elFinder/php/connector_zp.php:81
 #, fuzzy, php-format
 msgid "Themes (%s)"
-msgstr "Kurulmuş temalar"
+msgstr "Temalar"
 
 #: zp-core/zp-extensions/elFinder/php/connector_zp.php:87
 #, fuzzy, php-format
@@ -19759,7 +19761,7 @@ msgstr "Üçüncü taraf eklentileri (%s)"
 #: zp-core/zp-extensions/elFinder/php/connector_zp.php:293
 #, fuzzy, php-format
 msgid "Data (%s)"
-msgstr "Özel veri:"
+msgstr "Özel veri"
 
 #: zp-core/zp-extensions/elFinder/php/connector_zp.php:307
 #, fuzzy, php-format
@@ -20403,7 +20405,7 @@ msgstr "VeriSign kimlik doğrulama"
 #: zp-core/zp-extensions/federated_logon/Verisign_logon.php:50
 #, fuzzy
 msgid "Verisign user id:"
-msgstr "ID"
+msgstr "Arama ziyaretçi kullanıcısı için Kullanıcı ID'si"
 
 #: zp-core/zp-extensions/flag_thumbnail.php:25
 #, fuzzy
@@ -20461,7 +20463,7 @@ msgstr "Geodata ile öğesini görüntüler için gösterecek simgeyi seçin."
 #: zp-core/zp-extensions/zenpage/admin-functions.php:1463
 #, fuzzy
 msgid "Un-published"
-msgstr "Hepsini yayından kaldır"
+msgstr "Yayımlanmış/Yayımlanmamış"
 
 #: zp-core/zp-extensions/flag_thumbnail.php:90
 #, fuzzy
@@ -20617,7 +20619,7 @@ msgstr "Öntanımlı resim gösterim boyutu."
 #: zp-core/zp-extensions/galleryArticles.php:83
 #, fuzzy
 msgid "Publish protected"
-msgstr "Şifre korumalı"
+msgstr "Korunmuş görünüm"
 
 #: zp-core/zp-extensions/galleryArticles.php:85
 #, fuzzy
@@ -20636,7 +20638,7 @@ msgstr "Oluşturulan makaleler için bir kategori seçin"
 #: zp-core/zp-extensions/galleryArticles.php:90
 #, fuzzy
 msgid "Use album folder"
-msgstr "Dizini yeniden adlandır"
+msgstr "dizin adı ile birlikte:"
 
 #: zp-core/zp-extensions/galleryArticles.php:92
 #, fuzzy
@@ -20838,7 +20840,7 @@ msgstr ""
 #: zp-core/zp-extensions/googleMap/map.php:102
 #, fuzzy
 msgid "Map display error"
-msgstr "Giriş yapılırken bir sorun oluştu."
+msgstr "Resimleri şöyle göster:"
 
 #: zp-core/zp-extensions/googleMap/map.php:104
 #, fuzzy
@@ -21137,7 +21139,7 @@ msgstr ""
 #: zp-core/zp-extensions/html_meta_tags.php:116
 #, fuzzy
 msgid "Twitter name"
-msgstr "Albüm adı:"
+msgstr "dizin adı ile birlikte:"
 
 #: zp-core/zp-extensions/html_meta_tags.php:117
 #, fuzzy
@@ -21238,7 +21240,7 @@ msgstr "Fotoğraf ve albümleri Galeri hakkında çeşitli istatistikler işlevl
 #: zp-core/zp-extensions/rss.php:576
 #, fuzzy, php-format
 msgid "Last update: %s"
-msgstr "Güncelleme kontrolü"
+msgstr "Dosyayı Güncelle"
 
 #: zp-core/zp-extensions/image_album_statistics.php:266
 #, php-format
@@ -21298,7 +21300,7 @@ msgstr ""
 #: zp-core/zp-extensions/image_effects.php:139
 #, fuzzy
 msgid "Images (custom)"
-msgstr "resimler"
+msgstr "Resimler"
 
 #: zp-core/zp-extensions/image_effects.php:142
 #, fuzzy
@@ -21336,7 +21338,7 @@ msgstr ""
 #: zp-core/zp-extensions/image_effects.php:151
 #, fuzzy
 msgid "Image thumbnails (custom)"
-msgstr "Küçük resimleri kırp:"
+msgstr "Albüm İçin Küçük Resimler"
 
 #: zp-core/zp-extensions/image_effects.php:154
 #, fuzzy
@@ -21806,7 +21808,7 @@ msgstr "tam resim"
 #: zp-core/zp-extensions/jplayer.php:490
 #, fuzzy
 msgid "Update Required"
-msgstr "Güncelleme kontrolü"
+msgstr "Dosyayı Güncelle"
 
 #: zp-core/zp-extensions/jplayer.php:491
 #, fuzzy
@@ -22421,7 +22423,7 @@ msgstr "Değişim sıklığı - ZenPage haber indeksi"
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:113
 #, fuzzy
 msgid "All Zenpage categories"
-msgstr "kategoriler"
+msgstr "Değişim sıklığı - Zenpage haber kategorileri"
 
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:114
 #, fuzzy
@@ -22521,12 +22523,12 @@ msgstr "* Eklemek menü öğesinin türünü seçin *"
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:260
 #, fuzzy
 msgid "All news categories"
-msgstr "Haber Kategorileri"
+msgstr "Haber kategorileri:"
 
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:265
 #, fuzzy
 msgid "Custom theme page"
-msgstr "Özel"
+msgstr "<strong>Özel tema seçenekleri</strong>"
 
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:296
 #, fuzzy, php-format
@@ -22880,7 +22882,7 @@ msgstr "Nexttext"
 #: zp-core/zp-extensions/paged_thumbs_nav.php:51
 #, fuzzy
 msgid "The text for the next thumbs."
-msgstr "Küçük resimler"
+msgstr "ileri"
 
 #: zp-core/zp-extensions/paged_thumbs_nav.php:53
 #, fuzzy
@@ -22973,7 +22975,7 @@ msgstr "Önceki resim"
 #: zp-core/zp-extensions/paged_thumbs_nav.php:375
 #, fuzzy
 msgid "next thumbs"
-msgstr "Küçük resimler"
+msgstr "ileri"
 
 #: zp-core/zp-extensions/paged_thumbs_nav.php:328
 #, fuzzy, php-format
@@ -23008,7 +23010,7 @@ msgstr ""
 #: zp-core/zp-extensions/print_album_menu.php:55
 #, fuzzy
 msgid "Show counts"
-msgstr "Şunun için temayı göster:"
+msgstr "Detayları göster"
 
 #: zp-core/zp-extensions/print_album_menu.php:57
 #, fuzzy
@@ -23148,7 +23150,7 @@ msgstr "Yayımlanmamış bir albüm bulunmuyor."
 #: zp-core/zp-extensions/publishContent/publishContent.php:365
 #, fuzzy
 msgid "Images not published"
-msgstr "resimler"
+msgstr "Yayımlanmış/Yayımlanmamış"
 
 #: zp-core/zp-extensions/publishContent/publishContent.php:370
 #, fuzzy, php-format
@@ -23205,7 +23207,7 @@ msgstr "Yayımla"
 #: zp-core/zp-extensions/publishContent/publishContent.php:490
 #, fuzzy
 msgid "all images"
-msgstr "resimler"
+msgstr "Resimler"
 
 #: zp-core/zp-extensions/publishContent/publishContent.php:494
 #, fuzzy
@@ -23349,7 +23351,7 @@ msgstr "Temizle"
 #: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:19
 #, fuzzy
 msgid "User plugins"
-msgstr "eklentiler"
+msgstr "Eklentiler"
 
 #: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:19
 #, fuzzy
@@ -23360,7 +23362,7 @@ msgstr "Eklentiler"
 #, fuzzy
 #| msgid "options"
 msgid "purge options"
-msgstr "URL ayarları:"
+msgstr "seçenekler"
 
 #: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:166
 #, fuzzy
@@ -23422,7 +23424,7 @@ msgstr ""
 #: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:283
 #, fuzzy
 msgid " Show hidden orphans."
-msgstr "Şunun için temayı göster:"
+msgstr "Detayları göster"
 
 #: zp-core/zp-extensions/quota_manager.php:31
 #, fuzzy
@@ -23537,7 +23539,7 @@ msgstr "Yorumlar için kapalı."
 #: zp-core/zp-extensions/rating.php:100
 #, fuzzy
 msgid "Voting state"
-msgstr "Yöre/Bölge"
+msgstr "Eyalet:"
 
 #: zp-core/zp-extensions/rating.php:103
 #, fuzzy
@@ -23629,7 +23631,7 @@ msgstr "Oy Durumu:"
 #: zp-core/zp-extensions/rating.php:120
 #, fuzzy
 msgid "Show rating"
-msgstr "Şunun için temayı göster:"
+msgstr "Detayları göster"
 
 #: zp-core/zp-extensions/rating.php:120
 #, fuzzy
@@ -24510,7 +24512,7 @@ msgstr "Üst %u arama IP'leri"
 #: zp-core/zp-extensions/search_statistics/search_analysis.php:237
 #, fuzzy
 msgid "Search IPs"
-msgstr "Aramaya izin ver"
+msgstr "ara"
 
 #: zp-core/zp-extensions/search_statistics/search_analysis.php:269
 #, fuzzy
@@ -24620,7 +24622,7 @@ msgstr "Kurulum komut dosyaları korumak"
 #: zp-core/zp-extensions/security-logger.php:138
 #, fuzzy
 msgid "Request add user"
-msgstr "Yorum ekle"
+msgstr "kullanıcı:"
 
 #: zp-core/zp-extensions/security-logger.php:141
 #, fuzzy
@@ -24990,7 +24992,7 @@ msgstr "<strong><em>%s</em></strong> yükseltme geçiyor"
 #: zp-core/zp-extensions/site_upgrade.php:255
 #, fuzzy
 msgid "Please return later"
-msgstr "Lütfen tekrar deneyin"
+msgstr "otomatik olarak geri dönmelisiniz. Eğer dönmezseniz basın: "
 
 #: zp-core/zp-extensions/site_upgrade.php:263
 #, fuzzy, php-format
@@ -25580,7 +25582,7 @@ msgstr "Bu albüm şifre korumalıdır."
 #: zp-core/zp-extensions/slideshow2.php:318
 #, fuzzy
 msgid "No images for the slideshow!"
-msgstr "resimler"
+msgstr "Resimler"
 
 #: zp-core/zp-extensions/slideshow.php:405
 #, fuzzy
@@ -26164,7 +26166,7 @@ msgstr ""
 #: zp-core/zp-extensions/tinyURL.php:83
 #, fuzzy
 msgid "news categories"
-msgstr "Haber Kategorileri"
+msgstr "Haber kategorileri:"
 
 #: zp-core/zp-extensions/tinymce.php:20
 #, fuzzy
@@ -26237,7 +26239,7 @@ msgstr "Göster: <em>%s</em>"
 #: zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:49
 #, fuzzy, php-format
 msgid "%s with link to image"
-msgstr "Resim: %s"
+msgstr "Tam resme bağlantı"
 
 #: zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:59
 #, fuzzy, php-format
@@ -26262,7 +26264,7 @@ msgstr "haber makalesi için bağlantı ile başlık"
 #: zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:80
 #, fuzzy, php-format
 msgid "<em>page</em>: %s"
-msgstr "<em>%s</em> zaten bulunuyor."
+msgstr "Göster: <em>%s</em>"
 
 #: zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:81
 #, fuzzy
@@ -26333,7 +26335,7 @@ msgstr "RSS bağlantısını iliştir"
 #: zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:304
 #, fuzzy
 msgid "title only"
-msgstr "Albüm Başlığı"
+msgstr "Başlık:"
 
 #: zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:316
 #, fuzzy
@@ -26815,7 +26817,7 @@ msgstr ""
 #: zp-core/zp-extensions/user-expiry.php:86
 #, fuzzy
 msgid "Password cycle"
-msgstr "Parola gerekli"
+msgstr "Parola:"
 
 #: zp-core/zp-extensions/user-expiry.php:88
 #, fuzzy
@@ -26937,7 +26939,7 @@ msgstr "Eposta:"
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:213
 #, fuzzy
 msgid "Force password renewal"
-msgstr "Parola gerekli"
+msgstr "şifre:"
 
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:201
 #, fuzzy, php-format
@@ -27075,7 +27077,7 @@ msgstr "Tema şablon dosyaları (.php)"
 #: zp-core/zp-extensions/user_groups/user_groups-tab.php:286
 #, fuzzy
 msgid "Are you sure you want to delete this group?"
-msgstr "Seçili öğeleri silmek istediğinizden emin misiniz?"
+msgstr "Bu kullanıcıyı silmek istediğinizden emin misiniz?"
 
 #: zp-core/zp-extensions/user_groups/user_groups-tab.php:289
 #, fuzzy
@@ -27235,7 +27237,7 @@ msgstr ""
 #: zp-core/zp-extensions/viewer_size_image.php:56
 #, fuzzy
 msgid "Image sizes allowed"
-msgstr "resim"
+msgstr "İzin verilen etiketler:"
 
 #: zp-core/zp-extensions/viewer_size_image.php:58
 #, fuzzy
@@ -27618,7 +27620,7 @@ msgstr "Orijinal Yazılım"
 #: zp-core/zp-extensions/xmpMetadata.php:1148
 #, fuzzy
 msgid "Metadata exported"
-msgstr "Üstverileri Tazele"
+msgstr "Metadata:"
 
 #: zp-core/zp-extensions/xmpMetadata.php:1154
 #, fuzzy
@@ -27770,7 +27772,7 @@ msgstr "gönderilecek bir şey yok"
 #: zp-core/zp-extensions/zenpage/admin-edit.php:116
 #, fuzzy
 msgid "Are you sure you want to delete this category? THIS CANNOT BE UNDONE!"
-msgstr "Resmi silmek istediğinizden emin misiniz? BU İŞLEM GERİ ALINAMAZ!"
+msgstr "Makaleyi silmek istediğinizden emin misiniz? BU İŞLEM GERİ ALINAMAZ!"
 
 #: zp-core/zp-extensions/zenpage/admin-categories.php:89
 msgid ""
@@ -28075,7 +28077,7 @@ msgstr "Pozisyon:"
 #: zp-core/zp-extensions/zenpage/admin-edit.php:548
 #, fuzzy
 msgid "normal"
-msgstr "Kontrast Normal (STD)"
+msgstr "Normal Resim"
 
 #: zp-core/zp-extensions/zenpage/admin-edit.php:550
 #, fuzzy
@@ -28085,7 +28087,7 @@ msgstr "en yüksek puanlı"
 #: zp-core/zp-extensions/zenpage/admin-edit.php:643
 #, fuzzy, php-format
 msgid "Are you sure you want to delete this %s?"
-msgstr "Bu kullanıcıyı silmek istediğinizden emin misiniz?"
+msgstr "Seçili öğeleri silmek istediğinizden emin misiniz?"
 
 #: zp-core/zp-extensions/zenpage/admin-edit.php:649
 #, fuzzy, php-format
@@ -28162,7 +28164,7 @@ msgstr ""
 #: zp-core/zp-extensions/zenpage/admin-functions.php:152
 #, fuzzy, php-format
 msgid "Page <em>%s</em> updated"
-msgstr "<em>%s</em> zaten bulunuyor."
+msgstr "<em>%s</em> için seçenekler"
 
 #: zp-core/zp-extensions/zenpage/admin-functions.php:177
 #, fuzzy
@@ -28343,7 +28345,7 @@ msgstr "kategoriler"
 #: zp-core/zp-extensions/zenpage/admin-functions.php:755
 #, fuzzy
 msgid "Un-categorized"
-msgstr "%s albümünü yayımdan çek"
+msgstr "Yayımlanmış/Yayımlanmamış"
 
 #: zp-core/zp-extensions/zenpage/admin-functions.php:804
 #, fuzzy, php-format
@@ -28718,2938 +28720,3 @@ msgid ""
 msgstr ""
 "Boyutu yazı tipi ölçeklenebilir (<em>TTF</em> ve <em>Imagick</em> yazı "
 "tiplerini.) kullanın"
-
-#, fuzzy
-#~ msgid "Subject<strong>%s</strong>:"
-#~ msgstr "Konu<strong>%s</strong>:"
-
-#, fuzzy
-#~ msgid "Message<strong>%s</strong>:"
-#~ msgstr "İletiyi<strong>%s</strong>:"
-
-#~ msgid ""
-#~ "Select an album to edit its description and data, or <a href=\"?"
-#~ "page=edit&amp;album=%s&amp;massedit\">mass-edit</a> all first level "
-#~ "subalbums."
-#~ msgstr ""
-#~ "Açıklama ve verileri düzenlemek için bir albüm seçin, veya en üst "
-#~ "seviyedeki alt albümleri <a href=\"?page=edit&amp;album=%s&amp;massedit"
-#~ "\">topluca düzenleyin</a>."
-
-#~ msgid "Title:"
-#~ msgstr "Başlık:"
-
-#~ msgid "Description:"
-#~ msgstr "Tanım:"
-
-#~ msgid "Metadata:"
-#~ msgstr "Metadata:"
-
-#~ msgid "Edit Gallery"
-#~ msgstr "Galeriyi Düzenle"
-
-#~ msgid ""
-#~ "Select an album to edit its description and data, or <a href=\"?"
-#~ "page=edit&amp;massedit\">mass-edit</a> all gallery level albums."
-#~ msgstr ""
-#~ "Tanımını ve içeriğini değiştirmek için bir albüm seçin veya tüm albüm "
-#~ "seviyelerini <a href=\"?page=edit&amp;massedit\">topluca düzenleyin.</a>"
-
-#, fuzzy
-#~ msgid "You have unsaved changes!"
-#~ msgstr "Kaydedilmemiş değişiklikleriniz var!"
-
-#, fuzzy
-#~ msgid "Are you sure you want to leave this page?"
-#~ msgstr "Bu sayfadan çıkmak istediğinizden emin misiniz?"
-
-#, fuzzy
-#~ msgid "Leave"
-#~ msgstr "Bırakın"
-
-#, fuzzy
-#~ msgid "Stay"
-#~ msgstr "Kalmak"
-
-#~ msgid "Has Password"
-#~ msgstr "Şifreye Sahip"
-
-#~ msgid "Password protected"
-#~ msgstr "Şifre korumalı"
-
-#~ msgid "View logs:"
-#~ msgstr "Kayıtlara gözat:"
-
-#, fuzzy
-#~ msgid "Cookies:"
-#~ msgstr "Çerezler"
-
-#, fuzzy
-#~ msgid "Path"
-#~ msgstr "Yol"
-
-#~ msgid "Gallery title:"
-#~ msgstr "Gallery başlığı:"
-
-#~ msgid "Website title:"
-#~ msgstr "Web sayfası başlığı:"
-
-#, fuzzy
-#~ msgid ""
-#~ "<a onclick=\"toggle('albumpub');\" >Details</a> for <em>publish albums by "
-#~ "default</em>"
-#~ msgstr ""
-#~ "<a onclick=\"toggle('albumpub');\">Ayrıntılar</a> <em>albümleri "
-#~ "varsayılan olarak yayımlamak</em> için"
-
-#, fuzzy
-#~ msgid ""
-#~ "<a onclick=\"toggle('imagepub');\" >Details</a> for <em>publish images by "
-#~ "default</em>"
-#~ msgstr ""
-#~ "<a onclick=\"toggle('imagepub');\">Ayrıntıları</a> <em>görüntüler "
-#~ "varsayılan olarak yayımlamak</em> için"
-
-#, fuzzy
-#~ msgid ""
-#~ "<a onclick=\"toggle('albumdate');\" >Details</a> for <em>use latest image "
-#~ "date as album date</em>"
-#~ msgstr ""
-#~ "<a onclick=\"toggle('albumdate');\">Ayrıntılar</a> <em>en son resim "
-#~ "tarihini albüm tarihi olarak kullanmak</em> için"
-
-#, fuzzy
-#~ msgid ""
-#~ "<a onclick=\"toggle('visualthumb');\" >Details</a> for <em>visual thumb "
-#~ "selection</em>"
-#~ msgstr ""
-#~ "<a onclick=\"toggle('visualthumb');\">Ayrıntılar</a> için <em>görsel "
-#~ "başparmak seçimi</em>"
-
-#, fuzzy
-#~ msgid ""
-#~ "<a onclick=\"toggle('multithumb');\" >Details</a> for <em>subalbum thumb "
-#~ "selection</em>"
-#~ msgstr ""
-#~ "<a onclick=\"toggle('multithumb');\">Ayrıntılar</a> için <em>subalbum "
-#~ "başparmak seçimi</em>"
-
-#~ msgid "Codeblocks:"
-#~ msgstr "Kod blokları:"
-
-#~ msgid "user:"
-#~ msgstr "kullanıcı:"
-
-#~ msgid "<strong>Standard options</strong>"
-#~ msgstr "<strong>Standart seçenekler</strong>"
-
-#~ msgid "Image size:"
-#~ msgstr "Resim boyutu:"
-
-#~ msgid "<strong>Custom theme options</strong>"
-#~ msgstr "<strong>Özel tema seçenekleri</strong>"
-
-#, fuzzy
-#~ msgid "Backup/Restore"
-#~ msgstr "Yedekle-Geri Yükle"
-
-#, fuzzy
-#~ msgid "Backup and restore your gallery database."
-#~ msgstr "Yedekleme ve Galeri veritabanı geri yükleme."
-
-#, fuzzy
-#~ msgid "Info"
-#~ msgstr "Wordpress-Veritabanı bilgisi"
-
-#, fuzzy
-#~ msgid ""
-#~ "Shows statistical graphs and info about your gallery’s images and albums."
-#~ msgstr ""
-#~ "İstatistiksel grafikler ve Galeri'nın fotoğraf ve albümleri hakkında "
-#~ "bilgi gösterir."
-
-#, fuzzy
-#~ msgid "Statistics"
-#~ msgstr "Haber kategorileri için istatistikler"
-
-#~ msgid "Back to the top 10 lists"
-#~ msgstr "Top 10 listesine dön"
-
-#~ msgid "top"
-#~ msgstr "üst"
-
-#, fuzzy
-#~ msgid "Refresh the Database"
-#~ msgstr "Veritabanı yenileme"
-
-#, fuzzy
-#~ msgid "Perform a garbage collection of the Database"
-#~ msgstr "Veritabanı bir çöp toplama gerçekleştirmek"
-
-#, fuzzy
-#~ msgid "Forces a refresh of the metadata for all images and albums."
-#~ msgstr "Tüm fotoğraf ve albümleri için meta verileri yenilemesini zorlar."
-
-#, fuzzy
-#~ msgid ""
-#~ "The scripts for which BxSlider is enabled. {If themes require it they "
-#~ "might set this, otherwise you need to do it manually!}"
-#~ msgstr ""
-#~ "BxSlider etkin komut dosyaları. {Temalar bu koymak gerektiriyorsa, aksi "
-#~ "takdirde el ile yapmak ihtiyacınız!}"
-
-#, fuzzy
-#~ msgid "Cache manager"
-#~ msgstr "Önbellek Yöneticisi"
-
-#, fuzzy
-#~ msgid "<a href=\"%1$s\" target=\"_blank\">%2$s</a>"
-#~ msgstr "<a href=\"%1$s\" target=\"_blank\">%2$s</a>"
-
-#, fuzzy
-#~ msgid "404"
-#~ msgstr "404"
-
-#, fuzzy
-#~ msgid "EXIF"
-#~ msgstr "Exif"
-
-#, fuzzy
-#~ msgid "EXPLAIN_SELECTS"
-#~ msgstr "EXPLAIN_SELECTS"
-
-#, fuzzy
-#~ msgid "FILTERS"
-#~ msgstr "FİLTRELER"
-
-#, fuzzy
-#~ msgid "IMAGE"
-#~ msgstr "resim"
-
-#, fuzzy
-#~ msgid "LOCALE"
-#~ msgstr "Geçerli dil seçeneği: <strong>%1$s</strong>"
-
-#, fuzzy
-#~ msgid "LOGIN"
-#~ msgstr "Giriş Yap"
-
-#, fuzzy
-#~ msgid "PLUGINS"
-#~ msgstr "eklentiler"
-
-#~ msgid "Functions"
-#~ msgstr "Fonksiyonlar"
-
-#, fuzzy
-#~ msgid ""
-#~ "Send the <em>deprecated</em> notification message if the function name is "
-#~ "checked. Un-checking these boxes will allow you to continue using your "
-#~ "theme without warnings while you upgrade its implementation. Functions "
-#~ "flagged with an asterisk are class methods. Ones flagged with two "
-#~ "asterisks have deprecated parameters."
-#~ msgstr ""
-#~ "Eğer işlev adı kontrol <em>kullanım dışı</em> bildirim iletisi gönderme. "
-#~ "Dilediğiniz kutulardan uygulanması yükseltirken temanızı uyarılar olmadan "
-#~ "kullanmaya devam etmek izin verir. Yıldız işareti ile işaretlenmiş sınıf "
-#~ "yöntemleri işlevlerdir. İki yıldız ile işaretli olanlar parametreleri "
-#~ "itiraz."
-
-#, fuzzy
-#~ msgid "Searches PHP scripts for use of deprecated functions."
-#~ msgstr "PHP betikleri için kaldırılan işlevlerinin kullanımını arar."
-
-#~ msgid "Check for update"
-#~ msgstr "Güncelleme kontrolü"
-
-#, fuzzy
-#~ msgid "Deprecated"
-#~ msgstr "Kullanım dışı"
-
-#, fuzzy
-#~ msgid "Counts of downloads"
-#~ msgstr "İndirme sayar"
-
-#, fuzzy
-#~ msgid "Keyword threshold"
-#~ msgstr "Anahtar kelime eşik"
-
-#, fuzzy
-#~ msgid "Only keywords with at least this number of uses will be shown."
-#~ msgstr ""
-#~ "İle tek anahtar kelimeleri kullanan en azından bu dizi gösterilecek."
-
-#, fuzzy
-#~ msgid "Manage published state of content in your gallery."
-#~ msgstr "Yayınlanan içerik, galerisinde durumunu yönetin."
-
-#, fuzzy
-#~ msgid "Search statistics"
-#~ msgstr "Arama istatistikleri"
-
-#, fuzzy
-#~ msgid "Analyze searches"
-#~ msgstr "Aramalar analiz"
-
-#, fuzzy
-#~ msgid "Analysis"
-#~ msgstr "Analiz"
-
-#, fuzzy
-#~ msgid "Seo"
-#~ msgstr "Seo"
-
-#, fuzzy
-#~ msgid "SEO Cleaner"
-#~ msgstr "SEO temizleyici"
-
-#, fuzzy
-#~ msgid "Make file and folder names in the Gallery SEO friendly."
-#~ msgstr "Dosya ve klasör adlarını Galeri SEO dostu olun."
-
-#, fuzzy
-#~ msgid "Generate or purge sitemap cache files."
-#~ msgstr "Oluşturmak veya site haritası önbellek dosyalarını temizleme."
-
-#, fuzzy
-#~ msgid ""
-#~ "The scripts for which the cycle2 plugin is enabled. {If themes require it "
-#~ "they might set this, otherwise you need to do it manually!}"
-#~ msgstr ""
-#~ "Cycle2 eklenti etkin komut dosyaları. {Temalar bu koymak gerektiriyorsa, "
-#~ "aksi takdirde el ile yapmak ihtiyacınız!}"
-
-#, fuzzy
-#~ msgid ""
-#~ "There are no other registered users who have provided an e-mail address."
-#~ msgstr "Bir e-posta adresini vermiş yok diğer kayıtlı kullanıcılar vardır."
-
-#, fuzzy
-#~ msgid ""
-#~ "A tool to send e-mails to all registered users who have provided an e-"
-#~ "mail address."
-#~ msgstr ""
-#~ "Bir e-posta adresini vermiş tüm kayıtlı kullanıcılar için e-posta "
-#~ "göndermek için bir araç."
-
-#, fuzzy
-#~ msgid "Mailing"
-#~ msgstr "Mail Şablon"
-
-#~ msgid "To:"
-#~ msgstr "Alıcı:"
-
-#~ msgid "Send another mail"
-#~ msgstr "Başka bir e-posta gönder"
-
-#~ msgid "An importer for Wordpress posts and pages to Zenpage."
-#~ msgstr "Wordpress gönderi ve sayfalarını Zenpage'e aktaracak bir araç."
-
-#, fuzzy
-#~ msgid "TitleLink:"
-#~ msgstr "TitleLink:"
-
-#, fuzzy
-#~ msgid "Content:"
-#~ msgstr "İçerik"
-
-#~ msgid ""
-#~ "<strong>Note:</strong> This option is valid only if you have the "
-#~ "<em>Gallery index page link</em> option set to \"gallery\". Of course the "
-#~ "<em>menu_manager</em> plugin must also be enabled."
-#~ msgstr ""
-#~ "<strong>Not:</strong> Bu seçenek sadece <em>Gallery indeks sayfa "
-#~ "bağlantısı</em> seçeneği \"gallery\"'ye ayarlanmışsa geçerlidir. Tabii ki "
-#~ "<em>menu_manager</em> eklentisi etkinleştirilmiş olmalıdır."
-
-#~ msgid "No album provided to sort."
-#~ msgstr "Sıralanacak bir albüm seçilmedi."
-
-#~ msgid " descending"
-#~ msgstr " azalan"
-
-#~ msgid "Current sort: <em>%1$s%2$s</em>. "
-#~ msgstr "Geçerli sıralama: <em>%1$s%2$s</em>. "
-
-#~ msgid "Current sort: <em>%1$s%2$s</em>."
-#~ msgstr "Geçerli sıralama: <em>%1$s%2$s</em>."
-
-#~ msgid "UTF8 image URIs"
-#~ msgstr "UTF8 resim adresleri"
-
-#, fuzzy
-#~ msgid ""
-#~ "If you are having problems with images whose names contain characters "
-#~ "with diacritical marks try changing the <em>UTF8 image URIs</em> setting."
-#~ msgstr ""
-#~ "Aksanlı karakter içeren dosya adlarında problem yaşıyorsanız, <em>UTF8 "
-#~ "resim adresleri</em> seçeneğini değiştirmeyi deneyin."
-
-#~ msgid "Charset:"
-#~ msgstr "Karakter kümesi:"
-
-#, fuzzy
-#~ msgid ""
-#~ "The character encoding to use internally. Leave at <em>Unicode (UTF-8)</"
-#~ "em> if you are unsure."
-#~ msgstr ""
-#~ "Die Zeichensatzkodierung, die intern benutzt werden soll. Verwenden Sie "
-#~ "<em>Unicode (UTF-8)</em>, wenn Sie unsicher sind."
-
-#~ msgid ""
-#~ "Character sets <span style=\"color:gray\">shown in gray</span> have no "
-#~ "character translation support."
-#~ msgstr ""
-#~ "<span style=\"color:gray\">Gri ile gösterilen</span> karakter setleri "
-#~ "karakter çeviri desteğine sahip değildir."
-
-#, fuzzy
-#~ msgid "Gallery index page link:"
-#~ msgstr "Galleri ana sayfa bağlantısı:"
-
-#, fuzzy
-#~ msgid ""
-#~ "If this option is not empty, the Gallery Index URL that would normally "
-#~ "link to the theme <code>index.php</code> script will instead link to this "
-#~ "script. This frees up the <code>index.php</code> script so that you can "
-#~ "create a customized <em>Home page</em> script. This option applies only "
-#~ "to the main theme for the <em>Gallery</em>."
-#~ msgstr ""
-#~ "Wenn diese Einstellung nicht leer ist, zeigt die Galerie Index URL, die "
-#~ "normalerweise zur <code>index.php</code>-Seite des Themes zeigt, auf "
-#~ "dieses Skript.  Diese Einstellung hat nur Auswirkung auf das Hauptheme "
-#~ "für die <em>Galerie</em>."
-
-#~ msgid ""
-#~ "Password reset request.<br />You may now set admin usernames and "
-#~ "passwords."
-#~ msgstr ""
-#~ "Şifre sıfırlama talebi.<br />Şimdi yönetici kullanıcı adını ve şifresini "
-#~ "tanımlayabilirsiniz."
-
-#~ msgid "<strong>%1$u</strong> Page"
-#~ msgid_plural "<strong>%1$u</strong> Pages"
-#~ msgstr[0] "<strong>%1$u</strong> Sayfa"
-
-#~ msgid "<strong>%1$u</strong> Page (%2$u un-published)"
-#~ msgid_plural "<strong>%1$u</strong> Pages (%2$u un-published)"
-#~ msgstr[0] ""
-#~ "<strong>%1$u</strong> sayfa, (<strong>%2$u</strong> yayımlanmamış)"
-
-#~ msgid "<strong>%1$u</strong> News"
-#~ msgid_plural "<strong>%1$u</strong> News"
-#~ msgstr[0] "<strong>%1$u</strong> Haber"
-
-#~ msgid "<strong>%1$u</strong> News (%2$u un-published)"
-#~ msgid_plural "<strong>%1$u</strong> News (%2$u un-published)"
-#~ msgstr[0] ""
-#~ "<strong>%1$u</strong> haber, (<strong>%2$u</strong> yayımlanmamış)"
-
-#~ msgid "<strong>%1$u</strong> Category"
-#~ msgid_plural "<strong>%1$u</strong> Categories"
-#~ msgstr[0] "<strong>%1$u</strong> Kategori"
-
-#~ msgid "Location/Place"
-#~ msgstr "Konum/Yer"
-
-#, fuzzy
-#~ msgid "%1$s: %2$s in %3$s on line %4$s"
-#~ msgstr "%1$s %2$s: %3$s%4$s"
-
-#, fuzzy
-#~ msgid "No supported databases"
-#~ msgstr "Veritabanını Geri Yükle"
-
-#~ msgid "Request URI: [ <code>%s</code> ]"
-#~ msgstr "İstek Adresi: [ <code>%s</code> ]"
-
-#~ msgid "Cache: [<code>%s</code>]"
-#~ msgstr "Önbellek: [<code>%s</code>]"
-
-#~ msgid "Image: [<code>%s</code>]"
-#~ msgstr "Resim: [<code>%s</code>]"
-
-#, fuzzy
-#~ msgid "an unknown release"
-#~ msgstr "İsmi bilinmiyor"
-
-#, fuzzy
-#~ msgid "About to create tables"
-#~ msgstr "Tar dosyaası oluşturulamadı."
-
-#, fuzzy
-#~ msgid "Begin table creation"
-#~ msgstr "Dijital Oluşturulma Tarihi"
-
-#, fuzzy
-#~ msgid "Query %1$s Failed. Error: %2$s"
-#~ msgstr "MySQL-Abfrage ( <em>%1$s</em> ) fehlgeschlagen. Fehler: %2$s"
-
-#, fuzzy
-#~ msgid "Table creation failure:<br />Query: %1$s<br />Error: %2$s"
-#~ msgstr "Son değişim:<br />%1$s<br /> %2$s tarafından"
-
-#, fuzzy
-#~ msgid "Begin table updates"
-#~ msgstr "Menü öğesi güncellendi!"
-
-#, fuzzy
-#~ msgid "Done with table update"
-#~ msgstr "Menü öğesi güncellendi!"
-
-#, fuzzy
-#~ msgid "Previous Release was %s"
-#~ msgstr "Önceki Sayfa"
-
-#, fuzzy
-#~ msgid "Database tables to update: %s"
-#~ msgstr "Veritabanı öneki"
-
-#, fuzzy
-#~ msgid "Copyright %1$u: %2$s"
-#~ msgstr "Telif hakkı:"
-
-#~ msgid "Admin Toolbox"
-#~ msgstr "Yönetici Araçları"
-
-#, fuzzy
-#~ msgid "Clone"
-#~ msgstr "çoğalt:"
-
-#, fuzzy
-#~ msgid "Plugin to generate file download lists."
-#~ msgstr "Albümleri zip dosyası halinde indirmeye izin vermek için tıklayın."
-
-#, fuzzy
-#~ msgid "Map dimensions—width"
-#~ msgstr "Kartenabmessung-Breite"
-
-#, fuzzy
-#~ msgid "The default width of the map."
-#~ msgstr "Die Standardbreite der Karte."
-
-#, fuzzy
-#~ msgid "Map dimensions—height"
-#~ msgstr "Kartenabmessungen-Höhe"
-
-#, fuzzy
-#~ msgid "The default height of the map."
-#~ msgstr "Die Standardhöhe der Karte."
-
-#, fuzzy
-#~ msgid "RSS suspended"
-#~ msgstr "RSS beslemeleri"
-
-#, fuzzy
-#~ msgid "The RSS feed is currently not available."
-#~ msgstr "Bu resim görünür olarak işaretlenmedi."
-
-#, fuzzy
-#~ msgid "Selector CSS"
-#~ msgstr "Dil Seçici"
-
-#, fuzzy
-#~ msgid "Album:"
-#~ msgstr "Albüm:"
-
-#, fuzzy
-#~ msgid "Album folder:"
-#~ msgstr "Albüm fdizini:"
-
-#, fuzzy
-#~ msgid "(Click on image to include)"
-#~ msgstr "(Zum Einfügen auf das Bild klicken)"
-
-#, fuzzy
-#~ msgid "<em>Albumthumb</em>"
-#~ msgstr "<em>VE</em>"
-
-#, fuzzy
-#~ msgid "<strong>Note:</strong> This album does not contain any images."
-#~ msgstr "<strong>Dikkat:</strong> Bu albüm herhangi bir resim içermiyor."
-
-#, fuzzy
-#~ msgid "(Click on article title to include a link)"
-#~ msgstr "(Zum Einfügen eines Links auf den Titel klicken)"
-
-#, fuzzy
-#~ msgid "*Select*"
-#~ msgstr "*Seç*"
-
-#, fuzzy
-#~ msgid "(only direct links!)"
-#~ msgstr "(sadece direkt bağlantılar!)"
-
-#, fuzzy
-#~ msgid "*Select an album*"
-#~ msgstr "*Bir albüm seçin*"
-
-#, fuzzy
-#~ msgid "(select variant below)"
-#~ msgstr "(Variante unten wählen)"
-
-#, fuzzy
-#~ msgid "What to include"
-#~ msgstr "Was Sie einfügen möchten"
-
-#, fuzzy
-#~ msgid "Custom text"
-#~ msgstr "Özel metin"
-
-#, fuzzy
-#~ msgid "Custom thumbnail"
-#~ msgstr "Eigene Größe (beschnitten)"
-
-#, fuzzy
-#~ msgid "Full image"
-#~ msgstr "tam resim"
-
-#, fuzzy
-#~ msgid "Title and description"
-#~ msgstr "Galleri açıklaması:"
-
-#, fuzzy
-#~ msgid "No description"
-#~ msgstr "(Açıklama yok...)"
-
-#, fuzzy
-#~ msgid "Show image description"
-#~ msgstr "CombiNews: Bildbeschreibung anzeigen"
-
-#, fuzzy
-#~ msgid "Show album description"
-#~ msgstr "Albüm Açıklaması:"
-
-#, fuzzy
-#~ msgid "Link type"
-#~ msgstr "Bağlantı tipi"
-
-#, fuzzy
-#~ msgid "Link to image"
-#~ msgstr "Resme bağlantı"
-
-#, fuzzy
-#~ msgid "Link to full image"
-#~ msgstr "Der Text für den Link zum vollen Artikel."
-
-#, fuzzy
-#~ msgid "Link to album"
-#~ msgstr "Albüme bağlantı"
-
-#, fuzzy
-#~ msgid "No link"
-#~ msgstr "Bağ kullanma"
-
-#, fuzzy
-#~ msgid "Text wrap"
-#~ msgstr "Textumfluß"
-
-#, fuzzy
-#~ msgid "No wrap"
-#~ msgstr "Kein Textumfluß"
-
-#, fuzzy
-#~ msgid "Options on what to include"
-#~ msgstr "Was Sie einfügen möchten"
-
-#~ msgid ""
-#~ "An importer for <strong>Wordpress 3.x</strong> to the Zenpage CMS plugin "
-#~ "that imports the following:"
-#~ msgstr ""
-#~ "<strong>Worpress 3.x</strong>'den Zenpage CMS eklentisine aktarılanlar:"
-
-#, fuzzy
-#~ msgid "(<strong>%1$u</strong> page)"
-#~ msgid_plural "(<strong>%1$u</strong> pages)"
-#~ msgstr[0] "(<strong>%1$u</strong> sayfa)"
-
-#, fuzzy
-#~ msgid "(<strong>%1$u</strong> page, <strong>%2$u</strong> un-published)"
-#~ msgid_plural ""
-#~ "(<strong>%1$u</strong> pages, <strong>%2$u</strong> un-published)"
-#~ msgstr[0] ""
-#~ "<strong>%1$u</strong> sayfa, (<strong>%2$u</strong> yayımlanmamış)"
-
-#, fuzzy
-#~ msgid "(<strong>%1$u</strong> news)"
-#~ msgid_plural "(<strong>%1$u</strong> news)"
-#~ msgstr[0] "(<strong>%1$u</strong> haber)"
-
-#, fuzzy
-#~ msgid "(<strong>%1$u</strong> news, <strong>%2$u</strong> un-published)"
-#~ msgid_plural ""
-#~ "(<strong>%1$u</strong> news, <strong>%2$u</strong> un-published)"
-#~ msgstr[0] ""
-#~ "<strong>%1$u</strong> sayfa, (<strong>%2$u</strong> yayımlanmamış)"
-
-#, fuzzy
-#~ msgid "(<strong>%1$u</strong> category)"
-#~ msgid_plural "(<strong>%1$u</strong> categories)"
-#~ msgstr[0] "(<strong>%1$u</strong> kategori)"
-
-#, fuzzy
-#~ msgid "Auto, Continuous"
-#~ msgstr "Otomatik, Sürekli"
-
-#, fuzzy
-#~ msgid "Auto, Focus button"
-#~ msgstr "Otomatik odaklanma düğmesi"
-
-#, fuzzy
-#~ msgid "Compulsory Flash, Return light detected"
-#~ msgstr "Zwangsblitz, Abtastimpuls erfasst"
-
-#, fuzzy
-#~ msgid "Compulsory Flash, Return light not detected"
-#~ msgstr "Zwangsblitz, Abtastimpuls nicht erfasst"
-
-#, fuzzy
-#~ msgid "Flash, Auto-Mode"
-#~ msgstr "Blitz, Automodus"
-
-#, fuzzy
-#~ msgid "Flash, Auto-Mode, Return light detected"
-#~ msgstr "Blitz, Automodus, Abtastimpuls erfasst"
-
-#, fuzzy
-#~ msgid "Flash, Auto-Mode, Return light not detected"
-#~ msgstr "Blitz, Automodus, Abtastimpuls nicht erfasst"
-
-#, fuzzy
-#~ msgid "Flash, strobe return light detected"
-#~ msgstr "Blitz, Abtastlichtimpuls erfasst"
-
-#, fuzzy
-#~ msgid "Flash, strobe return light not detected"
-#~ msgstr "Blitz, Abtastlichtimpuls nicht erfasst"
-
-#, fuzzy
-#~ msgid "Red Eye, Auto-Mode"
-#~ msgstr "Rote Augen, Automodus"
-
-#, fuzzy
-#~ msgid "Red Eye, Auto-Mode, Return light detected"
-#~ msgstr "Rote Augen, Automodus, Abtastimpuls nicht erfasst"
-
-#, fuzzy
-#~ msgid "Red Eye, Auto-Mode, Return light not detected"
-#~ msgstr "Rote Augen, Automodus, Abtastimpuls nicht erfasst"
-
-#, fuzzy
-#~ msgid "Red Eye, Compulsory Flash"
-#~ msgstr "Rote Augen, Zwangsblitz"
-
-#, fuzzy
-#~ msgid "Red Eye, Compulsory Flash, Return light detected"
-#~ msgstr "Rote Augen, Zwangsblitz, Abtastimpuls erfasst"
-
-#, fuzzy
-#~ msgid "Red Eye, Compulsory Flash, Return light not detected"
-#~ msgstr "Rote Augen, Zwangsblitz, Abtastimpuls nicht erfasst"
-
-#, fuzzy
-#~ msgid "Red Eye, Return light detected"
-#~ msgstr "Rote Augen, Abtastimpuls erfasst"
-
-#, fuzzy
-#~ msgid "Red Eye, Return light not detected"
-#~ msgstr "Rote Augen, Abtastimpuls nicht erfasst"
-
-#, fuzzy
-#~ msgid "Theme:%s setup completed"
-#~ msgstr "Geri yükleme tamamlandı"
-
-#, fuzzy
-#~ msgid "Owner:"
-#~ msgstr "Sahibi:"
-
-#, fuzzy
-#~ msgid "Set as thumbnail for:"
-#~ msgstr "Neuste Bilder: Thumbnail"
-
-#~ msgid "Image watermark:"
-#~ msgstr "Resim filigran:"
-
-#, fuzzy
-#~ msgid "Scan pending"
-#~ msgstr "Azalan"
-
-#, fuzzy
-#~ msgid "Order by date descending"
-#~ msgstr "En çok kullanılana göre sırala"
-
-#, fuzzy
-#~ msgid "Order by date ascending"
-#~ msgstr "En çok kullanılana göre sırala"
-
-#, fuzzy
-#~ msgid "The Object you are requesting cannot be found."
-#~ msgstr "Talep ettiğiniz ZenPhoto nesnesi bulunamadı."
-
-#, fuzzy
-#~ msgid "Theme page"
-#~ msgstr "Tema sayfası"
-
-#, fuzzy
-#~ msgid "The page you are requesting cannot be found."
-#~ msgstr "Talep ettiğiniz ZenPhoto nesnesi bulunamadı."
-
-#, fuzzy
-#~ msgid "Sorry, the page you are requesting cannot be found."
-#~ msgstr "Talep ettiğiniz ZenPhoto nesnesi bulunamadı."
-
-#, fuzzy
-#~ msgid "Future publishing date."
-#~ msgstr "Gelecekteki yayımlanma zamanı:"
-
-#, fuzzy
-#~ msgid "show content"
-#~ msgstr "yorumları göster"
-
-#~ msgid "Dynamic album search:"
-#~ msgstr "Dinamik albüm arama:"
-
-#, fuzzy
-#~ msgid ""
-#~ "<a href=\"javascript:toggle('albumpub');\" >Details</a> for <em>publish "
-#~ "albums by default</em>"
-#~ msgstr ""
-#~ "<em>görsel küçük resim seçimi</em> için <a href=\"javascript:"
-#~ "toggle('visualthumb');\" >detaylar</a>"
-
-#, fuzzy
-#~ msgid ""
-#~ "<a href=\"javascript:toggle('imagepub');\" >Details</a> for <em>publish "
-#~ "images by default</em>"
-#~ msgstr ""
-#~ "<em>son resmin tarihinin albüm tarihi olarak kullanmak için</em> <a href="
-#~ "\"javascript:toggle('albumdate');\" >detaylar</a>"
-
-#~ msgid ""
-#~ "<a href=\"javascript:toggle('albumdate');\" >Details</a> for <em>use "
-#~ "latest image date as album date</em>"
-#~ msgstr ""
-#~ "<em>son resmin tarihinin albüm tarihi olarak kullanmak için</em> <a href="
-#~ "\"javascript:toggle('albumdate');\" >detaylar</a>"
-
-#, fuzzy
-#~ msgid ""
-#~ "<a href=\"javascript:toggle('visualthumb');\" >Details</a> for <em>visual "
-#~ "thumb selection</em>"
-#~ msgstr ""
-#~ "<em>görsel küçük resim seçimi</em> için <a href=\"javascript:"
-#~ "toggle('visualthumb');\" >detaylar</a>"
-
-#, fuzzy
-#~ msgid ""
-#~ "<a href=\"javascript:toggle('multithumb');\" >Details</a> for "
-#~ "<em>subalbum thumb selection</em>"
-#~ msgstr ""
-#~ "<em>görsel küçük resim seçimi</em> için <a href=\"javascript:"
-#~ "toggle('visualthumb');\" >detaylar</a>"
-
-#~ msgid "ExtraContent"
-#~ msgstr "Ekstraİçerik"
-
-#, fuzzy
-#~ msgid "1: Normal (0 deg)"
-#~ msgstr "1: Normal (0 der)"
-
-#, fuzzy
-#~ msgid "2: Mirrored"
-#~ msgstr "2: Ayna görüntüsü"
-
-#, fuzzy
-#~ msgid "3: Upside-down"
-#~ msgstr "3: Başaşağı"
-
-#, fuzzy
-#~ msgid "4: Upside-down Mirrored"
-#~ msgstr "4: Başaşağı Ayna Görüntüsü"
-
-#, fuzzy
-#~ msgid "5: 90 deg CW Mirrored"
-#~ msgstr "5: 90 der Saat Yönünde Ayna Görüntüsü"
-
-#, fuzzy
-#~ msgid "6: 90 deg CCW"
-#~ msgstr "6: 90 der Saat Yönünün Tersine"
-
-#, fuzzy
-#~ msgid "7: 90 deg CCW Mirrored"
-#~ msgstr "7: 90 der Saat Yönünün Tersine Ayana Görntüsü"
-
-#, fuzzy
-#~ msgid "8: 90 deg CW"
-#~ msgstr "8: 90 der Saat Yönünde"
-
-#, fuzzy
-#~ msgid "%d: Unknown"
-#~ msgstr "%d: Bilinmiyor"
-
-#, fuzzy
-#~ msgid "D55"
-#~ msgstr "D55"
-
-#, fuzzy
-#~ msgid "D65"
-#~ msgstr "D65"
-
-#, fuzzy
-#~ msgid "D75"
-#~ msgstr "D75"
-
-#, fuzzy
-#~ msgid "D50"
-#~ msgstr "D50"
-
-#, fuzzy
-#~ msgid "/10s"
-#~ msgstr "/10s"
-
-#, fuzzy
-#~ msgid "2x"
-#~ msgstr "2x"
-
-#, fuzzy
-#~ msgid "4x"
-#~ msgstr "4x"
-
-#, fuzzy
-#~ msgid "50"
-#~ msgstr "50"
-
-#, fuzzy
-#~ msgid "100"
-#~ msgstr "100"
-
-#, fuzzy
-#~ msgid "200"
-#~ msgstr "200"
-
-#, fuzzy
-#~ msgid "400"
-#~ msgstr "400"
-
-#~ msgid "12"
-#~ msgstr "12"
-
-#~ msgid "13"
-#~ msgstr "13"
-
-#~ msgid "14"
-#~ msgstr "14"
-
-#~ msgid "15"
-#~ msgstr "15"
-
-#~ msgid "Unknown: "
-#~ msgstr "Bilinmiyor:"
-
-#~ msgid "2s"
-#~ msgstr "2sn"
-
-#, fuzzy
-#~ msgid "Updating the configuration file"
-#~ msgstr "Uygulama Yapılandırma Dosyası"
-
-#, fuzzy
-#~ msgid ""
-#~ "ZenPhoto20 processed a 404 error on %s. See the debug log for details."
-#~ msgstr ""
-#~ "%s sırasında bir 404 hatasıyla karşılaşıldı. Detaylar için hata ayıklama "
-#~ "günlüğüne gözatın."
-
-#, fuzzy
-#~ msgid "Updated configuration file"
-#~ msgstr "Dosyayı metin düzenleyicisinde düzenleyiniz"
-
-#, fuzzy
-#~ msgid "Database admin user"
-#~ msgstr "Veritabanı kullanıcısı"
-
-#, fuzzy
-#~ msgid "Database admin password"
-#~ msgstr "Veritabanı şifresi"
-
-#, fuzzy
-#~ msgid "Invalid Textobject instantiation: file does not exist"
-#~ msgstr "Resim bulunamadı; dosya bulunamadı."
-
-#, fuzzy
-#~ msgid "Languange"
-#~ msgstr "Tercih Ettiğiniz Dil:"
-
-#, fuzzy
-#~ msgid "Sub-Languange"
-#~ msgstr "Tercih Ettiğiniz Dil:"
-
-#, fuzzy
-#~ msgid "Languange String"
-#~ msgstr "Tercih Ettiğiniz Dil:"
-
-#, fuzzy
-#~ msgid "restore screen"
-#~ msgstr "Geri yükleme tamamlandı"
-
-#, fuzzy
-#~ msgid "shuffle off"
-#~ msgstr "karıştır"
-
-#, fuzzy
-#~ msgid "repeat off"
-#~ msgstr "tekrarla:"
-
-#, fuzzy
-#~ msgid "Target does not exists in <em>%1$s</em> theme"
-#~ msgstr "Keine <em>Alben</em>-Treffer ausgeben"
-
-#, fuzzy
-#~ msgid ""
-#~ "If this option is set, the visitor login form will include a link to this "
-#~ "page. The link text will be labeled with the text provided."
-#~ msgstr ""
-#~ "Wenn diese Einstellung eingestellt ist, enthält das Besucher-"
-#~ "Anmeldungsformular einen Link zu dieser Seite. Der Linktext wird mit dem "
-#~ "angegebenen Text betitelt."
-
-#, fuzzy
-#~ msgid "tinyZenpage plugin"
-#~ msgstr "Zenpage sayfası"
-
-#, fuzzy
-#~ msgid "Custom image size"
-#~ msgstr "Özel sayfa"
-
-#, fuzzy
-#~ msgid "Custom thumb crop - size"
-#~ msgstr "Önizleme kesim (crop) yüksekliği"
-
-#, fuzzy
-#~ msgid "Custom thumb crop - width"
-#~ msgstr "Önizleme kesim (crop) yüksekliği"
-
-#, fuzzy
-#~ msgid "Custom thumb crop - height"
-#~ msgstr "Önizleme kesim (crop) yüksekliği"
-
-#, fuzzy
-#~ msgid "image with link to image"
-#~ msgstr "Resme bağlantı"
-
-#, fuzzy
-#~ msgid "*no group affiliation"
-#~ msgstr "*keine Gruppenzugehörigkeit"
-
-#, fuzzy
-#~ msgid "Future publishing date:"
-#~ msgstr "Gelecekteki yayımlanma zamanı:"
-
-#, fuzzy
-#~ msgid "newPage"
-#~ msgstr "Sayfa"
-
-#, fuzzy
-#~ msgid ""
-#~ "Note: Scheduled publishing is not active unless the page is also set to "
-#~ "<em>published</em>"
-#~ msgstr ""
-#~ "Anmerkung: Zeitgesteuertes Veröffentlichen ist nicht aktiviert, bevor die "
-#~ "Seite nicht auf  <em>veröffentlicht</em> gesetzt ist."
-
-#, fuzzy
-#~ msgid "Expiration date:"
-#~ msgstr "Zaman aşımı tarihi"
-
-#, fuzzy
-#~ msgid "ExtraContent:"
-#~ msgstr "Extrainhalt:"
-
-#, fuzzy
-#~ msgid "Scheduled for published"
-#~ msgstr "Yayımlanmak için zamanlandı"
-
-#, fuzzy
-#~ msgid "Publish immediately (skip scheduling)"
-#~ msgstr "Hemen yayımla (zamanlamayı geç)"
-
-#, fuzzy
-#~ msgid "Enable scheduled publishing"
-#~ msgstr "Yayımlanmak için zamanlandı"
-
-#, fuzzy
-#~ msgid "Publish (override expiration)"
-#~ msgstr "Yayımla (süre sonunu geçersiz kıl)"
-
-#~ msgid "ByLine"
-#~ msgstr "ByLine"
-
-#~ msgid "Mail send failed. "
-#~ msgstr "Eposta gönderimi başarısız."
-
-#~ msgid "Unknown author"
-#~ msgstr "Bilinmeyen yazar"
-
-#~ msgid "<strong>Theme description error!</strong>"
-#~ msgstr "<strong>Tema açıklama metni hatası!</strong>"
-
-#~ msgid "Unknown date"
-#~ msgstr "Bilinmeyen tarih"
-
-#~ msgid "Password must be at least %u characters"
-#~ msgstr "Şifre en az %u karakter olmalıdır"
-
-#~ msgid "Password must contain at least one of %s"
-#~ msgstr "Şifre en az bir %s içermelidir"
-
-#, fuzzy
-#~ msgid ""
-#~ "<strong>Note:</strong> passwords must be at least %1$u characters long "
-#~ "and contain at least one character from %2$s."
-#~ msgid_plural ""
-#~ "<strong>Note</strong>: passwords must be at least %1$u characters long "
-#~ "and contain at least one character from each of the following groups: "
-#~ "%2$s."
-#~ msgstr[0] ""
-#~ "<strong>Anmerkung</strong>: Passwörter müssen mindestens  %1$u Zeichen "
-#~ "lang sein und mindestens eine Zeichen aus  %2$s enthalten."
-
-#, fuzzy
-#~ msgid ""
-#~ "<strong>Note</strong>: passwords must contain at least one character from "
-#~ "%s."
-#~ msgid_plural ""
-#~ "<strong>Note</strong>: passwords must contain at least one character from "
-#~ "each of the following groups: %s."
-#~ msgstr[0] ""
-#~ "<strong>Anmerkung:</strong> Passwörter müssen mindestens ein Zeichen aus "
-#~ "%s enthalten."
-
-#, fuzzy
-#~ msgid ""
-#~ "<strong>Note</strong>: passwords must be at least %u characters long."
-#~ msgstr "<strong>Dikkat</strong>: şifreler en az %u Zeichen lang sein."
-
-#~ msgid "View news"
-#~ msgstr "Haberleri görüntüle"
-
-#~ msgid "View pages"
-#~ msgstr "Sayfaları görüntüle"
-
-#~ msgid "View albums"
-#~ msgstr "Albümleri görüntüle"
-
-#~ msgid "Minimum number of characters a password must contain."
-#~ msgstr "Bir şifrenin Minimum an Zeichen, die ein Passwort enthalten muß."
-
-#~ msgid "Password characters:"
-#~ msgstr "Şifre karakterleri:"
-
-#, fuzzy
-#~ msgid ""
-#~ "Passwords must contain at least one of the characters from each of the "
-#~ "groups. Groups are separated by \"|\". (Use \"\\|\" to represent the \"|"
-#~ "\" character in the groups.)"
-#~ msgstr ""
-#~ "Passwörter müssen mindestens ein Zeichen jeder Gruppen enthalten. Gruppen "
-#~ "sind unterteilt durch \"|\". (Verwenden Sie \"\\|\" für das \"|\" Zeichen "
-#~ "in den Gruppe.)"
-
-#~ msgid "You are running the latest zenphoto version."
-#~ msgstr "Zenphoto'nun son sürümünü kullanıyorsunuz."
-
-#~ msgid ""
-#~ "Could not connect to <a href=\"http://www.zenphoto.org\">zenphoto.org</a>"
-#~ msgstr ""
-#~ "<a href=\"http://www.zenphoto.org\">zenphoto.org</a> adresine "
-#~ "bağlanılamadı."
-
-#~ msgid "zenphoto version %s is available."
-#~ msgstr "zenphoto %s sürümü indirmek için uygun."
-
-#~ msgid "<strong>%1$u</strong> Image (%2$u not visible)"
-#~ msgid_plural "<strong>%1$u</strong> Images (%2$u not visible)"
-#~ msgstr[0] "<strong>%1$u</strong> Resim (%2$u görünür değil)"
-
-#~ msgid "SVN"
-#~ msgstr "SVN"
-
-#~ msgid "Oops.. Cannot edit from this page"
-#~ msgstr "Upps.. Bu sayfadan düzenle yapılamaz"
-
-#~ msgid "Error: malformed Ajax POST"
-#~ msgstr "Hata: Kusurlu bir Ajax POST'u"
-
-#~ msgid "Could not save!"
-#~ msgstr "Kaydedilemedi!"
-
-#~ msgid "Save"
-#~ msgstr "Kaydet"
-
-#~ msgid "Saving"
-#~ msgstr "Kaydediliyor"
-
-#~ msgid "Click to edit..."
-#~ msgstr "Düzenlemek için tıklayın..."
-
-#~ msgid "Edit this image"
-#~ msgstr "Bu resmi düzenle"
-
-#~ msgid "(No title...)"
-#~ msgstr "(Başlık yok...)"
-
-#~ msgid "(No date...)"
-#~ msgstr "(Tarih yok...)"
-
-#~ msgid "(No Location...)"
-#~ msgstr "(Konum Yok...)"
-
-#, fuzzy
-#~ msgid "printEditable() incomplete function call."
-#~ msgstr "printEditable() tamamlanmamış foksiincomplete function call."
-
-#, fuzzy
-#~ msgid "printEditable() invalid function call."
-#~ msgstr "printEditable() tamamlanmamış foksiincomplete function call."
-
-#~ msgid "(...)"
-#~ msgstr "(...)"
-
-#~ msgid "(No data...)"
-#~ msgstr "(Veri yok...)"
-
-#~ msgid "(No data)"
-#~ msgstr "(Veri yok)"
-
-#~ msgid "Download Zip of the Album"
-#~ msgstr "Albümü zip arşiv formatında indirin"
-
-#~ msgid "Download a zip file of this album"
-#~ msgstr "Bu albümü zip dosyası halinde indir"
-
-#~ msgid "(No tags...)"
-#~ msgstr "(Etiket yok...)"
-
-#~ msgid "Latest images of this album and its subalbums RSS"
-#~ msgstr "RSS: Bu albümün ve alt albümlerinin son resimleri"
-
-#~ msgid "Latest comments RSS"
-#~ msgstr "RSS son yorumlar"
-
-#~ msgid "Latest albums RSS"
-#~ msgstr "RSS son albümler"
-
-#~ msgid "select search fields"
-#~ msgstr "arama alanlarını seçin"
-
-#~ msgid "Clear search"
-#~ msgstr "Aramayı sil"
-
-#~ msgid "Reset search"
-#~ msgstr "Aramayı sıfırla"
-
-#~ msgid ""
-#~ "Powered by <a href=\"http://www.zenphoto.org\" title=\"A simpler web "
-#~ "photo album\"><span id=\"zen-part\">zen</span><span id=\"photo-part"
-#~ "\">PHOTO</span></a>"
-#~ msgstr ""
-#~ "Altyapı: <a href=\"http://www.zenphoto.org\" title=\"Daha kolay bir resim "
-#~ "albümü\"><span id=\"zen-part\">zen</span><span id=\"photo-part\">PHOTO</"
-#~ "span></a>"
-
-#~ msgid "Do you want to replace the file %s?"
-#~ msgstr "%s öğesinin yerine koymak istiyor musunuz?"
-
-#~ msgid "Upload queue is full. The upload limit is %u."
-#~ msgstr "Yükleme sırası dolu. Yükleme limiti %u kadardır."
-
-#~ msgid "Upload Photos"
-#~ msgstr "Resim Yükle"
-
-#~ msgid "Something went wrong..."
-#~ msgstr "Birşeyler yanlış gitti..."
-
-#~ msgid ""
-#~ "There appears to be no <em>Flash</em> plugin installed in your browser."
-#~ msgstr "Görünüşe göre tarayıcınızda <em>Flash</em> eklentisi kurulu değil."
-
-#, fuzzy
-#~ msgid ""
-#~ "If your upload does not work try the <a href=\"javascript:"
-#~ "switchUploader('admin-upload.php?uploadtype=http');\" >http-browser "
-#~ "single file upload</a> or use FTP instead."
-#~ msgstr ""
-#~ "Wenn Ihr Upload nicht funktioniert, versuchen Sie stattdessen den  <a "
-#~ "href=\"javascript:switchUploader('admin-upload.php?uploadtype=http');\" "
-#~ ">http-browser-Einzeldatei-Upload</a> oder verwenden Sie FTP."
-
-#, fuzzy
-#~ msgid ""
-#~ "Try the <a href=\"javascript:switchUploader('admin-upload.php?"
-#~ "uploadtype=multifile');\" >multi file upload</a>"
-#~ msgstr ""
-#~ "Versuchen Sie den <a href=\"javascript:switchUploader('admin-upload.php?"
-#~ "uploadtype=multifile');\" >Mehrfach-Datei-Upload</a>"
-
-#, fuzzy
-#~ msgid ""
-#~ "The <code>$_zp_conf_vars</code> variable is not an array. Zenphoto has "
-#~ "not been instantiated correctly."
-#~ msgstr ""
-#~ "Die Variable <code>$_zp_conf_vars</code> ist kein Array. Zenphoto ist "
-#~ "nicht korrekt installiert."
-
-#~ msgid "You must supply a password for the Gallery guest user"
-#~ msgstr "Galeri misafir kullanıcısı için bir şifre belirlemelisiniz"
-
-#~ msgid "You must supply a password"
-#~ msgstr "Bir şifre belirtmelisiniz"
-
-#~ msgid ""
-#~ "Unknown error! Please report to the developers at <a href=\"http://www."
-#~ "zenphoto.org/\">www.zenphoto.org</a>"
-#~ msgstr ""
-#~ "Bilinmeyen hata! Lütfen <a href=\"http://www.zenphoto.org\">zenphoto.org</"
-#~ "a>'daki geliştiricilere bu durumu bildirin."
-
-#~ msgid "Sort the tags alphabetically"
-#~ msgstr "Etiketleri alfabetik olarak sırala"
-
-#~ msgid "Sort the tags by most used"
-#~ msgstr "Etiketleri en çok kullanılana göre sırala"
-
-#~ msgid "Delete all the tags checked above."
-#~ msgstr "İşaretlenmiş tüm etiketleri sil."
-
-#~ msgid "Apply all the changes entered above."
-#~ msgstr "Yukarıda girilen tüm değişiklikleri kaydet"
-
-#~ msgid "Add all the tags entered above."
-#~ msgstr "Yukarıda girilmiş olan tüm etiketleri ekle."
-
-#~ msgid "See the troubleshooting guide on zenphoto.org for details."
-#~ msgstr ""
-#~ "Daha fazla bilgi için zenphoto.org sayfasındaki sorun giderme belgelerine "
-#~ "bakınız."
-
-#~ msgid ""
-#~ "<strong>Note:</strong> Login from the front-end user login form is secure "
-#~ "only if <em>https</em> is selected."
-#~ msgstr ""
-#~ "<strong>Dikkat:</strong> Giriş işlemleri ancak <em>https</em> seçilmiş "
-#~ "olduğunda güvenlidir."
-
-#~ msgid ""
-#~ "<strong>Note:</strong> if you have created multi-language strings, "
-#~ "uncheck this option, then save anything, you will lose your strings."
-#~ msgstr ""
-#~ "<strong>Dikkat:</strong> eğer çoklu dil karakter dizisi oluşturduysanız, "
-#~ "bu seçeneği pasifleştirin, sonra da herşeyi kaydedin, karakter "
-#~ "dizilerinizi kaybedeceksiniz."
-
-#~ msgid "Front-end editing"
-#~ msgstr "Önyüz düzenlemesi"
-
-#~ msgid "CAPTCHA generator:"
-#~ msgstr "Captcha oluşturucu:"
-
-#~ msgid "Select the <em>CAPTCHA</em> generator to be used by Zenphoto."
-#~ msgstr ""
-#~ "ZenPhoto tarafından kullanılacak <em>captcha</em> oluşturucusunu seçin."
-
-#~ msgid "enable user name login field"
-#~ msgstr "kullanıcı adı alanını aktifleştirin"
-
-#~ msgid "enable persistent archives"
-#~ msgstr "devamlı arşivleri aktifleştir"
-
-#, fuzzy
-#~ msgid ""
-#~ "<a href=\"javascript:toggle('username');\" >Details</a> for <em>enable "
-#~ "user name login field</em>"
-#~ msgstr ""
-#~ "<em>Kullanıcı adı giriş alanını</em> aktifleştirmek için <a href="
-#~ "\"javascript:toggle('username');\" >detaylar</a>"
-
-#, fuzzy
-#~ msgid ""
-#~ "This option places a field on the gallery (search, album) login form for "
-#~ "entering a user name. This is necessary if you have set guest login user "
-#~ "names. It is also useful to allow Admin users to log in on these pages "
-#~ "rather than at the Admin login."
-#~ msgstr ""
-#~ "Bu seçenek galeride (arama, albüm) kullanıcı adı alanına yerleşir. Bu "
-#~ "misafir kullanıcı adları kullanıyorsanız gerekli olabilir. Ayrıca "
-#~ "yöneticilerin yönetici girişine uğramadan giriş yapmalarına da yardımcı "
-#~ "olur."
-
-#, fuzzy
-#~ msgid ""
-#~ "<a href=\"javascript:toggle('persistentarchive');\" >Details</a> for "
-#~ "<em>enable persistent archive</em>"
-#~ msgstr ""
-#~ "<em>Kalıcı arşivleri etkinleştirmek</em> için <a href=\"javascript:"
-#~ "toggle('persistentarchive');\" >detaylar</a>"
-
-#, fuzzy
-#~ msgid ""
-#~ "Put a checkmark here to re-serve Zip Archive files if you are using the "
-#~ "optional template function <em>printAlbumZip()</em> to enable visitors of "
-#~ "your site to download images of an album as .zip files. If not checked "
-#~ "that .zip file will be regenerated each time."
-#~ msgstr ""
-#~ "Wählen Sie die Checkbox aus, um zip-Archive wiederzuverwenden, wenn Sie "
-#~ "die optionale Themefunktion <em>printAlbumZip()</em> verwenden, um "
-#~ "Besuchern, die Möglichkeit zu geben, Bilder eines Albums als zip-Datei "
-#~ "herunterzuladen. Nicht ausgewählt, würde die zip-Datei jedesmal erneut "
-#~ "erstellt werden."
-
-#, fuzzy
-#~ msgid ""
-#~ "<a href=\"javascript:toggle('gallerysessions');\" >Details</a> for "
-#~ "<em>enable gallery sessions</em>"
-#~ msgstr ""
-#~ "<em>Galeri oturum aktifleştirme</em> <a href=\"javascript:"
-#~ "toggle('gallerysessions');\" >detayları</a>"
-
-#, fuzzy
-#~ msgid ""
-#~ "Check this option if you are having issues with album password cookies "
-#~ "not being retained. Setting the option causes zenphoto to use sessions "
-#~ "rather than cookies."
-#~ msgstr ""
-#~ "Aktivieren Sie dies, falls Probleme mit den Albumpasswort-Cookies "
-#~ "auftreten. Diese Einstellung zwingt Zenphoto Sessions anstatt Cookies zu "
-#~ "verwenden."
-
-#~ msgid "exact"
-#~ msgstr "tam"
-
-#~ msgid "partial"
-#~ msgstr "kısmi"
-
-#, fuzzy
-#~ msgid "Search behavior settings."
-#~ msgstr "Arama davranış seçenekleri."
-
-#, fuzzy
-#~ msgid ""
-#~ "Search does partial matches on all fields selected with the possible "
-#~ "exception of <em>Tags</em>. This means that if the field contains the "
-#~ "search criteria anywhere within it a result will be returned. If "
-#~ "<em>exact</em> is selected for <em>Tags</em> then the search criteria "
-#~ "must exactly match the tag for a result to be returned."
-#~ msgstr ""
-#~ "Die Suche führt mit Ausnahme von <em>Schlagwörtern</em> Teiltreffer aus. "
-#~ "Dies bedeuted, dass ein Ergebnis zurückgegeben wird, wenn das durchsuchte "
-#~ "Feld irgendwo das Suchkriterium erfüllt. Wenn <em>exakt</em> für "
-#~ "<em>Schlagwörter</em> ausgewählt ist, muss das Suchkriterium exakt mit "
-#~ "dem Schlagwort übereinstimmen, um als Treffer gewertet zu werden. "
-
-#~ msgid "Images RSS"
-#~ msgstr "Resimler RSS"
-
-#~ msgid "Albums RSS"
-#~ msgstr "Albümler RSS"
-
-#~ msgid ""
-#~ "The number of new items you want to appear in your site's RSS feed. The "
-#~ "images and comments RSS share the value."
-#~ msgstr ""
-#~ "RSS beslemesinde görünemesini istediğiniz öğe sayısı. Resimler ve "
-#~ "yorumların RSS'si aynı değeri paylaşmaktadır."
-
-#~ msgid "The size you want your images to have in your site's RSS feed."
-#~ msgstr "Sitenizin RSS beslemesinde görünecek resimlerin boyutu."
-
-#~ msgid "RSS cache"
-#~ msgstr "RSS önbellek"
-
-#~ msgid "You must supply a password for the Protected image user"
-#~ msgstr "Korunmuş resim kullanıcısı için bir şifre belirtmelisiniz"
-
-#~ msgid "Automatically rotate images based on the EXIF orientation setting."
-#~ msgstr "Resimleri EXIF döndürme seçeneklerine göre otomatik olarak çevirin."
-
-#, fuzzy
-#~ msgid ""
-#~ "Image rotation requires the <em>imagerotate</em> function found in the "
-#~ "bundled GD library of PHP version 4.3 or greater."
-#~ msgstr ""
-#~ "Bilddrehen erfordert die Funktion <em>imagerotate</em>, die in der GDLib, "
-#~ "die mit PHP 4.3 oder neuer gekoppelt ist, enthalten ist."
-
-#~ msgid "*none"
-#~ msgstr "*hiçbiri"
-
-#~ msgid ""
-#~ "Check those EXIF fields you wish displayed in image EXIF information."
-#~ msgstr "EXIF bilgilerinin istediğiniz şekilde göründüğünü kontrol edin."
-
-#~ msgid "Spam filter:"
-#~ msgstr "Spam süzgeci:"
-
-#~ msgid "The SPAM filter plug-in you wish to use to check comments for SPAM"
-#~ msgstr "Yorumların SPAM kontrolü için kullanmak istediğiniz SPAM eklentisi"
-
-#~ msgid "Expand plugin options"
-#~ msgstr "Eklenti seçeneklerini genişlet"
-
-#~ msgid "Collapse all plugin options"
-#~ msgstr "Eklenti seçeneklerini daralt"
-
-#~ msgid "comment"
-#~ msgstr "yorum"
-
-#~ msgid ""
-#~ "Check the zp-config.php file to make sure you've got the right username, "
-#~ "password, host, and database. If you haven't created the database yet, "
-#~ "now would be a good time."
-#~ msgstr ""
-#~ "zp-config.php dosyasını kontrol edin ve kullanıcı adı, şifre, sunucu ve "
-#~ "veritabanı bölümlerini doğrulayın. Henüz bir veritabanı "
-#~ "oluşturmadıysanız, şimdi tam zamanı."
-
-#~ msgid "Reset %s"
-#~ msgstr "%s öğesini sıfırla"
-
-#~ msgid "Download %s ZIP file"
-#~ msgstr "%s zip dosyasını indir"
-
-#~ msgid "Album cache purged"
-#~ msgstr "Albüm önbelleği temizlendi"
-
-#~ msgid "expand all fields"
-#~ msgstr "tüm alanları aç"
-
-#~ msgid "collapse all fields"
-#~ msgstr "tüm alanları kapa"
-
-#~ msgid "View image on website"
-#~ msgstr "Resmi sitede görüntüle"
-
-#~ msgid "Album thumbnail."
-#~ msgstr "Albüm küçük resmi."
-
-#~ msgid "Visible"
-#~ msgstr "Görünür"
-
-#~ msgid "Hit counter: <strong>%u</strong>"
-#~ msgstr "Ziyaret sayacı: <strong>%u</strong>"
-
-#~ msgid "Rating: <strong>%u</strong>"
-#~ msgstr "Oylama: <strong>%u</strong>"
-
-#~ msgid "Codeblock 2"
-#~ msgstr "2. kod bloğu"
-
-#~ msgid "Codeblock 3"
-#~ msgstr "3. kod bloğu"
-
-#~ msgid "show fewer fields"
-#~ msgstr "daha az alan göster"
-
-#, fuzzy
-#~ msgid "New theme name? (e.g. \"My Theme\")"
-#~ msgstr "Yeni tema adı? (eg. \"Benim Güzel Temam\")"
-
-#, fuzzy
-#~ msgid "My Theme"
-#~ msgstr "Temam"
-
-#, fuzzy
-#~ msgid "New directory name? (e.g. \"my_theme\")"
-#~ msgstr "Yeni dizin ismi? (ör. \"Benim_Temam\")"
-
-#~ msgid "Set %s as your theme"
-#~ msgstr "%s'i geçerli tema olarak ayarla"
-
-#~ msgid "Assign %s as your album theme"
-#~ msgstr "%s temasını albümünüzün ana teması olarak atayın"
-
-#~ msgid "Edit %s"
-#~ msgstr "%s Ögesini Düzenle"
-
-#~ msgid "Delete this %s"
-#~ msgstr "Şunu sil: %s"
-
-#~ msgid "Imagick filter"
-#~ msgstr "Imagick filtresi"
-
-#~ msgid "Magick memory limit"
-#~ msgstr "Magick hafıza limiti"
-
-#~ msgid ""
-#~ "The font size (in pixels) for CAPTCHAs. Default is <strong>%s</strong>."
-#~ msgstr ""
-#~ "CAPTCHA'lar için font büyüklüğü. Bu değer öntanımlı olarak <strong>%s</"
-#~ "strong>'dir."
-
-#~ msgid "Could not create zip file."
-#~ msgstr "Zip dosyası oluşturulamadı."
-
-#~ msgid "Could not create bzip2 file."
-#~ msgstr "bzip2 dosyası oluşturulamadı."
-
-#~ msgid "Could not create gzip file."
-#~ msgstr "gzip dosyası oluşturulamadı."
-
-#~ msgid ""
-#~ "Can only use download_file() if archive is in memory. Redirect to file "
-#~ "otherwise, it is faster."
-#~ msgstr ""
-#~ "Eğer arşiv bellekte ise download_file() fonksiyonunu kullanabilirsiniz. "
-#~ "Olmadı direk dosyaya yönlendirin, daha hızlıdır."
-
-#~ msgid "Could not add %s to archive because the filename is too long."
-#~ msgstr "%s öğesi arşive eklenemiyor çünkü dosya adı çok uzun."
-
-#~ msgid "Could not open file %s for reading. It was not added."
-#~ msgstr "%s öğesi okunmak için açılamadı. Öğe eklenmemişti."
-
-#~ msgid "This script does not support extracting this type of tar file."
-#~ msgstr "Bu betik bu tipteki tar dosyalarını açmayı desteklemez."
-
-#~ msgid "Could not extract from %s it is corrupt."
-#~ msgstr "%s öğesi bozuk olduğundan çıkartma işlemi yapılamadı."
-
-#~ msgid "Could not open %s for writing."
-#~ msgstr "%s öğesi yazma işlemi için açılamadı."
-
-#~ msgid "Could not open sfx module from %s"
-#~ msgstr "sfx modülü %s'den açılmadı"
-
-#~ msgid ""
-#~ "<strong>Zenphoto error:</strong> zp-config.php not found. Perhaps you "
-#~ "need to run <a href=\"%s/setup.php\">setup</a> (or migrate your old "
-#~ "config.php)"
-#~ msgstr ""
-#~ "<strong>Zenphoto hatası:</strong> zp-config.php dosyası bulunamadı. Belki "
-#~ "de tekrar <a href=\"%s/setup.php\">kurulum</a> işlemini yapmanız "
-#~ "gerekebilir (veya eski zp-config.php dosyanızı kullanmanız)"
-
-#~ msgid "ERROR: Assertion failed in"
-#~ msgstr "HATA: Bildirim başarısız oldu:"
-
-#, fuzzy
-#~ msgid "<strong>Backtrace:</strong>"
-#~ msgstr "<strong>Backtrace:</strong>"
-
-#~ msgid "randomly selected"
-#~ msgstr "rastgele seçilmiş"
-
-#~ msgid ""
-#~ "<a href=\"http://www.zenphoto.org\" title=\"A simpler web photo album"
-#~ "\">Zen<strong>photo</strong></a> version %1$s "
-#~ msgstr ""
-#~ "<a href=\"http://www.zenphoto.org\" title=\"Basit bir online albüm "
-#~ "yazılımı\">zen<strong>photo</strong></a> sürüm %1$s"
-
-#~ msgid "GPLv2"
-#~ msgstr "GPLv2"
-
-#~ msgid "User guide"
-#~ msgstr "Kullanıcı rehberi"
-
-#~ msgid "Forum"
-#~ msgstr "Yazışmalık"
-
-#~ msgid "Bugtracker"
-#~ msgstr "Hata takibi"
-
-#, fuzzy
-#~ msgid ""
-#~ "*Enter CAPTCHA in place of <em>Password</em> to request a password reset."
-#~ msgstr ""
-#~ "*Geben Sie das Captcha anstatt des <em>Passworts</em> ein, um einen "
-#~ "Passwortreset anzufordern."
-
-#~ msgid "Resets all hitcounters in the album."
-#~ msgstr "Albümün sayaçlarını sıfırlayın."
-
-#~ msgid ""
-#~ "Forces a refresh of the EXIF and IPTC data for all images in the album."
-#~ msgstr ""
-#~ "Albümdeki resimlerin EXIF ve IPTC verilerinin yeinilenmesi için zorlar."
-
-#~ msgid "Cache the album"
-#~ msgstr "Albümü önbelleğe al"
-
-#~ msgid "Pre-cache images in %s"
-#~ msgstr "%s albümündeki resimleri önbelleğe al"
-
-#~ msgid "Cache the album %s"
-#~ msgstr "%s albümünü belleğe al"
-
-#, fuzzy
-#~ msgid "utilities"
-#~ msgstr "Araçlar"
-
-#, fuzzy
-#~ msgid "content"
-#~ msgstr "İçerik:"
-
-#, fuzzy
-#~ msgid "Publishing options"
-#~ msgstr "<b>İlave Seçenekler</b>"
-
-#, fuzzy
-#~ msgid "Make images visible by default"
-#~ msgstr "Macht Bilder standardmäßig sichtbar "
-
-#~ msgid "Images which are not visible"
-#~ msgstr "Görünür olmayan resimler"
-
-#, fuzzy
-#~ msgid "Clears the image cache. Images will be re-cached as they are viewed."
-#~ msgstr ""
-#~ "Leert den Bildzwischenspeicher (Cache). Die Bilder werden erneut im Cache "
-#~ "zwischengespeichert, wenn sie angesehen werden."
-
-#, fuzzy
-#~ msgid "Sets all album thumbs to random."
-#~ msgstr "Setzt alle Albumthumbnails auf <em>zufällig</em>."
-
-#, fuzzy
-#~ msgid "Set to <em>random</em>"
-#~ msgstr "Alle auf <em>zufällig</em> setzen."
-
-#, fuzzy
-#~ msgid "Set to <em>%s</em>"
-#~ msgstr "Auf <em>%s</em> setzen"
-
-#, fuzzy
-#~ msgid ""
-#~ "These buttons allow you to set all of your album thumbs to either a "
-#~ "<em>random</em> image or to the <em>%s</em> image. This will override any "
-#~ "album thumb selections you have made on individual albums."
-#~ msgstr ""
-#~ "Diese Schaltflächen erlaubt Ihnen, alle Ihre Albumthumbnails entweder auf "
-#~ "ein<em>zufälliges</em> Bild oder auf das<em>%s</em> Bild einzustellen."
-
-#, fuzzy
-#~ msgid ""
-#~ "Cleans the database and removes any orphan entries for comments, images, "
-#~ "and albums."
-#~ msgstr ""
-#~ "Reinigt die Datenbank und entfernt verwaiste Einträge von Kommentaren, "
-#~ "Bildern und Alben."
-
-#, fuzzy
-#~ msgid ""
-#~ "Queries the Zenphoto web site for the latest version and compares that "
-#~ "with the one that is running."
-#~ msgstr ""
-#~ "Überprüft und vergleicht die laufende Zenphoto-Version mit der neuesten "
-#~ "auf der Zenphoto-Website verfügbaren."
-
-#~ msgid "<strong>%1$u</strong> images (%2$u not visible)"
-#~ msgstr "<strong>%1$u</strong> resim (%2$u görünür değil)"
-
-#~ msgid "Zenphoto Rights migration failed!"
-#~ msgstr "ZenPhoto Haklarının taşınması başarısız oldu!"
-
-#, fuzzy
-#~ msgid ""
-#~ "Finds newly uploaded images that have not been cached and creates the "
-#~ "cached version. It also refreshes the numbers above. If you have a large "
-#~ "number of images in your gallery you might consider using the pre-cache "
-#~ "image link for each album to avoid swamping your browser."
-#~ msgstr ""
-#~ "Findet neue Bilder, die noch nicht im Cache zwischengespeichert sind und "
-#~ "erstellt eine Zwischenspeicherdateien von ihnen. Es führt auch die beiden "
-#~ "oberen Funktionen aus. Wenn Sie eine grosse Menge Bilder in Ihrer Galerie "
-#~ "haben, sollten Sie besser die Funktion <em>Bilder cachen</em>, über die "
-#~ "jedes einzelne Album verfügt, verwenden, um eine Überlastung Ihres "
-#~ "Servers zu vermeiden."
-
-#, fuzzy
-#~ msgid "(%s: 1 new image)"
-#~ msgstr "(%s: yeni resim)"
-
-#, fuzzy
-#~ msgid "(%1$s: %2$s new images)"
-#~ msgstr "(%1$s: %2$s yeni resim)"
-
-#, fuzzy
-#~ msgid "(%s: 1 image)"
-#~ msgstr "(%s: 1 resim)"
-
-#, fuzzy
-#~ msgid "(%1$s: %2$s images)"
-#~ msgstr "(%1$s: %2$s resim)"
-
-#, fuzzy
-#~ msgid "Flowplayer3 (flash)"
-#~ msgstr "Flaş Çakıldı"
-
-#, fuzzy
-#~ msgid "flow player width"
-#~ msgstr "Flow Player genişliği"
-
-#, fuzzy
-#~ msgid ""
-#~ "Width of the Flowplayer display for the slideshow <em>(Flash mode)</em>."
-#~ msgstr ""
-#~ "Breite der Flowplayer-Anzeige für die Diaschau <em>(Flash-Modus)</em>."
-
-#, fuzzy
-#~ msgid "flow player height"
-#~ msgstr "Flow Player yüksekliği"
-
-#, fuzzy
-#~ msgid ""
-#~ "Height of the Flowplayer display for the slideshow <em>(Flash mode)</em>."
-#~ msgstr ""
-#~ "Höhe der Flowplayer-Anzeige für die Diaschau <em>(Flash-Modus)</em>."
-
-#, fuzzy
-#~ msgid "Click on the right in the player control bar to view full size."
-#~ msgstr ""
-#~ "Tam ekran görüntülemek için oynatıcıdaki kontrol çubuğunun alt sağ "
-#~ "tarafına tıklayın."
-
-#, fuzzy
-#~ msgid "PHP version 5 or greater is required."
-#~ msgstr "PHP 5 oder neuer ist erforderlich"
-
-#, fuzzy
-#~ msgid "Initial Zoom"
-#~ msgstr "Yakınlaş"
-
-#, fuzzy
-#~ msgid "The inital zoom of the map."
-#~ msgstr "hatalı düğüm eşlemi"
-
-#, fuzzy
-#~ msgid "Select the kind of map controls."
-#~ msgstr "Wählen Sie die Art der Kartensteuerung."
-
-#, fuzzy
-#~ msgid "Hide map initially"
-#~ msgstr "Google Map anzeigen oder verstecken."
-
-#, fuzzy
-#~ msgid "(%u album)"
-#~ msgid_plural "(%u albums)"
-#~ msgstr[0] "Albüm"
-
-#, fuzzy
-#~ msgid "Back-end"
-#~ msgstr "Backend"
-
-#, fuzzy
-#~ msgid "Front-end"
-#~ msgstr "Frontend"
-
-#~ msgid "Blocked access"
-#~ msgstr "Erişim engelli"
-
-#~ msgid "Blocked album"
-#~ msgstr "Engellenmiş albüm"
-
-#, fuzzy
-#~ msgid "XSRF access blocked"
-#~ msgstr "Erişim engellendi."
-
-#, fuzzy
-#~ msgid "No object for rating."
-#~ msgstr "(Oy vermeyecekseniz 0 olarak bırakın.)"
-
-#~ msgid "3 stars"
-#~ msgstr "3 yıldız"
-
-#~ msgid "4 stars"
-#~ msgstr "4 yıldız"
-
-#~ msgid "5 stars"
-#~ msgstr "5 yıldız"
-
-#~ msgid "Submit &raquo;"
-#~ msgstr "Gönder &raquo;"
-
-#, fuzzy
-#~ msgid ""
-#~ "Enables jQuery tag suggestions on the search field. Just activate the "
-#~ "plugin and the feature is available on the theme's search field."
-#~ msgstr ""
-#~ "Zeigt jQuery-Schlagwort-Vorschläge neben dem Suchfeld. Einfach das Plugin "
-#~ "aktivieren und die Funktion ist beim Suchfeld verfügbar."
-
-#, fuzzy
-#~ msgid ""
-#~ "an adaption of Remy Sharp's <a href='http://remysharp.com/2007/12/28/"
-#~ "jquery-tag-suggestion/ '>jQuery Tag Suggestion</a>"
-#~ msgstr ""
-#~ "eine Adaption von Remy Sharps <a href='http://remysharp.com/2007/12/28/"
-#~ "jquery-tag-suggestion/ '>jQuery Tag Suggestion</a>"
-
-#, fuzzy
-#~ msgid "Image quota information."
-#~ msgstr "Hata ayıklama bilgisini ekle"
-
-#, fuzzy
-#~ msgid "*no owner"
-#~ msgstr "Dosyanın sahibi."
-
-#, fuzzy
-#~ msgid "Assign images to:"
-#~ msgstr "Resimleri uraya kaydet:"
-
-#, fuzzy
-#~ msgid "Visit gallery page"
-#~ msgstr "Fotoğraf galerisini ziyaret et"
-
-#, fuzzy
-#~ msgid "%1$u new items in <em>%2$s</em>: %3$s"
-#~ msgstr "Oynatma listesinde öge yok"
-
-#, fuzzy
-#~ msgid "Articles per page (admin)"
-#~ msgstr "Artikel pro Seite (Administration)"
-
-#, fuzzy
-#~ msgid ""
-#~ "How many news articles you want to show per page on the news article "
-#~ "admin page."
-#~ msgstr ""
-#~ "Wieviele Artikel pro Seite Sie auf der Seiten-Administrationsseite "
-#~ "angezeigt haben möchten."
-
-#, fuzzy
-#~ msgid "CombiNews: Gallery page link"
-#~ msgstr "CombiNews: Galerieseitenlink"
-
-#, fuzzy
-#~ msgid ""
-#~ "The text for the 'read more'/'view more' link to the gallery page for "
-#~ "images/movies/audio."
-#~ msgstr ""
-#~ "Der Text für die  'Mehr lesen'/'Mehr sehen'-Links zur Galereseite für "
-#~ "Bilder, Alben, Video, Audio."
-
-#, fuzzy
-#~ msgid "CombiNews: Mode"
-#~ msgstr "CombiNews: Modus"
-
-#, fuzzy
-#~ msgid "latest albums: sized image"
-#~ msgstr "Neuste Alben: Großbild"
-
-#, fuzzy
-#~ msgid "latest albums: thumbnail"
-#~ msgstr "Neuste Alben: Thumbnail"
-
-#, fuzzy
-#~ msgid "latest albums: thumbnail-customcrop"
-#~ msgstr "Neuste Alben: Benutzerdefinierter Thumbnailbeschnitt"
-
-#, fuzzy
-#~ msgid "latest images: thumbnail-customcrop"
-#~ msgstr "Neuste Bilder: Benutzerdefinierter Thumbnailbeschnitt"
-
-#, fuzzy
-#~ msgid "latest images by album: thumbnail"
-#~ msgstr "Neueste Bilder pro Album: Thumbnail"
-
-#, fuzzy
-#~ msgid "latest images by album: thumbnail-customcrop"
-#~ msgstr "Neueste Bilder pro Album: Benutzerdefinierter Thumbnailbeschnitt"
-
-#, fuzzy
-#~ msgid "latest images by album: sized image"
-#~ msgstr "Neueste Bilder pro Album: Großbild"
-
-#, fuzzy
-#~ msgid ""
-#~ "What you want to show within the CombiNews section.<br /><ul><li>Latest "
-#~ "images: Entries for all images ever added</li><li>Latest albums: Entries "
-#~ "for all albums ever created</li><li>Latest images by album: Entries for "
-#~ "all images but grouped by images that have been added within a day to "
-#~ "each album (Scheme: 'x new images in album y on date z')</li></ul>"
-#~ msgstr ""
-#~ "Was Sie im CombiNews Modus anzeigen möchten.<br /><ul><li>Neuste Bilder: "
-#~ "Einträge für alle Bilder, die jemals hochgeladen wurden</li><li>Neuste "
-#~ "Alben: Einträge für alle Alben, die jemals hochgeladen wurden</"
-#~ "li><li>Neuste Bilder pro Album: Einträge für alle Bilder nur gruppiert "
-#~ "nach Bildern, die am selben Tag pro Album hochgeladen wurden (Schema: 'x "
-#~ "neue Bilder in Album y am Datum z')</li></ul>"
-
-#, fuzzy
-#~ msgid "CombiNews: Sized image size"
-#~ msgstr "CombiNews: Großsbildgröße"
-
-#, fuzzy
-#~ msgid ""
-#~ "The size of the sized image shown the CombiNews section <em>(only in "
-#~ "latest images-sizedimage or latest albums-sizedimage mode)</em>."
-#~ msgstr ""
-#~ "Die Größe des Großbilders, das in der CombiNews-Sektion angezeigt wird "
-#~ "<em>(nur im Modus Neuste Bilder - Großbild oder Neuste Alben - Großbild)</"
-#~ "em>."
-
-#, fuzzy
-#~ msgid "CombiNews: Sort order"
-#~ msgstr "Öntanımlı sıralama düzeni"
-
-#, fuzzy
-#~ msgid "id"
-#~ msgstr "ID"
-
-#, fuzzy
-#~ msgid "CombiNews: Gallery link"
-#~ msgstr "CombiNews: Galerielink"
-
-#, fuzzy
-#~ msgid ""
-#~ "Choose if you want to link from the image entry to its image page "
-#~ "directly or to the album page (if CombiNews mode is set for albums the "
-#~ "link is automatically only linking to albums). This affects all links of "
-#~ "the entry (<em>title</em>, <em>image</em> and the <em>visit gallery link</"
-#~ "em>"
-#~ msgstr ""
-#~ "Wählen Sie, ob Sie vom Bildeintrag zur direkt zur Bildseite oder zur "
-#~ "Albumseite linken möchten  (wenn der CombiNews-Moduds auf Alben gestellt "
-#~ "ist, führt der Link automatisch zum Album). Dies bezieht sich auf alle "
-#~ "Links wie (<em>Title</em>, <em>Bild</em> und den <em>Besuchen Sie die "
-#~ "Galerielink</em>"
-
-#, fuzzy
-#~ msgid "CombiNews: Thumbnail crop width"
-#~ msgstr "CombiNews: Thumbnailbeschnittbreite"
-
-#, fuzzy
-#~ msgid ""
-#~ "For <em>thumbnail custom crop</em> only. Leave empty if you don't want to "
-#~ "use it."
-#~ msgstr ""
-#~ "Nur für<em>Benutzerdefinierten Thumbnailbeschnitt.</em>. Einfach leer "
-#~ "lassen, wenn nicht verwendet."
-
-#, fuzzy
-#~ msgid "CombiNews: Thumbnail crop height"
-#~ msgstr "CombiNews: Thumbnailbeschnitthöhe"
-
-#, fuzzy
-#~ msgid "CombiNews: Thumbnail width"
-#~ msgstr "CombiNews: Thumbnailbreite"
-
-#, fuzzy
-#~ msgid "CombiNews: Thumbnail height"
-#~ msgstr "CombiNews: Thumbnailhöhe"
-
-#, fuzzy
-#~ msgid "CombiNews: Thumbnail crop x axis"
-#~ msgstr "Thumbnailbeschnitt x-Achse"
-
-#, fuzzy
-#~ msgid "CombiNews: Thumbnail crop y axis"
-#~ msgstr "CombiNews: Thumbnailbeschnitt y-Achse"
-
-#, fuzzy
-#~ msgid ""
-#~ "Set to show the image description with every item if using the CombiNews "
-#~ "mode <em>latest images by album</em> only. Printed as a paragraph."
-#~ msgstr ""
-#~ "Auswählen, wenn die Bildbeschreibung mit jedem Eintrag gezeigt werden "
-#~ "soll, wenn der CombiNews Modus <em>Neueste Bild pro Album</em> eingestelt "
-#~ "ist. Sie wird als paragraph ausgegeben."
-
-#, fuzzy
-#~ msgid "CombiNews: Show image title"
-#~ msgstr "CombiNews: Bildtitel anzeigen"
-
-#, fuzzy
-#~ msgid ""
-#~ "Set to show the image title with every item if using the CombiNews mode "
-#~ "<em>latest images by album</em> only. Printed as h4-headline."
-#~ msgstr ""
-#~ "Set to show the image title with every item if using the CombiNews mode "
-#~ "<em>latest images by album</em> only. Printed as h4-headline."
-
-#, fuzzy
-#~ msgid "CombiNews: Custom title (singular)"
-#~ msgstr "CombiNews: Benutzerdefinierter Titel (Singular)"
-
-#, fuzzy
-#~ msgid ""
-#~ "Custom title for the article in sprintf() syntax. %1$u = number of new "
-#~ "items, %2$s = title of the album they are in, %3$s = titles of the new "
-#~ "items. Never leave any of these three out! (<em>latest images by album</"
-#~ "em> option only)."
-#~ msgstr ""
-#~ "Benutzerdefinierte Titel in sprintf()-Syntax. %1$u = Anzahl der neuen "
-#~ "Einträge, %2$s = Titel des Album, in dem sie sich befinden, %3$s = Titel "
-#~ "der neuen Einträge. Lassen Sie niemals diese drei Werte aus!  (nur "
-#~ "<em>Neueste Bild pro Album</em>-Modus)."
-
-#, fuzzy
-#~ msgid "CombiNews: Custom title (plural)"
-#~ msgstr "CombiNews: Benutzerdefinierter Titel (Plural)"
-
-#, fuzzy
-#~ msgid "CombiNews: Custom title - Number of image titles"
-#~ msgstr "CombiNews: Benutzerdefinierter Titel - Anzahl der Bildtitel"
-
-#, fuzzy
-#~ msgid ""
-#~ "How many images titles you want to show with the custom title (<em>latest "
-#~ "images by album</em> option only)."
-#~ msgstr ""
-#~ "Die Anzahl an Bildtiteln, die Sie im benutzerdefinierten Titel anzeigen "
-#~ "möchten (nur <em>Neueste Bild pro Album</em>-Modus)."
-
-#, fuzzy
-#~ msgid ""
-#~ "Player width (Note this refers to the player window. The playlist display "
-#~ "itself is styled via CSS.)"
-#~ msgstr ""
-#~ "Playerbreiter (Bedenken Sie, dass sich dies sich nur auf das "
-#~ "Playerfenster bezieht. Die Playlist selbst wird über CSS gestaltet.)"
-
-#, fuzzy
-#~ msgid ""
-#~ "Player height (Note this refers to the player window. The playlist "
-#~ "display itself is styled via CSS.)"
-#~ msgstr ""
-#~ "Playerhöhe (Bedenken Sie, dass sich dies sich nur auf das Playerfenster "
-#~ "bezieht. Die Playlist selbst wird über CSS gestaltet.)"
-
-#, fuzzy
-#~ msgid ""
-#~ "Should the video start automatically. Yes if selected. (NOTE: Probably "
-#~ "because of a flowplayer bug mp3s are always autoplayed.)"
-#~ msgstr ""
-#~ "Auswählen, wenn das Abspielen automatisch starten soll. (ANMERUNG: "
-#~ "Wahrscheinlich durch einen Flowplayer-Fehler werden MP3s immer "
-#~ "automatisch abgespielt.)"
-
-#, fuzzy
-#~ msgid "Controls autohide"
-#~ msgstr "Kontroller otomatik gizlensin"
-
-#, fuzzy
-#~ msgid ""
-#~ "Specifies whether the controlbar should be hidden when the user is not "
-#~ "actively using the player."
-#~ msgstr ""
-#~ "Auswählen, wenn die Steuerung automatisch ausgeblendet werden soll, wenn "
-#~ "sie nicht aktiv verwendet wird."
-
-#, fuzzy
-#~ msgid "Splash image"
-#~ msgstr "Coverbild"
-
-#, fuzzy
-#~ msgid ""
-#~ "If enabled, a login form will be displayed if the viewer is not logged in."
-#~ msgstr ""
-#~ "Wenn aktiviert, wird ein Loginformular angezeigt, wenn der Betrachter "
-#~ "nicht eingeloggt ist."
-
-#, fuzzy
-#~ msgid "Attempt threshold"
-#~ msgstr "Eşik: %d dB "
-
-#, fuzzy
-#~ msgid "Mail address"
-#~ msgstr "E-posta adresi"
-
-#~ msgid "Title field."
-#~ msgstr "Başlık alanı."
-
-#~ msgid "Name field."
-#~ msgstr "İsim alanı."
-
-#~ msgid "Company field"
-#~ msgstr "Şirket alanı"
-
-#~ msgid "Company field."
-#~ msgstr "Şirket alanı."
-
-#~ msgid "Street field"
-#~ msgstr "Cadde alanı"
-
-#~ msgid "Street field."
-#~ msgstr "Cadde alanı."
-
-#~ msgid "City field."
-#~ msgstr "Şehir alanı."
-
-#~ msgid "Country field"
-#~ msgstr "Ülke alanı"
-
-#~ msgid "Country field."
-#~ msgstr "Ülke alanı."
-
-#~ msgid "E-mail field."
-#~ msgstr "E-posta alanı."
-
-#~ msgid "Website field."
-#~ msgstr "Web sayfası alanı."
-
-#~ msgid "Phone number field."
-#~ msgstr "Telefon numarası alanı."
-
-#~ msgid "Subject field"
-#~ msgstr "Konu alanı"
-
-#~ msgid "Subject field."
-#~ msgstr "Konu alanı."
-
-#~ msgid "Message field"
-#~ msgstr "Mesaj alanı"
-
-#~ msgid "Message field."
-#~ msgstr "Mesaj alanı."
-
-#, fuzzy
-#~ msgid ""
-#~ "An image crop tool. Places an image crop button in the image utilities "
-#~ "box of the images tab."
-#~ msgstr ""
-#~ "Ein Bildbeschneidungswerkzeug. Platziert einen Bildbeschneidungs-Buton "
-#~ "innerhalb des Werkzeugabschnittes des Bildreiters. "
-
-#, fuzzy
-#~ msgid "clear width and height fields"
-#~ msgstr "Genişlik ve yükseklik 0 olamaz"
-
-#, fuzzy
-#~ msgid "Player width (ignored for <em>mp3</em> files.)"
-#~ msgstr "Oynatıcı genişliği (<em>mp3</em> dosyaları için önemsiz)"
-
-#, fuzzy
-#~ msgid "Player height (ignored for <em>mp3</em> files.)"
-#~ msgstr "Player yüksekliği <em>mp3</em> dosyalarında dikkate alınmaz.)"
-
-#, fuzzy
-#~ msgid "Player background color gradient"
-#~ msgstr "Verlauf der Player-Hintergrundfarbe"
-
-#, fuzzy
-#~ msgid "low"
-#~ msgstr "Düşük"
-
-#, fuzzy
-#~ msgid "high"
-#~ msgstr "Yüksek"
-
-#, fuzzy
-#~ msgid "Gradient setting for player background color."
-#~ msgstr "Farbverlaufeinstellung für die Playerhintergrundfarbe"
-
-#, fuzzy
-#~ msgid "Controls background color"
-#~ msgstr "Hintergrundfarbe der Steuerung"
-
-#, fuzzy
-#~ msgid "Background color of the controls."
-#~ msgstr "Die Farbe, die der Hintergrund der Steuerung haben soll."
-
-#, fuzzy
-#~ msgid "Controls background color gradient"
-#~ msgstr "Verlauf der Steuerungs-Hintergrundfarbe"
-
-#, fuzzy
-#~ msgid "Gradient setting for background color of the controls."
-#~ msgstr "Verlauf, den die Hintergrundfarbe der Steuerung haben soll."
-
-#, fuzzy
-#~ msgid "Controls border color"
-#~ msgstr "Oynatıcı kontrollerinin sınır rengi"
-
-#, fuzzy
-#~ msgid "Color of the border of the player controls"
-#~ msgstr "Oynatıcı kontrollerinin sınır rengi"
-
-#, fuzzy
-#~ msgid "Background color"
-#~ msgstr "Artalan rengi"
-
-#, fuzzy
-#~ msgid ""
-#~ "Changes the color of the Flowplayer's background canvas. By default the "
-#~ "canvas is all black. You can specify a value of -1 and the background "
-#~ "will not be drawn (only the video will be visible)."
-#~ msgstr ""
-#~ "Ändert die Farbe von Flowplayers Hintergrund. Standardmäßig dies ist "
-#~ "schwarz. Sie können den Wert -1 setzen und der Hintergrund wird nicht "
-#~ "angezeigt (nur der Film wird sichtbar sein)."
-
-#, fuzzy
-#~ msgid "fullscreen"
-#~ msgstr "tam ekran"
-
-#, fuzzy
-#~ msgid "Controls time color"
-#~ msgstr "Steuerung Farbe Zeitanzeige"
-
-#, fuzzy
-#~ msgid ""
-#~ "Value for the font color in the time field. This is the running time."
-#~ msgstr "Farbwert der Zeitanzeige. Dies ist die Laufzeit."
-
-#, fuzzy
-#~ msgid ""
-#~ "Value for the font color in the time field that specifies the total "
-#~ "duration of the clip or total time."
-#~ msgstr "Farbwert der Gesamtlängenanzeige der Mulitmediadatei."
-
-#, fuzzy
-#~ msgid "Controls progress bar color"
-#~ msgstr "Oynatıcı kontrollerinin sınır rengi"
-
-#, fuzzy
-#~ msgid ""
-#~ "Color of the progress bar. This is the bar in the timeline from zero time "
-#~ "to the point where playback is at a given time."
-#~ msgstr ""
-#~ "Farbwert des Fortschrittsbalkens. Dies ist der Balken, der anzeigt wo im "
-#~ "Clip man sich befindet."
-
-#, fuzzy
-#~ msgid "Controls progress bar gradient"
-#~ msgstr "Farbverlauf für den Fortschrittsbalken."
-
-#, fuzzy
-#~ msgid "Gradient setting for the progress bar."
-#~ msgstr "Farbverlauf für den Fortschrittsbalken."
-
-#, fuzzy
-#~ msgid "Controls buffer color"
-#~ msgstr "Steuerung Farbe Zwischenspeicheranzeige"
-
-#, fuzzy
-#~ msgid ""
-#~ "Color of the buffer. The buffer is the bar that indicates how much video "
-#~ "data has been read into the player's memory."
-#~ msgstr ""
-#~ "Farbwert des Zwischenspeichers. Der Zwischenspeicher ist der Balken, der "
-#~ "anzeigt wieviel von dem Clip bereits in den Speicher des Players geladen "
-#~ "wurde. "
-
-#, fuzzy
-#~ msgid "Controls buffer gradient"
-#~ msgstr "Steuerung Farbverlauf Zwischenspeicheranzeige"
-
-#, fuzzy
-#~ msgid "Gradient setting for the buffer."
-#~ msgstr "Farbverlauf für den Zwischenspeicher."
-
-#, fuzzy
-#~ msgid "Controls slider color"
-#~ msgstr "Steuerung Farbe Schieber"
-
-#, fuzzy
-#~ msgid ""
-#~ "Background color for the timeline before the buffer bar fills it. The "
-#~ "same background color is also used in the volume slider."
-#~ msgstr ""
-#~ "Hintergrundfarbe für die Zeitleiste bevor der Zwischenspeicherbalken "
-#~ "aktiv wird. Dieses Farbe wird ebenfalls für den Hintergrund des "
-#~ "Lautstärkereglers verwendet."
-
-#, fuzzy
-#~ msgid "Controls slider gradient"
-#~ msgstr "Steuerung Reglerverlauffarbe"
-
-#, fuzzy
-#~ msgid "Gradient setting for the sliders."
-#~ msgstr "Farbverlauf für die Regler."
-
-#, fuzzy
-#~ msgid "Controls button color"
-#~ msgstr "Steuerung Farbe Schaltknopf"
-
-#, fuzzy
-#~ msgid "Controls hover button color"
-#~ msgstr "Steuerung Farbe Schaltknopf Hover"
-
-#, fuzzy
-#~ msgid "Button color when the mouse is positioned over them."
-#~ msgstr "Steuerknopffarbe, wenn die Maus darüber bewegt wird."
-
-#, fuzzy
-#~ msgid "fit"
-#~ msgstr "uydur"
-
-#, fuzzy
-#~ msgid "orig"
-#~ msgstr "orijinal"
-
-#, fuzzy
-#~ msgid ""
-#~ "Setting which defines how video is scaled on the video screen. Available "
-#~ "options are:<br /><em>fit</em>: Fit to window by preserving the aspect "
-#~ "ratio encoded in the file's metadata.<br /><em>half</em>: Half-size "
-#~ "(preserves aspect ratio)<br /><em>orig</em>: Use the dimensions encoded "
-#~ "in the file. If the video is too big for the available space, the video "
-#~ "is scaled using the 'fit' option.<br /><em>scale</em>: Scale the video to "
-#~ "fill all available space. This is the default setting."
-#~ msgstr ""
-#~ "Einstellund zur Skalierung eines Videos im Playerfenster. Verfügbare "
-#~ "Einstellungen: <br /><em>passend</em> : Anpassung an unter Beibehaltung  "
-#~ "der Abmessungen im Verhältniss.<br /><em>halb</em>: halb-groß (erhält "
-#~ "Abmessungen)<br /><em>original</em>: Verwendet die Originalgröße des "
-#~ "Videos. Wenn es zu groß für das Fenster ist wird es mit der 'passend'-"
-#~ "Einstellung skaliert.<br /><em>Skalieren</em>: Skaliert das Video, um das "
-#~ "Fenster voll aus zufüllen (ignoriert die Originalabmessungen). Dies ist "
-#~ "die Standardeinstellung."
-
-#, fuzzy
-#~ msgid "MP3 cover image"
-#~ msgstr "<b>Kapak resmi getirme</b>"
-
-#~ msgid "street:"
-#~ msgstr "cadde:"
-
-#~ msgid "city:"
-#~ msgstr "şehir:"
-
-#~ msgid "country:"
-#~ msgstr "ülke:"
-
-#~ msgid "Website:"
-#~ msgstr "Web sayfası:"
-
-#, fuzzy
-#~ msgid ""
-#~ "Deprecated Zenphoto functions. These functions have been removed from "
-#~ "mainstream Zenphoto as they have been supplanted. They are not maintained "
-#~ "and they are not guaranteed to function correctly with the current "
-#~ "version of Zenphoto."
-#~ msgstr ""
-#~ "Veraltetet Zephoto-Funktionen.Dieses Funktion wurden von den Hauptdateien "
-#~ "von Zenphoto entfernt, da sie überflüssig geworden sind. Sie werden nicht "
-#~ "mehr gepflegt und es kann nicht garantiert werden, dass sie mit der "
-#~ "jeweils aktuellen Zenphoto-Version problemlos funkionieren."
-
-#, fuzzy
-#~ msgid "Use getHitcounter()."
-#~ msgstr "%(feature)s Özelliğini Kullan"
-
-#, fuzzy
-#~ msgid "Use printRating()."
-#~ msgstr "%(feature)s Özelliğini Kullan"
-
-#, fuzzy
-#~ msgid "Use printImageMetadata()."
-#~ msgstr "%(feature)s Özelliğini Kullan"
-
-#, fuzzy
-#~ msgid "Use printCustomSizedImageMaxSpace()."
-#~ msgstr "%(feature)s Özelliğini Kullan"
-
-#, fuzzy
-#~ msgid "Use getCommentDateTime()."
-#~ msgstr "%(feature)s Özelliğini Kullan"
-
-#, fuzzy
-#~ msgid "Use truncate_string()."
-#~ msgstr "Özel, aşağıdaki dizi biçimlerini kullan"
-
-#, fuzzy
-#~ msgid "Use getImageMetaData()."
-#~ msgstr "%(feature)s Özelliğini Kullan"
-
-#, fuzzy
-#~ msgid "Use getAlbumLocation()."
-#~ msgstr "%(feature)s Özelliğini Kullan"
-
-#, fuzzy
-#~ msgid "Use printAlbumLocation()."
-#~ msgstr "%(feature)s Özelliğini Kullan"
-
-#~ msgid "(No place...)"
-#~ msgstr "(Konum yok...)"
-
-#, fuzzy
-#~ msgid "Use rewrite_path()."
-#~ msgstr "Kullanılacak temanın yolu."
-
-#, fuzzy
-#~ msgid "Use object->getTags() method."
-#~ msgstr "Akış gönderimi için kullanılacak taramasızlık yöntemi."
-
-#, fuzzy
-#~ msgid "Use printTags()."
-#~ msgstr "%(feature)s Özelliğini Kullan"
-
-#, fuzzy
-#~ msgid "Use getNumAlbums()."
-#~ msgstr "%(feature)s Özelliğini Kullan"
-
-#, fuzzy
-#~ msgid "Use getAllAlbums()."
-#~ msgstr "%(feature)s Özelliğini Kullan"
-
-#, fuzzy
-#~ msgid "Use printZenpageItemsBreadcrum()."
-#~ msgstr "%(feature)s Özelliğini Kullan"
-
-#, fuzzy
-#~ msgid "User registration page"
-#~ msgstr "Kullanıcı kayıt sayfası"
-
-#, fuzzy
-#~ msgid ""
-#~ "If checked, CAPTCHA validation will be required for user registration."
-#~ msgstr ""
-#~ "Wenn ausgewählt, ist eine Captcha-Überprüfung bei jeder neuen "
-#~ "Benutzerregistrierung notwendig."
-
-#, fuzzy
-#~ msgid "View Rights"
-#~ msgstr "Hakları görüntüle"
-
-#, fuzzy
-#~ msgid ""
-#~ "Initial rights for the new user.<br />Set to <em>No rights</em> if you "
-#~ "want to approve the user.<br />Set to <em>View Rights</em> to allow "
-#~ "viewing the gallery once the user is verified."
-#~ msgstr ""
-#~ "Die Grundrechte des neuen Benutzers.<br />Setzen Sie dies auf <em>Keine "
-#~ "Rechte</em>, wenn Sie den Benutzer freischalten möchten.<br />Setzen Sie "
-#~ "dies auf  <em>Betrachtungsrechte</em>, um das Betrachten der Galerie "
-#~ "erlauben möchten, sobald der Benutzer verifiziert ist."
-
-#, fuzzy
-#~ msgid "*no page selected"
-#~ msgstr "*sayfa seçilmedi"
-
-#~ msgid "Error on <em>%s</em> effect"
-#~ msgstr "<em>%s</em> efektinde hata oluştu"
-
-#~ msgid "sitemap cache cleared."
-#~ msgstr "site haritası önbelleği temizlendi."
-
-#~ msgid "Sitemap cache expire"
-#~ msgstr "Site haritası önbellek geçerliliği"
-
-#~ msgid "Disable cache"
-#~ msgstr "Önbelleği pasifleştir"
-
-#, fuzzy
-#~ msgid ""
-#~ "Places the latest 3 news articles from Zenphoto.org on the admin overview "
-#~ "page."
-#~ msgstr ""
-#~ "Platziert die neusten 3 Artikel von Zenphoto.org auf der Administrations-"
-#~ "Übersichtsseite."
-
-#, fuzzy
-#~ msgid "News from Zenphoto.org"
-#~ msgstr "Zenphoto.org'dan Haberler"
-
-#, fuzzy
-#~ msgid "A connection to <em>Zenphoto.org</em> could not be established."
-#~ msgstr ""
-#~ "Es konnte keine Verbindung mit <em>Zenphoto.org</em> aufgebaut werden."
-
-#, fuzzy
-#~ msgid ""
-#~ "Video and MP3/4 handling for Zenphoto. This plugin must always be enabled "
-#~ "to use multimedia content."
-#~ msgstr ""
-#~ "Video und MP3/4-Funktionalität für Zenphoto. Dieses Plugin muß immer "
-#~ "aktiviert sein, um Multimedia-Inhalte zu verwenden."
-
-#, fuzzy
-#~ msgid "Upload limit"
-#~ msgstr "Gönderim sınırı"
-
-#~ msgid "Disable new album creation"
-#~ msgstr "Yeni albüm oluşturulmasını engelle"
-
-#, fuzzy
-#~ msgid "There is a plugin conflict with <em>image_upload_limiter</em>"
-#~ msgstr "<em>image_upload_limiter</em> eklentisiyle bir uyuşmazlık bulunuyor"
-
-#, fuzzy
-#~ msgid ""
-#~ "The album exceeded the image number limit. You cannot upload more images!"
-#~ msgstr ""
-#~ "Albüm maksimum resim sınırına ulaştı. Artık yeni bir resim "
-#~ "yükleyemezsiniz!"
-
-#, fuzzy
-#~ msgid "Maximum number of images left for this album: "
-#~ msgstr "Bu albüme yüklenebilecek maksimum resim sayısı:"
-
-#, fuzzy
-#~ msgid ""
-#~ "<strong>Note:</strong> You can upload a maximum of %s images to each "
-#~ "album."
-#~ msgstr ""
-#~ "<strong>Not:</strong> her albüme en fazla %s adet resim yükleyebilirsiniz."
-
-#, fuzzy
-#~ msgid "Enter %s:"
-#~ msgstr "%s eingeben:"
-
-#, fuzzy
-#~ msgid "Failed to retrieve link <em>%s</em>"
-#~ msgstr "<em>%s</em> bağlantısına erişim başarısız"
-
-#, fuzzy
-#~ msgid "%s is not a valid getRating() context"
-#~ msgstr "%s ist kein gültiger getRating()-Kontext"
-
-#, fuzzy
-#~ msgid "SMTP Error: Could not authenticate."
-#~ msgstr "Hata: Hata dosyası oluşturulamıyor."
-
-#, fuzzy
-#~ msgid "The following From address failed: "
-#~ msgstr "Ş&u IP adresini kullan:"
-
-#, fuzzy
-#~ msgid "SMTP Error: The following recipients failed: "
-#~ msgstr "İstek şu hata ile başarısız oldu: %s"
-
-#~ msgid "SMTP Error: Data not accepted."
-#~ msgstr "SMTP Hatası: Veri kabul edilmedi."
-
-#, fuzzy
-#~ msgid "SMTP Error: Could not connect to SMTP host."
-#~ msgstr ""
-#~ "MySQL-Fehler: Zenphoto konnte keine Verbindung zum Datenbank-Server "
-#~ "herstellen."
-
-#, fuzzy
-#~ msgid "Could not access file: "
-#~ msgstr "{0} dosyası güncellenemedi"
-
-#, fuzzy
-#~ msgid "File Error: Could not open file: "
-#~ msgstr "%s adındaki günlük dosyası açılamıyor"
-
-#, fuzzy
-#~ msgid "Unknown encoding: "
-#~ msgstr "CBR kodlama"
-
-#, fuzzy
-#~ msgid "Signing Error: "
-#~ msgstr "*** [%s] Hata 0x%x"
-
-#, fuzzy
-#~ msgid "SMTP server error: "
-#~ msgstr "*** [%s] Hata 0x%x (yoksayıldı)"
-
-#, fuzzy
-#~ msgid "Message body empty"
-#~ msgstr "Hata, boş komut\n"
-
-#~ msgid "Cannot set or reset variable: "
-#~ msgstr "Değişken belirlenemedi veya sıfırlanamadı:"
-
-#, fuzzy
-#~ msgid "Add Category"
-#~ msgstr "Kategori Ekle"
-
-#, fuzzy
-#~ msgid "Page password:"
-#~ msgstr "Sayfa şifresi:"
-
-#, fuzzy
-#~ msgid "Page password hint:"
-#~ msgstr "Sayfa şifresi ipucu:"
-
-#, fuzzy
-#~ msgid "Reset hitcounter (Hits: %1$s)"
-#~ msgstr "Sayacı sıfırla (Ziyaret: %1$s)"
-
-#, fuzzy
-#~ msgid "News and Gallery RSS"
-#~ msgstr "Haber ve Galeri RSS"
-
-#, fuzzy
-#~ msgid "Zenpage Comments RSS"
-#~ msgstr "Zenpage Yorumlar RSS"
-
-#, fuzzy
-#~ msgid "News article comments RSS"
-#~ msgstr "Haber makaleleri ve yorumlar RSS"
-
-#, fuzzy
-#~ msgid "Page Comments RSS"
-#~ msgstr "Sayfa Yorumları RSS"
-
-#, fuzzy
-#~ msgid "View the photo album %s"
-#~ msgstr "Fotoğraf albümünü görüntüle: %s"
-
-#, fuzzy
-#~ msgid "Add category"
-#~ msgstr "Kategori Ekle"
-
-#, fuzzy
-#~ msgid "Prev Page"
-#~ msgstr "Önceki Sayfa"
-
-#, fuzzy
-#~ msgid "First Page"
-#~ msgstr "Karşılama Sayfası"
-
-#, fuzzy
-#~ msgid "Menuset id"
-#~ msgstr "Menü set id'si"
-
-#, fuzzy
-#~ msgid "Add Menu set"
-#~ msgstr "'%s' menü setini sil"
-
-#, fuzzy
-#~ msgid "Delete menu set '%s'"
-#~ msgstr "'%s' menü setini sil"
-
-#, fuzzy
-#~ msgid "All Zenpage news categories"
-#~ msgstr "Değişim sıklığı - Zenpage haber kategorileri"
-
-#, fuzzy
-#~ msgid "visible"
-#~ msgstr "görünür"
-
-#, fuzzy
-#~ msgid "Horizontal rule added"
-#~ msgstr "Yatay çizgi eklendi"
-
-#, fuzzy
-#~ msgid "Sized image"
-#~ msgstr "Boyutlandırılmış resim"
-
-#, fuzzy
-#~ msgid "Uploadify error on %1$s. Review your debug log."
-#~ msgstr "Uploadify -Fehler für %1$s. Bitte öffnen Sie Ihr Debuglog."
-
-#~ msgid "Ported to Zenphoto by Mark Galeassi and Stephen Billard"
-#~ msgstr ""
-#~ "zenPhoto'ya Mark Galeassi ve Stephen Billard tarafından port edilmiştir."
-
-#~ msgid ""
-#~ "A theme based on the design from <a href=\"http://stopdesign.com/"
-#~ "templates/photos/\">Douglas Bowman</a>. This theme is licensed under the "
-#~ "<a href=\"http://creativecommons.org/licenses/by-nc-sa/2.5/\">Creative "
-#~ "Commons Attribution-NonCommercial-ShareAlike 2.5</a> License."
-#~ msgstr ""
-#~ "<a href=\"http://stopdesign.com/templates/photos/\">Douglas Bowman</a>'ın "
-#~ "yapmış olduğu dizayn üzerine geliştirilmiş bir tema. Bu tema <a href="
-#~ "\"http://creativecommons.org/licenses/by-nc-sa/2.5/\">Creative Commons "
-#~ "Attribution-NonCommercial-ShareAlike 2.5</a> lisansıyla korunmaktadır."
-
-#~ msgid "SHOW"
-#~ msgstr "GÖSTER"
-
-#~ msgid "HIDE"
-#~ msgstr "GİZLE"
-
-#~ msgid "No comments yet"
-#~ msgstr "Henüz yorum yok"
-
-#~ msgid "%u comment so far"
-#~ msgid_plural "%u comments so far"
-#~ msgstr[0] "%u yorum yapılmış"
-
-#~ msgid "Link to Comment %u"
-#~ msgstr "%u nolu yorum için bağlantı"
-
-#~ msgid "%s wrote:"
-#~ msgstr "%s demiş ki:"
-
-#~ msgid "%1$u of %2$u photos"
-#~ msgstr "%2$u resimden %1$u tanesi "
-
-#~ msgid ""
-#~ "<a href=\"http://stopdesign.com/templates/photos/\">Photo Templates</a> "
-#~ "from Stopdesign."
-#~ msgstr ""
-#~ "<a href=\"http://stopdesign.com/templates/photos/\">Resim şablonları</a> "
-#~ "için Stopdesign."
-
-#~ msgid ""
-#~ "<a href=\"http://stopdesign.com/templates/photos/\">Photo Templates</a> "
-#~ "from Stopdesign"
-#~ msgstr ""
-#~ "<a href=\"http://stopdesign.com/templates/photos/\">Fotoğraf Temaları</a> "
-#~ "için Stopdesign"
-
-#~ msgid "All galleries"
-#~ msgstr "Tüm galeriler"
-
-#~ msgid "%u photo"
-#~ msgid_plural "%u photos"
-#~ msgstr[0] "%u resim"
-
-#~ msgid "1 album,&nbsp;%u photo"
-#~ msgid_plural "1 album,&nbsp;%u photos"
-#~ msgstr[0] "1 albüm,&nbsp;%u resim"
-
-#~ msgid "%u album,&nbsp;1 photo"
-#~ msgid_plural "%u albums,&nbsp;1 photo"
-#~ msgstr[0] "%u albüm,&nbsp;1 resim"
-
-#~ msgid "%1$u album,&nbsp;%2$s"
-#~ msgid_plural "%1$u albums,&nbsp;%2$s"
-#~ msgstr[0] "%1$u albüm,&nbsp;%2$s"
-
-#~ msgid "Gallery Feeds"
-#~ msgstr "Galleri Beslemeleri"
-
-#~ msgid "Photos"
-#~ msgstr "Fotoğraflar"
-
-#~ msgid "1 photo"
-#~ msgstr "1 resim"
-
-#~ msgid "%u photos"
-#~ msgstr "%u resim"
-
-#~ msgid "1 album,&nbsp;1 photo"
-#~ msgstr "1 albüm,&nbsp;1 resim"
-
-#~ msgid "%u albums,&nbsp;1 photo"
-#~ msgstr "%u albüm,&nbsp;1 resim"
-
-#~ msgid "%1$u albums,&nbsp;%2$u photos"
-#~ msgstr "%1$u albüm,&nbsp;%2$u resim"
-
-#~ msgid "%u albums"
-#~ msgstr "%u albüm"
-
-#~ msgid "1 album,&nbsp;%u photos"
-#~ msgstr "1 Albüm,&nbsp;%u fotoğraf"
-
-#~ msgid "%1$u album,&nbsp;%2$u photos"
-#~ msgstr "%1$u albüm,&nbsp;%2$u resim"
-
-#, fuzzy
-#~ msgid "photos %1$u-%2$u of %3$u"
-#~ msgstr "%3$u resimden %1$u-%2$u arası"
-
-#~ msgid "A password is required"
-#~ msgstr "Bir şifre gereklidir"
-
-#~ msgid "Recently Updated Galleries"
-#~ msgstr "Son Güncellenen Galeriler"
-
-#~ msgid "View image:"
-#~ msgstr "Resmi görüntüle:"
-
-#~ msgid "Gallery data"
-#~ msgstr "Galeri detayları"
-
-#~ msgid "Galleries"
-#~ msgstr "Galeriler"
-
-#~ msgid "Contact form"
-#~ msgstr "İletişim formu"
-
-#~ msgid "(not displayed)"
-#~ msgstr "(gösterilmeyecek)"
-
-#~ msgid "URL:"
-#~ msgstr "İnternet Sayfanız:"
-
-#~ msgid "Private comment:"
-#~ msgstr "Özel yorum:"
-
-#~ msgid "(don't publish)"
-#~ msgstr "(yayımlama)"
-
-#~ msgid "Post"
-#~ msgstr "Yazı"
-
-#~ msgid "Avoid clicking &ldquo;Post&rdquo; more than once."
-#~ msgstr "Bir defadan fazla &ldquo;Gönder&rdquo; tuşuna basmaktan kaçının."
-
-#~ msgid "Mini slide selector"
-#~ msgstr "Mini slayt seçici"
-
-#~ msgid "Select what you want for the six special slides."
-#~ msgstr "Özel altı slaytlık seçiminizi yapın."
-
-#~ msgid "Gallery image crop width"
-#~ msgstr "Resimleri kırp (uzunluk)"
-
-#, fuzzy
-#~ msgid "The width of image to crop in the gallery pages"
-#~ msgstr "tr "
-
-#~ msgid "Gallery image crop height"
-#~ msgstr "Resimleri kırp (yükseklik)"
-
-#, fuzzy
-#~ msgid "The height of image to crop in the gallery pages"
-#~ msgstr "Galeri sayfalarında kırpılacak resimlerin yüksekliği"
-
-#, fuzzy
-#~ msgid ""
-#~ "Based on Effervescence 1.1 with multiple personalities (slimbox, "
-#~ "simpleviewer and smoothgallery) added. Select different color schemes and "
-#~ "personalities from the Admin Options tab."
-#~ msgstr ""
-#~ "Altyapı: Effervescence 1.1 ve birçok özelleştirme (slimbox, simpleviewer "
-#~ "and smoothgallery). Yönetici sekmelerinden seçeneklere tıklayın ve "
-#~ "değişik renk şemaları ve özelleştirmeleri seçin."
-
-#, fuzzy
-#~ msgid "Effervescence %s (not found)"
-#~ msgstr "Efervesan %s (bulunamadı)"
-
-#, fuzzy
-#~ msgid "next &raquo;"
-#~ msgstr "ileri &raquo;"
-
-#, fuzzy
-#~ msgid "&laquo; prev"
-#~ msgstr "&laquo; geri"
-
-#~ msgid "For the best viewing experience"
-#~ msgstr "En iyi görünüm tecrübesi için"
-
-#~ msgid "get Adobe Flash."
-#~ msgstr "Adobe Flash'ı edinin."
-
-#, fuzzy
-#~ msgid ""
-#~ "Simpleviewer requires <em>mod_rewrite</em> to be set. Simpleviewer is "
-#~ "disabled."
-#~ msgstr ""
-#~ "Simpleviewer çalışmak için <em>mod_rewrite</em>'a ihtiyaç duyar. "
-#~ "Simpleviewer pasifleştirildi."
-
-#, fuzzy
-#~ msgid ""
-#~ "For the best viewing experience <a href=\"http://www.macromedia.com/go/"
-#~ "getflashplayer/\">Get Adobe Flash.</a>"
-#~ msgstr ""
-#~ "En iyi görünüm tecrübesi için <a href=\"http://www.macromedia.com/go/"
-#~ "getflashplayer/\">Adobe Flash'ı</a> edinin."
-
-#~ msgid "View Gallery Without Flash"
-#~ msgstr "Galeriyi Flash olmadan görüntüleyin"
-
-#~ msgid "Open In New Window"
-#~ msgstr "Yeni Pencerede Aç"
-
-#, fuzzy
-#~ msgid "Simpleviewer"
-#~ msgstr "Simpleviewer"
-
-#, fuzzy
-#~ msgid "Slimbox"
-#~ msgstr "Slimbox"
-
-#, fuzzy
-#~ msgid "Smoothgallery"
-#~ msgstr "Smoothgallery"
-
-#, fuzzy
-#~ msgid "&laquo; prev thumbs"
-#~ msgstr "&laquo; önceki küçük resimler"
-
-#, fuzzy
-#~ msgid "next thumbs &raquo;"
-#~ msgstr "sonraki küçük resimler &raquo;"

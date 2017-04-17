@@ -1,21 +1,23 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Zenphoto\n"
+"Project-Id-Version: ZenPhoto20\n"
+
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-16 17:27-0700\n"
-"PO-Revision-Date: 2017-04-16 17:27-0700\n"
+"POT-Creation-Date: 2017-04-17 09:31-0700\n"
+"PO-Revision-Date: 2017-04-17 09:56-0700\n"
 "Last-Translator: Stephen <stephen@sbillard.org>\n"
 "Language-Team: \n"
 "Language: is_IS\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 "X-Generator: Poedit 2.0.1\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-Basepath: ../../../..\n"
 "X-Poedit-SearchPath-0: zp-core/locale/is_IS/LC_MESSAGES/zenphoto.po\n"
 "X-Poedit-SearchPath-1: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
 
 #: plugins/cacheHeader.php:18
 msgid "Outputs a \"Cache-control\" header with selected caching options."
@@ -543,7 +545,7 @@ msgstr "Íbætur veita aukna virkni í ZenPhoto20."
 #: plugins/pluginEnabler.php:57
 #, fuzzy
 msgid "Plugins » remembered"
-msgstr "Íbætur veita aukna virkni í ZenPhoto20."
+msgstr "íbætur"
 
 #: plugins/pluginEnabler.php:61
 msgid "Restores the plugin states to what was remembered."
@@ -2149,7 +2151,7 @@ msgstr "Tög:"
 #: themes/garland/album.php:134
 #, fuzzy, php-format
 msgid "Latest Images for %s"
-msgstr "myndir"
+msgstr "Myndir"
 
 #: themes/garland/functions.php:68
 #, fuzzy
@@ -2194,7 +2196,7 @@ msgstr "Fyrra"
 #: zp-core/zp-extensions/html_meta_tags.php:251
 #, fuzzy
 msgid "Password required"
-msgstr "Aðgangsorð albúms:"
+msgstr "Vísbending aðgangsorðs:"
 
 #: themes/garland/password.php:42
 msgid "A password is required to access this page."
@@ -2210,7 +2212,7 @@ msgstr ""
 #: themes/garland/sidebar.php:17
 #, fuzzy
 msgid "Search pages"
-msgstr "Leita"
+msgstr "Síður"
 
 #: themes/garland/sidebar.php:22 themes/zenpage/news.php:27
 #: themes/zenpage/search.php:42 themes/zpmobile/search.php:47
@@ -2351,7 +2353,7 @@ msgstr "Nafn<strong>%s</strong>:"
 #: zp-core/zp-extensions/comment_form/comment_form.php:25
 #, fuzzy
 msgid "<em>anonymous</em>"
-msgstr "<em>%s</em> er ekki til."
+msgstr "<em>%s</em> fannst ekki"
 
 #: themes/paradigm/comment_form/comment_form.php:41
 #: themes/paradigm/contact_form/form.php:103
@@ -2559,7 +2561,7 @@ msgstr "Myndupplýsingar"
 #: zp-core/zp-extensions/image_album_statistics.php:597
 #, fuzzy, php-format
 msgid "Rating: %1$u (Votes: %2$u)"
-msgstr "Albúm %1$u af %2$u"
+msgstr "Albúm %1$u-%2$u af %3$u"
 
 #: themes/paradigm/functions.php:560 themes/zpArdoise/functions.php:219
 #: zp-core/zp-extensions/image_album_statistics.php:285
@@ -2604,7 +2606,7 @@ msgstr "Um"
 #: themes/zpBootstrap/inc_header.php:84 themes/zpmobile/index.php:67
 #, fuzzy
 msgid "Latest news"
-msgstr "Gallerý of fréttir"
+msgstr "Fréttagreinar"
 
 #: themes/paradigm/includes/_head.php:47 themes/paradigm/includes/_head.php:138
 #: themes/zpArdoise/inc_header.php:36 themes/zpBootstrap/inc_header.php:37
@@ -3119,7 +3121,7 @@ msgstr "Vinsæl tög"
 #: themes/zpArdoise/inc_print_image_statistic.php:16
 #, fuzzy
 msgid "Most rated images"
-msgstr "myndir"
+msgstr "Myndir"
 
 #: themes/zpArdoise/inc_print_image_statistic.php:18 zp-core/class-feed.php:274
 #, fuzzy
@@ -3317,12 +3319,12 @@ msgstr "Einka (ekki gefa út)"
 #: themes/zpBootstrap/inc_header.php:64
 #, fuzzy
 msgid "Password Required..."
-msgstr "Aðgangsorð albúms:"
+msgstr "Vísbending aðgangsorðs:"
 
 #: themes/zpBootstrap/inc_header.php:81
 #, fuzzy
 msgid "Latest images RSS"
-msgstr "myndir"
+msgstr "Myndir"
 
 #: themes/zpBootstrap/register_user/register_user_form.php:22
 #: zp-core/zp-extensions/register_user/register_user_form.php:22
@@ -3519,7 +3521,7 @@ msgstr "Glærusýning"
 #: themes/zpfocus/album.php:94 themes/zpfocus/favorites.php:93
 #, fuzzy
 msgid "Images in "
-msgstr "myndir"
+msgstr "Myndir"
 
 #: themes/zpfocus/album.php:150 themes/zpfocus/favorites.php:144
 #: themes/zpfocus/gallery.php:49 themes/zpfocus/search.php:203
@@ -3555,7 +3557,7 @@ msgstr "Leyfa leit"
 #: themes/zpskeleton/inc-header.php:122
 #, fuzzy
 msgid "Latest News"
-msgstr "Gallerý of fréttir"
+msgstr "Fréttagreinar"
 
 #: themes/zpfocus/gallery.php:19 themes/zpfocus/inc-header.php:111
 #: themes/zpmasonry/functions.php:221 themes/zpmasonry/inc-header.php:113
@@ -3577,7 +3579,7 @@ msgstr "Tög:"
 #: themes/zpfocus/image.php:42
 #, fuzzy
 msgid "(Edit Description...)"
-msgstr "breyta"
+msgstr "Lýsing:"
 
 #: themes/zpfocus/inc-footer.php:6
 #, fuzzy
@@ -3597,7 +3599,7 @@ msgstr "Skoða albúm:"
 #: themes/zpfocus/inc-footer.php:47 themes/zpminimal/inc-footer.php:13
 #, fuzzy
 msgid "Gallery Images"
-msgstr "myndir"
+msgstr "Myndir"
 
 #: themes/zpfocus/inc-header.php:35 themes/zpfocus/inc-header.php:49
 #: themes/zpfocus/inc-header.php:118 themes/zpfocus/inc-sidebar.php:66
@@ -3615,7 +3617,7 @@ msgstr "Ummæli: %d"
 #: themes/zpminimal/inc-header.php:99 themes/zpskeleton/inc-header.php:99
 #, fuzzy
 msgid "Password Required"
-msgstr "Aðgangsorð albúms:"
+msgstr "Vísbending aðgangsorðs:"
 
 #: themes/zpfocus/inc-header.php:97 themes/zpmasonry/inc-header.php:99
 #: themes/zpminimal/inc-header.php:103 themes/zpskeleton/inc-header.php:103
@@ -3655,7 +3657,7 @@ msgstr "Gallerý"
 #: themes/zpfocus/inc-sidebar.php:52
 #, fuzzy
 msgid "More News"
-msgstr "Gallerý of fréttir"
+msgstr "Fréttagreinar"
 
 #: themes/zpfocus/inc-sidebar.php:75
 #, fuzzy
@@ -3928,7 +3930,7 @@ msgstr "Nafn:"
 #: themes/zpskeleton/comment_form/comment_form.php:18
 #, fuzzy
 msgid " <em>anonymous</em> "
-msgstr "<em>%s</em> er ekki til."
+msgstr "<em>%s</em> fannst ekki"
 
 #: themes/zpfocus/z_comment_form/comment_form.php:35
 #: themes/zpskeleton/comment_form/comment_form.php:31
@@ -4030,7 +4032,7 @@ msgstr "Fyrirtæki<strong>%s</strong>:"
 #: themes/zpskeleton/contact_form/form.php:62
 #, fuzzy, php-format
 msgid "Postal code<strong>%s</strong>:"
-msgstr "Netfang<strong>%s</strong>:"
+msgstr "Titill<strong>%s</strong>:"
 
 #: themes/zpfocus/z_contact_form/form.php:69
 #: themes/zpskeleton/contact_form/form.php:69
@@ -4072,7 +4074,7 @@ msgstr "Skilaboð<strong>%s</strong>:"
 #: themes/zpmasonry/404.php:4
 #, fuzzy
 msgid "404 error"
-msgstr "Það kom upp villa við innskráninu."
+msgstr "Villa!"
 
 #: themes/zpmasonry/album.php:16 themes/zpmasonry/favorites.php:18
 #, fuzzy
@@ -4159,7 +4161,7 @@ msgstr "Albúmayfirlit"
 #: themes/zpmasonry/functions.php:231
 #, fuzzy
 msgid "Most Rated Albums"
-msgstr "Albúm"
+msgstr "nýjustu"
 
 #: themes/zpmasonry/functions.php:236
 #, fuzzy
@@ -4174,7 +4176,7 @@ msgstr "Vinsæl tög"
 #: themes/zpmasonry/functions.php:261
 #, fuzzy
 msgid "Most Rated Images"
-msgstr "myndir"
+msgstr "Myndir"
 
 #: themes/zpmasonry/functions.php:266
 #, fuzzy
@@ -4438,7 +4440,7 @@ msgstr ""
 #: themes/zpmasonry/themeoptions.php:143 themes/zpskeleton/themeoptions.php:49
 #, fuzzy
 msgid "Use News Feature"
-msgstr "Gallerý of fréttir"
+msgstr "Fréttagreinar"
 
 #: themes/zpmasonry/themeoptions.php:145 themes/zpskeleton/themeoptions.php:51
 msgid ""
@@ -4679,7 +4681,7 @@ msgstr "Breyta grein"
 #: themes/zpskeleton/password.php:6
 #, fuzzy
 msgid "Password required..."
-msgstr "Aðgangsorð albúms:"
+msgstr "Vísbending aðgangsorðs:"
 
 #: themes/zpskeleton/register_user/register_user_form.php:13
 msgid "Name:"
@@ -5136,7 +5138,7 @@ msgstr "Nýtt albúm"
 #: zp-core/zp-extensions/zenpage/admin-pages.php:83
 #, fuzzy
 msgid "Are you sure you want to delete the checked items?"
-msgstr "Ertu viss um að þú viljir eyða öllu albúminu?"
+msgstr "Ertu viss um að þú viljir eyða þessum notanda?"
 
 #: zp-core/admin-edit.php:719
 #, fuzzy
@@ -5228,7 +5230,7 @@ msgstr "Undiralbúmalisti"
 #: zp-core/admin-functions.php:2249 zp-core/admin-functions.php:2251
 #, fuzzy
 msgid "New dynamic subalbum"
-msgstr "Nýtt albúm"
+msgstr "Undiralbúmalisti"
 
 #: zp-core/admin-edit.php:983 zp-core/admin-edit.php:1790
 msgid "Edit this album"
@@ -5567,7 +5569,7 @@ msgstr ""
 #: zp-core/admin-functions.php:46 zp-core/setup/setup-functions.php:527
 #, fuzzy
 msgid "View Change log"
-msgstr "Skráð(ur) út"
+msgstr "Skoða"
 
 #: zp-core/admin-functions.php:46 zp-core/setup/setup-functions.php:527
 #, fuzzy
@@ -5672,7 +5674,7 @@ msgstr ""
 #: zp-core/zp-extensions/zenpage/admin-edit.php:580
 #, fuzzy
 msgid "clear password"
-msgstr "Aðgangsorð albúms:"
+msgstr "Vísbending aðgangsorðs:"
 
 #: zp-core/admin-functions.php:1639
 msgid ""
@@ -5729,7 +5731,7 @@ msgstr "Leitardálkar:"
 #: zp-core/zp-extensions/favoritesHandler.php:132
 #, fuzzy
 msgid "Sort images by"
-msgstr "myndir"
+msgstr "Sortera gallerý eftir:"
 
 #: zp-core/admin-functions.php:1780
 #, fuzzy
@@ -6127,7 +6129,7 @@ msgstr "Skoða albúm:"
 #: zp-core/admin-functions.php:3475
 #, fuzzy
 msgid "Primary album"
-msgstr "Skoða albúm:"
+msgstr "Albúm"
 
 #: zp-core/admin-functions.php:3479 zp-core/zp-extensions/elFinder.php:83
 #: zp-core/zp-extensions/uploader_http.php:32
@@ -7065,7 +7067,7 @@ msgstr ""
 #: zp-core/admin-themes.php:198
 #, fuzzy
 msgid "Installed themes"
-msgstr "þemu"
+msgstr "Þemu"
 
 #: zp-core/admin-themes.php:199 zp-core/zp-extensions/ipBlocker.php:98
 #: zp-core/zp-extensions/trivialSpam.php:63
@@ -7161,7 +7163,7 @@ msgstr ""
 #: zp-core/admin-upload.php:95
 #, fuzzy
 msgid "Upload Images"
-msgstr "myndir"
+msgstr "Myndir"
 
 #: zp-core/admin-upload.php:111
 #, php-format
@@ -7728,7 +7730,7 @@ msgstr[1] "Virkar íbætur:"
 #: zp-core/admin.php:580 zp-core/admin.php:619
 #, fuzzy
 msgid "<em>none</em>"
-msgstr "<em>%s</em> er ekki til."
+msgstr "<em>%s</em> fannst ekki"
 
 #: zp-core/admin.php:592
 #, fuzzy, php-format
@@ -8042,7 +8044,7 @@ msgstr ""
 #: zp-core/admin_options/general.php:166
 #, fuzzy
 msgid "Time zone"
-msgstr "Tímalhliðrun (í klst):"
+msgstr "Dagsetning/tími:"
 
 #: zp-core/admin_options/general.php:172
 msgid "*not specified"
@@ -8842,7 +8844,7 @@ msgstr "Aðgangsorð"
 #: zp-core/admin_options/image.php:665
 #, fuzzy
 msgid "hint"
-msgstr "Vísbending fyrir aðgangsorð gallerýs:"
+msgstr "Vísbending til að minna þig á lykilorðið."
 
 #: zp-core/admin_options/image.php:679
 #, fuzzy
@@ -9622,7 +9624,7 @@ msgstr "Albúmayfirlit"
 #: zp-core/class-feed.php:265
 #, fuzzy
 msgid "Most popular albums"
-msgstr "nýjustu"
+msgstr "Albúm"
 
 #: zp-core/class-feed.php:267
 #, fuzzy
@@ -11724,7 +11726,7 @@ msgstr "%s var ekki hægt að eyða."
 #: zp-core/functions-image.php:505
 #, fuzzy, php-format
 msgid "cacheImage(%1$s) exception: %2$s"
-msgstr "<em>%1$s</em> gerði atugasemd um %2$s:"
+msgstr "%1$s x %2$s pixlar"
 
 #: zp-core/functions.php:36
 msgid "most recent"
@@ -12032,7 +12034,7 @@ msgstr ""
 #: zp-core/lib-auth.php:94
 #, fuzzy
 msgid "Minimum password strength"
-msgstr "Aðgangsorð albúms:"
+msgstr "Vísbending aðgangsorðs:"
 
 #: zp-core/lib-auth.php:96
 #, php-format
@@ -12044,7 +12046,7 @@ msgstr ""
 #: zp-core/lib-auth.php:97
 #, fuzzy
 msgid "Password hash algorithm"
-msgstr "Aðgangsorð albúms:"
+msgstr "Vísbending aðgangsorðs:"
 
 #: zp-core/lib-auth.php:100
 #, php-format
@@ -12234,7 +12236,7 @@ msgstr ""
 #: zp-core/lib-auth.php:579 zp-core/lib-auth.php:606
 #, fuzzy
 msgid "View search"
-msgstr "Leita"
+msgstr "Skoða"
 
 #: zp-core/lib-auth.php:579 zp-core/lib-auth.php:606
 msgid "Users with this right may view search pages even if password protected."
@@ -12464,7 +12466,7 @@ msgstr "Núllstillingarbeiðni hefur verið send."
 #: zp-core/lib-auth.php:1222
 #, fuzzy
 msgid "password strength weak"
-msgstr "Aðgangsorð albúms:"
+msgstr "Vísbending aðgangsorðs:"
 
 #: zp-core/lib-auth.php:1225
 #, fuzzy
@@ -12474,7 +12476,7 @@ msgstr "Sjálfvirkur fókus í lagi"
 #: zp-core/lib-auth.php:1228
 #, fuzzy
 msgid "password strength strong"
-msgstr "Aðgangsorð albúms:"
+msgstr "Vísbending aðgangsorðs:"
 
 #: zp-core/lib-auth.php:1233
 msgid "password strength too weak"
@@ -12797,7 +12799,7 @@ msgstr "Uppsetningarupplýsingar"
 #: zp-core/pluginDoc.php:138
 #, fuzzy, php-format
 msgid "%1$s %2$s: %3$s"
-msgstr "<em>%1$s</em> gerði atugasemd um %2$s:"
+msgstr "%1$s x %2$s pixlar"
 
 #: zp-core/pluginDoc.php:295
 #, fuzzy
@@ -13402,7 +13404,7 @@ msgstr ""
 #: zp-core/setup/index.php:735
 #, fuzzy, php-format
 msgid "<em>%1$s</em> file"
-msgstr "<em>%s</em> er ekki til."
+msgstr "<em>%s</em> fannst ekki"
 
 #: zp-core/setup/index.php:735
 #, fuzzy, php-format
@@ -14044,7 +14046,7 @@ msgstr ""
 #: zp-core/setup/index.php:1570
 #, fuzzy
 msgid "<em>albums</em> folder"
-msgstr "<em>%s</em> er ekki til."
+msgstr "<em>%s</em> fannst ekki"
 
 #: zp-core/setup/index.php:1570
 msgid ""
@@ -14470,7 +14472,7 @@ msgstr ""
 #: zp-core/setup/setup_pluginOptions.php:45
 #, fuzzy, php-format
 msgid "Plugin:%s enabled (%2$s)"
-msgstr "<em>%1$s</em> gerði atugasemd um %2$s:"
+msgstr "Effervescence %1$s %2$s"
 
 #: zp-core/setup/setup-option-defaults.php:806
 #: zp-core/setup/setup_pluginOptions.php:61
@@ -14529,7 +14531,7 @@ msgstr "Sannvotta notanda"
 #: zp-core/zp-extensions/wordpress_import/admin_tab.php:395
 #, fuzzy
 msgid "Database password"
-msgstr "Aðgangsorð albúms:"
+msgstr "Vísbending aðgangsorðs:"
 
 #: zp-core/setup/setup-sqlform.php:86
 #: zp-core/zp-extensions/wordpress_import/admin_tab.php:76
@@ -14656,7 +14658,7 @@ msgstr "Sortera undiralbúm eftir:"
 #: zp-core/template-functions.php:220
 #, fuzzy
 msgid "Sort images"
-msgstr "myndir"
+msgstr "Sortera gallerý eftir:"
 
 #: zp-core/template-functions.php:230
 msgid "Delete the album"
@@ -14940,7 +14942,7 @@ msgstr ""
 #: zp-core/utilities/backup_restore.php:559
 #, fuzzy
 msgid "Restore the Database"
-msgstr "Endurnýja gagnagrunninn"
+msgstr "Endurnýja gagnagrunn"
 
 #: zp-core/utilities/backup_restore.php:570
 msgid ""
@@ -15327,7 +15329,7 @@ msgstr ""
 #: zp-core/zp-extensions/LDAP_auth.php:61
 #, fuzzy
 msgid "LDAP reader password"
-msgstr "Aðgangsorð albúms:"
+msgstr "Vísbending aðgangsorðs:"
 
 #: zp-core/zp-extensions/LDAP_auth.php:63
 #, fuzzy
@@ -16089,7 +16091,7 @@ msgstr ""
 #: zp-core/zp-extensions/cacheManager/cacheImages.php:376
 #, fuzzy
 msgid "No cache sizes enabled."
-msgstr "Er að endurnýja skyndiminni fyrir %s"
+msgstr "Skyndiminni hefur verið hreinsað."
 
 #: zp-core/zp-extensions/cacheManager/cacheImages.php:380
 #, fuzzy
@@ -16126,7 +16128,7 @@ msgstr ""
 #: zp-core/zp-extensions/class-video.php:53
 #, fuzzy
 msgid "Watermark default images"
-msgstr "myndir"
+msgstr "Myndir"
 
 #: zp-core/zp-extensions/class-AnyFile.php:40
 #: zp-core/zp-extensions/class-WEBdocs.php:56
@@ -16500,7 +16502,7 @@ msgstr "Titill vefsíðu þinnar."
 #: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:41
 #, fuzzy
 msgid "Visit the site."
-msgstr "Titill vefsíðu þinnar."
+msgstr "Vefsíða:"
 
 #: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:45
 #, fuzzy
@@ -16907,7 +16909,7 @@ msgstr "Ónafngreindur"
 #: zp-core/zp-extensions/comment_form/admin-comments.php:227
 #, fuzzy
 msgid "Comment is not anonymous"
-msgstr "Ummæli:"
+msgstr "Ónafngreindur"
 
 #: zp-core/zp-extensions/comment_form/admin-comments.php:244
 #, fuzzy
@@ -17703,12 +17705,12 @@ msgstr "<em>%1$s</em> gerði atugasemd um %2$s:"
 #: zp-core/zp-extensions/deprecated-functions.php:157
 #, fuzzy, php-format
 msgid "user plugin %1$s:%2$s"
-msgstr "%1$s x %2$s pixlar"
+msgstr "<em>%1$s</em> gerði atugasemd um %2$s:"
 
 #: zp-core/zp-extensions/deprecated-functions.php:160
 #, fuzzy, php-format
 msgid "standard plugin %1$s:%2$s"
-msgstr "<em>%1$s</em> gerði atugasemd um %2$s:"
+msgstr "Effervescence %1$s %2$s"
 
 #: zp-core/zp-extensions/deprecated-functions.php:163
 #, fuzzy, php-format
@@ -17747,7 +17749,7 @@ msgstr ""
 #: zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:51
 #, fuzzy
 msgid "In Themes"
-msgstr "þemu"
+msgstr "Þemu"
 
 #: zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:54
 #, fuzzy
@@ -17845,7 +17847,7 @@ msgstr "Skoða albúm:"
 #: zp-core/zp-extensions/downloadList.php:82
 #, fuzzy
 msgid "From Cache"
-msgstr "setja fullstóra mynd í skyndiminni"
+msgstr "Skyndiminni hefur verið hreinsað."
 
 #: zp-core/zp-extensions/downloadList.php:83
 msgid ""
@@ -18098,7 +18100,7 @@ msgstr ""
 #: zp-core/zp-extensions/elFinder/php/connector_zp.php:81
 #, fuzzy, php-format
 msgid "Themes (%s)"
-msgstr "þemu"
+msgstr "Þemu"
 
 #: zp-core/zp-extensions/elFinder/php/connector_zp.php:87
 #, fuzzy, php-format
@@ -18342,7 +18344,7 @@ msgstr ""
 #: zp-core/zp-extensions/externalFeed.php:240 zp-core/zp-extensions/rss.php:420
 #, fuzzy
 msgid " (Latest news)"
-msgstr "Gallerý of fréttir"
+msgstr "Fréttagreinar"
 
 #: zp-core/zp-extensions/externalFeed.php:244 zp-core/zp-extensions/rss.php:437
 #, fuzzy
@@ -18357,7 +18359,7 @@ msgstr "nýjustu"
 #: zp-core/zp-extensions/externalFeed.php:250 zp-core/zp-extensions/rss.php:443
 #, fuzzy
 msgid " (Top rated news)"
-msgstr "Gallerý of fréttir"
+msgstr "Fréttagreinar"
 
 #: zp-core/zp-extensions/externalFeed.php:253 zp-core/zp-extensions/rss.php:446
 #, fuzzy
@@ -18898,7 +18900,7 @@ msgstr ""
 #: zp-core/zp-extensions/galleryArticles.php:95
 #, fuzzy
 msgid "Import Combi-news"
-msgstr "Gallerý of fréttir"
+msgstr "Fréttagreinar"
 
 #: zp-core/zp-extensions/galleryArticles.php:97
 msgid ""
@@ -19408,7 +19410,7 @@ msgstr ""
 #: zp-core/zp-extensions/image_effects.php:139
 #, fuzzy
 msgid "Images (custom)"
-msgstr "myndir"
+msgstr "Myndir"
 
 #: zp-core/zp-extensions/image_effects.php:142
 msgid "Apply <em>effect</em> to images shown via the custom image functions."
@@ -19831,7 +19833,7 @@ msgstr "Skoða allan texta"
 #: zp-core/zp-extensions/jplayer.php:490
 #, fuzzy
 msgid "Update Required"
-msgstr "Síðast uppfært: %s"
+msgstr "uppfæra"
 
 #: zp-core/zp-extensions/jplayer.php:491
 msgid ""
@@ -20055,7 +20057,7 @@ msgstr "Þetta albúm er varið með aðgangsorði!"
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:92
 #, fuzzy
 msgid "under password protection"
-msgstr "Aðgangsorð albúms:"
+msgstr "Vísbending aðgangsorðs:"
 
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:121
 #: zp-core/zp-extensions/publishContent/publishContent.php:308
@@ -20554,7 +20556,7 @@ msgstr ""
 #: zp-core/zp-extensions/mobileTheme.php:99
 #, fuzzy
 msgid "Tablet theme"
-msgstr "Þemalitir"
+msgstr "Albúmsþema:"
 
 #: zp-core/zp-extensions/mobileTheme.php:102
 msgid "Select the theme to be used when a tablet device connects."
@@ -20683,7 +20685,7 @@ msgstr "Skrifa ummæli"
 #: zp-core/zp-extensions/optionalObjectFields.php:106
 #, fuzzy
 msgid "Clear tags of images"
-msgstr "myndir"
+msgstr "Myndir"
 
 #: zp-core/zp-extensions/optionalObjectFields.php:134
 #, fuzzy
@@ -21019,7 +21021,7 @@ msgstr "Albúm"
 #: zp-core/zp-extensions/publishContent/publishContent.php:365
 #, fuzzy
 msgid "Images not published"
-msgstr "myndir"
+msgstr "Myndir"
 
 #: zp-core/zp-extensions/publishContent/publishContent.php:370
 #, php-format
@@ -21043,7 +21045,7 @@ msgstr "Fyrri mynd"
 #: zp-core/zp-extensions/publishContent/publishContent.php:414
 #, fuzzy
 msgid "Images:"
-msgstr "myndir"
+msgstr "Myndir"
 
 #: zp-core/zp-extensions/publishContent/publishContent.php:429
 #: zp-core/zp-extensions/publishContent/publishContent.php:484
@@ -21257,7 +21259,7 @@ msgstr ""
 #: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:205
 #, fuzzy
 msgid "Orphaned options"
-msgstr "Það eru engar íbótastillingar til að stjórna."
+msgstr "stillingar"
 
 #: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:223
 msgid "<span class=\"emptyOption\">empty</span>"
@@ -21434,7 +21436,7 @@ msgstr ""
 #: zp-core/zp-extensions/rating.php:111
 #, fuzzy
 msgid "Icon size"
-msgstr "Smámyndastærð:"
+msgstr "stærð ="
 
 #: zp-core/zp-extensions/rating.php:113
 #, fuzzy
@@ -22080,7 +22082,7 @@ msgstr ""
 #: zp-core/zp-extensions/rss.php:88
 #, fuzzy
 msgid "Cache expiration"
-msgstr "setja fullstóra mynd í skyndiminni"
+msgstr "Er að endurnýja skyndiminni fyrir %s"
 
 #: zp-core/zp-extensions/rss.php:90
 msgid ""
@@ -22144,7 +22146,7 @@ msgstr "Albúm"
 #: zp-core/zp-extensions/rss.php:432
 #, fuzzy
 msgid " (Latest news and images)"
-msgstr "myndir"
+msgstr "Myndir"
 
 #: zp-core/zp-extensions/rss.php:581
 #, fuzzy, php-format
@@ -23158,7 +23160,7 @@ msgstr "Þetta albúm er varið með aðgangsorði!"
 #: zp-core/zp-extensions/slideshow2.php:318
 #, fuzzy
 msgid "No images for the slideshow!"
-msgstr "myndir"
+msgstr "Myndir"
 
 #: zp-core/zp-extensions/slideshow.php:405
 msgid "Previous"
@@ -23625,7 +23627,7 @@ msgstr ""
 #: zp-core/zp-extensions/themeSwitcher.php:157
 #, fuzzy
 msgid "Switch themes"
-msgstr "þemu"
+msgstr "Þemu"
 
 #: zp-core/zp-extensions/themeSwitcher.php:161
 msgid "Close"
@@ -23648,7 +23650,7 @@ msgstr ""
 #: zp-core/zp-extensions/tinyURL.php:64
 #, fuzzy
 msgid "Use in themes for"
-msgstr "þemu"
+msgstr "Þemu"
 
 #: zp-core/zp-extensions/tinyURL.php:68
 msgid ""
@@ -23758,7 +23760,7 @@ msgstr "<em>%s</em> fannst ekki"
 #: zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:86
 #, fuzzy
 msgid "title with link to category"
-msgstr "Titill:"
+msgstr "Titill"
 
 #: zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:214
 #: zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:216
@@ -23999,7 +24001,7 @@ msgstr "Búa til nýtt albúm"
 #: zp-core/zp-extensions/tweet_news.php:356
 #, fuzzy
 msgid "Tweet News Errors:"
-msgstr "Gallerý of fréttir"
+msgstr "Fréttagreinar"
 
 #: zp-core/zp-extensions/tweet_news.php:387
 #, fuzzy
@@ -24214,7 +24216,7 @@ msgstr ""
 #: zp-core/zp-extensions/user-expiry.php:86
 #, fuzzy
 msgid "Password cycle"
-msgstr "Aðgangsorð albúms:"
+msgstr "Vísbending aðgangsorðs:"
 
 #: zp-core/zp-extensions/user-expiry.php:88
 msgid ""
@@ -24329,7 +24331,7 @@ msgstr "Netfang:"
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:213
 #, fuzzy
 msgid "Force password renewal"
-msgstr "Aðgangsorð albúms:"
+msgstr "Vísbending aðgangsorðs:"
 
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:201
 #, php-format
@@ -25573,7 +25575,7 @@ msgstr "síða %u"
 #: zp-core/zp-extensions/zenpage/admin-functions.php:844
 #, fuzzy
 msgid "Duplicate category title"
-msgstr "Titill:"
+msgstr "Titill"
 
 #: zp-core/zp-extensions/zenpage/admin-functions.php:894
 #, php-format
@@ -25912,1104 +25914,3 @@ msgid ""
 "The size to use if the font is scalable (<em>TTF</em> and <em>Imagick</em> "
 "fonts.)"
 msgstr ""
-
-#~ msgid "Subject<strong>%s</strong>:"
-#~ msgstr "Viðfangsefni<strong>%s</strong>:"
-
-#~ msgid "Message<strong>%s</strong>:"
-#~ msgstr "Skilaboð<strong>%s</strong>:"
-
-#~ msgid "Title:"
-#~ msgstr "Titill:"
-
-#~ msgid "Description:"
-#~ msgstr "Lýsing:"
-
-#, fuzzy
-#~ msgid "Metadata:"
-#~ msgstr "Endurnýja lýsingargögn fyrir albúmið %s"
-
-#~ msgid "Edit Gallery"
-#~ msgstr "Breyta gallerýi"
-
-#, fuzzy
-#~ msgid "You have unsaved changes!"
-#~ msgstr "vista breytingar"
-
-#, fuzzy
-#~ msgid "Are you sure you want to leave this page?"
-#~ msgstr "Ertu viss um að þú viljir eyða þessum notanda?"
-
-#, fuzzy
-#~ msgid "Leave"
-#~ msgstr "Hætta"
-
-#~ msgid "Has Password"
-#~ msgstr "Er varið aðgangsorði"
-
-#~ msgid "Password protected"
-#~ msgstr "Varið aðgangsorði"
-
-#, fuzzy
-#~ msgid "View logs:"
-#~ msgstr "Skoða:"
-
-#, fuzzy
-#~ msgid "Cookies:"
-#~ msgstr "Kökur"
-
-#, fuzzy
-#~ msgid "Path"
-#~ msgstr "Slóð"
-
-#~ msgid "Gallery title:"
-#~ msgstr "Titill gallerýs:"
-
-#~ msgid "Website title:"
-#~ msgstr "Titill vefsíðu:"
-
-#, fuzzy
-#~ msgid "user:"
-#~ msgstr "Notandakenni fyrir gestaleitarnotandann"
-
-#~ msgid "Image size:"
-#~ msgstr "Stærð myndar:"
-
-#~ msgid "<strong>Custom theme options</strong>"
-#~ msgstr "<strong>Sérsniðnar þemastillingar</strong>"
-
-#, fuzzy
-#~ msgid "Info"
-#~ msgstr "Upplýsingar"
-
-#, fuzzy
-#~ msgid "Statistics"
-#~ msgstr "Tölfræði"
-
-#, fuzzy
-#~ msgid "top"
-#~ msgstr "Skopparakringla"
-
-#~ msgid "Refresh the Database"
-#~ msgstr "Endurnýja gagnagrunninn"
-
-#, fuzzy
-#~ msgid "Forces a refresh of the metadata for all images and albums."
-#~ msgstr "Endurnýja lýsingargögn fyrir albúmið %s"
-
-#, fuzzy
-#~ msgid "404"
-#~ msgstr "445445"
-
-#, fuzzy
-#~ msgid "IMAGE"
-#~ msgstr "mynd"
-
-#, fuzzy
-#~ msgid "LOGIN"
-#~ msgstr "INNSKRÁ"
-
-#, fuzzy
-#~ msgid "PLUGINS"
-#~ msgstr "íbætur"
-
-#, fuzzy
-#~ msgid "Functions"
-#~ msgstr "aðgerðir"
-
-#, fuzzy
-#~ msgid "Search statistics"
-#~ msgstr "Tölfræði gallerýa"
-
-#, fuzzy
-#~ msgid "Analyze searches"
-#~ msgstr "Leyfa leit"
-
-#, fuzzy
-#~ msgid "Mailing"
-#~ msgstr "Fjölmála"
-
-#, fuzzy
-#~ msgid "To:"
-#~ msgstr "Til"
-
-#, fuzzy
-#~ msgid "Send another mail"
-#~ msgstr "Senda tölvupóst"
-
-#, fuzzy
-#~ msgid "TitleLink:"
-#~ msgstr "Titill:"
-
-#, fuzzy
-#~ msgid "Content:"
-#~ msgstr "Innihald"
-
-#~ msgid "No album provided to sort."
-#~ msgstr "Ekkert albúm var gefið til að sortera."
-
-#~ msgid " descending"
-#~ msgstr " lækkandi"
-
-#~ msgid "Current sort: <em>%1$s%2$s</em>. "
-#~ msgstr "Núgildandi sorterun: <em>%1$s%2$s</em>. "
-
-#, fuzzy
-#~ msgid "Current sort: <em>%1$s%2$s</em>."
-#~ msgstr "Núgildandi sorterun: <em>%1$s%2$s</em>. "
-
-#~ msgid "Charset:"
-#~ msgstr "Stafasett:"
-
-#, fuzzy
-#~ msgid "Gallery index page link:"
-#~ msgstr "Gallerýsyfirlit"
-
-#, fuzzy
-#~ msgid ""
-#~ "Password reset request.<br />You may now set admin usernames and "
-#~ "passwords."
-#~ msgstr ""
-#~ "Beiðni um núllstillingu aðgangsorðs.<br/>Núna getur þú valið notandanöfn "
-#~ "og aðgangsorð fyrir stjórnendur."
-
-#, fuzzy
-#~ msgid "<strong>%1$u</strong> Page"
-#~ msgid_plural "<strong>%1$u</strong> Pages"
-#~ msgstr[0] "<strong>%u</strong> myndir"
-#~ msgstr[1] "<strong>%u</strong> myndir"
-
-#, fuzzy
-#~ msgid "<strong>%1$u</strong> Page (%2$u un-published)"
-#~ msgid_plural "<strong>%1$u</strong> Pages (%2$u un-published)"
-#~ msgstr[0] "<strong>%1$u</strong> albúm (%2$u óútgefin)"
-#~ msgstr[1] "<strong>%1$u</strong> albúm (%2$u óútgefin)"
-
-#, fuzzy
-#~ msgid "<strong>%1$u</strong> News"
-#~ msgid_plural "<strong>%1$u</strong> News"
-#~ msgstr[0] "<strong>%u</strong> myndir"
-#~ msgstr[1] "<strong>%u</strong> myndir"
-
-#, fuzzy
-#~ msgid "<strong>%1$u</strong> News (%2$u un-published)"
-#~ msgid_plural "<strong>%1$u</strong> News (%2$u un-published)"
-#~ msgstr[0] "<strong>%1$u</strong> albúm (%2$u óútgefin)"
-#~ msgstr[1] "<strong>%1$u</strong> albúm (%2$u óútgefin)"
-
-#, fuzzy
-#~ msgid "<strong>%1$u</strong> Category"
-#~ msgid_plural "<strong>%1$u</strong> Categories"
-#~ msgstr[0] "<strong>%u</strong> myndir"
-#~ msgstr[1] "<strong>%u</strong> myndir"
-
-#, fuzzy
-#~ msgid "Location/Place"
-#~ msgstr "Staðsetning"
-
-#, fuzzy
-#~ msgid "Query %1$s Failed. Error: %2$s"
-#~ msgstr "MySQL fyrirspurn ( <em>%1$s</em> ) mistókst. Villa: %2$s"
-
-#, fuzzy
-#~ msgid "Previous Release was %s"
-#~ msgstr "Fyrri síða"
-
-#, fuzzy
-#~ msgid "Copyright %1$u: %2$s"
-#~ msgstr "Höfundaréttur:"
-
-#~ msgid "Album:"
-#~ msgstr "Albúm:"
-
-#, fuzzy
-#~ msgid "Album folder:"
-#~ msgstr "Dagsetning albúms:"
-
-#, fuzzy
-#~ msgid "*Select an album*"
-#~ msgstr "Eyða albúmi"
-
-#, fuzzy
-#~ msgid "Custom text"
-#~ msgstr "Sérsniðið"
-
-#, fuzzy
-#~ msgid "Custom thumbnail"
-#~ msgstr "Skera smámyndir:"
-
-#, fuzzy
-#~ msgid "Full image"
-#~ msgstr "%u myndir"
-
-#, fuzzy
-#~ msgid "Title and description"
-#~ msgstr "Smelltu til að breyta lýsingu"
-
-#, fuzzy
-#~ msgid "No description"
-#~ msgstr "Lýsing"
-
-#, fuzzy
-#~ msgid "Show image description"
-#~ msgstr "Lýsing gallerýs:"
-
-#, fuzzy
-#~ msgid "Show album description"
-#~ msgstr "Lýsing albúms:"
-
-#, fuzzy
-#~ msgid "Link type"
-#~ msgstr "Hlekkstexti"
-
-#, fuzzy
-#~ msgid "Link to image"
-#~ msgstr "engar myndir"
-
-#, fuzzy
-#~ msgid "Link to full image"
-#~ msgstr "setja fullstóra mynd í skyndiminni"
-
-#, fuzzy
-#~ msgid "Link to album"
-#~ msgstr "breyta albúmi"
-
-#, fuzzy
-#~ msgid "(<strong>%1$u</strong> page)"
-#~ msgid_plural "(<strong>%1$u</strong> pages)"
-#~ msgstr[0] "<strong>%u</strong> myndir"
-#~ msgstr[1] "<strong>%u</strong> myndir"
-
-#, fuzzy
-#~ msgid "(<strong>%1$u</strong> page, <strong>%2$u</strong> un-published)"
-#~ msgid_plural ""
-#~ "(<strong>%1$u</strong> pages, <strong>%2$u</strong> un-published)"
-#~ msgstr[0] "<strong>%1$u</strong> albúm (%2$u óútgefin)"
-#~ msgstr[1] "<strong>%1$u</strong> albúm (%2$u óútgefin)"
-
-#, fuzzy
-#~ msgid "(<strong>%1$u</strong> news)"
-#~ msgid_plural "(<strong>%1$u</strong> news)"
-#~ msgstr[0] "<strong>%u</strong> myndir"
-#~ msgstr[1] "<strong>%u</strong> myndir"
-
-#, fuzzy
-#~ msgid "(<strong>%1$u</strong> news, <strong>%2$u</strong> un-published)"
-#~ msgid_plural ""
-#~ "(<strong>%1$u</strong> news, <strong>%2$u</strong> un-published)"
-#~ msgstr[0] "<strong>%1$u</strong> albúm (%2$u óútgefin)"
-#~ msgstr[1] "<strong>%1$u</strong> albúm (%2$u óútgefin)"
-
-#, fuzzy
-#~ msgid "(<strong>%1$u</strong> category)"
-#~ msgid_plural "(<strong>%1$u</strong> categories)"
-#~ msgstr[0] "<strong>%u</strong> myndir"
-#~ msgstr[1] "<strong>%u</strong> myndir"
-
-#, fuzzy
-#~ msgid "Show ZenPhoto Credit"
-#~ msgstr "Zenphoto uppsetning"
-
-#, fuzzy
-#~ msgid "Set as thumbnail for:"
-#~ msgstr "Gera að smámynd albúms"
-
-#, fuzzy
-#~ msgid "Image watermark:"
-#~ msgstr "Myndir á síðu:"
-
-#, fuzzy
-#~ msgid "Scan pending"
-#~ msgstr "Lækkandi"
-
-#, fuzzy
-#~ msgid "Order by date descending"
-#~ msgstr "Raða eftir notkun"
-
-#, fuzzy
-#~ msgid "Order by date ascending"
-#~ msgstr "Raða eftir notkun"
-
-#~ msgid "The Object you are requesting cannot be found."
-#~ msgstr "ZenPhoto20 sem þú baðst um fannst ekki."
-
-#, fuzzy
-#~ msgid "Theme page"
-#~ msgstr "Þemamerki"
-
-#~ msgid "The page you are requesting cannot be found."
-#~ msgstr "ZenPhoto20 sem þú baðst um fannst ekki."
-
-#~ msgid "Sorry, the page you are requesting cannot be found."
-#~ msgstr "ZenPhoto20 sem þú baðst um fannst ekki."
-
-#, fuzzy
-#~ msgid "show content"
-#~ msgstr "Leyfa ummæli"
-
-#~ msgid "1: Normal (0 deg)"
-#~ msgstr "1: Venjuleg (0 gráður)"
-
-#~ msgid "2: Mirrored"
-#~ msgstr "2: Spegluð"
-
-#, fuzzy
-#~ msgid "3: Upside-down"
-#~ msgstr "3: Á hvolfi"
-
-#, fuzzy
-#~ msgid "4: Upside-down Mirrored"
-#~ msgstr "4: Á hvolfi, spegluð"
-
-#~ msgid "5: 90 deg CW Mirrored"
-#~ msgstr "5: 90 gráður réttsælis, spegluð"
-
-#~ msgid "6: 90 deg CCW"
-#~ msgstr "6: 90 gráður rangsælis"
-
-#~ msgid "7: 90 deg CCW Mirrored"
-#~ msgstr "7: 90 gráður rangsælis, spegluð"
-
-#~ msgid "8: 90 deg CW"
-#~ msgstr "8: 90 gráður réttsælis"
-
-#, fuzzy
-#~ msgid "Updating the configuration file"
-#~ msgstr "gallerýsstillingar"
-
-#~ msgid ""
-#~ "Welcome to ZenPhoto20! This page will set up the version %s on your web "
-#~ "server."
-#~ msgstr ""
-#~ "Velkomin(n) í ZenPhoto20! Þessi síða mun sjá um uppsetningu ZenPhoto20 á "
-#~ "vefþjóninum þínum."
-
-#, fuzzy
-#~ msgid "Updated configuration file"
-#~ msgstr "gallerýsstillingar"
-
-#, fuzzy
-#~ msgid "Invalid Textobject instantiation: file does not exist"
-#~ msgstr "Myndin fannst ekki; skráin er ekki til."
-
-#, fuzzy
-#~ msgid "Languange"
-#~ msgstr "Tungumál:"
-
-#, fuzzy
-#~ msgid "Sub-Languange"
-#~ msgstr "Tungumál:"
-
-#, fuzzy
-#~ msgid "Languange String"
-#~ msgstr "Tungumál:"
-
-#, fuzzy
-#~ msgid "repeat off"
-#~ msgstr "endurtaka:"
-
-#, fuzzy
-#~ msgid "tinyZenpage plugin"
-#~ msgstr "Virkar íbætur:"
-
-#, fuzzy
-#~ msgid "Custom image size"
-#~ msgstr "Stærð myndar:"
-
-#, fuzzy
-#~ msgid "image with link to image"
-#~ msgstr "1 hæfing á þessa mynd"
-
-#, fuzzy
-#~ msgid "newPage"
-#~ msgstr "Síður"
-
-#~ msgid ""
-#~ "MySQL Error: The PHP MySQL extentions have not been installed. Please ask "
-#~ "your administrator to add MySQL support to your PHP installation."
-#~ msgstr ""
-#~ "MySQL villa: PHP MySQL viðbæturnar hafa ekki verið uppsettar. "
-#~ "Vinsamlegast biðjið kerfisstjórann um að bæa MySQL stuðningi við PHP "
-#~ "uppsetninguna."
-
-#~ msgid ""
-#~ "Check your <strong>zp-config.php</strong> file for the correct "
-#~ "<em><strong>host</strong>, <strong>user name</strong>, and "
-#~ "<strong>password</strong></em>."
-#~ msgstr ""
-#~ "Opnaðu <strong>zp-config.php</strong> skrána og gáðu hvort "
-#~ "<em><strong>host</strong>, <strong>user name</strong>, og "
-#~ "<strong>password</strong></em> séu rétt stillt."
-
-#~ msgid ""
-#~ "Note that you may need to change the <em>host</em> from localhost if your "
-#~ "web server uses a separate MySQL server, which is common in large shared "
-#~ "hosting environments like Dreamhost and GoDaddy."
-#~ msgstr ""
-#~ "Athugaðu að þú gætir þurft að breyta <em>host</em> í eitthvað annað en "
-#~ "localhost ef vefþjónninn hýsir gagnagrunninn á sér netþjóni, sem er "
-#~ "algengt í stórum hýsingarumhverfum eins og t.d. Dreamhost og GoDaddy."
-
-#~ msgid "Also make sure the server is running, if you control it."
-#~ msgstr "Vertu viss um að þjónninn sé í gangi, ef þú sérð um hann."
-
-#~ msgid "Make sure it already exists, create it if you need to."
-#~ msgstr ""
-#~ "Vertu viss um að gagnagrunnurinn sé til staðar, búðu hann til ef þú þarft "
-#~ "þess."
-
-#~ msgid ""
-#~ "Also make sure the user you're trying to connect with has privileges to "
-#~ "use this database."
-#~ msgstr ""
-#~ "Vertu líka viss um að gagnagrunnsnotandinn sem þú ert að reyna að "
-#~ "tengjast með hafi réttindi til að nota þennan gagnagrunn."
-
-#~ msgid "It looks like your zenphoto tables haven't been created."
-#~ msgstr "Það lítur út fyrir að zenphoto töflurnar hafi ekki verið búnar til."
-
-#~ msgid ""
-#~ "You may need to run <a href=\"%s/%s/setup.php\">the setup script.</a>"
-#~ msgstr ""
-#~ "Þú gætir þurft að keyra <a href=\"%s/%s/setup.php"
-#~ "\">uppsetningarskriftuna</a>."
-
-#~ msgid "Clearing and refreshing cache for %s"
-#~ msgstr "Er að hreinsa og endurnýja skyndiminni fyrir %s"
-
-#~ msgid "Back to the list of albums"
-#~ msgstr "Aftur á albúmalistann"
-
-#~ msgid "view album"
-#~ msgstr "skoða albúm"
-
-#~ msgid "Abort"
-#~ msgstr "Hætta við"
-
-#~ msgid "Invalid number / type of arguments"
-#~ msgstr "Röng tala/tegund frumgilda"
-
-#~ msgid "Invalid variable type p_filelist"
-#~ msgstr "Breytan p_filelist er af rangri tegund"
-
-#~ msgid "Invalid variable type %s for p_filelist"
-#~ msgstr "Tegund %s fyrir p_filelist er röng"
-
-#~ msgid "Unable to open archive %s in binary read mode"
-#~ msgstr "Get ekki opnað skjalasafnið %s í binary lesham"
-
-#~ msgid "No file with filename"
-#~ msgstr "Engin skrá með þetta nafn"
-
-#~ msgid "Invalid variable type p_archive_to_add"
-#~ msgstr "Breytan p_archive_to_add er af rangri tegund"
-
-#~ msgid "Missing parameter value for option"
-#~ msgstr "Það vantar frumgildi fyrir þennan valmöguleika"
-
-#~ msgid "Wrong parameter value for option"
-#~ msgstr "Rangt frumgildi fyrir þennan valmöguleika"
-
-#~ msgid "Value must be integer, string or array for option"
-#~ msgstr ""
-#~ "Gildið fyrir þennan valmöguleika verður að vera tala, strengur eða fylki"
-
-#~ msgid "Too many values in index range for option"
-#~ msgstr "Of mörg gildi í vísitölusviði fyrir þennan valmöguleika"
-
-#~ msgid "Invalid order of index range for option"
-#~ msgstr "Ógild röpun á vísitölusviði fyrir þennan valmöguleika"
-
-#~ msgid "Function %1$s is not an existing function for option %2$s"
-#~ msgstr "Fallið %1$s er ekki til staðar fyrir valmöguleikann %2$s"
-
-#~ msgid "Unknown parameter"
-#~ msgstr "Óþekkt frumgildi"
-
-#~ msgid "Missing mandatory parameter"
-#~ msgstr "Það vantar nauðsynlegt frumgildi"
-
-#~ msgid "Invalid file attribute"
-#~ msgstr "Ógilt skráareigindi"
-
-#~ msgid "Invalid type %1$s String expected for attribute %2$s"
-#~ msgstr "Ógild tegund %1$s, búist er við streng fyrir eigindið %2$s"
-
-#~ msgid "Invalid empty filename for attribute"
-#~ msgstr "Ógilt tómt skráarnafn fyrir eigindi"
-
-#~ msgid "Invalid empty short filename for attribute"
-#~ msgstr "Ógilt tómt stutt skráarnafn fyrir eigindi"
-
-#~ msgid "Invalid empty full filename for attribute %s"
-#~ msgstr "Ógilt tómt fullt skráarnafn fyrir eigindi %s"
-
-#~ msgid "Invalid type %1$s Integer expected for attribute %2$s"
-#~ msgstr "Ógild tegund %1$s, búist er við tölu fyrir eigindið %2$s"
-
-#~ msgid "Unable to open temporary file %s in binary write mode"
-#~ msgstr "Get ekki opnað bráðabirgðaskrá %s í binary skrifham"
-
-#~ msgid "Zip file %s already open"
-#~ msgstr "Zip skráin %s þegar opin"
-
-#~ msgid "Unable to open archive %1$s in %2$s mode"
-#~ msgstr "Gat ekki opnað skráarsafnið %1$s í %2$s ham"
-
-#~ msgid "Unable to open file %s in binary read mode"
-#~ msgstr "Get ekki opnað skrána %s í binary lesham"
-
-#~ msgid ""
-#~ "Filename %1$s is compressed by an unsupported compression method (%2$s)"
-#~ msgstr "Srkáin %1$s er þjöppuð með óstuddri þjöppunaraðferð (%2$s)"
-
-#~ msgid "Unsupported encryption for filename %s"
-#~ msgstr "Óstudd dulkóðun fyrir skrána %s"
-
-#~ msgid "Filename %s is outside PCLZIP_OPT_EXTRACT_DIR_RESTRICTION"
-#~ msgstr "Skráin %s er fyrir utan PCLZIP_OPT_EXTRACT_DIR_RESTRICTION"
-
-#~ msgid "Filename %s is already used by an existing directory"
-#~ msgstr "Skráin %s er þegar í notkun af annari möppu"
-
-#~ msgid "Filename %s exists and is write protected"
-#~ msgstr "Skráin %s er til og er skriflæst"
-
-#~ msgid ""
-#~ "Newer version of %s exists and option PCLZIP_OPT_REPLACE_NEWER is not "
-#~ "selected"
-#~ msgstr ""
-#~ "Nýrri útgáfa af %s er til og valmöguleikinn PCLZIP_OPT_REPLACE_NEWER er "
-#~ "ekki valinn"
-
-#~ msgid "Invalid archive structure"
-#~ msgstr "Ógild uppbygging á skráarsafni"
-
-#~ msgid "Invalid block size :"
-#~ msgstr "Ógild block stærð:"
-
-#~ msgid "Unable to go to the end of the archive"
-#~ msgstr "Gat ekki séð fyrir endann á skráarsafninu"
-
-#~ msgid "Unable to seek back to the middle of the archive"
-#~ msgstr "Gat ekki farið aftur í miðjuna á skráarsafninu"
-
-#~ msgid "Unable to find End of Central Dir Record signature"
-#~ msgstr "Finn ekki End of Central Dir Record undirskrift"
-
-#~ msgid "Invalid End of Central Dir Record size :"
-#~ msgstr "Ógild End of Central Dir Record stærð:"
-
-#~ msgid "The central dir is not at the end of the archive."
-#~ msgstr "The central dir is not at the end of the archive."
-
-#~ msgid "Some trailing bytes exists after the archive."
-#~ msgstr "Aukabæti eru til staðar á eftir skjalasafninu"
-
-#~ msgid "Unable to open archive file %s in binary write mode"
-#~ msgstr "Get ekki opnað skráarsafnið %s í binary skrifham"
-
-#~ msgid ""
-#~ "Check the zp-config.php file to make sure you've got the right username, "
-#~ "password, host, and database. If you haven't created the database yet, "
-#~ "now would be a good time."
-#~ msgstr ""
-#~ "Skoðaðu zp-config.php skrána og gáðu hvort þú hefur sett in rétt "
-#~ "notandanafn, aðgangsorð, netþjón, og gagnagrunn. Núna væri góður tími til "
-#~ "að búa til gagnagrunninn, ef þú átt það ógert."
-
-#~ msgid ""
-#~ "<strong>Error parsing <em>plugin_URL</em> string!</strong> Try removing "
-#~ "semicolons from string."
-#~ msgstr ""
-#~ "<strong>Villa kom upp við þáttun á <em>plugin_URL</em> strengnum!</"
-#~ "strong> Prófaðu að fjarlægja semikommur úr strengnum."
-
-#~ msgid "Subalbum order saved"
-#~ msgstr "Röðun undiralbúma vistuð"
-
-#~ msgid "Hitcounters have been reset"
-#~ msgstr "Hæfingarteljarar hafa verið núllstilltir"
-
-#~ msgid "Edit Album:"
-#~ msgstr "Breyta albúmi:"
-
-#~ msgid "Back to the list of albums (go up one level)"
-#~ msgstr "Aftur á albúmalista (upp um eitt þrep)"
-
-#~ msgid "Sort Album"
-#~ msgstr "Sortera albúm"
-
-#~ msgid "mass-edit all album data"
-#~ msgstr "hópbreyta öllum albúmsgögnum"
-
-#~ msgid "Cache\tthe album"
-#~ msgstr "Setja albúm í skyndiminni"
-
-#~ msgid "Reset\thitcounters"
-#~ msgstr "Núllstilla hæfingarteljara"
-
-#~ msgid "Save Order"
-#~ msgstr "Vista röðun"
-
-#~ msgid "expand all fields"
-#~ msgstr "opna alla dálka"
-
-#~ msgid "collapse all fields"
-#~ msgstr "loka öllum dálkum"
-
-#~ msgid "Rating: <strong>%u</strong>"
-#~ msgstr "Einkunn: <strong>%u</strong>"
-
-#~ msgid "Delete image."
-#~ msgstr "Eyða mynd."
-
-#~ msgid "EXIF inforation:"
-#~ msgstr "EXIF upplýsingar:"
-
-#~ msgid "Save Successful"
-#~ msgstr "Vistun tókst"
-
-#~ msgid "Back to the list of albums (go up a level)"
-#~ msgstr "Aftur á albúmalista (upp um þrep)"
-
-#~ msgid "Could not create bzip2 file."
-#~ msgstr "Gat ekki búið til bzip2 skrá."
-
-#~ msgid "Could not create gzip file."
-#~ msgstr "Gat ekki búið til gzip skrá."
-
-#~ msgid "Could not add %s to archive because the filename is too long."
-#~ msgstr ""
-#~ "Gat ekki bætt %s við í skjalasafnið því að skráarnafnið er of langt."
-
-#~ msgid "Could not open file %s for reading. It was not added."
-#~ msgstr "Gat ekki opnað skrána %s fyrir lestur. Henni var ekki bæt við."
-
-#~ msgid "This script does not support extracting this type of tar file."
-#~ msgstr "Skriftan styður ekki útdrátt úr þessari tegund af tar skrá."
-
-#~ msgid "Could not extract from %s it is corrupt."
-#~ msgstr "Gat ekki dregið úr skráarsafninu %s því það er skemmt."
-
-#~ msgid "Could not open %s for writing."
-#~ msgstr "Gat ekki opnað %s til að skrifa."
-
-#~ msgid "Could not open sfx module from %s"
-#~ msgstr "Gat ekki opnað sfx einingu frá %s"
-
-#~ msgid "admin information"
-#~ msgstr "stjórnandaupplýsingar"
-
-#~ msgid "You must supply a password"
-#~ msgstr "Þú verður að gefa aðgangsorð"
-
-#~ msgid "You must supply a password for the Gallery guest user"
-#~ msgstr "Þú verður að gefa aðgangsorð fyrir gestanotanda gallerýsins."
-
-#~ msgid "See the troubleshooting guide on zenphoto.org for details."
-#~ msgstr "Sjá úrráðaleitarhjálpina á zenphoto fyrir frekari upplýsingar."
-
-#~ msgid "Add New Admin"
-#~ msgstr "Bæta við stjórnanda"
-
-#~ msgid "If you're running a secure server, change this to"
-#~ msgstr "Ef þú ert að reka öruggan netþjón, breyttu þessu í"
-
-#~ msgid "(Most people will leave this alone.)"
-#~ msgstr "(Flestir þurfa ekki að eiga við þetta.)"
-
-#~ msgid "Sort order for the albums on the index of the gallery"
-#~ msgstr "Röðun á albúmum í yfirliti gallerýs"
-
-#~ msgid "exact"
-#~ msgstr "nákvæmt"
-
-#~ msgid "Enable Persistent Archives:"
-#~ msgstr "Virkja stöðug myndsöfn:"
-
-#~ msgid "JPEG Compression quality for all images."
-#~ msgstr "JPEG þjöppunargæði á öllum myndum."
-
-#~ msgid "Thumb quality:"
-#~ msgstr "Smámyndagæði:"
-
-#~ msgid "Automatically rotate images based on the EXIF orientation setting."
-#~ msgstr "Snúa myndum sjálfkrafa byggt á EXIF upplýsingum um stefnu myndar."
-
-#~ msgid "Controls compression on full images."
-#~ msgstr "Stjórna þjöppun á myndum í fullri stærð."
-
-#~ msgid "EXIF display"
-#~ msgstr "Sýna EXIF upplýsingar"
-
-#~ msgid "Expand plugin options"
-#~ msgstr "Sýna allar íbótastillingar"
-
-#~ msgid "Collapse all plugin options"
-#~ msgstr "Fela allar íbótastillingar"
-
-#~ msgid "<strong>%1$u</strong> images (%2$u not visible)"
-#~ msgstr "<strong>%1$u</strong> myndir (%2$u ósýnilegar)"
-
-#~ msgid "SVN"
-#~ msgstr "SVN"
-
-#~ msgid "zenpage version <strong>%1$s [%2$s]</strong>"
-#~ msgstr "zenpage útgáfa <strong>%1$s [%2$s]</strong>"
-
-#~ msgid "You are running the latest zenphoto version."
-#~ msgstr "Þú ert að keyra nýjustu útgáfuna af zenphoto."
-
-#~ msgid ""
-#~ "Queries the Zenphoto web site for the latest version and compares that "
-#~ "with the one that is running."
-#~ msgstr ""
-#~ "Sendir fyrirspurn á Zenphoto heimasíðuna og ber nýjustu útgáfuna þar við "
-#~ "þá sem er keyrandi."
-
-#~ msgid "A simpler web photo album"
-#~ msgstr "Einfaldara vefmyndaalbúm"
-
-#~ msgid "Forum"
-#~ msgstr "Spjallborð"
-
-#~ msgid "View Gallery: %s"
-#~ msgstr "Skoða gallerý: %s"
-
-#~ msgid "Resets all hitcounters in the album."
-#~ msgstr "Núllstilla alla hægingarteljara í albúminu"
-
-#~ msgid "Edit this album:%s"
-#~ msgstr "Breyta þessu albúmi:%s"
-
-#~ msgid "1 image"
-#~ msgstr "1 mynd"
-
-#~ msgid "%u albums"
-#~ msgstr "%u albúm"
-
-#~ msgid "Version %1$s or greater is required."
-#~ msgstr "Það þarf útgáfu %1$s eða nýrri."
-
-#~ msgid "[is set]"
-#~ msgstr "[er stillt]"
-
-#~ msgid ""
-#~ "You should consider disabling <code>magic_quotes_gpc</code>. For more "
-#~ "information <a href=\"http://www.zenphoto.org/2008/08/troubleshooting-"
-#~ "zenphoto/#25\" target=\"_new\">click here</a>."
-#~ msgstr ""
-#~ "Þú ættir að íhuga að slökkva á <code>magic_quotes_gpc</code>. <a href="
-#~ "\"http://www.zenphoto.org/2008/08/troubleshooting-zenphoto/#25\" target="
-#~ "\"_new\">Smelltu hér</a> fyrir frekari upplýsingar."
-
-#~ msgid "[is not present]"
-#~ msgstr "[er ekki til staðar]"
-
-#~ msgid " PHP MySQL support"
-#~ msgstr " PHP MySQL stuðningur"
-
-#~ msgid "You can find the file in the \"zp-core\" directory."
-#~ msgstr "Þú getur fundið skrána í \"zp-core\" möppunni."
-
-#~ msgid "Failed. Error:"
-#~ msgstr "Mistókst. Villa:"
-
-#~ msgid "Author/Link"
-#~ msgstr "Höfundur/hlekkur"
-
-#~ msgid "Date/Time"
-#~ msgstr "Dagsetning/tími"
-
-#~ msgid "Delete Selected Comments"
-#~ msgstr "Eyða völdum ummælum"
-
-#~ msgid "Something went wrong..."
-#~ msgstr "Eitthvað fór úrskeiðis..."
-
-#~ msgid "Save"
-#~ msgstr "Vista"
-
-#~ msgid "Delete all the tags checked above."
-#~ msgstr "Eyða öllum tögum valin að ofan."
-
-#~ msgid "rename tags"
-#~ msgstr "endurskíra tög"
-
-#~ msgid "save new tags"
-#~ msgstr "vista ný tög"
-
-#~ msgid "Click to add a title..."
-#~ msgstr "Smelltu til að bæta við titli..."
-
-#~ msgid "Click to edit title..."
-#~ msgstr "Smelltu til að breyta titli..."
-
-#~ msgid "Click to add tags..."
-#~ msgstr "Smelltu til að bæta við tögum..."
-
-#~ msgid "Click to add a description..."
-#~ msgstr "Smelltu til að bæta við lýsingu..."
-
-#~ msgid "Saving"
-#~ msgstr "Er að vista"
-
-#~ msgid "Currency"
-#~ msgstr "Gjaldmiðill"
-
-#~ msgid "List"
-#~ msgstr "Listi"
-
-#~ msgid "Manual sorting"
-#~ msgstr "Handvirk sorterun"
-
-#~ msgid "a <strong>company</strong>"
-#~ msgstr "<strong>fyrirtæki</strong>"
-
-#~ msgid "a <strong>street</strong>"
-#~ msgstr "<strong>götuheiti</strong>"
-
-#~ msgid "a <strong>city</strong>"
-#~ msgstr "<strong>borg</strong>"
-
-#~ msgid "a <strong>country</strong>"
-#~ msgstr "<strong>land</strong>"
-
-#~ msgid "a <strong>website</strong>"
-#~ msgstr "<strong>vefsíða</strong>"
-
-#~ msgid " and "
-#~ msgstr " og "
-
-#~ msgid "1 star out of 5"
-#~ msgstr "1 stjarna af 5"
-
-#~ msgid "2 stars out of 5"
-#~ msgstr "2 stjörnur af 5"
-
-#~ msgid "3 stars out of 5"
-#~ msgstr "3 stjörnur af 5"
-
-#~ msgid "4 stars out of 5"
-#~ msgstr "4 stjörnur af 5"
-
-#~ msgid "5 stars out of 5"
-#~ msgstr "5 stjörnur af 5"
-
-#~ msgid "1 photo"
-#~ msgstr "1 mynd"
-
-#~ msgid "%u photos"
-#~ msgstr "%u myndir"
-
-#~ msgid "1 album,&nbsp;1 photo"
-#~ msgstr "1 albúm,&nbsp;1 mynd"
-
-#~ msgid "%u album,&nbsp;1 photo"
-#~ msgstr "%u albúm,&nbsp;1 mynd"
-
-#~ msgid "%1$u album,&nbsp;%2$u photos"
-#~ msgstr "%1$u albúm,&nbsp;%2$u myndir"
-
-#~ msgid "1 album,&nbsp;%u photos"
-#~ msgstr "1 albúm,&nbsp;%u myndir"
-
-#~ msgid "Photos"
-#~ msgstr "Myndir"
-
-#~ msgid "photos %1$u-%2$u of %3$u"
-#~ msgstr "myndir %1$u-%2$u af %3$u"
-
-#~ msgid "%u albums,&nbsp;1 photo"
-#~ msgstr "%u albúm,&nbsp;1 mynd"
-
-#~ msgid "%1$u albums,&nbsp;%2$u photos"
-#~ msgstr "%1$u albúm,&nbsp;%2$u myndir"
-
-#~ msgid "Ported to zenPhoto by Mark Galeassi and Stephen Billard"
-#~ msgstr "Yfirfært í zenPhoto af Mark Galeassi og Stephen Billard"
-
-#~ msgid "Recently Updated Galleries"
-#~ msgstr "Nýlega uppfærð gallerý"
-
-#~ msgid "Gallery data"
-#~ msgstr "Gallerýsgögn"
-
-#~ msgid "Galleries"
-#~ msgstr "Gallerý"
-
-#~ msgid ""
-#~ "<a href=\"http://stopdesign.com/templates/photos/\">Photo Templates</a> "
-#~ "from Stopdesign."
-#~ msgstr ""
-#~ "<a href=\"http://stopdesign.com/templates/photos/\">Ljósmyndasnið</a> frá "
-#~ "Stopdesign."
-
-#~ msgid "Check to enable comment section."
-#~ msgstr "Smelltu til að opna fyrir ummæli."
-
-#~ msgid "Select what you want for the six special slides."
-#~ msgstr "Veldu hvað þú vilt fyrir glærurnar sex."
-
-#~ msgid "%1$u of %2$u photos"
-#~ msgstr "%1$u af %2$u myndum"
-
-#~ msgid "Full Size"
-#~ msgstr "Full stærð"
-
-#~ msgid "SHOW"
-#~ msgstr "SÝNA"
-
-#~ msgid "HIDE"
-#~ msgstr "FELA"
-
-#~ msgid "1 comment so far"
-#~ msgstr "1 ummæli til þessa"
-
-#~ msgid "Link to Comment %u"
-#~ msgstr "Hlekkur í ummæli %u"
-
-#~ msgid "%s wrote:"
-#~ msgstr "%s skrifaði:"
-
-#~ msgid "(not displayed)"
-#~ msgstr "(ekki sýnt)"
-
-#~ msgid "Avoid clicking &ldquo;Post&rdquo; more than once."
-#~ msgstr "Forðastu smella á &ldquo;Post&rdquo; oftar en einu sinni."
-
-#~ msgid "Photo Templates</a> from Stopdesign."
-#~ msgstr "Ljósmyndasnið</a> frá Stopdesign."
-
-#~ msgid "Comments (%u)"
-#~ msgstr "Ummæli (%u)"
-
-#~ msgid "Comments are closed."
-#~ msgstr "Lokað er fyrir ummæli."
-
-#~ msgid "Please use the form below to contact us."
-#~ msgstr ""
-#~ "Vinsamlegast notaðu formið hér að neðan til að hafa samband við okkur."
-
-#~ msgid "Open in a new window"
-#~ msgstr "Opna í nýjum glugga"
-
-#~ msgid "says:"
-#~ msgstr "segir:"
-
-#~ msgid "Albums: %u"
-#~ msgstr "Albúm: %u"
-
-#~ msgid "Subalbums: %u"
-#~ msgstr "Undiralbúm: %u"
-
-#~ msgid "Get Adobe Flash."
-#~ msgstr "Sæktu Adoble Flash."
-
-#~ msgid "View Gallery Without Flash"
-#~ msgstr "Skoða gallerý án Flash."
-
-#~ msgid "Open In New Window"
-#~ msgstr "Opna í nýjum glugga"
-
-#~ msgid "%u albums(s)"
-#~ msgstr "%u albúm"
-
-#~ msgid "Effervescence %s (not found)"
-#~ msgstr "Effervescence %s (fannst ekki)"
-
-#~ msgid "zenphoto gallery"
-#~ msgstr "zenphoto gallerý"
-
-#~ msgid "next &raquo;"
-#~ msgstr "næsta &raquo;"
-
-#~ msgid "&laquo; prev"
-#~ msgstr "&laquo; fyrri"
-
-#~ msgid "get Adobe Flash."
-#~ msgstr "sæktu Adobe Flash."
-
-#~ msgid ""
-#~ "Simpleviewer requires <em>mod_rewrite</em> to be set. Simpleviewer is "
-#~ "disabled."
-#~ msgstr ""
-#~ "Simpleviewer þarfnast þess að <em>mod_rewrite</em> sé virkt. Simpleviewer "
-#~ "er óvirkur."
-
-#~ msgid ""
-#~ "Based on Effervescence 1.1 with multiple personalities (slimbox, "
-#~ "simpleviewer and smoothgallery) added. Select different color schemes and "
-#~ "personalities from the Admin Options tab."
-#~ msgstr ""
-#~ "Byggt á Effervescence 1.1 með mörgum persónuleikum (slimbox, simpleviewer "
-#~ "og smoothgallery) bætt við. Þú getur valið annað litaskema og "
-#~ "persónuleika í stjórnendastillingaflipanum."
-
-#~ msgid "Simpleviewer"
-#~ msgstr "Simpleviewer"
-
-#~ msgid "Slimbox"
-#~ msgstr "Slimbox"
-
-#~ msgid "Smoothgallery"
-#~ msgstr "Smoothgallery"
-
-#~ msgid "<h3>No Comments</h3>"
-#~ msgstr "<h3>Engin ummæli</h3>"
-
-#~ msgid "<h3>1 Comment</h3>"
-#~ msgstr "<h3>1 ummæli</h3>"
-
-#~ msgid "<h3>%u Comments</h3>"
-#~ msgstr "<h3>%u ummæli</h3>"
-
-#~ msgid "Leave a Reply"
-#~ msgstr "Skilja eftir svar"
-
-#~ msgid ""
-#~ "The flv_playlist plugin is not enabled. It must be enabled for this "
-#~ "option to have effect."
-#~ msgstr ""
-#~ "flv_playlist íbótin er ekki virk. Hún þarf að vera virk til að þessi "
-#~ "valmöguleiki hafi áhrif."
-
-#~ msgid ""
-#~ "The flvplayer plugin is not enabled. It must be enabled for this option "
-#~ "to have effect."
-#~ msgstr ""
-#~ "flvplayer íbótin er ekki virk. Hún þarf að vera virk til að þessi "
-#~ "valmöguleiki hafi áhrif."
-
-#~ msgid ""
-#~ "Check and the theme will use the flv_playlist plugin in place of the "
-#~ "next_image loop."
-#~ msgstr ""
-#~ "Ef þú velur þetta mun þemað nota flv_playlist íbótina í stað next_image "
-#~ "lykkjunnar."
-
-#~ msgid "flv playlist option"
-#~ msgstr "flv spilunarlistastilling"
-
-#~ msgid "<strong>One</strong> comment"
-#~ msgstr "<strong>Eitt</strong> ummæli"
-
-#~ msgid "E-Mail (won't be public):"
-#~ msgstr "Netfang (ekki gert opinbert):"
-
-#~ msgid "%u seconds"
-#~ msgstr "%u sekúndur"
-
-#~ msgid "The Zenphoto object you are requesting cannot be found,"
-#~ msgstr "Zenphoto hluturinn sem þú baðst um fannst ekki."
-
-#~ msgid ""
-#~ "This theme was designed to show off many of ZenPhoto's features. It "
-#~ "includes many template tags and doesn't look half bad. Also a great "
-#~ "example if you want to make your own theme or integrate ZenPhoto into a "
-#~ "blog."
-#~ msgstr ""
-#~ "Þetta þema var búið til til að sýna fram á alls konar virkni í ZenPhoto. "
-#~ "Það inniheldur mörg sniðtög og lítur ágætlega út. Það er líka gott dæmi "
-#~ "ef þú vilt búa til þitt eigið þema eða blanda ZenPhoto við blogg."

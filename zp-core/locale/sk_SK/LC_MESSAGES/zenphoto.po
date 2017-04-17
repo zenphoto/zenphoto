@@ -1,9 +1,10 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: ZenPhoto20 1.0.0\n"
+"Project-Id-Version: ZenPhoto20\n"
+
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-16 17:41-0700\n"
-"PO-Revision-Date: 2017-04-16 17:41-0700\n"
+"POT-Creation-Date: 2017-04-17 09:25-0700\n"
+"PO-Revision-Date: 2017-04-17 09:54-0700\n"
 "Last-Translator: Stephen <stephen@sbillard.org>\n"
 "Language-Team: Jakub Meisner <jakub@jlfoto.sk>\n"
 "Language: sk_SK\n"
@@ -17,6 +18,7 @@ msgstr ""
 "X-Poedit-Basepath: ../../../..\n"
 "X-Poedit-SearchPath-0: zp-core/locale/sk_SK/LC_MESSAGES/zenphoto.po\n"
 "X-Poedit-SearchPath-1: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
 
 #: plugins/cacheHeader.php:18
 msgid "Outputs a \"Cache-control\" header with selected caching options."
@@ -266,7 +268,7 @@ msgstr "Menu “%s” už existuje"
 #, fuzzy, php-format
 #| msgid "Database tables to create: %s"
 msgid "Unable to create %s."
-msgstr "Vytvoriť v:"
+msgstr "Databázové tabuľky, ktoré sa vytvoria: %s"
 
 #: plugins/customData.php:26
 msgid "This plugin exposes the \"custom_data\" field on objects."
@@ -501,7 +503,7 @@ msgstr "Súbory javaskriptu (.js)"
 #, fuzzy
 #| msgid "Process changes"
 msgid "unprocessed heading items"
-msgstr "Viditeľné položky"
+msgstr "Minimum položiek"
 
 #: plugins/headConsolidator.php:112
 #, fuzzy
@@ -543,18 +545,18 @@ msgstr ""
 #, fuzzy
 #| msgid "Plugins"
 msgid "Plugins » all"
-msgstr "zásuvné moduly"
+msgstr "Zásuvné moduly"
 
 #: plugins/pluginEnabler.php:48
 #, fuzzy
 #| msgid "Enable Zenpage CMS plugin"
 msgid "Enables all plugins."
-msgstr "V zásuvných moduloch používateľa"
+msgstr "Dostupné zásuvné moduly"
 
 #: plugins/pluginEnabler.php:57
 #, fuzzy
 msgid "Plugins » remembered"
-msgstr "V zásuvných moduloch používateľa"
+msgstr "Dostupné zásuvné moduly"
 
 #: plugins/pluginEnabler.php:61
 msgid "Restores the plugin states to what was remembered."
@@ -563,7 +565,7 @@ msgstr ""
 #: plugins/pluginEnabler.php:70
 #, fuzzy
 msgid "Plugins ¤ current"
-msgstr "zásuvné moduly"
+msgstr "Zásuvné moduly"
 
 #: plugins/pluginEnabler.php:74
 msgid "Remembers current plugin states."
@@ -573,7 +575,7 @@ msgstr ""
 #, fuzzy
 #| msgid "Plugins"
 msgid "Plugins × all"
-msgstr "zásuvné moduly"
+msgstr "Zásuvné moduly"
 
 #: plugins/pluginEnabler.php:87
 msgid "Disables all plugins except pluginEnabler."
@@ -587,7 +589,7 @@ msgstr ""
 #, fuzzy
 #| msgid "Uploading is disabled."
 msgid "Plugins disabled"
-msgstr "zásuvné moduly"
+msgstr "Zásuvné moduly"
 
 #: plugins/pluginEnabler/handler.php:29
 #, fuzzy
@@ -1878,7 +1880,7 @@ msgstr ""
 #, fuzzy
 #| msgid "View gallery index"
 msgid "Separate gallery index"
-msgstr "Indexová stránka galérie"
+msgstr "Zobraziť index galérie"
 
 #: themes/effervescence+/themeoptions.php:90
 msgid "Check to move the gallery index from the home page to gallery.php."
@@ -2506,7 +2508,7 @@ msgstr ""
 #, fuzzy
 #| msgid "Theme setup:"
 msgid "Theme used:"
-msgstr "Šablóna"
+msgstr "šablóna"
 
 #: themes/paradigm/credits.php:35 zp-core/class-feed.php:426
 #: zp-core/zp-extensions/comment_form/functions.php:821
@@ -2568,9 +2570,7 @@ msgstr "Chyba"
 #: themes/paradigm/includes/_gallery.php:12 themes/zpfocus/inc-sidebar.php:43
 #, fuzzy
 msgid "About"
-msgstr ""
-"Všetky komentáre k tejto položke si môžete prezrieť tu:\n"
-"%1$s"
+msgstr "Pripravené aktualizovať tabuľky"
 
 #: themes/paradigm/includes/_gallery.php:17 themes/zpArdoise/inc_footer.php:32
 #: themes/zpArdoise/inc_header.php:82 themes/zpBootstrap/home.php:54
@@ -2693,7 +2693,7 @@ msgstr "nahodne"
 #, fuzzy
 #| msgid "Popular Tags"
 msgid "Popular"
-msgstr "(Najpopulárnejšie články)"
+msgstr "Najpopulárnejšie albumy"
 
 #: themes/paradigm/themeoptions.php:64
 #, fuzzy
@@ -2820,7 +2820,7 @@ msgstr "Domovská stránka"
 #: themes/paradigm/themeoptions.php:92
 #, fuzzy
 msgid "Latest pictures"
-msgstr "najnovšie podľa ID"
+msgstr "najnovšie"
 
 #: themes/paradigm/themeoptions.php:93
 #, fuzzy
@@ -2851,7 +2851,7 @@ msgstr ""
 #: themes/paradigm/themeoptions.php:99
 #, fuzzy
 msgid "ShareThis id"
-msgstr "najnovšie podľa ID"
+msgstr "ID používateľa"
 
 #: themes/paradigm/themeoptions.php:99
 msgid "Provide your <a href=\"http://www.sharethis.com\">ShareThis</a> ID"
@@ -2860,7 +2860,7 @@ msgstr ""
 #: themes/paradigm/themeoptions.php:100
 #, fuzzy
 msgid "AddThis code"
-msgstr "PSČ:"
+msgstr "%sPSČ:"
 
 #: themes/paradigm/themeoptions.php:100
 msgid ""
@@ -3155,7 +3155,7 @@ msgstr "|"
 #: themes/zpArdoise/themeoptions.php:64
 #, fuzzy
 msgid "Use this file as logo"
-msgstr "Logo stránky"
+msgstr "Logo šablóny"
 
 #: themes/zpArdoise/themeoptions.php:64
 #, fuzzy
@@ -3212,7 +3212,7 @@ msgstr ""
 #: themes/zpArdoise/themeoptions.php:69
 #, fuzzy
 msgid "Show Archive link"
-msgstr "Archív článkov"
+msgstr "Archív"
 
 #: themes/zpArdoise/themeoptions.php:69
 #, fuzzy
@@ -3264,7 +3264,7 @@ msgstr ""
 #: themes/zpArdoise/themeoptions.php:74
 #, fuzzy
 msgid "Galleriffic slideshow delay"
-msgstr "Pre prezentáciu nie su obrázky!"
+msgstr "spustiť prezentáciu"
 
 #: themes/zpArdoise/themeoptions.php:74
 #, fuzzy
@@ -3481,7 +3481,7 @@ msgstr "nápoveda:"
 #: themes/zpEnlighten/search.php:122
 #, fuzzy, php-format
 msgid "%s "
-msgstr "%1$s: %2$s"
+msgstr "%s"
 
 #: themes/zpEnlighten/search.php:125
 #, fuzzy, php-format
@@ -3687,7 +3687,7 @@ msgstr "Požadované heslo"
 #: themes/zpminimal/inc-header.php:103 themes/zpskeleton/inc-header.php:103
 #, fuzzy
 msgid "404 Not Found..."
-msgstr "Album nebol nájdený"
+msgstr "Objekt nenájdený"
 
 #: themes/zpfocus/inc-header.php:159 themes/zpfocus/inc-header.php:173
 #: themes/zpmasonry/inc-footer.php:33 themes/zpmasonry/inc-header.php:144
@@ -3720,7 +3720,7 @@ msgstr "Prezrieť galériu"
 #: themes/zpfocus/inc-sidebar.php:52
 #, fuzzy
 msgid "More News"
-msgstr "Čítať viac"
+msgstr "Ukázať viac"
 
 #: themes/zpfocus/inc-sidebar.php:75
 #, fuzzy
@@ -3730,7 +3730,7 @@ msgstr "(najnovšie komentáre)"
 #: themes/zpfocus/inc-sidebar.php:80
 #, fuzzy
 msgid "Latest News Comments"
-msgstr "(Najnovší článok)"
+msgstr "Najnovšie články"
 
 #: themes/zpfocus/inc-sidebar.php:91 themes/zpmasonry/news.php:16
 #: themes/zpskeleton/news.php:105 zp-core/utilities/gallery_statistics.php:85
@@ -3788,7 +3788,7 @@ msgstr "Text nad sitename na domovskej stránke."
 #: themes/zpfocus/themeoptions.php:67
 #, fuzzy
 msgid "Album Menu Type"
-msgstr "menu"
+msgstr "Menu"
 
 #: themes/zpfocus/themeoptions.php:67
 #, fuzzy
@@ -3804,7 +3804,7 @@ msgstr ""
 #: themes/zpfocus/themeoptions.php:68
 #, fuzzy
 msgid "Show Archive Link"
-msgstr "Archív článkov"
+msgstr "Archív"
 
 #: themes/zpfocus/themeoptions.php:68
 #, fuzzy
@@ -3887,7 +3887,7 @@ msgstr ""
 #: themes/zpminimal/themeoptions.php:37
 #, fuzzy
 msgid "Colorbox Style"
-msgstr "CSS súbory (.css)"
+msgstr "colorbox"
 
 #: themes/zpfocus/themeoptions.php:76 themes/zpmasonry/themeoptions.php:116
 #: themes/zpminimal/themeoptions.php:37
@@ -3955,7 +3955,7 @@ msgstr ""
 #: themes/zpfocus/themeoptions.php:81
 #, fuzzy
 msgid "Random Image Option?"
-msgstr "(Náhodné články)"
+msgstr "Náhodný obrázok..."
 
 #: themes/zpfocus/themeoptions.php:81
 #, fuzzy
@@ -3979,7 +3979,7 @@ msgstr "Výber prechodového efektu, ak je rotátorovej je vybraté vyššie."
 #: themes/zpfocus/themeoptions.php:83
 #, fuzzy
 msgid "Rotator Speed?"
-msgstr "Prezentácia: rýchlosť"
+msgstr "Rýchlosť"
 
 #: themes/zpfocus/themeoptions.php:83
 #, fuzzy
@@ -4201,12 +4201,12 @@ msgstr ""
 #: themes/zpmasonry/album.php:16 themes/zpmasonry/favorites.php:18
 #, fuzzy
 msgid "subalbum"
-msgstr "Úroveň podalbumov \"zozamu\""
+msgstr "zobraziť miniatúry podalbumu"
 
 #: themes/zpmasonry/album.php:40 themes/zpmasonry/favorites.php:42
 #, fuzzy
 msgid "number"
-msgstr "Zobrazí číslo aktuálnej strany."
+msgstr "Číslo POP portu."
 
 #: themes/zpmasonry/album.php:40 themes/zpmasonry/favorites.php:42
 #, fuzzy
@@ -4323,18 +4323,18 @@ msgstr "spustiť prezentáciu"
 #: themes/zpmasonry/inc-footer.php:17
 #, fuzzy
 msgid "Loading additional pages..."
-msgstr "Stránky:"
+msgstr "Stránky"
 
 #: themes/zpmasonry/inc-footer.php:19
 #, fuzzy
 msgid "No more pages to load..."
-msgstr "Stránky:"
+msgstr "Stránky"
 
 #: themes/zpmasonry/inc-menu.php:12 themes/zpskeleton/album.php:139
 #: themes/zpskeleton/favorites.php:134 themes/zpskeleton/image.php:91
 #, fuzzy
 msgid "Latest Images of this Album"
-msgstr "(Najnovšie správy a obrázky)"
+msgstr "Najnovšie obrázky v %s"
 
 #: themes/zpmasonry/inc-menu.php:13 themes/zpskeleton/album.php:146
 #: themes/zpskeleton/favorites.php:135 themes/zpskeleton/image.php:92
@@ -4395,7 +4395,7 @@ msgstr "Vyberte štýl celkovú farbu tmavé alebo svetlé."
 #: themes/zpmasonry/themeoptions.php:76
 #, fuzzy
 msgid "General Thumb Sizes"
-msgstr "Miniatúra"
+msgstr "miniatúra ="
 
 #: themes/zpmasonry/themeoptions.php:78
 #, fuzzy
@@ -4516,7 +4516,7 @@ msgstr ""
 #: themes/zpmasonry/themeoptions.php:105 themes/zpminimal/themeoptions.php:38
 #, fuzzy
 msgid "Disable MetaData Display?"
-msgstr "Metadáta:"
+msgstr "Metadáta"
 
 #: themes/zpmasonry/themeoptions.php:107 themes/zpminimal/themeoptions.php:38
 #, fuzzy
@@ -4576,7 +4576,7 @@ msgstr ""
 #: themes/zpmasonry/themeoptions.php:131
 #, fuzzy
 msgid "Frontpage Slideshow Option"
-msgstr "Pre prezentáciu nie su obrázky!"
+msgstr "spustiť prezentáciu"
 
 #: themes/zpmasonry/themeoptions.php:133
 #, fuzzy
@@ -4617,7 +4617,7 @@ msgstr "Vyberte oneskorenie každej otáčke slideshow v milisekundách."
 #: themes/zpmasonry/themeoptions.php:143 themes/zpskeleton/themeoptions.php:49
 #, fuzzy
 msgid "Use News Feature"
-msgstr "[článok]"
+msgstr "správy"
 
 #: themes/zpmasonry/themeoptions.php:145 themes/zpskeleton/themeoptions.php:51
 #, fuzzy
@@ -4631,12 +4631,12 @@ msgstr ""
 #: themes/zpminimal/404.php:14
 #, fuzzy
 msgid "Back to Gallery Index →"
-msgstr "Indexová stránka galérie"
+msgstr "Zobraziť index galérie"
 
 #: themes/zpminimal/inc-footer.php:24
 #, fuzzy
 msgid "Subalbum"
-msgstr "Úroveň podalbumov \"zozamu\""
+msgstr "zobraziť miniatúry podalbumu"
 
 #: themes/zpminimal/inc-footer.php:26 themes/zpmobile/functions.php:44
 #: zp-core/admin-functions.php:542 zp-core/admin-functions.php:5116
@@ -4675,7 +4675,7 @@ msgstr "Prihlásiť"
 #: themes/zpminimal/themeoptions.php:33
 #, fuzzy
 msgid "Home Page Image Option"
-msgstr "Stop a návrat na stránku albumu či obrázku"
+msgstr "Použiť tento efekt na obrázok indexovej stránky."
 
 #: themes/zpminimal/themeoptions.php:33
 #, fuzzy
@@ -4851,7 +4851,7 @@ msgstr ""
 #: themes/zpskeleton/404.php:6
 #, fuzzy
 msgid "404 not found"
-msgstr "Album nebol nájdený"
+msgstr "Objekt nenájdený"
 
 #: themes/zpskeleton/archive.php:22
 #, fuzzy
@@ -4863,7 +4863,7 @@ msgstr ""
 #: themes/zpskeleton/functions.php:188
 #, fuzzy
 msgid "Click for Detail Page"
-msgstr "Ak sa chcete zaregistrovať na telto stránke kliknite sem."
+msgstr "Tento zásuvný modul je deaktivovaný. Kliknite pre detaily."
 
 #: themes/zpskeleton/image.php:79
 #, fuzzy
@@ -4928,7 +4928,7 @@ msgstr "Heslo:"
 #: themes/zpskeleton/register_user/register_user_form.php:33
 #, fuzzy
 msgid "Re-enter:"
-msgstr "Vložiť CAPTCHA<strong>*</strong>"
+msgstr "Zadajte vyhľadávacie slová."
 
 #: themes/zpskeleton/themeoptions.php:52
 #, fuzzy
@@ -6143,7 +6143,7 @@ msgstr "Zoznam podalbumov"
 #, fuzzy
 #| msgid "Unprotected"
 msgid "un-protected"
-msgstr "Chránené"
+msgstr "chránené"
 
 #: zp-core/admin-functions.php:2426
 #: zp-core/zp-extensions/zenpage/admin-functions.php:240
@@ -6416,7 +6416,7 @@ msgstr "ok"
 #, fuzzy
 #| msgid "New category"
 msgid "New categorys:"
-msgstr "Nový žiadateľ:"
+msgstr "Nový podalbum"
 
 #: zp-core/admin-functions.php:4195
 #, fuzzy
@@ -6758,7 +6758,7 @@ msgstr "Žiadne protokoly na zobrazenie."
 #, fuzzy, php-format
 #| msgid "options"
 msgid "%1$s options"
-msgstr "Natavenia pre <em>%s</em>"
+msgstr "Zmeniť nastavenia %s"
 
 #: zp-core/admin-options.php:109
 msgid "Forbidden tag."
@@ -6815,7 +6815,7 @@ msgstr ""
 #: zp-core/admin-plugins.php:136
 #, fuzzy, php-format
 msgid "%1$s plugins"
-msgstr "zásuvné moduly"
+msgstr "Zásuvné moduly"
 
 #: zp-core/admin-plugins.php:152
 #, fuzzy
@@ -6869,7 +6869,7 @@ msgstr "Dostupné zásuvné moduly"
 #: zp-core/admin-plugins.php:194 zp-core/admin-plugins.php:417
 #, fuzzy
 msgid "Supplemental plugin"
-msgstr "Zásuvný modul TinyMCE"
+msgstr "Oficiálny zásuvný modul"
 
 #: zp-core/admin-plugins.php:199
 #, fuzzy
@@ -6929,7 +6929,7 @@ msgstr "zásuvný modul"
 #, fuzzy
 #| msgid "theme plugin"
 msgid "feature plugin"
-msgstr "Zásuvný modul TinyMCE"
+msgstr "Oficiálny zásuvný modul"
 
 #: zp-core/admin-plugins.php:303
 msgid "theme plugin"
@@ -6967,7 +6967,7 @@ msgstr "zásuvný modul"
 #, fuzzy
 #| msgid "theme plugin"
 msgid "Feature plugin"
-msgstr "Zásuvný modul TinyMCE"
+msgstr "Oficiálny zásuvný modul"
 
 #: zp-core/admin-plugins.php:421
 #, fuzzy
@@ -7080,7 +7080,7 @@ msgstr "Správa tagov"
 #: zp-core/admin-tags.php:134
 #, fuzzy
 msgid "Order by"
-msgstr "Poradie v kanály obrázkov:"
+msgstr "poradie obrázkov"
 
 #: zp-core/admin-tags.php:137
 #, fuzzy
@@ -8352,7 +8352,7 @@ msgstr "mod_rewrite obrázková prípona:"
 #: zp-core/admin_options/general.php:237
 #, fuzzy
 msgid "unique images"
-msgstr "Obrázky podľa dátumu"
+msgstr "Obrázky:"
 
 #: zp-core/admin_options/general.php:247
 msgid ""
@@ -9858,7 +9858,7 @@ msgstr ""
 #, fuzzy, php-format
 #| msgid "Graphics support: <strong>%s</strong>"
 msgid "Authentication authority: <strong>%s</strong>"
-msgstr "Firma<strong>%s</strong>:"
+msgstr "PSČ<strong>%s</strong>:"
 
 #: zp-core/admin_options/theme.php:212
 #, php-format
@@ -13242,7 +13242,7 @@ msgstr "inštalácia"
 #, fuzzy
 #| msgid "Updated configuration file"
 msgid "The configuration file is missing."
-msgstr "Konfiguračný súbor sa aktualizuje"
+msgstr "Nastavenie databázy v konfiguračnom súbore"
 
 #: zp-core/reconfigure.php:104
 msgid "The <code>db_software</code> specification is not valid."
@@ -13288,7 +13288,7 @@ msgstr "Informácie o nastavení PHP."
 #, fuzzy
 #| msgid "User id has been preempted"
 msgid "setup has been requested by:"
-msgstr "ID používateľa bolo rezervované"
+msgstr "Požiadavka na obnovenie bola odoslaná."
 
 #: zp-core/reconfigure.php:266
 #, php-format
@@ -13761,7 +13761,7 @@ msgstr "Rozšírenie PHP <code>mbstring</code> [nenájdené]"
 #, fuzzy
 #| msgid "PHP <code>setlocale()</code>"
 msgid "PHP <code>default_charset</code>"
-msgstr "PHP <code>Register Globals</code>"
+msgstr "PHP <code>setlocale()</code>"
 
 #: zp-core/setup/index.php:672
 #, fuzzy, php-format
@@ -14287,12 +14287,12 @@ msgstr ""
 #: zp-core/setup/index.php:1137
 #, fuzzy
 msgid "ZenPhoto20 files"
-msgstr "súbory"
+msgstr "Súbory"
 
 #: zp-core/setup/index.php:1167
 #, fuzzy
 msgid "ZenPhoto20 package [missing]"
-msgstr "Chýba"
+msgstr "chýba"
 
 #: zp-core/setup/index.php:1167
 #, fuzzy
@@ -15891,7 +15891,7 @@ msgstr ""
 #, fuzzy
 #| msgid "clear password"
 msgid "LDAP reader password"
-msgstr "Požadované heslo"
+msgstr "Heslo albumu:"
 
 #: zp-core/zp-extensions/LDAP_auth.php:63
 #, fuzzy
@@ -15901,7 +15901,7 @@ msgstr "Musíte zadať heslo pre používateľa Zoznamu sťahovania"
 #: zp-core/zp-extensions/LDAP_auth.php:66
 #, fuzzy
 msgid "LDAP Group map"
-msgstr "Mapa"
+msgstr "bez skupiny"
 
 #: zp-core/zp-extensions/LDAP_auth.php:68
 msgid "Mapping of LDAP groups to ZenPhoto20 groups"
@@ -16041,8 +16041,8 @@ msgstr ""
 #, fuzzy
 msgid "Memory"
 msgstr ""
-"Viac robotníkov spraví prácu rýchlejšie, teda pokial váš server nevytuhne, "
-"alebo nebude mať dostatok pamäte."
+"PHP limit pamäte: <strong>%1$s</strong> (Poznámka: Server môže prideliť "
+"menej!)"
 
 #: zp-core/zp-extensions/accessThreshold.php:49
 msgid "The number unique access attempts to keep."
@@ -16069,9 +16069,7 @@ msgstr ""
 #: zp-core/zp-extensions/accessThreshold.php:56
 #, fuzzy
 msgid "Mask"
-msgstr ""
-"<em>Rádius</em>: Rozsah doostrovacej masky v pixeloch. Menší rádius "
-"doostruje menšie detaily, väčší doostruje väčšie detaily."
+msgstr "Doostrovanie obrázkov a/alebo miniatúr."
 
 #: zp-core/zp-extensions/accessThreshold.php:58
 msgid "IP mask to determine the IP elements sensitivity"
@@ -16163,7 +16161,7 @@ msgstr "Nemáte prístup"
 #, fuzzy
 #| msgid "Sort gallery by:"
 msgid "Sort by:"
-msgstr "Na zoradenie nebol vybraný žiaden album."
+msgstr "Zoradiť obrázky"
 
 #: zp-core/zp-extensions/accessThreshold/admin_tab.php:149
 #, fuzzy
@@ -16861,7 +16859,7 @@ msgstr "Invalid album instantiation: %s neexistuje."
 #, fuzzy, php-format
 #| msgid "Invalid image instantiation: file does not exist"
 msgid "Invalid %s instantiation: file does not exist"
-msgstr "Invalid album instantiation: %s neexistuje."
+msgstr "Invalid image instantiation: súbor neexistuje"
 
 #: zp-core/zp-extensions/class-video.php:18
 #, fuzzy
@@ -18268,7 +18266,7 @@ msgstr "Naviaže cookies na IP adresu prehliadača."
 #: zp-core/zp-extensions/debug/admin_tab.php:221
 #, fuzzy
 msgid "Sub-Language"
-msgstr "Jazyk:"
+msgstr "Podlokácia"
 
 #: zp-core/zp-extensions/debug/admin_tab.php:222
 #, fuzzy
@@ -18322,7 +18320,7 @@ msgstr "funkcia"
 #: zp-core/zp-extensions/deprecated-functions.php:154
 #, fuzzy, php-format
 msgid "theme %1$s:%2$s"
-msgstr "%1$s: obrázok %2$s"
+msgstr "Effervescence %1$s %2$s"
 
 #: zp-core/zp-extensions/deprecated-functions.php:157
 #, fuzzy, php-format
@@ -18382,7 +18380,7 @@ msgstr "V zásuvných moduloch používateľa"
 #: zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:60
 #, fuzzy
 msgid "In ZenPhoto20 code"
-msgstr "<code>%s</code> sa nedá vyvolať"
+msgstr "PHP <code>Sessions</code>."
 
 #: zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:66
 msgid "In Codeblocks"
@@ -19061,7 +19059,7 @@ msgstr "Obľúbené"
 #: zp-core/zp-extensions/favoritesAlbums/admin-album.php:95
 #, fuzzy
 msgid "favorite"
-msgstr "Kto je váš obľúbený spevák?"
+msgstr "Pridať obľúbené"
 
 #: zp-core/zp-extensions/favoritesHandler.php:48
 msgid "Support for <em>favorites</em> handling."
@@ -21992,7 +21990,7 @@ msgstr "Šablóny sú vysvietené."
 #, fuzzy
 #| msgid "Change %s options"
 msgid "Orphaned options"
-msgstr "Nastavenia URL"
+msgstr "nastavenie"
 
 #: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:223
 #, fuzzy
@@ -22239,7 +22237,7 @@ msgstr "Nuluje všetky počítadlá"
 #: zp-core/zp-extensions/rating.php:127
 #, fuzzy
 msgid "Allows rating to be zero."
-msgstr "Nuluje všetky počítadlá"
+msgstr "XMP hodnotenie"
 
 #: zp-core/zp-extensions/rating.php:128
 msgid "Disguise IP"
@@ -24537,7 +24535,7 @@ msgstr ""
 #: zp-core/zp-extensions/tinymce.php:54
 #, fuzzy
 msgid "Text editor configuration - zenpage"
-msgstr "Textový editor TinyMCE 4.x"
+msgstr "Nastavenia editoru komentárov"
 
 #: zp-core/zp-extensions/tinymce.php:58
 msgid ""
@@ -24608,7 +24606,7 @@ msgstr "Vyvorí odkaz na kategórie správ Zenpage."
 #: zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:80
 #, fuzzy, php-format
 msgid "<em>page</em>: %s"
-msgstr "Odkaz pre <em>%s</em> stránku skriptu."
+msgstr "Stránka <em>%s</em> sa nenašla"
 
 #: zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:81
 #, fuzzy
@@ -24686,7 +24684,7 @@ msgstr "Úryvok obrázku"
 #: zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:304
 #, fuzzy
 msgid "title only"
-msgstr "titul"
+msgstr "Titul"
 
 #: zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:316
 msgid "Click to bring up the custom cropping page."
@@ -25837,7 +25835,7 @@ msgstr "Clona"
 #: zp-core/zp-extensions/xmpMetadata.php:624
 #, fuzzy
 msgid "Exposure program"
-msgstr "Manuálna expozícia"
+msgstr "Kompenzácia expozície"
 
 #: zp-core/zp-extensions/xmpMetadata.php:1148
 msgid "Metadata exported"
@@ -26370,7 +26368,7 @@ msgstr "Vymazanie kategórie zlyhalo!"
 #, fuzzy
 #| msgid "Unprotected"
 msgid "not protected"
-msgstr "Chránené"
+msgstr "chránené"
 
 #: zp-core/zp-extensions/zenpage/admin-functions.php:277
 #: zp-core/zp-extensions/zenpage/admin-functions.php:280
@@ -26496,7 +26494,7 @@ msgstr "Usporiadať podľa názvu zostupne"
 #, fuzzy
 #| msgid "Order by date ascending"
 msgid "Order by last change ascending"
-msgstr "Usporiadať podľa názvu vzostupne"
+msgstr "Usporiadať podľa dátumu vzostupne"
 
 #: zp-core/zp-extensions/zenpage/admin-functions.php:706
 msgid "Order by title descending"
@@ -26560,7 +26558,7 @@ msgstr "Zrušiť zverejnenie"
 #, fuzzy
 #| msgid "(Page scheduled for publishing)"
 msgid "scheduled for publishing"
-msgstr "(Stránka má naplánované uverejnenie)"
+msgstr "Zverejnené/Nezverejnené/Plánované zverejnenie"
 
 #: zp-core/zp-extensions/zenpage/admin-functions.php:997
 #, fuzzy
@@ -26876,3438 +26874,3 @@ msgid ""
 msgstr ""
 "Používaná veľkosť ak je písmo zväčšovateľné (<em>TTF</em> a <em>Imagick</em> "
 "písma)."
-
-#, fuzzy
-#~ msgid "The Object you are requesting cannot be found."
-#~ msgstr "Nedá sa nájsť objekt žiadate."
-
-#, fuzzy
-#~ msgid "The page you are requesting cannot be found."
-#~ msgstr "Stránky, ktoré požadujete sa nedá nájsť."
-
-#, fuzzy
-#~ msgid "Subject<strong>%s</strong>:"
-#~ msgstr "Predmet<strong>*</strong>"
-
-#, fuzzy
-#~ msgid "Message<strong>%s</strong>:"
-#~ msgstr "Správa<strong>*</strong>"
-
-#, fuzzy
-#~ msgid "Sorry, the page you are requesting cannot be found."
-#~ msgstr "Ľutujeme, stránka žiadate sa nenašla."
-
-#~ msgid "No album provided to sort."
-#~ msgstr "Na zoradenie nebol vybraný žiaden album."
-
-#~ msgid "Current sort: <em>%1$s%2$s</em>. "
-#~ msgstr "Aktuálne usporiadanie: <em>%1$s%2$s</em>. "
-
-#~ msgid ""
-#~ "Select an album to edit its description and data, or <a href=\"?"
-#~ "page=edit&amp;album=%s&amp;massedit\">mass-edit</a> all first level "
-#~ "subalbums."
-#~ msgstr ""
-#~ "Označte album, u ktorého chete upraviť popis či obsah, alebo <a href=\"?"
-#~ "page=edit&amp;album=%s&amp;massedit\">upravte hromadne</a> všetky albumy "
-#~ "prvej úrovne."
-
-#~ msgid "Future publishing date."
-#~ msgstr "Dátum budúceho uverejnenia."
-
-#~ msgid "Owner:"
-#~ msgstr "Majiteľ:"
-
-#~ msgid "Title:"
-#~ msgstr "Názov:"
-
-#~ msgid "Description:"
-#~ msgstr "Popis:"
-
-#, fuzzy
-#~ msgid "show content"
-#~ msgstr "Kliknutím zobrazíte obsah"
-
-#~ msgid "Metadata:"
-#~ msgstr "Metadáta:"
-
-#~ msgid "Codeblocks:"
-#~ msgstr "Kódové bloky:"
-
-#~ msgid "Edit Gallery"
-#~ msgstr "Upraviť galériu"
-
-#~ msgid "Current sort: <em>%1$s%2$s</em>."
-#~ msgstr "Aktuálne usporiadanie: <em>%1$s%2$s</em>. "
-
-#~ msgid ""
-#~ "Select an album to edit its description and data, or <a href=\"?"
-#~ "page=edit&amp;massedit\">mass-edit</a> all gallery level albums."
-#~ msgstr ""
-#~ "Označte album, u ktorého chete upraviť popis či obsah, alebo <a href=\"?"
-#~ "page=edit&amp;album=%s&amp;massedit\">upravte hromadne</a> všetky albumy "
-#~ "galérie."
-
-#, fuzzy
-#~ msgid ""
-#~ "<span class=\"zenlogo\"><a href=\"https://<?php echo GITHUB; ?>\" title=\""
-#~ msgstr ""
-#~ "<span class=\"zenlogo\"><a href=\"https://<?php echo GITHUB; ?>\" title="
-#~ "\" href=\"https://<?php echo GITHUB; ?>\" title=\"\"></a href=\"https://<?"
-#~ "php echo GITHUB; ?>\" title=\"></span>"
-
-#~ msgid "You have unsaved changes!"
-#~ msgstr "Máte neuložené zmeny!"
-
-#, fuzzy
-#~ msgid "Are you sure you want to leave this page?"
-#~ msgstr "Ste si istý, že chcete odstrániť tento album kompletne?"
-
-#, fuzzy
-#~ msgid "Leave"
-#~ msgstr ""
-#~ "Ka sa pole nenachádza v kešovanom mene, nechajte pole prázdne. Vlasté "
-#~ "orezy (tie s cx a cy) sa ozaj ťažko kešujú, keďže každý obrázok má "
-#~ "vlastné jedinečné hodnoty. Pre viac informácií si pozrite poznámkový blok "
-#~ "<em>template-functions</em>::<code>getCustomImageURL()</code>."
-
-#, fuzzy
-#~ msgid "Stay"
-#~ msgstr "Pobyt"
-
-#~ msgid "Dynamic album search:"
-#~ msgstr "Vyhľadávať dynamické albumy:"
-
-#~ msgid "Has Password"
-#~ msgstr "Má heslo"
-
-#~ msgid "Password protected"
-#~ msgstr "Chránené heslom"
-
-#~ msgid "View logs:"
-#~ msgstr "Zobraziť protokoly:"
-
-#~ msgid "UTF8 image URIs"
-#~ msgstr "UTF8 URI obrázku"
-
-#, fuzzy
-#~ msgid ""
-#~ "Highlighted languages are not current with ZenPhoto20 v%1$s. (The version "
-#~ "of the out-of-date language is shown in braces.)"
-#~ msgstr ""
-#~ "Zvýraznené jazyky nie sú aktuálne s ZenPhoto20 v %1$s. (verzia zastaraný "
-#~ "jazyk sa zobrazí v traky.)"
-
-#~ msgid "Charset:"
-#~ msgstr "Znaková sada:"
-
-#~ msgid ""
-#~ "The character encoding to use internally. Leave at <em>Unicode (UTF-8)</"
-#~ "em> if you are unsure."
-#~ msgstr ""
-#~ "Interne používané kódovanie znakov. Ak si nie ste istý čo s tým, nechajte "
-#~ "zvolené <em>Unicode (UTF-8)</em>."
-
-#~ msgid ""
-#~ "Character sets <span style=\"color:gray\">shown in gray</span> have no "
-#~ "character translation support."
-#~ msgstr ""
-#~ "Znakové sady zobrazované <span style=\"color:gray\">šedo </span> nemajú "
-#~ "podporu prekladu znakov."
-
-#~ msgid "Cookies:"
-#~ msgstr "Cookies"
-
-#~ msgid "Path"
-#~ msgstr "Cesta"
-
-#~ msgid "Gallery title:"
-#~ msgstr "Názov galérie:"
-
-#~ msgid "Website title:"
-#~ msgstr "Názov webstránky:"
-
-#~ msgid ""
-#~ "<a href=\"javascript:toggle('albumpub');\" >Details</a> for <em>publish "
-#~ "albums by default</em>"
-#~ msgstr ""
-#~ "<a href=\"javascript:toggle('albumpub');\" >Detaily</a> pre "
-#~ "<em>štandardné publikovanie albumov</em>"
-
-#~ msgid ""
-#~ "<a href=\"javascript:toggle('imagepub');\" >Details</a> for <em>publish "
-#~ "images by default</em>"
-#~ msgstr ""
-#~ "<a href=\"javascript:toggle('imagepub');\" >Detaily</a> pre "
-#~ "<em>štandardné publikovanie obrázkov</em>"
-
-#~ msgid ""
-#~ "<a href=\"javascript:toggle('albumdate');\" >Details</a> for <em>use "
-#~ "latest image date as album date</em>"
-#~ msgstr ""
-#~ "<a href=\"javascript:toggle('albumdate');\" >Detaily</a> pre <em>použiť "
-#~ "dátum posledného obrázku ako dátum galérie</em>"
-
-#~ msgid ""
-#~ "<a href=\"javascript:toggle('visualthumb');\" >Details</a> for <em>visual "
-#~ "thumb selection</em>"
-#~ msgstr ""
-#~ "<a href=\"javascript:toggle('visualthumb');\" >Detaily</a> pre "
-#~ "<em>vizuálny výber miniatúr</em>"
-
-#~ msgid ""
-#~ "<a href=\"javascript:toggle('multithumb');\" >Details</a> for "
-#~ "<em>subalbum thumb selection</em>"
-#~ msgstr ""
-#~ "<a href=\"javascript:toggle('multithumb');\" >Detaily</a> pre <em>výber "
-#~ "miniatúr podalbumu</em>"
-
-#~ msgid "user:"
-#~ msgstr "používateľ:"
-
-#~ msgid "<strong>Standard options</strong>"
-#~ msgstr "<strong>Štandardné nastavenia</strong>"
-
-#~ msgid "Image size:"
-#~ msgstr "Veľkosť obrázku:"
-
-#~ msgid "Gallery index page link:"
-#~ msgstr "Odkaz na index galérie:"
-
-#~ msgid ""
-#~ "If this option is not empty, the Gallery Index URL that would normally "
-#~ "link to the theme <code>index.php</code> script will instead link to this "
-#~ "script. This frees up the <code>index.php</code> script so that you can "
-#~ "create a customized <em>Home page</em> script. This option applies only "
-#~ "to the main theme for the <em>Gallery</em>."
-#~ msgstr ""
-#~ "Ak toto pole nie je prázdne, bude odkaz na index galérie, ktorý normálne "
-#~ "smeruje na skript šablóny <code>index.php</code> nahradený cestou na "
-#~ "tento skript. To uvolní <code>index.php</code> skript, takže si budete "
-#~ "môcť vytvoriť vlastnú <em>domovskú stránku</em>. Toto nastavenie sa týka "
-#~ "iba hlavnej šablóny <em>galérie</em>."
-
-#~ msgid "<strong>Custom theme options</strong>"
-#~ msgstr "<strong>Voliteľné nastavenia šablóny</strong>"
-
-#~ msgid ""
-#~ "Password reset request.<br />You may now set admin usernames and "
-#~ "passwords."
-#~ msgstr ""
-#~ "Požiadavka na obnovenie hesla.<br/>Teraz môžete zadať administrátorské "
-#~ "mená a heslá."
-
-#~ msgid "<strong>%1$u</strong> Page"
-#~ msgid_plural "<strong>%1$u</strong> Pages"
-#~ msgstr[0] "<strong>%1$u</strong> Strana"
-#~ msgstr[1] "<strong>%1$u</strong> Strany"
-#~ msgstr[2] "<strong>%1$u</strong> Strán"
-
-#~ msgid "<strong>%1$u</strong> News"
-#~ msgid_plural "<strong>%1$u</strong> News"
-#~ msgstr[0] "<strong>%1$u</strong> Článok"
-#~ msgstr[1] "<strong>%1$u</strong> Články"
-#~ msgstr[2] "<strong>%1$u</strong> Článkov"
-
-#~ msgid "<strong>%1$u</strong> News (%2$u un-published)"
-#~ msgid_plural "<strong>%1$u</strong> News (%2$u un-published)"
-#~ msgstr[0] "<strong>%1$u</strong> Článok (%2$u nezverejnených)"
-#~ msgstr[1] "<strong>%1$u</strong> Články (%2$u nezverejnených)"
-#~ msgstr[2] "<strong>%1$u</strong> Článkov (%2$u nezverejnených)"
-
-#~ msgid "<strong>%1$u</strong> Category"
-#~ msgid_plural "<strong>%1$u</strong> Categories"
-#~ msgstr[0] "<strong>%1$u</strong> Kategória"
-#~ msgstr[1] "<strong>%1$u</strong> Kategórie"
-#~ msgstr[2] "<strong>%1$u</strong> Kategórií"
-
-#~ msgid "Location/Place"
-#~ msgstr "Umiestnenie/Miesto"
-
-#~ msgid "%d: Unknown"
-#~ msgstr "%d: neznáme"
-
-#~ msgid "D55"
-#~ msgstr "D55"
-
-#~ msgid "D65"
-#~ msgstr "D65"
-
-#~ msgid "D75"
-#~ msgstr "D75"
-
-#~ msgid "D50"
-#~ msgstr "D50"
-
-#~ msgid "/10s"
-#~ msgstr "/10s"
-
-#~ msgid "2x"
-#~ msgstr "2x"
-
-#~ msgid "4x"
-#~ msgstr "4x"
-
-#~ msgid "50"
-#~ msgstr "50"
-
-#~ msgid "200"
-#~ msgstr "200"
-
-#~ msgid "400"
-#~ msgstr "400"
-
-#~ msgid "12"
-#~ msgstr "12"
-
-#~ msgid "13"
-#~ msgstr "13"
-
-#~ msgid "14"
-#~ msgstr "14"
-
-#~ msgid "15"
-#~ msgstr "15"
-
-#~ msgid "Unknown: "
-#~ msgstr "Neznáme:"
-
-#~ msgid "2s"
-#~ msgstr "2 s"
-
-#~ msgid "Updating the configuration file"
-#~ msgstr "Konfiguračný súbor sa aktualizuje"
-
-#~ msgid "prefix"
-#~ msgstr "predpona"
-
-#~ msgid "DB"
-#~ msgstr "DB"
-
-#~ msgid "Cache: [<code>%s</code>]"
-#~ msgstr "Vyrovnávacia pamäť: [<code>%s</code>]"
-
-#~ msgid "Image: [<code>%s</code>]"
-#~ msgstr "Obrázok: [<code>%s</code>]"
-
-#~ msgid "<br />You may also use the link below to request a reset by e-mail."
-#~ msgstr "<br />Môžete tiež použiť odkaz nižšie na požiadanie o reset mailom."
-
-#~ msgid "an unknown release"
-#~ msgstr "neznáma verzia"
-
-#~ msgid "PHP <code>Sessions</code> [problems with <em>save_save_path</em>]."
-#~ msgstr "PHP <code>Sessions</code> [problémy s <em>save_save_path</em>]."
-
-#~ msgid ""
-#~ "The configured PHP session path could not be used. ZenPhoto20 has set the "
-#~ "path to the %s folder."
-#~ msgstr ""
-#~ "Nastavená cesta pre PHP session nemôže byť použitá. ZenPhoto20 nastavilo "
-#~ "cestu to zložky %s."
-
-#, fuzzy
-#~ msgid "PHP Sessions are required for administrative functions."
-#~ msgstr "PHP sedenφ sú potrebné pre správne funkcie."
-
-#~ msgid "You should enable the URL option <em>UTF8 image URIs</em>."
-#~ msgstr "Mali by ste aktivovať možnosť URL<em>UTF8 URI obrázkov</em>."
-
-#~ msgid "<a href=\"javascript:uri(true)\">Please do</a>"
-#~ msgstr "<a href=\"javascript:uri(true)\">Prosím urobte</a>"
-
-#~ msgid "You should disable the URL option <em>UTF8 image URIs</em>."
-#~ msgstr "Mali by ste vypnúť možnosť URL<em>UTF8 URI obrázkov</em>."
-
-#~ msgid "<a href=\"javascript:uri(false)\">Please do</a>"
-#~ msgstr "<a href=\"javascript:uri(false)\">Prosím urobte</a>"
-
-#~ msgid "About to create tables"
-#~ msgstr "Pripravené vytvoriť tabuľky"
-
-#~ msgid "Begin table creation"
-#~ msgstr "Spustiť vytváranie tabuliek"
-
-#~ msgid "Table creation failure:<br />Query: %1$s<br />Error: %2$s"
-#~ msgstr "Vytvorenie tabuľky zlyhalo: <br />Dopyt: %1$s<br />Chyba: %2$s"
-
-#~ msgid "Query ( %s ) Success."
-#~ msgstr "Dopyt ( %s ) úspešný."
-
-#~ msgid "Begin table updates"
-#~ msgstr "Spustiť aktualizáciu tabuliek"
-
-#~ msgid "Done with table create!"
-#~ msgstr "Vytváranie tabuliek hotové!"
-
-#~ msgid "Done with table create with errors!"
-#~ msgstr "Vytváranie tabuliek hotové s chybami!"
-
-#~ msgid "Done with table update with errors"
-#~ msgstr "Aktualizácia tabuliek hotová s chybami"
-
-#~ msgid "Previous Release was %s"
-#~ msgstr "Predchádzajúca verzia bola %s"
-
-#~ msgid "Database tables to update: %s"
-#~ msgstr "Databázové tabuľky, ktoré sa aktualizujú: %s"
-
-#~ msgid "Database admin user"
-#~ msgstr "Administrátor databázy"
-
-#~ msgid "Database admin password"
-#~ msgstr "Heslo administrátora databázy"
-
-#, fuzzy
-#~ msgid "Theme:%s triggered the deprecated functions plugin"
-#~ msgstr "Téma: %s spustil odmietané funkcie plugin"
-
-#~ msgid "Admin Toolbox"
-#~ msgstr "Administrátorká sekcia"
-
-#~ msgid "Backup/Restore"
-#~ msgstr "Záloha/Obnovenie"
-
-#~ msgid "Backup and restore your gallery database."
-#~ msgstr "Zálohovať a obnoviť databázu vašej galérie."
-
-#~ msgid "Info"
-#~ msgstr "Info"
-
-#~ msgid ""
-#~ "Shows statistical graphs and info about your gallery’s images and albums."
-#~ msgstr ""
-#~ "Zobrazí štatistické grafy a informácie o obrázkoch a albumoch vašej "
-#~ "galérie."
-
-#~ msgid "Statistics"
-#~ msgstr "Štatistiky"
-
-#~ msgid "Back to the top 10 lists"
-#~ msgstr "Späť na najlepších 10"
-
-#~ msgid "top"
-#~ msgstr "hore"
-
-#~ msgid "Refresh the Database"
-#~ msgstr "Aktualizovať databázu"
-
-#~ msgid "Perform a garbage collection of the Database"
-#~ msgstr "Spustiť zber odpadkov v databáze."
-
-#~ msgid "Forces a refresh of the metadata for all images and albums."
-#~ msgstr "Vynúti obnovenie metadát všetkých pbrázkov a albumov."
-
-#~ msgid ""
-#~ "The scripts for which BxSlider is enabled. {If themes require it they "
-#~ "might set this, otherwise you need to do it manually!}"
-#~ msgstr ""
-#~ "Skripty, pre ktoré je BxSlider aktivovaný. {Ak to šablóny vyžadujú, mali "
-#~ "by si to nastaviť, inak to musíte urobiť manuálne!}"
-
-#, fuzzy
-#~ msgid "Cache manager"
-#~ msgstr "Uložiť do vyrovnávcej pamäti ako:"
-
-#~ msgid "Invalid Textobject instantiation: Album does not exist"
-#~ msgstr "Invalid Textobject instantiation: Album neexistuje."
-
-#~ msgid "Invalid Textobject instantiation: file does not exist"
-#~ msgstr "Invalid Textobject instantiation: súbor neexistuje."
-
-#~ msgid "Create a new installation using links to the current install files."
-#~ msgstr "Vytvoriť novú inštaléciu s odkazmi na momentálne inštalačné súbory."
-
-#~ msgid "Clone"
-#~ msgstr "Klonovať"
-
-#~ msgid ""
-#~ "You will need to run <a href=\"%1$s\">setup</a> to update the database "
-#~ "with the custom fields defined by the <em>%2$s</em> plugin."
-#~ msgstr ""
-#~ "Budete musieť spustiť <a href=\"%1$s\">setup</a> aby ste aktualizovali "
-#~ "databázu poliami definovanými zásuvným modulom <em>%2$s</em>."
-
-#, fuzzy
-#~ msgid "Languange"
-#~ msgstr "Languange"
-
-#~ msgid "Functions"
-#~ msgstr "Funkcie"
-
-#~ msgid ""
-#~ "Send the <em>deprecated</em> notification message if the function name is "
-#~ "checked. Un-checking these boxes will allow you to continue using your "
-#~ "theme without warnings while you upgrade its implementation. Functions "
-#~ "flagged with an asterisk are class methods. Ones flagged with two "
-#~ "asterisks have deprecated parameters."
-#~ msgstr ""
-#~ "Odoslať upozorňovaciu správu <em>zastarané</em> ak je meno funkcie "
-#~ "zaškrtnuté. Odznačenie týchto polí vám umožní používať vašu šablónu bez "
-#~ "varovaní, zatiaľ čo ju budete aktualizovať. Funkcie označené hviezdičkou "
-#~ "sú class methods. Tie, ktoré majú dve hviezdičky majú zastarané parametre."
-
-#~ msgid "Searches PHP scripts for use of deprecated functions."
-#~ msgstr "Prehľadať PHP skripty kvôli použitiu zastaraných funkcií."
-
-#~ msgid "Check for update"
-#~ msgstr "Skontrolovať aktualizáciu"
-
-#~ msgid "Deprecated"
-#~ msgstr "Zastarané"
-
-#~ msgid "Counts of downloads"
-#~ msgstr "Počet sťahovaní"
-
-#~ msgid ""
-#~ "* This option may be set via the <a href=\"javascript:gotoName('dynamic-"
-#~ "locale');\"><em>dynamic-locale</em></a> plugin options."
-#~ msgstr ""
-#~ "* Táto možnosť sa môže nastavovať použitím možností zásuvného modulu <a "
-#~ "href=\"javascript:gotoName('dynamic-locale');\"><em>dynamic-locale</em></"
-#~ "a>."
-
-#~ msgid "Map dimensions—width"
-#~ msgstr "Rozmer mapy - šírka"
-
-#~ msgid "The default width of the map."
-#~ msgstr "Základná šírka mapy."
-
-#~ msgid "Map dimensions—height"
-#~ msgstr "Rozmer mapy - výška"
-
-#~ msgid "The default height of the map."
-#~ msgstr "Základná výška mapy."
-
-#~ msgid ""
-#~ "* This option may be set via the <a href=\"javascript:"
-#~ "gotoName('html_meta_tags');\"><em>html_meta_tags</em></a> plugin options."
-#~ msgstr ""
-#~ "* Táto možnosť sa môže nastavovať použitím možností zásuvného modulu <a "
-#~ "href=\"javascript:gotoName('html_meta_tags');\"><em>html_meta_tags</em></"
-#~ "a>."
-
-#~ msgid "Logon cool off"
-#~ msgstr "Vychladnutie pokusov o prihlásenie"
-
-#~ msgid "unmute"
-#~ msgstr "plná hlasitosť"
-
-#~ msgid "restore screen"
-#~ msgstr "obnoviť obrazovku"
-
-#~ msgid "shuffle off"
-#~ msgstr "miešanie vypnuté"
-
-#~ msgid "repeat off"
-#~ msgstr "opakovanie vypnuté"
-
-#~ msgid "Mark installation as “released”."
-#~ msgstr "Označiť inštaláciu ako \"vydanú\"."
-
-#~ msgid ""
-#~ "Creates a link to a custom theme page as described in the theming "
-#~ "tutorial."
-#~ msgstr ""
-#~ "Vytvorí link na používateľskú stránku, ako je popísané v névode na výrobu "
-#~ "šablón."
-
-#~ msgid "Manage published state of content in your gallery."
-#~ msgstr "Spravovať štatút zverejnenia obsahu vašej galérie."
-
-#~ msgid ""
-#~ "If this option is set, the visitor login form will include a link to this "
-#~ "page. The link text will be labeled with the text provided."
-#~ msgstr ""
-#~ "Aktivovaním sa vo formulári prihlásenia návštevníka zobrazí odkaz na túto "
-#~ "stránku. Text odkazu bude obsahovať text, ktorý sem vložíte."
-
-#~ msgid "Search statistics"
-#~ msgstr "Štatistika vyhľadávaní"
-
-#~ msgid "Analysis"
-#~ msgstr "Analýza"
-
-#~ msgid "Set Security log permissions"
-#~ msgstr "Nastaviť práve bezpečnostného protokolu"
-
-#~ msgid "File permissions of Security log are %04o"
-#~ msgstr "Práva súboru Bezpečnostného protokolu sú %04o"
-
-#~ msgid "Seo"
-#~ msgstr "Seo"
-
-#~ msgid "SEO Cleaner"
-#~ msgstr "SEO Cleaner"
-
-#~ msgid "Make file and folder names in the Gallery SEO friendly."
-#~ msgstr ""
-#~ "Upraviť názvy súborov a zložiek galérie aby boli kompatibilné so SEO."
-
-#~ msgid "Allows setting language locale through the URI."
-#~ msgstr "Povoliť nastavenie lokálneho jazyka použitím URI."
-
-#~ msgid ""
-#~ "<strong>Note:</strong> This plugin is not activated for <em>back&#8209;"
-#~ "end</em> (administrative) URLs. However, once activated, the language is "
-#~ "remembered, even for the <em>back&#8209;end</em>."
-#~ msgstr ""
-#~ "<strong>Poznámka:</strong> Tento zásuvný modul nie je aktívny na "
-#~ "<em>back&#8209;end</em> (administračných) URL. Avšak, akho aktivujete, "
-#~ "použitý jazyk bude platný aj pre <em>back&#8209;end</em>."
-
-#~ msgid "<em>mod_rewrite</em> must be enabled for this plugin to function."
-#~ msgstr ""
-#~ "<em>mod_rewrite</em> musí byť aktívny pre správne fungovanie tohto "
-#~ "zásuvného modulu."
-
-#~ msgid ""
-#~ "This plugin is not compatible with the <code>dynamic locale</code> "
-#~ "<em>Use subdomains</em> option"
-#~ msgstr ""
-#~ "Tento zásuvný modul nie je kompatibilný s nastavením <code>dynamic "
-#~ "locale</code> <em>Use subdomains</em>"
-
-#~ msgid "externalFeed suspended"
-#~ msgstr "externalFeed pozastavený"
-
-#~ msgid "The external feed is currently not available."
-#~ msgstr "Externý zdroj momentálne nie je dostupný."
-
-#~ msgid "Site is now marked in upgrade."
-#~ msgstr "Stránka je označená: v aktualizácii."
-
-#~ msgid ""
-#~ "* This option may be set via the <a href=\"javascript:gotoName('sitemap-"
-#~ "extended');\"><em>sitemap-extended</em></a> plugin options."
-#~ msgstr ""
-#~ "* Táto možnosť sa môže nastavovať použitím možnosti zásuvného modulu <a "
-#~ "href=\"javascript:gotoName('sitemap-extended');\"><em>sitemap-extended</"
-#~ "em></a>"
-
-#~ msgid "Generate or purge sitemap cache files."
-#~ msgstr "Generuje alebo vymazáva súbory vyrovnávacej pamäte mapy stránok."
-
-#~ msgid ""
-#~ "The scripts for which the cycle2 plugin is enabled. {If themes require it "
-#~ "they might set this, otherwise you need to do it manually!}"
-#~ msgstr ""
-#~ "Skripty, pre ktoré je cycle2 aktivovaný. {Ak to šablóny vyžadujú, mali by "
-#~ "si to nastaviť, inak to musíte urobiť manuálne!}"
-
-#~ msgid "Selector CSS"
-#~ msgstr "Selektor CSS"
-
-#~ msgid ""
-#~ "Change this box if you wish to style the theme switcher selector for your "
-#~ "themes."
-#~ msgstr ""
-#~ "Zakliknite ak chcete upraviť menič na výber šablón pre vaše šablóny."
-
-#~ msgid "Text editor TinyMCE 4.x"
-#~ msgstr "Textový editor TinyMCE 4.x"
-
-#, fuzzy
-#~ msgid "tinyZenpage plugin"
-#~ msgstr "zásuvný modul"
-
-#, fuzzy
-#~ msgid "Enable legacy tinyZenpage feature."
-#~ msgstr "Dedičstvo tinyZenpage funkciu."
-
-#~ msgid "Custom image size"
-#~ msgstr "Vlastná veľkosť obrázku"
-
-#~ msgid ""
-#~ "Predefined size (px) for custom size images included using tinyZenpage."
-#~ msgstr ""
-#~ "Prenastavená veľkosť (px) pre vlastnú veľkosť obrázkov vložených použitím "
-#~ "tinyZenpage."
-
-#~ msgid "Custom thumb crop - size"
-#~ msgstr "Vlastný orez miniatúr - veľkosť"
-
-#~ msgid ""
-#~ "Predefined size (px) for custom cropped thumb images included using "
-#~ "tinyZenpage."
-#~ msgstr ""
-#~ "Prenastavená veľkosť (px) pre vlastnú veľkosť orezu miniatúr vložených "
-#~ "použitím tinyZenpage."
-
-#~ msgid "Custom thumb crop - width"
-#~ msgstr "Vlastný orez miniatúr - šírka"
-
-#~ msgid ""
-#~ "Predefined crop width (%) for custom cropped thumb  images included using "
-#~ "tinyZenpage."
-#~ msgstr ""
-#~ "Prenastavená šírka orezu (px) pre vlastnú veľkosť orezu miniatúr "
-#~ "vložených použitím tinyZenpage."
-
-#~ msgid "Custom thumb crop - height"
-#~ msgstr "Vlastný orez miniatúr - výška"
-
-#~ msgid ""
-#~ "Predefined crop height (%) for custom cropped thumb images included using "
-#~ "tinyZenpage."
-#~ msgstr ""
-#~ "Prenastavená výška orezu (%) pre vlastnú veľkosť orezu miniatúr vložených "
-#~ "použitím tinyZenpage."
-
-#, fuzzy
-#~ msgid ""
-#~ "No source has been picked. You can pick a ZenPhoto20 object for insertion "
-#~ "by browsing to the object and clicking on the %s icon. Custom sized and "
-#~ "cropped images may be picked from the <em>crop image</em> page if the "
-#~ "<code>crop_image</code> plugin is enabled."
-#~ msgstr ""
-#~ "Žiadny zdroj bol vybral. Môžete si vybrať objekt ZenPhoto20 pre vloženie "
-#~ "prehliadania na objekt a kliknutím na ikonu %s. Vlastné veľkosti a "
-#~ "orezanie obrázkov môžu byť vybraný <em>orezať obrázok</em> na stránke, ak "
-#~ "<code>crop_image</code> plugin je povolená."
-
-#~ msgid "It is not possible to a include a custom size %s."
-#~ msgstr "Nie je možné vložiť vlastnú veľkosť %s."
-
-#~ msgid "It is not possible to a include a full size %s."
-#~ msgstr "Nie je možné vložiť plnú veľkosť %s."
-
-#~ msgid "Album:"
-#~ msgstr "Album:"
-
-#~ msgid "Album folder:"
-#~ msgstr "Zložka albumu:"
-
-#~ msgid "(Click on image to include)"
-#~ msgstr "(kliknutím na obrázok ho pridáte)"
-
-#~ msgid "<em>Albumthumb</em>"
-#~ msgstr "<em>Miniatúra albumu</em>"
-
-#~ msgid "<strong>Note:</strong> This album does not contain any images."
-#~ msgstr "<strong>Poznámka:</strong> Tento album neobsahuje žiadne obrázky."
-
-#~ msgid "(Click on article title to include a link)"
-#~ msgstr "(kliknite na titul článku pre pridanie odkazu)"
-
-#~ msgid "*Select*"
-#~ msgstr "*Vybrať*"
-
-#~ msgid "(only direct links!)"
-#~ msgstr "(iba priame odkazy!)"
-
-#~ msgid "*Select an album*"
-#~ msgstr "*Vybrať album*"
-
-#~ msgid "(select variant below)"
-#~ msgstr "(vybrať variant nižšie)"
-
-#~ msgid "What to include"
-#~ msgstr "Čo chcete pridať"
-
-#~ msgid "Custom text"
-#~ msgstr "Používateľský text"
-
-#~ msgid "Custom thumbnail"
-#~ msgstr "Používateľská miniatúra"
-
-#~ msgid "Sized image/multimedia item"
-#~ msgstr "Zmenšený obrázok/multimediálny súbor"
-
-#~ msgid "Custom size (un-cropped)"
-#~ msgstr "Používateľská miniatúra (neorezaná)"
-
-#~ msgid "Full image"
-#~ msgstr "Plný obrázok"
-
-#~ msgid "Title and description"
-#~ msgstr "Názov a popis"
-
-#~ msgid "No description"
-#~ msgstr "Bez popisu"
-
-#~ msgid "Show image description"
-#~ msgstr "Zobraziť popis obrázku"
-
-#~ msgid "Show album description"
-#~ msgstr "Zobraziť popis albumu"
-
-#~ msgid "Link type"
-#~ msgstr "Typ odkazu"
-
-#~ msgid "Link to image"
-#~ msgstr "Odkaz na obrázok"
-
-#~ msgid "Link to full image"
-#~ msgstr "Odkaz na plný obrázok"
-
-#~ msgid "Link to album"
-#~ msgstr "Odkaz na album"
-
-#~ msgid "No link"
-#~ msgstr "Bez odkazu"
-
-#~ msgid "Text wrap"
-#~ msgstr "Skrátený text"
-
-#~ msgid "No wrap"
-#~ msgstr "Bez skrátenia"
-
-#~ msgid ""
-#~ "This provides access to your images and albums (select from the "
-#~ "<em>Zenphoto</em> dropdown) as well as pages, news articles and news "
-#~ "categories (select from the <em>Zenpage</em> dropdown) to easily include "
-#~ "them in your pages and articles."
-#~ msgstr ""
-#~ "Poskytuje prístup k vašim albumom a obrázkom (vyberte z rozbalovacieho "
-#~ "menu <em>Zenphoto</em>) ako aj k stránkam, článkom a kategóriám člankov "
-#~ "(vyberte z rozbalovacieho menu <em>Zenphoto</em>), aby ste ich mohli "
-#~ "jednoducho pridávať do vašich stránok a článkov."
-
-#~ msgid ""
-#~ "Select <em>pages</em>, <em>articles</em> or <em>categories</em> to show a "
-#~ "list of these items. Click on a title to include a link. Hover of the "
-#~ "link to see an excerpt of the page or article. Un-published pages or "
-#~ "articles are marked with an “*” and protected with an “+”. There are no "
-#~ "further options."
-#~ msgstr ""
-#~ "Kliknutím na <em>stránky</em>, <em>články</em> alebo <em>kategórie</em> "
-#~ "zobrazíte ich zoznam. Kliknutím na názov pridáte odkaz. Prejdite myšou "
-#~ "ponad odkaz a ukáže sa vám úryvok stánky alebo článku. Nezverejnené "
-#~ "stránky alebo články sú označené '*' a chránené '+'. Žiadne ďalšie "
-#~ "nastavenia nie sú."
-
-#~ msgid ""
-#~ "Select an album to include images from into your page or article. Click "
-#~ "on the image to include it. Un-published albums or images are marked with "
-#~ "an “*”. You can also click on the magnify glass icon to see a preview of "
-#~ "the item. The preview opens in a colorbox showing the frontend/theme "
-#~ "view. The first thumbnail is always the thumbnail of the selected album. "
-#~ "It is titled <em>Albumthumb</em> and appears on every thumbnail page."
-#~ msgstr ""
-#~ "Vyberte album, z ktorého chcete použiť obrázky pre svoju stránku či "
-#~ "článok. Kliknutím na obrázok ho pridáte. Nezverejnené albumy alebo články "
-#~ "sú označené '*'. Môžete tiež kliknúť na ikonu lupy a pozrieť si ukážku "
-#~ "položky. Ukážka sa otvorí v colorboxe zobrazujúc nastavenia šablóny. Prvá "
-#~ "miniatúra je vždy miniatúra albumu aktuálne vybraného albumu. Vždy sa "
-#~ "nazýva <em>Miniatúra albumu</em> a objavuje sa na každej stránke miniatúr."
-
-#~ msgid "Options on what to include"
-#~ msgstr "Nastavte čo chcete pripojiť"
-
-#~ msgid ""
-#~ "Include the image itself, only its title, the title of its album, or some "
-#~ "custom text."
-#~ msgstr ""
-#~ "Vložte samotný obrázok, iba jeho názov, názov jeho albumu alebo upravený "
-#~ "text"
-
-#~ msgid ""
-#~ "NOTE: These selections are not sticky. If you change albums or change "
-#~ "pages in an album you will have to select them again."
-#~ msgstr ""
-#~ "Poznámka: Tento výber sa neukladá. Ak stránku obnovíte vybraním ineho "
-#~ "albumu alebo prechodom medzi stránkami v albume, budete ho musieť urobiť "
-#~ "znova."
-
-#~ msgid ""
-#~ "The window does not close automatically so you can include several images "
-#~ "one after another."
-#~ msgstr ""
-#~ "Okno sa nezatvára automaticky, takže môžete vybrať niekoľko obrázkov "
-#~ "jeden po druhom."
-
-#, fuzzy
-#~ msgid "Thumbnail: Size as set in theme’s options"
-#~ msgstr "Nastaviť možnosti šablóny <em>%s</em>."
-
-#~ msgid ""
-#~ "Custom thumbnail: size for the longest side / (cropwidth x cropheight). "
-#~ "You can set default sizes for this on the TinyMCE plugin options."
-#~ msgstr ""
-#~ "Vlastná miniatúra: veľkosť najdlhšej strany / (orezová šírka x orezová "
-#~ "výška). Štandardnú veľkosť môžete nastaviť v možnostiach pre zásuvný "
-#~ "modul TinyMCE."
-
-#~ msgid ""
-#~ "Sized image/multimedia item: The sized image as set in gallery default "
-#~ "theme’s options."
-#~ msgstr ""
-#~ "Zmenšený obrázok/multimediálny súbor: Zmenšený obrázok podľa nastavení "
-#~ "základného nastavenia šablóny galérie."
-
-#~ msgid ""
-#~ "<strong>Multimedia item</strong>: This embeds the content macro "
-#~ "MEDIAPLAYER into the text. This generates a video or audio player on the "
-#~ "front end if any suitable multimedia player plugin for the file type is "
-#~ "enabled and also has registered to the macro."
-#~ msgstr ""
-#~ "<strong>Multimediálna položka</strong>: Týmto pridáte do textu obsahové "
-#~ "makro MEDIAPLAYER. To vygeneruje video alebo audio prehrávač na úvodnej "
-#~ "stránke, ak je povolený nejaký zásuvný modul multimediálneho prehrávača "
-#~ "pre daný typ súboru a je tiež zaznamenaný v makre."
-
-#~ msgid "Custom size (un-cropped)."
-#~ msgstr "Používateľská veľkosť (neorezaná)"
-
-#~ msgid ""
-#~ "Full image: The original image directly. NOTE: Full image protection "
-#~ "options do not apply!."
-#~ msgstr ""
-#~ "Plný obrázok: Priamo originálny obrázok. POZNÁMKA: Ochrana plných "
-#~ "obrázkov sa nepoužíva!"
-
-#~ msgid ""
-#~ "If you additionally check <em>Show title</em> or <em>Show description</"
-#~ "em> the title/description of the image or album (if you checked <em>link "
-#~ "to album</em>) will be printed below the image. Only if <em>Image</em> is "
-#~ "chosen as type."
-#~ msgstr ""
-#~ "Ak označíte aj <em>Zobraziť názov</em> alebo <em>Zobraziť popis</em> "
-#~ "názov/popis obrázku alebo albumu (ak označíte <em>odkaz na album</em>) "
-#~ "bude zobrazený pod obrázkom. Len ak je vybraný typ <em>obrázok</em>."
-
-#~ msgid ""
-#~ "Select to link to the image page of the image, to the album the image is "
-#~ "in, no link at all or a custom URL."
-#~ msgstr ""
-#~ "Vyberte si odkaz na stránku obrázku, album, vktorom obrázok je, bez "
-#~ "odkazu alebo vložená URL."
-
-#~ msgid ""
-#~ "Wrap the text right or left of the image or not at all. Note that "
-#~ "tinyZenpage adds a bit of CSS to the included image if you use text wrap. "
-#~ "So that you see immediate results to the text wrap it attaches some "
-#~ "inline CSS:"
-#~ msgstr ""
-#~ "Zarovnajte text vpravo alebo vľavo od obrázka, alebo bez zarovnania. "
-#~ "Upozorňujeme, že tinyZenpage pridáva trochu CSS do pridaného obrázku ak "
-#~ "používate zalomenie textu. Takže vidíte okamžitý výsledok v zarovnaní "
-#~ "textu čo pridá niekoľko riadkov do CSS:"
-
-#~ msgid "left wrap: <em>style=\"float:right\"</em>"
-#~ msgstr "Zarovnanie vľavo: <em>style=\"float:right\"</em>"
-
-#~ msgid "right wrap: <em>style=\"float: left\"</em>"
-#~ msgstr "Zarovnanie vpravo: <em>style=\"float: left\"</em>"
-
-#~ msgid ""
-#~ "Also tinyZenpage attaches a default CSS class to the image (if image is "
-#~ "chosen) to be styled with your theme’s css. If you choose left or right "
-#~ "align “_left” or “_right” is appended:"
-#~ msgstr ""
-#~ "Aj tinyZenpage pripája štandardný CSS class k obrázku (ak je obrázok "
-#~ "vybraný), aby bol naštýlovaný podľa css šablóny. Ak vyberiete vpravo "
-#~ "alebo vľavo zaraziť pripojí sa  '_left' alebo '_right':"
-
-#~ msgid ""
-#~ "Default thumbnail: <em>zenpage_thumb</em> /<em>zenpage_thumb_left</em> /"
-#~ "<em>zenpage_thumb_right</em>"
-#~ msgstr ""
-#~ "Štandardná miniatúra: <em>zenpage_thumb</em> /<em>zenpage_thumb_left</"
-#~ "em> /<em>zenpage_thumb_right</em>"
-
-#~ msgid ""
-#~ "Custom thumbnail: <em>zenpage_customthumb</em> or "
-#~ "<em>zenpage_customthumb_left</em>/<em>zenpage_customthumb_right</em>"
-#~ msgstr ""
-#~ "Zmenená miniatúra: <em>zenpage_customthumb</em> oder "
-#~ "<em>zenpage_customthumb_left</em>/<em>zenpage_customthumb_right</em>"
-
-#~ msgid ""
-#~ "Sized image: <em>zenpage_sizedimage</em>/<em>zenpage_sizedimage_left</em>/"
-#~ "<em>zenpage_sizedimage_right</em>"
-#~ msgstr ""
-#~ "Zmenšený obrázok: <em>zenpage_sizedimage</em>/"
-#~ "<em>zenpage_sizedimage_left</em>/<em>zenpage_sizedimage_right</em>"
-
-#~ msgid ""
-#~ "Custom image: <em>zenpage_customimage</em>/<em>zenpage_customimage_left</"
-#~ "em>/<em>zenpage_customimage_right</em>"
-#~ msgstr ""
-#~ "Zmenený obrázok: <em>zenpage_customimage</em>/"
-#~ "<em>zenpage_customimage_left</em>/<em>zenpage_customimage_right</em>"
-
-#~ msgid ""
-#~ "If you additionally have checked <em>Show title</em> or <em>Show "
-#~ "description</em> for an image or album the div with the class "
-#~ "<em>zenpage_wrapper</em> is wrapped around the image and link. Within "
-#~ "that after the image and the link a div with the class <em>zenpage_title</"
-#~ "em> wrapping the title respectively <em>zenpage_desc</em> wrapping the "
-#~ "description."
-#~ msgstr ""
-#~ "If you additionally have checked <em>Show title</em> or <em>Show "
-#~ "description</em> for an image or album the div with the class "
-#~ "<em>zenpage_wrapper</em> is wrapped around the image and link. Within "
-#~ "that after the image and the link a div with the class <em>zenpage_title</"
-#~ "em> wrapping the title respectively <em>zenpage_desc</em> wrapping the "
-#~ "description."
-
-#~ msgid ""
-#~ "Additionally a default CSS class is attached to the link itself depending "
-#~ "on the link option set:"
-#~ msgstr ""
-#~ "Navyše sa k samotnému odkazu pripája štandardný CSS class v závislosti na "
-#~ "nastavení odkazu:"
-
-#~ msgid "Image link: <em>zenpage_imagelink</em>"
-#~ msgstr "Odkaz na obrázok: <em>zenpage_imagelink</em>"
-
-#~ msgid ""
-#~ "Full image link: <em>zenpage_fullimagelink</em>. Additionally "
-#~ "<em>rel='colorbox'</em> is attached so you can move through all images on "
-#~ "a page using Colorbox or similar *box scripts."
-#~ msgstr ""
-#~ "Plný odkaz na obrázok: <em>zenpage_fullimagelink</em>. Pripojený je aj "
-#~ "<em>rel='colorbox'</em> takže sa možete pohybovať medzi všetkými "
-#~ "obrázkami na stránke použitím Colorboxu alebo podobného *box skriptu."
-
-#~ msgid "Album link: <em>zenpage_albumlink</em>"
-#~ msgstr "Odkaz na album: <em>zenpage_albumlink</em>"
-
-#~ msgid "Custom link: <em>zenpage_customlink</em>"
-#~ msgstr "Vlastný odkaz: <em>zenpage_customlink</em>"
-
-#~ msgid ""
-#~ "If you would like to do some direct styling you can also use TinyMCE’s "
-#~ "image button or source code editor."
-#~ msgstr ""
-#~ "Ak chcete urobiť nejaké priame štýlovanie môžete na to použiť tlačítko "
-#~ "obrázku v TinyMCE alebo editor zdrojového kódu."
-
-#~ msgid "Scan pending"
-#~ msgstr "Prebieha skenovanie"
-
-#~ msgid ""
-#~ "<code>tweet_news</code> notices when a page or an article is published. "
-#~ "If the date is in the future, it is put in the <em>to-be-tweeted</em> and "
-#~ "tweeted when that date arrives. This option allows you to re-populate "
-#~ "that list to the current state of scheduled tweets."
-#~ msgstr ""
-#~ "<code>tweet_news</code> upozorňuje ak je uverejnený článok. Ak je dátum "
-#~ "uverejnenia odložený na neskôr, je článok vložený do <em>to-be-tweeted</"
-#~ "em> a tweetnutý, keď nastane jeho čas. Umožňuje to aj aktualizovať stav "
-#~ "článkov pripravených na uverejnenie."
-
-#~ msgid "No scheduled news articles found."
-#~ msgstr "Nebol nájdený žiadny článok pripravený na uverejnenie."
-
-#~ msgid "Scheduled items have been noted for tweeting."
-#~ msgstr "Články pripravené na uverejnenie boli označené na tweetovanie."
-
-#~ msgid "*no group affiliation"
-#~ msgstr "*bez pridelenej skupiny"
-
-#~ msgid ""
-#~ "There are no other registered users who have provided an e-mail address."
-#~ msgstr ""
-#~ "Žiadni ďalší zaregistrovaní používatelia, ktorý poskytli mailovú adresu."
-
-#~ msgid ""
-#~ "A tool to send e-mails to all registered users who have provided an e-"
-#~ "mail address."
-#~ msgstr ""
-#~ "Nástroj na posielanie mailov všetkým zaregistrovaným používateľom, ktorý "
-#~ "poskytli mailovú adresu."
-
-#~ msgid "Mailing"
-#~ msgstr "Mailing"
-
-#~ msgid "To:"
-#~ msgstr "Pre:"
-
-#~ msgid "Send another mail"
-#~ msgstr "Poslať ďalší mail"
-
-#~ msgid "An importer for Wordpress posts and pages to Zenpage."
-#~ msgstr "Nástroj na import stránok a článkov z Wordpressu do Zenphota."
-
-#~ msgid "Future publishing date:"
-#~ msgstr "Dátum budúceho uverejnenia:"
-
-#, fuzzy
-#~ msgid "newPage"
-#~ msgstr "newPage"
-
-#~ msgid ""
-#~ "<strong>Note:</strong> Scheduled publishing is not active unless the "
-#~ "article is also set to <em>published</em>"
-#~ msgstr ""
-#~ "<strong>Poznámka:</strong> Plánované uverejnenie nie je aktívne pokým nie "
-#~ "je článok nastavený na <em>uverejnený</em>."
-
-#~ msgid ""
-#~ "Note: Scheduled publishing is not active unless the page is also set to "
-#~ "<em>published</em>"
-#~ msgstr ""
-#~ "Poznámka: Plánované uverejnenie nie je aktívne pokým nie je článok "
-#~ "nastavený na <em>uverejnený</em>."
-
-#~ msgid "Expiration date:"
-#~ msgstr "Koniec uverejnenia:"
-
-#~ msgid "TitleLink:"
-#~ msgstr "Titellink:"
-
-#~ msgid "Content:"
-#~ msgstr "Obsah:"
-
-#~ msgid "ExtraContent:"
-#~ msgstr "Extra obsah:"
-
-#~ msgid "Scheduled for published"
-#~ msgstr "Zverejnenie naplánované"
-
-#~ msgid "(<strong>%1$u</strong> page, <strong>%2$u</strong> un-published)"
-#~ msgid_plural ""
-#~ "(<strong>%1$u</strong> pages, <strong>%2$u</strong> un-published)"
-#~ msgstr[0] ""
-#~ "(<strong>%1$u</strong> stránka, <strong>%2$u</strong> nezverejnená)"
-#~ msgstr[1] ""
-#~ "(<strong>%1$u</strong> stránky, <strong>%2$u</strong> nezverejnené)"
-#~ msgstr[2] ""
-#~ "(<strong>%1$u</strong> stránok, <strong>%2$u</strong> nezverejnených)"
-
-#~ msgid "(<strong>%1$u</strong> news)"
-#~ msgid_plural "(<strong>%1$u</strong> news)"
-#~ msgstr[0] "(<strong>%1$u</strong> článok)"
-#~ msgstr[1] "(<strong>%1$u</strong> články)"
-#~ msgstr[2] "(<strong>%1$u</strong> článkov)"
-
-#~ msgid "(<strong>%1$u</strong> news, <strong>%2$u</strong> un-published)"
-#~ msgid_plural ""
-#~ "(<strong>%1$u</strong> news, <strong>%2$u</strong> un-published)"
-#~ msgstr[0] ""
-#~ "(<strong>%1$u</strong> článok, <strong>%2$u</strong> nezverejnený)"
-#~ msgstr[1] ""
-#~ "(<strong>%1$u</strong> články, <strong>%2$u</strong> nezverejnené)"
-#~ msgstr[2] ""
-#~ "(<strong>%1$u</strong> článkov, <strong>%2$u</strong> nezverejnených)"
-
-#~ msgid "Publish immediately (skip scheduling)"
-#~ msgstr "Okamžite zverejniť (preskočiť plánovanie)"
-
-#~ msgid "Enable scheduled publishing"
-#~ msgstr "Aktivovať plánované zverejnenie"
-
-#~ msgid "Powered by"
-#~ msgstr "Beží na"
-
-#~ msgid "expand all fields"
-#~ msgstr "roztvoriť všetky polia"
-
-#~ msgid "collapse all fields"
-#~ msgstr "zatvoriť všetky polia"
-
-#~ msgid ""
-#~ "<a href=\"http://www.zenphoto.org\" title=\"The simpler media website CMS"
-#~ "\">Zen<strong>photo</strong></a> version %1$s"
-#~ msgstr ""
-#~ "<a href=\"http://www.zenphoto.org\" title=\"Jednoduché CMS pre webové "
-#~ "stránky\">Zen<strong>photo</strong></a> verzia %1$s"
-
-#~ msgid "User guide"
-#~ msgstr "Používateľská príručka"
-
-#~ msgid "Forum"
-#~ msgstr "Fórum"
-
-#~ msgid "Bugtracker"
-#~ msgstr "Zoznam chýb"
-
-#~ msgid "See the troubleshooting guide on zenphoto.org for details."
-#~ msgstr "Viac informácií nájdete v sprievodcovi problémami na zenphoto.org."
-
-#~ msgid "third party plugin"
-#~ msgstr "zásuvný modul tretej strany"
-
-#~ msgid "Delete tags from the gallery"
-#~ msgstr "Vymazať tagy z galérie"
-
-#~ msgid ""
-#~ "Zenphoto may be unable to perform uploads when PHP Safe Mode restrictions "
-#~ "are in effect"
-#~ msgstr ""
-#~ "Zenphoto asi nebude schopné nahrať súbory ak sú aktívne PHP Safe Mode "
-#~ "obmedzenia"
-
-#~ msgid "Preview the release notes for Zenphoto %s"
-#~ msgstr "Zobrazí poznámky k vydaniu Zenphota %s."
-
-#~ msgid ""
-#~ "See also the Zenphoto online documentation: <a href=\"%1$s\">%2$s</a>"
-#~ msgstr ""
-#~ "Pozrite si tiež online dokumentáciu Zenphota: <a href=\"%1$s\">%2$s</a>"
-
-#~ msgid "Upgrade from before Zenphoto v1.2"
-#~ msgstr "Aktualizovať z verzie pred Zenphotom 1.2"
-
-#~ msgid "Upgrade from Zenphoto v%s"
-#~ msgstr "Aktualizovať z verzie Zenphota v%s"
-
-#~ msgid "Reinstalling current Zenphoto release"
-#~ msgstr "Preinštalovanie súčasnej verzie Zenphota"
-
-#~ msgid "reinstall"
-#~ msgstr "preinštalovať"
-
-#~ msgid "Setup"
-#~ msgstr "Inštalácia"
-
-#~ msgid "[%u release skipped]"
-#~ msgid_plural "[%u releases skipped]"
-#~ msgstr[0] "[%u verzia preskočená]"
-#~ msgstr[1] "[%u verzie preskočené]"
-#~ msgstr[2] "[%u verzií preskočených]"
-
-#~ msgid ""
-#~ "We do not test upgrades that skip releases. We recommend you upgrade in "
-#~ "sequence."
-#~ msgstr ""
-#~ "Netestujeme aktualizácie, ktoré preskakujú vydania. Odporúčame "
-#~ "aktualizovať postupne."
-
-#~ msgid ""
-#~ "We strongly recommend disabling <code>magic_quotes_gpc</code>. For more "
-#~ "information See <em><a href=\"http://www.zenphoto.org/news/"
-#~ "troubleshooting-zenphoto#what-is-magic_quotes_gpc-and-why-should-it-be-"
-#~ "disabled-\">What is magic_quotes_gpc and why should it be disabled?</a></"
-#~ "em> in the Zenphoto troubleshooting guide."
-#~ msgstr ""
-#~ "Porozmýšľajte o vypnutí <code>magic_quotes_gpc</code>. Viac informácií "
-#~ "<em><a href=\"http://www.zenphoto.org/news/troubleshooting-zenphoto#what-"
-#~ "is-magic_quotes_gpc-and-why-should-it-be-disabled-\">Čo je "
-#~ "magic_quotes_gpc, a prečo ich vypnúť?</a></em> získate v sprievodcovi "
-#~ "problémami na Zenphote."
-
-#~ msgid ""
-#~ "See the <a  href=\"http://www.zenphoto.org/news/troubleshooting-"
-#~ "zenphoto#24\">troubleshooting guide</a> on zenphoto.org for details."
-#~ msgstr ""
-#~ "Viac informácií nájdete v <a  href=\"http://www.zenphoto.org/news/"
-#~ "troubleshooting-zenphoto#24\">sprievodcovi problémami</a> na zenphoto.org."
-
-#~ msgid ""
-#~ "If you wish to create cruft-free URLs, you will need to configuring <a "
-#~ "href=\"http://www.zenphoto.org/news/nginx-rewrite-rules-tutorial"
-#~ "\"><em>URL rewriting for NGINX servers</em></a>."
-#~ msgstr ""
-#~ "Ak chcete vytvoriť čisté URLka, musíte nastaviť <a href=\"http://www."
-#~ "zenphoto.org/news/nginx-rewrite-rules-tutorial\"><em>prepisovanie URL pre "
-#~ "NGINX servery</em>."
-
-#~ msgid ""
-#~ "See the <a href=\"http://www.zenphoto.org/news/troubleshooting-"
-#~ "zenphoto#24\">troubleshooting guide</a> on zenphoto.org for details."
-#~ msgstr ""
-#~ " Prečítajte si <a href=\"http://www.zenphoto.org/news/troubleshooting-"
-#~ "zenphoto#29\">Sprievodca problémami</a> na zenphoto.org pre detaily."
-
-#~ msgid "The simpler media website CMS"
-#~ msgstr "Jednoduché CMS pre webstránku médií"
-
-#~ msgid ""
-#~ "printSearchForm $album_list parameter is deprecated. Pass array(\"albums"
-#~ "\"=>array(album, album, ...)) instead."
-#~ msgstr ""
-#~ "printSearchForm $album_list  parameter je zastaraný. Spustite namieto "
-#~ "toho pole (\"albums\"=>array(album, album,...))."
-
-#~ msgid ""
-#~ "Powered by <a href=\"http://www.zenphoto.org\" title=\"A simpler web album"
-#~ "\"><span id=\"zen-part\">zen</span><span id=\"photo-part\">PHOTO</span></"
-#~ "a>"
-#~ msgstr ""
-#~ "Postavené na <a href=\"http://www.zenphoto.org\" title=\"Jednoduchá "
-#~ "galéria obrázkov\"><span id=\"zen-part\">zen</span><span id=\"photo-part"
-#~ "\">PHOTO</span></a>"
-
-#~ msgid "Zenphoto Rights migration failed!"
-#~ msgstr "Presun práv Zenphota zlyhal."
-
-#~ msgid "Show PHP Information"
-#~ msgstr "Zobraziť informácie o PHP"
-
-#~ msgid "Display PHP information."
-#~ msgstr "Zobrazuje informácie o PHP"
-
-#~ msgid "PHPInfo"
-#~ msgstr "PHPInfo"
-
-#~ msgid "PHP Info"
-#~ msgstr "Informácie o PHP"
-
-#~ msgid ""
-#~ "Checks if there is a Zenphoto versions that is newer than the installed "
-#~ "version."
-#~ msgstr ""
-#~ "Overuje, či existuje verzia Zenphota, ktorá je novšia ako inštalovaná "
-#~ "verzia."
-
-#~ msgid "PHP <em>DOM Object Model</em> is required."
-#~ msgstr "Je vyžadovaný PHP <em>DOM Object Model</em>."
-
-#~ msgid "Zenphoto download page"
-#~ msgstr "Stránka sťahovania Zenphota"
-
-#~ msgid "A new version of Zenphoto version is available."
-#~ msgstr "Nová verzia Zenphota je k dispozícii."
-
-#~ msgid "Use the getContent() method."
-#~ msgstr "Použiť getContent() metódu."
-
-#~ msgid ""
-#~ "This plugin must always be enabled to use multimedia content. Note that "
-#~ "you should also enable a multimedia player. See the info of the player "
-#~ "you use to see how it is configured."
-#~ msgstr ""
-#~ "Tento zásuvný modul musí byť pri používaní multimediálneho obsahu vždy "
-#~ "zapnutý. Pamätajte, že by ste tiež mali zapnúť multimediálny prehrávač. "
-#~ "Pozrite si informácie o prehrávači, ktorý používate, aby ste videli ako "
-#~ "sa nastavuje."
-
-#~ msgid "Clone Zenphoto"
-#~ msgstr "Klonovanie Zenphota"
-
-#~ msgid "use the object’s getCommentsAllowed() method"
-#~ msgstr "Použiť getCommentsAllowed() metódu objektu."
-
-#~ msgid "clear width and height fields"
-#~ msgstr "vymazať polia výšky a šírky"
-
-#~ msgid ""
-#~ "You can disable this error message by going to the <em>deprecated-"
-#~ "functions</em> plugin options and un-checking <strong>%s</strong> in the "
-#~ "list of functions.<br />"
-#~ msgstr ""
-#~ "Túto chybovú hlášku môžete vypnúť tak, že v zásuvnom module <em>Zastarané "
-#~ "funkcie</em> odznačíte <strong>%s</strong> v zozname funkcií.<br />"
-
-#~ msgid "Use the instantiate method instead"
-#~ msgstr "Použiť namiesto toho instantiate metódu"
-
-#~ msgid ""
-#~ "The parameter to getGalleryIndexURL() is deprecated. Use "
-#~ "getCustomPageURL() instead for custom pages."
-#~ msgstr ""
-#~ "Parameter pre getGalleryIndexURL() je zastaraný. Use getCustomPageURL() "
-#~ "instead for custom pages."
-
-#~ msgid "Use the getFilename() method instead"
-#~ msgstr "Použiť namiesto toho getFilename() metódu"
-
-#~ msgid "Use the getLink() method instead"
-#~ msgstr "Použiť namiesto toho getLink() metódu"
-
-#~ msgid "Use the getSortType() method instead"
-#~ msgstr "Použiť namiesto toho getSortType() metódu"
-
-#~ msgid "Use the getThumb() method instead"
-#~ msgstr "Použiť namiesto toho getThumb() metódu"
-
-#~ msgid "Use the setSortType() method instead"
-#~ msgstr "Použiť namiesto toho setSortType() metódu"
-
-#~ msgid "Use printImageMetadata()."
-#~ msgstr "Použiť printImageMetadata()."
-
-#~ msgid "Use printCustomSizedImageMaxSpace()."
-#~ msgstr "Použiť printCustomSizedImageMaxSpace()."
-
-#~ msgid "Use getCommentDateTime()."
-#~ msgstr "Použiť getCommentDateTime()."
-
-#~ msgid "Use getHitcounter()."
-#~ msgstr "Použiť getHitcounter()."
-
-#~ msgid "Use truncate_string()."
-#~ msgstr "Použiť truncate_string()."
-
-#~ msgid "Use getImageMetaData()."
-#~ msgstr "Použiť getImageMetaData()."
-
-#~ msgid "Use getAlbumLocation()."
-#~ msgstr "Použiť getAlbumLocation()."
-
-#~ msgid "Use printAlbumLocation()."
-#~ msgstr "Použiť printAlbumLocation()."
-
-#~ msgid "No longer supported."
-#~ msgstr "Naďalej nepodporované."
-
-#~ msgid "Use rewrite_path()."
-#~ msgstr "Použiť rewrite_path()."
-
-#~ msgid "Use getNumAlbums()."
-#~ msgstr "Použiť getNumAlbums()."
-
-#~ msgid "Use zp_apply_filter(\"theme_head\")."
-#~ msgstr "Použiť zp_apply_filter(\"theme_head\")."
-
-#~ msgid "Use instead the theme options for images and albums per row."
-#~ msgstr ""
-#~ "Používa sa namiesto nastavenia albumov a obrázkov v riadku pre šablónu."
-
-#~ msgid "Use printZenpageItemsBreadcrumb()."
-#~ msgstr "Použiť printZenpageItemsBreadcrum()."
-
-#~ msgid "Use instead the Album class method isMyItem()."
-#~ msgstr "Používa sa namiesto Album class metódy isMyItem()."
-
-#~ msgid ""
-#~ "There is no need for this function as password handling is done by the "
-#~ "core."
-#~ msgstr ""
-#~ "Táto funkcia nemá využitie pretože spracovávanie hesiel obstaráva jadro."
-
-#~ msgid "The google-maps plugin is deprecated. Convert to GoogleMap."
-#~ msgstr "Zásuvný modul google-maps je zastaraný. Použite GoogleMap."
-
-#~ msgid ""
-#~ "printPreloadScript is deprecated. It is a helper for a specific theme and "
-#~ "should be placed within that theme’s \"functions.php\" script."
-#~ msgstr ""
-#~ "printPreloadScript je zastaraný. Je to pomocná funkcia pre jednotlivé "
-#~ "šablóny, ktorá by mala byť vložená do skriptu šablóny \"functions.php\"."
-
-#~ msgid "Use the album class method <code>isProtected()</code> instead."
-#~ msgstr "Použíte album class method <code>isProtected()</code>."
-
-#~ msgid ""
-#~ "Use the template function <code>getRSSLink()</code> instead. NOTE: While "
-#~ "this function gets a full html link <code>getRSSLink()</code> just "
-#~ "returns the URL."
-#~ msgstr ""
-#~ "Použite namiesto toho funkciu šablóny <code>getRSSLink()</code>. "
-#~ "POZNÁMKA: Keďže táto funkcia má plný html odkaz <code>getRSSLink()</code> "
-#~ "iba vráti URL."
-
-#~ msgid ""
-#~ "Use $_zp_captcha->getCaptcha($prompt). Note that you will require "
-#~ "updating your code to the new function."
-#~ msgstr ""
-#~ "Použiť $_zp_captcha->getCaptcha($prompt). Pamätajte, že budete musieť "
-#~ "prispôsobiť váš kód novej funkcii."
-
-#~ msgid "Use downloadList plugin <code>printDownloadURLAlbumZip()</code>."
-#~ msgstr ""
-#~ "Použiť zásuvný modul downloadList <code>printDownloadLinkAlbumZip()</"
-#~ "code>."
-
-#~ msgid "Download a zip file of this album"
-#~ msgstr "Stiahnuť album v ZIPe"
-
-#~ msgid "Use printImageThumb()."
-#~ msgstr "Použiť printImageThumb()."
-
-#~ msgid "Use $_zp_current_image->getID()."
-#~ msgstr "Použiť $_zp_current_image->getID()."
-
-#~ msgid "Use echo “image_”.$_zp_current_image->getID()."
-#~ msgstr "Použiť echo “image_”.$_zp_current_image->getID()."
-
-#~ msgid "Use echo “image_”.$_zp_current_album->getID()."
-#~ msgstr "Použiť echo “image_”.$_zp_current_album->getID()."
-
-#~ msgid "Just what do you expect this does?"
-#~ msgstr "Tak čo si myslíte, že toto robi?"
-
-#~ msgid "Use object methods."
-#~ msgstr "Použiť object metódy."
-
-#~ msgid "Use echo $_zp_current_image->getSortOrder()."
-#~ msgstr "Použiť echo $_zp_current_image->getSortOrder()."
-
-#~ msgid ""
-#~ "If you need this function copy it to your theme’s functions.php script."
-#~ msgstr ""
-#~ "Ak túto funkciu potrebujete, skopírujte ju do functions.php skriptu vašej "
-#~ "šablóny."
-
-#~ msgid "use $_zp_captcha->getCaptcha() and format the results as desired."
-#~ msgstr ""
-#~ "použi $_zp_captcha->getCaptcha() a sformátuj výsledky ako je požadované."
-
-#~ msgid "Enter CAPTCHA <strong>*</strong>"
-#~ msgstr "Vložiť CAPTCHA <strong>*</strong>"
-
-#~ msgid ""
-#~ "Front end editing is not supported. Use the property specific methods."
-#~ msgstr ""
-#~ "Úpravy z prednej strany nie sú podporované. Použite povolenú metódu."
-
-#~ msgid "printField() invalid function call, context %X."
-#~ msgstr "printField() nesprávny dopyt funkcie, kontext %X."
-
-#~ msgid "printField() invalid function call, field:%s."
-#~ msgstr "printField() nesprávny dopyt funkcie, pole:%s."
-
-#~ msgid "printField() invalid function call, not an object."
-#~ msgstr "printField() nesprávny dopyt funkcie, nie je to objekt."
-
-#~ msgid ""
-#~ "This feature is now done by a \"theme_body_close\" filter. You can remove "
-#~ "the function call."
-#~ msgstr ""
-#~ "Túto funkciu teraz vykonáva filter  \"theme_body_close\". Môžete ostrániť "
-#~ "volanie na funkciu."
-
-#~ msgid "use getLinkHTML()"
-#~ msgstr "použite getLinkHTML()"
-
-#~ msgid "use printLinkHTML()"
-#~ msgstr "použite printLinkHTML()"
-
-#~ msgid "use setupDomain()"
-#~ msgstr "použite setupDomain() "
-
-#~ msgid "use getAlbumURL()"
-#~ msgstr "použite getAlbumURL()"
-
-#~ msgid "use getImageURL()"
-#~ msgstr "použite getImageURL()"
-
-#~ msgid "use printAlbumURL()"
-#~ msgstr "použite printAlbumURL()"
-
-#~ msgid "use printImageURL()"
-#~ msgstr "použite printImageURL()"
-
-#~ msgid "use printNextPageURL()"
-#~ msgstr "použite printNextPageURL()"
-
-#~ msgid "use printPrevPageURL()"
-#~ msgstr "použite printPrevPageURL()"
-
-#~ msgid "use printSizedImageURL()"
-#~ msgstr "použite printSizedImageURL()"
-
-#~ msgid "use Gallery::addImageHandler()"
-#~ msgstr "použite Gallery::addImageHandler()"
-
-#~ msgid "use Gallery::validImage()"
-#~ msgstr "použite Gallery::validImage()"
-
-#~ msgid "use Gallery::validImageAlt()"
-#~ msgstr "použite Gallery::validImageAlt()"
-
-#~ msgid "use printDownloadURL()"
-#~ msgstr "použite printDownloadURL()"
-
-#~ msgid "use getDownloadURL()"
-#~ msgstr "použite getDownloadURL()"
-
-#~ msgid "use printDownloadAlbumZipURL()"
-#~ msgstr "použite printDownloadAlbumZipURL()"
-
-#~ msgid "Zenphoto themes (%s)"
-#~ msgstr "Šablóny Zenphota (%s)"
-
-#~ msgid "Zenphoto data (%s)"
-#~ msgstr "Dáta Zenphota (%s)"
-
-#~ msgid "Mod Rewrite is required for this plugin"
-#~ msgstr "Pre tento zásuvný modul je vyžadovaný mod rewrite."
-
-#~ msgid "use printFavoritesURL()"
-#~ msgstr "použite printFavoritesURL()"
-
-#~ msgid "back to Zenphoto"
-#~ msgstr "naspäť do Zenphota"
-
-#~ msgid "Use printThumbNav()."
-#~ msgstr "Použiť printThumbNav()."
-
-#~ msgid "Enable <strong>jPlayer</strong> to handle multimedia files."
-#~ msgstr ""
-#~ "Aktivujte <strong>jPlayer</strong> na správu multimediálnych súborov."
-
-#~ msgid ""
-#~ "<strong>IMPORTANT</strong>: Only one multimedia extension plugin can be "
-#~ "enabled at the time and the class-video plugin must be enabled, too."
-#~ msgstr ""
-#~ "<strong>Dôležité</strong>: Súčasne môže byť aktívny iba jeden "
-#~ "multimediálny zásuvný modul. A zárove§ musí byť aktivovaný zásuvný modul "
-#~ "class-video."
-
-#~ msgid "The class-video plugin must be enabled for video support."
-#~ msgstr "Na podporu videa musí byť spustený zásuvný modul class-video."
-
-#~ msgid "Use this plugin is to enable using older third party spam filters."
-#~ msgstr ""
-#~ "Zásuvný modul, ktorý umožňuje používanie starších spam filtrov tretích "
-#~ "strán."
-
-#~ msgid ""
-#~ "Please contact the author of your SPAM filter and request it be updated "
-#~ "to work with the <i>plugin</i> model of SPAM filters. This plugin will be "
-#~ "removed from future Zenphoto releases."
-#~ msgstr ""
-#~ "Prosím kontaktujte autora vášho spam filtra a požiadajte ho o jeho "
-#~ "aktualizáciu aby spolupracoval s modelom <i>zásuvného modulu</i> spam "
-#~ "filtrov. Tento zásuvný modul bude v budúcich vydaniach Zenphota "
-#~ "odstránený."
-
-#~ msgid "Associated Spam Filter"
-#~ msgstr "Priradený spam filter"
-
-#~ msgid "Select the legacy spam filter to be used."
-#~ msgstr "Vyberte si dedičný spam filter, ktorý chcete používať."
-
-#~ msgid "All Zenpage news categories"
-#~ msgstr "Všetky kategórie Zenpage"
-
-#~ msgid "Use printRating()."
-#~ msgstr "Použiť printRating()."
-
-#~ msgid "The %1$s feed is deprecated."
-#~ msgstr "Zdroj %1$s je zastaraný."
-
-#~ msgid ""
-#~ "CombiNews is deprecated. Remove the  \"$option\" parameter. See the <a "
-#~ "href=\"http://www.zenphoto.org/news/zenphoto-1.4.6\">Zenphoto 1.4.6 "
-#~ "release notes</a>."
-#~ msgstr ""
-#~ "CombiNews je zastaralé. Odstráňte parameter  \"$option\". Pozrite si <a "
-#~ "href=\"http://www.zenphoto.org/news/zenphoto-1.4.6\">Zenphoto 1.4.6 "
-#~ "release notes</a>."
-
-#~ msgid "Use the getLink method instead"
-#~ msgstr "Použiť namiesto toho getLink metódu."
-
-#~ msgid "Create an object and use its getLink method."
-#~ msgstr "Vytvorí objekt a použije jeho metódu getLink."
-
-#~ msgid "Use getNewsArchivePath()."
-#~ msgstr "Použite getNewsArchivePath()"
-
-#~ msgid "Use the Zenpage Page class->getPages() method."
-#~ msgstr "Použiť Zenpage page class metódu getParents()."
-
-#~ msgid "Use object->getTags() method."
-#~ msgstr "Použiť object->getTags() metódu."
-
-#~ msgid "Use printTags()."
-#~ msgstr "Použiť printTags()."
-
-#~ msgid "Use instead the Zenpage category class method getSubCategories()."
-#~ msgstr ""
-#~ "Používa sa namiesto Zenpage category class metódy getSubCategories()."
-
-#~ msgid "Use instead the Zenpage news class method inProtectedCategory()."
-#~ msgstr ""
-#~ "Používa sa namiesto Zenpage news class metódy inProtectedCategory()."
-
-#~ msgid "Use instead the Zenpage category class method isProtected()."
-#~ msgstr "Používa sa namiesto Zenpage category class metódy isProtected()."
-
-#~ msgid "Use instead the Zenpage category class method getParents()."
-#~ msgstr "Používa sa namiesto Zenpage category class metódy getParents()."
-
-#~ msgid "Use instead the Zenpage category class method getTitle()."
-#~ msgstr "Používa sa namiesto Zenpage category class metódy getTitle()."
-
-#~ msgid "Use instead the Zenpage category class method getID()."
-#~ msgstr "Používa sa namiesto Zenpage category class metódy getID()."
-
-#~ msgid "Use instead the Zenpage category class method getParentID()."
-#~ msgstr "Používa sa namiesto Zenpage category class metódy getParentID()."
-
-#~ msgid "Use instead the Zenpage category class method getSortOrder()."
-#~ msgstr "Používa sa namiesto Zenpage category class metódy getSortOrder()."
-
-#~ msgid "Use instead the Zenpage page class method getParents()."
-#~ msgstr "Používa sa namiesto Zenpage page class metódy getParents()."
-
-#~ msgid "Use instead the Zenpage page class method isProtected()."
-#~ msgstr "Používa sa namiesto Zenpage page class metódy isProtected()."
-
-#~ msgid "Use instead the Zenpage category class method isMyItem()."
-#~ msgstr "Používa sa namiesto Zenpage category class metódy isMyItem()."
-
-#~ msgid "Use instead the Zenpage category class method checkforGuest()."
-#~ msgstr "Používa sa namiesto Zenpage category class metódy checkforGuest()."
-
-#~ msgid "Use instead the Zenpage news class method isMyItem()."
-#~ msgstr "Používa sa namiesto Zenpage news class metódy isMyItem()."
-
-#~ msgid "Use instead the Zenpage news class method checkNewsAccess()."
-#~ msgstr "Používa sa namiesto Zenpage news class metódy checkNewsAccess()."
-
-#~ msgid ""
-#~ "Use instead the Zenpage category global object variable: "
-#~ "$_zp_current_category->getTitlelink()."
-#~ msgstr ""
-#~ "Používa sa namiesto Zenpage category global object variable: "
-#~ "$_zp_current_category->getTitlelink()."
-
-#~ msgid ""
-#~ "Use instead the Zenpage category global object variable: "
-#~ "$_zp_current_category->getID()."
-#~ msgstr ""
-#~ "Používa sa namiesto Zenpage category global object variable: "
-#~ "$_zp_current_category->getID()."
-
-#~ msgid ""
-#~ "Use instead the Zenpage category global object variable: "
-#~ "$_zp_current_category->getParentID()."
-#~ msgstr ""
-#~ "Používa sa namiesto Zenpage category global object variable: "
-#~ "$_zp_current_category->getParentID()."
-
-#~ msgid ""
-#~ "Use instead the Zenpage news global object variable: "
-#~ "$_zp_current_zenpage_news->inNewsCategory($catlink)."
-#~ msgstr ""
-#~ "Používa sa namiesto Zenpage news global object variable: "
-#~ "$_zp_current_zenpage_news->inNewsCategory($catlink)."
-
-#~ msgid ""
-#~ "Use instead the Zenpage news global object variable: "
-#~ "$_zp_current_zenpage_news->inSubNewsCategoryOf($catlink)."
-#~ msgstr ""
-#~ "Používa sa namiesto Zenpage news global object variable: "
-#~ "$_zp_current_zenpage_news->inSubNewsCategoryOf($catlink)."
-
-#~ msgid ""
-#~ "Use instead the Zenpage category global object variable: "
-#~ "$_zp_current_category->isSubNewsCategoryOf($catlink)."
-#~ msgstr ""
-#~ "Používa sa namiesto Zenpage category global object variable: "
-#~ "$_zp_current_category->isSubNewsCategoryOf($catlink)."
-
-#~ msgid ""
-#~ "Functionality is now included in getNewsContent(), printNewsContent() and "
-#~ "getContentShorten() to properly cover custom shortening via TinyMCE "
-#~ "<pagebreak>."
-#~ msgstr ""
-#~ "Funkcie sú teraz obsiahnuté v getNewsContent(), printNewsContent() a "
-#~ "getContentShorten(), aby sa pokrylo upravené skracovanie cez TinyMCE "
-#~ "<pagebreak>."
-
-#~ msgid ""
-#~ "Use getContentShorten() instead. Note the read more url must be passed "
-#~ "directly."
-#~ msgstr ""
-#~ "Použiť radšej getContentShorten(). Pamätajte na to, že read more url musí "
-#~ "byť pustené priamo."
-
-#~ msgid "This happens automatically."
-#~ msgstr "Toto sa deje automaticky."
-
-#~ msgid "Use the Zenpage class method instead."
-#~ msgstr "Použiť namiesto toho Zenpage class metódu."
-
-#~ msgid "Count the articles instead."
-#~ msgstr "Spočítať namiesto toho články."
-
-#~ msgid "Use the global $_zp_page instead."
-#~ msgstr "Použite namiesto toho globálny $_zp_page."
-
-#~ msgid "Combinews is removed."
-#~ msgstr "CombiNews je odstránený."
-
-#~ msgid ""
-#~ "Use the template function <code>getRSSLink()</code> instead. NOTE: While "
-#~ "this function gets a full html link  <code>getRSSLink()</code> just "
-#~ "returns the URL."
-#~ msgstr ""
-#~ "Použite namiesto toho funkciu šablóny <code>getRSSLink()</code>. "
-#~ "POZNÁMKA: Keďže táto funkcia bere plný html odkaz <code>getRSSLink()</"
-#~ "code> iba vráti URL."
-
-#~ msgid "use printLatestComments($number, $shorten, $type, $itemID, $id);"
-#~ msgstr "použiť printLatestComments($number, $shorten, $type, $itemID, $id);"
-
-#~ msgid "use getRSSLink($option,$lang,$categorylink)."
-#~ msgstr "použiť getRSSLink($option,$lang,$categorylink)."
-
-#~ msgid ""
-#~ "use printRSSLink($option, $prev, $linktext, $next, $printIcon, $class, "
-#~ "$lang, $categoryLink)."
-#~ msgstr ""
-#~ "použiť printRSSLink($option, $prev, $linktext, $next, $printIcon, $class, "
-#~ "$lang, categoryLink)."
-
-#~ msgid "use printRSSHeaderLink($option, $linktext, $lang, $categorylink)."
-#~ msgstr ""
-#~ "použiť printRSSHeaderLink($option, $linktext, $lang, $categorylink)."
-
-#~ msgid ""
-#~ "CombiNews is deprecated. See the <a href=\"http://www.zenphoto.org/news/"
-#~ "zenphoto-1.4.6\">Zenphoto 1.4.6 release notes</a>."
-#~ msgstr ""
-#~ "CombiNews je zastaraný. Pozrite si <a href=\"http://www.zenphoto.org/news/"
-#~ "zenphoto-1.4.6\">Zenphoto 1.4.6 poznámky k vydaniu</a>."
-
-#~ msgid "Create an object and use the object getLink"
-#~ msgstr "Vytvorte objekt a použite objekt getLink"
-
-#~ msgid "use getNewsURL()"
-#~ msgstr "použite getNewsURL()"
-
-#~ msgid "use printNewsURL()"
-#~ msgstr "použite printNewsURL()"
-
-#~ msgid "use getPageURL()"
-#~ msgstr "použite getPageURL()"
-
-#~ msgid "use printPageURL()"
-#~ msgstr "použite printPageURL()"
-
-#~ msgid "Adds a Zenphoto donations block to the admin overview page."
-#~ msgstr ""
-#~ "Pridáva blok na príspevky Zenphotu na hlavnu stránku administrátorskej "
-#~ "sekcie."
-
-#~ msgid "Like using Zenphoto? Donate!"
-#~ msgstr "Páči sa vám Zenphoto? Podporte nás!"
-
-#~ msgid ""
-#~ "Your support helps pay for the Zenphoto site server and helps development "
-#~ "of Zenphoto. Thank you!"
-#~ msgstr ""
-#~ "Vaša podpora pomôže zaplatiť server pre stránku Zenphota a pomôže vývoju "
-#~ "Zenphota. Ďakujeme!"
-
-#~ msgid ""
-#~ "Places the latest 3 news articles from Zenphoto.org on the admin overview "
-#~ "page."
-#~ msgstr ""
-#~ "Zobrazí 3 posledné novinky zo Zenphoto.org na stránke prehľadu v "
-#~ "administrátorskej sekcii."
-
-#~ msgid "Truncation"
-#~ msgstr "Skrátenie"
-
-#~ msgid "The length of the article to display."
-#~ msgstr "Dĺžka článku, ktorá sa zobrazí."
-
-#~ msgid "News from Zenphoto.org"
-#~ msgstr "Novinky na Zenphoto.org"
-
-#~ msgid "Failed to retrieve link <em>%s</em>"
-#~ msgstr "Nepodarilo sa načítať odkaz <em>%s</em>"
-
-#~ msgid "A connection to <em>Zenphoto.org</em> could not be established."
-#~ msgstr "Nepodario sa spojiť s <em>Zenphoto.org</em>."
-
-#~ msgid "show more fields"
-#~ msgstr "zobraziť viacej polí"
-
-#~ msgid "show fewer fields"
-#~ msgstr "zobraziť menej polí"
-
-#~ msgid "tools"
-#~ msgstr "nástroje"
-
-#~ msgid "utilities"
-#~ msgstr "nástroje"
-
-#~ msgid "Plugins per page (Options):"
-#~ msgstr "Zásuvných modulov na stranu (Nastavenia):"
-
-#~ msgid "Expand plugin options"
-#~ msgstr "Rozbaliť nastavenia zásuvných modulov"
-
-#~ msgid "Collapse all plugin options"
-#~ msgstr "Zbaliť nastavenia zásuvných modulov"
-
-#~ msgid "%s protected."
-#~ msgstr "%s chránené."
-
-#~ msgid "failed to protect %s."
-#~ msgstr "nepodarilo sa ochrániť %s."
-
-#~ msgid "Setup scripts protected."
-#~ msgstr "Inštalačný skript je ochránený."
-
-#~ msgid "Failed to protect: %s"
-#~ msgstr "Nepodarilo sa ochrániť: %s"
-
-#~ msgid "1 image"
-#~ msgstr "1 obrázok"
-
-#~ msgid "1 album,&nbsp;1 image"
-#~ msgstr "1 album,&nbsp;1 obrázok"
-
-#~ msgid "%u album,&nbsp;1 image"
-#~ msgstr "%u album,&nbsp;1 obrázok"
-
-#~ msgid "%1$u album,&nbsp;%2$u images"
-#~ msgstr "%1$u album,&nbsp;%2$u obrázkov"
-
-#~ msgid "1 album"
-#~ msgstr "1 album"
-
-#~ msgid "1 album,&nbsp;%u images"
-#~ msgstr "1 album,&nbsp;%u obrázkov"
-
-#~ msgid "images %1$u-%2$u of %3$u"
-#~ msgstr "Obrázky %1$u-%2$u z %3$u"
-
-#~ msgid "next page"
-#~ msgstr "ďalšia strana"
-
-#~ msgid "SHOW"
-#~ msgstr "ZOBRAZIŤ"
-
-#~ msgid "HIDE"
-#~ msgstr "SKRYŤ"
-
-#~ msgid "No comments yet"
-#~ msgstr "Zatiaľ bez komentárov"
-
-#~ msgid "%u comment so far"
-#~ msgid_plural "%u comments so far"
-#~ msgstr[0] "%u komentár doteraz"
-#~ msgstr[1] "%u komentáre doteraz"
-#~ msgstr[2] "%u komentárov doteraz"
-
-#~ msgid "Link to Comment %u"
-#~ msgstr "Odkaz na komentár %u"
-
-#~ msgid "%s wrote:"
-#~ msgstr "%s píše:"
-
-#~ msgid "Email%s"
-#~ msgstr "Email%s"
-
-#~ msgid "(not displayed)"
-#~ msgstr "(nezobrazuje sa)"
-
-#~ msgid "URL%s"
-#~ msgstr "URL%s"
-
-#~ msgid "Private comment"
-#~ msgstr "Súkromný komentár"
-
-#~ msgid "(don't publish)"
-#~ msgstr "(nezverejňovať)"
-
-#~ msgid "Post"
-#~ msgstr "Odoslať"
-
-#~ msgid "Avoid clicking &ldquo;Post&rdquo; more than once."
-#~ msgstr "Neklikajte viac ráz na &ldquo;Odoslaťt&rdquo;."
-
-#~ msgid ""
-#~ "<a href=\"http://stopdesign.com/templates/photos/\">Photo Templates</a> "
-#~ "from Stopdesign"
-#~ msgstr ""
-#~ "<a href=\"http://stopdesign.com/templates/photos/\">Šablóny</a> od "
-#~ "Stopdesign-u"
-
-#~ msgid "All galleries"
-#~ msgstr "Všetky galérie"
-
-#~ msgid "1 album,&nbsp;%u image"
-#~ msgid_plural "1 album,&nbsp;%u images"
-#~ msgstr[0] "1 album,&nbsp;%u obrázok"
-#~ msgstr[1] "1 album,&nbsp;%u obrázky"
-#~ msgstr[2] "1 album,&nbsp;%u obrázkov"
-
-#~ msgid "%1$u album,&nbsp;%2$s"
-#~ msgid_plural "%1$u albums,&nbsp;%2$s"
-#~ msgstr[0] "%1$u album,&nbsp;%2$s"
-#~ msgstr[1] "%1$u albumy,&nbsp;%2$s"
-#~ msgstr[2] "%1$u albumov,&nbsp;%2$s"
-
-#~ msgid "Gallery Feeds"
-#~ msgstr "Kanály galérie"
-
-#~ msgid "Photos"
-#~ msgstr "Obrázky"
-
-#~ msgid "%1$u of %2$u images"
-#~ msgstr "%1$u z %2$u obrázkov"
-
-#~ msgid "Full Size"
-#~ msgstr "Plná veľkosť"
-
-#~ msgid ""
-#~ "<a href=\"http://stopdesign.com/templates/photos/\">Photo Templates</a> "
-#~ "from Stopdesign."
-#~ msgstr ""
-#~ "<a href=\"http://stopdesign.com/templates/photos/\">Šablóny</a> od "
-#~ "Stopdesign-u"
-
-#~ msgid "Recently Updated Galleries"
-#~ msgstr "Nedávno aktualizované galérie"
-
-#~ msgid "View album: %s"
-#~ msgstr "Prezrieť album: %s"
-
-#~ msgid "Recent images"
-#~ msgstr "Najnovšie obrázky"
-
-#~ msgid "View image:"
-#~ msgstr "Prezrieť obrázok:"
-
-#~ msgid "Gallery data"
-#~ msgstr "Dáta galérie"
-
-#~ msgid "%u"
-#~ msgid_plural "%u"
-#~ msgstr[0] "%u"
-#~ msgstr[1] "%u"
-#~ msgstr[2] "%u"
-
-#~ msgid "A password is required"
-#~ msgstr "Potrebné heslo"
-
-#~ msgid "%u albums,&nbsp;1 image"
-#~ msgstr "%u albumov,&nbsp;1 obrázok"
-
-#~ msgid "%1$u albums,&nbsp;%2$u images"
-#~ msgstr "%1$u albumov,&nbsp;%2$u obrázkov"
-
-#~ msgid "%u albums"
-#~ msgstr "%u albumov"
-
-#~ msgid "Ported to Zenphoto by Mark Galeassi and Stephen Billard"
-#~ msgstr "Pre Zenphoto prepísali Mark Galeassi a Stephen Billard"
-
-#~ msgid ""
-#~ "A theme based on the design from <a href=\"http://stopdesign.com/"
-#~ "templates/photos/\">Douglas Bowman</a>. This theme is licensed under the "
-#~ "<a href=\"http://creativecommons.org/licenses/by-nc-sa/2.5/\">Creative "
-#~ "Commons Attribution-NonCommercial-ShareAlike 2.5</a> License."
-#~ msgstr ""
-#~ "Šablóna vychádzajúca s designu <a href=\"http://stopdesign.com/templates/"
-#~ "photos/\">Douglas Bowman</a>. Táto šablóna je licencovaná podľa licencie "
-#~ "<a href=\"http://creativecommons.org/licenses/by-nc-sa/2.5/\">Creative "
-#~ "Commons Attribution-NonCommercial-ShareAlike 2.5</a>."
-
-#~ msgid ""
-#~ "<strong>NOTE:</strong> The 1.4.5 release is the last release that "
-#~ "Stopdesign will be included as a supported theme."
-#~ msgstr ""
-#~ "<strong>POZNÁMKA:</strong> Verzia 1.4.5 je poslednou, v ktorej bude "
-#~ "šablóna Stopdesign vložená ako podporovaná šablóna."
-
-#~ msgid "Mini slide selector"
-#~ msgstr "Výber pre miniprezentáciu"
-
-#~ msgid "Select what you want for the six special slides."
-#~ msgstr "Vyberte obsah do šiestich špeciálnych rámčekov"
-
-#~ msgid "Your passwords did not match"
-#~ msgstr "Vaše heslo nie je správne."
-
-#~ msgid "partial"
-#~ msgstr "čiastočné"
-
-#~ msgid "exact"
-#~ msgstr "presné"
-
-#~ msgid ""
-#~ "Search does partial matches on all fields selected with the possible "
-#~ "exception of <em>Tags</em>. This means that if the field contains the "
-#~ "search criteria anywhere within it a result will be returned. If "
-#~ "<em>exact</em> is selected for <em>Tags</em> then the search criteria "
-#~ "must exactly match the tag for a result to be returned."
-#~ msgstr ""
-#~ "Vyhľadávanie hľadá čiastočné zhody vo všetkých označených poliach s "
-#~ "možnými výnimkami v <em>tagoch</em>. To znamená, že ak pole obsahuje "
-#~ "vyhľadávaný výraz kdekoľvek vo svojom tele bude vygenerovaný výsledok. Ak "
-#~ "je pre <em>tagy</em> označené <em>presne</em> tak vyhľadávaný výraz musí "
-#~ "byť presne rovnaký, inak sa nezobrazia žiadne výsledky."
-
-#~ msgid "You must supply a password"
-#~ msgstr "Musíte zadať heslo"
-
-#~ msgid "Mail send failed. "
-#~ msgstr "Odoslanie mailu zlyhalo."
-
-#~ msgid ""
-#~ "getSearchURL $album_list parameter is deprecated. Pass array(\"albums"
-#~ "\"=>array(album, album, ...)) instead."
-#~ msgstr ""
-#~ "getSearchURL $album_list parameter je zastaraný. Spustite namieto toho "
-#~ "pole (\"albums\"=>array(album, album,...))."
-
-#~ msgid "You must first set the plugin's options for cached image parameters."
-#~ msgstr ""
-#~ "Najprv musíte nastaviť zásuvné moduly na parametre kešovaného obrázku."
-
-#~ msgid "Contact page link"
-#~ msgstr "Odkaz na stránku kontaktu"
-
-#~ msgid ""
-#~ "The link to use for the contact page. Note: the token <code>_PAGE_</code> "
-#~ "stands in for the current <em>page</em> definition."
-#~ msgstr ""
-#~ "Odkaz použitý pre kontaktnú stránku. Poznámka: symbol <code>_PAGE_</code> "
-#~ "označuje aktuálne nastavenie <em>stránky</em>."
-
-#~ msgid ""
-#~ "The link to use for the favorites script page.  Note: the token "
-#~ "<code>_PAGE_</code> stands in for the current <em>page</em> definition."
-#~ msgstr ""
-#~ "Odkaz použitý pre stránku obľúbených skriptov. Poznámka: symbol "
-#~ "<code>_PAGE_</code> označuje aktuálne nastavenie <em>stránky</em>."
-
-#~ msgid "Standard script naming"
-#~ msgstr "Štandardné nazývanie skriptov"
-
-#~ msgid ""
-#~ "<strong>Note:</strong> The <em>favorites</em> theme script should be "
-#~ "named <em>favorites.php</em>. Check this box to use the standard script "
-#~ "name."
-#~ msgstr ""
-#~ "<strong>Poznámka:</strong> Skript šablóny <em>obľúbené</em> by mal byť "
-#~ "nazvaný <em>favorites.php</em>. Zakliknutím tohto pola sa použije "
-#~ "štandardný názov skriptu."
-
-#~ msgid "Registration page link"
-#~ msgstr "Odkaz na stránku registrácie"
-
-#~ msgid ""
-#~ "The link to use for the registration page. Note: the token <code>_PAGE_</"
-#~ "code> stands in for the current <em>page</em> definition."
-#~ msgstr ""
-#~ "Odkaz použitý pre registračnú stránku. Poznámka: symbol <code>_PAGE_</"
-#~ "code> označuje aktuálne nastavenie <em>stránky</em>."
-
-#~ msgid ""
-#~ "<strong>Note:</strong> Address fields are handled by the "
-#~ "<em>comment_form</em> plugin."
-#~ msgstr ""
-#~ "<strong>Poznámka:</strong> Polia adresy spravuje zásuvný modul "
-#~ "<em>comment_form</em>."
-
-#~ msgid ""
-#~ "<strong>Note:</strong> The <em>register user</em> theme script should be "
-#~ "named <em>register.php</em>. Check this box to use the standard script "
-#~ "name."
-#~ msgstr ""
-#~ "<strong>Poznámka:</strong> Skript šablóny <em>registrácia používateľov</"
-#~ "em> by mal byť nazvaný <em>register.php</em>. Zakliknutím tohto pola sa "
-#~ "použije štandardný názov skriptu."
-
-#~ msgid "<p class=\"messagebox\"><em>%1$s</em>  updated.</p>"
-#~ msgstr "<p class=\"messagebox\"><em>%1$s</em> obnovený.</p>"
-
-#~ msgid ""
-#~ "Tiny MCE<span id='tinymceversion'></span> text editor for backend "
-#~ "<em>textareas</em>"
-#~ msgstr ""
-#~ "TinyMCE<span id='tinymceversion'></span> nástroj na úpravu textu v "
-#~ "<em>textareas</em> v administrátorskej sekcii."
-
-#~ msgid "Flowplayer width"
-#~ msgstr "Šírka prehrávača Flow"
-
-#~ msgid "Video player width if included using tinyZenpage"
-#~ msgstr "Šírka prehrávača videa ak je vložený použitím tinyZenpage."
-
-#~ msgid "Flowplayer height"
-#~ msgstr "Výška prehrávača Flow"
-
-#~ msgid "Video player height for videos included using tinyZenpage"
-#~ msgstr "Výška prehrávača videa pre videá vložené použitím tinyZenpage."
-
-#~ msgid "Mp3 control bar height"
-#~ msgstr "Výška ovládacej lišty pre MP3"
-
-#~ msgid "Video player height for mp3s included using tinyZenpage"
-#~ msgstr "Výška prehrávača MP3 ak je vložený použitím tinyZenpage."
-
-#~ msgid "Visit gallery page"
-#~ msgstr "Prezrieť stránku galérie"
-
-#~ msgid "New in <em>%2$s</em>%1$s: %3$s"
-#~ msgstr "Nové v <em>%2$s</em>%1$s: %3$s"
-
-#~ msgid ""
-#~ "Set to enable the CombiNews feature to show news articles and latest "
-#~ "gallery items together on the news section's overview page(s)."
-#~ msgstr ""
-#~ "Aktivovaním rozšírenia CombiNews povolíte zobrazenie článkov a najnovších "
-#~ "položiek galérie dokopy na stránke prehľadu správ."
-
-#~ msgid ""
-#~ "<strong>Note:</strong> Images/albums and news articles are still "
-#~ "separate, your Zenphoto gallery is not touched in any way!"
-#~ msgstr ""
-#~ "<strong>Poznámka:</strong> Obrázky/albumy a články sú stále oddelené, "
-#~ "vaša Zenphoto galéria nie je nijako zmenená!"
-
-#~ msgid "CombiNews: Gallery page link"
-#~ msgstr "CombiNews: Odkaz na stránku galérie"
-
-#~ msgid ""
-#~ "The text for the 'read more'/'view more' link to the gallery page for "
-#~ "images/movies/audio."
-#~ msgstr ""
-#~ "Text pre odkazy 'čítať viac'/'pozrieť viac' na stránku galérie pre "
-#~ "obrázky/videá/audio."
-
-#~ msgid "CombiNews: Mode"
-#~ msgstr "CombiNews: Mód"
-
-#~ msgid "latest images: sized image"
-#~ msgstr "najnovšie obrázky: zmenšený obrázok"
-
-#~ msgid "latest images: sized image maxspace"
-#~ msgstr "najnovšie obrázky: zmenšený obrázok maxspace"
-
-#~ msgid "latest images: thumbnail"
-#~ msgstr "najnovšie obrázky: miniatúra"
-
-#~ msgid "latest images: thumbnail-customcrop"
-#~ msgstr "najnovšie obrázky: miniatúra – vlastný orez"
-
-#~ msgid "latest albums: sized image"
-#~ msgstr "najnovšie albumy: zmenšený obrázok"
-
-#~ msgid "latest albums: sized image maxspace"
-#~ msgstr "najnovšie albumy: zmenšený obrázok maxspace"
-
-#~ msgid "latest albums: thumbnail"
-#~ msgstr "najnovšie albumy: miniatúra"
-
-#~ msgid "latest albums: thumbnail-customcrop"
-#~ msgstr "najnovšie albumy: miniatúra – vlastný orez"
-
-#~ msgid "latest albums: full image"
-#~ msgstr "najnovšie albumy: plný obrázok"
-
-#~ msgid "latest images by album: thumbnail"
-#~ msgstr "najnovšie obrázky podľa albumu: miniatúra"
-
-#~ msgid "latest images by album: thumbnail-customcrop"
-#~ msgstr "najnovšie obrázky podľa albumu: miniatúra – vlastný orez"
-
-#~ msgid "latest images by album: sized image"
-#~ msgstr "najnovšie obrázky podľa albumu: zmenšený obrázok"
-
-#~ msgid "latest images by album: sized image maxspace"
-#~ msgstr "najnovšie obrázky podľa albumu: zmenšený obrázok maxspace"
-
-#~ msgid "latest images by album: full image"
-#~ msgstr "najnovšie obrázky podľa albumu: plný obrázok"
-
-#~ msgid ""
-#~ "What you want to show within the CombiNews section.<br /><ul><li>Latest "
-#~ "images: Entries for all images ever added</li><li>Latest albums: Entries "
-#~ "for all albums ever created</li><li>Latest images by album: Entries for "
-#~ "all images but grouped by images that have been added within a day to "
-#~ "each album (Scheme: 'x new images in album y on date z')</li></ul> "
-#~ "<em>maxspace</em> means that an uncropped image fitting max. width x max. "
-#~ "height as set on the thumbnail width and height options is used (not for "
-#~ "multimedia items!)."
-#~ msgstr ""
-#~ "Čo chcete zobraziť v sekcii CombiNews.<br /><ul><li>Najnovšie obrázky: "
-#~ "záznamy o každom obrázku, ktorý bol nahratý</li><li>Najnovšie albumy: "
-#~ "záznamy o každom albume, ktorý bol vytvorený</li><li>Najnovšie obrázky "
-#~ "podľa albumu: záznamy o každom obrázku, ktorý bol nahratý v jeden den v "
-#~ "skupine obrázkov pre jednotlivé albumy (Schéma: 'x nových obrázkov pre "
-#~ "album y zo dňa z')</li></ul> <em>maxspace</em> znamená, že sa používa "
-#~ "neorezaný obrázok prispôsobený max. šírke x max. výška tak ako je zadané "
-#~ "v nastavení šírky a vášky pre miniatúry (neplatí pre multimediálne "
-#~ "položky!)."
-
-#~ msgid "CombiNews: Sized image size"
-#~ msgstr "CombiNews: veľkosť zmenšeného obrázku"
-
-#~ msgid ""
-#~ "The size of the sized image shown the CombiNews section <em>(only in "
-#~ "latest images-sizedimage or latest albums-sizedimage mode)</em>."
-#~ msgstr ""
-#~ "Veľkosť zmenšeného obrázku v sekcii CombiNews <em>(len v móde najnovšie "
-#~ "obrázky–zmenšený obrázok alebo najnovšie albumy–zmenšený obrázok)</em>."
-
-#~ msgid "CombiNews: Sort order"
-#~ msgstr "CombiNews: Poradie"
-
-#~ msgid "id"
-#~ msgstr "ID"
-
-#~ msgid "publishdate"
-#~ msgstr "dátum zverejnenia"
-
-#~ msgid ""
-#~ "The sort order for your gallery items within the CombiNews display except "
-#~ "for <em>latest images by album</em> which is by date or mtime only. "
-#~ "<ul><li>'date' (date order)</li><li>'id' (added to db order)</"
-#~ "li><li>'mtime' (upload order)</li><li>'publishdate' (manual publish date "
-#~ "order - you might get really funny results if this is not set!)</li></ul>"
-#~ msgstr ""
-#~ "Poradie položiek galérie v CombiNews zobrazení okrem <em>najnovších "
-#~ "obrázkov podľa albumu</em>, ktoré sú iba podľa dátumu alebo mtime."
-#~ "<ul><li> 'date' (podľa dátumu)</li><li>'id' (podľa pridania do databázy)</"
-#~ "li><li>'mtime' (poradie nahrávania)</li><li>'dátum zverejnenia' (podradie "
-#~ "podľa dátumu zverejnenia - ak toto nenastavíte môžete dostať veľmi vtipné "
-#~ "výsledky!)</li></ul>"
-
-#~ msgid ""
-#~ "<strong>Note: </strong> If you experience unexpected results, this refers "
-#~ "only to the images that are fetched from the database. Even if they are "
-#~ "fetched by id they will be sorted by date with the articles afterwards "
-#~ "since articles only have a date."
-#~ msgstr ""
-#~ "<strong>Poznámka:</strong> Ak ste zaznamenali neočakávané výsledky, "
-#~ "týkajú sa iba obrázkov naťahovaných z databázy. Aj keby boli ťahané podľa "
-#~ "ID neskôr budú zoraďované s článkami podľa dátumu, pretože články majú "
-#~ "iba dátum."
-
-#~ msgid "CombiNews: Gallery link"
-#~ msgstr "CombiNews: Link na galériu"
-
-#~ msgid ""
-#~ "Choose if you want to link from the image entry to its image page "
-#~ "directly or to the album page (if CombiNews mode is set for albums the "
-#~ "link is automatically only linking to albums). This affects all links of "
-#~ "the entry (<em>title</em>, <em>image</em> and the <em>visit gallery link</"
-#~ "em>"
-#~ msgstr ""
-#~ "Vyberte či chcete, aby odkaz v príspevku o obrázku smeroval na stránku "
-#~ "obrázku alebo na stránku albumu (ak je mód CombiNews nastavený na albumy "
-#~ "odkaz je automaticky nastavený iba na albumy). Toto postihuje všetky "
-#~ "odkazy v zápisoch (<em>titul</em>, <em>obrázok</em> a odkaz <em>prezrieť "
-#~ "galériu</em>."
-
-#~ msgid "CombiNews: Thumbnail crop width"
-#~ msgstr "CombiNews: šírka orezu miniatúry"
-
-#~ msgid ""
-#~ "For <em>thumbnail custom crop</em> only. Leave empty if you don't want to "
-#~ "use it."
-#~ msgstr ""
-#~ "Iba pre <em>vlastný orez miniatúr</em>. Ak to nechcete použiť nechajte "
-#~ "polia prázdne."
-
-#~ msgid "CombiNews: Thumbnail crop height"
-#~ msgstr "CombiNews: výška orezu miniatúry"
-
-#~ msgid "CombiNews: Thumbnail width"
-#~ msgstr "CombiNews: šírka miniatúry"
-
-#~ msgid ""
-#~ "For <em>thumbnail custom crop</em> and <em>sized image maxspace</em> "
-#~ "variants only. Leave empty if you don't want to use it. For <em>maxspace</"
-#~ "em> this is the max width of the uncropped sized image."
-#~ msgstr ""
-#~ "Len pre varianty <em>thumbnail custom crop</em> a <em>sized image "
-#~ "maxspace</em>. Nechajte polia prázdne, ak to nechcete použiť. Pre "
-#~ "<em>maxspace</em> je to maximálna šírka neorezaného obrázku."
-
-#~ msgid "CombiNews: Thumbnail height"
-#~ msgstr "CombiNews: výška miniatúry"
-
-#~ msgid ""
-#~ "For <em>thumbnail custom crop</em> and <em>sized image maxspace</em> "
-#~ "variants only. Leave empty if you don't want to use it. For <em>maxspace</"
-#~ "em> this is the max height of the uncropped sized image."
-#~ msgstr ""
-#~ "Len pre varianty <em>thumbnail custom crop</em> a <em>sized image "
-#~ "maxspace</em>. Nechajte polia prázdne, ak to nechcete použiť. Pre "
-#~ "<em>maxspace</em> je toto maximálna výška neorezaného obrázku."
-
-#~ msgid "CombiNews: Thumbnail crop x axis"
-#~ msgstr "CombiNews: x osa orezu miniatúr"
-
-#~ msgid "CombiNews: Thumbnail crop y axis"
-#~ msgstr "CombiNews: y osa orezu miniatúr"
-
-#~ msgid "CombiNews: Show image description"
-#~ msgstr "CombiNews: Zobraziť popis obrázku"
-
-#~ msgid ""
-#~ "Set to show the image description with every item if using the CombiNews "
-#~ "mode <em>latest images by album</em> only. Printed as a paragraph."
-#~ msgstr ""
-#~ "Zakliknutím sa bude informácia o obrázku zobrazovať s každou položkou ak "
-#~ "používate iba mód CombiNews <em>najnovšie obrázky podľa albumu</em>. "
-#~ "Zobrazí sa ako odsek."
-
-#~ msgid "CombiNews: Show image title"
-#~ msgstr "CombiNews: Zobraziť titul obrázku"
-
-#~ msgid ""
-#~ "Set to show the image title with every item if using the CombiNews mode "
-#~ "<em>latest images by album</em> only. Printed as h4-headline."
-#~ msgstr ""
-#~ "Zakliknutím sa bude titul obrázku zobrazovať s každou položkou ak "
-#~ "používate iba mód CombiNews <em>najnovšie obrázky podľa albumu</em>. "
-#~ "Zobrasuje sa ako h4 titulok."
-
-#~ msgid "CombiNews: Custom title"
-#~ msgstr "CombiNews: Upravený titul"
-
-#~ msgid ""
-#~ "Custom title for the <em>latest images by album</em> article. The string "
-#~ "is in <code>sprintf()</code> syntax.<br />&nbsp;&nbsp;&nbsp;&nbsp;<code>"
-#~ "%1$u</code> = new items count indicator (may be absent if redundant)<br /"
-#~ ">&nbsp;&nbsp;&nbsp;&nbsp;<code>%2$s</code> = title of the album they are "
-#~ "in<br />&nbsp;&nbsp;&nbsp;&nbsp;<code>%3$s</code> = titles of the new "
-#~ "items (up to the limit defined by the option below.)<p class=\"notebox"
-#~ "\">Never leave any of these three out!</p>"
-#~ msgstr ""
-#~ "Vlastný titul pre článok <em>posledné obrázky podľa albumu</em>. Riadok "
-#~ "je v <code>sprintf()</code> syntaxe.<br />&nbsp;&nbsp;&nbsp;&nbsp;<code>"
-#~ "%1$u</code> = indikátor počtu nových položiek (môže chýbať ak je "
-#~ "redundantný)<br />&nbsp;&nbsp;&nbsp;&nbsp;<code>%2$s</code> = názov "
-#~ "albumu, z ktorého sú<br />&nbsp;&nbsp;&nbsp;&nbsp;<code>%3$s</code> = "
-#~ "názvy nových položiek (až do limitu definovaného v nastavení nižšie.)<p "
-#~ "class=\"notebox\">Nikdy nevynechajte ani jedno z týchto troch!</p>"
-
-#~ msgid "CombiNews: Custom title - Number of image titles"
-#~ msgstr "CombiNews: Upravený titul – počet titulov obrázkov"
-
-#~ msgid ""
-#~ "How many images titles you want to show with the <em>latest images by "
-#~ "album</em> title."
-#~ msgstr ""
-#~ "Počet titulov obrázkov, ktoré sa majú zobraziť v <em>najnovšie obrázky "
-#~ "podľa albumu</em> titule. "
-
-#~ msgid ""
-#~ "How many of the new images you want to show in the <em>latest images by "
-#~ "album</em> article. Empty for all."
-#~ msgstr ""
-#~ "Koľko nových obrázkov chcete zobraziť v článku <em>posledné obrázky podľa "
-#~ "albumu</em>. Nevyplnením sa zobrazia všetky."
-
-#~ msgid "Expired: %s"
-#~ msgstr "Vyprší: %s"
-
-#~ msgid "Expires: %s"
-#~ msgstr "Vyprší: %s"
-
-#~ msgid " [%u item]"
-#~ msgid_plural " [%u items]"
-#~ msgstr[0] " [%u položka]"
-#~ msgstr[1] " [%u položky]"
-#~ msgstr[2] " [%u položiek]"
-
-#~ msgid ""
-#~ "<strong>Note:</strong> if you have created multi-language strings, "
-#~ "uncheck this option, then save anything, you will lose your strings."
-#~ msgstr ""
-#~ "<strong>Poznámka:</strong> ak ste vytvorili viacjazyčné texty, odznačte "
-#~ "túto možnosť, všetko uložte. Vaše texty stratíte."
-
-#~ msgid "Enabled"
-#~ msgstr "Aktivovať"
-
-#~ msgid "database not connected"
-#~ msgstr "databáza nie je pripojená"
-
-#~ msgid ""
-#~ "Check your configuration file to make sure you've got the right username, "
-#~ "password, host, and database. If you haven't created the database yet, "
-#~ "now would be a good time."
-#~ msgstr ""
-#~ "Skontolujte súbor konfiguračný súbor či máte správne nastavené meno, "
-#~ "heslo, hostiteľa a databázu. Ak ste ešte nevytvorili žiadnu databázu, "
-#~ "teraz je ten správny čas."
-
-#~ msgid ""
-#~ "<strong>Warning:</strong> the <code>%s</code> table appears not to have a "
-#~ "proper <em>unique_options</em> key. There are probably duplicate options "
-#~ "in the table. There should be a unique index key on <em>name</em>, "
-#~ "<em>ownerid</em>, and <em>theme</em>."
-#~ msgstr ""
-#~ "<strong>Pozor:</strong> zdá sa, že tabuľka <code>%s</code> nemá správny "
-#~ "<em>unique_options</em> kľúč. Pravdepodobne sú v nej duplicitné "
-#~ "nastavenia. Na <em>name</em>, <em>ownerid</em> a <em>theme</em> by mal "
-#~ "byť jedinečný index kľúč."
-
-#~ msgid "Zenphoto gallery"
-#~ msgstr "Zenphoto galéria"
-
-#~ msgid "Contact form"
-#~ msgstr "Kontaktný formulár"
-
-#~ msgid "Albums to clean:"
-#~ msgstr "Albumu na prečistenie:"
-
-#~ msgid ""
-#~ "If this script does not complete, <a href=\"javascript:reStart();\" title="
-#~ "\"restart\">click here</a>"
-#~ msgstr ""
-#~ "Ak sa tento skript nedokončí <a href=\"javascript:reStart();\" title="
-#~ "\"restart\">kliknite sem</a>"
-
-#~ msgid "No image names needed cleaning."
-#~ msgstr "Názvy obrázkov nepotrebujú prečistenie."
-
-#~ msgid "No album folder names needed cleaning."
-#~ msgstr "Názvy zložiek albumov nepotrebujú vyčistiť."
-
-#~ msgid "Galleries"
-#~ msgstr "Galérie"
-
-#~ msgid "City:%s"
-#~ msgstr "Mesto:%s"
-
-#~ msgid "Country:%s"
-#~ msgstr "Okres:%s"
-
-#~ msgid "%s log maximum size changed."
-#~ msgstr "%s log - zmenená maximálna veľkosť."
-
-#~ msgid "Log file size limit"
-#~ msgstr "Limit veľkosti log súboru"
-
-#~ msgid ""
-#~ "<a href=\"javascript:toggle('gallerysessions');\" >Details</a> for "
-#~ "<em>enable gallery sessions</em>"
-#~ msgstr ""
-#~ "<a href=\"javascript:toggle('gallerysessions');\" >Detaily</a> pre "
-#~ "<em>povoliť relácie pre galériu</em>"
-
-#~ msgid ""
-#~ "<a href=\"javascript:toggle('cookie_persistence');\" >Details</a> for "
-#~ "<em>Cookie duration</em>"
-#~ msgstr ""
-#~ "<a href=\"javascript:toggle('cookie_persistence');\" >Detaily</a> pre "
-#~ "<em>platnosť cookies</em>"
-
-#~ msgid "Check if CAPTCHA should be required."
-#~ msgstr "Aktivuje použitie CAPTCHA."
-
-#~ msgid "Message"
-#~ msgstr "Hlásenie"
-
-#~ msgid "Poster cropping (Videothumb)"
-#~ msgstr "Orez posterov (miniatúr videa)"
-
-#~ msgid ""
-#~ "If enable the videothumb to be cropped. Otherwise jPlayer will squish the "
-#~ "image to fit if it does not have the correct aspect ratio."
-#~ msgstr ""
-#~ "Povolením sa bude miniatúra videa orezávať. Inak bude jPlayer obrázok "
-#~ "deformovať aby sa vošiel do rozmeru ak nemá správny pomer strán."
-
-#~ msgid ""
-#~ "If checked, CAPTCHA validation will be required for user registration."
-#~ msgstr "Aktivuje CAPTCHA kontorlu pre každú novú registráciu."
-
-#~ msgid "*Required"
-#~ msgstr "*Vyžadované"
-
-#~ msgid "Target no longer exists"
-#~ msgstr "Cieľ už neexistuje."
-
-#~ msgid "Enter"
-#~ msgstr "Vložiť"
-
-#~ msgid "Simpleviewer"
-#~ msgstr "Simpleviewer"
-
-#~ msgid "Image gallery"
-#~ msgstr "Galéria obrázkov"
-
-#~ msgid ""
-#~ "For the best viewing experience <a href=\"http://%s\"> Get Adobe Flash.</"
-#~ "a>"
-#~ msgstr ""
-#~ "Pre lepšie zobrazovanie si <a href=\"http://%s\">nainštalujte Adobe Flash."
-#~ "</a>"
-
-#~ msgid "View Gallery Without Flash"
-#~ msgstr "Prezrieť galériu bez Flash-u"
-
-#~ msgid "Open In New Window"
-#~ msgstr "Otvoriť v novom okne"
-
-#~ msgid "Back to the album list"
-#~ msgstr "Späť na zoznam albumov"
-
-#~ msgid "Hitcounters have been reset"
-#~ msgstr "Počítadlá návštev boli vynulované"
-
-#~ msgid "View image on website"
-#~ msgstr "Zobraziť obrázok na webstránke"
-
-#~ msgid "comment"
-#~ msgstr "komentár"
-
-#~ msgid "Delete %s"
-#~ msgstr "%s vymazať"
-
-#~ msgid "Reset %s"
-#~ msgstr "%s obnoviť"
-
-#~ msgid "Download %s ZIP file"
-#~ msgstr "Stiahnuť %s ZIP archív"
-
-#~ msgid "restricted"
-#~ msgstr "obmedzené"
-
-#~ msgid ""
-#~ "Restricted galleries are private galleries but users may see only their "
-#~ "managed albums."
-#~ msgstr ""
-#~ "Obmedzené galérie sú súkromné galérie, ale používatelia môžu vidieť iba "
-#~ "albumy v správe."
-
-#~ msgid "Images RSS"
-#~ msgstr "RSS obrázkov"
-
-#~ msgid "Albums RSS"
-#~ msgstr "RSS albumov"
-
-#~ msgid ""
-#~ "The number of new items you want to appear in your site's RSS feed. The "
-#~ "images and comments RSS share the value."
-#~ msgstr ""
-#~ "Počet nových položiek, ktoré sa majú zobrazovať v RSS kanály stránky. RSS "
-#~ "obrázkov a kometárov má spoločný počet."
-
-#~ msgid "The size you want your images to have in your site's RSS feed."
-#~ msgstr "Veľkosť, v akej sa majú zobrazovať obrázky v RSS kanály."
-
-#~ msgid "RSS cache"
-#~ msgstr "Vyrovnávacia pamäť RSS"
-
-#~ msgid "RSS cache expire"
-#~ msgstr "Expirácia vyrovnávaciej pamäti RSS"
-
-#~ msgid "RSS hitcounter"
-#~ msgstr "Počítadlo RSS"
-
-#~ msgid "RSS title"
-#~ msgstr "RSS titul"
-
-#~ msgid "Revert"
-#~ msgstr "Vrátiť"
-
-#~ msgid "Sort the tags alphabetically"
-#~ msgstr "Usporiadať tagy abecedne"
-
-#~ msgid "Sort the tags by most used"
-#~ msgstr "Usporiadať tagy podľa najpoužívanejších"
-
-#~ msgid "Delete all the tags checked above."
-#~ msgstr "Vymazať všetky hore označené tagy."
-
-#~ msgid "Apply all the changes entered above."
-#~ msgstr "Aplikovať všetky zmeny zadané vyššie."
-
-#~ msgid "Add all the tags entered above."
-#~ msgstr "Pridať všetky tagy vpísané vyššie."
-
-#~ msgid "Set %s as your theme"
-#~ msgstr "Nastaviť %s ako šablónu vašej stránky"
-
-#~ msgid "Assign %s as your album theme"
-#~ msgstr "Nastaviť %s ako šablónu albumu"
-
-#~ msgid "Edit %s"
-#~ msgstr "Upraviť %s"
-
-#~ msgid "Delete this %s"
-#~ msgstr "Vymazať %s"
-
-#~ msgid "Duplicate %s"
-#~ msgstr "Duplikovať %s"
-
-#~ msgid "Upload handler:"
-#~ msgstr "Správca nahrávania:"
-
-#~ msgid "Bad RSS feed:"
-#~ msgstr "Nesprávny RSS kanál:"
-
-#~ msgid "The Imagick font size (in pixels). Default is <strong>%s</strong>."
-#~ msgstr ""
-#~ "Veľkosť písma (v pixeloch) pre Imagick. Štandard <strong>%s</strong>."
-
-#~ msgid ""
-#~ "Please reinstall the following setup files from the %1$s [%2$s] release:"
-#~ msgstr ""
-#~ "Prosím preinštalujte nasledovné inštalačné súbory z %1$s [%2$s] vydania:"
-
-#~ msgid "Log security"
-#~ msgstr "Bezpečnosť protokolov"
-
-#~ msgid "<em>zenphoto.cfg</em> file"
-#~ msgstr "<em>zenphoto.cfg</em> súbor"
-
-#~ msgid "Database <code>access rights</code>"
-#~ msgstr "<code>Prístupové práva</code> k databáze"
-
-#~ msgid ""
-#~ "<strong>NOTE:</strong> We strongly recommend you remove the <em>setup</"
-#~ "em> scripts from your zp-core folder at this time. You can always re-"
-#~ "upload them should you find you need them again in the future."
-#~ msgstr ""
-#~ "<strong>Poznámka:</strong> Odporúčame odstrániť súbor <em>setup</em> zo "
-#~ "zložky zp-core. Ak by ste ho v budúcnosti znova potrebovali, môžete ho "
-#~ "bez problémov nahrať."
-
-#~ msgid "Delete setup files"
-#~ msgstr "Odstrániť inštalačné súbory"
-
-#~ msgid ""
-#~ "This is a clone of another installation. The setup files should be "
-#~ "deleted from that installation"
-#~ msgstr ""
-#~ "Toto je klon inej inštalácie. Inštalačné súbory by mali byť vymazané."
-
-#~ msgid "%s deleted."
-#~ msgstr "%s vymazané."
-
-#~ msgid "Provides file handling in tinyMCE and the \"files\" upload tab."
-#~ msgstr "Spracovávanie súborov v tinyMCE a záložke nahrávania \"súborov\""
-
-#~ msgid ""
-#~ "<strong>NOTE</strong>: The image caching process requires that your WEB "
-#~ "browser <em>fetch</em> each image size. For a full gallery cache this may "
-#~ "exceed the capacity of your server and not complete."
-#~ msgstr ""
-#~ "<strong>Poznámka:</strong> Kešovací proces obrázkov vyžaduje, aby váš "
-#~ "prehliadač <em>vyvolal</em> každú veľkosť obrázku. Kešovanie celej "
-#~ "galérie môže presiahnuť kapacitu vášho servera a nedokončí sa."
-
-#~ msgid "Removes setup files."
-#~ msgstr "Odstrániť inštalačné súbory"
-
-#~ msgid ""
-#~ "Use the template function <code>getZenpageRSSLink()</code> instead. NOTE: "
-#~ "While this function gets a full html link  <code>getZenpageRSSLink()</"
-#~ "code> just returns the URL."
-#~ msgstr ""
-#~ "Použite namiesto toho funkciu šablóny <code>getZenpageRSSLink()</code>. "
-#~ "POZNÁMKA: Keďže táto funkcia má plný html odkaz "
-#~ "<code>getZenpageRSSLink()</code> iba vráti URL."
-
-#~ msgid ""
-#~ "Blocks access from an IP address which has had multiple failed logon "
-#~ "attempts."
-#~ msgstr ""
-#~ "Blokovať prístup z IP adresy, z ktorej sa niekto pokúsil viackrát "
-#~ "neúspešne vstúpiť na administrátorské stránky."
-
-#~ msgid "Minutes to cool off"
-#~ msgstr "Minút na vychladnutie"
-
-#~ msgid "The block will be removed after this waiting period."
-#~ msgstr "Blok bude odstránený po tejto dobe."
-
-#~ msgid "Theme script for the favorites page link"
-#~ msgstr "Skript šablóny pre link na stránku obľúbených."
-
-#~ msgid "Enable <strong>flowplayer 3</strong> to handle multimedia files."
-#~ msgstr ""
-#~ "Aktivujte <strong>flowplayer 3</strong> na správu multimediálnych súborov."
-
-#~ msgid ""
-#~ "The former separate flowplayer3_playlist plugin is now incorporated. You "
-#~ "can use it to show the content of an multimedia album only as a playlist "
-#~ "or as separate players on one page with Flowplayer 3"
-#~ msgstr ""
-#~ "Pôvodne samostatný zásuvný modul flowplayer3_playlist je teraz už "
-#~ "súčasťou. Môžete ho použiť na zobrazenie obsahu multimediálneho albumu "
-#~ "buď ako zoznam alebo ako samostatný prehrávač na stránke použitím "
-#~ "Flowplayer 3"
-
-#~ msgid ""
-#~ "Please see <a href='http://flowplayer.org'>flowplayer.org</a> for more "
-#~ "info about the player and its license."
-#~ msgstr ""
-#~ "Navštívte <a href='http://flowplayer.org'>flowplayer.org</a> ak "
-#~ "potrebujete viac informácií o prehrávač a jeho licencii."
-
-#~ msgid "Flash players do not support <em>External Albums</em>."
-#~ msgstr "Prehrávač Flash nepodporuje <em>externé albumy</em>."
-
-#~ msgid "Flowplayer3 not enabled, %s is already instantiated."
-#~ msgstr "Flowplayer3 nie je povolený, %s je už zapnutý."
-
-#~ msgid "flow player width"
-#~ msgstr "Šírka prehrávača Flow"
-
-#~ msgid "Player width (ignored for <em>mp3/m4a/fla</em> files.)"
-#~ msgstr "Šírka prehrávača (pri <em>mp3/m4v/fla</em> ignorovaná)."
-
-#~ msgid "flow player height"
-#~ msgstr "Výška prehrávača Flow"
-
-#~ msgid "Player height (ignored for <em>mp3/m4a/fla</em> files.)"
-#~ msgstr "Výška prehrávača (pri <em>mp3/m4v/fla</em> ignorovaná)."
-
-#~ msgid "Player background color gradient"
-#~ msgstr "Farebný prechod pozadia prehrávača"
-
-#~ msgid "low"
-#~ msgstr "nízky"
-
-#~ msgid "high"
-#~ msgstr "vysoký"
-
-#~ msgid "Gradient setting for player background color."
-#~ msgstr "Nastavenie prechodu pre farbu pozadia prehrávača."
-
-#~ msgid "Controls background color"
-#~ msgstr "Farba pozadia ovládania"
-
-#~ msgid "Background color of the controls."
-#~ msgstr "Farba pozadia pre ovládacie prvky prehrávača."
-
-#~ msgid "Controls background color gradient"
-#~ msgstr "Farebný prechod pozadia ovládania"
-
-#~ msgid "Gradient setting for background color of the controls."
-#~ msgstr "Nastavenie farebného prechodu pozadia ovládania"
-
-#~ msgid "Controls border color"
-#~ msgstr "Farba okraja ovládania"
-
-#~ msgid "Color of the border of the player controls"
-#~ msgstr "Farba okraja ovládacích prvkov prehrávača."
-
-#~ msgid ""
-#~ "Should the video start automatically. Yes if selected. (NOTE: Probably "
-#~ "because of a flowplayer bug mp3/m4a/fla are always autoplayed.)"
-#~ msgstr ""
-#~ "Aktivovaním sa vydeo po načítaní automaticky spustí. (Poznámka: Kvôli "
-#~ "predpokladanej chybe v prehrávači sa mp3/m4v/fla spúšťajú automaticky "
-#~ "vždy.)"
-
-#~ msgid "Background color"
-#~ msgstr "Farba pozadia"
-
-#~ msgid ""
-#~ "Changes the color of the Flowplayer's background canvas. By default the "
-#~ "canvas is all black. You can specify a value of -1 and the background "
-#~ "will not be drawn (only the video will be visible)."
-#~ msgstr ""
-#~ "Zmení farbu pozadia plátna za prehrávačom. Štandardne je nastavená na "
-#~ "čiernu. Môžete nastaviť hodnotu na -1 a pozadie sa nebude vykreslovať "
-#~ "(bude viditeľné iba video)."
-
-#~ msgid "Controls autohide"
-#~ msgstr "Automatické skrývanie ovládania"
-
-#~ msgid "fullscreen"
-#~ msgstr "na celú obrazovku"
-
-#~ msgid ""
-#~ "Specifies whether the controlbar should be hidden when the user is not "
-#~ "actively using the player."
-#~ msgstr ""
-#~ "Nastavuje automatické skrývanie ovládania, keď ho používateľ aktívne "
-#~ "nevyužíva."
-
-#~ msgid "Controls time color"
-#~ msgstr "Farba časomiery"
-
-#~ msgid ""
-#~ "Value for the font color in the time field. This is the running time."
-#~ msgstr "Nastavenie farby časomiery. Ukazuje trvanie prehrávania."
-
-#~ msgid "Controls duration color"
-#~ msgstr "Farba celkovej dĺžky"
-
-#~ msgid ""
-#~ "Value for the font color in the time field that specifies the total "
-#~ "duration of the clip or total time."
-#~ msgstr "Nastavuje farbu pola, ktoré obsahuje celkovú dĺžku klipu. "
-
-#~ msgid "Controls progress bar color"
-#~ msgstr "Farba stavu načítania"
-
-#~ msgid ""
-#~ "Color of the progress bar. This is the bar in the timeline from zero time "
-#~ "to the point where playback is at a given time."
-#~ msgstr ""
-#~ "Nastavuje farbu stavu načítania. To je farba linky na časovej osy od "
-#~ "nuloveho času až po bod kde sa práve nachádza prehrávanie."
-
-#~ msgid "Controls progress bar gradient"
-#~ msgstr "Farba prechodu stavu načítania"
-
-#~ msgid "Gradient setting for the progress bar."
-#~ msgstr "Nastavuje farbu prechodu stavu načítania"
-
-#~ msgid "Controls buffer color"
-#~ msgstr "Farba vyrovnávacej pamäti"
-
-#~ msgid ""
-#~ "Color of the buffer. The buffer is the bar that indicates how much video "
-#~ "data has been read into the player's memory."
-#~ msgstr ""
-#~ "Nastavuje farbu vyrovnávacej pamäti. Linka vyrovnávacej pamäti ukazuje "
-#~ "koľko dát z videa bolo načítaných do pamäti prehrávača."
-
-#~ msgid "Controls buffer gradient"
-#~ msgstr "Farba prechodu vyrovnávacej pamäti"
-
-#~ msgid "Gradient setting for the buffer."
-#~ msgstr "Nastavenie farby prechodu vyrovnávacej pamäti"
-
-#~ msgid "Controls slider color"
-#~ msgstr "Farba jazdca"
-
-#~ msgid ""
-#~ "Background color for the timeline before the buffer bar fills it. The "
-#~ "same background color is also used in the volume slider."
-#~ msgstr ""
-#~ "Farba pozadia časovej osy kým sa zaplní vyrovnávacia pamäť. Rovnaká farba "
-#~ "sa používa aj pre jazdca hlasitosti."
-
-#~ msgid "Controls slider gradient"
-#~ msgstr "Farba prechodu jazdca"
-
-#~ msgid "Controls button color"
-#~ msgstr "Farba tlačítok"
-
-#~ msgid "Color of the player buttons: stop, play, pause and full screen."
-#~ msgstr ""
-#~ "Nastavuje farbu tlačítok: zastaviť, prehrávať, pauza a na celú obrazovku."
-
-#~ msgid "Controls hover button color"
-#~ msgstr "Farba tlačítok pri prechode myšou"
-
-#~ msgid "Button color when the mouse is positioned over them."
-#~ msgstr "Nastavuje farbu tlačítok keď sa nad ne nastaví jazdec myši."
-
-#~ msgid "Splash image"
-#~ msgstr "Titulný obrázok"
-
-#~ msgid ""
-#~ "Enable if you want to show the videothumb as an splash image before the "
-#~ "actual video starts (don't set the player to autoPlay then). If you want "
-#~ "to use this for mp3s as well set also the mp3 cover image option."
-#~ msgstr ""
-#~ "Aktivujte ak chcete pri nahrávaní videa zobraziť miniatúru videa ako "
-#~ "titulný obrázok kým sa video spustí (autoštart musí byť vypnutý). Ak "
-#~ "chcete túto funkciu používať aj pre mp3 musíte si nastaviť titulný "
-#~ "obrázok mp3ky."
-
-#~ msgid ""
-#~ "The image is always scaled to fit (unless it is smaller than the width "
-#~ "and height) so best make sure it matches at least the aspect ratio and "
-#~ "size of your player width and height."
-#~ msgstr ""
-#~ "Obrázok sa vždy zväčšuje na použitý rozmer (pokial nie je menší než výška "
-#~ "a šírka), takže sa uistite, že postačuje pomeru strán a veľkosti vášho "
-#~ "prehrávača."
-
-#~ msgid "Video scale"
-#~ msgstr "Zväčšovanie videa"
-
-#~ msgid "fit"
-#~ msgstr "prispôsobiť"
-
-#~ msgid "orig"
-#~ msgstr "originál"
-
-#~ msgid ""
-#~ "Setting which defines how video is scaled on the video screen. Available "
-#~ "options are:<br /><em>fit</em>: Fit to window by preserving the aspect "
-#~ "ratio encoded in the file's metadata.<br /><em>half</em>: Half-size "
-#~ "(preserves aspect ratio)<br /><em>orig</em>: Use the dimensions encoded "
-#~ "in the file. If the video is too big for the available space, the video "
-#~ "is scaled using the 'fit' option.<br /><em>scale</em>: Scale the video to "
-#~ "fill all available space. This is the default setting."
-#~ msgstr ""
-#~ "Nastavenie, ktoré definuje akosa bude video zväčšovať: <br /"
-#~ "><em>prispôsobiť</em>: Prispôsobí sa veľkosti prehrávača s pomerom strán "
-#~ "z metadát súboru.<br /><em>polovičné</em>: polovičná veľkosť (pomer strán "
-#~ "sa zachováva)<br /><em>originál</em>: Používa veľkosť v akej bolo video "
-#~ "vytvorené. Ak je veľkosť pre prehrávač príliš veľká, použijú sa parametre "
-#~ "nastavenia \"pripôsobiť\".<br /><em>zväčšiť</em>: Zväčší video tak, aby "
-#~ "vyplnilo priestor, ktorý je k dispozícii. Toto je štandardné nastavenie."
-
-#~ msgid "MP3 cover image"
-#~ msgstr "Titulný obrázok MP3"
-
-#~ msgid ""
-#~ "If unchecked only the controlbar is shown for mp3/m4v/fla but if checked "
-#~ "the video thumb is displayed as a cover image on the player screen."
-#~ msgstr ""
-#~ "Ak nie je aktívny, zobrazí sa pri prehrávaní mp3/m4v/fla iba panel "
-#~ "ovládania. Po aktivácii sa v prehrávači bude zobrazovať miniatúra."
-
-#~ msgid ""
-#~ "Player width (Note this refers to the player window. The playlist display "
-#~ "itself is styled via CSS.)"
-#~ msgstr ""
-#~ "Šírka prehrávača (Toto nastavenie sa týka iba okna prehrávača. Zoznam "
-#~ "skladieb sa upravuje cez CSS.)"
-
-#~ msgid ""
-#~ "Player height (Note this refers to the player window. The playlist "
-#~ "display itself is styled via CSS.)"
-#~ msgstr ""
-#~ "Výška prehrávača (Toto nastavenie sa týka iba okna prehrávača. Zoznam "
-#~ "skladieb sa upravuje cez CSS.)"
-
-#~ msgid "Splash image - playlist"
-#~ msgstr "Splash image - zoznamu skladieb"
-
-#~ msgid "Video thumb of first playlist entry"
-#~ msgstr "Miniatúra prvej položky zoznamu skladieb"
-
-#~ msgid "Album thumbnail"
-#~ msgstr "Miniatúra albumu"
-
-#~ msgid ""
-#~ "Check if you want to display a splash/cover image for the playlist. Since "
-#~ "this playlist plugin only lists multimedia items the album thumbnail of "
-#~ "course could also be special separate normal image and not one of the "
-#~ "entries."
-#~ msgstr ""
-#~ "Zvoľte ak chcete zobraziť titulný obrázok pre zoznam skladieb. Keďže "
-#~ "zásuvný modul zoznamu skladieb vyhľadáva iba multimediálne objekty "
-#~ "miniatúra albumu môže, samozrejme, byť aj normálny obrázok a nie jeden z "
-#~ "obrázkov položiek."
-
-#~ msgid "Numbered playlist"
-#~ msgstr "Číslovaný zoznam skladieb"
-
-#~ msgid ""
-#~ "If the playlist should be shown with numbers. Then a standard html "
-#~ "ordered list is used instead of just a div with links. (Your playlist css "
-#~ "may require changes.)"
-#~ msgstr ""
-#~ "Ak sa má zoznam skladieb zobrazovať s číslami, použije sa štandardný "
-#~ "dopytový html zoznam. (CSS vášho zoznamu skladieb bude možno otrebovať "
-#~ "úpravy.)"
-
-#~ msgid "Load playlist scripts"
-#~ msgstr "Nahrať skripty zoznamu skladieb"
-
-#~ msgid ""
-#~ "If the Flowplayer playlist scripts should be loaded. Note that you have "
-#~ "to add the function flowplayerPlaylist() to your theme yourself. See the "
-#~ "documentation of this function on how to do this."
-#~ msgstr ""
-#~ "Ak má byť nahraný zoznam skladieb Flowplayeru. Funkciu "
-#~ "flowplayerPlaylist() si musíte do šablóny pridať sami. Pozrite si "
-#~ "dokumentáciu k tejto funkcii, aby ste vedeli ako na to."
-
-#~ msgid "Enable to show the playtime for playlist entries."
-#~ msgstr "Povolením sa zobrazí trvanie položiek v zozname skladieb."
-
-#~ msgid "Sharing"
-#~ msgstr "Zdielanie"
-
-#~ msgid "Enables sharing and embed code links."
-#~ msgstr "Umožňuje zdielanie a pripája códové odkazy."
-
-#~ msgid "Initial Zoom"
-#~ msgstr "Štandardné zväčšenie"
-
-#~ msgid "The initial zoom of the map."
-#~ msgstr "Štandardné zväčšenie mapy."
-
-#~ msgid "Map control size"
-#~ msgstr "Veľkosť ovládania mapy"
-
-#~ msgid "Select the kind of map controls."
-#~ msgstr "Vyberte si druh ovládania mapy."
-
-#~ msgid ""
-#~ "Limits the number of images that can be uploaded to an album via the "
-#~ "Zenphoto upload."
-#~ msgstr ""
-#~ "Obmedzuje množstvo obrázkov, ktoré môžu byť nahraté prostredníctvom do "
-#~ "albumu cez Zenphoto nahrávanie."
-
-#~ msgid ""
-#~ "The maximum number of images per album if uploading via the multifile "
-#~ "upload."
-#~ msgstr ""
-#~ "Maximálny počet obrázkov na album, ak sa nahráva cez viacsúborové "
-#~ "nahrávanie."
-
-#~ msgid "Disable new album creation"
-#~ msgstr "Deaktivovať možnosť vytvoriť nový album"
-
-#~ msgid "There is a plugin conflict with <em>image_upload_limiter</em>"
-#~ msgstr ""
-#~ "Vyskytol sa konflikt zásuvného modulu s <em>image_upload_limiter</em>."
-
-#~ msgid ""
-#~ "The album exceeded the image number limit. You cannot upload more images!"
-#~ msgstr ""
-#~ "Album prekročil maximálny počet obrázkov. Nemôžete nahrať viac obrázkov!"
-
-#~ msgid "Maximum number of images left for this album: "
-#~ msgstr "Maximálny počet obrázkov zostávajúcich pre tento album:"
-
-#~ msgid "You can upload a maximum of %s images to each album."
-#~ msgstr "Možete nahrať mximálny %s obrázkov pre každý album."
-
-#~ msgid "*no page selected"
-#~ msgstr "*nie je vybraná stránka"
-
-#~ msgid "Flowplayer3 (flash)"
-#~ msgstr "Flowplayer3 (Flash)"
-
-#~ msgid "Width of the Flowplayer display for the slideshow."
-#~ msgstr "Šírka zobrazenia Flowplayeru pre prezentáciu."
-
-#~ msgid "Height of the Flowplayer display for the slideshow."
-#~ msgstr "Výška zobrazenia Flowplayeru pre prezentáciu."
-
-#~ msgid "Click on the right in the player control bar to view full size."
-#~ msgstr "Kliknite vpravo v lište ovládania, aby ste prepli na plnú veľkosť."
-
-#~ msgid "<em>flash</em> image upload handler."
-#~ msgstr "<em>flash</em> správca nahrávania obrázkov."
-
-#~ msgid "RSS feed item number"
-#~ msgstr "Počet položiek RSS kanálu"
-
-#~ msgid "Menu Manager options"
-#~ msgstr "Správa menu - nastavenia"
-
-#~ msgid "You must provide at least one recipient email address."
-#~ msgstr "Musíte vložiť aspoň jednu mailovú adresu."
-
-#~ msgid "Could not execute: "
-#~ msgstr "Nedá sa spustiť:"
-
-#~ msgid "Could not instantiate mail function."
-#~ msgstr "Funkcia mailu sa nedá konkretizovať."
-
-#~ msgid "SMTP Error: Could not authenticate."
-#~ msgstr "Chyba SMPT: autentifikácia zlyhala."
-
-#~ msgid "The following From address failed: "
-#~ msgstr "Nasedujúca adresa odosielatela zlyhala:"
-
-#~ msgid "SMTP Error: The following recipients failed: "
-#~ msgstr "Chyba SMTP: Nasledujúci adresáti zlyhali:"
-
-#~ msgid "SMTP Error: Data not accepted."
-#~ msgstr "Chyba SMPT: Dáta neboli nakceptované."
-
-#~ msgid "SMTP Error: Could not connect to SMTP host."
-#~ msgstr "Chyba SMTP: Spojenie s SMTP serverom zlyhalo."
-
-#~ msgid "Could not access file: "
-#~ msgstr "Prístup k súboru zamietnutý:"
-
-#~ msgid "File Error: Could not open file: "
-#~ msgstr "Chyba súboru: Nedá sa otvoriť súbor: "
-
-#~ msgid "Unknown encoding: "
-#~ msgstr "Neznáme kódovanie:"
-
-#~ msgid "Signing Error: "
-#~ msgstr "Chyba prihlásenia: "
-
-#~ msgid "SMTP server error: "
-#~ msgstr "Chyba serveru SMTP: "
-
-#~ msgid "Message body empty"
-#~ msgstr "Obsah správy je prázdny"
-
-#~ msgid "Cannot set or reset variable: "
-#~ msgstr "Nedá sa obnoviť ani nastaviť premennú:"
-
-#~ msgid ""
-#~ "The ajaxFilemanager plugin is currently disabled. To use this feature, "
-#~ "enable the plugin from the <em>plugins</em> tab."
-#~ msgstr ""
-#~ "Zásuvný modul ajaxFilemanager je momentálne vypnutý. Aby ste ho mohli "
-#~ "používať musiíte ho zapnúť v záložke <em>zásuvné moduly</em>."
-
-#~ msgid "You do not have the <em>Rights</em> to access the filemanager."
-#~ msgstr "Nemáte dostatočné <em>práva</em> na prístup k správcovi súborov."
-
-#~ msgid ""
-#~ "<strong>Multimedia item: </strong>If the FLowplayer3 plugin is enabled "
-#~ "you can also embed video/audio files (.flv, .mp4, .mp3). These items are "
-#~ "highlighted with an orange border to be easily spotted. <br />Default "
-#~ "values for the player width and height can be set on the TinyMCE plugin "
-#~ "options (except for mp3s only the controlbar is shown). All other "
-#~ "settings are inherited from the Flowplayer3 plugin options (cover/splash "
-#~ "images are not supported).<br />NOTE: After embedding no frame of the "
-#~ "embedded item might be visible in the editor until saving the page/"
-#~ "article for unknown reasons."
-#~ msgstr ""
-#~ "<strong>Multimediálne položky: </strong>Ak je zapnutý zásuvný modul "
-#~ "Flowplayer3 môžete tiež pridávať video/audio súbory (.flv, .mp4, .mp3). "
-#~ "Tieto položky sú vysvietené oranžovým okrajom, aby sa ľahšie hľadali. "
-#~ "<br /> Štandardnú veľkosti šírky a výšky môžete nastaviť v možnostiach "
-#~ "pre zásuvný modul TinyMCE (okrem mp3, u ktorých sa zobrazuje len ovládací "
-#~ "panel). Ostatné nastavenia súhlasia s nastaveniami zásuvného modulu "
-#~ "Flowplayer3 (obal/ukážka nie su podporované).<br />Poznámka: Po pridaní "
-#~ "sa z neznámych príčin v editore nezobrazí vložený súbor až kým neuložíte "
-#~ "stránku/článok."
-
-#~ msgid "Uploadify error%1$s on %2$s."
-#~ msgstr "Chyba nahrávania %1$s v %2$s."
-
-#~ msgid "Do you want to replace the file %s?"
-#~ msgstr "Ste si istí, že chcete prepísať tento súbor %s?"
-
-#~ msgid "Upload queue is full. The upload limit is %u."
-#~ msgstr "Fronta nahrávania je plná. Limit nahrávania je %u."
-
-#~ msgid "Zenphoto supported file types | all files"
-#~ msgstr "Podporované formáty súborov | Všetky súbory"
-
-#~ msgid ""
-#~ "There appears to be no <em>Flash</em> plugin installed in your browser."
-#~ msgstr ""
-#~ "Vyzerá to tak, že vo vašom prehliadači nie je nainštalovaný zásuvný modul "
-#~ "<em>Flash</em>."
-
-#~ msgid "Effervescence %s (not found)"
-#~ msgstr "Effervescence %s (nenájdené)"
-
-#~ msgid ""
-#~ "This option requires the <em>menu_manager</em> plugin to be enabled and "
-#~ "the <em>Gallery index page link</em> to be set to \"gallery\"."
-#~ msgstr ""
-#~ "Pre toto nastavenie je potrebné aktivovať zásuvný modul <em>menu_manager</"
-#~ "em> a nastaviť <em>Link na domovskú stránku galérie</em> na\"galéria\"."
-
-#~ msgid "You are not installing the latest version of Zenphoto."
-#~ msgstr "Neinštalujete najnovšiu verziu Zenphota."
-
-#~ msgid "Version %s is available."
-#~ msgstr "Verzia %s je k dispozícii."
-
-#~ msgid ""
-#~ "The type of filter used when resampling an image. The default is <strong>"
-#~ "%s</strong>."
-#~ msgstr ""
-#~ "Typ filtra, ktorý sa použije na prerátanie obrázku. Štandard je <strong>"
-#~ "%s</strong>."
-
-#~ msgid "Magick memory limit"
-#~ msgstr "Limit pamäte pre Magick"
-
-#~ msgid ""
-#~ "Amount of memory allocated to Gmagick/Imagick in megabytes. Set to "
-#~ "<strong>0</strong> for unlimited memory."
-#~ msgstr ""
-#~ "Limit pamäti, ktorá je pridelená Gmagick/Imagick v MB. Pre neobmedzenú "
-#~ "pamäť nastavte <strong>0</strong>."
-
-#~ msgid ""
-#~ "<strong>Note:</strong> Image processing will be faster with a higher "
-#~ "memory limit. However, if your server experiences problems with image "
-#~ "processing, try setting this lower."
-#~ msgstr ""
-#~ "<strong>Poznámka:</strong> Spracovávanie obrázkov bude s vačšou pamäťou "
-#~ "rýchlejšie. Ak však zaznamenáte problémy so spracovávaním obrázkov akúste "
-#~ "nastaviť nižšiu hodnotu."
-
-#~ msgid ""
-#~ "PHP <code>%s support</code> for configured Database [is experimental]"
-#~ msgstr ""
-#~ "PHP <code>%s porpora</code> pre konfigurovanú databázu [je experimentálna]"
-
-#~ msgid ""
-#~ "PHP <code>%s support</code> for configured Database [is not installed]"
-#~ msgstr ""
-#~ "PHP <code>%s porpora</code> pre konfigurovanú databázu [nie je "
-#~ "nainštalovaná]"
-
-#~ msgid ""
-#~ "Choose a different database engine or install %s support in your PHP to "
-#~ "clear this condition."
-#~ msgstr ""
-#~ "Vyberte iný druh databázy alebo nainštalujte podporu %s do vášho PHP, aby "
-#~ "ste vyriešili tento problém"
-
-#~ msgid "A simpler web album"
-#~ msgstr "Jednoduchá galéria fotografií"
-
-#~ msgid "The <em>mod_rewrite</em> must be enabled"
-#~ msgstr "<em>mod_rewrite</em> musí byť povolené"
-
-#~ msgid "There is no .htaccess file"
-#~ msgstr "Súbor .htaccess neexistuje"
-
-#~ msgid "Spam filter:"
-#~ msgstr "Spam filter:"
-
-#~ msgid "The SPAM filter plug-in you wish to use to check comments for SPAM"
-#~ msgstr ""
-#~ "Vyberte si zásuvný modul spam filter, ktorý chcete používať na kontrolu "
-#~ "komentárov."
-
-#~ msgid "CAPTCHA generator:"
-#~ msgstr "CAPTCHA generátor:"
-
-#~ msgid "not configured"
-#~ msgstr "nie je nastavené"
-
-#~ msgid "Finished!"
-#~ msgstr "Ukončené!"
-
-#~ msgid "Sitemap cache cleared"
-#~ msgstr "Vyrovnávacia pamäť mapy stránky vymazaná."
-
-#~ msgid "tag set!"
-#~ msgstr "tag nastavený!"
-
-#~ msgid "Select the <em>CAPTCHA</em> generator to be used by Zenphoto."
-#~ msgstr "Vyberte si <em>CAPTCHA</em> generátor, ktorý má používať Zenphoto."
-
-#~ msgid "Error locking mutex"
-#~ msgstr "Chyba blokovania mutex"
-
-#~ msgid ""
-#~ "MySQLi Error: Zenphoto received the error <em>%s</em> when connecting to "
-#~ "the database server."
-#~ msgstr ""
-#~ "MySQL chyba: Zenphoto zaznamenalo chybu <em>%s</em> pri prijovaní sa k "
-#~ "databázovému serveru."
-
-#~ msgid "Method Not Allowed"
-#~ msgstr "Táto metóda nie je povolená"
-
-#~ msgid "settings"
-#~ msgstr "nastavenia"
-
-#~ msgid "Authorization class <em>%s</em> is active."
-#~ msgstr "Authorizačná trieda <em>%s</em> je aktívna."
-
-#~ msgid "Administrator class <em>%s</em> is active."
-#~ msgstr "Administrátorská trieda <em>%s</em> je aktívna."
-
-#~ msgid ""
-#~ "Password hash seed: <span><small style=\"color:gray\">%s</small></span>"
-#~ msgstr ""
-#~ "Zdroj rozsekania hesla: <span><small style=\"color:gray\">%s</small></"
-#~ "span>"
-
-#~ msgid "<em>%s</em> hashing is activated"
-#~ msgstr "<em>%s</em> rozsekávanie je aktívne"
-
-#~ msgid "Zenphoto upgrade"
-#~ msgstr "Aktualizácia Zenphoto"
-
-#~ msgid "Zenphoto setup"
-#~ msgstr "Inaštalácia Zenphota"
-
-#~ msgid "<strong>Backtrace:</strong>"
-#~ msgstr "<strong>Sledovať späť:</strong>"
-
-#~ msgid "CAUGHT EXCEPTION"
-#~ msgstr "ZACHYTENÁ VÝNIMKA"
-
-#~ msgid ""
-#~ "Queries the Zenphoto web site for the latest version and compares that "
-#~ "with the one that is running."
-#~ msgstr ""
-#~ "Skontroluje najnovšiu verziu na webstránke Zenphota a porovná ju s tou, "
-#~ "ktorú máte nainštalovanú."
-
-#~ msgid "There appears to be no internet connection."
-#~ msgstr "Vyzerá to tak, že nemáte pripojenie na internet."
-
-#~ msgid "You are running the latest zenphoto version."
-#~ msgstr "Používate najnovšiu verziu Zenphota."
-
-#~ msgid ""
-#~ "Could not connect to <a href=\"http://www.zenphoto.org\">zenphoto.org</a>"
-#~ msgstr ""
-#~ "Nepodarilo sa spojiť s <a href=\"http://www.zenphoto.org\">zenphoto.org</"
-#~ "a>"
-
-#~ msgid "zenphoto version %s is available."
-#~ msgstr "nová verzia %s zenphota je k dispozícii."
-
-#~ msgid "Title field"
-#~ msgstr "Pole oslovenia"
-
-#~ msgid "Company field"
-#~ msgstr "Pole firmy"
-
-#~ msgid "Company field."
-#~ msgstr "Pole firmy."
-
-#~ msgid "Street field"
-#~ msgstr "Pole ulice"
-
-#~ msgid "City field"
-#~ msgstr "Pole mesta"
-
-#~ msgid "State field"
-#~ msgstr "Pole okresu"
-
-#~ msgid "Postal code field"
-#~ msgstr "Pole PSČ"
-
-#~ msgid "Country field"
-#~ msgstr "Pole štátu"
-
-#~ msgid "E-mail field"
-#~ msgstr "Pole mailu"
-
-#~ msgid "Phone field"
-#~ msgstr "Pole telefónu"
-
-#~ msgid "Phone number field"
-#~ msgstr "Pole telefónu"
-
-#~ msgid "Subject field"
-#~ msgstr "Pole predmetu"
-
-#~ msgid "Message field"
-#~ msgstr "Pole správy"
-
-#~ msgid "Allows dynamic setting of PHP error displays."
-#~ msgstr "Povoluje dynamické nastavenie zobrazenia chýb PHP."
-
-#~ msgid "Error reporting"
-#~ msgstr "Oznamovanie chýb"
-
-#~ msgid "Error Reporting selections."
-#~ msgstr "Výber oznamovania chýb."
-
-#~ msgid "Album thumbnail."
-#~ msgstr "Miniatúra albumu."
-
-#~ msgid "Author: %s"
-#~ msgstr "Autor: %s"
-
-#~ msgid "Album Utilities"
-#~ msgstr "Nástroje albumu"
-
-#~ msgid "Image Utilities"
-#~ msgstr "Nástroje obrazku"
-
-#~ msgid "Example1"
-#~ msgstr "Príklad1"
-
-#~ msgid "Example2"
-#~ msgstr "Príklad2"
-
-#~ msgid "Example3"
-#~ msgstr "Príklad3"
-
-#~ msgid "Example4"
-#~ msgstr "Príklad4"
-
-#~ msgid "Example5"
-#~ msgstr "Príklad5"
-
-#~ msgid "Custom (theme based)"
-#~ msgstr "Upravené (založené na šablóne)"
-
-#~ msgid "Mail address"
-#~ msgstr "Mailová adresa"
-
-#~ msgid "%1$u new items in <em>%2$s</em>: %3$s"
-#~ msgstr "%1$u nových položiek v <em>%2$s</em>: %3$s"
-
-#~ msgid "CombiNews: Custom title (singular)"
-#~ msgstr "CombiNews: Upravený titul (j. č.)"
-
-#~ msgid ""
-#~ "Custom title for the article in sprintf() syntax. %1$u = number of new "
-#~ "items, %2$s = title of the album they are in, %3$s = titles of the new "
-#~ "items. Never leave any of these three out! (<em>latest images by album</"
-#~ "em> option only)."
-#~ msgstr ""
-#~ "Upravené meno pre článok v syntaxe sprintf(). %1$u = počet nových "
-#~ "príspevkov, %2$s = titul albumu, v ktorom sa nachádzajú, %3$s = tituly "
-#~ "nových položiek. Nikdy nevynechajte ani jednu z týcho hodnôt!  (iba pre "
-#~ "mód <em>Najnovšie obrázky podľa albumu</em>)."

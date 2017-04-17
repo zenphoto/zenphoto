@@ -1,8 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Zenphoto 1.4.1\n"
+"Project-Id-Version: ZenPhoto20\n"
+
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-16 17:24-0700\n"
+"POT-Creation-Date: 2017-04-17 09:19-0700\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Stephen <stephen@sbillard.org>\n"
 "Language-Team: hit1205.org\n"
@@ -11,11 +12,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=1;\n"
-"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 "X-Generator: Poedit 2.0.1\n"
 "X-Poedit-Basepath: ../../../..\n"
 "X-Poedit-SearchPath-0: zp-core/locale/zh_TW/LC_MESSAGES/zenphoto.po\n"
 "X-Poedit-SearchPath-1: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
 
 #: plugins/cacheHeader.php:18
 msgid "Outputs a \"Cache-control\" header with selected caching options."
@@ -563,7 +565,7 @@ msgstr ""
 #: plugins/pluginEnabler.php:70
 #, fuzzy
 msgid "Plugins ¤ current"
-msgstr "可用的外掛"
+msgstr "外掛"
 
 #: plugins/pluginEnabler.php:74
 msgid "Remembers current plugin states."
@@ -1307,7 +1309,7 @@ msgstr "Effervescence 預設圖像"
 #: themes/effervescence+/functions.php:168
 #, fuzzy
 msgid "Effervescence image display handling."
-msgstr "勾選後會將原尺寸相片顯示於 Colorbox 效果中"
+msgstr "預設的相片顯示尺寸。"
 
 #: themes/effervescence+/functions.php:169 themes/garland/functions.php:69
 #, fuzzy
@@ -2814,7 +2816,7 @@ msgstr "最新相片"
 #, fuzzy
 #| msgid "Random picture..."
 msgid "Random pictures"
-msgstr "隨機圖片..."
+msgstr "隨機"
 
 #: themes/paradigm/themeoptions.php:94
 #, fuzzy
@@ -2861,7 +2863,7 @@ msgstr ""
 #: themes/paradigm/themeoptions.php:101
 #, fuzzy
 msgid "URL to Facebook"
-msgstr "網址設定："
+msgstr "OpenID 識別網址："
 
 #: themes/paradigm/themeoptions.php:101
 msgid ""
@@ -2872,7 +2874,7 @@ msgstr ""
 #: themes/paradigm/themeoptions.php:102
 #, fuzzy
 msgid "Twitter profile name"
-msgstr "相本名稱："
+msgstr "資料夾名稱："
 
 #: themes/paradigm/themeoptions.php:102
 msgid ""
@@ -2894,7 +2896,7 @@ msgstr ""
 #: themes/paradigm/themeoptions.php:104
 #, fuzzy
 msgid "URL to FlickR"
-msgstr "網址設定："
+msgstr "OpenID 識別網址："
 
 #: themes/paradigm/themeoptions.php:104
 msgid "Provide your <a href=\"http://www.flickr.com\">FlickR</a> gallery URL"
@@ -2903,7 +2905,7 @@ msgstr ""
 #: themes/paradigm/themeoptions.php:105
 #, fuzzy
 msgid "URL to 500px"
-msgstr "網址設定："
+msgstr "OpenID 識別網址："
 
 #: themes/paradigm/themeoptions.php:105
 msgid "Provide your <a href=\"http://500px.com\">500px</a> gallery URL"
@@ -2912,7 +2914,7 @@ msgstr ""
 #: themes/paradigm/themeoptions.php:106
 #, fuzzy
 msgid "URL to Instagram"
-msgstr "網址設定："
+msgstr "OpenID 識別網址："
 
 #: themes/paradigm/themeoptions.php:106
 msgid "Provide your <a href=\"http://instagram.com/\">Instagram</a>"
@@ -2921,7 +2923,7 @@ msgstr ""
 #: themes/paradigm/themeoptions.php:107
 #, fuzzy
 msgid "URL to Pinterest"
-msgstr "網址設定："
+msgstr "OpenID 識別網址："
 
 #: themes/paradigm/themeoptions.php:107
 msgid ""
@@ -2931,7 +2933,7 @@ msgstr ""
 #: themes/paradigm/themeoptions.php:108
 #, fuzzy
 msgid "URL to Deviantart"
-msgstr "網址設定："
+msgstr "OpenID 識別網址："
 
 #: themes/paradigm/themeoptions.php:108
 msgid "Provide your <a href=\"http://deviantart.com/\">Deviantart</a> page"
@@ -2940,7 +2942,7 @@ msgstr ""
 #: themes/paradigm/themeoptions.php:109
 #, fuzzy
 msgid "URL to Tumblr"
-msgstr "網址設定："
+msgstr "OpenID 識別網址："
 
 #: themes/paradigm/themeoptions.php:109
 msgid "Provide your <a href=\"http://tumblr.com/\">Tumblr</a> page URL"
@@ -3254,7 +3256,7 @@ msgstr "勾選後會將原尺寸相片顯示於 Colorbox 效果中"
 #: themes/zpArdoise/themeoptions.php:76
 #, fuzzy
 msgid "Use Colorbox in Image page"
-msgstr "Colorbox 相片類型"
+msgstr "使用燈箱（Colorbox）效果"
 
 #: themes/zpArdoise/themeoptions.php:76
 #, fuzzy
@@ -3615,7 +3617,7 @@ msgstr "訂閱留言 RSS"
 #: themes/zpfocus/inc-footer.php:44 themes/zpminimal/inc-footer.php:11
 #, fuzzy
 msgid "This Album"
-msgstr "檢視相本："
+msgstr "相本"
 
 #: themes/zpfocus/inc-footer.php:47 themes/zpminimal/inc-footer.php:13
 #, fuzzy
@@ -3706,7 +3708,7 @@ msgstr "標籤："
 #: themes/zpskeleton/password.php:15
 #, fuzzy
 msgid "Please Login"
-msgstr "訪客登入"
+msgstr "登入"
 
 #: themes/zpfocus/password.php:17 themes/zpmasonry/password.php:21
 #: themes/zpminimal/password.php:17 themes/zpskeleton/password.php:19
@@ -3727,7 +3729,7 @@ msgstr "檢視相本："
 #: themes/zpfocus/search.php:156
 #, fuzzy
 msgid "Image Search Results"
-msgstr "搜尋"
+msgstr "顯示更多結果"
 
 #: themes/zpfocus/search.php:216
 #, fuzzy
@@ -4485,7 +4487,7 @@ msgstr ""
 #: themes/zpmasonry/themeoptions.php:128
 #, fuzzy
 msgid "Frontpage Slideshow?"
-msgstr "啟動幻燈片"
+msgstr "幻燈片"
 
 #: themes/zpmasonry/themeoptions.php:130
 #, fuzzy
@@ -4621,7 +4623,7 @@ msgstr ""
 #: themes/zpminimal/themeoptions.php:35
 #, fuzzy
 msgid "Sidebar Position on the Right?"
-msgstr "右方區域"
+msgstr "位置："
 
 #: themes/zpminimal/themeoptions.php:35
 #, fuzzy
@@ -4665,7 +4667,7 @@ msgstr ""
 #: themes/zpminimal/themeoptions.php:40
 #, fuzzy
 msgid "Menu Name of Menu Manager"
-msgstr "選單管理員：編輯選單項目"
+msgstr "選單管理員：新增選單項目"
 
 #: themes/zpminimal/themeoptions.php:40
 #, fuzzy
@@ -5759,7 +5761,7 @@ msgstr "檢視相館索引"
 #, fuzzy
 #| msgid "Return to %s"
 msgid "return to top"
-msgstr "最高評分"
+msgstr "回到 %s"
 
 #: zp-core/admin-functions.php:526
 msgid "Image order"
@@ -5950,7 +5952,7 @@ msgstr "清除這張專輯的快取記憶體的圖像。"
 #: zp-core/admin-functions.php:2280
 #, fuzzy
 msgid "Clear album image cache"
-msgstr "快取原尺寸相片"
+msgstr "相片快取已清空。"
 
 #: zp-core/admin-functions.php:2283
 #, fuzzy
@@ -6156,7 +6158,7 @@ msgstr "刪除相本 %s"
 #: zp-core/admin-functions.php:2752
 #, fuzzy
 msgid "prev image"
-msgstr "上個相本"
+msgstr "上一頁"
 
 #: zp-core/admin-functions.php:2759
 #, fuzzy
@@ -6426,7 +6428,7 @@ msgstr "所選的項目已被標記為垃圾"
 #: zp-core/admin-functions.php:4958
 #, fuzzy
 msgid "seo"
-msgstr "優化檔案及資料夾名稱，使其對搜尋引擎更為友善。"
+msgstr "搜尋引擎優化（SEO）"
 
 #: zp-core/admin-functions.php:4959
 #, fuzzy
@@ -6791,7 +6793,7 @@ msgstr "可用的外掛"
 #: zp-core/admin-plugins.php:194 zp-core/admin-plugins.php:417
 #, fuzzy
 msgid "Supplemental plugin"
-msgstr "沒有給管理員使用的外掛設定。"
+msgstr "外掛"
 
 #: zp-core/admin-plugins.php:199
 #, fuzzy
@@ -7002,7 +7004,7 @@ msgstr "刪除所選的標籤"
 #: zp-core/admin-tags.php:105
 #, fuzzy
 msgid "Tags renamed"
-msgstr "熱門標籤"
+msgstr "標籤："
 
 #: zp-core/admin-tags.php:131
 msgid "Tag Management"
@@ -7690,7 +7692,7 @@ msgstr "保護安裝檔，所以不能運行安裝程式。"
 #: zp-core/admin.php:313
 #, fuzzy
 msgid "Setup » restore scripts"
-msgstr "ZenPhoto20 安裝"
+msgstr "還原資料庫"
 
 #: zp-core/admin.php:318
 #, fuzzy
@@ -8904,7 +8906,7 @@ msgstr "原尺寸相片"
 #: zp-core/admin_options/image.php:441
 #, fuzzy, php-format
 msgid "%s thumbnails"
-msgstr "縮圖裁切："
+msgstr "相本縮圖"
 
 #: zp-core/admin_options/image.php:452
 msgid "image thumb"
@@ -9017,7 +9019,7 @@ msgstr "選擇圖像緩存中存儲的圖像類型。選擇<em>原始</em>保留
 #: zp-core/admin_options/image.php:537
 #, fuzzy
 msgid "Protect image cache"
-msgstr "快取原尺寸相片"
+msgstr "相片快取已清空。"
 
 #: zp-core/admin_options/image.php:546
 #, fuzzy
@@ -9189,7 +9191,7 @@ msgstr "預設值"
 #, fuzzy
 #| msgid "reset to default"
 msgid "restore fields to defaults"
-msgstr "欄位"
+msgstr "還原預設值"
 
 #: zp-core/admin_options/image.php:763
 #, fuzzy
@@ -9453,7 +9455,7 @@ msgstr "<em>最近新增</em> 的相片上要顯示的文字。"
 #: zp-core/admin_options/search.php:267
 #, fuzzy
 msgid "<em>Within</em>"
-msgstr "<em>匿名</em>"
+msgstr "<em>和</em>"
 
 #: zp-core/admin_options/search.php:273
 #, fuzzy
@@ -9721,7 +9723,7 @@ msgstr ""
 #: zp-core/admin_options/security.php:176
 #, fuzzy, php-format
 msgid "Authentication authority: <strong>%s</strong>"
-msgstr "名稱 <strong>%s</strong>："
+msgstr "標題 <strong>%s</strong>："
 
 #: zp-core/admin_options/theme.php:212
 #, php-format
@@ -9994,7 +9996,7 @@ msgstr "最新相本"
 #: zp-core/class-feed.php:265
 #, fuzzy
 msgid "Most popular albums"
-msgstr "相本"
+msgstr "熱門標籤"
 
 #: zp-core/class-feed.php:267
 #, fuzzy
@@ -12402,7 +12404,7 @@ msgstr ""
 #: zp-core/lib-auth.php:97
 #, fuzzy
 msgid "Password hash algorithm"
-msgstr "密碼"
+msgstr "加密金鑰"
 
 #: zp-core/lib-auth.php:100
 #, fuzzy, php-format
@@ -13309,12 +13311,12 @@ msgstr ""
 #: zp-core/reconfigure.php:304
 #, fuzzy, php-format
 msgid "to run setup [%s]"
-msgstr "安裝前請先登入。"
+msgstr "運行安裝程序"
 
 #: zp-core/reconfigure.php:307
 #, fuzzy
 msgid "by Admin request"
-msgstr "安全管理"
+msgstr "請求新增使用者"
 
 #: zp-core/reconfigure.php:310
 #, fuzzy
@@ -13487,7 +13489,7 @@ msgstr "找不到 <em>%s</em>"
 #: zp-core/setup/index.php:553
 #, fuzzy, php-format
 msgid "<em>%s</em> security [is compromised]"
-msgstr "<em>%s</em> 已經存在。"
+msgstr "檢視 <em>%s</em>"
 
 #: zp-core/setup/index.php:553
 #, fuzzy, php-format
@@ -13944,7 +13946,7 @@ msgstr "ZenPhoto20 的檔案系統字集定義為 %1$s [未經測試]"
 #: zp-core/setup/index.php:841
 #, fuzzy
 msgid "The filesystem character define is UTF-8 [assumed]"
-msgstr "ZenPhoto20 的檔案系統字集定義為 %1$s [%2$s]"
+msgstr "ZenPhoto20 的檔案系統字集定義為 %1$s "
 
 #: zp-core/setup/index.php:846
 #, php-format
@@ -14695,7 +14697,7 @@ msgstr "如果您還沒有創建資料庫，現在就是很好的時間。"
 #: zp-core/setup/index.php:1899
 #, fuzzy, php-format
 msgid "The %1$s file does not exist."
-msgstr "<em>.htaccess</em> 檔案 [檔案空白或不存在]"
+msgstr "群組 %s 並不存在。"
 
 #: zp-core/setup/setup-functions.php:97
 #, php-format
@@ -14974,7 +14976,7 @@ msgstr "佈景主題"
 #: zp-core/setup/setup-option-defaults.php:563
 #, fuzzy, php-format
 msgid "Copyright %1$u  : %2$s "
-msgstr "第 %1$u 本／共 %2$u 本"
+msgstr "第 %1$u - %2$u 本／共 %3$u 本"
 
 #: zp-core/setup/setup-option-defaults.php:613
 msgid ""
@@ -15250,18 +15252,18 @@ msgstr "相本縮圖"
 #: zp-core/zp-extensions/zenpage/template-functions.php:1615
 #, fuzzy
 msgid "Return to search"
-msgstr "搜尋"
+msgstr "回到 %s"
 
 #: zp-core/template-functions.php:1301
 #: zp-core/zp-extensions/zenpage/template-functions.php:1618
 #, fuzzy
 msgid "Return to archive"
-msgstr "按日期存檔檢視"
+msgstr "日期存檔"
 
 #: zp-core/template-functions.php:2056
 #, fuzzy
 msgid "The image is marked un-published."
-msgstr "此相本並未公開發佈。"
+msgstr "已發佈／未發佈"
 
 #: zp-core/template-functions.php:3755
 #, fuzzy, php-format
@@ -16024,9 +16026,7 @@ msgstr "如果超出此視窗是最後一次訪問，將重置訪問間隔。"
 #: zp-core/zp-extensions/accessThreshold.php:56
 #, fuzzy
 msgid "Mask"
-msgstr ""
-"<em>範圍</em>：銳化遮罩的半徑大小。較小的半徑可以銳化較小的細節，較大的半徑可"
-"以銳化較大的細節。"
+msgstr "在相片或縮圖上使用銳化遮罩。"
 
 #: zp-core/zp-extensions/accessThreshold.php:58
 #, fuzzy
@@ -16440,12 +16440,12 @@ msgstr "尺寸 size ="
 #: zp-core/zp-extensions/cacheManager.php:261
 #, fuzzy
 msgid "Crop X axis"
-msgstr "剪裁 %s"
+msgstr "裁切尺寸 crop ="
 
 #: zp-core/zp-extensions/cacheManager.php:262
 #, fuzzy
 msgid "Crop Y axis"
-msgstr "剪裁 %s"
+msgstr "裁切尺寸 crop ="
 
 #: zp-core/zp-extensions/cacheManager.php:278
 msgid "Watermark"
@@ -16696,7 +16696,7 @@ msgstr "相本：%s"
 #: zp-core/zp-extensions/cacheManager/functions.php:66
 #, fuzzy, php-format
 msgid "%1$s: %2$s"
-msgstr "編輯相本：<em>%1$s%2$s</em>"
+msgstr "Effervescence %1$s %2$s"
 
 #: zp-core/zp-extensions/class-AnyFile.php:18
 msgid ""
@@ -16895,7 +16895,7 @@ msgstr "藝術家"
 #: zp-core/zp-extensions/class-video.php:140
 #, fuzzy
 msgid "Video Title"
-msgstr "標題："
+msgstr "標題"
 
 #: zp-core/zp-extensions/class-video.php:141
 #, fuzzy
@@ -17069,7 +17069,7 @@ msgstr "<code>%s</code>連結創建失敗。"
 #: zp-core/zp-extensions/cloneZenphoto/clone.php:133
 #, fuzzy, php-format
 msgid "Successful clone to %s"
-msgstr "成功的請求"
+msgstr "製作此群組的副本："
 
 #: zp-core/zp-extensions/cloneZenphoto/clone.php:164
 #, fuzzy
@@ -18232,7 +18232,7 @@ msgstr "發現的網站瀏覽器 cookie。"
 #: zp-core/zp-extensions/debug/admin_tab.php:221
 #, fuzzy
 msgid "Sub-Language"
-msgstr "子地點（Sub-location）"
+msgstr "語言："
 
 #: zp-core/zp-extensions/debug/admin_tab.php:222
 #, fuzzy
@@ -18321,7 +18321,7 @@ msgstr "檢查更新"
 #: zp-core/zp-extensions/deprecated-functions/admin_tab.php:28
 #, fuzzy
 msgid "Deprecated Functions"
-msgstr "實用工具"
+msgstr "函式"
 
 #: zp-core/zp-extensions/deprecated-functions/admin_tab.php:39
 #, fuzzy
@@ -18409,7 +18409,7 @@ msgstr "新增一個要給本外掛處理的副檔名"
 #: zp-core/zp-extensions/downloadList.php:68
 #, fuzzy
 msgid "Download directory"
-msgstr "下載紀錄統計"
+msgstr "下載"
 
 #: zp-core/zp-extensions/downloadList.php:70
 #, fuzzy
@@ -18695,7 +18695,7 @@ msgstr "外掛"
 #: zp-core/zp-extensions/elFinder.php:80
 #, fuzzy, php-format
 msgid "files (%s)"
-msgstr "ZenPhoto20 檔案"
+msgstr "檔案"
 
 #: zp-core/zp-extensions/elFinder.php:81
 msgid "files"
@@ -18749,7 +18749,7 @@ msgstr "第三方外掛"
 #: zp-core/zp-extensions/elFinder/php/connector_zp.php:293
 #, fuzzy, php-format
 msgid "Data (%s)"
-msgstr "自訂資料欄位："
+msgstr "自訂資料欄位"
 
 #: zp-core/zp-extensions/elFinder/php/connector_zp.php:307
 #, fuzzy, php-format
@@ -19026,7 +19026,7 @@ msgstr "最高評分"
 #: zp-core/zp-extensions/externalFeed.php:279 zp-core/zp-extensions/rss.php:474
 #, fuzzy
 msgid " (Random pages)"
-msgstr "隨機圖片..."
+msgstr "隨機"
 
 #: zp-core/zp-extensions/externalFeed.php:282 zp-core/zp-extensions/rss.php:477
 #, fuzzy
@@ -19569,7 +19569,7 @@ msgstr "為生成的文章選擇一個類別"
 #: zp-core/zp-extensions/galleryArticles.php:90
 #, fuzzy
 msgid "Use album folder"
-msgstr "重新命名資料夾"
+msgstr "資料夾名稱："
 
 #: zp-core/zp-extensions/galleryArticles.php:92
 #, fuzzy
@@ -19926,7 +19926,7 @@ msgstr ""
 #: zp-core/zp-extensions/html_meta_tags.php:97
 #, fuzzy
 msgid "Cache control"
-msgstr "HTML 快取"
+msgstr "單張相片控制項"
 
 #: zp-core/zp-extensions/html_meta_tags.php:100
 #, fuzzy
@@ -19988,7 +19988,7 @@ msgstr ""
 #: zp-core/zp-extensions/html_meta_tags.php:111
 #, fuzzy
 msgid "Canonical URL link"
-msgstr "網址設定："
+msgstr "OpenID 識別網址："
 
 #: zp-core/zp-extensions/html_meta_tags.php:113
 #, fuzzy
@@ -20023,7 +20023,7 @@ msgstr ""
 #: zp-core/zp-extensions/html_meta_tags.php:116
 #, fuzzy
 msgid "Twitter name"
-msgstr "相本名稱："
+msgstr "名稱"
 
 #: zp-core/zp-extensions/html_meta_tags.php:117
 #, fuzzy
@@ -20072,7 +20072,7 @@ msgstr "應使用哪些 HTML meta 標籤。有關詳細資訊請參閱網。"
 #: zp-core/zp-extensions/sitemap-extended.php:180
 #, fuzzy
 msgid "Use subdomains"
-msgstr "使用標準的聯絡表單頁"
+msgstr "使用燈箱（Colorbox）效果"
 
 #: zp-core/zp-extensions/http_auth.php:50
 #, fuzzy
@@ -20119,7 +20119,7 @@ msgstr "最後更新：%s"
 #: zp-core/zp-extensions/image_album_statistics.php:266
 #, fuzzy, php-format
 msgid "%1$u new %2$s"
-msgstr "第 %1$u - %2$u 本／共 %3$u 本"
+msgstr "第 %1$u 張／共 %2$u 張"
 
 #: zp-core/zp-extensions/image_effects.php:60
 #, fuzzy
@@ -20339,7 +20339,7 @@ msgstr "經過這許多的 404 錯誤，將暫停訪問。"
 #: zp-core/zp-extensions/ipBlocker.php:108
 #, fuzzy
 msgid "Cool off"
-msgstr "關閉"
+msgstr "寒冷"
 
 #: zp-core/zp-extensions/ipBlocker.php:110
 #, fuzzy
@@ -20599,7 +20599,7 @@ msgstr ""
 #: zp-core/zp-extensions/jplayer.php:234
 #, fuzzy, php-format
 msgid "%1$s::%2$s not found."
-msgstr "%1$s 管理：%2$s%3$s"
+msgstr "Effervescence %1$s %2$s"
 
 #: zp-core/zp-extensions/jplayer.php:244
 #, fuzzy
@@ -21390,7 +21390,7 @@ msgstr "選擇您的主題基於設備連接到您的網站"
 #: zp-core/zp-extensions/mobileTheme.php:95
 #, fuzzy
 msgid "Phone theme"
-msgstr "電話 <strong>%s</strong>："
+msgstr "電話號碼"
 
 #: zp-core/zp-extensions/mobileTheme.php:97
 #: zp-core/zp-extensions/mobileTheme.php:101
@@ -21884,7 +21884,7 @@ msgstr "設置為未出版的所有相冊的未出版的專輯。"
 #: zp-core/zp-extensions/publishContent/publishContent.php:328
 #, fuzzy
 msgid "Propagate un-published state"
-msgstr "此相本並未公開發佈。"
+msgstr "已發佈／未發佈"
 
 #: zp-core/zp-extensions/publishContent/publishContent.php:338
 msgid "No albums are un-published."
@@ -22017,7 +22017,7 @@ msgstr[1] "檢視未發佈相片"
 #: zp-core/zp-extensions/publishContent/publishContent.php:609
 #, fuzzy
 msgid "News article changes applied"
-msgstr "相片將在套用變更時刪除。"
+msgstr "已套用變更"
 
 #: zp-core/zp-extensions/publishContent/publishContent.php:614
 #, fuzzy
@@ -23508,7 +23508,7 @@ msgstr "投票狀態"
 #: zp-core/zp-extensions/site_upgrade.php:133
 #, fuzzy
 msgid "The site is in test mode!"
-msgstr "測光模式"
+msgstr "Cookie 設定測試成功"
 
 #: zp-core/zp-extensions/site_upgrade.php:140
 #, fuzzy
@@ -24106,7 +24106,7 @@ msgstr ""
 #: zp-core/zp-extensions/slideshow.php:152
 #, fuzzy
 msgid "Colorbox image title"
-msgstr "圖像標題"
+msgstr "Colorbox 相片類型"
 
 #: zp-core/zp-extensions/slideshow.php:154
 #: zp-core/zp-extensions/slideshow2.php:163
@@ -24330,7 +24330,7 @@ msgstr "Colorbox 相片類型"
 #: zp-core/zp-extensions/slideshow2.php:161
 #, fuzzy
 msgid "Colorbox: Image title"
-msgstr "圖像標題"
+msgstr "Colorbox 相片類型"
 
 #: zp-core/zp-extensions/slideshow2.php:166
 #, fuzzy
@@ -24636,7 +24636,7 @@ msgstr ""
 #: zp-core/zp-extensions/themeSwitcher.php:157
 #, fuzzy
 msgid "Switch themes"
-msgstr "已安裝的佈景主題"
+msgstr "佈景主題"
 
 #: zp-core/zp-extensions/themeSwitcher.php:161
 #, fuzzy
@@ -24679,7 +24679,7 @@ msgstr "如果選擇了選項，正常的主題 Url 將替換<i>tinyURL</i>s 為
 #: zp-core/zp-extensions/tinyURL.php:83
 #, fuzzy
 msgid "news categories"
-msgstr "新增分類"
+msgstr "新聞分類"
 
 #: zp-core/zp-extensions/tinymce.php:20
 #, fuzzy
@@ -24743,7 +24743,7 @@ msgstr "ZenPhoto20 管理區"
 #: zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:48
 #, fuzzy, php-format
 msgid "<em>image</em>: %s"
-msgstr "檢視 <em>%s</em>"
+msgstr "<em>原尺寸</em> 相片"
 
 #: zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:49
 #, fuzzy, php-format
@@ -24753,7 +24753,7 @@ msgstr "原尺寸相片連結"
 #: zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:59
 #, fuzzy, php-format
 msgid "<em>album</em>: %s"
-msgstr "檢視 <em>%s</em>"
+msgstr "<em>%s</em> 的佈景主題設定"
 
 #: zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:60
 #, fuzzy, php-format
@@ -25229,7 +25229,7 @@ msgstr "上傳"
 #: zp-core/zp-extensions/uploader_jQuery/upload_form.php:157
 #, fuzzy
 msgid "Missing a temporary folder"
-msgstr "ZenPhoto20 安裝包 [檔案遺失]"
+msgstr "遺失"
 
 #: zp-core/zp-extensions/uploader_jQuery/upload_form.php:158
 #, fuzzy
@@ -27013,3037 +27013,3 @@ msgid ""
 msgstr ""
 "要使用字體是否可擴展 （<em>專題信託基金</em>和<em>Imagick</em>的字體） 的大"
 "小。"
-
-#~ msgid "Subject<strong>%s</strong>:"
-#~ msgstr "主旨 <strong>%s</strong>："
-
-#~ msgid "Message<strong>%s</strong>:"
-#~ msgstr "內容 <strong>%s</strong>："
-
-#~ msgid ""
-#~ "Select an album to edit its description and data, or <a href=\"?"
-#~ "page=edit&amp;album=%s&amp;massedit\">mass-edit</a> all first level "
-#~ "subalbums."
-#~ msgstr ""
-#~ "請選擇一個相本以編輯相本描述與其他資料，或使用 <a href=\"?page=edit&amp;"
-#~ "album=%s&amp;massedit\">大量編輯</a> 一次管理所有的頂層子相本。"
-
-#~ msgid "Title:"
-#~ msgstr "標題："
-
-#~ msgid "Description:"
-#~ msgstr "描述："
-
-#~ msgid "Metadata:"
-#~ msgstr "中繼資料（Metadata）："
-
-#~ msgid "Edit Gallery"
-#~ msgstr "編輯相館"
-
-#~ msgid ""
-#~ "Select an album to edit its description and data, or <a href=\"?"
-#~ "page=edit&amp;massedit\">mass-edit</a> all gallery level albums."
-#~ msgstr ""
-#~ "請選擇一個相本以編輯相本描述與其他資料，或使用 <a href=\"?page=edit&amp;"
-#~ "massedit\">大量編輯</a> 一次管理所有的頂層相本。"
-
-#, fuzzy
-#~ msgid "You have unsaved changes!"
-#~ msgstr "你有未保存的修改。"
-
-#, fuzzy
-#~ msgid "Are you sure you want to leave this page?"
-#~ msgstr "是否要离开当前房间？"
-
-#, fuzzy
-#~ msgid "Leave"
-#~ msgstr "请假"
-
-#, fuzzy
-#~ msgid "Stay"
-#~ msgstr "延缓审理"
-
-#~ msgid "Has Password"
-#~ msgstr "密碼保護"
-
-#~ msgid "Password protected"
-#~ msgstr "密碼保護"
-
-#~ msgid "View logs:"
-#~ msgstr "檢視紀錄檔："
-
-#, fuzzy
-#~ msgid "Cookies:"
-#~ msgstr "Cookies"
-
-#, fuzzy
-#~ msgid "Path"
-#~ msgstr "路徑"
-
-#~ msgid "Gallery title:"
-#~ msgstr "相館標題："
-
-#~ msgid "Website title:"
-#~ msgstr "網站標題："
-
-#, fuzzy
-#~ msgid ""
-#~ "<a onclick=\"toggle('albumpub');\" >Details</a> for <em>publish albums by "
-#~ "default</em>"
-#~ msgstr ""
-#~ "<em>發佈預設相冊</em>的<a onclick=\"toggle('albumpub');\">詳細資訊</a>"
-
-#, fuzzy
-#~ msgid ""
-#~ "<a onclick=\"toggle('imagepub');\" >Details</a> for <em>publish images by "
-#~ "default</em>"
-#~ msgstr ""
-#~ "<em>發佈預設圖像</em>的<a onclick=\"toggle('imagepub');\">詳細資訊</a>"
-
-#, fuzzy
-#~ msgid ""
-#~ "<a onclick=\"toggle('albumdate');\" >Details</a> for <em>use latest image "
-#~ "date as album date</em>"
-#~ msgstr ""
-#~ "<em>使用最新的圖像日期作為專輯日期</em>的<a onclick=\"toggle('albumdate');"
-#~ "\">詳細資訊</a>"
-
-#, fuzzy
-#~ msgid ""
-#~ "<a onclick=\"toggle('visualthumb');\" >Details</a> for <em>visual thumb "
-#~ "selection</em>"
-#~ msgstr ""
-#~ "為<em>視覺拇指選擇</em><a onclick=\"toggle('visualthumb');\">詳細資訊</a>"
-
-#, fuzzy
-#~ msgid ""
-#~ "<a onclick=\"toggle('multithumb');\" >Details</a> for <em>subalbum thumb "
-#~ "selection</em>"
-#~ msgstr ""
-#~ "<em>Subalbum 拇指選擇</em><a onclick=\"toggle('multithumb');\">詳細資訊</"
-#~ "a>"
-
-#~ msgid "Codeblocks:"
-#~ msgstr "自訂程式碼欄位："
-
-#~ msgid "user:"
-#~ msgstr "帳號："
-
-#~ msgid "<strong>Standard options</strong>"
-#~ msgstr "<strong>標準設定</strong>"
-
-#~ msgid "Image size:"
-#~ msgstr "相片尺寸："
-
-#~ msgid "<strong>Custom theme options</strong>"
-#~ msgstr "<strong>佈景主題自製設定</strong>"
-
-#~ msgid "Backup/Restore"
-#~ msgstr "備份／還原"
-
-#~ msgid "Backup and restore your gallery database."
-#~ msgstr "備份與還原整個相館的資料庫。"
-
-#, fuzzy
-#~ msgid "Info"
-#~ msgstr "WordPress 資料庫資訊"
-
-#, fuzzy
-#~ msgid ""
-#~ "Shows statistical graphs and info about your gallery’s images and albums."
-#~ msgstr "顯示圖表統計和資訊關於你的畫廊圖片和相冊。"
-
-#, fuzzy
-#~ msgid "Statistics"
-#~ msgstr "新聞分類的統計"
-
-#~ msgid "Back to the top 10 lists"
-#~ msgstr "回 top 10 列表"
-
-#~ msgid "top"
-#~ msgstr "回到頂端"
-
-#~ msgid "Refresh the Database"
-#~ msgstr "重整資料庫"
-
-#, fuzzy
-#~ msgid "Perform a garbage collection of the Database"
-#~ msgstr "執行垃圾回收的資料庫"
-
-#, fuzzy
-#~ msgid "Forces a refresh of the metadata for all images and albums."
-#~ msgstr "強制刷新所有圖片和相冊的中繼資料。"
-
-#, fuzzy
-#~ msgid ""
-#~ "The scripts for which BxSlider is enabled. {If themes require it they "
-#~ "might set this, otherwise you need to do it manually!}"
-#~ msgstr ""
-#~ "腳本為其啟用了 BxSlider。{如果主題需要他們可能對此進行設置，否則您需要手動"
-#~ "完成 ！}"
-
-#, fuzzy
-#~ msgid "Cache manager"
-#~ msgstr "緩存管理器"
-
-#, fuzzy
-#~ msgid "<a href=\"%1$s\" target=\"_blank\">%2$s</a>"
-#~ msgstr "<a href=\"%1$s\">%2$s</a>"
-
-#, fuzzy
-#~ msgid "404"
-#~ msgstr "404"
-
-#, fuzzy
-#~ msgid "EXIF"
-#~ msgstr "图像格式"
-
-#, fuzzy
-#~ msgid "EXPLAIN_SELECTS"
-#~ msgstr "EXPLAIN_SELECTS"
-
-#, fuzzy
-#~ msgid "FILTERS"
-#~ msgstr "筛选器"
-
-#, fuzzy
-#~ msgid "IMAGE"
-#~ msgstr "相片"
-
-#, fuzzy
-#~ msgid "LOCALE"
-#~ msgstr "你的伺服器不支援 %s 本地化設定。"
-
-#, fuzzy
-#~ msgid "LOGIN"
-#~ msgstr "登入"
-
-#, fuzzy
-#~ msgid "PLUGINS"
-#~ msgstr "外掛"
-
-#~ msgid "Functions"
-#~ msgstr "函式"
-
-#, fuzzy
-#~ msgid ""
-#~ "Send the <em>deprecated</em> notification message if the function name is "
-#~ "checked. Un-checking these boxes will allow you to continue using your "
-#~ "theme without warnings while you upgrade its implementation. Functions "
-#~ "flagged with an asterisk are class methods. Ones flagged with two "
-#~ "asterisks have deprecated parameters."
-#~ msgstr ""
-#~ "如果選中函數名稱，通知訊息<em>棄用</em>。取消選中這些對話方塊可以讓您同時"
-#~ "繼續使用你的主題，而不會警告您升級其執行。帶有星號標記的函數是類方法。那些"
-#~ "與兩個星號標記已棄用參數。"
-
-#, fuzzy
-#~ msgid "Searches PHP scripts for use of deprecated functions."
-#~ msgstr "搜索已否決的函數使用的 PHP 腳本。"
-
-#~ msgid "Check for update"
-#~ msgstr "檢查更新"
-
-#, fuzzy
-#~ msgid "Deprecated"
-#~ msgstr "舊版元素"
-
-#~ msgid "Counts of downloads"
-#~ msgstr "下載次數統計"
-
-#, fuzzy
-#~ msgid "Keyword threshold"
-#~ msgstr "關鍵字閾值"
-
-#, fuzzy
-#~ msgid "Only keywords with at least this number of uses will be shown."
-#~ msgstr "唯一的關鍵字與在將顯示使用至少這個數目。"
-
-#, fuzzy
-#~ msgid "Manage published state of content in your gallery."
-#~ msgstr "管理已發佈的狀態的內容在您的畫廊。"
-
-#~ msgid "Search statistics"
-#~ msgstr "搜尋統計"
-
-#~ msgid "Analyze searches"
-#~ msgstr "搜尋分析"
-
-#, fuzzy
-#~ msgid "Analysis"
-#~ msgstr "分析"
-
-#, fuzzy
-#~ msgid "Seo"
-#~ msgstr "徐"
-
-#~ msgid "SEO Cleaner"
-#~ msgstr "搜尋引擎優化（SEO）"
-
-#~ msgid "Make file and folder names in the Gallery SEO friendly."
-#~ msgstr "優化檔案及資料夾名稱，使其對搜尋引擎更為友善。"
-
-#, fuzzy
-#~ msgid "Generate or purge sitemap cache files."
-#~ msgstr "生成或清除網站地圖快取檔案。"
-
-#, fuzzy
-#~ msgid ""
-#~ "The scripts for which the cycle2 plugin is enabled. {If themes require it "
-#~ "they might set this, otherwise you need to do it manually!}"
-#~ msgstr ""
-#~ "腳本為其啟用了 cycle2 外掛程式。{如果主題需要他們可能對此進行設置，否則您"
-#~ "需要手動完成 ！}"
-
-#, fuzzy
-#~ msgid ""
-#~ "There are no other registered users who have provided an e-mail address."
-#~ msgstr "沒有其他註冊的使用者提供了電子郵件地址。"
-
-#~ msgid ""
-#~ "A tool to send e-mails to all registered users who have provided an e-"
-#~ "mail address."
-#~ msgstr "這個工具可以寄送電子郵件給所有已註冊且填寫郵件欄位的使用者。"
-
-#, fuzzy
-#~ msgid "Mailing"
-#~ msgstr "郵寄"
-
-#~ msgid "To:"
-#~ msgstr "收件人："
-
-#~ msgid "Send another mail"
-#~ msgstr "再寄一封新郵件"
-
-#~ msgid "An importer for Wordpress posts and pages to Zenpage."
-#~ msgstr "將 WordPress 分頁及文章匯入成 Zenpage 分頁"
-
-#~ msgid "TitleLink:"
-#~ msgstr "標題網址："
-
-#~ msgid "Content:"
-#~ msgstr "內容："
-
-#~ msgid ""
-#~ "<strong>Note:</strong> This option is valid only if you have the "
-#~ "<em>Gallery index page link</em> option set to \"gallery\". Of course the "
-#~ "<em>menu_manager</em> plugin must also be enabled."
-#~ msgstr ""
-#~ "<strong>請注意：</strong>本設定需啟用 <em>menu_manager</em> 外掛方可運作，"
-#~ "且 <em>相館索引頁</em> 設定必需設為「gallery」。"
-
-#~ msgid "No album provided to sort."
-#~ msgstr "沒有可供排序的相本。"
-
-#~ msgid " descending"
-#~ msgstr " 反序排列"
-
-#~ msgid "Current sort: <em>%1$s%2$s</em>. "
-#~ msgstr "目前的排序方式：依 <em>%1$s%2$s</em>。"
-
-#~ msgid "Current sort: <em>%1$s%2$s</em>."
-#~ msgstr "目前的排序方式：依 <em>%1$s%2$s</em>。"
-
-#~ msgid "UTF8 image URIs"
-#~ msgstr "UTF-8 相片網址"
-
-#, fuzzy
-#~ msgid ""
-#~ "If you are having problems with images whose names contain characters "
-#~ "with diacritical marks try changing the <em>UTF8 image URIs</em> setting."
-#~ msgstr ""
-#~ "如果你的圖片檔名包含多位元組字元（如：中文、重音字元）而發生問題，請試著變"
-#~ "更 <em>UTF-8 相片網址</em> 設定。"
-
-#~ msgid ""
-#~ "Highlighted languages are not current with ZenPhoto20 v%1$s. (The version "
-#~ "of the out-of-date language is shown in braces.)"
-#~ msgstr ""
-#~ "被高亮度標記的語言，表示翻譯檔的版本過舊（支援的版本以大括弧標示），不支援"
-#~ "目前的 ZenPhoto20 版本 %1$s，請至 <a href=\"%2$s\">翻譯項目列表</a> 尋找並"
-#~ "安裝新版翻譯。"
-
-#~ msgid "Charset:"
-#~ msgstr "字元編碼："
-
-#~ msgid ""
-#~ "The character encoding to use internally. Leave at <em>Unicode (UTF-8)</"
-#~ "em> if you are unsure."
-#~ msgstr "內部使用的字元編碼，如不確定請設定為 <em>Unicode (UTF-8)</em>。"
-
-#~ msgid ""
-#~ "Character sets <span style=\"color:gray\">shown in gray</span> have no "
-#~ "character translation support."
-#~ msgstr ""
-#~ "顯示為 <span style=\"color:gray\">灰色</span> 的字集不支援字元轉換。"
-
-#~ msgid "Gallery index page link:"
-#~ msgstr "相館索引頁："
-
-#~ msgid ""
-#~ "If this option is not empty, the Gallery Index URL that would normally "
-#~ "link to the theme <code>index.php</code> script will instead link to this "
-#~ "script. This frees up the <code>index.php</code> script so that you can "
-#~ "create a customized <em>Home page</em> script. This option applies only "
-#~ "to the main theme for the <em>Gallery</em>."
-#~ msgstr ""
-#~ "相館索引頁的連結網址，預設是連到佈景主題中的 <code>index.php</code>。如果"
-#~ "設定了這項功能，將會改連到你所設定的程式檔；如此一來，你可以自行建立 <em>"
-#~ "首頁</em> 檔案，不再受限於 <code>index.php</code> 了。這項設定只會對 <em>"
-#~ "相館</em> 的主要佈景主題發生效用。"
-
-#~ msgid ""
-#~ "Password reset request.<br />You may now set admin usernames and "
-#~ "passwords."
-#~ msgstr "密碼重設請求。<br />現在可以開始設定管理員的帳號密碼了。"
-
-#~ msgid "<strong>%1$u</strong> Page"
-#~ msgid_plural "<strong>%1$u</strong> Pages"
-#~ msgstr[0] "<strong>%1$u</strong> 個分頁"
-#~ msgstr[1] "<strong>%1$u</strong> 個分頁"
-
-#~ msgid "<strong>%1$u</strong> Page (%2$u un-published)"
-#~ msgid_plural "<strong>%1$u</strong> Pages (%2$u un-published)"
-#~ msgstr[0] "<strong>%1$u</strong> 個分頁（%2$u 個未公開發佈）"
-#~ msgstr[1] "<strong>%1$u</strong> 個分頁（%2$u 個未公開發佈）"
-
-#~ msgid "<strong>%1$u</strong> News"
-#~ msgid_plural "<strong>%1$u</strong> News"
-#~ msgstr[0] "<strong>%1$u</strong> 則新聞"
-#~ msgstr[1] "<strong>%1$u</strong> 則新聞"
-
-#~ msgid "<strong>%1$u</strong> News (%2$u un-published)"
-#~ msgid_plural "<strong>%1$u</strong> News (%2$u un-published)"
-#~ msgstr[0] "<strong>%1$u</strong> 則新聞（%2$u 則未公開發佈）"
-#~ msgstr[1] "<strong>%1$u</strong> 則新聞（%2$u 則未公開發佈）"
-
-#~ msgid "<strong>%1$u</strong> Category"
-#~ msgid_plural "<strong>%1$u</strong> Categories"
-#~ msgstr[0] "<strong>%1$u</strong> 個分類"
-#~ msgstr[1] "<strong>%1$u</strong> 個分類"
-
-#~ msgid "Location/Place"
-#~ msgstr "地點"
-
-#, fuzzy
-#~ msgid "%1$s: %2$s in %3$s on line %4$s"
-#~ msgstr "%1$s %2$s：%3$s%4$s"
-
-#, fuzzy
-#~ msgid "No supported databases"
-#~ msgstr "資料庫連線"
-
-#~ msgid "Request URI: [ <code>%s</code> ]"
-#~ msgstr "網址：[ <code>%s</code> ]"
-
-#~ msgid "Cache: [<code>%s</code>]"
-#~ msgstr "快取：[<code>%s</code>]"
-
-#~ msgid "Image: [<code>%s</code>]"
-#~ msgstr "相片：[<code>%s</code>]"
-
-#, fuzzy
-#~ msgid "an unknown release"
-#~ msgstr "未知的名稱"
-
-#~ msgid ""
-#~ "ZenPhoto20 suggests you make the sensitive files in the %1$s folder "
-#~ "accessable by <em>owner</em> only (permissions = 0600). The file "
-#~ "permissions for <em>%2$s</em> are %3$04o which may allow unauthorized "
-#~ "access."
-#~ msgstr ""
-#~ "ZenPhoto20 試圖將記錄檔的存取權限設定為只有 <em>擁有者</em> 可以存取的 "
-#~ "0600，但設定失敗。目前的權限是 %04o，可能會遭受未經授權的存取。"
-
-#~ msgid ""
-#~ "Setting <em>mbstring.internal_encoding</em> to <strong>UTF-8</strong> in "
-#~ "your <em>php.ini</em> file is recommended to insure accented and multi-"
-#~ "byte characters function properly."
-#~ msgstr ""
-#~ "建議將 <em>php.ini</em> 中的 <em>mbstring.internal_encoding</em> 設定為 "
-#~ "<strong>UTF-8</strong>，以保證如重音字元與多位元組字元函式（如：中文）可以"
-#~ "正確執行。"
-
-#~ msgid "The filesystem character define is ISO-8859-1 [assumed]"
-#~ msgstr "ZenPhoto20 的檔案系統字集定義為  ISO-8859-1 [已測試]"
-
-#~ msgid ""
-#~ "Setup did not perform a test of the filesystem character set. You can "
-#~ "cause setup to test for a proper definition by creating a file in your "
-#~ "<code>%1$s</code> folder named <strong><code>%2$s</code></strong> and re-"
-#~ "running setup."
-#~ msgstr ""
-#~ "尚未執行過檔案系統的字集測試。欲使本程式自動測試適當的字集定義，請於 "
-#~ "<code>%1$s</code> 資料夾中建立名為 <strong><code>%2$s</code></strong> 的檔"
-#~ "案，並重新執行本安裝程式。"
-
-#~ msgid "You should enable the URL option <em>UTF8 image URIs</em>."
-#~ msgstr "請啟用 <em>UTF-8 相片網址</em>。"
-
-#~ msgid "<a href=\"javascript:uri(true)\">Please do</a>"
-#~ msgstr "<a href=\"javascript:uri(true)\">現在就啟用</a>"
-
-#~ msgid "You should disable the URL option <em>UTF8 image URIs</em>."
-#~ msgstr "請停用 <em>UTF-8 相片網址</em>。"
-
-#~ msgid "<a href=\"javascript:uri(false)\">Please do</a>"
-#~ msgstr "<a href=\"javascript:uri(true)\">現在就停用</a>"
-
-#~ msgid "About to create tables"
-#~ msgstr "準備開始建立資料表"
-
-#~ msgid "Begin table creation"
-#~ msgstr "開始建立資料表"
-
-#~ msgid "Query %1$s Failed. Error: %2$s"
-#~ msgstr "資料庫語法 %1$s 執行失敗，回報錯誤訊息：%2$s"
-
-#~ msgid "Table creation failure:<br />Query: %1$s<br />Error: %2$s"
-#~ msgstr "資料表建立失敗：<br />資料庫語法：%1$s<br />錯誤訊息：%2$s"
-
-#~ msgid "Query ( %s ) Success."
-#~ msgstr "資料庫語法（%s）執行成功。"
-
-#~ msgid "Begin table updates"
-#~ msgstr "開始更新資料表"
-
-#~ msgid "Done with table create!"
-#~ msgstr "資料表建立完成！"
-
-#~ msgid "Done with table create with errors!"
-#~ msgstr "資料表建立完成，但有出錯！"
-
-#~ msgid "Done with table update"
-#~ msgstr "資料表更新完成"
-
-#~ msgid "Done with table update with errors"
-#~ msgstr "資料表更新完成，但有出錯"
-
-#~ msgid "Previous Release was %s"
-#~ msgstr "上個版本是 %s"
-
-#~ msgid "Database tables to update: %s"
-#~ msgstr "即將更新的資料表：%s"
-
-#, fuzzy
-#~ msgid "If you haven not created the database yet, now would be a good time."
-#~ msgstr "如果您尚未建立任何資料庫，現在正是好時機。"
-
-#, fuzzy
-#~ msgid "Copyright %1$u: %2$s"
-#~ msgstr "授權方式"
-
-#~ msgid "Admin Toolbox"
-#~ msgstr "管理工具箱"
-
-#, fuzzy
-#~ msgid "Clone"
-#~ msgstr "製作此群組的副本："
-
-#, fuzzy
-#~ msgid "Plugin to generate file download lists."
-#~ msgstr "勾選後可啟用相本 ZIP 壓縮下載聯結。"
-
-#~ msgid "Map dimensions—width"
-#~ msgstr "地圖尺寸 - 寬度"
-
-#~ msgid "The default width of the map."
-#~ msgstr "地圖的預設寬度。"
-
-#~ msgid "Map dimensions—height"
-#~ msgstr "地圖尺寸 - 高度"
-
-#~ msgid "The default height of the map."
-#~ msgstr "地圖的預設高度。"
-
-#~ msgid "<em>mod_rewrite</em> must be enabled for this plugin to function."
-#~ msgstr "本外掛需啟用 <em>mod_rewrite</em> 模組方可運作。"
-
-#, fuzzy
-#~ msgid "RSS suspended"
-#~ msgstr "RSS 訂閱摘要"
-
-#, fuzzy
-#~ msgid "The RSS feed is currently not available."
-#~ msgstr "這張相片被標記為隱藏。"
-
-#, fuzzy
-#~ msgid ""
-#~ "* This option may be set via the <a href=\"javascript:gotoName('sitemap-"
-#~ "extended');\"><em>sitemap-extended</em></a> plugin options."
-#~ msgstr ""
-#~ "* 這些設定可於 <a href=\"javascript:gotoName('menu_manager');"
-#~ "\"><em>menu_manager</em></a> 外掛設定中變更。"
-
-#, fuzzy
-#~ msgid "Selector CSS"
-#~ msgstr "選擇工具"
-
-#~ msgid "Album:"
-#~ msgstr "相本："
-
-#~ msgid "Album folder:"
-#~ msgstr "相本資料夾："
-
-#~ msgid "(Click on image to include)"
-#~ msgstr "（請點擊要插入的相片）"
-
-#~ msgid "<em>Albumthumb</em>"
-#~ msgstr "<em>相本縮圖</em>"
-
-#~ msgid "<strong>Note:</strong> This album does not contain any images."
-#~ msgstr "<strong>請注意：</strong> 此相本沒有任何相片。"
-
-#~ msgid "(Click on article title to include a link)"
-#~ msgstr "（請點擊要插入的文章標題）"
-
-#~ msgid "*Select*"
-#~ msgstr "*請選擇*"
-
-#~ msgid "(only direct links!)"
-#~ msgstr "（只會插入直接連結！）"
-
-#~ msgid "*Select an album*"
-#~ msgstr "*請選擇相本*"
-
-#~ msgid "(select variant below)"
-#~ msgstr "（變更外觀請於下方設定）"
-
-#, fuzzy
-#~ msgid "What to include"
-#~ msgstr "選擇要匯出什麼"
-
-#~ msgid "Custom text"
-#~ msgstr "自訂文字"
-
-#~ msgid "Custom thumbnail"
-#~ msgstr "自訂縮圖"
-
-#~ msgid "Sized image/multimedia item"
-#~ msgstr "非原尺寸相片／多媒體項目"
-
-#~ msgid "Custom size (un-cropped)"
-#~ msgstr "自訂尺寸（不裁切）"
-
-#, fuzzy
-#~ msgid "Full image"
-#~ msgstr "原尺寸相片"
-
-#~ msgid "Title and description"
-#~ msgstr "標題與描述"
-
-#~ msgid "No description"
-#~ msgstr "不顯示描述"
-
-#~ msgid "Show image description"
-#~ msgstr "顯示相片描述"
-
-#~ msgid "Show album description"
-#~ msgstr "顯示相本描述"
-
-#~ msgid "Link type"
-#~ msgstr "超連結類型"
-
-#~ msgid "Link to image"
-#~ msgstr "連結到相片"
-
-#~ msgid "Link to full image"
-#~ msgstr "連結到原尺寸相片"
-
-#~ msgid "Link to album"
-#~ msgstr "連結到相本"
-
-#~ msgid "No link"
-#~ msgstr "沒有連結"
-
-#~ msgid "Text wrap"
-#~ msgstr "文繞圖"
-
-#~ msgid "No wrap"
-#~ msgstr "不使用文繞圖"
-
-#, fuzzy
-#~ msgid ""
-#~ "Select an album to include images from into your page or article. Click "
-#~ "on the image to include it. Un-published albums or images are marked with "
-#~ "an “*”. You can also click on the magnify glass icon to see a preview of "
-#~ "the item. The preview opens in a colorbox showing the frontend/theme "
-#~ "view. The first thumbnail is always the thumbnail of the selected album. "
-#~ "It is titled <em>Albumthumb</em> and appears on every thumbnail page."
-#~ msgstr ""
-#~ "為插到分頁或文章中的相片選擇來源相本，再點一下相片即可插入。未發佈的相本或"
-#~ "相片會標上「*」符號。點擊放大鏡圖示可檢視該項目的預覽畫面（多媒體檔案將以 "
-#~ "Flowplayer 預覽，無論該外掛是否啟用）。請注意，顯示於第一項的一定是目前所"
-#~ "選相本的相本縮圖，而且在所有縮圖列表頁上都會以 <em>相本縮圖</em> 為標題。"
-#~ "<br />有數種插入方式可供設定："
-
-#, fuzzy
-#~ msgid "Options on what to include"
-#~ msgstr "選擇要匯出什麼"
-
-#, fuzzy
-#~ msgid ""
-#~ "Include the image itself, only its title, the title of its album, or some "
-#~ "custom text."
-#~ msgstr "插入相片本身、相片標題、相本標題，或自訂文字。"
-
-#~ msgid "Thumbnail: Size as set in theme’s options"
-#~ msgstr "縮圖：依照 ZenPhoto20 所設定的縮圖尺寸。"
-
-#, fuzzy
-#~ msgid "Custom size (un-cropped)."
-#~ msgstr "自訂尺寸（不裁切）"
-
-#~ msgid ""
-#~ "Select to link to the image page of the image, to the album the image is "
-#~ "in, no link at all or a custom URL."
-#~ msgstr ""
-#~ "可選擇連到相片本身的相片頁、所屬的相本頁、不使用超連結或自訂連結網址。"
-
-#~ msgid ""
-#~ "Wrap the text right or left of the image or not at all. Note that "
-#~ "tinyZenpage adds a bit of CSS to the included image if you use text wrap. "
-#~ "So that you see immediate results to the text wrap it attaches some "
-#~ "inline CSS:"
-#~ msgstr ""
-#~ "可選擇文字靠左或靠右的文繞圖，或不使用文繞圖。請注意，如使用文繞圖功能，"
-#~ "tinyZenpage 會在相片上加上一點 CSS 樣式，你所看到的結果是用下列行內"
-#~ "（inline）樣式達成的："
-
-#~ msgid "left wrap: <em>style=\"float:right\"</em>"
-#~ msgstr "文繞圖（文字在左）：<em>style=\"float:right\"</em>"
-
-#~ msgid "right wrap: <em>style=\"float: left\"</em>"
-#~ msgstr "文繞圖（文字在右）：<em>style=\"float:right\"</em>"
-
-#~ msgid ""
-#~ "Default thumbnail: <em>zenpage_thumb</em> /<em>zenpage_thumb_left</em> /"
-#~ "<em>zenpage_thumb_right</em>"
-#~ msgstr ""
-#~ "預設縮圖：<em>zenpage_thumb</em> /<em>zenpage_thumb_left</em> /"
-#~ "<em>zenpage_thumb_right</em>"
-
-#~ msgid ""
-#~ "Custom thumbnail: <em>zenpage_customthumb</em> or "
-#~ "<em>zenpage_customthumb_left</em>/<em>zenpage_customthumb_right</em>"
-#~ msgstr ""
-#~ "自訂縮圖：<em>zenpage_customthumb</em> 或 <em>zenpage_customthumb_left</"
-#~ "em>/<em>zenpage_customthumb_right</em>"
-
-#~ msgid ""
-#~ "Sized image: <em>zenpage_sizedimage</em>/<em>zenpage_sizedimage_left</em>/"
-#~ "<em>zenpage_sizedimage_right</em>"
-#~ msgstr ""
-#~ "非原尺寸相片：<em>zenpage_sizedimage</em>/<em>zenpage_sizedimage_left</"
-#~ "em>/<em>zenpage_sizedimage_right</em>"
-
-#~ msgid ""
-#~ "Custom image: <em>zenpage_customimage</em>/<em>zenpage_customimage_left</"
-#~ "em>/<em>zenpage_customimage_right</em>"
-#~ msgstr ""
-#~ "自訂圖片：<em>zenpage_customimage</em>/<em>zenpage_customimage_left</em>/"
-#~ "<em>zenpage_customimage_right</em>"
-
-#~ msgid "Image link: <em>zenpage_imagelink</em>"
-#~ msgstr "相片連結：<em>zenpage_imagelink</em>"
-
-#~ msgid "Album link: <em>zenpage_albumlink</em>"
-#~ msgstr "相本連結：<em>zenpage_albumlink</em>"
-
-#~ msgid "Custom link: <em>zenpage_customlink</em>"
-#~ msgstr "自訂連結：<em>zenpage_customlink</em>"
-
-#~ msgid ""
-#~ "An importer for <strong>Wordpress 3.x</strong> to the Zenpage CMS plugin "
-#~ "that imports the following:"
-#~ msgstr ""
-#~ "將 <strong>WordPress 3.x</strong> 匯入到 Zenpage CMS 內容管理系統外掛的匯"
-#~ "入工具。可匯入的項目有："
-
-#, fuzzy
-#~ msgid ""
-#~ "Hint: If you need more space for your text use TinyMCE’s full screen mode "
-#~ "(Click the expend icon of editor’s control bar, near ZP icon)."
-#~ msgstr ""
-#~ "小提示：如需更大的文字編輯空間，請使用 TinyMCE 的全螢幕模式，點擊編輯器工"
-#~ "具列右上角的藍色方塊即可。"
-
-#~ msgid "(<strong>%1$u</strong> page)"
-#~ msgid_plural "(<strong>%1$u</strong> pages)"
-#~ msgstr[0] "（<strong>%1$u</strong> 個分頁）"
-#~ msgstr[1] "（<strong>%1$u</strong> 個分頁）"
-
-#~ msgid "(<strong>%1$u</strong> page, <strong>%2$u</strong> un-published)"
-#~ msgid_plural ""
-#~ "(<strong>%1$u</strong> pages, <strong>%2$u</strong> un-published)"
-#~ msgstr[0] "（<strong>%1$u</strong> 個分頁：%2$u 個未公開發佈）"
-#~ msgstr[1] "（<strong>%1$u</strong> 個分頁：%2$u 個未公開發佈）"
-
-#~ msgid "(<strong>%1$u</strong> news)"
-#~ msgid_plural "(<strong>%1$u</strong> news)"
-#~ msgstr[0] "（<strong>%1$u</strong> 則新聞）"
-#~ msgstr[1] "（<strong>%1$u</strong> 則新聞）"
-
-#~ msgid "(<strong>%1$u</strong> news, <strong>%2$u</strong> un-published)"
-#~ msgid_plural ""
-#~ "(<strong>%1$u</strong> news, <strong>%2$u</strong> un-published)"
-#~ msgstr[0] "（<strong>%1$u</strong> 則新聞：%2$u 則未公開發佈）"
-#~ msgstr[1] "（<strong>%1$u</strong> 則新聞：%2$u 則未公開發佈）"
-
-#~ msgid "(<strong>%1$u</strong> category)"
-#~ msgid_plural "(<strong>%1$u</strong> categories)"
-#~ msgstr[0] "（<strong>%1$u</strong> 個分類）"
-#~ msgstr[1] "（<strong>%1$u</strong> 個分類）"
-
-#, fuzzy
-#~ msgid "Auto, Continuous"
-#~ msgstr "自動草稿"
-
-#, fuzzy
-#~ msgid "Auto, Focus button"
-#~ msgstr "自動至網址"
-
-#~ msgid "Compulsory Flash, Return light detected"
-#~ msgstr "強制閃光，偵測到閃光燈縮回"
-
-#~ msgid "Compulsory Flash, Return light not detected"
-#~ msgstr "強制閃光，未偵測到閃光燈縮回"
-
-#~ msgid "Flash, Auto-Mode"
-#~ msgstr "自動閃光"
-
-#~ msgid "Flash, Auto-Mode, Return light detected"
-#~ msgstr "自動閃光，偵測到閃光燈縮回"
-
-#~ msgid "Flash, Auto-Mode, Return light not detected"
-#~ msgstr "自動閃光，未偵測到閃光燈縮回"
-
-#~ msgid "Flash, strobe return light detected"
-#~ msgstr "有閃光，偵測到閃光燈縮回"
-
-#~ msgid "Flash, strobe return light not detected"
-#~ msgstr "有閃光，未偵測到閃光燈縮回"
-
-#~ msgid "Red Eye, Auto-Mode"
-#~ msgstr "防紅眼並自動閃光"
-
-#~ msgid "Red Eye, Auto-Mode, Return light detected"
-#~ msgstr "防紅眼並自動閃光，偵測到閃光燈縮回"
-
-#~ msgid "Red Eye, Auto-Mode, Return light not detected"
-#~ msgstr "防紅眼並自動閃光，未偵測到閃光燈縮回"
-
-#~ msgid "Red Eye, Compulsory Flash"
-#~ msgstr "防紅眼並強制閃光"
-
-#~ msgid "Red Eye, Compulsory Flash, Return light detected"
-#~ msgstr "防紅眼並強制閃光，偵測到閃光燈縮回"
-
-#~ msgid "Red Eye, Compulsory Flash, Return light not detected"
-#~ msgstr "防紅眼並強制閃光，未偵測到閃光燈縮回"
-
-#~ msgid "Red Eye, Return light detected"
-#~ msgstr "防紅眼，偵測到閃光燈縮回"
-
-#~ msgid "Red Eye, Return light not detected"
-#~ msgstr "防紅眼，未偵測到閃光燈縮回"
-
-#, fuzzy
-#~ msgid "Theme:%s setup completed"
-#~ msgstr "還原完成"
-
-#, fuzzy
-#~ msgid "Logon cool off"
-#~ msgstr "請冷靜個幾分鐘吧"
-
-#~ msgid "Owner:"
-#~ msgstr "擁有者："
-
-#, fuzzy
-#~ msgid "Set as thumbnail for:"
-#~ msgstr "最新相片：顯示縮圖"
-
-#~ msgid "Image watermark:"
-#~ msgstr "相片浮水印："
-
-#, fuzzy
-#~ msgid "Scan pending"
-#~ msgstr "等待驗證中"
-
-#~ msgid "No scheduled news articles found."
-#~ msgstr "沒有預約發佈的新聞。"
-
-#, fuzzy
-#~ msgid "Order by date descending"
-#~ msgstr "依使用頻率排列"
-
-#, fuzzy
-#~ msgid "Order by date ascending"
-#~ msgstr "依使用頻率排列"
-
-#~ msgid ""
-#~ "If checked on the heading image will change daily rather than on each "
-#~ "page load."
-#~ msgstr "勾選後橫幅相片將會每日更換，而非每翻一頁就換一次。"
-
-#~ msgid "The Object you are requesting cannot be found."
-#~ msgstr "要求的 ZenPhoto20 物件不存在。"
-
-#, fuzzy
-#~ msgid "Theme page"
-#~ msgstr "每頁文章數（佈景主題）"
-
-#~ msgid "The page you are requesting cannot be found."
-#~ msgstr "要求的 ZenPhoto20 物件不存在。"
-
-#~ msgid "Sorry, the page you are requesting cannot be found."
-#~ msgstr "要求的 ZenPhoto20 物件不存在。"
-
-#~ msgid ""
-#~ "Thumbnail generation may be time consuming on slow servers on when there "
-#~ "are a lot of images."
-#~ msgstr "當相片很多的時候，於效能緩慢的伺服器上產生縮圖可能會耗費不少時間。"
-
-#, fuzzy
-#~ msgid "Future publishing date."
-#~ msgstr "你選擇的是未來日期"
-
-#, fuzzy
-#~ msgid "show content"
-#~ msgstr "顯示留言"
-
-#~ msgid "Dynamic album search:"
-#~ msgstr "動態相本搜尋參數："
-
-#, fuzzy
-#~ msgid ""
-#~ "<a href=\"javascript:toggle('albumpub');\" >Details</a> for <em>publish "
-#~ "albums by default</em>"
-#~ msgstr ""
-#~ "<em>視覺化縮圖選擇工具</em> 的 <a href=\"javascript:toggle('visualthumb');"
-#~ "\" >詳細資訊</a>"
-
-#, fuzzy
-#~ msgid ""
-#~ "<a href=\"javascript:toggle('imagepub');\" >Details</a> for <em>publish "
-#~ "images by default</em>"
-#~ msgstr ""
-#~ "<em>將相本日期設為最新相片的日期</em> 的 <a href=\"javascript:"
-#~ "toggle('albumdate');\" >詳細資訊</a>"
-
-#~ msgid ""
-#~ "<a href=\"javascript:toggle('albumdate');\" >Details</a> for <em>use "
-#~ "latest image date as album date</em>"
-#~ msgstr ""
-#~ "<em>將相本日期設為最新相片的日期</em> 的 <a href=\"javascript:"
-#~ "toggle('albumdate');\" >詳細資訊</a>"
-
-#~ msgid ""
-#~ "<a href=\"javascript:toggle('visualthumb');\" >Details</a> for <em>visual "
-#~ "thumb selection</em>"
-#~ msgstr ""
-#~ "<em>視覺化縮圖選擇工具</em> 的 <a href=\"javascript:toggle('visualthumb');"
-#~ "\" >詳細資訊</a>"
-
-#, fuzzy
-#~ msgid ""
-#~ "<a href=\"javascript:toggle('multithumb');\" >Details</a> for "
-#~ "<em>subalbum thumb selection</em>"
-#~ msgstr ""
-#~ "<em>視覺化縮圖選擇工具</em> 的 <a href=\"javascript:toggle('visualthumb');"
-#~ "\" >詳細資訊</a>"
-
-#~ msgid "ExtraContent"
-#~ msgstr "額外內容"
-
-#~ msgid "1: Normal (0 deg)"
-#~ msgstr "1: 一般（無旋轉）"
-
-#~ msgid "2: Mirrored"
-#~ msgstr "2: 鏡射"
-
-#~ msgid "3: Upside-down"
-#~ msgstr "3: 上下翻轉"
-
-#~ msgid "4: Upside-down Mirrored"
-#~ msgstr "4: 上下左右翻轉"
-
-#~ msgid "5: 90 deg CW Mirrored"
-#~ msgstr "5: 逆時針 90 度鏡射"
-
-#~ msgid "6: 90 deg CCW"
-#~ msgstr "6: 逆時針 90 度"
-
-#~ msgid "7: 90 deg CCW Mirrored"
-#~ msgstr "7: 順時針 90 度鏡射"
-
-#~ msgid "8: 90 deg CW"
-#~ msgstr "8: 順時針 90 度"
-
-#~ msgid "%d: Unknown"
-#~ msgstr "%d: 未知"
-
-#~ msgid "D55"
-#~ msgstr "D55"
-
-#~ msgid "D65"
-#~ msgstr "D65"
-
-#~ msgid "D75"
-#~ msgstr "D75"
-
-#~ msgid "D50"
-#~ msgstr "D50"
-
-#~ msgid "/10s"
-#~ msgstr "/10 秒"
-
-#~ msgid "2x"
-#~ msgstr "2 倍"
-
-#~ msgid "4x"
-#~ msgstr "4 倍"
-
-#~ msgid "50"
-#~ msgstr "50"
-
-#~ msgid "100"
-#~ msgstr "100"
-
-#~ msgid "200"
-#~ msgstr "200"
-
-#~ msgid "400"
-#~ msgstr "400"
-
-#~ msgid "12"
-#~ msgstr "12 點對焦"
-
-#~ msgid "13"
-#~ msgstr "13 點對焦"
-
-#~ msgid "14"
-#~ msgstr "14 點對焦"
-
-#~ msgid "15"
-#~ msgstr "15 點對焦"
-
-#~ msgid "Unknown: "
-#~ msgstr "未知："
-
-#~ msgid "2s"
-#~ msgstr "2 秒"
-
-#, fuzzy
-#~ msgid "Updating the configuration file"
-#~ msgstr "相本無法刪除"
-
-#~ msgid ""
-#~ "ZenPhoto20 processed a 404 error on %s. See the debug log for details."
-#~ msgstr ""
-#~ "ZenPhoto20 運行 %s 時發生 404 錯誤，請檢查除錯記錄檔（debug log）取得詳細"
-#~ "資訊。"
-
-#~ msgid ""
-#~ "Welcome to ZenPhoto20! This page will set up the version %s on your web "
-#~ "server."
-#~ msgstr ""
-#~ "歡迎使用 ZenPhoto20 ！這個頁面會在你的網頁伺服器上建立 ZenPhoto20 站臺。"
-
-#, fuzzy
-#~ msgid "Updated configuration file"
-#~ msgstr "略過確認郵件"
-
-#~ msgid "Database admin user"
-#~ msgstr "資料庫使用者名稱"
-
-#~ msgid "Database admin password"
-#~ msgstr "資料庫密碼"
-
-#, fuzzy
-#~ msgid "Invalid Textobject instantiation: file does not exist"
-#~ msgstr "找不到相片，檔案不存在。"
-
-#, fuzzy
-#~ msgid "Languange"
-#~ msgstr "語言："
-
-#, fuzzy
-#~ msgid "Sub-Languange"
-#~ msgstr "語言："
-
-#, fuzzy
-#~ msgid "Languange String"
-#~ msgstr "語言："
-
-#~ msgid "Zenphoto browser cookies found."
-#~ msgstr "ZenPhoto20 核心檔案"
-
-#, fuzzy
-#~ msgid ""
-#~ "* This option may be set via the <a href=\"javascript:gotoName('dynamic-"
-#~ "locale');\"><em>dynamic-locale</em></a> plugin options."
-#~ msgstr ""
-#~ "* 這些設定可於 <a href=\"javascript:gotoName('menu_manager');"
-#~ "\"><em>menu_manager</em></a> 外掛設定中變更。"
-
-#, fuzzy
-#~ msgid ""
-#~ "* This option may be set via the <a href=\"javascript:"
-#~ "gotoName('html_meta_tags');\"><em>html_meta_tags</em></a> plugin options."
-#~ msgstr ""
-#~ "* 這些設定可於 <a href=\"javascript:gotoName('menu_manager');"
-#~ "\"><em>menu_manager</em></a> 外掛設定中變更。"
-
-#, fuzzy
-#~ msgid "restore screen"
-#~ msgstr "還原完成"
-
-#, fuzzy
-#~ msgid "shuffle off"
-#~ msgstr "Shuffle"
-
-#, fuzzy
-#~ msgid "repeat off"
-#~ msgstr "密碼確認："
-
-#, fuzzy
-#~ msgid ""
-#~ "* These options may be set via the <a href=\"javascript:"
-#~ "gotoName('menu_manager');\"><em>menu_manager</em></a> plugin options."
-#~ msgstr ""
-#~ "* 這些設定可於 <a href=\"javascript:gotoName('menu_manager');"
-#~ "\"><em>menu_manager</em></a> 外掛設定中變更。"
-
-#, fuzzy
-#~ msgid "Target does not exists in <em>%1$s</em> theme"
-#~ msgstr "不顯示吻合的 <em>新聞</em>"
-
-#, fuzzy
-#~ msgid ""
-#~ "Creates a link to a custom theme page as described in the theming "
-#~ "tutorial."
-#~ msgstr "建立前往佈景主題中某個自訂頁面的超連結。"
-
-#, fuzzy
-#~ msgid ""
-#~ "* These options may be set via the <a href=\"javascript:"
-#~ "gotoName('print_album_menu');\"><em>print_album_menu</em></a> plugin "
-#~ "options."
-#~ msgstr ""
-#~ "* 這項設定可於 <a href=\"javascript:gotoName('register_user');"
-#~ "\"><em>register_user</em></a> 外掛設定中變更。"
-
-#~ msgid ""
-#~ "If this option is set, the visitor login form will include a link to this "
-#~ "page. The link text will be labeled with the text provided."
-#~ msgstr ""
-#~ "如果設定了某個頁面，會在訪客登入表單中插入一個連到此頁的連結，而你輸入的文"
-#~ "字會成為連結的顯示文字。"
-
-#~ msgid "Set Security log permissions"
-#~ msgstr "設定安全性記錄檔的存取權限"
-
-#~ msgid "File permissions of Security log are %04o"
-#~ msgstr "安全性記錄檔的存取權限是 %04o"
-
-#, fuzzy
-#~ msgid "tinyZenpage plugin"
-#~ msgstr "Zenpage 分頁"
-
-#, fuzzy
-#~ msgid "Custom image size"
-#~ msgstr "自訂頁面"
-
-#, fuzzy
-#~ msgid "Custom thumb crop - size"
-#~ msgstr "tinyZenpage - 自訂縮圖裁切 - 尺寸"
-
-#, fuzzy
-#~ msgid "Custom thumb crop - width"
-#~ msgstr "tinyZenpage - 自訂縮圖裁切 - 寬度"
-
-#, fuzzy
-#~ msgid "Custom thumb crop - height"
-#~ msgstr "tinyZenpage - 自訂縮圖裁切 - 高度"
-
-#, fuzzy
-#~ msgid "image with link to image"
-#~ msgstr "連結到相片"
-
-#~ msgid "*no group affiliation"
-#~ msgstr "*沒有關聯的群組"
-
-#~ msgid "Future publishing date:"
-#~ msgstr "你選擇的是未來日期"
-
-#, fuzzy
-#~ msgid "newPage"
-#~ msgstr "新增分頁"
-
-#~ msgid ""
-#~ "<strong>Note:</strong> Scheduled publishing is not active unless the "
-#~ "article is also set to <em>published</em>"
-#~ msgstr ""
-#~ "<strong>請注意：</strong>預約發佈排程功能只有在文章 <em>設為發佈</em> 時才"
-#~ "會生效。"
-
-#~ msgid ""
-#~ "Note: Scheduled publishing is not active unless the page is also set to "
-#~ "<em>published</em>"
-#~ msgstr "請注意：預約發佈排程功能只有在分頁 <em>設為發佈</em> 時才會生效。"
-
-#~ msgid "Expiration date:"
-#~ msgstr "有效期限："
-
-#~ msgid "ExtraContent:"
-#~ msgstr "額外內容："
-
-#~ msgid "Scheduled for published"
-#~ msgstr "已列入預約發佈排程"
-
-#~ msgid "Publish immediately (skip scheduling)"
-#~ msgstr "立刻發佈（跳過預約發佈排程）"
-
-#~ msgid "Enable scheduled publishing"
-#~ msgstr "列入預約發佈排程"
-
-#~ msgid "Publish (override expiration)"
-#~ msgstr "發佈（將蓋過有效期限設定）"
-
-#~ msgid "<em>This entry belongs to a protected album.</em>"
-#~ msgstr "<em>此內容屬於受保護相本。</em>"
-
-#~ msgid ""
-#~ "For the best viewing experience <a href=\"http://www.macromedia.com/go/"
-#~ "getflashplayer/\">Get Adobe Flash.</a>"
-#~ msgstr ""
-#~ "請安裝 <a href=\"http://www.macromedia.com/go/getflashplayer/\">Adobe "
-#~ "Flash</a> 以取得更好的瀏覽體驗。"
-
-#~ msgid "View Gallery Without Flash"
-#~ msgstr "檢視相館的無 Flash 版"
-
-#~ msgid "Open In New Window"
-#~ msgstr "開啟為新視窗"
-
-#~ msgid "Effervescence %s (not found)"
-#~ msgstr "Effervescence %s（找不到）"
-
-#~ msgid "next &raquo;"
-#~ msgstr "下一頁 &raquo;"
-
-#~ msgid "&laquo; prev"
-#~ msgstr "&laquo; 上一頁"
-
-#~ msgid "Zenphoto gallery"
-#~ msgstr "Zenphoto 相館"
-
-#~ msgid "For the best viewing experience"
-#~ msgstr "為了取得更好的瀏覽體驗，請"
-
-#~ msgid "get Adobe Flash."
-#~ msgstr "安裝 Adobe Flash。"
-
-#~ msgid ""
-#~ "Simpleviewer requires <em>mod_rewrite</em> to be set. Simpleviewer is "
-#~ "disabled."
-#~ msgstr "Simpleviewer 已停用，它需要啟用 <em>mod_rewrite</em> 模組。"
-
-#~ msgid "ZIP file download"
-#~ msgstr "ZIP 壓縮檔下載"
-
-#~ msgid "Image page"
-#~ msgstr "相片頁"
-
-#~ msgid "Simpleviewer"
-#~ msgstr "Simpleviewer"
-
-#~ msgid "Slimbox"
-#~ msgstr "Slimbox"
-
-#~ msgid "Smoothgallery"
-#~ msgstr "Smoothgallery"
-
-#~ msgid ""
-#~ "This option requires the <em>menu_manager</em> plugin to be enabled and "
-#~ "the <em>Gallery index page link</em> to be set to \"gallery\"."
-#~ msgstr ""
-#~ "本設定需啟用 <em>menu_manager</em> 外掛方可運作，且 <em>相館索引頁</em> 設"
-#~ "定必需設為「gallery」。"
-
-#~ msgid ""
-#~ "Based on Effervescence 1.1 with multiple personalities (slimbox, "
-#~ "simpleviewer and smoothgallery) added. Select different color schemes and "
-#~ "personalities from the Admin Options tab."
-#~ msgstr ""
-#~ "基於 Effervescence 1.1，並新增個性化設定（slimbox, simpleviewer, "
-#~ "smoothgallery）功能。可於管理設定頁中選擇不同的色彩主題與個性化設定。"
-
-#~ msgid "Next album &raquo;"
-#~ msgstr "下個相本 &raquo;"
-
-#~ msgid "&laquo; Prev Album"
-#~ msgstr "&laquo; 上個相本"
-
-#~ msgid "Next &raquo;"
-#~ msgstr "下一張 &raquo;"
-
-#~ msgid "&laquo; Previous"
-#~ msgstr "&laquo; 上一張"
-
-#~ msgid "1 album,&nbsp;1 image"
-#~ msgstr "1 個相本，1 張相片"
-
-#~ msgid "%u album,&nbsp;1 images"
-#~ msgstr "%u 個相本，1 張相片"
-
-#~ msgid "%1$u album,&nbsp;%2$u images"
-#~ msgstr "%1$u 個相本，%2$u 張相片"
-
-#~ msgid "1 album,&nbsp;%u images"
-#~ msgstr "1 個相本，%u 張相片"
-
-#~ msgid "next page"
-#~ msgstr "下一頁"
-
-#~ msgid "SHOW"
-#~ msgstr "顯示"
-
-#~ msgid "HIDE"
-#~ msgstr "隱藏"
-
-#~ msgid "No comments yet"
-#~ msgstr "目前還沒有任何留言。"
-
-#~ msgid "%u comment so far"
-#~ msgid_plural "%u comments so far"
-#~ msgstr[0] "目前為止有 %u 則留言"
-#~ msgstr[1] "目前為止有 %u 則留言"
-
-#~ msgid "Link to Comment %u"
-#~ msgstr "留言 %u 的連結網址"
-
-#~ msgid "%s wrote:"
-#~ msgstr "%s 說："
-
-#~ msgid "Contact form"
-#~ msgstr "聯絡表單"
-
-#~ msgid ""
-#~ "<a href=\"http://stopdesign.com/templates/photos/\">Photo Templates</a> "
-#~ "from Stopdesign"
-#~ msgstr ""
-#~ "改自 Stopdesign 的 <a href=\"http://stopdesign.com/templates/photos/\">相"
-#~ "簿模板</a>"
-
-#~ msgid "All galleries"
-#~ msgstr "所有相本"
-
-#~ msgid "1 album,&nbsp;%u image"
-#~ msgid_plural "1 album,&nbsp;%u images"
-#~ msgstr[0] "1 個相本，%u 張相片"
-#~ msgstr[1] "1 個相本，%u 張相片"
-
-#~ msgid "%u album,&nbsp;1 image"
-#~ msgid_plural "%u albums,&nbsp;1 image"
-#~ msgstr[0] "%u 個相本，1 張相片"
-#~ msgstr[1] "%u 個相本，1 張相片"
-
-#~ msgid "%1$u album,&nbsp;%2$s"
-#~ msgid_plural "%1$u albums,&nbsp;%2$s"
-#~ msgstr[0] "%1$u 本相簿，%2$s"
-#~ msgstr[1] "%1$u 本相簿，%2$s"
-
-#~ msgid "Gallery Feeds"
-#~ msgstr "相館 RSS 訂閱摘要"
-
-#~ msgid "Photos"
-#~ msgstr "相片"
-
-#~ msgid "%1$u of %2$u images"
-#~ msgstr "第 %1$u 張／共 %2$u 張"
-
-#~ msgid ""
-#~ "<a href=\"http://stopdesign.com/templates/photos/\">Photo Templates</a> "
-#~ "from Stopdesign."
-#~ msgstr ""
-#~ "佈景主題改自 Stopdesign 的 <a href=\"http://stopdesign.com/templates/"
-#~ "photos/\">相簿模板</a>。"
-
-#~ msgid "Recently Updated Galleries"
-#~ msgstr "最近更新的相本"
-
-#~ msgid "View album: %s"
-#~ msgstr "檢視相本：%s"
-
-#~ msgid "View image:"
-#~ msgstr "檢視相片："
-
-#~ msgid "Gallery data"
-#~ msgstr "相館資料"
-
-#~ msgid "Galleries"
-#~ msgstr "相本"
-
-#~ msgid "A password is required"
-#~ msgstr "請輸入密碼"
-
-#~ msgid "%u albums,&nbsp;1 image"
-#~ msgstr "%u 個相本，1 張相片"
-
-#~ msgid "%1$u albums,&nbsp;%2$u images"
-#~ msgstr "%1$u 個相本，%2$u 張相片"
-
-#~ msgid "%u albums"
-#~ msgstr "%u 個相本"
-
-#~ msgid "Ported to Zenphoto by Mark Galeassi and Stephen Billard"
-#~ msgstr "由 Mark Galeassi 及 Stephen Billard 移植到 Zenphoto 平臺。"
-
-#~ msgid ""
-#~ "A theme based on the design from <a href=\"http://stopdesign.com/"
-#~ "templates/photos/\">Douglas Bowman</a>. This theme is licensed under the "
-#~ "<a href=\"http://creativecommons.org/licenses/by-nc-sa/2.5/\">Creative "
-#~ "Commons Attribution-NonCommercial-ShareAlike 2.5</a> License."
-#~ msgstr ""
-#~ "基於 <a href=\"http://stopdesign.com/templates/photos/\">Douglas Bowman</"
-#~ "a> 的設計而製作的佈景主題。本佈景以 <a href=\"http://creativecommons.org/"
-#~ "licenses/by-nc-sa/2.5/deed.zh_TW\">創用CC 姓名標示-非商業性-相同方式分享 "
-#~ "2.5</a> 授權條款授權。"
-
-#~ msgid "%sEmail:"
-#~ msgstr "%s信箱："
-
-#~ msgid "(not displayed)"
-#~ msgstr "（不會公開顯示）"
-
-#~ msgid "%sURL:"
-#~ msgstr "%s網站："
-
-#~ msgid "Private comment:"
-#~ msgstr "私密留言："
-
-#~ msgid "(don't publish)"
-#~ msgstr "不要公開顯示留言"
-
-#~ msgid "Post"
-#~ msgstr "送出留言"
-
-#~ msgid "Avoid clicking &ldquo;Post&rdquo; more than once."
-#~ msgstr "請避免重複點擊「送出留言」按鈕。"
-
-#~ msgid ""
-#~ "Powered by <a href=\"http://www.zenphoto.org\" title=\"A simpler web album"
-#~ "\"><span id=\"zen-part\">zen</span><span id=\"photo-part\">PHOTO</span></"
-#~ "a>"
-#~ msgstr ""
-#~ "使用 <a href=\"http://www.zenphoto.org\" title=\"簡單好用的網路相本程式"
-#~ "\"><span id=\"zen-part\">zen</span><span id=\"photo-part\">PHOTO</span></"
-#~ "a> 建置"
-
-#~ msgid "&laquo; prev thumbs"
-#~ msgstr "&laquo; 前面的縮圖"
-
-#~ msgid "next thumbs &raquo;"
-#~ msgstr "後面的縮圖 &raquo;"
-
-#~ msgid "randomly selected"
-#~ msgstr "隨機選擇"
-
-#~ msgid "Hitcounters have been reset"
-#~ msgstr "計數器已被重設。"
-
-#~ msgid "Album cache purged"
-#~ msgstr "相本快取已清空"
-
-#~ msgid "expand all fields"
-#~ msgstr "展開所有欄位"
-
-#~ msgid "collapse all fields"
-#~ msgstr "縮起所有欄位"
-
-#~ msgid "View image on website"
-#~ msgstr "在前臺網站檢視這張相片"
-
-#~ msgid "Album thumbnail."
-#~ msgstr "設為相本封面"
-
-#~ msgid "Codeblock 2"
-#~ msgstr "程式碼 2"
-
-#~ msgid "Codeblock 3"
-#~ msgstr "程式碼 3"
-
-#~ msgid "show fewer fields"
-#~ msgstr "顯示較少欄位"
-
-#~ msgid "Tags added selected items"
-#~ msgstr "所選項目的標籤已新增"
-
-#~ msgid ""
-#~ "<a href=\"http://www.zenphoto.org\" title=\"A simpler web album"
-#~ "\">Zen<strong>photo</strong></a> version %1$s"
-#~ msgstr ""
-#~ "<a href=\"http://www.zenphoto.org\" title=\"簡單好用的網路相本程式"
-#~ "\">Zen<strong>photo</strong></a> 版本 %1$s"
-
-#~ msgid "GPLv2"
-#~ msgstr "GPL 第二版"
-
-#~ msgid "User guide"
-#~ msgstr "使用者指南"
-
-#~ msgid "Forum"
-#~ msgstr "討論區"
-
-#~ msgid "Bugtracker"
-#~ msgstr "錯誤回報"
-
-#~ msgid "tag set!"
-#~ msgstr "標籤已存在！"
-
-#~ msgid "Resets all hitcounters in the album."
-#~ msgstr "重設相本裡的所有計數器。"
-
-#~ msgid "Cache the album"
-#~ msgstr "快取相本"
-
-#~ msgid "Pre-cache images in %s"
-#~ msgstr "預先快取 %s 中的相片"
-
-#~ msgid "Cache the album %s"
-#~ msgstr "快取相本 %s"
-
-#~ msgid "upload to album"
-#~ msgstr "上傳到相本"
-
-#~ msgid "comment"
-#~ msgstr "留言"
-
-#~ msgid "Reset %s"
-#~ msgstr "重設 %s"
-
-#~ msgid "Download %s ZIP file"
-#~ msgstr "下載 %s ZIP 壓縮檔"
-
-#~ msgid "See the troubleshooting guide on zenphoto.org for details."
-#~ msgstr "請至 Zenphoto.org 上的除錯指南取得更多資訊。"
-
-#~ msgid ""
-#~ "If the checkbox is disabled, setup did not detect a working Apache "
-#~ "<em>mod rewrite</em> facility and proper <em>.htaccess</em> file."
-#~ msgstr ""
-#~ "如無法勾選這項設定，表示你的伺服器上偵測不到 Apache 的 <em>mod_rewrite</"
-#~ "em> 設定以及正確的 <em>.htaccess</em> 檔案。"
-
-#~ msgid ""
-#~ "<strong>Note:</strong> if you have created multi-language strings, "
-#~ "uncheck this option, then save anything, you will lose your strings."
-#~ msgstr ""
-#~ "<strong>請注意：</strong> 如取消多國語言支援，將使之前建立的多國語言內容消"
-#~ "失。"
-
-#~ msgid "Site email:"
-#~ msgstr "網站信箱："
-
-#~ msgid "Front-end editing"
-#~ msgstr "前臺即時編輯："
-
-#~ msgid ""
-#~ "This is really not a secure setting. Are you sure you want to enable it?"
-#~ msgstr "確定啟用這項設定嗎？它真的很不安全。"
-
-#~ msgid "Enabled"
-#~ msgstr "啟用"
-
-#~ msgid ""
-#~ "Check to allow editing of Gallery data on the front-end pages. (Sometimes "
-#~ "known as <em>Ajax</em> editing.)"
-#~ msgstr "勾選後可直接在前臺頁面編輯相館資料。（即 <em>Ajax</em> 編輯。）"
-
-#~ msgid ""
-#~ "<strong>NOTE:</strong> enabling this feature is not recommended as it is "
-#~ "susceptible to Cross Site Request Forgeries."
-#~ msgstr ""
-#~ "<strong>請注意：</strong> 不建議啟用這項功能，容易被跨網站偽造請求攻擊。"
-
-#~ msgid "enable user name login field"
-#~ msgstr "啟用登入表單的使用者帳號欄位"
-
-#~ msgid "enable persistent archives"
-#~ msgstr "啟用固定式存檔"
-
-#~ msgid ""
-#~ "<a href=\"javascript:toggle('username');\" >Details</a> for <em>enable "
-#~ "user name login field</em>"
-#~ msgstr ""
-#~ "<em>啟用登入表單的使用者帳號欄位</em> 的 <a href=\"javascript:"
-#~ "toggle('username');\" >詳細資訊</a>"
-
-#~ msgid ""
-#~ "This option places a field on the gallery (search, album) login form for "
-#~ "entering a user name. This is necessary if you have set guest login user "
-#~ "names. It is also useful to allow Admin users to log in on these pages "
-#~ "rather than at the Admin login."
-#~ msgstr ""
-#~ "勾選後，相館搜尋頁及相本頁的登入表單中將多出填寫使用者帳號的欄位。如果你有"
-#~ "設定訪客帳號的話，必須啟用這項設定。此設定也可讓管理員在這些頁面上直接登"
-#~ "入。"
-
-#~ msgid ""
-#~ "<a href=\"javascript:toggle('persistentarchive');\" >Details</a> for "
-#~ "<em>enable persistent archive</em>"
-#~ msgstr ""
-#~ "<em>啟用固定式存檔</em> 的 <a href=\"javascript:"
-#~ "toggle('persistentarchive');\" >詳細資訊</a>"
-
-#~ msgid ""
-#~ "Put a checkmark here to re-serve Zip Archive files if you are using the "
-#~ "optional template function <em>printAlbumZip()</em> to enable visitors of "
-#~ "your site to download images of an album as .zip files. If not checked "
-#~ "that .zip file will be regenerated each time."
-#~ msgstr ""
-#~ "勾選後，如有在佈景主題中使用 <em>printAlbumZip()</em> 函式使訪客可打包下載"
-#~ "相本中所有相片的 ZIP 壓縮檔，則會在伺服器上事先儲存一份壓縮檔。如未勾選，"
-#~ "則每次下載時都會重新產生 ZIP 壓縮檔。"
-
-#~ msgid ""
-#~ "<strong>Note: </strong>Setting this option may impact password protected "
-#~ "albums!"
-#~ msgstr "<strong>請注意：</strong> 此設定也可能會影響受密碼保護的相本！"
-
-#~ msgid ""
-#~ "<a href=\"javascript:toggle('gallerysessions');\" >Details</a> for "
-#~ "<em>enable gallery sessions</em>"
-#~ msgstr ""
-#~ "<em>啟用相館 session</em> 的 <a href=\"javascript:"
-#~ "toggle('gallerysessions');\" >詳細資訊</a>"
-
-#~ msgid ""
-#~ "Check this option if you are having issues with album password cookies "
-#~ "not being retained. Setting the option causes zenphoto to use sessions "
-#~ "rather than cookies."
-#~ msgstr ""
-#~ "如果無法正常使用 cookie 保存相本密碼，請勾選這項設定，則 Zenphoto 將改用 "
-#~ "session 來儲存。"
-
-#~ msgid "partial"
-#~ msgstr "局部比對"
-
-#~ msgid "exact"
-#~ msgstr "精確比對"
-
-#~ msgid "Search behavior settings."
-#~ msgstr "搜尋功能的習慣設定。"
-
-#~ msgid ""
-#~ "Search does partial matches on all fields selected with the possible "
-#~ "exception of <em>Tags</em>. This means that if the field contains the "
-#~ "search criteria anywhere within it a result will be returned. If "
-#~ "<em>exact</em> is selected for <em>Tags</em> then the search criteria "
-#~ "must exactly match the tag for a result to be returned."
-#~ msgstr ""
-#~ "除了 <em>Tags</em> 欄位以外，所有欄位都會盡量以「部分比對」的方式來搜尋。"
-#~ "也就是說，只要該欄內容中有包含關鍵字裡的字串，無論其位置，都會顯示於搜尋結"
-#~ "果當中。如果在 <em>Tags</em> 欄位選擇使用 <em>精確比對</em>，則標籤名稱必"
-#~ "須與關鍵字完全吻合，才會顯示於結果當中。"
-
-#~ msgid "Images RSS"
-#~ msgstr "相片 RSS"
-
-#~ msgid "Albums RSS"
-#~ msgstr "相本 RSS"
-
-#~ msgid ""
-#~ "The number of new items you want to appear in your site's RSS feed. The "
-#~ "images and comments RSS share the value."
-#~ msgstr ""
-#~ "設定 RSS 訂閱摘要中要顯示幾個最新項目，留言 RSS 將使用相片 RSS 的設定。"
-
-#~ msgid "The size you want your images to have in your site's RSS feed."
-#~ msgstr "RSS 訂閱摘要中的圖片大小。"
-
-#~ msgid "RSS cache"
-#~ msgstr "RSS 快取"
-
-#~ msgid "RSS hitcounter"
-#~ msgstr "RSS 計數器"
-
-#~ msgid "You must supply a password for the Protected image user"
-#~ msgstr "請輸入受保護相片訪客帳號的密碼"
-
-#~ msgid "Automatically rotate images based on the EXIF orientation setting."
-#~ msgstr "自動根據圖檔中的 EXIF 方向資訊來旋轉相片。"
-
-#~ msgid ""
-#~ "Image rotation requires the <em>imagerotate</em> function found in the "
-#~ "bundled GD library of PHP version 4.3 or greater."
-#~ msgstr ""
-#~ "圖片旋轉功能需要 GD 函式庫中的 <em>imagerotate</em> 函式，內建於 PHP 4.3 "
-#~ "或更新版本當中。"
-
-#~ msgid ""
-#~ "Images are in png-24 format and are located in the <code>/%s/watermarks/</"
-#~ "code> folder."
-#~ msgstr ""
-#~ "圖片必須以 PNG-24 格式儲存在 <code>/%s/watermarks/</code> 資料夾中。"
-
-#~ msgid "EXIF display"
-#~ msgstr "顯示 EXIF："
-
-#~ msgid ""
-#~ "Check those EXIF fields you wish displayed in image EXIF information."
-#~ msgstr "勾選希望在相片的 EXIF 資訊中顯示的欄位。"
-
-#~ msgid "Spam filter:"
-#~ msgstr "垃圾過濾器："
-
-#~ msgid "The SPAM filter plug-in you wish to use to check comments for SPAM"
-#~ msgstr "選擇你想用來過濾留言的垃圾過濾器外掛"
-
-#~ msgid "Expand plugin options"
-#~ msgstr "展開外掛設定"
-
-#~ msgid "Collapse all plugin options"
-#~ msgstr "縮起外掛設定"
-
-#~ msgid "CAPTCHA generator:"
-#~ msgstr "防廣告驗證碼產生器："
-
-#~ msgid "Select the <em>CAPTCHA</em> generator to be used by Zenphoto."
-#~ msgstr "選擇要在 Zenphoto 中使用的 <em>防廣告驗證碼</em> 產生器。"
-
-#~ msgid "hide all description details"
-#~ msgstr "隱藏所有的詳細描述資料"
-
-#~ msgid "hide all"
-#~ msgstr "隱藏完整描述"
-
-#~ msgid "show all description details"
-#~ msgstr "顯示所有的詳細描述資料"
-
-#~ msgid "show all"
-#~ msgstr "顯示完整描述"
-
-#~ msgid "<strong>Error parsing <em>plugin_URL</em> string!</strong>."
-#~ msgstr "<strong>無法分析 <em>外掛網址</em> 字串！</strong>"
-
-#~ msgid "toggle description details"
-#~ msgstr "顯示／隱藏詳細描述資料"
-
-#~ msgid "database not connected"
-#~ msgstr "資料庫連線失敗"
-
-#~ msgid ""
-#~ "Check the zp-config.php file to make sure you've got the right username, "
-#~ "password, host, and database. If you haven't created the database yet, "
-#~ "now would be a good time."
-#~ msgstr ""
-#~ "請檢查 zp-config.php 以確認你的資料庫伺服器、資料庫名稱、使用者名稱及密碼"
-#~ "都是正確的。如果你還沒有資料庫，現在就是建立它的好時機喔！"
-
-#~ msgid "Sort the tags alphabetically"
-#~ msgstr "依字母順序排列標籤"
-
-#~ msgid "Order alphabetically"
-#~ msgstr "依字母順序排列"
-
-#~ msgid "Sort the tags by most used"
-#~ msgstr "依使用次數的多寡排列標籤"
-
-#~ msgid "Delete all the tags checked above."
-#~ msgstr "刪除你在上方勾選的所有標籤。"
-
-#~ msgid "Apply all the changes entered above."
-#~ msgstr "套用上方所做的所有變更。"
-
-#~ msgid "Add all the tags entered above."
-#~ msgstr "新增上方輸入的所有標籤。"
-
-#~ msgid "New theme name? (e.g. \"My Theme\")"
-#~ msgstr "新佈景的名稱：（例如「我的佈景」）"
-
-#~ msgid "My Theme"
-#~ msgstr "我的佈景"
-
-#~ msgid "New directory name? (e.g. \"my_theme\")"
-#~ msgstr "新資料夾的名稱：（例如「my_theme」）"
-
-#~ msgid "Set %s as your theme"
-#~ msgstr "將 %s 設為使用中的佈景主題"
-
-#~ msgid "Assign %s as your album theme"
-#~ msgstr "將 %s 指定為相本主題"
-
-#~ msgid "Edit %s"
-#~ msgstr "編輯 %s"
-
-#~ msgid "Delete this %s"
-#~ msgstr "刪除這個 %s"
-
-#~ msgid "Something went wrong..."
-#~ msgstr "有些東西出錯了..."
-
-#~ msgid "You must supply a password for the Gallery guest user"
-#~ msgstr "請輸入相館訪客帳號的密碼"
-
-#~ msgid "You must supply a password"
-#~ msgstr "請輸入密碼"
-
-#~ msgid "You are running the latest zenphoto version."
-#~ msgstr "目前運作的是 Zenphoto 的最新版本。"
-
-#~ msgid ""
-#~ "Could not connect to <a href=\"http://www.zenphoto.org\">zenphoto.org</a>"
-#~ msgstr "無法連線到 <a href=\"http://www.zenphoto.org\">Zenphoto.org</a>"
-
-#~ msgid "zenphoto version %s is available."
-#~ msgstr "Zenphoto 有新版本 %s 可以下載"
-
-#~ msgid "SVN"
-#~ msgstr "每日更新版"
-
-#~ msgid "Could not create zip file."
-#~ msgstr "無法建立 zip 檔。"
-
-#~ msgid "Could not create tar file."
-#~ msgstr "無法建立 tar 檔。"
-
-#~ msgid "Could not create bzip2 file."
-#~ msgstr "無法建立 bzip2 檔。"
-
-#~ msgid "Could not create gzip file."
-#~ msgstr "無法建立 gzip 檔。"
-
-#~ msgid "This script does not support extracting this type of tar file."
-#~ msgstr "無法解壓縮，本程式不支援這種類型的 tar 檔。"
-
-#~ msgid "Could not extract from %s it is corrupt."
-#~ msgstr "%s 無法解壓縮，檔案已損毀。"
-
-#~ msgid "Could not open %s for writing."
-#~ msgstr "無法寫入 %s。"
-
-#, fuzzy
-#~ msgid "ERROR: Assertion failed in"
-#~ msgstr "ERROR: Assertion failed in"
-
-#, fuzzy
-#~ msgid "<strong>Backtrace:</strong>"
-#~ msgstr "<strong>檔案名稱：</strong>"
-
-#~ msgid "Oops.. Cannot edit from this page"
-#~ msgstr "糟糕...本分頁無法編輯"
-
-#~ msgid "Error: malformed Ajax POST"
-#~ msgstr "錯誤：Ajax 資料傳送異常"
-
-#~ msgid "Could not save!"
-#~ msgstr "無法儲存！"
-
-#, fuzzy
-#~ msgid ""
-#~ "MySQL Error: The PHP MySQL extensions have not been installed correctly. "
-#~ "Please ask your administrator to add MySQL support to your PHP "
-#~ "installation."
-#~ msgstr ""
-#~ "MySQL 出錯：PHP 的 MySQL 套件沒有正確安裝，請向你的伺服器管理員要求新增 "
-#~ "PHP 的 MySQL 支援。"
-
-#~ msgid ""
-#~ "The <code>$_zp_conf_vars</code> variable is not an array. Zenphoto has "
-#~ "not been instantiated correctly."
-#~ msgstr ""
-#~ "變數 <code>$_zp_conf_vars</code> 不是一個陣列，Zenphoto 沒有正確啟動。"
-
-#~ msgid ""
-#~ "SQLite Error: Zenphoto received the error <em>%s</em> when connecting to "
-#~ "the database server."
-#~ msgstr "SQLite 出錯：Zenphoto 連線到資料庫伺服器時收到錯誤訊息：<em>%s</em>"
-
-#~ msgid ""
-#~ "%1$s Error: Zenphoto received the error <em>%2$s</em> from the database "
-#~ "server."
-#~ msgstr "%1$s 出錯：Zenphoto 由資料庫伺服器收到錯誤訊息：<em>%2$s</em>"
-
-#~ msgid ""
-#~ "Unknown error! Please report to the developers at <a href=\"http://www."
-#~ "zenphoto.org/\">www.zenphoto.org</a>"
-#~ msgstr ""
-#~ "未知的錯誤！請將這個問題回報給 <a href=\"http://www.zenphoto.org/\">www."
-#~ "zenphoto.org</a> 上的開發者們"
-
-#~ msgid "Mail send failed. "
-#~ msgstr "郵件寄送失敗。"
-
-#~ msgid "Unknown author"
-#~ msgstr "未知的作者"
-
-#~ msgid "<strong>Theme description error!</strong>"
-#~ msgstr "<strong>佈景主題描述出錯！</strong>"
-
-#~ msgid "Unknown date"
-#~ msgstr "未知的日期"
-
-#~ msgid "Minimum number of characters a password must contain."
-#~ msgstr "密碼中最少要包含幾個字元。"
-
-#~ msgid "Password characters:"
-#~ msgstr "密碼字元："
-
-#~ msgid ""
-#~ "Passwords must contain at least one of the characters from each of the "
-#~ "groups. Groups are separated by \"|\". (Use \"\\|\" to represent the \"|"
-#~ "\" character in the groups.)"
-#~ msgstr ""
-#~ "密碼中必須包含每個群組中的 1 個字元，每個組別請用「|」做分隔。如果要在組別"
-#~ "中使用「|」字元，請寫成「\\|」。"
-
-#~ msgid "settings"
-#~ msgstr "設定"
-
-#, fuzzy
-#~ msgid "Authorization class <em>%s</em> is active."
-#~ msgstr "文章 <em>%s</em> 已更新"
-
-#, fuzzy
-#~ msgid "Administrator class <em>%s</em> is active."
-#~ msgstr "文章 <em>%s</em> 已更新"
-
-#, fuzzy
-#~ msgid "<em>%s</em> hashing is activated"
-#~ msgstr "<em>%s</em> 無法使用。"
-
-#~ msgid "Password must be at least %u characters"
-#~ msgstr "密碼至少要有 %u 個字元"
-
-#, fuzzy
-#~ msgid "Password must contain at least one of %s"
-#~ msgstr "請至少上傳一個檔案。"
-
-#~ msgid ""
-#~ "<strong>Note:</strong> passwords must be at least %1$u characters long "
-#~ "and contain at least one character from %2$s."
-#~ msgid_plural ""
-#~ "<strong>Note</strong>: passwords must be at least %1$u characters long "
-#~ "and contain at least one character from each of the following groups: "
-#~ "%2$s."
-#~ msgstr[0] ""
-#~ "<strong>請注意：</strong> 密碼至少要有 %1$u 個字元，且至少包含 %2$s 中的 "
-#~ "1 個字元。"
-#~ msgstr[1] ""
-#~ "<strong>請注意：</strong> 密碼至少要有 %1$u 個字元，且至少包含右列每個群組"
-#~ "中的 1 個字元：%2$s。"
-
-#~ msgid ""
-#~ "<strong>Note</strong>: passwords must contain at least one character from "
-#~ "%s."
-#~ msgid_plural ""
-#~ "<strong>Note</strong>: passwords must contain at least one character from "
-#~ "each of the following groups: %s."
-#~ msgstr[0] "<strong>請注意：</strong> 密碼至少要包含 %s 中的 1 個字元。"
-#~ msgstr[1] ""
-#~ "<strong>請注意：</strong> 密碼至少要包含右列每個群組中的 1 個字元：%s。"
-
-#~ msgid ""
-#~ "<strong>Note</strong>: passwords must be at least %u characters long."
-#~ msgstr "<strong>請注意</strong>： 密碼至少要有 %u 個字元。"
-
-#~ msgid "View news"
-#~ msgstr "檢視新聞"
-
-#~ msgid "View pages"
-#~ msgstr "檢視分頁"
-
-#~ msgid "View albums"
-#~ msgstr "檢視相本"
-
-#~ msgid "Users with this right may view all albums (and their images)."
-#~ msgstr "擁有此權限的使用者可檢視所有相本及裡頭的相片。"
-
-#~ msgid ""
-#~ "*Enter CAPTCHA in place of <em>Password</em> to request a password reset."
-#~ msgstr "*將防廣告驗證碼輸入於 <em>密碼</em> 欄位可請求重設密碼。"
-
-#, fuzzy
-#~ msgid "Imagick filter"
-#~ msgstr "垃圾過濾器："
-
-#~ msgid "Magick memory limit"
-#~ msgstr "Magick 記憶體限制"
-
-#~ msgid ""
-#~ "The font size (in pixels) for CAPTCHAs. Default is <strong>%s</strong>."
-#~ msgstr ""
-#~ "防廣告驗證碼的文字大小，以像素為單位。預設值是 <strong>%s</strong>。"
-
-#~ msgid "Updated zp-config.php"
-#~ msgstr "檔案 zp-config.php 已更新"
-
-#~ msgid "strict+"
-#~ msgstr "非常嚴格"
-
-#~ msgid "Zenphoto upgrade"
-#~ msgstr "Zenphoto 升級"
-
-#~ msgid "Zenphoto setup"
-#~ msgstr "Zenphoto 安裝"
-
-#~ msgid "Upgrade from before Zenphoto v1.2"
-#~ msgstr "由 Zenphoto v1.2 更早的版本升級"
-
-#~ msgid "Upgrade from Zenphoto v%s"
-#~ msgstr "由 Zenphoto v%s 升級"
-
-#~ msgid "Updating current Zenphoto release"
-#~ msgstr "重新安裝目前的 Zenphoto 版本"
-
-#~ msgid "[%u release skipped]"
-#~ msgid_plural "[%u releases skipped]"
-#~ msgstr[0] "[跳過 %u 個版本]"
-#~ msgstr[1] "[跳過 %u 個版本]"
-
-#~ msgid ""
-#~ "We do not test upgrades that skip releases. We recommend you upgrade in "
-#~ "sequence."
-#~ msgstr "我們並未測試一次跳過多個版本號的升級，建議按照版本順序分次升級。"
-
-#, fuzzy
-#~ msgid "Version %1$s or greater is strongly recommended."
-#~ msgstr "需使用 PHP 5 或更新版本。"
-
-#, fuzzy
-#~ msgid ""
-#~ "See the <a  href=\"http://www.zenphoto.org/news/troubleshooting-"
-#~ "zenphoto#24\">troubleshooting guide</a> on zenphoto.org for details."
-#~ msgstr "請至 Zenphoto.org 上的除錯指南取得更多資訊。"
-
-#~ msgid ""
-#~ "PHP <code>%s support</code> for configured Database [is experimental]"
-#~ msgstr "已配置資料庫的 PHP <code>%s 支援</code> [實驗性功能]"
-
-#~ msgid ""
-#~ "PHP <code>%s support</code> for configured Database [is not installed]"
-#~ msgstr "已配置資料庫的 PHP <code>%s 支援</code> [尚未安裝]"
-
-#~ msgid ""
-#~ "Choose a different database engine or install %s support in your PHP to "
-#~ "clear this condition."
-#~ msgstr "請選擇另一個資料庫引擎，或於 PHP 中安裝 %s 支援來解決這種狀況。"
-
-#~ msgid "<em>zp-config.php</em> file"
-#~ msgstr "<em>zp-config.php</em> 檔案"
-
-#~ msgid "<em>zp-config.php</em> file [does not exist]"
-#~ msgstr "<em>zp-config.php</em> 檔案 [不存在]"
-
-#~ msgid "You must be logged in to change permissions."
-#~ msgstr "變更存取權限前請先登入。"
-
-#~ msgid ""
-#~ "Change the filesystem character set define to %1$s.<br />If you do not "
-#~ "know the character set try \"%2$s\""
-#~ msgstr "將檔案系統字集定義變更為 %1$s。<br />如不清楚請試著設定為「%2$s」"
-
-#~ msgid "Mac"
-#~ msgstr "Mac"
-
-#~ msgid "confirmed"
-#~ msgstr "已確認"
-
-#~ msgid ""
-#~ "Check the <code>user</code>, <code>password</code>, and <code>database "
-#~ "host</code> and try again."
-#~ msgstr ""
-#~ "請檢查 <code>使用者名稱</code>、<code>密碼</code>、<code>資料庫主機</"
-#~ "code> 並再試一次。"
-
-#~ msgid "Connect to the database [You have not provided a database name]"
-#~ msgstr "資料庫連線 [尚未輸入資料庫名稱]"
-
-#~ msgid "Provide the name of your database in the form above."
-#~ msgstr "請在上列表單填寫資料庫名稱。"
-
-#~ msgid "Connect to the database [Database does not exist]"
-#~ msgstr "資料庫連線 [資料庫不存在]"
-
-#~ msgid ""
-#~ "Could not access the <strong>%1$s</strong> database (<code>%2$s</code>)."
-#~ msgstr "資料庫 <strong>%1$s</strong> 無法存取（<code>%2$s</code>）。"
-
-#~ msgid ""
-#~ "Check the <code>user</code>, <code>password</code>, <code>database name</"
-#~ "code>, and <code>Database host</code>."
-#~ msgstr ""
-#~ "請檢查 <code>使用者名稱</code>、<code>密碼</code>、<code>資料庫名稱</code>"
-#~ "及<code>資料庫主機</code>。"
-
-#~ msgid ""
-#~ "Make sure the database has been created and that <code>%s</code> has "
-#~ "access to it."
-#~ msgstr "請確認資料庫已被建立，且 <code>%s</code> 擁有該資料庫的存取權限。"
-
-#~ msgid "Database <code>access rights</code>"
-#~ msgstr "資料庫 <code>存取權限</code>"
-
-#~ msgid ""
-#~ "Click <a href=\"?copyhtaccess\" >here</a> to have setup replace your <em>."
-#~ "htaccess</em> file with the current version."
-#~ msgstr ""
-#~ "請 <a href=\"?copyhtaccess\" >點擊這裡</a> 將 <em>.htaccess</em> 設定取代"
-#~ "為目前版本。"
-
-#~ msgid "Deleting files failed!"
-#~ msgstr "檔案刪除失敗！"
-
-#~ msgid ""
-#~ "<strong>NOTE:</strong> We strongly recommend you remove the <em>setup</"
-#~ "em> scripts from your zp-core folder at this time. You can always re-"
-#~ "upload them should you find you need them again in the future."
-#~ msgstr ""
-#~ "<strong>請注意：</strong> 強烈建議您移除 zp-core 資料夾中的 <em>安裝</em> "
-#~ "程式，未來有需要隨時可以重新上傳。"
-
-#~ msgid ""
-#~ "The zp-config.php file does not exist. You should run setup.php to check "
-#~ "your configuration and create this file."
-#~ msgstr ""
-#~ "檔案 zp-config.php 不存在。請執行 setup.php 以檢查設定，並自動建立這個檔"
-#~ "案。"
-
-#~ msgid "Save"
-#~ msgstr "儲存"
-
-#~ msgid "Saving"
-#~ msgstr "儲存中"
-
-#~ msgid "Click to edit..."
-#~ msgstr "點一下編輯..."
-
-#, fuzzy
-#~ msgid "Edit this image"
-#~ msgstr "插入∕編輯圖片"
-
-#~ msgid "(No title...)"
-#~ msgstr "（無標題...）"
-
-#~ msgid "(No date...)"
-#~ msgstr "（無日期...）"
-
-#~ msgid "(No Location...)"
-#~ msgstr "（無地點...）"
-
-#~ msgid "(...)"
-#~ msgstr "（...）"
-
-#~ msgid "(No data...)"
-#~ msgstr "（無資料...）"
-
-#~ msgid "(No data)"
-#~ msgstr "（無資料）"
-
-#, fuzzy
-#~ msgid "Download Zip of the Album"
-#~ msgstr "下載 %s ZIP 壓縮檔"
-
-#~ msgid "Download a zip file of this album"
-#~ msgstr "下載這個相本的 ZIP 壓縮檔"
-
-#~ msgid "(No tags...)"
-#~ msgstr "（沒有標籤...）"
-
-#~ msgid "Latest images of this album and its subalbums RSS"
-#~ msgstr "此相本及子相本的最新相片 RSS"
-
-#~ msgid "Latest comments RSS"
-#~ msgstr "最新留言的 RSS"
-
-#~ msgid "Latest albums RSS"
-#~ msgstr "最新相本的 RSS"
-
-#~ msgid "select search fields"
-#~ msgstr "選取要搜尋的欄位"
-
-#~ msgid "Clear search"
-#~ msgstr "清除搜尋"
-
-#~ msgid "Reset search"
-#~ msgstr "重設搜尋"
-
-#~ msgid "Uploadify error on %1$s. Review your debug log."
-#~ msgstr "Uploadify 於 %1$s 出錯，請檢查除錯記錄檔（debug log）。"
-
-#~ msgid ""
-#~ "Click on the <em>Select files</em> button to use the file browser to "
-#~ "select each file."
-#~ msgstr ""
-#~ "請點擊 <em>選擇檔案</em> 按鈕開啟檔案選擇視窗，選取每個要上傳的檔案。"
-
-#~ msgid ""
-#~ "You may choose a file by dragging it onto <em>Select files</em> button. "
-#~ "Or you can click on the button and use your file browser."
-#~ msgstr ""
-#~ "請將檔案拖曳到 <em>選擇檔案</em> 按鈕上頭，或點擊按鈕開啟檔案選擇視窗。"
-
-#~ msgid ""
-#~ "Click on the <em>Select files</em> button to use the file browser to "
-#~ "select files."
-#~ msgstr ""
-#~ "請點擊 <em>選擇檔案</em> 按鈕開啟檔案選擇視窗（可一次選取多個檔案）。"
-
-#~ msgid ""
-#~ "You may choose files by dragging them onto <em>Select files</em> button. "
-#~ "Or you can click on the button and use your file browser."
-#~ msgstr ""
-#~ "請將檔案拖曳到 <em>選擇檔案</em> 按鈕上頭，或點擊按鈕開啟檔案選擇視窗。可"
-#~ "一次選取多個檔案。"
-
-#~ msgid "Select files"
-#~ msgstr "選擇檔案"
-
-#~ msgid "ONLY SUPPORTED FILETYPES ALLOWED!"
-#~ msgstr "僅支援允許的檔案類型！"
-
-#~ msgid "FILE TOO BIG!"
-#~ msgstr "檔案過大！"
-
-#~ msgid ""
-#~ "Try the <a href=\"javascript:switchUploader('admin-upload.php?"
-#~ "uploadtype=uploadify');\" >flash file upload</a>"
-#~ msgstr ""
-#~ "也可以試試 <a href=\"javascript:switchUploader('admin-upload.php?"
-#~ "uploadtype=uploadify');\" >Flash 檔案上傳工具</a>"
-
-#~ msgid "Do you want to replace the file %s?"
-#~ msgstr "確定覆蓋檔案 %s 嗎？"
-
-#~ msgid "Upload queue is full. The upload limit is %u."
-#~ msgstr "上傳佇列已額滿，目前的上傳限制為 %u。"
-
-#~ msgid "Zenphoto supported file types | all files"
-#~ msgstr "Zenphoto 支援的檔案類型 | 所有檔案"
-
-#~ msgid ""
-#~ "There appears to be no <em>Flash</em> plugin installed in your browser."
-#~ msgstr "你的瀏覽器似乎沒有安裝 <em>Flash</em> 外掛。"
-
-#~ msgid ""
-#~ "If your upload does not work try the <a href=\"javascript:"
-#~ "switchUploader('admin-upload.php?uploadtype=httpupload');\" >jquery file "
-#~ "upload</a> or use FTP instead."
-#~ msgstr ""
-#~ "如果上傳功能無法正常運作，試試 <a href=\"javascript:switchUploader('admin-"
-#~ "upload.php?uploadtype=httpupload');\" >jQuery 檔案上傳工具</a>，或者用 "
-#~ "FTP 上傳。"
-
-#~ msgid "(%s: 1 new image)"
-#~ msgstr "（%s：1 張新相片）"
-
-#~ msgid "(%1$s: %2$s new images)"
-#~ msgstr "（%1$s：%2$s 張新相片）"
-
-#~ msgid "(%1$s: %2$s images)"
-#~ msgstr "（%1$s：%2$s 張相片）"
-
-#~ msgid "%s deleted."
-#~ msgstr "%s 已刪除"
-
-#~ msgid ""
-#~ "See the <a href=\"http://www.zenphoto.org/news/troubleshooting-"
-#~ "zenphoto#24\">troubleshooting guide</a> on zenphoto.org for details."
-#~ msgstr ""
-#~ "請至 Zenphoto.org 上的 <a href=\"http://www.zenphoto.org/news/"
-#~ "troubleshooting-zenphoto#24\">疑難排解</a> 取得更多資訊。"
-
-#~ msgid "A simpler web album"
-#~ msgstr "簡單好用的網路相本程式"
-
-#~ msgid "Database folder"
-#~ msgstr "資料庫資料夾"
-
-#~ msgid "utilities"
-#~ msgstr "實用工具"
-
-#~ msgid "Query ( <em>%1$s</em> ) failed. Error: %2$s"
-#~ msgstr "資料庫語法（<em>%1$s</em>）執行失敗，回報錯誤訊息：<em>%2$s</em>"
-
-#~ msgid ""
-#~ "Finds newly uploaded images that have not been cached and creates the "
-#~ "cached version. It also refreshes the numbers above. If you have a large "
-#~ "number of images in your gallery you might consider using the pre-cache "
-#~ "image link for each album to avoid swamping your browser."
-#~ msgstr ""
-#~ "自動搜尋還沒有被快取的全新相片，並自動建立快取與更新統計數字。如果你有非常"
-#~ "多的相片，就更該考慮使用預先快取功能，以免拖慢你的瀏覽器。"
-
-#~ msgid "Clears the image cache. Images will be re-cached as they are viewed."
-#~ msgstr "清除相片快取。相片在下次被檢視時才會被重新快取。"
-
-#, fuzzy
-#~ msgid ""
-#~ "Cleans the database and removes any orphan entries for comments, images, "
-#~ "and albums."
-#~ msgstr "清理資料庫並移除"
-
-#~ msgid "Set album thumb default to the selected criteria"
-#~ msgstr "將相本縮圖預設值設為所選的項目。"
-
-#~ msgid "Album thumbnail default"
-#~ msgstr "將相本縮圖預設值設為"
-
-#~ msgid "content"
-#~ msgstr "內容"
-
-#~ msgid "Publishing options"
-#~ msgstr "發佈設定"
-
-#~ msgid "Images which are un-published"
-#~ msgstr "未發佈的相片"
-
-#~ msgid "Albums to clean:"
-#~ msgstr "需要優化的相本："
-
-#~ msgid ""
-#~ "If this script does not complete, <a href=\"javascript:reStart();\" title="
-#~ "\"restart\">click here</a>"
-#~ msgstr ""
-#~ "如果程式沒有完整執行，請 <a href=\"javascript:reStart();\" title=\"重新執"
-#~ "行\">點擊這裡</a>"
-
-#~ msgid "No image names needed cleaning."
-#~ msgstr "沒有需要優化的相片。"
-
-#~ msgid "No album folder names needed cleaning."
-#~ msgstr "沒有需要優化的相本。"
-
-#~ msgid ""
-#~ "Video and MP3/4 handling for Zenphoto. This plugin must always be enabled "
-#~ "to use multimedia content."
-#~ msgstr ""
-#~ "使 Zenphoto 可以處理影片檔及 MP3/4 檔。如要使用多媒體內容，必須啟用這個外"
-#~ "掛。"
-
-#~ msgid "street:"
-#~ msgstr "街道："
-
-#~ msgid "city:"
-#~ msgstr "城市："
-
-#~ msgid "state:"
-#~ msgstr "省／州："
-
-#~ msgid "country:"
-#~ msgstr "國家："
-
-#~ msgid "postal code:"
-#~ msgstr "郵遞區號："
-
-#~ msgid "Mail address"
-#~ msgstr "電子信箱"
-
-#~ msgid "Company field"
-#~ msgstr "公司欄位"
-
-#~ msgid "Company field."
-#~ msgstr "公司欄位。"
-
-#~ msgid "Street field"
-#~ msgstr "街道欄位"
-
-#~ msgid "City field"
-#~ msgstr "城市欄位"
-
-#~ msgid "State field"
-#~ msgstr "省／州欄位"
-
-#~ msgid "Postal code field"
-#~ msgstr "郵遞區號欄位"
-
-#~ msgid "Country field"
-#~ msgstr "國家欄位"
-
-#~ msgid "E-mail field"
-#~ msgstr "信箱欄位"
-
-#~ msgid "Check if CAPTCHA should be required."
-#~ msgstr "勾選後，留言者必須輸入驗證碼。"
-
-#~ msgid "Phone number field"
-#~ msgstr "電話號碼欄位"
-
-#~ msgid "Subject field"
-#~ msgstr "主旨欄位"
-
-#~ msgid "Message field"
-#~ msgstr "訊息欄位"
-
-#, fuzzy
-#~ msgid ""
-#~ "Deprecated Zenphoto functions. These functions have been removed from "
-#~ "mainstream Zenphoto as they have been supplanted. They are not maintained "
-#~ "and they are not guaranteed to function correctly with the current "
-#~ "version of Zenphoto.  You should update your theme if you get warnings. "
-#~ "This plugin is not required for any theme coded for the current version "
-#~ "of Zenphoto."
-#~ msgstr ""
-#~ "已不建議使用的 Zenphoto 函式支援。這些函式已由 Zenphoto 的官方版本中移除，"
-#~ "被其他函式取代。他們將不再受到維護，也不保證在目前版本的 Zenphoto 中能夠正"
-#~ "常運作。"
-
-#~ msgid "Use getHitcounter()."
-#~ msgstr "請改用 getHitcounter() 函式。"
-
-#~ msgid "Use printRating()."
-#~ msgstr "請改用 printRating() 函式。"
-
-#~ msgid "Use printImageMetadata()."
-#~ msgstr "請改用 printImageMetadata() 函式。"
-
-#~ msgid "Use printCustomSizedImageMaxSpace()."
-#~ msgstr "請改用 printCustomSizedImageMaxSpace() 函式。"
-
-#~ msgid "Use getCommentDateTime()."
-#~ msgstr "請改用 getCommentDateTime() 函式。"
-
-#~ msgid "Use truncate_string()."
-#~ msgstr "請改用 truncate_string() 函式。"
-
-#~ msgid "Use getImageMetaData()."
-#~ msgstr "請改用 getImageMetaData() 函式。"
-
-#~ msgid "Use getAlbumLocation()."
-#~ msgstr "請改用 getAlbumLocation() 函式。"
-
-#~ msgid "Use printAlbumLocation()."
-#~ msgstr "請改用 printAlbumLocation() 函式。"
-
-#~ msgid "(No place...)"
-#~ msgstr "（無地點...）"
-
-#~ msgid "Use rewrite_path()."
-#~ msgstr "請改用 rewrite_path() 函式。"
-
-#~ msgid "Use object->getTags() method."
-#~ msgstr "請改用 object->getTags() 方法。"
-
-#~ msgid "Use printTags()."
-#~ msgstr "請改用 printTags() 函式。"
-
-#~ msgid "Use getNumAlbums()."
-#~ msgstr "請改用 getNumAlbums() 函式。"
-
-#~ msgid "Use getAllAlbums()."
-#~ msgstr "請改用 getAllAlbums() 函式。"
-
-#~ msgid "Use zp_apply_filter(\"theme_head\")."
-#~ msgstr "請改用 zp_apply_filter(\"theme_head\") 函式。"
-
-#~ msgid "Use instead the theme options for images and albums per row."
-#~ msgstr "請改用佈景主題設定中的每列相片及縮圖設定。"
-
-#, fuzzy
-#~ msgid "Use printZenpageItemsBreadcrumb()."
-#~ msgstr "使用 Colorbox"
-
-#~ msgid "Use instead the Album class method isMyItem()."
-#~ msgstr "請改用 Album 類別（class）中的 isMyItem() 方法。"
-
-#~ msgid "Use instead the Zenpage category class method getSubCategories()."
-#~ msgstr "請改用 Zenpage category 類別（class）中的 getSubCategories() 方法。"
-
-#~ msgid "Use instead the Zenpage news class method inProtectedCategory()."
-#~ msgstr "請改用 Zenpage news 類別（class）中的 inProtectedCategory() 方法。"
-
-#~ msgid "Use instead the Zenpage category class method isProtected()."
-#~ msgstr "請改用 Zenpage category 類別（class）中的 isProtected() 方法。"
-
-#~ msgid "Use instead the Zenpage category class method getParents()."
-#~ msgstr "請改用 Zenpage category 類別（class）中的 getParents() 方法。"
-
-#~ msgid "Use instead the Zenpage category class method getTitle()."
-#~ msgstr "請改用 Zenpage category 類別（class）中的 getTitle() 方法。"
-
-#~ msgid "Use instead the Zenpage category class method getID()."
-#~ msgstr "請改用 Zenpage category 類別（class）中的 getID() 方法。"
-
-#~ msgid "Use instead the Zenpage category class method getParentID()."
-#~ msgstr "請改用 Zenpage category 類別（class）中的 getParentID() 方法。"
-
-#~ msgid "Use instead the Zenpage category class method getSortOrder()."
-#~ msgstr "請改用 Zenpage category 類別（class）中的 getSortOrder() 方法。"
-
-#~ msgid "Use instead the Zenpage page class method getParents()."
-#~ msgstr "請改用 Zenpage page 類別（class）中的 getParents() 方法。"
-
-#~ msgid "Use instead the Zenpage page class method isProtected()."
-#~ msgstr "請改用 Zenpage page 類別（class）中的 isProtected() 方法。"
-
-#~ msgid "Use instead the Zenpage category class method isMyItem()."
-#~ msgstr "請改用 Zenpage category 類別（class）中的 isMyItem() 方法。"
-
-#~ msgid "Use instead the Zenpage category class method checkforGuest()."
-#~ msgstr "請改用 Zenpage category 類別（class）中的 checkforGuest() 方法。"
-
-#~ msgid "Use instead the Zenpage news class method isMyItem()."
-#~ msgstr "請改用 Zenpage news 類別（class）中的 isMyItem() 方法。"
-
-#~ msgid "Use instead the Zenpage news class method checkNewsAccess()."
-#~ msgstr "請改用 Zenpage news 類別（class）中的 checkNewsAccess() 方法。"
-
-#~ msgid ""
-#~ "Use instead the Zenpage category global object variable: "
-#~ "$_zp_current_category->getTitlelink()."
-#~ msgstr ""
-#~ "請改用 Zenpage category 全域變數：$_zp_current_category->getTitlelink() 物"
-#~ "件。"
-
-#~ msgid ""
-#~ "Use instead the Zenpage category global object variable: "
-#~ "$_zp_current_category->getID()."
-#~ msgstr ""
-#~ "請改用 Zenpage category 全域變數：$_zp_current_category->getID() 物件。"
-
-#~ msgid ""
-#~ "Use instead the Zenpage category global object variable: "
-#~ "$_zp_current_category->getParentID()."
-#~ msgstr ""
-#~ "請改用 Zenpage category 全域變數：$_zp_current_category->getParentID() 物"
-#~ "件。"
-
-#~ msgid ""
-#~ "Use instead the Zenpage news global object variable: "
-#~ "$_zp_current_zenpage_news->inNewsCategory($catlink)."
-#~ msgstr ""
-#~ "請改用 Zenpage news 全域變數：$_zp_current_zenpage_news-"
-#~ ">inNewsCategory($catlink) 物件。"
-
-#~ msgid ""
-#~ "Use instead the Zenpage news global object variable: "
-#~ "$_zp_current_zenpage_news->inSubNewsCategoryOf($catlink)."
-#~ msgstr ""
-#~ "請改用 Zenpage news 全域變數：$_zp_current_zenpage_news-"
-#~ ">inSubNewsCategoryOf($catlink) 物件。"
-
-#~ msgid ""
-#~ "Use instead the Zenpage category global object variable: "
-#~ "$_zp_current_category->isSubNewsCategoryOf($catlink)."
-#~ msgstr ""
-#~ "請改用 Zenpage category 全域變數：$_zp_current_category-"
-#~ ">isSubNewsCategoryOf($catlink) 物件。"
-
-#~ msgid "The google-maps plugin is deprecated. Convert to GoogleMap."
-#~ msgstr "外掛 google-maps 已不建議使用，請轉換到 GoogleMap 外掛。"
-
-#, fuzzy
-#~ msgid ""
-#~ "printPreloadScript is deprecated. It is a helper for a specific theme and "
-#~ "should be placed within that theme's \"functions.php\" script."
-#~ msgstr ""
-#~ "printPreloadScript 已不建議使用。如果要使用這項函式，可將其寫在佈景主題的 "
-#~ "functions.php 檔案中。"
-
-#, fuzzy
-#~ msgid "Use the Zenpage class method instead."
-#~ msgstr "請改用 Zenpage category 類別（class）中的 getSubCategories() 方法。"
-
-#, fuzzy
-#~ msgid "Count the articles instead."
-#~ msgstr "新聞文章規則"
-
-#, fuzzy
-#~ msgid "Use the album class method <code>isProtected()</code> instead."
-#~ msgstr "請改用 Zenpage page 類別（class）中的 isProtected() 方法。"
-
-#~ msgid "PHP version 5 or greater is required."
-#~ msgstr "需使用 PHP 5 或更新版本。"
-
-#, fuzzy
-#~ msgid ""
-#~ "Blocks access from an IP address which has had multiple failed attempts "
-#~ "to access the administration pages."
-#~ msgstr "暫時封鎖在管理頁造成大量失敗存取的使用者 IP。"
-
-#, fuzzy
-#~ msgid "Attempt threshold"
-#~ msgstr "GLOBALS overwrite attempt detected"
-
-#~ msgid "Handles federated logon. See <em>Usage information</em> for details."
-#~ msgstr ""
-#~ "提供 OpenID 等跨網站單一登入（Federated Logon）之功能，請檢視 <em>使用說明"
-#~ "</em> 取得更多資訊。"
-
-#~ msgid "Notify%s"
-#~ msgstr "郵件通知 %s"
-
-#~ msgid ""
-#~ "<strong>IMPORTANT</strong>: Only one multimedia player plugin can be "
-#~ "enabled at the time and the class-video plugin must be enabled, too."
-#~ msgstr ""
-#~ "<strong>重要提醒：</strong> 同時間只能啟用一個多媒體播放器外掛，且必須啟"
-#~ "用 class-video 外掛。"
-
-#~ msgid "flow player width"
-#~ msgstr "Flowplayer 播放器寬度"
-
-#~ msgid "Player width (ignored for <em>mp3</em> files.)"
-#~ msgstr "播放器寬度（不含 <em>MP3</em> 檔。）"
-
-#~ msgid "flow player height"
-#~ msgstr "Flowplayer 播放器高度"
-
-#~ msgid "Player height (ignored for <em>mp3</em> files.)"
-#~ msgstr "播放器高度（不含 <em>MP3</em> 檔。）"
-
-#~ msgid "Player background color gradient"
-#~ msgstr "播放器背景色漸層"
-
-#~ msgid "low"
-#~ msgstr "弱"
-
-#~ msgid "high"
-#~ msgstr "強"
-
-#~ msgid "Gradient setting for player background color."
-#~ msgstr "播放器的背景色彩漸層梯度設定。"
-
-#~ msgid "Controls background color"
-#~ msgstr "控制項背景色"
-
-#~ msgid "Background color of the controls."
-#~ msgstr "控制項的背景顏色。"
-
-#~ msgid "Controls background color gradient"
-#~ msgstr "控制項背景色漸層"
-
-#~ msgid "Gradient setting for background color of the controls."
-#~ msgstr "控制項的背景色彩漸層設定。"
-
-#~ msgid "Controls border color"
-#~ msgstr "控制項邊框色彩"
-
-#~ msgid "Color of the border of the player controls"
-#~ msgstr "播放器控制項的邊框色彩"
-
-#~ msgid ""
-#~ "Should the video start automatically. Yes if selected. (NOTE: Probably "
-#~ "because of a flowplayer bug mp3s are always autoplayed.)"
-#~ msgstr ""
-#~ "設定影片是否自動播放，勾選後將自動播放。（請注意：可能是 Flowplayer 的程式"
-#~ "有誤，MP3 檔永遠都會自動播放。）"
-
-#~ msgid "Background color"
-#~ msgstr "背景色彩"
-
-#~ msgid "Controls autohide"
-#~ msgstr "自動隱藏控制項"
-
-#~ msgid "fullscreen"
-#~ msgstr "全螢幕模式時"
-
-#, fuzzy
-#~ msgid "Controls time color"
-#~ msgstr "管理色彩配置"
-
-#, fuzzy
-#~ msgid "Controls buffer color"
-#~ msgstr "管理色彩配置"
-
-#, fuzzy
-#~ msgid "Controls slider color"
-#~ msgstr "管理色彩配置"
-
-#, fuzzy
-#~ msgid "Controls button color"
-#~ msgstr "管理色彩配置"
-
-#, fuzzy
-#~ msgid "Splash image"
-#~ msgstr "刪除相片"
-
-#, fuzzy
-#~ msgid "fit"
-#~ msgstr "Stretch to fit"
-
-#, fuzzy
-#~ msgid "MP3 cover image"
-#~ msgstr "相片順序已儲存"
-
-#~ msgid "This plugin requires the Flowplayer 3 plugin to be activated. "
-#~ msgstr "本外掛需啟用 Flowplayer 3 外掛方可運作。"
-
-#~ msgid "Initial Zoom"
-#~ msgstr "初始縮放大小"
-
-#~ msgid "The initial zoom of the map."
-#~ msgstr "地圖的初始縮放大小"
-
-#~ msgid "Select the kind of map controls."
-#~ msgstr "選擇地圖控制項的類型。"
-
-#~ msgid "Error on <em>%s</em> effect"
-#~ msgstr "顯示 <em>%s</em> 效果時發生錯誤"
-
-#, fuzzy
-#~ msgid "Upload limit"
-#~ msgstr "上傳完成"
-
-#~ msgid ""
-#~ "HTTP single file uploading is disabled because upload limitations are in "
-#~ "effect. Please use the <a href=\"javascript:switchUploader('admin-upload."
-#~ "php?uploadtype=multifile');\" >multi file upload</a>"
-#~ msgstr ""
-#~ "受上傳限制的影響，單檔上傳模式已被停用。請改用 <a href=\"javascript:"
-#~ "switchUploader('admin-upload.php?uploadtype=multifile');\" >多重檔案上傳</"
-#~ "a>"
-
-#~ msgid ""
-#~ "<strong>Note:</strong> You can upload a maximum of %s images to each "
-#~ "album."
-#~ msgstr "<strong>請注意：</strong>每個相本最多可以上傳 %s 張相片。"
-
-#~ msgid "Truncate titles%s"
-#~ msgstr "標題摘要%s"
-
-#~ msgid "Truncate indicator%s"
-#~ msgstr "摘要刪節號%s"
-
-#~ msgid "Image quota information."
-#~ msgstr "相片上傳空間配額資訊。"
-
-#~ msgid ""
-#~ "Adds several theme functions to enable images, album, news, or pages to "
-#~ "be rated by users. <p class='notebox'><strong>Legal note:</strong> Use "
-#~ "the <em>Disguise IP</em> option if your country considers IP tracking a "
-#~ "privacy violation.</p>"
-#~ msgstr ""
-#~ "新增幾個函式好讓相片、相本、新聞或分頁都能被訪客評分。<p "
-#~ "class='notebox'><strong>法律小提示：</strong>如果你的國家認為 IP 追蹤涉及"
-#~ "侵犯隱私，可使用 <em>IP 加密</em> 功能</p>"
-
-#~ msgid "No object for rating."
-#~ msgstr "沒有可以評分的物件。"
-
-#~ msgid "3 stars"
-#~ msgstr "三顆星"
-
-#~ msgid "4 stars"
-#~ msgstr "四顆星"
-
-#~ msgid "5 stars"
-#~ msgstr "五顆星"
-
-#~ msgid "Submit &raquo;"
-#~ msgstr "送出 &raquo;"
-
-#~ msgid "Vote pending"
-#~ msgstr "尚待投票中"
-
-#~ msgid ""
-#~ "Text for the body of the email sent to the user. <p class=\"notebox"
-#~ "\"><strong>Note:</strong> You must include <code>%s</code> in your "
-#~ "message where you wish the registration completion link to appear.</p>"
-#~ msgstr ""
-#~ "寄給註冊者的通知信件內文。<p class=\"notebox\"><strong>請注意：</strong> "
-#~ "訊息中必須包含 <code>%s</code> 符號，擺在要顯示註冊完成連結的地方。</p>"
-
-#~ msgid "User registration page"
-#~ msgstr "帳號註冊頁面"
-
-#~ msgid ""
-#~ "If checked, CAPTCHA validation will be required for user registration."
-#~ msgstr "勾選後，使用者註冊時必須輸入防廣告驗證碼。"
-
-#~ msgid "*no page selected"
-#~ msgstr "*不指定頁面"
-
-#~ msgid ""
-#~ "Logs all attempts to login to or illegally access the admin pages. Log is "
-#~ "kept in <em>security_log.txt</em> in the %s folder."
-#~ msgstr ""
-#~ "所有的嘗試登入或管理頁面的非法存取紀錄都存在 %s 資料夾的 <em>security_log."
-#~ "txt</em> 檔案中。"
-
-#~ msgid "Removed setup file"
-#~ msgstr "安裝檔案已移除"
-
-#~ msgid "XSRF access blocked"
-#~ msgstr "跨網站偽造請求攻擊已封鎖"
-
-#, fuzzy
-#~ msgid "Blocked album"
-#~ msgstr "檢視相本"
-
-#, fuzzy
-#~ msgid "Blocked access"
-#~ msgstr "禁止存取"
-
-#~ msgid "Sitemap tools."
-#~ msgstr "網站地圖（Sitemap）工具。"
-
-#~ msgid "Flowplayer3 (flash)"
-#~ msgstr "Flowplayer3（使用 Flash）"
-
-#~ msgid ""
-#~ "Tiny MCE<span id='tinymceversion'></span> text editor for backend "
-#~ "textareas"
-#~ msgstr ""
-#~ "讓後臺的文字方塊使用 Tiny MCE<span id='tinymceversion'></span> 當做文字編"
-#~ "輯器"
-
-#~ msgid "tinyZenpage - custom image size"
-#~ msgstr "tinyZenpage - 自訂相片尺寸"
-
-#~ msgid "tinyZenpage - Flowplayer width"
-#~ msgstr "tinyZenpage - Flowplayer 寬度"
-
-#~ msgid "Video player width if included using tinyZenpage"
-#~ msgstr "用 tinyZenpage 插入的影片播放器寬度"
-
-#~ msgid "tinyZenpage - Flowplayer height"
-#~ msgstr "tinyZenpage - Flowplayer 高度"
-
-#~ msgid ""
-#~ "Video player height if included using tinyZenpage (for mp3s only the "
-#~ "control bar is used)"
-#~ msgstr "用 tinyZenpage 插入的影片播放器高度（MP3 檔只會顯示控制項）"
-
-#~ msgid "PHP version 5.2 or greater is required."
-#~ msgstr "需使用 PHP 5 或更新版本。"
-
-#~ msgid ""
-#~ "If enabled, a login form will be displayed if the viewer is not logged in."
-#~ msgstr "如啟用這項功能，未登入的訪客可以在前臺看見登入表單。"
-
-#~ msgid "Visit gallery page"
-#~ msgstr "檢視整座相館"
-
-#~ msgid "%1$u new item in <em>%2$s</em>: %3$s"
-#~ msgstr "<em>%2$s</em> 有 %1$u 個新項目：%3$s"
-
-#~ msgid "%1$u new items in <em>%2$s</em>: %3$s"
-#~ msgstr "<em>%2$s</em> 有 %1$u 個新項目：%3$s"
-
-#~ msgid "Articles per page (admin)"
-#~ msgstr "每頁文章數（管理區）"
-
-#~ msgid ""
-#~ "How many news articles you want to show per page on the news article "
-#~ "admin page."
-#~ msgstr "在新聞管理的每一頁上要顯示幾則文章。"
-
-#~ msgid "CombiNews: Gallery page link"
-#~ msgstr "CombiNews：相館頁連結文字"
-
-#~ msgid "CombiNews: Mode"
-#~ msgstr "CombiNews：顯示模式"
-
-#~ msgid "latest images: sized image"
-#~ msgstr "最新相片：顯示非原尺寸相片"
-
-#~ msgid "latest albums: sized image"
-#~ msgstr "最新相本：顯示非原尺寸相片"
-
-#~ msgid "latest albums: thumbnail"
-#~ msgstr "最新相本：顯示縮圖"
-
-#~ msgid "latest albums: thumbnail-customcrop"
-#~ msgstr "最新相本：顯示自訂裁切縮圖"
-
-#~ msgid "latest images: thumbnail-customcrop"
-#~ msgstr "最新相片：顯示自訂裁切縮圖"
-
-#~ msgid "latest images by album: thumbnail"
-#~ msgstr "每個相本的最新相片：顯示縮圖"
-
-#~ msgid "latest images by album: thumbnail-customcrop"
-#~ msgstr "每個相本的最新相片：顯示自訂裁切縮圖"
-
-#~ msgid "latest images by album: sized image"
-#~ msgstr "每個相本的最新相片：顯示非原尺寸相片圖"
-
-#~ msgid "CombiNews: Sized image size"
-#~ msgstr "CombiNews：非原尺寸相片的尺寸"
-
-#~ msgid "CombiNews: Sort order"
-#~ msgstr "CombiNews：排序方式"
-
-#~ msgid "id"
-#~ msgstr "ID"
-
-#~ msgid "CombiNews: Gallery link"
-#~ msgstr "CombiNews：相館連結"
-
-#~ msgid "CombiNews: Thumbnail crop width"
-#~ msgstr "CombiNews：縮圖裁切寬度"
-
-#~ msgid "CombiNews: Thumbnail crop height"
-#~ msgstr "CombiNews：縮圖裁切高度"
-
-#~ msgid "CombiNews: Thumbnail width"
-#~ msgstr "CombiNews：縮圖寬度"
-
-#~ msgid "CombiNews: Thumbnail height"
-#~ msgstr "CombiNews：縮圖高度"
-
-#, fuzzy
-#~ msgid "CombiNews: Thumbnail crop x axis"
-#~ msgstr "剪裁至該大小的縮圖"
-
-#, fuzzy
-#~ msgid "CombiNews: Thumbnail crop y axis"
-#~ msgstr "剪裁至該大小的縮圖"
-
-#~ msgid "CombiNews: Show image description"
-#~ msgstr "CombiNews：顯示相片描述"
-
-#~ msgid "CombiNews: Show image title"
-#~ msgstr "CombiNews：顯示相片標題"
-
-#~ msgid "CombiNews: Custom title (singular)"
-#~ msgstr "CombiNews：自定標題（單數）"
-
-#, fuzzy
-#~ msgid ""
-#~ "Custom title for the article in sprintf() syntax. %1$u = number of new "
-#~ "items, %2$s = title of the album they are in, %3$s = titles of the new "
-#~ "items. Never leave any of these three out! (<em>latest images by album</"
-#~ "em> option only)."
-#~ msgstr ""
-#~ "使用 sprintf() 格式自定文章標題。syntax. %1$u = 新項目數量, %2$s = title "
-#~ "of the album they are in, %3$s = titles of the new items. Never leave any "
-#~ "of these three out! (<em>latest images by album</em> option only)."
-
-#~ msgid "CombiNews: Custom title (plural)"
-#~ msgstr "CombiNews：自定標題（複數）"
-
-#~ msgid "CombiNews: Custom title - Number of image titles"
-#~ msgstr "CombiNews：自定標題 - 相片標題總數"
-
-#~ msgid "News from Zenphoto.org"
-#~ msgstr "Zenphoto.org 新聞"
-
-#~ msgid "download statistics"
-#~ msgstr "下載紀錄統計"
-
-#~ msgid "back to Zenphoto"
-#~ msgstr "回到 Zenphoto"
-
-#~ msgid "Horizontal rule added"
-#~ msgstr "HTML 項目已新增"
-
-#~ msgid "Menuset id"
-#~ msgstr "選單群組 ID"
-
-#~ msgid "Add Menu set"
-#~ msgstr "新增選單群組"
-
-#~ msgid "Delete menu set '%s'"
-#~ msgstr "刪除選單群組「%s」"
-
-#~ msgid "Menu Manager: Edit Menu Item or add new Menu Item"
-#~ msgstr "選單管理員：編輯或新增選單項目"
-
-#~ msgid "All Zenpage news categories"
-#~ msgstr "所有 Zenpage 新聞分類"
-
-#~ msgid "You must provide at least one recipient email address."
-#~ msgstr "請至少輸入一個收件人。"
-
-#, fuzzy
-#~ msgid "Could not execute: "
-#~ msgstr "無法儲存！"
-
-#~ msgid "SMTP Error: Could not authenticate."
-#~ msgstr "SMTP 出錯：無法驗證身分。"
-
-#~ msgid "SMTP Error: Data not accepted."
-#~ msgstr "SMTP 出錯：無法接收資料。"
-
-#~ msgid "SMTP Error: Could not connect to SMTP host."
-#~ msgstr "SMTP 出錯：無法連線到 SMTP 伺服器。"
-
-#~ msgid "Could not access file: "
-#~ msgstr "無法存取檔案："
-
-#~ msgid "File Error: Could not open file: "
-#~ msgstr "檔案出錯：無法開啟檔案："
-
-#~ msgid "Unknown encoding: "
-#~ msgstr "未知的文字編碼："
-
-#, fuzzy
-#~ msgid "Signing Error: "
-#~ msgstr "登入 (還是簽章?) 時發生錯誤："
-
-#~ msgid "SMTP server error: "
-#~ msgstr "SMTP 伺服器出錯："
-
-#~ msgid "Message body empty"
-#~ msgstr "訊息內容為空"
-
-#, fuzzy
-#~ msgid "%s is not a valid getRating() context"
-#~ msgstr "錯誤：%s 不是正確的訂閱模板。"
-
-#~ msgid "Finished!"
-#~ msgstr "已經完成！"
-
-#~ msgid "Sitemap cache cleared"
-#~ msgstr "網站地圖（Sitemap）快取已清空"
-
-#~ msgid "Click on the image/page/article/category to include."
-#~ msgstr "請直接點擊要插入的相片／分頁／文章／分類。"
-
-#~ msgid "Sized image as set in Zenphoto's options."
-#~ msgstr "依照 Zenphoto 所設定的非原尺寸相片。"
-
-#~ msgid ""
-#~ "Custom size image: Size is for the longest side of the image. Not "
-#~ "available for video/audio items."
-#~ msgstr ""
-#~ "自訂尺寸相片：尺寸以相片的最常邊為準。這項設定對影片／聲音檔案無效。"
-
-#~ msgid "Full image link: <em>zenpage_fullimagelink</em>"
-#~ msgstr "全尺寸圖片連結：<em>zenpage_fullimagelink</em>"
-
-#~ msgid ""
-#~ "<strong>Note:</strong> This page is either password protected or has a "
-#~ "passport protected parent."
-#~ msgstr "<strong>請注意：</strong>本頁或上層分頁受到密碼保護。"
-
-#~ msgid "Reset hitcounter (Hits: %1$s)"
-#~ msgstr "重設計數器（%1$s 點擊）"
-
-#~ msgid "Prev Page"
-#~ msgstr "上一頁"
-
-#~ msgid "First Page"
-#~ msgstr "第一頁"
-
-#~ msgid "Expired: %s"
-#~ msgstr "已過期於：%s"
-
-#~ msgid "Expires: %s"
-#~ msgstr "有效期限：%s"
-
-#~ msgid "<em>This article belongs to a protected category.</em>"
-#~ msgstr "<em>本文屬於受保護分類。</em>"
-
-#~ msgid "News Category RSS"
-#~ msgstr "新聞分類 RSS"
-
-#~ msgid "News and Gallery RSS"
-#~ msgstr "新聞與相館 RSS"
-
-#~ msgid "Zenpage Comments RSS"
-#~ msgstr "Zenpage 分頁留言 RSS"
-
-#~ msgid "News article comments RSS"
-#~ msgstr "新聞文章留言 RSS"
-
-#~ msgid "Page Comments RSS"
-#~ msgstr "分頁留言 RSS"
-
-#~ msgid "Failed to retrieve link <em>%s</em>"
-#~ msgstr "連結 <em>%s</em> 取得失敗。"

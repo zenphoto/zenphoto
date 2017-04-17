@@ -1,8 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Zenphoto 1.4.4.3\n"
+"Project-Id-Version: ZenPhoto20\n"
+
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-16 17:18-0700\n"
+"POT-Creation-Date: 2017-04-17 09:26-0700\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Stephen <stephen@sbillard.org>\n"
 "Language-Team: http://www.artpixel.ru/forum/viewtopic.php?t=146 <Doctor "
@@ -11,7 +12,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Poedit-Bookmarks: 910,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
@@ -19,6 +20,7 @@ msgstr ""
 "X-Poedit-Basepath: ../../../..\n"
 "X-Poedit-SearchPath-0: zp-core/locale/ru_RU/LC_MESSAGES/zenphoto.po\n"
 "X-Poedit-SearchPath-1: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
 
 #: plugins/cacheHeader.php:18
 msgid "Outputs a \"Cache-control\" header with selected caching options."
@@ -540,7 +542,7 @@ msgstr ""
 #, fuzzy
 #| msgid "Plugins"
 msgid "Plugins » all"
-msgstr "плагины"
+msgstr "Плагины"
 
 #: plugins/pluginEnabler.php:48
 #, fuzzy
@@ -570,7 +572,7 @@ msgstr ""
 #, fuzzy
 #| msgid "Plugins"
 msgid "Plugins × all"
-msgstr "плагины"
+msgstr "Плагины"
 
 #: plugins/pluginEnabler.php:87
 msgid "Disables all plugins except pluginEnabler."
@@ -584,7 +586,7 @@ msgstr ""
 #, fuzzy
 #| msgid "TinyMCE disabled"
 msgid "Plugins disabled"
-msgstr "плагины"
+msgstr "Плагины"
 
 #: plugins/pluginEnabler/handler.php:29
 #, fuzzy
@@ -1250,7 +1252,7 @@ msgstr "Выберите цветовую гамму темы оформлени
 #: themes/effervescence+/search.php:104 themes/effervescence+/slideshow.php:34
 #, fuzzy
 msgid "Main Index"
-msgstr "Главная"
+msgstr "Начало галереи"
 
 #: themes/effervescence+/404.php:44 themes/garland/404.php:42
 #: themes/garland/404.php:44
@@ -1838,7 +1840,7 @@ msgstr "Все альбомы"
 #: themes/effervescence+/themeoptions.php:59 themes/garland/themeoptions.php:46
 #, fuzzy
 msgid "Gallery Rule"
-msgstr "Галерея"
+msgstr "Начало галереи"
 
 #: themes/effervescence+/themeoptions.php:61 themes/garland/themeoptions.php:48
 #: themes/zenpage/themeoptions.php:49 themes/zpEnlighten/themeoptions.php:28
@@ -1849,7 +1851,7 @@ msgstr "Все страницы"
 #: themes/effervescence+/themeoptions.php:62 themes/garland/themeoptions.php:49
 #, fuzzy
 msgid "Pages Rule"
-msgstr "Страницы:"
+msgstr "Страниц (%s)"
 
 #: themes/effervescence+/themeoptions.php:65
 #, fuzzy
@@ -1883,7 +1885,7 @@ msgstr ""
 #: themes/effervescence+/themeoptions.php:90
 #, fuzzy
 msgid "Separate gallery index"
-msgstr "Начало галереи"
+msgstr "раздельно"
 
 #: themes/effervescence+/themeoptions.php:90
 #, fuzzy
@@ -2848,7 +2850,7 @@ msgstr "Текст выше sitename на домашней странице."
 #, fuzzy
 #| msgid "Homepage"
 msgid "Homepage content"
-msgstr "Домашняя страница"
+msgstr "Содержимое"
 
 #: themes/paradigm/themeoptions.php:92
 #, fuzzy
@@ -2917,7 +2919,7 @@ msgstr ""
 #: themes/paradigm/themeoptions.php:102
 #, fuzzy
 msgid "Twitter profile name"
-msgstr "Имя альбома:"
+msgstr "Имя папки:"
 
 #: themes/paradigm/themeoptions.php:102
 msgid ""
@@ -3520,7 +3522,7 @@ msgstr "Подсказка: %s"
 #: themes/zpEnlighten/search.php:122
 #, fuzzy, php-format
 msgid "%s "
-msgstr "%s"
+msgstr "Панель управления %1$s: %2$s%3$s"
 
 #: themes/zpEnlighten/search.php:125
 #, fuzzy, php-format
@@ -3530,7 +3532,7 @@ msgstr "Альбомов (%1$s) и Изображений (%2$s)"
 #: themes/zpEnlighten/sidebar.php:52
 #, fuzzy
 msgid "Latest notes"
-msgstr "новейшие"
+msgstr "Новые изображения"
 
 #: themes/zpEnlighten/sidebar.php:67
 #, fuzzy
@@ -3690,7 +3692,7 @@ msgstr ""
 #: themes/zpfocus/inc-footer.php:6
 #, fuzzy
 msgid "all rights reserved"
-msgstr "все"
+msgstr "Все"
 
 #: themes/zpfocus/inc-footer.php:41 themes/zpminimal/inc-footer.php:8
 #, fuzzy
@@ -3700,7 +3702,7 @@ msgstr "Подписка на комментарии"
 #: themes/zpfocus/inc-footer.php:44 themes/zpminimal/inc-footer.php:11
 #, fuzzy
 msgid "This Album"
-msgstr "альбом"
+msgstr "Посмотреть альбом:"
 
 #: themes/zpfocus/inc-footer.php:47 themes/zpminimal/inc-footer.php:13
 #, fuzzy
@@ -3811,7 +3813,7 @@ msgstr "Посмотреть альбом:"
 #: themes/zpfocus/search.php:156
 #, fuzzy
 msgid "Image Search Results"
-msgstr "поиск"
+msgstr "%s в результатах предыдущего поиска"
 
 #: themes/zpfocus/search.php:216
 #, fuzzy
@@ -4411,7 +4413,7 @@ msgstr "Посмотреть изображение: %s"
 #: themes/zpmasonry/index.php:61 themes/zpminimal/index.php:56
 #, fuzzy
 msgid "No Images Exist..."
-msgstr "изображения"
+msgstr "Изображения"
 
 #: themes/zpmasonry/index.php:105 zp-core/template-functions.php:822
 #: zp-core/template-functions.php:1020
@@ -4564,7 +4566,7 @@ msgstr ""
 #: themes/zpmasonry/themeoptions.php:105 themes/zpminimal/themeoptions.php:38
 #, fuzzy
 msgid "Disable MetaData Display?"
-msgstr "Метаданные:"
+msgstr "Метаданные"
 
 #: themes/zpmasonry/themeoptions.php:107 themes/zpminimal/themeoptions.php:38
 #, fuzzy
@@ -4752,7 +4754,7 @@ msgstr ""
 #: themes/zpminimal/themeoptions.php:35
 #, fuzzy
 msgid "Sidebar Position on the Right?"
-msgstr "Расположение:"
+msgstr "Справа"
 
 #: themes/zpminimal/themeoptions.php:35
 #, fuzzy
@@ -5949,7 +5951,7 @@ msgstr "Подальбомы"
 #, fuzzy
 #| msgid "edit albums"
 msgid "Mass-edit subalbums"
-msgstr "разрешить редактирование альбома"
+msgstr "Подальбомы"
 
 #: zp-core/admin-functions.php:736
 #, fuzzy
@@ -6856,7 +6858,7 @@ msgstr "Нет отчётов для просмотра."
 #, fuzzy, php-format
 #| msgid "options"
 msgid "%1$s options"
-msgstr "Параметры <em>%s</em>"
+msgstr "Изменить настройки плагина %s"
 
 #: zp-core/admin-options.php:109
 #, fuzzy
@@ -6916,7 +6918,7 @@ msgstr ""
 #: zp-core/admin-plugins.php:136
 #, fuzzy, php-format
 msgid "%1$s plugins"
-msgstr "плагины"
+msgstr "Effervescence %1$s %2$s"
 
 #: zp-core/admin-plugins.php:152
 msgid "Plugins provide optional functionality."
@@ -6990,7 +6992,7 @@ msgstr "<strong>Ошибка при обработке <em>plugin_description</e
 #: zp-core/admin-plugins.php:217
 #, fuzzy
 msgid "<strong>Error parsing <em>plugin_notice</em> string!</strong>."
-msgstr "<strong>Ошибка при обработке <em>plugin_description</em>!</strong>."
+msgstr "<strong>Ошибка анализа строки <em>plugin_disable</em>!</strong>."
 
 #: zp-core/admin-plugins.php:225
 msgid "<strong>Error parsing <em>plugin_author</em> string!</strong>."
@@ -7022,7 +7024,7 @@ msgstr "лого"
 #: zp-core/admin-plugins.php:292
 #, fuzzy
 msgid "class plugin"
-msgstr "Класс"
+msgstr "плагины"
 
 #: zp-core/admin-plugins.php:296
 #, fuzzy
@@ -7060,7 +7062,7 @@ msgstr "Замечания"
 #: zp-core/admin-plugins.php:418
 #, fuzzy
 msgid "Class plugin"
-msgstr "Класс"
+msgstr "плагины"
 
 #: zp-core/admin-plugins.php:419
 #, fuzzy
@@ -7725,7 +7727,7 @@ msgstr "<em>Главная</em> учетная запись имеет полн�
 #: zp-core/admin-users.php:818 zp-core/functions.php:878
 #, fuzzy
 msgid "un-categorized"
-msgstr "Неопубликовано"
+msgstr "Опубликован да/нет"
 
 #: zp-core/admin-users.php:877
 #, php-format
@@ -7879,7 +7881,7 @@ msgstr "Защищает файлы установки, программа ус�
 #: zp-core/admin.php:313
 #, fuzzy
 msgid "Setup » restore scripts"
-msgstr "Резервное копирование/Восстановление"
+msgstr "Восстановление базы данных завершено"
 
 #: zp-core/admin.php:318
 #, fuzzy
@@ -7979,7 +7981,7 @@ msgstr ""
 #: zp-core/admin.php:472
 #, fuzzy
 msgid "<em>display_errors</em> is <strong>On</strong>"
-msgstr "<strong><em>%s</em></strong> на реконструкции"
+msgstr "<strong><em>GD</em></strong> расширение не доступно."
 
 #: zp-core/admin.php:476
 #, fuzzy
@@ -8475,7 +8477,7 @@ msgstr "mod rewrite"
 #: zp-core/admin_options/general.php:223
 #, fuzzy
 msgid "<em>filesystem</em> image URIs"
-msgstr "Не возвращать результаты по <em>изображениям</em>"
+msgstr "Загрузчик изображений <em>http</em>"
 
 #: zp-core/admin_options/general.php:229
 #, fuzzy
@@ -9262,7 +9264,7 @@ msgstr "Параллельное кэширование:"
 #, fuzzy
 msgid "limit"
 msgstr ""
-"Максимальный размер суммы загруженных файлов по умолчанию (в килобайтах)."
+"Лимит памяти PHP: <strong>%1$s</strong> (Сервер может выделять ещё меньше!)"
 
 #: zp-core/admin_options/image.php:510
 #, fuzzy
@@ -9302,7 +9304,7 @@ msgstr ""
 #: zp-core/admin_options/image.php:537
 #, fuzzy
 msgid "Protect image cache"
-msgstr "Кэшировать оригиналы"
+msgstr "Кэш изображений удален."
 
 #: zp-core/admin_options/image.php:546
 #, fuzzy
@@ -10447,7 +10449,7 @@ msgstr "Объект не найден"
 #: zp-core/class-image.php:162 zp-core/zp-extensions/xmpMetadata.php:647
 #, fuzzy
 msgid "Image Headline"
-msgstr "% изображения"
+msgstr "Предыдущее изображение"
 
 #: zp-core/class-image.php:163 zp-core/zp-extensions/xmpMetadata.php:645
 #, fuzzy
@@ -10752,7 +10754,7 @@ msgstr "Ещё плагины"
 #: zp-core/exif/exif.php:1289
 #, fuzzy
 msgid "Illegal size for SubIFD"
-msgstr "Размер миниатюр:"
+msgstr "Размер изображения"
 
 #: zp-core/exif/exif.php:1310
 #, fuzzy
@@ -10762,7 +10764,7 @@ msgstr "Ещё плагины"
 #: zp-core/exif/exif.php:1327
 #, fuzzy
 msgid "Illegal size for IFD1"
-msgstr "Размер миниатюр:"
+msgstr "Размер изображения"
 
 #: zp-core/exif/exif.php:1351
 #, fuzzy
@@ -10772,7 +10774,7 @@ msgstr "Ещё плагины"
 #: zp-core/exif/exif.php:1368
 #, fuzzy
 msgid "Illegal size for InteroperabilityIFD"
-msgstr "Размер миниатюр:"
+msgstr "Размер изображения"
 
 #: zp-core/exif/exifTranslations.php:22
 #, fuzzy
@@ -11468,7 +11470,7 @@ msgstr "Программа"
 #: zp-core/exif/exifTranslations.php:171
 #, fuzzy
 msgid "Program Creative"
-msgstr "Программа"
+msgstr "Версия программы"
 
 #: zp-core/exif/exifTranslations.php:172
 msgid "RAW"
@@ -12538,7 +12540,7 @@ msgstr "cacheImage: не удалось создать %s"
 #: zp-core/functions-image.php:505
 #, fuzzy, php-format
 msgid "cacheImage(%1$s) exception: %2$s"
-msgstr "%1$s версия %2$s"
+msgstr "Панель управления %1$s: %2$s%3$s"
 
 #: zp-core/functions.php:36
 msgid "most recent"
@@ -13712,7 +13714,7 @@ msgstr "ZenPhoto20 %1$s была скопирована через %2$s."
 #: zp-core/reconfigure.php:247
 #, fuzzy, php-format
 msgid "Your installation has moved from %1$s to %2$s."
-msgstr "ПО вашего сервера было изменено с %1$s на %2$s."
+msgstr "ПО вашей базы данных было изменено с %1$s на %2$s."
 
 #: zp-core/reconfigure.php:250
 #, fuzzy
@@ -13750,7 +13752,7 @@ msgstr ""
 #: zp-core/reconfigure.php:304
 #, fuzzy, php-format
 msgid "to run setup [%s]"
-msgstr "начать установку"
+msgstr "Вы должны войти в систему, чтобы начать установку."
 
 #: zp-core/reconfigure.php:307
 #, fuzzy
@@ -13946,7 +13948,7 @@ msgstr "Устанавливаем ZenPhoto20 v%s"
 #: zp-core/setup/index.php:553
 #, fuzzy, php-format
 msgid "<em>%s</em> security"
-msgstr "Параметры <em>%s</em>"
+msgstr "Просмотр <em>%s</em>"
 
 #: zp-core/setup/index.php:553
 #, fuzzy, php-format
@@ -15249,7 +15251,7 @@ msgstr "Вперед!"
 #: zp-core/setup/index.php:1888
 #, fuzzy
 msgid "database did not connect"
-msgstr "базы данных не удалось подключиться"
+msgstr "Соединение с %s"
 
 #: zp-core/setup/index.php:1890
 #, fuzzy
@@ -15537,7 +15539,7 @@ msgstr "Установка тем:"
 #: zp-core/setup/setup-option-defaults.php:563
 #, fuzzy, php-format
 msgid "Copyright %1$u  : %2$s "
-msgstr "Изображение %1$u из %2$u"
+msgstr "Альбом %1$u из %2$u"
 
 #: zp-core/setup/setup-option-defaults.php:613
 msgid ""
@@ -15822,7 +15824,7 @@ msgstr "Миниатюры альбома:"
 #: zp-core/zp-extensions/zenpage/template-functions.php:1615
 #, fuzzy
 msgid "Return to search"
-msgstr "поиск"
+msgstr "Вернуться в %s"
 
 #: zp-core/template-functions.php:1301
 #: zp-core/zp-extensions/zenpage/template-functions.php:1618
@@ -15833,7 +15835,7 @@ msgstr "Назад"
 #: zp-core/template-functions.php:2056
 #, fuzzy
 msgid "The image is marked un-published."
-msgstr "Применить к дочерним объектам"
+msgstr "Опубликован да/нет"
 
 #: zp-core/template-functions.php:3755
 #, php-format
@@ -16441,7 +16443,7 @@ msgstr "Имя пользователя для поиска LDAP. Если пу�
 #: zp-core/zp-extensions/LDAP_auth.php:61
 #, fuzzy
 msgid "LDAP reader password"
-msgstr "Пароль альбома:"
+msgstr "Отображать пароль при вводе"
 
 #: zp-core/zp-extensions/LDAP_auth.php:63
 #, fuzzy
@@ -16644,7 +16646,7 @@ msgstr "Запросы будут заблокированы, если боль�
 #, fuzzy
 msgid "Limit"
 msgstr ""
-"Максимальный размер суммы загруженных файлов по умолчанию (в килобайтах)."
+"Лимит памяти PHP: <strong>%1$s</strong> (Сервер может выделять ещё меньше!)"
 
 #: zp-core/zp-extensions/accessThreshold.php:64
 #, fuzzy, php-format
@@ -17620,7 +17622,7 @@ msgstr "Воспроизведение"
 #: zp-core/zp-extensions/class-video.php:440
 #, fuzzy, php-format
 msgid "getid3 exceptions for %1$s::%2$s"
-msgstr "Панель управления %1$s: %2$s%3$s"
+msgstr "%1$s %2$s: %3$s"
 
 #: zp-core/zp-extensions/class-video.php:501
 #, fuzzy
@@ -19125,7 +19127,7 @@ msgstr "Плагин для генерации файла загрузки."
 #: zp-core/zp-extensions/downloadList.php:68
 #, fuzzy
 msgid "Download directory"
-msgstr "Скачать"
+msgstr "Статистика загрузок"
 
 #: zp-core/zp-extensions/downloadList.php:70
 #, fuzzy
@@ -19179,7 +19181,7 @@ msgstr ""
 #: zp-core/zp-extensions/downloadList.php:82
 #, fuzzy
 msgid "From Cache"
-msgstr "Кэшировать как:"
+msgstr "Кэш"
 
 #: zp-core/zp-extensions/downloadList.php:83
 #, fuzzy
@@ -19412,7 +19414,7 @@ msgstr ""
 #: zp-core/zp-extensions/elFinder.php:54
 #, fuzzy
 msgid "Files tab"
-msgstr "Файлы"
+msgstr "файлы установки"
 
 #: zp-core/zp-extensions/elFinder.php:55
 #, fuzzy
@@ -19725,7 +19727,7 @@ msgstr ""
 #: zp-core/zp-extensions/externalFeed.php:130
 #, fuzzy, php-format
 msgid "<em><strong>%1$s</strong></em> key=%2$s"
-msgstr "Параметры <code><strong>%1$s</strong></code>: <em>%2$s</em>"
+msgstr "отсоединить основной альбом <strong>%1$s</strong>(<em>%2$s</em>)"
 
 #: zp-core/zp-extensions/externalFeed.php:136
 #, fuzzy
@@ -20362,7 +20364,7 @@ msgstr "Выберите категорию для созданного стат
 #: zp-core/zp-extensions/galleryArticles.php:90
 #, fuzzy
 msgid "Use album folder"
-msgstr "Переименовать папку"
+msgstr "Имя папки:"
 
 #: zp-core/zp-extensions/galleryArticles.php:92
 #, fuzzy
@@ -20837,7 +20839,7 @@ msgstr ""
 #: zp-core/zp-extensions/html_meta_tags.php:114
 #, fuzzy
 msgid "Site logo"
-msgstr "лого"
+msgstr "Логотип темы"
 
 #: zp-core/zp-extensions/html_meta_tags.php:115
 #, fuzzy
@@ -20855,7 +20857,7 @@ msgstr ""
 #: zp-core/zp-extensions/html_meta_tags.php:116
 #, fuzzy
 msgid "Twitter name"
-msgstr "Имя альбома:"
+msgstr "Имя папки:"
 
 #: zp-core/zp-extensions/html_meta_tags.php:117
 #, fuzzy
@@ -21004,7 +21006,7 @@ msgstr "<strong>Ошибка:</strong> эффект <em>%s</em> больше н�
 #: zp-core/zp-extensions/image_effects.php:135
 #, fuzzy
 msgid "Images (standard)"
-msgstr "изображения"
+msgstr "Изображения"
 
 #: zp-core/zp-extensions/image_effects.php:138
 #, fuzzy
@@ -21018,7 +21020,7 @@ msgstr ""
 #: zp-core/zp-extensions/image_effects.php:139
 #, fuzzy
 msgid "Images (custom)"
-msgstr "изображения"
+msgstr "Изображения"
 
 #: zp-core/zp-extensions/image_effects.php:142
 #, fuzzy
@@ -21060,7 +21062,7 @@ msgstr ""
 #: zp-core/zp-extensions/image_effects.php:151
 #, fuzzy
 msgid "Image thumbnails (custom)"
-msgstr "Пользовательский"
+msgstr "Пользовательские<br /> данные:"
 
 #: zp-core/zp-extensions/image_effects.php:154
 #, fuzzy
@@ -21415,7 +21417,7 @@ msgstr "Позволяет прямой загрузки файлов (толь�
 #: zp-core/zp-extensions/jplayer.php:142
 #, fuzzy
 msgid "Player size"
-msgstr "размер ="
+msgstr "Размер изображения"
 
 #: zp-core/zp-extensions/jplayer.php:144
 #, fuzzy
@@ -21481,7 +21483,7 @@ msgstr ""
 #: zp-core/zp-extensions/jplayer.php:234
 #, fuzzy, php-format
 msgid "%1$s::%2$s not found."
-msgstr "Панель управления %1$s: %2$s%3$s"
+msgstr "изображение %1$s из %2$s"
 
 #: zp-core/zp-extensions/jplayer.php:244
 #, fuzzy
@@ -21927,7 +21929,7 @@ msgstr "Вы забыли <strong>функция</strong>!"
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:552
 #, fuzzy
 msgid "Custom label added"
-msgstr "Пользовательское меню"
+msgstr "Пользовательские данные:"
 
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:565
 #, fuzzy, php-format
@@ -22156,7 +22158,7 @@ msgstr "Создает ссылку на категорию Zenpage Новост
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:133
 #, fuzzy
 msgid "Custom page"
-msgstr "страница"
+msgstr "Пользовательские<br /> данные:"
 
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:134
 #, fuzzy
@@ -22212,7 +22214,7 @@ msgstr "HTML"
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:164
 #, fuzzy
 msgid "Inserts custom HTML."
-msgstr "Пользовательский"
+msgstr "Пользовательские<br /> данные:"
 
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:206
 msgid "Menu Manager: Edit Menu Item"
@@ -22463,7 +22465,7 @@ msgstr "Очистить метки к изображениям "
 #: zp-core/zp-extensions/optionalObjectFields.php:134
 #, fuzzy
 msgid "Set as thumbnail for"
-msgstr "Миниатюра:"
+msgstr "Задать миниатюру"
 
 #: zp-core/zp-extensions/optionalObjectFields.php:149
 #, fuzzy
@@ -23069,7 +23071,7 @@ msgstr ""
 #, fuzzy
 #| msgid "Change %s options"
 msgid "Orphaned options"
-msgstr "Настройки URL:"
+msgstr "настройки поиска"
 
 #: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:223
 #, fuzzy
@@ -23769,12 +23771,12 @@ msgstr "Сайта переписать правила вложенную."
 #: zp-core/zp-extensions/rewriteRules/admin_tab.php:14
 #, fuzzy
 msgid "rewrite"
-msgstr "mod_rewrite suffix:"
+msgstr "Проверка Mod_Rewrite:"
 
 #: zp-core/zp-extensions/rewriteRules/admin_tab.php:29
 #, fuzzy
 msgid "Rewrite Rules"
-msgstr "mod rewrite"
+msgstr "Проверка Mod_Rewrite:"
 
 #: zp-core/zp-extensions/rewriteRules/functions.php:35
 #, fuzzy
@@ -23857,12 +23859,12 @@ msgstr "Токены"
 #: zp-core/zp-extensions/rewriteTokens/admin_tab.php:30
 #, fuzzy
 msgid "Rewrite Tokens"
-msgstr "mod_rewrite suffix:"
+msgstr "Проверка Mod_Rewrite:"
 
 #: zp-core/zp-extensions/rss.php:12
 #, fuzzy
 msgid "The <em>RSS</em> handler."
-msgstr "Загрузчик изображений <em>jQuery</em>"
+msgstr "Загрузчик изображений <em>http</em>"
 
 #: zp-core/zp-extensions/rss.php:13
 #, fuzzy
@@ -24246,7 +24248,7 @@ msgstr "Установка"
 #: zp-core/zp-extensions/security-logger.php:132
 #, fuzzy
 msgid "Restore setup scripts"
-msgstr "Резервное копирование/Восстановление"
+msgstr "Восстановление базы данных завершено"
 
 #: zp-core/zp-extensions/security-logger.php:135
 #, fuzzy
@@ -24342,7 +24344,7 @@ msgstr "<code>PHPMailer</code> не смог послать <em>%1$s</em>. Ош�
 #: zp-core/zp-extensions/seo_cleanup/admin_tab.php:101
 #, fuzzy, php-format
 msgid "<em>%1$s</em> renamed to <em>%2$s</em>"
-msgstr "<em>%1$s</em> добавил(а) комментарий к %2$s:"
+msgstr "<em>%1$s</em> сообщает: %2$s"
 
 #: zp-core/zp-extensions/seo_cleanup/admin_tab.php:134
 #, fuzzy
@@ -24673,7 +24675,10 @@ msgstr ""
 #: zp-core/zp-extensions/sitemap-extended.php:87
 #, fuzzy
 msgid "Album date"
-msgstr "датировать альбом новейшим изображением"
+msgstr ""
+"Отметьте, если хотите, чтобы дата альбома соответствовала последнему "
+"загруженному в него изображению. В противном случае, используется дата "
+"создания альбома. "
 
 #: zp-core/zp-extensions/sitemap-extended.php:91
 #, fuzzy
@@ -25771,7 +25776,7 @@ msgstr "Сокращенный URL требуют <code>mod_rewrite</code> бы�
 #: zp-core/zp-extensions/tinyURL.php:64
 #, fuzzy
 msgid "Use in themes for"
-msgstr "темы"
+msgstr "Темы"
 
 #: zp-core/zp-extensions/tinyURL.php:68
 #, fuzzy
@@ -25785,7 +25790,7 @@ msgstr ""
 #: zp-core/zp-extensions/tinyURL.php:83
 #, fuzzy
 msgid "news categories"
-msgstr "Разделы новостей "
+msgstr "Разделы новостей"
 
 #: zp-core/zp-extensions/tinymce.php:20
 #, fuzzy
@@ -25888,7 +25893,7 @@ msgstr "Страница <em>%s</em> добавлена"
 #: zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:81
 #, fuzzy
 msgid "title with link to page"
-msgstr "Название:"
+msgstr "Название"
 
 #: zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:85
 #, fuzzy, php-format
@@ -25929,12 +25934,12 @@ msgstr "только пользователи"
 #: zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:258
 #, fuzzy
 msgid "image with link to full-sized image"
-msgstr "Оригинал"
+msgstr "Кэшировать оригиналы"
 
 #: zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:267
 #, fuzzy
 msgid "image with link to album"
-msgstr "Очистить кэш альбома"
+msgstr "Стоп и возврат к альбому или странице с изображением"
 
 #: zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:275
 #, fuzzy
@@ -26352,7 +26357,7 @@ msgstr "Загрузки"
 #: zp-core/zp-extensions/uploader_jQuery/upload_form.php:157
 #, fuzzy
 msgid "Missing a temporary folder"
-msgstr "Переименовать папку"
+msgstr "Имя папки:"
 
 #: zp-core/zp-extensions/uploader_jQuery/upload_form.php:158
 #, fuzzy
@@ -26395,7 +26400,7 @@ msgstr ""
 #: zp-core/zp-extensions/user-expiry.php:80
 #, fuzzy
 msgid "Warning interval"
-msgstr "ВНИМАНИЕ"
+msgstr "Частота резервирования"
 
 #: zp-core/zp-extensions/user-expiry.php:82
 #, fuzzy
@@ -26504,7 +26509,7 @@ msgstr "Срок действия"
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:124
 #, fuzzy
 msgid "Manage user expiry."
-msgstr "Срок действия"
+msgstr "Редактировать все"
 
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:156
 #, fuzzy, php-format
@@ -26538,13 +26543,13 @@ msgstr "Возобновить"
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:192
 #, fuzzy
 msgid "Email renewal"
-msgstr "E-Mail:"
+msgstr "E-mail"
 
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:195
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:213
 #, fuzzy
 msgid "Force password renewal"
-msgstr "Пароль альбома:"
+msgstr "Отображать пароль при вводе"
 
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:201
 #, php-format
@@ -26978,12 +26983,12 @@ msgstr "Нет категорий для импорта."
 #: zp-core/zp-extensions/wordpress_import/admin_tab.php:134
 #, fuzzy, php-format
 msgid "Tag <em>%s</em> added"
-msgstr "Страница <em>%s</em> добавлена"
+msgstr "Раздел <em>%s</em> добавлен"
 
 #: zp-core/zp-extensions/wordpress_import/admin_tab.php:136
 #, fuzzy, php-format
 msgid "A tag with the title/titlelink <em>%s</em> already exists!"
-msgstr "Страница с названием/ссылкой <em>%s</em> уже существует!"
+msgstr "Раздел с названием/ссылкой <em>%s</em> уже существует!"
 
 #: zp-core/zp-extensions/wordpress_import/admin_tab.php:140
 msgid "No tags to import."
@@ -26993,7 +26998,7 @@ msgstr "Нет тэгов для импорта."
 #: zp-core/zp-extensions/wordpress_import/admin_tab.php:262
 #, fuzzy, php-format
 msgid "%1$s <em>%2$s</em> added"
-msgstr "Каталог <em>%1$s</em> %2$s"
+msgstr "<em>%1$s</em> сообщает: %2$s"
 
 #: zp-core/zp-extensions/wordpress_import/admin_tab.php:201
 #: zp-core/zp-extensions/wordpress_import/admin_tab.php:264
@@ -27906,7 +27911,7 @@ msgstr "Все разделы"
 #: zp-core/zp-extensions/zenpage/admin-functions.php:755
 #, fuzzy
 msgid "Un-categorized"
-msgstr "Неопубликовано"
+msgstr "Опубликован да/нет"
 
 #: zp-core/zp-extensions/zenpage/admin-functions.php:804
 #, php-format
@@ -28088,7 +28093,7 @@ msgstr "Удалить разделы"
 #: zp-core/zp-extensions/zenpage/admin-news.php:270
 #, fuzzy
 msgid "Created"
-msgstr "Дата создания"
+msgstr "Новая пользовательская тема создана успешно!"
 
 #: zp-core/zp-extensions/zenpage/admin-news.php:272
 #, fuzzy
@@ -28260,3280 +28265,3 @@ msgid ""
 msgstr ""
 "Размер для использования , если шрифт масштабируемый <em>(TTF</em> и шрифты "
 "<em>Imagick.)</em>"
-
-#~ msgid "Subject<strong>%s</strong>:"
-#~ msgstr "Тема<strong>%s</strong>:"
-
-#~ msgid "Message<strong>%s</strong>:"
-#~ msgstr "Сообщение<strong>%s</strong>:"
-
-#~ msgid ""
-#~ "Select an album to edit its description and data, or <a href=\"?"
-#~ "page=edit&amp;album=%s&amp;massedit\">mass-edit</a> all first level "
-#~ "subalbums."
-#~ msgstr ""
-#~ "Отметьте альбомы, которые вы хотите редактировать и в раскрывающемся "
-#~ "списке справа выберите нужное действие или перейдите к странице <a href="
-#~ "\"?page=edit&amp;album=%s&amp;massedit\">массового редактирования</a> "
-#~ "альбомов верхнего уровня вашей галереи."
-
-#~ msgid "Title:"
-#~ msgstr "Название:"
-
-#~ msgid "Description:"
-#~ msgstr "Описание:"
-
-#~ msgid "Metadata:"
-#~ msgstr "Метаданные:"
-
-#~ msgid "Edit Gallery"
-#~ msgstr "Редактировать галерею"
-
-#~ msgid ""
-#~ "Select an album to edit its description and data, or <a href=\"?"
-#~ "page=edit&amp;massedit\">mass-edit</a> all gallery level albums."
-#~ msgstr ""
-#~ "Отметьте альбомы, которые вы хотите редактировать и в раскрывающемся "
-#~ "списке справа выберите нужное <em>действие</em>; или перейдите к странице "
-#~ "<a href=\"?page=edit&amp;album=%s&amp;massedit\">массового "
-#~ "редактирования</a> всех альбомов верхнего уровня вашей галереи."
-
-#, fuzzy
-#~ msgid "You have unsaved changes!"
-#~ msgstr "У Вас есть несохраненные изменения."
-
-#, fuzzy
-#~ msgid "Are you sure you want to leave this page?"
-#~ msgstr "Действительно покинуть эту страницу?"
-
-#, fuzzy
-#~ msgid "Leave"
-#~ msgstr "Выйти"
-
-#, fuzzy
-#~ msgid "Stay"
-#~ msgstr "Остановка"
-
-#~ msgid "Has Password"
-#~ msgstr "Установлен пароль"
-
-#~ msgid "Password protected"
-#~ msgstr "Защищенный паролем"
-
-#~ msgid "View logs:"
-#~ msgstr "Просмотр отчетов:"
-
-#, fuzzy
-#~ msgid "Cookies:"
-#~ msgstr "Файлы cookie."
-
-#, fuzzy
-#~ msgid "Path"
-#~ msgstr "Путь"
-
-#~ msgid "Gallery title:"
-#~ msgstr "Название галереи:"
-
-#~ msgid "Website title:"
-#~ msgstr "Название сайта:"
-
-#, fuzzy
-#~ msgid ""
-#~ "<a onclick=\"toggle('albumpub');\" >Details</a> for <em>publish albums by "
-#~ "default</em>"
-#~ msgstr ""
-#~ "<a onclick=\"toggle('albumpub');\">Детали</a> для <em>публикации альбомов "
-#~ "по умолчанию</em>"
-
-#, fuzzy
-#~ msgid ""
-#~ "<a onclick=\"toggle('imagepub');\" >Details</a> for <em>publish images by "
-#~ "default</em>"
-#~ msgstr ""
-#~ "<a onclick=\"toggle('imagepub');\">Детали</a> для <em>публикации "
-#~ "изображений по умолчанию</em>"
-
-#, fuzzy
-#~ msgid ""
-#~ "<a onclick=\"toggle('albumdate');\" >Details</a> for <em>use latest image "
-#~ "date as album date</em>"
-#~ msgstr ""
-#~ "<a onclick=\"toggle('albumdate');\">Детали</a> для <em>использования "
-#~ "последних изображения дату как дату альбома</em>"
-
-#, fuzzy
-#~ msgid ""
-#~ "<a onclick=\"toggle('visualthumb');\" >Details</a> for <em>visual thumb "
-#~ "selection</em>"
-#~ msgstr ""
-#~ "<a onclick=\"toggle('visualthumb');\">Детали</a> для <em>выбора "
-#~ "визуального пальца</em>"
-
-#, fuzzy
-#~ msgid ""
-#~ "<a onclick=\"toggle('multithumb');\" >Details</a> for <em>subalbum thumb "
-#~ "selection</em>"
-#~ msgstr ""
-#~ "<a onclick=\"toggle('multithumb');\">Детали</a> для <em>выбора палец "
-#~ "subalbum</em>"
-
-#~ msgid "Codeblocks:"
-#~ msgstr "Вставка кода:"
-
-#~ msgid "user:"
-#~ msgstr "пользователь:"
-
-#~ msgid "<strong>Standard options</strong>"
-#~ msgstr "<strong>Стандартные</strong>"
-
-#~ msgid "Image size:"
-#~ msgstr "Размер изображения:"
-
-#~ msgid "<strong>Custom theme options</strong>"
-#~ msgstr "<strong>Дополнительные</strong>"
-
-#~ msgid "Backup/Restore"
-#~ msgstr "Резервное копирование/Восстановление"
-
-#~ msgid "Backup and restore your gallery database."
-#~ msgstr "Резервное копирование и восстановление базы данных вашей галереи."
-
-#~ msgid "Info"
-#~ msgstr "Информация"
-
-#, fuzzy
-#~ msgid ""
-#~ "Shows statistical graphs and info about your gallery’s images and albums."
-#~ msgstr ""
-#~ "Показывает статистические графики и информация о вашей галереи "
-#~ "изображения и альбомы."
-
-#~ msgid "Statistics"
-#~ msgstr "Статистика"
-
-#~ msgid "Back to the top 10 lists"
-#~ msgstr "Обратно к ТОП-10"
-
-#~ msgid "top"
-#~ msgstr "Наверх"
-
-#~ msgid "Refresh the Database"
-#~ msgstr "Обновить базу данных"
-
-#, fuzzy
-#~ msgid "Perform a garbage collection of the Database"
-#~ msgstr "Выполнить сборку мусора базы данных"
-
-#~ msgid "Forces a refresh of the metadata for all images and albums."
-#~ msgstr "Обновить метаданные всех изображений и альбомов галереи."
-
-#, fuzzy
-#~ msgid ""
-#~ "The scripts for which BxSlider is enabled. {If themes require it they "
-#~ "might set this, otherwise you need to do it manually!}"
-#~ msgstr ""
-#~ "Сценарии, для которых включен BxSlider. {Если темы требуют что они могли "
-#~ "бы установить это, в противном случае вы должны сделать это вручную!}"
-
-#, fuzzy
-#~ msgid "Cache manager"
-#~ msgstr "Диспетчер кэша"
-
-#, fuzzy
-#~ msgid "<a href=\"%1$s\" target=\"_blank\">%2$s</a>"
-#~ msgstr "<a href=\\\"%1$s\\\">%2$s</a>"
-
-#, fuzzy
-#~ msgid "404"
-#~ msgstr "Ошибка 404"
-
-#, fuzzy
-#~ msgid "EXIF"
-#~ msgstr "EXIF"
-
-#, fuzzy
-#~ msgid "EXPLAIN_SELECTS"
-#~ msgstr "EXPLAIN_SELECTS"
-
-#, fuzzy
-#~ msgid "FILTERS"
-#~ msgstr "Фильтры"
-
-#, fuzzy
-#~ msgid "IMAGE"
-#~ msgstr "изображение"
-
-#, fuzzy
-#~ msgid "LOCALE"
-#~ msgstr "locale %s не поддерживается вашим сервером."
-
-#, fuzzy
-#~ msgid "LOGIN"
-#~ msgstr "Вход"
-
-#, fuzzy
-#~ msgid "PLUGINS"
-#~ msgstr "плагины"
-
-#~ msgid "Functions"
-#~ msgstr "Функции"
-
-#, fuzzy
-#~ msgid ""
-#~ "Send the <em>deprecated</em> notification message if the function name is "
-#~ "checked. Un-checking these boxes will allow you to continue using your "
-#~ "theme without warnings while you upgrade its implementation. Functions "
-#~ "flagged with an asterisk are class methods. Ones flagged with two "
-#~ "asterisks have deprecated parameters."
-#~ msgstr ""
-#~ "Отправляет сообщение уведомления <em>устаревшим</em> , если проверяется "
-#~ "имя функции. Снятие флажка эти коробки позволит вам продолжать "
-#~ "использовать вашу тему без предупреждений при обновлении ее "
-#~ "осуществления. Функции, помеченные звездочкой являются методами класса. "
-#~ "Те, отмеченные с двумя звездочками устаревшие параметры."
-
-#~ msgid "Searches PHP scripts for use of deprecated functions."
-#~ msgstr "Поиск устаревших функций в PHP скриптах."
-
-#~ msgid "Check for update"
-#~ msgstr "Проверить обновления"
-
-#~ msgid "Deprecated"
-#~ msgstr "Устаревшие функции"
-
-#~ msgid "Counts of downloads"
-#~ msgstr "Статистическая информация о количестве загрузок с вашего сайта"
-
-#, fuzzy
-#~ msgid "Keyword threshold"
-#~ msgstr "Порог ключевое слово"
-
-#, fuzzy
-#~ msgid "Only keywords with at least this number of uses will be shown."
-#~ msgstr ""
-#~ "Только ключевые слова с по крайней мере это количество применений будет "
-#~ "показан."
-
-#, fuzzy
-#~ msgid "Manage published state of content in your gallery."
-#~ msgstr "Управление состоянием опубликованного контента в вашей галерее."
-
-#~ msgid "Search statistics"
-#~ msgstr "Статистика поиска"
-
-#~ msgid "Analyze searches"
-#~ msgstr "Анализ и статистика поисковых запросов"
-
-#, fuzzy
-#~ msgid "Analysis"
-#~ msgstr "Анализ"
-
-#, fuzzy
-#~ msgid "Seo"
-#~ msgstr "SEO"
-
-#, fuzzy
-#~ msgid "SEO Cleaner"
-#~ msgstr "SEO чистого"
-
-#, fuzzy
-#~ msgid "Make file and folder names in the Gallery SEO friendly."
-#~ msgstr "Сделать имена файлов и папок в галерее SEO дружественные."
-
-#, fuzzy
-#~ msgid "Generate or purge sitemap cache files."
-#~ msgstr "Создавать или очистить кэш файлов sitemap."
-
-#, fuzzy
-#~ msgid ""
-#~ "The scripts for which the cycle2 plugin is enabled. {If themes require it "
-#~ "they might set this, otherwise you need to do it manually!}"
-#~ msgstr ""
-#~ "Сценарии, для которых включен плагин cycle2. {Если темы требуют что они "
-#~ "могли бы установить это, в противном случае вы должны сделать это "
-#~ "вручную!}"
-
-#, fuzzy
-#~ msgid ""
-#~ "There are no other registered users who have provided an e-mail address."
-#~ msgstr ""
-#~ "Существует нет других зарегистрированных пользователей, которые "
-#~ "предоставили адрес электронной почты."
-
-#~ msgid ""
-#~ "A tool to send e-mails to all registered users who have provided an e-"
-#~ "mail address."
-#~ msgstr ""
-#~ "Утилита для рассылки писем всем зарегистрированным пользователям, которые "
-#~ "сообщили свой  e-mail адрес."
-
-#, fuzzy
-#~ msgid "Mailing"
-#~ msgstr "Рассылка email"
-
-#~ msgid "To:"
-#~ msgstr "Кому:"
-
-#~ msgid "Send another mail"
-#~ msgstr "Отправить новый e-mail"
-
-#, fuzzy
-#~ msgid "An importer for Wordpress posts and pages to Zenpage."
-#~ msgstr "Импортер для Wordpress постов и страниц Zenpage."
-
-#~ msgid "TitleLink:"
-#~ msgstr "Ссылка:"
-
-#~ msgid "Content:"
-#~ msgstr "Содержимое:"
-
-#~ msgid " descending"
-#~ msgstr " по убыванию"
-
-#~ msgid "Current sort: <em>%1$s%2$s</em>. "
-#~ msgstr "Текущая сортировка: <em>%1$s%2$s</em>. "
-
-#~ msgid "Current sort: <em>%1$s%2$s</em>."
-#~ msgstr "Текущая сортировка: <em>%1$s%2$s</em>."
-
-#, fuzzy
-#~ msgid ""
-#~ "Highlighted languages are not current with ZenPhoto20 v%1$s. (The version "
-#~ "of the out-of-date language is shown in braces.)"
-#~ msgstr ""
-#~ "Подсвеченные языковые пакеты не соответствуют Zenphoto версии %1$s. "
-#~ "(версия, для которой они создавались, указана в фигурных скобках). "
-#~ "Посетите <a href=\"%2$s\">translation repository</a> для загрузки новых "
-#~ "переводов Zenphoto и их обновления."
-
-#~ msgid "Charset:"
-#~ msgstr "Кодировка:"
-
-#~ msgid ""
-#~ "The character encoding to use internally. Leave at <em>Unicode (UTF-8)</"
-#~ "em> if you are unsure."
-#~ msgstr ""
-#~ "Кодировка текста вашей галереи. Если не уверены, оставьте <em>Юникод "
-#~ "(UTF-8)</em>."
-
-#~ msgid "Cache processing worker limit: %s."
-#~ msgstr ""
-#~ "Ограничивает количество рабочих процессов сервера, используемых в "
-#~ "создании кэша. Текущий лимит: %s."
-
-#, fuzzy
-#~ msgid "Gallery index page link:"
-#~ msgstr "Начало галереи"
-
-#~ msgid ""
-#~ "Password reset request.<br />You may now set admin usernames and "
-#~ "passwords."
-#~ msgstr ""
-#~ "Обновление пароля. <br/> Теперь вы можете установить имя пользователя и "
-#~ "пароль администратора."
-
-#~ msgid "<strong>%1$u</strong> Page"
-#~ msgid_plural "<strong>%1$u</strong> Pages"
-#~ msgstr[0] "<strong>%1$u</strong> Страница"
-#~ msgstr[1] "<strong>%1$u</strong> Страницы"
-#~ msgstr[2] "<strong>%1$u</strong> Страниц"
-
-#~ msgid "<strong>%1$u</strong> Page (%2$u un-published)"
-#~ msgid_plural "<strong>%1$u</strong> Pages (%2$u un-published)"
-#~ msgstr[0] "<strong>%1$u</strong> Страница (%2$u не опубликована)"
-#~ msgstr[1] "<strong>%1$u</strong> Страницы (%2$u не опубликовано)"
-#~ msgstr[2] "<strong>%1$u</strong> Страниц (%2$u не опубликовано)"
-
-#~ msgid "<strong>%1$u</strong> News"
-#~ msgid_plural "<strong>%1$u</strong> News"
-#~ msgstr[0] "<strong>%1$u</strong> Новость"
-#~ msgstr[1] "<strong>%1$u</strong> Новости"
-#~ msgstr[2] "<strong>%1$u</strong> Новостей"
-
-#~ msgid "<strong>%1$u</strong> News (%2$u un-published)"
-#~ msgid_plural "<strong>%1$u</strong> News (%2$u un-published)"
-#~ msgstr[0] "<strong>%1$u</strong> Новость (%2$u не опубликована)"
-#~ msgstr[1] "<strong>%1$u</strong> Новости (%2$u не опубликовано)"
-#~ msgstr[2] "<strong>%1$u</strong> Новостей (%2$u не опубликовано)"
-
-#~ msgid "<strong>%1$u</strong> Category"
-#~ msgid_plural "<strong>%1$u</strong> Categories"
-#~ msgstr[0] "<strong>%1$u</strong> Раздел"
-#~ msgstr[1] "<strong>%1$u</strong> Раздела"
-#~ msgstr[2] "<strong>%1$u</strong> Разделов"
-
-#~ msgid "Location/Place"
-#~ msgstr "Место"
-
-#~ msgid "%1$s: %2$s in %3$s on line %4$s"
-#~ msgstr "%1$s: %2$s в %3$s строка %4$s"
-
-#, fuzzy
-#~ msgid "No supported databases"
-#~ msgstr "Восстановить БД"
-
-#~ msgid "Request URI: [ <code>%s</code> ]"
-#~ msgstr "Запрос URI: [ <code>%s</code> ]"
-
-#~ msgid "Cache: [<code>%s</code>]"
-#~ msgstr "Кэш: [<code>%s</code>]"
-
-#~ msgid "Image: [<code>%s</code>]"
-#~ msgstr "Изображение: [<code>%s</code>]"
-
-#~ msgid "an unknown release"
-#~ msgstr "неизвестный релиз"
-
-#, fuzzy
-#~ msgid "PHP <code>Sessions</code> [problems with <em>save_save_path</em>]."
-#~ msgstr "PHP <code>Sessions</code> [похоже не работает]."
-
-#~ msgid "The filesystem character define is ISO-8859-1 [assumed]"
-#~ msgstr "Кодировка файловой системы ZenPhoto20 ISO-8859-1 [предположительно]"
-
-#~ msgid "You should enable the URL option <em>UTF8 image URIs</em>."
-#~ msgstr "Необходимо включить URL параметр <em>UTF8 image URIs</em>."
-
-#~ msgid "<a href=\"javascript:uri(true)\">Please do</a>"
-#~ msgstr "<a href=\"javascript:uri(true)\">Сделать!</a>"
-
-#~ msgid "You should disable the URL option <em>UTF8 image URIs</em>."
-#~ msgstr "Необходимо отключить свойство URL: <em>UTF8 image URIs</em>"
-
-#~ msgid "<a href=\"javascript:uri(false)\">Please do</a>"
-#~ msgstr "<a href=\"javascript:uri(false)\">Выполнить</a>"
-
-#~ msgid "About to create tables"
-#~ msgstr "Создаю таблицы"
-
-#~ msgid "Begin table creation"
-#~ msgstr "Создаю таблицу"
-
-#~ msgid "Query %1$s Failed. Error: %2$s"
-#~ msgstr "Запрос %1$s неудача! Ошибка: %2$s"
-
-#~ msgid "Table creation failure:<br />Query: %1$s<br />Error: %2$s"
-#~ msgstr "Создать таблицу не удалось:<br />Запрос: %1$s<br />Ошибка: %2$s"
-
-#~ msgid "Query ( %s ) Success."
-#~ msgstr "Запрос ( %s ) Успех."
-
-#~ msgid "Begin table updates"
-#~ msgstr "Обновляю таблицу"
-
-#~ msgid "Done with table create!"
-#~ msgstr "Таблица создана!"
-
-#~ msgid "Done with table create with errors!"
-#~ msgstr "Создание таблицы завершено с ошибками!"
-
-#~ msgid "Done with table update"
-#~ msgstr "Обновление таблицы завершено"
-
-#~ msgid "Done with table update with errors"
-#~ msgstr "Обновление таблицы завершено с ошибками"
-
-#, fuzzy
-#~ msgid "Previous Release was %s"
-#~ msgstr "Предыдущая страница"
-
-#~ msgid "Database tables to create: %s"
-#~ msgstr "Создать таблицы базы данных: %s"
-
-#~ msgid "Database tables to update: %s"
-#~ msgstr "Обновить таблицы базы данных: %s"
-
-#, fuzzy
-#~ msgid "Copyright %1$u: %2$s"
-#~ msgstr "Автор:"
-
-#~ msgid "Admin Toolbox"
-#~ msgstr "Инструментарий"
-
-#, fuzzy
-#~ msgid "Clone"
-#~ msgstr "копировать:"
-
-#, fuzzy
-#~ msgid "Plugin to generate file download lists."
-#~ msgstr "Включает ссылку на загрузку альбома ZIP файлом."
-
-#, fuzzy
-#~ msgid "Site rewrite rules tab."
-#~ msgstr "Обновление таблицы завершено"
-
-#, fuzzy
-#~ msgid "RSS suspended"
-#~ msgstr "RSS потоки"
-
-#, fuzzy
-#~ msgid "The RSS feed is currently not available."
-#~ msgstr "Избражение помечнено не видимым"
-
-#, fuzzy
-#~ msgid "The external feed is currently not available."
-#~ msgstr "Избражение помечнено не видимым"
-
-#~ msgid ""
-#~ "* This option may be set via the <a href=\"javascript:gotoName('sitemap-"
-#~ "extended');\"><em>sitemap-extended</em></a> plugin options."
-#~ msgstr ""
-#~ "* Этот параметр можно редактировать в настройках плагина <a href="
-#~ "\"javascript:gotoName('sitemap-extended');\"><em>sitemap-extended</em></"
-#~ "a>."
-
-#, fuzzy
-#~ msgid "Selector CSS"
-#~ msgstr "Select"
-
-#~ msgid "Album:"
-#~ msgstr "Альбом:"
-
-#~ msgid "Album folder:"
-#~ msgstr "Имя папки:"
-
-#~ msgid "(Click on image to include)"
-#~ msgstr "(Щёлкните на изображении, чтобы добавить его в текст)"
-
-#~ msgid "<em>Albumthumb</em>"
-#~ msgstr " <em>Мин.альбома</em>"
-
-#~ msgid "<strong>Note:</strong> This album does not contain any images."
-#~ msgstr "<strong>Замечание:</strong> В этом альбоме отсутствуют изображения."
-
-#~ msgid "(Click on article title to include a link)"
-#~ msgstr "(клик на названии добавляет ссылку в текст)"
-
-#~ msgid "*Select*"
-#~ msgstr "*Выбрать*"
-
-#~ msgid "(only direct links!)"
-#~ msgstr "(только прямые ссылки!)"
-
-#~ msgid "*Select an album*"
-#~ msgstr "*Выбрать альбом*"
-
-#~ msgid "(select variant below)"
-#~ msgstr "(выберите альбом из списка)"
-
-#~ msgid "What to include"
-#~ msgstr "Что добавлять"
-
-#~ msgid "Custom text"
-#~ msgstr "Пользовательский текст"
-
-#~ msgid "Custom thumbnail"
-#~ msgstr "Заказная миниатюра"
-
-#~ msgid "Custom size (un-cropped)"
-#~ msgstr "Заказной размер (без обрезки)"
-
-#~ msgid "Full image"
-#~ msgstr "Оригинал"
-
-#~ msgid "Title and description"
-#~ msgstr "Название и описание"
-
-#~ msgid "No description"
-#~ msgstr "Без описания"
-
-#~ msgid "Show image description"
-#~ msgstr "Описание изображения"
-
-#~ msgid "Show album description"
-#~ msgstr "Описание альбома"
-
-#~ msgid "Link type"
-#~ msgstr "Тип ссылки"
-
-#~ msgid "Link to image"
-#~ msgstr "Ссылка на изображение"
-
-#~ msgid "Link to full image"
-#~ msgstr "Ссылка на оригинал"
-
-#~ msgid "Link to album"
-#~ msgstr "Ссылка на альбом"
-
-#~ msgid "No link"
-#~ msgstr "Без ссылки"
-
-#~ msgid "Text wrap"
-#~ msgstr "Обтекание текстом"
-
-#~ msgid "No wrap"
-#~ msgstr "Без обтекания"
-
-#~ msgid ""
-#~ "This provides access to your images and albums (select from the "
-#~ "<em>Zenphoto</em> dropdown) as well as pages, news articles and news "
-#~ "categories (select from the <em>Zenpage</em> dropdown) to easily include "
-#~ "them in your pages and articles."
-#~ msgstr ""
-#~ "Позволяет добавлять в статьи и на страницы различные объекты вашей "
-#~ "галереи: изображения, альбомы, ссылки на другие страницы, новости и "
-#~ "разделы новостей."
-
-#, fuzzy
-#~ msgid ""
-#~ "Select <em>pages</em>, <em>articles</em> or <em>categories</em> to show a "
-#~ "list of these items. Click on a title to include a link. Hover of the "
-#~ "link to see an excerpt of the page or article. Un-published pages or "
-#~ "articles are marked with an “*” and protected with an “+”. There are no "
-#~ "further options."
-#~ msgstr ""
-#~ "В раскрывающемся списке <em>Zenpage</em> выберите <em>страницы</em>, "
-#~ "новостные <em>статьи</em> или <em>разделы</em> новостей. Щелчок мышью на "
-#~ "названии добавляет ссылку в редактируемый вами текст. Наведите курсор на "
-#~ "ссылку для просмотра фрагмента статьи или страницы. Неопубликованные "
-#~ "страницы маркированы звёздочкой (*), защищённые страницы маркированы "
-#~ "знаком плюс (+). Другие параметры отсутствуют."
-
-#, fuzzy
-#~ msgid ""
-#~ "Select an album to include images from into your page or article. Click "
-#~ "on the image to include it. Un-published albums or images are marked with "
-#~ "an “*”. You can also click on the magnify glass icon to see a preview of "
-#~ "the item. The preview opens in a colorbox showing the frontend/theme "
-#~ "view. The first thumbnail is always the thumbnail of the selected album. "
-#~ "It is titled <em>Albumthumb</em> and appears on every thumbnail page."
-#~ msgstr ""
-#~ "В раскрывающемся списке <em>Zenphoto</em> выберите альбом, изображения из "
-#~ "которого нужно добавить в статью или на страницу. Неопубликованные "
-#~ "альбомы и изображения маркированы звёздочкой (*). Для предварительного "
-#~ "просмотра изображений щёлкните на значке в виде линзы (мультимедиа файлы "
-#~ "будут открыты в Flowplayer, вне зависимости активирован плеер или нет). "
-#~ "Первой на всех страницах, отображается <em>Мин.альбома</em> - миниатюра "
-#~ "альбома."
-
-#~ msgid "Options on what to include"
-#~ msgstr "Что добавлять"
-
-#~ msgid ""
-#~ "Include the image itself, only its title, the title of its album, or some "
-#~ "custom text."
-#~ msgstr ""
-#~ "В этом разделе можно выбрать, что добавлять в редактируемый вами текст: "
-#~ "само изображение, только его название, название родительского альбома или "
-#~ "любой текст."
-
-#, fuzzy
-#~ msgid "Thumbnail: Size as set in theme’s options"
-#~ msgstr "Миниатюра: размер, заданный в настройках Zenphoto."
-
-#~ msgid "Custom size (un-cropped)."
-#~ msgstr "Заказной размер (без обрезки)"
-
-#~ msgid ""
-#~ "Full image: The original image directly. NOTE: Full image protection "
-#~ "options do not apply!."
-#~ msgstr ""
-#~ "Оригинал: полноразмерное исходное изображение. Замечание: защита "
-#~ "оригиналов игнорируется!"
-
-#, fuzzy
-#~ msgid ""
-#~ "Hint: If you need more space for your text use TinyMCE’s full screen mode "
-#~ "(Click the expend icon of editor’s control bar, near ZP icon)."
-#~ msgstr ""
-#~ "Подсказка: для работы с большим текстом используйте полноэкранный режим "
-#~ "редактора TinyMCE (синяя прямоугольная кнопка в верхнем ряду справа)"
-
-#~ msgid "(<strong>%1$u</strong> page)"
-#~ msgid_plural "(<strong>%1$u</strong> pages)"
-#~ msgstr[0] "(<strong>%1$u</strong> страница)"
-#~ msgstr[1] "(<strong>%1$u</strong> страницы)"
-#~ msgstr[2] "(<strong>%1$u</strong> страниц)"
-
-#~ msgid "(<strong>%1$u</strong> page, <strong>%2$u</strong> un-published)"
-#~ msgid_plural ""
-#~ "(<strong>%1$u</strong> pages, <strong>%2$u</strong> un-published)"
-#~ msgstr[0] ""
-#~ "(<strong>%1$u</strong> страница, <strong>%2$u</strong> неопубликована)"
-#~ msgstr[1] ""
-#~ "(<strong>%1$u</strong> страницы, <strong>%2$u</strong> неопубликованы)"
-#~ msgstr[2] ""
-#~ "(<strong>%1$u</strong> страниц, <strong>%2$u</strong> неопубликовано)"
-
-#~ msgid "(<strong>%1$u</strong> news)"
-#~ msgid_plural "(<strong>%1$u</strong> news)"
-#~ msgstr[0] "(<strong>%1$u</strong> новость)"
-#~ msgstr[1] "(<strong>%1$u</strong> новости)"
-#~ msgstr[2] "(<strong>%1$u</strong> новостей)"
-
-#~ msgid "(<strong>%1$u</strong> news, <strong>%2$u</strong> un-published)"
-#~ msgid_plural ""
-#~ "(<strong>%1$u</strong> news, <strong>%2$u</strong> un-published)"
-#~ msgstr[0] ""
-#~ "(<strong>%1$u</strong> новость, <strong>%2$u</strong> не опубликовано)"
-#~ msgstr[1] ""
-#~ "(<strong>%1$u</strong> новости, <strong>%2$u</strong> не опубликовано)"
-#~ msgstr[2] ""
-#~ "(<strong>%1$u</strong> новостей, <strong>%2$u</strong> не опубликовано)"
-
-#~ msgid "(<strong>%1$u</strong> category)"
-#~ msgid_plural "(<strong>%1$u</strong> categories)"
-#~ msgstr[0] "(<strong>%1$u</strong> раздел)"
-#~ msgstr[1] "(<strong>%1$u</strong> раздела)"
-#~ msgstr[2] "(<strong>%1$u</strong> разделов)"
-
-#~ msgid "XMP Rating"
-#~ msgstr "Рейтинг XMP"
-
-#~ msgid "Plugin:%s setup completed"
-#~ msgstr "Плагин:%s установка завершена"
-
-#, fuzzy
-#~ msgid "Theme:%s setup completed"
-#~ msgstr "Восстановление базы данных завершено"
-
-#~ msgid "Logon cool off"
-#~ msgstr "Срок действия блокировки"
-
-#, fuzzy
-#~ msgid "Mark installation as “released”."
-#~ msgstr "файлы установки"
-
-#~ msgid "Owner:"
-#~ msgstr "Владелец:"
-
-#~ msgid "Set as thumbnail for:"
-#~ msgstr "Миниатюра альбома:"
-
-#~ msgid "Image watermark:"
-#~ msgstr "Водяной знак:"
-
-#, fuzzy
-#~ msgid "Scan pending"
-#~ msgstr "по убыванию"
-
-#~ msgid "Order by date descending"
-#~ msgstr "Сортировать по дате (убывание)"
-
-#~ msgid "Order by date ascending"
-#~ msgstr "Сортировать по дате (возрастание)"
-
-#~ msgid ""
-#~ "If checked on the heading image will change daily rather than on each "
-#~ "page load."
-#~ msgstr ""
-#~ "Отметье, чтобы изображение в заголовке менялось 1 раз в день, а не при "
-#~ "каждой загрузке страницы."
-
-#, fuzzy
-#~ msgid "The Object you are requesting cannot be found."
-#~ msgstr "Объект Zenphoto, который вы запрашивали, не найден."
-
-#, fuzzy
-#~ msgid "Theme page"
-#~ msgstr "Логотип темы"
-
-#, fuzzy
-#~ msgid "The page you are requesting cannot be found."
-#~ msgstr "Объект Zenphoto, который вы запрашивали, не найден."
-
-#, fuzzy
-#~ msgid "Sorry, the page you are requesting cannot be found."
-#~ msgstr "Объект Zenphoto, который вы запрашивали, не найден."
-
-#~ msgid ""
-#~ "Thumbnail generation may be time consuming on slow servers on when there "
-#~ "are a lot of images."
-#~ msgstr ""
-#~ "При задержке отображения миниатюр альбомов на медленных серверах "
-#~ "используйте типовые миниатюры (не влияет на отображение альбомов в "
-#~ "галерее)"
-
-#~ msgid "Future publishing date."
-#~ msgstr "Дата публикации (в будущем)."
-
-#, fuzzy
-#~ msgid "show content"
-#~ msgstr "показать комментарии"
-
-#~ msgid ""
-#~ "<a href=\"javascript:toggle('albumpub');\" >Details</a> for <em>publish "
-#~ "albums by default</em>"
-#~ msgstr ""
-#~ "<a href=\"javascript:toggle('albumpub');\" >Подробнее</a> о "
-#~ "<em>публиковать альбомы по умолчанию</em>"
-
-#~ msgid ""
-#~ "<a href=\"javascript:toggle('imagepub');\" >Details</a> for <em>publish "
-#~ "images by default</em>"
-#~ msgstr ""
-#~ "<a href=\"javascript:toggle('imagepub');\" >Подробнее</a> о "
-#~ "<em>публиковать изображения по умолчанию</em>"
-
-#~ msgid ""
-#~ "<a href=\"javascript:toggle('albumdate');\" >Details</a> for <em>use "
-#~ "latest image date as album date</em>"
-#~ msgstr ""
-#~ "<a href=\"javascript:toggle('albumdate');\" >Подробнее</a> о "
-#~ "<em>датировать альбом новейшим изображением</em>"
-
-#~ msgid ""
-#~ "<a href=\"javascript:toggle('visualthumb');\" >Details</a> for <em>visual "
-#~ "thumb selection</em>"
-#~ msgstr ""
-#~ "<a href=\"javascript:toggle('visualthumb');\" >Подробнее</a> о "
-#~ "<em>визуальный выбор миниатюр</em>"
-
-#, fuzzy
-#~ msgid ""
-#~ "<a href=\"javascript:toggle('multithumb');\" >Details</a> for "
-#~ "<em>subalbum thumb selection</em>"
-#~ msgstr ""
-#~ "<a href=\"javascript:toggle('visualthumb');\" >Подробнее</a> о "
-#~ "<em>визуальный выбор миниатюр</em>"
-
-#, fuzzy
-#~ msgid "ExtraContent"
-#~ msgstr "Комментарий:"
-
-#~ msgid "1: Normal (0 deg)"
-#~ msgstr "1: Нормальная (0 град)"
-
-#~ msgid "%d: Unknown"
-#~ msgstr "%d: Неизвестно"
-
-#~ msgid "D55"
-#~ msgstr "D55"
-
-#~ msgid "D65"
-#~ msgstr "D65"
-
-#~ msgid "D75"
-#~ msgstr "D75"
-
-#~ msgid "D50"
-#~ msgstr "D50"
-
-#~ msgid "/10s"
-#~ msgstr "/10сек"
-
-#~ msgid "2x"
-#~ msgstr "2x"
-
-#~ msgid "4x"
-#~ msgstr "4x"
-
-#~ msgid "50"
-#~ msgstr "50"
-
-#~ msgid "100"
-#~ msgstr "100"
-
-#~ msgid "200"
-#~ msgstr "200"
-
-#~ msgid "400"
-#~ msgstr "400"
-
-#~ msgid "12"
-#~ msgstr "12"
-
-#~ msgid "13"
-#~ msgstr "13"
-
-#~ msgid "14"
-#~ msgstr "14"
-
-#~ msgid "15"
-#~ msgstr "15"
-
-#~ msgid "2s"
-#~ msgstr "2s"
-
-#, fuzzy
-#~ msgid "Updating the configuration file"
-#~ msgstr "Конфигурация текстового редактора"
-
-#~ msgid "prefix"
-#~ msgstr "префикс"
-
-#~ msgid "DB"
-#~ msgstr "БД"
-
-#, fuzzy
-#~ msgid "You must restore the setup files from the %1$s elease."
-#~ msgstr "Пожалуйста, загрузите установочные файлы из версии %1$s:"
-
-#~ msgid ""
-#~ "Welcome to ZenPhoto20! This page will set up the version %s on your web "
-#~ "server."
-#~ msgstr ""
-#~ "Добро пожаловать! Итак, приступим к установке ZenPhoto20 %s на ваш сервер."
-
-#, fuzzy
-#~ msgid "Updated configuration file"
-#~ msgstr "Конфигурация текстового редактора"
-
-#~ msgid "Database admin user"
-#~ msgstr "Имя пользователя базы данных"
-
-#~ msgid "Database admin password"
-#~ msgstr "Пароль базы данных"
-
-#, fuzzy
-#~ msgid "Invalid Textobject instantiation: file does not exist"
-#~ msgstr "Изображение не найдено; файл не существует."
-
-#, fuzzy
-#~ msgid "Languange"
-#~ msgstr "Язык:"
-
-#, fuzzy
-#~ msgid "Sub-Languange"
-#~ msgstr "Язык:"
-
-#, fuzzy
-#~ msgid "Languange String"
-#~ msgstr "Язык:"
-
-#, fuzzy
-#~ msgid "Zenphoto browser cookies found."
-#~ msgstr "Файлы ядра Zenphoto"
-
-#~ msgid ""
-#~ "* This option may be set via the <a href=\"javascript:gotoName('dynamic-"
-#~ "locale');\"><em>dynamic-locale</em></a> plugin options."
-#~ msgstr ""
-#~ "* Этот параметр можно редактировать в настройках плагина <a href="
-#~ "\"javascript:gotoName('dynamic-locale');\"><em>dynamic-locale</em></a> ."
-
-#~ msgid ""
-#~ "* This option may be set via the <a href=\"javascript:"
-#~ "gotoName('html_meta_tags');\"><em>html_meta_tags</em></a> plugin options."
-#~ msgstr ""
-#~ "* Этот параметр можно редактировать в настройках плагина <a href="
-#~ "\"javascript:gotoName('html_meta_tags');\"><em>html_meta_tags</em></a>."
-
-#, fuzzy
-#~ msgid "restore screen"
-#~ msgstr "Восстановление базы данных завершено"
-
-#, fuzzy
-#~ msgid "repeat off"
-#~ msgstr "повторить:"
-
-#~ msgid ""
-#~ "* These options may be set via the <a href=\"javascript:"
-#~ "gotoName('menu_manager');\"><em>menu_manager</em></a> plugin options."
-#~ msgstr ""
-#~ "* Эти параметры можно редактировать в настройках плагина <a href="
-#~ "\"javascript:gotoName('menu_manager');\"><em>menu_manager</em></a>."
-
-#, fuzzy
-#~ msgid "Target does not exists in <em>%1$s</em> theme"
-#~ msgstr "Не возвращать результаты по <em>новостям</em>"
-
-#~ msgid ""
-#~ "* These options may be set via the <a href=\"javascript:"
-#~ "gotoName('print_album_menu');\"><em>print_album_menu</em></a> plugin "
-#~ "options."
-#~ msgstr ""
-#~ "* Эти параметры можно редактировать в настройках плагина <a href="
-#~ "\"javascript:gotoName('print_album_menu');\"><em>print_album_menu</em></"
-#~ "a>."
-
-#, fuzzy
-#~ msgid "Set Security log permissions"
-#~ msgstr "Файлы ядра Zenphoto"
-
-#, fuzzy
-#~ msgid "tinyZenpage plugin"
-#~ msgstr "Включить CMS плагин Zenpage "
-
-#, fuzzy
-#~ msgid "Custom image size"
-#~ msgstr "Пользовательский"
-
-#, fuzzy
-#~ msgid "Custom thumb crop - size"
-#~ msgstr "Настройка миниатюры"
-
-#, fuzzy
-#~ msgid "Custom thumb crop - width"
-#~ msgstr "Настройка миниатюры"
-
-#, fuzzy
-#~ msgid "Custom thumb crop - height"
-#~ msgstr "Настройка миниатюры"
-
-#, fuzzy
-#~ msgid "image with link to image"
-#~ msgstr "Ссылка на изображение"
-
-#~ msgid "*no group affiliation"
-#~ msgstr "*не состоит в группах"
-
-#~ msgid "Future publishing date:"
-#~ msgstr "Дата публикации (в будущем):"
-
-#, fuzzy
-#~ msgid "newPage"
-#~ msgstr "Новая страница"
-
-#~ msgid ""
-#~ "<strong>Note:</strong> Scheduled publishing is not active unless the "
-#~ "article is also set to <em>published</em>"
-#~ msgstr ""
-#~ "<strong>Замечание:</strong> Отложенная публикация не будет активна, пока "
-#~ "объекту не присвоено значение <em>Опубликовано</em>"
-
-#~ msgid "Expiration date:"
-#~ msgstr "Срок действия:"
-
-#~ msgid "ExtraContent:"
-#~ msgstr "Дополнительно:"
-
-#~ msgid "Scheduled for published"
-#~ msgstr "Отложено для публикации"
-
-#~ msgid "Publish immediately (skip scheduling)"
-#~ msgstr "Опубликовать сейчас (отменить ожидание публикации)"
-
-#~ msgid "Enable scheduled publishing"
-#~ msgstr "Включить отложенную публикацию"
-
-#~ msgid "Image page"
-#~ msgstr "Страница изображения"
-
-#~ msgid "Simpleviewer"
-#~ msgstr "Simpleviewer"
-
-#, fuzzy
-#~ msgid "Image gallery"
-#~ msgstr "Просмотр галереи"
-
-#~ msgid "Effervescence %s (not found)"
-#~ msgstr "Effervescence %s (не найден)"
-
-#~ msgid "Zenphoto gallery"
-#~ msgstr "галерея Zenphoto"
-
-#~ msgid "View Gallery Without Flash"
-#~ msgstr "Посмотреть галерею без Flash"
-
-#~ msgid "Open In New Window"
-#~ msgstr "Открыть в новом окне"
-
-#~ msgid "1 image"
-#~ msgstr "1 изображение"
-
-#~ msgid "1 album,&nbsp;1 image"
-#~ msgstr "1 альбом,&nbsp;1 изображение"
-
-#~ msgid "%u album,&nbsp;1 image"
-#~ msgstr "%u альбом,&nbsp;1 изображение"
-
-#~ msgid "%1$u album,&nbsp;%2$u images"
-#~ msgstr "%1$u альбом,&nbsp;%2$u изображений"
-
-#~ msgid "1 album"
-#~ msgstr "1 альбом"
-
-#~ msgid "1 album,&nbsp;%u images"
-#~ msgstr "1 альбом,&nbsp;%u изображений"
-
-#~ msgid "images %1$u-%2$u of %3$u"
-#~ msgstr "изображения %1$u-%2$u из %3$u"
-
-#~ msgid "next page"
-#~ msgstr "следующая страница"
-
-#~ msgid "SHOW"
-#~ msgstr "ПОКАЗАТЬ"
-
-#~ msgid "HIDE"
-#~ msgstr "СКРЫТЬ"
-
-#~ msgid "No comments yet"
-#~ msgstr "Пока нет комментариев"
-
-#~ msgid "%u comment so far"
-#~ msgid_plural "%u comments so far"
-#~ msgstr[0] "Пока %u комментарий"
-#~ msgstr[1] "Пока %u комментария"
-#~ msgstr[2] "Пока %u комментариев"
-
-#~ msgid "Link to Comment %u"
-#~ msgstr "Ссылка на комментарий %u"
-
-#~ msgid "%s wrote:"
-#~ msgstr "%s написал:"
-
-#~ msgid "Contact form"
-#~ msgstr "Обратная связь"
-
-#~ msgid ""
-#~ "<a href=\"http://stopdesign.com/templates/photos/\">Photo Templates</a> "
-#~ "from Stopdesign"
-#~ msgstr ""
-#~ "<a href=\"http://stopdesign.com/templates/photos/\">Фотошаблоны</a> от "
-#~ "Stopdesign"
-
-#~ msgid "All galleries"
-#~ msgstr "Все галереи"
-
-#~ msgid "1 album,&nbsp;%u image"
-#~ msgid_plural "1 album,&nbsp;%u images"
-#~ msgstr[0] "1 альбом,&nbsp;%u изображение"
-#~ msgstr[1] "1 альбом,&nbsp;%u изображения"
-#~ msgstr[2] "1 альбом,&nbsp;%u изображений"
-
-#~ msgid "%1$u album,&nbsp;%2$s"
-#~ msgid_plural "%1$u albums,&nbsp;%2$s"
-#~ msgstr[0] "%1$u альбом,&nbsp;%2$s"
-#~ msgstr[1] "%1$u альбома,&nbsp;%2$s"
-#~ msgstr[2] "%1$u альбомов,&nbsp;%2$s"
-
-#~ msgid "Gallery Feeds"
-#~ msgstr "Ленты Новостей"
-
-#~ msgid "Photos"
-#~ msgstr "Изображения"
-
-#~ msgid "%1$u of %2$u images"
-#~ msgstr "%1$u из %2$u изображений"
-
-#~ msgid "Full Size"
-#~ msgstr "Полный размер"
-
-#~ msgid ""
-#~ "<a href=\"http://stopdesign.com/templates/photos/\">Photo Templates</a> "
-#~ "from Stopdesign."
-#~ msgstr ""
-#~ "<a href=\"http://stopdesign.com/templates/photos/\">Фотошаблоны</a> от "
-#~ "Stopdesign."
-
-#~ msgid "Recently Updated Galleries"
-#~ msgstr "Последние Обновления"
-
-#~ msgid "View album: %s"
-#~ msgstr "Посмотреть альбом: %s"
-
-#~ msgid "Recent images"
-#~ msgstr "Недавние изображения"
-
-#~ msgid "View image:"
-#~ msgstr "Посмотреть изображение:"
-
-#~ msgid "Gallery data"
-#~ msgstr "Статистика"
-
-#~ msgid "Galleries"
-#~ msgstr "Галереи"
-
-#~ msgid "A password is required"
-#~ msgstr "Для доступа введите пароль"
-
-#~ msgid "%u albums,&nbsp;1 image"
-#~ msgstr "%u альбомов,&nbsp;1 изображение"
-
-#~ msgid "%1$u albums,&nbsp;%2$u images"
-#~ msgstr "%1$u альбомов,&nbsp;%2$u изображений"
-
-#~ msgid "%u albums"
-#~ msgstr "%u альбомов"
-
-#~ msgid "Mini slide selector"
-#~ msgstr "Минислайд селектор"
-
-#~ msgid "Select what you want for the six special slides."
-#~ msgstr ""
-#~ "Выберите, чтобы вы хотели видеть на 6 минислайдах главной страницы "
-#~ "галереи."
-
-#~ msgid "Ported to Zenphoto by Mark Galeassi and Stephen Billard"
-#~ msgstr "адаптация для Zenphoto: Mark Galeassi и Stephen Billard"
-
-#~ msgid ""
-#~ "A theme based on the design from <a href=\"http://stopdesign.com/"
-#~ "templates/photos/\">Douglas Bowman</a>. This theme is licensed under the "
-#~ "<a href=\"http://creativecommons.org/licenses/by-nc-sa/2.5/\">Creative "
-#~ "Commons Attribution-NonCommercial-ShareAlike 2.5</a> License."
-#~ msgstr ""
-#~ "Тема основана на дизайне <a href=\"http://stopdesign.com/templates/photos/"
-#~ "\">Douglas Bowman</a>. Лицензия: <a href=\"http://creativecommons.org/"
-#~ "licenses/by-nc-sa/2.5/\">Creative Commons Attribution-NonCommercial-"
-#~ "ShareAlike 2.5</a>."
-
-#~ msgid "Email%s:"
-#~ msgstr "Email%s:"
-
-#~ msgid "(not displayed)"
-#~ msgstr "(не отображается)"
-
-#~ msgid "URL%s:"
-#~ msgstr "URL%s:"
-
-#~ msgid "City:%s"
-#~ msgstr "Город:%s"
-
-#~ msgid "Country:%s"
-#~ msgstr "Страна:%s"
-
-#~ msgid "Private comment:"
-#~ msgstr "Личное:"
-
-#~ msgid "(don't publish)"
-#~ msgstr "(не публиковать)"
-
-#~ msgid "Post"
-#~ msgstr "Отправить"
-
-#~ msgid "Avoid clicking &ldquo;Post&rdquo; more than once."
-#~ msgstr "Не нажимайте кнопку <em>Отправить</em> дважды."
-
-#~ msgid "Back to the album list"
-#~ msgstr "Вернуться к списку альбомов"
-
-#~ msgid "Hitcounters have been reset"
-#~ msgstr "Счетчики посещений обнулены"
-
-#~ msgid "expand all fields"
-#~ msgstr "развернуть все поля"
-
-#~ msgid "collapse all fields"
-#~ msgstr "свернуть все поля"
-
-#~ msgid "View image on website"
-#~ msgstr "Просмотреть изображение на странице Галереи"
-
-#~ msgid "show more fields"
-#~ msgstr "показать больше полей"
-
-#~ msgid "show fewer fields"
-#~ msgstr "показать меньше полей"
-
-#~ msgid "User guide"
-#~ msgstr "Руководство пользователя"
-
-#~ msgid "Forum"
-#~ msgstr "Форум"
-
-#~ msgid "Bugtracker"
-#~ msgstr "Bugtracker"
-
-#, fuzzy
-#~ msgid "tools"
-#~ msgstr "закрыт для голосования"
-
-#~ msgid "utilities"
-#~ msgstr "инструменты"
-
-#~ msgid "comment"
-#~ msgstr "комментарии"
-
-#~ msgid "%s log maximum size changed."
-#~ msgstr "Максимальный размер отчета %s изменен."
-
-#~ msgid "Delete %s"
-#~ msgstr "Удалить %s"
-
-#~ msgid "Reset %s"
-#~ msgstr "Очистить %s"
-
-#~ msgid "Download %s ZIP file"
-#~ msgstr "Скачать %s в виде ZIP архива "
-
-#~ msgid "Log file size limit"
-#~ msgstr "Ограничение размера отчета"
-
-#~ msgid "Your passwords did not match"
-#~ msgstr "Ваши пароли не совпадают"
-
-#~ msgid "See the troubleshooting guide on zenphoto.org for details."
-#~ msgstr "Для деталей смотрите гид по поиску несправностей на zenphoto.org."
-
-#~ msgid "restricted"
-#~ msgstr "ограниченная"
-
-#~ msgid ""
-#~ "Restricted galleries are private galleries but users may see only their "
-#~ "managed albums."
-#~ msgstr ""
-#~ "Ограниченная галерея - это частная галерея, в которой пользователи могут "
-#~ "видеть альбомы, находящиеся под их управлением."
-
-#~ msgid ""
-#~ "<a href=\"javascript:toggle('gallerysessions');\" >Details</a> for "
-#~ "<em>enable gallery sessions</em>"
-#~ msgstr ""
-#~ "<a href=\"javascript:toggle('gallerysessions');\" >Подробнее</a> о "
-#~ "<em>использовать сессии</em>"
-
-#~ msgid ""
-#~ "<a href=\"javascript:toggle('cookie_persistence');\" >Details</a> for "
-#~ "<em>Cookie duration</em>"
-#~ msgstr ""
-#~ "<a href=\"javascript:toggle('cookie_persistence');\" >Подробнее</a> о "
-#~ "<em>Сохранять куки</em>"
-
-#~ msgid "partial"
-#~ msgstr "частично"
-
-#~ msgid "exact"
-#~ msgstr "точно"
-
-#~ msgid ""
-#~ "Search does partial matches on all fields selected with the possible "
-#~ "exception of <em>Tags</em>. This means that if the field contains the "
-#~ "search criteria anywhere within it a result will be returned. If "
-#~ "<em>exact</em> is selected for <em>Tags</em> then the search criteria "
-#~ "must exactly match the tag for a result to be returned."
-#~ msgstr ""
-#~ "При выполнении поиска учитываются частичные соответствия на всех полях. "
-#~ "Это означает, что если поле содержит поисковый критерий в любой своей "
-#~ "части, результат будет возвращён. При выборе варианта <em>точно</em> для "
-#~ "поля <em>Метки</em>, результат будет возвращён только, если поисковый "
-#~ "запрос полностью соответствует какой-либо метке."
-
-#~ msgid "Images RSS"
-#~ msgstr "RSS изображений"
-
-#~ msgid "Albums RSS"
-#~ msgstr "RSS альбомов"
-
-#~ msgid "RSS cache"
-#~ msgstr "RSS кэш"
-
-#~ msgid "Enabled"
-#~ msgstr "Включить"
-
-#~ msgid "RSS cache expire"
-#~ msgstr "Срок действия RSS кэша"
-
-#~ msgid "RSS hitcounter"
-#~ msgstr "Счетчик посещений"
-
-#~ msgid "RSS title"
-#~ msgstr "Название RSS"
-
-#, fuzzy
-#~ msgid "Revert"
-#~ msgstr "Сбросить"
-
-#~ msgid "Expand plugin options"
-#~ msgstr "Показать настройки всех плагинов"
-
-#~ msgid "Collapse all plugin options"
-#~ msgstr "Скрыть настройки всех плагинов"
-
-#, fuzzy
-#~ msgid "third party plugin"
-#~ msgstr "Сторонние плагины"
-
-#, fuzzy
-#~ msgid ""
-#~ "Check your configuration file to make sure you've got the right username, "
-#~ "password, host, and database. If you haven't created the database yet, "
-#~ "now would be a good time."
-#~ msgstr ""
-#~ "Убедитесь, что файл zp-config.php содержит правильное имя пользователя, "
-#~ "пароль, хост и базу данных. Если вы ещё не создали базу данных, то "
-#~ "сделайте это сейчас."
-
-#~ msgid "Sort the tags alphabetically"
-#~ msgstr "Сортировать метки в алфавитном порядке"
-
-#~ msgid "Sort the tags by most used"
-#~ msgstr "Сортировать метки по частоте использования"
-
-#~ msgid "Delete tags from the gallery"
-#~ msgstr "Удалить метки из галереи"
-
-#~ msgid "Delete all the tags checked above."
-#~ msgstr "Удалить все метки, отмеченные выше."
-
-#, fuzzy
-#~ msgid "Apply all the changes entered above."
-#~ msgstr "Сохранить все изменения, введенные выше."
-
-#~ msgid "Add all the tags entered above."
-#~ msgstr "Добавить все метки, указанные выше."
-
-#~ msgid "Set %s as your theme"
-#~ msgstr "Сделать %s вашей темой оформления"
-
-#~ msgid "Assign %s as your album theme"
-#~ msgstr "Назначить %s темой оформления альбома"
-
-#~ msgid "Edit %s"
-#~ msgstr "Редактировать %s"
-
-#~ msgid "Delete this %s"
-#~ msgstr "Удалить %s"
-
-#~ msgid "Duplicate %s"
-#~ msgstr "Создать копию %s"
-
-#~ msgid ""
-#~ "Zenphoto may be unable to perform uploads when PHP Safe Mode restrictions "
-#~ "are in effect"
-#~ msgstr ""
-#~ "Zenphoto может быть не в состояние загрузить, когда PHP Safe Mode в "
-#~ "действие"
-
-#~ msgid "Upload handler:"
-#~ msgstr "Выбор загрузчика:"
-
-#~ msgid "You must supply a password"
-#~ msgstr "Вы должны ввести пароль"
-
-#, fuzzy
-#~ msgid "Bad RSS feed:"
-#~ msgstr "RSS потоки"
-
-#~ msgid "Mail send failed. "
-#~ msgstr "Отправка почты закончилась неудачей."
-
-#, fuzzy
-#~ msgid "The Imagick font size (in pixels). Default is <strong>%s</strong>."
-#~ msgstr ""
-#~ "Размер шрифта защитного кода (в пикселах). <strong>%s</strong> по "
-#~ "умолчанию."
-
-#~ msgid ""
-#~ "See also the Zenphoto online documentation: <a href=\"%1$s\">%2$s</a>"
-#~ msgstr ""
-#~ "Смотри также онлайн документацию Zenphoto: <a href=\"%1$s\">%2$s</a>"
-
-#~ msgid ""
-#~ "Please reinstall the following setup files from the %1$s [%2$s] release:"
-#~ msgstr ""
-#~ "Пожалуйста, заново установите следующие файлы из версии %1$s [%2$s] :"
-
-#, fuzzy
-#~ msgid ""
-#~ "Powered by <a href=\"http://www.zenphoto.org\" title=\"A simpler web album"
-#~ "\"><span id=\"zen-part\">zen</span><span id=\"photo-part\">PHOTO</span></"
-#~ "a>"
-#~ msgstr ""
-#~ "Powered by <a href=\"http://www.zenphoto.org\" title=\"A simpler web "
-#~ "photo album\"><font face=\"Arial Narrow\" size=\"4\">zen</font><span "
-#~ "style=\"font-variant: small-caps; font-weight: 700\"><font face=\"Arial "
-#~ "Black\" size=\"1\">photo</font></span></a> (<a href=\"http://www.1nc.ru/"
-#~ "blog/category/zenphoto/\" title=\"Zenphoto по-русски\">по-русски</a>)"
-
-#~ msgid "Upgrade from before Zenphoto v1.2"
-#~ msgstr "Обновление с версии предшествующей Zenphoto v1.2"
-
-#~ msgid "Upgrade from Zenphoto v%s"
-#~ msgstr "Обновление с версии Zenphoto v%s"
-
-#, fuzzy
-#~ msgid "Reinstalling current Zenphoto release"
-#~ msgstr "Обновление текущего выпуска Zenphoto"
-
-#, fuzzy
-#~ msgid "reinstall"
-#~ msgstr "Включить"
-
-#~ msgid "Setup"
-#~ msgstr "Установка"
-
-#~ msgid "[%u release skipped]"
-#~ msgid_plural "[%u releases skipped]"
-#~ msgstr[0] "[%u версия пропущена]"
-#~ msgstr[1] "[%u версии пропущено]"
-#~ msgstr[2] "[%u версий пропущено]"
-
-#~ msgid ""
-#~ "We do not test upgrades that skip releases. We recommend you upgrade in "
-#~ "sequence."
-#~ msgstr ""
-#~ "Мы не тестируем обновления минующие предыдущие версии Zenphoto! "
-#~ "Рекомендуется последовательная установка всех предыдущих выпусков. "
-
-#~ msgid "Log security"
-#~ msgstr "Отчет безопасности"
-
-#~ msgid ""
-#~ "We strongly recommend disabling <code>magic_quotes_gpc</code>. For more "
-#~ "information See <em><a href=\"http://www.zenphoto.org/news/"
-#~ "troubleshooting-zenphoto#what-is-magic_quotes_gpc-and-why-should-it-be-"
-#~ "disabled-\">What is magic_quotes_gpc and why should it be disabled?</a></"
-#~ "em> in the Zenphoto troubleshooting guide."
-#~ msgstr ""
-#~ "Настоятельно рекомендуется отключить <code>magic_quotes_gpc</code>. "
-#~ "Подробнее см. <em><a href=\"http://www.zenphoto.org/news/troubleshooting-"
-#~ "zenphoto#26\">Что такое magic_quotes_gpc и почему их надо отключить?</a></"
-#~ "em> (англ)."
-
-#, fuzzy
-#~ msgid ""
-#~ "See the <a  href=\"http://www.zenphoto.org/news/troubleshooting-"
-#~ "zenphoto#24\">troubleshooting guide</a> on zenphoto.org for details."
-#~ msgstr "Для деталей смотрите гид по поиску несправностей на zenphoto.org."
-
-#~ msgid "<em>zenphoto.cfg</em> file"
-#~ msgstr "Файл <em>zenphoto.cfg</em>"
-
-#~ msgid "Database <code>access rights</code>"
-#~ msgstr "База данных <code>access rights</code>"
-
-#~ msgid "Failed to delete: %s"
-#~ msgstr "Не получилось удалить: %s"
-
-#~ msgid ""
-#~ "<strong>NOTE:</strong> We strongly recommend you remove the <em>setup</"
-#~ "em> scripts from your zp-core folder at this time. You can always re-"
-#~ "upload them should you find you need them again in the future."
-#~ msgstr ""
-#~ "<strong>Замечание:</strong> Настоятельно рекомендуется удалить "
-#~ "установочные скрипты именно сейчас. При необходимости их всегда можно "
-#~ "загрузить заново."
-
-#~ msgid "Delete setup files"
-#~ msgstr "Удалить файлы установки"
-
-#~ msgid "%s deleted."
-#~ msgstr "%s удалено."
-
-#~ msgid ""
-#~ "See the <a href=\"http://www.zenphoto.org/news/troubleshooting-"
-#~ "zenphoto#24\">troubleshooting guide</a> on zenphoto.org for details."
-#~ msgstr ""
-#~ "Подробнее см. <a href=\"http://www.zenphoto.org/news/troubleshooting-"
-#~ "zenphoto#24\">troubleshooting guide</a> (англ)."
-
-#~ msgid "Show PHP Information"
-#~ msgstr "PHP Инфо"
-
-#~ msgid "Display PHP information."
-#~ msgstr "Показать конфигурацию PHP вашего сервера. "
-
-#~ msgid "PHPInfo"
-#~ msgstr "PHPInfo"
-
-#~ msgid "PHP Info"
-#~ msgstr "Информация"
-
-#~ msgid "Provides file handling in tinyMCE and the \"files\" upload tab."
-#~ msgstr ""
-#~ "Файловый менеджер на закладке Загрузить -> Файлы и в текстовом редакторе "
-#~ "tinyMCE"
-
-#~ msgid ""
-#~ "Checks if there is a Zenphoto versions that is newer than the installed "
-#~ "version."
-#~ msgstr "Проверка обновлений Zenphoto."
-
-#~ msgid "Zenphoto download page"
-#~ msgstr "Страница загрузки Zenphoto"
-
-#~ msgid "A new version of Zenphoto version is available."
-#~ msgstr "Доступна новая версия Zenphoto."
-
-#, fuzzy
-#~ msgid "Removes setup files."
-#~ msgstr "Удалить файлы установки"
-
-#~ msgid "Check if CAPTCHA should be required."
-#~ msgstr ""
-#~ "Если отмечено, будет отображаться защитный код (ввод его обязателен)."
-
-#~ msgid "Message"
-#~ msgstr "Сообщение"
-
-#~ msgid "clear width and height fields"
-#~ msgstr "очистить поля высота и ширина"
-
-#~ msgid "Use getHitcounter()."
-#~ msgstr "Используйте getHitcounter()."
-
-#~ msgid "Use printRating()."
-#~ msgstr "Используйте printRating()."
-
-#~ msgid "Use printImageMetadata()."
-#~ msgstr "Используйте printImageMetadata()."
-
-#~ msgid "Use printCustomSizedImageMaxSpace()."
-#~ msgstr "Используйте printCustomSizedImageMaxSpace()."
-
-#~ msgid "Use getCommentDateTime()."
-#~ msgstr "Используйте getCommentDateTime()."
-
-#~ msgid "Use truncate_string()."
-#~ msgstr "Использйте truncate_string()."
-
-#~ msgid "Use getImageMetaData()."
-#~ msgstr "Используйте getImageMetaData()."
-
-#~ msgid "Use getAlbumLocation()."
-#~ msgstr "Используйте getAlbumLocation()."
-
-#~ msgid "Use printAlbumLocation()."
-#~ msgstr "Используйте printAlbumLocation()."
-
-#~ msgid "Use printField()."
-#~ msgstr "Используйте Use printField()."
-
-#~ msgid "Use rewrite_path()."
-#~ msgstr "Используйте rewrite_path()."
-
-#~ msgid "Use printTags()."
-#~ msgstr "Используйте printTags()."
-
-#~ msgid "Use getNumAlbums()."
-#~ msgstr "Используйте getNumAlbums()."
-
-#~ msgid "Use getAllAlbums()."
-#~ msgstr "Используйте getAllAlbums()."
-
-#~ msgid "Use printZenpageItemsBreadcrumb()."
-#~ msgstr "Используйте printZenpageItemsBreadcrumb()."
-
-#~ msgid "The google-maps plugin is deprecated. Convert to GoogleMap."
-#~ msgstr "Плагин google-maps устарел. Установите GoogleMap."
-
-#~ msgid "Use downloadList plugin <code>printDownloadLinkAlbumZip()</code>."
-#~ msgstr ""
-#~ "Используйте плагин downloadList <code>printDownloadLinkAlbumZip()</code>."
-
-#~ msgid "Download a zip file of this album"
-#~ msgstr "Загрузить альбом ZIP архивом "
-
-#~ msgid "Use printImageThumb()."
-#~ msgstr "Используйте printImageThumb()."
-
-#~ msgid "Use $_zp_current_image->getID()."
-#~ msgstr "Используйте $_zp_current_image->getID()."
-
-#~ msgid ""
-#~ "Blocks access from an IP address which has had multiple failed logon "
-#~ "attempts."
-#~ msgstr ""
-#~ "Блокирует IP адреса, с которых производятся постоянные неудачные попытки "
-#~ "аутентификации."
-
-#~ msgid "Attempt threshold"
-#~ msgstr "Порог срабатывания"
-
-#~ msgid "Minutes to cool off"
-#~ msgstr "Срок действия"
-
-#~ msgid "The block will be removed after this waiting period."
-#~ msgstr ""
-#~ "Блокировка будет снята через указанный промежуток времени (в минутах)"
-
-#~ msgid "Enable <strong>flowplayer 3</strong> to handle multimedia files."
-#~ msgstr ""
-#~ "Подключает <strong>flowplayer 3</strong> для показа файлов мультимедиа"
-
-#~ msgid ""
-#~ "<strong>IMPORTANT</strong>: Only one multimedia player plugin can be "
-#~ "enabled at the time and the class-video plugin must be enabled, too."
-#~ msgstr ""
-#~ "<strong>ВАЖНО:</strong> Подключить можно только один мультимедиа плеер, "
-#~ "также необходимо включить плагин class-video."
-
-#~ msgid ""
-#~ "Please see <a href='http://flowplayer.org'>flowplayer.org</a> for more "
-#~ "info about the player and its license."
-#~ msgstr ""
-#~ "Подробная информация о плеере и его лицензии см. <a href='http://"
-#~ "flowplayer.org'>flowplayer.org</a>"
-
-#, fuzzy
-#~ msgid "high"
-#~ msgstr "высота ="
-
-#, fuzzy
-#~ msgid "Controls border color"
-#~ msgstr "Комментарии закрыты"
-
-#~ msgid "Background color"
-#~ msgstr "Цвет фона"
-
-#, fuzzy
-#~ msgid "Controls progress bar color"
-#~ msgstr "Комментарии закрыты"
-
-#, fuzzy
-#~ msgid "Splash image"
-#~ msgstr "1 изображение"
-
-#, fuzzy
-#~ msgid "Video scale"
-#~ msgstr "сохранить"
-
-#, fuzzy
-#~ msgid "MP3 cover image"
-#~ msgstr "% от изображения"
-
-#, fuzzy
-#~ msgid "Splash image - playlist"
-#~ msgstr "Использовать дату последнего изображения"
-
-#~ msgid ""
-#~ "Limits the number of images that can be uploaded to an album via the "
-#~ "Zenphoto upload."
-#~ msgstr ""
-#~ "Ограничивает количество объектов, которые могут быть загружены в альбом "
-#~ "через загрузчик Zenphoto."
-
-#~ msgid "Upload limit"
-#~ msgstr "Лимит загрузки"
-
-#~ msgid ""
-#~ "The maximum number of images per album if uploading via the multifile "
-#~ "upload."
-#~ msgstr "Максимальное количество изображений которое можно загружа в альбом"
-
-#~ msgid "Disable new album creation"
-#~ msgstr "Отключить создание новых альбомов"
-
-#~ msgid "Enable <strong>jPlayer</strong> to handle multimedia files."
-#~ msgstr "Подключает <strong>jPlayer</strong> для показа файлов мультимедиа."
-
-#~ msgid "Use this plugin is to enable using older third party spam filters."
-#~ msgstr ""
-#~ "Используйте для подключения устаревших СПАМ фильтров сторонних "
-#~ "производителей."
-
-#, fuzzy
-#~ msgid "Select the legacy spam filter to be used."
-#~ msgstr "Протокол передачи почты, который будет использован."
-
-#, fuzzy
-#~ msgid ""
-#~ "<strong>Note:</strong> Address fields are handled by the "
-#~ "<em>comment_form</em> plugin."
-#~ msgstr ""
-#~ "<strong>Замечание:</strong> Пользовательское меню <em>%s</em> использует "
-#~ "плагин <em>print_album_menu</em>."
-
-#~ msgid "User registration page"
-#~ msgstr "Страница регистрации пользователей"
-
-#~ msgid ""
-#~ "If checked, CAPTCHA validation will be required for user registration."
-#~ msgstr ""
-#~ "Если отмечено, то для успешной регистрации потребуется ввести защитный "
-#~ "код."
-
-#~ msgid "*no page selected"
-#~ msgstr "*страница не выбрана"
-
-#, fuzzy
-#~ msgid "Albums to clean:"
-#~ msgstr "Дата альбома:"
-
-#, fuzzy
-#~ msgid "No image names needed cleaning."
-#~ msgstr "Нет изображений, соответствующих критерию."
-
-#~ msgid ""
-#~ "Tiny MCE<span id='tinymceversion'></span> text editor for backend "
-#~ "<em>textareas</em>"
-#~ msgstr ""
-#~ "Текстовый редактор панели управления Tiny MCE<span id='tinymceversion'></"
-#~ "span>"
-
-#, fuzzy
-#~ msgid "Flowplayer width"
-#~ msgstr "tinyZenpage - Flowplayer ширина"
-
-#, fuzzy
-#~ msgid "Flowplayer height"
-#~ msgstr "tinyZenpage - Flowplayer высота"
-
-#~ msgid "<em>flash</em> image upload handler."
-#~ msgstr "Загрузчик изображений <em>flash</em>"
-
-#~ msgid "Visit gallery page"
-#~ msgstr "Посетить страницу галереи"
-
-#~ msgid "New in <em>%2$s</em>%1$s: %3$s"
-#~ msgstr "Новое в альбоме <em>%2$s</em> %1$s: %3$s"
-
-#~ msgid ""
-#~ "Set to enable the CombiNews feature to show news articles and latest "
-#~ "gallery items together on the news section's overview page(s)."
-#~ msgstr ""
-#~ "Функция CombiNews (комбинированные новости) автоматически добавляет "
-#~ "обновления объектов галереи в виде новостей, наряду с другими новостными "
-#~ "статьями."
-
-#~ msgid ""
-#~ "<strong>Note:</strong> Images/albums and news articles are still "
-#~ "separate, your Zenphoto gallery is not touched in any way!"
-#~ msgstr ""
-#~ "<strong>Замечание:</strong> Включение CombiNews никак не затрагивает "
-#~ "содержимое вашей галереи!"
-
-#~ msgid "CombiNews: Mode"
-#~ msgstr "CombiNews: режим"
-
-#~ msgid "latest images: sized image"
-#~ msgstr "изображения: фиксированный размер"
-
-#~ msgid "latest images: sized image maxspace"
-#~ msgstr "изображения: sized image maxspace"
-
-#~ msgid "latest images: thumbnail"
-#~ msgstr "изображения: миниатюра"
-
-#~ msgid "latest images: thumbnail-customcrop"
-#~ msgstr "изображения: заказная миниатюра"
-
-#~ msgid "latest images: full image"
-#~ msgstr "изображения: оригинал"
-
-#~ msgid "latest albums: sized image"
-#~ msgstr "альбомы: фиксированный размер"
-
-#~ msgid "latest albums: sized image maxspace"
-#~ msgstr "альбомы: sized image maxspace"
-
-#~ msgid "latest albums: thumbnail"
-#~ msgstr "альбомы: миниатюра"
-
-#~ msgid "latest albums: thumbnail-customcrop"
-#~ msgstr "альбомы: заказная миниатюра"
-
-#~ msgid "latest albums: full image"
-#~ msgstr "альбомы: оригинал"
-
-#~ msgid "latest images by album: thumbnail"
-#~ msgstr "обновления по альбомам: миниатюра"
-
-#~ msgid "latest images by album: thumbnail-customcrop"
-#~ msgstr "обновления по альбомам: заказная миниатюра"
-
-#~ msgid "latest images by album: sized image"
-#~ msgstr "обновления по альбомам: фикс. размер"
-
-#~ msgid "latest images by album: sized image maxspace"
-#~ msgstr "обновления по альбомам: sized image maxspace"
-
-#~ msgid "latest images by album: full image"
-#~ msgstr "обновления по альбомам: оригинал"
-
-#~ msgid ""
-#~ "What you want to show within the CombiNews section.<br /><ul><li>Latest "
-#~ "images: Entries for all images ever added</li><li>Latest albums: Entries "
-#~ "for all albums ever created</li><li>Latest images by album: Entries for "
-#~ "all images but grouped by images that have been added within a day to "
-#~ "each album (Scheme: 'x new images in album y on date z')</li></ul> "
-#~ "<em>maxspace</em> means that an uncropped image fitting max. width x max. "
-#~ "height as set on the thumbnail width and height options is used (not for "
-#~ "multimedia items!)."
-#~ msgstr ""
-#~ "Что будет отображаться с помощью функции CombiNews:<br /"
-#~ "><ul><li>Изображения: Все новые изображения по мере их добавления</"
-#~ "li><li>Альбомы: Все новые альбомы по мере их создания</li><li>Обновления "
-#~ "по альбомам: Все новые изображения, сгруппированные по альбомам, куда они "
-#~ "были единовременно добавлены (Схема: 'X новых изображений в альбоме Y за "
-#~ "такую-то дату')</li></ul> <em>maxspace</em> means that an uncropped image "
-#~ "fitting max. width x max. height as set on the thumbnail width and height "
-#~ "options is used (not for multimedia items!)."
-
-#~ msgid "CombiNews: Sized image size"
-#~ msgstr "CombiNews: фиксированный размер изображения"
-
-#~ msgid ""
-#~ "The size of the sized image shown the CombiNews section <em>(only in "
-#~ "latest images-sizedimage or latest albums-sizedimage mode)</em>."
-#~ msgstr ""
-#~ "The size of the sized image shown the CombiNews section <em>(only in "
-#~ "latest images-sizedimage or latest albums-sizedimage mode)</em>."
-
-#~ msgid "CombiNews: Sort order"
-#~ msgstr "CombiNews: <br />порядок сортировки"
-
-#~ msgid "id"
-#~ msgstr "id"
-
-#~ msgid "publishdate"
-#~ msgstr "дата публикации"
-
-#~ msgid ""
-#~ "The sort order for your gallery items within the CombiNews display except "
-#~ "for <em>latest images by album</em> which is by date or mtime only. "
-#~ "<ul><li>'date' (date order)</li><li>'id' (added to db order)</"
-#~ "li><li>'mtime' (upload order)</li><li>'publishdate' (manual publish date "
-#~ "order - you might get really funny results if this is not set!)</li></ul>"
-#~ msgstr ""
-#~ "Порядок сортировки объектов галереи при использовании функции CombiNews "
-#~ "(в режиме <em>обновления по альбомам</em> доступна только сортировка по "
-#~ "<em>дате</em> и <em>дате (на сервере)</em>. <ul><li>'дата'</"
-#~ "li><li>'id' (порядок добавления в БД)</li><li>'дата на сервере' (порядок "
-#~ "загрузки)</li><li>'дата публикации' (определяется вручную - возможны "
-#~ "непредсказуемые результаты, если параметр не задан!)</li></ul>"
-
-#~ msgid "CombiNews: Gallery link"
-#~ msgstr "CombiNews: ссылка"
-
-#, fuzzy
-#~ msgid "CombiNews: Thumbnail crop width"
-#~ msgstr "Настройка миниатюры"
-
-#~ msgid ""
-#~ "For <em>thumbnail custom crop</em> only. Leave empty if you don't want to "
-#~ "use it."
-#~ msgstr ""
-#~ "Только для <em>заказных миниатюр</em>. Оставьте поле пустым, если не "
-#~ "используете."
-
-#, fuzzy
-#~ msgid "CombiNews: Thumbnail crop height"
-#~ msgstr "Настройка миниатюры"
-
-#~ msgid "CombiNews: Thumbnail width"
-#~ msgstr "CombiNews: <br />ширина миниатюры"
-
-#~ msgid ""
-#~ "For <em>thumbnail custom crop</em> and <em>sized image maxspace</em> "
-#~ "variants only. Leave empty if you don't want to use it. For <em>maxspace</"
-#~ "em> this is the max width of the uncropped sized image."
-#~ msgstr ""
-#~ "Только для <em>заказных миниатюр</em> и <em>sized image maxspace</em>. "
-#~ "Оставьте поле пустым, если не используете. For <em>maxspace</em> this is "
-#~ "the max width of the uncropped sized image."
-
-#~ msgid "CombiNews: Thumbnail height"
-#~ msgstr "CombiNews: <br />высота миниатюры"
-
-#~ msgid ""
-#~ "For <em>thumbnail custom crop</em> and <em>sized image maxspace</em> "
-#~ "variants only. Leave empty if you don't want to use it. For <em>maxspace</"
-#~ "em> this is the max height of the uncropped sized image."
-#~ msgstr ""
-#~ "Только для <em>заказных миниатюр</em> и <em>sized image maxspace</em>. "
-#~ "Оставьте поле пустым, если не используете. For <em>maxspace</em> this is "
-#~ "the max height of the uncropped sized image."
-
-#~ msgid "CombiNews: Thumbnail crop x axis"
-#~ msgstr "CombiNews: <br />обрезка миниатюры по оси X"
-
-#~ msgid "CombiNews: Thumbnail crop y axis"
-#~ msgstr "CombiNews: <br />обрезка миниатюры по оси Y"
-
-#~ msgid "CombiNews: Show image description"
-#~ msgstr "CombiNews: <br />описание изображения"
-
-#~ msgid ""
-#~ "Set to show the image description with every item if using the CombiNews "
-#~ "mode <em>latest images by album</em> only. Printed as a paragraph."
-#~ msgstr ""
-#~ "Показывать описание изображения для каждого объекта, при использовании "
-#~ "CombiNews (только для режима <em>обновления по альбомам</em>)."
-
-#~ msgid "CombiNews: Show image title"
-#~ msgstr "CombiNews: <br />название изображения"
-
-#~ msgid ""
-#~ "Set to show the image title with every item if using the CombiNews mode "
-#~ "<em>latest images by album</em> only. Printed as h4-headline."
-#~ msgstr ""
-#~ "Показывать название изображения для каждого объекта, при использовании "
-#~ "CombiNews (только для режима <em>обновления по альбомам</em>)."
-
-#, fuzzy
-#~ msgid "CombiNews: Custom title"
-#~ msgstr "CombiNews: заголовок новости (множественное число)"
-
-#~ msgid "CombiNews: Custom title - Number of image titles"
-#~ msgstr "CombiNews: количество названий в заголовке"
-
-#~ msgid ""
-#~ "How many images titles you want to show with the <em>latest images by "
-#~ "album</em> title."
-#~ msgstr ""
-#~ "Сколько названий изображений показывать в заголовке новости (только для "
-#~ "режима <em>обновления по альбомам</em>)."
-
-#~ msgid ""
-#~ "How many of the new images you want to show in the <em>latest images by "
-#~ "album</em> article. Empty for all."
-#~ msgstr ""
-#~ "Сколько изображений показывать в новостях. Пустое поле означает "
-#~ "показывать все. (только для режима <em>обновления по альбомам</em>)."
-
-#~ msgid "Adds a Zenphoto donations block to the admin overview page."
-#~ msgstr ""
-#~ "Помещает блок сбора пожертвований на закладке <em>Общие</em> панели "
-#~ "управления."
-
-#~ msgid "Like using Zenphoto? Donate!"
-#~ msgstr "Нравится Zenphoto? Поддержи!"
-
-#~ msgid ""
-#~ "Your support helps pay for the Zenphoto site server and helps development "
-#~ "of Zenphoto. Thank you!"
-#~ msgstr ""
-#~ "Ваша помощь пойдёт на оплату сайта Zenphoto.org и дальнейшее развитие "
-#~ "проекта. Спасибо!"
-
-#~ msgid ""
-#~ "Places the latest 3 news articles from Zenphoto.org on the admin overview "
-#~ "page."
-#~ msgstr ""
-#~ "Помещает 3 последних новости сайта Zenphoto.org на закладке <em>Общие</"
-#~ "em> панели управления"
-
-#~ msgid "News from Zenphoto.org"
-#~ msgstr "Новости Zenphoto.org"
-
-#, fuzzy
-#~ msgid "Failed to retrieve link <em>%s</em>"
-#~ msgstr " <em>%s</em> папка"
-
-#~ msgid "A connection to <em>Zenphoto.org</em> could not be established."
-#~ msgstr "Соединение с <em>Zenphoto.org</em> не установлено."
-
-#~ msgid "Clone Zenphoto"
-#~ msgstr "Клонировать Zenphoto"
-
-#~ msgid "*Required"
-#~ msgstr "*Обязательны для заполнения"
-
-#, fuzzy
-#~ msgid "back to Zenphoto"
-#~ msgstr "Наверх"
-
-#, fuzzy
-#~ msgid "Target no longer exists"
-#~ msgstr "Текст для логотипа темы"
-
-#~ msgid "Menu Manager options"
-#~ msgstr "Настройки Менеджера Меню"
-
-#, fuzzy
-#~ msgid "All Zenpage news categories"
-#~ msgstr "Все галереи"
-
-#, fuzzy
-#~ msgid "You must provide at least one recipient email address."
-#~ msgstr "Необходимо загрузить, как минимум один файл."
-
-#, fuzzy
-#~ msgid " mailer is not supported."
-#~ msgstr "locale %s не поддерживается вашим сервером."
-
-#, fuzzy
-#~ msgid "Could not execute: "
-#~ msgstr "Невозможно сохранить!"
-
-#, fuzzy
-#~ msgid "Could not instantiate mail function."
-#~ msgstr "Не могу создать zip-файл."
-
-#, fuzzy
-#~ msgid "Could not access file: "
-#~ msgstr "Не могу создать zip-файл."
-
-#~ msgid "Unknown encoding: "
-#~ msgstr "Неизвестная кодировка:"
-
-#~ msgid "SMTP server error: "
-#~ msgstr "Ошибка SMTP сервера:"
-
-#, fuzzy
-#~ msgid "Enter"
-#~ msgstr "Ввод"
-
-#~ msgid ""
-#~ "The ajaxFilemanager plugin is currently disabled. To use this feature, "
-#~ "enable the plugin from the <em>plugins</em> tab."
-#~ msgstr ""
-#~ "Плагин ajaxFilemanager в данный момент отключен. Его можно активировать "
-#~ "на закладке <em>плагины</em>."
-
-#, fuzzy
-#~ msgid "You do not have the <em>Rights</em> to access the filemanager."
-#~ msgstr "Вы не имеете достаточно прав редактировать %s."
-
-#~ msgid "Do you want to replace the file %s?"
-#~ msgstr "Вы действительно хотите заменить файл %s?"
-
-#, fuzzy
-#~ msgid "Zenphoto supported file types | all files"
-#~ msgstr "Файлы ядра Zenphoto"
-
-#~ msgid ""
-#~ "There appears to be no <em>Flash</em> plugin installed in your browser."
-#~ msgstr "Вероятно в вашем браузере не установлен <em>Flash</em> плагин."
-
-#~ msgid "Expired: %s"
-#~ msgstr "Срок действия истёк: %s"
-
-#~ msgid "Expires: %s"
-#~ msgstr "Истекает: %s"
-
-#~ msgid " [%u item]"
-#~ msgid_plural " [%u items]"
-#~ msgstr[0] "[%u объектов]"
-#~ msgstr[1] "[%u объекта]"
-#~ msgstr[2] "[%u объектов]"
-
-#~ msgid "You are not installing the latest version of Zenphoto."
-#~ msgstr "Вы устанавливаете НЕ самую последнюю версию Zenphoto."
-
-#~ msgid "Version %s is available."
-#~ msgstr "Доступна версия %s."
-
-#~ msgid "Imagick filter"
-#~ msgstr "Фильтр Imagick"
-
-#~ msgid ""
-#~ "Amount of memory allocated to Gmagick/Imagick in megabytes. Set to "
-#~ "<strong>0</strong> for unlimited memory."
-#~ msgstr ""
-#~ "Количество памяти в мегабайтах, выделенной для Gmagick/Imagick. "
-#~ "Установите значение <strong>0</strong> для неограниченной памяти."
-
-#~ msgid "There is no .htaccess file"
-#~ msgstr "Отсутствует файл .htaccess"
-
-#~ msgid "Album thumbnail."
-#~ msgstr "Миниатюра альбома"
-
-#, fuzzy
-#~ msgid "tag set!"
-#~ msgstr "метки"
-
-#, fuzzy
-#~ msgid ""
-#~ "Check this option if you are having issues with password and other cookie "
-#~ "data not being retained. Setting the option causes zenphoto to use "
-#~ "sessions rather than cookies."
-#~ msgstr ""
-#~ "Отметьте этот параметр, если куки с паролями на альбомы не сохраняются. "
-#~ "Zenphoto будет использовать сессии вместо куков."
-
-#~ msgid "Spam filter:"
-#~ msgstr "СПАМ фильтр:"
-
-#~ msgid "The SPAM filter plug-in you wish to use to check comments for SPAM"
-#~ msgstr "Выберите СПАМ фильтр для проверки комментариев."
-
-#~ msgid "CAPTCHA generator:"
-#~ msgstr "Генератор CAPTCHA:"
-
-#~ msgid "Select the <em>CAPTCHA</em> generator to be used by Zenphoto."
-#~ msgstr "Выберите из списка тип генератора защитного кода <em>CAPTCHA</em>."
-
-#~ msgid "Method Not Allowed"
-#~ msgstr "Неразрешенный метод"
-
-#~ msgid "settings"
-#~ msgstr "Установки"
-
-#, fuzzy
-#~ msgid "Authorization class <em>%s</em> is active."
-#~ msgstr "Статья <em>%s</em> обновлена"
-
-#, fuzzy
-#~ msgid "Administrator class <em>%s</em> is active."
-#~ msgstr "Статья <em>%s</em> обновлена"
-
-#~ msgid ""
-#~ "Password hash seed: <span><small style=\"color:gray\">%s</small></span>"
-#~ msgstr ""
-#~ "Алгоритм хеша пароля: <span><small style=\"color:gray\">%s</small></span>"
-
-#~ msgid "Zenphoto upgrade"
-#~ msgstr "Обновление Zenphoto"
-
-#~ msgid "Zenphoto setup"
-#~ msgstr "Установка Zenphoto"
-
-#~ msgid "Connect to the database [You have not provided a database name]"
-#~ msgstr "Соединение с Базой Данных [Вы не указали имя базы данных]"
-
-#~ msgid "Provide the name of your database in the form above."
-#~ msgstr "Укажите имя вашей базы данных в форме выше."
-
-#, fuzzy
-#~ msgid "<strong>Backtrace:</strong>"
-#~ msgstr "<strong>Метки:</strong>"
-
-#, fuzzy
-#~ msgid "Database folder"
-#~ msgstr "Пользователь"
-
-#, fuzzy
-#~ msgid "Set theme default options for %s completed"
-#~ msgstr "Применить"
-
-#~ msgid "You are running the latest zenphoto version."
-#~ msgstr "У вас установлена последняя версия zenphoto."
-
-#~ msgid ""
-#~ "Could not connect to <a href=\"http://www.zenphoto.org\">zenphoto.org</a>"
-#~ msgstr ""
-#~ "Не могу установить связь с <a href=\"http://www.zenphoto.org/\">www."
-#~ "zenphoto.org</a>"
-
-#~ msgid "zenphoto version %s is available."
-#~ msgstr "доступна версия zenphoto %s."
-
-#~ msgid "Example1"
-#~ msgstr "Стиль1"
-
-#~ msgid "Example2"
-#~ msgstr "Стиль2"
-
-#~ msgid "Example3"
-#~ msgstr "Стиль3"
-
-#~ msgid "Example4"
-#~ msgstr "Стиль4"
-
-#~ msgid "Example5"
-#~ msgstr "Стиль5"
-
-#~ msgid "Custom (theme based)"
-#~ msgstr "Пользовательский"
-
-#~ msgid "Mail address"
-#~ msgstr "Адрес e-mail"
-
-#~ msgid "Title field"
-#~ msgstr "Название"
-
-#~ msgid "Company field"
-#~ msgstr "Компания"
-
-#~ msgid "Company field."
-#~ msgstr "Компания"
-
-#~ msgid "Street field"
-#~ msgstr "Улица"
-
-#~ msgid "City field"
-#~ msgstr "Город"
-
-#~ msgid "State field"
-#~ msgstr "Область"
-
-#~ msgid "Postal code field"
-#~ msgstr "Индекс"
-
-#~ msgid "Country field"
-#~ msgstr "Страна"
-
-#~ msgid "E-mail field"
-#~ msgstr "E-mail"
-
-#~ msgid "Phone field"
-#~ msgstr "Телефон"
-
-#~ msgid "Phone number field"
-#~ msgstr "Телефон"
-
-#~ msgid "Subject field"
-#~ msgstr "Тема"
-
-#~ msgid "Message field"
-#~ msgstr "Текст сообщения"
-
-#~ msgid "XSRF access blocked"
-#~ msgstr "XSRF атака блокирована"
-
-#~ msgid "Blocked access"
-#~ msgstr "Доступ блокирован"
-
-#, fuzzy
-#~ msgid "Close site"
-#~ msgstr "длинная сторона"
-
-#~ msgid "%1$u new items in <em>%2$s</em>: %3$s"
-#~ msgstr "%1$u новых объектов в альбоме %2$s: %3$s"
-
-#~ msgid "CombiNews: Custom title (singular)"
-#~ msgstr "CombiNews: заголовок новости (единственное число)"
-
-#~ msgid ""
-#~ "Custom title for the article in sprintf() syntax. %1$u = number of new "
-#~ "items, %2$s = title of the album they are in, %3$s = titles of the new "
-#~ "items. Never leave any of these three out! (<em>latest images by album</"
-#~ "em> option only)."
-#~ msgstr ""
-#~ "Заголовок новости в формате sprintf(). %1$u = количество новых объектов, "
-#~ "%2$s = название альбома, в котором они появились, %3$s = названия новых "
-#~ "объектов. Наличие всех трёх переменных обязательно! (только для режима "
-#~ "<em>обновления по альбомам</em>)"
-
-#~ msgid "Finished!"
-#~ msgstr "Завершено!"
-
-#, fuzzy
-#~ msgid "Sitemap cache cleared"
-#~ msgstr "Кэш был удален."
-
-#~ msgid "Prev Page"
-#~ msgstr "Предыдущая страница"
-
-#~ msgid "First Page"
-#~ msgstr "Первая страница"
-
-#~ msgid "30 per page"
-#~ msgstr "30 на странице"
-
-#~ msgid "60 per page"
-#~ msgstr "60 на странице"
-
-#~ msgid "Version: %s"
-#~ msgstr "Версия: %s"
-
-#, fuzzy
-#~ msgid "Album Utilities"
-#~ msgstr "Название альбома"
-
-#, fuzzy
-#~ msgid "Image Utilities"
-#~ msgstr "Страница изображения"
-
-#~ msgid "See also the <a href=\"%1$s\">%2$s</a>"
-#~ msgstr "Смотри также <a href=\"%1$s\">%2$s</a>"
-
-#, fuzzy
-#~ msgid "Connect to the database [Database does not exist]"
-#~ msgstr "Восстановить БД"
-
-#~ msgid "next &raquo;"
-#~ msgstr "далее &raquo;"
-
-#~ msgid "&laquo; prev"
-#~ msgstr "&laquo; назад"
-
-#, fuzzy
-#~ msgid "For the best viewing experience"
-#~ msgstr "Для лучшего просмотра"
-
-#~ msgid "get Adobe Flash."
-#~ msgstr "получить Adobe Flash."
-
-#~ msgid ""
-#~ "Simpleviewer requires <em>mod_rewrite</em> to be set. Simpleviewer is "
-#~ "disabled."
-#~ msgstr ""
-#~ "Simpleviewer требует включенный <em>mod_rewrite</em>. Simpleviewer "
-#~ "выключен."
-
-#~ msgid "ZIP file download"
-#~ msgstr "Загрузка ZIP архивом"
-
-#~ msgid "Slimbox"
-#~ msgstr "Slimbox"
-
-#~ msgid "Smoothgallery"
-#~ msgstr "Smoothgallery"
-
-#~ msgid ""
-#~ "Based on Effervescence 1.1 with multiple personalities (slimbox, "
-#~ "simpleviewer and smoothgallery) added. Select different color schemes and "
-#~ "personalities from the Admin Options tab."
-#~ msgstr ""
-#~ "Тема основана на Effervescence 1.1 с различными средставми визуализации "
-#~ "(slimbox, simpleviewer и smoothgallery) и цветовыми схемами, которые мы "
-#~ "можете выбрать в настройках темы."
-
-#~ msgid "Next album &raquo;"
-#~ msgstr "Следующий альбом &raquo;"
-
-#~ msgid "&laquo; Prev Album"
-#~ msgstr "&laquo; Предыдущий альбом"
-
-#~ msgid "Next &raquo;"
-#~ msgstr "Далее &raquo;"
-
-#~ msgid "&laquo; Previous"
-#~ msgstr "&laquo; Назад"
-
-#, fuzzy
-#~ msgid "prev thumbs"
-#~ msgstr "&laquo; назад"
-
-#~ msgid "Album cache purged"
-#~ msgstr "Кэш альбома удален"
-
-#~ msgid "Codeblock 2"
-#~ msgstr "Блок кода 2"
-
-#~ msgid "Codeblock 3"
-#~ msgstr "Блок кода 3"
-
-#~ msgid "Tags added selected items"
-#~ msgstr "Метки добавлены для выбранных обьектов"
-
-#~ msgid "GPLv2"
-#~ msgstr "GPLv2"
-
-#~ msgid "repeat:"
-#~ msgstr "Повторить:"
-
-#~ msgid "Resets all hitcounters in the album."
-#~ msgstr "Сбросить все счетчики хитов в этом альбоме."
-
-#~ msgid ""
-#~ "Forces a refresh of the EXIF and IPTC data for all images in the album."
-#~ msgstr ""
-#~ "Форсированное обновление EXIF- и IPTC-данных для всех изображений в "
-#~ "альбоме."
-
-#~ msgid "upload to album"
-#~ msgstr "разрешить загрузку обьектов в альбом"
-
-#~ msgid "edit album"
-#~ msgstr "редактировать альбом"
-
-#, fuzzy
-#~ msgid "Security log"
-#~ msgstr "Безопасная почта"
-
-#, fuzzy
-#~ msgid "Debug log"
-#~ msgstr "Отладка"
-
-#~ msgid "enable persistent archives"
-#~ msgstr "включить постоянные архивы"
-
-#~ msgid ""
-#~ "Put a checkmark here to re-serve Zip Archive files if you are using the "
-#~ "optional template function <em>printAlbumZip()</em> to enable visitors of "
-#~ "your site to download images of an album as .zip files. If not checked "
-#~ "that .zip file will be regenerated each time."
-#~ msgstr ""
-#~ "Если вы применяете на страницах галереи функцию <em>printAlbumZip()</em>, "
-#~ "позволяющую пользователям скачивать изображения в виде .zip архивов, этот "
-#~ "параметр разрешает повторное их использование.  Если опция отключена, то "
-#~ "архивы создаются заново при каждом запросе."
-
-#, fuzzy
-#~ msgid "You must supply a password for the Protected image user"
-#~ msgstr "Вы должны ввести гостевой пароль для поиска."
-
-#~ msgid "Automatically rotate images based on the EXIF orientation setting."
-#~ msgstr ""
-#~ "Автоматически поворачивать изображения, в соответствии с данными из EXIF"
-
-#~ msgid "hide all description details"
-#~ msgstr "скрыть описания всех плагинов"
-
-#~ msgid "hide all"
-#~ msgstr "скрыть детали"
-
-#~ msgid "show all description details"
-#~ msgstr "показать описания всех плагинов"
-
-#~ msgid "show all"
-#~ msgstr "показать детали"
-
-#~ msgid "<strong>Error parsing <em>plugin_URL</em> string!</strong>."
-#~ msgstr "<strong>Ошибка анализа строки <em>plugin_URL</em>!</strong>."
-
-#~ msgid "toggle description details"
-#~ msgstr "показать/скрыть описание плагина"
-
-#~ msgid "You must supply a password for the Gallery guest user"
-#~ msgstr "Ваш должны ввести гостевой пароль для галереи."
-
-#~ msgid "Could not create zip file."
-#~ msgstr "Не могу создать zip-файл."
-
-#~ msgid "Could not create bzip2 file."
-#~ msgstr "Не могу создать bzip2-файл."
-
-#~ msgid "Could not create gzip file."
-#~ msgstr "Не могу создать gzip-файл."
-
-#~ msgid "Could not add %s to archive because the filename is too long."
-#~ msgstr ""
-#~ "Не смог добавить %s в архив, пототому что имя файла имеет недопустимую "
-#~ "длину."
-
-#~ msgid ""
-#~ "SQLite Error: Zenphoto received the error <em>%s</em> when connecting to "
-#~ "the database server."
-#~ msgstr ""
-#~ "Ошибка SQLite: Zenphoto вернул ошибку <em>%s</em> при соединении с "
-#~ "сервером базы данных."
-
-#~ msgid ""
-#~ "%1$s Error: Zenphoto received the error <em>%2$s</em> from the database "
-#~ "server."
-#~ msgstr ""
-#~ "Ошибка %1$s: Zenphoto вернул ошибку <em>%2$s</em> от сервера базы данных."
-
-#, fuzzy
-#~ msgid " - latest images"
-#~ msgstr "RSS лента новых изображений"
-
-#, fuzzy
-#~ msgid "latest images"
-#~ msgstr "RSS лента новых изображений"
-
-#~ msgid "Unknown author"
-#~ msgstr "Неизвестный автор"
-
-#~ msgid "<strong>Theme description error!</strong>"
-#~ msgstr "<strong>Ошибка в описании темы!</strong>"
-
-#~ msgid "Unknown date"
-#~ msgstr "Неизвестная дата"
-
-#~ msgid "Minimum number of characters a password must contain."
-#~ msgstr "Минимальное количество знаков, из которых состоит пароль."
-
-#~ msgid "Password characters:"
-#~ msgstr "Знаки в пароле:"
-
-#~ msgid ""
-#~ "Passwords must contain at least one of the characters from each of the "
-#~ "groups. Groups are separated by \"|\". (Use \"\\|\" to represent the \"|"
-#~ "\" character in the groups.)"
-#~ msgstr ""
-#~ "Пароли должны содержать, как минимум, по одному знаку из каждой группы. "
-#~ "Группы разделяются знаком \"|\". (Используйте \"\\|\" для отображения "
-#~ "знака \"|\" в группах)"
-
-#~ msgid "Password must be at least %u characters"
-#~ msgstr "Минимальное количество знаков в пароле: %u"
-
-#~ msgid ""
-#~ "<strong>Note:</strong> passwords must be at least %1$u characters long "
-#~ "and contain at least one character from %2$s."
-#~ msgid_plural ""
-#~ "<strong>Note</strong>: passwords must be at least %1$u characters long "
-#~ "and contain at least one character from each of the following groups: "
-#~ "%2$s."
-#~ msgstr[0] ""
-#~ "<strong>Внимание:</strong> минимальное число знаков в пароле %1$u и он "
-#~ "должен содержать как минимум один знак из %2$s."
-#~ msgstr[1] ""
-#~ "<strong>Внимание:</strong> минимальное число знаков в пароле %1$u и он "
-#~ "должен содержать как минимум по одному знаку из каждой группы: %2$s."
-#~ msgstr[2] ""
-#~ "<strong>Внимание:</strong> минимальное число знаков в пароле %1$u и он "
-#~ "должен содержать как минимум по одному знаку из каждой группы: %2$s."
-
-#~ msgid "View news"
-#~ msgstr "Просмотр"
-
-#~ msgid "View pages"
-#~ msgstr "Просмотр"
-
-#~ msgid "View albums"
-#~ msgstr "Просмотр"
-
-#~ msgid "Users with this right may view all albums (and their images)."
-#~ msgstr "Разрешить просмотр всех альбомов галереи (включая изображения)."
-
-#, fuzzy
-#~ msgid "strict+"
-#~ msgstr "Описание"
-
-#, fuzzy
-#~ msgid "General file security"
-#~ msgstr "Безопасность"
-
-#~ msgid "Edit this image"
-#~ msgstr "Редактировать изображение"
-
-#~ msgid "select search fields"
-#~ msgstr "выберите критерии поиска"
-
-#, fuzzy
-#~ msgid "Clear search"
-#~ msgstr "Разрешить поиск"
-
-#, fuzzy
-#~ msgid "Reset search"
-#~ msgstr "Сбросить"
-
-#~ msgid "%s (1 new image)"
-#~ msgstr "%s (1 новое изображение)"
-
-#~ msgid "%1$s (%2$s new images)"
-#~ msgstr "%1$s (%2$s новых изображений)"
-
-#~ msgid "%1$s (%2$s images)"
-#~ msgstr "%1$s (%2$s изображений)"
-
-#, fuzzy
-#~ msgid "Query ( <em>%1$s</em> ) failed. Error: %2$s"
-#~ msgstr "<em>%1$s</em> добавил(а) комментарий к %2$s:"
-
-#~ msgid "database"
-#~ msgstr "База Данных"
-
-#~ msgid "Website:"
-#~ msgstr "Сайт:"
-
-#~ msgid ""
-#~ "Deprecated Zenphoto functions. These functions have been removed from "
-#~ "mainstream Zenphoto as they have been supplanted. They are not maintained "
-#~ "and they are not guaranteed to function correctly with the current "
-#~ "version of Zenphoto.  You should update your theme if you get warnings. "
-#~ "This plugin is not required for any theme coded for the current version "
-#~ "of Zenphoto."
-#~ msgstr ""
-#~ "Контроль устаревших функций Zenphoto. Это функции, которые были удалены "
-#~ "из основного дистрибутива Zenphoto и заменены на более новые. Устаревшие "
-#~ "функции могут некорректно работать в текущей версии галереи. Если вы "
-#~ "получаете предупреждения об устаревших функциях, следует обновить тему "
-#~ "оформления. Отключите плагин, если вы используете темы оформления из "
-#~ "текущей версии Zenphoto."
-
-#~ msgid ""
-#~ "Apply <img src=\"%1$s/lock.png\" alt=\"\"/> over thumbnails of "
-#~ "<em>password protected</em> images and albums,\n"
-#~ "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t <img src=\"%1$s/action.png\" "
-#~ "alt=\"\"/> over thumbnails of <em>un-published</em> albums  images,\n"
-#~ "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t <img src=\"%1$s/new.png\" "
-#~ "alt=\"\"/> over thumbnails of <em>\"new\"</em> images and albums,\n"
-#~ "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t and <img src=\"%1$s/GPS.png"
-#~ "\" alt=\"\"/> over thumbnails of <em>geocoded</em> images"
-#~ msgstr ""
-#~ "Добавляет значки: <img src=\"%1$s/lock.png\" alt=\"\"/> на миниатюрах "
-#~ "изображений и альбомов <em>защищённых паролем</em>,\n"
-#~ "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t <img src=\"%1$s/action.png\" "
-#~ "alt=\"\"/> на миниатюрах <em>неопубликованных</em> изображений и "
-#~ "альбомов,\n"
-#~ "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t <img src=\"%1$s/new.png\" "
-#~ "alt=\"\"/> на миниатюрах <em>\"новых\"</em> изображений и альбомов,\n"
-#~ "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t и <img src=\"%1$s/GPS.png\" "
-#~ "alt=\"\"/> на миниатюрах <em>геокодированных</em> изображений"
-
-#~ msgid ""
-#~ "* The options may be set via the <a href=\"javascript:"
-#~ "gotoName('menu_manager');\"><em>menu_manager</em></a> plugin options.."
-#~ msgstr ""
-#~ "* Эти параметры можно редактировать в настройках плагина <a href="
-#~ "\"javascript:gotoName('menu_manager');\"><em>menu_manager</em></a>."
-
-#, fuzzy
-#~ msgid "Truncate titles%s"
-#~ msgstr "Страница изображения"
-
-#, fuzzy
-#~ msgid "Truncate indicator%s"
-#~ msgstr "Страница изображения"
-
-#, fuzzy
-#~ msgid "Image quota information."
-#~ msgstr "пользователи"
-
-#~ msgid "Submit &raquo;"
-#~ msgstr "Проголосовать &raquo;"
-
-#, fuzzy
-#~ msgid "tinyZenpage - custom image size"
-#~ msgstr "Размер изображения"
-
-#, fuzzy
-#~ msgid "download statistics"
-#~ msgstr "статистика"
-
-#~ msgid "Reset hitcounter (Hits: %1$s)"
-#~ msgstr "Сбросить счетчик посещений (Посещений: %1$s)"
-
-#~ msgid "1 photo"
-#~ msgstr "1 изображение"
-
-#~ msgid "%u photos"
-#~ msgstr "%u изображений"
-
-#~ msgid "%1$u album,&nbsp;%2$u photos"
-#~ msgstr "%1$u альбомов,&nbsp;%2$u изображений"
-
-#~ msgid "photos %1$u-%2$u of %3$u"
-#~ msgstr "изображений %1$u-%2$u из %3$u"
-
-#~ msgid "city:"
-#~ msgstr "Город:"
-
-#~ msgid "country:"
-#~ msgstr "Страна:"
-
-#~ msgid "%u photo"
-#~ msgid_plural "%u photos"
-#~ msgstr[0] "%u изображение"
-#~ msgstr[1] "%u изображения"
-#~ msgstr[2] "%u изображений"
-
-#~ msgid "%1$u albums,&nbsp;%2$u photos"
-#~ msgstr "%1$u альбомов,&nbsp;%2$u изображений"
-
-#~ msgid "randomly selected"
-#~ msgstr "случайный выбор"
-
-#~ msgid "Visible"
-#~ msgstr "Видимое"
-
-#~ msgid "Hit counter: <strong>%u</strong>"
-#~ msgstr "Счетчик посещений: <strong>%u</strong>"
-
-#~ msgid "Rating: <strong>%u</strong>"
-#~ msgstr "Рейтинг: <strong>%u</strong>"
-
-#~ msgid ""
-#~ "*Enter CAPTCHA in place of <em>Password</em> to request a password reset."
-#~ msgstr ""
-#~ "*Забыли пароль? Введите защитный код в поле <em>Пароль</em> и письмо с "
-#~ "дальнейшими инструкциями будет отправлено на ваш e-mail."
-
-#~ msgid "Cache newly uploaded images."
-#~ msgstr "Кэш недавно загруженных изображений."
-
-#~ msgid "Cache the album"
-#~ msgstr "Кэшировать"
-
-#~ msgid "Pre-cache images in %s"
-#~ msgstr "Предварительное кэширование изображений в %s"
-
-#~ msgid "Cache the album %s"
-#~ msgstr "Кэш альбома %s"
-
-#, fuzzy
-#~ msgid ""
-#~ "<strong>Note:</strong> Login from the front-end user login form is secure "
-#~ "only if <em>https</em> is selected."
-#~ msgstr ""
-#~ "<strong>Замечание:</strong> Атентификация через front-end форму в is "
-#~ "secure only if <em>https</em> is selected."
-
-#~ msgid "Front-end editing"
-#~ msgstr "Front-end редактирование"
-
-#~ msgid ""
-#~ "Check to allow editing of Gallery data on the front-end pages. (Sometimes "
-#~ "known as <em>Ajax</em> editing.)"
-#~ msgstr ""
-#~ "Возможность выполнять редактирование непосредственно на видимых "
-#~ "пользователю страницах Галереи (также известно, как <em>Ajax</em> "
-#~ "редактирование.)"
-
-#~ msgid ""
-#~ "<strong>NOTE:</strong> enabling this feature is not recommended as it is "
-#~ "susceptible to Cross Site Request Forgeries."
-#~ msgstr ""
-#~ "<strong>Замечание:</strong> включение данной функции не рекомендуется из-"
-#~ "за подверженности Cross Site Request Forgeries (подделка HTTP-запросов)."
-
-#~ msgid "enable user name login field"
-#~ msgstr "включить форму ввода имени и пароля"
-
-#~ msgid ""
-#~ "<a href=\"javascript:toggle('username');\" >Details</a> for <em>enable "
-#~ "user name login field</em>"
-#~ msgstr ""
-#~ "<a href=\"javascript:toggle('username');\" >Подробнее</a> о <em>включить "
-#~ "форму ввода имени и пароля</em>"
-
-#~ msgid ""
-#~ "This option places a field on the gallery (search, album) login form for "
-#~ "entering a user name. This is necessary if you have set guest login user "
-#~ "names. It is also useful to allow Admin users to log in on these pages "
-#~ "rather than at the Admin login."
-#~ msgstr ""
-#~ "Добавляет форму ввода имени пользователя на страницы галереи (альбома).  "
-#~ "Эта опция необходима, если вы установили гостевой вход в галерею. Также "
-#~ "через эту форму администраторы могут оперативно входить в панель "
-#~ "управления."
-
-#~ msgid "Search behavior settings."
-#~ msgstr "Настройки поиска."
-
-#~ msgid "*none"
-#~ msgstr "*нет"
-
-#~ msgid ""
-#~ "Check those EXIF fields you wish displayed in image EXIF information."
-#~ msgstr ""
-#~ "Выберите, какие поля EXIF будут отображаться в окне Информация (EXIF)"
-
-#~ msgid ""
-#~ "Comment posting will be rejected if any of the checked fields is not "
-#~ "valid."
-#~ msgstr ""
-#~ "Укажите, какие поля должны быть обязательно заполнены при отправке "
-#~ "комментария."
-
-#~ msgid "New theme name? (e.g. \"My Theme\")"
-#~ msgstr "Задайте новое имя темы? (например \"Моя тема\")"
-
-#~ msgid "My Theme"
-#~ msgstr "Моя Тема"
-
-#~ msgid "New directory name? (e.g. \"my_theme\")"
-#~ msgstr "Задайте имя директории? (например \"my_theme\")"
-
-#~ msgid "Upload Photos"
-#~ msgstr "Загрузка изображений"
-
-#~ msgid "Something went wrong..."
-#~ msgstr "Кое-что пошло не так, как надо..."
-
-#~ msgid ""
-#~ "If your upload does not work try the <a href=\"javascript:"
-#~ "switchUploader('admin-upload.php?uploadtype=http');\" >http-browser "
-#~ "single file upload</a> or use FTP instead."
-#~ msgstr ""
-#~ "Если загрузка не работает, воспользуйтесь <a href=\"javascript:"
-#~ "switchUploader('admin-upload.php?uploadtype=http');\" >альтернативным "
-#~ "методом</a>"
-
-#~ msgid ""
-#~ "Try the <a href=\"javascript:switchUploader('admin-upload.php?"
-#~ "uploadtype=multifile');\" >multi file upload</a>"
-#~ msgstr ""
-#~ "Вернуться к <a href=\"javascript:switchUploader('admin-upload.php?"
-#~ "uploadtype=multifile');\" >мультизагрузке</a>"
-
-#~ msgid "<strong>%1$u</strong> Image (%2$u not visible)"
-#~ msgid_plural "<strong>%1$u</strong> Images (%2$u not visible)"
-#~ msgstr[0] "<strong>%1$u</strong> Изображение (%2$u невидимое)"
-#~ msgstr[1] "<strong>%1$u</strong> Изображения (%2$u невидимых)"
-#~ msgstr[2] "<strong>%1$u</strong> Изображений (%2$u невидимых)"
-
-#~ msgid "SVN"
-#~ msgstr "SVN"
-
-#~ msgid ""
-#~ "<strong>Zenphoto error:</strong> zp-config.php not found. Perhaps you "
-#~ "need to run <a href=\"%s/setup.php\">setup</a> (or migrate your old "
-#~ "config.php)"
-#~ msgstr ""
-#~ "<strong>Ошибка Zenphoto:</strong> zp-config.php не найден. Возможно вы "
-#~ "должны запустить <a href=\"%s/setup.php\">установку</a> (или перенести "
-#~ "ваш старый config.php)"
-
-#~ msgid "Could not save!"
-#~ msgstr "Невозможно сохранить!"
-
-#~ msgid "Version %1$s or greater is strongly recommended."
-#~ msgstr "Убедительно рекомендуется версия %1$s или более поздняя."
-
-#, fuzzy
-#~ msgid "You must be logged in to change permissions."
-#~ msgstr "Отсутствует текст комментария."
-
-#, fuzzy
-#~ msgid "Mac"
-#~ msgstr "Карта"
-
-#, fuzzy
-#~ msgid "confirmed"
-#~ msgstr "10. Телефон"
-
-#~ msgid ""
-#~ "Could not access the <strong>%1$s</strong> database (<code>%2$s</code>)."
-#~ msgstr ""
-#~ "Отстутствует доступ к базе данных <strong>%1$s</strong> (<code>%2$s</"
-#~ "code>)."
-
-#~ msgid "Deleting files failed!"
-#~ msgstr "Удалить файлы не удалось!"
-
-#~ msgid "Save"
-#~ msgstr "Сохранить"
-
-#~ msgid "Click to edit..."
-#~ msgstr "Нажмите для редактирования…"
-
-#, fuzzy
-#~ msgid "(No Location...)"
-#~ msgstr "(Нажмите для добавления описания…)"
-
-#~ msgid "(...)"
-#~ msgstr "(...)"
-
-#~ msgid "(No tags...)"
-#~ msgstr "(Нажмите для добавления метки…)"
-
-#~ msgid "Latest images of this album and its subalbums RSS"
-#~ msgstr "RSS лента новых изображений этого альбома и его подальбомов"
-
-#~ msgid "Latest albums RSS"
-#~ msgstr "RSS лента новых альбомов"
-
-#~ msgid "<strong>%1$u</strong> images (%2$u not visible)"
-#~ msgstr "<strong>%1$u</strong> изображений (%2$u скрытых)"
-
-#~ msgid "Clears the image cache. Images will be re-cached as they are viewed."
-#~ msgstr ""
-#~ "Удаляет кэш изображений. Кэш будет создан заново,о мере просмотра "
-#~ "изображений посетителями."
-
-#~ msgid ""
-#~ "Cleans the database and removes any orphan entries for comments, images, "
-#~ "and albums."
-#~ msgstr ""
-#~ "Очистка базы данных и удаление зависших комментариев, изображений и "
-#~ "альбомов."
-
-#, fuzzy
-#~ msgid "Sets all album thumbs to random."
-#~ msgstr "Выбирать миниатюры альбомов <em>случайным</em> образом."
-
-#, fuzzy
-#~ msgid "Set to <em>random</em>"
-#~ msgstr "Случайный выбор"
-
-#, fuzzy
-#~ msgid "Set to <em>%s</em>"
-#~ msgstr " <em>%s</em> папка"
-
-#, fuzzy
-#~ msgid ""
-#~ "These buttons allow you to set all of your album thumbs to either a "
-#~ "<em>random</em> image or to the <em>%s</em> image. This will override any "
-#~ "album thumb selections you have made on individual albums."
-#~ msgstr ""
-#~ "Определите критерий, который будет использовать Zenphoto для показа "
-#~ "миниатюр всех альбомов и подальбомов галереи."
-
-#~ msgid "content"
-#~ msgstr "Содержание"
-
-#~ msgid "Publishing options"
-#~ msgstr "Общие"
-
-#~ msgid "Make images visible by default"
-#~ msgstr "Сделать изображения видимыми по умолчанию"
-
-#, fuzzy
-#~ msgid "Images which are not visible"
-#~ msgstr "Избражение помечнено не видимым"
-
-#~ msgid "Review not visible images."
-#~ msgstr "Обзор невидимых изображений."
-
-#~ msgid ""
-#~ "Video and MP3/4 handling for Zenphoto. This plugin must always be enabled "
-#~ "to use multimedia content."
-#~ msgstr ""
-#~ "Обработчик видео и MP3/4. Если вы планируете использовать мультимедиа "
-#~ "контент в Zenphoto, то обязательно подключите это расширение! "
-
-#~ msgid "Title field."
-#~ msgstr "Название"
-
-#~ msgid "Name field."
-#~ msgstr "Имя"
-
-#~ msgid "Street field."
-#~ msgstr "Улица"
-
-#~ msgid "City field."
-#~ msgstr "Город"
-
-#~ msgid "Country field."
-#~ msgstr "Страна"
-
-#~ msgid "E-mail field."
-#~ msgstr "E-mail"
-
-#~ msgid "Subject field."
-#~ msgstr "Тема"
-
-#~ msgid "Message field."
-#~ msgstr "Сообщение"
-
-#~ msgid "PHP version 5 or greater is required."
-#~ msgstr "Требуется PHP версии 5 или выше."
-
-#, fuzzy
-#~ msgid "Error on <em>%s</em> effect"
-#~ msgstr "Ошибка при удалении темы."
-
-#, fuzzy
-#~ msgid ""
-#~ "HTTP single file uploading is disabled because upload limitations are in "
-#~ "effect. Please use the <a href=\"javascript:switchUploader('admin-upload."
-#~ "php?uploadtype=multifile');\" >multi file upload</a>"
-#~ msgstr ""
-#~ "Вернуться к <a href=\"javascript:switchUploader('admin-upload.php?"
-#~ "uploadtype=multifile');\" >мультизагрузке</a>"
-
-#~ msgid "(%u image)"
-#~ msgid_plural "(%u images)"
-#~ msgstr[0] "(%u изображение)"
-#~ msgstr[1] "(%u изображения)"
-#~ msgstr[2] "(%u изображений)"
-
-#~ msgid "(%u album)"
-#~ msgid_plural "(%u albums)"
-#~ msgstr[0] "(%u альбом)"
-#~ msgstr[1] "(%u альбома)"
-#~ msgstr[2] "(%u альбомов)"
-
-#, fuzzy
-#~ msgid "Assign images to:"
-#~ msgstr "Назначить"
-
-#~ msgid "2 stars"
-#~ msgstr "2 звезды из 5 возможных"
-
-#~ msgid "3 stars"
-#~ msgstr "3 звезды из 5 возможных"
-
-#~ msgid "4 stars"
-#~ msgstr "4 звезды из 5 возможных"
-
-#~ msgid "5 stars"
-#~ msgstr "5 звезд из 5 возможных"
-
-#, fuzzy
-#~ msgid "View Rights"
-#~ msgstr "Права"
-
-#, fuzzy
-#~ msgid "Back-end"
-#~ msgstr "Назад"
-
-#, fuzzy
-#~ msgid "Clear the static sitemap cache. It will be re-cached if requested."
-#~ msgstr ""
-#~ "Удаляет кэш изображений. Кэш будет создан заново,о мере просмотра "
-#~ "изображений посетителями."
-
-#, fuzzy
-#~ msgid "Articles per page (admin)"
-#~ msgstr "Новые статьт"
-
-#, fuzzy
-#~ msgid "Delete menu set '%s'"
-#~ msgstr "Удалить альбом %s"
-
-#, fuzzy
-#~ msgid "visible"
-#~ msgstr "Видимое"
-
-#, fuzzy
-#~ msgid "Sized image"
-#~ msgstr "Посмотреть изображение:"
-
-#~ msgid "Add category"
-#~ msgstr "Добавить раздел"
-
-#~ msgid "Add Category"
-#~ msgstr "Добавить раздел"
-
-#, fuzzy
-#~ msgid ""
-#~ "<strong>Note:</strong> This page is either password protected or has a "
-#~ "passport protected parent."
-#~ msgstr ""
-#~ "<strong>Замечание:</strong> Вложенные страницы защищённых страниц "
-#~ "наследуют защиту."
-
-#~ msgid "Page password:"
-#~ msgstr "Пароль:"
-
-#~ msgid "Page password hint:"
-#~ msgstr "Подсказка для пароля:"
-
-#~ msgid "<em>This article belongs to a protected category.</em>"
-#~ msgstr "<em>Статья относится к защищённому разделу.</em>"
-
-#~ msgid "News and Gallery RSS"
-#~ msgstr "RSS лента галереи и новостей"
-
-#~ msgid "News article comments RSS"
-#~ msgstr "RSS лента комментариев к новостям"
-
-#~ msgid "Page Comments RSS"
-#~ msgstr "RSS лента комментариев к странице"
-
-#, fuzzy
-#~ msgid "View the photo album %s"
-#~ msgstr "Посмотреть альбом: %s"
-
-#, fuzzy
-#~ msgid "Augment password hash:"
-#~ msgstr "Пароль альбома:"
-
-#~ msgid "Back to the list of albums (go up a level)"
-#~ msgstr "Назад к списку альбомов (уровень выше)"
-
-#~ msgid ""
-#~ "<strong>IMPORTANT:</strong> The Flowplayer 3 plugin needs to be activated "
-#~ "to use this plugin and your theme needs to be modified."
-#~ msgstr ""
-#~ "<strong>ВАЖНО:</strong> Плагин Flowplayer 3 plugin needs to be activated "
-#~ "to use this plugin and your theme needs to be modified."
-
-#, fuzzy
-#~ msgid "Google Earth"
-#~ msgstr "Карта Google"
-
-#~ msgid "Google Maps API key"
-#~ msgstr "Ключ Google Maps API"
-
-#, fuzzy
-#~ msgid "flash"
-#~ msgstr "Welsh"
-
-#~ msgid "Your browser is not compatible with Google maps"
-#~ msgstr "Ваш браузер несовместим с Google maps"
-
-#~ msgid "Save order"
-#~ msgstr "Сохранить порядок"
-
-#~ msgid "Comment saved successfully."
-#~ msgstr "Комментарий сохранен успешно"
-
-#~ msgid "Save Successful"
-#~ msgstr "Сохранение успешное"
-
-#~ msgid "zenphoto administration"
-#~ msgstr "Панель управления zenphoto"
-
-#~ msgid "Enable or disable comments"
-#~ msgstr "Разрешить или запретить комментарии"
-
-#~ msgid "restore default allowed tags"
-#~ msgstr "Восстановить умолчания"
-
-#~ msgid ""
-#~ "Check <em>restore default allowed tags</em> to reset allowed tags to the "
-#~ "zenphoto default values."
-#~ msgstr ""
-#~ "<em>Восстановить умолчания</em> возвращает набор допустимых тегов к "
-#~ "исходным значениям."
-
-#~ msgid ""
-#~ "Recommended number of albums on a page. You might need to adjust this for "
-#~ "a better page layout."
-#~ msgstr ""
-#~ "Рекомендованное количество альбомов на странице. Корректируйте это "
-#~ "значение для лучшей компоновки страниц."
-
-#~ msgid "Recommended number of thumbnails on an album page."
-#~ msgstr "Рекомендованное количество миниатюр на странице."
-
-#~ msgid ""
-#~ "<strong>Note:</strong> You might need to adjust this for a better page "
-#~ "layout."
-#~ msgstr ""
-#~ "<strong>Замечание:</strong> Измените значение для лучшей компоновки "
-#~ "страниц."
-
-#~ msgid "Edit this theme"
-#~ msgstr "Перейти к текстовому редактору тем оформления"
-
-#~ msgid "Delete this theme"
-#~ msgstr "Удалить эту тему"
-
-#~ msgid "email:"
-#~ msgstr "E-Mail:"
-
-#~ msgid "Tables are prefixed by <strong>%s</strong>"
-#~ msgstr "Префикс таблиц <strong>%s</strong>"
-
-#, fuzzy
-#~ msgid "Not visible images:"
-#~ msgstr "Обзор невидимых изображений."
-
-#~ msgid "a <strong>title</strong>"
-#~ msgstr "<strong>Название</strong>"
-
-#~ msgid "a <strong>name</strong>"
-#~ msgstr "<strong>Имя</strong>"
-
-#~ msgid "a <strong>company</strong>"
-#~ msgstr "<strong>Компания</strong>"
-
-#~ msgid "a <strong>street</strong>"
-#~ msgstr "<strong>Улица</strong>"
-
-#~ msgid "a <strong>city</strong>"
-#~ msgstr "<strong>Город</strong>"
-
-#~ msgid "a <strong>country</strong>"
-#~ msgstr "<strong>Страна</strong>"
-
-#, fuzzy
-#~ msgid "a <strong>valid email address</strong>"
-#~ msgstr "<strong>E-Mail</strong>"
-
-#~ msgid "a <strong>website</strong>"
-#~ msgstr "<strong>Вебсайт</strong>"
-
-#~ msgid "a <strong>message</strong>"
-#~ msgstr "<strong>Сообщение</strong>"
-
-#~ msgid "<p style='color:red'>Please enter "
-#~ msgstr "<p style='color:red'>Пожалуйста, заполните раздел "
-
-#~ msgid " and "
-#~ msgstr " и "
-
-#~ msgid ". Thanks.</p>"
-#~ msgstr ". Спасибо.</p>"
-
-#, fuzzy
-#~ msgid "Group:"
-#~ msgstr "Drop"
-
-#, fuzzy
-#~ msgid "News page name"
-#~ msgstr "Следующая страница"
-
-#, fuzzy
-#~ msgid "Pages page name"
-#~ msgstr "Страница изображения"
-
-#, fuzzy
-#~ msgid "show/hide"
-#~ msgstr "показывать"
-
-#, fuzzy
-#~ msgid "Category Title:"
-#~ msgstr "Категории: "
-
-#, fuzzy
-#~ msgid "New Category Title:"
-#~ msgstr "Категории: "
-
-#, fuzzy
-#~ msgid "Enable permaTitleLink"
-#~ msgstr "Включить mod_rewrite:"
-
-#, fuzzy
-#~ msgid "Category TitleLink:"
-#~ msgstr "Категории: "
-
-#, fuzzy
-#~ msgid "Category password:"
-#~ msgstr "Пароль галереи:"
-
-#, fuzzy
-#~ msgid "Category guest user:"
-#~ msgstr "Гостевое имя пользователя галереи:"
-
-#~ msgid "Category password hint:"
-#~ msgstr "Подсказка:"
-
-#, fuzzy
-#~ msgid "Update Category"
-#~ msgstr "Категории"
-
-#~ msgid "Save New Category"
-#~ msgstr "Сохранить новую категорию"
-
-#~ msgid "Update Article"
-#~ msgstr "Обновить Статью"
-
-#~ msgid "Save Article"
-#~ msgstr "Сохранить Статью"
-
-#~ msgid "Update Page"
-#~ msgstr "Обновить Страницу"
-
-#~ msgid "Save Page"
-#~ msgstr "Сохранить Страницу"
-
-#, fuzzy
-#~ msgid "<em>(password protected)</em>"
-#~ msgstr "Защищенный паролем"

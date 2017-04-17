@@ -1,9 +1,10 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Zenphoto 1.4.0\n"
+"Project-Id-Version: ZenPhoto20\n"
+
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-16 17:13-0700\n"
-"PO-Revision-Date: 2017-04-16 17:14-0700\n"
+"POT-Creation-Date: 2017-04-17 09:32-0700\n"
+"PO-Revision-Date: 2017-04-17 09:56-0700\n"
 "Last-Translator: Stephen <stephen@sbillard.org>\n"
 "Language-Team: \n"
 "Language: he_IL\n"
@@ -11,12 +12,13 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
-"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=n !=1;\n"
 "X-Generator: Poedit 2.0.1\n"
 "X-Poedit-Basepath: ../../../..\n"
 "X-Poedit-SearchPath-0: zp-core/locale/he_IL/LC_MESSAGES/zenphoto.po\n"
 "X-Poedit-SearchPath-1: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
 
 #: plugins/cacheHeader.php:18
 msgid "Outputs a \"Cache-control\" header with selected caching options."
@@ -650,7 +652,7 @@ msgstr "כיתוב"
 #, fuzzy
 #| msgid "The text for the theme logo"
 msgid "Text for the watermark."
-msgstr "*אין סימן מים"
+msgstr "כיתוב"
 
 #: plugins/text_watermark.php:36 themes/zpArdoise/themeoptions.php:67
 #: zp-core/exif/exifTranslations.php:67
@@ -2016,7 +2018,7 @@ msgstr "אנכי"
 #: themes/garland/themeoptions.php:94
 #, fuzzy
 msgid "Transition effect for Image gallery"
-msgstr "החל את האפקט על התמונה של דף הבית"
+msgstr "סדר מיון תמונות גלרייה*"
 
 #: themes/effervescence+/themeoptions.php:110
 #: themes/garland/themeoptions.php:95
@@ -2143,7 +2145,7 @@ msgstr "תגיות"
 #: themes/garland/album.php:134
 #, fuzzy, php-format
 msgid "Latest Images for %s"
-msgstr "האחרונות"
+msgstr "תמונות (%s)"
 
 #: themes/garland/functions.php:68
 #, fuzzy
@@ -2602,7 +2604,7 @@ msgstr ""
 #: themes/zpBootstrap/inc_header.php:84 themes/zpmobile/index.php:67
 #, fuzzy
 msgid "Latest news"
-msgstr "האחרונות"
+msgstr "חדשות"
 
 #: themes/paradigm/includes/_head.php:47 themes/paradigm/includes/_head.php:138
 #: themes/zpArdoise/inc_header.php:36 themes/zpBootstrap/inc_header.php:37
@@ -2774,7 +2776,7 @@ msgstr ""
 #: themes/paradigm/themeoptions.php:75
 #, fuzzy
 msgid "Number of slides"
-msgstr "מספר טלפון"
+msgstr "POP port number."
 
 #: themes/paradigm/themeoptions.php:78 zp-core/zp-extensions/zpCaptcha.php:55
 msgid "3"
@@ -2837,7 +2839,7 @@ msgstr "הטקסט מעל sitename בדף הבית."
 #, fuzzy
 #| msgid "Homepage"
 msgid "Homepage content"
-msgstr "דף הבית"
+msgstr "תוכן"
 
 #: themes/paradigm/themeoptions.php:92
 #, fuzzy
@@ -3490,7 +3492,7 @@ msgstr "רמז: %s"
 #: themes/zpEnlighten/search.php:122
 #, fuzzy, php-format
 msgid "%s "
-msgstr "%s"
+msgstr "%1$s מנהלים:%2$s%3$s"
 
 #: themes/zpEnlighten/search.php:125
 #, fuzzy, php-format
@@ -3500,7 +3502,7 @@ msgstr "אלבומים (%1$s) &amp; תמונות (%2$s)"
 #: themes/zpEnlighten/sidebar.php:52
 #, fuzzy
 msgid "Latest notes"
-msgstr "האחרונות"
+msgstr "אלבומים אחרונים"
 
 #: themes/zpEnlighten/sidebar.php:67
 #, fuzzy
@@ -3623,7 +3625,7 @@ msgstr "הפעלת חיפוש"
 #: themes/zpskeleton/inc-header.php:122
 #, fuzzy
 msgid "Latest News"
-msgstr "האחרונות"
+msgstr "חדשות"
 
 #: themes/zpfocus/gallery.php:19 themes/zpfocus/inc-header.php:111
 #: themes/zpmasonry/functions.php:221 themes/zpmasonry/inc-header.php:113
@@ -3661,7 +3663,7 @@ msgstr "הרשם לקבל תגובות"
 #: themes/zpfocus/inc-footer.php:44 themes/zpminimal/inc-footer.php:11
 #, fuzzy
 msgid "This Album"
-msgstr "אלבום"
+msgstr "צפי באלבום:"
 
 #: themes/zpfocus/inc-footer.php:47 themes/zpminimal/inc-footer.php:13
 #, fuzzy
@@ -3697,7 +3699,7 @@ msgstr "אובייקט לא נמצא"
 #: themes/zpmasonry/inc-header.php:159
 #, fuzzy
 msgid "image {current} of {total}"
-msgstr "תמונת אצבע נוכחית"
+msgstr "תמונה"
 
 #: themes/zpfocus/inc-header.php:160 themes/zpfocus/inc-header.php:174
 #: themes/zpmasonry/inc-footer.php:34 themes/zpmasonry/inc-header.php:145
@@ -3719,7 +3721,7 @@ msgstr "*סדר מיון תמונות של אלבום-אב"
 #: themes/zpfocus/inc-sidebar.php:17
 #, fuzzy
 msgid "Random Gallery Image"
-msgstr "סדר מיון תמונות גלרייה*"
+msgstr "תמונה אקראית..."
 
 #: themes/zpfocus/inc-sidebar.php:52
 #, fuzzy
@@ -4681,7 +4683,7 @@ msgstr ""
 #: themes/zpminimal/themeoptions.php:35
 #, fuzzy
 msgid "Sidebar Position on the Right?"
-msgstr "מיקום:"
+msgstr "ימין"
 
 #: themes/zpminimal/themeoptions.php:35
 #, fuzzy
@@ -4729,7 +4731,7 @@ msgstr ""
 #: themes/zpminimal/themeoptions.php:40
 #, fuzzy
 msgid "Menu Name of Menu Manager"
-msgstr "מנהל תפריט: ערכו פריט תפריט"
+msgstr "מנהל תפריט: הוסיפו פריט חדש"
 
 #: themes/zpminimal/themeoptions.php:40
 #, fuzzy
@@ -5242,7 +5244,7 @@ msgstr "דינמי"
 #: zp-core/admin-dynamic-album.php:122
 #, fuzzy
 msgid "Create Dynamic Album"
-msgstr "צרי את האלבום"
+msgstr "צרי אלבום מהחיפוש"
 
 #: zp-core/admin-dynamic-album.php:161
 #: zp-core/zp-extensions/favoritesAlbums/admin-album.php:126
@@ -5728,7 +5730,7 @@ msgstr "270 מעלות"
 #: zp-core/admin-edit.php:1545
 #, fuzzy, php-format
 msgid "Refresh %s metadata"
-msgstr "רענון מטא מידע של האלבום %s"
+msgstr "רענון מטא-מידע"
 
 #: zp-core/admin-edit.php:1547 zp-core/admin-refresh-metadata.php:51
 msgid "Refresh Metadata"
@@ -5853,7 +5855,7 @@ msgstr "צפו באינדקס הגלרייה"
 #, fuzzy
 #| msgid "Return to %s"
 msgid "return to top"
-msgstr "חזרה למעלה"
+msgstr "חזרי אל %s"
 
 #: zp-core/admin-functions.php:526
 msgid "Image order"
@@ -6836,7 +6838,7 @@ msgstr "הנתיב שבחרת הביאה עוגיות שלא נפגמו. . או�
 #: zp-core/admin-plugins.php:136
 #, fuzzy, php-format
 msgid "%1$s plugins"
-msgstr "תוספים "
+msgstr "Effervescence %1$s %2$s"
 
 #: zp-core/admin-plugins.php:152
 #, fuzzy
@@ -6900,7 +6902,7 @@ msgstr "תוספים צד-שלישי"
 #: zp-core/admin-plugins.php:203 zp-core/admin-plugins.php:416
 #, fuzzy
 msgid "Official plugin"
-msgstr "תוסף"
+msgstr "אין אפשרויות תוסף לניהול"
 
 #: zp-core/admin-plugins.php:209
 msgid "<strong>Error parsing <em>plugin_description</em> string!</strong>."
@@ -6911,14 +6913,14 @@ msgstr ""
 #: zp-core/admin-plugins.php:217
 #, fuzzy
 msgid "<strong>Error parsing <em>plugin_notice</em> string!</strong>."
-msgstr ""
-"<strong>שגיאת פירסור (parsing)<em>מחרוזת plugin_version!</em></strong>  נסו "
-"להסיר את הנקודה-פסיק מהמחרוזת."
+msgstr "<strong>שגיאת ניתוח מחרוזת <em>plugin_disable</em>!</strong>."
 
 #: zp-core/admin-plugins.php:225
 #, fuzzy
 msgid "<strong>Error parsing <em>plugin_author</em> string!</strong>."
-msgstr "<strong>שגיאת ניתוח מחרוזת <em>plugin_disable</em>!</strong>."
+msgstr ""
+"<strong>שגיאת פירסור (parsing)<em>מחרוזת plugin_version!</em></strong>  נסו "
+"להסיר את הנקודה-פסיק מהמחרוזת."
 
 #: zp-core/admin-plugins.php:233
 msgid "<strong>Error parsing <em>plugin_version</em> string!</strong>."
@@ -6947,7 +6949,7 @@ msgstr "טקסט עבור לוגו ערכת עיצוב"
 #: zp-core/admin-plugins.php:292
 #, fuzzy
 msgid "class plugin"
-msgstr "מחלקה"
+msgstr "תוסף"
 
 #: zp-core/admin-plugins.php:296
 #, fuzzy
@@ -6957,7 +6959,7 @@ msgstr "תוסף"
 #: zp-core/admin-plugins.php:301
 #, fuzzy
 msgid "feature plugin"
-msgstr "תוסף"
+msgstr "אין אפשרויות תוסף לניהול"
 
 #: zp-core/admin-plugins.php:303
 #, fuzzy
@@ -6982,12 +6984,12 @@ msgstr "האפשרויות הבאות ממומשות ספציפית על ידי 
 #: zp-core/admin-plugins.php:367
 #, fuzzy
 msgid "Plugin warnings"
-msgstr "תוסף"
+msgstr "אין אפשרויות תוסף לניהול"
 
 #: zp-core/admin-plugins.php:418
 #, fuzzy
 msgid "Class plugin"
-msgstr "מחלקה"
+msgstr "תוסף"
 
 #: zp-core/admin-plugins.php:419
 #, fuzzy
@@ -6997,7 +6999,7 @@ msgstr "תוסף"
 #: zp-core/admin-plugins.php:420
 #, fuzzy
 msgid "Feature plugin"
-msgstr "תוסף"
+msgstr "אין אפשרויות תוסף לניהול"
 
 #: zp-core/admin-plugins.php:421
 #, fuzzy
@@ -7623,7 +7625,7 @@ msgstr "שם"
 #: zp-core/admin-users.php:749
 #, fuzzy
 msgid "create primary album"
-msgstr "צרי את האלבום"
+msgstr "צרי אלבום מהחיפוש"
 
 #: zp-core/admin-users.php:759
 #, fuzzy, php-format
@@ -7651,7 +7653,7 @@ msgstr "הלקוח <em>הראשי</em> יש זכויות מלאות לכל הא�
 #: zp-core/admin-users.php:818 zp-core/functions.php:878
 #, fuzzy
 msgid "un-categorized"
-msgstr "לא מפורסם"
+msgstr "מפורסם/לא מפורסם"
 
 #: zp-core/admin-users.php:877
 #, fuzzy, php-format
@@ -7902,7 +7904,7 @@ msgstr ""
 #: zp-core/admin.php:472
 #, fuzzy
 msgid "<em>display_errors</em> is <strong>On</strong>"
-msgstr "ההרחבה של <strong><em>GD</em></strong> לא זמינה."
+msgstr "ההרחבה של <strong><em>Imagick</em></strong> אינה זמינה."
 
 #: zp-core/admin.php:476
 #, fuzzy
@@ -9147,7 +9149,9 @@ msgstr "מקביליות במטמון:"
 #: zp-core/admin_options/image.php:504
 #, fuzzy
 msgid "limit"
-msgstr "מספר התווים המותר לכותרת. 0 משמעו ללא הגבלה."
+msgstr ""
+"מגבלת זכרון PHP: <strong>%1$s</strong> (חשוב: יתכן שהשרת מאפשר כמות קטנה "
+"יותר של זכרון!)"
 
 #: zp-core/admin_options/image.php:510
 #, fuzzy
@@ -9164,7 +9168,7 @@ msgstr "יותר עובדים יעשה את העבודה מהר כל עוד הש
 #: zp-core/admin_options/image.php:516
 #, fuzzy
 msgid "Cache as"
-msgstr "HTML cache"
+msgstr "המטמון נוקה."
 
 #: zp-core/admin_options/image.php:519
 #, fuzzy
@@ -9570,7 +9574,7 @@ msgstr "ניהול תגיות"
 #: zp-core/admin_options/search.php:241
 #, fuzzy
 msgid "<em>partial</em>"
-msgstr "חלקי"
+msgstr "<em>או</em>"
 
 #: zp-core/admin_options/search.php:241
 #, fuzzy
@@ -10264,7 +10268,7 @@ msgstr "אובייקט לא נמצא"
 #: zp-core/class-image.php:162 zp-core/zp-extensions/xmpMetadata.php:647
 #, fuzzy
 msgid "Image Headline"
-msgstr "% של תמונה"
+msgstr "תמונות קודמות"
 
 #: zp-core/class-image.php:163 zp-core/zp-extensions/xmpMetadata.php:645
 #, fuzzy
@@ -10296,7 +10300,7 @@ msgstr "תאריך:"
 #: zp-core/class-image.php:169
 #, fuzzy
 msgid "Time Created"
-msgstr "שעת דיגיטציית התמונה"
+msgstr "השעה המקורית של צילום התמונה"
 
 #: zp-core/class-image.php:170
 msgid "Digital Creation Date"
@@ -12309,7 +12313,7 @@ msgstr "<em>[%1$s]</em> המאקרו לא לוקח פרמטרים"
 #: zp-core/functions.php:2348 zp-core/functions.php:2375
 #, fuzzy, php-format
 msgid "<em>[%1$s]</em> retuned no data"
-msgstr "<em>%1$s</em> הגיב על %2$s:"
+msgstr "<em>%1$s</em> תיקייה%2$s"
 
 #: zp-core/functions.php:2353
 #, fuzzy, php-format
@@ -12543,7 +12547,7 @@ msgstr "באלגוריתם hashing של כדי לשמש. הסדר של חוסן,
 #: zp-core/lib-auth.php:101
 #, fuzzy
 msgid "Enable Challenge phrase"
-msgstr "לאפשר כותרת-קישור-קבועה"
+msgstr "סמנו להפעלת טופס החיפוש"
 
 #: zp-core/lib-auth.php:103
 #, fuzzy
@@ -13348,7 +13352,7 @@ msgstr "דף: %s"
 #: zp-core/pluginDoc.php:137
 #, fuzzy
 msgid "Plugin usage information"
-msgstr "פרטי התקנה"
+msgstr "תוסף"
 
 #: zp-core/pluginDoc.php:138
 #, fuzzy, php-format
@@ -13450,12 +13454,12 @@ msgstr ""
 #: zp-core/reconfigure.php:304
 #, fuzzy, php-format
 msgid "to run setup [%s]"
-msgstr "הפעל את ההתקנה"
+msgstr "אתם חייבים להיות מחוברים למערכת בכדי להריץ את ההתקנה."
 
 #: zp-core/reconfigure.php:307
 #, fuzzy
 msgid "by Admin request"
-msgstr "בקשת הוספת משתמש"
+msgstr "ניהול מאובטח"
 
 #: zp-core/reconfigure.php:310
 #, fuzzy
@@ -13682,7 +13686,7 @@ msgstr ""
 #: zp-core/setup/index.php:571
 #, fuzzy
 msgid "PHP <code>Register Globals</code>"
-msgstr "PHP <code>mbstring</code> package"
+msgstr "PHP <code>Safe Mode</code>"
 
 #: zp-core/setup/index.php:571
 #, fuzzy
@@ -13783,7 +13787,7 @@ msgstr "עליך לנטרל <code>magic_quotes_sybase</code> ."
 #: zp-core/setup/index.php:635
 #, fuzzy
 msgid "PHP <code>display_errors</code>"
-msgstr "PHP <code>setlocale()</code>"
+msgstr "PHP <code>Safe Mode</code>"
 
 #: zp-core/setup/index.php:635
 #, fuzzy, php-format
@@ -15441,7 +15445,7 @@ msgstr "תמונות מוקטנות של אלבום"
 #: zp-core/zp-extensions/zenpage/template-functions.php:1615
 #, fuzzy
 msgid "Return to search"
-msgstr "חיפוש"
+msgstr "חזרי אל %s"
 
 #: zp-core/template-functions.php:1301
 #: zp-core/zp-extensions/zenpage/template-functions.php:1618
@@ -16057,7 +16061,7 @@ msgstr "סיסמת משתמש עבור חיפושים LDAP."
 #: zp-core/zp-extensions/LDAP_auth.php:66
 #, fuzzy
 msgid "LDAP Group map"
-msgstr "מפה"
+msgstr "מפות גוגל"
 
 #: zp-core/zp-extensions/LDAP_auth.php:68
 #, fuzzy
@@ -16083,7 +16087,7 @@ msgstr "קבוצות"
 #: zp-core/zp-extensions/LDAP_auth.php:89
 #, fuzzy
 msgid "ZenPhoto20 group"
-msgstr "אין קבוצה"
+msgstr "*לא נבחרו קבוצות"
 
 #: zp-core/zp-extensions/LDAP_auth.php:90
 #, fuzzy
@@ -16248,7 +16252,9 @@ msgstr "בקשות ייחסמו אם יותר מ- %d אזורי מתבקשים."
 #: zp-core/zp-extensions/accessThreshold.php:62
 #, fuzzy
 msgid "Limit"
-msgstr "מספר התווים המותר לכותרת. 0 משמעו ללא הגבלה."
+msgstr ""
+"מגבלת זכרון PHP: <strong>%1$s</strong> (חשוב: יתכן שהשרת מאפשר כמות קטנה "
+"יותר של זכרון!)"
 
 #: zp-core/zp-extensions/accessThreshold.php:64
 #, fuzzy, php-format
@@ -17485,7 +17491,7 @@ msgstr "אם השדה <em>אתר</em> נדרש, הכרזה עליך לספק א�
 #: zp-core/zp-extensions/comment_form.php:108
 #, fuzzy
 msgid "Captcha field"
-msgstr "תמונת זיהוי (CAPTCHA)"
+msgstr "הזינו תמונת זיהוי (CAPTCHA("
 
 #: zp-core/zp-extensions/comment_form.php:110
 #, fuzzy
@@ -18618,7 +18624,7 @@ msgstr "ערכות עיצוב"
 #: zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:54
 #, fuzzy
 msgid "In User plugins"
-msgstr "תוספים "
+msgstr "תוספים זמינים"
 
 #: zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:60
 #, fuzzy
@@ -18837,7 +18843,7 @@ msgstr "סטטיסטיקה לא זמינה"
 #: zp-core/zp-extensions/downloadList/download_statistics.php:44
 #, fuzzy
 msgid "Most downloaded files"
-msgstr "יומן הורד"
+msgstr "קבצים"
 
 #: zp-core/zp-extensions/downloadList/download_statistics.php:100
 #, fuzzy
@@ -18963,7 +18969,7 @@ msgstr ""
 #: zp-core/zp-extensions/elFinder.php:54
 #, fuzzy
 msgid "Files tab"
-msgstr "קבצים"
+msgstr "קבצי התקנה"
 
 #: zp-core/zp-extensions/elFinder.php:55
 #, fuzzy
@@ -18973,7 +18979,7 @@ msgstr "השתמש subtab <em>קבצים</em> ההעלאה."
 #: zp-core/zp-extensions/elFinder.php:56
 #, fuzzy
 msgid "TinyMCE plugin"
-msgstr "תוסף"
+msgstr "אין אפשרויות תוסף לניהול"
 
 #: zp-core/zp-extensions/elFinder.php:57
 #, fuzzy
@@ -19179,7 +19185,7 @@ msgstr "גודל ברירת המחדל של הצגת התמונה."
 #: zp-core/zp-extensions/externalFeed.php:83 zp-core/zp-extensions/rss.php:62
 #, fuzzy
 msgid "Image feed sort order:"
-msgstr "סדר מיון תמונות גלרייה*"
+msgstr "*סדר מיון תמונות של אלבום-אב"
 
 #: zp-core/zp-extensions/externalFeed.php:85
 #: zp-core/zp-extensions/externalFeed.php:92 zp-core/zp-extensions/rss.php:64
@@ -19220,7 +19226,7 @@ msgstr ""
 #: zp-core/zp-extensions/externalFeed.php:91 zp-core/zp-extensions/rss.php:70
 #, fuzzy
 msgid "Album feed sort order:"
-msgstr "סדר מיון אלבומי גלרייה*"
+msgstr "*סדר מיון תמונות של אלבום-אב"
 
 #: zp-core/zp-extensions/externalFeed.php:99
 #, fuzzy
@@ -19481,7 +19487,7 @@ msgstr "התסריט <a href=\"%s\">לזהות OpenID</a> לא הופעל."
 #: zp-core/zp-extensions/federated_logon.php:106
 #, fuzzy
 msgid "Assign user to"
-msgstr "הקצו"
+msgstr "מיפוי משתמשים"
 
 #: zp-core/zp-extensions/federated_logon.php:109
 #, fuzzy
@@ -20682,7 +20688,7 @@ msgstr "גישה יושעו לאחר כך הרבה שגיאות 404."
 #: zp-core/zp-extensions/ipBlocker.php:108
 #, fuzzy
 msgid "Cool off"
-msgstr "קריר"
+msgstr "Off"
 
 #: zp-core/zp-extensions/ipBlocker.php:110
 #, fuzzy
@@ -20882,7 +20888,7 @@ msgstr "מאפשר לכוון את הורדות קבצים (ההשמעה בלב�
 #: zp-core/zp-extensions/jplayer.php:142
 #, fuzzy
 msgid "Player size"
-msgstr "גודל ="
+msgstr "גודל תמונה"
 
 #: zp-core/zp-extensions/jplayer.php:144
 #, fuzzy
@@ -21099,7 +21105,7 @@ msgstr ""
 #: zp-core/zp-extensions/macroList/macroList_tab.php:43
 #, fuzzy
 msgid "<em><strong>int</strong></em> a number"
-msgstr "ההרחבה של <strong><em>Imagick</em></strong> אינה זמינה."
+msgstr "ההרחבה של <strong><em>GD</em></strong> לא זמינה."
 
 #: zp-core/zp-extensions/macroList/macroList_tab.php:44
 #, fuzzy
@@ -21551,7 +21557,7 @@ msgstr "זהו דף אינדקס גלריה zenphoto רגילה."
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:71
 #, fuzzy
 msgid "This adds menu items for all zenphoto albums."
-msgstr "פריטי תפריט לכל האלבומים נוספו"
+msgstr "זה מוסיף פריטי תפריט לכל קטגוריות זןדף"
 
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:76
 #, fuzzy
@@ -21747,7 +21753,7 @@ msgstr "בחר את ערכת הנושא שלך מבוסס על המכשיר מת
 #: zp-core/zp-extensions/mobileTheme.php:95
 #, fuzzy
 msgid "Phone theme"
-msgstr "מספר טלפון"
+msgstr "טלפון<strong>%s</strong>:"
 
 #: zp-core/zp-extensions/mobileTheme.php:97
 #: zp-core/zp-extensions/mobileTheme.php:101
@@ -21904,7 +21910,7 @@ msgstr "נקה סיסמא"
 #: zp-core/zp-extensions/optionalObjectFields.php:134
 #, fuzzy
 msgid "Set as thumbnail for"
-msgstr "תמונה מוקטנת:"
+msgstr "קצוץ תמונה מוקטנת"
 
 #: zp-core/zp-extensions/optionalObjectFields.php:149
 #, fuzzy
@@ -22003,7 +22009,7 @@ msgstr "טקסט הבא"
 #: zp-core/zp-extensions/paged_thumbs_nav.php:49
 #, fuzzy
 msgid "The text for the previous thumbs."
-msgstr "התמונות המוקטנות הקודמות"
+msgstr "הטקסט לתמונות המוקטנות הבאות."
 
 #: zp-core/zp-extensions/paged_thumbs_nav.php:50
 msgid "Nexttext"
@@ -22747,7 +22753,7 @@ msgstr ""
 #, fuzzy
 #| msgid "Allow search"
 msgid "Allow zero"
-msgstr "הפעלת חיפוש"
+msgstr "אפשר שליחת תגובות פרטית"
 
 #: zp-core/zp-extensions/rating.php:127
 #, fuzzy
@@ -23115,7 +23121,7 @@ msgstr "משתמש עם דואר אלקטרוני <em>%s</em> כבר קיים."
 #: zp-core/zp-extensions/register_user.php:455
 #, fuzzy
 msgid "Passwords may not be empty."
-msgstr "סיסמאות אינו יכול להיות ריק."
+msgstr "האלבום ריק"
 
 #: zp-core/zp-extensions/register_user.php:471
 msgid "You have not filled in all the fields."
@@ -23182,7 +23188,7 @@ msgstr "mod_rewrite suffix:"
 #: zp-core/zp-extensions/rewriteRules/admin_tab.php:29
 #, fuzzy
 msgid "Rewrite Rules"
-msgstr "mod rewrite"
+msgstr "mod_rewrite suffix:"
 
 #: zp-core/zp-extensions/rewriteRules/functions.php:35
 #, fuzzy
@@ -23226,7 +23232,7 @@ msgstr "<code>%1$s</code>החוק מגדיר <strong>%2$s</strong> <em>s $ %3</e
 #: zp-core/zp-extensions/rewriteTokens.php:168
 #, fuzzy, php-format
 msgid "Link for <em>%s</em> script page."
-msgstr "הדף <em>%s</em> התווסף"
+msgstr "הדף <em>%s</em> עודכן"
 
 #: zp-core/zp-extensions/rewriteTokens.php:96
 #, fuzzy
@@ -23994,7 +24000,7 @@ msgstr "<strong><em>%s</em></strong> נמצא בתהליך שדרוג"
 #: zp-core/zp-extensions/site_upgrade.php:255
 #, fuzzy
 msgid "Please return later"
-msgstr "בבקשה הזינו %s. תודה."
+msgstr "את אמורה לחזור אוטומטית. אם לא, לחצי:"
 
 #: zp-core/zp-extensions/site_upgrade.php:263
 #, fuzzy, php-format
@@ -24058,7 +24064,9 @@ msgstr ""
 #: zp-core/zp-extensions/sitemap-extended.php:87
 #, fuzzy
 msgid "Album date"
-msgstr "השתמשי בתאריך התמונה האחרונה כתאריך של האלבום"
+msgstr ""
+"בכדי לעדכן את תאריך האלבום לתאריך העלאת התמונה החדשה ביותר של האלבום בחרו "
+"אופצייה זו. אחרת, תאריך האלבום יקבע לפי תאריך יצירת האלבום."
 
 #: zp-core/zp-extensions/sitemap-extended.php:91
 #, fuzzy
@@ -25268,7 +25276,7 @@ msgstr "כלול קישור RSS"
 #: zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:304
 #, fuzzy
 msgid "title only"
-msgstr "כותרת:"
+msgstr "חברים בלבד"
 
 #: zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:316
 #, fuzzy
@@ -25423,7 +25431,7 @@ msgstr "הסוד <em>oauth_token</em> היישום."
 #: zp-core/zp-extensions/tweet_news.php:85
 #, fuzzy
 msgid "Protected objects"
-msgstr "מוגן"
+msgstr "צפייה מאובטחת"
 
 #: zp-core/zp-extensions/tweet_news.php:87
 #, fuzzy
@@ -25566,7 +25574,7 @@ msgstr "אתם מנסים לטעון אחד או יותר של קבצים אשר
 #: zp-core/zp-extensions/uploader_http/uploader.php:145
 #, fuzzy
 msgid "The uploader could not write the file."
-msgstr "Uploader לא יוכלו לכתוב את הקובץ."
+msgstr "הקובץ לא נמצא."
 
 #: zp-core/zp-extensions/uploader_http/uploader.php:149
 msgid "You have attempted to upload too large a file"
@@ -25846,7 +25854,7 @@ msgstr "חידוש"
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:192
 #, fuzzy
 msgid "Email renewal"
-msgstr "אי-מייל:"
+msgstr "מזהה אימייל"
 
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:195
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:213
@@ -26500,7 +26508,7 @@ msgstr "פיצוי חשיפה (Exposure Compensation)"
 #: zp-core/zp-extensions/xmpMetadata.php:1148
 #, fuzzy
 msgid "Metadata exported"
-msgstr "מטא-דטא:"
+msgstr "רענון מטא-מידע"
 
 #: zp-core/zp-extensions/xmpMetadata.php:1154
 #, fuzzy
@@ -27165,17 +27173,17 @@ msgstr "כל הקטגוריות"
 #: zp-core/zp-extensions/zenpage/admin-functions.php:755
 #, fuzzy
 msgid "Un-categorized"
-msgstr "לא מפורסם"
+msgstr "מפורסם/לא מפורסם"
 
 #: zp-core/zp-extensions/zenpage/admin-functions.php:804
 #, fuzzy, php-format
 msgid "%u per page"
-msgstr "תמונות מוקטנות לדף"
+msgstr "דף %u"
 
 #: zp-core/zp-extensions/zenpage/admin-functions.php:844
 #, fuzzy
 msgid "Duplicate category title"
-msgstr "שכפל"
+msgstr "קטגוריה"
 
 #: zp-core/zp-extensions/zenpage/admin-functions.php:894
 #, php-format
@@ -27515,3184 +27523,3 @@ msgid ""
 "The size to use if the font is scalable (<em>TTF</em> and <em>Imagick</em> "
 "fonts.)"
 msgstr "הגודל להשתמש אם הגופן מדרגי (<em>TTF</em> , <em>Imagick</em> גופנים.)"
-
-#~ msgid "Subject<strong>%s</strong>:"
-#~ msgstr "נושא<strong>%s</strong>:"
-
-#~ msgid "Message<strong>%s</strong>:"
-#~ msgstr "הודעה<strong>%s</strong>:"
-
-#~ msgid ""
-#~ "Select an album to edit its description and data, or <a href=\"?"
-#~ "page=edit&amp;album=%s&amp;massedit\">mass-edit</a> all first level "
-#~ "subalbums."
-#~ msgstr ""
-#~ "בחרו אלבום לעריכת התיאור והמידע שלו או בצעו <a href=\"?page=edit&amp;"
-#~ "album=%s&amp;massedit\">עריכה-מאסיבית</a> של כל תתי-האלבומים ברמה הראשונה."
-
-#~ msgid "Title:"
-#~ msgstr "כותרת:"
-
-#~ msgid "Description:"
-#~ msgstr "תיאור:"
-
-#~ msgid "Metadata:"
-#~ msgstr "מטא-דטא:"
-
-#~ msgid "Edit Gallery"
-#~ msgstr "עריכת גלרייה"
-
-#~ msgid ""
-#~ "Select an album to edit its description and data, or <a href=\"?"
-#~ "page=edit&amp;massedit\">mass-edit</a> all gallery level albums."
-#~ msgstr ""
-#~ "בחרו אלבום בכדי לערוך אותו. ניתן גם לבצע <a href=\"?page=edit&amp;massedit"
-#~ "\">עריכה-מרובה</a>  של כל האלבומים שברמת הגלריה."
-
-#, fuzzy
-#~ msgid "You have unsaved changes!"
-#~ msgstr "נשמרו שינויים!"
-
-#, fuzzy
-#~ msgid "Are you sure you want to leave this page?"
-#~ msgstr "האם את/ה בטוח/ה שברצונך לעזוב את הקבוצה?"
-
-#, fuzzy
-#~ msgid "Leave"
-#~ msgstr "לעזוב"
-
-#, fuzzy
-#~ msgid "Stay"
-#~ msgstr "להישאר"
-
-#~ msgid "Has Password"
-#~ msgstr "מוגן בסיסמא"
-
-#~ msgid "Password protected"
-#~ msgstr "מוגן בסיסמא"
-
-#~ msgid "View logs:"
-#~ msgstr "צפייה ביומני יאירועים:"
-
-#, fuzzy
-#~ msgid "Cookies:"
-#~ msgstr "עוגייה"
-
-#, fuzzy
-#~ msgid "Path"
-#~ msgstr "נתיב"
-
-#~ msgid "Gallery title:"
-#~ msgstr "כותרת גלרייה:"
-
-#~ msgid "Website title:"
-#~ msgstr "כותרת אתר:"
-
-#, fuzzy
-#~ msgid ""
-#~ "<a onclick=\"toggle('albumpub');\" >Details</a> for <em>publish albums by "
-#~ "default</em>"
-#~ msgstr ""
-#~ "<a onclick=\"toggle('albumpub');\">פרטים</a> עבור <em>פרסם אלבומים כברירת "
-#~ "מחדל</em>"
-
-#, fuzzy
-#~ msgid ""
-#~ "<a onclick=\"toggle('imagepub');\" >Details</a> for <em>publish images by "
-#~ "default</em>"
-#~ msgstr ""
-#~ "<a onclick=\"toggle('imagepub');\">פרטים</a> <em>לפרסם תמונות כברירת "
-#~ "מחדל</em>"
-
-#, fuzzy
-#~ msgid ""
-#~ "<a onclick=\"toggle('albumdate');\" >Details</a> for <em>use latest image "
-#~ "date as album date</em>"
-#~ msgstr ""
-#~ "<a onclick=\"toggle('albumdate');\">פרטים</a> עבור <em>שימוש והמאוחרות "
-#~ "כתאריך אלבום תמונות</em>"
-
-#, fuzzy
-#~ msgid ""
-#~ "<a onclick=\"toggle('visualthumb');\" >Details</a> for <em>visual thumb "
-#~ "selection</em>"
-#~ msgstr ""
-#~ "<a onclick=\"toggle('visualthumb');\">פרטים</a> עבור <em>בחירה חזותית את "
-#~ "האגודל</em>"
-
-#, fuzzy
-#~ msgid ""
-#~ "<a onclick=\"toggle('multithumb');\" >Details</a> for <em>subalbum thumb "
-#~ "selection</em>"
-#~ msgstr ""
-#~ "<a onclick=\"toggle('multithumb');\">פרטים</a> עבור <em>הבחירה האגודל "
-#~ "subalbum</em>"
-
-#~ msgid "Codeblocks:"
-#~ msgstr "בלוקוד"
-
-#~ msgid "user:"
-#~ msgstr "משתמש:"
-
-#~ msgid "<strong>Standard options</strong>"
-#~ msgstr "<strong>אפשרויות רגילות</strong>"
-
-#~ msgid "Image size:"
-#~ msgstr "גודל תמונה:"
-
-#~ msgid "<strong>Custom theme options</strong>"
-#~ msgstr "<strong>אפשרויות מתואמות אישית עבור ערכת עיצוב</strong>"
-
-#~ msgid "Backup/Restore"
-#~ msgstr "גיבוי/שחזור"
-
-#~ msgid "Backup and restore your gallery database."
-#~ msgstr "גיבוי ושחזור של מסד הנתונים של הגלריה שלך."
-
-#, fuzzy
-#~ msgid "Info"
-#~ msgstr "מידע מסד-הנתונים של וורדפרס"
-
-#, fuzzy
-#~ msgid ""
-#~ "Shows statistical graphs and info about your gallery’s images and albums."
-#~ msgstr "מציג מידע על אלבומים ותמונות של הגלריה שלך וגרפים סטטיסטי."
-
-#, fuzzy
-#~ msgid "Statistics"
-#~ msgstr "סטטיסטיקות של קטגוריות חדשות"
-
-#~ msgid "Back to the top 10 lists"
-#~ msgstr "Back to the top 10 lists"
-
-#~ msgid "top"
-#~ msgstr "למעלה"
-
-#~ msgid "Refresh the Database"
-#~ msgstr "רענון מסד הנתונים"
-
-#, fuzzy
-#~ msgid "Perform a garbage collection of the Database"
-#~ msgstr "לבצע אוסף זבל של מסד הנתונים"
-
-#~ msgid "Forces a refresh of the metadata for all images and albums."
-#~ msgstr "אלצו רענון של מטא מידע של תמונות ואלבומים."
-
-#, fuzzy
-#~ msgid ""
-#~ "The scripts for which BxSlider is enabled. {If themes require it they "
-#~ "might set this, otherwise you need to do it manually!}"
-#~ msgstr ""
-#~ "קבצי ה-script אשר מופעלת BxSlider. {אם ערכות נושא דורשים זאת שהם אולי "
-#~ "סידרו את זה, אחרת אתה צריך לעשות את זה באופן ידני!}"
-
-#, fuzzy
-#~ msgid "Cache manager"
-#~ msgstr "מטמון מנהל"
-
-#, fuzzy
-#~ msgid "<a href=\"%1$s\" target=\"_blank\">%2$s</a>"
-#~ msgstr "<a href=\"%1$s\" target=\"_blank\">%2$s</a>"
-
-#, fuzzy
-#~ msgid "404"
-#~ msgstr "404"
-
-#, fuzzy
-#~ msgid "EXIF"
-#~ msgstr "אקסיף Exif"
-
-#, fuzzy
-#~ msgid "EXPLAIN_SELECTS"
-#~ msgstr "EXPLAIN_SELECTS"
-
-#, fuzzy
-#~ msgid "FILTERS"
-#~ msgstr "סינון"
-
-#, fuzzy
-#~ msgid "IMAGE"
-#~ msgstr "תמונה"
-
-#, fuzzy
-#~ msgid "LOCALE"
-#~ msgstr "הגדרת הלוקאל %s אינה נתמכת על ידי השרת."
-
-#, fuzzy
-#~ msgid "LOGIN"
-#~ msgstr "שם משתמש"
-
-#, fuzzy
-#~ msgid "PLUGINS"
-#~ msgstr "תוספים"
-
-#~ msgid "Functions"
-#~ msgstr "פונקציות"
-
-#, fuzzy
-#~ msgid ""
-#~ "Send the <em>deprecated</em> notification message if the function name is "
-#~ "checked. Un-checking these boxes will allow you to continue using your "
-#~ "theme without warnings while you upgrade its implementation. Functions "
-#~ "flagged with an asterisk are class methods. Ones flagged with two "
-#~ "asterisks have deprecated parameters."
-#~ msgstr ""
-#~ "לשלוח את ההודעה ההודעה <em>בשימוש</em> אם שם הפונקציה מסומנת. סימון תיבות "
-#~ "אלה יאפשרו לך להמשיך להשתמש הנושא שלך בלי אזהרות בעת שדרוג יישומה. "
-#~ "פונקציות מסומן בכוכבית הן שיטות מחלקה. אלה מסומנות בדגל עם שתי כוכביות יש "
-#~ "בשימוש בפרמטרים."
-
-#, fuzzy
-#~ msgid "Searches PHP scripts for use of deprecated functions."
-#~ msgstr "הסקריפטים PHP חיפושים לשימוש של פונקציות מוחלפות."
-
-#~ msgid "Check for update"
-#~ msgstr "בדיקת עדכונים"
-
-#, fuzzy
-#~ msgid "Deprecated"
-#~ msgstr "בשימוש"
-
-#, fuzzy
-#~ msgid "Counts of downloads"
-#~ msgstr "סעיפים של הורדות"
-
-#, fuzzy
-#~ msgid "Keyword threshold"
-#~ msgstr "מילת המפתח הסף"
-
-#, fuzzy
-#~ msgid "Only keywords with at least this number of uses will be shown."
-#~ msgstr "מילות המפתח היחיד עם-לפחות מספר שימושים יוצג."
-
-#, fuzzy
-#~ msgid "Manage published state of content in your gallery."
-#~ msgstr "לנהל את המדינה שפורסמו של תוכן בגלריה שלך."
-
-#~ msgid "Search statistics"
-#~ msgstr "חפש בסטטיסטיקות"
-
-#~ msgid "Analyze searches"
-#~ msgstr "נתח חיפושים"
-
-#, fuzzy
-#~ msgid "Analysis"
-#~ msgstr "אנליזה"
-
-#, fuzzy
-#~ msgid "Seo"
-#~ msgstr "קידום במנועי חיפוש"
-
-#, fuzzy
-#~ msgid "SEO Cleaner"
-#~ msgstr "SEO מנקה"
-
-#, fuzzy
-#~ msgid "Make file and folder names in the Gallery SEO friendly."
-#~ msgstr "לעשות שמות קבצים ותיקיות ב- SEO גלריה ידידותי."
-
-#, fuzzy
-#~ msgid "Generate or purge sitemap cache files."
-#~ msgstr "ליצור או למחוק לצמיתות קובצי זיכרון מטמון מפת האתר."
-
-#, fuzzy
-#~ msgid ""
-#~ "The scripts for which the cycle2 plugin is enabled. {If themes require it "
-#~ "they might set this, otherwise you need to do it manually!}"
-#~ msgstr ""
-#~ "קבצי ה-script אשר מופעלת התוסף cycle2. {אם ערכות נושא דורשים זאת שהם אולי "
-#~ "סידרו את זה, אחרת אתה צריך לעשות את זה באופן ידני!}"
-
-#, fuzzy
-#~ msgid ""
-#~ "There are no other registered users who have provided an e-mail address."
-#~ msgstr "יש שמשתמשים אחרים אינם רשומים מי סיפק כתובת דואר אלקטרוני."
-
-#~ msgid ""
-#~ "A tool to send e-mails to all registered users who have provided an e-"
-#~ "mail address."
-#~ msgstr "כלי לשליחת הודעות אימייל לכל המשתמשים הרשומים שסיפקו כתובת מייל."
-
-#, fuzzy
-#~ msgid "Mailing"
-#~ msgstr "דיוור אלקטרוני"
-
-#~ msgid "To:"
-#~ msgstr "אל: "
-
-#~ msgid "Send another mail"
-#~ msgstr "שלחו מייל נוסף"
-
-#~ msgid "An importer for Wordpress posts and pages to Zenpage."
-#~ msgstr "ייבוא פוסטים ועמודים מוורדפרס לזןדף."
-
-#~ msgid "TitleLink:"
-#~ msgstr "כותרת-קישור:"
-
-#~ msgid "Content:"
-#~ msgstr "תוכן:"
-
-#~ msgid ""
-#~ "<strong>Note:</strong> This option is valid only if you have the "
-#~ "<em>Gallery index page link</em> option set to \"gallery\". Of course the "
-#~ "<em>menu_manager</em> plugin must also be enabled."
-#~ msgstr ""
-#~ "<strong>חשוב: </strong> האופצייה הזאת חוקית רק עם האופצייה <em>קישור לדף "
-#~ "הבית של הגלרייה</em> הוגדר כ-\"gallery\". כמובן שהתוסף <em>menu_manager</"
-#~ "em> צריך להיות פעיל גם."
-
-#~ msgid "No album provided to sort."
-#~ msgstr "לא הוצע אלבום למיון"
-
-#~ msgid " descending"
-#~ msgstr "סדר עולה"
-
-#~ msgid "Current sort: <em>%1$s%2$s</em>. "
-#~ msgstr "מיון נוכחי: <em>%1$s%2$s</em>. "
-
-#~ msgid "Current sort: <em>%1$s%2$s</em>."
-#~ msgstr "מיון נוכחי: <em>%1$s%2$s</em>."
-
-#~ msgid "UTF8 image URIs"
-#~ msgstr "UTF8 image URIs"
-
-#, fuzzy
-#~ msgid ""
-#~ "If you are having problems with images whose names contain characters "
-#~ "with diacritical marks try changing the <em>UTF8 image URIs</em> setting."
-#~ msgstr ""
-#~ "אם נוצרות שגיאות עם תמונות ששמותיהן מכילים תווים מיוחדים נסו לשנות את "
-#~ "ההגדרות <em>UTF8 image URIs</em>."
-
-#~ msgid "Charset:"
-#~ msgstr "קידוד:"
-
-#~ msgid ""
-#~ "The character encoding to use internally. Leave at <em>Unicode (UTF-8)</"
-#~ "em> if you are unsure."
-#~ msgstr ""
-#~ "הקידוד לשימוש פנימי. מומלץ להשאיר אותו <em>Unicode (UTF-8)</em> אם אינך "
-#~ "בטוחה."
-
-#~ msgid ""
-#~ "Character sets <span style=\"color:gray\">shown in gray</span> have no "
-#~ "character translation support."
-#~ msgstr ""
-#~ "לקידוד (Character set) <span style=\"color:gray\">המופיע באפור</span> אין "
-#~ "תרגום."
-
-#~ msgid "Gallery index page link:"
-#~ msgstr "קישור לדף הבית של הגלרייה:"
-
-#~ msgid ""
-#~ "If this option is not empty, the Gallery Index URL that would normally "
-#~ "link to the theme <code>index.php</code> script will instead link to this "
-#~ "script. This frees up the <code>index.php</code> script so that you can "
-#~ "create a customized <em>Home page</em> script. This option applies only "
-#~ "to the main theme for the <em>Gallery</em>."
-#~ msgstr ""
-#~ "אם האפשרות הזו אינה ריקה, כתובת ה-URL של דף הבית של הגלרייה יפנה לדף הזה "
-#~ "במקום שיפנה לדף <code>index.php</code> של ערכת העיצוב. מצב זה מאפשר לכם "
-#~ "להגדיר דף בית מותאם אישית. אפשרות זו חלה רק על ערכת העיצוב הראשית של "
-#~ "הגלריה. "
-
-#~ msgid ""
-#~ "Password reset request.<br />You may now set admin usernames and "
-#~ "passwords."
-#~ msgstr ""
-#~ "בקשה לאיפוס סיסמה <br/> ניתן עכשיו להגדיר מחדש שמות משתמשים וסיסמאות."
-
-#~ msgid "<strong>%1$u</strong> Page"
-#~ msgid_plural "<strong>%1$u</strong> Pages"
-#~ msgstr[0] "<strong>%1$u</strong> דף"
-#~ msgstr[1] "<strong>%1$u</strong> דפים"
-
-#~ msgid "<strong>%1$u</strong> Page (%2$u un-published)"
-#~ msgid_plural "<strong>%1$u</strong> Pages (%2$u un-published)"
-#~ msgstr[0] "<strong>%1$u</strong> דף (%2$u לא מפורסם)"
-#~ msgstr[1] "<strong>%1$u</strong> דפים (%2$u לא מפורסם)"
-
-#~ msgid "<strong>%1$u</strong> News"
-#~ msgid_plural "<strong>%1$u</strong> News"
-#~ msgstr[0] "<strong>%1$u</strong> חדשות"
-#~ msgstr[1] "<strong>%1$u</strong> חדשות"
-
-#~ msgid "<strong>%1$u</strong> News (%2$u un-published)"
-#~ msgid_plural "<strong>%1$u</strong> News (%2$u un-published)"
-#~ msgstr[0] "<strong>%1$u</strong> חדשה (%2$u לא מפורסמת)"
-#~ msgstr[1] "<strong>%1$u</strong> חדשות  (%2$u לא מפורסמות)"
-
-#~ msgid "<strong>%1$u</strong> Category"
-#~ msgid_plural "<strong>%1$u</strong> Categories"
-#~ msgstr[0] "<strong>%1$u</strong> קטגוריה"
-#~ msgstr[1] "<strong>%1$u</strong> קטגוריות"
-
-#~ msgid "Location/Place"
-#~ msgstr "מיקום/מקום"
-
-#, fuzzy
-#~ msgid "%1$s: %2$s in %3$s on line %4$s"
-#~ msgstr "%1$s %2$s: %3$s%4$s"
-
-#, fuzzy
-#~ msgid "No supported databases"
-#~ msgstr "התחברות למסד הנתונים"
-
-#~ msgid "Request URI: [ <code>%s</code> ]"
-#~ msgstr "URI מבוקש: [ <code>%s</code> ]"
-
-#~ msgid "Cache: [<code>%s</code>]"
-#~ msgstr "מטמון: [<code>%s</code>]"
-
-#~ msgid "Image: [<code>%s</code>]"
-#~ msgstr "תמונה: [<code>%s</code>]"
-
-#, fuzzy
-#~ msgid "an unknown release"
-#~ msgstr "שם לא ידוע"
-
-#~ msgid ""
-#~ "Setting <em>mbstring.internal_encoding</em> to <strong>UTF-8</strong> in "
-#~ "your <em>php.ini</em> file is recommended to insure accented and multi-"
-#~ "byte characters function properly."
-#~ msgstr ""
-#~ "הגדרת <em>mbstring.internal_encoding</em> כ-<strong>UTF-8</strong> בקובץ "
-#~ "ה-<em>php.ini</em> מומלצת כי היא מבטיחה תמיכה רחבה של קידוד."
-
-#, fuzzy
-#~ msgid "The filesystem character define is ISO-8859-1 [assumed]"
-#~ msgstr "הקידוד המוגדר למערכת הקבצים הוא  ISO-8859-1 [משוער"
-
-#~ msgid "About to create tables"
-#~ msgstr "מתכוננת ליצור את הטבלאות"
-
-#~ msgid "Begin table creation"
-#~ msgstr "החל תהליך יצירת טבלאות"
-
-#~ msgid "Query %1$s Failed. Error: %2$s"
-#~ msgstr "השאילתא %1$s נכשלה. שגיאה %2$s."
-
-#~ msgid "Table creation failure:<br />Query: %1$s<br />Error: %2$s"
-#~ msgstr "יצירת הטבלה נכשלה: <br />שאילתא: %1$s<br />שגיאה: %2$s"
-
-#~ msgid "Query ( %s ) Success."
-#~ msgstr "השאילתה ( %s )  בוצעה בהצלחה."
-
-#~ msgid "Begin table updates"
-#~ msgstr "עדכון טבלאות החל"
-
-#~ msgid "Done with table create!"
-#~ msgstr "יצירת טבלה הסתיימה!"
-
-#~ msgid "Done with table create with errors!"
-#~ msgstr "יצירת טבלה הסתיימה עם שגיאות!"
-
-#~ msgid "Done with table update"
-#~ msgstr "עדכון טבלה הסתיים"
-
-#~ msgid "Done with table update with errors"
-#~ msgstr "עדכון טבלה הסתיים עם שגיאות!"
-
-#~ msgid "Previous Release was %s"
-#~ msgstr "גירסא קודמת הייתה %s"
-
-#~ msgid "Database tables to update: %s"
-#~ msgstr "טבלאות מסד נתונים שיעודכנו: %s"
-
-#, fuzzy
-#~ msgid "If you haven not created the database yet, now would be a good time."
-#~ msgstr "אם עדיין יצרתם את מסד-הנתונים, עכשיו הוא זמן מצוין לעשות זאת."
-
-#~ msgid "Migrating lib-auth data version %1$s => version %2$s"
-#~ msgstr "Migrating lib-auth data version %1$s => version %2$s"
-
-#, fuzzy
-#~ msgid "Copyright %1$u: %2$s"
-#~ msgstr "זכויות יוצרים:"
-
-#~ msgid "Admin Toolbox"
-#~ msgstr "ארגז כלים לניהול"
-
-#, fuzzy
-#~ msgid "Clone"
-#~ msgstr "שיבוט:"
-
-#, fuzzy
-#~ msgid "Plugin to generate file download lists."
-#~ msgstr ""
-#~ "סמנו את האפשרות הזו בכדי לאפשר הצגת קישור להורדת אלבום כקובץ דחוס (ZIP)."
-
-#~ msgid "Map dimensions—width"
-#~ msgstr "מימדי מפה - רוחב"
-
-#~ msgid "The default width of the map."
-#~ msgstr "רוחב ברירת המחדל של המפה"
-
-#~ msgid "Map dimensions—height"
-#~ msgstr "מימדי מפה - גובה"
-
-#~ msgid "The default height of the map."
-#~ msgstr "גובה ברירת המחדל של המפה."
-
-#~ msgid "Allows setting language locale through the URI."
-#~ msgstr "אפשר לקבוע את שפת הממשק באמצעות ה-URI"
-
-#, fuzzy
-#~ msgid "RSS suspended"
-#~ msgstr "פידי RSS"
-
-#, fuzzy
-#~ msgid "The RSS feed is currently not available."
-#~ msgstr "התמונה מסומנת כמוסתרת"
-
-#, fuzzy
-#~ msgid "Selector CSS"
-#~ msgstr "Selector"
-
-#~ msgid "Album:"
-#~ msgstr "אלבום:"
-
-#~ msgid "Album folder:"
-#~ msgstr "תיקיית אלבום:"
-
-#~ msgid "(Click on image to include)"
-#~ msgstr "(לחצו על התמונה על מנת לכלול אותה)"
-
-#, fuzzy
-#~ msgid "<em>Albumthumb</em>"
-#~ msgstr "<em>וגם</em>"
-
-#~ msgid "<strong>Note:</strong> This album does not contain any images."
-#~ msgstr "<strong>חשוב:</strong> לאלבום זה אינו מכיל תמונות."
-
-#~ msgid "(Click on article title to include a link)"
-#~ msgstr "(לחצו על כותרת המאמר בכדי לכלול את הקישור אליו)"
-
-#~ msgid "*Select*"
-#~ msgstr "*בחרו*"
-
-#~ msgid "(only direct links!)"
-#~ msgstr "(קישורים ישירים בלבד!)"
-
-#~ msgid "*Select an album*"
-#~ msgstr "*בחרו אלבום*"
-
-#~ msgid "(select variant below)"
-#~ msgstr "(בחרו משתנה למטה)"
-
-#~ msgid "What to include"
-#~ msgstr "מה לכלול"
-
-#~ msgid "Custom text"
-#~ msgstr "טקסט מתואם אישית"
-
-#~ msgid "Custom thumbnail"
-#~ msgstr "תמונת-אצבע מתואמת אישית"
-
-#~ msgid "Custom size (un-cropped)"
-#~ msgstr "גודל מותאם אישית (לא קצוץ)"
-
-#, fuzzy
-#~ msgid "Full image"
-#~ msgstr "תמונה בגודל מלא"
-
-#, fuzzy
-#~ msgid "Title and description"
-#~ msgstr "תיאור גלרייה:"
-
-#, fuzzy
-#~ msgid "No description"
-#~ msgstr "(אין תיאור...)"
-
-#, fuzzy
-#~ msgid "Show image description"
-#~ msgstr "CombiNews: הצג תיאור תמונה"
-
-#, fuzzy
-#~ msgid "Show album description"
-#~ msgstr "תיאור אלבום:"
-
-#~ msgid "Link type"
-#~ msgstr "סוג קישור"
-
-#~ msgid "Link to image"
-#~ msgstr "קישור לתמונה"
-
-#~ msgid "Link to full image"
-#~ msgstr "קישור לתמונה בגודל מלא"
-
-#~ msgid "Link to album"
-#~ msgstr "קישור לאלבום"
-
-#~ msgid "No link"
-#~ msgstr "ללא קישור"
-
-#~ msgid "Text wrap"
-#~ msgstr "שבירת טקסט"
-
-#~ msgid "No wrap"
-#~ msgstr "ללא שבירה"
-
-#, fuzzy
-#~ msgid ""
-#~ "This provides access to your images and albums (select from the "
-#~ "<em>Zenphoto</em> dropdown) as well as pages, news articles and news "
-#~ "categories (select from the <em>Zenpage</em> dropdown) to easily include "
-#~ "them in your pages and articles."
-#~ msgstr ""
-#~ "זה מספק גישה לתמונות של האלבום (תפריט נפתח 'זןפווטו') וכמו כן, לדפים "
-#~ "למאמרי חדשות לקטגוריות חדשות (תפריט נפתח 'זןדף') על מנת לכלול אותם בקלות "
-#~ "בדפים ובמאמרים. ההרשאה המינימלית לפעולה זו היא 'ניהול כל האלבומים' או "
-#~ "'עריכה'."
-
-#, fuzzy
-#~ msgid "Options on what to include"
-#~ msgstr "מה לכלול"
-
-#, fuzzy
-#~ msgid ""
-#~ "Include the image itself, only its title, the title of its album, or some "
-#~ "custom text."
-#~ msgstr ""
-#~ "כלול את התמונה עצמה, רק את הכותרת שלה, כותרת האלבום שלה או טקסט חופשי."
-
-#, fuzzy
-#~ msgid ""
-#~ "The window does not close automatically so you can include several images "
-#~ "one after another."
-#~ msgstr ""
-#~ "החלונות אינם נסגרים אוטומטית לכן, ניתן לכלול מספר תמונות אחת אחרי השנייה."
-
-#, fuzzy
-#~ msgid "Custom size (un-cropped)."
-#~ msgstr "גודל מותאם אישית (לא קצוץ)"
-
-#~ msgid "left wrap: <em>style=\"float:right\"</em>"
-#~ msgstr "שבירה משמאל <em>style=\"float:right\"</em>"
-
-#~ msgid "right wrap: <em>style=\"float: left\"</em>"
-#~ msgstr ":שבירה מימין <em>style=\"float: left\"</em>"
-
-#, fuzzy
-#~ msgid ""
-#~ "An importer for <strong>Wordpress 3.x</strong> to the Zenpage CMS plugin "
-#~ "that imports the following:"
-#~ msgstr ""
-#~ "כלי לייבוא תכני <strong>וורדפרס 2.9.x/3.x</strong> לתוסף זןדף שמייבא את "
-#~ "הדברים הבאים:"
-
-#, fuzzy
-#~ msgid ""
-#~ "Hint: If you need more space for your text use TinyMCE’s full screen mode "
-#~ "(Click the expend icon of editor’s control bar, near ZP icon)."
-#~ msgstr ""
-#~ "רמז: אם אתם צריכים יותר מקום להזנת הטקסט שלכם השתמשו במצב מסך מלא של "
-#~ "העורך TinyMCE (לחיצה על הכפתור המרובע הכחול שנמצא בפינה הימינת העליונה של "
-#~ "לוח הכפתורים)."
-
-#~ msgid "(<strong>%1$u</strong> page)"
-#~ msgid_plural "(<strong>%1$u</strong> pages)"
-#~ msgstr[0] "(דף <strong>%1$u</strong>)"
-#~ msgstr[1] "(דפים <strong>%1$u</strong>)"
-
-#~ msgid "(<strong>%1$u</strong> category)"
-#~ msgid_plural "(<strong>%1$u</strong> categories)"
-#~ msgstr[0] "(<strong>%1$u</strong> קטגוריה)"
-#~ msgstr[1] "(<strong>%1$u</strong> קטגוריות)"
-
-#~ msgid "Auto, Continuous"
-#~ msgstr "Auto, Continuous"
-
-#~ msgid "Auto, Focus button"
-#~ msgstr "Auto, Focus button"
-
-#~ msgid "Compulsory Flash, Return light detected"
-#~ msgstr "Compulsory Flash, Return light detected"
-
-#~ msgid "Compulsory Flash, Return light not detected"
-#~ msgstr "Compulsory Flash, Return light not detected"
-
-#~ msgid "Flash, Auto-Mode"
-#~ msgstr "Flash, Auto-Mode"
-
-#~ msgid "Flash, Auto-Mode, Return light detected"
-#~ msgstr "Flash, Auto-Mode, Return light detected"
-
-#~ msgid "Flash, Auto-Mode, Return light not detected"
-#~ msgstr "Flash, Auto-Mode, Return light not detected"
-
-#~ msgid "Flash, strobe return light detected"
-#~ msgstr "Flash, strobe return light detected"
-
-#~ msgid "Flash, strobe return light not detected"
-#~ msgstr "Flash, strobe return light not detected"
-
-#~ msgid "Red Eye, Auto-Mode"
-#~ msgstr "Red Eye, Auto-Mode"
-
-#~ msgid "Red Eye, Auto-Mode, Return light detected"
-#~ msgstr "Red Eye, Auto-Mode, Return light detected"
-
-#~ msgid "Red Eye, Auto-Mode, Return light not detected"
-#~ msgstr "Red Eye, Auto-Mode, Return light not detected"
-
-#~ msgid "Red Eye, Compulsory Flash"
-#~ msgstr "Red Eye, Compulsory Flash"
-
-#~ msgid "Red Eye, Compulsory Flash, Return light detected"
-#~ msgstr "Red Eye, Compulsory Flash, Return light detected"
-
-#~ msgid "Red Eye, Compulsory Flash, Return light not detected"
-#~ msgstr "Red Eye, Compulsory Flash, Return light not detected"
-
-#~ msgid "Red Eye, Return light detected"
-#~ msgstr "Red Eye, Return light detected"
-
-#~ msgid "Red Eye, Return light not detected"
-#~ msgstr "Red Eye, Return light not detected"
-
-#, fuzzy
-#~ msgid "Theme:%s setup completed"
-#~ msgstr "השחזור הסתיים"
-
-#~ msgid "Owner:"
-#~ msgstr "בעלים:"
-
-#, fuzzy
-#~ msgid "Set as thumbnail for:"
-#~ msgstr "בחרו כתמונה המוקטנת של האלבום."
-
-#~ msgid "Image watermark:"
-#~ msgstr "סימן מים של אלבום:"
-
-#, fuzzy
-#~ msgid "Scan pending"
-#~ msgstr "סדר יורד"
-
-#, fuzzy
-#~ msgid "Order by date descending"
-#~ msgstr "מיון לפי התגיות שהכי בשימוש"
-
-#, fuzzy
-#~ msgid "Order by date ascending"
-#~ msgstr "מיון לפי התגיות שהכי בשימוש"
-
-#~ msgid ""
-#~ "If checked on the heading image will change daily rather than on each "
-#~ "page load."
-#~ msgstr "אם סומן על הכותרת, התמונה תתחלף אחת ליום ולא בכל פעם שהדף נטען"
-
-#, fuzzy
-#~ msgid "The Object you are requesting cannot be found."
-#~ msgstr "אובייקט הזןפוטו שביקשת לא נמצא"
-
-#~ msgid "Theme page"
-#~ msgstr "דף ערכת עיצוב"
-
-#, fuzzy
-#~ msgid "The page you are requesting cannot be found."
-#~ msgstr "אובייקט הזןפוטו שביקשת לא נמצא"
-
-#, fuzzy
-#~ msgid "Sorry, the page you are requesting cannot be found."
-#~ msgstr "אובייקט הזןפוטו שביקשת לא נמצא"
-
-#, fuzzy
-#~ msgid "Future publishing date."
-#~ msgstr "תאריך פרסום עתידי:"
-
-#, fuzzy
-#~ msgid "show content"
-#~ msgstr "הצג תגובות"
-
-#~ msgid "Dynamic album search:"
-#~ msgstr "חיפוש דינמי של אלבומים:"
-
-#, fuzzy
-#~ msgid ""
-#~ "<a href=\"javascript:toggle('albumpub');\" >Details</a> for <em>publish "
-#~ "albums by default</em>"
-#~ msgstr ""
-#~ "<a href=\"javascript:toggle('visualthumb');\" >פרטים</a> על <em>בחירה של "
-#~ "תמונת-אצבע ויזואלית</em>"
-
-#, fuzzy
-#~ msgid ""
-#~ "<a href=\"javascript:toggle('imagepub');\" >Details</a> for <em>publish "
-#~ "images by default</em>"
-#~ msgstr ""
-#~ "<a href=\"javascript:toggle('albumdate');\" >פרטים</a> עבור <em>שימוש "
-#~ "בתאריך התמונה האחרונה כתאריך של האלבום</em>"
-
-#~ msgid ""
-#~ "<a href=\"javascript:toggle('albumdate');\" >Details</a> for <em>use "
-#~ "latest image date as album date</em>"
-#~ msgstr ""
-#~ "<a href=\"javascript:toggle('albumdate');\" >פרטים</a> עבור <em>שימוש "
-#~ "בתאריך התמונה האחרונה כתאריך של האלבום</em>"
-
-#~ msgid ""
-#~ "<a href=\"javascript:toggle('visualthumb');\" >Details</a> for <em>visual "
-#~ "thumb selection</em>"
-#~ msgstr ""
-#~ "<a href=\"javascript:toggle('visualthumb');\" >פרטים</a> על <em>בחירה של "
-#~ "תמונת-אצבע ויזואלית</em>"
-
-#, fuzzy
-#~ msgid ""
-#~ "<a href=\"javascript:toggle('multithumb');\" >Details</a> for "
-#~ "<em>subalbum thumb selection</em>"
-#~ msgstr ""
-#~ "<a href=\"javascript:toggle('visualthumb');\" >פרטים</a> על <em>בחירה של "
-#~ "תמונת-אצבע ויזואלית</em>"
-
-#~ msgid "ExtraContent"
-#~ msgstr "תוכנוסף"
-
-#~ msgid "1: Normal (0 deg)"
-#~ msgstr "1: Normal (0 deg)"
-
-#~ msgid "2: Mirrored"
-#~ msgstr "2: Mirrored"
-
-#~ msgid "3: Upside-down"
-#~ msgstr "3: Upside-down"
-
-#~ msgid "4: Upside-down Mirrored"
-#~ msgstr "4: Upside-down Mirrored"
-
-#~ msgid "5: 90 deg CW Mirrored"
-#~ msgstr "5: 90 deg CW Mirrored"
-
-#~ msgid "6: 90 deg CCW"
-#~ msgstr "6: 90 deg CCW"
-
-#~ msgid "7: 90 deg CCW Mirrored"
-#~ msgstr "7: 90 deg CCW Mirrored"
-
-#~ msgid "8: 90 deg CW"
-#~ msgstr "8: 90 deg CW"
-
-#~ msgid "%d: Unknown"
-#~ msgstr "%d: לא ידוע"
-
-#~ msgid "D55"
-#~ msgstr "D55"
-
-#~ msgid "D65"
-#~ msgstr "D65"
-
-#~ msgid "D75"
-#~ msgstr "D75"
-
-#~ msgid "D50"
-#~ msgstr "D50"
-
-#~ msgid "/10s"
-#~ msgstr "/10s"
-
-#~ msgid "2x"
-#~ msgstr "2x"
-
-#~ msgid "4x"
-#~ msgstr "4x"
-
-#~ msgid "50"
-#~ msgstr "50"
-
-#~ msgid "100"
-#~ msgstr "100"
-
-#~ msgid "200"
-#~ msgstr "200"
-
-#~ msgid "400"
-#~ msgstr "400"
-
-#~ msgid "12"
-#~ msgstr "12"
-
-#~ msgid "13"
-#~ msgstr "13"
-
-#~ msgid "14"
-#~ msgstr "14"
-
-#~ msgid "15"
-#~ msgstr "15"
-
-#~ msgid "Unknown: "
-#~ msgstr "לא ידוע:"
-
-#~ msgid "2s"
-#~ msgstr "2ש"
-
-#, fuzzy
-#~ msgid "Updating the configuration file"
-#~ msgstr "הגדרות עורך זןדף"
-
-#, fuzzy
-#~ msgid ""
-#~ "ZenPhoto20 processed a 404 error on %s. See the debug log for details."
-#~ msgstr "זןפוטו יצרה שגיאת 404 עבור  %s. ראו את לוג הדיבג לפרטים."
-
-#, fuzzy
-#~ msgid ""
-#~ "Welcome to ZenPhoto20! This page will set up the version %s on your web "
-#~ "server."
-#~ msgstr "ברוכים הבאים לזןפוטו! הדף הנוכחי יסייע לכם בהתקנת התוכנה על השרת."
-
-#, fuzzy
-#~ msgid "Updated configuration file"
-#~ msgstr "הגדרות עורך טקסט"
-
-#~ msgid "Database admin user"
-#~ msgstr "משתמש מנהל של מסד הנתונים"
-
-#~ msgid "Database admin password"
-#~ msgstr "סיסמת מנהל של מסד הנתונים"
-
-#, fuzzy
-#~ msgid "Invalid Textobject instantiation: file does not exist"
-#~ msgstr "התמונה לא נמצאה. הקובץ אינו קיים."
-
-#, fuzzy
-#~ msgid "Languange"
-#~ msgstr "שפה:"
-
-#, fuzzy
-#~ msgid "Sub-Languange"
-#~ msgstr "שפה:"
-
-#, fuzzy
-#~ msgid "Languange String"
-#~ msgstr "שפה:"
-
-#, fuzzy
-#~ msgid "Zenphoto browser cookies found."
-#~ msgstr "קבצי הליבה של זןפוטו"
-
-#, fuzzy
-#~ msgid "restore screen"
-#~ msgstr "השחזור הסתיים"
-
-#, fuzzy
-#~ msgid "shuffle off"
-#~ msgstr "טריפה"
-
-#, fuzzy
-#~ msgid "repeat off"
-#~ msgstr "שוב:"
-
-#, fuzzy
-#~ msgid "Target does not exists in <em>%1$s</em> theme"
-#~ msgstr "אל תציג תוצאות חדשות"
-
-#~ msgid ""
-#~ "Creates a link to a custom theme page as described in the theming "
-#~ "tutorial."
-#~ msgstr ""
-#~ "יוצר קישור לדף מתואם אישית של ערכת עיצוב כפי שמתואר בסדנת הלימוד של יצירת "
-#~ "ערכות עיצוב."
-
-#, fuzzy
-#~ msgid "Set Security log permissions"
-#~ msgstr "ההרשאות של קבצי הליבה של זןפוטו"
-
-#, fuzzy
-#~ msgid "tinyZenpage plugin"
-#~ msgstr "דף זןדף"
-
-#, fuzzy
-#~ msgid "Custom image size"
-#~ msgstr "דף מותאם אישית"
-
-#, fuzzy
-#~ msgid "Custom thumb crop - size"
-#~ msgstr "קיצוץ תמונה מוקטנת"
-
-#, fuzzy
-#~ msgid "Custom thumb crop - width"
-#~ msgstr "קיצוץ תמונה מוקטנת"
-
-#, fuzzy
-#~ msgid "Custom thumb crop - height"
-#~ msgstr "קיצוץ תמונה מוקטנת"
-
-#, fuzzy
-#~ msgid "image with link to image"
-#~ msgstr "קישור לתמונה"
-
-#~ msgid "Future publishing date:"
-#~ msgstr "תאריך פרסום עתידי:"
-
-#, fuzzy
-#~ msgid "newPage"
-#~ msgstr "דף"
-
-#~ msgid "Expiration date:"
-#~ msgstr "תאריך תפוגה:"
-
-#~ msgid "ExtraContent:"
-#~ msgstr "תוכן נוסף:"
-
-#~ msgid "Scheduled for published"
-#~ msgstr "מתכונן לפרסום"
-
-#~ msgid "Publish immediately (skip scheduling)"
-#~ msgstr "פרסום מיידי (דלגו על תכנון)"
-
-#~ msgid "Enable scheduled publishing"
-#~ msgstr "לאפשר תכנון פרסום"
-
-#~ msgid "Publish (override expiration)"
-#~ msgstr "פרסום(דרוס תפוגת תוקף)"
-
-#~ msgid "Updated zp-config.php"
-#~ msgstr "עדכון zp-config.php"
-
-#~ msgid "strict+"
-#~ msgstr "strict+"
-
-#~ msgid "Zenphoto setup"
-#~ msgstr "התקנת זןפוטו"
-
-#~ msgid "Upgrade from before Zenphoto v1.2"
-#~ msgstr "שדרגו מלפני זןפוטו v1.2"
-
-#~ msgid "Upgrade from Zenphoto v%s"
-#~ msgstr "משדרג מזןפוטו v%s"
-
-#~ msgid "Updating current Zenphoto release"
-#~ msgstr "מעדכן את גירסת זןפוטו הנוכחית"
-
-#~ msgid "[%u release skipped]"
-#~ msgid_plural "[%u releases skipped]"
-#~ msgstr[0] "\t\t[דלג על %u גרסא]\t\t"
-#~ msgstr[1] "[דלג על %u גרסאות]"
-
-#~ msgid ""
-#~ "We do not test upgrades that skip releases. We recommend you upgrade in "
-#~ "sequence."
-#~ msgstr ""
-#~ "אנחנו לא בודקים שדרגו שבהם פסחו על גרסאות. אני ממליץ לכם לשדרג באופן עוקב "
-#~ "מגירסא לגירסא."
-
-#~ msgid "Version %1$s or greater is strongly recommended."
-#~ msgstr "גירסת %1$s או מעודכנת יותר מומלצת"
-
-#~ msgid ""
-#~ "You should consider disabling <code>magic_quotes_gpc</code>. For more "
-#~ "information See <em>What is magic_quotes_gpc and why should it be "
-#~ "disabled?</em> in the Zenphoto troubleshooting guide."
-#~ msgstr ""
-#~ "מומלץ לבטל <code>magic_quotes_gpc</code>. לפרטים נוספים ראו <em>מהם "
-#~ "magic_quotes_gpc ומדוע מומלץ לבטלם?</em> במדריך פתרון הבעיות של זןפוטו."
-
-#~ msgid "See the troubleshooting guide on zenphoto.org for details."
-#~ msgstr "ראי את מדריך פתרון הבעיות באתר zenphoto.org לקבלת לפרטים נוספים."
-
-#~ msgid ""
-#~ "PHP <code>%s support</code> for configured Database [is experimental]"
-#~ msgstr ""
-#~ "PHP <code>%s support</code> for configured Database [is experimental]"
-
-#~ msgid ""
-#~ "PHP <code>%s support</code> for configured Database [is not installed]"
-#~ msgstr ""
-#~ "PHP <code>%s support</code> for configured Database [is not installed]"
-
-#~ msgid "<em>zp-config.php</em> file"
-#~ msgstr " קובץ <em>zp-config.php</em>"
-
-#~ msgid "<em>zp-config.php</em> file [does not exist]"
-#~ msgstr "קובץ <em>zp-config.php</em> [does not exist]"
-
-#~ msgid "<br /><br />You can find the file in the \"%s\" directory."
-#~ msgstr "<br /><br />ניתן למצוא את הקובץ בתיקייה \"%s\""
-
-#~ msgid "You must be logged in to change permissions."
-#~ msgstr "עליכים להיות מחוברים בכדי לשנות הרשאות"
-
-#~ msgid ""
-#~ "Change the filesystem character set define to %1$s.<br />If you do not "
-#~ "know the character set try \"%2$s\""
-#~ msgstr ""
-#~ "שנו את הקידוד של מערכת הקבצים המוגדרים עבור %1$s.<br /> אם אתם לא יודעים "
-#~ "את מערך הקידוד הנכון נסו \"%2$s\""
-
-#~ msgid "Mac"
-#~ msgstr "Mac"
-
-#~ msgid "confirmed"
-#~ msgstr "אשרו"
-
-#~ msgid ""
-#~ "Check the <code>user</code>, <code>password</code>, and <code>database "
-#~ "host</code> and try again."
-#~ msgstr ""
-#~ "בדקו את <code>שם המשתמש</code>, <code>הסיסמא</code> ואת <code>שרת בסיס-"
-#~ "הנתונים</code> ונסו שנית."
-
-#~ msgid "Connect to the database [You have not provided a database name]"
-#~ msgstr "התחברות למסד הנתונים [לא סיפקתם את שם מסד הנתונים]"
-
-#~ msgid "Connect to the database [Database does not exist]"
-#~ msgstr "התחברות למסד הנתונים [מסד הנתונים אינו קיים]"
-
-#~ msgid ""
-#~ "Could not access the <strong>%1$s</strong> database (<code>%2$s</code>)."
-#~ msgstr ""
-#~ "אי אפשר לגשת למסד הנתונים <strong>%1$s</strong>  (<code>%2$s</code>)."
-
-#~ msgid ""
-#~ "Check the <code>user</code>, <code>password</code>, <code>database name</"
-#~ "code>, and <code>Database host</code>."
-#~ msgstr ""
-#~ "Check the <code>user</code>, <code>password</code>, <code>database name</"
-#~ "code>, and <code>Database host</code>."
-
-#~ msgid ""
-#~ "Make sure the database has been created and that <code>%s</code> has "
-#~ "access to it."
-#~ msgstr "וודאו שמסד הנתונים נוצר ושל- <code>%s</code> יש גישה אליו."
-
-#~ msgid "Database <code>access rights</code>"
-#~ msgstr " <code>הרשאות גישה</code> למסד הנתונים"
-
-#~ msgid "Deleting files failed!"
-#~ msgstr "מחיקת קבצים נמחקה!"
-
-#~ msgid ""
-#~ "<strong>NOTE:</strong> We strongly recommend you remove the <em>setup</"
-#~ "em> scripts from your zp-core folder at this time. You can always re-"
-#~ "upload them should you find you need them again in the future."
-#~ msgstr ""
-#~ "<strong>NOTE:</strong> We strongly recommend you remove the <em>setup</"
-#~ "em> scripts from your zp-core folder at this time. You can always re-"
-#~ "upload them should you find you need them again in the future."
-
-#~ msgid ""
-#~ "The zp-config.php file does not exist. You should run setup.php to check "
-#~ "your configuration and create this file."
-#~ msgstr ""
-#~ "הקובץ zp-config.php אינו קיים. צריך להריץ את הקובץ setup.php לבדוק את "
-#~ "ההגדרות וליצור את הקובץ הזה."
-
-#~ msgid "Imagick filter"
-#~ msgstr "פילטר Imagick "
-
-#~ msgid "Magick memory limit"
-#~ msgstr "Magick memory limit"
-
-#~ msgid ""
-#~ "Amount of memory allocated to Gmagick/Imagick in megabytes. Set to "
-#~ "<strong>0</strong> for unlimited memory."
-#~ msgstr ""
-#~ "Amount of memory allocated to Gmagick/Imagick in megabytes. Set to "
-#~ "<strong>0</strong> for unlimited memory."
-
-#~ msgid ""
-#~ "<strong>Note:</strong> Image processing will be faster with a higher "
-#~ "memory limit. However, if your server experiences problems with image "
-#~ "processing, try setting this lower."
-#~ msgstr ""
-#~ "<strong>חשוב</strong>: מהירות עיבוד התמונה תהיה גדולה יותר ככל שמגבלת "
-#~ "הזכרון תהיה קטנה יותר. למרות זאת, אם השרת חווה בעיות בעיבוד התמונה קבעו "
-#~ "הגדרות נמוכות יותר לזכרון. "
-
-#~ msgid ""
-#~ "The font size (in pixels) for CAPTCHAs. Default is <strong>%s</strong>."
-#~ msgstr ""
-#~ "גודל הגופן (בפיקסלים) עבור CAPTCHAs. ברירת המחדל היא <strong>%s</strong>."
-
-#~ msgid "Do you want to replace the file %s?"
-#~ msgstr "את רוצה להחליף את הקובץ %s?"
-
-#~ msgid "Upload queue is full. The upload limit is %u."
-#~ msgstr "התור של ההעלאת הקבצים מלא. מגבלת ההעלאה היא %u."
-
-#~ msgid "Upload Photos"
-#~ msgstr "העלאת תמונות"
-
-#~ msgid "Something went wrong..."
-#~ msgstr "משהו השתבש..."
-
-#~ msgid ""
-#~ "Zenphoto may be unable to perform uploads when PHP Safe Mode restrictions "
-#~ "are in effect"
-#~ msgstr "יתכן שזןפוטו לא יכולה לעלות תמונות בגלל הגבלות של PHP Safe Mode."
-
-#~ msgid "Zenphoto supported file types | all files"
-#~ msgstr "סוגי הקבצים הנתמכים של ידי זןפוטו | כל הקבצים"
-
-#~ msgid ""
-#~ "There appears to be no <em>Flash</em> plugin installed in your browser."
-#~ msgstr "נראה שלדפדפן לא מותקן תוסף פלאש."
-
-#~ msgid ""
-#~ "If your upload does not work try the <a href=\"javascript:"
-#~ "switchUploader('admin-upload.php?uploadtype=http');\" >http-browser "
-#~ "single file upload</a> or use FTP instead."
-#~ msgstr ""
-#~ "אם העלאה נכשלת נסו את <a href=\"javascript:switchUploader('admin-upload."
-#~ "php?uploadtype=http');\" >http-browser single file upload</a> או השתמשו ב-"
-#~ "FTP."
-
-#~ msgid ""
-#~ "Try the <a href=\"javascript:switchUploader('admin-upload.php?"
-#~ "uploadtype=multifile');\" >multi file upload</a>"
-#~ msgstr ""
-#~ "נסו את <a href=\"javascript:switchUploader('admin-upload.php?"
-#~ "uploadtype=multifile');\" >העלאת קבצים מרובה</a>"
-
-#~ msgid "<strong>Error parsing <em>plugin_URL</em> string!</strong>."
-#~ msgstr "<strong>שגיאת ניתוח מחרוזת <em>plugin_URL</em>!</strong>."
-
-#~ msgid ""
-#~ "<strong>Zenphoto error:</strong> zp-config.php not found. Perhaps you "
-#~ "need to run <a href=\"%s/setup.php\">setup</a> (or migrate your old "
-#~ "config.php)"
-#~ msgstr ""
-#~ "<strong>שגיאת זןפוטו:</strong> הקובץ zp-config.php לא נמצא. כדאי להריץ את "
-#~ "<a href=\"%s/setup.php\">ההתקנה </a> (או למזג את קובץ ההגדרות הישן)"
-
-#~ msgid "ERROR: Assertion failed in"
-#~ msgstr "שגיאה: מתן זכות (Assertion) נכשלה ב-"
-
-#~ msgid "<strong>Backtrace:</strong>"
-#~ msgstr "<strong>Backtrace:</strong>"
-
-#~ msgid "Save"
-#~ msgstr "שמור"
-
-#~ msgid "Saving"
-#~ msgstr "שומר"
-
-#~ msgid "Click to edit..."
-#~ msgstr "הקליקי לעריכה..."
-
-#~ msgid "Edit this image"
-#~ msgstr "עריכת תמונה"
-
-#~ msgid "(No title...)"
-#~ msgstr "(אין כותרת...)"
-
-#~ msgid "(No date...)"
-#~ msgstr "(אין תאריך...)"
-
-#~ msgid "(No Location...)"
-#~ msgstr "(אין מיקום...) "
-
-#~ msgid "printEditable() incomplete function call."
-#~ msgstr "printEditable() הקריאה לא הסתיימה."
-
-#~ msgid "printEditable() invalid function call."
-#~ msgstr "printEditable() קריאה לא חוקית."
-
-#~ msgid "(...)"
-#~ msgstr "(...)"
-
-#~ msgid "(No data...)"
-#~ msgstr "(אין מידע...)"
-
-#~ msgid "(No data)"
-#~ msgstr "(אין מידע)"
-
-#~ msgid "Download Zip of the Album"
-#~ msgstr "הורד קובץ זיפ של האלבום"
-
-#~ msgid "Download a zip file of this album"
-#~ msgstr "הורד קובץ זיפ של האלבום"
-
-#~ msgid "(No tags...)"
-#~ msgstr "(אין תגיות...)"
-
-#~ msgid "Latest images of this album and its subalbums RSS"
-#~ msgstr "RSS תמונות אחרונות של האלבום הזה ושל תת-האלבומים שלו"
-
-#~ msgid "Latest comments RSS"
-#~ msgstr "RSS תגובות אחרונות"
-
-#~ msgid "Latest albums RSS"
-#~ msgstr "RSS אלבומים אחרונים"
-
-#~ msgid ""
-#~ "getSearchURL $album_list parameter is deprecated. Pass array(\"albums"
-#~ "\"=>array(album, album, ...)) instead."
-#~ msgstr ""
-#~ "getSearchURL $album_list parameter is deprecated. Pass array(\"albums"
-#~ "\"=>array(album, album, ...)) instead."
-
-#~ msgid "select search fields"
-#~ msgstr "בחרו שדות חיפוש"
-
-#~ msgid "Clear search"
-#~ msgstr "נקה חיפוש"
-
-#~ msgid "Reset search"
-#~ msgstr "אפס חיפוש"
-
-#~ msgid ""
-#~ "Powered by <a href=\"http://www.zenphoto.org\" title=\"A simpler web "
-#~ "photo album\"><span id=\"zen-part\">zen</span><span id=\"photo-part"
-#~ "\">PHOTO</span></a>"
-#~ msgstr ""
-#~ "פועל על <a href=\"http://www.zenphoto.org\" title=\"גלריית תמונות פשוטה "
-#~ "ביותר\"><span id=\"zen-part\">זן</span><span id=\"photo-part\">פוטו</"
-#~ "span></a>"
-
-#~ msgid ""
-#~ "%1$s Error: Zenphoto received the error <em>%2$s</em> from the database "
-#~ "server."
-#~ msgstr "שגיאת %1$s. זןפוטו קיבלה את השגיאה <em>%2$s</em> משרת מסד הנתונים."
-
-#~ msgid "New theme name? (e.g. \"My Theme\")"
-#~ msgstr "שם חדש לערכת העיצוב? (כלומר  \"ערכת העיצוב שלי\")"
-
-#~ msgid "My Theme"
-#~ msgstr "ערכת-העיצוב שלי"
-
-#~ msgid "New directory name? (e.g. \"my_theme\")"
-#~ msgstr "שם חדש לתיקיית ערכת העיצוב? (כלומר \"my_theme\")"
-
-#~ msgid "Set %s as your theme"
-#~ msgstr "קבעו את ערכת העיצוב  %s כערכת העיצוב של הגלרייה"
-
-#~ msgid "Assign %s as your album theme"
-#~ msgstr "קבעו %s כערכת העיצוב של האלבום"
-
-#~ msgid "Edit %s"
-#~ msgstr "ערכו %s"
-
-#~ msgid "Delete this %s"
-#~ msgstr "מחקו את %s"
-
-#~ msgid ""
-#~ "<strong>Note:</strong> Login from the front-end user login form is secure "
-#~ "only if <em>https</em> is selected."
-#~ msgstr ""
-#~ "<strong>חשוב:</strong> התחברות למערכת מדף ההתחברות הינה מאובטחת רק אם "
-#~ "אופציית<em>https</em> נבחרה."
-
-#~ msgid ""
-#~ "If the checkbox is disabled, setup did not detect a working Apache "
-#~ "<em>mod rewrite</em> facility and proper <em>.htaccess</em> file."
-#~ msgstr ""
-#~ "אם תיבת הסימון אינה מאופשרת ההתקנה לא זיהתה קובץ <em>.htaccess</em> "
-#~ "המאפשר <em>mod rewrite</em> של שרת האפאצ'י"
-
-#~ msgid ""
-#~ "Highlighted languages are not current with Zenphoto Version %s. (The "
-#~ "version Zenphoto of the out-of-date language is shown in braces.) Please "
-#~ "check the <a href=\"http://www.zenphoto.org/trac/report/9?sort=summary"
-#~ "\">translation tickets</a> for new and updated language translations."
-#~ msgstr ""
-#~ "השפות המודגשות אינן נתמכות כעת על ידי גירסא %s של זןפוטו. (גרסת זןפוטו של "
-#~ "השפות שפג תוקפה מופיעה בסוגריים). אנא בדקו את <a href=\"http://www."
-#~ "zenphoto.org/trac/report/9?sort=summary\">כרטיסי התרגום</a> בכדי למצוא "
-#~ "תרגומים חדשים או מעודכנים."
-
-#~ msgid ""
-#~ "<strong>Note:</strong> if you have created multi-language strings, "
-#~ "uncheck this option, then save anything, you will lose your strings."
-#~ msgstr ""
-#~ "<strong>חשוב:</strong> אם כבר יצרתם תרגומים לשפות שונות, בטלו אופצייה זו "
-#~ "לאחר מכן שמרו הכול. אתם עלולים לאבד את התרגומים שלכם!"
-
-#~ msgid "Front-end editing"
-#~ msgstr "עריכת ממשק קדמי"
-
-#~ msgid ""
-#~ "Check to allow editing of Gallery data on the front-end pages. (Sometimes "
-#~ "known as <em>Ajax</em> editing.)"
-#~ msgstr ""
-#~ "סמנו בכדי לאפשר עריכת מידע של הגלרייה בדפי האתר. (עריכה שידועה גם בשם "
-#~ "עריכת אגקס)."
-
-#~ msgid ""
-#~ "<strong>NOTE:</strong> enabling this feature is not recommended as it is "
-#~ "susceptible to Cross Site Request Forgeries."
-#~ msgstr ""
-#~ "<strong>חשוב:</strong> הפעלת התכונה אינה מומלצת כיוון שהיא רגישה לבקשות "
-#~ "מזויפות שעוברות בין אתרים."
-
-#~ msgid "CAPTCHA generator:"
-#~ msgstr "מחולל תמונת זיהוי(CAPTCHA):"
-
-#~ msgid "Select the <em>CAPTCHA</em> generator to be used by Zenphoto."
-#~ msgstr "בחירת  מחולל <em>>תמונת זיהוי (CAPTCHA)</em> לשימוש זןפוטו"
-
-#~ msgid "enable user name login field"
-#~ msgstr "אפשרי שדה שם משתמש"
-
-#~ msgid "enable persistent archives"
-#~ msgstr "לאפשר ארכיונים מתמידים"
-
-#~ msgid ""
-#~ "<a href=\"javascript:toggle('username');\" >Details</a> for <em>enable "
-#~ "user name login field</em>"
-#~ msgstr ""
-#~ "<a href=\"javascript:toggle('username');\" >פרטים</a> עבור <em>enable "
-#~ "user name login field</em>"
-
-#~ msgid ""
-#~ "This option places a field on the gallery (search, album) login form for "
-#~ "entering a user name. This is necessary if you have set guest login user "
-#~ "names. It is also useful to allow Admin users to log in on these pages "
-#~ "rather than at the Admin login."
-#~ msgstr ""
-#~ "האופצייה הזו מציבה שדה להזנת שם משתמש בטופס ההתחברות של הגלרייה (חיפוש, "
-#~ "אלבום). השדה הזה הכרחי אם הופעלה האפשרות להתחבר כאורח למערכת. זה גם מועיל "
-#~ "לאפשר למנהלים להתחבר למערכת דרך דפים אלו ולא דרך דף התחברות הרגיל."
-
-#~ msgid ""
-#~ "<a href=\"javascript:toggle('persistentarchive');\" >Details</a> for "
-#~ "<em>enable persistent archive</em>"
-#~ msgstr ""
-#~ "<a href=\"javascript:toggle('persistentarchive');\" >פרטים</a> עבור "
-#~ "<em>הפעלת ארכיון מתמשך</em>"
-
-#~ msgid ""
-#~ "Put a checkmark here to re-serve Zip Archive files if you are using the "
-#~ "optional template function <em>printAlbumZip()</em> to enable visitors of "
-#~ "your site to download images of an album as .zip files. If not checked "
-#~ "that .zip file will be regenerated each time."
-#~ msgstr ""
-#~ "סמנו את האפשרות הזו בכדי למנוע הישנות של יצירת קבצים דחוסים (ZIP) של "
-#~ "תמונות של אלבומים  להורדה על ידי מבקרי האתר. הקבצים יווצרו על ידי הוספת "
-#~ "הפונקציה <em>printAlbumZip()</em> לתבנית ערכת העיצוב. אם האפשרות הזו לא "
-#~ "מסומנת הקבצים יווצרו כל פעם מחדש."
-
-#~ msgid ""
-#~ "<strong>Note: </strong>Setting this option may impact password protected "
-#~ "albums!"
-#~ msgstr ""
-#~ "<strong>חשוב: </strong>בחירת האפשרות הזו עלולה להשפיע על אלבומים המוגנים "
-#~ "בסיסמא."
-
-#~ msgid ""
-#~ "<a href=\"javascript:toggle('gallerysessions');\" >Details</a> for "
-#~ "<em>enable gallery sessions</em>"
-#~ msgstr ""
-#~ "<a href=\"javascript:toggle('gallerysessions');\" >פרטים</a> על <em>הפעלת "
-#~ "סשיין של הגלרייה</em>"
-
-#~ msgid ""
-#~ "Check this option if you are having issues with album password cookies "
-#~ "not being retained. Setting the option causes zenphoto to use sessions "
-#~ "rather than cookies."
-#~ msgstr ""
-#~ "סמנו את האופצייה הזו אם ישנה בעיה לשמור סיסמאות של אלבומים בעוגיות. סימון "
-#~ "האופצייה תגרום לזןפוטו להשתמש בסשיין במקום בעוגיות."
-
-#~ msgid "exact"
-#~ msgstr "במדויק"
-
-#~ msgid "partial"
-#~ msgstr "חלקי"
-
-#~ msgid "Search behavior settings."
-#~ msgstr "חפש הגדרות התנהגות."
-
-#~ msgid ""
-#~ "Search does partial matches on all fields selected with the possible "
-#~ "exception of <em>Tags</em>. This means that if the field contains the "
-#~ "search criteria anywhere within it a result will be returned. If "
-#~ "<em>exact</em> is selected for <em>Tags</em> then the search criteria "
-#~ "must exactly match the tag for a result to be returned."
-#~ msgstr ""
-#~ "החיפוש מוצא תוצאות לפי השדות שנבחרו להוציא <em>תגיות</em>. כלומר, עם אחד "
-#~ "השדות עומד בקריטריון החיפוש תחזור תוצאה. אם האופצייה <em>eבמדויק/em> "
-#~ "נבחרה עבור <em>תגיות</em> אז קריטריון החיפוש חייב להתאים בדיוק לתגית בכדי "
-#~ "שתחזור תוצאה."
-
-#~ msgid "Images RSS"
-#~ msgstr "פיד RSS תמונות"
-
-#~ msgid "Albums RSS"
-#~ msgstr "פיד RSS אלבומים"
-
-#~ msgid "RSS cache"
-#~ msgstr "מטמון פיד RSS"
-
-#~ msgid "You must supply a password for the Protected image user"
-#~ msgstr "אתם חייבים לספק סיסמא לתמונות המשתמש המוגנות"
-
-#~ msgid "Automatically rotate images based on the EXIF orientation setting."
-#~ msgstr "סיבוב אוטומטי של תמונות מבוסס על הגדרות האוריינטציה של EXIF."
-
-#~ msgid ""
-#~ "Image rotation requires the <em>imagerotate</em> function found in the "
-#~ "bundled GD library of PHP version 4.3 or greater."
-#~ msgstr ""
-#~ "האפשרות של סיבוב תמונה חייב את הפונקציה <em>imagerotate</em> שנכללת "
-#~ "בספריית GD של PHP גירסא 4.3 או גבוהה יותר."
-
-#~ msgid "*none"
-#~ msgstr "*כלום"
-
-#~ msgid ""
-#~ "Check those EXIF fields you wish displayed in image EXIF information."
-#~ msgstr "סמנו את שדות ה-EXIF שיוצגו במידע ה-EXIF של התמונה."
-
-#~ msgid "Spam filter:"
-#~ msgstr "מסנן ספאם:"
-
-#~ msgid "The SPAM filter plug-in you wish to use to check comments for SPAM"
-#~ msgstr "תוסף מסנן הספאם לבדיקת תגובות"
-
-#~ msgid ""
-#~ "Comment posting will be rejected if any of the checked fields is not "
-#~ "valid."
-#~ msgstr "התגובה תדחה אם אחד השדות המסומנים מכיל תוכן לא חוקי."
-
-#~ msgid "Expand plugin options"
-#~ msgstr "הרחבת תצוגת אפשרויות תוסף"
-
-#~ msgid "Collapse all plugin options"
-#~ msgstr "הסתרת כל אפשרויות התוספים"
-
-#~ msgid "You are running the latest zenphoto version."
-#~ msgstr "אתם מריצים את הגירסא העדכנית ביותר של זןפוטו."
-
-#~ msgid ""
-#~ "Could not connect to <a href=\"http://www.zenphoto.org\">zenphoto.org</a>"
-#~ msgstr ""
-#~ "לא הצלחתי להתחבר לאתר <a href=\"http://www.zenphoto.org\">zenphoto.org</a>"
-
-#~ msgid "zenphoto version %s is available."
-#~ msgstr "גירסא זןפוטו %s זמינה"
-
-#~ msgid "<strong>%1$u</strong> Image (%2$u not visible)"
-#~ msgid_plural "<strong>%1$u</strong> Images (%2$u not visible)"
-#~ msgstr[0] "<strong>%1$u</strong> תמונה (%2$u לא מוצגת)"
-#~ msgstr[1] "<strong>%1$u</strong> תמונות (%2$u לא מוצגות)"
-
-#~ msgid "SVN"
-#~ msgstr "SVN"
-
-#~ msgid "Could not create zip file."
-#~ msgstr "לא הצלחתי ליצור קובץ זיפ."
-
-#~ msgid "Could not create tar file."
-#~ msgstr "לא הצלחתי ליצור קובץ tar."
-
-#~ msgid "Could not create bzip2 file."
-#~ msgstr "לא הצלחתי ליצור קובץ bzip2."
-
-#~ msgid "Could not create gzip file."
-#~ msgstr "לא הצלחתי ליצור קובץ gzip."
-
-#~ msgid ""
-#~ "Can only use download_file() if archive is in memory. Redirect to file "
-#~ "otherwise, it is faster."
-#~ msgstr ""
-#~ "אפשר להשתמש ב- download_file() רק אם הארכיב נמצא בזכרון. אחרת מפנה לקובץ, "
-#~ "זה הרבה יותר מהיר."
-
-#~ msgid "Could not add %s to archive because the filename is too long."
-#~ msgstr "לא יכולה להוסיף %s לארכיב בגלל ששם הקובץ ארוך מדי."
-
-#~ msgid "Could not open file %s for reading. It was not added."
-#~ msgstr "לא יכולה לפתוח את הקובץ %s לקריאה. הוא לא התווסף."
-
-#~ msgid "This script does not support extracting this type of tar file."
-#~ msgstr "הסקריפט הזה אינו תומך בחילוץ סוג זה של קבצי tar."
-
-#~ msgid "Could not extract from %s it is corrupt."
-#~ msgstr "לא הצלחתי לחלץ מתוך %s. הוא פגום."
-
-#~ msgid "Could not open %s for writing."
-#~ msgstr "לא הצלחתי לפתוח %s לכתיבה."
-
-#~ msgid "Could not open sfx module from %s"
-#~ msgstr "לא הצלחתי לפתוח את המודול sfx  מתוך %s"
-
-#~ msgid "Oops.. Cannot edit from this page"
-#~ msgstr "אופס... לא ניתן לערוך מדף זה"
-
-#~ msgid "Error: malformed Ajax POST"
-#~ msgstr "Error: malformed Ajax POST"
-
-#~ msgid "Could not save!"
-#~ msgstr "לא ניתן לשמור!"
-
-#~ msgid "ByLine"
-#~ msgstr "ByLine"
-
-#~ msgid "Mail send failed. "
-#~ msgstr "שליחת דוא\"ל נכשלה"
-
-#~ msgid "Unknown author"
-#~ msgstr "מחבר לא ידוע"
-
-#~ msgid "<strong>Theme description error!</strong>"
-#~ msgstr "<strong>תיאור ערכת עיצוב שגוי!</strong>"
-
-#~ msgid "Unknown date"
-#~ msgstr "תאריך לא ידוע"
-
-#~ msgid "Password must be at least %u characters"
-#~ msgstr "סיסמא חייבת להיות בת %u תווים לפחות"
-
-#~ msgid "Password must contain at least one of %s"
-#~ msgstr "סיסמא חייבת לפחות את אחד התווים הבאים %s"
-
-#~ msgid ""
-#~ "<strong>Note:</strong> passwords must be at least %1$u characters long "
-#~ "and contain at least one character from %2$s."
-#~ msgid_plural ""
-#~ "<strong>Note</strong>: passwords must be at least %1$u characters long "
-#~ "and contain at least one character from each of the following groups: "
-#~ "%2$s."
-#~ msgstr[0] ""
-#~ "<strong>חשוב</strong>: סיסמאות חייבות לפחות באורך של %1$u תווים ולהכיל "
-#~ "לפחות את אחד התווים הבאים %2$s. "
-#~ msgstr[1] ""
-#~ "<strong>חשוב</strong>: סיסמאות חייבות לפחות באורך של %1$u תווים ולהכיל "
-#~ "לפחות את אחת התווים מכל אחת מהקבוצות הבאות %2$s. "
-
-#~ msgid ""
-#~ "<strong>Note</strong>: passwords must contain at least one character from "
-#~ "%s."
-#~ msgid_plural ""
-#~ "<strong>Note</strong>: passwords must contain at least one character from "
-#~ "each of the following groups: %s."
-#~ msgstr[0] ""
-#~ "<strong>חשוב</strong>: סיסמאות חייבות להכיל לפחות אחד מהתווים הבאים  %s"
-#~ msgstr[1] ""
-#~ "<strong>חשוב</strong>: סיסמאות חייבות להכיל לפחות אחד מהתווים מכל אחת "
-#~ "מהקבוצות הבאות  %s"
-
-#~ msgid ""
-#~ "<strong>Note</strong>: passwords must be at least %u characters long."
-#~ msgstr "<strong>חשוב</strong>: סיסמאות חייבות לפחות באורך של %u תווים."
-
-#~ msgid "View news"
-#~ msgstr "צפו בחדשות"
-
-#~ msgid "View pages"
-#~ msgstr "צפו בדפים"
-
-#~ msgid "View albums"
-#~ msgstr "צפו באלבום"
-
-#~ msgid "Users with this right may view all albums (and their images)."
-#~ msgstr "משתמשים עם הרשאה זו יכולים לצפות האלבומים (והתמונות השייכות להם)."
-
-#~ msgid ""
-#~ "Extra text appended when hashing password to strengthen Zenphoto "
-#~ "authentication."
-#~ msgstr ""
-#~ "טקסט נוסף שישורשר בעת ביצוע hashing לסיסמא בכדי להקשות את ההתחברות "
-#~ "למערכת.  "
-
-#~ msgid ""
-#~ "<strong>Note:</strong> Changing this will require all users to reset "
-#~ "their passwords! You should change your password immediately if you "
-#~ "change this text."
-#~ msgstr ""
-#~ "<strong>חשוב:</strong> שינוי הפריט הזה יאלץ את כל משתמשי המערכת לאפס את "
-#~ "סיסמאותיהם! אתם חייבים לשנות הסיסמא שלכם מיידית אם אתם יכולים לשנות את "
-#~ "הטקסט הזה."
-
-#~ msgid "Minimum number of characters a password must contain."
-#~ msgstr "מספר התווים המינימלי לסיסמא."
-
-#~ msgid "Password characters:"
-#~ msgstr "תווי סיסמא:"
-
-#~ msgid ""
-#~ "Passwords must contain at least one of the characters from each of the "
-#~ "groups. Groups are separated by \"|\". (Use \"\\|\" to represent the \"|"
-#~ "\" character in the groups.)"
-#~ msgstr ""
-#~ "הסיסמאות חייבות להכיל לפחות תו אחד מכול אחת מהקבוצות האלו. הקבוצות "
-#~ "מופרדות ע לידי \"|\". (השתמשו ב- \"\\|\" בכדי לייצג את המחרוזת \"|\" "
-#~ "בקבוצה.)"
-
-#~ msgid ""
-#~ "Unknown error! Please report to the developers at <a href=\"http://www."
-#~ "zenphoto.org/\">www.zenphoto.org</a>"
-#~ msgstr ""
-#~ "שגיאה לא ידועה! אנא דווחו עליה למפתחים באתר <a href=\"http://www.zenphoto."
-#~ "org/\">www.zenphoto.org</a>"
-
-#~ msgid ""
-#~ "The <code>$_zp_conf_vars</code> variable is not an array. Zenphoto has "
-#~ "not been instantiated correctly."
-#~ msgstr ""
-#~ "המשתנה <code>$_zp_conf_vars</code> אינו מערך. זןפוטו לא אותחלה כראוי."
-
-#~ msgid ""
-#~ "SQLite Error: Zenphoto received the error <em>%s</em> when connecting to "
-#~ "the database server."
-#~ msgstr ""
-#~ "SQLite Error: Zenphoto received the error <em>%s</em> when connecting to "
-#~ "the database server."
-
-#~ msgid "comment"
-#~ msgstr "תגובה"
-
-#~ msgid ""
-#~ "<a href=\"http://www.zenphoto.org\" title=\"A simpler web photo album"
-#~ "\">Zen<strong>photo</strong></a> version %1$s"
-#~ msgstr ""
-#~ "<a href=\"http://www.zenphoto.org\" title=\"גלריית תמונות פשוטה"
-#~ "\"><strong>זןפוטו</strong></a> version %1$s"
-
-#~ msgid "GPLv2"
-#~ msgstr "GPLv2"
-
-#~ msgid "User guide"
-#~ msgstr "מדריך השימוש"
-
-#~ msgid "Forum"
-#~ msgstr "פורום"
-
-#~ msgid "Bugtracker"
-#~ msgstr "עוקב הבאגים"
-
-#~ msgid ""
-#~ "*Enter CAPTCHA in place of <em>Password</em> to request a password reset."
-#~ msgstr "*הזינו תמונת זיהוי (CAPTCHA)  במקום סיסמא על מנת לקבל סיסמא מאופסת."
-
-#~ msgid "randomly selected"
-#~ msgstr "נבחרות באקראי"
-
-#~ msgid "Codeblock 2"
-#~ msgstr "בלוקוד 2"
-
-#~ msgid "Codeblock 3"
-#~ msgstr "בלוקוד 3"
-
-#~ msgid "Rating: <strong>%u</strong>"
-#~ msgstr "דרוג: <strong>%u</strong>"
-
-#~ msgid "Resets all hitcounters in the album."
-#~ msgstr "אפסו את כל המונים של האלבום."
-
-#~ msgid ""
-#~ "Forces a refresh of the EXIF and IPTC data for all images in the album."
-#~ msgstr "הכריחי את רענון מידע ה-EXIF וה-IPTC של כל תמונות אלבום."
-
-#~ msgid "Cache the album"
-#~ msgstr "הטמנת האלבום"
-
-#~ msgid "Pre-cache images in %s"
-#~ msgstr "הטמנת התמונות של האלבום %s"
-
-#~ msgid "Cache the album %s"
-#~ msgstr "הטמנת האלבום %s"
-
-#~ msgid "You must supply a password for the Gallery guest user"
-#~ msgstr "חייבים לספק סיסמא עבור משתמש אורח של הגלרייה"
-
-#~ msgid "You must supply a password"
-#~ msgstr "חייבים לספק סיסמא"
-
-#~ msgid "database not connected"
-#~ msgstr "מסד הנתונים לא מחובר"
-
-#~ msgid ""
-#~ "Check the zp-config.php file to make sure you've got the right username, "
-#~ "password, host, and database. If you haven't created the database yet, "
-#~ "now would be a good time."
-#~ msgstr ""
-#~ "בדקו את הקובץ  zp-config.php וודאו שהוא מכיל את שם המשתמש, הסיסמא, השרת "
-#~ "המארח ומסד הנתונים. אם לא יצרתם מסד נתונים עדיין עכשיו זהו הזמן המתאים "
-#~ "לכך."
-
-#~ msgid "Album cache purged"
-#~ msgstr "מטמון האלבום נוקה"
-
-#~ msgid "expand all fields"
-#~ msgstr "הצגת כל השדות"
-
-#~ msgid "collapse all fields"
-#~ msgstr "הסתרת כל השדות"
-
-#~ msgid "View image on website"
-#~ msgstr "צפו בתמונה באתר"
-
-#~ msgid "Album thumbnail."
-#~ msgstr "תמונות מוקטנות של אלבום"
-
-#~ msgid "Visible"
-#~ msgstr "מוצג"
-
-#~ msgid "Hit counter: <strong>%u</strong>"
-#~ msgstr "מספר הצבעות: <strong>%u</strong>"
-
-#~ msgid "show fewer fields"
-#~ msgstr "פחות שדות"
-
-#~ msgid ""
-#~ "MySQL Error: The PHP MySQL extensions have not been installed corectly. "
-#~ "Please ask your administrator to add MySQL support to your PHP "
-#~ "installation."
-#~ msgstr ""
-#~ "MySQL Error: The PHP MySQL extensions have not been installed corectly. "
-#~ "Please ask your administrator to add MySQL support to your PHP "
-#~ "installation."
-
-#~ msgid "Zenphoto encountered an album name spoof attempt: %1$s=>%2$s."
-#~ msgstr "זןפוטו גילתה ניסיון תרמית (spoof( בשם האלבום: %1$s=>%2$s."
-
-#~ msgid "class-album detected an invalid folder name: %s."
-#~ msgstr "class-album זיהתה שם קובץ לא ץקין: %s."
-
-#~ msgid "Sort the tags alphabetically"
-#~ msgstr "מייני את התגיות ע\"פ א\"ב"
-
-#~ msgid "Order alphabetically"
-#~ msgstr "מייני לפי א\"ב"
-
-#~ msgid "Sort the tags by most used"
-#~ msgstr "מייני תגיות לפי המשומשות ביותר"
-
-#~ msgid "Delete all the tags checked above."
-#~ msgstr "מחיקת כל התגיות המסומנות מעלה."
-
-#~ msgid "Apply all the changes entered above."
-#~ msgstr "החלו את כל השינויים שבוצעו מעלה."
-
-#~ msgid "Add all the tags entered above."
-#~ msgstr "הוסף את כל התגיות שהכונסו מעלה."
-
-#~ msgid "Reset %s"
-#~ msgstr "איפוס %s"
-
-#~ msgid "Download %s ZIP file"
-#~ msgstr "הורדת %s קובץ זיפ"
-
-#~ msgid "%s deleted."
-#~ msgstr "%s נמחק."
-
-#~ msgid "A simpler web photo album"
-#~ msgstr "גלריית תמונות וובית פשוטה"
-
-#~ msgid "Database folder"
-#~ msgstr "תיקיית מסד הנתונים"
-
-#~ msgid "Uploadify error on %1$s. Review your debug log."
-#~ msgstr "שגיאת Uploadify  בגלל %1$s. בדקו את יומן השגיאות. "
-
-#~ msgid "(%s: 1 new image)"
-#~ msgstr "(%s: תמונה אחת חדשה)"
-
-#~ msgid "(%1$s: %2$s new images)"
-#~ msgstr "(%1$s: %2$s תמונות חדשות)"
-
-#~ msgid "(%s: 1 image)"
-#~ msgstr "(%s: תמונה 1)"
-
-#~ msgid "(%1$s: %2$s images)"
-#~ msgstr "(%1$s: %2$s תמונות)"
-
-#~ msgid "PHP version 5 or greater is required."
-#~ msgstr "נדרשת PHP גירסא 5 או מעלה."
-
-#~ msgid ""
-#~ "A plugin to print the most common HTML meta tags to the head of your "
-#~ "site's pages. Tags are selected from existing Zenphoto info such as "
-#~ "gallery description, tags, or Zenpage news categories."
-#~ msgstr ""
-#~ "תוסף שמוסיף תגיות מטא (HTML meta tags) לראש (head) של דפי הגלריה. התגיות "
-#~ "נבחרות מתוך מידע שהוזן לגלריה כגון: תיאור הגלריה, תגיות, קטגוריות חדשות "
-#~ "של זןדף. "
-
-#~ msgid "Upload limit"
-#~ msgstr "מגבלת העלאה"
-
-#~ msgid ""
-#~ "The maximum number of images per album if uploading via the multifile "
-#~ "upload."
-#~ msgstr ""
-#~ "מספר התמונות המקסימאלי המותר להעלאה לאלבום באמצעות העלאה מרובת-קבצים  "
-#~ "(multifile upload)."
-
-#~ msgid "Disable new album creation"
-#~ msgstr "בטלו יכולת יצירת אלבום חדש"
-
-#~ msgid "There is a plugin conflict with <em>image_upload_limiter</em>"
-#~ msgstr "קיים קונפליקט של תוסף עם <em>image_upload_limiter</em>"
-
-#~ msgid ""
-#~ "The album exceeded the image number limit. You cannot upload more images!"
-#~ msgstr "מספר התמונות לאלבום הזה הגיע למקסימום. לא ניתן לעלות יותר תמונות."
-
-#~ msgid "Maximum number of images left for this album: "
-#~ msgstr "מספר התמונות המקסימלי שניתן עוד לעלות לאלבום הזה:"
-
-#~ msgid ""
-#~ "HTTP single file uploading is disabled because upload limitations are in "
-#~ "effect. Please use the <a href=\"javascript:switchUploader('admin-upload."
-#~ "php?uploadtype=multifile');\" >multi file upload</a>"
-#~ msgstr ""
-#~ "העלאת קבצים בשיטת HTTP single file uploading מבוטלת עקב מגבלות העלאה. "
-#~ "השתמשו בשיטה <a href=\"javascript:switchUploader('admin-upload.php?"
-#~ "uploadtype=multifile');\" >multi file upload</a>"
-
-#~ msgid ""
-#~ "<strong>Note:</strong> You can upload a maximum of %s images to each "
-#~ "album."
-#~ msgstr "<strong>חשוב:</strong> ניתן לעלות מקסימום %s תמונות לכל אלבום."
-
-#~ msgid ""
-#~ "Text for the body of the email sent to the user. <p class=\"notebox"
-#~ "\"><strong>Note:</strong> You must include <code>%s</code> in your "
-#~ "message where you wish the registration completion link to appear.</p>"
-#~ msgstr ""
-#~ "טקסט לגוף ההודעה שנשלחת למשתמש לאחר ההרשמה. <p class=\"notebox\"><strong> "
-#~ "חשוב: </strong> אתם חייבים לכלול את <code>%s</code> בהודעה שלכם במקום שבו "
-#~ "אתם מעוניינים שיופיע הקישור להשלמת ההרשמה."
-
-#~ msgid "User registration page"
-#~ msgstr "דף הרשמת משתמש."
-
-#~ msgid ""
-#~ "If checked, CAPTCHA validation will be required for user registration."
-#~ msgstr "אם האפשרות מסומנת, בדיקת ה-CAPTCHA תופעל בעת הרשמת משתמש חדש."
-
-#~ msgid "Default user rights"
-#~ msgstr "הרשאות ברירת מחדל של משתמש"
-
-#~ msgid "View Rights"
-#~ msgstr "הציגו הרשאות"
-
-#~ msgid "*no page selected"
-#~ msgstr "*לא נבחר דף"
-
-#~ msgid "(%u album)"
-#~ msgid_plural "(%u albums)"
-#~ msgstr[0] "%u אלבום  "
-#~ msgstr[1] "%u אלבומים  "
-
-#~ msgid "Error on <em>%s</em> effect"
-#~ msgstr "שגיאה באפקט <em>%s</em>"
-
-#~ msgid "Image quota information."
-#~ msgstr "מידע על ניצול מכסת תמונות"
-
-#~ msgid "*no owner"
-#~ msgstr "*לא בעלים"
-
-#~ msgid "Assign images to:"
-#~ msgstr "שייך תמונות ל: "
-
-#~ msgid "Initial Zoom"
-#~ msgstr "זום התחלתי"
-
-#~ msgid "The inital zoom of the map."
-#~ msgstr "הזום התחילי של המפה."
-
-#~ msgid ""
-#~ "Apply <img src=\"%1$s/lock.png\" alt=\"\"/> over thumbnails of "
-#~ "<em>password protected</em> images and albums,\n"
-#~ "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t <img src=\"%1$s/action.png\" "
-#~ "alt=\"\"/> over thumbnails of <em>not published</em> albums and <em>not "
-#~ "visible</em> images,\n"
-#~ "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t <img src=\"%1$s/new.png\" "
-#~ "alt=\"\"/> over thumbnails of <em>\"new\"</em> images and albums,\n"
-#~ "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t and <img src=\"%1$s/GPS.png"
-#~ "\" alt=\"\"/> over thumbnails of <em>geocoded</em> images"
-#~ msgstr ""
-#~ "Apply <img src=\"%1$s/lock.png\" alt=\"\"/> over thumbnails of "
-#~ "<em>password protected</em> images and albums,\n"
-#~ "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t <img src=\"%1$s/action.png\" "
-#~ "alt=\"\"/> over thumbnails of <em>not published</em> albums and <em>not "
-#~ "visible</em> images,\n"
-#~ "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t <img src=\"%1$s/new.png\" "
-#~ "alt=\"\"/> over thumbnails of <em>\"new\"</em> images and albums,\n"
-#~ "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t and <img src=\"%1$s/GPS.png"
-#~ "\" alt=\"\"/> over thumbnails of <em>geocoded</em> images"
-
-#~ msgid ""
-#~ "An image crop tool. Places an image crop button in the image utilities "
-#~ "box of the images tab."
-#~ msgstr ""
-#~ "כלי לקיצוץ תמונות. מציב כפתור קיצוץ תמונה בתיבת הכלים של תמונה בטאב "
-#~ "התמונות."
-
-#~ msgid "clear width and height fields"
-#~ msgstr "נקה שדות גובה ורוחב."
-
-#~ msgid "sitemap cache cleared."
-#~ msgstr "מפת אתר נוקתה מהמטמון."
-
-#~ msgid "Sitemap cache expire"
-#~ msgstr "מטמון מפת אתר פג תוקף"
-
-#~ msgid "Disable cache"
-#~ msgstr "בטל מטמון"
-
-#~ msgid "Clear the static sitemap cache. It will be re-cached if requested."
-#~ msgstr "נקה מפת אתר סטטית מהמטמון. היא תוטמן מחדש אם תתבקש."
-
-#~ msgid "Mail address"
-#~ msgstr "כתובת דואר אלקטורני"
-
-#~ msgid "Title field."
-#~ msgstr "שדה כותרת."
-
-#~ msgid "Name field."
-#~ msgstr "שדה שם."
-
-#~ msgid "Company field"
-#~ msgstr "שדה חברה"
-
-#~ msgid "Company field."
-#~ msgstr "שדה חברה."
-
-#~ msgid "Street field"
-#~ msgstr "שדה רחוב"
-
-#~ msgid "Street field."
-#~ msgstr "שדה רחוב."
-
-#~ msgid "City field"
-#~ msgstr "שדה עיר"
-
-#~ msgid "City field."
-#~ msgstr "שדה עיר."
-
-#~ msgid "Country field"
-#~ msgstr "שדה מדינה"
-
-#~ msgid "Country field."
-#~ msgstr "שדה מדינה."
-
-#~ msgid "E-mail field."
-#~ msgstr "שדה דואר אלקטרוני."
-
-#~ msgid "Website field."
-#~ msgstr "שדנה אתר אינטרנט."
-
-#~ msgid "Check if CAPTCHA should be required."
-#~ msgstr "סמן את האפשרות אם CAPTCHA נדרשת."
-
-#~ msgid "Phone number field."
-#~ msgstr "שדה מספר טלפון."
-
-#~ msgid "Subject field"
-#~ msgstr "שדה נושא"
-
-#~ msgid "Subject field."
-#~ msgstr "שדה נושא."
-
-#~ msgid "Message field"
-#~ msgstr "שדה הודעה"
-
-#~ msgid "Message field."
-#~ msgstr "שדה הודעה."
-
-#~ msgid ""
-#~ "Deprecated Zenphoto functions. These functions have been removed from "
-#~ "mainstream Zenphoto as they have been supplanted. They are not maintained "
-#~ "and they are not guaranteed to function correctly with the current "
-#~ "version of Zenphoto."
-#~ msgstr ""
-#~ "פונקציות של זןפוטו שיצאו משימוש. הן הוחלפו על ידי פונקציות אחרות. הן גם "
-#~ "אינן מתוחזקות ולא בטוח שאפשר יהיה להשתמש בהם בגירסא הנוכחית של זןפוטו."
-
-#~ msgid "Use getHitcounter()."
-#~ msgstr "Use getHitcounter()."
-
-#~ msgid "Use printRating()."
-#~ msgstr "Use printRating()."
-
-#~ msgid "Use printImageMetadata()."
-#~ msgstr "Use printImageMetadata()."
-
-#~ msgid "Use printCustomSizedImageMaxSpace()."
-#~ msgstr "Use printCustomSizedImageMaxSpace()."
-
-#~ msgid "Use getCommentDateTime()."
-#~ msgstr "Use getCommentDateTime()."
-
-#~ msgid "Use truncate_string()."
-#~ msgstr "Use truncate_string()."
-
-#~ msgid "Use getImageMetaData()."
-#~ msgstr "Use getImageMetaData()."
-
-#~ msgid "Use getAlbumLocation()."
-#~ msgstr "Use getAlbumLocation()."
-
-#~ msgid "Use printAlbumLocation()."
-#~ msgstr "Use printAlbumLocation()."
-
-#~ msgid "(No place...)"
-#~ msgstr "(אין מקום...)"
-
-#~ msgid "Use rewrite_path()."
-#~ msgstr "Use rewrite_path()."
-
-#~ msgid "Use object->getTags() method."
-#~ msgstr "Use object->getTags() method."
-
-#~ msgid "Use printTags()."
-#~ msgstr "Use printTags()."
-
-#~ msgid "Use getNumAlbums()."
-#~ msgstr "Use getNumAlbums()."
-
-#~ msgid "Use getAllAlbums()."
-#~ msgstr "Use getAllAlbums()."
-
-#~ msgid "Use zp_apply_filter(\"theme_head\")."
-#~ msgstr "Use zp_apply_filter(\"theme_head\")."
-
-#~ msgid "Use printZenpageItemsBreadcrum()."
-#~ msgstr "Use printZenpageItemsBreadcrum()."
-
-#~ msgid "Use instead the Album class method isMyItem()."
-#~ msgstr "Use instead the Album class method isMyItem()."
-
-#~ msgid "Use instead the Zenpage category class method getSubCategories()."
-#~ msgstr "Use instead the Zenpage category class method getSubCategories()."
-
-#~ msgid "Use instead the Zenpage news class method inProtectedCategory()."
-#~ msgstr "Use instead the Zenpage news class method inProtectedCategory()."
-
-#~ msgid "Use instead the Zenpage category class method isProtected()."
-#~ msgstr "Use instead the Zenpage category class method isProtected()."
-
-#~ msgid "Use instead the Zenpage category class method getParents()."
-#~ msgstr "Use instead the Zenpage category class method getParents()."
-
-#~ msgid "Use instead the Zenpage category class method getTitle()."
-#~ msgstr "Use instead the Zenpage category class method getTitle()."
-
-#~ msgid "Use instead the Zenpage category class method getID()."
-#~ msgstr "Use instead the Zenpage category class method getID()."
-
-#~ msgid "Use instead the Zenpage category class method getParentID()."
-#~ msgstr "Use instead the Zenpage category class method getParentID()."
-
-#~ msgid "Use instead the Zenpage category class method getSortOrder()."
-#~ msgstr "Use instead the Zenpage category class method getSortOrder()."
-
-#~ msgid "Use instead the Zenpage page class method getParents()."
-#~ msgstr "Use instead the Zenpage page class method getParents()."
-
-#~ msgid "Use instead the Zenpage page class method isProtected()."
-#~ msgstr "Use instead the Zenpage page class method isProtected()."
-
-#~ msgid "Use instead the Zenpage category class method isMyItem()."
-#~ msgstr "Use instead the Zenpage category class method isMyItem()."
-
-#~ msgid "Use instead the Zenpage category class method checkforGuest()."
-#~ msgstr "Use instead the Zenpage category class method checkforGuest()."
-
-#~ msgid "Use instead the Zenpage news class method isMyItem()."
-#~ msgstr "Use instead the Zenpage news class method isMyItem()."
-
-#~ msgid "Use instead the Zenpage news class method checkNewsAccess()."
-#~ msgstr "Use instead the Zenpage news class method checkNewsAccess()."
-
-#~ msgid ""
-#~ "Use instead the Zenpage category global object variable: "
-#~ "$_zp_current_category->getTitlelink()."
-#~ msgstr ""
-#~ "Use instead the Zenpage category global object variable: "
-#~ "$_zp_current_category->getTitlelink()."
-
-#~ msgid ""
-#~ "Use instead the Zenpage category global object variable: "
-#~ "$_zp_current_category->getID()."
-#~ msgstr ""
-#~ "Use instead the Zenpage category global object variable: "
-#~ "$_zp_current_category->getID()."
-
-#~ msgid ""
-#~ "Use instead the Zenpage category global object variable: "
-#~ "$_zp_current_category->getParentID()."
-#~ msgstr ""
-#~ "Use instead the Zenpage category global object variable: "
-#~ "$_zp_current_category->getParentID()."
-
-#~ msgid ""
-#~ "Use instead the Zenpage news global object variable: "
-#~ "$_zp_current_zenpage_news->inNewsCategory($catlink)."
-#~ msgstr ""
-#~ "Use instead the Zenpage news global object variable: "
-#~ "$_zp_current_zenpage_news->inNewsCategory($catlink)."
-
-#~ msgid ""
-#~ "Use instead the Zenpage news global object variable: "
-#~ "$_zp_current_zenpage_news->inSubNewsCategoryOf($catlink)."
-#~ msgstr ""
-#~ "Use instead the Zenpage news global object variable: "
-#~ "$_zp_current_zenpage_news->inSubNewsCategoryOf($catlink)."
-
-#~ msgid ""
-#~ "Use instead the Zenpage category global object variable: "
-#~ "$_zp_current_category->isSubNewsCategoryOf($catlink)."
-#~ msgstr ""
-#~ "Use instead the Zenpage category global object variable: "
-#~ "$_zp_current_category->isSubNewsCategoryOf($catlink)."
-
-#~ msgid ""
-#~ "Functionality is now included in getNewsContent(), printNewsContent() and "
-#~ "getContentShorten() to properly cover custom shortening via TinyMCE "
-#~ "<pagebreak>."
-#~ msgstr ""
-#~ "Functionality is now included in getNewsContent(), printNewsContent() and "
-#~ "getContentShorten() to properly cover custom shortening via TinyMCE "
-#~ "<pagebreak>."
-
-#~ msgid ""
-#~ "Use getContentShorten() instead. Note the read more url must be passed "
-#~ "directly."
-#~ msgstr ""
-#~ "Use getContentShorten() instead. Note the read more url must be passed "
-#~ "directly."
-
-#~ msgid ""
-#~ "There is no need for this function as password handling is done by the "
-#~ "core."
-#~ msgstr ""
-#~ "There is no need for this function as password handling is done by the "
-#~ "core."
-
-#~ msgid "Player width (ignored for <em>mp3</em> files.)"
-#~ msgstr "רוחב נגן (לא משפיע על קבצים מסוג mp3)."
-
-#~ msgid "Player height (ignored for <em>mp3</em> files.)"
-#~ msgstr "גובה נגן  (לא משפיע על קבצים מסוג mp3)."
-
-#~ msgid "Player background color gradient"
-#~ msgstr "צבע הגרדיאנט של הנגן."
-
-#~ msgid "low"
-#~ msgstr "נמוך"
-
-#~ msgid "high"
-#~ msgstr "גבוהה"
-
-#~ msgid "Gradient setting for player background color."
-#~ msgstr "הגדרות לצבע רקע גרדיאנט של הנגן."
-
-#~ msgid "Controls background color"
-#~ msgstr "צבע רקע של כפתורי הפעלה."
-
-#~ msgid "Background color of the controls."
-#~ msgstr "צבע רקע של כפתורי הפעלה."
-
-#~ msgid "Controls background color gradient"
-#~ msgstr "צבע רקע גרדיאנט של כפתורי הפעלה."
-
-#~ msgid "Controls border color"
-#~ msgstr "צבע מסגרת כפתורי הפעלה"
-
-#~ msgid "Background color"
-#~ msgstr "צבע רקע"
-
-#~ msgid "Controls autohide"
-#~ msgstr "הסתרה אוטומטית של כפתורי הפעלה."
-
-#~ msgid "fullscreen"
-#~ msgstr "מסך מלא"
-
-#~ msgid ""
-#~ "Value for the font color in the time field. This is the running time."
-#~ msgstr "  "
-
-#~ msgid "fit"
-#~ msgstr "התאם"
-
-#~ msgid "MP3 cover image"
-#~ msgstr "MP3 cover image"
-
-#~ msgid "Visit gallery page"
-#~ msgstr "בקרו בדף הגלרייה"
-
-#~ msgid "%1$u new item in <em>%2$s</em>: %3$s"
-#~ msgstr "%1$u פריט חדש ב-<em>%2$s</em>: %3$s"
-
-#~ msgid "%1$u new items in <em>%2$s</em>: %3$s"
-#~ msgstr "%1$u פריט חדש ב-<em>%2$s</em>: %3$s"
-
-#~ msgid "Articles per page (admin)"
-#~ msgstr "מאמרים לדף (מנהל)"
-
-#~ msgid ""
-#~ "The text for the 'read more'/'view more' link to the gallery page for "
-#~ "images/movies/audio."
-#~ msgstr ""
-#~ "הטקסט עבור הקישור 'קרא עוד/הצג עוד'  לדפי הגלרייה של תמונות/סרטים/אודיו"
-
-#~ msgid "CombiNews: Mode"
-#~ msgstr "CombiNews: מצב"
-
-#~ msgid "latest images: sized image"
-#~ msgstr "תמונות אחרונות: תמונה בגודל מסוים"
-
-#~ msgid "latest images: thumbnail"
-#~ msgstr "תמונות אחרונות: תמונת אצבע"
-
-#~ msgid "latest albums: sized image"
-#~ msgstr "אלבומים אחרונים: תמונה בגודל מסוים"
-
-#~ msgid "latest albums: thumbnail"
-#~ msgstr "אלבומים אחרונים: תמונה אצבע"
-
-#~ msgid "latest albums: thumbnail-customcrop"
-#~ msgstr "אלבומים אחרונים: תמונת אצבע-קיצוץ מתואם אישית"
-
-#~ msgid "latest images: thumbnail-customcrop"
-#~ msgstr "תמונות אחרונות: תמונת אצבע-קיצוץ מתואם אישית"
-
-#~ msgid "latest images by album: thumbnail"
-#~ msgstr "תמונות אחרונות לפי אלבום: תמונת אצבע"
-
-#~ msgid "latest images by album: thumbnail-customcrop"
-#~ msgstr "תמונות אחרונות לפי אלבום: תמונת אצבע-קיצוץ מתואם אישית"
-
-#~ msgid "latest images by album: sized image"
-#~ msgstr "תמונות אחרונות לפי אלבום: תמונה בגודל מסוים"
-
-#~ msgid "CombiNews: Sized image size"
-#~ msgstr "CombiNews: גודל תמונה בגודל מסוים"
-
-#~ msgid "CombiNews: Sort order"
-#~ msgstr "CombiNews: סדר מיון "
-
-#~ msgid "id"
-#~ msgstr "מזהה"
-
-#~ msgid "CombiNews: Gallery link"
-#~ msgstr "CombiNews: קישור גלרייה"
-
-#~ msgid "CombiNews: Thumbnail crop width"
-#~ msgstr "CombiNews: קיצוץ רוחב של תמונת אצבע"
-
-#~ msgid ""
-#~ "For <em>thumbnail custom crop</em> only. Leave empty if you don't want to "
-#~ "use it."
-#~ msgstr ""
-#~ "עבור <em>קיצוץ מתואם אישית של תמונת אצבע</em> בלבד. השאירו ריק אם אינכם "
-#~ "מעוניינם להשתמש בזה."
-
-#~ msgid "CombiNews: Thumbnail crop height"
-#~ msgstr "CombiNews: קיצוץ גובה של תמונת אצבע"
-
-#~ msgid "CombiNews: Thumbnail width"
-#~ msgstr "CombiNews: רוחב תמונת אצבע"
-
-#~ msgid "CombiNews: Thumbnail height"
-#~ msgstr "CombiNews: גובה תמונת אצבע"
-
-#~ msgid "CombiNews: Thumbnail crop x axis"
-#~ msgstr "CombiNews: קיצוץ ציר X של תמונת אצבע"
-
-#~ msgid "CombiNews: Thumbnail crop y axis"
-#~ msgstr "CombiNews: קיצוץ ציר Y של תמונת אצבע"
-
-#~ msgid "CombiNews: Show image title"
-#~ msgstr "CombiNews: הצג כותרת תמונה"
-
-#~ msgid "CombiNews: Custom title (singular)"
-#~ msgstr "CombiNews: כותרת מתואמת אישית (בודדת)"
-
-#~ msgid "CombiNews: Custom title (plural)"
-#~ msgstr "CombiNews:  כותרת מתואמת אישית (רבים)"
-
-#~ msgid "CombiNews: Custom title - Number of image titles"
-#~ msgstr "CombiNews:  כותרת מתואמת אישית - מספר כותרות תמונה"
-
-#~ msgid ""
-#~ "How many images titles you want to show with the custom title (<em>latest "
-#~ "images by album</em> option only)."
-#~ msgstr ""
-#~ "כמה כותרות תמונות יופיעו בכותרת המתואמת אישית (אפשרות <em>תמונות אחרונות "
-#~ "לפי אלבום</em> בלבד)."
-
-#~ msgid ""
-#~ "Places the latest 3 news articles from Zenphoto.org on the admin overview "
-#~ "page."
-#~ msgstr "מציג את 3 מאמרי החדשות האחרונים בדף הסקירה של מערכת הניהול."
-
-#~ msgid "News from Zenphoto.org"
-#~ msgstr "חדשות מ-Zenphoto.org"
-
-#~ msgid "A connection to <em>Zenphoto.org</em> could not be established."
-#~ msgstr "התחברות אל <em>Zenphoto.org</em> נכשלה."
-
-#~ msgid "Back-end"
-#~ msgstr "ממשק אחורי"
-
-#~ msgid "Front-end"
-#~ msgstr "ממשק קדמי"
-
-#~ msgid "Blocked access"
-#~ msgstr "גישה חסומה"
-
-#~ msgid "Blocked album"
-#~ msgstr "אלבום חסום"
-
-#~ msgid "Removed setup file"
-#~ msgstr "הסירו קבצי התקנה"
-
-#~ msgid "Attempt threshold"
-#~ msgstr "נסו threshold"
-
-#~ msgid "3 stars"
-#~ msgstr "3 כוכבים"
-
-#~ msgid "4 stars"
-#~ msgstr "4 כוכבים"
-
-#~ msgid "5 stars"
-#~ msgstr "5 כוכבים"
-
-#~ msgid "street:"
-#~ msgstr "רחוב:"
-
-#~ msgid "city:"
-#~ msgstr "עיר:"
-
-#~ msgid "country:"
-#~ msgstr "ארץ:"
-
-#~ msgid "Website:"
-#~ msgstr "אתר אינטרנט:"
-
-#~ msgid "Sized image"
-#~ msgstr "תמונה בגודל מסוים"
-
-#~ msgid ""
-#~ "The options below the 'Zenphoto' drop down do only affect including "
-#~ "images and albums. These options are be used on the fly and are not "
-#~ "sticky if you reload the page (selecting another album or moving between "
-#~ "pages in an album)."
-#~ msgstr "האופציות מתחת לתפריט הנפתח 'זןפוטו' משפיעים תמונות ואלבומים שנכללו"
-
-#~ msgid "utilities"
-#~ msgstr "כלים"
-
-#~ msgid "Menuset id"
-#~ msgstr "מזהה מערך תפריט"
-
-#~ msgid "Add Menu set"
-#~ msgstr "הוספת מערך תפריט"
-
-#~ msgid "Delete menu set '%s'"
-#~ msgstr "מחיקת מערך התפריט '%s'"
-
-#~ msgid "Menu Manager: Edit Menu Item or add new Menu Item"
-#~ msgstr "מנהל תפריט: ערכו פריט תפריט או הוסיפו אחד פריט חדש"
-
-#~ msgid "All Zenpage news categories"
-#~ msgstr "כל קטגוריות חדשות של זןדף"
-
-#~ msgid "visible"
-#~ msgstr "גלוי"
-
-#~ msgid "%s is not a valid getRating() context"
-#~ msgstr "%s אינה קריאת getRating() context תקפה"
-
-#~ msgid "You must provide at least one recipient email address."
-#~ msgstr "אתם חייבים להוסיף לפחות כתובת דוא\"ל אחת."
-
-#~ msgid "SMTP Error: Could not authenticate."
-#~ msgstr "שגיאת SMTP: לא ניתן להתחבר לשרת עם פרטי ההתחברות שסופקו."
-
-#~ msgid "SMTP Error: The following recipients failed: "
-#~ msgstr "שגיאת SMPT: ההודעה לא הצליחה להישלח לנמנעים הבאים:"
-
-#~ msgid "SMTP Error: Data not accepted."
-#~ msgstr "שגיאת SMTP: המידע אינו חוקי."
-
-#~ msgid "SMTP Error: Could not connect to SMTP host."
-#~ msgstr "שגיאת SMTP: לא ניתן להתחבר אל שרת הדואר."
-
-#~ msgid "Could not access file: "
-#~ msgstr "לא ניתן לגשת לקובץ:"
-
-#~ msgid "File Error: Could not open file: "
-#~ msgstr "שגיאת קובץ: לא ניתן לפתוח את הקובץ: "
-
-#~ msgid "Unknown encoding: "
-#~ msgstr "קידוד לא ידוע:"
-
-#~ msgid "Signing Error: "
-#~ msgstr "שגיאת התחברות:"
-
-#~ msgid "SMTP server error: "
-#~ msgstr "שגיאת שרת SMTP: "
-
-#~ msgid "Message body empty"
-#~ msgstr "גוף ההודעה ריק"
-
-#~ msgid "Cannot set or reset variable: "
-#~ msgstr "לא ניתן לבצע השמה למשתנה: "
-
-#~ msgid "Add category"
-#~ msgstr "הוסיפו קטגוריה"
-
-#~ msgid "Prev Page"
-#~ msgstr "דף קודם"
-
-#~ msgid "First Page"
-#~ msgstr "דף ראשון"
-
-#~ msgid "<em>This article belongs to a protected category.</em>"
-#~ msgstr "<em>המאמר משוייך לקטגוריה מוגנת.</em>"
-
-#~ msgid "News Category RSS"
-#~ msgstr "RSS קטגוריות חדשות"
-
-#~ msgid "News and Gallery RSS"
-#~ msgstr "RSS חדשות וגלרייה"
-
-#~ msgid "Zenpage Comments RSS"
-#~ msgstr "RSS תגובות זןדף"
-
-#~ msgid "News article comments RSS"
-#~ msgstr "RSS תגובות מאמרי חדשות"
-
-#~ msgid "Page Comments RSS"
-#~ msgstr "RSS תגובות דפים"
-
-#~ msgid "View the photo album %s"
-#~ msgstr "צפה בתמונות האלבום %s"
-
-#~ msgid "Add Category"
-#~ msgstr "הוסיפו קטגוריה"
-
-#~ msgid ""
-#~ "<strong>Note:</strong> This page is either password protected or has a "
-#~ "passport protected parent."
-#~ msgstr ""
-#~ "<strong>חשוב:</strong> הדף הזה מוגן בסיסמא או שדף אב שלו מוגן בסיסמא."
-
-#~ msgid "Page password:"
-#~ msgstr "סיסמת דף:"
-
-#~ msgid "Page password hint:"
-#~ msgstr "רמז לסיסמא דף:"
-
-#~ msgid "Reset hitcounter (Hits: %1$s)"
-#~ msgstr "איפוס מונים  (הקלקות: %1$s)"
-
-#~ msgid "Enter %s:"
-#~ msgstr "הזינו %s:"
-
-#~ msgid "content"
-#~ msgstr "תוכן"
-
-#~ msgid "Publishing options"
-#~ msgstr "הגדרות פרסום"
-
-#~ msgid "Make images visible by default"
-#~ msgstr "הגדירו שתמונות יוצגו כברירת מחדל"
-
-#~ msgid "Images which are not visible"
-#~ msgstr "תמונות מוסתרות"
-
-#~ msgid "Clears the image cache. Images will be re-cached as they are viewed."
-#~ msgstr "נקו את מטמון התמונות. התמונות יוטמנו מחדש כאשר יוצגו."
-
-#~ msgid ""
-#~ "Cleans the database and removes any orphan entries for comments, images, "
-#~ "and albums."
-#~ msgstr "נקו את מסד הנתונים והסירו רשומות מיותרות של תגובות, תמונות ואלבומים"
-
-#~ msgid "Query ( <em>%1$s</em> ) failed. Error: %2$s"
-#~ msgstr "השאילתא ( <em>%1$s</em> ) נכשלה. שגיאה:  %2$s."
-
-#~ msgid "Zenphoto Rights migration failed!"
-#~ msgstr "מיזוג הרשאות זןפוטו נכשל!"
-
-#~ msgid "<strong>ERROR:</strong> Wordpress database info incomplete"
-#~ msgstr "<strong>שגיאה:</strong> חסר מידע על מסד הנתונים של וורדפרס."
-
-#~ msgid ""
-#~ "Finds newly uploaded images that have not been cached and creates the "
-#~ "cached version. It also refreshes the numbers above. If you have a large "
-#~ "number of images in your gallery you might consider using the pre-cache "
-#~ "image link for each album to avoid swamping your browser."
-#~ msgstr ""
-#~ "הטמנת תמונות חדשות שהועלו במטמון השרת. בנוסף, פעולה זו מעדכנת את המונים. "
-#~ "אם לגלריה שלכם יש הרבה תמונות מומלץ להשתמש בפעולה זו על מנת למנוע הצפת "
-#~ "מטמון הדפדפן."
-
-#~ msgid "<strong>%1$u</strong> images (%2$u not visible)"
-#~ msgstr "<strong>%1$u</strong> תמונות (%2$u נסתרות)"
-
-#~ msgid "Set to <em>random</em>"
-#~ msgstr "קבעו ל-<em>אקראי</em>"
-
-#~ msgid "Set to <em>%s</em>"
-#~ msgstr "קבעו ל-<em>%s</em>"
-
-#~ msgid ""
-#~ "These buttons allow you to set all of your album thumbs to either a "
-#~ "<em>random</em> image or to the <em>%s</em> image. This will override any "
-#~ "album thumb selections you have made on individual albums."
-#~ msgstr ""
-#~ "הכפתורים האלו מאפשרים לכם לקבעו את התמונות המוקטנות לכל האלבומים, לפי סדר "
-#~ "אקראי או לפי התמונה <em>%s</em>. פעולה זו תדרוס כל ההגדרות של תמונות "
-#~ "מוקטנות שניתנו ברמת האלבום.  "
-
-#~ msgid ""
-#~ "For the best viewing experience <a href=\"http://www.macromedia.com/go/"
-#~ "getflashplayer/\">Get Adobe Flash.</a>"
-#~ msgstr ""
-#~ "לחווית צפייה מלאה <a href=\"http://www.macromedia.com/go/getflashplayer/"
-#~ "\">הורידו Adobe Flash.</a>"
-
-#~ msgid "View Gallery Without Flash"
-#~ msgstr "צפו בגלרייה ללא פלאש"
-
-#~ msgid "Open In New Window"
-#~ msgstr "פתחי בחלון חדש"
-
-#~ msgid ""
-#~ "Based on Effervescence 1.1 with multiple personalities (slimbox, "
-#~ "simpleviewer and smoothgallery) added. Select different color schemes and "
-#~ "personalities from the Admin Options tab."
-#~ msgstr ""
-#~ "Based on Effervescence 1.1 with multiple personalities (slimbox, "
-#~ "simpleviewer and smoothgallery) added. Select different color schemes and "
-#~ "personalities from the Admin Options tab."
-
-#~ msgid "For the best viewing experience"
-#~ msgstr "לחווית הצפייה הטובה ביותר"
-
-#~ msgid "get Adobe Flash."
-#~ msgstr "השגי פלאש"
-
-#~ msgid ""
-#~ "Simpleviewer requires <em>mod_rewrite</em> to be set. Simpleviewer is "
-#~ "disabled."
-#~ msgstr "Simpleviewer זקוק להגדרת <em>mod_rewrite</em> . Simpleviewer כבוי."
-
-#~ msgid "Effervescence %s (not found)"
-#~ msgstr "Effervescence %s (not found)"
-
-#~ msgid "next &raquo;"
-#~ msgstr "הבא &raquo;"
-
-#~ msgid "&laquo; prev"
-#~ msgstr "&laquo; הקודם"
-
-#~ msgid "Zenphoto gallery"
-#~ msgstr "גלריית זןפוטו"
-
-#~ msgid "Simpleviewer"
-#~ msgstr "Simpleviewer"
-
-#~ msgid "Slimbox"
-#~ msgstr "Slimbox"
-
-#~ msgid "Smoothgallery"
-#~ msgstr "Smoothgallery"
-
-#~ msgid "&laquo; prev thumbs"
-#~ msgstr "&laquo; התמונות המוקטנות הקודמות"
-
-#~ msgid "next thumbs &raquo;"
-#~ msgstr "התמונות המוקטנות הבאות &raquo;"
-
-#~ msgid "1 photo"
-#~ msgstr "תמונה 1"
-
-#~ msgid "%u photos"
-#~ msgstr "תמונות %u"
-
-#~ msgid "1 album,&nbsp;1 photo"
-#~ msgstr "אלבום 1 ,&nbsp; תמונה 1"
-
-#~ msgid "%u album,&nbsp;1 photo"
-#~ msgstr "%u אלבום,&nbsp;1 תמונה"
-
-#~ msgid "%1$u album,&nbsp;%2$u photos"
-#~ msgstr "אלבום %1$u,&nbsp; תמונה %2$u"
-
-#~ msgid "1 album,&nbsp;%u photos"
-#~ msgstr "אלבום 1,&nbsp;%u תמונות"
-
-#~ msgid "photos %1$u-%2$u of %3$u"
-#~ msgstr "תמונות %1$u-%2$u מתוך %3$u"
-
-#~ msgid "Contact form"
-#~ msgstr "טופס יצירת-קשר"
-
-#~ msgid ""
-#~ "<a href=\"http://stopdesign.com/templates/photos/\">Photo Templates</a> "
-#~ "from Stopdesign"
-#~ msgstr ""
-#~ "<a href=\"http://stopdesign.com/templates/photos/\">Photo Templates</a> "
-#~ "from Stopdesign"
-
-#~ msgid "Ported to Zenphoto by Mark Galeassi and Stephen Billard"
-#~ msgstr "הותאם לזןפוטו על ידי  Mark Galeassi ו- Stephen Billard"
-
-#~ msgid ""
-#~ "A theme based on the design from <a href=\"http://stopdesign.com/"
-#~ "templates/photos/\">Douglas Bowman</a>. This theme is licensed under the "
-#~ "<a href=\"http://creativecommons.org/licenses/by-nc-sa/2.5/\">Creative "
-#~ "Commons Attribution-NonCommercial-ShareAlike 2.5</a> License."
-#~ msgstr ""
-#~ "A theme based on the design from <a href=\"http://stopdesign.com/"
-#~ "templates/photos/\">Douglas Bowman</a>. This theme is licensed under the "
-#~ "<a href=\"http://creativecommons.org/licenses/by-nc-sa/2.5/\">Creative "
-#~ "Commons Attribution-NonCommercial-ShareAlike 2.5</a> License."
-
-#~ msgid "%1$u of %2$u photos"
-#~ msgstr "%1$u מתוך %2$u תמונות"
-
-#~ msgid ""
-#~ "<a href=\"http://stopdesign.com/templates/photos/\">Photo Templates</a> "
-#~ "from Stopdesign."
-#~ msgstr ""
-#~ "<a href=\"http://stopdesign.com/templates/photos/\">Photo Templates</a> "
-#~ "from Stopdesign."
-
-#~ msgid "%u albums,&nbsp;1 photo"
-#~ msgstr "%u אלבומים,&nbsp;1 תמונה"
-
-#~ msgid "%1$u albums,&nbsp;%2$u photos"
-#~ msgstr "%1$u אלבומים,&nbsp;%2$u תמונות"
-
-#~ msgid "%u albums"
-#~ msgstr "%u אלבומים"
-
-#~ msgid "SHOW"
-#~ msgstr "הצג"
-
-#~ msgid "HIDE"
-#~ msgstr "הסתר"
-
-#~ msgid "No comments yet"
-#~ msgstr "אין תגובות&hellip; עדיין."
-
-#~ msgid "%u comment so far"
-#~ msgid_plural "%u comments so far"
-#~ msgstr[0] "תגובה %u עד כה"
-#~ msgstr[1] "תגובות %u עד כה"
-
-#~ msgid "Link to Comment %u"
-#~ msgstr "קישור לתגובה %u"
-
-#~ msgid "%s wrote:"
-#~ msgstr "%s כתבה:"
-
-#~ msgid "Mini slide selector"
-#~ msgstr "Mini slide selector"
-
-#~ msgid "Select what you want for the six special slides."
-#~ msgstr "בחרו מה אתם רוצים עבור שש המצגות המיוחדות."
-
-#~ msgid "Gallery image crop width"
-#~ msgstr "רוחב קיצוץ תמונת הגלרייה"
-
-#~ msgid "The width of image to crop in the gallery pages"
-#~ msgstr "רוחב התמונה לקצוץ בדפי הגלרייה"
-
-#~ msgid "Gallery image crop height"
-#~ msgstr "גובה קיצוץ גובה התמונה"
-
-#~ msgid "The height of image to crop in the gallery pages"
-#~ msgstr "גובה התמונה לקצוץ בדפי הגלרייה"
-
-#~ msgid "All galleries"
-#~ msgstr "כל הגלריות"
-
-#~ msgid "%u photo"
-#~ msgid_plural "%u photos"
-#~ msgstr[0] "%u תמונה"
-#~ msgstr[1] "%u תמונות"
-
-#~ msgid "1 album,&nbsp;%u photo"
-#~ msgid_plural "1 album,&nbsp;%u photos"
-#~ msgstr[0] "אלבום 1,&nbsp;%u תמונה"
-#~ msgstr[1] "אלבום 1,&nbsp;%u תמונות"
-
-#~ msgid "%1$u album,&nbsp;%2$s"
-#~ msgid_plural "%1$u albums,&nbsp;%2$s"
-#~ msgstr[0] "אלבום %1$u,&nbsp;%2$s"
-#~ msgstr[1] "אלבומים %1$u,&nbsp;%2$s"
-
-#~ msgid "Gallery Feeds"
-#~ msgstr "פידי RSS של גלרייה"
-
-#~ msgid "Photos"
-#~ msgstr "תמונות"
-
-#~ msgid "Recently Updated Galleries"
-#~ msgstr "גלריות אחרונות שעודכנו"
-
-#~ msgid "View image:"
-#~ msgstr "צפו בתמונה:"
-
-#~ msgid "Gallery data"
-#~ msgstr "מידע הגלרייה"
-
-#~ msgid "Galleries"
-#~ msgstr "גלריות"
-
-#~ msgid "(not displayed)"
-#~ msgstr "(לא מוצג)"
-
-#~ msgid "URL:"
-#~ msgstr "URL:"
-
-#~ msgid "Private comment:"
-#~ msgstr "תגובה פרטית"
-
-#~ msgid "(don't publish)"
-#~ msgstr "(אל תפרסם)"
-
-#~ msgid "Post"
-#~ msgstr "שלח"
-
-#~ msgid "Avoid clicking &ldquo;Post&rdquo; more than once."
-#~ msgstr "הימנעי מללחוץ &ldquo;פוסט&rdquo; יותר מפעם אחת."
-
-#~ msgid "A password is required"
-#~ msgstr "הסיסמא נחוצה"
-
-#~ msgid "Back to the list of albums (go up a level)"
-#~ msgstr "חזרה לרשימת האלבומים (רמה אחת למעלה)"
-
-#~ msgid "%s%% from left"
-#~ msgstr "%s%% משמאל"
-
-#~ msgid ""
-#~ "<p>Thanks for your message. A copy has been sent to your provided e-mail "
-#~ "address for your own records.</p>"
-#~ msgstr ""
-#~ "<p>תודה שיצרת אתנו קשר. העתק של ההודעה נשלח ברגעים אל כתובת המייל שסיפקת. "
-#~ "</p>"
-
-#~ msgid "Player background color"
-#~ msgstr "צבע רקע של הנגן."
-
-#~ msgid "The color of the player background."
-#~ msgstr "צבע רקע של הנגן."
-
-#~ msgid "PHP <code>MySQL support</code>"
-#~ msgstr "תמיכת MySQL PHP"
-
-#~ msgid "You need to install MySQL support in your PHP"
-#~ msgstr "צריך להתקין תמיכת MySQL בסביבת PHP"
-
-#~ msgid "Change file/folder permissions mask: %s"
-#~ msgstr "שנה הרשאות קובץ/תיקייה: %s"
-
-#~ msgid "MySQL admin user"
-#~ msgstr "מנהל MySQL "
-
-#~ msgid "MySQL admin password"
-#~ msgstr "סיסמת מנהל MySQL "
-
-#~ msgid "MySQL host"
-#~ msgstr "מארח MySQL "
-
-#~ msgid "MySQL database"
-#~ msgstr "מסד נתונים MySQL "
-
-#~ msgid "MySQL version %s"
-#~ msgstr "גרסת MySQL%s"
-
-#~ msgid "MySQL <em>show tables</em> [Failed]"
-#~ msgstr "MySQL <em>show tables</em> [נכשלה]"
-
-#~ msgid ""
-#~ "Click <a href=\"?copyhtaccess\" >here</a> to have setup create the file."
-#~ msgstr ""
-#~ "לחצו <a href=\"?copyhtaccess\" >כאן</a> על מנת שההתקנה תיצור את הקובץ."
-
-#~ msgid "create and or update the database tables."
-#~ msgstr "צור ועדכן את טבלאות מסד הנתונים."
-
-#~ msgid "PHP Imagick library <em>%s</em><br /><em>%s</em>"
-#~ msgstr "הספרייה PHP Imagick <em>%s</em><br /><em>%s</em>"
-
-#~ msgid "Save order"
-#~ msgstr "שמור סדר"
-
-#~ msgid "Edit this theme"
-#~ msgstr "עריכת ערכת עיצוב זו"
-
-#~ msgid "Delete this theme"
-#~ msgstr "למחוק את ערכת העיצוב"
-
-#~ msgid "Comment saved successfully."
-#~ msgstr "התגובות נשמרו בהצלחה"
-
-#~ msgid "restore default allowed tags"
-#~ msgstr "שחזר תגיות ברירת מחדל"
-
-#~ msgid ""
-#~ "Check <em>restore default allowed tags</em> to reset allowed tags to the "
-#~ "zenphoto default values."
-#~ msgstr ""
-#~ "סמן <em>שחזור תגיות ברירת מחדל מותרות</em> על מנת לאפס תגיות מותרות לערכי "
-#~ "ברירת המחדל של זןפוטו."
-
-#~ msgid ""
-#~ "Recommended number of albums on a page. You might need to adjust this for "
-#~ "a better page layout."
-#~ msgstr ""
-#~ "מספר האלבומים המומלץ עבור דף. יתכן שתהיו מעוניינים לשנות זאת לטובת שיפור "
-#~ "מראה הדף."
-
-#~ msgid "Recommended number of thumbnails on an album page."
-#~ msgstr "מספר תמונות מוקטנות בדף אלבום"
-
-#~ msgid ""
-#~ "<strong>Note:</strong> You might need to adjust this for a better page "
-#~ "layout."
-#~ msgstr ""
-#~ "<strong>חשוב:</strong>  יתכן שתהיו מעוניינים לשנות זאת לטובת שיפור מראה "
-#~ "הדף"
-
-#~ msgid ""
-#~ "If checked the thumbnail cropped to the <em>width</em> and <em>height</"
-#~ "em> indicated."
-#~ msgstr ""
-#~ "אם מסומן, התמונה המוקטנת תקוצץ <em>לרוחב</em> ולאורך</em> המצויינים."
-
-#~ msgid "Mail send failed. The \"to\" list is empty."
-#~ msgstr "שליחת מייל נכשלה. שדה ה-\"אל\" ריק"
-
-#~ msgid "zenphoto administration"
-#~ msgstr "ניהול זןפוטו"
-
-#~ msgid "Enable or disable comments"
-#~ msgstr "הפעלה או כיבוי של תגובות"
-
-#~ msgid "email:"
-#~ msgstr "אימייל:"
-
-#~ msgid "Save Successful"
-#~ msgstr "נשמר בהצלחה"
-
-#~ msgid "Group:"
-#~ msgstr "קבוצה:"
-
-#~ msgid "a <strong>title</strong>"
-#~ msgstr "<strong>כותרת</strong>"
-
-#~ msgid "a <strong>name</strong>"
-#~ msgstr "<strong>שם</strong>"
-
-#~ msgid "a <strong>company</strong>"
-#~ msgstr "<strong>חברה</strong>"
-
-#~ msgid "a <strong>street</strong>"
-#~ msgstr "<strong>רחוב</strong>"
-
-#~ msgid "a <strong>city</strong>"
-#~ msgstr "<strong>עיר</strong>"
-
-#~ msgid "a <strong>country</strong>"
-#~ msgstr "<strong>מדינה</strong>"
-
-#~ msgid "a <strong>valid email address</strong>"
-#~ msgstr "<strong>כתובת דואר אלקטרונית חוקית</strong>"
-
-#~ msgid "a <strong>website</strong>"
-#~ msgstr "<strong>אתר אינטרנט</strong>"
-
-#~ msgid "a <strong>phone number</strong>"
-#~ msgstr "<strong>מספר טלפון</strong>"
-
-#~ msgid "a <strong>message</strong>"
-#~ msgstr "<strong>הודעה</strong>"
-
-#~ msgid "<p style='color:red'>Please enter "
-#~ msgstr "<p style='color:red'>בבקשה הזינו"
-
-#~ msgid " and "
-#~ msgstr "וגם"
-
-#~ msgid ". Thanks.</p>"
-#~ msgstr ". תודה.</p>"
-
-#~ msgid "getZenpageHitcounter is deprecated. Use getHitcounter()."
-#~ msgstr "getZenpageHitcounter  יצאה משימוש. השתמשו בפונקציה getHitcounter()."
-
-#~ msgid "printImageEXIFData is deprecated. Use printImageMetadata()."
-#~ msgstr ""
-#~ "printImageEXIFData  יצאה משימוש. השתמשו בפונקציה printImageMetadata()."
-
-#~ msgid "getCommentTime is deprecated. Use getCommentDateTime()."
-#~ msgstr "getCommentTime  יצאה משימוש. השתמשו בפונקציה getCommentDateTime()."
-
-#~ msgid "hitcounter is deprecated. Use getHitcounter()."
-#~ msgstr "hitcounter יצאה משימוש. השתמשו בפונקציה getHitcounter()."
-
-#~ msgid "my_truncate_string is deprecated. Use truncate_string()."
-#~ msgstr "my_truncate_string יצאה משימוש. השתמשו בפונקציה truncate_string()."
-
-#~ msgid "getImageEXIFData is deprecated. Use getImageMetaData()."
-#~ msgstr "getImageEXIFData  יצאה משימוש. השתמשו בפונקציה getImageMetaData()."
-
-#~ msgid "zenpageHitcounter is deprecated. Use getHitcounter()."
-#~ msgstr "zenpageHitcounter יצאה משימוש. השתמשו בפונקציה getHitcounter()."
-
-#~ msgid "News page name"
-#~ msgstr "שם דף החדשות"
-
-#~ msgid "Pages page name"
-#~ msgstr "שם דף הדפים"
-
-#~ msgid "flash"
-#~ msgstr "פלאש"
-
-#~ msgid "Google Earth"
-#~ msgstr "Google Earth"
-
-#~ msgid "Google Maps API key"
-#~ msgstr "Google Maps API key"
-
-#~ msgid "Buttons"
-#~ msgstr "כפתורים"
-
-#~ msgid "List"
-#~ msgstr "רשימה"
-
-#~ msgid "Map background"
-#~ msgstr "רקע מפות"
-
-#~ msgid "Comment error \"%d\" not defined."
-#~ msgstr "שגיאת תגובה \"%d\" אינה מוגדרת. "
-
-#~ msgid "show/hide"
-#~ msgstr "הצג/הסתר"
-
-#~ msgid "Category Title:"
-#~ msgstr "כותרת קטגוריה:"
-
-#~ msgid "New Category Title:"
-#~ msgstr "כותרת קטגוריה חדשה:"
-
-#~ msgid "Enable permaTitleLink"
-#~ msgstr "לאפשר כותרת-קישור-קבועה"
-
-#~ msgid "Category TitleLink:"
-#~ msgstr "קטגוריית לינקקישור"
-
-#~ msgid "Category password:"
-#~ msgstr "סיסמת קטגוריה:"
-
-#~ msgid "Category guest user:"
-#~ msgstr "משתמש אורח של קטגוריה:"
-
-#~ msgid "Category password hint:"
-#~ msgstr "רמז לסיסמת קטגוריה:"
-
-#~ msgid "Update Category"
-#~ msgstr "עדכני קטגוריה"
-
-#~ msgid "<em>(password protected)</em>"
-#~ msgstr "<em>(מוגן בסיסמא)</em>"
-
-#~ msgid "Toggle Editor"
-#~ msgstr "החלפת מצב עורך"
-
-#~ msgid "Update Article"
-#~ msgstr "עריכת מאמר"
-
-#~ msgid "Save Article"
-#~ msgstr "שמרי מאמר"
-
-#~ msgid "Update Page"
-#~ msgstr "עידכון דף"
-
-#~ msgid "Save Page"
-#~ msgstr "שמירת דף"
-
-#~ msgid "Your browser is not compatible with Google maps"
-#~ msgstr "הדפדפן שלכם אינו תומך בגוגל מפות"
-
-#~ msgid "Not visible images:"
-#~ msgstr "תמונות לא גלויות:"
-
-#~ msgid "Tables are prefixed by <strong>%s</strong>"
-#~ msgstr "לטבלאות יש את התחילית <strong>%s</strong>"
-
-#~ msgid "Album/Image"
-#~ msgstr "אלבום/תמונה"
-
-#~ msgid "Author/Link"
-#~ msgstr "מחברת/קישור"
-
-#~ msgid "Date/Time"
-#~ msgstr "תאריך/שעה"
-
-#~ msgid "E&#8209;Mail"
-#~ msgstr "E&#8209;מייל"
-
-#~ msgid "SPAM"
-#~ msgstr "ספאם"
-
-#~ msgid "Delete Selected Comments"
-#~ msgstr "מחקי תגובות מסומנות"
-
-#~ msgid "Save Order"
-#~ msgstr "שמרי סדר"
-
-#~ msgid "Enable TinyMCE for use in back-end editing."
-#~ msgstr "הפעילו את TinyMCE  לשימוש בעריכה המתבצעת בממשק הניהול."
-
-#~ msgid "Checked fields must be valid in a comment posting."
-#~ msgstr "שדות מסומנים חייבים להיות חוקיים בעת כתיבת תגובה."
-
-#~ msgid ""
-#~ "The restore enabled the Zenpage plugin. You should run <a href=\"%1$s/"
-#~ "%2$s/setup.php\">setup</a> to create Zenpage database tables. If tables "
-#~ "are created, you will need repeat thus restore operation."
-#~ msgstr ""
-#~ "פעולת השחזור הפעילה את התוסף זןדף. צריך להריץ את <a href=\"%1$s/%2$s/"
-#~ "setup.php\">ההתקנה</a> על מנת ליצור את הטבלאות של זןדף במסד הנתונים. אם "
-#~ "הטבלאות נוצרות יהיה צריך לחזור על פעולת השחזור."
-
-#~ msgid "CAPTCHA field"
-#~ msgstr "שדה CAPTCHA "
-
-#~ msgid "Use CAPTCHA"
-#~ msgstr "השתמש התמונת זיהוי (CAPTCHA)"
-
-#~ msgid ""
-#~ "Choose if you want to load the TinyMCE text editor for pages and articles "
-#~ "light or full featured."
-#~ msgstr ""
-#~ "בחרו אופצייה זאת אם ברצונכם לטעון את העורך טקסט עשיר TinyMCE במצב מלא או "
-#~ "חלקי עבור דפים ומאמרים."
-
-#~ msgid "Get Adobe Flash."
-#~ msgstr "השגי פלאש"
-
-#~ msgid "Enter Captcha"
-#~ msgstr "הזיני Captcha"
-
-#~ msgid ""
-#~ "Powered by <a href=\"http://www.zenphoto.org\" title=\"A simpler web "
-#~ "photo album\"><span id=\"zen-part\">zen</span><span id=\"photo-part"
-#~ "\">PHOTO</span></a> <span id=\"IE-clear-part\">with</span> <a href="
-#~ "\"http://www.zenphoto.org/2009/03/zenpage-a-cms-plugin-for-zenphoto/"
-#~ "\"><span id=\"zen-part\">zen</span><span id=\"photo-part\">PAGE</span></a>"
-#~ msgstr ""
-#~ "Powered by <a href=\"http://www.zenphoto.org\" title=\"A simpler web "
-#~ "photo album\"><span id=\"zen-part\">zen</span><span id=\"photo-part"
-#~ "\">PHOTO</span></a> <span id=\"IE-clear-part\">with</span> <a href="
-#~ "\"http://www.zenphoto.org/2009/03/zenpage-a-cms-plugin-for-zenphoto/"
-#~ "\"><span id=\"zen-part\">zen</span><span id=\"photo-part\">PAGE</span></a>"
-
-#~ msgid "Clearing and refreshing cache for %s"
-#~ msgstr "מחיקה ורענון מטמון %s"
-
-#~ msgid "Reset\thitcounters"
-#~ msgstr "אפסי\tמונה"
-
-#~ msgid "View Gallery: %s"
-#~ msgstr "הציגי גלרייה: %s"

@@ -1,21 +1,23 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Zenphoto 1.3.1\n"
+"Project-Id-Version: ZenPhoto20\n"
+
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-16 17:23-0700\n"
+"POT-Creation-Date: 2017-04-17 09:22-0700\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Stephen <stephen@sbillard.org>\n"
 "Language-Team: \n"
-"Language: zh_HK\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=1;\n"
 "X-Generator: Poedit 2.0.1\n"
 "X-Poedit-Basepath: ../../../..\n"
 "X-Poedit-SearchPath-0: zp-core/locale/zh_CN/LC_MESSAGES/zenphoto.po\n"
 "X-Poedit-SearchPath-1: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
 
 #: plugins/cacheHeader.php:18
 msgid "Outputs a \"Cache-control\" header with selected caching options."
@@ -266,7 +268,7 @@ msgstr "<em>%s</em> 已经存在."
 #, fuzzy, php-format
 #| msgid "Database tables to create: %s"
 msgid "Unable to create %s."
-msgstr "建立在:"
+msgstr "Create"
 
 #: plugins/customData.php:26
 msgid "This plugin exposes the \"custom_data\" field on objects."
@@ -2132,7 +2134,7 @@ msgstr ""
 #: themes/garland/album.php:111 themes/garland/favorites.php:124
 #, fuzzy
 msgid "Prev Album"
-msgstr "« 上一缩图"
+msgstr "上一页"
 
 #: themes/garland/album.php:111 themes/garland/favorites.php:124
 #, fuzzy
@@ -2148,7 +2150,7 @@ msgstr "标签"
 #: themes/garland/album.php:134
 #, fuzzy, php-format
 msgid "Latest Images for %s"
-msgstr "最新"
+msgstr "图片 (%s)"
 
 #: themes/garland/functions.php:68
 #, fuzzy
@@ -2164,7 +2166,7 @@ msgstr "预设图片显示大小."
 #: themes/zpskeleton/inc-header.php:115 themes/zpskeleton/themeoptions.php:77
 #, fuzzy
 msgid "Latest Images"
-msgstr "最新相簿"
+msgstr "最新"
 
 #: themes/garland/image.php:119
 #, fuzzy
@@ -2605,7 +2607,7 @@ msgstr ""
 #: themes/zpBootstrap/inc_header.php:84 themes/zpmobile/index.php:67
 #, fuzzy
 msgid "Latest news"
-msgstr "新闻"
+msgstr "最新"
 
 #: themes/paradigm/includes/_head.php:47 themes/paradigm/includes/_head.php:138
 #: themes/zpArdoise/inc_header.php:36 themes/zpBootstrap/inc_header.php:37
@@ -2653,7 +2655,7 @@ msgstr "主页"
 #: themes/zpmobile/index.php:32 zp-core/class-feed.php:257
 #, fuzzy
 msgid "Latest images"
-msgstr "最新相簿"
+msgstr "最新"
 
 #: themes/paradigm/includes/_homepage.php:96
 #: themes/zpArdoise/inc_print_image_statistic.php:6 zp-core/class-feed.php:281
@@ -2908,7 +2910,7 @@ msgstr ""
 #: themes/paradigm/themeoptions.php:102
 #, fuzzy
 msgid "Twitter profile name"
-msgstr "相簿名称:"
+msgstr "以资料夹名称:"
 
 #: themes/paradigm/themeoptions.php:102
 msgid ""
@@ -3001,7 +3003,7 @@ msgstr "下一缩图 »"
 #: themes/zenpage/search.php:47 themes/zpmobile/search.php:52
 #, fuzzy
 msgid "Search album"
-msgstr "搜寻"
+msgstr "由搜寻建立新相簿"
 
 #: themes/zenpage/sidebar.php:61
 msgid "Gallery And News"
@@ -3255,7 +3257,7 @@ msgstr ""
 #: themes/zpArdoise/themeoptions.php:73
 #, fuzzy
 msgid "Use Galleriffic script"
-msgstr "使用 Colorbox"
+msgstr "剧本页"
 
 #: themes/zpArdoise/themeoptions.php:73
 msgid ""
@@ -3611,7 +3613,7 @@ msgstr "容许搜寻"
 #: themes/zpskeleton/inc-header.php:122
 #, fuzzy
 msgid "Latest News"
-msgstr "新闻"
+msgstr "最新"
 
 #: themes/zpfocus/gallery.php:19 themes/zpfocus/inc-header.php:111
 #: themes/zpmasonry/functions.php:221 themes/zpmasonry/inc-header.php:113
@@ -3649,7 +3651,7 @@ msgstr "订阅留言"
 #: themes/zpfocus/inc-footer.php:44 themes/zpminimal/inc-footer.php:11
 #, fuzzy
 msgid "This Album"
-msgstr "观看相簿:"
+msgstr "相簿"
 
 #: themes/zpfocus/inc-footer.php:47 themes/zpminimal/inc-footer.php:13
 #, fuzzy
@@ -3707,7 +3709,7 @@ msgstr "*母相簿图片排序"
 #: themes/zpfocus/inc-sidebar.php:17
 #, fuzzy
 msgid "Random Gallery Image"
-msgstr "随机图片..."
+msgstr "*相馆图片排序"
 
 #: themes/zpfocus/inc-sidebar.php:52
 #, fuzzy
@@ -4520,7 +4522,7 @@ msgstr ""
 #: themes/zpmasonry/themeoptions.php:128
 #, fuzzy
 msgid "Frontpage Slideshow?"
-msgstr "播放幻灯片"
+msgstr "幻灯片播放"
 
 #: themes/zpmasonry/themeoptions.php:130
 #, fuzzy
@@ -4655,7 +4657,7 @@ msgstr ""
 #: themes/zpminimal/themeoptions.php:35
 #, fuzzy
 msgid "Sidebar Position on the Right?"
-msgstr "右"
+msgstr "位置:"
 
 #: themes/zpminimal/themeoptions.php:35
 #, fuzzy
@@ -5229,7 +5231,7 @@ msgstr "搜寻条件:"
 #: zp-core/admin-dynamic-album.php:235
 #, fuzzy
 msgid "Return albums found"
-msgstr "回到 %s"
+msgstr "相簿"
 
 #: zp-core/admin-dynamic-album.php:236
 #, fuzzy
@@ -5807,7 +5809,7 @@ msgstr "显示相馆主页"
 #, fuzzy
 #| msgid "Return to %s"
 msgid "return to top"
-msgstr "回重顶部"
+msgstr "回到 %s"
 
 #: zp-core/admin-functions.php:526
 msgid "Image order"
@@ -5999,7 +6001,7 @@ msgstr "清除这张专辑的高速缓存的图像。"
 #: zp-core/admin-functions.php:2280
 #, fuzzy
 msgid "Clear album image cache"
-msgstr "预先快取全尺寸图片"
+msgstr "图片快取已清除."
 
 #: zp-core/admin-functions.php:2283
 #, fuzzy
@@ -6105,7 +6107,7 @@ msgstr "子相簿列表"
 #, fuzzy
 #| msgid "Unprotected"
 msgid "un-protected"
-msgstr "未发表"
+msgstr "取消批核"
 
 #: zp-core/admin-functions.php:2426
 #: zp-core/zp-extensions/zenpage/admin-functions.php:240
@@ -6208,7 +6210,7 @@ msgstr "删除相簿 %s"
 #: zp-core/admin-functions.php:2752
 #, fuzzy
 msgid "prev image"
-msgstr "« 上一缩图"
+msgstr "上一页"
 
 #: zp-core/admin-functions.php:2759
 #, fuzzy
@@ -6851,7 +6853,7 @@ msgstr "可选外挂"
 #: zp-core/admin-plugins.php:194 zp-core/admin-plugins.php:417
 #, fuzzy
 msgid "Supplemental plugin"
-msgstr "没有可管理的外挂."
+msgstr "外挂"
 
 #: zp-core/admin-plugins.php:199
 #, fuzzy
@@ -6870,7 +6872,7 @@ msgstr "<strong>分析错误 <em>plugin_description</em> 字串!</strong>."
 #: zp-core/admin-plugins.php:217
 #, fuzzy
 msgid "<strong>Error parsing <em>plugin_notice</em> string!</strong>."
-msgstr "<strong>分析错误 <em>plugin_description</em> 字串!</strong>."
+msgstr "<strong>分析错误 <em>plugin_author</em> 字串!</strong>."
 
 #: zp-core/admin-plugins.php:225
 msgid "<strong>Error parsing <em>plugin_author</em> string!</strong>."
@@ -7524,7 +7526,7 @@ msgstr "隐藏用户  %s 详细资料"
 #: zp-core/admin-users.php:609
 #, fuzzy
 msgid "New User"
-msgstr "如剔选, 当有新用户已验证时通知电邮会寄给管理员."
+msgstr "新用户的初始组别."
 
 #: zp-core/admin-users.php:635
 msgid "Authenticate user"
@@ -7596,7 +7598,7 @@ msgstr "<em>主</em>帐户具有完全权限的所有对象。"
 #: zp-core/admin-users.php:818 zp-core/functions.php:878
 #, fuzzy
 msgid "un-categorized"
-msgstr "取消发表相簿 %s"
+msgstr "未发表"
 
 #: zp-core/admin-users.php:877
 #, fuzzy, php-format
@@ -7672,7 +7674,7 @@ msgstr "这相簿受密码保护."
 #: zp-core/admin.php:114
 #, fuzzy
 msgid "Setup files protected."
-msgstr "密码保护"
+msgstr "保护观看"
 
 #: zp-core/admin.php:118
 #, fuzzy
@@ -7747,7 +7749,7 @@ msgstr "保护安装文件，所以不能运行安装程序。"
 #: zp-core/admin.php:313
 #, fuzzy
 msgid "Setup » restore scripts"
-msgstr "ZenPhoto20 设定"
+msgstr "回后有异常情况"
 
 #: zp-core/admin.php:318
 #, fuzzy
@@ -7846,7 +7848,7 @@ msgstr "PHP 错误消息可能显示在 WEB 页上。这可能会泄漏网站敏
 #: zp-core/admin.php:472
 #, fuzzy
 msgid "<em>display_errors</em> is <strong>On</strong>"
-msgstr "<strong><em>Imagick</em></strong> 扩展不存在."
+msgstr "<strong><em>GD</em></strong> 扩展不存在."
 
 #: zp-core/admin.php:476
 #, fuzzy
@@ -8962,7 +8964,7 @@ msgstr ""
 #: zp-core/admin_options/image.php:441
 #, fuzzy, php-format
 msgid "%s thumbnails"
-msgstr "缩图裁切:"
+msgstr "相簿缩图:"
 
 #: zp-core/admin_options/image.php:452
 #, fuzzy
@@ -9075,7 +9077,7 @@ msgstr "选择图像缓存中存储的图像类型。选择<em>原始</em>保留
 #: zp-core/admin_options/image.php:537
 #, fuzzy
 msgid "Protect image cache"
-msgstr "预先快取全尺寸图片"
+msgstr "图片快取已清除."
 
 #: zp-core/admin_options/image.php:546
 #, fuzzy
@@ -9451,7 +9453,7 @@ msgstr "标签管理"
 #: zp-core/admin_options/search.php:241
 #, fuzzy
 msgid "<em>partial</em>"
-msgstr "<em>或</em>"
+msgstr "局部"
 
 #: zp-core/admin_options/search.php:241
 #, fuzzy
@@ -9512,7 +9514,7 @@ msgstr ""
 #: zp-core/admin_options/search.php:267
 #, fuzzy
 msgid "<em>Within</em>"
-msgstr "<em>匿名</em>"
+msgstr "<em>及</em>"
 
 #: zp-core/admin_options/search.php:273
 #, fuzzy
@@ -9817,7 +9819,7 @@ msgstr ""
 #: zp-core/admin_options/theme.php:262 zp-core/admin_options/theme.php:302
 #, fuzzy
 msgid "thumbnails per row"
-msgstr "缩图裁切:"
+msgstr "相簿缩图:"
 
 #: zp-core/admin_options/theme.php:271 zp-core/admin_options/theme.php:311
 #, fuzzy
@@ -10046,7 +10048,7 @@ msgstr "最新相簿"
 #: zp-core/class-feed.php:265
 #, fuzzy
 msgid "Most popular albums"
-msgstr "相簿"
+msgstr "常见标签"
 
 #: zp-core/class-feed.php:267
 #, fuzzy
@@ -10473,7 +10475,7 @@ msgstr "10秒"
 #: zp-core/exif/exifTranslations.php:25
 #, fuzzy
 msgid "Normal (0 deg)"
-msgstr "正常图片"
+msgstr "水平(正常)"
 
 #: zp-core/exif/exifTranslations.php:26
 msgid "1st curtain sync"
@@ -12184,7 +12186,7 @@ msgstr "<em>[%1$s]</em>宏不接受参数"
 #: zp-core/functions.php:2348 zp-core/functions.php:2375
 #, fuzzy, php-format
 msgid "<em>[%1$s]</em> retuned no data"
-msgstr "<em>%1$s</em> 留言在 %2$s:"
+msgstr "%1$s <em>%2$s</em> 已加入"
 
 #: zp-core/functions.php:2353
 #, fuzzy, php-format
@@ -12403,7 +12405,7 @@ msgstr "用户必须提供密码强度至少 %s。重复密码字段将被禁用
 #: zp-core/lib-auth.php:97
 #, fuzzy
 msgid "Password hash algorithm"
-msgstr "密码"
+msgstr "关联阵列索引值"
 
 #: zp-core/lib-auth.php:100
 #, fuzzy, php-format
@@ -13035,7 +13037,7 @@ msgstr "西班牙语 (拉丁美洲)"
 #: zp-core/lib-utf8.php:78
 #, fuzzy
 msgid "Baltic (ISO)"
-msgstr "ISO 影室钨丝灯"
+msgstr "ISO感光度"
 
 #: zp-core/lib-utf8.php:79
 #, fuzzy
@@ -13045,7 +13047,7 @@ msgstr "ISO感光度"
 #: zp-core/lib-utf8.php:80
 #, fuzzy
 msgid "Arabic (ISO)"
-msgstr "ISO 影室钨丝灯"
+msgstr "ISO感光度"
 
 #: zp-core/lib-utf8.php:81
 #, fuzzy
@@ -13317,7 +13319,7 @@ msgstr ""
 #: zp-core/reconfigure.php:304
 #, fuzzy, php-format
 msgid "to run setup [%s]"
-msgstr "你必须登入以执行安装."
+msgstr "ZenPhoto20 设定"
 
 #: zp-core/reconfigure.php:307
 #, fuzzy
@@ -13427,7 +13429,7 @@ msgstr "Cookie设定测试成功"
 #: zp-core/setup/index.php:409
 #, fuzzy
 msgid "Post of Database credentials"
-msgstr "刷新资料库"
+msgstr "资料库已连接"
 
 #: zp-core/setup/index.php:413
 #, fuzzy
@@ -13542,7 +13544,7 @@ msgstr ""
 #: zp-core/setup/index.php:571
 #, fuzzy
 msgid "PHP <code>Register Globals</code>"
-msgstr "PHP <code>mbstring</code> 支援"
+msgstr "PHP <code>Safe Mode</code>"
 
 #: zp-core/setup/index.php:571
 #, fuzzy
@@ -13878,7 +13880,7 @@ msgstr "ZenPhoto20 核心档案权限"
 #: zp-core/setup/index.php:740
 #, fuzzy, php-format
 msgid "Set File permissions to %s."
-msgstr "ZenPhoto20 核心档案权限 [不正确]"
+msgstr "ZenPhoto20 核心档案权限"
 
 #: zp-core/setup/index.php:746
 #, php-format
@@ -14053,7 +14055,7 @@ msgstr "选择资料库回复档案:"
 #: zp-core/setup/index.php:963
 #, fuzzy, php-format
 msgid "<em>%1$s</em> reported: %2$s"
-msgstr "%1$s <em>%2$s</em> 已加入"
+msgstr "%1$s <em>%2$s</em> 已配置"
 
 #: zp-core/setup/index.php:970
 #, fuzzy
@@ -14948,7 +14950,7 @@ msgstr "失败"
 #: zp-core/setup/setup-option-defaults.php:260
 #, fuzzy
 msgid "Mod_Rewrite check:"
-msgstr "mod_rewrite 字尾:"
+msgstr "ZenPhoto20 选项 \"mod_rewrite\" 已  \"启动\"."
 
 #: zp-core/setup/setup-option-defaults.php:263
 #, fuzzy
@@ -15058,7 +15060,7 @@ msgstr "填写下面的信息，<strong>安装程序</strong>将尝试更新您�
 #: zp-core/setup/setup-sqlform.php:49
 #, fuzzy
 msgid "Database engine"
-msgstr "刷新资料库"
+msgstr "资料库密码"
 
 #: zp-core/setup/setup-sqlform.php:66
 #, fuzzy, php-format
@@ -15270,13 +15272,13 @@ msgstr "相簿缩图:"
 #: zp-core/zp-extensions/zenpage/template-functions.php:1615
 #, fuzzy
 msgid "Return to search"
-msgstr "搜寻"
+msgstr "回到 %s"
 
 #: zp-core/template-functions.php:1301
 #: zp-core/zp-extensions/zenpage/template-functions.php:1618
 #, fuzzy
 msgid "Return to archive"
-msgstr "记录模式显示"
+msgstr "记录模式"
 
 #: zp-core/template-functions.php:2056
 #, fuzzy
@@ -15674,7 +15676,7 @@ msgstr "<strong>%u</strong> 张图片"
 #: zp-core/utilities/gallery_statistics.php:505
 #, fuzzy, php-format
 msgid "<strong>%1$u</strong> albums (%2$u un-published)"
-msgstr "<strong>%1$u</strong> 页面(%2$u 未发表)"
+msgstr "<strong>%1$u</strong> 新闻文章 (%2$u 未发表)"
 
 #: zp-core/utilities/gallery_statistics.php:507
 #, php-format
@@ -16939,7 +16941,7 @@ msgstr "画家"
 #: zp-core/zp-extensions/class-video.php:140
 #, fuzzy
 msgid "Video Title"
-msgstr "标题:"
+msgstr "标题"
 
 #: zp-core/zp-extensions/class-video.php:141
 #, fuzzy
@@ -17113,7 +17115,7 @@ msgstr "<code>%s</code>链接创建失败。"
 #: zp-core/zp-extensions/cloneZenphoto/clone.php:133
 #, fuzzy, php-format
 msgid "Successful clone to %s"
-msgstr "成功登入"
+msgstr "复制:"
 
 #: zp-core/zp-extensions/cloneZenphoto/clone.php:164
 #, fuzzy
@@ -17176,7 +17178,7 @@ msgstr "安装程式不能建立以下资料夹:<br />%s"
 #: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:171
 #, fuzzy
 msgid "Select the destination folder:"
-msgstr "再命名资料夹"
+msgstr "以资料夹名称:"
 
 #: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:198
 #, fuzzy
@@ -18408,7 +18410,7 @@ msgstr "工具功能"
 #: zp-core/zp-extensions/deprecated-functions/admin_tab.php:39
 #, fuzzy
 msgid "There are no deprecated functions at this time."
-msgstr "时区:"
+msgstr "拍摄时间"
 
 #: zp-core/zp-extensions/deprecated-functions/admin_tab.php:45
 #, fuzzy
@@ -18595,7 +18597,7 @@ msgstr "密码提示:"
 #: zp-core/zp-extensions/downloadList.php:169
 #, fuzzy
 msgid "You must supply a password for the DownloadList user"
-msgstr "保护类别用户必须提供密码"
+msgstr "保护页面用户必须提供密码"
 
 #: zp-core/zp-extensions/downloadList.php:171
 #, fuzzy
@@ -18845,7 +18847,7 @@ msgstr "第三方外挂"
 #: zp-core/zp-extensions/elFinder/php/connector_zp.php:293
 #, fuzzy, php-format
 msgid "Data (%s)"
-msgstr "自定资料:"
+msgstr "自定资料"
 
 #: zp-core/zp-extensions/elFinder/php/connector_zp.php:307
 #, fuzzy, php-format
@@ -19122,7 +19124,7 @@ msgstr "最高评级"
 #: zp-core/zp-extensions/externalFeed.php:279 zp-core/zp-extensions/rss.php:474
 #, fuzzy
 msgid " (Random pages)"
-msgstr "页"
+msgstr "随机图片..."
 
 #: zp-core/zp-extensions/externalFeed.php:282 zp-core/zp-extensions/rss.php:477
 #, fuzzy
@@ -19686,7 +19688,7 @@ msgstr "为生成的文章选择一个类别"
 #: zp-core/zp-extensions/galleryArticles.php:90
 #, fuzzy
 msgid "Use album folder"
-msgstr "再命名资料夹"
+msgstr "以资料夹名称:"
 
 #: zp-core/zp-extensions/galleryArticles.php:92
 #, fuzzy
@@ -20132,7 +20134,7 @@ msgstr ""
 #: zp-core/zp-extensions/html_meta_tags.php:116
 #, fuzzy
 msgid "Twitter name"
-msgstr "相簿名称:"
+msgstr "以资料夹名称:"
 
 #: zp-core/zp-extensions/html_meta_tags.php:117
 #, fuzzy
@@ -21126,7 +21128,7 @@ msgstr "管理选单项目 <em>%s</em> 已加入"
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:578
 #, fuzzy
 msgid "<em>HTML</em> added"
-msgstr "标签<em>%s</em> 已加入"
+msgstr "类别<em>%s</em> 已加入"
 
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:600
 #, fuzzy, php-format
@@ -21880,7 +21882,7 @@ msgstr "发表内容"
 #: zp-core/zp-extensions/publishContent/publishContent.php:27
 #, fuzzy
 msgid "Click to show content"
-msgstr "显示"
+msgstr "发表内容"
 
 #: zp-core/zp-extensions/publishContent/publishContent.php:32
 #, fuzzy
@@ -21970,7 +21972,7 @@ msgstr "没有相簿未发表."
 #: zp-core/zp-extensions/publishContent/publishContent.php:365
 #, fuzzy
 msgid "Images not published"
-msgstr "即时发表/不发表/预定发表"
+msgstr "发表/未发表"
 
 #: zp-core/zp-extensions/publishContent/publishContent.php:370
 #, php-format
@@ -22448,7 +22450,7 @@ msgstr ""
 #, fuzzy
 #| msgid "Allow search"
 msgid "Allow zero"
-msgstr "容许私人留言"
+msgstr "容许搜寻"
 
 #: zp-core/zp-extensions/rating.php:127
 #, fuzzy
@@ -22748,12 +22750,12 @@ msgstr "必须提供电邮地址."
 #: zp-core/zp-extensions/register_user.php:264
 #, fuzzy
 msgid "You must supply the city field."
-msgstr "必须提供网页的URL."
+msgstr "必须提供电邮地址."
 
 #: zp-core/zp-extensions/register_user.php:268
 #, fuzzy
 msgid "You must supply the state field."
-msgstr "必须提供电邮地址."
+msgstr "必须提供网页的URL."
 
 #: zp-core/zp-extensions/register_user.php:272
 #, fuzzy
@@ -22874,7 +22876,7 @@ msgstr "站点重写规则子标签。"
 #: zp-core/zp-extensions/rewriteRules/admin_tab.php:14
 #, fuzzy
 msgid "rewrite"
-msgstr "mod_rewrite 字尾:"
+msgstr "ZenPhoto20 选项 \"mod_rewrite\" 已  \"启动\"."
 
 #: zp-core/zp-extensions/rewriteRules/admin_tab.php:29
 #, fuzzy
@@ -22956,7 +22958,7 @@ msgstr "令牌"
 #: zp-core/zp-extensions/rewriteTokens/admin_tab.php:30
 #, fuzzy
 msgid "Rewrite Tokens"
-msgstr "mod_rewrite 字尾:"
+msgstr "ZenPhoto20 选项 \"mod_rewrite\" 已  \"启动\"."
 
 #: zp-core/zp-extensions/rss.php:12
 #, fuzzy
@@ -23222,7 +23224,7 @@ msgstr "%U 顶失败搜索条件"
 #: zp-core/zp-extensions/search_statistics/search_analysis.php:171
 #, fuzzy
 msgid "Failed search criteria"
-msgstr "输入搜寻条件."
+msgstr "搜寻条件:"
 
 #: zp-core/zp-extensions/search_statistics/search_analysis.php:202
 #, fuzzy, php-format
@@ -23421,7 +23423,7 @@ msgstr "<code>PHPMailer</code> 发出 <em>%1$s</em> 失败.  错误资料:%2$s"
 #: zp-core/zp-extensions/seo_cleanup/admin_tab.php:101
 #, fuzzy, php-format
 msgid "<em>%1$s</em> renamed to <em>%2$s</em>"
-msgstr "%1$s <em>%2$s</em> 已配置"
+msgstr "<em>%1$s</em> 留言在 %2$s:"
 
 #: zp-core/zp-extensions/seo_cleanup/admin_tab.php:134
 #, fuzzy
@@ -23683,7 +23685,7 @@ msgstr "<strong><em>%s</em></strong>正在升级"
 #: zp-core/zp-extensions/site_upgrade.php:255
 #, fuzzy
 msgid "Please return later"
-msgstr "请再尝试一次"
+msgstr "会自动继续回去.  如未按:"
 
 #: zp-core/zp-extensions/site_upgrade.php:263
 #, fuzzy, php-format
@@ -24340,7 +24342,7 @@ msgstr "渐变离开"
 #: zp-core/zp-extensions/slideshow2.php:121
 #, fuzzy
 msgid "Scroll horizontal"
-msgstr "向上卷动"
+msgstr "水平(正常)"
 
 #: zp-core/zp-extensions/slideshow2.php:122
 #, fuzzy
@@ -24744,7 +24746,7 @@ msgstr ""
 #: zp-core/zp-extensions/themeSwitcher.php:157
 #, fuzzy
 msgid "Switch themes"
-msgstr "已安装布景主题"
+msgstr "布景主题"
 
 #: zp-core/zp-extensions/themeSwitcher.php:161
 #, fuzzy
@@ -24861,7 +24863,7 @@ msgstr "全尺寸图片连结"
 #: zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:59
 #, fuzzy, php-format
 msgid "<em>album</em>: %s"
-msgstr "<em>%s</em> 不存在"
+msgstr "显示 <em>%s</em>"
 
 #: zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:60
 #, fuzzy, php-format
@@ -25171,7 +25173,7 @@ msgstr "新相簿名称?"
 #: zp-core/zp-extensions/tweet_news.php:356
 #, fuzzy
 msgid "Tweet News Errors:"
-msgstr "相馆和新闻"
+msgstr "新闻文章"
 
 #: zp-core/zp-extensions/tweet_news.php:387
 #, fuzzy
@@ -25386,7 +25388,7 @@ msgstr "数天，直到用户标记为已过期。设置为零，没有过期。
 #: zp-core/zp-extensions/user-expiry.php:80
 #, fuzzy
 msgid "Warning interval"
-msgstr "没有警告"
+msgstr "执行间隔"
 
 #: zp-core/zp-extensions/user-expiry.php:82
 #, fuzzy
@@ -25456,7 +25458,7 @@ msgstr "你的布景主题, 建基于布景主题 %s"
 #: zp-core/zp-extensions/user-expiry.php:302
 #, fuzzy
 msgid "You must change your password."
-msgstr "保护类别用户必须提供密码"
+msgstr "保护页面用户必须提供密码"
 
 #: zp-core/zp-extensions/user-expiry.php:305
 #, fuzzy
@@ -25524,7 +25526,7 @@ msgstr "更新"
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:192
 #, fuzzy
 msgid "Email renewal"
-msgstr "电邮 ID"
+msgstr "电邮:"
 
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:195
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:213
@@ -26559,7 +26561,7 @@ msgstr "固定在顶部"
 #: zp-core/zp-extensions/zenpage/admin-edit.php:643
 #, fuzzy, php-format
 msgid "Are you sure you want to delete this %s?"
-msgstr "是否肯定要删除整个相簿?"
+msgstr "是否真的肯定要删除已选项目?"
 
 #: zp-core/zp-extensions/zenpage/admin-edit.php:649
 #, fuzzy, php-format
@@ -26660,7 +26662,7 @@ msgstr "%s 删除失败."
 #: zp-core/zp-extensions/zenpage/admin-functions.php:196
 #, fuzzy
 msgid "Category  delete failed!"
-msgstr "%s 删除失败."
+msgstr "删除类别"
 
 #: zp-core/zp-extensions/zenpage/admin-functions.php:240
 #: zp-core/zp-extensions/zenpage/admin-functions.php:1052
@@ -26799,7 +26801,7 @@ msgstr "所有类别"
 #: zp-core/zp-extensions/zenpage/admin-functions.php:755
 #, fuzzy
 msgid "Un-categorized"
-msgstr "取消发表相簿 %s"
+msgstr "未发表"
 
 #: zp-core/zp-extensions/zenpage/admin-functions.php:804
 #, fuzzy, php-format
@@ -26809,7 +26811,7 @@ msgstr "每页缩图"
 #: zp-core/zp-extensions/zenpage/admin-functions.php:844
 #, fuzzy
 msgid "Duplicate category title"
-msgstr "Categories"
+msgstr "复制"
 
 #: zp-core/zp-extensions/zenpage/admin-functions.php:894
 #, fuzzy, php-format
@@ -26843,7 +26845,7 @@ msgstr "未发表"
 #: zp-core/zp-extensions/zenpage/admin-functions.php:980
 #, fuzzy
 msgid "scheduled for publishing"
-msgstr "(页面预定发表)"
+msgstr "即时发表/不发表/预定发表"
 
 #: zp-core/zp-extensions/zenpage/admin-functions.php:997
 #, fuzzy
@@ -27139,4047 +27141,3 @@ msgid ""
 msgstr ""
 "要使用字体是否可扩展 （<em>专题信托基金</em>和<em>Imagick</em>的字体） 的大"
 "小。"
-
-#~ msgid "Subject<strong>%s</strong>:"
-#~ msgstr "主旨 <strong>%s</strong>:"
-
-#~ msgid "Message<strong>%s</strong>:"
-#~ msgstr "讯息 <strong>%s</strong>:"
-
-#~ msgid ""
-#~ "Select an album to edit its description and data, or <a href=\"?"
-#~ "page=edit&amp;album=%s&amp;massedit\">mass-edit</a> all first level "
-#~ "subalbums."
-#~ msgstr ""
-#~ "选择一个相簿去编辑其描述和资料,  或 <a href=\"?page=edit&amp;album=%s&amp;"
-#~ "massedit\">大量编辑</a> 所有第一层的子相簿."
-
-#~ msgid "Title:"
-#~ msgstr "标题:"
-
-#~ msgid "Description:"
-#~ msgstr "描述:"
-
-#~ msgid "Metadata:"
-#~ msgstr "诠释资料:"
-
-#~ msgid "Edit Gallery"
-#~ msgstr "编辑相馆"
-
-#~ msgid ""
-#~ "Select an album to edit its description and data, or <a href=\"?"
-#~ "page=edit&amp;massedit\">mass-edit</a> all gallery level albums."
-#~ msgstr ""
-#~ "选择一个相簿去编辑其描述和资料,  或 <a href=\"?page=edit&amp;massedit\">大"
-#~ "量编辑</a> 所有相馆层的相簿."
-
-#, fuzzy
-#~ msgid "You have unsaved changes!"
-#~ msgstr "你有未保存的修改。"
-
-#, fuzzy
-#~ msgid "Are you sure you want to leave this page?"
-#~ msgstr "是否要离开当前房间？"
-
-#, fuzzy
-#~ msgid "Leave"
-#~ msgstr "请假"
-
-#, fuzzy
-#~ msgid "Stay"
-#~ msgstr "延缓审理"
-
-#~ msgid "Has Password"
-#~ msgstr "有密码"
-
-#~ msgid "Password protected"
-#~ msgstr "密码保护"
-
-#~ msgid "View logs:"
-#~ msgstr "查阅日志:"
-
-#, fuzzy
-#~ msgid "Cookies:"
-#~ msgstr "Cookies"
-
-#, fuzzy
-#~ msgid "Path"
-#~ msgstr "路径"
-
-#~ msgid "Gallery title:"
-#~ msgstr "相馆标题:"
-
-#~ msgid "Website title:"
-#~ msgstr "网站标题:"
-
-#, fuzzy
-#~ msgid ""
-#~ "<a onclick=\"toggle('albumpub');\" >Details</a> for <em>publish albums by "
-#~ "default</em>"
-#~ msgstr ""
-#~ "<em>发布默认相册</em>的<a onclick=\"toggle('albumpub');\">详细信息</a>"
-
-#, fuzzy
-#~ msgid ""
-#~ "<a onclick=\"toggle('imagepub');\" >Details</a> for <em>publish images by "
-#~ "default</em>"
-#~ msgstr ""
-#~ "<em>发布默认图像</em>的<a onclick=\"toggle('imagepub');\">详细信息</a>"
-
-#, fuzzy
-#~ msgid ""
-#~ "<a onclick=\"toggle('albumdate');\" >Details</a> for <em>use latest image "
-#~ "date as album date</em>"
-#~ msgstr ""
-#~ "<em>使用最新的图像日期作为专辑日期</em>的<a onclick=\"toggle('albumdate');"
-#~ "\">详细信息</a>"
-
-#, fuzzy
-#~ msgid ""
-#~ "<a onclick=\"toggle('visualthumb');\" >Details</a> for <em>visual thumb "
-#~ "selection</em>"
-#~ msgstr ""
-#~ "为<em>视觉拇指选择</em><a onclick=\"toggle('visualthumb');\">详细信息</a>"
-
-#, fuzzy
-#~ msgid ""
-#~ "<a onclick=\"toggle('multithumb');\" >Details</a> for <em>subalbum thumb "
-#~ "selection</em>"
-#~ msgstr ""
-#~ "<em>Subalbum 拇指选择</em><a onclick=\"toggle('multithumb');\">详细信息</"
-#~ "a>"
-
-#~ msgid "Codeblocks:"
-#~ msgstr "代码方块:"
-
-#~ msgid "user:"
-#~ msgstr "用户:"
-
-#~ msgid "<strong>Standard options</strong>"
-#~ msgstr "<strong>标准选项:</strong>"
-
-#~ msgid "Image size:"
-#~ msgstr "图片大小:"
-
-#~ msgid "<strong>Custom theme options</strong>"
-#~ msgstr "<strong>自定布景主题选项:</strong>"
-
-#~ msgid "Backup/Restore"
-#~ msgstr "备份/回复"
-
-#~ msgid "Backup and restore your gallery database."
-#~ msgstr "备份和回复你相馆的资料库"
-
-#, fuzzy
-#~ msgid "Info"
-#~ msgstr "Wordpress-资料库资讯"
-
-#, fuzzy
-#~ msgid ""
-#~ "Shows statistical graphs and info about your gallery’s images and albums."
-#~ msgstr "显示图表统计和信息关于你的画廊图片和相册。"
-
-#, fuzzy
-#~ msgid "Statistics"
-#~ msgstr "新闻类别统计"
-
-#~ msgid "Back to the top 10 lists"
-#~ msgstr "回到十大列表"
-
-#~ msgid "top"
-#~ msgstr "顶部"
-
-#~ msgid "Refresh the Database"
-#~ msgstr "刷新资料库"
-
-#, fuzzy
-#~ msgid "Perform a garbage collection of the Database"
-#~ msgstr "执行垃圾回收的数据库"
-
-#~ msgid "Forces a refresh of the metadata for all images and albums."
-#~ msgstr "强迫更新所有图片和相簿的诠释资料"
-
-#, fuzzy
-#~ msgid ""
-#~ "The scripts for which BxSlider is enabled. {If themes require it they "
-#~ "might set this, otherwise you need to do it manually!}"
-#~ msgstr ""
-#~ "脚本为其启用了 BxSlider。{如果主题需要他们可能对此进行设置，否则您需要手动"
-#~ "完成 ！}"
-
-#, fuzzy
-#~ msgid "Cache manager"
-#~ msgstr "缓存管理器"
-
-#, fuzzy
-#~ msgid "<a href=\"%1$s\" target=\"_blank\">%2$s</a>"
-#~ msgstr "<a href=\"%1$s\">%2$s</a>"
-
-#, fuzzy
-#~ msgid "404"
-#~ msgstr "404"
-
-#, fuzzy
-#~ msgid "EXIF"
-#~ msgstr "图像格式"
-
-#, fuzzy
-#~ msgid "EXPLAIN_SELECTS"
-#~ msgstr "EXPLAIN_SELECTS"
-
-#, fuzzy
-#~ msgid "FILTERS"
-#~ msgstr "筛选器"
-
-#, fuzzy
-#~ msgid "IMAGE"
-#~ msgstr "图片"
-
-#, fuzzy
-#~ msgid "LOCALE"
-#~ msgstr "在你的伺服器中不支援  locale %s."
-
-#, fuzzy
-#~ msgid "LOGIN"
-#~ msgstr "用户名称"
-
-#, fuzzy
-#~ msgid "PLUGINS"
-#~ msgstr "外挂"
-
-#, fuzzy
-#~ msgid "Functions"
-#~ msgstr "功能"
-
-#, fuzzy
-#~ msgid ""
-#~ "Send the <em>deprecated</em> notification message if the function name is "
-#~ "checked. Un-checking these boxes will allow you to continue using your "
-#~ "theme without warnings while you upgrade its implementation. Functions "
-#~ "flagged with an asterisk are class methods. Ones flagged with two "
-#~ "asterisks have deprecated parameters."
-#~ msgstr ""
-#~ "如果选中函数名称，通知讯息<em>弃用</em>。取消选中这些对话框可以让您同时继"
-#~ "续使用你的主题，而不会警告您升级其执行。带有星号标记的函数是类方法。那些与"
-#~ "两个星号标记已弃用参数。"
-
-#, fuzzy
-#~ msgid "Searches PHP scripts for use of deprecated functions."
-#~ msgstr "搜索已否决的函数使用的 PHP 脚本。"
-
-#~ msgid "Check for update"
-#~ msgstr "检查更新."
-
-#, fuzzy
-#~ msgid "Deprecated"
-#~ msgstr "已过期"
-
-#, fuzzy
-#~ msgid "Counts of downloads"
-#~ msgstr "下载项罪名"
-
-#, fuzzy
-#~ msgid "Keyword threshold"
-#~ msgstr "关键字阈值"
-
-#, fuzzy
-#~ msgid "Only keywords with at least this number of uses will be shown."
-#~ msgstr "唯一的关键字与在将显示使用至少这个数目。"
-
-#, fuzzy
-#~ msgid "Manage published state of content in your gallery."
-#~ msgstr "管理已发布的状态的内容在您的画廊。"
-
-#, fuzzy
-#~ msgid "Search statistics"
-#~ msgstr "搜索统计信息"
-
-#, fuzzy
-#~ msgid "Analyze searches"
-#~ msgstr "分析搜索"
-
-#, fuzzy
-#~ msgid "Analysis"
-#~ msgstr "分析"
-
-#, fuzzy
-#~ msgid "Seo"
-#~ msgstr "徐"
-
-#, fuzzy
-#~ msgid "SEO Cleaner"
-#~ msgstr "SEO 清洁"
-
-#, fuzzy
-#~ msgid "Make file and folder names in the Gallery SEO friendly."
-#~ msgstr "使文件和文件夹的名称在画廊 SEO 友好。"
-
-#, fuzzy
-#~ msgid "Generate or purge sitemap cache files."
-#~ msgstr "生成或清除站点地图缓存文件。"
-
-#, fuzzy
-#~ msgid ""
-#~ "The scripts for which the cycle2 plugin is enabled. {If themes require it "
-#~ "they might set this, otherwise you need to do it manually!}"
-#~ msgstr ""
-#~ "脚本为其启用了 cycle2 插件。{如果主题需要他们可能对此进行设置，否则您需要"
-#~ "手动完成 ！}"
-
-#, fuzzy
-#~ msgid ""
-#~ "There are no other registered users who have provided an e-mail address."
-#~ msgstr "没有其他注册的用户提供了电子邮件地址。"
-
-#~ msgid ""
-#~ "A tool to send e-mails to all registered users who have provided an e-"
-#~ "mail address."
-#~ msgstr "寄出电邮到所有有是供电邮地址的注册用户."
-
-#, fuzzy
-#~ msgid "Mailing"
-#~ msgstr "邮寄"
-
-#~ msgid "To:"
-#~ msgstr "给:"
-
-#~ msgid "Send another mail"
-#~ msgstr "寄出另一封电邮"
-
-#~ msgid "An importer for Wordpress posts and pages to Zenpage."
-#~ msgstr "汇入 Wordpress 文章及页面到  Zenpage."
-
-#~ msgid "TitleLink:"
-#~ msgstr "标题连结:"
-
-#~ msgid "Content:"
-#~ msgstr "内容:"
-
-#~ msgid ""
-#~ "<strong>Note:</strong> This option is valid only if you have the "
-#~ "<em>Gallery index page link</em> option set to \"gallery\". Of course the "
-#~ "<em>menu_manager</em> plugin must also be enabled."
-#~ msgstr ""
-#~ "<strong>注意:</strong> 这选项只在 <em>相馆主页连结 </em> 设定为 \"gallery"
-#~ "\" 时有效. 当然 <em>选单管理员</em> 外挂也须要启动."
-
-#~ msgid "No album provided to sort."
-#~ msgstr "没有相簿去排序."
-
-#~ msgid " descending"
-#~ msgstr " 递减"
-
-#~ msgid "Current sort: <em>%1$s%2$s</em>. "
-#~ msgstr "现时的排序: <em>%1$s%2$s</em>. "
-
-#~ msgid "Current sort: <em>%1$s%2$s</em>."
-#~ msgstr "现时的排序: <em>%1$s%2$s</em>. "
-
-#~ msgid "UTF8 image URIs"
-#~ msgstr "UTF8 图片 URIs"
-
-#, fuzzy
-#~ msgid ""
-#~ "If you are having problems with images whose names contain characters "
-#~ "with diacritical marks try changing the <em>UTF8 image URIs</em> setting."
-#~ msgstr ""
-#~ "如果图片名称有地区性文字而产生问题, 可尝试更改<em>UTF8 图片 URIs</em> 设"
-#~ "定."
-
-#~ msgid "Charset:"
-#~ msgstr "字符集:"
-
-#~ msgid ""
-#~ "The character encoding to use internally. Leave at <em>Unicode (UTF-8)</"
-#~ "em> if you are unsure."
-#~ msgstr "内部使用的字符编码.  如不肯定就使用<em>Unicode (UTF-8)</em>."
-
-#~ msgid ""
-#~ "Character sets <span style=\"color:gray\">shown in gray</span> have no "
-#~ "character translation support."
-#~ msgstr ""
-#~ "字符集 <span style=\"color:gray\">显示灰色</span> 为该字字符集没有翻译支"
-#~ "援."
-
-#~ msgid "Gallery index page link:"
-#~ msgstr "相馆主页连结"
-
-#, fuzzy
-#~ msgid ""
-#~ "If this option is not empty, the Gallery Index URL that would normally "
-#~ "link to the theme <code>index.php</code> script will instead link to this "
-#~ "script. This frees up the <code>index.php</code> script so that you can "
-#~ "create a customized <em>Home page</em> script. This option applies only "
-#~ "to the main theme for the <em>Gallery</em>."
-#~ msgstr ""
-#~ "这选项若留空, 相馆主页正常会连到布景主题<code>index.php</code>. 这会释放 "
-#~ "<code>index.php</code> 程式, 而你可以自行建立 <em>主页</em> 程式.  这选项"
-#~ "只对<em>相馆</em>主要布景主题生效."
-
-#~ msgid ""
-#~ "Password reset request.<br />You may now set admin usernames and "
-#~ "passwords."
-#~ msgstr "密码重设要求.<br/>你可以设定管理员用户名称和密码."
-
-#~ msgid "<strong>%1$u</strong> Page"
-#~ msgid_plural "<strong>%1$u</strong> Pages"
-#~ msgstr[0] "<strong>%1$u</strong> 页面"
-#~ msgstr[1] "<strong>%1$u</strong> 页面"
-
-#~ msgid "<strong>%1$u</strong> Page (%2$u un-published)"
-#~ msgid_plural "<strong>%1$u</strong> Pages (%2$u un-published)"
-#~ msgstr[0] "<strong>%1$u</strong> 页面(%2$u 未发表)"
-#~ msgstr[1] "<strong>%1$u</strong> 页面(%2$u 未发表)"
-
-#, fuzzy
-#~ msgid "<strong>%1$u</strong> News"
-#~ msgid_plural "<strong>%1$u</strong> News"
-#~ msgstr[0] "<strong>%1$u</strong> 篇新闻 "
-#~ msgstr[1] "<strong>%1$u</strong> 篇新闻"
-
-#~ msgid "<strong>%1$u</strong> News (%2$u un-published)"
-#~ msgid_plural "<strong>%1$u</strong> News (%2$u un-published)"
-#~ msgstr[0] "<strong>%1$u</strong> 新闻(%2$u 未发表)"
-#~ msgstr[1] "<strong>%1$u</strong> 新闻(%2$u 未发表)"
-
-#~ msgid "<strong>%1$u</strong> Category"
-#~ msgid_plural "<strong>%1$u</strong> Categories"
-#~ msgstr[0] "<strong>%1$u</strong> 个类别"
-#~ msgstr[1] "<strong>%1$u</strong> 个类别"
-
-#~ msgid "Location/Place"
-#~ msgstr "地点"
-
-#, fuzzy
-#~ msgid "No supported databases"
-#~ msgstr "连接到资料库"
-
-#~ msgid "Request URI: [ <code>%s</code> ]"
-#~ msgstr "要求 URI: [ <code>%s</code> ]"
-
-#~ msgid "Cache: [<code>%s</code>]"
-#~ msgstr "快取: [<code>%s</code>]"
-
-#~ msgid "Image: [<code>%s</code>]"
-#~ msgstr "图片: [<code>%s</code>]"
-
-#, fuzzy
-#~ msgid "an unknown release"
-#~ msgstr "未知名称: "
-
-#~ msgid ""
-#~ "Setting <em>mbstring.internal_encoding</em> to <strong>UTF-8</strong> in "
-#~ "your <em>php.ini</em> file is recommended to insure accented and multi-"
-#~ "byte characters function properly."
-#~ msgstr ""
-#~ "建议在 <em>php.ini</em> 档案设定<em>mbstring.internal_encoding</em> 为 "
-#~ "<strong>UTF-8</strong>  各地区及多字元功能正常运作."
-
-#, fuzzy
-#~ msgid "The filesystem character define is ISO-8859-1 [assumed]"
-#~ msgstr "档案系统的字符集为 %s."
-
-#~ msgid "About to create tables"
-#~ msgstr "关于建立资料库表格."
-
-#~ msgid "Begin table creation"
-#~ msgstr "开始建立资料库表格"
-
-#, fuzzy
-#~ msgid "Query %1$s Failed. Error: %2$s"
-#~ msgstr "MySQL 查询 %1$s 失败. 错误: %2$s"
-
-#, fuzzy
-#~ msgid "Table creation failure:<br />Query: %1$s<br />Error: %2$s"
-#~ msgstr "不能建立资料库表格: %s"
-
-#, fuzzy
-#~ msgid "Query ( %s ) Success."
-#~ msgstr "MySQL 查询 ( %s ) 成功."
-
-#~ msgid "Begin table updates"
-#~ msgstr "开始更新资料库表格"
-
-#~ msgid "Done with table create!"
-#~ msgstr "完成建立资料库表格!"
-
-#~ msgid "Done with table create with errors!"
-#~ msgstr "完成但建立资料库表格有错误!"
-
-#~ msgid "Done with table update"
-#~ msgstr "完成更新资料库表格"
-
-#~ msgid "Done with table update with errors"
-#~ msgstr "完成但更新资料库表格有错误"
-
-#~ msgid "Previous Release was %s"
-#~ msgstr "上一版本为 %s"
-
-#~ msgid "Database tables to update: %s"
-#~ msgstr "会更新的资料库表格: %s"
-
-#, fuzzy
-#~ msgid "If you haven not created the database yet, now would be a good time."
-#~ msgstr "如果你还未建立资料库, 现在是一个好时机."
-
-#~ msgid "Migrating lib-auth data version %1$s => version %2$s"
-#~ msgstr "更新 lib-auth 资料由版本 %1$s => 版本 %2$s"
-
-#, fuzzy
-#~ msgid "Copyright %1$u: %2$s"
-#~ msgstr "版权:"
-
-#~ msgid "Admin Toolbox"
-#~ msgstr "管理工具箱"
-
-#, fuzzy
-#~ msgid "Clone"
-#~ msgstr "复制:"
-
-#, fuzzy
-#~ msgid "Plugin to generate file download lists."
-#~ msgstr "剔选以启动 ZIP 压缩档案下载连结."
-
-#~ msgid "Map dimensions—width"
-#~ msgstr "地图大小 - 宽"
-
-#~ msgid "The default width of the map."
-#~ msgstr "地图预设宽度."
-
-#~ msgid "Map dimensions—height"
-#~ msgstr "地图高度"
-
-#~ msgid "The default height of the map."
-#~ msgstr "地图预设高度."
-
-#~ msgid "Allows setting language locale through the URI."
-#~ msgstr "容许经过 URI 设定语言."
-
-#, fuzzy
-#~ msgid ""
-#~ "<strong>Note:</strong> This plugin is not activated for <em>back&#8209;"
-#~ "end</em> (administrative) URLs. However, once activated, the language is "
-#~ "remembered, even for the <em>back&#8209;end</em>."
-#~ msgstr ""
-#~ "<strong>注意:</strong> 这外挂不是使用于 <em> 后台</em> (管理) URLs. 但是, "
-#~ "一但启动就算是在 <em>后台</em>也会记下语言设定."
-
-#~ msgid "<em>mod_rewrite</em> must be enabled for this plugin to function."
-#~ msgstr "<em>mod_rewrite</em> 一定要启动以使用这外挂."
-
-#, fuzzy
-#~ msgid "The RSS feed is currently not available."
-#~ msgstr "图片标示为不可见."
-
-#, fuzzy
-#~ msgid "Selector CSS"
-#~ msgstr "Select"
-
-#~ msgid "Album:"
-#~ msgstr "相簿:"
-
-#~ msgid "Album folder:"
-#~ msgstr "相簿资料夹:"
-
-#~ msgid "(Click on image to include)"
-#~ msgstr "(点击图片以加入)"
-
-#, fuzzy
-#~ msgid "<em>Albumthumb</em>"
-#~ msgstr "<em>及</em>"
-
-#~ msgid "<strong>Note:</strong> This album does not contain any images."
-#~ msgstr "<strong>注意:</strong> 这相簿没有图片."
-
-#~ msgid "(Click on article title to include a link)"
-#~ msgstr "(点击文章标题以加入)"
-
-#~ msgid "*Select*"
-#~ msgstr "*选择*"
-
-#~ msgid "(only direct links!)"
-#~ msgstr "(只有直接连结!)"
-
-#~ msgid "*Select an album*"
-#~ msgstr "*选择一个相簿*"
-
-#~ msgid "(select variant below)"
-#~ msgstr "(选择以下不同版本)"
-
-#~ msgid "What to include"
-#~ msgstr "包括什么"
-
-#~ msgid "Custom text"
-#~ msgstr "自定文字"
-
-#~ msgid "Custom thumbnail"
-#~ msgstr "自定缩图"
-
-#~ msgid "Custom size (un-cropped)"
-#~ msgstr "自定大小 (未裁切)"
-
-#, fuzzy
-#~ msgid "Full image"
-#~ msgstr "全尺寸图片"
-
-#, fuzzy
-#~ msgid "Title and description"
-#~ msgstr "相馆描述:"
-
-#, fuzzy
-#~ msgid "No description"
-#~ msgstr "(无描述...)"
-
-#, fuzzy
-#~ msgid "Show image description"
-#~ msgstr "CombiNews: 显示图片描述"
-
-#, fuzzy
-#~ msgid "Show album description"
-#~ msgstr "相簿描述:"
-
-#~ msgid "Link type"
-#~ msgstr "连结种类"
-
-#~ msgid "Link to image"
-#~ msgstr "连结到图片"
-
-#~ msgid "Link to full image"
-#~ msgstr "连结到全尺寸图片"
-
-#~ msgid "Link to album"
-#~ msgstr "连结到相簿"
-
-#~ msgid "No link"
-#~ msgstr "无连结"
-
-#~ msgid "Text wrap"
-#~ msgstr "文字换行"
-
-#~ msgid "No wrap"
-#~ msgstr "不换行"
-
-#, fuzzy
-#~ msgid ""
-#~ "This provides access to your images and albums (select from the "
-#~ "<em>Zenphoto</em> dropdown) as well as pages, news articles and news "
-#~ "categories (select from the <em>Zenpage</em> dropdown) to easily include "
-#~ "them in your pages and articles."
-#~ msgstr ""
-#~ "这使你更容易在页面或文章中加入图片及相簿 (下拉列 'Zenphoto') 和页面, 新闻"
-#~ "文章和新闻类别(下拉列 'Zenpage') . 你最少要有 '管理所有相簿' 或 '编辑' 特"
-#~ "定相簿权限以加入相簿的图片."
-
-#, fuzzy
-#~ msgid ""
-#~ "Select <em>pages</em>, <em>articles</em> or <em>categories</em> to show a "
-#~ "list of these items. Click on a title to include a link. Hover of the "
-#~ "link to see an excerpt of the page or article. Un-published pages or "
-#~ "articles are marked with an “*” and protected with an “+”. There are no "
-#~ "further options."
-#~ msgstr ""
-#~ "选择显示Zenpage页面, 文章和类别.  点击标题加入连结.  移动滑动到连结以显示"
-#~ "页面或文章节录.  未发表页面和文章会以'*'标示.  这没有更多选项."
-
-#, fuzzy
-#~ msgid ""
-#~ "Select an album to include images from into your page or article. Click "
-#~ "on the image to include it. Un-published albums or images are marked with "
-#~ "an “*”. You can also click on the magnify glass icon to see a preview of "
-#~ "the item. The preview opens in a colorbox showing the frontend/theme "
-#~ "view. The first thumbnail is always the thumbnail of the selected album. "
-#~ "It is titled <em>Albumthumb</em> and appears on every thumbnail page."
-#~ msgstr ""
-#~ "选择相簿以加入图片到页面或文章.  点击图片以加入. 未发表相簿或图片会以'*'标"
-#~ "示.  你也可以加点击放大镜以预看 (多媒体档案会以Flowplayer预看, 不论该外挂"
-#~ "是否生效). <br />注意现时不可以直接以自定/缩放图片加入多媒体档案.  此外有"
-#~ "其他选项以加入什么和如何加入:"
-
-#, fuzzy
-#~ msgid "Options on what to include"
-#~ msgstr "包括什么"
-
-#, fuzzy
-#~ msgid ""
-#~ "Include the image itself, only its title, the title of its album, or some "
-#~ "custom text."
-#~ msgstr "加入图片, 只有图片标题, 相簿标题或自定文字."
-
-#, fuzzy
-#~ msgid ""
-#~ "The window does not close automatically so you can include several images "
-#~ "one after another."
-#~ msgstr "这相簿不会自动关闭所以你可以加入多张图片."
-
-#, fuzzy
-#~ msgid "Custom size (un-cropped)."
-#~ msgstr "自定大小 (未裁切)"
-
-#~ msgid ""
-#~ "Select to link to the image page of the image, to the album the image is "
-#~ "in, no link at all or a custom URL."
-#~ msgstr "选择以连结到图片页, 到图片的相簿, 没有连结或自定URL."
-
-#~ msgid ""
-#~ "Wrap the text right or left of the image or not at all. Note that "
-#~ "tinyZenpage adds a bit of CSS to the included image if you use text wrap. "
-#~ "So that you see immediate results to the text wrap it attaches some "
-#~ "inline CSS:"
-#~ msgstr ""
-#~ "文字在图片左或右换行, 或不会.  注意 tinyZenpage 增加CSS以在图片使用文字换"
-#~ "行.  所以你会看到文字换行结果是加入了CSS:"
-
-#~ msgid "left wrap: <em>style=\"float:right\"</em>"
-#~ msgstr "左换行: <em>style=\"float:right\"</em>"
-
-#~ msgid "right wrap: <em>style=\"float: left\"</em>"
-#~ msgstr "右换行: <em>style=\"float: left\"</em>"
-
-#, fuzzy
-#~ msgid ""
-#~ "Also tinyZenpage attaches a default CSS class to the image (if image is "
-#~ "chosen) to be styled with your theme’s css. If you choose left or right "
-#~ "align “_left” or “_right” is appended:"
-#~ msgstr ""
-#~ "同时 tinyZenpage 会加入预设 CSS class 到图片 (如图片被选取) 以配合你的布景"
-#~ "主题的 css 风格.  在你选择靠右或右时会附加  '_left' 或 '_right':"
-
-#~ msgid ""
-#~ "Default thumbnail: <em>zenpage_thumb</em> /<em>zenpage_thumb_left</em> /"
-#~ "<em>zenpage_thumb_right</em>"
-#~ msgstr ""
-#~ "预设缩图: <em>zenpage_thumb</em> /<em>zenpage_thumb_left</em> /"
-#~ "<em>zenpage_thumb_right</em>"
-
-#~ msgid ""
-#~ "Custom thumbnail: <em>zenpage_customthumb</em> or "
-#~ "<em>zenpage_customthumb_left</em>/<em>zenpage_customthumb_right</em>"
-#~ msgstr ""
-#~ "自定缩图: <em>zenpage_customthumb</em> or <em>zenpage_customthumb_left</"
-#~ "em>/<em>zenpage_customthumb_right</em>"
-
-#~ msgid ""
-#~ "Sized image: <em>zenpage_sizedimage</em>/<em>zenpage_sizedimage_left</em>/"
-#~ "<em>zenpage_sizedimage_right</em>"
-#~ msgstr ""
-#~ "缩放图片: <em>zenpage_sizedimage</em>/<em>zenpage_sizedimage_left</em>/"
-#~ "<em>zenpage_sizedimage_right</em>"
-
-#~ msgid ""
-#~ "Custom image: <em>zenpage_customimage</em>/<em>zenpage_customimage_left</"
-#~ "em>/<em>zenpage_customimage_right</em>"
-#~ msgstr ""
-#~ "自定图片: <em>zenpage_customimage</em>/<em>zenpage_customimage_left</em>/"
-#~ "<em>zenpage_customimage_right</em>"
-
-#, fuzzy
-#~ msgid ""
-#~ "An importer for <strong>Wordpress 3.x</strong> to the Zenpage CMS plugin "
-#~ "that imports the following:"
-#~ msgstr ""
-#~ "<strong>Wordpress 2.9.x/3.x</strong> 汇入器到  Zenpage 内容管理系统外挂支"
-#~ "援以下:"
-
-#, fuzzy
-#~ msgid ""
-#~ "Hint: If you need more space for your text use TinyMCE’s full screen mode "
-#~ "(Click the expend icon of editor’s control bar, near ZP icon)."
-#~ msgstr ""
-#~ "提示: 你可以用 TinyMCE 全画面模式得到更多空间 (点击在编辑器右上角的蓝方"
-#~ "格)."
-
-#~ msgid "(<strong>%1$u</strong> page)"
-#~ msgid_plural "(<strong>%1$u</strong> pages)"
-#~ msgstr[0] "(<strong>%1$u</strong> 页)"
-#~ msgstr[1] "(<strong>%1$u</strong> 页)"
-
-#~ msgid "(<strong>%1$u</strong> page, <strong>%2$u</strong> un-published)"
-#~ msgid_plural ""
-#~ "(<strong>%1$u</strong> pages, <strong>%2$u</strong> un-published)"
-#~ msgstr[0] "(<strong>%1$u</strong> 页, <strong>%2$u</strong> 未发表)"
-#~ msgstr[1] "(<strong>%1$u</strong> 页, <strong>%2$u</strong> 未发表)"
-
-#~ msgid "(<strong>%1$u</strong> news)"
-#~ msgid_plural "(<strong>%1$u</strong> news)"
-#~ msgstr[0] "(<strong>%1$u</strong> 篇新闻)"
-#~ msgstr[1] "(<strong>%1$u</strong> 篇新闻)"
-
-#~ msgid "(<strong>%1$u</strong> news, <strong>%2$u</strong> un-published)"
-#~ msgid_plural ""
-#~ "(<strong>%1$u</strong> news, <strong>%2$u</strong> un-published)"
-#~ msgstr[0] "(<strong>%1$u</strong> 篇新闻, <strong>%2$u</strong> 未发表)"
-#~ msgstr[1] "(<strong>%1$u</strong> 篇新闻, <strong>%2$u</strong> 未发表)"
-
-#~ msgid "(<strong>%1$u</strong> category)"
-#~ msgid_plural "(<strong>%1$u</strong> categories)"
-#~ msgstr[0] "(<strong>%1$u</strong> 个类别)"
-#~ msgstr[1] "(<strong>%1$u</strong> 个类别)"
-
-#~ msgid "Show ZenPhoto Credit"
-#~ msgstr "ZenPhoto20 安装"
-
-#~ msgid "Auto, Continuous"
-#~ msgstr "自动, 连续"
-
-#~ msgid "Auto, Focus button"
-#~ msgstr "自动, 对焦按钮"
-
-#~ msgid "Compulsory Flash, Return light detected"
-#~ msgstr "强迫闪光, 回射闪光已侦测"
-
-#~ msgid "Compulsory Flash, Return light not detected"
-#~ msgstr "强迫闪光, 回射闪光未侦测"
-
-#~ msgid "Flash, Auto-Mode"
-#~ msgstr "闪光灯, 自动模式"
-
-#~ msgid "Flash, Auto-Mode, Return light detected"
-#~ msgstr "闪光灯, 自动模式, 回射闪光未侦测"
-
-#~ msgid "Flash, Auto-Mode, Return light not detected"
-#~ msgstr "闪光灯, 自动模式, 回射闪光未侦测"
-
-#~ msgid "Flash, strobe return light detected"
-#~ msgstr "闪光灯, 回射频闪光已侦测"
-
-#~ msgid "Flash, strobe return light not detected"
-#~ msgstr "闪光灯, 回射频闪光未侦测"
-
-#~ msgid "Red Eye, Auto-Mode"
-#~ msgstr "防红眼, 自动模式"
-
-#~ msgid "Red Eye, Auto-Mode, Return light detected"
-#~ msgstr "防红眼, 自动模式, 回射闪光已侦测"
-
-#~ msgid "Red Eye, Auto-Mode, Return light not detected"
-#~ msgstr "防红眼, 自动模式, 回射闪光未侦测"
-
-#~ msgid "Red Eye, Compulsory Flash"
-#~ msgstr "防红眼, 强迫闪光"
-
-#~ msgid "Red Eye, Compulsory Flash, Return light detected"
-#~ msgstr "防红眼, 强迫闪光, 回射闪光已侦测"
-
-#~ msgid "Red Eye, Compulsory Flash, Return light not detected"
-#~ msgstr "防红眼, 强迫闪光, 回射闪光未侦测"
-
-#~ msgid "Red Eye, Return light detected"
-#~ msgstr "防红眼, 回射闪光已侦测"
-
-#~ msgid "Red Eye, Return light not detected"
-#~ msgstr "防红眼, 回射闪光未侦测"
-
-#, fuzzy
-#~ msgid "Theme:%s setup completed"
-#~ msgstr "回复完成"
-
-#~ msgid "Owner:"
-#~ msgstr "拥有者:"
-
-#, fuzzy
-#~ msgid "Set as thumbnail for:"
-#~ msgstr "选择为相簿缩图."
-
-#~ msgid "Image watermark:"
-#~ msgstr "图片水印:"
-
-#, fuzzy
-#~ msgid "Scan pending"
-#~ msgstr "递减"
-
-#, fuzzy
-#~ msgid "Order by date descending"
-#~ msgstr "以最多使用者顺序"
-
-#, fuzzy
-#~ msgid "Order by date ascending"
-#~ msgstr "以最多使用者顺序"
-
-#, fuzzy
-#~ msgid "The Object you are requesting cannot be found."
-#~ msgstr "你要求的Zenphoto的物件不存在."
-
-#~ msgid "Theme page"
-#~ msgstr "布景主题页"
-
-#, fuzzy
-#~ msgid "The page you are requesting cannot be found."
-#~ msgstr "你要求的Zenphoto的物件不存在."
-
-#, fuzzy
-#~ msgid "Sorry, the page you are requesting cannot be found."
-#~ msgstr "你要求的Zenphoto的物件不存在."
-
-#, fuzzy
-#~ msgid "Future publishing date."
-#~ msgstr "预定发表日期:"
-
-#, fuzzy
-#~ msgid "show content"
-#~ msgstr "显示留言"
-
-#~ msgid "Dynamic album search:"
-#~ msgstr "动态相簿搜寻:"
-
-#, fuzzy
-#~ msgid ""
-#~ "<a href=\"javascript:toggle('albumpub');\" >Details</a> for <em>publish "
-#~ "albums by default</em>"
-#~ msgstr ""
-#~ "<em>缩图选单</em>的<a href=\"javascript:toggle('visualthumb');\" >评细资料"
-#~ "</a>"
-
-#, fuzzy
-#~ msgid ""
-#~ "<a href=\"javascript:toggle('imagepub');\" >Details</a> for <em>publish "
-#~ "images by default</em>"
-#~ msgstr ""
-#~ "<em>使用最新图片日期为相簿日期</em>的<a href=\"javascript:"
-#~ "toggle('albumdate');\" >评细资料</a>"
-
-#~ msgid ""
-#~ "<a href=\"javascript:toggle('albumdate');\" >Details</a> for <em>use "
-#~ "latest image date as album date</em>"
-#~ msgstr ""
-#~ "<em>使用最新图片日期为相簿日期</em>的<a href=\"javascript:"
-#~ "toggle('albumdate');\" >评细资料</a>"
-
-#~ msgid ""
-#~ "<a href=\"javascript:toggle('visualthumb');\" >Details</a> for <em>visual "
-#~ "thumb selection</em>"
-#~ msgstr ""
-#~ "<em>缩图选单</em>的<a href=\"javascript:toggle('visualthumb');\" >评细资料"
-#~ "</a>"
-
-#, fuzzy
-#~ msgid ""
-#~ "<a href=\"javascript:toggle('multithumb');\" >Details</a> for "
-#~ "<em>subalbum thumb selection</em>"
-#~ msgstr ""
-#~ "<em>缩图选单</em>的<a href=\"javascript:toggle('visualthumb');\" >评细资料"
-#~ "</a>"
-
-#~ msgid "ExtraContent"
-#~ msgstr "额外内容"
-
-#~ msgid "1: Normal (0 deg)"
-#~ msgstr "1: 正常(0 度)"
-
-#~ msgid "2: Mirrored"
-#~ msgstr "2: 镜射"
-
-#~ msgid "3: Upside-down"
-#~ msgstr "3: 上下颠倒 "
-
-#~ msgid "4: Upside-down Mirrored"
-#~ msgstr "4: 上下左右颠倒 "
-
-#~ msgid "5: 90 deg CW Mirrored"
-#~ msgstr "5: 逆时针 90 度镜射"
-
-#~ msgid "6: 90 deg CCW"
-#~ msgstr "6: 逆时针 90 度"
-
-#~ msgid "7: 90 deg CCW Mirrored"
-#~ msgstr "7: 顺时针 90 度镜射"
-
-#~ msgid "8: 90 deg CW"
-#~ msgstr "8: 顺时针 90 度"
-
-#~ msgid "%d: Unknown"
-#~ msgstr "%d: 未知"
-
-#~ msgid "D55"
-#~ msgstr "D55"
-
-#~ msgid "D65"
-#~ msgstr "D65"
-
-#~ msgid "D75"
-#~ msgstr "D75"
-
-#~ msgid "D50"
-#~ msgstr "D50"
-
-#~ msgid "/10s"
-#~ msgstr "/10s"
-
-#~ msgid "2x"
-#~ msgstr "2x"
-
-#~ msgid "4x"
-#~ msgstr "4x"
-
-#~ msgid "50"
-#~ msgstr "50"
-
-#~ msgid "100"
-#~ msgstr "100"
-
-#~ msgid "200"
-#~ msgstr "200"
-
-#~ msgid "400"
-#~ msgstr "400"
-
-#~ msgid "12"
-#~ msgstr "12"
-
-#~ msgid "13"
-#~ msgstr "13"
-
-#~ msgid "14"
-#~ msgstr "14"
-
-#~ msgid "15"
-#~ msgstr "15"
-
-#~ msgid "Unknown: "
-#~ msgstr "未知: "
-
-#~ msgid "2s"
-#~ msgstr "2秒"
-
-#, fuzzy
-#~ msgid "Updating the configuration file"
-#~ msgstr "Zenpage 文字编辑器设定"
-
-#~ msgid ""
-#~ "ZenPhoto20 processed a 404 error on %s. See the debug log for details."
-#~ msgstr "在 %s ZenPhoto20 处理了一个 404 错误. 详情请看除错日志."
-
-#, fuzzy
-#~ msgid ""
-#~ "Welcome to ZenPhoto20! This page will set up the version %s on your web "
-#~ "server."
-#~ msgstr "欢迎到Zenphoto!  这页会安装Zenphoto的你的网站伺服器."
-
-#, fuzzy
-#~ msgid "Updated configuration file"
-#~ msgstr "文字编辑器设定"
-
-#, fuzzy
-#~ msgid "Database admin user"
-#~ msgstr "资料库用户"
-
-#, fuzzy
-#~ msgid "Database admin password"
-#~ msgstr "资料库密码"
-
-#, fuzzy
-#~ msgid "Invalid Textobject instantiation: file does not exist"
-#~ msgstr "图片不存在; 档案不存在."
-
-#, fuzzy
-#~ msgid "Languange"
-#~ msgstr "语言:"
-
-#, fuzzy
-#~ msgid "Sub-Languange"
-#~ msgstr "语言:"
-
-#, fuzzy
-#~ msgid "Languange String"
-#~ msgstr "语言:"
-
-#~ msgid "Zenphoto browser cookies found."
-#~ msgstr "ZenPhoto20 主要档案"
-
-#, fuzzy
-#~ msgid "restore screen"
-#~ msgstr "回复完成"
-
-#, fuzzy
-#~ msgid "shuffle off"
-#~ msgstr "混乱"
-
-#, fuzzy
-#~ msgid "repeat off"
-#~ msgstr "重覆:"
-
-#, fuzzy
-#~ msgid "Target does not exists in <em>%1$s</em> theme"
-#~ msgstr "不回报符合的<em>新闻</em>"
-
-#~ msgid ""
-#~ "Creates a link to a custom theme page as described in the theming "
-#~ "tutorial."
-#~ msgstr "建立到如布景教学中自定布景主题页的连结."
-
-#~ msgid ""
-#~ "If this option is set, the visitor login form will include a link to this "
-#~ "page. The link text will be labeled with the text provided."
-#~ msgstr ""
-#~ "如设定了这选项, 访客登入表格会包括连结到这页.  连结的文字是本栏的文字."
-
-#~ msgid "Set Security log permissions"
-#~ msgstr "ZenPhoto20 核心档案权限"
-
-#, fuzzy
-#~ msgid "tinyZenpage plugin"
-#~ msgstr "Zenpage 页面"
-
-#, fuzzy
-#~ msgid "Custom image size"
-#~ msgstr "自定页面"
-
-#, fuzzy
-#~ msgid "Custom thumb crop - size"
-#~ msgstr "自定缩图裁切"
-
-#, fuzzy
-#~ msgid "Custom thumb crop - width"
-#~ msgstr "自定缩图裁切"
-
-#, fuzzy
-#~ msgid "Custom thumb crop - height"
-#~ msgstr "自定缩图裁切"
-
-#, fuzzy
-#~ msgid "image with link to image"
-#~ msgstr "连结到图片"
-
-#~ msgid "*no group affiliation"
-#~ msgstr "*没有组别从属"
-
-#~ msgid "Future publishing date:"
-#~ msgstr "预定发表日期:"
-
-#, fuzzy
-#~ msgid "newPage"
-#~ msgstr "页"
-
-#~ msgid ""
-#~ "<strong>Note:</strong> Scheduled publishing is not active unless the "
-#~ "article is also set to <em>published</em>"
-#~ msgstr ""
-#~ "<strong>注意: </strong>除非文章同时设为<em>发表</em>, 预定发表不会生效."
-
-#~ msgid ""
-#~ "Note: Scheduled publishing is not active unless the page is also set to "
-#~ "<em>published</em>"
-#~ msgstr "注意: 除非页面同时设为<em>发表</em>, 预定发表不会生效."
-
-#~ msgid "Expiration date:"
-#~ msgstr "过期日期:"
-
-#~ msgid "ExtraContent:"
-#~ msgstr "额外内容:"
-
-#~ msgid "Scheduled for published"
-#~ msgstr "预定发表"
-
-#~ msgid "Publish immediately (skip scheduling)"
-#~ msgstr "即时发表 (跳过排程)"
-
-#~ msgid "Enable scheduled publishing"
-#~ msgstr "启动预定发表"
-
-#~ msgid "Publish (override expiration)"
-#~ msgstr "发表 (推翻过期设定)"
-
-#~ msgid "<em>This entry belongs to a protected album.</em>"
-#~ msgstr "<em>所以条目属于密码保护的相簿.</em>"
-
-#~ msgid "(%s: 1 new image)"
-#~ msgstr "(%s: 1 张新图片)"
-
-#~ msgid "(%1$s: %2$s new images)"
-#~ msgstr "(%1$s: %2$s 新图片)"
-
-#~ msgid "(%s: 1 image)"
-#~ msgstr "(%s: 1 张图片)"
-
-#~ msgid "(%1$s: %2$s images)"
-#~ msgstr "(%1$s: %2$s 新图片)"
-
-#~ msgid ""
-#~ "For the best viewing experience <a href=\"http://www.macromedia.com/go/"
-#~ "getflashplayer/\">Get Adobe Flash.</a>"
-#~ msgstr ""
-#~ "要有最好的观看效果，<a href=\"http://www.macromedia.com/go/getflashplayer/"
-#~ "\">下载Adobe Flash.</a>"
-
-#~ msgid "View Gallery Without Flash"
-#~ msgstr "不以Flash观看相簿"
-
-#~ msgid "Open In New Window"
-#~ msgstr "在新视窗开启"
-
-#~ msgid "Effervescence %s (not found)"
-#~ msgstr "Effervescence %s (不存在)"
-
-#~ msgid "next &raquo;"
-#~ msgstr "下一页 &raquo;"
-
-#~ msgid "&laquo; prev"
-#~ msgstr "&laquo; 上一页"
-
-#~ msgid "Zenphoto gallery"
-#~ msgstr "Zenphoto 相馆"
-
-#~ msgid "For the best viewing experience"
-#~ msgstr "为着最好的观看体验"
-
-#~ msgid "get Adobe Flash."
-#~ msgstr "下载 Adobe Flash."
-
-#~ msgid ""
-#~ "Simpleviewer requires <em>mod_rewrite</em> to be set. Simpleviewer is "
-#~ "disabled."
-#~ msgstr "Simpleviewer 须要<em>mod_rewrite</em> 开启.  Simpleviewer不会启动."
-
-#~ msgid "Simpleviewer"
-#~ msgstr "Simpleviewer"
-
-#~ msgid "Slimbox"
-#~ msgstr "Slimbox"
-
-#~ msgid "Smoothgallery"
-#~ msgstr "Smoothgallery"
-
-#~ msgid ""
-#~ "Based on Effervescence 1.1 with multiple personalities (slimbox, "
-#~ "simpleviewer and smoothgallery) added. Select different color schemes and "
-#~ "personalities from the Admin Options tab."
-#~ msgstr ""
-#~ "基于Effervescence 1.1并加入数个个性.  在管理选项栏中选取不同的主题颜色及个"
-#~ "性."
-
-#~ msgid "1 photo"
-#~ msgstr "1 张相片"
-
-#~ msgid "%u photos"
-#~ msgstr "%u 张相片"
-
-#~ msgid "1 album,&nbsp;1 photo"
-#~ msgstr "1 个相簿,&nbsp;1 张相片"
-
-#~ msgid "%u album,&nbsp;1 photo"
-#~ msgid_plural "%u albums,&nbsp;1 photo"
-#~ msgstr[0] "%u 个相簿,&nbsp;1 张相片"
-#~ msgstr[1] "%u 个相簿,&nbsp;1 张相片 "
-
-#~ msgid "%1$u album,&nbsp;%2$u photos"
-#~ msgstr "%1$u 个相簿,&nbsp;%2$u 张相片"
-
-#~ msgid "1 album,&nbsp;%u photos"
-#~ msgstr "1 个相簿,&nbsp;%u 张相片"
-
-#~ msgid "photos %1$u-%2$u of %3$u"
-#~ msgstr "相片 %3$u 之 %1$u-%2$u "
-
-#~ msgid "SHOW"
-#~ msgstr "显示"
-
-#~ msgid "HIDE"
-#~ msgstr "隐藏"
-
-#~ msgid "No comments yet"
-#~ msgstr "没有留言"
-
-#~ msgid "%u comment so far"
-#~ msgid_plural "%u comments so far"
-#~ msgstr[0] "到现在有 %u 个留言"
-#~ msgstr[1] "到现在有 %u 个留言"
-
-#~ msgid "Link to Comment %u"
-#~ msgstr "连结到留言 %u"
-
-#~ msgid "%s wrote:"
-#~ msgstr "%s 写:"
-
-#~ msgid "(not displayed)"
-#~ msgstr "(不可见)"
-
-#~ msgid "URL:"
-#~ msgstr "URL:"
-
-#~ msgid "Private comment:"
-#~ msgstr "私人留言:"
-
-#~ msgid "(don't publish)"
-#~ msgstr "(不发表)"
-
-#~ msgid "Avoid clicking &ldquo;Post&rdquo; more than once."
-#~ msgstr "请勿按&ldquo;贴出&rdquo; 多于一次."
-
-#~ msgid "Contact form"
-#~ msgstr "联络表格"
-
-#~ msgid ""
-#~ "<a href=\"http://stopdesign.com/templates/photos/\">Photo Templates</a> "
-#~ "from Stopdesign"
-#~ msgstr ""
-#~ "<a href=\"http://stopdesign.com/templates/photos/\">Photo Templates</a> 来"
-#~ "自 Stopdesign"
-
-#~ msgid "All galleries"
-#~ msgstr "所有相簿"
-
-#~ msgid "%u photo"
-#~ msgid_plural "%u photos"
-#~ msgstr[0] "%u 张相片"
-#~ msgstr[1] "%u 张相片"
-
-#~ msgid "1 album,&nbsp;%u photo"
-#~ msgid_plural "1 album,&nbsp;%u photos"
-#~ msgstr[0] "1 个相簿,&nbsp;%u 张相片"
-#~ msgstr[1] "1 个相簿,&nbsp;%u 张相片"
-
-#~ msgid "%1$u album,&nbsp;%2$s"
-#~ msgid_plural "%1$u albums,&nbsp;%2$s"
-#~ msgstr[0] "%1$u 个相簿,&nbsp;%2$s"
-#~ msgstr[1] "%1$u 个相簿,&nbsp;%2$s"
-
-#~ msgid "Gallery Feeds"
-#~ msgstr "相馆馈送"
-
-#~ msgid "Photos"
-#~ msgstr "相片"
-
-#~ msgid "%1$u of %2$u photos"
-#~ msgstr "相片 %2$u之%1$u "
-
-#~ msgid "Full Size"
-#~ msgstr "全尺寸"
-
-#~ msgid ""
-#~ "<a href=\"http://stopdesign.com/templates/photos/\">Photo Templates</a> "
-#~ "from Stopdesign."
-#~ msgstr ""
-#~ "<a href=\"http://stopdesign.com/templates/photos/\">Photo Templates</a> 来"
-#~ "自 Stopdesign."
-
-#~ msgid "Recently Updated Galleries"
-#~ msgstr "最近更新相簿"
-
-#~ msgid "Gallery data"
-#~ msgstr "相馆资料"
-
-#~ msgid "Galleries"
-#~ msgstr "相簿"
-
-#~ msgid "A password is required"
-#~ msgstr "密码是必须的."
-
-#~ msgid "%u albums,&nbsp;1 photo"
-#~ msgstr "%u 个相簿,&nbsp;1 张相片"
-
-#~ msgid "%1$u albums,&nbsp;%2$u photos"
-#~ msgstr "%1$u 个相簿,&nbsp;%2$u 张相片"
-
-#~ msgid "%u albums"
-#~ msgstr "%u 个相簿"
-
-#~ msgid "Mini slide selector"
-#~ msgstr "小型幻灯片选项"
-
-#~ msgid "Select what you want for the six special slides."
-#~ msgstr "选取六张幻灯片显示条件."
-
-#~ msgid "Gallery image crop width"
-#~ msgstr "相馆图片裁切宽"
-
-#~ msgid "The width of image to crop in the gallery pages"
-#~ msgstr "在相馆页面上的图片将会裁切的宽度"
-
-#~ msgid "Gallery image crop height"
-#~ msgstr "相馆图片裁切高"
-
-#~ msgid "The height of image to crop in the gallery pages"
-#~ msgstr "在相馆页面上的图片将会裁切的高度"
-
-#~ msgid "Ported to Zenphoto by Mark Galeassi and Stephen Billard"
-#~ msgstr "由 Mark Galeassi 和 Stephen Billard 移稙到 Zenphoto "
-
-#~ msgid ""
-#~ "A theme based on the design from <a href=\"http://stopdesign.com/"
-#~ "templates/photos/\">Douglas Bowman</a>. This theme is licensed under the "
-#~ "<a href=\"http://creativecommons.org/licenses/by-nc-sa/2.5/\">Creative "
-#~ "Commons Attribution-NonCommercial-ShareAlike 2.5</a> License."
-#~ msgstr ""
-#~ "建基于<a href=\"http://stopdesign.com/templates/photos/\">Douglas Bowman</"
-#~ "a>的设计.  本布景主题以<a href=\"http://creativecommons.org/licenses/by-"
-#~ "nc-sa/2.5/\">Creative Commons Attribution-NonCommercial-ShareAlike 2.5</a>"
-#~ "协定授权."
-
-#~ msgid ""
-#~ "Powered by <a href=\"http://www.zenphoto.org\" title=\"A simpler web "
-#~ "photo album\"><span id=\"zen-part\">zen</span><span id=\"photo-part"
-#~ "\">PHOTO</span></a>"
-#~ msgstr ""
-#~ "由<a href=\"http://www.zenphoto.org\" title=\"简洁的网上相簿\"><span id="
-#~ "\"zen-part\">zen</span><span id=\"photo-part\">PHOTO</span></a>提供"
-
-#~ msgid "&laquo; prev thumbs"
-#~ msgstr "&laquo; 上一缩图"
-
-#~ msgid "next thumbs &raquo;"
-#~ msgstr "下一缩图 &raquo;"
-
-#~ msgid "Save order"
-#~ msgstr "储存排序"
-
-#~ msgid "Save"
-#~ msgstr "储存"
-
-#~ msgid "Comment saved successfully."
-#~ msgstr "留言储存成功."
-
-#~ msgid "randomly selected"
-#~ msgstr "随机选择"
-
-#~ msgid "expand all fields"
-#~ msgstr "打开所有栏位"
-
-#~ msgid "collapse all fields"
-#~ msgstr "收起所有栏位"
-
-#~ msgid "View image on website"
-#~ msgstr "观看网站的图片"
-
-#~ msgid "Visible"
-#~ msgstr "可见"
-
-#~ msgid "Hit counter: <strong>%u</strong>"
-#~ msgstr "观看次数: <strong>%u</strong>"
-
-#~ msgid "Rating: <strong>%u</strong>"
-#~ msgstr "评级: <strong>%u</strong>"
-
-#~ msgid "Codeblock 2"
-#~ msgstr "代码方块 2"
-
-#~ msgid "Codeblock 3"
-#~ msgstr "代码方块 3"
-
-#~ msgid "show fewer fields"
-#~ msgstr "显示较少栏位"
-
-#~ msgid "Save Successful"
-#~ msgstr "储存成功"
-
-#~ msgid "Back to the list of albums (go up a level)"
-#~ msgstr "回到相簿列表 (上一层)"
-
-#~ msgid ""
-#~ "<a href=\"http://www.zenphoto.org\" title=\"A simpler web photo album"
-#~ "\">Zen<strong>photo</strong></a> version %1$s"
-#~ msgstr ""
-#~ "<a href=\"http://www.zenphoto.org\" title=\"简洁的网上相簿"
-#~ "\">Zen<strong>photo</strong></a> 版本 %1$s"
-
-#~ msgid "User guide"
-#~ msgstr "使用手册"
-
-#~ msgid "Forum"
-#~ msgstr "论坛"
-
-#~ msgid "Bugtracker"
-#~ msgstr "错误追踪系统"
-
-#~ msgid "zenphoto administration"
-#~ msgstr "zenphoto管理"
-
-#~ msgid ""
-#~ "*Enter CAPTCHA in place of <em>Password</em> to request a password reset."
-#~ msgstr "*输入验证码到 <em>密码</em> 以要求密码重设."
-
-#~ msgid "Resets all hitcounters in the album."
-#~ msgstr "重设本相簿所有观看次数"
-
-#~ msgid ""
-#~ "Forces a refresh of the EXIF and IPTC data for all images in the album."
-#~ msgstr "强迫更新本相簿所有图片的EXIF和IPTC资料"
-
-#~ msgid "Enable or disable comments"
-#~ msgstr "开启或关闭留言"
-
-#~ msgid "Pre-cache images in %s"
-#~ msgstr "预先快取 %s 的图片位"
-
-#~ msgid "Cache the album %s"
-#~ msgstr "预先快取相簿 %s"
-
-#~ msgid "comment"
-#~ msgstr "留言"
-
-#~ msgid "Reset %s"
-#~ msgstr "重设 %s"
-
-#~ msgid "Download %s ZIP file"
-#~ msgstr "下载 %s  ZIP 档案"
-
-#~ msgid "See the troubleshooting guide on zenphoto.org for details."
-#~ msgstr "详细内容请看 zenphoto.org 故障处理手册."
-
-#~ msgid ""
-#~ "<strong>Note:</strong> Login from the front-end user login form is secure "
-#~ "only if <em>https</em> is selected."
-#~ msgstr ""
-#~ "<strong>注意:</strong> 登入前台的登入页面只有选择<em>https</em>才保证安"
-#~ "全。"
-
-#~ msgid ""
-#~ "If the checkbox is disabled, setup did not detect a working Apache "
-#~ "<em>mod rewrite</em> facility and proper <em>.htaccess</em> file."
-#~ msgstr ""
-#~ "选项关闭后, 设定程式不会侦测运行中之 Apache <em>mod rewrite</em> 功能及适"
-#~ "合的 <em>.htaccess</em> 档案."
-
-#~ msgid ""
-#~ "Please check the <a href=\"http://www.zenphoto.org/trac/report/9?"
-#~ "asc=0&sort=version\">translation tickets</a> for new and updated language "
-#~ "translations."
-#~ msgstr ""
-#~ "请查阅<a href=\"http://www.zenphoto.org/trac/report/9?asc=0&sort=version"
-#~ "\">translation tickets</a> 以得到新的语言翻译."
-
-#~ msgid ""
-#~ "<strong>Note:</strong> if you have created multi-language strings, "
-#~ "uncheck this option, then save anything, you will lose your strings."
-#~ msgstr ""
-#~ "<strong>注意:</strong> 如果你有建立多语言字串, 清除此选项, 再储存任何东"
-#~ "西, 你会失去所有字串."
-
-#~ msgid "Front-end editing"
-#~ msgstr "前台编辑"
-
-#~ msgid ""
-#~ "Check to allow editing of Gallery data on the front-end pages. (Sometimes "
-#~ "known as <em>Ajax</em> editing.)"
-#~ msgstr "剔选以容许在前台版面编辑资料. (亦可称为<em>Ajax</em> 编辑.)"
-
-#~ msgid ""
-#~ "<strong>NOTE:</strong> enabling this feature is not recommended as it is "
-#~ "susceptible to Cross Site Request Forgeries."
-#~ msgstr ""
-#~ "<strong>注意:</strong>不建议启动此选项，因会容易受伪造跨网站要求影响."
-
-#~ msgid "CAPTCHA generator:"
-#~ msgstr "验证码产生器:"
-
-#~ msgid "Select the <em>CAPTCHA</em> generator to be used by Zenphoto."
-#~ msgstr "选择 Zenphoto 使用的<em>验证码</em>产生器."
-
-#~ msgid "restore default allowed tags"
-#~ msgstr "重设容许标签"
-
-#~ msgid ""
-#~ "Check <em>restore default allowed tags</em> to reset allowed tags to the "
-#~ "zenphoto default values."
-#~ msgstr "剔选 <em>回复预设容许标签</em> 以重设容许标签到zenphoto预设值."
-
-#~ msgid "enable user name login field"
-#~ msgstr "启动用户名称登入栏位"
-
-#~ msgid "enable persistent archives"
-#~ msgstr "启动持续式存档"
-
-#~ msgid ""
-#~ "<a href=\"javascript:toggle('username');\" >Details</a> for <em>enable "
-#~ "user name login field</em>"
-#~ msgstr ""
-#~ "<em>启动用户名称登入栏位</em>的<a href=\"javascript:toggle('username');\" "
-#~ ">评细资料</a> "
-
-#~ msgid ""
-#~ "This option places a field on the gallery (search, album) login form for "
-#~ "entering a user name. This is necessary if you have set guest login user "
-#~ "names. It is also useful to allow Admin users to log in on these pages "
-#~ "rather than at the Admin login."
-#~ msgstr ""
-#~ "这选项会在相馆中(搜寻, 相簿)放置用户名称栏位.  如你设置访客用户名称, 这是"
-#~ "必须的.  这同时令管理员可以在这些页面中直接登入, 而不用在管理登入页."
-
-#~ msgid ""
-#~ "<a href=\"javascript:toggle('persistentarchive');\" >Details</a> for "
-#~ "<em>enable persistent archive</em>"
-#~ msgstr ""
-#~ "<em>启动持续式存档</em>的<a href=\"javascript:toggle('persistentarchive');"
-#~ "\" >评细资料</a>"
-
-#~ msgid ""
-#~ "Put a checkmark here to re-serve Zip Archive files if you are using the "
-#~ "optional template function <em>printAlbumZip()</em> to enable visitors of "
-#~ "your site to download images of an album as .zip files. If not checked "
-#~ "that .zip file will be regenerated each time."
-#~ msgstr ""
-#~ "剔选可以在布景主题程式中使用<em>printAlbumZip()</em>保留 ZIP 压缩档给访客"
-#~ "以 .zip 档案下载相簿 .  没剔选则会每次重新产生 .zip 档案."
-
-#~ msgid ""
-#~ "<a href=\"javascript:toggle('gallerysessions');\" >Details</a> for "
-#~ "<em>enable gallery sessions</em>"
-#~ msgstr ""
-#~ "<em>启动相馆sessions</em>的<a href=\"javascript:toggle('gallerysessions');"
-#~ "\" >评细资料</a>"
-
-#~ msgid ""
-#~ "Check this option if you are having issues with album password cookies "
-#~ "not being retained. Setting the option causes zenphoto to use sessions "
-#~ "rather than cookies."
-#~ msgstr ""
-#~ "如你发生相簿密码不能保存在cookies中可以剔选此项, 这设定会令zenphoto使用"
-#~ "sessions而不用cookes."
-
-#~ msgid "exact"
-#~ msgstr "精确"
-
-#~ msgid "partial"
-#~ msgstr "局部"
-
-#~ msgid "Search behavior settings."
-#~ msgstr "搜寻方法设定."
-
-#~ msgid ""
-#~ "Search does partial matches on all fields selected with the possible "
-#~ "exception of <em>Tags</em>. This means that if the field contains the "
-#~ "search criteria anywhere within it a result will be returned. If "
-#~ "<em>exact</em> is selected for <em>Tags</em> then the search criteria "
-#~ "must exactly match the tag for a result to be returned."
-#~ msgstr ""
-#~ "除了<em>标签</em>外, 搜寻会找到栏位为部份符合的结果.  即是只要栏位之中有包"
-#~ "含搜寻条件便会出现在结果中.  如<em>标签</em>被选为<em>精确</em>, 搜寻条件"
-#~ "一定要完全符合才会出现在结果中."
-
-#~ msgid "Images RSS"
-#~ msgstr "图片RSS"
-
-#~ msgid "Albums RSS"
-#~ msgstr "相簿 RSS"
-
-#~ msgid ""
-#~ "The number of new items you want to appear in your site's RSS feed. The "
-#~ "images and comments RSS share the value."
-#~ msgstr "在你网站的RSS 馈送中显示的项目数. 图片/留言RRS都使用此数值"
-
-#~ msgid "RSS cache"
-#~ msgstr "RSS 快取"
-
-#~ msgid "You must supply a password for the Protected image user"
-#~ msgstr "保护图片用户必须提供密码"
-
-#~ msgid "Automatically rotate images based on the EXIF orientation setting."
-#~ msgstr "自动以EXIF方向值转动图片."
-
-#~ msgid ""
-#~ "Image rotation requires the <em>imagerotate</em> function found in the "
-#~ "bundled GD library of PHP version 4.3 or greater."
-#~ msgstr ""
-#~ "转动图片须要PHP 4.3或更新版本的GD程式库的 <em>imagerotate</em> 功能."
-
-#~ msgid "*none"
-#~ msgstr "*没有"
-
-#~ msgid ""
-#~ "Check those EXIF fields you wish displayed in image EXIF information."
-#~ msgstr "剔选要显示在图片EXIF资料的栏位"
-
-#~ msgid "Spam filter:"
-#~ msgstr "垃圾过滤:"
-
-#~ msgid "The SPAM filter plug-in you wish to use to check comments for SPAM"
-#~ msgstr "你想用来检查留言的垃圾过滤器."
-
-#~ msgid ""
-#~ "Comment posting will be rejected if any of the checked fields is not "
-#~ "valid."
-#~ msgstr "留言中有无效的已选取栏位会被拒绝."
-
-#~ msgid ""
-#~ "Recommended number of albums on a page. You might need to adjust this for "
-#~ "a better page layout."
-#~ msgstr "建议每页的相簿数量.  你可能要改变它去配合不同的布景主题设计."
-
-#~ msgid "Recommended number of thumbnails on an album page."
-#~ msgstr "建议相簿每页的缩图数量. "
-
-#~ msgid ""
-#~ "<strong>Note:</strong> You might need to adjust this for a better page "
-#~ "layout."
-#~ msgstr "<strong>注意:</strong> 你可能要改变它去配合不同的布景主题设计."
-
-#~ msgid ""
-#~ "If checked the thumbnail cropped to the <em>width</em> and <em>height</"
-#~ "em> indicated."
-#~ msgstr "剔选后图片会裁切为指定的 <em>高度</em> and <em>宽度</em>."
-
-#~ msgid "Expand plugin options"
-#~ msgstr "打开外挂设定"
-
-#~ msgid "Collapse all plugin options"
-#~ msgstr "收起所有外挂设定"
-
-#~ msgid "<strong>Error parsing <em>plugin_URL</em> string!</strong>."
-#~ msgstr "<strong>分析错误 <em>plugin_URL</em> 字串!</strong>."
-
-#~ msgid ""
-#~ "Check the zp-config.php file to make sure you've got the right username, "
-#~ "password, host, and database. If you haven't created the database yet, "
-#~ "now would be a good time."
-#~ msgstr ""
-#~ "检查zp-config.php档案去肯定你有正确的用户名称, 密码, 主机, 及资料库.  如果"
-#~ "你还未建立资料库, 现在是一个好时机."
-
-#~ msgid "Sort the tags alphabetically"
-#~ msgstr "以字母排序标签"
-
-#~ msgid "Sort the tags by most used"
-#~ msgstr "以最多使用者排序标签"
-
-#~ msgid "Delete all the tags checked above."
-#~ msgstr "删除上面剔选的标签."
-
-#~ msgid "Save all the changes entered above."
-#~ msgstr "储存上面输入的更改."
-
-#~ msgid "Add all the tags entered above."
-#~ msgstr "加入上面输入的标签."
-
-#~ msgid "New theme name? (e.g. \"My Theme\")"
-#~ msgstr "新布景主题名称? (eg. \"My Theme\")"
-
-#~ msgid "My Theme"
-#~ msgstr "我的布景主题"
-
-#~ msgid "New directory name? (e.g. \"my_theme\")"
-#~ msgstr "新资料夹名称? (eg. \"my_theme\")"
-
-#~ msgid "Set this as your theme"
-#~ msgstr "选择这个布景主题."
-
-#~ msgid "Assign this as your album theme"
-#~ msgstr "配置为你相簿布景主题"
-
-#~ msgid "Edit this theme"
-#~ msgstr "编辑这布景主题"
-
-#~ msgid "Delete this theme"
-#~ msgstr "删除这布景主题"
-
-#~ msgid "Do you want to replace the file %s?"
-#~ msgstr "是否肯定要覆盖这个档案  %s ?"
-
-#~ msgid "Upload queue is full. The upload limit is %u."
-#~ msgstr "上载队列已满.  上载限制为 %u."
-
-#~ msgid "Upload Photos"
-#~ msgstr "上载相片"
-
-#~ msgid "Something went wrong..."
-#~ msgstr "有些错误..."
-
-#~ msgid ""
-#~ "Zenphoto may be unable to perform uploads when PHP Safe Mode restrictions "
-#~ "are in effect"
-#~ msgstr "当PHP Safe Mode限制生效时, Zenphoto不能上载."
-
-#~ msgid "Zenphoto supported file types | all files"
-#~ msgstr "Zenphoto 支援档案类型｜全部档案"
-
-#~ msgid ""
-#~ "There appears to be no <em>Flash</em> plugin installed in your browser."
-#~ msgstr "你的浏览器好像没有 <em>Flash</em> 外挂."
-
-#~ msgid ""
-#~ "If your upload does not work try the <a href=\"javascript:"
-#~ "switchUploader('admin-upload.php?uploadtype=http');\" >http-browser "
-#~ "single file upload</a> or use FTP instead."
-#~ msgstr ""
-#~ "如果上载失败 , 可以尝试<a href=\"javascript:switchUploader('admin-upload."
-#~ "php?uploadtype=http');\" >http-browser 单一档案上载</a> 或使用 FTP."
-
-#~ msgid ""
-#~ "Try the <a href=\"javascript:switchUploader('admin-upload.php?"
-#~ "uploadtype=multifile');\" >multi file upload</a>"
-#~ msgstr ""
-#~ "尝试 <a href=\"javascript:switchUploader('admin-upload.php?"
-#~ "uploadtype=multifile');\" >多档案上载</a>"
-
-#~ msgid "You must supply a password for the Gallery guest user"
-#~ msgstr "相馆访客用户必须提供密码"
-
-#~ msgid "You must supply a password"
-#~ msgstr "必须提供密码"
-
-#~ msgid "email:"
-#~ msgstr "电邮:"
-
-#~ msgid "You are running the latest zenphoto version."
-#~ msgstr "你正在使用最新zenphoto版本."
-
-#~ msgid ""
-#~ "Could not connect to <a href=\"http://www.zenphoto.org\">zenphoto.org</a>"
-#~ msgstr "不能连到<a href=\"http://www.zenphoto.org\">zenphoto.org</a>"
-
-#~ msgid "zenphoto version %s is available."
-#~ msgstr "zenphoto 版本 %s 可供使用."
-
-#~ msgid "<strong>%1$u</strong> Image (%2$u not visible)"
-#~ msgid_plural "<strong>%1$u</strong> Images (%2$u not visible)"
-#~ msgstr[0] "<strong>%1$u</strong> 张图片(%2$u 不可见)"
-#~ msgstr[1] "<strong>%1$u</strong> 张图片(%2$u 不可见)"
-
-#~ msgid "SVN"
-#~ msgstr "SVN"
-
-#~ msgid "Could not create zip file."
-#~ msgstr "不能建立zip档案."
-
-#~ msgid "Could not create tar file."
-#~ msgstr "不能建立tar档案."
-
-#~ msgid "Could not create bzip2 file."
-#~ msgstr "不能建立bzip2档案."
-
-#~ msgid "Could not create gzip file."
-#~ msgstr "不能建立gzip档案."
-
-#~ msgid ""
-#~ "Can only use download_file() if archive is in memory. Redirect to file "
-#~ "otherwise, it is faster."
-#~ msgstr "当存档在记忆体中只能使用download_file().  要不然转移到档案去会更快."
-
-#~ msgid "Could not add %s to archive because the filename is too long."
-#~ msgstr "因档案名称过长, 不能加入 %s 到存档中."
-
-#~ msgid "Could not open file %s for reading. It was not added."
-#~ msgstr "不能开启 %s 去读取, 所以未能加入."
-
-#~ msgid "This script does not support extracting this type of tar file."
-#~ msgstr "本程式不支援这种tar档案"
-
-#~ msgid "Could not extract from %s it is corrupt."
-#~ msgstr "不能解压  %s, 因为它已受破坏."
-
-#~ msgid "Could not open %s for writing."
-#~ msgstr "不能开启 %s 以写入."
-
-#~ msgid "Could not open sfx module from %s"
-#~ msgstr "不能在  %s 开启sfx模组"
-
-#~ msgid "Zenphoto encountered an album name spoof attempt: %s."
-#~ msgstr "Zenphoto 遇到相簿名称的诳骗尝试 : %s."
-
-#~ msgid "class-album detected an invalid folder name: %s."
-#~ msgstr "class-album 侦测到不合格的资料夹的名称: %s."
-
-#~ msgid ""
-#~ "<strong>Zenphoto error:</strong> zp-config.php not found. Perhaps you "
-#~ "need to run <a href=\"%s/setup.php\">setup</a> (or migrate your old "
-#~ "config.php)"
-#~ msgstr ""
-#~ "Zenphoto错误:</strong> zp-config.php不存在.  可能要执行 <a href=\"%s/"
-#~ "setup.php\">安装</a> (或搬迁你旧的 config.php)"
-
-#~ msgid "ERROR: Assertion failed in"
-#~ msgstr "错误: 断定失败在"
-
-#~ msgid "<strong>Backtrace:</strong>"
-#~ msgstr "<strong>向后追踪:</strong>"
-
-#~ msgid "Oops.. Cannot edit from this page"
-#~ msgstr "不能编辑这页"
-
-#~ msgid "Error: malformed Ajax POST"
-#~ msgstr "错误: 不正常Ajax POST"
-
-#~ msgid "Could not save!"
-#~ msgstr "不能储存!"
-
-#~ msgid ""
-#~ "MySQL Error: The PHP MySQL extensions have not been installed. Please ask "
-#~ "your administrator to add MySQL support to your PHP installation."
-#~ msgstr ""
-#~ "MySQL错误:  没有安装PHP的MySQL延伸部件.  请联络管理员安装MySQL支援到PHP. "
-
-#~ msgid ""
-#~ "The <code>$_zp_conf_vars</code> variable is not an array. Zenphoto has "
-#~ "not been instantiated correctly."
-#~ msgstr ""
-#~ "<code>$_zp_conf_vars</code> 变数不是阵列. Zenphoto 不能正确地实体化."
-
-#~ msgid ""
-#~ "Unknown error! Please report to the developers at <a href=\"http://www."
-#~ "zenphoto.org/\">www.zenphoto.org</a>"
-#~ msgstr ""
-#~ "不知名错误! 请到<a href=\"http://www.zenphoto.org\">zenphoto.org</a>报告给"
-#~ "开发人员."
-
-#~ msgid "ByLine"
-#~ msgstr "署名"
-
-#~ msgid "Mail send failed. The \"to\" list is empty."
-#~ msgstr "发出电邮失败.  \"收信人\" 为空白."
-
-#~ msgid "Unknown author"
-#~ msgstr "不知名作者"
-
-#~ msgid "<strong>Theme description error!</strong>"
-#~ msgstr "<strong>布景主题描述错误</strong>"
-
-#~ msgid "Unknown date"
-#~ msgstr "未知日期: "
-
-#~ msgid "Password must be at least %u characters"
-#~ msgstr "密码最少为 %u 个字符"
-
-#~ msgid "Password must contain at least one of %s"
-#~ msgstr "密码最少要有一个 %s"
-
-#~ msgid ""
-#~ "<strong>Note:</strong> passwords must be at least %1$u characters long "
-#~ "and contain at least one character from %2$s."
-#~ msgid_plural ""
-#~ "<strong>Note</strong>: passwords must be at least %1$u characters long "
-#~ "and contain at least one character from each of the following groups: "
-#~ "%2$s."
-#~ msgstr[0] ""
-#~ "<strong>注意:</strong>密码最少要长度为 %1$u 个字符并最少有一个字符来自 "
-#~ "%2$s ."
-#~ msgstr[1] ""
-#~ "<strong>注意:</strong>密码最少要长度为 %1$u 个字符并最少有一个字符来自每一"
-#~ "个以下组别: %2$s ."
-
-#~ msgid ""
-#~ "<strong>Note</strong>: passwords must contain at least one character from "
-#~ "%s."
-#~ msgid_plural ""
-#~ "<strong>Note</strong>: passwords must contain at least one character from "
-#~ "each of the following groups: %s."
-#~ msgstr[0] "<strong>注意:</strong> 密码最少有一个字符来自 %s."
-#~ msgstr[1] ""
-#~ "<strong>注意:</strong>  密码最少有一个字符来自每一个以下的组别 %s."
-
-#~ msgid ""
-#~ "<strong>Note</strong>: passwords must be at least %u characters long."
-#~ msgstr "<strong>注意</strong>: 密码最少为 %u 个字符."
-
-#~ msgid "Augment password hash:"
-#~ msgstr "增加密码混杂:"
-
-#~ msgid ""
-#~ "Extra text appended when hashing password to strengthen Zenphoto "
-#~ "authentication."
-#~ msgstr "在混杂密码中加入额外文字以加强 Zenphoto 身份验证."
-
-#~ msgid ""
-#~ "<strong>Note:</strong> Changing this will require all users to reset "
-#~ "their passwords! You should change your password immediately if you "
-#~ "change this text."
-#~ msgstr ""
-#~ "<strong>注意:</strong>更改它会令所有用户须要重设密码!  之后你更要立刻更改"
-#~ "你密码."
-
-#~ msgid "Minimum number of characters a password must contain."
-#~ msgstr "密码的最少字数."
-
-#~ msgid "Password characters:"
-#~ msgstr "密码字符:"
-
-#~ msgid ""
-#~ "Passwords must contain at least one of the characters from each of the "
-#~ "groups. Groups are separated by \"|\". (Use \"\\|\" to represent the \"|"
-#~ "\" character in the groups.)"
-#~ msgstr ""
-#~ "密码必须要最少有一个字符来自每一组别.  组别由 \"|\"分隔. （使用\"\\|\" 代"
-#~ "表组别中的 \"|\"字符）"
-
-#~ msgid "Imagick memory limit"
-#~ msgstr "Imagick 记忆体上限"
-
-#~ msgid ""
-#~ "Amount of memory allocated to Imagick in megabytes. Set to <strong>0</"
-#~ "strong> for unlimited memory."
-#~ msgstr ""
-#~ "以 MB 计算的 Imagick 可以使用记忆体数量.  设定 <strong>0</strong>为无限制."
-
-#~ msgid ""
-#~ "<strong>Note:</strong> Image processing will be faster with a higher "
-#~ "memory limit. However, if your server experiences problems with image "
-#~ "processing, try setting this lower."
-#~ msgstr ""
-#~ "<strong>注意:</strong> 更多记忆体会令图像处理更快. 但是, 在你的伺服器在处"
-#~ "理图像时有困难, 可尝试设一个比较低的数值."
-
-#~ msgid ""
-#~ "The font size (in pixels) for CAPTCHAs. Default is <strong>18</strong>."
-#~ msgstr "CAPTCHA 验证码的字型大小(以像素计算). 预设为<strong>18</strong>."
-
-#~ msgid "PHP Imagick library <em>%s</em><br /><em>%s</em>"
-#~ msgstr "PHP Imagick 程式库 <em>%s</em><br /><em>%s</em>"
-
-#~ msgid "A simpler web photo album"
-#~ msgstr "简易的网上相簿"
-
-#~ msgid "Updated zp-config.php"
-#~ msgstr "更新 zp-config.php"
-
-#~ msgid "strict+"
-#~ msgstr "严格+"
-
-#~ msgid "Zenphoto Setup"
-#~ msgstr "Zenphoto 设定"
-
-#~ msgid "Version %1$s or greater is strongly recommended."
-#~ msgstr "强烈建议为 %1$s 或更新版本."
-
-#~ msgid ""
-#~ "You should consider disabling <code>magic_quotes_gpc</code>. For more "
-#~ "information See <em>What is magic_quotes_gpc and why should it be "
-#~ "disabled?</em> in the Zenphoto troubleshooting guide."
-#~ msgstr ""
-#~ "你应考虑停用 <code>magic_quotes_gpc</code>.  更多资讯请看 Zenphoto 故障处"
-#~ "理手册 <em>What is magic_quotes_gpc and why should it be disabled?</em> ."
-
-#~ msgid "PHP <code>MySQL support</code>"
-#~ msgstr "PHP <code>MySQL 支援</code>"
-
-#~ msgid "You need to install MySQL support in your PHP"
-#~ msgstr "你须要安装MySQL支援到你的PHP"
-
-#~ msgid "<em>zp-config.php</em> file"
-#~ msgstr "<em>zp-config.php</em> 档案"
-
-#~ msgid "<em>zp-config.php</em> file [does not exist]"
-#~ msgstr "<em>zp-config.php</em> 档案[不存在]"
-
-#~ msgid "<br /><br />You can find the file in the \"%s\" directory."
-#~ msgstr "<br /><br />你可以在 \"%s\" 资料夹中找到."
-
-#~ msgid "Change file/folder permissions mask: %s"
-#~ msgstr "修改档案/资料夹权限遮罩 : %s"
-
-#~ msgid "You must be logged in to change permissions."
-#~ msgstr "你必须登入以更改权限."
-
-#~ msgid "MySQL setup in <em>zp-config.php</em>"
-#~ msgstr "MySQL设定在<em>zp-config.php</em>"
-
-#~ msgid "MySQL admin user"
-#~ msgstr "MySQL管理员用户"
-
-#~ msgid "MySQL admin password"
-#~ msgstr "MySQL 管理员密码"
-
-#~ msgid "MySQL host"
-#~ msgstr "MySQL 主机"
-
-#~ msgid "MySQL database"
-#~ msgstr "MySQL 资料库"
-
-#~ msgid "Connect to MySQL"
-#~ msgstr "连接到MySQL"
-
-#~ msgid ""
-#~ "Check the <code>user</code>, <code>password</code>, and <code>database "
-#~ "host</code> and try again."
-#~ msgstr ""
-#~ "检查<code>用户名称</code>, <code>密码</code>, 及<code>资料库名称</code>并"
-#~ "再尝试."
-
-#~ msgid "MySQL version %s"
-#~ msgstr "MySQL版本  %s"
-
-#~ msgid "Connect to the database [You have not provided a database name]"
-#~ msgstr "连接资料库 [你未有有提供资料库名称]"
-
-#~ msgid "Connect to the database [Database does not exist]"
-#~ msgstr "连接到资料库 [资料库不存在]"
-
-#~ msgid ""
-#~ "Could not access the <strong>MySQL</strong> database (<code>%s</code>)."
-#~ msgstr "不能存取<strong>MySQL</strong> 资料库  (<code>%s</code>)."
-
-#~ msgid ""
-#~ "Check the <code>user</code>, <code>password</code>, <code>database name</"
-#~ "code>, and <code>MySQL host</code>."
-#~ msgstr ""
-#~ "检查<code>用户名称</code>, <code>密码</code>, <code>资料库名称</code>及 "
-#~ "<code>MySQL 主机</code>."
-
-#~ msgid ""
-#~ "Make sure the database has been created and that <code>%s</code> has "
-#~ "access to it."
-#~ msgstr "确定资料库已经建立, 并且<code>%s</code>有权存取它."
-
-#~ msgid "MySQL <code>access rights</code>"
-#~ msgstr " MySQL <code>存取权限</code>"
-
-#~ msgid "MySQL <em>show tables</em> [Failed]"
-#~ msgstr " MySQL <em>show tables</em> [失败]"
-
-#~ msgid ""
-#~ "Click <a href=\"?copyhtaccess\" >here</a> to have setup create the file."
-#~ msgstr "点击<a href=\"?copyhtaccess\" >这里</a> 使到安装程式建立档案."
-
-#~ msgid "Deleting files failed!"
-#~ msgstr "删除档案失败!"
-
-#~ msgid ""
-#~ "<strong>NOTE:</strong> We strongly recommend you remove the <em>setup*."
-#~ "php</em> scripts from your zp-core folder at this time. You can always re-"
-#~ "upload them should you find you need them again in the future."
-#~ msgstr ""
-#~ "<strong>注意:</strong> 强烈建议在此时在 zp-core 资料夹中移除 <em>setup*."
-#~ "php</em>. 在将来你有须要时可以再上载它."
-
-#~ msgid "create and or update the database tables."
-#~ msgstr "建立或更近资料库表格."
-
-#~ msgid ""
-#~ "The zp-config.php file does not exist. You should run setup.php to check "
-#~ "your configuration and create this file."
-#~ msgstr ""
-#~ "zp-config.php档案不存在.  你应该执行setup.php去检查你的设定并建立它."
-
-#~ msgid "Saving"
-#~ msgstr "储存"
-
-#~ msgid "Click to edit..."
-#~ msgstr "点击以编辑..."
-
-#~ msgid "Edit this image"
-#~ msgstr "编辑本图片"
-
-#~ msgid "(No title...)"
-#~ msgstr "(无标题...)"
-
-#~ msgid "(No date...)"
-#~ msgstr "(没有日期...)"
-
-#~ msgid "(No Location...)"
-#~ msgstr "(无地点...) "
-
-#~ msgid "printEditable() incomplete function call."
-#~ msgstr "未完成 printEditable() 呼叫."
-
-#~ msgid "(...)"
-#~ msgstr "(...)"
-
-#~ msgid "(No data...)"
-#~ msgstr "(无资料...)"
-
-#~ msgid "(No data)"
-#~ msgstr "(没有资料)"
-
-#~ msgid "Download Zip of the Album"
-#~ msgstr "下载相簿的zip档"
-
-#~ msgid "Download a zip file of this album"
-#~ msgstr "下载本相簿的zip档"
-
-#~ msgid "(No tags...)"
-#~ msgstr "(无标签...)"
-
-#~ msgid "Latest images of this album and its subalbums RSS"
-#~ msgstr "这相簿和子相簿的最新图片 RSS"
-
-#~ msgid "Latest comments RSS"
-#~ msgstr "最新留言 RSS"
-
-#~ msgid "Latest albums RSS"
-#~ msgstr "最新相簿 RSS"
-
-#~ msgid "select search fields"
-#~ msgstr "选择搜寻栏位:"
-
-#~ msgid "Uploadify error on %1$s. Review your debug log."
-#~ msgstr "%1$s 上载错误.  查阅除错日志."
-
-#~ msgid "MySQL Query ( <em>%1$s</em> ) failed. Error: %2$s"
-#~ msgstr "MySQL Query ( <em>%1$s</em> ) 失败. Error: %2$s"
-
-#~ msgid "Tables are prefixed by <strong>%s</strong>"
-#~ msgstr "表格字首为<strong>%s</strong>"
-
-#~ msgid ""
-#~ "Finds newly uploaded images that have not been cached and creates the "
-#~ "cached version. It also refreshes the numbers above. If you have a large "
-#~ "number of images in your gallery you might consider using the pre-cache "
-#~ "image link for each album to avoid swamping your browser."
-#~ msgstr ""
-#~ "寻找新近上载而未被快取的图片以产生快取图片版本.  它同时会更新上面的数字.  "
-#~ "如果你有大量的图片, 你应考虑使用每个相簿的预先快取图片连结以防止你的浏览器"
-#~ "不能应付."
-
-#~ msgid ""
-#~ "Queries the Zenphoto web site for the latest version and compares that "
-#~ "with the one that is running."
-#~ msgstr "到Zenphoto网站查询最新版本及和现时运行版本比较."
-
-#~ msgid "<strong>%1$u</strong> images (%2$u not visible)"
-#~ msgstr "<strong>%1$u</strong> 图片(%2$u 不可见)"
-
-#~ msgid "Clears the image cache. Images will be re-cached as they are viewed."
-#~ msgstr "清除图片快取.  图片当被观看时会再放到快取.  "
-
-#~ msgid ""
-#~ "Cleans the database and removes any orphan entries for comments, images, "
-#~ "and albums."
-#~ msgstr "清理资料库及清除无主的留言, 图片, 相簿."
-
-#~ msgid "Sets all album thumbs to random."
-#~ msgstr "设定所有相簿缩图为随机."
-
-#~ msgid "Set to <em>random</em>"
-#~ msgstr "设定为<em>随机</em>"
-
-#~ msgid "Set to <em>%s</em>"
-#~ msgstr "设定为 <em>%s</em>"
-
-#~ msgid ""
-#~ "These buttons allow you to set all of your album thumbs to either a "
-#~ "<em>random</em> image or to the <em>%s</em> image. This will override any "
-#~ "album thumb selections you have made on individual albums."
-#~ msgstr ""
-#~ "这按钮容许设定所有相簿缩图为<em>随机</em>或<em>%s</em>图片.  这会凌驾每一"
-#~ "相簿的个缩图选择."
-
-#~ msgid "Make images visible by default"
-#~ msgstr "图片预设为可见"
-
-#~ msgid "Not visible images:"
-#~ msgstr "不可见图片:"
-
-#~ msgid ""
-#~ "<strong>Notes:</strong> <em>Wordpress page nesting</em> is not preserved "
-#~ "but can easily be recreated by drag and drop sorting on the pages tab. \n"
-#~ "<em>Category nesting</em> is also not directly supported by Zenpage. "
-#~ "Therefore all categories will be plain level, you can however use the "
-#~ "<em>menu_manager plugin</em> to recreate this if needed."
-#~ msgstr ""
-#~ "<strong>注意:</strong> <em>Wordpress 页面套叠</em> 是不能保留, 但是能轻易"
-#~ "的用拖拉排序而重新建立. \n"
-#~ "<em>类别套叠</em> 同时也不被 Zenpage 支援. 所以所有类别都在同一层次,  但是"
-#~ "须要时能使用 <em>选单管理员外挂</em> 重新建立."
-
-#~ msgid "<strong>ERROR:</strong> Wordpress database info incomplete"
-#~ msgstr "<strong>错误:</strong> Wordpress 资料库资讯不完整."
-
-#~ msgid ""
-#~ "Provides a means for showing text where zenphoto would normally display "
-#~ "images. For documentation, see the script file."
-#~ msgstr "在zenphoto平常显示图片的地方可以显示文字.  请看程式以得到文件资料."
-
-#~ msgid ""
-#~ "Video and MP3/4 handling for Zenphoto. This plugin must always be enabled "
-#~ "to use multimedia content."
-#~ msgstr "Zenphoto 影片及 MP3/4 处理.  使用多媒体内容必须启动此外挂."
-
-#~ msgid "Website:"
-#~ msgstr "网站:"
-
-#~ msgid "Comment error \"%d\" not defined."
-#~ msgstr "留言错误 \"%d\" 未定义."
-
-#~ msgid ""
-#~ "<p>Thanks for your message. A copy has been sent to your provided e-mail "
-#~ "address for your own records.</p>"
-#~ msgstr "<p>多谢你的讯息. 邮件的副本会寄到你提供的地址以供你存档.</p>"
-
-#~ msgid "Mail address"
-#~ msgstr "邮寄地址"
-
-#~ msgid "Title field."
-#~ msgstr "衔头栏位."
-
-#~ msgid "Name field."
-#~ msgstr "名称栏位."
-
-#~ msgid "Company field."
-#~ msgstr "公司栏位."
-
-#~ msgid "Street field"
-#~ msgstr "街道栏位"
-
-#~ msgid "Street field."
-#~ msgstr "街道栏位."
-
-#~ msgid "City field"
-#~ msgstr "城市栏位"
-
-#~ msgid "City field."
-#~ msgstr "城市栏位."
-
-#~ msgid "Country field"
-#~ msgstr "国家栏位"
-
-#~ msgid "Country field."
-#~ msgstr "国家栏位."
-
-#~ msgid "E-mail field."
-#~ msgstr "电邮栏位."
-
-#~ msgid "Website field."
-#~ msgstr "网址栏位."
-
-#~ msgid "Check if CAPTCHA should be required."
-#~ msgstr "剔选如须要验证码."
-
-#~ msgid "Subject field"
-#~ msgstr "主旨栏位"
-
-#~ msgid "Subject field."
-#~ msgstr "主旨栏位."
-
-#~ msgid "Message field"
-#~ msgstr "讯息栏位"
-
-#~ msgid "Message field."
-#~ msgstr "讯息栏位."
-
-#~ msgid "a <strong>title</strong>"
-#~ msgstr "一个<strong>头衔</strong>"
-
-#~ msgid "a <strong>name</strong>"
-#~ msgstr "一个<strong>名称</strong>"
-
-#~ msgid "a <strong>company</strong>"
-#~ msgstr "一个<strong>公司</strong>"
-
-#~ msgid "a <strong>street</strong>"
-#~ msgstr "一个<strong>街道</strong>"
-
-#~ msgid "a <strong>city</strong>"
-#~ msgstr "一个<strong>城市</strong>"
-
-#~ msgid "a <strong>country</strong>"
-#~ msgstr "一个<strong>国家</strong>"
-
-#~ msgid "a <strong>valid email address</strong>"
-#~ msgstr "一个<strong>有效电邮地址</strong>"
-
-#~ msgid "a <strong>website</strong>"
-#~ msgstr "一个<strong>网址</strong>"
-
-#~ msgid "a <strong>phone number</strong>"
-#~ msgstr "一个<strong>电话号码</strong>"
-
-#~ msgid "a <strong>message</strong>"
-#~ msgstr "一个<strong>讯息</strong>"
-
-#~ msgid "<p style='color:red'>Please enter "
-#~ msgstr "<p style='color:red'>请输入"
-
-#~ msgid " and "
-#~ msgstr "及"
-
-#~ msgid ". Thanks.</p>"
-#~ msgstr ". 多谢.</p>"
-
-#~ msgid ""
-#~ "Deprecated Zenphoto functions. These functions have been removed from "
-#~ "mainstream Zenphoto as they have been supplanted. They are not maintained "
-#~ "and they are not guaranteed to function correctly with the current "
-#~ "version of Zenphoto."
-#~ msgstr ""
-#~ "已不支援的 Zenphoto 函数.  这些函数已经在 Zenphoto 中去除及已被替代, 它们"
-#~ "已不再维謢并不保证在现时的 Zenphoto 的版本中运行."
-
-#~ msgid "getZenpageHitcounter is deprecated. Use getHitcounter()."
-#~ msgstr "getZenpageHitcounter 已淘汰.  请使用getHitcounter()."
-
-#~ msgid "printImageEXIFData is deprecated. Use printImageMetadata()."
-#~ msgstr "printImageEXIFData 已淘汰.  请使用 printImageMetadata()."
-
-#~ msgid ""
-#~ "printCustomSizedImageMaxHeight is deprecated. Use "
-#~ "printCustomSizedImageMaxSpace()."
-#~ msgstr ""
-#~ "printCustomSizedImageMaxHeight 已淘汰.  请使用 "
-#~ "printCustomSizedImageMaxSpace()."
-
-#~ msgid "getCommentDate is deprecated. Use getCommentDateTime()."
-#~ msgstr "getCommentDate 已淘汰.  请使用 getCommentDateTime()."
-
-#~ msgid "getCommentTime is deprecated. Use getCommentDateTime()."
-#~ msgstr "getCommentTime 已淘汰.  请使用 getCommentDateTime()."
-
-#~ msgid "hitcounter is deprecated. Use getHitcounter()."
-#~ msgstr "hitcounter 已淘汰.  请使用getHitcounter()."
-
-#~ msgid "my_truncate_string is deprecated. Use truncate_string()."
-#~ msgstr "my_truncate_string 已淘汰.  请使用 truncate_string()."
-
-#~ msgid "getImageEXIFData is deprecated. Use getImageMetaData()."
-#~ msgstr "getImageEXIFData 已淘汰.  请使用 getImageMetaData()."
-
-#~ msgid "getAlbumPlace is deprecated. Use getAlbumLocation()."
-#~ msgstr "getAlbumPlace 已淘汰.  请使用 getAlbumLocation()."
-
-#~ msgid "printAlbumPlace is deprecated. Use printAlbumLocation()."
-#~ msgstr "printAlbumPlace 已淘汰.  请使用 printAlbumLocation()."
-
-#~ msgid "(No place...)"
-#~ msgstr "(无地名...)"
-
-#~ msgid "zenpageHitcounter is deprecated. Use getHitcounter()."
-#~ msgstr "zenpageHitcounter 已淘汰.  请使用getHitcounter()."
-
-#~ msgid ""
-#~ "An image crop tool. Places an image crop button in the image utilities "
-#~ "box of the images tab."
-#~ msgstr "图片裁切工具.  在图片跳页中在图片工具盒中加入图片裁切按钮."
-
-#~ msgid ""
-#~ "Filter applied to filenames to translate characters with diacritical "
-#~ "marks to unmarked ones for SEO friendly URLs."
-#~ msgstr "为档案名称中的音调符号转换成对SEO友善之URL的过滤器"
-
-#~ msgid "Enable <strong>flowplayer 3</strong> to handle multimedia files."
-#~ msgstr "启动<strong>flowplayer 3</strong> 以处理多媒体档案."
-
-#~ msgid ""
-#~ "<strong>IMPORTANT</strong>: Only one multimedia player plugin can be "
-#~ "enabled at the time and the class-video plugin must be enabled, too."
-#~ msgstr ""
-#~ "<strong>重要</strong>: 同一时间只可以启动一个多媒体外挂，而 class-video 外"
-#~ "挂一定要启动. "
-
-#~ msgid "flow player width"
-#~ msgstr "flow player 宽"
-
-#~ msgid "Player width (ignored for <em>mp3</em> files.)"
-#~ msgstr "播放器宽 (忽略<em>mp3</em>档案.)"
-
-#~ msgid "flow player height"
-#~ msgstr "flow player 高"
-
-#~ msgid "Player height (ignored for <em>mp3</em> files.)"
-#~ msgstr "播放器高 (忽略<em>mp3</em>档案.)"
-
-#~ msgid "Player background color"
-#~ msgstr "播放器背景颜色"
-
-#~ msgid "The color of the player background."
-#~ msgstr "播放器 的背景颜色."
-
-#~ msgid "Player background color gradient"
-#~ msgstr "播放器背景的渐变颜色"
-
-#~ msgid "low"
-#~ msgstr "低"
-
-#~ msgid "high"
-#~ msgstr "高"
-
-#~ msgid "Gradient setting for player background color."
-#~ msgstr "控制器的背景渐变颜色设定."
-
-#~ msgid "Controls background color"
-#~ msgstr "控制器背景的颜色"
-
-#~ msgid "Background color of the controls."
-#~ msgstr "控制器的背景颜色."
-
-#~ msgid "Controls background color gradient"
-#~ msgstr "控制器背景的渐变颜色"
-
-#~ msgid "Gradient setting for background color of the controls."
-#~ msgstr "控制器的背景渐变颜色设定."
-
-#~ msgid "Controls border color"
-#~ msgstr "控制器边缘颜色"
-
-#~ msgid "Color of the border of the player controls"
-#~ msgstr "播放控制器边缘的颜色"
-
-#~ msgid ""
-#~ "Should the video start automatically. Yes if selected. (NOTE: Probably "
-#~ "because of a flowplayer bug mp3s are always autoplayed.)"
-#~ msgstr ""
-#~ "选取为自动影片播放. (注意: 可能会有 flowplayer 的错误 MP3会永远自动播放.)"
-
-#~ msgid "Background color"
-#~ msgstr "背景颜色"
-
-#~ msgid ""
-#~ "Changes the color of the Flowplayer's background canvas. By default the "
-#~ "canvas is all black. You can specify a value of -1 and the background "
-#~ "will not be drawn (only the video will be visible)."
-#~ msgstr ""
-#~ "改变Flowplayer背景颜色.  黑色为预设.  可以设定为 -1 使背景不会绘出 (只看到"
-#~ "影片)"
-
-#~ msgid "Controls autohide"
-#~ msgstr "控制器自动隐藏"
-
-#~ msgid "fullscreen"
-#~ msgstr "全画面"
-
-#~ msgid ""
-#~ "Specifies whether the controlbar should be hidden when the user is not "
-#~ "actively using the player."
-#~ msgstr "当用户不使用播放器时控制器会否自动隐藏."
-
-#~ msgid "Controls time color"
-#~ msgstr "控制器时间颜色"
-
-#~ msgid ""
-#~ "Value for the font color in the time field. This is the running time."
-#~ msgstr "播放时间栏位的字型颜色值.  "
-
-#~ msgid ""
-#~ "Value for the font color in the time field that specifies the total "
-#~ "duration of the clip or total time."
-#~ msgstr "片段的时间长度的字型颜色值."
-
-#~ msgid "Controls progress bar color"
-#~ msgstr "控制器进程条颜色"
-
-#~ msgid ""
-#~ "Color of the progress bar. This is the bar in the timeline from zero time "
-#~ "to the point where playback is at a given time."
-#~ msgstr "进度条的须色.   这是由零到播放时的时间线."
-
-#~ msgid "Controls progress bar gradient"
-#~ msgstr "控制进程条的渐变度"
-
-#~ msgid "Gradient setting for the progress bar."
-#~ msgstr "控制进程条的渐变设定"
-
-#~ msgid "Controls buffer color"
-#~ msgstr "控制器缓冲颜色"
-
-#~ msgid ""
-#~ "Color of the buffer. The buffer is the bar that indicates how much video "
-#~ "data has been read into the player's memory."
-#~ msgstr "缓冲的颜色.  缓冲是显示有多少片段的资料放入记忆体中."
-
-#~ msgid "Controls buffer gradient"
-#~ msgstr "控制器渐变"
-
-#~ msgid "Gradient setting for the buffer."
-#~ msgstr "控制器渐变设定"
-
-#~ msgid "Controls slider color"
-#~ msgstr "控制器滑行器颜色"
-
-#~ msgid ""
-#~ "Background color for the timeline before the buffer bar fills it. The "
-#~ "same background color is also used in the volume slider."
-#~ msgstr "缓冲在未填上的背景颜色. 同一背景颜色会用在音量控制."
-
-#~ msgid "Controls slider gradient"
-#~ msgstr "控制器滑行器渐变"
-
-#~ msgid "Gradient setting for the sliders."
-#~ msgstr "控制器滑行器渐变设定"
-
-#~ msgid "Controls button color"
-#~ msgstr "控制器按钮颜色"
-
-#~ msgid "Color of the player buttons: stop, play, pause and full screen."
-#~ msgstr "播放器颜色: 停止, 播放, 暂定和全画面."
-
-#~ msgid "Controls hover button color"
-#~ msgstr "控制器按钮徘徊颜色"
-
-#~ msgid "Button color when the mouse is positioned over them."
-#~ msgstr "当滑鼠放在按钮上时的颜色"
-
-#~ msgid "Splash image scale"
-#~ msgstr "封面图片比列"
-
-#~ msgid "fit"
-#~ msgstr "配合"
-
-#~ msgid "orig"
-#~ msgstr "原尺寸"
-
-#~ msgid ""
-#~ "Setting which defines how video is scaled on the video screen. Available "
-#~ "options are:<br /><em>fit</em>: Fit to window by preserving the aspect "
-#~ "ratio encoded in the file's metadata.<br /><em>half</em>: Half-size "
-#~ "(preserves aspect ratio)<br /><em>orig</em>: Use the dimensions encoded "
-#~ "in the file. If the video is too big for the available space, the video "
-#~ "is scaled using the 'fit' option.<br /><em>scale</em>: Scale the video to "
-#~ "fill all available space. This is the default setting."
-#~ msgstr ""
-#~ "设定影片如何缩放.  选项为: <br /><em>配合</em> : 配合视窗但保待比例.<br /"
-#~ "><em>一半</em>: 一半大小 (保待比例)<br /><em>原尺寸</em>: 使用影片的尺寸资"
-#~ "料, 如影片过大, 会缩小到配合画面.<br /><em>缩放</em>: 缩放至容许的空间, 这"
-#~ "为预设."
-
-#~ msgid ""
-#~ "Show the content of an media album with .flv/.mp4/.mp3 movie/audio files "
-#~ "only as a playlist or as separate players on one page with Flowplayer 3."
-#~ msgstr ""
-#~ "显示多媒体相簿中包含 .flv/.mp4/.mp3 movie/audio 档案为列表, 或显示为单页独"
-#~ "立的Flowplayer 3.  "
-
-#~ msgid ""
-#~ "<strong>IMPORTANT:</strong> The Flowplayer 3 plugin needs to be activated "
-#~ "to use this plugin and your theme needs to be modified."
-#~ msgstr ""
-#~ "<strong>重要:</strong> 使用这外挂须要启动 Flowplayer 3 及要修改你的布景主"
-#~ "题."
-
-#~ msgid ""
-#~ "Player width (Note this refers to the player window. The playlist display "
-#~ "itself is styled via CSS.)"
-#~ msgstr "播放器宽 (注意只是指播放器窗口.  播放器列表显示是由CSS.)"
-
-#~ msgid ""
-#~ "Player height (Note this refers to the player window. The playlist "
-#~ "display itself is styled via CSS.)"
-#~ msgstr "播放器高 (注意只是指播放器窗口.  播放器列表显示是由CSS.)"
-
-#~ msgid "Splash image"
-#~ msgstr "封面图片"
-
-#~ msgid ""
-#~ "Check if you want to display the videothumb of the first playlist entry "
-#~ "as a splash/cover image. It will be cropped to the fit the width and "
-#~ "height of the player window and will disappear on starting the playlist."
-#~ msgstr ""
-#~ "剔选若你希望列表第一段影片缩图为封面图片, 它会裁切为适合播放器的尺寸, 当播"
-#~ "放时会消失."
-
-#~ msgid "Google Earth"
-#~ msgstr "Google地图"
-
-#~ msgid "Google Maps API key"
-#~ msgstr "Google地图API Key"
-
-#~ msgid ""
-#~ "If you are going to be using Google Maps, <a href=\"http://www.google.com/"
-#~ "apis/maps/signup.html\" target=\"_blank\">get an API key</a> and enter it "
-#~ "here."
-#~ msgstr ""
-#~ "如果你要使用Google Maps, <a\thref=\"http://www.google.com/apis/maps/"
-#~ "signup.html\" target=\"_blank\">拿到 API key</a> 并在此输入."
-
-#~ msgid "All album points"
-#~ msgstr "所有相簿地点"
-
-#~ msgid ""
-#~ "Controls which image points are shown on an album page. Check to show "
-#~ "points for all images in the album. If not checked points are shown only "
-#~ "for those images whose thumbs are on the page."
-#~ msgstr ""
-#~ "控制在相簿上显示的地点.  剔选去显示相簿中所有图片的地点.  留空则只会显示在"
-#~ "页面上有缩图的图片之地点."
-
-#~ msgid "Map type selector"
-#~ msgstr "地图种类选择"
-
-#~ msgid "Buttons"
-#~ msgstr "按钮"
-
-#~ msgid "List"
-#~ msgstr "列"
-
-#~ msgid "Map background"
-#~ msgstr "地图l背景"
-
-#~ msgid ""
-#~ "Set the map background color to match the one of your theme. (Use the "
-#~ "same <em>color</em> values as in your CSS background statements.)"
-#~ msgstr ""
-#~ "设定地图背景以和布景主题配合. (使用和你CSS背景相同的<em>颜色</em> 值.)"
-
-#~ msgid ""
-#~ "Select the initial type of map to display. <br /><strong>Note:</strong> "
-#~ "If <code>Google Earth</code> is selected the <em>toggle</em> function "
-#~ "which initially hides the map is ignored. The browser <em>Google Earth "
-#~ "Plugin</em> does not initialize properly when the map is hidden."
-#~ msgstr ""
-#~ "选择一开始显示的地图种类. <br /><strong>注意:</strong> 如果 <code>Google "
-#~ "Earth</code> 已选<em>toggle</em> 功能会忽略隐藏地图选项.  若隐藏地图会使浏"
-#~ "览器<em>Google 地图外挂</em>不能正常开始."
-
-#~ msgid ""
-#~ "A plugin to print the most common HTML meta tags to the head of your "
-#~ "site's pages. Tags are selected from existing Zenphoto info such as "
-#~ "gallery description, tags, or Zenpage news categories."
-#~ msgstr ""
-#~ "这外挂会印出最常见的 HTML meta标签到网站的页面的顶端, 标签使用现存的 "
-#~ "Zenphoto 资料如相馆描述, 标签或 Zenpage 新闻分类."
-
-#~ msgid ""
-#~ "Provides the means to set an limit of the number of images that can be "
-#~ "uploaded to an album from the admin upload tab."
-#~ msgstr "设定一个管理后台上载分页可以上载到相簿的图片上限总数.  "
-
-#~ msgid "Upload limit"
-#~ msgstr "上载上限:"
-
-#~ msgid ""
-#~ "The maximum number of images per album if uploading via the multifile "
-#~ "upload."
-#~ msgstr "通过多档案上载到相簿的图片最大数目."
-
-#~ msgid "Disable new album creation"
-#~ msgstr "关闭新相簿建立"
-
-#~ msgid "There is a plugin conflict with <em>image_upload_limiter</em>"
-#~ msgstr "有一个外挂和 <em>image_upload_limiter</em> 起冲突"
-
-#~ msgid ""
-#~ "The album exceeded the image number limit. You cannot upload more images!"
-#~ msgstr " 这个相簿超过图片数目上限.  你不能再上载图片!"
-
-#~ msgid "Maximum number of images left for this album: "
-#~ msgstr "这相簿余下的图片总数: "
-
-#~ msgid ""
-#~ "HTTP single file uploading is disabled because upload limitations are in "
-#~ "effect. Please use the <a href=\"javascript:switchUploader('admin-upload."
-#~ "php?uploadtype=multifile');\" >multi file upload</a>"
-#~ msgstr ""
-#~ "由于上载限制生效, HTTP 单一档案已关闭.  请使用 <a href=\"javascript:"
-#~ "switchUploader('admin-upload.php?uploadtype=multifile');\" >多档案上载</a>"
-
-#~ msgid ""
-#~ "<strong>Note:</strong> You can upload a maximum of %s images to each "
-#~ "album."
-#~ msgstr "<strong>注意:</strong> 你可以在每一个相簿上载最多 %s 张图片."
-
-#~ msgid "(%u album)"
-#~ msgid_plural "(%u albums)"
-#~ msgstr[0] " (%u 个相簿)"
-#~ msgstr[1] " (%u 个相簿)"
-
-#~ msgid "PHP version 5 or greater is required."
-#~ msgstr "须要PHP 版本5 或更新版本. "
-
-#~ msgid "Image quota information."
-#~ msgstr "图片配额资料."
-
-#~ msgid "*no owner"
-#~ msgstr "*没有拥有者"
-
-#~ msgid "Assign images to:"
-#~ msgstr "配置图片到:"
-
-#~ msgid "3 stars"
-#~ msgstr "3颗星"
-
-#~ msgid "4 stars"
-#~ msgstr "4颗星"
-
-#~ msgid "5 stars"
-#~ msgstr "5颗星"
-
-#~ msgid "Submit &raquo;"
-#~ msgstr "提交 &raquo;"
-
-#~ msgid ""
-#~ "Text for the body of the email sent to the user. <p class=\"notebox"
-#~ "\"><strong>Note:</strong> You must include <code>%s</code> in your "
-#~ "message where you wish the registration completion link to appear.</p>"
-#~ msgstr ""
-#~ "会发给用户的电邮内容. <p class=\"notebox\"><strong>注意: </strong>讯息中必"
-#~ "须包含 <code>%s</code> 到希望显示完成登记连结.</p>"
-
-#~ msgid "User registration page"
-#~ msgstr "用户登记页"
-
-#~ msgid ""
-#~ "If checked, CAPTCHA validation will be required for user registration."
-#~ msgstr "如剔选, 新用户登记时要验证码查证."
-
-#~ msgid "Default user rights"
-#~ msgstr "预设用户权限"
-
-#~ msgid "View Rights"
-#~ msgstr "显示权限"
-
-#~ msgid ""
-#~ "Initial rights for the new user.<br />Set to <em>No rights</em> if you "
-#~ "want to approve the user.<br />Set to <em>View Rights</em> to allow "
-#~ "viewing the gallery once the user is verified."
-#~ msgstr ""
-#~ "用户的初始权限.<br /> 如想审核用户请设定 <em>没有权限</em> .<br />设定 "
-#~ "<em>观看权限</em> 令用户一旦验证后就可以浏览相馆."
-
-#~ msgid "*no page selected"
-#~ msgstr "*没有选择页面"
-
-#~ msgid ""
-#~ "Logs all attempts to login to or illegally access the admin pages. Log is "
-#~ "kept in <em>security_log.txt</em> in the %s folder."
-#~ msgstr ""
-#~ "记录所有尝试登入到或不合法存取管理页面. 保存在 %s 资料夹的 "
-#~ "<em>security_log.txt</em>."
-
-#~ msgid "Back-end"
-#~ msgstr "后台"
-
-#~ msgid "Front-end"
-#~ msgstr "前台"
-
-#~ msgid "Blocked access"
-#~ msgstr "拦截存取"
-
-#~ msgid "Blocked album"
-#~ msgstr "拦截相簿"
-
-#~ msgid "XSRF access blocked"
-#~ msgstr "XSRF 存取拦截"
-
-#~ msgid "Removed setup file"
-#~ msgstr "已移除安装档案"
-
-#~ msgid "sitemap cache cleared."
-#~ msgstr "网页导览快取已清除."
-
-#~ msgid ""
-#~ "Generates a sitemaps.org compatible XML file, for use with Google and "
-#~ "other search engines. It supports albums and images as well as optionally "
-#~ "Zenpage pages, news articles and news categories. Renders the sitemap if "
-#~ "called via \"www.yourdomain.com/zenphoto/sitemap.php\" in the URL."
-#~ msgstr ""
-#~ "产生 sitemaps.org 兼容的 XML 档案, 以供 Google 或其他搜寻器使用.  它支援相"
-#~ "簿和图片, 以及 Zenpage 页面, 新闻和新闻类别. 到 \"www.yourdomain.com/"
-#~ "zenphoto/sitemap.php\" 呈现网站地图."
-
-#~ msgid "Sitemap cache expire"
-#~ msgstr "网页导览(Sitemap)快取过期"
-
-#~ msgid ""
-#~ "When the cache should expire in seconds. Default is 86400 seconds (1 day  "
-#~ "= 24 hrs * 60 min * 60 sec).The cache can also be cleared on the admin "
-#~ "overview page manually."
-#~ msgstr ""
-#~ "快取过期的时间, 以秒作单位.  预设是 86400 秒 (1日 = 24 小时 * 60 分钟 * "
-#~ "60 秒). 快取也可以在管理概览页中手动清除."
-
-#~ msgid "Disable cache"
-#~ msgstr "关闭快取"
-
-#~ msgid "Clear the static sitemap cache. It will be re-cached if requested."
-#~ msgstr "清除静态网页导览(sitemap)快取.  当被请求时会再放到快取.  "
-
-#~ msgid ""
-#~ "Width of the images in the slideshow. <em>[jQuery mode option]</em><br /"
-#~ ">If empty the theme options <em>image size</em> is used."
-#~ msgstr ""
-#~ "幻灯片播放中的图片宽度. <em>[jQuery mode option]</em><br /> 留空表示会使用"
-#~ "布景主题选项中的<em>图片大小</em>."
-
-#~ msgid ""
-#~ "Height of the images in the slideshow. <em>[jQuery mode option]</em><br /"
-#~ ">If empty the theme options <em>image size</em> is used."
-#~ msgstr ""
-#~ "幻灯片播放中的图片高度. <em>[jQuery mode option]</em><br /> 留空表示会使用"
-#~ "布景主题选项中的<em>图片大小</em>."
-
-#~ msgid ""
-#~ "Check if you want to use your watermark on the images <em>[jQuery mode "
-#~ "option]</em>."
-#~ msgstr ""
-#~ "如你要在幻灯片之下显示图片水印请剔选此项<em>[jQuery mode option]</em>."
-
-#~ msgid "flash"
-#~ msgstr "闪现"
-
-#~ msgid ""
-#~ "<em>jQuery</em> for JS ajax slideshow, <em>flash</em> for flash based "
-#~ "slideshow.)"
-#~ msgstr ""
-#~ "<em>jQuery</em> 为 JS ajax 幻灯片播放, <em>flash</em> 为flash型式的幻灯片"
-#~ "播放.)"
-
-#~ msgid ""
-#~ "Width of the Flowplayer display for the slideshow <em>(Flash mode)</em>."
-#~ msgstr "幻灯片显示的 Flowplayer 宽度<em>(Flash 模式)</em>."
-
-#~ msgid ""
-#~ "Height of the Flowplayer display for the slideshow <em>(Flash mode)</em>."
-#~ msgstr "幻灯片显示的 Flowplayer 高度<em>(Flash 模式)</em>."
-
-#~ msgid "Click on the right in the player control bar to view full size."
-#~ msgstr "点击播放器的控制栏的右方以全尺寸显示."
-
-#~ msgid "Content generated dynamically in %u seconds"
-#~ msgstr "在 %u 秒内产生内容"
-
-#~ msgid ""
-#~ "Prints a tag cloud of all image tags from an album optionally including "
-#~ "the subalbums or the album tags including sub album tags."
-#~ msgstr "印出相簿的所有相片标签云, 可以选择要要包括的子相簿标签.  "
-
-#~ msgid ""
-#~ "Enables jQuery tag suggestions on the search field. Just activate the "
-#~ "plugin and the feature is available on the theme's search field."
-#~ msgstr ""
-#~ "使用 jQuery 标签建议到搜寻栏位. 只要启动这外挂, 这功能就可以在布景主题的搜"
-#~ "寻栏位上用到."
-
-#~ msgid ""
-#~ "an adaption of Remy Sharp's <a href='http://remysharp.com/2007/12/28/"
-#~ "jquery-tag-suggestion/ '>jQuery Tag Suggestion</a>"
-#~ msgstr ""
-#~ "Remy Sharp's <a href='http://remysharp.com/2007/12/28/jquery-tag-"
-#~ "suggestion/ '>jQuery Tag Suggestion</a>的改写版本"
-
-#~ msgid "Tiny MCE text editor for backend textareas"
-#~ msgstr "Tiny MCE 后台文字编辑器"
-
-#~ msgid "Group:"
-#~ msgstr "组别:"
-
-#~ msgid ""
-#~ "If enabled, a login form will be displayed if the viewer is not logged in."
-#~ msgstr "如启动, 浏览者未登入会显示登入表格."
-
-#~ msgid "Visit gallery page"
-#~ msgstr "观看相馆主页"
-
-#~ msgid "%1$u new item in <em>%2$s</em>: %3$s"
-#~ msgstr "<em>%2$s</em>: %3$s 有 %1$u 个新项目"
-
-#~ msgid "%1$u new items in <em>%2$s</em>: %3$s"
-#~ msgstr "<em>%2$s</em>: %3$s 有 %1$u 个新项目"
-
-#~ msgid ""
-#~ "How many news articles you want to show per page on the news article "
-#~ "admin page."
-#~ msgstr "在新闻管理每页显示多少新闻文章."
-
-#~ msgid "News page name"
-#~ msgstr "新闻 页名称"
-
-#~ msgid ""
-#~ "If you want to rename the theme page <em>news.php</em> that is used to "
-#~ "display news, you need to enter the new name without the .php suffix here."
-#~ msgstr ""
-#~ "如果你要重新命名布景主题页 <em>news.php</em> 以显示新闻, 你须要在这里输入"
-#~ "新名字(没有 .php 字尾). "
-
-#~ msgid ""
-#~ "<strong>Note: </strong>If you use mod_rewrite you need to modify your "
-#~ "<em>.htaccess</em> file manually, too!"
-#~ msgstr ""
-#~ "<strong>注意: </strong>如果使用 mod_rewrite , 你要手动修改 <em>.htaccess</"
-#~ "em!"
-
-#~ msgid ""
-#~ "If you want to rename the theme page <em>pages.php</em> that is used to "
-#~ "display pages, you need to enter the new name without the .php suffix "
-#~ "here."
-#~ msgstr ""
-#~ "如果你要重新命名布景主题页 <em>pages.php</em> 以显示页面, 你须要在这里输入"
-#~ "新名字(没有 .php 字尾). "
-
-#~ msgid ""
-#~ "Set to enable the CombiNews feature to show news articles and latest "
-#~ "gallery items together on the news section's overview page(s)."
-#~ msgstr ""
-#~ "设定使用 CombiNews  功能以同时显示新闻文章及最新相馆项目在新闻区域概览页."
-
-#~ msgid ""
-#~ "<strong>Note:</strong> Images/albums and news articles are still "
-#~ "separate, your Zenphoto gallery is not touched in any way! "
-#~ "<strong>IMPORTANT: This feature requires MySQL 4.1 or later.</strong>"
-#~ msgstr ""
-#~ " <strong>注意:</strong> 图片/相簿和新闻文章仍然是分开, Zenphoto相馆是没有"
-#~ "任何改动! <strong>重要: 这功能须要MySQL 4.1 或更新版本.</strong>"
-
-#~ msgid "CombiNews: Gallery page link"
-#~ msgstr "CombiNews: 相馆页连结"
-
-#~ msgid ""
-#~ "The text for the 'read more'/'view more' link to the gallery page for "
-#~ "images/movies/audio."
-#~ msgstr "'阅读更多'/'显示更多' 文字 连结到相馆 图片/影片/声音页."
-
-#~ msgid "CombiNews: Mode"
-#~ msgstr "CombiNews: 模式"
-
-#~ msgid "latest images: sized image"
-#~ msgstr "最新图片: 缩放图片"
-
-#~ msgid "latest images: thumbnail"
-#~ msgstr "最新图片: 缩图"
-
-#~ msgid "latest albums: sized image"
-#~ msgstr "最新相簿: 缩放图片"
-
-#~ msgid "latest albums: thumbnail"
-#~ msgstr "最新相簿: 缩图"
-
-#~ msgid "latest albums: thumbnail-customcrop"
-#~ msgstr "最新相簿: 缩图-自定裁切"
-
-#~ msgid "latest images: thumbnail-customcrop"
-#~ msgstr "最新图片: 缩图-缩图-自定裁切"
-
-#~ msgid "latest images by album: thumbnail"
-#~ msgstr "相簿最新图片: 缩图"
-
-#~ msgid "latest images by album: thumbnail-customcrop"
-#~ msgstr "相簿最新图片: 缩图-缩图-自定裁切"
-
-#~ msgid "latest images by album: sized image"
-#~ msgstr "相簿最新图片: 缩放图片"
-
-#~ msgid ""
-#~ "What you want to show within the CombiNews section.<br /><ul><li>Latest "
-#~ "images: Entries for all images ever added</li><li>Latest albums: Entries "
-#~ "for all albums ever created</li><li>Latest images by album: Entries for "
-#~ "all images but grouped by images that have been added within a day to "
-#~ "each album (Scheme: 'x new images in album y on date z')</li></ul>"
-#~ msgstr ""
-#~ "你想要在 CombiNews 显示的.<br /><ul><li>最新图片: 所有加入的相片项目</"
-#~ "li><li>最新相簿: 所有建立的相簿项目</li><li>相簿最新图片: 所有以相簿为分类"
-#~ "在某天加入的相片项目  (方案: '在日期 z 的相簿 y 的 x 个新图片')</li></ul>"
-
-#~ msgid "CombiNews: Sized image size"
-#~ msgstr "CombiNews: 缩放的图片大小"
-
-#~ msgid ""
-#~ "The size of the sized image shown the CombiNews section <em>(only in "
-#~ "latest images-sizedimage or latest albums-sizedimage mode)</em>."
-#~ msgstr ""
-#~ "CombiNews 区的图片缩放大小<em>(只在最新图片- 缩放图片或最新相簿- 缩放图片 "
-#~ "模式)</em>."
-
-#~ msgid "CombiNews: Sort order"
-#~ msgstr "CombiNews: 排列次序"
-
-#~ msgid "id"
-#~ msgstr "id"
-
-#~ msgid ""
-#~ "The sort order for your gallery items within the CombiNews display except "
-#~ "for <em>latest images by album</em> which is by date or mtime only. "
-#~ "'date' (date order), 'id' (added to db order), 'mtime' (upload order)."
-#~ msgstr ""
-#~ "在CombiNews内相馆项目的排列次序, 除了<em>相簿最新图片</em>只以日期/修改时"
-#~ "间排序. '日期' (日期次序), 'id' (加入资料库次序), '修改时间' (上载时间). "
-
-#~ msgid ""
-#~ "<strong>Note: </strong> If you experience unexpected results, this refers "
-#~ "only to the images that are fetched from the database. Even if they are "
-#~ "fetched by id they will be sorted by date with the articles afterwards "
-#~ "since articles only have a date."
-#~ msgstr ""
-#~ "<strong>注意: </strong> 如你遇到意外的结果, 这只指由资料库取出的图片.  虽"
-#~ "然它们以 id 取出, 但会跟着文章以日期排序, 因为文章只有日期."
-
-#~ msgid "CombiNews: Gallery link"
-#~ msgstr "CombiNews: 相馆连结"
-
-#~ msgid ""
-#~ "Choose if you want to link from the image entry to its image page "
-#~ "directly or to the album page (if CombiNews mode is set for albums the "
-#~ "link is automatically only linking to albums). This affects all links of "
-#~ "the entry (<em>title</em>, <em>image</em> and the <em>visit gallery link</"
-#~ "em>"
-#~ msgstr ""
-#~ "选择图片直接连结到图片页或相簿页 (如相簿设定为CombiNews模式会自动连结到相"
-#~ "簿).  这会影响所有项目(<em>标题</em>, <em>图片</em> 和 <em>访问相馆连结</"
-#~ "em>"
-
-#~ msgid "CombiNews: Thumbnail crop width"
-#~ msgstr "CombiNews: 自定缩图裁切宽"
-
-#~ msgid ""
-#~ "For <em>thumbnail custom crop</em> only. Leave empty if you don't want to "
-#~ "use it."
-#~ msgstr "只限 <em>自定缩图裁切</em>. 如不使用请留空."
-
-#~ msgid "CombiNews: Thumbnail crop height"
-#~ msgstr "CombiNews: 自定缩图裁切高"
-
-#~ msgid "CombiNews: Thumbnail width"
-#~ msgstr "CombiNews: 缩图裁切宽"
-
-#~ msgid "CombiNews: Thumbnail height"
-#~ msgstr "CombiNews: 缩图裁切高"
-
-#~ msgid "CombiNews: Thumbnail crop x axis"
-#~ msgstr "CombiNews: 缩图裁切 x 轴"
-
-#~ msgid "CombiNews: Thumbnail crop y axis"
-#~ msgstr "CombiNews: 缩图裁切 y 轴"
-
-#~ msgid ""
-#~ "Set to show the image description with every item if using the CombiNews "
-#~ "mode <em>latest images by album</em> only. Printed as a paragraph."
-#~ msgstr ""
-#~ "设定当只有使用 CombiNews 模式 <em>相簿最新图片</em> 时, 所有项目会显示相片"
-#~ "的描述.  以段落形式显示. "
-
-#~ msgid ""
-#~ "Set to show the image title with every item if using the CombiNews mode "
-#~ "<em>latest images by album</em> only. Printed as h4-headline."
-#~ msgstr ""
-#~ "设定当只有使用 CombiNews 模式 <em>相簿最新图片</em> 时, 所有项目会显示相片"
-#~ "的描述.  以 h4 头条形式显示. "
-
-#~ msgid "CombiNews: Custom title (singular)"
-#~ msgstr "CombiNews: 自定标题 (单数)"
-
-#~ msgid ""
-#~ "Custom title for the article in sprintf() syntax. %1$u = number of new "
-#~ "items, %2$s = title of the album they are in, %3$s = titles of the new "
-#~ "items. Never leave any of these three out! (<em>latest images by album</"
-#~ "em> option only)."
-#~ msgstr ""
-#~ "文章的自定标题 sprintf() 语法. %1$u = 新项目数目, %2$s = 所在的相簿标题, "
-#~ "%3$s = 新项目标题.  不要遗漏三个中任何一个! (只有使用<em>相簿最新图片</em>"
-#~ "选项)."
-
-#~ msgid "CombiNews: Custom title (plural)"
-#~ msgstr "CombiNews: 自定标题 (众数)"
-
-#~ msgid "CombiNews: Custom title - Number of image titles"
-#~ msgstr "CombiNews: 自定标题 - 图片标题数目"
-
-#~ msgid ""
-#~ "How many images titles you want to show with the custom title (<em>latest "
-#~ "images by album</em> option only)."
-#~ msgstr ""
-#~ "在自定标题中显示多少的图片标题 (只有使用<em>相簿最新图片</em> 选项)."
-
-#~ msgid ""
-#~ "Places the latest 3 news articles from Zenphoto.org on the admin overview "
-#~ "page."
-#~ msgstr "把 Zenphoto.org 最新的三篇新闻放在管理概览页."
-
-#~ msgid "News from Zenphoto.org"
-#~ msgstr "Zenphoto.org 的新闻"
-
-#~ msgid "A connection to <em>Zenphoto.org</em> could not be established."
-#~ msgstr "不能建立到 <em>Zenphoto.org</em> 的连接."
-
-#~ msgid "Your browser is not compatible with Google maps"
-#~ msgstr "你的浏览器和Google地图不相容"
-
-#~ msgid "Horizontal rule added"
-#~ msgstr "水平线已加入"
-
-#~ msgid "Menuset id"
-#~ msgstr "选单 id"
-
-#~ msgid "Add Menu set"
-#~ msgstr "加入新选单"
-
-#~ msgid "Delete menu set '%s'"
-#~ msgstr "删除选单 '%s'"
-
-#~ msgid "Menu Manager: Edit Menu Item or add new Menu Item"
-#~ msgstr "选单管理员: 修改选单项目或加入新选单项目"
-
-#~ msgid "All Zenpage news categories"
-#~ msgstr "所有 Zenpage 新闻类别"
-
-#~ msgid "visible"
-#~ msgstr "可见 "
-
-#~ msgid "%s is not a valid getRating() context"
-#~ msgstr "%s 不是正常的 getRating() 内容"
-
-#~ msgid "Enter %s:"
-#~ msgstr "输入 %s:"
-
-#~ msgid ""
-#~ "The options below the 'Zenphoto' drop down do only affect including "
-#~ "images and albums. These options are be used on the fly and are not "
-#~ "sticky if you reload the page (selecting another album or moving between "
-#~ "pages in an album)."
-#~ msgstr ""
-#~ "在'Zenphoto'下拉列表选项只影响图片和相簿.  这选项只在工作中使用, 当重新载"
-#~ "入时不会保持 (选择其他相簿和其他相簿的图片)."
-
-#~ msgid ""
-#~ "Include the thumbnail of the size set in Zenphoto's options, a custom "
-#~ "thumbnail (size for the longest side / cropwidth x cropheight), the sized "
-#~ "image as set in Zenphoto's options or a custom size (size is for the "
-#~ "longest side of the image)."
-#~ msgstr ""
-#~ "以Zenphoto内设定的缩图大小以加入缩图, 自定缩图(最长边大小/ 裁切宽 x 裁切"
-#~ "高), 缩放缩图图片相等在Zenphoto选项或自订大小(图片最长边长度)"
-
-#~ msgid ""
-#~ "If you like to do some direct styling you can also use TinyMCE's image "
-#~ "button or source code editor. <br />Also you can customize the CSS output "
-#~ "yourself by directly changing the textwrap variables in line 47 and 50 in "
-#~ "<em>tinyzenpage/js/dialog.php</em>."
-#~ msgstr ""
-#~ "如须要可以直接使用TinyMCE图片按钮作风格化或直接以代码编辑器.  <br />同时你"
-#~ "可自定CSS, 在<em>tinyzenpage/js/dialog.php</em>第47和50行修改 textwrap 值."
-
-#~ msgid ""
-#~ "A search engine friendly <em>titlelink</em> (aka slug) without special "
-#~ "characters to be used in URLs is generated from the title of the "
-#~ "currently chosen language automatically if a new category is added. You "
-#~ "can edit it later manually if necessary."
-#~ msgstr ""
-#~ "<em>标题连结</em> (aka slug) 是以现有语言的类别加入时自动产生, 对搜寻器友"
-#~ "善要在URLs中没有等殊字元,  你可以在储存后更改它."
-
-#~ msgid ""
-#~ "If you are editing a category check <em>Edit Titlelink</em> if you need "
-#~ "to customize how the title appears in URLs. Otherwise it will be "
-#~ "automatically updated to any changes made to the title. If you want to "
-#~ "prevent this check <em>Enable permaTitlelink</em> and the titlelink stays "
-#~ "always the same (recommended if you use Zenphoto's multilingual mode). "
-#~ "<strong>Note: </strong> <em>Edit titlelink</em> overrides the permalink "
-#~ "setting."
-#~ msgstr ""
-#~ "如果你要自定标题如何显示URLs, 编辑类别时可剔选 <em>编辑标题连结</em>. 要不"
-#~ "然标题在更新会自动产生.  如果你想防止这情形可以剔选 <em>启动 永久连结</"
-#~ "em> 会使标题连结会永远保持 (建议 Zenphoto 多语言模式时使用). <strong>注"
-#~ "意: </strong> <em>编辑标题连结</em> 会覆盖 永久连结 设定."
-
-#~ msgid "Category Title:"
-#~ msgstr "类别标题:"
-
-#~ msgid "New Category Title:"
-#~ msgstr "新类别标题:"
-
-#~ msgid "Enable permaTitleLink"
-#~ msgstr "启动固定标题连结"
-
-#~ msgid "Category TitleLink:"
-#~ msgstr "类别标题连结:"
-
-#~ msgid "Category password:"
-#~ msgstr "类别密码:"
-
-#~ msgid "Category password hint:"
-#~ msgstr "类别密码提示:"
-
-#~ msgid ""
-#~ "<strong>Note:</strong> Articles assigned to multiple categories will take "
-#~ "the protection of the least strict category. So if the article belongs to "
-#~ "any unprotected category it will be unprotected."
-#~ msgstr ""
-#~ "<strong>注意:</strong> 文章配置到多个类别中会令保护跟从为最小的一个. 所以"
-#~ "文章属于没有保护的任何一个类别时会成为没有保护."
-
-#~ msgid "Update Category"
-#~ msgstr "更新类别"
-
-#~ msgid "Save New Category"
-#~ msgstr "储存新类别"
-
-#~ msgid "Update Article"
-#~ msgstr "更新文章"
-
-#~ msgid "Save Article"
-#~ msgstr "储存文章"
-
-#~ msgid "Update Page"
-#~ msgstr "更新页面"
-
-#~ msgid "Save Page"
-#~ msgstr "储存页面"
-
-#~ msgid ""
-#~ "<strong>Note:</strong> This page is either password protected itself or "
-#~ "subpage of a passport protected page."
-#~ msgstr ""
-#~ "<strong>注意:</strong> 这页面可以是自已密码保护或是一个密码保护的页面的子"
-#~ "页面."
-
-#~ msgid "Page password:"
-#~ msgstr "页面密码:"
-
-#~ msgid "Page password hint:"
-#~ msgstr "密码提示:"
-
-#~ msgid "Reset hitcounter (Hits: %1$s)"
-#~ msgstr "重设观看次数 (次数: %1$s)"
-
-#~ msgid "<em>(password protected)</em>"
-#~ msgstr "<em>(密码保护)</em>"
-
-#~ msgid "Prev Page"
-#~ msgstr "上一页"
-
-#~ msgid "Toggle Editor"
-#~ msgstr "编辑器开关"
-
-#~ msgid "<em>This article belongs to a protected category.</em>"
-#~ msgstr "<em>所以文章属于密码保护的类别.</em>"
-
-#~ msgid "News Category RSS"
-#~ msgstr "新闻类别 RSS"
-
-#~ msgid "News and Gallery RSS"
-#~ msgstr "新闻相馆 RSS"
-
-#~ msgid "Zenpage Comments RSS"
-#~ msgstr "Zenpage 留言 RSS"
-
-#~ msgid "News article comments RSS"
-#~ msgstr "新闻文章留言 RSS"
-
-#~ msgid "Page Comments RSS"
-#~ msgstr "页留言 RSS"
-
-#~ msgid "View the photo album %s"
-#~ msgstr "观看相簿 %s"
-
-#~ msgid "Failed to retrieve link <em>%s</em>"
-#~ msgstr "不能提取连结<em>%s</em>"
-
-#~ msgid "Album/Image"
-#~ msgstr "相簿/图片"
-
-#~ msgid "Author/Link"
-#~ msgstr "作者/连结"
-
-#~ msgid "Date/Time"
-#~ msgstr "日期/时间"
-
-#~ msgid "E‑Mail"
-#~ msgstr "E‑Mail"
-
-#~ msgid "SPAM"
-#~ msgstr "垃圾讯息"
-
-#~ msgid "Delete Selected Comments"
-#~ msgstr "删除已选留言"
-
-#~ msgid "Save Order"
-#~ msgstr "储存排序"
-
-#~ msgid "Enable TinyMCE for use in back-end editing."
-#~ msgstr "启用 TinyMCE 为后台的编辑器."
-
-#~ msgid "Checked fields must be valid in a comment posting."
-#~ msgstr "检查留言的栏位为有效."
-
-#~ msgid ""
-#~ "The restore enabled the Zenpage plugin. You should run <a href=\"%1$s/"
-#~ "%2$s/setup.php\">setup</a> to create Zenpage database tables. If tables "
-#~ "are created, you will need repeat thus restore operation."
-#~ msgstr ""
-#~ "这回复启动了Zenpage外挂. 你须要执行<a href=\"%1$s/%2$s/setup.php\">安装</"
-#~ "a> 去建立Zenpage资料库表格. 如表格已建立, 你要重做这次回复."
-
-#~ msgid ""
-#~ "Prints an e-mail contact form that uses Zenphoto's internal validation "
-#~ "functions for e-mail and URL. Name, e-mail address, subject and message "
-#~ "(and if enabled CAPTCHA) are required fields. You need to enter a custom "
-#~ "mail address that should be used for the messages. Supports Zenphoto's "
-#~ "CAPTCHA and confirmation before the message is sent. No other spam filter "
-#~ "support, since mail providers have this anyway."
-#~ msgstr ""
-#~ "印出一封使用 Zenphoto 内置验证电邮和网址的电邮联络表格.  名称, 电邮地址, "
-#~ "主旨, 讯息 (和已启动的验证码)是必须填写.  亦须要一个自定的电邮地址以供接收"
-#~ "讯息.  在寄出前可以使用 Zenphoto 的验证码 和 确认功能.  没有其他防止滥发机"
-#~ "制, 请使用电邮供应商防垃圾电邮功能."
-
-#~ msgid "CAPTCHA field"
-#~ msgstr "验证码栏位"
-
-#~ msgid ""
-#~ "Enable <strong>flowplayer 3</strong> to handle multimedia files. "
-#~ "IMPORTANT: Only one multimedia player plugin can be enabled at the time "
-#~ "and the class-video plugin must be enabled, too. <br /> Please see <a "
-#~ "href='http://flowplayer.org'>flowplayer.org</a> for more info about the "
-#~ "player and its license."
-#~ msgstr ""
-#~ "启动<strong>flowplayer 3</strong>去处理多媒体档案.  重要: 同一时间只可以启"
-#~ "动一个多媒体播放器外挂, 而 class-video 外挂须同时启动. <br>请查阅<a "
-#~ "href='http://flowplayer.org'>flowplayer.org</a>以得到更多有关播放器资料及"
-#~ "版权问题."
-
-#~ msgid ""
-#~ "jQuery jCarousel thumb nav plugin with dynamic loading of thumbs on "
-#~ "request via JavaScript. Place printjCarousel() on your theme's image.php "
-#~ "where you want it to appear. Supports theme based css files (place "
-#~ "jcarousel.css and needed images in your theme's folder)."
-#~ msgstr ""
-#~ "jQuery jCarousel 缩图导航外挂会以 Javascript 动态载入缩图.  放置 "
-#~ "printjCarousel() 在你的布景主题的 image.php 想显示的位置.  支援布景主题  "
-#~ "CSS 档案(放置 jcarousel.css 及所须图片在布景主题资料夹)."
-
-#~ msgid ""
-#~ "Prints a paged thumbs navigation on image.php, independent of the album."
-#~ "php's thumbs. The function contains some predefined CSS ids you can use "
-#~ "for styling. Please see the documentation for more info."
-#~ msgstr ""
-#~ "在 image.php 印出一页缩图作导览, 但和 album.php 的缩图无关.  这功能使用了 "
-#~ "CCS 标签作设计.  进一步资料请看文件. "
-
-#~ msgid "Use CAPTCHA"
-#~ msgstr "使用验证码"
-
-#~ msgid ""
-#~ "Adds static HTML cache functionality to Zenphoto v1.2 or higher. Caches "
-#~ "all Zenphoto pages (incl. Zenpage support) except search.php (search "
-#~ "results, date archive) and the custom error page 404.php. This plugin "
-#~ "uses the folder <em>cache_html</em> and it's subfolders <em>index, "
-#~ "images, albums</em> and <em>pages</em> in Zenphoto's root folder."
-#~ msgstr ""
-#~ "在Zenphoto v1.2 或更新版本加入静态html快取功能.  把Zenphoto所有页面(包括 "
-#~ "Zenpage 支援的)放入快取, 除了 search.php (寻找结果, 日期存档) 和自订的错误"
-#~ "页 404.php.  这外挂会使用 Zenphoto 根资料夹下的 <em>cache_html</em> 资料夹"
-#~ "和它的子资料夹 <em>index, images, albums</em> 及<em>页面</em>."
-
-#~ msgid ""
-#~ "Choose if you want to load the TinyMCE text editor for pages and articles "
-#~ "light or full featured."
-#~ msgstr "选取以在页面或文章载入轻便或全功能的 TinyMCE 文字编辑器"
-
-#~ msgid ""
-#~ "The tinyZenpage page on the Zenpage project site: <a href='http://zenpage."
-#~ "maltem.de/pages/tinyZenpage' title='Zenpage project site'>zenpage.maltem."
-#~ "de/pages/tinyZenpage</a>"
-#~ msgstr ""
-#~ "在 Zenpage 计划的 tinyZenpage 网页: <a href='http://zenpage.maltem.de/"
-#~ "pages/tinyZenpage' title='Zenpage project site'>zenpage.maltem.de/pages/"
-#~ "tinyZenpage</a>"
-
-#~ msgid ""
-#~ "Are you sure you want to delete this page? THIS CANNOT BE UNDONE AND WILL "
-#~ "ALSO DELETE ALL SUBPAGES OF THIS PAGE!"
-#~ msgstr "是否真的肯定要删除本页面? 这是不能恢复同时会删除所有子页面的!"
-
-#~ msgid "Get Adobe Flash."
-#~ msgstr "下载Adobe Flash."
-
-#~ msgid "Enter Captcha"
-#~ msgstr "输入验证码"
-
-#~ msgid ""
-#~ "Powered by <a href=\"http://www.zenphoto.org\" title=\"A simpler web "
-#~ "photo album\"><span id=\"zen-part\">zen</span><span id=\"photo-part"
-#~ "\">PHOTO</span></a> <span id=\"IE-clear-part\">with</span> <a href="
-#~ "\"http://www.zenphoto.org/2009/03/zenpage-a-cms-plugin-for-zenphoto/"
-#~ "\"><span id=\"zen-part\">zen</span><span id=\"photo-part\">PAGE</span></a>"
-#~ msgstr ""
-#~ "由<a href=\"http://www.zenphoto.org\" title=\"简洁的网上相簿\"><span id="
-#~ "\"zen-part\">zen</span><span id=\"photo-part\">PHOTO</span></a> <span id="
-#~ "\"IE-clear-part\">及</span> <a href=\"http://www.zenphoto.org/2009/03/"
-#~ "zenpage-a-cms-plugin-for-zenphoto/\"><span id=\"zen-part\">zen</"
-#~ "span><span id=\"photo-part\">PAGE</span></a>提供"
-
-#~ msgid "Clearing and refreshing cache for %s"
-#~ msgstr "清除及刷新  %s 的快取"
-
-#~ msgid "Reset\thitcounters"
-#~ msgstr "重设\t观看次数"
-
-#~ msgid "View Gallery: %s"
-#~ msgstr "观看相馆: %s"
-
-#~ msgid "Captcha"
-#~ msgstr "验证码"
-
-#~ msgid "You can also upload ZIP files containing files of these types."
-#~ msgstr "你可以上载 ZIP 档案内包含这些可接受格式."
-
-#~ msgid ""
-#~ "You have a problem with your javascript or your browser's flash plugin is "
-#~ "not supported."
-#~ msgstr "你的浏览器有 javascript 问题或未支援Flash."
-
-#~ msgid "<strong>%1$u</strong> Comment (<strong>%2$u</strong> in moderation)"
-#~ msgid_plural ""
-#~ "<strong>%1$u</strong> Comments (<strong>%2$u</strong> in moderation)"
-#~ msgstr[0] "<strong>%1$u</strong> 个留言 (%2$u 在审核中)"
-#~ msgstr[1] "<strong>%1$u</strong> 个留言 (%2$u 在审核中)"
-
-#~ msgid "<strong>%1$u</strong> Page (<strong>%2$u</strong> unpublished)"
-#~ msgid_plural ""
-#~ "<strong>%1$u</strong> Pages (<strong>%2$u</strong> unpublished)"
-#~ msgstr[0] "<strong>%1$u</strong> 页面(<strong>%2$u</strong> 未发表)"
-#~ msgstr[1] "<strong>%1$u</strong> 页面(<strong>%2$u</strong> 未发表)"
-
-#~ msgid "<strong>%1$u</strong> News (<strong>%2$u</strong> unpublished)"
-#~ msgid_plural ""
-#~ "<strong>%1$u</strong> News (<strong>%2$u</strong> unpublished)"
-#~ msgstr[0] "<strong>%1$u</strong> 篇新闻(<strong>%2$u</strong> 未发表)"
-#~ msgstr[1] "<strong>%1$u</strong> 篇新闻(<strong>%2$u</strong> 未发表)"
-
-#~ msgid ""
-#~ "Clears the RSS cache. RSS files will be re-cached as they are viewed."
-#~ msgstr "清除 RSS 快取.  相片当被观看时会再放到快取.  "
-
-#~ msgid "getSubAlbums is deprecated. Use getAlbums()."
-#~ msgstr "getSubAlbums已淘汰.  请使用 getAlbums()."
-
-#~ msgid "getNumSubAlbums is deprecated. Use getNumAlbums()."
-#~ msgstr "getNumSubAlbums 已淘汰.  请使用 getNumAlbums()."
-
-#~ msgid ""
-#~ "Check your <strong>zp-config.php</strong> file for the correct "
-#~ "<em><strong>host</strong>, <strong>user name</strong>, and "
-#~ "<strong>password</strong></em>."
-#~ msgstr ""
-#~ "检查你的<strong>zp-config.php</strong>档案是否已有正确的"
-#~ "<em><strong>host(主机)</strong>, <strong>user name(用户名称)</strong>, 及 "
-#~ "<strong>password(密码)</strong></em>."
-
-#~ msgid ""
-#~ "Note that you may need to change the <em>host</em> from localhost if your "
-#~ "web server uses a separate MySQL server, which is common in large shared "
-#~ "hosting environments like Dreamhost and GoDaddy."
-#~ msgstr ""
-#~ "请注意你须要把<em>host(主机)</em>由localhost(本机)修改至其他值, 当你的网站"
-#~ "伺服器是使用另外一部MySQL伺服器, 在Dreamhost和GoDaddy这些大型网页寄存公司"
-#~ "是很常见的做法."
-
-#~ msgid "Also make sure the server is running, if you control it."
-#~ msgstr "同时如果你可以控制伺服器, 请确定它正在运作."
-
-#~ msgid "Make sure it already exists, create it if you need to."
-#~ msgstr "肯定它已存在, 否则须要的就建立一个."
-
-#~ msgid ""
-#~ "Also make sure the user you're trying to connect with has privileges to "
-#~ "use this database."
-#~ msgstr "同时肯定你连接的资料库用户有足够的权限去使用这个资料库."
-
-#~ msgid "It looks like your zenphoto tables haven't been created."
-#~ msgstr "很大可能你的zenphoto表格还未建立."
-
-#~ msgid ""
-#~ "You may need to run <a href=\"%s/%s/setup.php\">the setup script.</a>"
-#~ msgstr "可能要执行<a href=\"%s/%s/setup.php\">安装程式.</a>"
-
-#~ msgid "Flourescent"
-#~ msgstr "荧光灯"
-
-#~ msgid "Incandescense"
-#~ msgstr "白热灯"
-
-#~ msgid "<strong>%1$u</strong> Pages (<strong>%2$u</strong> unpublished)"
-#~ msgstr "<strong>%1$u</strong> 页面(<strong>%2$u</strong> 未发表)"
-
-#~ msgid ""
-#~ "Provides trackback functionality to comments. Tracksbacks are available "
-#~ "for images and albums as well as Zenpage news articles and pages. "
-#~ "Trackback pings currently available only for news articles and pages. "
-#~ "CAUTION: BETA STATUS. BETA STATUS Known bug: Does not work with sites in "
-#~ "subdomains!"
-#~ msgstr ""
-#~ "提供引用功能到留言.  引用可在图片和相簿及Zenpage新闻文章和页面使用, 而引用"
-#~ "侦测只可在新闻文章及页面上使用. 注意: 试用状态. 试用状态已知错误: 不能在子"
-#~ "网域网站使用."
-
-#~ msgid "Allow trackbacks on"
-#~ msgstr "容许引用在"
-
-#~ msgid "Trackbacking your entry..."
-#~ msgstr "你的项目引用中..."
-
-#~ msgid ""
-#~ "I found your entry interessting so I've added a Trackback to it on my "
-#~ "weblog."
-#~ msgstr "我发现这主题很有趣, 所以我已引用在我的网志中. "
-
-#~ msgid "An error occured while trying to log your trackback..."
-#~ msgstr "在记录你的引用时发生错误... "
-
-#~ msgid "Trackback send to <em>%s</em>."
-#~ msgstr "发出引用到<em>%s</em>."
-
-#~ msgid "Trackback to <em>%1$s</em> failed...%2$s"
-#~ msgstr "引用到 <em>%1$s</em> 失败...%2$s"
-
-#~ msgid "No trackbacks were auto-discovered..."
-#~ msgstr "没有自动发现的引用..."
-
-#~ msgid "This trackback already exists!"
-#~ msgstr "这引用已经存在!"
-
-#~ msgid "Send trackback ping"
-#~ msgstr "发出引用侦测"
-
-#~ msgid ""
-#~ "Attaches \"Effenberger effects\" to images and thumbnails. This plugin is "
-#~ "intended as an example for the use of the <em>image_html</em> filters."
-#~ "<br /><strong>Due to licensing considerations no effects are included "
-#~ "with this plugin.</strong> See <a href=\"http://www.netzgesta.de/cvi/"
-#~ "\">CVI Astonishing Image Effects</a> by Christian Effenberger to select "
-#~ "and download effects. Unzip the file you download and copy the "
-#~ "<code><em>effect</em></code>.js file to the <code>/%s/"
-#~ "effenberger_effects</code> folder.<br />All testing was done with the "
-#~ "<code>default</code> theme. No warranty is made that any particular "
-#~ "effect will work with any particular theme."
-#~ msgstr ""
-#~ "加入  \"Effenberger effects\" 到相簿及图片.  这外挂是想作为 "
-#~ "<em>image_html</em> 滤镜的使用例子.<br /><strong> 由于版权问题外挂中没有附"
-#~ "带效果.  </strong> 查阅 <a href=\"http://www.netzgesta.de/cvi/\">CVI "
-#~ "Astonishing Image Effects</a> by Christian Effenberger 去选择下载.  解压下"
-#~ "载的档案后复制<code><em>effect</em></code>.js file 到 <code>/%s/"
-#~ "effenberger_effects</code> 资料夹.  <br />所有测试都在<code>预设</code> 布"
-#~ "景主题中测试, 不能保证在其他布景主题中可以使用."
-
-#~ msgid "Modifiers for <em>%s</em>"
-#~ msgstr "<em>%s</em> 的修改器"
-
-#~ msgid ""
-#~ "Due to licensing considerations no effects are included with this plugin. "
-#~ "See <a href=\"http://www.netzgesta.de/cvi/\">CVI Astonishing Image "
-#~ "Effects</a> by Christian Effenberger to select and download effects. "
-#~ "Unzip the file you download and copy the <code><em>effect</em></code>.js "
-#~ "file to a folder named <code>effenberger_effects</code> in the global "
-#~ "plugins folder."
-#~ msgstr ""
-#~ "由于版权问题外挂中没有包括任何效果.  查阅 <a href=\"http://www.netzgesta."
-#~ "de/cvi/\">CVI Astonishing Image Effects</a> by Christian Effenberger 去选"
-#~ "择及下载其他效果.  解压下载后的档案后复制<code><em>effect</em></code>.js "
-#~ "档案到全部外挂的 <code>effenberger_effects</em></code> 资料夹中."
-
-#~ msgid "No <em>effects</em> scripts found."
-#~ msgstr "<em>effects</em> 程式不存在."
-
-#~ msgid ""
-#~ "An example of how to create extensions to the administrative toolbox on "
-#~ "your theme pages."
-#~ msgstr "如何建立在布景主题页面显示管理工具箱的扩展套件例子."
-
-#~ msgid "Email all posters when a new comment is made on an item."
-#~ msgstr "当在项目上有新留言时发出电邮给所有张贴者."
-
-#~ msgid "A reply has been posted on album \"%1$s\"."
-#~ msgstr "回应张贴在相簿 \"%1$s\"."
-
-#~ msgid "A reply has been posted on article \"%1$s\"."
-#~ msgstr "回应张贴在文章 \"%1$s\"."
-
-#~ msgid "A reply has been posted on page \"%1$s\"."
-#~ msgstr "回应张贴在页面 \"%1$s\"."
-
-#~ msgid "A reply has been posted on \"%1$s\" the album \"%2$s\"."
-#~ msgstr "回应张贴在 \"%1$s\" 相簿 \"%2$s\"."
-
-#~ msgid "Reply posted"
-#~ msgstr "回应已张贴"
-
-#~ msgid "Example filter for custom data."
-#~ msgstr "自定资料的过滤器例子."
-
-#~ msgid "Special data:"
-#~ msgstr "特别资料:"
-
-#~ msgid "Extra information:"
-#~ msgstr "额外资料: "
-
-#~ msgid ""
-#~ "Address information. (Provided for you by the <code>filter-custom_data</"
-#~ "code> <em>admin custom data</em> filters.)"
-#~ msgstr ""
-#~ "地址资讯. (由<code>filter-custom_data</code> <em>admin custom data</em> 过"
-#~ "滤器提供.)"
-
-#~ msgid ""
-#~ "Adds admin user who uploaded image to the description of the image (and "
-#~ "to the album description if the album did not already exist.)"
-#~ msgstr "加入管理用户名称到图片描述(如相簿不存在亦同时加到相簿描述)"
-
-#~ msgid ""
-#~ "For this to work with ZIP files you must have ZZIPlib configured in your "
-#~ "PHP."
-#~ msgstr "PHP必须要有ZZIPlib设定可以运用ZIP档案."
-
-#~ msgid "<strong>You do not have ZZIPlib configured.</strong>"
-#~ msgstr "<strong>未有 ZZIPlib 设定.</strong>"
-
-#~ msgid "Created by: "
-#~ msgstr "建立者:"
-
-#~ msgid "Uploaded by: "
-#~ msgstr "上载者:"
-
-#~ msgid ""
-#~ "Apply <img src=\"%1$s/images/lock.png\" alt=\"\"/> over thumbnails of "
-#~ "<em>password protected</em> albums and <img src=\"%1$s/images/action.png"
-#~ "\" alt=\"\"/> over thumbnails of <em>not published</em> albums and "
-#~ "<em>not visible</em> images."
-#~ msgstr ""
-#~ "使用 <img src=\"%1$s/images/lock.png\" alt=\"\"/>  作为 <em>密码保护</em> "
-#~ "相簿的缩图和<img src=\"%1$s/images/action.png\" alt=\"\"/> 作为<em>末发表"
-#~ "</em> 相簿和 <em>不可见图片</em> 图片的缩图."
-
-#~ msgid ""
-#~ "Enable <strong>FLV player 4.x</strong> to handle multimedia files. "
-#~ "<strong>No <em>FLVPlayer</em> player files are included with this plugin "
-#~ "due to licensing considerations.</strong> Please download these files "
-#~ "from the <a href=\"http://www.longtailvideo.com/players/jw-flv-player/"
-#~ "\">Longtail Video</a> site. Extract the files \"player*.swf\" and "
-#~ "\"swobjects.js\" into <code>/%s/flvplayer/</code>. <br />IMPORTANT: Only "
-#~ "one multimedia player plugin can be enabled at the time. The class-video "
-#~ "plugin must be enabled."
-#~ msgstr ""
-#~ "启动 <strong>FLV player 4.x</strong> 处理多媒体档案. <strong>由于版权问"
-#~ "题, 没有<em>FLVPlayer</em> 播放器档案包括在外挂内.</strong> 请到 <a href="
-#~ "\"http://www.longtailvideo.com/players/jw-flv-player/\">Longtail Video</"
-#~ "a> 网站下载相关档案.  解压档案到 \"player*.swf\" 和 \"swobjects.js\" 到"
-#~ "<code>/%s/flvplayer/</code>. <br />重要:  同一时间只可以启动一个播放器外"
-#~ "挂.  class-video 外挂一定要启动."
-
-#~ msgid "No FLV Player"
-#~ msgstr "没有FLV 播放器"
-
-#~ msgid ""
-#~ "No <em>FLVPlayer</em> player files are included with this plugin due to "
-#~ "licensing considerations. Please download these files from the <a href="
-#~ "\"http://www.longtailvideo.com/players/jw-flv-player/\">Longtail Video</"
-#~ "a> site. Extract the files and place the files \"player*.swf\" and "
-#~ "\"swobjects.js\" in a folder named <code>flvplayer</code> in the global "
-#~ "plugins folder."
-#~ msgstr ""
-#~ "<strong>由于版权问题, 没有<em>FLVPlayer</em> 播放器档案包括在外挂内.</"
-#~ "strong> 请到 <a href=\"http://www.longtailvideo.com/players/jw-flv-player/"
-#~ "\">Longtail Video</a> 网站下载相关档案.  解压档案到\"player*.swf\"和 "
-#~ "\"swobjects.js\" 到全部外挂的 <code>flvplayer</code> 资料夹中."
-
-#~ msgid "flv player width"
-#~ msgstr "FLV播放器宽"
-
-#~ msgid "flv player height"
-#~ msgstr "FLV播放器高"
-
-#~ msgid ""
-#~ "Player height (ignored for .<em>mp3</em> files if there is no preview "
-#~ "image available.)"
-#~ msgstr "播放列表高 (当没有预览图时会忽略<em>mp3</em>档案.)"
-
-#~ msgid "Autostart"
-#~ msgstr "自动播放"
-
-#~ msgid "Should the video start automatically. Yes if selected."
-#~ msgstr "影片是否自动播放. 剔选为是."
-
-#~ msgid "BufferSize"
-#~ msgstr "缓冲大小"
-
-#~ msgid "Size of the buffer in % before the video starts."
-#~ msgstr "影片开始前以百份比计的缓冲量"
-
-#~ msgid "Controlbar position"
-#~ msgstr "椌制器位置"
-
-#~ msgid "Bottom"
-#~ msgstr "下面"
-
-#~ msgid ""
-#~ "Position of the playlist (only if using the special <code>flvplaylist()</"
-#~ "code> function)."
-#~ msgstr "播放列表位置 (只有当使用特定的<code>flvplaylist()</code> 功能)."
-
-#~ msgid ""
-#~ "When <em>playlist</em> is set to <em>below</em> this refers to the "
-#~ "height, when <em>right</em> this refers to the width of the playlist "
-#~ "(only if using the special <code>flvplaylist()</code> function)."
-#~ msgstr ""
-#~ "当<em>播放列表</em> 设为<em>下方</em>, 这是指高度; 当设为 <em>右方</em>, "
-#~ "这是指播放列表的宽度 (只有在使用特定的 <code>flvplaylist()</code> 函数)."
-
-#~ msgid "Always"
-#~ msgstr "经常 "
-
-#~ msgid ""
-#~ "set to list to play the entire playlist once, to always to continously "
-#~ "play the song/video/playlist and to single to continue repeating the "
-#~ "selected file in a playlist. (only if using the special "
-#~ "<code>flvplaylist()</code> function)."
-#~ msgstr ""
-#~ "设定为整个列表播放一次, 永远连续播放歌曲/影片/播放列表 及重覆播放播放列表"
-#~ "中已选取单一档案.  (只有在使用特定 <code>flvplaylist()</code>函数)."
-
-#~ msgid "flv player width for playlist"
-#~ msgstr "列表的 flv 播放器宽度"
-
-#~ msgid ""
-#~ "Player width for use with the playlist (ignored for <em>mp3</em> files.)"
-#~ msgstr "列表的 flv 播放器宽度 (忽略<em>mp3</em>档案.)"
-
-#~ msgid "flv player height for playlist"
-#~ msgstr "列表的 flv 播放器宽高度"
-
-#~ msgid ""
-#~ "Player height for use with the playlist (ignored for .<em>mp3</em> files "
-#~ "if there is no preview image available.)"
-#~ msgstr "列表的 flv 播放器宽高度 (当没有预览图时会忽略 .<em>mp3</em>档案.)"
-
-#~ msgid "Backcolor"
-#~ msgstr "Backcolor"
-
-#~ msgid "Backgroundcolor of the controls, in HEX format."
-#~ msgstr "控制器的背景颜色, 为 HEX 格式."
-
-#~ msgid "Frontcolor"
-#~ msgstr "Frontcolor"
-
-#~ msgid "Text &amp; buttons color of the controls, in HEX format. "
-#~ msgstr "控制器的文字及按钮颜色, 为HEX格式. "
-
-#~ msgid "Lightcolor"
-#~ msgstr "Lightcolor"
-
-#~ msgid "Rollover color of the controls, in HEX format."
-#~ msgstr "控制器的转换颜色, 以HEX格式. "
-
-#~ msgid "Screencolor"
-#~ msgstr "Screencolor"
-
-#~ msgid "Color of the display area, in HEX format."
-#~ msgstr "显示区域的颜色, 为HEX格式."
-
-#~ msgid "Exactfit"
-#~ msgstr "精确配合"
-
-#~ msgid "Uniform"
-#~ msgstr "一致"
-
-#~ msgid "Fill"
-#~ msgstr "填满"
-
-#~ msgid ""
-#~ "Defines how to resize images in the display. Can be none (no stretching), "
-#~ "exactfit (disproportionate), uniform (stretch with black borders) or fill "
-#~ "(uniform, but completely fill the display)."
-#~ msgstr ""
-#~ "定义如何缩放图片以显示. 可以为 没有(不伸展), 精确配合(不合比例), 一致(以黑"
-#~ "色边框作伸展)或 填满(一致, 个填满整个显示区域)."
-
-#~ msgid "FLV Player support files missing."
-#~ msgstr "FLV 播放器支援缺少的档案."
-
-#~ msgid ""
-#~ "The flv player is not installed. Please install or activate the flv "
-#~ "player plugin."
-#~ msgstr "flv播放器没有安装. 请安装或启动flv播放器外挂."
-
-#~ msgid "Use Captcha"
-#~ msgstr "使用验证码"
-
-#~ msgid ""
-#~ "For <em>thumbnail custom crop</em> only.Leave empty if you don't want to "
-#~ "use it."
-#~ msgstr "只限 <em>自定缩图裁切</em>. 如不使用请留空."
-
-#~ msgid "Captcha length"
-#~ msgstr "验证码 长度"
-
-#~ msgid "Captcha font"
-#~ msgstr "验证码字款"
-
-#~ msgid "Enter Captcha:"
-#~ msgstr "输入验证码:"
-
-#~ msgid "Get Flash"
-#~ msgstr "下载Flash"
-
-#~ msgid "to see this player."
-#~ msgstr "以看到播放器."
-
-#~ msgid "You need Admin Rights or Zenpage rights to use Zenpage"
-#~ msgstr "你须要有管理或Zenpage权限以使用Zenpage"
-
-#~ msgid "image details"
-#~ msgstr "图片资料"
-
-#~ msgid "Use Thickbox"
-#~ msgstr "使用 Thinkbox"
-
-#~ msgid "Subalbum order saved"
-#~ msgstr "子相簿排列已储存"
-
-#~ msgid "mass-edit all album data"
-#~ msgstr "大量编辑所有相簿资料"
-
-#~ msgid "Album order saved"
-#~ msgstr "相簿排序已储存"
-
-#~ msgid "Delete <em>%s</em>"
-#~ msgstr "删除 <em>%s</em>"
-
-#~ msgid "Imagick is present on your server. Check this option to enalbe it."
-#~ msgstr "伺服器发现有 Imagick 支援.  剔选此项以启动它."
-
-#~ msgid "Abort"
-#~ msgstr "中止"
-
-#~ msgid "Missing zlib extensions"
-#~ msgstr "缺少zlib扩展部件"
-
-#~ msgid "Invalid number / type of arguments"
-#~ msgstr "不正确参数数量/型态"
-
-#~ msgid "Invalid variable type p_filelist"
-#~ msgstr "不正确变数型态 p_filelist"
-
-#~ msgid "Invalid variable type %s for p_filelist"
-#~ msgstr "不正确变数型态 %s 在 p_filelist"
-
-#~ msgid "Unable to open archive %s in binary read mode"
-#~ msgstr "不能以二进制读取模式开启压缩档 %s"
-
-#~ msgid "No file with filename"
-#~ msgstr "没有档案名称的档案"
-
-#~ msgid "Invalid variable type p_archive_to_add"
-#~ msgstr "不正确变数型态 p_archive_to_add"
-
-#~ msgid "Unable to read archive"
-#~ msgstr "不能读取压缩档"
-
-#~ msgid "Invalid optional parameter %s for this method"
-#~ msgstr "不正确额外参数 %s"
-
-#~ msgid "Missing parameter value for option"
-#~ msgstr "缺少选项参数"
-
-#~ msgid "Wrong parameter value for option"
-#~ msgstr "错误选项参数"
-
-#~ msgid "Value must be integer, string or array for option"
-#~ msgstr "选项值一定要为整数, 字串, 阵列"
-
-#~ msgid "Too many values in index range for option"
-#~ msgstr "太多选项索引值范围"
-
-#~ msgid "Invalid order of index range for option"
-#~ msgstr "不正确选项索引值"
-
-#~ msgid "Function %1$s is not an existing function for option %2$s"
-#~ msgstr "函数 %1$s 不是现存选项 %2$s 的函数"
-
-#~ msgid "Unknown parameter"
-#~ msgstr "不知名参数"
-
-#~ msgid "Missing mandatory parameter"
-#~ msgstr "缺少必要的参数"
-
-#~ msgid "Invalid file attribute"
-#~ msgstr "不正确档案属性"
-
-#~ msgid "Invalid type %1$s String expected for attribute %2$s"
-#~ msgstr "不正确类型 %1$s 属性 %2$s 应为字串"
-
-#~ msgid "Invalid empty filename for attribute"
-#~ msgstr "档案名称属性不应为空白"
-
-#~ msgid "Invalid empty short filename for attribute"
-#~ msgstr "短档案名称属性不应为空白"
-
-#~ msgid "Invalid empty full filename for attribute %s"
-#~ msgstr "属性 %s 不应为空白完整档案名称 "
-
-#~ msgid "Invalid type %1$s Integer expected for attribute %2$s"
-#~ msgstr "不正确类型 %1$s 属性 %2$s 应为整数"
-
-#~ msgid "Unable to open temporary file %s in binary write mode"
-#~ msgstr "不能以二进制写入模式开启暂存档  %s"
-
-#~ msgid "Zip file %s already open"
-#~ msgstr "Zip 档案 %s 已经开启"
-
-#~ msgid "Unable to open archive %1$s in %2$s mode"
-#~ msgstr "不能以 %2$s 模式开启压缩档 %1$s"
-
-#~ msgid "Invalid file list parameter (invalid or empty list)"
-#~ msgstr "不正确档案名单参数(不正确或空白名单)"
-
-#~ msgid "Unable to open file %s in binary read mode"
-#~ msgstr "在二进制读取模式开启档案 %s"
-
-#~ msgid ""
-#~ "Filename %1$s is compressed by an unsupported compression method (%2$s)"
-#~ msgstr "档案 %1$s 被不支援的压缩法压缩 (%2$s)"
-
-#~ msgid "Unsupported encryption for filename %s"
-#~ msgstr "档案 %s 加密法并不支援"
-
-#~ msgid "Filename %s is outside PCLZIP_OPT_EXTRACT_DIR_RESTRICTION"
-#~ msgstr "档案名称 %s 在 PCLZIP_OPT_EXTRACT_DIR_RESTRICTION 之外"
-
-#~ msgid "Filename %s is already used by an existing directory"
-#~ msgstr "档案名称 %s 已被现有资料夹使用"
-
-#~ msgid "Filename %s exists and is write protected"
-#~ msgstr "档案 %s 已存在并有写入保护"
-
-#~ msgid ""
-#~ "Newer version of %s exists and option PCLZIP_OPT_REPLACE_NEWER is not "
-#~ "selected"
-#~ msgstr "%s 的新版本存在, 同时PCLZIP_OPT_REPLACE_NEWER 选项未选择"
-
-#~ msgid "Invalid archive structure"
-#~ msgstr "不正确压缩档结构"
-
-#~ msgid "Invalid block size :"
-#~ msgstr "不正确区段大小(block size):"
-
-#~ msgid "Unable to go to the end of the archive"
-#~ msgstr "不能去到压缩档未端"
-
-#~ msgid "Unable to seek back to the middle of the archive"
-#~ msgstr "不能去到压缩档中段"
-
-#~ msgid "Unable to find End of Central Dir Record signature"
-#~ msgstr "不能找到End of Central Dir Record符号"
-
-#~ msgid "Invalid End of Central Dir Record size :"
-#~ msgstr "不正确End of Central Dir Record大小:"
-
-#~ msgid "The central dir is not at the end of the archive."
-#~ msgstr "Central Dir不在压缩档未端."
-
-#~ msgid "Some trailing bytes exists after the archive."
-#~ msgstr "压缩档尾部有其他字元."
-
-#~ msgid "Unable to open archive file %s in binary write mode"
-#~ msgstr "不能以二进制写入模式开启压缩档 %s"
-
-#~ msgid "loose (0777)"
-#~ msgstr "宽松 (0777)"
-
-#~ msgid "strict (0755)"
-#~ msgstr "严格 (0755)"
-
-#~ msgid "<em>relaxed</em> (<code>0775</code>)"
-#~ msgstr "<em>放宽</em> (<code>0775</code>)"
-
-#~ msgid "<em>strict</em> (<code>0755</code>)"
-#~ msgstr "<em>严格</em> (<code>0755</code>)"
-
-#~ msgid "MySQL setup in zp-config.php"
-#~ msgstr "MySQL设定在 zp-config.php"
-
-#~ msgid "Manual sorting"
-#~ msgstr "手动排序"
-
-#~ msgid "or Esc Key"
-#~ msgstr "或 Esc 键"
-
-#~ msgid "Set to %s"
-#~ msgstr "设定到 %s"
-
-#~ msgid "Set visible:"
-#~ msgstr "可见设定:"
-
-#~ msgid "Set waiting images to visible."
-#~ msgstr "等待中图片标示为不可见"
-
-#~ msgid "class-textobject requires Zenphoto v 1.2.1 or greater."
-#~ msgstr "class-textobject 须要 Zenphoto v 1.2.1 或更新版本."
-
-#~ msgid "class-image is not compatible with this zenphoto release."
-#~ msgstr "class-image 和zenphoto现版本不兼容."
-
-#~ msgid "Provides mass edit of some image properties."
-#~ msgstr "提供大量编辑图片属性."
-
-#~ msgid "Mass edit"
-#~ msgstr "大量编辑"
-
-#~ msgid "What you want to show within the CombiNews section."
-#~ msgstr "CombiNews 区显示的内容."
-
-#~ msgid "Edit Album:"
-#~ msgstr "编辑相簿:"
-
-#~ msgid "full edit %s"
-#~ msgstr "全编辑 %s"
-
-#~ msgid "%s sec"
-#~ msgstr "%s 秒"
