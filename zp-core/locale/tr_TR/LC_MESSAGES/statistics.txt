@@ -1,9 +1,9 @@
 * Translation                                           Items                Words           Characters
-Translated                                        1106 (24 %)                 3636                25458
-Needs review (fuzzy)                              1899 (41 %)                 8705                60968
+Translated                                        1043 (22 %)                 3443                24107
+Needs work                                        3658 (76 %)                24153               173609
 Translations with errors                                    0
 
  *Source Text
-Strings in source language                               4646                31468               184152
-Needs review (fuzzy)                                                          9538                54978
-Not translated                                    1641 (35 %)                17963               105557
+Strings in source language                               4815                32701               191538
+Needs work                                                                   27342               159772
+Not translated                                      114 (2 %)                 1579                 9335

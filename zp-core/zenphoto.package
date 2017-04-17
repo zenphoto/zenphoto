@@ -1043,6 +1043,7 @@ zp-core/admin-functions.php
 zp-core/admin-globals.php
 zp-core/admin-logs.php
 zp-core/admin-options.php
+zp-core/admin-pages.css
 zp-core/admin-plugins.php
 zp-core/admin-refresh-metadata.php
 zp-core/admin-rtl.css
@@ -1053,7 +1054,6 @@ zp-core/admin-thumbcrop.php
 zp-core/admin-upload.php
 zp-core/admin-users.php
 zp-core/admin.php
-zp-core/admin_pages.css
 zp-core/auth_zp.php
 zp-core/cacheprotect
 zp-core/class-album.php
