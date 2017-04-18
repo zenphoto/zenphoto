@@ -405,10 +405,11 @@ if ($pasteobj && isset($_REQUEST['size'])) {
 								</span>
 							</div>
 							<span class="clearall" ></span>
-							<p class="floatleft">
+							<p>
 								<?php echo gettext('size'); ?>
 								<input type = "text" name = "new_size" id = "new_size" size = "5" value = "<?php echo $originalSize; ?>" />
-								<br />
+							</p>
+							<p>
 								<?php
 								printf(gettext('crop width:%1$s %2$s crop height:%3$s'), '<input type="text" id="aspect-ratio-width" name="aspect-ratio-width" value="" size="5" />', '&nbsp;<span id="aspect" ><a id="swap_button" onclick="swapAspect();" title="' . gettext('swap width and height fields') . '" > <img src="crop_image/swap.png"> </a></span>&nbsp;', '<input type="text" id="aspect-ratio-height" name="aspect-ratio-height" value="" size="5" />');
 								?>
@@ -432,8 +433,7 @@ if ($pasteobj && isset($_REQUEST['size'])) {
 							<input type="hidden" id="subpage" name="subpage" value="<?php echo html_encode($subpage); ?>" />
 							<input type="hidden" id="crop" name="crop" value="crop" />
 							<input type="hidden" id="performcrop" name="performcrop" value="<?php echo html_encode(sanitize($_REQUEST['performcrop'])); ?>" />
-							<p class="floatleft">
-
+							<p>
 								<?php
 								echo gettext('Link image watermark');
 								$watermarks = getWatermarks();
@@ -445,7 +445,8 @@ if ($pasteobj && isset($_REQUEST['size'])) {
 									generateListFromArray(array($current), $watermarks, false, false);
 									?>
 								</select>
-								<br />
+							</p>
+							<p>
 								<?php
 								if (!$pasteobj)
 									echo linkPickerIcon($imageobj, 'imageURI', "+'&pick[picture]=' + $('#imageURI').val().replaceAll('&', ':')");
@@ -473,7 +474,7 @@ if ($pasteobj && isset($_REQUEST['size'])) {
 								} else if ($pasteobj) {
 									?>
 									<button type="button" value="<?php echo gettext('Back') ?>" onclick="<?php echo linkPickerPick($imageobj, 'imageURI', "+'&pick[picture]=' + $('#imageURI').val().replaceAll('&', ':')"); ?> setClean('crop');
-												window.history.back();">
+											window.history.back();">
 										<img src="../images/arrow_left_blue_round.png" alt="" /><strong><?php echo gettext("Done");
 									?></strong>
 									</button>

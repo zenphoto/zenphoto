@@ -109,7 +109,7 @@ zenpageJSCSS();
 				<?php echo gettext('Categories'); ?>
 			</h1>
 
-			<div id="tab_articles">
+			<div class="tabbox">
 				<?php
 				zp_apply_filter('admin_note', 'categories', $subtab);
 				if ($reports) {

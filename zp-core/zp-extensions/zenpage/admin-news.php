@@ -99,7 +99,7 @@ updatePublished('news');
 				<?php echo gettext('Articles'); ?>
 			</h1>
 			<div id = "container">
-				<div id="tab_articles" >
+				<div class="tabbox">
 					<?php
 					zp_apply_filter('admin_note', 'news', $subtab);
 
