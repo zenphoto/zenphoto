@@ -148,15 +148,6 @@ if (empty($themename)) {
 	$gallerydefault = false;
 }
 
-if (count($themelist) > 1) {
-	echo '<form action="#" method="post">';
-	zp_apply_filter('admin_note', 'themes', '');
-	echo gettext("Show theme for: ");
-	echo '<select id="themealbum" class="ignoredirty" name="themealbum" onchange="this.form.submit()">';
-	generateListFromArray(array(pathurlencode($alb)), $themelist, false, true);
-	echo '</select>';
-	echo '</form>';
-}
 if (count($themelist) == 0) {
 	echo '<div class="errorbox" id="no_themes">';
 	echo "<h2>" . gettext("There are no themes for which you have rights to administer.") . "</h2>";
@@ -173,6 +164,15 @@ if (count($themelist) == 0) {
 		<?php
 	}
 	echo "</h1>\n";
+	if (count($themelist) > 1) {
+		echo '<form action="#" method="post">';
+		zp_apply_filter('admin_note', 'themes', '');
+		echo gettext("Show theme for: ");
+		echo '<select id="themealbum" class="ignoredirty" name="themealbum" onchange="this.form.submit()">';
+		generateListFromArray(array(pathurlencode($alb)), $themelist, false, true);
+		echo '</select>';
+		echo '</form>';
+	}
 	?>
 
 	<?php

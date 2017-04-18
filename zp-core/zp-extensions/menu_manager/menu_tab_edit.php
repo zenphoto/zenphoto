@@ -231,7 +231,7 @@ if (is_array($result)) {
 					</span>
 				</p>
 				<br class="clearall" /><br />
-				<div class="box" style="padding:15px; margin-top: 10px">
+				<div style="padding:15px; margin-top: 10px">
 					<?php
 					$action = $type = $id = $link = '';
 					if (is_array($result)) {

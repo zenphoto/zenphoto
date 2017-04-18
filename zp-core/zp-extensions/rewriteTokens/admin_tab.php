@@ -55,7 +55,6 @@ $_definitions = array();
 			</div>
 		</div>
 	</div>
-	<br class="clearall" />
 	<?php printAdminFooter(); ?>
 
 </body>

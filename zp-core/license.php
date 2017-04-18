@@ -58,7 +58,6 @@ echo "\n</head>";
 			</div>
 		</div>
 	</div>
-	<br class="clearall" />
 	<?php printAdminFooter(); ?>
 
 </body>

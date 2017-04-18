@@ -117,99 +117,100 @@ while ($old != $albumname) {
 	$albumname = str_replace('--', '-', $albumname);
 }
 ?>
-<form class="dirtylistening" onReset="setClean('savealbum_form');" id="savealbum_form" action="?savealbum" method="post">
-	<?php XSRFToken('savealbum'); ?>
-	<input type="hidden" name="savealbum" value="yes" />
-	<input type="hidden" name="title" value="<?php echo sanitize($_GET['title']); ?>" />
-	<table>
-		<tr>
-			<td><?php echo gettext("Album name:"); ?></td>
-			<td>
-				<input type="text" size="40" name="album" value="<?php echo html_encode($albumname) ?>" />
-			</td>
-		</tr>
-		<tr>
-			<td><?php echo gettext("Create in:"); ?></td>
-			<td>
-				<select id="albumselectmenu" name="albumselect">
-					<?php
-					if (accessAllAlbums(UPLOAD_RIGHTS)) {
-						?>
-						<option value="" selected="selected" style="font-weight: bold;">/</option>
+<div class="tabbox">
+	<form class="dirtylistening" onReset="setClean('savealbum_form');" id="savealbum_form" action="?savealbum" method="post">
+		<?php XSRFToken('savealbum'); ?>
+		<input type="hidden" name="savealbum" value="yes" />
+		<input type="hidden" name="title" value="<?php echo sanitize($_GET['title']); ?>" />
+		<table>
+			<tr>
+				<td><?php echo gettext("Album name:"); ?></td>
+				<td>
+					<input type="text" size="40" name="album" value="<?php echo html_encode($albumname) ?>" />
+				</td>
+			</tr>
+			<tr>
+				<td><?php echo gettext("Create in:"); ?></td>
+				<td>
+					<select id="albumselectmenu" name="albumselect">
 						<?php
-					}
-					$bglevels = array('#fff', '#f8f8f8', '#efefef', '#e8e8e8', '#dfdfdf', '#d8d8d8', '#cfcfcf', '#c8c8c8');
-					foreach ($albumlist as $fullfolder => $albumtitle) {
-						$singlefolder = $fullfolder;
-						$saprefix = "";
-						$salevel = 0;
-						// Get rid of the slashes in the subalbum, while also making a subalbum prefix for the menu.
-						while (strstr($singlefolder, '/') !== false) {
-							$singlefolder = substr(strstr($singlefolder, '/'), 1);
-							$saprefix = "&nbsp; &nbsp;&raquo;&nbsp;" . $saprefix;
-							$salevel++;
+						if (accessAllAlbums(UPLOAD_RIGHTS)) {
+							?>
+							<option value="" selected="selected" style="font-weight: bold;">/</option>
+							<?php
 						}
-						echo '<option value="' . $fullfolder . '"' . ($salevel > 0 ? ' style="background-color: ' . $bglevels[$salevel] . '; border-bottom: 1px dotted #ccc;"' : '')
-						. ">" . $saprefix . $singlefolder . " (" . $albumtitle . ')' . "</option>\n";
-					}
-					?>
-				</select>
-			</td>
-		</tr>
-		<tr>
-			<td><?php echo gettext("Thumbnail:"); ?></td>
-			<td>
-				<select id="thumb" name="thumb">
-					<?php
-					$selections = array();
-					foreach ($_zp_albumthumb_selector as $key => $selection) {
-						$selections[$selection['desc']] = $key;
-					}
-					generateListFromArray(array(getOption('AlbumThumbSelect')), $selections, false, true);
-					$showThumb = $_zp_gallery->getThumbSelectImages();
-					foreach ($imagelist as $imagepath) {
-						$pieces = explode('/', $imagepath);
-						$filename = array_pop($pieces);
-						$folder = implode('/', $pieces);
-						$albumx = newAlbum($folder);
-						$image = newImage($albumx, $filename);
-						if (isImagePhoto($image) || !is_null($image->objectsThumb)) {
-							echo "\n<option class=\"thumboption\"";
-							if ($showThumb) {
-								echo " style=\"background-image: url(" . html_encode($image->getSizedImage(80)) .
-								"); background-repeat: no-repeat;\"";
+						$bglevels = array('#fff', '#f8f8f8', '#efefef', '#e8e8e8', '#dfdfdf', '#d8d8d8', '#cfcfcf', '#c8c8c8');
+						foreach ($albumlist as $fullfolder => $albumtitle) {
+							$singlefolder = $fullfolder;
+							$saprefix = "";
+							$salevel = 0;
+							// Get rid of the slashes in the subalbum, while also making a subalbum prefix for the menu.
+							while (strstr($singlefolder, '/') !== false) {
+								$singlefolder = substr(strstr($singlefolder, '/'), 1);
+								$saprefix = "&nbsp; &nbsp;&raquo;&nbsp;" . $saprefix;
+								$salevel++;
 							}
-							echo " value=\"" . $imagepath . "\"";
-							echo ">" . $image->getTitle();
-							echo " ($imagepath)";
-							echo "</option>";
+							echo '<option value="' . $fullfolder . '"' . ($salevel > 0 ? ' style="background-color: ' . $bglevels[$salevel] . '; border-bottom: 1px dotted #ccc;"' : '')
+							. ">" . $saprefix . $singlefolder . " (" . $albumtitle . ')' . "</option>\n";
 						}
-					}
-					?>
-				</select>
-			</td>
-		</tr>
+						?>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td><?php echo gettext("Thumbnail:"); ?></td>
+				<td>
+					<select id="thumb" name="thumb">
+						<?php
+						$selections = array();
+						foreach ($_zp_albumthumb_selector as $key => $selection) {
+							$selections[$selection['desc']] = $key;
+						}
+						generateListFromArray(array(getOption('AlbumThumbSelect')), $selections, false, true);
+						$showThumb = $_zp_gallery->getThumbSelectImages();
+						foreach ($imagelist as $imagepath) {
+							$pieces = explode('/', $imagepath);
+							$filename = array_pop($pieces);
+							$folder = implode('/', $pieces);
+							$albumx = newAlbum($folder);
+							$image = newImage($albumx, $filename);
+							if (isImagePhoto($image) || !is_null($image->objectsThumb)) {
+								echo "\n<option class=\"thumboption\"";
+								if ($showThumb) {
+									echo " style=\"background-image: url(" . html_encode($image->getSizedImage(80)) .
+									"); background-repeat: no-repeat;\"";
+								}
+								echo " value=\"" . $imagepath . "\"";
+								echo ">" . $image->getTitle();
+								echo " ($imagepath)";
+								echo "</option>";
+							}
+						}
+						?>
+					</select>
+				</td>
+			</tr>
 
-	</table>
-	<?php
-	if (empty($albumlist)) {
-		?>
-		<p class="errorbox">
-			<?php echo gettext('There is no place you are allowed to put this album.'); ?>
-		</p>
-		<p>
-			<?php echo gettext('You must have <em>upload</em> rights to at least one album to have a place to store this album.'); ?>
-		</p>
+		</table>
 		<?php
-	} else {
+		if (empty($albumlist)) {
+			?>
+			<p class="errorbox">
+				<?php echo gettext('There is no place you are allowed to put this album.'); ?>
+			</p>
+			<p>
+				<?php echo gettext('You must have <em>upload</em> rights to at least one album to have a place to store this album.'); ?>
+			</p>
+			<?php
+		} else {
+			?>
+			<input type="submit" value="<?php echo gettext('Create the album'); ?>" class="button" />
+			<?php
+		}
 		?>
-		<input type="submit" value="<?php echo gettext('Create the album'); ?>" class="button" />
-		<?php
-	}
-	?>
 
-</form>
-
+	</form>
+</div>
 <?php
 echo "\n" . '</div>';
 echo "\n" . '</div>';

@@ -109,7 +109,7 @@ zenpageJSCSS();
 				<?php echo gettext('Categories'); ?>
 			</h1>
 
-			<div id="tab_articles" class="tabbox">
+			<div id="tab_articles">
 				<?php
 				zp_apply_filter('admin_note', 'categories', $subtab);
 				if ($reports) {
@@ -211,11 +211,8 @@ zenpageJSCSS();
 						<li><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/fail.png" alt="" /><?php echo gettext('delete category'); ?></li>
 					</ul>
 				</form>
-
-				<br style="clear: both" /><br />
 			</div> <!-- tab_articles -->
 		</div> <!-- content -->
-
 	</div> <!-- main -->
 	<?php printAdminFooter(); ?>
 </body>

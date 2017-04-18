@@ -1370,6 +1370,7 @@ function printZenpageIconLegend() {
 		?>
 		<li><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/fail.png" alt="" /><?php echo gettext("delete"); ?></li>
 	</ul>
+	<br class="clearall">
 	<?php
 }
 

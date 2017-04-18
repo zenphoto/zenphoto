@@ -38,7 +38,6 @@ printAdminHeader('development', gettext('rewriteTokens'));
 			</div>
 		</div>
 	</div>
-	<br class = "clearall" />
 	<?php printAdminFooter();
 	?>
 
