@@ -53,7 +53,11 @@ em {
 	clear: both;
 	color: #597580;
 	font-size: 85%;
-	margin: 8px 30px 0px;
+	margin-top: 8px;
+	margin-right: 30px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	padding-top: 30px;
 	padding-bottom: 15px;
 	padding-right: 50px;
 	text-align: right;
@@ -711,7 +715,10 @@ table.checkboxes td {
 }
 
 .tabbox {
-	padding: 10px;
+	padding-top: 10px;
+	padding-right: 10px;
+	padding-left: 10px;
+	padding-bottom: 10px;
 	background-color: #FAFAFA;
 	border: 1px solid #E5E5E5;
 
@@ -972,12 +979,7 @@ input.tags {
 
 
 #albumselect {
-	padding: 10px;
-	background: #F7F8F9;
-	border-top: 1px solid #E5E5E5;
-	border-left: 1px solid #E5E5E5;
-	border-right: 1px solid #E5E5E5;
-	border-bottom: 5px solid #E5E5E5;
+	padding-top: 10px;
 }
 
 #albumselect input {

@@ -279,7 +279,6 @@ echo "\n</head>";
 									</button>
 								</p>
 							</form>
-							<br class="clearall">
 							<?php
 							break;
 					}
@@ -288,7 +287,6 @@ echo "\n</head>";
 			</div>
 		</div>
 	</div>
-	<br class = "clearall" />
 	<?php printAdminFooter();
 	?>
 

@@ -168,7 +168,7 @@ $orphaned = array();
 						?>
 						<form class="dirtylistening" onReset="setClean('purge_options_form');" id="purge_options_form" action="?page=options&tab=purge" method="post" >
 							<?php XSRFToken('purgeOptions'); ?>
-							<input type="hidden" name="purge" value="1" />.
+							<input type="hidden" name="purge" value="1" />
 							<p class = "buttons" >
 								<button type="submit" value="<?php echo gettext('Apply')
 							?>"> <img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass_2.png" alt="" /> <strong><?php echo gettext("Apply"); ?> </strong></button >
@@ -312,8 +312,6 @@ if (!isset($highlighted)) {
 }
 ?>
 	</script>
-
-	<br class="clearall" />
 	<?php printAdminFooter(); ?>
 </body>
 </html>

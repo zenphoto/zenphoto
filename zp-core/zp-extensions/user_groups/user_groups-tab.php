@@ -248,11 +248,11 @@ echo '</head>' . "\n";
 													<em>
 														<label>
 															<input type="radio" name="<?php echo $id; ?>-type" value="group" checked="checked" onclick="javascrpt:toggle('users<?php echo $id; ?>');
-																	toggleExtraInfo('<?php echo $id; ?>', 'user', true);" /><?php echo gettext('group'); ?>
+																					toggleExtraInfo('<?php echo $id; ?>', 'user', true);" /><?php echo gettext('group'); ?>
 														</label>
 														<label>
 															<input type="radio" name="<?php echo $id; ?>-type" value="template" onclick="javascrpt:toggle('users<?php echo $id; ?>');
-																	toggleExtraInfo('<?php echo $id; ?>', 'user', true);" /><?php echo gettext('template'); ?>
+																					toggleExtraInfo('<?php echo $id; ?>', 'user', true);" /><?php echo gettext('template'); ?>
 														</label>
 													</em>
 													<br />
@@ -513,6 +513,7 @@ echo '</head>' . "\n";
 
 		</div>
 	</div>
+	<?php printAdminFooter(); ?>
 </body>
 
 </html>

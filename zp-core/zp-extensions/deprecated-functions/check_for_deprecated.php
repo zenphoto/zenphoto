@@ -149,5 +149,6 @@ echo '</head>' . "\n";
 			</div>
 		</div>
 	</div>
+	<?php printAdminFooter(); ?>
 </body>
 </html>

@@ -99,7 +99,7 @@ updatePublished('news');
 				<?php echo gettext('Articles'); ?>
 			</h1>
 			<div id = "container">
-				<div id="tab_articles" class="tabbox">
+				<div id="tab_articles" >
 					<?php
 					zp_apply_filter('admin_note', 'news', $subtab);
 
@@ -445,12 +445,10 @@ updatePublished('news');
 						<p class="buttons"><button type="submit" title="<?php echo gettext('Apply'); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><strong><?php echo gettext('Apply'); ?></strong></button></p>
 					</form>
 					<?php printZenpageIconLegend(); ?>
-					<br class="clearall" />
 				</div> <!-- tab_articles -->
 			</div> <!-- content -->
 		</div> <!-- container -->
 	</div> <!-- main -->
-
 	<?php printAdminFooter(); ?>
 </body>
 </html>

@@ -389,7 +389,7 @@ if ($pasteobj && isset($_REQUEST['size'])) {
 					<?php
 				}
 				?>
-				<div style="display:block">
+				<div class="tabbox">
 
 					<div style="text-align:left; float: left;">
 						<!-- This is the form that our event handler fills -->
@@ -473,7 +473,7 @@ if ($pasteobj && isset($_REQUEST['size'])) {
 								} else if ($pasteobj) {
 									?>
 									<button type="button" value="<?php echo gettext('Back') ?>" onclick="<?php echo linkPickerPick($imageobj, 'imageURI', "+'&pick[picture]=' + $('#imageURI').val().replaceAll('&', ':')"); ?> setClean('crop');
-											window.history.back();">
+												window.history.back();">
 										<img src="../images/arrow_left_blue_round.png" alt="" /><strong><?php echo gettext("Done");
 									?></strong>
 									</button>
@@ -493,14 +493,14 @@ if ($pasteobj && isset($_REQUEST['size'])) {
 					<br style="clear: both" />
 				</div><!-- block -->
 			</div><!-- content -->
+		</div><!-- main -->
 
+		<?php
+		if (!$pasteobj) {
+			?>
 			<?php
-			if (!$pasteobj) {
-				?>
-				<?php
-				printAdminFooter();
-				?>
-			</div><!-- main -->
+			printAdminFooter();
+			?>
 			<?php
 		}
 		?>

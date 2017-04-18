@@ -124,118 +124,120 @@ echo "\n</head>";
 			<h1>
 				<?php echo ngettext('Tag search item', 'Tag search items', $count); ?>
 			</h1>
-			<form method="post" action="<?php echo $searchurl; ?>" id="search_form">
-				<input type="hidden" name="words" value="<?php echo html_encode($words); ?>" />
-				<?php
-				foreach ($fields as $display => $key) {
-					?>
-					<input type="hidden" name="SEARCH_<?php echo $key; ?>" value="<?php echo $key; ?>"  />
+			<div class="tabbox">
+				<form method="post" action="<?php echo $searchurl; ?>" id="search_form">
+					<input type="hidden" name="words" value="<?php echo html_encode($words); ?>" />
 					<?php
-				}
-				?>
-				<p class = "buttons">
-					<button type="submit" title="<?php echo gettext("Return to search"); ?>" >
-						<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/arrow_left_blue_round.png" alt="" />
-						<?php echo gettext("Back");
+					foreach ($fields as $display => $key) {
 						?>
-					</button>
-				</p>
-			</form>
-			<br clear="all" />
-			<br clear="all" />
-			<?php
-			if (isset($_GET['tagitems'])) {
-				XSRFdefender('tagitems');
-				if (isset($_POST['tag_list_tags_'])) {
-					$tags = sanitize($_POST['tag_list_tags_']);
-				} else {
-					$tags = array();
-				}
-				$tags = array_unique($tags);
-				$totag = array();
-				if ($imagechecked)
-					$totag['newImage'] = $images;
-				if ($albumchecked)
-					$totag['newAlbum'] = array_merge($albums);
-				if ($articlechecked)
-					$totag['newArticle'] = $articles;
-				if ($pagechecked)
-					$totag['newPage'] = $pages;
+						<input type="hidden" name="SEARCH_<?php echo $key; ?>" value="<?php echo $key; ?>"  />
+						<?php
+					}
+					?>
+					<p class = "buttons">
+						<button type="submit" title="<?php echo gettext("Return to search"); ?>" >
+							<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/arrow_left_blue_round.png" alt="" />
+							<?php echo gettext("Back");
+							?>
+						</button>
+					</p>
+				</form>
+				<br clear="all" />
+				<br clear="all" />
+				<?php
+				if (isset($_GET['tagitems'])) {
+					XSRFdefender('tagitems');
+					if (isset($_POST['tag_list_tags_'])) {
+						$tags = sanitize($_POST['tag_list_tags_']);
+					} else {
+						$tags = array();
+					}
+					$tags = array_unique($tags);
+					$totag = array();
+					if ($imagechecked)
+						$totag['newImage'] = $images;
+					if ($albumchecked)
+						$totag['newAlbum'] = array_merge($albums);
+					if ($articlechecked)
+						$totag['newArticle'] = $articles;
+					if ($pagechecked)
+						$totag['newPage'] = $pages;
 
-				foreach ($totag as $instantiate => $list) {
-					foreach ($list as $item) {
-						$obj = $instantiate($item);
-						addTags($tags, $obj);
-						$obj->save();
+					foreach ($totag as $instantiate => $list) {
+						foreach ($list as $item) {
+							$obj = $instantiate($item);
+							addTags($tags, $obj);
+							$obj->save();
+						}
 					}
 				}
-			}
-			?>
-			<form class="dirtylistening" onReset="setClean('tagitems_form');" id="tagitems_form" action="?tagitems" method="post" >
-				<?php XSRFToken('tagitems'); ?>
-				<input type="hidden" name="words" value="<?php echo html_encode($words); ?>" />
-				<?php
-				foreach ($fields as $display => $key) {
-					?>
-					<input type="hidden" name="SEARCH_<?php echo $key; ?>" value="<?php echo $key; ?>"  />
-					<?php
-				}
 				?>
-				<div class="floatleft" style="width:25em;">
-					<ul class="no_bullets">
-						<?php
-						if (count($images) > 0) {
-							?>
-							<li>
-								<input name="image_tag" type="checkbox" value="1" <?php if ($imagechecked) echo ' checked="checked"'; ?> /><?php printf(ngettext('Tag %d image', 'Tag %d images', $c = count($images)), $c); ?>
-							</li>
-							<?php
-						}
-						if (count($albums) > 0) {
-							?>
-							<li>
-								<input name="album_tag" type="checkbox" value="1" <?php if ($albumchecked) echo ' checked="checked"'; ?> /><?php printf(ngettext('Tag %d album', 'Tag %d albums', $c = count($albums)), $c); ?>
-							</li>
-							<?php
-						}
-						if (count($articles) > 0) {
-							?>
-							<li>
-								<input name="article_tag" type="checkbox" value="1" <?php if ($articlechecked) echo ' checked="checked"'; ?> /><?php printf(ngettext('Tag %d article', 'Tag %d articles', $c = count($articles)), $c); ?>
-							</li>
-							<?php
-						}
-						if (count($pages) > 0) {
-							?>
-							<li>
-								<input name="page_tag" type="checkbox" value="1" <?php if ($pagechecked) echo ' checked="checked"'; ?> /><?php printf(ngettext('Tag %d page', 'Tag %d pages', $c = count($pages)), $c); ?>
-							</li>
-							<?php
-						}
+				<form class="dirtylistening" onReset="setClean('tagitems_form');" id="tagitems_form" action="?tagitems" method="post" >
+					<?php XSRFToken('tagitems'); ?>
+					<input type="hidden" name="words" value="<?php echo html_encode($words); ?>" />
+					<?php
+					foreach ($fields as $display => $key) {
 						?>
-					</ul>
-				</div>
-				<div >
-					<?php tagSelector(NULL, 'tags_'); ?>
-				</div>
-				<br clear="all">
-				<p class="buttons">
-					<button type="submit"  title="<?php echo gettext("Tag the items"); ?>">
-						<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" />
-						<?php echo gettext("Tag the items"); ?>
-					</button>
-				</p>
-				<p class="buttons">
-					<button type="reset">
-						<img	src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" />
-						<strong><?php echo gettext("Reset"); ?></strong>
-					</button>
-				</p>
+						<input type="hidden" name="SEARCH_<?php echo $key; ?>" value="<?php echo $key; ?>"  />
+						<?php
+					}
+					?>
+					<div class="floatleft" style="width:25em;">
+						<ul class="no_bullets">
+							<?php
+							if (count($images) > 0) {
+								?>
+								<li>
+									<input name="image_tag" type="checkbox" value="1" <?php if ($imagechecked) echo ' checked="checked"'; ?> /><?php printf(ngettext('Tag %d image', 'Tag %d images', $c = count($images)), $c); ?>
+								</li>
+								<?php
+							}
+							if (count($albums) > 0) {
+								?>
+								<li>
+									<input name="album_tag" type="checkbox" value="1" <?php if ($albumchecked) echo ' checked="checked"'; ?> /><?php printf(ngettext('Tag %d album', 'Tag %d albums', $c = count($albums)), $c); ?>
+								</li>
+								<?php
+							}
+							if (count($articles) > 0) {
+								?>
+								<li>
+									<input name="article_tag" type="checkbox" value="1" <?php if ($articlechecked) echo ' checked="checked"'; ?> /><?php printf(ngettext('Tag %d article', 'Tag %d articles', $c = count($articles)), $c); ?>
+								</li>
+								<?php
+							}
+							if (count($pages) > 0) {
+								?>
+								<li>
+									<input name="page_tag" type="checkbox" value="1" <?php if ($pagechecked) echo ' checked="checked"'; ?> /><?php printf(ngettext('Tag %d page', 'Tag %d pages', $c = count($pages)), $c); ?>
+								</li>
+								<?php
+							}
+							?>
+						</ul>
+					</div>
+					<div >
+						<?php tagSelector(NULL, 'tags_'); ?>
+					</div>
+					<br clear="all">
+					<p class="buttons">
+						<button type="submit"  title="<?php echo gettext("Tag the items"); ?>">
+							<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" />
+							<?php echo gettext("Tag the items"); ?>
+						</button>
+					</p>
+					<p class="buttons">
+						<button type="reset">
+							<img	src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" />
+							<strong><?php echo gettext("Reset"); ?></strong>
+						</button>
+					</p>
+					<br class="clearall">
+					</table>
 
-				</table>
 
-
-			</form>
+				</form>
+			</div>
 		</div>
 	</div>
 	<?php

@@ -231,5 +231,6 @@ echo '</head>' . "\n";
 
 		</div>
 	</div>
+	<?php printAdminFooter(); ?>
 </body>
 </html>
