@@ -182,7 +182,7 @@ code {
 	margin-top: 10px;
 	position: absolute;
 	overflow: visible;
-	z-index: 500;
+	z-index: 500000;
   width: 13em;
   background: #fafafa;
 	zoom: 1;
@@ -198,7 +198,6 @@ code {
 
 .navigation ul {
   position: relative;
-  z-index: 500;
 }
 
 .navigation ul li {
@@ -212,7 +211,6 @@ code {
 .navigation ul li.hover,
 .navigation ul li:hover {
   position: relative;
-  z-index: 510;
   cursor: default;
 }
 
