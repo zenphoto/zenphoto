@@ -542,16 +542,15 @@ table.noinput td {
 	border: 1px solid #E5E5E5;
 }
 
+
 table.bordered th {
 	font-weight: bold;
 	padding: 8px 8px 4px 10px;
-	border-bottom: 2px solid #cccccc;
-	background: #ECF1F2;
+	background: #f0f4f5;
 	background-repeat: repeat-x;
 }
 
 .bordered .subhead {
-	border-top: 1px solid #cccccc;
 }
 
 table.bordered tr td {
@@ -562,7 +561,7 @@ table.bordered tr td {
 }
 
 table.bordered tr.alt1 td {
-	background-color: #ECF1F2;
+	background-color: #f0f4f5;
 	border-bottom: 2px solid #dddddd;
 	background-image: url(images/admin-headerback.jpg);
 	background-repeat: repeat-x;
@@ -595,7 +594,7 @@ table.options th {
 	font-weight: bold;
 	padding: 8px 0px 4px 10px;
 	border-bottom: 2px solid #cccccc;
-	background: #ECF1F2;
+	background: #f0f4f5;
 	background-repeat: repeat-x;
 }
 
@@ -622,7 +621,7 @@ table.options tr td {
 	font-weight: bold;
 	padding: 8px 0px 4px 10px;
 	border-bottom: 2px solid #cccccc;
-	background: #ECF1F2;
+	background: #f0f4f5;
 	background-repeat: repeat-x;
 }
 
@@ -998,7 +997,7 @@ input.tags {
 	min-height: 500px;
 	float: right;
 	border: 1px solid #BAC9CF;
-	background: #ECF1F2;
+	background: #f0f4f5;
 	width: 200px;
 }
 
@@ -1011,7 +1010,7 @@ input.tags {
 #theme-editor #editor {
 	min-height: 500px;
 	margin-right: 210px;
-	background: #ECF1F2;
+	background: #f0f4f5;
 	background: #F7F8F9;
 }
 
@@ -1698,15 +1697,13 @@ button:hover:disabled,.buttons a:hover:disabled {
 -------------------------------------------*/
 #imagenav {
 	text-align: center;
-	background: #ECF1F2;
-	border-bottom: 2px solid #BAC9CF;
+	background: #f0f4f5;
 	background-repeat: repeat-x;
 }
 
 #imagenavb {
 	text-align: center;
-	background: #ECF1F2;
-	border-top: 2px solid #BAC9CF;
+	background: #f0f4f5;
 	background-repeat: repeat-x;
 }
 
@@ -2067,7 +2064,7 @@ fieldset,
 	padding-left: 10px;
 	padding-right: 10px;
 	text-align: center;
-	background: #ECF1F2;
+	background: #f0f4f5;
 }
 
 .logtext table td {
@@ -2506,6 +2503,12 @@ ul.page-list {
 
 /* TABLELESS SORTING TESTS
 ********************************************/
+.headline {
+	font-weight: bold;
+	padding: 8px 10px 13px 10px;
+	background-repeat: repeat-x;
+	vertical-align: middle;
+}
 
 div.bordered {
 	width: 100%;
@@ -2518,9 +2521,14 @@ div.bordered {
 div.bordered .headline {
 	font-weight: bold;
 	padding: 8px 10px 13px 10px;
-	border-bottom: 2px solid #cccccc;
-	background: #ECF1F2;
+	background-color: #f0f4f5;
 	background-repeat: repeat-x;
+	vertical-align: middle;
+}
+
+div.bordered .headline-plain {
+	font-weight: bold;
+	padding: 8px 10px 13px 10px;
 	vertical-align: middle;
 }
 
@@ -2547,7 +2555,7 @@ img.zp_logoicon {
 /* background-color for currently selected items */
 .currentselection,
 tr.currentselection td {
-	background-color: #ECF1F2 !important;
+	background-color: #f0f4f5 !important;
 }
 
 /* background-color for "shown" plugins */

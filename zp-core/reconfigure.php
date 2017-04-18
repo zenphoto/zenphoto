@@ -75,7 +75,7 @@ function reconfigureAction($mandatory) {
 	} else if (!empty($diff)) {
 		if (function_exists('zp_register_filter') && zp_loggedin(ADMIN_RIGHTS)) {
 //	no point in telling someone who can't do anything about it
-			zp_register_filter('admin_note', 'signatureChange');
+			zp_register_filter('admin_note', 'signatureChange', 9999);
 			zp_register_filter('admin_head', 'reconfigureCS');
 			zp_register_filter('theme_head', 'reconfigureCS');
 			zp_register_filter('theme_body_open', 'signatureChange');

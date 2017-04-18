@@ -174,7 +174,7 @@ printSortableHead();
 						$selector = getMenuSetSelector(true);
 						if ($selector) {
 							?>
-							<div class="headline">
+							<div class="headline-plain">
 								<strong><?php echo gettext("Edit the menu"); ?></strong>
 								<?php
 								echo $selector;
@@ -224,7 +224,7 @@ printSortableHead();
 							<?php
 						} else {
 							?>
-							<div class="headline">
+							<div class="headline-plain">
 								<strong><?php echo gettext("No menus exist"); ?></strong>
 							</div>
 							<br class="clearall" />

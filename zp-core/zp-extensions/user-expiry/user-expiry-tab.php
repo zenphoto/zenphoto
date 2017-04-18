@@ -113,11 +113,11 @@ echo '</head>' . "\n";
 				}
 			}
 			$subtab = getCurrentTab();
+			zp_apply_filter('admin_note', 'users', $subtab);
 			echo '<h1>' . gettext('User expiry') . '</h1>';
 			?>
 			<div id="tab_users" class="tabbox">
 				<?php
-				zp_apply_filter('admin_note', 'users', $subtab);
 				$groups = array();
 				?>
 				<p>

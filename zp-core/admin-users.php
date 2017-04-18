@@ -289,6 +289,7 @@ echo $refresh;
 				echo "<h2>" . gettext("Password reset request.") . "</h2>";
 				echo "</div>";
 			}
+			zp_apply_filter('admin_note', 'users', 'users');
 
 			echo '<h1>' . gettext('Users') . '</h1>';
 			?>
@@ -316,8 +317,6 @@ echo $refresh;
 				?>
 				<div id="tab_admin" class="tabbox">
 					<?php
-					zp_apply_filter('admin_note', 'users', 'users');
-
 					$pages = 0;
 					$clearPass = false;
 					if (!$_zp_current_admin_obj->getID() && $_zp_current_admin_obj->reset) {
@@ -568,7 +567,7 @@ echo $refresh;
 								if ($background) {
 									$background = "";
 								} else {
-									$background = "background-color:#ECF1F2;";
+									$background = "background-color:#f0f4f5;";
 								}
 								if ($_zp_current_admin_obj->reset) {
 									$custom_row = NULL;
@@ -599,9 +598,9 @@ echo $refresh;
 													}
 													?>
 													<a id="toggle_<?php echo $id; ?>" onclick="visible = getVisible('<?php echo $id; ?>', 'user', '<?php echo $displaytitle; ?>', '<?php echo $hidetitle; ?>');
-															$('#show_<?php echo $id; ?>').val(visible);
-															toggleExtraInfo('<?php echo $id; ?>', 'user', visible);" title="<?php echo $displaytitle; ?>" >
-															 <?php
+																$('#show_<?php echo $id; ?>').val(visible);
+																toggleExtraInfo('<?php echo $id; ?>', 'user', visible);" title="<?php echo $displaytitle; ?>" >
+														 <?php
 															 if (empty($userid)) {
 																 ?>
 															<input type="hidden" name="<?php echo $id ?>-newuser" value="1" />
@@ -609,7 +608,7 @@ echo $refresh;
 															<em><?php echo gettext("New User"); ?></em>
 															<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="adminuser<?php echo $id; ?>" name="adminuser<?php echo $id; ?>" value=""
 																		 onclick="toggleExtraInfo('<?php echo $id; ?>', 'user', visible);
-																				 $('#adminuser<?php echo $id; ?>').focus();" />
+																						 $('#adminuser<?php echo $id; ?>').focus();" />
 
 															<?php
 														} else {
@@ -629,8 +628,8 @@ echo $refresh;
 														if ($pending) {
 															?>
 															<input type="checkbox" name="<?php echo $id ?>-confirmed" value="<?php
-															echo NO_RIGHTS;
-															echo $alterrights;
+												echo NO_RIGHTS;
+												echo $alterrights;
 															?>" />
 																		 <?php echo gettext("Authenticate user"); ?>
 																		 <?php

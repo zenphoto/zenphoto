@@ -180,6 +180,18 @@ $tagsort = getTagOrder();
 				$deleteitem = gettext('Article');
 				$themepage = 'news';
 				$locked = !checkIfLocked($result);
+				$me = 'news';
+				$backurl = 'admin-news.php?' . $page;
+				if (isset($_GET['category']))
+					$backurl .= '&amp;category=' . html_encode(sanitize($_GET['category']));
+				if (isset($_GET['date']))
+					$backurl .= '&amp;date=' . html_encode(sanitize($_GET['date']));
+				if (isset($_GET['published']))
+					$backurl .= '&amp;published=' . html_encode(sanitize($_GET['published']));
+				if (isset($_GET['sortorder']))
+					$backurl .= '&amp;sortorder=' . html_encode(sanitize($_GET['sortorder']));
+				if (isset($_GET['articles_page']))
+					$backurl .= '&amp;articles_page=' . html_encode(sanitize($_GET['articles_page']));
 			}
 
 			if (is_AdminEditPage('newscategory')) {
@@ -192,6 +204,8 @@ $tagsort = getTagOrder();
 				$deleteitem = gettext('Category');
 				$themepage = 'news';
 				$locked = false;
+				$me = 'news';
+				$backurl = 'admin-categories.php?';
 			}
 
 			if (is_AdminEditPage('page')) {
@@ -200,9 +214,13 @@ $tagsort = getTagOrder();
 				$deleteitem = gettext('Page');
 				$themepage = 'pages';
 				$locked = !checkIfLocked($result);
+				$me = 'page';
+				$backurl = 'admin-pages.php';
 			}
+
 			if (!$result->isMyItem($result->manage_some_rights))
 				$locked = true;
+			zp_apply_filter('admin_note', $me, 'edit');
 
 			if ($result->transient) {
 				if (is_AdminEditPage('newsarticle')) {
@@ -311,29 +329,6 @@ $tagsort = getTagOrder();
 							<input type="hidden" name="hitcounter" id="hitcounter" value="<?php echo $result->getHitcounter(); ?>" />
 
 							<?php
-							if (is_AdminEditPage("newsarticle")) {
-								$me = 'news';
-								$backurl = 'admin-news.php?' . $page;
-								if (isset($_GET['category']))
-									$backurl .= '&amp;category=' . html_encode(sanitize($_GET['category']));
-								if (isset($_GET['date']))
-									$backurl .= '&amp;date=' . html_encode(sanitize($_GET['date']));
-								if (isset($_GET['published']))
-									$backurl .= '&amp;published=' . html_encode(sanitize($_GET['published']));
-								if (isset($_GET['sortorder']))
-									$backurl .= '&amp;sortorder=' . html_encode(sanitize($_GET['sortorder']));
-								if (isset($_GET['articles_page']))
-									$backurl .= '&amp;articles_page=' . html_encode(sanitize($_GET['articles_page']));
-							}
-							if (is_AdminEditPage("newscategory")) {
-								$me = 'news';
-								$backurl = 'admin-categories.php?';
-							}
-							if (is_AdminEditPage("page")) {
-								$me = 'page';
-								$backurl = 'admin-pages.php';
-							}
-							zp_apply_filter('admin_note', $me, 'edit');
 							if ($reports) {
 								$show = array();
 								preg_match_all('/<p class=[\'"](.*?)[\'"]>(.*?)<\/p>/', implode('', $reports), $matches);

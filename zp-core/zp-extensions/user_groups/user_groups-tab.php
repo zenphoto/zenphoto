@@ -147,6 +147,7 @@ echo '</head>' . "\n";
 				echo '</div>';
 			}
 			$subtab = getCurrentTab();
+			zp_apply_filter('admin_note', 'users', $subtab);
 			?>
 			<h1>
 				<?php
@@ -160,7 +161,6 @@ echo '</head>' . "\n";
 
 			<div id = "tab_users" class = "tabbox">
 				<?php
-				zp_apply_filter('admin_note', 'users', $subtab);
 				switch ($subtab) {
 					case 'groups':
 						$adminlist = $adminordered;
@@ -235,7 +235,7 @@ echo '</head>' . "\n";
 									if ($background) {
 										$background = "";
 									} else {
-										$background = "background-color:#ECF1F2;";
+										$background = "background-color:#f0f4f5;";
 									}
 									?>
 									<tr id="user-<?php echo $id; ?>">

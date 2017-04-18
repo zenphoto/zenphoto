@@ -130,6 +130,7 @@ if ($saved) {
 	echo "<h2>" . gettext("Applied") . "</h2>";
 	echo '</div>';
 }
+zp_apply_filter('admin_note', 'plugins', '');
 ?>
 <h1>
 	<?php
@@ -139,7 +140,6 @@ if ($saved) {
 
 <div class="tabbox">
 	<?php
-	zp_apply_filter('admin_note', 'plugins', '');
 	if (isset($_GET['post_error'])) {
 		echo '<div class="errorbox">';
 		echo "<h2>" . gettext('Error') . "</h2>";
@@ -168,7 +168,7 @@ if ($saved) {
 		</p><br class="clearall" /><br /><br />
 		<table>
 			<tr>
-				<th id="imagenav" colspan="100%">
+				<th class="centered" colspan="100%">
 					<?php printPageSelector($subpage, $rangeset, 'admin-plugins.php', array('page' => 'plugins', 'tab' => $subtab)); ?>
 				</th>
 			</tr>
@@ -406,7 +406,7 @@ if ($saved) {
 			}
 			?>
 			<tr>
-				<td colspan="100%" id="imagenavb">
+				<td colspan="100%" class="centered">
 					<?php printPageSelector($subpage, $rangeset, 'admin-plugins.php', array('page' => 'plugins', 'tab' => $subtab)); ?>
 				</td>
 			</tr>

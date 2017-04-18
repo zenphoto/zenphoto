@@ -145,7 +145,7 @@ updatePublished('pages');
 
 					<br class="clearall" /><br class="clearall" />
 					<div class="bordered">
-						<div class="headline"><?php echo gettext('Edit this page'); ?>
+						<div class="headline-plain"><?php echo gettext('Edit this page'); ?>
 							<?php
 							$checkarray = array(
 									gettext('*Bulk actions*') => 'noaction',

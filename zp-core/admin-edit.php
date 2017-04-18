@@ -858,6 +858,7 @@ echo "\n</head>";
 					$link = '';
 				}
 				$alb = removeParentAlbumNames($album);
+				zp_apply_filter('admin_note', 'albums', $subtab);
 				?>
 				<h1><?php printf(gettext('Edit Album: <em>%1$s%2$s</em>'), $link, $alb); ?></h1>
 				<?php
@@ -980,7 +981,7 @@ echo "\n</head>";
 								</span>
 								<br class="clearall" /><br />
 								<div class="bordered">
-									<div class="headline" style="text-align: left;"><?php echo gettext("Edit this album"); ?>
+									<div class="headline-plain" style="text-align: left;"><?php echo gettext("Edit this album"); ?>
 										<?php
 										if ($enableEdit) {
 											printBulkActions($checkarray_albums);
@@ -1642,6 +1643,7 @@ echo "\n</head>";
 						}
 					}
 				}
+				zp_apply_filter('admin_note', 'albums', $subtab);
 				?>
 				<h1>
 					<?php echo gettext("Edit All Albums in"); ?> <?php
@@ -1706,6 +1708,7 @@ echo "\n</head>";
 			}
 
 			else { /* Display a list of albums to edit. */
+				zp_apply_filter('admin_note', 'albums', $subtab);
 				?>
 				<h1><?php echo gettext("Albums"); ?></h1>
 				<div class="tabbox">
@@ -1766,7 +1769,7 @@ echo "\n</head>";
 						</p>
 
 						<form class="dirtylistening" onReset="setClean('sortableListForm');
-									$('#albumsort').sortable('cancel');" action="?page=edit&amp;action=savealbumorder" method="post" name="sortableListForm" id="sortableListForm" onsubmit="return confirmAction();" autocomplete="off" >
+										$('#albumsort').sortable('cancel');" action="?page=edit&amp;action=savealbumorder" method="post" name="sortableListForm" id="sortableListForm" onsubmit="return confirmAction();" autocomplete="off" >
 									<?php XSRFToken('savealbumorder'); ?>
 							<span class="buttons">
 								<?php
@@ -1790,7 +1793,7 @@ echo "\n</head>";
 							</span>
 							<br class="clearall" /><br />
 							<div class="bordered">
-								<div class="headline"><?php echo gettext("Edit this album"); ?>
+								<div class="headline-plain"><?php echo gettext("Edit this album"); ?>
 									<?php printBulkActions($checkarray_albums); ?>
 								</div>
 								<div class="subhead">
@@ -1801,7 +1804,7 @@ echo "\n</head>";
 									</label>
 									<label style="float: right">
 										<?php echo gettext("Check All"); ?> <input type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this
-																	.checked);" />
+																		.checked);" />
 									</label>
 								</div>
 
@@ -1842,7 +1845,7 @@ echo "\n</head>";
 								</dib>
 
 						</form>
-					<br class="clearall" />
+						<br class="clearall" />
 					</div>
 
 					<?php

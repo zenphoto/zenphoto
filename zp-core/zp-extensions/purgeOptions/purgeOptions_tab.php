@@ -77,8 +77,8 @@ $orphaned = array();
 	<div id="main">
 		<?php printTabs(); ?>
 		<div id="content">
-			<?php zp_apply_filter('admin_note', 'clone', ''); ?>
 			<div id="container">
+				<?php zp_apply_filter('admin_note', 'clone', ''); ?>
 				<h1><?php echo gettext('purge options'); ?></h1>
 				<div class="tabbox">
 					<?php
