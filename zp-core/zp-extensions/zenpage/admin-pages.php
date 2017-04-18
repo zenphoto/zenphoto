@@ -109,11 +109,13 @@ updatePublished('pages');
 			}
 			?>
 			<h1><?php echo gettext('Pages'); ?></h1>
-			<span class="zenpagestats"><?php printPagesStatistic(); ?></span>
-			<form class="dirtylistening" onReset="setClean('form_zenpageitemlist');" action="admin-pages.php" method="post" name="update" id="form_zenpageitemlist" onsubmit="return confirmAction();" autocomplete="off">
-				<?php XSRFToken('update'); ?>
 
-				<div>
+			<div class="tabbox">
+
+				<span class="zenpagestats"><?php printPagesStatistic(); ?></span>
+				<form class="dirtylistening" onReset="setClean('form_zenpageitemlist');" action="admin-pages.php" method="post" name="update" id="form_zenpageitemlist" onsubmit="return confirmAction();" autocomplete="off">
+					<?php XSRFToken('update'); ?>
+
 					<p><?php echo gettext("Select a page to edit or drag the pages into the order, including subpage levels, you wish them displayed."); ?></p>
 					<?php
 					if (GALLERY_SECURITY == 'public') {
@@ -140,55 +142,55 @@ updatePublished('pages');
 						}
 						?>
 					</p>
-				</div>
-				<br class="clearall" /><br class="clearall" />
-				<div class="bordered">
-					<div class="headline"><?php echo gettext('Edit this page'); ?>
-						<?php
-						$checkarray = array(
-								gettext('*Bulk actions*') => 'noaction',
-								gettext('Delete') => 'deleteall',
-								gettext('Set to published') => 'showall',
-								gettext('Set to unpublished') => 'hideall',
-								gettext('Disable comments') => 'commentsoff',
-								gettext('Enable comments') => 'commentson'
-						);
-						if (extensionEnabled('hitcounter')) {
-							$checkarray[gettext('Reset hitcounter')] = 'resethitcounter';
-						}
-						$checkarray = zp_apply_filter('bulk_page_actions', $checkarray);
-						printBulkActions($checkarray);
-						?>
-					</div>
-					<div class="subhead">
-						<label style="float: right"><?php echo gettext("Check All"); ?> <input type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this.checked);" />
-						</label>
-					</div>
-					<ul class="page-list">
-						<?php $toodeep = printNestedItemsList('pages-sortablelist'); ?>
-					</ul>
 
-				</div>
-				<br class="clearall" /><br class="clearall" />
-				<?php
-				if ($toodeep) {
-					echo '<div class="errorbox">';
-					echo '<h2>' . gettext('The sort position of the indicated pages cannot be recorded because the nesting is too deep. Please move them to a higher level and save your order.') . '</h2>';
-					echo '</div>';
-				}
-				?>
-				<span id="serializeOutput"></span>
-				<input name="update" type="hidden" value="Save Order" />
-				<p class="buttons">
-					<button class="serialize" type="submit" title="<?php echo gettext('Apply'); ?>">
-						<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" />
-						<strong><?php echo gettext('Apply'); ?></strong>
-					</button>
-				</p>
-			</form>
-			<?php printZenpageIconLegend(); ?>
+					<br class="clearall" /><br class="clearall" />
+					<div class="bordered">
+						<div class="headline"><?php echo gettext('Edit this page'); ?>
+							<?php
+							$checkarray = array(
+									gettext('*Bulk actions*') => 'noaction',
+									gettext('Delete') => 'deleteall',
+									gettext('Set to published') => 'showall',
+									gettext('Set to unpublished') => 'hideall',
+									gettext('Disable comments') => 'commentsoff',
+									gettext('Enable comments') => 'commentson'
+							);
+							if (extensionEnabled('hitcounter')) {
+								$checkarray[gettext('Reset hitcounter')] = 'resethitcounter';
+							}
+							$checkarray = zp_apply_filter('bulk_page_actions', $checkarray);
+							printBulkActions($checkarray);
+							?>
+						</div>
+						<div class="subhead">
+							<label style="float: right"><?php echo gettext("Check All"); ?> <input type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this.checked);" />
+							</label>
+						</div>
+						<ul class="page-list">
+							<?php $toodeep = printNestedItemsList('pages-sortablelist'); ?>
+						</ul>
+
+					</div>
+
+					<?php
+					if ($toodeep) {
+						echo '<div class="errorbox">';
+						echo '<h2>' . gettext('The sort position of the indicated pages cannot be recorded because the nesting is too deep. Please move them to a higher level and save your order.') . '</h2>';
+						echo '</div>';
+					}
+					?>
+					<span id="serializeOutput"></span>
+					<input name="update" type="hidden" value="Save Order" />
+					<p class="buttons">
+						<button class="serialize" type="submit" title="<?php echo gettext('Apply'); ?>">
+							<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" />
+							<strong><?php echo gettext('Apply'); ?></strong>
+						</button>
+					</p>
+				</form>
+				<?php printZenpageIconLegend(); ?>
+			</div>
 		</div>
-	</div>
-	<?php printAdminFooter(); ?>
+		<?php printAdminFooter(); ?>
 </body>
 </html>
