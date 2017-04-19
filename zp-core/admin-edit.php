@@ -980,30 +980,31 @@ echo "\n</head>";
 									?>
 								</span>
 								<br class="clearall" /><br />
-								<div class="bordered">
-									<div class="headline-plain" style="text-align: left;"><?php echo gettext("Edit this album"); ?>
-										<?php
-										if ($enableEdit) {
-											printBulkActions($checkarray_albums);
-										}
+
+								<div class="headline" style="text-align: left;"><?php echo gettext("Edit this album"); ?>
+									<?php
+									if ($enableEdit) {
+										printBulkActions($checkarray_albums);
+									}
+									?>
+								</div>
+								<div class="subhead">
+									<label class="buttons" style="float: left;padding-top:3px;">
+										<a href="admin-edit.php?page=edit&amp;album=<?php echo html_encode(pathurlencode($album->name)); ?>&amp;tab=subalbuminfo&amp;showthumbs=<?php echo $thumbshow ?>" title="<?php echo addslashes(gettext('Thumbnail generation may be time consuming on slow servers or when there are a lot of images.')); ?>">
+											<?php echo $thumbmsg; ?>
+										</a>
+									</label>
+									<?php
+									if ($enableEdit) {
 										?>
-									</div>
-									<div class="subhead">
-										<label class="buttons" style="float: left">
-											<a href="admin-edit.php?page=edit&amp;album=<?php echo html_encode(pathurlencode($album->name)); ?>&amp;tab=subalbuminfo&amp;showthumbs=<?php echo $thumbshow ?>" title="<?php echo addslashes(gettext('Thumbnail generation may be time consuming on slow servers or when there are a lot of images.')); ?>">
-												<?php echo $thumbmsg; ?>
-											</a>
+										<label style="float: right; padding-right:20px;">
+											<?php echo gettext("Check All"); ?> <input type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this.checked);" />
 										</label>
 										<?php
-										if ($enableEdit) {
-											?>
-											<label style="float: right"><?php echo gettext("Check All"); ?> <input type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this.checked);" />
-											</label>
-											<?php
-										}
-										?>
-									</div>
-
+									}
+									?>
+								</div>
+								<div class="bordered">
 									<ul class="page-list" id="albumsort">
 										<?php
 										printNestedAlbumsList($subalbums, $showthumb, $album);
@@ -1792,22 +1793,22 @@ echo "\n</head>";
 								?>
 							</span>
 							<br class="clearall" /><br />
-							<div class="bordered">
-								<div class="headline-plain"><?php echo gettext("Edit this album"); ?>
-									<?php printBulkActions($checkarray_albums); ?>
-								</div>
-								<div class="subhead">
-									<label class="buttons" style="float: left">
-										<a href="admin-edit.php?showthumbs=<?php echo $thumbshow ?>" title="<?php echo gettext('Thumbnail generation may be time consuming on slow servers or when there are a lot of images.'); ?>">
-											<?php echo $thumbmsg; ?>
-										</a>
-									</label>
-									<label style="float: right">
-										<?php echo gettext("Check All"); ?> <input type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this
-																		.checked);" />
-									</label>
-								</div>
 
+							<div class="headline"><?php echo gettext("Edit this album"); ?>
+								<?php printBulkActions($checkarray_albums); ?>
+							</div>
+							<div class="subhead">
+								<label class="buttons" style="float: left;padding-top:3px;">
+									<a href="admin-edit.php?showthumbs=<?php echo $thumbshow ?>" title="<?php echo gettext('Thumbnail generation may be time consuming on slow servers or when there are a lot of images.'); ?>">
+										<?php echo $thumbmsg; ?>
+									</a>
+								</label>
+								<label style="float: right;padding-right:20px;">
+									<?php echo gettext("Check All"); ?> <input type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this
+																	.checked);" />
+								</label>
+							</div>
+							<div class="bordered">
 								<ul class="page-list" id="albumsort">
 									<?php printNestedAlbumsList($albums, $showthumb, NULL); ?>
 								</ul>
