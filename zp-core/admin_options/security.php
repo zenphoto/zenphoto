@@ -40,7 +40,6 @@ function getOptionContent() {
 	if (zp_loggedin(ADMIN_RIGHTS)) {
 		?>
 		<div id="tab_security" class="tabbox">
-			<?php zp_apply_filter('admin_note', 'options', 'security'); ?>
 			<form class="dirtylistening" onReset="setClean('form_options');" id="form_options" action="?action=saveoptions" method="post" autocomplete="off" >
 				<?php XSRFToken('saveoptions'); ?>
 				<input type="hidden" name="saveoptions" value="security" />

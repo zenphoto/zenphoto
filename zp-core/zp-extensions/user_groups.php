@@ -19,7 +19,7 @@ $plugin_description = gettext("Provides rudimentary user groups.");
 $plugin_author = "Stephen Billard (sbillard)";
 
 
-zp_register_filter('admin_tabs', 'user_groups::admin_tabs', 999);
+zp_register_filter('admin_tabs', 'user_groups::admin_tabs', 2000);
 zp_register_filter('admin_alterrights', 'user_groups::admin_alterrights');
 zp_register_filter('save_admin_custom_data', 'user_groups::save_admin');
 zp_register_filter('edit_admin_custom_data', 'user_groups::edit_admin');
@@ -242,18 +242,18 @@ class user_groups {
 	static function admin_tabs($tabs) {
 		global $_zp_current_admin_obj;
 		if ((zp_loggedin(ADMIN_RIGHTS) && $_zp_current_admin_obj->getID())) {
-			if (isset($tabs['users']['subtabs'])) {
-				$subtabs = $tabs['users']['subtabs'];
+			if (isset($tabs['admin']['subtabs'])) {
+				$subtabs = $tabs['admin']['subtabs'];
 			} else {
 				$subtabs = array(
-						gettext('users') => 'admin-users.php?page=users&tab=users'
+						gettext('users') => 'admin-users.php?page=admin&tab=users'
 				);
 			}
-			$subtabs[gettext('groups')] = PLUGIN_FOLDER . '/user_groups/user_groups-tab.php?page=users&tab=groups';
-			$subtabs[gettext('assignments')] = PLUGIN_FOLDER . '/user_groups/user_groups-tab.php?page=users&tab=assignments';
-			$tabs['users']['text'] = gettext("admin");
-			$tabs['users']['link'] = WEBPATH . "/" . ZENFOLDER . '/admin-users.php?page=users&tab=users';
-			$tabs['users']['subtabs'] = $subtabs;
+			$subtabs[gettext('groups')] = PLUGIN_FOLDER . '/user_groups/user_groups-tab.php?page=admin&tab=groups';
+			$subtabs[gettext('assignments')] = PLUGIN_FOLDER . '/user_groups/user_groups-tab.php?page=admin&tab=assignments';
+			$tabs['admin']['text'] = gettext("admin");
+			$tabs['admin']['link'] = WEBPATH . "/" . ZENFOLDER . '/admin-users.php?page=admin&tab=users';
+			$tabs['admin']['subtabs'] = $subtabs;
 		}
 		return $tabs;
 	}

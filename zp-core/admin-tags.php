@@ -106,7 +106,7 @@ if (count($_POST) > 0) {
 	} // rename
 }
 
-printAdminHeader('tags');
+printAdminHeader('admin');
 ?>
 </head>
 <body>

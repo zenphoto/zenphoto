@@ -45,7 +45,7 @@ if (isset($_GET['subpage'])) {
 }
 
 if (!isset($_GET['page'])) {
-	$_GET['page'] = 'users';
+	$_GET['page'] = 'admin';
 }
 $_current_tab = sanitize($_GET['page'], 3);
 
@@ -68,7 +68,7 @@ if (isset($_GET['action'])) {
 			} else {
 				$notify = '&migration_error';
 			}
-			header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-users.php?page=users&subpage=" . $subpage . $notify);
+			header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-users.php?page=admin&subpage=" . $subpage . $notify);
 			exitZP();
 			break;
 		case 'deleteadmin':
@@ -76,7 +76,7 @@ if (isset($_GET['action'])) {
 			$adminobj = Zenphoto_Authority::newAdministrator(sanitize($_GET['adminuser']), 1);
 			zp_apply_filter('save_user', '', $adminobj, 'delete');
 			$adminobj->remove();
-			header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-users.php?page=users&deleted&subpage=" . $subpage);
+			header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-users.php?page=admin&deleted&subpage=" . $subpage);
 			exitZP();
 			break;
 		case 'saveoptions':
@@ -289,7 +289,7 @@ echo $refresh;
 				echo "<h2>" . gettext("Password reset request.") . "</h2>";
 				echo "</div>";
 			}
-			zp_apply_filter('admin_note', 'users', 'users');
+			zp_apply_filter('admin_note', 'admin', 'users');
 
 			echo '<h1>' . gettext('Users') . '</h1>';
 			?>
@@ -598,9 +598,9 @@ echo $refresh;
 													}
 													?>
 													<a id="toggle_<?php echo $id; ?>" onclick="visible = getVisible('<?php echo $id; ?>', 'user', '<?php echo $displaytitle; ?>', '<?php echo $hidetitle; ?>');
-																$('#show_<?php echo $id; ?>').val(visible);
-																toggleExtraInfo('<?php echo $id; ?>', 'user', visible);" title="<?php echo $displaytitle; ?>" >
-														 <?php
+															$('#show_<?php echo $id; ?>').val(visible);
+															toggleExtraInfo('<?php echo $id; ?>', 'user', visible);" title="<?php echo $displaytitle; ?>" >
+															 <?php
 															 if (empty($userid)) {
 																 ?>
 															<input type="hidden" name="<?php echo $id ?>-newuser" value="1" />
@@ -608,7 +608,7 @@ echo $refresh;
 															<em><?php echo gettext("New User"); ?></em>
 															<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="adminuser<?php echo $id; ?>" name="adminuser<?php echo $id; ?>" value=""
 																		 onclick="toggleExtraInfo('<?php echo $id; ?>', 'user', visible);
-																						 $('#adminuser<?php echo $id; ?>').focus();" />
+																				 $('#adminuser<?php echo $id; ?>').focus();" />
 
 															<?php
 														} else {
@@ -628,8 +628,8 @@ echo $refresh;
 														if ($pending) {
 															?>
 															<input type="checkbox" name="<?php echo $id ?>-confirmed" value="<?php
-												echo NO_RIGHTS;
-												echo $alterrights;
+															echo NO_RIGHTS;
+															echo $alterrights;
 															?>" />
 																		 <?php echo gettext("Authenticate user"); ?>
 																		 <?php

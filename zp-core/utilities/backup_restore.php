@@ -123,7 +123,7 @@ function writeHeader($type, $value) {
 if ($_zp_current_admin_obj->reset) {
 	printAdminHeader('restore');
 } else {
-	printAdminHeader('overview', 'backup');
+	printAdminHeader('admin', 'backup');
 }
 
 echo '</head>';

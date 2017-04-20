@@ -13,7 +13,7 @@ admin_securityChecks(NULL, currentRelativeURL());
 
 $admins = $_zp_authority->getAdministrators();
 
-printAdminHeader('overview', 'Mailing');
+printAdminHeader('admin', 'Mailing');
 ?>
 </head>
 <body>

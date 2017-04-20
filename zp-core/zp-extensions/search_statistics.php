@@ -30,6 +30,7 @@ $plugin_author = "Stephen Billard (sbillard)";
 $option_interface = 'search_statistics';
 
 zp_register_filter('search_statistics', 'search_statistics::handler');
+
 zp_register_filter('admin_tabs', 'search_statistics::admin_tabs');
 
 /**
@@ -80,7 +81,9 @@ class search_statistics {
 	}
 
 	static function admin_tabs($tabs) {
-		$tabs['overview']['subtabs'][gettext('Search analysis')] = '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/search_statistics/search_analysis.php?tab=searchstat';
+		if (zp_loggedin(OVERVIEW_RIGHTS)) {
+			$tabs['overview']['subtabs'][gettext('Search analysis')] = '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/search_statistics/search_analysis.php?tab=searchstat';
+		}
 		return $tabs;
 	}
 

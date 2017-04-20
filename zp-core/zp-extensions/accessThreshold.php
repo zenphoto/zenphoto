@@ -98,35 +98,17 @@ class accessThreshold {
 	static function admin_tabs($tabs) {
 		global $_zp_current_admin_obj;
 		if ((zp_loggedin(ADMIN_RIGHTS) && $_zp_current_admin_obj->getID())) {
-			if (isset($tabs['users']['subtabs'])) {
-				$subtabs = $tabs['users']['subtabs'];
+			if (isset($tabs['admin']['subtabs'])) {
+				$subtabs = $tabs['admin']['subtabs'];
 			} else {
 				$subtabs = array(
-						gettext('users') => 'admin-users.php?page=users&tab=users'
+						gettext('users') => 'admin-users.php?page=admin&tab=users'
 				);
 			}
-			$subtabs[gettext("access")] = PLUGIN_FOLDER . '/accessThreshold/admin_tab.php?page=users&tab=access';
-			$tabs['users']['text'] = gettext("admin");
-			$tabs['users']['link'] = WEBPATH . "/" . ZENFOLDER . '/admin-users.php?page=users&tab=users';
-			$tabs['users']['subtabs'] = $subtabs;
-		}
-		return $tabs;
-
-		if (zp_loggedin(ADMIN_RIGHTS)) {
-			if (!isset($tabs['development'])) {
-				$tabs['development'] = array('text' => gettext("development"),
-						'subtabs' => NULL);
-			}
-			$tabs['development']['subtabs'][gettext("accessThreshold")] = PLUGIN_FOLDER . '/accessThreshold/admin_tab.php?page=development&tab=accessThreshold';
-			$named = array_flip($tabs['development']['subtabs']);
-			natcasesort($named);
-			$tabs['development']['subtabs'] = $named = array_flip($named);
-			$link = array_shift($named);
-			if (strpos($link, '/') !== 0) { // zp_core relative
-				$tabs['development']['link'] = WEBPATH . '/' . ZENFOLDER . '/' . $link;
-			} else {
-				$tabs['development']['link'] = WEBPATH . $link;
-			}
+			$subtabs[gettext("access")] = PLUGIN_FOLDER . '/accessThreshold/admin_tab.php?page=admin&tab=access';
+			$tabs['admin']['text'] = gettext("admin");
+			$tabs['admin']['link'] = WEBPATH . "/" . ZENFOLDER . '/admin-users.php?page=admin&tab=users';
+			$tabs['admin']['subtabs'] = $subtabs;
 		}
 		return $tabs;
 	}
@@ -148,7 +130,7 @@ class accessThreshold {
 }
 
 if (OFFSET_PATH) {
-	zp_register_filter('admin_tabs', 'accessThreshold::admin_tabs', 0);
+	zp_register_filter('admin_tabs', 'accessThreshold::admin_tabs', -100);
 } else {
 	$mu = new zpMutex('aT');
 	$mu->lock();

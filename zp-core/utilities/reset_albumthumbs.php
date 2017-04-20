@@ -32,7 +32,7 @@ if (isset($_REQUEST['thumbtype']) || isset($_REQUEST['thumbselector'])) {
 
 $buffer = '';
 
-printAdminHeader('overview', 'thumbs');
+printAdminHeader('admin', 'thumbs');
 echo '</head>';
 ?>
 

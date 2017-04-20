@@ -25,18 +25,10 @@ class rewriteRules {
 		if (zp_loggedin(ADMIN_RIGHTS)) {
 			if (!isset($tabs['development'])) {
 				$tabs['development'] = array('text' => gettext("development"),
+						'link' => WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/rewriteRules/admin_tab.php?page=development&tab=rewrite',
 						'subtabs' => NULL);
 			}
 			$tabs['development']['subtabs'][gettext("rewrite")] = PLUGIN_FOLDER . '/rewriteRules/admin_tab.php?page=development&tab=rewrite';
-			$named = array_flip($tabs['development']['subtabs']);
-			natcasesort($named);
-			$tabs['development']['subtabs'] = $named = array_flip($named);
-			$link = array_shift($named);
-			if (strpos($link, '/') !== 0) { // zp_core relative
-				$tabs['development']['link'] = WEBPATH . '/' . ZENFOLDER . '/' . $link;
-			} else {
-				$tabs['development']['link'] = WEBPATH . $link;
-			}
 		}
 		return $tabs;
 	}

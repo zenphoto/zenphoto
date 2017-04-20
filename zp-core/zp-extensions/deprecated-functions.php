@@ -30,7 +30,7 @@ $plugin_is_filter = 900 | CLASS_PLUGIN;
 
 define('DEPRECATED_LOG', SERVERPATH . '/' . DATA_FOLDER . '/deprecated.log');
 
-zp_register_filter('admin_tabs', 'deprecated_functions::admin_tabs');
+zp_register_filter('admin_tabs', 'deprecated_functions::admin_tabs', -308);
 zp_register_filter('admin_tabs', 'deprecated_functions::tabs');
 
 class deprecated_functions {
@@ -90,18 +90,11 @@ class deprecated_functions {
 		if (zp_loggedin(ADMIN_RIGHTS)) {
 			if (!isset($tabs['development'])) {
 				$tabs['development'] = array('text' => gettext("development"),
+						'link' => WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions/admin_tab.php?page=development&tab=deprecated',
 						'subtabs' => NULL);
 			}
 			$tabs['development']['subtabs'][gettext("deprecated")] = PLUGIN_FOLDER . '/deprecated-functions/admin_tab.php?page=development&tab=deprecated';
-			$named = array_flip($tabs['development']['subtabs']);
-			natcasesort($named);
-			$tabs['development']['subtabs'] = $named = array_flip($named);
-			$link = array_shift($named);
-			if (strpos($link, '/') !== 0) { // zp_core relative
-				$tabs['development']['link'] = WEBPATH . '/' . ZENFOLDER . '/' . $link;
-			} else {
-				$tabs['development']['link'] = WEBPATH . $link;
-			}
+			$tabs['admin']['subtabs'][gettext('Check deprecated')] = '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions/check_for_deprecated.php?tab=checkdeprecated';
 		}
 		return $tabs;
 	}
@@ -208,7 +201,6 @@ class deprecated_functions {
 	}
 
 	static function admin_tabs($tabs) {
-		$tabs['overview']['subtabs'][gettext('Check deprecated')] = '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions/check_for_deprecated.php?tab=checkdeprecated';
 		return $tabs;
 	}
 

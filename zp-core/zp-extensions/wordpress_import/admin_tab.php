@@ -330,7 +330,7 @@ if (isset($_REQUEST['dbname']) || isset($_REQUEST['dbuser']) || isset($_REQUEST[
 		$postinfo .= "<li class='import-nothing'>" . gettext("No posts or pages to import.") . "</li>";
 	}
 } // if db data set
-printAdminHeader('overview', 'wordpress');
+printAdminHeader('development', 'wordpress');
 if (!empty($metaURL) && $postcount < $posttotalcount) {
 	?>
 	<meta http-equiv="refresh" content="1; url=<?php echo $metaURL; ?>" />

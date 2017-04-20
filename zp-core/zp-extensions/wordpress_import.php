@@ -17,7 +17,14 @@ $plugin_author = "Malte Müller (acrylian)";
 zp_register_filter('admin_tabs', 'wordpress_import_admin_tabs');
 
 function wordpress_import_admin_tabs($tabs) {
-	$tabs['overview']['subtabs'][gettext('Wordpress')] = '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/wordpress_import/admin_tab.php?tab=wordpress';
+	if (zp_loggedin(ADMIN_RIGHTS)) {
+		if (!isset($tabs['development'])) {
+			$tabs['development'] = array('text' => gettext("development"),
+					'link' => WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/wordpress_import/admin_tab.php?tab=wordpress',
+					'subtabs' => NULL);
+		}
+		$tabs['development']['subtabs'][gettext("wordpress importer")] = PLUGIN_FOLDER . '/wordpress_import/admin_tab.php?tab=wordpress';
+	}
 	return $tabs;
 }
 

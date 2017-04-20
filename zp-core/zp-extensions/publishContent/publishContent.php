@@ -122,7 +122,7 @@ foreach ($tables as $table) {
 	updatePublished($table);
 }
 
-printAdminHeader('overview', gettext('Content'));
+printAdminHeader('admin', gettext('Content'));
 datepickerJS();
 ?>
 <script type="text/javascript">

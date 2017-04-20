@@ -109,7 +109,7 @@ function checkFolder($album) {
 
 $_zp_gallery->garbageCollect();
 
-printAdminHeader('overview', 'SEO cleaner');
+printAdminHeader('admin', 'SEO cleaner');
 
 if (isset($_GET['todo'])) {
 	$count = sanitize_numeric($_GET['imagecount']);

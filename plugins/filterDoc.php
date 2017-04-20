@@ -20,18 +20,10 @@ function filterDoc_tabs($tabs) {
 	if (zp_loggedin(ADMIN_RIGHTS)) {
 		if (!isset($tabs['development'])) {
 			$tabs['development'] = array('text' => gettext("development"),
+					'link' => WEBPATH . '/' . USER_PLUGIN_FOLDER . '/filterDoc/admin_tab.php?page=development&tab=filters',
 					'subtabs' => NULL);
 		}
 		$tabs['development']['subtabs'][gettext("filters")] = '/' . USER_PLUGIN_FOLDER . '/filterDoc/admin_tab.php?page=development&tab=filters';
-		$named = array_flip($tabs['development']['subtabs']);
-		natcasesort($named);
-		$tabs['development']['subtabs'] = $named = array_flip($named);
-		$link = array_shift($named);
-		if (strpos($link, '/') !== 0) { // zp_core relative
-			$tabs['development']['link'] = WEBPATH . '/' . ZENFOLDER . '/' . $link;
-		} else {
-			$tabs['development']['link'] = WEBPATH . $link;
-		}
 	}
 	return $tabs;
 }

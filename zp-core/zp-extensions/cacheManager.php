@@ -90,7 +90,7 @@ $option_interface = 'cacheManager';
 require_once(SERVERPATH . '/' . ZENFOLDER . '/class-feed.php');
 
 zp_register_filter('admin_utilities_buttons', 'cacheManager::buttons');
-zp_register_filter('admin_tabs', 'cacheManager::admin_tabs');
+zp_register_filter('admin_tabs', 'cacheManager::admin_tabs', -300);
 zp_register_filter('edit_album_utilities', 'cacheManager::albumbutton', -9999);
 zp_register_filter('show_change', 'cacheManager::published');
 
@@ -343,8 +343,10 @@ class cacheManager {
 	}
 
 	static function admin_tabs($tabs) {
-		$tabs['overview']['subtabs'][gettext('Cache images')] = PLUGIN_FOLDER . '/cacheManager/cacheImages.php?page=overview&tab=images';
-		$tabs['overview']['subtabs'][gettext('Cache stored images')] = PLUGIN_FOLDER . '/cacheManager/cacheDBImages.php?page=overview&tab=DB&XSRFToken=' . getXSRFToken('cacheDBImages');
+		if (zp_loggedin(ADMIN_RIGHTS)) {
+			$tabs['admin']['subtabs'][gettext('Cache images')] = PLUGIN_FOLDER . '/cacheManager/cacheImages.php?page=overview&tab=images';
+			$tabs['admin']['subtabs'][gettext('Cache stored images')] = PLUGIN_FOLDER . '/cacheManager/cacheDBImages.php?page=overview&tab=DB&XSRFToken=' . getXSRFToken('cacheDBImages');
+		}
 		return $tabs;
 	}
 
