@@ -35,7 +35,7 @@ $plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'user_expiry';
 
-zp_register_filter('admin_tabs', 'user_expiry::admin_tabs', 1000);
+zp_register_filter('admin_tabs', 'user_expiry::admin_tabs', -99999); //	we want to be last so we can hijack the tabs if needed
 zp_register_filter('authorization_cookie', 'user_expiry::checkcookie');
 zp_register_filter('admin_login_attempt', 'user_expiry::checklogon');
 zp_register_filter('federated_login_attempt', 'user_expiry::checklogon');
@@ -100,19 +100,20 @@ class user_expiry {
 			$tabs = array('admin' => array('text' => gettext("admin"),
 							'link' => WEBPATH . "/" . ZENFOLDER . '/admin-users.php?page=admin&tab=users',
 							'subtabs' => NULL));
-		}
-		if (zp_loggedin(ADMIN_RIGHTS) && $_zp_current_admin_obj->getID()) {
-			if (isset($tabs['admin']['subtabs'])) {
-				$subtabs = $tabs['admin']['subtabs'];
-			} else {
-				$subtabs = array(
-						gettext('users') => 'admin-users.php?page=admin&tab=users'
-				);
+		} else {
+			if (zp_loggedin(ADMIN_RIGHTS) && $_zp_current_admin_obj->getID()) {
+				if (isset($tabs['admin']['subtabs'])) {
+					$subtabs = $tabs['admin']['subtabs'];
+				} else {
+					$subtabs = array(
+							gettext('users') => 'admin-users.php?page=admin&tab=users'
+					);
+				}
+				$subtabs[gettext('expiry')] = PLUGIN_FOLDER . '/user-expiry/user-expiry-tab.php?page=admin&tab=expiry';
+				$tabs['admin']['text'] = gettext("admin");
+				$tabs['admin']['link'] = WEBPATH . "/" . ZENFOLDER . '/admin-users.php?page=admin&tab=users';
+				$tabs['admin']['subtabs'] = $subtabs;
 			}
-			$subtabs[gettext('expiry')] = PLUGIN_FOLDER . '/user-expiry/user-expiry-tab.php?page=admin&tab=expiry';
-			$tabs['admin']['text'] = gettext("admin");
-			$tabs['admin']['link'] = WEBPATH . "/" . ZENFOLDER . '/admin-users.php?page=admin&tab=users';
-			$tabs['admin']['subtabs'] = $subtabs;
 		}
 		return $tabs;
 	}

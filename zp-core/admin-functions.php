@@ -341,7 +341,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 				$bottom = count($zenphoto_tabs);
 				$loc = -1;
 				foreach ($zenphoto_tabs as $key => $atab) {
-					if (is_array($atab)) {
+					if (is_array($atab) && isset($atab['link'])) {
 						if (array_key_exists('alert', $zenphoto_tabs[$key])) {
 							$alert = $zenphoto_tabs[$key]['alert'];
 						} else {
