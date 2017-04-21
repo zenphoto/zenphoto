@@ -473,21 +473,21 @@ echo $refresh;
 							<button type="reset" value="<?php echo gettext('reset') ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
 						</p>
 						<br class="clearall" /><br />
-						<table class="bordered"> <!-- main table -->
+						<table class="unbordered"> <!-- main table -->
 
 
 							<?php
 							if ($subpage || count($userlist) > 1) {
 								?>
 								<tr>
-									<th>
+									<td>
 										<span style="font-weight: normal">
 											<a onclick="toggleExtraInfo('', 'user', true);"><?php echo gettext('Expand all'); ?></a>
 											|
 											<a onclick="toggleExtraInfo('', 'user', false);"><?php echo gettext('Collapse all'); ?></a>
 										</span>
-									</th>
-									<th>
+									</td>
+									<td>
 										<?php echo gettext('show'); ?>
 										<select name="showgroup" id="showgroup" class="ignoredirty" onchange="launchScript('<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-users.php', ['showgroup=' + $('#showgroup').val()]);" >
 											<option value=""<?php if (!$showgroup) echo ' selected="selected"'; ?>><?php echo gettext('all'); ?></option>
@@ -508,10 +508,12 @@ echo $refresh;
 											}
 											?>
 										</select>
-									</th>
-									<th>
-										<?php printPageSelector($subpage, $rangeset, 'admin-users.php', array('page' => 'users')); ?>
-									</th>
+									</td>
+									<td>
+										<span class="floatright padded">
+											<?php printPageSelector($subpage, $rangeset, 'admin-users.php', array('page' => 'users')); ?>
+										</span>
+									</td>
 								</tr>
 								<?php
 							}
@@ -582,7 +584,7 @@ echo $refresh;
 								<!-- finished with filters -->
 								<tr>
 									<td colspan="100%" style="margin: 0pt; padding: 0pt;<?php echo $background; ?>">
-										<table id='user-<?php echo $id; ?>'>
+										<table class="unbordered" id='user-<?php echo $id; ?>'>
 											<tr>
 												<td style="margin-top: 0px; width:20em;<?php echo $background; ?>" valign="top">
 													<?php
@@ -839,11 +841,11 @@ echo $refresh;
 							if ($subpage || count($userlist) > 1) {
 								?>
 								<tr>
-									<th></th>
-									<th></th>
-									<th>
-										<?php printPageSelector($subpage, $rangeset, 'admin-users.php', array('page' => 'users')); ?>
-									</th>
+									<td colspan="100%">
+										<span class="floatright padded">
+											<?php printPageSelector($subpage, $rangeset, 'admin-users.php', array('page' => 'users')); ?>
+										</span>
+									</td>
 								</tr>
 								<?php
 							}

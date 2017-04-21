@@ -534,10 +534,12 @@ table.noinput td {
 	word-break: keep-all;
 }
 
-.bordered {
+.bordered, .unbordered {
 	width: 100%;
 	padding: 0px;
 	border-spacing: 0px;
+}
+.bordered {
 	background: #E5E5E5;
 	border: 1px solid #E5E5E5;
 }
